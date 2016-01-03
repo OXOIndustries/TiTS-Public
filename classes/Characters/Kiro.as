@@ -32,7 +32,7 @@
 			this.long = "";
 			this.customDodge = "Kiro casually sidesteps out of the way";
 			this.customBlock = "Obvious placeholder is obvious.";
-			this.plural = false;
+			this.isPlural = false;
 			
 			this.meleeWeapon = new ShockBlade();
 			this.meleeWeapon.hasRandomProperties = true;

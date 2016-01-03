@@ -758,8 +758,8 @@ public function DeepCavesBonus():Boolean
 		choices[choices.length] = infectedMyrmedionShit;
 		if(silly)
 		{
-			choices[choices.length] = crystalGooFenBurps;
-			choices[choices.length] = crystalGooFenBurps;
+			//choices[choices.length] = crystalGooFenBurps;
+			//choices[choices.length] = crystalGooFenBurps;
 			//crystalGooFenBurps();
 			//return true;
 		}

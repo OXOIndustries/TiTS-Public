@@ -1,4 +1,6 @@
-﻿import classes.Engine.Combat.DamageTypes.DamageResult;
+﻿import classes.Characters.FrogGirl;
+import classes.Creature;
+import classes.Engine.Combat.DamageTypes.DamageResult;
 import classes.Engine.Combat.DamageTypes.TypeCollection;
 //Summary
 //frog grills. not much i would consider gamebreaking here. new tf. unique random proc event. drop their tf as loot.
@@ -22,48 +24,41 @@ import classes.Engine.Combat.DamageTypes.TypeCollection;
 */
 
 //[kerokorasSkinDetail]
-public function keroSkinDetail():String
+public function keroSkinDetail(tEnemy:Creature = null):String
 {
-	if(foes[0].skinTone == "orange and green") return "bright orange with splashes of pale green";
-	else if(foes[0].skinTone == "mottled brown") return "mottled earthy brown with muddy spots";
-	else if(foes[0].skinTone == "black and gold") return "pure inky black with patches of gold on her upper body";
-	else if(foes[0].skinTone == "black and blue") return "sea blue with black blotches along her back and sides";
-	else if(foes[0].skinTone == "black and red") return "dark inky black with vibrant blood red patches across her body";
-	else if(foes[0].skinTone == "red and blue") return "vibrant red with deep blue arms and legs";
-	else if(foes[0].skinTone == "black, blue, and yellow") return "blue striped black legs with a bright yellow upper body";
+	if (tEnemy == null) tEnemy = enemy;
+	
+	if(tEnemy.skinTone == "orange and green") return "bright orange with splashes of pale green";
+	else if(tEnemy.skinTone == "mottled brown") return "mottled earthy brown with muddy spots";
+	else if(tEnemy.skinTone == "black and gold") return "pure inky black with patches of gold on her upper body";
+	else if(tEnemy.skinTone == "black and blue") return "sea blue with black blotches along her back and sides";
+	else if(tEnemy.skinTone == "black and red") return "dark inky black with vibrant blood red patches across her body";
+	else if(tEnemy.skinTone == "red and blue") return "vibrant red with deep blue arms and legs";
+	else if(tEnemy.skinTone == "black, blue, and yellow") return "blue striped black legs with a bright yellow upper body";
 	else return "solid sparkling gold"
 }
 
-public function showFrogGirl():void
+public function showFrogGirl(tEnemy:Creature = null):void
 {
-	if(foes[0].skinTone == "orange and green") showBust("FROG_4")
-	else if(foes[0].skinTone == "mottled brown") showBust("FROG_8");
-	else if(foes[0].skinTone == "black and gold") showBust("FROG_5");
-	else if(foes[0].skinTone == "black and blue") showBust("FROG_6");
-	else if(foes[0].skinTone == "black and red") showBust("FROG_2");
-	//else if(foes[0].skinTone == "black and purple") return "dark inky black with vibrant electric purple patches across her back";
-	else if(foes[0].skinTone == "red and blue") showBust("FROG_1");
-	else if(foes[0].skinTone == "black, blue, and yellow") showBust("FROG_3");
-	else showBust("FROG_7");
+	if (tEnemy == null) tEnemy = enemy;
+	showBust(tEnemy.bustDisplay)
 	if(inCombat()) showName("FIGHT:\nKEROKORAS")
 	else showName("\nKEROKORAS");
 }
 
 public function frogGirlsEncounter():void
 {
-	foes = new Array();
-	chars["FROG_GIRL"].prepForCombat();
-	showFrogGirl();
-	
+	var tEnemy:Creature = new FrogGirl();
+	showFrogGirl(tEnemy);
 	IncrementFlag("MET_KEROKORAS");
 
 	//First Encounter
 	if(!CodexManager.entryUnlocked("Kerokoras"))
 	{
 		output("\n\nThe over-sweet scent of decaying vegetation mixed with the sour scent of stagnant water reaches your nose as you push your way through the dense foliage and come upon a small bog lake covered in algae and violet hued lilypads as big around as a hoverskiff’s braceplate.");
-		output("\n\nYou can hear the buzzing of insects and the occasional cry of birds high above you, however it is a deep and resonant <i>“Croooooooak!”</i> that draws your attention. You spin towards the sound to find a lithe " + foes[0].skinTone + "-skinned creature rising up from the murky bog water.");
+		output("\n\nYou can hear the buzzing of insects and the occasional cry of birds high above you, however it is a deep and resonant <i>“Croooooooak!”</i> that draws your attention. You spin towards the sound to find a lithe " + tEnemy.skinTone + "-skinned creature rising up from the murky bog water.");
 		output("\n\nIt is impossible to tell the creature’s gender at first, with a complete lack of secondary sexual characteristics, it just looks boyish and sleek, an effect that is amplified by the light refracting off the beads of water running along its skin. It isn’t until it is fully out of the water and standing that you can see that it is female. A kerokoras, according to your codex's yammering.");
-		output("\n\nHer amphibious body has more in common with frogs than anything else, despite her humanoid figure. Her skin is a " + keroSkinDetail() + ", and is completely devoid of hair or fur. She looks at you with her large golden eyes and sniffs at the air curiously through her broad spaced nostrils, which draws attention to the lack of a nose on her rather smooth face. Her wide mouth turns into a grin and she croaks out, <i>“I smell man...”</i>");
+		output("\n\nHer amphibious body has more in common with frogs than anything else, despite her humanoid figure. Her skin is a " + keroSkinDetail(tEnemy) + ", and is completely devoid of hair or fur. She looks at you with her large golden eyes and sniffs at the air curiously through her broad spaced nostrils, which draws attention to the lack of a nose on her rather smooth face. Her wide mouth turns into a grin and she croaks out, <i>“I smell man...”</i>");
 		// Seems predicated on smell/scent, hence cockcheck rather than mf()
 		//hasCock: 
 		if(pc.hasCock()) output("\n\nShe starts to walk towards you, her narrow hips swaying sensuously with her every step. Her webbed hands draw up over her smooth belly and across her flat and featureless chest before sliding behind her neck as she gives you a lust filled look. Clearly she is trying to seduce you with her androgynous body.");
@@ -80,7 +75,7 @@ public function frogGirlsEncounter():void
 			//(* Proceed with the (lust < 40) text.)
 			//(** loss by lust, but without any resistance.)
 			clearMenu();
-			addButton(0,"Fight",startCombatLight);
+			addButton(0,"Fight",configFrogGirlFight, tEnemy);
 			addButton(1,"Submit",submitToFrogSex);
 		}
 		//(hasCock && lust < 41):
@@ -88,14 +83,14 @@ public function frogGirlsEncounter():void
 		{
 			output("Her eyes narrow when you don’t immediately respond to her advances and her grin fades into a bit of a scowl. What do they say about a woman scorned? It looks like it’s a fight.");
 			clearMenu();
-			addButton(0,"Next",startCombatLight);
+			addButton(0,"Next",configFrogGirlFight, tEnemy);
 		}
 		CodexManager.unlockEntry("Kerokoras");
 	}
 	else
 	{
 		//Repeat Encounter
-		output("\n\nA lusty resonant croak once again signals the appearance of a kerokoras woman, this one " + foes[0].skinTone + " skinned.");
+		output("\n\nA lusty resonant croak once again signals the appearance of a kerokoras woman, this one " + tEnemy.skinTone + " skinned.");
 		if(!pc.hasCock()) output(" It sighs, apparently annoyed that you aren’t male.");
 		if(pc.lust() >= 33 && pc.hasCock()) 
 		{
@@ -104,140 +99,41 @@ public function frogGirlsEncounter():void
 			//(* Proceed with the (lust < 40) text.)
 			//(** loss by lust, but without any resistance.)
 			clearMenu();
-			addButton(0,"Fight",startCombatLight);
+			addButton(0,"Fight",configFrogGirlFight, tEnemy);
 			addButton(1,"Submit",submitToFrogSex);
 		}
 		else 
 		{
 			clearMenu();
-			addButton(0,"Next",startCombatLight);
+			addButton(0,"Next",configFrogGirlFight, tEnemy);
 		}
 	}
 }
 
-/*
-Combat Text:
-The short and sleek alien before you dodges about with practiced ease. Her " + foes[0].skinTone + " skin shines with a coating of lust inducing toxins. A grin crosses her features as she gazes at you with unrestrained need. Despite the soft appearance of her body, you can see toned muscle coiled beneath her pliant flesh. She’s ready to fight if it means getting {hasCock: into your pants/you out of the way).
-*/
-
-//Combat Events:
-public function frogGirlAI():void
+public function configFrogGirlFight(tEnemy:Creature):void
 {
-	showFrogGirl();
-	var combatChoices:Array = new Array();
-	//Lick
-	//used for basic attack if the pc has no shields. deals moderate lust damage
-	if(pc.shields() < 1) combatChoices.push(getLickedBitch);
-	//Kick
-	//basic attack
-	else combatChoices.push(frogGirlKickAttackkkkkuuuuu);
-	//Show
-	//basic lust attack, only used on males
-	if(pc.hasCock()) combatChoices.push(frogGirlBasicLustAttack);
-	//Tongue lash
-	//special attack: deals lust damage if no shields
-	combatChoices.push(tongueLashAttack);
-	combatChoices[rand(combatChoices.length)]();
-}
-
-//Kick
-//basic attack
-public function frogGirlKickAttackkkkkuuuuu():void
-{
-	output("The frog girl kicks at you with a muscled leg.");
-	if(combatMiss(foes[0],pc)) output(" The kick grazes your arm, but her slippery skin negates any damage it would’ve done.");
-	else
-	{
-		output(" You take the hit, grunting at the force of her attack");
-		if(pc.shields() > 0) output(", though your shield flares brightly");
-		output(".");
-		
-		var damage:TypeCollection = foes[0].meleeDamage();
-		damageRand(damage, 15);
-		applyDamage(damage, foes[0], pc);
-	}
-	processCombat();
-}
-	
-//Show
-//basic lust attack, only used on males
-public function frogGirlBasicLustAttack():void
-{
-	output("The amorous amphibian turns on her heel, leaning over and spreading her cheeks to give you a perfect view of her glistening cunt. <i>“Theres no need to fight, you can have this for free,”</i> she says teasingly.");
-	if(pc.willpower()/2 + rand(20) + 1 >= 18) output("\nYou manage to ignore the spectacle, much to the kerokoras’ disappointment.");
-	else 
-	{
-		output("\nYou flush at her actions, shaking your head to clear the thoughts it brings up.");
-	}
-	processCombat();
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(tEnemy);
+	CombatManager.victoryScene(victoryAgainstTheFrogs);
+	CombatManager.lossScene(loseAgainstTheFrogs);
+	CombatManager.displayLocation("KEROKORAS");
+	CombatManager.beginCombat();
 }
 
 //Tongue lash
 //special attack: deals lust damage if no shields
-public function tongueLashAttack():void
-{
-	output("The lusty frog girl licks across her body with her long tongue, moaning as the oral muscle slips over her netherlips. Without warning she lashes it at you, whipping it like a flail.");
-	var damage:TypeCollection;
-	//miss: 
-	if(combatMiss(foes[0],pc)) output("\nThe tongue flies by you, smashing into a tree and eliciting a pained gasp from its owner");
-	else 
-	{
-		output("\nThe tip of her tongue slams into you, ");
-		if(pc.shields() > 0) 
-		{
-			output("and you are staggered by the force of the blow hitting your shield");
-			
-			damage = foes[0].meleeDamage();
-			damage.addFlag(DamageFlag.ONLY_SHIELD);
-			damageRand(damage, 15);
-			var damageResult:DamageResult = calculateDamage(damage, foes[0], pc);
-			
-			if (pc.shieldsRaw > 0) output(". It holds.");
-			else output(". Your shield is breached!");
-			
-			outputDamage(damageResult);
-		}
-		else if(pc.hasArmor() && pc.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
-		{
-			output("and you are slimed by her toxic saliva. Luckily your [pc.armor] is airtight enough to prevent any of the fluid from seeping into your [pc.skin], but you definitely feel the impact of the hit.");
-			damage = foes[0].meleeDamage();
-			damageRand(damage, 5 + rand(5));
-			var damageResult2:DamageResult = calculateDamage(damage, foes[0], pc);
-			outputDamage(damageResult2);
-		}
-		else
-		{
-			output("and you feel the toxin in her saliva work its way into your body.");
-			var dr2:DamageResult = applyDamage(new TypeCollection( { tease: 10 + rand(10) } ), foes[0], pc, "suppress");
-			outputDamage(dr2);
-		}
-	}
-	processCombat();
-}
+
 
 //Lick
 //used for basic attack if the pc has no shields. deals moderate lust damage
-public function getLickedBitch():void
-{
-	output("The agile lady skirts up to you, attempting to give you a lick from waist to neck.");
-	if(combatMiss(foes[0],pc)) output(" You leap backwards, escaping her attack before she can pull it off.");
-	else if(pc.hasArmor() && pc.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
-	{
-		output(" Her tongue caresses you, but your are left unaffected thanks to the impermeability of your [pc.armor].");
-	}
-	else
-	{
-		output(" Her tongue caresses you, and you feel the lust inducing venom seep into your body.");
-		applyDamage(new TypeCollection( { tease: 6 + rand(6) } ), foes[0], pc, "minimal");
-	}
-	processCombat();
-}
+
 
 public function victoryAgainstTheFrogs():void
 {
 	showFrogGirl();
 	//Victory by lust:
-	if(foes[0].lust() >= foes[0].lustMax()) 
+	if(enemy.lust() >= enemy.lustMax()) 
 	{
 		output("The slick-skinned frog girl falls to the ground, eyeing you up with lusty eyes. Her legs clamp tightly and rub together, making her need visibly obvious.");
 		output("\n\n<i>“Please?”</i> she whimpers.");
@@ -262,7 +158,7 @@ public function victoryAgainstTheFrogs():void
 		addDisabledButton(0,"Footjob","Footjob","You aren't aroused enough to pursue any kind of sex.");
 		addDisabledButton(1,"Face Sit","Face Sit","You aren't aroused enough to pursue any kind of sex.");
 	}
-	addButton(14,"Leave",genericVictory);
+	addButton(14,"Leave", CombatManager.genericVictory);
 }
 
 public function loseAgainstTheFrogs():void
@@ -302,7 +198,7 @@ public function submitToFrogSex():void
 public function hasCockLossForForgGirls():void
 {
 	showFrogGirl();
-	var x:int = pc.cockThatFits(foes[0].vaginalCapacity(0));
+	var x:int = pc.cockThatFits(enemy.vaginalCapacity(0));
 	if(x < 0) x = pc.biggestCockIndex();
 	output("The lithe frog-girl walks around your helpless body, appraising her prize carefully. She makes a few short hops over to you and presses your ");
 	if(inCombat()) output("weakened");
@@ -350,10 +246,10 @@ public function hasCockLossForForgGirls():void
 	output("\n\nHer slick, plush hips squish against your cheeks as she mashes her vagina against your mouth. Thoughtlessly, you begin licking her sex with reckless abandon, eager to receive the assured release. She tastes sweet on your tongue, and you lick like your life depends on it. You find her fuckhole, plugging it with your tongue and wetting it as much as possible. Your nose rubs against her rigid clit, causing soft yips of pleasure to emanate from her with each passing nudge. Her insides suck your tongue deeper until you can’t get any further down.");
 	if(pc.cocks[x].cLength() >= 10) output(" You even manage to reach so far that you feel it touch her cervix.");
 
-	output("\n\nAfter a few moments of heated tasting, the " + foes[0].skinTone + " colored beauty draws her cunt away from your mouth. A thin trail of saliva and juices connects you for a moment before breaking and falling to your face. With nothing further to hold your attention, it is brought back to your aching loins. The anuran nymph grasps your [pc.cock " + x + "] and gyrates her hips atop your [pc.cockHead " + x + "]. You thrust weakly in an attempt to drive your way into her snug pussy.");
+	output("\n\nAfter a few moments of heated tasting, the " + enemy.skinTone + " colored beauty draws her cunt away from your mouth. A thin trail of saliva and juices connects you for a moment before breaking and falling to your face. With nothing further to hold your attention, it is brought back to your aching loins. The anuran nymph grasps your [pc.cock " + x + "] and gyrates her hips atop your [pc.cockHead " + x + "]. You thrust weakly in an attempt to drive your way into her snug pussy.");
 
 	//cockFits:
-	if(pc.cockVolume(x) <= foes[0].vaginalCapacity(0))
+	if(pc.cockVolume(x) <= enemy.vaginalCapacity(0))
 	{
 		output("\n\n<i>“Good, babymaker. Now you can thill me up with babies,”</i> she says with a loving tone between gasps of pleasure. Without warning her hips slam down over you, driving your [pc.cock " + x + "] deep into her velvety cunt. At first she simply bounces on top of you, slickening your shaft with sex juices and venom");
 		if(pc.cockTotal() > 1) 
@@ -372,7 +268,7 @@ public function hasCockLossForForgGirls():void
 		output("\n\nRopes of jizz stream through her cervix and into her hungry womb ");
 		if(pc.cockTotal() > 1) output(", [pc.eachCock] not wrapped in the blissfully tight warmth of the frog girls pussy blowing their own loads all over her legs and the surrounding jungle in tandem");
 		output(". You moan with the satisfaction of long awaited release, and the frog girl reciprocates, shuddering with primordial bliss as she’s filled to the brim with your fluid. After the last of your juice has been expelled into her, she weakly pulls herself from your [pc.cock " + x + "]. She idly rubs her full belly and kisses your still half-erect dick.");
-		output("\n\n<i>“Thats... good babymaker. Enough for now, I’m sure theres plenty of them in here now,”</i> she states, a pleased smile on her face. The " + foes[0].skinTone + " girl scoots back to the water, kicking away on her back and leaving you to recover yourself.");
+		output("\n\n<i>“Thats... good babymaker. Enough for now, I’m sure theres plenty of them in here now,”</i> she states, a pleased smile on her face. The " + enemy.skinTone + " girl scoots back to the water, kicking away on her back and leaving you to recover yourself.");
 	}
 	else
 	{
@@ -391,7 +287,7 @@ public function hasCockLossForForgGirls():void
 		if(pc.cumQ() < 3000) output("pleasure spasms end");
 		else output("torrent dies down");
 		output(", she pulls back and kisses you on the forehead before sliding off of you.");
-		output("\n\n<i>“Good, babymaker. I can feel your seed swimming in my womb. Surely this much will catch from someone as strong as you,”</i> she states, a dreamy smile on her face. The " + foes[0].skinTone + " girl slides ");
+		output("\n\n<i>“Good, babymaker. I can feel your seed swimming in my womb. Surely this much will catch from someone as strong as you,”</i> she states, a dreamy smile on her face. The " + enemy.skinTone + " girl slides ");
 		if(pc.cumQ() < 1000) output("over the damp");
 		else output("through the cumslicked");
 		output(" jungle floor and slips into the water, kicking away on her back while you recover yourself.");
@@ -400,7 +296,7 @@ public function hasCockLossForForgGirls():void
 	processTime(60+rand(30));
 	pc.orgasm();
 	output("\n\n");
-	genericLoss();
+	CombatManager.genericLoss();
 }
 //!hasCock Loss
 // No dicks
@@ -423,7 +319,7 @@ public function youDontHaveADickLossToFrogGirls():void
 	output("\n\n<i>“You are good at this. You would do well as a lower class Kero-ooooooh”</i> she manages, her attempted insult turning into a guttural moan as she loses her balance and falls on her cushiony bottom. You use her moment of weakness to focus your assault.");
 	output("\n\nYour tongue weaves across her toes, and you cheer happily internally as you see her lean back on her arms. Her eyes are glossy and she looks to be trying hard to keep up her concentration. You playfully move your hand along her upturned leg, walking with your fingers and lingering with each ‘step’. Her eyes follow your movement until you reach her crotch, at which point they unfocus as you spread her nether lips and rub the entrance to the biological boiler that lies inside.");
 	output("\n\n<i>“Hey, hang on! I didn’t say you could touch there,”</i> she says weakly, doing nothing to stop your fingers from dipping inside her entrance. Her insides part easily, obviously prepared for intrusion, but still cling tightly around you; each time you pull out your fingers are sucked relentlessly back in.");
-	output("\n\nYou rub your thumb over the moaning frog girl’s clit, and whenever you touch the slick bead her insides pulse with tight convulsions. Her " + foes[0].skinTone + " flesh sparkles in your vision, and you close your eyes against the brightness, burrowing your face into the curves of her foot. Her webbed toes clench as you pleasure her, and you massage them with your free hand while your tongue lathers her heel.");
+	output("\n\nYou rub your thumb over the moaning frog girl’s clit, and whenever you touch the slick bead her insides pulse with tight convulsions. Her " + enemy.skinTone + " flesh sparkles in your vision, and you close your eyes against the brightness, burrowing your face into the curves of her foot. Her webbed toes clench as you pleasure her, and you massage them with your free hand while your tongue lathers her heel.");
 	output("\n\nYou’ve long since lost track of time, but after what feels like a pleasant eternity the frog girls breathing picks up speed. She shuts her eyes and scrunches up her face in silent orgasm as her toes splay out and her inner folds trap your fingers with binding contractions. A puddle of sexual fluids and lusty poison has formed over the course of your endeavors, and after her muscles relax the frog girl lies in it, softly panting as she rests.");
 	output("\n\nIf you still had your wits about you, you may have found it prudent to leave with this turnabout victory... but the haze of lust in your body is so overwhelming that you simply lower her leg to the ground and position yourself at her crotch. Closing your eyes, you move closer to her sweltering, juicy pussy and suckle firmly on her clit. The moment your lips make contact, the combination of her drug-enhanced taste, smell, and touch is too much for you. You slowly drift into unconsciousness suckling her sensitive button, lost in dreams of fucking all manner of alien creatures.");
 	output("\n\nYou wake up a few hours later with an ache in your side from sleeping on the rough jungle undergrowth. The effects of the venom seems to have dissipated, but you still feel hot and unsatisfied; you’ll have to be careful getting back if you don’t want to end up as someone’s toy.");
@@ -432,7 +328,7 @@ public function youDontHaveADickLossToFrogGirls():void
 	pc.orgasm();
 	pc.lust(33+rand(33));
 	output("\n\n");
-	genericLoss();
+	CombatManager.genericLoss();
 }
 
 //Victory Footjerbs
@@ -478,7 +374,7 @@ public function frogGirlFootJoerb():void
 	else output(" You feel your loins tense as your prostate pushes");
 	output(" a load of [pc.cum] onto the curves of her leg.");
 
-	output("\n\nThe fervent frog-girl seems to have momentarily put aside her desire to breed. Even as your last spurts drip from her " + foes[0].skinTone + " flesh, she brings her other foot up to aid in the massage; one foot continues to weave ");
+	output("\n\nThe fervent frog-girl seems to have momentarily put aside her desire to breed. Even as your last spurts drip from her " + enemy.skinTone + " flesh, she brings her other foot up to aid in the massage; one foot continues to weave ");
 	if(pc.cockTotal() > 1) output("through");
 	else output("around");
 	output(" [pc.eachCock], making sure ");
@@ -493,7 +389,7 @@ public function frogGirlFootJoerb():void
 	output("\n\nRigidness returns to you with painful force, and you are brought out of your lusty trance by the shock. You buck your hips in time with the motion of her feet, using the space between her webbed toes as an improvised onahole. No matter how many times you thrust, the cool air brings a gasp of shock to your lips as your flesh is exposed.");
 
 	output("\n\n<i>“Again, again!”</i> laughs the cock-crazed kerokoras as she hurries to milk your [pc.cockBiggest]. The jungle is humid and hot, but the surrounding air still feels cold against the volcanic, lust flamed heat of your [pc.cocks]. You can feel a second load of pressurized [pc.cum] fit to burst free from your over-sensitive flesh, rapidly approaching the sweet release her ministrations promise.");
-	output("\n\nYour muscles tense as you cum again, this time pumping hot [pc.cumNoun] over her lustrous " + foes[0].skinTone + " stomach. The sight of your cream running off her sweat-slicked skin only inflames your venom induced libido further. You grasp her firm thighs, one in each hand, and press them tightly together. You can feel the cords of muscle tensed beneath her " + foes[0].skinTone + " legs, but the outer flesh remains pliant and soft to the touch.");
+	output("\n\nYour muscles tense as you cum again, this time pumping hot [pc.cumNoun] over her lustrous " + enemy.skinTone + " stomach. The sight of your cream running off her sweat-slicked skin only inflames your venom induced libido further. You grasp her firm thighs, one in each hand, and press them tightly together. You can feel the cords of muscle tensed beneath her " + enemy.skinTone + " legs, but the outer flesh remains pliant and soft to the touch.");
 
 	output("\n\nYou slide your [pc.cockBiggest] in between the space below her pelvis, squishing it amidst the towers of her legs. Gently, you begin rock back and forth, using all of your willpower to steady yourself. Your dick");
 	if(pc.cockTotal() > 1) output("s");
@@ -512,7 +408,7 @@ public function frogGirlFootJoerb():void
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Naleen huntress rescue/ambush
@@ -783,7 +679,7 @@ public function itemRapeAFrogGirl():void
 	pc.destroyItem(new Throbb(), 1);
 	output("The nimble frog-girl walks up to your helpless body, sighing as she appraises you carefully. After a moment she hops over to you and presses your weakened frame into the ground, apparently having made her decision. As you fall to the floor the contents of your pack spill out around you, and the kerokoras to pauses to scan the scattered items. She steps over you to pick something up, and you can see her examining it closely.");
 	output("\n\n<i>“Hey, isn’t this one of those things sky people use to become babymakers? I wonder what it feels like...”</i> she says, and you hear her gasp as she injects herself with the syringe of Throbb you were carrying. You hear a wet schlick and a moan of pleasure from the frog-girl before she turns to face you.");
-	output("\n\n<i>“This is feeling like a really good idea so far. I very much hope you’ll agree,”</i> she says as she spins back to face you. An 8” long " + foes[0].skinTone + ", human-looking dick sprouts from just above her clit, already rock hard and twitching; the need to use it is apparent in its owner’s eyes. The lithe now-futa girl practically hops over to you, kneading your body with her slippery hands as she strips you of your [pc.gear].");
+	output("\n\n<i>“This is feeling like a really good idea so far. I very much hope you’ll agree,”</i> she says as she spins back to face you. An 8” long " + enemy.skinTone + ", human-looking dick sprouts from just above her clit, already rock hard and twitching; the need to use it is apparent in its owner’s eyes. The lithe now-futa girl practically hops over to you, kneading your body with her slippery hands as she strips you of your [pc.gear].");
 	output("\n\nThe lusty venom in her sweat seeps into your body as she rubs it in, feeling up every part of your body with fervor. Her fingers slide over your [pc.fullChest], and she giggles when your [pc.nipples] harden with the combination of chemicals and attention. Before the venoms totally inhibit your common sense you manage to keep one thought at the top of your head. This harlot is using YOUR injector of Throbb, and by the stars you’ll get your money’s worth.");
 	output("\n\nYou muster all of your desire into strength and grasp the kerokoras’s freshly grown cock, feeling lightheaded for a moment at its touch. Despite looking human, its length is drenched in the lust inducing sweat that slickens the rest of her body. You recover your wits, and notice that the frog girl is entirely at your mercy, shuddering uncontrollably as you hold her pulsing member.");
 	output("\n\nYou grin as you lead her by the dick to kneel before you, her breath coming in ragged huffs as your hand glides over her saturated cockflesh. The poor girl collapses as you pump her, and you continue your assault, flattening her rod against her stomach as you skim rapidly across its underside. Pre gushes from her tip with every pass, and you can see her juices soaking deeper into the jungle floor with each return.");
@@ -814,7 +710,7 @@ public function itemRapeAFrogGirl():void
 	output("\n\nYou can practically feel her lust building to match yours, marked by the relentless throbbing of her freshly ripened cock within the confines of your passage, and judging by the look on her face she’s almost ready to drop. This cock came from your hard earned credits, and you plan to get your moneys worth, so with one final clench of your legs you bring the inexperienced frog girl home.");
 
 	output("\n\nShe shouts in orgasmic bliss as her cock erupts inside you, and you squeeze her supple buttocks as you pull her closer, feeling the muscles beneath them clench tightly with each spurt of cum. Her shaking arms fail her and she falls onto you, holding her eyes closed as she rides out her orgasm. The well-fucked frog-girl weakly kisses the side of one of your [pc.breasts], and you give her a peck on the ");
-	if(pc.tallness <= foes[0].tallness - 6) output("head");
+	if(pc.tallness <= enemy.tallness - 6) output("head");
 	else output("cheek");
 	output(" as the mounting poison brings you over the edge.");
 
@@ -829,7 +725,7 @@ public function itemRapeAFrogGirl():void
 
 	processTime(34 + rand(10));
 	pc.orgasm();
-	genericLoss();
+	CombatManager.genericLoss();
 }
 
 //Female victory: Facesitting.
@@ -843,7 +739,7 @@ public function femaleVictoryFacesitting():void
 	output("\n\n<i>“Aren’t you a cutie. If you do a good job there might be something in it for you,”</i> You tell your prey. The eager girl begins licking as soon as her heavenly lips touch your folds, her warm tongue tickling your mons");
 	if(pc.hasClit()) output(" as her flat nose brushes [pc.oneClit]");
 	output(". Her hot breaths warm your nethers, making the jungle air seem cold during its recess. You moan at her tongue's ministrations, and she licks you with renewed vigor, not wanting to disappoint the female who bested her.");
-	output("\n\nOn the other hand, some of her eagerness might stem from the fact that she appears to be getting about as much pleasure from this as you are. Her " + foes[0].skinTone + " legs cross and twitch uncomfortably, cunt soaked in both toxic sweat and juices. Based on her current performance you think a reward isn’t entirely out of the question. You let one hand travel back and between her legs, sliding through the slick skin of her clenched thighs.");
+	output("\n\nOn the other hand, some of her eagerness might stem from the fact that she appears to be getting about as much pleasure from this as you are. Her " + enemy.skinTone + " legs cross and twitch uncomfortably, cunt soaked in both toxic sweat and juices. Based on her current performance you think a reward isn’t entirely out of the question. You let one hand travel back and between her legs, sliding through the slick skin of her clenched thighs.");
 	output("\n\nShe moans as you rub her cunt, pinching her clit between two fingers. Her hands cling tightly to your hips, pulling her face deeper into your [pc.cunt]. The insensate kerokoras’ legs can’t decide whether to open or tighten like a vice, alternating between both options at odd intervals. The only difference between the two is that the air is cool and her legs are blazing hot against your [pc.skinFurScales]. The heat of her insides is equally intense as they clamp around your fingers.");
 	output("\n\nYou brush your fingers against the fit frog-girl’s inner walls, sending jolts of pleasure through her athletic frame. You bite your bottom lip as the cocktail of aphrodisiac venom sends shockwaves of its own up your arm. You can hardly feel your fingers beyond the pleasure emanating from between her legs.");
 	output("\n\nThe lithe kerokoras’ tongue pushes its way up into your passage, and you feel the gooey muscle contort as your walls crush in around it. It feels like electric ecstasy inside your body, and it continues to push until it swirls around the ring of your cervix. Her lips suck on the entirety of [pc.oneVagina]");
@@ -858,8 +754,8 @@ public function femaleVictoryFacesitting():void
 
 	output("\n\nThe kerokoras’ own orgasm follows swiftly behind yours, and she pauses in her licks as her body locks up and pushes itself off the ground. You continue to rapidly fingerfuck her tight cunt even as her juices schlick and drip to the jungle floor, and her legs slide out from under her on the damp ground. A wet slap resounds as her butt hits the cum soaked vines, and your movement slows as your energy peters out.");
 
-	output("\n\nThe two of you collapse in a bundle of twitching nerves, eventually falling asleep holding each other. You awaken first, a few minutes later, and manage to get up, giving the " + foes[0].skinTone + " colored beauty a kiss on the forehead. It must’ve rained for a time while you were asleep, as the kerokoras’ venom has been washed away and replaced by plain water. You stretch before gathering your things and returning to your quest, feeling surprisingly relaxed for having slept on vines.\n\n");
+	output("\n\nThe two of you collapse in a bundle of twitching nerves, eventually falling asleep holding each other. You awaken first, a few minutes later, and manage to get up, giving the " + enemy.skinTone + " colored beauty a kiss on the forehead. It must’ve rained for a time while you were asleep, as the kerokoras’ venom has been washed away and replaced by plain water. You stretch before gathering your things and returning to your quest, feeling surprisingly relaxed for having slept on vines.\n\n");
 	processTime(100+rand(30));
 	pc.orgasm();
-	genericVictory();
+	CombatManager.genericVictory();
 }

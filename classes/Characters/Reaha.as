@@ -22,7 +22,7 @@
 			this.long = "uncreated";
 			this.customDodge = "uncreated";
 			this.customBlock = "uncreated";
-			this.plural = false;
+			this.isPlural = false;
 			
 			this.meleeWeapon = new Knife();
 			this.armor = new EmptySlot();

@@ -27,7 +27,7 @@
 	import classes.GameData.StatTracking;
 	import classes.GameData.MailManager;
 	import flash.events.IOErrorEvent;
-	
+	import classes.GameData.CombatManager;
 	
 	import classes.Engine.Interfaces.*;
 	
@@ -46,8 +46,8 @@
 	public class DataManager 
 	{
 		// Define the current version of save games.
-		public static const LATEST_SAVE_VERSION:int = 22;
-		public static const MINIMUM_SAVE_VERSION:int = 22;
+		public static const LATEST_SAVE_VERSION:int = 23;
+		public static const MINIMUM_SAVE_VERSION:int = 23;
 		
 		private var _autoSaveEnabled:Boolean = false;
 		private var _lastManualDataSlot:int = -1;
@@ -92,6 +92,7 @@
 			var sv19:SaveVersionUpgrader19;
 			var sv20:SaveVersionUpgrader20;
 			var sv21:SaveVersionUpgrader21;
+			var sv22:SaveVersionUpgrader22;
 			
 			// I'm putting this fucking thing here for the same reason.
 			var dbgShield:DBGShield;
@@ -1116,8 +1117,7 @@
 			{
 				kGAMECLASS.userInterface.hideNPCStats();
 				kGAMECLASS.userInterface.showPCStats();
-				kGAMECLASS.resetBarStates();
-				kGAMECLASS.updatePCStats();
+				kGAMECLASS.userInterface.showPlayerParty([kGAMECLASS.pc], true);
 				kGAMECLASS.output2("Game loaded from 'TiTs_" + slotNumber + "'!");
 				executeGame();
 			}
@@ -1385,6 +1385,9 @@
 		 */
 		public function executeGame():void
 		{
+			// Clean up any lingering state in manager objects
+			CombatManager.TerminateCombat();
+			
 			//Purge out the event buffer so people can't buy something, load, and then get it.
 			kGAMECLASS.eventQueue = new Array();
 			kGAMECLASS.eventBuffer = "";

@@ -7,6 +7,11 @@
 	import classes.Items.Apparel.GenericCatsuit;
 	import classes.kGAMECLASS;
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
+	import classes.GameData.CombatAttacks;
+	import classes.GameData.CombatManager;
+	import classes.Engine.Combat.DamageTypes.*;
+	import classes.Engine.Combat.*; 
+	import classes.Engine.Interfaces.output;
 	
 	public class Kara extends Creature
 	{
@@ -16,7 +21,7 @@
 		{
 			this._latestVersion = 1;
 			this.version = this._latestVersion;
-			this._neverSerialize = true;
+			this._neverSerialize = false;
 			
 			this.short = "Kara";
 			this.originalRace = "kaithrit";
@@ -25,7 +30,7 @@
 			this.long = "";
 			this.customDodge = "Kara nimbly ducks aside!";
 			this.customBlock = "";
-			this.plural = false;
+			this.isPlural = false;
 			
 			meleeWeapon.baseDamage.kinetic.damageValue = 6;
 			meleeWeapon.baseDamage.addFlag(DamageFlag.PENETRATING);
@@ -179,10 +184,6 @@
 			this.ass.loosenessRaw = 1;
 			this.ass.bonusCapacity = 100;
 			
-			this._isLoading = false;
-		}	
-		override public function setDefaultSexualPreferences():void
-		{
 			//LIKES
 			this.sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_MALEBITS,		GLOBAL.KINDA_LIKES_SEXPREF);
 			this.sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_BREASTS,		GLOBAL.KINDA_LIKES_SEXPREF);
@@ -195,18 +196,155 @@
 			this.sexualPreferences.setPref(GLOBAL.SEXPREF_VAGINAL_DRYNESS, 	GLOBAL.KINDA_DISLIKES_SEXPREF);
 			this.sexualPreferences.setPref(GLOBAL.SEXPREF_MASCULINE, 		GLOBAL.REALLY_DISLIKES_SEXPREF);
 			this.sexualPreferences.setPref(GLOBAL.SEXPREF_EXOTIC_BODYSHAPE, GLOBAL.REALLY_DISLIKES_SEXPREF);
+			
+			this._isLoading = false;
 		}
 		
-		override public function prepForCombat():void
+		override public function get bustDisplay():String
 		{
-			var combatKara:Kara = this.makeCopy();
+			return "Kara";
+		}
+		
+		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
+		{
+			if (hasStatusEffect("Force Edge CD") && rand(2) == 0)
+			{
+				removeStatusEffect("Force Edge CD");
+			}
 			
-			kGAMECLASS.userInterface.showBust("KARA","SHADE");
-			kGAMECLASS.userInterface.showName("FIGHT:\nKARA");
-			combatKara.setDefaultSexualPreferences();
+			var stimTarget:Creature = null;
+			// figure out if stimboost should be used
+			for (var i:int = 0; i < alliedCreatures.length; i++)
+			{
+				var c:Creature = alliedCreatures[i] as Creature;
+				if ((c.HP() < 50 && rand(2) == 0) || c.HP() < 25)
+				{
+					if (stimTarget == null) stimTarget = c;
+					else if (!(stimTarget is PlayerCharacter)) stimTarget = c;
+				}
+			}
 			
-			kGAMECLASS.foes.push(combatKara);
-		}	
+			if (stimTarget != null)
+			{
+				stimboost(stimTarget);
+			}
+			else if (hasStatusEffect("Disarmed"))
+			{
+				output("Kara dives after her disarmed weapon, forfeiting her chance to attack in order to re-arm herself!");
+				removeStatusEffect("Disarmed");
+			}
+			else
+			{
+				var target:Creature = selectTarget(hostileCreatures);
+				if (target == null) return;
+				
+				if (!hasStatusEffect("Force Edge CD") && rand(3) == 0)
+				{
+					forceEdge(target);
+				}
+				else if (rand(2) == 0)
+				{
+					plasmashot(target);
+				}
+				else
+				{
+					chargeshot(target);
+				}
+			}
+			
+			updateDesc();
+		}
+		
+		private function updateDesc():void
+		{
+			var hostiles:Array = CombatManager.getHostileCharacters();
+			
+			if (hostiles.indexOf(this) == -1)
+			{
+				long = "Beside you stands Kara";
+			}
+			else
+			{
+				long = "You’re fighting Kara";
+			}
+			long += ", a mysterious kaithrit with cobalt locks and eerie eyes. Her cloak hangs loosely from her shoulders, revealing a skin-tight black shirt that hugs and accentuates her hefty E-cups. Her legs are mostly naked, barely covered by a lopsided half-skirt over one leg. In one hand, she’s carrying a compact plasma pistol, humming with energy and glowing with green light. Her off-hand grips the hilt of a hardlight blade back-handed, holding a flashing blade of purple force behind her.";
+		}
+		
+		private function stimboost(target:Creature):void
+		{
+			if (target is PlayerCharacter)
+			{
+				output("Kara flips a button on the holoband on her wrist, causing a small device hidden on her hip to beep. She flicks her wrist your way, and a tiny dart plinks into you, releasing a stream of restorative stims into you.");
+			}
+			else
+			{
+				output("Kara flips a button on the holoband on her wrist, causing a small device hidden on her hip to beep. She winces as a stream of stimulants pump into her.");
+			}
+			
+			target.HP(Math.round(target.HPMax() / 4));
+		}
+		
+		private function chargeshot(target:Creature):void
+		{
+			output("Kara holds down the trigger on her plasma pistol, just for a second, letting a charge build up before she lets the bolt of green go screaming towards ");
+			if(target is PlayerCharacter) output("you!");
+			else output(target.a + target.short + ".");
+			if(rangedCombatMiss(this, target))
+			{
+				output(" Her shot blasts into a wall, sizzling harmlessly.");
+			}
+			else
+			{
+				var damage:TypeCollection = rangedDamage();
+				damage.multiply(1.5);
+				damageRand(damage, 15);
+				applyDamage(damage, this, target);
+
+				//{It hits for X damage! // } {If burn: ");
+				if(!target.hasStatusEffect("Burn") && rand(2) == 0)
+				{
+					if(target is PlayerCharacter) output("\nThe bolt explodes across you, slathering you in burning hot green plasma. <b>You are burning!</b>");
+					else output("\nThe bolt explodes across " + target.a + target.short + ", slathering " + target.mfn("him","her","it") + " in burning hot green plasma. <b>" + target.mfn("He","She","It") + " is burning!</b>");
+					target.createStatusEffect("Burn",2,0,0,0,false,"Icon_Smelly","Burning for thermal damage over time.",true,0);
+				}
+			}
+		}
+		
+		private function forceEdge(target:Creature):void
+		{
+			output("Kara flicks on the blade of her hardlight sword and charges, hacking a deadly arc toward ");
+			if(target is PlayerCharacter) output("you");
+			else output("Shade");
+			output(".");
+			if(combatMiss(this, target))
+			{
+				if(!(target is PlayerCharacter)) output(" Her strike is parried!");
+				else output(" You parry her strike!");
+			}
+			else
+			{
+				var damage:TypeCollection = meleeDamage();
+				damageRand(damage, 15);
+				applyDamage(damage, this, target);
+			}
+		}
+		
+		private function plasmashot(target:Creature):void
+		{
+			output("Kara fires a bolt of superheated plasma at ");
+			if(target is PlayerCharacter) output("you!");
+			else output("Shade!");
+			if(rangedCombatMiss(this, target))
+			{
+				output(" Her shot goes wide, burning into the ground!");
+			}
+			else
+			{
+				var damage:TypeCollection = rangedDamage();
+				damageRand(damage, 15);
+				applyDamage(damage, this, target);
+			}
+		}
 	}
 
 }

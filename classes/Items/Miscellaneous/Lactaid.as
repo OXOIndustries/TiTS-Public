@@ -57,7 +57,7 @@ package classes.Items.Miscellaneous
 		override public function useFunction(target:Creature, usingCreature:Creature = null):Boolean
 		{
 			clearOutput();
-			kGAMECLASS.author("Savin");
+			author("Savin");
 
 			if (!(target is PlayerCharacter))
 			{

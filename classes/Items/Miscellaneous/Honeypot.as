@@ -7,6 +7,7 @@
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
+	import classes.Engine.Interfaces.*;
 	
 	public class Honeypot extends ItemSlotClass
 	{
@@ -62,7 +63,7 @@
 			var choices:Array;
 			kGAMECLASS.clearOutput();
 			if(target is PlayerCharacter) {
-				kGAMECLASS.author("n666");
+				author("n666");
 				//Usage text:
 				//{Effect: If pc has a Vagina, changes girlCum to Honey.}
 				if(target.hasVagina())

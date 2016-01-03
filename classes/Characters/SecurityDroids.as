@@ -1,15 +1,20 @@
 package classes.Characters 
 {
 	import classes.Creature;
-	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.GLOBAL;
 	import classes.Items.Melee.Fists;
 	import classes.Items.Guns.HammerPistol;
 	import classes.Items.Protection.JoyCoPremiumShield;
 	import classes.kGAMECLASS;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
 	import classes.GameData.CodexManager;
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
+	
+	import classes.Engine.Combat.DamageTypes.*;
+	import classes.Engine.Combat.*;
+	import classes.GameData.CombatAttacks;
+	import classes.GameData.CombatManager;
+	import classes.Engine.Interfaces.output;
 	
 	/**
 	 * ...
@@ -30,10 +35,10 @@ package classes.Characters
 			this.originalRace = "Automaton";
 			this.a = "the ";
 			this.capitalA = "The ";
-			this.long = "These security bots are old and outmoded, but that doesn't make them any less dangerous. They fearlessly march forward through all the fire you and Anno can pour at them, lighting up the corridor with laser fire as they advance over the shattered remains of their fallen comrades. ";
+			this.long = "";
 			this.customDodge = "Somehow, the drones manage to skirt out of the way of your fire.";
 			this.customBlock = "The hardened exterior of the drones absorbs your attack.";
-			this.plural = true;
+			this.isPlural = true;
 			isLustImmune = true;
 			
 			this.meleeWeapon = new Fists();
@@ -147,23 +152,90 @@ package classes.Characters
 			
 			this.createStatusEffect("Disarm Immune");
 			this.createStatusEffect("Force It Gender");
-			this.createStatusEffect("Flee Disabled",0,0,0,0,true,"","",false,0);
+			this.createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
+			
+			isUniqueInFight = true;
+			btnTargetText = "Droid";
 			
 			this._isLoading = false;
 		}
 		
-		override public function prepForCombat():void
+		override public function get bustDisplay():String
 		{
-			var combatGunTurrets:SecurityDroids = this.makeCopy();
-			
-			kGAMECLASS.userInterface.showBust("DROID_SECURITY","DROID_SECURITY","DROID_SECURITY");
-			kGAMECLASS.userInterface.showName("FIGHT:\nS. DROIDS");
-			
-			//combatGunTurrets.sexualPreferences.setRandomPrefs(2 + rand(3));
-			
-			kGAMECLASS.foes.push(combatGunTurrets);
+			return "DROID_SECURITY";
 		}
 		
+		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
+		{
+			var target:Creature = selectTarget(hostileCreatures);
+			if (target == null) return;
+			
+			if (!target.hasStatusEffect("Blinded") && rand(5) == 0) securityDroidFlashbang(target);
+			else if (!hasStatusEffect("Blinded") && !hasStatusEffect("Stunned") && rand(3) == 0) securityDroidChargeShot(target);
+			else securityDroidLaserBarrage(target);
+		}
+		
+		private function securityDroidLaserBarrage(target:Creature):void
+		{
+			//Laser Barrage
+			//Lots of moderate laser attacks
+			output("Several of the drones lock onto you and let loose with a hail of laser bolts.");
+			
+			var attacks:int = 2 + rand(2);
+
+			for (var i:int = 0; i < attacks; i++)
+			{
+				output("\n");
+				CombatAttacks.SingleRangedAttackImpl(this, target, true);
+			}
+		}
+		
+		private function securityDroidChargeShot(target:Creature):void
+		{
+			//Charge Shot
+			//Two moderate laser shots (as above) + one HEAVY one
+			output("Amid several other drones lighting you up, one steps to the forefront, its laser pistol glowing red-hot as it charges up a power shot!\n");
+			
+			for (var i:int = 0; i < 2; i++)
+			{
+				CombatAttacks.SingleRangedAttackImpl(this, target, true);
+				output("\n");
+			}
+
+			// Heavy attack
+			if (rangedCombatMiss(this, target))
+			{
+				output(" You tumble to the side, ducking out of the way just in time to avoid a face-melting energy blast");
+				if (kGAMECLASS.silly) output(" to the, uh, face");
+				output(".");
+			}
+			else
+			{
+				output(" You stagger back as the heavy laser bolt slams into your chest, burning into your defenses and leaving you smoking like a sausage!");
+
+				applyDamage(new TypeCollection( { burning: 20, electric:10 }, DamageFlag.LASER), this, target);
+			}
+
+			output("\n");
+		}
+		
+		private function securityDroidFlashbang(target:Creature):void
+		{
+			// Flashbang
+			// Blind, possibly Stun attack
+			output("One of the drones pulls a small, cylindrical grenade from its slender steel hip and lobs it at the pair of you!");
+
+			if(aim()/2 + rand(20) + 6 > target.reflexes()/2 + 10 && !target.hasStatusEffect("Blinded"))
+			{
+				target.createStatusEffect("Blinded",3,0,0,0,false,"Blind","Accuracy is reduced, and ranged attacks are far more likely to miss.",true,0);
+				output(" You aren’t able to shield yourself in time as the flash grenade goes off with a deafening BANG, leaving you <b>blinded</b>!");
+			}
+			else
+			{
+				output(" You cover your eyes just in time to avoid the flash as the stun grenade goes off with a deafening BANG!");
+			}
+			output("\n");
+		}
 	}
 
 }

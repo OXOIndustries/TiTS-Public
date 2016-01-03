@@ -1,15 +1,20 @@
 ﻿package classes.Characters
 {
 	import classes.Creature;
+	import classes.GameData.SingleCombatAttack;
 	import classes.GLOBAL;
 	import classes.Items.Guns.*
 	import classes.Items.Protection.ImprovisedShield;
 	import classes.Items.Melee.RaskvelWrench;
 	import classes.Items.Transformatives.Ruskvel;
 	import classes.kGAMECLASS;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
 	import classes.GameData.CodexManager;
-	import classes.Engine.Combat.DamageTypes.DamageFlag;
+	import classes.Engine.Combat.DamageTypes.*;
+	import classes.GameData.CombatManager;
+	import classes.GameData.CombatAttacks;
+	import classes.Engine.Interfaces.output;
+	import classes.Engine.Combat.*;
 	
 	public class RaskvelMale extends Creature
 	{
@@ -26,7 +31,7 @@
 			this.capitalA = "The ";
 			this.long = "Placeholdah";
 			this.customBlock = "The zil's chitinous armor deflects your attack.";
-			this.plural = true;
+			this.isPlural = true;
 			this.meleeWeapon = new RaskvelWrench();
 			
 			rangedWeapon.baseDamage.kinetic.damageValue = 10;
@@ -172,7 +177,28 @@
 			this.ass.loosenessRaw = 2;
 			this.ass.bonusCapacity += 35;
 			
+			isUniqueInFight = true;
+			btnTargetText = "Raskvel";
+			
+			randomise();
+			
 			this._isLoading = false;
+		}
+		
+		override public function get bustDisplay():String
+		{
+			return "RASKVEL_GANG";
+		}
+		
+		private function randomise():void 
+		{
+			sexualPreferences.setRandomPrefs(3 + rand(3));
+			long = "You are fighting the raskvel gang. The three red-scaled males, their big, rabbit-like ears and blunt tails swinging as they move, have you surrounded. The biggest one, a good four foot two, is brazenly naked and is using his fists and feet for weapons. The other two have harnesses around their waists and are swinging heavy wrenches. Though short, all three of them are pretty strongly built: tight, unostentatious muscle bulges underneath their smooth, rusty skin, particularly in their thick thighs.";
+			long += " Their dicks are hidden away in their genital slits, although their snug, pouch-like balls are clear to see.";
+			long += " They have jolly, lively faces, and they laugh and call to each other as they fight you, as if they’re not taking this particularly seriously. Their attacks, though, are very definitely serious.";
+
+			credits = 100+rand(200);	
+			if(rand(8) <= 6) inventory.push(new Ruskvel());
 		}
 		
 		public function UpgradeVersion1(dataObject:Object):void
@@ -183,30 +209,142 @@
 			}
 		}
 		
-		override public function prepForCombat():void
+		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
 		{
-			var combatRaskvelMale:RaskvelMale = this.makeCopy();
+			var target:Creature = selectTarget(hostileCreatures);
+			if (target == null) return;
 			
-			kGAMECLASS.userInterface.showBust("RASKVEL_MALE","RASKVEL_MALE","RASKVEL_MALE");
-			kGAMECLASS.setLocation("FIGHT: MALE\nRASKVEL", "PLANET: TARKUS", "SYSTEM: REDACTED");
-			combatRaskvelMale.sexualPreferences.setRandomPrefs(3 + rand(3));
-			
-			combatRaskvelMale.long = "You are fighting the raskvel gang. The three red-scaled males, their big, rabbit-like ears and blunt tails swinging as they move, have you surrounded. The biggest one, a good four foot two, is brazenly naked and is using his fists and feet for weapons. The other two have harnesses around their waists and are swinging heavy wrenches. Though short, all three of them are pretty strongly built: tight, unostentatious muscle bulges underneath their smooth, rusty skin, particularly in their thick thighs.";
-			combatRaskvelMale.long += " Their dicks are hidden away in their genital slits, although their snug, pouch-like balls are clear to see.";
-			combatRaskvelMale.long += " They have jolly, lively faces, and they laugh and call to each other as they fight you, as if they’re not taking this particularly seriously. Their attacks, though, are very definitely serious.";
-
-			//combatRaskvelMale.ass.loosenessRaw = rand(4) + 1;
-			//combatRaskvelMale.vaginas[0].loosenessRaw = rand(4) + 1;
-			combatRaskvelMale.credits = 100+rand(200);
-
-			// Codex shit - Disabled. Entry unlocks mid-greeting event.
-
-			/*if (rand(10) == 0)
+			if(target.hasStatusEffect("Tripped")) raskPileOnPC(target);
+			else
 			{
-				combatRaskvelFemale.inventory.push(new RaskvelWrench());
-			}*/	
-			if(rand(8) <= 6) combatRaskvelMale.inventory.push(new Ruskvel());
-			kGAMECLASS.foes.push(combatRaskvelMale);
+				var attackChoices:Array = new Array();
+				//Zap!
+				//Procs if the player still has a shield. Medium accuracy, heavy shield damage if connects
+				if(target.shields() > 0) attackChoices.push(raskZapAttack);
+				//See You Next Fall
+				//Minor damage plus fallen status. Much better chance of succeeding if PC is stunned
+				if(!target.hasStatusEffect("Tripped")) attackChoices.push(seeYouNextFallSloot);
+				if(target.shields() < 1)
+				{
+					attackChoices.push(CombatAttacks.AphrodisiacDarts);
+					attackChoices.push(CombatAttacks.AphrodisiacDarts);
+				}
+				attackChoices.push(raskvelGangAttack);
+				attackChoices.push(raskvelGangAttack);
+				
+				var selected:* = attackChoices[rand(attackChoices.length)];
+				
+				if (selected is Function) selected(target);
+				else (selected as SingleCombatAttack).execute(alliedCreatures, hostileCreatures, this, target);
+			}
+			raskvelMobAppearanceUpdate();
+		}
+		
+		private function raskPileOnPC(target:Creature):void
+		{
+			if(!target.hasStatusEffect("Raskvel Pile"))
+			{
+				output("<i>“Aw look, the offworlder’s decided to have a lie down,”</i> guffaws one of the raskvel.");
+				output("\n\n<i>“Sounds like they’ve got the right idea to me,”</i> says another huskily. You attempt to get up but are immediately forced back down as they pile on top of you, weighing you down with their warm, dense weight and engulfing you in their leathery, masculine scent.");
+				target.createStatusEffect("Raskvel Pile", 0, 0, 0, 0, false, "DefenseDown", "The mob of raskvel has climbed on top of you, rendering it much harder to get back up. They're distracting as hell too!", true, 0);
+			}
+			//Repeat: 
+			else
+			{
+				output("The raskvel continue to pin you down with their bodies, determinedly ignoring your struggles and waiting for you to give up. Their leathery scales slide over your [pc.skinFurScales] as three pairs of hands go exploring, trailing over your [pc.chest], squeezing your [pc.butt], fondling your at your groin. Even in the warm, dusty, muffled chaos it’s obvious that immobilizing you is a secondary concern, next to the overriding need to give your alien physique a good grope.");
+				applyDamage(new TypeCollection( { tease: 10 + rand(8) } ), this, target, "minimal");
+				target.energy(-5);
+				//Lust 0-80:
+				if(target.lust() < 80) output(" You feel drained and hot underneath the unwelcome attention.");
+				else output(" It’s impossible not to feel warm and aroused underneath this exhausting, persistent attention. You find yourself wondering if you are thrusting yourself into the raskvels’ tight flesh and grasping hands because you want them off you or simply because of how nice it feels.");	
+			}
+		}
+		
+		private function seeYouNextFallSloot(target:Creature):void
+		{
+			output("The three of them simultaneously dart in at you, laughing gleefully as they run around your [pc.legOrLegs], ducking and weaving beneath your attacks. They are fast, and it’s really difficult to discern what their intention is when they are all buffeting you at once like this.");
+
+			//Fail: 
+			if(!target.isImmobilized() && physique()/2 + 10 <= target.reflexes()/2 + rand(20) + 1)
+			{
+				output("\n\nYou sense one of them crouching down behind you and react just in time, barrelling into the other two before they can push you over.");
+				output("\n\n<i>“Spoilsport,”</i> grouses one as they scramble back out again.");
+				target.createStatusEffect("Attempt Seduction", 0, 0, 0, 0, true, "", "", true, 0);
+			}
+			//Succeed: 
+			else
+			{
+				output("\n\nYou keep your concentration on the ones in front of you – and are caught completely by surprise when they give you a mighty shove into the other, who");
+				if(target.legCount <= 2) output(" has crouched down behind you");
+				else output(" swipes away your many legs with a clever spinning roll");
+				output(".");
+				if(target.legCount < 2) output(" Even with no legs to speak of, you");
+				else output("You");
+				output(" cannot prevent yourself losing balance and falling onto your back, winding yourself. The clamor of male laughter is in your ears.");
+
+				target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
+			}
+		}
+		
+		private function raskZapAttack(target:Creature):void
+		{
+			output("<i>“That’s a pretty decent kinetic barrier you’ve got there, offworlder,”</i> says one of them musingly. <i>“It would be a shame if... somethinghappenedtoitdoitdoitnow!”</i> the one behind you whips out an antique-looking ray gun and blasts a wave of white energy at you, throwing himself off his feet in the process.");
+
+			if(rangedCombatMiss(this, target) || rangedCombatMiss(this, target))
+			{
+				output("\n\nYou fling yourself to one side. The electric attack makes your [pc.skin] tingle as it hums its way past you.");
+			}
+			//Succeed: 
+			else
+			{
+				output("\n\nThe electric attack connects with your shield with a cringe-inducing CRACK.");
+				//damage!
+				var damage:TypeCollection = new TypeCollection( { electric: 15 } );
+				damageRand(damage, 15);
+				var damageResult:DamageResult = calculateDamage(damage, this, target);
+				
+				if (damageResult.shieldDamage > 0)
+				{
+					if (target.shieldsRaw > 0) output(" It holds.");
+					else output(" There is a concussive boom and tingling aftershock of energy as your shield is breached.");
+				}
+				
+				outputDamage(damageResult);
+			}
+			target.createStatusEffect("Attempt Seduction", 0, 0, 0, 0, true, "", "", true, 0);
+		}
+		
+		private function raskvelGangAttack(target:Creature):void
+		{
+			output("The big raskvel closes in on you, throwing rabbit punches and skilful stamp kicks, aiming to incapacitate and wind. As you are fending him off, the other two run in and hurl wrench haymakers at you.\n");
+			
+			for (var i:int = 0; i < 3; i++)
+			{
+				CombatAttacks.SingleMeleeAttackImpl(this, target, true);
+				output("\n");
+			}
+			
+			//Not stunned. Maybe stunned?
+			if(!target.hasStatusEffect("Stunned"))
+			{
+				if(physique()/2 + 10 > target.physique()/2 + rand(20) + 1)
+				{
+					//Stunned:
+					output("\nOne of them clonks you a good one and you stagger back, stunned. Groaning, you wait for the world to stop spinning.");
+					target.createStatusEffect("Stunned",1,0,0,0,false,"Stun","You cannot act for one turn!",true,0);
+				}
+			}
+			output("\n");
+		}
+		
+		private function raskvelMobAppearanceUpdate():void
+		{
+			long = "You are fighting the raskvel gang. The three red-scaled males, their big, rabbit-like ears and blunt tails swinging as they move, have you surrounded. The biggest one, a good four foot two, is brazenly naked and is using his fists and feet for weapons. The other two have harnesses around their waists and are swinging heavy wrenches. Though short, all three of them are pretty strongly built: tight, unostentatious muscle bulges underneath their smooth, rusty skin, particularly in their thick thighs.";
+			//Lust 0-40:
+			if(lust() <= 40) long += " Their dicks are hidden away in their sheaths, although their snug, pouch-like balls are clear to see.";
+			else if(lust() <= 80) long += " Their brilliantly purple cocks, the same color as their long tongues, have protracted some of the way out of their slits. The three of them seem distracted and even redder in the face than usual.";
+			else long += " Their thick, sleek dicks are straining urgently upwards, and it is taking obvious effort on their part to maintain their focus on you.";
+			long += " They have jolly, lively faces, and they laugh and call to each other as they fight you, as if they’re not taking this particularly seriously. Their attacks, though, are very definitely serious.";
 		}
 	}
 }

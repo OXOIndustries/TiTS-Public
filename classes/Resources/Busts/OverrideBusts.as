@@ -1,5 +1,6 @@
 ﻿package classes.Resources.Busts 
 {
+	import flash.geom.Rectangle;
 	/**
 	 * ...
 	 * @author Gedan
@@ -114,11 +115,13 @@
 
 		[Embed(source = "../../../assets/images/npcs/jacques00/myr_red_guard.png", mimeType = "image/png")]
 		public var Bust_MYR_RED_GUARD:Class;
+		public var Bounds_MYR_RED_GUARD:Rectangle = new Rectangle(34, 10, 75, 75);
+		
 		[Embed(source = "../../../assets/images/npcs/jacques00/myr_red_guard_mask.png", mimeType = "image/png")]
 		public var Bust_MYR_RED_GUARD_MASK:Class;
 
 		[Embed(source = "../../../assets/images/npcs/jacques00/nehzara.png", mimeType = "image/png")]
-		public var Bust_NEHZARA:Class;
+		public var Bust_NEHZARA:Class;		
 		[Embed(source = "../../../assets/images/npcs/jacques00/nehzara_nude.png", mimeType = "image/png")]
 		public var Bust_NEHZARA_NUDE:Class;
 

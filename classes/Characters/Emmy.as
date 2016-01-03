@@ -11,7 +11,7 @@
 	import classes.Items.Protection.OzoneAegis;
 	import classes.Items.Accessories.SalamanderDuster;
 	import classes.kGAMECLASS;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
 	
 	public class Emmy extends Creature
 	{

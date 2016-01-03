@@ -7,6 +7,7 @@ package classes.Items.Miscellaneous
 	import classes.GameData.TooltipManager;
 	import classes.kGAMECLASS;
 	import classes.Engine.Combat.applyDamage;
+	import classes.Engine.Combat.inCombat;
 	
 	/**
 	 * ...
@@ -54,7 +55,7 @@ package classes.Items.Miscellaneous
 		
 		override public function useFunction(targetCreature:Creature, usingCreature:Creature = null):Boolean
 		{
-			if (!kGAMECLASS.inCombat())
+			if (!inCombat())
 			{
 				if(!kGAMECLASS.infiniteItems()) quantity++;
 				if (targetCreature == kGAMECLASS.pc)
@@ -64,7 +65,7 @@ package classes.Items.Miscellaneous
 				}
 				else
 				{
-					if(kGAMECLASS.inCombat()) kGAMECLASS.output("\n");
+					if(inCombat()) kGAMECLASS.output("\n");
 					else kGAMECLASS.clearOutput();
 					kGAMECLASS.output(targetCreature.capitalA + targetCreature.short + " considers it unwise to use a grenade outside of combat.\n");
 					kGAMECLASS.output("\n");
@@ -82,7 +83,7 @@ package classes.Items.Miscellaneous
 				// Enemy used an item on the PC
 				else if (targetCreature == kGAMECLASS.pc && usingCreature != kGAMECLASS.pc)
 				{
-					if(kGAMECLASS.inCombat()) kGAMECLASS.output("\n");
+					if(inCombat()) kGAMECLASS.output("\n");
 					else kGAMECLASS.clearOutput();
 					npcUsed(targetCreature, usingCreature);
 				}
@@ -97,12 +98,12 @@ package classes.Items.Miscellaneous
 		
 		public function playerUsed(targetCreature:Creature, usingCreature:Creature):void
 		{
-			if (targetCreature.plural) kGAMECLASS.output("You throw a flashbang at one of " + targetCreature.a + targetCreature.short + "!");
+			if (targetCreature.isPlural) kGAMECLASS.output("You throw a flashbang at one of " + targetCreature.a + targetCreature.short + "!");
 			else kGAMECLASS.output("You throw a flashbang at " + targetCreature.a + targetCreature.short + "!");
 			
 			if (!targetCreature.hasStatusEffect("Blind"))
 			{
-				if (targetCreature.plural) kGAMECLASS.output("\n<b>" + targetCreature.capitalA + targetCreature.short + " are blinded by");
+				if (targetCreature.isPlural) kGAMECLASS.output("\n<b>" + targetCreature.capitalA + targetCreature.short + " are blinded by");
 				else kGAMECLASS.output("\n<b>" + targetCreature.capitalA + targetCreature.short + " is blinded by");
 				kGAMECLASS.output(" the luminous flashes.</b>");
 				

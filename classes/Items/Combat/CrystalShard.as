@@ -6,6 +6,7 @@
 	import classes.StringUtil;
 	import classes.Creature;
 	import classes.kGAMECLASS;
+	import classes.Engine.Combat.inCombat;
 	
 	/**
 	 * ...
@@ -68,7 +69,7 @@
 				}
 				else
 				{
-					if(kGAMECLASS.inCombat()) kGAMECLASS.output("\n");
+					if(inCombat()) kGAMECLASS.output("\n");
 					else kGAMECLASS.clearOutput();
 					kGAMECLASS.output(targetCreature.capitalA + targetCreature.short + " considers it unwise to use another crystal on " + usingCreature.mfn("him","her","it") + "self.\n");
 					kGAMECLASS.output("\n");
@@ -86,7 +87,7 @@
 				// Enemy used an item on the PC
 				else if (targetCreature != kGAMECLASS.pc && usingCreature != kGAMECLASS.pc)
 				{
-					if(kGAMECLASS.inCombat()) kGAMECLASS.output("\n");
+					if(inCombat()) kGAMECLASS.output("\n");
 					else kGAMECLASS.clearOutput();
 					npcUsed(targetCreature, usingCreature);
 				}

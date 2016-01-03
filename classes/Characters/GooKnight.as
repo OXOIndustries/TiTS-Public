@@ -11,8 +11,17 @@ package classes.Characters
 	import classes.Items.Miscellaneous.EmptySlot;
 	import classes.Items.Protection.JoyCoPremiumShield;
 	import classes.kGAMECLASS;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
 	import classes.GameData.CodexManager;
+	
+	import classes.Engine.Combat.*;
+	import classes.Engine.Combat.DamageTypes.*;
+	import classes.Engine.Interfaces.output;
+	import classes.GameData.CombatAttacks;
+	import classes.GameData.CombatManager;
+	
+	import classes.Engine.Utility.weightedRand;
+	import classes.Engine.Utility.rand;
 	
 	/**
 	 * ...
@@ -37,7 +46,7 @@ package classes.Characters
 			this.long = "";
 			this.customDodge = "The goo's liquid flexibility allows her to handily avoid your attack.";
 			this.customBlock = "The goo's liquidity absorbs a great deal of punishment - without taking damage.";
-			this.plural = false;
+			this.isPlural = false;
 			
 			baseHPResistances = new TypeCollection();
 			baseHPResistances.kinetic.resistanceValue = 10.0;
@@ -153,24 +162,85 @@ package classes.Characters
 			this.createStatusEffect("Disarm Immune");
 			this.createStatusEffect("Stun Immune");
 			
+			isUniqueInFight = true;
+			btnTargetText = "GooKnight";
+			sexualPreferences.setRandomPrefs(2 + rand(3));
+			if(rand(2) == 0) skinTone = "green";
+			else skinTone = "blue";
+			long = "You’re fighting a ganraen knight. Her " + skinTone + " armor shines in the dimly lit cave, reflecting the pale glow of the pulsing fungi that cover the walls. She holds a simply shaped shield and sword, though the blade looks a bit more like a sharpened slab. Strategically placed joints prevent the armor from slowing her swift movements.";
+			
 			this._isLoading = false;
 		}
 		
-		override public function prepForCombat():void
+		override public function get bustDisplay():String
 		{
-			var gigaGoo:GooKnight = this.makeCopy();
+			return "CRYSTAL_GOO";
+		}
+		
+		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
+		{
+			var target:Creature = selectTarget(hostileCreatures);
+			if (target == null) return;
 			
-			kGAMECLASS.userInterface.showBust("CRYSTAL_GOO");
-			kGAMECLASS.userInterface.showName("FIGHT:\nGOO KNIGHT");
-			
-			gigaGoo.sexualPreferences.setRandomPrefs(2 + rand(3));
-
-			if(rand(2) == 0) gigaGoo.skinTone = "green";
-			else gigaGoo.skinTone = "blue";
-
-			gigaGoo.long = "You’re fighting a ganraen knight. Her " + gigaGoo.skinTone + " armor shines in the dimly lit cave, reflecting the pale glow of the pulsing fungi that cover the walls. She holds a simply shaped shield and sword, though the blade looks a bit more like a sharpened slab. Strategically placed joints prevent the armor from slowing her swift movements.";
-			
-			kGAMECLASS.foes.push(gigaGoo);
+			if(CombatManager.getRoundCount() == 1 && HP()/HPMax() > 0.66)
+			{
+				shieldWall();
+			}
+			else if(hasStatusEffect("Melee Counter")) counterSlash(target);
+			else crystalGooAttacku(target);
+			crystalGooLongUpdate();
+		}
+		
+		private function crystalGooAttacku(target:Creature):void
+		{
+			output("The ganraen knight slashes her sword in your direction.");
+			//miss: 
+			if (combatMiss(this, target)) output("\nYou dodge out of the way before she can hit you.");
+			else 
+			{
+				output("\nIt cuts at your ");
+				if(target.shields() > 0) output("shield");
+				else output("body");
+				output(" before you can escape.");
+				applyDamage(damageRand(meleeDamage(), 15), this, target);
+			}
+		}
+		
+		private function counterSlash(target:Creature):void
+		{
+			removeStatusEffect("Melee Counter");
+			//used after you attack sometimes. Deals 1.5 times the damage she took from your attack.
+			output("The [enemy.skinTone] knight rebounds from your attack with a fierce counter.");
+			if (combatMiss(this, target)) output("\nYou duck under her returned attack, narrowly avoiding the blade.");
+			else 
+			{
+				output("\nThe revenge-strengthened attack hits you with full force.");
+				var damage:TypeCollection = meleeDamage();
+				damage.multiply(2);
+				applyDamage(damageRand(damage, 15), this, target, "minimal");
+			}
+		}
+		
+		private function shieldWall():void
+		{
+			output("The crystal knight hoists her shield, preventing your attacks from being as effective while it stands.");
+			baseHPResistances.kinetic.resistanceValue = 50.0;
+		}
+		
+		private function crystalGooLongUpdate():void
+		{
+			long = "You’re fighting a ganraen knight. Her " + skinTone + " armor shines in the dimly lit cave, reflecting the pale glow of the pulsing fungi that cover the walls. She holds a simply shaped shield and sword, though the blade looks a bit more like a sharpened slab. Strategically placed joints prevent the armor from slowing her swift movements.";
+			if(lust() < 66) long += " You can’t see her face, but you hear labored breathing behind the helmet.";
+			else long += " The knight’s hands keep shying toward her sex, but are blocked by the armor that protects her.";
+			//{33% lust/66%/66% hp/33%} 
+			if(HP()/HPMax() > .66) {}
+			else if(HP()/HPMax() > .33) long += " The knight’s armor has begun to fall apart, revealing small portions of her gooey interior.";
+			else long += " A chestplate, helmet, and skirt are all that remain of the knight’s armor, leaving most of her " + skinTone + " goo visible.";
+			if(HP()/HPMax() <= 0.66 && baseHPResistances.kinetic.resistanceValue == 50) 
+			{
+				output("\n\n<b>Her gooey shield has crumbled after your onslaught!</b>");
+				baseHPResistances.kinetic.resistanceValue = 10;
+			}
 		}
 		
 	}

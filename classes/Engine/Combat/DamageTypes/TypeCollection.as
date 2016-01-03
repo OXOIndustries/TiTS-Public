@@ -117,6 +117,16 @@ package classes.Engine.Combat.DamageTypes
 			return false;
 		}
 		
+		public function getFlagsArray():Array
+		{
+			var a:Array = new Array();
+			for (var i:uint = 0; i < flagCollection.length; i++)
+			{
+				a.push(flagCollection[i].flag);
+			}
+			return a;
+		}
+		
 		public function canTrigger(flag:uint):Boolean
 		{
 			for (var i:uint = 0; i < flagCollection.length; i++)

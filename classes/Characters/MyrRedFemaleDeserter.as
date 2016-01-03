@@ -18,6 +18,12 @@
 	
 	import classes.GLOBAL;
 	
+	import classes.GameData.CombatAttacks;
+	import classes.GameData.CombatManager;
+	import classes.Engine.Combat.DamageTypes.*;
+	import classes.Engine.Combat.*; 
+	import classes.Engine.Interfaces.output;
+	
 	/**
 	 * ...
 	 * @author My Butt
@@ -41,7 +47,7 @@
 			this.long = "You’re facing off against an amber-haired ant-girl armed with a hatchet and a handgun. Given her desecrated Scarlet Federation uniform - her country, name, and rank patches are all torn off - she’s definitely a deserter.\n\nHer shirt is torn wide open in a very un-red like manner. Her pert, small breasts are on display, though there’s a bullet scar just to the side of her heart. There’s another scar over her right eye, which she seems unable to fully close.\n\nHanging from both her gently curving hips are hand grenades. They’re attached to her belt, ready to unclick and throw at a moment’s notice.";
 			this.customDodge = "The seasoned soldier throws herself sideways. Your attack misses her by an inch and she deftly tumbles back to her feet.";
 			this.customBlock = "The female soldier brings up her hatchet and deftly parries your attack. Throwing you off, she then twirls the hand-axe in her hand.";
-			this.plural = false;
+			this.isPlural = false;
 			
 			this.shield = new EmptySlot();
 			this.meleeWeapon = new SurvivalAxe();
@@ -186,39 +192,40 @@
 			this.vaginas[0].type = GLOBAL.TYPE_INHUMAN;
 			this.vaginas[0].wetnessRaw = 2;
 			this.vaginas[0].loosenessRaw = 3;
-			this.createPerk("Can Crit",0,0,0,0);
-			this._isLoading = false;
-		}
-		
-		override public function prepForCombat():void
-		{
-			var RedMyr:MyrRedFemaleDeserter = this.makeCopy();
+			this.createPerk("Can Crit", 0, 0, 0, 0);
 			
-			RedMyr.credits = rand(200);
-			if (rand(20) == 0) RedMyr.inventory.push(new Kirkite());
-			else if(rand(20) == 0) RedMyr.inventory.push(new Satyrite());
-			else RedMyr.inventory.push(new RedMyrVenom());
+			isUniqueInFight = true;
+			btnTargetText = "Red Myr";
+			
+			credits = rand(200);
+			if (rand(20) == 0) inventory.push(new Kirkite());
+			else if(rand(20) == 0) inventory.push(new Satyrite());
+			else inventory.push(new RedMyrVenom());
 					
-			this.sexualPreferences.setRandomPrefs(2 + rand(3),1);
-			//RedMyr.sexualPreferences.setPref(GLOBAL.SEXPREF_FEMININE,	GLOBAL.REALLY_LIKES_SEXPREF);
+			sexualPreferences.setRandomPrefs(2 + rand(3),1);
 			
-			kGAMECLASS.showName("FIGHT: RED\nDESERTER");
-			kGAMECLASS.showBust("MYR_RED_FEMALE_DESERTER");
-			if(kGAMECLASS.flags["KNOW_RED_MYR_NAME"] != undefined) 
+			if (flags["KNOW_RED_MYR_NAME"] != undefined)
 			{
 				short = "Briha";
 				a = "";
 				capitalA = "";
-				kGAMECLASS.showName("FIGHT:\nBRIHA");
 			}
-			kGAMECLASS.foes.push(RedMyr);
+			
+			this._isLoading = false;
 		}
+		
+		override public function get bustDisplay():String
+		{
+			return "MYR_RED_FEMALE_DESERTER";
+		}
+		
 		override public function isPregnant(x:int = 0):Boolean
 		{
 			if(kGAMECLASS.flags["BRIHA_INCUBATION_TIMER"] != undefined) return true;
 			return false;
 		}
-		// Placeholder shit, sue me. Calling the ill excuse etc.
+		
+		
 		override public function bellyDescript(bForceSize:Boolean = false): String {
 			var sBuilder:String = "";
 
@@ -290,6 +297,119 @@
 			return sBuilder;
 		}
 		
+		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
+		{
+			var target:Creature = selectTarget(hostileCreatures);
+			if (target == null) return;
+			
+			if(lust()/lustMax()*100 >= rand(100+1)) antGrillLustAttacku(target);
+			//’Melee Strike’, ‘Shoot’, ‘Barrage’, or ‘Grenade Throw’. The other third of the time, they do lust attacks.
+			else if(energy() >= 33 && rand(4) == 0) grenadeThrow(target);
+			else if(rand(3) == 0) myrDeserterStrike(target);
+			else if(rand(2) == 0) myrDeserterBarrage(target);
+			else myrDeserterShot(target);
+		}
+		
+		private function myrDeserterStrike(target:Creature):void
+		{
+			output("The battle-scarred beauty shoots a handful of bullets at you. When you’re dodging those, she darts in and lashes out with her hand-axe.");
+
+			if (combatMiss(this, target)) output("\nHer feint fails - you duck under her slicing blow and scamper out of the way. She reloads her gun with a loud click and a focused stare.");
+			else
+			{
+				output("\nHer feint succeeds - she lands a blow with her blade!");
+				//{ShieldUp: and your shield crackles in protest/else: and you swear loudly. There’s no shield to stop her strikes}!");
+				applyDamage(meleeDamage(), this, target, "melee");
+			}
+		}
+
+		//Shoot
+		private function myrDeserterShot(target:Creature):void
+		{
+			//Red/Briha:
+			output("The red deserter pulls back the jointed lock of her semi-auto handgun. After lining you up in her iron sights, she shoots.");
+
+			if (rangedCombatMiss(this, target)) 
+			{
+				output("\nHer attack falls far short of hitting you. Instead, her bullet whizzes past harmlessly.");
+			}
+			else
+			{
+				output("\nThere’s a ringing shot and a dull ache of impact");
+				if(target.shields() > 0) output(", even through your shields.");
+				applyDamage(rangedDamage(), this, target, "ranged");
+
+				//Physique check. DC 25 vs trip!
+				if(target.physique + rand(20) + 1 < 25 && target.shields() <= 0)
+				{
+					output("\nA hot, burning sensation sprays out from your chest. Your [pc.legs] go weak and you fall to the ground.");
+					//Effect: Decent physical damage with small crit chance. If the PC’s shields are down, there is a 25% knockback chance. 100% knockback chance on crit.
+					target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
+				}
+			}
+		}
+
+		//Barrage
+		private function myrDeserterBarrage(target:Creature):void
+		{
+			//Red/Briha:
+			output("The grizzled soldier loads her semi-auto with a fresh magazine. After clicking back the arm-lock, she points it at you, and shoots repeatedly.\n");
+			
+			for (var i:int = 0; i < 3; i++)
+			{
+				CombatAttacks.SingleRangedAttackImpl(this, target, true);
+				output("\n");
+			}
+		}
+
+		//Grenade Throw
+		//Req 33+ energy!
+		private function grenadeThrow(target:Creature):void
+		{
+			//Red/Briha:
+			output("The scarlet-skinned soldier grabs one of the hand grenades from her lightly curved hip. With practiced precision, she lights the fuse, and tosses it at you.");
+
+			if (rangedCombatMiss(this, target)) output("\nWith such shoddy vision, her grenade throw falls short of her mark. You dart back and easily dodge the resulting blast.");
+			else
+			{
+				output("\nThere’s a loud ‘whump’ and a cloud of red mist swiftly engulfs you.");
+				if (target.hasArmor() && target.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+				{
+					output(" Fortunately for you, the smoke doesn't leak through your airtight [pc.armor], but it obscures your vision just briefly.");
+				}
+				else
+				{
+					output("\nThere’s a loud ‘whump’ and a cloud of red mist swiftly engulfs you. Your skin prickles and your [pc.nipples] harden. Lower down, a glorious ache spreads through your [pc.groin]. All you want to do is touch yourself!");
+					applyDamage(new TypeCollection( { drug: 19 + rand(5) } ), this, target, "minimal");
+				}
+			}
+			energy(-33);
+		}
+
+		private function antGrillLustAttacku(target:Creature):void
+		{
+			//Lust Attack #1 (Both)
+			if(rand(2) == 0)
+			{
+				output("With a sultry wink, the battle-scarred beauty runs her slender fingers down her torn top and tugs open her shirt. She flashes a scarlet-skinned breast and dark nipple at you. Even though it’s modestly sized, it’s perfectly round and cuppable!");
+			}
+			//Lust Attack #2 (Red Only)
+			else
+			{
+				output("Spreading her legs, the battle-scarred beauty slides her hands between her thighs and tugs at the top of her pants. The upward pull forces the thin fabric to dig into her snatch. It forms the perfect camel toe, and a slight damp patch begins to form.");
+			}
+			
+			//DC 25 willpower check!
+			if(target.willpower()/2 + rand(20) + 1 >= 25)
+			{
+				output("\n\nYou resist her erotic enticements... for now.");
+			}
+			else
+			{
+				output("\n\nYou try to resist her erotic enticements to little avail!");
+				applyDamage(new TypeCollection( { tease: 15 + rand(6) } ), this, target, "minimal");
+			}
+		}
 	}
 
 }

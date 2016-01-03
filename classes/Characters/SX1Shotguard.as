@@ -9,7 +9,15 @@ package classes.Characters
 	import classes.Items.Protection.DecentShield;
 	import classes.Items.Protection.JoyCoPremiumShield;
 	import classes.kGAMECLASS;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
+	
+	import classes.Engine.Combat.*;
+	import classes.Engine.Combat.DamageTypes.*;
+	import classes.Engine.Interfaces.output;
+	import classes.GameData.CombatAttacks;
+	import classes.GameData.CombatManager;
+	
+	import classes.Engine.Utility.weightedRand;
 	
 	//Level 5. High health, medium armor, low shields. Uses a shotgun just like Pyra's.
 	
@@ -26,9 +34,10 @@ package classes.Characters
 			this.originalRace = "human";
 			this.a = "the ";
 			this.capitalA = "The ";
-			this.long = "The mercenary guard is a gruff, weathered human man with a long, faded-brown coat pulled over a ballistic vest -- enough armor for a corporate jackboot, but less than the assassins you fought upstairs. He's packing a pump-action shotgun and a bandolier full of grenades and other goodies.";
+			//this.long = "The mercenary guard is a gruff, weathered human man with a long, faded-brown coat pulled over a ballistic vest -- enough armor for a corporate jackboot, but less than the assassins you fought upstairs. He's packing a pump-action shotgun and a bandolier full of grenades and other goodies.";
+			this.long = "A gruff, weathered human man with a long, faded-brown coat pulled over a ballistic vest. He's packing a pump-action shotgun and a bandolier full of grenades and other goodies.";
 			this.customBlock = "The mercs armor deflects your attack with an alarming ease.";
-			this.plural = false;
+			this.isPlural = false;
 			isLustImmune = false;
 			
 			this.meleeWeapon = new Fists();
@@ -162,21 +171,143 @@ package classes.Characters
 			this.milkRate = 0;
 			this.ass.wetnessRaw = 0;
 			
-			this._isLoading = false;
+			sexualPreferences.setRandomPrefs(4, 2);
 			
 			this.createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
 			this.createStatusEffect("Disarm Immune", 0, 0, 0, 0, true, "", "", false, 0);
+			
+			isUniqueInFight = false;
+			btnTargetText = "VoidMerc";
+			
+			this._isLoading = false;
 		}
 		
-		override public function prepForCombat():void
+		override public function get bustDisplay():String
 		{
-			var dude:SX1Shotguard = this.makeCopy();
-			dude.sexualPreferences.setRandomPrefs(4, 2);
+			return "BLACKVOID";
+		}
+		
+		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
+		{
+			var target:Creature = selectTarget(hostileCreatures);
+			if (target == null) return;
 			
-			kGAMECLASS.userInterface.showBust("BLACKVOID");
-			kGAMECLASS.showName("FIGHT:\nSHOTGUN GUARD");
+			var blastAvail:Boolean = energy() >= 20 && !hasStatusEffect("Disarmed");
+			var netAvail:Boolean = energy() >= 10 && !hasStatusEffect("Stun Net Cooldown");
+			var zapAvail:Boolean = energy() >= 10 && !target.hasStatusEffect("Stunned");
 			
-			kGAMECLASS.foes.push(dude);
+			var attacks:Array = [];
+			if (!hasStatusEffect("Disarmed")) attacks.push( { v: rangedAttack, w:30 } );
+			attacks.push( { v: meleeAttack, w:10 } );
+			if (!hasStatusEffect("Disarmed")) attacks.push( { v: shotBlast, w: 40 } );
+			if (blastAvail) attacks.push( { v: solidSlug, w: 25 } );
+			if (netAvail) attacks.push( { v: ropeShot, w: 10 } );
+			if (zapAvail) attacks.push( { v: stunBaton, w: 20 } );
+			
+			weightedRand(attacks)(target);
+		}
+		
+		private function rangedAttack(target:Creature):void
+		{
+			CombatAttacks.RangedAttack(this, target);
+		}
+		
+		private function meleeAttack(target:Creature):void
+		{
+			CombatAttacks.MeleeAttack(this, target);
+		}
+		
+		private function stunBaton(target:Creature):void
+		{
+			// Stun Baton
+			//Light Electrical damage, high chance to stun
+
+			output("The pirate yanks a baton off his belt and lunges at "+ (target is PlayerCharacter ? "you" : target.a + target.short) +", fingering a button as he does so, causing the haft of it to erupt in a burst of electricity. Zap!");
+			if (!combatMiss(this, target))
+			{
+				if (target is PlayerCharacter)
+				{
+					output(" You take a shock right to the chest, zapping you! <b>Worse, you're stunned!</b>");
+				}
+				else output(" " + target.capitalA + target.short + " takes a shock right to the chest! <b>" + target.mfn("He", "She", "It") + " looks a little unsteady on their feet!</b>");
+				
+				target.createStatusEffect("Stunned", 1);
+			}
+			else
+			{
+				output(" " + (target is PlayerCharacter ? "You just manage" : target.capitalA + target.short + " manages") + " to duck under the swing, evading the pirate's attack!");
+			}
+
+			energy(-10);
+		}
+		
+		private function ropeShot(target:Creature):void
+		{
+			output("The pirate switches his finger to a second trigger and pulls it, shooting a rope and hook from a second barrel under his gun! The rope shot shoots towards");
+			if (target is PlayerCharacter) output(" you,");
+			else output(" Saendra,");
+
+			if (rangedCombatMiss(this, target, -1, 2))
+			{
+				output(" but buries itself harmlessly in the wall.");
+			}
+			else
+			{
+				output(" swinging around and around until it binds"); 
+				if (target is Saendra)
+				{
+					output(" her arms against her side. Saendra is");
+					target.createStatusEffect("Stunned", 3); // TODO maybe convert to same system as PC
+				}
+				else
+				{
+					output(" your arms to your side. You are");
+					target.createStatusEffect("Grappled", 0, 30, 0, 0, false, "Constrict", "You're stuck in the pirates net!", true, 0);
+					// 9999 -- might need new grappletexts for this to make sense
+				}
+				
+				output(" restrained!");
+			}
+
+			createStatusEffect("Stun Net Cooldown", 5);
+			energy(-10);	
+		}
+		
+		private function shotBlast(target:Creature):void
+		{
+			var numHits:int = 1;
+			for (var i:int = 0; i < 5; i++)
+			{
+				if (!rangedCombatMiss(this, target, -1)) numHits++;
+			}
+
+			var damage:TypeCollection = rangedDamage();
+			damage.multiply(0.33 * numHits); // potentially double the damage of a base ranged shot
+
+			output("The pirate gunner fires off his shotgun, blasting "+ (target is PlayerCharacter ? "you" : target.a + target.short) + " with a cone of hot lead!");
+			applyDamage(damage, this, target, "minimal");
+		}
+		
+		private function solidSlug(target:Creature):void
+		{
+			// Solid Slug
+			// Deals heavy damage, but has a chance to miss
+
+			output("The pirate shoves a shell into the bottom of his shotgun and pumps it in. Grinning maliciously, he shoulders his gun and fires it at "+ (target is PlayerCharacter ? "you" : target.a + target.short) + ", blasting "+ (target is PlayerCharacter ? "you" : target.mfn("him", "her", "it")) +" with a solid slug of lead as thick around as your thumb.");
+			
+			energy(-20);
+
+			if (rangedCombatMiss(this, target))
+			{
+				output(" The shell misses, blasting a hole in the bulkhead!");
+			}
+			else
+			{
+				output(" The shell hits!");
+				var damage:TypeCollection = rangedDamage();
+				damage.multiply(1.5);
+				applyDamage(damage, this, target, "minimal");
+			}	
 		}
 	}
 }

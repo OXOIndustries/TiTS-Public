@@ -22,7 +22,7 @@ package classes.Characters
 			this.long = "Bess";
 			this.customDodge = "Dodge Placeholder";
 			this.customBlock = "Block Placeholder";
-			this.plural = false;
+			this.isPlural = false;
 			
 			this.meleeWeapon.attackVerb = "punch";
 			this.meleeWeapon.longName = "semi-solid fist";

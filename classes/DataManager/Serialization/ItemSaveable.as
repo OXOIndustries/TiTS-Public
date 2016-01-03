@@ -47,7 +47,7 @@
 		 * Fields/Proprties to ignore on the class. Not fully implemented, but it should work for any class-based properties. Just add fields to ignore in an items constructor if
 		 * you really need to do it. It's more to avoid serializing some system-specific fields that don't actually exist on the objects at runtime.
 		 */
-		protected var _ignoredFields:Array = ["prototype", "classInstance", "neverSerialize", "shortName"];
+		protected var _ignoredFields:Array = ["prototype", "classInstance", "neverSerialize", "shortName", "attackImplementor"];
 		public function addIgnoredField(fieldName:String):void
 		{
 			_ignoredFields.push(fieldName);
@@ -134,7 +134,8 @@
 				{
 					if (_ignoredFields.length > 0)
 					{
-						if (_ignoredFields.indexOf(accs.@name) == -1)
+						var tProp:String = accs.@name;
+						if (_ignoredFields.indexOf(tProp) == -1)
 						{
 							dataObject[accs.@name] = this[accs.@name];
 						}

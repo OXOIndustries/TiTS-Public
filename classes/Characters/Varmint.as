@@ -1,4 +1,5 @@
-﻿package classes.Characters
+﻿
+package classes.Characters
 {
 	import classes.Creature;
 	import classes.GLOBAL;
@@ -6,9 +7,14 @@
 	import classes.Items.Guns.HammerPistol;
 	import classes.Items.Miscellaneous.*
 	import classes.kGAMECLASS;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
 	import classes.GameData.CodexManager;
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
+	import classes.GameData.CombatAttacks;
+	import classes.GameData.CombatManager;
+	import classes.Engine.Combat.DamageTypes.*;
+	import classes.Engine.Combat.*; 
+	import classes.Engine.Interfaces.output;
 	
 	//**************************************************
 	//Listed as chars["AUTOTURRETS"] in code elsewhere!
@@ -31,7 +37,7 @@
 			this.long = "This New Texan varmint is a big, blue creature near to the size of a burly Terran doberman, though its posture is more squat, and its frame is rippling with muscle. Its jaw is filled with razor-sharp teeth, slavering as it draws near to you, a hungry glint in its big green eyes. Several spikes coat the creature's flat head, including a pair that curl into horn-like protrusions around its head, almost ram-like.\n\nThe creature stalks towards you, clearly angered by your disturbing it. Those horns and teeth look like they could do some serious harm if you don't take it down quickly!";
 			this.customDodge = "Claws scrabbling, the varmint slips away from your attack.";
 			this.customBlock = "The armor plates soak up your attack.";
-			this.plural = false;
+			this.isPlural = false;
 			isLustImmune = true;
 			
 			this.meleeWeapon = new Fists();
@@ -148,25 +154,75 @@
 			this.createStatusEffect("Force It Gender");
 			//this.createStatusEffect("Flee Disabled",0,0,0,0,true,"","",false,0);
 			
+			isUniqueInFight = true;
+			btnTargetText = "Varmint";
+			
 			this._isLoading = false;
-
 		}
 		
-		override public function prepForCombat():void
+		override public function get bustDisplay():String
 		{
-			var combatVarmint:Varmint = this.makeCopy();
+			return "VARMINT";
+		}
+		
+		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
+		{
+			var target:Creature = selectTarget(hostileCreatures);
+			if (target == null) return;
 			
-			kGAMECLASS.userInterface.showBust("VARMINT");
-			kGAMECLASS.userInterface.showName("FIGHT:\nVARMINT");
-			
-			//combatVarmint.sexualPreferences.setRandomPrefs(2 + rand(3));
-			//LOOT!
-			//if (rand(3) == 0)
-			//{
-			//	combatVarmint.inventory.push(new ZilRation());
-			//}
-			
-			kGAMECLASS.foes.push(combatVarmint);
+			if (target.hasStatusEffect("Tripped")) maul(target);
+			else if (rand(4) == 0) ramAttack(target);
+			else if (rand(2) == 0) leap(target);
+			else CombatAttacks.MeleeAttack(this, target);
+		}
+		
+		private function ramAttack(target:Creature):void
+		{
+			output("The varmint lunges at you with its horns, slamming them ");
+			if(combatMiss(this, target) && !combatMiss(this, target)) output("just past you, digging them into the ground.");
+			else
+			{
+				output("into your [pc.leg], giving you a pointy, painful head-butt!");
+				var damage:TypeCollection = new TypeCollection( { kinetic: 12 + rand(6) }, DamageFlag.PENETRATING);
+				damageRand(damage, 15);
+				
+				if (!target.hasStatusEffect("Stunned") && target.physique() + rand(20) + 1 < 18)
+				{
+					output("<b> The hit was hard enough to stun you!</b>");
+					target.createStatusEffect("Stunned",1,0,0,0,false,"Stun","You are stunned and cannot move until you recover!",true,0);
+				}
+				
+				applyDamage(damage, this, target);
+			}
+		}
+		
+		private function maul(target:Creature):void 
+		{
+			output("While you're on the ground, the oversized varmint leaps onto you, savaging you with its huge teeth! You're able to get an arm up in time to save your throat, but it still grabs you and shakes its head, tearing into you.");
+			var damage:TypeCollection = new TypeCollection( { kinetic: 40 + rand(6) }, DamageFlag.PENETRATING);
+			damageRand(damage, 15);
+			applyDamage(damage, this, target);
+		}
+		
+		private function leap(target:Creature):void
+		{
+			output("The varmint leaps at you with its slavering jaws agape, teeth bared!");
+			if(!combatMiss(this, target))
+			{
+				output(" Its teeth sink into you, and the sheer weight of its impact against your ");
+				if((target.hasStatusEffect("Tripped") || target.physique()/2 + rand(20) > 19) && !target.hasStatusEffect("Stunned")) output("staggers you momentarily!");
+				else
+				{
+					output("throws you right to the ground!");
+					target.createStatusEffect("Trip", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
+				}
+				
+				var damage:TypeCollection = new TypeCollection( { kinetic: 12 }, DamageFlag.PENETRATING);
+				damageRand(damage, 15);
+				applyDamage(damage, this, target);
+				
+			}
+			else output(" You slip out of the way.");
 		}
 	}
 }

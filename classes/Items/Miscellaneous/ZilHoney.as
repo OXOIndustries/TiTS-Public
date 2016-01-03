@@ -7,6 +7,7 @@
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
+	import classes.Engine.Combat.inCombat;
 	
 	public class ZilHoney extends ItemSlotClass
 	{
@@ -74,7 +75,7 @@
 			}
 			else
 			{
-				if(kGAMECLASS.inCombat()) kGAMECLASS.output("\n");
+				if(inCombat()) kGAMECLASS.output("\n");
 				else kGAMECLASS.clearOutput();
 				kGAMECLASS.output(target.capitalA + target.short + " opens a vial of honey and drinks it");
 				if(healing > 0) kGAMECLASS.output(", getting a quick energy boost. (<b>+" + healing + " Energy</b>)");

@@ -11,7 +11,7 @@
 	import classes.Items.Transformatives.GooBallPurple;
 	import classes.Items.Transformatives.GooBallPink;
 	import classes.kGAMECLASS;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
 	
 	public class CrystalShopkeep extends Creature
 	{

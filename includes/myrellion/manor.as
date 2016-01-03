@@ -263,15 +263,15 @@ public function approachSellera():void
 	selleraMenu();
 }
 
-public function gatedButton(id:int, lbl:String, f:Function, arg:*, ttH:String, ttB:String, prevF:Function):void
+public function gatedButton(data:Object):void
 {
-	if (prevF != null && f != null && f == prevF)
+	if (data.prevF != null && data.f != null && data.f == data.prevF)
 	{
-		addDisabledButton(id, lbl, ttH, ttB);
+		addDisabledButton(data.id, data.lbl, data.ttH, data.ttB);
 	}
 	else
 	{
-		addButton(id, lbl, f, arg, ttH, ttB);
+		addButton(data.id, data.lbl, data.f, data.arg, data.ttH, data.ttB);
 	}
 }
 
@@ -280,22 +280,22 @@ public function selleraMenu(prevFunc:Function = null):void
 	// [The War] [Occupation] [Sellera] [Nehzara] [Appearance] [Leave]
 	clearMenu();
 	
-	gatedButton(0, "The War", selleraTheWar, undefined, "The War", "Ask the marshal about the war. As the commanding officer of the entire offensive, her take on things should prove enlightening.", prevFunc);
+	gatedButton( { id: 0, lbl: "The War", f: selleraTheWar, arg: undefined, ttH: "The War", ttB: "Ask the marshal about the war. As the commanding officer of the entire offensive, her take on things should prove enlightening.", prevF: prevFunc } );
 
-	gatedButton(1, "Occupation", selleraOccupation, undefined, "Occupation", "Ask about the state of the occupation, and how the Reds have managed to adapt to living in Kressia.", prevFunc);
+	gatedButton( { id: 1, lbl: "Occupation", f: selleraOccupation, arg: undefined, ttH: "Occupation", ttB: "Ask about the state of the occupation, and how the Reds have managed to adapt to living in Kressia.", prevF: prevFunc } );
 
-	gatedButton(2, "Sellera", selleraHerself, undefined, "Sellera", "Inquire as to Sellera's own history and get to know her a bit better.", prevFunc);
+	gatedButton( { id: 2, lbl: "Sellera", f: selleraHerself, arg: undefined, ttH: "Sellera", ttB: "Inquire as to Sellera's own history and get to know her a bit better.", prevF: prevFunc } );
 
 	// Has met Nehz
-	if (flags["MET_NEHZARA"] != undefined) gatedButton(3, "Nehzara", selleraNehzara, undefined, "Colonel Nehzara", "Since she's the main commander of the offensive force, Sellera might know Colonel Nehzara. You could see what she thinks of the other officer.", prevFunc);
+	if (flags["MET_NEHZARA"] != undefined) gatedButton( { id: 3, lbl: "Nehzara", f: selleraNehzara, arg: undefined, ttH: "Colonel Nehzara", ttB: "Since she's the main commander of the offensive force, Sellera might know Colonel Nehzara. You could see what she thinks of the other officer.", prevF: prevFunc } );
 
-	if (flags["SELLERA_OCCUPATION"] != undefined) gatedButton(4, "Rebels", selleraRebels, undefined, "Rebels", "Ask a little more about the rebel problem the occupation forces are having.", prevFunc);
+	if (flags["SELLERA_OCCUPATION"] != undefined) gatedButton( { id: 4, lbl: "Rebels", f: selleraRebels, arg: undefined, ttH: "Rebels", ttB: "Ask a little more about the rebel problem the occupation forces are having.", prevF: prevFunc } );
 
 	// 9999 MARSHALQUESTUUUUUU
 	// if (flags["SELLERA_REBELS"] != undefined) gatedButton(5, "Aid Her", selleraAidHer, undefined, "", "", prevFunc);
 
 
-	gatedButton(10, "Appearance", selleraAppearance, undefined, "Sellera's Appearance", "The general appearance of Field Marshal Sellera.", prevFunc);
+	gatedButton( { id: 10, lbl: "Appearance", f: selleraAppearance, arg: undefined, ttH: "Sellera's Appearance", ttB: "The general appearance of Field Marshal Sellera.", prevF: prevFunc } );
 	addButton(14, "Leave", selleraLeave, undefined, "Leave", "Bid Sellera farewell and go back upstairs.");
 }
 

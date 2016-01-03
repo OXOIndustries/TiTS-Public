@@ -4,6 +4,7 @@ package classes {
 	import classes.CockClass;
 	import classes.DataManager.Errors.VersionUpgraderError;
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
+	import classes.GameData.SingleCombatAttack;
 	import classes.Items.Guns.MyrBow;
 	import classes.Items.Melee.Fists;
 	import classes.Items.Melee.Rock;
@@ -18,20 +19,21 @@ package classes {
 	import classes.DataManager.Serialization.ISaveable;
 	import classes.DataManager.Serialization.VersionedSaveable;
 	import flash.utils.describeType;
+	import flash.utils.Dictionary;
 	import flash.utils.getQualifiedClassName;
 	import flash.utils.getDefinitionByName;
 	import classes.GameData.StatTracking;
-	
+	import classes.Engine.Utility.num2Text;
+	import classes.Engine.Utility.num2Ordinal;
 	import flash.utils.ByteArray;
 	import classes.GLOBAL;
 	import classes.GameData.Pregnancy.PregnancyManager;
 	import classes.Items.Miscellaneous.EmptySlot;
 	import classes.Util.RandomInCollection;
 	import classes.Util.InCollection;
-	import classes.Engine.Utility.num2Ordinal;
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
-	
-	import classes.Engine.Utility.num2Text;
+	import classes.Engine.Utility.plural;
+
 
 	/**
 	 * I cannot yet implement "smart" detection of which characters (or furthermore, what *properties* of which characters)
@@ -60,7 +62,18 @@ package classes {
 		
 		//Constructor
 		public function Creature() {
-			addIgnoredField("neverSerialize");
+			_ignoredFields.push(
+				"neverSerialize", 
+				"droneTarget", 
+				"concentratedFireTarget",
+				"uniqueName",
+				"flags",
+				"bustDisplay",
+				"buttonText",
+				"btnTargetText",
+				"alreadyDefeated",
+				"shieldDisplayName"
+			);
 
 			cocks = new Array();
 			vaginas = new Array();
@@ -87,7 +100,7 @@ package classes {
 		public var capitalA: String = "A ";
 
 		//Is a creature a 'pluralize' encounter - mob, etc. 
-		public var plural: Boolean = false;
+		public var isPlural:Boolean = false;
 
 		public var customDodge: String = "";
 		public var customBlock: String = "";
@@ -1492,10 +1505,10 @@ package classes {
 					buffer = face();
 					break;
 				case "lips":
-					buffer = pluralize(lipDescript());
+					buffer = plural(lipDescript());
 					break;
 				case "lipsChaste":
-					buffer = pluralize(lipDescript(false,true));
+					buffer = plural(lipDescript(false,true));
 					break;
 				case "lip":
 					buffer = lipDescript();
@@ -1639,7 +1652,7 @@ package classes {
 					buffer = nippleNoun(arg2);
 					break;
 				case "nipplesNoun":
-					buffer = pluralize(nippleNoun(arg2));
+					buffer = plural(nippleNoun(arg2));
 					break;
 				case "nipple":
 				case "nippleDescript":
@@ -1663,7 +1676,7 @@ package classes {
 				case "nippleCocksDescript":
 				case "nippleCocks":
 				case "dickNipples":
-					buffer = pluralize(nippleCockDescript());
+					buffer = plural(nippleCockDescript());
 					break;
 				case "nippleColor":
 					buffer = nippleColor;
@@ -2096,9 +2109,6 @@ package classes {
 			var restOfString: String = str.substr(1, str.length);
 			return firstChar.toUpperCase() + restOfString;
 		}
-		private function pluralize(str: String): String {
-			return kGAMECLASS.plural(str);
-		}
 		public function inventorySlots(): int {
 			var slots:int = 10;
 			if(accessory.shortName == "Cargobot") slots += 2;
@@ -2197,7 +2207,7 @@ package classes {
 		{
 			var desc:String = "";
 			var actions:Array = [];
-			var singular:Boolean = ((this is PlayerCharacter) || plural);
+			var singular:Boolean = ((this is PlayerCharacter) || isPlural);
 			var weaponName:String = getWeaponName();
 			
 			if (weapon == "stat")
@@ -2271,7 +2281,7 @@ package classes {
 			if (full)
 			{
 				if (this is PlayerCharacter) desc += " your " + weaponName;
-				else if (plural) desc += " their " + weaponName;
+				else if (isPlural) desc += " their " + weaponName;
 				else desc += " " + mfn("his", "her", "its") + " " + weaponName;
 			}
 			return desc;
@@ -2280,7 +2290,7 @@ package classes {
 		{
 			var desc:String = "";
 			var actions:Array = [];
-			var singular:Boolean = ((this is PlayerCharacter) || plural);
+			var singular:Boolean = ((this is PlayerCharacter) || isPlural);
 			var weaponName:String = getWeaponName();
 			
 			if (weapon == "stat")
@@ -2354,7 +2364,7 @@ package classes {
 			if (full)
 			{
 				if (this is PlayerCharacter) desc += " your " + weaponName;
-				else if (plural) desc += " their " + weaponName;
+				else if (isPlural) desc += " their " + weaponName;
 				else desc += " " + mfn("his", "her", "its") + " " + weaponName;
 			}
 			return desc;
@@ -3704,7 +3714,7 @@ package classes {
 			return description;
 		}
 		public function earsDescript(): String {
-			return pluralize(earDescript());
+			return plural(earDescript());
 		}
 		public function eyeDescript(): String {
 			var adjectives:Array = new Array();
@@ -3720,7 +3730,7 @@ package classes {
 			return description;
 		}
 		public function eyesDescript(): String {
-			return pluralize(eyeDescript());
+			return plural(eyeDescript());
 		}
 		public function tongueDescript(): String {
 			var adjectives:Array = new Array();
@@ -3926,7 +3936,7 @@ package classes {
 			//0-10
 			if (femininity < 10) {
 				faceo = "a square chin";
-				if(!hasBeard() && lipRating() > 2) faceo += ", " + pluralize(lipDescript(true)) + faceLipMimbraneDescript() + ", and chiseled jawline.";
+				if(!hasBeard() && lipRating() > 2) faceo += ", " + plural(lipDescript(true)) + faceLipMimbraneDescript() + ", and chiseled jawline.";
 				else if (!hasBeard()) faceo += " and chiseled jawline";
 				else faceo += ", chiseled jawline, and " + beard();
 			}
@@ -3934,35 +3944,35 @@ package classes {
 			else if (femininity < 20) {
 				faceo = "a rugged looking " + face() + " ";
 				if (hasBeard()) faceo += "and " + beard() + " that are";
-				else if(lipRating() > 2) faceo += "and " + pluralize(lipDescript(true)) + faceLipMimbraneDescript() + " that are";
+				else if(lipRating() > 2) faceo += "and " + plural(lipDescript(true)) + faceLipMimbraneDescript() + " that are";
 				else faceo += "that's";
 				faceo += " surely handsome";
 			}
 			//21-28
-			else if (femininity < 28) faceo = "a well-defined jawline, a pair of " + pluralize(lipDescript(true)) + faceLipMimbraneDescript() + ", and a fairly masculine profile";
+			else if (femininity < 28) faceo = "a well-defined jawline, a pair of " + plural(lipDescript(true)) + faceLipMimbraneDescript() + ", and a fairly masculine profile";
 			//28+-35
-			else if (femininity < 35) faceo = "a somewhat masculine, angular jawline and " + pluralize(lipDescript(true)) + faceLipMimbraneDescript() + "";
+			else if (femininity < 35) faceo = "a somewhat masculine, angular jawline and " + plural(lipDescript(true)) + faceLipMimbraneDescript() + "";
 			//35-45
-			else if (femininity < 45) faceo = "a pair of " + pluralize(lipDescript(true)) + faceLipMimbraneDescript() + " and the barest hint of masculinity in its structure";
+			else if (femininity < 45) faceo = "a pair of " + plural(lipDescript(true)) + faceLipMimbraneDescript() + " and the barest hint of masculinity in its structure";
 			//45-55
-			else if (femininity <= 55) faceo = "an androgynous set of features that would work on either a male or a female and " + pluralize(lipDescript(true)) + faceLipMimbraneDescript() + "";
+			else if (femininity <= 55) faceo = "an androgynous set of features that would work on either a male or a female and " + plural(lipDescript(true)) + faceLipMimbraneDescript() + "";
 			//55+-65
-			else if (femininity <= 65) faceo = "a tiny touch of femininity to it, with gentle curves and " + pluralize(lipDescript(true)) + faceLipMimbraneDescript() + "";
+			else if (femininity <= 65) faceo = "a tiny touch of femininity to it, with gentle curves and " + plural(lipDescript(true)) + faceLipMimbraneDescript() + "";
 			//65+-72
-			else if (femininity <= 72) faceo = "a nice set of cheekbones and " + pluralize(lipDescript(true)) + faceLipMimbraneDescript() + "";
+			else if (femininity <= 72) faceo = "a nice set of cheekbones and " + plural(lipDescript(true)) + faceLipMimbraneDescript() + "";
 			//72+-80
-			else if (femininity <= 80) faceo = "a beautiful, feminine shapeliness that's sure to draw attention and " + pluralize(lipDescript(true)) + faceLipMimbraneDescript() + "";
+			else if (femininity <= 80) faceo = "a beautiful, feminine shapeliness that's sure to draw attention and " + plural(lipDescript(true)) + faceLipMimbraneDescript() + "";
 			//81-90
 			else if (femininity <= 90)
 			{
-				faceo = "a gorgeous profile with " + pluralize(lipDescript(true)) + faceLipMimbraneDescript();
+				faceo = "a gorgeous profile with " + plural(lipDescript(true)) + faceLipMimbraneDescript();
 				if (hasSmallNose) faceo += ", a button nose,";
 				faceo += " and noticeable eyelashes";
 			}
 			//91-100
 			else
 			{
-				faceo = "a jaw-droppingly feminine shape with " + pluralize(lipDescript(true)) + faceLipMimbraneDescript();
+				faceo = "a jaw-droppingly feminine shape with " + plural(lipDescript(true)) + faceLipMimbraneDescript();
 				if (hasSmallNose) faceo += ", an adorable nose,";
 				faceo += " and long, beautiful eyelashes";
 			}
@@ -4163,7 +4173,7 @@ package classes {
 		}
 		public function gillsDesc(): String
 		{
-			return pluralize(gillDesc());
+			return plural(gillDesc());
 		}
 		public function modThickness(change: Number, display:Boolean = true): String 
 		{
@@ -4457,7 +4467,7 @@ package classes {
 		}
 		public function legs(forceType: Boolean = false, forceAdjective: Boolean = false): String 
 		{
-			return pluralize(leg(forceType, forceAdjective, true));
+			return plural(leg(forceType, forceAdjective, true));
 		}
 		public function legOrLegs(forceType: Boolean = false, forceAdjective: Boolean = false): String {
 			if (legCount == 1) return leg(forceType, forceAdjective);
@@ -4588,7 +4598,7 @@ package classes {
 		}
 		public function tailsDescript():String {
 			if(tailCount == 1) return tailDescript();
-			else if(tailCount > 1) return pluralize(tailDescript());
+			else if(tailCount > 1) return plural(tailDescript());
 			else return "<b>ERROR: Taildescript called with no tails present</b>";
 		}
 		public function wingDescript():String
@@ -4657,10 +4667,10 @@ package classes {
 		public function wingsDescript():String
 		{
 			if(wingType == GLOBAL.TYPE_SHARK) return wingDescript();
-			return pluralize(wingDescript());
+			return plural(wingDescript());
 		}
 		public function armsDescript(forceAdjective: Boolean = false):String {
-			return pluralize(armDescript(forceAdjective));
+			return plural(armDescript(forceAdjective));
 		}
 		public function armDescript(forceAdjective: Boolean = false):String
 		{
@@ -4686,13 +4696,13 @@ package classes {
 			return output;
 		}
 		public function armsNoun():String {
-			return pluralize(armNoun());
+			return plural(armNoun());
 		}
 		public function armNoun():String {
 			return "arm";
 		}
 		public function hands(): String {
-			return pluralize(hand());
+			return plural(hand());
 		}
 		public function hand(): String {
 			var output: String = "";
@@ -4714,7 +4724,7 @@ package classes {
 			return output;
 		}
 		public function fingers(): String {
-			return pluralize(finger());
+			return plural(finger());
 		}
 		public function finger(): String {
 			var output: String = "";
@@ -4816,7 +4826,7 @@ package classes {
 		}
 		public function legsNoun():String
 		{
-			return pluralize(legNoun());
+			return plural(legNoun());
 		}
 		public function footAdjectives(forceType: Boolean = false, forceAdjective: Boolean = false):String
 		{
@@ -4971,7 +4981,7 @@ package classes {
 		{
 			if (hasLegFlag(GLOBAL.FLAG_AMORPHOUS) && legType == GLOBAL.TYPE_GOOEY) return "cilia";
 			else if (legCount == 1) return kneeDescript();
-			else return pluralize(kneeDescript());
+			else return plural(kneeDescript());
 		}
 		public function kneeDescript(): String {
 			var select: Number = 0;
@@ -5236,6 +5246,9 @@ package classes {
 				}
 				//else trace("Not a combat status: " + statusEffects[x].storageName + " at position " + x + ".");
 			}
+			
+			droneTarget = null;
+			concentratedFireTarget = null;
 		}
 		//perk
 		public function removePerk(perkName: String): void {
@@ -8526,7 +8539,8 @@ package classes {
 		public function ballDescript(forceCount: Boolean = false, forcedSize: Boolean = false): String {
 			return ballsDescript(forceCount, forcedSize, true);
 		}
-		public function ballNoun(plural:Boolean = true): String {
+		public function ballNoun(asPlural:Boolean = true):String
+		{
 			var rando:int = 0;
 			var desc:String = "";
 			rando = rand(11);
@@ -8534,12 +8548,12 @@ package classes {
 			if (rando < 4) desc += "ball";
 			else if (rando <= 6) 
 			{
-				if(!plural) desc += "testicle";
+				if(!asPlural) desc += "testicle";
 				else desc += "teste";
 			}
 			else if (rando <= 7) desc += "gonad";
 			else desc += "nut";
-			if (plural) desc = pluralize(desc);
+			if (asPlural) desc = plural(desc);
 			return desc;
 		}
 		public function assholeDescript(): String {
@@ -8619,7 +8633,8 @@ package classes {
 			}
 			return desc;
 		}
-		public function hipDescript(plural: Boolean = false): String {
+		public function hipDescript(asPlural:Boolean = false):String 
+		{
 			var desc: String = "";
 			var rando: Number = 0;
 			if (hipRating() <= 1) {
@@ -8705,19 +8720,20 @@ package classes {
 				if (rando == 0) desc += "hip";
 				else if (rando == 1) desc += "thigh";
 			}
-			if (plural) desc = pluralize(desc);
+			if (asPlural) desc = plural(desc);
 			return desc;
 		}
 		public function thighDescript():String {
 			return "thigh";
 		}
 		public function thighsDescript():String {
-			return pluralize(thighDescript());
+			return plural(thighDescript());
 		}
 		public function hipsDescript(): String {
 			return hipDescript(true);
 		}
-		public function buttDescript(plural:Boolean = false): String {
+		public function buttDescript(asPlural:Boolean = false):String 
+		{
 			var desc: String = "";
 			var rando: Number = 0;
 			if (buttRating() <= 1) {
@@ -8791,7 +8807,7 @@ package classes {
 					rando = rand(7);
 					if (rando == 0) desc = "full, toned ";
 					else if (rando == 1) {
-						if (plural) return "muscular, hand-filling ass cheeks";
+						if (asPlural) return "muscular, hand-filling ass cheeks";
 						return "muscly handful of ass";
 					} else if (rando == 2) desc = "shapely, toned ";
 					else if (rando == 3) desc = "muscular, hand-filling ";
@@ -8803,7 +8819,7 @@ package classes {
 				else if (tone >= 30) {
 					rando = rand(4);
 					if (rando == 0) {
-						if (plural) return "hand-filling ass cheeks";
+						if (asPlural) return "hand-filling ass cheeks";
 						return "handful of ass";
 					} else if (rando == 1) desc = "full ";
 					else if (rando == 2) desc = "shapely ";
@@ -8816,7 +8832,7 @@ package classes {
 					else if (rando == 1) desc = "soft, hand-filling ";
 					else if (rando == 2) desc = "cushiony, full ";
 					else if (rando == 3) {
-						if (plural) return "supple, hand-filling ass cheeks";
+						if (asPlural) return "supple, hand-filling ass cheeks";
 						return "supple, handful of ass";
 					} else if (rando == 4) desc = "plush, shapely ";
 					else if (rando == 5) desc = "full ";
@@ -8946,10 +8962,10 @@ package classes {
 					else if (rando == 1) desc = "vast ";
 					else if (rando == 2) desc = "giant ";
 					else if (rando == 3) {
-						if (plural) return "expansive, jiggling ass cheeks";
+						if (asPlural) return "expansive, jiggling ass cheeks";
 						return "jiggling expanse of ass";
 					} else if (rando == 4) {
-						if (plural) return "copious, fleshy ass cheeks";
+						if (asPlural) return "copious, fleshy ass cheeks";
 						return "copious ass-flesh";
 					}
 				}
@@ -8975,7 +8991,7 @@ package classes {
 					else if (rando == 1) desc = "colossal yet toned ";
 					else if (rando == 2) desc = "strong, tremdously large ";
 					else if (rando == 3) {
-						if (plural) return "colossal, muscly ass cheeks";
+						if (asPlural) return "colossal, muscly ass cheeks";
 						return "colossal, muscly ass";
 					}
 					else if (rando == 4) desc = "tremendous, muscled ";
@@ -9009,7 +9025,7 @@ package classes {
 				}
 			}
 			rando = rand(21);
-			if(!plural)
+			if(!asPlural)
 			{
 				if (rando <= 4) desc += "butt";
 				else if (rando <= 9) desc += "ass";
@@ -9033,7 +9049,8 @@ package classes {
 			if(totalNipples() == 1) return nippleDescript(rowNum, false, forceLactation);
 			return nippleDescript(rowNum, true, forceLactation);
 		}
-		public function nippleDescript(rowNum: Number = 0, plural: Boolean = false, forceLactation:Boolean = false): String {
+		public function nippleDescript(rowNum:Number = 0, asPlural:Boolean = false, forceLactation:Boolean = false):String 
+		{
 			//DEBUG SHIT!
 			if (rowNum > (breastRows.length - 1)) return "<B>Error: Invalid breastRows (" + rowNum + ") passed to nippleDescript()</b>";
 			if (rowNum < 0) return "<B>Error: Invalid breastRows (" + rowNum + ") passed to nippleDescript()</b>";
@@ -9262,7 +9279,7 @@ package classes {
 				}
 				else if (rando == 4) description += "bud";
 			}
-			if (plural) description = pluralize(description);
+			if (asPlural) description = plural(description);
 			return description;
 		}
 		public function nippleNoun(rowNum:int = 0):String
@@ -9310,7 +9327,7 @@ package classes {
 				}
 				else if (rando == 4) description += "bud";
 			}
-			//description = pluralize(description);
+			//description = plural(description);
 			return description;
 		}
 		public function areolaSizeDescript(): String {
@@ -9568,7 +9585,7 @@ package classes {
 			return descript;
 		}
 		public function eachClit(): String {
-			if (totalClits() > 1) return "each of your " + pluralize(clitDescript());
+			if (totalClits() > 1) return "each of your " + plural(clitDescript());
 			else return "your " + clitDescript();
 		}
 		public function oneClitPerVagina(arg:int = 0):String
@@ -9580,11 +9597,11 @@ package classes {
 			return "ERROR";
 		}
 		public function oneClit(): String {
-			if (totalClits() > 1) return "one of your " + pluralize(clitDescript());
+			if (totalClits() > 1) return "one of your " + plural(clitDescript());
 			else return "your " + clitDescript();
 		}
 		public function clitsDescript(): String {
-			if (totalClits() > 1) return pluralize(clitDescript());
+			if (totalClits() > 1) return plural(clitDescript());
 			else return clitDescript();
 		}
 		public function clitDescript(pussy: Number = 0): String {
@@ -9701,12 +9718,12 @@ package classes {
 			var buffer:String = "";
 			if(tailCount > 1) buffer += "one of ";
 			buffer += "your ";
-			if(tailCount > 1) buffer += pluralize(tailVaginaDescript());
+			if(tailCount > 1) buffer += plural(tailVaginaDescript());
 			else buffer += tailVaginaDescript();
 			return buffer;
 		}
 		public function tailVaginasDescript(forceAdjectives: Boolean = false, adjectives: Boolean = true): String {
-			if(tailCount > 1) return pluralize(tailVaginaDescript(forceAdjectives,adjectives));
+			if(tailCount > 1) return plural(tailVaginaDescript(forceAdjectives,adjectives));
 			else if(tailCount == 1) return tailVaginaDescript(forceAdjectives,adjectives);
 			else return "ERROR: TAIL DESCRIPT CALLED WITH NO TAILS PRESENT.";
 		}
@@ -10081,11 +10098,11 @@ package classes {
 			if (vaginas.length > 1) 
 			{
 				//Matching cunts get type descriptor.
-				if(vaginasMatch()) return pluralize(vaginaDescript(rand(vaginas.length)));
+				if(vaginasMatch()) return plural(vaginaDescript(rand(vaginas.length)));
 				//Mixed vaginas get plain result - vaginaNoun with oddball value results in plain shit.
 				else
 				{
-					return pluralize(vaginaNoun2(vaginas[0],true,"default"));
+					return plural(vaginaNoun2(vaginas[0],true,"default"));
 				}
 			}
 			return "ERROR: vagina<b>s</b>Descript called with no vaginas.";
@@ -10158,7 +10175,7 @@ package classes {
 				if (rando == 3) descript += "wriggling bunch of ";
 			}
 			//Append Nounse
-			if (hasSamecType()) descript += cockAdjective(-1, dynamicLength) + ", " + pluralize(cockNoun2(cocks[0], false, ""));
+			if (hasSamecType()) descript += cockAdjective(-1, dynamicLength) + ", " + plural(cockNoun2(cocks[0], false, ""));
 			else {
 				rando = rand(4);
 				if (rando == 0) descript += cockAdjective(-1, dynamicLength) + ", mutated cocks";
@@ -10281,9 +10298,9 @@ package classes {
 			//Single dicks are normal.
 			else if (cocks.length == 1) return cockDescript(0, dynamicLength);
 			//Matched dicks get full cocknoun.
-			if (hasSamecType()) return pluralize(cockAdjective(-1, dynamicLength) + ", " + cockNoun2(cocks[0], false));
+			if (hasSamecType()) return plural(cockAdjective(-1, dynamicLength) + ", " + cockNoun2(cocks[0], false));
 			//Unmatched get default types
-			else return pluralize(cockAdjective(-1, dynamicLength) + " " + randomSimpleCockNoun());
+			else return plural(cockAdjective(-1, dynamicLength) + " " + randomSimpleCockNoun());
 		}
 		//Ultra-basic multiple cock description
 		public function cocksDescriptLight(): String {
@@ -10292,7 +10309,7 @@ package classes {
 			if (hasSamecType()) output += cockNoun2(cocks[0]);
 			else output += randomSimpleCockNoun();
 			//pluralize dat shit
-			if (cockTotal() > 1) output = pluralize(output);
+			if (cockTotal() > 1) output = plural(output);
 			return output;
 		}
 		public function simpleCockNoun(arg: Number): String {
@@ -10306,7 +10323,7 @@ package classes {
 			if (hasSamecType()) output += cockNoun2(cocks[0], true);
 			else output += randomSimpleCockNoun();
 			
-			if (cocks.length > 1) output = pluralize(output);
+			if (cocks.length > 1) output = plural(output);
 			
 			return output;
 		}
@@ -11423,7 +11440,7 @@ package classes {
 			return descript;
 		}
 		public function nippleCocksDescript(appearance: Boolean = false): String {
-			return pluralize(nippleCockDescript(appearance));
+			return plural(nippleCockDescript(appearance));
 		}
 		public function cockColor(arg2:int = 0):String
 		{
@@ -11799,11 +11816,11 @@ package classes {
 		}
 		public function eachCockHead(): String {
 			if (cockTotal() == 1) return "your " + cockHead(-1);
-			else return "each of your " + pluralize(cockHead(-1));
+			else return "each of your " + plural(cockHead(-1));
 		}
 		public function oneCockHead(): String {
 			if (cockTotal() == 1) return "your " + cockHead(-1);
-			else return "one of your " + pluralize(cockHead(-1));
+			else return "one of your " + plural(cockHead(-1));
 		}
 		public function cockHead(cockNum: Number = 0): String {
 			var temp: int;
@@ -11818,7 +11835,7 @@ package classes {
 		}
 		public function cockHeads(cockNum:Number = 0):String {
 			if(cockTotal() == 1) return cockHead(cockNum);
-			else return pluralize(cockHead(cockNum));
+			else return plural(cockHead(cockNum));
 		}
 		public function tailCockHead(): String {
 			if (!hasTailCock()) return "|||<b>ERROR:</b> No tail cock to describe |||";
@@ -11913,16 +11930,9 @@ package classes {
 		 * Ensure that the function is overridden before calling this (or the error can be replaced with a "default" set
 		 * of possible sexprefs for ALL creatures.
 		 */
-		public function setDefaultSexualPreferences(): void {
+		public function setDefaultSexualPreferences(): void
+		{
 			throw new Error("Sexual preferences must be configured on a per-creature basis before this function should be called! Override the function signature in the child creature class.");
-		}
-
-		/**
-		 * Effectively an interface to define a method to "reset" a creature for combat; reset its health, energy or whatever,
-		 * and set whatever other game-system stuff we need for combat to be "ready"
-		 */
-		public function prepForCombat(): void {
-			throw new Error("Each creature must define its own method to prepare for combat!");
 		}
 		
 		/**
@@ -12678,19 +12688,19 @@ package classes {
 		
 		public function eachHorn():String
 		{
-			if (horns > 1) return "each of your " + pluralize(hornDescript());
+			if (horns > 1) return "each of your " + plural(hornDescript());
 			return "your " + hornDescript();
 		}
 		
 		public function oneHorn():String
 		{
-			if (horns > 1) return "one of your " + pluralize(hornDescript());
+			if (horns > 1) return "one of your " + plural(hornDescript());
 			return "your " + hornDescript();
 		}
 		
 		public function hornsDescript():String
 		{
-			if (horns > 1) return pluralize(hornDescript());
+			if (horns > 1) return plural(hornDescript());
 			return hornDescript();
 		}
 		
@@ -12828,7 +12838,7 @@ package classes {
 		}
 		public function hornsNoun():String 
 		{
-			if (horns > 1) return pluralize(hornNoun());
+			if (horns > 1) return plural(hornNoun());
 			else return hornNoun();
 		}
 		public function hornNoun():String 
@@ -12855,7 +12865,7 @@ package classes {
 			antennae = 0;
 			return;
 		}
-		public function antennaeDescript(plural:Boolean = true): String 
+		public function antennaeDescript(asPlural:Boolean = true): String 
 		{
 			var description:String = "";
 			var adjectives:Array = [];
@@ -12885,15 +12895,127 @@ package classes {
 			if(adjectives.length > 0 && rand(2) == 0) description += RandomInCollection(adjectives) + " ";
 			if(nouns.length > 1) noun = RandomInCollection(nouns);
 			
-			if(plural && antennae > 1)
+			if(asPlural && antennae > 1)
 			{
 				if(noun == "antenna") noun += "e";
-				else noun = pluralize(noun);
+				else noun = plural(noun);
 			}
 			
 			description += noun;
 			
 			return description;
 		}
+		
+		public function isDefeated():Boolean
+		{
+			if (HP() <= 0 || lust() >= lustMax()) return true;
+			return false;
+		}
+		
+		/**
+		 * Core combat AI handling; this methods called on each creature present in a fight
+		 * (excepting the player).
+		 * The array names are relative to the creature in question, f.ex
+		 * PC vs NPC1, NPC2 =>
+		 * 		PC alliedCreatures(PC), hostileCreatures(NPC1, NPC2)
+		 * 		NPC1 alliedCreatures(NPC1, NPC2), hostileCreatures(PC)
+		 */
+		public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
+		{
+			throw new Error("Creature combat handler for " + this.short + " has not been overriden!");
+		}
+		
+		/**
+		 * Handy helper to select a potential target at random!
+		 * TODO: Include some standard "weighting" effects to influence target selection
+		 * f.ex prefer potential targets that have debuffs granting increased accuracy against them
+		 * @param	otherTeam
+		 * @return
+		 */
+		protected function selectTarget(otherTeam:Array):Creature
+		{
+			var selTarget:Creature = null;
+			
+			var posTargets:Array = [];
+			
+			for (var i:int = 0; i < otherTeam.length; i++)
+			{
+				// If it hasn't been defeated already this turn
+				if (otherTeam[i].HP() > 0 && otherTeam[i].lust() < otherTeam[i].lustMax())
+				{
+					// list as a potential
+					posTargets.push(otherTeam[i]);
+					
+					// Example "forced" effect selection
+					if (otherTeam[i].hasStatusEffect("Focus Fire"))
+					{
+						return otherTeam[i];
+					}
+				}
+			}
+			
+			if (posTargets.length == 0) return null;
+			if (posTargets.length == 1) return posTargets[0];
+			
+			var t:Creature = posTargets[rand(posTargets.length)];
+			
+			notifyTargetSelection(this, t, this);
+			
+			return t;
+		}
+		
+		private function notifyTargetSelection(attacker:Creature, target:Creature, enemy:Creature):void
+		{
+			kGAMECLASS.setAttacker(attacker);
+			kGAMECLASS.setTarget(target);
+			kGAMECLASS.setEnemy(enemy);
+		}
+		
+		/**
+		 * Allow the energy cost of an attack to be potentially modified.
+		 * @param	inCost
+		 * @return
+		 */
+		public function CalculateEnergyCost(attack:SingleCombatAttack):Number
+		{
+			return attack.EnergyCost;
+		}
+		
+		public function droneDamage():TypeCollection
+		{
+			var d:Number = 1 + level + rand(2 + level / 2);
+			if (accessory is TamWolfDamaged)
+			{
+				d -= -1;
+				return new TypeCollection( { kinetic: d } );
+			}
+			return new TypeCollection( { electric: d } );
+		}
+		
+		public var droneTarget:Creature = null; // Transient
+		public var concentratedFireTarget:Creature = null; // Transient
+		public var isUniqueInFight:Boolean = false;
+		public var uniqueName:String = null; // Transient
+		public function get flags():Dictionary { return kGAMECLASS.flags; } // Transient
+		public var alreadyDefeated:Boolean = false; // Transient
+		public var shieldDisplayName:String = "SHIELD"; // Transient
+		
+		/**
+		 * Return the name for the bust this character should display. This'll be used during combat, but also potentially
+		 * useful for other things. A getter function to support introspection to vary busts based on lust etc.
+		 */
+		public function get bustDisplay():String
+		{
+			return "";
+		}
+		
+		public function getCombatDescriptionExtension():void
+		{
+			// noop
+		}
+		
+		public var btnTargetText:String // Base text used for buttons
+		public var buttonText:String; // Transient version of ^ with a unique ID appended
+		
 	}
 }

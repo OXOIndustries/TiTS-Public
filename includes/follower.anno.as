@@ -1,4 +1,6 @@
-﻿import classes.Items.Apparel.SteeleTechSuit;
+﻿import classes.Creature;
+import classes.GameData.CombatManager;
+import classes.Items.Apparel.SteeleTechSuit;
 import classes.Items.Apparel.AnnosBlouse;
 import classes.Items.Apparel.AnnosCatsuit;
 import classes.Items.Armor.GooArmor;
@@ -2831,6 +2833,35 @@ public function grayGooSpessSkype():void
 		flags["GRAYGOO_SPESS_SKYPE"] = 1;
 		eventQueue.push(grayGooSpessSkypeScene);
 	}
+}
+
+public function pcGooClone(attacker:Creature, target:Creature):void
+{
+	output("<i>“Go get 'em, [goo.name]!”</i> you shout. She cheers and leaps off of you, half her gooey mass plopping down beside you and reforming into a miniature, big-tittied dancing goo-girl. The mini-goo bounces around, showing off her tits or bending over, flashing her ass and crotch at " + target.a + target.short + ".");
+	
+	target.lust(3 + rand(3));
+	
+	attacker.createStatusEffect("Reduced Goo", 0, 0, 0, 0, false, "Icon_DefDown", chars["GOO"].short + " has split from your frame and is busy teasing your foes - but it's reduced your defense!", true, 0);
+	attacker.armor.defense -= 5;
+	target.createStatusEffect("Gray Goo Clone", 0, 0, 0, 0, false, "Icon_LustUp", chars["GOO"].short + " is busy distracting your foes!", true, 0);
+}
+
+public function pcRecallGoo(attacker:Creature, target:Creature):void
+{
+	// Attacker will be the caster, target are going to basically be null-elements
+	var foes:Array = CombatManager.getHostileCharacters();
+	for (var i:uint = 0; i < foes.length; i++)
+	{
+		if (foes[i].hasStatusEffect("Gray Goo Clone"))
+		{
+			foes[i].removeStatusEffect("Gray Goo Clone");
+			break;
+		}
+	}
+	
+	output("<i>“Come on back, [goo.name]!”</i> you shout. In the blink of an eye, your body is wrapped in a thick covering of gray goo, cool and wet and comforting.");
+	attacker.removeStatusEffect("Reduced Goo");
+	attacker.armor.defense += 5;
 }
 
 public function grayGooSpessSkypeScene():void

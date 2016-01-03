@@ -22,7 +22,7 @@
 			this.long = "";
 			this.customDodge = "";
 			this.customBlock = "";
-			this.plural = false;
+			this.isPlural = false;
 			
 			this.meleeWeapon = new Fists();
 			

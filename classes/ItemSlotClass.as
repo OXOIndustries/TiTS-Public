@@ -52,6 +52,13 @@
 		public var combatUsable:Boolean;
 		public var targetsSelf:Boolean;
 		
+		// Link the attack for a specific item to a replacement function.
+		// If this is null, the combat code will use the base attack functions (ranged/melee attack)
+		// Set this to a function found in CombatAttacks.
+		// New functions should follow the signature:
+		// public static function ItemAttackImplementor(friends:Array, hostiles:Array, attacker:Creature, target:Creature):void
+		public var attackImplementor:Function;
+		
 		//constructor
 		public function ItemSlotClass(dataObject:Object = null)
 		{
@@ -98,6 +105,8 @@
 			this.isUsable = true;
 			this.combatUsable = false;
 			this.targetsSelf = true;
+			
+			this.attackImplementor = null;
 			
 			if (dataObject != null)
 			{

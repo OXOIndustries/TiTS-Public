@@ -1,4 +1,6 @@
-﻿import classes.Creature;
+﻿import classes.Characters.GrayGoo;
+import classes.Creature;
+import classes.GameData.CombatManager;
 //The Gray Goo
 //A TiTS Combat Encounter
 //By Savin: Age 12
@@ -30,132 +32,18 @@ public function encounterDasGooGray():void
 	}
 	output("\n\nIt doesn't look like she'll take no for an answer!");
 	clearMenu();
-	addButton(0,"Next",startCombat,"Gray Goo");
-}
-
-//Combat Scene
-//{Main Screen Turn On:}
-//You're fighting the Gray Goo!
-
-public function grayGooAI():void
-{
-	//Always grapple if possible!
-	if(pc.hasStatusEffect("Grappled")) grayGooRestrain();
-	else
-	{
-		if((foes[0].hasStatusEffect("Blind") || foes[0].HP() < foes[0].maxHP()/2) && rand(5) == 0) grayGooReformatting();
-		else
-		{
-			if(pc.statusEffectv1("Round") % 4 == 0) grayGooRestrain();
-			else if((!foes[0].hasStatusEffect("Harden") && rand(3) == 0) || (foes[0].lust() >= 75 && rand(2) == 0)) grayGooHarden();
-			else grayGooTeaseAttackGo();
-		}
-	}
 	
+	CodexManager.unlockEntry("Gray Goos");
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(new GrayGoo());
+	CombatManager.victoryScene(pcDefeatsGrayGooInTheNameOfLove);
+	CombatManager.lossScene(loseToGrayGooRouter);
+	CombatManager.displayLocation("GRAY GOO");
 	
+	addButton(0,"Next",CombatManager.beginCombat);
 }
 
-//Basic Attack: Teases
-public function grayGooTeaseAttackGo():void
-{
-	userInterface.showBust("GRAY_GOO");
-	userInterface.showName("FIGHT:\nGRAY GOO");
-	author("Savin");
-	if(rand(2) == 0) output("The nano-goo-girl gives you a sultry grin before spinning around, leaning over to give you a good look at her big, full ass. She shakes what her programmers gave her, bouncing up and down as one of her arms turns into a huge horsecock-like dildo and rams it straight inside her, eliciting a gasp of pleasure from her big lips.");
-	else 
-	{
-		output("The gray goo cups her huge tits enticingly, squeezing the over-sized orbs together with her shoulders as one of her arms shapes itself into a big, drooling cockhead. She thrusts between her cleavage, pumping up and down until it blows a thick, gooey load right on her face ");
-		//if PC has a dick: 
-		if(pc.hasCock()) output("clearly offering you the chance to do the same");
-		else output("clearly offering to do the same to you!");
-	}
-	applyDamage(new TypeCollection( { tease: 3 } ), null, foes[0], "suppress");
-	applyDamage(new TypeCollection( { tease: 8 + rand(6) } ), foes[0], pc, "minimal");
-	processCombat();
-}
-
-//Restrain Attack
-public function grayGooRestrain():void
-{
-	userInterface.showBust("GRAY_GOO");
-	userInterface.showName("FIGHT:\nGRAY GOO");
-	author("Savin");
-	if(!pc.hasStatusEffect("Grappled"))
-	{
-		output("The nano-goo's arms deform into thick tentacles of nanomachines, hurtling toward you! The tendrils wrap around your arms, splaying you out and leaving you to struggle in their surprisingly strong grasp.");
-		pc.createStatusEffect("Grappled",0,30,0,0,false,"Constrict","You're trapped in a gray goo's hold!",true,0);
-	}
-	//Turn 1: 
-	else if(pc.statusEffectv3("Grappled") == 0)
-	{
-		output("Seeing that you can't quite wriggle free of her grasp, the gray goo giddily closes the distance between you, grabbing a handful of your [pc.butt] and squeezing just enough to make you groan.");
-		pc.addStatusValue("Grappled",3,1);
-		applyDamage(new TypeCollection( { tease: 10 + rand(6) } ), foes[0], pc, "minimal");
-	}
-	//Turn 2
-	else
-	{
-		//PC has cock: 
-		if(pc.hasCock()) output("The goo-girl spins around, planting her big ass right in your crotch. She giggles, giving you a seductive wink over her shoulder before starting to grind against your [pc.cocks], sending shocks of pleasure up your spine!");
-		//PC has tits:
-		else if(pc.biggestTitSize() >= 2)
-		{
-			output("The goo-girl presses herself tight against you before mashing her face down into your bust, motor-boating your [pc.chest] as her hands squeeze and massage your [pc.butt], trying to ");
-			if(pc.armor.shortName != "") output("work your " + pc.armor.longName + " off");
-			else output("pull your cheeks apart to get at your behind");
-			output("!");
-		}
-		//Savin forgets things and I nagged him till he wrote this
-		else
-		{
-			output("The goo-girl wraps herself around you, pinning your");
-			if(pc.legCount == 1) output(" [pc.leg] down");
-			else output(" [pc.legs] together");
-			output(" before slithering around and burying her face in your [pc.butt], motorboating your ass-cheeks as her gooey limbs try to peel off your [pc.gear]");
-		}
-		applyDamage(new TypeCollection( { tease: 10 + rand(6) } ), foes[0], pc, "minimal");
-	}
-	processCombat();
-}
-
-//Reformat
-public function grayGooReformatting():void
-{
-	userInterface.showBust("GRAY_GOO");
-	userInterface.showName("FIGHT:\nGRAY GOO");
-	author("Savin");
-	//{Restores light HP, removes status effects}
-	(foes[0] as Creature).clearCombatStatuses();
-	output("You see the goo-girl shudder, her eyes dimming for a moment. You hesitate, waiting to see what she's doing. After a moment, her eyes light up again, a dopey grin on her face. <i>\"All better now!\"</i> she chirps before slotting a hand up her gooey twat. (+15HP and all statuses cleared!)");
-	(foes[0] as Creature).lust(5);
-	(foes[0] as Creature).HP(15);
-	processCombat();
-}
-
-//Harden
-//{Increase armor for a few turns}
-public function grayGooHarden():void
-{
-	userInterface.showBust("GRAY_GOO");
-	userInterface.showName("FIGHT:\nGRAY GOO");
-	author("Savin");
-	output("The nano-goo shudders for a moment as her shimmering skin flashes brighter, seeming to become harder and more solid than it has been so far. She giggles and smiles at you, giving you a come-hither crook of her finger as she slinks to the ground and spreads her legs invitingly.");
-	if (!foes[0].hasStatusEffect("Harden"))
-	{
-		foes[0].createStatusEffect("Harden", 0, 30, 0, 0, false, "DefenseUp", "Defense against all forms of attack has been increased!", true, 0);
-		(foes[0] as Creature).baseHPResistances.kinetic.resistanceValue += 10.0;
-	}
-	//PC has options here!
-	//[Do Nothing] [Quickie!]
-	clearMenu();
-	addButton(0,"Do Nothing",dontDoAnythingFromHardenAttack);
-	if((pc.hasCock() || pc.hasVagina())) addButton(1,"Quickie!",quickieAfterGooHarden,undefined,"Quickie","Have a quickie with the gray goo girl, resetting both of your lust scores.");
-	else {
-		output("\n\nThe poor thing doesn't seem to realize that you're missing the requisite parts.");
-		addDisabledButton(1,"Quickie");
-	}
-
-}
 //[Do Nothing]
 public function dontDoAnythingFromHardenAttack():void
 {
@@ -166,9 +54,20 @@ public function dontDoAnythingFromHardenAttack():void
 	//{PC +Lust, Goo -Lust}
 	output("The goo gives you a pleading look, but after a moment her now more-solid fingers plunge into her empty cooch anyway, jilling the slavering hole with abandon. Her synthetic voice cries out as she teases her nub of a clit, back arching as she slides a pair of fingers in up to the last knuckle. You feel a stirring in your [pc.groin] as the goo puts on a show for you, her eyes locking with yours as she puts on her lewd display. After a moment, she hops onto her feet, keeping to a low crouch as she continues to finger herself; she cups one of her oversized tits, bringing the teat up to her mouth to suckle on it, tongue swirling around her hard, silver areola.");
 	output("\n\n<i>\"Like what you see, space cow" + pc.mfn("boy","girl","person") + "?\"</i> she giggles, rolling onto all fours and giving you a full view of her jiggling ass. She reaches back around, sticking a few fingers back in her slit before humping back against them, thrusting faster and faster until you can see a wet sheen spilling down around her digits... which she promptly licks up, bringing it to her lips and cleaning off each finger with measured, sultry slowness. Licking her lips, she rises back to her feet, clearly done going it solo and ready for more!");
-	foes[0].lust(-50);
+	
+	// TODO Peep a better way to handle this
+	// GetHostileOfType? Index override? By unique-name?
+	var hostiles:Array = CombatManager.getHostileCharacters();
+	for (var i:int = 0; i < hostiles.length; i++)
+	{
+		if (hostiles[i] is GrayGoo)
+		{
+			hostiles[i].lust( -50);
+		}
+	}
+	
 	pc.lust(10);
-	processCombat();
+	CombatManager.continueCombat();	
 }
 
 //[Quickie] (Masculine) {PC -Lust, Goo -Lust, Goo +HP}
@@ -191,8 +90,17 @@ public function quickieAfterGooHarden():void
 		output("\n\nJust as you're about to cum, the goo pulls you down onto her, locking you in a tight embrace, lips seeking out your [pc.chest] as her hips start to pound into you. You find yourself hurtling over the edge of climax on the back of a violent fucking that leaves the wasteland echoing with the sound of wet goo slapping against [pc.vaginaColor]. You barely have time to enjoy the afterglow of your quick sexual escapade before you're tossed off the goo as she resumes her combat pose. Time to get back at it!");
 	}
 	pc.orgasm();
-	foes[0].orgasm();
-	processCombat();
+	
+	var hostiles:Array = CombatManager.getHostileCharacters();
+	for (var i:int = 0; i < hostiles.length; i++)
+	{
+		if (hostiles[i] is GrayGoo)
+		{
+			hostiles[i].orgasm();
+		}
+	}
+	
+	CombatManager.continueCombat();	
 }
 
 public function loseToGrayGooRouter():void
@@ -208,7 +116,7 @@ public function pcDefeatsGrayGooInTheNameOfLove():void
 	userInterface.showBust("GRAY_GOO");
 	userInterface.showName("DEFEATED:\nGRAY GOO");
 	output("Jiggling and deforming under the ");
-	if(foes[0].lust() > 99) output("teasing display of sensuality you're giving it");
+	if(enemy.lust() > 99) output("teasing display of sensuality you're giving it");
 	else output("brutal physical attacks you're slinging");
 	output(", the gray goo finally collapses into little more than a puddle of goop on the ground, only vaguely in humanoid shape. Looming over her - it - you could do just about anything. And it probably wouldn't even mind.\n\n");
 	
@@ -238,7 +146,7 @@ public function pcDefeatsGrayGooInTheNameOfLove():void
 		addDisabledButton(2,"MultiFuck");
 		addDisabledButton(3,"Catch: DP");
 	}
-	addButton(14,"Leave",genericVictory);
+	addButton(14,"Leave",CombatManager.genericVictory);
 }
 
 //Reprogram
@@ -263,7 +171,7 @@ public function reprogramGrayGoosForYerPleasure():void
 	if(pc.HP() < pc.maxHP()) addButton(0,"Heal Me",healMeGrayGooYoureMyOnlyHopeDotDotDot,undefined,"Heal Me","Have the goo woman user her microsurgeons to heal you.");
 	else addDisabledButton(0,"Heal Me");
 	addButton(1,"Take Sample",takeASampleOfTheGrayGoo,undefined,"Sample","Collect a sample of the mysterious woman for... science!");;
-	addButton(14,"Leave",genericVictory);
+	addButton(14,"Leave",CombatManager.genericVictory);
 }
 
 //Heal Me
@@ -279,7 +187,7 @@ public function healMeGrayGooYoureMyOnlyHopeDotDotDot():void {
 	output("\n\nThat's one less rape-monster on this planet. You do good work!\n\n");
 	pc.HP(50);
 	processTime(1);
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Take a Sample
@@ -295,7 +203,7 @@ public function takeASampleOfTheGrayGoo():void {
 
 	eventQueue[eventQueue.length] = getSomeGrayGoo;
 	processTime(1);
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 public function getSomeGrayGoo():void {
@@ -363,7 +271,7 @@ public function multiCockMayhem():void
 	pc.energy(-5);
 	processTime(20+rand(5));
 	pc.orgasm();
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Mutual Masturbation
@@ -418,7 +326,7 @@ public function mutualGooMasturbation():void
 	pc.orgasm();
 	pc.energy(-5);
 	processTime(20+rand(5));
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Divide and Conquer (Goo Splits in half, double-teams)
@@ -492,7 +400,7 @@ public function divideAndConquerGinasWithGoos():void
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //PC Defeat
@@ -601,7 +509,7 @@ public function pcDefeatByGooBitch():void
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
-	genericLoss();
+	CombatManager.genericLoss();
 }
 
 //PC Defeated
@@ -689,7 +597,7 @@ public function cockVariantForGrayGooKirbutashis():void
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
-	genericLoss();
+	CombatManager.genericLoss();
 }
 
 //Cunt Variant
@@ -750,5 +658,5 @@ public function gooGooEnvelopsCunts():void
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
-	genericLoss();
+	CombatManager.genericLoss();
 }

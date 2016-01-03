@@ -1,5 +1,6 @@
 import classes.Characters.PlayerCharacter;
 import classes.Engine.Combat.DamageTypes.TypeCollection;
+import classes.Characters.Cockvine;
 import classes.Items.Accessories.TamWolf;
 import classes.Items.Accessories.TamWolfDamaged;
 public function adultCockvineHeader():void
@@ -117,158 +118,24 @@ public function adultCockvineEncounter():void
 
 		(pc as PlayerCharacter).createStatusEffect("Cockvine Grip", 1, 0, 0, 0, false, "Constrict", "You're in the grip of a Cockvine!", true, 0);
 		clearMenu();
-		addButton(0, "Fight!", startCombat, "Cockvine");
-	}
-}
-
-public function adultCockvineAI():void
-{
-	if (!pc.hasStatusEffect("Cockvine Grip"))
-	{
-		(pc as PlayerCharacter).createStatusEffect("Cockvine Grip", 1, 0, 0, 0, false, "Constrict", "You're in the grip of a Cockvine!", true, 0);
-	}
-	
-	// Struggling will set v2 to 1 - things read weirdly if you struggle -> cocvine constricts straight away
-	if (pc.statusEffectv1("Cockvine Grip") < 3 && pc.statusEffectv2("Cockvine Grip") == 0) adultCockvineConstrictAttack();
-	else
-	{
-		var attacks:Array = [];
-
-		attacks.push(adultCockvineWhips);
-		attacks.push(adultCockvineMouthFuxAttack);
-		if (pc.hasCombatDrone()) attacks.push(adultCockvineMowThisAttack);
 		
-		attacks[rand(attacks.length)]();
-	}
+		CombatManager.newGroundCombat();
+		CombatManager.setFriendlyCharacters(pc);
+		CombatManager.setHostileCharacters(new Cockvine());
+		CombatManager.victoryScene(adultCockvinePCVictory);
+		CombatManager.lossScene(cockvineLossRouter);
+		CombatManager.displayLocation("COCKVINE");
 	
-	// Resolve various state changes that can happen and apply/remove/change appropriate status effects
-	
-	// Reset the struggle-indicator
-	if (pc.statusEffectv2("Cockvine Grip") == 1)
-	{
-		pc.setStatusValue("Cockvine Grip", 2, 0);
-	}
-	
-	// Trigger various effects based on grip-level
-	if (pc.statusEffectv1("Cockvine Grip") == 0)
-	{
-		if (pc.hasStatusEffect("Evasion Reduction")) pc.removeStatusEffect("Evasion Reduction");
-		if (pc.hasStatusEffect("Grappled")) pc.removeStatusEffect("Grappled");
-	}
-	else
-	{
-		if (pc.statusEffectv1("Cockvine Grip") == 1)
-		{
-			if (!pc.hasStatusEffect("Evasion Reduction")) pc.createStatusEffect("Evasion Reduction", 10, 0, 0, 0, true, "", "", true, 0);
-			else pc.setStatusValue("Evasion Reduction", 1, 10);
-		}
-
-		if (pc.statusEffectv1("Cockvine Grip") >= 2)
-		{
-			if (!pc.hasStatusEffect("Evasion Reduction")) pc.createStatusEffect("Evasion Reduction", 20, 0, 0, 0, true, "", "", true, 0);
-			else pc.setStatusValue("Evasion Reduction", 1, 20);
-
-			pc.energyRaw -= 5;
-			pc.lustRaw += 2 + rand(pc.libido() / 15);
-		}
-
-		if (pc.statusEffectv1("Cockvine Grip") == 3)
-		{
-			pc.createStatusEffect("Grappled", 1000, 0, 0, 0, true, "", "", true, 0);
-		}
-	}
-
-	processCombat();
-}
-
-public function adultCockvineConstrictAttack():void
-{
-	output("The cockvine coils its grasp around you from every angle, trying to bind you closer in its warm, wet clinch.");
-
-	if (rand(Math.max(pc.RQ(), pc.PQ())) <= 65)
-	{
-		output("\n\nYou grapple with it as best you can but whenever you fight off one tentacle another seizes the opportunity to grasp you tightly. You cannot prevent the thoughtless power of it drawing you further into the darkness.");
-
-		pc.addStatusValue("Cockvine Grip", 1, 1);
-		
-		var damage:TypeCollection = new TypeCollection( { kinetic: 15 * (0.5 + (pc.statusEffectv1("Cockvine Grip") / 2)) }, DamageFlag.CRUSHING);
-		damageRand(damage, 15);
-		
-		switch (pc.statusEffectv1("Cockvine Grip"))
-		{
-			case 1:
-				output("\n\nYou bark in frustration as once again it takes a firm grip of your [pc.legOrLegs] and drags you away from the light.");
-				break;
-
-			case 2:
-				output("\n\nVines slide around your belly and [pc.chest], cosseting you in tight, wet heat as you futilely try to peel them off you. They seem to be sweating an oily substance which makes them difficult to hold onto. The heavy, green air fogging your lungs makes it very difficult to stay focused and struggling against it; it feels like the energy and will to fight is being kneaded out of you, leaving behind a pleasant emptiness.");
-				break;
-
-			case 3:
-				output("\n\nFeebly you try to swat away the tentacles blindly reaching for your hands, but you’re swaddled in cockvine at this point and you cannot stop it seizing first one wrist then the other, effectively pinioning you. Your breath comes heavy, drawing in more and more of the relaxing pheromone the plant is exuding. You’ve got to fight free whilst you still have the will and energy to do so!");
-				break;
-
-			default:
-				throw new Error("Unmatched Cockvine Grip Value in ConstrictAttack: " + pc.statusEffectv1("Cockvine Grip"));
-				break;
-
-		}
-		
-		applyDamage(damage, foes[0], pc);
-	}
-	else
-	{
-		output("\n\nYou struggle and fight the thing like a trapped wolverine, writhing this way and that to stop it getting a better grip on your limbs, beating back the tentacles so that you have a window of opportunity for your next move.");
+		addButton(0, "Fight!", CombatManager.beginCombat);
 	}
 }
 
-public function adultCockvineWhips():void
+public function cockvineLossRouter():void
 {
-	output("\nThe movement of your own body translates into the surrounding vines where it seems to gather, the tentacles bunching and swaying back and forth until frenetic energy seizes them up, and they are whipping their bulbous heads into you with ropy, numbing force.\n");
-
-	foes[0].createPerk("Multiple Attacks", 2 + rand(2), 0, 0, 0, "");
-	attack(foes[0], pc, [2]);
-	foes[0].removePerk("Multiple Attacks");
-	
-	output("\n");
-}
-
-public function adultCockvineMouthFuxAttack():void
-{
-	//Lust rise if success
-	output("\nOne of the tentacles reaches for your face, implacably stretching towards the wet orifice it can sense there.");
-
-	if (pc.hasArmor() && pc.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
-	{
-		output(" Luckily, your airtight [pc.armor] protects you from the oral invasion!");
-	}
-	else if (combatMiss(foes[0], pc))
-	{
-		output(" You grit your teeth and manage to bat it away.");
-	}
+	if (pc.hasCock() || pc.hasVagina())
+		adultCockvinePCLoses();
 	else
-	{
-		output("\n\nYou struggle the best you can, but you cannot stop it pushing its dense, bulbous head into your mouth, invading it with its humid, verdant smell. Your cries of disgust turn into a muffled gargle when it tenses up and ejaculates a thick load of its white semen down your throat. Finding extra reserves of energy in response to this foul development you rip your head away, but the taste of it – heavy, sweet citrus, inescapably sexual – stays with you.");
-		output("\n\nYou groan woozily as heat rises to your skin and your heart beats faster with each passing second, seeming to pulse in time with the movement of the vines, plant pheromones flowing into your bloodstream.");
-		pc.loadInMouth(foes[0]);
-		pc.lust(3 + rand(5));
-	}
-}
-
-public function adultCockvineMowThisAttack():void
-{
-	//Activates if attacked by drone. Disables drone for 3-5 turns if successful
-	output("\nIncensed by your drone’s attack, one of the tentacles reacts by swinging at it hard.");
-
-	if (rand(4) == 0)
-	{
-		output(" Your trusty drone darts nimbly out of the way.");
-	}
-	else
-	{
-		output(" With a nasty sounding crunch the cockvine connects, sending the light robot flying out of the crevice.");
-		(pc as PlayerCharacter).createStatusEffect("Combat Drone Disabled", rand(5) + 1, 0, 0, 0, true, "", "", true, 0);
-	}
+		adultCockvineHahaFuckYouGenderless(true);
 }
 
 public function adultCockvineGrenadesInEnclosedSpaces(damageValue:TypeCollection, pluralNades:Boolean = false, usedLauncher:Boolean = false, isLustGas:Boolean = false):void
@@ -314,34 +181,6 @@ public function adultCockvineGrenadesInEnclosedSpaces(damageValue:TypeCollection
 	}
 }
 
-public function adultCockvineCombatDescriptionExtension():void
-{
-	if (!pc.hasStatusEffect("Cockvine Grip")) return;
-
-	switch (pc.statusEffectv1("Cockvine Grip"))
-	{
-		case 0:
-			output("\nYou have fought yourself clear almost to the lip of the cockvine’s nest. The relative light of the cavern is tantalizingly close...\n")
-			break;
-
-		case 1:
-			output("\nThe cockvine has a firm grip on your [pc.legOrLegs], making escape impossible. You have the use of your arms, at least.\n");
-			break;
-
-		case 2:
-			output("\nThe cockvine has pulled you deep into the pit and wrapped itself tightly around your torso and [pc.chest], sliding its wet, ropy warmth across your [pc.skin] as it crawls inexorably up your body. The heavy smell of it is overwhelming, dazing – you feel your muscles relaxing despite your terror.\n");
-			break;
-
-		case 3:
-			output("\nThe cockvine has you bound securely, your arms pulled away from your hot plant - slathered body. The feeling of arousal, hopelessness and doziness is getting steadily stronger and it’s getting increasingly difficult to force yourself to struggle...\n");
-			break;
-
-		default:
-			throw new Error("Unmatched Cockvine Description Extension: " + pc.statusEffectv1("Cockvine Grip"));
-			break;
-	}
-}
-
 public function adultCockvineSenseOverride():void
 {
 	output("You doubt you could show off your moves very well down here, even if this creature <i>had</i> eyes.");
@@ -372,7 +211,7 @@ public function adultCockvineStruggleOverride():void
 	
 	pc.setStatusValue("Cockvine Grip", 2, 1);
 	
-	processCombat();
+	CombatManager.processCombat();
 }
 
 public function adultCockvineConsentacles():void
@@ -580,7 +419,7 @@ public function adultCockvinePCVictory():void
 
 	output("\n\nYou are exhausted and covered in the creature’s disgusting slime – but are also feeling a tingle of endorphins for managing to beat the cockvine in its own lair. After you’ve rested a bit, you pick yourself up and carry on.\n\n");
 
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 public function adultCockvinePCEscapes():void
@@ -593,7 +432,7 @@ public function adultCockvinePCEscapes():void
 
 	output("\n\nYou take a single moment to pull in the blessedly cold, fresh air and then stumble away as fast as you can, the sound of enraged cockvine slapping heavily at the ground in search of its prize echoing off the stone walls close behind you.\n\n");
 
-	leaveCombat();
+	CombatManager.abortCombat();
 }
 
 public function adultCockvinePCLoses():void
@@ -753,14 +592,14 @@ public function adultCockvinePCLoses():void
 
 	for (var i:int = 0; i < pc.vaginas.length; i++)
 	{
-		pc.loadInCunt(foes[0], i);
+		pc.loadInCunt(enemy, i);
 	}
-	pc.loadInAss(foes[0]);
-	pc.loadInMouth(foes[0]);
+	pc.loadInAss(enemy);
+	pc.loadInMouth(enemy);
 	pc.orgasm();
 
 	clearMenu();
-	genericLoss();
+	CombatManager.genericLoss();
 }
 
 public function adultCockvineHahaFuckYouGenderless(fromCombat:Boolean = true):void
@@ -804,7 +643,7 @@ public function adultCockvineHahaFuckYouGenderless(fromCombat:Boolean = true):vo
 
 	if (fromCombat)
 	{
-		genericLoss();
+		CombatManager.genericLoss();
 	}
 	else
 	{

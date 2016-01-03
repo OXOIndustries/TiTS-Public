@@ -725,7 +725,7 @@ package classes.Items.Transformatives
 			var changes:int = 0;
 			
 			clearOutput();
-			kGAMECLASS.author("Couch");
+			author("Couch");
 			
 			if (!(target is PlayerCharacter))
 			{

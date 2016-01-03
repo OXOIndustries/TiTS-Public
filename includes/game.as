@@ -607,9 +607,9 @@ public function sleepHeal():void
 		if(pc.isPregnant(3)) numPreg--;
 		if(numPreg <= 0)
 		{
-			pc.addPerkValue("Fecund Figure", 1, -1);
-			pc.addPerkValue("Fecund Figure", 2, -1);
-			pc.addPerkValue("Fecund Figure", 3, -1);
+		pc.addPerkValue("Fecund Figure", 1, -1);
+		pc.addPerkValue("Fecund Figure", 2, -1);
+		pc.addPerkValue("Fecund Figure", 3, -1);
 		}
 		pc.addPerkValue("Fecund Figure", 1, -1);
 		pc.addPerkValue("Fecund Figure", 2, -1);

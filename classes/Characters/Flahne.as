@@ -21,7 +21,7 @@
 			this.long = "Placeholder";
 			this.customDodge = "The goo twists a portion of its body out of the way of the attack, moving in a way that would be fatal for any vertebrate.";
 			this.customBlock = "Your attack sinks into the goo, the wound vanishing almost instantly as her surface recloses.";
-			this.plural = false;
+			this.isPlural = false;
 			
 			this.meleeWeapon.attackVerb = "punch";
 			this.meleeWeapon.longName = "semi-solid fist";

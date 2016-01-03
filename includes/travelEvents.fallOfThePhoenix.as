@@ -1,3 +1,4 @@
+import classes.Characters.PhoenixPirates;
 import classes.Engine.Combat.DamageTypes.TypeCollection;
 import classes.Items.Melee.Rock;
 import classes.Items.Miscellaneous.EmptySlot;
@@ -408,8 +409,15 @@ public function phoenixCargo():Boolean
 // Not starting it directly so I can inject a status effect onto the player to handle the help from Sae
 public function startPhoenixPirateFight():void
 {
-	startCombat("phoenixpirates");
-	pc.createStatusEffect("Saendra Fights4Buttes", 0, 0, 0, 0, true, "", "", true, 0);
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters	([pc, saendra]);
+	CombatManager.setHostileCharacters	([new PhoenixPirates(), new PhoenixPirates(), new PhoenixPirates()]);
+	CombatManager.victoryScene(victoryOverPhoenixPirates);
+	CombatManager.lossScene(loseToPhoenixPirates);
+	CombatManager.displayLocation("VOID GANG");
+	CombatManager.encounterText("A gang of unruly, vicious-looking space toughs, these Black Void pirates are armed to the teeth with machine-pistols, rifles, shotguns, and everything in between. Ausar, humans, kaithrit girls, and even a Centaurin packing a gatling-laser make up their ranks. They’re all wearing skintight black space suits and peppering the cover around you with bullets.");
+	
+	CombatManager.beginCombat();
 }
 
 public function loseToPhoenixPirates():void 
@@ -458,7 +466,7 @@ public function loseToPhoenixPirates():void
 
 	output("\n\nYou sigh, rubbing your head and stumbling back to your bridge. Damn it.\n\n");
 
-	genericLoss();
+	CombatManager.genericLoss();
 }
 
 public function victoryOverPhoenixPirates():void
@@ -490,146 +498,7 @@ public function victoryOverPhoenixPirates():void
 
 	flags["FALL OF THE PHOENIX DEFEATED PIRATES"] = 1;
 
-	genericVictory();
-}
-
-public function phoenixPiratesAI():void
-{
-	// Broadside -- 25% chance of happening - 5% per stack of Disarming Shot
-	var bSideChance:int = 25;
-	if (foes[0].hasStatusEffect("Disarming Shot Stacks"))
-	{
-		bSideChance -= foes[0].statusEffectv1("Disarming Shot Stacks");
-	}
-
-	if (rand(100) <= bSideChance)
-	{
-		phoenixPiratesBroadside();
-		return;
-	}
-
-	if (!foes[0].hasStatusEffect("Carpet Grenade Cooldown"))
-	{
-		foes[0].createStatusEffect("Carpet Grenade Cooldown", 5, 0, 0, 0);
-		phoenixPiratesCarpetGrenades();
-		return;
-	}
-	else
-	{
-		foes[0].addStatusValue("Carpet Grenade Cooldown", 1, -1);
-
-		if (foes[0].statusEffectv1("Carpet Grenade Cooldown") == 0) foes[0].removeStatusEffect("Carpet Grenade Cooldown");
-	}
-
-	// Bulletstorms damage is modified by weapon stacks rather than chance of happening.
-	if (rand(100) <= 25 && foes[0].energy() >= 20)
-	{
-		phoenixPiratesBulletstorm();
-		return;
-	}
-
-	// Fallback ranged attacku
-	rangedAttack(foes[0], pc, [1,2]);
-	processCombat();
-}
-
-// Several light attacks
-public function phoenixPiratesBulletstorm():void
-{
-	output("\nSeveral of the pirates pop up from cover, firing on full-auto and sending a withering hail of gunfire downrange at you!");
-
-	foes[0].energy(-20);
-	var weaponStacks:int = 5;
-
-	if (foes[0].hasStatusEffect("Disarming Shot Stacks"))
-	{
-		weaponStacks -= foes[0].statusEffectv1("Disarming Shot Stacks");
-	}
-
-	var totalAttacks:int = 2 + rand(weaponStacks);
-	for (var i:int = 0; i < totalAttacks; i++)
-	{
-		rangedAttack(foes[0], pc, [1,2]);
-		output("\n");
-	}
-	processCombat();
-}
-
-public function phoenixPiratesCarpetGrenades():void
-{
-	output("<i>“Frag out!”</i> one of the pirates shouts, hurling a beeping black cylinder your way.");
-
-	output(" You dive out of the way, but still get riddled with shrapnel.");
-	
-	applyDamage(new TypeCollection( { kinetic: 25 }, DamageFlag.PENETRATING), foes[0], pc);
-
-	output("\n");
-	
-	processCombat();
-}
-
-public function phoenixPiratesBroadside():void
-{
-	output("\nSuddenly, a particularly stealthy pirate pops up on your portside flank, poised to pound you into a pulp with a particularly potent-looking pump-action shotgun.");
-
-	output(" You get blasted by the shotty, throwing you back with the sheer force of the sneak attack!");
-	
-	applyDamage(new TypeCollection( { kinetic: 30 }, DamageFlag.BULLET), foes[0], pc);
-	
-	output("\n");
-
-	processCombat();
-}
-
-public function saendraInjuredHelperAI():void
-{
-	if (rand(4) == 0) saendraDisarmingShot();
-	else saendraHammerPistol();
-}
-
-public function saendraHammerPistol():void
-{
-	output("\nOn the other side of the pirates, the wounded captain fires her Hammer pistol, ");
-
-	// :effort: to rig up a special statblock for injured Saendra and make all this shit work based off of it.
-	if (rand(5) == 0)
-	{
-		output(" though her shot goes wide!");
-	}
-	else
-	{
-		output(" shooting one of the pirates square in the back!");
-		applyDamage(new TypeCollection( { kinetic: 10 }, DamageFlag.BULLET), null, foes[0]);
-	}
-	
-	output("\n");
-}
-
-public function saendraDisarmingShot():void
-{
-	output("\nOn the other side of the pirates, the wounded captain fires her Hammer pistol, ");
-
-	if (rand(5) == 0)
-	{
-		output(" though her shot goes wide!");
-	}
-	else
-	{
-		output(" blasting through one pirate’s gun and destroying it!");
-		
-		applyDamage(new TypeCollection( { kinetic: 5 }, DamageFlag.BULLET), null, foes[0]);
-
-		if (foes[0].hasStatusEffect("Disarming Shot Stacks"))
-		{
-			foes[0].createStatusEffect("Disarming Shot Stacks", 1, 0, 0, 0);
-		}
-		else if (foes[0].statusEffectv1("Disarming Shot Stacks") < 5)
-		{
-			foes[0].addStatusValue("Disarming Shot Stacks", 1, 1);
-		}
-	}
-	
-	output("\n");
+	CombatManager.genericVictory();
 }
 
 public function phoenixEngineering():void

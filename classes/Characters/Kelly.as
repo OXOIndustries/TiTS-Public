@@ -4,7 +4,7 @@
 	import classes.GLOBAL;
 	import classes.Items.Miscellaneous.*;
 	import classes.kGAMECLASS;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
 	
 	public class Kelly extends Creature
 	{
@@ -32,7 +32,7 @@
 			this.long = "PLACE HOLDER!";
 			this.customDodge = "PLACE HOLDER!";
 			this.customBlock = "PLACE HOLDER!";
-			this.plural = false;
+			this.isPlural = false;
 			
 			this.meleeWeapon.attackVerb = "punch";
 			this.meleeWeapon.longName = "fist";

@@ -11,6 +11,7 @@ package classes.Engine.Combat
 	import classes.Items.Guns.Goovolver;
 	import classes.Util.RandomInCollection;
 	import classes.kGAMECLASS;
+	import classes.GameData.CombatContainer;
 	
 	/**
 	 * Apply damage wraps all of the general output stuff and isolates it from the actual damage calculation.
@@ -63,7 +64,7 @@ package classes.Engine.Combat
 			}
 			else
 			{
-				if (target.plural) 
+				if (target.isPlural) 
 				{
 					output(" " + target.capitalA + possessive(target.short) + " shields crackle but hold.");
 				}
@@ -82,7 +83,7 @@ package classes.Engine.Combat
 			}
 			else 
 			{
-				if (target.plural) 
+				if (target.isPlural) 
 				{
 					output(" There is a concussive boom and tingling aftershock of energy as " + target.a + possessive(target.short) + " shields are breached.");
 				}
@@ -130,7 +131,7 @@ package classes.Engine.Combat
 		{
 			if(attacker is PlayerCharacter)
 			{
-				if(target.plural) output(" You gain vitality as your opponent's vigor is stolen.");
+				if(target.isPlural) output(" You gain vitality as your opponent's vigor is stolen.");
 				else output(" You gain vitality as your opponents' vigor is stolen.");
 			}
 			else output(" You feel weaker as your vitality is leeched away.");
@@ -140,7 +141,7 @@ package classes.Engine.Combat
 		{
 			if(attacker is PlayerCharacter)
 			{
-				if(target.plural) output(" You gain vitality as your opponent's vigor is stolen.");
+				if(target.isPlural) output(" You gain vitality as your opponent's vigor is stolen.");
 				else output(" You gain vitality as your opponents' vigor is stolen.");
 			}
 			else output(" You feel weaker as your vitality is leeched away.");
@@ -156,7 +157,7 @@ package classes.Engine.Combat
 			if (special == "goovolver")
 			{
 				output("\n<b>" + target.capitalA + target.short + " ");
-				if (target.plural) output(" don't");
+				if (target.isPlural) output(" don't");
 				else output(" doesn't");
 				output(" seem the least bit bothered by the miniature goo crawling over them.</b>\n");
 			}
@@ -167,7 +168,7 @@ package classes.Engine.Combat
 				else
 				{
 					output(target.capitalA + target.short + " ");
-					if (target.plural) output(" don’t");
+					if (target.isPlural) output(" don’t");
 					else output(" doesn’t");
 				}
 				output(" seem to be affected by the gun’s ray....</b>\n");
@@ -178,7 +179,7 @@ package classes.Engine.Combat
 				if (damageResult.shieldDamage == 0 && damageResult.hpDamage == 0)
 				{
 					output("\n<b>" + target.capitalA + target.short + " ");
-					if (target.plural) output(" don't");
+					if (target.isPlural) output(" don't");
 					else output(" doesn't");
 					output(" seem at all interested in your teasing.</b>\n");
 				}
@@ -199,9 +200,9 @@ package classes.Engine.Combat
 				
 				output("\n");
 				if(target is PlayerCharacter) output("Suddenly, your mind is filled with sexual fantasies, briefly obscuring your vision with " + lewdAdjective + " images!");
-				else if(target.plural) output(target.capitalA + target.short + " are mentally filled with sexual fantasies, briefly obscuring their vision with " + lewdAdjective + " images!");
+				else if(target.isPlural) output(target.capitalA + target.short + " are mentally filled with sexual fantasies, briefly obscuring their vision with " + lewdAdjective + " images!");
 				else output(target.capitalA + target.short + " is mentally filled with sexual fantasies, briefly obscuring " + target.mfn("his", "her", "its") + " vision with " + lewdAdjective + " images!");
-				output(" " + kGAMECLASS.teaseReactions(damageResult.lustDamage, target));
+				output(" " + CombatContainer.teaseReactions(damageResult.lustDamage, target));
 			}
 			else
 			{

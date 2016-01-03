@@ -241,7 +241,6 @@
 		include "../includes/myrellion/xenogenbiotech.as";
 		
 		public var chars:Object;
-		public var foes:Array;
 
 		// This needs to ideally be moved somewhere else, I'm just stopping the GUI code from being used to store game-data models
 		public var days:int;
@@ -332,7 +331,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.6.24";
+			version = "0.6.25 RC1";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -343,7 +342,6 @@
 			import classes.ShipClass;
 
 			chars = new Object();
-			foes = new Array();
 			
 			//What inventory screen is up?
 			shopkeep = undefined;
@@ -422,9 +420,7 @@
 			this.configureCodex();
 			this.configureMails();
 			this.userInterface.showMainMenu();
-			this.userInterface.toggleBarTweens();
 			buildWTF();
-			this.userInterface.toggleBarTweens();
 		}
 		
 		private function buildWTF():void
@@ -498,6 +494,12 @@
 			if (!inCombat()) 
 			{
 				this.userInterface.showBust("none");
+				if (pc != null && pc.short != "Uncreated" && pc.short != "")
+				{
+					userInterface.showPlayerParty([pc]);
+					updatePCStats();
+					updateDisplays();
+				}
 			}
 			
 			if (evt.currentTarget.arg == undefined)
@@ -507,11 +509,6 @@
 			else
 			{
 				if (evt.currentTarget.func != null) evt.currentTarget.func(evt.currentTarget.arg);
-			}
-			
-			if (chars["PC"] != undefined)
-			{
-				updatePCStats();
 			}
 			
 			userInterface.updateTooltip((evt.currentTarget as DisplayObject));
@@ -722,13 +719,23 @@
 			var tFunc:Function = this.userInterface.buttonTray.getFunctionReferenceForIndex(arg);
 			var tArg:* = this.userInterface.buttonTray.getArgForIndex(arg);
 			
-			if (this.userInterface.PressButton(arg, inCombat()))
+			if (userInterface.PressButton(arg, inCombat()))
 			{
+				if (!inCombat()) userInterface.showPlayerParty([pc]); // Combat will handle this correctly
+				updateDisplays();
 				updatePCStats();
 			}
 			
 			// Then pass it into some code that will detect the failure state. If the state is triggered, use the args to figure out WHERE it happened.
 			jackJillDetector(btnName, tFunc, tArg);
+		}
+		
+		public function updateDisplays():void
+		{
+			
+			userInterface.time = timeAsText(hours, minutes);
+			userInterface.days = String(days);
+			userInterface.showSceneTag();
 		}
 
 		// New passthroughs to GUI to handle scroll event controls
@@ -809,7 +816,7 @@
 					dData += ") ";
 					if (tArg != undefined) dData += "(Arg: " + tArg + ")";
 					
-					output("\n\n<b>ERROR: Rival creature has been previously configured, but has reverted to defaults. Debug data:" + dData + "</b>");
+					//output("\n\n<b>ERROR: Rival creature has been previously configured, but has reverted to defaults. Debug data:" + dData + "</b>");
 					
 					throw new Error("ERROR: Rival creature has been previously configured, but has reverted to defaults. Debug data:" + dData); // Hope like fuck this isn't attached to a "Next" button
 				}
@@ -911,22 +918,28 @@
 		{
 			return chars["PC"];
 		}
-		public function get monster():Creature
-		{
-			if(foes.length == 0) return chars["PC"];
-			else return foes[0];
-		}
 
-		// Hackjob to support parser usage for scenes/functions that can target a variable creature
+		/* The following three accessors provide indirection during certain scenes, allowing generic, semantically-distict access to different characters.
+		 * 
+		 * target always refers to the current target of any attack. This could be the player, or an NPC in the players group- it is not restricted to player-attack targets.
+		 * 
+		 * attacker is similar to target, but refers to the current attacker. It operates under the same assumptions. Note that these will always refer to the "user" of an ability (attacker) and the "focus" of that ability (target) _if a target is required_
+		 * 
+		 * enemy always refers to the creature deemed to be in opposition to the player. In instances on enemy-on-enemy ability usage (say, for a heal), then this will be the user of the ability itself. This is also used at the end of combat as a replacement to enemy in that it is means by which the victory or loss scenes can refer to a specific character that was involved in combat.
+		 * 
+		 * Combined, these three aren't really required for the attack function implementations to work- the attacker and the target are always passed in as arguments. However, this is how the parser can access these characters, allowing parser tags to be used in a generic manner inside attack functions and such. SingleCombatAttacks will configure this during execution, but for "custom" NPC attacks, you'll have to set these... if you don't use the baseline selectTarget() function that the CombatAI functions use to randomly select a target. Another function exists to do this quickly; notifyTargetSelection().
+		 */
 		private var _target:Creature = null;
-		public function get target():Creature
-		{
-			return _target;
-		}
-		public function set target(v:Creature):void
-		{
-			_target = v;
-		}
+		public function get target():Creature { return _target; }
+		public function setTarget(v:Creature):void { _target = v; } // This is intentionally not a setter function to highlight incorrect usage.
+		
+		private var _attacker:Creature = null;
+		public function get attacker():Creature { return _attacker; }
+		public function setAttacker(v:Creature):void { _attacker = v; }
+		
+		private var _enemy:Creature = null;
+		public function get enemy():Creature { return _enemy; }
+		public function setEnemy(v:Creature):void { _enemy = v; }
 		
 		public function get celise():Celise
 		{
@@ -935,10 +948,6 @@
 		public function get rival():Rival
 		{
 			return chars["RIVAL"];
-		}
-		public function get enemy():Creature
-		{
-			return foes[0];
 		}
 		public function get geoff():Geoff
 		{
@@ -1018,7 +1027,7 @@
 		}
 		public function get vanae():Creature
 		{
-			return this.monster;
+			return this.enemy;
 		}
 		public function get vanaeMaiden():MaidenVanae
 		{
@@ -1080,6 +1089,18 @@
 		public function get petr():Petr
 		{
 			return chars["PETR"];
+		}
+		public function get docLash():DoctorLash
+		{
+			return chars["DRLASH"];
+		}
+		public function get goocubator():Goocubator
+		{
+			return chars["GOOCUBATOR"];
+		}
+		public function get kara():Kara
+		{
+			return chars["KARA"];
 		}
 	}
 }

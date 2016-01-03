@@ -47,7 +47,7 @@
 			this.customDodge = "Anarrie Don't Dodge Foo";
 			this.customBlock = "Obvious placeholder is obvious.";
 			keeperGreeting = "<i>“Hello and welcome to my shop. Take a gander and let me know if you see anything you like,”</i>  " + short + " says with a smile.";
-			this.plural = false;
+			this.isPlural = false;
 			
 			this.meleeWeapon.attackVerb = "punch";
 			this.meleeWeapon.longName = "fist";

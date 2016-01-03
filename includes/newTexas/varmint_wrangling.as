@@ -1,4 +1,6 @@
-﻿import classes.Engine.Combat.DamageTypes.TypeCollection;
+﻿import classes.Characters.Varmint;
+import classes.Creature;
+import classes.Engine.Combat.DamageTypes.TypeCollection;
 import classes.Items.Miscellaneous.VarmintItem;
 import classes.Items.Miscellaneous.Silicone;
 
@@ -300,7 +302,6 @@ public function fuckCamsButt(camCame:Boolean = false):void
 	addButton(0,"Next",mainGameMenu);
 }
 
-//
 //Varmint Combat Encounter
 public function varmintProc():void
 {
@@ -322,28 +323,36 @@ public function varmintProc():void
 	}
 	flags["MET_VARMINT"]++;
 	clearMenu();
-	addButton(0,"Next",startCombat,"varmint");
+	
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(new Varmint());
+	CombatManager.victoryScene(pcVictoryVsVarmints);
+	CombatManager.lossScene(pcLosesToVarmint);
+	CombatManager.displayLocation("VARMINT");
+	
+	addButton(0,"Next", CombatManager.beginCombat);
 }
 
 //Notes on the Encounter.
 //Varmints don't have Health, and they're immune to LUST. Rather, they have "Resistance" which degrades as you lasso them. Eventually, you'll get them down and tie them. 
 
 //PC uses "Lasso" -- based on AIM
-public function lassoAVarmint():void
+public function lassoAVarmint(attacker:Creature, target:Creature):void
 {
 	clearOutput();
 	//Set drone target
-	setDroneTarget(foes[0]);
+	attacker.droneTarget = target;
 	output("You twirl your light lasso, trying to get a bead on the varmint. When you've got enough spin, you let the lasso go, hurling it toward the varmint!");
 	//Miss
-	if(rangedCombatMiss(pc,foes[0])) output(" The glowing rope goes wide, scattering into the ground. You quickly reel it back in.\n");
+	if(rangedCombatMiss(attacker, target)) output(" The glowing rope goes wide, scattering into the ground. You quickly reel it back in.\n");
 	else
 	{
-		var damage:TypeCollection = new TypeCollection( { kinetic: 20 + (pc.aim() / 2) } );
+		var damage:TypeCollection = new TypeCollection( { kinetic: 20 + (attacker.aim() / 2) } );
 		damageRand(damage, 15);
 		
 		//Will this down the fucker
-		if(damage.getTotal() - foes[0].defense() >= foes[0].HP()) output(" <b>You snag the varmint by the neck! You give the lasso a tug, throwing the creature to the ground in a defeated lump.</b>");
+		if(damage.getTotal() - target.defense() >= target.HP()) output(" <b>You snag the varmint by the neck! You give the lasso a tug, throwing the creature to the ground in a defeated lump.</b>");
 		//Naw, he's still up
 		else
 		{
@@ -353,86 +362,12 @@ public function lassoAVarmint():void
 			else output("spike");
 			output(" on the varmint, barreling the creature to the ground.");
 		}
-		applyDamage(damage, pc, foes[0]);
+		applyDamage(damage, attacker, target);
 		//Used to track if the PC downed the shithead with a whip or something else.
-		foes[0].createStatusEffect("Lassoed");
+		target.createStatusEffect("Lassoed");
 		output("\n");
 	}
-	processCombat();
-}
-
-public function varmintAI():void
-{
-	//Maul
-	//Powerful attack against prone targets
-	if(pc.hasStatusEffect("Trip") && rand(2) == 0) getMauledBiyaaaaatch();
-	//Ram
-	//Powerful attack, chance to stun
-	else if(rand(4) == 0) varmintRamAttack();
-	//Leap Attack
-	//Moderate melee, chance to knock prone
-	else if(rand(2) == 0) leapAttackFromVarmint();
-	else enemyAttack(foes[0]);
-}
-
-//Leap Attack
-//Moderate melee, chance to knock prone
-public function leapAttackFromVarmint():void
-{
-	output("The varmint leaps at you with its slavering jaws agape, teeth bared!");
-	if(!combatMiss(foes[0],pc))
-	{
-		output(" Its teeth sink into you, and the sheer weight of its impact against your ");
-		if((pc.hasStatusEffect("Trip") || pc.physique()/2 + rand(20) > 19) && !pc.hasStatusEffect("Stunned")) output("staggers you momentarily!");
-		else
-		{
-			output("throws you right to the ground!");
-			pc.createStatusEffect("Trip", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
-		}
-		
-		var damage:TypeCollection = new TypeCollection( { kinetic: 12 }, DamageFlag.PENETRATING);
-		damageRand(damage, 15);
-		applyDamage(damage, foes[0], pc);
-		
-	}
-	else output(" You slip out of the way.");
-	processCombat();
-}
-
-//Maul
-//Powerful attack against prone targets
-public function getMauledBiyaaaaatch():void
-{
-	output("While you're on the ground, the oversized varmint leaps onto you, savaging you with its huge teeth! You're able to get an arm up in time to save your throat, but it still grabs you and shakes its head, tearing into you.");
-	var damage:TypeCollection = new TypeCollection( { kinetic: 40 + rand(6) }, DamageFlag.PENETRATING);
-	damageRand(damage, 15);
-	applyDamage(damage, foes[0], pc);
-	
-	processCombat();
-}
-
-//Ram
-//Powerful attack, chance to stun
-public function varmintRamAttack():void
-{
-	output("The varmint lunges at you with its horns, slamming them ");
-	if(combatMiss(foes[0],pc) && !combatMiss(foes[0],pc)) output("just past you, digging them into the ground.");
-	else
-	{
-		output("into your [pc.leg], giving you a pointy, painful head-butt!");
-		var damage:TypeCollection = new TypeCollection( { kinetic: 12 + rand(6) }, DamageFlag.PENETRATING);
-		damageRand(damage, 15);
-		
-		if (!pc.hasStatusEffect("Stunned") && pc.physique() + rand(20) + 1 < 18)
-		{
-			output("<b> The hit was hard enough to stun you!</b>");
-			pc.createStatusEffect("Stunned",1,0,0,0,false,"Stun","You are stunned and cannot move until you recover!",true,0);
-		}
-		
-		applyDamage(damage, foes[0], pc);
-
-	}
-	processCombat();
+	CombatManager.processCombat();
 }
 
 //PC Victory
@@ -441,14 +376,14 @@ public function pcVictoryVsVarmints():void
 	author("Savin");
 	showName("FIGHT:\nVARMINT");
 	showBust("VARMINT");
-	if(foes[0].hasStatusEffect("Lassoed"))
+	if(enemy.hasStatusEffect("Lassoed"))
 	{
 		if(!pc.hasItem(new VarmintItem(),1))
 		{
 			output("You get the varmint on the ground with your lasso and yank it over to you. The blue creature gives a yelp of pain and frustration as you drag it in and tie it up. You give the defeated creature a swift punch, knocking it cold so you can transport it. Once done, it's easy enough to sling the creature over your shoulder and move on.");
 			output("\n\n<b>Varmint bagged!</b>");
 			if(pc.isTreated()) output(" <i>“Yee-haw!”</i> you cheer.");
-		 	foes[0].inventory.push(new VarmintItem());
+		 	enemy.inventory.push(new VarmintItem());
 		}
 		else
 		{
@@ -462,7 +397,7 @@ public function pcVictoryVsVarmints():void
 		output("The varmint hauls ass into the weeds before you can bring it down. Maybe you should look into using some kind of lasso on it.");
 	}
 	output("\n\n");
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //PC Defeat
@@ -495,7 +430,7 @@ public function pcLosesToVarmint2():void
 	output(" You dust yourself off and move on, a little sore from the beating.\n\n");
 	processTime(120+rand(30));
 	clearMenu();
-	genericLoss();
+	CombatManager.genericLoss();
 }
 
 public function varmintRoomsBonus():Boolean

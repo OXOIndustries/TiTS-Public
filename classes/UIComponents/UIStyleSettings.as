@@ -120,6 +120,11 @@ package classes.UIComponents
 		public static var gForestRoomFlagColour:uint		= 0x3F704C; //Greenish
 		public static var gJungleRoomFlagColour:uint 		= 0x184925; //Darker/Greener!
 		
+		public static var gShieldColour:uint				= 0x00CCFF;
+		public static var gHPColour:uint					= 0x00CC2F;
+		public static var gLustColour:uint					= 0xDD597E;
+		public static var gEnergyColour:uint				= 0x754C24;
+		
 		// Font Faces
 		
 		// Lato "Regular"
@@ -168,6 +173,20 @@ package classes.UIComponents
 				UIStyleSettings._gStatBlockHeaderFormatter.bold = true;
 			}
 			return UIStyleSettings._gStatBlockHeaderFormatter;
+		}
+		
+		private static var _gCompressedStatBlockNameFormatter:TextFormat;
+		public static function get gCompressedStatBlockNameFormatter():TextFormat
+		{
+			if (UIStyleSettings._gCompressedStatBlockNameFormatter == null)
+			{
+				_gCompressedStatBlockNameFormatter = new TextFormat();
+				_gCompressedStatBlockNameFormatter.size = 18;
+				_gCompressedStatBlockNameFormatter.color = 0xFFFFFF;
+				_gCompressedStatBlockNameFormatter.align = TextFormatAlign.LEFT;
+				_gCompressedStatBlockNameFormatter.font = "Univers UltraCondensed";
+			}
+			return _gCompressedStatBlockNameFormatter;
 		}
 		
 		private static var _gMailEntryUnreadFormatter:TextFormat;
@@ -688,6 +707,73 @@ package classes.UIComponents
 				_gSmallStatBarValueFormat.font = "Lato";
 			}
 			return UIStyleSettings._gSmallStatBarValueFormat;
+		}
+		
+		private static var _gCompressedStatBarBackTextFormat:TextFormat;
+		public static function get gCompressedStatBarBackTextFormat():TextFormat
+		{
+			if (UIStyleSettings._gCompressedStatBarBackTextFormat == null)
+			{
+				_gCompressedStatBarBackTextFormat = new TextFormat();
+				_gCompressedStatBarBackTextFormat.size = 18;
+				_gCompressedStatBarBackTextFormat.color = 0xFFFFFF;
+				_gCompressedStatBarBackTextFormat.align = TextFormatAlign.LEFT;
+				_gCompressedStatBarBackTextFormat.leading = -5;
+				_gCompressedStatBarBackTextFormat.kerning = true;
+				_gCompressedStatBarBackTextFormat.bold = false;
+				_gCompressedStatBarBackTextFormat.font = "Univers UltraCondensed";
+			}
+			return UIStyleSettings._gCompressedStatBarBackTextFormat;
+		}
+		
+		private static var _gCompressedStatBarFrontTextFormat:TextFormat;
+		public static function get gCompressedStatBarFrontTextFormat():TextFormat
+		{
+			if (UIStyleSettings._gCompressedStatBarFrontTextFormat == null)
+			{
+				_gCompressedStatBarFrontTextFormat = new TextFormat();
+				_gCompressedStatBarFrontTextFormat.size = 18;
+				_gCompressedStatBarFrontTextFormat.color = 0xFFFFFF;
+				_gCompressedStatBarFrontTextFormat.align = TextFormatAlign.LEFT;
+				_gCompressedStatBarFrontTextFormat.leading = -5;
+				_gCompressedStatBarFrontTextFormat.kerning = true;
+				_gCompressedStatBarFrontTextFormat.font = "Univers UltraCondensed";
+			}
+			return UIStyleSettings._gCompressedStatBarFrontTextFormat;
+		}
+		
+		private static var _gCompressedStatBarValueTextFormat:TextFormat;
+		public static function get gCompressedStatBarValueTextFormat():TextFormat
+		{
+			if (UIStyleSettings._gCompressedStatBarValueTextFormat == null)
+			{
+				_gCompressedStatBarValueTextFormat = new TextFormat();
+				_gCompressedStatBarValueTextFormat.size = 15;
+				_gCompressedStatBarValueTextFormat.color = 0xFFFFFF;
+				_gCompressedStatBarValueTextFormat.align = TextFormatAlign.RIGHT;
+				_gCompressedStatBarValueTextFormat.leading = -3.5;
+				_gCompressedStatBarValueTextFormat.kerning = true;
+				_gCompressedStatBarValueTextFormat.bold = true;
+				_gCompressedStatBarValueTextFormat.font = "Lato";
+				
+			}
+			return UIStyleSettings._gCompressedStatBarValueTextFormat;
+		}
+		
+		private static var _gCompressedStatDisplayStatusEffectBackgroundTextFormat:TextFormat;
+		public static function get gCompressedStatDisplayStatusEffectBackgroundTextFormat():TextFormat
+		{
+			if (UIStyleSettings._gCompressedStatDisplayStatusEffectBackgroundTextFormat == null)
+			{
+				_gCompressedStatDisplayStatusEffectBackgroundTextFormat = new TextFormat();
+				_gCompressedStatDisplayStatusEffectBackgroundTextFormat.size = 30;
+				_gCompressedStatDisplayStatusEffectBackgroundTextFormat.color = gBackgroundColour;
+				_gCompressedStatDisplayStatusEffectBackgroundTextFormat.align = TextFormatAlign.RIGHT;
+				_gCompressedStatDisplayStatusEffectBackgroundTextFormat.leading = -5;
+				_gCompressedStatDisplayStatusEffectBackgroundTextFormat.kerning = true;
+				_gCompressedStatDisplayStatusEffectBackgroundTextFormat.font = "Univers UltraCondensed";
+			}
+			return _gCompressedStatDisplayStatusEffectBackgroundTextFormat;
 		}
 		
 		private static var _gPerkHeaderLabelTextFormat:TextFormat;

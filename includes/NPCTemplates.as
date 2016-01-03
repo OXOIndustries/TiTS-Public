@@ -108,7 +108,6 @@
 			trace("Creature '" + prop + "' Game Version " + chars[prop].version);
 		}
 	}
-	this.foes[0] = new Creature();
 }
 
 public function prepChar(justUpdate:Boolean, index:String, classT:Class):void

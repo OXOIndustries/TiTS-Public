@@ -6,6 +6,7 @@
 	import classes.GLOBAL;
 	import classes.GameData.TooltipManager;
 	import classes.kGAMECLASS;
+	import classes.Engine.Combat.inCombat;
 	
 	/**
 	 * ...
@@ -62,7 +63,7 @@
 				}
 				else
 				{
-					if(kGAMECLASS.inCombat()) kGAMECLASS.output("\n");
+					if(inCombat()) kGAMECLASS.output("\n");
 					else kGAMECLASS.clearOutput();
 					kGAMECLASS.output(targetCreature.capitalA + targetCreature.short + " can't use a shield booster without a shield generator!\n");
 				}
@@ -78,7 +79,7 @@
 				}
 				else
 				{
-					if(kGAMECLASS.inCombat()) kGAMECLASS.output("\n");
+					if(inCombat()) kGAMECLASS.output("\n");
 					else kGAMECLASS.clearOutput();
 					kGAMECLASS.output(targetCreature.capitalA + targetCreature.short + " pulls out a shield booster, but quickly puts it back.\n");
 				}
@@ -94,7 +95,7 @@
 				}
 				else
 				{
-					if(kGAMECLASS.inCombat()) kGAMECLASS.output("\n");
+					if(inCombat()) kGAMECLASS.output("\n");
 					else kGAMECLASS.clearOutput();
 					kGAMECLASS.output(targetCreature.capitalA + targetCreature.short + " cannot use another shield booster--doing so will risk destroying " + targetCreature.mfn("his","her","its") + " shield generator.\n");
 				}
@@ -111,7 +112,7 @@
 				// Enemy used an item on the PC
 				else if (targetCreature != kGAMECLASS.pc && usingCreature != kGAMECLASS.pc)
 				{
-					if(kGAMECLASS.inCombat()) kGAMECLASS.output("\n");
+					if(inCombat()) kGAMECLASS.output("\n");
 					else kGAMECLASS.clearOutput();
 					npcUsed(targetCreature, usingCreature);
 				}
@@ -131,7 +132,7 @@
 			{
 				healing = targetCreature.shieldsMax() - targetCreature.shields();
 			}
-			if (kGAMECLASS.inCombat()) targetCreature.createStatusEffect("Shield Boosted", 0, 0, 0, 0, true, "", "", true, 0);
+			if (inCombat()) targetCreature.createStatusEffect("Shield Boosted", 0, 0, 0, 0, true, "", "", true, 0);
 			targetCreature.shields(healing);
 			if(healing > 0) kGAMECLASS.output(" (<b>+" + healing + " Shields</b>)");
 			kGAMECLASS.output("\n");
@@ -145,7 +146,7 @@
 			{
 				healing = targetCreature.shieldsMax() - targetCreature.shields();
 			}
-			if (kGAMECLASS.inCombat()) targetCreature.createStatusEffect("Shield Boosted", 0, 0, 0, 0, true, "", "", true, 0);
+			if (inCombat()) targetCreature.createStatusEffect("Shield Boosted", 0, 0, 0, 0, true, "", "", true, 0);
 			targetCreature.shields(healing);
 			if(healing > 0) kGAMECLASS.output(" (<b>+" + healing + " Shields</b>)");
 			kGAMECLASS.output("\n");

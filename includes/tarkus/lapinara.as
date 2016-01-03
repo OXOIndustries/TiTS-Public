@@ -1,4 +1,5 @@
-﻿import classes.Engine.Combat.DamageTypes.TypeCollection;
+﻿import classes.Characters.LapinaraFemale;
+import classes.Engine.Combat.DamageTypes.TypeCollection;
 //The Lapinara (Junkyard Planet Enemy)
 //By WorldofDrakan
 
@@ -8,8 +9,6 @@
 //Finding a Lapinara:
 public function encounterALapinara():void
 {
-	foes = new Array();
-	chars["LAPINARAFEMALE"].prepForCombat();
 	author("WorldOfDrakan");
 	lapinaraBust();
 	//[First Encounter]
@@ -19,7 +18,7 @@ public function encounterALapinara():void
 		output("\n\n<i>“Hello, lover,”</i> she coos, sniffing you, feeling you all over. As the strange little alien pokes and prods at your body, your Codex beeps in an urgent message: <i>“Lapinara detected. These rabbit-like aliens enter an aggressive rut-like state when their ovaries have eggs ready. They will then attempt to implant these eggs into a host via an ovipositor. Avoidance is recommended if at all possible.”</i>");
 		output("\n\nYou flail about frantically until the creature loses her grip, falling to the ground with a light thud. You’re now able to get a good look at her. She is most definitely a lapinara. She gets up, shaking off dust. Her expression of glee turns into one of mischief and malice.");
 		output("\n\n<i>“They’re fun when they play hard to get!”</i>\n\nLooks like this girl isn’t taking no for an answer!");
-		flags["ENCOUNTERED_PARASITIC_LAPINARA"] = 0;
+		flags["ENCOUNTERED_PARASITIC_LAPINARA"] = 1;
 		CodexManager.unlockEntry("Lapinara");
 	}
 	//[Subsequent Encounters]
@@ -29,96 +28,28 @@ public function encounterALapinara():void
 		output("\n\n<i>“So it looks like the prey is getting smart? Oh, I do love a challenge!”</i>");
 	}
 	flags["ENCOUNTERED_PARASITIC_LAPINARA"]++;
+	
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(new LapinaraFemale());
+	CombatManager.victoryScene(defeatDatLapinara);
+	CombatManager.lossScene(loseToFemaleLapinara);
+	CombatManager.displayLocation("LAPINARA (F)");
+	
 	clearMenu();
-	addButton(0,"Next",startCombatLight);
+	addButton(0, "Next", CombatManager.beginCombat);
 }
 
 public function lapinaraBust():void
 {
-	if(foes[0].hairColor == "silver") userInterface.showBust("LAPINARA_2");
-	else userInterface.showBust("LAPINARA");
-}
-
-//Combat Description:
-//**Combat stats to be determined by Fen.
-
-public function lapinaraAI():void
-{
-	lapinaraBust();
-	if(rand(3) == 0) lapinaraHornCharge();
-	else if(rand(2) == 0) lapinaraFalconPunch();
-	else lapinaraBite();
-}
-
-//Horn Charge:
-public function lapinaraHornCharge():void
-{
-	//Dodge: 
-	if(combatMiss(foes[0],pc)) output("The lapinara charges at you. Thanks to your evasive skills, you manage to sidestep her attack. She stumbles slightly as she misses her target.");
-	//Hit (shield is down): 
+	if (enemy != null && enemy is LapinaraFemale)
+	{
+		userInterface.showBust(enemy.bustDisplay);
+	}
 	else
 	{
-		var damage:TypeCollection = foes[0].meleeDamage();
-		damage.add(8);
-		damageRand(damage, 15);
-		
-		if(pc.shields() > 0) 
-		{
-			output("The lapinara charges at you, ramming your shield.");
-			applyDamage(damage, foes[0], pc);
-		}
-		else
-		{
-			//Hit (backfire, rare; requires armor):
-			if(pc.armor.defense > 0 && rand(3) == 0) 
-			{
-				output("The lapinara charges at you, ramming you. However, thanks to your protective armor, she is instead knocked aback, stunned.");
-				foes[0].createStatusEffect("Stunned",1,0,0,0,false,"Stun","Cannot act for a turn.",true,0);
-			}
-			else 
-			{
-				output("The lapinara charges at you, ramming you, the painful impact briefly staggering you.");
-				applyDamage(damage, foes[0], pc);
-			}
-		}
+		userInterface.showBust("LAPINARA");
 	}
-	processCombat();
-}
-
-
-//Punch:
-public function lapinaraFalconPunch():void
-{
-	//Dodge:
-	if(combatMiss(foes[0],pc)) output("The lapinara attempts to swing at you, but you deftly dodge and deflect every punch she sends your way.");
-	else {
-		if(pc.shields() > 0) output("The lapinara punches, aiming for your gut, but instead connecting with your shield.");
-		else output("The lapinara delivers a swift blow to your gut, briefly doubling you over. Ow.");
-		
-		var damage:TypeCollection = foes[0].meleeDamage();
-		damageRand(damage, 15);
-		applyDamage(damage, foes[0], pc);
-	}
-	processCombat();
-}
-
-//Bite:
-public function lapinaraBite():void
-{
-	var damage:TypeCollection = new TypeCollection( { kinetic: 5 + (foes[0].physique() / 2) }, DamageFlag.PENETRATING);
-	damageRand(damage, 15);
-	
-	//Dodge: 
-	if(combatMiss(foes[0],pc)) output("The lapinara lunges at you. Thanks to your evasive skills, you manage to sidestep her attack. She stumbles slightly as she misses her target.");
-	else
-	{
-		//Hit (shield is up): 
-		if(pc.shields() > 0) output("The lapinara lunges forward, attempting to bite you. Instead, her powerful teeth connect with your shield. She jumps back, rubbing her mouth in pain.");
-		//Hit (shield is down):
-		else output("The lapinara lunges forward, grabbing ahold of your arm and painfully sinking her teeth into your flesh.");
-		applyDamage(damage, foes[0], pc);
-	}
-	processCombat();
 }
 	
 /*Tail Trip:
@@ -198,7 +129,7 @@ public function loseToLapinaraAndGetEggplantedDudesAndNeuters():void
 	//No orgasm? +10 lust!
 	pc.lust(10+rand(3));
 	processTime(20+rand(4));
-	genericLoss();
+	CombatManager.genericLoss();
 }
 
 //(Female/Herm Variant)
@@ -253,7 +184,7 @@ public function loseToLapinaraAndGetEggplantedChicks():void
 	//No cums for pc. +10 lust. Poor PC.
 	pc.lust(10);
 	processTime(20+rand(4));
-	genericLoss();
+	CombatManager.genericLoss();
 }
 
 public function defeatDatLapinara():void
@@ -261,7 +192,7 @@ public function defeatDatLapinara():void
 	author("WorldOfDrakan");
 	lapinaraBust();
 	//Lapinara Loses By HP:
-	if(foes[0].HP() < 1)
+	if(enemy.HP() < 1)
 	{
 		output("Your assailant lies wounded on the ground. You’re just about to go on about your way when she calls out to you.");
 	}
@@ -277,7 +208,7 @@ public function defeatDatLapinara():void
 	else {
 		output("\n\nYou aren't anywhere near horny enough to even consider the offer.\n\n");
 		clearMenu();
-		addButton(14,"Leave",genericVictory);
+		addButton(14,"Leave",CombatManager.genericVictory);
 		return;
 	}
 	clearMenu();
@@ -295,7 +226,7 @@ public function defeatDatLapinara():void
 	else addDisabledButton(2,"Get Licked","Get Licked","This scene requires a vagina.");
 	if(pc.hasCuntTail()) addButton(3,"Tail-Milk",cuntTailFuckLapinaraParasitic,undefined,"Tail-Milk","Use your parasitic cunt tail to suck on her ovipositor.");
 	else addDisabledButton(3,"Tail-milk","Tail-milk","This requires a parasitic vagina tail to access.");
-	addButton(14,"Leave",genericVictory);
+	addButton(14,"Leave",CombatManager.genericVictory);
 }
 
 //Cunt Tail Fuck (PC Wins):
@@ -317,7 +248,7 @@ public function cuntTailFuckLapinaraParasitic():void
 	pc.lust(+10);
 	processTime(20+rand(5));
 	//Feed cunt tail mebbe? Nah...
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 public function targetLapinaraSex(targetFunc:Function):void
@@ -331,7 +262,7 @@ public function targetLapinaraSex(targetFunc:Function):void
 		for(var x:int = 0; x < pc.cockTotal(); x++)
 		{
 			output("\n<b>" + (x+1) + ":</b> " + pc.cockNoun2(pc.cocks[x], false, ""));
-			addButton(x,upperCase(num2Text((x+1))),targetFunc,x);
+			addButton(x,StringUtil.upperCase(num2Text((x+1))),targetFunc,x);
 		}
 	}
 }
@@ -375,7 +306,7 @@ public function buttFuckALapinara(cockNum:int = 0):void
 	output("\n\n<i>“You’re fucking amazing...”</i> she finally speaks up, a dazed look on her face. <i>“We really need to do that again sometime.”</i>\n\n");
 	processTime(20+rand(5));
 	pc.orgasm();
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //(Dick Too Big Variant (Hotdogging))
@@ -404,7 +335,7 @@ public function hotdoggingALapinara(cockNum:int = 0):void
 	output("\n\n<i>“You’re fucking amazing...”</i> she finally speaks up, a dazed look on her face. <i>“We really need to do that again sometime.”</i>\n\n");
 	processTime(20+rand(5));
 	pc.orgasm();
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Get Licked (PC Wins):
@@ -438,7 +369,7 @@ public function getLickedByLapinara():void
 	output("\n\nYou very well might like to do that again someday.\n\n");
 	processTime(20+rand(5));
 	pc.orgasm();
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Get Blown (PC Wins):
@@ -496,5 +427,5 @@ public function getBlownByLapinara(cockNum:int = 0):void
 	output("\n\n<i>“Delicious!”</i> she exclaims, finally coming back to her senses. <i>“You need to give me some more of that sometime.”</i>\n\n");
 	processTime(20+rand(5));
 	pc.orgasm();
-	genericVictory();
+	CombatManager.genericVictory();
 }

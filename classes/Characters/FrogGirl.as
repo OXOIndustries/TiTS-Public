@@ -4,7 +4,13 @@
 	import classes.GLOBAL;
 	import classes.Items.Miscellaneous.*;
 	import classes.kGAMECLASS;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
+	
+	import classes.GameData.CombatAttacks;
+	import classes.GameData.CombatManager;
+	import classes.Engine.Combat.DamageTypes.*;
+	import classes.Engine.Combat.*; 
+	import classes.Engine.Interfaces.output;
 	
 	public class FrogGirl extends Creature
 	{
@@ -24,7 +30,7 @@
 			this.long = "PLACEHOLDAH!";
 			this.customDodge = "The frog-girl twists out of the way on powerful legs.";
 			this.customBlock = "The frog-girl's skin proves remarkably durable!";
-			this.plural = false;
+			this.isPlural = false;
 			
 			meleeWeapon.baseDamage.kinetic.damageValue = 3;
 			meleeWeapon.attack = 2;
@@ -173,52 +179,165 @@
 
 			//this.inventory.push(new NaleenNip());
 			
+			isUniqueInFight = true;
+			btnTargetText = "Froggirl";
+			
+			sexualPreferences.setRandomPrefs(4 + rand(3));
+			sexualPreferences.setPref(GLOBAL.SEXPREF_COCKS, GLOBAL.REALLY_LIKES_SEXPREF);
+			randomise();
+			updateDesc();
+			
 			this._isLoading = false;
 		}
 		
-		override public function setDefaultSexualPreferences():void
+		private function randomise():void
 		{
+			switch (rand(7))
+			{
+				case 0: skinTone = "orange and green"; break;
+				case 1: skinTone = "mottled brown"; break;
+				case 2: skinTone = "black and gold"; break;
+				case 3: skinTone = "black and blue"; break;
+				case 4: skinTone = "black and red"; break;
+				case 5: skinTone = "red and blue"; break;
+				case 6: skinTone = "black, blue, and yellow"; break;
+				default: skinTone = "gold"; break;
+			}
 			
-			this.sexualPreferences.setRandomPrefs(4 + rand(3));
-			//Special like:
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_COCKS,GLOBAL.REALLY_LIKES_SEXPREF);
+			lustRaw = 20 + rand(30);
+			tallness = 54 + rand(13);
+			
+			vaginas[0].clits = 1;
+			vaginas[0].wetnessRaw = 2 + rand(3);
+			vaginas[0].loosenessRaw = 1 + rand(4);
+			vaginas[0].bonusCapacity = 10;
+			vaginas[0].type = GLOBAL.TYPE_LIZAN;
+			vaginas[0].vaginaColor = skinTone;
+			ass.wetnessRaw = 0;
+			ass.loosenessRaw = 1 + rand(3);
+			ass.bonusCapacity = 10;
 		}
 		
-		override public function prepForCombat():void
+		private function updateDesc():void
 		{
-			var combatFrog:FrogGirl = this.makeCopy();
+			long = "The short and sleek alien before you dodges about with practiced ease. Her " + skinTone + " skin shines with a coating of lust inducing toxins. A grin crosses her features as she gazes at you with unrestrained need. Despite the soft appearance of her body, you can see toned muscle coiled beneath her pliant flesh. She’s ready to fight if it means getting ";
+			if(kGAMECLASS.pc.hasCock()) long += "into your pants.";
+			else long += "you out of the way.";
+		}
+		
+		override public function get bustDisplay():String
+		{
+			switch (skinTone)
+			{
+				case "orange and green": return "FROG_4";
+				case "mottled brown": return "FROG_8";
+				case "black and gold": return "FROG_5";
+				case "black and blue": return "FROG_6";
+				case "black and red": return "FROG_2";
+				case "red and blue": return "FROG_1";
+				case "black, blue, and yellow": return "FROG_3";
+				default: return "FROG_7";
+			}
+		}
+		
+		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
+		{
+			var target:Creature = selectTarget(hostileCreatures);
+			if (target == null) return;
 			
-			combatFrog.setDefaultSexualPreferences();
+			var attacks:Array = [];
 			
-			var colorSelect:int = rand(7);
-			if(colorSelect == 0) combatFrog.skinTone = "orange and green";
-			else if(colorSelect == 1) combatFrog.skinTone = "mottled brown";
-			else if(colorSelect == 2) combatFrog.skinTone = "black and gold";
-			else if(colorSelect == 3) combatFrog.skinTone = "black and blue";
-			else if(colorSelect == 4) combatFrog.skinTone = "black and red";
-			else if(colorSelect == 5) combatFrog.skinTone = "red and blue";
-			else if(colorSelect == 6) combatFrog.skinTone = "black, blue, and yellow";
-			else combatFrog.skinTone = "gold";
-
-			combatFrog.long = "The short and sleek alien before you dodges about with practiced ease. Her " + combatFrog.skinTone + " skin shines with a coating of lust inducing toxins. A grin crosses her features as she gazes at you with unrestrained need. Despite the soft appearance of her body, you can see toned muscle coiled beneath her pliant flesh. She’s ready to fight if it means getting ";
-			if(kGAMECLASS.pc.hasCock()) combatFrog.long += "into your pants";
-			else combatFrog.long += "you out of the way";
-			combatFrog.long += ".";
-			combatFrog.lustRaw = 20 + rand(30);
-			combatFrog.tallness = 54 + rand(13);
-
-			this.vaginas[0].clits = 1;
-			this.vaginas[0].wetnessRaw = 2 + rand(3);
-			this.vaginas[0].loosenessRaw = 1 + rand(4);
-			this.vaginas[0].bonusCapacity = 10;
-			this.vaginas[0].type = GLOBAL.TYPE_LIZAN;
-			this.vaginas[0].vaginaColor = combatFrog.skinTone;
-			this.ass.wetnessRaw = 0;
-			this.ass.loosenessRaw = 1 + rand(3);
-			this.ass.bonusCapacity = 10;
-			kGAMECLASS.foes.push(combatFrog);
-			kGAMECLASS.showFrogGirl();
-			kGAMECLASS.setLocation("FIGHT:\nKEROKORAS", "PLANET: MHEN'GA", "SYSTEM: ARA ARA");
+			if(target.shields() < 1) attacks.push(getLickedBitch);
+			//Kick
+			//basic attack
+			else attacks.push(frogGirlKickAttackkkkkuuuuu);
+			//Show
+			//basic lust attack, only used on males
+			if (target.hasCock()) attacks.push(frogGirlBasicLustAttack);
+			//Tongue lash
+			//special attack: deals lust damage if no shields
+			attacks.push(tongueLashAttack);
+			attacks[rand(attacks.length)](target);
+		}
+		
+		private function getLickedBitch(target:Creature):void
+		{
+			output("The agile lady skirts up to you, attempting to give you a lick from waist to neck.");
+			if(combatMiss(target, target)) output(" You leap backwards, escaping her attack before she can pull it off.");
+			else if(target.hasArmor() && target.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+			{
+				output(" Her tongue caresses you, but your are left unaffected thanks to the impermeability of your [pc.armor].");
+			}
+			else
+			{
+				output(" Her tongue caresses you, and you feel the lust inducing venom seep into your body.");
+				applyDamage(new TypeCollection( { tease: 6 + rand(6) } ), this, target, "minimal");
+			}
+		}
+		
+		private function frogGirlKickAttackkkkkuuuuu(target:Creature):void
+		{
+			output("The frog girl kicks at you with a muscled leg.");
+			if(combatMiss(this, target)) output(" The kick grazes your arm, but her slippery skin negates any damage it would’ve done.");
+			else
+			{
+				output(" You take the hit, grunting at the force of her attack");
+				if(target.shields() > 0) output(", though your shield flares brightly");
+				output(".");
+				
+				var damage:TypeCollection = meleeDamage();
+				applyDamage(damageRand(damage, 15), this, target);
+			}
+		}
+		
+		private function frogGirlBasicLustAttack(target:Creature):void
+		{
+			output("The amorous amphibian turns on her heel, leaning over and spreading her cheeks to give you a perfect view of her glistening cunt. <i>“Theres no need to fight, you can have this for free,”</i> she says teasingly.");
+			if (target.willpower()/2 + rand(20) + 1 >= 18) output("\nYou manage to ignore the spectacle, much to the kerokoras’ disappointment.");
+			else 
+			{
+				output("\nYou flush at her actions, shaking your head to clear the thoughts it brings up.");
+			}
+		}
+		
+		private function tongueLashAttack(target:Creature):void
+		{
+			output("The lusty frog girl licks across her body with her long tongue, moaning as the oral muscle slips over her netherlips. Without warning she lashes it at you, whipping it like a flail.");
+			var damage:TypeCollection;
+			//miss: 
+			if (combatMiss(this, target)) output("\nThe tongue flies by you, smashing into a tree and eliciting a pained gasp from its owner");
+			else 
+			{
+				output("\nThe tip of her tongue slams into you, ");
+				if(target.shields() > 0) 
+				{
+					output("and you are staggered by the force of the blow hitting your shield");
+					
+					damage = meleeDamage();
+					damage.addFlag(DamageFlag.ONLY_SHIELD);
+					damageRand(damage, 15);
+					var damageResult:DamageResult = calculateDamage(damage, this, target);
+					
+					if (target.shieldsRaw > 0) output(". It holds.");
+					else output(". Your shield is breached!");
+					
+					outputDamage(damageResult);
+				}
+				else if (target.hasArmor() && target.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+				{
+					output("and you are slimed by her toxic saliva. Luckily your [pc.armor] is airtight enough to prevent any of the fluid from seeping into your [pc.skin], but you definitely feel the impact of the hit.");
+					damage = meleeDamage();
+					damageRand(damage, 5 + rand(5));
+					var damageResult2:DamageResult = calculateDamage(damage, this, target);
+					outputDamage(damageResult2);
+				}
+				else
+				{
+					output("and you feel the toxin in her saliva work its way into your body.");
+					var dr2:DamageResult = applyDamage(new TypeCollection( { tease: 10 + rand(10) } ), this, target, "suppress");
+					outputDamage(dr2);
+				}
+			}
 		}
 	}
 }

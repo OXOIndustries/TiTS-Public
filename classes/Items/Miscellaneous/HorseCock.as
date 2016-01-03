@@ -8,7 +8,7 @@
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
-	
+	import classes.Engine.Interfaces.author;
 	import classes.Engine.Utility.num2Text;
 	
 	public class HorseCock extends ItemSlotClass
@@ -59,7 +59,7 @@
 		{
 			var pc:Creature = target;
 			kGAMECLASS.clearOutput();
-			kGAMECLASS.author("Alkahest");
+			author("Alkahest");
 			//Trying it on yourself
 			if(target is PlayerCharacter) {
 				kGAMECLASS.flags["SYNTHSHEATH_USED"] = 1;
@@ -123,7 +123,7 @@
 		public function HorseCockHorseCockConversion(target:int = 0):void
 		{
 			kGAMECLASS.clearOutput();
-			kGAMECLASS.author("Alkahest");
+			author("Alkahest");
 			var pc:Creature = kGAMECLASS.pc;
 			if(target < 0)
 			{

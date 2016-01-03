@@ -6,6 +6,7 @@
 	import classes.GLOBAL;
 	import classes.GameData.TooltipManager;
 	import classes.kGAMECLASS;
+	import classes.Engine.Combat.inCombat;
 	
 	/**
 	 * ...
@@ -62,7 +63,7 @@
 				}
 				else
 				{
-					if(kGAMECLASS.inCombat()) kGAMECLASS.output("\n");
+					if(inCombat()) kGAMECLASS.output("\n");
 					else kGAMECLASS.clearOutput();
 					kGAMECLASS.output(targetCreature.capitalA + targetCreature.short + " has already used a vial of gray goo during this fight so drinking it again could be dangerous!\n");
 				}
@@ -79,7 +80,7 @@
 				// Enemy used an item on the PC
 				else if (targetCreature != kGAMECLASS.pc && usingCreature != kGAMECLASS.pc)
 				{
-					if(kGAMECLASS.inCombat()) kGAMECLASS.output("\n");
+					if(inCombat()) kGAMECLASS.output("\n");
 					else kGAMECLASS.clearOutput();
 					npcUsed(targetCreature, usingCreature);
 				}
@@ -100,7 +101,7 @@
 			{
 				healing = targetCreature.HPMax() - targetCreature.HP();
 			}
-			if (kGAMECLASS.inCombat()) targetCreature.createStatusEffect("Healed", 0, 0, 0, 0, true, "", "", true, 0);
+			if (inCombat()) targetCreature.createStatusEffect("Healed", 0, 0, 0, 0, true, "", "", true, 0);
 			targetCreature.HP(healing);
 			if(healing > 0) kGAMECLASS.output(" You give a little shudder as they go to work, patching up any injuries they come across. (<b>+" + healing + " HP</b>)");
 			else kGAMECLASS.output(" There is a slight gurgling in your belly but the item seems to have no effect.");
@@ -116,7 +117,7 @@
 			{
 				healing = targetCreature.HPMax() - targetCreature.HP();
 			}
-			if (kGAMECLASS.inCombat()) targetCreature.createStatusEffect("Healed", 0, 0, 0, 0, true, "", "", true, 0);
+			if (inCombat()) targetCreature.createStatusEffect("Healed", 0, 0, 0, 0, true, "", "", true, 0);
 			targetCreature.HP(healing);
 			if(healing > 0) kGAMECLASS.output(" " + usingCreature.mfn("He","She","It") + " appears to be invigorated by the strange draft. (<b>+" + healing + " HP</b>)");
 			else kGAMECLASS.output(" However, the item has no effect.");

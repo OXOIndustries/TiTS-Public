@@ -8,8 +8,14 @@ package classes.Characters
 	import classes.Items.Melee.ShockBlade;
 	import classes.Items.Protection.JoyCoPremiumShield;
 	import classes.kGAMECLASS;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
+	import classes.Engine.Utility.weightedRand;
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
+	import classes.GameData.CombatAttacks;
+	import classes.GameData.CombatManager;
+	import classes.Engine.Combat.DamageTypes.*;
+	import classes.Engine.Combat.*; 
+	import classes.Engine.Interfaces.output;
 	
 	//Fight is in pitch black. Aim and Reflexes are significantly reduced. 
 	public class SX1GroupPirates extends Creature
@@ -25,9 +31,10 @@ package classes.Characters
 			this.originalRace = "human";
 			this.a = "the ";
 			this.capitalA = "The ";
-			this.long = "Several armed men in black-and-red heavy armor have stormed into the construction site, wildly firing machine pistols at you and your companion. It's almost impossible to see in here, except by the occasional muzzle flashes and showers of sparks as bullets slam into the metal bulkheads.\n\nNot far from you, Saen ducks into and out of cover, evading bursts of enemy fire and returning it as quick as she can.";
+			// this.long = "Several armed men in black-and-red heavy armor have stormed into the construction site, wildly firing machine pistols at you and your companion. It's almost impossible to see in here, except by the occasional muzzle flashes and showers of sparks as bullets slam into the metal bulkheads.\n\nNot far from you, Saen ducks into and out of cover, evading bursts of enemy fire and returning it as quick as she can.";
+			this.long = "An man in black-and-red armor, armed with machine pistol.";
 			this.customBlock = "The pirates armor deflects your attack with an alarming ease.";
-			this.plural = true;
+			this.isPlural = true;
 			isLustImmune = true;
 			
 			this.meleeWeapon = new ShockBlade();
@@ -168,18 +175,133 @@ package classes.Characters
 			this.milkRate = 0;
 			this.ass.wetnessRaw = 0;
 			
+			createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
+			
+			isUniqueInFight = false;
+			btnTargetText = "VoidPirate";
+			
 			this._isLoading = false;
-			this.createStatusEffect("Flee Disabled",0,0,0,0,true,"","",false,0);
 		}
 		
-		override public function prepForCombat():void
+		override public function get bustDisplay():String
 		{
-			var gang:SX1GroupPirates = this.makeCopy();
+			return "BLACKVOID";
+		}
+		
+		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
+		{
+			var target:Creature = selectTarget(hostileCreatures);
+			if (target == null) return;
 			
-			kGAMECLASS.userInterface.showBust("BLACKVOID", "BLACKVOID", "BLACKVOID", "BLACKVOID");
-			kGAMECLASS.showName("FIGHT:\nPIRATE GANG");
+			var nadesAvail:Boolean = true;
+			for (var i:int = 0; i < alliedCreatures.length; i++)
+			{
+				if (alliedCreatures[i].hasStatusEffect("Nade Cooldown")) nadesAvail = false;
+			}
 			
-			kGAMECLASS.foes.push(gang);
+			// enemy AI
+			var enemyAttacks:Array = [];
+			enemyAttacks.push({ v: rangedAttack, 				w: 40 });
+			enemyAttacks.push({ v: machinePistols, 				w: 40 });
+
+			if (nadesAvail)
+			{
+				enemyAttacks.push({ v: groupFlashbang, 			w: 15 });
+				enemyAttacks.push({ v: sx1GroupSmokeGrenade,	w: 15 });
+				enemyAttacks.push({ v: concGrenade, 			w: 15 });
+			}
+
+			var attack:Function = weightedRand(enemyAttacks);
+			
+			if (attack == rangedAttack || attack == machinePistols) attack(target);
+			else attack(hostileCreatures);
+		}
+		
+		private function rangedAttack(target:Creature):void
+		{
+			CombatAttacks.RangedAttack(this, target);
+		}
+		
+		private function machinePistols(target:Creature):void
+		{
+			output("One of the assassins brings his machine pistol to bear, firing a burst of toward " + (target is PlayerCharacter ? "you" : target.a + target.short) + "!");
+			if (rangedCombatMiss(this, target, -1, 3))
+			{
+				output(" The burst misses!");
+			}
+			else
+			{
+				output(" The burst hits!");
+
+				applyDamage(new TypeCollection({ kinetic: 10 }), this, target, "minimal");
+			}
+		}
+		
+		private function groupFlashbang(targets:Array):void
+		{
+			// Flashbang
+			output("One of the assassins pulls another disk-like grenade from his belt and slides it across the deck, placing it between you and Saendra! The flashbang detonates with deafening force,");
+
+			var pc:Creature;
+			var saen:Creature;
+			
+			for (var i:int = 0; i < targets.length; i++)
+			{
+				if (targets[i] is PlayerCharacter) pc = targets[i] as Creature;
+				if (targets[i] is Saendra) saen = targets[i] as Creature;
+			}
+			
+			var blindedPC:Boolean = rand(10) != 0;
+			var blindedSaen:Boolean = rand(10) != 0;
+			
+			if (blindedPC && blindedSaen)
+			{
+				output(" blinding you and Saendra.");
+				pc.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0);
+				saen.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0);
+			}
+			else if (!blindedPC && blindedSaen)
+			{
+				output(" blinding Saendra, though you manage to avoid any serious effect.");
+				saen.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0);
+			}
+			else
+			{
+				output(" though both you and Saendra manage to avoid any serious effect.");
+			}
+
+			createStatusEffect("Nade Cooldown", 5);
+		}
+		
+		private function sx1GroupSmokeGrenade(hostileCreatures:Array):void
+		{
+			// Smoke Grenade
+			output("One of the assassins pulls a cylindrical grenade from his belt and hurls it between you and him. Smoke billows out of the grenade after a loud POP, making it almost impossible to see. <b>Aim reduced!</b>");
+			
+			for (var i:int = 0; i < hostileCreatures.length; i++)
+			{
+				hostileCreatures[i].createStatusEffect("Smoke Grenade", 3, 0, 0, 0, false, "Blind", "Ranged attacks are far more likely to miss.", true, 0);
+			}
+			
+			createStatusEffect("Nade Cooldown", 5);
+		}
+		
+		public function concGrenade(hostileCreatures:Array):void
+		{
+			// Concussion Grenade
+			output("One of the assassins grabs a red grenade off of his belt and hurls it at you. A second later, the grenade detonates in a rib-crushing wave of kinetic force that nearly knocks you on your ass!");
+			
+			for (var i:int = 0; i < hostileCreatures.length; i++)
+			{
+				var target:Creature = hostileCreatures[i];
+				var mul:Number;
+				if (target.RQ() < rand(100)) mul = 2;
+				else mul = 1;
+
+				applyDamage(new TypeCollection( { kinetic: 12 * mul } ), this, target, (target is PlayerCharacter ? "minimal" : "suppress"));
+			}
+
+			createStatusEffect("NadeCD", 5);
 		}
 	}
 }

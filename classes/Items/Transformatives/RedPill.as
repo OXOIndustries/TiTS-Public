@@ -88,7 +88,7 @@ package classes.Items.Transformatives
 		override public function useFunction(target:Creature, usingCreature:Creature = null):Boolean
 		{
 			kGAMECLASS.clearOutput();
-			kGAMECLASS.author("Savin");
+			author("Savin");
 			var pc:Creature = target;
 			if(target is PlayerCharacter) {
 				output("You take the myr-themed pill out of its container and roll it between your fingers, looking it over. The colors are vibrant, almost cheerful, and the tiny Xenogen logo printed on the side of the pill is all but cartoonish. Well, no sense waiting. You pop the pill in your mouth and swallow, sighing as the pill slides down your throat. Your body begins to tingle almost immediately...");

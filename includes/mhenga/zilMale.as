@@ -1,6 +1,8 @@
-﻿import classes.Creature;
+﻿import classes.Characters.ZilMale;
+import classes.Creature;
 import classes.Engine.Combat.DamageTypes.DamageResult;
 import classes.Engine.Combat.DamageTypes.TypeCollection;
+import classes.GameData.CombatManager;
 //Male Zil Encounter
 
 // Flags:
@@ -29,203 +31,24 @@ public function maleZilEncounter():void {
 		flags["ENCOUNTERED_ZIL"]++;
 	}
 	
+	CodexManager.unlockEntry("Zil");
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(new ZilMale());
+	CombatManager.victoryScene(winVsZil);
+	CombatManager.lossScene(zilLossRouter);
+	CombatManager.displayLocation("ZIL MALE");
+	
 	clearMenu();
-	addButton(0,"Next",startCombat,"zil male");
+	addButton(0,"Next",CombatManager.beginCombat);
 }
 
-/*
-Combat Description:
-	The male zil you're fighting would stand roughly {height} tall were he to touch the ground, but instead, he's supporting himself on rapidly fluttering wings, keeping his genitals at just the right height to waft his sweet musk in your direction. His only ‘armament’ is a {length}-inch penis with a tight, hairless sack underneath; he bears no weapon in his hand and no stinger. The zil's body is almost entirely covered on ebony carapace{, though some areas are striped in bright yellow{; he even has yellow irises}/even his shoulders}.
-Combat Techniques:
-	Miss Text: The zil zips out of the way with a swift contortion of his agile frame.
-	Block Text: The zil's chitinous armor deflects your attack.
-	AI: Utilizes lust attacks unless damaged. Then has physical probability of 2 * missing HP (50% HP = 100% physical attacks). Flurry of blows or facehump if PC is stunned. 50% chance of using harden when below 75% HP.
-*/
-
-//	AI: Utilizes lust attacks unless damaged. Then has physical probability of 2 * missing HP (50% HP = 100% physical attacks). Flurry of blows or facehump if PC is stunned. 50% chance of using harden when below 75% HP.
-public function zilMaleAI():void {
-	//Physical attacks
-	//trace("ZIL AI SHIT: " + ((foes[0].HPMax() - foes[0].HP())/foes[0].HPMax()) * 200);
-	//trace("ZIL HPMAX: " + foes[0].HPMax() + " ZIL HP: " + foes[0].HP());
-	if(((foes[0].HPMax() - foes[0].HP())/foes[0].HPMax()) * 200 > rand(100))
-	{
-		if(pc.statusEffectv1("Round") % 4 == 0) zilHardenSingle();
-		else if(rand(4) == 0) flurryOfBlows();
-		else if(rand(3) == 0) zilFlyingSpinKickSingle();
-		else if(rand(2) == 0) zilDrop();
-		else enemyAttack(foes[0]);
-	}
-	else {
-		if(rand(3) == 0) zilCrotchGrind();
-		else if(rand(2) == 0) zilPheromoneFan();
-		else zilHoneyDrip();
-	}
-}
-
-
-//Crotch Grind:
-public function zilCrotchGrind():void {
-	output("Zipping forward, the zil brings his ");
-	if(foes[0].lust() < 33) output("sensitive");
-	else if(foes[0].lust() <= 66) output("stiff");
-	else if(foes[0].lust() <= 75) output("throbbing");
-	else if(foes[0].lust() <= 85) output("dripping");
-	else output("drooling");
-	output(" dick right into your [pc.face]. The soft shroud of his foreskin rubs hotly against you, peeling back to barely expose the ebony glans that is prodding your forehead.");
-	if(pc.hasArmor() && pc.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
-	{
-		output(" You gasp and stumble away when you see his cock produce an oily streak. Pheromones, no doubt. Fortunately for you, your [pc.armor] is airtight, so any reactions you could have had to it are assuredly blocked.");
-	}
-	else
-	{
-		output(" You gasp and stumble away, not realizing your mistake until the chemical deluge hits your senses.");
-		if(pc.lust() <= 33) output(" Uh, wow... you could probably go for another sniff of that.");
-		else if(pc.lust() <= 66) output(" Mmmm, he smells so good that you could just drop down to your knees and let him drag it all over.");
-		else if(pc.lust() <= 75) output(" Yum! You inhale another deep drag of his diminishing aroma and wonder if it wouldn't be too bad to give in to him.");
-		else output(" Ungh, why aren't you letting him fuck your mouth so that you can breathe in more?");
-		if(flags["TIMES_LOST_TO_ZIL"] == 1) output(" You've let him win before and nothing bad came of it, what's wrong with one more submission?");
-		else if(flags["TIMES_LOST_TO_ZIL"] == 2) output(" You've given into these aliens twice already. Surely the third time is the charm...");
-		else if(flags["TIMES_LOST_TO_ZIL"] == 3) output(" You've let them use you a handful of times. What's once more?");
-		else if(flags["TIMES_LOST_TO_ZIL"] != undefined) output(" You've given in countless times already, why not live it up?");
-		pc.lust(10+pc.libido()/10);
-	}
-	processCombat();
-}
-
-//Pheromone Fan:
-public function zilPheromoneFan():void {
-	output("The zil abruptly begins to fondle his [zil.cock], stimulating the organ as he alters his wingbeats to gust musk-laced air in your direction. He floats up high and flies erratically enough that you doubt you could hit him.");
-	if(pc.hasArmor() && pc.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
-	{
-		output("\n\nLuckily your [pc.armor] is sealed tight, so you unaffected by it. He grumps at his failed attempt. You definitely came prepared!");
-	}
-	//{Moderate toughness check pass}
-	else if(pc.physique() + rand(20) + 1 > 20) {
-		output(" There's nothing to do but try and hold your breath!");
-		output("\nHe gets tired long before you do and gives up, but it still leaves a cloud of his delicious aroma floating around you. It's strong enough to make your pulse quicken.");
-		pc.lust(5+pc.libido()/20);
-	}
-	else {
-		output(" There's nothing to do but try and hold your breath!");
-		output("\nEventually, you can hold your breath no longer, and you're forced to inhale the potent cloud deep into your lungs. Your heart hammers in your chest faster and faster while your [pc.skin] flushes and your lips unconsciously purse.");
-		if(pc.lust() < 33) output(" A tingling warmth in your crotch leaves no doubts as to the effectiveness of your alien foe's 'attack'.");
-		else if(pc.lust() <= 66) output(" The warm, incessantly building heat in your loins is getting hotter and hotter with every breath you take.");
-		else
-		{
-			output(" Your crotch feels so hot that you know you just HAVE to touch it soon. Damn this alien and his ");
-			if(silly) output("stupid ");
-			output("sexy dick-scent!");
-		}
-		pc.lust(10+pc.libido()/10);
-	}
-	processCombat();
-}
-
-//Honey Drip:
-//Fly by pre-cum dripping!
-public function zilHoneyDrip():void {
-	output("Zipping high into the air, the Zil begins to jack himself off, stroking his thick, scented dong while amber droplets drip out of his voluptuous dickskin. His pre-cum drips down around you in long strings, some falling across your shoulders, head and face. It smells sweet and floral, like honey, and though it doesn't seem laced with his pheromones, the lewdness of it all quickens your pulse.");
-	pc.lust(5+pc.libido()/20);
-	processCombat();
-}
-
-//Flurry of Blows:
-//3x standard attacks with heightened miss chance. Doesn't miss if PC is stunned.
-//Flurry of Blows:
-//5x standard attacks with heightened miss chance. Doesn't miss if PC is stunned.
-public function flurryOfBlows():void {
-	output("The zil launches a flurry of blows in your direction!\n");
-	attack(foes[0],pc,[1,2]);
-	output("\n");
-	attack(foes[0],pc,[1,2]);
-	output("\n");
-	attack(foes[0],pc,[1]);
-}
-//Flying Spinkick:
-//Stuns the PC.
-public function zilFlyingSpinKickSingle():void {
-	var target:Creature = pc;
-	var attacker:Creature = foes[0];
-	output("An irritated snarl crosses the alien's smooth lips, and he launches himself towards you. His body pivots in mid-air, accelerated by his wings, and he snaps his heel out towards your face at the last second.");
-	if (combatMiss(foes[0],pc)) 
-	{
-		output("\nYou duck aside of his flying heel!");
-	}
-	else 
-	{
-		var damage:TypeCollection = attacker.damage(true);
-		damage.add(attacker.physique() / 2);
-		damageRand(damage, 15);
-		var damageResult:DamageResult = calculateDamage(damage, foes[0], pc);
-		
-		if (damageResult.shieldDamage > 0)
-		{
-			if (damageResult.hpDamage == 0) output(" Your shield crackles but holds.");
-			else output(" There is a concussive boom and tingling aftershock of energy as your shield is breached.");
-		}
-		
-		if (damageResult.hpDamage > 0)
-		{
-			if (damageResult.shieldDamage == 0) output(" The armored bootheel connects with your cheek hard enough to turn your head and leave you seeing stars.");
-			
-			if (!pc.hasStatusEffect("Stunned"))
-			{
-				output("<b> It's concussive enough to leave you stunned.</b>");
-				pc.createStatusEffect("Stunned",1,0,0,0,false,"Stun","You are stunned and cannot move until you recover!",true,0);
-			}
-		}
-		
-		outputDamage(damageResult);
-	}
-	processCombat();
-}
-	
-//Zip-Drop:
-//Grabs and drops you (lightish PCs only)
-public function zilDrop():void {
-	output("The zil lowers his shoulder and charges at you, but it's a feint! He diverts at the last second and makes to grab you under the arms as he passes.");
-	if (combatMiss(foes[0],pc)) 
-	{
-		output(" You avoid it!");
-		processCombat();
-		return;
-	}
-	//{lift fail}
-	if((pc.thickness + 100) * pc.tallness >= 9900) {
-		output(" He strains for a second, but the zil just can't get your [pc.feet] up off the ground. Frustrated, he kicks off your back just before you can react.");
-		//{low damage}
-		applyDamage(new TypeCollection( { kinetic: 1 + rand(4) } ), foes[0], pc);
-	}
-	else 
-	{
-		output(" He proves strong enough to separate you from your footing. You struggle, but the ground gets further and further away. Then, he lets you go. ");
-		if(!pc.canFly()) {
-			output("There's a moment of stomach-churning weightlessness followed by the hard crunch of you smacking into the forest floor.");
-			applyDamage(new TypeCollection( { kinetic: 5 + rand(5) } ), foes[0], pc);
-		}
-		else output("You flutter down safely under your own power. It's so good to be able to fly.");
-		
-	}
-	processCombat();
-}
-//Harden:
-//Buffs kinetic defenses?
-public function zilHardenSingle():void {
-	output("Closing his onyx eyes, the zil flexes, and you hear quiet, barely audible cracks filling the busy, woodland air. You peer closer and realize that the zil's carapace seems shinier, and perhaps a bit more formidable... just barely thicker, somehow.");
-	
-	var newRes:Number = (100 - foes[0].baseHPResistances.kinetic.resistanceValue) / 5;
-	foes[0].baseHPResistances.kinetic.resistanceValue += newRes;
-	foes[0].createStatusEffect("Harden", 0, 30, 0, 0, false, "DefenseUp", "Defense against all forms of attack has been increased!", true, 0);
-	
-	processCombat();
-}
-	
 //*Win Scenes:
 public function winVsZil():void {
 	userInterface.showBust("ZIL");
 	userInterface.showName("MALE\nZIL");
 	//{HP:} 
-	if(foes[0].HP() <= 0)
+	if(enemy.HP() <= 0)
 	{
 		output("The zil gives one last feeble shudder as he struggles to remain upright, but the damage is simply too much. His wings cease their incessant buzzing and drop him straight onto his ass, causing him to wince in pain and discomfort. Looking up hesitantly, he slouches his shoulders in submission and admits, <i>“I'm yours, </i>");
 		if(pc.hasVagina()) output("<i>to breed</i>");
@@ -267,13 +90,22 @@ public function winVsZil():void {
 	if(pc.hasCock()) addButton(5,"Get BJ",getABJFromAManzil,undefined,"Get BJ","Get a BJ from the waspy male.");
 	else addDisabledButton(5,"Get BJ","Get BJ","Get a blowjob from the zil before you.");
 	//Cuff&Fuck
-	cuffNFuckButton(6, foes[0]);
+	cuffNFuckButton(6, enemy);
 	//Femzil prompt
 	if(pc.hasKeyItem("Capture Harness") && flags["CAPTURED_A_MALE_ZIL_FOR_DR_HASWELL"] == undefined) {
 		addButton(9,"Capture",useTheCaptureHarness);
 		output("\n\n<b>Doctor Julian Haswell wanted you to use a capture harness on a zil. Now would be the perfect time.</b>");
 	}
-	addButton(14,"Leave",genericVictory);
+	if(pc.hasItem(new GravCuffs()) && pc.lust() >= 33)
+	{
+		var fitsInside:Boolean = false;
+		if(enemy.hasVagina()) fitsInside = (pc.cockThatFits(enemy.vaginalCapacity(0)) >= 0);
+		else fitsInside = (pc.cockThatFits(enemy.analCapacity()) >= 0);
+		if(pc.hasCock() && fitsInside) addButton(6,"Cuff&Fuck",cuffNFuck,undefined,"Cuff & Fuck","Use your grav-cuffs to pin down [enemy.name] and have your way with [enemy.hisHer] [pc.vagOrAssNoun]! Requires Grav-cuffs and a penis.");
+		else if(pc.hasCock()) addDisabledButton(6,"Cuff&Fuck","Cuff & Fuck","You can cuff [enemy.himHer] down, but you wouldn't be able to fit inside.");
+		else addDisabledButton(6,"Cuff&Fuck","Cuff & Fuck","You need a penis to make use of your grav-cuffs this way.");
+	}
+	addButton(14,"Leave",CombatManager.genericVictory);
 }
 
 //*Butt Fuck Him
@@ -398,7 +230,7 @@ public function buttfuckDefeatedZil():void {
 	}
 	processTime(30+rand(10));
 	pc.orgasm();
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //*Ride His Cock
@@ -474,11 +306,11 @@ public function rideDatZilCawk():void {
 		output("\n\nYou pinch him tightly around his base, bottling up his cum before he can release it and chasing away the relief he so desperately sought. <i>“Sorry, cutie. I just want to make sure we both get to cum together, hard. I'll put you inside now, okay?”</i>");
 		output("\n\nThe zil nods and smiles.");
 	}
-	var x:int = pc.cuntThatFits(foes[0].cockVolume(0));
+	var x:int = pc.cuntThatFits(enemy.cockVolume(0));
 	if(x < 0) x = pc.smallestVaginaIndex();
 	//{End personality forks}
 	//{Too big 4 u}
-	if(foes[0].cockVolume(0) > pc.vaginalCapacity(x)) {
+	if(enemy.cockVolume(0) > pc.vaginalCapacity(x)) {
 		output("\n\nWincing, you push his lubricated member against your ");
 		if(!pc.vaginalVirgin) output("almost ");
 		output("virginally-tight entrance.  He's just so... so big, that you can't seem to fit him!  You push and grind, allowing his warm pre-cum to slather across your labia");
@@ -486,7 +318,7 @@ public function rideDatZilCawk():void {
 		output(".  Slowly, you work his concealed tip inside you, then, the first two... three inches.  The tight friction peels his skin back to expose his sensitive glans to your silken walls, and between that and his gushing pre, you find the motivation to push down the rest of the way, fully embedding your onyx lover in your depths. He groans quietly once he realizes you've completely taken his member.");
 	}
 	//{Just rite}
-	else if(foes[0].cockVolume(0) * .6 > pc.vaginalCapacity(x)) {
+	else if(enemy.cockVolume(0) * .6 > pc.vaginalCapacity(x)) {
 		output("\n\nYou slowly slide his lubricated member into your slick entrance, your honeypot swallowing up his tool as if it was made to accept it. Pushing against you, the submissive zil meets you motion for motion, embedding himself fully inside you. You push yourself violently against him");
 		if(pc.hasClit()) output(", hard enough for your [pc.clits] to grind up on your impromptu lover's groin");
 		output(". He settles down under the forceful pressure and completely submits to your will. There's nothing in his eyes but hope and subservience, which as far as your [pc.vagina " + x + "] is concerned, is just perfect. As a bonus, his foreskin is quickly peeled back by your silken channel, and his glans begins to exude pre in larger globs than before.");
@@ -497,7 +329,7 @@ public function rideDatZilCawk():void {
 	}
 	//{end cunt forks}
 	//{stretch check.}
-	pc.cuntChange(x,foes[0].cockVolume(0),true,true,false);
+	pc.cuntChange(x,enemy.cockVolume(0),true,true,false);
 	
 	output("\n\nMoving faster now, you pivot your hips in small circles in order to grind every millimeter of your interior against his lovely, ebony shaft, your cunt clenching unintentionally whenever he hits a sensitive spot, squeezing just hard enough to make him feel as if you're milking him. Then, you switch tempos, bouncing on his cock, letting your [pc.butt] compress against him each time you bottom out.");
 	if(!pc.isTaur()) {
@@ -546,7 +378,7 @@ public function rideDatZilCawk():void {
 	processTime(21+rand(4));
 	pc.orgasm();
 	pc.loadInCunt(chars["ZIL"]);
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //*Footjob scene - Req's humanlike feetsies
@@ -580,7 +412,7 @@ public function giveTheZilAFootjob():void {
 	output("\n\nHe dutifully laps up the sticky mess from your [pc.skinFurScales], his dexterous, tube-like organ sucking up the gooey cum even from between your toes, tickling you a bit. Soon your feet are slick and clean and you give him a gentle pat on the head, leaving him there as you ready your gear and continue your journey.\n\n");
 	processTime(10+rand(10));
 	pc.lust(5);
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //*Foreskin Oral Play
@@ -685,7 +517,7 @@ public function alkahestsForeskinOralPlay():void {
 	clearMenu();
 	if(pc.hasCock())
 	{
-		if(pc.cockTotal() > 1) addButton(0,"Dicks",foreskinWorshipCumWithDick);
+	if(pc.cockTotal() > 1) addButton(0,"Dicks",foreskinWorshipCumWithDick);
 		else addButton(0,"Dick",foreskinWorshipCumWithDick);
 	}
 	else addDisabledButton(0,"Dick","Dick","You need a penis for this.");
@@ -785,7 +617,7 @@ public function zilForeSkinPlayOutro():void {
 	output("\n\nYou move up to your defeated foe’s gasping mouth and give him a deep, cummy kiss; his tongue quests into your mouth searching for more of his sweet nectar. You stand and stretch languidly before winking at him and sauntering away, licking your lips all the while.\n\n");
 	processTime(27+rand(10));
 	pc.orgasm();
-	genericVictory();
+	CombatManager.genericVictory();
 }
 //*Tailcock Peg Him
 public function tailCockPegTheZil():void {
@@ -848,7 +680,7 @@ public function tailCockPegTheZil():void {
 	output("\n\nThe zil is lying there lamely, twitching his rump from time to time with a dopey smile on his face. This is an encounter he won't soon forget.\n\n");
 	processTime(20+rand(10));
 	pc.orgasm();
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //This is an additional on-victory sex scene for the male zil. Requires a cock. Should be suitable for taurs as long as they have front-mounted genitalia. Contains some brute/bimbo dialogue too.
@@ -924,7 +756,7 @@ public function getABJFromAManzil():void
 	output("\n\nThe zil-boy lazily cleans your cock off with his tongue before you collect your [pc.gear] and dress yourself. You leave him on the ground, still panting, taking occasional sips from the mixture of honey and [pc.cum] on his chitin-covered thighs.\n\n");
 	processTime(20+rand(10));
 	pc.orgasm();
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 public function zilLossRouter():void {
@@ -980,7 +812,7 @@ public function swallowDatZilCockCauseJooLost():void {
 	output("\n\nYour master has you lick him clean before he buzzes off into the trees, leaving his sensuous taste to remember him by. You sit there, staring at nothing for perhaps thirty minutes. Then, as the effect he had on you evaporates, you realize just how fucking horny you are! You vigorously masturbate for the next two hours before finally sating yourself and passing out.\n\n");
 	//{Blah blah, combat texts.}
 	pc.loadInMouth(chars["ZIL"]);
-	genericLoss();
+	CombatManager.genericLoss();
 }
 
 //*Get Bred.
@@ -1015,7 +847,7 @@ public function getBredByZil():void {
 	if(pc.tone >= 65) output("pinches your bottock, admiring the firmness of it.");
 	else output("jiggles your bottock, admiring the way it ripples while your juices stream unchecked from your fingers.");
 	output(" The male's fingers join yours in exploring your netherlips. Gingerly, he rubs the outside of your soaked folds, adding a second sensation to your already overburdened vagina.");
-	var x:int = pc.cuntThatFits(foes[0].cockVolume(0));
+	var x:int = pc.cuntThatFits(enemy.cockVolume(0));
 	if(x < 0) x = 0;
 	output("\n\n<i>“Are you ready to be bred?”</i> the zil asks with a hint of politeness. His tone brooks no disagreement. The question is a formality - you both know you want, no, need it. You bite your lip and nod. At the same time, you pull your fingers free of the steaming-hot honeypot between your [pc.legOrLegs]. Your " + possessive(pc.vaginaDescript(x)) + " lips are slightly parted, spread and open, ready to be taken.");
 	
@@ -1025,7 +857,7 @@ public function getBredByZil():void {
 	if(rand(2) == 0) output("you can feel your cunny pulling back his skin to expose his crown.");
 	else output("you can feel your cunny vainly trying to pull back his phimotic dick-skin. His crown stays steadfastly hidden from your lusty snatch, but you're sure you'll make him fill you all the same.");
 	//Cuntchange!
-	pc.cuntChange(x,foes[0].cockVolume(0),true,true,false);
+	pc.cuntChange(x,enemy.cockVolume(0),true,true,false);
 	output("\n\nYou feel the zil's hands shift to wrap around your chest");
 	if(pc.biggestTitSize() >= 2) output(" and hold onto your [pc.chest]");
 	else output(" for support");
@@ -1086,7 +918,7 @@ public function getBredByZil():void {
 	if(pc.totalVaginas() > 1) {
 		for(var y:int = 0; y < pc.totalVaginas(); y++) {
 			if(y != x) {
-				pc.cuntChange(y,foes[0].cockVolume(0),true,true,false);
+				pc.cuntChange(y,enemy.cockVolume(0),true,true,false);
 				break;
 			}
 		}
@@ -1116,7 +948,7 @@ public function getBredByZil():void {
 	processTime(30+rand(15));
 	pc.orgasm();
 	pc.loadInCunt(chars["ZIL"], x);
-	genericLoss();
+	CombatManager.genericLoss();
 }
 //*Get tailpussy fucked.
 public function getTailPussyFuckedByZil():void {
@@ -1232,14 +1064,15 @@ public function tailPussyFuckZilEpilogue():void {
 	processTime(30+rand(15));
 	clearMenu();
 	output("\n\n");
-	genericLoss();
+	CombatManager.genericLoss();
 }
 //*Apparently Dudes Can't Peg Other Dudes:
 public function zilSticksItInYourBoot():void {
 	userInterface.showBust("ZIL");
 	userInterface.showName("MALE\nZIL");
 	//(HP Loss) 
-	if(pc.HP() <= 0) {
+	if (pc.HP() <= 0) 
+	{
 		output("Staying upright has become a challenge you aren't fit to overcome anymore. This zil is just too strong for you. You catch yourself on your hands to maintain some semblance of control over your situation, casting a rebellious look at your alien aggressor. He chortles, tracing carapace-clad knuckles softly over your spine, his wings fluttering softly as he circles your semi-prone form. An exposed palm falls on your [pc.butt] and squeezes one supple cheek reassuringly, almost apologetically. You try to look up at him, and in that action is your undoing. A soft, cushy weight falls across your nose, drooling a little bit of honeyed fluid onto your cheek. Its musky, sweet scent fills your nostrils, making your head spin with its potent aroma.");
 		output("\n\nYou cross your eyes to look at it; the glistening, onyx skin filling your view with its supple, surging length. The thick zil-cock spurts a few thick globs of honey onto the bridge of your nose as you drink more deeply of his scent, and [pc.eachCock] ");
 		if(pc.lust() <= 60) output("hardens");
@@ -1257,7 +1090,8 @@ public function zilSticksItInYourBoot():void {
 		output(".");
 	}
 	//{Lust Induced Loss}
-	else {
+	else 
+	{
 		output("Shuddering as the scent of the alien aggressor overwhelms your feeble resistance, you fall down in an uncoordinated heap, one hand plunging into your equipment to strip it away. Your heart is hammering, each beat carrying the fevered lust deeper into your groin, inflating [pc.eachCock] to steel-hard rigidity. Pre-jism drips out in heavy droplets, spattering the ground underneath you in a mockery of jungle dew.");
 		output("\n\nThe zil flutters up curiously, his gaze flitting past yours as he admires the way your groin secretes evidence of your lust.");
 		output("\n\n<i>“");
@@ -1284,7 +1118,7 @@ public function zilSticksItInYourBoot():void {
 		else output("they're");
 		output(" rising up against your belly with fresh lust, spooling out ribbons of pre-cum that seem without end.");
 		//{lose virginity!}
-		pc.buttChange(foes[0].cockVolume(0),true,true,false);
+		pc.buttChange(enemy.cockVolume(0),true,true,false);
 		output("\n\nThe alien slaps your [pc.butt] when he bottoms out, making you drip even harder, and he congratulates you, <i>“Good " + pc.mf("boy","girl") + ". It's going to get even better. Now just take it and cum yourself dry.”</i>");
 		output("\n\nIt gets better? A sudden void encompases your consciousness as the zil withdraws, but he's back a moment later, slapping his hips into your ass with one smooth pump. He bounces back off and assumes an easy rhythm, fucking you firm and gentle. He seems to love the way you feel wrapped around his tool - that or he's loving the fact that he's the one to deflower you.");
 	}
@@ -1294,7 +1128,7 @@ public function zilSticksItInYourBoot():void {
 		output("\n\nThe alien blinks his black eyes and chortles, <i>“Not your first time?”</i> His finger presses against your anal star, wiggling around and exploring you in anticipation of the butt-fuck to come. <i>“No, not your first time. That's good; I won't have to go easy on you.”</i>");
 		output("\n\nYou whimper at that declaration, but your insectile master proves it true a moment later when he smoothly thrusts himself inside you. His slippery dick slides right past your sphincter in seconds, the inches plowing aside your body's token resistance as you simply try to relax and enjoy it. It's not easy, but after he bottoms out with his balls resting against you, you find yourself feeling rather good. [pc.EachCock] rises to full size and begins to dribble a steady runnel of pre-cum onto the ground, spilling out your orgasmic precursor in quantities far beyond normal.");
 		//{buttchange}
-		pc.buttChange(foes[0].cockVolume(0),true,true,false);
+		pc.buttChange(enemy.cockVolume(0),true,true,false);
 		output("\n\nThe zil squeezes your cheeks in his hands and begins to knead them with almost mindless attention, rolling and squeezing the closest bit of your flesh that he can get in his palms. His hips slowly pull back to leave you empty. A moment later, he's back inside, pumping you full of his hot wasp-cock with slow, steady strokes. Between your skin and his copious, honeyed pre, he's able to violate your bottom without an ounce of resistance. His strokes are long and firm, and he shows no sign of stopping. Not that you want him to.");
 	}
 	//{both}
@@ -1328,7 +1162,7 @@ public function zilSticksItInYourBoot():void {
 	pc.orgasm();
 	pc.loadInAss(chars["ZIL"]);
 	processTime(30+rand(10));
-	genericLoss();
+	CombatManager.genericLoss();
 }
 	
 //The Zil Pretend to be Helia
@@ -1359,11 +1193,11 @@ public function theZilPretendToBeHelia():void {
 	if(pc.isNaga()) output(" before flipping you over to have access to your vagina");
 	output(". His sheathed prong slides across your " + pc.skinFurScales() + " eagerly, barely exposing his tip, leaking his masculine pre-honey across your eager flesh. You ache to have him inside you, but you're little more than a spectator in this play. A literal and figurative honey-pot is brought closer, so close that it blocks most of the surroundings from your view, filling the air with the lusty aroma that has your head swimming. A tuft of neatly trimmed hair sits above it, covered in droplets of accumulated ardor, and underneath you see inky pussy, its lips puffy and ever-so-sightly parted by the bud of her clit.");
 	output("\n\nSome unseen signal passes between your waspy lovers, and they press their hips in on you from both sides as one. The taste of a lovely, wondrous pussy on your lips wars with the sensation of being suddenly stuffed from behind with a throbbing, dominant cock. The member drips and dribbles a bit of pre-emptive payload to smooth its passage as it burrows into your [pc.vagOrAss]. The honey suspended in the surprisingly soft pubic hair above the female's cleft smears across your nose, assisting you deeper into your lusty fugue, and your mouth dumbly falls open, the tongue extending of its own volition to taste the marvelous flavor the wasp-woman has to offer.");
-	var x:int = pc.cuntThatFits(foes[0].cockVolume(0));
+	var x:int = pc.cuntThatFits(enemy.cockVolume(0));
 	if(x < 0) x = rand(pc.vaginaTotal());
 	//{stretch}
-	if(!pc.hasVagina()) pc.buttChange(foes[0].cockVolume(0),true,true,false);
-	else pc.cuntChange(x,foes[0].cockVolume(0),true,true,false);
+	if(!pc.hasVagina()) pc.buttChange(enemy.cockVolume(0),true,true,false);
+	else pc.cuntChange(x,enemy.cockVolume(0),true,true,false);
 	output("\n\nSmooth armor compresses your [pc.butt] when the foreskin-wrapped dick bottoms out, the zil's smooth, hairless sack rubbing against you for a moment before he draws back and begins to fuck your [pc.vagOrAss] slowly, almost languidly.");
 	output("\n\n<i>“Oh, this is nice,”</i> he admits. His sack seems to grow a little bit bigger against your body as his constantly leaking pre turns your innards into a slippery mess. The slow friction gradually increases as the zil begins to pump faster and faster, locking eyes with his opposite across your submissive, conquered frame. His dick grows a hair thicker and plumper; his hips thrust faster, and you know a messy, gooey climax is close at hand for the bug-man.");
 	output("\n\nThe female bites her lips and shudders while your tongue polishes her clit, gathering every drop of her hot honey, sliding deeper into her folds where it can properly tickle the rest of her nerve endings. You dole out cunnilingus with no thought but eagerness for the taste in your mouth, instinctively improving your technique whenever you discover something that gets you a fresh dribble of her juices. Her legs are quaking lustily around your head as she rides you towards a much-needed cum. If your mouth weren't muff-deep in cunt, a dopey smile would be visible on it.");
@@ -1420,5 +1254,5 @@ public function theZilPretendToBeHelia():void {
 	else pc.loadInAss(chars["ZIL"]);
 	pc.loadInMouth(chars["ZILFEMALE"]);
 	processTime(59);
-	genericLoss();
+	CombatManager.genericLoss();
 }

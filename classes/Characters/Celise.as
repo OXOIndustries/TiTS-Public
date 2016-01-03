@@ -6,14 +6,18 @@
 	import classes.Items.Apparel.GooeyCoverings;
 	import classes.Items.Melee.GooeyPsuedopod;
 	import classes.kGAMECLASS;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
+	import classes.Engine.Interfaces.output;
+	import classes.GameData.CodexManager;
+	
+	import classes.GameData.CombatManager;
 	
 	public class Celise extends Creature
 	{
 		//constructor
 		public function Celise()
 		{
-			this._latestVersion = 3;
+			this._latestVersion = 4;
 			this.version = this._latestVersion;
 			this._neverSerialize = true;
 			
@@ -24,7 +28,7 @@
 			this.long = "A three foot high, oblong ball of goo jiggles and wobbles across from you, its surface somehow holding back the liquid weight inside even though it appears no more solid than the rest of it. Atop the mound of viridian goop is the torso of a ultrapornstar goddess. Pendulous breasts hang from the front of her glittering chest, obscuring everything above her navel with gooey boob. Her eyes glitter with a predatory mirth, slightly darker in hue than the rest of her, a color matched by her plump, wet-looking lips. You need to defeat her if you ever want to lay claim to Dad’s fortune and make him proud!";
 			this.customDodge = "The goo twists a portion of its body out of the way of the attack, moving in a way that would be fatal for any vertebrate.";
 			this.customBlock = "Your attack sinks into the goo, the wound vanishing almost instantly as her surface recloses.";
-			this.plural = false;
+			this.isPlural = false;
 			this.meleeWeapon = new GooeyPsuedopod();
 			this.armor = new GooeyCoverings();
 			this.physiqueRaw = 3;
@@ -166,6 +170,9 @@
 			this.milkRate = 1;
 			this.ass.wetnessRaw = 5;
 			
+			isUniqueInFight = true;
+			btnTargetText = "Celise";
+			
 			this._isLoading = false;
 		}
 		
@@ -188,15 +195,48 @@
 			delete d.bonusLustVuln;
 		}
 		
-		override public function prepForCombat():void
+		public function UpgradeVersion3(d:Object):void
 		{
-			var combatCelise:Celise = this.makeCopy();
+			d.isUniqueInFight = true;
+		}
+		
+		override public function get bustDisplay():String
+		{
+			return "CELISE";
+		}
+		
+		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
+		{
+			var target:Creature = selectTarget(hostileCreatures);
+			if (target == null) return;
 			
-			kGAMECLASS.userInterface.showBust("CELISE");
-			kGAMECLASS.setLocation("FIGHT:\nCELISE", "TAVROS STATION", "SYSTEM: KALAS");
-			combatCelise.sexualPreferences.setRandomPrefs(3 + rand(3));
-			
-			kGAMECLASS.foes.push(combatCelise);
+			// round 1
+			if(CombatManager.getRoundCount() == 1) {
+				output("Well, that didn’t work! She seems completely immune to normal physical attacks.");
+				output("\n\n<i>“Hehe, that tickles!”</i> Celise giggles, <i>“Are you sure you want to listen to that old fuddy duddy instead of letting me </i>");
+				if(target.hasCock()) output("<i>wrap myself around your " + target.cocksDescript() + "</i>");
+				if(target.hasCock() && target.hasVagina()) output(" <i>and</i> ");
+				if(target.hasVagina()) output("<i>plunge into your " + target.vaginasDescript() + "</i>");
+				output("<i>?”</i> She pushes her finger into the semipermeable membrane around her breast, allowing you to hear the lewd, sucking noises her body makes around her digit as you watch. <i>“It’ll feeeel gooood!”</i>");
+				//Plus lust!
+				target.lustRaw += 10;
+			}
+			//Round 2:
+			else if(CombatManager.getRoundCount() == 2) {
+				output("The goo-girl appears impervious to everything you can throw at her! Just how did Dad expect you to handle something like this?");
+				output("\n\nCelise leans down to put her palms flat on the ground, her breasts squishing out around the sides of her arms, actually merging partway into her elbows as she begins to crawl toward you, wiggling her suddenly visible rump and hips at you, now revealed by her altered posture. <i>“I’m gonna suck all the yummiest juices out of you!”</i> Her lips plump bigger after the declaration, almost forcefully reminding you how good they would ");
+				if(target.hasCock()) output("feel around " + target.oneCock());
+				else if(target.hasVagina()) output("feel on " + target.oneVagina());
+				output(".");
+				//Plus lust!
+				target.lustRaw += 10;
+			}
+			//Round 3:
+			else if(CombatManager.getRoundCount() == 3) {
+				output("Whoah, now that’s a reaction! Celise whimpers and starts to vigorously fist herself again and again, not even bothering to make sure her hand goes between her legs. Wherever she shoves her balled fist into, sensitive lips form around it, suckling and oozing with lust around her fast-pumping arm.");
+				this.lustRaw = 100;
+				target.lustRaw += 10;
+			}
 		}
 	}
 }

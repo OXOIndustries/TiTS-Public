@@ -1,4 +1,5 @@
-﻿/*
+﻿import classes.Characters.HuntressVanae;
+/*
 Fern, Lichens, and Ironwoods:
 Man/FemZil, Cuntsnake
 
@@ -378,7 +379,8 @@ public function sleepInRuinedCamp():void
 		showName("FIGHT: VANAE\nHUNTRESS");
 		showBust("VANAE_HUNTRESS");
 		clearMenu();
-		addButton(0, "Next", startCombat, "HUNTRESS_VANAE");
+		configHuntressFight();
+		addButton(0, "Next", CombatManager.beginCombat);
 		return;
 	}
 	if ((pc.XPRaw >= pc.XPMax()) && pc.level < 8 && flags["LEVEL_UP_AVAILABLE"] == undefined)
@@ -398,6 +400,16 @@ public function sleepInRuinedCamp():void
 	}
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
+}
+
+public function configHuntressFight():void
+{
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(new HuntressVanae());
+	CombatManager.victoryScene(vanaePCVictory);
+	CombatManager.lossScene(vanaeHuntressPCDefeat);
+	CombatManager.displayLocation("HUNTRESS");
 }
 
 public function mhengaSalvageFromCamp():void

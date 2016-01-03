@@ -24,7 +24,7 @@ package classes.Characters
 			this.long = "";
 			this.customDodge = "";
 			this.customBlock = "";
-			this.plural = false;
+			this.isPlural = false;
 			
 			this.meleeWeapon = new Fists();
 			this.armor = new ComfortableClothes();

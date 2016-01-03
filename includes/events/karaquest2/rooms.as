@@ -298,7 +298,7 @@ The sewer entrance is just south of you. ";
 	rooms["K2_LABELEVATOR"] = new RoomClass(this);
 	rooms["K2_LABELEVATOR"].roomName = "ELEVATOR\nR&D LABS";
 	//rooms["K2_LABELEVATOR"].description = "desc";
-	rooms["K2_LABELEVATOR"].runOnEnter = null;
+	rooms["K2_LABELEVATOR"].runOnEnter = kq2rfLabElevator;
 	rooms["K2_LABELEVATOR"].planet = planetName;
 	rooms["K2_LABELEVATOR"].system = systemName;
 	rooms["K2_LABELEVATOR"].southExit = "K2_LAB1";

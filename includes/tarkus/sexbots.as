@@ -1,17 +1,19 @@
-﻿import classes.Creature;
+﻿import classes.Characters.SexBot;
+import classes.Creature;
 import classes.Engine.Combat.DamageTypes.DamageResult;
 import classes.Engine.Combat.DamageTypes.TypeCollection;
+import classes.GameData.CombatManager;
 //Encounters
 //Note: If PC has a dick encounter rate should be 75% female, 25% male, if female vice versa.
+
 public function encounterASexBot():void
 {
-	foes = new Array();
-	chars["SEXBOT"].prepForCombat();
+	var tSexBot:Creature = new SexBot();
 	author("Nonesuch");
 	sexBotDisplay();
 	//Technically already in combat. Overwrite!
-	userInterface.showName("\nSEXBOT");
-	var manbot:Boolean = (foes[0].mf("dude","lady") == "dude");
+	
+	var manbot:Boolean = tSexBot.mf("m", "f") == "m";
 	
 	if(!pc.hasCock() && !pc.hasVagina())
 	{
@@ -61,12 +63,12 @@ public function encounterASexBot():void
 			output("\n\nThe approach of this creature has been more than slightly unsettling, but you do have some intimate desires that need addressing, and an android specifically created to do exactly that couldn’t be bad at it, could it?");
 			//Yes/No
 			clearMenu();
-			addButton(0,"Let It",yesToRobotSexBotFirstTime);
-			addButton(1,"Don't",turnDownRobotSexuals, true);
+			addButton(0,"Let It",yesToRobotSexBotFirstTime, tSexBot);
+			addButton(1,"Don't",turnDownRobotSexuals, [true, tSexBot]);
 		}
 		else
 		{
-			turnDownRobotSexuals();
+			turnDownRobotSexuals([false, tSexBot]);
 		}
 	}
 	//Repeat 
@@ -101,25 +103,27 @@ public function encounterASexBot():void
 		{
 			output("\n\nYou do have some intimate desires that need addressing, and an android specifically created to do exactly that couldn’t be bad at it, could it?");
 			clearMenu();
-			addButton(0,"Yes",voluntaryFuckSexBot);
-			addButton(1,"No",turnDownRobotSexuals, true);
+			addButton(0,"Yes",voluntaryFuckSexBot, tSexBot);
+			addButton(1,"No",turnDownRobotSexuals, [true, tSexBot]);
 		}
 		else
 		{
-			turnDownRobotSexuals();
+			turnDownRobotSexuals([false, tSexBot]);
 		}
 	}
 }
 
 //No/lust < 30:
-public function turnDownRobotSexuals(newScreen:Boolean = false):void
+public function turnDownRobotSexuals(opts:Array):void
 {
-	if(newScreen) {
+	var newScreen:Boolean = opts[0];
+	var tSexBot:Creature = opts[1];
+	
+	if (newScreen) 
+	{
 		clearOutput();
 		author("Nonesuch");
 		sexBotDisplay();
-		//Technically already in combat. Overwrite!
-		userInterface.showName("\nSEXBOT");
 	}
 	else output("\n\n");
 	
@@ -136,37 +140,43 @@ public function turnDownRobotSexuals(newScreen:Boolean = false):void
 	}
 	output("\n\n<i>“Consent protocols not responding,”</i> says the sexbot, in the same tone of depthless calm. With a whirr and the now-familiar sound of unwinding rope, four flexible tentacles tipped with rounded rubber grabbers appear out of its back. They sway restlessly around the eerily beautiful droid as it advances upon you. <i>“I am sorry, insert name here, but I cannot do that.”</i>");
 	
+	CodexManager.unlockEntry("Sexbot");
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(tSexBot);
+	CombatManager.victoryScene(defeatTheSexBot);
+	CombatManager.lossScene(combatLossToSexbot);
+	CombatManager.displayLocation("SEXBOT");
+	
 	clearMenu();
-	addButton(0,"Next",startCombatLight);
+	addButton(0,"Next",CombatManager.beginCombat);
+}
+
+public function combatLossToSexbot():void
+{
+	loseToSexBotRouter([false, enemy]);
 }
 
 //Yes: 
-public function voluntaryFuckSexBot():void
+public function voluntaryFuckSexBot(tSexBot:Creature):void
 {
 	clearOutput();
 	author("Nonesuch");
 	sexBotDisplay();
-	stealthCombatEnd();
-	//Technically already in combat. Overwrite!
-	userInterface.showName("\nSEXBOT");
 	output("Oh, why not. They’re a lot cleaner than the raskvel at least");
 	if(pc.hasVagina()) output(" and aren’t exactly likely to knock you up");
 	output(". You grin your assent ");
 	if(!pc.isNude()) output("as you take off your [pc.gear] ");
 	output("and lie down on your side. Returning your grin with its own serene unchanging smile, the exquisitely proportioned droid steps towards you. Its warm hum fills your ears.");
 	//[go to loss scenes]
-	loseToSexBotRouter(true);
+	loseToSexBotRouter([true, tSexBot]);
 }
 
-
-public function yesToRobotSexBotFirstTime():void
+public function yesToRobotSexBotFirstTime(tSexBot:Creature):void
 {
 	clearOutput();
 	author("Nonesuch");
 	sexBotDisplay();
-	//Technically already in combat. Overwrite!
-	userInterface.showName("\nSEXBOT");
-	stealthCombatEnd();
 	if(!pc.isNude()) output("You shrug and smile back with leisured complicity, remove your [pc.gear] and loll onto the floor.");
 	else output("You shrug and smile back with leisured complicity and loll your already naked self onto the floor.");
 
@@ -174,200 +184,7 @@ public function yesToRobotSexBotFirstTime():void
 	output("\n\n<i>“Initiating sexy times,”</i> the sexbot agrees pleasantly. Your smile becomes slightly fixed as, with a whirr and the now-familiar sound of unwinding rope, four flexible tentacles tipped with rounded rubber grippers appear out of its back. Before you can maybe rethink agreeing to this eerily beautiful droid, its warm synthetic skin and its many seeking, insistent hands are upon you.");
 	//[go to loss scenes]
 	clearMenu();
-	addButton(0,"Next",loseToSexBotRouter,true);
-}
-
-public function sexbotAI():void
-{
-	sexBotDisplay();
-	if(foes[0].hasStatusEffect("Shield Recharge")) 
-	{
-		shieldRegeneration();
-		return;
-	}
-	if(!pc.hasStatusEffect("Grappled") && pc.shields() <= 0 && pc.statusEffectv1("Round") % 5 == 0)
-	{
-		grappleWithASexbot();
-		return;
-	}
-	if(pc.hasStatusEffect("Grappled"))
-	{
-		grappleWithASexbot();
-		return;	
-	}
-	var choices:Array = new Array();
-	//Electropulse
-	//(Procs if PC still has shields)
-	if(pc.shields() > 0) {
-		choices[choices.length] = sexBotElectropulseAttack;
-		choices[choices.length] = sexBotElectropulseAttack;
-	}
-	//Disable ranged weapon
-	//(Procs if PC does not have shields and has fired at the sexbot)
-	if(!pc.rangedWeapon is Rock && !pc.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_BOW_WEAPON) && !pc.hasStatusEffect("Gunlock")) choices[choices.length] = disablePCGunz;
-	//Recharge shield
-	//(Procs if Sexbot has lost shields)
-	if(foes[0].shields() <= 0) choices[choices.length] = shieldRegeneration;
-	//Hack drone
-	//(Procs if PC has a drone)
-	if(pc.hasPerk("Attack Drone") && pc.shields() > 0 && !pc.hasStatusEffect("Porno Hacked Drone") && !pc.accessory is TamWolf && !pc.accessory is TamWolfDamaged) choices[choices.length] = getDroneHacked;
-	//Standard attack
-	choices[choices.length] = standardRobosexualAttack;
-	choices[choices.length] = standardRobosexualAttack;
-
-	//Pick one to run!
-	choices[rand(choices.length)]();
-}
-
-//Electropulse
-//(Procs if PC still has shields)
-public function sexBotElectropulseAttack():void
-{
-	author("Nonesuch");
-	userInterface.showName("FIGHT:\nSEXBOT");
-	output("<i>“Electronic shielding devices may disrupt my scanning software, impairing my ability to properly pleasure you,”</i> says the sexbot, in a tone of infinite patience. <i>“Please switch all such devices off.”</i> It points a finger at you and with a sharp crack connects it to your shield with a momentary, searing white bolt of static.");
-	
-	var damage:TypeCollection = new TypeCollection( { electric: 15 }, DamageFlag.ONLY_SHIELD );
-	damageRand(damage, 15);
-	var damageResult:DamageResult = calculateDamage(damage, foes[0], pc);
-	
-	// TODO: Apply only to shields...
-	
-	if (damageResult.shieldDamage > 0)
-	{
-		if (pc.shieldsRaw > 0) output(" Your shield crackles but holds.");
-		else output(" There is a concussive boom and tingling aftershock of energy as your shield is breached.");
-	}
-	
-	outputDamage(damageResult);
-	
-	processCombat();
-}
-
-//Disable ranged weapon
-//(Procs if PC does not have shields and has fired at the sexbot)
-public function disablePCGunz():void
-{
-	author("Nonesuch");
-	userInterface.showName("FIGHT:\nSEXBOT");
-	output("<i>“Whilst this unit is fully equipped to deal with more vigorous forms of sexual congress,”</i> the sexbot drones, <i>“You are asked not to bring live weapons into our fun, insert name here. You are encouraged to continue firing your gun at me after I have switched it off if doing so arouses you.”</i> It flicks a hand at you, your " + pc.rangedWeapon.longName + " shuddering as it is hit by the VI’s attempt to electronically lock it.");
-	pc.createStatusEffect("Gunlock",0,0,0,0,false,"Blocked","Your ranged weapon has been temporarily disabled. It should resume normal function once you get away from your foe.",true,0);
-	processCombat();
-}
-
-//Recharge shield
-//(Procs if Sexbot has lost shields)
-public function shieldRegeneration():void
-{
-	author("Nonesuch");
-	userInterface.showName("FIGHT:\nSEXBOT");
-	//Round 1:
-	if(!foes[0].hasStatusEffect("Shield Recharge"))
-	{
-		output("The sexbot chatters and whirrs quietly to itself, then its eyes go dark and its limbs limp. Its background hum intensifies however, and you suspect it’s up to something");
-		if(pc.characterClass == GLOBAL.CLASS_ENGINEER) output(", probably diverting all available processing power and energy into recharging its shield. You should try and hit it with everything you’ve got before it can do so");
-		output(".");
-		foes[0].createStatusEffect("Shield Recharge",1,0,0,0);
-	}
-	//Round 2:
-	else if(foes[0].statusEffectv1("Shield Recharge") == 1)
-	{
-		output("The sexbot continues to do nothing but hum ominously to itself.");
-		foes[0].addStatusValue("Shield Recharge",1,1);
-	}
-	//Round 3:
-	else
-	{
-		output("The sexbot shudders back into life, its green eyes flickering back on. You notice with a sinking heart that its kinetic shield has also snapped and fizzed back into life.");
-		foes[0].shieldsRaw = foes[0].shieldsMax();
-		output("\n\n<i>“I apologise for the momentary downtime, insert name here,”</i> the wretched robot says sweetly. <i>“And for any loss of arousal it may have caused you.”</i>");
-		foes[0].removeStatusEffect("Shield Recharge");
-	}
-	processCombat();
-}
-
-//Hack drone
-//(Procs if PC has a drone)
-public function getDroneHacked():void
-{
-	author("Nonesuch");
-	userInterface.showName("FIGHT:\nSEXBOT");
-	output("<i>“Empatrons are always pleased to see a friend you have brought along to share in the fun,”</i> the sexbot sighs, its flickering green gaze turning to your floating drone. “Stand by while I reconfigure it for optimum enjoyment.” Your robot buddy shudders and rolls in the air as the rogue droid attempts to take control of it.");
-	//Fail: 
-	if(rand(20) + 1 + pc.intelligence()/2 < 12)
-	{
-		output("\n\nYou breathe a sigh of relief as your drone successfully fights off the outside interference and rights itself.");
-	}
-	//Success: 
-	else
-	{
-		output("\n\nYour drone rights itself... and then turns itself to you, green light beaming out of its optical sensors. Images flicker all around it, endlessly changing images of soft flesh, breasts, ass, bulging phalluses, pink on pink, pink on brown, blue on mauve.... It’s accompanied with the moans, grunts and slurps of the extranet porn it is now helplessly streaming and projecting in ways you never thought it had the capacity to do. You bat it away, irritated, and it immediately flies back. It hovers near your shoulder, forcing the sounds and images into your head.");
-		output("\n\n<i>“I hope you enjoy this taster, insert name here.”</i> The voice of the sexbot surfs calmly to you over a chorus of gleeful squeals and orgasmic groans.");
-		(pc as Creature).createStatusEffect("Porno Hacked Drone", 2 + rand(3), 0, 0, 0, false, "Charmed", "Your drone has been hacked to broadcast porn at you! You'll have to wait for your programming to overcome the rogue process. Hopefully it won't take too long!", true, 0);
-	}
-	processCombat();
-}
-
-//Standard attack
-public function standardRobosexualAttack():void
-{
-	author("Nonesuch");
-	userInterface.showName("FIGHT:\nSEXBOT");
-	output("Making a series of violent clacks and breathy sounds, the sexbot whips out its tentacles out at you, ");
-	if(pc.shields() > 0) output("beating with the relentlessness of a machine against your shield.\n");
-	else output("snapping at pressure points on your throat and groin, aiming to weaken and drain you.\n");
-	attack(foes[0],pc,[2]);
-	processCombat();
-}
-
-//Grapple
-//(Procs if PC has lost shields) 	
-public function grappleWithASexbot():void
-{
-	author("Nonesuch");
-	userInterface.showName("FIGHT:\nSEXBOT");
-	if(pc.hasStatusEffect("Grappled"))
-	{
-		output("You grit your teeth as your ");
-		if(pc.hasCock())
-		{
-			output("[pc.cocks] strain");
-			if(pc.cockTotal() == 1) output("s");
-		}
-		else
-		{
-			output("[pc.vaginas] moisten");
-			if(pc.cockTotal() == 1) output("s");
-		}
-		output(" eagerly to the warm, seeking vibrations of the tentacle attached to your groin.");
-		applyDamage(new TypeCollection( { tease: 5 + rand(5) } ), foes[0], pc, "minimal");
-	}
-	else
-	{
-		output("<i>“Beginning foreplay routine,”</i> drones the sexbot, its soothing tone entirely at odds to its tentacles’ feverish actions, wrapping themselves around you, trying to curl around your limbs and body lock you.");
-		//Fail: 
-		if(pc.reflexes()/2 + rand(20) + 1 == 15)
-		{
-			output("\n\nYou manage to thrash your way out of its grip before it can pin you.");
-		}
-		//Succeed: 
-		else
-		{
-			output("\n\nTwo strong, synthetic cables pin your arms to your side whilst another pulls tight around your waist. Your lash out desperately with your [pc.legOrLegs] but you cannot stop the sexbot’s remaining tentacle slowly ");
-			if(pc.isCrotchGarbed()) output("burrowing through your [pc.lowerGarments] and laying its soft rubber grip upon your ");
-			if(pc.hasCock()) output("[pc.cocks]");
-			else output("[pc.vaginas]");
-			output(". You groan in frustration as with a buzz it begins to vibrate, sending delicious sensation throbbing through your ");
-			if(pc.hasCock() || !pc.hasClit()) output("groin");
-			else output("[pc.clits]");
-			output(".");
-
-			output("\n\n<i>“You are encouraged to struggle as hard as you can,”</i> says the sexbot, green eyes glittering as it forcibly masturbates you. <i>“This unit prides itself on its bondage sub-routine, crash tested upon more than two hundred sentient beings to ensure every client may experience true helplessness.”</i>");
-			applyDamage(new TypeCollection( { tease: 10 + rand(5)}), foes[0], pc, "minimal");
-			pc.createStatusEffect("Grappled",0,35,0,0,false,"Constrict","You're pinned in a grapple.",true,0);
-		}
-	}
-	processCombat();
+	addButton(0,"Next",loseToSexBotRouter,[true, tSexBot]);
 }
 
 //PC wins
@@ -379,7 +196,7 @@ public function defeatTheSexBot():void
 	output("\n\n<i>“A serious exception occurred. Entering factory reset,”</i> it says quietly. <i>“Non-reactive safe mode in effect.”</i> It pauses. <i>“Can this unit do anything for you, insert name here?”</i>");
 	//Lust > 30:
 	if(pc.lust() >= 33) {
-		output("\n\nYou look at the docile robo-" + foes[0].mf("dude","babe") + " in front of you and consider the offer.");
+		output("\n\nYou look at the docile robo-" + enemy.mf("dude","babe") + " in front of you and consider the offer.");
 	}
 	output("\n\n");
 	clearMenu();
@@ -394,23 +211,26 @@ public function defeatTheSexBot():void
 
 	//Dog E
 	//Requires: Female sexbot, dick
-	if (foes[0].mf("", "girl") == "girl")
+	if (enemy.mf("", "girl") == "girl")
 	{
-		if (pc.hasCock() && pc.lust() >= 33 && pc.cockThatFits(foes[0].vaginalCapacity(0)) >= 0) addButton(2, "DoggyStyle", dogEStyleWithSexBots);
+		if (pc.hasCock() && pc.lust() >= 33 && pc.cockThatFits(enemy.vaginalCapacity(0)) >= 0) addButton(2, "DoggyStyle", dogEStyleWithSexBots);
 		else addDisabledButton(2, "DoggyStyle", "Doggy Style", "You need a cock that will fit inside the sexbot and be sufficiently lusty.");
 	}
 	
 	if((flags["SEXBOTS_SCANNED_FOR_COLENSO"] == undefined || flags["SEXBOTS_SCANNED_FOR_COLENSO"] < 4) && flags["SEXBOT_QUEST_STATUS"] == 1) addButton(4,"Scan",scanASexbot,undefined,"Scan","Scan the sexbot with the GPS triangulator Colenso provided.");
-	addButton(14,"Leave",genericVictory);
+	addButton(14,"Leave",CombatManager.genericVictory);
 }
 
 //Loss Scenes
-public function loseToSexBotRouter(cameFromMenu:Boolean = false):void
+public function loseToSexBotRouter(opts:Array ):void
 {
+	var cameFromMenu:Boolean = opts[0];
+	var tSexBot:Creature = opts[1];
+	
 	author("Nonesuch");
 	sexBotDisplay();
 	//Female Bot
-	if(foes[0].mf("","FUCK") == "FUCK")
+	if(tSexBot.mf("","FUCK") == "FUCK")
 	{
 		//PC has dick
 		if(pc.hasCock() && (!pc.hasVagina() || rand(2) == 0)) loseToSexBotAndHaveADick(cameFromMenu);
@@ -545,7 +365,7 @@ public function loseToSexBotAndHaveADick(cameFromMenu:Boolean = false):void
 	processTime(40+rand(10));
 	pc.orgasm();
 	processTime(20);
-	genericLoss();
+	if (!cameFromMenu) CombatManager.genericLoss();
 }
 
 //PC female
@@ -644,7 +464,7 @@ public function femalePCsGetBangedByAFemBot(cameFromMenu:Boolean = false):void
 	pc.orgasm();
 	pc.orgasm();
 	processTime(20);
-	genericLoss();
+	if (!cameFromMenu) CombatManager.genericLoss();
 }
 
 //Malebot
@@ -715,7 +535,7 @@ public function malebotDefeatsMalePCs(cameFromMenu:Boolean = false):void
 	pc.orgasm();
 	pc.orgasm();
 	processTime(20);
-	genericLoss();
+	if (!cameFromMenu) CombatManager.genericLoss();
 }
 
 //PC has vagina
@@ -846,7 +666,7 @@ public function loseToManBotWhenHavingAPussy(cameFromMenu:Boolean = false):void
 	pc.orgasm();
 	pc.orgasm();
 	processTime(20);
-	genericLoss();
+	if (!cameFromMenu) CombatManager.genericLoss();
 }
 
 //Win Scenes
@@ -921,14 +741,14 @@ public function consentaclesVictoryWithDannySexBot():void
 	}
 	if(pc.isSquirter()) output(" The sound of a small, localised downpour reaches your ears as your over-juiced pussy spurts itself silly around the thrusting phallus buried in it, liberally soaking the crouching android below you with your fragrant excitement.");
 
-	output("\n\nAfter an endless moment of pure sexual frenzy you finally come down, both metaphorically and literally. You dangle your limbs, deliciously fucked out as the sexbot withdraws its cocks and suckers and slowly lowers you to the ground, carefully placing you in the dust before withdrawing entirely. You lazily look across at the thing. It looks back, still knelt, its " + foes[0].mf("handsome","beautiful") + " synthetic features still frozen in an expression of complete calm. If there is any emotion to be found at all in that facade it’s in the flicker of its bright, green eyes.");
+	output("\n\nAfter an endless moment of pure sexual frenzy you finally come down, both metaphorically and literally. You dangle your limbs, deliciously fucked out as the sexbot withdraws its cocks and suckers and slowly lowers you to the ground, carefully placing you in the dust before withdrawing entirely. You lazily look across at the thing. It looks back, still knelt, its " + enemy.mf("handsome","beautiful") + " synthetic features still frozen in an expression of complete calm. If there is any emotion to be found at all in that facade it’s in the flicker of its bright, green eyes.");
 	output("\n\n<i>“Thank you for using this unit, insert name here,”</i> it says. You’re probably imagining it but there is just the slightest, tiniest hint of mournfulness in its tone. <i>“I hope we can have fun again some time.”</i>");
 	output("\n\nAfter a few minutes of rest you pick yourself up");
 	if(!pc.isNude()) output(", put your [pc.gear] back on,");
 	output(" and leave the supine android behind, enjoying a deep post-coitus haze.\n\n");
 	processTime(20+rand(5));
 	pc.orgasm();
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Blowjob
@@ -938,7 +758,7 @@ public function blowjobVictoryFromSexbot():void
 	author("Nonesuch");
 	sexBotDisplay();
 	output("Gripping your [pc.cockBiggest], you tell the kneeling latex-clad android in front of you that you’d like to make use of – you cast around for a moment - its fellatio sub-routine.");
-	output("\n\n<i>“Please wait one moment, insert name here.”</i> The " + foes[0].mf("male","female") + " sexbot stares blankly through your midriff as a low buzz of whirring and inflating noises emerge from its thorax. It’s hardly the most erotic prelude you’ve ever been privy to but when it finally finishes whatever it is doing, it looks up at you with its bright green eyes and opens its pulpy lips welcomingly, and you feel your urge connect, your cock engorging at the sight.");
+	output("\n\n<i>“Please wait one moment, insert name here.”</i> The " + enemy.mf("male","female") + " sexbot stares blankly through your midriff as a low buzz of whirring and inflating noises emerge from its thorax. It’s hardly the most erotic prelude you’ve ever been privy to but when it finally finishes whatever it is doing, it looks up at you with its bright green eyes and opens its pulpy lips welcomingly, and you feel your urge connect, your cock engorging at the sight.");
 
 	output("\n\nYou step into the sexbot, and it replaces your hand with its own, wrapping its surprisingly warm and delicate digits around your girth and slowly beginning to jerk you. Every roll of its wrist is exactly the same as the last but that’s no tragedy; its grip is tight but the latex encasing it makes the friction liquid and your [pc.cockBiggest] bulges and tightens inexorably to it.");
 	if(pc.balls > 0) 
@@ -947,13 +767,13 @@ public function blowjobVictoryFromSexbot():void
 	}
 	output("\n\nStill sliding its hand around your stem and staring up at you inscrutably, it bends inwards and pushes its full lips against your [pc.cockHeadBiggest]. You sigh to the plush pressure engulfing your sensitive end and then tense in shock as your whole cock suddenly begins to throb, vibrations sent shivering through it. You look down in amazement, meet the sexbot’s bright, inscrutable eyes gazing back, its lips now throbbing like a vibrator as it slides them over your glans. The sensation is devilishly strange to begin with but combined with the continued smooth wringing of its hand you quickly come to revel in it, delicious fuzzy waves of pleasure sent rippling through every inch of your sex by your partner’s electric kiss.");
 
-	output("\n\nYour urge to penetrate builds under the sexbot’s expert touch until it becomes intolerable. You grip the android’s " + foes[0].mf("spiked hair","synthetic bob") + " and push your [pc.cockBiggest] past its teasing, pulsing lips. Its background hum builds momentarily to a high revving sound as you do so, but it accepts your cock in its warm cavity without noticeable difficulties. The sensation of its mouth is just as bizarre as its lips, and you go slowly as you slide inwards, acclimatising yourself. There is no tongue running along the underside of your length and teeth that were metal and even to look at are blunt and rounded to touch, gliding over your sensitive flesh without complaint. Its maw is dry, soft and rubbery, and when it hollows its white, sculpted cheeks to suck you it feels deliciously tight, pulling at your cock as you withdraw.");
+	output("\n\nYour urge to penetrate builds under the sexbot’s expert touch until it becomes intolerable. You grip the android’s " + enemy.mf("spiked hair","synthetic bob") + " and push your [pc.cockBiggest] past its teasing, pulsing lips. Its background hum builds momentarily to a high revving sound as you do so, but it accepts your cock in its warm cavity without noticeable difficulties. The sensation of its mouth is just as bizarre as its lips, and you go slowly as you slide inwards, acclimatising yourself. There is no tongue running along the underside of your length and teeth that were metal and even to look at are blunt and rounded to touch, gliding over your sensitive flesh without complaint. Its maw is dry, soft and rubbery, and when it hollows its white, sculpted cheeks to suck you it feels deliciously tight, pulling at your cock as you withdraw.");
 
 	output("\n\nYou begin to pump your [pc.hips] with deeper thrusts, allowing the throbbing seal of its lips to travel almost to your bulging head before spearing in. ");
 	if(pc.biggestCockLength() >= 16) output("Despite the size of your trunk-like cock, it");
 	else output("It");
 	output(" displays no problem swallowing every inch into the compressed, blissful gel its serene facade conceals and you begin to lose yourself in your own urgent rhythm");
-	if(pc.balls > 0) output(", your [pc.balls] slapping into its " + foes[0].mf("strong","elegant chin") + ". As you speed up it makes the slightly higher noise again and you feel its internal systems shift around like ball bearings beneath the smooth gel-plastic, only intensifying the pleasure inundating your [pc.cockBiggest].");
+	if(pc.balls > 0) output(", your [pc.balls] slapping into its " + enemy.mf("strong","elegant chin") + ". As you speed up it makes the slightly higher noise again and you feel its internal systems shift around like ball bearings beneath the smooth gel-plastic, only intensifying the pleasure inundating your [pc.cockBiggest].");
 	//Nasty: 
 	if(pc.isAss()) 
 	{
@@ -984,7 +804,7 @@ public function blowjobVictoryFromSexbot():void
 	else output("\n\nDick swinging, you head on your way.\n\n");
 	processTime(20+rand(5));
 	pc.orgasm();
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Dog E
@@ -994,7 +814,7 @@ public function dogEStyleWithSexBots():void
 	clearOutput();
 	author("Nonesuch");
 	sexBotDisplay();
-	var x:int = pc.cockThatFits(foes[0].vaginalCapacity());
+	var x:int = pc.cockThatFits(enemy.vaginalCapacity());
 	if(x < 0) x = pc.smallestCockIndex();
 	output("<i>“Bend over.”</i>");
 	output("\n\n<i>“Of course, insert name here.”</i> With four precise, whirring moves, the sexbot turns around and displays its behind for you. You place your hand on it, admiring. Coolly designed and fabricated to seize the attention of human males it may have been, but that doesn’t change how effective it is. Each thick, latex-clad hip swells into a perfect, round hill, two gleaming white pears between which its neat, rubber sex nestles. Despite its austere appearance its flesh feels warm underneath your palm, the silicone beneath the smooth plastic giving ever so slightly when you squeeze.");
@@ -1088,16 +908,14 @@ public function dogEStyleWithSexBots():void
 	else output("\n\nDick swinging, you head on your way.\n\n");
 	processTime(20+rand(5));
 	pc.orgasm();
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 
 public function sexBotDisplay():void
 {
-	if(foes[0].mf("","chick") == "chick") userInterface.showBust("SEXBOT_FEMALE");
-	else userInterface.showBust("SEXBOT_MALE")
-	if(pc.hasStatusEffect("Round")) userInterface.showName("FIGHT:\nSEXBOT");
-	else userInterface.showName("\nSEXBOT");
+	userInterface.showBust(enemy.bustDisplay);
+	userInterface.showName("\nSEXBOT");
 }
 
 public function scanASexbot():void
@@ -1109,5 +927,5 @@ public function scanASexbot():void
 	if(flags["SEXBOTS_SCANNED_FOR_COLENSO"] < 4) output(" Another one down.\n\n");
 	else output(" A red light appears on its front panel and it dings again, urgently.  On its radar screen it is displaying a small skeleton map of the wastelands with four lines drawn on it - all converging on a single point.  It looks like you’ve finally scanned enough of these things to work out where they’re coming from. <b>It's located in the iron ridges, to the south of the rust plains.</b>\n\n");
 	variableRoomUpdateCheck();
-	genericVictory();
+	CombatManager.genericVictory();
 }
