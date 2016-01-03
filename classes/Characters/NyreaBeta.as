@@ -232,7 +232,7 @@
 				attacks.push(nyreaMilkRub);
 			}
 
-			attacks[rand(attacks.length)]();
+			attacks[rand(attacks.length)](target);
 		}
 		
 		public function nyreaMilkRub(target:Creature):void

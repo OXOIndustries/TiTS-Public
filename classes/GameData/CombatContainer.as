@@ -833,7 +833,7 @@ package classes.GameData
 					output("\n<b>You are grappled and unable to fight normally!</b>");
 				}
 				
-				addButton(0, "Struggle", doStruggleRecover); // 9999 - merge naleen coil struggle && mimbranesmother
+				addButton(0, "Struggle", doStruggleRecover,pc); // 9999 - merge naleen coil struggle && mimbranesmother
 				
 				if (pc.hasPerk("Static Burst") && (!hasEnemyOfClass(NyreaAlpha) && !hasEnemyOfClass(NyreaBeta)))
 				{

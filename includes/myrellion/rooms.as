@@ -1736,7 +1736,7 @@ public function initializeMyrellionRooms():void
 	rooms["1P16"].addFlag(GLOBAL.HAZARD);
 
 	rooms["1N16"] = new RoomClass(this);
-	rooms["1N16"].roomName = "\n";
+	rooms["1N16"].roomName = "OLD\nTRENCHES";
 	rooms["1N16"].description = "The southern tip of the Federation trenches begins here, with bunkers and machineguns pointed dead south along the long, open passage. While the trenches have been abandoned now, you can see plenty of evidence of long occupation: food cans and ammunition crates lying about in the second line, intermixed with spotter's posts and the closest of the cannon emplacements, surrounded by thin concrete walls.";
 	rooms["1N16"].planet = "PLANET: MYRELLION";
 	rooms["1N16"].system = "SYSTEM: SINDATHU";
