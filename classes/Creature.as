@@ -1835,6 +1835,9 @@ package classes {
 				case "oneClit":
 					buffer = oneClit();
 					break;
+				case "oneClitPerVagina":
+					buffer = oneClitPerVagina(arg2);
+					break;
 				case "clits":
 					buffer = clitsDescript();
 					break;
@@ -6007,6 +6010,35 @@ package classes {
 			}
 			return Math.round(temp * 100) / 100;
 		}
+		public function nippleCockVolume(effective: Boolean = true): Number {
+			return dickNippleVolume(effective);
+		}
+		public function dickNippleVolume(effective: Boolean = true): Number {
+			//Get length and width.
+			var l: Number = nippleLength(0) * dickNippleMultiplier;
+			var w: Number;
+			if (l <= 10) w = l / 6;
+			else if (l <= 30) w = (l - 10) / 10 + 10 / 6;
+			else w = 20 / 10 + 10 / 6 + (l - 30) / 20;
+			//Convert Width to radius
+			var radius:Number = w/2;
+
+			//Abstract size as a cylinder + half sphere for the tip.
+			var cylinder: Number = Math.PI * radius * radius * (l - w);
+			var tip: Number = (4 / 3 * Math.PI * radius * radius * radius) / 2;
+			//If blunt, tip is converted to cylinder as well.
+			if (tailGenitalArg == GLOBAL.TYPE_EQUINE) tip = (Math.PI * radius * radius * w);
+			//If flared, tip is multiplied by 1.3.
+			if (tailGenitalArg == GLOBAL.TYPE_EQUINE) tip = tip * 1.3;
+			//If tapered, reduce total by a factor of 75%
+			if (tailGenitalArg == GLOBAL.TYPE_CANINE) {
+				tip = tip * .75;
+				cylinder = cylinder * .75;
+			}
+			var temp: Number = Math.round((tip + cylinder) * 100) / 100;
+			return Math.round(temp * 100) / 100;
+		}
+
 		public function biggestCockLength(): Number {
 			if (cocks.length == 0) return 0;
 			return cocks[biggestCockIndex()].cLength();
@@ -9556,6 +9588,14 @@ package classes {
 			if (totalClits() > 1) return "each of your " + plural(clitDescript());
 			else return "your " + clitDescript();
 		}
+		public function oneClitPerVagina(arg:int = 0):String
+		{
+			if(arg >= vaginas.length) return "ERROR - OUT OF BOUNDS CHECK FOR ONECLITPERVAGINA()";
+			else if(arg < 0) return "ERROR - OUT OF BOUNDS CHECK FOR ONECLITPERVAGINA()";
+			else if(vaginas[arg].clits == 1) return "your " + clitDescript();
+			else return "one of your " + plural(clitDescript());
+			return "ERROR";
+		}
 		public function oneClit(): String {
 			if (totalClits() > 1) return "one of your " + plural(clitDescript());
 			else return "your " + clitDescript();
@@ -11415,6 +11455,10 @@ package classes {
 		public function tailGenitalColorDesc(arg:int = 0):String
 		{
 			return tailGenitalColor;
+		}
+		public function hasHardLightEquipped():Boolean
+		{
+			return (lowerUndergarment.hardLightEquipped);
 		}
 		// Always picks the main anatomy--no need to complicate it!
 		public function cockOrStrapon(forceAdjective: int = 0): String {

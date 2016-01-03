@@ -1237,7 +1237,19 @@ public function variableRoomUpdateCheck():void
 	
 	
 	/* MYRELLION */
-	
+	// Yarasta Shit
+	if(flags["MET_YARASTA"] != undefined)
+	{
+		//In classroom? 737
+		if((hours >= 6 && hours < 12) || (hours >= 13 && hours < 18) || hours == 19 || hours == 20) rooms["737"].addFlag(GLOBAL.NPC);
+		else rooms["737"].removeFlag(GLOBAL.NPC);
+		//In Mush park 736
+		if(hours == 12 || hours == 18) rooms["736"].addFlag(GLOBAL.NPC);
+		else rooms["736"].removeFlag(GLOBAL.NPC);
+		//In lobby (735)
+		if(hours == 21) rooms["735"].addFlag(GLOBAL.NPC);
+		else rooms["735"].removeFlag(GLOBAL.NPC);
+	}
 	// Steph Myrellion shit
 	if (flags["STEPH_WATCHED"] == undefined)
 	{
