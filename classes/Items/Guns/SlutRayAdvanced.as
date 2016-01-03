@@ -47,6 +47,8 @@ package classes.Items.Guns
 			isUsable = false; // 9999 Temporarily unusable
 			
 			version = _latestVersion;
+			
+			attackImplementor = CombatAttacks.SlutRayAttackImpl;
 		}
 	}
 }
