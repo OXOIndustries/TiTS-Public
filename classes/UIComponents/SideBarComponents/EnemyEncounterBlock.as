@@ -116,6 +116,7 @@ package classes.UIComponents.SideBarComponents
 			}
 			else if (char.hasVagina()) genderText = "Female";
 			else genderText = "???";
+			_sexDisplay.updateBar(genderText);
 			
 			_statusEffects.statusDisplay.updateDisplay(char.statusEffects);
 		}

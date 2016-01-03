@@ -367,7 +367,7 @@ package classes.Characters
 		
 		private function mimbraneSkinContact(target:Creature):void
 		{
-			output("\nIt’s hard to keep track of the Mimbrane as it dashes through the air around you. You finally catch sight of the parasite just as it rears up in place above you, narrowing its form. It’s dive bombing straight towards you!");
+			output("It’s hard to keep track of the Mimbrane as it dashes through the air around you. You finally catch sight of the parasite just as it rears up in place above you, narrowing its form. It’s dive bombing straight towards you!");
 
 			//{standard miss/block text} 
 			if (combatMiss(this, target))

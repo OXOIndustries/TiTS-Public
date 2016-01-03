@@ -494,9 +494,8 @@
 			if (!inCombat()) 
 			{
 				this.userInterface.showBust("none");
-				if (pc != null && pc.short != "Uncreated" && pc.short != "")
+				if (pc != null && pc.short != "Uncreated" && pc.short != "uncreated" && pc.short != "")
 				{
-					userInterface.showPlayerParty([pc]);
 					updatePCStats();
 					updateDisplays();
 				}
@@ -721,7 +720,6 @@
 			
 			if (userInterface.PressButton(arg, inCombat()))
 			{
-				if (!inCombat()) userInterface.showPlayerParty([pc]); // Combat will handle this correctly
 				updateDisplays();
 				updatePCStats();
 			}
@@ -732,9 +730,16 @@
 		
 		public function updateDisplays():void
 		{
-			
-			userInterface.time = timeAsText(hours, minutes);
-			userInterface.days = String(days);
+			if (pc.hasStatusEffect("In Creation"))
+			{
+				userInterface.time = "--:--";
+				userInterface.days = "-----";
+			}
+			else
+			{
+				userInterface.time = timeAsText(hours, minutes);
+				userInterface.days = String(days);
+			}
 			userInterface.showSceneTag();
 		}
 

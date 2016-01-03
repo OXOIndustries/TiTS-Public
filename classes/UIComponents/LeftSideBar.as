@@ -1,5 +1,6 @@
 package classes.UIComponents 
 {
+	import classes.Characters.Celise;
 	import classes.UIComponents.MiniMap.MiniMap;
 	import classes.UIComponents.SideBarComponents.CompressedLocationHeader;
 	import classes.UIComponents.SideBarComponents.EnemyPartyBlock;
@@ -43,8 +44,8 @@ package classes.UIComponents
 		
 		public function get miniMap():MiniMap { return _miniMapBlock.miniMap; }
 		
-		public function get timeText():TextField { return _genInfoBlock.time; }
-		public function get daysText():TextField { return _genInfoBlock.days; }
+		public function set timeText(v:String):void { _genInfoBlock.time = v; }
+		public function set daysText(v:String):void { _genInfoBlock.days = v; }
 		public function get sceneBy():TextField { return _genInfoBlock.sceneBy; }
 		
 		public function get menuButton():SquareButton { return _menuButtonBlock.menuButton; }
@@ -180,9 +181,16 @@ package classes.UIComponents
 		{
 			if (chars.length == 1)
 			{
+				if (chars[0] is Celise)
+				{
+					_genInfoBlock.visible = false;
+				}
+				else
+				{
+					_genInfoBlock.visible = true;
+				}
 				_enemyPartyBlock.visible = false;
 				_enemyEncounterBlock.visible = true;
-				_genInfoBlock.visible = true;
 				_miniMapBlock.visible = false;
 				_compressedLocationHeader.visible = false;
 				_locationHeader.visible = true;

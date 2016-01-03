@@ -1,4 +1,5 @@
 import classes.Characters.PlayerCharacter;
+import classes.Creature;
 import classes.GameData.CombatManager;
 import flash.events.Event;
 import classes.GameData.MailManager;
@@ -1163,11 +1164,12 @@ public function genderConfirm(pref:String):void
 
 public function chooseClass():void {
 	clearOutput();
-	showPCStats();
 	pc.maxOutHP();
 	pc.maxOutEnergy();
-	updatePCStats();
-	setLocation("SELECT\nA CLASS","PLANET: TERRA","SYSTEM: SOL");
+	setLocation("SELECT\nA CLASS", "PLANET: TERRA", "SYSTEM: SOL");
+		
+	// Modify In Creation to know we now DO want to show stats
+	(pc as Creature).addStatusValue("In Creation", 1, 1);
 	
 	//OLD
 	/*
@@ -1187,7 +1189,6 @@ public function chooseClass():void {
 	addButton(1,"Mercenary",classConfirm,GLOBAL.CLASS_MERCENARY);
 	addButton(2,"TechSpecialist",classConfirm,GLOBAL.CLASS_ENGINEER);
 	addButton(14,"Back",chooseAlignment);
-	//addButton(14,"Back",chooseGenderIdentity);
 }
 public function classConfirm(arg:int = 0):void {
 	clearOutput();
@@ -1613,6 +1614,7 @@ public function ohShitGameStarts():void {
 	hours = 6;
 	days = 1;
 	userInterface.showTime();
+	updateDisplays();
 	//[Next] - to station screens!
 	clearMenu();
 	currentLocation = "TAVROS HANGAR";

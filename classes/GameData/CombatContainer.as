@@ -791,6 +791,7 @@ package classes.GameData
 		 */
 		private function generateCombatMenu():void
 		{
+			clearMenu();
 			if (hasEnemyOfClass(Celise))
 			{
 				if (roundCounter == 1) addButton(0, "Attack", selectSimpleAttack, CombatAttacks.MeleeAttack);
@@ -833,7 +834,7 @@ package classes.GameData
 					output("\n<b>You are grappled and unable to fight normally!</b>");
 				}
 				
-				addButton(0, "Struggle", doStruggleRecover,pc); // 9999 - merge naleen coil struggle && mimbranesmother
+				addButton(0, "Struggle", doStruggleRecover, pc); // 9999 - merge naleen coil struggle && mimbranesmother
 				
 				if (pc.hasPerk("Static Burst") && (!hasEnemyOfClass(NyreaAlpha) && !hasEnemyOfClass(NyreaBeta)))
 				{
@@ -1164,10 +1165,7 @@ package classes.GameData
 		
 		private function doStruggleRecover(target:Creature):void
 		{
-			// TODO Tweak the shit out of this probably for other NPCs to be able to call into it
-			
-			if (!target.hasStatusEffect("Grappled")) return;
-			
+			// TODO Tweak the shit out of this probably for other NPCs to be able to call into it			
 			if (target is PlayerCharacter) clearOutput();
 			else if (target is Anno)
 			{
@@ -1302,7 +1300,6 @@ package classes.GameData
 					target.addStatusValue("Grappled",1,1);
 				}
 			}
-			output("\n");
 			if (target is PlayerCharacter) processCombat();
 		}
 		
@@ -3463,6 +3460,12 @@ package classes.GameData
 		
 		public function getCombatPrizes():void
 		{
+			// Abandon ship for Celise!
+			if (_hostiles.length == 1 && _hostiles[0] is Celise)
+			{
+				return;
+			}
+			
 			var loot:Array = [];
 			var sumXP:int = 0;
 			var sumCredits:int = 0;
