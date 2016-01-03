@@ -372,7 +372,7 @@ package classes.GameData
 					else 
 					{
 						target.removeStatusEffect("Burn");
-						output("<b> refusing to go out until they've done their foul work.");
+						output(" refusing to go out until they've done their foul work.");
 					}
 					output("</b>");
 				}
@@ -827,7 +827,7 @@ package classes.GameData
 				}
 				else if (pc.hasStatusEffect("Mimbrane Smother"))
 				{
-					output("\n\n<b>You are being smothered by a Mimbrane!</b>");
+					output("\n<b>You are being smothered by a Mimbrane!</b>");
 				}
 				else
 				{

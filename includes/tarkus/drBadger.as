@@ -1,6 +1,6 @@
 ﻿public function showDrBadger(nude:Boolean = false):void
 {
-	showName("DR.\NBADGER");
+	showName("DR.\nBADGER");
 	if(nude) showBust("DRBADGER_NUDE");
 	else showBust("DRBADGER");
 }

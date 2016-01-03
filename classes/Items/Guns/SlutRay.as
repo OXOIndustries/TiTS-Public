@@ -4,6 +4,7 @@ package classes.Items.Guns
 	import classes.GLOBAL;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
+	import classes.GameData.CombatAttacks;
 	
 	public class SlutRay extends ItemSlotClass
 	{
@@ -51,6 +52,8 @@ package classes.Items.Guns
 			this.fortification = 0;
 
 			this.version = _latestVersion;
+			
+			attackImplementor = CombatAttacks.SlutRayAttackImpl;
 		}
 	}
 }

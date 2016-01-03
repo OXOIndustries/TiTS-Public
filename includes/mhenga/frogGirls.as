@@ -268,7 +268,7 @@ public function hasCockLossForForgGirls():void
 		output("\n\nRopes of jizz stream through her cervix and into her hungry womb ");
 		if(pc.cockTotal() > 1) output(", [pc.eachCock] not wrapped in the blissfully tight warmth of the frog girls pussy blowing their own loads all over her legs and the surrounding jungle in tandem");
 		output(". You moan with the satisfaction of long awaited release, and the frog girl reciprocates, shuddering with primordial bliss as she’s filled to the brim with your fluid. After the last of your juice has been expelled into her, she weakly pulls herself from your [pc.cock " + x + "]. She idly rubs her full belly and kisses your still half-erect dick.");
-		output("\n\n<i>“Thats... good babymaker. Enough for now, I’m sure theres plenty of them in here now,”</i> she states, a pleased smile on her face. The " + enemy.skinTone + " girl scoots back to the water, kicking away on her back and leaving you to recover yourself.");
+		output("\n\n<i>“That’s... good babymaker. Enough for now, I’m sure there’s plenty of them in here now,”</i> she states, a pleased smile on her face. The " + enemy.skinTone + " girl scoots back to the water, kicking away on her back and leaving you to recover yourself.");
 	}
 	else
 	{

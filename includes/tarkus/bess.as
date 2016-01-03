@@ -9683,7 +9683,7 @@ public function bessEvent28PartII():void
 		output("\n\nYou seize the chance to pull out your [pc.rangedWeapon] amongst all the confusion and " + pc.rangedWeapon.attackVerb + " the ausar woman right in the skull. Her head");
 		if (pc.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_LUST_WEAPON))
 		{
-			if (pc.rangedWeapon.shortName == "SlutRay") output(" is instantly blasted with a deluge lustful thoughts.");
+			if (pc.rangedWeapon.shortName == "SlutRay" || pc.rangedWeapon.shortName == "A.SlutRay") output(" is instantly blasted with a deluge lustful thoughts.");
 			else if (pc.rangedWeapon.shortName == "Goovolver") output(" is engulfed by a lust-filled blob of brightly-colored goo.");
 			else output(" is instantly aroused by lustful feelings.");
 			output(" Ignoring her hostage, she immediately strips down and masturbates vigorously");
@@ -9700,7 +9700,7 @@ public function bessEvent28PartII():void
 		output("\n\nYou seize the chance to pull out your [pc.rangedWeapon] amongst all the confusion and " + pc.rangedWeapon.attackVerb + " the ausar woman - you miss her head but hit her right in the shoulder.");
 		if (pc.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_LUST_WEAPON))
 		{
-			if (pc.rangedWeapon.shortName == "SlutRay") output(" Interrupted by a flood of lusty thoughts");
+			if (pc.rangedWeapon.shortName == "SlutRay" || pc.rangedWeapon.shortName == "A.SlutRay") output(" Interrupted by a flood of lusty thoughts");
 			else if (pc.rangedWeapon.shortName == "Goovolver") output(" Quickly being engulfed by a lust-filled blob of brightly-colored goo");
 			else output(" Interrupted by a flood of lustful sensations");
 			output(" and unable to keep her hands from wondering towards her crotch, she");
@@ -11871,7 +11871,10 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 		}
 		else
 		{
-			output("\n\nYou can feel [bess.hisHer] [bess.knot] swelling up inside your snatch, your inner walls forced to stretch to accommodate it. As you tug on it, it refuses to budge - you’ve been knotted with [bess.hisHer] [bess.cockNoun]. With [bess.hisHer] [bess.knot] swollen in your");
+			output("\n\nYou can feel [bess.hisHer] [bess.knot] swelling up inside your");
+			if (bTargetVag) output(" snatch");
+			else output(" butt");
+			output(", your inner walls forced to stretch to accommodate it. As you tug on it, it refuses to budge - you’ve been knotted with [bess.hisHer] [bess.cockNoun]. With [bess.hisHer] [bess.knot] swollen in your");
 			if (bTargetVag) output(" vagina");
 			else output(" rectum");
 			output(", there’s absolutely nothing you can do about it.");
@@ -11896,7 +11899,10 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 		if (pc.hasTail()) output(" and raise your [pc.tail]");
 		output(", trembling as [bess.hisHer] [bess.cockHead] rubs and presses against that perfect pleasure point!");
 		
-		output("\n\nIn a dizzying explosion of feeling, you shiver and shake, thoroughly creaming yourself around [bess.hisHer] cock.");
+		output("\n\nIn a dizzying explosion of feeling, you shiver and shake, thoroughly");
+		if (bTargetVag) output(" creaming yourself");
+		else output(" convulsing");
+		output(" around [bess.hisHer] cock.");
 		if (pc.hasVagina())
 		{
 			if (pc.isSquirter()) output(" Squirts of [pc.girlCum] lewdly shoot from your sloppy snatch");
@@ -12133,7 +12139,10 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 		if (pc.hasTail()) output(" and raise your [pc.tail]");
 		output(", trembling as [bess.hisHer] [bess.cockHead] rubs and presses against that perfect pleasure point!");
 		
-		output("\n\nIn a dizzying explosion of feeling, you shiver and shake, thoroughly creaming yourself around [bess.hisHer] cock.");
+		output("\n\nIn a dizzying explosion of feeling, you shiver and shake, thoroughly");
+		if (bTargetVag) output(" creaming yourself");
+		else output(" convulsing");
+		output(" around [bess.hisHer] cock.");
 		if (pc.hasVagina())
 		{
 			if (pc.isSquirter()) output(" Squirts of [pc.girlCum] lewdly shoot from your sloppy snatch");
