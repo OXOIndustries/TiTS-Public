@@ -37,7 +37,7 @@ package classes.DataManager
 			{
 				for (var i:int = 0; i < dEffects.length; i++)
 				{
-					if (dEffects[i].storageName == "Trip") continue;
+					if (dEffects[i].storageName == "Tripped") continue;
 					if (dEffects[i].storageName == "Renvra Eggs Messages Available" && !hasRenvraEggPregnancy) continue;
 					if (!hasRenvraFullPregnancy && InCollection(dEffects[i].storageName, "Revnra Full Pregnancy Message 2", "Revnra Full Pregnancy Bellyrubs", "Revnra Full Pregnancy Message 3", "Revnra Full Pregnancy Message 4", "Revnra Milky Titties Go", "Revnra Full Pregnancy Message 5", "Revnra Full Pregnancy Almost Due", "Renvra Full Pregnancy Bellyrubs")) continue;
 					

@@ -185,7 +185,7 @@
 				choices[choices.length] = tamwolfBiteGogogogogogo;
 				choices[choices.length] = tamwolfBiteGogogogogogo;
 				choices[choices.length] = tamwolfBiteGogogogogogo;
-				if(!target.hasStatusEffect("Blind")) choices[choices.length] = tamwolfOilslick;
+				if(!target.hasStatusEffect("Blinded")) choices[choices.length] = tamwolfOilslick;
 			}
 			choices[rand(choices.length)](target);
 		}
@@ -199,7 +199,7 @@
 			else
 			{
 				output("\n\nYou try and cover your eyes, but too late! A streak of machine oil jets out of the drone dog, splattering across your face! <b>You are blinded!</b>");
-				target.createStatusEffect("Blind",rand(3)+1,0,0,0,false,"Blind","You're blinded and cannot see! Accuracy is reduced, and ranged attacks are far more likely to miss.",true,0);
+				target.createStatusEffect("Blinded",rand(3)+1,0,0,0,false,"Blind","You're blinded and cannot see! Accuracy is reduced, and ranged attacks are far more likely to miss.",true,0);
 			}
 		}
 		

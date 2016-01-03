@@ -281,7 +281,7 @@
 				output(" It misses!");
 			}
 			//Blind miss
-			else if(hasStatusEffect("Blind") && rand(2) == 0) output(" It misses due to its blindness!");
+			else if(hasStatusEffect("Blinded") && rand(2) == 0) output(" It misses due to its blindness!");
 			//{hit} 
 			else
 			{
@@ -305,7 +305,7 @@
 					if (!target.hasStatusEffect("Stunned") && target.physique() + rand(20) + 1 < 15)
 					{
 						output("<b> The hit was hard enough to stun you!</b>");
-						target.createStatusEffect("Stunned",1,0,0,0,false,"Stun","You are stunned and cannot move until you recover!",true,0);
+						target.createStatusEffect("Stunned",1,0,0,0,false,"Stunned","You are stunned and cannot move until you recover!",true,0);
 					}
 				}
 				
@@ -322,7 +322,7 @@
 				output("It misses!");
 			}
 			//Blind miss
-			else if(hasStatusEffect("Blind") && rand(2) == 0) output("It misses due to its blindness!");
+			else if(hasStatusEffect("Blinded") && rand(2) == 0) output("It misses due to its blindness!");
 			//{hit} 
 			else
 			{
@@ -374,7 +374,7 @@
 				output(" It misses!");
 			}
 			//Blind miss
-			else if(hasStatusEffect("Blind") && rand(2) == 0) output("It misses due to its blindness!");
+			else if(hasStatusEffect("Blinded") && rand(2) == 0) output("It misses due to its blindness!");
 			//{hit}
 			else 
 			{
@@ -404,7 +404,7 @@
 				output(" It misses!");
 			}
 			//Blind miss
-			else if(hasStatusEffect("Blind") && rand(2) == 0) output(" It misses due to its blindness!");
+			else if(hasStatusEffect("Blinded") && rand(2) == 0) output(" It misses due to its blindness!");
 			//{hit}
 			else 
 			{

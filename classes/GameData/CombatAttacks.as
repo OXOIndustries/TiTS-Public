@@ -433,7 +433,7 @@ package classes.GameData
 				return false;
 			}
 			
-			if ((attacker.hasStatusEffect("Blind") || attacker.hasStatusEffect("Smoke Grenade")) && rand(2) > 0)
+			if ((attacker.hasStatusEffect("Blinded") || attacker.hasStatusEffect("Smoke Grenade")) && rand(2) > 0)
 			{
 				if (attacker is PlayerCharacter) output("Your blind strike doesn't manage to connect.");
 				else output(attacker.capitalA + possessive(attacker.uniqueName) + " blind " + attacker.meleeWeapon.attackNoun + " fails to connect!");
@@ -703,7 +703,7 @@ package classes.GameData
 				}
 			}
 			//Extra miss for blind
-			else if (attacker.hasStatusEffect("Blind") && rand(2) > 0)
+			else if (attacker.hasStatusEffect("Blinded") && rand(2) > 0)
 			{
 				if (attacker is PlayerCharacter) output("Your blind strike fails to connect.");
 				else output(attacker.mfn("His","Her","Its") + " blind strike fails to connect.");
@@ -724,7 +724,7 @@ package classes.GameData
 						if (target.isPlural) output("\n<b>" + target.capitalA + target.uniqueName + " are stunned.</b>");
 						else output("\n<b>" + target.capitalA + target.uniqueName + " is stunned.</b>");
 					}
-					target.createStatusEffect("Stunned", 2, 0, 0, 0, false, "Stun", "Cannot act for a turn.", true, 0);
+					target.createStatusEffect("Stunned", 2, 0, 0, 0, false, "Stunned", "Cannot act for a turn.", true, 0);
 				}
 				else
 				{
@@ -917,7 +917,7 @@ package classes.GameData
 				output("\n");
 				if (target is PlayerCharacter) output("<b>You are stunned!</b>");
 				else output("<b>" + target.capitalA + target.uniqueName + " is stunned!</b>");
-				target.createStatusEffect("Stunned", 1, 0, 0, 0, false, "Stun", "Cannot act for a turn.", true, 0);
+				target.createStatusEffect("Stunned", 1, 0, 0, 0, false, "Stunned", "Cannot act for a turn.", true, 0);
 			}
 		}
 		
@@ -1124,7 +1124,7 @@ package classes.GameData
 					if (target is Kaska)
 					{
 						output("\nKaska's eyes cross from the overwhelming pain. She sways back and forth like a drunken sailor before hitting the floor with all the grace of a felled tree. A high pitched squeak of pain rolls out of her plump lips. <b>She's very, very stunned.</b>");
-						target.createStatusEffect("Stunned", 3 + rand(2), 0, 0, 0, false, "Stun", "Cannot act for a while. You hit her balls pretty hard!", true, 0);
+						target.createStatusEffect("Stunned", 3 + rand(2), 0, 0, 0, false, "Stunned", "Cannot act for a while. You hit her balls pretty hard!", true, 0);
 					}
 					else
 					{
@@ -1137,7 +1137,7 @@ package classes.GameData
 							output("\n<b>" + target.capitalA + target.uniqueName + " is stunned.</b>");
 						}
 						
-						target.createStatusEffect("Stunned", 2 + rand(2), 0, 0, 0, false, "Stun", "Cannot act for a while.", true, 0);
+						target.createStatusEffect("Stunned", 2 + rand(2), 0, 0, 0, false, "Stunned", "Cannot act for a while.", true, 0);
 					}
 				}
 				else
@@ -1272,7 +1272,7 @@ package classes.GameData
 			{
 				if (attacker is PlayerCharacter) output(" You let fly, but the arrow sails clean past your intended target.");
 			}
-			else if (attacker.hasStatusEffect("Blind") && rand(10) > 0)
+			else if (attacker.hasStatusEffect("Blinded") && rand(10) > 0)
 			{
 				if (attacker is PlayerCharacter) output(" Your blind <b>concussion shot</b> missed.");
 			}
@@ -1289,7 +1289,7 @@ package classes.GameData
 					output(", stunning your enemy!");
 					
 					var rounds:int = 1 + rand(2);
-					target.createStatusEffect("Stunned",rounds,0,0,0,false,"Stun","Cannot act for "+ rounds +" turns.",true,0);
+					target.createStatusEffect("Stunned",rounds,0,0,0,false,"Stunned","Cannot act for "+ rounds +" turns.",true,0);
 				}
 				
 				// Add some burning damage for the explosion
@@ -1375,7 +1375,7 @@ package classes.GameData
 					if (!target.hasStatusEffect("Stunned") && target.physique() + rand(20) + 1 < 40)
 					{
 						output("<b> The hit was hard enough to stun you!</b>");
-						target.createStatusEffect("Stunned",1,0,0,0,false,"Stun","You are stunned and cannot move until you recover!",true,0);
+						target.createStatusEffect("Stunned",1,0,0,0,false,"Stunned","You are stunned and cannot move until you recover!",true,0);
 					}
 					var damage:TypeCollection = attacker.meleeDamage();
 					damage.multiply(2);
@@ -1394,7 +1394,7 @@ package classes.GameData
 			else
 			{
 				output("You go down to the ground! <b>You're going to have a difficult time fighting from down here!</b>");
-				target.createStatusEffect("Trip", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
+				target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
 				
 				applyDamage(new TypeCollection( { kinetic: 1 } ), attacker, target);
 			}

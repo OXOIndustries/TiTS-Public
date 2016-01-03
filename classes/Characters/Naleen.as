@@ -298,6 +298,7 @@
 			author("Savin");
 			output("The naleen surges forward, lunging at you and swinging her razor-sharp claws right at your throat!\n");
 			CombatAttacks.SingleMeleeAttackImpl(this, target, true);
+			output("\n");
 			CombatAttacks.SingleMeleeAttackImpl(this, target, true);
 		}
 	}

@@ -815,7 +815,7 @@ public function sx1DoorBreach():void
 public function sx1InitShotguardFight(wasFlashed:Boolean = false):void
 {
 	var tEnemy:Creature = new SX1Shotguard();
-	tEnemy.createStatusEffect("Blind", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0);
+	tEnemy.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0);
 	
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyCharacters([pc, saendra]);

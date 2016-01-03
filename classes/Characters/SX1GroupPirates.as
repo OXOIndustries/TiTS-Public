@@ -280,7 +280,7 @@ package classes.Characters
 			
 			for (var i:int = 0; i < hostileCreatures.length; i++)
 			{
-				hostileCreatures[i].createStatusEffect("Smoke Grenade", 3, 0, 0, 0, false, "Blind", "Ranged attacks are far more likely to miss.", true, 0);
+				hostileCreatures[i].createStatusEffect("Smoke Grenade", 3, 0, 0, 0, false, "Blinded", "Ranged attacks are far more likely to miss.", true, 0);
 			}
 			
 			createStatusEffect("Nade Cooldown", 5);

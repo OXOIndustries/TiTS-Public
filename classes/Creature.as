@@ -2858,7 +2858,7 @@ package classes {
 
 			var currPhys:int = physiqueRaw + physiqueMod;
 
-			if(hasStatusEffect("Trip")) currPhys -= 4;
+			if(hasStatusEffect("Tripped")) currPhys -= 4;
 
 			if (currPhys > physiqueMax()) 
 			{
@@ -2895,7 +2895,7 @@ package classes {
 			var currReflexes:int = reflexesRaw + reflexesMod;
 
 			//Debuffs!
-			if (hasStatusEffect("Trip")) currReflexes -= 4;
+			if (hasStatusEffect("Tripped")) currReflexes -= 4;
 			if (hasStatusEffect("Staggered")) currReflexes *= 0.8;
 			if (hasStatusEffect("Watered Down")) currReflexes *= 0.9;
 			if (hasStatusEffect("Pitch Black")) currReflexes *= 0.66;

@@ -432,12 +432,12 @@ package classes.GameData
 			// Should never be applicable to non-PCs
 			if (target is PlayerCharacter)
 			{
-				if(!target.hasStatusEffect("Blind") && target.hasStatusEffect("Quivering Quasar"))
+				if(!target.hasStatusEffect("Blinded") && target.hasStatusEffect("Quivering Quasar"))
 				{
 					if(rand(10) == 0) 
 					{
 						output("\n\n<b>You abruptly go blind, perhaps an effect of the Quivering Quasar you drank.</b>\n")
-						pc.createStatusEffect("Blind",2,0,0,0,false,"Blind","You're blinded and cannot see! Accuracy is reduced, and ranged attacks are far more likely to miss.",true,0);
+						pc.createStatusEffect("Blinded",2,0,0,0,false,"Blind","You're blinded and cannot see! Accuracy is reduced, and ranged attacks are far more likely to miss.",true,0);
 					}
 				}
 			}
@@ -1179,7 +1179,7 @@ package classes.GameData
 				return;
 			}
 			// Naleen coil grapple text
-			else if (hasEnemyOfClass(Naleen))
+			else if (hasEnemyOfClass(Naleen) || hasEnemyOfClass(NaleenMale))
 			{
 				if(target.hasPerk("Escape Artist"))
 				{
@@ -1361,6 +1361,7 @@ package classes.GameData
 			if (!atk.RequiresTarget)
 			{
 				atk.execute(_friendlies, _hostiles, pc, null);
+				processCombat();
 				return;
 			}
 			
@@ -1392,6 +1393,7 @@ package classes.GameData
 				clearMenu();
 				
 				atk.execute(_friendlies, _hostiles, pc, t);
+				processCombat();
 			}
 		}
 		
@@ -2452,8 +2454,8 @@ package classes.GameData
 				{
 					output("<b>Your teasing has the poor girl in a shuddering mess as she tries to regain control of her lust addled nerves.</b>\n");
 					var stunDur:int = 1 + rand(2);
-					target.createStatusEffect("Stunned",stunDur,0,0,0,false,"Stun","Cannot take action!",true,0);
-					target.createStatusEffect("Lust Stunned",stunDur,0,0,0,true,"Stun","Cannot take action!",true,0);
+					target.createStatusEffect("Stunned",stunDur,0,0,0,false,"Stunned","Cannot take action!",true,0);
+					target.createStatusEffect("Lust Stunned",stunDur,0,0,0,true,"Stunned","Cannot take action!",true,0);
 				}
 			}
 			

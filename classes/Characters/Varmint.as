@@ -189,7 +189,7 @@ package classes.Characters
 				if (!target.hasStatusEffect("Stunned") && target.physique() + rand(20) + 1 < 18)
 				{
 					output("<b> The hit was hard enough to stun you!</b>");
-					target.createStatusEffect("Stunned",1,0,0,0,false,"Stun","You are stunned and cannot move until you recover!",true,0);
+					target.createStatusEffect("Stunned",1,0,0,0,false,"Stunned","You are stunned and cannot move until you recover!",true,0);
 				}
 				
 				applyDamage(damage, this, target);
@@ -214,7 +214,7 @@ package classes.Characters
 				else
 				{
 					output("throws you right to the ground!");
-					target.createStatusEffect("Trip", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
+					target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
 				}
 				
 				var damage:TypeCollection = new TypeCollection( { kinetic: 12 }, DamageFlag.PENETRATING);
