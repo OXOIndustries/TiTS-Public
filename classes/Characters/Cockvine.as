@@ -247,7 +247,7 @@
 				attacks.push(adultCockvineMouthFuxAttack);
 				if (target.hasCombatDrone()) attacks.push(adultCockvineMowThisAttack);
 				
-				attacks[rand(attacks.length)]();
+				attacks[rand(attacks.length)](target);
 			}
 	
 			// Resolve various state changes that can happen and apply/remove/change appropriate status effects
