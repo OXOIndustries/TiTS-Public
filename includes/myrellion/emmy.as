@@ -5,6 +5,7 @@ import classes.Items.Guns.EmmysSalamanderRifle2;
 import classes.Items.Melee.EmmysJolthammer;
 import classes.Items.Melee.EmmysLavaSaber;
 import classes.Items.Melee.EmmysVampBlade;
+import classes.Items.Combat.CrystalShard;
 
 import classes.Characters.PlayerCharacter;
 //Emmy, by Fenfuckso
@@ -1064,6 +1065,16 @@ public function giveEmmyAnItemMenu():void
 	else addDisabledButton(1,"Satyrite","Satyrite","You don't have any Kirkite.");
 	if(pc.hasItem(new Picardine())) addButton(2,"Picardine",giveEmmyAnItem,"Picardine","Picardine","Give Emmy a piece of Picardine.");
 	else addDisabledButton(2,"Picardine","Picardine","You don't have any Picardine.");
+	if(pc.hasItem(new CrystalShard()))
+	{
+		if(flags["EMMY_GIVEN_SHARD"] == 1)
+		{
+			if(!pc.hasItem(new CrystalShard(),10)) addDisabledButton(3,"C.Shard x10","Crystal Shard x10","Emmy requested you bring her ten of these. You'd better go hunting for more.");
+			else addButton(3,"C.Shard x10",giveEmmyAnItem,"Crystal Shard","Crystal Shard x10","Give Emmy the ten Crystal Shards she requested.");
+		}
+		else addButton(3,"C.Shard",giveEmmyAnItem,"Crystal Shard","Crystal Shard","Give Emmy a Crystal Shard. It's not quite the kind of gemstone she's looking for, but it might be fun to watch...");
+	}
+	else addDisabledButton(3,"C.Shard","Crystal Shard","You don't have any Crystal Shards.");
 	addButton(4,"Back",backToEmmyMain);
 }
 
@@ -1078,10 +1089,134 @@ public function giveEmmyAnItem(item:String):void
 		output(" a satchel of gems.");
 		output("\n\nOpening it up and taking a gem in hand");
 	}
+	else if(item == "Crystal Shard" && flags["EMMY_GIVEN_SHARD"] == 1)
+	{
+		output(" ten of those mischievous little gems.");
+	}
 	else
 	{
 		output(" a " + item.toLowerCase() + " gem.");
-		output("\n\nTaking the gem in hand");
+		if(item != "Crystal Shard") output("\n\nTaking the gem in hand");
+	}
+	//Give Her A Crystal Shard - By Zeik
+	//get a misch point
+	//first tooltip: Give Emmy a Crystal Shard you obtained on Myrellion. It probably won’t make her swoon, but if it breaks it might be worth a laugh.
+	if(item == "Crystal Shard")
+	{
+		if(flags["EMMY_GIVEN_SHARD"] == undefined)
+		{
+			flags["EMMY_GIVEN_SHARD"] = 1;
+			output("\n\n<i>“What’s this?”</i> Emmy asks, taking the cloudy green gemstone from your hand. She holds it to the light. <i>“I haven’t seen a gem like this before... it looks like the emeralds that rich Terrans wear, but it’s so murky.”</i>");
+			output("\n\nThe shard slips from her fingers, describing a perfect double spiral until it hits the countertop with a light clatter. Instinctively, you step backwards");
+			if(pc.isMischievous()) output(" with a devilish grin of anticipation");
+			output(".");
+
+			output("\n\n<i>“Whoops!”</i> Emmy says, grabbing up the crystal again. Before she can raise it to her face, a faint tinkling sound goes off, like a tiny window shattering. Her eyes widen in surprise as the shard visibly cracks and the pressurized fluid inside spurts forth... all over the unwitting girl’s breasts.");
+
+			output("\n\n<i>“Woah, what-”</i> she blurts, as the slightly-viscous slime coats her outsized boobage with a lewd splatter that slops all over her tits and oozes down her body. The viridian goo quickly begins to crystallize as it thins and travels southward, until Emmy’s jumpsuit is sparkling with thousands of tiny, tacky gems. She looks like a sequined, furry casino girl.");
+
+			output("\n\nThe shopkeeper stares at you in narrow-eyed disbelief");
+			if(pc.isNice()) output(" and you can’t entirely suppress your juvenile titters.");
+			else output(" as you hoot with laughter.");
+			output(" ”</i>You think this is funny, do you?”</i> she spits. She raises a hand in a scolding finger and leans in to tell you what <i>she</i> thinks... at least, she tries to lean. Her bust only wobbles a bit as her crystal-covered jumpsuit fails to bend.");
+
+			output("\n\n<i>“How the hell...”</i> Emmy says, lecture unremembered by this new emergency. She tries to tilt back and forth, but it merely causes her head and shoulders to wiggle atop the fused-stiff suit, like a life-sized Emmy bobblehead. Unable to control yourself any longer, you double over with the spectacle of it.");
+
+			output("\n\n<i>“Oh, you’re a riot,”</i> the angry jackaless growls. <i>“Tell me this isn’t permanent.”</i>");
+
+			if(pc.isBimbo() || pc.isBro() || pc.isAss()) output("\n\n”</i>Nah,”</i> you say, through tears of laughter. <i>“It lasts, like, twenty hours.”</i>");
+			else if(pc.isNice()) output("\n\n”</i>No, no,”</i> you say, hurriedly mastering yourself. <i>“Only lasts twenty hours, usually.”</i>");
+			else output("\n\n”</i>Bad news... so try to keep a stiff upper lip,”</i> you gasp, sides aching with laughter. <i>“It takes twenty hours minimum to wear off.”</i>");
+
+			output("\n\n<i>“TWENTY HOURS?”</i> roars Emmy. <i>“Why do you even have something like this?!”</i>");
+
+			output("\n\nStill shaking, you explain with occasional giggles where you got it and how it makes a useful armor hardener for hostile environments. Emmy’s long jaw grinds while you talk, but you can see the anger in her eyes eventually give way to ideas as you defend your offering.");
+
+			output("\n\n<i>“Well... that is a useful property... and I will admit that I was surprised at how fast it set up,”</i> she concedes. Emmy pauses for a moment, then folds her arms over her rock-hardened abs. <i>“I know you were yanking me around, but let’s say I can think of some real uses for these toys - could you get more?”</i>");
+
+			//if Seifyn enabled or 2nd source added later
+			if(pc.isBimbo() || pc.isBro()) output("\n\n”</i>Um, probably?”</i> you guess.");
+			else output("\n\n”</i>Maybe,”</i> you shrug.");
+			output("\n\n<i>“Even if armor hardening is the only thing they’re good for, that’s still a decent application with a lot of market value,”</i> the proprietress says, thoughtful. She looks like she wants to lean in conspiratorially, but of course that’s out of the question for now. <i>“But if we can reverse-engineer them to make them permanent, or change the formula slightly, we could have form-fitting spaceship hull patches or quick-printing semiconductor chips to market to the rushers.”</i>");
+			output("\n\nYou nod ");
+			if(pc.IQ() < 50) output("politely as she continues hypothesizing well above your depth.");
+			else output("interestedly as she describes all sorts of life-improving tech breakthroughs with only the slightest grounding in reality.");
+			output(" Emmy seems to take it as a sign of agreement - you can practically see the credit chits flashing in her eyes as she imagines KihaCorp performance bonuses and promotions.");
+
+			output("\n\n<i>“Then, here’s our new deal,”</i> she concludes, eagerly. <i>“Instead of a gem, <b>you bring me ten more of those shards</b>, undamaged, so I can send them back for a lab workup. I’ll give you the reward I promised when you come back with them. Now get out. I need to change.”</i>");
+
+			output("\n\nShe doesn’t move to eject you, but stands behind the counter, statuesque and wearing a stony expression. With no more talk forthcoming from her, you slip out the door - but before it closes completely, you sneak one last glance. Emmy has abandoned her sudden dignity and is awkwardly trying to about-face, rocking her arms side-to-side to get one unbending leg far enough off the ground that she can twist her hip forward without pitching her snout right into the floor, like a toy army man trying to walk on his fused plastic base.");
+			//boot PC to map square, remove 1x Crystal Shard, remove buttons for other gems and move Emmyquest into crystal shard sub-stage or w/e
+			pc.destroyItem(new CrystalShard());
+			currentLocation = "607";
+			var map:* = mapper.generateMap(currentLocation);
+			this.userInterface.setMapData(map);
+			showName("SPACER'S\nROW");
+			processTime(4);
+			clearMenu();
+			addButton(0,"Next",mainGameMenu);
+			return;
+		}
+		//when player selects ‘Crystal Shard’ again without 10 shards
+		//second stage tooltip: Offer Emmy the shards you’ve found so far.
+		//when player selects ‘Crystal Shard’ again with 10+ shards
+		else
+		{
+			output("\n\nEmmy carefully accepts the shards from you two at a time, packing them into a container. When you’ve passed over the last, you lean in for a look inside. The shards are spaced apart and cradled by a form-fitting packing foam that neatly sets atop a familiar white-and-red jumpsuit covered with dusty green crystals and residue... as well as a long, blackened gash, like it was cut off its wearer with a laser. Ouch.");
+			output("\n\nShe shoos you away kindly and snaps a lid onto the package, then sighs like a bomb has been disarmed. With the shipment prepared, the weapon seller turns to a drawer and opens it up. <i>“Crazy how no matter how much we know, there's always something else out there waiting to surprise us. If I hadn't met you, I never would've gotten tipped off to the gold mine just below Myrellion's surface, and I damn sure wouldn't be so happy about the idea of parting with this beaut. Here it is!”</i>\n\nShe slams the drawer closed with a heavy ‘thunk’ and straightens, balancing an expensive-looking weapon in front of the bullets of her nipples. <i>“");
+			//{insert weapon collecting blurb here once weapons are chosen}
+			//go to ‘merge’
+			//reward weapon should reflect a total cost of 4950 credits (1 demo shard plus 10 shards for the mail @ 450 ea)
+			if(rand(3) == 0)
+			{
+				if(pc.AQ() >= pc.PQ()) 
+				{
+					output("You’ve probably seen the Salamander Pistols we stock, but this beaut is special. I fitted it with a smart-linked scope system that’ll interface with damn near any optical interface, even one those fancy microsurgeon-based immune systems. You’ll be hard-pressed to find a more accurate pistol.");
+					emmyLoot = new EmmysSalamanderPistol();
+				}
+				else 
+				{
+					output("You’ve probably seen the Lava Sabers we stock, but this beaut is special. I fitted the crossguard with miniaturized shield generators. They should supplement your shield belt’s defensives enough to give you an edge.");
+					emmyLoot = new EmmysLavaSaber();
+				}
+				output("”</i>");
+			}
+			else if(rand(2) == 0)
+			{
+				if(pc.AQ() >= pc.PQ()) 
+				{
+					output("You’ve probably seen a Salamander Rifle around the shop, but you haven’t seen </i>this<i> Salamander Rifle. I fitted it with a hotshot energy supply, replaced the regulator contacts, and gave it a better muzzle, much like myself.”</i> She giggles and points to the dragon-headed design at the tip of the barrel. <i>“It should be a piece of cake to land a critical blow with this monster.”</i>");
+					emmyLoot = new EmmysSalamanderRifle();
+				}
+				else 
+				{
+					output("You’ve probably seen a Jolthammer around the shop, but you haven’t seen </i>this<i> Jolthammer. I fiddled with the power source to try and boost the yield. It doesn’t always work, but when it does, the result is shocking.”</i> She giggles at her own pun. <i>“Just make sure not to touch the electric-ey end.”</i>");
+					emmyLoot = new EmmysJolthammer();
+				}
+			}
+			else
+			{
+				if(pc.PQ() > pc.AQ()) 
+				{
+					output("I managed to get the whole blade replaced with one that had a more robust induction lattice. It’s not quite as strong as a retail model, but it can drain shields ");
+					if(pc.hasCock()) output("faster than I drain your dick");
+					else output("faster than I drain my dick");
+					emmyLoot = new EmmysVampBlade();
+				}
+				else {
+					output("I really suped this one up. I swapped the barrel out for a wider one, but only because I also sprung for a better emitter and focusing crystals. I suppose I could’ve tried to tighten up the beam a little more, but I figure you’re going to want to put energy into the target, not burn a pin-sized hole through it. Just don’t waste it on any crystalline beings.");
+					emmyLoot = new EmmysSalamanderRifle2();
+				}
+				output("”</i>");
+			}
+			//Merge
+			output("\n\nPlacing the weapon on the table, the grinning Jackaless wiggles with unbounded excitement. <i>“All yours, hero.”</i>\n\n");
+			//Loot, queue next page in eventqueue
+			eventQueue.push(emmyLootPart2);
+			for(var i:int = 0; i < 10; i++) { pc.destroyItem(new CrystalShard()); }
+			quickLoot(emmyLoot);
+		}
+		return;
 	}
 	output(", the pleased shopkeep exhales, <i>“You actually did it.”</i> Blinking tears of happiness from her eyes, Emmy pulls you into a tight hug. <i>“I... was worried that you wouldn’t even bother. Who needs to waste time getting baubles for a girl when she’s already ");
 	if(pc.hasCock()) output("sucking you like a vacuum hose");
@@ -1156,8 +1291,6 @@ public function giveEmmyAnItem(item:String):void
 		output("”</i>");
 		pc.destroyItem(new Picardine());
 	}
-	//Gem Sack - UNF9999
-	//Unknown - Placeholder for future planet gems9999
 	//Merge
 	output("\n\nPlacing the weapon on the table, the grinning Jackaless wiggles with unbounded excitement. <i>“All yours, hero.”</i>\n\n");
 	//Loot, queue next page in eventqueue
