@@ -382,7 +382,7 @@ package classes.GameData
 		 * @param	attacker
 		 * @param	target
 		 */
-		public static function SingleRangedAttackImpl(attacker:Creature, target:Creature, asFlurry:Boolean = false):Boolean
+		public static function SingleRangedAttackImpl(attacker:Creature, target:Creature, asFlurry:Boolean = false, special:String = "ranged"):Boolean
 		{
 			if (rangedCombatMiss(attacker, target))
 			{
@@ -418,11 +418,11 @@ package classes.GameData
 			
 			var damage:TypeCollection = attacker.rangedDamage();
 			damageRand(damage, 15);
-			applyDamage(damage, attacker, target, "ranged");
+			applyDamage(damage, attacker, target, special);
 			return true;
 		}
 		
-		public static function SingleMeleeAttackImpl(attacker:Creature, target:Creature, asFlurry:Boolean = false):Boolean
+		public static function SingleMeleeAttackImpl(attacker:Creature, target:Creature, asFlurry:Boolean = false, special:String = "melee"):Boolean
 		{
 			if (combatMiss(attacker, target))
 			{
@@ -464,7 +464,7 @@ package classes.GameData
 			
 			var d:TypeCollection = attacker.meleeDamage();
 			damageRand(d, 15);
-			applyDamage(d, attacker, target, "melee");
+			applyDamage(d, attacker, target, special);
 			return true;
 		}
 		
@@ -649,7 +649,7 @@ package classes.GameData
 		
 		public static function TamwolfAttack(attacker:Creature, target:Creature):void
 		{
-			output("<i>\"Enemy detected, " + attacker.mf("master", "mistress") + " " + attacker.uniqueName + "! I will defend you!\"</i> Tam-wolf announces, leaping into the fray. He hits, biting ");
+			output("<i>“Enemy detected, " + attacker.mf("master", "mistress") + " " + attacker.uniqueName + "! I will defend you!”</i> Tam-wolf announces, leaping into the fray. He hits, biting ");
 			if (target is PlayerCharacter) output(" you!");
 			else output(target.a + target.uniqueName + ".");
 			applyDamage(attacker.droneDamage(), attacker, target, "minimal");
@@ -665,7 +665,7 @@ package classes.GameData
 			//Attack!
 			else
 			{
-				output("<i>\"ENEMY DETECTED, MISTRESS TAM! I WILL DEFEND YOU,\"</i> Tam-wolf loudly announces as he lunges at " + target.a + target.uniqueName + ". He hits!");
+				output("<i>“ENEMY DETECTED, MISTRESS TAM! I WILL DEFEND YOU,”</i> Tam-wolf loudly announces as he lunges at " + target.a + target.uniqueName + ". He hits!");
 				applyDamage(attacker.droneDamage(), attacker, target, "minimal");
 				if (attacker is PlayerCharacter) output(" Good boy!");
 			}
@@ -673,7 +673,12 @@ package classes.GameData
 		
 		public static function GoovolverAttackImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
-			
+			SingleRangedAttackImpl(attacker, target, false, "goovolver");
+		}
+		
+		public static function SlutRayAttackImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
+		{
+			SingleRangedAttackImpl(attacker, target, false, "slut ray");
 		}
 		//} endregion
 		
