@@ -11871,7 +11871,10 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 		}
 		else
 		{
-			output("\n\nYou can feel [bess.hisHer] [bess.knot] swelling up inside your snatch, your inner walls forced to stretch to accommodate it. As you tug on it, it refuses to budge - you’ve been knotted with [bess.hisHer] [bess.cockNoun]. With [bess.hisHer] [bess.knot] swollen in your");
+			output("\n\nYou can feel [bess.hisHer] [bess.knot] swelling up inside your");
+			if (bTargetVag) output(" snatch");
+			else output(" butt");
+			output(", your inner walls forced to stretch to accommodate it. As you tug on it, it refuses to budge - you’ve been knotted with [bess.hisHer] [bess.cockNoun]. With [bess.hisHer] [bess.knot] swollen in your");
 			if (bTargetVag) output(" vagina");
 			else output(" rectum");
 			output(", there’s absolutely nothing you can do about it.");
@@ -11896,7 +11899,10 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 		if (pc.hasTail()) output(" and raise your [pc.tail]");
 		output(", trembling as [bess.hisHer] [bess.cockHead] rubs and presses against that perfect pleasure point!");
 		
-		output("\n\nIn a dizzying explosion of feeling, you shiver and shake, thoroughly creaming yourself around [bess.hisHer] cock.");
+		output("\n\nIn a dizzying explosion of feeling, you shiver and shake, thoroughly");
+		if (bTargetVag) output(" creaming yourself");
+		else output(" convulsing");
+		output(" around [bess.hisHer] cock.");
 		if (pc.hasVagina())
 		{
 			if (pc.isSquirter()) output(" Squirts of [pc.girlCum] lewdly shoot from your sloppy snatch");
@@ -12133,7 +12139,10 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 		if (pc.hasTail()) output(" and raise your [pc.tail]");
 		output(", trembling as [bess.hisHer] [bess.cockHead] rubs and presses against that perfect pleasure point!");
 		
-		output("\n\nIn a dizzying explosion of feeling, you shiver and shake, thoroughly creaming yourself around [bess.hisHer] cock.");
+		output("\n\nIn a dizzying explosion of feeling, you shiver and shake, thoroughly");
+		if (bTargetVag) output(" creaming yourself");
+		else output(" convulsing");
+		output(" around [bess.hisHer] cock.");
 		if (pc.hasVagina())
 		{
 			if (pc.isSquirter()) output(" Squirts of [pc.girlCum] lewdly shoot from your sloppy snatch");
