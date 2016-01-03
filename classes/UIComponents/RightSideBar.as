@@ -49,19 +49,27 @@ package classes.UIComponents
 		{
 			if (chars.length == 1)
 			{
-				_combatStatBlock.visible = true;
-				_coreStatBlock.visible = true;
-				_statusEffectDisplay.visible = true;
-				_playerPartyBlock.visible = false;
-				_nameText.visible = true;
-				_nameTextUnderline.visible = true;
-				_advancementBlock.visible = true; // Possibly, maybe, potentially, move this thing lower and anchor it to the bottom of the sidebar
-				
-				_combatStatBlock.showStatsForCreature(chars[0], asInit);
-				_coreStatBlock.showStatsForCreature(chars[0], asInit);
-				_advancementBlock.showStatsForCreature(chars[0], asInit);
-				_statusEffectDisplay.statusDisplay.updateDisplay(chars[0].statusEffects);
-				_nameText.text = chars[0].short;
+				var tChar:Creature = chars[0];
+				if (tChar.hasStatusEffect("In Creation") && tChar.statusEffectv1("In Creation") == 0)
+				{
+					_combatStatBlock.visible = _coreStatBlock.visible = _statusEffectDisplay.visible = _playerPartyBlock.visible = _nameText.visible = _nameTextUnderline.visible = _advancementBlock.visible = false;
+				}
+				else
+				{
+					_combatStatBlock.visible = true;
+					_coreStatBlock.visible = true;
+					_statusEffectDisplay.visible = true;
+					_playerPartyBlock.visible = false;
+					_nameText.visible = true;
+					_nameTextUnderline.visible = true;
+					_advancementBlock.visible = true; // Possibly, maybe, potentially, move this thing lower and anchor it to the bottom of the sidebar
+					
+					_combatStatBlock.showStatsForCreature(chars[0], asInit);
+					_coreStatBlock.showStatsForCreature(chars[0], asInit);
+					_advancementBlock.showStatsForCreature(chars[0], asInit);
+					_statusEffectDisplay.statusDisplay.updateDisplay(chars[0].statusEffects);
+					_nameText.text = chars[0].short;
+				}
 			}
 			else
 			{

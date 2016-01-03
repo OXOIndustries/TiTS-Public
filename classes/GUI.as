@@ -654,10 +654,8 @@
 		public function set planetText(v:String):void { _leftSideBar.planetText = v; }
 		public function set systemText(v:String):void { _leftSideBar.systemText = v; }
 		
-		public function get time():String { return _leftSideBar.timeText.text; }
-		public function set time(v:String):void { _leftSideBar.timeText.text = v; }
-		public function get days():String { return _leftSideBar.daysText.text; }
-		public function set days(v:String):void { _leftSideBar.daysText.text = v; }
+		public function set time(v:String):void { _leftSideBar.timeText = v; }
+		public function set days(v:String):void { _leftSideBar.daysText = v; }
 		public function get sceneBy():String { return _leftSideBar.sceneBy.text; }
 		public function set sceneBy(v:String):void { _leftSideBar.sceneBy.text = v; }
 		
@@ -1243,7 +1241,8 @@
 		{
 			_leftSideBar.generalInfoBlock.HideScene();
 			_leftSideBar.hideLocation();
-			_leftSideBar.generalInfoBlock.HideTime();
+			_leftSideBar.generalInfoBlock.timeVisible = false;
+			_leftSideBar.generalInfoBlock.daysVisible = false;
 			_leftSideBar.quickSaveButton.visible = false;
 			_leftSideBar.dataButton.visible = false;
 			_leftSideBar.mailsButton.visible = false;
@@ -1263,12 +1262,14 @@
 		
 		public function hideTime():void 
 		{
-			_leftSideBar.generalInfoBlock.HideTime();
+			_leftSideBar.generalInfoBlock.timeVisible = false;
+			_leftSideBar.generalInfoBlock.daysVisible = false;
 		}
 		
 		public function showTime():void 
 		{
-			_leftSideBar.generalInfoBlock.ShowTime();
+			_leftSideBar.generalInfoBlock.timeVisible = true;
+			_leftSideBar.generalInfoBlock.daysVisible = true;
 		}
 		
 		public function hidePCStats():void 

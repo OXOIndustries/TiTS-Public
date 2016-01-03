@@ -113,6 +113,8 @@ public function deglow():void
 
 public function updatePCStats():void 
 {
+	if (!inCombat()) userInterface.showPlayerParty([pc]); // Combat will handle this correctly
+	
 	if ((pc as PlayerCharacter).levelUpAvailable())
 	{
 		if (gameOverEvent == true || inSceneBlockSaving == true)

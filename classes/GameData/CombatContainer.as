@@ -3464,6 +3464,12 @@ package classes.GameData
 		
 		public function getCombatPrizes():void
 		{
+			// Abandon ship for Celise!
+			if (_hostiles.length == 1 && _hostiles[0] is Celise)
+			{
+				return;
+			}
+			
 			var loot:Array = [];
 			var sumXP:int = 0;
 			var sumCredits:int = 0;

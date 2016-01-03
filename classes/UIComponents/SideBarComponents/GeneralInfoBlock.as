@@ -24,13 +24,35 @@ package classes.UIComponents.SideBarComponents
 		private var _sceneLabel:TextField;
 		private var _sceneText:TextField;
 		
-		public function get time():TextField { return _timeText; }
-		public function get days():TextField { return _daysText; }
 		public function get sceneBy():TextField { return _sceneText; }
 		public function get sceneByLabel():TextField { return _sceneLabel; }
 		
 		public function set sceneAuthor(v:String):void { _sceneText.text = v; this.ShowScene(); }
 		public function get sceneAuthor():String { return _sceneText.text; }
+		
+		private var _timeVisible:Boolean = false;
+		public function get timeVisible():Boolean { return _timeVisible; }
+		public function set timeVisible(v:Boolean):void { _timeVisible = v; UpdateTimeDisplay(); }
+		
+		private var _daysVisible:Boolean = false;
+		public function get daysVisible():Boolean { return _daysVisible; }
+		public function set daysVisible(v:Boolean):void { _daysVisible = v; UpdateDaysDisplay(); }
+		
+		private var _timeValueText:String;
+		private var _daysValueText:String;
+		
+		public function set time(v:String):void { _timeValueText = v; UpdateTimeDisplay(); }
+		public function set days(v:String):void { _daysValueText = v; UpdateDaysDisplay(); }
+		
+		private function UpdateTimeDisplay():void
+		{
+			_timeText.text = (_timeVisible ? _timeValueText : "--:--");
+		}
+		
+		private function UpdateDaysDisplay():void
+		{
+			_daysText.text = (_daysVisible ? _daysValueText : "-----");
+		}
 		
 		public function HideScene():void
 		{
@@ -43,19 +65,7 @@ package classes.UIComponents.SideBarComponents
 			_sceneLabel.visible = true;
 			_sceneText.visible = true;
 		}
-		
-		public function HideTime():void
-		{
-			_timeText.visible = false;
-			_daysText.visible = false;
-		}
-		
-		public function ShowTime():void
-		{
-			_timeText.visible = true;
-			_daysText.visible = true;
-		}
-		
+			
 		public function GeneralInfoBlock() 
 		{
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
