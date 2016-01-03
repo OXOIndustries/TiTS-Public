@@ -31,8 +31,8 @@
 			this.tallness = 24 + rand(36);
 			this.scaleColor = "green";
 			this.long = "You are trapped by a cockvine. In the heavy darkness of its nest you can just about make out the rapacious plant creature’s limbs writhing busily over the rock and around you: dark green stems thick enough that you cannot get your hand fully around them, tipped with blunt, purple helmet-like heads, oozing white seed from their tips. They are attempting to draw you further downwards, towards the broad trunk of the thing, where it can secure you completely in its grasp. The harder you struggle the more vigorously they in turn seem to act, as if energized by your own movements. The tropical heat and smell of the creature is overwhelming - a heady, cloying herbal atmosphere which seems to permeate through your whole being, making you feel cloudy and limp.";
-			this.customDodge = "The cock vine sways aside at the last second!";
-			this.customBlock = "Your attack deflects off the cock vine's " + this.scaleColor + " scales!";
+			this.customDodge = "The cockvine sways aside at the last second!";
+			this.customBlock = "Your attack deflects off the cockvine’s " + this.scaleColor + " scales!";
 			this.isPlural = false;
 			
 			isLustImmune = true;
@@ -204,19 +204,19 @@
 			switch (target.statusEffectv1("Cockvine Grip"))
 			{
 				case 0:
-					output("\nYou have fought yourself clear almost to the lip of the cockvine’s nest. The relative light of the cavern is tantalizingly close...\n")
+					output("You have fought yourself clear almost to the lip of the cockvine’s nest. The relative light of the cavern is tantalizingly close...\n")
 					break;
 
 				case 1:
-					output("\nThe cockvine has a firm grip on your [pc.legOrLegs], making escape impossible. You have the use of your arms, at least.\n");
+					output("The cockvine has a firm grip on your [pc.legOrLegs], making escape impossible. You have the use of your arms, at least.\n");
 					break;
 
 				case 2:
-					output("\nThe cockvine has pulled you deep into the pit and wrapped itself tightly around your torso and [pc.chest], sliding its wet, ropy warmth across your [pc.skin] as it crawls inexorably up your body. The heavy smell of it is overwhelming, dazing – you feel your muscles relaxing despite your terror.\n");
+					output("The cockvine has pulled you deep into the pit and wrapped itself tightly around your torso and [pc.chest], sliding its wet, ropy warmth across your [pc.skin] as it crawls inexorably up your body. The heavy smell of it is overwhelming, dazing – you feel your muscles relaxing despite your terror.\n");
 					break;
 
 				case 3:
-					output("\nThe cockvine has you bound securely, your arms pulled away from your hot plant - slathered body. The feeling of arousal, hopelessness and doziness is getting steadily stronger and it’s getting increasingly difficult to force yourself to struggle...\n");
+					output("The cockvine has you bound securely, your arms pulled away from your hot plant - slathered body. The feeling of arousal, hopelessness and doziness is getting steadily stronger and it’s getting increasingly difficult to force yourself to struggle...\n");
 					break;
 
 				default:
@@ -234,7 +234,7 @@
 			
 			if (!target.hasStatusEffect("Cockvine Grip"))
 			{
-				target.createStatusEffect("Cockvine Grip", 1, 0, 0, 0, false, "Constrict", "You're in the grip of a Cockvine!", true, 0);
+				target.createStatusEffect("Cockvine Grip", 1, 0, 0, 0, false, "Constrict", "You’re in the grip of a Cockvine!", true, 0);
 			}
 	
 			// Struggling will set v2 to 1 - things read weirdly if you struggle -> cocvine constricts straight away
