@@ -210,7 +210,7 @@
 			disarmSwitch();
 			
 			// TODO check this actually fires
-			if (CombatManager.getRoundCount() == 0)
+			if (CombatManager.getRoundCount() == 1)
 			{
 				shootFirst(target);
 			}

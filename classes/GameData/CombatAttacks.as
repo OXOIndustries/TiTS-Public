@@ -504,7 +504,7 @@ package classes.GameData
 				else output(attacker.capitalA + attacker.uniqueName + " + fiddles fruitlessly with " + attacker.mfn("his", "her", "its") + " disabled weapon.");
 			}
 			
-			if (attacker.hasPerk("Shoot First") && !attacker.hasStatusEffect("Multiple Shots") && CombatManager.getRoundCount() == 0 && attacker.rangedWeapon.attackImplementor == null)
+			if (attacker.hasPerk("Shoot First") && !attacker.hasStatusEffect("Multiple Shots") && CombatManager.getRoundCount() == 1 && attacker.rangedWeapon.attackImplementor == null)
 			{
 				output("<b>Shot first!</b>\n");
 				concentratedFire(attacker, target, SingleRangedAttackImpl(attacker, target));
