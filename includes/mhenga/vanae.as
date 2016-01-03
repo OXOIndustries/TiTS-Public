@@ -1590,7 +1590,7 @@ public function vanaeHuntressPCDefeat():void
 	else
 	{
 		output("You can’t hold out any longer,");
-		if (!pc.hasStatusEffect("Trip") && !pc.hasStatusEffect("Grapple")) output(" falling on your back and panting lustily");
+		if (!pc.hasStatusEffect("Tripped") && !pc.hasStatusEffect("Grapple")) output(" falling on your back and panting lustily");
 		else output(" giving in at long last");
 		output(". You’re so freaking horny; all you want to do is get off!");
 
@@ -2320,7 +2320,7 @@ public function vanaeMaidenPCDefeat():void
 	else
 	{
 		output("You can’t hold out any longer,");
-		if (!pc.hasStatusEffect("Trip") && !pc.hasStatusEffect("Grapple")) output(" falling on your back and panting lustily");
+		if (!pc.hasStatusEffect("Tripped") && !pc.hasStatusEffect("Grapple")) output(" falling on your back and panting lustily");
 		else output(" giving in at long last");
 		output(". You’re so freaking horny, all you want to do is get off!");
 		

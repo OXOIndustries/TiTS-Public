@@ -179,7 +179,7 @@
 			output("The wetra hound bellows, a thunderous roar that echoes through the caverns, and charges at you at its full, loping speed.");
 
 			var missMod:Number = 5;
-			if (target.hasStatusEffect("Trip")) missMod = 1;
+			if (target.hasStatusEffect("Tripped")) missMod = 1;
 
 			if (!combatMiss(target, target, -1, missMod))
 			{
@@ -222,7 +222,7 @@
 				if (rand(target.reflexes() / 2) + target.reflexes() / 2 >= reflexes())
 				{
 					output(", and suddenly find yourself tripping on a rocky outcropping. <b>You're knocked prone</b>");
-					target.createStatusEffect("Trip", 0, 0, 0, 0, false, "Icon_Constrict", "You've been tripped!", true, 0);
+					target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "Icon_Constrict", "You've been tripped!", true, 0);
 				}
 				output("!");
 

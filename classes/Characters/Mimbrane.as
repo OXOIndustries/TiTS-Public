@@ -263,7 +263,7 @@ package classes.Characters
 				if (damageResult.hpDamage > 0)
 				{
 					output(" You take a moment to shake the stars from your vision, your rapid introduction to the floor suprisingly painful considering the circumstances.");
-					target.createStatusEffect("Trip", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
+					target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
 				}
 				
 				outputDamage(damageResult);

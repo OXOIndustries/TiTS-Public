@@ -248,7 +248,7 @@
 					choices[choices.length] = kaskaVolleyShot;
 					choices[choices.length] = CombatAttacks.Overcharge;
 				}
-				if(!target.hasStatusEffect("Blind")) choices[choices.length] = CombatAttacks.FlashGrenade;
+				if(!target.hasStatusEffect("Blinded")) choices[choices.length] = CombatAttacks.FlashGrenade;
 
 			}
 			//Lust Shit

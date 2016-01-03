@@ -114,7 +114,7 @@ package classes.Items.Miscellaneous
 			applyDamage(baseDamage, usingCreature, targetCreature);
 			
 			// Apply stun to types that are electronic in nature
-			if (!targetCreature.hasStatusEffect("Blind") && (targetCreature.originalRace == "robot" || targetCreature.originalRace == "Automaton"))
+			if (!targetCreature.hasStatusEffect("Blinded") && (targetCreature.originalRace == "robot" || targetCreature.originalRace == "Automaton"))
 			{
 				targetCreature.createStatusEffect("Stunned", 2, 0, 0, 0, false, "Stunned", "An electrical burst has temporarily stunned your target!", true, 0);
 				kGAMECLASS.output("\n\nThe electronic burst from the grenade as temporarily disrupted " + targetCreature.a + targetCreature.short + "s systems!");

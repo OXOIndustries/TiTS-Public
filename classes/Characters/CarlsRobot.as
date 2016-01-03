@@ -219,7 +219,7 @@
 			}
 			//Blind chances!
 			//Extra miss for blind
-			else if (hasStatusEffect("Blind") && rand(10) > 0) 
+			else if (hasStatusEffect("Blinded") && rand(10) > 0) 
 			{
 				output(capitalA + possessive(short) + " blinded shots fail to connect!");
 			}

@@ -206,7 +206,7 @@
 			if (target.hasStatusEffect("Grappled")) grayGooRestrain(target);
 			else
 			{
-				if((hasStatusEffect("Blind") || HP() < maxHP()/2) && rand(5) == 0) grayGooReformatting();
+				if((hasStatusEffect("Blinded") || HP() < maxHP()/2) && rand(5) == 0) grayGooReformatting();
 				else
 				{
 					if(CombatManager.getRoundCount() % 4 == 0) grayGooRestrain(target);

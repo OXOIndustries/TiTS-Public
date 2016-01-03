@@ -383,7 +383,7 @@
 			kGAMECLASS.userInterface.dataButton.Glow();
 			
 			// Switch to enabled save notes and override prompt
-			if (kGAMECLASS.gameOptions.saveNotesToggle == undefined) kGAMECLASS.gameOptions.saveNotesToggle = true;
+			//if (kGAMECLASS.gameOptions.saveNotesToggle == undefined) kGAMECLASS.gameOptions.saveNotesToggle = true;
 			var saveNoteEnabled:Boolean = kGAMECLASS.gameOptions.saveNotesToggle;
 			// Custom notes:
 			if (saveNoteEnabled)
@@ -441,7 +441,7 @@
 		private function saveGameNextPrompt(slotNumber:int):void
 		{
 			// Toggle to turn on/off the overwrite prompt!
-			if (kGAMECLASS.gameOptions.overwriteToggle == undefined) kGAMECLASS.gameOptions.overwriteToggle = true;
+			//if (kGAMECLASS.gameOptions.overwriteToggle == undefined) kGAMECLASS.gameOptions.overwriteToggle = true;
 			var overwritePrompt:Boolean = kGAMECLASS.gameOptions.overwriteToggle;
 			
 			// Overwrite file?

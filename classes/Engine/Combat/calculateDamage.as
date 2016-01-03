@@ -63,13 +63,13 @@ package classes.Engine.Combat
 				}
 				
 				// Sneak attack
-				if ((target.hasStatusEffect("Stunned") || target.hasStatusEffect("Blind")) && attacker.hasPerk("Sneak Attack")) 
+				if ((target.hasStatusEffect("Stunned") || target.hasStatusEffect("Blinded")) && attacker.hasPerk("Sneak Attack")) 
 				{
 					damageResult.wasSneak = true;
 					
 					baseHPDamage.add(attacker.level * 3 + attacker.intelligence()/2);
 					if (attacker.hasStatusEffect("Take Advantage")) baseHPDamage.add(attacker.level * 2);
-					if	(target.hasStatusEffect("Stunned") && target.hasStatusEffect("Blind")) baseHPDamage.add(attacker.level);
+					if	(target.hasStatusEffect("Stunned") && target.hasStatusEffect("Blinded")) baseHPDamage.add(attacker.level);
 				}
 
 				//Special counter - added when PC melees something. Eaten at the end of the round.
@@ -89,12 +89,12 @@ package classes.Engine.Combat
 					baseHPDamage.multiply(2);
 				}
 				
-				if ((target.hasStatusEffect("Stunned") || target.hasStatusEffect("Blind")) && attacker.hasPerk("Aimed Shot")) 
+				if ((target.hasStatusEffect("Stunned") || target.hasStatusEffect("Blinded")) && attacker.hasPerk("Aimed Shot")) 
 				{
 					output("\n<b>Aimed shot!</b>");
 					baseHPDamage.add(attacker.level * 3 + attacker.intelligence()/2);
 					if(attacker.hasStatusEffect("Take Advantage")) baseHPDamage.add(attacker.level * 2);
-					if(target.hasStatusEffect("Stunned") && target.hasStatusEffect("Blind")) baseHPDamage.add(attacker.level);
+					if(target.hasStatusEffect("Stunned") && target.hasStatusEffect("Blinded")) baseHPDamage.add(attacker.level);
 				}
 				
 				if (baseHPDamage.getTotal() > 0 && baseHPDamage.hasFlag(DamageFlag.CHANCE_APPLY_BURN) && rand(5) == 0)

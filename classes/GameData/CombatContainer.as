@@ -432,12 +432,12 @@ package classes.GameData
 			// Should never be applicable to non-PCs
 			if (target is PlayerCharacter)
 			{
-				if(!target.hasStatusEffect("Blind") && target.hasStatusEffect("Quivering Quasar"))
+				if(!target.hasStatusEffect("Blinded") && target.hasStatusEffect("Quivering Quasar"))
 				{
 					if(rand(10) == 0) 
 					{
 						output("\n\n<b>You abruptly go blind, perhaps an effect of the Quivering Quasar you drank.</b>\n")
-						pc.createStatusEffect("Blind",2,0,0,0,false,"Blind","You're blinded and cannot see! Accuracy is reduced, and ranged attacks are far more likely to miss.",true,0);
+						pc.createStatusEffect("Blinded",2,0,0,0,false,"Blind","You're blinded and cannot see! Accuracy is reduced, and ranged attacks are far more likely to miss.",true,0);
 					}
 				}
 			}
@@ -772,13 +772,13 @@ package classes.GameData
 				// updateCombatStatuses(); // Status effects are handled during action-resolution (ie after the player takes an action)
 			}
 			
-			if (checkForVictory()) return;
-			if (checkForLoss()) return;
-			
 			clearOutput();
 			clearMenu();
 			
 			showCombatUI();
+			
+			if (checkForVictory()) return;
+			if (checkForLoss()) return;
 			
 			showCombatDescriptions();
 			generateCombatMenu();
@@ -1093,7 +1093,7 @@ package classes.GameData
 			clearOutput();
 			pc.energy(-5);
 			output("You release a discharge of electricity, momentarily weakening your ");
-			if(_hostiles[0].plural || enemiesAlive() > 1) output("foes'");
+			if(_hostiles[0].isPlural || enemiesAlive() > 1) output("foes'");
 			else output("foe's");
 			output(" grip on you!");
 			if (pc.hasStatusEffect("Naleen Coiled"))
@@ -1136,7 +1136,7 @@ package classes.GameData
 				}
 				else
 				{
-					if (target is PlayerCharacter) output("You're still too stunned to act!\n");
+					if (target is PlayerCharacter) output("You're still too stunned to act!");
 					else
 					{
 						if (!target.hasStatusEffect("Lust Stunned"))
@@ -1146,7 +1146,7 @@ package classes.GameData
 						}
 						else
 						{
-							output("<b>Your teasing has the poor " + target.mfn("boy", "girl", "thing") + " in a shuddering mess as " + target.mfn("he", "she", "it") +" tries to regain control of " + target.mfn("his", "her", "its") + " lust addled nerves.</b>\n");
+							output("<b>Your teasing has the poor " + target.mfn("boy", "girl", "thing") + " in a shuddering mess as " + target.mfn("he", "she", "it") +" tries to regain control of " + target.mfn("his", "her", "its") + " lust addled nerves.</b>");
 						}
 					}
 				}
@@ -1156,8 +1156,8 @@ package classes.GameData
 			{
 				if (target is PlayerCharacter) clearOutput();
 				
-				if (target.statusEffectv1("Paralyzed") <= 1) output("The venom seems to be weakening, but you can't move yet!\n");
-				else output("You try to move, but just can't manage it!\n");
+				if (target.statusEffectv1("Paralyzed") <= 1) output("The venom seems to be weakening, but you can't move yet!");
+				else output("You try to move, but just can't manage it!");
 			}
 	
 			if (target is PlayerCharacter) processCombat();
@@ -1179,7 +1179,7 @@ package classes.GameData
 				return;
 			}
 			// Naleen coil grapple text
-			else if (hasEnemyOfClass(Naleen))
+			else if (hasEnemyOfClass(Naleen) || hasEnemyOfClass(NaleenMale))
 			{
 				if(target.hasPerk("Escape Artist"))
 				{
@@ -1361,6 +1361,7 @@ package classes.GameData
 			if (!atk.RequiresTarget)
 			{
 				atk.execute(_friendlies, _hostiles, pc, null);
+				processCombat();
 				return;
 			}
 			
@@ -1392,6 +1393,7 @@ package classes.GameData
 				clearMenu();
 				
 				atk.execute(_friendlies, _hostiles, pc, t);
+				processCombat();
 			}
 		}
 		
@@ -2452,8 +2454,8 @@ package classes.GameData
 				{
 					output("<b>Your teasing has the poor girl in a shuddering mess as she tries to regain control of her lust addled nerves.</b>\n");
 					var stunDur:int = 1 + rand(2);
-					target.createStatusEffect("Stunned",stunDur,0,0,0,false,"Stun","Cannot take action!",true,0);
-					target.createStatusEffect("Lust Stunned",stunDur,0,0,0,true,"Stun","Cannot take action!",true,0);
+					target.createStatusEffect("Stunned",stunDur,0,0,0,false,"Stunned","Cannot take action!",true,0);
+					target.createStatusEffect("Lust Stunned",stunDur,0,0,0,true,"Stunned","Cannot take action!",true,0);
 				}
 			}
 			
@@ -2604,7 +2606,6 @@ package classes.GameData
 					kGAMECLASS.setEnemy(_hostiles[0]);
 				}
 				
-				userInterface().hideNPCStats();
 				userInterface().showPlayerParty([pc]);
 				output("\n\n");
 				clearMenu();
@@ -2624,7 +2625,6 @@ package classes.GameData
 						kGAMECLASS.setEnemy(_hostiles[0]);
 					}
 				
-					userInterface().hideNPCStats();
 					userInterface().showPlayerParty([pc]);
 					output("\n\n");
 					clearMenu();
@@ -2664,7 +2664,6 @@ package classes.GameData
 					kGAMECLASS.setEnemy(_hostiles[0]);
 				}
 				
-				userInterface().hideNPCStats();
 				userInterface().showPlayerParty([pc]);
 				output("\n\n");
 				clearMenu();
@@ -2679,12 +2678,14 @@ package classes.GameData
 			_roundCounter = 1;
 			
 			genericVictory = function():void {
+				userInterface().hideNPCStats();
 				StatTracking.track("combat/wins");
 				getCombatPrizes();
 				doCombatCleanup();
 			}
 			
 			genericLoss = function():void {
+				userInterface().hideNPCStats();
 				StatTracking.track("combat/losses");
 				clearMenu();
 				if (StatTracking.getStat("combat/wins") == 0 && StatTracking.getStat("combat/losses") == 3)
@@ -2988,9 +2989,11 @@ package classes.GameData
 		{
 			if (target is Celise)
 			{
+				kGAMECLASS.setEnemy(target);
 				output("\n");
 				output(target.long);
 				showMonsterArousalFlavor(target);
+				kGAMECLASS.setEnemy(null);
 				
 				if(roundCounter == 1) output("\n\nVictor instructs, <i>“<b>Try and strike her, " + pc.short + ". Use a melee attack.</b>”</i>\n");
 			else if(roundCounter == 2) output("\n\n<i>“Some foes are more vulnerable to ranged attacks than melee attacks or vice versa. <b>Why don’t you try using your gun?</b> Don’t worry, it won’t kill her.”</i> Victor suggests.\n");
@@ -3012,8 +3015,10 @@ package classes.GameData
 				{
 					if (_hostiles.length == 1 && _friendlies.length == 1)
 					{
+						kGAMECLASS.setEnemy(target);
 						output("\n");
 						output(target.long);
+						kGAMECLASS.setEnemy(null);
 					}
 					else
 					{
@@ -3031,8 +3036,10 @@ package classes.GameData
 				
 				if (!(target is QueenOfTheDeep) && !(target is Cockvine))
 				{
+					kGAMECLASS.setEnemy(target);
 					target.getCombatDescriptionExtension();
 					showMonsterArousalFlavor(target);
+					kGAMECLASS.setEnemy(null);
 				}
 			}
 		}
@@ -3072,12 +3079,12 @@ package classes.GameData
 		{
 			if (pc.lust() >= pc.lustMax())
 			{
-				if (enemiesAlive() > 1 || _hostiles[0].plural) output("<b>Your enemies have knocked you off your " + pc.feet() + "!</b>");
+				if (enemiesAlive() > 1 || _hostiles[0].isPlural) output("<b>Your enemies have knocked you off your " + pc.feet() + "!</b>");
 				else output("<b>" + _hostiles[0].capitalA + _hostiles[0].uniqueName + " has knocked you off your " + pc.feet() + "</b>");
 			}
 			else if (pc.HP() <= 0)
 			{
-				if (enemiesAlive() > 1 || _hostiles[0].plural) output("<b>Your enemies have turned you on too much to keep fighting. You give in....</b>");
+				if (enemiesAlive() > 1 || _hostiles[0].isPlural) output("<b>Your enemies have turned you on too much to keep fighting. You give in....</b>");
 				else output("<b>" + _hostiles[0].capitalA + _hostiles[0].uniqueName + " has turned you on too much to keep fighting. You give in....</b>"); // TODO should be able to pick out a defined 'leader'
 			}
 			else if (_hostiles.length == 1 && _friendlies.length == 1)
