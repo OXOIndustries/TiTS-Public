@@ -149,7 +149,13 @@ public function lyrallaTalkMenu(functionFrom:Function = undefined):void
 	if(functionFrom == talkToLyrallaAboutZeWar) addDisabledButton(3,"The War","The War","You just talked about this.");
 	else addButton(3,"The War",talkToLyrallaAboutZeWar,undefined,"The War","Ask her what she thinks about the war as a whole.");
 	if(!pc.hasKeyItem("Gildenmere Pass")) addButton(4,"Request Pass",askLyrallaForAPussyPass,undefined,"Request Pass","Request a pass that will let you enter the gold myr city, Gildenmere.");
-	else addDisabledButton(4,"Request Pass","Request Pass","You already have a pass.")
+	else addDisabledButton(4,"Request Pass","Request Pass","You already have a pass.");
+	if(pc.keyItemv1("Gildenmere Pass") == 0) 
+	{
+		if(flags["THOLLUM_PASS_REQUESTED"] == undefined) addDisabledButton(5,"Locked","Locked","This option relates to a location in the city of Gildenmere. You'll need to go there first.");
+		else addButton(5,"Thollum Pass",thollumPassScene,undefined,"Thollum Pass","Ask Lyralla for a pass to visit the thollum.");
+	}
+	else addDisabledButton(5,"Thollum Pass","Thollum Pass","You already have a thollum visitor’s pass. Just don’t break anything.");
 	addButton(14,"Back",approachingLyralla,true);
 }
 

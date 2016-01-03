@@ -233,6 +233,7 @@
 		include "../includes/myrellion/steph.as";
 		include "../includes/myrellion/tavern.as";
 		include "../includes/myrellion/taivrasPalace.as";
+		include "../includes/myrellion/thollum.as";
 		include "../includes/myrellion/tradingPost.as";
 		include "../includes/myrellion/venomAddiction.as";
 		include "../includes/myrellion/wetraxxel.as";

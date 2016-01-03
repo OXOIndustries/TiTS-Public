@@ -10,6 +10,28 @@ schedule reference:
 2200-0559 - school inaccessible at night
 */
 
+public function showYarasta(nude:Boolean = false):void
+{
+	if(!nude) showBust("YARASTA");
+	else showBust("YARASTA_NUDE");
+	showName("\nYARASTA");
+	author("Zeikfried");
+}
+public function showGiala(nude:Boolean = false):void
+{
+	if(!nude) showBust("GIALA");
+	else showBust("GIALA_NUDE");
+	showName("\nGIALA");
+	author("Zeikfried");
+}
+public function showYarastaThreesome(nude:Boolean = false):void
+{
+	if(!nude) showBust("GIALA","YARASTA");
+	else showBust("GIALA_NUDE","YARASTA_NUDE");
+	showName("GIALA\n& YARASTA");	
+	author("Zeikfried");
+}
+
 public function yarastaCapacity():Number
 {
 	return 1000;
@@ -109,7 +131,7 @@ public function scotlandYardIMeanThollumYardBonus():Boolean
 
 	//(hour 1200 or 1800 and Yarasta unlocked)
 	//if hour 1200 or 1800 and she is unlocked, present ‘Yarasta’ button, else if 2200-0559, return PC to Thollum Foyer
-	if((hours == 12 || hours == 18) && flags["MET_YARASTA"] == undefined)
+	if((hours == 12 || hours == 18) && flags["MET_YARASTA"] != undefined)
 	{
 		output("\n\nYarasta is here, enjoying the ‘fresh’ air and working in some books as she takes her meal.");
 		addButton(0,"Yarasta",approachYarasta);
@@ -176,25 +198,6 @@ public function thollumClassroomHallwayBonus():Boolean
 	//present ‘Yarasta’ button if unlocked and time 600-1159, 1300-1759, or 1900-2059; return PC to Thollum Foyer if time 2200-0559
 	return false;
 }
-public function showYarasta(nude:Boolean = false):void
-{
-	if(!nude) showBust("YARASTA");
-	else showBust("YARASTA_NUDE");
-	showName("\nYARASTA");
-}
-public function showGiala(nude:Boolean = false):void
-{
-	if(!nude) showBust("GIALA");
-	else showBust("GIALA_NUDE");
-	showName("\nGIALA");
-}
-public function showYarastaThreesome(nude:Boolean = false):void
-{
-	if(!nude) showBust("GIALA","YARASTA");
-	else showBust("GIALA_NUDE","YARASTA_NUDE");
-	showName("GIALA\n& YARASTA");	
-}
-
 
 //Thollum Pass - for Lyralla’s menu
 //jam in Lyralla’s text somewhere - you pick if failing ‘Check In’ first and/or hearing about myr child-rearing are required
@@ -533,6 +536,7 @@ public function approachYarasta():void
 	//1900-2059 (Classroom Hallway)
 	else if(hours >= 19 && hours < 21)
 	{
+		showYarastaThreesome();
 		output("Yarasta is in her classroom sorting out lessons for tomorrow. ");
 		if(flags["MET_GIALA"] == undefined) output("A friend");
 		else output("Giala");
@@ -560,8 +564,6 @@ public function approachYarasta():void
 	yarastaMainMenu();
 }
 
-//Back
-//goes in last slot, obv
 public function yarastaMainMenu():void
 {
 	clearMenu();
@@ -581,8 +583,12 @@ public function yarastaMainMenu():void
 		addButton(1,"Talk",talkToYarasta,undefined,"Talk","Chat up the myr prefect.");
 		addDisabledButton(2,"Audit Class","Audit Class","Yarasta’s class is in recess right now. It’d be creepy if you just sat in the back alone and stare.");
 	}
-
-
+	//Sex
+	if(flags["YARASTA_SCHEDULE_TALK"] == undefined) addDisabledButton(3,"Sex","Sex","You barely know the prefect. While it's possible she's down for casual sex beneath that prim exterior, you're far more likely to catch a hand for asking.");
+	else if((hours >= 7 && hours < 12) || (hours >= 13 && hours < 18)) addDisabledButton(3,"Sex","Sex","Yarasta is with her class right now, and you're definitely not a Sex Ed teacher.");
+	else if(!pc.hasGenitals() && !pc.hasTailCock() && !pc.hasHardLightEquipped() && !pc.hasDickNipples()) addDisabledButton(0,"The prefect wouldn't be interested in your lack of sexual endowments.");
+	else if(pc.lust() < 33) addDisabledButton(3,"Sex","Sex","You aren't quite aroused enough to propose that at the moment.");
+	else addButton(3,"Sex",yarastaSexApproach,undefined,"Sex","Ask Yarasta if she'd like to have some adult fun.");
 	addButton(14,"Back",mainGameMenu);
 }
 
@@ -855,7 +861,10 @@ public function pryIntoYarastasSchedule():void
 	processTime(19);
 	flags["YARASTA_SCHEDULE_TALK"] = 1;
 	clearMenu();
-	addButton(0,"Flirt",mainGameMenu,9999);
+	if(pc.lust() < 33) addDisabledButton(0,"Flirt","Flirt","Maybe you'll try that when your more in the mood.");
+	else if(!pc.hasGenitals() && !pc.hasTailCock() && !pc.hasHardLightEquipped() && !pc.hasDickNipples()) addDisabledButton(0,"The prefect wouldn't be interested in your lack of sexual endowments.");
+	else addButton(0,"Flirt",yarastaSexApproach,undefined,"Flirt","Ask Yarasta if she'd like to have some adult fun.");
+
 	addButton(1,"No",abortYarastaPrying);
 }
 
@@ -980,7 +989,7 @@ public function currentEventsTalkOutro():void
 public function yarastasFriendGiala():void
 {
 	clearOutput();
-	showYarasta();
+	showYarastaThreesome();
 	//first time
 	if(flags["MET_GIALA"] == undefined)
 	{
@@ -1121,7 +1130,7 @@ public function yarastasFriendGiala():void
 public function nahIDontWantAYarastaThreesome():void
 {
 	clearOutput();
-	showYarasta();
+	showYarastaThreesome();
 	//(bimbro)
 	if(pc.isBimbo()) output("<i>“I love to fuck, but, like, um... I can’t right now. Can we still fuck later?”</i> you ask.");
 	else output("Maybe later,”</i> you grin.");
@@ -1141,7 +1150,7 @@ public function nahIDontWantAYarastaThreesome():void
 public function cockTheseScholarlyAntSluts():void
 {
 	clearOutput();
-	showYarasta();
+	showYarastaThreesome(true);
 	var x:int = -3;
 	//Determine which branch of dicks to jam in her. Crotch prioritized.
 	if(pc.hasCock() && pc.cockThatFits(yarastaCapacity()) >= 0) x = pc.cockThatFits(yarastaCapacity());
@@ -1363,7 +1372,7 @@ public function cockTheseScholarlyAntSluts():void
 public function lesboThreeWayYarastaAndGiala():void
 {
 	clearOutput();
-	showYarasta();
+	showYarastaThreesome(true);
 	var x:int = -2;
 	if(pc.hasVagina()) x = rand(pc.totalVaginas());
 	else if(pc.hasTailgina()) x = -1;
@@ -1593,7 +1602,7 @@ public function yarastaClassSitInEpilogue():void
 {
 	clearOutput();
 	showYarasta();
-	//Set location to mush garden 9999
+	//Set location to mush garden
 
 	output("<i>“So, what did you want to see me about?”</i> Yarasta asks, seating herself among the shroomy stalks.");
 	//return to Yarasta main menu
@@ -1616,7 +1625,7 @@ public function yarastaSexApproach():void
 	clearOutput();
 	showYarasta();
 	//first time
-	if(flags["YARASTA_FLIRTED"] == undefined)
+	if(flags["SEXED_YARASTA"] == undefined)
 	{
 		output("<i>“Wait,”</i> you cut in.");
 		output("\n\nThe myr woman stops what she’s doing and looks at you patiently. <i>“Yes?”</i>");
@@ -1657,8 +1666,8 @@ public function yarastaSexApproach():void
 		//if PC has no cock, dildo, or tailcock: 100% ‘Female 69’
 		//’Continue’ tooltip: Follow through and fuck the myr woman. She looks like she’s going to want to take charge, though.
 		clearMenu();
-		addButton(0,"Continue",,undefined,"Continue","Follow through and fuck the myr woman. She looks like she’s going to want to take charge, though.");
-		addButton(1,"Nevermind",);
+		addButton(0,"Continue",yarastaPicks,undefined,"Continue","Follow through and fuck the myr woman. She looks like she’s going to want to take charge, though.");
+		addButton(1,"Nevermind",nevermindYarastaIDontWantSex);
 	}
 	//repeat
 	else
@@ -1700,6 +1709,54 @@ public function yarastaSexApproach():void
 	}
 }
 
+public function yarastaSexMenu():void
+{
+	clearMenu();
+	//Female 69
+	if(pc.hasVagina()) addButton(0,"Female 69",ladyType69,undefined,"Female 69","Sixty-nine with Yarasta and get your pussy licked. Actually, with the ant-abdomen, it’s more like an eighth notey-nine....");
+	else addDisabledButton(0,"Female 69","Female 69","You need a vagina in order to do this. Better go grow one.");
+
+	//Get a Blowie
+	//for any size cock, tailcock, or dicknipple if selected by PC; cock/tail only if NPC chooses
+	//a horse is fine, too
+	if(pc.hasCock() || pc.hasTailCock() || pc.hasDickNipples())
+	{
+		if(!pc.hasCock())
+		{
+			if(pc.hasTailCock()) addButton(1,"Get Blown",getABlowie,undefined,"Get Blown","Give the myr educator your own oral exam with your tail-dick.");
+			else addButton(1,"Get Blown",getABlowie,undefined,"Get Blown","Give the myr educator your own oral exam with your dick-nipple.");
+		}
+		else addButton(1,"Get Blown",getABlowie,undefined,"Get Blown","Give the myr educator your own oral exam with [pc.oneCock].");
+	}
+	else addDisabledButton(1,"Get Blown","Get Blown","You have no dicks to get blown.");
+
+	//Do Her Doggy-style
+	//selectable by PCs with appropriate-sized cock, tailcock, or panty-dildo
+	//normal gold myr vag. capacity
+	//horses ok, obv
+	//tooltip: Fuck her doggy-style with your {cock/tail-cock/strap-on} like she likes. Or buggy-style. Whatever.
+	//tooltip disabled, cocks too big & no tailcock/strap: Your monster [pc.cocksLight] will never fit!
+	//tooltip disabled, no suitable parts: You don’t have anything to fuck with!
+	if(pc.hasCock() || pc.hasTailCock() || pc.hasHardLightEquipped())
+	{
+		//Can't fit!
+		if(!pc.hasTailCock() && pc.cockThatFits(yarastaCapacity()) < 0 && !pc.hasHardLightEquipped())
+		{
+			addDisabledButton(2,"DoggieStyle","Doggie Style","You're too big for her!");
+		}
+		else if(!pc.hasCock())
+		{
+			if(pc.hasTailCock()) addButton(2,"DoggieStyle",doYarastaDoggieStyle,undefined,"Doggie Style","Fuck her doggy-style with your tail-cock like she likes. Or buggy-style. Whatever.");
+			else addButton(2,"DoggieStyle",doYarastaDoggieStyle,undefined,"Doggie Style","Fuck her doggy-style with your strap-on like she likes. Or buggy-style. Whatever.");
+		}
+		else addButton(2,"DoggieStyle",doYarastaDoggieStyle,undefined,"Doggie Style","Fuck her doggy-style with [pc.oneCock] like she likes. Or buggy-style. Whatever.");
+	}
+	else addDisabledButton(2,"DoggieStyle","Doggie Style","You don't have anything to fuck her with.");
+
+	addButton(14,"Back",nevermindYarastaIDontWantSex);
+}
+
+
 //Nevermind
 //button goes in last slot
 //tooltip: Totally flake out and leave Yarasta hanging.
@@ -1737,7 +1794,44 @@ public function yarastaPicks():void
 	//if PC has too-big cock and no puss or dildo: 100% ‘Get a Blowie’
 	//if PC has too-big cock and yes puss: 50% ‘Get a Blowie’ and 50% ‘Female 69’
 	//if PC has no cock, dildo, or tailcock: 100% ‘Female 69’
-	//9999
+	//FEN NOTE: Fuck this shit, rebuilding it my way.
+	clearMenu();
+	addButton(0,"Next",yarastaPicksSexSceneRouter);
+}
+
+public function yarastaPicksSexSceneRouter():void
+{
+	var cockFit:Boolean = (pc.cockThatFits(yarastaCapacity()) >= 0);
+	var hardlight:Boolean = pc.hasHardLightEquipped();
+	var tailCock:Boolean = pc.hasTailCock();
+
+	var choices:Array = [];
+	//If Dick can fit, jam that sucker in.
+	if(cockFit || tailCock)
+	{
+		choices.push(doYarastaDoggieStyle,doYarastaDoggieStyle,doYarastaDoggieStyle,getABlowie);
+	}
+	//Dick no fit stuff
+	else if(pc.hasCock() || pc.hasDickNipples())
+	{
+		choices.push(getABlowie,getABlowie);
+	}
+	if(!cockFit && hardlight) choices.push(doYarastaDoggieStyle);
+	if(pc.hasVagina())
+	{
+		if(choices.length == 0) choices.push(ladyType69);
+		else if(!pc.hasCock()) choices.push(ladyType69);
+	}
+	if(choices.length == 0)
+	{
+		clearOutput();
+		showName("YARASTA\nERROR");
+		output("Yarasta attempted to pick a sex scene, but you didn't have anything for her to fuck. Come on. Surely you can do better than that! (<b>Also sorry for the bug. Be sure to report it on the forums at fenoxo.com, and we'll fix it up ASAP.</b>)");
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
+	//Run a randomly chosen scene.
+	else choices[rand(choices.length)]();
 }
 
 
@@ -1813,7 +1907,7 @@ public function doYarastaDoggieStyle():void
 	else 
 	{
 		output("The way her wet pussy pulls at your toy, it causes your honey-");
-		if(pc.hasVagina() && pc.girlCumType GLOBAL.FLUID_TYPE_HONEY) output("and-[pc.girlCumNoun]-");
+		if(pc.hasVagina() && pc.girlCumType == GLOBAL.FLUID_TYPE_HONEY) output("and-[pc.girlCumNoun]-");
 		output("slicked panties to suck and smack lightly at your [pc.vagOrAss] with a ticklish wave that makes you so fucking horny.");
 	}
 	output(" The myr says nothing while her orgasm masters her, but as the shakes wind down, she looks back at you peevishly.");
@@ -1832,7 +1926,7 @@ public function doYarastaDoggieStyle():void
 	else output("A sadistic twinkle enters your [pc.eye], unbeknownst to the prefect. Reaching down, you sweep her four arms from under her, sending her into a faceplant. Far from being upset, she simply turns her face to the side and continues gasping air, stirring stray hairs while you pound her slutty hole.");
 
 	output("\n\nThe skinny myr grunts as your thrusts batter her into the ");
-	if(hour == 12 || hour == 18) output("mushroom-fringed dirt path");
+	if(hours == 12 || hours == 18) output("mushroom-fringed dirt path");
 	else output("dirty paving-stone floor");
 	output(", stuck on autopilot by lust. Drool spills from her half-closed mouth, dislodged by your frenzied ");
 	if(x >= 0) output("[pc.cockNounSimple " + x + "]-");
@@ -1885,13 +1979,13 @@ public function doYarastaDoggieStyle():void
 	else if(pc.isNice()) output(" <i>“Feeling relaxed now?”</i> you inquire.");
 	else output(" <i>“That should have resolved some tension...”</i> you jeer, <i>“judging by the way you just flopped over like a puppet.”</i>");
 
-	output("\n\n<i>“Would that I were so lucky,”</i> Yarasta muses{ sarcastically, dragging her fingers through the puddle of ");
+	output("\n\n<i>“Would that I were so lucky,”</i> Yarasta muses, dragging her fingers through the puddle of ");
 	if(x >= -1 && cum >= 1000) output("[pc.cum]");
 	else if(pc.girlCumQ() >= 500) output("[pc.girlCum]");
 	output(" on the floor that now demands cleanup");
 	output(". Still lying on her side, she beckons you down with a gesture of her hand, and kisses you on the lips. <i>“Hope you visit again soon...”</i>");
 	//if hour 1200 or 1800, add 25% of pre-reduction cum (not girlCum) volume to Mushroom Tracker if less than 4000mL, or 75% if more than 4000mL
-	if(hour == 12 || hour == 18)
+	if(hours == 12 || hours == 18)
 	{
 		if(flags["MUSHROOM_TRACKER"] == undefined) flags["MUSHROOM_TRACKER"] = 0;
 		if(cum >= 4000) flags["MUSHROOM_TRACKER"] += Math.round(cum * 0.75);
@@ -1918,23 +2012,27 @@ public function getABlowie():void
 	var x:int = -3;
 	var quantity:int = 1;
 	var cVolume:int = 0;
+	var cLength:int = 0;
 	if(pc.hasCock()) 
 	{
 		x = pc.biggestCockIndex();
 		quantity = pc.cockTotal();
 		cVolume = pc.cockVolume(x,false);
+		cLength = pc.cocks[x].cLength();
 	}
 	else if(pc.hasTailCock()) 
 	{
 		x = -1;
 		quantity = pc.tailCount;
 		cVolume = pc.cockTailVolume(false);
+		cLength = 8;
 	}
 	else if(pc.hasDickNipples()) 
 	{
 		x = -2;
 		quantity = pc.totalNippleCocks();
 		cVolume = pc.dickNippleVolume(false);
+		cLength = pc.nippleLength(0) * pc.dickNippleMultiplier;
 	}
 
 	output("You ");
@@ -1994,95 +2092,283 @@ public function getABlowie():void
 	output(". She squeezes, massaging the sensitive flesh");
 	output(" with steady fingers that make your neck muscles weak. You arousal spikes again as she stops kissing your cock, parts her lips, and passes your crown through them. Your eyes even close in bliss as your cockhead throbs with the attention, and when you reopen them, her visible lip has colored with the blood that rushed to her face. You feel your pelvic muscles twitch and a new drop of precum slides out of your slit; she quickly finds it with the tip of her tongue and spreads it around your ");
 	if(x >= 0) output("[pc.cockHead " + x + "]");
-	else if(/[pc.tailCockHead]/[pc.nippleCockHead]}, then moves it down to heat and torment your frenulum.");
+	else if(x == -1) output("[pc.tailCockHead]");
+	else output("[pc.nippleCockHead]");
+	output(", then moves it down to heat and torment your frenulum.");
 
-output("\n\nYour {[pc.cockNounSimple]/[pc.tailCockSimple]/[pc.nippleCockSimple]} slides past her wisdom teeth, smearing {[pc.cumFlavor]/[pc.milkFlavor]} slime on the back of her tongue that makes her {(edible cum/milk)hum with happiness/(inedible)shudder with disgust}. {(no horse)She raises her eyebrows and looks over her glasses at you, and though it’s probably unintentional, the perspective makes her look condescending enough that you begin to fuck her mouth, instinctively trying to punish her{ just a bit} for her bitch face. /(horse)Frustrated at being without even a hit of what comes next, your hips automatically begin to thrust lightly, fucking the myr’s mouth. }");
+	output("\n\nYour ");
+	if(x >= 0) output("[pc.cockNounSimple " + x + "]");
+	else if(x == -1) output("[pc.tailCockSimple]");
+	else output("[pc.nippleCockSimple]");
+	output(" slides past her wisdom teeth, smearing [pc.cumFlavor] slime on the back of her tongue that makes her hum with happiness.");
+	if(!pc.isTaur()) output(" She raises her eyebrows and looks over her glasses at you, and though it’s probably unintentional, the perspective makes her look condescending enough that you begin to fuck her mouth, instinctively trying to punish her just a bit for her bitch face.");
+	else output(" Frustrated at being without even a hit of what comes next, your hips automatically begin to thrust lightly, fucking the myr’s mouth.");
 
-output("\n\nYarasta seems to like this; her hand slides up to grasp your shaft and give you more wet flesh to thrust through. Two of the others pull at the chitin on her abdomen, spreading herself wide so the last can dance in and out of her vagina. She jills herself vigorously as your {[pc.cockHead]/[pc.tailCockHead]/[pc.nippleCockHead]} drags over her tongue, probing deeper into her throat with each pump. Her tongue works as fast as her fingers, curling over and highlighting every ridge of your crown with a wet, hot mark.");
+	output("\n\nYarasta seems to like this; her hand slides up to grasp your shaft and give you more wet flesh to thrust through. Two of the others pull at the chitin on her abdomen, spreading herself wide so the last can dance in and out of her vagina. She jills herself vigorously as your ");
+	if(x >= 0) output("[pc.cockHead " + x + "]");
+	else if(x == -1) output("[pc.tailCockHead]");
+	else output("[pc.nippleCockHead]");
+	output(" drags over her tongue, probing deeper into her throat with each pump. Her tongue works as fast as her fingers, curling over and highlighting every ridge of your crown with a wet, hot mark.");
 
-output("\n\nYou can hear her hum as her masturbation begins to physically arouse her as well, The vibration on the end your cock is incredibly pleasant, and the soft ‘schlick’ of her pussy being touched is a perfect soundtrack to the picture of the wanton woman {(horse)in your head/below you}. Labia fully bloomed and penetrated by busy fingers, she brings two more hands up to you, {(multi or nipcock)wrapping them around {your/a} second dick and beginning to masturbate it, smearing the built-up precum from its tip into her pussy with slutty abandon. /(else balls)cupping {(uniball or one ball)your tight little sack in her /a testicle in each }pussy-lubed hand and caressing heat into your nuts to promote a healthy load in her throat. /(else vag)spreading and fingering [pc.oneVagina], mixing her own female lubrication with yours. /(else)wetting them in pre and saliva and wrapping them around your cock until it feels like you’re fucking an onahole with a tongue at the end. }Your climax draws closer, and eager to achieve it, you thrust so far in that {(cock > 5in)you can see her adam’s apple bulge just before }she convulses around you.");
+	output("\n\nYou can hear her hum as her masturbation begins to physically arouse her as well, The vibration on the end your cock is incredibly pleasant, and the soft ‘schlick’ of her pussy being touched is a perfect soundtrack to the picture of the wanton woman ");
+	if(pc.isTaur()) output("in your head");
+	else output("below you");
+	output(". Labia fully bloomed and penetrated by busy fingers, she brings two more hands up to you, ");
+	if(quantity > 1) {
+		output("wrapping them around ");
+		if(quantity == 2) output("your ");
+		else output("a ");
+		output(" second dick and beginning to masturbate it, smearing the built-up precum from its tip into her pussy with slutty abandon.");
+	}
+	//(else balls)
+	else if(x >= 0 && pc.balls > 0)
+	{
+		output("cupping ");
+		if(pc.hasStatusEffect("Uniball") || pc.balls == 1) output("your tight little sack in her ");
+		else output("a testicle in each ");
+		output("pussy-lubed hand and caressing heat into your nut");
+		if(pc.balls > 1) output("s");
+		output(" to promote a healthy load in her throat.");
+	}
+	//(else vag)
+	else if(pc.hasVagina() && x >= 0)
+	{
+		output("spreading and fingering [pc.oneVagina], mixing her own female lubrication with yours.");
+	}
+	else output("wetting them in pre and saliva and wrapping them around your cock until it feels like you’re fucking an onahole with a tongue at the end.");
+	output(" Your climax draws closer, and eager to achieve it, you thrust so far in that ");
 
-output("\n\n//dog knot and cock short enough (16-18in cock length max) to knot outcome");
-output("\n\nThe myr tries to pull away after a moment of discomfort, but your knot has already swollen wider than she can open her jaw, oblivious to the fact that it’s nowhere near a pussy. {(mean)It would be a mistake to suggest you feel bad about being stuck in her hot, spasming throat. }Yarasta’s eyes widen in panic as her early attempts to pull it free fail, and she stops jilling herself to try and extricate you with all hands. Your knotty cock refuses to give way, even with four myr-strength hands pushing your crotch away - the action only makes it feel as though she were jerking off your knot, while her throat continues to swell and close around your [pc.cockHead], trying to get it down her neck like stuck food. {(mean)The sight of the poor girl gagging on your cock helplessly stirs a dark part of you, and you feel a bigger-than-usual ejaculation welling up to meet the fear in her eyes. }");
+	if(cLength > 5) output("you can see her adam’s apple bulge just before ");
+	output("she convulses around you.");
 
-output("\n\n{(li’l/med cum)Your orgasm is quick and violent under the circumstances; [pc.cum] {dribbles/bursts} from you, practically helped along by the squeezing waves of her throat muscles. You can and do imagine your [pc.cumVisc] jizz squirting straight into her throat, leaving her no chance to spit it out, inspiring you to new heights of ejaculation. {(li’l)Unfortunately, your body doesn’t quite rise to the challenge, mustering only a few sad squirts. }Once you’ve spent your load in her belly, your knot finally deflates enough to pop free. /(big cum)Your orgasm is drawn-out and quite ferocious; [pc.cum] floods from your hyper-productive [pc.balls] up your shaft, widening the knot and her jaw at the same time, racing through you to fly from your cum-slit in stroke after stroke. After ten squirts, Yarasta begins to look worried, and after twenty, she begins to understand how fucked she truly is. [pc.Cum] spurts and spurts from your snug fit with nowhere to go but down; the myr’s stomach bulges and swells with liquid, prisoner to your lusts, and her eyes water and bulge. Only when you’ve dumped so much that she looks like a {slightly/hugely} pregnant Terran woman does your knot deflate enough for you to pop free. }");
+	//dog knot and cock short enough (16-18in cock length max) to knot outcome
+	var knot:Boolean = false;
+	if(x >= 0 && pc.hasKnot(x)) knot = true;
+	if(x == -2 && pc.dickNippleType == GLOBAL.TYPE_CANINE) knot = true;
+	if(x == -1 && pc.tailGenitalArg == GLOBAL.TYPE_CANINE) knot = true;
 
-output("\n\n{(li’l med)Yarasta looks slightly disgruntled. <i>“Well... imagine that,”</i> she remarks, staring at your dwindling, spit-and-[pc.cumNoun]-covered knot. You consider {sarcastically }asking if she needs help, but she waves you off before you can. <i>“Go away and give me a chance to rub my jaw. I have to talk for a living.”</i> /(big cum)She sucks in one huge breath of long-awaited air before doubling over and retching, spewing a flood of your semen from her mouth. Twice more she heaves, bringing up pools of [pc.cumVisc] [pc.cumColor] until her mouth and nose are both dripping with bubbly, frothy [pc.cumNoun], and then she slumps over. You {(mean)bemusedly }ask her if she needs help, but Yarasta only glares at you. <i>“Just go!”</i> barks the ruined myr. }");
+	if(knot && length < 16)
+	{
+		output("\n\nThe myr tries to pull away after a moment of discomfort, but your knot has already swollen wider than she can open her jaw, oblivious to the fact that it’s nowhere near a pussy. ");
+		if(pc.isAss()) output("It would be a mistake to suggest you feel bad about being stuck in her hot, spasming throat. ");
+		output("Yarasta’s eyes widen in panic as her early attempts to pull it free fail, and she stops jilling herself to try and extricate you with all hands. Your knotty cock refuses to give way, even with four myr-strength hands pushing your crotch away - the action only makes it feel as though she were jerking off your knot, while her throat continues to swell and close around your ");
+		if(x >= 0) output("[pc.cockHead " + x + "]");
+		else if(x == -1) output("[pc.tailCockHead]");
+		else output("[pc.nippleCockHead]");
+		output(", trying to get it down her neck like stuck food.");
+		//if(pc.isAss()) output(" The sight of the poor girl gagging on your cock helplessly stirs a dark part of you, and you feel a bigger-than-usual ejaculation welling up to meet the fear in her eyes.");
 
-output("\n\nIt’s pretty obvious that she’s not going to want a post-coital chat, so you collect your stuff and leave.");
-output("\n\n//if hour 1200 or 1800 and pre-scene cum volume >= 2000mL, add 75% of cum volume to Mushroom Tracker, else add zero");
-output("\n\n//end, lust, time, increment sexed counter");
+		//(li’l/med cum)
+		if(pc.cumQ() < 1000)
+		{
+			output("\n\nYour orgasm is quick and violent under the circumstances; [pc.cum] ");
+			if(pc.cumQ() < 8) output("dribbles");
+			else output("bursts");
+			output(" from you, practically helped along by the squeezing waves of her throat muscles. You can and do imagine your [pc.cumVisc] jizz squirting straight into her throat, leaving her no chance to spit it out, inspiring you to new heights of ejaculation. ");
+			if(pc.cumQ() < 8) output("Unfortunately, your body doesn’t quite rise to the challenge, mustering only a few sad squirts. ");
+			output("Once you’ve spent your load in her belly, your knot finally deflates enough to pop free.");
+			output("\n\nYarasta looks slightly disgruntled. <i>“Well... imagine that,”</i> she remarks, staring at your dwindling, spit-and-[pc.cumNoun]-covered knot. You consider ");
+			if(pc.isAss()) output("sarcastically ");
+			output("asking if she needs help, but she waves you off before you can. <i>“Go away and give me a chance to rub my jaw. I have to talk for a living.”</i>");
+		}
+		//(big cum)
+		else 
+		{
+			output("\n\nYour orgasm is drawn-out and quite ferocious; [pc.cum] floods from your hyper-productive [pc.balls] up your shaft, widening the knot and her jaw at the same time, racing through you to fly from your cum-slit in stroke after stroke. After ten squirts, Yarasta begins to look worried, and after twenty, she begins to understand how fucked she truly is. [pc.Cum] spurts and spurts from your snug fit with nowhere to go but down; the myr’s stomach bulges and swells with liquid, prisoner to your lusts, and her eyes water and bulge. Only when you’ve dumped so much that she looks like a ");
+			if(pc.cumQ() < 5000) output("slightly");
+			else output("hugely");
+			output(" pregnant Terran woman does your knot deflate enough for you to pop free.");
+			output("\n\nShe sucks in one huge breath of long-awaited air before doubling over and retching, spewing a flood of your semen from her mouth. Twice more she heaves, bringing up pools of [pc.cumVisc] [pc.cumColor] until her mouth and nose are both dripping with bubbly, frothy [pc.cumNoun], and then she slumps over. You ");
+			if(pc.isAss()) output("bemusedly ");
+			output("ask her if she needs help, but Yarasta only glares at you. <i>“Just go!”</i> barks the ruined myr.");
+		}
+		output("\n\nIt’s pretty obvious that she’s not going to want a post-coital chat, so you collect your stuff and leave.");
+		//if hour 1200 or 1800 and pre-scene cum volume >= 2000mL, add 75% of cum volume to Mushroom Tracker, else add zero
+		//Nope, cheesing this down to 1000 for min.
+		var cum:Number = pc.cumQ();
+		if((hours == 12 || hours == 18) && cum >= 1000)
+		{
+			if(flags["MUSHROOM_TRACKER"] == undefined) flags["MUSHROOM_TRACKER"] = 0;
+			if(cum >= 1000) flags["MUSHROOM_TRACKER"] += Math.round(cum * 0.75);
+		}
+	}
+	//no dog knot or cock too long to knot outcome
+	else
+	{
+		output("\n\nThe myr pulls away, gagging. <i>“My goodness,”</i> she says, with tears in her eyes. Her fourth hand moves to the tip of your shaft, working the crown while she herself moves to ");
+		if(x >= 0)
+		{
+			if(pc.balls > 0) output("your [pc.scrotum]");
+			else output("your [pc.sheath " + x + "]");
+		}
+		else if(x == -2) output("your [pc.breast]");
+		else output("the bottommost edge");
+		output(" to recover, kissing and gently sucking. Yarasta moves from there to your shaft, nibbling at the underside with her lips and looking up at you, cock covering one-half of her face like perverted bangs. Soon she’s once again just below the summit, and so are you.");
 
-output("\n\n//no dog knot or cock too long to knot outcome");
-output("\n\nThe myr pulls away, gagging. <i>“My goodness,”</i> she says, with tears in her eyes. Her fourth hand moves to the tip of your shaft, working the crown while she herself moves to {your [pc.scrotum]/your [pc.sheath]/your [pc.breast]} to recover, kissing and gently sucking. Yarasta moves from there to your shaft, nibbling at the underside with her lips and looking up at you, cock covering one-half of her face like perverted bangs. Soon she’s once again just below the summit, and so are you.");
+		if(pc.cumQ() < 1000) 
+		{
+			output("\n\nAs she nips playfully at your cock, the pleasure passes your ability to restrain it, and ");
+			if(pc.cumQ() < 10) output("a stroke");
+			else output("several strokes");
+			output(" of [pc.cum] lance");
+			if(pc.cumQ() < 10) output("s");
+			output(" from your ");
+			if(x >= 0) output("[pc.cockHead " + x + "]");
+			else if(x == -1) output("[pc.tailCockHead]");
+			else output("[pc.nippleCockHead]");
+			output(" onto Yarasta’s face. Though she closes her eyes, the [pc.cumVisc] liquid draws lines onto her glasses down to her lips, vandalizing her tidy frontage with hasty scribbles of [pc.cumGem] that drip and dangle from her chin, [pc.cumColor] against the black background of her chitin mantlet.");
+		}
+		//(big cum/milk)
+		else
+		{
+			output("\n\nHer nibbles drive you beyond your ability to stall orgasm, and midway through a kiss her eyes widen as the first huge glob of [pc.cum] swells up your urethra, stretching her mouth. Without any other choice, she gives herself to the hot, [pc.cumVisc] liquid about to shower her. First her face and soon every part of her is painted with a thick layer of [pc.cumColor] that runs down her skin in clumps.");
+		}
+		output("\n\nYarasta waits for you to finish, still touching herself. When your ");
+		if(x >= 0) output("[pc.cock " + x + "]");
+		else if(x == -1) output("[pc.tailCock]");
+		else output("[pc.nippleCock]");
+		output(" finally stops ejaculating, she releases it. Carefully, she removes her jizz-covered glasses and opens her eyes.");
+		//(i’l/med cum/milk)
+		if(pc.cumQ() < 1000) output(" The broken lines on her face and chest make you smile, and she too smiles in return when she sees yours. <i>“That was fun,”</i> Yarasta says, sweetly. <i>“But I don’t care for a [pc.boyGirl] who gets my glasses dirty.”</i>");
+		//(big cum/milk, gray color)
+		else
+		{
+			if(pc.fluidColorSimple(pc.cumType)) output(" You can barely tell with her gray eyes, until she blinks at you.");
+			else output(" The sight of two little gray ovals peeking out from the [pc.cumColor] mess makes you smile - you think she smiles back, too.");
+			output(" ”</i>What a mess,”</i> Yarasta spits, flapping her arms uselessly. <i>“I’m not sure I should see you again if there’s this much cleanup.”</i>");
+		}
+		output("\n\nYou pretend to be contrite, and she laughs. <i>“Just kidding,”</i> she says, puckering her [pc.cumNoun]-coated lips at you for a kiss which you ");
+		if(pc.isNice()) output("politely ");
+		output("decline.");
+		//if hour 1200 or 1800 and pre-release cum volume >= 1000mL, add 75% of volume to Mushroom Tracker, else add zero
+		if((hours == 12 || hours == 18) && pc.cumQ() >= 1000)
+		{
+			if(flags["MUSHROOM_TRACKER"] == undefined) flags["MUSHROOM_TRACKER"] = 0;
+			if(pc.cumQ() >= 1000) flags["MUSHROOM_TRACKER"] += Math.round(pc.cumQ() * 0.75);
+		}
+	}
+	//end, time, lust, increment sexed counter
+	processTime(22);
+	pc.orgasm();
+	clearMenu();
+	IncrementFlag("SEXED_YARASTA");
+	addButton(0,"Next",mainGameMenu);
+}
 
-output("\n\n{(li’l or med cum/milk)As she nips playfully at your cock, the pleasure passes your ability to restrain it, and {a stroke/several strokes} of {[pc.cum]/[pc.milk]} lance{s} from your {[pc.cockHead]/[pc.tailCockHead]/[pc.nippleCockHead]} onto Yarasta’s face. Though she closes her eyes, the {[pc.cumVisc]/[pc.milkVisc]} liquid draws lines onto her glasses down to her lips, vandalizing her tidy frontage with hasty scribbles of {[pc.cumGem]/[pc.milkGem]} that drip and dangle from her chin, {[pc.cumColor]/[pc.milkColor]} against the black background of her chitin mantlet. }{(big cum/milk)Her nibbles drive you beyond your ability to stall orgasm, and midway through a kiss her eyes widen as the first huge glob of {[pc.cum]/[pc.milk]} swells up your urethra, stretching her mouth. Without any other choice, she gives herself to the hot, {[pc.cumVisc]/[pc.milkVisc]} liquid about to shower her. First her face and soon every part of her is painted with a thick layer of {[pc.cumColor]/[pc.milkColor]} that runs down her skin in clumps. }");
+//Female 69
+//re-titled ‘Anal 69’ if no vag present (unsexed pity option)
+//don’t think about feces
+//miraculously works with f’ing horses
+//i hate girl-girl
+//tooltip: Sixty-nine with Yarasta and get your {pussy/asshole} licked. Actually, with the ant-abdomen, it’s more like an eighth notey-nine....
+//FUCK IT! No ANALINGUS FOR YOU
+public function ladyType69():void
+{
+	clearOutput();
+	showYarasta(true);
+	output("You set aside your [pc.gear] to expose your ");
+	var x:int = -1;
+	var q:int = 1;
+	if(pc.hasVagina()) 
+	{
+		x = rand(pc.totalVaginas());
+		q = pc.totalVaginas();
+	}
+	if(x >= 0) output("[pc.vaginas]");
+	else output("crotch");
+	output(" in all ");
+	if(q == 1) output("its glory");
+	else output("their glories");
+	output(". Yarasta looks hard at what you offer");
+	//(too-big cocks)
+	if(pc.hasCock() && pc.cockThatFits(yarastaCapacity()) < 0) output(", but eventually shakes her head. <i>“I’d love to take that, but you’re just too big for me.\"</i>");
+	//(dildo pants)
+	else if(pc.hasHardLightEquipped()) output(", lingering a long time on your discarded and obviously made-to-be-played bottoms with their technological tool, but eventually decides against it.");
+	//(puss only)
+	else if(pc.hasVagina()) output(". smiling as she recognizes the resemblance of your [pc.vaginas] to hers.");
 
-output("\n\nYarasta waits for you to finish, still touching herself. When your {[pc.cock]/[pc.tailCock]/[pc.nippleCock]} finally stops ejaculating, she releases it. Carefully, she removes her jizz-covered glasses and opens her eyes. {(li’l/med cum/milk)The broken lines on her face and chest make you smile, and she too smiles in return when she sees yours. <i>“That was fun,”</i> Yarasta says, sweetly. <i>“But I don’t care for a [pc.boyGirl] who gets my glasses dirty.”</i> /(big cum/milk, gray color)You can barely tell with her gray eyes, until she blinks at you. /(big cum/milk no gray)The sight of two little gray ovals peeking out from the {[pc.cumColor]/[pc.milkColor] mess makes you smile - you think she smiles back, too. }”</i>What a mess,”</i> Yarasta spits, flapping her arms uselessly. <i>“I’m not sure I should see you again if there’s this much cleanup.”</i> }");
+	output("\n\nShe slowly unfastens her clothes with all the lack of urgency that defines romance - every button on her blouse is freed from its noose deliberately, like a tongue pulling back from a lover’s mouth. You might even suggest that her languid pace were inappropriate, but for her look of consideration. She’s clearly deciding how to have you. Her blouse finally falls away, exposing her small breasts and their excited nipples, each just a hair more golden than the skin around them. Somehow, she still looks half-dressed by the way her sparing-but-concentrated chitin covers her arms, shoulders, and collarbone in a dark mantlet.");
 
-output("\n\nYou pretend to be contrite, and she laughs. <i>“Just kidding,”</i> she says, puckering her {[pc.cumNoun]/[pc.milkNoun]}-coated lips at you for a kiss which you {politely }decline.");
-output("\n\n//if hour 1200 or 1800 and pre-release cum volume >= 1000mL, add 75% of volume to Mushroom Tracker, else add zero");
-output("\n\n//end, time, lust, increment sexed counter");
+	output("\n\n<i>“Lie on your side,”</i> the instructor instructs, slipping her skirt over her head next so she’s completely nude. You do as told, laying yourself down");
+	if(pc.legCount > 1) output(" and lifting one [pc.leg] so [pc.eachVagina] is still visible");
+	output(". Yarasta sits beside you, legs splayed to one side and a hand on your [pc.belly], just above your crotch, feeling your deep breaths. Then she lies down as well, orienting herself the opposite way, face right in your crotch. She ");
+	if(pc.isTaur()) output("stretches her body to match your length");
+	else output("curls up her body until she matches your size");
+	output(" and the vaginal opening on her myr abdomen waits right in front of your eyes. With just a bit of bend to your neck, you can sink your mouth into her folds. The sweet, heavy scent of a gold myr wreaths your head.");
+
+	output("\n\n<i>“I hope you won’t require tutoring, because my mouth will be full,”</i> says the myr in a rare joke. Without waiting for a response, she presses her mouth to [pc.oneVagina], intruding in your body with a hot, wet kiss. You complete the circle, immersing yourself in this strange sex that smacks of sugar. ");
+	if(!pc.hasTongueFlag(GLOBAL.FLAG_PREHENSILE) && pc.hasTongueFlag(GLOBAL.FLAG_LONG)) output("Your long tongue slurps and slides past the silky folds that would mean heaven for an intruding cock, sending the myr into shudders of ecstasy despite your inexpert movements.");
+	else if(pc.hasTongueFlag(GLOBAL.FLAG_PREHENSILE) && pc.hasTongueFlag(GLOBAL.FLAG_LONG)) output("Your astounding tongue spirals deep into her, shuttling through fleshy valleys on a tear to find her sensitive spots like a perverted connect-the-dots with your oral organ as the line.");
+	else output("Her large, fleshy folds baffle your tongue, and despite your unskilled oral, she shudders and sighs.");
+	
+	output("\n\nHer body writhes against yours, and yours hers, as you ply your cunny cartography on the alien innerscape. Even the few times you find a small nub and bite lightly on it, she seems to enjoy; breasts press into you and golden, muscular thighs convulse in your periphery. For her part, she dives into your [pc.vagOrAss] with gusto, puzzling out the kept secrets of your female anatomy with your own body as a thrashing, moaning dowser.");
+
+	output("\n\nYarasta’s mouth feels so good that you suspect she’s had practice her schedule couldn’t possibly allow; her tongue darts ");
+	if(q > 1) output("from [pc.oneVagina] to another");
+	else output("into your [pc.vagOrAss " + x + "] repeatedly");
+	output(", dragging the rim every time. As she becomes more aroused, her tongue becomes wilder and faster, thrusting in at different angles, probing and pushing into your soft tunnel, driving you insane in turn. ");
+	if(pc.hasTongueFlag(GLOBAL.FLAG_PREHENSILE) && pc.hasTongueFlag(GLOBAL.FLAG_LONG)) output("Your enormous tongue coils and curls in the myr’s strange abdomen, bumping up against folds and organs and cervix with undisciplined writhing and tasting sugar everywhere.");
+	else if(pc.hasTongueFlag(GLOBAL.FLAG_LONG)) output("Your long tongue stretches deeply inside the alien abdomen, touching strange, sweet bumps and nodules whose function is hidden beyond making the myr woman squirm and trib her pussy against your face.");
+	else output("Your short tongue laps at the gold myr’s fairer sex, shallowly diving the pool of unknown alien pussy for any sensual pearls that send a shiver through your partner.");
+	output("\n\nYou hear a voice from your own [pc.butt] that sounds, no, <i>feels</i> like <i>“I’m coming!”</i> Yarasta shakes and moans with climax, so violently that you can feel her erect nipples ");
+	if(pc.hasScales()) output("sliding in the channels between your scales");
+	else if(pc.hasChitin()) output("sliding in the channels between your chitin");
+	else output("digging furrows in the [pc.skin] of your stomach");
+	output(". A faintly honey-flavored liquid flows into your mouth, and you feel hot breath and a struggling mouth on your vagina. Her tongue quivers inside you, trying to scream out a song of orgasm but restrained by your own slippery folds. Your [pc.vagOrAss " + x + "] trembles under her faltering touch and ");
+	if(!pc.isSquirter()) output("grasps");
+	else output("erupts at");
+	output(" the summit of your pleasure");
+	if(pc.isSquirter())
+	{
+		output(", soaking the surprised face of your myr lover with [pc.girlCumNoun]. She drinks greedily of your [pc.girlCumFlavor] fluids.");
+	}
+	output("\n\nSlowly, her lips pull away, leaving you empty once again.");
+	if(!pc.hasTongueFlag(GLOBAL.FLAG_LONG)) output(" You withdraw your tongue also, smearing the lingering coating of near-honey on your lips accidentally.");
+	else output(" Your long tongue whips from her suddenly, dragging along her ridges to create an aftershock of both friction and pleasure in the myr. ");
+	output("She pushes herself away from you and sits up, looking around for her clothes");
+	if(pc.isSquirter()) output(" with a [pc.girlCumColor] stain still coloring her lips and chin");
+	output(".");
+
+	output("\n\n<i>“I needed that,”</i> she says, locating her shirt and beginning to dress. <i>“Do come visit again.”</i> She pauses for a moment to wink at you, then resumes buttoning, leaving you to gather up your things as well.");
+	//end, lust, time, increment sexed counter
+	processTime(32);
+	pc.girlCumInMouth();
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+/*
+Tittyfuck the A-cup - ABANDONED, DO NOT CODE
+//NPC never chooses this scene of her own volition
+//accommodates any size cock or tailcock
+//tooltip: Rub your cock between her breasts until you cum. There’s plenty of room.
+//tooltip disabled, no cocks: You don’t have any cocks! Unlike her lack, yours is an obstacle.
+
+You watch her undress, eyes on you as she pulls open button after button, exposing her petit bust and smooth skin. {(nice no bimbro)<i>“I’d like to, ah, use your breasts, if I might,”</i> you stammer. /(else)<i>“I wanna stick my dick between your titties,”</i> you blurt. }
+
+Yarasta freezes as if stunned. <i>“You’re joking.”</i>
+
+A shake of your head assures her otherwise. {(bim)<i>“They’re totally cute!”</i> /(bro)<i>“All titties are beautiful to me,”</i> /(nice)<i>“They have a very attractive shape,”</i> /(else)<i>“Sorry, I thought I was allowed to pick?”</i> }you say, defensively.
+
+The prefect sighs in exasperation. <i>“Yes, fine, whatever.”</i> She finishes unbuttoning and throws her blouse open unceremoniously, waiting for you to {(horse)become erect. /stroke yourself to erectness. }The little half-globes make the barest jiggle when she thrusts her chest forward.
 
 
-output("\n\nFemale 69");
-output("\n\n//re-titled ‘Anal 69’ if no vag present (unsexed pity option)");
-output("\n\n//don’t think about feces");
-output("\n\n//miraculously works with f’ing horses");
-output("\n\n//i hate girl-girl");
-output("\n\n//tooltip: Sixty-nine with Yarasta and get your {pussy/asshole} licked. Actually, with the ant-abdomen, it’s more like an eighth notey-nine....");
+[tbd titlicking foreplay]
 
-output("\n\nYou set aside your [pc.gear] to expose your {[pc.vaginas]/crotch} in all {its glory/their glories}. Yarasta looks hard at what you offer{(too-big cocks), but eventually shakes her head. <i>“I’d love to take that, but you’re just too big for me. /(dildo pants), lingering a long time on your discarded and obviously made-to-be-played panties with their technological tool, but eventually decides against it. /(puss only)smiling as she recognizes the resemblance of your [pc.vaginas] to hers. /(dr. flatcrotch), trying to discern just where the ‘offer’ lies. Your unadorned crotch is surprising enough to make her forget that she’d supposed to be having sex, instead reverting her to full professor mode. <i>“What an unusual anatomy. How do you reproduce?”</i> }");
+She pushes her wet breasts together with her hands, creating a very shallow valley while she looks away, embarrassed. You slide forward, guiding your cock between the petite tits, and {(horse)you can only imagine that }a blush comes to her cheeks as you start to fuck.
 
-output("\n\n{(unsexed){(either carrying butt eggs or high lib and no buttvirgin)<i>“What?”</i> You turn around, {flexing/wagging/jiggling} your [pc.butt] at her. <i>“In the butt,”</i> you indicate. /(misch or mean)<i>“How do </i>you<i> reproduce?”</i> you ask, pointedly. /(else)You coyly turn around, showing her your [pc.asshole]. }Yarasta blushes. }");
-
-output("\n\nShe slowly unfastens her clothes with all the lack of urgency that defines romance - every button on her blouse is freed from its noose deliberately, like a tongue pulling back from a lover’s mouth. You might even suggest that her languid pace were inappropriate, but for her look of consideration. She’s clearly deciding how to have you. Her blouse finally falls away, exposing her small breasts and their excited nipples, each just a hair more golden than the skin around them. Somehow, she still looks half-dressed by the way her sparing-but-concentrated chitin covers her arms, shoulders, and collarbone in a dark mantlet.");
-
-output("\n\n<i>“Lie on your side,”</i> the instructor instructs, slipping her skirt over her head next so she’s completely nude. You do as told, laying yourself down{(legs) and lifting one leg so {[pc.eachVagina]/your [pc.asshole]} is still visible}. Yarasta sits beside you, legs splayed to one side and a hand on your [pc.stomach], just above your crotch, feeling your deep breaths. Then she lies down as well, orienting herself the opposite way, face right in your crotch. She {(taur)stretches her body to match your length/curls up her body until she matches your size} and the vaginal opening on her myr abdomen waits right in front of your eyes. With just a bit of bend to your neck, you can sink your mouth into her folds. The sweet, heavy scent of a gold myr wreaths your head.");
-
-output("\n\n<i>“I hope you won’t require tutoring, because my mouth will be full,”</i> says the myr in a rare joke. Without waiting for a response, she presses her mouth to {[pc.oneVagina]/your rim}, intruding in your body with a hot, wet kiss. You complete the circle, immersing yourself in this strange sex that smacks of sugar. {Her large, fleshy folds baffle your tongue, and despite your unskilled oral, she shudders and sighs. /Your long tongue slurps and slides past the silky folds that would mean heaven for an intruding cock, sending the myr into shudders of ecstasy despite your inexpert movements. /Your astounding tongue spirals deep into her, shuttling through fleshy valleys on a tear to find her sensitive spots like a perverted connect-the-dots with your oral organ as the line. }");
-
-output("\n\nHer body writhes against yours, and yours hers, as you ply your cunny cartography on the alien innerscape. Even the few times you find a small nub and bite lightly on it, she seems to enjoy; breasts press into you and golden, muscular thighs convulse in your periphery. For her part, she dives into your [pc.vagOrAss] with gusto, puzzling out the kept secrets of your {female anatomy/[pc.asshole]} with your own body as a thrashing, moaning dowser.");
-
-output("\n\nYarasta’s mouth feels so good that you suspect she’s had practice her schedule couldn’t possibly allow; her tongue darts {from [pc.oneVagina] to another/into your [pc.vagOrAss] repeatedly}, dragging the rim every time. As she becomes more aroused, her tongue becomes wilder and faster, thrusting in at different angles, probing and pushing into your soft tunnel, driving you insane in turn. {Your short tongue laps at the gold myr’s fairer sex, shallowly diving the pool of unknown alien pussy for any sensual pearls that send a shiver through your partner. /Your long tongue stretches deeply inside the alien abdomen, touching strange, sweet bumps and nodules whose function is hidden beyond making the myr woman squirm and trib her pussy against your face. /Your enormous tongue coils and curls in the myr’s strange abdomen, bumping up against folds and organs and cervix with undisciplined writhing and tasting sugar everywhere. }");
-
-output("\n\nYou hear a voice from your own [pc.ass] that sounds, no, <i>feels</i> like <i>“I’m coming!”</i> Yarasta shakes and moans with climax, so violently that you can feel her erect nipples {(scale-belly)sliding in the channels between your {scales/chitin}/digging furrows in the [pc.skin] of your stomach}. A faintly honey-flavored liquid flows into your mouth, and you feel hot breath and a struggling mouth on your {vagina/asshole}. Her tongue quivers inside you, trying to scream out a song of orgasm but restrained by your own slippery folds. Your [pc.vagOrAss] trembles under her faltering touch and {grasps/erupts at} the summit of your pleasure{, soaking the surprised face of your myr lover with [pc.girlCumNoun]. She {(edible)drinks greedily of your [pc.girlCumFlavor] fluids/(inedible)spits repeatedly as the [pc.girlCumFlavor] liquid enters her mouth}}.");
-
-output("\n\n{(edible girlcum)Slowly/(else inedible or unsexed)Quickly}, her lips pull away, leaving you empty once again. {You withdraw your tongue also, smearing the lingering coating of near-honey on your lips accidentally. /Your long tongue whips from her suddenly, dragging along her ridges to create an aftershock of both friction and pleasure in the myr. }She pushes herself away from you and sits up, looking around for her clothes{ with a [pc.girlCumColor] stain still coloring her lips and chin}.");
-
-output("\n\n<i>“I needed that,”</i> she says, locating her shirt and beginning to dress. <i>“Do come visit again.”</i> She pauses for a moment to wink at you, then resumes buttoning, leaving you to gather up your things as well.");
-output("\n\n//end, lust, time, increment sexed counter");
+<i>“This is so dumb,”</i> she mumbles, chest heaving with your strokes. <i>“You could literally pick any other myr off the street for this.”</i>
 
 
-output("\n\nTittyfuck the A-cup - ABANDONED, DO NOT CODE");
-output("\n\n//NPC never chooses this scene of her own volition");
-output("\n\n//accommodates any size cock or tailcock");
-output("\n\n//tooltip: Rub your cock between her breasts until you cum. There’s plenty of room.");
-output("\n\n//tooltip disabled, no cocks: You don’t have any cocks! Unlike her lack, yours is an obstacle.");
+[tbd: cock-requiring sternum-fucking action as you play with her sensitive tits, make <i>“overweening ambition”</i> pun for big dicks (no that’s dumb)]
 
-output("\n\nYou watch her undress, eyes on you as she pulls open button after button, exposing her petit bust and smooth skin. {(nice no bimbro)<i>“I’d like to, ah, use your breasts, if I might,”</i> you stammer. /(else)<i>“I wanna stick my dick between your titties,”</i> you blurt. }");
+The myr’s skin is hot with pre, and friction. Her nipples {(wide cock)rub deep lines into /(else)just barely touch }the sides of your [pc.cockNounSimple], pressed as close as she can get them; once in a while she’ll sigh or shiver as your tool drags along them, but for the most part you don’t notice, busy thrusting downward so the sensitive underside of your shaft slides along her chest.
 
-output("\n\nYarasta freezes as if stunned. <i>“You’re joking.”</i>");
+{(li’l cum)Yarasta looks mildly concerned when you grunt and your cock throbs against her chest with orgasm, but when your unproductive [pc.balls] produce the merest dribble of [pc.cum], she giggles. The little beads of [pc.cumNoun] drop onto her neck, giving the myr a dainty [pc.cumGem]pendant. /(med cum) Yarasta guesses what’s coming as your cock throbs{ and your sack tightens}, and she leans her head back so the shot of [pc.cum] hits her on the chin and falls to her neck, decorating the myr with a [pc.cumVisc] [pc.cumgem] choker. /(big cum)Yarasta’s eyes widen like an animal’s in headlights as your urethra dilates with the first wave of [pc.cum], and catches it in the face. She quickly lies flat, trying to let the load pass mostly over her; you spray like a firehose, and the [pc.cumColor] waves roll over her chest to break on her chin, washing past her pointed ears and pooling in the corners of the myr’s tightly-pressed lips until you finally spend your built-up seed. }
 
-output("\n\nA shake of your head assures her otherwise. {(bim)<i>“They’re totally cute!”</i> /(bro)<i>“All titties are beautiful to me,”</i> /(nice)<i>“They have a very attractive shape,”</i> /(else)<i>“Sorry, I thought I was allowed to pick?”</i> }you say, defensively.");
+<i>“Did you get it all out of your system?”</i> she sneers, disdainfully lifting your drooling [pc.cockNounSimple] by a flap of skin like one might a dead cat and scooting from underneath. <i>“Maybe next time we can do something I’d enjoy.”</i>
 
-output("\n\nThe prefect sighs in exasperation. <i>“Yes, fine, whatever.”</i> She finishes unbuttoning and throws her blouse open unceremoniously, waiting for you to {(horse)become erect. /stroke yourself to erectness. }The little half-globes make the barest jiggle when she thrusts her chest forward.");
-
-
-output("\n\n[tbd titlicking foreplay]");
-
-output("\n\nShe pushes her wet breasts together with her hands, creating a very shallow valley while she looks away, embarrassed. You slide forward, guiding your cock between the petite tits, and {(horse)you can only imagine that }a blush comes to her cheeks as you start to fuck.");
-
-output("\n\n<i>“This is so dumb,”</i> she mumbles, chest heaving with your strokes. <i>“You could literally pick any other myr off the street for this.”</i>");
-
-
-output("\n\n[tbd: cock-requiring sternum-fucking action as you play with her sensitive tits, make <i>“overweening ambition”</i> pun for big dicks (no that’s dumb)]");
-
-output("\n\nThe myr’s skin is hot with pre, and friction. Her nipples {(wide cock)rub deep lines into /(else)just barely touch }the sides of your [pc.cockNounSimple], pressed as close as she can get them; once in a while she’ll sigh or shiver as your tool drags along them, but for the most part you don’t notice, busy thrusting downward so the sensitive underside of your shaft slides along her chest.");
-
-output("\n\n{(li’l cum)Yarasta looks mildly concerned when you grunt and your cock throbs against her chest with orgasm, but when your unproductive [pc.balls] produce the merest dribble of [pc.cum], she giggles. The little beads of [pc.cumNoun] drop onto her neck, giving the myr a dainty [pc.cumGem]pendant. /(med cum) Yarasta guesses what’s coming as your cock throbs{ and your sack tightens}, and she leans her head back so the shot of [pc.cum] hits her on the chin and falls to her neck, decorating the myr with a [pc.cumVisc] [pc.cumgem] choker. /(big cum)Yarasta’s eyes widen like an animal’s in headlights as your urethra dilates with the first wave of [pc.cum], and catches it in the face. She quickly lies flat, trying to let the load pass mostly over her; you spray like a firehose, and the [pc.cumColor] waves roll over her chest to break on her chin, washing past her pointed ears and pooling in the corners of the myr’s tightly-pressed lips until you finally spend your built-up seed. }");
-
-output("\n\n<i>“Did you get it all out of your system?”</i> she sneers, disdainfully lifting your drooling [pc.cockNounSimple] by a flap of skin like one might a dead cat and scooting from underneath. <i>“Maybe next time we can do something I’d enjoy.”</i>");
-
-output("\n\n{(misch/mean no bimbro)You reach over and massage a {goopy }breast. <i>“Depends on whether these grow out,”</i> you taunt back. She slaps your hand away. }");
-output("\n\n//end, lust, time, don’t implement sexed counter");
+{(misch/mean no bimbro)You reach over and massage a {goopy }breast. <i>“Depends on whether these grow out,”</i> you taunt back. She slaps your hand away. }
+//end, lust, time, don’t implement sexed counter
+*/

@@ -791,26 +791,26 @@ public function initializeMyrellionRooms():void
 	//735 THOLLUM\nFOYER
 	rooms["735"] = new RoomClass(this);
 	rooms["735"].roomName = "THOLLUM\nFOYER";
-	rooms["735"].description = "As soon as you step inside, this building makes its purpose clear, be it from the childish drawings on the wall to the colorful, educational murals that sprawl across the floor. Young myr run by the dozen, followed by haggard-looking adults. Elsewhere, adolescents sit on benches together, reading from books. Some of them even hold hands while doing so. Thinking back, a second set of hands would’ve been nice to have in your school days. One of the classrooms is open to the east, and a broad door on the north side leads out to a field.";
+	rooms["735"].description = "";
 	rooms["735"].planet = "PLANET: MYRELLION";
 	rooms["735"].system = "SYSTEM: SINDATHU";
 	rooms["735"].southExit = "732";
 	rooms["735"].northExit = "736";
 	rooms["735"].eastExit = "737";
 	rooms["735"].moveMinutes = 1;
-	rooms["735"].runOnEnter = undefined;
+	rooms["735"].runOnEnter = thollumFoyerBonus;
 	rooms["735"].addFlag(GLOBAL.INDOOR);
 	rooms["735"].addFlag(GLOBAL.PUBLIC);
 	
 	//736 THOLLUM\nYARD
 	rooms["736"] = new RoomClass(this);
 	rooms["736"].roomName = "THOLLUM\nYARD";
-	rooms["736"].description = "The thollum’s yard isn’t much of a yard. Grass doesn’t really grow this deep underground, but the hardy ant-people of Myrellion do just fine all the same. A carpet of soft-capped mushrooms has grown over the whole area. These ones don’t glow, but they are spongy and tough enough to endure the hundred or so myr children currently playing. Some of them are playing a game involving a spherical rocks and white, wood-like shields. It’s very physical and reminiscent of a more medieval form of rugby.";
+	rooms["736"].description = "";
 	rooms["736"].planet = "PLANET: MYRELLION";
 	rooms["736"].system = "SYSTEM: SINDATHU";
 	rooms["736"].southExit = "735";
 	rooms["736"].moveMinutes = 1;
-	rooms["736"].runOnEnter = undefined;
+	rooms["736"].runOnEnter = scotlandYardIMeanThollumYardBonus;
 	rooms["736"].addFlag(GLOBAL.INDOOR);
 	rooms["736"].addFlag(GLOBAL.PUBLIC);
 	rooms["736"].addFlag(GLOBAL.CAVE);
@@ -818,12 +818,12 @@ public function initializeMyrellionRooms():void
 	//737 THOLLUM\nCLASSROOM
 	rooms["737"] = new RoomClass(this);
 	rooms["737"].roomName = "THOLLUM\nCLASSROOM";
-	rooms["737"].description = "This place is obviously a classroom in spite of its missing desks. Instead, the myr have arranged a number of cushions on the floor around a thin sand pit. A long-handled cane lies next to it with a rake. They must use that instead of a holoboard or even a chalkboard. Educational posters on the wall show warnings about everything “chitin itch” to how to identify Scarlet Federation landmines.";
+	rooms["737"].description = "";
 	rooms["737"].planet = "PLANET: MYRELLION";
 	rooms["737"].system = "SYSTEM: SINDATHU";
 	rooms["737"].westExit = "735";
 	rooms["737"].moveMinutes = 1;
-	rooms["737"].runOnEnter = undefined;
+	rooms["737"].runOnEnter = thollumClassroomHallwayBonus;
 	rooms["737"].addFlag(GLOBAL.INDOOR);
 	rooms["737"].addFlag(GLOBAL.PUBLIC);
 	
