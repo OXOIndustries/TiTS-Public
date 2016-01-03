@@ -9593,7 +9593,7 @@ package classes {
 			if(arg >= vaginas.length) return "ERROR - OUT OF BOUNDS CHECK FOR ONECLITPERVAGINA()";
 			else if(arg < 0) return "ERROR - OUT OF BOUNDS CHECK FOR ONECLITPERVAGINA()";
 			else if(vaginas[arg].clits == 1) return "your " + clitDescript();
-			else return "one of your " + pluralize(clitDescript());
+			else return "one of your " + plural(clitDescript());
 			return "ERROR";
 		}
 		public function oneClit(): String {

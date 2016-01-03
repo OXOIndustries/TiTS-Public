@@ -93,7 +93,8 @@ public function scotlandYardIMeanThollumYardBonus():Boolean
 		return true;
 	}
 	output("The thollum’s yard isn’t much of a yard; grass doesn’t really grow this deep underground. Nonetheless, a faint breeze blows through, likely piped down from the surface. Along the fringes there are several plots of tall fungi and even a few plants in various states of health, with gardening tools and supplies nearby. These must be practice gardens for agriculture students. A carpet of soft-capped mushrooms has grown over the rest of the area");
-	var mushRoom:Number = 9999;
+	if(flags["MUSHROOM_TRACKER"] == undefined) flags["MUSHROOM_TRACKER"] = 0;
+	var mushRoom:Number = flags["MUSHROOM_TRACKER"];
 	//(Mushroom Tracker < 10000mL)
 	if(mushRoom < 10000) output(".");
 	else if(mushRoom < 20000 && (flags["MUSH_SEEN"] == undefined || flags["MUSH_SEEN"] == 1))
@@ -342,7 +343,8 @@ public function takeTheThollumTour():void
 	output("\n\nThe cavern beyond is carpeted with short, colorful caps that feel springy and resilient under your [pc.feet] when the guard walks you to the center. The flexible, blunted mushrooms must make this place a natural romper room");
 	if(hours >= 19 && hours < 21) output(", particularly since hundreds of myr children are taking their leisure here, dirtying their clothes in rough games and lounging about. A few are even eating the mushrooms, though this could be more by eccentricity than design}. Along the walls are fenced-off sections containing much larger fungi and plants, along with tools and bags that are recognizable as gardening supplies even at this distance");
 	
-	var mushRoom:Number = 9999;
+	if(flags["MUSHROOM_TRACKER"] == undefined) flags["MUSHROOM_TRACKER"] = 0;
+	var mushRoom:Number = flags["MUSHROOM_TRACKER"];
 	if(mushRoom < 10000) output(".");
 	else if(mushRoom < 20000 && (flags["MUSH_SEEN"] == undefined || flags["MUSH_SEEN"] == 1))
 	{
@@ -1752,7 +1754,7 @@ public function yarastaSexMenu():void
 		else addButton(2,"DoggieStyle",doYarastaDoggieStyle,undefined,"Doggie Style","Fuck her doggy-style with [pc.oneCock] like she likes. Or buggy-style. Whatever.");
 	}
 	else addDisabledButton(2,"DoggieStyle","Doggie Style","You don't have anything to fuck her with.");
-
+	addButton(3,"LetHerPick",yarastaPicks,undefined,"LetHerPick","Let Yarasta pick what you do.");
 	addButton(14,"Back",nevermindYarastaIDontWantSex);
 }
 
