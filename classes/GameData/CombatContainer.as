@@ -834,7 +834,7 @@ package classes.GameData
 					output("\n<b>You are grappled and unable to fight normally!</b>");
 				}
 				
-				addButton(0, "Struggle", doStruggleRecover,pc); // 9999 - merge naleen coil struggle && mimbranesmother
+				addButton(0, "Struggle", doStruggleRecover, pc); // 9999 - merge naleen coil struggle && mimbranesmother
 				
 				if (pc.hasPerk("Static Burst") && (!hasEnemyOfClass(NyreaAlpha) && !hasEnemyOfClass(NyreaBeta)))
 				{
@@ -1165,10 +1165,7 @@ package classes.GameData
 		
 		private function doStruggleRecover(target:Creature):void
 		{
-			// TODO Tweak the shit out of this probably for other NPCs to be able to call into it
-			
-			if (!target.hasStatusEffect("Grappled")) return;
-			
+			// TODO Tweak the shit out of this probably for other NPCs to be able to call into it			
 			if (target is PlayerCharacter) clearOutput();
 			else if (target is Anno)
 			{
@@ -1303,7 +1300,6 @@ package classes.GameData
 					target.addStatusValue("Grappled",1,1);
 				}
 			}
-			output("\n");
 			if (target is PlayerCharacter) processCombat();
 		}
 		

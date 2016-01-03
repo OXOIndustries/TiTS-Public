@@ -38,8 +38,8 @@ package classes.UIComponents.SideBarComponents
 		public function get daysVisible():Boolean { return _daysVisible; }
 		public function set daysVisible(v:Boolean):void { _daysVisible = v; UpdateDaysDisplay(); }
 		
-		private var _timeValueText:String;
-		private var _daysValueText:String;
+		private var _timeValueText:String = "--:--";
+		private var _daysValueText:String = "-----";
 		
 		public function set time(v:String):void { _timeValueText = v; UpdateTimeDisplay(); }
 		public function set days(v:String):void { _daysValueText = v; UpdateDaysDisplay(); }

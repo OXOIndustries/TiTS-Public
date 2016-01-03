@@ -137,6 +137,7 @@ public function mainGameMenu():void {
 	clearMenu(false);
 	userInterface.showBust("none");
 	inSceneBlockSaving = false;
+	updatePCStats();
 	//Inventory shit
 	itemScreen = mainGameMenu;
 	lootScreen = inventory;
@@ -228,7 +229,6 @@ public function mainGameMenu():void {
 	userInterface.showMinimap();
 	var map:* = mapper.generateMap(currentLocation);
 	userInterface.setMapData(map);
-		
 	userInterface.perkDisplayButton.Activate();
 }
 

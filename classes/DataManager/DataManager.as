@@ -1398,6 +1398,7 @@
 			
 			// If the clock is hidden, show it
 			kGAMECLASS.userInterface.showTime();
+			kGAMECLASS.updateDisplays();
 			
 			// If the PC has previously had the Level Up availability message, ensure the level up button is available for use.
 			if ((kGAMECLASS.pc as PlayerCharacter).levelUpAvailable()) kGAMECLASS.userInterface.levelUpButton.Activate();
