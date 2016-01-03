@@ -66,6 +66,12 @@ public function showPennyName():void
 	if(flags["MET_PENNY"] == undefined) userInterface.showName("POLICE\nWOMAN");
 	else userInterface.showName("\nPENNY");
 }
+public function showPenny(nude:Boolean = false):void
+{
+	showPennyName();
+	if(!nude) showBust("PENNY");
+	else showBust("PENNY_NUDE");
+}
 
 //First Encounter
 //Appended to room description!
