@@ -204,19 +204,19 @@
 			switch (target.statusEffectv1("Cockvine Grip"))
 			{
 				case 0:
-					output("\nYou have fought yourself clear almost to the lip of the cockvine’s nest. The relative light of the cavern is tantalizingly close...\n")
+					output("You have fought yourself clear almost to the lip of the cockvine’s nest. The relative light of the cavern is tantalizingly close...\n\n")
 					break;
 
 				case 1:
-					output("\nThe cockvine has a firm grip on your [pc.legOrLegs], making escape impossible. You have the use of your arms, at least.\n");
+					output("The cockvine has a firm grip on your [pc.legOrLegs], making escape impossible. You have the use of your arms, at least.\n\n");
 					break;
 
 				case 2:
-					output("\nThe cockvine has pulled you deep into the pit and wrapped itself tightly around your torso and [pc.chest], sliding its wet, ropy warmth across your [pc.skin] as it crawls inexorably up your body. The heavy smell of it is overwhelming, dazing – you feel your muscles relaxing despite your terror.\n");
+					output("The cockvine has pulled you deep into the pit and wrapped itself tightly around your torso and [pc.chest], sliding its wet, ropy warmth across your [pc.skin] as it crawls inexorably up your body. The heavy smell of it is overwhelming, dazing – you feel your muscles relaxing despite your terror.\n\n");
 					break;
 
 				case 3:
-					output("\nThe cockvine has you bound securely, your arms pulled away from your hot plant - slathered body. The feeling of arousal, hopelessness and doziness is getting steadily stronger and it’s getting increasingly difficult to force yourself to struggle...\n");
+					output("The cockvine has you bound securely, your arms pulled away from your hot plant - slathered body. The feeling of arousal, hopelessness and doziness is getting steadily stronger and it’s getting increasingly difficult to force yourself to struggle...\n\n");
 					break;
 
 				default:
@@ -291,7 +291,7 @@
 		private function adultCockvineMowThisAttack(target:Creature):void
 		{
 			//Activates if attacked by drone. Disables drone for 3-5 turns if successful
-			output("\nIncensed by your drone’s attack, one of the tentacles reacts by swinging at it hard.");
+			output("Incensed by your drone’s attack, one of the tentacles reacts by swinging at it hard.");
 
 			if (rand(4) == 0)
 			{
@@ -307,7 +307,7 @@
 		private function adultCockvineMouthFuxAttack(target:Creature):void
 		{
 			//Lust rise if success
-			output("\nOne of the tentacles reaches for your face, implacably stretching towards the wet orifice it can sense there.");
+			output("One of the tentacles reaches for your face, implacably stretching towards the wet orifice it can sense there.");
 
 			if (target.hasArmor() && target.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
 			{
@@ -328,13 +328,11 @@
 		
 		private function adultCockvineWhips(target:Creature):void
 		{
-			output("\nThe movement of your own body translates into the surrounding vines where it seems to gather, the tentacles bunching and swaying back and forth until frenetic energy seizes them up, and they are whipping their bulbous heads into you with ropy, numbing force.\n");
+			output("The movement of your own body translates into the surrounding vines where it seems to gather, the tentacles bunching and swaying back and forth until frenetic energy seizes them up, and they are whipping their bulbous heads into you with ropy, numbing force.");
 
 			createPerk("Multiple Attacks", 2 + rand(2), 0, 0, 0, "");
 			CombatAttacks.MeleeAttack(this, target);
 			removePerk("Multiple Attacks");
-			
-			output("\n");
 		}
 		
 		private function adultCockvineConstrictAttack(target:Creature):void
