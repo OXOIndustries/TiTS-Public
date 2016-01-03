@@ -1286,7 +1286,7 @@ public function cockTheseScholarlyAntSluts():void
 		if(x >= 0) output("[pc.cockNounComplex " + x + "]");
 		else if(x == -1) output("[pc.tailCock]");
 		else output("[pc.nippleCock]");
-		output(" threatens to blow; not to be outdone, Yarasta shakily begins to pump at your other tool again, lamely at first but with recovering passion as her climax returns control of her muscles. She looks over her shoulder at you, mouth too aroused and exhausted to close but grey eyes shining with competitive spirit. Your ejaculation builds as you stare into her insatiable gaze, and you know you don’t have any time left.");
+		output(" threatens to blow; not to be outdone, Yarasta shakily begins to pump at your other tool again, lamely at first but with recovering passion as her climax returns control of her muscles. She looks over her shoulder at you, mouth too aroused and exhausted to close but gray eyes shining with competitive spirit. Your ejaculation builds as you stare into her insatiable gaze, and you know you don’t have any time left.");
 
 		output("\n\nYou reach out with your mind, trying to will the women to hold still so you can shoot your load deeply inside of them.");
 		//(PC has psionic tease equipped)
