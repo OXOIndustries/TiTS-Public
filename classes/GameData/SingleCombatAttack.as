@@ -65,16 +65,16 @@ package classes.GameData
 				
 				if ((!IsMeleeBased && !IsRangedBased) || (IsMeleeBased && IsRangedBased))
 				{
-					f = target.meleeWeapon.itemFlags.slice(0, -1);
-					f.concat(target.rangedWeapon.itemFlags.slice(0, -1));
+					f = target.meleeWeapon.itemFlags.slice();
+					f.concat(target.rangedWeapon.itemFlags.slice());
 				}
 				else if (IsMeleeBased && !IsRangedBased)
 				{
-					f = target.meleeWeapon.itemFlags.slice(0, -1);
+					f = target.meleeWeapon.itemFlags.slice();
 				}
 				else if (IsRangedBased && !IsMeleeBased)
 				{
-					f = target.rangedWeapon.itemFlags.slice(0, -1);
+					f = target.rangedWeapon.itemFlags.slice();
 				}
 				
 				var gotItemFlag:Boolean = false;
@@ -92,16 +92,16 @@ package classes.GameData
 				
 				if ((!IsMeleeBased && !IsRangedBased) || (IsMeleeBased && IsRangedBased))
 				{
-					df = target.meleeWeapon.baseDamage.getFlagsArray().slice(0, -1);
-					df.concat(target.rangedWeapon.baseDamage.getFlagsArray().slice(0, -1));
+					df = target.meleeWeapon.baseDamage.getFlagsArray().slice();
+					df.concat(target.rangedWeapon.baseDamage.getFlagsArray().slice());
 				}
 				else if (IsMeleeBased && !IsRangedBased)
 				{
-					df = target.meleeWeapon.baseDamage.getFlagsArray().slice(0, -1);
+					df = target.meleeWeapon.baseDamage.getFlagsArray().slice();
 				}
 				else if (IsRangedBased && !IsMeleeBased)
 				{
-					df = target.rangedWeapon.baseDamage.getFlagsArray().slice(0, -1);
+					df = target.rangedWeapon.baseDamage.getFlagsArray().slice();
 				}
 				
 				var gotDamageFlag:Boolean = false;

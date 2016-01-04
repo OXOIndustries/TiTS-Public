@@ -340,6 +340,9 @@ package classes.GameData
 			ConcussiveShot.EnergyCost = 25;
 			ConcussiveShot.IsRangedBased = true;
 			ConcussiveShot.RequiresItemFlags = [GLOBAL.ITEM_FLAG_BOW_WEAPON];
+			ConcussiveShot.ExtendedDisplayabilityCheck = function():Boolean {
+				return kGAMECLASS.pc.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_BOW_WEAPON);
+			}
 			ConcussiveShot.TooltipTitle = "Concussive Shot";
 			ConcussiveShot.TooltipBody = "Fire an explosive arrow at your target, potentially stunning them for 1-2 rounds.";
 			ConcussiveShot.Implementor = ConcussiveShotImpl;

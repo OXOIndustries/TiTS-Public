@@ -208,14 +208,14 @@ package classes.Characters
 		
 		private function phoenixPiratesBulletstorm(target:Creature):void
 		{
-			output("\nSeveral of the pirates pop up from cover, firing on full-auto and sending a withering hail of gunfire downrange at you!");
+			output("Several of the pirates pop up from cover, firing on full-auto and sending a withering hail of gunfire downrange at you!");
 
 			energy(-20);
 
 			for (var i:int = 0; i < 5; i++)
 			{
-				CombatAttacks.SingleRangedAttackImpl(this, target, true);
 				output("\n");
+				CombatAttacks.SingleRangedAttackImpl(this, target, true);
 			}
 		}
 		
@@ -226,19 +226,15 @@ package classes.Characters
 			output(" You dive out of the way, but still get riddled with shrapnel.");
 			
 			applyDamage(new TypeCollection( { kinetic: 25 }, DamageFlag.PENETRATING), this, target);
-
-			output("\n");
 		}
 		
 		private function phoenixPiratesBroadside(target:Creature):void
 		{
-			output("\nSuddenly, a particularly stealthy pirate pops up on your portside flank, poised to pound you into a pulp with a particularly potent-looking pump-action shotgun.");
+			output("Suddenly, a particularly stealthy pirate pops up on your portside flank, poised to pound you into a pulp with a particularly potent-looking pump-action shotgun.");
 
 			output(" You get blasted by the shotty, throwing you back with the sheer force of the sneak attack!");
 			
 			applyDamage(new TypeCollection( { kinetic: 30 }, DamageFlag.BULLET), this, target);
-			
-			output("\n");
 		}
 	}
 }
