@@ -4,6 +4,7 @@ import classes.Characters.Saendra;
 import classes.Characters.SX1GroupPirates;
 import classes.Characters.SX1Shotguard;
 import classes.Characters.SX1Techguard;
+import classes.Characters.ZilFemale;
 import classes.Creature;
 import classes.Items.Accessories.LightningDuster;
 import classes.Items.Apparel.AtmaArmor;
@@ -258,6 +259,23 @@ public function debugMenusThree():void
 	addButton(2, "2v1", pcPlusAnnoVsOneEnemy);
 	addButton(3, "2v2", pcPlusAnnoVsTwoEnemies);
 	addButton(4, "CLUSTER", maximumClusterfuck);
+}
+
+public function instaLossTestLust():void
+{
+	(pc as Creature).lustRaw = pc.lustMax();
+	
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(new ZilFemale());
+	CombatManager.victoryScene(pcVsOneEnemyWin);
+	CombatManager.lossScene(pcVsOneEnemyLoss);
+	CombatManager.displayLocation("INSTANT LOSS LUST");
+	
+	clearOutput();
+	output("INSTANT LOSS LUST");
+	clearMenu();
+	addButton(0, "Next", CombatManager.beginCombat);
 }
 
 public function pcVsOneEnemy():void

@@ -778,7 +778,24 @@ package classes.GameData
 			showCombatUI();
 			
 			if (checkForVictory()) return;
-			if (checkForLoss()) return;
+			if (checkForLoss())
+			{
+				// Special output for instantly losing a fight
+				if (roundCounter == 1)
+				{
+					if (pc.lust() >= pc.lustMax())
+					{
+						clearOutput();
+						output("<b>It's no use- you're simply too turned on to fight back right now!</b>");
+					}
+					else
+					{
+						clearOutput();
+						output("<b>It's no use- you're simply too worn out to fight back right now!</b>");
+					}
+				}
+				return;
+			}
 			
 			showCombatDescriptions();
 			generateCombatMenu();
