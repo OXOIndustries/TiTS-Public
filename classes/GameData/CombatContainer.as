@@ -875,10 +875,10 @@ package classes.GameData
 			
 			// tease
 			if (pc.hasStatusEffect("Myr Venom Withdrawal")) addDisabledButton(5, "Tease", "Tease", "Without the venom, teasing just seems... fruitless.");
-			else addButton(5, "Tease", selectSimpleTarget, generateTeaseMenu, "Tease Menu", "Opens up your menu of available lust targetting attacks. It is recommended that the ‘Sense’ option be used beforehand.");
+			else addButton(5, "Tease", selectSimpleAttack, generateTeaseMenu, "Tease Menu", "Opens up your menu of available lust targetting attacks. It is recommended that the ‘Sense’ option be used beforehand.");
 			
 			// sense
-			addButton(6, "Sense", selectSimpleTarget, generateSenseMenu, "Sense", "Attempts to get a feel for a foe's likes and dislikes. Absolutely critical for someone who plans on seducing " + pc.mf("his", "her") + " way out of a fight.");
+			addButton(6, "Sense", selectSimpleAttack, generateSenseMenu, "Sense", "Attempts to get a feel for a foe's likes and dislikes. Absolutely critical for someone who plans on seducing " + pc.mf("his", "her") + " way out of a fight.");
 			
 			// wait
 			addButton(8, "Wait", waitRound, undefined, "Wait", "There's no real reason to this unless you're just dragging out combat to see what your enemy will do.");
@@ -1485,7 +1485,11 @@ package classes.GameData
 			
 			opts.func(pc, opts.tar);
 			
-			processCombat();
+			// Hacky workaround to defer process combat for special cases.
+			if (opts.func != generateTeaseMenu)
+			{
+				processCombat();
+			}
 		}
 		
 		private function generateTeaseMenu(attacker:Creature, target:Creature):void
@@ -2387,39 +2391,39 @@ package classes.GameData
 			{
 				if(target is HandSoBot)
 				{
-					output("\n\n<i>“An attempt to confuse and overwhelm an enemy with an overt display of sexual dominance,”</i> says So. She sounds genuinely interested. <i>“An unorthodox but effective strategy in many known organic cultures’ approach to war. I was unaware sentients of a human upbringing had any experience of such a thing, however. Perhaps that explains why you are attempting it against a foe that cannot in any way feel desire.”</i>\n");
+					output("\n\n<i>“An attempt to confuse and overwhelm an enemy with an overt display of sexual dominance,”</i> says So. She sounds genuinely interested. <i>“An unorthodox but effective strategy in many known organic cultures’ approach to war. I was unaware sentients of a human upbringing had any experience of such a thing, however. Perhaps that explains why you are attempting it against a foe that cannot in any way feel desire.”</i>");
 				}
 				else if(target.isLustImmune == true) 
 				{
-					output("\n<b>" + target.capitalA + target.uniqueName  + " </b>");
+					output("\n\n<b>" + target.capitalA + target.uniqueName  + " </b>");
 					if(target.isPlural) output("<b>don't</b>");
 					else output("<b>doesn't</b>");
-					output("<b> seem to care to care for your erotically-charged display. (0)</b>\n");
+					output("<b> seem to care to care for your erotically-charged display. (0)</b>");
 				}
 				else if(teaseType == "SQUIRT") 
 				{
-					output("\nYour milk goes wide. (0)\n");
+					output("\n\nYour milk goes wide. (0)");
 					teaseSkillUp(teaseType);
 				}
 				else if (target is HuntressVanae || target is MaidenVanae)
 				{
-					output("\n");
+					output("\n\n");
 					output(teaseReactions(0, target));
-					output(" (0)\n");
+					output(" (0)");
 					teaseSkillUp(teaseType);
 				}
 				else if (target is WetraHound)
 				{
-					output("\n");
+					output("\n\n");
 					kGAMECLASS.wetraHoundAnimalIntellect();
-					output(" (0)\n");
+					output(" (0)");
 					teaseSkillUp(teaseType);
 				}
 				else {
-					output("\n" + target.capitalA + target.uniqueName  + " ");
+					output("\n\n" + target.capitalA + target.uniqueName  + " ");
 					if(target.isPlural) output("resist");
 					else output("resists");
-					output(" your erotically charged display... this time. (0)\n");
+					output(" your erotically charged display... this time. (0)");
 
 					teaseSkillUp(teaseType);
 				}
@@ -2448,14 +2452,14 @@ package classes.GameData
 				}
 				else output(teaseReactions(damage,target));
 				target.lust(damage);
-				output(" ("+ damage + ")\n");
+				output(" ("+ damage + ")");
 				teaseSkillUp(teaseType);
 				if(target is MyrInfectedFemale && damage >= 10)
 				{
-					output("<b>Your teasing has the poor girl in a shuddering mess as she tries to regain control of her lust addled nerves.</b>\n");
+					output("<b>Your teasing has the poor girl in a shuddering mess as she tries to regain control of her lust addled nerves.</b>");
 					var stunDur:int = 1 + rand(2);
-					target.createStatusEffect("Stunned",stunDur,0,0,0,false,"Stunned","Cannot take action!",true,0);
-					target.createStatusEffect("Lust Stunned",stunDur,0,0,0,true,"Stunned","Cannot take action!",true,0);
+					target.createStatusEffect("Stunned",stunDur,0,0,0,false,"Stun","Cannot take action!",true,0);
+					target.createStatusEffect("Lust Stunned",stunDur,0,0,0,true,"Stun","Cannot take action!",true,0);
 				}
 			}
 			
@@ -2590,7 +2594,6 @@ package classes.GameData
 				}
 			}
 			if(target is HandSoBot) output("\nWhilst your teases have some effect on synthetics designed for sex, you sense there is no point whatsoever trying it on with what amounts to a bipedal forklift truck.\n");
-			processCombat();
 		}
 		
 		private function checkForLoss():Boolean
