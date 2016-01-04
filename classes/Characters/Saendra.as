@@ -374,8 +374,6 @@ package classes.Characters
 
 				target.createStatusEffect("Disarmed", 2 + rand(2), 0, 0, 0, false, "Blocked", "Cannot use normal melee or ranged attacks!", true, 0);
 			}
-			
-			output("\n");
 		}
 		
 		private function saendraHammerPistol(target:Creature):void
@@ -392,8 +390,6 @@ package classes.Characters
 				output(" shooting one of the pirates square in the back!");
 				applyDamage(new TypeCollection( { kinetic: 10 }, DamageFlag.BULLET), this, target);
 			}
-			
-			output("\n");	
 		}
 	}
 

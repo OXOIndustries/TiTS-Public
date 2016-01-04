@@ -619,7 +619,7 @@ package classes.GameData
 					target.removeStatusEffect("Disarmed");
 					if (target is PlayerCharacter) output("\n\n<b>You are no longer disarmed!</b>");
 					else if (target.isPlural) output("\n\n<b>" + target.capitalA + target.uniqueName + " are no longer disarmed!</b>");
-					else output("<b>" + target.capitalA + target.uniqueName + " is no longer disarmed!</b>\n");
+					else output("\n\n<b>" + target.capitalA + target.uniqueName + " is no longer disarmed!</b>\n");
 				}
 				else 
 				{
@@ -1377,6 +1377,7 @@ package classes.GameData
 		{
 			if (!atk.RequiresTarget)
 			{
+				clearOutput();
 				atk.execute(_friendlies, _hostiles, pc, null);
 				processCombat();
 				return;
@@ -2989,7 +2990,7 @@ package classes.GameData
 			
 			if (encounterText != null)
 			{
-				output(encounterText + "\n\n");
+				output("\n\n" + encounterText);
 			}
 			else if (_hostiles.length > 1)
 			{
@@ -3073,14 +3074,15 @@ package classes.GameData
 				
 			if (target.HP() <= 0)
 			{
-				output("\n\n<b>" + target.capitalA + target.uniqueName + " is down and out for the count!</b>");
+				output("\n\n<b>" + target.capitalA + target.uniqueName + " is down and out for the count!</b>\n\n");
 			}
 			else if (target.lust() >= target.lustMax())
 			{
-				output("\n\n<b>" + target.capitalA + target.uniqueName + ((target.isPlural == true) ? " are" : " is") + " too turned on to fight.</b>");
+				output("\n\n<b>" + target.capitalA + target.uniqueName + ((target.isPlural == true) ? " are" : " is") + " too turned on to fight.</b>\n\n");
 			}
 			else
 			{
+				/*
 				var pHealth:Number = target.HP() / target.HPMax();
 				var pShield:Number = target.shieldsRaw / target.shieldsMax();
 				
@@ -3089,7 +3091,7 @@ package classes.GameData
 				
 				var dHealth:int = Math.round(pHealth);
 				var dShield:int = Math.round(pShield);
-				
+				*/
 
 				output("\n\n" + target.long); // + " (<b>S: " + dShield + "% / H: " + dHealth + "%</b>)");
 			}
