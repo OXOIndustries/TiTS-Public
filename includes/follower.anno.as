@@ -2846,8 +2846,10 @@ public function pcGooClone(attacker:Creature, target:Creature):void
 	target.createStatusEffect("Gray Goo Clone", 0, 0, 0, 0, false, "Icon_LustUp", chars["GOO"].short + " is busy distracting your foes!", true, 0);
 }
 
-public function pcRecallGoo(attacker:Creature, target:Creature):void
+public function pcRecallGoo():void
 {
+	clearOutput();
+	
 	// Attacker will be the caster, target are going to basically be null-elements
 	var foes:Array = CombatManager.getHostileCharacters();
 	for (var i:uint = 0; i < foes.length; i++)
@@ -2860,8 +2862,10 @@ public function pcRecallGoo(attacker:Creature, target:Creature):void
 	}
 	
 	output("<i>“Come on back, [goo.name]!”</i> you shout. In the blink of an eye, your body is wrapped in a thick covering of gray goo, cool and wet and comforting.");
-	attacker.removeStatusEffect("Reduced Goo");
-	attacker.armor.defense += 5;
+	pc.removeStatusEffect("Reduced Goo");
+	pc.armor.defense += 5;
+	
+	CombatManager.processCombat();
 }
 
 public function grayGooSpessSkypeScene():void
