@@ -3564,7 +3564,11 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["CRYSTAL_GOO_GLORYHOLED"] != undefined || flags["CRYSTAL_GOO_DEFEAT"] != undefined || flags["LOOTED_TAIVRAS_BEDROOM"] != undefined)
 				{
 					output2("\n<b>* Palace, Queen’s Chamber:</b>");
-					if(flags["CRYSTAL_GOO_GLORYHOLED"] != undefined) output2(" Used gloryhole");
+					if(flags["CRYSTAL_GOO_GLORYHOLED"] != undefined)
+					{
+						output2(" Used gloryhole");
+						if(flags["CRYSTAL_GOO_GLORYHOLED"] != 1) output2(" " + flags["CRYSTAL_GOO_GLORYHOLED"] + " times");
+					}
 					else output2(" Seen gloryhole");
 					if(flags["CRYSTAL_GOO_DEFEAT"] == 1) output2(", Physically defeated Incubator Goo");
 					if(flags["CRYSTAL_GOO_DEFEAT"] == 2) output2(", Lustfully defeated Incubator Goo");

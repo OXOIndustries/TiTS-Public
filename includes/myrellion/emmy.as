@@ -185,7 +185,7 @@ public function emmyRepeatGreetings():void
 	{
 		output("You walk up to Emmy, ");
 		if(flags["EMMY_ORALED"] != undefined) output("doing your best not to imagine the overtly sexual jackaless putting her lips to work on an hour-long, enthusiastic “apology.”");
-		else output("doing  your best to ignore her overt displays of sexuality.");
+		else output("doing your best to ignore her overt displays of sexuality.");
 		output(" Her white and black, KihaCorp-branded jumpsuit seems perfectly painted to her every curve, designed to reveal far more than it manages it conceal. When she shifts position, her tail wagging behind her, you can even make out the pebbly texture of her nipples.");
 		output("\n\n<i>“Welcome back, [pc.name]! It’s always nice to have a repeat customer come visit. If you need any help with any of the merchandise, I’m happy to give you a hands-on demonstration with a show model.”</i> Emmy glances around to make sure no one else is in the store and adds, <i>“");
 		if(flags["EMMY_QUEST"] == 0) output("Did you find that flower? I haven’t been able to stop thinking about your reward...”</i>");
@@ -248,7 +248,7 @@ public function backToEmmyMain():void
 	showEmmy();
 	if(flags["MET_EMMY"] != undefined) output("Emmy");
 	else output("The jackal-woman");
-    output(" smiles coyly and paces between holograms of a huge-barreled laser weapon and a hammer that crackles with phantom electricity. <i>\"Well, what now?\"</i>");
+	output(" smiles coyly and paces between holograms of a huge-barreled laser weapon and a hammer that crackles with phantom electricity. <i>\"Well, what now?\"</i>");
 	emmyMainMenu();
 }
 
@@ -469,7 +469,7 @@ public function askAboutTheOwnerOfKihaCorp():void
 	clearOutput();
 	showEmmy();
 	output("<i>“Who owns it?”</i> you ask.");
-	if(flags["MET_EMMY"] != undefined)  output(" Emmy");
+	if(flags["MET_EMMY"] != undefined) output(" Emmy");
 	else output(" The curvy company rep");
 	output(" taps at her onyx lips and regards you silently for a long moment. Finally, she shrugs and breaks the silence, <i>“I don’t know. I doubt anyone but the company heads and the high-ups in the U.G.C. tax collection offices do. Rumor has it that she’s some kind of scaly recluse. Something reptilian... or maybe a gene-modded terran who’s turned too hideous to let herself be seen. Whatever the case, she stays out of the spotlight... and ahead of the paparazzi.”</i>");
 	output("\n\nLeaning close, so close her breasts brush your shoulder");
@@ -1098,6 +1098,9 @@ public function giveEmmyAnItem(item:String):void
 		output(" a " + item.toLowerCase() + " gem.");
 		if(item != "Crystal Shard") output("\n\nTaking the gem in hand");
 	}
+	// Determine weapon -- if AQ and PQ is equal and player affinity is physique, get melee!
+	var getRanged:Boolean = (pc.AQ() >= pc.PQ());
+	if(pc.AQ() == pc.PQ() && pc.affinity == "physique") getRanged = false;
 	//Give Her A Crystal Shard - By Zeik
 	//get a misch point
 	//first tooltip: Give Emmy a Crystal Shard you obtained on Myrellion. It probably won’t make her swoon, but if it breaks it might be worth a laugh.
@@ -1169,7 +1172,7 @@ public function giveEmmyAnItem(item:String):void
 			//reward weapon should reflect a total cost of 4950 credits (1 demo shard plus 10 shards for the mail @ 450 ea)
 			if(rand(3) == 0)
 			{
-				if(pc.AQ() >= pc.PQ()) 
+				if(getRanged) 
 				{
 					output("You’ve probably seen the Salamander Pistols we stock, but this beaut is special. I fitted it with a smart-linked scope system that’ll interface with damn near any optical interface, even one those fancy microsurgeon-based immune systems. You’ll be hard-pressed to find a more accurate pistol.");
 					emmyLoot = new EmmysSalamanderPistol();
@@ -1183,7 +1186,7 @@ public function giveEmmyAnItem(item:String):void
 			}
 			else if(rand(2) == 0)
 			{
-				if(pc.AQ() >= pc.PQ()) 
+				if(getRanged) 
 				{
 					output("You’ve probably seen a Salamander Rifle around the shop, but you haven’t seen </i>this<i> Salamander Rifle. I fitted it with a hotshot energy supply, replaced the regulator contacts, and gave it a better muzzle, much like myself.”</i> She giggles and points to the dragon-headed design at the tip of the barrel. <i>“It should be a piece of cake to land a critical blow with this monster.”</i>");
 					emmyLoot = new EmmysSalamanderRifle();
@@ -1196,7 +1199,7 @@ public function giveEmmyAnItem(item:String):void
 			}
 			else
 			{
-				if(pc.PQ() > pc.AQ()) 
+				if(!getRanged) 
 				{
 					output("I managed to get the whole blade replaced with one that had a more robust induction lattice. It’s not quite as strong as a retail model, but it can drain shields ");
 					if(pc.hasCock()) output("faster than I drain your dick");
@@ -1230,7 +1233,7 @@ public function giveEmmyAnItem(item:String):void
 		output("\n\n<i>“Kirkite, huh?”</i> Emmy rolls sparkling gemstone between two claw-tipped fingers. <i>“This stuff is actually pretty rare around Ausaril and Terra, but with every new rush, it gets a little more common. Weird how the farther we get from the core, the more deposits we find.”</i> She smiles mischievously spins around, tail wagging beneath your nose. <i>“You’re lucky I’m not a thraggen or I probably wouldn’t have accepted it. I hear their planet is so rich in the stuff that they used to throw it away, back before they realized they could export it for a quick credit.”</i>");
 		output("\n\n<i>“Really?”</i>");
 		output("\n\nEmmy’s bends over to a storage compartment, her hips wiggling. <i>“Nuts isn’t it? We don’t even know how lucky we are until we can get to know someone else and gain a little perspective. Life’s funny like that. Ah! Here it is!”</i> She slams the drawer closed with a heavy ‘thunk’ and straightens, balancing an expensive-looking weapon in front of the bullets of her nipples. <i>“");
-		if(pc.AQ() >= pc.PQ()) 
+		if(getRanged) 
 		{
 			output("You’ve probably seen the Salamander Pistols we stock, but this beaut is special. I fitted it with a smart-linked scope system that’ll interface with damn near any optical interface, even one those fancy microsurgeon-based immune systems. You’ll be hard-pressed to find a more accurate pistol.");
 			emmyLoot = new EmmysSalamanderPistol();
@@ -1256,7 +1259,7 @@ public function giveEmmyAnItem(item:String):void
 
 		output("\n\nBending over to root around in a storage compartment, Emmy seems unaware of just how interesting you found rambling. <i>“I hear some of the more superstitious cultures out there actually believe it boosts virility, like wearing a bunch of pretty rocks will somehow make you a better lover or give you a bigger family.”</i> She shakes her head and her ass, waving back and forth just below your nose. <i>“Bunch of silliness if you ask me. No studies have shown any such link. Ah! Here it is!”</i>");
 		output("\n\nThe jackal-girl slams the drawer closed and straightens, balancing an expensive-looking weapon in front of the bullets of her nipples. ");
-		if(pc.AQ() >= pc.PQ()) 
+		if(getRanged) 
 		{
 			output("<i>“You’ve probably seen a Salamander Rifle around the shop, but you haven’t seen </i>this<i> Salamander Rifle. I fitted it with a hotshot energy supply, replaced the regulator contacts, and gave it a better muzzle, much like myself.”</i> She giggles and points to the dragon-headed design at the tip of the barrel. <i>“It should be a piece of cake to land a critical blow with this monster.”</i>");
 			emmyLoot = new EmmysSalamanderRifle();
@@ -1274,10 +1277,10 @@ public function giveEmmyAnItem(item:String):void
 		output("\n\n<i>“Picardine, huh?”</i> Emmy rolls the unworked gem between her clawed fingertips. <i>“I’ve never gotten to handle this stuff before, let alone in an unprocessed state. I can’t believe you found me some! Nobody uses it for jewelry; it’s far too plain a stone for that. You’d be better off hawking quartz. The real use for it is in the thought-matrixes of A.I. and V.I. cores, along with psionic implants and some illegal drugs. I hear you can get a quick intelligence boost from some of them, provided you don’t mind muscular atrophy.”</i>");
 		output("\n\nTurning away, the happy shopkeeper pulls open a storage compartment, but continues rambling, <i>“Supposedly, if you have a pure enough sample and put it inside a galotian, her body won’t absorb it. A tough membrane will build up around it, and somehow the goo-girl will wind up smarter for having a picardine core.”</i> Something loudly clanks from inside the drawer. <i>“Crazy, right? I hear there’s one out on the rush like yourself. Galoo or Galos or something. Word is she wants to find a supply big enough to bring the rest of her species up to her level. Oh! Here it is.”</i>");
 		output("\n\nEmmy kicks the bin shut and spins around to reveal ");
-		if(pc.AQ() >= pc.PQ()) output("a Salamander Rifle");
+		if(getRanged) output("a Salamander Rifle");
 		else output("a Vamp Blade");
 		output(". It barely manages to hide the hardness of her nipples. <i>“You may have seen one of these around the shop, but not like this one. Check this out.”</i> She holds it out to you. <i>“");
-		if(pc.PQ() > pc.AQ()) 
+		if(!getRanged) 
 		{
 			output("I managed to get the whole blade replaced with one that had a more robust induction lattice. It’s not quite as strong as a retail model, but it can drain shields ");
 			if(pc.hasCock()) output("faster than I drain your dick");
@@ -1913,7 +1916,7 @@ public function emmyCockSlobber():void
 
 	output("\n\nShe releases her hold on your hair, and you slide back, just enough to get resituated, and swirl the tip of your tongue around the head of her cock. She gives your hair a gentle tug and you respond obediently, running your lips down her length, sucking noisily on her member. Once you reach the base, you get another happy gush of pre down the back of your throat. You slide back up, moaning around her shaft in hungry delight, while she does the same, alternating between fucking your face like it’s her own personal sex-toy and watching you service her meat.");
 
-	output("\n\nUp and down her shaft you go, encouraged by her sweet sounds of pleasure and bursts of pre that may as well be ejaculations, guided by her tugging hands. She’s in control, and you’re enjoying every minute of it, happy to give her the tender love and throat-fucking she so clearly needs. You place your hands on her spit and spunk-slicked balls and rub them softly as she draws you up, coaxing a low hum of pleasure from Emmy.  She quickens her pace, tugging you down sooner each time, and you take the hint.");
+	output("\n\nUp and down her shaft you go, encouraged by her sweet sounds of pleasure and bursts of pre that may as well be ejaculations, guided by her tugging hands. She’s in control, and you’re enjoying every minute of it, happy to give her the tender love and throat-fucking she so clearly needs. You place your hands on her spit and spunk-slicked balls and rub them softly as she draws you up, coaxing a low hum of pleasure from Emmy. She quickens her pace, tugging you down sooner each time, and you take the hint.");
 
 	output("\n\nAfter a few more minutes, you’re pumping your head up and down like a piston, working her shaft as her fingers begin to tighten on your hair, taking complete control over your mouth and transforming it into a slobbery receptacle for her throbbing cock. She’s growling like an animal, and you can feel the rapidness of her heartbeat in the way her dick bulges against your lips and tongue. She’s ready to cum, and you want every drop of it.");
 

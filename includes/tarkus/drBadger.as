@@ -1,4 +1,11 @@
-﻿public function bimbotoriumHallBonus():Boolean
+﻿public function showDrBadger(nude:Boolean = false):void
+{
+	showName("DR.\nBADGER");
+	if(nude) showBust("DRBADGER_NUDE");
+	else showBust("DRBADGER");
+}
+
+public function bimbotoriumHallBonus():Boolean
 {
 	if(flags["DR_BADGER_TURNED_IN"] != undefined) 
 	{

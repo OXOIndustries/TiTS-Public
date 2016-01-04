@@ -250,7 +250,7 @@ public function malesBeatGoo():void
 	output("\n\nAt your touch she goes as rigid as her semi-solid body will allow, letting out half a moan as all the pleasure buttons her body has available get pressed at once. Her hands retract from inside her and grip your arms for dear life, anchoring herself to something solid as the inside of her diamond hard skirt is plastered with sex juices. She continues to cum for what seems like minutes, but can’t be more than a few seconds, before collapsing into a breathless heap in front of you.");
 	output("\n\nYou gently pull the armored undergarment off of her, tossing it into a pile with her sword and chestplate. Her juices form a sticky web between her legs, and she tries to catch her breath while you survey her body. Now that she’s fully naked she looks just like a galotian imitating a human form.");
 	output("\n\nHer slippery thighs part easily as you pull them aside, revealing the sex soaked exterior of her pussy. The mimicked organ twitches needfully in the damp cave air, inviting you to plug it up. You ready your [pc.cockBiggest], rubbing the head between her squishy [enemy.skinTone] lips. She stirs as your brushing brings her out of her orgasm induced stupor.");
-	output("\n\nYou line your [pc.cockHeadBiggest] up with her hole, pressing it gently forward to make sure its perfectly aligned before ramming in at full speed. ");
+	output("\n\nYou line your [pc.cockHeadBiggest] up with her hole, pressing it gently forward to make sure it’s perfectly aligned before ramming in at full speed. ");
 	if(pc.cockTotal() > 1)
 	{
 		output("Your other ");
@@ -622,7 +622,7 @@ public function acceptStupidoopyPunishment(dongus:Boolean = false):void
 		output("\n\n<i>“Perfect! Another successful punishment");
 		if(pc.cumQ() >= 2500) output(", though it’ll take me days to absorb all this");
 		output(". When you feel able to stand, you can join me at the door to leave,”</i> she says with a cheerful smile. The red myr woman gives you a smug look and crosses her arms.");
-		output("\n\n<i>“See, isn’t it great? After the first time they aren’t quite as quick about it either, all it takes is a knock on one of their less sound structures and boom, free mind-shattering sex. If you get caught again ask to be locked up with Issett, thats me. They can be pretty accommodating,”</i> she explains with a smile. You make a note to try and remember this if you ever end up down here again before ");
+		output("\n\n<i>“See, isn’t it great? After the first time they aren’t quite as quick about it either, all it takes is a knock on one of their less sound structures and boom, free mind-shattering sex. If you get caught again ask to be locked up with Issett, that’s me. They can be pretty accommodating,”</i> she explains with a smile. You make a note to try and remember this if you ever end up down here again before ");
 		if(pc.isCrotchGarbed()) output("gathering your [pc.lowerGarment] and ");
 		output("heading to the door. You turn and give the dark haired ant-girl your name before returning to the village proper.");
 	}
@@ -666,7 +666,7 @@ public function acceptStupidoopyPunishment(dongus:Boolean = false):void
 		else output("letting nothing escape");
 		output(". When you finally manage to relax, the ganraen warden pulls back and lets you slump to the ground.");
 		output("\n\n<i>“Wonderful! Another successful punishment. When you feel able to stand please join me at the door so you can rejoin society as a nicer person!”</i> she says, reshaping herself to a humanoid form. The red myr woman gives you a smug look and crosses her arms.");
-		output("\n\n<i>“See, isn’t it great? After the first time they aren’t quite as quick about it either, all it takes is a knock on one of their less sound structures and boom, free mind-shattering sex. If you get caught again ask to be locked up with Issett, thats me. They can be pretty accommodating,”</i> she explains with a smile. You make a note to try and remember this if you ever end up down here again before ");
+		output("\n\n<i>“See, isn’t it great? After the first time they aren’t quite as quick about it either, all it takes is a knock on one of their less sound structures and boom, free mind-shattering sex. If you get caught again ask to be locked up with Issett, that’s me. They can be pretty accommodating,”</i> she explains with a smile. You make a note to try and remember this if you ever end up down here again before ");
 		if(pc.isCrotchGarbed()) output("gathering your [pc.lowerGarment] and ");
 		output("heading to the door. You turn and give the dark haired ant-girl your name before returning to the village proper.");
 	}
@@ -732,7 +732,7 @@ public function visitCrystalGooShop():void
 	output("You decide to check out the ganraen that looks like a shopkeep. As she notices you she waves, showing off four crystal coated arms. It seems like this one is mimicking the appearance of a gold myr, confirmed by the presence of a golden crystal abdomen just above her butt. She smiles ecstatically when you reach her, straightening some of her merchandise.");
 	output("\n\n<i>“Oh my gosh! An outworlder! I have some things you can buy here just like they do it in the big cities. This is how they do it right?”</i> she exclaims, whispering the last question. You stare for a few seconds before asking her what exactly she’s selling.");
 	output("\n\n<i>“I’m glad you asked. I sell nothing but the highest quality samples of goo, perfect for patching up nasty scrapes, fixing buildings, lots of other things, and even more stuff!”</i> she says, showing off the softball sized spheres of semisolid gel. The jellied orbs jiggle softly at the minor vibrations of the cave, but don’t fall from the table they occupy. You ");
-	if(!pc.isGoo()) output("mention that you arent made of goo, so most of those things won’t help you");
+	if(!pc.isGoo()) output("mention that you aren’t made of goo, so most of those things won’t help you");
 	else output("clap happily, wondering which of the blobs you should get");
 	output(".");
 	flags["MET_CGOO_SHOPKEEP"] = 1;
@@ -776,7 +776,7 @@ public function talkToGanraelAboutVillage():void
 	output("You ask the goo shopkeeper about the village, seeing as your codex says ganrael don’t usually work together.");
 	output("\n\n<i>“Of course we don’t, silly! If they stay here for too long they know I’ll steal their ideas, but who else are they going to show off to? None of us stay here all the time, except maybe me I suppose...,”</i> she explains cheerily.");
 	output("\n\n<i>“The houses are kept up all the time, but the occupants change every couple of days. Sometimes people from other races come to talk and play with us, and that’s always fun, but I’m too busy to go anywhere else,”</i> she states with an obstinate tone. You ask her what she’s so busy doing, and why the store can’t just change owners like everything else.");
-	output("\n\n<i>“What? Well, loads of stuff. Who else is gonna sort these rocks, or count the number of houses. It’s most definitely not because I don’t remember how to change my shape and am stuck to the ground here. I could leave at any time, but I’d rather do this,”</i> she says adamantly. You aren’t sure you believe her, but she doesn’t seem to be interested in talking anymore.");
+	output("\n\n<i>“What? Well, loads of stuff. Who else is gonna sort these rocks, or count the number of houses? It’s most definitely not because I don’t remember how to change my shape and am stuck to the ground here. I could leave at any time, but I’d rather do this,”</i> she says adamantly. You aren’t sure you believe her, but she doesn’t seem to be interested in talking anymore.");
 	processTime(2);
 	clearMenu();
 	addButton(0,"Next",talkToGooVillagers);
@@ -789,8 +789,8 @@ public function talkToGooCrystalsAboutWar():void
 	author("Gardeford");
 	showGooKeep();
 	output("You ask the spunky shopkeep what she thinks of the war, obtaining a grumpy scowl in response. She crosses her arms and huffs.");
-	output("\n\n<i>“It’s so dumb. Why do they have to kill each other when they could be having sex instead. I know that’s what I would do. One side has giant girls with tits full of succulent honey, and the other has tasty venom that makes sex even better! Why have they not combined those things yet?”</i> she asks. You nod and act interested, prompting even more explanation from the opinionated lady.");
-	output("\n\n<i>“Like, we sometimes get some backed up honey ants down here, and it’s really fun when we have sex with them and the red myr at the same time. Once they’ve been fucked till they can’t think straight neither of them care that they’re screwing the enemy. If that’s all it takes then why shouldn’t they just do that all the time? I think deep down that’s what they really want, and they could just stop at any time if the other side does it at the same time,”</i> she rants, her body shifting to darker shades as she grows angrier.");
+	output("\n\n<i>“It’s so dumb. Why do they have to kill each other when they could be having sex instead? I know that’s what I would do. One side has giant girls with tits full of succulent honey, and the other has tasty venom that makes sex even better! Why have they not combined those things yet?”</i> she asks. You nod and act interested, prompting even more explanation from the opinionated lady.");
+	output("\n\n<i>“Like, we sometimes get some backed up honey ants down here, and it’s really fun when we have sex with them and the red myr at the same time. Once they’ve been fucked till they can’t think straight, neither of them care that they’re screwing the enemy. If that’s all it takes then why shouldn’t they just do that all the time? I think deep down that’s what they really want, and they could just stop at any time if the other side does it at the same time,”</i> she rants, her body shifting to darker shades as she grows angrier.");
 	output("\n\n<i>“Mainly I just want them to come down here more often. If it weren’t for the war, they could come down here and have all the sex I wanted. Maybe even with ALL the ants at the same time. Can you imagine it?!”</i> She continues, sinking into her thoughts when she finishes. You suppose you weren’t expecting much opinion regarding the war, and she doesn’t seem to be interested in talking about this subject anymore.");
 	processTime(4);
 	clearMenu();

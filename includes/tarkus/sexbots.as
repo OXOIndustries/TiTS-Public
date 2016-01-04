@@ -17,7 +17,7 @@ public function encounterASexBot():void
 	
 	if(!pc.hasCock() && !pc.hasVagina())
 	{
-		output("\n\nA level humming sound permeates this area of the junkyard wastes, coating the distant, harsh strains of heavy industry. The source of it becomes apparent as a pale-gray figure emerges from a grotto of wrecked spaceship parts, stepping calmly towards you. Your first thought, as you cautiously check for your weapons and codex, is that some sort of heavily robotised raskvel is approaching you. It is shaped exactly like one of the squat aliens, but everything from its heavy thighs to its long ears seems to be made from a gray, metallic fibre, plated here and there with a shiny, white latex-like plastic. Its female sex and lips look soft and rubbery, its solid eyes a backlit green, locked on you.");
+		output("\n\nA level humming sound permeates this area of the junkyard wastes, coating the distant, harsh strains of heavy industry. The source of it becomes apparent as a pale-gray figure emerges from a grotto of wrecked spaceship parts, stepping calmly towards you. Your first thought, as you cautiously check for your weapons and codex, is that some sort of heavily robotised raskvel is approaching you. It is shaped exactly like one of the squat aliens, but everything from its heavy thighs to its long ears seems to be made from a gray, metallic fiber, plated here and there with a shiny, white latex-like plastic. Its female sex and lips look soft and rubbery, its solid eyes a backlit green, locked on you.");
 		output("\n\n<i>“Scanning new client,”</i> it says in a neutral, pleasant tone. Its eyes brighten and flicker over your body, making you twitch. ");
 
 		{
@@ -34,7 +34,7 @@ public function encounterASexBot():void
 		flags["MET_SEXBOTS_ON_TARKUS"] = 1;
 		if(manbot) flags["MET_SEXBOT_MALE_ON_TARKUS"] = 1;
 		else flags["MET_SEXBOT_FEMALE_ON_TARKUS"] = 1;
-		output("\n\nA level humming sound permeates this area of the junkyard wastes, coating the distant, harsh strains of heavy industry. The source of it becomes apparent as a pale-gray figure emerges from a grotto of wrecked spaceship parts, stepping calmly towards you. Your first thought, as you cautiously check for your weapons and codex, is that some sort of heavily robotised raskvel is approaching you. It is shaped exactly like one of the squat aliens, but everything from its heavy thighs to its long ears seems to be made from a gray, metallic fibre, plated here and there with a shiny, white latex-like plastic. Its female sex and lips look soft and rubbery, its solid eyes a backlit green, locked on you.");
+		output("\n\nA level humming sound permeates this area of the junkyard wastes, coating the distant, harsh strains of heavy industry. The source of it becomes apparent as a pale-gray figure emerges from a grotto of wrecked spaceship parts, stepping calmly towards you. Your first thought, as you cautiously check for your weapons and codex, is that some sort of heavily robotised raskvel is approaching you. It is shaped exactly like one of the squat aliens, but everything from its heavy thighs to its long ears seems to be made from a gray, metallic fiber, plated here and there with a shiny, white latex-like plastic. Its female sex and lips look soft and rubbery, its solid eyes a backlit green, locked on you.");
 		output("\n\n<i>“Scanning new client,”</i> it says in a neutral, pleasant tone. Its eyes brighten and flicker over your body, making you twitch. ");
 
 		output("<i>“[pc.Race] " + pc.mfn("male","female","intersex") + " acknowledged.");
@@ -50,7 +50,7 @@ public function encounterASexBot():void
 		if(!manbot) output("its lips become plumper, its chin narrows and its nose softens and turns up, an expression of preternaturally calm female beauty shifting into being.");
 		else output("its lips remain relatively thin, its jaw becomes square and its nose straightens, a strong profile contouring into being. You are reminded of the anatomical drawings of ancient humanity you studied at school: stark, emotionless male beauty.");
 		if(!manbot) output("\n\nThroughout all of this you cannot help notice that practically the one thing that doesn’t change is the pliable-looking vertical slit between its thighs.");
-		else output("\n\nSmall fibre cables slide out of the vertical slit between its thighs, busily wrapping themselves around each other. Within moments where its female sex was there is a sturdy and convincingly human-looking penis.");
+		else output("\n\nSmall fiber cables slide out of the vertical slit between its thighs, busily wrapping themselves around each other. Within moments where its female sex was there is a sturdy and convincingly human-looking penis.");
 		if(!manbot) output(" It becomes yet taller as it forms two high heels out of its soles.");
 
 		output("\n\n<i>“Configuration complete,”</i> says the now human shape in front of you smoothly.");
@@ -87,7 +87,7 @@ public function encounterASexBot():void
 		else if(flags["MET_SEXBOT_FEMALE_ON_TARKUS"] == 1)
 		{
 			output("Something is slightly different this time. Instead of forming boobs, its slim waist and chest harden, throbbing vibrations beneath the surface of its synthetic skin causing lines and ripples to appear and then define until it is sporting a modest but perfectly formed six pack.");
-			output("\n\nMeanwhile, small fibre cables slide out of the vertical slit between its thighs, busily wrapping themselves around each other. Within moments where its female sex was there is a sturdy and convincingly human penis. As its face transforms its jaw line and nose harden, bringing out a strong, emotionless handsomeness. For its own obtuse reasons this sexbot has chosen to appear male to you.");
+			output("\n\nMeanwhile, small fiber cables slide out of the vertical slit between its thighs, busily wrapping themselves around each other. Within moments where its female sex was there is a sturdy and convincingly human penis. As its face transforms its jaw line and nose harden, bringing out a strong, emotionless handsomeness. For its own obtuse reasons this sexbot has chosen to appear male to you.");
 		}
 		else
 		{

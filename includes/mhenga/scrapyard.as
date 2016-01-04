@@ -584,7 +584,7 @@ public function dudesTopGeoffRepeat():void
 		{
 			output("\n\n<i>“Oh really?”</i> you say, [pc.lips] spreading into a grin before you ask him if he’s been practicing.");
 			
-			output("\n\nThats when he gets all embarrassed again. <i>“Well... kind of? Like when I’m... you know... by myself I play with it now, sometimes. Its like... I don’t know. I didn’t know it could feel good before... you know.”</i> He chuckles at the end. Then you notice the soft mound of his bulge lengthening in his faded jeans and decide its time to get this road on the show.");
+			output("\n\nThat’s when he gets all embarrassed again. <i>“Well... kind of? Like when I’m... you know... by myself I play with it now, sometimes. Its like... I don’t know. I didn’t know it could feel good before... you know.”</i> He chuckles at the end. Then you notice the soft mound of his bulge lengthening in his faded jeans and decide its time to get this road on the show.");
 			
 			output("\n\nSo you glance at the back door than at Geoff himself. <i>“Well... lets go make you feel good again.”</i>");
 		}

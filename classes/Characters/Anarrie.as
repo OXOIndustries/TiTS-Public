@@ -18,7 +18,7 @@
 		//constructor
 		public function Anarrie()
 		{
-			this._latestVersion = 2;
+			this._latestVersion = 3;
 			this.version = this._latestVersion;
 			//this._neverSerialize = false;
 			_neverSerialize = true;
