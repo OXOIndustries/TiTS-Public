@@ -245,7 +245,7 @@ package classes.Characters
 	
 			if (rand(4) == 0)
 			{
-				pc.createStatusEffect("Stunned", 3, 0, 0, 0, false, "Stunned", "You are stunned and cannot act until you recover!", true, 0);
+				pc.createStatusEffect("Stunned", 3, 0, 0, 0, false, "Stun", "You are stunned and cannot act until you recover!", true, 0);
 				output(" <b>You’re stunned by the overwhelming force of the blow!</b>");
 			}
 			

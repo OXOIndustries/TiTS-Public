@@ -919,10 +919,53 @@
 		private function doFileLoad(dataBlob:Object):void
 		{
 			var gamePtr:* = kGAMECLASS;
+			var dataErrors:Boolean = false;
+			
+			// Check we can get version information out of the file
+			if (dataBlob.version == undefined)
+			{
+				this.printDataErrorMessage("version");
+				dataErrors = true;
+			}
+			
+			if (dataBlob.minVersion == undefined && dataBlob.version > 2) // Special second conditional for v1 saves
+			{
+				this.printDataErrorMessage("minVersion");
+				dataErrors = true;
+			}
+			
+			// Check that the minVersion isn't above our latest version
+			if (dataBlob.minVersion > DataManager.LATEST_SAVE_VERSION)
+			{
+				kGAMECLASS.output2("This save file requires a minimum save format version of " + DataManager.LATEST_SAVE_VERSION + " for correct support. Please use a newer version of the game!\n\n");
+				dataErrors = true;
+			}
+			
+			// If we're good so far, check if we need to upgrade the data
+			if (!dataErrors)
+			{
+				if (dataBlob.version < DataManager.LATEST_SAVE_VERSION)
+				{
+					// Loop over each version to grab the correct implementations for upgrading
+					while (dataBlob.version < DataManager.LATEST_SAVE_VERSION)
+					{
+						try
+						{
+							(new (getDefinitionByName("classes.DataManager.SaveVersionUpgrader" + dataBlob.version) as Class) as ISaveVersionUpgrader).upgrade(dataBlob);
+						}
+						catch (error:VersionUpgraderError)
+						{
+							trace("Error thrown in data loader!", error);
+							trace("Traceback = \n", error.getStackTrace());
+							dataErrors = true;
+						}
+					}
+				}
+			}
 			
 			// Now we can shuffle data into disparate game systems 
 			var saveBackup:Object = new Object();
-			var dataErrors:Boolean = this.loadBaseData(dataBlob, saveBackup);
+			dataErrors = this.loadBaseData(dataBlob, saveBackup);
 			
 			// Do some output shit
 			if (!dataErrors)

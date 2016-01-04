@@ -259,7 +259,7 @@ package classes.Characters
 				damageRand(damage, 20);
 				applyDamage(damage, this, target);
 				
-				target.createStatusEffect("Stunned", 2, 0, 0, 0, false, "Stunned", "You are stunned and cannot move until you recover!", true, 0);
+				target.createStatusEffect("Stunned", 2, 0, 0, 0, false, "Stun", "You are stunned and cannot move until you recover!", true, 0);
 			}
 		}
 		

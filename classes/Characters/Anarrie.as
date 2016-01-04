@@ -191,8 +191,7 @@
 		}
 		public function UpgradeVersion2(dataObject:Object):void
 		{
-			dataObject.rangedWeapon = new EmptySlot();
-			dataObject._neverSerialize = true;
+			dataObject.rangedWeapon = new EmptySlot().getSaveObject();
 		}
 	}
 }
