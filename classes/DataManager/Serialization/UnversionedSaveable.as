@@ -146,7 +146,14 @@
 						// Directly referencing something that supports this serialization method
 						if (this[prop] is ISaveable)
 						{
-							var classT:Class = getDefinitionByName(dataObject[prop].classInstance) as Class;
+							try
+							{
+								var classT:Class = getDefinitionByName(dataObject[prop].classInstance) as Class;
+							}
+							catch (e:Error)
+							{
+								trace("ERROR");
+							}
 							this[prop] = new classT();
 							this[prop].loadSaveObject(dataObject[prop]);
 						}
