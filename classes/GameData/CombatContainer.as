@@ -3242,40 +3242,35 @@ package classes.GameData
 		{
 			for (var i:int = 0; i < _friendlies.length; i++)
 			{
+				if (enemiesAlive() == 0) break;
+				
 				var target:Creature = _friendlies[i];
 				
 				if (target is PlayerCharacter) continue;
 				if (target.isDefeated()) continue; // TODO maybe allow the combatAI method to handle this- allows for a certain degree of cheese in encounter impl.
 				
-				output("\n\n");
-				
 				if (target.hasStatusEffect("Paralyzed"))
 				{
-					if (target.isPlural) output("<b>" + target.capitalA + target.uniqueName + " are still paralyzed.</b>");
-					else output("<b>" + target.capitalA + target.uniqueName + " is still paralyzed.</b>");
-					target.addStatusValue("Paralyzed", 1, -1);
-					
-					if (target.statusEffectv1("Paralyzed"))
-					{
-						if(target.isPlural) output(" They shake it off!");
-						else output(" " + target.mfn("He","She","It") + " shakes it off!");
-						target.removeStatusEffect("Paralyzed");
-					}
+					// noop, handled by updateStatusEffects
 				}
 				else if (target.hasStatusEffect("Grappled"))
 				{
+					output("\n\n");
 					doStruggleRecover(target);
 				}
 				else if (target.hasStatusEffect("Stunned"))
 				{
+					output("\n\n");
 					doStunRecover(target);
 				}
 				else if (target.hasStatusEffect("Tripped"))
 				{
+					output("\n\n");
 					doTripRecover(target);
 				}
 				else
 				{
+					output("\n\n");
 					target.CombatAI(_friendlies, _hostiles);
 				}
 				

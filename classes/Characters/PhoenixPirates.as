@@ -4,6 +4,7 @@ package classes.Characters
 	import classes.GLOBAL;
 	import classes.Items.Guns.MagnumPistol;
 	import classes.Items.Melee.Fists;
+	import classes.Items.Protection.ImprovisedShield;
 	import classes.Items.Protection.JoyCoPremiumShield;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
@@ -37,19 +38,19 @@ package classes.Characters
 			rangedWeapon.attackVerb = "shoot";
 			rangedWeapon.attackNoun = "shot";
 			rangedWeapon.hasRandomProperties = true;
-			this.shield = new JoyCoPremiumShield();
+			this.shield = new ImprovisedShield();
 			
 			this.armor.longName = "black void armor";
-			this.armor.defense = 3;
+			this.armor.defense = 1;
 			this.armor.hasRandomProperties = true;
 			
-			this.physiqueRaw = 12;
+			this.physiqueRaw = 8;
 			this.reflexesRaw = 10;
 			this.aimRaw = 10;
 			this.intelligenceRaw = 8;
 			this.willpowerRaw = 10;
 			this.libidoRaw = 20;
-			this.shieldsRaw = 20;
+			this.shieldsRaw = this.shieldsMax();
 			this.energyRaw = 100;
 			this.lustRaw = 10;
 			
@@ -205,7 +206,7 @@ package classes.Characters
 		
 		private function phoenixPiratesBulletstorm(target:Creature):void
 		{
-			output("Several of the pirates pop up from cover, firing on full-auto and sending a withering hail of gunfire downrange at you!");
+			output("One of the pirates pops up from cover, firing on full-auto and sending a withering hail of gunfire downrange at you!");
 
 			energy(-20);
 
