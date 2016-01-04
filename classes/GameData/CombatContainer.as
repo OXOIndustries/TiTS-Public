@@ -3318,22 +3318,28 @@ package classes.GameData
 				
 				if (target.isDefeated()) continue;
 				
-				output("\n\n");
-				
-				if (target.hasStatusEffect("Grappled"))
+				if (target.hasStatusEffect("Paralyzed"))
 				{
+					// noop, this is handled as part of updateStatusEffectsFor()
+				}
+				else if (target.hasStatusEffect("Grappled"))
+				{
+					output("\n\n");
 					doStruggleRecover(target);
 				}
 				else if (target.hasStatusEffect("Stunned"))
 				{
+					output("\n\n");
 					doStunRecover(target);
 				}
 				else if (target.hasStatusEffect("Tripped"))
 				{
+					output("\n\n");
 					doTripRecover(target);
 				}
 				else
 				{
+					output("\n\n");
 					target.CombatAI(_hostiles, _friendlies);
 				}
 				
