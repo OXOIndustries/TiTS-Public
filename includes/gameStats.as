@@ -659,7 +659,7 @@ public function statisticsScreen(showID:String = "All"):void
 		output2("\n<b>* Total Onboard: </b>" + crew(true));
 		// Traveling
 		output2("\n<b><u>Travel</u></b>");
-		output2("\n<b>* Time Spent Moving From Room to Room: </b>" + prettifyMinutes(StatTracking.getStat("movement/time traveled")));
+		output2("\n<b>* Time Spent Moving From Room to Room: </b>" + prettifyMinutes(StatTracking.getStat("movement/time travelled")));
 		output2("\n<b>* Time Spent Flying: </b>" + prettifyMinutes(StatTracking.getStat("movement/time flown")));
 		// Sleeping partner
 		var sleepingPartner:String = "";
