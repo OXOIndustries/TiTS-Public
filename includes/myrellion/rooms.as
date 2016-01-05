@@ -660,7 +660,7 @@ public function initializeMyrellionRooms():void
 	//726 Girella’s Avenue
 	rooms["726"] = new RoomClass(this);
 	rooms["726"].roomName = "CITY\nCORNER";
-	rooms["726"].description = "Girella’s Avenue intersects with another, westward-travelling road here. The latter leads toward another section of the city, but a wartime checkpoint has been established a short ways down it. You doubt they’ll let you through if you head that way. Girella’s Avenue comes to an end to the north at the corner of another street. Maybe you’ll have more luck that way.";
+	rooms["726"].description = "Girella’s Avenue intersects with another, westward-traveling road here. The latter leads toward another section of the city, but a wartime checkpoint has been established a short ways down it. You doubt they’ll let you through if you head that way. Girella’s Avenue comes to an end to the north at the corner of another street. Maybe you’ll have more luck that way.";
 	rooms["726"].planet = "PLANET: MYRELLION";
 	rooms["726"].system = "SYSTEM: SINDATHU";
 	rooms["726"].northExit = "725";
