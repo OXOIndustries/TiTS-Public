@@ -2628,6 +2628,7 @@ package classes.GameData
 				}
 				
 				userInterface().showPlayerParty([pc]);
+				userInterface().leftBarDefaults();
 				output("\n\n");
 				clearMenu();
 				addButton(0, "Defeat", _lossFunction);
@@ -2647,6 +2648,7 @@ package classes.GameData
 					}
 				
 					userInterface().showPlayerParty([pc]);
+					userInterface().leftBarDefaults();
 					output("\n\n");
 					clearMenu();
 					addButton(0, "Defeat", _lossFunction);
@@ -2686,6 +2688,7 @@ package classes.GameData
 				}
 				
 				userInterface().showPlayerParty([pc]);
+				userInterface().leftBarDefaults();
 				output("\n\n");
 				clearMenu();
 				addButton(0, "Victory", _victoryFunction);

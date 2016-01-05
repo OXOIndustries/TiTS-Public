@@ -181,14 +181,7 @@ package classes.UIComponents
 		{
 			if (chars.length == 1)
 			{
-				if (chars[0] is Celise)
-				{
-					_genInfoBlock.visible = false;
-				}
-				else
-				{
-					_genInfoBlock.visible = true;
-				}
+				_genInfoBlock.visible = false;
 				_enemyPartyBlock.visible = false;
 				_enemyEncounterBlock.visible = true;
 				_miniMapBlock.visible = false;
@@ -199,15 +192,23 @@ package classes.UIComponents
 			}
 			else
 			{
+				_genInfoBlock.visible = false;
 				_enemyPartyBlock.visible = true;
 				_enemyEncounterBlock.visible = false;
-				_genInfoBlock.visible = false;
 				_miniMapBlock.visible = false;
 				_compressedLocationHeader.visible = true;
 				_locationHeader.visible = false;
 				
 				_enemyPartyBlock.showForCreatures(chars);
 			}
+		}
+		
+		public function defaultLayout():void
+		{
+			_compressedLocationHeader.visible = false;
+			_locationHeader.visible = true;
+			_enemyPartyBlock.visible = false;
+			_genInfoBlock.visible = true;
 		}
 	}
 }
