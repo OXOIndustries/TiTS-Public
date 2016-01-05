@@ -2627,7 +2627,8 @@ package classes.GameData
 					kGAMECLASS.setEnemy(_hostiles[0]);
 				}
 				
-				userInterface().showPlayerParty([pc]);
+				userInterface().showPlayerParty(_friendlies);
+				userInterface().showHostileParty(_hostiles);
 				userInterface().leftBarDefaults();
 				output("\n\n");
 				clearMenu();
@@ -2647,7 +2648,8 @@ package classes.GameData
 						kGAMECLASS.setEnemy(_hostiles[0]);
 					}
 				
-					userInterface().showPlayerParty([pc]);
+					userInterface().showPlayerParty(_friendlies);
+					userInterface().showHostileParty(_hostiles);
 					userInterface().leftBarDefaults();
 					output("\n\n");
 					clearMenu();
@@ -2687,7 +2689,8 @@ package classes.GameData
 					kGAMECLASS.setEnemy(_hostiles[0]);
 				}
 				
-				userInterface().showPlayerParty([pc]);
+				userInterface().showPlayerParty(_friendlies);
+				userInterface().showHostileParty(_hostiles); // Force-display the selected enemy
 				userInterface().leftBarDefaults();
 				output("\n\n");
 				clearMenu();
@@ -3572,11 +3575,12 @@ package classes.GameData
 			//Monies!
 			if (sumCredits > 0) 
 			{
-				if(CombatManager.multipleEnemies()) output("\nThey had ");
-				else output(_hostiles[0].mfn("\nHe"," She", " It") + " had ");
+				output("\n");
+				if(CombatManager.multipleEnemies()) output("They had ");
+				else output(_hostiles[0].mfn("He","She", "It") + " had ");
 				output(String(sumCredits) + " credit");
 				if(sumCredits > 1) output("s");
-				output(" loaded on an anonymous credit chit that you appropriate.");
+				output(" loaded on " + (CombatManager.multipleEnemies() ? "anonymous credit chits" : "an anonymous credit chit") + " that you appropriate.");
 			}
 			
 			clearMenu();
