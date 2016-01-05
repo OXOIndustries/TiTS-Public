@@ -23,6 +23,7 @@ package classes.GameData
 	import classes.Engine.Utility.num2Text;
 	import flash.utils.getQualifiedClassName;
 	import flash.utils.getDefinitionByName;
+	import classes.Util.InCollection;
 	
 	/**
 	 * TODO:
@@ -143,16 +144,25 @@ package classes.GameData
 			// ^ PRAETORIAN => PRAETORIAN x3
 			// ^ TAIVRADANE => TAIVRA, DANE
 			
+			var overrides:Array = ["ZILPACK", "RASKVEL_GANG", "PRAETORIAN", "TAIVRADANE"];
+			var bustIdx:String = (_hostiles[0] as Creature).bustDisplay;
+			
+			if (InCollection(bustIdx, overrides))
+			{
+				switch (bustIdx)
+				{
+					case "ZILPACK": kGAMECLASS.showBust("ZIL", "ZIL"); break;
+					case "RASKVEL_GANG": kGAMECLASS.showBust("RASKVEL_MALE", "RASKVEL_MALE", "RASKVEL_MALE"); break;
+					case "PRAETORIAN": kGAMECLASS.showBust("PRAETORIAN", "PRAETORIAN", "PRAETORIAN"); break;
+					case "TAIVRADANE": kGAMECLASS.showBust("TAIVRA", "DANE"); break;
+				}
+				
+				return;
+			}
+			
 			if (group == NO_GROUP)
 			{
-				// display enemy, probably will never change during combat itself
-				var bustIdx:String = (_hostiles[0] as Creature).bustDisplay;
-				
-				if (bustIdx == "ZILPACK") kGAMECLASS.showBust("ZIL", "ZIL");
-				else if (bustIdx == "RASKVEL_GANG") kGAMECLASS.showBust("RASKVEL_MALE", "RASKVEL_MALE", "RASKVEL_MALE");
-				else if (bustIdx == "PRAETORIAN") kGAMECLASS.showBust("PRAETORIAN", "PRAETORIAN", "PRAETORIAN");
-				else if (bustIdx == "TAIVRADANE") kGAMECLASS.showBust("TAIVRA", "DANE");
-				else kGAMECLASS.showBust(bustIdx);
+				kGAMECLASS.showBust(bustIdx);
 			}
 			else
 			{

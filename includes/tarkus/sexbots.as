@@ -122,6 +122,8 @@ public function turnDownRobotSexuals(opts:Array):void
 	var newScreen:Boolean = opts[0];
 	var tSexBot:Creature = opts[1];
 	
+	setEnemy(tSexBot);
+	
 	if (newScreen) 
 	{
 		clearOutput();
@@ -152,7 +154,9 @@ public function turnDownRobotSexuals(opts:Array):void
 	CombatManager.displayLocation("SEXBOT");
 	
 	clearMenu();
-	addButton(0,"Next",CombatManager.beginCombat);
+	addButton(0, "Next", CombatManager.beginCombat);
+	
+	setEnemy(null);
 }
 
 public function combatLossToSexbot():void
