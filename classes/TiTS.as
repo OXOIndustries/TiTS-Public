@@ -106,12 +106,14 @@
 
 		//Holiday shit
 		include "../includes/holidayEvents/halloweenCostumes.as";
+		include "../includes/event.puppyslutmas.as";
 
 		//Followers
 		include "../includes/follower.anno.as";
 		include "../includes/follower.celise.as";
 		include "../includes/follower.celiseGiga.as";
 		
+		//Sidequest shit
 
 		//Misc content
 		include "../includes/rivalEncounters.as";
@@ -121,8 +123,8 @@
 		include "../includes/travelEvents.kiroRescue.as";
 		include "../includes/travelEvents.kiro.as";
 		
-		// Holiday Events
-		include "../includes/event.puppyslutmas.as";
+		// Misc Events
+		include "../includes/events/bimboPennyAndBadgerQuest/badgerGifts.as";
 
 		//Tavros Station
 		include "../includes/tavros/aliss.as";
