@@ -759,7 +759,7 @@ public function sneakByZeTurrets():void
 	flags["ROCKET_PODS_SNEAKED"] = 1;
 	processTime(5);
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	CombatManager.abortCombat();
 }
 
 //PC Victory vs Rocket Pods

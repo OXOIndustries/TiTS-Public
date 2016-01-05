@@ -157,7 +157,7 @@
 		
 		override public function get bustDisplay():String
 		{
-			return "TAM";
+			return "TAMTURRETS";
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
@@ -243,11 +243,11 @@
 		private function thermalDisruptorFromTam(target:Creature):void
 		{
 			output("Out of the corner of your eye, you catch sight of the cat-girl loading a big shell into what looks like a wrist-launcher. Oh, shit.");
-	output("\n\n<i>\"Hope you didn't need your FACE!\"</i> she cheers, leveling her wrist at you and firing!");
+	output("\n\n<i>“Hope you didn’t need your FACE!”</i> she cheers, leveling her wrist at you and firing!");
 			//Miss:
 			if(rangedCombatMiss(this, target))
 			{
-				output("\n\nYou dive just in time as a disruptor shell goes over you, blasting a massive hole in the wall! <i>\"Oops!\"</i> she giggles, <i>\"Guess we're redecorating!\"</i>");
+				output("\n\nYou dive just in time as a disruptor shell goes over you, blasting a massive hole in the wall! <i>“Oops!”</i> she giggles, <i>“Guess we’re redecorating!”</i>");
 			}
 			//Hit:
 			else
@@ -258,14 +258,15 @@
 					output("<b>The effectiveness of your armor is temporarily reduced!</b> ");
 					target.createStatusEffect("Degraded Armor", 0, 0, 0, 0, false, "DefenseDown", "Your armor is temporarily degraded and will not provide any defensive benefit.", true, 0);
 				}
-				output("The cat-girl grins, blowing the smoke from her launcher's barrel. <i>\"Bam said the man! Feel free to surrender any time... I won't be too rough on you!\"</i>");
-				output("\n\nHer grin turns savage. <i>\"Just kidding! I like it rough!");
-				if(kGAMECLASS.silly && hasStatusEffect("Tamwolf Out")) output("\"ruff\"!");
-				output("\"</i>");
-				
 				var damage:TypeCollection = new TypeCollection( { burning: 18 } );
 				damageRand(damage, 15);
 				applyDamage(damage, this, target);
+				
+				output("\n\nThe cat-girl grins, blowing the smoke from her launcher's barrel. <i>“Bam said the man! Feel free to surrender any time... I won't be too rough on you!”</i>");
+				output("\n\nHer grin turns savage. <i>“Just kidding! I like it");
+				if (kGAMECLASS.silly && hasStatusEffect("Tamwolf Out")) output(" ruff!");
+				else output(" rough!");
+				output("”</i>");
 			}
 		}
 		
