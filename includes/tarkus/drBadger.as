@@ -40,6 +40,7 @@ public function drBadgerMenu():void
 			//[mouse-over text for button is: [See just what this "job offer" is that the doctor has for you]
 			addButton(6,"Job",drBadgerJobOffer,undefined,"Job","See just what this \"job offer\" is that the doctor has for you.")
 		}
+		else if(flags["BADGER_QUEST"] == 1) addDisabledButton(6,"Job","Job","You've already accepted her \"job offer.\" Go find Penny!");
 		else if(flags["BADGER_QUEST"] == 2) addButton(6,"Reward",rewardFromDoctorBadger,undefined,"Reward","You did what you were asked, time to get rewarded!");
 		else if(flags["BADGER_QUEST"] == 3) addDisabledButton(6,"Job","Job","You already did her job.");
 		else addDisabledButton(6,"Job","Job","You've already accepted her \"job offer.\"");

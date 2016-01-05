@@ -1153,7 +1153,7 @@ public function defeatHostileZil():void {
 	//Lust
 	else {
 		output("Sighing needily, the wasp-girl’s hand dives back between her legs, digging her fingers knuckle-deep into the simmering slit in an effort to quench the excitement you've stoked within her. She moans as she realizes how futile an effort it is, dropping down onto all fours to present herself more perfectly for you. Her voice escapes in a needy pant, <i>“I yield to you. </i>");
-		if(pc.race() != "zil") output("<i>You're more like... like us than you let on, traveller.</i>");
+		if(pc.race() != "zil") output("<i>You're more like... like us than you let on, traveler.</i>");
 		else output("<i>Mmm... you may claim me now, zil.</i>");
 		output("<i>“</i>");
 		//Raise lust to 33 if below and continue:

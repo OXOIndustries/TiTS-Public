@@ -275,7 +275,7 @@ public function loseToSexBotAndHaveADick(cameFromMenu:Boolean = false):void
 	output("\n\n<i>“Foreplay at 75% completion.”</i>\n\nYou half-heartedly try and raise yourself off the ground, to do what you do not know; the sexbot makes hushing, soothing noises at the same time as two of its vigorously animated rope limbs swoosh down and pin you by the elbows to the floor. The tentacle attached like a limpet to your cock vibrates briskly, working up and down, sending delicious sensation buzzing through your groin. When it reaches the top it climbs delicately onto your bulging head and - you can’t stop yourself arching your back - envelopes it, plunging the sensitive end of your cock into a tight fleshlight centre.");
 	if(pc.hasVagina())
 	{
-		output(" You are given a full appreciation of just how wonderfully adaptable its tentacles are when you feel its final rubbery grabber pushing against [pc.oneVagina]. In one fluid movement it sheathes a heated steel dildo into you, buzzing with the same quiet vigour as the grapnel did travelling up and down your cock.");
+		output(" You are given a full appreciation of just how wonderfully adaptable its tentacles are when you feel its final rubbery grabber pushing against [pc.oneVagina]. In one fluid movement it sheathes a heated steel dildo into you, buzzing with the same quiet vigour as the grapnel did traveling up and down your cock.");
 	}
 	output(" The sexbot’s fingers trail across one of your [pc.nipples] and you gasp and flail like a landed fish, helplessly reactive to its monstrously well-calculated ministrations.");
 

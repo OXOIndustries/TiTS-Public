@@ -225,7 +225,7 @@
 
 	inputManager.AddBindableControl(
 		"Destinations Unlocked",
-		"Unlocks travelling to any planet.",
+		"Unlocks traveling to any planet.",
 		function():void {
 			Cheats.exploreUnlock();
 		},

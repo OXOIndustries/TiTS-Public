@@ -415,7 +415,7 @@ package classes.GameData
 			// We made it here, the attack landed
 			
 			if (attacker is PlayerCharacter) output("You land a hit on " + target.a + target.uniqueName + " with your " + attacker.rangedWeapon.longName + "!");
-			else if (attacker.isPlural) output(attacker.capitalA + attacker.uniqueName + " connect with their " + plural(attacker.rangedWeapon.longName) + "!");
+			else if (attacker.isPlural) output(attacker.capitalA + attacker.uniqueName + " connects with their " + plural(attacker.rangedWeapon.longName) + "!");
 			else if (target is PlayerCharacter) output(attacker.capitalA + attacker.uniqueName + " hits you with " + attacker.mfn("his", "her", "its") + " " + attacker.rangedWeapon.longName + "!");
 			else output(attacker.capitalA + attacker.uniqueName + " connects with " + attacker.mfn("his", "her", "its") + " " + attacker.rangedWeapon.longName + "!");
 			
@@ -600,6 +600,7 @@ package classes.GameData
 				{
 					if (!others[i].isDefeated())
 					{
+						if (i != 0) output("\n");
 						if (SingleMeleeAttackImpl(attacker, others[i], false)) numHits++;
 					}
 				}
@@ -607,6 +608,7 @@ package classes.GameData
 			
 			if (attacker.hasPerk("Myr Venom") && target.isLustImmune == false)
 			{
+				output("\n");
 				if (combatMiss(attacker, target))
 				{
 					if (attacker is PlayerCharacter) output("You can't manage to sneak in a bite!");
@@ -674,12 +676,12 @@ package classes.GameData
 			}
 		}
 		
-		public static function GoovolverAttackImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
+		public static function GoovolverAttackImpl(attacker:Creature, target:Creature):void
 		{
 			SingleRangedAttackImpl(attacker, target, false, "goovolver");
 		}
 		
-		public static function SlutRayAttackImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
+		public static function SlutRayAttackImpl(attacker:Creature, target:Creature):void
 		{
 			SingleRangedAttackImpl(attacker, target, false, "slut ray");
 		}

@@ -552,7 +552,7 @@ public function elderVenusPitcherEncounter():void {
 	//*Repeat
 	else {
 		flags["TIMES_VENUS_PITCHER_ELDER_ENCOUNTERED"]++;		
-		if(rand(3) == 0) output("\n\nA lilting voice rises up to call, <i>“Hail, traveller! Tell me, could you spare a drink for a thirsty matron? I appear to have misplaced mine.”</i>");
+		if(rand(3) == 0) output("\n\nA lilting voice rises up to call, <i>“Hail, traveler! Tell me, could you spare a drink for a thirsty matron? I appear to have misplaced mine.”</i>");
 		//(2)
 		else if(rand(2) == 0) output("\n\nA gentle drawl hooks your [pc.ears]. <i>“Well hello there, cutey. Wanna come over here and sit for a spell? I’m plum tuckered out!”</i>");
 		//(3)
@@ -614,7 +614,7 @@ public function yesRepeatElderVenusPitcher():void {
 	userInterface.showBust("VENUS_PITCHER_ELDER");
 	userInterface.showName("VENUS\nPITCHER");
 	output("You shrug and decide to let the show play out this time, locking your eyes on her tits as she playfully jiggles and bounces them for you. Her hips sway from side to side, and puffs of particulate briefly cloud the air behind her, drawing your eyes to her flaring waistline. You flick your eyes back up to her tits with her deep, dark nipples.");
-	output("\n\n<i>“Ah, see something you like then, traveller? Go on and watch then, I’ve been told that my shape is particularly pleasing to look upon. Genitalia have a way of swelling up in my presence, no?”</i>");
+	output("\n\n<i>“Ah, see something you like then, traveler? Go on and watch then, I’ve been told that my shape is particularly pleasing to look upon. Genitalia have a way of swelling up in my presence, no?”</i>");
 	
 	repeatVenusPitcherHypnoGo();
 }

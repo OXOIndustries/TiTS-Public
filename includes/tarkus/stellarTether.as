@@ -984,7 +984,7 @@ public function demandSurrenderFromPirate():void
 	processTime(1);
 	//[Fight!]
 	clearMenu();
-	addButton(0,"Fight",configKhorganFight,"khorgan","Fight!","The captain's clearly not going down without a fight. Time to finish this.");
+	addButton(0,"Fight",configKhorganFight,undefined,"Fight!","The captain's clearly not going down without a fight. Time to finish this.");
 }
 
 //Surrender Yourself

@@ -87,7 +87,7 @@ public function meetingFlahne(outputT:Boolean = true):void {
 			//IF TIME IS BETWEEN 1701 AND 0759
 			else
 			{
-				output("\n\nThere’s another sign on the desk that says simple ‘Out - Be Back At 0800.’ Standing next to the desk is what appears to be a very simple droid, doing its best to handle the customs process in Flahne’s absence. Thankfully you don’t have to deal with it yourself as you’ve already come through officially, so you walk right past the small crowd of annoyed-looking travellers.");
+				output("\n\nThere’s another sign on the desk that says simple ‘Out - Be Back At 0800.’ Standing next to the desk is what appears to be a very simple droid, doing its best to handle the customs process in Flahne’s absence. Thankfully you don’t have to deal with it yourself as you’ve already come through officially, so you walk right past the small crowd of annoyed-looking travelers.");
 				//[Remove ‘TALK’ and ‘SEX OPTIONS’ buttons when Flahne is not present]}
 				return;
 			}

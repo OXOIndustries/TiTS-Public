@@ -633,7 +633,7 @@ public function visitLaneAfterDetoxing():void
 
 		output("\n\nHow did you never think of it that way before? Like a warm house, or a cozy bed, you’ve never felt more at-ease than with Lane. You want to nod your head, but you don’t really have the strength or the drive. You’d much rather just keep watching and listening. <i>“You don’t ever want to leave Lane again. You don’t mind giving up your life to be with Lane. The universe is unfamiliar to you; you want to stay with Lane, where it’s safe.”</i>");
 
-		output("\n\nYou have to admit, that’s a good point. In your journey to claim your inheritance, you’ve travelled different planets, met unfamiliar and dangerous plants and animals, and travelled the lonely stars. Why should you pursue such recklessness, when you could stay with Lane all your life?");
+		output("\n\nYou have to admit, that’s a good point. In your journey to claim your inheritance, you’ve been to different planets, met unfamiliar and dangerous plants and animals, and traveled the lonely stars. Why should you pursue such recklessness, when you could stay with Lane all your life?");
 
 		output("\n\n<i>“You’ve forgotten your birthplanet.”</i> Well, that’s silly. You were born on... on... huh. <i>“But wherever it was, it is too different now. You love the planet Venar much more.”</i> You <i>do</i> enjoy the warmth of the desert sands and the contrasting coolness of its caves...");
 

@@ -323,8 +323,7 @@ public function sx1TalkFriend():void
 public function sx1TalkFriendII():void
 {
 	clearOutput();
-	showBust("SAENDRA");
-	author("Savin");
+	saenHeader();
 	generateMapForLocation("HOTEL CORRIDOR");
 	
 	output("You and Saendra walk up the stairs behind the bar, towards the small hall of rooms for rent Anon’s sports. It’s small and undecorated, steel walls straight down a ten foot corridor. A fluorescent light flickers uneasily overhead, casting dark shadows across the dull gray bulkheads.");
@@ -375,8 +374,7 @@ public function sx1TalkFriendII():void
 public function sx1LootSecureMP():void
 {
 	clearOutput();
-	showBust("SAENDRA");
-	author("Savin");
+	saenHeader();
 	generateMapForLocation("HOTEL CORRIDOR");
 	
 	output("You snatch up the pistol from the guards body, hefting it in your grip with ease. Feels... pretty light actually, but not in a bad way.");
@@ -389,7 +387,7 @@ public function sx1LootSecureMP():void
 public function sx1TalkFriendIII():void
 {
 	clearOutput();
-	showBust("SAENDRA");
+	saenHeader();
 	
 	generateMapForLocation("HOTEL CORRIDOR");
 	
@@ -430,7 +428,7 @@ public function sx1PuzzleOfDoomMenu():void
 public function sx1AskValiera():void
 {
 	clearOutput();
-	showBust("VALERIA");
+	showValeria();
 	author("Savin");
 	generateMapForLocation("HOTEL CORRIDOR");
 
@@ -456,8 +454,7 @@ public function sx1AskValiera():void
 public function sx1AskSaendra():void
 {
 	clearOutput();
-	showBust("SAENDRA");
-	author("Savin");
+	saenHeader();
 	flags["SAENDRA_XPACK1_ASKEDSAEN"] = 1;
 
 	generateMapForLocation("HOTEL CORRIDOR");
@@ -480,7 +477,7 @@ public function sx1AskSaendra():void
 public function sx1SeeCallgirl():void
 {
 	clearOutput();
-	showBust("ZILFEMALE");
+	showZilCallGirl();
 	author("Savin");
 	generateMapForLocation("CALLGIRL ROOM");
 
@@ -544,7 +541,7 @@ public function sx1CallgirlMenu():void
 public function sx1CallgirlNevermind():void
 {
 	clearOutput();
-	showBust("ZILFEMALE");
+	showZilCallGirl();
 	author("Savin");
 	generateMapForLocation("CALLGIRL ROOM");
 
@@ -556,7 +553,7 @@ public function sx1CallgirlNevermind():void
 public function sx1CallgirlOkay():void
 {
 	clearOutput();
-	showBust("ZILFEMALE");
+	showZilCallGirl();
 	author("Savin");
 	generateMapForLocation("CALLGIRL ROOM");
 
@@ -661,7 +658,7 @@ public function sx1CallgirlOfferJob():void
 {
 	clearOutput();
 	pc.credits -= 500;
-	showBust("ZILFEMALE");
+	showZilCallGirl();
 	author("Savin");
 	generateMapForLocation("CALLGIRL ROOM");
 
@@ -715,7 +712,7 @@ public function sx1CallgirlOfferJob():void
 public function sx1Holoburn():void
 {
 	clearOutput();
-	showBust("VALERIA");
+	showValeria();
 	author("Savin");
 	generateMapForLocation("HOTEL CORRIDOR");
 	
@@ -753,8 +750,7 @@ public function sx1Holoburn():void
 public function sx1SaenDistract():void
 {
 	clearOutput();
-	showBust("SAENDRA_NUDE");
-	author("Savin");
+	saenHeader(true);
 	generateMapForLocation("HOTEL CORRIDOR");
 	
 	output("<i>“Alright, we’ll go with your plan,”</i> you tell Saendra, eyeing her mouthwatering rack. <i>“Let’s lure the bastards out.”</i>");
@@ -782,8 +778,7 @@ public function sx1SaenDistract():void
 public function sx1ThrowFlashbang():void
 {
 	clearOutput();
-	showBust("SAENDRA");
-	author("Savin");
+	saenHeader();
 	generateMapForLocation("HOTEL CORRIDOR");
 	
 	output("<i>“Kick the door,”</i> you say, pulling a flash grenade out and pulling the pin. Saen gives you a nod, rears her leg back, and slams her foot into the door. It buckles, tumbling back on its hinges and you toss the flashbang in.");
@@ -797,8 +792,7 @@ public function sx1ThrowFlashbang():void
 public function sx1DoorBreach():void
 {
 	clearOutput();
-	showBust("SAENDRA");
-	author("Savin");
+	saenHeader();
 	generateMapForLocation("SX1 RESCUE ROOM");
 	
 	output("<i>“Fuck it. Let’s do it loud,”</i> you say, nodding towards the door. Saen grins and thumbs the safety on her Hammer pistol.");
@@ -822,7 +816,7 @@ public function sx1InitShotguardFight(wasFlashed:Boolean = false):void
 	CombatManager.setHostileCharacters(tEnemy);
 	CombatManager.victoryScene(sx1ShotguardPCVictory);
 	CombatManager.lossScene(sx1ShotguardPCLoss);
-	CombatManager.displayLocation("ZIL MALE");
+	CombatManager.displayLocation("VOID PIRATE");
 	CombatManager.beginCombat();
 }
 
@@ -981,8 +975,7 @@ public function sx1TechguardPCLossII():void
 public function sx1RescueTheDude(fromCombat:Boolean = false):void
 {
 	clearOutput();
-	showBust("SAENDRA");
-	author("Savin");
+	saenHeader();
 	flags["SAENDRA_XPACK1_STATUS"] = 9;
 
 	generateMapForLocation("SX1 RESCUE ROOM");

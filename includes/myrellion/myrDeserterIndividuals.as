@@ -1529,7 +1529,7 @@ public function redDildoScrew():void
 	if(!(pc.armor is EmptySlot)) output("After stripping off your [pc.armor], she");
 	else output("She");
 	output(" presses the pulsing phallus against your ");
-	if(!(pc.upperUndergarment is EmptySlot)) output("covered nipple, the vibrations deliciously travelling through your [pc.upperUndergarment].");
+	if(!(pc.upperUndergarment is EmptySlot)) output("covered nipple, the vibrations deliciously traveling through your [pc.upperUndergarment].");
 	else output("naked nipple.");
 	output(" Your [pc.nippleColor] nub receptively stiffens.");
 

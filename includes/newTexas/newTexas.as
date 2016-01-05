@@ -1793,7 +1793,7 @@ public function carrieBlowjobsGo():void
 		output("A minute later you’re in the grassy back lot of the milking barn, back against an oak tree, getting [pc.oneCock] enthusiastically sucked. The ");
 		if(hours > 6 || hours < 20) output("sun");
 		else output("moon");
-		output(" shines on your [pc.face] and the sweet, verdant air fills your nostrils as Carrie’s auburn head bobs gently. A warm hand gripped around the base, wet lips travelling further and further down your length, your [pc.cockHeadBiggest] lavished and squeezed by her mouth until it’s radiating pure, straining pleasure, beading pre that is continuously whisked away by a hungry, dexterous tongue. You hazily wonder why you’re spending so much time and energy searching the stars when everything you could ever want is right here: a rampant bull’s true home.");
+		output(" shines on your [pc.face] and the sweet, verdant air fills your nostrils as Carrie’s auburn head bobs gently. A warm hand gripped around the base, wet lips traveling further and further down your length, your [pc.cockHeadBiggest] lavished and squeezed by her mouth until it’s radiating pure, straining pleasure, beading pre that is continuously whisked away by a hungry, dexterous tongue. You hazily wonder why you’re spending so much time and energy searching the stars when everything you could ever want is right here: a rampant bull’s true home.");
 		if(pc.biggestCockLength() < 12) output("\n\n<i>“Hmm,”</i> says Carrie, surfacing momentarily to look up at you with a teasing smile, sliding her thumb up your bulging underside. <i>“It’s nice to see one that’s not so big, y’know? It looks really cute on you. Kinda want to take it home, look after it...”</i> You politely but firmly grip the back of her head and sink her back onto your boy-cock before she can unleash any more faint praise.");
 		else if(doubleDickEnough)
 		{
@@ -1889,7 +1889,7 @@ public function carrieBlowjobsGo():void
 			output("\n\n<i>“Not at this time of ");
 			if(hours > 6 && hours < 20) output("day ");
 			else output("night ");
-			output(", no,”</i> Cora replies with a light bite of the lip, eyes travelling downward. You consider teasing them a little more, make them admit how much they look forward to this, but - drinking in their milky curves and flushed, eager faces, [pc.eachCock] hardening inexorably - you reflect that life is too damn short.");
+			output(", no,”</i> Cora replies with a light bite of the lip, eyes traveling downward. You consider teasing them a little more, make them admit how much they look forward to this, but - drinking in their milky curves and flushed, eager faces, [pc.eachCock] hardening inexorably - you reflect that life is too damn short.");
 		}
 		//Into the meat of the scene
 		//Big cock
@@ -1989,7 +1989,7 @@ public function carrieBlowjobsGo():void
 		output("A minute later you’re in the grassy back lot of the milking barn, back against the oak tree, getting your [pc.cock " + x + "] enthusiastically sucked. The ");
 		if(hours >= 6 || hours < 20) output("sun");
 		else output("moon");
-		output(" shines on your [pc.face] and the sweet, verdant air fills your nostrils as Carrie’s auburn head bobs gently. Warm hand gripped around the base, wet lips travelling further and further down your length, your [pc.cockHead] lavished and squeezed by her mouth until it’s radiating pure, straining pleasure, beading pre that is continuously whisked away by a hungry, dexterous tongue. You hazily wonder why you’re spending so much time and energy searching the stars when everything you could ever want is right here: a rampant bull’s true home.");
+		output(" shines on your [pc.face] and the sweet, verdant air fills your nostrils as Carrie’s auburn head bobs gently. Warm hand gripped around the base, wet lips traveling further and further down your length, your [pc.cockHead] lavished and squeezed by her mouth until it’s radiating pure, straining pleasure, beading pre that is continuously whisked away by a hungry, dexterous tongue. You hazily wonder why you’re spending so much time and energy searching the stars when everything you could ever want is right here: a rampant bull’s true home.");
 		if(pc.balls > 0) 
 		{
 			output("\n\nShe sinks down lower between your [pc.hips], hand lazily coiling your cock as she licks your [pc.balls], lavishing ");
