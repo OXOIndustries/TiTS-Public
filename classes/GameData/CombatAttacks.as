@@ -600,6 +600,7 @@ package classes.GameData
 				{
 					if (!others[i].isDefeated())
 					{
+						if (i != 0) output("\n");
 						if (SingleMeleeAttackImpl(attacker, others[i], false)) numHits++;
 					}
 				}
@@ -607,6 +608,7 @@ package classes.GameData
 			
 			if (attacker.hasPerk("Myr Venom") && target.isLustImmune == false)
 			{
+				output("\n");
 				if (combatMiss(attacker, target))
 				{
 					if (attacker is PlayerCharacter) output("You can't manage to sneak in a bite!");
