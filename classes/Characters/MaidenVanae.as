@@ -270,7 +270,7 @@ package classes.Characters
 				damageRand(damage, 20);
 				applyDamage(damage, this, target);
 				
-				target.createStatusEffect("Stunned", 2, 0, 0, 0, false, "Stunned", "You are stunned and cannot move until you recover!", true, 0);
+				target.createStatusEffect("Stunned", 2, 0, 0, 0, false, "Stun", "You are stunned and cannot move until you recover!", true, 0);
 			}
 		}
 		
@@ -300,7 +300,7 @@ package classes.Characters
 				{
 					// [Hit And Stun]: 
 					output(" You are splattered with her [enemy.milk], unable to get it off. All of a sudden, your cheeks begin to flush and you lose control to your limbs, falling to the ground. She's leading into a follow-up attack...");
-					target.createStatusEffect("Stunned", 2, 0, 0, 0, false, "Stunned", "You are stunned and cannot move until you recover!", true, 0);
+					target.createStatusEffect("Stunned", 2, 0, 0, 0, false, "Stun", "You are stunned and cannot move until you recover!", true, 0);
 				}
 				
 				applyDamage(new TypeCollection( { tease: 8 + rand(4) } ), this, target, "minimal");
@@ -421,7 +421,7 @@ package classes.Characters
 					if (isCrit)
 					{
 						damage.multiply(2);
-						target.createStatusEffect("Stunned", 1, 0, 0, 0, false, "Stunned", "Cannot act for a turn.", true, 0);
+						target.createStatusEffect("Stunned", 1, 0, 0, 0, false, "Stun", "Cannot act for a turn.", true, 0);
 					}
 					
 					applyDamage(damage, this, target);

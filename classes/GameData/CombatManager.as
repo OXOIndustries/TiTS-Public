@@ -162,7 +162,11 @@ package classes.GameData
 			combatContainer.doCombatCleanup();
 			combatContainer = null;
 			clearMenu();
-			addButton(0, "Next", kGAMECLASS.mainGameMenu);
+			addButton(0, "Next", function():void {
+				userInterface().hideNPCStats();
+				userInterface().leftBarDefaults();
+				kGAMECLASS.mainGameMenu();
+			});
 		}
 		public static function showCombatMenu():void
 		{

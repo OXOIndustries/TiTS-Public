@@ -23,6 +23,7 @@ package classes.GameData
 	import classes.Engine.Utility.num2Text;
 	import flash.utils.getQualifiedClassName;
 	import flash.utils.getDefinitionByName;
+	import classes.Util.InCollection;
 	
 	/**
 	 * TODO:
@@ -143,16 +144,26 @@ package classes.GameData
 			// ^ PRAETORIAN => PRAETORIAN x3
 			// ^ TAIVRADANE => TAIVRA, DANE
 			
+			var overrides:Array = ["ZILPACK", "RASKVEL_GANG", "PRAETORIAN", "TAIVRADANE", "TAMTURRETS"];
+			var bustIdx:String = (_hostiles[0] as Creature).bustDisplay;
+			
+			if (InCollection(bustIdx, overrides))
+			{
+				switch (bustIdx)
+				{
+					case "ZILPACK": kGAMECLASS.showBust("ZIL", "ZIL"); break;
+					case "RASKVEL_GANG": kGAMECLASS.showBust("RASKVEL_MALE", "RASKVEL_MALE", "RASKVEL_MALE"); break;
+					case "PRAETORIAN": kGAMECLASS.showBust("PRAETORIAN", "PRAETORIAN", "PRAETORIAN"); break;
+					case "TAIVRADANE": kGAMECLASS.showBust("TAIVRA", "DANE"); break;
+					case "TAMTURRETS": kGAMECLASS.showBust("TAMTAM", "TAMWOLF"); break;
+				}
+				
+				return;
+			}
+			
 			if (group == NO_GROUP)
 			{
-				// display enemy, probably will never change during combat itself
-				var bustIdx:String = (_hostiles[0] as Creature).bustDisplay;
-				
-				if (bustIdx == "ZILPACK") kGAMECLASS.showBust("ZIL", "ZIL");
-				else if (bustIdx == "RASKVEL_GANG") kGAMECLASS.showBust("RASKVEL_MALE", "RASKVEL_MALE", "RASKVEL_MALE");
-				else if (bustIdx == "PRAETORIAN") kGAMECLASS.showBust("PRAETORIAN", "PRAETORIAN", "PRAETORIAN");
-				else if (bustIdx == "TAIVRADANE") kGAMECLASS.showBust("TAIVRA", "DANE");
-				else kGAMECLASS.showBust(bustIdx);
+				kGAMECLASS.showBust(bustIdx);
 			}
 			else
 			{
@@ -2469,7 +2480,20 @@ package classes.GameData
 				}
 				else output(teaseReactions(damage,target));
 				target.lust(damage);
-				output(" ("+ damage + ")");
+				
+				var damageResult:DamageResult = new DamageResult();
+				if (damage > 0)
+				{
+					damageResult.lustDamage = damage;
+					damageResult.typedLustDamage.tease.damageValue = damage;
+				}
+				else
+				{
+					damageResult.lustResisted = true;
+				}
+				
+				outputDamage(damageResult);
+				
 				teaseSkillUp(teaseType);
 				if(target is MyrInfectedFemale && damage >= 10)
 				{
@@ -3188,9 +3212,17 @@ package classes.GameData
 				var target:Creature = droneUser.droneTarget;
 				if (!target.isDefeated())
 				{
-					// TODO: Route this through the actual drone the droneUser has equipped to redirect to different atk implementors.
 					output("\n");
-					CombatAttacks.DroneAttack(droneUser, target);
+					
+					// If the user has an accessory equipped that potentially overrides the drone attack to use, use that.
+					if (droneUser.accessory.droneAttack != null)
+					{
+						droneUser.accessory.droneAttack(droneUser, target);
+					}
+					else
+					{
+						CombatAttacks.DroneAttack(droneUser, target);
+					}
 				}
 			}
 		}

@@ -708,6 +708,8 @@ public function lossVsRaskGang():void
 //Just say no to centaurs and genderless
 public function consensualGangBang():void
 {
+	setEnemy(new RaskvelMale());
+	
 	clearOutput();
 	showRaskGang();
 	userInterface.showBust("RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE");
@@ -848,7 +850,9 @@ public function consensualGangBang():void
 	pc.orgasm();
 	if(pc.hasCuntTail()) feedCuntSnake();
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	addButton(0, "Next", mainGameMenu);
+	
+	setEnemy(null);
 }
 
 

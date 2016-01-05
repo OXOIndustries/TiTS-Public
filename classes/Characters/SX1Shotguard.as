@@ -231,7 +231,7 @@ package classes.Characters
 				}
 				else output(" " + target.capitalA + target.short + " takes a shock right to the chest! <b>" + target.mfn("He", "She", "It") + " looks a little unsteady on their feet!</b>");
 				
-				target.createStatusEffect("Stunned", 1);
+				target.createStatusEffect("Stunned",1,0,0,0,false,"Stun","Cannot act for a turn.",true,0);
 			}
 			else
 			{
@@ -257,7 +257,7 @@ package classes.Characters
 				if (target is Saendra)
 				{
 					output(" her arms against her side. Saendra is");
-					target.createStatusEffect("Stunned", 3); // TODO maybe convert to same system as PC
+					target.createStatusEffect("Stunned",3,0,0,0,false,"Stun","Cannot act for a turn.",true,0);
 				}
 				else
 				{
