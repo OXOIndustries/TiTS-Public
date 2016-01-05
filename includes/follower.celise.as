@@ -1282,7 +1282,7 @@ public function zeiksCeliseSubmersionTechnique():void
 		output(", but you ");
 		if(!pc.isTaur()) 
 		{
-			output("force them to keep travelling downward, depositing a thin sheen of moisture");
+			output("force them to keep traveling downward, depositing a thin sheen of moisture");
 			if(pc.legCount > 1) output(" on the inside of your thigh");
 			output(".");
 		}
