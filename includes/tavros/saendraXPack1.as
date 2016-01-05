@@ -816,7 +816,7 @@ public function sx1InitShotguardFight(wasFlashed:Boolean = false):void
 	CombatManager.setHostileCharacters(tEnemy);
 	CombatManager.victoryScene(sx1ShotguardPCVictory);
 	CombatManager.lossScene(sx1ShotguardPCLoss);
-	CombatManager.displayLocation("ZIL MALE");
+	CombatManager.displayLocation("VOID PIRATE");
 	CombatManager.beginCombat();
 }
 
