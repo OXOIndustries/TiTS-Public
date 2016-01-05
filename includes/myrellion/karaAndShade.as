@@ -329,8 +329,11 @@ public function itsADealToBetrayKaraSloots():void
 	CombatManager.lossScene(pcAndShadeDefeated);
 	CombatManager.displayLocation("KARA");
 	
+	shade.updateDesc();
+	kara.updateDesc();
+	
 	addButton(0,"Next", CombatManager.beginCombat);
-	enemy.HP(-15);
+	kara.HP(-15);
 }
 
 //[Flirt]
@@ -465,6 +468,9 @@ public function karaAndPCVersusShadeFightIntroduction():void
 	CombatManager.lossScene(loseWithKaraYouSlut);
 	CombatManager.displayLocation("SHADE");
 	
+	kara.updateDesc();
+	shade.updateDesc();
+	
 	addButton(0,"Next", CombatManager.beginCombat);
 }
 
@@ -552,7 +558,7 @@ public function helpShadeOutLastChance():void
 	showBust("KARA","SHADE");
 	showName("SHADE\n& KARA");
 	output("Can’t argue with a little bounty work. You ");
-	if(!pc.meleeWeapon is Rock) output("draw your weapon");
+	if(!(pc.meleeWeapon is Rock)) output("draw your weapon");
 	else output("pick up a particularly vicious looking rock");
 	output(" and step up beside the huntress. She gives you an approving nod as Kara looks around in a panic.");
 	processTime(1);
@@ -565,6 +571,9 @@ public function helpShadeOutLastChance():void
 	CombatManager.victoryScene(pcAndShadeBeatKara);
 	CombatManager.lossScene(pcAndShadeDefeated);
 	CombatManager.displayLocation("KARA");
+	
+	shade.updateDesc();
+	kara.updateDesc();
 	
 	addButton(0,"Next", CombatManager.beginCombat);
 }
@@ -590,6 +599,9 @@ public function helpKaraOutLastChance():void
 	CombatManager.victoryScene(pcAndKaraBeatShade);
 	CombatManager.lossScene(loseWithKaraYouSlut);
 	CombatManager.displayLocation("SHADE");
+	
+	shade.updateDesc();
+	kara.updateDesc();
 	
 	addButton(0,"Next", CombatManager.beginCombat);
 }

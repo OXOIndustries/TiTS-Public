@@ -43,6 +43,7 @@
 		public var Bust_GRAY_GOO_PRIME:Class;
 		[Embed(source = "../../../assets/images/npcs/jacques00/gray_goo_prime_2.png", mimeType = "image/png")]
 		public var Bust_GRAY_GOO_PRIME_2:Class;
+		public var Bounds_GRAY_GOO_PRIME_2:Rectangle = new Rectangle(30, 6, 60, 55);
 		[Embed(source = "../../../assets/images/npcs/jacques00/gray_goo_giga.png", mimeType = "image/png")]
 		public var Bust_GRAY_GOO_GIGA:Class;
 

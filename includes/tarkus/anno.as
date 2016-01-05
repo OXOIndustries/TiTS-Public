@@ -2349,9 +2349,12 @@ public function deck13ShieldControlFunc():Boolean
 		grayGooDisplay();
 		clearMenu();
 		
+		var tPrime:Creature = new GrayPrime();
+		
 		CombatManager.newGroundCombat();
 		CombatManager.setFriendlyCharacters([pc, anno]);
-		CombatManager.setHostileCharacters(new GrayPrime());
+		CombatManager.setHostileCharacters(tPrime);
+		CombatManager.victoryCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, tPrime);
 		CombatManager.victoryScene(victoryOverGrayPrime);
 		CombatManager.lossScene(lossToGrayPrime);
 		CombatManager.displayLocation("GRAY PRIME");
@@ -2600,8 +2603,7 @@ public function victoryOverGrayPrime():void
 		// {Goo returned to FULL HEALTH}
 		enemy.HP(enemy.HPMax());
 		(enemy as Creature).alreadyDefeated = false;
-		clearMenu();
-		addButton(0, "Next", CombatManager.continueCombat);
+		CombatManager.continueCombat();
 	}
 	else if (enemy.HP() <= 1 && flags["GRAY_PRIME_DEFEATED_VIA_HP"] == 2)
 	{

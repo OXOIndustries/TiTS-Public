@@ -64,7 +64,14 @@ package classes.UIComponents.SideBarComponents
 		public function UpdateValueDisplay():void
 		{
 			_valueDisplay.text = String(Math.round(_currentValue));
-			_bar.width = _mask.width = Math.max(0, Math.min((_currentMaxWidth / _maxValue) * _currentValue, _currentMaxWidth));
+			if (_maxValue == 0)
+			{
+				_bar.width = 0;
+			}
+			else
+			{
+				_bar.width = _mask.width = Math.max(0, Math.min((_currentMaxWidth / _maxValue) * _currentValue, _currentMaxWidth));
+			}
 		}
 		
 		public function EndAnimation():void

@@ -1430,6 +1430,8 @@
 		{
 			// Clean up any lingering state in manager objects
 			CombatManager.TerminateCombat();
+			userInterface().hideNPCStats();
+			userInterface().leftBarDefaults();
 			
 			//Purge out the event buffer so people can't buy something, load, and then get it.
 			kGAMECLASS.eventQueue = new Array();

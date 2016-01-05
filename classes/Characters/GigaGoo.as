@@ -80,7 +80,7 @@ package classes.Characters
 			this.XPRaw = 250;
 			this.level = 5;
 			this.credits = 0;
-			this.HPMod = 60;
+			this.HPMod = 150;
 			this.shieldsRaw = this.shieldsMax();
 			this.HPRaw = this.HPMax();
 			
@@ -202,28 +202,34 @@ package classes.Characters
 			}
 			
 			//Several light physical attacks, chance of knockdown in failed Reflex save. 
-			output("\nNova reaches up and grabs the top of the elevator to hold it in place and push downward, trying to drive you into the rising cloud of gas below. The car shakes and shudders as she fights against the motor to hold you down.");
+			output("Nova reaches up and grabs the top of the elevator to hold it in place and push downward, trying to drive you into the rising cloud of gas below. The car shakes and shudders as she fights against the motor to hold you down.");
 
-			var totalDamage:int = 0;
-
+			var baseDamage:TypeCollection = new TypeCollection( { kinetic: 5 } );
+			var pcDamage:TypeCollection = new TypeCollection();
+			var annoDamage:TypeCollection = new TypeCollection();
+			
 			for (i = 0; i < 7; i++)
 			{
-				var damage:TypeCollection = new TypeCollection( { kinetic: 5 } );
-				damageRand(damage, 15);
-				
 				if (!combatMiss(this, pc, -1, 2))
 				{
-					var damageResult:DamageResult = applyDamage(damage, this, pc);
-					totalDamage += damageResult.totalDamage;
+					pcDamage.add(damageRand(baseDamage, 15));
 				}
 				
 				if (!combatMiss(this, anno, -1, 2))
 				{
-					applyDamage(damage, this, anno);
+					annoDamage.add(damageRand(baseDamage, 15));
 				}
 			}
+			
+			var pcDR:DamageResult = applyDamage(pcDamage, this, pc);
+			var annoDR:DamageResult = applyDamage(annoDamage, this, anno, "suppress");
+			if (annoDR.totalDamage > 0)
+			{
+				output("Anno doesn't escape unscathed either, looking a little worse for wear herself!");
+				outputDamage(annoDR);
+			}
 
-			if (rand(50) <= totalDamage)
+			if (rand(50) <= pcDR.totalDamage)
 			{
 				output("\n<b>The rocking of the cage knocks you flat on your ass! You’re prone!</b>");
 				pc.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
@@ -241,7 +247,7 @@ package classes.Characters
 				if (hostiles[i] is Anno) anno = hostiles[i];
 			}
 			
-			output("\nNova rears her massive fist back and swings, a straight punch right into the face of the cart. Bits of her gooey fingers are shorn off as she slams herself through the slim bars around the elevator, smashing into you! You and Anno are slammed back against the wall by the force of the blow, drowning in a sea of gray bots as her fingers drip away, though they reform a moment later.");
+			output("Nova rears her massive fist back and swings, a straight punch right into the face of the cart. Bits of her gooey fingers are shorn off as she slams herself through the slim bars around the elevator, smashing into you! You and Anno are slammed back against the wall by the force of the blow, drowning in a sea of gray bots as her fingers drip away, though they reform a moment later.");
 	
 			if (rand(4) == 0)
 			{
@@ -255,7 +261,7 @@ package classes.Characters
 		
 		private function swordThrust(hostiles:Array):void
 		{
-			output("\nNova’s sword swings back, her whole body leaning into the blow as she lunges forward to drive the sword straight through the open face of the lift!");
+			output("Nova’s sword swings back, her whole body leaning into the blow as she lunges forward to drive the sword straight through the open face of the lift!");
 
 			var pc:Creature = null;
 			for (var i:int = 0; i < hostiles.length; i++)

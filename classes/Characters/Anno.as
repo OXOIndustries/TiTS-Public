@@ -203,6 +203,11 @@
 			this._isLoading = false;
 		}
 		
+		override public function get bustDisplay():String
+		{
+			return "ANNO";
+		}
+		
 		public function UpgradeVersion1(dataObject:Object):void
 		{
 			dataObject.rangedWeapon = new HammerCarbine().getSaveObject();
