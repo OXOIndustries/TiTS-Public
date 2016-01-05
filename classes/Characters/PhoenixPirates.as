@@ -4,6 +4,7 @@ package classes.Characters
 	import classes.GLOBAL;
 	import classes.Items.Guns.MagnumPistol;
 	import classes.Items.Melee.Fists;
+	import classes.Items.Protection.ImprovisedShield;
 	import classes.Items.Protection.JoyCoPremiumShield;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
@@ -23,13 +24,13 @@ package classes.Characters
 			this.version = _latestVersion;
 			this._neverSerialize = true;
 			
-			this.short = "pirate gang";
-			this.originalRace = "mixed";
+			this.short = "void pirate";
+			this.originalRace = "human";
 			this.a = "the ";
 			this.capitalA = "The ";
 			this.long = "";
-			this.customBlock = "The pirates armor deflects your attack with an alarming ease.";
-			this.isPlural = true;
+			this.customBlock = "The pirates armor deflects your attack with alarming ease.";
+			this.isPlural = false;
 			isLustImmune = true;
 			
 			this.meleeWeapon = new Fists();
@@ -37,29 +38,27 @@ package classes.Characters
 			rangedWeapon.attackVerb = "shoot";
 			rangedWeapon.attackNoun = "shot";
 			rangedWeapon.hasRandomProperties = true;
-			this.shield = new JoyCoPremiumShield();
+			this.shield = new ImprovisedShield();
 			
 			this.armor.longName = "black void armor";
-			this.armor.defense = 3;
+			this.armor.defense = 1;
 			this.armor.hasRandomProperties = true;
 			
-			this.physiqueRaw = 17;
-			this.reflexesRaw = 15;
-			this.aimRaw = 16;
-			this.intelligenceRaw = 12;
-			this.willpowerRaw = 14;
+			this.physiqueRaw = 8;
+			this.reflexesRaw = 10;
+			this.aimRaw = 10;
+			this.intelligenceRaw = 8;
+			this.willpowerRaw = 10;
 			this.libidoRaw = 20;
-			this.shieldsRaw = 40;
+			this.shieldsRaw = this.shieldsMax();
 			this.energyRaw = 100;
 			this.lustRaw = 10;
 			
-			this.XPRaw = 250;
+			this.XPRaw = 100;
 			this.level = 4;
-			this.credits = 2500;
-			this.HPMod = 60;
+			this.credits = 300 + rand(200);
+			this.HPMod = -20;
 			this.HPRaw = this.HPMax();
-			
-			this.createPerk("Multiple Attacks",1,0,0,0,"");
 			
 			this.femininity = 35;
 			this.eyeType = GLOBAL.TYPE_HUMAN;
@@ -188,14 +187,13 @@ package classes.Characters
 				return;
 			}
 
-			if (!hasStatusEffect("Carpet Grenade Cooldown"))
+			if (!hasStatusEffect("Carpet Grenade Cooldown") && rand(5) == 0) // Probably better to share this cooldown across ALL enemies.
 			{
 				createStatusEffect("Carpet Grenade Cooldown", 5, 0, 0, 0);
 				phoenixPiratesCarpetGrenades(target);
 				return;
 			}
 
-			// Bulletstorms damage is modified by weapon stacks rather than chance of happening.
 			if (rand(100) <= 25 && energy() >= 20)
 			{
 				phoenixPiratesBulletstorm(target);
@@ -208,37 +206,32 @@ package classes.Characters
 		
 		private function phoenixPiratesBulletstorm(target:Creature):void
 		{
-			output("\nSeveral of the pirates pop up from cover, firing on full-auto and sending a withering hail of gunfire downrange at you!");
+			output("One of the pirates pops up from cover, firing on full-auto and sending a withering hail of gunfire downrange at you!");
 
 			energy(-20);
 
-			for (var i:int = 0; i < 5; i++)
+			for (var i:int = 0; i < 3; i++)
 			{
-				CombatAttacks.SingleRangedAttackImpl(this, target, true);
 				output("\n");
+				CombatAttacks.SingleRangedAttackImpl(this, target, true);
 			}
 		}
 		
 		private function phoenixPiratesCarpetGrenades(target:Creature):void
 		{
-			output("<i>“Frag out!”</i> one of the pirates shouts, hurling a beeping black cylinder your way.");
-
-			output(" You dive out of the way, but still get riddled with shrapnel.");
+			output("<i>“Frag out!”</i> one of the pirates shouts, hurling a beeping black cylinder " + (target is PlayerCharacter ? "your way. You dive" : "Saendra's way. She dives") + " out of the way, but still " + (target is PlayerCharacter ? "get" : "gets") + " riddled with shrapnel.");
 			
 			applyDamage(new TypeCollection( { kinetic: 25 }, DamageFlag.PENETRATING), this, target);
-
-			output("\n");
 		}
 		
 		private function phoenixPiratesBroadside(target:Creature):void
 		{
-			output("\nSuddenly, a particularly stealthy pirate pops up on your portside flank, poised to pound you into a pulp with a particularly potent-looking pump-action shotgun.");
+			output("Suddenly, a particularly stealthy pirate pops up on your portside flank, poised to pound " + (target is PlayerCharacter ? "you" : "Saendra") + " into a pulp with a particularly potent-looking pump-action shotgun.");
 
-			output(" You get blasted by the shotty, throwing you back with the sheer force of the sneak attack!");
+			if (target is PlayerCharacter) output(" You get blasted by the shotty, throwing you back with the sheer force of the sneak attack!");
+			else output(" She gets blasted by the shotty, thrown back by the sheer force of the attack!");
 			
 			applyDamage(new TypeCollection( { kinetic: 30 }, DamageFlag.BULLET), this, target);
-			
-			output("\n");
 		}
 	}
 }

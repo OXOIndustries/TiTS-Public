@@ -1438,5 +1438,10 @@
 				module.mainTextField.styleSheet = cStyle;
 			}
 		}
+		
+		public function leftBarDefaults():void
+		{
+			_leftSideBar.defaultLayout();
+		}
 	}
 }

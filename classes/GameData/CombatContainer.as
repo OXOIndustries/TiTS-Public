@@ -619,7 +619,7 @@ package classes.GameData
 					target.removeStatusEffect("Disarmed");
 					if (target is PlayerCharacter) output("\n\n<b>You are no longer disarmed!</b>");
 					else if (target.isPlural) output("\n\n<b>" + target.capitalA + target.uniqueName + " are no longer disarmed!</b>");
-					else output("<b>" + target.capitalA + target.uniqueName + " is no longer disarmed!</b>\n");
+					else output("\n\n<b>" + target.capitalA + target.uniqueName + " is no longer disarmed!</b>\n");
 				}
 				else 
 				{
@@ -778,7 +778,24 @@ package classes.GameData
 			showCombatUI();
 			
 			if (checkForVictory()) return;
-			if (checkForLoss()) return;
+			if (checkForLoss())
+			{
+				// Special output for instantly losing a fight
+				if (roundCounter == 1)
+				{
+					if (pc.lust() >= pc.lustMax())
+					{
+						clearOutput();
+						output("<b>It's no use- you're simply too turned on to fight back right now!</b>");
+					}
+					else
+					{
+						clearOutput();
+						output("<b>It's no use- you're simply too worn out to fight back right now!</b>");
+					}
+				}
+				return;
+			}
 			
 			showCombatDescriptions();
 			generateCombatMenu();
@@ -1360,6 +1377,7 @@ package classes.GameData
 		{
 			if (!atk.RequiresTarget)
 			{
+				clearOutput();
 				atk.execute(_friendlies, _hostiles, pc, null);
 				processCombat();
 				return;
@@ -2610,6 +2628,7 @@ package classes.GameData
 				}
 				
 				userInterface().showPlayerParty([pc]);
+				userInterface().leftBarDefaults();
 				output("\n\n");
 				clearMenu();
 				addButton(0, "Defeat", _lossFunction);
@@ -2629,6 +2648,7 @@ package classes.GameData
 					}
 				
 					userInterface().showPlayerParty([pc]);
+					userInterface().leftBarDefaults();
 					output("\n\n");
 					clearMenu();
 					addButton(0, "Defeat", _lossFunction);
@@ -2668,6 +2688,7 @@ package classes.GameData
 				}
 				
 				userInterface().showPlayerParty([pc]);
+				userInterface().leftBarDefaults();
 				output("\n\n");
 				clearMenu();
 				addButton(0, "Victory", _victoryFunction);
@@ -2972,7 +2993,7 @@ package classes.GameData
 			
 			if (encounterText != null)
 			{
-				output(encounterText + "\n\n");
+				output("\n\n" + encounterText);
 			}
 			else if (_hostiles.length > 1)
 			{
@@ -3056,14 +3077,15 @@ package classes.GameData
 				
 			if (target.HP() <= 0)
 			{
-				output("\n\n<b>" + target.capitalA + target.uniqueName + " is down and out for the count!</b>");
+				output("\n\n<b>" + target.capitalA + target.uniqueName + " is down and out for the count!</b>\n\n");
 			}
 			else if (target.lust() >= target.lustMax())
 			{
-				output("\n\n<b>" + target.capitalA + target.uniqueName + ((target.isPlural == true) ? " are" : " is") + " too turned on to fight.</b>");
+				output("\n\n<b>" + target.capitalA + target.uniqueName + ((target.isPlural == true) ? " are" : " is") + " too turned on to fight.</b>\n\n");
 			}
 			else
 			{
+				/*
 				var pHealth:Number = target.HP() / target.HPMax();
 				var pShield:Number = target.shieldsRaw / target.shieldsMax();
 				
@@ -3072,7 +3094,7 @@ package classes.GameData
 				
 				var dHealth:int = Math.round(pHealth);
 				var dShield:int = Math.round(pShield);
-				
+				*/
 
 				output("\n\n" + target.long); // + " (<b>S: " + dShield + "% / H: " + dHealth + "%</b>)");
 			}
@@ -3223,40 +3245,35 @@ package classes.GameData
 		{
 			for (var i:int = 0; i < _friendlies.length; i++)
 			{
+				if (enemiesAlive() == 0) break;
+				
 				var target:Creature = _friendlies[i];
 				
 				if (target is PlayerCharacter) continue;
 				if (target.isDefeated()) continue; // TODO maybe allow the combatAI method to handle this- allows for a certain degree of cheese in encounter impl.
 				
-				output("\n\n");
-				
 				if (target.hasStatusEffect("Paralyzed"))
 				{
-					if (target.isPlural) output("<b>" + target.capitalA + target.uniqueName + " are still paralyzed.</b>");
-					else output("<b>" + target.capitalA + target.uniqueName + " is still paralyzed.</b>");
-					target.addStatusValue("Paralyzed", 1, -1);
-					
-					if (target.statusEffectv1("Paralyzed"))
-					{
-						if(target.isPlural) output(" They shake it off!");
-						else output(" " + target.mfn("He","She","It") + " shakes it off!");
-						target.removeStatusEffect("Paralyzed");
-					}
+					// noop, handled by updateStatusEffects
 				}
 				else if (target.hasStatusEffect("Grappled"))
 				{
+					output("\n\n");
 					doStruggleRecover(target);
 				}
 				else if (target.hasStatusEffect("Stunned"))
 				{
+					output("\n\n");
 					doStunRecover(target);
 				}
 				else if (target.hasStatusEffect("Tripped"))
 				{
+					output("\n\n");
 					doTripRecover(target);
 				}
 				else
 				{
+					output("\n\n");
 					target.CombatAI(_friendlies, _hostiles);
 				}
 				

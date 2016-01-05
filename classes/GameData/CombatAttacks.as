@@ -340,6 +340,9 @@ package classes.GameData
 			ConcussiveShot.EnergyCost = 25;
 			ConcussiveShot.IsRangedBased = true;
 			ConcussiveShot.RequiresItemFlags = [GLOBAL.ITEM_FLAG_BOW_WEAPON];
+			ConcussiveShot.ExtendedDisplayabilityCheck = function():Boolean {
+				return kGAMECLASS.pc.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_BOW_WEAPON);
+			}
 			ConcussiveShot.TooltipTitle = "Concussive Shot";
 			ConcussiveShot.TooltipBody = "Fire an explosive arrow at your target, potentially stunning them for 1-2 rounds.";
 			ConcussiveShot.Implementor = ConcussiveShotImpl;
@@ -386,7 +389,7 @@ package classes.GameData
 		{
 			if (rangedCombatMiss(attacker, target))
 			{
-				if (target.customDodge.length > 0) output(target.customDodge);
+				if (target.customDodge.length > 0) output(attacker.capitalA + attacker.uniqueName + " takes a "+ attacker.rangedWeapon.attackNoun +" at " + target.a + target.uniqueName + ". " + target.customDodge);
 				else if (attacker is PlayerCharacter) output("You " + attacker.rangedWeapon.attackVerb + " at " + target.a + target.uniqueName + " with your " + attacker.rangedWeapon.longName + ", but just can't connect.");
 				else if (target is PlayerCharacter) output("You manage to avoid " + attacker.a + possessive(attacker.uniqueName) + " " + attacker.rangedWeapon.attackNoun + ".");
 				else output(target.capitalA + target.uniqueName + " manages to avoid " + attacker.a + possessive(attacker.uniqueName) + " " + attacker.rangedWeapon.attackNoun + ".");
@@ -402,7 +405,7 @@ package classes.GameData
 			
 			if (asFlurry && rand(100) <= 45 && !target.isImmobilized() && !attacker.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_EFFECT_FLURRYBONUS))
 			{
-				if (target.customDodge.length > 0) output(target.customDodge); 
+				if (target.customDodge.length > 0) output(attacker.capitalA + attacker.uniqueName + " takes a "+ attacker.rangedWeapon.attackNoun +" at " + target.a + target.uniqueName + ". " + target.customDodge);
 				else if (attacker is PlayerCharacter) output("You " + attacker.rangedWeapon.attackVerb + " at " + target.a + target.uniqueName + " with your " + attacker.rangedWeapon.longName + ", but just can't connect.");
 				else if (target is PlayerCharacter) output("You manage to avoid " + attacker.a + possessive(attacker.uniqueName) + " " + attacker.rangedWeapon.attackNoun + ".");
 				else output(target.capitalA + target.uniqueName + " manages to avoid " + attacker.a + possessive(attacker.uniqueName) + " " + attacker.rangedWeapon.attackNoun + ".");
@@ -426,7 +429,7 @@ package classes.GameData
 		{
 			if (combatMiss(attacker, target))
 			{
-				if (target.customDodge.length > 1) output(target.customDodge);
+				if (target.customDodge.length > 1) output(attacker.capitalA + attacker.uniqueName + " takes a "+ attacker.meleeWeapon.attackNoun +" at " + target.a + target.uniqueName + ". " + target.customDodge);
 				else if (attacker is PlayerCharacter) output("You " + attacker.meleeWeapon.attackVerb + " at " + target.a + target.uniqueName + " with your " + attacker.meleeWeapon.longName + ", but just can't connect.");
 				else if (target is PlayerCharacter) output("You manage to avoid " + attacker.a + possessive(attacker.uniqueName) + " " + attacker.meleeWeapon.attackNoun + ".");
 				else output(target.capitalA + target.uniqueName + " manages to avoid " + attacker.a + possessive(attacker.uniqueName) + " " + attacker.meleeWeapon.attackNoun + ".");
@@ -442,7 +445,7 @@ package classes.GameData
 			
 			if (asFlurry && rand(100) <= 45 && !target.isImmobilized() && !attacker.meleeWeapon.hasFlag(GLOBAL.ITEM_FLAG_EFFECT_FLURRYBONUS))
 			{
-				if (target.customDodge.length > 0) output(target.customDodge); 
+				if (target.customDodge.length > 0) output(attacker.capitalA + attacker.uniqueName + " takes a "+ attacker.meleeWeapon.attackNoun +" at " + target.a + target.uniqueName + ". " + target.customDodge);
 				else if (attacker is PlayerCharacter) output("You " + attacker.meleeWeapon.attackVerb + " at " + target.a + target.uniqueName + " with your " + attacker.meleeWeapon.longName + ", but just can't connect.");
 				else if (target is PlayerCharacter) output("You manage to avoid " + attacker.a + possessive(attacker.uniqueName) + " " + attacker.meleeWeapon.attackNoun + ".");
 				else output(target.capitalA + target.uniqueName + " manages to avoid " + attacker.a + possessive(attacker.uniqueName) + " " + attacker.meleeWeapon.attackNoun + ".");

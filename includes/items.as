@@ -518,13 +518,14 @@ public function combatInventoryMenu():void
 	
 	for (var i:int = 0; i < pc.inventory.length; i++)
 	{
-		if (!isEquippableItem(pc.inventory[i]) && (pc.inventory[i].isUsable == false || pc.inventory[i].combatUsable == false))
+		var tItem:ItemSlotClass = pc.inventory[i];
+		if (tItem.type == GLOBAL.MELEE_WEAPON || tItem.type == GLOBAL.RANGED_WEAPON || tItem.combatUsable == true)
 		{
-			(this as TiTS).addDisabledButton((i < 14) ? i : i + 1, pc.inventory[i].shortName + " x" + pc.inventory[i].quantity, StringUtil.toDisplayCase(pc.inventory[i].longName), "Cannot be used in combat.");
+			addItemButton((i < 14) ? i : i + 1, pc.inventory[i], combatUseItem, pc.inventory[i]);
 		}
 		else
 		{
-			(this as TiTS).addItemButton((i < 14) ? i : i + 1, pc.inventory[i], combatUseItem, pc.inventory[i]);
+			addDisabledButton((i < 14) ? i : i + 1, pc.inventory[i].shortName + " x" + pc.inventory[i].quantity, StringUtil.toDisplayCase(pc.inventory[i].longName), "Cannot be used in combat.");
 		}
 	}
 	
@@ -533,7 +534,7 @@ public function combatInventoryMenu():void
 
 public function inventory():void 
 {
-	if (!CombatManager.inCombat)
+	if (!inCombat())
 	{
 		generalInventoryMenu();
 	}
