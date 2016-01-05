@@ -278,7 +278,9 @@ public function stickItInZeCatgirlCoochWhileSheThinksYerKaska():void
 	output("\n\n<i>\"Still your favorite, right chief?\"</i> Tam giggles, rubbing her butt against the sheathed underside of your prick. <i>\"Double kaithrit tail-job... maybe I'll let you stick it in for a scratch between the ears?\"</i>");
 	output("\n\nHer cat ears perk up expectantly, tails squeezing hard around your shaft as encouragement until you finally reach up and give the puss what she wants. Tam purrs throatily as your fingers work through her bright pink hair, getting at that wonderfully sensitive spot right between her perky cat-ears. Her hips press back against your crotch, grinding up against you as her twin tails slowly release your rod, letting you enjoy the warm, wet feeling of her sex rubbing against your [pc.cock " + x + "], so close to penetration that any errant movement would send you deep into the cat-girl's eager box.");
 	output("\n\n<i>\"You're clear for landing, Kaska,\"</i> Tam purrs, wiggling her flared hips up your shaft, until the crown of your cock is kissing the lips of her pussy. Tam bits her lip, back arching as she purrs and moans, readying herself for you. You're more than happy to make up the difference: grabbing Tam's hips, you thrust in, one long, smooth motion until you're ");
-	if(pc.cockVolume(x) <= enemy.vaginalCapacity(0)) output("buried to the hilt");
+	// How the fuck did this used to work then??!?! Foes[0] was never set to anything specific prior to this point afaik!
+	if (pc.cockVolume(x) <= 24) output("buried to the hilt");
+	
 	else output("able to see her gut distending from the sheer amount of cock being shoved into her");
 	output(". The chorus of moans Tam's been serenading you with breaks at that moment, her cute little groans turning into a long cry of pleasure as you finally fuck her.");
 	pc.cockChange();
