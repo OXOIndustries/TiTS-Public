@@ -14,11 +14,11 @@ public function pennyIsCumSlut():Boolean
 }
 public function pcHasBadgerForm():Boolean
 {
-	if(pc.longestCockLength() >= 11 && pc.biggestTitSize() >= 8 && pc.bRows() == 1 && pc.cockTotal() == 1 && pc.balls == 2 && pc.totalVaginas() == 1 && pc.tailCount == 1 && pc.tailType == GLOBAL.TYPE_BADGER && pc.hasFur() && pc.furColor == "black" && pc.isBiped() && pc.armType == GLOBAL.TYPE_BADGER && pc.faceType != GLOBAL.TYPE_BADGER && pc.femininity >= 75 && pc.lipMod >= 1 && pc.hasPerk("Easy") && pc.hasPerk("Inhuman Desire") && pc.hasPerk("Breed Hungry"))
+	if(pc.longestCockLength() >= 11 && pc.biggestTitSize() >= 8 && pc.bRows() == 1 && pc.cockTotal() == 1 && pc.balls == 2 && pc.totalVaginas() == 1 && pc.tailCount == 1 && pc.tailType == GLOBAL.TYPE_BADGER && pc.hasFur() && pc.furColor == "black" && pc.isBiped() && pc.armType == GLOBAL.TYPE_BADGER && pc.faceType == GLOBAL.TYPE_BADGER && pc.femininity >= 75 && pc.lipMod >= 1 && pc.hasPerk("Easy") && pc.hasPerk("Inhuman Desire") && pc.hasPerk("Breed Hungry"))
 	{
-		return false;
+		return true;
 	}
-	return true;
+	return false;
 }
 public function resetDrBadgerBimboTF():void
 {
@@ -203,6 +203,7 @@ public function resetDrBadgerBimboTF():void
 	if(!pc.hasPerk("Inhuman Desire")) pc.createPerk("Inhuman Desire",15,0,0,0,"Increases maximum lust by 15.");
 	//Breed-Hungry perk
 	if(!pc.hasPerk("Breed Hungry")) pc.createPerk("Breed Hungry",15,0,0,0,"Increases speed that semen is created at and the pregnancy speed.");
+	if(!pc.hasPerk("Ditz Speech")) pc.createPerk("Ditz Speech",0,0,0,0,"Alters dialogue in certain scenes.");
 	//[Reduce PC intelligence by 30 to minimum of 20]
 	if(pc.libido() < 30) pc.libido(10);
 	if(pc.libido() < 50) pc.libido(10);
@@ -242,7 +243,7 @@ public function drBadgerJobOffer():void
 	showDrBadger();
 	abeAuthor();
 	//IF PC WAS BIMBO-IFIED BY DR BADGER
-	if(pc.isBimbo() && flags["DR_BADGER_BIMBOED_PC"] != undefined)
+	if(pcBimboedByBadger())
 	{
 		output("Dr Badger saunters over, stroking her gloved hand casually over your head. You lean into it instinctively, eyes closing in bliss at the contact.");
 		output("\n\n<i>“Now then pet, I have a job for you.”</i> Her hand sweeps down to scratch under your chin, melting as she holds your face up to look at her. <i>“Doesn’t that sounds nice? A nice little job to prove how good and useful you can be?”</i>");
@@ -258,7 +259,7 @@ public function drBadgerJobOffer():void
 		output("\n\nYou can’t help but gasp. Who would want to do something like that?");
 		output("\n\nDr Badger acknowledges your shock with a smile, putting one hand delicately on her substantial chest in a gesture of exaggerated innocence. <i>“I know! That some people would want to stop </i>me<i>, the great Doctor Badger, when all </i>I<i> want to do is make people feel every bit as nice and lovely as you do!”</i>");
 		output("\n\nAs she speaks she runs her spare hand down the side of your face, her lightly clawed fingers brushing gently along your fur. It feels heavenly. Who could possibly be against this? Whoever they are, you stiffen your lip and promise yourself then and there that you’ll do everything you can do setting them straight.");
-		output("\n\n<i>“What can I do?”</i>, you ask.");
+		output("\n\n<i>“What can I do?”</i> you ask.");
 		output("\n\nDr Badger pulls away, causing you to almost fall over forwards as you unthinkingly lean in to try to follow her. She doesn’t seem to notice your slight stumble however, and instead moves back over towards a desk in the corner, pulling out a battered tablet.");
 		output("\n\n<i>“The law might not be </i>particularly<i> strong out here yet,”</i> she says as she flicks through a few menus, <i>“but there’s still enough of a presence to keep me from being as active as I’d like. I gotta keep my head down, not kicking up enough of a fuss for anyone to report me. But, I’ve found that there’s only one police officer stationed on a nearby world that anyone could actually report me to directly. If someone were to take care of them, then any response time the law could muster would be much too slow to be a problem.”</i>");
 		output("\n\nShe walks back over, handing you the tablet that now shows an official picture of a fox-like girl in uniform. <i>“Her name is ‘Penny’, apparently. Stationed on a planet called Mhen’ga.”</i>");
@@ -273,7 +274,7 @@ public function drBadgerJobOffer():void
 	//IF PC WAS NOT BIMBO-IFIED BY DR BADGER
 	else
 	{
-		output("<i>“A job?”</i>, you ask. <i>“Why would I take a job from you?”</i>");
+		output("<i>“A job?”</i> you ask. <i>“Why would I take a job from you?”</i>");
 		output("\n\nFor a second, Dr. Badger manages to look hurt, despite all her mad scientist trappings. <i>“Why, for </i>Science<i>, surely! What other reason could you possibly need, aside from assisting the pursuit of...”</i> She pauses, running one clawed hand along the side of her skin-tight bodysuit and slapping herself on her considerable rump. <i>“..the very best kind of knowledge?”</i>");
 		output("\n\nYou stare at her in wordlessly, not dignifying that with a response. Eventually, she rolls her eyes.");
 		output("\n\n<i>“Fine”</i>, she sighs, <i>“if you really need more mundane incentivization, then I’ll just pay you.”</i>");
@@ -329,21 +330,21 @@ public function warnPennyAboutDoctorBadgersNefariousSchemes():void
 	else if(pennyIsCumSlut() && !pcBimboedByBadger())
 	{
 		output("<i>“Hey there [pc.name]”</i>, Penny says, leaning back in her chair while she casually jerks herself off. She’s already naked, and has more than a few splashes of her own cum dotted about her body as it is, but it looks like she’s working on giving herself another full coat. <i>“You... mhmmm... want to get in on this?”</i>");
-		output("\n\nFor now, you decline her invitation. <i>“Does the name ‘Dr Badger’ mean anything to you?”</i>, you ask.");
+		output("\n\nFor now, you decline her invitation. <i>“Does the name ‘Dr Badger’ mean anything to you?”</i> you ask.");
 		output("\n\nPenny’s ears perk up. <i>“Work stuff, huh? Fine.”</i> With an exaggerated sigh, she shifts forwards to sit at her desk properly, reluctantly releasing her cock to tap at her computer. <i>“You’re lucky I just finished a really good session, otherwise I would </i>not<i> have the focus to deal with this.”</i> She types away for a few seconds, and then pauses, looking down at the sticky strands still connecting her fingers. <i>“And that my terminal still works after all this too”</i>, she adds.");
 		output("\n\nYou laugh at her joke, and wait till she’s done typing. <i>“Thought that name rang a bell”</i>, she says eventually. <i>“Big time sex mad scientist, yeah? There was a bulletin put out about her a while ago, and I remember noticing because I thought she could be a useful source of Throbb. But the trail was dead, and I couldn’t leave my post here to go flying off after her just to get myself a nice cock.”</i> She reads on a little, her ears flattening involuntarily. <i>“On second thoughts, it’s probably best I </i>didn’t<i> go after her. Looks like the last time a cop showed up at her door she wiped the floor with them, with all sorts of subdermal strength boosters and illegal combat mods. Glad I went with my other backalley contact instead of seeking her out after all.”</i>");
 		output("\n\nShe stops suddenly as something occurs to her. <i>“Wait, why do you ask? Have you had a run-in with her? Do you know where she is?”</i>");
 		output("\n\nYou nod, taking out the Bimbo Raygun Dr Badger gave you and putting it down on Penny’s desk. <i>“Yep. Apparently she’s worried that you could bring the authorities down on her, so she asked me to use this on you.  She made it specifically with you in mind, apparently, so it won’t work on anyone else.”</i>");
-		output("\n\nThere’s a long pause as Penny stares down at the object on her desk, the tension somewhat undermined by the way her cock noticeably stiffens. <i>“Wh... what does that do?”</i>, she says.");
+		output("\n\nThere’s a long pause as Penny stares down at the object on her desk, the tension somewhat undermined by the way her cock noticeably stiffens. <i>“Wh... what does that do?”</i> she says.");
 		output("\n\n<i>“She called it a ‘Bimbo Raygun’”</i>, you answer with a shrug. <i>“Having met Dr Badger, I’m pretty sure it does exactly what it sounds like.”</i>");
 		output("\n\nPenny trembles. Unthinkingly, her hands drift slowly back towards her shaft. <i>“I, uh, I figured that might be the case. She’s got, uh, quite the rep for that sort of thing.”</i>");
-		output("\n\nYou pick the gun up again, toying with it casually as you sit down on the edge of her desk. <i>“So?”</i>, you ask simply.");
-		output("\n\n<i>“I, uh, what?”</i>, Penny stammers. <i>“What do you mean, ‘so’?”</i>");
+		output("\n\nYou pick the gun up again, toying with it casually as you sit down on the edge of her desk. <i>“So?”</i> you ask simply.");
+		output("\n\n<i>“I, uh, what?”</i> Penny stammers. <i>“What do you mean, ‘so’?”</i>");
 		output("\n\n<i>“So”</i>, you respond, spinning the gun around to point at her, <i>“what do you say?</i>");
 		output("\n\nPenny doesn’t answer, at least not verbally. Instead she gives out a faint moan, a desperate blush spreading out across her face.");
 		output("\n\n<i>“What do you say”</i>, you continue, <i>“to going all in? To stopping this halfway measure, and devoting yourself full-time to being a nice little bimbo cumslut?”</i>");
 		output("\n\nSuddenly Penny squeaks, her hips thrusting forwards jerkily as her cock starts to cum, thick spurts of jizz arching up onto her face and chest. She folds forwards eagerly, sliding her cock through her lips and squeezing her balls with her spare hand the better to wring herself dry.");
-		output("\n\nClearly you’re having an impact, so you decide to keep going. <i>“You like that idea, don’t you?”</i>, you tease. <i>“You like the idea of being a big-titted bimbo, with nice full lips just </i>made<i> for wrapping around cocks, and not having any responsibilities but fucking and being fucked...”</i>");
+		output("\n\nClearly you’re having an impact, so you decide to keep going. <i>“You like that idea, don’t you?”</i> you tease. <i>“You like the idea of being a big-titted bimbo, with nice full lips just </i>made<i> for wrapping around cocks, and not having any responsibilities but fucking and being fucked...”</i>");
 		output("\n\nPenny’s pace picks up even further, so that now she’s moving in a frenzy, one hand frantically jerking herself off while the other presses desperately into her dripping pussy. You can see her cock twitch and bulge as she pumps load after load into her mouth, forcing her to swallow again and again to keep as much of her cum as possible from slipping free from her lips.");
 		output("\n\nYou lean in, whispering in her cute, quivering ears. <i>“You know, I bet this will give you an even bigger libido too. Make it so you’ll be able to cum any time, any where, so you can spend every second of every day coating yourself in cum and then lapping it up.”</i>");
 		output("\n\n<i>“Fffuuuuck!”</i> Penny gasps, her cock slipping out of her lips as her whole body seemingly locks up. A veritable fountain of cum erupts from her, and it’s all she can do to keep her panting mouth open to let herself taste as much of it as possible as it falls back onto her face. Her hips jerk forwards a few more times, each unthinking thrust accompanied by another spurt of jizz, painting a slowly descending line down her chin to her breasts. All the while you simply look on, innocently observing her reaction as you pose the question.");
@@ -383,7 +384,7 @@ public function warnPennyAboutDoctorBadgersNefariousSchemes():void
 		output("\n\nPenny doesn’t say anything for a while, just staring at you and blinking. Did you already use the gun-thing on her? Does she need you to explain it again, but simpler? Before you can start though, she does start talking.");
 		output("\n\n<i>“I - I have heard of Dr Badger. There was a bulletin that went out about her. Let me just pull it up...”</i>");
 		output("\n\nShe turns back to her computer, tapping away at it and looking some things up. Oh good, this is much better, now you’re just sitting here waiting while she’s like, reading about something or junk. She’s saying some of it out loud too; something about ‘mad scientist’ and ‘surprisingly powerful’ and ‘reporting’ and ‘plan’ and ‘bimbos’ - that last one gets your attention. Maybe Penny’s saying something about if you should zap her or not. You shake your head to focus your eyes again, looking down to see Penny looking up at you expectantly.");
-		output("\n\n<i>“Oh, er, could you say that last part again?”</i>, you say sheepishly.");
+		output("\n\n<i>“Oh, er, could you say that last part again?”</i> you say sheepishly.");
 		output("\n\n<i>“Uh, sure”</i>, she answers. <i>“I said, if Dr Badger made this thing just for me, maybe I could find someone to help us modify it, so we could use it on her instead. If... if we want to do that?”</i> She stops speaking and licks her lips distractedly, her cheeks still blushing red. She’s normally so fierce, it’s so cute to see her all flustered like this! She must really like the new you. Which is nice, because you do too. Oh! She asked you a question!");
 		output("\n\n<i>“Right! Or, I could use it on you now, and then we could fuck. Like, a lot. A real, real lot.”</i>");
 		output("\n\nPenny can’t stop staring at your cock, especially now that it’s starting to stand straight out from your crotch, sticky drops of pre-cum dripping out from the tip. You slide one finger slowly down the side, shivering at the wonderful slick sensation that makes. <i>“You like it? I’m sure this gun-thing could get you one like this too!”</i>");
@@ -411,16 +412,16 @@ public function warnPennyAboutDoctorBadgersNefariousSchemes():void
 		output("\n\n<i>“Well”</i>, you answer, twirling a finger around your thick lips, <i>“if we’re going to like, talk and junk, I figure I could at least jerk off on you while we do that.”</i>");
 		output("\n\nPenny rolls her eyes. <i>“Okay, first of all - yes of course you should jerk off on me while we talk. But secondly, what was that about being supposed to zap me with something?”</i>");
 		output("\n\nYou’ve already shifted your position before she finished talking, setting up with one knee on her desk and your cock in one hand while your other one cups at your balls. <i>“Oh, right! That was like, super important!”</i>");
-		output("\n\nThere’s silence for a few seconds, broken only by the increasingly slick noise of your hand sliding back and forth along the shaft of your long black cock. <i>“Well?”</i>, Penny prompts eventually, even as she leans backwards slightly and angles herself to provide you with a better target.");
+		output("\n\nThere’s silence for a few seconds, broken only by the increasingly slick noise of your hand sliding back and forth along the shaft of your long black cock. <i>“Well?”</i> Penny prompts eventually, even as she leans backwards slightly and angles herself to provide you with a better target.");
 		output("\n\nYou nod, biting your lip a little to clear your thoughts. <i>“Right! Well, it was a super important mission given to me by the... the person that made me... mhmmm! Made me all nice and... nice </i>slutty<i> bimbo... Doctor... ahm! Doctor BadgAhh!!”</i>");
 		output("\n\nYou’re not sure if it’s thinking back to what happened, or even just saying her name, but <i>something</i> about all of that makes you cum, and when you do, you cum like a firehose. Even though Penny’s cock is larger than yours, your output puts her to shame - but that makes sense, right? Her stuff is a happy accident, something you helped shape to make wonderful, but you, and how you are now? You were <i>made</i> for this, made to be a perfect slutty bimbo fucktoy, able to cum again and again and again on command and be productive enough to make sure everyone can have fun. You bite your lip desperately, letting out a cute, high-pitched shriek as your hips buck forwards again and again, and with each thrust a <i>lot</i> of cum spurts out, and most of it lands somewhere on Penny’s body. Her eyes are glazed over, her tail wagging furiously behind her as she spreads herself wide, the better to catch as much of what you’re putting out as possible. Her tongue moves crazily too, zipping around as fast as it can so she can taste as much of your yummy cum as she can fit into her mouth. All of that makes you even <i>more</i> turned on, so you cum even <i>more</i>, which makes Penny enjoy it even more, so you cum more, and so... yeah.");
 		output("\n\nThis goes on for a while.");
 		output("\n\nEventually you slow down. It’s not that you can’t keep fucking, but you feel like you’ve done what you’re supposed to do here, given that Penny’s pretty much completely coated in sticky white cum now. Oh, but you forgot the zapping again! You wait for a minute or so, only stroking your cock slowly to keep yourself nice and hard (in case Penny decides she needs another coat after all), and eventually she manages to clear enough of herself off that her tongue isn’t 100% busy anymore and she can be bothered talking again.");
-		output("\n\n<i>“Dr Badger was it?”</i>, she says eventually. <i>“I like her work.”</i>}");
+		output("\n\n<i>“Dr Badger was it?”</i> she says eventually. <i>“I like her work.”</i>}");
 		output("\n\n<i>“Thanks!”</i> you giggle happily. <i>“I think she was worried that you like, wouldn’t or something? So she made this gun-thing that would only work on you, because people could report her to you and then there’d... be like, police and they’d... be bad?”</i> You kinda trail off, half because you can’t quite remember what Doctor Badger had said exactly, and half because you’re distracted how horny you are again. You <i>still</i> haven’t sucked Penny’s cock yet! That doesn’t seem right.");
 		output("\n\nShe starts talking again before you can lean in though, so with a huff you decide you should probably leave it for now. <i>“I remember a bulletin going out about her a while ago, actually. Let me just pull it up...”</i>");
 		output("\n\nShe turns back to her computer, tapping away at it and looking some things up. Oh good, this is much better, now you’re just sitting here waiting while she’s like, reading about something or junk. She’s saying some of it out loud too; something about ‘mad scientist’ and ‘surprisingly powerful’ and ‘reporting’ and ‘plan’ and ‘bimbos’ - that last one gets your attention. Maybe Penny’s saying something about if you should zap her or not. You shake your head to focus your eyes again, looking down to see Penny looking up at you expectantly.");
-		output("\n\n<i>“Oh, er, could you say that last part again?”</i>, you say sheepishly.");
+		output("\n\n<i>“Oh, er, could you say that last part again?”</i> you say sheepishly.");
 		output("\n\n<i>“Uh, sure”</i>, she answers. <i>“I said, if Dr Badger made this thing just for me, maybe I could find someone to help us modify it, so we could use it on her instead. If... if we want to do that?”</i> She may have cleared the cum off her face, but there’s still a big pool of it clinging to the fur between her tits, and you can see her nostrils flaring as she starts slowly drifting forwards towards it.");
 		output("\n\n<i>“Right!”</i> you say. <i>“Or, I could use it on you now, and then we could fuck. Like, a lot. A real, real lot.”</i>");
 		output("\n\nPenny is staring straight down at the cum on her chest, and can’t help herself from slipping her tongue out and starting to lick it up, shivering with bliss at the taste of it.");
@@ -476,7 +477,7 @@ public function zapPennyAfterWarningHer():void
 		output("\n\n<i>“Well, thanks!”</i> she answers brightly, clearly missing your bemused tone. <i>“I love it!”</i> The conversation stops as she wraps both hands around her shaft and works at it happily for a few moments, each stroke rewarding her with a burst of thick cum that she catches eagerly in her open mouth. <i>“Oh holy crap, this is, like, </i>amazing<i>! I’m never going to have to not be covered in cum ever again, am I? Please, tell me I’m not!”</i>");
 		output("\n\nHer expression as she looks up at you is surprisingly earnest, as though she really does need you to confirm that she’s as much of a bimbo slut as she hopes she is. <i>“No”</i>, you answer confidently, <i>“I’m pretty sure you’re not.”</i>");
 		output("\n\nIt’s that, that last moment of confirmation that finally tips Penny over the edge properly. One hand clenches tightly around her cock, while the other spends one wild second flailing urgently until it finds its way around her balls, squeezing them needfully to better milk herself for sweet cum. The resulting orgasm is climactic, a veritable fountain of thick cum pouring out from her cock, arching up over her body and landing on her face and chest. After several seconds of urgent, productive thrusts she shifts to push her cock up through her tits, slickly coating its path the whole way, before eventually she manages to wrap her plump lips around its still-spasming tip. And then she just... doesn’t stop. Her blissful cocksucking goes on for several minutes, and even when you quietly but insistently lift her head back up to talk with her she still keeps cumming quietly, her cock creating an ever-growing pool of whiteness on her dull brown fur. She looks at you attentively while you hold her, but it’s clear that the second you go she’ll go right back to either sucking her cock directly or coating herself with it and then licking up the results.");
-		output("\n\n<i>“So, how would you feel about reporting Dr Badger?”</i>, you ask her innocently.");
+		output("\n\n<i>“So, how would you feel about reporting Dr Badger?”</i> you ask her innocently.");
 		output("\n\nShe looks almost hurt, the first time since you zapped her that you’ve seen her expression look anything other than blissful. <i>“Why on earth would </i>anyone<i> want to do that? She’s like, magic! Have you </i>seen<i> my cock? It’s cumming </i>forever<i>. You don’t lock up someone who can do something like that!”</i>");
 		output("\n\nWell, looks like mission accomplished - Dr Badger doesn’t have anything to worry about here. Penny seems happy too, and you suspect that in a place like this a police officer whose first resort is to fuck any problems into submission will probably do pretty well. You can have fun with this new version of Penny later, but for now you’ve got a payment to collect.");
 		processTime(11);
@@ -485,8 +486,8 @@ public function zapPennyAfterWarningHer():void
 	//IF PLAYER IS BIMBOIFIED AND PENNY DOES NOT HAVE A DICK
 	else if(pcBimboedByBadger() && !penny.hasCock())
 	{
-		output("<i>“So, yes then?”</i>, you ask chirpily. <i>“C’mon, it’s super fun!”</i>");
-		output("\n\nPenny looks around for a moment, taking in the empty little office she works in and looking out the window to the rest of the world outside. <i>“You know what?”</i>, she says eventually. <i>“Fuck it. I’m pretty sure a sex-mad bimbo would do an even <i>better</i> job of looking after this place anyway. And I’ve worked hard, I deserve to have some fun, right?”</i>");
+		output("<i>“So, yes then?”</i> you ask chirpily. <i>“C’mon, it’s super fun!”</i>");
+		output("\n\nPenny looks around for a moment, taking in the empty little office she works in and looking out the window to the rest of the world outside. <i>“You know what?”</i> she says eventually. <i>“Fuck it. I’m pretty sure a sex-mad bimbo would do an even <i>better</i> job of looking after this place anyway. And I’ve worked hard, I deserve to have some fun, right?”</i>");
 		output("\n\n<i>“Totally!”</i> you answer. <i>“And you deserve to have a nice juicy cock too!”</i>");
 		output("\n\nPenny blushes, swallowing heavily. <i>“Uh, yeah. Th- that too.”</i>");
 		output("\n\nYou point the raygun at Penny, and even though her ears flatten a little in nervousness, she gives one last nod to confirm it. Then, with a loud ‘click’, you pull the trigger.");
@@ -517,7 +518,7 @@ public function zapPennyAfterWarningHer():void
 		output("\n\nYou grin. <i>“Oh, I can think of a few things...”</i>");
 		output("\n\nBefore she can say anything you’re on top of her, digging your stubby badger claws into her lovely soft tits as you press your cock down towards her dripping wet pussy.");
 		output("\n\n<i>“Yes!”</i> she gasps. <i>“Oh yes please fuck me fill me up fuck me fuck me!”</i>");
-		output("\n\nYou’re more than happy to agree to her request, sliding your thick cock easily inside her. She’s so <i>wet</i>, and with every thrust you give her you can feel her whole body shudder, another slick burst of cum spraying out from her own cock. <i>“Don’t you love being a super horny bimbo?”</i>, you ask.");
+		output("\n\nYou’re more than happy to agree to her request, sliding your thick cock easily inside her. She’s so <i>wet</i>, and with every thrust you give her you can feel her whole body shudder, another slick burst of cum spraying out from her own cock. <i>“Don’t you love being a super horny bimbo?”</i> you ask.");
 		output("\n\n<i>“Yes! Uhmmnnn! I love it! Oh wow, I... uhmmnn! I am going to suck <i>so</i> much cock!”</i>");
 		output("\n\nYou laugh happily. <i>“Yay! Oh there’s something... mhmm... super important!”</i>");
 		output("\n\n<i>“Mhmm?”</i>");
@@ -535,7 +536,7 @@ public function zapPennyAfterWarningHer():void
 	//IF PLAYER IS BIMBOIFIED AND PENNY HAS A DICK
 	else
 	{
-		output("<i>“So, yes then?”</i>, you ask chirpily. <i>“C’mon, it’s super fun!”</i>");
+		output("<i>“So, yes then?”</i> you ask chirpily. <i>“C’mon, it’s super fun!”</i>");
 		output("\n\nPenny tongue is hanging out of her mouth as she pants with lust, so it takes her a little bit to answer. <i>“Fuck yes [pc.name]. I want to be able to cum as much and as hard as possible, again and again and again. Hit me!”</i>");
 		output("\n\nYou point the raygun at Penny, and she gives one last nod to confirm it. Then, with a loud ‘click’, you pull the trigger.");
 		output("\n\nYou were expecting some bolt of energy, some shining white laser to shoot out and hit her, but instead it’s almost like turning on a flashlight, except the beam it puts out is a suitably bright pink color. It seems... slow. Isn’t light supposed to be like, not slow? Well, this light is definitely slow, like you can almost bathe in it rather than just be lit up normally. It doesn’t light up all of her either, just a tight pink circle that you center, with a deliberate grin, right on her chest.");
@@ -561,7 +562,7 @@ public function zapPennyAfterWarningHer():void
 		output("\n\nYou grin. <i>“Oh, I can think of a few things...”</i>");
 		output("\n\nBefore she can say anything you’re on top of her, digging your stubby badger claws into her lovely soft tits as you press your cock down towards her dripping wet pussy.");
 		output("\n\n<i>“Yes!”</i> she gasps. <i>“Oh yes please fuck me fill me up fuck me fuck me!”</i>");
-		output("\n\nYou’re more than happy to agree to her request, sliding your thick cock easily inside her. She’s so <i>wet</i>, and with every thrust you give her you can feel her whole body shudder, another slick burst of cum spraying out from her own cock. <i>“Don’t you love being a super horny bimbo?”</i>, you ask.");
+		output("\n\nYou’re more than happy to agree to her request, sliding your thick cock easily inside her. She’s so <i>wet</i>, and with every thrust you give her you can feel her whole body shudder, another slick burst of cum spraying out from her own cock. <i>“Don’t you love being a super horny bimbo?”</i> you ask.");
 		output("\n\n<i>“Yes! Uhmmnnn! I love it! Oh wow I... uhmmnn! I am going to suck <i>so</i> much cock!”</i>");
 		output("\n\nYou laugh happily. <i>“Yay! Oh there’s something... mhmm... super important!”</i>");
 		output("\n\n<i>“Mhmm?”</i>");
@@ -612,7 +613,7 @@ public function surpriseZapPennyWithBimboRay():void
 		output("\n\nBefore you can stop her she goes to sit down, despite the fact that her chair is no longer beneath her. She doesn’t realise that until too late, and so winds up falling with a heavy <i>“oomph!”</i> on her butt. For your part, you manage to step forward quickly to keep her from being hidden behind her desk, and so keeping the beam of the gun trained on her.");
 		output("\n\n<i>“Woah!”</i> Penny says after she’s recovered her breath. <i>“That was dumb. Huh.”</i>");
 		output("\n\nYou expect her to get back up, but she doesn’t, instead simply sitting on the ground as though she’s thinking through what exactly happened. Eventually she looks up at you. <i>“That, huh. Whatever that thing you’re using is there, it’s definitely nice and warm.”</i>");
-		output("\n\n<i>“Is it?”</i>, you answer with mock innocence.");
+		output("\n\n<i>“Is it?”</i> you answer with mock innocence.");
 		output("\n\n<i>“Yeah”</i>, Penny replies, completely missing your tone. <i>“It’s starting to feel pretty... pretty good...”</i>");
 		output("\n\nYou lean forward, bringing the gun closer to her and therefore concentrating the beam on her chest. <i>“Is it?”</i>");
 		output("\n\nPenny is starting to look flushed, biting her lip and moaning for a second before saying anything more. <i>“Mhmmnn... is that... is that some sort of lust gun or something?”</i>");
@@ -651,7 +652,7 @@ public function surpriseZapPennyWithBimboRay():void
 		else output("cock");
 		output(". Soon that too begins to respond, surging outwards in her grip, her tongue hanging out of her mouth in bliss as she wraps her fingers around the growing mass, balls growing in quickly beneath it. She leans back, while at the same time her hips start to move rhythmically forwards, letting her probing fingers imitate the feeling of a nice cock filling her up as she so desperately needs.");
 		output("\n\n<i>“Wow [pc.name]”</i>, she moans, <i>“this feels so fucking good. It’s all like, nice and warm and good and... nice...”</i> She trails off, her head lolling back for a few moments as she concentrates on really just working herself over as much as possible. All the while, the growing cock between her legs is becoming increasingly stiff, stretching up now to reach between her breasts, and the sensation of the slick tip pushing up into her cleavage is enough to make her visibly tremble.");
-		output("\n\nGiven that she’s stopped speaking, you decide to pick up the slack. Keeping the beam trained squarely on her, you lean over her. <i>“It feels </i>good<i>, doesn’t it?”</i>, you say softly. <i>“Doesn’t it feel </i>right<i>, to really let yourself embrace what a nice little bimbo slut you can be?”</i>");
+		output("\n\nGiven that she’s stopped speaking, you decide to pick up the slack. Keeping the beam trained squarely on her, you lean over her. <i>“It feels </i>good<i>, doesn’t it?”</i> you say softly. <i>“Doesn’t it feel </i>right<i>, to really let yourself embrace what a nice little bimbo slut you can be?”</i>");
 		output("\n\nShe nods, and as she does you see the hair on her head lighten, changing in seconds to become a lovely, silky blond mane. Her lips plump up too, framing her lolling tongue with a perfect ring of softness. Until now her eyes had been closed in an expression of dream-like bliss, but now they snap open suddenly, locking with yours as she gives you a look of utter submission and satisfaction. <i>“Yes! Yes! YES!”</i> she cries, and with each word her hips buck forward, a veritable fountain of cum erupting from her now-massive cock and churning balls.");
 		output("\n\n<i>“Good girl”</i>, you whisper approvingly, using one hand to push her slowly backwards onto the floor, thereby encouraging her to cum over her own body. <i>“Now to really let yourself enjoy your reward...”</i>");
 		output("\n\nShe barely needs your encouragement, quickly taking advantage of the opportunity she’s been given to eagerly coat herself with thick white slickness. The stream of cum from her cock arch gracefully upwards and land all over her body, quickly reducing her fur to a thickly matted mess. She revels in the sensation of it, rubbing her body around in the growing puddle on the floor to cover more of herself with it, squeezing her tits together to catch as much of a reservoir as she can between them before leaning down to frenziedly lap it up. And all the while her balls keep churning, the cum still pouring out from her even as the force of the stream abates, until eventually she is left a sopping wet mess, white almost from head to toe even as her cock still drips freely.");
@@ -673,7 +674,7 @@ public function surpriseZapPennyWithBimboRay():void
 	else if(!pcBimboedByBadger() && pennyIsCumSlut())
 	{
 		output("Penny sighs with relief as you walk over, shifting to let her massive cock press up through her breasts. <i>“Thank goodness it’s you [pc.name]”</i>, she says, <i>“I was worried this was going to be some sort of official police business that would get in the way of me getting some quality cocksucking in.”</i>");
-		output("\n\nThere’s a pause as you consider what you’re here to do, the silence filled only by the slick noises Penny makes as she presses her cock between her lips. <i>“You know what?”</i>, you say with a shrug, <i>I don’t think I need a big discussion to be confident this is going to go well.”</i>");
+		output("\n\nThere’s a pause as you consider what you’re here to do, the silence filled only by the slick noises Penny makes as she presses her cock between her lips. <i>“You know what?”</i> you say with a shrug, <i>I don’t think I need a big discussion to be confident this is going to go well.”</i>");
 		output("\n\nYou point the raygun at Penny, and given that her head is down and her attention is elsewhere she doesn’t notice your movement until, with a audible ‘click’, you pull the trigger. You were expecting some bolt of energy, some shining white laser to shoot out and hit her, but instead it’s almost like turning on a flashlight, except the beam it puts out is a suitably bright pink color. It seems... slow, somehow, almost lazy, so it feels kinda like a portable fan you’re holding over someone, except instead of pushing air it’s projecting this slow, thick, pink light. On top of that, given that you’re standing pretty close to her you can clearly see that the cone it’s projecting doesn’t have time to spread out to cover all of her, instead it’s landing in a small circle centered, quite accidentally, right on her chest.");
 		output("\n\n<i>“Oh!”</i> she gasps, sliding her cock out of her mouth with a slick slurp, <i>“what is that? It feels... uhnnn...”</i> She trails off, but the fact that she leans back in the chair to provide a better target for the beam completes the thought for her.");
 		output("\n\nYou’re happy to go along with her suggestion and keep your aim steady, and it doesn’t take much longer before there’s a reaction as her breasts slowly begin to noticeably swell. Previously they weren’t exactly small, but they weren’t especially large either - at least not compared to some people you’ve encountered - but with each passing second it seems like they’re filling up to another cup size. The sensation is clearly pleasureable too, as Penny confirms as she gives out a quiet earnest moan. She’s sprawled back in her chair, her legs splayed as wide as possible as she relaxes completely into the gentle massaging of the warm pink beam. Well, she’s <i>almost</i> completely relaxed, even though her eyes are closed and her head thrown back in bliss her hands have started moving, one of them sliding down her body to wrap slowly around the heft of her shaft, while the other curls lovingly around her thick balls. By now her tits have attained a quite impressive size - easily as big as some particularly impressive watermelons, looking cutely out of place on her generally trim and toned frame, so given that you apparently have some control over this process you decide to follow her suggestion and shift your focus. You redirect the beam downwards, causing her eyes to shoot open as you target her cock and balls directly.");
@@ -694,7 +695,7 @@ public function surpriseZapPennyWithBimboRay():void
 		output("\n\n<i>“Well, thanks!”</i> she answers brightly, clearly missing your bemused tone. <i>“I love it!”</i> The conversation stops as she wraps both hands around her shaft and works at it happily for a few moments, each stroke rewarding her with a burst of thick cum that she catches eagerly in her open mouth. <i>“Oh holy crap, this is, like, </i>amazing<i>! I’m never going to have to not be covered in cum ever again, am I? Please, tell me I’m not!”</i>");
 		output("\n\nHer expression as she looks up at you is surprisingly earnest, as though she really does need you to confirm that she’s as much of a bimbo slut as she hopes she is. <i>“No”</i>, you answer confidently, <i>“I’m pretty sure you’re not.”</i>");
 		output("\n\nIt’s that, that last moment of confirmation that finally tips Penny over the edge properly. One hand clenches tightly around her cock, while the other spends one wild second flailing urgently until it finds its way around her balls, squeezing them needfully to better milk herself for sweet cum. The resulting orgasm is climactic, a veritable fountain of thick cum pouring out from her cock, arching up over her body and landing on her face and chest. After several seconds of urgent, productive thrusts she shifts to push her cock up through her tits, slickly coating its path the whole way, before eventually she manages to wrap her plump lips around its still-spasming tip. And then she just... doesn’t stop. Her blissful cocksucking goes on for several minutes, and even when you quietly but insistently lift her head back up to talk with her she still keeps cumming quietly, her cock creating an ever-growing pool of whiteness on her dull brown fur. She looks at you attentively while you hold her, but it’s clear that the second you go she’ll go right back to either sucking her cock directly or coating herself with it and then licking up the results.");
-		output("\n\n<i>“So, if someone came in here talking to you, trying to report Dr Badger for being a ‘wanted criminal’”</i>, you ask innocently, complete with air quotes, <i>“how would you feel about that?”</i>, you ask her innocently.");
+		output("\n\n<i>“So, if someone came in here talking to you, trying to report Dr Badger for being a ‘wanted criminal’”</i>, you ask innocently, complete with air quotes, <i>“how would you feel about that?”</i> you ask her innocently.");
 		output("\n\nShe looks almost hurt, the first time since you zapped her that you’ve seen her expression look anything other than blissful. <i>“Why on earth would </i>anyone<i> want to report her? She’s like, magic! Have you </i>seen<i> my cock? It’s cumming </i>forever<i>. You don’t lock up someone who can do something like that!”</i>");
 		output("\n\nWell, looks like mission accomplished - Dr Badger doesn’t have anything to worry about here. Penny seems happy too, and you suspect that in a place like this a police officer whose first resort is to fuck any problems into submission will probably do pretty well. You can have fun with this new version of Penny later, but for now you’ve got a payment to collect.");
 		processTime(11);
@@ -731,9 +732,9 @@ public function surpriseZapPennyWithBimboRay():void
 		output("\n\nPenny is having trouble doing anything but grin laciv... lashivi... lustfully, but after thinking about it for a few seconds what you just said registers enough for Penny to look up at you in confusion. <i>“Wait, what are you here for?”</i>");
 		output("\n\n<i>“This!”</i> you answer simply, quickly aiming the gun-thing Doctor Badger gave you at Penny and pulling the trigger.");
 		output("\n\nPenny’s response isn’t as big as you were expecting. She pulls back a little in surprise - you guess it <i>does</i> kinda look like you just pulled a gun on her, so that makes sense, even if it’s so wrong it’s silly - but there’s not like, big... ZAP or anything. Instead there’s just this bright pink glow, lighting up most of Penny’s body as you hold the beam over her, while both of you get more and more confused.");
-		output("\n\n<i>“Uh, this is the part where you like, grow big tits and stuff, okay?”</i>, you say with a pout.");
-		output("\n\n<i>“Huh?”</i>, Penny answers. <i>“That doesn’t... what do you... huh?”</i> She’s shaking her head slowly, like she’s trying to clear it, but more importantly her tits are NOT getting any bigger. Is something wrong? Are you pulling the trigger wrong? You lean in closer, bringing the gun-thing closer to Penny, and finally that seems to do it. With a quiet gasp you see Penny’s tits begin to grow, pressing outwards more and more and straining at her cute little uniform.");
-		output("\n\n<i>“What’s... happening?”</i>, she says slowly.");
+		output("\n\n<i>“Uh, this is the part where you like, grow big tits and stuff, okay?”</i> you say with a pout.");
+		output("\n\n<i>“Huh?”</i> Penny answers. <i>“That doesn’t... what do you... huh?”</i> She’s shaking her head slowly, like she’s trying to clear it, but more importantly her tits are NOT getting any bigger. Is something wrong? Are you pulling the trigger wrong? You lean in closer, bringing the gun-thing closer to Penny, and finally that seems to do it. With a quiet gasp you see Penny’s tits begin to grow, pressing outwards more and more and straining at her cute little uniform.");
+		output("\n\n<i>“What’s... happening?”</i> she says slowly.");
 		output("\n\nYou giggle. <i>“You’re becoming a bimbo, silly!”</i> You lean backwards to give her a better view of your tits, even as hers keep growing. <i>“We’re gonna have to make a few changes to that body of yours so you can be the very best slut you can be!”</i>");
 		output("\n\nPenny grits her teeth, still shaking her head slowly. <i>“But what... what if I don’t... want to...”</i>");
 		output("\n\n<i>“Oh! Y’know, I never even </i>thought<i> of that!”</i> You put one finger on your plump lips for a moment and think - although your other hand keeps the gun-thing pointed at Penny so the nice pink beam keeps washing over her. <i>“I guess I always just thought that like, this is all such <i>fun</i>. Like, c’mon, you’ve seen this cock, right!”</i> You lean backwards and spread your legs wide again, running one hand all the way up your thick black shaft. <i>“Oh man Pen, you should feel how good this is.");
@@ -761,7 +762,7 @@ public function surpriseZapPennyWithBimboRay():void
 		output("\n\nYou grin, something about how super into being a happy little cum covered slut already working to get you nice and horny again. <i>“Oh, I can think of a few things...”</i>");
 		output("\n\nBefore she can say anything you’re on top of her, digging your stubby badger claws into her lovely soft tits and pressing your cock down towards her pussy. She’s already a dripping wet mess, but you do your best to give her a anothing quick coating as you lean down over her.");
 		output("\n\n<i>“Yes!”</i> she gasps. <i>“Oh yes please fuck me fill me up fuck me fuck me!”</i>");
-		output("\n\nYou’re more than happy to agree to her request, sliding your thick cock easily inside her. She’s so <i>wet</i>, and with every thrust you give her you can feel her whole body shudder, another slick burst of cum spraying out from her own cock. <i>“Don’t you love being a super horny bimbo?”</i>, you ask.");
+		output("\n\nYou’re more than happy to agree to her request, sliding your thick cock easily inside her. She’s so <i>wet</i>, and with every thrust you give her you can feel her whole body shudder, another slick burst of cum spraying out from her own cock. <i>“Don’t you love being a super horny bimbo?”</i> you ask.");
 		output("\n\n<i>“Yes! Uhmmnnn! I love it! Oh wow I... uhmmnn! I am going to suck <i>so</i> much cock!”</i>");
 		output("\n\nYou laugh happily. <i>“Yay! Oh there’s something... mhmm... super important!”</i>");
 		output("\n\n<i>“Mhmm?”</i>");
@@ -810,7 +811,7 @@ public function surpriseZapPennyWithBimboRay():void
 		output("\n\nYou grin. <i>“Oh, I can think of a few things...”</i>");
 		output("\n\nBefore she can say anything you’re on top of her, digging your stubby badger claws into her lovely soft tits as you press your cock down towards her dripping wet pussy.");
 		output("\n\n<i>“Yes!”</i> she gasps. <i>“Oh yes please fuck me fill me up fuck me fuck me!”</i>");
-		output("\n\nYou’re more than happy to agree to her request, sliding your thick cock easily inside her. She’s so <i>wet</i>, and with every thrust you give her you can feel her whole body shudder, another slick burst of cum spraying out from her own cock. <i>“Don’t you love being a super horny bimbo?”</i>, you ask.");
+		output("\n\nYou’re more than happy to agree to her request, sliding your thick cock easily inside her. She’s so <i>wet</i>, and with every thrust you give her you can feel her whole body shudder, another slick burst of cum spraying out from her own cock. <i>“Don’t you love being a super horny bimbo?”</i> you ask.");
 		output("\n\n<i>“Yes! Uhmmnnn! I love it! Oh wow I... uhmmnn! I am going to suck <i>so</i> much cock!”</i>");
 		output("\n\nYou laugh happily. <i>“Yay! Oh there’s something... mhmm... super important!”</i>");
 		output("\n\n<i>“Mhmm?”</i>");
@@ -957,7 +958,7 @@ public function bimboPennyTalk():void
 	abeAuthor();
 	//IF PC IS A BIMBO
 	//IF PC IS A BIMBO [whether Dr Badger brand or not]
-	if(pc.isBimbo())
+	if(pc.isBimbo() || pcBimboedByBadger())
 	{
 		output("You walk over, grabbing Penny in a big hug. <i>“Oh my goodness, how much fun are you having?”</i>");
 		output("\n\n<i>“Oh man like, </i>so<i> much fun!</i>");
@@ -972,7 +973,7 @@ public function bimboPennyTalk():void
 	//IF PC IS NOT A BIMBO
 	else
 	{
-		output("<i>“So, how do you actually feel?”</i>, you ask.");
+		output("<i>“So, how do you actually feel?”</i> you ask.");
 		output("\n\n<i>“Great!”</i> she answers happily. <i>“I don’t know - maybe some day I’ll want to go back to being super serious go-getter cop lady grr, but for now, this feels like a vacation, you know? Just me, my massive cock, my massive sex drive, and my buckets of cum. I think I’ve earned that, don’t you?”</i>");
 		output("\n\nYou can’t argue with that. She definitely seems happy too, even if she’s a bit more... single-minded than she used to be. It seems like everything worked out pretty well after all. <i>“So”</i>, you say, unsure of where exactly to take the conversation after ‘buckets of cum’. <i>“Want to talk about your job? Your life? Your race?”</i>");
 		output("\n\nPenny shrugs. <i>“Nah, you know all that by now, right? You must be sick of hearing me talk about being a kid in college who wanted to be a fox girl and secretly wanted to get a dick, and then I worked real hard and got both of those things, right?</i>");
@@ -1037,8 +1038,8 @@ public function fuckBimboPenny():void
 	output(" You take up your position behind her, moving her bushy tail to the side to give yourself access and enjoying the way she shivers with pleasure as you do.");
 	//IF PC IS A BIMBO = 
 	if(pc.isBimbo() && pc.biggestTitSize() >= 5) output("\n\n<i>“Oh holy shit, this is so great”</i>, you gasp, grabbing at her big full booty as you lean forwards over her, your big tits reaching down far enough to brush against the fur of her back. <i>“I didn’t know how much I wanted to share my slutty bimbo-ness and make a nice pet to fuck, but now that I’ve done it... mhmmmm, it’s the </i>best<i>.”</i>");
-	else output("\n\n<i>“You </i>are<i> a good girl, aren’t you?”</i>, you whisper into her ears, leaning commandingly over her and grabbing at her big full booty. <i>“Making you into a cute, slutty bimbo pet to fuck was <i>definitely</i> the right choice, wasn’t it?”</i>");
-	output("\n\nPenny’s first answer is just a happy little moan, pushing back onto your cock ever so slightly but still waiting for you to make the first move. <i>“I know, right?”</i>, she says eventually. <i>“It’s like, I can remember that there was a point where I was all shy and unsure about wanting a big ol’ cock, but like, now it all just seems so dumb!”</i> She reaches down, taking her dick in her hands and putting it up on the desk in front of her before starting to eagerly jerk herself off. <i>“I mean, come on! How could I be unsure about </i>this<i>! It’s the best! I get to cum and cum and... fuck and be coated in... cum...”</i>");
+	else output("\n\n<i>“You </i>are<i> a good girl, aren’t you?”</i> you whisper into her ears, leaning commandingly over her and grabbing at her big full booty. <i>“Making you into a cute, slutty bimbo pet to fuck was <i>definitely</i> the right choice, wasn’t it?”</i>");
+	output("\n\nPenny’s first answer is just a happy little moan, pushing back onto your cock ever so slightly but still waiting for you to make the first move. <i>“I know, right?”</i> she says eventually. <i>“It’s like, I can remember that there was a point where I was all shy and unsure about wanting a big ol’ cock, but like, now it all just seems so dumb!”</i> She reaches down, taking her dick in her hands and putting it up on the desk in front of her before starting to eagerly jerk herself off. <i>“I mean, come on! How could I be unsure about </i>this<i>! It’s the best! I get to cum and cum and... fuck and be coated in... cum...”</i>");
 	output("\n\nYou realise that she’s just about to get herself off just from her hands and from thinking about how much of a cum slut she’s become, so with a grin you press your cock into her waiting slit before she finishes without you. She cries out in pleasure as you do, her hands quickly moving off her shaft to steady herself against the desk. Taking that as encouragement you settle into a pounding rhythm, pushing her forwards again and again as she eagerly takes your length inside her.");
 	pc.cockChange();
 	output("\n\n<i>“Yes! Yes! Yes!”</i> she gasps with each thrust, rocking back into you to heighten the sensations. <i>“I... I need... more!”</i>");
@@ -1128,7 +1129,7 @@ public function getOralFromBimboPenny():void
 		else output("leaning against");
 		output(" the edge of her desk.");
 	}
-	output("\n\n<i>“Oh yeah?”</i>, Penny giggles, <i>“they’re pretty great, aren’t they?”</i>");
+	output("\n\n<i>“Oh yeah?”</i> Penny giggles, <i>“they’re pretty great, aren’t they?”</i>");
 	output("\n\nInstead of answering you just grab her by the head, pulling her in as you ");
 	if(!pc.isTaur()) output("bring your legs up, spinning around on the desk and sweeping aside her terminal until you’re straddling her and her head is level with your crotch.");
 	else output("clambering awkwardly onto the desk and positioning yourself to make sure your crotch is right in front of her face.");
@@ -1280,7 +1281,7 @@ public function playWithFlahne():void
 	showPenny();
 	abeAuthor();
 	output("Looking down under Penny’s desk, you see Flahne sitting back happily, sucking on Penny’s cock as it sends a slow, constant stream of whiteness down her throat.");
-	output("\n\n<i>“Having fun, are you?”</i>, you ask innocently.");
+	output("\n\n<i>“Having fun, are you?”</i> you ask innocently.");
 	output("\n\nFlahne takes a moment to reply, having to slowly pull herself away from Penny’s cock first. <i>“Y... yeah”</i>, she mumbles. She seems... not quite drunk, but sort of like, blissed out - like she’s so deep in the pleasure of what she’s doing that she’s having trouble focussing on anything else. <i>“Iss good.”</i>");
 	output("\n\nBefore you can say anything further, Penny interrupts with a giggle. She’s snuck one of her paws down to her cock and quickly rocks her hips forwards, and a sudden blast of cum catches Flahne full in the face. <i>“Oops!”</i> Penny teases, <i>“silly me!”</i>");
 	output("\n\nFlahne doesn’t bother to even act upset, instead just leaning back with a smile and licking up the cum that coats her slick flesh. Even after she clears most of it up her face still seems slightly whiter than before - clearly, Penny is giving her body too much to absorb normally.");

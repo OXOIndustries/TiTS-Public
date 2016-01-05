@@ -436,6 +436,11 @@ public function heyDocImAHero():void
 		output("\n\n(<b>Bimbo Perk Gained: Breed Hungry</b> - Your balls refill much faster than normal and your pregnancies are more likely and faster.)");
 		pc.createPerk("Breed Hungry",15,0,0,0,"Increases speed that semen is created at and the pregnancy speed.");
 	}
+	if(!pc.hasPerk("Ditz Speech"))
+	{
+		output("\n\n(<b>Gained Perk: Ditz Speech</b> - You will now sound like a total bimbo in scenes that support it.)");
+		pc.createPerk("Ditz Speech",0,0,0,0,"Alters dialogue in certain scenes.");
+	}
 	//[Reduce PC intelligence by 30 to minimum of 20]
 	if(pc.libido() < 30) pc.libido(10);
 	if(pc.libido() < 50) pc.libido(10);
