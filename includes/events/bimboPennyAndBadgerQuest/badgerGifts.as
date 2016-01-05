@@ -14,7 +14,7 @@ public function pennyIsCumSlut():Boolean
 }
 public function pcHasBadgerForm():Boolean
 {
-	if(pc.longestCockLength() >= 11 && pc.biggestTitSize() >= 8 && pc.bRows() == 1 && pc.cockTotal() == 1 && pc.balls == 2 && pc.totalVaginas() == 1 && pc.tailCount == 1 && pc.tailType == GLOBAL.TYPE_BADGER && pc.hasFur() && pc.furColor == "black" && pc.isBiped() && pc.armType == GLOBAL.TYPE_BADGER && pc.faceType == GLOBAL.TYPE_BADGER && pc.femininity >= 75 && pc.lipMod >= 1 && pc.hasPerk("Easy") && pc.hasPerk("Inhuman Desire") && pc.hasPerk("Breed Hungry"))
+	if(pc.longestCockLength() >= 11 && pc.biggestTitSize() >= 8 && pc.bRows() == 1 && pc.cockTotal() == 1 && pc.balls == 2 && pc.totalVaginas() == 1 && ((pc.tailCount == 1 && pc.tailType == GLOBAL.TYPE_BADGER) || pc.hasCockTail() || pc.hasTailgina()) && pc.hasFur() && pc.furColor == "black" && pc.isBiped() && pc.armType == GLOBAL.TYPE_BADGER && pc.faceType == GLOBAL.TYPE_BADGER && pc.femininity >= 75 && pc.lipMod >= 1 && pc.hasPerk("Easy") && pc.hasPerk("Inhuman Desire") && pc.hasPerk("Breed Hungry"))
 	{
 		return true;
 	}
@@ -750,12 +750,12 @@ public function surpriseZapPennyWithBimboRay():void
 		if(penny.hasCock()) output(" her own cock growing large enough to slide between her tits and splatter wetly against her chin");
 		else output(" and with a wild, passionate thrust of her hips her clit finally grows into the big ol’ cock she needs it to be, quickly becoming large enough to slide between her tits and splatter wetly against her chin");
 		output(", while two big, churning balls swing heavily beneath it. She leans her head forward, hurriedly wrapping her mouth around her massive cock and sucking at it, clearly really enjoying both the taste and feeling of filling herself with her own cum.");
-		output("\n\n<i>\"There ya go!”</i> you say happily. <i>“I told you it’d feel good!”</i>");
+		output("\n\n<i>“There ya go!”</i> you say happily. <i>“I told you it’d feel good!”</i>");
 		output("\n\nShe lets her cock slide out of her mouth, but even as she tries to talk she keeps getting cut off when another burst of thick cum spurts out all over her face. <i>“Yeah! I like, mhmmmm! Yeah it’s.... mmmhmm! It feels good! Like, mhmmm! Really really good! What was... mhmmm what was I worried about?”</i>");
 		output("\n\nYou shrug. <i>“I dunno! Something dumb. Something about </i>not<i> fucking all the time. So yeah, something dumb.”</i>");
 		output("\n\n<i>“Oh yeah”</i>, she agrees, rolling her head from side to side to make sure as much of it as possible is covered with her cum. <i>“This is like... mhmmm... </i>way<i> better than not fucking all the time.”</i>");
 		output("\n\nEventually you finish up, giving Penny’s tits one last blast before your balls are finally emptied, at least for now. But Penny just sorta... keeps going. Her head is rolling around, her hands are twitching against her big thick balls, and all the while her cock just keeps on cumming. It’s died down a bit sure, but there’s still a lot of cum spurting out from her, and she’s <i>super</i> enjoying it.");
-		output("\n\nYou walk around Penny to get a better look. She really seems like she’s getting into it! She’s lying back in her chair now, letting the slow, steady flow from her cock just wash blissfully over her. <i>\"Wow”</i>, you say. <i>“You sure are having a good time, huh?”</i>");
+		output("\n\nYou walk around Penny to get a better look. She really seems like she’s getting into it! She’s lying back in her chair now, letting the slow, steady flow from her cock just wash blissfully over her. <i>“Wow”</i>, you say. <i>“You sure are having a good time, huh?”</i>");
 		output("\n\n<i>“Holy shit [pc.name]”</i>, Penny replies, turning her head to the side, <i>“I think I’m </i>basically<i> going to be cumming like, forever. Is that a thing that can happen? Is that something I can do?”</i>");
 		output("\n\nYou put your finger to your lips and think. Penny <i>does</i> look like a perfect bimbo slut now, with nice big tits, and a round, easily grippable bubble butt. Her short mohawk has grown out into a long mane of platinum blond hair, and, of course, her big ol’ cock and balls are still churning and spurting cum, coating more and more of her sticky fur. <i>“Yep!”</i> you answer happily. <i>“You’re going to be a super cum covered bimbo slut for like, all the time.”</i>");
 		output("\n\n<i>“Oh holy shiiiit, that is like, what I always wanted. Probably? I mean, I really wanted a cock, and like, what else would you do with one other than like, cum everywhere, right?”</i>");
@@ -785,7 +785,7 @@ public function surpriseZapPennyWithBimboRay():void
 	{
 		//IF PC DOES NOT HAVE BADGER FORM
 		if(pcHasBadgerForm()) output("As you walk over to talk to Penny, the thing Dr Badger gave you vibrates in your pocket. You slip your hand inside to check on it, only to feel a sharp little sting. There was like, some sort of needle or something hidden in it that jabbed you? Suddenly, you feel your whole body tremble. You stop, doubling over as your form reshapes rapidly, sliding back easily into the same form the doctor gave you. In seconds it’s done, and once again you’re a perfect bubbly, big-chested and big dicked badger bimbo. Wow, you think, it must be <i>super</i> important to Dr Badger that you look the part when you talk to Penny about this. Oh well! Fortunately she was distracted and didn’t notice your sudden change.\n\n");
-		output("<i>\"Hey there!”</i> you say perkily, trotting over towards Penny and perching casually on the edge of her desk. <i>“What’s up?”</i>");
+		output("<i>“Hey there!”</i> you say perkily, trotting over towards Penny and perching casually on the edge of her desk. <i>“What’s up?”</i>");
 		output("\n\nPenny does a double-take between you and the computer, and then gives a sigh of relief. <i>“Thank goodness it’s you [pc.name]”</i>, she says, <i>“I was worried this was going to be some sort of official police business that would get in the way of me getting some quality cocksucking in. So, uh, what’s with the new form by the way?”</i> She gives you a quick look up and down before continuing. <i>“Don’t get me wrong, it’s a good look for you - but if it wasn’t for the genetic sensor built into the door I’m not sure I would have recognized you.”</i>");
 		output("\n\n<i>“Oh!”</i> you answer happily, <i>“let me show you!”</i> Then, without any further thought, you pull out the gun-thing Doctor Badger gave you, point it at Penny and pull the trigger.");
 		output("\n\nShe doesn’t do anything at first - maybe she was too surprised or maybe she just trusted you after all you’ve taken her through already, but she doesn’t like, dive out of the way or anything, which is definitely helpful. You kinda expected some big sort of zap or something, but it’s almost like turning on a flashlight, except the beam is a super cool bright pink color. But it’s all like... slow, almost lazy, which seems weird for light. It doesn’t cover all of her either, it’s just like a small circle of pinkness, which with a satisfied giggle you aim right at her chest.");
@@ -893,7 +893,7 @@ public function turnTheTablesOnBadgertwat():void
 		output("\n\nShe types on her terminal for a few moments, frowning at the display as she searches through the information. You pout as you wait. Maybe you <i>should</i> have just zapped her - you probably wouldn’t have agreed with her idea if you knew it would end up with all this standing around and not getting fucked. <i>“Listen”</i>, she says eventually, <i>“I can’t promise anything, but I know some people who know some people, and I’m sure with all the folks out here for the planet rush there’s got to be someone who knows enough to reconfigure this thing. I’ll put out the call, but it will probably take a while before I hear anything.”</i>");
 		output("\n\nNodding at the raygun in your hand, she says. <i>“Leave that with me. I’ll let you know when I’ve found something. And then after that we can have some fun, </i>and<i> show her U.G.C Peacekeepers aren’t something to fuck with.”</i>");
 		if(pennyIsCumSlut()) output(" Then, after a brief pause, she adds quietly, <i>“and, uh, </i>after<i> that, maybe we could find a way to make the whole cum-focussed bimbo slut thing work on our terms. If, uh, if you want...”</i>");
-		output("\n\n seems to be it. For now you just need to sit tight and wait for Penny to get back to you. And maybe, while you’re waiting, like, actually get some sex. That would be <i>super</i> nice}");
+		output("\n\n seems to be it. For now you just need to sit tight and wait for Penny to get back to you. And maybe, while you’re waiting, like, actually get some sex. That would be <i>super</i> nice.");
 	}
 	output("\n\n<b>Penny has taken posession of the bimbo ray.</b>");
 	pc.removeKeyItem("Doctor Badger's Bimbo Raygun - Programmed for use on Penny.");
@@ -1324,7 +1324,7 @@ public function rewardFromDoctorBadger():void
 		output("\n\nEventually she notices your bemused look, and with a sigh turns off the machine behind her and settling back down. <i>“What? You have to have </i>fun<i>, or what’s the point? I’d hope you did the same with the new and improved Penny, after all.”</i>");
 		output("\n\nYou cough discretely, changing the subject. <i>“What I was wanting to ask was - she seemed like she was going to </i>keep<i> cumming. Like, pretty much permanently.”</i>");
 		output("\n\nDr Badger merely nods in response, forcing you to prompt for more with a shrug. <i>“How, exactly, is that something that’s happening? Without her just... dying of dehydration?”</i>");
-		output("\n\n<i>“Oh!”</i> she answers with a laugh. <i>\"I forgot, you wouldn’t have seen one of my ‘premium edition’ bimbos before. Well, it’s all very complicated - quantum, and all that - but the short version is, there are an infinite number of Penny’s across the multiverse, and the energy from my raygun melded our version with some of them in some very specific ways.”</i>");
+		output("\n\n<i>“Oh!”</i> she answers with a laugh. <i>“I forgot, you wouldn’t have seen one of my ‘premium edition’ bimbos before. Well, it’s all very complicated - quantum, and all that - but the short version is, there are an infinite number of Penny’s across the multiverse, and the energy from my raygun melded our version with some of them in some very specific ways.”</i>");
 		if(pc.intelligence() < 15) output("\n\nThat all goes completely over your head. <i>“Huh?</i>, you say simply.”</i>");
 		else output("\n\n<i>“Okay”</i>, you say, <i>“but that doesn’t really answer the question of how she’s able to keep orgasming forever.”</i>");
 		output("\n\n<i>“The point is”</i>, Dr Badger continues, <i>“that our Penny is now, entirely without thinking about it, constantly drawing energy from her alternate versions across the multiverse. So there’s a few thousand alternate universe Penny’s out there who are finding themselves a tiny, tiny amount hungrier every day than they were before, never realizing in the slightest what they’re contributing to.”</i>");
@@ -1337,7 +1337,7 @@ public function rewardFromDoctorBadger():void
 		output("\n\nDr Badger looks up at you, and for a genuine second you think she’s going to do something stupid and fight you over it or something, but instead she smiles earnestly. <i>“Of course. You did a good job, helped me out and advanced the cause of science in the frontier to no end. Here.”</i>");
 		output("\n\n<b>She hands you a credit chit worth 3,000 credits. Nice!</b>");
 		output("\n\nAt the same time she takes the bimbo raygun she gave you, presumably so she can either recharge it for next time or break it down again for parts.");
-		output("\n\n<i>“I hear that Penny had a side trade going in dealing the drug Throbb too,\"</i> she says. Seeing your surprised look, she adds with a shrug, <i>“I’m sure she was probably being secretive about it, but it’s surprising the amount of information you can pick up about someone when you’re scanning through all the multiverse versions of them. Nine out of ten Penny’s can’t be wrong, can they? We aren't so different, her and I.”</i>");
+		output("\n\n<i>“I hear that Penny had a side trade going in dealing the drug Throbb too,”</i> she says. Seeing your surprised look, she adds with a shrug, <i>“I’m sure she was probably being secretive about it, but it’s surprising the amount of information you can pick up about someone when you’re scanning through all the multiverse versions of them. Nine out of ten Penny’s can’t be wrong, can they? We aren't so different, her and I.”</i>");
 		output("\n\nYou turn to leave, but as you do Dr Badger calls out one last time behind you.");
 		output("\n\n<i>“Oh, and I’ll let you know if any other work comes up. I’m sure I’ll have some... interesting things you can do in the future.</i>}");
 	}
@@ -1387,7 +1387,7 @@ public function rewardFromDoctorBadger():void
 	pc.removeKeyItem("Doctor Badger's Bimbo Raygun - Programmed for use on Penny.");
 	//[Take from player quest item <i>“Bimbo Raygun”</i>. Give player 3,000 credits.]
 	//[Add Buy Throbb button when using Dr Badger as a store]		
-	flags["BADGER_QUEST"] = 1;
+	flags["BADGER_QUEST"] = 3;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
