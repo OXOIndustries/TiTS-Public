@@ -476,7 +476,7 @@ public function drunkenCowgirlBoy():void
 	else if(pc.hasCock() && pc.cumQ() >= 10) output("splattered his muscular abdomen with your [pc.cum]");
 	else if(x >= 0) output("trembled and drenched his sheath in your [pc.girlCum]");
 	else output("trembled and came around his glorious length");
-	output(". You’re a helpless traveller on the sea of lust, bouncing wildly in his lap and letting out pleasured cries as he as he feverishly pistons your ");
+	output(". You’re a helpless traveler on the sea of lust, bouncing wildly in his lap and letting out pleasured cries as he as he feverishly pistons your ");
 	if(x >= 0) output("[pc.vagina " + x + "]");
 	else output("[pc.asshole]");
 	output(" from below. Your insides clench and ripple around his thick manhood, bringing him to his peak.");
