@@ -117,13 +117,20 @@ package classes.Engine.Combat
 			}
 			else 
 			{
-				output(" The attack continues on to connect with " + target.a + target.short + "!");
+				output(" The attack continues on to connect with " + target.a + target.uniqueName + "!");
 			}
 		}
 		// HP damage, didn't pass through shield
 		else if (damageResult.hpDamage > 0 && damageResult.shieldDamage == 0)
 		{
-			
+			if (target is PlayerCharacter)
+			{
+				output(" The attack connects with you!");
+			}
+			else
+			{
+				output(" The attack connects with " + target.a + target.uniqueName + "!");
+			}
 		}
 		
 		//Magic HP Drain shit
