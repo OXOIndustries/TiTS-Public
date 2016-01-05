@@ -241,7 +241,7 @@
 			updateDesc();
 		}
 		
-		private function updateDesc():void
+		public function updateDesc():void
 		{
 			var hostiles:Array = CombatManager.getHostileCharacters();
 			

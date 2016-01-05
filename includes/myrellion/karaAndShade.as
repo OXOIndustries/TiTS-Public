@@ -329,6 +329,9 @@ public function itsADealToBetrayKaraSloots():void
 	CombatManager.lossScene(pcAndShadeDefeated);
 	CombatManager.displayLocation("KARA");
 	
+	shade.updateDesc();
+	kara.updateDesc();
+	
 	addButton(0,"Next", CombatManager.beginCombat);
 	enemy.HP(-15);
 }
@@ -465,6 +468,9 @@ public function karaAndPCVersusShadeFightIntroduction():void
 	CombatManager.lossScene(loseWithKaraYouSlut);
 	CombatManager.displayLocation("SHADE");
 	
+	kara.updateDesc();
+	shade.updateDesc();
+	
 	addButton(0,"Next", CombatManager.beginCombat);
 }
 
@@ -566,6 +572,9 @@ public function helpShadeOutLastChance():void
 	CombatManager.lossScene(pcAndShadeDefeated);
 	CombatManager.displayLocation("KARA");
 	
+	shade.updateDesc();
+	kara.updateDesc();
+	
 	addButton(0,"Next", CombatManager.beginCombat);
 }
 
@@ -590,6 +599,9 @@ public function helpKaraOutLastChance():void
 	CombatManager.victoryScene(pcAndKaraBeatShade);
 	CombatManager.lossScene(loseWithKaraYouSlut);
 	CombatManager.displayLocation("SHADE");
+	
+	shade.updateDesc();
+	kara.updateDesc();
 	
 	addButton(0,"Next", CombatManager.beginCombat);
 }
