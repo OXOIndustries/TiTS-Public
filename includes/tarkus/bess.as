@@ -11104,7 +11104,7 @@ public function bessGetBlowjob():void
 		if (bessIsSub()) output(" your synthetic sub");
 		else if (bessIsDom()) output(" your mechanical [bess.master]");
 		else output(" the synthetic " + bess.mf("man", "girl"));
-		output(" slides [bess.hisHer] lips around your [pc.cock " + cockIdx +"], enveloping it in [bess.hisHer] moist warmth. You can feel your [pc.cockHead " + cockIdx +"] travelling across [bess.hisHer] silky tongue and back into [bess.hisHer] gullet. Soon [bess.heShe]’s applying artful suction to your slickened spire, [bess.hisHer] silvery cheeks caving inward.");
+		output(" slides [bess.hisHer] lips around your [pc.cock " + cockIdx +"], enveloping it in [bess.hisHer] moist warmth. You can feel your [pc.cockHead " + cockIdx +"] traveling across [bess.hisHer] silky tongue and back into [bess.hisHer] gullet. Soon [bess.heShe]’s applying artful suction to your slickened spire, [bess.hisHer] silvery cheeks caving inward.");
 	}
 
 	//pc.cockChange(true);
@@ -12268,7 +12268,7 @@ public function bessGetCunni():void
 		output(" With a pointed pull of the collar, you bring [bess.hisHer] mouth closer to your [pc.pussy].");
 	}
 
-	output("\n\n[bess.name] brings [bess.hisHer] lips up to your pussy and can feel [bess.hisHer] hot breath washing over your sensitive flesh, turning into electricity and travelling up your spine. It’s not long before those perfect lips are parting and [bess.hisHer] tongue is reaching out to lap at your netherlips.");
+	output("\n\n[bess.name] brings [bess.hisHer] lips up to your pussy and can feel [bess.hisHer] hot breath washing over your sensitive flesh, turning into electricity and traveling up your spine. It’s not long before those perfect lips are parting and [bess.hisHer] tongue is reaching out to lap at your netherlips.");
 	
 	output("\n\nThe cool sensation of [bess.hisHer] saliva rolling off [bess.hisHer] tongue and onto your sex feels positively divine. You arch your back and push your [pc.pussyColor] mound into the sensation, relishing in every milli-inch it traces around it.");
 
