@@ -10,6 +10,11 @@ public function showSaendra(nude:Boolean = false):void
 	else showBust("SAENDRA_NUDE");
 	showName("\nSAENDRA");
 }
+public function showValeria():void
+{
+	showBust("VALERIA");
+	showName("\nVALERIA");
+}
 
 public function saendraPhoenixMailGet():void
 {
