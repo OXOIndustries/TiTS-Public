@@ -202,7 +202,7 @@
 		
 		override public function get bustDisplay():String
 		{
-			return "Kara";
+			return "KARA";
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void

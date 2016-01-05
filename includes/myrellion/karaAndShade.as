@@ -333,7 +333,7 @@ public function itsADealToBetrayKaraSloots():void
 	kara.updateDesc();
 	
 	addButton(0,"Next", CombatManager.beginCombat);
-	enemy.HP(-15);
+	kara.HP(-15);
 }
 
 //[Flirt]
