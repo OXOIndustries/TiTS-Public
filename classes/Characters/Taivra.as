@@ -353,7 +353,7 @@
 				if(physique()/2 + rand(20) + 1 > target.physique()/2 + 10 && !target.hasStatusEffect("Stunned"))
 				{
 					output(" <b>You are stunned!</b>");
-					target.createStatusEffect("Stunned",2,0,0,0,false,"Stunned","You cannot act until you recover!",true,0);
+					target.createStatusEffect("Stunned",2,0,0,0,false,"Stun","You cannot act until you recover!",true,0);
 				}
 			}
 			output(" A moment later and she’s dancing around you, slashing at you with the sharp end.");

@@ -2469,7 +2469,20 @@ package classes.GameData
 				}
 				else output(teaseReactions(damage,target));
 				target.lust(damage);
-				output(" ("+ damage + ")");
+				
+				var damageResult:DamageResult = new DamageResult();
+				if (damage > 0)
+				{
+					damageResult.lustDamage = damage;
+					damageResult.typedLustDamage.tease.damageValue = damage;
+				}
+				else
+				{
+					damageResult.lustResisted = true;
+				}
+				
+				outputDamage(damageResult);
+				
 				teaseSkillUp(teaseType);
 				if(target is MyrInfectedFemale && damage >= 10)
 				{

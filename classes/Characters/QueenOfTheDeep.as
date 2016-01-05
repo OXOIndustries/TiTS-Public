@@ -354,7 +354,7 @@
 
 			lustRaw = 0;
 			createStatusEffect("Climaxed", 0, 0, 0, 0, true);
-			createStatusEffect("Stunned", 1, 0, 0, 0, false,"Stunned","Cannot take action!",true,0);
+			createStatusEffect("Stunned", 1, 0, 0, 0, false,"Stun","Cannot take action!",true,0);
 		}
 		
 		private function queenOfTheDeepTittySuckle(target:Creature):void

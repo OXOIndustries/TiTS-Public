@@ -732,7 +732,7 @@ package classes.GameData
 						if (target.isPlural) output("\n<b>" + target.capitalA + target.uniqueName + " are stunned.</b>");
 						else output("\n<b>" + target.capitalA + target.uniqueName + " is stunned.</b>");
 					}
-					target.createStatusEffect("Stunned", 2, 0, 0, 0, false, "Stunned", "Cannot act for a turn.", true, 0);
+					target.createStatusEffect("Stunned", 2, 0, 0, 0, false, "Stun", "Cannot act for a turn.", true, 0);
 				}
 				else
 				{
@@ -925,7 +925,7 @@ package classes.GameData
 				output("\n");
 				if (target is PlayerCharacter) output("<b>You are stunned!</b>");
 				else output("<b>" + target.capitalA + target.uniqueName + " is stunned!</b>");
-				target.createStatusEffect("Stunned", 1, 0, 0, 0, false, "Stunned", "Cannot act for a turn.", true, 0);
+				target.createStatusEffect("Stunned", 1, 0, 0, 0, false, "Stun", "Cannot act for a turn.", true, 0);
 			}
 		}
 		
@@ -1132,7 +1132,7 @@ package classes.GameData
 					if (target is Kaska)
 					{
 						output("\nKaska's eyes cross from the overwhelming pain. She sways back and forth like a drunken sailor before hitting the floor with all the grace of a felled tree. A high pitched squeak of pain rolls out of her plump lips. <b>She's very, very stunned.</b>");
-						target.createStatusEffect("Stunned", 3 + rand(2), 0, 0, 0, false, "Stunned", "Cannot act for a while. You hit her balls pretty hard!", true, 0);
+						target.createStatusEffect("Stunned", 3 + rand(2), 0, 0, 0, false, "Stun", "Cannot act for a while. You hit her balls pretty hard!", true, 0);
 					}
 					else
 					{
@@ -1145,7 +1145,7 @@ package classes.GameData
 							output("\n<b>" + target.capitalA + target.uniqueName + " is stunned.</b>");
 						}
 						
-						target.createStatusEffect("Stunned", 2 + rand(2), 0, 0, 0, false, "Stunned", "Cannot act for a while.", true, 0);
+						target.createStatusEffect("Stunned", 2 + rand(2), 0, 0, 0, false, "Stun", "Cannot act for a while.", true, 0);
 					}
 				}
 				else
@@ -1297,7 +1297,7 @@ package classes.GameData
 					output(", stunning your enemy!");
 					
 					var rounds:int = 1 + rand(2);
-					target.createStatusEffect("Stunned",rounds,0,0,0,false,"Stunned","Cannot act for "+ rounds +" turns.",true,0);
+					target.createStatusEffect("Stunned",rounds,0,0,0,false,"Stun","Cannot act for "+ rounds +" turns.",true,0);
 				}
 				
 				// Add some burning damage for the explosion
@@ -1383,7 +1383,7 @@ package classes.GameData
 					if (!target.hasStatusEffect("Stunned") && target.physique() + rand(20) + 1 < 40)
 					{
 						output("<b> The hit was hard enough to stun you!</b>");
-						target.createStatusEffect("Stunned",1,0,0,0,false,"Stunned","You are stunned and cannot move until you recover!",true,0);
+						target.createStatusEffect("Stunned",1,0,0,0,false,"Stun","You are stunned and cannot move until you recover!",true,0);
 					}
 					var damage:TypeCollection = attacker.meleeDamage();
 					damage.multiply(2);
