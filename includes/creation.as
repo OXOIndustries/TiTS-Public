@@ -42,6 +42,9 @@ public function startCharacterCreation(e:Event = null):void
 	chars["PC"].shieldsRaw = chars["PC"].shieldsMax();
 	MailManager.resetMails();
 	userInterface.mailsDisplayButton.Deactivate();
+	CombatManager.TerminateCombat();
+	userInterface.hideNPCStats();
+	userInterface.leftBarDefaults();
 	hours = 0;
 	minutes = 0;
 	days = 0;
