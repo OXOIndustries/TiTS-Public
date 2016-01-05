@@ -228,12 +228,12 @@
 		
 		private function spearFlurryNyreaShit(target:Creature):void
 		{
-			output("Several of the huntresses leap forward from one side, jabbing their spears at your chest.\n");
+			output("Several of the huntresses leap forward from one side, jabbing their spears at your chest.");
 			
 			for (var i:int = 0; i < 5; i++)
 			{
-				CombatAttacks.SingleMeleeAttackImpl(this, target, true);
 				output("\n");
+				CombatAttacks.SingleMeleeAttackImpl(this, target, true);
 			}
 			//{You manage to dodge, block, and parry every attack they send your way! // You block and dodge most of the attacks, but a few still manage to get through, hammering you down. // You try to defend yourself, but most if not all of the strikes get through, battering you brutally.}
 		}

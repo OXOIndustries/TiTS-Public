@@ -1415,10 +1415,10 @@ public function doggieStyleWithMyrBitches(gold:Boolean = false):void
 // Also a variant for the first time you get this scene, either loss or win/consent, where she introduces the dildo.
 public function redDildoScrew():void
 {
-	clearOutput();
 	author("Jim Thermic");
 	if(!inCombat())
 	{
+		clearOutput();
 		setEnemy(new MyrRedFemaleDeserter());
 	}
 	showDeserter(false);
