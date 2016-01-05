@@ -674,7 +674,7 @@ public function brothelTurnTrixFreelanceMenu():void
 	showBrothelLady();
 	author("Nonesuch");
 	
-	output("You consider the smoky, dimly lit room full of assorted engineers, smugglers, mercenaries, businessmen, travellers, mafiosi and gamblers. Mostly male, mostly human or ausar, mostly looking for the good time you could provide.");
+	output("You consider the smoky, dimly lit room full of assorted engineers, smugglers, mercenaries, businessmen, travelers, mafiosi and gamblers. Mostly male, mostly human or ausar, mostly looking for the good time you could provide.");
 	output("\n\nHow much are you putting on offer?");
 	
 	clearMenu();
@@ -771,7 +771,7 @@ public function brothelTurnTrixLicensedMenu():void
 	author("Nonesuch");
 	
 	output("<i>“Atta girl,”</i> Kat says. <i>“Pretty busy in here today - we need all the hands we can get. And mouths.”</i>");
-	output("\n\nYou consider the smoky, dimly lit room full of assorted engineers, smugglers, mercenaries, travellers, mafiosi and gamblers. Mostly male, mostly human or ausar, mostly looking for the good time you could provide.");
+	output("\n\nYou consider the smoky, dimly lit room full of assorted engineers, smugglers, mercenaries, travelers, mafiosi and gamblers. Mostly male, mostly human or ausar, mostly looking for the good time you could provide.");
 	output("\n\nHow much are you putting on offer?");
 	
 	clearMenu();
@@ -959,7 +959,7 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 		output("\n\nMost clients just want your company, grip, or mouth. Those don’t require they stop talking, drinking or watching the mesmeric dancers. You smile and laugh at their raucous behaviour and comments, whilst beneath the table your hand jerks away at hot, thick meat, sometimes two at a time. You’re pretty good at moving your fingers slowly and murmuring in their ear that you will do more, for a little extra... and because you’re good at it, you spend a lot of your time ");
 		if(pc.hasLegs() && pc.hasKnees()) output("on your knees");
 		else output("knelt");
-		output(" beneath a table, [pc.lips] travelling up and down big, juicy dick, hollowing your cheeks up and sucking down one thick load of cum after another, credit chits");
+		output(" beneath a table, [pc.lips] traveling up and down big, juicy dick, hollowing your cheeks up and sucking down one thick load of cum after another, credit chits");
 		if(pc.hasUpperGarment() && !pc.hasArmor()) output(" rammed into your [pc.upperUndergarment]");
 		else if(pc.hasLowerGarment() && !pc.hasArmor()) output(" rammed into your [pc.lowerUndergarment]");
 		else output(" clutched in one hand");
@@ -1014,7 +1014,7 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 		output("\n\nThe order of the day is mostly blowjobs, however. Most johns simply aren’t that imaginative, or aren’t in the mood to stretch themselves, at least not here. And because you’re operating solo, you can’t get in on the multiple offers with other prostitutes, which is mostly what the big spenders want. So you find yourself ");
 		if(pc.hasLegs() && pc.hasKnees()) output("on your knees");
 		else output("knelt");
-		output(" beneath a table, [pc.lips] travelling up and down big, juicy dick for the majority of your shift, hollowing your cheeks up and sucking down one thick load of cum after another, credit chits");
+		output(" beneath a table, [pc.lips] traveling up and down big, juicy dick for the majority of your shift, hollowing your cheeks up and sucking down one thick load of cum after another, credit chits");
 		if(pc.hasUpperGarment() && !pc.hasArmor()) output(" rammed into your [pc.upperUndergarment]");
 		else if(pc.hasLowerGarment() && !pc.hasArmor()) output(" rammed into your [pc.lowerUndergarment]");
 		else output(" clutched in one hand");
