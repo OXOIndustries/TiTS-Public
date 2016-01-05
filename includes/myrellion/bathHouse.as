@@ -779,7 +779,7 @@ public function treasureHunt():void
 		{
 			if(pc.cockTotal() >= 4) output(" Your terrible tangle of pricks stuns her. <i>“How... how do you even get anything done with so many of these?”</i> she asks, fruitlessly trying to separate them.");
 			else if(pc.cockTotal() >= 2) output(" She passes lightly over one turgid shaft, then stops when she finds a second, adding more hands to make sure she didn’t miscount. “<i>My goodness. Are you routinely expected to mate multiple females on your world?”</i>");
-			else if(pc.biggestTitSize() >= 400) output(" Her hands slide up your [pc.cockBiggest], moving as if they expect to caress a crown which never comes. <i>“This is... so big. I shudder to imagine the females of your homeworld,”</i> she remarks, innocently.");
+			else if(pc.biggestCockVolume() >= 400) output(" Her hands slide up your [pc.cockBiggest], moving as if they expect to caress a crown which never comes. <i>“This is... so big. I shudder to imagine the females of your homeworld,”</i> she remarks, innocently.");
 			else output(" She strokes your cock once, then brushes your tip with her palm. <i>“Ah, so you are a male.”</i>");
 		}
 		if(pc.hasVagina())
