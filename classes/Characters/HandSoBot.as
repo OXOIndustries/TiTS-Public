@@ -214,9 +214,7 @@
 			{
 				flags["TASTED_THE_FLAME"] = 1;
 				output("\n\n<i>“How the hell is that non-lethal?!”</i> you yell at So.");
-				output("\n\n<i>“Pest creatures sometimes encroach on the factory space,”</i> replies the AI, sounding mildly apologetic. <i>“Fire induces a state of extreme submissiveness in them. My algorithms calculate a 71% chance that it will have the same effect on ");
-				if(target.race() != "human") output("genetically modified ");
-				output("humans.”</i>");
+				output("\n\n<i>“Pest creatures sometimes encroach on the factory space,”</i> replies the AI, sounding mildly apologetic. <i>“Fire induces a state of extreme submissiveness in them. My algorithms calculate a 71% chance that it will have the same effect on" + (target.race() != "human" ? " genetically modified" : "") + " humans.”</i>");
 			}
 			if(rand(10) <= 3 && !target.hasStatusEffect("Burning"))
 			{
