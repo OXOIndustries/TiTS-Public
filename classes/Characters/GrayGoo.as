@@ -220,7 +220,7 @@
 		{
 			author("Savin");
 			output("The nano-goo shudders for a moment as her shimmering skin flashes brighter, seeming to become harder and more solid than it has been so far. She giggles and smiles at you, giving you a come-hither crook of her finger as she slinks to the ground and spreads her legs invitingly.");
-			if (hasStatusEffect("Harden"))
+			if (!hasStatusEffect("Harden"))
 			{
 				createStatusEffect("Harden", 0, 30, 0, 0, false, "DefenseUp", "Defense against all forms of attack has been increased!", true, 0);
 				baseHPResistances.kinetic.resistanceValue += 10.0;

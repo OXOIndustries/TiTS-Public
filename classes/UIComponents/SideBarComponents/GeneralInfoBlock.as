@@ -65,6 +65,16 @@ package classes.UIComponents.SideBarComponents
 			_sceneLabel.visible = true;
 			_sceneText.visible = true;
 		}
+		
+		public function HideDateTime():void
+		{
+			_headerText.visible = _headerUnderline.visible = _timeLabel.visible = _timeText.visible = _daysLabel.visible = _daysText.visible = false;
+		}
+		
+		public function ShowDateTime():void
+		{
+			_headerText.visible = _headerUnderline.visible = _timeLabel.visible = _timeText.visible = _daysLabel.visible = _daysText.visible = true;
+		}
 			
 		public function GeneralInfoBlock() 
 		{

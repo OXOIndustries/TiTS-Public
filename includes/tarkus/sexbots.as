@@ -9,6 +9,7 @@ import classes.GameData.CombatManager;
 public function encounterASexBot():void
 {
 	var tSexBot:Creature = new SexBot();
+	setEnemy(tSexBot);
 	author("Nonesuch");
 	sexBotDisplay();
 	//Technically already in combat. Overwrite!
@@ -111,6 +112,8 @@ public function encounterASexBot():void
 			turnDownRobotSexuals([false, tSexBot]);
 		}
 	}
+	
+	setEnemy(null);
 }
 
 //No/lust < 30:
@@ -160,6 +163,7 @@ public function combatLossToSexbot():void
 //Yes: 
 public function voluntaryFuckSexBot(tSexBot:Creature):void
 {
+	setEnemy(tSexBot);
 	clearOutput();
 	author("Nonesuch");
 	sexBotDisplay();
@@ -170,10 +174,12 @@ public function voluntaryFuckSexBot(tSexBot:Creature):void
 	output("and lie down on your side. Returning your grin with its own serene unchanging smile, the exquisitely proportioned droid steps towards you. Its warm hum fills your ears.");
 	//[go to loss scenes]
 	loseToSexBotRouter([true, tSexBot]);
+	setEnemy(null);
 }
 
 public function yesToRobotSexBotFirstTime(tSexBot:Creature):void
 {
+	setEnemy(tSexBot);
 	clearOutput();
 	author("Nonesuch");
 	sexBotDisplay();
@@ -184,7 +190,8 @@ public function yesToRobotSexBotFirstTime(tSexBot:Creature):void
 	output("\n\n<i>“Initiating sexy times,”</i> the sexbot agrees pleasantly. Your smile becomes slightly fixed as, with a whirr and the now-familiar sound of unwinding rope, four flexible tentacles tipped with rounded rubber grippers appear out of its back. Before you can maybe rethink agreeing to this eerily beautiful droid, its warm synthetic skin and its many seeking, insistent hands are upon you.");
 	//[go to loss scenes]
 	clearMenu();
-	addButton(0,"Next",loseToSexBotRouter,[true, tSexBot]);
+	addButton(0, "Next", loseToSexBotRouter, [true, tSexBot]);
+	setEnemy(null);
 }
 
 //PC wins
@@ -222,15 +229,17 @@ public function defeatTheSexBot():void
 }
 
 //Loss Scenes
-public function loseToSexBotRouter(opts:Array ):void
+public function loseToSexBotRouter(opts:Array):void
 {
 	var cameFromMenu:Boolean = opts[0];
 	var tSexBot:Creature = opts[1];
 	
+	if (cameFromMenu) setEnemy(tSexBot);
+	
 	author("Nonesuch");
 	sexBotDisplay();
 	//Female Bot
-	if(tSexBot.mf("","FUCK") == "FUCK")
+	if(tSexBot.mf("m","f") == "f")
 	{
 		//PC has dick
 		if(pc.hasCock() && (!pc.hasVagina() || rand(2) == 0)) loseToSexBotAndHaveADick(cameFromMenu);
@@ -245,6 +254,8 @@ public function loseToSexBotRouter(opts:Array ):void
 		//PC has vagina
 		else if(pc.hasVagina()) loseToManBotWhenHavingAPussy(cameFromMenu);
 	}
+	
+	if (cameFromMenu) setEnemy(null);
 }
 		
 //Female Bot
@@ -366,6 +377,12 @@ public function loseToSexBotAndHaveADick(cameFromMenu:Boolean = false):void
 	pc.orgasm();
 	processTime(20);
 	if (!cameFromMenu) CombatManager.genericLoss();
+	else
+	{
+		setEnemy(null);
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+	}
 }
 
 //PC female
@@ -465,6 +482,12 @@ public function femalePCsGetBangedByAFemBot(cameFromMenu:Boolean = false):void
 	pc.orgasm();
 	processTime(20);
 	if (!cameFromMenu) CombatManager.genericLoss();
+	else
+	{
+		setEnemy(null);
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+	}
 }
 
 //Malebot
@@ -536,6 +559,12 @@ public function malebotDefeatsMalePCs(cameFromMenu:Boolean = false):void
 	pc.orgasm();
 	processTime(20);
 	if (!cameFromMenu) CombatManager.genericLoss();
+	else
+	{
+		setEnemy(null);
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+	}
 }
 
 //PC has vagina
@@ -667,6 +696,12 @@ public function loseToManBotWhenHavingAPussy(cameFromMenu:Boolean = false):void
 	pc.orgasm();
 	processTime(20);
 	if (!cameFromMenu) CombatManager.genericLoss();
+	else
+	{
+		setEnemy(null);
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+	}
 }
 
 //Win Scenes

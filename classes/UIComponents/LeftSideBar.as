@@ -181,7 +181,8 @@ package classes.UIComponents
 		{
 			if (chars.length == 1)
 			{
-				_genInfoBlock.visible = false;
+				_genInfoBlock.visible = true;
+				_genInfoBlock.HideDateTime();
 				_enemyPartyBlock.visible = false;
 				_enemyEncounterBlock.visible = true;
 				_miniMapBlock.visible = false;
@@ -192,7 +193,8 @@ package classes.UIComponents
 			}
 			else
 			{
-				_genInfoBlock.visible = false;
+				_genInfoBlock.visible = true;
+				_genInfoBlock.HideDateTime();
 				_enemyPartyBlock.visible = true;
 				_enemyEncounterBlock.visible = false;
 				_miniMapBlock.visible = false;
@@ -209,6 +211,7 @@ package classes.UIComponents
 			_locationHeader.visible = true;
 			_enemyPartyBlock.visible = false;
 			_genInfoBlock.visible = true;
+			_genInfoBlock.ShowDateTime();
 		}
 	}
 }
