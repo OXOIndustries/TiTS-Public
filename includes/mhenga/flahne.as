@@ -70,6 +70,28 @@ public function meetingFlahne(outputT:Boolean = true):void {
 			//Room options without description.
 			processTime(10);
 		}
+		else if(flags["SEEN_BIMBO_PENNY"] == 1)
+		{
+			showName("\nROBOT");
+			showBust("NONE");
+			//Flahne busy with Penny IF TIME IS BETWEEN 0800 AND 1700
+			if(hours >= 8 && hours < 17)
+			{
+				output("\n\nFlahne is at her desk, but although her figure looks a little curvier and her flesh a little lighter than normal, she looks surprisingly normal given her activities with Penny. She must be putting all that mass somewhere,");
+				//IF PC HAS TALKED TO FLAHNE ABOUT HER OVIPOSITOR
+				if(flags["FLAHNE_LIKE_OVIPOSITOR"] != undefined) output(" so you have to assume there’s some massive pile of eggs hidden somewhere nearby.");
+				else output(" but you have no idea where.");
+				output(" Flahne unbuttons part of her top as you approach, licking her lips lewdly. <i>“I’m not sure I could thank you enough for your work with Penny, but I’m willing to try if you are.”</i> Pouting, she offers a little less excitedly, <i>“Or did you just want to talk?”</i>");
+				output("\n\nWhat did you want with Flahne?");
+			}
+			//IF TIME IS BETWEEN 1701 AND 0759
+			else
+			{
+				output("\n\nThere’s another sign on the desk that says simple ‘Out - Be Back At 0800.’ Standing next to the desk is what appears to be a very simple droid, doing its best to handle the customs process in Flahne’s absence. Thankfully you don’t have to deal with it yourself as you’ve already come through officially, so you walk right past the small crowd of annoyed-looking travellers.");
+				//[Remove ‘TALK’ and ‘SEX OPTIONS’ buttons when Flahne is not present]}
+				return;
+			}
+		}
 		else if(flags["FLAHNE_PISSED"] > 0) {
 			output("\n\nFlahne doesn't look like she wants anything to do with you right now.");
 			return;

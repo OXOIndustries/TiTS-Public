@@ -32,6 +32,18 @@ public function drBadgerMenu():void
 	addButton(1,"Sell",sellItem,undefined,"Sell something from Doctor Badger.");
 	if(flags["DR_BADGER_BIMBOED_PC"] == undefined && !pc.hasPerk("Ditz Speech")) addButton(5,"Be Hero",heyDocImAHero,undefined,"Be Hero","Volunteer that you're a hero. After your first encounter with the Doctor, you're fairly sure this is going to result in some heavy brain-drain.");
 	else addDisabledButton(5,"Be Hero","Be Hero","Uhm, you don't really like, remember what this was all about.");
+
+	if(flags["MET_DR_BADGER"] != undefined)
+	{
+		if(flags["BADGER_QUEST"] == undefined) 
+		{
+			//[mouse-over text for button is: [See just what this "job offer" is that the doctor has for you]
+			addButton(6,"Job",drBadgerJobOffer,undefined,"Job","See just what this \"job offer\" is that the doctor has for you.")
+		}
+		else if(flags["BADGER_QUEST"] == 2) addButton(6,"Reward",rewardFromDoctorBadger,undefined,"Reward","You did what you were asked, time to get rewarded!");
+		else if(flags["BADGER_QUEST"] == 3) addDisabledButton(6,"Job","Job","You already did her job.");
+		else addDisabledButton(6,"Job","Job","You've already accepted her \"job offer.\"");
+	}
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -94,6 +106,17 @@ public function repeatBadgerApproach():void
 		output("\n\nYou can’t seem to do anything but squirm in response, even just being teased by the Doctor enough to make the pink fog rise up in your brain again and leave you feeling achingly horny.");
 		output("\n\nIn the end however, she simply sighs heartily without standing. <i>“Unfortunately, my supplies are a little low right now”</i>, she says, indicating her ramshackle surroundings with a lazy sweep of her arm, <i>“so I’m afraid I can’t offer you anything more... intense... right now. I do still have some of those happy pills if you want them though. How does that sound</i>?”");
 		applyDamage(new TypeCollection( { tease: 10 } ), null, pc, "minimal");
+	}
+	//Add Text/Buttons
+	//[add text to Dr Badger space, for after first encounter]
+	if(flags["BADGER_QUEST"] == undefined)
+	{
+		output("\n\nLooking you up and down for a moment, Dr Badger raises an eyebrow. <i>“Actually, I might have a job for you, if you’re interested...”</i>");
+		//[Job]
+	}
+	else if(flags["BADGER_QUEST"] == 2) 
+	{
+		output("\n\n<b>Now that you’ve taken care of Penny for Dr Badger, you should probably talk to her about your reward.</b>");
 	}
 	drBadgerMenu();
 }
@@ -412,6 +435,11 @@ public function heyDocImAHero():void
 	{
 		output("\n\n(<b>Bimbo Perk Gained: Breed Hungry</b> - Your balls refill much faster than normal and your pregnancies are more likely and faster.)");
 		pc.createPerk("Breed Hungry",15,0,0,0,"Increases speed that semen is created at and the pregnancy speed.");
+	}
+	if(!pc.hasPerk("Ditz Speech"))
+	{
+		output("\n\n(<b>Gained Perk: Ditz Speech</b> - You will now sound like a total bimbo in scenes that support it.)");
+		pc.createPerk("Ditz Speech",0,0,0,0,"Alters dialogue in certain scenes.");
 	}
 	//[Reduce PC intelligence by 30 to minimum of 20]
 	if(pc.libido() < 30) pc.libido(10);

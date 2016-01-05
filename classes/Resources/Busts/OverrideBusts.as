@@ -128,6 +128,11 @@
 		[Embed(source = "../../../assets/images/npcs/nevrie.png", mimeType = "image/png")]
 		public var Bust_NEVRIE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/penny_bimbo.png", mimeType = "image/png")]
+		public var Bust_PENNY_BIMBO:Class;
+		[Embed(source = "../../../assets/images/npcs/penny_bimbo_horse.png", mimeType = "image/png")]
+		public var Bust_PENNY_BIMBO_HORSE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/jacques00/scalla.png", mimeType = "image/png")]
 		public var Bust_SCALLA:Class;
 

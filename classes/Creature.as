@@ -2639,7 +2639,7 @@ package classes {
 		public function isBimbo():Boolean
 		{
 			if(hasStatusEffect("Temporary Treatment")) return true;
-			return hasPerk("Ditz Speech");
+			return (hasPerk("Ditz Speech") || flags["DR_BADGER_BIMBOED_PC"] != undefined);
 		}
 		public function isBro():Boolean
 		{
