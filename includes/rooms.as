@@ -1078,7 +1078,7 @@ public function initializeRooms():void
 	//41. The Babbling Brook
 	rooms["BABBLING BROOK 1"] = new RoomClass(this);
 	rooms["BABBLING BROOK 1"].roomName = "BABBLING\nBROOK";
-	rooms["BABBLING BROOK 1"].description = "Gleaming waters ripple as they flow past you, travelling from north to south in a winding torrent of liquid refreshment. Of course, this is a jungle, so the waters are probably full of parasites in spite of their apparent clarity. Ferns, bushes, and flowers of exotic colorations and appearances line the banks, and the stream itself is only a few inches deep. You should be able to cross it without issue. The path picks up on the other side, winding east and west past the gigantic ironwoods that seem so prevalent here.";
+	rooms["BABBLING BROOK 1"].description = "Gleaming waters ripple as they flow past you, traveling from north to south in a winding torrent of liquid refreshment. Of course, this is a jungle, so the waters are probably full of parasites in spite of their apparent clarity. Ferns, bushes, and flowers of exotic colorations and appearances line the banks, and the stream itself is only a few inches deep. You should be able to cross it without issue. The path picks up on the other side, winding east and west past the gigantic ironwoods that seem so prevalent here.";
 	rooms["BABBLING BROOK 1"].planet = "PLANET: MHEN'GA";
 	rooms["BABBLING BROOK 1"].system = "SYSTEM: ARA ARA";
 	rooms["BABBLING BROOK 1"].eastExit = "IRONWOODS 3";
@@ -1264,7 +1264,7 @@ public function initializeRooms():void
 	//55. Narrow Path
 	rooms["NARROW PATH 1"] = new RoomClass(this);
 	rooms["NARROW PATH 1"].roomName = "NARROW\nPATH";
-	rooms["NARROW PATH 1"].description = "There's so much plant-life surrounding this path that it's very difficult to follow. Under[pc.foot], you spot recently trampled grasses and mushroom-like growth. Whoever blazed this trail did it not so long ago, and judging by how some of the vegetation is growing back in, there hasn't been enough traffic to keep the jungle from coming in to reclaim it. A junction with a more travelled route lies to the west. To the east, the narrow way continues.";
+	rooms["NARROW PATH 1"].description = "There's so much plant-life surrounding this path that it's very difficult to follow. Under[pc.foot], you spot recently trampled grasses and mushroom-like growth. Whoever blazed this trail did it not so long ago, and judging by how some of the vegetation is growing back in, there hasn't been enough traffic to keep the jungle from coming in to reclaim it. A junction with a more traveled route lies to the west. To the east, the narrow way continues.";
 	rooms["NARROW PATH 1"].planet = "PLANET: MHEN'GA";
 	rooms["NARROW PATH 1"].system = "SYSTEM: ARA ARA";
 	rooms["NARROW PATH 1"].westExit = "ORANGE INTERSECTION 1";
