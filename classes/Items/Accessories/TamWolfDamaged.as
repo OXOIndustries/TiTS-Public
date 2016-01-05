@@ -4,6 +4,7 @@
 	import classes.GLOBAL;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
+	import classes.GameData.CombatAttacks;
 	
 	/**
 	 * ...
@@ -49,6 +50,8 @@
 			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 0;
+			
+			droneAttack = CombatAttacks.TamwolfDamagedAttack;
 			
 			this.version = _latestVersion;
 		}	

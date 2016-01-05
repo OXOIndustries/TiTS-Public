@@ -52,6 +52,8 @@
 		public var combatUsable:Boolean;
 		public var targetsSelf:Boolean;
 		
+		public var droneAttack:Function;
+		
 		// Link the attack for a specific item to a replacement function.
 		// If this is null, the combat code will use the base attack functions (ranged/melee attack)
 		// Set this to a function found in CombatAttacks.

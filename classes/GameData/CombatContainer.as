@@ -3212,9 +3212,17 @@ package classes.GameData
 				var target:Creature = droneUser.droneTarget;
 				if (!target.isDefeated())
 				{
-					// TODO: Route this through the actual drone the droneUser has equipped to redirect to different atk implementors.
 					output("\n");
-					CombatAttacks.DroneAttack(droneUser, target);
+					
+					// If the user has an accessory equipped that potentially overrides the drone attack to use, use that.
+					if (droneUser.accessory.droneAttack != null)
+					{
+						droneUser.accessory.droneAttack(droneUser, target);
+					}
+					else
+					{
+						CombatAttacks.DroneAttack(droneUser, target);
+					}
 				}
 			}
 		}
