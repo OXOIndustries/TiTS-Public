@@ -124,6 +124,7 @@ package classes.GameData
 			SecondWind = new SingleCombatAttack();
 			SecondWind.ButtonName = "Second Wind";
 			SecondWind.RequiresLevel = 5;
+			SecondWind.RequiresPerk = "Second Wind";
 			SecondWind.DisabledIfEffectedBy = ["Used Second Wind"];
 			SecondWind.TooltipTitle = "Second Wind";
 			SecondWind.TooltipBody = "Regenerate 50% of your maximum HP and energy once per battle! An invaluable ability for the mercenary in the field.";
