@@ -558,7 +558,7 @@ public function helpShadeOutLastChance():void
 	showBust("KARA","SHADE");
 	showName("SHADE\n& KARA");
 	output("Can’t argue with a little bounty work. You ");
-	if(!pc.meleeWeapon is Rock) output("draw your weapon");
+	if(!(pc.meleeWeapon is Rock)) output("draw your weapon");
 	else output("pick up a particularly vicious looking rock");
 	output(" and step up beside the huntress. She gives you an approving nod as Kara looks around in a panic.");
 	processTime(1);
