@@ -214,11 +214,13 @@ package classes.GameData
 				if (pc.hasCock() || pc.hasVagina())
 				{
 					addButton(1, "Quickie!", kGAMECLASS.quickieAfterGooHarden, undefined, "Quickie", "Have a quickie with the gray goo girl, resetting both of your lust scores.");
+					return true;
 				}
 				else
 				{
 					output("\n\nThe poor thing doesn't seem to realize that you're missing the requisite parts.");
 					addDisabledButton(1, "Quickie");
+					return true;
 				}
 			}
 			
@@ -1468,9 +1470,6 @@ package classes.GameData
 			}
 			else
 			{
-				clearOutput();
-				clearMenu();
-				
 				executeSimpleAttack( { func: f, tar: t } );
 			}
 		}
@@ -2627,8 +2626,8 @@ package classes.GameData
 					kGAMECLASS.setEnemy(_hostiles[0]);
 				}
 				
-				userInterface().showPlayerParty([pc]);
-				userInterface().leftBarDefaults();
+				userInterface().showPlayerParty(_friendlies);
+				userInterface().showHostileParty(_hostiles);
 				output("\n\n");
 				clearMenu();
 				addButton(0, "Defeat", _lossFunction);
@@ -2647,8 +2646,8 @@ package classes.GameData
 						kGAMECLASS.setEnemy(_hostiles[0]);
 					}
 				
-					userInterface().showPlayerParty([pc]);
-					userInterface().leftBarDefaults();
+					userInterface().showPlayerParty(_friendlies);
+					userInterface().showHostileParty(_hostiles);
 					output("\n\n");
 					clearMenu();
 					addButton(0, "Defeat", _lossFunction);
@@ -2687,8 +2686,8 @@ package classes.GameData
 					kGAMECLASS.setEnemy(_hostiles[0]);
 				}
 				
-				userInterface().showPlayerParty([pc]);
-				userInterface().leftBarDefaults();
+				userInterface().showPlayerParty(_friendlies);
+				userInterface().showHostileParty(_hostiles); // Force-display the selected enemy
 				output("\n\n");
 				clearMenu();
 				addButton(0, "Victory", _victoryFunction);
@@ -2702,14 +2701,12 @@ package classes.GameData
 			_roundCounter = 1;
 			
 			genericVictory = function():void {
-				userInterface().hideNPCStats();
 				StatTracking.track("combat/wins");
 				getCombatPrizes();
 				doCombatCleanup();
 			}
 			
 			genericLoss = function():void {
-				userInterface().hideNPCStats();
 				StatTracking.track("combat/losses");
 				clearMenu();
 				if (StatTracking.getStat("combat/wins") == 0 && StatTracking.getStat("combat/losses") == 3)
@@ -2721,7 +2718,7 @@ package classes.GameData
 					addButton(0, "Next", helpReallyBadPCsOut);
 				}
 				else if (pc.level == 1 && (hasEnemyOfClass(NaleenMale) || hasEnemyOfClass(Naleen) || hasEnemyOfClass(HuntressVanae) || hasEnemyOfClass(MaidenVanae))) addButton(0, "Next", helpDumbPCsOut);
-				else addButton(0, "Next", kGAMECLASS.mainGameMenu);
+				else addButton(0, "Next", postCombatReturnToMenu);
 				doCombatCleanup();
 			}
 		}
@@ -3173,6 +3170,7 @@ package classes.GameData
 		
 		public function processCombat():void
 		{
+			displayBusts();
 			doCombatDrone(pc);
 			processFriendlyGroupActions();
 			if (hasEnemyOfClass(Varmint))
@@ -3491,6 +3489,13 @@ package classes.GameData
 			return false;
 		}
 		
+		private function postCombatReturnToMenu():void
+		{
+			userInterface().hideNPCStats();
+			userInterface().leftBarDefaults();
+			kGAMECLASS.mainGameMenu();
+		}
+		
 		public function getCombatPrizes():void
 		{
 			// Abandon ship for Celise!
@@ -3572,11 +3577,12 @@ package classes.GameData
 			//Monies!
 			if (sumCredits > 0) 
 			{
-				if(CombatManager.multipleEnemies()) output("\nThey had ");
-				else output(_hostiles[0].mfn("\nHe"," She", " It") + " had ");
+				output("\n");
+				if(CombatManager.multipleEnemies()) output("They had ");
+				else output(_hostiles[0].mfn("He","She", "It") + " had ");
 				output(String(sumCredits) + " credit");
 				if(sumCredits > 1) output("s");
-				output(" loaded on an anonymous credit chit that you appropriate.");
+				output(" loaded on " + (CombatManager.multipleEnemies() ? "anonymous credit chits" : "an anonymous credit chit") + " that you appropriate.");
 			}
 			
 			clearMenu();
@@ -3584,14 +3590,14 @@ package classes.GameData
 			if (loot.length > 0)
 			{
 				output("\n");
-				kGAMECLASS.itemScreen = kGAMECLASS.mainGameMenu;
-				kGAMECLASS.lootScreen = kGAMECLASS.mainGameMenu;
-				kGAMECLASS.useItemFunction = kGAMECLASS.mainGameMenu;
+				kGAMECLASS.itemScreen = postCombatReturnToMenu;
+				kGAMECLASS.lootScreen = postCombatReturnToMenu;
+				kGAMECLASS.useItemFunction = postCombatReturnToMenu;
 				kGAMECLASS.itemCollect(loot);
 			}
 			else
 			{
-				addButton(0, "Next", kGAMECLASS.mainGameMenu);
+				addButton(0, "Next", postCombatReturnToMenu);
 			}
 		}
 	}
