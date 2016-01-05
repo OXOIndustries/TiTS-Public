@@ -4,6 +4,7 @@ package classes.Characters
 	import classes.GLOBAL;
 	import classes.Items.Melee.Fists;
 	import classes.Items.Guns.HammerPistol;
+	import classes.Items.Protection.BasicShield;
 	import classes.Items.Protection.JoyCoPremiumShield;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
@@ -54,11 +55,11 @@ package classes.Characters
 			this.armor.longName = "steel plates";
 			this.armor.defense = 3;
 			this.armor.hasRandomProperties = true;
-			this.shield = new JoyCoPremiumShield();
+			this.shield = new BasicShield();
 			
-			this.physiqueRaw = 14;
+			this.physiqueRaw = 8;
 			this.reflexesRaw = 4;
-			this.aimRaw = 19;
+			this.aimRaw = 14;
 			this.intelligenceRaw = 1;
 			this.willpowerRaw = 20;
 			this.libidoRaw = 0;
@@ -69,13 +70,12 @@ package classes.Characters
 			baseHPResistances = new TypeCollection();
 			baseHPResistances.electric.damageValue = -40.0;
 			
-			this.XPRaw = 250;
+			this.XPRaw = 100;
 			this.level = 4;
 			this.credits = 0;
-			this.HPMod = 20;
+			this.HPMod = 0;
 			this.shieldsRaw = this.shieldsMax();
 			this.HPRaw = this.HPMax();
-			
 			
 			this.femininity = 50;
 			this.eyeType = GLOBAL.TYPE_HUMAN;
@@ -194,12 +194,12 @@ package classes.Characters
 		{
 			//Charge Shot
 			//Two moderate laser shots (as above) + one HEAVY one
-			output("Amid several other drones lighting you up, one steps to the forefront, its laser pistol glowing red-hot as it charges up a power shot!\n");
+			output("Amid several other drones lighting you up, one steps to the forefront, its laser pistol glowing red-hot as it charges up a power shot!");
 			
 			for (var i:int = 0; i < 2; i++)
 			{
-				CombatAttacks.SingleRangedAttackImpl(this, target, true);
 				output("\n");
+				CombatAttacks.SingleRangedAttackImpl(this, target, true);		
 			}
 
 			// Heavy attack
@@ -215,8 +215,6 @@ package classes.Characters
 
 				applyDamage(new TypeCollection( { burning: 20, electric:10 }, DamageFlag.LASER), this, target);
 			}
-
-			output("\n");
 		}
 		
 		private function securityDroidFlashbang(target:Creature):void
@@ -234,7 +232,6 @@ package classes.Characters
 			{
 				output(" You cover your eyes just in time to avoid the flash as the stun grenade goes off with a deafening BANG!");
 			}
-			output("\n");
 		}
 	}
 

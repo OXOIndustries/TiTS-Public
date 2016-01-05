@@ -2822,7 +2822,19 @@ package classes.GameData
 		protected var _hostiles:Array = null;
 		public var noImportProcess:Boolean = false;
 		
-		private function prepForCombat(target:Creature):void
+		private function prepFriendlyForCombat(target:Creature):void
+		{
+			target.droneTarget = null;
+			if (!(target is PlayerCharacter))
+			{
+				// TODO: Realistically, characters that join the player in combat should be subject to the same passage of time rules... but that's another story
+				target.HPRaw = target.HPMax();
+				target.shieldsRaw = target.shieldsMax();
+				target.lustRaw = 0;
+			}
+		}
+		
+		private function prepHostileForCombat(target:Creature):void
 		{
 			target.droneTarget = null;
 		}
@@ -2847,14 +2859,15 @@ package classes.GameData
 			
 			for (var i:int = 0; i < _friendlies.length; i++)
 			{
-				prepForCombat(_friendlies[i]);
+				prepFriendlyForCombat(_friendlies[i]);
 				makeCharacterUnique(_friendlies[i], FRIENDLY_GROUP);
 			}
 		}
 		public function addFriendlyCreature(newC:Creature):void
 		{
-			makeCharacterUnique(newC, HOSTILE_GROUP);
+			prepFriendlyForCombat(newC);
 			_friendlies.push(newC);
+			makeCharacterUnique(newC, FRIENDLY_GROUP);
 			showCombatUI();
 		}
 		
@@ -2880,7 +2893,7 @@ package classes.GameData
 			
 			for (var i:int = 0; i < _hostiles.length; i++)
 			{
-				prepForCombat(_hostiles[i]);
+				prepHostileForCombat(_hostiles[i]);
 				makeCharacterUnique(_hostiles[i], HOSTILE_GROUP);
 			}
 			
@@ -2888,9 +2901,9 @@ package classes.GameData
 		}
 		public function addHostileCreature(newC:Creature):void
 		{
-			makeCharacterUnique(newC, HOSTILE_GROUP);
+			prepHostileForCombat(newC);
 			_hostiles.push(newC);
-			
+			makeCharacterUnique(newC, HOSTILE_GROUP);
 			showCombatUI(); // force an update
 		}
 		
@@ -2904,28 +2917,40 @@ package classes.GameData
 			var collection:Array = (asGroup == HOSTILE_GROUP ? _hostiles : _friendlies);
 			
 			var currIndex:int = 0;
+			
+			// Loop over all the current creatures
 			for (var i:int = 0; i < collection.length; i++)
 			{
-				if (collection[i] == target)
+				var currTarget:Creature = collection[i] as Creature;
+				
+				// Looking for creatures of the same type as the one we're adding
+				if (currTarget is tType && currTarget != target)
 				{
-					thisIndex = currIndex; // Subtype index of this type in the collection for target creature
-				}
-				else if (collection[i] is tType)
-				{
+					// Check if it has a unique character appended
+					var lastChar:String = currTarget.uniqueName.charAt(currTarget.uniqueName.length - 1);
+					
+					// If it doesn't, append the one relative to the currentTargets position in the array
+					if (!InCollection(lastChar, appends))
+					{
+						currTarget.uniqueName = currTarget.short + " " + appends[currIndex];
+						currTarget.buttonText = currTarget.btnTargetText + " " + appends[currIndex];
+					}
+					
 					hasSameType = true;
 					currIndex++;
 				}
 			}
 			
-			if (hasSameType)
-			{
-				target.uniqueName = target.short + " " + appends[thisIndex];
-				target.buttonText = target.btnTargetText + " " + appends[thisIndex];
-			}
-			else
+			// We ain't fiddled the one we're adding, so it'll be unique so just treat it as such
+			if (!hasSameType)
 			{
 				target.uniqueName = target.short;
 				target.buttonText = target.btnTargetText;
+			}
+			else
+			{
+				target.uniqueName = target.short + " " + appends[currIndex];
+				target.buttonText = target.btnTargetText + " " + appends[currIndex];
 			}
 		}
 		
@@ -3451,8 +3476,8 @@ package classes.GameData
 			}
 			else if (victoryCondition == CombatManager.SPECIFIC_TARGET_DEFEATED)
 			{
-				if (isNaN(victoryArgument)) throw new Error("Unique target for victory declared as a win condition, with no target defined.");
-				if (_hostiles[victoryArgument].isDefeated()) return true;
+				if (victoryArgument == undefined || !(victoryArgument is Creature)) throw new Error("Unique target for victory declared as a win condition, with no target defined.");
+				if (victoryArgument.isDefeated()) return true;
 				return false;
 			}
 			

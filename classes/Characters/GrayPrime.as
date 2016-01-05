@@ -160,7 +160,10 @@ package classes.Characters
 			
 			this.createStatusEffect("Disarm Immune");
 			this.createStatusEffect("Stun Immune");
-			this.createStatusEffect("Flee Disabled",0,0,0,0,true,"","",false,0);
+			this.createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
+			
+			isUniqueInFight = true;
+			btnTargetText = "Gray Prime";
 			
 			this._isLoading = false;
 		}
@@ -242,7 +245,7 @@ package classes.Characters
 
 			if (combatMiss(this, target))
 			{
-				output(" " + (target is PlayerCharacter ? "You duck" : "Anno ducks") + " back, evading the goo's sword strike. Before she can swing again, + " (target is PlayerCharacter ? "you get" : "Anno gets") + " a shot off, blasting the goo's sword into pieces... only for it to reform a moment later, once " + (target is PlayerCharacter ? "you're" : "shes") +" safely away.")
+				output(" " + (target is PlayerCharacter ? "You duck" : "Anno ducks") + " back, evading the goo's sword strike. Before she can swing again, " + (target is PlayerCharacter ? "you get" : "Anno gets") + " a shot off, blasting the goo's sword into pieces... only for it to reform a moment later, once " + (target is PlayerCharacter ? "you're" : "shes") +" safely away.");
 			}
 			else
 			{
@@ -309,36 +312,67 @@ package classes.Characters
 		{
 			//The Gray Prime creates 1d4+1 stripper clones. Each makes a light lust attack each turn until destroyed. Basically Mirror Image but worse. 
 			output("The goo-girl takes a step back from you and Anno, dropping her sword and instead moving her fingers up to the buttons on her blouse, pulling them apart with a flourish to let her ample rack bounce free: two perfectly formed, glistening wet orbs of nanomachine flesh that look too good to not squeeze and grope. <i>“Why don’t you just surrender? I could use a few tough new sources of lubricant...”</i> she teases, shifting to emphasize her cleavage and jiggling it at you.");
-			output("\n\nAs she does so, several mounds of gray goo arise from the deck, slowly forming into new goo-girls. Each is a near perfect clone of the first, though butt-naked and with greatly overstated busts, hips, and asses, all of which are almost cartoonishly big. The new girls smile and shake what their programmer gave them, wiggling their hips and cupping their tits at you.");
-
-			for (var i:int = 0; i < 3; i++)
+						
+			// If they don't already exist/have been defeated, add them
+			if (allied.length == 1)
 			{
-				CombatManager.addHostileCreature(new GooClone());
+				for (var i:int = 0; i < 3; i++)
+				{
+					CombatManager.addHostileCreature(new GooClone());
+				}
+				
+				output("\n\nAs she does so, several mounds of gray goo arise from the deck, slowly forming into new goo-girls. Each is a near perfect clone of the first, though butt-naked and with greatly overstated busts, hips, and asses, all of which are almost cartoonishly big. The new girls smile and shake what their programmer gave them, wiggling their hips and cupping their tits at you.");
+			}
+			// Otherwise cheat, and resurrect them to save having to deal with removing/readding shit all the time
+			else
+			{
+				var numResurrected:int = 0;
+				
+				for (i = 0; i < allied.length; i++)
+				{
+					var tarClone:Creature = allied[i];
+					
+					if (!(tarClone is GooClone)) continue;
+					
+					if (tarClone.isDefeated())
+					{
+						numResurrected++;
+						tarClone.HPRaw = tarClone.HPMax();
+						tarClone.alreadyDefeated = false;
+					}
+				}
+				
+				output("\n\nAs she does so, " + (numResurrected == 1 ? "a mound of gray goo arises from the deck, slowly forming into a new goo-girl" : "several mounds of gray goo arise from the deck, slowly forming into new goo-girls") + " to replace those fallen before them. Each is a near perfect clone of the first, though butt-naked and with greatly overstated busts, hips, and asses, all of which are almost cartoonishly big. The new girl" + (numResurrected == 1 ? "" : "s") + " smile and shake what "+ (numResurrected == 1 ? "her" : "their") +" programmer gave "+ (numResurrected == 1 ? "her" : "them") +", wiggling "+ (numResurrected == 1 ? "her hips and cupping her tits at you." : "their hips and cupping their tits at you."));
 			}
 		}
 		
 		private function cloneLustAttacks(allies:Array, target:Creature):void
 		{
-			var gooClone:GooClone;
-			var numAttacks:int = 1;
+			var numAlive:int = 0;
+			var gooClone:GooClone = null;
 			
 			for (var i:int = 0; i < allies.length; i++)
 			{
-				if (allies[i] is GooClone) gooClone = allies[i] as GooClone;
+				if (allies[i] is GooClone && !allies[i].isDefeated())
+				{
+					numAlive++;
+					if (gooClone == null) gooClone = allies[i]
+				}
 			}
 			
-			numAttacks = allies.length - 1;
-			
-			if (numAttacks == 1)
+			if (numAlive > 0)
 			{
-				output("\n\nOne of the lust clones shakes her hips and titties at you, trying to entice you into sex!");
+				if (numAlive == 1)
+				{
+					output("\n\nOne of the lust clones shakes her hips and titties at you, trying to entice you into sex!");
+				}
+				else
+				{
+					output("\n\nThe lust clones shake their hips and titties at you, trying to entice you into sex!");
+				}
+				
+				applyDamage(new TypeCollection( { tease: numAlive } ), gooClone, target, "minimal");
 			}
-			else
-			{
-				output("\n\nThe lust clones shake their hips and titties at you, trying to entice you into sex!");
-			}
-			
-			applyDamage(new TypeCollection( { tease: numAttacks } ), gooClone, target, "minimal");
 		}
 	}
 

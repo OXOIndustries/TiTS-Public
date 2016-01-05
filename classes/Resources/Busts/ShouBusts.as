@@ -64,6 +64,7 @@
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/droid_security.png", mimeType = "image/png")]
 		public var Bust_DROID_SECURITY:Class;
+		public var Bounds_DROID_SECURITY:Rectangle = new Rectangle(60, 0, 63, 66);
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/ellie.png", mimeType = "image/png")]
 		public var Bust_ELLIE:Class;
