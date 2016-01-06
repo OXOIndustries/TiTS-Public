@@ -1165,15 +1165,15 @@ public function startFightingQueenButt(plat190:Boolean = false):void
 }
 
 public function configureQueensguardFight():void
-{
-	pc.createStatusEffect("Cage Distance", 2, 0, 0, 0, false, "Icon_RadioSignal", "You're a good ways away from Dane and your cousin's cage. It'll take a lot of work to reposition yourself to break them out.", true, 0);
-	
+{	
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyCharacters(pc);
 	CombatManager.setHostileCharacters(new Queensguard());
 	CombatManager.victoryScene(spankedQueensguardsAss);
 	CombatManager.lossScene(loseToQueensTaivra);
 	CombatManager.displayLocation("QUEENSGUARD");
+	
+	pc.createStatusEffect("Cage Distance", 2, 0, 0, 0, false, "Icon_RadioSignal", "You're a good ways away from Dane and your cousin's cage. It'll take a lot of work to reposition yourself to break them out.", true, 0);
 }
 
 //Rivals
@@ -1498,7 +1498,6 @@ public function moveToCage():void
 	clearOutput();
 	if(pc.statusEffectv1("Cage Distance") >= 2) output("You try to work your way closer to the cage holding Dane and [rival.name] but only manage to close about half the distance.");
 	else if(pc.statusEffectv1("Cage Distance") == 1) output("Working across the room, you close the rest of the way with Dane's cage. <b>Maybe you can break him out?</b>");
-	output("\n");
 	pc.addStatusValue("Cage Distance",1,-1);
 	trace("CAGE DISTANCE v1: " + pc.statusEffectv1("CAGE DISTANCE"));
 	if (enemy is Queensguard) (enemy as Queensguard).queensguardLongUpdate(pc);

@@ -2416,11 +2416,11 @@ package classes.GameData
 					output("\n\n<b>" + target.capitalA + target.uniqueName  + " </b>");
 					if(target.isPlural) output("<b>don't</b>");
 					else output("<b>doesn't</b>");
-					output("<b> seem to care to care for your erotically-charged display. (0)</b>");
+					output("<b> seem to care to care for your erotically-charged display.</b>");
 				}
 				else if(teaseType == "SQUIRT") 
 				{
-					output("\n\nYour milk goes wide. (0)");
+					output("\n\nYour milk goes wide.");
 					teaseSkillUp(teaseType);
 				}
 				else if (target is HuntressVanae || target is MaidenVanae)
@@ -2441,7 +2441,7 @@ package classes.GameData
 					output("\n\n" + target.capitalA + target.uniqueName  + " ");
 					if(target.isPlural) output("resist");
 					else output("resists");
-					output(" your erotically charged display... this time. (0)");
+					output(" your erotically charged display... this time.");
 
 					teaseSkillUp(teaseType);
 				}

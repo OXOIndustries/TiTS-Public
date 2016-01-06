@@ -209,6 +209,8 @@
 			var target:Creature = selectTarget(hostileCreatures);
 			if (target == null) return;
 			
+			queensguardLongUpdate(target);
+			
 			if(HP()/HPMax() < 0.6 && statusEffectv1("Fungaled") < 3) queensGuardFungalButts();
 			else if(lust() >= 75 && !hasStatusEffect("Focused")) queensGuardLust(target);
 			else if(rand(5) == 0 && !hasStatusEffect("Disarmed")) queensGuardThunderKick(target);

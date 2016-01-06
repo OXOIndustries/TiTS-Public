@@ -6,6 +6,7 @@ import classes.Characters.SX1Shotguard;
 import classes.Characters.SX1Techguard;
 import classes.Characters.ZilFemale;
 import classes.Creature;
+import classes.Engine.Combat.DamageTypes.DamageResult;
 import classes.Items.Accessories.LightningDuster;
 import classes.Items.Apparel.AtmaArmor;
 import classes.Items.Apparel.NaleenArmor;
@@ -159,9 +160,19 @@ public function debugMenus():void
 	clearMenu();
 	output("The room of debug. Where am I? How did I get here? What do you want?!\n\n");
 	
-	for (var i:int = 0; i < 10; i++)
+	var msg:String = "This is some testing text that I need to pad out the length of the current text line, so that I can see just how dumb some of the functions available for the textfield are."
+	
+	var m:Array = msg.split(" ");
+	
+	var someDamage:DamageResult = new DamageResult();
+	someDamage.shieldDamage = 9;
+	//outputDamage(someDamage);
+	
+	for (var i:int = 0; i < m.length; i++)
 	{
-		output("[pc.cunt]\n[pc.cunts]\n");
+		output(m.slice(0, i).join(" "));
+		outputDamage(someDamage);
+		output("\n\n");
 	}
 	
 	addButton(1, "AddVag", function():void {
