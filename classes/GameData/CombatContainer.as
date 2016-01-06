@@ -32,18 +32,10 @@ package classes.GameData
 	 * A lot of the additional messages that this has added will probably need tuning.
 	 * 		To get through this I haven't really applied *logic* in terms of what the messages are saying, and they
 	 * 		are mostly just a slight tweak on what was being output for the player, so sometimes they don't make much sense.
-	 * I've tried to clean up new line insertion as much as possible (removing it from the *messages* and putting them
-	 * higher up
-	 * 		the chain so its more "handled"), but I've probably missed some in places.
-	 * Forcibly clean up GooClones during the GooPrime fight if they get defeated rather
-	 * 		than allowing them to persist to the end of the fight in a defeated state.
-	 * Kara/Shade combat descriptions (function karaDesc())
-	 * adultCockvineGrenadesInEnclosedSpaces()
 	 * A shared repository for things like cooldown effects to tune combat
 	 * during group fights:
 	 * 		f.ex stopping a flashbang from being used too often when many
 	 * enemies can use the ability
-	 * Make sure parser-passthroughs are used appropriately (target and monster)
 	 */
 	
 	/**
@@ -864,7 +856,7 @@ package classes.GameData
 					output("\n<b>You are grappled and unable to fight normally!</b>");
 				}
 				
-				addButton(0, "Struggle", doStruggleRecover, pc); // 9999 - merge naleen coil struggle && mimbranesmother
+				addButton(0, "Struggle", doStruggleRecover, pc);
 				
 				if (pc.hasPerk("Static Burst") && (!hasEnemyOfClass(NyreaAlpha) && !hasEnemyOfClass(NyreaBeta)))
 				{
