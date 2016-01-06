@@ -1624,10 +1624,9 @@ public function boobStuff(target:Creature):void
 
 public function crotchStuff(target:Creature):void
 {
-	setTarget(target);
-	
 	var rando:int = 0;
 	if(target.hasGenitals()) {
+		setTarget(target);
 		output2("\n\n");
 		//Crotchial stuff - mention snake
 		if(target.hasStatusEffect("Genital Slit") && target.hasCock())
@@ -1756,6 +1755,7 @@ public function crotchStuff(target:Creature):void
 	}
 	//Of Balls and Sacks!
 	if(target.balls > 0) {
+		setTarget(target);
 		var sTesticleDesc:String = target.ballsDescript(true,true);
 		if(target.balls == 1) sTesticleDesc = target.ballDescript(true,true);
 		
@@ -1797,6 +1797,7 @@ public function crotchStuff(target:Creature):void
 	}	
 	//VAGOOZ
 	if(target.vaginas.length > 0) {
+		setTarget(target);
 		if(target.hasCock()) output2("\n\n");
 		if(!target.hasCock() && target.isTaur()) output2("As a tauric creature, your womanly parts lie between your rear legs in a rather equine fashion. ");
 		//Vaginal Numbers
@@ -1959,9 +1960,13 @@ public function crotchStuff(target:Creature):void
 		}
 	}
 	//Genderless lovun'
-	if(!target.hasGenitals()) output2("\n\nYou have a curious lack of any sexual endowments.");
+	if(!target.hasGenitals()) {
+		setTarget(target);
+		output2("\n\nYou have a curious lack of any sexual endowments.");
+	}
 	//BUNGHOLIO
 	if(target.ass != null) {
+		setTarget(target);
 		output2("\n\nYou have one " + target.assholeDescript() + ", placed between your cheeks where it belongs");
 		if(target.libido() < 50 && target.lust() < 50) //not particularly horny
 		{
