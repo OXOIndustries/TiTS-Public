@@ -69,7 +69,7 @@ public function showPennyName():void
 public function showPenny(nude:Boolean = false):void
 {
 	showPennyName();
-	if(flags["PENNY_BADGER_BIMBO"] != undefined && pennyIsCumSlut())
+	if(flags["PENNY_BADGER_BIMBO"] != undefined || pennyIsCumSlut())
 	{
 		var pennyBust:String = "PENNY_BIMBO";
 		if(penny.hasCock(GLOBAL.TYPE_EQUINE)) pennyBust = "PENNY_BIMBO_HORSE";
