@@ -150,6 +150,9 @@
 		public static const TYPE_HUMANMASKED:int                            = 25;
 		public static const TYPE_MOUSE:int                                  = 26;
 		public static const TYPE_MOUSEMAN:int                               = 27;
+		public static const TYPE_DOVETWO:int                                = 28;
+		public static const TYPE_DOVEFOUR:int                               = 29;
+		public static const TYPE_DOVESIX:int                                = 30;
 		public static const TYPE_DRAGONFLY:int                              = 31;
 		public static const TYPE_MLP:int                                    = 32;
 		public static const TYPE_CUNTSNAKE:int                              = 33;
@@ -211,9 +214,9 @@
 			"Human Masked",
 			"Mouse",
 			"Mouseman",
-			"(Name Index 28)",
-			"(Name Index 29)",
-			"(Name Index 30)",
+			"Dove",
+			"Quad-Dove",
+			"Hexa-Dove",
 			"Dragonfly",
 			"MLP",
 			"Cuntsnake",
@@ -447,6 +450,9 @@
 			TYPE_SYLVAN,
 			TYPE_DARK_SYLVAN,
 			TYPE_MYR,
+			TYPE_DOVETWO,
+			TYPE_DOVEFOUR,
+			TYPE_DOVESIX,
 		];
 		
 		// None is for specifying no tail, which would normally pull the HUMAN name.
