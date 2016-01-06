@@ -807,7 +807,7 @@ public function rideNyreaDick():void
 		if (enemy is NyreaBeta) output("\n\nThe huntress gives you an apologetic, almost bashful look - and a peck on the cheek before skipping away, off into the caves whence she came.");
 		else if (enemy is NyreaAlpha) output(" She smiles at you, stroking your [pc.hair] with surprising affection before sauntering off back into the caves.");
 		
-		output("\n\n<b>You’re now carrying nyrean eggs!</b>\n\n");
+		output("\n\n<b>You’re now carrying nyrean eggs!</b>");
 	}
 	else if (enemy.hasStatusEffect("Nyrea Eggs") && isFull)
 	{

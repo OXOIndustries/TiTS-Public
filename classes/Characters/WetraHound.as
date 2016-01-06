@@ -168,6 +168,7 @@
 
 			if (hit && target.hasStatusEffect("Bleeding"))
 			{
+				output("\n");
 				wetraHoundRend(target);
 			}
 		}

@@ -39,7 +39,7 @@ package classes.Items.Protection
 			this.attack = 0;
 			this.defense = 0;
 			this.shieldDefense = 0;
-			this.shields = 1;
+			this.shields = 500;
 			this.sexiness = 0;
 			this.critBonus = 0;
 			this.evasion = 0;
