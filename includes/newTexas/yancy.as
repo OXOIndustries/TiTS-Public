@@ -670,7 +670,7 @@ public function untreatedMilkedAndFucked():void
 	if(pc.milkFullness < 75) output("slowly drip");
 	else if(pc.milkFullness < 150) output("freely leak");
 	else output("liberally squirt");
-	output(" into the transparent cylinders. Watching your [pc.breasts] being milked by the machine and the [pc.milkColor] spoils travelling up the see-through tubes makes you a little giddy. Just like a herd animal, you’re offering up your [pc.milkFlavor] broth to be drunk, without complaint!");
+	output(" into the transparent cylinders. Watching your [pc.breasts] being milked by the machine and the [pc.milkColor] spoils traveling up the see-through tubes makes you a little giddy. Just like a herd animal, you’re offering up your [pc.milkFlavor] broth to be drunk, without complaint!");
 
 	output("\n\n<i>\"Let’s see if we can stir a bit more [pc.milkNoun] out of you, cow.\"</i> You feel the beefy bull’s firm hands on your [pc.hips], guiding you back against his incredible girth. His gigantic balls caress your [pc.thighs] and they tremble in delight. Is he finally going to fill your [pc.vagOrAss]?");
 

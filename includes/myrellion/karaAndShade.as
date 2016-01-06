@@ -329,8 +329,11 @@ public function itsADealToBetrayKaraSloots():void
 	CombatManager.lossScene(pcAndShadeDefeated);
 	CombatManager.displayLocation("KARA");
 	
+	shade.updateDesc();
+	kara.updateDesc();
+	
 	addButton(0,"Next", CombatManager.beginCombat);
-	enemy.HP(-15);
+	kara.HP(-15);
 }
 
 //[Flirt]
@@ -465,6 +468,9 @@ public function karaAndPCVersusShadeFightIntroduction():void
 	CombatManager.lossScene(loseWithKaraYouSlut);
 	CombatManager.displayLocation("SHADE");
 	
+	kara.updateDesc();
+	shade.updateDesc();
+	
 	addButton(0,"Next", CombatManager.beginCombat);
 }
 
@@ -552,7 +558,7 @@ public function helpShadeOutLastChance():void
 	showBust("KARA","SHADE");
 	showName("SHADE\n& KARA");
 	output("Can’t argue with a little bounty work. You ");
-	if(!pc.meleeWeapon is Rock) output("draw your weapon");
+	if(!(pc.meleeWeapon is Rock)) output("draw your weapon");
 	else output("pick up a particularly vicious looking rock");
 	output(" and step up beside the huntress. She gives you an approving nod as Kara looks around in a panic.");
 	processTime(1);
@@ -565,6 +571,9 @@ public function helpShadeOutLastChance():void
 	CombatManager.victoryScene(pcAndShadeBeatKara);
 	CombatManager.lossScene(pcAndShadeDefeated);
 	CombatManager.displayLocation("KARA");
+	
+	shade.updateDesc();
+	kara.updateDesc();
 	
 	addButton(0,"Next", CombatManager.beginCombat);
 }
@@ -590,6 +599,9 @@ public function helpKaraOutLastChance():void
 	CombatManager.victoryScene(pcAndKaraBeatShade);
 	CombatManager.lossScene(loseWithKaraYouSlut);
 	CombatManager.displayLocation("SHADE");
+	
+	shade.updateDesc();
+	kara.updateDesc();
 	
 	addButton(0,"Next", CombatManager.beginCombat);
 }
@@ -786,7 +798,7 @@ public function takeShadesHardlightPenisInYerBoot():void
 	else output("putting your flexibility to the limit");
 	output(" as she crawls up your prone body, trailing kisses up your belly, [pc.chest], and neck. Finally, she reaches your [pc.lips], pressing hers to yours and slowly urging your mouth open, just wide enough to let her tongue slip in.");
 
-	output("\n\nYou moan into her mouth as Shade’s hands slip down your [pc.legOrLegs], finding the cheeks of your [pc.butt] and digging in, squeezing your butt until you squeal. She breaks the kiss at that, a hungry look in her eyes as you give voice to your pleasure. You feel a hand release your cheek, travelling up your thigh toward the haft of her energy-cock, grasping it and guiding it back down toward your eagerly waiting hole. Your breath catches as the tingling crown caresses your [pc.skinFurScales], brushing against your [pc.vagOrAss " + x + "]. You shiver with anticipation, sucking in a breath as Shade’s holographic cock aligns with your eager hole. From this position, there’s nothing you can do but let it happen, no force you can exert to drive her onward but to wiggle your hips invitingly, trying to relax as best you can as Shade enters you.");
+	output("\n\nYou moan into her mouth as Shade’s hands slip down your [pc.legOrLegs], finding the cheeks of your [pc.butt] and digging in, squeezing your butt until you squeal. She breaks the kiss at that, a hungry look in her eyes as you give voice to your pleasure. You feel a hand release your cheek, traveling up your thigh toward the haft of her energy-cock, grasping it and guiding it back down toward your eagerly waiting hole. Your breath catches as the tingling crown caresses your [pc.skinFurScales], brushing against your [pc.vagOrAss " + x + "]. You shiver with anticipation, sucking in a breath as Shade’s holographic cock aligns with your eager hole. From this position, there’s nothing you can do but let it happen, no force you can exert to drive her onward but to wiggle your hips invitingly, trying to relax as best you can as Shade enters you.");
 
 	output("\n\nThe first instant of contact with her cock is a shock of pleasure and a static tingling that spreads through your body, culminating in a muted gasp as you feel her sliding into you, spreading your [pc.vagOrAss " + x + "] around the two inch thick shaft. She pushes in slowly but inexorably, bringing her hips to meet with yours in a single, lengthy thrust. The further in she goes, the more you have to bend with her, supporting her weight on your [pc.legOrLegs]. She leans between them to plant another kiss on your lips, touching them just as her hips brush against your up-raised [pc.butt]. You moan into your kaithrit lover’s mouth, letting a hand play across your [pc.belly], enjoying the feeling of fullness in your ");
 	if(x >= 0) output("pussy");

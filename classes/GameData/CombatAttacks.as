@@ -124,6 +124,7 @@ package classes.GameData
 			SecondWind = new SingleCombatAttack();
 			SecondWind.ButtonName = "Second Wind";
 			SecondWind.RequiresLevel = 5;
+			SecondWind.RequiresPerk = "Second Wind";
 			SecondWind.DisabledIfEffectedBy = ["Used Second Wind"];
 			SecondWind.TooltipTitle = "Second Wind";
 			SecondWind.TooltipBody = "Regenerate 50% of your maximum HP and energy once per battle! An invaluable ability for the mercenary in the field.";
@@ -389,7 +390,11 @@ package classes.GameData
 		{
 			if (rangedCombatMiss(attacker, target))
 			{
-				if (target.customDodge.length > 0) output(attacker.capitalA + attacker.uniqueName + " takes a "+ attacker.rangedWeapon.attackNoun +" at " + target.a + target.uniqueName + ". " + target.customDodge);
+				if (target.customDodge.length > 0)
+				{
+					if (attacker is PlayerCharacter) output("You " + attacker.rangedWeapon.attackVerb + " at " + target.a + target.uniqueName + ". " + target.customDodge);
+					else output(attacker.capitalA + attacker.uniqueName + " takes a "+ attacker.rangedWeapon.attackVerb +" at " + target.a + target.uniqueName + ". " + target.customDodge);
+				}
 				else if (attacker is PlayerCharacter) output("You " + attacker.rangedWeapon.attackVerb + " at " + target.a + target.uniqueName + " with your " + attacker.rangedWeapon.longName + ", but just can't connect.");
 				else if (target is PlayerCharacter) output("You manage to avoid " + attacker.a + possessive(attacker.uniqueName) + " " + attacker.rangedWeapon.attackNoun + ".");
 				else output(target.capitalA + target.uniqueName + " manages to avoid " + attacker.a + possessive(attacker.uniqueName) + " " + attacker.rangedWeapon.attackNoun + ".");
@@ -405,7 +410,11 @@ package classes.GameData
 			
 			if (asFlurry && rand(100) <= 45 && !target.isImmobilized() && !attacker.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_EFFECT_FLURRYBONUS))
 			{
-				if (target.customDodge.length > 0) output(attacker.capitalA + attacker.uniqueName + " takes a "+ attacker.rangedWeapon.attackNoun +" at " + target.a + target.uniqueName + ". " + target.customDodge);
+				if (target.customDodge.length > 0)
+				{
+					if (attacker is PlayerCharacter) output("You take a " + attacker.rangedWeapon.attackVerb + " at " + target.a + target.uniqueName + ". " + target.customDodge);
+					else output(attacker.capitalA + attacker.uniqueName + " takes a "+ attacker.rangedWeapon.attackVerb +" at " + target.a + target.uniqueName + ". " + target.customDodge);
+				}
 				else if (attacker is PlayerCharacter) output("You " + attacker.rangedWeapon.attackVerb + " at " + target.a + target.uniqueName + " with your " + attacker.rangedWeapon.longName + ", but just can't connect.");
 				else if (target is PlayerCharacter) output("You manage to avoid " + attacker.a + possessive(attacker.uniqueName) + " " + attacker.rangedWeapon.attackNoun + ".");
 				else output(target.capitalA + target.uniqueName + " manages to avoid " + attacker.a + possessive(attacker.uniqueName) + " " + attacker.rangedWeapon.attackNoun + ".");
@@ -415,7 +424,7 @@ package classes.GameData
 			// We made it here, the attack landed
 			
 			if (attacker is PlayerCharacter) output("You land a hit on " + target.a + target.uniqueName + " with your " + attacker.rangedWeapon.longName + "!");
-			else if (attacker.isPlural) output(attacker.capitalA + attacker.uniqueName + " connect with their " + plural(attacker.rangedWeapon.longName) + "!");
+			else if (attacker.isPlural) output(attacker.capitalA + attacker.uniqueName + " connects with their " + plural(attacker.rangedWeapon.longName) + "!");
 			else if (target is PlayerCharacter) output(attacker.capitalA + attacker.uniqueName + " hits you with " + attacker.mfn("his", "her", "its") + " " + attacker.rangedWeapon.longName + "!");
 			else output(attacker.capitalA + attacker.uniqueName + " connects with " + attacker.mfn("his", "her", "its") + " " + attacker.rangedWeapon.longName + "!");
 			
@@ -429,7 +438,11 @@ package classes.GameData
 		{
 			if (combatMiss(attacker, target))
 			{
-				if (target.customDodge.length > 1) output(attacker.capitalA + attacker.uniqueName + " takes a "+ attacker.meleeWeapon.attackNoun +" at " + target.a + target.uniqueName + ". " + target.customDodge);
+				if (target.customDodge.length > 0)
+				{
+					if (attacker is PlayerCharacter) output("You " + attacker.meleeWeapon.attackVerb + " at " + target.a + target.uniqueName + ". " + target.customDodge);
+					else output(attacker.capitalA + attacker.uniqueName + " takes a "+ attacker.meleeWeapon.attackVerb +" at " + target.a + target.uniqueName + ". " + target.customDodge);
+				}
 				else if (attacker is PlayerCharacter) output("You " + attacker.meleeWeapon.attackVerb + " at " + target.a + target.uniqueName + " with your " + attacker.meleeWeapon.longName + ", but just can't connect.");
 				else if (target is PlayerCharacter) output("You manage to avoid " + attacker.a + possessive(attacker.uniqueName) + " " + attacker.meleeWeapon.attackNoun + ".");
 				else output(target.capitalA + target.uniqueName + " manages to avoid " + attacker.a + possessive(attacker.uniqueName) + " " + attacker.meleeWeapon.attackNoun + ".");
@@ -445,7 +458,11 @@ package classes.GameData
 			
 			if (asFlurry && rand(100) <= 45 && !target.isImmobilized() && !attacker.meleeWeapon.hasFlag(GLOBAL.ITEM_FLAG_EFFECT_FLURRYBONUS))
 			{
-				if (target.customDodge.length > 0) output(attacker.capitalA + attacker.uniqueName + " takes a "+ attacker.meleeWeapon.attackNoun +" at " + target.a + target.uniqueName + ". " + target.customDodge);
+				if (target.customDodge.length > 1)
+				{
+					if (attacker is PlayerCharacter) output("You " + attacker.meleeWeapon.attackVerb + " at " + target.a + target.uniqueName + ". " + target.customDodge);
+					else output(attacker.capitalA + attacker.uniqueName + " takes a "+ attacker.meleeWeapon.attackNoun +" at " + target.a + target.uniqueName + ". " + target.customDodge);
+				}
 				else if (attacker is PlayerCharacter) output("You " + attacker.meleeWeapon.attackVerb + " at " + target.a + target.uniqueName + " with your " + attacker.meleeWeapon.longName + ", but just can't connect.");
 				else if (target is PlayerCharacter) output("You manage to avoid " + attacker.a + possessive(attacker.uniqueName) + " " + attacker.meleeWeapon.attackNoun + ".");
 				else output(target.capitalA + target.uniqueName + " manages to avoid " + attacker.a + possessive(attacker.uniqueName) + " " + attacker.meleeWeapon.attackNoun + ".");
@@ -600,6 +617,7 @@ package classes.GameData
 				{
 					if (!others[i].isDefeated())
 					{
+						if (i != 0) output("\n");
 						if (SingleMeleeAttackImpl(attacker, others[i], false)) numHits++;
 					}
 				}
@@ -607,6 +625,7 @@ package classes.GameData
 			
 			if (attacker.hasPerk("Myr Venom") && target.isLustImmune == false)
 			{
+				output("\n");
 				if (combatMiss(attacker, target))
 				{
 					if (attacker is PlayerCharacter) output("You can't manage to sneak in a bite!");
@@ -674,12 +693,12 @@ package classes.GameData
 			}
 		}
 		
-		public static function GoovolverAttackImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
+		public static function GoovolverAttackImpl(attacker:Creature, target:Creature):void
 		{
 			SingleRangedAttackImpl(attacker, target, false, "goovolver");
 		}
 		
-		public static function SlutRayAttackImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
+		public static function SlutRayAttackImpl(attacker:Creature, target:Creature):void
 		{
 			SingleRangedAttackImpl(attacker, target, false, "slut ray");
 		}
@@ -732,7 +751,7 @@ package classes.GameData
 						if (target.isPlural) output("\n<b>" + target.capitalA + target.uniqueName + " are stunned.</b>");
 						else output("\n<b>" + target.capitalA + target.uniqueName + " is stunned.</b>");
 					}
-					target.createStatusEffect("Stunned", 2, 0, 0, 0, false, "Stunned", "Cannot act for a turn.", true, 0);
+					target.createStatusEffect("Stunned", 2, 0, 0, 0, false, "Stun", "Cannot act for a turn.", true, 0);
 				}
 				else
 				{
@@ -925,7 +944,7 @@ package classes.GameData
 				output("\n");
 				if (target is PlayerCharacter) output("<b>You are stunned!</b>");
 				else output("<b>" + target.capitalA + target.uniqueName + " is stunned!</b>");
-				target.createStatusEffect("Stunned", 1, 0, 0, 0, false, "Stunned", "Cannot act for a turn.", true, 0);
+				target.createStatusEffect("Stunned", 1, 0, 0, 0, false, "Stun", "Cannot act for a turn.", true, 0);
 			}
 		}
 		
@@ -1132,7 +1151,7 @@ package classes.GameData
 					if (target is Kaska)
 					{
 						output("\nKaska's eyes cross from the overwhelming pain. She sways back and forth like a drunken sailor before hitting the floor with all the grace of a felled tree. A high pitched squeak of pain rolls out of her plump lips. <b>She's very, very stunned.</b>");
-						target.createStatusEffect("Stunned", 3 + rand(2), 0, 0, 0, false, "Stunned", "Cannot act for a while. You hit her balls pretty hard!", true, 0);
+						target.createStatusEffect("Stunned", 3 + rand(2), 0, 0, 0, false, "Stun", "Cannot act for a while. You hit her balls pretty hard!", true, 0);
 					}
 					else
 					{
@@ -1145,7 +1164,7 @@ package classes.GameData
 							output("\n<b>" + target.capitalA + target.uniqueName + " is stunned.</b>");
 						}
 						
-						target.createStatusEffect("Stunned", 2 + rand(2), 0, 0, 0, false, "Stunned", "Cannot act for a while.", true, 0);
+						target.createStatusEffect("Stunned", 2 + rand(2), 0, 0, 0, false, "Stun", "Cannot act for a while.", true, 0);
 					}
 				}
 				else
@@ -1297,7 +1316,7 @@ package classes.GameData
 					output(", stunning your enemy!");
 					
 					var rounds:int = 1 + rand(2);
-					target.createStatusEffect("Stunned",rounds,0,0,0,false,"Stunned","Cannot act for "+ rounds +" turns.",true,0);
+					target.createStatusEffect("Stunned",rounds,0,0,0,false,"Stun","Cannot act for "+ rounds +" turns.",true,0);
 				}
 				
 				// Add some burning damage for the explosion
@@ -1383,7 +1402,7 @@ package classes.GameData
 					if (!target.hasStatusEffect("Stunned") && target.physique() + rand(20) + 1 < 40)
 					{
 						output("<b> The hit was hard enough to stun you!</b>");
-						target.createStatusEffect("Stunned",1,0,0,0,false,"Stunned","You are stunned and cannot move until you recover!",true,0);
+						target.createStatusEffect("Stunned",1,0,0,0,false,"Stun","You are stunned and cannot move until you recover!",true,0);
 					}
 					var damage:TypeCollection = attacker.meleeDamage();
 					damage.multiply(2);

@@ -17,6 +17,7 @@ import classes.Items.Guns.Goovolver;
 import classes.Items.Guns.HoldOutPistol;
 import classes.Items.Guns.LaserPistol;
 import classes.Items.Guns.MyrBow;
+import classes.Items.Guns.PlasmaPistol;
 import classes.Items.Guns.ScopedPistol;
 import classes.Items.Guns.TachyonBeamLaser;
 import classes.Items.Guns.ZKRifle;
@@ -219,6 +220,16 @@ public function debugMenusTwo():void
 		output("\n\nMyr Bow.\n");
 		
 		quickLoot(new MyrBow());
+	});
+	
+	addItemButton(3, new DBGShield(), function(): void {
+		output("\n\nDBG Shield.\n");
+		quickLoot(new DBGShield());
+	});
+	
+	addItemButton(4, new PlasmaPistol(), function():void {
+		output("\n\nPlasma Pistol.\n");
+		quickLoot(new PlasmaPistol());
 	});
 	
 	addButton(5, "OvirTF", function():void {

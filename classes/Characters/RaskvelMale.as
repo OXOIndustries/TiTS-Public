@@ -316,12 +316,12 @@
 		
 		private function raskvelGangAttack(target:Creature):void
 		{
-			output("The big raskvel closes in on you, throwing rabbit punches and skilful stamp kicks, aiming to incapacitate and wind. As you are fending him off, the other two run in and hurl wrench haymakers at you.\n");
+			output("The big raskvel closes in on you, throwing rabbit punches and skilful stamp kicks, aiming to incapacitate and wind. As you are fending him off, the other two run in and hurl wrench haymakers at you.");
 			
 			for (var i:int = 0; i < 3; i++)
 			{
-				CombatAttacks.SingleMeleeAttackImpl(this, target, true);
 				output("\n");
+				CombatAttacks.SingleMeleeAttackImpl(this, target, true);
 			}
 			
 			//Not stunned. Maybe stunned?
@@ -331,10 +331,9 @@
 				{
 					//Stunned:
 					output("\nOne of them clonks you a good one and you stagger back, stunned. Groaning, you wait for the world to stop spinning.");
-					target.createStatusEffect("Stunned",1,0,0,0,false,"Stunned","You cannot act for one turn!",true,0);
+					target.createStatusEffect("Stunned",1,0,0,0,false,"Stun","You cannot act for one turn!",true,0);
 				}
 			}
-			output("\n");
 		}
 		
 		private function raskvelMobAppearanceUpdate():void

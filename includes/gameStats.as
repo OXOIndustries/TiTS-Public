@@ -657,7 +657,7 @@ public function statisticsScreen(showID:String = "All"):void
 		output2("\n<b><u>Crew</u></b>");
 		output2("\n<b>* Total Recruited: </b>" + crewRecruited());
 		output2("\n<b>* Total Onboard: </b>" + crew(true));
-		// Travelling
+		// Traveling
 		output2("\n<b><u>Travel</u></b>");
 		output2("\n<b>* Time Spent Moving From Room to Room: </b>" + prettifyMinutes(StatTracking.getStat("movement/time travelled")));
 		output2("\n<b>* Time Spent Flying: </b>" + prettifyMinutes(StatTracking.getStat("movement/time flown")));
@@ -1311,6 +1311,24 @@ public function displayQuestLog(showID:String = "All"):void
 		
 		if(showID == "Tarkus" || showID == "All")
 		{
+			// Dr. Badger's Job
+			if(flags["BADGER_QUEST"] != undefined)
+			{
+				output2("\n<b><u>Doctor Badger’s Job Offer</u></b>");
+				// Bimbo Penny
+				output2("\n<b>* Penny, Status:</b>");
+				if(flags["BADGER_QUEST"] == 1) output2(" <i>Find her!</i>");
+				if(flags["PENNY_BADGER_BIMBO"] != undefined) output2(" Bimbofied");
+				else if(flags["PENNY_BADGER_WARNED"] != undefined)
+				{
+					output2(" Warned her");
+					if(flags["NO_ZAP_PENNY"] != undefined) output2(", Refused to zap her");
+					if(flags["NO_REPORTING_DOC_BADGER"] != undefined) output2(", Will not report Dr Badger");
+					if(flags["BADGER_QUEST"] == -1) output2(", Confiscated Bimbo Ray");
+				}
+				if(flags["BADGER_QUEST"] == 2) output2(", <i>Mission accomplished! Report to Dr Badger!</i>");
+				if(flags["BADGER_QUEST"] >= 3) output2(", Rewarded, Completed");
+			}
 			// Deck 13
 			if(flags["ANNO_MISSION_OFFER"] != undefined)
 			{
@@ -2589,6 +2607,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			{
 				output2("\n<b><u>U.G.C. Peacekeepers Office</u></b>");
 				output2("\n<b>* Penny:</b> Met her");
+				if(flags["PENNY_BADGER_BIMBO"] != undefined) output2(", Bimbofied");
 				if(flags["PENNY_IS_A_CUMSLUT"] != undefined)
 				{
 					if(flags["PENNY_HIDING_CUMSLUTTERY"] != undefined)

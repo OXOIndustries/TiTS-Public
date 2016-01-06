@@ -35,11 +35,11 @@ package classes.Characters
 			
 			// Originally a clone of the zilpack
 			// Needs a few things checked.
-			this.short = "gray prime";
+			this.short = "prime clone";
 			this.originalRace = "gray goo";
 			this.a = "the ";
 			this.capitalA = "The ";
-			this.long = "This glistening gray goo-girl isn't like her sisters. Tall, well-built, and realistically proportioned, she's almost human. The gray goo has modeled herself on a human woman, with a long ponytail and a hefty shirt-straining rack that bounces with every step she takes. She's even made clothes out of her goo: a knee-skirt and blouse over tall boots and stockings. Her shirt has a Bell-Isle/Grunmann patch stitched onto the shoulders, the field of stars on the logo rippling and shining as she moves. A sword of glistening goo extends seamlessly from her hand, cutting through the air with an audible <i>zing</i> as she advances.";
+			long = "A physically exaggerated clone of the prime gray goo; butt-naked and with greatly overstated busts, hips, and asses, all of which are almost cartoonishly big.";
 			this.customDodge = "The goo's liquid flexibility allows it to handily avoid your attack.";
 			this.customBlock = "The goo's liquidity absorbs a great deal of punishment - without taking damage.";
 			this.isPlural = false;
@@ -159,6 +159,9 @@ package classes.Characters
 			
 			this.createStatusEffect("Disarm Immune");
 			this.createStatusEffect("Stun Immune");
+			
+			isUniqueInFight = false;
+			btnTargetText = "GooClone";
 			
 			this._isLoading = false;
 		}

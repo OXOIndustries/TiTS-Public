@@ -357,7 +357,7 @@
 				if(pc.breastRows[0].breastRatingRaw < 1 && changes < changeLimit && rand(4) == 0)
 				{
 					outputB("\n\nA straining sensation - inch by inch - slowly spreads across the front of your chest. It feels as if something is growing underneath and stretching your [pc.skinFurScales]. Reaching up with both hands, the strange swelling presses into your palms, slowly filling them up with soft, supple flesh.");
-					outputB("\n\nWhen you pull them away and look down, you see a pair of small but distinct breasts protruding from your chest. You cup and tease them, feeling a tingling sensation travelling through your distinctly feminine flesh. <b>\"You have grown a pair of A-cup breasts!</b>");
+					outputB("\n\nWhen you pull them away and look down, you see a pair of small but distinct breasts protruding from your chest. You cup and tease them, feeling a tingling sensation traveling through your distinctly feminine flesh. <b>\"You have grown a pair of A-cup breasts!</b>");
 					pc.breastRows[0].breastRatingRaw = 1;
 					changes++;
 				}

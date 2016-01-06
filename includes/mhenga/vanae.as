@@ -1060,7 +1060,7 @@ public function vanaeHuntressTitfuck():void
 
 	output("\n\nHearing her plead for your [pc.cum] all over her fleshy alien assets pushes you over the edge. You seize her [enemy.breasts] in both hands and begin ravishing them with lusty abandon. Each frantic thrust causes her to pant and moan, her violet milk spilling violently from her [enemy.breasts].");
 
-	output("\n\nYou see white as a shockwave seizes your [pc.groin], an explosion of awesome, broiling pleasure travelling along your [pc.cocks] and erupting all over her [enemy.breasts]. Ridiculous amounts of [pc.cum] explode from your [pc.cockHeads] and splatter her [enemy.skin] as you shiver in blissful release. At the same time she lets out a sweet cry and gushes her slick violet milk all over your [pc.belly], clenching your [pc.cocks] hard in the throes of her own shuddering orgasm.");
+	output("\n\nYou see white as a shockwave seizes your [pc.groin], an explosion of awesome, broiling pleasure traveling along your [pc.cocks] and erupting all over her [enemy.breasts]. Ridiculous amounts of [pc.cum] explode from your [pc.cockHeads] and splatter her [enemy.skin] as you shiver in blissful release. At the same time she lets out a sweet cry and gushes her slick violet milk all over your [pc.belly], clenching your [pc.cocks] hard in the throes of her own shuddering orgasm.");
 
 	output("\n\nAs if on instinct, the alien huntress moans and wrings [pc.eachCock] between her [vanae.breasts] even as you both cum, milking you for every last drop of your hot jism. She doesn't stop until you are completely spent all over her fleshy swells and her [pc.skin] is utterly marked with your [pc.cumColor] spunk.");
 

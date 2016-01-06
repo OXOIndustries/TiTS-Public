@@ -278,7 +278,9 @@ public function stickItInZeCatgirlCoochWhileSheThinksYerKaska():void
 	output("\n\n<i>\"Still your favorite, right chief?\"</i> Tam giggles, rubbing her butt against the sheathed underside of your prick. <i>\"Double kaithrit tail-job... maybe I'll let you stick it in for a scratch between the ears?\"</i>");
 	output("\n\nHer cat ears perk up expectantly, tails squeezing hard around your shaft as encouragement until you finally reach up and give the puss what she wants. Tam purrs throatily as your fingers work through her bright pink hair, getting at that wonderfully sensitive spot right between her perky cat-ears. Her hips press back against your crotch, grinding up against you as her twin tails slowly release your rod, letting you enjoy the warm, wet feeling of her sex rubbing against your [pc.cock " + x + "], so close to penetration that any errant movement would send you deep into the cat-girl's eager box.");
 	output("\n\n<i>\"You're clear for landing, Kaska,\"</i> Tam purrs, wiggling her flared hips up your shaft, until the crown of your cock is kissing the lips of her pussy. Tam bits her lip, back arching as she purrs and moans, readying herself for you. You're more than happy to make up the difference: grabbing Tam's hips, you thrust in, one long, smooth motion until you're ");
-	if(pc.cockVolume(x) <= enemy.vaginalCapacity(0)) output("buried to the hilt");
+	// How the fuck did this used to work then??!?! Foes[0] was never set to anything specific prior to this point afaik!
+	if (pc.cockVolume(x) <= 24) output("buried to the hilt");
+	
 	else output("able to see her gut distending from the sheer amount of cock being shoved into her");
 	output(". The chorus of moans Tam's been serenading you with breaks at that moment, her cute little groans turning into a long cry of pleasure as you finally fuck her.");
 	pc.cockChange();
@@ -759,7 +761,7 @@ public function sneakByZeTurrets():void
 	flags["ROCKET_PODS_SNEAKED"] = 1;
 	processTime(5);
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	CombatManager.abortCombat();
 }
 
 //PC Victory vs Rocket Pods
@@ -951,7 +953,7 @@ public function victoriousVsCaptainOrcButt():void
 	output("From her pocket, she pulls a small remote, and glances at it. <i>\"Not much time left, Steele. Maybe you ought to start running... you might make it back to your ship, if you're lucky. Or maybe you'd rather get a ride out with me, hmm? Submit to me, and I guarantee you'll live. You might even like being my personal bitch....\"</i>");
 	pc.shields(pc.shieldsMax());
 	clearMenu();
-	addButton(0,"Fight", configKhorganFight, "khorgan","Fight!","The captain's clearly not going down without a fight. Time to finish this.");
+	addButton(0,"Fight", configKhorganFight, undefined, "Fight!","The captain's clearly not going down without a fight. Time to finish this.");
 	//{Go to Captain Fight: Part 2}
 	addButton(1,"Demand",demandSurrenderFromPirate,undefined,"Demand Surrender","She's desperate, you can hear it in her voice! Tell her to put HER weapon down, if she wants to get out of this.");
 	//{Tooltip: She's right. You don't have a chance...}
@@ -984,7 +986,7 @@ public function demandSurrenderFromPirate():void
 	processTime(1);
 	//[Fight!]
 	clearMenu();
-	addButton(0,"Fight",configKhorganFight,"khorgan","Fight!","The captain's clearly not going down without a fight. Time to finish this.");
+	addButton(0,"Fight",configKhorganFight,undefined,"Fight!","The captain's clearly not going down without a fight. Time to finish this.");
 }
 
 //Surrender Yourself

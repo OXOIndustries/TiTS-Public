@@ -1,4 +1,5 @@
 ﻿import classes.Characters.RaskvelFemale;
+import classes.Creature;
 import classes.Engine.Combat.DamageTypes.TypeCollection;
 //Hostile Female Raskvel Encounter
 //Armed with aphrodisiac dart-gun.
@@ -12,12 +13,15 @@ public function encounterHostileRaskvelFemale():void
 	CodexManager.unlockEntry("Raskvel");
 	userInterface.showBust("RASKVEL_FEMALE");
 	userInterface.showName("RASKVEL\nFEMALE");
+	
+	var tEnemy:RaskvelFemale = new RaskvelFemale();
+	
 	//First Encounter
 	if(flags["MET_FEMALE_RASKVEL"] == undefined)
 	{
 		flags["MET_FEMALE_RASKVEL"] = 1;
 		output("\n\nEmerging from behind a piece of wreckage, a short figure. The creature is perhaps four feet tall at most, couching a gigantic wrench on its shoulder and some kind of gun on its hip. It is dressed in a set of tattered mechanics overalls and little else, and as you look closer, you become aware of its undoubtedly feminine nature.");
-		output("\n\nThe crotch of the overalls girding this alien girl were torn away at some point in the past to expose her puffy sex. The outer lips are as swollen as a human woman's after being hooked to a vacuum pump for an hour, and purplish in hue. Two clits poke out from the bulging feminine genitalia, one in the front, one in the back. Her sex contrasts quite visibly with her " + enemy.skinFurScales() + ", standing out in stark relief against the rest of her body, like some kind of erotic target. Her wide hips strain the waist of her garment, transforming her walk into an exaggerated sexual swivel, even though her top half is narrow and lithe, capped with small, pert breasts, B-cups at the most.");
+		output("\n\nThe crotch of the overalls girding this alien girl were torn away at some point in the past to expose her puffy sex. The outer lips are as swollen as a human woman's after being hooked to a vacuum pump for an hour, and purplish in hue. Two clits poke out from the bulging feminine genitalia, one in the front, one in the back. Her sex contrasts quite visibly with her " + tEnemy.skinFurScales() + ", standing out in stark relief against the rest of her body, like some kind of erotic target. Her wide hips strain the waist of her garment, transforming her walk into an exaggerated sexual swivel, even though her top half is narrow and lithe, capped with small, pert breasts, B-cups at the most.");
 		output("\n\nBeeping, your codex alerts you that this is a hostile female of the raskvel race just like the ones you met when you landed. It issues a quick summary: <i>The Raskvel are a race obsessed with fixing technology and breeding in equal measure. They are generally a very friendly race, but some are more than happy to turn to violence to secure a mate.</i> Looking back up at the approaching creature, you ready yourself.");
 		output("\n\nThe raskvel mechanic leans on her wrench as she considers you, her long, floppy ears dangling to her waist. \"<i>An off-worlder, huh?</i>\"");
 		output("\n\nYou nod.");
@@ -38,17 +42,17 @@ public function encounterHostileRaskvelFemale():void
 	}
 	//[FIght] [Pay] ["Pay"]
 	clearMenu();
-	addButton(0,"Fight",fightFemRask);
+	addButton(0,"Fight",fightFemRask, tEnemy);
 	addButton(1,"Pay",payDatRaskCunt);
-	addButton(2,"\"Pay\"",quotePayUnquoteFemRasks);
+	addButton(2,"\"Pay\"",quotePayUnquoteFemRasks, tEnemy);
 }
 
-public function fightFemRask():void
+public function fightFemRask(tEnemy:Creature):void
 {
 	CodexManager.unlockEntry("Raskvel");
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new RaskvelFemale());
+	CombatManager.setHostileCharacters(tEnemy);
 	CombatManager.victoryScene(victoryVsRaskvel);
 	CombatManager.lossScene(defeatRoutingForFemRasks);
 	CombatManager.displayLocation("RASKVEL (F)");
@@ -366,21 +370,23 @@ public function faceRidingRaskvelLadies():void
 }
 
 //"Pay"
-public function quotePayUnquoteFemRasks():void
+public function quotePayUnquoteFemRasks(tEnemy:Creature):void
 {
 	clearOutput();
 	userInterface.showBust("RASKVEL_FEMALE_NUDE");
 	userInterface.showName("RASKVEL\nFEMALE");
 	output("Well, you can always pay another way and hope she goes easy on your wallet....");
 	
-	setEnemy(new RaskvelFemale());
+	setEnemy(tEnemy);
 	
 	//Dick Req
 	if(pc.hasCock() && pc.cockThatFits(enemy.vaginalCapacity()) >= 0) raskvelGirlsSitsIfTheyFits();
 	else if(pc.hasCock()) hugeDicksGetForceWorshippedByFemRaskvel();
 	//Tail-pegging
 	//Nondix
-	if(!pc.hasCock()) getRaskVelTailPegged();
+	if (!pc.hasCock()) getRaskVelTailPegged();
+	
+	setEnemy(null);
 }
 
 

@@ -17,7 +17,7 @@ package classes.Engine.Combat
 		
 		var tMsg:String = "";
 		
-		if (damageResult.shieldDamage > 0 || damageResult.hpDamage > 0 || damageResult.lustDamage > 0)
+		if (damageResult.shieldDamage > 0 || damageResult.hpDamage > 0 || (damageResult.lustDamage > 0 || damageResult.lustResisted == true))
 		{
 			if (!combine)
 			{
@@ -35,7 +35,7 @@ package classes.Engine.Combat
 					else tMsg += "H: -" + Math.round(damageResult.hpDamage);
 					if (damageResult.lustDamage > 0) tMsg += ", ";
 				}
-				if (damageResult.lustDamage > 0)
+				if (damageResult.lustDamage > 0 || damageResult.lustResisted == true)
 				{
 					if (colour) tMsg += "L: -<span class='lust'>" + Math.round(damageResult.lustDamage) + "</span>";
 					else tMsg += "L: -" + Math.round(damageResult.lustDamage);

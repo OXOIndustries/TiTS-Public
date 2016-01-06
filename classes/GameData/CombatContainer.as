@@ -23,6 +23,7 @@ package classes.GameData
 	import classes.Engine.Utility.num2Text;
 	import flash.utils.getQualifiedClassName;
 	import flash.utils.getDefinitionByName;
+	import classes.Util.InCollection;
 	
 	/**
 	 * TODO:
@@ -143,16 +144,26 @@ package classes.GameData
 			// ^ PRAETORIAN => PRAETORIAN x3
 			// ^ TAIVRADANE => TAIVRA, DANE
 			
+			var overrides:Array = ["ZILPACK", "RASKVEL_GANG", "PRAETORIAN", "TAIVRADANE", "TAMTURRETS"];
+			var bustIdx:String = (_hostiles[0] as Creature).bustDisplay;
+			
+			if (InCollection(bustIdx, overrides))
+			{
+				switch (bustIdx)
+				{
+					case "ZILPACK": kGAMECLASS.showBust("ZIL", "ZIL"); break;
+					case "RASKVEL_GANG": kGAMECLASS.showBust("RASKVEL_MALE", "RASKVEL_MALE", "RASKVEL_MALE"); break;
+					case "PRAETORIAN": kGAMECLASS.showBust("PRAETORIAN", "PRAETORIAN", "PRAETORIAN"); break;
+					case "TAIVRADANE": kGAMECLASS.showBust("TAIVRA", "DANE"); break;
+					case "TAMTURRETS": kGAMECLASS.showBust("TAMTAM", "TAMWOLF"); break;
+				}
+				
+				return;
+			}
+			
 			if (group == NO_GROUP)
 			{
-				// display enemy, probably will never change during combat itself
-				var bustIdx:String = (_hostiles[0] as Creature).bustDisplay;
-				
-				if (bustIdx == "ZILPACK") kGAMECLASS.showBust("ZIL", "ZIL");
-				else if (bustIdx == "RASKVEL_GANG") kGAMECLASS.showBust("RASKVEL_MALE", "RASKVEL_MALE", "RASKVEL_MALE");
-				else if (bustIdx == "PRAETORIAN") kGAMECLASS.showBust("PRAETORIAN", "PRAETORIAN", "PRAETORIAN");
-				else if (bustIdx == "TAIVRADANE") kGAMECLASS.showBust("TAIVRA", "DANE");
-				else kGAMECLASS.showBust(bustIdx);
+				kGAMECLASS.showBust(bustIdx);
 			}
 			else
 			{
@@ -214,11 +225,13 @@ package classes.GameData
 				if (pc.hasCock() || pc.hasVagina())
 				{
 					addButton(1, "Quickie!", kGAMECLASS.quickieAfterGooHarden, undefined, "Quickie", "Have a quickie with the gray goo girl, resetting both of your lust scores.");
+					return true;
 				}
 				else
 				{
 					output("\n\nThe poor thing doesn't seem to realize that you're missing the requisite parts.");
 					addDisabledButton(1, "Quickie");
+					return true;
 				}
 			}
 			
@@ -363,52 +376,42 @@ package classes.GameData
 			{
 				if (target is PlayerCharacter)
 				{
-					output("\n\n<b>The flames slowly lick at you,");
+					output("\n\n<b>The flames slowly lick at you, " + (target.statusEffectv1("Burn") > 1 ? "resisting any attempt to put them out" : "refusing to go out until they've done their foul work") + ".</b>");
 					if(target.statusEffectv1("Burn") > 1) 
 					{
 						target.addStatusValue("Burn",1,-1);
-						output(" resisting any attempt to put them out.");
 					}
 					else 
 					{
 						target.removeStatusEffect("Burn");
-						output(" refusing to go out until they've done their foul work.");
 					}
-					output("</b>");
 				}
 				else
 				{
-					output("\n\n<b>Flames slowly lick at " + target.a + target.uniqueName + ",");
+					output("\n\n<b>Flames slowly lick at " + target.a + target.uniqueName + ", " + (target.statusEffectv1("Burn") > 1 ? "resisting any attempt to put them out" : "refusing to go out until they've done their foul work") + ".</b>");
 					if (target.statusEffectv1("Burn") > 1)
 					{
 						target.addStatusValue("Burn", 1, -1);
-						output(" resisting any attempt to put them out.");
 					}
 					else
 					{
 						target.removeStatusEffect("Burn");
-						output(" refusing to go out until they've done their foul work.");
 					}
-					output("</b>");
 				}
 				applyDamage(new TypeCollection( { burning: 3 + rand(4) } ), null, target);
 			}
 				
 			if (target.hasStatusEffect("Bleeding"))
 			{
-				if (target is PlayerCharacter) output("\n\n<b>Your wounds continue to take their toll on your body;");
-				else output("\n\n<b>" + target.capitalA + possessive(target.uniqueName) + " wounds continue to take a toll on their body;");
+				if (target is PlayerCharacter) output("\n\n<b>Your wounds continue to take their toll on your body; " + (target.statusEffectv2("Bleeding") >= 1 ? "your microsugeons working overtime to stem the ongoing damage" : "your microsurgeons have triaged the worst of it, but you'll need proper rest to heal") + ".</b>");
+				else output("\n\n<b>" + target.capitalA + possessive(target.uniqueName) + " wounds continue to take a toll on their body; " + (target.statusEffectv2("Bleeding") ? "blood liberally flows from their wounds as they frantically attempt to stem the bleeding." : "the bleeding has finally stopped, but it'd take anybody some rest to properly recover from those kinds of wounds!") + "</b>");
 				if (target.statusEffectv2("Bleeding") >= 1)
 				{
 					target.addStatusValue("Bleeding", 2, -1);
-					if (target is PlayerCharacter) output(" your microsugeons working overtime to stem the ongoing damage.</b>\n");
-					else output(" blood liberally flows from their wounds as they frantically attempt to stem the bleeding.</b>\n");
 				}
 				else
 				{
 					target.removeStatusEffect("Bleeding");
-					if (target is PlayerCharacter) output(" your microsurgeons have triaged the worst of it, but you'll need proper rest to heal.</b>\n");
-					else output(" the bleeding has finally stopped, but it'd take anybody some rest to properly recover from those kinds of wounds!</b>\n");
 				}
 				applyDamage(damageRand(new TypeCollection( { kinetic: target.statusEffectv1("Bleeding") * target.statusEffectv3("Bleeding") } ), 15), null, target);
 			}
@@ -436,7 +439,7 @@ package classes.GameData
 				{
 					if(rand(10) == 0) 
 					{
-						output("\n\n<b>You abruptly go blind, perhaps an effect of the Quivering Quasar you drank.</b>\n")
+						output("\n\n<b>You abruptly go blind, perhaps an effect of the Quivering Quasar you drank.</b>")
 						pc.createStatusEffect("Blinded",2,0,0,0,false,"Blind","You're blinded and cannot see! Accuracy is reduced, and ranged attacks are far more likely to miss.",true,0);
 					}
 				}
@@ -1468,9 +1471,6 @@ package classes.GameData
 			}
 			else
 			{
-				clearOutput();
-				clearMenu();
-				
 				executeSimpleAttack( { func: f, tar: t } );
 			}
 		}
@@ -2470,7 +2470,20 @@ package classes.GameData
 				}
 				else output(teaseReactions(damage,target));
 				target.lust(damage);
-				output(" ("+ damage + ")");
+				
+				var damageResult:DamageResult = new DamageResult();
+				if (damage > 0)
+				{
+					damageResult.lustDamage = damage;
+					damageResult.typedLustDamage.tease.damageValue = damage;
+				}
+				else
+				{
+					damageResult.lustResisted = true;
+				}
+				
+				outputDamage(damageResult);
+				
 				teaseSkillUp(teaseType);
 				if(target is MyrInfectedFemale && damage >= 10)
 				{
@@ -2616,22 +2629,40 @@ package classes.GameData
 		
 		private function checkForLoss():Boolean
 		{
+			var tEnemy:Creature;
+			
 			if (playerLossCondition())
 			{
 				if (victoryCondition == CombatManager.SPECIFIC_TARGET_DEFEATED)
 				{
-					kGAMECLASS.setEnemy(victoryArgument);
+					tEnemy = victoryArgument;
 				}
 				else
 				{
-					kGAMECLASS.setEnemy(_hostiles[0]);
+					tEnemy = _hostiles[0];
 				}
 				
-				userInterface().showPlayerParty([pc]);
-				userInterface().leftBarDefaults();
-				output("\n\n");
-				clearMenu();
-				addButton(0, "Defeat", _lossFunction);
+				kGAMECLASS.setEnemy(tEnemy);
+				
+				clearOutput();
+				
+				if (pc.lust() >= pc.lustMax() || pc.HP() <= 0) 
+				{
+					if (pc.HP() <= 0) 
+					{
+						if(tEnemy.isPlural || _hostiles.length > 1) output("<b>Your enemies have knocked you off your " + pc.feet() + "!</b>\n\n");
+						else output("<b>" + tEnemy.capitalA + tEnemy.short + " has knocked you off your " + pc.feet() + "!</b>\n\n");
+					}
+					else
+					{
+						if (_hostiles.length > 1 || tEnemy.isPlural) output("<b>" + tEnemy.capitalA + tEnemy.short + " have turned you on too much to keep fighting. You give in....</b>\n\n");
+						else output("<b>" + tEnemy.capitalA + tEnemy.short + " has turned you on too much to keep fighting. You give in....</b>\n\n");
+					}
+				}
+				
+				userInterface().showPlayerParty(_friendlies);
+				userInterface().showHostileParty(_hostiles);
+				_lossFunction();
 				return true;
 			}
 			else if (hasEnemyOfClass(Naleen) || hasEnemyOfClass(NaleenMale))
@@ -2640,18 +2671,34 @@ package classes.GameData
 				{
 					if (victoryCondition == CombatManager.SPECIFIC_TARGET_DEFEATED)
 					{
-						kGAMECLASS.setEnemy(victoryArgument);
+						tEnemy = victoryArgument;
 					}
 					else
 					{
-						kGAMECLASS.setEnemy(_hostiles[0]);
+						tEnemy = _hostiles[0];
+					}
+					
+					kGAMECLASS.setEnemy(tEnemy);
+					
+					clearOutput();
+					
+					if (pc.lust() >= pc.lustMax() || pc.HP() <= 0) 
+					{
+						if (pc.HP() <= 0) 
+						{
+							if(tEnemy.isPlural || _hostiles.length > 1) output("<b>Your enemies have knocked you off your " + pc.feet() + "!</b>\n\n");
+							else output("<b>" + tEnemy.capitalA + tEnemy.short + " has knocked you off your " + pc.feet() + "!</b>\n\n");
+						}
+						else
+						{
+							if (_hostiles.length > 1 || tEnemy.isPlural) output("<b>" + tEnemy.capitalA + tEnemy.short + " have turned you on too much to keep fighting. You give in....</b>\n\n");
+							else output("<b>" + tEnemy.capitalA + tEnemy.short + " has turned you on too much to keep fighting. You give in....</b>\n\n");
+						}
 					}
 				
-					userInterface().showPlayerParty([pc]);
-					userInterface().leftBarDefaults();
-					output("\n\n");
-					clearMenu();
-					addButton(0, "Defeat", _lossFunction);
+					userInterface().showPlayerParty(_friendlies);
+					userInterface().showHostileParty(_hostiles);
+					_lossFunction();
 					return true;
 				}
 			}
@@ -2677,21 +2724,33 @@ package classes.GameData
 				// different needs to happen, the individual _victoryFunctions will have
 				// to do what they want
 				
+				var tEnemy:Creature;
+				
 				// If it is a 'special' target, assume that will be the enemy we care about
 				if (victoryCondition == CombatManager.SPECIFIC_TARGET_DEFEATED)
 				{
-					kGAMECLASS.setEnemy(victoryArgument);
+					tEnemy = victoryArgument;
 				}
 				else
 				{
-					kGAMECLASS.setEnemy(_hostiles[0]);
+					tEnemy = _hostiles[0];
+				}
+				kGAMECLASS.setEnemy(tEnemy);
+				
+				clearOutput();
+				
+				if (tEnemy.HP() <= 0) output("You’ve knocked the resistance out of " + tEnemy.a + tEnemy.uniqueName + ".</b>\n\n");
+				else if (tEnemy.lust() >= 100) 
+				{
+					output("<b>" + tEnemy.capitalA + tEnemy.short + " </b>");
+					if(tEnemy.isPlural) output("<b>are </b>");
+					else output("<b>is </b>");
+					output("<b>too turned on to fight.</b>\n\n");
 				}
 				
-				userInterface().showPlayerParty([pc]);
-				userInterface().leftBarDefaults();
-				output("\n\n");
-				clearMenu();
-				addButton(0, "Victory", _victoryFunction);
+				userInterface().showPlayerParty(_friendlies);
+				userInterface().showHostileParty(_hostiles); // Force-display the selected enemy
+				_victoryFunction();
 				return true;
 			}
 			return false;
@@ -2702,14 +2761,12 @@ package classes.GameData
 			_roundCounter = 1;
 			
 			genericVictory = function():void {
-				userInterface().hideNPCStats();
 				StatTracking.track("combat/wins");
 				getCombatPrizes();
 				doCombatCleanup();
 			}
 			
 			genericLoss = function():void {
-				userInterface().hideNPCStats();
 				StatTracking.track("combat/losses");
 				clearMenu();
 				if (StatTracking.getStat("combat/wins") == 0 && StatTracking.getStat("combat/losses") == 3)
@@ -2721,7 +2778,7 @@ package classes.GameData
 					addButton(0, "Next", helpReallyBadPCsOut);
 				}
 				else if (pc.level == 1 && (hasEnemyOfClass(NaleenMale) || hasEnemyOfClass(Naleen) || hasEnemyOfClass(HuntressVanae) || hasEnemyOfClass(MaidenVanae))) addButton(0, "Next", helpDumbPCsOut);
-				else addButton(0, "Next", kGAMECLASS.mainGameMenu);
+				else addButton(0, "Next", postCombatReturnToMenu);
 				doCombatCleanup();
 			}
 		}
@@ -2801,7 +2858,19 @@ package classes.GameData
 		protected var _hostiles:Array = null;
 		public var noImportProcess:Boolean = false;
 		
-		private function prepForCombat(target:Creature):void
+		private function prepFriendlyForCombat(target:Creature):void
+		{
+			target.droneTarget = null;
+			if (!(target is PlayerCharacter))
+			{
+				// TODO: Realistically, characters that join the player in combat should be subject to the same passage of time rules... but that's another story
+				target.HPRaw = target.HPMax();
+				target.shieldsRaw = target.shieldsMax();
+				target.lustRaw = 0;
+			}
+		}
+		
+		private function prepHostileForCombat(target:Creature):void
 		{
 			target.droneTarget = null;
 		}
@@ -2826,14 +2895,15 @@ package classes.GameData
 			
 			for (var i:int = 0; i < _friendlies.length; i++)
 			{
-				prepForCombat(_friendlies[i]);
+				prepFriendlyForCombat(_friendlies[i]);
 				makeCharacterUnique(_friendlies[i], FRIENDLY_GROUP);
 			}
 		}
 		public function addFriendlyCreature(newC:Creature):void
 		{
-			makeCharacterUnique(newC, HOSTILE_GROUP);
+			prepFriendlyForCombat(newC);
 			_friendlies.push(newC);
+			makeCharacterUnique(newC, FRIENDLY_GROUP);
 			showCombatUI();
 		}
 		
@@ -2859,7 +2929,7 @@ package classes.GameData
 			
 			for (var i:int = 0; i < _hostiles.length; i++)
 			{
-				prepForCombat(_hostiles[i]);
+				prepHostileForCombat(_hostiles[i]);
 				makeCharacterUnique(_hostiles[i], HOSTILE_GROUP);
 			}
 			
@@ -2867,9 +2937,9 @@ package classes.GameData
 		}
 		public function addHostileCreature(newC:Creature):void
 		{
-			makeCharacterUnique(newC, HOSTILE_GROUP);
+			prepHostileForCombat(newC);
 			_hostiles.push(newC);
-			
+			makeCharacterUnique(newC, HOSTILE_GROUP);
 			showCombatUI(); // force an update
 		}
 		
@@ -2883,28 +2953,40 @@ package classes.GameData
 			var collection:Array = (asGroup == HOSTILE_GROUP ? _hostiles : _friendlies);
 			
 			var currIndex:int = 0;
+			
+			// Loop over all the current creatures
 			for (var i:int = 0; i < collection.length; i++)
 			{
-				if (collection[i] == target)
+				var currTarget:Creature = collection[i] as Creature;
+				
+				// Looking for creatures of the same type as the one we're adding
+				if (currTarget is tType && currTarget != target)
 				{
-					thisIndex = currIndex; // Subtype index of this type in the collection for target creature
-				}
-				else if (collection[i] is tType)
-				{
+					// Check if it has a unique character appended
+					var lastChar:String = currTarget.uniqueName.charAt(currTarget.uniqueName.length - 1);
+					
+					// If it doesn't, append the one relative to the currentTargets position in the array
+					if (!InCollection(lastChar, appends))
+					{
+						currTarget.uniqueName = currTarget.short + " " + appends[currIndex];
+						currTarget.buttonText = currTarget.btnTargetText + " " + appends[currIndex];
+					}
+					
 					hasSameType = true;
 					currIndex++;
 				}
 			}
 			
-			if (hasSameType)
-			{
-				target.uniqueName = target.short + " " + appends[thisIndex];
-				target.buttonText = target.btnTargetText + " " + appends[thisIndex];
-			}
-			else
+			// We ain't fiddled the one we're adding, so it'll be unique so just treat it as such
+			if (!hasSameType)
 			{
 				target.uniqueName = target.short;
 				target.buttonText = target.btnTargetText;
+			}
+			else
+			{
+				target.uniqueName = target.short + " " + appends[currIndex];
+				target.buttonText = target.btnTargetText + " " + appends[currIndex];
 			}
 		}
 		
@@ -3173,6 +3255,7 @@ package classes.GameData
 		
 		public function processCombat():void
 		{
+			displayBusts();
 			doCombatDrone(pc);
 			processFriendlyGroupActions();
 			if (hasEnemyOfClass(Varmint))
@@ -3190,9 +3273,17 @@ package classes.GameData
 				var target:Creature = droneUser.droneTarget;
 				if (!target.isDefeated())
 				{
-					// TODO: Route this through the actual drone the droneUser has equipped to redirect to different atk implementors.
 					output("\n");
-					CombatAttacks.DroneAttack(droneUser, target);
+					
+					// If the user has an accessory equipped that potentially overrides the drone attack to use, use that.
+					if (droneUser.accessory.droneAttack != null)
+					{
+						droneUser.accessory.droneAttack(droneUser, target);
+					}
+					else
+					{
+						CombatAttacks.DroneAttack(droneUser, target);
+					}
 				}
 			}
 		}
@@ -3421,8 +3512,8 @@ package classes.GameData
 			}
 			else if (victoryCondition == CombatManager.SPECIFIC_TARGET_DEFEATED)
 			{
-				if (isNaN(victoryArgument)) throw new Error("Unique target for victory declared as a win condition, with no target defined.");
-				if (_hostiles[victoryArgument].isDefeated()) return true;
+				if (victoryArgument == undefined || !(victoryArgument is Creature)) throw new Error("Unique target for victory declared as a win condition, with no target defined.");
+				if (victoryArgument.isDefeated()) return true;
 				return false;
 			}
 			
@@ -3489,6 +3580,13 @@ package classes.GameData
 			}
 			
 			return false;
+		}
+		
+		private function postCombatReturnToMenu():void
+		{
+			userInterface().hideNPCStats();
+			userInterface().leftBarDefaults();
+			kGAMECLASS.mainGameMenu();
 		}
 		
 		public function getCombatPrizes():void
@@ -3572,11 +3670,12 @@ package classes.GameData
 			//Monies!
 			if (sumCredits > 0) 
 			{
-				if(CombatManager.multipleEnemies()) output("\nThey had ");
-				else output(_hostiles[0].mfn("\nHe"," She", " It") + " had ");
+				output("\n");
+				if(CombatManager.multipleEnemies()) output("They had ");
+				else output(_hostiles[0].mfn("He","She", "It") + " had ");
 				output(String(sumCredits) + " credit");
 				if(sumCredits > 1) output("s");
-				output(" loaded on an anonymous credit chit that you appropriate.");
+				output(" loaded on " + (CombatManager.multipleEnemies() ? "anonymous credit chits" : "an anonymous credit chit") + " that you appropriate.");
 			}
 			
 			clearMenu();
@@ -3584,14 +3683,14 @@ package classes.GameData
 			if (loot.length > 0)
 			{
 				output("\n");
-				kGAMECLASS.itemScreen = kGAMECLASS.mainGameMenu;
-				kGAMECLASS.lootScreen = kGAMECLASS.mainGameMenu;
-				kGAMECLASS.useItemFunction = kGAMECLASS.mainGameMenu;
+				kGAMECLASS.itemScreen = postCombatReturnToMenu;
+				kGAMECLASS.lootScreen = postCombatReturnToMenu;
+				kGAMECLASS.useItemFunction = postCombatReturnToMenu;
 				kGAMECLASS.itemCollect(loot);
 			}
 			else
 			{
-				addButton(0, "Next", kGAMECLASS.mainGameMenu);
+				addButton(0, "Next", postCombatReturnToMenu);
 			}
 		}
 	}

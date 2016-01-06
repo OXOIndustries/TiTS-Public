@@ -241,7 +241,7 @@
 			updateDesc();
 		}
 		
-		private function updateDesc():void
+		public function updateDesc():void
 		{
 			var hostiles:Array = CombatManager.getHostileCharacters();
 			
@@ -310,7 +310,7 @@
 				
 				if (aim() / 2 + rand(20) + 1 >= target.physique() / 2 + 10 && !target.hasStatusEffect("Stunned")) 
 				{
-					target.createStatusEffect("Stunned",1,0,0,0,false,"Stunned","Cannot act for a turn.",true,0);
+					target.createStatusEffect("Stunned",1,0,0,0,false,"Stun","Cannot act for a turn.",true,0);
 					if (target is PlayerCharacter) output(" <b>You are stunned!</b>");
 					else output(" <b>Kara is stunned!</b>");
 				}

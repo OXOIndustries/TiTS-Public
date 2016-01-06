@@ -146,8 +146,7 @@ public function phoenixWhoAreYou():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("VALERIA");
-	showName("\nVALERIA");
+	showValeria();
 	output("\"<i>Who exactly are you?</i>\" you ask, speaking to the air. Or lack thereof, now.");
 
 	output("\n\n\"<i>My name is Valeria,</i>\" the disembodied voice responds in your ear, \"<i>I'm Captain en Illya's personal A.I. I handle the </i>Phoenix<i>'s main routines, but the pirates have severed my control. We have to get to the bridge so we can regain control of the ship! Please!</i>\"");
@@ -208,9 +207,7 @@ public function phoenixBridge():void
 public function phoenixBridgeCaptain():void
 {
 	clearOutput();
-	author("Savin");
-	showName("\nSAENDRA");
-	showBust("SAENDRA");
+	saenHeader();
 	output("You step up behind the captain, planting an arm around the headrest of her chair. Upon looking down at her, you see that she looks deathly pale, her sides and left arm wrapped in bandages stained red with blood. ");
 
 	output("\n\n\"<i>You're a life-saver, [pc.name],</i>\" she says through gritted teeth, planting a hand on the throttle. \"<i>The </i>Phoenix<i> can cover you for a couple minutes. Get back to your ship and get out of here... I'll try and limp back to Tavros station, get patched up. If we actually make it out of here... look me up some time, hero. I owe you one.</i>\"");
@@ -543,8 +540,7 @@ public function phoenixEngineeringTakeShield():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("VALERIA");
-	showName("\nVALERIA");
+	showValeria();
 	output("You pick one of the shield belts off the rack. A quick glance tells you it's a pretty high-end JoyCo model, better than most pioneers can get their hands on. Nice!");
 
 	output("\n\n\"<i>Heeeey!</i>\" Valeria cries from the console. \"<i>That's not yours!</i>\"");
@@ -566,8 +562,7 @@ public function phoenixEngineeringValeria():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("VALERIA");
-	showName("\nVALERIA");
+	showValeria();
 	output("\"<i>Alright, what do I need to do?</i>\" you ask, looking towards the inactive engine.");
 
 	output("\n\n\"<i>The engines are offline. We need to quick-start them, but it's not easy on these older models. You'll need to manually control power output - too much, too quickly, and I'll have to boot them down again. Try to find the sweet spot. I'll walk you through it once you get to the engine controls.</i>\"");
@@ -584,8 +579,7 @@ public function phoenixEngineeringValeriaCaptain():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("VALERIA");
-	showName("\nVALERIA");
+	showValeria();
 	output("\"<i>So, you think Captain Saendra will be alright?</i>\" you say. Good time for small talk, right?");
 
 	output("\n\nValeria stares at you a moment, biting her holographic lip. \"<i>I've been with her since she was little... I hope she makes it through this. But her arm...</i>\"");
@@ -600,8 +594,7 @@ public function phoenixEngineeringValeriaFlirt():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("VALERIA");
-	showName("\nVALERIA");
+	showValeria();
 	output("\"<i>So, what's a cute sprite like you doing here, anyway?</i>\"");
 
 	output("\n\nAmusingly, Valeria's avatar flushes a darker shade of blue. \"<i>I, uh... well, you know, I'm just a little companion A.I.,</i>\" she says, shuffling her feet on the holo-platform. \"<i>Nothing special. I'm not even a modern version number.</i>\"");
@@ -617,8 +610,7 @@ public function phoenixEngineeringEngines(doOutput:Boolean = true):void
 	{
 		clearOutput();
 		author("Savin");
-		showBust("VALERIA");
-		showName("\nVALERIA");
+		showValeria();
 		output("You approach the engines and dust off the manual control panel. The power reading is flashing a great big '0%.' ");
 
 		output("\n\nFrom the holo-platform near the elevator, Valeria says, \"<i>Okay, I'm spooling up the engines now. The power converters are on manual reset, however. You'll need to guide the power into the sweet spot </i>without<i> going too far over, or I'll have to activate emergency shutdown, and you'll have to start over. <b>We need to hit 45%.</b> Please hurry, [pc.name]: our shields won't hold for long.</i>\"");
@@ -691,8 +683,7 @@ public function phoenixTRYAGAINCHAMP():void
 	else flags["FALL OF THE PHOENIX FAILED ENGINEERING PUZZLE"]++;
 	
 	author("Savin");
-	showBust("VALERIA");
-	showName("\nVALERIA");
+	showValeria();
 	output("\n\n\"<i>It's too much! Engines going critical!</i>\" Valeria shouts, bringing up several readouts around her avatar, working feverishly. \"<i>Emergency shutdown protocols initiated.... done!</i>\"");
 
 	output("\n\nIn front of you, the engines spin back down. A moment later, they're silent. ");
@@ -711,8 +702,7 @@ public function phoenixTRYAGAINCHAMP():void
 public function phoenixYOUDIDITCHAMP():void
 {
 	author("Savin");
-	showBust("VALERIA");
-	showName("\nVALERIA");
+	showValeria();
 	output("\n\nWith a sudden roar, the engines come to life, thrumming deafeningly. You step back as heat rolls off them, staying just long enough to see that the power is holding steady. Finally, the lights flicker back on, and the shaking of the deck abates as the shields are reinforced by the added power. Looks like you've bought the <i>Phoenix</i> some time once again.");
 
 	output("\n\n\"<i>I think we're alright,</i>\" Valeria says, barely audible over the roar of the engines. \"<i>Ah, the captain wants you. Head back up to the cockpit, [pc.name]. We need to get out of here before the shields buckle again!</i>\"");
