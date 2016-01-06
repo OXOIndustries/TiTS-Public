@@ -270,8 +270,18 @@ package classes.GameData
 			{
 				if (kGAMECLASS.flags["FREED_DANE_FROM_TAIVRA"] == undefined)
 				{
-					if (pc.statusEffectv1("Cage Distance") != 0) addButton(10, "Cage", kGAMECLASS.moveToCage, undefined, "Cage", "Attempt to move closer to dane and [rival.name]'s cage.");
-					else addButton(10, "BreakCage", kGAMECLASS.breakOutDane, undefined, "Break Cage", "Try and break Dane out - that big, burly ausar might just level the playing field!");
+					if (pc.statusEffectv1("Cage Distance") != 0) addButton(10, "Cage", function():void {
+						kGAMECLASS.setEnemy(_hostiles[0]);
+						kGAMECLASS.moveToCage();
+						kGAMECLASS.setEnemy(null);
+					}
+					, undefined, "Cage", "Attempt to move closer to dane and [rival.name]'s cage.");
+					
+					else addButton(10, "BreakCage", function():void {
+						kGAMECLASS.setEnemy(_hostiles[0]);
+						kGAMECLASS.breakOutDane();
+						kGAMECLASS.setEnemy(null);
+					}, undefined, "Break Cage", "Try and break Dane out - that big, burly ausar might just level the playing field!");
 					return;
 				}
 			}
