@@ -112,13 +112,22 @@ output("\n\n[Back] Go to Ceria Main");
 public function buyFromCeria():void
 {
 	shopkeep = chars["CERIA"];
-	chars["CERIA"].keeperBuy = "Ceria gestures to the shelf of hair care products on your left. <i>“Alright, grab whatever you want off the shelf and I’ll ring it up for you.”</i>\n\nYou let your eyes roam across the various shampoos and conditioners on sale. You also see a rack with several teardrop-shaped medipens in a variety of colors.\n\n";
+	chars["CERIA"].keeperBuy = "Ceria gestures to the shelf of hair care products on your left. <i>“Alright, grab whatever you want off the shelf and I’ll ring it up for you.”</i>\n\nYou let your eyes roam across the various shampoos and conditioners on sale. You also see a rack with several teardrop-shaped medipens in a variety of colors.";
 	if(flags["CERIA_BOUGHT"] == undefined)
 	{
 		flags["CERIA_BOUGHT"] = 1;
-		chars["CERIA"].keeperBuy += "<i>“What are those?”</i> you ask, pointing towards the medipens.\n\n<i>“Oh, those are our Sylvanol-brand transformatives. I’ve gotten pretty into them myself. If you’re jealous of these-”</i> She gives you a wink as she twitches her lengthy ears. <i>“-you should give them a try. They’re an adjustable medipen, you just twist that dial near the top and they cycle between a few different settings.”</i>\n\n";
+		chars["CERIA"].keeperBuy += "\n\n<i>“What are those?”</i> you ask, pointing towards the medipens.\n\n<i>“Oh, those are our Sylvanol-brand transformatives. I’ve gotten pretty into them myself. If you’re jealous of these-”</i> She gives you a wink as she twitches her lengthy ears. <i>“-you should give them a try. They’re an adjustable medipen, you just twist that dial near the top and they cycle between a few different settings.”</i>";
 	}
-
+	else
+	{
+		if(flags["PLANET_3_UNLOCKED"] != undefined)
+		{
+			if(!chars["CERIA"].hasItem(new DoveBalm())) chars["CERIA"].inventory.push(new DoveBalm());
+			chars["CERIA"].keeperBuy += " Another rack holds what seem to be various tubes of skin balms.";
+		}
+		else chars["CERIA"].destroyItem(new DoveBalm());
+	}
+	chars["CERIA"].keeperBuy += "\n\n";
 	//List prices and whatnot. Back should go back to CERIA's main menu.
 	//Sell Menu
 	chars["CERIA"].keeperGreeting = "RUH ROH! SOMETHING WENT WRONG.";
