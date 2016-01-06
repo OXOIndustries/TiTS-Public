@@ -266,7 +266,7 @@ package classes.GameData
 				return;
 			}
 			
-			if (hasEnemyOfClass(Queensguard) || hasEnemyOfClass(Taivra))
+			if (!pc.hasStatusEffect("Tripped") && (hasEnemyOfClass(Queensguard) || hasEnemyOfClass(Taivra)))
 			{
 				if (kGAMECLASS.flags["FREED_DANE_FROM_TAIVRA"] == undefined)
 				{
@@ -1160,7 +1160,7 @@ package classes.GameData
 				if (target.statusEffectv1("Stunned") <= 0)
 				{
 					target.removeStatusEffect("Stunned");
-					if (target is PlayerCharacter) output("You manage to recover your wits and adopt a fighting stance!\n");
+					if (target is PlayerCharacter) output("You manage to recover your wits and adopt a fighting stance!");
 					else if (!target.isPlural) output(target.capitalA + target.uniqueName + " manages to recover " + target.mfn("his","her","its") + " wits and adopt a fighting stance!");
 					else output(target.capitalA + target.uniqueName + " manage to recover their wits and adopt a fighting stance!");
 				}
