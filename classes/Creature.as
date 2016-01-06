@@ -320,6 +320,7 @@ package classes {
 		public var eyeType: Number = 0;
 		public function eyeTypeUnlocked(newEyeType:int):Boolean 
 		{
+			if (eyeType == GLOBAL.TYPE_SYNTHETIC) return false;
 			return true;
 		}
 		public function eyeTypeLockedMessage():String
@@ -330,6 +331,7 @@ package classes {
 		public var eyeColor: String = "";
 		public function eyeColorUnlocked(newEyeColor:String):Boolean 
 		{
+			if (eyeType == GLOBAL.TYPE_SYNTHETIC) return false;
 			return true;
 		}
 		public function eyeColorLockedMessage():String 
