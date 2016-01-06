@@ -32,18 +32,10 @@ package classes.GameData
 	 * A lot of the additional messages that this has added will probably need tuning.
 	 * 		To get through this I haven't really applied *logic* in terms of what the messages are saying, and they
 	 * 		are mostly just a slight tweak on what was being output for the player, so sometimes they don't make much sense.
-	 * I've tried to clean up new line insertion as much as possible (removing it from the *messages* and putting them
-	 * higher up
-	 * 		the chain so its more "handled"), but I've probably missed some in places.
-	 * Forcibly clean up GooClones during the GooPrime fight if they get defeated rather
-	 * 		than allowing them to persist to the end of the fight in a defeated state.
-	 * Kara/Shade combat descriptions (function karaDesc())
-	 * adultCockvineGrenadesInEnclosedSpaces()
 	 * A shared repository for things like cooldown effects to tune combat
 	 * during group fights:
 	 * 		f.ex stopping a flashbang from being used too often when many
 	 * enemies can use the ability
-	 * Make sure parser-passthroughs are used appropriately (target and monster)
 	 */
 	
 	/**
@@ -266,12 +258,22 @@ package classes.GameData
 				return;
 			}
 			
-			if (hasEnemyOfClass(Queensguard) || hasEnemyOfClass(Taivra))
+			if (!pc.hasStatusEffect("Tripped") && (hasEnemyOfClass(Queensguard) || hasEnemyOfClass(Taivra)))
 			{
 				if (kGAMECLASS.flags["FREED_DANE_FROM_TAIVRA"] == undefined)
 				{
-					if (pc.statusEffectv1("Cage Distance") != 0) addButton(10, "Cage", kGAMECLASS.moveToCage, undefined, "Cage", "Attempt to move closer to dane and [rival.name]'s cage.");
-					else addButton(10, "BreakCage", kGAMECLASS.breakOutDane, undefined, "Break Cage", "Try and break Dane out - that big, burly ausar might just level the playing field!");
+					if (pc.statusEffectv1("Cage Distance") != 0) addButton(10, "Cage", function():void {
+						kGAMECLASS.setEnemy(_hostiles[0]);
+						kGAMECLASS.moveToCage();
+						kGAMECLASS.setEnemy(null);
+					}
+					, undefined, "Cage", "Attempt to move closer to dane and [rival.name]'s cage.");
+					
+					else addButton(10, "BreakCage", function():void {
+						kGAMECLASS.setEnemy(_hostiles[0]);
+						kGAMECLASS.breakOutDane();
+						kGAMECLASS.setEnemy(null);
+					}, undefined, "Break Cage", "Try and break Dane out - that big, burly ausar might just level the playing field!");
 					return;
 				}
 			}
@@ -854,7 +856,7 @@ package classes.GameData
 					output("\n<b>You are grappled and unable to fight normally!</b>");
 				}
 				
-				addButton(0, "Struggle", doStruggleRecover, pc); // 9999 - merge naleen coil struggle && mimbranesmother
+				addButton(0, "Struggle", doStruggleRecover, pc);
 				
 				if (pc.hasPerk("Static Burst") && (!hasEnemyOfClass(NyreaAlpha) && !hasEnemyOfClass(NyreaBeta)))
 				{
@@ -1150,7 +1152,7 @@ package classes.GameData
 				if (target.statusEffectv1("Stunned") <= 0)
 				{
 					target.removeStatusEffect("Stunned");
-					if (target is PlayerCharacter) output("You manage to recover your wits and adopt a fighting stance!\n");
+					if (target is PlayerCharacter) output("You manage to recover your wits and adopt a fighting stance!");
 					else if (!target.isPlural) output(target.capitalA + target.uniqueName + " manages to recover " + target.mfn("his","her","its") + " wits and adopt a fighting stance!");
 					else output(target.capitalA + target.uniqueName + " manage to recover their wits and adopt a fighting stance!");
 				}
@@ -2416,11 +2418,11 @@ package classes.GameData
 					output("\n\n<b>" + target.capitalA + target.uniqueName  + " </b>");
 					if(target.isPlural) output("<b>don't</b>");
 					else output("<b>doesn't</b>");
-					output("<b> seem to care to care for your erotically-charged display. (0)</b>");
+					output("<b> seem to care to care for your erotically-charged display.</b>");
 				}
 				else if(teaseType == "SQUIRT") 
 				{
-					output("\n\nYour milk goes wide. (0)");
+					output("\n\nYour milk goes wide.");
 					teaseSkillUp(teaseType);
 				}
 				else if (target is HuntressVanae || target is MaidenVanae)
@@ -2441,7 +2443,7 @@ package classes.GameData
 					output("\n\n" + target.capitalA + target.uniqueName  + " ");
 					if(target.isPlural) output("resist");
 					else output("resists");
-					output(" your erotically charged display... this time. (0)");
+					output(" your erotically charged display... this time.");
 
 					teaseSkillUp(teaseType);
 				}
@@ -2861,6 +2863,7 @@ package classes.GameData
 		private function prepFriendlyForCombat(target:Creature):void
 		{
 			target.droneTarget = null;
+			target.alreadyDefeated = false;
 			if (!(target is PlayerCharacter))
 			{
 				// TODO: Realistically, characters that join the player in combat should be subject to the same passage of time rules... but that's another story
@@ -2962,16 +2965,20 @@ package classes.GameData
 				// Looking for creatures of the same type as the one we're adding
 				if (currTarget is tType && currTarget != target)
 				{
+					// Fuck it, just force set these every time through :V
+					/*
 					// Check if it has a unique character appended
 					var lastChar:String = currTarget.uniqueName.charAt(currTarget.uniqueName.length - 1);
 					
 					// If it doesn't, append the one relative to the currentTargets position in the array
 					if (!InCollection(lastChar, appends))
 					{
+					*/
 						currTarget.uniqueName = currTarget.short + " " + appends[currIndex];
 						currTarget.buttonText = currTarget.btnTargetText + " " + appends[currIndex];
+					/*
 					}
-					
+					*/
 					hasSameType = true;
 					currIndex++;
 				}

@@ -587,6 +587,7 @@ public function queenOfTheDeepClimb():void
 	{
 		output("\n\nYou leap forward, running straight at the creature, hoping to take her by surprise. She shrieks and swings one of her oversized claws at you, slamming it into your chest and sending you flying back into the water. <i>“Clever, creature,”</i> she hisses, stomping forward. <i>“Very clever... but futile.”</i>");
 	}
+	CombatManager.processCombat();
 }
 
 public function queenOfTheDeepPCVictory():void

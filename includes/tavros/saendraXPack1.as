@@ -173,10 +173,20 @@ public function saendraX1LiftGo():void
 public function initsx1PirateGroupFight():void
 {
 	pc.createStatusEffect("Pitch Black", 0, 0, 0, 0, false, "Icon_Slow", "It’s pitch black here, making it almost impossible to see anything but for bursts of light accompanying weaponsfire.", true, 0);
+	saendra.createStatusEffect("Pitch Black", 0, 0, 0, 0, false, "Icon_Slow", "It’s pitch black here, making it almost impossible to see anything but for bursts of light accompanying weaponsfire.", true, 0);
+	
+	var enemies:Array = [];
+	
+	for (var i:int = 0; i < 4; i++)
+	{
+		var tEnemy:Creature = new SX1GroupPirates();
+		tEnemy.createStatusEffect("Pitch Black", 0, 0, 0, 0, false, "Icon_Slow", "It’s pitch black here, making it almost impossible to see anything but for bursts of light accompanying weaponsfire.", true, 0);
+		enemies.push(tEnemy);
+	}
 	
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyCharacters([pc, saendra]);
-	CombatManager.setHostileCharacters([new SX1GroupPirates(), new SX1GroupPirates(), new SX1GroupPirates(), new SX1GroupPirates()]);
+	CombatManager.setHostileCharacters(enemies);
 	CombatManager.victoryScene(sx1PirateGroupPCVictory);
 	CombatManager.lossScene(sx1PirateGroupPCLoss);
 	CombatManager.displayLocation("VOID PIRATES");

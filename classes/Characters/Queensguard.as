@@ -209,6 +209,8 @@
 			var target:Creature = selectTarget(hostileCreatures);
 			if (target == null) return;
 			
+			queensguardLongUpdate(target);
+			
 			if(HP()/HPMax() < 0.6 && statusEffectv1("Fungaled") < 3) queensGuardFungalButts();
 			else if(lust() >= 75 && !hasStatusEffect("Focused")) queensGuardLust(target);
 			else if(rand(5) == 0 && !hasStatusEffect("Disarmed")) queensGuardThunderKick(target);
@@ -303,19 +305,21 @@
 		
 		private function sliceAndDiceQueenieGuardieRetardie(target:Creature):void
 		{
+			var damage:DamageResult = new DamageResult();
+			
 			output("Queensguard charges you, swinging her blade in a wide arc. You ");
 			if(combatMiss(this, target)) output("parry it");
 			else
 			{
 				output("stagger back as it strikes you");
-				applyDamage(meleeDamage(), this, target, "melee");
+				damage.addResult(applyDamage(meleeDamage(), this, target, "suppress"));
 			}
 			output(", only to ");
 			if(!combatMiss(this, target)) 
 			{
 				output("be slammed with her shield a moment later");
 				weaponToggle(true);
-				applyDamage(meleeDamage(), this, target, "melee");
+				damage.addResult(applyDamage(meleeDamage(), this, target, "suppress"));
 				weaponToggle(false);
 			}
 			else output("have to dodge a shield swipe a second later");
@@ -324,14 +328,16 @@
 			else
 			{
 				output("yelp as the blade slams into you, leaving you reeling");
-				applyDamage(meleeDamage(), this, target, "melee");
+				damage.addResult(applyDamage(meleeDamage(), this, target, "suppress"));
 			}
 			output("!");
+			
+			if (damage.totalDamage > 0) outputDamage(damage);
 		}
 		
 		private function queensguardShieldBash(target:Creature):void
 		{
-			output("With a battle roar that reverberates off the stone walls, Queensguard charges forward shield-first, trying to slam the steel bulwark into you!");
+			output("With a battle roar that reverberates off the stone walls, the Queensguard charges forward shield-first, trying to slam the steel bulwark into you!");
 			if(combatMiss(this, target))
 			{
 				output("\nYou nimbly side-step the attack, letting the nyrean knight’s momentum carry her right past you!");
@@ -343,7 +349,7 @@
 				else output("bare [pc.skinFurScales]");
 				output(".");
 
-				output("The sheer weight of the impact");
+				output(" The sheer weight of the impact");
 				if(target.physique() + rand(20) + 1 >= physique() + 10) output(" nearly staggers you");
 				else
 				{
@@ -362,7 +368,7 @@
 				output("!");
 				//Swap in shield and back out to sword
 				weaponToggle(true);
-				applyDamage(meleeDamage(), this, target, "melee");
+				applyDamage(meleeDamage(), this, target, "minimal");
 				weaponToggle(false);
 			}
 		}

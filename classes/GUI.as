@@ -1439,6 +1439,13 @@
 			}
 		}
 		
+		public function getMainTextField():TextField
+		{
+			var module:GameTextModule = _availableModules["PrimaryOutput"];
+			
+			return module.mainTextField;
+		}
+		
 		public function leftBarDefaults():void
 		{
 			_leftSideBar.defaultLayout();
