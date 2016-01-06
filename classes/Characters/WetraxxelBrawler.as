@@ -250,7 +250,7 @@
 			else
 			{
 				output(" His forearm catches you right on the chin, and the weight of the brawler’s body slams you into the ground. You feel the weight of the world slam into the back of your head, rattling you to your core. <b>You’re knocked down!</b>");
-				target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "Icon_Constrict", "You've been tripped!", true, 0);
+				target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped!", true, 0);
 				applyDamage(damageRand(new TypeCollection( { kinetic: 10 } ), 10), this, target);
 			}
 		}
@@ -305,7 +305,7 @@
 					else
 					{
 						output(" The kick takes you completely by surprise, throwing you off your feet and sending you tumbling to the ground. You grunt as the wind’s knocked out of you, narrowly avoiding cracking your head on a sharp stone nearby. <b>You’re knocked down!</b>");
-						target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "Icon_Constrict", "You've been tripped!", true, 0);
+						target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped!", true, 0);
 					}
 				}
 

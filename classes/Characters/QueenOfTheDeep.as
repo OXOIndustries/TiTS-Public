@@ -400,10 +400,9 @@
 			if (numHits == 0) output(" though you're able to duck their attacks, especially now that you're out of the water");
 			else
 			{
-				output(" hitting you"); 
-				if (numHits == 1) output(" once");
-				else output(numHits + " times");
-				output(" and slathering you in her aphrodisiac venom");
+				var hitText:Array = ["nonce", "once", "twice", "thrice"]; // nonce, lol
+				
+				output(" hitting you " + hitText[numHits] + " and slathering you in her aphrodisiac venom");
 			}
 			output(". Worse, one of her gigantic claws reaches back over her shoulder, trying to pincer you off her back!");
 			
@@ -416,7 +415,7 @@
 
 				output("\n\n<i>“I said OFF!”</i> the woman bellows, hurling you like a rag doll across the cavern and into the depths of the lake. <b>There goes your advantage!</b>");
 				
-				createStatusEffect("Watered Down", 0, 0, 0, 0, false, "Icon_Slow", "You're submerged in water, and your movements are dramatically slowed because of it. While you're fighting in the lake, your Reflex is reduced!", true, 0);
+				target.createStatusEffect("Watered Down", 0, 0, 0, 0, false, "Icon_Slow", "You're submerged in water, and your movements are dramatically slowed because of it. While you're fighting in the lake, your Reflex is reduced!", true, 0);
 			}
 			
 			if (numHits > 0 || clawHit)

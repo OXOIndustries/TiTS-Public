@@ -2863,6 +2863,7 @@ package classes.GameData
 		private function prepFriendlyForCombat(target:Creature):void
 		{
 			target.droneTarget = null;
+			target.alreadyDefeated = false;
 			if (!(target is PlayerCharacter))
 			{
 				// TODO: Realistically, characters that join the player in combat should be subject to the same passage of time rules... but that's another story
@@ -2964,16 +2965,20 @@ package classes.GameData
 				// Looking for creatures of the same type as the one we're adding
 				if (currTarget is tType && currTarget != target)
 				{
+					// Fuck it, just force set these every time through :V
+					/*
 					// Check if it has a unique character appended
 					var lastChar:String = currTarget.uniqueName.charAt(currTarget.uniqueName.length - 1);
 					
 					// If it doesn't, append the one relative to the currentTargets position in the array
 					if (!InCollection(lastChar, appends))
 					{
+					*/
 						currTarget.uniqueName = currTarget.short + " " + appends[currIndex];
 						currTarget.buttonText = currTarget.btnTargetText + " " + appends[currIndex];
+					/*
 					}
-					
+					*/
 					hasSameType = true;
 					currIndex++;
 				}

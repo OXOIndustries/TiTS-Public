@@ -65,7 +65,7 @@ package classes.Characters
 			this.XPRaw = 500;
 			this.level = 5;
 			this.credits = 120 + rand(52);
-			this.HPMod = 100;
+			this.HPMod = 175;
 			this.HPRaw = this.HPMax();
 			
 			this.femininity = 35;
