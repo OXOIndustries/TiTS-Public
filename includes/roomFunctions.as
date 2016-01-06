@@ -24,6 +24,7 @@ import classes.Items.Guns.TachyonBeamLaser;
 import classes.Items.Guns.ZKRifle;
 import classes.Items.Melee.ShockBlade;
 import classes.Items.Miscellaneous.EmptySlot;
+import classes.Items.Miscellaneous.GrayMicrobots;
 import classes.Items.Miscellaneous.HorseCock;
 import classes.Items.Miscellaneous.PHAccess;
 import classes.Items.Miscellaneous.Silicone;
@@ -221,10 +222,10 @@ public function debugMenusTwo():void
 		itemCollect(foundLootItems);
 	});
 	
-	addItemButton(1, new AtmaArmor(), function():void {
-		output("\n\nAtma Armor.\n");
+	addItemButton(1, new GrayMicrobots(), function():void {
+		output("\n\nMicrobots.\n");
 		
-		quickLoot(new AtmaArmor());
+		quickLoot(new GrayMicrobots());
 	});
 	
 	addItemButton(2, new MyrBow(), function():void {
@@ -233,14 +234,14 @@ public function debugMenusTwo():void
 		quickLoot(new MyrBow());
 	});
 	
-	addItemButton(3, new DBGShield(), function(): void {
-		output("\n\nDBG Shield.\n");
-		quickLoot(new DBGShield());
+	addButton(3, "Goozooka", function(): void {
+		output("\n\nGoozooka.\n");
+		pc.createKeyItem("Goozooka");
 	});
 	
-	addItemButton(4, new PlasmaPistol(), function():void {
-		output("\n\nPlasma Pistol.\n");
-		quickLoot(new PlasmaPistol());
+	addItemButton(4, new Goovolver(), function():void {
+		output("\n\nGoovolver.\n");
+		quickLoot(new Goovolver());
 	});
 	
 	addButton(5, "OvirTF", function():void {
