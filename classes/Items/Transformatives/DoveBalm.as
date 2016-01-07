@@ -7,6 +7,8 @@ package classes.Items.Transformatives
 	import classes.GameData.TooltipManager;
 	import classes.kGAMECLASS;
 	import classes.StringUtil;
+	import classes.Engine.Interfaces.*;
+	import classes.Engine.Utility.rand;
 	
 	public class DoveBalm extends ItemSlotClass
 	{
@@ -34,58 +36,55 @@ package classes.Items.Transformatives
 			
 			version = _latestVersion;
 		}
-		protected function rand(max: Number): Number {
-			return int(Math.random() * max);
-		}
 		//METHOD ACTING!
 		override public function useFunction(target:Creature, usingCreature:Creature = null):Boolean
 		{
 			// Initialize variables
 			var bonus: Number = 0;
-			kGAMECLASS.clearOutput();
+			clearOutput();
 			
 			if(target is PlayerCharacter)
 			{
-				kGAMECLASS.author("Couch");
+				author("Couch");
 				// PC does not have wings:
 				if(target.wingType == 0)
 				{
-					kGAMECLASS.output("You");
-					if(pc.isChestGarbed()) kGAMECLASS.output(" remove your [pc.upperGarments] and");
-					kGAMECLASS.output(" twist around in order to get at your back, carefully squeezing out the balm into a hand and rubbing it in as directed. After a few moments the affected area starts to feel warm, and you grunt as you feel the [pc.skinFurScalesNoun] bulge outward.");
+					output("You");
+					if(target.isChestGarbed()) output(" remove your [pc.upperGarments] and");
+					output(" twist around in order to get at your back, carefully squeezing out the balm into a hand and rubbing it in as directed. After a few moments the affected area starts to feel warm, and you grunt as you feel the [pc.skinFurScalesNoun] bulge outward.");
 					// 75% chance that the PC grows feathered wings.
 					if(rand(4) != 0)
 					{
 						target.wingType = GLOBAL.TYPE_DOVETWO;
-						kGAMECLASS.output("\n\nThe bulging and the heat intensify until you feel a moment of pain followed by a sweet cool feeling of relief. A few warm tingles run up and down your spine as your body’s rewired to work with its new parts, and you check your codex to discover <b>you’ve gained [pc.furColor]-feathered wings</b>!");
+						output("\n\nThe bulging and the heat intensify until you feel a moment of pain followed by a sweet cool feeling of relief. A few warm tingles run up and down your spine as your body’s rewired to work with its new parts, and you check your codex to discover <b>you’ve gained [pc.furColor]-feathered wings</b>!");
 					}
 					else
 					{
-						kGAMECLASS.output("\n\nSomething feels off, you can feel more than two new appendages growing within your back. You start to panic, but the sudden burst of pain and blessed relief that follows do a good job of distracting you. When you recover and check your codex, you see that <b>you’ve gained");
+						output("\n\nSomething feels off, you can feel more than two new appendages growing within your back. You start to panic, but the sudden burst of pain and blessed relief that follows do a good job of distracting you. When you recover and check your codex, you see that <b>you’ve gained");
 						// 15% chance that the PC grows four feathered wings.
 						if(rand(3) != 0)
 						{
 							target.wingType = GLOBAL.TYPE_DOVEFOUR;
-							kGAMECLASS.output(" four");
+							output(" four");
 						}
 						// 10% chance that the PC grows six feathered wings.
 						else
 						{
 							target.wingType = GLOBAL.TYPE_DOVESIX;
-							kGAMECLASS.output(" six");
+							output(" six");
 						}
-						kGAMECLASS.output(" [pc.furColor]-feathered wings<b>! Well, that’s certainly a rarity!");
+						output(" [pc.furColor]-feathered wings<b>! Well, that’s certainly a rarity!");
 					}
-					kGAMECLASS.output("\n\nUpon rubbing your new feathers, you find them to be blissfully soft to the touch.");
+					output("\n\nUpon rubbing your new feathers, you find them to be blissfully soft to the touch.");
 				}
 				// PC has any wing type granted by this item:
 				else if(target.wingType == GLOBAL.TYPE_DOVETWO || target.wingType == GLOBAL.TYPE_DOVEFOUR || target.wingType == GLOBAL.TYPE_DOVESIX)
 				{
-					kGAMECLASS.output("Even though you already have feathered wings, you opt to apply some of the balm to your wingpoints anyway.");
+					output("Even though you already have feathered wings, you opt to apply some of the balm to your wingpoints anyway.");
 					// 80% chance of dud result.
 					if(rand(5) != 0)
 					{
-						kGAMECLASS.output("\n\nA heat builds in your wings, then fades. You’re not really sure what you expected to happen...");
+						output("\n\nA heat builds in your wings, then fades. You’re not really sure what you expected to happen...");
 					}
 					// 20% chance of wing type changing to one of the other two types that can be granted by this item.
 					else
@@ -93,53 +92,53 @@ package classes.Items.Transformatives
 						// Change to two wings:
 						if(target.wingType != GLOBAL.TYPE_DOVETWO)
 						{
-							kGAMECLASS.output("\n\nYou feel your");
-							if(target.wingType == GLOBAL.TYPE_DOVEFOUR) kGAMECLASS.output(" four");
-							else kGAMECLASS.output(" six");
+							output("\n\nYou feel your");
+							if(target.wingType == GLOBAL.TYPE_DOVEFOUR) output(" four");
+							else output(" six");
 							
 							target.wingType = GLOBAL.TYPE_DOVETWO;
 							
-							kGAMECLASS.output(" wings grow hot and meld together, <b>becoming a standard single pair</b> once they cool off.");
+							output(" wings grow hot and meld together, <b>becoming a standard single pair</b> once they cool off.");
 						}
 						// Change to four or six wings from two:
 						else if(target.wingType == GLOBAL.TYPE_DOVETWO)
 						{
-							kGAMECLASS.output("\n\nYou feel your wings grow hot, then begin to stretch vertically before they suddenly split apart, new flesh and feathers growing in so that when the heat fades, <b>you’re left with");
+							output("\n\nYou feel your wings grow hot, then begin to stretch vertically before they suddenly split apart, new flesh and feathers growing in so that when the heat fades, <b>you’re left with");
 							if(rand(2) == 0)
 							{
 								target.wingType = GLOBAL.TYPE_DOVEFOUR;
-								kGAMECLASS.output(" four");
+								output(" four");
 							}
 							else
 							{
 								target.wingType = GLOBAL.TYPE_DOVESIX;
-								kGAMECLASS.output(" six");
+								output(" six");
 							}
-							kGAMECLASS.output(" wings instead of two.</b>");
+							output(" wings instead of two.</b>");
 						}
 						// Change to four or six wings from four or six wings:
 						else
 						{
-							kGAMECLASS.output("\n\nYou feel your wings grow hot, melding together and then splitting again so that <b>you’re left with");
+							output("\n\nYou feel your wings grow hot, melding together and then splitting again so that <b>you’re left with");
 							// Four to six.
 							if(target.wingType == GLOBAL.TYPE_DOVEFOUR)
 							{
 								target.wingType = GLOBAL.TYPE_DOVESIX;
-								kGAMECLASS.output(" six");
+								output(" six");
 							}
 							// Six to four.
 							else if(target.wingType == GLOBAL.TYPE_DOVESIX)
 							{
 								target.wingType = GLOBAL.TYPE_DOVEFOUR;
-								kGAMECLASS.output(" four");
+								output(" four");
 							}
 							// Failsafe.
 							else
 							{
 								target.wingType = GLOBAL.TYPE_DOVETWO;
-								kGAMECLASS.output(" two");
+								output(" two");
 							}
-							kGAMECLASS.output(" feathered wings</b> by the time the heat fades.");
+							output(" feathered wings</b> by the time the heat fades.");
 						}
 					}
 				}
@@ -153,39 +152,39 @@ package classes.Items.Transformatives
 					// 10% chance that PC’s wing type changes to six feathered wings.
 					else target.wingType = GLOBAL.TYPE_DOVESIX;
 					
-					kGAMECLASS.output("You already have wings, but you’d kind of like to try out feathers. You rub the balm into your wingpoints, feeling a heat well up inside them almost as soon as you pull your hand away. Your wings practically melt into their new form like candle wax");
+					output("You already have wings, but you’d kind of like to try out feathers. You rub the balm into your wingpoints, feeling a heat well up inside them almost as soon as you pull your hand away. Your wings practically melt into their new form like candle wax");
 					if(target.wingType == GLOBAL.TYPE_DOVEFOUR || target.wingType == GLOBAL.TYPE_DOVESIX)
 					{
-						kGAMECLASS.output(", though it comes with an odd splitting sensation you’re pretty sure isn’t supposed to happen");
+						output(", though it comes with an odd splitting sensation you’re pretty sure isn’t supposed to happen");
 					}
-					kGAMECLASS.output(".");
-					kGAMECLASS.output("\n\nBy the time your wings cool off, <b>they’ve become");
-					if(target.wingType == GLOBAL.TYPE_DOVETWO) kGAMECLASS.output(" two");
-					else if(target.wingType == GLOBAL.TYPE_DOVEFOUR) kGAMECLASS.output(" four");
-					else kGAMECLASS.output(" six");
-					kGAMECLASS.output(" majestic [pc.furColor]-feathered wings<b>!");
-					kGAMECLASS.output("\n\n");
+					output(".");
+					output("\n\nBy the time your wings cool off, <b>they’ve become");
+					if(target.wingType == GLOBAL.TYPE_DOVETWO) output(" two");
+					else if(target.wingType == GLOBAL.TYPE_DOVEFOUR) output(" four");
+					else output(" six");
+					output(" majestic [pc.furColor]-feathered wings<b>!");
+					output("\n\n");
 					if(target.wingType == GLOBAL.TYPE_DOVEFOUR || target.wingType == GLOBAL.TYPE_DOVESIX)
 					{
-						kGAMECLASS.output("Wait,");
-						if(target.wingType == GLOBAL.TYPE_DOVEFOUR) kGAMECLASS.output(" four");
-						else kGAMECLASS.output(" six");
-						kGAMECLASS.output("? Well that’s certainly unusual, though the label did warn you it could happen. ");
+						output("Wait,");
+						if(target.wingType == GLOBAL.TYPE_DOVEFOUR) output(" four");
+						else output(" six");
+						output("? Well that’s certainly unusual, though the label did warn you it could happen. ");
 					}
-					kGAMECLASS.output("You pet one of your new wings, discovering that the feathers are deliciously soft.");
+					output("You pet one of your new wings, discovering that the feathers are deliciously soft.");
 				}
 				// Failsafe, something is wrong here...
 				else
 				{
-					kGAMECLASS.output("You");
-					if(pc.isChestGarbed()) kGAMECLASS.output(" remove your [pc.upperGarments] and");
-					kGAMECLASS.output(" twist around in order to get at your back, carefully squeezing out the balm into a hand and rubbing it in as directed. After a few moments the affected area starts to tingle a little, and then... nothing. You should have known this wouldn’t have worked... what a rip-off!");
+					output("You");
+					if(target.isChestGarbed()) output(" remove your [pc.upperGarments] and");
+					output(" twist around in order to get at your back, carefully squeezing out the balm into a hand and rubbing it in as directed. After a few moments the affected area starts to tingle a little, and then... nothing. You should have known this wouldn’t have worked... what a rip-off!");
 				}
 			}
 			//Not the player!
 			else
 			{
-				kGAMECLASS.output(target.capitalA + target.short + " applies the balm to no effect.");
+				output(target.capitalA + target.short + " applies the balm to no effect.");
 			}
 			return false;
 		}
