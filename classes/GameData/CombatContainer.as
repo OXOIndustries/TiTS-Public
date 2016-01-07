@@ -1346,21 +1346,6 @@ package classes.GameData
 			}
 			
 			// Special shits
-			if (pc.hasKeyItem("Goozooka"))
-			{
-				if (!pc.hasItem(new GrayMicrobots()))
-				{
-					addDisabledButton(bOff, "Goozooka", "Fire Goozooka", "You don't have any Gray Goo samples to use as ammunition for the Goozooka.");
-				}
-				else
-				{
-					if(pc.hasStatusEffect("Disarmed")) addDisabledButton(bOff,"Goozooka","Goozooka","You cannot use a goozooka while disarmed.");
-					else addButton(bOff, "Goozooka", selectTarget, CombatAttacks.GoozookaAttack, "Fire Goozooka", "Fire a Gray Goo at your enemy for the princely sum of a single sample of Gray Microbots.");
-				}
-				bOff++;
-			}
-			
-			
 			if (pc.armor is GooArmor)
 			{
 				if (!pc.hasStatusEffect("Reduced Goo"))
@@ -1447,7 +1432,7 @@ package classes.GameData
 			processCombat();
 		}
 		
-		private function selectSimpleAttack(f:Function):void
+		public function selectSimpleAttack(f:Function):void
 		{
 			var t:Creature = null;
 			
@@ -1477,7 +1462,7 @@ package classes.GameData
 			}
 		}
 		
-		private function selectSimpleTarget(f:Function):void
+		public function selectSimpleTarget(f:Function):void
 		{
 			clearMenu();
 			

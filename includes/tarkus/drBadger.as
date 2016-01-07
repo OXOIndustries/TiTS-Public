@@ -1,8 +1,12 @@
 ﻿public function showDrBadger(nude:Boolean = false):void
 {
 	showName("DR.\nBADGER");
-	if(nude) showBust("DRBADGER_NUDE");
-	else showBust("DRBADGER");
+	if(flags["BADGER_QUEST"] != -3)
+	{
+		if(nude) showBust("DRBADGER_NUDE");
+		else showBust("DRBADGER");
+	}
+	else showBust("DR_BADGER_BIMBO");
 }
 
 public function bimbotoriumHallBonus():Boolean
@@ -35,7 +39,8 @@ public function drBadgerMenu():void
 
 	if(flags["MET_DR_BADGER"] != undefined)
 	{
-		if(flags["BADGER_QUEST"] == undefined) 
+		if(flags["BADGER_QUEST"] == -2) addButton(6,"Zap Her!",bimboZapDrBadger,undefined,"Zap Her!","Turn the tables on Dr Badger, zapping her with your reprogrammed raygun and turning her into a bimbo instead of Penny.");
+		else if(flags["BADGER_QUEST"] == undefined) 
 		{
 			//[mouse-over text for button is: [See just what this "job offer" is that the doctor has for you]
 			addButton(6,"Job",drBadgerJobOffer,undefined,"Job","See just what this \"job offer\" is that the doctor has for you.")
@@ -75,7 +80,11 @@ public function drBadgerBonusShit():Boolean
 	{
 		//Room desc
 		output("The inside of the \"good\" doctor's shop is much the same as you remember it, complete with giant brain-lasers and devices whose purpose you don't even want to hazard. She's every bit the mad scientist you'd expect, which makes her the perfect person to sell you some of the less savory items the galaxy has to offer.\n\n");
-		
+		if(flags["BADGER_QUEST"] == -3) 
+		{
+			bimboBadgerShopStuff();
+			return false;
+		}
 	}
 	addButton(0,"Dr.Badger",repeatBadgerApproach,undefined,"Dr. Badger","Check in with the curvy, bimbo badger.");
 	return false;

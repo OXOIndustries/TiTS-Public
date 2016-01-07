@@ -36,7 +36,10 @@ package classes.GameData
 			{
 				var atk:SingleCombatAttack = a[i];
 				
-				if (!atk.IsDisplayable(target)) continue;
+				if (!atk.IsDisplayable(target))
+				{
+					continue;
+				}
 				
 				atks.push(atk);
 			}
@@ -360,11 +363,12 @@ package classes.GameData
 				return kGAMECLASS.pc.hasKeyItem("Goozooka");
 			}
 			GoozookaAttack.ExtendedAvailabilityCheck = function():Boolean {
-				return kGAMECLASS.pc.hasItemByName("Gray Microbots");
+				return kGAMECLASS.pc.hasItemByType(GrayMicrobots);
 			}
 			GoozookaAttack.TooltipTitle = "Goozooka";
 			GoozookaAttack.TooltipBody = "Fire a Gray Goo at your enemy for the princely sum of a single sample of Gray Microbots.";
 			GoozookaAttack.Implementor = GoozookaAttackImpl;
+			a.push(GoozookaAttack);
 			
 			// Shared NPC Attacks
 			// Attacks only intended to be used by NPCs!

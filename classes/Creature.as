@@ -2128,9 +2128,10 @@ package classes {
 			if(foundAmount >= amount) return true;
 			return false;
 		}
-		public function hasItemByName(arg:String,amount:int = 1):Boolean
+		public function hasItemByName(arg:String, amount:int = 1):Boolean
 		{
-			if(inventory.length == 0) return false;
+			if (inventory.length == 0) return false;
+			
 			var foundAmount:int = 0;
 			for(var x:int = 0; x < inventory.length; x++)
 			{

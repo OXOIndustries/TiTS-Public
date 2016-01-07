@@ -213,6 +213,11 @@ package classes.GameData
 			if (combatContainer) return combatContainer.hasEnemyOfClass(t);
 			return false;
 		}
+		public static function enemiesAlive():int
+		{
+			if (combatContainer) return combatContainer.enemiesAlive();
+			return -1;
+		}
 	}
 
 }
