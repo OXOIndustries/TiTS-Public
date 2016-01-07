@@ -39,7 +39,11 @@ public function drBadgerMenu():void
 
 	if(flags["MET_DR_BADGER"] != undefined)
 	{
-		if(flags["BADGER_QUEST"] == -2) addButton(6,"Zap Her!",bimboZapDrBadger,undefined,"Zap Her!","Turn the tables on Dr Badger, zapping her with your reprogrammed raygun and turning her into a bimbo instead of Penny.");
+		if(flags["BADGER_QUEST"] == -2)
+		{
+			if(pc.isBimbo() || pc.isBro() || pc.hasGenitals()) addButton(6,"Zap Her!",bimboZapDrBadger,undefined,"Zap Her!","Turn the tables on Dr Badger, zapping her with your reprogrammed raygun and turning her into a bimbo instead of Penny.");
+			else addDisabledButton(6,"Zap Her!","Zap Her!","You need to have genitals or be a bimbo or brute to try this!");
+		}
 		else if(flags["BADGER_QUEST"] == undefined) 
 		{
 			//[mouse-over text for button is: [See just what this "job offer" is that the doctor has for you]
