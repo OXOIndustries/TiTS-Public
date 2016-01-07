@@ -113,7 +113,6 @@ package classes.Items.Miscellaneous
 			{
 				kGAMECLASS.output("\nThe flashbang has no effect on " + targetCreature.a + targetCreature.short + ".");
 			}
-			kGAMECLASS.output("\n");
 		}
 		
 		public function npcUsed(targetCreature:Creature, usingCreature:Creature):void
@@ -133,7 +132,6 @@ package classes.Items.Miscellaneous
 			{
 				kGAMECLASS.output(" You manage to turn away just in time to avoid the brunt of the explosions disorienting effects.");
 			}
-			kGAMECLASS.output("\n");
 		}
 	}
 

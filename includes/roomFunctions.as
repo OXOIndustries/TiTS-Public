@@ -24,6 +24,7 @@ import classes.Items.Guns.TachyonBeamLaser;
 import classes.Items.Guns.ZKRifle;
 import classes.Items.Melee.ShockBlade;
 import classes.Items.Miscellaneous.EmptySlot;
+import classes.Items.Miscellaneous.FlashGrenade;
 import classes.Items.Miscellaneous.GrayMicrobots;
 import classes.Items.Miscellaneous.HorseCock;
 import classes.Items.Miscellaneous.PHAccess;
@@ -222,10 +223,10 @@ public function debugMenusTwo():void
 		itemCollect(foundLootItems);
 	});
 	
-	addItemButton(1, new GrayMicrobots(), function():void {
-		output("\n\nMicrobots.\n");
+	addItemButton(1, new FlashGrenade(), function():void {
+		output("\n\Flashbangs.\n");
 		
-		quickLoot(new GrayMicrobots());
+		quickLoot(new FlashGrenade());
 	});
 	
 	addItemButton(2, new MyrBow(), function():void {

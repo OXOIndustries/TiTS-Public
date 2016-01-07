@@ -2,6 +2,7 @@
 import classes.Creature;
 import classes.DataManager.Errors.VersionUpgraderError;
 import classes.DataManager.Serialization.ItemSaveable;
+import classes.GameData.CombatManager;
 import classes.ItemSlotClass;
 import classes.StorageClass;
 import classes.StringUtil;
@@ -109,7 +110,41 @@ public function combatUseItem(item:ItemSlotClass, targetCreature:Creature = null
 			{
 				// TODO: Show target selection interface
 				// Invoke menu, early return, call back to self
-				targetCreature = enemy;
+				var targets:Array = CombatManager.getHostileCharacters();
+				
+				if (targets.length == 1) targetCreature = targets[0];
+				else if (CombatManager.enemiesAlive() == 1)
+				{
+					for (var i:int = 0; i < targets.length; i++)
+					{
+						if (!targets[i].isDefeated())
+						{
+							targetCreature = targets[i];
+							break;
+						}
+					}
+				}
+				
+				if (targetCreature == null)
+				{
+					clearMenu();
+					
+					var bOff:int = 0;
+					for (i = 0; i < targets.length; i++)
+					{
+						if (!targets[i].isDefeated())
+						{
+							addButton(bOff, targets[i].buttonText, function(t_item:ItemSlotClass, t_target:Creature, t_user:Creature):Function {
+								return function():void
+								{
+									combatUseItem(t_item, t_target, t_user);
+								}
+							}(item, targets[i], pc));
+						}
+					}
+					
+					return;
+				}
 			}
 		}
 		

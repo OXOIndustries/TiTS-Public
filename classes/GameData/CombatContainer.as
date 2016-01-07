@@ -1432,7 +1432,7 @@ package classes.GameData
 			processCombat();
 		}
 		
-		private function selectSimpleAttack(f:Function):void
+		public function selectSimpleAttack(f:Function):void
 		{
 			var t:Creature = null;
 			
@@ -1462,7 +1462,7 @@ package classes.GameData
 			}
 		}
 		
-		private function selectSimpleTarget(f:Function):void
+		public function selectSimpleTarget(f:Function):void
 		{
 			clearMenu();
 			
