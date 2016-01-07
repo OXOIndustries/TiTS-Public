@@ -1065,6 +1065,7 @@ public function adjustGooBody(arg:Array):void
 	}
 	
 	output2("How would you like to change your " + part + "?");
+	showBiomass();
 	
 	addGhostButton(14,"Back",gooBodyCustomizer);
 }
