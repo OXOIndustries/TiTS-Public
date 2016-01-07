@@ -2137,7 +2137,7 @@ package classes.GameData
 					else output("they");
 					output(" normally hide within");
 				}
-				output(". You wrap a hand around your knot and give it a squeeze, showing off its size. <i>“Think that [enemy.vagOrAss] of yours can take the whole thing?”</i>");
+				output(". You wrap a hand around your knot and give it a squeeze, showing off its size. <i>“Think that " + target.vagOrAss(0) + " of yours can take the whole thing?”</i>");
 			}
 			//Reqs: PC has a cock with foreskin
 			//FLAG_FORESKINNED
@@ -2223,7 +2223,7 @@ package classes.GameData
 				else output("You direct your foe’s attention to between your thighs");
 				if(pc.hasSheath(0)) output(" and let [pc.oneCock] out of its sheath");
 				else if(pc.hasStatusEffect("Genital Slit")) output(" and let [pc.oneCock] slip out of your genital slit");
-				output(", a little bit of pre-cum already bubbling from your [pc.cockHead]. You give yourself a light handjob, enough to make your [pc.cumVisc] fluid squirt with volume comparable to a normal human’s full orgasm. <i>“My [pc.balls] can barely keep all this [pc.cumNoun] in.... Think your [enemy.vagOrAss] can do any better?”</i> You let go of your cum-packed cock");
+				output(", a little bit of pre-cum already bubbling from your [pc.cockHead]. You give yourself a light handjob, enough to make your [pc.cumVisc] fluid squirt with volume comparable to a normal human’s full orgasm. <i>“My [pc.balls] can barely keep all this [pc.cumNoun] in.... Think your " + target.vagOrAss(0) + " can do any better?”</i> You let go of your cum-packed cock");
 				if(pc.isCrotchGarbed()) output(" and cover up");
 				output(", ready to resume the fight.");
 			}
@@ -2512,7 +2512,7 @@ package classes.GameData
 					
 					buffer = textRands[rand(textRands.length)];
 				}
-				else if (damage < 4) buffer = "The busty huntress moans and begins cupping one of her [enemy.breasts], clearly titillated by your performance.";
+				else if (damage < 4) buffer = "The busty huntress moans and begins cupping one of her " + target.breastDescript(0) + ", clearly titillated by your performance.";
 				else if (damage < 10) buffer = "Your stacked opponent huskily moans and slips a webbed hand between her thighs, lewdly stroking her slit. She snaps out of it a few seconds later, biting her lip.";
 				else if (damage < 20) buffer = "The alien huntress clenches her thighs together as she watches you, rubbing them together as she desperately tries to hide her arousal. Clearly you're having an effect on her!"
 				else buffer = "The busty amazon parts her thighs and begins to stroke her twin clits to your lewd display, unable to stop herself. A few seconds later she jerks her webbed hand back, flushing wildly.";
