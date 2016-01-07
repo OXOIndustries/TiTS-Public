@@ -228,6 +228,7 @@ package classes.Items.Transformatives
 					// convert normal nipples to flat or inverted
 					if(changes < changeLimit && normalNips == target.breastRows && rand(3) != 0)
 					{
+						/*
 						if(nFlatNips > 0 && target.nippleLengthRatio < 1 && rand(2) == 0)
 						{
 							output("\n\nA strange sensation hits your your nipples. Quickly");
@@ -244,7 +245,9 @@ package classes.Items.Transformatives
 							}
 							changes++;
 						}
-						else if(nInvertNips > 0)
+						else 
+						*/
+						if(nInvertNips > 0)
 						{
 							output("\n\nAn unpleasent twinge of nerves brings your attention to your nipples.");
 							if(isTopClothed && !target.isChestExposed())
