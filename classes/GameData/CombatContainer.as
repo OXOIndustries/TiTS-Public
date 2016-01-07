@@ -3260,7 +3260,7 @@ package classes.GameData
 		
 		private function doCombatDrone(droneUser:Creature):void
 		{
-			if (droneUser.hasCombatDrone() && droneUser.droneTarget != null)
+			if (droneUser.hasCombatDrone() && droneUser.droneTarget != null && droneUser.shields() > 0)
 			{
 				var target:Creature = droneUser.droneTarget;
 				if (!target.isDefeated())
