@@ -30,6 +30,8 @@
 
 		[Embed(source = "../../../assets/images/npcs/drBadger.png", mimeType = "image/png")]
 		public var Bust_DRBADGER:Class;
+		[Embed(source = "../../../assets/images/npcs/dr_badger_bimbo.png", mimeType = "image/png")]
+		public var Bust_DR_BADGER_BIMBO:Class;
 
 		[Embed(source = "../../../assets/images/npcs/jacques00/firewall.png", mimeType = "image/png")]
 		public var Bust_FIREWALL:Class;

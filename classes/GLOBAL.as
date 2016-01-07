@@ -135,7 +135,8 @@
 		public static const TYPE_LIZAN:int                                  = 12;
 		public static const TYPE_SNAKE:int                                  = 13;
 		public static const TYPE_NAGA:int                                   = GLOBAL.TYPE_SNAKE;
-		public static const TYPE_CENTAUR:int                                = 14;
+		public static const TYPE_CENTAUR:int                                = GLOBAL.TYPE_EQUINE;
+		public static const TYPE_FROG:int                                   = 14;
 		public static const TYPE_DEMONIC:int                                = 15;
 		public static const TYPE_GOOEY:int                                  = 16;
 		public static const TYPE_KANGAROO:int                               = 17;
@@ -150,6 +151,9 @@
 		public static const TYPE_HUMANMASKED:int                            = 25;
 		public static const TYPE_MOUSE:int                                  = 26;
 		public static const TYPE_MOUSEMAN:int                               = 27;
+		public static const TYPE_DOVETWO:int                                = 28;
+		public static const TYPE_DOVEFOUR:int                               = 29;
+		public static const TYPE_DOVESIX:int                                = 30;
 		public static const TYPE_DRAGONFLY:int                              = 31;
 		public static const TYPE_MLP:int                                    = 32;
 		public static const TYPE_CUNTSNAKE:int                              = 33;
@@ -197,7 +201,7 @@
 			"Draconic",
 			"Lizan",
 			"Naga",
-			"Centaur",
+			"Frog",
 			"Demonic",
 			"Gooey",
 			"Kangaroo",
@@ -211,9 +215,9 @@
 			"Human Masked",
 			"Mouse",
 			"Mouseman",
-			"(Name Index 28)",
-			"(Name Index 29)",
-			"(Name Index 30)",
+			"Dove",
+			"Quad-Dove",
+			"Hexa-Dove",
 			"Dragonfly",
 			"MLP",
 			"Cuntsnake",
@@ -269,6 +273,7 @@
 			TYPE_BADGER,
 			TYPE_KANGAROO,
 			TYPE_GABILANI,
+			TYPE_FROG,
 		];
 		
 		public static const VALID_FACE_FLAGS:Array = [
@@ -289,6 +294,7 @@
 			TYPE_MYR,
 			TYPE_GABILANI,
 			TYPE_DEMONIC,
+			TYPE_FROG,
 		];
 		
 		public static const VALID_TONGUE_TYPES:Array = [
@@ -306,6 +312,7 @@
 			TYPE_RASKVEL,
 			TYPE_GOOEY,
 			TYPE_BEE,
+			TYPE_FROG,
 		];
 		
 		public static const VALID_TONGUE_FLAGS:Array = [
@@ -316,6 +323,7 @@
 			FLAG_SQUISHY,
 			FLAG_APHRODISIAC_LACED,
 			FLAG_GOOEY,
+			FLAG_STICKY,
 		];
 		
 		public static const VALID_EAR_TYPES:Array = [
@@ -340,6 +348,7 @@
 			TYPE_VANAE,
 			TYPE_SYLVAN,
 			TYPE_GABILANI,
+			TYPE_FROG,
 		];
 		
 		public static const VALID_ARM_TYPES:Array = [
@@ -397,6 +406,7 @@
 			TYPE_RASKVEL,
 			TYPE_OVIR,
 			TYPE_MYR,
+			TYPE_FROG,
 		];
 		
 		public static const VALID_LEG_FLAGS:Array = [
@@ -414,6 +424,7 @@
 			FLAG_CHITINOUS,
 			FLAG_FEATHERED,
 			FLAG_GOOEY,
+			FLAG_STICKY,
 		];
 		
 		public static const VALID_ANTENNAE_TYPES:Array = [
@@ -447,6 +458,9 @@
 			TYPE_SYLVAN,
 			TYPE_DARK_SYLVAN,
 			TYPE_MYR,
+			TYPE_DOVETWO,
+			TYPE_DOVEFOUR,
+			TYPE_DOVESIX,
 		];
 		
 		// None is for specifying no tail, which would normally pull the HUMAN name.
@@ -482,6 +496,7 @@
 			TYPE_VANAE,
 			TYPE_OVIR,
 			TYPE_MYR,
+			TYPE_FROG,
 		];
 		
 		public static const VALID_TAIL_FLAGS:Array = [
@@ -502,6 +517,7 @@
 			FLAG_KNOTTED,
 			FLAG_RIBBED,
 			FLAG_GOOEY,
+			FLAG_STICKY,
 		];
 		
 		public static const TAIL_GENITAL_NONE:int 	= 0;
