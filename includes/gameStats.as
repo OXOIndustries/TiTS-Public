@@ -1314,7 +1314,7 @@ public function displayQuestLog(showID:String = "All"):void
 			// Dr. Badger's Job
 			if(flags["BADGER_QUEST"] != undefined)
 			{
-				if(flags["BADGER_QUEST"] >= 0 && 9999 == 0) output2("\n<b><u>Doctor Badger’s Job Offer</u></b>");
+				if(flags["BADGER_QUEST"] >= 0) output2("\n<b><u>Doctor Badger’s Job Offer</u></b>");
 				else output2("\n<b><u>Doctor Badger’s Big Mistake</u></b>");
 				// Bimbo Raygun
 				output2("\n<b>* Bimbo Raygun, Status:</b>");
