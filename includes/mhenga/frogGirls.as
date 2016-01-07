@@ -13,8 +13,8 @@ import classes.Engine.Combat.DamageTypes.TypeCollection;
 //Set these all in skintone for the mob.
 /*
 "orange and green" 
-	"mottled brown" 
-	"black and gold" 
+"mottled brown" 
+"black and gold" 
 "black and blue" 
 "black and red" 
 "black and purple" 
@@ -35,14 +35,14 @@ public function keroSkinDetail(tEnemy:Creature = null):String
 	else if(tEnemy.skinTone == "black and red") return "dark inky black with vibrant blood red patches across her body";
 	else if(tEnemy.skinTone == "red and blue") return "vibrant red with deep blue arms and legs";
 	else if(tEnemy.skinTone == "black, blue, and yellow") return "blue striped black legs with a bright yellow upper body";
-	else return "solid sparkling gold"
+	else return "solid sparkling gold";
 }
 
 public function showFrogGirl(tEnemy:Creature = null):void
 {
 	if (tEnemy == null) tEnemy = enemy;
-	showBust(tEnemy.bustDisplay)
-	if(inCombat()) showName("FIGHT:\nKEROKORAS")
+	showBust(tEnemy.bustDisplay);
+	if (inCombat()) showName("FIGHT:\nKEROKORAS");
 	else showName("\nKEROKORAS");
 }
 

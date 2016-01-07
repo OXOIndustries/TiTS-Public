@@ -1257,14 +1257,14 @@ public function offerAlissYourAss():void
 		else output("yaoi-hole");
 		output(".");
 	}
-	else if(pc.analCapacity() >= chars["ALISS"].cockVolume(0)) output("Your asshole resists, reflexively attempting to clamp shut as the anal invader inches forward. You bite your lip as Aliss grunts, thrusting in with one smooth motion.");
+	else if(pc.analCapacity() <= chars["ALISS"].cockVolume(0)) output("Your asshole resists, reflexively attempting to clamp shut as the anal invader inches forward. You bite your lip as Aliss grunts, thrusting in with one smooth motion.");
 	else output("Your spacious and gaped asshole yawns widely as Aliss thrusts forward, engulfing her alien cock in one smooth motion.");
 	output(" A sigh escapes your lips as your fuckhole widens to accept the dick. You clench once, acutely aware of the miniature beast within you.");
 	pc.buttChange(chars["ALISS"].cockVolume(0),true,true,false);
 
 	output("\n\n\"<i>Ohh, fuck yes,</i>\" Aliss mutters under her breath, \"<i>");
 	if(pc.ass.looseness() < 1) output("You are <b>tight</b>!");
-	else if(pc.analCapacity() >= chars["ALISS"].cockVolume(0)) output("Your ass is squeezing me just right.");
+	else if(pc.analCapacity() <= chars["ALISS"].cockVolume(0)) output("Your ass is squeezing me just right.");
 	else output("Mmm, you certainly have a cock hungry ass, don't you?");
 	output("</i>\" You open your mouth to respond, but Aliss thrusts forward, replacing any coherent words coming out of your mouth with a deep, throaty moan. Thanks to the extra lubrication, she has no problem slipping a few more inches of smooth lizard cock inside.");
 

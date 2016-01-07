@@ -50,12 +50,12 @@ public function appearance(target:Creature):void
 		if(target.originalRace == target.race()) output2("You are " + indefiniteArticle(target.originalRace) + ".");
 		else
 		{
-			output2("You started your journey as " + indefiniteArticle(target.originalRace) + ", but you've become "+indefiniteArticle(target.race())+" over the course of your adventures.");
+			output2("You started your journey as " + indefiniteArticle(target.originalRace) + ", but you’ve become "+indefiniteArticle(target.race())+" over the course of your adventures.");
 		}
-		output2(" You're a good " + Math.floor(target.tallness / 12) + " feet");
+		output2(" You’re a good " + Math.floor(target.tallness / 12) + " feet");
 		if(target.tallness % 12 != 0) output2(" and " + target.tallness % 12 + " inches");
 		output2(" tall by ancient imperial measurements and " + Math.round(target.tallness * 0.0254 * 100)/100 + " meters in the more accepted metric system.");
-		output2(" Right now, you're");
+		output2(" Right now, you’re");
 		if(target.isNude() || target.armor is EmptySlot) output2(" not wearing a single scrap of armor,");
 		else output2(" wearing " + target.armor.description + ",");
 		if(target.isNude() || target.lowerUndergarment is EmptySlot) output2(" going commando down south,");
@@ -80,13 +80,13 @@ public function appearance(target:Creature):void
 			output2(" to the world.");
 		}
 		if(target.isChestExposed() && target.isCrotchExposed() && target.isAssExposed()) {
-			if(target.exhibitionism() >= 100) output2(" You're a shameless exhibitionist and proud of it, flaunting your naked body and giving the entire galaxy quite an eyeful!");
-			else if(target.exhibitionism() >= 66) output2(" Your naked body is like a second outfit for you, giving you naughty thoughts when in the public's gaze.");
-			else if(target.exhibitionism() >= 50) output2(" Maybe you're some kind of nudist, but it's not like you mind being naked anyway.");
-			else if(target.exhibitionism() >= 33) output2(" It's okay to show some nudity once in a while, right?");
-			else if(target.exhibitionism() >= 20) output2(" If anyone sees you this way, you can't help but be aroused a little.");
-			else if(target.exhibitionism() >= 10) output2(" If anyone sees you now, they're sure to think you're a nudist...");
-			else output2(" If anyone sees you now, they're sure to think you're a nudist!");
+			if(target.exhibitionism() >= 100) output2(" You’re a shameless exhibitionist and proud of it, flaunting your naked body and giving the entire galaxy quite an eyeful!");
+			else if(target.exhibitionism() >= 66) output2(" Your naked body is like a second outfit for you, giving you naughty thoughts when in the public’s gaze.");
+			else if(target.exhibitionism() >= 50) output2(" Maybe you’re some kind of nudist, but it’s not like you mind being naked anyway.");
+			else if(target.exhibitionism() >= 33) output2(" It’s okay to show some nudity once in a while, right?");
+			else if(target.exhibitionism() >= 20) output2(" If anyone sees you this way, you can’t help but be aroused a little.");
+			else if(target.exhibitionism() >= 10) output2(" If anyone sees you now, they’re sure to think you’re a nudist...");
+			else output2(" If anyone sees you now, they’re sure to think you’re a nudist!");
 		}
 
 		//Face
@@ -109,7 +109,7 @@ public function appearance(target:Creature):void
 			//appearance for skinheads
 			if(target.skinType != GLOBAL.SKIN_TYPE_FUR && target.skinType != GLOBAL.SKIN_TYPE_SCALES) {
 				output2(" Your face is human in shape and structure, with " + target.skin(true,true));
-				if(InCollection(target.skinTone, "black", "ebony", "sable") && InCollection(target.skinType, GLOBAL.SKIN_TYPE_SKIN, GLOBAL.SKIN_TYPE_GOO)) output2(", though with your dusky hue, the black kui-tan mask you sport isn't properly visible.");
+				if(InCollection(target.skinTone, "black", "ebony", "sable") && InCollection(target.skinType, GLOBAL.SKIN_TYPE_SKIN, GLOBAL.SKIN_TYPE_GOO)) output2(", though with your dusky hue, the black kui-tan mask you sport isn’t properly visible.");
 				else output2(", though it is decorated with a sly-looking kui-tan mask over your eyes.");
 			}
 			//appearance furscales
@@ -135,7 +135,7 @@ public function appearance(target:Creature):void
 		}
 		else if(target.faceType == GLOBAL.TYPE_VULPINE) {
 			output2(" You have a tapered, shrewd-looking vulpine face with a speckling of downward-curved whiskers just behind the nose.");
-			if(target.skinType == GLOBAL.SKIN_TYPE_SKIN) output2(" Oddly enough, there's no fur on your animalistic muzzle, just " + target.skinFurScales(true,true) + "."); 
+			if(target.skinType == GLOBAL.SKIN_TYPE_SKIN) output2(" Oddly enough, there’s no fur on your animalistic muzzle, just " + target.skinFurScales(true,true) + "."); 
 			else if(target.skinType == GLOBAL.SKIN_TYPE_FUR) output2(" A coat of " + target.skinFurScales(true,true) + " decorates your muzzle.");
 			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2(" Strangely, " + target.skinFurScales(true,true) + " adorn every inch of your animalistic visage.");
 		}
@@ -147,14 +147,14 @@ public function appearance(target:Creature):void
 		}
 		else if(target.faceType == GLOBAL.TYPE_MOUSE) {
 			//appearance
-			output2(" You have a snubby, tapered mouse's face, with whiskers, a little pink nose, and ");
+			output2(" You have a snubby, tapered mouse’s face, with whiskers, a little pink nose, and ");
 			if(target.skinType != GLOBAL.SKIN_TYPE_FUR && target.skinType != GLOBAL.SKIN_TYPE_SCALES) output2(target.skin(true,true));
 			else output2(target.skin(true,true) + " under your " + target.skinFurScales(true,true));
 			output2(". Two large incisors complete it.");
 		}
 		//Naga (same as snake)
 		else if(target.faceType == GLOBAL.TYPE_SNAKE) {
-			output2(" You have a face that resembles a combination between a human's and a snake's,");
+			output2(" You have a face that resembles a combination between a human’s and a snake’s,");
 			if(target.skinType == GLOBAL.SKIN_TYPE_SKIN) output2(" oddly uncovered by scales. Instead, your snake-like snout is covered in " + target.skin(true,true) + ".");
 			if(target.skinType == GLOBAL.SKIN_TYPE_FUR) output2(" covered in a layer of " + target.skinFurScales(true,true) + ".");
 			if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2(" covered in " + target.skinFurScales(true,true) + ", as one would expect of such a reptilian visage.");
@@ -170,7 +170,7 @@ public function appearance(target:Creature):void
 		//dog-face
 		else if(target.faceType == GLOBAL.TYPE_CANINE) {
 			if(target.skinType == GLOBAL.SKIN_TYPE_SKIN || target.skinType == GLOBAL.SKIN_TYPE_GOO) output2(" You have a dog-like face, complete with a wet nose. The odd visage is hairless and covered with " + target.skinFurScales(true,true) + ".");
-			if(target.skinType == GLOBAL.SKIN_TYPE_FUR) output2(" You have a dog's face, complete with wet nose and panting tongue. You've got " + target.skinFurScales(true,true) + ", hiding your " + target.skin(true,true) + " underneath your furry visage.");
+			if(target.skinType == GLOBAL.SKIN_TYPE_FUR) output2(" You have a dog’s face, complete with wet nose and panting tongue. You’ve got " + target.skinFurScales(true,true) + ", hiding your " + target.skin(true,true) + " underneath your furry visage.");
 			if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2(" You have the facial structure of a dog, wet nose and all, but overlaid with " + target.skinFurScales(true,true) + ".");
 		}
 		//cat-face
@@ -183,13 +183,13 @@ public function appearance(target:Creature):void
 		else if(target.faceType == GLOBAL.TYPE_BOVINE) {
 			if(target.skinType == GLOBAL.SKIN_TYPE_SKIN || target.skinType == GLOBAL.SKIN_TYPE_GOO) output2(" You have a face resembling that of an anthropomorphic bovine, with cow-like features, particularly a squared off wet nose. Despite your lack of fur elsewhere, your visage does have a short layer of " + target.furColor + " fuzz.");
 			if(target.skinType == GLOBAL.SKIN_TYPE_FUR) output2(" You have a face resembling that of an anthropomorphic bovine, with cow-like features, particularly a squared off wet nose. Your " + target.skinFurScales(true,true) + " thickens noticably on your head, looking shaggy and more than a little monstrous once laid over your visage.");
-			if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2(" Your face resembles an anthropomorphic bovine's, though strangely, it is covered in shimmering scales, right up to the flat, cow-like nose that protrudes from your face.");
+			if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2(" Your face resembles an anthropomorphic bovine’s, though strangely, it is covered in shimmering scales, right up to the flat, cow-like nose that protrudes from your face.");
 		}
 		//Panda-face
 		else if(target.faceType == GLOBAL.TYPE_PANDA) {
 			if(target.skinType == GLOBAL.SKIN_TYPE_SKIN || target.skinType == GLOBAL.SKIN_TYPE_GOO) output2(" You have a face resembling that of an anthropomorphic panda, with a short muzzle and black nose. Despite your lack of fur elsewhere, your visage does have a short layer of " + target.furColor + " fuzz.");
 			if(target.skinType == GLOBAL.SKIN_TYPE_FUR) output2(" You have a face resembling that of an anthropomorphic panda, with a short muzzle and black nose. Your " + target.skinFurScales(true,true) + " hides " + target.skin(true,true) + " underneath.");
-			if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2(" Your face resembles an anthropomorphic panda's, though strangely, it is covered in shimmering scales, right up to your black nose.");
+			if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2(" Your face resembles an anthropomorphic panda’s, though strangely, it is covered in shimmering scales, right up to your black nose.");
 		}
 		//Lizard-face
 		else if(target.faceType == GLOBAL.TYPE_LIZAN) {
@@ -204,13 +204,13 @@ public function appearance(target:Creature):void
 			if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2(" Your head pushes out into a muzzle with white scales across your nose and mouth as well as in a wide stripe up the center of your brow, giving you the appearance of a humanoid, scaled badger. The rest of it is wrapped in " + target.skinFurScales(true,true) + " that covers your " + target.skin(true,true) + ".");
 		}
 		else if(target.faceType == GLOBAL.TYPE_DRACONIC) {
-			output2(" Your face is a narrow, reptilian muzzle. It looks like a predatory lizard's at first glance, but with an unusual array of spikes along the under-jaw. It gives you a regal but fierce visage. Opening your mouth reveals several rows of dagger-like sharp teeth. The fearsome visage is decorated by " + target.skinFurScales(true,true) + ".");
+			output2(" Your face is a narrow, reptilian muzzle. It looks like a predatory lizard’s at first glance, but with an unusual array of spikes along the under-jaw. It gives you a regal but fierce visage. Opening your mouth reveals several rows of dagger-like sharp teeth. The fearsome visage is decorated by " + target.skinFurScales(true,true) + ".");
 		}
 		else if(target.faceType == GLOBAL.TYPE_KANGAROO) {
 			output2(" Your face is shaped like that of a kangaroo ");
 			if(target.skinType == GLOBAL.SKIN_TYPE_SKIN) output2("but bald, not covered in fur");
 			else output2("and covered with " + target.skinFurScales(true,true));
-			output2(". It's almost rabbit-like, except for the length of your muzzle.");
+			output2(". It’s almost rabbit-like, except for the length of your muzzle.");
 		}
 		else if(target.faceType == GLOBAL.TYPE_GABILANI) {
 			output2(" You have a narrow-jawed gabilani face");
@@ -326,7 +326,7 @@ public function appearance(target:Creature):void
 			}
 			else if(target.earType == GLOBAL.TYPE_SYLVAN) 
 			{
-				if(target.earLength <= 1) output2(" A pair of mostly-human ears with slightly pointed tips protrude from the sides of your skull, just like a fantasy elf's.");
+				if(target.earLength <= 1) output2(" A pair of mostly-human ears with slightly pointed tips protrude from the sides of your skull, just like a fantasy elf’s.");
 				//2-4 inches: 
 				else if(target.earLength <= 4) output2(" A pair of triangular, elven ears protrude from the sides of your skull, sticking out a full " + num2Text(target.earLength) + " inches from the sides of your head. Small extra muscles let them twitch or droop expressively.");
 				//5+ inches:
@@ -393,11 +393,11 @@ public function appearance(target:Creature):void
 			}
 			else if(target.earType == GLOBAL.TYPE_SYLVAN) 
 			{
-				if(target.earLength <= 1) output2(" The " + target.hairDescript(true,true) + " on your head nearly conceals a pair of mostly-human ears with slightly pointed tips, just like a fantasy elf's.");
+				if(target.earLength <= 1) output2(" The " + target.hairDescript(true,true) + " on your head nearly conceals a pair of mostly-human ears with slightly pointed tips, just like a fantasy elf’s.");
 				//2-4 inches: 
-				else if(target.earLength <= 4) output2(" The " + target.hairDescript(true,true) + " on your head can't hide a pair of triangular, elven ears. They stick out a full " + num2Text(target.earLength) + " inches from the sides of your head. Small extra muscles let them twitch or droop expressively.");
+				else if(target.earLength <= 4) output2(" The " + target.hairDescript(true,true) + " on your head can’t hide a pair of triangular, elven ears. They stick out a full " + num2Text(target.earLength) + " inches from the sides of your head. Small extra muscles let them twitch or droop expressively.");
 				//5+ inches:
-				else output2(" The " + target.hairDescript(true,true) + " atop your head can't possibly hide a pair of exquisitely long, elf-like ears. They extend a full " + num2Text(target.earLength) + " inches from the sides of your head, triangular in shape with a bit of downward curve along their length. A thought is all it takes for them to change their angle to suit your expression, letting even the most rugged face pull off a cutesy pout with ease.");
+				else output2(" The " + target.hairDescript(true,true) + " atop your head can’t possibly hide a pair of exquisitely long, elf-like ears. They extend a full " + num2Text(target.earLength) + " inches from the sides of your head, triangular in shape with a bit of downward curve along their length. A thought is all it takes for them to change their angle to suit your expression, letting even the most rugged face pull off a cutesy pout with ease.");
 			}
 			else if(target.earType == GLOBAL.TYPE_GABILANI)
 			{
@@ -463,7 +463,7 @@ public function appearance(target:Creature):void
 			//Minotaur horns
 			if(target.hornType == GLOBAL.TYPE_BOVINE) {
 				if(target.hornLength < 1) output2(" Two tiny horn-like nubs protrude from your forehead, resembling the horns of the young livestock kept by terrans.");
-				else if(target.hornLength < 2) output2(" Two small, roughly one-inch long bovine horns protrude from your forehead. They're kind of cute, actually.");
+				else if(target.hornLength < 2) output2(" Two small, roughly one-inch long bovine horns protrude from your forehead. They’re kind of cute, actually.");
 				else if(target.hornLength < 3) output2(" Two bovine horns, approximately two inches in length, jut from your forehead.");
 				else if(target.hornLength < 4) output2(" A pair of bovine horns jut a full three inches from your forehead.");
 				else if(target.hornLength < 5) output2(" Two horns protrude through the [target.skin] of your forehead. Each is about four inches in length and impossible to ignore.");
@@ -500,16 +500,19 @@ public function appearance(target:Creature):void
 			output2(", and ");
 			//WINGS!
 			if(target.wingType == GLOBAL.TYPE_SMALLBEE || target.wingType == GLOBAL.TYPE_MYR) output2("a pair of insect-like wings sprout from your back, too small to allow you to fly. They shimmer beautifully in the light.");
-			if(target.wingType == GLOBAL.TYPE_BEE) output2("a pair of large, insectile wings sprout from your back, reflecting the light through their clear membranes beautifully. They'll bear your weight if you choose to fly.");
-			if(target.wingType == GLOBAL.TYPE_SMALLDEMONIC) output2("a pair of tiny bat-like demon-wings sprout from your back, flapping cutely, otherwise of little use.");
-			if(target.wingType == GLOBAL.TYPE_DEMONIC) output2("a pair of large bat-like demon-wings fold behind your shoulders. With a muscle-twitch, you can extend them, and use them to soar gracefully through the air.");
-			if(target.wingType == GLOBAL.TYPE_SHARK) output2("a large shark-like fin has sprouted between your shoulder blades. With it you have far more control over swimming underwater.");
-			if(target.wingType == GLOBAL.TYPE_AVIAN) output2("a pair of large, feathery wings sprout from your back. Though you usually keep the " + target.hairColor + "-colored wings folded close, they can unfurl to allow you to soar as gracefully as a bird.");
-			if(target.wingType == GLOBAL.TYPE_SMALLDRACONIC) output2("small, vestigial wings sprout from your shoulders. They might look like bat's wings, but the membranes are covered in fine, delicate scales.");
-			else if(target.wingType == GLOBAL.TYPE_DRACONIC) output2("magnificent wings sprout from your shoulders. When unfurled they stretch further than your arm span, and a single beat of them is all you need to set out toward the sky. They look a bit like bat's wings, but the membranes are covered in fine, delicate scales and a wicked talon juts from the end of each bone.");
+			else if(target.wingType == GLOBAL.TYPE_BEE) output2("a pair of large, insectile wings sprout from your back, reflecting the light through their clear membranes beautifully. They’ll bear your weight if you choose to fly.");
+			else if(target.wingType == GLOBAL.TYPE_SMALLDEMONIC) output2("a pair of tiny bat-like demon-wings sprout from your back, flapping cutely, otherwise of little use.");
+			else if(target.wingType == GLOBAL.TYPE_DEMONIC) output2("a pair of large bat-like demon-wings fold behind your shoulders. With a muscle-twitch, you can extend them, and use them to soar gracefully through the air.");
+			else if(target.wingType == GLOBAL.TYPE_SHARK) output2("a large shark-like fin has sprouted between your shoulder blades. With it you have far more control over swimming underwater.");
+			else if(target.wingType == GLOBAL.TYPE_AVIAN) output2("a pair of large, feathery wings sprout from your back. Though you usually keep the " + target.hairColor + "-colored wings folded close, they can unfurl to allow you to soar as gracefully as a bird.");
+			else if(target.wingType == GLOBAL.TYPE_SMALLDRACONIC) output2("small, vestigial wings sprout from your shoulders. They might look like bat’s wings, but the membranes are covered in fine, delicate scales.");
+			else if(target.wingType == GLOBAL.TYPE_DRACONIC) output2("magnificent wings sprout from your shoulders. When unfurled they stretch further than your arm span, and a single beat of them is all you need to set out toward the sky. They look a bit like bat’s wings, but the membranes are covered in fine, delicate scales and a wicked talon juts from the end of each bone.");
 			else if(target.wingType == GLOBAL.TYPE_DRAGONFLY) output2("giant dragonfly wings hang from your shoulders. At a whim, you could twist them into a whirring rhythm fast enough to lift you off the ground and allow you to fly.");
 			else if(target.wingType == GLOBAL.TYPE_SYLVAN) output2("a quartet of blue gossamer wings sprout from your back, displaying a prismatic sheen when they flap. Despite their delicate appearance they have no problem carrying you aloft, and can fold up safely against your back for protection.");
 			else if(target.wingType == GLOBAL.TYPE_DARK_SYLVAN) output2("a quartet of gossamer wings sprout from your back, glittering black with a pattern that makes them look as though they’re coated in wisps of shadow when they flap. Despite their delicate appearance they have no problem carrying you aloft, and can fold up safely against your back for protection.");
+			else if(target.wingType == GLOBAL.TYPE_DOVETWO) output2("a pair of [pc.furColor] wings adorn your back, feathered like a dove’s and big enough to be worn like a cloak when folded over your body. They’re strong enough to glide with, but nice and soft to the touch.");
+			else if(target.wingType == GLOBAL.TYPE_DOVEFOUR) output2("four wings sprout from your back, each covered in wonderfully soft [pc.furColor] feathers and big enough to be worn like a robe when all four are folded over your body. They’re arranged so they don’t get in each other’s way when spread, thus you can still glide with them.");
+			else if(target.wingType == GLOBAL.TYPE_DOVESIX) output2("six wings sprout from your back, each covered in wonderfully soft [pc.furColor] feathers and big enough to be worn like a luxurious ceremonial robe when all six are folded over your body, which you often find yourself doing to help with getting through tight spaces. Despite their sheer bulk, you can still glide with them.");
 		}
 		else output2(".");
 		//Vanaebutt Skin
@@ -585,10 +588,10 @@ public function appearance(target:Creature):void
 		}
 		else if(target.armType == GLOBAL.TYPE_KUITAN)
 		{
-			if(target.hasArmFlag(GLOBAL.FLAG_GOOEY)) output2(" Your gooey arms end with gel-padded fingers.");
-			else if(!target.hasFur()) output2(" Dark brown pads rest on the pads of each of your fingers. ");
+			if(target.hasArmFlag(GLOBAL.FLAG_GOOEY)) output2(" Your gooey arms end with gel-padded fingers. ");
+			else if(!target.hasFur()) output2(" Dark brown pads rest on the tips of each of your fingers. ");
 			else output2(" A coat of " + target.furColor + " fur covers your arms below the shoulders, and your fingers are tipped with dark brown pads. ");
-			output2("They're softer and more supple than the finest leather.");
+			output2("They’re softer and more supple than the finest leather.");
 		}
 		else if(target.armType == GLOBAL.TYPE_BADGER) 
 		{
@@ -647,7 +650,7 @@ public function appearance(target:Creature):void
 		//Horse legType, other legType texts appear lower
 		if(target.legType == GLOBAL.TYPE_MLP)
 		{
-			output2(" From the waist down, you have an incredibly cute and cartoonish parody of a horse's body, with");
+			output2(" From the waist down, you have an incredibly cute and cartoonish parody of a horse’s body, with");
 			if(target.legCount == 2) output2(" both legs");
 			else output2(" all " + num2Text(target.legCount) + " legs");
 			output2(" ending in flat, rounded hooves.");
@@ -668,7 +671,7 @@ public function appearance(target:Creature):void
 					else output2(" that blend into your pillar-like waist, and");
 				}
 				if(target.hipRating() >= 6 && target.hipRating() < 10) output2(" that blend into the rest of your thick form, and");
-				if(target.hipRating() >= 10 && target.hipRating() < 15) output2(" that would be much more noticeable if you weren't so wide-bodied, and");
+				if(target.hipRating() >= 10 && target.hipRating() < 15) output2(" that would be much more noticeable if you weren’t so wide-bodied, and");
 				if(target.hipRating() >= 15 && target.hipRating() < 20) output2(" that sway and emphasize your thick, curvy shape, and");
 				if(target.hipRating() >= 20) output2(" that sway hypnotically on your extra-curvy frame, and");
 			}
@@ -687,7 +690,7 @@ public function appearance(target:Creature):void
 				if(target.femininity > 50) {
 					if(target.hipRating() >= 6 && target.hipRating() < 10) output2(" that draw the attention of those around you, and");
 					if(target.hipRating() >= 10 && target.hipRating() < 15) output2(" that make you walk with a sexy, swinging gait, and");
-					if(target.hipRating() >= 15 && target.hipRating() < 20) output2(" that make it look like you've birthed many children, and");
+					if(target.hipRating() >= 15 && target.hipRating() < 20) output2(" that make it look like you’ve birthed many children, and");
 					if(target.hipRating() >= 20) output2(" that make you look more like an animal waiting to be bred than any kind of human, and");
 				}
 				else {
@@ -783,11 +786,11 @@ public function appearance(target:Creature):void
 			output2(" A large, spherical spider-abdomen has grown out from your backside, covered in shiny");
 			if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2(" hardened " + target.scaleColor + " goo");
 			else output2(" black chitin");
-			output2(". Though it's heavy and bobs with every motion, it doesn't seem to slow you down.");
+			output2(". Though it’s heavy and bobs with every motion, it doesn’t seem to slow you down.");
 			/*
 			if(target.tailVenom > 50 && target.tailVenom < 80) output2(" Your bulging arachnid posterior feels fairly full of webbing.");
 			if(target.tailVenom >= 80 && target.tailVenom < 100) output2(" Your arachnid rear bulges and feels very full of webbing.");
-			if(target.tailVenom == 100) output2(" Your swollen spider-butt is distended with the sheer amount of webbing it's holding.");
+			if(target.tailVenom == 100) output2(" Your swollen spider-butt is distended with the sheer amount of webbing it’s holding.");
 			*/
 		}
 		else if(target.tailType == GLOBAL.TYPE_BEE) {
@@ -833,7 +836,7 @@ public function appearance(target:Creature):void
 			output2(" A short,");
 			if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2(" slimy");
 			else output2(" soft");
-			output2(" bunny tail sprouts just above your " + target.buttDescript() + ", twitching constantly whenever you don't think about it.");
+			output2(" bunny tail sprouts just above your " + target.buttDescript() + ", twitching constantly whenever you don’t think about it.");
 		}
 		else if(target.tailType == GLOBAL.TYPE_AVIAN) {
 			output2(" A tail of");
@@ -850,12 +853,12 @@ public function appearance(target:Creature):void
 			if(target.tailCount == 1)
 			{
 				if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2(" A swishing fox tail extends from your " + target.buttDescript() + ", curling around your body, all slick and shiny.");
-				else output2(" A swishing, colorful fox's brush extends from your " + target.buttDescript() + ", curling around your body - the soft fur feels lovely.");
+				else output2(" A swishing, colorful fox’s brush extends from your " + target.buttDescript() + ", curling around your body - the soft fur feels lovely.");
 			}
 			else
 			{
 				if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2(" " + StringUtil.upperCase(num2Text(target.tailCount)) + " swishing fox tails extend from your " + target.buttDescript() + ", curling around your body, all slick and shiny.");
-				else output2(" " + StringUtil.upperCase(num2Text(target.tailCount)) + " swishing, colorful fox's tails extend from your " + target.buttDescript() + ", curling around your body - the soft fur feels lovely.");
+				else output2(" " + StringUtil.upperCase(num2Text(target.tailCount)) + " swishing, colorful fox’s tails extend from your " + target.buttDescript() + ", curling around your body - the soft fur feels lovely.");
 			}
 		}
 		else if(target.tailType == GLOBAL.TYPE_DRACONIC) {
@@ -923,7 +926,7 @@ public function appearance(target:Creature):void
 			if(target.tailCount == 1) output2(" A thick, reptilian tail dangles behind you, swaying as a living counterbalance.");
 			else
 			{
-				output2(StringUtil.upperCase(num2Text(target.tailCount)) + " thick, reptilian tails dangle behind you, swaying like living counterbalance. It's difficult to keep the thick appendages from idly squirming");
+				output2(StringUtil.upperCase(num2Text(target.tailCount)) + " thick, reptilian tails dangle behind you, swaying like living counterbalance. It’s difficult to keep the thick appendages from idly squirming");
 				if(!target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2(" their scales");
 				output2(" against one another.");
 			}
@@ -938,7 +941,7 @@ public function appearance(target:Creature):void
 			{
 				output2(" Most of the length of the thing is coated in "+ target.skinTone +" skin, culminating in");
 				if(target.tailGenitalColor != "" && rand(2) == 0) output2(" " + indefiniteArticle(target.tailGenitalColor) + " shaft with");
-				output2(" a proud purple head that's distinctly cock-shaped in nature.");
+				output2(" a proud purple head that’s distinctly cock-shaped in nature.");
 			}
 			// Horse
 			else if (target.tailGenitalArg == GLOBAL.TYPE_EQUINE)
@@ -954,7 +957,7 @@ public function appearance(target:Creature):void
 				output2(" Most of the length of the thing is coated in "+ target.skinTone +" skin, culminating in a fleshy");
 				if(target.tailGenitalColor != "") output2(" " + target.tailGenitalColor);
 				else output2(" pink");
-				output2(" head that's distinctly cock-shaped in nature.");
+				output2(" head that’s distinctly cock-shaped in nature.");
 			}
 			// Bulbous
 			else if (target.tailGenitalArg == GLOBAL.TYPE_CANINE)
@@ -1046,7 +1049,7 @@ public function appearance(target:Creature):void
 				// Goo moound
 				else
 				{
-					output2(" In place of legs you have a shifting amorphous blob. Thankfully it's quite easy to propel yourself around on.");
+					output2(" In place of legs you have a shifting amorphous blob. Thankfully it’s quite easy to propel yourself around on.");
 					if(target.hasArmor()) output2(" The lowest portions of your " + target.armor.longName + " float around inside you, bringing you no discomfort.");
 				}
 			}
@@ -1112,9 +1115,9 @@ public function appearance(target:Creature):void
 		}
 		else if(target.legType == GLOBAL.TYPE_ARACHNID) 
 		{
-			if(target.legCount == 2) output2(" Your legs are covered in a reflective black, insectile carapace up to your mid-thigh, looking more like a pair of 'fuck-me-boots' than exoskeleton.");
-			else if(target.legCount < 4) output2(" Your legs are covered in a reflective black, insectile carapace up to your mid-thigh, looking more like 'fuck-me-boots' than exoskeleton.");
-			else output2(" Black chitin covers your legs up to the mid-thigh, looking more like a set of 'fuck-me-boots' than insectile armor.");
+			if(target.legCount == 2) output2(" Your legs are covered in a reflective black, insectile carapace up to your mid-thigh, looking more like a pair of ‘fuck-me-boots’ than exoskeleton.");
+			else if(target.legCount < 4) output2(" Your legs are covered in a reflective black, insectile carapace up to your mid-thigh, looking more like ‘fuck-me-boots’ than exoskeleton.");
+			else output2(" Black chitin covers your legs up to the mid-thigh, looking more like a set of ‘fuck-me-boots’ than insectile armor.");
 		}
 		else if(target.legType == GLOBAL.TYPE_DRIDER) 
 		{
@@ -1223,9 +1226,9 @@ public function appearance(target:Creature):void
 			else output2("Your [target.belly] is nice and smooth.");
 		}
 		else if (tempBelly <= 10) output2("Your [target.belly] is fairly average in appearance.");
-		else if (tempBelly <= 15) output2("Your [target.belly] would just barely push past the waistband of a pair of pants. It's a little bit of a muffin-top.");
-		else if (tempBelly <= 20) output2("Your [target.belly] is pretty decent-sized. There's no real hiding it.");
-		else if (tempBelly <= 30) output2("Your [target.belly] is impossible to miss. Wearing loose clothing wouldn't even help at this point.");
+		else if (tempBelly <= 15) output2("Your [target.belly] would just barely push past the waistband of a pair of pants. It’s a little bit of a muffin-top.");
+		else if (tempBelly <= 20) output2("Your [target.belly] is pretty decent-sized. There’s no real hiding it.");
+		else if (tempBelly <= 30) output2("Your [target.belly] is impossible to miss. Wearing loose clothing wouldn’t even help at this point.");
 		//full round bulky
 		else if (tempBelly <= 40) output2("Your [target.belly] is big enough that passersby might think you pregnant at a glance.");
 		//expansive extensive spacious
@@ -1271,7 +1274,7 @@ public function appearance(target:Creature):void
 		if (target.hairType == GLOBAL.HAIR_TYPE_GOO || target.hasStatusEffect("Goo Vent") || target.hasStatusEffect("Goo Crotch"))
 		{
 			output2("\n\nSince ");
-			if(target.isGoo()) output2("you're ");
+			if(target.isGoo()) output2("you’re ");
 			else output2("some parts of you are ");
 			output2("made of goo, you can adjust ");
 			if(target.isGoo()) output2("your body");
@@ -1448,21 +1451,21 @@ public function boobStuff(target:Creature):void
 				output2(" The plump, " + target.areolaSizeDescript() + ", " + target.nippleColor + " lips that you have in place of areolae could easily be parted to allow something stiff and hard inside your sensitive chest-based passages.");
 			}
 			else if(target.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_FLAT) {
-				output2(" There isn't any actual nub to your nipples - just flat, " + target.areolaSizeDescript() + ", " + target.nippleColor + " areolae.");
+				output2(" There isn’t any actual nub to your nipples - just flat, " + target.areolaSizeDescript() + ", " + target.nippleColor + " areolae.");
 			}
 		}
 		//Lactation and breast cup final!
 		if (target.isLactating())
 		{
 			if(target.milkFullness < 50) output2(" Your " + target.breastDescript(0) + " are producing [target.milk] but are nowhere near full at the moment.");
-			else if(target.milkFullness < 75) output2(" Your " + target.breastDescript(0) + " have a noticable amount of [target.milk] inside them now. Before long, they'll start swelling.");
+			else if(target.milkFullness < 75) output2(" Your " + target.breastDescript(0) + " have a noticable amount of [target.milk] inside them now. Before long, they’ll start swelling.");
 			else if(target.milkFullness < 100) output2(" Your " + target.breastDescript(0) + " are fairly full of [target.milk] and noticeably swollen.");
 			else if(target.milkFullness < 150) output2(" Your " + target.breastDescript(0) + " are sore and sensitive from being so stuffed with [target.milk]. You should release the pressure soon.");
 			else if(target.milkFullness < 200)
 			{
-				if(target.isMilkTank() && rand(2) == 0) output2(" Your " + target.breastDescript(0) + " are incredibly swollen with [target.milk], so much that they're much bigger than normal. Your lactation shows no signs of slowing down in the slightest.");
+				if(target.isMilkTank() && rand(2) == 0) output2(" Your " + target.breastDescript(0) + " are incredibly swollen with [target.milk], so much that they’re much bigger than normal. Your lactation shows no signs of slowing down in the slightest.");
 				else if(target.isMilkTank()) output2(" At least you are certain your enhanced [target.chestNoun] will never stop lactating, no matter what.");
-				else output2(" Your " + target.breastDescript(0) + " are painfully swollen with [target.milk], so much that they're much bigger than normal. The longer they stay like this, the more your lactation will slow.");
+				else output2(" Your " + target.breastDescript(0) + " are painfully swollen with [target.milk], so much that they’re much bigger than normal. The longer they stay like this, the more your lactation will slow.");
 			}
 			else
 			{
@@ -1473,8 +1476,8 @@ public function boobStuff(target:Creature):void
 			//Don't forget about the bras! Primarily when mentioning the slowing of milk production.
 			if(target.milkFullness > 150 && target.upperUndergarment.shortName != "")
 			{
-				if(target.upperUndergarment.shortName == "Bounty Bra" && target.isMilkTank()) output2(" The massaging vibrations eminating from your JoyCo maternity bra reminds you that you'll never stop lactating, but you wonder if it is really necessary since your lactation seems to be on an endless outflow.");
-				else if(target.upperUndergarment.shortName == "Bounty Bra") output2(" Luckily, the massaging vibrations emanating from your JoyCo maternity bra reminds you that you'll never stop lactating as long as you continue to wear the " + target.upperUndergarment.shortName + ".");
+				if(target.upperUndergarment.shortName == "Bounty Bra" && target.isMilkTank()) output2(" The massaging vibrations eminating from your JoyCo maternity bra reminds you that you’ll never stop lactating, but you wonder if it is really necessary since your lactation seems to be on an endless outflow.");
+				else if(target.upperUndergarment.shortName == "Bounty Bra") output2(" Luckily, the massaging vibrations emanating from your JoyCo maternity bra reminds you that you’ll never stop lactating as long as you continue to wear the " + target.upperUndergarment.shortName + ".");
 				else output2(" Unfortunately, a bit of [target.milk] leaks out onto your " + target.upperUndergarment.description + "... Maybe you should invest in a maternity bra?");
 			}
 		}
@@ -1581,7 +1584,7 @@ public function boobStuff(target:Creature):void
 					output2(" Plump lips cap them off in place of nipples.");
 				}
 				else if(target.breastRows[temp].nippleType == GLOBAL.NIPPLE_TYPE_FLAT) {
-					output2(" There isn't any actual nub to the nipples - just flat areolae.");
+					output2(" There isn’t any actual nub to the nipples - just flat areolae.");
 				}
 			}
 			if(target.breastRows[temp].breastRating() >= 1) output2(" They could easily fill " + indefiniteArticle(target.breastCup(temp)) + " bra.");
@@ -1592,14 +1595,14 @@ public function boobStuff(target:Creature):void
 		if (target.isLactating())
 		{
 			if(target.milkFullness < 50) output2(" Your [target.fullChest] are producing [target.milk] but are nowhere near full at the moment.");
-			else if(target.milkFullness < 75) output2(" Your [target.fullChest] have a noticable amount of [target.milk] inside them now. Before long, they'll start swelling.");
+			else if(target.milkFullness < 75) output2(" Your [target.fullChest] have a noticable amount of [target.milk] inside them now. Before long, they’ll start swelling.");
 			else if(target.milkFullness < 100) output2(" Your [target.fullChest] are fairly full of [target.milk] and noticeably swollen.");
 			else if(target.milkFullness < 150) output2(" Your [target.fullChest] are sore and sensitive from being so stuffed with [target.milk]. You should release the pressure soon.");
 			else if(target.milkFullness < 200)
 			{
-				if(target.isMilkTank() && rand(2) == 0) output2(" Your [target.fullChest] are incredibly swollen with [target.milk], so much that they're much bigger than normal. Your lactation shows no signs of slowing down in the slightest.");
+				if(target.isMilkTank() && rand(2) == 0) output2(" Your [target.fullChest] are incredibly swollen with [target.milk], so much that they’re much bigger than normal. Your lactation shows no signs of slowing down in the slightest.");
 				else if(target.isMilkTank()) output2(" At least you are certain your enhanced [target.chestNoun] will never stop lactating, no matter what.");
-				else output2(" Your [target.fullChest] are painfully swollen with [target.milk], so much that they're much bigger than normal. The longer they stay like this, the more your lactation will slow.");
+				else output2(" Your [target.fullChest] are painfully swollen with [target.milk], so much that they’re much bigger than normal. The longer they stay like this, the more your lactation will slow.");
 			}
 			else
 			{
@@ -1610,8 +1613,8 @@ public function boobStuff(target:Creature):void
 			//Bra specials
 			if(target.milkFullness > 150 && target.upperUndergarment.shortName != "")
 			{
-				if(target.upperUndergarment.shortName == "Bounty Bra" && target.isMilkTank()) output2(" The massaging vibrations eminating from your JoyCo maternity bra reminds you that you'll never stop lactating, but you wonder if it is really necessary since your lactation seems to be on an endless outflow.");
-				else if(target.upperUndergarment.shortName == "Bounty Bra") output2(" Luckily, the massaging vibrations emanating from your JoyCo maternity bra reminds you that you'll never stop lactating as long as you continue to wear the " + target.upperUndergarment.shortName + ".");
+				if(target.upperUndergarment.shortName == "Bounty Bra" && target.isMilkTank()) output2(" The massaging vibrations eminating from your JoyCo maternity bra reminds you that you’ll never stop lactating, but you wonder if it is really necessary since your lactation seems to be on an endless outflow.");
+				else if(target.upperUndergarment.shortName == "Bounty Bra") output2(" Luckily, the massaging vibrations emanating from your JoyCo maternity bra reminds you that you’ll never stop lactating as long as you continue to wear the " + target.upperUndergarment.shortName + ".");
 				else output2(" Unfortunately, a bit of [target.milk] leaks out onto your " + target.upperUndergarment.description + "... Maybe you should invest in a maternity bra?");
 			}
 		}
@@ -1621,10 +1624,9 @@ public function boobStuff(target:Creature):void
 
 public function crotchStuff(target:Creature):void
 {
-	setTarget(target);
-	
 	var rando:int = 0;
 	if(target.hasGenitals()) {
+		setTarget(target);
 		output2("\n\n");
 		//Crotchial stuff - mention snake
 		if(target.hasStatusEffect("Genital Slit") && target.hasCock())
@@ -1633,7 +1635,7 @@ public function crotchStuff(target:Creature):void
 			if((target.hasVagina() && target.hasCock()) || target.totalCocks() > 1) output2("s are ");
 			else output2(" is ");
 			output2("concealed within a well-hidden slit when not in use, though when the need arises, you can part your concealed entrance and reveal your true self. ");
-			if(target.isTaur()) output2("You're probably one of the most modest taurs out there because of this. ");
+			if(target.isTaur()) output2("You’re probably one of the most modest taurs out there because of this. ");
 		}
 		else if(target.genitalLocation() == 0)
 		{
@@ -1688,7 +1690,7 @@ public function crotchStuff(target:Creature):void
 			else output2(num2Text(Math.round(10*target.cocks[0].thickness())/10) + " inches across.");				
 			dickBonusForAppearance(target, 0);
 			//Worm flavor
-			if(target.hasStatusEffect("Infested")) output2(" Every now and again a slimy worm coated in spunk slips partway out of your " + target.cockDescript(0) + ", tasting the air like a snake's tongue.");
+			if(target.hasStatusEffect("Infested")) output2(" Every now and again a slimy worm coated in spunk slips partway out of your " + target.cockDescript(0) + ", tasting the air like a snake’s tongue.");
 		}
 		//MULTICOCKS!
 		else if(target.totalCocks() > 1)
@@ -1753,6 +1755,7 @@ public function crotchStuff(target:Creature):void
 	}
 	//Of Balls and Sacks!
 	if(target.balls > 0) {
+		setTarget(target);
 		var sTesticleDesc:String = target.ballsDescript(true,true);
 		if(target.balls == 1) sTesticleDesc = target.ballDescript(true,true);
 		
@@ -1794,6 +1797,7 @@ public function crotchStuff(target:Creature):void
 	}	
 	//VAGOOZ
 	if(target.vaginas.length > 0) {
+		setTarget(target);
 		if(target.hasCock()) output2("\n\n");
 		if(!target.hasCock() && target.isTaur()) output2("As a tauric creature, your womanly parts lie between your rear legs in a rather equine fashion. ");
 		//Vaginal Numbers
@@ -1956,9 +1960,13 @@ public function crotchStuff(target:Creature):void
 		}
 	}
 	//Genderless lovun'
-	if(!target.hasGenitals()) output2("\n\nYou have a curious lack of any sexual endowments.");
+	if(!target.hasGenitals()) {
+		setTarget(target);
+		output2("\n\nYou have a curious lack of any sexual endowments.");
+	}
 	//BUNGHOLIO
 	if(target.ass != null) {
+		setTarget(target);
 		output2("\n\nYou have one " + target.assholeDescript() + ", placed between your cheeks where it belongs");
 		if(target.libido() < 50 && target.lust() < 50) //not particularly horny
 		{
@@ -2052,12 +2060,12 @@ public function dickBonusForAppearance(target:Creature, x:int = 0):void
 	//Color shit
 	if(target.cocks[x].cType == GLOBAL.TYPE_EQUINE)
 	{
-		if(target.cocks[x].cockColor == "mottled pink and black") output2(" It's mottled pink and black in a very animalistic pattern.");
-		else output2(" It's " + target.cocks[x].cockColor + " in color and laced with thick veins.");
+		if(target.cocks[x].cockColor == "mottled pink and black") output2(" It’s mottled pink and black in a very animalistic pattern.");
+		else output2(" It’s " + target.cocks[x].cockColor + " in color and laced with thick veins.");
 	}
 	//More general descripts - gotta be before flare/knot due to "It" sentence subject.
 	if(target.cocks[x].cType == GLOBAL.TYPE_RASKVEL) {
-		output2(" It's fairly smooth and shapely in appearance, lacking in any severe or stimulating ridges.");
+		output2(" It’s fairly smooth and shapely in appearance, lacking in any severe or stimulating ridges.");
 	}
 	//Tentacle cock flavor
 	else if(target.cocks[x].cType == GLOBAL.TYPE_TENTACLE) {
@@ -2068,13 +2076,13 @@ public function dickBonusForAppearance(target:Creature, x:int = 0):void
 	//Cat cock flavor
 	else if(target.cocks[x].cType == GLOBAL.TYPE_FELINE) {
 		output2(" It ends in a tapered head");
-		if(target.cocks[x].hasFlag(GLOBAL.FLAG_NUBBY)) output2(", ringed in small, fleshy nubs that terrans have taken to calling \"barbs\" in spite of their softness. More of these \"barbs\" line the shaft, but they're largest at the base, where they are likely to be rubbed against a clit mid-coitus.");
+		if(target.cocks[x].hasFlag(GLOBAL.FLAG_NUBBY)) output2(", ringed in small, fleshy nubs that terrans have taken to calling “barbs” in spite of their softness. More of these “barbs” line the shaft, but they’re largest at the base, where they are likely to be rubbed against a clit mid-coitus.");
 		else output2(" much like that of a feline.");
 	}
 	//Snake cock flavor
 	else if(target.cocks[x].cType == GLOBAL.TYPE_SNAKE) {
-		if(target.originalRace == "snake" || target.originalRace == "naga" || target.originalRace == "naleen" || target.originalRace == "leithan" || target.originalRace == "half-leithan") output2(" It's a deep, iridescent " + target.cocks[x].cockColor + " in color. The shaft is patterned with multiple bulbous bumps to stimulate potential partners, and the whole of its length is glossy and smooth.");
-		else output2(" It's a deep, iridescent " + target.cocks[x].cockColor + " in color. Unlike a " + target.originalRace + " penis, the shaft is patterned with multiple bulbous bumps to stimulate potential partners, and the whole of its length is glossy and smooth.");
+		if(target.originalRace == "snake" || target.originalRace == "naga" || target.originalRace == "naleen" || target.originalRace == "leithan" || target.originalRace == "half-leithan") output2(" It’s a deep, iridescent " + target.cocks[x].cockColor + " in color. The shaft is patterned with multiple bulbous bumps to stimulate potential partners, and the whole of its length is glossy and smooth.");
+		else output2(" It’s a deep, iridescent " + target.cocks[x].cockColor + " in color. Unlike a " + target.originalRace + " penis, the shaft is patterned with multiple bulbous bumps to stimulate potential partners, and the whole of its length is glossy and smooth.");
 	}
 	//Anemone cock flavor
 	else if(target.cocks[x].cType == GLOBAL.TYPE_ANEMONE || target.cocks[x].cType == GLOBAL.TYPE_SIREN) {
@@ -2088,12 +2096,12 @@ public function dickBonusForAppearance(target:Creature, x:int = 0):void
 	}
 	//Draconic Cawk Flava flav
 	else if(target.cocks[x].cType == GLOBAL.TYPE_DRACONIC) {
-		output2(" With its tapered tip, there are few holes you wouldn't be able to get into. It has a strange, knot-like bulb at its base, but doesn't usually flare during arousal as a dog's knot would.");
+		output2(" With its tapered tip, there are few holes you wouldn’t be able to get into. It has a strange, knot-like bulb at its base, but doesn’t usually flare during arousal as a dog’s knot would.");
 	}
 	//Beees
 	else if(target.cocks[x].cType == GLOBAL.TYPE_BEE) {
-		if(target.cocks[x].hasFlag(GLOBAL.FLAG_FORESKINNED)) output2(" There's a lot in common between human and zil genitals, but the alien member you're packing has a much longer, stretchier foreskin than most terrans can pack. It also");
-		else output2(" The zil-like member you're packing ");
+		if(target.cocks[x].hasFlag(GLOBAL.FLAG_FORESKINNED)) output2(" There’s a lot in common between human and zil genitals, but the alien member you’re packing has a much longer, stretchier foreskin than most terrans can pack. It also");
+		else output2(" The zil-like member you’re packing ");
 		output2(" looks vaguely glossy, like you oiled it up just a moment ago.");
 	}
 	//Nubby or Ribbed
@@ -2122,14 +2130,14 @@ public function dickBonusForAppearance(target:Creature, x:int = 0):void
 	//FLARE STUFF
 	if(target.cocks[x].hasFlag(GLOBAL.FLAG_FLARED))
 	{
-		if(target.cocks[x].cType == GLOBAL.TYPE_EQUINE) output2(" The 'head' of your shaft flares proudly, just like a horse's.");
-		else output2(" The 'head' of your shaft widens quite noticeably, the better to stimulate your partners.");
+		if(target.cocks[x].cType == GLOBAL.TYPE_EQUINE) output2(" The ‘head’ of your shaft flares proudly, just like a horse’s.");
+		else output2(" The ‘head’ of your shaft widens quite noticeably, the better to stimulate your partners.");
 	}
 	//"Blunt" head - for non-flared flat-tops
 	else if(target.cocks[x].hasFlag(GLOBAL.FLAG_BLUNT))
 	{
 		output2(" Your shaft ends in a blunted tip");
-		if(target.cocks[x].cType == GLOBAL.TYPE_EQUINE) output2(" similar to a terran horse's");
+		if(target.cocks[x].cType == GLOBAL.TYPE_EQUINE) output2(" similar to a terran horse’s");
 		output2(".");
 	}
 	//Double-headed
@@ -2198,42 +2206,42 @@ public function vaginaBonusForAppearance(target:Creature, x:int = 0, eachOne:Boo
 	//Zil flavor!
 	if(target.vaginas[x].type == GLOBAL.TYPE_BEE && target.vaginas[x].vaginaColor == "black and gold") {
 		if(!eachOne) output2(" The exterior folds are a dusky black, while the inner lining of your tunnel is a glorious golden hue.");
-		else output2("\nEach vagina's exterior folds are a dusky black, while the inner linings of your tunnels are a glorious golden hue.");
+		else output2("\nEach vagina’s exterior folds are a dusky black, while the inner linings of your tunnels are a glorious golden hue.");
 	}
 	//Naleen flavor
 	else if(target.vaginas[x].type == GLOBAL.TYPE_NAGA) {
 		if(!eachOne) output2(" The exterior lips are subtle and narrow, making your lengthy entrance a little more discrete.");
-		else output2("\nEach vagina's exterior lips are subtle and narrow, making your lengthy entrances a little more discrete.");
+		else output2("\nEach vagina’s exterior lips are subtle and narrow, making your lengthy entrances a little more discrete.");
 	}
 	//LEITHAN FLAVOR
 	else if(target.vaginas[x].type == GLOBAL.TYPE_LEITHAN || target.vaginas[x].type == GLOBAL.TYPE_EQUINE) {
-		if(!eachOne) output2(" The exterior lips are fat and swollen. They could easily be described as rubbery, and they often shine with a wet sheen, regardless of your arousal. When you're aroused, you're told that they wink.");
-		else output2("\nEach vagina's exterior lips are fat and swollen. They could easily be described as rubbery, and they often shine with a wet sheen, regardless of your arousal. When you're aroused, you're told that they wink.");
+		if(!eachOne) output2(" The exterior lips are fat and swollen. They could easily be described as rubbery, and they often shine with a wet sheen, regardless of your arousal. When you’re aroused, you’re told that they wink.");
+		else output2("\nEach vagina’s exterior lips are fat and swollen. They could easily be described as rubbery, and they often shine with a wet sheen, regardless of your arousal. When you’re aroused, you’re told that they wink.");
 	}
 	//Lapinara flavor
 	else if(target.vaginas[x].type == GLOBAL.TYPE_LAPINARA) {
 		if(!eachOne) output2(" The exterior lips are chubby and the entrance seems eager to be packed with an ovipositor - or any phallus-shaped object.");
-		else output2("\nEach vagina's exterior lips are chubby and their entrances seem eager to be packed with ovipositors - or any other phallus-shaped objects.");
+		else output2("\nEach vagina’s exterior lips are chubby and their entrances seem eager to be packed with ovipositors - or any other phallus-shaped objects.");
 	}
 	//Vanae flavor
 	else if(target.vaginas[x].type == GLOBAL.TYPE_VANAE) {
 		if(!eachOne) output2(" The exterior folds glisten in the light, while the inner tunnel is lined with writhing, tentacle-like feelers.");
-		else output2("\nEach vagina's exterior folds glisten in the light, while the inner tunnels are lined with writhing, tentacle-like feelers.");
+		else output2("\nEach vagina’s exterior folds glisten in the light, while the inner tunnels are lined with writhing, tentacle-like feelers.");
 	}
 	//Kui-tan flavor
 	else if(target.vaginas[x].type == GLOBAL.TYPE_KUITAN && target.vaginas[x].vaginaColor == "black") {
 		if(!eachOne) output2(" The exterior folds are dusky black, looking almost animalistic on your body.");
-		else output2("\nEach vagina's exterior folds are dusky black, looking almost animalistic on your body.");
+		else output2("\nEach vagina’s exterior folds are dusky black, looking almost animalistic on your body.");
 	}
 	//Doggie flavor
 	else if(target.vaginas[x].type == GLOBAL.TYPE_CANINE) {
 		if(!eachOne) output2(" The exterior lips are that of a bitch and have a tendency to swell when in heat, giving it a very animalistic bent.");
-		else output2("\nEach vagina's exterior lips are that of a bitch and have a tendency to swell when in heat, giving them a very animalistic bent.");
+		else output2("\nEach vagina’s exterior lips are that of a bitch and have a tendency to swell when in heat, giving them a very animalistic bent.");
 	}
 	//Siren flavor
 	else if(target.vaginas[x].type == GLOBAL.TYPE_SIREN) {
 		if(!eachOne) output2(" The exterior opening is framed in writhing tentacles and the interior is lined with aphrodisiac-laced cilia.");
-		else output2("\nEach vagina's exterior openings are framed in writhing tentacles and the interiors are lined with aphrodisiac-laced cilia.");
+		else output2("\nEach vagina’s exterior openings are framed in writhing tentacles and the interiors are lined with aphrodisiac-laced cilia.");
 	}
 	//Goblin flavor
 	else if(target.vaginas[x].type == GLOBAL.TYPE_GABILANI) {
