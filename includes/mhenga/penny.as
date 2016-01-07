@@ -113,6 +113,12 @@ public function pennyRoomDesc():void {
 		}
 		this.addButton(0,"Need Help?",askPennyIfSheNeedsHelp);
 	}
+	//Badgurquest raygun handoff 
+	else if(flags["BADGER_QUEST_TIMER"] == -1 && !pc.hasKeyItem("Doctor Badger's Bimbo Raygun - Still programmed for use on Penny.")) 
+	{
+		output("\n\n<b>You got her message, talk to Penny to see how you can <b>turn the tables</b> on Dr Badger!</b>");
+		addButton(0,"Penny",turnTheTablesOnBadger);
+	}
 	//Shortcut friend penny if bimboed.
 	else if(flags["PENNY_BADGER_BIMBO"] != undefined)
 	{

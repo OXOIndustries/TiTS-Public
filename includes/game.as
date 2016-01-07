@@ -1658,6 +1658,16 @@ public function processTime(arg:int):void {
 			//Goo PC updates and fixers:
 			if(pc.hasStatusEffect("Goo Crotch")) gooCrotchUpdate();
 
+			if(flags["BADGER_QUEST"] == -1)
+			{
+				if(flags["BADGER_QUEST_TIMER"] == undefined) flags["BADGER_QUEST_TIMER"] = GetGameTimestamp();
+				if(GetGameTimestamp() >= flags["BADGER_QUEST_TIMER"] + 1440 && flags["BADGER_QUEST_TIMER"] != -1)
+				{
+					pennyBadgerQuestAlert();
+					flags["BADGER_QUEST_TIMER"] = -1;
+				}
+			}
+
 			//Days ticks here!
 			if(hours >= 24) {
 				days++;
