@@ -12951,19 +12951,18 @@ package classes {
 					// Example "forced" effect selection
 					if (otherTeam[i].hasStatusEffect("Focus Fire"))
 					{
-						return otherTeam[i];
+						selTarget = otherTeam[i];
 					}
 				}
 			}
 			
-			if (posTargets.length == 0) return null;
-			if (posTargets.length == 1) return posTargets[0];
+			if (posTargets.length == 0) selTarget = null;
+			else if (posTargets.length == 1) selTarget = posTargets[0];
+			else selTarget = posTargets[rand(posTargets.length)];
 			
-			var t:Creature = posTargets[rand(posTargets.length)];
+			notifyTargetSelection(this, selTarget, this);
 			
-			notifyTargetSelection(this, t, this);
-			
-			return t;
+			return selTarget;
 		}
 		
 		private function notifyTargetSelection(attacker:Creature, target:Creature, enemy:Creature):void
