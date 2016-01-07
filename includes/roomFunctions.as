@@ -6,6 +6,7 @@ import classes.Characters.SX1Shotguard;
 import classes.Characters.SX1Techguard;
 import classes.Characters.ZilFemale;
 import classes.Creature;
+import classes.Engine.Combat.DamageTypes.DamageResult;
 import classes.Items.Accessories.LightningDuster;
 import classes.Items.Apparel.AtmaArmor;
 import classes.Items.Apparel.NaleenArmor;
@@ -23,6 +24,8 @@ import classes.Items.Guns.TachyonBeamLaser;
 import classes.Items.Guns.ZKRifle;
 import classes.Items.Melee.ShockBlade;
 import classes.Items.Miscellaneous.EmptySlot;
+import classes.Items.Miscellaneous.FlashGrenade;
+import classes.Items.Miscellaneous.GrayMicrobots;
 import classes.Items.Miscellaneous.HorseCock;
 import classes.Items.Miscellaneous.PHAccess;
 import classes.Items.Miscellaneous.Silicone;
@@ -159,9 +162,19 @@ public function debugMenus():void
 	clearMenu();
 	output("The room of debug. Where am I? How did I get here? What do you want?!\n\n");
 	
-	for (var i:int = 0; i < 10; i++)
+	var msg:String = "This is some testing text that I need to pad out the length of the current text line, so that I can see just how dumb some of the functions available for the textfield are."
+	
+	var m:Array = msg.split(" ");
+	
+	var someDamage:DamageResult = new DamageResult();
+	someDamage.shieldDamage = 9;
+	//outputDamage(someDamage);
+	
+	for (var i:int = 0; i < m.length; i++)
 	{
-		output("[pc.cunt]\n[pc.cunts]\n");
+		output(m.slice(0, i).join(" "));
+		outputDamage(someDamage);
+		output("\n\n");
 	}
 	
 	addButton(1, "AddVag", function():void {
@@ -210,10 +223,10 @@ public function debugMenusTwo():void
 		itemCollect(foundLootItems);
 	});
 	
-	addItemButton(1, new AtmaArmor(), function():void {
-		output("\n\nAtma Armor.\n");
+	addItemButton(1, new FlashGrenade(), function():void {
+		output("\n\Flashbangs.\n");
 		
-		quickLoot(new AtmaArmor());
+		quickLoot(new FlashGrenade());
 	});
 	
 	addItemButton(2, new MyrBow(), function():void {
@@ -222,14 +235,14 @@ public function debugMenusTwo():void
 		quickLoot(new MyrBow());
 	});
 	
-	addItemButton(3, new DBGShield(), function(): void {
-		output("\n\nDBG Shield.\n");
-		quickLoot(new DBGShield());
+	addButton(3, "Goozooka", function(): void {
+		output("\n\nGoozooka.\n");
+		pc.createKeyItem("Goozooka");
 	});
 	
-	addItemButton(4, new PlasmaPistol(), function():void {
-		output("\n\nPlasma Pistol.\n");
-		quickLoot(new PlasmaPistol());
+	addItemButton(4, new Goovolver(), function():void {
+		output("\n\nGoovolver.\n");
+		quickLoot(new Goovolver());
 	});
 	
 	addButton(5, "OvirTF", function():void {

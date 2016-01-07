@@ -136,12 +136,12 @@ public function turnInAVarmint():void
 	//If first Varmint: 
 	if(flags["VARMINTS_CAUGHT"] == undefined)
 	{
-		output("\n\n<i>\"Well don't that beat all! You're a lifesaver!\"");
+		output("\n\n<i>“Well don't that beat all! You're a lifesaver!”</i>");
 		flags["VARMINTS_CAUGHT"] = 1;
 	}
 	else 
 	{
-		output("\n\n<i>\"Aww, sweet!\"</i>");
+		output("\n\n<i>“Aww, sweet!”</i>");
 		flags["VARMINTS_CAUGHT"]++;
 	}
 	output(" he cheers, taking the defeated beast from you.");
@@ -367,7 +367,6 @@ public function lassoAVarmint(attacker:Creature, target:Creature):void
 		target.createStatusEffect("Lassoed");
 		output("\n");
 	}
-	CombatManager.processCombat();
 }
 
 //PC Victory

@@ -3,6 +3,7 @@ import classes.Characters.Princess;
 import classes.Characters.Queensguard;
 import classes.Characters.Taivra;
 import classes.Creature;
+import classes.GameData.CombatManager;
 import classes.Items.Miscellaneous.GemSatchel;
 //flags["CRYSTAL_GOO_DEFEAT"] - 1 = HP, 2 = LUST, 3 = you fucked her after winning (or got egged)
 
@@ -1165,15 +1166,15 @@ public function startFightingQueenButt(plat190:Boolean = false):void
 }
 
 public function configureQueensguardFight():void
-{
-	pc.createStatusEffect("Cage Distance", 2, 0, 0, 0, false, "Icon_RadioSignal", "You're a good ways away from Dane and your cousin's cage. It'll take a lot of work to reposition yourself to break them out.", true, 0);
-	
+{	
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyCharacters(pc);
 	CombatManager.setHostileCharacters(new Queensguard());
 	CombatManager.victoryScene(spankedQueensguardsAss);
 	CombatManager.lossScene(loseToQueensTaivra);
 	CombatManager.displayLocation("QUEENSGUARD");
+	
+	pc.createStatusEffect("Cage Distance", 2, 0, 0, 0, false, "Icon_RadioSignal", "You're a good ways away from Dane and your cousin's cage. It'll take a lot of work to reposition yourself to break them out.", true, 0);
 }
 
 //Rivals
@@ -1498,9 +1499,7 @@ public function moveToCage():void
 	clearOutput();
 	if(pc.statusEffectv1("Cage Distance") >= 2) output("You try to work your way closer to the cage holding Dane and [rival.name] but only manage to close about half the distance.");
 	else if(pc.statusEffectv1("Cage Distance") == 1) output("Working across the room, you close the rest of the way with Dane's cage. <b>Maybe you can break him out?</b>");
-	output("\n");
 	pc.addStatusValue("Cage Distance",1,-1);
-	trace("CAGE DISTANCE v1: " + pc.statusEffectv1("CAGE DISTANCE"));
 	if (enemy is Queensguard) (enemy as Queensguard).queensguardLongUpdate(pc);
 	CombatManager.processCombat();
 }
@@ -1544,7 +1543,7 @@ public function breakOutDane():void
 		flags["FREED_DANE_FROM_TAIVRA"] = 1;
 		flags["QUEENSGUARD_STAB_TIME"] = GetGameTimestamp();
 		clearMenu();
-		addButton(0,"Next",spankedQueensguardsAss);
+		addButton(0,"Next",spankedQueensguardsAss, true);
 	}
 	else
 	{
@@ -1552,7 +1551,7 @@ public function breakOutDane():void
 		output("\n\nYou take aim at the lock and strike!");
 		output("\n\nAs soon as you destroy the cage’s primitive lock, Dane is surging into action. The big ausar combat rolls into the door, smashing it fully open with his muscular bulk. His hands wrap around the haft of his warden’s spear, and with a simple tug, the weapon is liberated from the gape-mouthed nyrea. As big as Dane is, the spear looks like a toothpick in his hammer-thick hands. He growls, deep in his throat and snaps it in two, simultaneously backhanding the surprised cave-dweller into the wall with one of his free hands.");
 		output("\n\nThe alabaster ausar is utterly naked, stripped of his gear and bruised from his capture, but he’s grinning like a mad dog all the same. The veins on his arms bulge as he flexes his corded muscles, flipping the pieces of primitive weaponry down to his lower arms to hold like daggers. <i>“You should’ve killed me when you had the chance. This time you won’t get a chance to have your pets jump me in the dark. Come on, [pc.name]. Let's take her.”</i>");
-		output("\n\nQueensguard valiantly struggles to her feet to interpose herself between her mistress and the near-rabid ausar, but she earns little more than a stunning backhand for her effort.\n\n<b>Together you can bring down the Queen!</b>\n");
+		output("\n\nQueensguard valiantly struggles to her feet to interpose herself between her mistress and the near-rabid ausar, but she earns little more than a stunning backhand for her effort.\n\n<b>Together you can bring down the Queen!</b>");
 		flags["FREED_DANE_FROM_TAIVRA"] = 1;
 		pc.removeStatusEffect("Cage Distance");
 		CombatManager.processCombat();
@@ -1563,8 +1562,12 @@ public function breakOutDane():void
 
 //Queensguard Defeated
 //PC solo’d dat bitch.
-public function spankedQueensguardsAss():void
+public function spankedQueensguardsAss(daneEndedIt:Boolean = false):void
 {
+	if (daneEndedIt)
+	{
+		setEnemy(CombatManager.getHostileCharacters()[0]);
+	}
 	clearOutput();
 	author("Savin");
 	if(enemy.HP() <= 0) 
@@ -1589,6 +1592,12 @@ public function spankedQueensguardsAss():void
 	clearMenu();
 	
 	if (flags["FREED_DANE_FROM_TAIVRA"] == 1) pc.removeStatusEffect("Cage Distance");
+	
+	if (daneEndedIt)
+	{
+		setEnemy(null);
+		CombatManager.TerminateCombat();
+	}
 	
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyCharacters(pc);

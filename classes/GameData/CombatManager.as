@@ -159,8 +159,11 @@ package classes.GameData
 		}
 		public static function abortCombat():void
 		{
-			combatContainer.doCombatCleanup();
-			combatContainer = null;
+			if (combatContainer)
+			{
+				combatContainer.doCombatCleanup();
+				combatContainer = null;
+			}
 			clearMenu();
 			addButton(0, "Next", function():void {
 				userInterface().hideNPCStats();
@@ -209,6 +212,11 @@ package classes.GameData
 		{
 			if (combatContainer) return combatContainer.hasEnemyOfClass(t);
 			return false;
+		}
+		public static function enemiesAlive():int
+		{
+			if (combatContainer) return combatContainer.enemiesAlive();
+			return -1;
 		}
 	}
 

@@ -200,7 +200,7 @@ package classes.Characters
 			{
 				fallOfThePhoenixAI(alliedCreatures, hostileCreatures);
 			}
-			else if (CombatManager.hasEnemyOfClass(SX1GroupPirates))
+			else if (CombatManager.hasEnemyOfClass(SX1GroupPirates) || CombatManager.hasEnemyOfClass(SX1Shotguard) || CombatManager.hasEnemyOfClass(SX1Techguard))
 			{
 				expackAI(alliedCreatures, hostileCreatures);
 			}

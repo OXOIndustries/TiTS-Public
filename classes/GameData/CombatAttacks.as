@@ -1,6 +1,7 @@
 package classes.GameData 
 {
 	import classes.Characters.Celise;
+	import classes.Characters.Cockvine;
 	import classes.Characters.GrayGoo;
 	import classes.Characters.Kaska;
 	import classes.Characters.PlayerCharacter;
@@ -9,6 +10,7 @@ package classes.GameData
 	import classes.Characters.ZilFemale;
 	import classes.Creature;
 	import classes.Engine.Combat.DamageTypes.DamageResult;
+	import classes.GameData.Pregnancy.Handlers.CockvinePregnancy;
 	import classes.GLOBAL;
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	import classes.Items.Miscellaneous.GrayMicrobots;
@@ -34,7 +36,10 @@ package classes.GameData
 			{
 				var atk:SingleCombatAttack = a[i];
 				
-				if (!atk.IsDisplayable(target)) continue;
+				if (!atk.IsDisplayable(target))
+				{
+					continue;
+				}
 				
 				atks.push(atk);
 			}
@@ -358,11 +363,12 @@ package classes.GameData
 				return kGAMECLASS.pc.hasKeyItem("Goozooka");
 			}
 			GoozookaAttack.ExtendedAvailabilityCheck = function():Boolean {
-				return kGAMECLASS.pc.hasItemByName("Gray Microbots");
+				return kGAMECLASS.pc.hasItemByType(GrayMicrobots);
 			}
 			GoozookaAttack.TooltipTitle = "Goozooka";
 			GoozookaAttack.TooltipBody = "Fire a Gray Goo at your enemy for the princely sum of a single sample of Gray Microbots.";
 			GoozookaAttack.Implementor = GoozookaAttackImpl;
+			a.push(GoozookaAttack);
 			
 			// Shared NPC Attacks
 			// Attacks only intended to be used by NPCs!
@@ -825,7 +831,11 @@ package classes.GameData
 			var d:int = 10 + (attacker.level * 2.5) + (attacker.intelligence() / 1.5);
 			var damage:TypeCollection = new TypeCollection( { burning: d } );
 			
-			// 9999 COCKVINE HOOK => adultCockvineGrenadesInEnclosedSpaces();
+			if (target is Cockvine)
+			{
+				kGAMECLASS.adultCockvineGrenadesInEnclosedSpaces(damage, true, false, false);
+				//(damageValue:TypeCollection, pluralNades:Boolean = false, usedLauncher:Boolean = false, isLustGas:Boolean = false):void
+			}
 			
 			for (var x:int = 0; x < hGroup.length; x++)
 			{
@@ -844,7 +854,11 @@ package classes.GameData
 			var d:int = 15 + (attacker.level * 4) + attacker.intelligence();
 			var damage:TypeCollection = damageRand(new TypeCollection( { burning: d } ), 15);
 			
-			// 9999 COCVINE HOOK => adultCockvineGrenadesInEnclosedSpaces();
+			if (target is Cockvine)
+			{
+				kGAMECLASS.adultCockvineGrenadesInEnclosedSpaces(damage, false, false, false);
+				//(damageValue:TypeCollection, pluralNades:Boolean = false, usedLauncher:Boolean = false, isLustGas:Boolean = false):void
+			}
 			
 			applyDamage(damage, attacker, target);
 		}
@@ -1250,7 +1264,11 @@ package classes.GameData
 			var d:int = Math.round(7.5 + attacker.level * 2 + attacker.intelligence() / 2);
 			var damage:TypeCollection = damageRand(new TypeCollection( { kinetic: d, burning: d } ), 15);
 			
-			// 9999 => adultCockvineGrenadesInEnclosedSpaces()
+			if (target is Cockvine)
+			{
+				kGAMECLASS.adultCockvineGrenadesInEnclosedSpaces(damage, false, false, false);
+				//(damageValue:TypeCollection, pluralNades:Boolean = false, usedLauncher:Boolean = false, isLustGas:Boolean = false):void
+			}
 			
 			applyDamage(damage, attacker, target);
 		}
@@ -1265,7 +1283,11 @@ package classes.GameData
 			var d:int = 14 + attacker.level * 2;
 			var damage:TypeCollection = damageRand(new TypeCollection( { drug: d } ), 15);
 			
-			// 9999 => adultCockvineGrenadesInEnclosedSpaces()
+			if (target is Cockvine)
+			{
+				kGAMECLASS.adultCockvineGrenadesInEnclosedSpaces(damage, false, false, true);
+				//(damageValue:TypeCollection, pluralNades:Boolean = false, usedLauncher:Boolean = false, isLustGas:Boolean = false):void
+			}
 			
 			applyDamage(damage, attacker, target, "minimal");
 		}

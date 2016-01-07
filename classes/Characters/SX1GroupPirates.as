@@ -34,7 +34,7 @@ package classes.Characters
 			// this.long = "Several armed men in black-and-red heavy armor have stormed into the construction site, wildly firing machine pistols at you and your companion. It's almost impossible to see in here, except by the occasional muzzle flashes and showers of sparks as bullets slam into the metal bulkheads.\n\nNot far from you, Saen ducks into and out of cover, evading bursts of enemy fire and returning it as quick as she can.";
 			this.long = "An man in black-and-red armor, armed with machine pistol.";
 			this.customBlock = "The pirates armor deflects your attack with an alarming ease.";
-			this.isPlural = true;
+			this.isPlural = false;
 			isLustImmune = true;
 			
 			this.meleeWeapon = new ShockBlade();
@@ -67,7 +67,7 @@ package classes.Characters
 			this.XPRaw = 500;
 			this.level = 5;
 			this.credits = 80 + rand(80);
-			this.HPMod = 80;
+			this.HPMod = 0;
 			this.HPRaw = this.HPMax();
 			
 			this.createPerk("Multiple Attacks",1,0,0,0,"");
@@ -233,7 +233,7 @@ package classes.Characters
 			{
 				output(" The burst hits!");
 
-				applyDamage(new TypeCollection({ kinetic: 10 }), this, target, "minimal");
+				applyDamage(new TypeCollection({ kinetic: 5 }), this, target, "minimal");
 			}
 		}
 		
@@ -280,7 +280,7 @@ package classes.Characters
 			
 			for (var i:int = 0; i < hostileCreatures.length; i++)
 			{
-				hostileCreatures[i].createStatusEffect("Smoke Grenade", 3, 0, 0, 0, false, "Blinded", "Ranged attacks are far more likely to miss.", true, 0);
+				hostileCreatures[i].createStatusEffect("Smoke Grenade", 3, 0, 0, 0, false, "Blind", "Ranged attacks are far more likely to miss.", true, 0);
 			}
 			
 			createStatusEffect("Nade Cooldown", 5);
@@ -298,7 +298,7 @@ package classes.Characters
 				if (target.RQ() < rand(100)) mul = 2;
 				else mul = 1;
 
-				applyDamage(new TypeCollection( { kinetic: 12 * mul } ), this, target, (target is PlayerCharacter ? "minimal" : "suppress"));
+				applyDamage(new TypeCollection( { kinetic: 8 * mul } ), this, target, (target is PlayerCharacter ? "minimal" : "suppress"));
 			}
 
 			createStatusEffect("NadeCD", 5);

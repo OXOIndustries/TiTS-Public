@@ -223,7 +223,7 @@
 				if (rand(target.reflexes() / 2) + target.reflexes() / 2 >= reflexes())
 				{
 					output(", and suddenly find yourself tripping on a rocky outcropping. <b>You're knocked prone</b>");
-					target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "Icon_Constrict", "You've been tripped!", true, 0);
+					target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped!", true, 0);
 				}
 				output("!");
 
