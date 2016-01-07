@@ -145,7 +145,7 @@ package classes.Characters
 		
 		override public function get bustDisplay():String
 		{
-			return "HUNTRESS_VANAE";
+			return "VANAE_HUNTRESS";
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
