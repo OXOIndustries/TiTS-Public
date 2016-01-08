@@ -644,7 +644,11 @@ package classes.GameData
 					target.removeStatusEffect("Combat Drone Disabled");
 					if (target.hasCombatDrone())
 					{
-						if (target is PlayerCharacter) output("\n\n<b>There’s a familiar and welcome sound of whirring servos above you. Your righted drone moves back down to your side to aid you.</b>");
+						if (target is PlayerCharacter)
+						{
+							if(target.hasStatusEffect("Varmint Buddy")) output("\n\n<b>A loud howl alerts you that your pet varmint has fully recovered. It quickly shakes itself awake and leaps back to your side, gnashing its razor-sharp teeth at the enemy.</b>");
+							else output("\n\n<b>There’s a familiar and welcome sound of whirring servos above you. Your righted drone moves back down to your side to aid you.</b>");
+						}
 						else output("\n\n<b>A telling hum returns to the battlefield. " + target.capitalA + possessive(target.uniqueName) + " combat drone returns to the fold!</b>");
 					}
 				}
