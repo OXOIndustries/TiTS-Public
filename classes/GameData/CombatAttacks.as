@@ -699,6 +699,21 @@ package classes.GameData
 			}
 		}
 		
+		public static function TamedVarmintAttack(attacker:Creature, target:Creature):void
+		{
+		
+			output("Your pet varmint hoots and hisses at " + target.a + target.uniqueName + ", standing protectively in front of you and raising its spiky hackles.");
+			if (rand(10) <= 2)
+			{
+				output(" It lunges into battle, but it can’t find purchase on your foe!");
+			}
+			else
+			{
+				output(" It lunges towards " + target.a + target.uniqueName + ", shrieking like a banshee. Its fangs sink into your enemy, rending viciously at " + target.mfn("him", "her", "it") + "!");
+				applyDamage(attacker.droneDamage(), attacker, target, "minimal");
+			}
+		}
+		
 		public static function GoovolverAttackImpl(attacker:Creature, target:Creature):void
 		{
 			SingleRangedAttackImpl(attacker, target, false, "goovolver");

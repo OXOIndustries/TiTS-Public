@@ -246,7 +246,7 @@
 			if (target.skinType == GLOBAL.SKIN_TYPE_FUR) output(" Your body's furry covering starts to fall off, giving way to the growing spread of gray scales underneath.");
 			else if (target.skinType == GLOBAL.SKIN_TYPE_GOO) output(" Your gooey body begins to solidify, wracking you with strange sensations. Slowly but surely, your goo is replaced with skin, and your internals solidify into something more normal for the leithan you're striving to become! Before long, your body is covered with scales!");
 			else output(" The patches stretch across your dermis erratically, the flesh left in the wake of the expanding areas visibly hardening.")
-			output(" <b>You now have scales with a gray, leithan pallette!</b>");
+			output(" <b>You now have scales with a gray, leithan palette!</b>");
 
 			target.skinType = GLOBAL.SKIN_TYPE_SCALES;
 			target.skinFlags = [];

@@ -603,10 +603,10 @@ public function approachFriendPenny(outputT:Boolean = true):void {
 //[Sex]
 public function pennySexFirstTime():void {
 	clearOutput();
-	showPenny();
 	//Not Done All Talks Yet
 	if (flags["TALK_WITH_PENNY_ABOUT_YOURSELF"] == undefined || flags["TALK_WITH_PENNY_ABOUT_YOUTH"] == undefined || flags["TALK_WITH_PENNY_ABOUT_FUN"] == undefined || flags["TALK_WITH_PENNY_ABOUT_SPECIES"] == undefined)
 	{
+		showPenny();
 		output("You suggest that the two of you could slip into the shower for a little fun if work is getting her down.");
 		output("\n\n<i>“Look, [pc.name], I know things were a bit weird earlier, but that doesn’t mean I shimmy out of my shorts for just anyone,”</i>  Penny says with a sigh. <i>“I mean, we don’t even know each other all that well yet. Heck, you don’t even know </i>");
 		var shitPennySays:Array = new Array();
@@ -622,7 +622,7 @@ public function pennySexFirstTime():void {
 	}
 	//Done All Talks (Req’s Gender)
 	else {
-		userInterface.showBust("PENNY_NUDE");
+		showPenny(true);
 		output("You suggest that the two of you could slip into the shower for a little fun if work is getting her down.");
 		output("\n\nPenny looks up at you with a little bit of red tinge in her big blue eyes. <i>“You aren’t joking, are you?”</i>");
 		output("\n\nSmiling warmly, you confirm that you aren’t.");
@@ -1585,6 +1585,7 @@ public function pennyFutanariTalk():void {
 					else addButton(2,"Try This",givePennyAHossCawk,undefined,"Try This","Give Penny the horse-cock strap-on you found on Tarkus. Maybe the randy hermaphrodite could use it as a sex toy.");
 				}
 				else addDisabledButton(2,"Locked","Locked","You don't have the required item for this option.");
+				addButton(14,"Back",approachGirlfriendPenny);
 			}
 			else 
 			{
@@ -2849,7 +2850,7 @@ public function gardeFordWritesPennySmex():void {
 public function calmDownYouPennySlut():void {
 	clearOutput();
 	author("Abe E. Seedy");
-	userInterface.showBust("PENNY");
+	showPenny();
 	output("You figure you probably shouldn't mess with her any more than you already have, and you tell her up front she can't have any more of the drug.");
 	output("\n\nAmazingly, she actually wilts a little at that. Her masturbation stops as the fennec dreamily says, <i>“Okay, okay, I guess. I’m getting a little out of hand, aren’t I?”</i>  You nod. <i>“Good, ‘cause it seems to be keeping you around. I’m going to fuck you so hard as soon as I get caught up on work!”</i>  She turns back towards what she was doing while trying to pack her monster dick into her pants. It doesn’t work all that well.");
 	processTime(1);
@@ -2862,7 +2863,7 @@ public function teasePenny():void
 {
 	clearOutput();
 	author("Abe E. Seedy");
-	userInterface.showBust("PENNY_NUDE");
+	showPenny(true);
 	output("\"<i>No, you can't have any more</i>,\"  you tell her. \"<i>But you don't </i>need<i> any more, do you?</i>\"");
 	output("\n\nPenny looks at you, confused. \"<i>I... I don't?</i>\"");
 	output("\n\nWalking behind her, you lean in close, whispering in her ear, \"<i>You haven't earned a bigger dick yet, seeing as you're not even properly using the one you have now.</i>\"");
@@ -2915,7 +2916,7 @@ public function teasePenny():void
 public function hideYourCumslutteryPennyYouSlut():void {
 	clearOutput();
 	author("Abe E. Seedy");
-	userInterface.showBust("PENNY_NUDE");
+	showPenny(true);
 	output("\"<i>Hide it,</i>\" you say simply. \"<i>Even if you've just given yourself a mouthful of cum - even if you're orgasming right at the moment someone knocks at the door - you have to make yourself look respectable.</i>\"");
 	output("\n\nPenny moans, clearly turned on by the thought of trying to be a secret slut. The threat of getting caught would be intense, given that there’s no way she could easily hide everything in time, but by her reaction that seems like it only makes things hotter for her. You picture her trying to resolve a dispute in her office, quivering as her monster cock unloads again and again onto the underside of her desk, trying to keep herself together enough to continue a conversation. It'd be a good look for her, and a natural evolution - going from being so shy about wanting a cock in the first place to being so addicted to it she can't stop playing with it even when she has to hide it from other people in the room.");
 	output("\n\nStill making sure you have a strong enough of a grip to keep her away from her cock, you shift one of your hands to scratch lightly against the base of her ears. \"<i>You're </i>mine<i>, aren't you pet?</i>\"  you whisper to her. \"<i>Mine, not for anybody else.</i>\"");
@@ -2942,7 +2943,7 @@ public function hideYourCumslutteryPennyYouSlut():void {
 public function pennyLetThemWatchYouCumSlut():void {
 	clearOutput();
 	author("Abe E. Seedy");
-	userInterface.showBust("PENNY_NUDE");
+	showPenny(true);
 	output("\"<i>Let them watch,</i>\" you say simply.");
 	output("\n\nPenny squirms in response, blushing even more than before at the instruction.");
 	output("\n\n\"<i>What?</i>\"  you tease her. \"<i>Are you too shy for that? Doesn't the thought of everyone seeing you desperately sucking your own dick turn you on?</i>\"");
@@ -2975,7 +2976,7 @@ public function pennyLetThemWatchYouCumSlut():void {
 public function letThemJoinInPennyYouSlut():void {
 	clearOutput();
 	author("Abe E. Seedy");
-	userInterface.showBust("PENNY_NUDE");
+	showPenny(true);
 	output("\"<i>What should you do if other people come in?</i>\" you repeat. \"<i>I don't think that's up to you, is it?</i>\"");
 	output("\n\nPenny's brow furrows, confusion showing on her features even despite her distraction. Before she can speak, however, you continue.");
 	output("\n\n\"<i>No, I don't think it's up to you what people choose to do with you. After all, you'll be too busy sucking on your own cock to bother with thinking about what they do.</i>\"");
@@ -3013,7 +3014,7 @@ public function letThemJoinInPennyYouSlut():void {
 public function useYourCocksOnCumSluttyPenny():void {
 	clearOutput();
 	author("Abe E. Seedy");
-	userInterface.showBust("PENNY_NUDE");
+	showPenny(true);
 	var x:int = pc.biggestCockIndex();
 	output("Grinning, you hurriedly get your equipment out of the way, leaving the both of you completely naked. Penny by now is simply drooling; her mind so addled by lust she doesn't even think to suck her own cock - she's merely waiting passively to be used. You have every intention of obliging her; ");
 	if(pc.isTaur()) output("positioning yourself carefully, then ");
@@ -3046,7 +3047,7 @@ public function useYourCocksOnCumSluttyPenny():void {
 public function makeUseOfPennysCumSlutCock():void {
 	clearOutput();
 	author("Abe E. Seedy");
-	userInterface.showBust("PENNY_NUDE");
+	showPenny(true);
 	output("Wordlessly, you move your hands to her trembling shaft, settling into a rhythm without any further foreplay. Penny moans in response, her head lolling forwards now that you finally let her indulge, lapping eagerly at the tip of her cock. With how much you've worked her up already it doesn't take long until she trembles and stiffens, her cock surging as wave after wave of cum spurts out. Casually you move her shaft out of her mouth - Penny herself is too overcome with pleasure to resist - aiming her cock as best you can so that her stream of cum coats her face. Fortunately your task is made easier by the sheer volume that Penny produces; even with it going everywhere there is still more than enough to paint her face white. On top of that, Penny seemingly instinctively joins in - rolling her head around happily to ensure that every part of it is coated with her own cum.");
 	output("\n\nWhen she finally finishes, Penny spends several long moments simply breathing deeply, blissfully taking in the scent of sex filling her nostrils. She licks her lips once, then opens her eyes slowly. \"<i>Fuck, [pc.name], you're right. I'm going to have to do that a </i>lot<i> more often</i>.\"  She wipes one finger along the worst of it, gathering up the sticky whiteness and slipping them happily inside her mouth. She keeps on like that - leisurely licking at loose strands rather than making an effort to clean herself up properly. It looks like she really has taken your lesson to heart, preferring to leave herself visibly marked as a cumslut than enjoy the pleasure of cleaning herself off.");
 	output("\n\nYou turn to leave while she's still pleasantly self-absorbed, her eager slurping noises following you as you step out of her office. You imagine that her new predilections will make doing her job considerably harder, but, you add to yourself with a grin, considerably more enjoyable for all involved.");
@@ -3064,7 +3065,7 @@ public function makeUseOfPennysCumSlutCock():void {
 public function findSomeonePublicToHelpPennyCumslut():void {
 	clearOutput();
 	author("Abe E. Seedy");
-	userInterface.showBust("PENNY_NUDE");
+	showPenny(true);
 	output("\"<i>Well,</i>\"  you say softly to her, \"<i>what are you waiting for? Your fur isn't going to coat itself in cum.</i>\"");
 	output("\n\nPenny looks up at you blankly. \"<i>Mm-uhh?</i>\"  she moans in confusion.");
 	output("\n\nMoving behind her, you give her a firm push on the back, eventually coaxing her to stand. \"<i>It's time to go out and serve the public, don't you think?</i>\"  you add. \"<i>Let them all see the new you, and get used to your new... requirements.</i>\"");
@@ -3084,7 +3085,7 @@ public function findSomeonePublicToHelpPennyCumslut():void {
 public function pennyCumslutterMenuTalk():void {
 	clearOutput();
 	author("Abe E. Seedy");
-	userInterface.showBust("PENNY_NUDE");
+	showPenny(true);
 	//CHANGE CUMSLUT ACTIONS
 	output("Noticing that Penny is barely able to refrain from touching herself even while having a normal conversation with you, you mention to her that perhaps she should indulge herself a little differently when other people are around.");
 	output("\n\n\"<i>Mhmmmmmm?</i>\"  she responds, even the mere suggestion enough to cause her to drag one hand slowly along her stiffening shaft. \"<i>How would you prefer I act if other people see me doing this?</i>\"");
@@ -3105,7 +3106,7 @@ public function pennyCumslutterMenuTalk():void {
 public function calmDownPennyBitch4Repeats():void {
 	clearOutput();
 	author("Abe E. Seedy");
-	userInterface.showBust("PENNY_NUDE");
+	showPenny(true);
 	output("You figure that she probably needs to calm things down a notch, and that she should probably focus less on self-pleasure and more on, well, pretty much everything else she should be doing. You tell her as much, and amazingly she manages to control herself after one long focused outward breath.");
 	output("\n\nHer masturbation stops as the fennec dreamily says, <i>“Okay, okay, I guess. I’m getting a little out of hand, aren’t I?”</i>  You nod. <i>“Well, you're right. Fun's fun, but there's work to be done. Still,</i>\"  she adds with a grin, \"<i>don't think I'm not going to fuck you wildly as soon as I get caught up on work!”</i>  She turns back towards what she was doing while trying to pack her monster dick into her pants. It doesn’t work all that well.");
 	//[Reset Penny to non-cumslut hyper-futa]
@@ -3122,7 +3123,7 @@ public function calmDownPennyBitch4Repeats():void {
 public function pennySelfSuckCumsluttery():void {
 	clearOutput();
 	author("Abe E. Seedy");
-	userInterface.showBust("PENNY_NUDE");
+	showPenny(true);
 	output("Looking over at the lust-enthralled fox, you say casually that you're surprised not to see her with her own cock in her mouth, considering how much she loves the taste of her own cum. Before you've even finished speaking Penny has already fallen forwards against it, her mouth forming as much of a seal as she can manage around her [penny.cockHead]. Wordlessly, you move your hands to her trembling shaft, settling into a rhythm without any further foreplay. Penny moans in response, her head lolling forwards involuntarily, breaking her seal as she shifts to lapping happily at the tip of her cock. With admirable swiftness she trembles and stiffens, her cock surging as wave after wave of cum spurts out. Casually you move her shaft out of her mouth - Penny herself is too overcome with pleasure to resist - aiming her cock as best you can so that her stream of cum coats her face. Fortunately your task is made easier by the sheer volume that Penny produces; even with it going everywhere there is still more than enough to paint her face white. On top of that, Penny seemingly instinctively joins in - rolling her head around happily to ensure that every part of it is coated with her own cum.");
 	output("\n\nWhen she finally finishes, Penny spends several long moments simply breathing deeply, blissfully taking in the scent of sex filling her nostrils. She licks her lips once, then opens her eyes slowly. \"<i>Fuck, [pc.name], that gets better every time. I've been doing that a </i>lot<i>, but it's always better when you're here to really get things going.</i>.\"  She wipes one finger along the worst of it, gathering up the sticky whiteness and slipping it happily inside her mouth. She keeps on like that - leisurely licking at loose strands rather than making an effort to clean herself up properly. It looks like she's quite happy to leave herself dripping wet, so that she's visibly marked as a cumslut rather than enjoying the pleasure of cleaning herself off.");
 	output("\n\nYou turn to leave while she's still pleasantly self-absorbed, her eager slurping noises following you as you step out of her office. You grin as you step outside, happy to see her so eagerly embracing her new endowment and urges, and already looking forward to her next session.");
@@ -3136,7 +3137,7 @@ public function pennySelfSuckCumsluttery():void {
 public function bukkakePenny():void {
 	clearOutput();
 	author("Abe E. Seedy");
-	userInterface.showBust("PENNY_NUDE");
+	showPenny(true);
 	var x:int = pc.biggestCockIndex();
 	output("You tell Penny that you think it's time for her to be feeding, and her mouth hangs open eagerly in response.");
 	output("\n\n\"<i>Oh fuck yes, [pc.name], you have no idea how much I've been needing this. Please, please...</i>\"  She's all but babbling incoherently, the thought of receiving a fresh coating of your cum instantly flipping her into an all but mindless desire. \"<i>Please shower me with your delicious cum!</i>\"");
@@ -3170,7 +3171,13 @@ public function pennyVsFlahneWhoWillOutslutWho():void
 {
 	clearOutput();
 	author("Abe E. Seedy");
-	userInterface.showBust("PENNY_NUDE", "FLAHNE_NUDE");
+	var pennyBust:String = "PENNY_NUDE";
+	if(flags["PENNY_BADGER_BIMBO"] != undefined || pennyIsCumSlut())
+	{
+		pennyBust = "PENNY_BIMBO"
+		if(penny.hasCock(GLOBAL.TYPE_EQUINE)) pennyBust = "PENNY_BIMBO_HORSE";
+	}
+	userInterface.showBust(pennyBust, "FLAHNE_NUDE");
 	var x:int = pc.biggestCockIndex(); // Fenstyle yo
 
 	output("You mention to Penny that you had a very interesting talk about her with Flahne recently. At the mention of Flahne’s name Penny’s ears prick up with almost comical enthusiasm, betraying her interest as they literally swivel slightly towards you.");
@@ -3256,8 +3263,7 @@ public function pennyVsFlahneWhoWillOutslutWho():void
 public function givePennyAHossCawk():void
 {
 	clearOutput();
-	showBust("PENNY_NUDE");
-	showName("\nPENNY");
+	showPenny(true);
 	author("Alkahest");
 	pc.destroyItemByName("HorseCock",1);
 	if(!penny.hasCock())
@@ -3324,8 +3330,7 @@ public function givePennyAHossCawk():void
 public function pennyGrowsAHorseCockPart2():void
 {
 	clearOutput();
-	showBust("PENNY_NUDE");
-	showName("\nPENNY");
+	showPenny(true);
 	author("Alkahest");
 	if(!penny.hasCock())
 	{
@@ -3398,8 +3403,7 @@ public function whineToPennyCauseYerABitch():void
 {
 	clearOutput();
 	author("Savin");
-	showPennyName();
-	showBust("PENNY");
+	showPenny();
 	output("Rather than talking about you and Penny, as you’re accustomed to, you tell the vulpine peacekeeper that you’ve got a crime to report - something you weren’t able to deal with on your own. Penny perks up at that, her playful demeanour giving way to seriousness. She taps something on her desk’s computer, bringing up some kind of form.");
 	output("\n\n<i>“Okay, ");
 	if(flags["SEXED_PENNY"] != undefined) output("my mate");

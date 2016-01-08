@@ -31,7 +31,7 @@ package classes.Characters
 			// Originally a clone of the zilpack
 			// Needs a few things checked.
 			this.short = "varmint";
-			this.originalRace = "Automaton";
+			this.originalRace = "varmint";
 			this.a = "the ";
 			this.capitalA = "The ";
 			this.long = "This New Texan varmint is a big, blue creature near to the size of a burly Terran doberman, though its posture is more squat, and its frame is rippling with muscle. Its jaw is filled with razor-sharp teeth, slavering as it draws near to you, a hungry glint in its big green eyes. Several spikes coat the creature's flat head, including a pair that curl into horn-like protrusions around its head, almost ram-like.\n\nThe creature stalks towards you, clearly angered by your disturbing it. Those horns and teeth look like they could do some serious harm if you don't take it down quickly!";

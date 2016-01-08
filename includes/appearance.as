@@ -213,6 +213,12 @@ public function appearance(forTarget:Creature):void
 			else output2(", covered with " + target.skinFurScales(true,true));
 			output2(", appearing almost goblinoid with alien facial features.");
 		}
+		else if(target.faceType == GLOBAL.TYPE_FROG)
+		{
+			output2(" Your face is anuran in shape, reflecting the frog-like transformations you’ve undergone. The smooth visage is further exaggerated with a notable lack of a nose, having broadly spaced nostrils instead.");
+			if(target.skinType == GLOBAL.SKIN_TYPE_SKIN || target.skinType == GLOBAL.SKIN_TYPE_GOO) output2(" Your face is covered in " + target.skin(true,true) + ".");
+			else output2(" Strangely enough, your face is also covered with " + target.skin(true,true) + ".");
+		}
 		
 		//M/F stuff!
 		output2(" Overall, your visage has " + target.faceDesc() + ".");
@@ -263,6 +269,19 @@ public function appearance(forTarget:Creature):void
 		{
 			if (target.eyeColor == "black") output2(" Your alien eyes are dark as the void, with irises that are completely black and indistinguishible from the pupils themselves, making you appear disconcerting from afar.");
 			else output2(" Your eyes are completely " + target.eyeColor + ", with irises of the same color and indistinguishible from the pupils themselves, making you appear quite alien.");
+		}
+		else if (target.eyeType == GLOBAL.TYPE_FROG)
+		{
+			if (target.eyeColor != "black") output2(" Void black eyes with glowing iridescent");
+			else
+			{
+				if (hasMetallicEyes) output2(" Metallically glistening " + target.eyeColor);
+				else if (hasGemstoneEyes) output2(" Like jewels, shimmering " + target.eyeColor);
+				else if (hasLuminousEyes) output2(" Like twinkling beacons, " + target.eyeColor);
+				else output2(" " + StringUtil.capitalize(target.eyeColor));
+				output2(" eyes with dark");
+			}
+			output2(" ‘plus’-shaped pupils assess your surroundings with little issue.");
 		}
 		else
 		{
@@ -339,6 +358,7 @@ public function appearance(forTarget:Creature):void
 				if(target.earLength > 1) output2(" " + num2Text(target.earLength) + " inches from your");
 				output2(" from your skull.");
 			}
+			else if(target.earType == GLOBAL.TYPE_FROG) output2(" A pair of small indented holes on the sides of your skull make up your ears.");
 			if(target.hasAntennae())
 			{
 				if(target.antennae == 1) output2(" A floppy [target.antenna] also appears");
@@ -406,6 +426,7 @@ public function appearance(forTarget:Creature):void
 				if(target.earLength > 1) output2(" " + num2Text(target.earLength) + "-inch long,");
 				output2(" wicked-looking demonic ears.");
 			}
+			else if(target.earType == GLOBAL.TYPE_FROG) output2(" The " + target.hairDescript(true,true) + " atop your head coveres the two small openings that make up your ears.");
 			if(target.hasAntennae())
 			{
 				if(target.earType == GLOBAL.TYPE_LAPINE)
@@ -441,8 +462,13 @@ public function appearance(forTarget:Creature):void
 			if(target.hasTongueFlag(GLOBAL.FLAG_LONG)) output2(" A lengthy, tapered tongue fills your mouth, able to stretch out almost nine inches in order to taste the very air.");
 			else output2(" A tapered tongue fills your mouth, able to taste the very air when extended beyond your oral cavity.");
 		}
-		else if	(target.tongueType == GLOBAL.TYPE_BEE) output2(" Your mouth contains a long, bright yellow [target.tongueNoun] that can extend a foot past past your [target.lips] when fully extended. The tip has a tube inside it, capable of gathering sweet nectar from jungle flowers or lovers.");
-		else if (target.hasTongueFlag(GLOBAL.FLAG_LONG)) output2(" Your mouth contains a lengthy tongue.");
+		else if(target.tongueType == GLOBAL.TYPE_BEE) output2(" Your mouth contains a long, bright yellow [target.tongueNoun] that can extend a foot past past your [target.lips] when fully extended. The tip has a tube inside it, capable of gathering sweet nectar from jungle flowers or lovers.");
+		else if(target.tongueType == GLOBAL.TYPE_FROG)
+		{
+			if(target.hasTongueFlag(GLOBAL.FLAG_LONG)) output2(" Your mouth contains a long and stretchy frog tongue, capable of reaching much longer distances than most races.");
+			else output2(" Your mouth contains a stretchy frog-like tongue.");
+		}
+		else if(target.hasTongueFlag(GLOBAL.FLAG_LONG)) output2(" Your mouth contains a lengthy tongue.");
 		else output2(" Your mouth contains a [target.tongue].");
 
 		//Horns
@@ -512,8 +538,16 @@ public function appearance(forTarget:Creature):void
 		else output2(".");
 		//Vanaebutt Skin
 		if(target.hasStatusEffect("Vanae Markings")) output2(" Swirls of " + target.skinAccent + " trace brighter accents across much of your form.");
+		// Lube skin!
+		if(target.hasSkinFlag(GLOBAL.FLAG_LUBRICATED))
+		{
+			output2(" Your " + target.skin() + " is secreting");
+			if(target.hasSkinFlag(GLOBAL.FLAG_APHRODISIAC_LACED))output2(" an aphrodisiac sweat");
+			else output2(" a constant layer of lubrication");
+			output2(", giving it a slick oiled shine.");
+		}
 		// Muscles - Sweaty ( Shazam Remix )
-		if(target.hasStatusEffect("Sweaty"))
+		else if(target.hasStatusEffect("Sweaty"))
 		{
 			output2(" In addition, your body");
 			if(target.statusEffectv1("Sweaty") <= 1) output2(" is sprinkled with a light layer");
@@ -970,6 +1004,7 @@ public function appearance(forTarget:Creature):void
 				output2(" a series of noticeable ridges that gradually thin as they appear closer to the tip.");
 			}
 		}
+		else if(target.tailType == GLOBAL.TYPE_FROG) output2(" Your stubby frog tail wiggles around at the back of your waist, just asking to be squeezed.");
 		//Ovipositor
 		if(target.hasTailFlag(GLOBAL.FLAG_OVIPOSITOR))
 		{
@@ -1127,13 +1162,17 @@ public function appearance(forTarget:Creature):void
 			output2(" There are three long toes on the front, and a small hind-claw on the back.");
 		}
 		else if(target.legType == GLOBAL.TYPE_KUITAN) output2(" Your legs, though covered in fur, are humanlike. Long feet on the ends bear equally long toes, and the pads on the bottoms are quite sensitive to the touch.");
-		else if (target.legType == GLOBAL.TYPE_PANDA)
+		else if(target.legType == GLOBAL.TYPE_PANDA)
 		{
 			if(target.isTaur()) output2(" Your digitigrade legs end in fluffy panda-paws.");
 			else output2(" " + StringUtil.upperCase(num2Text(target.legCount)) + " digitigrade legs grow downwards from your waist, ending in fluffy panda-paws.");
 			output2(" You even have sharp-looking claws growing from the tips of your short toes.");
 		}
-		//Catch all (mostly there for Ovir feet)
+		else if(target.legType == GLOBAL.TYPE_FROG)
+		{
+			if(target.legCount < 4) output2(" " + StringUtil.upperCase(num2Text(target.legCount)) + " digitigrade legs grow down from your " + target.hipDescript() + ", ending in three-toed, webbed, frog-like feet. They look built for leaping and sticking to flat surfaces rather than running.");
+			else output2(" Your " + plural(target.leg(true)) + " look built for leaping than running, ending in three-toed, webbed, frog-like feet.");
+		}
 		else if (target.legType == GLOBAL.TYPE_OVIR)
 		{
 			if(target.skinType != GLOBAL.SKIN_TYPE_SCALES)
@@ -1145,6 +1184,33 @@ public function appearance(forTarget:Creature):void
 			{
 				if(target.isTaur()) output2(" Your scaled, plantigrade legs end in human-like feet.");
 				else output2(" " + StringUtil.upperCase(num2Text(target.legCount)) + " scaled, plantigrade legs extend below your waist, ending in human-like feet.");
+			}
+		}
+		//Catch all
+		else
+		{
+			if(target.isTaur() && target.hasFeet())
+			{
+				output2(" Your");
+				if(target.hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) output2(" plantigrade");
+				else if(target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) output2(" digitigrade");
+				output2(" " + target.legs(true, true) + " end in " + target.feet(true, true) + ".");
+			}
+			else if(!target.isTaur())
+			{
+				output2(" " + StringUtil.upperCase(num2Text(target.legCount)));
+				if(target.hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) output2(" plantigrade");
+				else if(target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) output2(" digitigrade");
+				if(target.legCount == 1) output2(" " + target.leg(true, true) + " extends");
+				else output2(" " + target.legs(true, true) + " extend");
+				output2(" below your waist");
+				if(target.hasFeet())
+				{
+					output2(", ending in ");
+					if(target.legCount == 1) output2("a " + target.foot(true, true));
+					else output2(target.feet(true, true));
+				}
+				output2(".");
 			}
 		}
 		

@@ -490,7 +490,7 @@ public function galoMaxTFProc():void
 		output("\n\nOoh...");
 		output("\n\nAnd... nothing happens.");
 		output("\n\nSeems like that GaloMax pill didn't have any effect on you this time.");
-		if(flags["GOO_BIOMASS"] != undefined && rand(2) == 0)
+		if(rand(2) == 0)
 		{
 			output("..");
 			output("\n\nSuddenly, you feel a surge of biomass flow into your body. Well, it did have an effect after all!");
@@ -616,8 +616,7 @@ public function gooShiftMenu():void
 
 public function showBiomass():void
 {
-	if(flags["GOO_BIOMASS"] == undefined || flags["GOO_BIOMASS"] < 0) flags["GOO_BIOMASS"] = 0;
-	output2("\n\n\tBiomass Reserve: <b>" + flags["GOO_BIOMASS"] + "</b>");
+	output2("\n\n\tBiomass Reserve: <b>" + gooBiomass() + "</b>");
 	if(flags["GALOMAX_DOSES"] >= 1 && flags["GALOMAX_DOSES"] <= 5) output2(" / " + gooBiomassMax());
 	output2(" mLs");
 	if(pc.hasStatusEffect("Goo Vent")) {
@@ -654,7 +653,7 @@ public function lengthenHairGoo():void
 {
 	clearOutput2();
 	//Below 100 Biomass
-	if(flags["GOO_BIOMASS"] < 100) 
+	if(gooBiomass() < 100) 
 	{
 		output2("No matter how hard you will your ");
 		if(!pc.hasHair()) output2("bald head to sprout hair, it steadfastly refuses to grow.");
@@ -906,12 +905,14 @@ public function adjustGooBody(arg:Array):void
 	var limitMax:Number = 100;
 	var limitMin:Number = 0;
 	clearGhostMenu();
+	// Menu blurb
 	if(desc == "menu")
 	{
 		clearOutput2();
-		output2("You take a look at your body’s shape, contemplating the changes you could make to it.");
+		output2("You take a look at your body’s shape, contemplating the changes you could make to it. ");
 	}
-	else if(part == "height")
+	// Parts Options
+	if(part == "height")
 	{
 		cost = 20;
 		limitMax = 144;
@@ -1064,6 +1065,7 @@ public function adjustGooBody(arg:Array):void
 	}
 	
 	output2("How would you like to change your " + part + "?");
+	showBiomass();
 	
 	addGhostButton(14,"Back",gooBodyCustomizer);
 }
@@ -1088,12 +1090,9 @@ public function revertGooBodyPart(part:String = "all"):void
 	clearGhostMenu();
 	addGhostButton(0,"Next",gooBodyCustomizer);
 }
-public function revertGooBodyColor(part:String = "menu"):void
+public function gooMismatchedGenitals():int
 {
-	clearOutput2();
-	var i:int = 0;
 	var mismatchedGenitals:int = 0;
-	var sColor:String = pc.skinFurScalesColor();
 	if(pc.hasCock())
 	{
 		for(i = 0; i < pc.cockTotal(); i++)
@@ -1108,6 +1107,13 @@ public function revertGooBodyColor(part:String = "menu"):void
 			if(pc.vaginas[i].hasFlag(GLOBAL.FLAG_GOOEY) && pc.vaginas[i].vaginaColor != sColor) mismatchedGenitals++;
 		}
 	}
+	return mismatchedGenitals;
+}
+public function revertGooBodyColor(part:String = "menu"):void
+{
+	clearOutput2();
+	var i:int = 0;
+	var sColor:String = pc.skinFurScalesColor();
 	if(part == "menu")
 	{
 		output2("You flip open your Codex and");
@@ -1116,18 +1122,19 @@ public function revertGooBodyColor(part:String = "menu"):void
 		if(pc.hasHair()) output2(" and [pc.hairColor] [pc.hairsNoun]");
 		output2(" and ponder for a bit.");
 		showBiomass();
-		clearGhostMenu();	
+		output2("\n\n");
+		clearGhostMenu();
 		if(gooBiomass() >= 10 && pc.hairColor != pc.skinTone)
 		{
-			output2(" You can tell your colors are different, would you like to force them to match? You can colorize yourself to either match your [pc.hairColor] hair");
+			output2("You can tell your colors are different, would you like to force them to match? You can colorize yourself to either match your [pc.hairColor] hair");
 			if(!pc.hasHair()) output2(", if it were visible that is,");
-			output2(" or your [pc.skinColor] skin.");
+			output2(" or your [pc.skinColor] skin. ");
 			addGhostButton(0,"Hair",revertGooBodyColor,"hair","Hair","Shift your body color to match your [pc.hairColor] hair.\n\n<b>10 mLs Biomass</b>");
 			addGhostButton(1,"Skin",revertGooBodyColor,"skin","Skin","Shift your hair color to match your [pc.skinColor] skin.\n\n<b>10 mLs Biomass</b>");
 		}
 		else if(pc.hairColor != pc.skinTone)
 		{
-			output2(" You can tell your colors are different, but unfortunately, you don’t have enough biomass to do anything about it.");
+			output2("You can tell your colors are different, but unfortunately, you don’t have enough biomass to do anything about it. ");
 			addDisabledGhostButton(0,"Hair","Hair","You don’t have enough biomass for that.\n\n<b>10 mLs Biomass</b>");
 			addDisabledGhostButton(1,"Skin","Skin","You don’t have enough biomass for that.\n\n<b>10 mLs Biomass</b>");
 		}
@@ -1136,15 +1143,15 @@ public function revertGooBodyColor(part:String = "menu"):void
 			addDisabledGhostButton(0,"Hair","Hair","Your hair and body colors already match!");
 			addDisabledGhostButton(1,"Skin","Skin","Your hair and skin colors already match!");
 		}
-		if(mismatchedGenitals > 0)
+		if(gooMismatchedGenitals() > 0)
 		{
-			output2(" Your genital colors seem to be off compared to the rest of your body.");
+			output2("Your genital colors seem to be off compared to the rest of your body.");
 			if(gooBiomass() >= 10) addGhostButton(2,"FixGenitals",revertGooGenitalColor,sColor,"Revert Genital Color","Shift your genital color to match your " + sColor + " body.\n\n<b>10 mLs Biomass</b>");
 			else addDisabledGhostButton(2,"FixGenitals","Revert Genital Color","You don’t have enough biomass for that.\n\n<b>10 mLs Biomass</b>");
 		}
 		else
 		{
-			if(pc.hairColor == pc.skinTone) output2(" You might be able to shift your colors if they are ever mismatched.");
+			if(pc.hairColor == pc.skinTone) output2("You might be able to shift your colors if they are ever mismatched.");
 			addDisabledGhostButton(2,"FixGenitals","Revert Genital Color","Your genital and body colors already match!");
 		}
 		addGhostButton(14,"Back",gooBodyCustomizer);
@@ -1158,9 +1165,10 @@ public function revertGooBodyColor(part:String = "menu"):void
 		pc.scaleColor = pc.hairColor;
 		gooBiomass(-10);
 		clearGhostMenu();
-		if(mismatchedGenitals > 0)
+		if(gooMismatchedGenitals() > 0)
 		{
 			output2("\n\nTilting your codex to your nether region, you noticed the color is a bit off... Do you want to change to color of your gooey genitals to match as well?");
+			showBiomass();
 			if(gooBiomass() >= 10) addGhostButton(0,"Yes",revertGooGenitalColor,pc.hairColor,"Yes","Shift your genital color to match your [pc.hairColor] hair.\n\n<b>10 mLs Biomass</b>");
 			else addDisabledGhostButton(0,"Yes","Yes","You don’t have enough biomass for that.\n\n<b>10 mLs Biomass</b>");
 			addGhostButton(1,"No",revertGooGenitalColor);
@@ -1176,9 +1184,10 @@ public function revertGooBodyColor(part:String = "menu"):void
 		pc.hairColor = pc.skinTone;
 		gooBiomass(-10);
 		clearGhostMenu();
-		if(mismatchedGenitals > 0)
+		if(gooMismatchedGenitals() > 0)
 		{
 			output2("\n\nTilting your codex to your nether region, you noticed the color is a bit off... Do you want to change to color of your gooey genitals to match as well?");
+			showBiomass();
 			if(gooBiomass() >= 10) addGhostButton(0,"Yes",revertGooGenitalColor,pc.skinTone,"Yes","Shift your genital color to match your [pc.skinColor] skin.\n\n<b>10 mLs Biomass</b>");
 			else addDisabledGhostButton(0,"Yes","Yes","You don’t have enough biomass for that.\n\n<b>10 mLs Biomass</b>");
 			addGhostButton(1,"No",revertGooGenitalColor);
@@ -1756,7 +1765,7 @@ public function gooCockRootMenu():void
 	showBiomass();
 	//[Grow One] [Reshape] [Resize][Remove 1][Remove All]
 	clearGhostMenu();
-	if(flags["GOO_BIOMASS"] >= 500) 
+	if(gooBiomass() >= 500) 
 	{
 		if(!pc.createCockUnlocked(pc.cockTotal() + 1)) addDisabledGhostButton(0,"Grow One","Grow One","Something is preventing you from growing a penis.");
 		else if(pc.cockTotal() < 10) addGhostButton(0,"Grow One",growANewGooCock,undefined,"Grow One","Grow a new, gooey penis.\n\n<b>500 mLs Biomass</b>");
@@ -1766,8 +1775,8 @@ public function gooCockRootMenu():void
 
 	if(pc.hasCock()) 
 	{
-		if(flags["GOO_BIOMASS"] >= 100 && pc.cockTotal() == 1 && pc.cocks[0].hasFlag(GLOBAL.FLAG_GOOEY)) addGhostButton(1,"Reshape",reshapeACaaaawk,undefined,"Reshape","Change the shape of your penis.\n\n<b>100 mLs Biomass</b>");
-		else if(flags["GOO_BIOMASS"] >= 100) addGhostButton(1,"Reshape",reshapeACaaaawk,undefined,"Reshape","Change the shape of a penis.\n\n<b>100 mLs Biomass</b>");
+		if(gooBiomass() >= 100 && pc.cockTotal() == 1 && pc.cocks[0].hasFlag(GLOBAL.FLAG_GOOEY)) addGhostButton(1,"Reshape",reshapeACaaaawk,undefined,"Reshape","Change the shape of your penis.\n\n<b>100 mLs Biomass</b>");
+		else if(gooBiomass() >= 100) addGhostButton(1,"Reshape",reshapeACaaaawk,undefined,"Reshape","Change the shape of a penis.\n\n<b>100 mLs Biomass</b>");
 		else addDisabledGhostButton(1,"Reshape","Reshape","You lack sufficient biomass to reshape your penis.\n\n<b>100 mLs Biomass</b>");
 		if(pc.cockTotal() == 1 && pc.cocks[0].hasFlag(GLOBAL.FLAG_GOOEY))
 		{
@@ -1819,7 +1828,7 @@ public function gooBallsMenu():void
 	showBiomass();
 	if(pc.balls < 6)
 	{
-		if(flags["GOO_BIOMASS"] >= nutGrowCost()) addGhostButton(0, "Grow Testicle", growSomeGooBalls,undefined,"Grow Testicle","Grow a new testicle.\n\n<b>" + nutGrowCost() + " mLs Biomass</b>");
+		if(gooBiomass() >= nutGrowCost()) addGhostButton(0, "Grow Testicle", growSomeGooBalls,undefined,"Grow Testicle","Grow a new testicle.\n\n<b>" + nutGrowCost() + " mLs Biomass</b>");
 		else addDisabledGhostButton(0,"Grow Testicle","Grow Testicle","You do not have enough biomass for this.\n\n<b>" + nutGrowCost() + " mLs Biomass</b>");
 	}
 	else addDisabledGhostButton(0,"Grow Testicle","Grow Testicle","You have as many testicles as possible.");
@@ -1829,13 +1838,13 @@ public function gooBallsMenu():void
 	else addDisabledGhostButton(1,"Remove 1","Remove One","You have no testicles to remove.");
 	if(pc.balls > 0)
 	{
-		if(flags["GOO_BIOMASS"] >= nutExpansionCost()) addGhostButton(2,"Expand Balls",expandoNuts,undefined,"Expand Balls","Expand the diameter of your balls by approximately one inch.\n\n<b>" + nutExpansionCost() + " mLs Biomass</b>");
+		if(gooBiomass() >= nutExpansionCost()) addGhostButton(2,"Expand Balls",expandoNuts,undefined,"Expand Balls","Expand the diameter of your balls by approximately one inch.\n\n<b>" + nutExpansionCost() + " mLs Biomass</b>");
 		else addDisabledGhostButton(2,"Expand Balls","Expand Balls","You don't have the necessary biomass to expand your testicular endowments.\n\n<b>" + nutExpansionCost() + " mLs Biomass</b>");
 		if(pc.ballDiameter() > 1) addGhostButton(3,"Shrink Balls",nutShrinkGo,undefined,"Shrink Balls","Reduce the size of your testicular endowments significantly.");
 		else addDisabledGhostButton(3,"Shrink Balls","Shrink Balls","You can't get any smaller down there!");
 
 		if(pc.hasStatusEffect("Uniball")) addGhostButton(5,"Loosen Sack",tautSackToggle,undefined,"Loosen Sack","Let your nutsack hang a little lower and freer.");
-		else if(flags["GOO_BIOMASS"] >= 100) addGhostButton(5,"Tighten Sack",tautSackToggle,undefined,"Tighten Sack","Tighten up your nutsack into a nice, smooth bulge.\n\n<b>100 mLs Biomass</b>");
+		else if(gooBiomass() >= 100) addGhostButton(5,"Tighten Sack",tautSackToggle,undefined,"Tighten Sack","Tighten up your nutsack into a nice, smooth bulge.\n\n<b>100 mLs Biomass</b>");
 		else addDisabledGhostButton(5,"Tighten Sack","Tighten Sack","You don't have enough biomass to tighten your sack into a nice, smooth bulge.");
 	}
 	else 
@@ -2275,7 +2284,7 @@ public function lengthenSelectedGooCock(arg:int = 0):void
 	//Find the difference between new and old sizes:
 	var biomassReq:Number = costGooCockLengthen(arg, cChange);
 	//Is there enough? TF
-	if(flags["GOO_BIOMASS"] >= biomassReq)
+	if(gooBiomass() >= biomassReq)
 	{
 		// Perk bonus (no extra cost!)
 		if(pc.hasPerk("Hung")) cChange += 2;
@@ -2385,7 +2394,7 @@ public function vaginaGooRootMenu():void
 	showBiomass();
 	//[Grow Vagina] [Remove Vag] [Remove Vags] [Reshape]
 	clearGhostMenu();
-	if(flags["GOO_BIOMASS"] >= 500)
+	if(gooBiomass() >= 500)
 	{
 		if(!pc.createVaginaUnlocked(pc.totalVaginas() + 1)) addDisabledGhostButton(0,"Grow Vagina","Grow Vagina","Something is preventing you from growing a vagina.");
 		else if(pc.totalVaginas() < 3) addGhostButton(0,"Grow Vagina",growAGoogina,undefined,"Grow Vagina","Grow a new vagina.\n\n<b>500 mLs Biomass</b>");
@@ -2393,13 +2402,13 @@ public function vaginaGooRootMenu():void
 	}
 	else addDisabledGhostButton(0,"Grow Vagina","Grow Vagina","You don't have enough biomass for that!\n\n<b>500 mLs Biomass</b>");
 
-	if(flags["GOO_BIOMASS"] >= 200)
+	if(gooBiomass() >= 200)
 	{
 		if(pc.hasVagina()) addGhostButton(1,"Reshape",shiftACuntYaCunt,undefined,"Reshape","Reshape your vagina into another form.\n\n<b>200 mLs Biomass</b>");
 		else addDisabledGhostButton(1,"Reshape","Reshape","You don't have a vagina to reshape.");
 	}
 	else addDisabledGhostButton(1,"Reshape","Reshape","You don't have enough biomass to reshape your vagina.\n\n<b>200 mLs Biomass</b>");
-	if(flags["GOO_BIOMASS"] >= 100)
+	if(gooBiomass() >= 100)
 	{
 		if(pc.hasVagina()) addGhostButton(2,"Grow Clit",addClitGooMenu,undefined,"Grow Clit","Grow a new clitoris.\n\n<b>100 mLs Biomass</b>");
 		else addDisabledGhostButton(2,"Grow Clit","Grow Clit","You have no vagina to add a clit to.");
@@ -2417,7 +2426,7 @@ public function vaginaGooRootMenu():void
 		{
 			if(!pc.vaginas[x].hymen) hymenCost += 50;
 		}
-		if(hymenCost <= flags["GOO_BIOMASS"]) addGhostButton(4,"Regn.Hymen",hymenRestorationForGoos,undefined,"Regenerate Hymens","Restore any and all hymens.\n\n<b>" + hymenCost + " mLs Biomass</b>");
+		if(hymenCost <= gooBiomass()) addGhostButton(4,"Regn.Hymen",hymenRestorationForGoos,undefined,"Regenerate Hymens","Restore any and all hymens.\n\n<b>" + hymenCost + " mLs Biomass</b>");
 		else addDisabledGhostButton(4,"Regn.Hymen","Regenerate Hymens","You do not have enough biomass for this.\n\n<b>" + hymenCost + " mLs Biomass</b>");
 	}
 	
@@ -2731,6 +2740,7 @@ public function hymenRestorationForGoos():void
 public function fixAllVags(nVagsToFix:Number = 0):void
 {
 	clearOutput2();
+	gooBiomass();
 	var numPregTotal:Number = pc.totalPregnancies();
 	if(pc.isPregnant(3)) numPregTotal--;
 	
@@ -2766,10 +2776,10 @@ public function fixAllVags(nVagsToFix:Number = 0):void
 			pc.vaginas[x].vaginaColor = gooColor();
 			pc.energy(-25);
 			// Take goo:
-			gooBiomass(-500);
+			flags["GOO_BIOMASS"] -500;
 		}
 		
-		if(flags["GOO_BIOMASS"] <= 0)
+		if(flags["GOO_BIOMASS"] < 0)
 		{
 			flags["GOO_BIOMASS"] = 0;
 			output2(" and using up the rest of your biomass reserves in the process");

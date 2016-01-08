@@ -690,7 +690,22 @@ public function quentonTrainingCatch(response:String = ""):void
 	
 	if(response == "catch")
 	{
-		output("You tell Quenton you want him to take you from behind. He puts his hands on his hips and nods, then waits as you get out of your [pc.armor]. He gives you an appreciative whistle as you shed your [pc.upperUndergarment] and [pc.lowerUndergarment]. <i>“Damn, [pc.name]. You’ve done yourself right, with a build like that.”</i>");
+		output("You tell Quenton you want him to take you from behind. He puts his hands on his hips and nods");
+		if(!pc.isNude())
+		{
+			if(pc.hasArmor() || (pc.hasLowerGarment() && !pc.hasUpperGarment()))
+			{
+				output(", then waits as you get out of your");
+				if(pc.hasArmor()) output(" [pc.armor]");
+			}
+			if(pc.hasUpperGarment()) output(". He gives you an appreciative whistle as you shed your [pc.upperUndergarment]");
+			if(pc.hasLowerGarment())
+			{
+				if(pc.hasArmor() || pc.hasUpperGarment()) output(" and");
+				output(" [pc.lowerUndergarment]");
+			}
+		}
+		output(". <i>“Damn, [pc.name]. You’ve done yourself right, with a build like that.”</i>");
 		output("\n\nQuenton picks up the bottle of lube and strokes his horsecock to full hardness, then drizzles a line of lube on it and rubs it in until his cock gleams. A palmful of lube gets rubbed all over his chest, making every muscle shine. He flexes again, and thrusts his well-oiled crotch at you.");
 		output("\n\n<i>“Now,”</i> Quenton says, giving you a lewd wink, <i>“let’s see about doin’ you right.”</i>");
 		output("\n\nQuenton steps behind you and faces you toward the mirror, runs both his hands down your muscular back, then slides his hands around your [pc.belly] and strokes them up your [pc.chest]. You keep your eyes on the mirror, watching his hands work over your body, and catch the appreciative look on his face.");

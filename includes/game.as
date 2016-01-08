@@ -441,6 +441,14 @@ public function crew(counter:Boolean = false):Number {
 			addButton(count - 1, bess.short, approachFollowerBess);
 		}
 	}
+	if (varmintIsCrew())
+	{
+		count++;
+		if (!counter)
+		{
+			crewMessages += varmintOnShipBonus(count - 1);
+		}
+	}
 	if(!counter) {
 		if(count > 0) {
 			output("Who of your crew do you wish to interact with?" + crewMessages);
@@ -1733,6 +1741,9 @@ public function processTime(arg:int):void {
 				venusSubmission( -1);
 				
 				tryProcSaendraXPackEmail();
+				
+				// Wild varmint run away
+				varmintDisappearChance();
 				
 				// Manes grow out!
 				if(pc.hasPerk("Mane") && pc.hairLength <= 3) maneHairGrow();

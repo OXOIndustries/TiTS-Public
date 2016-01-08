@@ -1038,7 +1038,7 @@ public function dudesGetStangRoad():void {
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 	}
-	CombatManager.genericLoss();
+	else CombatManager.genericLoss();
 }
 
 //Forcey Face Sitting [DONE][edited]
@@ -1137,7 +1137,7 @@ public function forceyFaceSittingFromFemzil():void {
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 	}
-	CombatManager.genericLoss();
+	else CombatManager.genericLoss();
 }
 
 //Win Menu

@@ -2400,13 +2400,13 @@ public function talkToBessAboutNipples():void
 	clearMenu();
 	if (bess.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_NORMAL) addDisabledButton(0, "Normal");
 	else addButton(0, "Normal", bessSetNippleType, GLOBAL.NIPPLE_TYPE_NORMAL);
-	if (bess.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_FUCKABLE) addDisabledButton(0, "Fuckable");
+	if (bess.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_FUCKABLE) addDisabledButton(1, "Fuckable");
 	else addButton(1, "Fuckable", bessSetNippleType, GLOBAL.NIPPLE_TYPE_FUCKABLE);
-	if (bess.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_DICK) addDisabledButton(0, "Dick");
+	if (bess.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_DICK) addDisabledButton(2, "Dick");
 	else addButton(2, "Dick", bessSetNippleType, GLOBAL.NIPPLE_TYPE_DICK);
-	if (bess.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_FLAT) addDisabledButton(0, "Flat");
+	if (bess.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_FLAT) addDisabledButton(3, "Flat");
 	else addButton(3, "Flat", bessSetNippleType, GLOBAL.NIPPLE_TYPE_FLAT);
-	if (bess.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_INVERTED) addDisabledButton(0, "Inverted");
+	if (bess.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_INVERTED) addDisabledButton(4, "Inverted");
 	else addButton(4, "Inverted", bessSetNippleType, GLOBAL.NIPPLE_TYPE_INVERTED);
 
 	addButton(14, "Back", talkToBessAboutBoobs);
