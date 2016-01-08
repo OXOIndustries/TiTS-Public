@@ -3218,7 +3218,7 @@ package classes {
 		}
 		public function hasCombatDrone():Boolean
 		{
-			if (hasPerk("Attack Drone") || accessory is TamWolf || accessory is TamWolfDamaged)
+			if (hasPerk("Attack Drone") || (accessory is TamWolf) || (accessory is TamWolfDamaged) || hasStatusEffect("Varmint Buddy"))
 			{
 				if (hasStatusEffect("Combat Drone Disabled")) return false;
 				return true;
@@ -13009,6 +13009,15 @@ package classes {
 			{
 				d -= -1;
 				return new TypeCollection( { kinetic: d } );
+			}
+			if (hasStatusEffect("Varmint Buddy"))
+			{
+				d -= -1;
+				varmintDamage:TypeCollection = new TypeCollection();
+				varmintDamage.kinetic.damageValue = Math.round(d * 0.75);
+				varmintDamage.corrosive.damageValue = Math.round(d * 0.25);
+				varmintDamage.addFlag(DamageFlag.PENETRATING);
+				return varmintDamage;
 			}
 			return new TypeCollection( { electric: d } );
 		}
