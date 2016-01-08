@@ -546,14 +546,12 @@ public function varmintOnShipBonus(btnSlot:int = 0):String
 
 // Get a Pet Varmint
 // Play if PC accidentally somehow wanders off of New Texas with a Varmint in their inventory (not in storage) and travels between systems.
-public function getAPetVarmint(destination:String):void
+public function getAPetVarmint():void
 {
 	clearOutput();
 	author("Savin");
 	showBust("VARMINT");
 	clearMenu();
-	
-	pc.destroyItem(new VarmintItem(), 1);
 	
 	if(flags["VARMINT_IS_CREW"] == undefined)
 	{
@@ -571,6 +569,7 @@ public function getAPetVarmint(destination:String):void
 		output("\n\n");
 		
 		processTime(8);
+		pc.destroyItem(new VarmintItem(), 1);
 	}
 	else showName("\nVARMINT");
 	// Repeat Interactions
