@@ -604,7 +604,7 @@ public function gooShiftMenu():void
 	if(pc.hairType == GLOBAL.HAIR_TYPE_GOO) addGhostButton(0, "Hair", gooHairAdjustmenu);
 	else addDisabledGhostButton(0, "Hair");
 	if(pc.hasStatusEffect("Goo Crotch")) addGhostButton(1,"Crotch",gooCrotchCustomizer);
-	else addDisabledGhostButton(1,"Locked","Locked","It takes three doses of GaloMax to unluck this option.");
+	else addDisabledGhostButton(1,"Locked","Locked","It takes three doses of GaloMax to unlock this option.");
 	if(pc.hasStatusEffect("Gel Body")) addGhostButton(2,"Chest",gooChestCustomizer);
 	else addDisabledGhostButton(2,"Locked","Locked","It takes four doses of GaloMax to unlock this option.");
 	if(pc.hasStatusEffect("Gel Body")) addGhostButton(3,"Body",gooBodyCustomizer);
@@ -837,9 +837,9 @@ public function gooBodyCustomizer():void
 	}
 	else
 	{
-		addDisabledGhostButton(0,"Height","Height","It takes five doses of GaloMax to unlock this option.");
-		addDisabledGhostButton(1,"Thickness","Thickness","It takes five doses of GaloMax to unlock this option.");
-		addDisabledGhostButton(2,"Tone","Tone","It takes five doses of GaloMax to unlock this option.");
+		addDisabledGhostButton(0,"Locked","Locked","It takes five doses of GaloMax to unlock this option.");
+		addDisabledGhostButton(1,"Locked","Locked","It takes five doses of GaloMax to unlock this option.");
+		addDisabledGhostButton(2,"Locked","Locked","It takes five doses of GaloMax to unlock this option.");
 	}
 	addGhostButton(3,"Hip Size",adjustGooBody,["hip size","menu"],"Hip Size","Make adjustments to your hip size.");
 	addGhostButton(4,"Butt Size",adjustGooBody,["butt size","menu"],"Butt Size","Make adjustments to your butt size.");
