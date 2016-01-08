@@ -157,16 +157,16 @@ public function configMaidenFight():void
 	CombatManager.displayLocation("MAIDEN");
 }
 
-public function vanaeWaitWhilstGrappled(tEnemy:Creature):void
+public function vanaeWaitWhilstGrappled():void
 {
 	// [Don't Struggle] 
 	output("You resign yourself, relaxing and enjoying her lube you up with her sensuous strokes. She senses your surrender and grins, enthusiastically rubbing her [enemy.breasts] against you even more.");
-	if (tEnemy is MaidenVanae) output(" <i>“Nice! Now just lie back and relax, and I promise we'll have a good time - okay?”</i>");
+	if (enemy is MaidenVanae) output(" <i>“Nice! Now just lie back and relax, and I promise we'll have a good time - okay?”</i>");
 	else output(" <i>“...Mmm, I like it when they give in. That means we can get to the fun bit that much faster...”</i>");
-	applyDamage(new TypeCollection( { tease: 16 + rand(8) } ), tEnemy, pc, "minimal");
+	applyDamage(new TypeCollection( { tease: 16 + rand(8) } ), enemy, pc, "minimal");
 }
 
-public function vanaeEscapeGrapple(tEnemy:Creature, escapeCause:String = ""):void
+public function vanaeEscapeGrapple(escapeCause:String = ""):void
 {
 	// [Successful Escape]: 
 	if (escapeCause == "Escape Artist")
@@ -180,7 +180,7 @@ public function vanaeEscapeGrapple(tEnemy:Creature, escapeCause:String = ""):voi
 	
 	output(" pushing her off and getting back up. You're positively dripping with her sticky violet goo. That was a close one!");
 
-	if (tEnemy is HuntressVanae) output(" The blind huntress picks up her spear once again. <i>“By the Sky Mother; you're so slippery! You better be worth all the effort.”</i>");
+	if (CombatManager.hasEnemyOfClass(HuntressVanae)) output(" The blind huntress picks up her spear once again. <i>“By the Sky Mother; you're so slippery! You better be worth all the effort.”</i>");
 	else output(" The blind huntress picks up her spear and stomps her foot. <i>“Arghh, I was so close! Was I really that bad?”</i>");
 	
 	pc.removeStatusEffect("Tripped");
