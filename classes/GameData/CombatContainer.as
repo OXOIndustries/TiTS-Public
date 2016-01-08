@@ -247,8 +247,8 @@ package classes.GameData
 			
 			if (hasEnemyOfClass(GardeBot))
 			{
-				kGAMECLASS.setEnemy(_hostiles[indexEnemyOfClass(GardeBot)]);
-				kGAMECLASS.gardeBotBonusButtons(_hostiles[indexEnemyOfClass(GardeBot)]);
+				kGAMECLASS.setEnemy(_hostiles[0]);
+				kGAMECLASS.gardeBotBonusButtons(_hostiles[0]);
 				kGAMECLASS.setEnemy(null);
 				return;
 			}
@@ -878,7 +878,7 @@ package classes.GameData
 				
 				if (hasEnemyOfClass(Kaska))
 				{
-					addButton(10, "Nip-Pinch", kGAMECLASS.pinchKaskaNipple, _hostiles[indexEnemyOfClass(Kaska)], "Nip-Pinch", "Maybe pinching Kaska's nipple will get her to release you.");
+					addButton(10, "Nip-Pinch", kGAMECLASS.pinchKaskaNipple, undefined, "Nip-Pinch", "Maybe pinching Kaska's nipple will get her to release you.");
 				}
 				
 				addButton(4, "Do Nothing", waitRound);
@@ -1324,7 +1324,7 @@ package classes.GameData
 				if(target.hasStatusEffect("Grappled"))
 				{
 					if(hasEnemyOfClass(SexBot)) output("You struggle as hard as you can against the sexbot’s coils but the synthetic fiber is utterly unyielding.");
-					else if (hasEnemyOfClass(Kaska)) kGAMECLASS.failToStruggleKaskaBoobs(_hostiles[indexEnemyOfClass(Kaska)]);
+					else if (hasEnemyOfClass(Kaska)) kGAMECLASS.failToStruggleKaskaBoobs();
 					else if (hasEnemyOfClass(MaidenVanae) || hasEnemyOfClass(HuntressVanae)) output("You wriggle in futility, helpless as she lubes you up with her sensuous strokes. This is serious!");
 					else if (hasEnemyOfClass(GrayPrime)) kGAMECLASS.grayPrimeFailEscape();
 					else if (hasEnemyOfClass(NyreaAlpha) || hasEnemyOfClass(NyreaBeta)) output("Try as you might, struggling against the heavy ropes of the nyrea huntresses net, you just can't find a way out of the net that has you restrained.");
@@ -3565,18 +3565,12 @@ package classes.GameData
 			return num;
 		}
 		
-		public function indexEnemyOfClass(classT:Class):int
+		public function hasEnemyOfClass(classT:Class):Boolean
 		{
 			for (var i:int = 0; i < _hostiles.length; i++)
 			{
-				if (_hostiles[i] is classT) return i;
+				if (_hostiles[i] is classT) return true;
 			}
-			return -1;
-		}
-		
-		public function hasEnemyOfClass(classT:Class):Boolean
-		{
-			if (indexEnemyOfClass(classT) != -1) return true;
 			return false;
 		}
 		
