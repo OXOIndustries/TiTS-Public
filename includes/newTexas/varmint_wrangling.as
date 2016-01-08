@@ -1,8 +1,8 @@
 ﻿import classes.Characters.Varmint;
 import classes.Creature;
 import classes.Engine.Combat.DamageTypes.TypeCollection;
+import classes.Items.Accessories.VarmintLeash;
 import classes.Items.Miscellaneous.VarmintItem;
-import classes.Items.Miscellaneous.VarmintLeash;
 import classes.Items.Miscellaneous.Silicone;
 
 /*Faux Cow Farmer
