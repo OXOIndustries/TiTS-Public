@@ -1438,10 +1438,10 @@ public function doNothingWhileTittyGrappled():void
 }
 
 //Failed Strugle
-public function failToStruggleKaskaBoobs():void
+public function failToStruggleKaskaBoobs(tEnemy:Creature):void
 {
 	output("You try to struggle, but all you manage to do is squirm against the pillowy, chocolatey prison, rubbing against the pirate's slick skin in way that's undeniably pleasant. No matter how hard you try to deny it, your lips and nose are stuffed directly into cleavage. ");
-	applyDamage(new TypeCollection( { tease: 10 + rand(5) } ), enemy, pc, "minimal");
+	applyDamage(new TypeCollection( { tease: 10 + rand(5) } ), tEnemy, pc, "minimal");
 	if(pc.lust() <= 50) output("It feels... good to rub against it.");
 	else if(pc.lust() <= 80) output("Damn, these tits are great! If you don't get out soon, things are going to get out of hand!");
 	else output("It feels to good to hold out any longer. You start licking and kissing with reckless abandon, letting your struggles to escape cease. Why fight the inevitable?");
@@ -1449,14 +1449,14 @@ public function failToStruggleKaskaBoobs():void
 
 //Pinch Nipple
 //Automatically escapes tittygrapple at the expense of a little bit of lust damage to both of you.
-public function pinchKaskaNipple():void
+public function pinchKaskaNipple(tEnemy:Creature):void
 {
 	clearOutput();
 	output("One of her leather-covered nipples brushes your cheek, giving you all the information you need to target it. You twist your torso slightly and free enough room for your arm to snake up into her cleavage. Then, your fingers find your target. It's hard and pebbly. You pinch. Gasping, Kaska drops you, staggering back and panting, her nipples even more visible through the thin xeno-leather corset. Her nipple felt nice between your fingers. Maybe you ought to let her grab you again?");
 	output("\n\nKaska merely pants and flushes. Did she enjoy the pinch that much?\n");
 	pc.removeStatusEffect("Grappled");
-	applyDamage(new TypeCollection( { tease: 4 + rand(3) } ), enemy, pc, "minimal");
-	applyDamage(new TypeCollection( { tease: 7 + rand(3) } ), pc, enemy, "minimal");
+	applyDamage(new TypeCollection( { tease: 4 + rand(3) } ), tEnemy, pc, "minimal");
+	applyDamage(new TypeCollection( { tease: 7 + rand(3) } ), pc, tEnemy, "minimal");
 	CombatManager.processCombat();
 }
 
