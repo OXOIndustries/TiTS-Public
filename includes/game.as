@@ -1111,6 +1111,12 @@ public function variableRoomUpdateCheck():void
 		//Add Kelly icon in the bar
 		rooms["BURT'S BACK END"].addFlag(GLOBAL.NPC);
 	}
+	//Hungry Hungry Rahn
+	if(flags["SEEN_BIMBO_PENNY"] != undefined && hours < 8 && hours >= 17)
+	{
+		rooms["CUSTOMS OFFICE"].removeFlag(GLOBAL.NPC);
+	}
+	else rooms["CUSTOMS OFFICE"].addFlag(GLOBAL.NPC);
 	//Pitchers on Mhen'ga
 	if(flags["ROOM_80_PITCHER_MET"] == 1)
 	{
