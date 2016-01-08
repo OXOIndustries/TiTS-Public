@@ -296,7 +296,13 @@ public function hasCockLossForForgGirls():void
 	processTime(60+rand(30));
 	pc.orgasm();
 	output("\n\n");
-	CombatManager.genericLoss();
+	if (!inCombat())
+	{
+		setEnemy(null);
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
+	else CombatManager.genericLoss();
 }
 //!hasCock Loss
 // No dicks
@@ -328,7 +334,13 @@ public function youDontHaveADickLossToFrogGirls():void
 	pc.orgasm();
 	pc.lust(33+rand(33));
 	output("\n\n");
-	CombatManager.genericLoss();
+	if (!inCombat())
+	{
+		setEnemy(null);
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
+	else CombatManager.genericLoss();
 }
 
 //Victory Footjerbs
@@ -725,7 +737,13 @@ public function itemRapeAFrogGirl():void
 
 	processTime(34 + rand(10));
 	pc.orgasm();
-	CombatManager.genericLoss();
+	if (!inCombat())
+	{
+		setEnemy(null);
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
+	else CombatManager.genericLoss();
 }
 
 //Female victory: Facesitting.
