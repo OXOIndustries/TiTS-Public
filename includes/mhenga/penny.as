@@ -1307,10 +1307,12 @@ public function pennyGirlfriendMenu():void
 		else addDisabledButton(2,"Zap Penny","Zap Penny","Now that you've tipped her off, it'll be impossible to catch her with her guard down.");
 	}
 	//Penny has the doc's raygun
-	if(flags["BADGER_QUEST"] == -1)
+	if(flags["BADGER_QUEST"] == -1 || flags["BADGER_QUEST"] == -2)
 	{
 		addDisabledButton(2,"ReportBadger","Report Badger","Why would you report Dr. Badger when you and Penny are planning to give her a taste of her own medicine?");
 	}
+	//Mission complete
+	if(flags["BADGER_QUEST"] == -3) addDisabledButton(2,"ReportBadger","Report Badger","Why would you report Dr. Badger when you've turned her into your big-breasted, bimbo badger fucktoy?");
 	this.addButton(14,"Back",mainGameMenu);
 }
 
