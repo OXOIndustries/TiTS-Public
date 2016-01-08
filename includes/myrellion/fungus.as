@@ -727,32 +727,35 @@ public function updateGardeBotCover():void
 	output("\n\n");
 }
 
-public function gardeBotBonusButtons():void
+public function gardeBotBonusButtons(tEnemy:Creature):void
 {
 	if(enemy.statusEffectv1("Sporebutt") == 1) 
 	{
 		addDisabledButton(10,"Left","Left","You can’t move any farther in that direction.");
-		addButton(12,"Right",gardeBotMove,2,"Right","Circle toward the cover to the right. Perhaps it will offer more protection.");
+		addButton(12,"Right",gardeBotMove,[tEnemy, 2],"Right","Circle toward the cover to the right. Perhaps it will offer more protection.");
 	}
 	else if(enemy.statusEffectv1("Sporebutt") == 2) 
 	{
-		addButton(10,"Left",gardeBotMove,1,"Left","Circle toward the cover to the left. Perhaps it will offer more protection.");
-		addButton(12,"Right",gardeBotMove,3,"Right","Circle toward the cover to the right. Perhaps it will offer more protection.");
+		addButton(10,"Left",gardeBotMove,[tEnemy, 1],"Left","Circle toward the cover to the left. Perhaps it will offer more protection.");
+		addButton(12,"Right",gardeBotMove,[tEnemy, 3],"Right","Circle toward the cover to the right. Perhaps it will offer more protection.");
 	}
 	else
 	{
-		addButton(10,"Left",gardeBotMove,2,"Left","Circle toward the cover to the left. Perhaps it will offer more protection.");
+		addButton(10,"Left",gardeBotMove,[tEnemy, 2],"Left","Circle toward the cover to the left. Perhaps it will offer more protection.");
 		addDisabledButton(12,"Right","Right","You can’t move any farther in that direction.");
 	}
 }
 
-public function gardeBotMove(arg:int = 1):void
+public function gardeBotMove(arg:Array):void
 {
-	enemy.setStatusValue("Sporebutt",1,arg);
+	setEnemy(arg[0]);
+	var iPos:int = arg[1];
+	enemy.setStatusValue("Sporebutt",1,iPos);
 	clearOutput();
 	output("You shift into a different section of the cavern");
 	if (enemy is GardeBot && (enemy as GardeBot).pcHasSporeShield()) output(" where the spores can still protect you");
 	output(".\n");
+	setEnemy(null);
 	CombatManager.processCombat();
 }
 
