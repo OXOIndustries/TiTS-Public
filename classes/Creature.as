@@ -2785,6 +2785,10 @@ package classes {
 		public function maxOutHP(): void {
 			HPRaw = HPMax();
 		}
+		public function HPQ():Number
+		{
+			return Math.round(HP()/HPMax()*100);
+		}
 		//ENERGY
 		public function energy(arg: Number = 0): Number {
 			if(arg > 0 && hasStatusEffect("Sore")) arg /= 2;

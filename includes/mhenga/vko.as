@@ -271,7 +271,7 @@ public function getHealedByVKo():void {
 	userInterface.showName("\nV-KO");
 	//Cost = 5 times HP 
 	var cost:int = pc.HPMax() - pc.HP();
-	cost *= 5 * (1 + pc.level)/2;
+	cost *= 5;
 	output("You agree to receive healing.");
 	output("\n\n<i>\"Very well. Judging by your current damage, treatment will incur a cost of " + num2Text(cost) + " credits. Is that acceptable?\"</i>");
 	//[Yes/No]

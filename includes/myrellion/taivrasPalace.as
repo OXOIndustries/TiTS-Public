@@ -3444,7 +3444,7 @@ public function buttFuckPrincessWhileSheFucks():void
 	var x:int = pc.cockThatFits(enemy.analCapacity());
 	if(x < 0) pc.smallestCockIndex();
 	//Low exhib
-	if(pc.exhibitionism() <= 33) output("The sight of so many harem slaves watching you use their mistress gives you pause, but then your arousal takes back over. They’re no strangers to wild, bedroom romps, and you’re finally going to get some relief for your aching hard [pc.cocksNounSimple " + x + "].");
+	if(pc.exhibitionism() < 33) output("The sight of so many harem slaves watching you use their mistress gives you pause, but then your arousal takes back over. They’re no strangers to wild, bedroom romps, and you’re finally going to get some relief for your aching hard [pc.cocksNounSimple " + x + "].");
 	//Med-high exhib
 	else output("The sight of so many harem slaves watching you sends even more excited thrills through your body. So many of them are going to watch you violate their mistress! [pc.EachCock] is hard enough to chop wood with at this point.");
 	//Merge
