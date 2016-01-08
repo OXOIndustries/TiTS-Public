@@ -187,7 +187,7 @@ package classes.Items.Transformatives
 				}
 				
 				// Nextstuff: Boobers
-				else if(changes < changeLimit)
+				if(changes < changeLimit)
 				{
 					//pc boobshrink
 					if(changes < changeLimit && target.biggestTitSize() > 0)
@@ -198,6 +198,7 @@ package classes.Items.Transformatives
 						if(target.biggestTitSize() > 10) boobDec += 2;
 						
 						var boobChanged:Boolean = false;
+						var boobLocked:Boolean = false;
 						for (i = 0; i < target.breastRows.length; i++)
 						{
 							if(target.breastRatingUnlocked(i, target.biggestTitSize() - boobDec))
@@ -206,6 +207,7 @@ package classes.Items.Transformatives
 								if(target.breastRows[i].breastRatingRaw < 0) target.breastRows[i].breastRatingRaw = 0;
 								boobChanged = true;
 							}
+							else boobLocked = true;
 						}
 						
 						if(boobChanged)
@@ -214,7 +216,7 @@ package classes.Items.Transformatives
 							
 							changes++;
 						}
-						else output("\n\n" + target.breastRatingLockedMessage());
+						else if(boobLocked) output("\n\n" + target.breastRatingLockedMessage());
 					}
 					var normalNips:Number = 0;
 					var nFlatNips:Number = 0;
@@ -334,7 +336,7 @@ package classes.Items.Transformatives
 				}
 				
 				// thirdstuff: Froggify yoself
-				else if(changes < changeLimit && target.skinType != GLOBAL.SKIN_TYPE_SKIN)
+				if(changes < changeLimit && target.skinType == GLOBAL.SKIN_TYPE_SKIN)
 				{
 					//low chance to lose hair
 					if(changes < changeLimit && target.hasHair() && rand(3) == 0)
@@ -603,7 +605,7 @@ package classes.Items.Transformatives
 				}
 				
 				// Fourstuff: Body and insides
-				else if(changes < changeLimit && target.hasVagina())
+				if(changes < changeLimit && target.hasVagina())
 				{
 					// lose 1 physique
 					if(changes < changeLimit && target.physique() > 10 && rand(4) == 0)
