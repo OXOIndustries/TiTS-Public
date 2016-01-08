@@ -208,8 +208,9 @@ public function thollumPassScene():void
 {
 	clearOutput();
 	showLyralla();
+	author("Zeikfried");
 	//(bimbro)
-	if(pc.isBimbo() || pc.isBro()) 
+	if(pc.isBimbo()) 
 	{
 		output("<i>“I wanted to, um, see the school,”</i> you announce.");
 		output("\n\nLyralla pauses, perhaps expecting more explanation. <i>“And... why?”</i>");
