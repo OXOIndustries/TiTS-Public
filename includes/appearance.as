@@ -272,7 +272,7 @@ public function appearance(forTarget:Creature):void
 		}
 		else if (target.eyeType == GLOBAL.TYPE_FROG)
 		{
-			if (target.eyeColor != "black") output2(" Void black eyes with glowing iridescent");
+			if (target.eyeColor == "black") output2(" Void black eyes with glowing iridescent");
 			else
 			{
 				if (hasMetallicEyes) output2(" Metallically glistening " + target.eyeColor);
