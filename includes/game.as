@@ -1535,6 +1535,8 @@ public function processTime(arg:int):void {
 			//Cooters
 			else treatedVagNote(false);
 		}
+		// Wild varmint run away!
+		varmintDisappearChance();
 		//Kiro stuff
 		if(flags["KIRO_BAR_MET"] != undefined)
 		{
@@ -1697,8 +1699,6 @@ public function processTime(arg:int):void {
 					flags["BADGER_QUEST_TIMER"] = -1;
 				}
 			}
-			// Wild varmint run away!
-			varmintDisappearChance();
 
 			//Days ticks here!
 			if(hours >= 24) {
