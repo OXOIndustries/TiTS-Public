@@ -1,76 +1,57 @@
-<?xml version="1.0" encoding="utf-8" ?> 
-<application xmlns="http://ns.adobe.com/air/application/15.0">
-	
-	<id>air.AirTemplateProj</id>
-	<versionNumber>0.1</versionNumber>
-	<supportedProfiles>mobileDevice</supportedProfiles>
-	<filename>AirTemplateProj</filename>
-	
-	<name>AirTemplateProj</name>
-	<description></description>
-	<copyright></copyright>
-	
-	<android>
-		<manifestAdditions><![CDATA[
-			
-			<manifest android:installLocation="auto">
-			  <uses-sdk android:minSdkVersion="8"/>
-			  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-				<uses-permission android:name="android.permission.INTERNET"/>
-				<uses-feature android:required="true" android:name="android.hardware.touchscreen.multitouch"/>
-			</manifest>
-			
-		]]></manifestAdditions>
-	</android>
-    <iPhone> 
-        <InfoAdditions><![CDATA[ 
-		
-			<key>UIStatusBarStyle</key> 
-			<string>UIStatusBarStyleBlackOpaque</string> 
-			<key>UIRequiresPersistentWiFi</key> 
-			<string>NO</string>
-			<key>UIPrerenderedIcon</key>  
-			<true/>
-			<key>UIApplicationExitsOnSuspend</key>
-			<true/>
-			
-			<key>UIDeviceFamily</key>
-			<array>
-				<!-- iPhone support -->
-				<string>1</string> 
-				<!-- iPad support -->
-				<!--<string>2</string>-->
-			</array>
-				
-        ]]></InfoAdditions> 
-		<requestedDisplayResolution>high</requestedDisplayResolution>
-    </iPhone> 
-	
-	<initialWindow>
-		<title>TiTS AIR DEV</title>
-		<content>AirTemplateProj.swf</content>
-		<visible>true</visible>
-		<fullScreen>true</fullScreen>
-		<!--<autoOrients>false</autoOrients>-->
-		<aspectRatio>landscape</aspectRatio>
-		<renderMode>direct</renderMode>
-		<!--<depthAndStencil>true</depthAndStencil>--> <!-- required for 3D -->
-	</initialWindow>
-	
-	<icon>
-		<image48x48>icons/icon_48.png</image48x48>
-		<image57x57>icons/icon_57.png</image57x57>
-		<image72x72>icons/icon_72.png</image72x72>
-		<image76x76>icons/icon_76.png</image76x76>
-		<image96x96>icons/icon_96.png</image96x96>
-		<image114x114>icons/icon_114.png</image114x114>
-		<image120x120>icons/icon_120.png</image120x120>
-		<image144x144>icons/icon_144.png</image144x144>
-		<image152x152>icons/icon_152.png</image152x152>
-		<!--<image512x512>icons/icon_512.png</image512x512>-->
-	</icon>
-	
-	<!-- 
+﻿<?xml version="1.0" encoding="utf-8"?>
+<application xmlns="http://ns.adobe.com/air/application/19.0">
+  <id>com.fenoxo.com</id>
+  <versionNumber>0.1</versionNumber>
+  <supportedProfiles>mobileDevice</supportedProfiles>
+  <filename>TITS AIR</filename>
+  <name>TITS AIR DEV</name>
+  <android>
+    <manifestAdditions><![CDATA[<manifest android:installLocation="auto">
+	<uses-sdk android:minSdkVersion="8" />
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-feature android:required="true" android:name="android.hardware.touchscreen.multitouch" />
+</manifest>]]></manifestAdditions>
+  </android>
+  <iPhone>
+    <InfoAdditions><![CDATA[<key>UIStatusBarStyle</key>
+<string>UIStatusBarStyleBlackOpaque</string>
+<key>UIRequiresPersistentWiFi</key>
+<string>NO</string>
+<key>UIApplicationExitsOnSuspend</key>
+<true />
+<key>UIDeviceFamily</key>
+<array>
+	<string>1</string>
+</array>]]></InfoAdditions>
+    <requestedDisplayResolution>high</requestedDisplayResolution>
+  </iPhone>
+  <initialWindow>
+    <title>TiTS AIR DEV</title>
+    <content>TITS_AIR.swf</content>
+    <visible>true</visible>
+    <fullScreen>true</fullScreen>
+    <!--<autoOrients>false</autoOrients>-->
+    <aspectRatio>landscape</aspectRatio>
+    <renderMode>direct</renderMode>
+    <!--<depthAndStencil>true</depthAndStencil>-->
+    <!-- required for 3D -->
+    <systemChrome>none</systemChrome>
+    <requestedDisplayResolution>standard</requestedDisplayResolution>
+  </initialWindow>
+  <icon>
+    <image48x48>icons/icon_48.png</image48x48>
+    <image57x57>icons/icon_57.png</image57x57>
+    <image72x72>icons/icon_72.png</image72x72>
+    <image76x76>icons/icon_76.png</image76x76>
+    <image96x96>icons/icon_96.png</image96x96>
+    <image114x114>icons/icon_114.png</image114x114>
+    <image120x120>icons/icon_120.png</image120x120>
+    <image144x144>icons/icon_144.png</image144x144>
+    <image152x152>icons/icon_152.png</image152x152>
+    <!--<image512x512>icons/icon_512.png</image512x512>-->
+  </icon>
+  <!-- 
 	AIR options:
 	http://livedocs.adobe.com/flex/3/html/File_formats_1.html#1043413
 	

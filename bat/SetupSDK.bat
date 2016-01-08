@@ -1,11 +1,11 @@
 :user_configuration
 
 :: Path to Flex SDK
-set FLEX_SDK=C:\Users\Gedan\AppData\Local\FlashDevelop\Apps\flexairsdk\4.6.0+16.0.0
+set FLEX_SDK=C:\Users\Gedan\AppData\Local\FlashDevelop\Apps\flexairsdk\4.6.0+20.0.0
 set AUTO_INSTALL_IOS=yes
 
 :: Path to Android SDK
-set ANDROID_SDK=C:\Program Files (x86)\FlashDevelop\Tools\android
+set ANDROID_SDK=G:\AndroidSDK
 
 
 :validation

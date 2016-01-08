@@ -230,7 +230,7 @@
 			kGAMECLASS.userInterface.dataButton.Glow();
 			
 			var displayMessage:String = "";
-			displayMessage += "<b>Which slot would you like to delete?</b>\n";
+			displayMessage += "<b>Which slot would you like to delete?</b>\n\n";
 			
 			clearGhostMenu();
 			
@@ -297,6 +297,12 @@
 				clearGhostMenu();
 				
 				stickyFileRef = File.documentsDirectory.resolvePath(saveDir);
+				
+				if (!stickyFileRef.exists)
+				{
+					stickyFileRef.createDirectory();
+				}
+				
 				var files:Array = stickyFileRef.getDirectoryListing();
 				
 				for (var i:uint = 0; i < files.length; i++)
@@ -304,7 +310,7 @@
 					var offset:uint = 0;
 					if (i >= 14) offset += 1;
 					
-					kGAMECLASS.output2("\n#" + i + " - " + files[i].name);
+					displayMessage += "\n#" + i + " - " + files[i].name;
 					kGAMECLASS.addGhostButton(i + offset, "#" + i, deleteFileSelected, files[i]);
 				}
 				
@@ -739,6 +745,12 @@
 					baDataBlob.position = 0;
 				
 					var airSaveDir:File = File.documentsDirectory.resolvePath(saveDir);
+					
+					if (!airSaveDir.exists)
+					{
+						airSaveDir.createDirectory();
+					}
+					
 					trace(airSaveDir.toString());
 					var airFile:File = airSaveDir.resolvePath(dataBlob.saveName + " - " + dataBlob.daysPassed + " days.tits");
 					var stream:FileStream = new FileStream();
@@ -821,6 +833,13 @@
 				kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
 				
 				stickyFileRef = File.documentsDirectory.resolvePath(saveDir);
+				trace(stickyFileRef.nativePath);
+				
+				if (!stickyFileRef.exists)
+				{
+					stickyFileRef.createDirectory();
+				}
+				
 				var files:Array = stickyFileRef.getDirectoryListing();
 				
 				for (var i:uint = 0; i < files.length; i++)
@@ -831,11 +850,7 @@
 					kGAMECLASS.output2("\n#" + i + " - " + files[i].name);
 					kGAMECLASS.addGhostButton(i + offset, "#" + i, loadFileSelected, files[i]);
 				}
-				kGAMECLASS.userInterface.mainButtonsOnly();
-				
-				//stickyFileRef.browseForOpen("Open"); // FUCK YOU FOREVER ANDROID YOU FUCKING STUPID FUCKING FUCKS.
-				//stickyFileRef.addEventListener(Event.SELECT, loadFileSelected);
-				
+				kGAMECLASS.userInterface.mainButtonsOnly();	
 			}
 		}
 		
@@ -952,6 +967,7 @@
 						try
 						{
 							(new (getDefinitionByName("classes.DataManager.SaveVersionUpgrader" + dataBlob.version) as Class) as ISaveVersionUpgrader).upgrade(dataBlob);
+							trace("Upgraded file to version " + dataBlob.version);
 						}
 						catch (error:VersionUpgraderError)
 						{

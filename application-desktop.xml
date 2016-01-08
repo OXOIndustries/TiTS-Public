@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!-- 
 	Usage:
 
@@ -16,14 +16,11 @@
 	<text xml:lang="ja">Japanese App name goes here</text>
 	</name>
 -->
-<application xmlns="http://ns.adobe.com/air/application/13.0">
+<application xmlns="http://ns.adobe.com/air/application/19.0">
   <id>TiTSAIR</id>
   <versionNumber>1.0.0</versionNumber>
-  <versionLabel/>
   <filename>TiTS_AIR</filename>
-  <description/>
-  <name>TiTS_AIR</name>
-  <copyright/>
+  <name>TiTSAIR</name>
   <initialWindow>
     <content>TiTS_AIR.swf</content>
     <systemChrome>standard</systemChrome>
@@ -32,8 +29,13 @@
     <fullScreen>false</fullScreen>
     <aspectRatio>portrait</aspectRatio>
     <renderMode>cpu</renderMode>
+    <title>TITS AIR</title>
   </initialWindow>
-  <icon/>
+  <icon />
   <customUpdateUI>false</customUpdateUI>
   <allowBrowserInvocation>false</allowBrowserInvocation>
+  <supportedProfiles>desktop</supportedProfiles>
+  <android>
+    <manifestAdditions><![CDATA[<manifest android:installLocation="auto" xmlns:android="http://schemas.android.com/apk/res/android" />]]></manifestAdditions>
+  </android>
 </application>
