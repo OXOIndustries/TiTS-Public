@@ -706,35 +706,35 @@ public function fuckYesPlantLadyIllSaveYou():void
 (pc has 3 <i>“platforms”</i> to move between. pc can move then shoot, but not vice versa. These start out shielded and halve all damage received. Each use of firestorm removes this shield. If firestorm is used on an unshielded space it results in a loss for the pc. The boss is immune to adverse status effects and lust damage. It has no shields, but high hp.)
 */
 
-public function updateGardeBotCover(tEnemy:Creature):void
+public function updateGardeBotCover():void
 {
-	if(tEnemy.statusEffectv1("Sporebutt") == 1) 
+	if(enemy.statusEffectv1("Sporebutt") == 1) 
 	{
 		output("\nYou’re to the left of the robot.");
-		if(tEnemy.statusEffectv2("Sporebutt") > 0) output(" There’s enough intact spores and crystals in the area to shield you from much of its damage.");
+		if(enemy.statusEffectv2("Sporebutt") > 0) output(" There’s enough intact spores and crystals in the area to shield you from much of its damage.");
 		
 	}
-	else if(tEnemy.statusEffectv1("Sporebutt") == 2) 
+	else if(enemy.statusEffectv1("Sporebutt") == 2) 
 	{
 		output("\nYou’re positioned roughly in front of the robot.");
-		if(tEnemy.statusEffectv3("Sporebutt") > 0) output(" There’s enough intact spores and crystals in the area to shield you from much of its damage.");
+		if(enemy.statusEffectv3("Sporebutt") > 0) output(" There’s enough intact spores and crystals in the area to shield you from much of its damage.");
 	}
 	else 
 	{
 		output("\nYou’re to the right of the robot.");
-		if(tEnemy.statusEffectv4("Sporebutt") > 0) output(" There’s enough intact spores and crystals in the area to shield you from much of its damage.");
+		if(enemy.statusEffectv4("Sporebutt") > 0) output(" There’s enough intact spores and crystals in the area to shield you from much of its damage.");
 	}
 	output("\n\n");
 }
 
 public function gardeBotBonusButtons(tEnemy:Creature):void
 {
-	if(tEnemy.statusEffectv1("Sporebutt") == 1) 
+	if(enemy.statusEffectv1("Sporebutt") == 1) 
 	{
 		addDisabledButton(10,"Left","Left","You can’t move any farther in that direction.");
 		addButton(12,"Right",gardeBotMove,[tEnemy, 2],"Right","Circle toward the cover to the right. Perhaps it will offer more protection.");
 	}
-	else if(tEnemy.statusEffectv1("Sporebutt") == 2) 
+	else if(enemy.statusEffectv1("Sporebutt") == 2) 
 	{
 		addButton(10,"Left",gardeBotMove,[tEnemy, 1],"Left","Circle toward the cover to the left. Perhaps it will offer more protection.");
 		addButton(12,"Right",gardeBotMove,[tEnemy, 3],"Right","Circle toward the cover to the right. Perhaps it will offer more protection.");
