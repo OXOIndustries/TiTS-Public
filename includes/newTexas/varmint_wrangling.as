@@ -468,15 +468,14 @@ public function takeSilicone():void
 /* How to Train Your Pet Varmint */
 
 // Varmint event trigger
-public function varmintStowaway():void
+public function varmintStowaway():Boolean
 {
 	// Can only produce once!
-	if(varmintIsCrew()) return;
+	if(varmintIsCrew()) return false;
 	// Has a Varmint item? Yes.
-	if(pc.hasItem(new VarmintItem()) && currentLocation == "SHIP INTERIOR" && rooms[currentLocation].planet != "PLANET: NEW TEXAS" && eventQueue.indexOf(getAPetVarmint) == -1)
-	{
-		eventQueue.push(getAPetVarmint);
-	}
+	if(pc.hasItem(new VarmintItem())) return true;
+	// Otherwise, no.
+	return false;
 }
 
 // Is varmint a follower?
