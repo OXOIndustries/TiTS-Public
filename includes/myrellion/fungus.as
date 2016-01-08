@@ -1,5 +1,7 @@
 ﻿import classes.Characters.GardeBot;
 import classes.Characters.MyrInfectedFemale;
+import classes.Creature;
+import classes.GameData.CombatManager;
 public function showInfectedMyr(nude:Boolean = false):void
 {
 	if(inCombat())
@@ -748,11 +750,12 @@ public function gardeBotBonusButtons():void
 
 public function gardeBotMove(arg:int = 1):void
 {
-	enemy.setStatusValue("Sporebutt",1,arg);
+	var tEnemy:Creature = CombatManager.getHostileCharacters()[0];
+	
+	tEnemy.setStatusValue("Sporebutt",1,arg);
 	clearOutput();
 	output("You shift into a different section of the cavern");
-	if (enemy is GardeBot && (enemy as GardeBot).pcHasSporeShield()) output(" where the spores can still protect you");
-	output(".\n");
+	if ((tEnemy as GardeBot).pcHasSporeShield()) output(" where the spores can still protect you");
 	CombatManager.processCombat();
 }
 
