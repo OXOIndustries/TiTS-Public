@@ -430,11 +430,24 @@ public function initializeMyrellionRooms():void
 	rooms["711"].system = "SYSTEM: SINDATHU";
 	rooms["711"].westExit = "710";
 	rooms["711"].eastExit = "712";
+	rooms["711"].northExit = "GMEREHOSPITAL";
 	rooms["711"].moveMinutes = 2;
 	rooms["711"].runOnEnter = gildenmereStreetBonus;
 	rooms["711"].addFlag(GLOBAL.INDOOR);
 	rooms["711"].addFlag(GLOBAL.PUBLIC);
 	rooms["711"].addFlag(GLOBAL.CAVE);
+
+	rooms["GMEREHOSPITAL"] = new RoomClass(this);
+	rooms["GMEREHOSPITAL"].roomName = "GILDENMERE\nHOSPITAL";
+	rooms["GMEREHOSPITAL"].description = "";
+	rooms["GMEREHOSPITAL"].planet = "PLANET: MYRELLION";
+	rooms["GMEREHOSPITAL"].system = "SYSTEM: SINDATHU";
+	rooms["GMEREHOSPITAL"].northExit = "711";
+	rooms["GMEREHOSPITAL"].moveMinutes = 1;
+	rooms["GMEREHOSPITAL"].runOnEnter = viBonus;
+	rooms["GMEREHOSPITAL"].addFlag(GLOBAL.INDOOR);
+	rooms["GMEREHOSPITAL"].addFlag(GLOBAL.PUBLIC);
+	rooms["GMEREHOSPITAL"].addFlag(GLOBAL.NPC);
 	
 	//712 Irellia’s\nWay
 	rooms["712"] = new RoomClass(this);
