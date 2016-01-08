@@ -247,7 +247,9 @@ package classes.GameData
 			
 			if (hasEnemyOfClass(GardeBot))
 			{
+				kGAMECLASS.setEnemy(_hostiles[indexEnemyOfClass(GardeBot)]);
 				kGAMECLASS.gardeBotBonusButtons(_hostiles[indexEnemyOfClass(GardeBot)]);
+				kGAMECLASS.setEnemy(null);
 				return;
 			}
 			
@@ -777,7 +779,12 @@ package classes.GameData
 			{
 				// do anything that only happens once per round here.
 				if (hasEnemyOfClass(CaptainKhorganMech)) kGAMECLASS.updateKhorganMechCover();
-				if (hasEnemyOfClass(GardeBot)) kGAMECLASS.updateGardeBotCover(_hostiles[indexEnemyOfClass(GardeBot)]);
+				if (hasEnemyOfClass(GardeBot))
+				{
+					kGAMECLASS.setEnemy(_hostiles[0]);
+					kGAMECLASS.updateGardeBotCover();
+					kGAMECLASS.setEnemy(null);
+				}
 				// updateCombatStatuses(); // Status effects are handled during action-resolution (ie after the player takes an action)
 			}
 			
@@ -826,12 +833,12 @@ package classes.GameData
 				{
 					if (pc.biggestTitSize() > 2) addButton(5, "Tease", function():void {
 						clearOutput();
-						chestTeaseText(_hostiles[indexEnemyOfClass(Celise)]);
+						chestTeaseText(_hostiles[0]);
 						processCombat();
 					});
 					else addButton(5, "Tease", function():void {
 						clearOutput();
-						crotchTeaseText(_hostiles[indexEnemyOfClass(Celise)]);
+						crotchTeaseText(_hostiles[0]);
 						processCombat();
 					});
 				}
@@ -945,9 +952,8 @@ package classes.GameData
 			if (pc.hasStatusEffect("Grappled"))
 			{
 				if (hasEnemyOfClass(Kaska)) kGAMECLASS.doNothingWhileTittyGrappled();
-				else if (hasEnemyOfClass(GrayPrime)) kGAMECLASS.grayPrimeFailEscape(_hostiles[indexEnemyOfClass(GrayPrime)]);
-				else if (hasEnemyOfClass(MaidenVanae)) kGAMECLASS.vanaeWaitWhilstGrappled(_hostiles[indexEnemyOfClass(MaidenVanae)]);
-				else if (hasEnemyOfClass(HuntressVanae)) kGAMECLASS.vanaeWaitWhilstGrappled(_hostiles[indexEnemyOfClass(HuntressVanae)]);
+				else if (hasEnemyOfClass(GrayPrime)) kGAMECLASS.grayPrimeFailEscape();
+				else if (hasEnemyOfClass(MaidenVanae) || hasEnemyOfClass(HuntressVanae)) kGAMECLASS.vanaeWaitWhilstGrappled();
 				else output("You choose not to act.");
 			}
 			else output("You choose not to act.");
@@ -1284,8 +1290,7 @@ package classes.GameData
 					if (target.reflexes() + rand(20) + 7 + target.statusEffectv1("Grappled") * 5 > target.statusEffectv2("Grappled"))
 					{
 						if (hasEnemyOfClass(SexBot)) output("You almost dislocate an arm doing it, but, ferret-like, you manage to wriggle out of the sexbot’s coils. Once your hands are free, the droid does not seem to know how to respond, and you are able to grapple the rest of your way out easily, ripping away from its molesting grip. The sexbot clicks and stutters a few times before going back to staring at you blankly, swinging its fibrous limbs over its head.");
-						else if (hasEnemyOfClass(MaidenVanae)) kGAMECLASS.vanaeEscapeGrapple(_hostiles[indexEnemyOfClass(MaidenVanae)], "Escape Artist");
-						else if (hasEnemyOfClass(HuntressVanae)) kGAMECLASS.vanaeEscapeGrapple(_hostiles[indexEnemyOfClass(HuntressVanae)], "Escape Artist");
+						else if (hasEnemyOfClass(MaidenVanae) || hasEnemyOfClass(HuntressVanae)) kGAMECLASS.vanaeEscapeGrapple("Escape Artist");
 						else output("You display a remarkable amount of flexibility as you twist and writhe to freedom.");
 						target.removeStatusEffect("Grappled");
 					}
@@ -1301,9 +1306,8 @@ package classes.GameData
 						// enemies- we'll need to know which one, specifically, is out of action for other attacks
 						
 						if (hasEnemyOfClass(SexBot)) output("You almost tear a muscle doing it, but, you manage to heave apart the sexbot’s coils. Once your hands are free, the droid does not seem to know how to respond, and you are able to grapple the rest of your way out easily, ripping away from its molesting grip. The sexbot clicks and stutters a few times before going back to staring at you blankly, swinging its fibrous limbs over its head.");
-						else if (hasEnemyOfClass(MaidenVanae)) kGAMECLASS.vanaeEscapeGrapple(_hostiles[indexEnemyOfClass(MaidenVanae)]);
-						else if (hasEnemyOfClass(HuntressVanae)) kGAMECLASS.vanaeEscapeGrapple(_hostiles[indexEnemyOfClass(HuntressVanae)]);
-						else if (hasEnemyOfClass(GrayPrime)) kGAMECLASS.grayPrimeEscapeGrapple(_hostiles[indexEnemyOfClass(GrayPrime)]);
+						else if (hasEnemyOfClass(MaidenVanae) || hasEnemyOfClass(HuntressVanae)) kGAMECLASS.vanaeEscapeGrapple();
+						else if (hasEnemyOfClass(GrayPrime)) kGAMECLASS.grayPrimeEscapeGrapple();
 						else if (hasEnemyOfClass(NyreaAlpha) || hasEnemyOfClass(NyreaBeta)) output("You pull and heave at the thick, knotted ropes of the nyrea's net, finally managing to pry a gap large enough for you to squeeze your frame through!");
 						//else if (enemy is GoblinGadgeteer) output("You manage to untangle your body from the net, and prepare to fight the goblin again.");
 						else if (hasEnemyOfClass(Goocubator))
