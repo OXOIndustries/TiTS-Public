@@ -467,20 +467,16 @@ public function takeSilicone():void
 
 /* How to Train Your Pet Varmint */
 
-// Varmint event check
-public function varmintStowaway():Boolean
+// Varmint event trigger
+public function varmintStowaway():void
 {
 	// Can only produce once!
-	if(varmintIsCrew()) return false;
+	if(varmintIsCrew()) return;
 	// Has a Varmint item? Yes.
-	if(pc.hasItem(new VarmintItem()) && rooms[currentLocation].planet != "PLANET: NEW TEXAS") return true;
-	// Otherwise, no.
-	return false;
-}
-public function varmintStowawayGo(destination:String):void
-{
-	flyToWrapper(destination);
-	eventQueue.push(getAPetVarmint);
+	if(pc.hasItem(new VarmintItem()) && currentLocation == "SHIP INTERIOR" && rooms[currentLocation].planet != "PLANET: NEW TEXAS" && eventQueue.indexOf(getAPetVarmint) == -1)
+	{
+		eventQueue.push(getAPetVarmint);
+	}
 }
 
 // Is varmint a follower?
@@ -557,7 +553,7 @@ public function getAPetVarmint(destination:String):void
 	showBust("VARMINT");
 	clearMenu();
 	
-	pc.destroyItem(new VarmintItem())
+	pc.destroyItem(new VarmintItem(), 1);
 	
 	if(flags["VARMINT_IS_CREW"] == undefined)
 	{
@@ -808,7 +804,10 @@ public function doVarmintPlayTime(response:String = "none"):void
 // 10% chance per day when landed on a planet with an untamed varmint.
 public function varmintDisappearChance():void
 {
-	if(currentLocation == "SHIP INTERIOR" && varmintIsWild() && rand(10) == 0) eventQueue.push(varmintDisappears);
+	if(currentLocation == "SHIP INTERIOR" && varmintIsWild() && rand(240) == 0 && eventQueue.indexOf(varmintDisappears) == -1)
+	{
+		eventQueue.push(varmintDisappears);
+	}
 }
 public function varmintDisappears():void
 {
