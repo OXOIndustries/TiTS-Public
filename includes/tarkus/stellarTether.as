@@ -1073,7 +1073,7 @@ public function dickFuckDatThraggenCoochie():void
 	author("Savin");
 	showBust("CAPTAIN_KHORGAN_NUDE");
 	showName("CAPTAIN\nKHORGAN");
-	var x:int = pc.cockThatFits(enemy.vaginalCapacity(0));
+	var x:int = pc.cockThatFits(chars["CAPTAINKHORGAN"].vaginalCapacity(0));
 	if(x < 0) x = pc.smallestCockIndex();
 	flags["DICKFUCKED_CAPN_KHORGAN"] = 1;
 	//Combat defeat
