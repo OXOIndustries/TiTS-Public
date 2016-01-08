@@ -1314,20 +1314,22 @@ public function displayQuestLog(showID:String = "All"):void
 			// Dr. Badger's Job
 			if(flags["BADGER_QUEST"] != undefined)
 			{
-				output2("\n<b><u>Doctor Badger’s Job Offer</u></b>");
-				// Bimbo Penny
-				output2("\n<b>* Penny, Status:</b>");
-				if(flags["BADGER_QUEST"] == 1) output2(" <i>Find her!</i>");
-				if(flags["PENNY_BADGER_BIMBO"] != undefined) output2(" Bimbofied");
+				if(flags["BADGER_QUEST"] >= 0 && 9999 == 0) output2("\n<b><u>Doctor Badger’s Job Offer</u></b>");
+				else output2("\n<b><u>Doctor Badger’s Big Mistake</u></b>");
+				// Bimbo Raygun
+				output2("\n<b>* Bimbo Raygun, Status:</b>");
+				if(flags["BADGER_QUEST"] == 1) output2(" <i>Find Penny!</i>");
 				else if(flags["PENNY_BADGER_WARNED"] != undefined)
 				{
-					output2(" Warned her");
+					output2(" Warned Penny");
 					if(flags["NO_ZAP_PENNY"] != undefined) output2(", Refused to zap her");
 					if(flags["NO_REPORTING_DOC_BADGER"] != undefined) output2(", Will not report Dr Badger");
-					if(flags["BADGER_QUEST"] == -1) output2(", Confiscated Bimbo Ray");
+					if(flags["BADGER_QUEST"] == -1) output2(", Confiscated Raygun");
+					if(flags["BADGER_QUEST"] == -2) output2(", Reprogrammed Raygun, <i>Return to Dr Badger!</i>");
+					if(flags["BADGER_QUEST"] <= -3) output2(", Zapped Dr Badger instead, Rewarded, Completed");
 				}
-				if(flags["BADGER_QUEST"] == 2) output2(", <i>Mission accomplished! Report to Dr Badger!</i>");
-				if(flags["BADGER_QUEST"] >= 3) output2(", Rewarded, Completed");
+				else if(flags["BADGER_QUEST"] == 2) output2(" Zapped Penny, <i>Mission accomplished! Report to Dr Badger!</i>");
+				else if(flags["BADGER_QUEST"] >= 3) output2(" Zapped Penny, Rewarded, Completed");
 			}
 			// Deck 13
 			if(flags["ANNO_MISSION_OFFER"] != undefined)
@@ -2794,12 +2796,13 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["DR_BADGER_BIMBOED_PC"] != undefined)
 				{
 					output2(" Accepted Bimbofication");
-					if(silly && pc.isBimbo()) output2(", <i>Like, you’re a hero now!</i>");
+					if(silly) output2(", <i>Like, you’re a hero now!</i>");
 				}
 				else output2(" Refused Bimbofication");
 				output2("\n<b>* Doctor Badger:</b>");
 				if(flags["DR_BADGER_TURNED_IN"] != undefined) output2(" Inactive, Arrested by the U.G.C.");
 				else output2(" Active");
+				if(flags["BADGER_QUEST"] <= -3) output2(", Bimbofied");
 				variousCount++;
 			}
 			// Colenso's

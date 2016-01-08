@@ -247,7 +247,9 @@ package classes.GameData
 			
 			if (hasEnemyOfClass(GardeBot))
 			{
+				kGAMECLASS.setEnemy(_hostiles[0]);
 				kGAMECLASS.gardeBotBonusButtons();
+				kGAMECLASS.setEnemy(null);
 				return;
 			}
 			
@@ -773,7 +775,12 @@ package classes.GameData
 			{
 				// do anything that only happens once per round here.
 				if (hasEnemyOfClass(CaptainKhorganMech)) kGAMECLASS.updateKhorganMechCover();
-				if (hasEnemyOfClass(GardeBot)) kGAMECLASS.updateGardeBotCover();
+				if (hasEnemyOfClass(GardeBot))
+				{
+					kGAMECLASS.setEnemy(_hostiles[0]);
+					kGAMECLASS.updateGardeBotCover();
+					kGAMECLASS.setEnemy(null);
+				}
 				// updateCombatStatuses(); // Status effects are handled during action-resolution (ie after the player takes an action)
 			}
 			
@@ -3260,7 +3267,7 @@ package classes.GameData
 		
 		private function doCombatDrone(droneUser:Creature):void
 		{
-			if (droneUser.hasCombatDrone() && droneUser.droneTarget != null)
+			if (droneUser.hasCombatDrone() && droneUser.droneTarget != null && droneUser.shields() > 0)
 			{
 				var target:Creature = droneUser.droneTarget;
 				if (!target.isDefeated())

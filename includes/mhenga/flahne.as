@@ -1431,7 +1431,7 @@ public function flahneEatOutSwapMeatPussiesYouKnowWhatIMean():void
 	output(".");
 	if(pc.hasTailFlag(GLOBAL.FLAG_LONG) && pc.tailCount > 0)
 	{
-		output(" Your [pc.tails]");
+		output(" Your [pc.tails] ");
 		if(pc.tailCount > 1) output("twist and curl");
 		else output("twists and curls");
 		output(" behind you, spasming in reaction to shockwaves of pleasure - all the while trying to pull Flahne closer and deeper into your cunt.");
