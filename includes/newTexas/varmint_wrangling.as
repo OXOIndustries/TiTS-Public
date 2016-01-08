@@ -821,8 +821,8 @@ public function varmintDisappears():void
 	clearMenu();
 	
 	output("As you pass by your airlock, you notice that it’s standing open somehow.");
-	if(pc.isBimbo()) output(" Like, something's missing...");
-	else if(pc.isNice()) output(" Something's wrong...");
+	if(pc.isBimbo()) output(" Like, something’s missing...");
+	else if(pc.isNice()) output(" Something’s wrong...");
 	else output(" What the hell?");
 	output(" You walk around the ship, looking for anything amiss. Everything seems to be where you left it... <b>except");
 	if(varmintIsTame())
