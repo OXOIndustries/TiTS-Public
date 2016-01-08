@@ -1090,8 +1090,9 @@ public function revertGooBodyPart(part:String = "all"):void
 	clearGhostMenu();
 	addGhostButton(0,"Next",gooBodyCustomizer);
 }
-public function gooMismatchedGenitals():int
+public function gooMismatchedGenitals(sColor:String):int
 {
+	var i:int = 0;
 	var mismatchedGenitals:int = 0;
 	if(pc.hasCock())
 	{
@@ -1143,7 +1144,7 @@ public function revertGooBodyColor(part:String = "menu"):void
 			addDisabledGhostButton(0,"Hair","Hair","Your hair and body colors already match!");
 			addDisabledGhostButton(1,"Skin","Skin","Your hair and skin colors already match!");
 		}
-		if(gooMismatchedGenitals() > 0)
+		if(gooMismatchedGenitals(sColor) > 0)
 		{
 			output2("Your genital colors seem to be off compared to the rest of your body.");
 			if(gooBiomass() >= 10) addGhostButton(2,"FixGenitals",revertGooGenitalColor,sColor,"Revert Genital Color","Shift your genital color to match your " + sColor + " body.\n\n<b>10 mLs Biomass</b>");
@@ -1165,7 +1166,7 @@ public function revertGooBodyColor(part:String = "menu"):void
 		pc.scaleColor = pc.hairColor;
 		gooBiomass(-10);
 		clearGhostMenu();
-		if(gooMismatchedGenitals() > 0)
+		if(gooMismatchedGenitals(sColor) > 0)
 		{
 			output2("\n\nTilting your codex to your nether region, you noticed the color is a bit off... Do you want to change to color of your gooey genitals to match as well?");
 			showBiomass();
@@ -1184,7 +1185,7 @@ public function revertGooBodyColor(part:String = "menu"):void
 		pc.hairColor = pc.skinTone;
 		gooBiomass(-10);
 		clearGhostMenu();
-		if(gooMismatchedGenitals() > 0)
+		if(gooMismatchedGenitals(sColor) > 0)
 		{
 			output2("\n\nTilting your codex to your nether region, you noticed the color is a bit off... Do you want to change to color of your gooey genitals to match as well?");
 			showBiomass();
