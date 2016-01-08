@@ -65,6 +65,7 @@ public function winVsInfectedMyr():void
 {
 	output("As you deal the finishing blow, your codex lights up. A brief glance at the screen nets you a warning that despite the fungi’s inability to parasitize non-insectile races there could be other side effects. It advises shying away from physical contact. Looks like you have a choice to make.");
 	processTime(1);
+	clearMenu();
 	//[Sex] [Compassion] [Watch] [Leave]
 	//Red femyr fuck/loss
 	//accounts for male and female. Not taur friendly, yes naga friendly
