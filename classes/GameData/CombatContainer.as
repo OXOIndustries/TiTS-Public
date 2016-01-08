@@ -248,7 +248,7 @@ package classes.GameData
 			if (hasEnemyOfClass(GardeBot))
 			{
 				kGAMECLASS.setEnemy(_hostiles[0]);
-				kGAMECLASS.gardeBotBonusButtons();
+				kGAMECLASS.gardeBotBonusButtons(_hostiles[0]);
 				kGAMECLASS.setEnemy(null);
 				return;
 			}
