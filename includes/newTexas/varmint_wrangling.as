@@ -467,7 +467,7 @@ public function takeSilicone():void
 
 /* How to Train Your Pet Varmint */
 
-// Varmint event trigger
+// Varmint event check
 public function varmintStowaway():Boolean
 {
 	// Can only produce once!
@@ -735,8 +735,8 @@ public function approachPetVarmint(introText:Boolean = false):void
 	}
 	else
 	{
-		if(!pc.hasStatusEffect("Varmint Leashed")) addButton(1, "Leash", doVarmintPlayTime, "leash", "Leash", "Put your varmint on a leash");
-		else addButton(1, "Unleash", doVarmintPlayTime, "unleash", "Unleash", "Take your varmint off his leash and let him wander around the ship.");
+		if(!pc.hasStatusEffect("Varmint Leashed")) addButton(1, "Leash", doVarmintPlayTime, "leash", "Leash", "Put your varmint on a leash.");
+		else addButton(1, "Unleash", doVarmintPlayTime, "unleash", "Unleash", "Take your varmint off its leash and let it wander around the ship.");
 		addDisabledButton(2, "Buy Leash", "Buy Leash", "You already own a leash so you don’t need to buy another. However, if you ever lose the one you have, you know where to buy a replacement.\n\n<b>50 Credits</b>");
 	}
 	addButton(14, "Leave", doVarmintPlayTime, "leave");
@@ -781,7 +781,7 @@ public function doVarmintPlayTime(response:String = "none"):void
 		// if Anno/Reaha on crew:
 		if(reahaIsCrew() || annoIsCrew())
 		{
-			output(" You almost immediately hear an alarmed shriek as he charges into");
+			output(" You almost immediately hear an alarmed shriek as it charges into");
 			if(reahaIsCrew() && annoIsCrew()) output(" one of the girls’");
 			else if(annoIsCrew()) output(" Anno’s");
 			else output(" Reaha’s");
@@ -802,7 +802,12 @@ public function doVarmintPlayTime(response:String = "none"):void
 // 10% chance per day when landed on a planet with an untamed varmint.
 public function varmintDisappearChance():void
 {
-	if(currentLocation == "SHIP INTERIOR" && varmintIsWild() && rand(240) == 0 && eventQueue.indexOf(varmintDisappears) == -1)
+	if(currentLocation != "SHIP INTERIOR" || !varmintIsCrew() || pc.hasStatusEffect("Varmint Leashed")) return;
+	
+	var runawayChance:int = (10 * 24 * 60);
+	if(varmintIsTame()) runawayChance *= 2;
+	
+	if(rand(runawayChance) == 0 && eventQueue.indexOf(varmintDisappears) == -1)
 	{
 		eventQueue.push(varmintDisappears);
 	}
@@ -815,12 +820,26 @@ public function varmintDisappears():void
 	showName("\nVARMINT");
 	clearMenu();
 	
-	output("As you pass by your airlock, you notice that it’s standing open somehow. What the hell? You walk around the ship, looking for anything amiss. Everything seems to be where you left it... <b>except the wild varmint’s nowhere to be found!</b> You give the whole ship another once-over to make sure, and sure enough, he’s long gone!");
+	output("As you pass by your airlock, you notice that it’s standing open somehow.");
+	if(pc.isBimbo()) output(" Like, something's missing...");
+	else if(pc.isNice()) output(" Something's wrong...");
+	else output(" What the hell?");
+	output(" You walk around the ship, looking for anything amiss. Everything seems to be where you left it... <b>except");
+	if(varmintIsTame())
+	{
+		if(pc.isBimbo()) output(" your big, cutie-booty");
+		else output(" your loyal");
+	}
+	else output(" the wild");
+	output(" varmint’s nowhere to be found!</b> You give the whole ship another once-over to make sure, and sure enough, it’s long gone!");
 	
-	// If not on NT:
-	if(rooms[currentLocation].planet != "PLANET: NEW TEXAS") output("\n\nWell, looks like there’s going to be a varmint infestation here now.");
-	// NT:
-	else output("\n\nBack to where you came from, you big blue bastard!");
+	if(varmintIsWild())
+	{
+		// If not on NT:
+		if(rooms[currentLocation].planet != "PLANET: NEW TEXAS") output("\n\nWell, looks like there’s going to be a varmint infestation here now.");
+		// NT:
+		else output("\n\nBack to where you came from, you big blue bastard!");
+	}
 	
 	processTime(32);
 	flags["VARMINT_IS_CREW"] = undefined;
