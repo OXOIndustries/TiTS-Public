@@ -2777,7 +2777,7 @@ public function fixAllVags(nVagsToFix:Number = 0):void
 			pc.vaginas[x].vaginaColor = gooColor();
 			pc.energy(-25);
 			// Take goo:
-			flags["GOO_BIOMASS"] -500;
+			flags["GOO_BIOMASS"] -= 500;
 		}
 		
 		if(flags["GOO_BIOMASS"] < 0)
