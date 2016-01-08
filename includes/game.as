@@ -796,7 +796,18 @@ public function flyTo(arg:String):void {
 	processTime(timeFlown);
 	flags["LANDING_EVENT_CHECK"] = 1;
 	clearMenu();
-	addButton(0, "Next", mainGameMenu);
+	addButton(0, "Next", landingCheck, arg);
+}
+
+public function landingCheck(arg:String):void
+{
+	// Special landing events
+	if (arg != "New Texas")
+	{
+		// Wild varmint stowaway!
+		varmintStowaway();
+	}
+	mainGameMenu();
 }
 
 public function showerMenu():void {
@@ -1681,8 +1692,6 @@ public function processTime(arg:int):void {
 					flags["BADGER_QUEST_TIMER"] = -1;
 				}
 			}
-			// Wild varmint stowaway!
-			varmintStowaway();
 			// Wild varmint run away!
 			varmintDisappearChance();
 
