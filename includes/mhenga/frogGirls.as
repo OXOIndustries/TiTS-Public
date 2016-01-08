@@ -76,7 +76,7 @@ public function frogGirlsEncounter():void
 			//(** loss by lust, but without any resistance.)
 			clearMenu();
 			addButton(0,"Fight",configFrogGirlFight, tEnemy);
-			addButton(1,"Submit",submitToFrogSex);
+			addButton(1,"Submit",submitToFrogSex, tEnemy);
 		}
 		//(hasCock && lust < 41):
 		else
@@ -100,7 +100,7 @@ public function frogGirlsEncounter():void
 			//(** loss by lust, but without any resistance.)
 			clearMenu();
 			addButton(0,"Fight",configFrogGirlFight, tEnemy);
-			addButton(1,"Submit",submitToFrogSex);
+			addButton(1,"Submit",submitToFrogSex, tEnemy);
 		}
 		else 
 		{
@@ -184,10 +184,11 @@ public function loseAgainstTheFrogs():void
 	scenes[0]();
 }
 
-public function submitToFrogSex():void
+public function submitToFrogSex(tEnemy:Creature):void
 {
 	clearOutput();
-	showFrogGirl();
+	setEnemy(tEnemy);
+	showFrogGirl(tEnemy);
 	if(pc.hasVagina() && pc.hasItem(new Throbb())) itemRapeAFrogGirl();
 	else if(pc.hasCock()) hasCockLossForForgGirls();
 	else youDontHaveADickLossToFrogGirls();
