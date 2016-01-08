@@ -22,18 +22,13 @@ public function pcAppearance(e:MouseEvent = null):void
 	}
 }
 
-public function appearance(target:Creature):void
+public function appearance(forTarget:Creature):void
 {
+	setTarget(forTarget);
+
 	clearOutput2();
 	clearGhostMenu();
-	addGhostButton(14, "Back", pcAppearance);
-
-	// specific-access to get around variable shadowing
-	// set it AFTER a call to clearOuput, as they null the underlying target variable, basically makes it obvious when something fucks up
-	// (there'll be a lot of parser errors, indicative of not actually setting the variable at all rather than using the wrong creature)
-	setTarget(target);
-
-	// now we can use [target.aspect] to refer to a variable creature.
+	addGhostButton(14, "Back", pcAppearance);	
 	
 	var rando:int = 0;
 	var feedVal:int;
@@ -1264,9 +1259,9 @@ public function appearance(target:Creature):void
 		}
 		
 		//Chesticles.
-		boobStuff(target);
+		boobStuff();
 		//CROTCH STUFF!
-		crotchStuff(target);
+		crotchStuff();
 		
 		var btnIndex:int = 0;
 		addGhostButton(btnIndex++, "PrefGender", selectGenderPref, undefined, "Preferred Gender", "Indicate the gender you would prefer your character to be considered.");
@@ -1344,9 +1339,10 @@ public function appearance(target:Creature):void
 	setTarget(null);
 }
 
-public function boobStuff(target:Creature):void
+public function boobStuff(forTarget:Creature = null):void
 {
-	setTarget(target);
+	if (forTarget != null) setTarget(forTarget);
+	
 	var rando:int = 0;
 	output2("\n\n");
 	if(target.gills)
@@ -1619,14 +1615,16 @@ public function boobStuff(target:Creature):void
 			}
 		}
 	}
-	setTarget(null);
+	
+	if (forTarget != null) setTarget(null);
 }
 
-public function crotchStuff(target:Creature):void
+public function crotchStuff(forTarget:Creature = null):void
 {
+	if (forTarget != null) setTarget(forTarget);
+	
 	var rando:int = 0;
 	if(target.hasGenitals()) {
-		setTarget(target);
 		output2("\n\n");
 		//Crotchial stuff - mention snake
 		if(target.hasStatusEffect("Genital Slit") && target.hasCock())
@@ -1688,7 +1686,7 @@ public function crotchStuff(target:Creature):void
 				else output2(Math.round(10*target.cocks[0].thickness())/10 + " inches across.");
 			}
 			else output2(num2Text(Math.round(10*target.cocks[0].thickness())/10) + " inches across.");				
-			dickBonusForAppearance(target, 0);
+			dickBonusForAppearance(null, 0);
 			//Worm flavor
 			if(target.hasStatusEffect("Infested")) output2(" Every now and again a slimy worm coated in spunk slips partway out of your " + target.cockDescript(0) + ", tasting the air like a snake’s tongue.");
 		}
@@ -1741,7 +1739,7 @@ public function crotchStuff(target:Creature):void
 						else output2(Math.round(target.cocks[temp].thickness()*10)/10 + " inches in diameter.");
 					}
 				}
-				dickBonusForAppearance(target, temp);
+				dickBonusForAppearance(null, temp);
 				temp++;
 				rando++;
 				if(rando > 3) rando = 0;
@@ -1755,7 +1753,6 @@ public function crotchStuff(target:Creature):void
 	}
 	//Of Balls and Sacks!
 	if(target.balls > 0) {
-		setTarget(target);
 		var sTesticleDesc:String = target.ballsDescript(true,true);
 		if(target.balls == 1) sTesticleDesc = target.ballDescript(true,true);
 		
@@ -1797,7 +1794,6 @@ public function crotchStuff(target:Creature):void
 	}	
 	//VAGOOZ
 	if(target.vaginas.length > 0) {
-		setTarget(target);
 		if(target.hasCock()) output2("\n\n");
 		if(!target.hasCock() && target.isTaur()) output2("As a tauric creature, your womanly parts lie between your rear legs in a rather equine fashion. ");
 		//Vaginal Numbers
@@ -1865,7 +1861,7 @@ public function crotchStuff(target:Creature):void
 			else if(target.vaginas[0].looseness() < 4) output2("your " + target.vaginaDescript(0) + ", their lips slightly parted.");
 			else output2("the massive hole that is your " + target.vaginaDescript(0) + ".");
 			//Flavor
-			vaginaBonusForAppearance(target, 0, false);
+			vaginaBonusForAppearance(null, 0, false);
 			//Ovipositor
 			if(target.vaginas[0].hasFlag(GLOBAL.FLAG_OVIPOSITOR))
 			{
@@ -1961,12 +1957,10 @@ public function crotchStuff(target:Creature):void
 	}
 	//Genderless lovun'
 	if(!target.hasGenitals()) {
-		setTarget(target);
 		output2("\n\nYou have a curious lack of any sexual endowments.");
 	}
 	//BUNGHOLIO
 	if(target.ass != null) {
-		setTarget(target);
 		output2("\n\nYou have one " + target.assholeDescript() + ", placed between your cheeks where it belongs");
 		if(target.libido() < 50 && target.lust() < 50) //not particularly horny
 		{
@@ -1995,7 +1989,8 @@ public function crotchStuff(target:Creature):void
 			else output2(" with thick streams of lubricant oozing constantly from the orifice quite liberally.");
 		}
 	}
-	setTarget(null);
+	
+	if (forTarget != null) setTarget(null);
 }
 
 public function selectGenderPref():void
@@ -2052,9 +2047,9 @@ public function setGenderPref(pref:String):void
 	selectGenderPref();
 }
 
-public function dickBonusForAppearance(target:Creature, x:int = 0):void
+public function dickBonusForAppearance(forTarget:Creature = null, x:int = 0):void
 {
-	setTarget(target);
+	if (forTarget != null) setTarget(forTarget);
 	
 	trace("DICK FLAVOR FIRED!");
 	//Color shit
@@ -2196,12 +2191,13 @@ public function dickBonusForAppearance(target:Creature, x:int = 0):void
 		if(target.cockTotal() == 1) output2(" While phallic in shape, you are aware that your cock is capable of injecting more than just [target.cumNoun] into an orifice... namely eggs.");
 		else output2(" The phallus doubles as an egg-injecting organ.");
 	}
-	setTarget(null);
+	
+	if (forTarget != null) setTarget(null);
 }
 
-public function vaginaBonusForAppearance(target:Creature, x:int = 0, eachOne:Boolean = false):void
+public function vaginaBonusForAppearance(forTarget:Creature = null, x:int = 0, eachOne:Boolean = false):void
 {
-	setTarget(target);
+	if (forTarget != null) setTarget(forTarget);
 	
 	//Zil flavor!
 	if(target.vaginas[x].type == GLOBAL.TYPE_BEE && target.vaginas[x].vaginaColor == "black and gold") {
@@ -2248,5 +2244,6 @@ public function vaginaBonusForAppearance(target:Creature, x:int = 0, eachOne:Boo
 		if(!eachOne) output2(" The special muscles around your vagina are strong and powerful, making it possible to swallow any insertion without the need to push it in.");
 		else output2("\nThe special muscles around your talented vaginas are strong and powerful, making it possible to swallow insertions without the need of external forces to push them in.");
 	}
-	setTarget(null);
+	
+	if (forTarget != null) setTarget(null);
 }
