@@ -35,7 +35,7 @@ package classes.Items.Transformatives
 			description = "a vial of kerokoras venom";
 			
 			tooltip = "A vial of ";
-			if(silly) tooltip += "k";
+			if(kGAMECLASS.silly) tooltip += "k";
 			else tooltip += "c";
 			tooltip += "oncentrated kerokoras venom. The liquid sloshes around as you move the bottle, and smells like sweet syrup. The volatile chemistry of the kerokoras will probably affect your body. Given your nanomachine laced immune system, you imagine it’ll have you looking like them in no time.";
 			
@@ -115,7 +115,7 @@ package classes.Items.Transformatives
 							if(target.eyeType != GLOBAL.TYPE_FROG && target.faceType != GLOBAL.TYPE_HUMAN) output("you now have a human face and " + newEyeColor + " eyes like a frog");
 							else if(target.faceType != GLOBAL.TYPE_HUMAN) output("you have a human face");
 							else output("you have " + newEyeColor + " frog eyes");
-							GAMECLASS.output("!</b>");
+							kGAMECLASS.output("!</b>");
 							if(target.eyeType != GLOBAL.TYPE_FROG)
 							{
 								target.eyeColor = newEyeColor;
@@ -202,8 +202,8 @@ package classes.Items.Transformatives
 						{
 							if(target.breastRatingUnlocked(i, target.biggestTitSize() - boobDec))
 							{
-								if(target.breastRows[i].breastRatingRaw > 0) breastRows[i].breastRatingRaw -= boobDec;
-								if(target.breastRows[i].breastRatingRaw < 0) breastRows[i].breastRatingRaw = 0;
+								if(target.breastRows[i].breastRatingRaw > 0) target.breastRows[i].breastRatingRaw -= boobDec;
+								if(target.breastRows[i].breastRatingRaw < 0) target.breastRows[i].breastRatingRaw = 0;
 								boobChanged = true;
 							}
 						}
@@ -226,7 +226,7 @@ package classes.Items.Transformatives
 						if(target.nippleTypeUnlocked(i, GLOBAL.NIPPLE_TYPE_INVERTED)) nInvertNips++;
 					}
 					// convert normal nipples to flat or inverted
-					if(changes < changeLimit && normalNips == target.breastRows && rand(3) != 0)
+					if(changes < changeLimit && normalNips == target.bRows() && rand(3) != 0)
 					{
 						/*
 						if(nFlatNips > 0 && target.nippleLengthRatio < 1 && rand(2) == 0)

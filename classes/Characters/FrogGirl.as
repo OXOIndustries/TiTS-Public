@@ -2,7 +2,8 @@
 {
 	import classes.Creature;
 	import classes.GLOBAL;
-	import classes.Items.Miscellaneous.*;
+	//import classes.Items.Miscellaneous.*;
+	import classes.Items.Transformatives.KerokorasVenom;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
 	

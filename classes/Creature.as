@@ -13013,7 +13013,7 @@ package classes {
 			if (hasStatusEffect("Varmint Buddy"))
 			{
 				d -= -1;
-				varmintDamage:TypeCollection = new TypeCollection();
+				var varmintDamage:TypeCollection = new TypeCollection();
 				varmintDamage.kinetic.damageValue = Math.round(d * 0.75);
 				varmintDamage.corrosive.damageValue = Math.round(d * 0.25);
 				varmintDamage.addFlag(DamageFlag.PENETRATING);

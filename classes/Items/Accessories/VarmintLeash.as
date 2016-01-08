@@ -4,6 +4,7 @@ package classes.Items.Accessories
 	import classes.GLOBAL;
 	import classes.GameData.TooltipManager;
 	import classes.kGAMECLASS;
+	import classes.Creature;
 	import classes.StringUtil;
 	import classes.GameData.CombatAttacks;
 	
@@ -50,7 +51,7 @@ package classes.Items.Accessories
 		
 		override public function onEquip(targetCreature:Creature):void
 		{
-			if(varmintIsTame())
+			if(kGAMECLASS.varmintIsTame())
 			{
 				targetCreature.createStatusEffect("Varmint Buddy", 0, 0, 0, 0, false, "Radio", "The pink wireless leash you hold will ensure that your varmint companion stays close by, joining alongside you in battle if necessary.", false, 0);
 			}
