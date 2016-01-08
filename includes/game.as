@@ -791,23 +791,28 @@ public function flyTo(arg:String):void {
 		currentLocation = "POESPACE";
 		output("Electing to have a little fun, you set a course for Poe A and before long, the planet looms before you on the display. It’s not particularly large, for a civilized world, but the traffic for landing vehicles is a little ridiculous. Thousands of craft are coming in every minute, with no sign of the influx slowing down. They’re from all over the galaxy too, even models you’ve never heard of before. Taking your place in the landing queue, you look around at some of the other visitors, eyes watering with envy as you spot a few ships that probably cost as much as this whole planet. Apparently the stories of stars slumming it up during the festival weren’t exaggerated!");
 	}
+	
+	if (arg != "New Texas")
+	{
+		if(flags["LANDING_EVENT_CHECK"] == 1)
+		{
+			// Wild varmint stowaway!
+			if(varmintStowaway())
+			{
+				currentLocation = "SHIP INTERIOR";
+				getAPetVarmint();
+				return;
+			}
+			flags["LANDING_EVENT_CHECK"] = undefined;
+		}
+	}
+	
 	var timeFlown:Number = 600 + rand(30);
 	StatTracking.track("movement/time flown", timeFlown);
 	processTime(timeFlown);
 	flags["LANDING_EVENT_CHECK"] = 1;
 	clearMenu();
-	addButton(0, "Next", landingCheck, arg);
-}
-
-public function landingCheck(arg:String):void
-{
-	// Special landing events
-	if (arg != "New Texas")
-	{
-		// Wild varmint stowaway!
-		varmintStowaway();
-	}
-	mainGameMenu();
+	addButton(0, "Next", mainGameMenu);
 }
 
 public function showerMenu():void {
