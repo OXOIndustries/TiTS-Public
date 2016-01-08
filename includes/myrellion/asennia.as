@@ -562,7 +562,7 @@ public function drinkHoneyAfternoonWithNoBoner():void
 	output(" are giving her a hell of a ride.");
 
 	output("\n\nYou hear cheering behind you as Asennia’s orgasm passes, and a quick look over your shoulder shows you every eye in the garden seems to be on the three of you. ");
-	if(pc.exhibitionism() <= 33) output("You blush, suddenly realizing how many people have been watching you.");
+	if(pc.exhibitionism() < 33) output("You blush, suddenly realizing how many people have been watching you.");
 	else output("You hold up a triumphant fist to the crowd, and are instantly hailed with applause and lusty cheers!");
 	output(" Asennia slumps back in her stool, panting heavily as you hop back onto the street and get ready to go.");
 

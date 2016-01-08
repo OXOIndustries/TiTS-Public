@@ -833,7 +833,7 @@ public function getDallyLicked():void
 	if(!pc.isNude()) output(", shedding your [pc.gear] faster than an Ikainan whore");
 	else output(", rocking your [pc.hips] back and forth");
 	output(". <i>“I think I can handle a little stage time.”</i>");
-	if(pc.exhibitionism() <= 33) output(" You try your best not to show just how nervous you’re feeling.");
+	if(pc.exhibitionism() < 33) output(" You try your best not to show just how nervous you’re feeling.");
 
 	output("\n\n<i>“Is that so?”</i> Dally makes a show of dropping to his knees, grabbing the stripper pole and slowing his slide to the stage floor into a sensuous display. <i>“");
 	if(pc.legCount == 1) output("Stones, it’s strange to see one smack in the middle instead of you instead of on an abdomen like a normal girl’s.");
@@ -984,8 +984,8 @@ public function dallySucksYouOff():void
 	if(pc.hasSheath(pc.biggestCockIndex())) output(" Once there, he slithers his lewd muscle into the musky scabbard and licks at the sensitive, unprepared parts of your cock.");
 
 	output("\n\nYou let your eyes drift closed and moan");
-	if(pc.isTreated() || pc.exhibitionism() > 66) output(" whorishly for the crowd. Might as well give the people a show, and if it gets you off that much harder, so much the better!");
-	else if(pc.exhibitionism() > 33) output(" confidently. The crowd doesn’t really bother you; if anything, having so many adoring eyes locked on your shaft has your heart beating faster.");
+	if(pc.isTreated() || pc.exhibitionism() >= 66) output(" whorishly for the crowd. Might as well give the people a show, and if it gets you off that much harder, so much the better!");
+	else if(pc.exhibitionism() >= 33) output(" confidently. The crowd doesn’t really bother you; if anything, having so many adoring eyes locked on your shaft has your heart beating faster.");
 	else output(" nervously, too turned on by Dally’s service not to and yet still nervous in front of a crowd. Jumping on stage and displaying yourself is one thing; realizing that there’s three dozen sets of eyes watching your every move is another.");
 	output(" When that wondrous tongue reverses direction and slides up the sensitive underside of your shaft, you forget their stares entirely, letting your eyes drift closed to fully focus your attentions on the divine sensations radiating from your rod.");
 	output("\n\n<i>“You like that?”</i> Dally asks once he launches past the [pc.cockHeadBiggest].");
