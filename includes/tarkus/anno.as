@@ -2507,13 +2507,17 @@ public function nameThaGooII():void
 	addButton(0, "Next", mainGameMenu);
 }
 
-public function grayPrimeEscapeGrapple(tEnemy:Creature):void
+public function grayPrimeEscapeGrapple():void
 {
-	if (tEnemy is GrayPrime) tEnemy.createStatusEffect("Grapple Cooldown", 4);
+	var hostiles:Array = CombatManager.getHostileCharacters();
+	for (var i:int = 0; i < hostiles.length; i++)
+	{
+		if (hostiles[i] is GrayPrime) hostiles[i].createStatusEffect("Grapple Cooldown", 4);
+	}
 	output("Finally, you tear yourself off the tentacles, flopping down onto the layer of gooey coating that covers the deck. The goo scowls, raising her sword again. <i>“Damn it. Why won’t you just go down!”</i> she shrieks. <i>“I don’t want to kill you, but if you won’t surrender, then I swear I will! What I’m doing is too important!”</i>");
 }
 
-public function grayPrimeFailEscape(tEnemy:Creature):void
+public function grayPrimeFailEscape():void
 {
 	switch (pc.statusEffectv1("Grappled"))
 	{
@@ -2557,7 +2561,7 @@ public function grayPrimeFailEscape(tEnemy:Creature):void
 			break;
 	}
 
-	applyDamage(new TypeCollection( { tease: 10 + rand(5) } ), tEnemy, pc, "minimal");
+	applyDamage(new TypeCollection( { tease: 10 + rand(5) } ), attacker, pc, "minimal");
 }
 
 public function grayGooDisplay():void
