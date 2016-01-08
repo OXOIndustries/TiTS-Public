@@ -1675,6 +1675,10 @@ public function processTime(arg:int):void {
 					flags["BADGER_QUEST_TIMER"] = -1;
 				}
 			}
+			// Wild varmint stowaway!
+			varmintStowaway();
+			// Wild varmint run away!
+			varmintDisappearChance();
 
 			//Days ticks here!
 			if(hours >= 24) {
@@ -1741,9 +1745,6 @@ public function processTime(arg:int):void {
 				venusSubmission( -1);
 				
 				tryProcSaendraXPackEmail();
-				
-				// Wild varmint run away
-				varmintDisappearChance();
 				
 				// Manes grow out!
 				if(pc.hasPerk("Mane") && pc.hairLength <= 3) maneHairGrow();
