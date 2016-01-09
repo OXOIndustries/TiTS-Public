@@ -353,7 +353,11 @@ public function lassoAVarmint(attacker:Creature, target:Creature):void
 		damageRand(damage, 15);
 		
 		//Will this down the fucker
-		if(damage.getTotal() - target.defense() >= target.HP()) output(" <b>You snag the varmint by the neck! You give the lasso a tug, throwing the creature to the ground in a defeated lump.</b>");
+		if(damage.getTotal() - target.defense() >= target.HP())
+		{
+			output(" <b>You snag the varmint by the neck! You give the lasso a tug, throwing the creature to the ground in a defeated lump.</b>");
+			target.createStatusEffect("Lassoed", 1);
+		}
 		//Naw, he's still up
 		else
 		{
@@ -362,11 +366,12 @@ public function lassoAVarmint(attacker:Creature, target:Creature):void
 			else if(rand(2) == 0) output("leg");
 			else output("spike");
 			output(" on the varmint, barreling the creature to the ground.");
+			target.createStatusEffect("Lassoed");
 		}
 		applyDamage(damage, attacker, target);
 		//Used to track if the PC downed the shithead with a whip or something else.
-		target.createStatusEffect("Lassoed");
-		output("\n");
+		//target.createStatusEffect("Lassoed");
+		//output("\n");
 	}
 }
 
@@ -389,7 +394,7 @@ public function pcVictoryVsVarmints():void
 		{
 			output("Despite getting the varmint to the ground, you don't have a way to carry it while you're already dragging another one around. Maybe you should go hand it off to Cameron before you try to wrangle anymore. Grumbling, you cut loose the fallen creature and watch it take off into the brush. Maybe it'll learn its lesson.");
 		}
-
+		enemy.removeStatusEffect("Lassoed");
 	}
 	//output("\n\nWhile you’re bagging the varmint, you see (a cannister of silicone / a stolen, unmarked credit chit / a mostly intact to-go meal from the ranch house restaurant). You take possession of the varmint’s lonely possession.} ");
 	else
