@@ -4022,8 +4022,9 @@ public function displayEncounterLog(showID:String = "All"):void
 			// GALO SENGAN
 			if(flags["ZODEE_GALOQUEST"] != undefined)
 			{
-				output2("\n<b>* Xenogen Biotech, GaloMax Pill:</b> Acquired from Zo’dee");
-				if(flags["GALOMAX_DOSES"] != undefined) output2(", Used " + flags["GALOMAX_DOSES"] + " times");
+				output2("\n<b>* Xenogen Biotech, GaloMax Pill:</b> Acquired");
+				if(flags["GALOMAX_DOSES"] != undefined) output2(", Used");
+				if(flags["GALOMAX_DOSES"] > 1) output2(" " + flags["GALOMAX_DOSES"] + " times");
 			}
 			// Horse wieners
 			if(flags["SYNTHSHEATH_ACQUIRED"] != undefined || flags["SYNTHSHEATH_TWO_FOUND"] != undefined)
