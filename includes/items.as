@@ -391,12 +391,14 @@ public function getBuyPrice(keeper:Creature,basePrice:Number):Number {
 
 public function unequipMenu():void
 {
-	inventoryDisplay();
+	clearOutput();
 	var x:int = 0;
 	itemScreen = inventory;
 	useItemFunction = inventory;
 	var adjustment:int = 0;
 	output("What would you like to unequip?");
+	output("\n\n");
+	equipmentDisplay();
 
 	clearMenu();
 	if (pc.upperUndergarment.shortName != "") 
@@ -446,12 +448,10 @@ public function unequipMenu():void
 	addButton(14,"Back",generalInventoryMenu);
 }
 
-public function inventoryDisplay():void
+public function keyItemDisplay():void
 {
 	clearOutput();
 	var x:int = 0;
-	itemScreen = inventory;
-	useItemFunction = inventory;
 	
 	output("<b><u>Key Items:</u></b>\n");
 	if(pc.keyItems.length > 0) 
@@ -468,12 +468,14 @@ public function inventoryDisplay():void
 			{
 				output(pItem.storageName + "\n");
 			}
-			
 		}
 		output("\n");
 	}
-	else output("None\n\n");
-	
+	else output("<i>None</i>\n\n");
+	addButton(14,"Back",inventory);
+}
+public function equipmentDisplay():void
+{
 	output("<b><u>Equipment:</u></b>\n");
 	output("<b>Melee Weapon:</b> " + StringUtil.toTitleCase(pc.meleeWeapon.description) + "\n");
 	output("<b>Ranged Weapon:</b> " + StringUtil.toTitleCase(pc.rangedWeapon.description) + "\n");
@@ -507,20 +509,39 @@ public function inventoryDisplay():void
 	
 	output("\n");
 }
+public function inventoryDisplay():void
+{
+	var x:int = 0;
+	output("<b><u>Inventory:</u></b>\n");
+	for(x = 0; x < pc.inventory.length; x++)
+	{
+		var item:ItemSlotClass = pc.inventory[x];
+		output("\n");
+		if (item.stackSize > 1) output(item.quantity + "x ");
+		output(StringUtil.toDisplayCase(item.longName));
+	}
+	output("\n\n");
+}
 
 public function generalInventoryMenu():void
 {
-	inventoryDisplay();
+	clearOutput();
 	var x:int = 0;
 	itemScreen = inventory;
 	useItemFunction = inventory;
 	
 	output("What item would you like to use?");
-	
+	output("\n\n");
+	inventoryDisplay();
 	this.clearMenu();
 	var adjustment:int = 0;
 	for(x = 0; x < pc.inventory.length || x < 14; x++) {
-		//0 = unequip menu
+		//key item menu
+		if(x+adjustment == 12) {
+			addButton(x+adjustment,"Key Item",keyItemDisplay,undefined,"Key Items","View your list of key items.");
+			adjustment++;
+		}
+		//unequip menu
 		if(x+adjustment == 13) {
 			addButton(x+adjustment,"Unequip",unequipMenu,undefined,"Unequip","Unequip an item.");
 			adjustment++;
@@ -550,7 +571,8 @@ public function combatInventoryMenu():void
 	useItemFunction = inventory;
 	
 	output("What item would you like to use?");
-	
+	output("\n\n");
+	inventoryDisplay();
 	for (var i:int = 0; i < pc.inventory.length; i++)
 	{
 		var tItem:ItemSlotClass = pc.inventory[i];
