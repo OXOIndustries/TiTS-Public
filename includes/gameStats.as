@@ -1324,9 +1324,14 @@ public function displayQuestLog(showID:String = "All"):void
 					output2(" Warned Penny");
 					if(flags["NO_ZAP_PENNY"] != undefined) output2(", Refused to zap her");
 					if(flags["NO_REPORTING_DOC_BADGER"] != undefined) output2(", Will not report Dr Badger");
-					if(flags["BADGER_QUEST"] == -1) output2(", Confiscated Raygun");
-					if(flags["BADGER_QUEST"] == -2) output2(", Reprogrammed Raygun, <i>Return to Dr Badger!</i>");
-					if(flags["BADGER_QUEST"] <= -3) output2(", Zapped Dr Badger instead, Rewarded, Completed");
+					if(flags["BADGER_QUEST"] == -1)
+					{
+						output2(", Confiscated Raygun");
+						if(pc.hasKeyItem("Doctor Badger's Bimbo Raygun - Still programmed for use on Penny.") output2(", <i>Get reprogrammed from Dr. Lash!</i>");
+						else if(9999 == 0) output2(", <i>Return to Penny!</i>");
+					}
+					else if(flags["BADGER_QUEST"] == -2) output2(", Reprogrammed Raygun, <i>Return to Dr Badger!</i>");
+					else if(flags["BADGER_QUEST"] <= -3) output2(", Zapped Dr Badger instead, Rewarded, Completed");
 				}
 				else if(flags["BADGER_QUEST"] == 2) output2(" Zapped Penny, <i>Mission accomplished! Report to Dr Badger!</i>");
 				else if(flags["BADGER_QUEST"] >= 3) output2(" Zapped Penny, Rewarded, Completed");
