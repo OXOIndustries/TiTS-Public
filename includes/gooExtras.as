@@ -604,7 +604,7 @@ public function gooShiftMenu():void
 	if(pc.hairType == GLOBAL.HAIR_TYPE_GOO) addGhostButton(0, "Hair", gooHairAdjustmenu);
 	else addDisabledGhostButton(0, "Hair");
 	if(pc.hasStatusEffect("Goo Crotch")) addGhostButton(1,"Crotch",gooCrotchCustomizer);
-	else addDisabledGhostButton(1,"Locked","Locked","It takes three doses of GaloMax to unluck this option.");
+	else addDisabledGhostButton(1,"Locked","Locked","It takes three doses of GaloMax to unlock this option.");
 	if(pc.hasStatusEffect("Gel Body")) addGhostButton(2,"Chest",gooChestCustomizer);
 	else addDisabledGhostButton(2,"Locked","Locked","It takes four doses of GaloMax to unlock this option.");
 	if(pc.hasStatusEffect("Gel Body")) addGhostButton(3,"Body",gooBodyCustomizer);
@@ -837,9 +837,9 @@ public function gooBodyCustomizer():void
 	}
 	else
 	{
-		addDisabledGhostButton(0,"Height","Height","It takes five doses of GaloMax to unlock this option.");
-		addDisabledGhostButton(1,"Thickness","Thickness","It takes five doses of GaloMax to unlock this option.");
-		addDisabledGhostButton(2,"Tone","Tone","It takes five doses of GaloMax to unlock this option.");
+		addDisabledGhostButton(0,"Locked","Locked","It takes five doses of GaloMax to unlock this option.");
+		addDisabledGhostButton(1,"Locked","Locked","It takes five doses of GaloMax to unlock this option.");
+		addDisabledGhostButton(2,"Locked","Locked","It takes five doses of GaloMax to unlock this option.");
 	}
 	addGhostButton(3,"Hip Size",adjustGooBody,["hip size","menu"],"Hip Size","Make adjustments to your hip size.");
 	addGhostButton(4,"Butt Size",adjustGooBody,["butt size","menu"],"Butt Size","Make adjustments to your butt size.");
@@ -1090,7 +1090,7 @@ public function revertGooBodyPart(part:String = "all"):void
 	clearGhostMenu();
 	addGhostButton(0,"Next",gooBodyCustomizer);
 }
-public function gooMismatchedGenitals(sColor:String):int
+public function gooMismatchedGenitals(sColor:String = "green"):int
 {
 	var i:int = 0;
 	var mismatchedGenitals:int = 0;
@@ -1166,7 +1166,7 @@ public function revertGooBodyColor(part:String = "menu"):void
 		pc.scaleColor = pc.hairColor;
 		gooBiomass(-10);
 		clearGhostMenu();
-		if(gooMismatchedGenitals(sColor) > 0)
+		if(gooMismatchedGenitals(pc.hairColor) > 0)
 		{
 			output2("\n\nTilting your codex to your nether region, you noticed the color is a bit off... Do you want to change to color of your gooey genitals to match as well?");
 			showBiomass();
@@ -1185,7 +1185,7 @@ public function revertGooBodyColor(part:String = "menu"):void
 		pc.hairColor = pc.skinTone;
 		gooBiomass(-10);
 		clearGhostMenu();
-		if(gooMismatchedGenitals(sColor) > 0)
+		if(gooMismatchedGenitals(pc.skinTone) > 0)
 		{
 			output2("\n\nTilting your codex to your nether region, you noticed the color is a bit off... Do you want to change to color of your gooey genitals to match as well?");
 			showBiomass();
@@ -2777,7 +2777,7 @@ public function fixAllVags(nVagsToFix:Number = 0):void
 			pc.vaginas[x].vaginaColor = gooColor();
 			pc.energy(-25);
 			// Take goo:
-			flags["GOO_BIOMASS"] -500;
+			flags["GOO_BIOMASS"] -= 500;
 		}
 		
 		if(flags["GOO_BIOMASS"] < 0)

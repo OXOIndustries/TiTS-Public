@@ -272,7 +272,7 @@ public function appearance(forTarget:Creature):void
 		}
 		else if (target.eyeType == GLOBAL.TYPE_FROG)
 		{
-			if (target.eyeColor != "black") output2(" Void black eyes with glowing iridescent");
+			if (target.eyeColor == "black") output2(" Void black eyes with glowing iridescent");
 			else
 			{
 				if (hasMetallicEyes) output2(" Metallically glistening " + target.eyeColor);
@@ -1976,7 +1976,7 @@ public function crotchStuff(forTarget:Creature = null):void
 					output2(".");
 					if(!target.matchedVaginas())
 					{
-						vaginaBonusForAppearance(target, temp, false);
+						vaginaBonusForAppearance(null, temp, false);
 					}
 				}
 				//Ovipositor
@@ -2017,7 +2017,7 @@ public function crotchStuff(forTarget:Creature = null):void
 			}
 			if(target.matchedVaginas())
 			{
-				vaginaBonusForAppearance(target, 0, true);
+				vaginaBonusForAppearance(null, 0, true);
 			}
 		}
 	}

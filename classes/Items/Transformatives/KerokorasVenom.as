@@ -187,7 +187,7 @@ package classes.Items.Transformatives
 				}
 				
 				// Nextstuff: Boobers
-				else if(changes < changeLimit)
+				if(changes < changeLimit)
 				{
 					//pc boobshrink
 					if(changes < changeLimit && target.biggestTitSize() > 0)
@@ -198,6 +198,7 @@ package classes.Items.Transformatives
 						if(target.biggestTitSize() > 10) boobDec += 2;
 						
 						var boobChanged:Boolean = false;
+						var boobLocked:Boolean = false;
 						for (i = 0; i < target.breastRows.length; i++)
 						{
 							if(target.breastRatingUnlocked(i, target.biggestTitSize() - boobDec))
@@ -206,6 +207,7 @@ package classes.Items.Transformatives
 								if(target.breastRows[i].breastRatingRaw < 0) target.breastRows[i].breastRatingRaw = 0;
 								boobChanged = true;
 							}
+							else boobLocked = true;
 						}
 						
 						if(boobChanged)
@@ -214,22 +216,35 @@ package classes.Items.Transformatives
 							
 							changes++;
 						}
-						else output("\n\n" + target.breastRatingLockedMessage());
+						else if(boobLocked) output("\n\n" + target.breastRatingLockedMessage());
 					}
 					var normalNips:Number = 0;
-					var nFlatNips:Number = 0;
-					var nInvertNips:Number = 0;
+					var flatNips:Number = 0;
+					var invertNips:Number = 0;
+					var nipLocked:Boolean = false;
 					for (i = 0; i < target.breastRows.length; i++)
 					{
-						if(target.breastRows[i].nippleType == GLOBAL.NIPPLE_TYPE_NORMAL) normalNips++;
-						if(target.nippleTypeUnlocked(i, GLOBAL.NIPPLE_TYPE_FLAT)) nFlatNips++;
-						if(target.nippleTypeUnlocked(i, GLOBAL.NIPPLE_TYPE_INVERTED)) nInvertNips++;
+						if(target.breastRows[i].nippleType != GLOBAL.NIPPLE_TYPE_NORMAL) 
+						{
+							if(!target.nippleTypeUnlocked(i, GLOBAL.NIPPLE_TYPE_NORMAL)) nipLocked = true;
+						}
+						else normalNips++;
+						if(target.breastRows[i].nippleType != GLOBAL.NIPPLE_TYPE_FLAT)
+						{
+							if(!target.nippleTypeUnlocked(i, GLOBAL.NIPPLE_TYPE_FLAT)) nipLocked = true;
+						}
+						else flatNips++;
+						if(target.breastRows[i].nippleType != GLOBAL.NIPPLE_TYPE_INVERTED)
+						{
+							if(!target.nippleTypeUnlocked(i, GLOBAL.NIPPLE_TYPE_INVERTED)) nipLocked = true;
+						}
+						else invertNips++;
 					}
 					// convert normal nipples to flat or inverted
 					if(changes < changeLimit && normalNips == target.bRows() && rand(3) != 0)
 					{
 						/*
-						if(nFlatNips > 0 && target.nippleLengthRatio < 1 && rand(2) == 0)
+						if(flatNips <= 0 && target.nippleLengthRatio < 1 && rand(2) == 0)
 						{
 							output("\n\nA strange sensation hits your your nipples. Quickly");
 							if(isTopClothed && !target.isChestExposed())
@@ -247,7 +262,7 @@ package classes.Items.Transformatives
 						}
 						else 
 						*/
-						if(nInvertNips > 0)
+						if(invertNips <= 0)
 						{
 							output("\n\nAn unpleasent twinge of nerves brings your attention to your nipples.");
 							if(isTopClothed && !target.isChestExposed())
@@ -263,10 +278,10 @@ package classes.Items.Transformatives
 							}
 							changes++;
 						}
-						else output("\n\n" + target.nippleTypeLockedMessage());
+						else if(nipLocked) output("\n\n" + target.nippleTypeLockedMessage());
 					}
 					//nips become normal
-					if(changes < changeLimit && normalNips <= 0)
+					if(changes < changeLimit && (normalNips + invertNips + flatNips) != target.breastRows.length)
 					{
 						var nipChangeFrom:int = -1;
 						for (i = 0; i < target.breastRows.length; i++)
@@ -304,7 +319,7 @@ package classes.Items.Transformatives
 							}
 							changes++;
 						}
-						else output("\n\n" + target.nippleTypeLockedMessage());
+						else if(nipLocked) output("\n\n" + target.nippleTypeLockedMessage());
 					}
 					//pc nippleshrink
 					else if(changes < changeLimit && target.nippleLengthRatio > 0.01 && rand(3) != 0)
@@ -334,7 +349,7 @@ package classes.Items.Transformatives
 				}
 				
 				// thirdstuff: Froggify yoself
-				else if(changes < changeLimit && target.skinType != GLOBAL.SKIN_TYPE_SKIN)
+				if(changes < changeLimit && target.skinType == GLOBAL.SKIN_TYPE_SKIN)
 				{
 					//low chance to lose hair
 					if(changes < changeLimit && target.hasHair() && rand(3) == 0)
@@ -603,7 +618,7 @@ package classes.Items.Transformatives
 				}
 				
 				// Fourstuff: Body and insides
-				else if(changes < changeLimit && target.hasVagina())
+				if(changes < changeLimit && target.hasVagina())
 				{
 					// lose 1 physique
 					if(changes < changeLimit && target.physique() > 10 && rand(4) == 0)

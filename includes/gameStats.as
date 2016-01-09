@@ -2241,7 +2241,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// The Fields
-			if(flags["MET_CAMERON"] != undefined || flags["MET_VARMINT"] != undefined)
+			if(flags["MET_CAMERON"] != undefined || flags["MET_VARMINT"] != undefined || varmintIsCrew())
 			{
 				output2("\n<b><u>The Fields</u></b>");
 				if(flags["MET_CAMERON"] != undefined)
@@ -2250,6 +2250,21 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["SEXED_CAMERON"] != undefined) output2("\n<b>* Cameron, Times Sexed: </b>" + flags["SEXED_CAMERON"]);
 				}
 				if(flags["MET_VARMINT"] != undefined) output2("\n<b>* Varmint, Times Encountered: </b>" + flags["MET_VARMINT"]);
+				if(varmintIsCrew())
+				{
+					if(varmintIsTame())
+					{
+						output2("\n<b>* Pet Varmint:</b> Crew member");
+						if(hasVarmintBuddy()) output2(" (Following you)");
+						else
+						{
+							output2(" (Onboard Ship)");
+							if(pc.hasStatusEffect("Varmint Leashed")) output2(", Leashed");
+							else output2(", Roaming freely");
+						}
+					}
+					else output2("\n<b>* Wild Varmint:</b> Stowaway (Onboard Ship)");
+				}
 				variousCount++;
 			}
 			// Iced Teats
