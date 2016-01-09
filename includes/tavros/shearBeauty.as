@@ -127,7 +127,7 @@ public function buyFromCeria():void
 		}
 		else chars["CERIA"].destroyItem(new DoveBalm());
 	}
-	chars["CERIA"].keeperBuy += "\n\n";
+	chars["CERIA"].keeperBuy += "\n";
 	//List prices and whatnot. Back should go back to CERIA's main menu.
 	//Sell Menu
 	chars["CERIA"].keeperGreeting = "RUH ROH! SOMETHING WENT WRONG.";
