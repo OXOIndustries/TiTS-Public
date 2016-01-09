@@ -363,7 +363,7 @@ public function statisticsScreen(showID:String = "All"):void
 					output2("\n<b>* Length, Erect: </b>" + prettifyLength(pc.cLength(x)));
 					output2("\n<b>* Thickness: </b>" + prettifyLength(pc.cThickness(x)));
 					if(pc.hasKnot(x)) output2("\n<b>* Knot Thickness: </b>" + prettifyLength(pc.knotThickness(x)));
-					if(pc.hasCockFlag(GLOBAL.FLAG_LUBRICATED, x) || pc.hasCockFlag(GLOBAL.FLAG_STICKY, x))
+					if(pc.cockVolume(x, false) != pc.cockVolume(x))
 					{
 						output2("\n<b>* Volume, Physical: </b>" + prettifyVolume(pc.cockVolume(x, false)));
 						output2("\n<b>* Volume, Effective: </b>" + prettifyVolume(pc.cockVolume(x)));
