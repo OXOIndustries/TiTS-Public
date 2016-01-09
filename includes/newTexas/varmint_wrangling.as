@@ -841,7 +841,7 @@ public function varmintDisappearChance():void
 {
 	if(currentLocation != "SHIP INTERIOR" || !varmintIsCrew() || pc.hasStatusEffect("Varmint Leashed") || pc.hasStatusEffect("Varmint Unleashed Cooldown")) return;
 	
-	var runawayChance:int = (10 * 60);
+	var runawayChance:int = (10 * 2 * 60);
 	if(varmintIsTame()) runawayChance *= 2;
 	
 	if(rand(runawayChance) == 0 && eventQueue.indexOf(varmintDisappears) == -1)
