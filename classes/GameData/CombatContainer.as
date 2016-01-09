@@ -2660,9 +2660,7 @@ package classes.GameData
 				
 				userInterface().showPlayerParty(_friendlies);
 				userInterface().showHostileParty(_hostiles);
-				//_lossFunction();
-				clearMenu();
-				addButton(0, "Next", _lossFunction);
+				_lossFunction();
 				return true;
 			}
 			else if (hasEnemyOfClass(Naleen) || hasEnemyOfClass(NaleenMale))
@@ -2698,9 +2696,7 @@ package classes.GameData
 				
 					userInterface().showPlayerParty(_friendlies);
 					userInterface().showHostileParty(_hostiles);
-					//_lossFunction();
-					clearMenu();
-					addButton(0, "Next", _lossFunction);
+					_lossFunction();
 					return true;
 				}
 			}
@@ -2752,9 +2748,7 @@ package classes.GameData
 				
 				userInterface().showPlayerParty(_friendlies);
 				userInterface().showHostileParty(_hostiles); // Force-display the selected enemy
-				//_victoryFunction();
-				clearMenu();
-				addButton(0, "Next", _victoryFunction);
+				_victoryFunction();
 				return true;
 			}
 			return false;
