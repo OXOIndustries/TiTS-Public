@@ -143,7 +143,7 @@ package classes.Items.Transformatives
 					}
 				}
 				// PC has any other wing type:
-				else if(target.wingType != GLOBAL.TYPE_HUMAN && target.wingType != GLOBAL.TYPE_SHARK)
+				else if(target.hasWings())
 				{
 					// 75% chance that PC’s wing type changes to feathered wings.
 					if(rand(4) != 0) target.wingType = GLOBAL.TYPE_DOVETWO;
