@@ -643,29 +643,40 @@ public function getAPetVarmintResponse(response:String = "none"):void
 			output("You put on your biggest, bubbliest smile and prance over to the growling critter, trying to direct as much of your mindless positivity at it as you can. Squatting down right in front of it, you introduce yourself and ask what its name is.");
 			output("\n\nThe cute little varmint twists its head 180 degrees at you and makes an owl-like hoot. When you don’t attack it, though, the creature’s spikes flex back out, and it makes a great big huff in your face, blasting you with a horribly cinnamon-like breath that burns your eyes and nose. You make yourself giggle in spite of the burning breath and slowly reach out to stroke the critter’s big blue head-plate. It’s armored skin feels like ultra-smooth latex, glossy and brilliantly colored, getting rougher around the base of its spines. The varmint recoils a bit when you touch it, but after a few minutes of you searching out the equivalent of behind its ears to scratch (ear-holes, you guess?); it ends up making a purring hooting sound and wagging its big, spiky tail around like an oversized puppy.");
 			output("\n\n<i>“Aww, you’re not so bad!”</i> you tease, scritching its snout until the varmint’s putty in your hands. Like, totally cute!");
-			output("\n\nDeciding your cutey-booty new pet’s totally harmless, you bounce over to your personal terminal and browse the extranet for a cheap plus-sized animal collar and leash.");
+			output("\n\nDeciding your cutey-booty new pet’s totally harmless");
 			
-			// Too poor!
-			if(pc.credits < 50)
+			// Yay!
+			if(hasVarmintLeash() || pc.credits >= 50)
 			{
-				output(".. Unfortunately, you don’t even have enough funds to purchase a <b>50-credit</b> leash. Aw, fooey--looks like you have to pick up whoring and shake your money-maker if you know what’s good for you!");
+				if(hasVarmintLeash()) output(", you quickly grab your plus-sized animal collar and leash");
+				else output(", you bounce over to your personal terminal and browse the extranet for a cheap plus-sized animal collar and leash. You get the delivery from a drone as soon as you set down at your destination,");
+				output(" and present the bright pink, flower-colored collar to the varmint with a huge smile.");
+				output("\n\nIt hoots again, but with a little coaxing, you get it to stretch out its neck and let you collar it. Ah, it’s soooo adorable! And the colors look so good together! You giggle and pull the person-sized puppy into a huge hug, right up until it actually licks your cheek... and burns your [pc.skinFurScales]. You yelp and wipe at your cheek, stumbling away as the varmint’s saliva burns you. Ouchie! Your new friend whimpers and retreats into the corner, letting you run to the head and wash yourself off. OwowowowOW!");
+				output("\n\nYou huff and rub at your cheek as your nano-docs heal the burn on your skin. Better not let your naughty puppy do that again! Or maybe make sure it does that to anybody who wants to hurt you! <b>Maybe it’d make a cool battle buddy!</b>");
+				
+				pc.createStatusEffect("Varmint Leashed");
+				// Has a leash already!
+				if(hasVarmintLeash())
+				{
+					processTime(15);
+				}
+				// Get Leash!
+				else
+				{
+					output("\n\n");
+					processTime(72);
+					pc.credits -= 50;
+					quickLoot(new VarmintLeash());
+					return;
+				}
+			}
+			// Too poor!
+			else
+			{
+				output(", you bounce over to your personal terminal and browse the extranet for a cheap plus-sized animal collar and leash... Unfortunately, you don’t even have enough funds to purchase a <b>50-credit</b> leash. Aw, fooey--looks like you have to pick up whoring and shake your money-maker if you know what’s good for you!");
 				output("\n\nTo get over your disappointment, you decide to play with your adorable baby some more. You giggle and pull the person-sized puppy into a huge hug, right up until it actually licks your cheek... and burns your [pc.skinFurScales]. You yelp and wipe at your cheek, stumbling away as the varmint’s saliva burns you. Ouchie! Your new friend whimpers and retreats into the corner, letting you run to the head and wash yourself off. OwowowowOW!");
 				output("\n\nYou huff and rub at your cheek as your nano-docs heal the burn on your skin. Better not let your naughty puppy do that again! Or maybe make sure it does that to anybody who wants to hurt you! <b>Maybe it’d make a cool battle buddy if you could afford to keep it on a leash!</b>");
 				processTime(40);
-			}
-			// Yay!
-			else
-			{
-				output(" You get the delivery from a drone as soon as you set down at your destination, and present the bright pink, flower-colored collar to the varmint with a huge smile.");
-				output("\n\nIt hoots again, but with a little coaxing, you get it to stretch out its neck and let you collar it. Ah, it’s soooo adorable! And the colors look so good together! You giggle and pull the person-sized puppy into a huge hug, right up until it actually licks your cheek... and burns your [pc.skinFurScales]. You yelp and wipe at your cheek, stumbling away as the varmint’s saliva burns you. Ouchie! Your new friend whimpers and retreats into the corner, letting you run to the head and wash yourself off. OwowowowOW!");
-				output("\n\nYou huff and rub at your cheek as your nano-docs heal the burn on your skin. Better not let your naughty puppy do that again! Or maybe make sure it does that to anybody who wants to hurt you! <b>Maybe it’d make a cool battle buddy!</b>");
-				output("\n\n");
-				processTime(72);
-				// Get Leash!
-				pc.createStatusEffect("Varmint Leashed");
-				pc.credits -= 50;
-				quickLoot(new VarmintLeash());
-				return;
 			}
 		}
 		// if not a bimbo:
