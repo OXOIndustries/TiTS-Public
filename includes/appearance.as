@@ -426,7 +426,7 @@ public function appearance(forTarget:Creature):void
 				if(target.earLength > 1) output2(" " + num2Text(target.earLength) + "-inch long,");
 				output2(" wicked-looking demonic ears.");
 			}
-			else if(target.earType == GLOBAL.TYPE_FROG) output2(" The " + target.hairDescript(true,true) + " atop your head coveres the two small openings that make up your ears.");
+			else if(target.earType == GLOBAL.TYPE_FROG) output2(" The " + target.hairDescript(true,true) + " atop your head covers the two small openings that make up your ears.");
 			if(target.hasAntennae())
 			{
 				if(target.earType == GLOBAL.TYPE_LAPINE)
