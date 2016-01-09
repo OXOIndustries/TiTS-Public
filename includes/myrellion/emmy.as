@@ -362,7 +362,7 @@ public function talkToEmmyAboutKihaCorp():void
 	addButton(0,"General",kihaCorpGeneral,undefined,"General","You'd like to know more about the company in general - the high points.");
 	addButton(1,"Doing Well?",askEmmyIfKihaCorpIsDoingWell,undefined,"Doing Well?","You'd like to know how the company is performing.");
 	addButton(2,"Owner",askAboutTheOwnerOfKihaCorp)
-	addButton(4,"Back",talkToEmmy);
+	addButton(14,"Back",talkToEmmy);
 }
 
 //General
@@ -1045,7 +1045,7 @@ public function moreSeriousEmmyTalkAboutEmail():void
 	pc.lust(5);
 	clearMenu();
 	addButton(0,"Accept Offer",emmyQuickOralPick)
-	addButton(4,"Back",backToEmmyMain);
+	addButton(14,"Back",backToEmmyMain);
 }
 
 //Give Gem
@@ -1075,7 +1075,7 @@ public function giveEmmyAnItemMenu():void
 		else addButton(3,"C.Shard",giveEmmyAnItem,"Crystal Shard","Crystal Shard","Give Emmy a Crystal Shard. It's not quite the kind of gemstone she's looking for, but it might be fun to watch...");
 	}
 	else addDisabledButton(3,"C.Shard","Crystal Shard","You don't have any Crystal Shards.");
-	addButton(4,"Back",backToEmmyMain);
+	addButton(14,"Back",backToEmmyMain);
 }
 
 public function giveEmmyAnItem(item:String):void
