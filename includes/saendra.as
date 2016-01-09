@@ -1742,7 +1742,7 @@ public function newFutaSaendraScenes():void
 	output(" as she rubs the lube in, fingering your [pc.vagOrAss " + x + "] and spreading the shockingly cold stuff around.");
 
 	output("\n\n<i>“Oooh, that’s good,”</i> Saen purrs. <i>“");
-	if(pc.buttRating() <= 5) output("I love tight little butts. Gonna smack this ass till you scream");
+	if(pc.buttRating() <= 5) output("I love tight little butts. Gonna smack this ass ‘til you scream");
 	else if(pc.buttRating() <= 10) output("You’ve got a great little bubble butt back here, Hero. I’m gonna enjoy making it bounce.");
 	else output("Oh man, you have such a huge fuckin’ ass. Gonna make it bounce like jelly in a second.");
 	output("”</i>");
@@ -1763,7 +1763,7 @@ public function newFutaSaendraScenes():void
 	output("\n\nSaen slides in to the hilt, grunting in your [pc.ear] as she pounds your ");
 	if(pc.hasVagina()) output("cunt");
 	else output("ass");
-	output(" in. You squeal in pleasure, rocking back against her to get as much of her turgid lady-cock into you hole as possible. Your lover rocks her hips against your backside, giving you short, quick strokes as she trails kisses along your neck. Every time she bottoms out in you, you grunt and moan, giving voice to your growing ecstacy - God <i>damn</i> you love her cock!");
+	output(" in. You squeal in pleasure, rocking back against her to get as much of her turgid lady-cock into your hole as possible. Your lover rocks her hips against your backside, giving you short, quick strokes as she trails kisses along your neck. Every time she bottoms out in you, you grunt and moan, giving voice to your growing ecstacy - God <i>damn</i> you love her cock!");
 	if(pc.IQ() > 75) output(" Definitely one of your best investments yet.");
 	else if(pc.isBimbo()) output(" Everything’s better with dicks - especially your girlfriends!");
 
@@ -1781,7 +1781,7 @@ public function newFutaSaendraScenes():void
 	output("\n\nFinally, Saen seems to get annoyed with your screams. Rather than letting up on ");
 	if(!pc.hasVagina()) output("reaming you");
 	else output("pounding your pussy");
-	output(", Saen reaches down, grabs the bright pink panties she was wearing off the floor, and stuffs them straight in your mouth! Your eyes go wide, you gag, and then the smell and taste of sweat, perfume, and alien cockmusk hits you. Its the latter one that overpowers you the scent of pent-up sexual desire and dried hints of hermaphroditic semen on the crotch. You can taste every boner Saen’s had all day, and your heart flutters knowing your [pc.vagOrAss " + x + "] is going to be getting a full helping of this wonderful stuff.");
+	output(", Saen reaches down, grabs the bright pink panties she was wearing off the floor, and stuffs them straight in your mouth! Your eyes go wide, you gag, and then the smell and taste of sweat, perfume, and alien cockmusk hits you. It’s the latter one that overpowers you; the scent of pent-up sexual desire and dried hints of hermaphroditic semen on the crotch. You can taste every boner Saen’s had all day, and your heart flutters knowing your [pc.vagOrAss " + x + "] is going to be getting a full helping of this wonderful stuff.");
 
 	output("\n\n<i>“That’s more like it!”</i> Saendra cheers, slapping your ass and earning a muted yelp as her panties absorb the sounds of your screams. <i>“Unf! Yeah, now you’re gonna get it");
 	if(pc.race() == "ausar" || pc.race() == "half-ausar") output(", my favorite little bottom bitch");
