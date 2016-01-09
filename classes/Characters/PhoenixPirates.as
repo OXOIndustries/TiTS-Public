@@ -29,7 +29,7 @@ package classes.Characters
 			this.a = "the ";
 			this.capitalA = "The ";
 			this.long = "";
-			this.customBlock = "The pirates armor deflects your attack with alarming ease.";
+			this.customBlock = "The pirate’s armor deflects your attack with alarming ease.";
 			this.isPlural = false;
 			isLustImmune = true;
 			
