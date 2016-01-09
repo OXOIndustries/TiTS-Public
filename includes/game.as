@@ -1175,6 +1175,21 @@ public function variableRoomUpdateCheck():void
 	
 	/* TARKUS */
 	
+	// Chasmfall entrance
+	if(flags["STELLAR_TETHER_CLOSED"] == undefined)
+	{
+		rooms["350"].addFlag(GLOBAL.HAZARD);
+		if(MailManager.isEntryViewed("annoweirdshit")) rooms["350"].addFlag(GLOBAL.OBJECTIVE);
+		else rooms["350"].removeFlag(GLOBAL.OBJECTIVE);
+	}
+	else
+	{
+		rooms["350"].removeFlag(GLOBAL.HAZARD);
+		rooms["350"].removeFlag(GLOBAL.OBJECTIVE);
+	}
+	// Stellar Tether probe clue
+	if(flags["TARKUS_BOMB_TIMER"] != undefined && flags["TARKUS_BOMB_TIMER"] <= 0 && flags["PLANET_3_UNLOCKED"] == undefined) rooms["WIDGET WAREHOUSE"].addFlag(GLOBAL.QUEST);
+	else rooms["WIDGET WAREHOUSE"].removeFlag(GLOBAL.QUEST);
 	//Handle planet explosions
 	if(flags["TARKUS_DESTROYED"] == 1 && rooms["211"].southExit != "") 
 	{
