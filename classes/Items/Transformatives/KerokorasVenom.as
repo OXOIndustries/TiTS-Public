@@ -63,6 +63,7 @@ package classes.Items.Transformatives
 				var isTopClothed:Boolean = target.isChestCovered();
 				var isBottomClothed:Boolean = target.isCrotchGarbed();
 				var hasKeroFace:Boolean = InCollection(target.faceType, GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_FROG);
+				var faceChanged:Boolean = false;
 				var frogSkinColors:Array = ["orange and green", "mottled brown", "black and gold", "black and blue", "black and red", "red and blue", "black, blue, and yellow", "gold"];
 				var frogIrisColors:Array = ["red", "ruby", "green", "emerald", "blue", "sapphire", "yellow", "amber", "gold", "black"];
 				
@@ -112,8 +113,8 @@ package classes.Items.Transformatives
 								isTopClothed = false;
 							}
 							output("You rub your eyes as everything in your field of vision turns blurry. Your hands come away coated in viscous goop. It takes a few brushes to clear away all the gunk, but when it clears you use your codex’s mirror function to find that <b>");
-							if(target.eyeType != GLOBAL.TYPE_FROG && target.faceType != GLOBAL.TYPE_HUMAN) output("you now have a human face and " + newEyeColor + " eyes like a frog");
-							else if(target.faceType != GLOBAL.TYPE_HUMAN) output("you have a human face");
+							if(target.eyeType != GLOBAL.TYPE_FROG && !hasKeroFace) output("you now have a human face and " + newEyeColor + " eyes like a frog");
+							else if(!hasKeroFace) output("you have a human face");
 							else output("you have " + newEyeColor + " frog eyes");
 							kGAMECLASS.output("!</b>");
 							if(target.eyeType != GLOBAL.TYPE_FROG)
@@ -121,12 +122,13 @@ package classes.Items.Transformatives
 								target.eyeColor = newEyeColor;
 								target.eyeType = GLOBAL.TYPE_FROG;
 							}
-							if(target.faceType != GLOBAL.TYPE_HUMAN)
+							if(!hasKeroFace)
 							{
 								target.faceType == GLOBAL.TYPE_HUMAN;
 								target.clearFaceFlags();
 								target.addFaceFlag(GLOBAL.FLAG_SMOOTH);
 							}
+							faceChanged = true;
 							changes++;
 						}
 						else if(target.eyeType != GLOBAL.TYPE_FROG) output("\n\n" + target.eyeTypeLockedMessage());
@@ -222,6 +224,7 @@ package classes.Items.Transformatives
 					var flatNips:Number = 0;
 					var invertNips:Number = 0;
 					var nipLocked:Boolean = false;
+					var nipChanged:Boolean = false;
 					for (i = 0; i < target.breastRows.length; i++)
 					{
 						if(target.breastRows[i].nippleType != GLOBAL.NIPPLE_TYPE_NORMAL) 
@@ -258,6 +261,7 @@ package classes.Items.Transformatives
 							{
 								if(target.nippleTypeUnlocked(i, GLOBAL.NIPPLE_TYPE_FLAT)) target.breastRows[i].nippleType == GLOBAL.NIPPLE_TYPE_FLAT;
 							}
+							nipChanged = true;
 							changes++;
 						}
 						else 
@@ -276,12 +280,13 @@ package classes.Items.Transformatives
 							{
 								if(target.nippleTypeUnlocked(i, GLOBAL.NIPPLE_TYPE_INVERTED)) target.breastRows[i].nippleType == GLOBAL.NIPPLE_TYPE_INVERTED;
 							}
+							nipChanged = true;
 							changes++;
 						}
 						else if(nipLocked) output("\n\n" + target.nippleTypeLockedMessage());
 					}
 					//nips become normal
-					if(changes < changeLimit && (normalNips + invertNips + flatNips) != target.breastRows.length)
+					if(changes < changeLimit && !nipChanged && (normalNips + invertNips + flatNips) != target.breastRows.length)
 					{
 						var nipChangeFrom:int = -1;
 						for (i = 0; i < target.breastRows.length; i++)
@@ -317,12 +322,13 @@ package classes.Items.Transformatives
 									if(target.breastRows[i].nippleType != GLOBAL.NIPPLE_TYPE_NORMAL) target.breastRows[i].nippleType = GLOBAL.NIPPLE_TYPE_NORMAL;
 								}
 							}
+							nipChanged = true;
 							changes++;
 						}
 						else if(nipLocked) output("\n\n" + target.nippleTypeLockedMessage());
 					}
 					//pc nippleshrink
-					else if(changes < changeLimit && target.nippleLengthRatio > 0.01 && rand(3) != 0)
+					if(changes < changeLimit && !nipChanged && normalNips == target.bRows() && target.nippleLengthRatio > 0.01 && rand(3) != 0)
 					{
 						var nipLDec:Number = 0.5;
 						if(target.nippleLengthRatio > 2) nipLDec++;
@@ -482,7 +488,7 @@ package classes.Items.Transformatives
 						}
 					}
 					// Legs
-					if(changes < changeLimit && rand(2) == 0)
+					if(changes < changeLimit && target.legType != GLOBAL.TYPE_FROG && rand(2) == 0)
 					{
 						// legs become human
 						if(target.legType != GLOBAL.TYPE_HUMAN)
@@ -512,7 +518,7 @@ package classes.Items.Transformatives
 							else output("\n\n" + target.legTypeLockedMessage());
 						}
 						// get frog feet(requires human legs)
-						else if(target.legCount >= 2 && target.legType != GLOBAL.TYPE_FROG)
+						else if(target.legCount >= 2)
 						{
 							if(target.legTypeUnlocked(GLOBAL.TYPE_FROG))
 							{
@@ -596,7 +602,7 @@ package classes.Items.Transformatives
 						changes++;
 					}
 					// froggy face!
-					if(changes < changeLimit && target.eyeType == GLOBAL.TYPE_FROG && target.earType == GLOBAL.TYPE_FROG && target.tongueType == GLOBAL.TYPE_FROG && target.faceType != GLOBAL.TYPE_FROG && rand(4) == 0)
+					if(changes < changeLimit && !faceChanged && target.eyeType == GLOBAL.TYPE_FROG && target.earType == GLOBAL.TYPE_FROG && target.tongueType == GLOBAL.TYPE_FROG && target.faceType != GLOBAL.TYPE_FROG && rand(4) == 0)
 					{
 						if(target.faceTypeUnlocked(GLOBAL.TYPE_FROG))
 						{
@@ -611,6 +617,7 @@ package classes.Items.Transformatives
 							target.faceType == GLOBAL.TYPE_FROG;
 							target.clearFaceFlags();
 							target.addFaceFlag(GLOBAL.FLAG_SMOOTH);
+							faceChanged = true;
 							changes++;
 						}
 						else output("\n\n" + target.faceTypeLockedMessage());
