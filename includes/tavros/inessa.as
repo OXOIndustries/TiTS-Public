@@ -1225,16 +1225,16 @@ public function cuffNFuck():void
 	else output("Oh, so you like your [enemy.vagOrAss] being fucked?");
 	output("”</i>");
 
-	output("\n\n<i>“N-no!”</i> " + enemy.capitalA + enemy.short + " blurts out. Despite [enemy.hisHer] words, [enemy.hisHer] [enemyster.ass] is instinctively slapping back against your [pc.hips], [enemy.hisHer] own lifting to allow you deeper access.");
+	output("\n\n<i>“N-no!”</i> " + enemy.capitalA + enemy.short + " blurts out. Despite [enemy.hisHer] words, [enemy.hisHer] [enemy.ass] is instinctively slapping back against your [pc.hips], [enemy.hisHer] own lifting to allow you deeper access.");
 	output("\n\nGrinning in amusement, you ");
 	//enemy.hasTail: 
 	if(enemy.tailCount > 0) output("grab [enemy.hisHer] [enemy.tails]");
 	else output("grab [enemy.hisHer] waist");
 	output(" and pick up the pace. " + enemy.capitalA + enemy.short + " grinds back against you, wringing your [pc.cock " + x + "] and moaning in ecstasy. Suddenly [enemy.heShe]’s crying out and cumming hard around you, [enemy.vagOrAss] trembling");
 	if(enemy.hasCock() || enemy.hasVagina()) output(", ");
-	if(enemy.hasCock()) output("[enemyonster.cocks] spurting [enemy.cum] all over [enemy.hisHer] [enemy.belly]");
+	if(enemy.hasCock()) output("[enemy.cocks] spurting [enemy.cum] all over [enemy.hisHer] [enemy.belly]");
 	if(enemy.hasCock() && enemy.hasVagina()) output(" and ");
-	if(enemy.hasVagina()) output("[enemyer.girlCum] wetly gushing around your pistoning prick");
+	if(enemy.hasVagina()) output("[enemy.girlCum] wetly gushing around your pistoning prick");
 	output(".");
 
 	output("\n\n<i>“");

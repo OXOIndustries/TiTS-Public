@@ -28,6 +28,7 @@ import classes.Items.Miscellaneous.FlashGrenade;
 import classes.Items.Miscellaneous.GrayMicrobots;
 import classes.Items.Miscellaneous.HorseCock;
 import classes.Items.Miscellaneous.PHAccess;
+import classes.Items.Miscellaneous.Pussyblossom;
 import classes.Items.Miscellaneous.Silicone;
 import classes.Items.Miscellaneous.TestGrenade;
 import classes.Items.Miscellaneous.TestHPBooster;
@@ -223,10 +224,10 @@ public function debugMenusTwo():void
 		itemCollect(foundLootItems);
 	});
 	
-	addItemButton(1, new FlashGrenade(), function():void {
-		output("\n\Flashbangs.\n");
+	addItemButton(1, new Pussyblossom(), function():void {
+		output("\n\Pussyblossom.\n");
 		
-		quickLoot(new FlashGrenade());
+		quickLoot(new Pussyblossom());
 	});
 	
 	addItemButton(2, new MyrBow(), function():void {
