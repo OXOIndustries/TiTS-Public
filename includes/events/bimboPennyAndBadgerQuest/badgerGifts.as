@@ -1530,7 +1530,7 @@ public function sexWithBimboBadger():void
 	if(pc.hasCock()) addButton(0,"Get Blowjob",getABlowJobFromBimboBadgerRepeat,undefined,"Get Blowjob","Make her get on her knees and suck you off like a good little bimbo.");
 	else addDisabledButton(0,"Get Blowjob","Get Blowjob","You need a dick to get a blowjob.");
 	if(pc.hasVagina()) addButton(1,"Get Licked",getEatenOutByBimboBadgerRepeat,undefined,"Get Licked","Have a nice, long session with her muzzle buried in your pussy");
-	else addDisabledButton(0,"Get Licked","Get Licked","You need a vagina to get licked out.");
+	else addDisabledButton(1,"Get Licked","Get Licked","You need a vagina to get licked out.");
 	if(pc.hasCock() && pc.cockThatFits(chars["DRBADGER"].analCapacity()) >= 0) addButton(2,"FuckHerAss",fuckBimboBadgersAssRepeated,undefined,"Fuck Her Ass","Fuck this bimbo hard from behind.");
 	else addDisabledButton(2,"FuckHerAss","Fuck Her Ass","You need a penis to fuck her ass.");
 
