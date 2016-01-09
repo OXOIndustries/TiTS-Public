@@ -410,6 +410,7 @@ public function sureIWantSomeShadePussayTailFuckYes():void
 	//[Take Hardlight]
 	//vagOrAss. PC gives tailcunt oral. 
 	addButton(1,"CatchHardlight",takeShadesHardlightPenisInYerBoot,undefined,"CatchHardlight","Take it from a hardlight strapon.");
+	
 	//[Rim & Wank] (if PC has no cunt; else) [Lick & Wank]
 	//PC must have taken Shade’s hardlight strapon at least once. Must be effeminate enough to use female pronouns and possess a cock. Is a [vagOrAss] scene.
 	if(pc.hasCock() && pc.mf("he","She") == "She" && flags["TAKEN_SHADES_HARDLIGHT"] != undefined)
@@ -419,10 +420,15 @@ public function sureIWantSomeShadePussayTailFuckYes():void
 	}
 	else if(flags["TAKEN_SHADES_HARDLIGHT"] == undefined) addDisabledButton(2,"Wank?","Wank?","You have to have taken Shade's hardlight strapon to qualify for this scene, as well as be a girly femmy-type guy.");
 	else addDisabledButton(2,"Wank?","Wank?","You aren't enough of a girlyboy to get wanked off like some kind of femboy.");
+	
 	//Shade Tailcock v. Tailcunt Scene
 	//Because it’s only been requested literally 50 billion times. Just another add to her normal sex menu.
 	if(pc.hasTailCock() && pc.tailCount > 0) addButton(3,"Tailsex",shadeTailSex,undefined,"Tailsex","You’ve got a tail-cock, Shade’s got a tail-cunt... it seems like a match made in heaven, so why not let your tail-genitalia have some fun together?");
 	else addDisabledButton(3,"TailSex","TailSex","You would need some kind of tail-mounted penis to try this...");
+	
+	//PC + Shade Double Titfuck. Add to Shade's sex menu. PC must have a dick of at least 18 inches, and breasts of at least D-cup.
+	if (pc.hasCock() && pc.biggestCockLength() >= 20 && pc.biggestTitSize() > 4) addButton(5, "DoubleTitfuck", shadeDoubleTitfuck, undefined, "DoubleTitfuck","You and Shade are both pretty stacked, and your cock's already so hard against your belly... maybe the two of you could put your tits to use to give you some relief.");
+	else addDisabledButton(5,"DoubleTitfuck","DoubleTitfuck","You'd need big tits and a bigger cock to coax Shade into a double titfucking!");
 }
 
 //[Trip and Fall]
@@ -1012,6 +1018,44 @@ public function shadeTailSex():void
 }
 
 
+//Add to Shade's sex menu. PC must have a dick of at least 18 inches, and breasts of at least D-cup.
+public function shadeDoubleTitfuck():void
+{
+	clearOutput();
+	showShade();
+	author("Savin");
+	output("Shade casts a glance down, running a pair of her long-clawed fingers along the tender underside of your [pc.cock]. You’re already rock-hard under the amazonian kaithrit, and her gentle touch only serves to make you moan, and to cause your over-sized prick to throb needily in her grasp.");
+
+	output("\n\n<i>“Where’d you get something this big, anyway?”</i> Shade purrs, brushing her fingertips back and forth along your length. <i>“Trying to build up for some galactic size-queen, hmm; or were you just trying to get so you could suck yourself off?”</i>");
+
+	output("\n\nThough you try and respond, your words are cut off by a gasp of pleasure as Shade grabs your cockhead and grinds the pad of her thumb into your cum-slit, churning the lake of pre building up inside. <i>“Let’s see,”</i> she murmurs, moving her thumb in rhythmic circle and guiding your prick to lie flat against your belly, as long and as hard as it’s ever been. Your dick fits snugly into the valley of your own cleavage, echoing the beat of your heart into your tits’ pillowy embrace. A moan escapes your lips as Shade keeps moving her thumb and massaging your crown with her hand, getting you manhood exactly where she wants it.");
+
+	output("\n\n<i>“Gotta say, kiddo,”</i> she grins, leaning down, <i>“I didn’t see the appeal of larger-than-life cocks like yours until I saw one strapped to a smoking hot babe, nestled between a glorious pair of tits.”</i>");
+
+	output("\n\nShade licks her lips and slips her hands down to either side of your [pc.boobs], pushing them together around your [pc.cock]. You moan again, arching your back as the MILFy cat-girl starts to massage your tits up and down on either side of your shaft. <i>“Good {boy/girl},”</i> your lover purrs, leaning in a little more and flicking her rough tongue around your crown. When she does, her own ample bust presses down against yours, compressing both your racks and trapping your [pc.cock] completely between two pairs of sinfully soft breasts. <i>“How’s that? Feels amazing, doesn’t it?”</i>");
+
+	output("\n\nYou nod eagerly, whimpering with pleasure. She chuckles and moves her whole body forward, humping her cleavage against your manhood in opposite motions to the way she man-handles your own tits.");
+	if (shade.isLactating()) output("As she does, the pressure on Shade’s rack seems to really start getting to her: she gasps, chewing her lip and flushing brightly It takes you a second to realize why: [shade.milk] is leaking from her stiff nipples, drooling in thick rivulets into your cleavage’s tight embrace.");
+	else output("“Better lube this big bastard up if you want to get off,”</i> Shade teases, running her tongue along your underside in long, lavish licks. You shiver, but the added lubrication instantly makes her movements faster, smoother - more pleasurable. That’s all the convincing you need to lean in and start mirroring her movements, slathering your [pc.cockHead] with your tongue.}");
+
+	output("\n\n<i>“That’s better,”</i> Shade moans, moving faster as your cock gets more and more lubed-up. <i>“Damn, I can feel it <b>throbbing</b> in there... gettin’ bigger by the second. Gonna cum for me, [pc.name]? Do it - I wanna see your face get absolutely <b>plastered</b> in it!”</i>");
+
+	output("\n\nYou grit your teeth and groan, not sure if you can hold back after an invitation like that - especially with Shade licking her lips and purring at your cock, like she’s ready to lap up every creamy drop you end up bathing yourself in. Squirming with pleasure, you grope at Shade’s plush behind and chiseled thighs, trying to urge her to move faster. She smiles down at you, leaning off your cockhead for a moment to plant a kiss flush on your [pc.lips].");
+
+	output("\n\nThe kiss pushes you over the edge, spurs you to climax in the cat-woman’s arms. Your [pc.cock] throbs and swells between your breasts, forcing a lurid moan from your lips as your pent-up load surges out. Shade gets her face out of the way just in time, dodging the first thick glob of [pc.cum] that sprays out of your [pc.cockHead] and splatters your [pc.face]. Laughing, you recoil and close your eyes, coating yourself with spunk. Shade keeps your tits bouncing along your length, using your chest and hers to milk your cock of every last, creamy drop. While you squirt your load all over yourself, Shade leans down and runs her rough feline tongue across your cheeks and laps up the thick streaks of spooge clinging to your [pc.skinFurScales].");
+
+	output("\n\n<i>“Tasty,”</i> Shade chuckles between sensuous licks. Your cock keeps drooling [pc.cum], emptying your [pc.balls] across your face, neck, and cleavage for the feline huntress to lap up like cream. Her breasts squeeze and knead your shaft, massaging you until you’ve completely squirted out your load, and your cock is left throbbing emptily. Shade just keeps licking, cleaning you off like a mother cat.");
+
+	output("\n\nExhausted, drained, and slathered in your own semen, you flop back against the catgirl’s bed with a contented sigh. Shade chuckles and curls up beside you, tracing a finger along the curve of your cheek... and wiping up a little left-over cum as she does so.");
+	processTime(30);
+	pc.orgasm();
+	//[Next] //to Combine
+	flags["SEXED_SHADE"] = 1;
+	clearMenu();
+	addButton(0,"Next",shadePostCoitusHangouts);
+}
+
+
 //{Combine All}
 public function shadePostCoitusHangouts():void
 {
@@ -1224,6 +1268,10 @@ public function askShade4Sex():void
 
 	if (pc.hasCock() || pc.hasVagina()) addButton(4, "Boobship", shadeBoobWorship, undefined, "Boob Worship", "Get hands on with Shades glorious chestpillows.");
 	else addDisabledButton(4, "Boobship", "Boob Worship", "You need genitalia to properly worship Shade's chestpillows.");
+	
+	//PC + Shade Double Titfuck. Add to Shade's sex menu. PC must have a dick of at least 18 inches, and breasts of at least D-cup.
+	if (pc.hasCock() && pc.biggestCockLength() >= 20 && pc.biggestTitSize() > 4) addButton(5, "DoubleTitfuck", shadeDoubleTitfuck, undefined, "DoubleTitfuck","You and Shade are both pretty stacked, and your cock's already so hard against your belly... maybe the two of you could put your tits to use to give you some relief.");
+	else addDisabledButton(5,"DoubleTitfuck","DoubleTitfuck","You'd need big tits and a bigger cock to coax Shade into a double titfucking!");
 
 	addButton(14,"Back",shouldIShadeOrShouldIGo);
 }
