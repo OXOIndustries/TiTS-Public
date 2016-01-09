@@ -3211,7 +3211,7 @@ public function initializeRooms():void
 	rooms["279"].planet = "PLANET: TARKUS";
 	rooms["279"].system = "SYSTEM: REDACTED";
 	rooms["279"].addFlag(GLOBAL.OUTDOOR);
-	rooms["279"].addFlag(GLOBAL.HAZARD);
+	//rooms["279"].addFlag(GLOBAL.HAZARD);
 	rooms["279"].addFlag(GLOBAL.TAXI);
 
 	//#81 SCYTHING\nGLADE
