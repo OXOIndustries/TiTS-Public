@@ -83,7 +83,7 @@ public function scotlandYardIMeanThollumYardBonus():Boolean
 {
 	if(flags["THOLLUM_TOURED"] == undefined)
 	{
-		output("The guards stop you. <i>“You'll have to check in before you are free to roam the facility.”</i>");
+		output("The guards stop you. <i>“You’ll have to check in before you are free to roam the facility.”</i>");
 		currentLocation = "735";
 		var map:* = mapper.generateMap(currentLocation);
 		this.userInterface.setMapData(map);
@@ -154,7 +154,7 @@ public function thollumClassroomHallwayBonus():Boolean
 {
 	if(flags["THOLLUM_TOURED"] == undefined)
 	{
-		output("The guards stop you. <i>“You'll have to check in before you are free to roam the facility.”</i>");
+		output("The guards stop you. <i>“You’ll have to check in before you are free to roam the facility.”</i>");
 		currentLocation = "735";
 		var map:* = mapper.generateMap(currentLocation);
 		this.userInterface.setMapData(map);
@@ -259,7 +259,7 @@ public function checkInTheThollum():void
 	if(pc.keyItemv1("Gildenmere Pass") != 1)
 	{
 		output("An armed and rather hard-bodied gold myr guard and her less-jacked partner stop you just inside the gate. The former says, <i>“Pardon, offworlder. I don’t know your face, which means I probably need to see your pass.”</i>");
-		output("\n\nYou hand her the city pass you received, which she scrutinizes while you take the opportunity to look her over. She’s short but very... muscular, with knitted arms and thighs and even the outline of some abs between her small breasts and her chitinous girdle.");
+		output("\n\nYou hand her the city pass you received, which she scrutinizes while you take the opportunity to look her over. She’s short but very... muscular, with knotted arms and thighs and even the outline of some abs between her small breasts and her chitinous girdle.");
 		if(pc.isBro()) output(" Maybe you could trade some lifting tips?");
 		output("\n\n<i>“Sorry. You may not enter,”</i> the woman says, handing back your pass. <i>“This is just a standard pass. Feel free to go anywhere else in Irellia’s sector - I recommend seeing The Honey Nozzle at least once, if you haven’t yet.”</i>");
 		if(pc.isBimbo()) output("\n\n<i>“But I wanna scope the school,”</i> you whine.");
@@ -286,7 +286,7 @@ public function checkInTheThollum():void
 	else if(flags["THOLLUM_TOURED"] == undefined)
 	{
 		output("Two guards stop you inside the main entrance. <i>“Pardon, but I don’t know you, which means I need to check your pass,”</i> says the one on the left.");
-		output("\n\nYou hand over the card and take the opportunity to look them over while she reads it. The right one is ordinary-looking, while the shorter left one can only be described as <i>fit</i>, with slightly-visible abs and thewy, knitted limbs tucked into chitin sleeves. Her well-defined bicep uncurls as she hands the pass back.");
+		output("\n\nYou hand over the card and take the opportunity to look them over while she reads it. The right one is ordinary-looking, while the shorter left one can only be described as <i>fit</i>, with slightly-visible abs and thewy, knotted limbs tucked into chitin sleeves. Her well-defined bicep uncurls as she hands the pass back.");
 		output("\n\n<i>“You’re good to go, " + pc.mf("mister","miss") + " [pc.name]. I’ll accompany you.”</i> The muscular myr woman tucks her weapon under her arm before addressing her partner. <i>“I’m going with the visitor. Radio it in.”</i>");
 		output("\n\nThe other nods, and you are led into the thollum. The foyer that you enter is very large, with a wide open floor flanked by unexpected columns, capped ovoids in a surprisingly Doric variant of the myr style. Gold myr of many shapes and ages, all female, come and go through these arteries. The cavern is discolored and distressed inside as well, though instead of the natural chips of the exterior stones, the interior has clearly been explored by hundreds of thousands of small, curious hands - the perfect forms and clean lines of proud craftsmen are still evident where the walls and fixtures meet the ceiling, up where children and their colored chalks cannot reach. Despite the eye-level disfigurements, the sheer scale and impressive, temple-like plan fill you with a sense of being somewhere immeasurably sophisticated and important.");
 		output("\n\n<i>“Big, isn’t it?”</i> asks your companion. A note of pride sounds in her voice. Well, this is probably her <i>alma mater</i>, after all. <i>“Did you have a particular place you needed to be, or are you just here to see the grounds?”</i>");
@@ -587,11 +587,11 @@ public function yarastaMainMenu():void
 		addDisabledButton(2,"Audit Class","Audit Class","Yarasta’s class is in recess right now. It’d be creepy if you just sat in the back alone and stare.");
 	}
 	//Sex
-	if(flags["YARASTA_SCHEDULE_TALK"] == undefined) addDisabledButton(3,"Sex","Sex","You barely know the prefect. While it's possible she's down for casual sex beneath that prim exterior, you're far more likely to catch a hand for asking.");
-	else if((hours >= 7 && hours < 12) || (hours >= 13 && hours < 18)) addDisabledButton(3,"Sex","Sex","Yarasta is with her class right now, and you're definitely not a Sex Ed teacher.");
-	else if(!pc.hasGenitals() && !pc.hasTailCock() && !pc.hasHardLightEquipped() && !pc.hasDickNipples()) addDisabledButton(0,"The prefect wouldn't be interested in your lack of sexual endowments.");
-	else if(pc.lust() < 33) addDisabledButton(3,"Sex","Sex","You aren't quite aroused enough to propose that at the moment.");
-	else addButton(3,"Sex",yarastaSexApproach,undefined,"Sex","Ask Yarasta if she'd like to have some adult fun.");
+	if(flags["YARASTA_SCHEDULE_TALK"] == undefined) addDisabledButton(3,"Sex","Sex","You barely know the prefect. While it’s possible she’s down for casual sex beneath that prim exterior, you’re far more likely to catch a hand for asking.");
+	else if((hours >= 7 && hours < 12) || (hours >= 13 && hours < 18)) addDisabledButton(3,"Sex","Sex","Yarasta is with her class right now, and you’re definitely not a Sex Ed teacher.");
+	else if(!pc.hasGenitals() && !pc.hasTailCock() && !pc.hasHardLightEquipped() && !pc.hasDickNipples()) addDisabledButton(0,"The prefect wouldn’t be interested in your lack of sexual endowments.");
+	else if(pc.lust() < 33) addDisabledButton(3,"Sex","Sex","You aren’t quite aroused enough to propose that at the moment.");
+	else addButton(3,"Sex",yarastaSexApproach,undefined,"Sex","Ask Yarasta if she’d like to have some adult fun.");
 	addButton(14,"Back",mainGameMenu);
 }
 
@@ -711,7 +711,7 @@ public function yarastaTalkMenu():void
 	}
 	else 
 	{
-		if(flags["MET_GIALA"] == undefined) addDisabledButton(3,"Her Friend","Her Friend","Her friend isn't here right now.");
+		if(flags["MET_GIALA"] == undefined) addDisabledButton(3,"Her Friend","Her Friend","Her friend isn’t here right now.");
 		else addDisabledButton(3,"Giala","Giala","Giala’s not present. Talking to her would look pretty crazy.");
 	}
 	//Her Secrets
@@ -789,12 +789,12 @@ public function talkToYarastaAboutTheThollum():void
 	output("\n\nShe puts her glasses back on and smiles. <i>“I suppose. The skills required of me certainly change every year. Explaining basic addition to a hundred little cherub faces is more likely to test my skills at analogy and creative writing than my memorization and mathematical mind - and sometimes it feels like what I need most when dealing with teenagers is a red myr with drooling problems.”</i>");
 	output("\n\n");
 	if(pc.isBimbo()) output("<i>“Do you ever get totally stressed out?”</i>");
-	else if(pc.isBro()) output("<i>\"Stressful, I bet.\"</i>");
+	else if(pc.isBro()) output("<i>“Stressful, I bet.”</i>");
 	else if(pc.isAss()) output("<i>“Do you contemplate suicide often?”</i>");
 	else output("<i>“Does the workload get to you?”</i>");
 	//(mean no bimbro)
-	if(!pc.isBimbo() && !pc.isBro() && pc.isAss()) output("<i>“No!”</i> exclaims ");
-	else output("<i>“No,”</i> says ");
+	if(!pc.isBimbo() && !pc.isBro() && pc.isAss()) output("\n\n<i>“No!”</i> exclaims ");
+	else output("\n\n<i>“No,”</i> says ");
 	output("Yarasta. <i>“I handle the workload quite well... as well as any of us.”</i>");
 	output("\n\nSounds like there’s more there than she’s volunteering. Will you pry?");
 	//unlock and present ‘Her Schedule’, ‘No’
@@ -869,9 +869,9 @@ public function pryIntoYarastasSchedule():void
 	processTime(19);
 	flags["YARASTA_SCHEDULE_TALK"] = 1;
 	clearMenu();
-	if(pc.lust() < 33) addDisabledButton(0,"Flirt","Flirt","Maybe you'll try that when your more in the mood.");
-	else if(!pc.hasGenitals() && !pc.hasTailCock() && !pc.hasHardLightEquipped() && !pc.hasDickNipples()) addDisabledButton(0,"The prefect wouldn't be interested in your lack of sexual endowments.");
-	else addButton(0,"Flirt",yarastaSexApproach,undefined,"Flirt","Ask Yarasta if she'd like to have some adult fun.");
+	if(pc.lust() < 33) addDisabledButton(0,"Flirt","Flirt","Maybe you’ll try that when your more in the mood.");
+	else if(!pc.hasGenitals() && !pc.hasTailCock() && !pc.hasHardLightEquipped() && !pc.hasDickNipples()) addDisabledButton(0,"The prefect wouldn’t be interested in your lack of sexual endowments.");
+	else addButton(0,"Flirt",yarastaSexApproach,undefined,"Flirt","Ask Yarasta if she’d like to have some adult fun.");
 
 	addButton(1,"No",abortYarastaPrying);
 }
@@ -926,7 +926,7 @@ public function currentEventsYarastaTalk():void
 		if(pc.IQ() >= 75) 
 		{
 			if(pc.isBimbo()) output("\n\n<i>“Um, more like plutocracy? Duh,”</i> ");
-			else output("<i>“Plutocracy,”</i> ");
+			else output("\n\n<i>“Plutocracy,”</i> ");
 			output("you amend.");
 		}
 		else output("\n\n<i>“Uh-huh,”</i> you say, keeping the pace going.");
@@ -1046,7 +1046,7 @@ public function yarastasFriendGiala():void
 		}
 		output("\n\nThe prefect realizes what’s just been said, tries to cover up the elephant in the room, and fails miserably. <i>“Ah, that’s... I mean-”</i>");
 		if(pc.isBimbo()) output("\n\n<i>“Are you two, like, lesbians? You lick pussy or whatever?”</i>");
-		else output("\n\nAre you two together?”</i>");
+		else output("\n\n<i>“Are you two together?”</i>");
 		output(" you interrupt.");
 
 		output("\n\n<i>“Nothing like that,”</i> Yarasta says hurriedly. <i>“We just help one another release some tension when necessary.”</i>");
@@ -1495,14 +1495,14 @@ public function herSecretsYarasta():void
 			output("\n\n<i>“No, I mean, like... your childhood and stuff,”</i> you persist.");
 		}
 		else if(pc.isMischievous()) output("<i>“So, do you think we’re close enough that you can tell me your real name, yet?”</i> you tease.");
-		else output("<i>“”</i>I notice you don’t talk about your own time in the thollum much. That’s a bit odd,”</i> you say, somewhat tactlessly.");
+		else output("<i>“I notice you don’t talk about your own time in the thollum much. That’s a bit odd,”</i> you say, somewhat tactlessly.");
 	}
 	else output("<i>“What was your big secret again?”</i> you ask.");
 
 	output("\n\nYarasta fidgets uncomfortably. <i>“It’s not a secret or anything... I just don’t like talking about it.”</i> She looks away for a long time, as if deciding whether to answer you.");
 	if(pc.isNice()) output("\n\n<i>“You can trust me,”</i> you assure.");
-	else output("\n\n”</i>Tell me,”</i> you cajole.");
-	output(" ”</i>We’re close.”</i>");
+	else output("\n\n<i>“Tell me,”</i> you cajole.");
+	output(" <i>“We’re close.”</i>");
 
 	output("\n\n<i>“Alright,”</i> she says. The myr scoots closer to you - nice on its own, but you suspect she just wants to keep anyone from overhearing. <i>“My full name’s Yarasta Johnce. I don’t use it because it’s Kressian, and there’s a lot of anger against Kressians right now. I grew up and started work at my mother’s thollum, but moved here before the war.”</i>");
 	output("\n\n<i>“So, ");
@@ -1750,7 +1750,7 @@ public function yarastaSexMenu():void
 		//Can't fit!
 		if(!pc.hasTailCock() && pc.cockThatFits(yarastaCapacity()) < 0 && !pc.hasHardLightEquipped())
 		{
-			addDisabledButton(2,"DoggieStyle","Doggie Style","You're too big for her!");
+			addDisabledButton(2,"DoggieStyle","Doggie Style","You’re too big for her!");
 		}
 		else if(!pc.hasCock())
 		{
@@ -1759,7 +1759,7 @@ public function yarastaSexMenu():void
 		}
 		else addButton(2,"DoggieStyle",doYarastaDoggieStyle,undefined,"Doggie Style","Fuck her doggy-style with [pc.oneCock] like she likes. Or buggy-style. Whatever.");
 	}
-	else addDisabledButton(2,"DoggieStyle","Doggie Style","You don't have anything to fuck her with.");
+	else addDisabledButton(2,"DoggieStyle","Doggie Style","You don’t have anything to fuck her with.");
 	addButton(3,"LetHerPick",yarastaPicks,undefined,"LetHerPick","Let Yarasta pick what you do.");
 	addButton(14,"Back",nevermindYarastaIDontWantSex);
 }
@@ -1834,7 +1834,7 @@ public function yarastaPicksSexSceneRouter():void
 	{
 		clearOutput();
 		showName("YARASTA\nERROR");
-		output("Yarasta attempted to pick a sex scene, but you didn't have anything for her to fuck. Come on. Surely you can do better than that! (<b>Also sorry for the bug. Be sure to report it on the forums at fenoxo.com, and we'll fix it up ASAP.</b>)");
+		output("Yarasta attempted to pick a sex scene, but you didn’t have anything for her to fuck. Come on. Surely you can do better than that! (<b>Also sorry for the bug. Be sure to report it on the forums at fenoxo.com, and we’ll fix it up ASAP.</b>)");
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 	}
@@ -2072,8 +2072,8 @@ public function getABlowie():void
 	output("\n\n");
 	output("<i>“I do love your gorgeous... perfect... cock. But, I don’t think I’ll let you put it inside today,”</i> she says, slipping the last button free.");
 	//(too big)
-	if(cVolume > yarastaCapacity()) output("”</i>That’s a gorgeous penis, fit to service a queen,”</i> she says, unfastening her last button. <i>“Unfortunately, I’m not a queen. It won’t fit to service me.”</i> ");
-	output("Her blouse falls open to expose her small breasts, perky and faintly darker than her skin. The chitin on her arms goes all the way over her shoulders and collarbone like a mantlet, giving her a half-cloaked air even when exposed. However, she has hardly any elsewhere except for her calves and abdomen, displaying an unadorned, naked female form. Her mostly-nudity is lost on you, though, because you’re still annoyed that you won’t be fucking her. What she says next quickly addresses that.");
+	if(cVolume > yarastaCapacity()) output(" <i>“That’s a gorgeous penis, fit to service a queen,”</i> she says, unfastening her last button. <i>“Unfortunately, I’m not a queen. It won’t fit to service me.”</i> ");
+	output(" Her blouse falls open to expose her small breasts, perky and faintly darker than her skin. The chitin on her arms goes all the way over her shoulders and collarbone like a mantlet, giving her a half-cloaked air even when exposed. However, she has hardly any elsewhere except for her calves and abdomen, displaying an unadorned, naked female form. Her mostly-nudity is lost on you, though, because you’re still annoyed that you won’t be fucking her. What she says next quickly addresses that.");
 
 	output("\n\n<i>“I think I’ll use my mouth,”</i> Yarasta announces, brightening your mood. <i>“Would you like that?”</i> You and your ");
 	if(x >= 0) output("[pc.cockNounComplex " + x + "]");
@@ -2289,11 +2289,11 @@ public function ladyType69():void
 	else output("their glories");
 	output(". Yarasta looks hard at what you offer");
 	//(too-big cocks)
-	if(pc.hasCock() && pc.cockThatFits(yarastaCapacity()) < 0) output(", but eventually shakes her head. <i>“I’d love to take that, but you’re just too big for me.\"</i>");
+	if(pc.hasCock() && pc.cockThatFits(yarastaCapacity()) < 0) output(", but eventually shakes her head. <i>“I’d love to take that, but you’re just too big for me.”</i>");
 	//(dildo pants)
 	else if(pc.hasHardLightEquipped()) output(", lingering a long time on your discarded and obviously made-to-be-played bottoms with their technological tool, but eventually decides against it.");
 	//(puss only)
-	else if(pc.hasVagina()) output(". smiling as she recognizes the resemblance of your [pc.vaginas] to hers.");
+	else if(pc.hasVagina()) output(", smiling as she recognizes the resemblance of your [pc.vaginas] to hers.");
 
 	output("\n\nShe slowly unfastens her clothes with all the lack of urgency that defines romance - every button on her blouse is freed from its noose deliberately, like a tongue pulling back from a lover’s mouth. You might even suggest that her languid pace were inappropriate, but for her look of consideration. She’s clearly deciding how to have you. Her blouse finally falls away, exposing her small breasts and their excited nipples, each just a hair more golden than the skin around them. Somehow, she still looks half-dressed by the way her sparing-but-concentrated chitin covers her arms, shoulders, and collarbone in a dark mantlet.");
 
@@ -2332,8 +2332,8 @@ public function ladyType69():void
 	}
 	output("\n\nSlowly, her lips pull away, leaving you empty once again.");
 	if(!pc.hasTongueFlag(GLOBAL.FLAG_LONG)) output(" You withdraw your tongue also, smearing the lingering coating of near-honey on your lips accidentally.");
-	else output(" Your long tongue whips from her suddenly, dragging along her ridges to create an aftershock of both friction and pleasure in the myr. ");
-	output("She pushes herself away from you and sits up, looking around for her clothes");
+	else output(" Your long tongue whips from her suddenly, dragging along her ridges to create an aftershock of both friction and pleasure in the myr.");
+	output(" She pushes herself away from you and sits up, looking around for her clothes");
 	if(pc.isSquirter()) output(" with a [pc.girlCumColor] stain still coloring her lips and chin");
 	output(".");
 
