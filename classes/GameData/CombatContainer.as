@@ -3247,7 +3247,8 @@ package classes.GameData
 			{
 				// TODO: might be an idea to make this more resilient
 				var varm:Varmint = _hostiles[0];
-				varm.removeStatusEffect("Lassoed");
+				if (varm.statusEffectv1("Lassoed") == 1) { /* Hogtied! */ }
+				else varm.removeStatusEffect("Lassoed");
 			}
 		}
 		
