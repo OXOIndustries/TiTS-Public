@@ -226,8 +226,11 @@
 				}
 				if(fList.length > 0)
 				{
-					if(!short) compareString += "\n\n";
-					else compareString += "\n";
+					if (compareString.length > 0) 
+					{
+						if(!short) compareString += "\n\n";
+						else compareString += "\n";
+					}
 					compareString += "Special Flags:\n" + fList;
 				}
 			}
