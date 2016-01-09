@@ -1485,7 +1485,7 @@ public function joyCoMagicMilker7Sucks():void
 		else if(milkProduced < 700)
 		{
 			output("It makes your [pc.nipples] swell with soon-to-be released [pc.milkNoun], turning shiny and glossy a second before they start drooling into the cups. Those trickles turn into a series of rapidly expressed droplets and occasional squirts.");
-			output("\n\nYou sigh at the feeling of release and watch the cups fill with the sloshing liquid. It foams slightly before the motor pulls it down the silver tubes to the main sphere. There, it iss collected into a clear bag that dangles from the back of the device, turning [pc.milkColor] as it hangs against your [pc.belly], filling. You groan from the feeling of having your sensitive flesh so aggressively worked over and do the only thing you can in such a situation: enjoy every second of it.");
+			output("\n\nYou sigh at the feeling of release and watch the cups fill with the sloshing liquid. It foams slightly before the motor pulls it down the silver tubes to the main sphere. There, it is collected into a clear bag that dangles from the back of the device, turning [pc.milkColor] as it hangs against your [pc.belly], filling. You groan from the feeling of having your sensitive flesh so aggressively worked over and do the only thing you can in such a situation: enjoy every second of it.");
 			pc.lust(25);
 		}
 		//Lactation Success: quantity good
@@ -1945,11 +1945,11 @@ public function gooDickFap():void
 	output(". <i>“You totally do, dontcha?”</i>");
 	
 	output("\n\nYou wink at her, wrapping your [pc.tongue] around her gooey prick. Her body quivers in delight, and");
-	if (pc.hasVagina()) output(" fingers reach deeper into you - far deeper than a human ever could, probing to the depths of your womb and back again, finding every sensitive spot along your inner walls and giving them just enough attention to make you squeal.");
+	if (pc.hasVagina()) output(" her fingers reach deeper into you - far deeper than a human ever could, probing to the depths of your womb and back again, finding every sensitive spot along your inner walls and giving them just enough attention to make you squeal.");
 	if (pc.hasCock() && !pc.hasVagina()) output(" s");
 	if (pc.hasCock() && pc.hasVagina()) output(" S"); 
 	if (pc.hasCock()) output("he starts to pump your shaft, wrapping your wang in a silken cocksheath of goo that squirms and writhes around your length.");
-	output(" The finger pressing against your [pc.asshole] finally pops in, flooding into your bowels in a wave of cold wetness that has you moaning like a whore and arching your back against the gooey babe. The gooey anal-probe quickly expands once its secured a beach-head in your backside, stretching you wonderfully wide and filling you with so much of her chilly goo.");
+	output(" The finger pressing against your [pc.asshole] finally pops in, flooding into your bowels in a wave of cold wetness that has you moaning like a whore and arching your back against the gooey babe. The gooey anal-probe quickly expands once it’s secured a beach-head in your backside, stretching you wonderfully wide and filling you with so much of her chilly goo.");
 	
 	output("\n\nThe fingers lodged in your");
 	if (pc.hasVagina()) output(" cunt and");
@@ -2050,7 +2050,7 @@ public function grayGooCockSleeve():void
 	
 	output("\n\nYou start to fuck the gooey cock-sleeve, hammering your [pc.hips] into [goo.name]’s cleavage. <i>“Ooh, yeah, fuck me </i>rough<i>!”</i> she cheers, clapping her hands together - which just makes a wet patting sound. [goo.name] gives you a toothy smile and wiggles her bubbly assets, making the goo encasing your dick slosh around. Fucking goo never gets old, such a strange and alien sensation, like thrusting into a sea of lube that’s just tight enough to try and milk the cum out of you.");
 	
-	output("\n\nWhile you’re busy fucking the hole between [goo.name]’s tits, the goo still hugging tight to your lower body shifts and squirms. You start to feel a very slight pressure welling up against your [pc.asshole], and your eyes quickly good wide. [goo.name] gives you a cheeky grin, moving her tits faster around your shaft as the pressure grows more and more urgent against your backside.");
+	output("\n\nWhile you’re busy fucking the hole between [goo.name]’s tits, the goo still hugging tight to your lower body shifts and squirms. You start to feel a very slight pressure welling up against your [pc.asshole], and your eyes quickly go wide. [goo.name] gives you a cheeky grin, moving her tits faster around your shaft as the pressure grows more and more urgent against your backside.");
 
 	clearMenu();
 	addButton(0, "Allow It", grayGooCockSleeveII, true);
@@ -2075,7 +2075,7 @@ public function grayGooCockSleeveII(allowIt:Boolean = false):void
 		output("\n\nAnd does she ever. Her tits start flying around your shaft, and her whole chest contorts around your thrusting cock. She’s like a vacuum sucking on you, ready to drain every drop from your [pc.balls]. It doesn’t take more than a moment for pre to start pouring out of your cock, heralding the inevitable. The moment the first droplet stains her gray body, your gooey companion coos happily, licking her lips hungrily.");
 	}
 
-	output("\n\nUnder this kind of treatment, you’re not going to last much longer. You clench down, trying to hold back, but [goo.name]’s sucking, writhing motions are as intense as an expert whore’s, purpose-built to suck every drop of cum from you. There’s not a lot you can do to keep it from happening - just to try and give as good as you get, making sure [goo.name] has every bit as much enjoyment from your lovemaking as you do. She squeals delighted as you redouble your efforts, wiggling and moaning with every thrust.");
+	output("\n\nUnder this kind of treatment, you’re not going to last much longer. You clench down, trying to hold back, but [goo.name]’s sucking, writhing motions are as intense as an expert whore’s, purpose-built to suck every drop of cum from you. There’s not a lot you can do to keep it from happening - just to try and give as good as you get, making sure [goo.name] has every bit as much enjoyment from your lovemaking as you do. She squeals delightedly as you redouble your efforts, wiggling and moaning with every thrust.");
 	
 	output("\n\nA few moments later, and you reach your limit. With a grunt of effort, you feel your [pc.cock] swell for a moment, then unload into the goo-girl’s expectant hole. She shrieks in pleasure, smiling at you inhumanly wide as you pump her full of spunk, filling her gooey innards with [pc.cumNoun].");
 	
@@ -2250,7 +2250,7 @@ public function goddamnitJimTAndYourExhibitionism():void
 	{
 		output(" [pc.EachCock] flexes and fires");
 		if(pc.cumQ() < 5) output(" blank shots, only the smallest droplets of [pc.cum] escaping your [pc.cockHeads].");
-		else if(pc.cumQ() < 100) output(" thick spurts of [pc.cum] up and into the air. Some of shoot into the crowd. Your spunk splatters on one of their faces, and they let out a shocked noise!");
+		else if(pc.cumQ() < 100) output(" thick spurts of [pc.cum] up and into the air. Some of it shoots into the crowd. Your spunk splatters on one of their faces, and they let out a shocked noise!");
 		else output(" fountainous gushes of [pc.cum]. It surges forth from your [pc.cockHeads], splattering into the crowd and raising shocked cries.");
 	}
 	if(pc.hasVagina())
@@ -2641,7 +2641,7 @@ public function moderateExhibitionOmniFap():void
 		if(rooms[currentLocation].planet != "PLANET: MYRELLION") output("holo-");
 		output("cameras around you. You can’t believe you - [pc.fullName] - are finger-fucking yourself in front of all these people");
 		if(pc.hasCock()) output(", wildly jerking yourself off");
-		output(" and show showing them just how much of a slut you are!");
+		output(" and showing them just how much of a slut you are!");
 	}
 	else
 	{
@@ -2976,7 +2976,7 @@ public function bionaHoleInstructionalBullshit():void
 	output("\n\n<i>“I want you to just lay back, relax, and let my pussy do aaallll the work for you,”</i> she purrs at you, gently brushing the man’s hand aside to leave his cock standing straight up like a great big pole of meat. You mimic his position as best as you can, lying straight back and willing your cock to hardness.");
 	output("\n\n<i>“You want to be nice and hard before we get started,”</i> she tells you, reaching out to grab the man’s cock in her furry hand. He gasps and grunts as she starts to stroke, saying, <i>“I like to use my hands for that part, but if you want to imagine my big, soft breasts wrapping around your meat...”</i> one hand reaches up to cup a tit through her latex top, squeezing hard through the creaking material. <i>“Well, I won’t blame you. Whatever gets you nice and hard for me...”</i>");
 	output("\n\nLetting your imagination run wild, you wrap your hand around your [pc.cock " + x + "] and start to stroke, matching the motions of the seductive starlet on screen. It doesn’t take long before you’re at full mast, and as by some perfectly timed coincidence, Nivas decides her partner’s ready too. <i>“Mmm, that’s a tasty-looking cock. My pussy’s practically soaking itself already... it just can’t wait to feel you deep inside it.”</i>");
-	output("\n\nYou watch eagerly as the starlet takes the dark blue sheath in her hands and angles it directly over her partner’s thick crown. <i>“Now here comes the best part... or the second best, anyway,”</i> Nivas croons, rocking the lips of her toy back and forth around the man’s cock; you mirror her movements, letting your [pc.cockHead " + x + "] bathe in the wet warmth of Nivas’s cloned cunny. Slowly, you and the dyed ausar babe both lower the toy down, agonizingly slow, letting you wallow in just how hot she is, so smooth and slick that you feel like you could fall into it. She’s ");
+	output("\n\nYou watch eagerly as the starlet takes the dark blue sheath in her hands and angles it directly over her partner’s thick crown. <i>“Now here comes the best part... or the second best, anyway,”</i> Nivas croons, rocking the lips of her toy back and forth around the man’s cock; you mirror her movements, letting your [pc.cockHead " + x + "] bathe in the wet warmth of Nivas’s cloned cunny. Slowly, you and the dyed ausar babe both lower the toy down, agonizingly slowly, letting you wallow in just how hot she is, so smooth and slick that you feel like you could fall into it. She’s ");
 	if(pc.cockVolume(x) < 200) output("not tight");
 	else if(pc.cockVolume(x) < 400) output("actually kind of tight, but nowhere as much so as most girls would be");
 	else output("blissfully tight");
@@ -2987,7 +2987,7 @@ public function bionaHoleInstructionalBullshit():void
 
 	output("\n\n<i>“Mmm, you’re stretching me out sooo nice,”</i> Nivas moans, arching her back and wagging her tail frantically behind her. <i>“Nothing my pussy loves more than a big, thick cock. God, I’m so wet... aren’t I?”</i>");
 
-	output("\n\nThe man grunts in affirmation, bucking his hips into the toy’s warm embrace. <i>“Mmm, now that you’re nice and deep, I want you to put your hands down. That’s right, let my pussy work... feel it squeezing down around you, so hot and wet... it’s so much more sensitive than you can imagine, like one big, throbbing clit. Feel it? Goooood, let it sit there, get used to you... enjoy that big cock inside it.”</i> Oh, you can feel it alright. The BionaHole feels like it might just be cumming, spurting juices down your rod and squeezing rhythmically all along your length. God damn, it feels good, even when it’s not moving...");
+	output("\n\nThe man grunts in affirmation, bucking his hips into the toy’s warm embrace. <i>“Mmm, now that you’re nice and deep, I want you to put your hands down. That’s right, let my pussy work... feel it squeezing down around you, so hot and wet... it’s so much more sensitive than you can imagine, like one big, throbbing clit. Feel it? Goooood, let it sit there, get used to you... enjoy that big cock inside it.”</i> Oh, you can feel it all right. The BionaHole feels like it might just be cumming, spurting juices down your rod and squeezing rhythmically all along your length. God damn, it feels good, even when it’s not moving...");
 
 	output("\n\nYou don’t doubt the living toy could make you cum just like that, but Nivas has other plans in mind. Winking at the camera, she shifts forward, pressing her crotch up against the side of the sheath and groaning lowly. <i>“Alright. I think I’m nice and ready for you, huh? Now let’s get moving...”</i>");
 
