@@ -166,7 +166,7 @@ public function helpZodeeWithHerEggProblem():void
 	output(". Zo’dee bucks powerfully another few times, expelling two more orbs, yet her frenetic motions die down afterward, expended. More eggs still lie within her. You can feel them rolling past your palm, pushed into position by whatever her race has in place of muscles. But Zo’dee seems spent. Her eyes are closed, her tongue is hanging free, and her antennae are drooping so low they verge on pressing against her face.");
 	output("\n\nWeak twitches are the most your cummed-out companion can offer, but you did promise her you would help her with her egg problem. And there are still so many eggs to wring out of her.");
 	output("\n\nShifting position, you ease Zo’dee onto the ground with her legs akimbo, splayed to either side of the puddle of eggs and rahn-butter. Then, squatting behind her, you get both hands on her still-stuffed ovipositor and work it over in earnest. She whimpers and cums again, splattering a half-dozen eggs onto the pile in rapid succession. You don’t pause or slow, mercilessly stroking her off, pumping her with sure, firm strokes until her body stops offering you more eggs - and the flood of creamy spooge tapers down to a drizzle.");
-	output("\n\nZo’dee’s head lolls back, and she looks at you with dazzling smile. <i>“O-oh, I might have to keep you...”</i> She grabs your head and forcefully kisses you, popping free with a ‘Mwah~’");
+	output("\n\nZo’dee’s head lolls back, and she looks at you with a dazzling smile. <i>“O-oh, I might have to keep you...”</i> She grabs your head and forcefully kisses you, popping free with a ‘Mwah~’");
 	output("\n\nYou stumble up, a little confused at her sudden recovery and fumbling for your words.");
 	output("\n\n<i>“Maybe next time I’ll have you suck me off even when I’m </i>not<i> full of eggs. I bet that mouth of yours is just as good as your hands.”</i> Zo’dee produces the bottle of GaloMax and chucks it your way. <i>“See ya around, slut.”</i>");
 	output("\n\nYou catch the bottle and shake it. A single pill rattles around inside.");
@@ -251,7 +251,7 @@ public function galoMaxTFProc():void
 		//Dicks and Cunts
 		if(pc.hasCock() && pc.hasVagina())
 		{
-			output("\n\nYou’re helpless against the tide of lust rolling into your nethers, steadily filling your [pc.cocks] and flooding your [pc.vaginas]. You get hard - rock hard. A boner this rigid could chop wood. And you’re wet, wetter than terran monsoon. Moisture ");
+			output("\n\nYou’re helpless against the tide of lust rolling into your nethers, steadily filling your [pc.cocks] and flooding your [pc.vaginas]. You get hard - rock hard. A boner this rigid could chop wood. And you’re wet, wetter than a terran monsoon. Moisture ");
 			if(!pc.isCrotchGarbed()) output("dribbles in thin streams down your thighs");
 			else output("sticks to the inside of your [pc.lowerGarment]");
 			output(", and you know that all you have to do is dip a finger inside to turn the trickles into streams of lusty drool. Biting your lip, you struggle to keep your hands away, but it’s a futile effort.");
@@ -305,7 +305,7 @@ public function galoMaxTFProc():void
 		//Just twats
 		else
 		{
-			output("\n\nYou’re helpless against the tide of lust rolling into your nethers, steadily flooding your [pc.vaginas]. You get wet, wetter than terran monsoon. Whatever that GaloMax is doing to you, it’s doing a better job than a date with a porn star. Moisture ");
+			output("\n\nYou’re helpless against the tide of lust rolling into your nethers, steadily flooding your [pc.vaginas]. You get wet, wetter than a terran monsoon. Whatever that GaloMax is doing to you, it’s doing a better job than a date with a porn star. Moisture ");
 			if(!pc.isCrotchGarbed()) output("dribbles in thin streams down your thighs");
 			else output("sticks to the inside of your [pc.lowerGarment]");
 			output(", and you know that all you have to do is dip a finger inside to turn the trickles into streams of lusty drool. Biting your lip, you struggle to keep your hands away, but it’s a futile effort.");
@@ -2373,7 +2373,7 @@ public function shortenSelectedCock(arg:int = 0):void
 	}
 	else
 	{
-		output2("You try and try but you can't quite shift the biomass of your [pc.cockNoun " + arg + "] to get it any smaller... You guess your pecker as small as it's going to get... unless you decide to remove it.");
+		output2("You try and try but you can't quite shift the biomass of your [pc.cockNoun " + arg + "] to get it any smaller... You guess your pecker is as small as it's going to get... unless you decide to remove it.");
 		output2("\n\nDo you want to remove it?");
 		
 		clearGhostMenu();
@@ -2637,7 +2637,7 @@ public function removingClitSurgeryGoo(arg:int = 0):void
 public function shiftACuntYaCunt():void
 {
 	clearOutput2();
-	output2("Which vagina while you change to a different type?");
+	output2("Which vagina will you change to a different type?");
 	clearGhostMenu();
 	if(pc.totalVaginas() == 1 && pc.vaginas[0].hasFlag(GLOBAL.FLAG_GOOEY))
 	{
