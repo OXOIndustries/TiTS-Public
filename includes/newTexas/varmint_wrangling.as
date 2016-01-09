@@ -524,6 +524,7 @@ public function varmintOnShipBonus(btnSlot:int = 0):String
 	if(flags["VARMINT_IS_CREW"] == undefined) return "";
 	
 	var bonusText:String = "";
+	var btnText:String = "";
 	
 	// Wild Varmint:
 	if(varmintIsWild())
@@ -532,7 +533,10 @@ public function varmintOnShipBonus(btnSlot:int = 0):String
 		if(crew(true) > 0) bonusText += " or your crew";
 		bonusText += ". After the first uncomfortable encounter, it hasn’t even left a mess anywhere.";
 		
-		addButton(btnSlot, "Varmint", getAPetVarmint);
+		if(pc.isBimbo()) btnText = "The cutie can’t be that mean, can it?";
+		else btnText = "It looks dangerous. Better be careful.";
+		
+		addButton(btnSlot, "Varmint", getAPetVarmint, undefined, "Varmint Stowaway", btnText);
 	}
 	// Tame Varmint:
 	else if(varmintIsTame())
@@ -541,9 +545,14 @@ public function varmintOnShipBonus(btnSlot:int = 0):String
 		if(pc.hasStatusEffect("Varmint Leashed")) bonusText += " sitting happily in your quarters, swishing its tail and watching you as you wander about. Whenever you get close, its spikes flare up and it makes a high-pitched, trilling hoot at you.";
 		else bonusText += " roaming freely around your quarters. It spots you as it wanders, happily hooting and trilling when you get near.";
 		// if bimbo:
-		if(pc.isBimbo()) bonusText += " SO CUTE!";
+		if(pc.isBimbo())
+		{
+			bonusText += " SO CUTE!";
+			btnText = "<i>Who’s a good little cutie-wooty? You are! Oh, yes you are~!</i>";
+		}
+		else btnText = "Check up on the critter.";
 		
-		addButton(btnSlot, "Varmint", approachPetVarmint, true);
+		addButton(btnSlot, "Varmint", approachPetVarmint, true, "Varmint Companion", btnText);
 	}
 	return bonusText;
 }
@@ -650,6 +659,7 @@ public function getAPetVarmintResponse(response:String = "none"):void
 				output(" You get the delivery from a drone as soon as you set down at your destination, and present the bright pink, flower-colored collar to the varmint with a huge smile.");
 				output("\n\nIt hoots again, but with a little coaxing, you get it to stretch out its neck and let you collar it. Ah, it’s soooo adorable! And the colors look so good together! You giggle and pull the person-sized puppy into a huge hug, right up until it actually licks your cheek... and burns your [pc.skinFurScales]. You yelp and wipe at your cheek, stumbling away as the varmint’s saliva burns you. Ouchie! Your new friend whimpers and retreats into the corner, letting you run to the head and wash yourself off. OwowowowOW!");
 				output("\n\nYou huff and rub at your cheek as your nano-docs heal the burn on your skin. Better not let your naughty puppy do that again! Or maybe make sure it does that to anybody who wants to hurt you! <b>Maybe it’d make a cool battle buddy!</b>");
+				output("\n\n");
 				processTime(72);
 				// Get Leash!
 				pc.createStatusEffect("Varmint Leashed");
@@ -689,7 +699,7 @@ public function getAPetVarmintResponse(response:String = "none"):void
 			output("\n\nThe varmint hoots to get your attention. You get it to stretch out its neck and allow you to collar it. Uhm, the colors are a bit garrish in comparison, but a collar’s a collar and the leash will prove useful as long as you have it. You hunch down and give the critter a few positive scritches.");
 		}
 		output(" Learning from last time, you quickly stand before it has the chance to lick you. Even with a missed opportunity, the New Texan beast coos happily.");
-		
+		output("\n\n");
 		processTime(35);
 		pc.createStatusEffect("Varmint Leashed");
 		pc.credits -= 50;
@@ -730,6 +740,8 @@ public function approachPetVarmint(introText:Boolean = false):void
 	}
 	else output("The varmint patiently awaits your action.");
 	
+	if(!pc.hasStatusEffect("Varmint Leashed") && !pc.hasStatusEffect("Varmint Unleashed Cooldown")) output(" It looks overly curious and paces around the deck. Is it a good idea to let it wander about so freely?");
+	
 	// [Pet] [Leash / Unleash] [Leave]
 	addButton(0, "Pet", doVarmintPlayTime, "pet", "Pet", "Give the varmint a pet.");
 	if(!hasVarmintLeash())
@@ -740,7 +752,12 @@ public function approachPetVarmint(introText:Boolean = false):void
 	}
 	else
 	{
-		if(!pc.hasStatusEffect("Varmint Leashed")) addButton(1, "Leash", doVarmintPlayTime, "leash", "Leash", "Put your varmint on a leash.");
+		if(!pc.hasStatusEffect("Varmint Leashed"))
+		{
+			// Let it wander for an hour or so before being able to put it back.
+			if(pc.getStatusMinutes("Varmint Unleashed Cooldown") > (1440 - 60)) addDisabledButton(1, "Leash", "Leash", "It seems to enjoy the freedom too much. Perhaps you should wait a bit before activating the leash.");
+			else addButton(1, "Leash", doVarmintPlayTime, "leash", "Leash", "Put your varmint on a leash.");
+		}
 		else addButton(1, "Unleash", doVarmintPlayTime, "unleash", "Unleash", "Take your varmint off its leash and let it wander around the ship.");
 		addDisabledButton(2, "Buy Leash", "Buy Leash", "You already own a leash so you don’t need to buy another. However, if you ever lose the one you have, you know where to buy a replacement.\n\n<b>50 Credits</b>");
 	}
@@ -777,8 +794,10 @@ public function doVarmintPlayTime(response:String = "none"):void
 	{
 		output("You go over to where the varmint’s sitting, thumping its massive tail on your deck. It hoots quietly as you approach, swishing its tail a little faster. It doesn’t stop you as you hook its collar and leash around its tree-trunk neck, though its spikes rise a bit as you lock it in place. The great big beasty takes a big, huffing breath as you activate its leash and stands up, sauntering over to stand at your side. Looks like it’s ready to go! ");
 		if(pc.isBimbo()) output("\n\nYou lean down and give it plenty of pets and kisses. What a good alien-puppy!");
+		output("\n\n<b>The varmint is now leashed and will be prevented from leaving your ship!</b>");
 		processTime(3);
 		pc.createStatusEffect("Varmint Leashed");
+		pc.removeStatusEffect("Varmint Unleashed Cooldown");
 	}
 	else if(response == "unleash")
 	{
@@ -792,8 +811,10 @@ public function doVarmintPlayTime(response:String = "none"):void
 			else output(" Reaha’s");
 			output(" quarters.");
 		}
+		output("\n\n<b>The varmint is now unleashed. Even though it is tamed, there may be a chance that it will wander off by itself if left alone for too long!</b>");
 		processTime(5);
 		pc.removeStatusEffect("Varmint Leashed");
+		pc.createStatusEffect("Varmint Unleashed Cooldown", 0, 0, 0, 0, true, "", "", false, 1440);
 	}
 	else if(response == "leave")
 	{
@@ -807,9 +828,9 @@ public function doVarmintPlayTime(response:String = "none"):void
 // 10% chance per day when landed on a planet with an untamed varmint.
 public function varmintDisappearChance():void
 {
-	if(currentLocation != "SHIP INTERIOR" || !varmintIsCrew() || pc.hasStatusEffect("Varmint Leashed")) return;
+	if(currentLocation != "SHIP INTERIOR" || !varmintIsCrew() || pc.hasStatusEffect("Varmint Leashed") || pc.hasStatusEffect("Varmint Unleashed Cooldown")) return;
 	
-	var runawayChance:int = (10 * 24 * 60);
+	var runawayChance:int = (10 * 60);
 	if(varmintIsTame()) runawayChance *= 2;
 	
 	if(rand(runawayChance) == 0 && eventQueue.indexOf(varmintDisappears) == -1)
@@ -822,7 +843,7 @@ public function varmintDisappears():void
 	clearOutput();
 	author("Savin");
 	showBust("VARMINT");
-	showName("\nVARMINT");
+	showName("MISSING\nVARMINT");
 	clearMenu();
 	
 	output("As you pass by your airlock, you notice that it’s standing open somehow.");
