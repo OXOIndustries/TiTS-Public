@@ -2659,13 +2659,13 @@ package classes.GameData
 						{
 							if (pc.HP() <= 0) 
 							{
-								if(CombatManager.multipleEnemies()) output("\n\n<b>Your enemies have knocked you off your " + pc.feet() + "!</b>\n\n");
-								else output("\n\n<b>" + t_enemy.capitalA + t_enemy.short + " has knocked you off your " + pc.feet() + "!</b>\n\n");
+								if(CombatManager.multipleEnemies()) output("<b>Your enemies have knocked you off your " + pc.feet() + "!</b>\n\n");
+								else output("<b>" + t_enemy.capitalA + t_enemy.short + " has knocked you off your " + pc.feet() + "!</b>\n\n");
 							}
 							else
 							{
-								if (CombatManager.multipleEnemies()) output("\n\n<b>Your enemies have turned you on too much to keep fighting. You give in....</b>\n\n");
-								else output("\n\n<b>" + t_enemy.capitalA + t_enemy.short + " has turned you on too much to keep fighting. You give in....</b>\n\n");
+								if (CombatManager.multipleEnemies()) output("<b>Your enemies have turned you on too much to keep fighting. You give in....</b>\n\n");
+								else output("<b>" + t_enemy.capitalA + t_enemy.short + " has turned you on too much to keep fighting. You give in....</b>\n\n");
 							}
 						}
 						
