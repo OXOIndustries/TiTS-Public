@@ -528,16 +528,16 @@ package classes.GameData
 			{
 				if (attacker is PlayerCharacter) output("Your " + attacker.rangedWeapon.longName + " is currently disabled and unable to be used!");
 				else output(attacker.capitalA + attacker.uniqueName + " + fiddles fruitlessly with " + attacker.mfn("his", "her", "its") + " disabled weapon.");
-			}
-			
-			if (attacker.hasPerk("Shoot First") && !attacker.hasStatusEffect("Multiple Shots") && CombatManager.getRoundCount() == 1 && attacker.rangedWeapon.attackImplementor == null)
-			{
-				output("<b>Shot first!</b>\n");
-				concentratedFire(attacker, target, SingleRangedAttackImpl(attacker, target));
 				return;
 			}
 			
 			var numShots:int = 1;
+			if (attacker.hasPerk("Shoot First") && !attacker.hasPerk("Multiple Shots") && CombatManager.getRoundCount() == 1 && attacker.rangedWeapon.attackImplementor == null)
+			{
+				output("<b>Shot first!</b>\n");
+				numShots++;
+			}
+			
 			if (attacker.hasPerk("Multiple Shots")) numShots = attacker.perkv1("Multiple Shots");
 			
 			var numFlurries:int = 0;
