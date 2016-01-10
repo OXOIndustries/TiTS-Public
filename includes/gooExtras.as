@@ -486,19 +486,73 @@ public function galoMaxTFProc():void
 	// (Fill this in with your content if necessary!)
 	else
 	{
-		output("Oh...");
-		output("\n\nOoh...");
-		output("\n\nAnd... nothing happens.");
-		output("\n\nSeems like that GaloMax pill didn't have any effect on you this time.");
-		if(rand(2) == 0)
+		var galoDoses:Number = doseEffectRevert();
+		if(galoDoses > 0)
 		{
-			output("..");
-			output("\n\nSuddenly, you feel a surge of biomass flow into your body. Well, it did have an effect after all!");
-			gooBiomass(1000);
+			output("Uh... You feel funny all of a sudden... The number of GaloMax doses you have taken are making your microsurgeons go crazy. It looks like this dose is reverting you back!");
+			if(galoDoses == 1) output("\n\n<b>Your hair changes back to its former gooeyness!</b>");
+			else
+			{
+				output("\n\n<b>Your hair");
+				if(galoDoses == 2) output(" and insides");
+				else if(galoDoses == 3) output(" and crotch");
+				else if(galoDoses > 3) output(", crotch and lower body");
+				output(" revert back to their former gooeyness!</b>");
+			}
+		}
+		else
+		{
+			output("Oh...");
+			output("\n\nOoh...");
+			output("\n\nAnd... nothing happens.");
+			output("\n\nSeems like that GaloMax pill didn’t have any effect on you this time.");
+			if(rand(2) == 0)
+			{
+				output("..");
+				output("\n\nSuddenly, you feel a surge of biomass flow into your body. Well, it did have an effect after all!");
+				gooBiomass(1000);
+			}
 		}
 	}
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
+}
+//Hotfix for reverting goo-dosed bodies
+public function doseEffectRevert():Number
+{
+	if(flags["GALOMAX_DOSES"] == undefined) return -1;
+	
+	var changeCount:Number = 0;
+	
+	if(flags["GALOMAX_DOSES"] >= 1 && pc.hairType != GLOBAL.HAIR_TYPE_GOO)
+	{
+		pc.hairType = GLOBAL.HAIR_TYPE_GOO;
+		changeCount++;
+	}
+	if(flags["GALOMAX_DOSES"] >= 2 && !pc.hasStatusEffect("Goo Vent"))
+	{
+		pc.createStatusEffect("Goo Vent");
+		changeCount++;
+	}
+	if(flags["GALOMAX_DOSES"] >= 3 && !pc.hasStatusEffect("Goo Crotch"))
+	{
+		pc.createStatusEffect("Goo Crotch");
+		changeCount++;
+	}
+	if(flags["GALOMAX_DOSES"] >= 4 && !pc.hasStatusEffect("Gel Body"))
+	{
+		revertGooBody();
+		pc.createStatusEffect("Gel Body");
+		changeCount++;
+	}
+	if(flags["GALOMAX_DOSES"] >= 5 && pc.statusEffectv1("Gel Body") != 1)
+	{
+		pc.addStatusValue("Gel Body",1,1);
+		revertGooBody();
+		changeCount++;
+	}
+	
+	return changeCount;
 }
 //Goo Body transformations
 public function revertGooBody(part:String = "all", consumeBiomass:Boolean = false):void
