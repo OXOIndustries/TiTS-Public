@@ -1985,7 +1985,7 @@ public function deck13SecurityFunc():Boolean
 		clearOutput();
 		author("Savin");
 		showBust("DROID_SECURITY","DROID_SECURITY","DROID_SECURITY");
-		showName("FIGHT:\nS. DROIDS");
+		showName("FIGHT:\nSEC. DROIDS");
 		flags["DECK13_SECURITY_ENTERED"] = 1;
 
 		output("As you make your way out of the airlock, you're suddenly blinded by a bright white light. You flinch, trying to regain your senses as a booming metallic voice shouts: \"<i><b>INTRUDERS DETECTED. PASSENGER REGISTRY: UNAVAILABLE. IDENTITIES UNCONFIRMED. LAY DOWN YOUR WEAPONS OR YOU WILL BE PURGED</b></i>.\"");
@@ -1998,10 +1998,10 @@ public function deck13SecurityFunc():Boolean
 		
 		CombatManager.newGroundCombat();
 		CombatManager.setFriendlyCharacters([pc, anno]);
-		CombatManager.setHostileCharacters([new SecurityDroids(), new SecurityDroids, new SecurityDroids()]);
+		CombatManager.setHostileCharacters([new SecurityDroids(), new SecurityDroids(), new SecurityDroids()]);
 		CombatManager.victoryScene(victoryOverSecurityDroid);
 		CombatManager.lossScene(lossToSecurityDroid);
-		CombatManager.displayLocation("S. DROIDS");
+		CombatManager.displayLocation("SEC. DROIDS");
 		CombatManager.encounterText("These security bots are old and outmoded, but that doesn't make them any less dangerous. They fearlessly march forward through all the fire you and Anno can pour at them, lighting up the corridor with laser fire as they advance over the shattered remains of their fallen comrades.");
 		
 		addButton(0, "Fight!", CombatManager.beginCombat);
