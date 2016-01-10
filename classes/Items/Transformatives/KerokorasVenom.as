@@ -64,7 +64,7 @@ package classes.Items.Transformatives
 				var isBottomClothed:Boolean = target.isCrotchGarbed();
 				var hasKeroFace:Boolean = InCollection(target.faceType, GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_FROG);
 				var faceChanged:Boolean = false;
-				var frogSkinColors:Array = ["orange and green", "mottled brown", "black and gold", "black and blue", "black and red", "red and blue", "black, blue, and yellow", "gold"];
+				var frogSkinColors:Array = ["orange and green", "mottled brown", "black and gold", "black and blue", "black and red", "red and blue", "black, blue and yellow", "gold"];
 				var frogIrisColors:Array = ["red", "ruby", "green", "emerald", "blue", "sapphire", "yellow", "amber", "gold", "black"];
 				
 				// Humanization first
