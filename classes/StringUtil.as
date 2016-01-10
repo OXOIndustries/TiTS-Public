@@ -23,11 +23,20 @@ package  classes
 			if (value.length == 0) return "Length 0 String? :(";
 			
 			var w:Array = value.split(" ");
+			var q:String = "";
+			var r:String = "";
 			for (var i:int = 0; i < w.length; i++)
 			{
+				q = w[i].charAt(0);
+				if(q == "‘" || q == "“")
+				{
+					r = q;
+					w[i] = w[i].splice(0, 1);
+				}
 				if (i == 0 || (w[i] != "the" && w[i] != "of"))
 				{
-					w[i] = capitalize(w[i], false);
+					if(r.length > 0) w[i] = r + capitalize(w[i], false);
+					else w[i] = capitalize(w[i], false);
 				}
 			}
 			
@@ -45,11 +54,20 @@ package  classes
 			if (value.length == 0) return "Length 0 String? :(";
 			
 			var w:Array = value.split(" ");
+			var q:String = "";
+			var r:String = "";
 			for (var i:int = 0; i < w.length; i++)
 			{
+				q = w[i].charAt(0);
+				if(q == "‘" || q == "“")
+				{
+					r = q;
+					w[i] = w[i].splice(0, 1);
+				}
 				if (i == 0 || (w[i] != "the" && w[i] != "of" && w[i] != "a" && w[i] != "an" && w[i] != "and" && w[i] != "or" && w[i] != "nor" && w[i] != "but" && w[i] != "yet" && w[i] != "so" && w[i] != "to" && w[i] != "for" && w[i] != "from" && w[i] != "with" && w[i] != "at" && w[i] != "by"))
 				{
-					w[i] = capitalize(w[i], false);
+					if(r.length > 0) w[i] = r + capitalize(w[i], false);
+					else w[i] = capitalize(w[i], false);
 				}
 			}
 			
