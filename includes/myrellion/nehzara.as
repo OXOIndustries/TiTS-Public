@@ -44,9 +44,10 @@ Kaizer finally finishes a TiTS submission and then proceeds to jerk it to things
 ???
 Profit and buy penny stocks*/
 
-public function showNehzara():void
+public function showNehzara(nude:Boolean = false):void
 {
-	showBust("NEHZARA");
+	if(nude!) showBust("NEHZARA");
+	else showBust("NEHZARA_NUDE");
 	if(flags["MET_NEHZARA"] == undefined) showName("RED\nMYR");
 	else showName("\nNEHZARA");
 	author("Kaizer_Z aka Kaiju");
@@ -96,12 +97,12 @@ public function nehzaraGuardsFirstTimeMeetingStuff():void
 	//Special: Wanna Feel?
 	//Procs upon selecting [Nehzara] if PC is female/herm and pregnant and is visiting Nehzara after engaging in at least one sex scene. Unsure if it should happen more than once. I’m thinking one time only, or at least only once per pregnancy.
 	clearOutput();
-	showNehzara();
-	showBust("MYR_RED_GUARD");
 	output("You approach the pair of Red Myr standing watch over the nearest entrance, noting to yourself that they’re not wearing gasmasks like the pair outside the warehouse. For that matter, none of the Reds in here are covering their faces. One guard steps forward to stop you before you get within ten feet of the door, and she asks your name and reason for being here. She’s rather terse and straight to the point, but that’s a military girl for you. Standing around with a loaded weapon all day doesn’t engender politeness toward meddling strangers wandering about.");
 	//{if not talked to Juro}
 	if(flags["MYRELLION_EMBASSY_VISITED"] == undefined)
 	{
+		showBust("MYR_RED_GUARD");
+		author("Kaizer_Z");
 		output("\n\nAfter you tell the sentry that you’re taking a look around since you just arrived on-world, she tersely nods and waves you along, telling you that most areas here are off-limits without clearance and most of the staff require appointments in order to meet with them. Doesn’t look like you’re going to be able to do much here at the moment, so it might be a good idea to get your bearings and find someone to talk to.");
 		//(PC can do nothing else but go back to the Embassy for now)
 		processTime(2);
@@ -111,7 +112,7 @@ public function nehzaraGuardsFirstTimeMeetingStuff():void
 	//{if talked to Juro}
 	else
 	{
-		showBust("NEHZARA");
+		showNehzara();
 		output("\n\nAfter you give the sentry your name and explain who you are and why you’re here, she nods and opens the door to allow you through. You find that it leads into an office which looks to have been thrown up within the past few days, sparsely decorated but for an impressively large desk in the center of the room. A uniformed Red sits at it, and you have a brief window of time to look her over upon entering. The alien warrior’s uniform is far more intricate and appealing than that of the guards, looking showy and expressive when contrasted with the functional garb of the others. You assume that makes her an officer in dress uniform.");
 		output("\n\nYou have just enough time to also notice her inhumanly jet-black eyes glistening in the dim light, and then you find yourself staring right into them as the myr’s face turns up to acknowledge your presence. <i>“Yes? Can I help you?”</i> Her voice is a sharp alto, and the serious tone combined with her uniform and the pervading sense of militarism all around you evokes the image of her barking commands on a parade ground.\n\n<i>“Oh,”</i> she adds, straightening in her chair, <i>“I don’t believe we’ve met before. Colonel Nehzara, appointed diplomatic and political representative of the Scarlet Federation to the UGC Embassy. I’m serving in an ambassadorial capacity while the Federation sorts out which general will be here full-time. In any case, the corporal wouldn’t have directed you in unless you had business here, so what do you require of me?”</i> You get the impression she’s been sizing you up since she laid eyes on you.");
 		output("\n\nYou introduce yourself and explain that you’re a star-traveler and heir to one of the larger corporations in the greater galaxy. Nehzara accepts this with a subtle nod and glances at a sheaf of paper on her desk. <i>“Ah, yes. Steele. I was apprised of your arrival on our little world. One of the UGC staff dropped off a quick notice just a moment ago. You’re... quite the important person, it seems.”</i> Her mouth quirks into a little smirk, and you could swear there’s a playful twinkle in those alien eyes of hers.");
@@ -129,7 +130,7 @@ public function approachNehzara4Repeats():void
 {
 	clearOutput();
 	showNehzara();
-	showBust("NEHZARA", "MYR_RED_GUARD");
+	//showBust("NEHZARA", "MYR_RED_GUARD");
 	
 	if(pc.bellyRating() > 40 && pc.isPregnant() && flags["NEHZ_PREGGO_RUB_HAPPENED"] == undefined && flags["SEXED_NEHZARA"] != undefined && rand(3) == 0)
 	{
@@ -347,8 +348,7 @@ public function talkToNehzaraAboutHerMission():void
 public function sexUnderDeskWithNehzara(fromMissionTalk:Boolean = false):void
 {
 	clearOutput();
-	showNehzara();
-	showBust("NEHZARA_NUDE");
+	showNehzara(true);
 	if(fromMissionTalk)
 	{
 		output("Nehzara seems to have expected the proposal to take you aback, but she’s certainly not the first alien to proposition you. Still, you suppose it </i>is<i> a little odd coming from someone so... strict. Even now that she’s asked something so lewd of you, she’s straight-backed and composed, regarding you calmly and coolly and patiently awaiting a reply.");
@@ -453,8 +453,7 @@ public function sexUnderDeskWithNehzara(fromMissionTalk:Boolean = false):void
 public function sexWivNehzaraInStorageCloset(fromMissionTalk:Boolean = false):void
 {
 	clearOutput();
-	showNehzara();
-	showBust("NEHZARA_NUDE");
+	showNehzara(true);
 	//{From Mission Talk}
 	if(fromMissionTalk)
 	{
@@ -532,8 +531,7 @@ public function sexWivNehzaraInStorageCloset(fromMissionTalk:Boolean = false):vo
 public function nehzaraClosetPartII():void
 {
 	clearOutput();
-	showNehzara();
-	showBust("NEHZARA_NUDE");
+	showNehzara(true);
 	var x:int = pc.cockThatFits(800);
 	if(x < 0) x = pc.smallestCockIndex();
 	//(Cock < 7"thick Version:)
@@ -608,8 +606,7 @@ public function nehzaraClosetPartII():void
 public function closetFuckFinaleWithNehzara():void
 {
 	clearOutput();
-	showNehzara();
-	showBust("NEHZARA_NUDE");
+	showNehzara(true);
 	output("<i>“Hmmm,”</i> Nehzara murmurs to herself. She’s still basking in blissful post-sex afterglow, watching you through half-closed eyes while you struggle to work through the effects her venom-traced kisses had on you. The lust has worn off, but you’re still groggy and a little unsteady. You’re sure that was far more than the recommended dose. You make a mental note to remember this for the next time you face the possibility of making out with a Red Myr.");
 	output("\n\nYou feel a firm hand grasp your shoulder. Nehzara’s body presses close to yours, and her mouth is by your [pc.ear] before you know it. <i>“That was good, Steele,”</i> she coos in a gentle and almost affectionate tone. Hearing her speak like that sends a warm glow through you that’s completely different from the overpowering lust-venom. <i>“Feel free to visit me any time you make an embassy visit. I’d love to do this again.”</i>");
 	output("\n\nThe colonel pulls away, cleaning herself up and pulling on her uniform. She looks every bit as crisp and composed as when you first laid eyes on her, like she didn’t just ride you through three complete orgasms. She clears her throat and extends her hand to give you a pat on the head. <i>“I should return to the office before I’m missed.”</i> Nehzara’s voice has returned to its normal hard tone, but you know it’s only because she’s switched back to professional mode.");
