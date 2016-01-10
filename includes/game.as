@@ -795,11 +795,14 @@ public function landingEventCheck(arg:String):Boolean
 {
 	if(flags["LANDING_EVENT_CHECK"] != 1) return false;
 	
+	flags["LANDING_EVENT_CHECK"] = undefined;
+	
 	if(arg == "Mhen'ga")
 	{
-		if((annoIsCrew() && flags["ANNOxSYRI_EVENT"] != undefined) || !annoIsCrew())
+		if(((annoIsCrew() && flags["ANNOxSYRI_EVENT"] != undefined) || !annoIsCrew()) && syriIsAFuckbuddy() && rand(5) == 0)
 		{
-			if(syriIsAFuckbuddy() && rand(5) == 0) gettingSyrisPanties();
+			gettingSyrisPanties();
+			return true;
 		}
 	}
 	if(arg != "New Texas")
@@ -809,10 +812,9 @@ public function landingEventCheck(arg:String):Boolean
 		{
 			currentLocation = "SHIP INTERIOR";
 			getAPetVarmint();
+			return true;
 		}
 	}
-	
-	flags["LANDING_EVENT_CHECK"] = undefined;
 	return false;
 }
 
