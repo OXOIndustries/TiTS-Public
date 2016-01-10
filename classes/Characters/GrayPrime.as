@@ -356,7 +356,7 @@ package classes.Characters
 				if (allies[i] is GooClone && !allies[i].isDefeated())
 				{
 					numAlive++;
-					if (gooClone == null) gooClone = allies[i]
+					if (gooClone == null) gooClone = allies[i];
 				}
 			}
 			
