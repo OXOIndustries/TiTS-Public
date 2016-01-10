@@ -8111,7 +8111,7 @@ package classes {
 		public function frogScore(): int
 		{
 			var counter: int = 0;
-			if (skinType == GLOBAL.SKIN_TYPE_SKIN && hasSkinFlag(GLOBAL.FLAG_STICKY)) counter++;
+			if (skinType == GLOBAL.SKIN_TYPE_SKIN && hasSkinFlag(GLOBAL.FLAG_LUBRICATED)) counter++;
 			if (legType == GLOBAL.TYPE_FROG) counter++;
 			if (tailType == GLOBAL.TYPE_FROG) counter++;
 			if (faceType == GLOBAL.TYPE_FROG) counter++;
