@@ -31,7 +31,7 @@ package  classes
 				if(q == "‘" || q == "“")
 				{
 					r = q;
-					w[i] = w[i].splice(0, 1);
+					w[i] = w[i].substr(1);
 				}
 				if (i == 0 || (w[i] != "the" && w[i] != "of"))
 				{
@@ -62,7 +62,7 @@ package  classes
 				if(q == "‘" || q == "“")
 				{
 					r = q;
-					w[i] = w[i].splice(0, 1);
+					w[i] = w[i].substr(1);
 				}
 				if (i == 0 || (w[i] != "the" && w[i] != "of" && w[i] != "a" && w[i] != "an" && w[i] != "and" && w[i] != "or" && w[i] != "nor" && w[i] != "but" && w[i] != "yet" && w[i] != "so" && w[i] != "to" && w[i] != "for" && w[i] != "from" && w[i] != "with" && w[i] != "at" && w[i] != "by"))
 				{
@@ -82,9 +82,18 @@ package  classes
 		public static function capitalize(value:String, forceLower:Boolean = true):String
 		{
 			var nStr:String = "";
+			var q:String = "";
+			var r:String = "";
+			q = nStr.charAt(0);
+			if(q == "‘" || q == "“")
+			{
+				r = q;
+				nStr = nStr.substr(1);
+			}
 			nStr += value.charAt(0).toUpperCase();
 			if (forceLower) nStr += value.substr(1).toLowerCase();
 			else nStr += value.substr(1);
+			if(r.length > 0) nStr = r + nStr;
 			return nStr;
 		}
 		
