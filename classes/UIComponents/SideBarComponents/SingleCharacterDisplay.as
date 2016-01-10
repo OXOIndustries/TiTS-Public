@@ -130,7 +130,8 @@ package classes.UIComponents.SideBarComponents
 				region.graphics.beginBitmapFill(bustObj.bitmapData, new Matrix(1, 0, 0, 1, -bounds.x, -bounds.y), false, true);
 				region.graphics.drawRect(0, 0, bounds.width, bounds.height);
 				region.graphics.endFill();
-				_bustImage.removeChildren();
+				//_bustImage.removeChildren();
+				_bustImage.removeChild();
 				_bustImage.addChild(region);
 				region.x = region.y = 1;
 				
@@ -153,7 +154,8 @@ package classes.UIComponents.SideBarComponents
 			{
 				bustObj.width = 68;
 				bustObj.height = 63;
-				_bustImage.removeChildren();
+				//_bustImage.removeChildren();
+				_bustImage.removeChild();
 				_bustImage.addChild(bustObj);
 				bustObj.x = bustObj.y = 1;
 			}
