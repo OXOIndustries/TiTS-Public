@@ -1303,7 +1303,7 @@ public function ladyTaursFuckDane():void
 	if(pc.hasTongueFlag(GLOBAL.FLAG_LONG) && pc.hasTongueFlag(GLOBAL.FLAG_PREHENSILE)) output(" It was wetly lapping at one of your [pc.nipples].");
 	output(" When did that start? You catch a flash of pink before something heavy, wet, and fragrant slaps onto your face, thick enough to blot out the sight of the newcomer.");
 
-	output("\n\nIt’s a cock. If the smooth skin and veiny ribs didn’t give it away, there’d be no mistaking it. It <i>smells</i> like cock, and not just any cock: a horse-cock. Its’ heady pheromones fill your nose with their musk and your brain with barnyard romps, the perfect compliment to the sharp scent your cunny is doing its best to flood the bar with.");
+	output("\n\nIt’s a cock. If the smooth skin and veiny ribs didn’t give it away, there’d be no mistaking it. It <i>smells</i> like cock, and not just any cock: a horse-cock. Its heady pheromones fill your nose with their musk and your brain with barnyard romps, the perfect compliment to the sharp scent your cunny is doing its best to flood the bar with.");
 	output("\n\nDane grunts something, but you don’t care. Your back half isn’t what’s being discussed here. It’s your mouth, and you’ll decide what goes in it. Or you would if you hadn’t have already swallowed the head. In retrospect, sucking this cock was a pretty great idea. It gives your mouth something to do while your quim is being bred. The taste on your tongue just makes the blaze in your cunt that much hotter, and it gives you the chance to see just who owns this lovely sausage.");
 	output("\n\nHoliday waves down. <i>“I’m glad I found you! I tried to dress for the occasion, but this shit won’t stop getting hard, and nobody else had the balls to stretch out their jaw and give it a go.”</i>");
 	output("\n\nThe demon nurse from earlier... it’s her fault... her fault you can’t stop thinking about cum in your cunny, spunk pooling between your splayed hind legs, having such a swollen middle that it’s difficult to walk... You shake off the thought of milk spilling down tits, swollen by newfound motherhood, and scowl around her dick. You don’t take it out - perish the thought. With your hands cupping balls a bit too big for the nurse’s slight frame, you give her a scathing rebuke with nothing but your eyes.");
@@ -1499,7 +1499,7 @@ public function maleTaurCostumeFinale():void
 		output("Something seems a little off about that thought, but the mental image of ");
 		if(flags["MET_ELLIE"] == undefined) output("those two sweet leithans dragging their pregnant bellies");
 		else output("Ellie dragging her pregnant belly"); 
-		output(" on the ground has your cock threatening to rear its’ flaring head all over again, and who are you gonna find to knock up in the cold void of space?");
+		output(" on the ground has your cock threatening to rear its flaring head all over again, and who are you gonna find to knock up in the cold void of space?");
 	}
 	output("\n\n<b>Looks like you’re a horny");
 	if(!pc.hasVagina()) output(", male");
@@ -1572,7 +1572,7 @@ public function maleTaurSubCostumeFinale():void
 	clearOutput();
 	output("No matter how hard you search, you can’t find a single catch or release. Worse still, attempts to peel away the border between your top and bottom half hurts. You can’t even feel your old lower half anymore - just the four, hoof-capped limbs below. It’s as if that equine shape has become a part of you for good. Is that what the peacekeepers meant by symbiosis tech? Are you a centaur forever?");
 	output("\n\nWell, at least you’ll be well-equipped to mate with some mares, if they'll let you near their pussies. Maybe they'll let you flood a few milkers to prove your worth...");
-	output("Something seems a little off about that thought, but the mental image of a half-dozen girls crouching beneath you, giggling while they handle your jizz-swollen orbs has your cock threatening to rear its’ flaring head all over again, and who are you gonna find to help you get off in the cold void of space?");
+	output("Something seems a little off about that thought, but the mental image of a half-dozen girls crouching beneath you, giggling while they handle your jizz-swollen orbs has your cock threatening to rear its flaring head all over again, and who are you gonna find to help you get off in the cold void of space?");
 	output("\n\n<b>Looks like you’re a horny");
 	if(!pc.hasVagina()) output(", male");
 	output(" centaur now.</b>");
