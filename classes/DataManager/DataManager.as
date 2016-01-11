@@ -989,6 +989,7 @@
 				trace("4. Load successful.");
 				
 				kGAMECLASS.userInterface.hideNPCStats();
+				kGAMECLASS.userInterface.resetPCStats();
 				kGAMECLASS.userInterface.showPCStats();
 				kGAMECLASS.updatePCStats();
 				kGAMECLASS.output2("\n\nGame loaded from file!");
@@ -1175,6 +1176,7 @@
 			if (!dataErrors)
 			{
 				kGAMECLASS.userInterface.hideNPCStats();
+				kGAMECLASS.userInterface.resetPCStats();
 				kGAMECLASS.userInterface.showPCStats();
 				kGAMECLASS.userInterface.showPlayerParty([kGAMECLASS.pc], true);
 				kGAMECLASS.output2("Game loaded from 'TiTs_" + slotNumber + "'!");
