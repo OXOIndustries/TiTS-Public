@@ -2771,7 +2771,7 @@ package classes.GameData
 			kGAMECLASS.userInterface.mainMenuButton.Glow();
 			output("\n\nAdditionally, remember that you should have at least one class ability to use as well as tease attacks. Several melee weapons are also available in Esbeth can be purchased for a reasonable amount of money - if you'd like a little extra punch.)");
 			clearMenu();
-			addButton(0,"Next", kGAMECLASS.mainGameMenu);
+			addButton(0,"Next", postCombatReturnToMenu);
 		}
 		
 		private function helpReallyBadPCsOut():void
@@ -2781,7 +2781,7 @@ package classes.GameData
 			output("(Are you having difficulty winning fights? If so, select yes for a minor statistical boost to your combat prowess.)");
 			clearMenu();
 			addButton(0,"Boost Me",boostMeCaptain);
-			addButton(1,"No", kGAMECLASS.mainGameMenu);
+			addButton(1,"No", postCombatReturnToMenu);
 		}
 		
 		private function boostMeCaptain():void
@@ -2793,7 +2793,7 @@ package classes.GameData
 			pc.willpower(1);
 			pc.HP(pc.HPMax());
 			pc.energy(pc.energyMax());
-			kGAMECLASS.mainGameMenu();
+			postCombatReturnToMenu();
 		}
 		
 		private function helpDumbPCsOut():void
@@ -2802,7 +2802,7 @@ package classes.GameData
 			kGAMECLASS.showName("T.I.T.S.\nHELP")
 			output("(That foe was unsuitable for a character of your level. Consider taking the northern path out of Esbeth until after you have reached level two or three.)");
 			clearMenu();
-			addButton(0,"Next",kGAMECLASS.mainGameMenu);
+			addButton(0,"Next",postCombatReturnToMenu);
 		}
 		
 		private var _initForRound:int = -1;
