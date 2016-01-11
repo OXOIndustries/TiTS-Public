@@ -45,6 +45,15 @@ package classes.UIComponents.SideBarComponents
 			}
 		}
 		
+		public function resetItems():void
+		{
+			_currentValue = 0;
+			_targetValue = 0;
+			_maxValue = 0;
+			_valueDisplay.text = "0";
+			_bar.width = _mask.width = 0;
+		}
+		
 		public function get labelText():String
 		{
 			return _labelBack.text;
@@ -63,14 +72,9 @@ package classes.UIComponents.SideBarComponents
 		
 		public function UpdateValueDisplay():void
 		{
-			_valueDisplay.text = String(Math.round(_currentValue));
 			if (_maxValue == 0)
 			{
 				_bar.width = 0;
-			}
-			else
-			{
-				_bar.width = _mask.width = Math.max(0, Math.min((_currentMaxWidth / _maxValue) * _currentValue, _currentMaxWidth));
 			}
 		}
 		
@@ -81,30 +85,45 @@ package classes.UIComponents.SideBarComponents
 		
 		private function animateBar(e:Event):void
 		{
-			if (_currentValue != _targetValue)
+			var currentSize:Number = _bar.width;
+			var targetSize:Number = 0;
+			
+			if (_targetValue > 0)
 			{
-				if (_currentValue < _targetValue)
+				targetSize = _currentMaxWidth / _maxValue;
+				targetSize *= _targetValue;
+			}
+			
+			if (currentSize != targetSize)
+			{
+				if (currentSize < targetSize)
 				{
-					if (_currentValue + _animSpeed > _targetValue)
+					if (currentSize + _animSpeed > targetSize)
 					{
-						_currentValue = _targetValue;
+						currentSize = targetSize;
 					}
 					else
 					{
-						_currentValue += _animSpeed;
+						currentSize += _animSpeed;
 					}
 				}
 				else
 				{
-					if (_currentValue - _animSpeed < _targetValue)
+					if (currentSize - _animSpeed < targetSize)
 					{
-						_currentValue = _targetValue;
+						currentSize = targetSize;
 					}
 					else
 					{
-						_currentValue -= _animSpeed;
+						currentSize -= _animSpeed;
 					}
 				}
+				
+				var currentValue:Number = currentSize / _currentMaxWidth;
+				currentValue *= _maxValue;				
+				
+				_valueDisplay.text = String(Math.round(currentValue));
+				_bar.width = _mask.width = currentSize;
 				
 				UpdateValueDisplay();
 			}

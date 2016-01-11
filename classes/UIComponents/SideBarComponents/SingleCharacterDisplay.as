@@ -66,8 +66,10 @@ package classes.UIComponents.SideBarComponents
 		 * Update animates value changes from the current.
 		 * @param	char
 		 */
-		public function UpdateFromCharacter(char:Creature):void
+		public function UpdateFromCharacter(char:Creature, asInit:Boolean):void
 		{
+			if (asInit) ResetBarValues();
+			
 			_nameHeader.text = (char.uniqueName && char.uniqueName.length > 0 ? char.uniqueName.toUpperCase() : char.short.toUpperCase());
 			
 			_statBars.shield.setValue(char.shields(), char.shieldsMax());
@@ -84,13 +86,29 @@ package classes.UIComponents.SideBarComponents
 			_statBars.shield.labelText = char.shieldDisplayName;
 		}
 		
+		private function ResetBarValues():void
+		{
+			_nameHeader.text = "UNNAMED";
+			_statBars.shield.setValue(0, 100);
+			_statBars.hp.setValue(0, 100);
+			_statBars.lust.setValue(0, 100);
+			_statBars.energy.setValue(0, 100);
+			_statusEffects.updateDisplay([]);
+			_statBars.shield.labelText = "SHIELDS";
+		}
+		
 		/**
 		 * Set sets initial values and then forcibly skips animations.
 		 * @param	char
 		 */
 		public function SetFromCharacter(char:Creature):void
 		{
-			UpdateFromCharacter(char);
+			ResetBarValues();
+			UpdateFromCharacter(char, true);
+		}
+		
+		public function EndAnimations():void
+		{
 			_statBars.shield.EndAnimation();
 			_statBars.hp.EndAnimation();
 			_statBars.lust.EndAnimation();
@@ -130,8 +148,7 @@ package classes.UIComponents.SideBarComponents
 				region.graphics.beginBitmapFill(bustObj.bitmapData, new Matrix(1, 0, 0, 1, -bounds.x, -bounds.y), false, true);
 				region.graphics.drawRect(0, 0, bounds.width, bounds.height);
 				region.graphics.endFill();
-				//_bustImage.removeChildren();
-				_bustImage.removeChild();
+				_bustImage.removeChildren();
 				_bustImage.addChild(region);
 				region.x = region.y = 1;
 				
@@ -154,8 +171,7 @@ package classes.UIComponents.SideBarComponents
 			{
 				bustObj.width = 68;
 				bustObj.height = 63;
-				//_bustImage.removeChildren();
-				_bustImage.removeChild();
+				_bustImage.removeChildren();
 				_bustImage.addChild(bustObj);
 				bustObj.x = bustObj.y = 1;
 			}
@@ -274,6 +290,14 @@ package classes.UIComponents.SideBarComponents
 		override public function get height():Number
 		{
 			return super.height - 3;
+		}
+		
+		public function resetItems():void
+		{
+			_statBars.shield.resetItems();
+			_statBars.hp.resetItems();
+			_statBars.energy.resetItems();
+			_statBars.lust.resetItems();
 		}
 	}
 

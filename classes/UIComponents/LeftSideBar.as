@@ -177,7 +177,7 @@ package classes.UIComponents
 			this._locationHeader.showLocationText();
 		}
 		
-		public function showHostileParty(chars:Array):void
+		public function showHostileParty(chars:Array, asInit:Boolean):void
 		{
 			if (chars.length == 1)
 			{
@@ -201,8 +201,14 @@ package classes.UIComponents
 				_compressedLocationHeader.visible = true;
 				_locationHeader.visible = false;
 				
-				_enemyPartyBlock.showForCreatures(chars);
+				_enemyPartyBlock.showForCreatures(chars, asInit);
 			}
+		}
+		
+		public function resetItems():void
+		{
+			_enemyEncounterBlock.resetItems();
+			_enemyPartyBlock.resetItems();
 		}
 		
 		public function defaultLayout():void

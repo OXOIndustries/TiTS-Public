@@ -1252,12 +1252,12 @@
 		
 		public function showPlayerParty(chars:Array, asInit:Boolean = false):void
 		{
-			_rightSideBar.showPlayerParty(chars, asInit);
+			_rightSideBar.showPlayerParty(chars, false);
 		}
 		
 		public function showHostileParty(chars:Array, asInit:Boolean = false):void
 		{
-			_leftSideBar.showHostileParty(chars);
+			_leftSideBar.showHostileParty(chars, false);
 		}
 		
 		public function hideTime():void 
@@ -1294,7 +1294,7 @@
 		
 		public function resetNPCStats():void
 		{
-			_leftSideBar.encounterBlock.resetItems();
+			_leftSideBar.resetItems();
 		}
 		
 		public function showMinimap():void
