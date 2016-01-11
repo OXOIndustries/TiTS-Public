@@ -2913,8 +2913,6 @@ package classes.GameData
 				prepHostileForCombat(_hostiles[i]);
 				makeCharacterUnique(_hostiles[i], HOSTILE_GROUP);
 			}
-			
-			showCombatUI(true);
 		}
 		public function addHostileCreature(newC:Creature):void
 		{
@@ -3034,6 +3032,7 @@ package classes.GameData
 			validateContainer();
 			showCombatDescriptions();
 			showCombatMenu();
+			showCombatUI(true);
 		}
 		
 		private function validateContainer():void
