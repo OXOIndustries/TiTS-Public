@@ -3424,6 +3424,23 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				variousCount++;
 			}
+			// School Time!
+			if(flags["THOLLUM_PASS_REQUESTED"] != undefined)
+			{
+				output2("\n<b><u>Thollum</u></b>");
+				output2("\n<b>* Status:</b> ");
+				if(pc.keyItemv1("Gildenmere Pass") >= 1) output2(" Allowed access");
+				else output2(" <i>Ask Lyralla for an entrance pass.</i>");
+				if(flags["THOLLUM_TOURED"] != undefined) output2(", Taken tour");
+				if(flags["MUSHROOM_TRACKER"] != undefined && flags["MUSHROOM_TRACKER"] > 0) output2("\n<b>* Mushroom Garden, Fluids Collected: </b>" + flags["MUSHROOM_TRACKER"] + " mLs");
+				// Yarasta
+				if(flags["MET_YARASTA"] != undefined) output2("\n<b>* Yarasta:</b> Met her");
+				if(flags["SEXED_YARASTA"] != undefined) output2("\n<b>* Yarasta, Times Sexed: </b>" + flags["SEXED_YARASTA"]);
+				// Yummy TiTS
+				if(flags["MET_GIALA"] != undefined) output2("\n<b>* Giala:</b> Met her");
+				if(flags["SEXED_GIALA"] != undefined) output2("\n<b>* Giala, Times Sexed: </b>" + flags["SEXED_GIALA"]);
+				variousCount++;
+			}
 			// Kressia, where all the gangstas chill
 			if(flags["LIEVE_INVITE"] != undefined || flags["MET_LIEVE"] != undefined)
 			{
