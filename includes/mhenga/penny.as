@@ -2524,7 +2524,7 @@ public function pennyOverTheDeskRoughFuck():void {
 	else
 	{
 		output("\n\nThe submissive fox’s sordid snatch devours your [pc.cum] with a seemingly insatiable thirst. It proves inadequate when compared to your unholy virility. Midway through the second, long jet of [pc.cum], you feel her passage pressurize. The third jet causes spurts of fuck-slime to backwash out onto the floor, where it falls across Penny’s scattered possessions. You pump inside her until her belly rounds slightly under the lusty deluge, and then you inject some more.");
-		if (pc.cumQ() >= 5000)
+		if (pc.cumQ() < 5000)
 		{
 			output(" By the time you’ve finally started to soften inside her, she’s leaking [pc.cumColor] joy down the inside of her legs and sporting a belly that would make any who saw her assume pregnancy. Pulling out rewards you with the sight of a river of escaping [pc.cum] and the sight of a fox helplessly cumming a second time from the sensation.");
 		}
