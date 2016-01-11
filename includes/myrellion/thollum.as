@@ -612,7 +612,7 @@ public function yarastaAppearance():void
 	if(hours >= 19 && hours < 22)
 	{
 		output("\n\nHer friend");
-		if(9999 == 0) output(" Giala");
+		if(flags["MET_GIALA"] != undefined) output(" Giala");
 		output(" is also here, a shorter, <i>much</i> more filled-out sumin who regards you with dark-but-friendly eyes. Unlike Yarasta, she wears no clothes, and you can hardly fault her for showing off such perfect, honey-stuffed F-cups. Chitin girdles her waist and pelvis, nicely disguising any chub from all the food she eats to keep her nectar flowing; the black material even reaches partway up her ribcage on each side, pressing against her sideboobs and ensuring her cleavage is always turned to maximum.\n\nCarapace covers her arms from the elbows down but stops at her hands, in a fingerless glove style. Her legs are less armored, allowing her jiggly butt to, well, jiggle quite a lot - her plates do, however, come up to mid-thigh, completing the burlesque look. Of course, she has a big juicy abdomen and the obligate antennae sticking from her sandy blonde hair, which is pulled into a low, rakishly-slung ponytail and tied with a little long-stemmed mushroom.");
 	}
 	//present Yarasta options
