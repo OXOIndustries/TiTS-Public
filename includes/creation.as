@@ -45,6 +45,7 @@ public function startCharacterCreation(e:Event = null):void
 	CombatManager.TerminateCombat();
 	userInterface.hideNPCStats();
 	userInterface.leftBarDefaults();
+	userInterface.resetPCStats();
 	hours = 0;
 	minutes = 0;
 	days = 0;
