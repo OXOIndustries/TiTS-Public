@@ -46,7 +46,7 @@ Profit and buy penny stocks*/
 
 public function showNehzara(nude:Boolean = false):void
 {
-	if(nude!) showBust("NEHZARA");
+	if(!nude) showBust("NEHZARA");
 	else showBust("NEHZARA_NUDE");
 	if(flags["MET_NEHZARA"] == undefined) showName("RED\nMYR");
 	else showName("\nNEHZARA");
