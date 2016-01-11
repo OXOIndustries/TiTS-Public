@@ -12387,7 +12387,7 @@ package classes {
 				}
 				else
 				{
-					output("<b>" + short + " has succumbed to " + mf("his", "her") + " and lost " + mf("his", "her"));
+					output("<b>" + short + " has succumbed to " + mf("his", "her") + " desires and lost " + mf("his", "her"));
 					if (hasVagina()) output(" masculine");
 					output(" virginity.</b>");
 				}
