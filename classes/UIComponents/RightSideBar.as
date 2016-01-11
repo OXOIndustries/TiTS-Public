@@ -81,7 +81,7 @@ package classes.UIComponents
 				_nameTextUnderline.visible = false;
 				_advancementBlock.visible = false;
 				
-				_playerPartyBlock.showForCreatures(chars);
+				_playerPartyBlock.showForCreatures(chars, asInit);
 				
 				// grab pc
 				var pc:Creature = null;
@@ -218,6 +218,7 @@ package classes.UIComponents
 			_combatStatBlock.resetItems();
 			_coreStatBlock.resetItems();
 			_advancementBlock.resetItems();
+			_playerPartyBlock.resetItems();
 		}
 	}
 

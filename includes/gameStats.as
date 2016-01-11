@@ -1327,7 +1327,7 @@ public function displayQuestLog(showID:String = "All"):void
 					if(flags["BADGER_QUEST"] == -1)
 					{
 						output2(", Confiscated Raygun");
-						if(pc.hasKeyItem("Doctor Badger's Bimbo Raygun - Still programmed for use on Penny.") output2(", <i>Get reprogrammed from Dr. Lash!</i>");
+						if(pc.hasKeyItem("Doctor Badger's Bimbo Raygun - Still programmed for use on Penny.")) output2(", <i>Get reprogrammed from Dr. Lash!</i>");
 						else if(flags["BADGER_QUEST_TIMER"] == -1) output2(", <i>Return to Penny!</i>");
 					}
 					else if(flags["BADGER_QUEST"] == -2) output2(", Reprogrammed Raygun, <i>Return to Dr. Badger!</i>");

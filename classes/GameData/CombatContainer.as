@@ -2913,8 +2913,6 @@ package classes.GameData
 				prepHostileForCombat(_hostiles[i]);
 				makeCharacterUnique(_hostiles[i], HOSTILE_GROUP);
 			}
-			
-			showCombatUI();
 		}
 		public function addHostileCreature(newC:Creature):void
 		{
@@ -3033,8 +3031,8 @@ package classes.GameData
 		{
 			validateContainer();
 			showCombatDescriptions();
-			showCombatUI();
 			showCombatMenu();
+			showCombatUI(true);
 		}
 		
 		private function validateContainer():void
@@ -3043,10 +3041,16 @@ package classes.GameData
 			if (_lossFunction == null) throw new Error("No loss function has been specified.");
 		}
 		
-		public function showCombatUI():void
+		public function showCombatUI(setAsInit:Boolean = false):void
 		{
-			userInterface().showPlayerParty(_friendlies);
-			userInterface().showHostileParty(_hostiles);
+			if (setAsInit)
+			{
+				userInterface().resetNPCStats();
+				if (_friendlies.length > 1) userInterface().resetPCStats();
+			}
+			
+			userInterface().showPlayerParty(_friendlies, false);
+			userInterface().showHostileParty(_hostiles, false);
 		}
 		
 		private function showCombatDescriptions():void

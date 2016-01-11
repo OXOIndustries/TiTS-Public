@@ -346,7 +346,7 @@ public function lassoAVarmint(attacker:Creature, target:Creature):void
 	attacker.droneTarget = target;
 	output("You twirl your light lasso, trying to get a bead on the varmint. When you've got enough spin, you let the lasso go, hurling it toward the varmint!");
 	//Miss
-	if(rangedCombatMiss(attacker, target)) output(" The glowing rope goes wide, scattering into the ground. You quickly reel it back in.\n");
+	if(rangedCombatMiss(attacker, target)) output(" The glowing rope goes wide, scattering into the ground. You quickly reel it back in.");
 	else
 	{
 		var damage:TypeCollection = new TypeCollection( { kinetic: 20 + (attacker.aim() / 2) } );
@@ -369,9 +369,6 @@ public function lassoAVarmint(attacker:Creature, target:Creature):void
 			target.createStatusEffect("Lassoed");
 		}
 		applyDamage(damage, attacker, target);
-		//Used to track if the PC downed the shithead with a whip or something else.
-		//target.createStatusEffect("Lassoed");
-		//output("\n");
 	}
 }
 

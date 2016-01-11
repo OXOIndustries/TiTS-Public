@@ -1450,6 +1450,8 @@
 			CombatManager.TerminateCombat();
 			userInterface().hideNPCStats();
 			userInterface().leftBarDefaults();
+			userInterface().resetPCStats();
+			userInterface().resetNPCStats();
 			
 			//Purge out the event buffer so people can't buy something, load, and then get it.
 			kGAMECLASS.eventQueue = new Array();
