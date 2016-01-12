@@ -96,7 +96,8 @@ public function kirosShipQuarters():void
 		output(" including");
 		if (flags["RESCUE KIRO TOOK CUTLASS"] == undefined) output(" a hefty-looking sword, looking an awful lot like an old-school cutlass");
 		if (flags["RESCUE KIRO TOOK CUTLASS"] == undefined && flags["RESCUE KIRO TOOK PISTOL"] == undefined) output(" and");
-		if (flags["RESCUE KIRO TOOK PISTOL"] == undefined) output(" a shiny laser pistol with a mounted scope. Clearly a custom job.");
+		if (flags["RESCUE KIRO TOOK PISTOL"] == undefined) output(" a shiny laser pistol with a mounted scope. Clearly a custom job");
+		output(".");
 	}
 	output(" The owner's put a lot of work - and credits - into this arsenal. They're ripe for the taking, but then again, that'd earn you a good slapping if you meet the captain. On the desk opposite the bed is a single little bonsai tree, surrounded by stacks of gardening books. It looks about on the verge of death, utterly wilted like it hasn't been watered in ages. Poor thing.");
 
@@ -108,18 +109,30 @@ public function kirosShipPistol():void
 {
 	clearOutput();
 	var pistol:CustomLP17 = new CustomLP17();
+	lootScreen = kirosShipPistolCheck;
 
 	flags["RESCUE KIRO TOOK PISTOL"] = 1;
 	itemCollect([pistol], false);
+}
+public function kirosShipPistolCheck():void
+{
+	if(!pc.rangedWeapon is CustomLP17 && !pc.hasItemByType(CustomLP17)) flags["RESCUE KIRO TOOK PISTOL"] = undefined;
+	mainGameMenu();
 }
 
 public function kirosShipCutlass():void
 {
 	clearOutput();
 	var cutlass:Cutlass = new Cutlass();
+	lootScreen = kirosShipCutlassCheck;
 	
 	flags["RESCUE KIRO TOOK CUTLASS"] = 1;
 	itemCollect([cutlass], false);
+}
+public function kirosShipCutlassCheck():void
+{
+	if(!pc.meleeWeapon is Cutlass && !pc.hasItemByType(Cutlass)) flags["RESCUE KIRO TOOK CUTLASS"] = undefined;
+	mainGameMenu();
 }
 
 public function kirosShipWails(doOutput:Boolean = true):Boolean
