@@ -70,7 +70,7 @@
 			// Enemy used an item
 			else if (target != kGAMECLASS.pc && usingCreature != kGAMECLASS.pc)
 			{
-				if(inCombat()) kGAMECLASS.output("\n");
+				if(inCombat()) kGAMECLASS.output("\n\n");
 				else kGAMECLASS.clearOutput();
 				npcUsed(target, usingCreature);
 			}
@@ -92,7 +92,6 @@
 			else kGAMECLASS.output(" You are hit by a rush of arousal!");
 			targetCreature.lust(20);
 			targetCreature.HP(healing);
-			kGAMECLASS.output("\n");
 		}
 		
 		public function npcUsed(targetCreature:Creature, usingCreature:Creature):void
@@ -107,7 +106,6 @@
 			else kGAMECLASS.output("!");
 			targetCreature.lust(20);
 			targetCreature.HP(healing);
-			kGAMECLASS.output("\n");
 		}
 	}
 }
