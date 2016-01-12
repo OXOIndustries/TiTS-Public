@@ -32,7 +32,7 @@ package classes.Characters
 			this.a = "the ";
 			this.capitalA = "The ";
 			// this.long = "Several armed men in black-and-red heavy armor have stormed into the construction site, wildly firing machine pistols at you and your companion. It's almost impossible to see in here, except by the occasional muzzle flashes and showers of sparks as bullets slam into the metal bulkheads.\n\nNot far from you, Saen ducks into and out of cover, evading bursts of enemy fire and returning it as quick as she can.";
-			this.long = "An man in black-and-red armor, armed with machine pistol.";
+			this.long = "A man in black-and-red armor, armed with machine pistol.";
 			this.customBlock = "The pirate’s armor deflects your attack with alarming ease.";
 			this.isPlural = false;
 			isLustImmune = true;

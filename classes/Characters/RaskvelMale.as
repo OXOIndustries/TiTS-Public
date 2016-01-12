@@ -193,7 +193,7 @@
 		private function randomise():void 
 		{
 			sexualPreferences.setRandomPrefs(3 + rand(3));
-			long = "You are fighting the raskvel gang. The three red-scaled males, their big, rabbit-like ears and blunt tails swinging as they move, have you surrounded. The biggest one, a good four foot two, is brazenly naked and is using his fists and feet for weapons. The other two have harnesses around their waists and are swinging heavy wrenches. Though short, all three of them are pretty strongly built: tight, unostentatious muscle bulges underneath their smooth, rusty skin, particularly in their thick thighs.";
+			long = "The raskvel gang consists of three red-scaled males, their big, rabbit-like ears and blunt tails swinging as they move, have you surrounded. The biggest one, a good four foot two, is brazenly naked and is using his fists and feet for weapons. The other two have harnesses around their waists and are swinging heavy wrenches. Though short, all three of them are pretty strongly built: tight, unostentatious muscle bulges underneath their smooth, rusty skin, particularly in their thick thighs.";
 			long += " Their dicks are hidden away in their genital slits, although their snug, pouch-like balls are clear to see.";
 			long += " They have jolly, lively faces, and they laugh and call to each other as they fight you, as if they’re not taking this particularly seriously. Their attacks, though, are very definitely serious.";
 
@@ -338,7 +338,7 @@
 		
 		private function raskvelMobAppearanceUpdate():void
 		{
-			long = "You are fighting the raskvel gang. The three red-scaled males, their big, rabbit-like ears and blunt tails swinging as they move, have you surrounded. The biggest one, a good four foot two, is brazenly naked and is using his fists and feet for weapons. The other two have harnesses around their waists and are swinging heavy wrenches. Though short, all three of them are pretty strongly built: tight, unostentatious muscle bulges underneath their smooth, rusty skin, particularly in their thick thighs.";
+			long = "The raskvel gang consists of three red-scaled males, their big, rabbit-like ears and blunt tails swinging as they move, have you surrounded. The biggest one, a good four foot two, is brazenly naked and is using his fists and feet for weapons. The other two have harnesses around their waists and are swinging heavy wrenches. Though short, all three of them are pretty strongly built: tight, unostentatious muscle bulges underneath their smooth, rusty skin, particularly in their thick thighs.";
 			//Lust 0-40:
 			if(lust() <= 40) long += " Their dicks are hidden away in their sheaths, although their snug, pouch-like balls are clear to see.";
 			else if(lust() <= 80) long += " Their brilliantly purple cocks, the same color as their long tongues, have protracted some of the way out of their slits. The three of them seem distracted and even redder in the face than usual.";

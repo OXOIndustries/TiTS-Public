@@ -226,7 +226,7 @@ public function submitToFemzil():void {
 	clearOutput();
 	userInterface.showBust("ZILFEMALE");
 	userInterface.showName("FEMALE\nZIL");
-	output("You smile and begin to deeply inhale her powerful scent, meeting her eyes as you let the overwhelming need start to overcome you.");
+	output("You smile and begin to deeply inhale her powerful scent, meeting her eyes as you let the overwhelming need start to overcome you. ");
 	setEnemy(new ZilFemale());
 	girlZilLossRouter();
 }

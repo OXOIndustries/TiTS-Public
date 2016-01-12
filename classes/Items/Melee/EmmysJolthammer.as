@@ -23,12 +23,12 @@
 			this.shortName = "E's Hmmr";
 			
 			//Regular name
-			this.longName = "Emmy's Jolthammer";
+			this.longName = "tweaked Jolthammer";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a tweaked Jolthammer";
+			this.description = "Emmy’s Jolthammer";
 			
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "The Jolthammer is a weapon based on an age-old design but given a modern flair by the engineers at KihaCorp. It’s heavy, conductive head is actually divided by several layers of non-conductive materials, allowing it to build up opposing electrical charges - much like a modern supercapacitor. On impact, this energy is discharged through the target creature, frying nerves and crushing bone with equal authority.\n\nEmmy modified the power generator to squeeze some extra juice out of it sometimes. It'll be good for some extra criticals.";

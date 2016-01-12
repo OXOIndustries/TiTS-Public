@@ -23,12 +23,12 @@
 			this.shortName = "E's Pistol";
 			
 			//Regular name
-			this.longName = "Emmy's Salamander Pistol";
+			this.longName = "tweaked Salamander Pistol";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a tweaked Salamander Pistol";
+			this.description = "Emmy’s Salamander Pistol";
 			
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "Built with gunmetal gray barrels, gleaming crimson handgrips, and polished white accents, the Salamander line of weapons from KihaCorp cut an impressive figure for those lucky enough to afford them. The strength of their incandescent beams falls just short of military grade, allowing them to be sold as hunting and personal defense weapons to the greater populace. Salamander Pistols lack the superior optics of their long-barreled counterparts, but their lighter size and ease of use can make it easier to land the occasional lucky shot in a fight.\n\nEmmy fitted it with a smart-linked scope that can interface with almost anything - even the microsurgeons in your blood.";

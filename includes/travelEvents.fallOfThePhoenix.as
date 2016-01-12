@@ -406,6 +406,8 @@ public function phoenixCargo():Boolean
 // Not starting it directly so I can inject a status effect onto the player to handle the help from Sae
 public function startPhoenixPirateFight():void
 {
+	saendra.long = "Saendra lithely snakes out of cover from time to time, taking potshots at anything and everything she can sight quickly enough before ducking back to safety.";
+	
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyCharacters	([pc, saendra]);
 	CombatManager.setHostileCharacters	([new PhoenixPirates(), new PhoenixPirates(), new PhoenixPirates()]);
@@ -553,9 +555,30 @@ public function phoenixEngineeringTakeShield():void
 	foundLootItems.push(new JoyCoPremiumShield());
 
 	itemScreen = mainGameMenu;
-	lootScreen = mainGameMenu;
+	lootScreen = phoenixEngineeringTakeShieldCheck;
 	useItemFunction = mainGameMenu;
 	itemCollect(foundLootItems);
+}
+public function phoenixEngineeringTakeShieldCheck():void
+{
+	if(pc.shield is JoyCoPremiumShield || pc.hasItemByType(JoyCoPremiumShield))
+	{
+		mainGameMenu();
+		return;
+	}
+	
+	clearOutput();
+	showValeria();
+	output("Not having enough space for it, you figure you put it back where you found it.");
+
+	output("\n\n“<i>That’s more like it!”</i> Valeria harrumphs.");
+
+	output("\n\nYou shrug your shoulders.");
+
+	flags["FALL OF THE PHOENIX TAKEN SHIELD"] = undefined;
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
 
 public function phoenixEngineeringValeria():void

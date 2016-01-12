@@ -471,7 +471,8 @@ public function queensChambersBonus():Boolean
 		output(".");
 	}
 	if(flags["LOOTED_TAIVRAS_BEDROOM"] == undefined) addButton(0,"Search",searchTheQueensChambers,undefined,"Search","Maybe you’ll find something useful in the queen’s chambers?");
-	else addDisabledButton(0,"Search","Search","You already searched this room, discovering a silver key and sack of gems.");	
+	else if(flags["LOOTED_TAIVRAS_BEDROOM"] == 0) addButton(0,"Gem Sack",searchTheQueensChambers,undefined,"Gem Satchel","Take the sack of gems.");
+	else addDisabledButton(0,"Search","Search","You’ve already searched this room, discovering a silver key and sack of gems.");
 	return false;
 }
 
@@ -480,18 +481,37 @@ public function queensChambersBonus():Boolean
 public function searchTheQueensChambers():void
 {
 	clearOutput();
-	showName("\nSEARCHING...");
-	author("Savin");
-	output("You spend a few minutes tossing the room, looking for anything of value. Your search reveals several interesting finds: some sex toys made for the nyrea’s unique biology, some handcuffs and gags, and what looks like primitive pornography etched in stone tablets. Clearly the queen’s got a kinky side...");
-	output("\n\nMore important to your quest, though, you find hidden away in her nightstand a <b>silver key</b> and a <b>satchel full of gemstones</b>. These will probably turn quite a profit...");
-	output("\n\n(<b>Gained Key Item: Silver Key</b> - This must open something somewhere in the royal complex.)\n\n");
+	if(flags["LOOTED_TAIVRAS_BEDROOM"] == undefined)
+	{
+		showName("\nSEARCHING...");
+		author("Savin");
+		output("You spend a few minutes tossing the room, looking for anything of value. Your search reveals several interesting finds: some sex toys made for the nyrea’s unique biology, some handcuffs and gags, and what looks like primitive pornography etched in stone tablets. Clearly the queen’s got a kinky side...");
+		output("\n\nMore important to your quest, though, you find hidden away in her nightstand a <b>silver key</b> and a <b>satchel full of gemstones</b>. These will probably turn quite a profit...");
+		output("\n\n(<b>Gained Key Item: Silver Key</b> - This must open something somewhere in the royal complex.)\n\n");
+		//Add Silver Gate Key to Key Items
+		pc.createKeyItem("Silver Key",0,0,0,0);
+		processTime(5);
+	}
 	flags["LOOTED_TAIVRAS_BEDROOM"] = 1;
-  	pc.createKeyItem("Silver Key",0,0,0,0);
-
-  	//Add Silver Gate Key to Key Items
 	//Add Gem Satchel to inventory. Worth about ~10k Creds when sold.
 	//sumbody get on dis
-	quickLoot(new GemSatchel());
+	var gems:GemSatchel = new GemSatchel();
+	lootScreen = lootTaivrasGemsCheck;
+	itemCollect([gems], true);
+}
+public function lootTaivrasGemsCheck():void
+{
+	if(pc.hasItemByType(GemSatchel))
+	{
+		mainGameMenu();
+		return;
+	}
+	
+	clearOutput();
+	output("Not having room for it, you place the satchel full of gems back where it was.");
+	flags["LOOTED_TAIVRAS_BEDROOM"] = 0;
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 //Room 2C9 Stairway

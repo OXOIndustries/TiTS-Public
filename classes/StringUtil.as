@@ -28,7 +28,7 @@ package  classes
 			for (var i:int = 0; i < w.length; i++)
 			{
 				q = w[i].charAt(0);
-				if(q == "‘" || q == "“")
+				if(q == "'" || q == "‘" || q == "“")
 				{
 					r = q;
 					w[i] = w[i].substr(1);
@@ -38,6 +38,7 @@ package  classes
 					if(r.length > 0) w[i] = r + capitalize(w[i], false);
 					else w[i] = capitalize(w[i], false);
 				}
+				r = "";
 			}
 			
 			return w.join(" ");
@@ -59,7 +60,7 @@ package  classes
 			for (var i:int = 0; i < w.length; i++)
 			{
 				q = w[i].charAt(0);
-				if(q == "‘" || q == "“")
+				if(q == "'" || q == "‘" || q == "“")
 				{
 					r = q;
 					w[i] = w[i].substr(1);
@@ -69,6 +70,7 @@ package  classes
 					if(r.length > 0) w[i] = r + capitalize(w[i], false);
 					else w[i] = capitalize(w[i], false);
 				}
+				r = "";
 			}
 			
 			return w.join(" ");

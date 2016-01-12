@@ -346,7 +346,7 @@ public function lassoAVarmint(attacker:Creature, target:Creature):void
 	attacker.droneTarget = target;
 	output("You twirl your light lasso, trying to get a bead on the varmint. When you've got enough spin, you let the lasso go, hurling it toward the varmint!");
 	//Miss
-	if(rangedCombatMiss(attacker, target)) output(" The glowing rope goes wide, scattering into the ground. You quickly reel it back in.\n");
+	if(rangedCombatMiss(attacker, target)) output(" The glowing rope goes wide, scattering into the ground. You quickly reel it back in.");
 	else
 	{
 		var damage:TypeCollection = new TypeCollection( { kinetic: 20 + (attacker.aim() / 2) } );
@@ -369,9 +369,6 @@ public function lassoAVarmint(attacker:Creature, target:Creature):void
 			target.createStatusEffect("Lassoed");
 		}
 		applyDamage(damage, attacker, target);
-		//Used to track if the PC downed the shithead with a whip or something else.
-		//target.createStatusEffect("Lassoed");
-		//output("\n");
 	}
 }
 
@@ -506,7 +503,7 @@ public function hasVarmintBuddy():Boolean
 // Do you have the leash anywhere?
 public function hasVarmintLeash():Boolean
 {
-    if(pc.accessory is VarmintLeash || pc.hasItemByName("Pink Leash")) return true;
+	if(pc.accessory is VarmintLeash || pc.hasItemByName("Pink Leash")) return true;
 	for (var i:int = 0; i < pc.ShipStorageInventory.length; i++)
 	{
 		var sItem:ItemSlotClass = pc.ShipStorageInventory[i] as ItemSlotClass;
@@ -514,7 +511,7 @@ public function hasVarmintLeash():Boolean
 	}
 	// Remove leashed effect if none exists.
 	pc.removeStatusEffect("Varmint Leashed");
-    return false;
+	return false;
 }
 
 // Crew Menu Text
@@ -873,9 +870,18 @@ public function varmintDisappears():void
 	if(varmintIsWild())
 	{
 		// If not on NT:
-		if(rooms[currentLocation].planet != "PLANET: NEW TEXAS") output("\n\nWell, looks like there’s going to be a varmint infestation here now.");
+		if(getPlanetName() != "New Texas") output("\n\nWell, looks like there’s going to be a varmint infestation here now.");
 		// NT:
 		else output("\n\nBack to where you came from, you big blue bastard!");
+	}
+	else
+	{
+		output("\n\n");
+		if(pc.isBimbo()) output("Aw... You pout for a bit and hope that your little puppy is doing okay by its lonesome.");
+		else if(pc.isNice()) output("Well, that was bound to happen if you didn’t keep it on a leash. Hopefully it’s okay out there.");
+		else output("You should have known that thing was gonna run off! Keeping it tethered might have been a better option after all.");
+		if(getPlanetName() == "New Texas") output(" At least it’s back home now.");
+		else output(" One loose animal on " + getPlanetName() + " shouldn’t cause too much trouble on, right?");
 	}
 	
 	processTime(32);

@@ -148,8 +148,13 @@ package classes.UIComponents.SideBarComponents
 				region.graphics.beginBitmapFill(bustObj.bitmapData, new Matrix(1, 0, 0, 1, -bounds.x, -bounds.y), false, true);
 				region.graphics.drawRect(0, 0, bounds.width, bounds.height);
 				region.graphics.endFill();
-				_bustImage.removeChildren();
-				_bustImage.addChild(region);
+				
+				if (_bustImage && _bustImage is Sprite)
+				{
+					_bustImage.removeChildren();
+					_bustImage.addChild(region);
+				}
+				
 				region.x = region.y = 1;
 				
 				// Resize the element itself so it'll fit in the area we want
@@ -171,8 +176,13 @@ package classes.UIComponents.SideBarComponents
 			{
 				bustObj.width = 68;
 				bustObj.height = 63;
-				_bustImage.removeChildren();
-				_bustImage.addChild(bustObj);
+				
+				if (_bustImage && _bustImage is Sprite)
+				{
+					_bustImage.removeChildren();
+					_bustImage.addChild(bustObj);
+				}
+				
 				bustObj.x = bustObj.y = 1;
 			}
 		}

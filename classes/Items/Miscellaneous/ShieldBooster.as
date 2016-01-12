@@ -112,7 +112,7 @@
 				// Enemy used an item on the PC
 				else if (targetCreature != kGAMECLASS.pc && usingCreature != kGAMECLASS.pc)
 				{
-					if(inCombat()) kGAMECLASS.output("\n");
+					if(inCombat()) kGAMECLASS.output("\n\n");
 					else kGAMECLASS.clearOutput();
 					npcUsed(targetCreature, usingCreature);
 				}
@@ -135,7 +135,6 @@
 			if (inCombat()) targetCreature.createStatusEffect("Shield Boosted", 0, 0, 0, 0, true, "", "", true, 0);
 			targetCreature.shields(healing);
 			if(healing > 0) kGAMECLASS.output(" (<b>+" + healing + " Shields</b>)");
-			kGAMECLASS.output("\n");
 		}
 		
 		public function npcUsed(targetCreature:Creature, usingCreature:Creature):void
@@ -149,7 +148,6 @@
 			if (inCombat()) targetCreature.createStatusEffect("Shield Boosted", 0, 0, 0, 0, true, "", "", true, 0);
 			targetCreature.shields(healing);
 			if(healing > 0) kGAMECLASS.output(" (<b>+" + healing + " Shields</b>)");
-			kGAMECLASS.output("\n");
 		}
 	}
 }

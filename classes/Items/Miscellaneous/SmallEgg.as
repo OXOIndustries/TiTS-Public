@@ -73,18 +73,16 @@
 				if(healing > 0) kGAMECLASS.output(" You feel better almost immediately! (<b>+" + healing + " HP</b>)");
 				else kGAMECLASS.output(" Nothing changes except for the taste in your mouth.");
 				target.HP(healing);
-				kGAMECLASS.output("\n");
 			}
 			//Not player!
 			else
 			{
-				if(inCombat()) kGAMECLASS.output("\n");
+				if(inCombat()) kGAMECLASS.output("\n\n");
 				else kGAMECLASS.clearOutput();
 				kGAMECLASS.output(target.capitalA + target.short + " eats a brightly-colored egg");
 				if(healing > 0) kGAMECLASS.output(" and instantly regains a little health! (<b>+" + healing + " HP</b>)");
 				else kGAMECLASS.output(" to no effect.");
 				target.HP(healing);
-				kGAMECLASS.output("\n");
 			}
 			return false;
 		}

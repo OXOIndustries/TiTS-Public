@@ -1583,6 +1583,17 @@ public function displayQuestLog(showID:String = "All"):void
 					{
 						output2("\n<b>* Pirate Base, Dr.Khan:</b> Met him, Defeated him");
 						if(9999 == 0) output2(", Sexed him with Kara");
+						if(flags["KQ2_KHAN_LOOTED"] != undefined)
+						{
+							output2(", Looted his room");
+							if(flags["KQ2_KHAN_LOOTED_COAT"] != undefined || flags["KQ2_KHAN_LOOTED_CASTER"] != undefined)
+							{
+								output2(" and took his");
+								if(flags["KQ2_KHAN_LOOTED_COAT"] != undefined) output2(" coat");
+								if(flags["KQ2_KHAN_LOOTED_COAT"] != undefined && flags["KQ2_KHAN_LOOTED_CASTER"] != undefined) output2(" and");
+								if(flags["KQ2_KHAN_LOOTED_CASTER"] != undefined) output2(" gun");
+							}
+						}
 					}
 					// Nuke 'em, Rico!
 					if(flags["KQ2_NUKE_STARTED"] != undefined)
@@ -3753,7 +3764,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				{
 					output2("\n<b>* Radio Bunker:</b> Found");
 					if(flags["NO_ANTS_LAND_TAXI_UNLOCKED"] != undefined) output2(", Repaired radio communications");
-					if(flags["LOOTED_MYR_RIFLE"] != undefined) output2(", Looted bunker");
+					if(flags["LOOTED_MYR_RIFLE"] == 1) output2(", Looted bunker");
 				}
 				// Crash Site
 				if(flags["DEEP_CAVES_TAXI_UNLOCKED"] != undefined)
@@ -4028,7 +4039,9 @@ public function displayEncounterLog(showID:String = "All"):void
 			// Big like Cock-Box!
 			if(flags["LOOTED_COCKBOX"] != undefined)
 			{
-				output2("\n<b>* TamaniCorp, Dong Designer:</b> Taken");
+				output2("\n<b>* TamaniCorp, Dong Designer:</b>");
+				if(flags["LOOTED_COCKBOX"] == 0) output2(" Found");
+				else output2(" Taken");
 				if(flags["DONG_DESIGNER_INSTALLED"] != undefined) output2(", Installed");
 				if(flags["USED_DONG_DESIGNER"] == undefined) output2(", Unused");
 				else output2(", Used");

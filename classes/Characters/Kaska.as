@@ -362,12 +362,12 @@
 		
 		private function shieldBusta(target:Creature):void
 		{
-			output("Kaska flicks a switch the side of her gun, and the indicator lights on the bottom barrel dim. <i>\"Let's see how your shields like laser!\"</i> she cries.\n\n");
+			output("Kaska flicks a switch the side of her gun, and the indicator lights on the bottom barrel dim. <i>\"Let's see how your shields like laser!\"</i> she cries.\n");
 			
 			for (var i:int = 0; i < 5; i++)
 			{
-				CombatAttacks.SingleRangedAttackImpl(this, target, true);
 				output("\n");
+				CombatAttacks.SingleRangedAttackImpl(this, target, true);
 			}
 		}
 	}

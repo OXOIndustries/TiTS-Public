@@ -250,6 +250,7 @@ public function noAntsLandBeaconBonus():Boolean
 		addButton(0,"Taxi",callATaxiYeScrub,undefined,"Taxi","Call a taxi, though you'll pay 150 credits for the convenience.");
 	}
 	if(flags["LOOTED_MYR_RIFLE"] == undefined) addButton(1,"Search",searchDatBunker,undefined,"Search","Spend a little time scavenging. Maybe there's something worthwhile here?");
+	else if(flags["LOOTED_MYR_RIFLE"] == 0) addButton(1,"Rifle",searchDatBunker,undefined,"Rifle","Take the old rifle.");
 	else addDisabledButton(1,"Search","Search","You've already searched this location.");
 	//[Repair Radio] [Search]
 	return false;
@@ -282,12 +283,32 @@ public function callATaxiYeScrub():void
 public function searchDatBunker():void
 {
 	clearOutput();
-	author("Savin");
-	showName("\nSEARCHING...");
-	output("You spend a few minutes poking around in the old bunker, looking for anything salvagable. The place is an absolute wreck, and the closer you look, the more you realize why: there are scorch marks all along the entrance chambers, and several bullet holes in the concrete. This place has seen its share of action, and you'd imagine some of that involved a flamethrower. You do find one piece of equipment still intact, though: buried underneath a bit of collapsed roof, you're able to dig out a beat up old rifle. Looks like it's been sat here for months if not years, but with a little cleaning, it might still work.\n\n");
+	if(flags["LOOTED_MYR_RIFLE"] == undefined)
+	{
+		author("Savin");
+		showName("\nSEARCHING...");
+		output("You spend a few minutes poking around in the old bunker, looking for anything salvageable. The place is an absolute wreck, and the closer you look, the more you realize why: there are scorch marks all along the entrance chambers, and several bullet holes in the concrete. This place has seen its share of action, and you'd imagine some of that involved a flamethrower. You do find one piece of equipment still intact, though: buried underneath a bit of collapsed roof, you're able to dig out a beat up old rifle. Looks like it's been sat here for months if not years, but with a little cleaning, it might still work.\n\n");
+		processTime(18);
+	}
 	flags["LOOTED_MYR_RIFLE"] = 1;
-	processTime(18);
-	quickLoot(new MyrRifle());
+	var rifle:MyrRifle = new MyrRifle();
+	lootScreen = searchBunkerRifleCheck;
+	itemCollect([rifle]);
+}
+public function searchBunkerRifleCheck():void
+{
+	if(pc.rangedWeapon is MyrRifle || pc.hasItemByType(MyrRifle))
+	{
+		mainGameMenu();
+		return;
+	}
+	
+	clearOutput();
+	output("You put the rifle back where you found it.");
+	
+	flags["LOOTED_MYR_RIFLE"] = 0;
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
 
 public function myrellionUndergroundCrashSiteBonus():Boolean

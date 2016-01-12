@@ -233,6 +233,28 @@ package classes.GameData
 			}
 		}
 		
+		public static function clearEntry(entryName:String):void
+		{
+			if (MailManager.ENTRIES[entryName] === undefined)
+			{
+				throw new Error("Mail entry '" + entryName + "' was not found in the datastore.");
+			}
+			else
+			{
+				var bo:Object = MailManager.ENTRIES[entryName];
+				
+				bo.UnlockedTimestamp = undefined;
+				bo.ViewedTimestamp = undefined;
+				
+				if (bo.Content != null) bo.ContentCache = null;
+				if (bo.Subject != null) bo.SubjectCache = null;
+				if (bo.From != null) bo.FromCache = null;
+				if (bo.FromAddress != null) bo.FromAddressCache = null;
+				if (bo.To != null) bo.ToCache = null;
+				if (bo.ToAddress != null) bo.ToAddressCache = null;
+			}
+		}
+		
 		public static function hasUnlockedEntries():Boolean
 		{
 			for (var k:String in MailManager.ENTRIES)

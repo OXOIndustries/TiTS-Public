@@ -167,7 +167,7 @@ package classes.Characters
 			sexualPreferences.setRandomPrefs(2 + rand(3));
 			if(rand(2) == 0) skinTone = "green";
 			else skinTone = "blue";
-			long = "You’re fighting a ganraen knight. Her " + skinTone + " armor shines in the dimly lit cave, reflecting the pale glow of the pulsing fungi that cover the walls. She holds a simply shaped shield and sword, though the blade looks a bit more like a sharpened slab. Strategically placed joints prevent the armor from slowing her swift movements.";
+			long = "The ganraen knight’s " + skinTone + " armor shines in the dimly lit cave, reflecting the pale glow of the pulsing fungi that cover the walls. She holds a simply shaped shield and sword, though the blade looks a bit more like a sharpened slab. Strategically placed joints prevent the armor from slowing her swift movements.";
 			
 			this._isLoading = false;
 		}
@@ -229,7 +229,7 @@ package classes.Characters
 		
 		private function crystalGooLongUpdate():void
 		{
-			long = "You’re fighting a ganraen knight. Her " + skinTone + " armor shines in the dimly lit cave, reflecting the pale glow of the pulsing fungi that cover the walls. She holds a simply shaped shield and sword, though the blade looks a bit more like a sharpened slab. Strategically placed joints prevent the armor from slowing her swift movements.";
+			long = "The ganraen knight’s " + skinTone + " armor shines in the dimly lit cave, reflecting the pale glow of the pulsing fungi that cover the walls. She holds a simply shaped shield and sword, though the blade looks a bit more like a sharpened slab. Strategically placed joints prevent the armor from slowing her swift movements.";
 			if(lust() < 66) long += " You can’t see her face, but you hear labored breathing behind the helmet.";
 			else long += " The knight’s hands keep shying toward her sex, but are blocked by the armor that protects her.";
 			//{33% lust/66%/66% hp/33%} 

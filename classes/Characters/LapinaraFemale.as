@@ -199,7 +199,7 @@
 			else hairColor = "gray";
 			furColor = hairColor;
 			
-			long = "You are fighting a lapinara. A typical example of the parasitic gender, according to your Codex, she stands at no more than " + height() + " tall. From her head grows medium-length, wild " + hairColor + " hair styled into a perm. A pair of metal-reinforced horns poke out from under her bangs. A long, whip-like tail hangs from above her ass, thrashing about menacingly. She wears a rather intimidating spiked gauntlet on each hand, her chest protected by a metal armor plate. There is a leather belt about her waist, holding an assortment of syringes at her side, likely drugs. She is unarmored from the waist down, her pseudopenis ovipositor standing at attention, faux testicles heavy and swollen with the eggs that they're holding."
+			long = "A typical example of the parasitic gender, according to your Codex, the lapinara stands at no more than " + height() + " tall. From her head grows medium-length, wild " + hairColor + " hair styled into a perm. A pair of metal-reinforced horns poke out from under her bangs. A long, whip-like tail hangs from above her ass, thrashing about menacingly. She wears a rather intimidating spiked gauntlet on each hand, her chest protected by a metal armor plate. There is a leather belt about her waist, holding an assortment of syringes at her side, likely drugs. She is unarmored from the waist down, her pseudopenis ovipositor standing at attention, faux testicles heavy and swollen with the eggs that they're holding."
 			ass.loosenessRaw = rand(4) + 1;
 			vaginas[0].loosenessRaw = rand(4) + 1;
 			credits = 25+rand(25);

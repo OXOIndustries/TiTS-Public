@@ -174,6 +174,7 @@ public function initsx1PirateGroupFight():void
 {
 	pc.createStatusEffect("Pitch Black", 0, 0, 0, 0, false, "Icon_Slow", "It’s pitch black here, making it almost impossible to see anything but for bursts of light accompanying weaponsfire.", true, 0);
 	saendra.createStatusEffect("Pitch Black", 0, 0, 0, 0, false, "Icon_Slow", "It’s pitch black here, making it almost impossible to see anything but for bursts of light accompanying weaponsfire.", true, 0);
+	saendra.long = "";
 	
 	var enemies:Array = [];
 	
@@ -820,6 +821,7 @@ public function sx1InitShotguardFight(wasFlashed:Boolean = false):void
 {
 	var tEnemy:Creature = new SX1Shotguard();
 	tEnemy.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0);
+	saendra.long = "Saendra lithely snakes out of cover from time to time, ready to take potshots at anything and everything she can sight quickly enough before ducking back to safety.";
 	
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyCharacters([pc, saendra]);
@@ -903,6 +905,8 @@ public function sx1ShotguardPCLoss():void
 
 public function sx1InitTechguardFight():void
 {
+	saendra.long = "Saendra lithely snakes out of cover from time to time, ready to take potshots at anything and everything she can sight quickly enough before ducking back to safety.";
+	
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyCharacters([pc, saendra]);
 	CombatManager.setHostileCharacters(new SX1Techguard());
@@ -1012,7 +1016,8 @@ public function sx1RescueTheDude(fromCombat:Boolean = false):void
 	output("\n\nSomebody’s offering a hefty twenty grand for Saendra’s capture. Somebody named <i>“Lord Bragga”</i> of the Black Void Pirates. What the hell has Saen gotten herself mixed up with?");
 	
 	output("\n\nYou pocket the datapad and head back down to the bar. You’ll have to ask your hybrid companion herself if you want to find out the truth.");
-
+	
+	output("\n\n")
 	//Key Item Added: Pirate Datapad
 	pc.createKeyItem("Pirate Datapad");
 

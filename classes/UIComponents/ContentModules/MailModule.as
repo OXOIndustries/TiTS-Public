@@ -108,7 +108,25 @@ package classes.UIComponents.ContentModules
 			kGAMECLASS.updateMailStatus();
 			
 			clearGhostMenu();
+			if(kGAMECLASS.SpamEmailKeys.indexOf(key) != -1) addGhostButton(0, "Delete", deleteFor, key);
 			addGhostButton(4, "Back", kGAMECLASS.showMails);
+		}
+		
+		public function deleteFor(key:String):void
+		{
+			var entry:Object = MailManager.getEntry(key);
+			
+			_mailText.htmlText = "<span class='words'><p>";
+			_mailText.htmlText += "<b>From:</b> " + entry.FromCache + " &lt;" + entry.FromAddressCache + "&gt;\n";
+			_mailText.htmlText += "<b>To:</b> " + entry.ToCache + " &lt;" + entry.ToAddressCache + "&gt;\n";
+			_mailText.htmlText += "<b>Subject:</b> " + entry.SubjectCache + "\n\n";
+			_mailText.htmlText += "\n<i>Message deleted.</i>\n\n";
+			_mailText.htmlText += "</p></span>";
+			
+			MailManager.clearEntry(key);
+			kGAMECLASS.updateMailStatus();
+			clearGhostMenu();
+			addGhostButton(0, "Next", kGAMECLASS.showMails);
 		}
 	}
 }

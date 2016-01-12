@@ -124,7 +124,7 @@ package classes.Items.Transformatives
 							}
 							if(!hasKeroFace)
 							{
-								target.faceType == GLOBAL.TYPE_HUMAN;
+								target.faceType = GLOBAL.TYPE_HUMAN;
 								target.clearFaceFlags();
 								target.addFaceFlag(GLOBAL.FLAG_SMOOTH);
 							}
@@ -259,7 +259,7 @@ package classes.Items.Transformatives
 							
 							for (i = 0; i < target.breastRows.length; i++)
 							{
-								if(target.nippleTypeUnlocked(i, GLOBAL.NIPPLE_TYPE_FLAT)) target.breastRows[i].nippleType == GLOBAL.NIPPLE_TYPE_FLAT;
+								if(target.nippleTypeUnlocked(i, GLOBAL.NIPPLE_TYPE_FLAT)) target.breastRows[i].nippleType = GLOBAL.NIPPLE_TYPE_FLAT;
 							}
 							nipChanged = true;
 							changes++;
@@ -278,7 +278,7 @@ package classes.Items.Transformatives
 							
 							for (i = 0; i < target.breastRows.length; i++)
 							{
-								if(target.nippleTypeUnlocked(i, GLOBAL.NIPPLE_TYPE_INVERTED)) target.breastRows[i].nippleType == GLOBAL.NIPPLE_TYPE_INVERTED;
+								if(target.nippleTypeUnlocked(i, GLOBAL.NIPPLE_TYPE_INVERTED)) target.breastRows[i].nippleType = GLOBAL.NIPPLE_TYPE_INVERTED;
 							}
 							nipChanged = true;
 							changes++;
@@ -614,7 +614,7 @@ package classes.Items.Transformatives
 							}
 							output("Your [pc.face] feels heavy, sweating huge globs of sticky liquid until it entirely blocks your vision. You feel your face reforming under the slime, rearranging itself to a new shape. After the changes subside, the goo oozes off your new visage and you gladly wipe it away. As your fingers pass, you feel the different surface of your face... smooth, flat and noseless. Double-checking your codex you confirm that <b>you now have a frog-like face, similar to that of a kerokoras!</b>");
 							
-							target.faceType == GLOBAL.TYPE_FROG;
+							target.faceType = GLOBAL.TYPE_FROG;
 							target.clearFaceFlags();
 							target.addFaceFlag(GLOBAL.FLAG_SMOOTH);
 							faceChanged = true;

@@ -30,7 +30,7 @@ package classes.Items.Guns
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "Kiro's customised LP-17 laser pistol";
+			this.description = "Kiro’s customized LP-17 laser pistol";
 			
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "This customized Reaper Armaments LP-17 is a sleek, trimmed down version of the civilian-bought model. This particular version is stacked with an extended magazine, heat sink and a top-mounted holographic sight keyed to a half-trigger pull: in effect, making the weapon highly accurate and rapid-firing. A perfect solution for boarding parties and close quarters entanglements, packing the power and accuracy of a carbine while leaving one hand free to wield a melee weapon.";
