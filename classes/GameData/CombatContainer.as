@@ -3085,8 +3085,7 @@ package classes.GameData
 			if (target is Celise)
 			{
 				kGAMECLASS.setEnemy(target);
-				output("\n");
-				output(target.long);
+				output("\n" + target.long);
 				showMonsterArousalFlavor(target);
 				kGAMECLASS.setEnemy(null);
 				
@@ -3108,16 +3107,17 @@ package classes.GameData
 			{				
 				if (encounterText == null)
 				{
-					if (_hostiles.length == 1 && _friendlies.length == 1)
+					if (_hostiles.length == 1 && _friendlies.length == 1 && target.long.length > 0)
 					{
 						kGAMECLASS.setEnemy(target);
-						output("\n");
-						output(target.long);
+						output("\n" + target.long);
 						kGAMECLASS.setEnemy(null);
 					}
 					else
 					{
-					output("\n\n<b>" + StringUtil.toTitleCase(target.uniqueName) + ":</b>\n" + target.long);
+						output("\n\n<b>" + StringUtil.toTitleCase(target.uniqueName) + ":</b>");
+						if (target.long.length > 0) output("\n" + target.long);
+						else if(target.lust() < 50 || target.isLustImmune == true) output("\n<i>Nothing in particular to take note of.</i>");
 					}
 				}
 				
@@ -3154,7 +3154,7 @@ package classes.GameData
 			{
 				output("\n\n<b>" + target.capitalA + target.uniqueName + ((target.isPlural == true) ? " are" : " is") + " too turned on to fight.</b>\n\n");
 			}
-			else
+			else if (target.long.length > 0)
 			{
 				/*
 				var pHealth:Number = target.HP() / target.HPMax();
