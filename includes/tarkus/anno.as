@@ -1996,6 +1996,7 @@ public function deck13SecurityFunc():Boolean
 
 		clearMenu();
 		
+		anno.long = "Anno’s crouched just over an arm’s length away, her compact holdout held close at a low-ready as she waits for an opportunity to fire. Her bushy tail is tucked in tight, ears lowered against her head as she moves from cover to cover, ducking around incoming attacks.";
 		CombatManager.newGroundCombat();
 		CombatManager.setFriendlyCharacters([pc, anno]);
 		CombatManager.setHostileCharacters([new SecurityDroids(), new SecurityDroids(), new SecurityDroids()]);
@@ -2385,6 +2386,7 @@ public function deck13ShieldControlFunc():Boolean
 		
 		var tPrime:Creature = new GrayPrime();
 		
+		anno.long = "Anno is positioned nearby, her compact holdout held close at a low-ready as she waits for an opportunity to fire. Her bushy tail is tucked in tight, ears lowered against her head as she swivels continuously to avoid incoming attacks.";
 		CombatManager.newGroundCombat();
 		CombatManager.setFriendlyCharacters([pc, anno]);
 		CombatManager.setHostileCharacters(tPrime);
@@ -3156,7 +3158,8 @@ public function deck13DecisionStopHer():void
 	
 	output("\n\n<i>“HAVE A LITTLE TASTE OF WHAT KILLED US,”</i> the mammoth Nova booms, stomping towards the lift. You and Anno raise your weapons as the giga-goo closes in.");
 
-	clearMenu();	
+	clearMenu();
+	anno.long = "Anno is stooped near you, her compact holdout held close at a low-ready as she waits for an opportunity to fire. Her bushy tail is tucked in tight, ears lowered against her head as she constantly sways to avoid losing her center of balance on the moving elevator car.";
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyCharacters([pc, anno]);
 	CombatManager.setHostileCharacters(new GigaGoo());
