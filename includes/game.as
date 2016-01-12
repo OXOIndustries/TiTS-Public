@@ -2501,11 +2501,14 @@ public function emailRoulette():void
 	if(!MailManager.isEntryUnlocked("cuzfuckball") && flags["TIMES_MET_FEMZIL"] != undefined && flags["BEEN_ON_TARKUS"] != undefined && pc.level >= 2)
 		mailList.push("cuzfuckball");
 	
-	/*
 	// SPAM: (9999: If does not have spamblocker upgrade toggled on for CODEX.)
-	if(SpamEmailKeys.length > 0 && flags["CODEX_SPAM_BLOCKER"] == undefined && rand(2) == 0)
-		mailList.push(SpamEmailKeys);
-	*/
+	if(SpamEmailKeys.length > 0 && flags["CODEX_SPAM_BLOCKER"] == undefined)
+	{
+		for(var i:int = 0; i < SpamEmailKeys.length; i++) 
+		{
+			if(!MailManager.isEntryUnlocked(SpamEmailKeys[i]) && rand(2) == 0) mailList.push(SpamEmailKeys[i]);
+		}
+	}
 	
 	if(mailList.length > 0) mailKey = mailList[rand(mailList.length)];
 	

@@ -275,14 +275,14 @@ public function buyItem():void {
 		if(shopkeep.inventory[x].quantity > 0) {
 			output("\n");
 			temp = getBuyPrice(shopkeep,shopkeep.inventory[x].basePrice);
-			/*
+			
 			// Coupons (only affects buy price--not sell price.)
 			var couponName:String = "Coupon - " + shopkeep.inventory[x].shortName;
 			if(pc.hasKeyItem(couponName))
 			{
-				temp = Math.round(temp * keyItemv1(couponName));
+				temp = Math.round(temp * pc.keyItemv1(couponName));
 			}
-			*/
+			
 			if(temp > pc.credits) output("<b>(Too Expensive)</b> ");
 			output(StringUtil.upperCase(shopkeep.inventory[x].description, false) + " - " + temp + " credits.");
 			trace("DISPLAYING SHIT");
@@ -304,18 +304,18 @@ public function buyItem():void {
 public function buyItemGo(arg:ItemSlotClass):void {
 	clearOutput();
 	var price:Number = getBuyPrice(shopkeep,arg.basePrice);
-	/*
+	
 	// Apply and destroy coupons!
 	var usedCoupon:Boolean = false;
 	var couponName:String = "Coupon - " + arg.shortName;
 	if(pc.hasKeyItem(couponName))
 	{
-		price = Math.round(price * keyItemv1(couponName));
+		price = Math.round(price * pc.keyItemv1(couponName));
 		pc.removeKeyItem(couponName);
 		usedCoupon = true;
 	}
 	if(usedCoupon) output("The coupon saved on your codex is used and instantly changes the final price. ");
-	*/
+	
 	output("You purchase " + arg.description + " for " + num2Text(price) + " credits.\n\n");
 	
 	//Emmy magic!
