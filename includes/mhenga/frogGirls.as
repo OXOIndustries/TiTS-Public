@@ -171,7 +171,7 @@ public function loseAgainstTheFrogs():void
 		else output("in a lethargic fashion, trying to decide what to do with you. She licks her lips, and you feel yourself wetten at the sight of her tongue.");
 	}
 	//Loss by HP text
-	else output("\n\nDespite your mind’s protests, your body can no longer resist the beating it has been subject to. The victorious frog girl saunters proudly over to you, grinning as she decides what she should do with you.");
+	else output("Despite your mind’s protests, your body can no longer resist the beating it has been subject to. The victorious frog girl saunters proudly over to you, grinning as she decides what she should do with you.");
 	output("\n\n");
 	// Player loss scenes
 	//[hasCock Loss] // Obv. cocks >= 1
