@@ -623,7 +623,7 @@ package classes.GameData
 				{
 					if (!others[i].isDefeated())
 					{
-						if (i != 0) output("\n");
+						if (numHits > 0 || i != 0) output("\n");
 						if (SingleMeleeAttackImpl(attacker, others[i], false)) numHits++;
 					}
 				}
