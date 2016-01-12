@@ -107,12 +107,10 @@ public function kirosShipQuarters():void
 
 public function kirosShipPistol():void
 {
-	clearOutput();
 	var pistol:CustomLP17 = new CustomLP17();
 	lootScreen = kirosShipPistolCheck;
-
 	flags["RESCUE KIRO TOOK PISTOL"] = 1;
-	itemCollect([pistol], false);
+	itemCollect([pistol]);
 }
 public function kirosShipPistolCheck():void
 {
@@ -121,6 +119,10 @@ public function kirosShipPistolCheck():void
 		mainGameMenu();
 		return;
 	}
+	
+	clearOutput();
+	output("You put the custom pistol back where you found it.");
+	
 	flags["RESCUE KIRO TOOK PISTOL"] = undefined;
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -128,12 +130,10 @@ public function kirosShipPistolCheck():void
 
 public function kirosShipCutlass():void
 {
-	clearOutput();
 	var cutlass:Cutlass = new Cutlass();
 	lootScreen = kirosShipCutlassCheck;
-	
 	flags["RESCUE KIRO TOOK CUTLASS"] = 1;
-	itemCollect([cutlass], false);
+	itemCollect([cutlass]);
 }
 public function kirosShipCutlassCheck():void
 {
@@ -142,6 +142,10 @@ public function kirosShipCutlassCheck():void
 		mainGameMenu();
 		return;
 	}
+	
+	clearOutput();
+	output("You put the cutlass back where you found it.");
+	
 	flags["RESCUE KIRO TOOK CUTLASS"] = undefined;
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
