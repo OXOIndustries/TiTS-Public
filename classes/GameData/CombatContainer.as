@@ -348,7 +348,7 @@ package classes.GameData
 				if (target.statusEffectv2("Aphro") == 0)
 				{
 					if (target is PlayerCharacter) output("\n\n<b>The aphrodisiac in your bloodstream has faded!</b>");
-					else output("\n<b>The aphrodisiac in " + target.capitalA + possessive(target.uniqueName) + " bloodstream has faded!</b>");
+					else output("\n\n<b>The aphrodisiac in " + target.capitalA + possessive(target.uniqueName) + " bloodstream has faded!</b>");
 					target.removeStatusEffect("Aphro");
 				}
 				else
@@ -371,7 +371,7 @@ package classes.GameData
 				else
 				{
 					if (target is PlayerCharacter) output("\n\n<b>The cloud of aphrodisiac continues to excite your body!</b>");
-					else output("<b>The cloud of aphrodisiac continues to linger around " + target.a + target.uniqueName + "!</b>");
+					else output("\n\n<b>The cloud of aphrodisiac continues to linger around " + target.a + target.uniqueName + "!</b>");
 					applyDamage(new TypeCollection( { drug: target.statusEffectv1("Aphro Gas") } ), null, target);
 				}
 			}
@@ -2456,7 +2456,7 @@ package classes.GameData
 				if (damage > 25 + attacker.level * 2) damage = 25 + attacker.level * 2;
 				
 				if(target.lust() + damage > target.lustMax()) damage = target.lustMax() - target.lust();
-			damage = Math.ceil(damage);
+				damage = Math.ceil(damage);
 			
 				output("\n");
 				if(teaseType == "squirt") 
