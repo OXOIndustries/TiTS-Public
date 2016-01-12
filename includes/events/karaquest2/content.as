@@ -31,7 +31,12 @@ KQ2_KHANS_FILES			-- 0/undefined, nothing
 KQ2_NUKE_STARTED		-- undefined, nuke not active
 						-- otherwise, timestamp that the player activated the nuke at
 
+KQ2_SHADE_DEAD			-- 0/undefined, alive
+						-- 1 Kara killed her
 KQ2_FOUGHT_AMARA		-- 0/undefined, nope
+
+KQ2_BETRAYED_KARA		-- 0/undefined, nothing
+						-- 1, accepted credits from amara to dump kara
 
 
 SAVE IMPORT FLAGS
@@ -1797,7 +1802,7 @@ public function kq2CapturedByPiratesBadEndII():void
 	output("You awake to wind whipping against your [pc.face], and the roar of some mighty beast blasting into your ear. Your eyes blink open slowly, your vision blurred and reeling. Eveything’s fuzzy, but you immediately realize that you’re outside, high above the pirate compound. A glance tells you you’re on the roof, resting on your [pc.knees] next to a helipad. Your hands are tied behind your back, secured by a pair of nova-hot gravcuffs burning your [pc.skinFurScales]. Glancing to your side, you see the familiar ears and messy cobalt hair of your kaithrit companion, her head bowed low.");
 	
 	output("\n\nYou look up, and see the source of the deafening roar: a gunship sitting a few yards away, its engines blasting up a storm of sand and burning wind. The ship’s side doors stand open, giving you a look at several black-and-red clad men in armor, each with a machine pistol or shotgun at their sides. Between you and them, though, stands");
-	if (CombatManager.hasEnemyOfClass(Amara)) output(" the pirate lord who brought you down");
+	if (flags["KQ2_LOST_TO_AMARA"] != undefined) output(" the pirate lord who brought you down");
 	else output(" an ausar woman in black power armor, a head of bright orange hair whipping around her. A pirate lord of some kind, you imagine: this base’s commander");
 	output(". She glowers at you and your companion with bright green eyes, a pair of blue-painted lips twisting into a scowl.");
 	
@@ -1824,7 +1829,7 @@ public function kq2CapturedByPiratesBadEndII():void
 	output("\n\n<i>“As for you,”</i> the pirate woman says, grabbing your chin and forcing you to look her in the eye. She might actually be quite beautiful, you suddenly realize, were she not sheened in sweat and clad in ape-like armor. As it is, she looks like a hulking amazon, and terrifyingly angry. With your life on the line, you");
 	if (pc.isAss()) output(" look defiantly into her eyes. <i>“");
 	else output(" meekly meet her gaze. <i>“");
-	if (!CombatManager.hasEnemyOfClass(Amara)) output("You’re not on her crew - I read their dossier. Some merc, then? ");
+	if (flags["KQ2_LOST_TO_AMARA"] == undefined) output("You’re not on her crew - I read their dossier. Some merc, then? ");
 	output("I almost feel bad for you, getting duped into that whore’s suicide mission. Still, can’t have you wandering off, telling everyone what happened here. Or worse, trying to avenge your friend.”</i>");
 
 	output("\n\nShe releases your hand with contemptuous force, making you sway precariously as she turns away from you. <i>“Gunship, head on home. I’ve got to secure things here.”</i>");
@@ -1916,4 +1921,671 @@ public function kq2JuggernautPCVictoryII(takeWeapon:Boolean):void
 	output("\n\n<i>“Alright. Up to the roof we go, [pc.name].”</i>");
 
 	CombatManager.genericVictory();
+}
+
+public function kq2ShowAmara():void
+{
+	if (flags["KQ2_KARA_WITH_PC"] == 1) showBust("KARA", "AMARA");
+	else showBust("AMARA");
+
+	author("Savin")
+}
+
+public function kq2EncounterAmara():void
+{
+	clearOutput();
+	kq2ShowAmara();
+
+	output("You’re almost there! The helipad awaits you at the top of the stairs");
+	if (flags["KQ2_SHADE_ENCOUNTERED"] != undefined)
+	{
+		output(", past Shade’s");
+		if (flags["KQ2_SHADE_DEAD"] == 1) output(" smouldering corpse")
+		else if (9999 == 0) output(" aborted ambush"); // Fucked Shade- you don't fight her so
+		else output(" failed ambush");
+	}
+	output(". Several small shuttles are parked along the edge of the roof, making way for a single huge gunship bristling with weapons and armored plates. Its engines are roaring, sending hot air blasting back against your face.");
+	
+	output("\n\nSeveral pirates in heavy armor are standing beside the open door of the gunship, their weapons trained at you. The moment you’re in sight, a half dozen red lasers flicker onto your chest, dancing over you with silent menace.");
+	
+	output("\n\n<i>“You got past");
+	if (flags["KQ2_SHADE_ENCOUNTERED"] != undefined) output(" Shade. Twice,");
+	else output(" a whole lot of pirates to get here,");
+	output("”</i> a voice echoes across the landing pad, amplified as if through a megaphone. The gunship shifts, rocking from side to side until a single humanoid figure comes into sight, wearing armor that makes even the Juggernaut you fought before look skimpy by comparison - an ape-like suit of powered armor heavy enough to rock the boat as its owner steps off. <i>“Impressive. I’d be offering you a job if I didn’t owe you an ass-kicking for it,”</i> the warrior says, flicking up the suit’s faceplate.");
+	
+	output("\n\nBeneath the armor is an ausar woman whose fiery orange ears poke out the moment her helmet lifts. Her blue-painted lips twist into a scowl as she tucks her helm under an arm, and hefts her massive chaingun with the other.");
+	
+	output("\n\n<i>“Shit,”</i> Kara whispers. <i>“Amara Faell. She’s one of the biggest bads in the Void... but not the one I was expecting. Watch out.”</i>");
+	
+	output("\n\nShe strides forward, eyeing you and Kara. <i>“So. You shot your ways through my entire compound, you broke into a datavault guarded by the most insufferable kui-tan I’ve ever met, and my first mate’s vitals are flatlining. You, I understand being here,”</i> she says, pointing to Kara. <i>“Bragga’s got a murder-boner on for you I can see from here.”</i>");
+	
+	output("\n\nTurning to you, she continues. <i>“But you... who the </i>fuck<i> are you? You’re not on Volke’s crew, and you’re not on any of our bounty lists. You don’t strike me as just some hired gun the kitten here rolled out of a gutter. So what the hell are you doing here, kid?”</i>");
+
+	//[Money] [Help Kara] [Fuck Pirates] [Stay Silent]
+	clearMenu();
+	addButton(0, "Money", kq2EncounterAmaraMoney, undefined, "For The Money", "Say that you're here for the money. Like she said, just a hired gun.");
+	addButton(1, "HelpKara", kq2EncounterAmaraKara, undefined, "For Kara", "Say that you came here to help a friend.");
+	addButton(2, "FuckPirates", kq2EncounterAmaraFuckPirates, undefined, "Fuck Pirates", "You're just here to fuck up some pirates!");
+	addButton(3, "Silence", kq2EncounterAmaraSilent, undefined, "Stay Silent", "");
+}
+
+public function kq2EncounterAmaraMoney():void
+{
+	clearOutput();
+	showKara();
+
+	//+Hardness
+	pc.addAss(5);
+
+	output("<i>“Hey, I’m just here for the money,”</i> you shrug.");
+
+	output("\n\nThe pirate leader laughs at that, throwing her head back. <i>“Fuck. You would be, wouldn’t you?");
+	if (flags["KQ2_SHADE_DEAD"] != undefined)
+	{
+		output("”</i>");
+		//[Fight]
+
+		clearMenu();
+		addButton(0, "Fight!", kq2FightAmara);
+	}
+	else
+	{
+		output(" Tell you what, kid, I’ll double whatever the kitten’s paying you to step aside. One of the other Dread Lords wants her head, but there’s no reason for you to get fucked, too.”</i>");
+
+		output("\n\n<i>“[pc.name]...”</i> Kara says, eyeing you. <i>“Come on. We’re almost out of here... we can take her.”</i>");
+
+		clearMenu();
+		addButton(0, "Betray", kq2AmaraBetrayKara, undefined, "Betray Kara", "Fuck it. Money's money. Accept the pirate's offer and turn on your partner.");
+		addButton(1, "Refuse", kq2AmaraRefuseOffer, undefined, "Refuse", "Money or no, you've got honor. Stay with Kara, and fight the pirates.")
+	}
+}
+
+public function kq2AmaraBetrayKara():void
+{
+	clearOutput();
+	kq2ShowAmara();
+
+	pc.credits += 60000;
+	pc.addAss(20);
+
+	output("<i>“Sorry, Kara,”</i> you say, taking a big step away from her and swinging your [pc.mainWeapon] from the ausar to the kaithrit.");
+	
+	output("\n\n<i>“Good choice,”</i> the pirate leader answers, motioning to her minions. Kara curses and throws her weapon down, now that a dozen target lasers are trained on her. The pirate soldiers rush forward, tackling Kara to the deck and tying her up. After a minute, they’ve got her handcuffed and gagged, and drag her onto the gunship. She glowers at you, spitting curses through the gag until the ship’s doors close behind her.");
+	
+	output("\n\nThe pirate leader, Amara, scoffs and shakes her head. <i>“Stupid bitch. That’s what you get for crossing the Void and washing up on our doorstep. What the hell did she think she was gonna find here. Hmpf. You on the other hand... bad ass enough to get through the base, smart enough to not get yourself killed.”</i>");
+
+	output("\n\nAs Kara’s dragged away, you haggle out your price from the pirate. When you check your Codex, you find your account 60,000 credits richer.");
+	if (flags["KQ2_CREDS_FIRST"] != undefined) output(" Hell of a deal, considering Kara gave you a chunk ahead of time.");
+	output(" True to her word, Amara gives you a shuttle back to the D.M.Z., programming it to take you there and come back empty.");
+
+	output("\n\nYou pocket your Codex and admit, you’re surprised they’re letting this go so easily.");
+
+	output("\n\nAmara shrugs");
+	if (flags["KQ2_NUKE_STARTED"] != undefined) output(", as she sends some of her goons down to deactivate the self-destruct");
+	output(". <i>“Like I said, you seem like a badass, and I didn’t come back dirt-side for a fight. Just to catch the kitten there for Lord Bragga. No reward for fighting you, except personal satisfaction. And Watson says you gave Khan a swift kick in the nuts, so what the hell. That earns you enough credit with me to get out of here. So go on. Just keep your mouth shut, or you’re dead. Though that goes without saying.”</i>");
+
+	output("\n\nYou guess you can’t argue with that. You give the gunship one last look before hopping into one of the smaller shuttles and letting it take you back the D.M.Z., much richer for your efforts. From there’s it’s one short hitchhike back to the smuggler’s base and your own ship.");
+
+	output("\n\nYou relax in your captain’s chair a little later, wondering what you could buy with all this money...");
+
+	//Return PC to ship.
+	flags["KQ2_BETRAYED_KARA"] = 1;
+	currentLocation = "SHIP INTERIOR";
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function kq2AmaraRefuseOffer():void
+{
+	clearOutput();
+	kq2ShowAmara();
+
+	output("<i>“I don’t think so,”</i> you say, keeping your [pc.weapon] trained on the pirate.");
+	
+	output("\n\nThe pirate scoffs, hefting up her chaingun. <i>“Suit yourself, kid. Your funeral.”</i>");
+
+	// [Fight]
+	clearMenu();
+	addButton(0, "Fight!", kq2FightAmara);
+}
+
+public function kq2EncounterAmaraKara():void
+{
+	clearOutput();
+	kq2ShowAmara();
+
+	pc.addNice(5);
+
+	flags["KQ2_CAME_TO_HELP_KARA"] = 1;
+
+	output("<i>“I’m just here to help a friend,”</i> you answer, giving a slight nod to Kara. She smiles, her twin tails curling behind her");
+	if (pc.kaithritScore() >= 3 || (pc.tailCount >= 1 && pc.tailType == GLOBAL.TYPE_FELINE)) output(" in a way your feline senses tell you means approval, and thanks");
+	output(".");
+	
+	output("\n\n<i>“Huh,”</i> the pirate snorts, hefting her chaingun. <i>“I didn’t take you for a White Knight. Then again, I guess the damsel in distress routine is damn hard to resist, isn’t it? Well, I hope it was worth it, kid. She must be a dame to kill for.”</i>");
+	
+	output("\n\n<i>“We’ve got this, [pc.name],”</i> Kara says, standing a bit closer beside you as you get ready to throw down.");
+
+	// [Fight]
+	clearMenu();
+	addButton(0, "Fight!", kq2FightAmara);
+}
+
+public function kq2EncounterAmaraFuckPirates():void
+{
+	clearOutput();
+	kq2ShowAmara();
+
+	pc.addMischievous(5);
+
+	flags["KQ2_CAME_TO_FUCK_UP_PIRATES"] = 1;
+
+	output("<i>“I’m just here");
+	if (pc.isMischeivious()) output(" to kick ass and chew bubblegum. And I’m all out of gum");
+	else output(" to fuck up some pirates");
+	output(".”</i>");
+
+	output("\n\nThe pirate leader laughs derisively, hefting her chaingun up. The soldiers behind her spread out, ready to fire.");
+
+	output("\n\nTime to finish this!");
+
+	clearMenu();
+	addButton(0, "Fight!", kq2FightAmara);
+}
+
+public function kq2EncounterAmaraSilent():void
+{
+	clearOutput();
+	kq2ShowAmara();
+
+	output("After a moment of silence, the pirate leader scowls and hefts her chaingun up. <i>“The strong, silent type, huh? Well, let’s see if you can scream!”</i>");
+
+	clearMenu();
+	addButton(0, "Fight!", kq2FightAmara);
+}
+
+public function kq2FightAmara():void
+{
+	var h:Array = [new KQ2Amara(), new KQ2BlackVoidGrunt(), new KQ2BlackVoidGrunt(), new KQ2BlackVoidGrunt()];
+
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters([pc, kara]);
+	CombatManager.setHostileCharacters(h);
+	CombatManager.victoryCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, h[0]);
+	CombatManager.victoryScene(kq2AmaraPCVictory);
+	CombatManager.lossScene(kq2AmaraPCDefeat);
+	CombatManager.beginCombat();
+}
+
+public function kq2AmaraPCVictory():void
+{
+	clearOutput();
+	kq2ShowAmara();
+
+	output("<i>“Shit,”</i> Amara grunts, rubbing a trickle of blood from her blue lip. <i>“You’re good... I’ll give you that. But you gotta know there’s an army of Void soldiers gonna come down on your heads even if you manage to kill me. And I’m not done yet...”</i>");
+	
+	output("\n\n<i>“Yeah. You are,”</i> Kara growls, leveling her gun at the pirate’s chest and firing. The bolt of plasma bursts across the hardened armor, sizzling and burning. She squeezes the trigger again, and again, sending shots of plasma exploding over Amara’s suit in a string of concussive booms. The pirate lord stumbles back under the assault, back and back until she’s teetering on the edge of the roof.");
+	
+	output("\n\nAmara manages to lock eyes with Kara, growling <i>“You’re a dead woman, either way,”</i> before Kara pulls the trigger. With an echoing boom, another blast of plasma washes over the pirate lord, and she tumbles off the ledge and out of sight amidst a shimmering green mist.");
+	
+	output("\n\nThe remaining pirates look between you, Kara, and the space where their leader stood a moment ago and turn tail... right into the open doors of the gunship.");
+	
+	output("\n\n<i>“Oh, shit,”</i> Kara groans, turning back to you. <i>“We gotta go. Now!”</i>");
+	
+	output("\n\nYou nod and run to the nearest of the small shuttles, popping the door and leaping in. Kara takes the pilot’s seat, making quick work of hotwiring it as the gunship behind you slowly rises up off the landing pad. You can hear the weapons charging, the distinctive whine of lasers powering up and chainguns whirring. Slowly but surely, the gunship turns to face you - just as Kara gets the shuttle off the ground. It lurches forward just as the gunship fires, lasers and bullets slamming into the pad where you’d been sitting moments ago.");
+
+	output("\n\n<i>“");
+	if (kara.isNice()) output("Hold on tight, [pc.name]!");
+	else if (kara.isMischeivious()) output("Buckle up!");
+	else output("Fuck it, we’re out of here!");
+	output("”</i> Kara shouts, punching the accelerator and launching the shuttle up into the air, and away from the pirate compound.");
+
+	output("\n\nAt the apex of your rise, Kara angles the shuttle back down towards the plateau you first landed on, diving down into the canyons and trenches with the gunship hard on your tail. You grab the dashboard as lasers impact your navigation shields, making it feel like an earthquake’s rattling through the deck.");
+
+	output("\n\n<i>“Shiiiit!”</i> Kara yells, grabbing her comms. <i>“Logan! We’re in the shit - pull us out!”</i>");
+
+	output("\n\nYou hear a beep come back over the commlink, just before everything’s drowned out by the roar of one of your engines exploding. You’re thrown forward by the impact, and the sudden rush of gravity as the shuttlecraft nose-dives towards the earth. You watch with wide eyes as the barren, red earth of Myrellion rushes up towards the viewscreen!");
+
+	output("\n\nSomething hits the back of the shuttle again. Hard. A second before you hit the ground, your stomach lurches, and you’re hit with what feels like ten G’s as the shuttle suddenly jerks backward, hurling itself into the air like it had hit an invisible trampoline! You hear a volley of heavy weapons fire overhead, followed by Kara’s comms blaring with Logan’s voice. <i>“Gotcha!”</i>");
+
+	output("\n\nThe shuttle flies backwards over a huge orange fireball, debris rattling your hull: the remnants of the pirate gunship, going down in a fiery blaze. The modded-out pilot gives a roaring cheer over the radio, and you find yourself letting out a long breath and slumping back in your seat.");
+
+	output("\n\nLooks like you’re home free.");
+	if (flags["KQ2_NUKE_STARTED"] != undefined) output(" And just in time: you cover your eyes as a nuke goes off in the caldera, a flash of light followed by a shockwave that makes your teeth ache. Luckily, the re-activated shields protect you from harm.");
+
+	// This should work, because we know we're not gonna be looting anything...
+	CombatManager.genericVictory();
+
+	clearMenu();
+	addButton(0, "Next", kq2AmaraPCVictoryII);
+}
+
+public function kq2AmaraPCVictoryII():void
+{
+	clearOutput();
+	showKara();
+
+	var creditAmount:int;
+	if (flags["KQ2_CREDS_FIRST"] == 1) creditAmount = 15000;
+	else creditAmount = 30000;
+	
+	output("An hour later, you ditch the shuttle next to a parked <i>Ghost</i>.");
+	if (flags["SILENCE_RESCUED_CONNIE"] != undefined)
+	{
+		output(" Connie is waiting for you next to a lowering cargo ramp, allowing you and your companion aboard");
+	}
+	else
+	{
+		output(" Kara beeps a key fob on her belt, and the cargo ramp comes down a moment later, allowing you and your companion to embark");
+	}
+	output(". After that, it’s a relatively quick and blessedly peaceful trip out of orbit and back to the smuggler’s base. Back to where you started your adventure.");
+	
+	output("\n\nKara gets out with a heavy sigh as you dock, folding her rifle back into itself and packing her gear away in its case. Her movements are slow, lethargic. Tired.");
+	
+	output("\n\n<i>“What a waste,”</i> she groans, rubbing her temples. <i>“All of that for nothing. That bastard A.I. had our number from the start.”</i>");
+	
+	output("\n\nYou put a hand on Kara’s shoulder, and she forces a slight smile for you. <i>“That tech they were working on is terrifying.");
+	if (kara.isNice()) output(" Putting a stop to it... that’s even more important that the price they’ve got on my head, now.");
+	else if (kara.isMischeivious()) output(" One more reason to fuck the bastards over, though.");
+	else output(" I’m going to put a stop to them. One way or another.");
+	output("”</i>")
+	
+	output("\n\n<i>“Anyway. I think I owe you a reward,”</i> she says with a weary smile, stepping up to you and pulling a credit chit out of her cleavage. <i>“" + creditAmount +" credits, as we agreed on.”</i>");
+	pc.credits += creditAmount;
+	
+	output("\n\nYou swipe the chit through your Codex. It’s all there, just like she promised. You set the tablet aside and give Kara an approving nod, walking with her from the bridge down to the airlock. You’re alone for the moment, save for the <i>Ghost</i>’s captain.");
+	
+	output("\n\n<i>“So,”</i> Kara says after a moment, just as you were turning to leave. She’s leaning against the bulkhead beside the airlock, one leg over the other, tails swishing slowly behind her - playfully, inviting. <i>“I don’t really have anywhere to be for a couple of hours.");
+	if (kara.isNice()) output(" The data can wait, if you’d like to... you know. Stay for a while.");
+	else if (kara.isMischeivious()) output(" I don’t know about you, but the whole harrowing adventure and balls-to-the-walls danger thing really gets me in the mood. Heh. So, what do you say, [pc.name]? Think you can handle a little overtime?");
+	else output(" And you know the old saying: best thing after a good fight is a good fuck, right? So how about it?");
+	output("”</i>");
+	
+	output("\n\nShe gives you a wink, but the kaithrit’s stance - the heavy breaths, the wiggling tails, the thrust-out chest - all tell you she’s dead serious.");
+
+	//[Fuck Kara]
+	//Take Kara up on her offer, and take her to bed.
+	clearMenu();
+	addButton(0, "Fuck Kara", kq2KaraSexytimes, undefined, "Fuck Kara", "Take Kara up on her offer, and take her to bed."); //Go to Kara Sex Intro
+	addButton(1, "No Thanks", kq2KaraNoSexPls, undefined, "No Thanks", "Turn Kara down on the sex.")
+}
+
+public function kq2KaraNoSexPls():void
+{
+	clearOutput();
+	showKara();
+
+	output("\n\nYou gently let Kara down on that idea, but she takes it in stride. <i>“Yeah. Sure. No problem,”</i> she laughs, rubbing the back of her neck. <i>“Anyway, I should head out. Find a bar somewhere. Could use a drink to calm down, if nothing else. See you around, [pc.name].”</i>");
+
+	output("\n\nShe gives you a surprisingly firm handshake before she cycles the airlock and lets you leave, waving farewell as you depart.");
+
+	flags["KQ2_KARA_WITH_PC"] = undefined;
+
+	currentLocation = "SHIP INTERIOR";
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function kq2AmaraPCDefeat():void
+{
+	flags["KQ2_LOST_TO_AMARA"] = 1;
+	// PC didn't say they didn't trust Kara
+	if ((flags["KQ2_CREDS_FIRST"] == undefined && flags["KQ2_SEX_PAY"] == undefined) || flags["KQ2_CAME_TO_HELP_KARA"] != undefined)
+	{
+		kq2AmaraSpecialEnd();
+	}
+	else
+	{
+		kq2CapturedByPiratesBadEnd();
+	}
+}
+
+public function kq2AmaraSpecialEnd():void
+{
+	clearOutput();
+	kq2ShowAmara();
+
+	output("The pirates are just too much for you. Their leader, Amara, fights like a tank, and packs more firepower than all her goons combined. Kara grunts beside you, collapsed on the deck and  clutching her belly. Blood runs out between her fingers, drooling in thick rivulets to splatter on the concrete.");
+	
+	output("\n\nThe pirate lord hefts her chaingun up onto her shoulder and strides toward you, a great big grin on her blue-painted lips. <i>“Well. Bragga’s gonna be </i>pissed<i> I kicked your shit in for her, kitten,”</i> she laughs, grabbing Kara by the collar and heaving her up off the ground.");
+	if (flags["KQ2_SHADE_DEAD"] != undefined) output(" <i>“Then again, after what you did to Shade, maybe I should just kill you myself, huh?");
+	else output(" <i>“I wonder what she’s gonna do to you... nothing pretty, I’m sure.");
+	output("”</i>");
+	
+	output("\n\n<i>“Fuck you,”</i> Kara grunts, locking eyes with the pirate lord.");
+	
+	output("\n\nAmara only laughs at the kaithrit’s resilience and turns to you. <i>“Take [pc.himHer] down to Khan. Tell the doctor to prep a collar. Might as well put the little ass-kicker to good use.”</i>");
+	
+	output("\n\n<i>“Aye, captain,”</i> a few of the goons grunt in unison, grabbing your arms and hefting you up. You look over your shoulder, groaning weakly as you’re dragged away from Kara.");
+	
+	output("\n\nSuddenly, you hear a shrill beeping sound from behind you. The guards stop, looking back just in time to see Kara grinning like a maniac, a small silver orb in her hand.");
+	
+	output("\n\nShe screams <i>“Run, [pc.name]!”</i> and smashes the orb into Amara’s unexpecting face. You’re thrown down by a concussive blast wave and a rush of heat");
+	if (!pc.isBald()) output(" that scorches your hair");
+	output(", leaving you flat on your face. Your ears ring painfully, making it a force of effort to stagger up. The guards lie on the ground - looks like they took the brunt of the blast. There’s nothing where Kara and Amara had been. Nothing but a scorch mark on the ground and bits of burning debris.");
+	
+	output("\n\nYou scramble up and make a break for it while the pirates are still down, and well away from their gunship. The door of the nearest shuttle pops open when you run up to it, and you find the keys waiting for you in the ignition; you try to turn them, but find your hands shaking, covered with dirt and grime and bits of... oh <i>god</i>.");
+	
+	output("\n\nYou manage to get the engine started and punch it back towards... something. The DMZ! Civilization! Nothing follows you, nothing tries to stop you. You’re not sure there’s anything, or any<i>one</i> left to.");
+	if (flags["KQ2_NUKE_STARTED"] != undefined) output(" Especially after the nuke goes off, flashing in the distance in your rear mirror.");
+	
+	output("\n\nThe trip back to the DMZ is quiet. You try not to think, just letting your body go on autopilot as you cruise back to the familiar strip of tarmac in the desert wastes. It’s not hard to find a spacer to hitch-hike with back to the smuggler’s base, though in your state, you get more than few odd glances until you do.");
+	
+	output("\n\nA few hours later, you’re aboard your ship, finally letting yourself relax as the airlock cycles behind you.");
+	if (annoIsCrew() && reahaIsCrew()) output(" Anno and Reaha both come");
+	else if (annoIsCrew() && !reahaIsCrew()) output(" Anno comes");
+	else if (!annoIsCrew() && reahaIsCrew()) output(" Reaha comes");
+	if (annoIsCrew() || reahaIsCrew()) output(" to ask how it went and where the other ship is. You don’t have anything to say, but that silence speaks volumes.");
+	output("...");
+	
+	//Return PC to ship. No reward, no harem, no nothing. Dump all Lust built up.
+	pc.lustRaw = 0;
+	flags["KQ2_KARA_SACRIFICE"] = 1;
+	currentLocation = "SHIP INTERIOR";
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function kq2KaraSexytimes():void
+{
+	clearOutput();
+	showKara();
+
+	output("Kara’s offering, and you’ve had your eyes on this pretty kitty since the moment you laid eyes on her. There’s no more fitting reward for all your selfless help than to take her up on her offer, and see what this sly cat’s got under that sleek suit of hers. You can’t wait.");
+	
+	output("\n\nKara smiles as you accept her offer, reaching over to take your hand. <i>“I was hoping you’d say that. Why don’t we head back to my quarters...”</i>");
+	
+	output("\n\nShe gives you a pull down the corridor, and a moment later, the two of you are stumbling through the hatch to the captain’s quarters.");
+	if (pc.tallness >= 60 || pc.isTaur()) output(" Kara’s lept up into your arms, her legs wrapped around your [pc.hips] and lips exploring every inch of your [pc.face]. Your hands sink into her ass, groping at a lush, perfect behind just barely held back by the tight near-latex of her catsuit. You can feel her stiffening kitty-cock pressing against your belly.");
+	else output(" Kara’s picked you up, slamming your back into her door while she fumbles for the controls. You distract her with kisses, groping her her tits through her skin-tight suit, sinking your fingers into those big, bouncy mounds until your lover’s moaning, tails wiggling uncontrollably behind her. Finally, she gets the hatch open, and the two of you stagger in.");
+
+	output("\n\nYou have just enough time to blink before your back is slamming down on a feather-soft bed surrounded by sterile grey walls and discarded clothing. Your [pc.gear] is all gone, torn aside by the lusty kaithrit’s eager claws. Kara straddles you, diving down to lick from your [pc.belly] to your [pc.breast], ending with her lips around your [pc.nipple]");
+	if (pc.isLactating()) output(", sucking just hard enough to draw a little trickle of [pc.milk]");
+	else output(" and circling it with her tongue");
+	output(". She comes up with a husky sigh, grabbing the zipper on the neck of her catsuit and pulling it down, tantalizingly slow.");
+
+	output("\n\nYou can’t wait until the cat-girl finishes her show, and lean up to grab the zipper’s tab between your teeth, pulling down down in one rough yank that frees her breasts from the suit’s tight embrace. They’re even more gorgeous than you’d hope, two perfectly sculpted mounds of feline flesh, each tipped with a pale pink teat that’s been pierced by a little silver bar. From where you are already, it’s impossible not to dig your face in between them, nuzzling into Kara’s supple cleavage. She giggles and moans, wrapping her arms around you and letting her eyes sink closed.");
+
+	output("\n\nWhile you’re busy enjoying her rack, Kara peels her suit off her shoulders, down around her waist. Your hands are already firmly planted on the kitty’s tush, and after one last moan-inducing squeeze, you reach up to grab the latex scrunched up around her flared hips. You peel it down, freeing her pert behind... and letting a hot, heavy rod of meat flop onto your belly, followed by a pear a meaty weights that brush against your");
+	if (pc.hasCock()) output(" own cock");
+	else output(" groin");
+	output(".");
+
+	if (pc.isMischeivious()) output("\n\nSomebody’s happy to see you!");
+	else if (pc.hasCock()) output("\n\nLooks like you’re not the only one thinking about getting your dick wet...");
+
+	output("\n\nKara gives a wiggle of her hips, letting you pull her suit off of her long legs, leaving her just as bare as you are. One of her hands reaches down, caressing her cock in one, and keeping your face pinned between her breasts with the other.");
+	if (pc.hasCock()) output(" She hesitates for a moment after that, though: a silent offer to let you decide who’s fucking who...");
+
+	clearMenu();
+	if (!pc.hasCock())
+	{
+		addButton(0, "Next", kq2KaraTakeKittydick);
+	}
+	else
+	{
+		addButton(1, "TakeDick", kq2KaraTakeKittydick, undefined, "Take Her Dick", "[PLACEHOLDER]");
+		addButton(1, "FuckHer", kq2KaraFuckKittysKitty, undefined, "Fuck Kara", "Fuck Pussy's Pussy!");
+	}
+}
+
+public function kq2KaraTakeKittydick():void
+{
+	clearOutput();
+	showKara();
+
+	output("Every little motion of your love causes her lengthy cat-cock to rub against your [pc.belly], letting you feel the ring of feline nubs circling her slender cockhead. The thought of them inside you, stirring up your insides, is enough to make");
+	if (!pc.hasVagina()) output(" your ass yearn for her touch");
+	else output(" your [pc.cunt] drool in anticipation");
+	output(". Your hands play down your lover’s body, from her flared hips to her firm ass and around to the meaty handfuls hanging between her legs. Kara gasps, arching her back as you roll her balls between your fingers, gently squeezing and massaging them. You can feel the fullness in the warm, fleshy orbs; the way they churn with cum, so full you can almost feel her balls sloshing as you cup them. Kara pulls you deeper into the soft embrace of her hefty cleavage, purring softly into your [pc.ear] as you play with her nads.");
+	
+	output("\n\nTrapped between your two bodies, her cock throbs to the beat of your lover’s racing heart, smearing your [pc.belly] with a musky dose of her excitement.");
+	if (pc.hasTailCock()) output(" Responding with its own growing arousal, your [pc.cockTail] slithers around your [pc.leg], slipping up towards Kara’s defenseless rear. She gasps, eyes going wide as you feel your cock-tipped tail slip into something warm and wet. Doesn’t look like Kara minds, though, and after a moment to recover, she wiggles her hips and starts to move.");
+	output(" Giving you a husky purr, your lover laces her hands around your shoulders and gives you a push down.");
+	
+	output("\n\nSuddenly freed from her boobalicious embrace, you’re left flat on your back as the amorous cat-girl crawls back, her slitted eyes drawing down to your [pc.vagOrAss]. <i>“You helped me out so much,”</i> she murmurs, tracing a finger along your bare thigh, slipping her hand towards your hole. <i>“Now it’s my turn.");
+	if (kara.isNice()) output(" I want to make this a night for you to remember.");
+	else if (kara.isMischeivious()) output(" Just lie back and let me show you my gratitude...");
+	else output(" I’m gonna make this [pc.vagOrAss] mine!");
+	output("”</i>");
+	
+	output("\n\nKara punctuates her declaration by hooking her hands under your [pc.butt] and lifting up, folding you in on yourself until your ass is in the air and");
+	if (pc.isBiped()) output(" your knees are near your ears");
+	else output(" your [pc.legs] are out of the way");
+	output(", leaving your [pc.vagOrAss] presented for Kara’s inspection. She licks her lips and dives in without a second thought, running her soft tongue across your hole with unabashed eagerness. You gasp, body clenching at the sudden touch, but another two or three hungry licks have you moaning and digging your fingers into the sheets.");
+	if (pc.hasVagina()) output(" Not surprisingly, this pussy-cat knows how to eat pussy!");
+	output(" Kara’s tongue circles your hole, teasing, never quite touching your entrance for what feels like tantalizing minutes.");
+	if (pc.hasTailCock()) output(" Between her mouth and the feeling of her pussy clenching around your thrusting tail, she has you on edge before you can blink!");
+	output(" She teases you until you can’t take it anymore, waiting until the last strands of your nerve threaten to snap before she finally hooks her thumbs in and spreads you wide, revealing the dark passage before her. She looks up, gives you a wink, and thrusts her tongue in.");
+
+	output("\n\nYou gasp with pleasure, feeling her tongue slurp around your inner walls. Reacting on instinct, your body clamps down on the invading muscle, trying to push her back. All you manage to do is wrap yourself around her tongue, making sure she’s able to tease every inch of your [pc.vagOrAss]. Kara’s hands sink into your [pc.butt], groping at your backside while she slathers your hole as deep as she can reach.");
+	if (pc.hasTailCock()) output(" As she does, your [pc.tailCock] squirms inside Kara’s own little hole, pumping deep into her pussy. With every thrust, you can feel her cock throbbing against your [pc.butt], starting to drool with pre. You’re not sure how long Kara can hang on!");
+	else if (pc.hasTailCunt()) output(" Your pussy-lipped tail squirms underneath the orally-fixated cat-girl, driven mad by the half-hard kitty-cock she’s ignoring between her legs. Kara’s eyes go wide for a moment as your cunt-tail slurps up her cock, giving Kara a taste of the pleasure you’re getting.");
+
+	output("\n\nShe keeps licking and tongue-thrusting until you’re almost on the edge, panting and moaning and clawing at her sheets.");
+	if (pc.hasTailCock() || pc.hasTailCunt())
+	{
+		output(" You can’t feel bad for cumming, though, with Kara so close behind you. She gasps, cock pushing hard against your raised behind, and starting to spasm. You have just a moment of warning before your lover’s body tenses, and then her cock erupts");
+		if (!pc.hasTailCunt()) output(" all over you");
+		else output(" deep into your tail-pussy’s slit");
+		output(", moaning quietly and bucking her hips... and never stopping her oral assault.");
+	}
+	output(" Your [pc.vagOrAss] squeezes around Kara’s thrusting tongue, helpless but to succumb to her magnificent skill. You cum, hard, screaming with pleasure as Kara’s tongue pushes you over the edge");
+	if (pc.hasTailCock()) output(" and your tail fills her twat with cream");
+	output(".");
+
+	output("\n\nIn your orgasmic high, you barely notice Kara pulling out, licking her slick lips like she’s savoring your taste. Before you can catch your breath, the buxom cat lunges forward,");
+	if (pc.hasTailCunt()) output(" dragging her cock free of your tail-cunt and");
+	output(" grabbing your [pc.legs]. She spreads you out, throwing your");
+	if (pc.isBiped()) output(" legs");
+	else output(" lower body");
+	output(" over her shoulders and aligning her glistening cat-cock with your [pc.vagOrAss]. She plunges in without a second thought, using the glaze of spittle");
+	if (pc.hasVagina()) output(" and pussyjuice");
+	output(" she left behind in your hole to ease her entry. The sudden penetration, so close on the heels of your climax, leaves you reeling. You moan, all but insensate to anything but the feeling of Kara’s nub-ringed cock spreading you open.");
+
+	output("\n\n<i>“So good,”</i> Kara purrs, leaning in deep to give you a sloppy kiss, letting you taste yourself still on her lips.");
+
+	var looseness:Number;
+	if (pc.hasVagina()) looseness = pc.tightestVaginalTightness();
+	else looseness = pc.ass.looseness();
+
+	if (looseness <= 1) output(" <i>“You’re so tight! I’m not your first, am I?”</i>");
+	else if (looseness < 4) output(" Mmm, you’re a perfect fit for my cock, [pc.name]. Makes me wish we’d done this sooner...”</i>");
+	else output(" Nice and loose! Just means I can fuck you harder!”</i>");
+	output(" your lover teases.");
+	pc.cuntChange(0, kara.biggestCockVolume(), true, true, false);
+
+	output("\n\nYou manage to get your arms around Kara, groping blindly at her pert ass and hips as she starts to thrust. Her bumpy ridges sliding across your inner walls feels as incredible as you imagined and more, dragging across your sex-crazed flesh with steadily increasing speed.");
+	if (pc.hasCock()) output(" Your own [pc.cock] throbs against Kara’s belly, half-hard again and smearing itself with the creamy remnants of your first orgasm.");
+	output(" You and your lover press tight against each other,");
+	if (pc.biggestTitSize() >= 1) output(" your breasts squeezing together in a pillowy embrace");
+	else output(" her chest pressing softly against your [pc.chest]");
+	output(".");
+
+	output("\n\nWith your arms around your lover, holding her tight with her hips pound away at you, you find yourself drawn into Kara’s loving embrace. You kiss her back, passionately, letting your [pc.tongue] explore the lusty cat’s mouth. She accepts your advances eagerly, returning every advance with one of her own until your tongues are entwined in passion. Your heart’s racing, body trembling at Kara’s touch, building back up towards another crescendo.");
+
+	output("\n\nYou’re not taking that lying down, though. Kara said tonight was all about you, and you want <i>more</i>. Your hands, wrapped around her waist, tighten and push, flipping your ardent lover onto her back this time, and leaving you straddling her. Kara smiles and locks her hands on your");
+	if (pc.biggestTitSize() >= 1) output(" breasts");
+	else output(" hips");
+	output(", giving you a playful squeeze as you take control. <i>“I’m all yours, [pc.name],”</i> she purrs, lying back and surrendering.");
+
+	output("\n\nNow that you’re on top, you start to take it slow, rising on your [pc.knees] and dragging Kara’s nub-ringed cock out to the crown");
+	if (pc.hasTailCock()) output(" while your tail-cock rams itself in to the hilt in her pussy, almost ready to give her another parasitic creampie");
+	output(". Your hands slide up Kara’s svelte, sweat-slickened body, running your thumbs across the pert, pierced pink promontories on her chest before reaching in to give her breasts more serious attention. As your hips slide down, your hands cup and squeeze her tits, playing with her piercings until your lover’s squirming into your grasp, trying not to moan like a queen cat in heat. Oh, she’s <i>sensitive</i>!");
+
+	output("\n\nBetween rocking your [pc.hips], you lean in to run your [pc.tongue] across one of Kara’s teats, stopping to suck on it. Your teeth wrap around the bars of her piercing, giving her a gentle tug on the one hand, while the other is twisted between your fingers. The sudden sensation is too much for her, and you instantly feel Kara’s cock react to your teasing, swelling up inside you. Her legs clench around your hips, pulling you down until your [pc.butt] is flush with her lap, and her kitty-prick’s buried to the hilt in your [pc.vagOrAss].");
+
+	output("\n\nA rush of wet, sticky heat fills your loins, bubbling up from Kara’s buried cock. Your lover moans, biting her lip and bucking her hips against your ass. Cum spurts into you, squirt after squirt as the catgirl climaxes. Feeling your");
+	if (pc.hasVagina()) output(" pussy");
+	else output(" ass");
+	output(" getting flooded is enough to push you over with her, as soon you’re screaming in pleasure again, voice muffled in the soft embrace of Kara’s breast. Her arms wrap tight around you, holding you close as your bodies undulate together in mind-numbing pleasure.")
+	if (pc.hasTailCock()) output(" Your tailcock erupts a moment later, filling your lover with a second helping of its cream and leaving her already-sodden box absolutely drenched with your tail-cum.");
+	if (pc.hasCock()) output(" Clenched between your grinding bodies, your [pc.cock] joins your [pc.vagOrAss] in orgasm. Cum slathers your [pc.belly], making a mess of you and Kara both - and acting as lube as the two of you move, faster and faster in the throes of pleasure.");
+
+	output("\n\nBy the time your orgasm subsides, you’ve left your lover a breathless, wet mess. Your head rests in the valley between her big, soft breasts until you feel a pair of hands reaching down to cup your cheeks, bringing you up and into a long, tongue-filled kiss. Kara moans happily, contentedly, and you can feel her tails raising around you.");
+	
+	output("\n\nWhen you break the kiss, you’re treated to a gorgeous smile from your lover. She nuzzles against you, brushing her short hair against your cheek in a sign of animalistic affection. <i>“Now I wish we’d done this sooner,”</i> she murmurs, reaching back to run a hand along your [pc.skinFurScales]. <i>“I guess we’ll just have to make up for lost time...”</i>");
+
+	clearMenu();
+	addButton(0, "Next", kq2PostKaraSexyCombine, true);
+}
+
+public function kq2KaraFuckKittysKitty():void
+{
+	clearOutput();
+	showKara();
+
+	output("You decide to take the initiative, grabbing Kara’s juicy hips and pulling her towards the tumescent shaft of your [pc.cock]. She gives a little gasp as your prick brushes up between her legs, finding a hot, wet gash hidden behind her churning sack. Kara smiles at you, rocking her hips back against your [pc.cockHead]. She gives you a rough push down onto the bed, putting your back on the sheets and her hands firmly planted on your [pc.chest].");
+	
+	output("\n\n<i>“");
+	if (kara.isMischeivious()) output("Want a little cat-girl pussy, [pc.name]?”</i>");
+	else output("Don’t lie... you’ve been looking forward to this since we first met,”</i>");
+	output(" Kara teases, licking her lips while your cockhead caresses her lower pair. She winks one of her slitted green eyes at you, and eases herself back. You both gasp, united in pleasure in that brief moment as your [pc.cock] slides into her, parting her velvet-soft folds and pressing into her tight, slick embrace.");
+	
+	output("\n\nYour lover makes a sated little moan as her plush behind comes to rest on your lap. <i>“Oh, yeah,”</i> she purrs, rocking her hips around your buried shaft. <i>“That’s the stuff!”</i>");
+	
+	output("\n\nSmiling, you lock your hands back on Kara’s hips, guiding her as she starts to move. She answers your control with a lascivious grin,");
+	if (pc.biggestTitSize() >= 1) output(" giving your tits a squeeze");
+	else output(" pinching your [pc.nipples]");
+	if (kara.isAss()) output(" - just enough to remind you who’s in charge");
+	output(". She moves a little faster after that, rising on your [pc.cock]’s length and bouncing down again. The bed squeaks loudly underneath you, rebounding with every thrust of your hips or drop of Kara’s.");
+	
+	output("\n\nAs she moves, you feel the hefty weight of her own masculine endowment bouncing on your [pc.belly], giving you a wet slap with every thrust. Deciding to give Kara a thrill, you reach down and wrap your hand around her nub-ringed kitty-cock. The moment your thumb brushes one of those nubs, Kara’s entire body goes rigid - especially that meaty cock of hers, throbbing so hard in your hand you’re afraid she’s going to nut just from a casual caress.");
+	
+	output("\n\nShe holds back, but you’re left with a curvy cockhead that’s beading with pre in your hands. Not wanting to end things too early, you move your hand down, teasing the base of her shaft and cupping her balls instead. That seems to be the right balance, and you quickly have Kara moaning like a queen cat in heat, clamping down around your [pc.cock]. With a big ol’ cock of her own, Kara clearly knows how to treat one! Her twat’s like a lubed-up sleeve, perfectly melding itself to you, putting pressure on all the right places, working her muscles down your length in waves. With each bounce, her breasts jiggle alluringly, and her lips twitch around your base");
+	if (pc.balls > 0) output(", drooling their slick excitement onto your [pc.balls]");
+	output(". You can’t help but reach up and grab her rack, squeezing until she’s purring.");
+
+	output("\n\n<i>“Mmm, this is nice and all,”</i> Kara murmurs, starting to slow down. She leans in, pressing her chest to yours");
+	if (pc.biggestTitSize() >= 1) output(" until your tits are mashed together, and her piercings rub up against your [pc.nipples]");
+	output(". <i>“But my heart is still racing from before.");
+	if (kara.isNice()) output(" Would you mind if we made this a little rougher?");
+	else if (kara.isMischeivious()) output(" How about you throw me on all fours and give it to me rough, lover?");
+	else output(" I need you to fuck me hard. Think you’re up for it?");
+	output("”</i>");
+	
+	output("\n\nYou answer with your body, flipping the kaithrit babe onto her back and rolling onto her, pinning her arms to the bed. She gasps, arching her back when you dive in to lick and such at her breasts. Gently, you pinch her pierced teats between your teeth, nibbling until she’s gasping with pleasure. Her cock leaps to attention, smacking your thigh with impotent need. No more playing with that - you’ve got this pussy’s needy pussy to deal with!");
+	
+	output("\n\nKara twists under you, sending a shock up your back of the strangest wringing sensation around your womb-deep [pc.cock]. Getting herself up on her knees, your lover braces her hands on the headboard and slaps her ass with a tail, inviting you to have your way with her - to fuck her like an animal! An offer you take eagerly...");
+	
+	output("\n\nGrabbing Kara by the tits, you ram yourself home into her steaming twat, making the whole bed rock forward with the weight of your thrust. She screams; no more cute moans and girly cries, just a feral roar of pleasure as you start to pound her. Her pierced nipples make the most perfect hand-holds, teasing her bars between your fingers between rough squeezes and pulls. The familiar sounds of flesh colliding with flesh echo loudly off the bare walls, mixing with your moans and Kara’s until her quarters are awash in a symphony of sensuality.");
+
+	//{if PC has a knot!
+	if (pc.hasKnot())
+	{
+		output("\n\nYour hips hammer Kara’s raised rear-end, filling you with a visceral glee at seeing her derriere quiver to the beat of your thrusting hips. You barely even notice how swollen your [pc.knot] has become until Kara lets out a startled cry, and you realize you nearly buried it in her. Fuck it - you’ve earned this! You rear your hips back and ram them forward one lust time, shoving the swollen bulb of your knot into the wet embrace of Kara’s pussylips. She shrieks, a wordless cry of pleasure as your knot drives her to climax.");
+	}
+
+	output("\n\nYou grab your lover’s hips and drive yourself as deep into her as you can, already feeling the pressure swelling in your loins. Kara’s just ahead of you, though, throwing her head back in a whorish moan as her pussy clenches around you, and her half-hard kitty-cock sprays a sheen of white cream down between her legs, bouncing with every one of her weak, orgasimic motions. <i>“[pc.name]!”</i> she manages to grunt out, eyes closed tight and cock spasming wildly. <i>“Fuck me! Fuck me!”</i>");
+
+	output("\n\n");
+	if (pc.hasKnot()) output("You can’t exactly thrust, tied as you are");
+	else output("You’re not far behind her yourself");
+	output(", and content yourself with short, shallow, fast motions into the squeezing embrace of her sodden quim until your cock feels so swollen with need that you can’t take it anymore. You all but collapses atop Kara, pressing your [pc.chest] into her back as your [pc.cock] erupts inside her, flooding her sex with a wave of [pc.cumNoun].");
+	if (pc.cumQ() >= 1000 && pc.hasKnot()) output(" Kara’s eyes go wide as she feels the sheer, incredible <b>volume</b> of spunk you’re flooding her womb with, giving it nowhere to go thanks to the knot lodged firmly between her lips. She gives a weak gasp, clutching helplessly at her bloating belly as you fill her.");
+	else if (pc.cumQ() >= 1000 && !pc.hasKnot()) output(" You fill her utterly in the span of a squirt or two, leaving the rest of your immense load to come flooding out around your [pc.cock].");
+	else output(" Kara’s slit is left a sticky mess by your orgasm, coating the crown of your cock in a heady mix of her fem-slime and your seed.");
+	output(" Kara’s own orgasm has left a musky swamp on her bed, staining her thighs with her own cum - and her cock’s still twitching, drooling little bits of creamy white spunk as her climax slowly abates.");
+
+	output("\n\nYou’ve left her a breathless, wet mess");
+	if (pc.cumQ() >= 1000 || pc.virility() > 2 || pc.hasPerk("Virile")) output(" - and thoroughly bred, too");
+	output("! Still leaning against the well-fucked kaithrit’s back, you reach around and turn her chin to face you - and a long, passionate kiss. She moans happily, contentedly, and you can feel her tails raising around you.");
+
+	output("\n\nWhen you break the kiss, you’re treated to a gorgeous smile from your lover. She nuzzles against you, brushing her short hair against your cheek in a sign of animalistic affection. <i>“Now I wish we’d done this sooner,”</i> she murmurs, reaching back to run a hand along your [pc.skinFurScales]. <i>“I guess we’ll just have to make up for lost time...”</i>");
+
+	//[Next]
+	clearMenu();
+	addButton(0, "Next", kq2PostKaraSexyCombine);
+}
+
+public function kq2PostKaraSexyCombine(gotFucked:Boolean = false):void
+{
+	clearOutput();
+
+	processTime(180 + rand(30));
+
+	for (var i:int = 0; i < 10; i++)
+	{
+		if (pc.hasVagina()) pc.loadInCunt(kara, 0);
+		else pc.loadInAss(kara);
+
+		pc.orgasm();
+		kara.orgasm();
+	}
+
+	output("<b>Several hours later...</b>");
+	
+	output("\n\nExhausted, sweaty, and utterly spent, you collapse on the bed spread-eagle and breathing hard. Kara’s beside you a second later, her whole lower half completely slathered in wasted cum from your hours of vigorous love-making. Smiling dreamily, the kaithrit curls up against you, resting her head on your [pc.chest] and idly tracing a faintly-moist digit across your [pc.belly].");
+	
+	output("\n\n<i>“That was... that was something,”</i> she purrs, holding you gently. <i>“And I loved every second of it.”</i>");
+	
+	output("\n\nYou put an arm around your lover’s shoulders, pulling her close, and tell her much the same. Her twin tails wiggle happily, and she relaxes in your embrace. <i>“Wanna stay for a while, [pc.name]? I know");
+	if (kara.isNice()) output(" I’ve stolen a lot more of your time than you bargained for");
+	else if (kara.isMischeivious()) output(" you’ve got places to be, things to do...");
+	else output(" I’ve pretty much worn you out, but...");
+	output("”</i>");
+
+	//[Stay] [Go]
+	clearMenu();
+	addButton(0, "Stay", kq2PostKaraSexyCombineStay, undefined, "Stay", "Stay the night with Kara.");
+	addButton(1, "Go", kq2PostKaraSexyCombineGo, undefined, "Go", "You've got to go.");
+}
+
+public function kq2PostKaraSexyCombineGo():void
+{
+	clearOutput();
+	showKara();
+
+	output("You tell Kara you do need to leave - but you enjoyed the time you spent together. She smiles at that, propping herself up on an elbow to watch you as you swing out of bed and gather your discarded [pc.gear].");
+	
+	output("\n\n<i>“Thanks again, [pc.name],”</i> she says as you’re nearly ready to go. <i>“I can’t say that enough. Wouldn’t have made it this far without you.”</i>");
+	
+	output("\n\nReturning her smile, you lean back in to kiss your kitten one last time before you go.");
+	
+	output("\n\n<i>“See you around, [pc.name].”</i>");
+	
+	output("\n\nYou nod and slip out of her quarters, heading back to your ship.");
+
+	currentLocation = "SHIP INTERIOR";
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function kq2PostKaraSexyCombineStay():void
+{
+	clearOutput();
+	showKara();
+
+	output("You answer Kara with another kiss, holding the cat-girl close and closing your eyes. The last thing you see is her smile, cobalt tails brushing against your [pc.legOrLegs].");
+
+	output("\n\nYou wake up to a leaden body, still aching from your adventures... and the passions that followed it. Slowly, your eyes blink open, revealing a room bathed in a sensual red light emanating from a holoscreen on the other side of her quarters. It takes you a moment to realize that the faint heat beside you is nothing but residual; you roll over to find that you’re alone in bed. With a yawn and a long stretch, you sit up and look around.");
+	
+	output("\n\n<i>“Hey, lover,”</i> a familiar voice says, drawing your eyes to the shadow of the holo-screen, beneath the image of a billowing red sun muted down to only a dim light. Kara’s sitting beside it, wrapped up in a blue bathrobe with her legs crossed under her, sipping at a steaming mug. <i>“Sleep well? I did.”</i>");
+	
+	output("\n\nYou nod and slowly pull yourself out of bed, looking for your gear.");
+	if (!pc.isNude()) output(" Your clothes have been cleaned and folded, sitting at the food of the bed");
+	else output(" Your gear’s been stacked neatly at the foot of the bed for you");
+	output(". As you gather your things, Kara sets her mug aside and slips over you you, wrapping her arms around your waist and pressing her cheek into your back. <i>“I can’t thank you enough, [pc.name]. For everything,”</i> she murmurs.");
+	
+	output("\n\nYou turn in her embrace and give her a fierce hug, taking comfort in the warmth and softness of your kaithrit lover. The two of you spend a little while together, just enjoying each other’s company, before a heavy heart pulls you towards your ship. You still have an adventure of your own to finish.");
+	
+	output("\n\nKara nods understandingly, and walks you to the airlock. <i>“If you ever need anything, [pc.name],”</i> she starts, lacing her fingers with yours. <i>“I owe you. So, so much.”</i>");
+	
+	output("\n\nYou give her a parting hug as the airlock cycles. As you part, you see the <i>Ghost</i>’s pilot, Logan, rounding a corner with a dataslate tucked under her arm.");
+	
+	output("\n\n<i>“Kara! Chow’s on the Q-Comm for you,”</i> the pilot says, giving you a slight nod as you leave. <i>“Routed it to your quarters.”</i>");
+	
+	output("\n\nYour lover sighs and stuffs her hands into her robe pockets. <i>“Fun never ends. I’ll see you again soon [pc.name].”</i>");
+	
+	output("\n\nThe airlock snaps closed behind you, and you make the journey back to your own ship in silence.");
+
+	currentLocation = "SHIP INTERIOR";
+
+	genericSleep(480);
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
