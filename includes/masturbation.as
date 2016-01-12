@@ -316,14 +316,14 @@ public function masturbateMenu(roundTwo:Boolean = false):void {
 		output("Masturbating here would be impossible.");
 		aborted = true;
 	}
-	if(rooms[currentLocation].hasFlag(GLOBAL.FAPPING_ILLEGAL))
+	else if(rooms[currentLocation].hasFlag(GLOBAL.FAPPING_ILLEGAL))
 	{
 		clearOutput();
 		output("Public masturbation is illegal here. Trying to masturbate would almost certainly land you in jail.");
 		aborted = true;
 	}
 	//Exhibitionist fap! - overrides all other faps
-	if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC) && pc.exhibitionism() >= 66)
+	else if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC) && pc.exhibitionism() >= 66)
 	{
 		clearOutput();
 		output("Out here? In public?\n\n...Yeah, that'll do nicely.");
@@ -334,10 +334,11 @@ public function masturbateMenu(roundTwo:Boolean = false):void {
 		{
 			addButton(1,"CuffSelf",cuffSelfRouter,undefined,"Cuff Yourself","You bet that if you cuffed yourself naked somewhere public, there'd be at least one randy bull to give you a reaming.");
 		}
+		addButton(14,"Back",mainGameMenu);
 		return;
 	}
 	//Low Exhibitionist fap! - overrides all other faps
-	if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC) && pc.exhibitionism() >= 33)
+	else if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC) && pc.exhibitionism() >= 33)
 	{
 		clearOutput();
 		output("Out here? In public?\n\n...<b>it'll have to do</b>.");
@@ -348,10 +349,11 @@ public function masturbateMenu(roundTwo:Boolean = false):void {
 		{
 			addButton(1,"CuffSelf",cuffSelfRouter,undefined,"Cuff Yourself","You bet that if you cuffed yourself naked somewhere public, there'd be at least one randy bull to give you a reaming.");
 		}
+		addButton(14,"Back",mainGameMenu);
 		return;
 	}
 	//Pussy out, unless you're being force-fapped.
-	if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC) && pc.libido() < 70)
+	else if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC) && pc.libido() < 70)
 	{
 		clearOutput();
 		if(pc.libido() < 10) output("You'd never even consider masturbating in public!");
