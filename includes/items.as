@@ -472,6 +472,7 @@ public function keyItemDisplay():void
 		output("\n");
 	}
 	else output("<i>None</i>\n\n");
+	clearMenu();
 	addButton(14,"Back",inventory);
 }
 public function equipmentDisplay():void
