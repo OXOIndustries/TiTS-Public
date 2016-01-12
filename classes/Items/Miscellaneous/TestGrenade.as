@@ -88,7 +88,7 @@ package classes.Items.Miscellaneous
 				// Enemy used an item on the PC
 				else if (targetCreature == kGAMECLASS.pc && usingCreature != kGAMECLASS.pc)
 				{
-					if(inCombat()) kGAMECLASS.output("\n");
+					if(inCombat()) kGAMECLASS.output("\n\n");
 					else kGAMECLASS.clearOutput();
 					npcUsed(targetCreature, usingCreature);
 				}
@@ -110,7 +110,6 @@ package classes.Items.Miscellaneous
 			// Or possibly open up genericDamageApply to also accept override text for its output
 			//kGAMECLASS.genericDamageApply(this.damage, usingCreature, targetCreature, this.damageType);
 			applyDamage(baseDamage, usingCreature, targetCreature);
-			kGAMECLASS.output("\n");
 		}
 		
 		public function npcUsed(targetCreature:Creature, usingCreature:Creature):void
@@ -121,7 +120,6 @@ package classes.Items.Miscellaneous
 			
 			//kGAMECLASS.genericDamageApply(this.damage, usingCreature, targetCreature, this.damageType);
 			applyDamage(baseDamage, usingCreature, targetCreature);
-			kGAMECLASS.output("\n");
 		}
 		
 	}
