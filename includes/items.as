@@ -512,7 +512,7 @@ public function equipmentDisplay():void
 public function inventoryDisplay():void
 {
 	var x:int = 0;
-	output("<b><u>Inventory:</u></b>\n");
+	output("<b><u>Inventory:</u></b>");
 	for(x = 0; x < pc.inventory.length; x++)
 	{
 		var item:ItemSlotClass = pc.inventory[x];
