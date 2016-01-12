@@ -2210,8 +2210,10 @@ public function deck13WeaponRacks():void
 	{
 		addButton(0, "Nova Pistol", function():void
 		{
+			var pistol:NovaPistol = new NovaPistol();
+			lootScreen = deck13WeaponPistolCheck;
 			flags["DECK13_TAKEN_PISTOL"] = 1;
-			quickLoot(new NovaPistol());
+			itemCollect([pistol]);
 		});
 	}
 
@@ -2219,12 +2221,44 @@ public function deck13WeaponRacks():void
 	{
 		addButton(1, "Nova Rifle", function():void
 		{
+			var rifle:NovaRifle = new NovaRifle();
+			lootScreen = deck13WeaponRifleCheck;
 			flags["DECK13_TAKEN_RIFLE"] = 1;
-			quickLoot(new NovaRifle());
+			itemCollect([rifle]);
 		});
 	}
 
 	addButton(14, "Back", mainGameMenu);
+}
+public function deck13WeaponPistolCheck():void
+{
+	if(pc.rangedWeapon is NovaPistol || pc.hasItemByType(NovaPistol))
+	{
+		mainGameMenu();
+		return;
+	}
+	
+	clearOutput();
+	output("You put the pistol back where you found it.");
+	
+	flags["DECK13_TAKEN_PISTOL"] = undefined;
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+public function deck13WeaponRifleCheck():void
+{
+	if(pc.rangedWeapon is NovaRifle || pc.hasItemByType(NovaRifle))
+	{
+		mainGameMenu();
+		return;
+	}
+	
+	clearOutput();
+	output("You put the rifle back where you found it.");
+	
+	flags["DECK13_TAKEN_RIFLE"] = undefined;
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
 
 public function deck13Robots():void
