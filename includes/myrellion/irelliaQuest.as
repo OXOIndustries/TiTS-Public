@@ -292,7 +292,7 @@ public function meetingIrelliaPt2(tried2Leave:Boolean = false):void
 	output("\n\nYou point out that there’s supposed to be a ceasefire.");
 	output("\n\nThe robed myr queen gives a soft, sad chuckle at that.");
 	output("\n\nQueen Irellia shakes her head, holding one of her uppermost hands against her forehead. <i>“Would that it were so simple, [pc.name]. Just because the bombs and bullets have stopped falling does not mean that hostilities have ceased. Even now, agents of the Scarlet Federation stalk our streets in secret, enacting a campaign of fire and terror against our most peaceful citizens.”</i> She gestures to the other remaining royal. <i>“Queen Scalla’s sons and daughters have endured four separate bombings over the past week.”</i>");
-	output("\n\nScalla pulls her finely woven silks closer about herself. <i>“That is correct. I fear they may be targetting the younger, less secure queens, like Irellia, Marsail, and myself.”</i>");
+	output("\n\nScalla pulls her finely woven silks closer about herself. <i>“That is correct. I fear they may be targeting the younger, less secure queens, like Irellia, Marsail, and myself.”</i>");
 	//Tried to leave.
 	if(tried2Leave) output("\n\nYou shrug and ask why you should care.\n\nIrellia smirks at you. <i>“Because, star-walker, Lyralla has shared her thoughts on your kind with us. Even if honor and justice did not motivate you, the potential for coin would.”</i> Her sapphire lipstick glitters as her smile broadens. <i>“We could help each other.”</i>");
 	//Anything else
