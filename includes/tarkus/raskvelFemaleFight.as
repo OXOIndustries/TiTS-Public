@@ -551,7 +551,7 @@ public function getRaskVelTailPegged(combat:Boolean = false):void
 	//{Combat Loss: Don't Have a Dick}
 	if(combat)
 	{
-		output("\n\nYou fall to your [pc.knees], too ");
+		output("You fall to your [pc.knees], too ");
 		if(pc.HP() < 1) output("badly beaten ");
 		else output("aroused ");
 		output("to resist the slutty scaly's advances. She grins as you succumb, sharp teeth flashing brightly as she drops the bulging head of her wrench to the ground, leaning on it as you collapse.");
@@ -624,7 +624,7 @@ public function hugeDicksGetForceWorshippedByFemRaskvel(fromCombat:Boolean = fal
 	//HP loss
 	if(pc.HP() < 1)
 	{
-		output("\n\nCollapsing on your back, you pant for breath as you try to recover. You can't believe you were beaten by such a diminutive creature, let alone one with such simple goals. Even now, she's striding over to you with a confident look on her scaley face. She comes to a stop a step away and scolds, <i>\"You should've just paid the toll, now I'm going to take it out of your hide.\"</i> She pulls the pistol off her hip. <i>\"First lets get you ready.\"</i>");
+		output("Collapsing on your back, you pant for breath as you try to recover. You can't believe you were beaten by such a diminutive creature, let alone one with such simple goals. Even now, she's striding over to you with a confident look on her scaley face. She comes to a stop a step away and scolds, <i>\"You should've just paid the toll, now I'm going to take it out of your hide.\"</i> She pulls the pistol off her hip. <i>\"First lets get you ready.\"</i>");
 		if(pc.tallness >= 60) output("\n\nYou're pushed, pulled, and tugged for some time before the tiny girl is able to roll you");
 		else if(pc.tallness >= 40) output("\n\nYou're rolled over by the diminutive creature with some difficulty");
 		else output("\n\nYou're easily rolled by the diminutive creature");
@@ -642,7 +642,7 @@ public function hugeDicksGetForceWorshippedByFemRaskvel(fromCombat:Boolean = fal
 	//Lust loss
 	else
 	{
-		output("\n\nYou sink down onto your back, [pc.eachCock] erecting to its full, tumescent weight as it towers over your prone form. The ");
+		output("You sink down onto your back, [pc.eachCock] erecting to its full, tumescent weight as it towers over your prone form. The ");
 		if(pc.cockTotal() > 1) output("slabs of meat engorge");
 		else output("slab of meat engorges");
 		output(" so powerfully that ");
@@ -761,7 +761,7 @@ public function getPeggedWhileDoublePenetrate():void
 	//HP: 
 	if(pc.HP() < 1)
 	{
-		output("\n\nSinking down on your side, defeated, you look up at your petite subjugator with defiance in your eyes. Your token resistance did little to dissuade the alien woman from her goals. Indeed, she seems more determined than ever to wring her fine from you one way or another. You watch her warily as she closes the intervening distance");
+		output("Sinking down on your side, defeated, you look up at your petite subjugator with defiance in your eyes. Your token resistance did little to dissuade the alien woman from her goals. Indeed, she seems more determined than ever to wring her fine from you one way or another. You watch her warily as she closes the intervening distance");
 		if(!pc.isNude()) output(", easily stripping your [pc.gear] from your body to leave you completely exposed");
 		else output(", eying your prone, exposed body");
 		output(", eventually locking her eyes on the ");
@@ -783,7 +783,7 @@ public function getPeggedWhileDoublePenetrate():void
 	//Lust:
 	else
 	{
-		output("\n\nNo longer resisting, you shed your [pc.gear] and collapse, grabbing a dick in each hand and pumping, stroking yourself with such eagerness that all previous thoughts of resistance are blasted out of your mind by raw, sexual ache. The raskvel, looking surprisingly imposing from your position on the ground, licks her lips and croons, <i>\"That's a good " + pc.mf("boy","girl") + ".... I knew you'd come around with enough encouragement.\"</i> She daintily presses a foot down onto [pc.oneCock], stroking it up and down with the supple skin and occasionally squeezing it with her toes. You groan out loud and stop jacking off long enough to swivel towards her, presenting your multiple dicks to the victorious female, hoping she will continue to lavish such attentions upon your needy crotch.");
+		output("No longer resisting, you shed your [pc.gear] and collapse, grabbing a dick in each hand and pumping, stroking yourself with such eagerness that all previous thoughts of resistance are blasted out of your mind by raw, sexual ache. The raskvel, looking surprisingly imposing from your position on the ground, licks her lips and croons, <i>\"That's a good " + pc.mf("boy","girl") + ".... I knew you'd come around with enough encouragement.\"</i> She daintily presses a foot down onto [pc.oneCock], stroking it up and down with the supple skin and occasionally squeezing it with her toes. You groan out loud and stop jacking off long enough to swivel towards her, presenting your multiple dicks to the victorious female, hoping she will continue to lavish such attentions upon your needy crotch.");
 	}
 	//Both continue
 	output("\n\nThe raskvel smiles as you lose yourself in both the delicate folds between her toes and her prominent arches, rubbing [pc.eachCock] down with eager strokes, sometimes pushing down with just enough force that your [pc.cock " + y + "] becomes squished between your [pc.belly] and her dexterous soles. You shudder in enjoyment");
