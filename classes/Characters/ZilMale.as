@@ -175,7 +175,7 @@
 			sexualPreferences.setRandomPrefs(5+rand(3));
 			tallness = 60 + rand(7);
 			cocks[0].cLengthRaw = 4 + rand(5);
-			long = "The male zil you're fighting would stand roughly " + displayTallness() + " tall were he to touch the ground, but instead, he's supporting himself on rapidly fluttering wings, keeping his genitals at just the right height to waft his sweet musk in your direction. His only ‘armament’ is a " + num2Text(longestCockLength()) + "-inch penis with a tight, hairless sack underneath; he bears no weapon in his hand and no stinger. The zil's body is almost entirely covered by an ebony carapace";
+			long = "The male zil would stand roughly " + displayTallness() + " tall were he to touch the ground, but instead, he's supporting himself on rapidly fluttering wings, keeping his genitals at just the right height to waft his sweet musk in your direction. His only ‘armament’ is a " + num2Text(longestCockLength()) + "-inch penis with a tight, hairless sack underneath; he bears no weapon in his hand and no stinger. The zil's body is almost entirely covered by an ebony carapace";
 			if(rand(2) == 0) 
 			{
 				long += ", though some areas are striped in bright yellow";
