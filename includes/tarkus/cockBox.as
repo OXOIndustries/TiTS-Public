@@ -9,6 +9,11 @@ public function cockBoxDiscoveryBlurb():Boolean
 		output("\n\nA gleam of shining metal catches your eye from amongst the mounds of detritus. Looking closer, you pick out the shape of an oblong console of alloy and composite, scratched in a half-dozen places but otherwise intact. Do you investigate it?");
 		addButton(0,"Investigate",investigateTheCockBox);
 	}
+	else if(flags["LOOTED_COCKBOX"] == 0)
+	{
+		output("\n\nA gleam of light indicates that the TamaniCorp Dong Designer is still sitting where you last found it. You can pick it up if you have the room for it.");
+		addButton(0,"Take It",takeDatCockBawks);
+	}
 	return (rustRidgesEncounters());
 }
 //Investigate the Cock Box
@@ -22,6 +27,7 @@ public function investigateTheCockBox():void
 	output("\n\nBut how the hell did one of these wind up out here, thrown away in a galactic trash heap? The caustic atmosphere hasn’t had time to corrode the metal, and the safety cover on the phallus input port should have kept the planet’s grime from mucking it up. It <i>looks</i> in good condition. The gauges all read good, save for power. All you’ve got to do is lug it back to the ship and plug it in.");
 	output("\n\nDo you pick it up? You’ll move twice as slowly while dragging the heavy thing around.");
 	processTime(2);
+	flags["LOOTED_COCKBOX"] = 0;
 	clearMenu()
 	addButton(0,"Take It",takeDatCockBawks)
 	addButton(1,"Leave It",mainGameMenu);
@@ -29,9 +35,24 @@ public function investigateTheCockBox():void
 
 public function takeDatCockBawks():void
 {
-	clearOutput();
 	flags["LOOTED_COCKBOX"] = 1;
-	quickLoot(new DongDesigner());
+	var cockbox:DongDesigner = new DongDesigner();
+	lootScreen = takeDatCockBawksCheck;
+	itemCollect([cockbox], true);
+}
+public function takeDatCockBawksCheck():void
+{
+	if(pc.hasItemByType(DongDesigner))
+	{
+		mainGameMenu();
+		return;
+	}
+	
+	clearOutput();
+	output("Being way too big to fit in your inventory, you leave the box where it is.");
+	flags["LOOTED_COCKBOX"] = 0;
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 //Use the Cock Box!
