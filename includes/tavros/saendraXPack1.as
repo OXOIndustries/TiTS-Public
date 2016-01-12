@@ -1016,7 +1016,8 @@ public function sx1RescueTheDude(fromCombat:Boolean = false):void
 	output("\n\nSomebody’s offering a hefty twenty grand for Saendra’s capture. Somebody named <i>“Lord Bragga”</i> of the Black Void Pirates. What the hell has Saen gotten herself mixed up with?");
 	
 	output("\n\nYou pocket the datapad and head back down to the bar. You’ll have to ask your hybrid companion herself if you want to find out the truth.");
-
+	
+	output("\n\n")
 	//Key Item Added: Pirate Datapad
 	pc.createKeyItem("Pirate Datapad");
 
