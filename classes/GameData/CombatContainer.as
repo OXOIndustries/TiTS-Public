@@ -2458,7 +2458,7 @@ package classes.GameData
 				if(target.lust() + damage > target.lustMax()) damage = target.lustMax() - target.lust();
 				damage = Math.ceil(damage);
 			
-				output("\n");
+				output("\n\n");
 				if(teaseType == "squirt") 
 				{
 					if(target.isPlural) output(target.capitalA + target.uniqueName  + " are splattered with your [pc.milk], unable to get it off. All of a sudden, their faces begin to flush, and they look quite aroused.");
