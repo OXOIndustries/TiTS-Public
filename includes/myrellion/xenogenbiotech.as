@@ -327,34 +327,34 @@ public function myrellionNevrieBlowjerb():void
 	output("\n\nYou grin, glad that Nevrie approves of your sensuous touch. Squeezing and cupping and caressing the inside of her thighs, you slowly meander your way down between the horny alien’s legs and");
 	if (pc.hasKnees()) output(" slip down onto your knees");
 	else output(" crouch down on your bestial lower body");
-	output(", all but crawling underneath Nevrie’s desk. Your fingers brush across her zipper, bulging under the tumescing heft of her hermaphroditic member. With great care, you work the zipper down until the bronze crown of the secretary’s cock is poking out, ripe for the tasting.");
+	output(", all but crawling underneath Nevrie’s desk. Your fingers brush across her fly, bulging under the tumescing heft of her hermaphroditic member. With great care, you work the zipper down until the bronze crown of the secretary’s cock is poking out, ripe for the tasting.");
 
 	output("\n\n<i>“Ohh, fuck,”</i> she groans as your [pc.tongue] caresses her cockhead, wrapping under the modest shaft behind her tip and guiding it towards your [pc.lips]. <i>“You just get right down to it, don’t you?”</i>");
 
 	output("\n\nOpening wide for");
 	if (pc.isTreated() || pc.isBimbo()) output(" her cute little girl-cock");
 	else output(" the hot slab of girl-cock at the tip of your tongue");
-	output(", you give Nevrie a lascivious wink and gulp down the first inches of her petite member. She’s got maybe six inches to her name, just enough to give you a nice mouth-filling prick to suckle on while planting your lips against her crotch, and the great big pair of balls still tucked under her pants. Now <i>those</i> look even more succulent than her dick.");
+	output(", you give Nevrie a lascivious wink and gulp down the first inches of her petite member. She’s got maybe six inches to her name, human in shape but graced with a row of smooth keratin nubs on either side. You shiver at the thought of those rounded bulbs pounding into your [pc.vagOrAss]. You're sure they'd more than make up for her otherwise average length: just enough to fill your mouth with prick to suckle on while you plant your lips against her crotch... and the great big pair of balls still tucked under her pants. Now <i>those</i> look even more succulent than her dick!");
 
 	output("\n\nSuppressing a little smile, you reach into Nevrie’s pants and fish out her cum-swollen sack. Your partner moans loudly when your hands wrap around her nads, putting just enough of a squeeze on them to make her prick throb in your mouth, drooling a drop of pre onto the back of your tongue. You roll Nevrie’s full sack between your fingers, enjoying the weight of them: you can all but hear the musky alien spunk roiling inside them, waiting to surge out and splatter your face with hot seed.");
 
 	output("\n\nThe thought of it makes you suck a little more fiercely, eagerly working for your lover’s orgasm - and the sizable discount that entails.");
 
-	output("\n\nNevrie’s fingers dig viciously into the arms of her chair, legs alternating between squeezing your shoulders and scrabbling on the cold, smooth floor, desperately trying to find purchase that refuses to be found. Her oddly-shaped feet eventually settle for groping at your back, pulling you deeper into her crotch.");
+	output("\n\nNevrie’s fingers dig viciously into the arms of her chair, legs alternating between squeezing your shoulders and scrabbling on the cold, smooth floor, desperately trying to get purchase that refuses to be found. Her oddly-shaped feet eventually settle for groping at your back, pulling you deeper into her crotch.");
 
-	output("\n\nWell, if that’s the way she wants to play.... You spit her throbbing member out of your mouth and lick your way down its underside, noisily slurping your way to the taut skin of her balls. You pucker your lips around a particular patch and give it a gentle pull, sucking just enough on it that when you let go, it makes a satisfyingly wet <i>pop</i>. Nevrie sucks in a sharp breath, arching her long back and squirting a thick glob of pre-cum onto your cheek.");
+	output("\n\nWell, if that’s the way she wants to play.... You spit her throbbing member out of your mouth and lick your way down its keratin-nubbed length, noisily slurping your way to the taut skin of her balls. You pucker your lips around a particular patch and give it a gentle pull, sucking just enough on it that when you let go, it makes a satisfyingly wet <i>pop</i>. Nevrie takes in a sharp breath, arching her long back and squirting a thick glob of pre-cum onto your cheek.");
 
-	output("\n\n<i>“Heh. Dirty "+pc.mf("boy", "girl") + ",”</i> she laughs, leaning down to a run a finger through the seed-stain on your face, smearing the dollop of her pre across your face - and planting a nice, fragrant helping of it right under your nose. You’ve got little choice but to breathe deep of the intoxicating aroma, letting it arouse your senses and drive you deeper into your lusty rut. You continue to worship at the altar of Nevrie’s churning balls, suckling and kissing and rolling them between your lips. With every moment of attention you lavish upon her sack, Nevrie’s fat cock twitches and spurts more of that wonderful-smelling juice onto your face, milked out by your incessant oral ministrations.");
+	output("\n\n<i>“Heh! Dirty "+pc.mf("boy", "girl") + ",”</i> she laughs, leaning down to a run a finger through the seed-stain on your [pc.face], smearing the dollop of her pre across your face - and planting a nice, fragrant helping of it right under your nose. You’ve got little choice but to breathe deep of the intoxicating aroma, letting it arouse your senses and drive you deeper into your lusty rut. You continue to worship at the altar of Nevrie’s churning balls, suckling and kissing and rolling them between your [pc.lips]. With every moment of attention you lavish upon her sack, Nevrie’s fat cock twitches and spurts more of that wonderful-smelling juice onto your face, milked out by your incessant oral ministrations.");
 
 	output("\n\nShe’s so close now, and just from getting those big nuts of her played with!");
 
-	output("\n\n<i>“Not... not so much. Gonna... gonna...”</i>");
+	output("\n\n<i>“Not... not so much! Gonna... gonna...”</i>");
 	
 	output("\n\nYou grin up at her and just keep doing what you’re doing, letting your tongue and lips tease her balls and shifting your [pc.face] to balance her throbbing shaft front and center, waiting for her to splatter you with all that pent-up cum.");
 
 	output("\n\nShe doesn’t make you wait long.");
 
-	output("\n\nNevrie grunts a curse out and throws her head back in a cascade of blue hair, trying desperately not to scream out her pleasure as you drive her over the edge. Her cock leaps to full mast, suddenly turgid with oncoming spunk, and gives one last, powerful throb on the tip of your nose before it erupts in a geyser of creamy whiteness. You " + pc.mf("chuckle", "giggle") + " as Nevrie’s spunk splatters across your face and [pc.hair], bathing you in delightful, musky warmth.");
+	output("\n\nNevrie grunts a curse out and throws her head back in a cascade of blue hair, trying desperately not to scream out her pleasure as you drive her over the edge. Her keratin-covered cock leaps to full mast, suddenly turgid with oncoming spunk. It gives one last, powerful throb on the tip of your nose before it erupts in a geyser of creamy whiteness. You " + pc.mf("chuckle", "giggle") + " as Nevrie’s spunk splatters across your face and [pc.hair], bathing you in delightful, musky warmth.");
 
 	output("\n\n<i>“Ugh,”</i> Nevrie groans, collapsing back in her chair with a gasp. While she does so, her prick continues to spurt and drool onto your face, right up until you wrap your lips around her crown and give it a coaxing little suck - just enough to draw out the last of her load onto the tip of your [pc.tongue]. You swallow it greedily, licking up what you can from your [pc.lips] and cheeks before Nevrie finally chuckles and hands you some tissues from a drawer.");
 
