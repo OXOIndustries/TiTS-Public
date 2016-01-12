@@ -110,7 +110,7 @@ public function kirosShipPistol():void
 	var pistol:CustomLP17 = new CustomLP17();
 	lootScreen = kirosShipPistolCheck;
 	flags["RESCUE KIRO TOOK PISTOL"] = 1;
-	itemCollect([pistol]);
+	itemCollect([pistol], true);
 }
 public function kirosShipPistolCheck():void
 {
@@ -133,7 +133,7 @@ public function kirosShipCutlass():void
 	var cutlass:Cutlass = new Cutlass();
 	lootScreen = kirosShipCutlassCheck;
 	flags["RESCUE KIRO TOOK CUTLASS"] = 1;
-	itemCollect([cutlass]);
+	itemCollect([cutlass], true);
 }
 public function kirosShipCutlassCheck():void
 {
