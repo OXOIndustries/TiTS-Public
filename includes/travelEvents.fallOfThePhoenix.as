@@ -553,9 +553,30 @@ public function phoenixEngineeringTakeShield():void
 	foundLootItems.push(new JoyCoPremiumShield());
 
 	itemScreen = mainGameMenu;
-	lootScreen = mainGameMenu;
+	lootScreen = phoenixEngineeringTakeShieldCheck;
 	useItemFunction = mainGameMenu;
 	itemCollect(foundLootItems);
+}
+public function phoenixEngineeringTakeShieldCheck():void
+{
+	if(pc.shield is JoyCoPremiumShield || pc.hasItemByType(JoyCoPremiumShield))
+	{
+		mainGameMenu();
+		return;
+	}
+	
+	clearOutput();
+	showValeria();
+	output("Not having enough space for it, you figure you put it back where you found it.");
+
+	output("\n\n“<i>That’s more like it!”</i> Valeria harrumphs.");
+
+	output("\n\nYou shrug your shoulders.");
+
+	flags["FALL OF THE PHOENIX TAKEN SHIELD"] = undefined;
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
 
 public function phoenixEngineeringValeria():void
