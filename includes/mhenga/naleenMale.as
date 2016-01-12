@@ -759,8 +759,9 @@ public function loseToDudeleenSex(tailIntro:Boolean = false):void {
 		output("\n\nYou begin to pick yourself up, shakily climbing to your [pc.feet] in order to leave when you find yourself roughly pushed on your back. You struggle to keep your footing, but are too dazed to avoid falling down.");
 
 		output("\n\n<i>“I didn’t say you could go,”</i>  he says, slithering around you and stopping right before you, heavy coils pinning you down. <i>“Hunting always makes me feel... hot. And since I’m sparing your life, I expect you to at least take responsibility for these,”</i>  he moves his coils to lift your chin, and you find yourself face-to-dick with a pair of reptilian shafts, already leaking pre-cum.");
+		output("\n\n");
 	}
-	output("\n\nFixated on the pricks confronting you, knowing you are completely at his mercy, you give your assent to taking care of them, however he wants you to do so.");
+	output("Fixated on the pricks confronting you, knowing you are completely at his mercy, you give your assent to taking care of them, however he wants you to do so.");
 
 	output("\n\nHe releases you but keeps you surrounded by his coils. <i>“Strip,”</i>  he orders, crossing his arms as he waits for your compliance.");
 
@@ -986,7 +987,6 @@ public function loseToDudeleenSex(tailIntro:Boolean = false):void {
 //Reverse Rape
 //Can only happen if the PC has a cunt-tail. Two or more gives you an alt version.
 public function reverseFuckNaleenCuntTailGo():void {
-	clearOutput();
 	author("Lukadoc & QB");
 	showBust("NALEEN_MALE");
 	showName("NALEEN\nMALE");
