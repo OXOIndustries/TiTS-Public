@@ -64,7 +64,7 @@ package classes.Items.Miscellaneous
 				{
 					if(!kGAMECLASS.infiniteItems()) quantity++;
 					kGAMECLASS.clearOutput();
-					kGAMECLASS.output("Using an instant HP booster whilst at full health would be pretty wasteful....\n");
+					kGAMECLASS.output("Using an instant HP booster whilst at full health would be pretty wasteful....");
 					return false;
 				}
 				else
@@ -77,7 +77,7 @@ package classes.Items.Miscellaneous
 						
 						var hpChange:int = gainHP(target);
 				
-						if(hpChange > 0) kGAMECLASS.output(" <b>You have gained " + hpChange + " HP!</b>\n");
+						if(hpChange > 0) kGAMECLASS.output(" <b>You have gained " + hpChange + " HP!</b>");
 						target.HP(hpChange);
 					}
 				}
@@ -85,7 +85,7 @@ package classes.Items.Miscellaneous
 			else
 			{
 				
-				if(inCombat()) kGAMECLASS.output("\n");
+				if(inCombat()) kGAMECLASS.output("\n\n");
 				else kGAMECLASS.clearOutput();
 				if (usingCreature == target)
 				{
@@ -97,7 +97,7 @@ package classes.Items.Miscellaneous
 				}
 				
 				hpChange = gainHP(target);
-				if(hpChange > 0) kGAMECLASS.output(" <b>" + target.short + " gained " + hpChange + " HP!</b>\n");
+				if(hpChange > 0) kGAMECLASS.output(" <b>" + target.short + " gained " + hpChange + " HP!</b>");
 				target.HP(hpChange);
 			}
 
