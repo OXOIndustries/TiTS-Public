@@ -1265,7 +1265,7 @@ package classes.GameData
 				rounds = 3;
 			}
 			
-			attacker.createStatusEffect("Stealth Field Generator", rounds, 0, 0, 0, false, "Stealth Field", "Provides a massive bonus to evasion chances!", true, 0);
+			attacker.createStatusEffect("Stealth Field Generator", rounds, 0, 0, 0, false, "DefenseUp", "Provides a massive bonus to evasion chances!", true, 0);
 		}
 		
 		public static var Grenade:SingleCombatAttack;

@@ -6,6 +6,7 @@ import classes.Characters.PlayerCharacter;
 import classes.Characters.RocketTurrets;
 import classes.Creature;
 import classes.Engine.Combat.DamageTypes.TypeCollection;
+import classes.GameData.CombatManager;
 import classes.Util.InCollection;
 import flash.sampler.NewObjectSample;
 //{If Dungeon not completed, add:}
@@ -1451,12 +1452,14 @@ public function failToStruggleKaskaBoobs():void
 //Automatically escapes tittygrapple at the expense of a little bit of lust damage to both of you.
 public function pinchKaskaNipple():void
 {
+	setEnemy(CombatManager.getHostileCharacters()[0]);
 	clearOutput();
 	output("One of her leather-covered nipples brushes your cheek, giving you all the information you need to target it. You twist your torso slightly and free enough room for your arm to snake up into her cleavage. Then, your fingers find your target. It's hard and pebbly. You pinch. Gasping, Kaska drops you, staggering back and panting, her nipples even more visible through the thin xeno-leather corset. Her nipple felt nice between your fingers. Maybe you ought to let her grab you again?");
-	output("\n\nKaska merely pants and flushes. Did she enjoy the pinch that much?\n");
+	output("\n\nKaska merely pants and flushes. Did she enjoy the pinch that much?");
 	pc.removeStatusEffect("Grappled");
-	applyDamage(new TypeCollection( { tease: 4 + rand(3) } ), enemy, pc, "minimal");
+	applyDamage(new TypeCollection( { tease: 4 + rand(3) } ), enemy, pc, "suppress");
 	applyDamage(new TypeCollection( { tease: 7 + rand(3) } ), pc, enemy, "minimal");
+	setEnemy(null);
 	CombatManager.processCombat();
 }
 
