@@ -299,8 +299,8 @@ package classes.Characters
 			var damage:DamageResult = applyDamage(new TypeCollection({ electric: 15 }, DamageFlag.ONLY_SHIELD), this, target, "suppress");
 			// Valeria Shield Hack
 			output("Saendra taps on her wrist, yanking Valeria out of her digital hidey-hole and aiming the fluttery holo-avatar at");
-			if (CombatManager.multipleEnemies()) output(" one of ");
-			output(target.a + target.short + ". A concussive wave blasts from her target's shield belt as it's overloaded,");
+			if (CombatManager.multipleEnemies()) output(" one of");
+			output(" " + target.a + target.short + ". A concussive wave blasts from her target's shield belt as it's overloaded,");
 			if (CombatManager.multipleEnemies()) output(" a chain of energy shooting forth and connecting to his compatriots");
 			if (target.shields() <= 0) output(" completely");
 			else output(" nearly");
