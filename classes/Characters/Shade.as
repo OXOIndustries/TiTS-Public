@@ -247,14 +247,14 @@
 			
 			if (hostiles.indexOf(this) == -1)
 			{
-				long = "Beside you stands Shade";
+				long = "Beside you stands Shade,";
 			}
 			else
 			{
-				long = "You’re fighting Shade";
+				long = "Shade is";
 			}
 			
-			long += ", a kaithrit bounty hunter with silver hair and deadly glint in her eyes. She’s clad in a long duster decorated with lightning patterns, plus an armored vest beneath it. Her clothes part in the back, revealing a wriggling reptilian tail tipped with a human-looking pussy that drools a steady stream behind her. At her side, the kaithrit’s packing a";
+			long += " a kaithrit bounty hunter with silver hair and deadly glint in her eyes. She’s clad in a long duster decorated with lightning patterns, plus an armored vest beneath it. Her clothes part in the back, revealing a wriggling reptilian tail tipped with a human-looking pussy that drools a steady stream behind her. At her side, the kaithrit’s packing a";
 			if(rangedWeapon is HoldOutPistol) long += "bog standard holdout pistol. It’s not much to look at, but given your apparent immunity to lightning, it’s serving her better than the Arc Caster she was carrying.";
 			else long += "n Arc Caster, a powerful hand cannon that crackles with electricity.";
 		}
