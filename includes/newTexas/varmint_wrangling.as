@@ -503,7 +503,7 @@ public function hasVarmintBuddy():Boolean
 // Do you have the leash anywhere?
 public function hasVarmintLeash():Boolean
 {
-    if(pc.accessory is VarmintLeash || pc.hasItemByName("Pink Leash")) return true;
+	if(pc.accessory is VarmintLeash || pc.hasItemByName("Pink Leash")) return true;
 	for (var i:int = 0; i < pc.ShipStorageInventory.length; i++)
 	{
 		var sItem:ItemSlotClass = pc.ShipStorageInventory[i] as ItemSlotClass;
@@ -511,7 +511,7 @@ public function hasVarmintLeash():Boolean
 	}
 	// Remove leashed effect if none exists.
 	pc.removeStatusEffect("Varmint Leashed");
-    return false;
+	return false;
 }
 
 // Crew Menu Text
@@ -870,9 +870,18 @@ public function varmintDisappears():void
 	if(varmintIsWild())
 	{
 		// If not on NT:
-		if(rooms[currentLocation].planet != "PLANET: NEW TEXAS") output("\n\nWell, looks like there’s going to be a varmint infestation here now.");
+		if(getPlanetName() != "New Texas") output("\n\nWell, looks like there’s going to be a varmint infestation here now.");
 		// NT:
 		else output("\n\nBack to where you came from, you big blue bastard!");
+	}
+	else
+	{
+		output("\n\n");
+		if(pc.isBimbo()) output("Aw... You pout for a bit and hope that your little puppy is doing okay by its lonesome.");
+		else if(pc.isNice()) output("Well, that was bound to happen if you didn’t keep it on a leash. Hopefully it’s okay out there.");
+		else output("You should have known that thing was gonna run off! Keeping it tethered might have been a better option after all.");
+		if(getPlanetName() == "New Texas") output(" At least it’s back home now.");
+		else output(" One loose animal on " + getPlanetName() + " shouldn’t cause too much trouble on, right?");
 	}
 	
 	processTime(32);
