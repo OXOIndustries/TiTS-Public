@@ -2213,7 +2213,7 @@ public function deck13WeaponRacks():void
 			var pistol:NovaPistol = new NovaPistol();
 			lootScreen = deck13WeaponPistolCheck;
 			flags["DECK13_TAKEN_PISTOL"] = 1;
-			itemCollect([pistol]);
+			itemCollect([pistol], true);
 		});
 	}
 
@@ -2224,7 +2224,7 @@ public function deck13WeaponRacks():void
 			var rifle:NovaRifle = new NovaRifle();
 			lootScreen = deck13WeaponRifleCheck;
 			flags["DECK13_TAKEN_RIFLE"] = 1;
-			itemCollect([rifle]);
+			itemCollect([rifle], true);
 		});
 	}
 
