@@ -116,8 +116,14 @@ public function kirosShipPistol():void
 }
 public function kirosShipPistolCheck():void
 {
-	if(!pc.rangedWeapon is CustomLP17 && !pc.hasItemByType(CustomLP17)) flags["RESCUE KIRO TOOK PISTOL"] = undefined;
-	mainGameMenu();
+	if(pc.rangedWeapon is CustomLP17 || pc.hasItemByType(CustomLP17))
+	{
+		mainGameMenu();
+		return;
+	}
+	flags["RESCUE KIRO TOOK PISTOL"] = undefined;
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
 
 public function kirosShipCutlass():void
@@ -131,8 +137,14 @@ public function kirosShipCutlass():void
 }
 public function kirosShipCutlassCheck():void
 {
-	if(!pc.meleeWeapon is Cutlass && !pc.hasItemByType(Cutlass)) flags["RESCUE KIRO TOOK CUTLASS"] = undefined;
-	mainGameMenu();
+	if(pc.meleeWeapon is Cutlass || pc.hasItemByType(Cutlass))
+	{
+		mainGameMenu();
+		return;
+	}
+	flags["RESCUE KIRO TOOK CUTLASS"] = undefined;
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
 
 public function kirosShipWails(doOutput:Boolean = true):Boolean
