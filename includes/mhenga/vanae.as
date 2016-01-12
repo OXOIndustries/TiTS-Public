@@ -288,8 +288,7 @@ public function vanaeHeader(preName:String):void
 
 public function vanaePCVictory():void
 {
-	clearOutput();
-	vanaeHeader("VICTORY: VANAE\n");
+	vanaeHeader("VICTORY:\nVANAE");
 
 	// HP WIN
 	if (enemy.HP() <= 1)
@@ -1566,8 +1565,7 @@ public function vanaeHuntressPostVictoryScene():void
 
 public function vanaeHuntressPCDefeat():void
 {
-	clearOutput();
-	vanaeHeader("DEFEAT:\nVANAE ");
+	vanaeHeader("DEFEAT:\nVANAE");
 
 	if (pc.HP() <= 1)
 	{
@@ -2296,9 +2294,7 @@ public function vanaeHuntressPCDefeatTentafux():void
 
 public function vanaeMaidenPCDefeat():void
 {
-
-	clearOutput();
-	vanaeHeader("DEFEAT:\nVANAE ");
+	vanaeHeader("DEFEAT:\nVANAE");
 
 	// HP
 	if (pc.HP() <= 1)
