@@ -442,13 +442,13 @@ public function kaedeMyrellionSexIntroII():void
 	clearOutput();
 	kaedeHeader();
 
-	output("After a couple of minutes, you hear the hiss of the cabin door sliding open. Kaede takes a long-legged stride back into the main chamber, drawing your eyes back her way. She’s mostly naked, save for a translucent pink bra that cups her small breasts, and a pair of lacey pink stockings clipped to a garter that hugs her slender hips. She’s got no panties on, showing off an eight-inch shaft of canine cock dangle freely between her legs.");
+	output("After a couple of minutes, you hear the hiss of the cabin door sliding open. Kaede takes a long-legged stride back into the main chamber, drawing your eyes back her way. She’s mostly naked, save for a translucent pink bra that cups her small breasts, and a pair of lacey pink stockings clipped to a garter that hugs her slender hips. She’s got no panties on, showing off an eight-inch shaft of canine cock dangling freely between her legs, only just concealing a tight little sack hugging her groin");
 	
 	output("\n\nKaede’s holding a pair of small glasses in one hand, and a dark bottle of whiskey in the other.");
 	
-	output("\n\n<i>“Thanks for waiting. I thought I’d go ahead and get changed,”</i> Kaede says with a little smile. Her bare feet make a little patter across the metallic deck as she approaches you, nice and slow with a seductive sashay of her hips. You watch appreciatively as the svelte girl approaches, giving your eyes time to wander all across the body on display for you: from her long, slender legs to her small pouch of a sac hiding behind a proud canine shaft, and up to the handful of tit she’s sporting, each tipped with a stiff little nipple poking into the silky material of her bra.");
+	output("\n\n<i>“Thanks for waiting. I thought I’d go ahead and get changed,”</i> Kaede says with a little smile. Her bare feet make a little patter across the metallic deck as she approaches you, nice and slow with a seductive sashay of her hips. You watch appreciatively as the svelte girl approaches, giving your eyes time to wander all across the body on display for you: from her long, slender legs to her small pouch of a sack hiding behind a proud canine shaft, and up to the handful of tit she’s sporting, each tipped with a stiff little nipple poking into the silky material of her bra.");
 	
-	output("\n\nHer tail swishes slowly behind her, curling around one of her legs as she sets her glasses and bottle down, and slips into your lap. You lean back into the couch, your hands reaching up to caress Kaede’s hips, pulling her close. The feeling of hot, stiff girl-cock coming to rest on your belly sends a shiver through you - one that pales in comparison to the next as Kaede’s hand reaches down to caress your own crotch, and her small lips brush against your [pc.lips]. Your eyes flutter closed, and you return the kiss, suckling one the halfbreed’s lower lip and squeezing your fingers into her tight ass.");
+	output("\n\nHer tail swishes slowly behind her, curling around one of her legs as she sets her glasses and bottle down, and slips into your lap. You lean back into the couch, your hands reaching up to caress Kaede’s hips, pulling her close. The feeling of hot, stiff girl-cock coming to rest on your belly sends a shiver through you -- one that pales in comparison to the next as Kaede's hand reaches down to caress your own crotch, her small lips brushing against your [pc.lips]. Your eyes flutter closed, and you return the kiss, suckling on the halfbreed's lower lip and squeezing your fingers into her tight ass.");
 	
 	output("\n\n<i>“I guess the drinks can come later,”</i> she purrs, breaking the kiss just long enough to speak.");
 	
@@ -503,7 +503,7 @@ public function kaedeMyrellionFuckAss():void
 	if (pc.biggestCockLength() > 10) output(" cute little");
 	output(" cock. Between you grinding against her anal passage and now your fingers lacing around her shaft, she can’t help but moan and squirm in your grasp.");
 	
-	output("\n\n<i>“Is it... is it okay if I start moving?”</i> Kaede asks after a moment, cupping one of her perky tits. She speaks, the white bubble at the tip of her shaft pops, drooling down over your fingers in a sticky wet mess.");
+	output("\n\n<i>“Is it... is it okay if I start moving?”</i> Kaede asks after a moment, cupping one of her perky tits. As she speaks, the white bubble at the tip of her shaft pops, drooling down over your fingers in a sticky wet mess.");
 	
 	output("\n\nChuckling, you say that it’s normally you who’d be asking that. Kaede giggles, shifting her legs to get a better hold on the couch before she starts to move her hips. You find yourself sucking in a sharp breath as Kaede’s hips lift out of your lap, carrying her a few inches along the length of your shaft, and oh so slowly back down again. With every inch of motion, her cock twitches cutely in your hand, dragging through your fingers as her hips move, then thrust back in again. Flashing Kaede a little grin, you grab the bottle of lube off of her and squirt a little into your own hand, giving her cute canid prick a nice and slick tunnel to fuck just like she’s giving you.");
 	
@@ -626,7 +626,7 @@ public function kaedeMyrellionSucknRide():void
 	
 	output("\n\nThe thought of Kaede’s knotty cock going somewhere other than your mouth spurs you on, urging you to slather her shaft with a nice, thick coating of spittle. You work your tongue from base to crown and down again, lavishing every inch of red puppy prick with wet affection. She answers your motions with cute little moans and twitches of her hips, bucking against your lips. You let her have her fun, thrusting her hips into you until she sounds like she’s barely holding on. Kaede cups her breasts, squeezing her nipples and moaning like a lusty whore. You enjoy every second of her sensual show until you’re more than satisfied with the glaze of spit-lube coating her cock.");
 	
-	output("\n\nEnough of that, then. You pull yourself off of the sumptuous shaft of shemale cock and start to crawl up her svelte little body, pushing Kaede back into the couch and straddling her slender hip. She looks up at you with those big, blue eyes of hers and rests her hands on your hips, gently guiding you down towards the pillar of canine meat between her legs. You wiggle your hips against her rod, letting it nestle");
+	output("\n\nEnough of that, then. You pull yourself off of the sumptuous shaft of shemale cock and start to crawl up her svelte little body, pushing Kaede back into the couch and straddling her slender hips. She looks up at you with those big, blue eyes of hers and rests her hands on your hips, gently guiding you down towards the pillar of canine meat between her legs. You wiggle your hips against her rod, letting it nestle");
 	if (!pc.hasVagina()) output(" into the crack of your ass");
 	else output(" against your thigh");
 	output(".");

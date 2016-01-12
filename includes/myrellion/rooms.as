@@ -2004,10 +2004,10 @@ public function initializeMyrellionRooms():void
 	rooms["1F22"].system = "SYSTEM: SINDATHU";
 	rooms["1F22"].southExit = "1F24";
 	rooms["1F22"].moveMinutes = 5;
-	rooms["1F22"].runOnEnter = stephCampEncounter;
+	rooms["1F22"].runOnEnter = noManzLandBonus;
 	rooms["1F22"].addFlag(GLOBAL.CAVE);
 	rooms["1F22"].addFlag(GLOBAL.INDOOR);
-	rooms["1F22"].addFlag(GLOBAL.NPC);
+	rooms["1F22"].addFlag(GLOBAL.HAZARD);
 
 	rooms["1H24"] = new RoomClass(this);
 	rooms["1H24"].roomName = "THE\nTUNNELS";
