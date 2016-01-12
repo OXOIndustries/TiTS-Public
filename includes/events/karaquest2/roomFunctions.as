@@ -21,13 +21,21 @@ public function kq2FightBlackVoidGrunts():void
 	var num:int = 2 + rand(3);
 	output("\n\nYou hear heavy footfalls pounding towards you, and you quickly sight in on "+ num2Text(num) +" black-clad figures in heavy armor racing towards you, each carrying a machine pistol. They skid to a stop just ahead of you, raising their weapons to their hips and opening fire without warning!")
 
-	foes = [];
-	for (var i:int = 0; i < num; i++)
-	{
-		foes.push(new KQ2BlackVoidGrunt());
-	}
+	var f:Array = [pc];
+	if (flags["KQ2_KARA_WITH_PC"] == 1) f.push(kara);
 
-	startCombatLight();
+	var h:Array = [];
+	for (var i:int = 0; i < num; i++) h.push(new KQ2BlackVoidGrunt());
+
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(f);
+	CombatManager.setHostileCharacters(h);
+	CombatManager.victoryScene();
+	CombatManager.lossScene(kq2CapturedByPiratesBadEnd);
+	CombatManager.displayLocation("VOID GRUNTS");
+
+	clearMenu();
+	addButton(0, "Next", CombatManager.beginCombat);
 }
 
 public function kq2FightSecDrones():void
@@ -39,13 +47,21 @@ public function kq2FightSecDrones():void
 	if (9999 == 0) output(" They look almost exactly like the drone you put together just after your Dad died, still tucked away in your pack.");
 	output(" The drones zip towards you, powering up stun-guns.");
 
-	foes = [];
-	for (var i:int = 0; i < num; i++)
-	{
-		foes.push(new KQ2SecurityDroid());
-	}
+	var f:Array = [pc];
+	if (flags["KQ2_KARA_WITH_PC"] == 1) f.push(kara);
 
-	startCombatLight();
+	var h:Array = [];
+	for (var i:int = 0; i < num; i++) h.push(new KQ2SecurityDroid());
+
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(f);
+	CombatManager.setHostileCharacters(h);
+	CombatManager.victoryScene();
+	CombatManager.lossScene(kq2CapturedByPiratesBadEnd);
+	CombatManager.displayLocation("SEC. DROIDS");
+
+	clearMenu();
+	addButton(0, "Next", CombatManager.beginCombat);
 }
 
 public function kq2rfRappelPoint():Boolean
@@ -66,7 +82,7 @@ public function kq2RappelIn():void
 {
 	clearOutput();
 
-	output("\n\n<i>“Do it.”</i>");
+	output("<i>“Do it.”</i>");
 	
 	output("\n\nKara nods and unslings the rifle from her back, loads a hook into a small launcher under the barrel, and squeezes the trigger. The hook goes sailing downwards, trailing a slender rope behind it. You hear a faint <i>clink</i> a moment later, and the rope goes taut. Kara pulls the launcher off her gun and pitons it into the cliffside.");
 	
@@ -398,16 +414,19 @@ public function kq2rfBarracksInterior():Boolean
 		// force combat
 		flags["KQ2_BARRACKS_INTERIOR_ENTERED"] = 1;
 	}
-	else if (9999 == 0) // try proc combat
+	else
 	{
+		if (9999 == 0) // try proc combat
+		{
 
+		}
+		else if (flags["KQ2_TAKEN_ARMOR"] == undefined)
+		{
+			output(" You can see a full suit of armor sitting on one of the bunks. Looks usable.");
+			addButton(0, "TakeArmor", kq2takeArmor);
+		}
+		output(" There’s a door south, back towards the courtyard, and another going west labeled <i>“Security.”</i>");
 	}
-	else if (flags["KQ2_TAKEN_ARMOR"] == undefined)
-	{
-		output(" You can see a full suit of armor sitting on one of the bunks. Looks usable.");
-		addButton(0, "TakeArmor", kq2takeArmor);
-	}
-	output(" There’s a door south, back towards the courtyard, and another going west labeled <i>“Security.”</i>");
 
 	return false;
 }
@@ -639,6 +658,10 @@ public function kq2rfLabElevator():void
 
 	if (flags["KQ2_DEFEATED_JUGGERNAUT"] == undefined && flags["KQ2_KHANS_FILES"] != undefined)
 	{
+		showBust("KARA", "KQ2JUGGERNAUT");
+		author("Savin");
+		showName("\nJUGGERNAUT");
+		
 		output("\n\nYou and Kara run towards the elevator, still locked open the way you left it. <i>“Okay, we’re almost out of here, [pc.name],”</i> your companion pants, grabbing the edge of the obstruction and yanking it out of the way. <i>“Just get up to the roof and jack a shuttle. We’ll be gone before they can blink.”</i>");
 		
 		output("\n\nAs soon as she says it, though, you hear a whistling from the elevator. The both of you peer into the cart as the sound grows louder and louder... before erupting into an explosion. The roof of the car smashes inwards, dropping a huge man clad from head to foot in a suit of black powered armor dead in the middle of the elevator. His whole body shudders as he lands, what looks like a thousand pounds of armor and weapons trying to drag him to the deck. Instead, he pulls himself upright with a roar of rage and levels a machinegun at you. The black faceplate of his helmet is emblazoned with a glowing white jolly roger, his own eyes barely visible through the skull’s.");
@@ -648,9 +671,17 @@ public function kq2rfLabElevator():void
 
 		output("\n\n<i>“ASS KICKIN’ TIME,”</i> the pirate roars, his voice amplified to painful levels by his armor.");
 
-		foes = [];
-		foes.push(new KQ2Juggernaught());
-		startCombatLight();
+		var f:Array = [pc];
+		if (flags["KQ2_KARA_WITH_PC"] == 1) f.push(kara);
+
+		CombatManager.newGroundCombat();
+		CombatManager.setFriendlyCharacters(f);
+		CombatManager.setHostileCharacters([new KQ2Juggernaught()]);
+		CombatManager.victoryScene();
+		CombatManager.lossScene(kq2CapturedByPiratesBadEnd);
+
+		clearMenu();
+		addButton(0, "Fight!", CombatManager.beginCombat);
 		return true;
 	}
 
