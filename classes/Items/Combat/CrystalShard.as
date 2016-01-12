@@ -65,14 +65,13 @@
 				if (targetCreature == kGAMECLASS.pc)
 				{
 					kGAMECLASS.clearOutput();
-					kGAMECLASS.output("Any more crystals and you'd be lucky to move, let alone fight.\n");
+					kGAMECLASS.output("Any more crystals and you'd be lucky to move, let alone fight.");
 				}
 				else
 				{
-					if(inCombat()) kGAMECLASS.output("\n");
+					if(inCombat()) kGAMECLASS.output("\n\n");
 					else kGAMECLASS.clearOutput();
-					kGAMECLASS.output(targetCreature.capitalA + targetCreature.short + " considers it unwise to use another crystal on " + usingCreature.mfn("him","her","it") + "self.\n");
-					kGAMECLASS.output("\n");
+					kGAMECLASS.output(targetCreature.capitalA + targetCreature.short + " considers it unwise to use another crystal on " + usingCreature.mfn("him","her","it") + "self.");
 				}
 				return false;
 			}
@@ -87,7 +86,7 @@
 				// Enemy used an item on the PC
 				else if (targetCreature != kGAMECLASS.pc && usingCreature != kGAMECLASS.pc)
 				{
-					if(inCombat()) kGAMECLASS.output("\n");
+					if(inCombat()) kGAMECLASS.output("\n\n");
 					else kGAMECLASS.clearOutput();
 					npcUsed(targetCreature, usingCreature);
 				}
@@ -101,13 +100,13 @@
 		
 		public function playerUsed(targetCreature:Creature, usingCreature:Creature):void
 		{
-			kGAMECLASS.output("You hold the crystal aloft and break it apart, coating yourself with a splash of liquid goo. It clings to your body, rapidly recrystallizing into a glittering, rock-hard plates!\n");
+			kGAMECLASS.output("You hold the crystal aloft and break it apart, coating yourself with a splash of liquid goo. It clings to your body, rapidly recrystallizing into a glittering, rock-hard plates!");
 			targetCreature.createStatusEffect("Crystal Coated",2,0,0,0,false,"Icon_DefUp","Defense is raised by 4 points thanks to a coating of rock-hard crystals!",false,1200);
 		}
 		
 		public function npcUsed(targetCreature:Creature, usingCreature:Creature):void
 		{
-			kGAMECLASS.output(usingCreature.capitalA + usingCreature.short + " breaks open a crystal shard, soaking " + usingCreature.mfn("him","her","it") + "self in a greenish goo that rapidly hardens into crystal! You'll have a hard time hurting " + usingCreature.mfn("him","her","it") + "!\n");
+			kGAMECLASS.output(usingCreature.capitalA + usingCreature.short + " breaks open a crystal shard, soaking " + usingCreature.mfn("him","her","it") + "self in a greenish goo that rapidly hardens into crystal! You'll have a hard time hurting " + usingCreature.mfn("him","her","it") + "!");
 			targetCreature.createStatusEffect("Crystal Coated",2,0,0,0,false,"Icon_DefUp","Defense is raised by 4 points thanks to a coating of rock-hard crystals!",true,0);
 		}
 	}
