@@ -70,15 +70,15 @@
 					target.lust(-5);
 				}
 				clearOutput();
-				output("You pop a Focus Pill out of your pack and into your mouth. It’s completely tasteless, and all but dissolves in your mouth.\n\nAfter a moment’s wait, you start to feel a little calmer. You let out a breath you didn't know you were holding, and focus in on the task at hand.");
-				output("\n");
+				if(inCombat()) output("You pop a Focus Pill into your mouth. As it dissolves, you start to feel a little calmer and more focused in on the task at hand.");
+				else output("You pop a Focus Pill out of your pack and into your mouth. It’s completely tasteless, and all but dissolves in your mouth.\n\nAfter a moment’s wait, you start to feel a little calmer. You let out a breath you didn't know you were holding, and focus in on the task at hand.");
 			}
 			//Not player!
 			else
 			{
-				if(inCombat()) output("\n");
+				if(inCombat()) output("\n\n");
 				else clearOutput();
-				output(target.capitalA + target.short + " swallows a focus pill to no effect.\n");
+				output(target.capitalA + target.short + " swallows a focus pill to no effect.");
 			}
 			return false;
 		}
