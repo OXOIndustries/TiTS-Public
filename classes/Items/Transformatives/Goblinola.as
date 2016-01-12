@@ -674,7 +674,6 @@ package classes.Items.Transformatives
 				if(!inCombat()) output(" There are some constants that hold true the galaxy over, and health snacks are one of them: It’s reasonably tasty, takes a while to chew and is vaguely unsatisfying.");
 				output(" Your stomach is left a little unsettled.");
 				if (healing > 0) output(" (<b>+" + healing + " HP</b>)");
-				output("\n");
 				
 				// Immediate effects: The player gains some health.
 				target.HP(healing);
@@ -704,13 +703,12 @@ package classes.Items.Transformatives
 			//Not the player!
 			else
 			{
-				if(inCombat()) output("\n");
+				if(inCombat()) output("\n\n");
 				else clearOutput();
 				output(target.capitalA + target.short + " unwraps and eats a Goblinola bar");
 				if (healing > 0) output(", revitalizing some of [target.hisHer] health! (<b>+" + healing + " HP</b>)");
 				else output(" but to no effect.");
 				target.HP(healing);
-				output("\n");
 			}
 			return false;
 		}
