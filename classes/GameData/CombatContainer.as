@@ -966,7 +966,7 @@ package classes.GameData
 			output("You decide you'd rather fantasize than fight back at this point. Why bother when your enem");
 			if(enemiesAlive() > 1) output("ies are");
 			else output("y is");
-			output(" so alluring?\n");
+			output(" so alluring?");
 			pc.lust(20+rand(20));
 			processCombat();	
 		}
@@ -980,28 +980,28 @@ package classes.GameData
 				//Get back up
 				if(!pc.hasStatusEffect("Raskvel Pile"))
 				{
-					output("Quickly you heave yourself back on your [pc.feet], dusting yourself down with a scowl.\n");
+					output("Quickly you heave yourself back on your [pc.feet], dusting yourself down with a scowl.");
 					pc.removeStatusEffect("Tripped");
 					pc.removeStatusEffect("Raskvel Pile");
 				}
 				//Get back up under pile on:
 				if(pc.physique() + pc.statusEffectv1("Raskvel Pile") >= 30)
 				{
-					output("You tense yourself up and with a sudden upward heave send the raskvel flying off you. You scramble back on your [pc.feet], feeling intense relief from escaping that suffocating helplessness.\n");
+					output("You tense yourself up and with a sudden upward heave send the raskvel flying off you. You scramble back on your [pc.feet], feeling intense relief from escaping that suffocating helplessness.");
 					pc.removeStatusEffect("Tripped");
 					pc.removeStatusEffect("Raskvel Pile");
 				}
 				//Fail to get back up under pile on:
 				else
 				{
-					output("You try and elbow your way back up and duly collapse straight back into the dirt again. These little bastards are heavy!\n");
+					output("You try and elbow your way back up and duly collapse straight back into the dirt again. These little bastards are heavy!");
 					pc.addStatusValue("Raskvel Pile",1,10);
 				}
 			}
 			//GENERIC
 			else
 			{
-				output("You climb up onto your [pc.feet].\n");
+				output("You climb up onto your [pc.feet].");
 				pc.removeStatusEffect("Tripped");
 			}
 			processCombat();
@@ -1030,16 +1030,16 @@ package classes.GameData
 			output("! ")
 			//Autofail conditions first!
 			if(pc.isImmobilized()) {
-				output("You cannot run while you are immobilized!\n");
+				output("You cannot run while you are immobilized!");
 				processCombat();
 			}
 			else if (isFleeDisabled()) {
-				output("<b>You cannot escape from this fight!</b>\n");
+				output("<b>You cannot escape from this fight!</b>");
 				processCombat();
 			}
 			else if (kGAMECLASS.debug)
 			{
-				output("You escape on wings of debug!\n");
+				output("You escape on wings of debug!");
 				CombatManager.abortCombat();
 			}
 			else 
@@ -1114,10 +1114,9 @@ package classes.GameData
 					CombatManager.abortCombat();
 				}
 				else {
-					output(" It doesn't work!\n");
+					output("It doesn’t work!");
 					processCombat();
 				}
-
 			}
 		}
 		
@@ -1148,7 +1147,6 @@ package classes.GameData
 			{
 				pc.removeStatusEffect("Tripped");
 			}
-			output("\n");
 			processCombat();
 		}
 		
@@ -1513,7 +1511,7 @@ package classes.GameData
 			if (target is Celise)
 			{
 				clearOutput();
-				output("You put a hand on your hips and lewdly expose your groin, wiggling to and fro in front of the captivated goo-girl.\n");
+				output("You put a hand on your hips and lewdly expose your groin, wiggling to and fro in front of the captivated goo-girl.");
 				processCombat();
 				return;
 			}
@@ -2581,8 +2579,8 @@ package classes.GameData
 				return;
 			}
 			
-			output("You try to get a feel for " + possessive(target.a + target.uniqueName) + " likes and dislikes!\n");
-			if(target.isLustImmune) output("You don't think sexuality can win this fight!\n");
+			output("You try to get a feel for " + possessive(target.a + target.uniqueName) + " likes and dislikes!");
+			if(target.isLustImmune) output("\nYou don't think sexuality can win this fight!");
 			var buffer:String = "";
 			var PCBonus:Number = pc.intelligence()/2 + pc.libido()/20;
 			if(pc.hasPerk("Fuck Sense")) PCBonus = pc.libido();
@@ -2590,6 +2588,7 @@ package classes.GameData
 				buffer = GLOBAL.SEXPREF_DESCRIPTORS[i];
 				//If has a preference set, talk about it!
 				if(target.sexualPreferences.getPref(i) != 0) {
+					output("\n");
 					//If succeeds at sense check!
 					if(PCBonus + rand(20) + 1 >= target.level * 3 * (150-target.libido())/100) 
 					{
@@ -2619,10 +2618,9 @@ package classes.GameData
 					{
 						output(buffer + ": You aren't sure.")
 					}
-					output("\n");
 				}
 			}
-			if(target is HandSoBot) output("\nWhilst your teases have some effect on synthetics designed for sex, you sense there is no point whatsoever trying it on with what amounts to a bipedal forklift truck.\n");
+			if(target is HandSoBot) output("\n\nWhilst your teases have some effect on synthetics designed for sex, you sense there is no point whatsoever trying it on with what amounts to a bipedal forklift truck.");
 		}
 		
 		private function checkForLoss():Boolean
@@ -3085,7 +3083,7 @@ package classes.GameData
 			if (target is Celise)
 			{
 				kGAMECLASS.setEnemy(target);
-				output("\n" + target.long);
+				output("\n\n" + target.long);
 				showMonsterArousalFlavor(target);
 				kGAMECLASS.setEnemy(null);
 				
@@ -3110,7 +3108,7 @@ package classes.GameData
 					if (_hostiles.length == 1 && _friendlies.length == 1 && target.long.length > 0)
 					{
 						kGAMECLASS.setEnemy(target);
-						output("\n" + target.long);
+						output("\n\n" + target.long);
 						kGAMECLASS.setEnemy(null);
 					}
 					else
@@ -3148,11 +3146,11 @@ package classes.GameData
 				
 			if (target.HP() <= 0)
 			{
-				output("\n\n<b>" + target.capitalA + target.uniqueName + " is down and out for the count!</b>\n\n");
+				output("\n\n<b>" + target.capitalA + target.uniqueName + " is down and out for the count!</b>");
 			}
 			else if (target.lust() >= target.lustMax())
 			{
-				output("\n\n<b>" + target.capitalA + target.uniqueName + ((target.isPlural == true) ? " are" : " is") + " too turned on to fight.</b>\n\n");
+				output("\n\n<b>" + target.capitalA + target.uniqueName + ((target.isPlural == true) ? " are" : " is") + " too turned on to fight.</b>");
 			}
 			else if (target.long.length > 0)
 			{
