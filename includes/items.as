@@ -59,8 +59,7 @@ public function useItem(item:ItemSlotClass):Boolean {
 					clearMenu();
 					addButton(0,"Next",useItemFunction);
 				}
-				output("\n");
-				if (item.combatUsable == false) output("\n");
+				if (item.combatUsable == false) output("\n\n");
 			}
 			//else: Error checking
 			else 
