@@ -29,7 +29,7 @@
 			this.originalRace = "junker";
 			this.a = "the ";
 			this.capitalA = "The ";
-			this.long = "You are fighting the Firewall. It is a mighty, motley collection of heavy duty industrial tools welded together to form a hulking robot, at least eight feet in height. Its round, riveted torso combines with its long, piston-driven arms to give it a hunched, gorilla-like profile. In way of hands it has implacably strong crane grapnels, and its two feet are square and support-flapped, built to take any kind of weight. Its head is a square, blank screen, on which a red exclamation mark blinks interminably.";
+			this.long = "The Firewall is a mighty, motley collection of heavy duty industrial tools welded together to form a hulking robot, at least eight feet in height. Its round, riveted torso combines with its long, piston-driven arms to give it a hunched, gorilla-like profile. In way of hands it has implacably strong crane grapnels, and its two feet are square and support-flapped, built to take any kind of weight. Its head is a square, blank screen, on which a red exclamation mark blinks interminably.";
 			this.customDodge = "The firewall's erratic motions somehow carry the lumbering hulk out of the way of your attack!";
 			this.customBlock = "The firewall’s thick plates cause the attack to glance off harmlessly.";
 			this.isPlural = false;
@@ -234,7 +234,7 @@
 		
 		private function electropulseAttack(target:Creature):void
 		{
-			output("A stylised lightning bolt within a yellow triangle appears on the Firewall’s screen. Electricity courses and spits up its arm, then connects with a blinding crack to your kinetic shield.");
+			output("A stylized lightning bolt within a yellow triangle appears on the Firewall’s screen. Electricity courses and spits up its arm, then connects with a blinding crack to your kinetic shield.");
 			var damage:TypeCollection = new TypeCollection( { electric: 15 + rand(5) } );
 			applyDamage(damage, this, target);
 		}
