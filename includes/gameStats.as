@@ -1332,8 +1332,9 @@ public function displayQuestLog(showID:String = "All"):void
 					}
 					else if(flags["BADGER_QUEST"] == -2) output2(", Reprogrammed Raygun, <i>Return to Dr. Badger!</i>");
 					else if(flags["BADGER_QUEST"] <= -3) output2(", Zapped Dr. Badger instead, Rewarded, Completed");
+					if(flags["BADGER_QUEST"] >= 2) output2(",");
 				}
-				else if(flags["BADGER_QUEST"] == 2) output2(" Zapped Penny, <i>Mission accomplished! Report to Dr. Badger!</i>");
+				if(flags["BADGER_QUEST"] == 2) output2(" Zapped Penny, <i>Mission accomplished! Report to Dr. Badger!</i>");
 				else if(flags["BADGER_QUEST"] >= 3) output2(" Zapped Penny, Rewarded, Completed");
 			}
 			// Deck 13
@@ -1552,13 +1553,17 @@ public function displayQuestLog(showID:String = "All"):void
 					if(flags["KQ2_SEX_PAY"] != undefined) output2(", Kara sexed you");
 					if(flags["KQ2_CREDS_FIRST"] != undefined) output2(", Kara paid you");
 					if(flags["KQ2_KHANS_FILES"] != undefined) output2(", Took Khan’s files");
+					if(flags["KQ2_LOST_TO_AMARA"] != undefined) output2(", Lost to Amara");
+					if(flags["KQ2_KARA_SACRIFICE"] != undefined) output2(", Kara sacrificed herself");
 					// Pirate Base
 					if(9999 == 0)
 					{
-						output2("\n<b>* Pirate Base, Kara, Status:</b>");
-						if(flags["KQ2_KARA_WITH_PC"] == 1) output2(" At your side");
-						if(flags["KQ2_KARA_WITH_PC"] == 2) output2(" At the radio tower");
+						output2("\n<b>* Kara, Status:</b>");
+						if(flags["KQ2_BETRAYED_KARA"] != undefined) output2(" Betrayed her");
+						else if(flags["KQ2_KARA_WITH_PC"] == 1) output2(" At your side");
+						else if(flags["KQ2_KARA_WITH_PC"] == 2) output2(" At the radio tower");
 						else output2(" <i>Unknown</i>");
+						if(flags["KQ2_SHADE_DEAD"] != undefined) output2(", Killed Shade");
 					}
 					if(9999 == 0)
 					{
@@ -1576,7 +1581,7 @@ public function displayQuestLog(showID:String = "All"):void
 						else if(flags["KQ2_RF_KENNEL_USED"] == 2) output2(" Used to upgrade Tam-wolf");
 						else output2(" Unused");
 					}
-					if(flags["KQ2_WATSTON_MET"] != undefined) output2("\n<b>* Pirate Base, Watston:</b> Met it");
+					if(flags["KQ2_WATSON_MET"] != undefined) output2("\n<b>* Pirate Base, Watson:</b> Met it");
 					if(flags["KQ2_DEFEATED_ENGINEER"] != undefined) output2("\n<b>* Pirate Base, Engineer:</b> Defeated her");
 					if(flags["KQ2_DEFEATED_JUGGERNAUT"] != undefined) output2("\n<b>* Pirate Base, Juggernaut:</b> Defeated him");
 					if(flags["KQ2_DEFEATED_KHAN"] != undefined)
