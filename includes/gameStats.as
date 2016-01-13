@@ -2210,7 +2210,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				output2("\n<b><u>New Texas Customs Office</u></b>");
 				// Ogram and Amma
 				output2("\n<b>* Ogram and Amma:</b> Met them");
-				if(flags["FUCKED_TEXAN_CUSTOMS"] != undefined) output2(", Sexed them");
+				if(flags["FUCKED_TEXAN_CUSTOMS"] != undefined) output2("\n<b>* Ogram and Amma, Times Sexed:</b> " + flags["FUCKED_TEXAN_CUSTOMS"]);
 				variousCount++;
 			}
 			// Public
