@@ -45,6 +45,12 @@
 			this.buyMarkdown = .5;
 
 			this.femininity = 85;
+
+			this.elasticity = 3;
+			this.createVagina();
+			this.vaginas[0].wetnessRaw = 4;
+			this.vaginas[0].loosenessRaw = 1;
+			this.vaginas[0].bonusCapacity = 20;
 		}
 	}
 }
