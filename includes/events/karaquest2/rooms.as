@@ -83,9 +83,7 @@ public function kquest2InitRooms():void
 
 	rooms["K2_YARDD2"] = new RoomClass(this);
 	rooms["K2_YARDD2"].roomName = "TRAINING\nYARD";
-	rooms["K2_YARDD2"].description = "The courtyard of the base is wide and open, with little in the way of cover other than a few supply crates or ID-locked vehicles parked around the entrance. You can see a barracks to the north, the door to the research facility to the east, and a radio tower to the south-east. 
-
-The sewer entrance is just south of you. ";
+	rooms["K2_YARDD2"].description = "The courtyard of the base is wide and open, with little in the way of cover other than a few supply crates or ID-locked vehicles parked around the entrance. You can see a barracks to the north, the door to the research facility to the east, and a radio tower to the south-east.\n\nThe sewer entrance is just south of you.";
 	rooms["K2_YARDD2"].runOnEnter = null;
 	rooms["K2_YARDD2"].planet = planetName;
 	rooms["K2_YARDD2"].system = systemName;

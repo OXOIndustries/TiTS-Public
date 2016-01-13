@@ -1,3 +1,4 @@
+import classes.Items.Accessories.TamWolf;
 /* FLAGDOC
 
 KQ2_QUEST_OFFER 		-- GameTimestamp that the quest was offered at
@@ -6,6 +7,8 @@ KQ2_QUEST_BEGIN			-- Players decision about starting the quest
 						-- 0/undefined, no decision
 						-- 1 player accepted
 						-- 2 player rejected
+KQ2_QUEST_FINISHED		-- 0/undefined, nope
+						-- 1, finished, left, gone, woop
 KQ2_SEX_PAY				-- Player asked for sexytimes as extra payment
 KQ2_CREDS_FIRST			-- Player asked for additional credits up front
 KQ2_KARA_WITH_PC		-- Karas current location
@@ -30,6 +33,8 @@ KQ2_KHANS_FILES			-- 0/undefined, nothing
 						-- 1 Karas swiped Khans files
 KQ2_NUKE_STARTED		-- undefined, nuke not active
 						-- otherwise, timestamp that the player activated the nuke at
+KQ2_NUKE_EXPLODED		-- 0/undefined, nope
+						-- 1, nuke is dooooone
 
 KQ2_SHADE_DEAD			-- 0/undefined, alive
 						-- 1 Kara killed her
@@ -38,33 +43,37 @@ KQ2_FOUGHT_AMARA		-- 0/undefined, nope
 KQ2_BETRAYED_KARA		-- 0/undefined, nothing
 						-- 1, accepted credits from amara to dump kara
 
+KQ2_MYRELLION_STATE		-- 0/undefined, normal
+						-- 1, player nuked shit and lost access to myrellion
+						-- 2, player married/subjugated taivra and has access to the taxi point in the deep caves, but can't get to the upper caves
+
+KQ2_DANE_COORDS_TIMER	-- 0/undefined, unset
+						-- <value> timestamp 48 hours prior to dane sending a mail with coords for the next planet
 
 SAVE IMPORT FLAGS
 SILENCE_RESCUED_CONNIE	-- 0/undefined, no
 						-- 1, Kara rescued Connie
 */
 
-public function showKara():void
-{
-	showBust("KARA");
-	author("Savin");
-	showName("\nKARA");
-}
-
 public function tryProcKQuest2Entry():Boolean
 {
 	// On enter/leave ship on Myrellion
 	// Taivra defeated
 	// Kara aided in KQuest1
+	
+	var beatTaivra:Boolean = flags["BEAT_TAIVRA_TIMESTAMP"] != undefined;
+	
+	// I THINK this is the simplest check for "Kara & Shade was resolved, with the PC siding with Kara."
+	var aidedKara:Boolean = flags["KARA_PAID_YOU"] != undefined; 
+	
+	var kq2NotOffered:Boolean = flags["KQ2_QUEST_OFFER"] == undefined;
 
-	kq2SaveImport();
-}
-
-public function kq2SaveImport()
-{
-	// Figure this shit the fuck out
-
-	kq2Offer();
+	if (kq2NotOffered && aidedKara && beatTaivra)
+	{
+		kq2Offer();
+		return true;
+	}
+	return false;
 }
 
 public function kq2Offer():void
@@ -87,15 +96,10 @@ public function kq2Offer():void
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
-
-	//[Next]
-	//Add [Kara] to the destination map. Same system and all as Myrellion, short travel time if in-system. No time limit to arrive. 
-	//Tooltip: 
 }
 
-public function kq2TravelToKara():void
+public function kq2TravelToKara(shortTravel:Boolean):void
 {
-	clearOutput();
 	showKara();
 	//Walks through import process from Silence. Option to back out if not import.
 
@@ -106,7 +110,7 @@ public function kq2TravelToKara():void
 	output("You punch in the coordinates Kara gave you and engage the autopilot, letting the computer start your journey.");
 
 	output("\n\nOne");
-	if (9999 == 0) output(" lengthy journey through space and the Warp Gate network");
+	if (!shortTravel) output(" lengthy journey through space and the Warp Gate network");
 	else output(" quick trip through the atmosphere later");
 	output(" and you’re zooming through the blackness of space, hurtling towards Myrellion’s further moon. The journey toward the icy blue moon isn’t particularly long, by galactic standards, but the coordinates Kara gave you lead into rocky belt encircling it. You instinctively boost your shielding, gazing out your ship’s viewports as tumbling hunks of house-sized rock and ice smash against each other. Your shields rumble and flicker as shards of debris hit you, just enough to give you a light show - no threat, so long as you keep dodging the big rocks.");
 
@@ -121,14 +125,14 @@ public function kq2TravelToKara():void
 
 	output("\n\nYou accept it, and are greeted by Kara’s face, standing on what must be the bridge of the other ship, surrounded by blinking consoles and computer terminals - none of them manned. <i>“Captain! I was starting");
 	if (kara.isNice()) output(" to worry something had happened to you.");
-	else if (kara.isMischeivious()) output(" to worry you got lost!");
+	else if (kara.isMischievous()) output(" to worry you got lost!");
 	else output(" to think you weren’t coming.");
 	output(" Good to see you again,”</i> she says, affecting a faint smile. <i>“In person, preferably. I’m extending a docking tether now... mind if I come over?”</i>");
 
 	output("\n\n<i>“");
 	if (pc.isNice()) output("By all means,");
-	else if (pc.isMischeivious() && kara.isMischeivious()) output("Sure. If you think you can manage to not get lost on the way.");
-	else if (pc.isMischeivious()) output("Looks like you’re already inviting yourself over,");
+	else if (pc.isMischievous() && kara.isMischievous()) output("Sure. If you think you can manage to not get lost on the way.");
+	else if (pc.isMischievous()) output("Looks like you’re already inviting yourself over,");
 	else output("I guess,");
 	output("”</i> you say, as the docking clamps lock your ships together, ever so slightly rattling your outer hull.");
 
@@ -140,7 +144,7 @@ public function kq2TravelToKara():void
 	{
 		output("\n\n<i>“Hey there, [pc.name],”</i> she smiles, reaching in and giving you a brisk hug.");
 	}
-	else if (kara.isMischeivious())
+	else if (kara.isMischievous())
 	{
 		output("\n\n<i>“Heyya, "+ pc.mf("handsome", "beautiful") +"”</i> Kara grins, giving you a rough clap on the shoulder.");
 	} 
@@ -149,15 +153,15 @@ public function kq2TravelToKara():void
 		output("\n\n<i>“Steele,”</i> Kara says, giving you a firm but respectful nod.");
 	}
 	output(" <i>“It’s good to see you again. Like I said over the comms, I’ve got another job for you - if you’re interested. And I still owe you for");
-	if (9999 == 0) output(" helping me kick that bounty hunter bitch’s ass");
+	if (flags["SHADE_DEFEATED_WITH_KARA"] != undefined) output(" helping me kick that bounty hunter bitch’s ass");
 	else output(" pulling my ass out of the fire back on Myrellion");
 	output(".”</i>");
 
 	output("\n\nShe flips a credit chit out of her shoulder rig and");
-	if (kara.isMischeivious()) output(" tosses it to you");
+	if (kara.isMischievous()) output(" tosses it to you");
 	else output(" hands it to you");
 	output(", waiting with a smile as you swipe it through your Codex. A moment later, the device beeps an alert that <b>ten thousand credits</b> have been transferred to your account. You blink away your surprise and tuck your Codex away with a grateful nod towards the kaithrit.");
-	if (kara.isMischeivious()) output(" She gives you a playful wink and says,");
+	if (kara.isMischievous()) output(" She gives you a playful wink and says,");
 	output(" <i>“Like I said, I owed you. Think that makes us even, hmm?”</i>");
 
 	output("\n\n");
@@ -165,12 +169,12 @@ public function kq2TravelToKara():void
 	output("<i>“So, you had a job you wanted to discuss?”</i>");
 
 	output("\n\n<i>“That I do.");
-	if (kara.isMischeivious()) output(" Permission to come aboard, captain?");
+	if (kara.isMischievous()) output(" Permission to come aboard, captain?");
 	else output(" Mind if we sit down somewhere?");
 	output("”</i>");
 
 	output("\n\n");
-	if (pc.isMischeivious() && kara.isMischeivious()) output("<i>“Permission granted!”</i> you grin, giving Kara an exaggerated wink.");
+	if (pc.isMischievous() && kara.isMischievous()) output("<i>“Permission granted!”</i> you grin, giving Kara an exaggerated wink.");
 	else output("<i>“Sure, come on in,”</i> you say, waving her aboard.");
 	output(" You turn and lead her out of the airlock and into the ship’s common area.");
 
@@ -199,7 +203,7 @@ public function kq2TravelToKara():void
 
 		output("\n\n<i>“I’d love one, Reaha,”</i> Kara says, introducing herself as the cow-girl picks up a glass from the galley nearby and fills it from the back of the milker. Once Kara’s got herself a drink, you give Reaha");
 		if (pc.isNice()) output(" an affectionate");
-		else if (pc.isMischeivious()) output(" a playful");
+		else if (pc.isMischievous()) output(" a playful");
 		else output(" a commanding");
 		output(" smack on her ass and tell her to scoot. You’ve got business to attend to.");
 
@@ -217,24 +221,24 @@ public function kq2TravelToKara():void
 
 	output("\n\n<i>“Like I said, I have a job for you, [pc.name]. Dangerous work, but");
 	// {if fought Shade:
-	if (9999 == 0) output(" you’ve proven you can handle yourself");
+	if (flags["SHADE_DEFEATED_WITH_KARA"] != undefined) output(" you’ve proven you can handle yourself");
 	else output(" I think you can handle yourself");
 	output(". Plus I can’t fly the </i>Ghost<i> solo into a fight, if it comes to that. Hopefully it won’t, but...”</i>");
 
 	output("\n\n<i>“Alright");
-	if (pc.isMischeivious()) output(", I’ll bite");
+	if (pc.isMischievous()) output(", I’ll bite");
 	output(", what’s the job?”</i>");
 
 	output("\n\nKara nods, a glint in her eerie eyes. <i>“Now we’re talking. A very powerful... friend... of mine tells me that there’s a pirate base being set up down on Myrellion.");
 	if (kara.isNice()) output(" I’ll be honest with you: they’re Black Void. Biggest and most powerful pirate syndicate in the galaxy.");
-	else if (kara.isMischeivious()) output(" You’ve heard of the Black Void, right? They’re no joke, but I’m going after them. Hard and fast.");
+	else if (kara.isMischievous()) output(" You’ve heard of the Black Void, right? They’re no joke, but I’m going after them. Hard and fast.");
 	else output(" They’re tough bastards. Black Void. But nothing we can’t handle.");
 	output("”</i>")
 
 	output("\n\nThe Black Void. She’s not joking: they’re the most dangerous pirates around - you couldn’t go a day in flight school without somebody sharing a horror story about Void raiders slaughtering a crew to the man, or dragging them off to the slave pits of Raxxia. Most folk would do just about anything to stay out of their crosshairs... and Kara wants to kick a hornets’ nest. Maybe you should get a little more information.");
 
 	output("\n\nKara kicks back on one of your seats, setting down the chromed briefcase she’s carrying between her legs, waiting for your response.");
-
+	
 	processTime(15);
 
 	kq2InitTalkMenu();
@@ -324,26 +328,26 @@ public function kq2KaraThePlan():void
 	showKara();
 
 	output("<i>“So, what’s your plan, Kara?");
-	if (pc.isMischeivious()) output(" We can’t exactly walk into a pirate base.");
+	if (pc.isMischievous()) output(" We can’t exactly walk into a pirate base.");
 	output("”</i>");
 
 	output("\n\n<i>“It’s not going to be easy, but I’ve got a unique opportunity here. The pirates are just setting up on Myrellion, bringing in pre-fab buildings and blasting out some caverns near the surface, carving out a sewer. Some kind of bunker underground, too. Security’s going to be");
 	if (kara.isNice()) output(" pretty stringent");
-	else if (kara.isMischeivious()) output(" tighter than a princess’s chastity belt");
+	else if (kara.isMischievous()) output(" tighter than a princess’s chastity belt");
 	else output(" KaraHard: fucking brutal");
 	output(" on the surface, but they’re still building up the sub-levels and sewers, and there’s a chance we could push in through the underground, pop up in the middle of the base.”</i>");
 
 	output("\n\n<i>“The sewers? Really?”</i>");
 
 	output("\n\n<i>“Really!”</i> Kara says, a little defensive. <i>“They’re not expecting trouble - they don’t think anybody knows they’re there.");
-	if (kara.isMischeivious()) output(" P-probably!");
+	if (kara.isMischievous()) output(" P-probably!");
 	output(" It’s a backwater research base, after all. A couple dozen foot-soldiers at worst, plus some automated security. But leave that to me - punching through security systems is my specialty. If I can get access to their communications systems or a computer, I’ll be able to shut down the alarms and make sure no reinforcements show up. Once done, we push into the the subterranean research complex, and shut it down. Permanently.”</i>");
 
 	output("\n\n<i>“Any idea what they’re researching, exactly?”</i>");
 
 	output("\n\nKara grimaces. <i>“Bad things. You don’t build a base in the middle of a desert, hundreds of miles away from civilization");
 	if (kara.isNice()) output(" if you’re doing anything short of evil.");
-	else if (kara.isMischeivious()) output(" just because.");
+	else if (kara.isMischievous()) output(" just because.");
 	else output(" unless you have something to hide.");
 	output(" Whatever they’re working on is dangerous, and we’ll all be a lot safer if the Black Void doesn’t succeed in whatever they’re doing. Besides, they picked Myrellion for a reason: this planet’s lousy with weapons of mass destruction. Chemical weapons, nukes, you name it. I wouldn’t be surprised if one of the local factions is supplying them with W.M.D.s, which you </i>know<i> are going to be used against spacers like us. The last thing any of us need is for a piercer rocket to punch into our ship’s hull and fill it with myr lust-gas, turning the whole crew into fuck-hungry animals begging to be enslaved if it means sweet relief.”</i>");
 
@@ -362,7 +366,7 @@ public function kq2KarasEyes():void
 
 	output("<i>“");
 	if (pc.isNice()) output("Would you mind telling me what happened to your eyes?");
-	else if (pc.isMischeivious()) output("So, what’s with the peepers?");
+	else if (pc.isMischievous()) output("So, what’s with the peepers?");
 	else output("So what’s the story with those eyes?");
 	output("”</i>");
 	
@@ -396,7 +400,7 @@ public function kq2ThisPlace():void
 	output("\n\n<i>“Definitely useful,”</i> you muse. <i>“Is there anything more to this place? Other than the dock, that is.”</i>");
 
 	output("\n\n<i>“Some tunnels. A few half-built rooms,”</i> Kara answers. <i>“I haven’t explored this place too much. Mostly because there’s no atmosphere anywhere");
-	if (kara.isMischeivious()) output(", and space suits just chafe my tails, you know?");
+	if (kara.isMischievous()) output(", and space suits just chafe my tails, you know?");
 	output(". If you want to look around on your time, you’re welcome to - like I said, it doesn’t belong to me.”</i>");
 
 	processTime(3+rand(3));
@@ -412,7 +416,7 @@ public function kq2Herself():void
 
 	output("<i>“I’d like to know a little bit more about you,”</i> you say, looking the blue-haired cat-girl up and down. <i>“");
 	if (pc.isNice()) output("I’d like to know who I’m working with, after all.");
-	else if (pc.isMischeivious()) output("We ought to get to know one another first, right?");
+	else if (pc.isMischievous()) output("We ought to get to know one another first, right?");
 	else output("If you want my help, that is.");
 	output("”</i>");
 
@@ -424,13 +428,13 @@ public function kq2Herself():void
 	{
 		output("You shake your head. Kara grunts a mute, <i>“Don’t worry about it.");
 		if (kara.isNice()) output(" Suffice to say, he was the best smuggler to ever live.");
-		else if (kara.isMischeivious()) output(" I guess you’re a pretty shitty smuggler if everyone’s heard of you, now that I think about it.");
+		else if (kara.isMischievous()) output(" I guess you’re a pretty shitty smuggler if everyone’s heard of you, now that I think about it.");
 		else output(" Can’t expect everyone to know, I guess.");
 		output("”</i>");
 	}
 
 	output("\n\nYour companion sighs and continues: <i>“I was born a slave in a kaithrit colony on Tarilia. The colony was short on males - it’s a problem on a lot of kaithrit worlds - so they kept anything with a dick cooped up as breeding stock. That includes me, if you’re wondering; I was born a hermaphrodite. About ten percent of kaithrit are. Blackstar met me on a run when the planet’s matriarch invited him to tour the ‘pleasure palace’ they kept us chained up in. Long story short: he liked me, and helped bust me out. I’ve been on the run ever since. I served under him on the </i>Silence</i>, learned the tricks of the trade, and when he was captured on Terra, I took command of the ship. Most of the crew bought their farms with him or got pinched by the Peacekeepers... or bailed out after the stunt I pulled with the Void. All that’s left is me");
-	if (9999 == 9999) output(" and my first mate.");
+	if (flags["SILENCE_RESCUED_CONNIE"] == undefined) output(" and my first mate.");
 	else output(" , my first mate, and a V.I. in a robot.");
 	output(" Not much of a crew.”</i>");
 
@@ -438,7 +442,7 @@ public function kq2Herself():void
 
 	output("\n\n<i>“Heh. About that...");
 	if (kara.isNice()) output(" The </i>Silence</i> got destroyed by the Black Void the last time we tangled.");
-	else if (kara.isMischeivious()) output(" I might have sort of rammed a Black Void frigate with the </i>Silence</i>. It seemed like a good idea at the time, honest!");
+	else if (kara.isMischievous()) output(" I might have sort of rammed a Black Void frigate with the </i>Silence</i>. It seemed like a good idea at the time, honest!");
 	else output(" I rammed a Black Void warship with the </i>Silence</i>. Crippled one of their best ships and killed dozens of pirates, though I lost the ship in the process. I’d do it again in a heartbeat.");
 	output(" Lucky me, my backer saw fit to replace her with a new ship: the </i>Ghost<i>. Brand new, sleek as hell, and tougher than </i>Silence<i> ever was.”</i>");
 
@@ -518,7 +522,7 @@ public function kq2SexFirst():void
 	output("<i>“I could think of a few ways,”</i> you say, letting your eyes play across the cat-girl’s figure. With that black catsuit hugging her body like it is, there’s no hiding her lush curves - the swells of her breasts and butt, the flare of her hips, the long lengths of her legs...");
 	
 	output("\n\nYour gaze hardly goes unnoticed. Kara shifts ever so slightly, just enough to make her bust jut out against the front of her cloak, the twin mounds’ full size on display for you. Her lips twitch into a small smile and she purrs, <i>“Hey, now, I’ve paid you well already, haven’t I? And I’m offering to pay you a pretty penny this time, too... but if you want to talk about </i>bonuses<i>,”</i> she chuckles, <i>“Well, maybe you and I can work something out after the mission.");
-	if (kara.isMischeivious()) output(" If you’re a good "+ pc.mf("boy", "girl") +", that is...");
+	if (kara.isMischievous()) output(" If you’re a good "+ pc.mf("boy", "girl") +", that is...");
 	else if (kara.isAss()) output(" If you don’t get yourself killed, anyway.");
 	output("”</i>");
 
@@ -541,7 +545,7 @@ public function kq2LetsGo():void
 	output("\n\n<i>“So what’s next?”</i> you ask. Kara answers by hopping up to her feet and grabbing her case, starting towards you airlock.");
 	
 	output("\n\n<i>“Next... we go down to the planet. We’ll take my ship, if it’s all the same to you. </i>Ghost<i> is rigged with a high-end stealth system, and she’s fast and quiet besides. We’ll fly right under the pirates’ radar, land near their base, then hoof it in.");
-	if (kara.isMischeivious() && pc.hasLegFlag(GLOBAL.HOOVES)) output(" Literally, in your case!");
+	if (kara.isMischievous() && pc.hasLegFlag(GLOBAL.FLAG_HOOVES)) output(" Literally, in your case!");
 	output("”</i>");
 	
 	output("\n\nKara waves you on after her, leading you back through the airlock cycle and onto her ship, and the beginning of your next adventure...");
@@ -594,11 +598,11 @@ public function kq2QUESTTIME():void
 	{
 		output("\n\nAs you’re walking, a side passage in the corridor slides open with a hiss, and a pale blue beauty sashays out into your path. You blink hard as the robotic bombshell smiles at you with big, ultramarine lips, putting her hand on a set of broad hips that strain the band of her skin-tight yoga pants. Her flat, sleek belly is left bare, all the way up to a too-tight black sports bra that’s somehow hugging back a set of tits that would look more at home");
 		//{if met Irellia:
-		if (9999 == 0) output(" on a gold myr queen");
+		if (flags["MET_IRELLIA"] != undefined) output(" on a gold myr queen");
 		else output(" on a hyperporn star - and emphasis on the hyper");
 		output("!");
 		// {if met Gianna:
-		if (9999 == 0) output(" She looks a lot like a certain New Texan companion droid you know - maybe they’re the same model?");
+		if (flags["MET_GIANNA"] != undefined) output(" She looks a lot like a certain New Texan companion droid you know - maybe they’re the same model?");
 
 		output("\n\n<i>“Welcome back, captain,”</i> the droid says, oddly emotionless despite the husky purr in her voice. Almost eerily so. <i>“I assume this is [pc.name] Steele. Pleased to meet you.”</i>");
 		
@@ -628,13 +632,13 @@ public function kq2QUESTTIME():void
 	output("\n\n<i>“So you’re [pc.name]? Logan Cassina. Thanks for helping Kara out before... good to know there are still people out there who’d help a stranger.”</i>");
 
 	output("\n\n<i>“");
-	if (kara.isMischeivious()) output("Being a sexy stranger sure helps,”</i> Kara winks, pointedly ignoring a renewed pout from her second.");
+	if (kara.isMischievous()) output("Being a sexy stranger sure helps,”</i> Kara winks, pointedly ignoring a renewed pout from her second.");
 	else output("I guess of all the random spacers in that bar, I picked right,”</i> Kara grins.");
 	
 	output("\n\nLogan rolls her reptilian eyes and turns back to the pilot’s console. <i>“Anyway, welcome aboard, [pc.name]. Pick a seat and strap in, should be ready to take off in a couple minutes.”</i>");
 	
 	output("\n\nYou");
-	if (pc.isMischeivious()) output(" make a beeline for the captain’s seat, only to be rebuffed by Kara, and sent packing to one of the weapons consoles");
+	if (pc.isMischievous()) output(" make a beeline for the captain’s seat, only to be rebuffed by Kara, and sent packing to one of the weapons consoles");
 	else output(" take a seat at one of the weapons consoles");
 	output(" beside Logan. She gives you a slight nod and turns her attention to her controls, fingers flying across the holographic interface. A moment later, you hear a distant <i>thunk!</i> as the docking umbilical disconnects, and a faint thrum shakes the deck as the engine spools up, and the <i>Ghost</i> starts to slide back through the hollowed out tunnel in the rock.");
 	
@@ -695,7 +699,7 @@ public function kq2QUESTTIMEIII():void
 	output(" <i>“Alright. There should be a way down into the sub-levels just down the caldera. Ready?”</i>");
 	
 	output("\n\nAs she speaks, Kara steps back from you, finally unlatching the big silver case she’s been lugging around. You watch her");
-	if (pc.lust() >= 33 || pc.lq() >= 50) output(" appreciatively as she bends over to pop the case open, lifting her tails high and showing off a remarkable ass under that catsuit");
+	if (pc.lust() >= 33 || pc.LQ() >= 50) output(" appreciatively as she bends over to pop the case open, lifting her tails high and showing off a remarkable ass under that catsuit");
 	else output(" as she leans over the case and pops it open");
 	output(". Rather than opening, though, the handle on the case just slides up with her hand, attached to a black mass of metal that snaps out front and back into a barrel, stock, and magazine.");
 	
@@ -732,7 +736,7 @@ public function kq2MeetWatson():void
 	output("\n\n<i>“That was fast,”</i> you say as she stands and recovers her gear.");
 
 	if (kara.isNice()) output("\n\n<i>“Thanks! I’ve been practicing,”</i> she answers, smiling at you as she draws her weapon.");
-	else if (kara.isMischeivious()) output("\n\n<i>“I’m just that good,”</i> she smirks, drawing her pistol.");
+	else if (kara.isMischievous()) output("\n\n<i>“I’m just that good,”</i> she smirks, drawing her pistol.");
 	else output("\n\n<i>“Damn straight,”</i> she laughs, drawing her gun.");
 	output(" She presses her shoulder to the side of the door, and motions for you to open it. You steel yourself and shove it open, storming in with your [pc.rangedWeapon] raised.");
 
@@ -825,7 +829,7 @@ public function kq2WatsonTalkConstellation():void
 	
 	output("\n\n<i>“Plat-190. Rare isotope, very valuable. We hit on a security case packed full of it.");
 	if (kara.isNice()) output(" Just a fraction of that payday would have set me and my crew up for life.");
-	else if (kara.isMischeivious()) output(" Just a sliver of that would have made me a rich woman. If it weren’t for the pirates, I’d be cruising the pleasure gardens of Venus with a harem and a liquor-replicator.");
+	else if (kara.isMischievous()) output(" Just a sliver of that would have made me a rich woman. If it weren’t for the pirates, I’d be cruising the pleasure gardens of Venus with a harem and a liquor-replicator.");
 	else output(" I’d kill for that kind of money. Hell, me and my whole crew <b>did</b>.");
 	output("”</i>");
 	
@@ -880,8 +884,11 @@ public function kq2WatsonSelfDestruct():void
 
 	clearMenu();
 	addButton(0, "Nuke It", kq2NukeIt);
-	addBUtton(1, "No", mainGameMenu);
+	addButton(1, "No", mainGameMenu);
 }
+
+// 9999 - make this time value actually agree with the game time it will take for the player to actually be able to get the fuck out.
+public static const KQ2_NUKE_DURATION:int = 800;
 
 public function kq2NukeIt():void
 {
@@ -889,9 +896,8 @@ public function kq2NukeIt():void
 
 	output("You rip the console’s wireless plug out, just in case Watson’s watching, and hit the activation sequence. Here we go!");
 
-	// 9999 - make this time value actually agree with the game time it will take for the player to actually be able to get the fuck out.
-
-	output("\n\n<i>“Nuclear Cleansing System Activated,”</i> a feminine voice drones from the console. <i>“Detonation in T-minus: 10 minutes. Please get to minimum safe distance.”</i>");
+	// 9999 probably wise to format the value better ("T-minus: 6 hours" etc)
+	output("\n\n<i>“Nuclear Cleansing System Activated,”</i> a feminine voice drones from the console. <i>“Detonation in T-minus: " + KQ2_NUKE_DURATION + " minutes. Please get to minimum safe distance.”</i>");
 	
 	output("\n\n<i>“Wait, what did you just do?”</i> Kara blinks, ears perking straight up. <i>“Woah, wait, didn’t you hear about that... that fleet in orbit? They’ll glass the whole planet!”</i>");
 	
@@ -924,12 +930,11 @@ public function kq2EnterEngineersRoom():void
 
 		output("You step into the security room, and immediately are greeted by the sound of low, metallic grating that’s almost like growling. You take a step back as a huge, black canine robot stalks out of the shadows, its teeth bared. Behind it stands a small, feminine figure - not quite four feet in height, with svelte curves that are muted by a ballistic breastplate that’s much too bulky for its user. She’s nearly naked aside from the plate and a pair of high-heeled boots... and a jockstrap that’s barely holding back a pair of oversized testicles, out of which bobs a six-inch canine cock. The diminutive creature scowls at you, hands on her hips, the pair of bunny-ears atop her head lying flat back against her scalp, showing off a pair of demonic-looking horns that sprout out from her orange hair.");
 		
-		//9999
-		if (9999 == 0) output("\n\nIt takes you a good moment to realize the creature’s a lapinara, clearly unlike those you’ve seen before!");
+		if (flags["ENCOUNTERED_PARASITIC_LAPINARA"] != undefined) output("\n\nIt takes you a good moment to realize the creature’s a lapinara, clearly unlike those you’ve seen before!");
 		else output(" It takes longer than usual for your Codex to identify the creature as a lapinara, of the non-parasitic variety.");
 		
 		output("\n\n<i>“How did you get past all the guards!?”</i> she growls, staring");
-		if (9999 == 0) output(" up at you");
+		if (pc.tallness > 50) output(" up at you");
 		else output(" straight at you");
 		output(" with a pair of huge green eyes. <i>“Get out of here, or my pet");
 		if (flags["KQ2_ENGINEER_NUM_DRONES"] > 1) output("s");
@@ -1040,8 +1045,8 @@ public function kq2GibEngyDirtyMag():void
 	output("\n\n<i>“So. Keycard?”</i>");
 	
 	output("\n\nShe looks up, startled. <i>“Uh. Yeah, sure. Card, whatever,”</i> she says, grabbing a card off of the desk behind her and shoving it into your hand. <i>“Now fuck off.");
-	//{if convinced Steph to do porn:
-	if (9999 == 0) output(" I’ve been waiting for the first issue of </i>Galactic Fucktress<i> for ages!");
+	//{if convinced Steph to do porn: (this is cut now isn't it?)
+	//if (9999 == 0) output(" I’ve been waiting for the first issue of </i>Galactic Fucktress<i> for ages!");
 	output("”</i>");
 	
 	output("\n\nSomewhat amazed that actually worked, you take the keycard and leave the lapinara engineer to her business.");
@@ -1141,7 +1146,7 @@ public function kq2GibEngyDankHoles():void
 	if (pc.hasVagina()) output(" caress your [pc.cunt]");
 	else if (pc.hasCock()) output(" wrap her fingers around your [pc.cock], bringing it from an excited half-mast to full attention. Her hand is still slathered with cool, slick lube, and she’s able to glide across your member with ease, returning the pleasure you’re giving her own member");
 	else output(" rub the tender, sexless [pc.skinFurScales] of your crotch");
-	otuput(". You let yourself moan in answer to her wandering hand, pushing back against her six-inch pole to take it deeper, trying to feel every inch of throbbing hot dog-meat inside you.");
+	output(". You let yourself moan in answer to her wandering hand, pushing back against her six-inch pole to take it deeper, trying to feel every inch of throbbing hot dog-meat inside you.");
 
 	output("\n\nA few heart-pounding moments of thrusting later, and your lapinara lover is screaming and jackhammering her hips, slamming them into your [pc.butt] with wild abandon. You can feel her");
 	if (pc.ass.looseness() >= 3 || pc.tallness >= 72) output(" tiny");
@@ -1197,7 +1202,7 @@ public function kq2EncounterKhan():void
 	
 	output("\n\n<i>“");
 	if (kara.isNice()) output("Hold your fire! We aren’t pirates!");
-	else if (kara.isMischeivious()) output("We’re not pirates, you crazy furball!");
+	else if (kara.isMischievous()) output("We’re not pirates, you crazy furball!");
 	else output("Try that again, asshole! You’re shooting at the wrong people.");
 	output("”</i>");
 	
@@ -1211,7 +1216,7 @@ public function kq2EncounterKhan():void
 
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyCharacters([pc, kara]);
-	CombatManager.setHostileCharacters([tKhan, new KQ2FightSecDrones(), new KQ2FightSecDrones(), new KQ2FightSecDrones()]);
+	CombatManager.setHostileCharacters([tKhan, new KQ2SecurityDroid(), new KQ2SecurityDroid(), new KQ2SecurityDroid()]);
 	CombatManager.victoryCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, tKhan);
 	CombatManager.victoryScene(kq2KhanPCVictory);
 	CombatManager.lossScene(kq2KhanPCDefeat);
@@ -1235,7 +1240,7 @@ public function kq2KhanPCVictory():void
 
 	output("\n\n");
 	if (kara.isNice()) output("<i>“Oh, no you don’t,”</i> Kara says, swatting the grenade back at him mid-air.");
-	else if (kara.isMischeivious()) output("<i>“Think fast!”</i> Kara shouts, grabbing the grenade mid-air and beaning Khan in the head with it.");
+	else if (kara.isMischievous()) output("<i>“Think fast!”</i> Kara shouts, grabbing the grenade mid-air and beaning Khan in the head with it.");
 	else output("Kara back-hands the grenade out of the air, letting it roll back towards its owner.");
 	output(" It detonates in a pink cloud that utterly envelops him and his harem, spreading out almost far enough to draw you into it, too. Just a little whiff of the brightly-colored gas sends a shiver up pleasure up your spine.");
 
@@ -1360,12 +1365,12 @@ public function kq2LabCoatCheck():void
 
 public function kq2LootArcCaster():void
 {
-	lootScreen = kq2LabCoatCheck;
+	lootScreen = kq2ArcCasterCheck;
 	itemCollect(new KhansArcCaster());
 	flags["KQ2_KHAN_LOOTED_CASTER"] = 1;
 }
 
-public function kq2LabCoatCheck():void
+public function kq2ArcCasterCheck():void
 {
 	if (!pc.hasItemByType(KhansArcCaster) && !pc.rangedWeapon is KhansArcCaster) flags["KQ2_KHAN_LOOTED_CASTER"] = undefined;
 	kq2KhanVictoryMenu();
@@ -1386,7 +1391,7 @@ public function kq2KhanLeave():void
 	output(" at you. Nervously, she says, <i>“Um... speaking of slaves. I thought you should know, we brought several red myr prisoners of war with us. It... it was better than letting them rot in camps, we thought. They’re down the hall, to the west. They deserve better than what we’ve done to them.”</i>");
 	
 	output("\n\n<i>“Slaves taking slaves,”</i> Kara grunts, picking the remote back up from the floor and pressing it into your hand. <i>“");
-	if (kara.isMischeivious() || kara.isAss()) output(" And I was just starting to feel good about freeing them. ");
+	if (kara.isMischievous() || kara.isAss()) output(" And I was just starting to feel good about freeing them. ");
 	output("Your turn, [pc.name]. Let’s go find us some red bugs.”</i>");
 
 	CombatManager.genericVictory();
@@ -1409,7 +1414,7 @@ public function kq2KhanPCDickFuck():void
 	
 	output("\n\n");
 	if (kara.isNice()) output("<i>“Normally I wouldn’t, but... for this sicko, I’ll make an exception,”</i> Kara says with a wink, moving to his opposite side.");
-	else if (kara.isMischeivious()) output("<i>“Couldn’t agree more, [pc.name],”</i> Kara answers, a mischievous twinkle in her eerie eyes. Slowly, she slips behind the prostrate kui-tan, tracing her fingers along his bare, thick fur as she goes.");
+	else if (kara.isMischievous()) output("<i>“Couldn’t agree more, [pc.name],”</i> Kara answers, a mischievous twinkle in her eerie eyes. Slowly, she slips behind the prostrate kui-tan, tracing her fingers along his bare, thick fur as she goes.");
 	else output("Kara gives you a silent, approving nod and moves behind the kui-tan, giving his bare, furry ass a rough slap.");
 	output(" Your companion plants herself behind Khan and yanks down her skirt and shorts, revealing a thick pink kittycock dangling between her legs. Khan’s eyes widen even more as she flops her prick into the crack of his ass.");
 	
@@ -1468,7 +1473,7 @@ public function kq2KhanPCDickFuck():void
 	output("\n\nHe sputters and gags as you step back, pulling your [pc.cock] out and leaving a trail of spit and spooge drooling from his mouth - an equal partner to the creampie you soon see trickling down his thighs.");
 
 	output("\n\n");
-	if (kara.isNice() || kara.isMischeivious()) output("<i>“We make a good team,”</i> Kara says with a wink, wiping her cock off of the kui-tan’s thigh.");
+	if (kara.isNice() || kara.isMischievous()) output("<i>“We make a good team,”</i> Kara says with a wink, wiping her cock off of the kui-tan’s thigh.");
 	else output("<i>“Not bad,”</i> Kara grunts, wiping her cock off on Khan’s furry thigh. <i>“Wouldn’t mind keeping a tight little hole like that around... willingly, of course.”</i>");
 
 	output("\n\nFinished with the kui-tan, Kara gives the defeated, cum-stuffed doctor a little push. He groans and collapses, slipping into a state of sated unconsciousness.");
@@ -1492,7 +1497,7 @@ public function kq2KhanPCVagFuck():void
 	
 	output("\n\n");
 	if (kara.isNice()) output("<i>“Normally I wouldn’t, but... for this sicko, I’ll make an exception,”</i> Kara says with a wink, moving to his opposite side.");
-	else if (kara.isMischeivious()) output("<i>“Couldn’t agree more, [pc.name],”</i> Kara answers, a mischievous twinkle in her eerie eyes. Slowly, she slips behind the prostrate kui-tan, tracing her fingers along his bare, thick fur as she goes.");
+	else if (kara.isMischievous()) output("<i>“Couldn’t agree more, [pc.name],”</i> Kara answers, a mischievous twinkle in her eerie eyes. Slowly, she slips behind the prostrate kui-tan, tracing her fingers along his bare, thick fur as she goes.");
 	else output("Kara gives you a silent, approving nod and moves behind the kui-tan, giving his bare, furry ass a rough slap.");
 	output(" Your companion plants herself behind Khan and yanks down her skirt and shorts, revealing a thick pink kittycock dangling between her legs. Khan’s eyes widen even more as she flops her prick into the crack of his ass.");
 	
@@ -1546,7 +1551,7 @@ public function kq2KhanPCVagFuck():void
 	output("\n\nHe sputters and gags as you step back, pulling his face out of your cunt and leaving a trail of spit and fem-spunk drooling from his mouth - a counterpoint to the creampie you soon see trickling down his thighs.");
 
 	output("\n\n");
-	if (kara.isNice() || kara.isMischeivious()) output("<i>“We make a good team,”</i> Kara says with a wink, wiping her cock off of the kui-tan’s thigh.");
+	if (kara.isNice() || kara.isMischievous()) output("<i>“We make a good team,”</i> Kara says with a wink, wiping her cock off of the kui-tan’s thigh.");
 	else output("<i>“Not bad,”</i> Kara grunts, wiping her cock off on Khan’s furry thigh. <i>“Wouldn’t mind keeping a tight little hole like that around... willingly, of course.”</i>");
 
 	output("\n\nFinished with the kui-tan, Kara gives the defeated, cum-stuffed doctor a little push. He groans and collapses, slipping into a state of sated unconsciousness.");
@@ -1568,7 +1573,7 @@ public function kq2KhanPCDefeat():void
 	else output("Shocked too badly to keep fighting, you collapse at the kui-tan’s feet... or you would, if his feet could touch the ground around his enormous nads.");
 
 	output("\n\n<i>“Girls, help our friends here into their collars,”</i> Khan says, setting his lightning gun aside and reclining back on his huge testicles. He picks up a pair of metal collars from the table beside him and hands them off to two of the gold myr girls, each wearing an identical collar of their own. You try to block them, but in your state, it doesn’t take much for even a pair of naked lab-rats to pin you down, pulling away your [pc.gear]");
-	if (!(pc.rangedWeapon is EmptySlot) || !(pc.weapon is EmptySlot)) output(" and weapons");
+	if (!(pc.rangedWeapon is EmptySlot) || !(pc.meleeWeapon is EmptySlot)) output(" and weapons");
 	output(" and sliding the slim metal ring around your neck.");
 	
 	output("\n\n<i>“No... get away...”</i> Kara moans as one of the girls rolls her onto her face, just beside you. Before they collar her, the girls spend a few moments undressing the kaithrit, pulling off her skin-tight top and the skimpy skirt she’s wearing, even pulling her up to her knees so they can yank her underwear off. You watch as her E-cups bounce free, immediately in the grasp of another gold myr, who squeezes and kneads the perfect, soft orbs.");
@@ -1637,10 +1642,10 @@ public function kq2EncounterShade():void
 	flags["KQ2_SHADE_ENCOUNTERED"] = 1;
 
 	// Encounter Text (PC hasn't fucked Shade)
-	if (9999 == 0)
+	if (flags["SEXED_SHADE"] == undefined)
 	{
 		output("As you and Kara rush toward the helipad, you hear a deep, metallic howl echo across the helipad. Kara draws her pistol and skids to a stop near the foot of the stairs leading up to the helipad. A huge, black drone stands at the top of the steps, canid in shape with razor-sharp teeth bared. Another drone peeks over the ledge beside it, and a third howls behind you, leaping up onto the top of the elevator cabin.");
-		if (9999 == 0) output(" They’re like Tam-wolf’s big brothers!");
+		if (flags["TAKEN_TAMWOLF"] != undefined) output(" They’re like Tam-wolf’s big brothers!");
 		
 		output("\n\n<i>“That was a lucky break back at the bar,”</i> a familiar voice says, stepping up behind one of the wolf droids. Shade, the bounty hunter from the myrellion bar, steps into view, a lightning pistol resting on her shoulder. <i>“I guess you have your friend here to thank for that, don’t you, Kara? I think we both know things would have gone differently without "+ pc.mf("him", "her") +".”</i>");
 		
@@ -1668,17 +1673,20 @@ public function kq2EncounterShade():void
 		return;
 	}
 	// Encounter Text: Fucked Shade
-	else if (9999 == 1)
+	else
 	{
 		output("As you and Kara rush toward the helipad");
-		if (9999 == 0)
+		// This is cutteroni
+		/*
+		if ()
 		{
 			output(", followed quickly by");
-			if (9999 == 0) output(" your new harem of red myr");
+			if () output(" your new harem of red myr");
 			else output(" the group of freed red myr");
 		}
+		*/
 		output(", you hear a deep, metallic howl echo across the helipad. Kara draws her pistol and skids to a stop near the foot of the stairs leading up to the helipad. A huge, black drone stands at the top of the steps, canid in shape with razor-sharp teeth bared. Another drone peeks over the ledge beside it, and a third howls behind you, leaping up onto the top of the elevator cabin.");
-		if (9999 == 0) output(" They’re like Tam-wolf’s big brothers!");
+		if (flags["TAKEN_TAMWOLF"] != undefined) output(" They’re like Tam-wolf’s big brothers!");
 		
 		output("\n\nA woman steps up behind the drone atop the stairs, scratching it between the ears. She’s carrying a big, bulky hand-cannon resting on her shoulder, her other hand firmly planted on her hip.");
 		
@@ -1689,11 +1697,11 @@ public function kq2EncounterShade():void
 		output("\n\nThe buxom kaithrit looks down at your and your companion with a mix of contempt and disappointment written across her face. Her eyes settle on you. <i>“Well, this is the last place I ever hoped to run into you, kid,”</i> she says, slowly lowering her lightning gun. <i>“Last person with you, too.”</i>");
 		
 		output("\n\n<i>“");
-		if (kara.isMischeivious()) output("I see you brought friends this time... might actually be a fair fight now!");
+		if (kara.isMischievous()) output("I see you brought friends this time... might actually be a fair fight now!");
 		else
 		{
 			output(" If you want a fight, Shade, come on. We’ll send you packing");
-			if (9999 == 0) output(" again");
+			if (flags["SHADE_DEFEATED_WITH_KARA"] != undefined) output(" again");
 			output(" if we have to.");
 		}
 		output("”</i>");
@@ -1835,6 +1843,19 @@ public function kq2CapturedByPiratesBadEndII():void
 	output("\n\nShe releases your hand with contemptuous force, making you sway precariously as she turns away from you. <i>“Gunship, head on home. I’ve got to secure things here.”</i>");
 	
 	output("\n\nYou look up in time to see the armored goons hopping into the ship’s bay around Kara and sliding the doors closed. That’s the last you’ll see of her, you know, your heart sinking. The gunship’s engines roar, and the black ships shudders into the sky, angling its bow to the heavens and blasting off. The pirate lord sighs and turns back to you, tucking her crash helmet under her arm. She tosses Kara’s pistol away, letting it clatter off the side of the roof and out of sight.");
+
+	if (flags["KQ2_SHADE_DEAD"] != undefined)
+	{
+		output("\n\nTo your surprise, when the pirate looks back your way, here eyes are misty, and her lower lip’s trembling.");
+		
+		output("\n\n<i>“Fuck!”</i> she roars, pounding her armored fist into one of the nearby shuttles. The hull buckles, crunching as the pirate lord takes out her frustration on it. When she’s done, her chest is heaving and her cheeks are streaked with dark trails of ruddy eyeshadow.");
+		
+		output("\n\nYou flinch when she turns your way again, mentally bracing to start running for your life. You don’t want your face to look like the hood of that shuttle - which is to say, coming out your ass.");
+		
+		output("\n\nInstead of lashing out at you, though, the red-headed pirate’s shoulders just slump heavily. <i>“Gods damn it, Shade. You should have run, you stubborn old bitch.”</i>");
+		
+		output("\n\nHer eyes lock on you. <i>“I saw what happened. Was watching her Fenris’s HUDs while the shuttle came down. Glad I got the chance to smoke the whore that killed her,”</i> she growls, kicking Kara’s corpse. <i>“Lucky you, you didn’t pull the trigger or both your brains would be splattered all over this roof. As it stands, now I’ve got to go call my daughter and tell her her mom’s dead.”</i>");
+	}
 	
 	output("\n\n<i>“So. There’s no bounty on you. And I’ll be honest: I’m impressed you got as far as you did. Not impressed enough to let you go, though. It’s too late for that.”</i> She takes a knee in front of you, looking you over with an appraising eye. You hazard a look up, into her green eyes, watching as she runs a black-armored thumb across her blue lips, thinking. After a long, tense moment, she taps an earpiece hidden in one of her jackal-like ears and says, <i>“X.O., go down and secure Khan. Get one of his collars up here for me.”</i>");
 
@@ -1941,7 +1962,7 @@ public function kq2EncounterAmara():void
 	{
 		output(", past Shade’s");
 		if (flags["KQ2_SHADE_DEAD"] == 1) output(" smouldering corpse")
-		else if (9999 == 0) output(" aborted ambush"); // Fucked Shade- you don't fight her so
+		else if (flags["SEXED_SHADE"] != undefined) output(" aborted ambush"); // Fucked Shade- you don't fight her so
 		else output(" failed ambush");
 	}
 	output(". Several small shuttles are parked along the edge of the roof, making way for a single huge gunship bristling with weapons and armored plates. Its engines are roaring, sending hot air blasting back against your face.");
@@ -1975,7 +1996,7 @@ public function kq2EncounterAmaraMoney():void
 	showKara();
 
 	//+Hardness
-	pc.addAss(5);
+	pc.addHard(5);
 
 	output("<i>“Hey, I’m just here for the money,”</i> you shrug.");
 
@@ -2006,7 +2027,7 @@ public function kq2AmaraBetrayKara():void
 	kq2ShowAmara();
 
 	pc.credits += 60000;
-	pc.addAss(20);
+	pc.addHard(20);
 
 	output("<i>“Sorry, Kara,”</i> you say, taking a big step away from her and swinging your [pc.mainWeapon] from the ausar to the kaithrit.");
 	
@@ -2081,7 +2102,7 @@ public function kq2EncounterAmaraFuckPirates():void
 	flags["KQ2_CAME_TO_FUCK_UP_PIRATES"] = 1;
 
 	output("<i>“I’m just here");
-	if (pc.isMischeivious()) output(" to kick ass and chew bubblegum. And I’m all out of gum");
+	if (pc.isMischievous()) output(" to kick ass and chew bubblegum. And I’m all out of gum");
 	else output(" to fuck up some pirates");
 	output(".”</i>");
 
@@ -2122,6 +2143,8 @@ public function kq2AmaraPCVictory():void
 	clearOutput();
 	kq2ShowAmara();
 
+	flags["KQ2_QUEST_FINISHED"] = 1;
+
 	output("<i>“Shit,”</i> Amara grunts, rubbing a trickle of blood from her blue lip. <i>“You’re good... I’ll give you that. But you gotta know there’s an army of Void soldiers gonna come down on your heads even if you manage to kill me. And I’m not done yet...”</i>");
 	
 	output("\n\n<i>“Yeah. You are,”</i> Kara growls, leveling her gun at the pirate’s chest and firing. The bolt of plasma bursts across the hardened armor, sizzling and burning. She squeezes the trigger again, and again, sending shots of plasma exploding over Amara’s suit in a string of concussive booms. The pirate lord stumbles back under the assault, back and back until she’s teetering on the edge of the roof.");
@@ -2136,7 +2159,7 @@ public function kq2AmaraPCVictory():void
 
 	output("\n\n<i>“");
 	if (kara.isNice()) output("Hold on tight, [pc.name]!");
-	else if (kara.isMischeivious()) output("Buckle up!");
+	else if (kara.isMischievous()) output("Buckle up!");
 	else output("Fuck it, we’re out of here!");
 	output("”</i> Kara shouts, punching the accelerator and launching the shuttle up into the air, and away from the pirate compound.");
 
@@ -2151,7 +2174,12 @@ public function kq2AmaraPCVictory():void
 	output("\n\nThe shuttle flies backwards over a huge orange fireball, debris rattling your hull: the remnants of the pirate gunship, going down in a fiery blaze. The modded-out pilot gives a roaring cheer over the radio, and you find yourself letting out a long breath and slumping back in your seat.");
 
 	output("\n\nLooks like you’re home free.");
-	if (flags["KQ2_NUKE_STARTED"] != undefined) output(" And just in time: you cover your eyes as a nuke goes off in the caldera, a flash of light followed by a shockwave that makes your teeth ache. Luckily, the re-activated shields protect you from harm.");
+	// Nuke due to explode within 30 minutes
+	if (flags["KQ2_NUKE_STARTED"] != undefined)
+	{
+		output(" And just in time: you cover your eyes as a nuke goes off in the caldera, a flash of light followed by a shockwave that makes your teeth ache. Luckily, the re-activated shields protect you from harm.");
+		flags["KQ2_NUKE_EXPLODED"] = 1;
+	}
 
 	// This should work, because we know we're not gonna be looting anything...
 	CombatManager.genericVictory();
@@ -2186,7 +2214,7 @@ public function kq2AmaraPCVictoryII():void
 	
 	output("\n\nYou put a hand on Kara’s shoulder, and she forces a slight smile for you. <i>“That tech they were working on is terrifying.");
 	if (kara.isNice()) output(" Putting a stop to it... that’s even more important that the price they’ve got on my head, now.");
-	else if (kara.isMischeivious()) output(" One more reason to fuck the bastards over, though.");
+	else if (kara.isMischievous()) output(" One more reason to fuck the bastards over, though.");
 	else output(" I’m going to put a stop to them. One way or another.");
 	output("”</i>")
 	
@@ -2197,7 +2225,7 @@ public function kq2AmaraPCVictoryII():void
 	
 	output("\n\n<i>“So,”</i> Kara says after a moment, just as you were turning to leave. She’s leaning against the bulkhead beside the airlock, one leg over the other, tails swishing slowly behind her - playfully, inviting. <i>“I don’t really have anywhere to be for a couple of hours.");
 	if (kara.isNice()) output(" The data can wait, if you’d like to... you know. Stay for a while.");
-	else if (kara.isMischeivious()) output(" I don’t know about you, but the whole harrowing adventure and balls-to-the-walls danger thing really gets me in the mood. Heh. So, what do you say, [pc.name]? Think you can handle a little overtime?");
+	else if (kara.isMischievous()) output(" I don’t know about you, but the whole harrowing adventure and balls-to-the-walls danger thing really gets me in the mood. Heh. So, what do you say, [pc.name]? Think you can handle a little overtime?");
 	else output(" And you know the old saying: best thing after a good fight is a good fuck, right? So how about it?");
 	output("”</i>");
 	
@@ -2246,6 +2274,8 @@ public function kq2AmaraSpecialEnd():void
 	clearOutput();
 	kq2ShowAmara();
 
+	flags["KQ2_QUEST_FINISHED"] = 1;
+
 	output("The pirates are just too much for you. Their leader, Amara, fights like a tank, and packs more firepower than all her goons combined. Kara grunts beside you, collapsed on the deck and  clutching her belly. Blood runs out between her fingers, drooling in thick rivulets to splatter on the concrete.");
 	
 	output("\n\nThe pirate lord hefts her chaingun up onto her shoulder and strides toward you, a great big grin on her blue-painted lips. <i>“Well. Bragga’s gonna be </i>pissed<i> I kicked your shit in for her, kitten,”</i> she laughs, grabbing Kara by the collar and heaving her up off the ground.");
@@ -2268,7 +2298,12 @@ public function kq2AmaraSpecialEnd():void
 	output("\n\nYou scramble up and make a break for it while the pirates are still down, and well away from their gunship. The door of the nearest shuttle pops open when you run up to it, and you find the keys waiting for you in the ignition; you try to turn them, but find your hands shaking, covered with dirt and grime and bits of... oh <i>god</i>.");
 	
 	output("\n\nYou manage to get the engine started and punch it back towards... something. The DMZ! Civilization! Nothing follows you, nothing tries to stop you. You’re not sure there’s anything, or any<i>one</i> left to.");
-	if (flags["KQ2_NUKE_STARTED"] != undefined) output(" Especially after the nuke goes off, flashing in the distance in your rear mirror.");
+	// Nuke due to explode within 30 minutes
+	if (flags["KQ2_NUKE_STARTED"] != undefined)
+	{
+		output(" Especially after the nuke goes off, flashing in the distance in your rear mirror.");
+		flags["KQ2_NUKE_EXPLODED"] = 1;
+	}
 	
 	output("\n\nThe trip back to the DMZ is quiet. You try not to think, just letting your body go on autopilot as you cruise back to the familiar strip of tarmac in the desert wastes. It’s not hard to find a spacer to hitch-hike with back to the smuggler’s base, though in your state, you get more than few odd glances until you do.");
 	
@@ -2313,7 +2348,7 @@ public function kq2KaraSexytimes():void
 	else output(" groin");
 	output(".");
 
-	if (pc.isMischeivious()) output("\n\nSomebody’s happy to see you!");
+	if (pc.isMischievous()) output("\n\nSomebody’s happy to see you!");
 	else if (pc.hasCock()) output("\n\nLooks like you’re not the only one thinking about getting your dick wet...");
 
 	output("\n\nKara gives a wiggle of her hips, letting you pull her suit off of her long legs, leaving her just as bare as you are. One of her hands reaches down, caressing her cock in one, and keeping your face pinned between her breasts with the other.");
@@ -2347,7 +2382,7 @@ public function kq2KaraTakeKittydick():void
 	
 	output("\n\nSuddenly freed from her boobalicious embrace, you’re left flat on your back as the amorous cat-girl crawls back, her slitted eyes drawing down to your [pc.vagOrAss]. <i>“You helped me out so much,”</i> she murmurs, tracing a finger along your bare thigh, slipping her hand towards your hole. <i>“Now it’s my turn.");
 	if (kara.isNice()) output(" I want to make this a night for you to remember.");
-	else if (kara.isMischeivious()) output(" Just lie back and let me show you my gratitude...");
+	else if (kara.isMischievous()) output(" Just lie back and let me show you my gratitude...");
 	else output(" I’m gonna make this [pc.vagOrAss] mine!");
 	output("”</i>");
 	
@@ -2388,7 +2423,7 @@ public function kq2KaraTakeKittydick():void
 	output("\n\n<i>“So good,”</i> Kara purrs, leaning in deep to give you a sloppy kiss, letting you taste yourself still on her lips.");
 
 	var looseness:Number;
-	if (pc.hasVagina()) looseness = pc.tightestVaginalTightness();
+	if (pc.hasVagina()) looseness = pc.tightestVaginalLooseness();
 	else looseness = pc.ass.looseness();
 
 	if (looseness <= 1) output(" <i>“You’re so tight! I’m not your first, am I?”</i>");
@@ -2440,7 +2475,7 @@ public function kq2KaraFuckKittysKitty():void
 	output("You decide to take the initiative, grabbing Kara’s juicy hips and pulling her towards the tumescent shaft of your [pc.cock]. She gives a little gasp as your prick brushes up between her legs, finding a hot, wet gash hidden behind her churning sack. Kara smiles at you, rocking her hips back against your [pc.cockHead]. She gives you a rough push down onto the bed, putting your back on the sheets and her hands firmly planted on your [pc.chest].");
 	
 	output("\n\n<i>“");
-	if (kara.isMischeivious()) output("Want a little cat-girl pussy, [pc.name]?”</i>");
+	if (kara.isMischievous()) output("Want a little cat-girl pussy, [pc.name]?”</i>");
 	else output("Don’t lie... you’ve been looking forward to this since we first met,”</i>");
 	output(" Kara teases, licking her lips while your cockhead caresses her lower pair. She winks one of her slitted green eyes at you, and eases herself back. You both gasp, united in pleasure in that brief moment as your [pc.cock] slides into her, parting her velvet-soft folds and pressing into her tight, slick embrace.");
 	
@@ -2462,7 +2497,7 @@ public function kq2KaraFuckKittysKitty():void
 	if (pc.biggestTitSize() >= 1) output(" until your tits are mashed together, and her piercings rub up against your [pc.nipples]");
 	output(". <i>“But my heart is still racing from before.");
 	if (kara.isNice()) output(" Would you mind if we made this a little rougher?");
-	else if (kara.isMischeivious()) output(" How about you throw me on all fours and give it to me rough, lover?");
+	else if (kara.isMischievous()) output(" How about you throw me on all fours and give it to me rough, lover?");
 	else output(" I need you to fuck me hard. Think you’re up for it?");
 	output("”</i>");
 	
@@ -2523,7 +2558,7 @@ public function kq2PostKaraSexyCombine(gotFucked:Boolean = false):void
 	
 	output("\n\nYou put an arm around your lover’s shoulders, pulling her close, and tell her much the same. Her twin tails wiggle happily, and she relaxes in your embrace. <i>“Wanna stay for a while, [pc.name]? I know");
 	if (kara.isNice()) output(" I’ve stolen a lot more of your time than you bargained for");
-	else if (kara.isMischeivious()) output(" you’ve got places to be, things to do...");
+	else if (kara.isMischievous()) output(" you’ve got places to be, things to do...");
 	else output(" I’ve pretty much worn you out, but...");
 	output("”</i>");
 
@@ -2585,6 +2620,128 @@ public function kq2PostKaraSexyCombineStay():void
 	currentLocation = "SHIP INTERIOR";
 
 	genericSleep(480);
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function kq2NukeBadend():void
+{
+	clearOutput();
+
+	output("You’re moving as fast as you can, rushing towards the way out of this hell hole... but not fast enough. Over your head, you hear a crackling P.A. system announce in a mechanical, feminine voice: <i>“Self Destruct sequence activating in ten. Nine. Eight...”</i>");
+	
+	output("\n\nYou push yourself harder, knowing there’s no way to escape the blast, but desperate nonetheless.");
+	
+	output("\n\n<i>“Five... four... three...”</i>");
+	
+	output("\n\nShitshitshit.");
+	if (flags["KQ2_KARA_WITH_PC"] != undefined) output(" You grab Kara’s hand, staring into the cat-girls eyes in your last moments. She gives you a reproachful, sad look, but takes your hand in hers as the");
+	else output(" The");
+	output(" P.A. announces <i>“Two... one. Nuclear detonation imminent. Goodbye.”</i>");
+	
+	output("\n\nAnd then there’s a flash of searing pain. Then nothing.");
+
+	badEnd();
+}
+
+public function kq2NukeExplodesLater():void
+{
+	clearOutput();
+
+	output("A short while later, you find yourself staring into space. Your sensors show the Confederate fleet in the distance, and you’ve had your sensors tuned to detect weaponsfire in the nearby system. But so far... nothing. Curious, you take the help and fly towards Myrellion, wondering what’s stopping the mass Xenocide you should have caused. Nothing seems to have changed on the surface, and you’re not picking up any broadcasts from the fleet.");
+	
+	output("\n\nJust as you’re starting to wonder, your sensors detect movement in the fleet. You watch with wide eyes as the Confederate fleet moves away from the planet, making way towards the Warp Gate. They vanish off your sensors an hour later, warping out of the system.");
+
+	output("\n\nIt was a bluff all along.");
+	if (pc.isAss()) output(" Looks like some admiral lost his nerve.");
+	else if (pc.isMischievous()) output(" Looks like somebody left their big-boy pants back home.");
+
+	output("\n\nWell, that doesn’t bode well for the cold war down there. Indeed, as you sweep towards the planet’s surface, your sensors start to blip up with various radiological alerts. The closer you get, the better you can see mushroom clouds billowing up through the planet’s atmosphere. Oh, shit. Dozens of ships are desperately zooming out of orbit, small spacer freighters and solo-ships, and the cargo vessels from every mega-corp that had a stake in the place. You wonder how much warning they had.");
+
+	//{if PC hadn't gotten the probe yet:
+	if (!reclaimedProbeMyrellion())
+	{
+		output("\n\nSuddenly, your comms beep with an incoming message. From your cousin.");
+		
+		output("\n\nYou take the call, leaning back in your captain’s chair as the vidscreen clicks on. [rival.name] is clutching onto the controls of [rival.hisHer] ship, [rival.hisHer] clothes all but shredded and [rival.hisHer] nearly-bare flesh covered in sweat and dirt and dozens of small cuts.");
+		
+		output("\n\n<i>“You... you psycho!”</i> [rival.name] yells, breathing hard. <i>“I was watching... I saw that nuke go off right near you. You did it, didn’t you!? This... this is all YOUR fault!”</i>");
+		
+		output("\n\nYou shrug it off. Who knows who’s listening?");
+		
+		output("\n\n[rival.name] sneers. <i>“Fine! Don’t answer, you bloody monster! I’ve got the probe, so </i>fuck you<i>! See you at Steele Tech HQ!”</i>");
+		
+		output("\n\nThe comms cut off. Well, shit. How’re you going to come back from this? You sigh and drum your fingers on the helm... you’ll just have to think of something!");
+
+		flags["KQ2_MYRELLION_STATE"] = 1;
+		flags["KQ2_DANE_COORDS_TIMER"] = GetGameTimestamp();
+
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+	}
+	// {PC has subjugated or married Taivra:
+	else if (flags["KING_NYREA"] != undefined)
+	{
+		output("\n\nWell, there goes the surface of the planet. But you know there are other ways down into the depths. Maybe some of them made it through the apocalypse you unleashed. With any luck, Taivra and her queenship survived.");
+
+		flags["KQ2_MYRELLION_STATE"] = 2;
+
+		//Retain access to Myrellion. If the PC lands there, plant the starship at the Taxi Point in the Deep Caves. No access possible to the Upper Caves. 
+
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+	}
+
+	processTime(360);
+}
+
+public function flyToMyrellionDeepCaves():void
+{
+	clearOutput();
+	author("Savin");
+
+	output("You guide your ship through the ashen atmosphere of the ruined planet of Myrellion, slowly forging through pillars of radioactive smog and falling ash. Nuclear winter’s set in on the surface, bathing the desert world in white. It’s almost pretty, in away - though you know the glistening coat lies overtop hundreds of craters where cities once lurked below the ground. You wonder if anyone survived, far from the front lines. Could the golds have reached the Federation homeland, pushed so far back as they were?");
+	
+	output("\n\nYou shake the thought and guide your vessel down, towards a fissure in the ground. You should be just above Taivra’s palace, now. With careful, slow precision, you lower yourself through the crack and down into the depths of Myrellion, far beneath the nuked-out myr tunnels. Miles down below the ground. It should still be safe, protected from the radiation by so much rock as you are.");
+	
+	output("\n\nYou park at the bottom of a familiar cavern network and set the ship’s automated scrubbers to clean off the hull before you depart - you don’t want to pick up anything the irradiated surface might have rubbed off on your vessel.");
+}
+
+public function kq2DaneCoordEmail():void
+{
+	flags["KQ2_DANE_COORDS_TIMER"] = undefined;
+
+	clearOutput();
+	author("Savin");
+
+	output("Your Codex beeps unexpectedly, alerting you to an incoming extranet message. When you pull your device out, you’re greeted by an message addressed from one <i>“doubledog27@ausal.ril”</i> You flip it open and start to read:");
+	
+	//{if fucked on Mhen'ga:
+	if (flags["FOUGHT_DANE_ON_MHENGA"] == 1 && flags["WHUPPED_DANES_ASS_ON_MHENGA"] == undefined) output("\n\nHow’s my favorite cocksleeve doing?");
+	else output("Sure hope this is actually your email address...");
+	
+	output("\n\nSo I don't know if you’re actually the one that blew myrellion up or not. Dont really care either. Your dickweed cousin fired me right after.");
+	if (rival.mf("m", "f") == "f") output(" What a bitch. Shoulda fucked her when I had the chance.");
+	else output(" What an asshole. Glad I'm not working for him anymore.");
+	output(" Didn't even get my last paycheck. So I wrote down those dumb coordinates [rival.heShe] was yammering on about on my way out.");
+
+	output("\n\nOops, I must have accidentally attached them to this message. Ha, silly me. Be a shame if somebody put a boot up [rival.name]'s ass on the next planet when [rival.heShe]'s not expecting it.");
+
+	output("\n\nJust sayin.");
+
+	//{if fucked:
+	if (flags["FOUGHT_DANE_ON_MHENGA"] == 1 && flags["WHUPPED_DANES_ASS_ON_MHENGA"] == undefined)
+	{
+		output("\n\nSoooo if you want a repeat of Mhen'ga, maybe we can hook up sometime? C'mon, I know you liked it ;)");; 
+		if (silly) output(" Woulda save-scummed out of it otherwise!");
+		
+		output("\n\n<b>Below the message is attached a picture of Dane's rock-hard tentacle wang, multiple knots fully engorged between his snowy fingers. Looks like somebody's been thinking of you...</b>");
+	}
+
+	output("\n\nAt the bottom of the message, you see several stellar coordinates: the next probe's location! Well, looks like Benedict Ausar just saved your inheritance!");
+
+	if (!MailManager.isEntryUnlocked("danemyrellioncoords")) MailManager.unlockEntry("danemyrellioncoords", GetGameTimestamp());
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);

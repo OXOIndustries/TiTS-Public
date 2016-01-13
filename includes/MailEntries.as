@@ -113,6 +113,44 @@ public function configureMails():void
 	
 	MailManager.addMailEntry("saendrathanks", "You’re a lifesaver, captain. Just got patched up by the docs back on Tavros. Said I wouldn’t have lasted much longer, even if I didn’t get killed in the fight. Blood loss. Speaking of loss, old lefty was mangled pretty bad by that shotgun blast. Had to lose it. Good news is I’ve got myself some new chrome to replace it. Could have been a lot worse. I lived through it thanks to you. You’re my new hero, cap.\n\nI’m going to be grounded at Tavros for a bit. If you get the chance, look me up. I owe you a drink (and maybe a little more~).\n\nYour new friend,\nSaendra <3", "Thanks again, hero!", "Saendra en Illya", "FlyGirl@PhoenixCargo.net", quickPCTo, quickPCToAddress);
 	
+	MailManager.addMailEntry("danemyrellioncoords", 
+	function():String {
+		var msg:String = "";
+		
+		//{if fucked on Mhen'ga:
+		if (flags["FOUGHT_DANE_ON_MHENGA"] == 1 && flags["WHUPPED_DANES_ASS_ON_MHENGA"] == undefined) msg += "How's my favorite cocksleeve doing?";
+		else msg += "Sure hope this is actually your email address...";
+		
+		msg += "\n\nSo I don't know if you’re actually the one that blew myrellion up or not. Dont really care either. Your dickweed cousin fired me right after.";
+		if (rival.mf("m", "f") == "f") msg += " What a bitch. Shoulda fucked her when I had the chance.";
+		else msg += " What an asshole. Glad I'm not working for him anymore.";
+		msg += " Didn't even get my last paycheck. So I wrote down those dumb coordinates [rival.heShe] was yammering on about on my way out.";
+
+		msg += "\n\nOops, I must have accidentally attached them to this message. Ha, silly me. Be a shame if somebody put a boot up [rival.name]'s ass on the next planet when [rival.heShe]'s not expecting it.";
+
+		msg += "\n\nJust sayin.";
+
+		//{if fucked:
+		if (flags["FOUGHT_DANE_ON_MHENGA"] == 1 && flags["WHUPPED_DANES_ASS_ON_MHENGA"] == undefined)
+		{
+			msg += "\n\nSoooo if you want a repeat of Mhen'ga, maybe we can hook up sometime? C'mon, I know you liked it ;)"; 
+			if (silly) msg += " Woulda save-scummed out of it otherwise!";
+			
+			msg += "\n\n<b>Below the message is attached a picture of Dane's rock-hard tentacle wang, multiple knots fully engorged between his snowy fingers. Looks like somebody's been thinking of you...</b>";
+		}
+
+			msg += "\n\nAt the bottom of the message, you see several stellar coordinates: the next probe's location! Well, looks like Benedict Ausar just saved your inheritance!";
+			
+			return msg;
+	}, 
+	"Your cousin's a cocksucker.",
+	"Dane",
+	"doubledog27@ausal.ril",
+	quickPCTo,
+	quickPCToAddress);
+	
+	
+	
 	MailManager.addMailEntry("cuzfuckball", cuzFuckball, "Jealous?", cuzName, cuzMail, quickPCTo, quickPCToAddress);
 	
 	MailManager.addMailEntry("tanisarrows", "What’s better than letting loose arrows...?\n\nLetting loose arrows <b>that EXPLODE</b>.\n\n<i>Embedded to the message are a series of step-by-step instructional graphics on how to build explosive-tipped arrows.</i>\n\nHave at it!\n\nMhen’ga U.G.C. Scout Authority\n - Tanis", "Here you go!", "Tanisaran Alhelvan", "Tanis_Alhelvan@UGC.gov", quickPCTo, quickPCToAddress);

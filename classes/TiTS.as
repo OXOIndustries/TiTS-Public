@@ -244,6 +244,11 @@
 		include "../includes/myrellion/xanthe.as";
 		include "../includes/myrellion/xenogenbiotech.as";
 		
+		// Karaquest 2- Karaharder.
+		include "../includes/events/karaquest2/content.as";
+		include "../includes/events/karaquest2/rooms.as";
+		include "../includes/events/karaquest2/roomFunctions.as";
+		
 		public var chars:Object;
 
 		// This needs to ideally be moved somewhere else, I'm just stopping the GUI code from being used to store game-data models

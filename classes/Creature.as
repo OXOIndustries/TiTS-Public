@@ -2191,6 +2191,27 @@ package classes {
 			}
 			return;
 		}
+		public function destroyItemByType(type:Class, amount:int = 1):void
+		{
+			if (inventory.length == 0) return;
+			
+			for (var i:int = 0; i < inventory.length; i++)
+			{
+				if (amount == 0) break;
+				
+				if (inventory[i] is type)
+				{
+					inventory[i].quantity -= amount;
+					if (inventory[i].quantity <= 0)
+					{
+						if (inventory[i].quantity < 0) amount = Math.abs(inventory[i].quantity);
+						inventory.splice(i, 1);
+						i--;
+					}
+				}
+			}
+		}
+		
 		public function getWeaponName(fromStat:Boolean = false):String
 		{
 			if(!fromStat)
@@ -2965,6 +2986,11 @@ package classes {
 		public function AQ():Number
 		{
 			return Math.round(aim() / aimMax() * 100);
+		}
+		
+		public function LQ():Number
+		{
+			return Math.round(libido() / libidoMax() * 100);
 		}
 		
 		public function intelligence(arg:Number = 0, apply:Boolean = false):Number 
@@ -6496,6 +6522,23 @@ package classes {
 				if (vaginas[index].looseness() < vaginas[counter].looseness()) index = counter;
 			}
 			return vaginas[counter].looseness();
+		}
+		public function tightestVaginalLooseness():Number
+		{
+			if (vaginas.length == 0) return -1;
+			
+			var vIdx:int = -1;
+			
+			for (var i:int = 0; i < vaginas.length; i++)
+			{
+				if (vIdx == -1) vIdx = 0;
+				else
+				{
+					if (vaginas[i].looseness() < vaginas[vIdx].looseness()) vIdx = i;
+				}
+			}
+			
+			return vaginas[vIdx].looseness();
 		}
 		public function wettestVaginalWetness(): Number {
 			var counter: Number = vaginas.length;
