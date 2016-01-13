@@ -344,6 +344,30 @@ public function fastTravelToEsbeth():void
 	addButton(0,"Next",mainGameMenu);
 }
 
+public function genericSleep(baseTime:int = 480):void
+{
+	var totalTime:int = baseTime + (rand(baseTime / 3) - (baseTime / 6));
+	
+	sleepHeal();
+	processTime(totalTime);
+	
+	if ((pc.XPRaw >= pc.XPMax()) && pc.level < 8 && flags["LEVEL_UP_AVAILABLE"] == undefined)
+	{
+		(pc as PlayerCharacter).unspentStatPoints += 13;
+		(pc as PlayerCharacter).unclaimedClassPerks += 1;
+		(pc as PlayerCharacter).unclaimedGenericPerks += 1;
+		
+		pc.level++;
+		pc.XPRaw = 0;
+		pc.maxOutHP();
+		
+		// Enable the button
+		userInterface.levelUpButton.Activate();
+		
+		eventBuffer += "\n\nA nights rest is just what you needed; you feel faster... stronger... harder....\n<b>Level Up is available!</b>";
+	}
+}
+
 public function sleepInRuinedCamp():void
 {
 	clearOutput();
