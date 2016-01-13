@@ -1317,7 +1317,7 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["BADGER_QUEST"] >= 0 && flags["DR_BADGER_TURNED_IN"] == undefined) output2("\n<b><u>Doctor Badger’s Job Offer</u></b>");
 				else output2("\n<b><u>Doctor Badger’s Big Mistake</u></b>");
 				// Bimbo Raygun
-				output2("\n<b>* Bimbo Raygun, Status:</b>");
+				output2("\n<b>* Status:</b>");
 				if(flags["BADGER_QUEST"] == 1) output2(" <i>Find Penny!</i>");
 				else if(flags["PENNY_BADGER_WARNED"] != undefined)
 				{
@@ -1331,7 +1331,7 @@ public function displayQuestLog(showID:String = "All"):void
 						else if(flags["BADGER_QUEST_TIMER"] == -1) output2(", <i>Return to Penny!</i>");
 					}
 					else if(flags["BADGER_QUEST"] == -2) output2(", Reprogrammed Raygun, <i>Return to Dr. Badger!</i>");
-					else if(flags["BADGER_QUEST"] <= -3) output2(", Zapped Dr. Badger instead, Rewarded, Completed");
+					else if(flags["BADGER_QUEST"] <= -3) output2(", Zapped Dr. Badger, Rewarded, Completed");
 					if(flags["BADGER_QUEST"] >= 2) output2(",");
 				}
 				if(flags["BADGER_QUEST"] == 2) output2(" Zapped Penny, <i>Mission accomplished! Report to Dr. Badger!</i>");
