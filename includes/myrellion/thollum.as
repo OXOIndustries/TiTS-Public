@@ -907,7 +907,7 @@ public function currentEventsYarastaTalk():void
 	else
 	{
 		output("<i>“Surely an armchair diplomat like you has some insights on recent developments,”</i> you goad, hoping for an interesting discussion.");
-		output("\n\nYarasta turns toward you and folds her legs. <i>“As a matter of fact...”</i> }");
+		output("\n\nYarasta turns toward you and folds her legs. <i>“As a matter of fact...”</i>");
 	}
 	//UGC branch - pick branch randomly or sequentially
 	if(flags["YARASTA_EVENTS_TALK"] == undefined)
@@ -1575,7 +1575,7 @@ public function auditYarastasClass():void
 	else
 	{
 		output("<i>“I’m going to sit in on the class,”</i> you declare.");
-		output("\n\n<i>“Fine. But no talking,”</i> Yarasta answers. }");
+		output("\n\n<i>“Fine. But no talking,”</i> Yarasta answers.");
 	}
 	if(pc.intelligence() >= 15)
 	{
@@ -1710,7 +1710,7 @@ public function yarastaSexApproach():void
 			else if(pc.hasVagina()) output("vagina");
 			else output("butthole");
 			output(" isn’t as dirty as your mouth.”</i>");
-			output("\n\n<i>“Just leave it all to me. I’ll tell you if you need to clean it.”</i> }");
+			output("\n\n<i>“Just leave it all to me. I’ll tell you if you need to clean it.”</i>");
 		}
 		//present sex menu options below
 		yarastaSexMenu();
