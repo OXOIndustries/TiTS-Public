@@ -22,7 +22,7 @@ KQ2_RF_KENNEL_USED		-- 0/undefined, unused
 						-- 2 upgraded regular tamwolf
 TAMWOLF_DAMAGE_UPGRADE	-- 0/undefined, current damage for undamaged tamwolf
 						-- 1 upgraded/adaptive damage for tamwolf (TODO)
-KQ2_WATSTON_MET
+KQ2_WATSON_MET
 KQ2_DEFEATED_ENGINEER
 KQ2_DEFEATED_JUGGERNAUT
 KQ2_DEFEATED_KHAN
@@ -106,7 +106,7 @@ public function kq2TravelToKara():void
 	output("You punch in the coordinates Kara gave you and engage the autopilot, letting the computer start your journey.");
 
 	output("\n\nOne");
-	if (9999 == 0) output(" lengthy journey through space and the Warp Gate network");
+	if (getPlanetName() != "Myrellion") output(" lengthy journey through space and the Warp Gate network");
 	else output(" quick trip through the atmosphere later");
 	output(" and you’re zooming through the blackness of space, hurtling towards Myrellion’s further moon. The journey toward the icy blue moon isn’t particularly long, by galactic standards, but the coordinates Kara gave you lead into rocky belt encircling it. You instinctively boost your shielding, gazing out your ship’s viewports as tumbling hunks of house-sized rock and ice smash against each other. Your shields rumble and flicker as shards of debris hit you, just enough to give you a light show - no threat, so long as you keep dodging the big rocks.");
 
@@ -149,7 +149,7 @@ public function kq2TravelToKara():void
 		output("\n\n<i>“Steele,”</i> Kara says, giving you a firm but respectful nod.");
 	}
 	output(" <i>“It’s good to see you again. Like I said over the comms, I’ve got another job for you - if you’re interested. And I still owe you for");
-	if (9999 == 0) output(" helping me kick that bounty hunter bitch’s ass");
+	if (flags["SHADE_DEFEATED_WITH_KARA"] != undefined) output(" helping me kick that bounty hunter bitch’s ass");
 	else output(" pulling my ass out of the fire back on Myrellion");
 	output(".”</i>");
 
@@ -217,7 +217,7 @@ public function kq2TravelToKara():void
 
 	output("\n\n<i>“Like I said, I have a job for you, [pc.name]. Dangerous work, but");
 	// {if fought Shade:
-	if (9999 == 0) output(" you’ve proven you can handle yourself");
+	if (flags["SHADE_DEFEATED_WITH_KARA"] != undefined) output(" you’ve proven you can handle yourself");
 	else output(" I think you can handle yourself");
 	output(". Plus I can’t fly the </i>Ghost<i> solo into a fight, if it comes to that. Hopefully it won’t, but...”</i>");
 
@@ -391,7 +391,7 @@ public function kq2ThisPlace():void
 	output("\n\nKara laughs. <i>“Oh, no. No. This was going to be used as a smuggling base right after the Rushers discovered Myrellion, before the Damocles Fleet arrived in orbit. After that, well, it’s hard enough to move goods on the down-low without a jumpy Confederate fleet next to your destination. The place was abandoned, and I");
 	if (flags["KQ_F_TALK"] != undefined) output(" decided to use it as a meet point. No chance of accidental pirate encounters here.");
 	else output(" found it! Pretty handy, hmm?");
-	output("”</i>}");
+	output("”</i>");
 
 	output("\n\n<i>“Definitely useful,”</i> you muse. <i>“Is there anything more to this place? Other than the dock, that is.”</i>");
 
@@ -594,11 +594,11 @@ public function kq2QUESTTIME():void
 	{
 		output("\n\nAs you’re walking, a side passage in the corridor slides open with a hiss, and a pale blue beauty sashays out into your path. You blink hard as the robotic bombshell smiles at you with big, ultramarine lips, putting her hand on a set of broad hips that strain the band of her skin-tight yoga pants. Her flat, sleek belly is left bare, all the way up to a too-tight black sports bra that’s somehow hugging back a set of tits that would look more at home");
 		//{if met Irellia:
-		if (9999 == 0) output(" on a gold myr queen");
+		if (flags["MET_IRELLIA"] != undefined) output(" on a gold myr queen");
 		else output(" on a hyperporn star - and emphasis on the hyper");
 		output("!");
 		// {if met Gianna:
-		if (9999 == 0) output(" She looks a lot like a certain New Texan companion droid you know - maybe they’re the same model?");
+		if (flags["MET_GIANNA"] != undefined) output(" She looks a lot like a certain New Texan companion droid you know - maybe they’re the same model?");
 
 		output("\n\n<i>“Welcome back, captain,”</i> the droid says, oddly emotionless despite the husky purr in her voice. Almost eerily so. <i>“I assume this is [pc.name] Steele. Pleased to meet you.”</i>");
 		
@@ -925,11 +925,15 @@ public function kq2EnterEngineersRoom():void
 		output("You step into the security room, and immediately are greeted by the sound of low, metallic grating that’s almost like growling. You take a step back as a huge, black canine robot stalks out of the shadows, its teeth bared. Behind it stands a small, feminine figure - not quite four feet in height, with svelte curves that are muted by a ballistic breastplate that’s much too bulky for its user. She’s nearly naked aside from the plate and a pair of high-heeled boots... and a jockstrap that’s barely holding back a pair of oversized testicles, out of which bobs a six-inch canine cock. The diminutive creature scowls at you, hands on her hips, the pair of bunny-ears atop her head lying flat back against her scalp, showing off a pair of demonic-looking horns that sprout out from her orange hair.");
 		
 		//9999
-		if (9999 == 0) output("\n\nIt takes you a good moment to realize the creature’s a lapinara, clearly unlike those you’ve seen before!");
-		else output(" It takes longer than usual for your Codex to identify the creature as a lapinara, of the non-parasitic variety.");
+		if (CodexManager.entryUnlocked("Lapinara")) output("\n\nIt takes you a good moment to realize the creature’s a lapinara, clearly unlike those you’ve seen before!");
+		else
+		{
+			output(" It takes longer than usual for your Codex to identify the creature as a lapinara, of the non-parasitic variety.");
+			CodexManager.unlockEntry("Lapinara");
+		}
 		
 		output("\n\n<i>“How did you get past all the guards!?”</i> she growls, staring");
-		if (9999 == 0) output(" up at you");
+		if (pc.tallness >= 52) output(" up at you");
 		else output(" straight at you");
 		output(" with a pair of huge green eyes. <i>“Get out of here, or my pet");
 		if (flags["KQ2_ENGINEER_NUM_DRONES"] > 1) output("s");
@@ -1041,7 +1045,7 @@ public function kq2GibEngyDirtyMag():void
 	
 	output("\n\nShe looks up, startled. <i>“Uh. Yeah, sure. Card, whatever,”</i> she says, grabbing a card off of the desk behind her and shoving it into your hand. <i>“Now fuck off.");
 	//{if convinced Steph to do porn:
-	if (9999 == 0) output(" I’ve been waiting for the first issue of </i>Galactic Fucktress<i> for ages!");
+	if (flags["STEPH_WORK_CHOICE"] == STEPH_WORK_PORNSTAR) output(" I’ve been waiting for the first issue of </i>Galactic Fucktress<i> for ages!");
 	output("”</i>");
 	
 	output("\n\nSomewhat amazed that actually worked, you take the keycard and leave the lapinara engineer to her business.");
@@ -1346,29 +1350,45 @@ public function kq2KhanPCVictoryLootRoom():void
 
 public function kq2LootLabCoat():void
 {
+	flags["KQ2_KHAN_LOOTED_COAT"] = 1;
 	lootScreen = kq2LabCoatCheck;
 	itemCollect(new KhansLabCoat());
-	flags["KQ2_KHAN_LOOTED_COAT"] = 1;
 }
 
 // Cheesy hack to see what the player did with the item. If they discarded it, clear the flag that said they looted it.
 public function kq2LabCoatCheck():void
 {
-	if (!pc.hasItemByType(KhansLabCoat) && !pc.armor is KhansLabCoat) flags["KQ2_KHAN_LOOTED_COAT"] = undefined;
-	kq2KhanVictoryMenu();
+	if (pc.armor is KhansLabCoat || pc.hasItemByType(KhansLabCoat))
+	{
+		kq2KhanVictoryMenu();
+		return;
+	}
+	clearOutput();
+	output("You put the coat back where you found it.");
+	flags["KQ2_KHAN_LOOTED_COAT"] = undefined;
+	clearMenu();
+	addButton(0, "Next", kq2KhanVictoryMenu);
 }
 
 public function kq2LootArcCaster():void
 {
-	lootScreen = kq2LabCoatCheck;
-	itemCollect(new KhansArcCaster());
 	flags["KQ2_KHAN_LOOTED_CASTER"] = 1;
+	lootScreen = kq2LootArcCasterCheck;
+	itemCollect(new KhansArcCaster());
 }
 
-public function kq2LabCoatCheck():void
+public function kq2LootArcCasterCheck():void
 {
-	if (!pc.hasItemByType(KhansArcCaster) && !pc.rangedWeapon is KhansArcCaster) flags["KQ2_KHAN_LOOTED_CASTER"] = undefined;
-	kq2KhanVictoryMenu();
+	if (pc.rangedWeapon is KhansArcCaster || pc.hasItemByType(KhansArcCaster))
+	{
+		kq2KhanVictoryMenu();
+		return;
+	}
+	clearOutput();
+	output("You put the gun back where you found it.");
+	flags["KQ2_KHAN_LOOTED_CASTER"] = undefined;
+	clearMenu();
+	addButton(0, "Next", kq2KhanVictoryMenu);
 }
 
 public function kq2KhanLeave():void
@@ -1637,10 +1657,10 @@ public function kq2EncounterShade():void
 	flags["KQ2_SHADE_ENCOUNTERED"] = 1;
 
 	// Encounter Text (PC hasn't fucked Shade)
-	if (9999 == 0)
+	if (flags["SEXED_SHADE"] == undefined)
 	{
 		output("As you and Kara rush toward the helipad, you hear a deep, metallic howl echo across the helipad. Kara draws her pistol and skids to a stop near the foot of the stairs leading up to the helipad. A huge, black drone stands at the top of the steps, canid in shape with razor-sharp teeth bared. Another drone peeks over the ledge beside it, and a third howls behind you, leaping up onto the top of the elevator cabin.");
-		if (9999 == 0) output(" They’re like Tam-wolf’s big brothers!");
+		if (flags["TAKEN_TAMWOLF"] != undefined) output(" They’re like Tam-wolf’s big brothers!");
 		
 		output("\n\n<i>“That was a lucky break back at the bar,”</i> a familiar voice says, stepping up behind one of the wolf droids. Shade, the bounty hunter from the myrellion bar, steps into view, a lightning pistol resting on her shoulder. <i>“I guess you have your friend here to thank for that, don’t you, Kara? I think we both know things would have gone differently without "+ pc.mf("him", "her") +".”</i>");
 		
@@ -1668,7 +1688,7 @@ public function kq2EncounterShade():void
 		return;
 	}
 	// Encounter Text: Fucked Shade
-	else if (9999 == 1)
+	else if (flags["SEXED_SHADE"] != undefined)
 	{
 		output("As you and Kara rush toward the helipad");
 		if (9999 == 0)
@@ -1678,7 +1698,7 @@ public function kq2EncounterShade():void
 			else output(" the group of freed red myr");
 		}
 		output(", you hear a deep, metallic howl echo across the helipad. Kara draws her pistol and skids to a stop near the foot of the stairs leading up to the helipad. A huge, black drone stands at the top of the steps, canid in shape with razor-sharp teeth bared. Another drone peeks over the ledge beside it, and a third howls behind you, leaping up onto the top of the elevator cabin.");
-		if (9999 == 0) output(" They’re like Tam-wolf’s big brothers!");
+		if (flags["TAKEN_TAMWOLF"] != undefined) output(" They’re like Tam-wolf’s big brothers!");
 		
 		output("\n\nA woman steps up behind the drone atop the stairs, scratching it between the ears. She’s carrying a big, bulky hand-cannon resting on her shoulder, her other hand firmly planted on her hip.");
 		
@@ -1693,7 +1713,7 @@ public function kq2EncounterShade():void
 		else
 		{
 			output(" If you want a fight, Shade, come on. We’ll send you packing");
-			if (9999 == 0) output(" again");
+			if (flags["SHADE_DEFEATED_WITH_KARA"] != undefined) output(" again");
 			output(" if we have to.");
 		}
 		output("”</i>");
@@ -1771,7 +1791,22 @@ public function kq2ShadePCVictoryKaraNotHard():void
 	clearOutput();
 	showKQ2Shade();
 
-	output("With a grunt, Shade slumps down against the wall, clutching her wounds. Her gun clatters to the ground out of reach{, and the wolf drones cease their attack, freezing in place as their master ceases to direct them}.");
+	output("With a grunt, Shade slumps down against the wall, clutching her wounds. Her gun clatters to the ground out of reach");
+
+	var hostiles:Array = CombatManager.getHostileCharacters();
+	var numDronesAlive:int = 0;
+
+	for (var i:int = 0; i < hostiles.length; i++)
+	{
+		if (hostiles is KQ2FenrisDrone && !hostiles[i].isDefeated()) numDronesAlive++;
+	}
+
+	if (numDronesAlive > 0)
+	{
+		output(", and the wolf drone");
+		if (numDronesAlive > 1) output("s cease their attack, freezing in place as their master ceases to direct them.");
+		else output(" ceases its attack, freezing in place as its master ceases to direct it.")
+	}
 	
 	output("\n\n<i>“Ah, fuck,”</i> Shade groans, sitting back against the wall. <i>“I’m getting too old for this shit.”</i>");
 	
@@ -1941,7 +1976,7 @@ public function kq2EncounterAmara():void
 	{
 		output(", past Shade’s");
 		if (flags["KQ2_SHADE_DEAD"] == 1) output(" smouldering corpse")
-		else if (9999 == 0) output(" aborted ambush"); // Fucked Shade- you don't fight her so
+		else if (flags["SEXED_SHADE"] != undefined) output(" aborted ambush"); // Fucked Shade- you don't fight her so
 		else output(" failed ambush");
 	}
 	output(". Several small shuttles are parked along the edge of the roof, making way for a single huge gunship bristling with weapons and armored plates. Its engines are roaring, sending hot air blasting back against your face.");
