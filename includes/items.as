@@ -253,6 +253,11 @@ public function shop(keeper:Creature):void {
 		visitCrystalGooShop();
 		return;
 	}
+	else if(keeper is Vi)
+	{
+		approachVi();
+		return;
+	}
 	clearOutput();
 	output(keeper.keeperGreeting);
 	shopkeep = keeper;
