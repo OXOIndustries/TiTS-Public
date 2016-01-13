@@ -1,6 +1,12 @@
 ﻿//Greeting
 //Store Description
 
+public function showSera():Boolean
+{
+	showBust("SERA");
+	showName("\nSERA");
+}
+
 public function seraBonusFunction():Boolean
 {
 	if(flags["MET_SERA"] == undefined)
@@ -24,8 +30,7 @@ public function seraBonusFunction():Boolean
 
 //Actual Intro Stuff
 public function approachSera():void {
-	userInterface.showName("\nSERA");
-	userInterface.showBust("SERA");
+	showSera();
 	if(flags["MET_SERA"] == undefined)
 	{
 		flags["MET_SERA"] = 1;
@@ -59,8 +64,7 @@ public function approachSera():void {
 
 public function seraMenu():void {
 	clearMenu();
-	userInterface.showName("\nSERA");
-	userInterface.showBust("SERA");
+	showSera();
 	shopkeep = chars["SERA"];
 	if(flags["ZODEE_GALOQUEST"] != undefined)
 	{
@@ -88,8 +92,7 @@ public function seraMenu():void {
 public function seraAppearance():void
 {
 	clearOutput();
-	userInterface.showName("\nSERA");
-	userInterface.showBust("SERA");
+	showSera();
 	output("Sera looks like a six foot one inch tall demon more than anything else. A set of ridged horns, glowing with phosphorescent luminescence, curl outwards from her forehead. Additionally, her skin is a mild purple that only serves to further her unholy air. Black sclera ring her golden, glowing irises, split by lizard-like pupils. Above them, a row of gleaming, metal piercings line her brow. Her slightly upturned nose is unremarkable, aside from the single stud in her left nostril. Pale blue hair cascades around her visage like fine silk tapestries arranged to tastefully frame her.");
 	output("\n\nA choker of black-lined, blue-glowing conduits rings her neck, matched on her torso by a sable corset dotted by hard metal and glowing, technological baubles. Pentagonal plates have grown out of her shoulders, though you cannot tell if they exist as armor or ornamentation. Matching, blue-glowing bracers and armbands complete her ensemble, but your eyes spend little time looking at her outfit when it frames her other assets so beautifully.");
 	output("\n\nBig breasts that would easily fill an EE-cup bra and then some sit high and proud on her chest, obviously the result of some kind of artificial or biological enhancement. They're nicely rounded and capped with a pair of cerulean nipples that are ever so slightly pebbled in the air-conditioned station air. They're the kind of boobs that just beg to be fondled, and Sera's open display of them shows just how much she knows it.");
@@ -104,8 +107,7 @@ public function seraAppearance():void
 public function talkToSeraAboutWhyShesPissedOff():void
 {
 	clearOutput();
-	userInterface.showName("\nSERA");
-	userInterface.showBust("SERA");
+	showSera();
 	flags["SERA_TALKED_ABOUT_BEING_PISSED_OFF"] = 1;
 	output("You ask, <i>\"So what got you so pissed off at your neighbor?\"</i>");
 	output("\n\nSera rolls her eyes as if it were obvious. <i>\"Well, this short little green guy was in here looking for some male enhancement, and he's loaded, right?\"</i> She gestures towards her terminal. <i>\"I've got this custom mod all lined up that would be exactly what he wants. Literally perfect. It's a horse-cock so big that it's practically a cum cannon, okay? And this is a mod that's one shot guaranteed - it always delivers as advertised.\"</i> Her hand curls up and makes masturbating motions. <i>\"He'd love it, but he wants to shop around.\"</i>");
@@ -123,14 +125,34 @@ public function seraSexMenu(display:Boolean = false):void {
 	if(display)
 	{
 		clearOutput();
+		/*
+		// If PC gets normally fucked twice, chooses sex again
+		if(flags["FUCKED SERA"] >= 2 && flags["SERA_TRIPLE_X_RATED"] == undefined)
+		{
+			output("Sera smirks to herself when she sees you hovering. You look away, pretending to be interested in a collection of particularly disgusting ornaments on a shelf. After you’ve let a few moments go by, you steal another look at her. She’s still gazing at you, brilliant yellow eyes running up and down your frame, that proprietary smile still on her face. You feel a small thrill when she finally disengages herself from the counter and slowly walks across to you, dick and hips swinging.");
+			output("\n\n<i>“You keep coming back,”</i> she says, without preamble. Her high breasts press into you as she bends into your side, breathing into your ear. <i>“Which means you like the way we do it.”</i> A warm hand has found its way between your [pc.thighs], sliding upwards. <i>“I’m almost impressed, meat. Most don’t come back for seconds, never mind thirds. Takes a certain kinda... mindset.”</i>");
+			if(pc.hasGenitals())
+			{
+				output(" You close your eyes as she");
+				if(pc.hasCock()) output(" grasps your [pc.cockBiggest]");
+				else output(" slides a finger along your [pc.vagina], her sharp nails pressing into your sensitive [pc.skin]");
+			}
+			output(". <i>“Perhaps the slut is interested in taking things to the next level, hmm?”</i>");
+			
+			clearMenu();
+			if(pc.lust() >= 33) addButton(0, "Yes", letSeraFuckYouXXXpac, "yes");
+			else addDisabledButton(0, "Yes", "Yes", "You aren’t turned on enough for this.");
+			addButton(1, "No", letSeraFuckYouXXXpac, "no");
+			return;
+		}
+		*/
 		output("You gulp noisily, about to speak when Sera rounds the desk to press her body against you. The coolness of her armor contrasts palpably with the warmth of her exposed breasts and tumescent, girthy tool. Her hand unabashedly roams across your [pc.butt], squeezing a cheek with an easy grope, pushing you against her just a little bit more firmly.");
 		output("\n\n<i>\"You wanna fuck, meat?\"</i> Sera asks, grabbing hold of you by the ");
 		if(pc.hasCock()) output("crotch");
 		else output("other asscheek");
 		output(". <i>\"I don't mind, but if we fuck, you're on the bottom. I like to screw hard, fast, and wet. I don't have a problem riding you into the dirt, but you better be willing to bark when I say bark and spread 'em on command. Got it?\"</i>");
 	}
-	userInterface.showName("\nSERA");
-	userInterface.showBust("SERA");
+	showSera();
 	//OPTIONS
 	clearMenu();
 	if(pc.lust() >= 33) addButton(0,"Fuck Me",letSeraFuckYou,undefined);
@@ -196,8 +218,7 @@ public function letSeraFuckYou():void
 public function getTailUsedBySera():void
 {
 	clearOutput();
-	userInterface.showName("\nSERA");
-	userInterface.showBust("SERA");
+	showSera();
 	output("Your tail waves around your [pc.hips], as eager for a drop of cum as a snake salivating over its prey. Rather than reacting to your");
 	if(pc.hasParasiteTail()) output(" parasitic hind-limb");
 	else output(" [pc.tail]");
@@ -283,8 +304,7 @@ public function getTailUsedBySera():void
 //Sera goes 100% crazy femdom on you. I forgot the pegging, sorry Savin.
 public function getRodeFemdomStyleBySera():void {
 	clearOutput();
-	userInterface.showName("\nSERA");
-	userInterface.showBust("SERA");
+	showSera();
 	var x:int = pc.cockThatFits(chars["SERA"].vaginalCapacity());
 	if(x < 0) x = pc.smallestCockIndex();
 	output("You nod.");
@@ -399,8 +419,7 @@ public function getRodeFemdomStyleBySera():void {
 public function getGiantDickTailfilledWhileEatingSeraOut():void
 {
 	clearOutput();
-	userInterface.showName("\nSERA");
-	userInterface.showBust("SERA");
+	showSera();
 	output("Sera casually strips your [pc.gear] from your body");
 	if(pc.isNude()) output(", not that you bother to wear much at all");
 	output(". Her hand traces down your [pc.belly] before pausing at your [pc.cockBiggest]. She grabs it slowly, almost hesitantly before pulling away.");
@@ -475,31 +494,51 @@ public function getGiantDickTailfilledWhileEatingSeraOut():void
 public function catchEverythingInYoButtBySavinForSeraDogcock():void {
 	clearOutput();
 	author("Savin");
-	userInterface.showName("\nSERA");
-	userInterface.showBust("SERA");
-	output("You nod your assent to the demon-morphed mistress's demand, which earns you a small grin from her blue-sheened lips. <i>\"Then prove it. Bark, little ");
-	if(pc.race() == "ausar") output("bitch");
-	else output("doggy");
-	output(".\"</i>  You hesitate a moment, not sure if she's being serious, and her slim smile fades into a sneer. <i>\"I said BARK, slut.\"</i>");
-
-	//if first-time:
-	if(flags["SERA_STUCK_IT_ALL_IN_BUTT"] == 0)
+	showSera();
+	output("You nod your assent to the demon-morphed mistress's demand, which earns you a small grin from her blue-sheened lips.");
+	//If PC “cat” score > 3 and “dog” score < 4
+	if(pc.kaithritScore() > 3 && pc.ausarScore() < 4)
 	{
-		output("\n\nNo way you're going to ACTUALLY bark like a little doggy for her. Sera merely crosses her arms under her pronounced, purple promontories, <i>tsk</i>ing her tongue. <i>\"I guess you weren't serious about wanting some of this,\"</i>  she says, her thick prick twitching between her supple thighs. <i>\"Too bad.\"</i>");
-		output("\n\n<i>\"Wait,\"</i>  you answer, putting out a hand to stop her from turning away from you. <i>\"I didn't... I mean, I do, but...\"</i>");
-		output("\n\nShe cocks an eyebrow at you, but her sneer slowly fades. <i>\"Alright, meat, I'll go easy on you this time. But next time...\"</i>");
-		//End first-time variant
+		author("Nonesuch & Savin");
+		output(" <i>“Then prove it. Meow, little pussy.”</i> You hesitate a moment, not sure if she’s being serious, and her slim smile fades into a sneer. <i>“I said MEOW, slut.”</i>");
+		
+		if(flags["SERA_STUCK_IT_ALL_IN_BUTT"] == 0)
+		{
+			output("\n\nNo way you’re going to ACTUALLY meow like a little kitty for her. Sera merely crosses her arms under her pronounced, purple promontories, tsking her tongue. <i>“I guess you weren’t serious about wanting some of this,”</i> she says, her thick prick twitching between her supple thighs. <i>“Too bad.”</i>");
+			output("\n\n<i>“Wait,”</i> you answer, putting out a hand to stop her from turning away from you. <i>“I didn’t... I mean, I do, but...”</i>");
+			output("\n\nShe cocks an eyebrow at you, but her sneer slowly fades. <i>“Alright, meat, I’ll go easy on you this time. But next time...”</i>");
+		}
+		output("\n\n<i>“Meow!”</i> you answer, raising [pc.eachTail], approaching your mistress and lowering down to your knees.");
+		output("\n\n<i>“Now there’s a good kitty cat,”</i> she teases, long fingers running through your hair before hooking firmly behind your head, guiding your down until you’re kneeling before her, arms raised like a begging bitch. Seeing your debase yourself certainly seems to send a thrill through the demon-babe: her cock jumps to attention as you settle between her legs, raising up like a flagpole to loom over you, firm and throbbing in its immensity. <i>“Does pussy want a taste?”</i>");
+		output("\n\nYour eyes roll up to gaze upon the majesty of Sera’s mammoth member as it hangs over you; the purple temptress releases her tensed cock-muscles just enough to let it her prick flop onto your face. You give a muted gasp as the hot, musky rod twacks you on the cheek, rolling off the side of your face to hang beside your mouth, primed for entry. Sera leans back against the counter, arms braced on the edge, tail wiggling with anticipation. <i>“C’mon, slut-kitty, open wide. Where this is going next, you’re gonna be thanking me for every second I let you suck my cock beforehand.”</i>");
 	}
-	//{Start here If PC is a cockslut OR PC is an Ausar-type:}
-	output("\n\n<i>\"Woof!\"</i>  you answer, wagging ");
-	if(pc.tailCount > 0) output("your [pc.tails]");
-	else output("your [pc.butt] like a tail");
-	output(" while approaching your mistress.");
-	output("\n\n<i>\"Now there's a good puppy,\"</i>  she teases, long fingers running ");
-	if(pc.hasHair()) output("through your hair");
-	else output("across your bald pate");
-	output(" before hooking firmly behind your head, guiding you down until you're kneeling before her, arms raised like a begging bitch. Seeing you debase yourself certainly seems to send a thrill through the demon-babe: her cock jumps to attention as you settle between her legs, rising up like a flagpole to loom over you, firm and throbbing in its immensity. <i>\"Does pup want a taste?\"</i>");
-	output("\n\nYour eyes roll up to gaze upon the majesty of Sera's mammoth member as it hangs over you; the purple temptress releases her tensed cock-muscles just enough to let her prick flop onto your face. You give a muted gasp as the hot, musky rod twacks you on the cheek, rolling off the side of your [pc.face] to hang beside your mouth, primed for entry. Sera leans back against the counter, arms braced on the edge, tail wiggling with anticipation. <i>\"C'mon, slut-puppy, open wide. Where this is going next, you're gonna be thanking me for every second I let you suck my cock beforehand.\"</i>");
+	// Default
+	else
+	{
+		output(" <i>\"Then prove it. Bark, little ");
+		if(pc.race() == "ausar") output("bitch");
+		else output("doggy");
+		output(".\"</i>  You hesitate a moment, not sure if she's being serious, and her slim smile fades into a sneer. <i>\"I said BARK, slut.\"</i>");
+	
+		//if first-time:
+		if(flags["SERA_STUCK_IT_ALL_IN_BUTT"] == 0)
+		{
+			output("\n\nNo way you're going to ACTUALLY bark like a little doggy for her. Sera merely crosses her arms under her pronounced, purple promontories, <i>tsk</i>ing her tongue. <i>\"I guess you weren't serious about wanting some of this,\"</i>  she says, her thick prick twitching between her supple thighs. <i>\"Too bad.\"</i>");
+			output("\n\n<i>\"Wait,\"</i>  you answer, putting out a hand to stop her from turning away from you. <i>\"I didn't... I mean, I do, but...\"</i>");
+			output("\n\nShe cocks an eyebrow at you, but her sneer slowly fades. <i>\"Alright, meat, I'll go easy on you this time. But next time...\"</i>");
+			//End first-time variant
+		}
+		//{Start here If PC is a cockslut OR PC is an Ausar-type:}
+		output("\n\n<i>\"Woof!\"</i>  you answer, wagging ");
+		if(pc.tailCount > 0) output("your [pc.tails]");
+		else output("your [pc.butt] like a tail");
+		output(" while approaching your mistress.");
+		output("\n\n<i>\"Now there's a good puppy,\"</i>  she teases, long fingers running ");
+		if(pc.hasHair()) output("through your hair");
+		else output("across your bald pate");
+		output(" before hooking firmly behind your head, guiding you down until you're kneeling before her, arms raised like a begging bitch. Seeing you debase yourself certainly seems to send a thrill through the demon-babe: her cock jumps to attention as you settle between her legs, rising up like a flagpole to loom over you, firm and throbbing in its immensity. <i>\"Does pup want a taste?\"</i>");
+		output("\n\nYour eyes roll up to gaze upon the majesty of Sera's mammoth member as it hangs over you; the purple temptress releases her tensed cock-muscles just enough to let her prick flop onto your face. You give a muted gasp as the hot, musky rod twacks you on the cheek, rolling off the side of your [pc.face] to hang beside your mouth, primed for entry. Sera leans back against the counter, arms braced on the edge, tail wiggling with anticipation. <i>\"C'mon, slut-puppy, open wide. Where this is going next, you're gonna be thanking me for every second I let you suck my cock beforehand.\"</i>");
+	}
 
 	output("\n\nYou gulp");
 	//if PC is a buttslut:
