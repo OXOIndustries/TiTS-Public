@@ -1,7 +1,7 @@
 ﻿//Greeting
 //Store Description
 
-public function showSera():Boolean
+public function showSera():void
 {
 	showBust("SERA");
 	showName("\nSERA");
