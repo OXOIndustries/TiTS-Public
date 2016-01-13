@@ -1171,8 +1171,8 @@ public function bimboZapDrBadger():void
 	}
 	processTime(11);
 	clearMenu();
-	if(pc.isBimbo() || pc.isBro()) addButton(0,"Watch Change",watchBadgerChange,undefined,"Watch Her Change","Stand back and enjoy your victory by watching Dr Badger become a slutty bimbo");
-	else addDisabledButton(0,"Watch Change","Watch Her Change","How could you resist joining in on the fun.");
+	if(pc.isBimbo() || pc.isBro()) addButton(0,"Watch Change",watchBadgerChange,undefined,"Watch Her Change","How could you resist joining in on the fun?");
+	else addButton(0,"Watch Change",watchBadgerChange,undefined,"Watch Her Change","Stand back and enjoy your victory by watching Dr Badger become a slutty bimbo.");
 	if(pc.hasCock())
 	{
 		addButton(1,"Get Blowjob",getABlowjobFromBimboBunsBadger,undefined,"Get Blowjob","Make her suck your cock.");
