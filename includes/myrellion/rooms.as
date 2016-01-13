@@ -442,7 +442,7 @@ public function initializeMyrellionRooms():void
 	rooms["GMEREHOSPITAL"].description = "";
 	rooms["GMEREHOSPITAL"].planet = "PLANET: MYRELLION";
 	rooms["GMEREHOSPITAL"].system = "SYSTEM: SINDATHU";
-	rooms["GMEREHOSPITAL"].northExit = "711";
+	rooms["GMEREHOSPITAL"].southExit = "711";
 	rooms["GMEREHOSPITAL"].moveMinutes = 1;
 	rooms["GMEREHOSPITAL"].runOnEnter = viBonus;
 	rooms["GMEREHOSPITAL"].addFlag(GLOBAL.INDOOR);
