@@ -96,6 +96,8 @@ public function viMenu():void
 	else addDisabledButton(2,"Heal","Heal","You don't have any wounds to treat!");
 	addButton(3,"Examination",getExamanitedByVi,undefined,"Examination","Have Vi give you a thorough examination.");
 
+	addButton(5,"Buy",viShop);
+	addButton(6,"Sell",viShop,false);
 	addButton(14,"Leave",mainGameMenu);
 	
 }
@@ -530,271 +532,525 @@ public function declineParasiteTreatmentFromVi():void
 	viMenu();
 }
 
+public function viShop(buy:Boolean = true):void
+{
+	clearOutput();
+	showVi();
+	shopkeep = chars["VI"];
+	//Buy texts!
+	var buyText:String = "You ask Vi what kind of supplies she has for sale. An excited look lights up her face, and she suddenly runs off! Just when you’re wondering if she’s going to come back, the violet-haired android comes back hefting a large container of... <i>some</i>thing... and drops it in front of you.";
+	if(flags["SEEN_VI_BUY_MENU"] == undefined)
+	{
+		buyText += "\n\n<i>“Whew–! Sorry about that, " + pc.mf("sir","ma’am") + ", I was beginning to think nobody would ever ask!";
+	}
+	else buyText += "\n\n<i>“Sorry, I put away the stock container. Nobody but you ever asks for it–n-not that I mind that you do!";
+	buyText += "”</i> Vi flushes, taking a moment to compose herself. <i>“... So, this is what I’ve been sent at the moment. Is there anything you’d like?”</i>\n";
+	
+	//Sell texts!
+	var sellText:String = "You ask Vi if you can sell her some medical supplies. She nods happily, grabbing a digipad with her prehensile tail and dropping it into her hands.\n\n<i>“Of course! We’re always looking for more medical supplies around here. What do you have?”</i>";
+
+	//Plug in the pieces.
+	chars["VI"].keeperBuy = buyText;
+	chars["VI"].keeperSell = sellText;
+	chars["VI"].keeperGreeting = "RUH ROH! SOMETHING WENT WRONG.";
+	itemScreen = mainGameMenu;
+	lootScreen = mainGameMenu;
+	useItemFunction = mainGameMenu;
+	if(buy) 
+	{
+		if(flags["SEEN_VI_BUY_MENU"] == undefined) flags["SEEN_VI_BUY_MENU"] = 1;
+		buyItem();
+	}
+	else sellItem();
+}
+
+//S.Relief
+public function viSexualRelief():void
+{
+	clearOutput();
+	showVi();
+	//PC has borrowed her pussy:
+	if(9999)
+	{
+		output("You ask for sexual relief and Vi blushes, outstretching a hand.");
+		output("\n\n<i>“I cannot offer proper sexual relief until you return my pussy, " + pc.mf("sir","ma’am") + "!”</i>");
+		clearMenu();
+		//[ReturnIt] [Don’t]
+		addButton(0,"Return It",returnVisPussyPot);
+		addButton(1,"Don't",dontReturnsVisCunt);
+	}
+	//Else // Pussy not borrowed:
+	else
+	{
+		//First Time getting sex relief:
+		if(flags["VI_SEXED"] == undefined)
+		{
+			output("<i>“You mentioned ‘relief’ earlier. Relief from what, exactly?”</i>");
+			output("\n\nVi gives a telling glance towards one of the nearby beds, her fingertips toying with her side braid. <i>“... Um, well, the sexual kind, " + pc.mf("sir","ma’am") + ". Sexual frustration is a leading cause of accidents. It’s not good to be pent up all the time, and I was designed to help relieve those frustrations.”</i>");
+			output("\n\nThe violet-haired femme-droid looks up at you through her long lashes. It’s hard not to notice her stocking clad thighs rubbing together. <i>“... Would you like me to show you my special functionalities, " + pc.mf("sir","ma’am") + "? It’s been a long while–I apologise if I’m a little uncalibrated...”</i>");
+		}
+		//Had Sex with her more than once AND less than ten times:
+		else if(flags["VI_SEXED"] < 10)
+		{
+			output("You ask Vi if she can offer you some of her ‘special relief’.");
+			output("\n\nVi gives a telling glance at once of the nearby beds, her face visibly flushed. A hand reaches up to toy with the tip of her side braid and her stocking clad thighs rub together. <i>“O-of course, " + pc.mf("sir","ma’am") + "! I, um, kept my calibration settings from last time in a special file. I’m happy that you want to use me again.”</i>");
+		}
+		//Had sex ten or more times:
+		else
+		{
+			output("You ask Vi if she can offer some of your ‘special relief’, since you’ve become quite fond of being tended to by the synthetic nurse.");
+			output("\n\nVi’s whole face flushes, and you can see her squirming on the spot. Slick, gleaming fluid begins to liberally drool from her pale pussy lips, quickly soaking her stocking clad thighs. <i>“O-of course, " + pc.mf("sir","ma’am") + "! I, um, have your calibrations settings saved to a special file... I’m really happy that you want to use me again.”</i>");
+			output("\n\nYou swear her digital eyes look quite spaced out. Is she becoming addicted to having sex with you–?");
+			//HaveNotReadPleasureTalkTopic: 
+			if(flags["VI_PLEASURE_TALKED"] == undefined) output("\n\nMaybe you should ask her about it.");
+		}
+		viSexMenu();
+	}
+}
+
+//Return It:
+public function returnVisPussyPot():void
+{
+	clearOutput();
+	showVi();
+	output("Handing over her purloined pussy, Vi positions it between her stocking-clad thighs and inserts it back into her body. There’s a little bit of wiggling before it’s finally back in place.");
+	output("\n\n<i>“... There! I should be back at full functionality now, " + pc.mf("sir","ma’am") + ". Please don’t run off with JoyCo property again~!”</i> Vi pleads. At the same time, she looks a <i>little</i> pleased, perhaps with how you were using her pussy in its absence?");
+	processTime(1);
+	// Vi gets her pussy back.
+	// Remove Vi’s pocket pussy from player’s key inventory.
+	// Return to her main menu.
+	//9999
+	viMenu();
+}
+
+//Dont
+public function dontReturnsVisCunt():void
+{
+	clearOutput();
+	showVi();
+	output("<i>“I can’t administer proper sexual relief while you’re still running around with JoyCo property. My functionality has already been halved!”</i> Vi exclaims. At the same time, she looks a little bit pleased. Does she like the fact someone literally owns her pussy...?");
+	processTime(1);
+	// Nothing changes.
+	// Return to her main menu.
+	viMenu();
+}
+
+public function viSexMenu():void
+{
+	clearMenu();
+	if(pc.hasCock())
+	{
+		addButton(0,"Ride Her",rideVi,undefined,"Ride Her","Throw her face-forward on the bed and have your way with her pussy. Must have a cock.");
+		addButton(2,"Potency T.",viPotencyTest,undefined,"Potency Test","Get a ‘Potency Test’ from the nurse droid to test your [pc.cumNoun]-making capacity. Must have a cock.");
+
+	}
+	else
+	{
+		addDisabledButton(0,"Ride Her","Ride Her","You require a penis for this.");
+		addDisabledButton(1,"Potency T","Potency Test","You require a penis for this.");
+
+	}
+	addButton(1,"AnalTease",analViTease,undefined,"Anal Tease","Get her to tease your ass with her fingers, and perhaps something a little bigger?");
+	//[RideHer] [AnalTease] [Potency.T] [GetHead] [TailScrew]
+	//[Cowgirl] [UsePussy] [RoughSex] [TitFuck]
+	// RideHer.tooltip: Throw her face-forward on the bed and have your way with her pussy. Must have a cock.
+	// AnalTease.tooltip: Get her to tease your ass with her fingers, and perhaps something a little bigger?
+	// PotencyT.tooltip: Get a ‘Potency Test’ from the nurse droid to test your [pc.cumNoun]-making capacity. Must have a cock.
+	// GetHead.tooltip: Ask her to ‘give you some head’. Request may not work out as intended. Must not be a neuter or taur.
+	// TailScrew.tooltip: Have her attach a phallic attachment to her tail-cord and fuck your ass with it.
+	// Cowgirl.tooltip: Get into a bed, have her climb on you, and have some face-to-face sex, cowgirl style. PC must have a cock and not be a taur.
+	// UsePussy.tooltip: Ask her if you can use her pussy. Request may not work out as intended.
+	// RoughSex.tooltip: Ravish the nurse-droid <i>rough</i> and <i>hard</i>. WARNING: Hardcore SM content. Must have a cock.
+	// TitFuck.tooltip: Fuck her tits and add some cream to her chest. Must have a cock.
+	addButton(14,"Back",approachVi);
+}
+
+//Ride Her
+// PC must have have a cock.
+// PC cock can be any size.
+public function rideVi():void
+{
+	clearOutput();
+	showVi();
+	output("You shoot a glance at one of the privacy curtains. Both of you wordlessly slip behind it. As soon as you’re behind the fabric barrier, you feel her arms slip around ");
+	if(!pc.isTaur()) output("you from behind");
+	else output("your waist");
+	output(", and the sizable pressing of her breasts against you.");
+
+	//PC is wearing clothes:
+	if(!pc.isNude())
+	{
+		output("\n\n<i>“... Please, " + pc.mf("sir","ma’am") + ", let me strip off your clothes...”</i> Vi breathily requests, her slender fingers stroking intimately across your chest. You silently nod.");
+		//ArmorYes:
+		if(!(pc.armor is EmptySlot)) output(" The violet-haired medic strips off your [pc.armor], kissing your shoulder blades and back with her synthetic lips, almost worshipfully so.");
+		if(!(pc.upperUndergarment is EmptySlot)) output(" Her hands slide upward and remove your [pc.upperUndergarment].");
+		if(!(pc.lowerUndergarment is EmptySlot)) output(" With practiced precision, her fingers then delve downward, pulling off your [pc.lowerUndergarment].");
+	}
+	output("\n\nFeeling impulsive, you grab Vi firmly by the hips and lead her to the bed. The medic-bot blushes harder–it seems she’s unused to patients taking the lead. Once there, you twirl her on the spot and push her face-forward against the bed, enjoying her surprised squeak. <i>“... " + pc.mf("S-s-sir","M-m-ma’am") + ", I’m meant to be the one administering relief–!”</i>");
+	if(flags["VI_SEXED"] != undefined && flags["VI_SEXED"] >= 10) output(" Her ivory pussy can’t stop gushing–synthetic lubricant is streaming down her stocking-clad thighs and making a big, messy puddle between her tiny feet.");
+	else output(" There’s already synthetic lubricant dribbling out from her ivory pussy. It’s dribbling and glistening down her stocking-clad thighs, making a little puddle between her tiny feet.");
+
+	output("\n\n<i>“Who said I’m not enjoying myself?”</i> You ask, sliding two of your fingers into her sopping wet snatch. Vi trembles and moans as your fingers penetrate her from behind and wiggle about inside of her. You caress her surprisingly human g-spot, stroking a finger against her quaking insides, until she lets out a high pitched cry. The medical droid begins spasming on the spot, squirting lubricant wildly from her thighs, and utterly drenching your hand–!");
+	output("\n\n<i>“AH-AHHH! Muh-Muscular systems malfunctioning! Cognitive functions impaired–!”</i> Vi whimpers, clutching desperately at the bedsheets. <i>“E-Experiencing strange, unregulated input–buh-behavioral system shutting down–!”</i> Her hips buck back against your knuckles, forcing your fingers as deep as they can go into her slopping wet pussy. <i>“... P-please, </i>more<i>,  " + pc.mf("sir","ma’am") + "!”</i>");
+	output("\n\nOnce her explosive climax is finally finished, Vi collapses in a heap against the sheets.");
+
+	if(flags["VI_PLEASURE_TALKED"] == undefined) output("\n\nWhat was that, some kind of digital orgasm..? You’re surprised, since that shouldn’t be possible, but also");
+	else output("\n\nAfter watching her cute digital orgasm, you’re");
+	output(" rock hard. ");
+	if(pc.isTaur()) output("Grabbing her twitching ivory tail in one hand,");
+	else output("Putting your front [pc.feet] on the bed, you prepare yourself to mount the comparatively tiny nurse-droid, then");
+	output(" you plunge [pc.oneCock] into her squirting snatch. Her passage is so warm and slick that it only takes a few seconds before you’re buried in her right up to the hilt.");
+	pc.cockChange();
+
+	var x:int = pc.biggestCockIndex();
+
+	output("\n\n<i>“... " + pc.mf("S-sir","M-ma’am") + "’s inside of me,”</i> she moans. The nurse-droid’s well-lubed passage suddenly constricts around your shaft, her pale hips shaking with unconcealed delight. Gripping tightly to her tail, you grind against her pale asscheeks, massaging her passage with your [pc.cockSimple " + x + "]. With trembling little sighs, she presses back into your thrusts, desperately coaxing your crown deeper inside of her. Her snowy hands ball up in the sheets and her whole back arches like a synthetic cat, one that you’ve ");
+	if(!pc.isTaur()) output("caught by the tail!");
+	else output("mounted in heat.");
+	output(" <i>“P-Please... unload your sperm inside of me–!”</i> Vi breathily begs.");
+
+	output("\n\nWith that plea, she draws you right in and up to the base, then wrings it hard. Before you can even cum, however, the nurse-droid begins squirting and spasming around your cock–way too turned on by the feeling of it rubbing that deep inside of you. Swooning with pleasure, you give one final thrust, giving yourself over to the pleasure assaulting your wringed prick. You shoot your [pc.cumVisc] hot [pc.cumNoun] inside Vi’s clenching cunt, shooting it straight up into her synthetic and inactive womb.");
+	//LargeCumOrMore: 
+	var cum:Number = pc.cumQ();
+	if(cum >= 1000) 
+	{
+		output(" You gush so much love-liquid from your [pc.cockHead] that her synthetic belly begins to swell, until she ");
+		if(cum < 3000) output("has a tiny baby bump.");
+		else if(cum < 6000) output("looks like she’s six months pregnant.");
+		else if(cum < 10000) output("looks like she’s in her final term.");
+		else output("looks like she’s about to give birth to a leithan foal!");
+		output(" When you finally pull out your prick, a [pc.cumColor] flood gushes out from her sticky snatch, and Vi cums again–each orgasmic contraction sending streams of [pc.cumNoun] spraying wildly all over the hospital floor. When she’s fully empty, she holds her now flattened belly, looking spaced out and somehow, a little wistful; did she like having her womb filled with your DNA?");
+	}
+	else output(" When you pull out your prick, a small stream of [pc.cumColor] trickles down the inside of her pearly thighs.");
+
+	output("\n\n<i>“... T-that experience was incalculable, " + pc.mf("s-sir","m-ma’am") + ". I-I think I’m going to have trouble categorizing it for my memory databanks,”</i> Vi dreamily murmurs, rubbing a hand longingly between her legs. She looks up at you, her long lashes fluttering. <i>“... My motor functions are still impaired... and my processing time is reduced... I believe this unit may have trouble standing up.”</i>");
+
+	if(!pc.isAss()) output("\n\nYou reach out a hand and help Vi to her feet. Even then, she’s a little wobbly, falling moments later into your arms and chest.");
+	else output("\n\nPfft. That’s not your problem.");
+	output(" After a minute or two, she regains full functionality. Her tail grabs a cloth and begins to wipe up her [pc.cumNoun]-splattered pussy, a serious blush on her cheeks.");
+
+	output("\n\n<i>“I hope I helped relieve your sexual frustration, " + pc.mf("sir","ma’am") + ". You appear to have left ");
+	if(cum < 20) output("at least some");
+	else if(cum < 1000) output("a fair amount of");
+	else output("a large amount of");
+	output(" your seed within this unit,”</i> Vi observes, twirling her fingers coquettishly around her side braid. <i>“I-If you wish to utilize my services again, you need but ask...”</i>");
+
+	output("\n\nYou grin, slipping your ");
+	if(pc.isNude()) output("Codex");
+	else output("clothes");
+	output(" back on and stepping out from behind the privacy curtain. Vi follows out a little later, trying to fix up her noticeably tousled hair.");
+
+	// Unlock talk topic ‘Pleasure’ if not unlocked already.
+	// Scene end, back to menu
+	processTime(37);
+	IncrementFlag("VI_SEXED");
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Anal Tease
+public function analViTease():void
+{
+	clearOutput();
+	showVi();
+	output("<i>“I know the perfect way to relieve the tension. Follow me!”</i> Vi exclaims. You follow her as she leads you to a bed and pulls around the privacy curtain. She instructs you to ");
+	if(!pc.isNude()) output("remove your things and then to ");
+	output("climb up on to the bed. You do as she asks, bending over obediently, your ass sticking up in the air.");
+
+	output("\n\nYou’re not exactly sure what you’re waiting for, but you don’t have to wait long to find out. Suddenly there’s a cool, slick sensation between your buttocks, and you feel a finger abruptly pressed into your anus! You let out surprised noise as a slender digit wiggles around inside of your bum, shallowly lubing it up both inside and out.");
+	if(pc.hasCock())
+	{
+		output(" With a slight blush, your [pc.cocks] ");
+		if(pc.cockTotal() == 1) output("excitedly twitches");
+		else output("excitedly twitch");
+		output(", betraying your arousal.");
+	}
+	output("\n\n<i>“Like that, do you? I’m not surprised–the anus has a relatively high number of nerve endings, you know,”</i> Vi explains, all the while lewdly running her finger around inside of your ring. <i>“");
+	if(pc.hasCock()) output(" And then further in, there’s your prostate, which when stroked can produce stronger and more powerful orgasms than penile stimulation.");
+	else if(pc.hasVagina()) output(" And then further in, there’s a special place where you can stimulate your G-spot from the other side.");
+	else output(" I hear having a large object filling up your rectum can feel quite pleasant.");
+	output(" Would you like to try–?”</i>");
+
+	output("\n\nYou nod, your face burning as you try to hide it in the bed pillow. Still, you raise your rump invitingly. Her feminine digits burrow deeper into your backside, wiggling their way inward, and you let out a sweet moan. It feels like a thrumming erotic warmth is filling every inch of you, completely different to ");
+	if(pc.hasCock()) output("the pinpoint pleasure of having your [pc.cocksNounSimple] stroked! When they reach your walnut-sized prostate,");
+	//else if pc.hasPussy: 
+	else if(pc.hasVagina()) output("the belly-pooling pleasure of having your [pc.vaginas] stroked! When she reaches the thin fleshy wall guarding your g-spot,");
+	else output("the pinpoint pleasure of having your opening teased! When she reaches the innermost depths of your rectum,");
+	output(" she gently strokes along it, making your [pc.legOrLegs] quiver and your lips part. You hear a " + pc.mfn("throaty moan","high-pitched moan","hitched moan") + ", and only later do you realise it was <i>yours</i>!");
+	output("\n\n<i>“Bit of a butt-slut, are we–?”</i> Vi huskily teases, all the while wiggling her fingers knuckle-deep inside your asshole. It’s a little hard to argue when you’re letting out such loud moans, bent over with a nurse-droid’s fingers inside your rump! You let out a whine of protest when she pulls her fingers out, only to feel something thin slide inside of you in it’s place. Whatever it is, it’s got a flat base to stop it being totally swallowed inside; it’s clearly designed to be put in your ass.");
+	pc.buttChange(10);
+
+	output("\n\n<i>“Whuh-what is that–?”</i> you ask, wiggling your hips in nervous excitement. Not knowing, and just feeling, makes the experience that much more exhilarating. Your ass is literally being dominated right now by the nurse droid!");
+
+	output("\n\n<i>“A remote controlled butt-plug! It feels a little thin, but that’ll change–give it a second,”</i> Vi explains. Seconds later, you feel the object thickening and expanding in your ass. It feels like you’re being <i>knotted</i>! As the butt-toy swells and rounds, it pushes pointedly against your ");
+	if(pc.hasCock()) output("prostate");
+	else if(pc.hasVagina()) output("sweet spot");
+	else output("rectal walls");
+	output(", and you let out a ");
+	if(pc.hasVagina()) output("lusty");
+	else output("sweet");
+	output(" cry. It’s certainly not the first, as it suddenly begins vibrating and whirring inside of your utterly stuffed rump, quickly reducing you to a babbling, pleasure-wracked mess. Within no time at all, ");
+	if(pc.hasCock()) output("you’re shooting your [pc.cumVisc] spunk all over the sheets and messing up your belly, your [pc.thighs] shaking spastically.");
+	else if(pc.hasVagina()) 
+	{
+		output("you’re creaming yourself and ");
+		if(pc.isSquirter()) output("squirting");
+		else output("dribbling");
+		output(" your [pc.girlcumVisc] girl-cum all over the sheets, your thighs shaking spastically");
+	}
+	else 
+	{
+		output("you’re cumming hard as your ");
+		if(pc.legCount > 1) output("[pc.thighs] shake spastically");
+		else output("[pc.leg] shakes spastically");
+	}
+	output(". You desperately cling to the pillow as you’re swept away by glorious, maddening pleasure swell, your pucker madly wringing the toy’s base as if it’s trying to milk it for cum!");
+	pc.buttChange(700);
+	output("\n\nYou’re so spaced out afterwards that you can barely speak, lying there complacently as she pulls the deflating toy out from between your buttocks. After you finally regain the ability to walk, you thank Vi and slip your things back on. Ass-play is the best!");
+	// Scene end, back to menu
+	processTime(41);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Potency Test
+// PC must have a cock.
+public function viPotencyTest():void
+{
+	clearOutput();
+	showVi();
+	output("<i>“How about I give you a potency test?”</i> Vi ");
+	if(flags["VI_SEXED"] != undefined && flags["VI_SEXED"] >= 10) output("breathily");
+	else output("brightly");
+	output(" offers.");
+	if(flags["VI_POTENCY_TEST"] != undefined) output("\n\nLast time it was amazing, so you immediately agree");
+	else output("\n\nYou’re not sure what it involved, but your curiosity is piqued, so you agree to get one");
+	output(". The nurse droid leads you over to a bed and, after pulling the privacy curtain closed, kneels down ");
+	//taur + backgenitals:
+	if(pc.isTaur()) output("and underneath your many-legged body");
+	else output("before you");
+	output(". ");
+	if(!pc.isCrotchExposed()) 
+	{
+		output("After pulling [pc.eachCock] free of its confines, she grabs ");
+		if(pc.cockTotal() == 1) output("it");
+		else output("one of them");
+		output(" and begins to jerk it to full stiffness.");
+	}
+	//ElseNotLowerGarbed:
+	else output("She then grabs [pc.oneCock] and begins to jerk it to full stiffness.");
+	//FirstTime:
+	if(flags["VI_POTENCY_TEST"] == undefined) output(" So far, you’re loving this test!");
+	else output("You groan and let your head loll back–this really is the best test!");
+
+	output("\n\n<i>“You seem to be ready. Let’s begin!”</i> she exclaims, taking her hand off your now turgid member");
+	//PC has multi-cocks:
+	if(pc.cockTotal() > 1) output("–now one of many–");
+	else output(" ");
+	output("and pulls out a box of condoms from underneath the bed. She pulls out one and removes the rubbery ring from a packet, placing it flush on your [pc.cockHeadBiggest]. <i>“... Here’s the bit I like the most!”</i> The violet-haired nurse exclaims. Placing her plush lips on the tip of your prick, she masterfully slides the prophylactic down your prick, sliding her soft lips down and around it at the same time. By the time she reaches your [pc.knot], your twitching tip is completely buried in her ");
+	if(pc.biggestCockLength() < 7) output("mouth");
+	//mid:
+	else if(pc.biggestCockLength() < 10) output("gullet");
+	else if(pc.biggestCockLength() < 15) output("throat");
+	else output("belly");
+	output(". With no gag reflex or reason to breathe, the nurse-droid lovingly lashes your length with her tongue, even going so far as to slide it out and lightly touch your ");
+	if(pc.balls > 0) output("[pc.balls].");
+	else output("taint.");
+
+	output("\n\nDue to her oral skill, it doesn’t take you long at all to blow your load ");
+	if(pc.biggestCockLength() < 7) output("all over her tongue");
+	else if(pc.biggestCockLength() < 13) output("against her throat");
+	else output("in her stomach");
+	output("–or you would be, if it wasn’t for the condom! You groan and spill your hot [pc.cumNoun] inside the rubbery confines, your efforts to spill your seed inside the synthetic nurse utterly thwarted. When she pulls your prick out of her mouth with a loud <i>plop</i>, you’re left with the image of her wet lips and a ");
+	var cum:Number = pc.cumQ();
+	var totalBigBalloons:int = 0;
+	var totalCum:Number = cum;
+	if(cum < 10) output("tiny");
+	else if(cum < 200) output("golf-ball sized");
+	else if(cum < 700) output("baseball-sized");
+	else if(cum < 2500) output("basketball-sized");
+	else output("beachball-sized");
+	output(" [pc.cumColor] balloon hanging off your cock-tip.");
+	if(cum >= 700) 
+	{
+		output(" Not only are you surprised she pulled that out of her, it’s amazing it didn’t burst!");
+		totalBigBalloons++;
+	}
+
+	output("\n\n<i>“That’s the first one. A test isn’t a test until it’s conclusive!”</i> Vi merrily exclaims, slipping the now-used condom off your prick and tying it off. She places ");
+	if(cum >= 700) output("it beside her, the overfilled balloon barely balancing there as she slips the next one on");
+	else output("it upon her rack, giving you a saucy sight to look at as she slips the next one on");
+	output(". This time she jerks off your prick instead, mercilessly jerking and wringing your sheathe until you cum, taking no prisoners! Your second load is less than the first, and she methodically whips the rubber off, ");
+	pc.orgasm();
+	cum = pc.cumQ();
+	totalCum += cum;
+	if(cum >= 700) 
+	{
+		output("tosses it beside her with the first,");
+		totalBigBalloons++;
+	}
+	else output("tosses it on her breasts with the first,");
+	output(" and tries again. Each and every time she does something different, from massaging out a load with her pussy, ass, or fingers, to fingering <i>your</i> ass to get you to blow one off! By the end, ");
+	pc.orgasm();
+	if(pc.cumQ() >= 700) 
+	{
+		totalBigBalloons++;
+		totalCum += pc.cumQ();
+	}
+	pc.orgasm();
+	cum = pc.cumQ();
+	if(cum >= 700) 
+	{
+		totalBigBalloons++;
+		totalCum += cum;
+	}
+	pc.orgasm();
+	if(pc.cumQ() >= 700) 
+	{
+		totalBigBalloons++;
+		totalCum += pc.cumQ();
+	}
+	pc.orgasm();
+	if(pc.cumQ() >= 700) 
+	{
+		totalBigBalloons++;
+		totalCum += pc.cumQ();
+	}
+	pc.orgasm();
+	if(pc.cumQ() >= 700) 
+	{
+		totalBigBalloons++;
+		totalCum += pc.cumQ();
+	}
+
+	//hugeCumsOrMore: 
+	if(totalBigBalloons >= 3) output("the space around her is filled with gigantic");
+	else 
+	{
+		output("her cleavage is utterly lined with} [pc.cumColor] [pc.cumNoun]-filled baggies, all adoringly milked out from your [pc.cocksNoun]");
+		if(totalBigBalloons > 0) 
+		{
+			output(" - to say nothing of the " + num2Text(totalBigBalloons) + " spunk-bag");
+			if(totalBigBalloons > 1) output("s");
+			output(" on the floor alongside her.");
+		}
+	}
+	output("\n\n<i>“Whew! That should do it. Now to process the results,”</i> Vi happily exclaims, picking up the [pc.cumNoun] lined condoms and examining them closely.");
+	output("\n\n<i>“");
+	if(totalCum < 100) 
+	{
+		output("Hmmm, this is worrying. I thought I’d get a LOT more out from such a fine ");
+		if(pc.cockTotal() == 1) output("cock,");
+		else output("set of cocks,");
+	}
+	//Medium Potency:
+	else if(totalCum < 400) output("Well, looking at these, I’d say you’re about average potency. And I’d say this was a pretty comprehensive test!");
+	else if(totalCum < 3000) output("Well, looking at these, I’d say you’re definitely above average! I’m glad we used the big box of condoms, or else I might have run out,");
+	else output("How did you even produce this much? You’re like some kind of [pc.cumNoun]-making machine! I mean, I was down to the emergency condoms; what are we going to do if there’s a red venom outbreak?");
+	output("”</i> the nurse-droid informs you, all the while stroking ");
+	if(pc.cockTotal() > 1) output("one of ");
+	output("your utterly spent length");
+	if(pc.cockTotal() > 1) output("s");
+	output(". <i>“");
+	if(totalCum < 400) output("If you want, ");
+	else output("Not that you need it, but ");
+	output("I can administer a treatment to increase your potency? It only costs 500 credits, and it’d make any chance of conception that much more assured. After all, you can’t have too much of a good thing! Or, well, at least you can’t when it comes to cum–");
+	if(pc.race() != "kui-tan") output("just ask the kui-tan!");
+	else output("I mean, you’re a kui-tan!");
+	output("”</i>");
+	IncrementFlag("VI_POTENCY_TEST");
+
+	processTime(63);
+	pc.orgasm();
+	//[Yes] [No]
+	clearMenu();
+	if(pc.credits >= 500) addButton(0,"Yes",yeahSureIWannaCumMoreSlut);
+	else addDisabledButton(0,"Yes","Yes","You can't afford that treatment.");
+	//addButton(1,"No",,);
+}
+
+//Yes:
+public function yeahSureIWannaCumMoreSlut():void
+{
+	clearOutput();
+	showVi();
+	IncrementFlag("VI_TREATED");
+	output("<i>“Alright then! Just let me produce some,”</i> Vi exclaims, rubbing her hands together. Her breasts suddenly begin to jiggle a bit, and then there’s the sound of squirting from between her palms. Some kind of purple, transparent goo dribbles from between her digits–did she just make that? She smears it on your [pc.cocks]");
+	if(pc.balls > 0) output(" and [pc.balls]");
+	output(", rubbing it in until it’s soaked into your pores.");
+
+	output("\n\nAfter a few minutes, you feel a tingling inside of your ");
+	if(pc.balls > 0) output("[pc.sack]");
+	else 
+	{
+		output("length");
+		if(pc.cockTotal()) output("s");
+	}
+	output(". A broiling builds up within, steadily growing, until you’re moaning and throwing back your head. Just when the pleasurable pressure is becoming unbearable, you feel a divine release, and a gigantic stream of [pc.cumNoun] shoots out from your now <i>un</i>spent [pc.cocks]. <b>Your potency has considerably increased!</b>");
+	// Increase the PC’s potency by a fair bit. Remove 500 credits.
+	// Increase PC's ballEfficiency and cumMultiplier
+	// efficiency goal is roughly 8x multiplier - this TF aims for large amounts of repeatable ejacs.
+
+	var cumRatio:Number = pc.ballEfficiency / pc.cumMultiplierRaw;
+	trace("ORIGINAL GOO SHIT!");
+	trace("RATIO: " + cumRatio + " Efficiency: " + pc.ballEfficiency + " cumMultiplierRaw: " + pc.cumMultiplierRaw);
+	var changeTier:Number = 0;
+	if(pc.ballEfficiency + pc.cumMultiplierRaw < 25) changeTier = 10;
+	else if(pc.ballEfficiency + pc.cumMultiplierRaw < 50) changeTier = 7;
+	else if(pc.ballEfficiency + pc.cumMultiplierRaw < 100) changeTier = 5;
+	else if(pc.ballEfficiency + pc.cumMultiplierRaw < 200) changeTier = 4;
+	else if(pc.ballEfficiency + pc.cumMultiplierRaw < 400) changeTier = 3;
+	else changeTier = 1;
+
+	pc.ballEfficiency += changeTier;
+	//Cumratio is shit
+	if(cumRatio < 2.5) pc.ballEfficiency = (5 * pc.cumMultiplierRaw) - pc.ballEfficiency;
+	//Normalish
+	else if(cumRatio < 4) pc.ballEfficiency = (8 * pc.cumMultiplierRaw) - pc.ballEfficiency;
+	//Close to this TF's goal:
+	else if(cumRatio < 7) pc.ballEfficiency = (8 * pc.cumMultiplierRaw) - pc.ballEfficiency;
+	//Perfect goal!
+	else if(cumRatio < 9)
+	{
+		//Keep it "perfect"
+		pc.ballEfficiency = (8 * pc.cumMultiplierRaw) - pc.ballEfficiency;
+	}
+	//Too high
+	else if(cumRatio < 12)
+	{
+		pc.ballEfficiency = (8 * pc.cumMultiplierRaw) - pc.ballEfficiency;
+	}
+	//Way Too high
+	else if(cumRatio < 20)
+	{
+		pc.ballEfficiency = (11 * pc.cumMultiplierRaw) - pc.ballEfficiency;
+	}
+	//Obscenely high
+	else if(cumRatio < 50)
+	{
+		pc.ballEfficiency = (15 * pc.cumMultiplierRaw) - pc.ballEfficiency;
+	}
+	//Ridic high.
+	else
+	{
+		pc.ballEfficiency = (45 * pc.cumMultiplierRaw) - pc.ballEfficiency;
+	}
+	trace("POST TF GOOSHIT!");
+	trace("RATIO: " + cumRatio + " Efficiency: " + pc.ballEfficiency + " cumMultiplierRaw: " + pc.cumMultiplierRaw);
+	pc.credits -= 500;
+
+	output("\n\nIt seems Vi is the recipient of your sudden production spike, your [pc.cumVisc] [pc.cumNoun] splattering all over her pale cheeks and lips. Beneath the [pc.cumColor] mask, she looks like she’s blushing, like she <i>enjoys</i> being covered with your spunk. <i>“A successful treatment–congratulations on your increased potency levels!”</i> the nurse-droid happily exclaims. Perhaps she suggested the treatment just so she could be covered in your [pc.cumNoun]?");
+	output("\n\nNow that you’re well and truly finished, you both slip out from behind the curtain, with Vi quickly wiping off her face with a cloth. Five hundred credits well spent!");
+	pc.credits -= 500;
+	pc.orgasm();
+
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
 /*
-output("\n\nBuy");
-
-output("\n\nYou ask Vi what kind of supplies she has for sale. An excited look lights up her face, and she suddenly runs off! Just when you’re wondering if she’s going to come back, the violet-haired android comes back hefting a large container of... <i>some</i>thing... and drops it in front of you.");
-
-output("\n\n<i>“{First Time: Whew–! Sorry about that, " + pc.mf("sir","ma’am") + ", I was beginning to think nobody would ever ask!/Repeat: Sorry, I put away the stock container. Nobody but you ever asks for it–n-not that I mind that you do!}”</i> Vi flushes, taking a moment to compose herself. <i>“... So, this is what I’ve been sent at the moment. Is there anything you’d like...?”</i>");
-
-output("\n\n[A.Booster] [E.Shield] [M.Repel] [MuskLure]");
-
-output("\n\nAdvanced Shield Booster");
-
-output("\n\npublic class AdvancedShieldBooster");
-output("\n\npublic function AdvancedShieldBooster()");
-output("\n\nthis.stackSize = 5;");
-output("\n\nthis.type = GLOBAL.POTION;");
-output("\n\nthis.shortName = <i>“A.Booster”</i>;");
-output("\n\nthis.longName = <i>“single use advanced shield booster”</i>;");
-output("\n\nthis.description = <i>“a single use advanced shield booster”</i>;");
-output("\n\nthis.tooltip = <i>“This single use advanced shield booster can be used to replenish up to 80 points of shielding all at once. The only downside is that subjecting a shield generator to such large power surges in quick succession would damage or destroy it. <b>You can only use shield boosters once per fight!</b>”</i>;");
-output("\n\nthis.basePrice = 400;");
-output("\n\nthis.attack = 0;");
-output("\n\nthis.defense = 0;");
-output("\n\nthis.shieldDefense = 0;");
-output("\n\nthis.sexiness = 0;");
-output("\n\nthis.critBonus = 0;");
-output("\n\nthis.evasion = 0;");
-output("\n\nthis.fortification = 0;");
-output("\n\nthis.combatUsable = true;");
-output("\n\nthis.targetsSelf = true;");
-
-
-output("\n\nElite Joyco Shield Generator");
-
-output("\n\npublic function JoyCoEliteShield()");
-output("\n\nthis.quantity = 1;");
-output("\n\nthis.stackSize = 1;");
-output("\n\nthis.type = GLOBAL.SHIELD;");
-output("\n\nthis.shortName = <i>“E.Shield”</i>;");
-output("\n\nthis.longName = <i>“elite JoyCo shield generator”</i>;");
-output("\n\nthis.description = <i>“an elite JoyCo shield generator”</i>;");
-output("\n\nthis.tooltip = <i>“An ‘elite-edition’ shield generator manufactured by JoyCo. This device features an intuitive power flow function which directs protective energy to where it is most needed, enhancing its protective strength.");
-output("\n\nthis.basePrice = 3200;");
-output("\n\nthis.shields = 70;");
-output("\n\nthis.sexiness = 0;");
-output("\n\nthis.critBonus = 0;");
-output("\n\nthis.evasion = 0;");
-output("\n\nthis.fortification = 5;");
-output("\n\nresistances.kinetic.resistanceValue = 35.0;");
-
-output("\n\nMust Repellant");
-
-output("\n\n// Currently coded but not sold in game.");
-
-output("\n\nMusk Lure");
-
-output("\n\npublic class MuskLure");
-output("\n\npublic function MuskLure()");
-output("\n\nthis.quantity = 1;");
-output("\n\nthis.stackSize = 1;");
-output("\n\nthis.type = GLOBAL.ACCESSORY;");
-output("\n\nthis.shortName = <i>“MuskLure”</i>;");
-output("\n\nthis.longName = <i>“pheromonal musk lure”</i>;");
-output("\n\nthis.description = <i>“a pheromonal musk lure”</i>;");
-output("\n\nthis.tooltip = <i>“This lure is made from concentrated pheromones extracted from the natives of Myrellion’s deep caves. While wearing it, they will be encountered with greater frequency than normal.”</i>;");
-output("\n\n//Information");
-output("\n\nthis.basePrice = 750;");
-output("\n\nthis.attack = 0;");
-output("\n\nthis.defense = 0;");
-output("\n\nthis.shieldDefense = 0;");
-output("\n\nthis.shields = 0;");
-output("\n\nthis.sexiness = 0;");
-output("\n\nthis.critBonus = 0;");
-output("\n\nthis.evasion = 0;");
-output("\n\nthis.fortification = 0;");
-
-
-output("\n\nMale Doctor’s Outfit");
-
-output("\n\n// Currently coded but not sold in game.");
-
-output("\n\nFemale Doctor’s Outfit");
-
-output("\n\n// Currently coded but not sold in game.");
-
-
-
-output("\n\nSell");
-
-output("\n\nYou ask Vi if you can sell her some medical supplies. She nods happily, grabbing a digipad with her prehensile tail and dropping it into her hands.");
-
-output("\n\n<i>“Of course! We’re always looking for more medical supplies around here. What do you have–?”</i>");
-
-output("\n\n// List of sellable medical stuff.");
-
-output("\n\nS.Relief");
-
-
-output("\n\n{PC has borrowed her pussy:");
-
-output("\n\nYou ask for sexual relief and Vi blushes, outstretching a hand.");
-output("\n\n	");
-output("\n\n	"I cannot offer proper sexual relief until you return my pussy, " + pc.mf("sir","ma’am") + "!”</i>");
-
-output("\n\n	[ReturnIt] [Don’t]");
-output("\n\n	");
-output("\n\n	{Return It:");
-output("\n\n		");
-output("\n\nHanding over her purloined pussy, Vi positions it between her stocking-clad thighs and inserts it back into her body. There’s a little bit of wiggling before it’s finally back in place.");
-
-output("\n\n<i>“... There! I should be back at full functionality now, " + pc.mf("sir","ma’am") + ". Please don’t run off with JoyCo property again~!”</i> Vi pleads. At the same time, she looks a <i>little</i> pleased, perhaps with how you were using her pussy in its absence?");
-
-output("\n\n// Vi gets her pussy back.");
-output("\n\n// Remove Vi’s pocket pussy from player’s key inventory.");
-output("\n\n// Return to her main menu.");
-output("\n\n	}");
-output("\n\n	");
-output("\n\n	{Don’t:");
-
-output("\n\n<i>“I can’t administer proper sexual relief while you’re still running around with JoyCo property. My functionality has already been halved!”</i> Vi exclaims. At the same time, she looks a little bit pleased. Does she like the fact someone literally owns her pussy...?");
-
-output("\n\n// Nothing changes.");
-output("\n\n// Return to her main menu.");
-output("\n\n}");
-
-output("\n\n}");
-
-output("\n\n{Else // Pussy not borrowed:");
-
-output("\n\n{First Time getting sex relief:");
-
-output("\n\n<i>“You mentioned ‘relief’ earlier. Relief from what, exactly?”</i>");
-
-output("\n\nVi gives a telling glance towards one of the nearby beds, her fingertips toying with her side braid. <i>“... Um, well, the sexual kind, " + pc.mf("sir","ma’am") + ". Sexual frustration is a leading cause of accidents. It’s not good to be pent up all the time, and I was designed to help relieve those frustrations.”</i>");
-
-output("\n\nThe violet-haired femme-droid looks up at you through her long lashes. It’s hard not to notice her stocking clad thighs rubbing together. <i>“... Would you like me to show you my special functionalities, " + pc.mf("sir","ma’am") + "? It’s been a long while–I apologise if I’m a little uncalibrated...”</i>");
-
-output("\n\n}");
-
-output("\n\n{Had Sex with her more than once AND less than ten times:");
-
-output("\n\n	You ask Vi if she can offer you some of her ‘special relief’.");
-
-output("\n\nVi gives a telling glance at once of the nearby beds, her face visibly flushed. A hand reaches up to toy with the tip of her side braid and her stocking clad thighs rub together. <i>“O-of course, " + pc.mf("sir","ma’am") + "! I, um, kept my calibration settings from last time in a special file. I’m happy that you want to use me again.”</i>");
-
-output("\n\n}");
-
-output("\n\n{Had sex ten or more times:");
-
-output("\n\nYou ask Vi if she can offer some of your ‘special relief’, since you’ve become quite fond of being tended to by the synthetic nurse.");
-
-output("\n\nVi’s whole face flushes, and you can see her squirming on the spot. Slick, gleaming fluid begins to liberally drool from her pale pussy lips, quickly soaking her stocking clad thighs. <i>“O-of course, " + pc.mf("sir","ma’am") + "! I, um, have your calibrations settings saved to a special file... I’m really happy that you want to use me again.”</i>");
-
-output("\n\nYou swear her digital eyes look quite spaced out. Is she becoming addicted to having sex with you–? {HaveNotReadPleasureTalkTopic: Maybe you should ask her about it.}");
-
-output("\n\n}");
-
-output("\n\n[RideHer] [AnalTease] [Potency.T] [GetHead] [TailScrew]");
-output("\n\n[Cowgirl] [UsePussy] [RoughSex] [TitFuck]");
-output("\n\n	");
-output("\n\n // RideHer.tooltip: Throw her face-forward on the bed and have your way with her pussy. Must have a cock.");
-output("\n\n// AnalTease.tooltip: Get her to tease your ass with her fingers, and perhaps something a little bigger?");
-output("\n\n// PotencyT.tooltip: Get a ‘Potency Test’ from the nurse droid to test your [pc.cumNoun]-making capacity. Must have a cock.");
-output("\n\n// GetHead.tooltip: Ask her to ‘give you some head’. Request may not work out as intended. Must not be a neuter or taur.");
-output("\n\n// TailScrew.tooltip: Have her attach a phallic attachment to her tail-cord and fuck your ass with it.");
-output("\n\n// Cowgirl.tooltip: Get into a bed, have her climb on you, and have some face-to-face sex, cowgirl style. PC must have a cock and not be a taur.");
-output("\n\n// UsePussy.tooltip: Ask her if you can use her pussy. Request may not work out as intended.");
-output("\n\n// RoughSex.tooltip: Ravish the nurse-droid <i>rough</i> and <i>hard</i>. WARNING: Hardcore SM content. Must have a cock.");
-output("\n\n// TitFuck.tooltip: Fuck her tits and add some cream to her chest. Must have a cock.");
-
-output("\n\n}");
-output("\n\nSex Scenes");
-
-output("\n\n// Tweeeelve! There’s Twelve!");
-
-output("\n\nRide Her");
-
-output("\n\n// PC must have have a cock.");
-output("\n\n// PC cock can be any size.");
-
-output("\n\nYou shoot a glance at one of the privacy curtains. Both of you wordlessly slip behind it. As soon as you’re behind the fabric barrier, you feel her arms slip around {notTaur: you from behind/PC is taur: your waist}, and the sizable pressing of her breasts against you.");
-
-output("\n\n{PC is wearing clothes:");
-
-output("\n\n<i>“... Please, " + pc.mf("sir","ma’am") + ", let me strip off your clothes...”</i> Vi breathily requests, her slender fingers stroking intimately across your chest. You silently nod. {ArmorYes: The violet-haired medic strips off your [pc.armor], kissing your shoulder blades and back with her synthetic lips, almost worshipfully so.}{UpperUndergarment: Her hands slide upward and remove your [pc.upperUndergarment].}{LowerUndergarment: With practiced precision, her fingers then delve downward, pulling off your [pc.lowerUndergarment].}");
-output("\n\n}");
-
-output("\n\nFeeling impulsive, you grab Vi firmly by the hips and lead her to the bed. The medic-bot blushes harder–it seems she’s unused to patients taking the lead. Once there, you twirl her on the spot and push her face-forward against the bed, enjoying her surprised squeak. <i>“... " + pc.mf("S-s-sir","M-m-ma’am") + ", I’m meant to be the one administering relief–!”</i> {HadSex>=10 times: Her ivory pussy can’t stop gushing–synthetic lubricant is streaming down her stocking-clad thighs and making a big, messy puddle between her tiny feet./Else: There’s already synthetic lubricant dribbling out from her ivory pussy. It’s dribbling and glistening down her stocking-clad thighs, making a little puddle between her tiny feet.}");
-
-output("\n\n<i>“Who said I’m not enjoying myself?”</i> You ask, sliding two of your fingers into her sopping wet snatch. Vi trembles and moans as your fingers penetrate her from behind and wiggle about inside of her. You caress her surprisingly human g-spot, stroking a finger against her quaking insides, until she lets out a high pitched cry. The medical droid begins spasming on the spot, squirting lubricant wildly from her thighs, and utterly drenching your hand–!");
-
-output("\n\n<i>“AH-AHHH! Muh-Muscular systems malfunctioning–Cognitive functions impaired–!”</i> Vi whimpers, clutching desperately at the bedsheets. <i>“E-Experiencing strange unregulated input–buh-behavioral system shutting down–!”</i> Her hips buck back against your knuckles, forcing your fingers as deep as they can go into her slopping wet pussy. <i>“... P-please, </i>more<i>,  " + pc.mf("sir","ma’am") + "!”</i>");
-
-output("\n\nOnce her explosive climax is finally finished, Vi collapses in a heap against the sheets. {HaveNotReadTalkTopicPleasure: What was that, some kind of digital orgasm..? You’re surprised, since that shouldn’t be possible, but also/Else: After watching her cute digital orgasm, you’re} rock hard. {NotTaur: Grabbing her twitching ivory tail in one hand, /Taur: Putting your front [pc.feet] on the bed, you prepare yourself to mount the comparatively tiny nurse-droid, then} you plunge [pc.oneCock] into her squirting snatch. Her passage is so warm and slick that it only takes a few seconds before you’re buried in her right up to the hilt.");
-
-output("\n\n<i>“... " + pc.mf("S-sir","M-ma’am") + "’s inside of me,”</i> she moans. The nurse-droid’s well-lubed passage suddenly constricts around your shaft, her pale hips shaking with unconcealed delight. Gripping tightly to her tail, you grind against her pale asscheeks, massaging her passage with your [pc.cockSimple]. With trembling little sighs, she presses back into your thrusts, desperately coaxing your crown deeper inside of her. Her snowy hands ball up in the sheets and her whole back arches like a synthetic cat, one that you’ve {notTaur: caught by the tail!/Taur: mounted in heat}."P-Please... unload your sperm inside of me–!”</i> Vi breathily begs.");
-
-output("\n\nWith that plea, she draws you right in and up to the base, then wrings it hard. Before you can even cum, however, the nurse-droid begins squirting and spasming around your cock–way too turned on by the feeling of it rubbing that deep inside of you. Swooning with pleasure, you give one final thrust, giving yourself over to the pleasure assaulting your wringed prick. You shoot your [pc.cumVisc] hot [pc.cumNoun] inside Vi’s clenching cunt, shooting it straight up into her synthetic and inactive womb. {LargeCumOrMore: You gush so much love-liquid from your [pc.cockHead] that her synthetic belly begins to swell, until she {largeCum: has a tiny baby bump./huge cum: looks like she’s six months pregnant./Gigantic cum: until she looks like she’s in her final term./HugeMongous cum: until she looks like she’s about to give birth to a leithan foal!} When you finally pull out your prick, a [pc.cumColor] flood gushes out from her sticky snatch, and Vi cums again–each orgasmic contraction sending streams of [pc.cumNoun] spraying wildly all over the hospital floor. When she’s fully empty, she holds her now flattened belly, looking spaced out and somehow, a little wistful; did she like having her womb filled with your DNA?}{LessThanLargeCums: When you pull out your prick, a small stream of [pc.cumColor] trickles down the inside of her pearly thighs.");
-
-output("\n\n<i>“... T-that experience was incalculable, " + pc.mf("s-sir","m-ma’am") + ". I-I think I’m going to have trouble categorizing it for my memory databanks,”</i> Vi dreamily murmurs, rubbing a hand longingly between her legs. She looks up at you, her long lashes fluttering. <i>“... My motor functions are still impaired... and my processing time is reduced... I believe this unit may have trouble standing up.”</i>");
-
-output("\n\n{Not hard: You reach out a hand and help Vi to her feet. Even then, she’s a little wobbly, falling moments later into your arms and chest./Hard: Pfft. That’s not your problem.} After a minute or two, she regains full functionality. Her tail grabs a cloth and begins to wipe up her [pc.cumNoun]-splattered pussy, a serious blush on her cheeks.");
-
-output("\n\n<i>“I hope I helped relieve your sexual frustration, " + pc.mf("sir","ma’am") + ". You appear to have left {SmallCums: at least some/ModerateToLarge: a fair amount of/LargeOrMore: a large amount of} your seed within this unit,”</i> Vi observes, twirling her fingers coquettishly around her side braid. <i>“I-If you wish to utilize my services again, you need but ask...”</i>");
-
-output("\n\nYou grin, slipping your {Nude: codex/else: clothes} back on and stepping out from behind the privacy curtain. Vi follows out a little later, trying to fix up her noticeably tousled hair.");
-
-output("\n\n// Unlock talk topic ‘Pleasure’ if not unlocked already.");
-output("\n\n// Scene end, back to menu");
-
-
-
-
-output("\n\nAnal Tease");
-
-
-output("\n\n<i>“I know the perfect way to relieve the tension. Follow me!”</i> Vi exclaims. You follow her as she leads you to a bed and pulls around the privacy curtain. {PC has clothes to remove: She instructs you to {remove your things and then to} climb up on to the bed. You do as she asks, bending over obediently, your ass sticking up in the air.");
-
-output("\n\nYou’re not exactly sure what you’re waiting for, but you don’t have to wait long to find out. Suddenly there’s a cool, slick sensation between your buttocks, and you feel a finger abruptly pressed into your anus! You let out surprised noise as a slender digit wiggles around inside of your bum, shallowly lubing it up both inside and out. {With a slight blush, your cock{s} {excitedly twitches/excitedly twitch}, betraying your arousal.");
-
-output("\n\n<i>“Like that, do you? I’m not surprised–the anus has a relatively high number of nerve endings, you know,”</i> Vi explains, all the while lewdly running her finger around inside of your ring. <i>“{PC has cock: And then further in, there’s your prostate, which when stroked can produce stronger and more powerful orgasms than penile stimulation./else if PC has pussy: And then further in, there’s a special place where you can stimulate your G-spot from the other side./Else: I hear having a large object filling up your rectum can feel quite pleasant.} Would you like to try–?”</i>");
-
-output("\n\nYou nod, your face burning as you try to hide it in the bed pillow. Still, you raise your rump invitingly. Her feminine digits burrow deeper into your backside, wiggling their way inward, and you let out a sweet moan. It feels like a thrumming erotic warmth is filling every inch of you, completely different to {if pc.hasCock: the pinpoint pleasure of having your [pc.cocksNoun] stroked! When they reach your walnut-sized prostate,}/else if pc.hasPussy: the belly-pooling pleasure of having your {pussy/pussies} stroked! When she reaches the thin fleshy wall guarding your g-spot,/else neuter: the pinpoint pleasure of having your opening teased! When she reaches the innermost depths of your rectum,} she gently strokes along it, making your [pc.legs] quiver and your lips part. You hear a {highFem: high-pitched moan/highMasc: throaty moan/else: hitched moan}, and only later do you realise it was <i>yours</i>!");
-
-output("\n\n<i>“Bit of a butt-slut, are we–?”</i> Vi huskily teases, all the while wiggling her fingers knuckle-deep inside your asshole. It’s a little hard to argue when you’re letting out such loud moans, bent over with a nurse-droid’s fingers inside your rump! You let out a whine of protest when she pulls her fingers out, only to feel something thin slide inside of you in it’s place. Whatever it is, it’s got a flat base to stop it being totally swallowed inside; it’s clearly designed to be put in your ass.");
-
-output("\n\n<i>“Whuh-what is that–?”</i> you ask, wiggling your hips in nervous excitement. Not knowing, and just feeling, makes the experience that much more exhilarating. Your ass is literally being dominated right now by the nurse droid!");
-
-output("\n\n<i>“A remote controlled butt-plug! It feels a little thin, but that’ll change–give it a second,”</i> Vi explains. Seconds later, you feel the object thickening and expanding in your ass. It feels like you’re being <i>knotted</i>! As the butt-toy swells and rounds, it pushes pointedly against your {GotCock:prostate/elseIfGotPussy:sweet spot/else: rectal walls}, and you let out a sweet cry. It’s certainly not the first, as it suddenly begins vibrating and whirring inside of your utterly stuffed rump, quickly reducing you to a babbling, pleasure-wracked mess. Within no time at all, {pc.hasCock: you’re shooting your [pc.cumVisc] spunk all over the sheets and messing up your belly, your [pc.thighs] shaking spastically./elseIf pc has pussy: you’re creaming yourself and {squirter!: squirting/else: dribbling} your [pc.girlcumVisc] girl-cum all over the sheets, your thighs shaking spastically/Else: you’re cumming hard as your thighs shake spastically}. You desperately cling to the pillow as you’re swept away by glorious, maddening pleasure swell, your pucker madly wringing the toy’s base as if it’s trying to wring it for cum!");
-
-output("\n\nYou’re so spaced out afterwards that you can barely speak, lying there complacently as she pulls the deflating toy out from between your buttocks. After you finally regain the ability to walk, you thank Vi and slip your things back on. Ass-play is the best!");
-
-
-output("\n\n// Scene end, back to menu");
-
-
-output("\n\nPotency Test");
-
-output("\n\n// PC must have a cock.");
-
-output("\n\n<i>“How about I give you a potency test?”</i> Vi {hadSex > 10 times: breathily/brightly} offers. {DoneItBefore: Last time it was amazing, so you immediately agree/Else: You’re not sure what it involved, but your curiosity is piqued, so you agree to get one}. The nurse droid leads you over to a bed and, after pulling the privacy curtain closed, kneels down {taur + backgenitals: and underneath your tauric body/else: before you}. {PC is lowerGarbed:After pulling your cock{s} free of {its/their} confines, she grabs {it/one of them} and begins to jerk it to full stiffness./ElseNotLowerGarbed: She then grabs [pc.oneCock] and begins to jerk it to full stiffness.}{FirstTime: So far, you’re loving this test!/Else: You groan and let your head loll back–this really is the best test!}");
-
-output("\n\n<i>“You seem to be ready. Let’s begin!”</i> she exclaims, taking her hand off your now turgid member{PC has multi-cocks:–now one of many–}and pulls out a box of condoms from underneath the bed. She pulls out one and removes the rubbery ring from a packet, placing it flush on your [pc.cockHead]. <i>“... Here’s the bit I like the most!”</i> The violet-haired nurse exclaims. Placing her plush lips on the tip of your prick, she masterfully slides the prophylactic down your prick, sliding her soft lips down and around it at the same time. By the time she reaches your [pc.knot], your twitching tip is completely buried in her {smallDick: mouth/mid: gullet/large: throat/FuckYouHyperScum: belly}. With no gag reflex or reason to breathe, the nurse-droid lovingly lashes your length with her tongue, even going so far as to slide it out and lightly touch your {gotBalls: [pc.balls]/else: taint}.");
-
-output("\n\nDue to her oral skill, it doesn’t take you long at all to blow your load {all over her tongue/against her throat/against her voice-box/in her stomach}–or you would be, if it wasn’t for the condom! You groan and spill your hot [pc.cumNoun] inside the rubbery confines, your efforts to spill your seed inside the synthetic nurse utterly thwarted. When she pulls your prick out of her mouth with a loud <i>plop</i>, you’re left with the image of her wet lips and a {SmallCum: tiny/Moderate: golf-ball sized/large: baseball-sized/huge: basketball-sized/else: beachball-sized} [pc.cumColor] balloon hanging off your cock-tip. {HugeOrMoreCums: Not only are you surprised she pulled that out of her, it’s amazing it didn’t burst!}");
-
-output("\n\n<i>“That’s the first one. A test isn’t a test until it’s conclusive!”</i> Vi merrily exclaims, slipping the now-used condom off your prick and tying it off. She places {hugeCumsOrMore: it beside her, the overfilled balloon barely balancing there as she slips the next one on/Else: it upon her rack, giving you a saucy sight to look at as she slips the next one on/else:}. This time she jerks off your prick instead, mercilessly jerking and wringing your sheathe until you cum, taking no prisoners! Your second load is less than the first, and she methodically whips the rubber off, {HugeCumsOrMore: tosses it beside her with the first,/else: tosses it on her breasts with the first,} and tries again. Each and every time she does something different, from massaging out a load with her pussy, ass, or fingers, to fingering <i>your</i> ass to get you to blow one off! By the end, {hugeCumsOrMore: the space around her is filled with gigantic/her cleavage is utterly lined with} [pc.cumColor] [pc.cumNoun]-filled baggies, all adoringly milked out from your [pc.cocksNoun].");
-
-output("\n\n<i>“... Whew! That should do it. Now to process the results,”</i> Vi happily exclaims, picking up the [pc.cumNoun] lined condoms and examining them closely.");
-
-output("\n\n<i>“{Low Potency: ... Hmmm, this is worrying. I thought I’d get a LOT more out from such a fine {cock/set of cocks},/Medium Potency: ... Well, looking at these, I’d say you’re about average potency. And I’d say this was a pretty comprehensive test!/High Potency: ... Well, looking at these, I’d say you’re definitely above average! I’m glad we used the big box of condoms, or else I might have run out,/ExtremelyHighPotency: ... How did you even produce this much? You’re like some kind of [pc.cumNoun]-making machine! I mean, I was down to the emergency condoms; what are we going to do if there’s a red venom outbreak?}”</i> the nurse-droid informs you, all the while stroking {one of} your utterly spent length{s}. <i>“... {MediumOrLowerPotency: If you want,/Else: Not that you need it, but }I can administer a treatment to increase your potency? It only costs 500 credits, and it’d make any chance of conception that much more assured. After all, you can’t have too much of a good thing! Or, well, at least you can’t when it comes to cum–{just ask the kui-tan!/I mean, you’re a kui-tan!”</i>}”</i>");
-
-output("\n\n[Yes] [No]");
-
-output("\n\n{Yes:");
-output("\n\n	");
-output("\n\n<i>“Alright then! Just let me produce some,”</i> Vi exclaims, rubbing her hands together. Her breasts suddenly begin to jiggle a bit, and then there’s the sound of squirting from between her palms. Some kind of purple, transparent goo dribbles from between her digits–did she just make that? She smears it on your cock{s}{and [pc.balls]}, rubbing it in until it’s soaked into your pores.");
-
-output("\n\nAfter a few minutes, you feel a tingling inside of your {GotBalls: [pc.sack]/else: length{s}}. A broiling builds up within, steadily growing, until you’re moaning and throwing back your head. Just when the pleasurable pressure is becoming unbearable, you feel a divine release, and a gigantic stream of [pc.cumNoun] shoots out from your now <i>un</i>spent prick{s}. <b>Your potency has considerably increased!</b>");
-
-output("\n\n// Increase the PC’s potency by a fair bit. Remove 500 credits.");
-
-output("\n\nIt seems Vi is the recipient of your sudden production spike, your [pc.cumVisc] [pc.cumNoun] splattering all over her pale cheeks and lips. Beneath the [pc.cumColor] mask, she looks like she’s blushing, like she <i>enjoys</i> being covered with your spunk. <i>“A successful treatment–congratulations on your increased potency levels!”</i> the nurse-droid happily exclaims. Perhaps she suggested the treatment just so she could be covered in your [pc.cumNoun]?");
-output("\n\n	");
-output("\n\nNow that you’re well and truly finished, you both slip out from behind the curtain, with Vi quickly wiping off her face with a cloth. Five hundred credits well spent!");
-
 output("\n\n}");
 output("\n\n{No:");
 
