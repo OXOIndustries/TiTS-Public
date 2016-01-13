@@ -631,7 +631,7 @@ public function chooseBreastSize():void {
 	output("\n\nThe doctor rubs the bridge of his nose in exasperation. <i>“Look, it’s not that weird a thing for parents to choose these days - it’s practically like hair or eye color.”</i>");
 	if(!pc.hasVagina())
 	{
-		output("\n\n<i>“Plus, how do I know you don’t want your kid to grow up as the universe’s hottest tranz? It’s you were talking about after all, Victor.”</i>");
+		output("\n\n<i>“Plus, how do I know you don’t want your kid to grow up as the universe’s hottest tranz? It is you we're talking about after all, Victor.”</i>");
 		output("\n\n<i>“Remind me why I pay you again?”</i> Victor retorts.");
 		output("\n\n<i>“Not for my sense of humor, obviously,”</i> the doctor clears his throat. <i>“Ahem. Well, just pick flat if you don't want them.”</i>");
 	}
