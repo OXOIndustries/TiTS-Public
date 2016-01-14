@@ -64,7 +64,7 @@ package classes.Characters
 			this.energyRaw = 100;
 			this.lustRaw = 10;
 			
-			this.XPRaw = 500;
+			this.XPRaw = 125;
 			this.level = 5;
 			this.credits = 80 + rand(80);
 			this.HPMod = 0;
@@ -240,34 +240,51 @@ package classes.Characters
 		private function groupFlashbang(targets:Array):void
 		{
 			// Flashbang
-			output("One of the assassins pulls another disk-like grenade from his belt and slides it across the deck, placing it between you and Saendra! The flashbang detonates with deafening force,");
+			output("One of the assassins pulls another disk-like grenade from his belt and slides it across the deck, placing it " + (targets.length > 1 : "between you and Kara!" : "right at your feet!") +" The flashbang detonates with deafening force,");
 
 			var pc:Creature;
-			var saen:Creature;
+			var kara:Creature;
 			
 			for (var i:int = 0; i < targets.length; i++)
 			{
 				if (targets[i] is PlayerCharacter) pc = targets[i] as Creature;
-				if (targets[i] is Saendra) saen = targets[i] as Creature;
+				if (targets[i] is Kara) kara = targets[i] as Creature;
 			}
 			
-			var blindedPC:Boolean = rand(10) != 0;
-			var blindedSaen:Boolean = rand(10) != 0;
-			
-			if (blindedPC && blindedSaen)
+			if (targets.length > 1)
 			{
-				output(" blinding you and Saendra.");
-				pc.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0);
-				saen.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0);
+				var blindedPC:Boolean = rand(10) != 0;
+				var blindedKara:Boolean = rand(10) != 0;
+				if (blindedPC && blindedKara)
+				{
+					output(" blinding you and Kara.");
+					pc.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0);
+					kara.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0);
+				}
+				else if (!blindedPC && blindedKara)
+				{
+					output(" blinding Kara, though you manage to avoid any serious effect.");
+					kara.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0);
+				}
+				else
+				{
+					output(" though both you and Kara manage to avoid any serious effect.");
+				}
 			}
-			else if (!blindedPC && blindedSaen)
-			{
-				output(" blinding Saendra, though you manage to avoid any serious effect.");
-				saen.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0);
-			}
+			// Can only be the PC then
 			else
 			{
-				output(" though both you and Saendra manage to avoid any serious effect.");
+				blindedPC = rand(10) != 0;
+				
+				if (blindedPC)
+				{
+					output(" blinding you.");
+					pc.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0);
+				}
+				else
+				{
+					output(" though you manage to avoid any serious effect.");
+				}
 			}
 
 			createStatusEffect("Nade Cooldown", 5);
@@ -301,7 +318,7 @@ package classes.Characters
 				applyDamage(new TypeCollection( { kinetic: 8 * mul } ), this, target, (target is PlayerCharacter ? "minimal" : "suppress"));
 			}
 
-			createStatusEffect("NadeCD", 5);
+			createStatusEffect("Nade Cooldown", 5);
 		}
 	}
 }
