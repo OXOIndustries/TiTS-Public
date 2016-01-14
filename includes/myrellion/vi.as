@@ -38,6 +38,7 @@ public function approachVi():void
 {
 	clearOutput();
 	showVi();
+	author("JimThermic");
 	//First Visit:
 	if(flags["MET_VI"] == undefined)
 	{
@@ -79,6 +80,7 @@ public function approachViFirstTimePart2():void
 {
 	clearOutput();
 	showVi();
+	author("JimThermic");
 	output("<i>“I can sell you medical supplies, examine you for diseases, heal your injuries, or provide relief services. How may I assist you today?”</i>");
 	viMenu();
 }
@@ -106,6 +108,7 @@ public function viAppearance():void
 {
 	clearOutput();
 	showVi();
+	author("JimThermic");
 	output("You take a good look at Vi. As soon as you begin to stare, her shyness subroutines start playing. Her snowy cheeks are visibly flushed.");
 	output("\n\n<i>“I hope my hardware is to your satisfaction, " + pc.mf("sir","ma’am") + ". I would hate to be below the recommended or minimum specifications.”</i>");
 	output("\n\nWell, when it comes to <i>one</i> area, she’s definitely first rate. Her hefty, well-formed breasts are a work of art, upon which her violet side-plait comfortably rests. Her incredible bust is made even more pronounced by her tight-fitting corset, which lifts and presses it together, forming distinctively deep cleavage.");
@@ -149,6 +152,7 @@ public function talkToViAboutName():void
 {
 	clearOutput();
 	showVi();
+	author("JimThermic");
 	output("Feeling a little curious, you ask Vi about her designation. Is there some meaning behind it? She nods a little, tellingly touching her side braid.");
 	output("\n\n<i>“Yes, " + pc.mf("sir","ma’am") + ". My designation was chosen based on the first letter of my model type, ‘V’, the fact I am a Virtual Intelligence, and that my hair is violet.”</i>");
 	output("\n\nSeems simple enough. Did someone special name her that, you ask? Her expression goes blank, and she begins to furiously blink.");
@@ -166,6 +170,7 @@ public function talkToViAboutHerModel():void
 {
 	clearOutput();
 	showVi();
+	author("JimThermic");
 	//if Met Other VKO:
 	if(flags["MET_VKO"] != undefined)
 	{
@@ -192,6 +197,7 @@ public function talkToViAboutHerOwner():void
 {
 	clearOutput();
 	showVi();
+	author("JimThermic");
 	output("You ask Vi who her current owner is. Does she belong to the UGC? She earnestly shakes her head.");
 	output("\n\n<i>“Oh, no, I still belong to JoyCo, my manufacturers. I was sent here to provide medical support and supplies at an affordable price.”</i>");
 	output("\n\nThat seems strangely altruistic. You ask Vi what the purpose of her being sent here is. She tilts her head, a perplexed look playing on her features. Seems it was too complex a question. You ask her instead if she has any other duties.");
@@ -207,6 +213,7 @@ public function talkToViAboutHerMethods():void
 {
 	clearOutput();
 	showVi();
+	author("JimThermic");
 	output("You ask Vi about her unusual healing methods. ");
 	//MetOtherVko: 
 	if(flags["MET_VKO"] != undefined) 
@@ -222,9 +229,8 @@ public function talkToViAboutHerMethods():void
 
 	output("\n\nYou ask her why she seems less stiff than most Virtual Intelligences. Even so, she doesn’t seem like a AI-D.");
 
-	output("\n\n<i>“You are correct, " + pc.mf("sir","ma’am") + ". Most of my coding parameters are geared towards either medical care or my bedside manner, which is why my mannerisms appear more organic. Compared to the first generation of V-Kos, this model has approximately fifty million more lines of code. Would you like a copy of my promotional material?”</i>");
+	output("\n\n<i>“You are correct, " + pc.mf("sir","ma’am") + ". Most of my coding parameters are geared towards either medical care or my bedside manner, which is why my mannerisms appear more organic. Compared to the first generation of V-Kos, this model has approximately fifty million more lines of code.”</i>");
 	processTime(4);
-	//9999 - goddamnit, JimT
 	viTalkMenu();
 	addDisabledButton(3,"Methods","Methods","You just spoke about that.");
 }
@@ -235,6 +241,7 @@ public function talkToViAboutPleasure():void
 {
 	clearOutput();
 	showVi();
+	author("JimThermic");
 	output("You question Vi about something you noticed during sex; that she seems to feel sexual pleasure. That seems a little odd, you remark, since she’s a virtual intelligence.");
 	output("\n\nVi visibly flushes. <i>“Ah, yes. It appears that while my internal diagnostics report everything is fine, secondary evidence – such as hospital video footage – suggest my hardware has been tampered with.”</i>");
 	output("\n\n<i>“I’ve been informed by hospital staff that while I was powered down, a rusher appears to have installed me with a pleasure-reward interface. According to my databanks, this device delivers a digital approximation of organic sexual pleasure during intercourse. This device is unsanctioned by JoyCo, and I’ve already reported this for immediate fixing.”</i>");
@@ -266,6 +273,7 @@ public function healFromVi():void
 {
 	clearOutput();
 	showVi();
+	author("JimThermic");
 	output("You take Vi up on her suggestion, deciding to get treated for your wounds. After all, it’s not like you love walking around ");
 	if(pc.HPQ() < 25) output("limping and bleeding");
 	else if(pc.HPQ() < 50) output("all beat up");
@@ -292,6 +300,7 @@ public function getHealedByVi(cost:Number):void
 {
 	clearOutput();
 	showVi();
+	author("JimThermic");
 	output("The synthetic nurse leads you to one of the patient beds, hidden behind a lavish privacy curtain. ");
 	if(!pc.isNude()) output("There, you strip off your [pc.gear] and toss it aside, then climb onto the bed as instructed.");
 	else output("Since you’re already naked, all you have to do is climb onto the bed as instructed.");
@@ -339,6 +348,7 @@ public function dontTakeViHeals():void
 {
 	clearOutput();
 	showVi();
+	author("JimThermic");
 	output("You turn down Vi’s offer of treatment. Her expression is one of visible worry, holding her balled up hands against her chest.");
 	output("\n\n<i>“A-are you sure, " + pc.mf("sir","ma’am") + "? Walking around in your injured state must be troublesome. If there is any way I can make you reconsider your decision...”</i>");
 	output("\n\nYou shake your head. Sensing your determination, she lowers her hand, bowing politely. <i>“Very well, " + pc.mf("sir","ma’am") + ". Are there any other services I can provide today?”</i>");
@@ -351,6 +361,7 @@ public function getExamanitedByVi():void
 {
 	clearOutput();
 	showVi();
+	author("JimThermic");
 	output("You ask Vi to check you for diseases. The synthetic nurse nods, pulling back one of the lavish privacy curtains. <i>“Of course, " + pc.mf("sir","ma’am") + ". Please climb onto the bed, and I’ll begin the examination.");
 	if(!pc.isNude()) output(" You’ll need to strip off your things first.");
 	output("”</i>");
@@ -474,6 +485,7 @@ public function removeAParasiteWithVi(arg:String):void
 {
 	clearOutput();
 	showVi();
+	author("JimThermic");
 	output("<i>“Good,”</i> Vi visibly sighs with relief, a bright smile spreading across her ivory lips. <i>“Now, time to go to sleep. The procedure will be done before you know it.”</i>");
 	output("\n\nYou’re surprised when the violet-haired medic wraps her arms around your neck and plants a soft, synthetic kiss right on your lips! Just as you open your mouth to exclaim your surprise, you feel your consciousness swiftly slip away. The last sight you see is her face pulling back from yours. You can feel her catching your head as you fall back into the sheets... and into nothingness.");
 	processTime(2);
@@ -486,6 +498,7 @@ public function postParasiteRemoval(arg:String):void
 {
 	clearOutput();
 	showVi();
+	author("JimThermic");
 	output("When you awaken, you feel a slight stroking of your cheek. There’s a warm pressure there. It feels kind of soothing.");
 	output("\n\n<i>“... Vitals are nominal... " + pc.mf("Mister","Miss") + " Steele, can you hear me?”</i> You hear Vi ask. It takes you a few moments to respond in the affirmative, and longer still to open your eyes. When you do, however, the medic looks very pleased. <i>“Here, let me help you up. The chemicals should be metabolized out of your system any second now, though you may have a slight aftertaste...”</i>");
 	output("\n\nShe’s right. There’s a slightly unpleasant metallic flavor on your tongue. You feel something being pressed into your hands. Feels like a cup. The straw is brought to your lips, and you suck on it. Mmm, it’s some sort of flavorful juice. Just the thing to flush the bad taste out.");
@@ -527,6 +540,7 @@ public function declineParasiteTreatmentFromVi():void
 {
 	clearOutput();
 	showVi();
+	author("JimThermic");
 	output("You turn down Vi’s treatment and hop off the table. Her expression is one of visible worry, holding her balled up hands against her chest.");
 	output("\n\n<i>“A-are you sure, " + pc.mf("sir","ma’am") + "? Walking around with a parasitic infection must be troublesome. If there is any way I can make you reconsider your decision...”</i>");
 	output("\n\nYou shake your head. Sensing your determination, she lowers her hand, bowing politely. <i>“Very well, " + pc.mf("sir","ma’am") + ". Are there any other services I can provide today?”</i>");
@@ -538,6 +552,7 @@ public function viShop(buy:Boolean = true):void
 {
 	clearOutput();
 	showVi();
+	author("JimThermic");
 	shopkeep = chars["VI"];
 	//Buy texts!
 	var buyText:String = "You ask Vi what kind of supplies she has for sale. An excited look lights up her face, and she suddenly runs off! Just when you’re wondering if she’s going to come back, the violet-haired android comes back hefting a large container of... <i>some</i>thing... and drops it in front of you.";
@@ -571,6 +586,7 @@ public function viSexualRelief():void
 {
 	clearOutput();
 	showVi();
+	author("JimThermic");
 	//PC has borrowed her pussy:
 	if(pc.hasKeyItem("Vi's Vagina"))
 	{
@@ -615,6 +631,7 @@ public function returnVisPussyPot():void
 {
 	clearOutput();
 	showVi();
+	author("JimThermic");
 	output("Handing over her purloined pussy, Vi positions it between her stocking-clad thighs and inserts it back into her body. There’s a little bit of wiggling before it’s finally back in place.");
 	output("\n\n<i>“... There! I should be back at full functionality now, " + pc.mf("sir","ma’am") + ". Please don’t run off with JoyCo property again~!”</i> Vi pleads. At the same time, she looks a <i>little</i> pleased, perhaps with how you were using her pussy in its absence?");
 	processTime(1);
@@ -630,6 +647,7 @@ public function dontReturnsVisCunt():void
 {
 	clearOutput();
 	showVi();
+	author("JimThermic");
 	output("<i>“I can’t administer proper sexual relief while you’re still running around with JoyCo property. My functionality has already been halved!”</i> Vi exclaims. At the same time, she looks a little bit pleased. Does she like the fact someone literally owns her pussy...?");
 	processTime(1);
 	// Nothing changes.
@@ -709,6 +727,7 @@ public function rideVi():void
 {
 	clearOutput();
 	showVi();
+	author("JimThermic");
 	var x:int = pc.cockThatFits(chars["VI"].vaginalCapacity(0));
 	output("You shoot a glance at one of the privacy curtains. Both of you wordlessly slip behind it. As soon as you’re behind the fabric barrier, you feel her arms slip around ");
 	if(!pc.isTaur()) output("you from behind");
@@ -790,6 +809,7 @@ public function analViTease():void
 {
 	clearOutput();
 	showVi();
+	author("JimThermic");
 	output("<i>“I know the perfect way to relieve the tension. Follow me!”</i> Vi exclaims. You follow her as she leads you to a bed and pulls around the privacy curtain. She instructs you to ");
 	if(!pc.isNude()) output("remove your things and then to ");
 	output("climb up on to the bed. You do as she asks, bending over obediently, your ass sticking up in the air.");
@@ -857,6 +877,7 @@ public function viPotencyTest():void
 {
 	clearOutput();
 	showVi();
+	author("JimThermic");
 	output("<i>“How about I give you a potency test?”</i> Vi ");
 	if(flags["VI_SEXED"] != undefined && flags["VI_SEXED"] >= 10) output("breathily");
 	else output("brightly");
@@ -1012,6 +1033,7 @@ public function yeahSureIWannaCumMoreSlut():void
 {
 	clearOutput();
 	showVi();
+	author("JimThermic");
 	IncrementFlag("VI_TREATED");
 	output("<i>“Alright then! Just let me produce some,”</i> Vi exclaims, rubbing her hands together. Her breasts suddenly begin to jiggle a bit, and then there’s the sound of squirting from between her palms. Some kind of purple, transparent goo dribbles from between her digits. Did she just make that? She smears it on your [pc.cocks]");
 	if(pc.balls > 0) output(" and [pc.balls]");
@@ -1092,6 +1114,7 @@ public function noIDontWantNutTreatments():void
 {
 	clearOutput();
 	showVi();
+	author("JimThermic");
 	output("<i>“Okay then! Well, the offer’s on the table whenever you want it. Or, well, on the bed, really,”</i> Vi states. You both slip out from behind the privacy curtain, though your legs are a little wobbly after the test. After all, that kind of test literally took a lot (of [pc.cumNoun]) out of you!");
 	// Scene end, back to menu
 	processTime(2);
@@ -1107,6 +1130,7 @@ public function giveHeadToVi():void
 {
 	clearOutput();
 	showVi();
+	author("JimThermic");
 	output("You ask the violet-haired nurse if she’ll give you head. With blushing cheeks, she eagerly nods. <i>“Of course, " + pc.mf("sir","ma’am") + "! Let me just activate my remote connectors...”</i>");
 	output("\n\nRemote connectors? You wonder what she means, until she grabs her pale cheeks and, with a little twist, pulls off her head! You’re left gaping as she holds it under one of her arms, now completely headless, like some kind of mythological dullahan! With outstretched hands, she offers you her detached cranium, her feminine face still lively and looking up at you!");
 	output("\n\n<i>“Here you go! This is what you wanted, right?”</i> The disembodied head asks, her side-tail dangling freely about. The top of her neck is smooth and flat, like Vi’s head was cut clean off. Even though it’s not what you meant, you take her head in your hands, feeling her cheek-muscles moving against your palms. It’s warm...");
@@ -1182,6 +1206,7 @@ public function tailScrewWithVi():void
 {
 	clearOutput();
 	showVi();
+	author("JimThermic");
 	output("You look at Vi’s tail and a naughty thought springs to mind, making your heart race. Can she, perhaps, use that to stimulate your ass... just like a cock?");
 	output("\n\nWhen you ask her as much, Vi enthusiastically nods. <i>“Of course! But if you’re looking for anal stimulation, might I suggest a phallic attachment?”</i> She brings her tail around in front of her body and clasps it with both hands, tapping the tip with a finger. <i>“I’ve got one I can fasten right here; it’s much stiffer and vibrates. My tail’s kind of thin, so it doesn’t give </i>quite<i> the same feeling of a big, hard cock sliding in and out of you...”</i>");
 	output("\n\n<i>“Oh, you’ve tried it on yourself?”</i> you ask, quirking a brow. The nurse droid flushes, clutching her tail even harder.");
@@ -1289,6 +1314,7 @@ public function cowgirlWithVi():void
 {
 	clearOutput();
 	showVi();
+	author("JimThermic");
 	output("You grab Vi’s hand and lead her behind one of the privacy curtains. ");
 	//PC.clothed: 
 	if(pc.isCrotchExposed()) output("After you hastily strip off your things,");
@@ -1332,6 +1358,7 @@ public function useVisPussy():void
 {
 	clearOutput();
 	showVi();
+	author("JimThermic");
 	//First Time:
 	if(flags["VI_OFFERED_PUSSY"] == undefined)
 	{
@@ -1415,6 +1442,7 @@ public function useVisDisembodiedPussy():void
 {
 	clearOutput();
 	showVi();
+	author("JimThermic");
 	var x:int = -1;
 	if(pc.hasCock()) x = pc.cockThatFits(chars["VI"].vaginalCapacity(0));
 	output("A rather devilish thought pops into your mind. Perhaps you should stay here with Vi’s pussy and use it, while she goes back to her duties – or at least tries to?");
@@ -1511,6 +1539,7 @@ public function viGetHerScene():void
 {
 	clearOutput();
 	showVi();
+	author("JimThermic");
 	var x:int = pc.cockThatFits(chars["VI"].vaginalCapacity(0));
 	output("You slip behind one of the privacy curtains and then gesture for Vi to follow. She hurries in after you, a curious look in her eyes. They widen considerably when you hand her back her snowy snatch. As she clasps it with both hands, you ");
 	//PC is lowerGarbed: 
@@ -1547,6 +1576,7 @@ public function takeVisVagina():void
 {
 	clearOutput();
 	showVi();
+	author("JimThermic");
 	//First Time Stealing:
 	if(flags["VI_PUSSY_TAKEN"] == undefined)
 	{
@@ -1589,6 +1619,7 @@ public function roughSexWithVi():void
 {
 	clearOutput();
 	showVi();
+	author("JimThermic");
 	var x:int = pc.cockThatFits(chars["VI"].vaginalCapacity(0));
 	output("Feeling a dark, lusty fire burning within, you decide you <i>are</i> in the mood to use the nurse bot, though not in the way she probably expects. After inviting her behind one of the privacy curtains, you roughly seize her violet side tail and drag her forward by it. Vi lets out a surprised squeal as you shove her face forward against the bed, bent over with her pert ass raised to you. <i>“W-what are you doing, " + pc.mf("sir","ma’am") + "? Thuh-this doesn’t compute!”</i>");
 	output("\n\n<i>“I’m having my way with you, slut-bot. What else?”</i> You remark, whipping out [pc.oneCock] and flopping it down between her garter-belt framed buttocks. Her round butt quivers as you grab her side-tail once more, using it like a leash as you roughly shove your dick inside of her ");
@@ -1622,6 +1653,7 @@ public function tittyFuckDatVi():void
 {
 	clearOutput();
 	showVi();
+	author("JimThermic");
 	//if (Vi has never revealed she has working boobage):
 	if(flags["VI_TITFUCKED"] == undefined)
 	{
@@ -1730,6 +1762,7 @@ public function viPussyFapScene():void
 {
 	clearOutput();
 	showVi();
+	author("JimThermic");
 	output("You feel the familiar flush of arousal spreading across your [pc.skinFurScalesNoun]. Your heart beats faster. Your thoughts are swallowed in a haze of base arousal. You find your fingers reaching for your sensitive erogenous zones. Acting on instinct, you touch and rub them, enjoying the rewarding zings of pleasure shooting up from your ");
 	if(pc.biggestTitSize() >= 1 || !pc.hasGenitals()) output("[pc.nipples]");
 	else if(pc.hasCock()) 
