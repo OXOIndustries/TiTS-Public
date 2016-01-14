@@ -643,6 +643,11 @@ public function kq2rfRoof1():Boolean
 		kq2EncounterShade();
 		return true;
 	}
+	else if (flags["KQ2_FOUGHT_AMARA"] == undefined)
+	{
+		kq2EncounterAmara();
+		return true;
+	}
 
 	return false;
 }

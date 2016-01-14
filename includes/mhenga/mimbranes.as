@@ -2753,7 +2753,7 @@ public function neglectedMimbranesCombat():void
 		output(" to slather you in");
 		if (attachedMimbranes() > 1) output(" their");
 		else output(" its")
-		output("sensual sweat.");
+		output(" sensual sweat.");
 	}
 }
 
@@ -3469,7 +3469,7 @@ public function mimbraneHandBonusAttack(target:Creature):void
 	if (bonusAttackChance - 1 >= attackRoll)
 	{
 		// Bonus attack successful
-		output("\n\nYou’re taken by surprise when your hand moves all on its own, quickly mimicking your previous attack. It seems as though the Mimbrane controlling it is eager to come to your aid!");
+		output("\n\nYou’re taken by surprise when your hand moves all on its own, quickly mimicking your previous attack. It seems as though the Mimbrane controlling it is eager to come to your aid!\n");
 
 		(pc as PlayerCharacter).createStatusEffect("Mimbrane Bonus Attack", 0, 0, 0, 0, true, "", "", true, 0);
 		CombatAttacks.SingleMeleeAttackImpl(pc, target, false);

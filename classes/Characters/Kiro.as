@@ -21,7 +21,7 @@
 	{
 		public function Kiro() 
 		{
-			this._latestVersion = 3;
+			this._latestVersion = 4;
 			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
@@ -148,7 +148,7 @@
 			
 			this.vaginas = new Array();
 			this.createVagina();
-			this.vaginas[0].type = 0;
+			this.vaginas[0].type = GLOBAL.TYPE_KUITAN;
 			this.vaginas[0].hymen = true;
 			this.vaginas[0].wetnessRaw = 2;
 			this.vaginas[0].loosenessRaw = 2;
@@ -209,6 +209,10 @@
 
 			d.perks.push(se.getSaveObject());
 			d.perks.sortOn("storageName", Array.CASEINSENSITIVE);
+		}
+		public function UpgradeVersion3(d:Object):void
+		{
+			d.vaginas[0].type = GLOBAL.TYPE_KUITAN;
 		}
 		//Gotta reset 'dem balls!'
 		override public function orgasm(): void {
