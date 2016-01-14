@@ -12,7 +12,7 @@
 		var pName:String = kGAMECLASS.rooms[kGAMECLASS.shipLocation].planet;
 
 		if (pName.indexOf(":") != -1)
-			pName = pName.split(" ")[1];
+			pName = pName.split(": ")[1];
 	
 		pName = StringUtil.toTitleCase(pName.toLowerCase());
 		

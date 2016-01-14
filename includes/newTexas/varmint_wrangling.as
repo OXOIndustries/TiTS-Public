@@ -881,7 +881,7 @@ public function varmintDisappears():void
 		else if(pc.isNice()) output("Well, that was bound to happen if you didn’t keep it on a leash. Hopefully it’s okay out there.");
 		else output("You should have known that thing was gonna run off! Keeping it tethered might have been a better option after all.");
 		if(getPlanetName() == "New Texas") output(" At least it’s back home now.");
-		else output(" One loose animal on " + getPlanetName() + " shouldn’t cause too much trouble on, right?");
+		else output(" One loose animal on " + getPlanetName() + " shouldn’t cause too much trouble, right?");
 	}
 	
 	processTime(32);

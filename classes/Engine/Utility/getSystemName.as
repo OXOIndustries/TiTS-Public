@@ -12,7 +12,7 @@ package classes.Engine.Utility
 		var pName:String = kGAMECLASS.rooms[kGAMECLASS.shipLocation].system;
 
 		if (pName.indexOf(":") != -1)
-			pName = pName.split(" ")[1];
+			pName = pName.split(": ")[1];
 	
 		if (pName == "REDACTED") pName = "<i>Unknown</i>";
 		else pName = StringUtil.toTitleCase(pName.toLowerCase());

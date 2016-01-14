@@ -467,8 +467,6 @@ public function talkToAmma(display:Boolean = false):void
 	if(flags["OGRIM_UNLOCKED_FROM_AMMA_TALK_MENU"] != undefined) addButton(3,"Ogram",askAmmaAboutOgram,undefined,"Ogram","Ask her about that big lug she's been seeing, Ogram.");
 	else addDisabledButton(3,"Locked","Locked","You'll need to talk to Amma about something else in particular before this scene unlocks.");
 	addButton(14,"Back",approachDatCowGalRepeat);
-
-
 }
 
 //The Treatment
@@ -657,12 +655,16 @@ public function spitRoastAmmoOnYerDicks():void
 	output("\n\n<i>“Ah! Ooohhh yes! Just like that, [pc.name]! Feels so gooood,”</i> she moans, rocking her hips back against you to get every bit of dick into her sweltering hole as she can. She’s sucking the seed out of you, draining spurt after spurt from your spasming cockhead until your [pc.cumColor] seed is drooling out of her well-fucked cooch, pooling on the floor just like Og’s load before it. Amma clamps down hard around you, tighter than ever as you blow your load, keeping you fully lodged inside her until you’re utterly spent, left panting and shuddering as her muscles continue to massage your over-sensitive shaft.");
 	output("\n\n<i>“Fuck. Keep that up and I’m gonna be hard again before you’re done,”</i> Og laughs, pulling himself up onto his desk beside the cow-girl and giving her a pat on the behind.");
 	output("\n\nYou pull yourself out of Amma a moment later, taking a towel from Og when he offers and cleaning yourself up. You really got yourself messy, now that you look at yourself: all slathered in cum and Amma’s juices, sweat and milk staining your [pc.skinFurScales]. You sigh contentedly as you wipe up, occasionally glancing up at the drooling cow-cunt still bent over and stretched wide. Amma herself seems content to stay bent over, resting against her lover’s desk and looking up at him dreamily.");
-	output("\n\n<i>“Well, thanks for sharing you two,”</i> you say, grabbing your gear.");
+	output("\n\n<i>“Well, thanks for sharing you two,”</i> you say");
+	if(pc.hasStatusEffect("Disarmed") || flags["CHECKED_GEAR_AT_OGGY"] != undefined) output(", getting on your way");
+	else output(", grabbing your gear");
+	output(".");
 	output("\n\n<i>“Any time!”</i> Amma grins, giving you a parting butt-wiggling as you pass. <i>“We should do this again, next time you pass by!”</i>");
 	output("\n\n<i>“Definitely,”</i> Og chuckles. <i>“See you around, " + pc.mf("buddy","beautiful") + ".”</i>");
 
 	processTime(30+rand(15));
 	pc.orgasm();
+	IncrementFlag("FUCKED_TEXAN_CUSTOMS");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -738,9 +740,13 @@ public function worshipZeBullCawk():void
 		output(" <i>“I might even share Amma with you, if you play your cards right.”</i>");
 		output("\n\nShe swats him on the knee.");
 	}
-	output("\n\nYou give the pair a half-conscious nod as you’re helped up and start to collect your gear.");
+	output("\n\nYou give the pair a half-conscious nod as you’re helped up and start to");
+	if(pc.hasStatusEffect("Disarmed") || flags["CHECKED_GEAR_AT_OGGY"] != undefined) output(" get on your way");
+	else output(" collect your gear");
+	output(".");
 	processTime(15);
 	pc.lust(20+rand(10));
+	IncrementFlag("FUCKED_TEXAN_CUSTOMS");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
