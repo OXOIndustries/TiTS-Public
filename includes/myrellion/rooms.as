@@ -430,7 +430,7 @@ public function initializeMyrellionRooms():void
 	rooms["711"].system = "SYSTEM: SINDATHU";
 	rooms["711"].westExit = "710";
 	rooms["711"].eastExit = "712";
-	rooms["711"].northExit = "GMEREHOSPITAL"; //9999 disable for release!
+	rooms["711"].northExit = "GMEREHOSPITAL";
 	rooms["711"].moveMinutes = 2;
 	rooms["711"].runOnEnter = gildenmereStreetBonus;
 	rooms["711"].addFlag(GLOBAL.INDOOR);

@@ -130,10 +130,11 @@ public function wetraxxelLossScene(wetraHound:Boolean = false):Function
 	WETRAXXEL BRAWLER
 **********************/
 
-public function wetraxxelBrawlerHeader():void
+public function wetraxxelBrawlerHeader(nude:Boolean = false):void
 {
 	showName("WETRAXXEL\nBRAWLER");
-	showBust("WETRAXXEL");
+	if(!nude) showBust("WETRAXXEL");
+	else showBust("WETRAXXEL_NUDE");
 	author("Savin");
 }
 
@@ -183,7 +184,7 @@ public function encounterWetraxxelBrawler():void
 public function wetraxxelBrawlerPCLoss():void
 {
 	clearOutput();
-	wetraxxelBrawlerHeader();
+	wetraxxelBrawlerHeader(true);
 	showName("DEFEAT:\nWETRAXXEL");
 
 	output("You collapse, too");
@@ -214,7 +215,7 @@ public function wetraxxelBrawlerPCLoss():void
 public function wetraxxelBrawlerPCLossPinnedAndFingered():void
 {
 	clearOutput();
-	wetraxxelBrawlerHeader();
+	wetraxxelBrawlerHeader(true);
 	showName("DEFEAT:\nWETRAXXEL");
 
 	output("You wince as the wetraxxel’s large, strong hand clenches around your neck - though rather than a chokehold, the giant brawler picks you up by the scruff of your neck. You quickly find yourself pinned against the stone wall of the cavern, the weight of your body resting against an outcropping of sand-colored, gritty rock. The wetraxxel male’s hand is firmly against your neck, using his forearm to press you into the rockface. Still, despite the man’s intimidating power and size, the hold he keeps you in is completely painless.");
@@ -276,7 +277,7 @@ public function wetraxxelBrawlerPCLossPinnedAndFingered():void
 public function wetraxxelBrawlerPCLossPinnedAndFingeredII():void
 {
 	clearOutput();
-	wetraxxelBrawlerHeader();
+	wetraxxelBrawlerHeader(true);
 	showName("DEFEAT:\nWETRAXXEL");
 
 	output("Orgasm after orgasm washes over you, wracking your mind and body with pleasure and that borders on pain. You’ve lost track of time, of pleasure, of anything but moaning weakly and writhing under your captor’s ceaseless ministrations. Your body is completely limp in his hands, overwhelmed to the point of nonresponse by the vigorous finger-fucking you’ve receieved.");
@@ -313,7 +314,7 @@ public function wetraxxelBrawlerPCLossPinnedAndFingeredII():void
 public function wetraxxelBrawlerPCLossButtfucking():void
 {
 	clearOutput();
-	wetraxxelBrawlerHeader();
+	wetraxxelBrawlerHeader(true);
 	showName("DEFEAT:\nWETRAXXEL");
 
 	//PCs of any gender. Any Submission.
@@ -380,7 +381,7 @@ public function wetraxxelBrawlerPCLossButtfucking():void
 public function wetraxxelBrawlerPCLossTonguePolish():void
 {
 	clearOutput();
-	wetraxxelBrawlerHeader();
+	wetraxxelBrawlerHeader(true);
 	showName("DEFEAT:\nWETRAXXEL");
 
 	//PCs of any gender. Submission 6 or higher.
@@ -471,7 +472,7 @@ public function wetraxxelBrawlerPCVictory():void
 public function wetraxxelBrawlerPCVictoryFuckHisButt():void
 {
 	clearOutput();
-	wetraxxelBrawlerHeader();
+	wetraxxelBrawlerHeader(true);
 	showName("VICTORY:\nWETRAXXEL");
 
 	//PCs with dicks. Submission 6 or less. 
@@ -532,7 +533,7 @@ public function wetraxxelBrawlerPCVictoryFuckHisButt():void
 public function wetraxxelBrawlerPCVictoryRideHim(useVag:Boolean = false):void
 {
 	clearOutput();
-	wetraxxelBrawlerHeader();
+	wetraxxelBrawlerHeader(true);
 	showName("VICTORY:\nWETRAXXEL");
 
 	//vagOrAss. Any Submission.
@@ -607,7 +608,7 @@ public function wetraxxelBrawlerPCVictoryRideHim(useVag:Boolean = false):void
 public function wetraxxelBrawlerPCVictoryWankHim():void
 {
 	clearOutput();
-	wetraxxelBrawlerHeader();
+	wetraxxelBrawlerHeader(true);
 	showName("VICTORY:\nWETRAXXEL");
 
 	//PCs of any gender. Submission 4+.
@@ -653,7 +654,7 @@ public function wetraxxelBrawlerPCVictoryWankHim():void
 public function wetraxxelBrawlerBadEnd():void
 {
 	clearOutput();
-	wetraxxelBrawlerHeader();
+	wetraxxelBrawlerHeader(true);
 	showName("BAD END:\nWETRAXXEL");
 
 	output("<i>“You refuse to learn,”</i> the wetraxxel’s familiar, grinding voice booms throughout the caves, sending reverberations shivering up your spine. You meekly look up as the towering, ten-foot-tall bug-man approaches you with his hands firmly locked behind his back.");
