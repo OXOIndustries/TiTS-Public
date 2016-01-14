@@ -256,7 +256,16 @@ public function availableFaps(roundTwo:Boolean = false):Array
 		fap.func = tamaniBionaholeInstruction;
 		faps.push(fap);
 	}
-
+	//Use Vi's vagina, if ye fit.
+	if(pc.hasKeyItem("Vi's Vagina") && pc.hasCock() && pc.cockThatFits(chars["VI"].vaginalCapacity(0)) >= 0)
+	{
+		fap = new FapCommandContainer();
+		fap.text = "Vi's Vagina";
+		fap.ttHeader = "Vi's Vagina"
+		fap.ttBody = "Use the vagina you took from the V-Ko droid on Myrellion to sate yourself.";
+		fap.func = viPussyFapScene;
+		faps.push(fap);
+	}
 	//Special new texas shit
 	if(pc.hasItem(new GravCuffs()) && rooms[currentLocation].planet == "PLANET: NEW TEXAS" && rooms[currentLocation].hasFlag(GLOBAL.PUBLIC))
 	{
