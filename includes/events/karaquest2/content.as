@@ -1352,7 +1352,7 @@ public function kq2KhanPCVictoryLootRoom():void
 public function kq2LootLabCoat():void
 {
 	lootScreen = kq2LabCoatCheck;
-	itemCollect(new KhansLabCoat());
+	itemCollect([new KhansLabCoat()]);
 	flags["KQ2_KHAN_LOOTED_COAT"] = 1;
 }
 
@@ -1366,7 +1366,7 @@ public function kq2LabCoatCheck():void
 public function kq2LootArcCaster():void
 {
 	lootScreen = kq2ArcCasterCheck;
-	itemCollect(new KhansArcCaster());
+	itemCollect([new KhansArcCaster()]);
 	flags["KQ2_KHAN_LOOTED_CASTER"] = 1;
 }
 
@@ -1625,7 +1625,7 @@ public function kq2KhanPCDefeat():void
 	badEnd();
 }
 
-public function KQ2ShowShade():void
+public function kq2ShowShade():void
 {
 	if (flags["KQ2_KARA_WITH_PC"] == 1) showBust("KARA", "SHADE");
 	else showBust("SHADE");
@@ -1638,6 +1638,7 @@ public function KQ2ShowShade():void
 public function kq2EncounterShade():void
 {
 	clearOutput();
+	kq2ShowShade();
 
 	flags["KQ2_SHADE_ENCOUNTERED"] = 1;
 
@@ -1741,7 +1742,7 @@ public function kq2ShadePCVictory():void
 public function kq2ShadePCVictoryKaraHard():void
 {
 	clearOutput();
-	showKQ2Shade();
+	kq2ShowShade();
 
 	output("With a grunt, Shade slumps down against the wall, clutching her wounds. Her gun clatters to the ground out of reach");
 
@@ -1777,7 +1778,7 @@ public function kq2ShadePCVictoryKaraHard():void
 public function kq2ShadePCVictoryKaraNotHard():void
 {
 	clearOutput();
-	showKQ2Shade();
+	kq2ShowShade();
 
 	output("With a grunt, Shade slumps down against the wall, clutching her wounds. Her gun clatters to the ground out of reach{, and the wolf drones cease their attack, freezing in place as their master ceases to direct them}.");
 	

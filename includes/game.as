@@ -1594,7 +1594,7 @@ public function processTime(arg:int):void {
 			}
 			
 			// Followup for Dane to send coordinates to the player, should the need arise
-			if (flags["KQ2_MYRELLION_STATE"] = 1)
+			if (flags["KQ2_MYRELLION_STATE"] == 1)
 			{
 				if (flags["KQ2_DANE_COORDS_TIMER"] != undefined && flags["KQ2_DANE_COORDS_TIMER"] + 2880 < GetGameTimestamp())
 				{

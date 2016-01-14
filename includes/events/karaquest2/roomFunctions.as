@@ -1,7 +1,24 @@
+import classes.Characters.KQ2BlackVoidGrunt;
+import classes.GameData.CombatManager;
+import classes.Items.Accessories.TamWolfDamaged;
+
 public function tryProcKQ2CombatCourtyards():Boolean
 {
 	var encounters:Array = [];
 	encounters.push(kq2FightBlackVoidGrunts);
+	
+	if (flags["KQ2_FIGHT_STEPS"] == undefined) flags["KQ2_FIGHT_STEPS"] = 0;
+	flags["KQ2_FIGHT_STEPS"]++;
+	
+	if (flags["KQ2_FIGHT_STEPS"] > 4)
+	{
+		if (rand(flags["KQ2_FIGHT_STEPS"]) > 5)
+		{
+			flags["KQ2_FIGHT_STEPS"] = 0;
+			RandomInCollection(encounters)();
+			return true;
+		}
+	}
 	
 	return false;
 }
@@ -11,6 +28,19 @@ public function tryProcKQ2CombatBarracks():Boolean
 	var encounters:Array = [];
 	encounters.push(kq2FightBlackVoidGrunts);
 	
+	if (flags["KQ2_FIGHT_STEPS"] == undefined) flags["KQ2_FIGHT_STEPS"] = 0;
+	flags["KQ2_FIGHT_STEPS"]++;
+	
+	if (flags["KQ2_FIGHT_STEPS"] > 4)
+	{
+		if (rand(flags["KQ2_FIGHT_STEPS"]) > 5)
+		{
+			flags["KQ2_FIGHT_STEPS"] = 0;
+			RandomInCollection(encounters)();
+			return true;
+		}
+	}
+	
 	return false;
 }
 
@@ -18,6 +48,19 @@ public function tryProcKQ2CombatSewers():Boolean
 {
 	var encounters:Array = [];
 	encounters.push(kq2FightSecDrones);
+	
+	if (flags["KQ2_FIGHT_STEPS"] == undefined) flags["KQ2_FIGHT_STEPS"] = 0;
+	flags["KQ2_FIGHT_STEPS"]++;
+	
+	if (flags["KQ2_FIGHT_STEPS"] > 4)
+	{
+		if (rand(flags["KQ2_FIGHT_STEPS"]) > 5)
+		{
+			flags["KQ2_FIGHT_STEPS"] = 0;
+			RandomInCollection(encounters)();
+			return true;
+		}
+	}
 	
 	return false;
 }
@@ -353,14 +396,24 @@ public function kq2rfKaraOverride():void
 
 	output("\n\nYou nod and turn to face the open courtyard. Now that you’re stuck in one place, you can see several black-armored Void soldiers rushing towards you. You ready your [pc.rangedWeapon] and take cover next to the door. This is going to be rough...");
 
-	// 9999 - PC must hold out against waves of Void soldiers for 5~ rounds. On success:
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters([pc]);
+	CombatManager.setHostileCharacters([new KQ2BlackVoidGrunt(), new KQ2BlackVoidGrunt(), new KQ2BlackVoidGrunt(), new KQ2BlackVoidGrunt()]);
+	CombatManager.victoryCondition(CombatManager.SURVIVE_WAVES, 5);
+	CombatManager.victoryScene(kq2KaraHotwiresSumDoors);
+	CombatManager.lossScene(kq2CapturedByPiratesBadEnd);
+}
 
+public function kq2KaraHotwiresSumDoors():void
+{
 	output("\n\n<i>“We’re in!”</i> Kara cheers as the doors slide open. <i>“C’mon, let’s go!”</i>");
 
 	flags["KQ2_RND_ENTRANCE_OPEN"] = 4;
 	flags["KQ2_KARA_WITH_PC"] = 1;
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
+	
+	// 9999 maybe force pc inside and then close door behind.
 }
 
 public function kq2rfEnterRNDFirstTime():void
@@ -427,6 +480,13 @@ public function kq2rfYardA1():Boolean
 
 		flags["TAMWOLF_DAMAGE_UPGRADE"] = 1;
 		flags["KQ2_RF_KENNEL_USED"] = 2;
+		
+		if (pc.accessory is TamWolf) pc.accessory = new TamWolfII();
+		else
+		{
+			pc.destroyItemByType(TamWolf);
+			pc.inventory.push(new TamWolfII());
+		}
 	}
 
 	return false;
@@ -434,40 +494,59 @@ public function kq2rfYardA1():Boolean
 
 public function kq2rfBarracksInterior():Boolean
 {
-	output("The interior of the Black Void barracks looks classic military, with bunk beds arranged in rows all the way across it. Bits of armor and uniforms are scattered around, along with several knocked-out pirates from your scuffle.");
+	output("The interior of the Black Void barracks looks classic military, with bunk beds arranged in rows all the way across it. Bits of armor and uniforms are scattered around, along with several knocked-out pirates from your scuffle. There’s a door south, back towards the courtyard, and another going west labeled <i>“Security.”</i>");
 
 	if (flags["KQ2_BARRACKS_INTERIOR_ENTERED"] == undefined)
 	{
 		// force combat
 		flags["KQ2_BARRACKS_INTERIOR_ENTERED"] = 1;
+		kq2FightBlackVoidGrunts();
+		return true;
 	}
 	else
 	{
-		if (9999 == 0) // try proc combat
+		if (flags["KQ2_NO_COMBAT"] != undefined)
 		{
-
+			flags["KQ2_NO_COMBAT"] = undefined;
 		}
-		else if (flags["KQ2_TAKEN_ARMOR"] == undefined)
+		else
+		{		
+			if (flags["KQ2_FIGHT_STEPS"] == undefined) flags["KQ2_FIGHT_STEPS"] = 0;
+			flags["KQ2_FIGHT_STEPS"]++;
+		
+			if (flags["KQ2_FIGHT_STEPS"] > 4)
+			{
+				if (rand(flags["KQ2_FIGHT_STEPS"]) > 5)
+				{
+					flags["KQ2_FIGHT_STEPS"] = 0;
+					kq2FightBlackVoidGrunts();
+					return true;
+				}
+			}
+		}
+	
+		if (flags["KQ2_TAKEN_ARMOR"] == undefined)
 		{
 			output(" You can see a full suit of armor sitting on one of the bunks. Looks usable.");
-			addButton(0, "TakeArmor", kq2takeArmor);
+			addButton(0, "TakeArmor", kq2TakeEngineerArmor);
 		}
-		output(" There’s a door south, back towards the courtyard, and another going west labeled <i>“Security.”</i>");
 	}
 
 	return false;
 }
 
-public function kq2rftakeArmor():void
+public function kq2TakeEngineerArmor():void
 {
-	clearOutput();
+	lootScreen = kq2EngineerArmorCheck;
 	flags["KQ2_TAKEN_ARMOR"] = 1;
-	quickLoot(new ARMOR_TYPE()); // 9999
+	flags["KQ2_NO_COMBAT"] = 1;
+	itemCollect([new VoidPlateArmor()]);
+}
 
-	// 9999 suppress combat
-
-	clearMenu();
-	addButton(0, "Next", mainGameMenu);
+public function kq2EngineerArmorCheck():void
+{
+	if (!pc.hasItemByType(VoidPlateArmor) && !pc.armor is VoidPlateArmor) flags["KQ2_TAKEN_ARMOR"] = undefined;
+	kq2rfBarracksInterior();
 }
 
 public function kq2rfSecurityRoom():Boolean
@@ -540,9 +619,9 @@ public function kq2rfLobbyElevator():Boolean
 		output("The roof's been caved in, and a dead pirate in massive armor lies on the floor of the car. You're amazed the elevator is still functional.");
 	}
 
-	addButton(0, "Labs", currentLocation, "K2_LABELEVATOR");
+	addButton(0, "Labs", move, "K2_LABELEVATOR");
 	addDisabledButton(1, "Lobby");
-	addButton(2, "Roof", currentLocation, "K2_ROOFELEVATOR");
+	addButton(2, "Roof", move, "K2_ROOFELEVATOR");
 
 	return false;
 }
@@ -605,6 +684,7 @@ public function kq2rfKhansQuarters():Boolean
 	output("Khan’s <i>“office”</i> is as much the doctor’s quarters as it is workspace. A very large bed is shoved up against the back wall, clearly custom-made to allow the massively inflated kui-tan to actually recline without having to heft his massive nads from the floor thanks to a half-circle cut from the foot of the bed. How he managed to drag himself all the way from the lab here is another mystery altogether.");
 
 	if (flags["KQ2_WATSON_MET"] != undefined && flags["KQ2_KHANS_FILES"] == undefined) addButton(0, "Kara", kq2KhansQuartersKaraThing, undefined, "Kara", "Have Kara do... whatever it is she needs to do.");
+	return false;
 }
 
 public function kq2KhansQuartersKaraThing():void
@@ -709,7 +789,7 @@ public function kq2rfLabElevator():Boolean
 		CombatManager.newGroundCombat();
 		CombatManager.setFriendlyCharacters(f);
 		CombatManager.setHostileCharacters([new KQ2Juggernaut()]);
-		CombatManager.victoryScene();
+		CombatManager.victoryScene(kq2JuggernautPCVictory);
 		CombatManager.lossScene(kq2CapturedByPiratesBadEnd);
 
 		clearMenu();
@@ -718,8 +798,8 @@ public function kq2rfLabElevator():Boolean
 	}
 
 	addDisabledButton(0, "Labs");
-	addButton(1, "Lobby", currentLocation, "KQ2_LOBBYELEVATOR");
-	addButton(2, "Roof", currentLocation, "K2_ROOFELEVATOR");
+	addButton(1, "Lobby", move, "KQ2_LOBBYELEVATOR");
+	addButton(2, "Roof", move, "K2_ROOFELEVATOR");
 
 	return false;
 }
