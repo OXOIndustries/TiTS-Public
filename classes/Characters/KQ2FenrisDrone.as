@@ -32,14 +32,14 @@ package classes.Characters
 			
 			// Originally a clone of the zilpack
 			// Needs a few things checked.
-			this.short = "security droids";
+			this.short = "fenris drone";
 			this.originalRace = "Automaton";
 			this.a = "the ";
 			this.capitalA = "The ";
-			this.long = "";
+			this.long = "A sleek, black canine robot, its chest emblazoned with various markings identifying it as a Fenris IV assault drone.";
 			this.customDodge = "Somehow, the drones manage to skirt out of the way of your fire.";
 			this.customBlock = "The hardened exterior of the drones absorbs your attack.";
-			this.isPlural = true;
+			this.isPlural = false;
 			isLustImmune = true;
 			
 			this.meleeWeapon = new Fists();
@@ -162,7 +162,7 @@ package classes.Characters
 		
 		override public function get bustDisplay():String
 		{
-			return "DROID_SECURITY";
+			return "FENRISDRONEIV";
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
@@ -170,67 +170,42 @@ package classes.Characters
 			var target:Creature = selectTarget(hostileCreatures);
 			if (target == null) return;
 			
-			if (!target.hasStatusEffect("Blinded") && rand(5) == 0) securityDroidFlashbang(target);
-			else if (!hasStatusEffect("Blinded") && !hasStatusEffect("Stunned") && rand(3) == 0) securityDroidChargeShot(target);
-			else securityDroidLaserBarrage(target);
+			if (!target.hasStatusEffect("Blinded") && rand(5) == 0) blindAttack(target);
+			else biteAttack(target);
 		}
-		
-		private function securityDroidLaserBarrage(target:Creature):void
+	
+		private function blindAttack(target:Creature):void
 		{
-			//Laser Barrage
-			//Lots of moderate laser attacks
-			output("Several of the drones lock onto you and let loose with a hail of laser bolts.");
+			output(uniqueName + " spins around, positioning its backside toward you and hiking a leg. Oh for fuck's...");
 			
-			var attacks:int = 2 + rand(2);
-
-			for (var i:int = 0; i < attacks; i++)
+			if (rangedCombatMiss(this, target, -1, 2))
 			{
-				output("\n");
-				CombatAttacks.SingleRangedAttackImpl(this, target, true);
-			}
-		}
-		
-		private function securityDroidChargeShot(target:Creature):void
-		{
-			//Charge Shot
-			//Two moderate laser shots (as above) + one HEAVY one
-			output("Amid several other drones lighting you up, one steps to the forefront, its laser pistol glowing red-hot as it charges up a power shot!");
-			
-			for (var i:int = 0; i < 2; i++)
-			{
-				output("\n");
-				CombatAttacks.SingleRangedAttackImpl(this, target, true);		
-			}
-
-			// Heavy attack
-			if (rangedCombatMiss(this, target))
-			{
-				output(" You tumble to the side, ducking out of the way just in time to avoid a face-melting energy blast");
-				if (kGAMECLASS.silly) output(" to the, uh, face");
-				output(".");
+				output(" A spray of black oil arcs out from the drone, smearing across the wall and floor. Yuck!");
 			}
 			else
 			{
-				output(" You stagger back as the heavy laser bolt slams into your chest, burning into your defenses and leaving you smoking like a sausage!");
-
-				applyDamage(new TypeCollection( { burning: 20, electric:10 }, DamageFlag.LASER), this, target);
+				output(" A spray of black oil shoots out of " + uniqueName + " and splatters across " + (target is PlayerCharacter ? "you" : target.a + target.short) +", blinding " + (target is PlayerCharacter ? "you" : target.mfn("him", "her", "it")) + ".");
+				
+				target.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0);
 			}
 		}
 		
-		private function securityDroidFlashbang(target:Creature):void
+		private function biteAttack(target:Creature):void
 		{
-			// Flashbang
-			// Blind, possibly Stun attack
-			output("One of the drones pulls a small, cylindrical grenade from its slender steel hip and lobs it at the pair of you!");
-
-			if(aim()/2 + rand(20) + 6 > target.reflexes()/2 + 10 && !target.hasStatusEffect("Blinded"))
+			output(uniqueName + " has a clear shot at "+ (target is PlayerCharacter ? "you" : target.a + target.short) + " through the weapons fire. With a fearsome digital growl, the cyberhound launches itself at "+ (target is PlayerCharacter ? "you" : target.mfn("him", "her", "it")) +" for a savage mauling!");
+			
+			if (combatMiss(this, target))
 			{
-				target.createStatusEffect("Blinded",3,0,0,0,false,"Blind","Accuracy is reduced, and ranged attacks are far more likely to miss.",true,0);
-				output(" You aren’t able to shield yourself in time as the flash grenade goes off with a deafening BANG, leaving you <b>blinded</b>!");
+				output(" " + (target is PlayerCharacter ? "You" : "Kara") +" dodge" + (target is PlayerCharacter ? "" : "s") +" aside, letting the cyberhound's momentum carry him past. Still, the drone makes a solid landing, skidding to a halt with teeth bared.");
 			}
 			else
 			{
-				output(" You cover your eyes just in time to avoid the flash as the stun grenade goes off with a deafening BANG!");
+				output(" " + (target is PlayerCharacter ? "You" : "Kara") +" get" + (target is PlayerCharacter ? " your" : "s her") +" arm up in time to block the bite, but wince" + (target is PlayerCharacter ? "" : "s") +" in pain as the cyberhound's fangs sink into");
+				if (target is PlayerCharacter && target.isNude()) output(" you.");
+				else if (target is PlayerCharacter) output(" your [pc.armor].");
+				else output(" her arm.");
+				
+				applyDamage(damageRand(new TypeCollection( { kinetic: 15 }, DamageFlag.PENETRATING), 15), this, target, "minimal");
 			}
 		}
 	}
