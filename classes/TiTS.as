@@ -46,6 +46,7 @@
 	import classes.Characters.*;
 
 	// Items
+	import classes.Items.Armor.*;
 	import classes.Items.Protection.*
 	import classes.Items.Guns.*
 	import classes.Items.Melee.*

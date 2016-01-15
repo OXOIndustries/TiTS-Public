@@ -477,7 +477,7 @@ public function kq2rfYardA1():Boolean
 		
 		output("\n\n<i>“Good boy!”</i> you smile, scratching him between the ears.");
 		
-		output("\n\n<b>Tam-wolf now deals Electricity or Piercing damage, whichever is better.</b>");
+		output("\n\n<b>Tam-wolf now deals additional Electricity damage.</b>");
 
 		flags["TAMWOLF_DAMAGE_UPGRADE"] = 1;
 		flags["KQ2_RF_KENNEL_USED"] = 2;
