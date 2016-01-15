@@ -4,6 +4,7 @@ package classes.Items.Apparel
 	import classes.GLOBAL;
 	import classes.StringUtil;
 	import classes.GameData.TooltipManager;
+	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	
 	/**
 	 * @author Gedan
@@ -19,15 +20,15 @@ package classes.Items.Apparel
 			this.stackSize = 1;
 			this.type = GLOBAL.CLOTHING;
 			
-			this.shortName = "M. Doctor";
+			this.shortName = "LabCoat";
 			
-			this.longName = "doctor's coat & pants";
+			this.longName = "Dr Khans Lab Coat";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
-			this.description = "a white doctor's coat & pants";
+			this.description = "a lab coat once owned by a one doctor Khan";
 			
-			this.tooltip = "This outfit could be considered professional, except for the fact it lacks a shirt. It consists of a long white doctor's jacket, slacks, stethoscope and name badge. It could be buttoned up, but the omitted item seems quite intentional.";
+			this.tooltip = "A simple labcoat and little else. Pocket protector not included. Though the material seems to have a hydrophobic quality to it.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -35,12 +36,16 @@ package classes.Items.Apparel
 			
 			this.basePrice = 1000;
 			this.attack = 0;
-			this.defense = 0;
+			this.defense = 2;
 			this.shieldDefense = 0;
-			this.sexiness = 5;
+			this.sexiness = 0;
 			this.critBonus = 0;
-			this.evasion = 0;
+			this.evasion = 1;
 			this.fortification = 0;
+			
+			resistances.corrosive.resistanceValue = 20;
+			resistances.drug.resistanceValue = 20;
+			resistances.poison.resistanceValue = 20;
 			
 			this.version = this._latestVersion;
 		}

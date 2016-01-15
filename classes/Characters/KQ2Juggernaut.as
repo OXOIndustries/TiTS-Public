@@ -38,7 +38,10 @@ package classes.Characters
 			isLustImmune = true;
 			
 			this.meleeWeapon = new Fists();
-			this.rangedWeapon = new AegisLightMG();
+			
+			rangedWeapon = new AegisLightMG();
+			rangedWeapon.attack = 0; // Remove the penalty as the dudes wearing the requisite armor etc.
+			rangedWeapon.hasRandomProperties = true;
 			
 			this.shield = new JoyCoPremiumShield();
 			

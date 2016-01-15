@@ -23,36 +23,36 @@ package classes.Items.Guns
 			this.type = GLOBAL.RANGED_WEAPON;
 			
 			//Used on inventory buttons
-			this.shortName = "ArcCast.";
+			this.shortName = "Aegis MG";
 			
 			//Regular name
-			this.longName = "arc caster";
+			this.longName = "aegis light machinegun";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "an arc caster";
+			this.description = "an aegis light machinegun";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "A big, bulky hand cannon charged with a JoyCo hovercar battery, the Arc Caster projects a stream of electricity that can burn through shields, armor, and flesh with equal ease. A skilled user can cause the caster's stream to arc between multiple targets, making it a favored weapon for crowd control situations.";
-			this.attackVerb = "shock";
-			attackNoun = "electric arc"
+			tooltip = "A streamlined, clean-looking machine gun. No fancy bells or whistles, designed expressly to shoot a man dead, and shoot him very dead. There's just the slight issue that the thing looks about four times larger than it should be, what with it having been designed to be wielded by an operator encased in a suit of tank-like power armor. Large enough, almost, to act as a defensive tool.";
+			this.attackVerb = "shoot";
+			attackNoun = "shot"
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			//Information
-			this.basePrice = 6700;
-			this.attack = 2;
+			this.basePrice = 12500;
+			this.attack = -4;
 			
-			baseDamage.electric.damageValue = 14;
-			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
-			this.addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
+			baseDamage.kinetic.damageValue = 25;
+			baseDamage.addFlag(DamageFlag.BULLET);
+			addFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR);
 			
-			this.defense = 0;
+			this.defense = 2;
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;
-			this.critBonus = 3;
+			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 0;
 
