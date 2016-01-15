@@ -4,7 +4,7 @@ package classes.Characters
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.GLOBAL;
 	import classes.Items.Accessories.ACECannon;
-	import classes.Items.Apparel.VoidPlateArmor;
+	import classes.Items.Armor.VoidPlateArmor;
 	import classes.Items.Guns.MagnumPistol;
 	import classes.Items.Melee.Fists;
 	import classes.Items.Melee.ShockBlade;
