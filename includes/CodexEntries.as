@@ -17,7 +17,7 @@ public function configureCodex():void
 	
 	// This is how I'm proposing we split things up for now -- stuff things into a root category of the relevent system they belong too -- "Organic" etc might be a better long-term solution, but there'll be a lot
 	// of categories that likely won't be very full for a LONG time going down that route
-	
+
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Anatae", anataeCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Ausar", ausarCodexEntry, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Daynar", daynarCodexEntry);
@@ -37,7 +37,6 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Sionach", sionachCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Thraggen", thraggenCodexEntry,true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Varmints", varmintCodex);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "V-Ko", VKoCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Gryvain", gryvainCodexEntry, true);
 	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MHENGA, "Mhen'ga", "Cunt Snakes", cuntSnakeCodexEntry);
@@ -77,6 +76,9 @@ public function configureCodex():void
 	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Dragon’s Hoard", dragonsHordeCodexStory, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Bull’s Strength", bullsStrength, true);
+
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ROBOT, "Androids", "V-Ko", VKoCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ROBOT, "Androids", "V-Ko IVs", VKoIVsCodex);
 }
 
 public function codexHomeFunction():void
@@ -709,6 +711,40 @@ public function VKoCodex():void
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("V-Ko");
 }
+//Codex Entry - V-Ko IV
+// Place under new ‘Race/Technology’ section of codex. Also move original V-Ko codex entry there.
+public function VKoIVsCodex():void
+{
+	clearOutputCodex();
+	showBust("VI");
+	outputCodex(header("V-Ko IV Nursedroids"));
+	outputCodex("The V-Ko IV is a more expensive, advanced variant of the original V-Ko model, coded with a more organic and lively bedside manner. Another noticeable difference is the inclusion of a prehensile tail, which can be used for treatment, or as a dock for many medical apparatus.\n\n");
+	outputCodex("Several model variants were released, each designed to fit into different social settings, including versions designed to integrate into unclothed societies.\n\n");
+	outputCodex("<b>Sexes:</b> V-Ko IVs are all female in appearance, and unlike the original line of V-Ko units, have perfectly functional genitalia. This additional feature helps with the administering of stress relief.\n");
+	outputCodex("<b>Height:</b> 5’4”</i>");
+	outputCodex("\n<b>Weight:</b> 60 kg.");
+	outputCodex("\n<b>Hair:</b> V-Ko IV nursedroids are available with any length, color, or style of hair.");
+	outputCodex("\n<b>Eyes:</b> Just like their hair, their eyes can come in any color. However, they all have the cross-shaped identification patterns in the center of their ocular receptors, to stop them being confused with other kinds of synthetics.");
+	outputCodex("\n<b>Skin:</b> V-Ko IV’s have the same synthflesh as the first generation V-Ko models with self-heating functionality, nearly identical in texture to terran skin. Their skin is always a ivory white to aid in identification. Similar to the original model, their clothes are modified synthflesh designed to appear as garments.\n\n");
+	outputCodex(blockHeader("Sexual Characteristics"));
+	outputCodex("V-Ko IV’s have a marked difference from the original V-Ko line, in that they possess distinct sexual characteristics. They have distinctive breasts and either a hidden or visible synthetic vagina and anus. These are both designed to be highly controllable, pliable, and self-lubricating, allowing for intercourse with a variety of species. Not only that, their vagina can be removed for hand-held use like an onahole, or even attached as an extension to the ends of their JoyCords.");
+	outputCodex("\n\nWhile it appears on first glance that the V-Ko VI’s have a built-on outfit like previous models, they can in fact remove a seamless patch of fabric from each of their breasts, revealing perfectly functioning nipples. When the patch is removed, a V-Ko appears as if they are wearing a maternity top. V-Ko VI’s can lactate from their nipples, producing many kinds of milk for infant young.");
+	outputCodex("\n\nUnlike the mainline V-Ko Nursedroids, V-Ko IV’s use their JoyCords as charging extensions, able to plug them into the nearest power port. This functionality – along with the lactation capacity – is a carry-over from JoyCo’s Maia Series, carried over for mass production.\n\n");
+	outputCodex(blockHeader("Virtual Intelligence"));
+	outputCodex("V-Ko IV’s are Virtual Intelligences, just like previous models. However, with an additional fifty million extra lines of code programmed in, they act far more organic than their predecessors, possessing a more fluid and personable bedside manner. They still fall well short of an AI-D in terms of functionality, and possess no embedded sentience libraries.\n\n");
+	outputCodex("V-Ko IV’s are incredibly honest by nature. They are functionally incapable of lying, completely lacking the programming that allows them to do so. They can, however, still keep patient confidentiality.\n\n");
+	outputCodex(blockHeader("Abilities"));
+	outputCodex("Just like the original models, V-Ko IV’s are designed to provide low-cost medical healthcare in places where proper hospitals are in short supply. They possess the same miniature medicine producing machinery inside their torsos, acting as a portable mini-hospital.");
+	outputCodex("\n\nNoticeably different, however, is their ability to deliver medical treatment through a range of means, from medicine-delivering kisses to dermal-penetrating aerosol blasts from their tail-tips. This functionality allows them to give treatment in a range of relaxing or pleasurable methods, or even when pinning the patient down with their arms and legs.");
+	outputCodex("\n\nCustomer feedback surveys have shown users are overwhelmingly pleased with the new series’s bedside manner.");
+	outputCodex("\n\nAlso different is the sexual relief functionality programmed into the V-Ko IV’s. These programs were cut and carried over from other profitable lines such as the Maia Series VI’s, saving on development time and money.\n\n");
+	outputCodex(blockHeader("Custom Modifications"));
+	outputCodex("As with most of their product lines, JoyCo allows for a number of custom modifications to the V-Ko IV’s. Many well-off users purchase these models to rebuild from scratch, particularly as aphrodisiac-dispensing fuck-toys.");
+	outputCodex("\n\nThere are reports of V-Ko IV’s being used in illegal industries to administer mind-controlling drugs to slaves or junkies, taking advantage of their affordable cost and drug-making functions.");
+	outputCodex("\n\nThe most popular modification to make to a V-Ko IV is to install a pleasure-reward interface, allowing a unit to feel a digital approximation of sexual pleasure during intercourse. This modification is not officially sanctioned by JoyCo, as repeated use of this interface may corrupt a VI’s subroutines.");
+	outputCodex("\n\n");
+	CodexManager.viewedEntry("V-Ko IVs");
+}
 public function gryvainCodexEntry():void 
 {
 	clearOutputCodex();
@@ -833,7 +869,7 @@ public function mimbraneCodexEntry():void
 	outputCodex("\n<b>Eyes:</b> Two tiny eyes protected by a thick portion of dermis that can act as eyelids. Round with bright sclera, thin redish iris, with average sized pupils. The eyeballs can vary in size, sometimes changing in size as the Mimbrane integrates into a host.");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Senses"));
-	outputCodex("Mimbrane feature small fleshy mouths below and between their eyes that protrude slightly from their form, typically thicker than the rest of the creature. Their mouth is used to breathe, ingest liquids and communicate as most creatures, but if the parasite is able to latch onto a host organ with an orifice, it will ditch its normal mouth in favor of utilizing the newfound hole as its own. Without a properly sized orifice to borrow, Mimbrane will maintain their normal mouths, anxious to pass them off as small lumps with no seam. Information on how the creature feeds and breathes can be found below.\n\nA Mimbrane’s most important organ is its skin. Its normal appearance is a light red or pink, lighter in color the thinner the creature stretches itself and more vibrant the more dense it is. Mimbrane are smooth and free of any discolorations or imperfections. They can appear as thin square sheets, slightly moist and glistening as they glide through the air or crawl along the ground. At their largest sizes, Mimbrane are incredibly lithe and become somewhat translucent.\n\nThe parasite is able to prorate its sparse mass in order to control its surface area, enabling it to not only encase its prey, but also allowing it to fly and glide with relative ease. The creature’s more well-known trait is its ability to transform and alter its epidermis, mimicking its host’s every detail. More information on this feature can be found below.");
+	outputCodex("Mimbrane feature small fleshy mouths below and between their eyes that protrude slightly from their form, typically thicker than the rest of the creature. Their mouth is used to breathe, ingest liquids and communicate as most creatures, but if the parasite is able to latch onto a host organ with an orifice, it will ditch its normal mouth in favor of utilizing the newfound hole as its own. Without a properly sized orifice to borrow, Mimbrane will maintain their normal mouths, anxious to pass them off as small lumps with no seam. Information on how the creature feeds and breathes can be found below.\n\nA Mimbrane’s most important organ is its skin. Its normal appearance is a light red or pink, lighter in color the thinner the creature stretches itself and more vibrant the more dense it is. Mimbrane are smooth and free of any discolorations or imperfections. They can appear as thin square sheets, slightly moist and glistening as they glide through the air or crawl along the ground. At their largest sizes, Mimbrane are incredibly lithe and become somewhat translucent.\n\nThe parasite is able to distribute its sparse mass in order to control its surface area, enabling it to not only encase its prey, but also allowing it to fly and glide with relative ease. The creature’s more well-known trait is its ability to transform and alter its epidermis, mimicking its host’s every detail. More information on this feature can be found below.");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Armor"));
 	outputCodex("Due to their lean nature, mimbranes rely more on their ability to dodge and conform to any shapes in order to help defend themselves. Sharp blades and projectiles that actually do make contact easily injure the creature. Blunt weapons are normally ineffective. A Mimbrane’s primary offense and defense lie within its lust-inducing oil and spit, explained further below."); // "Explained in section [<random numbershit to look like a reference>]"?

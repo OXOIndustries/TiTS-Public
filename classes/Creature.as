@@ -4050,8 +4050,8 @@ package classes {
 				if (beardLength > 0.001 && beardLength <= 0.125) return RandomInCollection("stubble", "five o’clock shadow", "beard");
 				if (rand(4) == 0)
 				{
-					if (beardLength < 1) adjectives = RandomInCollection("trim", "short");
-					else adjectives = [num2Text(Math.round(beardLength)) + "-inch long"];
+					if (beardLength < 1) adjectives.push("trim", "short");
+					else adjectives.push(num2Text(Math.round(beardLength)) + "-inch long");
 					if (beardLength >= 6) adjectives.push("lengthy", "long");
 				}
 				if (adjectives.length > 0 && rand(2) == 0) description += RandomInCollection(adjectives) + " ";

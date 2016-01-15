@@ -1,4 +1,5 @@
 import classes.Items.Accessories.TamWolf;
+import classes.Items.Guns.KhansArcCaster;
 /* FLAGDOC
 
 KQ2_QUEST_OFFER 		-- GameTimestamp that the quest was offered at
@@ -25,7 +26,7 @@ KQ2_RF_KENNEL_USED		-- 0/undefined, unused
 						-- 2 upgraded regular tamwolf
 TAMWOLF_DAMAGE_UPGRADE	-- 0/undefined, current damage for undamaged tamwolf
 						-- 1 upgraded/adaptive damage for tamwolf (TODO)
-KQ2_WATSTON_MET
+KQ2_WATSON_MET
 KQ2_DEFEATED_ENGINEER
 KQ2_DEFEATED_JUGGERNAUT
 KQ2_DEFEATED_KHAN
@@ -395,7 +396,7 @@ public function kq2ThisPlace():void
 	output("\n\nKara laughs. <i>“Oh, no. No. This was going to be used as a smuggling base right after the Rushers discovered Myrellion, before the Damocles Fleet arrived in orbit. After that, well, it’s hard enough to move goods on the down-low without a jumpy Confederate fleet next to your destination. The place was abandoned, and I");
 	if (flags["KQ_F_TALK"] != undefined) output(" decided to use it as a meet point. No chance of accidental pirate encounters here.");
 	else output(" found it! Pretty handy, hmm?");
-	output("”</i>}");
+	output("”</i>");
 
 	output("\n\n<i>“Definitely useful,”</i> you muse. <i>“Is there anything more to this place? Other than the dock, that is.”</i>");
 
@@ -930,11 +931,16 @@ public function kq2EnterEngineersRoom():void
 
 		output("You step into the security room, and immediately are greeted by the sound of low, metallic grating that’s almost like growling. You take a step back as a huge, black canine robot stalks out of the shadows, its teeth bared. Behind it stands a small, feminine figure - not quite four feet in height, with svelte curves that are muted by a ballistic breastplate that’s much too bulky for its user. She’s nearly naked aside from the plate and a pair of high-heeled boots... and a jockstrap that’s barely holding back a pair of oversized testicles, out of which bobs a six-inch canine cock. The diminutive creature scowls at you, hands on her hips, the pair of bunny-ears atop her head lying flat back against her scalp, showing off a pair of demonic-looking horns that sprout out from her orange hair.");
 		
-		if (flags["ENCOUNTERED_PARASITIC_LAPINARA"] != undefined) output("\n\nIt takes you a good moment to realize the creature’s a lapinara, clearly unlike those you’ve seen before!");
-		else output(" It takes longer than usual for your Codex to identify the creature as a lapinara, of the non-parasitic variety.");
+		//9999
+		if (CodexManager.entryUnlocked("Lapinara")) output("\n\nIt takes you a good moment to realize the creature’s a lapinara, clearly unlike those you’ve seen before!");
+		else
+		{
+			output(" It takes longer than usual for your Codex to identify the creature as a lapinara, of the non-parasitic variety.");
+			CodexManager.unlockEntry("Lapinara");
+		}
 		
 		output("\n\n<i>“How did you get past all the guards!?”</i> she growls, staring");
-		if (pc.tallness > 50) output(" up at you");
+		if (pc.tallness >= 52) output(" up at you");
 		else output(" straight at you");
 		output(" with a pair of huge green eyes. <i>“Get out of here, or my pet");
 		if (flags["KQ2_ENGINEER_NUM_DRONES"] > 1) output("s");
@@ -1045,8 +1051,8 @@ public function kq2GibEngyDirtyMag():void
 	output("\n\n<i>“So. Keycard?”</i>");
 	
 	output("\n\nShe looks up, startled. <i>“Uh. Yeah, sure. Card, whatever,”</i> she says, grabbing a card off of the desk behind her and shoving it into your hand. <i>“Now fuck off.");
-	//{if convinced Steph to do porn: (this is cut now isn't it?)
-	//if (9999 == 0) output(" I’ve been waiting for the first issue of </i>Galactic Fucktress<i> for ages!");
+	//{if convinced Steph to do porn:
+	if (flags["STEPH_WORK_CHOICE"] == STEPH_WORK_PORNSTAR) output(" I’ve been waiting for the first issue of </i>Galactic Fucktress<i> for ages!");
 	output("”</i>");
 	
 	output("\n\nSomewhat amazed that actually worked, you take the keycard and leave the lapinara engineer to her business.");
@@ -1352,29 +1358,45 @@ public function kq2KhanPCVictoryLootRoom():void
 
 public function kq2LootLabCoat():void
 {
+	flags["KQ2_KHAN_LOOTED_COAT"] = 1;
 	lootScreen = kq2LabCoatCheck;
 	itemCollect([new KhansLabCoat()]);
-	flags["KQ2_KHAN_LOOTED_COAT"] = 1;
 }
 
 // Cheesy hack to see what the player did with the item. If they discarded it, clear the flag that said they looted it.
 public function kq2LabCoatCheck():void
 {
-	if (!pc.hasItemByType(KhansLabCoat) && !pc.armor is KhansLabCoat) flags["KQ2_KHAN_LOOTED_COAT"] = undefined;
+	if (pc.armor is KhansLabCoat || pc.hasItemByType(KhansLabCoat))
+	{
 	kq2KhanVictoryMenu();
+		return;
+	}
+	clearOutput();
+	output("You put the coat back where you found it.");
+	flags["KQ2_KHAN_LOOTED_COAT"] = undefined;
+	clearMenu();
+	addButton(0, "Next", kq2KhanVictoryMenu);
 }
 
 public function kq2LootArcCaster():void
 {
-	lootScreen = kq2ArcCasterCheck;
-	itemCollect([new KhansArcCaster()]);
 	flags["KQ2_KHAN_LOOTED_CASTER"] = 1;
+	lootScreen = kq2LootArcCasterCheck;
+	itemCollect([new KhansArcCaster()]);
 }
 
-public function kq2ArcCasterCheck():void
+public function kq2LootArcCasterCheck():void
 {
-	if (!pc.hasItemByType(KhansArcCaster) && !pc.rangedWeapon is KhansArcCaster) flags["KQ2_KHAN_LOOTED_CASTER"] = undefined;
+	if (pc.rangedWeapon is KhansArcCaster || pc.hasItemByType(KhansArcCaster))
+	{
 	kq2KhanVictoryMenu();
+		return;
+	}
+	clearOutput();
+	output("You put the gun back where you found it.");
+	flags["KQ2_KHAN_LOOTED_CASTER"] = undefined;
+	clearMenu();
+	addButton(0, "Next", kq2KhanVictoryMenu);
 }
 
 public function kq2KhanLeave():void
@@ -1781,7 +1803,22 @@ public function kq2ShadePCVictoryKaraNotHard():void
 	clearOutput();
 	kq2ShowShade();
 
-	output("With a grunt, Shade slumps down against the wall, clutching her wounds. Her gun clatters to the ground out of reach{, and the wolf drones cease their attack, freezing in place as their master ceases to direct them}.");
+	output("With a grunt, Shade slumps down against the wall, clutching her wounds. Her gun clatters to the ground out of reach");
+
+	var hostiles:Array = CombatManager.getHostileCharacters();
+	var numDronesAlive:int = 0;
+
+	for (var i:int = 0; i < hostiles.length; i++)
+	{
+		if (hostiles is KQ2FenrisDrone && !hostiles[i].isDefeated()) numDronesAlive++;
+	}
+
+	if (numDronesAlive > 0)
+	{
+		output(", and the wolf drone");
+		if (numDronesAlive > 1) output("s cease their attack, freezing in place as their master ceases to direct them.");
+		else output(" ceases its attack, freezing in place as its master ceases to direct it.")
+	}
 	
 	output("\n\n<i>“Ah, fuck,”</i> Shade groans, sitting back against the wall. <i>“I’m getting too old for this shit.”</i>");
 	

@@ -773,7 +773,7 @@ public function DeepCavesBonus():Boolean
 	
 	var choices:Array = new Array();
 	//If walked far enough w/o an encounter
-	if((pc.accessory is MuskRepel && flags["NO_MANS_STEP"] >= 10 && rand(4) == 0) || (!(pc.accessory is MuskRepel) && flags["NO_MANS_STEP"] >= 5 && rand(4) == 0)) {
+	if((pc.accessory is MuskRepel && flags["NO_MANS_STEP"] >= 10 && rand(4) == 0) || (pc.accessory is MuskLure && flags["NO_MANS_STEP"] >= 3 && rand(2) == 0) || (!(pc.accessory is MuskRepel) && flags["NO_MANS_STEP"] >= 5 && rand(4) == 0)) {
 		//Reset step counter
 		flags["NO_MANS_STEP"] = 0;
 		

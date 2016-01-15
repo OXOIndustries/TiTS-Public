@@ -1,0 +1,151 @@
+﻿package classes.Items.Recovery 
+{
+	import classes.Creature;
+	import classes.StringUtil;
+	import classes.ItemSlotClass;
+	import classes.GLOBAL;
+	import classes.GameData.TooltipManager;
+	import classes.kGAMECLASS;
+	import classes.Engine.Combat.inCombat;
+	
+	public class ShieldBoosterMkII extends ItemSlotClass
+	{
+		public function ShieldBoosterMkII()
+		{
+			this._latestVersion = 1;
+			
+			this.quantity = 1;
+			this.stackSize = 5;
+			this.type = GLOBAL.POTION;
+			
+			this.shortName = "S.Boost M2";
+			
+			this.longName = "single use, mark II shield booster";
+			
+			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
+			
+			this.description = "a single use, mark II shield booster";
+			
+			this.tooltip = "This single use shield booster can be used to replenish up to 100 points of shielding all at once. The only downside is that subjecting a shield generator to such large power surges in quick succession would damage or destroy it. <b>You can only use shield boosters once per fight!</b>";
+			
+			TooltipManager.addTooltip(this.shortName, this.tooltip);
+			
+			this.attackVerb = "";
+			
+			this.basePrice = 400;
+			this.attack = 0;
+			this.defense = 0;
+			this.shieldDefense = 0;
+			this.sexiness = 0;
+			this.critBonus = 0;
+			this.evasion = 0;
+			this.fortification = 0;
+			
+			this.combatUsable = true;
+			this.targetsSelf = true;
+			
+			this.version = this._latestVersion;
+		}
+		
+		override public function useFunction(targetCreature:Creature, usingCreature:Creature = null):Boolean
+		{
+			if(targetCreature.shield.shortName == "")
+			{
+				if(!kGAMECLASS.infiniteItems()) quantity++;
+				if (targetCreature == kGAMECLASS.pc)
+				{
+					kGAMECLASS.clearOutput();
+					kGAMECLASS.output("You need to have a shield generator in order to use a shield booster.\n");
+				}
+				else
+				{
+					if(inCombat()) kGAMECLASS.output("\n");
+					else kGAMECLASS.clearOutput();
+					kGAMECLASS.output(targetCreature.capitalA + targetCreature.short + " can't use a shield booster without a shield generator!\n");
+				}
+				return false;
+			}
+			else if (targetCreature.shields() >= targetCreature.shieldsMax())
+			{
+				if(!kGAMECLASS.infiniteItems()) quantity++;
+				if (targetCreature == kGAMECLASS.pc)
+				{
+					kGAMECLASS.clearOutput();
+					kGAMECLASS.output("You probably shouldn't use a shield booster while having full shields... You might overload something.\n");
+				}
+				else
+				{
+					if(inCombat()) kGAMECLASS.output("\n");
+					else kGAMECLASS.clearOutput();
+					kGAMECLASS.output(targetCreature.capitalA + targetCreature.short + " pulls out a shield booster, but quickly puts it back.\n");
+				}
+				return false;
+			}
+			else if (targetCreature.hasStatusEffect("Shield Boosted"))
+			{
+				if(!kGAMECLASS.infiniteItems()) quantity++;
+				if (targetCreature == kGAMECLASS.pc)
+				{
+					kGAMECLASS.clearOutput();
+					kGAMECLASS.output("Using another shield booster would probably destroy your shield generator.\n");
+				}
+				else
+				{
+					if(inCombat()) kGAMECLASS.output("\n");
+					else kGAMECLASS.clearOutput();
+					kGAMECLASS.output(targetCreature.capitalA + targetCreature.short + " cannot use another shield booster--doing so will risk destroying " + targetCreature.mfn("his","her","its") + " shield generator.\n");
+				}
+				return false;
+			}
+			else
+			{
+				// Player used an item
+				if (targetCreature == kGAMECLASS.pc)
+				{
+					kGAMECLASS.clearOutput();
+					playerUsed(targetCreature, usingCreature);
+				}
+				// Enemy used an item on the PC
+				else if (targetCreature != kGAMECLASS.pc && usingCreature != kGAMECLASS.pc)
+				{
+					if(inCombat()) kGAMECLASS.output("\n");
+					else kGAMECLASS.clearOutput();
+					npcUsed(targetCreature, usingCreature);
+				}
+				else
+				{
+					throw new Error("Don't know how we got here. Exception for debugging.");
+				}
+			}			
+			return false;
+		}
+		
+		public function playerUsed(targetCreature:Creature, usingCreature:Creature):void
+		{
+			kGAMECLASS.output("You press the booster to the charge port on your shield generator and hear the telltale hum of rapidly discharging electrical energy. After a second, the booster beeps and blinks red before dying completely.");
+			var healing:int = 100;
+			if(targetCreature.shields() + healing > targetCreature.shieldsMax())
+			{
+				healing = targetCreature.shieldsMax() - targetCreature.shields();
+			}
+			if (inCombat()) targetCreature.createStatusEffect("Shield Boosted", 0, 0, 0, 0, true, "", "", true, 0);
+			targetCreature.shields(healing);
+			if(healing > 0) kGAMECLASS.output(" (<b>+" + healing + " Shields</b>)");
+			kGAMECLASS.output("\n");
+		}
+		
+		public function npcUsed(targetCreature:Creature, usingCreature:Creature):void
+		{
+			kGAMECLASS.output(usingCreature.capitalA + usingCreature.short + " uses a shield booster!");
+			var healing:int = 40;
+			if(targetCreature.shields() + healing > targetCreature.shieldsMax())
+			{
+				healing = targetCreature.shieldsMax() - targetCreature.shields();
+			}
+			if (inCombat()) targetCreature.createStatusEffect("Shield Boosted", 0, 0, 0, 0, true, "", "", true, 0);
+			targetCreature.shields(healing);
+			if(healing > 0) kGAMECLASS.output(" (<b>+" + healing + " Shields</b>)");
+			kGAMECLASS.output("\n");
+		}
+	}
+}
