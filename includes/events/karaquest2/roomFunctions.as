@@ -1,19 +1,68 @@
+import classes.Characters.KQ2BlackVoidGrunt;
+import classes.GameData.CombatManager;
+import classes.Items.Accessories.TamWolfDamaged;
+
 public function tryProcKQ2CombatCourtyards():Boolean
 {
 	var encounters:Array = [];
 	encounters.push(kq2FightBlackVoidGrunts);
+	
+	if (flags["KQ2_FIGHT_STEPS"] == undefined) flags["KQ2_FIGHT_STEPS"] = 0;
+	flags["KQ2_FIGHT_STEPS"]++;
+	
+	if (flags["KQ2_FIGHT_STEPS"] > 4)
+	{
+		if (rand(flags["KQ2_FIGHT_STEPS"]) > 5)
+		{
+			flags["KQ2_FIGHT_STEPS"] = 0;
+			RandomInCollection(encounters)();
+			return true;
+		}
+	}
+	
+	return false;
 }
 
 public function tryProcKQ2CombatBarracks():Boolean
 {
 	var encounters:Array = [];
 	encounters.push(kq2FightBlackVoidGrunts);
+	
+	if (flags["KQ2_FIGHT_STEPS"] == undefined) flags["KQ2_FIGHT_STEPS"] = 0;
+	flags["KQ2_FIGHT_STEPS"]++;
+	
+	if (flags["KQ2_FIGHT_STEPS"] > 4)
+	{
+		if (rand(flags["KQ2_FIGHT_STEPS"]) > 5)
+		{
+			flags["KQ2_FIGHT_STEPS"] = 0;
+			RandomInCollection(encounters)();
+			return true;
+		}
+	}
+	
+	return false;
 }
 
 public function tryProcKQ2CombatSewers():Boolean
 {
 	var encounters:Array = [];
 	encounters.push(kq2FightSecDrones);
+	
+	if (flags["KQ2_FIGHT_STEPS"] == undefined) flags["KQ2_FIGHT_STEPS"] = 0;
+	flags["KQ2_FIGHT_STEPS"]++;
+	
+	if (flags["KQ2_FIGHT_STEPS"] > 4)
+	{
+		if (rand(flags["KQ2_FIGHT_STEPS"]) > 5)
+		{
+			flags["KQ2_FIGHT_STEPS"] = 0;
+			RandomInCollection(encounters)();
+			return true;
+		}
+	}
+	
+	return false;
 }
 
 public function kq2FightBlackVoidGrunts():void
@@ -30,12 +79,23 @@ public function kq2FightBlackVoidGrunts():void
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyCharacters(f);
 	CombatManager.setHostileCharacters(h);
-	CombatManager.victoryScene();
+	CombatManager.victoryScene(kq2MooksVictory);
 	CombatManager.lossScene(kq2CapturedByPiratesBadEnd);
 	CombatManager.displayLocation("VOID GRUNTS");
 
 	clearMenu();
 	addButton(0, "Next", CombatManager.beginCombat);
+}
+
+public function kq2MooksVictory():void
+{
+	clearOutput();
+	
+	output("The pirates collapse, unable to put up much more of a fight after what you've done to them. You kick their weapons away and tie them up to make sure you don't have any surprises when they've recovered.");
+	
+	// maybe sneaky loot a securemp/hammer carbine one time across all fights with them?
+	
+	CombatManager.genericVictory();
 }
 
 public function kq2FightSecDrones():void
@@ -44,7 +104,7 @@ public function kq2FightSecDrones():void
 	output("\n\nKara puts a hand up to stop you. <i>“Something’s coming... take cover!”</i>");
 
 	output("\n\nYou move quickly - but not quickly enough. Several small, ball-like drones zip out of the darkness, hovering a few feet off the ground.");
-	if (9999 == 0) output(" They look almost exactly like the drone you put together just after your Dad died, still tucked away in your pack.");
+	if (pc.hasPerk("Attack Drone")) output(" They look almost exactly like the drone you put together just after your Dad died, still tucked away in your pack.");
 	output(" The drones zip towards you, powering up stun-guns.");
 
 	var f:Array = [pc];
@@ -56,24 +116,35 @@ public function kq2FightSecDrones():void
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyCharacters(f);
 	CombatManager.setHostileCharacters(h);
-	CombatManager.victoryScene();
+	CombatManager.victoryScene(kq2DroneVictory);
 	CombatManager.lossScene(kq2CapturedByPiratesBadEnd);
 	CombatManager.displayLocation("SEC. DROIDS");
+	CombatManager.encounterText("You're fighting a flight of small scout drones. Each drone is about the size of your fist, just a ball of metal built around a hover-platform and a tiny zap-gun. They're quick moving, though, and speed around you in a constant hail of electrical discharge.");
 
 	clearMenu();
 	addButton(0, "Next", CombatManager.beginCombat);
+}
+
+public function kq2DroneVictory():void
+{
+	clearOutput();
+	output("The last of the drones pops in a hail of sparks and goes crashing to the ground. Kara twirls her plasma gun around her finger and blows a wisp of smoke from the barrel.");
+
+	output("<i>“C’mon.”</i> she says, holstering it. <i>“They’ve probably alerted base security. We need to hurry!”</i>");
+	
+	CombatManager.genericVictory();
 }
 
 public function kq2rfRappelPoint():Boolean
 {
 	output("<i>“Alright, we’ve got a good vantage on the base from here,”</i> Kara says, taking a knee on the cliff side. She taps a finger to her temple, and you can see a slight glimmer in her eyes, shifting almost imperceptibly. <i>“I see a few guards on the perimeter. Electric fence surrounding the base, a couple of machine-gun nests at the gate.");
 	if (kara.isNice()) output(" Good thing we’ve got another way in.");
-	else if (kara.isMischevious()) output(" Definitely don’t want to go knocking.");
+	else if (kara.isMischievous()) output(" Definitely don’t want to go knocking.");
 	else output(" They’ll never know what hit ‘em.”</i>");
 
 	output("\n\nKara stands and points down, almost straight to the base of the plateau. <i>“Sewer entrance is just below us. Give me the go, and I’ll shoot a grappling line down.”</i>");
 
-	addButton(0, "Rappel", kq2RappelIn, undefined "Rappel", "Do it.");
+	addButton(0, "Rappel", kq2RappelIn, undefined, "Rappel", "Do it.");
 
 	return false;
 }
@@ -319,21 +390,31 @@ public function kq2rfKaraOverride():void
 	{
 		output("You wave at the radio tower, trying to signal Kara to come over. She’s back with you momentarily, running across the courtyard as quick as she can.");
 
-		if (kara.isMischevious()) output("\n\n<i>“Miss me?”</i> she grins, giving you a playful wink.");
+		if (kara.isMischievous()) output("\n\n<i>“Miss me?”</i> she grins, giving you a playful wink.");
 	}
 
 	output("\n\n<i>“Alright, cover me,”</i> Kara says, taking a knee next to the computer and pulling a wire from her wrist device to the door panel. <i>“This’ll take a minute. Make sure I don’t get shot in the back, alright?”</i>");
 
 	output("\n\nYou nod and turn to face the open courtyard. Now that you’re stuck in one place, you can see several black-armored Void soldiers rushing towards you. You ready your [pc.rangedWeapon] and take cover next to the door. This is going to be rough...");
 
-	// 9999 - PC must hold out against waves of Void soldiers for 5~ rounds. On success:
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters([pc]);
+	CombatManager.setHostileCharacters([new KQ2BlackVoidGrunt(), new KQ2BlackVoidGrunt(), new KQ2BlackVoidGrunt(), new KQ2BlackVoidGrunt()]);
+	CombatManager.victoryCondition(CombatManager.SURVIVE_WAVES, 5);
+	CombatManager.victoryScene(kq2KaraHotwiresSumDoors);
+	CombatManager.lossScene(kq2CapturedByPiratesBadEnd);
+}
 
+public function kq2KaraHotwiresSumDoors():void
+{
 	output("\n\n<i>“We’re in!”</i> Kara cheers as the doors slide open. <i>“C’mon, let’s go!”</i>");
 
 	flags["KQ2_RND_ENTRANCE_OPEN"] = 4;
 	flags["KQ2_KARA_WITH_PC"] = 1;
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
+	
+	// 9999 maybe force pc inside and then close door behind.
 }
 
 public function kq2rfEnterRNDFirstTime():void
@@ -344,7 +425,7 @@ public function kq2rfEnterRNDFirstTime():void
 	{
 		output("You wave at the radio tower, trying to signal Kara to come over. She’s back with you momentarily, running across the courtyard as quick as she can.");
 
-		if (kara.isMischevious()) output("\n\n<i>“Miss me?”</i> she grins, giving you a playful wink. <i>“Alright, we’re in! God job, [pc.name]!”</i>");
+		if (kara.isMischievous()) output("\n\n<i>“Miss me?”</i> she grins, giving you a playful wink. <i>“Alright, we’re in! God job, [pc.name]!”</i>");
 	}
 	else
 	{
@@ -362,7 +443,7 @@ public function kq2rfEnterRNDFirstTime():void
 	addButton(0, "Next", mainGameMenu);
 }
 
-public function kq2rfYardA1():void
+public function kq2rfYardA1():Boolean
 {
 	output("The courtyard of the base is wide and open, with little in the way of cover other than a few supply crates or ID-locked vehicles parked around the entrance. You can see a barracks to the east, the door to the research facility to the south-east, and a radio tower to the south-east.");
 
@@ -382,7 +463,7 @@ public function kq2rfYardA1():void
 		if (pc.accessory is TamWolfDamaged) pc.accessory = new TamWolf();
 		else
 		{
-			pc.removeItemByType(TamWolfDamaged);
+			pc.destroyItemByType(TamWolfDamaged);
 			pc.inventory.push(new TamWolf());
 		}
 
@@ -396,10 +477,17 @@ public function kq2rfYardA1():void
 		
 		output("\n\n<i>“Good boy!”</i> you smile, scratching him between the ears.");
 		
-		output("\n\n<b>Tam-wolf now deals Electricity or Piercing damage, whichever is better.</b>");
+		output("\n\n<b>Tam-wolf now deals additional Electricity damage.</b>");
 
 		flags["TAMWOLF_DAMAGE_UPGRADE"] = 1;
 		flags["KQ2_RF_KENNEL_USED"] = 2;
+		
+		if (pc.accessory is TamWolf) pc.accessory = new TamWolfII();
+		else
+		{
+			pc.destroyItemByType(TamWolf);
+			pc.inventory.push(new TamWolfII());
+		}
 	}
 
 	return false;
@@ -407,40 +495,59 @@ public function kq2rfYardA1():void
 
 public function kq2rfBarracksInterior():Boolean
 {
-	output("The interior of the Black Void barracks looks classic military, with bunk beds arranged in rows all the way across it. Bits of armor and uniforms are scattered around, along with several knocked-out pirates from your scuffle.");
+	output("The interior of the Black Void barracks looks classic military, with bunk beds arranged in rows all the way across it. Bits of armor and uniforms are scattered around, along with several knocked-out pirates from your scuffle. There’s a door south, back towards the courtyard, and another going west labeled <i>“Security.”</i>");
 
 	if (flags["KQ2_BARRACKS_INTERIOR_ENTERED"] == undefined)
 	{
 		// force combat
 		flags["KQ2_BARRACKS_INTERIOR_ENTERED"] = 1;
+		kq2FightBlackVoidGrunts();
+		return true;
 	}
 	else
 	{
-		if (9999 == 0) // try proc combat
+		if (flags["KQ2_NO_COMBAT"] != undefined)
 		{
-
+			flags["KQ2_NO_COMBAT"] = undefined;
 		}
-		else if (flags["KQ2_TAKEN_ARMOR"] == undefined)
+		else
+		{		
+			if (flags["KQ2_FIGHT_STEPS"] == undefined) flags["KQ2_FIGHT_STEPS"] = 0;
+			flags["KQ2_FIGHT_STEPS"]++;
+		
+			if (flags["KQ2_FIGHT_STEPS"] > 4)
+			{
+				if (rand(flags["KQ2_FIGHT_STEPS"]) > 5)
+				{
+					flags["KQ2_FIGHT_STEPS"] = 0;
+					kq2FightBlackVoidGrunts();
+					return true;
+				}
+			}
+		}
+	
+		if (flags["KQ2_TAKEN_ARMOR"] == undefined)
 		{
 			output(" You can see a full suit of armor sitting on one of the bunks. Looks usable.");
-			addButton(0, "TakeArmor", kq2takeArmor);
+			addButton(0, "TakeArmor", kq2TakeEngineerArmor);
 		}
-		output(" There’s a door south, back towards the courtyard, and another going west labeled <i>“Security.”</i>");
 	}
 
 	return false;
 }
 
-public function kq2rftakeArmor():void
+public function kq2TakeEngineerArmor():void
 {
-	clearOutput();
+	lootScreen = kq2EngineerArmorCheck;
 	flags["KQ2_TAKEN_ARMOR"] = 1;
-	quickLoot(new ARMOR_TYPE()); // 9999
+	flags["KQ2_NO_COMBAT"] = 1;
+	itemCollect([new VoidPlateArmor()]);
+}
 
-	// 9999 suppress combat
-
-	clearMenu();
-	addButton(0, "Next", mainGameMenu);
+public function kq2EngineerArmorCheck():void
+{
+	if (!pc.hasItemByType(VoidPlateArmor) && !pc.armor is VoidPlateArmor) flags["KQ2_TAKEN_ARMOR"] = undefined;
+	kq2rfBarracksInterior();
 }
 
 public function kq2rfSecurityRoom():Boolean
@@ -513,9 +620,9 @@ public function kq2rfLobbyElevator():Boolean
 		output("The roof's been caved in, and a dead pirate in massive armor lies on the floor of the car. You're amazed the elevator is still functional.");
 	}
 
-	addButton(0, "Labs", currentLocation, "K2_LABELEVATOR");
+	addButton(0, "Labs", move, "K2_LABELEVATOR");
 	addDisabledButton(1, "Lobby");
-	addButton(2, "Roof", currentLocation, "K2_ROOFELEVATOR");
+	addButton(2, "Roof", move, "K2_ROOFELEVATOR");
 
 	return false;
 }
@@ -578,6 +685,7 @@ public function kq2rfKhansQuarters():Boolean
 	output("Khan’s <i>“office”</i> is as much the doctor’s quarters as it is workspace. A very large bed is shoved up against the back wall, clearly custom-made to allow the massively inflated kui-tan to actually recline without having to heft his massive nads from the floor thanks to a half-circle cut from the foot of the bed. How he managed to drag himself all the way from the lab here is another mystery altogether.");
 
 	if (flags["KQ2_WATSON_MET"] != undefined && flags["KQ2_KHANS_FILES"] == undefined) addButton(0, "Kara", kq2KhansQuartersKaraThing, undefined, "Kara", "Have Kara do... whatever it is she needs to do.");
+	return false;
 }
 
 public function kq2KhansQuartersKaraThing():void
@@ -652,7 +760,7 @@ public function kq2rfRoof1():Boolean
 	return false;
 }
 
-public function kq2rfLabElevator():void
+public function kq2rfLabElevator():Boolean
 {
 	output("The elevator connects three floors of the Black Void base: the research level, the main level above, and a helipad on the roof.");
 
@@ -681,8 +789,8 @@ public function kq2rfLabElevator():void
 
 		CombatManager.newGroundCombat();
 		CombatManager.setFriendlyCharacters(f);
-		CombatManager.setHostileCharacters([new KQ2Juggernaught()]);
-		CombatManager.victoryScene();
+		CombatManager.setHostileCharacters([new KQ2Juggernaut()]);
+		CombatManager.victoryScene(kq2JuggernautPCVictory);
 		CombatManager.lossScene(kq2CapturedByPiratesBadEnd);
 
 		clearMenu();
@@ -691,8 +799,8 @@ public function kq2rfLabElevator():void
 	}
 
 	addDisabledButton(0, "Labs");
-	addButton(1, "Lobby", currentLocation, "KQ2_LOBBYELEVATOR");
-	addButton(2, "Roof", currentLocation, "K2_ROOFELEVATOR");
+	addButton(1, "Lobby", move, "KQ2_LOBBYELEVATOR");
+	addButton(2, "Roof", move, "K2_ROOFELEVATOR");
 
 	return false;
 }

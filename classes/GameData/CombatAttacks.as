@@ -699,6 +699,36 @@ package classes.GameData
 			}
 		}
 		
+		public static function TamwolfIIAttack(attacker:Creature, target:Creature):void
+		{
+			output("<i>“Enemy detected, " + attacker.mf("master", "mistress") + " " + attacker.uniqueName + "! I will defend you!”</i> Tam-wolf announces, leaping into the fray. He hits, biting ");
+			if (target is PlayerCharacter) output(" you!");
+			else output(target.a + target.uniqueName + ".");
+			
+			var d:Number = attacker.untypedDroneDamage();
+			var dmg:TypeCollection = new TypeCollection( { kinetic: d, electric: d * 0.25 }, DamageFlag.PENETRATING);
+			
+			applyDamage(dmg, attacker, target, "minimal");
+			if (attacker is PlayerCharacter) output(" Good boy!");
+		}
+		
+		public static function ACECannonAttack(attacker:Creature, target:Creature):void
+		{
+			output("The gun on " + (attacker is PlayerCharacter ? "your" : possessive(attacker.uniqueName)) +" shoulder tracks towards " + (target is PlayerCharacter ? "you" : target.uniqueName) +", charging up with power. As " + (attacker is PlayerCharacter ? target.uniqueName : attacker.uniqueName) +" moves, it works on its own, targeting and firing at " + (target is PlayerCharacter ? "you" : target.mfn("him", "her", "it")) +".");
+			
+			if (target.reflexes() / 2 + rand(20) + 1 >= 35)
+			{
+				output(" The shot goes wide!");
+			}
+			else
+			{
+				output(" The shit hits!");
+				
+				var dmg:TypeCollection = new TypeCollection( { burning: attacker.untypedDroneDamage() * 1.33 }, DamageFlag.LASER);
+				applyDamage(dmg, attacker, target, "minimal");
+			}
+		}
+		
 		public static function TamedVarmintAttack(attacker:Creature, target:Creature):void
 		{
 		

@@ -644,11 +644,13 @@ public function shipMenu():Boolean {
 	{
 		return true;
 	}
+	
 	// Puppyslutmas hook :D
 	if (annoIsCrew() && annoPuppyslutmasEntry())
 	{
 		return true;
 	}
+	
 	// Goo Armor hook
 	if (flags["ANNO_NOVA_UPDATE"] == 2)
 	{
@@ -705,8 +707,20 @@ public function flyMenu():void {
 	//MYRELLION
 	if(flags["PLANET_3_UNLOCKED"] != undefined)
 	{
-		if(shipLocation != "600") addButton(3, "Myrellion", flyTo, "Myrellion");
-		else addDisabledButton(3, "Myrellion", "Myrellion", "You’re already here.");
+		if (flags["KQ2_MYRELLION_STATE"] == undefined)
+		{
+			if(shipLocation != "600") addButton(3, "Myrellion", flyTo, "Myrellion");
+			else addDisabledButton(3, "Myrellion", "Myrellion", "You’re already here.");
+		}
+		else if (flags["KQ2_MYRELLION_STATE"] == 1)
+		{
+			addDisabledButton(3, "Myrellion", "Myrellion", "It would be wise not to visit a planet currently experiencing a heavy nuclear winter...");
+		}
+		else
+		{
+			if (shipLocation != "2I7") addButton(3, "Myrellion", flyTo, "MyrellionDeepCaves");
+			else addDisabledButton(3, "Myrellion", "Myrellion", "You’re already here.");
+		}
 	}
 	else addDisabledButton(3, "Locked", "Locked", "You need to find one of your father’s probes to access this planet’s coordinates and name.");
 	//NEW TEXAS
@@ -724,6 +738,10 @@ public function flyMenu():void {
 		else addDisabledButton(6, "Poe A", "Poe A", "You’re already here.");
 	}
 	else addDisabledButton(6, "Locked", "Locked", "You have not yet learned of this planet.");
+	if (flags["KQ2_QUEST_OFFER"] != undefined && flags["KQ2_QUEST_DETAILED"] == undefined)
+	{
+		addButton(7, "Kara", flyTo, "karaQuest2", "Kara", "Go see what Kara has up her sleeve.");
+	}
 	addButton(14, "Back", mainGameMenu);
 }
 
@@ -733,7 +751,7 @@ public function flyTo(arg:String):void {
 	{
 		flags["SUPRESS TRAVEL EVENTS"] = 0;
 	}
-	else if(arg != "Poe A")
+	else if(!InCollection(arg, ["Poe A", "karaQuest2"]))
 	{
 		var tEvent:Function = tryProcTravelEvent();
 		if (tEvent != null)
@@ -742,6 +760,8 @@ public function flyTo(arg:String):void {
 			return;
 		}
 	}
+	
+	var shortTravel:Boolean = false;
 	
 	clearOutput();
 	
@@ -773,14 +793,25 @@ public function flyTo(arg:String):void {
 		currentLocation = "600";
 		flyToMyrellion();
 	}
+	else if (arg == "MyrellionDeepCaves")
+	{
+		shipLocation = "2I7";
+		currentLocation = "2I7";
+		flyToMyrellionDeepCaves();
+	}
 	else if(arg == "Poe A")
 	{
 		shipLocation = "POESPACE";
 		currentLocation = "POESPACE";
 		output("Electing to have a little fun, you set a course for Poe A and before long, the planet looms before you on the display. It’s not particularly large, for a civilized world, but the traffic for landing vehicles is a little ridiculous. Thousands of craft are coming in every minute, with no sign of the influx slowing down. They’re from all over the galaxy too, even models you’ve never heard of before. Taking your place in the landing queue, you look around at some of the other visitors, eyes watering with envy as you spot a few ships that probably cost as much as this whole planet. Apparently the stories of stars slumming it up during the festival weren’t exaggerated!");
 	}
+	else if (arg == "karaQuest2")
+	{
+		shortTravel = (shipLocation == "600");
+		kq2TravelToKara(shortTravel);
+	}
 	
-	var timeFlown:Number = 600 + rand(30);
+	var timeFlown:Number = (shortTravel ? 30 + rand(10) : 600 + rand(30));
 	StatTracking.track("movement/time flown", timeFlown);
 	processTime(timeFlown);
 	
@@ -1543,6 +1574,33 @@ public function processTime(arg:int):void {
 			flags["TARKUS_BOMB_TIMER"]--;
 			bombStatusUpdate();
 			if(flags["TARKUS_BOMB_TIMER"] == 0) eventQueue[eventQueue.length] = bombExplodes;
+		}
+		
+		if (flags["KQ2_NUKE_STARTED"] != undefined && flags["KQ2_NUKE_EXPLODED"] == undefined)
+		{
+			// Still there!
+			if (flags["KQ2_QUEST_FINISHED"] == undefined)
+			{
+				if (flags["KQ2_NUKE_STARTED"] + KQ2_NUKE_DURATION < GetGameTimestamp())
+				{
+					eventQueue.push(kq2NukeBadend);
+				}
+			}
+			// Left
+			else if (currentLocation == "SHIP INTERIOR")
+			{
+				eventQueue.push(kq2NukeExplodesLater);
+				flags["KQ2_NUKE_EXPLODED"] = 1;
+			}
+			
+			// Followup for Dane to send coordinates to the player, should the need arise
+			if (flags["KQ2_MYRELLION_STATE"] == 1)
+			{
+				if (flags["KQ2_DANE_COORDS_TIMER"] != undefined && flags["KQ2_DANE_COORDS_TIMER"] + 2880 < GetGameTimestamp())
+				{
+					eventQueue.push(kq2DaneCoordEmail);
+				}
+			}
 		}
 
 		//Treatment display shit

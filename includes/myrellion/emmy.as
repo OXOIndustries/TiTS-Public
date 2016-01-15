@@ -837,7 +837,14 @@ public function sexAttemptStart(mainMenu:Boolean = true):void
 		output("\n\nShe crooks a finger, beckoning you closer. When you’re within a few inches of her face, she whispers, <i>“");
 		if(pc.hasCock()) output("It wouldn’t be too slutty to suck a [pc.boy]friend’s cock, especially after [pc.heShe] brought me flowers.");
 		else output("It wouldn’t be too slutty to take care of a [pc.boy]friend’s needs, even if it means showing [pc.himHer] just far my tongue can go inside of [pc.himHer]. [pc.HeShe]’s be bringing me exotic flowers, after all.");
-		output(" That’d be fair recompense for your efforts.”</i>");
+		output(" That’d be fair recompense for [pc.hisHer]'s efforts.”</i>");
+		if(flags["MET_EMMY"] == undefined)
+		{
+			output(" Emmy grins. <i>“But if I’m going to have a [pc.boy]friend, I should really know [pc.hisHer] name. Mine’s Emmy. What’s yours, hot stuff?”</i>");
+			output("\n\n<i>“[pc.fullName],”</i> you answer.");
+			output("\n\n<i>“Oooh, I like. See? I knew you were [pc.boy]friend material. Now just do me that one </i>little<i> favor, maybe we can have a celebration.”</i> Emmy's purr leaves very little the intended celebration to the imagination.");
+			flags["MET_EMMY"] = 1;
+		}
 		output("\n\nHot damn... you better go find some flowers.");
 		if(pc.hasCock()) output(" You shift your still-hard bulge and agree to find her a flower.");
 		else if(pc.hasVagina())

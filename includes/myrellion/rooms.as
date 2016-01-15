@@ -3167,7 +3167,7 @@ public function initializeMyrellionRooms():void
 	rooms["2K19"].description = "The twisting passage you're traveling through is dark, and the going is slow. You occasionally trip over stalagmites and potholes in the path, forced to all but feel your way along the walls. You can hear skittering sounds, tiny movements along the stone floor, but never quite manage to lay eyes on the sources...";
 	rooms["2K19"].planet = "PLANET: MYRELLION";
 	rooms["2K19"].system = "SYSTEM: SINDATHU";
-	rooms["2K19"].northExit = "2K15";
+	rooms["2K19"].northExit = "2K17";
 	rooms["2K19"].eastExit = "";
 	rooms["2K19"].southExit = "";
 	rooms["2K19"].westExit = "2I19";

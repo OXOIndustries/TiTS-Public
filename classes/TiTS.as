@@ -46,6 +46,7 @@
 	import classes.Characters.*;
 
 	// Items
+	import classes.Items.Armor.*;
 	import classes.Items.Protection.*
 	import classes.Items.Guns.*
 	import classes.Items.Melee.*
@@ -243,6 +244,11 @@
 		include "../includes/myrellion/wetraxxel.as";
 		include "../includes/myrellion/xanthe.as";
 		include "../includes/myrellion/xenogenbiotech.as";
+		
+		// Karaquest 2- Karaharder.
+		include "../includes/events/karaquest2/content.as";
+		include "../includes/events/karaquest2/rooms.as";
+		include "../includes/events/karaquest2/roomFunctions.as";
 		
 		public var chars:Object;
 

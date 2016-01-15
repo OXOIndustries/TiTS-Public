@@ -255,7 +255,7 @@
 			}
 			
 			long += " a kaithrit bounty hunter with silver hair and deadly glint in her eyes. She’s clad in a long duster decorated with lightning patterns, plus an armored vest beneath it. Her clothes part in the back, revealing a wriggling reptilian tail tipped with a human-looking pussy that drools a steady stream behind her. At her side, the kaithrit’s packing a";
-			if(rangedWeapon is HoldOutPistol) long += "bog standard holdout pistol. It’s not much to look at, but given your apparent immunity to lightning, it’s serving her better than the Arc Caster she was carrying.";
+			if(rangedWeapon is HoldOutPistol) long += " bog standard holdout pistol. It’s not much to look at, but given your apparent immunity to lightning, it’s serving her better than the Arc Caster she was carrying.";
 			else long += "n Arc Caster, a powerful hand cannon that crackles with electricity.";
 		}
 		
@@ -352,7 +352,7 @@
 			}
 			
 			energy(-20);
-			output("Shade hurls a grenade from her belt into the center of the tavern. The grenade explodes in a flash of blinding light that renders ");
+			output("Shade hurls a grenade from her belt between you and Kara. The grenade explodes in a flash of blinding light that renders ");
 			if(bFriendly) output("Kara");
 			else output("you and Kara");
 			output(" blind. A moment later, the expended grenade begins to hiss out a stream of green gas that floats out towards ");
