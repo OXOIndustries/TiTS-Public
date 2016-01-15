@@ -3,6 +3,7 @@ package classes.Characters
 	import classes.Creature;
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.GLOBAL;
+	import classes.Items.Guns.AegisLightMG;
 	import classes.Items.Guns.MagnumPistol;
 	import classes.Items.Melee.Fists;
 	import classes.Items.Melee.ShockBlade;
@@ -36,16 +37,8 @@ package classes.Characters
 			this.isPlural = false;
 			isLustImmune = true;
 			
-			this.meleeWeapon = new ShockBlade();
-			this.rangedWeapon = new MagnumPistol();
-			rangedWeapon.longName = "machine pistol"
-			rangedWeapon.attackVerb = "shoot";
-			rangedWeapon.attackNoun = "shot";
-			rangedWeapon.hasRandomProperties = true;
-			rangedWeapon.baseDamage = new TypeCollection();
-			rangedWeapon.baseDamage.kinetic.damageValue = 7;
-			rangedWeapon.attack = 4;
-			rangedWeapon.baseDamage.addFlag(DamageFlag.BULLET);
+			this.meleeWeapon = new Fists();
+			this.rangedWeapon = new AegisLightMG();
 			
 			this.shield = new JoyCoPremiumShield();
 			
@@ -175,6 +168,7 @@ package classes.Characters
 			this.ass.wetnessRaw = 0;
 			
 			createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
+			createStatusEffect("Disarm Immune");
 			
 			isUniqueInFight = true;
 			btnTargetText = "Juggernaut";

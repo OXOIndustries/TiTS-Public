@@ -3,6 +3,8 @@ package classes.Characters
 	import classes.Creature;
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.GLOBAL;
+	import classes.Items.Apparel.KhansLabCoat;
+	import classes.Items.Guns.KhansArcCaster;
 	import classes.Items.Guns.MagnumPistol;
 	import classes.Items.Melee.Fists;
 	import classes.Items.Melee.ShockBlade;
@@ -27,32 +29,23 @@ package classes.Characters
 			this.version = _latestVersion;
 			this._neverSerialize = true;
 			
-			this.short = "void pirate";
-			this.originalRace = "human";
-			this.a = "the ";
-			this.capitalA = "The ";
+			this.short = "doctor khan";
+			this.originalRace = "kui-tan";
+			this.a = "";
+			this.capitalA = "";
 			// this.long = "Several armed men in black-and-red heavy armor have stormed into the construction site, wildly firing machine pistols at you and your companion. It's almost impossible to see in here, except by the occasional muzzle flashes and showers of sparks as bullets slam into the metal bulkheads.\n\nNot far from you, Saen ducks into and out of cover, evading bursts of enemy fire and returning it as quick as she can.";
-			this.long = "A man in black-and-red armor, armed with machine pistol.";
-			this.customBlock = "The pirate’s armor deflects your attack with alarming ease.";
-			this.isPlural = false;
-			isLustImmune = true;
+			//long = "";
+			customBlock = "[PLACEHOLDER BLOCK]";
+			isPlural = false;
+			isLustImmune = false;
 			
-			this.meleeWeapon = new ShockBlade();
-			this.rangedWeapon = new MagnumPistol();
-			rangedWeapon.longName = "machine pistol"
-			rangedWeapon.attackVerb = "shoot";
-			rangedWeapon.attackNoun = "shot";
-			rangedWeapon.hasRandomProperties = true;
-			rangedWeapon.baseDamage = new TypeCollection();
-			rangedWeapon.baseDamage.kinetic.damageValue = 7;
-			rangedWeapon.attack = 4;
-			rangedWeapon.baseDamage.addFlag(DamageFlag.BULLET);
+			meleeWeapon = new ShockBlade();
+			rangedWeapon = new KhansArcCaster();
 			
-			this.shield = new JoyCoPremiumShield();
+			shield = new JoyCoPremiumShield();
+			armor = new KhansLabCoat();
 			
-			this.armor.longName = "black void armor";
-			this.armor.defense = 5;
-			this.armor.hasRandomProperties = true;
+			baseHPResistances.tease.resistanceValue = -50.0;
 			
 			this.physiqueRaw = 17;
 			this.reflexesRaw = 15;
@@ -69,8 +62,6 @@ package classes.Characters
 			this.credits = 80 + rand(80);
 			this.HPMod = 0;
 			this.HPRaw = this.HPMax();
-			
-			this.createPerk("Multiple Attacks",1,0,0,0,"");
 			
 			this.femininity = 35;
 			this.eyeType = GLOBAL.TYPE_HUMAN;
@@ -177,8 +168,8 @@ package classes.Characters
 			
 			createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
 			
-			isUniqueInFight = false;
-			btnTargetText = "VoidPirate";
+			isUniqueInFight = true;
+			btnTargetText = "Dr Khan";
 			
 			this._isLoading = false;
 		}
@@ -193,115 +184,184 @@ package classes.Characters
 			var target:Creature = selectTarget(hostileCreatures);
 			if (target == null) return;
 			
-			var nadesAvail:Boolean = true;
-			for (var i:int = 0; i < alliedCreatures.length; i++)
-			{
-				if (alliedCreatures[i].hasStatusEffect("Nade Cooldown")) nadesAvail = false;
-			}
-			
 			// enemy AI
 			var enemyAttacks:Array = [];
-			enemyAttacks.push({ v: rangedAttack, 				w: 40 });
-			enemyAttacks.push({ v: machinePistols, 				w: 40 });
-
-			if (nadesAvail)
-			{
-				enemyAttacks.push({ v: groupFlashbang, 			w: 15 });
-				enemyAttacks.push({ v: sx1GroupSmokeGrenade,	w: 15 });
-				enemyAttacks.push({ v: concGrenade, 			w: 15 });
-			}
-
+			enemyAttacks.push( { v: arcCaster, w: 40 } );
+			enemyAttacks.push( { v: labGirlsStriptease, w: 10 } );
+			enemyAttacks.push( { v: lustbang, w: 30 } );
+			enemyAttacks.push( { v: ballWorship, w: lust() } );
+			
 			var attack:Function = weightedRand(enemyAttacks);
 			
-			if (attack == rangedAttack || attack == machinePistols) attack(target);
+			if (attack == arcCaster) attack(target, hostileCreatures);
 			else attack(hostileCreatures);
 		}
 		
-		private function rangedAttack(target:Creature):void
+		private function arcCaster(target:Creature, hostiles:Array):void
 		{
-			CombatAttacks.RangedAttack(this, target);
-		}
-		
-		private function machinePistols(target:Creature):void
-		{
-			output("One of the assassins brings his machine pistol to bear, firing a burst of toward " + (target is PlayerCharacter ? "you" : target.a + target.short) + "!");
-			if (rangedCombatMiss(this, target, -1, 3))
+			output("Khan levels his lightning gun at " + (target is PlayerCharacter ? "you" : "Kara") +" and pulls the trigger, sending a stream of crackling electricity arcing towards " + (target is PlayerCharacter ? "you" : "her") +".");
+			
+			if (rangedCombatMiss(this, target))
 			{
-				output(" The burst misses!");
+				output(" The bolt goes wide, blasting into the wall.");
 			}
 			else
 			{
-				output(" The burst hits!");
-
-				applyDamage(new TypeCollection({ kinetic: 5 }), this, target, "minimal");
+				output(" The bolt strikes " + (target is PlayerCharacter ? "you" : "Kara") + " with searing force!");
+				applyDamage(damageRand(rangedDamage(), 15), this, target, "minimal");
+				
+				if (rand(5) > 0)
+				{					
+					output(" The bolt arcs from " + (target is PlayerCharacter ? "you" : "Kara") +" to " + (target is PlayerCharacter ? "Kara" : "you") +", blasting " + (target is PlayerCharacter ? "her" : "you") +" as well!");
+					applyDamage(damageRand(rangedDamage(), 15), this, target, "minimal");
+				}
 			}
 		}
 		
-		private function groupFlashbang(targets:Array):void
+		private function labGirlsStriptease(hostiles:Array):void
 		{
-			// Flashbang
-			output("One of the assassins pulls another disk-like grenade from his belt and slides it across the deck, placing it between you and Saendra! The flashbang detonates with deafening force,");
+			output("<i>“Girls,”</i> Khan says, resting his hand-cannon on his shoulder and pulling what looks like a remote from a desk nearby. <i>“Why don’t you show our guests what they’ll be getting when they finally surrender, hmm?”</i>");
 
+			output("\n\n<i>“Yes, Master,”</i> the gold myr women chant in unison, stepping away from the kui-tan man and towards you and Kara, letting their coats slip down their shoulders to flaunt their bodies. One of the girls shimmies down to her knees lapping her tongue along another's thighs and groin, letting the tip of a few fingers disappear into her drooling sex. The victim of these attentions moans and cups her breasts, squeezing out a little trickle of honey from each of her saucer-like nipples -- which another pair of sluts are quick to start lapping up, tongues and lips playing across her huge bosom.");
+			
 			var pc:Creature;
-			var saen:Creature;
+			var kara:Creature;
 			
-			for (var i:int = 0; i < targets.length; i++)
+			for (var i:int = 0; i < hostiles.length; i++)
 			{
-				if (targets[i] is PlayerCharacter) pc = targets[i] as Creature;
-				if (targets[i] is Saendra) saen = targets[i] as Creature;
+				if (hostiles[i] is PlayerCharacter) pc = hostiles[i];
+				if (hostiles[i] is Kara && !hostiles[i].isDefeated()) kara = hostiles[i];
 			}
 			
-			var blindedPC:Boolean = rand(10) != 0;
-			var blindedSaen:Boolean = rand(10) != 0;
-			
-			if (blindedPC && blindedSaen)
+			//DC 25 willpower check!
+			if(pc.willpower()/2 + rand(20) + 1 >= 25)
 			{
-				output(" blinding you and Saendra.");
-				pc.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0);
-				saen.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0);
-			}
-			else if (!blindedPC && blindedSaen)
-			{
-				output(" blinding Saendra, though you manage to avoid any serious effect.");
-				saen.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0);
+				output("\n\nYou take a deep breath, trying to keep your head clear.");
 			}
 			else
 			{
-				output(" though both you and Saendra manage to avoid any serious effect.");
+				output("\n\nYou feel your lusts rising in response to the display, heat rising painfully in your [pc.crotch]. You’d give anything to get in on that...");
+				applyDamage(new TypeCollection( { tease: 15 + rand(6) } ), this, pc, "minimal");
 			}
-
-			createStatusEffect("Nade Cooldown", 5);
+			
+			if (kara)
+			{
+				if (kara.willpower() / 2 + rand(20) + 1 >= 25)
+				{
+					output("\n\nKara shakes her head vigorously, avoiding eye contact with the lusty babes as they return to their master’s side.");
+				}
+				else
+				{
+					output("\n\nBy the time the girls are done, Kara’s cheeks are burning a bright red, with a visible bulge in her pants as the myr girls return to their master’s side.");
+					applyDamage(new TypeCollection( { tease: 15 + rand(6) } ), this, kara, "minimal");
+				}
+			}
 		}
 		
-		private function sx1GroupSmokeGrenade(hostileCreatures:Array):void
+		private function lustbang(hostiles:Array):void
 		{
-			// Smoke Grenade
-			output("One of the assassins pulls a cylindrical grenade from his belt and hurls it between you and him. Smoke billows out of the grenade after a loud POP, making it almost impossible to see. <b>Aim reduced!</b>");
+			var pc:Creature;
+			var kara:Creature;
 			
-			for (var i:int = 0; i < hostileCreatures.length; i++)
+			for (var i:int = 0; i < hostiles.length; i++)
 			{
-				hostileCreatures[i].createStatusEffect("Smoke Grenade", 3, 0, 0, 0, false, "Blind", "Ranged attacks are far more likely to miss.", true, 0);
+				if (hostiles[i] is PlayerCharacter) pc = hostiles[i];
+				if (hostiles[i] is Kara && !hostiles[i].isDefeated()) kara = hostiles[i];
 			}
 			
-			createStatusEffect("Nade Cooldown", 5);
+			var hitPC:Boolean = false;
+			
+			output("<i>“Hand me one of my special concoctions!”</i> Khan snaps at one of his lab-coat-wearing harem girls. She quickly scampers over to a nearby desk and rushes back with a small pink grenade. <i>“Have a taste of my LUSTBANGS!”</i> he screams, throwing the grenade at you. It explodes in a cloud of pink mist which rolls over you");
+			if (kara != null) output(" and Kara");
+			output(". Rather than choking on it, though");
+			
+			if (pc.reflexes() / 2 + rand(20) + 1 >= 25)
+			{
+				output(", you manage to cover your mouth and dive out of the cloud");
+			}
+			else
+			{
+				hitPC = true;
+				output(" you feel your skin flush with heat. Your [pc.crotch] burns with unwanted desire as the poison cloud overwhelms you!");
+				
+				applyDamage(new TypeCollection( { drug: 15 + rand(6) } ), this, pc, "minimal");
+			}
+			
+			if (kara)
+			{
+				if (kara.reflexes() / 2 + rand(20) + 1 >= 25)
+				{
+					output(" Looks like Kara got clear");
+					if (!hitPC) output(", too");
+					output(".");
+				}
+				else
+				{
+					output(" Kara’s looking much more flushed by the time the cloud clears");
+					if (hitPC) output(", too");
+					output(".");
+					
+					applyDamage(new TypeCollection( { drug: 15 + rand(6) } ), this, kara, "minimal");
+				}
+			}
 		}
 		
-		public function concGrenade(hostileCreatures:Array):void
+		private function ballWorship(hostiles:Array):void
 		{
-			// Concussion Grenade
-			output("One of the assassins grabs a red grenade off of his belt and hurls it at you. A second later, the grenade detonates in a rib-crushing wave of kinetic force that nearly knocks you on your ass!");
+			output("<i>“Girls... I... I need some relief !”</i> Khan cries, wiggling around on his testicular throne and waving a small remote at his harem. The huge, swollen sacks of his balls jiggle and quake under him, and a visible gush of semen squirts out of his bound cock, splattering on the top of his nads. His harem is quick to leap to their master’s aid, hands playing across his swollen sac, tongues and breasts and wet cooches rubbing all over him. The scientist groans and bucks his hips as his harem worship his balls, spooge drooling from the tip of his cock.");
 			
-			for (var i:int = 0; i < hostileCreatures.length; i++)
+			var pc:Creature;
+			var kara:Creature;
+			
+			for (var i:int = 0; i < hostiles.length; i++)
 			{
-				var target:Creature = hostileCreatures[i];
-				var mul:Number;
-				if (target.RQ() < rand(100)) mul = 2;
-				else mul = 1;
-
-				applyDamage(new TypeCollection( { kinetic: 8 * mul } ), this, target, (target is PlayerCharacter ? "minimal" : "suppress"));
+				if (hostiles[i] is PlayerCharacter) pc = hostiles[i];
+				if (hostiles[i] is Kara && !hostiles[i].isDefeated()) kara = hostiles[i];
+			}
+			
+			if (pc.willpower() / 2 + rand(20) + 1 >= 25)
+			{
+				output("\n\nYou take a deep breath, trying to keep your head clear.");
+			}
+			else
+			{
+				output("\n\nYou feel your lusts rising in response to the display, heat rising painfully in your [pc.crotch]. You'd give anything to get in on that...");
+				applyDamage(new TypeCollection( { tease: 15 + rand(6) } ), this, pc, "minimal");
 			}
 
-			createStatusEffect("NadeCD", 5);
+			if (kara != null)
+			{
+				if (kara.willpower() / 2 + rand(20) + 1 >= 25)
+				{
+					output("\n\nKara shakes her head vigorously, avoiding eye contact with the huge-balled kui-tan.");
+				}
+				else
+				{
+					output("\n\nBy the time the girls are done, Kara's cheeks are burning a bright red, with a visible bulge in her pants.");
+					applyDamage(new TypeCollection( { tease: 15 + rand(6) } ), this, kara, "minimal");
+				}
+			}
+		}
+		
+		override public function getCombatDescriptionExtension():void
+		{
+			var numDronesAlive:int = 0;
+			var hostiles:Array = CombatManager.getHostileCharacters();
+			
+			for (var i:int = 0; i < hostiles.length; i++)
+			{
+				if (hostiles[i] is KQ2SecurityDroid && !hostiles[i].isDefeated()) numDronesAlive++;
+			}
+			
+			if (numDronesAlive > 0)
+			{
+				output("\n\nAt the doctor's command");
+				if (numDronesAlive > 1) output(" are several small security drones. Each");
+				else output(" is a small security drone. The");
+				output(" drone is about the size of your fist, just a ball of metal built around a hover-platform and a tiny zap-gun.");
+				if (numDronesAlive > 1) output(" They're quick moving, though, and speed around you in a constant hail of electrical discharge.");
+				else output(" It's quick moving, though, and speeds around you with a constant hail of electrical discharge.");
+			}
 		}
 	}
 }
