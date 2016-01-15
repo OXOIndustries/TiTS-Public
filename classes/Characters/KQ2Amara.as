@@ -3,6 +3,8 @@ package classes.Characters
 	import classes.Creature;
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.GLOBAL;
+	import classes.Items.Accessories.ACECannon;
+	import classes.Items.Apparel.VoidPlateArmor;
 	import classes.Items.Guns.MagnumPistol;
 	import classes.Items.Melee.Fists;
 	import classes.Items.Melee.ShockBlade;
@@ -27,32 +29,20 @@ package classes.Characters
 			this.version = _latestVersion;
 			this._neverSerialize = true;
 			
-			this.short = "void pirate";
+			this.short = "Amara";
 			this.originalRace = "human";
-			this.a = "the ";
-			this.capitalA = "The ";
-			// this.long = "Several armed men in black-and-red heavy armor have stormed into the construction site, wildly firing machine pistols at you and your companion. It's almost impossible to see in here, except by the occasional muzzle flashes and showers of sparks as bullets slam into the metal bulkheads.\n\nNot far from you, Saen ducks into and out of cover, evading bursts of enemy fire and returning it as quick as she can.";
-			this.long = "A man in black-and-red armor, armed with machine pistol.";
+			this.a = "";
+			this.capitalA = "";
+			this.long = "Amara Faell, a Dread Lord of the Black Void. She's clad in sleek, heavy black power armor that protects her from the neck down. She's got a crash helmet on, leaving her face guarded only by floating holographic displays and shields. Curly red hair spills out from under her helm, a stark contrast to blue-painted lips and emerald green eyes. She's packing a massive chaingun in one hand, supported by her powered suit's superhuman strength. In the other, she wields a flamethrower strapped to the wrist, projecting a constant flicker of flame between bursts. ";
 			this.customBlock = "The pirate’s armor deflects your attack with alarming ease.";
 			this.isPlural = false;
-			isLustImmune = true;
+			isLustImmune = false;
 			
-			this.meleeWeapon = new ShockBlade();
-			this.rangedWeapon = new MagnumPistol();
-			rangedWeapon.longName = "machine pistol"
-			rangedWeapon.attackVerb = "shoot";
-			rangedWeapon.attackNoun = "shot";
-			rangedWeapon.hasRandomProperties = true;
-			rangedWeapon.baseDamage = new TypeCollection();
-			rangedWeapon.baseDamage.kinetic.damageValue = 7;
-			rangedWeapon.attack = 4;
-			rangedWeapon.baseDamage.addFlag(DamageFlag.BULLET);
-			
-			this.shield = new JoyCoPremiumShield();
-			
-			this.armor.longName = "black void armor";
-			this.armor.defense = 5;
-			this.armor.hasRandomProperties = true;
+			meleeWeapon = new ShockBlade();
+			rangedWeapon = new MagnumPistol();			
+			shield = new JoyCoPremiumShield();
+			armor = new VoidPlateArmor();
+			accessory = new ACECannon();
 			
 			this.physiqueRaw = 17;
 			this.reflexesRaw = 15;
@@ -69,8 +59,6 @@ package classes.Characters
 			this.credits = 80 + rand(80);
 			this.HPMod = 0;
 			this.HPRaw = this.HPMax();
-			
-			this.createPerk("Multiple Attacks",1,0,0,0,"");
 			
 			this.femininity = 35;
 			this.eyeType = GLOBAL.TYPE_HUMAN;
@@ -176,16 +164,17 @@ package classes.Characters
 			this.ass.wetnessRaw = 0;
 			
 			createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
+			createPerk("Attack Drone", 0, 0, 0, 0, "Attack Drone!");
 			
-			isUniqueInFight = false;
-			btnTargetText = "VoidPirate";
+			isUniqueInFight = true;
+			btnTargetText = "Amara";
 			
 			this._isLoading = false;
 		}
 		
 		override public function get bustDisplay():String
 		{
-			return "BLACKVOID";
+			return "AMARA";
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
@@ -193,115 +182,172 @@ package classes.Characters
 			var target:Creature = selectTarget(hostileCreatures);
 			if (target == null) return;
 			
-			var nadesAvail:Boolean = true;
-			for (var i:int = 0; i < alliedCreatures.length; i++)
-			{
-				if (alliedCreatures[i].hasStatusEffect("Nade Cooldown")) nadesAvail = false;
-			}
+			if (CombatManager.getRoundCount() != 1) powerRegen();
 			
 			// enemy AI
 			var enemyAttacks:Array = [];
-			enemyAttacks.push({ v: rangedAttack, 				w: 40 });
-			enemyAttacks.push({ v: machinePistols, 				w: 40 });
-
-			if (nadesAvail)
-			{
-				enemyAttacks.push({ v: groupFlashbang, 			w: 15 });
-				enemyAttacks.push({ v: sx1GroupSmokeGrenade,	w: 15 });
-				enemyAttacks.push({ v: concGrenade, 			w: 15 });
-			}
+			enemyAttacks.push( { v: chaingunBarrage, w: 40 } );
+			if (!target.hasStatusEffect("Tripped") && energy() >= 25) enemyAttacks.push( { v: shoulderCharge, w: 10 } );
+			if (energy() >= 25) enemyAttacks.push( { v: prometheanGun, w: 10 } );
+			if (energy() >= 50 && CombatManager.getRoundCount() != 1) enemyAttacks.push( { v: grandSlam, w: 30 } );
+			if (energy() >= 25) enemyAttacks.push( { v: clusterGrenades, w: 25 } );
 
 			var attack:Function = weightedRand(enemyAttacks);
-			
-			if (attack == rangedAttack || attack == machinePistols) attack(target);
-			else attack(hostileCreatures);
+			if (attack == chaingunBarrage || attack == clusterGrenades) attack(hostileCreatures);
+			else attack(target);
 		}
 		
-		private function rangedAttack(target:Creature):void
+		private function powerRegen():void
 		{
-			CombatAttacks.RangedAttack(this, target);
-		}
-		
-		private function machinePistols(target:Creature):void
-		{
-			output("One of the assassins brings his machine pistol to bear, firing a burst of toward " + (target is PlayerCharacter ? "you" : target.a + target.short) + "!");
-			if (rangedCombatMiss(this, target, -1, 3))
+			output("The reactor powering Amara's battlesuit hums audibly, providing her equipment with a near limitless supply of energy!\n\n");
+			if (energy() < energyMax())
 			{
-				output(" The burst misses!");
+				energy(energyMax() * 0.4);
 			}
 			else
 			{
-				output(" The burst hits!");
-
-				applyDamage(new TypeCollection({ kinetic: 5 }), this, target, "minimal");
+				shields(shieldsMax() * 0.1);
 			}
 		}
 		
-		private function groupFlashbang(targets:Array):void
+		private function chaingunBarrage(hostiles:Array):void
 		{
-			// Flashbang
-			output("One of the assassins pulls another disk-like grenade from his belt and slides it across the deck, placing it between you and Saendra! The flashbang detonates with deafening force,");
-
 			var pc:Creature;
-			var saen:Creature;
+			var kara:Creature;
 			
-			for (var i:int = 0; i < targets.length; i++)
+			for (var i:int = 0; i < hostiles.length; i++)
 			{
-				if (targets[i] is PlayerCharacter) pc = targets[i] as Creature;
-				if (targets[i] is Saendra) saen = targets[i] as Creature;
+				if (hostiles[i] is PlayerCharacter) pc = hostiles[i];
+				if (hostiles[i] is Kara && !hostiles[i].isDefeated()) kara = hostiles[i];
 			}
 			
-			var blindedPC:Boolean = rand(10) != 0;
-			var blindedSaen:Boolean = rand(10) != 0;
+			output("Amara digs her feet in and brings her chaingun to bear. With a booming warcry, she holds down the trigger and lets a hail of lead fly down range at");
+			if (!kara) output(" you");
+			else output(" you and Kara");
+			output(".");
 			
-			if (blindedPC && blindedSaen)
+			for (i = 0; i < 2; i++)
 			{
-				output(" blinding you and Saendra.");
-				pc.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0);
-				saen.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0);
+				output("\n");
+				CombatAttacks.SingleRangedAttackImpl(this, pc, false, "ranged");
+				output("\n");
+				CombatAttacks.SingleRangedAttackImpl(this, (kara == null ? pc : kara), false, "ranged");
 			}
-			else if (!blindedPC && blindedSaen)
+		}
+		
+		private function prometheanGun(target:Creature):void
+		{
+			energy( -25);
+			
+			//Single target, deals heavy Flame damage. High chance to inflict Burning.
+			output("Amara brings her free hand to bear, and with it, the compact little flamethrower mounted there. Laughing maniacally, she lets loose a jet of flame over " + (target is PlayerCharacter ? "you" :"Kara") +",");
+			
+			if (rangedCombatMiss(this, target))
 			{
-				output(" blinding Saendra, though you manage to avoid any serious effect.");
-				saen.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0);
+				output(" scorching the air well over her target.");
 			}
 			else
 			{
-				output(" though both you and Saendra manage to avoid any serious effect.");
+				output(" bathing" + (target is PlayerCharacter ? "you":"her") +" in fire!");
+				
+				applyDamage(damageRand(new TypeCollection( { burning: 25 } ), 15), this, target, "minimal");
+				
+				if (target.reflexes() / 2 + rand(20) + 1 < 25)
+				{
+					if (!target.hasStatusEffect("Burning")) target.createStatusEffect("Burning", 3, 7, 0, 0, false, "DefenseDown", "Reduces your defense by five points and causes damage over time.", true, 0);
+					else target.setStatusValue("Burning", 1, 3);
+					output(" <b>" + (target is PlayerCharacter ? "You are" : "Kara is") +" burning!</b>");
+				}
 			}
-
-			createStatusEffect("Nade Cooldown", 5);
 		}
 		
-		private function sx1GroupSmokeGrenade(hostileCreatures:Array):void
+		private function clusterGrenades(hostiles:Array):void
 		{
-			// Smoke Grenade
-			output("One of the assassins pulls a cylindrical grenade from his belt and hurls it between you and him. Smoke billows out of the grenade after a loud POP, making it almost impossible to see. <b>Aim reduced!</b>");
+			var pc:Creature;
+			var kara:Creature;
 			
-			for (var i:int = 0; i < hostileCreatures.length; i++)
+			for (var i:int = 0; i < hostiles.length; i++)
 			{
-				hostileCreatures[i].createStatusEffect("Smoke Grenade", 3, 0, 0, 0, false, "Blind", "Ranged attacks are far more likely to miss.", true, 0);
+				if (hostiles[i] is PlayerCharacter) pc = hostiles[i];
+				if (hostiles[i] is Kara && !hostiles[i].isDefeated()) kara = hostiles[i];
 			}
 			
-			createStatusEffect("Nade Cooldown", 5);
+			//Amara throws grenades that target both PC and Kara. Do high damage, chance to stun. Allow a Reflexes save to avoid them. 
+			output("The pirate leader hurls a grenade from her belt straight towards you. Rather than exploding, the grenade shoots out dozens of tiny little pellets");
+			
+			var hitPC:Boolean = combatMiss(this, pc);
+			var hitKara:Boolean = kara != null && combatMiss(this, kara);
+			
+			if ((hitPC) || (kara != null && hitKara))
+			{
+				output(" that detonate all over");
+				if (hitPC && hitKara) output(" you and Kara");
+				else if (hitPC && !hitKara) output(" you");
+				else output(" Kara");
+			}
+			
+			if (!hitPC || (kara != null && !hitKara))
+			{
+				output(" that");
+				if (!hitPC && (kara == null || hitKara)) output(" you have");
+				else if (hitPC && (kara != null && !hitKara)) output(" Kara has");
+				else if (kara != null && !hitKara && !hitPC) output(" you both have");
+				output(" the quick sense to evade before they detonate");
+			}
+			
+			output(", showering the helipad in shrapnel.");
+			
+			if (hitPC) applyDamage(damageRand(new TypeCollection( { kinetic: 10, burning: 15 }, DamageFlag.EXPLOSIVE), 15), this, pc, "minimal");
+			if (hitKara) applyDamage(damageRand(new TypeCollection( { kinetic: 10, burning: 15 }, DamageFlag.EXPLOSIVE), 15), this, kara, !hitPC ? "minimal" : "suppress");
 		}
 		
-		public function concGrenade(hostileCreatures:Array):void
+		private function shoulderCharge(target:Creature):void
 		{
-			// Concussion Grenade
-			output("One of the assassins grabs a red grenade off of his belt and hurls it at you. A second later, the grenade detonates in a rib-crushing wave of kinetic force that nearly knocks you on your ass!");
+			energy( -25);
 			
-			for (var i:int = 0; i < hostileCreatures.length; i++)
+			//Light melee hit, knockdown.
+			output("With a thunderous roar, Amara charges shoulder-first, throwing herself at " + (target is PlayerCharacter ? "you" : "Kara") +" with super-human force.");
+			
+			if (combatMiss(this, target, -1, 3))
 			{
-				var target:Creature = hostileCreatures[i];
-				var mul:Number;
-				if (target.RQ() < rand(100)) mul = 2;
-				else mul = 1;
-
-				applyDamage(new TypeCollection( { kinetic: 8 * mul } ), this, target, (target is PlayerCharacter ? "minimal" : "suppress"));
+				output(" " + (target is PlayerCharacter ? "You manage" : "Kara manages") +" to dodge to the side, letting the power-armor clad pirate hurtle past.");
 			}
-
-			createStatusEffect("NadeCD", 5);
+			else
+			{
+				output(" Amara slams into " + (target is PlayerCharacter ? "you" : "Kara") +", sending " + (target is PlayerCharacter? "you" : "her") +" hurling to the ground with bone-crushing force.");
+				
+				applyDamage(damageRand(new TypeCollection( { kinetic: 15 } ), 15), this, target, "minimal");
+				
+				if(!target.hasStatusEffect("Tripped") && target.reflexes() + rand(20) + 1 < 25)
+				{
+					target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
+					output(" <b>" + (target is PlayerCharacter ? "You smash" : "Kara smashes") + " back-first into the floor, HARD.</b>");
+				}
+			}
+		}
+		
+		private function grandSlam(target:Creature):void
+		{
+			energy( -50);
+			
+			//Heavy melee hit (half blunt, half energy), chance to stun
+			output("With a ground-shaking roar, booster jets on Amara's suit's feet activate and propel her into the air. She lunges up and comes back down foot-first towards " + (target is PlayerCharacter ? "your" : "Kara’s") +" face!");
+			
+			if (combatMiss(this, target, -1, 2))
+			{
+				output(" " + (target is PlayerCharacter ? "You manage" : "Kara manages") +" to duck out of the way at the last moment. Amara slams into the ground where "+ (target is PlayerCharacter ? "you were" : "Kara was") +" standing with tremendous force, leaving a crater where she landed.");
+			}
+			else
+			{
+				output(" Amara slams into " + (target is PlayerCharacter ? "your" : "Kara’s") +" face, jumpjets first, throwing " + (target is PlayerCharacter ? "you" : "her") +" to the ground with bone-crushing force, driving " + (target is PlayerCharacter ? "you" : "her") +" into a crater.");
+				
+				applyDamage(damageRand(new TypeCollection( { kinetic: 15, burning: 10 } ), 15), this, target, "minimal");
+				
+				if (target.physique() / 2 + rand(20) + 1 < 35)
+				{
+					target.createStatusEffect("Stunned", 3, 0, 0, 0, false, "Stun", "Stunned and cannot act until recovered!", true, 0);
+				}
+			}
 		}
 	}
 }

@@ -13049,9 +13049,14 @@ package classes {
 			return attack.EnergyCost;
 		}
 		
+		public function untypedDroneDamage():Number
+		{
+			return 1 + level + rand(2 + level / 2);
+		}
+		
 		public function droneDamage():TypeCollection
 		{
-			var d:Number = 1 + level + rand(2 + level / 2);
+			var d:Number = untypedDroneDamage();
 			if (accessory is TamWolfDamaged)
 			{
 				d -= -1;
