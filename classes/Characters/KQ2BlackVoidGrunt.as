@@ -240,7 +240,7 @@ package classes.Characters
 		private function groupFlashbang(targets:Array):void
 		{
 			// Flashbang
-			output("One of the assassins pulls another disk-like grenade from his belt and slides it across the deck, placing it " + (targets.length > 1 : "between you and Kara!" : "right at your feet!") +" The flashbang detonates with deafening force,");
+			output("One of the assassins pulls another disk-like grenade from his belt and slides it across the deck, placing it " + (targets.length > 1 ? "between you and Kara!" : "right at your feet!") +" The flashbang detonates with deafening force,");
 
 			var pc:Creature;
 			var kara:Creature;

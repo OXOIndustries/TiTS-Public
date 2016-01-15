@@ -32,13 +32,13 @@ package classes.Characters
 			
 			// Originally a clone of the zilpack
 			// Needs a few things checked.
-			this.short = "security droids";
+			this.short = "security drone";
 			this.originalRace = "Automaton";
 			this.a = "the ";
 			this.capitalA = "The ";
 			this.long = "";
-			this.customDodge = "Somehow, the drones manage to skirt out of the way of your fire.";
-			this.customBlock = "The hardened exterior of the drones absorbs your attack.";
+			this.customDodge = "Somehow, the drone manages to skirt out of the way of your fire.";
+			this.customBlock = "The hardened exterior of the drone absorbs your attack.";
 			this.isPlural = true;
 			isLustImmune = true;
 			
@@ -57,11 +57,11 @@ package classes.Characters
 			this.armor.hasRandomProperties = true;
 			this.shield = new BasicShield();
 			
-			this.physiqueRaw = 8;
-			this.reflexesRaw = 4;
-			this.aimRaw = 14;
-			this.intelligenceRaw = 1;
-			this.willpowerRaw = 20;
+			this.physiqueRaw = 5;
+			this.reflexesRaw = 5;
+			this.aimRaw = 10;
+			this.intelligenceRaw = 0;
+			this.willpowerRaw = 0;
 			this.libidoRaw = 0;
 			this.shieldsRaw = 0;
 			this.energyRaw = 100;
@@ -162,7 +162,7 @@ package classes.Characters
 		
 		override public function get bustDisplay():String
 		{
-			return "DROID_SECURITY";
+			return "HOVER_DRONE";
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
@@ -170,69 +170,82 @@ package classes.Characters
 			var target:Creature = selectTarget(hostileCreatures);
 			if (target == null) return;
 			
-			if (!target.hasStatusEffect("Blinded") && rand(5) == 0) securityDroidFlashbang(target);
-			else if (!hasStatusEffect("Blinded") && !hasStatusEffect("Stunned") && rand(3) == 0) securityDroidChargeShot(target);
-			else securityDroidLaserBarrage(target);
+			if (HP() / HPMax() > 0.25) droneZap(target);
+			else droneKamikaze(hostileCreatures);
 		}
 		
-		private function securityDroidLaserBarrage(target:Creature):void
+		private function droneZap(target:Creature):void
 		{
-			//Laser Barrage
-			//Lots of moderate laser attacks
-			output("Several of the drones lock onto you and let loose with a hail of laser bolts.");
+			output(uniqueName + " fires its zap-gun at " + (target is PlayerCharacter ? "you" : target.a + target.short));
 			
-			var attacks:int = 2 + rand(2);
-
-			for (var i:int = 0; i < attacks; i++)
+			if (!rangedCombatMiss(this, target))
 			{
-				output("\n");
-				CombatAttacks.SingleRangedAttackImpl(this, target, true);
-			}
-		}
-		
-		private function securityDroidChargeShot(target:Creature):void
-		{
-			//Charge Shot
-			//Two moderate laser shots (as above) + one HEAVY one
-			output("Amid several other drones lighting you up, one steps to the forefront, its laser pistol glowing red-hot as it charges up a power shot!");
-			
-			for (var i:int = 0; i < 2; i++)
-			{
-				output("\n");
-				CombatAttacks.SingleRangedAttackImpl(this, target, true);		
-			}
-
-			// Heavy attack
-			if (rangedCombatMiss(this, target))
-			{
-				output(" You tumble to the side, ducking out of the way just in time to avoid a face-melting energy blast");
-				if (kGAMECLASS.silly) output(" to the, uh, face");
-				output(".");
+				output(" shocking " + (target is PlayerCharacter ? "you" : target.mfn("him", "her", "it")) + "!");
+				applyDamage(rangedDamage(), this, target, "minimal");
 			}
 			else
 			{
-				output(" You stagger back as the heavy laser bolt slams into your chest, burning into your defenses and leaving you smoking like a sausage!");
-
-				applyDamage(new TypeCollection( { burning: 20, electric:10 }, DamageFlag.LASER), this, target);
+				output(" though " + (target is PlayerCharacter ? "you manage" : target.mfn("he", "she", "it") + " manages") + " to duck the attack!");
 			}
 		}
 		
-		private function securityDroidFlashbang(target:Creature):void
+		private function droneKamikaze(hostileCreatures:Array):void
 		{
-			// Flashbang
-			// Blind, possibly Stun attack
-			output("One of the drones pulls a small, cylindrical grenade from its slender steel hip and lobs it at the pair of you!");
-
-			if(aim()/2 + rand(20) + 6 > target.reflexes()/2 + 10 && !target.hasStatusEffect("Blinded"))
+			output(uniqueName + " makes a series of rapid beeps, showering the the area with sparks as it shudders forward. The beeping quickens as the dying drone picks up speed, rushing toward you as if it means to crash into you!");
+			
+			// Cheaty-check- if Khan isn't involved in the fight, then its in the sewers
+			if (!CombatManager.hasEnemyOfClass(KQ2Khan))
 			{
-				target.createStatusEffect("Blinded",3,0,0,0,false,"Blind","Accuracy is reduced, and ranged attacks are far more likely to miss.",true,0);
-				output(" You aren’t able to shield yourself in time as the flash grenade goes off with a deafening BANG, leaving you <b>blinded</b>!");
+				output(" Suddenly the sewer is rocked by an explosion, sending razor-like shards of shrapnel everywhere!");
 			}
 			else
 			{
-				output(" You cover your eyes just in time to avoid the flash as the stun grenade goes off with a deafening BANG!");
+				output(" Suddenly the room is rocked by an explosion, sending razor-like shards of shrapnel everywhere!");
+			}
+			
+			var baseDamage:TypeCollection = new TypeCollection( { kinetic: 10, burning: 15 }, DamageFlag.EXPLOSIVE);
+			
+			var pc:Creature;
+			var kara:Creature;
+			
+			for (var i:int = 0; i < hostileCreatures.length; i++)
+			{
+				if (hostileCreatures[i] is PlayerCharacter) pc = hostileCreatures[i];
+				if (hostileCreatures[i] is Kara) kara = hostileCreatures[i];
+			}
+			
+			var hitPC:Boolean = combatMiss(this, pc);
+			var hitKara:Boolean = kara != null && combatMiss(this, kara);
+			
+			if (hostileCreatures.length == 1)
+			{
+				if (!hitPC) output(" You manage to avoid the blast!");
+				else output(" The shrapnel tears into you!");
+				applyDamage(damageRand(baseDamage, 15), this, pc, "minimal");
+			}
+			else
+			{
+				if (hitPC && !hitKara)
+				{
+					output(" Kara manages to avoid the blast, but the shrapnel tears into you!");
+					applyDamage(damageRand(baseDamage, 15), this, pc, "minimal");
+				}
+				else if (!hitPC && hitKara)
+				{
+					output(" You manage to avoid the blast, but the shrapnel tears into Kara!");
+					applyDamage(damageRand(baseDamage, 15), this, kara, "minimal");
+				}
+				else if (hitPC && hitKara)
+				{
+					output(" Both you and Kara are showered with ragged, razor-sharp pieces of shrapnel!");
+					applyDamage(damageRand(baseDamage, 15), this, pc, "minimal");
+					applyDamage(damageRand(baseDamage, 15), this, kara, "suppress");
+				}
+				else
+				{
+					output(" Both you and Kara manage to avoid the blast!");
+				}
 			}
 		}
 	}
-
 }

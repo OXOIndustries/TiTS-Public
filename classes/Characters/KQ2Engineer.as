@@ -1,10 +1,13 @@
 package classes.Characters
 {
+	import classes.CockClass;
 	import classes.Creature;
+	import classes.GameData.SingleCombatAttack;
 	import classes.GLOBAL;
+	import classes.Items.Guns.LaserPistol;
 	import classes.Items.Guns.MagnumPistol;
 	import classes.Items.Melee.Fists;
-	import classes.Items.Protection.JoyCoPremiumShield;
+	import classes.Items.Protection.ReaperArmamentsMarkIIShield;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
 	import classes.VaginaClass;
@@ -29,23 +32,21 @@ package classes.Characters
 			this.version = _latestVersion;
 			this._neverSerialize = true;
 			
-			this.short = "pirate techie";
-			this.originalRace = "ausar";
+			this.short = "pirate engineer";
+			this.originalRace = "lapinara";
 			this.a = "the ";
 			this.capitalA = "The ";
 			// this.long = "You're fighting a pirate techie, an ausar woman in a flight suit with a machine pistol at her hip. She's got a shock of blonde hair, perky breasts under her suit, and a shield generator that's thrumming with overcharged energy."
-			this.long = "An ausar woman in a flight suit with a machine pistol at her hip. She's got a shock of blonde hair, perky breasts under her suit, and a shield generator that's thrumming with overcharged energy.";
+			this.long = "You're fighting a lapinara engineer, a small pale-skinned creature with big bunny ears, curled horns, and a cute little tail. She's wearing a black breastplate, tall boots, and a jockstrap that can only barely contain her over-sized testicles. Her six-inch canine cock bounces unrestrained in front of her, peeking out of her clothes. She clutches a laser pistol in her hand, tricked out with enough mods to make it a serious damage-dealer.";
 			this.customBlock = "The pirates armor deflects your attack with an alarming ease.";
 			this.isPlural = false;
 			isLustImmune = false;
 			
 			this.meleeWeapon = new Fists();
-			this.rangedWeapon = new MagnumPistol();
-			rangedWeapon.attackVerb = "shoot";
-			rangedWeapon.attackNoun = "shot";
-			rangedWeapon.longName = "machine pistol";
+			this.rangedWeapon = new LaserPistol();
 			rangedWeapon.hasRandomProperties = true;
-			this.shield = new JoyCoPremiumShield();
+			rangedWeapon.baseDamage.burning.damageValue = 12;
+			this.shield = new ReaperArmamentsMarkIIShield();
 			shield.shields = 120;
 			shield.hasRandomProperties = true;
 			
@@ -70,7 +71,7 @@ package classes.Characters
 			this.HPRaw = this.HPMax();
 			
 			this.femininity = 100;
-			this.eyeType = GLOBAL.TYPE_HUMAN;
+			this.eyeType = GLOBAL.TYPE_LAPINARA;
 			this.eyeColor = "black";
 			this.tallness = 68;
 			this.thickness = 20;
@@ -79,23 +80,23 @@ package classes.Characters
 			this.scaleColor = "black";
 			this.furColor = "black";
 			this.hairLength = 3;
-			this.hairType = GLOBAL.TYPE_HUMAN;
+			this.hairType = GLOBAL.TYPE_LAPINARA;
 			this.beardLength = 0;
 			this.beardStyle = 0;
 			this.skinType = GLOBAL.SKIN_TYPE_SKIN;
 			this.skinTone = "pale";
 			this.skinFlags = new Array();
-			this.faceType = GLOBAL.TYPE_HUMAN;
+			this.faceType = GLOBAL.TYPE_LAPINARA;
 			this.faceFlags = new Array();
-			this.tongueType = GLOBAL.TYPE_HUMAN;
+			this.tongueType = GLOBAL.TYPE_LAPINARA;
 			this.lipMod = 0;
 			this.earType = 0;
 			this.antennae = 0;
 			this.horns = 0;
 			this.hornType = 0;
-			this.armType = GLOBAL.TYPE_HUMAN;
+			this.armType = GLOBAL.TYPE_LAPINARA;
 			this.gills = false;
-			this.legType = GLOBAL.TYPE_HUMAN;
+			this.legType = GLOBAL.TYPE_LAPINARA;
 			this.legCount = 2;
 			this.legFlags = [GLOBAL.FLAG_PLANTIGRADE];
 			//0 - Waist
@@ -138,7 +139,7 @@ package classes.Characters
 			//20 - inconceivably large/big/huge etc
 			this.buttRatingRaw = 2;
 			//No dicks here!
-			this.cocks = new Array();
+			this.cocks = [new CockClass()];
 			this.vaginas = [new VaginaClass()];
 			//balls
 			this.balls = 0;
@@ -171,10 +172,11 @@ package classes.Characters
 			this.ass.wetnessRaw = 0;
 			
 			createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
-			createPerk("Attack Drone", 0, 0, 0, 0, "Attack Drone!");
+			createPerk("Overcharge", 0, 0, 0, 0, "Overcharged Shot");
+			createPerk("Weapon Hack", 0, 0, 0, 0, "Weapon Hack");
 			
-			isUniqueInFight = false;
-			btnTargetText = "VoidTech";
+			isUniqueInFight = true;
+			btnTargetText = "Engineer";
 			sexualPreferences.setRandomPrefs(4, 2);
 			
 			_isLoading = false;
@@ -182,7 +184,7 @@ package classes.Characters
 		
 		override public function get bustDisplay():String
 		{
-			return "TECHGUARD";
+			return "VOID_ENGINEER";
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
@@ -190,120 +192,101 @@ package classes.Characters
 			var target:Creature = selectTarget(hostileCreatures);
 			if (target == null) return;
 			
-			// 1x per encounter, don't call it "Cooldown" to avoid auto-handling
-			if (shields() <= 0 && !hasStatusEffect("Shield Boost CD"))
+			if (!hasStatusEffect("Shield Regen Cooldown"))
 			{
-				shieldBoost();
+				var worstPerc:Number = 1.0;
+				var shieldTarget:Creature = null;
+				
+				for (var i:int = 0; i < alliedCreatures.length; i++)
+				{
+					if (alliedCreatures[i].isDefeated()) continue;
+					
+					var thisPerc:Number = alliedCreatures[i].shieldsMax() / alliedCreatures[i].shields();
+					if (thisPerc < worstPerc)
+					{
+						shieldTarget = alliedCreatures[i];
+					}
+				}
+				
+				shieldBoost(shieldTarget);
+				return;
 			}
+			
+			var attacks:Array = [];
+			
+			attacks.push( { v: pistolShot, w: 50 } );
+			if (CombatAttacks.Overcharge.IsAvailable(this) && !target.hasStatusEffect("Stunned")) attacks.push( { v: CombatAttacks.Overcharge, w: 20 } );
+			if (CombatAttacks.WeaponHack.IsAvailable(this) && !target.hasStatusEffect("Disarmed")) attacks.push( { v: CombatAttacks.WeaponHack, w: 10 } );
+			
+			var selection:* = weightedRand(attacks);
+			
+			if (selection is Function) selection(target);
 			else
 			{
-				var attacks:Array = [];
-
-				attacks.push( { v: machinePistol, w: 30 } );
-				if (!hasStatusEffect("Stun Cooldown") && energy() >= 20) attacks.push( { v: shockDart, w: 10 } );
-				attacks.push( { v: teaseAttack, w: (lust() / 2) } );
-
-				var selection:Function = weightedRand(attacks);
-				if (selection == teaseAttack) selection(hostileCreatures);
-				else selection(target);
-			}
-			
-			// Drone handled automatically by the combat container process- just make sure the perk
-			// exists on the creature!
-		}
-		
-		private function teaseAttack(hostileCreatures:Array):void
-		{
-			var pc:Creature;
-			var saen:Creature;
-			
-			for (var i:int = 0; i < hostileCreatures.length; i++)
-			{
-				if (hostileCreatures[i] is PlayerCharacter) pc = hostileCreatures[i] as Creature;
-				if (hostileCreatures[i] is Saendra) saen = hostileCreatures[i] as Creature;
-			}
-			
-			output("<i>“Hey, come on,”</i> the tech says, pressing her back to the wall and zipping down the front of her flight suit, revealing the perky mounds of her tits. <i>“Why don’t you put those weapons down, huh? We can work something out...”</i> she groans, running a hand up her chest.");
-
-			if (pc.willpower() + rand(30) + 1 < 30)
-			{
-				output("\n\nAn subtle warmth builds in your crotch as you stare at the ausar womans pert breasts, transfixed by their succulent, pliant flesh forming so perfectly around the tips of her fingers....");
-				applyDamage(new TypeCollection( { tease: 10 * (pc.libido() / pc.libidoMax()) } ), this, pc, "minimal");
-				applyDamage(new TypeCollection( { tease: 10 * (saen.libido() / saen.libidoMax()) } ), this, saen, "suppress");
-			}
-			else
-			{
-				output("\n\nYou respond with a polite, and obviously fake, cough. The ausar womans sensual show ends as abruptly as it started. <i>“Hey, don’t stop now!”</i> You shoot a glare at Saen. <i>“What? I'm not going to turn down a free show.”</i> Touché.");
-				applyDamage(new TypeCollection( { tease: 2 } ), this, pc, "minimal");
-				applyDamage(new TypeCollection( { tease: 2 } ), this, saen, "suppress");
+				var s:SingleCombatAttack = selection as SingleCombatAttack;
+				s.execute(alliedCreatures, hostileCreatures, this, target);
 			}
 		}
 		
-		private function shockDart(target:Creature):void
+		private function pistolShot(target:Creature):void
 		{
-			energy( -20);
-			output("The pirate tech fires a dart from a device on her wrist,");
-
+			output("The engineer levels her pistol at " + (target is PlayerCharacter ? "you" : target.a + target.short) +" and squeezes off a shot. A bright red lance of energy surges from the barrel,");
+			
 			if (rangedCombatMiss(this, target))
 			{
-				output(" though " + (target is PlayerCharacter ? "you're" : target.a + target.short + " is") + " able to duck out of the way.");
+				output(" narrowly missing " + (target is PlayerCharacter ? "you" : target.a + target.short) + "!");
 			}
 			else
 			{
-				output(" hitting " + (target is PlayerCharacter ? "you" : target.a + target.short) + " in the shoulder. The darts instantly release an agonizing shock of electricity, making " + (target is PlayerCharacter ? "you" : target.mfn("him", "her", "it")) + " yelp in agony.");
-
-				applyDamage(new TypeCollection({ electric: 17 }), this, target, "minimal");
-
-				if (target.physique() + rand(25) + 1 < 35)
-				{
-					output(" The shock of it leaves " + (target is PlayerCharacter ? "you" : target.a + target.short) + " reeling -- <b>" + (target is PlayerCharacter ? "you're" : target.mfn("he's", "she's", "it's")) + " stunned!</b>");
-					target.createStatusEffect("Stunned", 3, 0, 0, 0, false, "Stun", "Cannot take action!", true, 0);
-				}
+				output(" slamming into " + (target is PlayerCharacter ? "you" : target.a + target.short) + "!");
+				applyDamage(rangedDamage(), this, target, "minimal");
+			}
+		}
+		
+		private function shieldBoost(target:Creature):void
+		{
+			if (target is KQ2Engineer)
+			{
+				//On self use:
+				output("The lapinara reaches down to her shield generator and fiddles with a power setting. After a moment, her barrier flickers with renewed strength, and she sighs in relief.");
+			}
+			else
+			{
+				var numAlive:int = numFenrisDronesAlive();
+				//On Drone use:
+				output("The lapinara rushes over to");
+				if (numAlive > 1) output(" one of");
+				output(" her drone");
+				if (numAlive > 1) output(" s");
+				output(" and takes a knee next to it, yanking off its back panel and starting to pull wires. After a moment's work, the drone's shields flicker with renewed strength.");
 			}
 			
-			createStatusEffect("Stun Cooldown", 5);
+			target.shields(target.shieldsMax() * 0.3);
+			createStatusEffect("Shield Regen Cooldown", 5);
 		}
 		
-		private function machinePistol(target:Creature):void
+		private function numFenrisDronesAlive():int
 		{
-			output("The pirate tech sprays bullets at " + (target is PlayerCharacter ? "you" : target.a + target.short) + ", firing wildly from the hip!");
-
-			var numHits:int = 0;
-			for (var i:int = 0; i < 4; i++)
+			var numAlive:int = 0;
+			var hostiles:Array = CombatManager.getHostileCharacters();
+			
+			for (var i:int = 0; i < hostiles.length; i++)
 			{
-				if (!rangedCombatMiss(this, target, -1, 0 - i))
-				{
-					numHits++;
-				}
+				if (hostiles[i] is KQ2FenrisDrone && !hostiles[i].isDefeated()) numAlive++;
 			}
-
-			if (numHits == 0) output(" All of her shots go wide!");
-			else
-			{
-				output(" " + num2Text(numHits, true) + " bullet");
-				if (numHits > 1) output("s");
-				output(" hit");
-				if (numHits == 1) output("s");
-				output(", drilling " + (target is PlayerCharacter ? "you" : target.a + target.short) + "!");
-
-				var damage:TypeCollection = rangedDamage();
-				damage.multiply(0.4 * numHits);
-
-				applyDamage(damage, this, target, "minimal");
-			}	
+			
+			return numAlive;
 		}
-		
-		private function shieldBoost():void
-		{
-			output("The pirate babe grabs the generator on her belt and pushes it into maximum overdrive, giving herself a few more seconds of shielding from your assault.");
-
-			shields(shieldsMax() * 0.5);
-			createStatusEffect("Shield Boost CD");
-		}
-		
+	
 		override public function getCombatDescriptionExtension():void
 		{
-			output("\n\nA small ball-shaped hover drone floats around her, spraying laser fire everywhere."); 
+			var numAlive:int = numFenrisDronesAlive();
+			
+			if (numAlive == 0) return;
+			
+			output("\n\nThe engineer is accompanied by");
+			if (numAlive > 1) output(" several sleek, black canine robots, each with markings on their chests identifying them as Fenris IV assault drones.");
+			else output(" a sleek, black canine robot marked as a Fenris IV assault drone.");
 		}
 	}
 }

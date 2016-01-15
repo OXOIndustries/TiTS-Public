@@ -119,6 +119,7 @@ public function kq2FightSecDrones():void
 	CombatManager.victoryScene(kq2DroneVictory);
 	CombatManager.lossScene(kq2CapturedByPiratesBadEnd);
 	CombatManager.displayLocation("SEC. DROIDS");
+	CombatManager.encounterText("You're fighting a flight of small scout drones. Each drone is about the size of your fist, just a ball of metal built around a hover-platform and a tiny zap-gun. They're quick moving, though, and speed around you in a constant hail of electrical discharge.");
 
 	clearMenu();
 	addButton(0, "Next", CombatManager.beginCombat);
