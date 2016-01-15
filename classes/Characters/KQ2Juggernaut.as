@@ -27,12 +27,11 @@ package classes.Characters
 			this.version = _latestVersion;
 			this._neverSerialize = true;
 			
-			this.short = "void pirate";
+			this.short = "void juggernaut";
 			this.originalRace = "human";
 			this.a = "the ";
 			this.capitalA = "The ";
-			// this.long = "Several armed men in black-and-red heavy armor have stormed into the construction site, wildly firing machine pistols at you and your companion. It's almost impossible to see in here, except by the occasional muzzle flashes and showers of sparks as bullets slam into the metal bulkheads.\n\nNot far from you, Saen ducks into and out of cover, evading bursts of enemy fire and returning it as quick as she can.";
-			this.long = "A man in black-and-red armor, armed with machine pistol.";
+			this.long = "You're fighting a Black Void Juggernaut, a behemoth of a man strapped into a suit of military-spec powered armor. Not an inch of flesh is visible under all that armor, just the outline of a face hidden behind a holographic Jolly Roger on his helmet.";
 			this.customBlock = "The pirate’s armor deflects your attack with alarming ease.";
 			this.isPlural = false;
 			isLustImmune = true;
@@ -50,8 +49,8 @@ package classes.Characters
 			
 			this.shield = new JoyCoPremiumShield();
 			
-			this.armor.longName = "black void armor";
-			this.armor.defense = 5;
+			this.armor.longName = "black void power armor";
+			this.armor.defense = 25;
 			this.armor.hasRandomProperties = true;
 			
 			this.physiqueRaw = 17;
@@ -177,131 +176,175 @@ package classes.Characters
 			
 			createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
 			
-			isUniqueInFight = false;
-			btnTargetText = "VoidPirate";
+			isUniqueInFight = true;
+			btnTargetText = "Juggernaut";
 			
 			this._isLoading = false;
 		}
 		
 		override public function get bustDisplay():String
 		{
-			return "BLACKVOID";
+			return "JUGGERNAUT";
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
 		{
+			if (shields() <= 0 && !hasStatusEffect("GunShield Overloaded"))
+			{
+				fullPowerToTheDeflectors();
+				return;
+			}
+			
 			var target:Creature = selectTarget(hostileCreatures);
 			if (target == null) return;
 			
-			var nadesAvail:Boolean = true;
-			for (var i:int = 0; i < alliedCreatures.length; i++)
-			{
-				if (alliedCreatures[i].hasStatusEffect("Nade Cooldown")) nadesAvail = false;
-			}
-			
 			// enemy AI
 			var enemyAttacks:Array = [];
-			enemyAttacks.push({ v: rangedAttack, 				w: 40 });
-			enemyAttacks.push({ v: machinePistols, 				w: 40 });
-
-			if (nadesAvail)
-			{
-				enemyAttacks.push({ v: groupFlashbang, 			w: 15 });
-				enemyAttacks.push({ v: sx1GroupSmokeGrenade,	w: 15 });
-				enemyAttacks.push({ v: concGrenade, 			w: 15 });
-			}
+			enemyAttacks.push( { v: standardAttack, w: 40 } );
+			if (!hasStatusEffect("Machinegun Cooldown")) enemyAttacks.push( { v: machinegunSpray, w: 25 } );
+			if (!hasStatusEffect("Flashbang Cooldown")) enemyAttacks.push( { v: flashbang, w: 10 } );
+			if (!hasStatusEffect("Shield Bash Cooldown")) enemyAttacks.push( { v: shieldBash, w: 25 } );
 
 			var attack:Function = weightedRand(enemyAttacks);
-			
-			if (attack == rangedAttack || attack == machinePistols) attack(target);
+			if (attack == standardAttack || attack == shieldBash) attack(target);
 			else attack(hostileCreatures);
+			
 		}
 		
-		private function rangedAttack(target:Creature):void
+		private function standardAttack(target:Creature):void
 		{
-			CombatAttacks.RangedAttack(this, target);
-		}
-		
-		private function machinePistols(target:Creature):void
-		{
-			output("One of the assassins brings his machine pistol to bear, firing a burst of toward " + (target is PlayerCharacter ? "you" : target.a + target.short) + "!");
-			if (rangedCombatMiss(this, target, -1, 3))
+			output("The juggernaut levels his gun at " + (target is PlayerCharacter ? "you" : "Kara") + " with a gruff grunt, firing off a three-round burst of fire in " + (target is PlayerCharacter ? "your" : "her") + " direction!");
+			
+			for (var i:int = 0; i < 3; i++)
 			{
-				output(" The burst misses!");
-			}
-			else
-			{
-				output(" The burst hits!");
-
-				applyDamage(new TypeCollection({ kinetic: 5 }), this, target, "minimal");
+				output("\n");
+				CombatAttacks.SingleRangedAttackImpl(this, target, true, "ranged");
 			}
 		}
 		
-		private function groupFlashbang(targets:Array):void
+		private function fullPowerToTheDeflectors():void
 		{
-			// Flashbang
-			output("One of the assassins pulls another disk-like grenade from his belt and slides it across the deck, placing it between you and Saendra! The flashbang detonates with deafening force,");
-
+			output("<i>“THAT THE BEST YOU GOT!?”</i> the pirate roars as his machinegun’s tower shield shorts out, leaving him... not without a shield, you see, as another protective layer flickers to life around his armor. Standard-issue shield belt. <i>“COME GET SOME MORE, BITCHES!”</i>");
+			shields(shieldsMax() * 0.5);
+		}
+		
+		private function machinegunSpray(hostiles:Array):void
+		{
+			createStatusEffect("Machinegun Cooldown", 3);
+			
+			output("<i>“DIE, YOU SACKS OF SHIT!”</i> the pirate booms, bracing his feet and holding down the trigger, letting out a hail of fire");
+			
+			var numAlive:int = 0;
 			var pc:Creature;
-			var saen:Creature;
+			var kara:Creature;
 			
-			for (var i:int = 0; i < targets.length; i++)
+			for (var i:int = 0; i < hostiles.length; i++)
 			{
-				if (targets[i] is PlayerCharacter) pc = targets[i] as Creature;
-				if (targets[i] is Saendra) saen = targets[i] as Creature;
+				if (!hostiles[i].isDefeated()) numAlive++;
+				if (hostiles[i] is PlayerCharacter) pc = hostiles[i];
+				if (hostiles[i] is Kara) kara = hostiles[i];
 			}
 			
-			var blindedPC:Boolean = rand(10) != 0;
-			var blindedSaen:Boolean = rand(10) != 0;
-			
-			if (blindedPC && blindedSaen)
+			if (numAlive > 1)
 			{
-				output(" blinding you and Saendra.");
-				pc.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0);
-				saen.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0);
-			}
-			else if (!blindedPC && blindedSaen)
-			{
-				output(" blinding Saendra, though you manage to avoid any serious effect.");
-				saen.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0);
+				output(" split between you and Kara, sweeping over the room, blasting at you both!");
+				
+				for (i = 0; i < 4; i++)
+				{
+					output("\n");
+					CombatAttacks.SingleRangedAttackImpl(this, pc);
+					output("\n");
+					CombatAttacks.SingleRangedAttackImpl(this, kara);
+				}
 			}
 			else
 			{
-				output(" though both you and Saendra manage to avoid any serious effect.");
+				output(" hammering you with a barrage of bullets.");
+				
+				for (i = 0; i < 8; i++)
+				{
+					output("\n");
+					CombatAttacks.SingleRangedAttackImpl(this, pc);
+				}
 			}
-
-			createStatusEffect("Nade Cooldown", 5);
 		}
 		
-		private function sx1GroupSmokeGrenade(hostileCreatures:Array):void
+		private function flashbang(hostiles:Array):void
 		{
-			// Smoke Grenade
-			output("One of the assassins pulls a cylindrical grenade from his belt and hurls it between you and him. Smoke billows out of the grenade after a loud POP, making it almost impossible to see. <b>Aim reduced!</b>");
+			output("<i>“LOOK OUT!”</i> the pirate laughs, grabbing a grenade from his belt and chucking it into the middle of the room. It detonates with a blinding flash and a concussive <b>BOOM</b> that shakes you to the bone");
 			
-			for (var i:int = 0; i < hostileCreatures.length; i++)
+			var pc:Creature;
+			var kara:Creature;
+			
+			for (var i:int = 0; i < hostiles.length; i++)
 			{
-				hostileCreatures[i].createStatusEffect("Smoke Grenade", 3, 0, 0, 0, false, "Blind", "Ranged attacks are far more likely to miss.", true, 0);
+				if (hostiles[i] is PlayerCharacter) pc = hostiles[i] as Creature;
+				if (hostiles[i] is Kara && !hostiles[i].isDefeated()) kara = hostiles[i] as Creature;
 			}
 			
-			createStatusEffect("Nade Cooldown", 5);
+			if (kara != null)
+			{
+				var blindedPC:Boolean = rand(10) != 0;
+				var blindedKara:Boolean = rand(10) != 0;
+				if (blindedPC && blindedKara)
+				{
+					output(", blinding you and Kara.");
+					pc.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0);
+					kara.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0);
+				}
+				else if (!blindedPC && blindedKara)
+				{
+					output(" and blinds Kara, though you manage to avoid any serious effect.");
+					kara.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0);
+				}
+				else
+				{
+					output(", though both you and Kara manage to avoid any serious effect.");
+				}
+			}
+			// Can only be the PC then
+			else
+			{
+				blindedPC = rand(10) != 0;
+				
+				if (blindedPC)
+				{
+					output(" and blinds you.");
+					pc.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0);
+				}
+				else
+				{
+					output(", though you manage to avoid any serious effect.");
+				}
+			}
+
+			createStatusEffect("Flashbang Cooldown", 5);
 		}
 		
-		public function concGrenade(hostileCreatures:Array):void
+		private function shieldBash(target:Creature):void
 		{
-			// Concussion Grenade
-			output("One of the assassins grabs a red grenade off of his belt and hurls it at you. A second later, the grenade detonates in a rib-crushing wave of kinetic force that nearly knocks you on your ass!");
+			output("<i>“DOWN ON YOUR ASS!”</i> the pirate shouts, lunging towards " + (target is PlayerCharacter ? "you" : target.a + target.short) +" and swinging the");
+			if (!hasStatusEffect("GunShield Overloaded")) output(" shield projected from his gun");
+			else output(" butt of his gun");
+			output(" in a heavy-handed arc.");
 			
-			for (var i:int = 0; i < hostileCreatures.length; i++)
+			if (target is PlayerCharacter) output(" You are"); 
+			else output(" Kara is");
+			output(" thrown back by the weight of the impact, knocked down and staggered by the force.");
+			
+			if (rand(3) == 0)
 			{
-				var target:Creature = hostileCreatures[i];
-				var mul:Number;
-				if (target.RQ() < rand(100)) mul = 2;
-				else mul = 1;
-
-				applyDamage(new TypeCollection( { kinetic: 8 * mul } ), this, target, (target is PlayerCharacter ? "minimal" : "suppress"));
+				if (target is PlayerCharacter) output(" <b>You are stunned!</b>");
+				else output(" <b>Kara is stunned!</b>");
+				target.createStatusEffect("Stunned", 2 + rand(2), 0, 0, 0, false, "Stun", "Cannot act for a while.", true, 0);
 			}
-
-			createStatusEffect("NadeCD", 5);
+		}
+		
+		override public function getCombatDescriptionExtension():void
+		{
+			output(" The Juggernaut’s packing a light machinegun, fired from the hip");
+			if (!hasStatusEffect("GunShield Overloaded")) output(", which projects a massive hardlight shield in front of him.");
+			else output(". Thankfully, the gun's shield emitter has been overloaded.");
 		}
 	}
 }
