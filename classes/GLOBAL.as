@@ -68,7 +68,7 @@
 		public static const FLAG_FEATHERED:int								= 35;
 		public static const FLAG_DOUBLE_HEADED:int							= 36;
 		public static const FLAG_GOOEY:int									= 37;
-		public static const FLAG_SPIKEY:int									= 38;
+		public static const FLAG_SPIKED:int									= 38;
 		
 		public static const FLAG_NAMES:Array = [
 			"OFFSET -- INVALID",
@@ -109,7 +109,7 @@
 			"Feathered",
 			"Double Headed",
 			"Gooey",
-			"Spikey",
+			"Spiked",
 		];
 		
 		public static const VALID_SKIN_FLAGS:Array = [

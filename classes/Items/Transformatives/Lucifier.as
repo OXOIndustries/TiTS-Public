@@ -332,7 +332,7 @@ package classes.Items.Transformatives
 						{
 							output("\n\nThat’s not the end for your arms transforming, as the [pc.skinFurScalesNoun] on your forearms parts around a set of short jet-black bone spikes that grow along the outside of each forearm and out of the back of your elbows, the latter fitting flush against your upper arms when your arm is held out straight. The spikes are too short and too awkwardly placed to fight with, but they certainly look imposing. <b>You have spiked arms!</b>");
 							
-							target.addArmFlag(GLOBAL.FLAG_SPIKEY);
+							target.addArmFlag(GLOBAL.FLAG_SPIKED);
 						}
 					}
 					else output(target.armTypeLockedMessage());
