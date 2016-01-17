@@ -265,7 +265,7 @@ public function sx1PirateGroupPCVictory():void
 	
 	output("\n\nYou turn to Saen and give her a look, which she answers with a loud declaration of <i>“MAWP”</i> while she rubs her ears. You mutter a small thanks to your nano-docs for repairing your hearing damage about as fast as it happens.");
 	
-	output("\n\nAnd thanks to that, you’re able to hear the elevator ding into place. You");
+	output("\n\nThanks to that, you’re able to hear the elevator ding into place. You");
 	if ((pc as Creature).hasEquippedWeapon()) output(" [pc.readyWeapon] and");
 	output(" grab Saendra’s shoulder, shoving the both of you into cover and out of sight. You pull Saendra tight against yourself, wrapping your arm around her belly. She has the sense to shut up and draw her gun, clumsily swapping magazines just before the elevator slides open.");
 	
@@ -376,7 +376,7 @@ public function sx1TalkFriendII():void
 		output("\n\nYou bite back a comment as she lifts the guy’s wallet and crawls off of him.");
 	}
 	
-	output("\n\nJust like Saen had suggested, you find a compact machine pistol next to the guard’s unconscious body."); //  and pick it up. <b>You acquire a SecureMP</b>
+	output("\n\nJust like Saen had suggested, you find a compact machine pistol next to the guard’s unconscious body."); // and pick it up. <b>You acquire a SecureMP</b>
 	clearMenu();
 	addButton(0, "Take It", sx1LootSecureMP);
 	addButton(1, "Leave It", sx1TalkFriendIII);
@@ -601,7 +601,7 @@ public function sx1CallgirlOkay():void
 		else output(" are");
 		output(" poised");
 	}
-	output("  over her mouth.");
+	output(" over her mouth.");
 	
 	output("\n\nShe giggles and brushes her chitinous fingers along");
 	if (pc.hasCock()) output(" the shaft of [pc.oneCock]");
@@ -742,7 +742,7 @@ public function sx1Holoburn():void
 	{
 		output("\n\nYou can do that. <i>“Find me a access port and-”</i>");
 	
-		output("\n\n<i>“There’s one right there,”</i> Val says, flying over to a small panel on the wall. <i>“If you know what wires to cross, you should be able to cause a power surge. If I’m right, the pirates’ hacker is plugged in to a holobank computer inside. Cause an overload, and you’ll knock him out at the very least.”</i>");
+		output("\n\n<i>“There’s one right there,”</i> Val says, flying over to a small panel on the wall. <i>“If you know what wires to cross, you should be able to cause a power surge. If I’m right, the pirates’ hacker is plugged into a holobank computer inside. Cause an overload, and you’ll knock him out at the very least.”</i>");
 		
 		output("\n\nSounds good. You crouch down and, with Saen’s help, pull the panel off of the wall and start to pull wires. With a little help from your halfbreed companion and her fairy partner, you find the right wires to cross and converters to boost until the panel erupts in a cloud of sparks and smoke.");
 		
@@ -974,7 +974,7 @@ public function sx1TechguardPCLossII():void
 	else output(" one of the transformative vendors");
 	output(" near Anon’s... and very much alone. Saendra’s nowhere to be seen.");
 	
-	output("\n\n<i>“I’m... I’m fine,”</i> you groan. You must have been dumped on the side of the corridor after the pirates had done with you.");
+	output("\n\n<i>“I’m... I’m fine,”</i> you groan. You must have been dumped on the side of the corridor after the pirates were done with you.");
 	
 	output("\n\nThe guard helps you up and you end up having to file a report with Tavros security: telling them that you and your friend got into a firefight with pirates twice, and ended up losing this second time. The officer expreses her sympathies, but tells you that there’s not a lot security can do about it: the station’s cameras tracked the pirates all the way to the docks, but they left well before you woke up. With Saen in tow, too.");
 	
@@ -1519,7 +1519,7 @@ public function zilCallGirlFuckHer():void
 	if (CodexManager.entryViewed("Zil")) output("zil-");
 	else output(" call ");
 	output("girl’s hole until the cramped quarters echo with the sounds for flesh smacking wetly against flesh, mixing with her moans to form a resounding symphony of pleasure.");
-	output("\n\nEvery sense you have is assailed with the wonders of your lover’s body: the feeling of her breasts and pussy underneath you, the taste of her honey on your [pc.tongue], the sounds of her shrikes and your feral grunts, the sight of her throwing her head back holding you close, the smells of sex and her sweet honey-laden orgasm as ceaseless your pounding pushing her to the very edge. Her climax brings out your own as her body goes wild, flooding your mouth with unbidden gouts of honey and clenching hard around your cock, trapping you");
+	output("\n\nEvery sense you have is assailed with the wonders of your lover’s body: the feeling of her breasts and pussy underneath you, the taste of her honey on your [pc.tongue], the sounds of her shrieks and your feral grunts, the sight of her throwing her head back holding you close, the smells of sex and her sweet honey-laden orgasm as ceaseless as your pounding pushing her to the very edge. Her climax brings out your own as her body goes wild, flooding your mouth with unbidden gouts of honey and clenching hard around your cock, trapping you");
 	if (pc.balls > 0) output(" balls");
 	output(" deep inside her when you finally cum, and cum, and cum...");
 	output("\n\n<i>“Ah... ah, yes,”</i> the call girl moans, collapsing into the plush embrace of her bed, going utterly limp as you pump her womb full of seed.");
