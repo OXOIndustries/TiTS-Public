@@ -11393,7 +11393,7 @@ package classes {
 			} else if (InCollection(arg, GLOBAL.FLUID_TYPE_GABILANI_CUM, GLOBAL.FLUID_TYPE_GABILANI_GIRLCUM)) {
 				collection = ["oily","coating"];
 			} else if (arg == GLOBAL.FLUID_TYPE_SPECIAL_GOO) {
-				collection = ["slick","slimy","viscous","slippery"];
+				collection = ["slick","viscous","slippery"]; /* "slimy", */
 			} else if (arg == GLOBAL.FLUID_TYPE_CHOCOLATE_CUM) {
 				collection = ["thick","sticky"];
 			}
