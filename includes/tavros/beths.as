@@ -904,7 +904,7 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 	{
 		output("You sashay through the room, letting your hand trail along muscular arms, bending the warm weight of your [pc.chest] into seated gamblers, offering your friendliest smile to anyone who looks at you, coming across at the faintest sign of interest.");
 		output("\n\nYou soon find takers. Many of the men here are actually just pleased to hear a friendly female voice in their ear; deep space miners or mercenaries coming back from one ugly incident or another. They tip you healthily just to sit with them and laugh at their stupid jokes. Others want a little more.");
-		output("\n\nYour warm hand slides its way past belts and buckles, it undoes zips, it clicks buttons which release armored compartments; you become pretty adept at the art of one-handed undressing. You grip hot dick after dick - mostly big and girthy; penis enhancers are widely available, after all - and gently, rhythmically bring them to full mast, knead and coil hot meat until the guy’s eyes are closed and leant back");
+		output("\n\nYour warm hand slides its way past belts and buckles, it undoes zips, it clicks buttons which release armored compartments; you become pretty adept at the art of one-handed undressing. You grip hot dick after dick - mostly big and girthy; penis enhancers are widely available, after all - and gently, rhythmically bring them to full mast, kneading and coiling hot meat until the guy’s eyes are closed and leant back");
 		if(pc.biggestTitSize() > 0) output(", letting the plush softness of your [pc.chest] press into their chests as you work");
 		output(". The hubbub casually goes on around you, or the coo and slurp of the other whores working the rest of the john’s party provides a fitting soundtrack, as you rub and jerk, coil and squeeze until his body tenses up, he groans and releases spumes of cum, riding his orgasm out with the loving help of your hand, and finally gazes at you in gratified bliss. Such a simple thing which brings such pleasure. Napkins are free, and you quickly learn to take a supply with you everywhere.");
 		
@@ -921,7 +921,7 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 	{
 		output("You sashay through the room, letting your hand trail along muscular arms, bending the warm weight of your [pc.chest] into seated gamblers, offering your friendliest smile and most lascivious lick of the [pc.lips] to anyone who looks at you, coming across at the faintest sign of interest.");
 		output("\n\nYou soon find takers. Many of the men here are actually just pleased to hear a friendly female voice in their ear; deep space miners or mercenaries coming back from one ugly incident or another. They tip you healthily just to sit with them and laugh at their stupid jokes. Others want a little more.");
-		output("\n\nYour warm hand slides its way past belts and buckles, it undoes zips, it clicks buttons which release armored compartments; you become pretty adept at the art of one-handed undressing. You grip hot dick after dick - mostly big and girthy; penis enhancers are widely available, after all - and gently, rhythmically bring them to full mast, knead and coil hot meat until the guy’s eyes are closed and leant back");
+		output("\n\nYour warm hand slides its way past belts and buckles, it undoes zips, it clicks buttons which release armored compartments; you become pretty adept at the art of one-handed undressing. You grip hot dick after dick - mostly big and girthy; penis enhancers are widely available, after all - and gently, rhythmically bring them to full mast, kneading and coiling hot meat until the guy’s eyes are closed and leant back");
 		if(pc.biggestTitSize() > 0) output(", letting the plush softness of your [pc.chest] press into their chests as you work");
 		output(". You keep the movement of your hand slow and murmur in their ear that you will do more, if they’re willing to pay a little extra... the dick does all the thinking in these situations and more often than not, it’s exactly what they do. You give them a big, lusty smile, sink beneath the table and finish them off with a nice, deep suck.");
 		output("\n\nSome of the clients are more to the point; they pay you and point at their crotch, often without even breaking conversation with whoever they’re with. Their thighs tensing up around your gently bobbing head and their balls doing likewise against your chin, a groaning exhalation as they fountain hot cum down your throat and maybe a <i>“thanks doll”</i> after you’ve licked their bulging, oozing cock clean is the most you get from such guys.");
@@ -972,7 +972,7 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 		output("\n\nA few punters are more than happy for you to clamber onto their laps, though. You grip their collars or their armor and sink your [pc.vagina " + x + "]");
 		if(rand(2) == 0) output(" slowly");
 		else output(" gradually");
-		output(" down on to their firmly erect dicks before grinding away, writhing your [pc.hips] on top of theirs, ");
+		output(" down onto their firmly erect dicks before grinding away, writhing your [pc.hips] on top of theirs, ");
 		if(pc.biggestTitSize() > 0) output("[pc.chest] bouncing, ");
 		output("letting them see on your [pc.face] how much whorish joy it brings you.");
 		
