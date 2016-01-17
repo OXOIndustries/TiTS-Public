@@ -1639,7 +1639,7 @@ public function suckEmmysCockDuring69():void
 {
 	clearOutput();
 	showEmmy();
-	output("You grab hold of her suit zipper and yank it down, allowing a bloated canine cock to spring out, complete with a tapered head and bulgy knot. Emmy fidgets nervously when you grab the member, already slick with pre-cum. It firms perceptibly beneath your fingers and fills the air with the musky odor of a herm long-denied, aided the matted fur below, pasted down by her dick and its drippings.");
+	output("You grab hold of her suit zipper and yank it down, allowing a bloated canine cock to spring out, complete with a tapered head and bulgy knot. Emmy fidgets nervously when you grab the member, already slick with pre-cum. It firms perceptibly beneath your fingers and fills the air with the musky odor of a herm long-denied, aided by the matted fur below, pasted down by her dick and its drippings.");
 	output("\n\nYou tease, <i>“");
 	if(pc.isBimbo()) output("I couldn’t not stick a cock like this in my mouth! It’s just too yummy looking.");
 	else if(pc.isNice() || pc.isMischievous()) output("A big gun like this needs proper maintenance, dear. What kind of lover would I be if I didn’t help you empty the barrel?");
@@ -1690,6 +1690,7 @@ public function suckEmmysCockDuring69():void
 	output("”</i>");
 	pc.lust(30);
 	processTime(4);
+	clearMenu();
 	addButton(0,"Next",emmy69MiddleOfScene,1);
 }
 
@@ -1805,7 +1806,7 @@ public function emmy69OrgasmTime(args:Array):void
 		output("Waves of orgasmic ecstasy roll through your [pc.cock " + x + "], borne on Emmy’s greedily slobbering maw. It figures that a girl who masturbates by sucking herself off would be a fucking pro at giving blowjobs. Her lush, pre-slathered lips seal tight around the midpoint of your shaft and bathe you in bliss, sliding back and forth with feverish need. You can hear the lurid squelches of her fucking her mouth with your cock all the way from between her legs. It sounds almost as good as it feels, and when she bottoms out, stopping to slide her tongue");
 		if(pc.balls == 0) output(" all over your captive cock");
 		else output(" out to lap at your [pc.balls]");
-		if(pc.cocks[x].cLength() > 12) output(", her neck bulging from how much she’s forced down her throat");
+		if(pc.cocks[x].cLength() > 12) output(", her neck bulges from how much she’s forced down her throat");
 		output(".");
 		output("\n\nPleasure draws every muscle in your body taut. White spots dance behind your eyes, and your world explodes. Your [pc.hips] thrust powerfully forward, and you feel the wonderful, blessed relief of ejaculation, like a white-hot bar of bliss blasting out of you and into the heavens - or Emmy’s mouth. They may as well be one at the same thing to you.");
 	}
@@ -1820,7 +1821,7 @@ public function emmy69OrgasmTime(args:Array):void
 	output("\n\nPure pleasure backs your ceaseless swallowing. Both you and Emmy are lost to it, ingesting as much of the other’s love as possible before your twinned orgasms completely wind down. How long you spend bound to Emmy’s crotch, you don’t know, but when you stagger up and burp, tasting her on your tongue and breath, you feel completely and totally winded.");
 	//-10 energy!
 	pc.energy(-10);
-	output("\n\nEmmy doesn’t seem to have fare much better. She’s panting and trying to lap your ");
+	output("\n\nEmmy doesn’t seem to have fared much better. She’s panting and trying to lap your ");
 	if(emmySucks == 2) output("[pc.girlCum]");
 	else output("[pc.cum]");
 	output(" from the edges of her muzzle, but her tongue seems more intent on hanging from her mouth like a dog’s on a hot day. <i>“Wow...”</i> She looks at your face, still stained with the evidence of her orgasm, and visibly shudders, her cock abruptly swelling back to full hardness. Dazed, she mumbles, <i>“I umm... I’ll be uh... gotta go clean up.”</i> Jizz trickles from the tip of her member as she staggers into a back room.");
@@ -1989,7 +1990,7 @@ public function eatOutEmmysVagYouPoorPussyAddictedSod():void
 	output("\n\nEmmy cums again. This time there’s far less girlcum, but her pussy’s rhythmic contractions are far, far stronger. It feels like she’s going to break your fingers off with how hard her cunt is clamping down. Her juices are sweeter this time too, this mouthful of cunt-love freshly made, just for you. You keep your dual-sexed lover lost in the throws of bliss for what feels like hours. Your mouth is sore, and your tongue exhausted, but you still lick and kiss until you feel every ounce of strength drain from the jackaless’s fucked-out form.");
 	output("\n\nPatting her pussy as if to say, <i>“good girl,”</i> you back away and stand, stretching on ");
 	if(pc.legCount == 1) output("a ");
-	output("[pc.legOrLegs] made tired from kneeling. Emmy is flat on her back, nearly sliding off the counter. A small lack of cum is draining out from between her tits, and trickles of white ooze from both sides of her slack mouth. One of her hands is idly rubbing her dick while the other cradles a very swollen belly. Just how much cum did she swallow?");
+	output("[pc.legOrLegs] made tired from kneeling. Emmy is flat on her back, nearly sliding off the counter. A small lake of cum is draining out from between her tits, and trickles of white ooze from both sides of her slack mouth. One of her hands is idly rubbing her dick while the other cradles a very swollen belly. Just how much cum did she swallow?");
 	if(pc.isBimbo()) output(" You’re totes jealous.");
 
 	output("\n\nIvory still trickles from the tip of her still-hard cock, and her knot is swollen up to the size of a grapefruit. Emmy’s eyes are halfway rolled up behind her drooping eyelids, and she’s blabbering gibberish intermingled with words like, <i>“yes,”</i> <i>“good,”</i> and <i>“fuck.”</i> The poor thing just wasn’t ready to withstand the multiorgasmic delight of a proper pussy-licking. You wonder if she’ll ever get used to it while wandering into the back to make use of her shower facilities.");
