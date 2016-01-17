@@ -2591,7 +2591,11 @@ public function emailRoulette():void
 	{
 		for(var i:int = 0; i < SpamEmailKeys.length; i++) 
 		{
-			if(!MailManager.isEntryUnlocked(SpamEmailKeys[i]) && rand(2) == 0) mailList.push(SpamEmailKeys[i]);
+			if(	!InCollection(SpamEmailKeys[i], ["burtsmeadhall", "kihaai", "fuckinggoosloots", "fuckinggooslootsII", "kirofucknet"])
+			&&	!MailManager.isEntryUnlocked(SpamEmailKeys[i])
+			&&	rand(2) == 0
+			)
+				mailList.push(SpamEmailKeys[i]);
 		}
 	}
 	
