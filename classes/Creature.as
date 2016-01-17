@@ -2547,11 +2547,13 @@ package classes {
 		}
 		//Used to see if wing-wang-doodles and hatchet-wounds are accessible. Should probably replace most isCrotchGarbed() calls.
 		public function isCrotchExposed(): Boolean {
+			if(!isCrotchGarbed()) return true;
 			return ((armor is EmptySlot || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)) && (lowerUndergarment is EmptySlot || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)));
 		}
 		//Badonkadonk check
 		public function isAssExposed():Boolean
 		{
+			if(!isCrotchGarbed()) return true;
 			return ((armor is EmptySlot || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)) && (lowerUndergarment is EmptySlot || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)));
 		}
 		public function isGroinCovered(): Boolean {
@@ -2565,6 +2567,7 @@ package classes {
 		//Used to see if boobs are hanging out instead of isChestGarbed/Covered.
 		public function isChestExposed(): Boolean
 		{
+			if(!isChestCovered()) return true;
 			return ((armor is EmptySlot || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)) && (upperUndergarment is EmptySlot || upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)));
 		}
 		public function isChestGarbed(): Boolean {
@@ -3812,11 +3815,14 @@ package classes {
 			switch (tongueType)
 			{
 				case GLOBAL.TYPE_HUMAN:
-					if(isHuman() || isHalfHuman())
+					if(faceType != GLOBAL.TYPE_HUMAN)
 					{
-						if(rand(5) == 0) types.push("human", "terran");
+						if(isHuman() || isHalfHuman())
+						{
+							if(rand(5) == 0) types.push("human", "terran");
+						}
+						else types.push("humanoid");
 					}
-					else types.push("humanoid");
 					break;
 				case GLOBAL.TYPE_NAGA:
 					types.push("forked", "reptilian", "flitting", "snake-like");
@@ -3841,11 +3847,11 @@ package classes {
 					break;
 				case GLOBAL.TYPE_CANINE:
 					types.push("dog-like", "canine", "large", "floppy");
-					if (race().indexOf("ausar") != -1) types.push("ausar");
+					if(race().indexOf("ausar") != -1) types.push("ausar");
 					break;
 				case GLOBAL.TYPE_FELINE:
 					types.push("cat-like", "feline", "cute");
-					if (race().indexOf("kaithrit") != -1) types.push("kaithrit");
+					if(race().indexOf("kaithrit") != -1) types.push("kaithrit");
 					break;
 				case GLOBAL.TYPE_BOVINE:
 					types.push("cow-like", "taurine", "wide-set", "broad", "bovine");
@@ -5988,6 +5994,16 @@ package classes {
 			}
 			return false;
 		}
+		public function totalKnots():Number
+		{
+			if (cocks.length <= 0) return 0;
+			var total:int = 0;
+			for(var x:int = 0; x < totalCocks(); x++)
+			{
+				if(hasKnot(x)) total++;
+			}
+			return total;
+		}
 		public function knotThickness(arg:int = 0):Number
 		{
 			if(arg < 0 || arg >= cockTotal()) return 0;
@@ -7777,6 +7793,7 @@ package classes {
 		}
 		public function createVaginaUnlocked(numVag:int = 1):Boolean
 		{
+			if ((vaginas.length + numVag) > 3) return false;
 			return true;
 		}
 		public function createVaginaLockedMessage():String
@@ -8084,6 +8101,7 @@ package classes {
 			if (armType == GLOBAL.TYPE_KUITAN) counter++;
 			if (legType == GLOBAL.TYPE_KUITAN) counter++;
 			if (hasCock(GLOBAL.TYPE_KUITAN)) counter++;
+			if (counter > 1 && hasCock() && balls >= 2) counter++;
 			return counter;
 		}
 		public function gooScore():int
@@ -8138,6 +8156,16 @@ package classes {
 			if (counter > 0 && skinType == GLOBAL.SKIN_TYPE_FUR) counter++;
 			return counter;
 		}
+		public function canineScore(): int {
+			var counter: int = 0;
+			if (earType == GLOBAL.TYPE_CANINE) counter++;
+			if (hasTail(GLOBAL.TYPE_CANINE) && hasTailFlag(GLOBAL.FLAG_FURRED)) counter++;
+			if (armType == GLOBAL.TYPE_CANINE && hasArmFlag(GLOBAL.FLAG_FURRED)) counter++;
+			if (legType == GLOBAL.TYPE_CANINE && hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) counter++;
+			if (faceType == GLOBAL.TYPE_CANINE) counter++;
+			if (counter > 1 && cockTotal(GLOBAL.TYPE_CANINE) == cockTotal() && totalKnots() == cockTotal()) counter++;
+			return counter;
+		}
 		public function demonScore(): int
 		{
 			var counter: int = 0;
@@ -8149,6 +8177,17 @@ package classes {
 			if (counter > 1 && (legType == GLOBAL.TYPE_DEMONIC || legType == GLOBAL.TYPE_SUCCUBUS || legType == GLOBAL.TYPE_BOVINE)) counter++;
 			if (counter > 2 && eyeType == GLOBAL.TYPE_DEMONIC && faceType == GLOBAL.TYPE_HUMAN) counter++;
 			if (counter > 3 && hasCock(GLOBAL.TYPE_DEMONIC)) counter++;
+			return counter;
+		}
+		public function felineScore(): int {
+			var counter: int = 0;
+			if (earType == GLOBAL.TYPE_FELINE) counter++;
+			if (hasTail(GLOBAL.TYPE_FELINE)) counter++;
+			if (faceType == GLOBAL.TYPE_FELINE || faceType == GLOBAL.TYPE_NALEEN_FACE) counter++;
+			if (armType == GLOBAL.TYPE_FELINE && hasArmFlag(GLOBAL.FLAG_FURRED)) counter++;
+			if (legType == GLOBAL.TYPE_FELINE && hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) counter++;
+			if (eyeType == GLOBAL.TYPE_FELINE && faceType == GLOBAL.TYPE_FELINE) counter++;
+			if (counter > 1 && cockTotal(GLOBAL.TYPE_FELINE) == cockTotal()) counter++;
 			return counter;
 		}
 		public function frogScore(): int
@@ -8165,6 +8204,7 @@ package classes {
 				if (tongueType == GLOBAL.TYPE_FROG) counter++;
 			}
 			if (hasFur() || hasFeathers()) counter--;
+			if (!hasFlatNipples() && !hasInvertedNipples()) counter--;
 			return counter;
 		}
 		public function gabilaniScore():int
@@ -8242,13 +8282,20 @@ package classes {
 		{
 			var counter: int = 0;
 			if (isNaga()) counter += 2;
-			if (faceType == GLOBAL.TYPE_NALEEN_FACE) counter++;
-			if (eyeType == GLOBAL.TYPE_NAGA && faceType == GLOBAL.TYPE_NALEEN_FACE) counter++;
-			if (hasGenitals() && hasStatusEffect("Genital Slit")) counter++;
+			if (faceType == GLOBAL.TYPE_NALEEN_FACE)
+			{
+				counter++;
+				if (eyeType == GLOBAL.TYPE_NAGA) counter++;
+				if (earType == GLOBAL.TYPE_FELINE) counter++;
+			}
+			if (hasGenitals() && hasStatusEffect("Genital Slit"))
+			{
+				counter++;
+				if (hasCock(GLOBAL.TYPE_NAGA)) counter++;
+				if (hasVaginaType(GLOBAL.TYPE_NAGA)) counter++;
+			}
 			if (counter > 0 && skinType == GLOBAL.SKIN_TYPE_FUR) counter++;
 			if (counter > 0 && armType == GLOBAL.TYPE_FELINE && hasArmFlag(GLOBAL.FLAG_FURRED)) counter++;
-			if (counter > 0 && hasCock(GLOBAL.TYPE_NAGA)) counter++;
-			if (counter > 0 && hasVaginaType(GLOBAL.TYPE_NAGA)) counter++;
 			return counter;
 		}
 		public function ovirScore():int
@@ -11292,7 +11339,7 @@ package classes {
 				collection = ["tangy","tangy","tangy","tangy","tangy","tangy","tangy","flavorful","flavorful","flavorful"];
 			} else if (arg == GLOBAL.FLUID_TYPE_CUMSAP) {
 				collection = ["salty-sweet","salty-sweet","salty-sweet","salty-sweet","salty-sweet","syrupy","syrupy","syrupy","salty","salty"];
-			} else if (arg == GLOBAL.FLUID_TYPE_CHOCOLATE_MILK) {
+			} else if (InCollection(arg, GLOBAL.FLUID_TYPE_CHOCOLATE_MILK, GLOBAL.FLUID_TYPE_CHOCOLATE_CUM)) {
 				collection = ["creamy","creamy","creamy","delicious","delicious","sweet","chocolatey","cocoa-flavored","rich"];
 			} else if (arg == GLOBAL.FLUID_TYPE_STRAWBERRY_MILK) {
 				collection = ["creamy","creamy","creamy","delicious","delicious","sweet","strawberry-flavored","fruity","rich"];
@@ -11346,6 +11393,8 @@ package classes {
 				collection = ["oily","coating"];
 			} else if (arg == GLOBAL.FLUID_TYPE_SPECIAL_GOO) {
 				collection = ["slick","slimy","viscous","slippery"];
+			} else if (arg == GLOBAL.FLUID_TYPE_CHOCOLATE_CUM) {
+				collection = ["thick","sticky"];
 			}
 			
 			else collection = ["fluid"];
@@ -11368,7 +11417,7 @@ package classes {
 				collection = ["transluscent","transluscent","transluscent","transluscent","transluscent","clear","clear","clear","semi-transparent","semi-transparent"];
 			} else if (arg == GLOBAL.FLUID_TYPE_CUMSAP) {
 				collection = ["off-white","off-white","off-white","off-white","off-white","pearl-marbled amber","pearl-marbled amber","pearl-marbled amber","ivory-amber","ivory-amber"];
-			} else if (arg == GLOBAL.FLUID_TYPE_CHOCOLATE_MILK) {
+			} else if (InCollection(arg, GLOBAL.FLUID_TYPE_CHOCOLATE_MILK, GLOBAL.FLUID_TYPE_CHOCOLATE_CUM)) {
 				collection = ["chocolate","chocolate","chocolate","chocolate","chocolate","creamy brown, chocolate","creamy brown, chocolate","creamy brown, chocolate","dark, chocolate","dark, chocolate"];
 			} else if (arg == GLOBAL.FLUID_TYPE_STRAWBERRY_MILK) {
 				collection = ["pink","pink","pink","pink","pink","creamy pink","creamy pink","creamy pink","light, pink","light, pink"];
@@ -11401,7 +11450,7 @@ package classes {
 			if (InCollection(arg, GLOBAL.FLUID_TYPE_LEITHAN_MILK, GLOBAL.FLUID_TYPE_CUMSAP, GLOBAL.FLUID_TYPE_MILK, GLOBAL.FLUID_TYPE_CUM, GLOBAL.FLUID_TYPE_VANILLA, GLOBAL.FLUID_TYPE_MILKSAP)) return "white";
 			else if (InCollection(arg, GLOBAL.FLUID_TYPE_HONEY, GLOBAL.FLUID_TYPE_NECTAR)) return "yellow";
 			else if (InCollection(arg, GLOBAL.FLUID_TYPE_OIL, GLOBAL.FLUID_TYPE_GIRLCUM)) return "transparent";
-			else if (arg == GLOBAL.FLUID_TYPE_CHOCOLATE_MILK) return "brown";
+			else if (InCollection(arg, GLOBAL.FLUID_TYPE_CHOCOLATE_MILK, GLOBAL.FLUID_TYPE_CHOCOLATE_CUM)) return "brown";
 			else if (InCollection(arg, GLOBAL.FLUID_TYPE_STRAWBERRY_MILK, GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK)) return "pink";
 			else if (arg == GLOBAL.FLUID_TYPE_SYDIAN_CUM) return "silver";
 			else if (arg == GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK) return "purple";
@@ -11422,8 +11471,8 @@ package classes {
 			//CUM & MILK TYPES
 			if (arg == GLOBAL.FLUID_TYPE_MILK) {
 				collection = ["milk","cream"];
-			} else if (InCollection(arg, GLOBAL.FLUID_TYPE_CUM, GLOBAL.FLUID_TYPE_SYDIAN_CUM, GLOBAL.FLUID_TYPE_NYREA_CUM, GLOBAL.FLUID_TYPE_GABILANI_CUM)) {
-				collection = ["cum"];
+			} else if (InCollection(arg, GLOBAL.FLUID_TYPE_CUM, GLOBAL.FLUID_TYPE_SYDIAN_CUM, GLOBAL.FLUID_TYPE_NYREA_CUM, GLOBAL.FLUID_TYPE_GABILANI_CUM, GLOBAL.FLUID_TYPE_CHOCOLATE_CUM)) {
+				collection = ["cum", "jizz"];
 			} else if (arg == GLOBAL.FLUID_TYPE_HONEY) {
 				collection = ["honey"];
 			} else if (arg == GLOBAL.FLUID_TYPE_OIL) {
@@ -11442,8 +11491,7 @@ package classes {
 				collection = ["nectar"];
 			} else if (arg == GLOBAL.FLUID_TYPE_LEITHAN_MILK) {
 				collection = ["milk"];
-			}
-			else if (arg == GLOBAL.FLUID_TYPE_SPECIAL_GOO) {
+			} else if (arg == GLOBAL.FLUID_TYPE_SPECIAL_GOO) {
 				collection = ["slime","goo"];
 			}
 			

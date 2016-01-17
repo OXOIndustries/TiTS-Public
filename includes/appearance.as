@@ -479,7 +479,7 @@ public function appearance(forTarget:Creature):void
 				if(target.horns <= 2) output2(" A small pair of pointed horns has broken through the " + target.skin() + " on your forehead, proclaiming some demonic taint to any who see them.");
 				else if(target.horns <= 4) output2(" A quartet of prominent horns has broken through your " + target.skin() + ". The back pair are longer, and curve back along your head. The front pair protrude forward demonically.");
 				else if(target.horns <= 6) output2(" Six horns have sprouted through your " + target.skin() + ", the back two pairs curve backwards over your head and down towards your neck, while the front two horns stand almost eight inches long upwards and a little forward.");
-				else output2(" A large number of thick demonic horns sprout through your " + target.skin() + ", each pair sprouting behind the ones before. The front jut forwards nearly ten inches while the rest curve back over your head, some of the points ending just below your ears. You estimate you have a total of " + num2Text(target.horns) + " horns.");	
+				else output2(" A large number of thick demonic horns sprout through your " + target.skin() + ", each pair sprouting behind the ones before. The front jut forwards nearly " + num2Text(target.hornLength) + " inches while the rest curve back over your head, some of the points ending just below your ears. You estimate you have a total of " + num2Text(target.horns) + " horns.");
 			}
 			//Minotaur horns
 			if(target.hornType == GLOBAL.TYPE_BOVINE) {
@@ -589,6 +589,8 @@ public function appearance(forTarget:Creature):void
 			if(target.hasArmFlag(GLOBAL.FLAG_GOOEY)) output2(" gooey");
 			else output2(" humanoid");
 			output2(" hands appear very demonic, tipped with sharp claws that seem to have replaced your fingernails.");
+			if(target.hasArmFlag(GLOBAL.FLAG_CHITINOUS)) output2(" In addition, your forearms are covered by sleek plates of jet-black chitin along the outside of each arm. Smaller pentagonal plates trail up your upper arms and over your shoulders.");
+			else if(target.hasArmFlag(GLOBAL.FLAG_SPIKEY)) output2(" In addition, a set of short jet-black bone spikes grow along the outside of each forearm and out of the back of your elbows, giving you an incredibly imposing look.");
 		}
 		else if(target.armType == GLOBAL.TYPE_ARACHNID || target.armType == GLOBAL.TYPE_DRIDER || target.armType == GLOBAL.TYPE_BEE)
 		{
@@ -1640,7 +1642,7 @@ public function boobStuff(forTarget:Creature = null):void
 					else output2("each.");
 				}
 				if(target.breastRows[temp].nippleType == GLOBAL.NIPPLE_TYPE_FUCKABLE) {
-					output2(" They actually houses wet, slippery, secret entrances.");
+					output2(" They actually house wet, slippery, secret entrances.");
 				}
 				else if(target.breastRows[temp].nippleType == GLOBAL.NIPPLE_TYPE_LIPPLES) {
 					output2(" Plump lips cap them off in place of nipples.");

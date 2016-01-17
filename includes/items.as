@@ -325,6 +325,7 @@ public function buyItemGo(arg:ItemSlotClass):void {
 	
 	//Emmy magic!
 	if(shopkeep is Emmy) flags["PURCHASED_FROM_EMS"] = 1;
+	if(shopkeep is Sera) flags["PURCHASED_FROM_SERA"] = 1;
 	// Renamed from lootList so I can distinguish old vs new uses
 	var purchasedItems:Array = new Array();
 	purchasedItems[purchasedItems.length] = arg.makeCopy();

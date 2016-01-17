@@ -9,6 +9,7 @@ import classes.GUI;
 import classes.Items.Accessories.LeithaCharm;
 import classes.Items.Miscellaneous.EmptySlot;
 import classes.Items.Miscellaneous.HorsePill;
+import classes.Items.Transformatives.Clippex;
 import classes.Items.Transformatives.Goblinola;
 import classes.RoomClass;
 import classes.StorageClass;
@@ -1038,6 +1039,20 @@ public function statusTick():void {
 					var gobbyFaceTF:Goblinola = new Goblinola();
 					eventQueue[eventQueue.length] = gobbyFaceTF.itemGoblinFaceTF;
 				}
+				//Clippex changes!
+				if(pc.statusEffects[x].storageName == "Clippex Gel")
+				{
+					var clippexTF:Clippex = new Clippex();
+					if(pc.statusEffects[x].value2 > 1) eventQueue[eventQueue.length] = clippexTF.itemClippexTFPlus;
+					else eventQueue[eventQueue.length] = clippexTF.itemClippexTF;
+				}
+				//Semen's Friend changes!
+				if(pc.statusEffects[x].storageName == "Semen's Candy")
+				{
+					var semensTF:SemensFriend = new SemensFriend();
+					if(pc.statusEffects[x].value2 > 1) eventQueue[eventQueue.length] = semensTF.itemSemensFriendTFPlus;
+					else eventQueue[eventQueue.length] = semensTF.itemSemensFriendTF;
+				}
 				if(pc.statusEffects[x].storageName == "Red Myr Venom")
 				{
 					//Bit of a hacky solution
@@ -1602,7 +1617,19 @@ public function processTime(arg:int):void {
 				}
 			}
 		}
-
+		
+		//Clippex procs!
+		if(pc.hasStatusEffect("Clippex Gel"))
+		{
+			var clippexTF:Clippex = new Clippex();
+			clippexTF.itemClippexLustIncrease();
+		}
+		//Semen's Friend procs!
+		if(pc.hasStatusEffect("Semen's Candy"))
+		{
+			var semensTF:SemensFriend = new SemensFriend();
+			semensTF.itemSemensFriendLibidoIncrease();
+		}
 		//Treatment display shit
 		if(pc.hasStatusEffect("Treatment Elasticity Report Q'ed"))
 		{
@@ -2600,7 +2627,10 @@ public function emailRoulette():void
 			pc.lust(20);
 		}
 		if(mailKey == "estrobloom" && !pc.hasKeyItem("Coupon - Estrobloom"))
+		{
+			eventBuffer += "\n\n<b>You have gained a coupon for Estrobloom!</b>";
 			pc.createKeyItem("Coupon - Estrobloom", 0.9, 0, 0, 0, "Save 10% on your next purchase of Estrobloom!");
+		}
 		if(mailKey == "hugedicktoday" && pc.isBro() && pc.hasCock())
 		{
 			eventBuffer += " The subject line reads <i>“" + mailSubject + "”</i>. Hell yeah--who wouldn’t want a bigger dick? You quicky open the message to read its contents and the codex lights up with the display:";

@@ -2115,17 +2115,25 @@ public function displayEncounterLog(showID:String = "All"):void
 			if(flags["MET_SERA"] != undefined)
 			{
 				output2("\n<b><u>The Dark Chrysalis</u></b>");
-				output2("\n<b>* Sera:</b> Met her");
-				if(flags["SERA_TALKED_ABOUT_BEING_PISSED_OFF"] == undefined) output2(", Pissed off");
+				output2("\n<b>*");
+				if(flags["SERA_TRIPLE_X_RATED"] >= 4) output2(" Mistress");
+				output2(" Sera:</b> Met her");
+				if(flags["SERA_NO_SEX"] == 1) output2(", Pissed off at you indefinitely");
+				else if(flags["SERA_TALKED_ABOUT_BEING_PISSED_OFF"] == undefined) output2(", Pissed off");
 				else output2(", Vented her frustrations");
-				if(flags["FUCKED SERA"] != undefined && flags["FUCKED SERA"] > 0)
+				if(flags["SERA_INCH_STEAL"] != undefined) output2("\n<b>* Sera, Tail Length: </b>" + prettifyLength(36 + seraInchGain()));
+				if(fuckedSeraBefore())
 				{
-					initSeraFuckFlags();
 					output2("\n<b>* Sera, Times Sexed: </b>" + timesFuckedSera());
 					if(flags["TIMES_RODE_BY_SERA"] > 0) output2("\n<b>* Sera, Times She Rode You: </b>" + flags["TIMES_RODE_BY_SERA"]);
 					if(flags["SERA_STUCK_IT_ALL_IN_BUTT"] > 0) output2("\n<b>* Sera, Times She Stuffed Your Ass with Dicks: </b>" + flags["SERA_STUCK_IT_ALL_IN_BUTT"]);
 					if(flags["SERA FUCKED PCS TAILCUNT"] > 0) output2("\n<b>* Sera, Times She Fucked Your Tail Cunt: </b>" + flags["SERA FUCKED PCS TAILCUNT"]);
 					if(flags["SERA_URETHRA_TAILFUCKS"] > 0) output2("\n<b>* Sera, Times She Tail-Fucked Your Urethra: </b>" + flags["SERA_URETHRA_TAILFUCKS"]);
+					if(flags["SERA_EXHIBITION_BLOWJOB"] != undefined) output2("\n<b>* Sera, Times She Gave You a Public Blowjob: </b>" + flags["SERA_EXHIBITION_BLOWJOB"]);
+					if(flags["SERA_IN_JARDI_THREESOME"] != undefined) output2("\n<b>* Sera, Times Sexed in Threesome with Jardi: </b>" + flags["SERA_IN_JARDI_THREESOME"]);
+					if(flags["SERA_FACE_RIDE_TRAINING"] != undefined) output2("\n<b>* Sera, Times She Rode Your Face: </b>" + flags["SERA_FACE_RIDE_TRAINING"]);
+					if(flags["SERA_INCH_STEALING_SEX"] > 0) output2("\n<b>* Sera, Times She Absorbed Your Length: </b>" + flags["SERA_INCH_STEALING_SEX"]);
+					if(flags["SERA_INCH_STEALING_HELP"] > 0) output2("\n<b>* Sera, Times You Untangled Her Tail Cock: </b>" + flags["SERA_INCH_STEALING_HELP"]);
 				}
 				if(flags["PURCHASED_SERAS_GALO"] != undefined || flags["SAENDRA GONNA GO GET A COCK"] >= 2)
 				{
@@ -2135,7 +2143,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					{
 						if(flags["PURCHASED_SERAS_GALO"] != undefined) output2(",");
 						output2(" Saendra’s penis growth drug");
-						if(flags["SAEN_X_SERA_THREESOME"] != undefined) output2(" (with threesome discount)");
+						if(flags["SAEN_X_SERA_THREESOME"] > 0) output2(" (with threesome discount)");
 					}
 				}
 				variousCount++;
