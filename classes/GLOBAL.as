@@ -379,7 +379,7 @@
 			FLAG_CHITINOUS,
 			FLAG_FEATHERED,
 			FLAG_GOOEY,
-			FLAG_SPIKEY,
+			FLAG_SPIKED,
 		];
 		
 		public static const VALID_LEG_TYPES:Array = [
