@@ -750,7 +750,7 @@ public function sReliefAnn():void
 		if(pc.hasCock()) 
 		{
 			output("[pc.eachCock] goes stiff");
-			if(!pc.isCrotchExposed()) output("against your [pc.lowerUndergarment]");
+			if(!pc.isCrotchExposed()) output(" against your [pc.lowerUndergarment]");
 			output(", brazenly declaring your arousal.");
 		}
 		else output("your [pc.thighs] quake and you bite your lower lip.");
@@ -841,8 +841,9 @@ public function cowgirlWithAnzhela():void
 	pc.cockChange();
 	//PcCockBelow12 inches:
 	if(pc.cocks[x].cLength() < 12) output(" You bottom out inside of her, your tip rubbing");
+	else if(pc.cumQ() >= 200 && rand(2) == 0) output(" It doesn’t take long before you bottom out inside of her against her deepest, sweetest point, dribbling out [pc.cumVisc] pre-cum as your tip rubs");
 	else output(" Given your length, you fill her up long before you sink all the way in, your prodigious prick only half inside of her. It’s still incredibly intense as your tip rubs");
-	output(" it doesn’t take long before you bottom out inside of her against her deepest, sweetest point, dribbling out [pc.cumVisc] pre-cum against her womb entrance.");
+	output(" against her womb entrance.");
 
 	output("\n\nYou gloriously grind against each other like that, your hips meeting each other in pagan rhythm. Her beautiful breasts sway and bounce before your eyes as she bounces lustily on your [pc.cock " + x + "], moaning and dribbling her slick girl-juice down your shaft");
 	if(pc.balls > 0) output(" and [pc.balls]");
@@ -983,7 +984,7 @@ public function anzhelaAnalSexHikeAndFuck():void
 	pc.cockChange();
 	output("\n\n<i>“Y-you’re so huge - it feels like i’m going to break!”</i> Anzhela whimpers, your [pc.cockNounSimple " + x + "] buried deep inside her garter-clad ass. If anyone were to hear her cries and pull back the hospital curtain, they’d get quite the sight!");
 	output("\n\nOnce the doctor has adjusted to your shape, you press her down, sandwiching Anzhela between your hips and the bed. She quivers and moans, her insides instinctively wringing your urethra, milking every hot, [pc.cumVisc] drop of pre-cum deep into her bowels. As it dribbles deep inside of her, she lets out a sweet little cry, quivering between the bedsheets and your [pc.chest].");
-	output("\n\nSoon you’ve worked up a slapping rhythm, thoroughly plowing her pert posterior as she cries and comes hard against the hospital bed. Every time she screams, you grin and stir your [pc.cockSimpleNoun " + x + "] about deep inside of her rippled rectum. She can’t stop cumming as you thoroughly claim her once-virgin ass, now molded to the shape of your [pc.cockType " + x + "] prick.");
+	output("\n\nSoon you’ve worked up a slapping rhythm, thoroughly plowing her pert posterior as she cries and comes hard against the hospital bed. Every time she screams, you grin and stir your [pc.cockNounSimple " + x + "] about deep inside of her rippled rectum. She can’t stop cumming as you thoroughly claim her once-virgin ass, now molded to the shape of your [pc.cockType " + x + "] prick.");
 	output("\n\nPleasure pools deep within your ");
 	if(pc.balls > 0) output("[pc.balls]");
 	else output("abdomen");
@@ -1044,7 +1045,7 @@ public function annStraponScene():void
 	output("\n\n<i>“All in?”</i> Anzhela huskily asks, rubbing her hands up your [pc.thighs]. You hazily nod, wiggling in her lap, relishing in the moment. She begins slapping up against your bare buttocks from below, fucking your needy ass. You groan as her thick knob rubs around deep inside of your butt and stirs you up. Your");
 	if(pc.hasCock()) 
 	{
-		output(" [pc.cocksNoun] harden");
+		output(" [pc.cocksNounSimple] harden");
 		if(pc.cockTotal() == 1) output("s");
 		output(" against your belly and your");
 	}
