@@ -1641,6 +1641,10 @@ package classes {
 				case "cockTail":
 					buffer = tailCockDescript();
 					break;
+				case "tailCocks":
+				case "cockTails":
+					buffer = tailCocksDescript();
+					break;
 				case "cockOrStrapon":
 					buffer = cockOrStrapon();
 					break;
@@ -1985,6 +1989,7 @@ package classes {
 					buffer = toes();
 					break;
 				case "belly":
+				case "stomach":
 					buffer = bellyDescript();
 					break;
 				case "bellySize":
@@ -9842,7 +9847,7 @@ package classes {
 		public function tailVaginasDescript(forceAdjectives: Boolean = false, adjectives: Boolean = true): String {
 			if(tailCount > 1) return plural(tailVaginaDescript(forceAdjectives,adjectives));
 			else if(tailCount == 1) return tailVaginaDescript(forceAdjectives,adjectives);
-			else return "ERROR: TAIL DESCRIPT CALLED WITH NO TAILS PRESENT.";
+			return "ERROR: TAIL DESCRIPT CALLED WITH NO TAILS PRESENT.";
 		}
 		public function tailVaginaDescript(forceAdjectives: Boolean = false, adjectives: Boolean = true): String {
 			//Vars
@@ -11672,6 +11677,11 @@ package classes {
 		public function randomSimpleCockNoun():String
 		{
 			return RandomInCollection("cock","cock","cock","cock","dick","dick","phallus","phallus","prick","tool","member","shaft","dong");
+		}
+		public function tailCocksDescript(): String {
+			if (tailCount > 1) return plural(tailCockDescript());
+			else if (tailCount == 1) return tailCockDescript();
+			return "ERROR: TAIL DESCRIPT CALLED WITH NO TAILS PRESENT.";
 		}
 		public function tailCockDescript(): String {
 			var descript: String = "";
