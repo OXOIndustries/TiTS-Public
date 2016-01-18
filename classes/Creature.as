@@ -13047,7 +13047,7 @@ package classes {
 			}
 			
 			if (posTargets.length == 0) selTarget = null;
-			else if (posTargets.length == 1) selTarget = posTargets[0];
+			else if (posTargets.length == 1) selTarget = posTargets[0].v;
 			else selTarget = weightedRand(posTargets);
 			
 			notifyTargetSelection(this, selTarget, this);

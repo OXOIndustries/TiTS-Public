@@ -762,6 +762,7 @@ public function flyTo(arg:String):void {
 	}
 	
 	var shortTravel:Boolean = false;
+	var interruptMenu:Boolean = false;
 	
 	clearOutput();
 	
@@ -808,6 +809,7 @@ public function flyTo(arg:String):void {
 	else if (arg == "karaQuest2")
 	{
 		shortTravel = (shipLocation == "600");
+		interruptMenu = true;
 		kq2TravelToKara(shortTravel);
 	}
 	
@@ -818,8 +820,11 @@ public function flyTo(arg:String):void {
 	if(landingEventCheck(arg)) return;
 	flags["LANDING_EVENT_CHECK"] = 1;
 	
-	clearMenu();
-	addButton(0, "Next", mainGameMenu);
+	if (!interruptMenu)
+	{
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+	}
 }
 
 public function landingEventCheck(arg:String):Boolean
