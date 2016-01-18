@@ -913,10 +913,6 @@ public function seraInchStealing(response:String = ""):void
 				pc.removeCocks();
 				pc.balls = 0;
 				pc.createVagina();
-				pc.vaginas[0].hymen = false;
-				pc.vaginas[0].minLooseness = 1;
-				pc.vaginas[0].loosenessRaw = 5;
-				pc.vaginas[0].wetnessRaw = 3;
 				pc.vaginas[0].clits = 1;
 				pc.clitLength = biggestLength * 0.25;
 				if(pc.clitLength < 0.75) pc.clitLength = 0.75;
@@ -931,6 +927,12 @@ public function seraInchStealing(response:String = ""):void
 				output("\n\n<i>“That’s it you tight little cocksleeve, sing for me,”</i> groans Sera, clutching your [pc.chest] as she pounds into your flexing pussy hard. You feel utterly tenderised, only able to lie there with your [pc.butt] in the air as she finally tenses deep inside you and pumps you full of thick warmth. Hazily you wonder how she can possibly cum as hard as this when she covered your front in her seed only fifteen minutes ago; hard on the heels of that thought is that you are blissfully, filthily glad that she can.");
 				output("\n\nFinally, with a deeply satisfied sigh, she is spent. You moan long and low as she withdraws. Her cock head makes a “pop” noise as it goes, and you feel a long, slimy stream of hot demon jizz ooze out of your disgracefully treated new sex.");
 				output("\n\n<i>“There we go, pet,”</i> she whispers, pressing you between her pliant breasts. <i>“Broken in and gaped. Now no one will look at you and think you’re anything other than what you are – an obedient slut who belongs to someone with a big, thick cock.”</i> She licks behind your ear, tasting your sweat. <i>“Best to leave dicks to those who know how to use them, hmm?”</i>");
+				
+				pc.vaginas[0].hymen = false;
+				pc.vaginas[0].minLooseness = 5;
+				pc.vaginas[0].loosenessRaw = 5;
+				pc.vaginas[0].wetnessRaw = 3;
+				
 				output("\n\nAfter you’ve rested a while longer you");
 				if(pc.hasStatusEffect("Temporary Nudity Cheat") || !pc.isNude()) output(" shakily re-dress and");
 				output(" head back out to the shop, the fact of what your mistress has done to you throbbing tenderly");
