@@ -992,7 +992,11 @@ package classes.GameData
 			
 			var d:TypeCollection = attacker.rangedDamage();
 			
-			if (attacker is PlayerCharacter) d.multiply(1.5);
+			if (attacker is PlayerCharacter)
+			{
+				if (attacker.hasPerk("Heroic Reserves")) d.multiply(2);
+				else d.multiply(1.5);
+			}
 			else d.multiply(1.75);
 			
 			damageRand(d, 15);
