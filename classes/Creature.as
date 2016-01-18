@@ -33,6 +33,7 @@ package classes {
 	import classes.Util.InCollection;
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	import classes.Engine.Utility.plural;
+	import classes.Engine.Combat.DamageTypes.DamageType;
 
 
 	/**
@@ -276,6 +277,14 @@ package classes {
 		{
 			var r:TypeCollection = baseShieldResistances.makeCopy();			
 			if (!(shield is EmptySlot)) r.combineResistances(shield.resistances);
+			if (hasPerk("Enhanced Dampeners"))
+			{
+				for (var i:uint = 0; i < DamageType.NUMTYPES; i++)
+				{
+					var type:DamageType = r.getType(i);
+					if (type.resistanceValue < 0) type.resistanceValue /= 2;
+				}
+			}
 			return r;
 		}
 		
@@ -2227,6 +2236,7 @@ package classes {
 			if((meleeWeapon is Rock) || (rangedWeapon is Rock)) return "rock";
 			return "fist";
 		}
+		
 		public function weaponActionReady(present:Boolean = false, weapon:String = "", full:Boolean = true):String
 		{
 			var desc:String = "";
