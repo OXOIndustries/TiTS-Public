@@ -1055,7 +1055,7 @@ public function displayQuestLog(showID:String = "All"):void
 				output2("\n<b>* Probe Location:</b> <i>It seems the probe fell deep into the jungles.</i>");
 			}
 			// Scout
-			if(flags["MET_FLAHNE"] == undefined)
+			if(flags["MET_FLAHNE"] != undefined)
 			{
 				output2("\n<b>* Scout Transport:</b> Esbeth");
 				if(flags["SALVAGED VANAE CAMP"] >= 2) output2(", Xenogen Camp");

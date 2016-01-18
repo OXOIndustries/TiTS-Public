@@ -14,11 +14,11 @@ New Flags:
 PURCHASED_FROM_SERA				Purchased an item from her store
 SERA_TRIPLE_X_RATED				Expansion activated
 SERA_CREATE_VAG					Sera has created a vagina on you before
-SERA_FACE_RIDE_TRAINING			Times She Trained You in Face Riding
 SERA_INCH_STEALING_SEX			Times She Absorbed Your Length
 SERA_INCH_STEALING_HELP			Times Helped Her Tail
 SERA_EXHIBITION_BLOWJOB			Times She Gave You a Public Blowjob
 SERA_IN_JARDI_THREESOME			Times Sexed in Threesome with Jardi
+SERA_FACE_RIDE_TRAINING			Times She Trained You in Face Riding
 SERA_TIT_FUCK_LUCKY_DIP			Times Titfuck or Lucky Dip
 
 */
@@ -83,11 +83,13 @@ public function seraSexXXXTFModsAsk():void
 	{
 		output("\n\nSera eyes you beadily.");
 		output("\n\n<i>“Maybe I do and maybe I don’t, fly [pc.boy]. Maybe you’re a U.G.C. jobsworth who’s come out here to lay down some new regulations on fringe mods, and wants to see if I’ve got some first so [pc.he] can fine me. It’s happened before. So why would I show you anything?”</i>");
-		output("\n\n<i>“If I were a U.G.C. official I could have pulled you up on about a dozen things in here if I wanted to,”</i> you say, sounding bored. <i>“Not least you throwing something at my head when I first came in. Now you’re refusing to show me whatever passes as your specialist stock after complaining about your competitor taking away your business? Guess I’ll go across the way and see what she’s got to offer.”</i>");
 		if(pc.IQ() >= 75 || pc.credits > 90000)
 		{
 			// PC intelligence 75%:
-			if(pc.IQ() >= 75) output("\n\n<i>“If I were a U.G.C. official I could have pulled you up on about a dozen things in here if I wanted to,”</i> you say, sounding bored. <i>“Not least you throwing something at my head when I first came in. Now you’re refusing to show me whatever passes as your specialist stock after complaining about your competitor taking away your business? Guess I’ll go across the way and see what she’s got to offer.”</i>");
+			if(pc.IQ() >= 75)
+			{
+				output("\n\n<i>“If I were a U.G.C. official I could have pulled you up on about a dozen things in here if I wanted to,”</i> you say, sounding bored. <i>“Not least you throwing something at my head when I first came in. Now you’re refusing to show me whatever passes as your specialist stock after complaining about your competitor taking away your business? Guess I’ll go across the way and see what she’s got to offer.”</i>");
+			}
 			// Lodes emone:
 			else
 			{
@@ -106,7 +108,7 @@ public function seraSexXXXTFModsAsk():void
 		{
 			output("\n\n<i>“This is a mod shop!”</i> you snap angrily. <i>“Show me your goddamn mods!”</i>");
 			output("\n\n<i>“Stick to the fem-pops, sweetheart,”</i> Sera sneers. <i>“You need to mellow out some. If I had a top shelf I wouldn’t be showing it to some credit-less slack-jawed colony hick who shuttled in here yesterday, I can tell you that.”</i>");
-			processTime(3);
+			processTime(2);
 		}
 	}
 	
@@ -130,6 +132,8 @@ public function letSeraFuckYouXXXpac(response:String = "no"):void
 	
 	if(response == "yes")
 	{
+		pc.lust(50 + rand(51));
+		
 		//If PC has 12 inch or bigger penis 
 		if(flags["SERA_TRIPLE_X_RATED"] == undefined && pc.hasCock() && pc.biggestCockLength() >= 12)
 		{
@@ -264,7 +268,7 @@ public function letSeraFuckYouXXXpac(response:String = "no"):void
 			{
 				if(!pc.isCrotchExposed())
 				{
-					output(" In an instant, she undoes your [pc.lowerGarments] to get at your sexual bits.");
+					output(" In an instant, she undoes your [pc.lowerGarments] to get at your [pc.groin].");
 					pc.createStatusEffect("Temporary Nudity Cheat");
 				}
 				if(pc.hasStatusEffect("Genital Slit") && !pc.hasStatusEffect("Genital Slit Reveal"))
@@ -319,7 +323,7 @@ public function letSeraFuckYouXXXpac(response:String = "no"):void
 		output("\n\n<i>“Whatever.”</i> Sera turns back to the counter with a flick of the horn, wholly unconcerned. <i>“I’ve got no time for cowards. You want to bend over that desk for me go ahead any time, but don’t ever imagine I’m giving you a cum enema because I’m interested in you.”</i> She returns to her nail file as if nothing happened.");
 		processTime(1);
 		clearMenu();
-		addButton(0, "Next", seraExitToMain);
+		addButton(0, "Next", seraSexMenu);
 	}
 	else if(response == "not interested")
 	{
@@ -407,6 +411,7 @@ public function letSeraFuckYouXXXpac(response:String = "no"):void
 		output(", call me “mistress”, and we’ll see where it goes.”</i>");
 		
 		flags["SERA_TRIPLE_X_RATED"] = 4;
+		flags["SERA_NO_SEX"] = undefined;
 		
 		processTime(2);
 		clearMenu();
@@ -427,6 +432,7 @@ public function letSeraFuckYouXXXpac(response:String = "no"):void
 		output(", and we’ll see what other services you can provide your mistress.”</i>");
 		
 		flags["SERA_TRIPLE_X_RATED"] = 4;
+		flags["SERA_NO_SEX"] = undefined;
 		
 		processTime(2);
 		clearMenu();
@@ -904,10 +910,13 @@ public function seraInchStealing(response:String = ""):void
 				output("\n\n<i>“Now then, pet,”</i> she says. <i>“Let me walk you through your new self.”</i> She spoons into you, clasping your body into hers as her hand slides up your thigh, touching – you twitch – a new, wet opening below where your [pc.cock " + cockIndex + "] once was. Sera traces its lips and pushes her thumb gently into its top fold. You squirm as she touches a nub of flesh which has only just stopped throbbing. <i>“That,”</i> she whispers, her cerulean lips next to your ear. <i>“Is what you once were. Even cuter and more sensitive than it was, and now it won’t make any nasty messes when I’m making you squeal.”</i> You are very aware of her cock, which she has wedged between your butt cheeks, methodically hot-dogging herself, rubbing herself to a fresh erection with your soft flesh as her fingers move inwards. You tense up when she touches an obstruction – delicately pressing her nails against a thin membrane.");
 				
 				//Cock removed, vagina added, auto- lost hymen and gaping
-				pc.removeCock(cockIndex, 1);
+				pc.removeCocks();
+				pc.balls = 0;
 				pc.createVagina();
 				pc.vaginas[0].hymen = false;
-				pc.vaginas[0].loosnessRaw = 5;
+				pc.vaginas[0].minLooseness = 1;
+				pc.vaginas[0].loosenessRaw = 5;
+				pc.vaginas[0].wetnessRaw = 3;
 				pc.vaginas[0].clits = 1;
 				pc.clitLength = biggestLength * 0.25;
 				if(pc.clitLength < 0.75) pc.clitLength = 0.75;
@@ -1999,6 +2008,7 @@ public function seraSexXXXGetRidden(arg:Array):void
 				processTime(25 + rand(11));
 			}
 		}
+		pc.orgasm();
 	}
 	// Male/Herm
 	else
@@ -2043,10 +2053,9 @@ public function seraSexXXXGetRidden(arg:Array):void
 		output("\n\n<i>“Good [pc.boy].”</i> The handcuffs and chair disappear, and you pool onto the floor, exhausted and reddened with thwarted arousal. You’re still pulling your [pc.gear] back on when the inside lights flick back into being. Sera has gone back to flicking through her touch pad device as if nothing happened... the only difference being the big, contented smile on her face now.");
 		
 		processTime(35 + rand(11));
+		// Cum reset, lust +10
+		pc.ballFullness = 0;
 	}
-	
-	// Cum reset, lust +10
-	pc.orgasm();
 	pc.loadInMouth(chars["SERA"]);
 	pc.girlCumInMouth(chars["SERA"]);
 	pc.lust(20);
@@ -2103,19 +2112,19 @@ public function seraSexXXXTitfuckLuckyDip(arg:Array):void
 		{
 			output("\n\nA lusty grin splits her face as her yellow eyes fall on your [pc.chest]. She slides her hand all the way down to the base of her dick and swings it forward, landing it with a slap between your breasts. She hasn’t said a word but it doesn’t take a genius to work out what she’s looking for. You smile up at her coquettishly as you wrap your hands around your [pc.skinColor] softness and press it into her hot, stiff length. Sera hums with approval, looking into your eyes as she tightens her grip on your shoulders, slowly beginning to pump into the sleeve of boob-flesh you’ve created. The sharp, musky smell of her pre is in your nose as her thick, purple meat pushes demandingly towards your face.");
 			output("\n\nIt’s clear she’s not interested in her usual theatrics - simply the base, gleeful use of you for her own gratification. As she gets more and more into the smooth friction she has found between your [pc.chest] her hands move downwards, following the curve of your rippling boobs, landing for a moment on your hands before sliding inwards to touch your [pc.nipples].");
-		}
-		if(pc.bRows() == 1)
-		{
-			output("\n\n");
-			if(pc.hasCuntNipples() || pc.hasLipples()) output("You sigh as she runs her finger-pads around their sensitive lips, then squeak as she ruthlessly buries her thumbs into them up to the quick, stroking their insides insistently. Acute pleasure shivers through you");
-			else output("You sigh and then squeak when she first rubs your erect nubs between thumb and forefinger before squeezing them ruthlessly hard, sending acute pleasure shivering through you");
-			if(vagIndex >= 0) output(", your [pc.vagina " + vagIndex + "] moistening");
-			else if(cockIndex >= 0) output(", your [pc.cock " + cockIndex + "] hardening");
-			output(".");
-		}
-		else
-		{
-			output("\n\nHer grin widens as her fingers sink down still further to grip your [pc.breasts " + 0 + "]. She plays with your second set of nipples for a time, sending acute pleasure shivering through you before gripping them between her fingers, squeezing your second pair of breasts ruthlessly hard, using them as leverage to fuck your top row with firm drives of her hips. You groan to the intensity of it, in turn pressing the boobs in your own hands into her rapidly moving prick.");
+			if(pc.bRows() == 1)
+			{
+				output("\n\n");
+				if(pc.hasCuntNipples() || pc.hasLipples()) output("You sigh as she runs her finger-pads around their sensitive lips, then squeak as she ruthlessly buries her thumbs into them up to the quick, stroking their insides insistently. Acute pleasure shivers through you");
+				else output("You sigh and then squeak when she first rubs your erect nubs between thumb and forefinger before squeezing them ruthlessly hard, sending acute pleasure shivering through you");
+				if(vagIndex >= 0) output(", your [pc.vagina " + vagIndex + "] moistening");
+				else if(cockIndex >= 0) output(", your [pc.cock " + cockIndex + "] hardening");
+				output(".");
+			}
+			else
+			{
+				output("\n\nHer grin widens as her fingers sink down still further to grip your [pc.breasts " + 0 + "]. She plays with your second set of nipples for a time, sending acute pleasure shivering through you before gripping them between her fingers, squeezing your second pair of breasts ruthlessly hard, using them as leverage to fuck your top row with firm drives of her hips. You groan to the intensity of it, in turn pressing the boobs in your own hands into her rapidly moving prick.");
+			}
 		}
 		if(pc.isLactating()) output("\n\nIt doesn’t take long underneath this fierce treatment for [pc.milk] to begin to dribble and squirt freely from your [pc.nipples], slicking Sera’s hands with the proof of the shameless enjoyment you’re taking from being titfucked. She giggles to herself softly at the sight and takes the time to rub her straining dick over each nipple, teasing your wet, delicate nubs at the same time as slathering her hardness with your own juices; then she slaps it between your [pc.chest] and begins to thrust into your presented rack again, going at you even harder now that she’s thoroughly lubricated both of you.");
 		output("\n\nShe pants as she fucks your softness faster and faster, arching her head back and pushing her thick thighs into you as she rises towards her orgasm. The submissive notion of licking her bulging end as it presents itself between your pre-cum");
@@ -2160,6 +2169,7 @@ public function seraSexXXXTitfuckLuckyDip(arg:Array):void
 		//Randomised
 		var TFItem:String = RandomInCollection(["Clippex", "Semen’s Friend", "Lucifier"]);
 		
+		output("\n\n");
 		// Clippex:
 		if(TFItem == "Clippex")
 		{
@@ -2179,7 +2189,7 @@ public function seraSexXXXTitfuckLuckyDip(arg:Array):void
 		else if(TFItem == "Semen’s Friend")
 		{
 			output("<i>“This guy bought a whole packet of Semen’s Friends,”</i> she says thickly. She saws into you, keeping her grip tight around your wrists, filling more and more of your tunnel with her alarmingly thick cock, bending it into your sensitive spots to make you tense up around her with involuntary pleasure. <i>“Increases the size of your balls, makes them more productive but does all sorts of other crazy stuff with your cum, too. Can turn it black. Can make it look and taste like chocolate.”</i> You are not capable of responding. Your hands grip the air and you suck skies of air into your mouth as she finds your limit and begins to thrust into you vigorously, her balls slapping into your [pc.hips], her length rubbing and stretching your tunnel acutely.");
-			output("<i>“I regretted ordering it almost as soon as I clicked “Ok”. Who wants black cum? Well... someone, obviously. So – goddamn – glad to have shifted it.”</i> She stops talking for a while, concentrating on rutting you hard enough to make the counter shake, her thighs beating a soft percussion against your [pc.butt].");
+			output("<i>“I regretted ordering it almost as soon as I clicked “Ok”. Who wants four testicles? Well... someone, obviously. So – goddamn – glad to have shifted it.”</i> She stops talking for a while, concentrating on rutting you hard enough to make the counter shake, her thighs beating a soft percussion against your [pc.butt].");
 			if(vagIndex >= 0) output(" Your stuffed [pc.vagina " + vagIndex + "] seeps juices around her cock deliriously.");
 			else if(cockIndex >= 0) output(" Your [pc.cock " + cockIndex + "] one strains helplessly against your abdomen as she rides over your prostate again and again.");
 			else
@@ -2366,7 +2376,8 @@ public function seraSexXXXTitfuckLuckyDipPerform(TFItem:String = ""):void
 	output(" lands on the counter above you. You didn’t even see where it came from.");
 	if(discount) output(" <i>“I can give you more at a discount,”</i> Sera purrs, flicking a big toe at the locker near your head. You shuffle over and open it to find a pile of clean towels. <i>“But that one’s your only freebie, ok? Unless... well... hmm.”</i>");
 	else output(" Sera purrs and flicks a big toe at the locker near your head. You shuffle over and open it to find a pile of clean towels. <i>“That one’s your only freebie, ok? Unless... well... hmm.”</i>");
-	if(discount) output("\n\n<b>You have gained a coupon for " + TFItem + "!</b>");
+	output("\n\n<b>You have gained one " + TFItem + "!</b>");
+	if(discount) output("\n\n<b>You have also gained a coupon for your next purchase of " + TFItem + "!</b>");
 	output("\n\n");
 	
 	if(TFItem == "Clippex") quickLoot(new Clippex());

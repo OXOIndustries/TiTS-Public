@@ -354,7 +354,8 @@ public function buyItemGo(arg:ItemSlotClass):void {
 public function sellItem():void {
 	clearOutput();
 	output(shopkeep.keeperSell);
-	this.clearMenu();
+	var sellOptions:Boolean = true;
+	clearMenu();
 	for(var x:int = 0; x < pc.inventory.length; x++) {
 		//If slot has something in it.
 		if(pc.inventory[x].quantity > 0) {
@@ -362,12 +363,132 @@ public function sellItem():void {
 			//Does the shopkeep buy this type?
 			if(shopkeep.buysType(pc.inventory[x].type)) {
 				output("\n" + StringUtil.upperCase(pc.inventory[x].description, false) + " - " + getSellPrice(shopkeep,pc.inventory[x].basePrice) + " credits.");
-				if(x <= 13) this.addItemButton(x, pc.inventory[x], sellItemGo, pc.inventory[x], null, null, pc, shopkeep);
-				if (x > 13) this.addItemButton(x + 1, pc.inventory[x], sellItemGo, pc.inventory[x], null, null, pc, shopkeep);
+				if(sellOptions)
+				{
+					if(x <= 13) addItemButton(x, pc.inventory[x], sellItemQuantity, pc.inventory[x], null, null, pc, shopkeep);
+					if (x > 13) addItemButton(x + 1, pc.inventory[x], sellItemQuantity, pc.inventory[x], null, null, pc, shopkeep);
+				}
+				else
+				{
+					if(x <= 13) addItemButton(x, pc.inventory[x], sellItemGo, pc.inventory[x], null, null, pc, shopkeep);
+					if (x > 13) addItemButton(x + 1, pc.inventory[x], sellItemGo, pc.inventory[x], null, null, pc, shopkeep);
+				}
 			}
 		}
 	}
-	this.addButton(14,"Back",shop,shopkeep);
+	addButton(14,"Back",shop,shopkeep);
+}
+
+public function sellItemQuantity(arg:ItemSlotClass):void
+{
+	clearOutput();
+	clearMenu();
+	
+	var price:Number = getSellPrice(shopkeep,arg.basePrice);
+	
+	if(arg.quantity > 1)
+	{
+		output("How many of your " + arg.longName + " do you want to sell?");
+		
+		if(arg.quantity >= 1) addButton(0, "x1", sellItemMultiOK, [arg, 1]);
+		if(arg.quantity >= 2) addButton(1, "x2", sellItemMultiOK, [arg, 2]);
+		if(arg.quantity >= 3) addButton(2, "x3", sellItemMultiOK, [arg, 3]);
+		if(arg.quantity >= 4) addButton(3, "x4", sellItemMultiOK, [arg, 4]);
+		if(arg.quantity >= 5) addButton(4, "x5", sellItemMultiOK, [arg, 5]);
+		
+		if(arg.quantity >= 10) addButton(5, "x10", sellItemMultiOK, [arg, 10]);
+		if(arg.quantity >= 20) addButton(6, "x20", sellItemMultiOK, [arg, 20]);
+		if(arg.quantity >= 30) addButton(7, "x30", sellItemMultiOK, [arg, 30]);
+		if(arg.quantity >= 40) addButton(8, "x40", sellItemMultiOK, [arg, 40]);
+		if(arg.quantity >= 50) addButton(9, "x50", sellItemMultiOK, [arg, 50]);
+		
+		addButton(12, "Custom", sellItemMultiCustom, arg);
+		addButton(13, "All (x" + arg.quantity + ")", sellItemMultiOK, [arg, arg.quantity]);
+		addButton(14, "Cancel", sellItem);
+	}
+	else
+	{
+		output("Are you sure you want to sell " + arg.description + " for " + price + " credits?");
+		
+		addButton(0, "Yes", sellItemGo, arg);
+		addButton(1, "No", sellItem);
+	}
+}
+public function sellItemMultiCustom(arg:ItemSlotClass):void
+{
+	if(stage.contains(userInterface.textInput)) removeInput();
+	clearOutput();
+	
+	output("How many of your " + arg.longName + " do you want to sell? (x" + arg.quantity + " maximum.)");
+	output("\n");
+	displayInput();
+	output("\n\n\n");
+	
+	clearMenu();
+	addButton(0, "Next", sellItemMultiCustomOK, arg);
+	addButton(14, "Back", sellItemMultiCustomNo, arg);
+}
+public function sellItemMultiCustomOK(arg:ItemSlotClass):void
+{
+	if(isNaN(Number(userInterface.textInput.text))) {
+		sellItemMultiCustom(arg);
+		output("Choose a quantity that is a positive integer, please.");
+		return;
+	}
+	else if(Number(userInterface.textInput.text) < 1) {
+		sellItemMultiCustom(arg);
+		output("Choose a quantity that is 1 or more, please.");
+		return;
+	}
+	else if(Number(userInterface.textInput.text) > arg.quantity) {
+		sellItemMultiCustom(arg);
+		output("Choose a quantity that is " + arg.quantity + " or below, please.");
+		return;
+	}
+	var soldNumber:int = Math.floor(Number(userInterface.textInput.text));
+	sellItemMultiCustomGo([arg, soldNumber]);
+}
+public function sellItemMultiCustomNo(arg:ItemSlotClass):void
+{
+	if(stage.contains(userInterface.textInput)) removeInput();
+	sellItemQuantity(arg);
+}
+public function sellItemMultiCustomGo(arg:Array):void
+{
+	if(stage.contains(userInterface.textInput)) removeInput();
+	sellItemMultiOK(arg);
+}
+public function sellItemMultiOK(arg:Array):void
+{
+	clearOutput();
+	
+	var soldItem:ItemSlotClass = arg[0];
+	var soldNumber:int = arg[1];
+	var soldPrice:Number = (getSellPrice(shopkeep,soldItem.basePrice) * soldNumber);
+	
+	output("Are you sure you want to sell " + soldItem.description + " (x" + soldNumber + ") for " + num2Text(soldPrice) + " credits?");
+	
+	clearMenu();
+	addButton(0, "Yes", sellItemMulti, [soldItem, soldNumber]);
+	addButton(1, "No", sellItemQuantity, soldItem);
+}
+public function sellItemMulti(arg:Array):void
+{
+	clearOutput();
+	
+	var soldItem:ItemSlotClass = arg[0];
+	var soldNumber:int = arg[1];
+	var soldPrice:Number = (getSellPrice(shopkeep,soldItem.basePrice) * soldNumber);
+	
+	pc.credits += soldPrice;
+	
+	output("You sell " + soldItem.description + " (x" + soldNumber + ") for " + num2Text(soldPrice) + " credits.");
+	
+	soldItem.quantity -= soldNumber;
+	if (soldItem.quantity == 0) pc.inventory.splice(pc.inventory.indexOf(arg), 1);
+	
+	clearMenu();
+	addButton(0,"Next",sellItem);
 }
 
 public function sellItemGo(arg:ItemSlotClass):void {
@@ -519,13 +640,17 @@ public function inventoryDisplay():void
 {
 	var x:int = 0;
 	output("<b><u>Inventory:</u></b>");
-	for(x = 0; x < pc.inventory.length; x++)
+	if(pc.inventory.length > 0)
 	{
-		var item:ItemSlotClass = pc.inventory[x];
-		output("\n");
-		if (item.stackSize > 1) output(item.quantity + "x ");
-		output(StringUtil.toDisplayCase(item.longName));
+		for(x = 0; x < pc.inventory.length; x++)
+		{
+			var item:ItemSlotClass = pc.inventory[x];
+			output("\n");
+			if (item.stackSize > 1) output(item.quantity + "x ");
+			output(StringUtil.toDisplayCase(item.longName));
+		}
 	}
+	else output("\n<i>Empty</i>");
 	output("\n\n");
 }
 

@@ -24,7 +24,10 @@ public function seraBonusFunction():Boolean
 			addButton(0, "Sera", seraInchStealingAintEasy, true);
 			return false;
 		}
-		else if(flags["SERA_TRIPLE_X_RATED"] != undefined && flags["SERA_TRIPLE_X_RATED"] > 0) output("\n\nLounging over her counter, Sera’s scowl transforms into a wide, gleeful leer when you come in. She casually droops her thick cock across the black surface, brushes a nipple, and waits.");
+		else if(flags["SERA_TRIPLE_X_RATED"] != undefined && flags["SERA_TRIPLE_X_RATED"] > 0)
+		{
+			output("\n\nLounging over her counter, Sera’s scowl transforms into a wide, gleeful leer when you come in. She casually droops her thick cock across the black surface, brushes a nipple, and waits.");
+		}
 		else output("\n\nSera is slouching at her countertop, looking rather bored. The mess she made when you first met her has since been cleaned up. Her bright eyes flick your way, but she doesn't say a word just yet, waiting for you to approach her.");
 		addButton(0, "Sera", approachSera);
 		
@@ -65,6 +68,11 @@ public function approachSera():void
 		{
 			output("Sera glares at you and her expression quickly sours. The demoness doesn’t seem too thrilled about your presence.");
 			output("\n\nHer piercing eyes peer into your soul as she asks, <i>“What the do you want this time?”</i>");
+		}
+		else if(flags["SERA_TRIPLE_X_RATED"] >= 4)
+		{
+			output("Sera leans over the counter, extends her index claw and presses it against your throat. She gently scratches it up to the bottom of your chin.");
+			output("\n\n<i>“Mine,”</i> she says simply, smiling lazily.");
 		}
 		else
 		{
@@ -268,13 +276,16 @@ public function seraTalkTopics(response:String = ""):void
 }
 
 //Sex
-public function seraSexMenu(display:Boolean = false):void {
+public function seraSexMenu(display:Boolean = false):void
+{
+	initSeraFuckFlags();
 	if(display)
 	{
 		clearOutput();
 		showSera();
 		// If PC gets normally fucked twice, chooses sex again
-		if((flags["TIMES_RODE_BY_SERA"] >= 2 || flags["SERA_STUCK_IT_ALL_IN_BUTT"] >= 2 || timesFuckedSera() >= 10) && flags["SERA_TRIPLE_X_RATED"] == undefined)
+		// Further, it's not really fair that players could get locked out of the additional content completely based on that one quick decision. Could the "next step" scene repeat every third time the "Sex?" option is chosen instead?
+		if((((flags["TIMES_RODE_BY_SERA"] + flags["SERA_STUCK_IT_ALL_IN_BUTT"]) >= 2) || timesFuckedSera() >= 10) && (timesFuckedSera() % 3 == 0) && flags["SERA_TRIPLE_X_RATED"] == undefined)
 		{
 			author("Nonesuch");
 			output("Sera smirks to herself when she sees you hovering. You look away, pretending to be interested in a collection of particularly disgusting ornaments on a shelf. After you’ve let a few moments go by, you steal another look at her. She’s still gazing at you, brilliant yellow eyes running up and down your frame, that proprietary smile still on her face. You feel a small thrill when she finally disengages herself from the counter and slowly walks across to you, dick and hips swinging.");
@@ -295,8 +306,7 @@ public function seraSexMenu(display:Boolean = false):void {
 			output(". <i>“Perhaps the slut is interested in taking things to the next level, hmm?”</i>");
 			processTime(3);
 			clearMenu();
-			if(pc.lust() >= 33) addButton(0, "Yes", letSeraFuckYouXXXpac, "yes");
-			else addDisabledButton(0, "Yes", "Yes", "You aren’t turned on enough for this.");
+			addButton(0, "Yes", letSeraFuckYouXXXpac, "yes");
 			addButton(1, "No", letSeraFuckYouXXXpac, "no");
 			return;
 		}
@@ -310,8 +320,7 @@ public function seraSexMenu(display:Boolean = false):void {
 			output(". <i>“Are you still interested in taking things to the next level?”</i>");
 			processTime(2);
 			clearMenu();
-			if(pc.lust() >= 33) addButton(0, "Yes", letSeraFuckYouXXXpac, "yes");
-			else addDisabledButton(0, "Yes", "Yes", "You aren’t turned on enough for this.");
+			addButton(0, "Yes", letSeraFuckYouXXXpac, "yes");
 			addButton(1, "No", letSeraFuckYouXXXpac, "no");
 			return;
 		}
@@ -356,7 +365,11 @@ public function seraSexMenu(display:Boolean = false):void {
 		}
 		else addButton(0,"Fuck Me",letSeraFuckYou,undefined);
 	}
-	else addDisabledButton(0,"Fuck Me","Fuck Me","You aren't turned on enough for this.");
+	else
+	{
+		addDisabledButton(0,"Fuck Me","Fuck Me","You aren't turned on enough for this.");
+		if(flags["SERA_TRIPLE_X_RATED"] >= 4 && pc.hasCock() && flags["SERA_INCH_STEAL"] != undefined) addDisabledButton(1,"Shrink Me", "Shrink Your Cock", "You aren't turned on enough for this.");
+	}
 	addButton(14,"Back",approachSera);
 	trace("COCK VOLUME:" + pc.cockVolume(0) + " SERA CAPACITY: " + chars["SERA"].vaginalCapacity(0));
 }
@@ -391,8 +404,10 @@ public function timesFuckedSera():Number
 	
 	if(flags["SERA_INCH_STEALING_SEX"] != undefined) totalSex += flags["SERA_INCH_STEALING_SEX"];
 	if(flags["SERA_INCH_STEALING_HELP"] != undefined) totalSex += flags["SERA_INCH_STEALING_HELP"];
-	
+	if(flags["SERA_EXHIBITION_BLOWJOB"] != undefined) totalSex += flags["SERA_EXHIBITION_BLOWJOB"];
+	if(flags["SERA_IN_JARDI_THREESOME"] != undefined) totalSex += flags["SERA_IN_JARDI_THREESOME"];
 	if(flags["SERA_FACE_RIDE_TRAINING"] != undefined) totalSex += flags["SERA_FACE_RIDE_TRAINING"];
+	if(flags["SERA_TIT_FUCK_LUCKY_DIP"] != undefined) totalSex += flags["SERA_TIT_FUCK_LUCKY_DIP"];
 	
 	return totalSex;
 }
@@ -400,7 +415,6 @@ public function timesFuckedSera():Number
 public function letSeraFuckYou():void
 {
 	flags["FUCKED SERA"] = 1;
-	initSeraFuckFlags();
 	
 	var choices:Array = new Array();
 	//Get Giant Dick Urethrally Tail-filled while eating her out
@@ -600,8 +614,8 @@ public function getRodeFemdomStyleBySera():void {
 	output(" the whole of your pent-up lust in one gigantic surge of pleasure, causing your eyes to roll back as her hand pinches tighter, cutting off your airflow. Your body thrashes wildly underneath her, barely registering the heat of her cum falling across your [pc.fullChest] and [pc.face]. Through your middle, your muscles spasm, pouring every drop of your lust into her");
 	if(pc.hasKnot(x)) output(", swelling your knot inside her as large as it's ever been");
 	output(".");
-	if(pc.cumQ() <= 500)
-	if(pc.cumQ() <= 1000) output(" Her belly bulges slightly from the sheer quantity, but it only makes her cries that much more pleasure-filled.");
+	if(pc.cumQ() <= 500) { /* Nothing? */ }
+	else if(pc.cumQ() <= 1000) output(" Her belly bulges slightly from the sheer quantity, but it only makes her cries that much more pleasure-filled.");
 	else if(pc.cumQ() <= 5000) output(" Her belly expands to a pregnant dome from the quantity of [pc.cum] you're shooting into her, but it only makes her cries that much more pleasure-filled.");
 	else output(" Her belly bloats into a gravid dome, and her eyebrows grimace from painful discomfort. It doesn't stop her cries from getting louder and more excited, however.");
 	output("\n\nShortly after you go dry, her alabaster ejaculations slow, and Sera shudders, smiling. Her voice, surprisingly tender, coos, <i>\"That's a very, very good boy.\"</i> Then, without another word, she ");
