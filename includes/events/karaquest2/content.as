@@ -62,7 +62,7 @@ public function tryProcKQuest2Entry():Boolean
 	// Taivra defeated
 	// Kara aided in KQuest1
 	
-	var beatTaivra:Boolean = flags["BEAT_TAIVRA_TIMESTAMP"] != undefined;
+	var beatTaivra:Boolean = flags["BEAT_TAIVRA_TIMESTAMP"] != undefined || flags["KING_NYREA"] != undefined;
 	
 	// I THINK this is the simplest check for "Kara & Shade was resolved, with the PC siding with Kara."
 	var aidedKara:Boolean = flags["KARA_PAID_YOU"] != undefined; 
@@ -236,13 +236,15 @@ public function kq2TravelToKara(shortTravel:Boolean):void
 	else output(" They’re tough bastards. Black Void. But nothing we can’t handle.");
 	output("”</i>")
 
-	output("\n\nThe Black Void. She’s not joking: they’re the most dangerous pirates around - you couldn’t go a day in flight school without somebody sharing a horror story about Void raiders slaughtering a crew to the man, or dragging them off to the slave pits of Raxxia. Most folk would do just about anything to stay out of their crosshairs... and Kara wants to kick a hornets’ nest. Maybe you should get a little more information.");
+	output("\n\nThe Black Void. She’s not joking: they’re the most dangerous pirates around - you couldn’t go a day in flight school without somebody sharing a horror story about Void raiders slaughtering a crew to the last man, or dragging them off to the slave pits of Raxxia. Most folk would do just about anything to stay out of their crosshairs... and Kara wants to kick a hornets’ nest. Maybe you should get a little more information.");
 
 	output("\n\nKara kicks back on one of your seats, setting down the chromed briefcase she’s carrying between her legs, waiting for your response.");
 	
 	processTime(15);
 
 	kq2InitTalkMenu();
+	
+	// ^This doesn't work as expected because I hooked it into the _actual_ fly menu
 }
 
 public function kq2InitTalkMenu():void

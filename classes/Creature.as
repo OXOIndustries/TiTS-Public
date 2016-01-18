@@ -33,6 +33,8 @@ package classes {
 	import classes.Util.InCollection;
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	import classes.Engine.Utility.plural;
+	import classes.Engine.Combat.DamageTypes.DamageType;
+	import classes.Engine.Utility.weightedRand;
 
 
 	/**
@@ -276,6 +278,14 @@ package classes {
 		{
 			var r:TypeCollection = baseShieldResistances.makeCopy();			
 			if (!(shield is EmptySlot)) r.combineResistances(shield.resistances);
+			if (hasPerk("Enhanced Dampeners"))
+			{
+				for (var i:uint = 0; i < DamageType.NUMTYPES; i++)
+				{
+					var type:DamageType = r.getType(i);
+					if (type.resistanceValue < 0) type.resistanceValue /= 2;
+				}
+			}
 			return r;
 		}
 		
@@ -2232,6 +2242,7 @@ package classes {
 			if((meleeWeapon is Rock) || (rangedWeapon is Rock)) return "rock";
 			return "fist";
 		}
+		
 		public function weaponActionReady(present:Boolean = false, weapon:String = "", full:Boolean = true):String
 		{
 			var desc:String = "";
@@ -13071,20 +13082,32 @@ package classes {
 				// If it hasn't been defeated already this turn
 				if (otherTeam[i].HP() > 0 && otherTeam[i].lust() < otherTeam[i].lustMax())
 				{
-					// list as a potential
-					posTargets.push(otherTeam[i]);
+					var posTarget:Object = { v: otherTeam[i], w: 10 };
+					posTargets.push(posTarget);
 					
 					// Example "forced" effect selection
 					if (otherTeam[i].hasStatusEffect("Focus Fire"))
 					{
 						selTarget = otherTeam[i];
 					}
+					
+					// Smugglers are slightly less likely to be targeted
+					if (otherTeam[i].characterClass == GLOBAL.CLASS_SMUGGLER)
+					{
+						posTarget.w -= 1;
+					}
+					// Mercs slightly more
+					else if (otherTeam[i].characterClass == GLOBAL.CLASS_MERCENARY)
+					{
+						posTarget.w += 1;
+					}
+					
 				}
 			}
 			
 			if (posTargets.length == 0) selTarget = null;
 			else if (posTargets.length == 1) selTarget = posTargets[0];
-			else selTarget = posTargets[rand(posTargets.length)];
+			else selTarget = weightedRand(posTargets);
 			
 			notifyTargetSelection(this, selTarget, this);
 			
