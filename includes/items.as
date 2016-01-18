@@ -272,8 +272,9 @@ public function shop(keeper:Creature):void {
 public function buyItem():void {
 	clearOutput();
 	output(shopkeep.keeperBuy);
+	var buyOptions:Boolean = true;
 	var temp:Number = 0;
-	this.clearMenu();
+	clearMenu();
 	for(var x:int = 0; x < shopkeep.inventory.length; x++) {
 		trace("GOING THROUGH SHOPKEEP INVENTORY.");
 		//If slot has something in it.
@@ -293,17 +294,47 @@ public function buyItem():void {
 			trace("DISPLAYING SHIT");
 			if(temp <= pc.credits) {
 				trace("SHOWAN BUTANS: " + x);
-				if (x <= 13) addItemButton(x, shopkeep.inventory[x], buyItemGo, shopkeep.inventory[x], null, null, shopkeep, pc);
-				if (x > 13) addItemButton(x + 1, shopkeep.inventory[x], buyItemGo, shopkeep.inventory[x], null, null, shopkeep, pc);
+				if(buyOptions)
+				{
+					if (x <= 13) addItemButton(x, shopkeep.inventory[x], buyItemOK, shopkeep.inventory[x], null, null, shopkeep, pc);
+					if (x > 13) addItemButton(x + 1, shopkeep.inventory[x], buyItemOK, shopkeep.inventory[x], null, null, shopkeep, pc);
+				}
+				else
+				{
+					if (x <= 13) addItemButton(x, shopkeep.inventory[x], buyItemGo, shopkeep.inventory[x], null, null, shopkeep, pc);
+					if (x > 13) addItemButton(x + 1, shopkeep.inventory[x], buyItemGo, shopkeep.inventory[x], null, null, shopkeep, pc);
+				}
 			}
 			else {
 				trace("SHOWAN HIDE BUTTONS");
-				if(x <= 13) this.addDisabledButton(x,shopkeep.inventory[x].shortName + " x" + shopkeep.inventory[x].quantity);
-				if(x > 13) this.addDisabledButton(x+1,shopkeep.inventory[x].shortName + " x" + shopkeep.inventory[x].quantity);
+				if(x <= 13) addDisabledButton(x,shopkeep.inventory[x].shortName + " x" + shopkeep.inventory[x].quantity);
+				if(x > 13) addDisabledButton(x+1,shopkeep.inventory[x].shortName + " x" + shopkeep.inventory[x].quantity);
 			}
 		}
 	}
-	this.addButton(14,"Back",shop,shopkeep);
+	addButton(14,"Back",shop,shopkeep);
+}
+
+public function buyItemOK(arg:ItemSlotClass):void
+{
+	clearOutput();
+	clearMenu();
+	
+	var price:Number = getBuyPrice(shopkeep,arg.basePrice);
+	var hasCoupon:Boolean = false;
+	var couponName:String = "Coupon - " + arg.shortName;
+	if(pc.hasKeyItem(couponName))
+	{
+		price = Math.round(price * pc.keyItemv1(couponName));
+		hasCoupon = true;
+	}
+	
+	output("Are you sure you want to buy " + arg.description + " for");
+	if(hasCoupon) output(" a discounted price of");
+	output(" " + price + " credits?");
+	
+	addButton(0, "Yes", buyItemGo, arg);
+	addButton(1, "No", buyItem);
 }
 
 public function buyItemGo(arg:ItemSlotClass):void {
