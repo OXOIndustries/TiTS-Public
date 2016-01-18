@@ -22,7 +22,7 @@ package classes.Items.Apparel
 			
 			this.shortName = "Annos Blouse";
 			
-			this.longName = "Anno's blouse";
+			this.longName = "blouse and jeans";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			

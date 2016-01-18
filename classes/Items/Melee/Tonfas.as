@@ -23,14 +23,16 @@ package classes.Items.Melee
 			this.type = GLOBAL.MELEE_WEAPON;
 			
 			this.shortName = "tonfas";
-			this.longName = "tonfas";
+			this.longName = "tonfa batons";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
+			
+			this.description = "Penny’s tonfa batons";
 			
 			this.attackVerb = "smack";
 			attackNoun = "smack";
 						
-			this.tooltip = "Penny's Tonfas";
+			this.tooltip = "These are U.G.C.-issued tonfa batons that belong to Penny.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

@@ -22,12 +22,12 @@
 			this.shortName = "S.Shield";
 			
 			//Regular name
-			this.longName = "Salamander Class Shield Generator";
+			this.longName = "Salamander class shield generator";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a Salamander Class Shield Generator";
+			this.description = "a Salamander class shield generator";
 			
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "A product of KihaCorp, Salamander Class Shield Generators are designed to be specifically resistant to thermal energies. They are favored for use against laser weaponry, plasma weaponry, and in climes that would reduce the efficiency of lesser models.";

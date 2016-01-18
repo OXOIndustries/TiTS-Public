@@ -22,7 +22,7 @@
 			this.shortName = "Royal Bow";
 			
 			//Regular name
-			this.longName = "Royal Shard Bow";
+			this.longName = "royal shard bow";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			

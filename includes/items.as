@@ -485,7 +485,7 @@ public function sellItemMulti(arg:Array):void
 	output("You sell " + soldItem.description + " (x" + soldNumber + ") for " + num2Text(soldPrice) + " credits.");
 	
 	soldItem.quantity -= soldNumber;
-	if (soldItem.quantity == 0) pc.inventory.splice(pc.inventory.indexOf(arg), 1);
+	if (soldItem.quantity == 0) pc.inventory.splice(pc.inventory.indexOf(soldItem), 1);
 	
 	clearMenu();
 	addButton(0,"Next",sellItem);
