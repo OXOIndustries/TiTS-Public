@@ -1036,12 +1036,31 @@ package classes.GameData
 		public static var ThermalDisruptor:SingleCombatAttack;
 		private static function ThermalDisruptorImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
-			if (attacker is PlayerCharacter) output("Raising the disruptor, you unleash a wave of burning fire on " + target.a + target.uniqueName);
+			if (attacker is PlayerCharacter) output("Raising the disruptor, you unleash a wave of burning fire on " + target.a + target.uniqueName + ".");
 			else if (target is PlayerCharacter) output(attacker.capitalA + attacker.uniqueName + " spins a long device around from their back, levelling it squarely in your direction. In the blink of an eye it unleashes a wave of burning fire directly at you!");
 			else output(attacker.capitalA + attacker.uniqueName + " spins a long device around from their back, levelling it at " + target.a + target.uniqueName + ", unleashing a wave of burning fire!");
 			
-			var d:int = Math.round(20 + attacker.level * 4 + attacker.intelligence());
-			applyDamage(new TypeCollection( { burning: d } ), attacker, target, "minimal");
+			if (CombatManager.multipleEnemies())
+			{
+				output(" The flames surge, licking at your targets compatriots!");
+			}
+			
+			var targetDamage:int = Math.round(20 + attacker.level * 4 + attacker.intelligence());
+			var baseDamage:TypeCollection = new TypeCollection( { burning: targetDamage } );
+			var pluralDamage:TypeCollection = new TypeCollection( { burning: targetDamage * 2 } );
+			var totalDamage:DamageResult;
+			
+			totalDamage = applyDamage(damageRand((target.isPlural == true ? pluralDamage : baseDamage), 15), attacker, target, "suppress");
+			
+			for (var i:int = 0; i < hGroup.length; i++)
+			{
+				if (hGroup[i] != target && !hGroup[i].isDefeated())
+				{
+					totalDamage.addResult(applyDamage(damageRand((target.isPlural == true ? pluralDamage : baseDamage), 15), attacker, hGroup[i], "suppress"));
+				}
+			}
+			
+			outputDamage(totalDamage);
 		}
 		
 		public static var GravidicDisruptor:SingleCombatAttack;
@@ -1051,8 +1070,28 @@ package classes.GameData
 			else if (target is PlayerCharacter) output(attacker.capitalA + attacker.uniqueName + " spins a long device around from their back, levelling it squarely in your direction. Your limbs suddenly feel heavy, a crushing weight bearing down on you from all sides!");
 			else output(attacker.capitalA + attacker.uniqueName + " spins a long device around from their back, levelling it at " + target.a + target.uniqueName + ", unleashing a targeted gravitic disruption in " + target.mfn("his", "her", "its") + " direction!");
 			
-			var d:int = Math.round(15 + attacker.level * 2.5 + attacker.intelligence() / 1.5);
-			applyDamage(new TypeCollection( { unresistablehp: d } ), attacker, target, "minimal");
+			if (CombatManager.multipleEnemies())
+			{
+				output(" The disruption spreads to encompass a small, localized area neatly surrounding your enemies!");
+			}
+			
+			var targetDamage:int = Math.round(15 + attacker.level * 2.5 + attacker.intelligence() / 1.5);
+			var baseDamage:TypeCollection = new TypeCollection( { unresistablehp: targetDamage } );
+			var pluralDamage:TypeCollection = new TypeCollection( { unresistablehp: targetDamage * 2 } );
+			
+			var totalDamage:DamageResult;
+			
+			totalDamage = applyDamage(damageRand((target.isPlural == true ? pluralDamage : baseDamage), 15), attacker, target, "suppress");
+			
+			for (var i:int = 0; i < hGroup.length; i++)
+			{
+				if (hGroup[i] != target)
+				{
+					totalDamage.addResult(applyDamage(damageRand((target.isPlural == true ? pluralDamage : baseDamage), 15), attacker, hGroup[i], "suppress"));
+				}
+			}
+			
+			outputDamage(totalDamage);
 		}
 		
 		public static var ShieldHack:SingleCombatAttack;
