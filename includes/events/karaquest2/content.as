@@ -62,7 +62,7 @@ public function tryProcKQuest2Entry():Boolean
 	// Taivra defeated
 	// Kara aided in KQuest1
 	
-	var beatTaivra:Boolean = flags["BEAT_TAIVRA_TIMESTAMP"] != undefined;
+	var beatTaivra:Boolean = flags["BEAT_TAIVRA_TIMESTAMP"] != undefined || flags["KING_NYREA"] != undefined;
 	
 	// I THINK this is the simplest check for "Kara & Shade was resolved, with the PC siding with Kara."
 	var aidedKara:Boolean = flags["KARA_PAID_YOU"] != undefined; 
