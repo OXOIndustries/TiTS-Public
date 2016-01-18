@@ -34,6 +34,7 @@ package classes {
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	import classes.Engine.Utility.plural;
 	import classes.Engine.Combat.DamageTypes.DamageType;
+	import classes.Engine.Utility.weightedRand;
 
 
 	/**
@@ -13022,20 +13023,32 @@ package classes {
 				// If it hasn't been defeated already this turn
 				if (otherTeam[i].HP() > 0 && otherTeam[i].lust() < otherTeam[i].lustMax())
 				{
-					// list as a potential
-					posTargets.push(otherTeam[i]);
+					var posTarget:Object = { v: otherTeam[i], w: 10 };
+					posTargets.push(posTarget);
 					
 					// Example "forced" effect selection
 					if (otherTeam[i].hasStatusEffect("Focus Fire"))
 					{
 						selTarget = otherTeam[i];
 					}
+					
+					// Smugglers are slightly less likely to be targeted
+					if (otherTeam[i].characterClass == GLOBAL.CLASS_SMUGGLER)
+					{
+						posTarget.w -= 1;
+					}
+					// Mercs slightly more
+					else if (otherTeam[i].characterClass == GLOBAL.CLASS_MERCENARY)
+					{
+						posTarget.w += 1;
+					}
+					
 				}
 			}
 			
 			if (posTargets.length == 0) selTarget = null;
 			else if (posTargets.length == 1) selTarget = posTargets[0];
-			else selTarget = posTargets[rand(posTargets.length)];
+			else selTarget = weightedRand(posTargets);
 			
 			notifyTargetSelection(this, selTarget, this);
 			
