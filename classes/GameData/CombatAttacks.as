@@ -1052,6 +1052,9 @@ package classes.GameData
 			
 			totalDamage = applyDamage(damageRand((target.isPlural == true ? pluralDamage : baseDamage), 15), attacker, target, "suppress");
 			
+			baseDamage.multiply(0.5);
+			pluralDamage.multiply(0.5);
+			
 			for (var i:int = 0; i < hGroup.length; i++)
 			{
 				if (hGroup[i] != target && !hGroup[i].isDefeated())
@@ -1082,6 +1085,9 @@ package classes.GameData
 			var totalDamage:DamageResult;
 			
 			totalDamage = applyDamage(damageRand((target.isPlural == true ? pluralDamage : baseDamage), 15), attacker, target, "suppress");
+			
+			baseDamage.multiply(0.5);
+			pluralDamage.multiply(0.5);
 			
 			for (var i:int = 0; i < hGroup.length; i++)
 			{
