@@ -278,7 +278,7 @@ public function jadeSexMenu(display:Boolean = true):void {
 			else
 			{
 				output("\n\nJade grabs your hands and pulls them against her weighty chest, letting your fingers sink deep into the sumptuous mounds, her furred flesh bulging out around them, making your digits appear to vanish into the squishy surface. You can't help but give them a squeeze, and while you are so distracted, she grabs your waist and practically drags you to the door, letting you grope her all the while.");
-				output("\n\n<i>\"Come on, " + pc.mfn("handsome","beautiful","my dear") + ", let's gp somewhere private so you can have some alone time with them.");
+				output("\n\n<i>\"Come on, " + pc.mfn("handsome","beautiful","my dear") + ", let's go somewhere private so you can have some alone time with them.");
 			}
 		}
 		//Merge
