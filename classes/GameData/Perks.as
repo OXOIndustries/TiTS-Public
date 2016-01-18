@@ -430,7 +430,7 @@ package classes.GameData
 			// Level 3
 			var enhancedDampeners:PerkData = new PerkData();
 			enhancedDampeners.classLimit = GLOBAL.CLASS_ENGINEER;
-			enhancedDampeners.levelLimit = 3;
+			enhancedDampeners.levelLimit = 5;
 			enhancedDampeners.autoGained = true;
 			enhancedDampeners.perkName = "Enhanced Dampeners";
 			enhancedDampeners.perkDescription = "Grants a 50% vulnerability reduction to damage absorbed by your shield generator.";
@@ -476,7 +476,7 @@ package classes.GameData
 			// Level 5
 			var staticBurst:PerkData = new PerkData();
 			staticBurst.classLimit = GLOBAL.CLASS_ENGINEER;
-			staticBurst.levelLimit = 5;
+			staticBurst.levelLimit = 3;
 			staticBurst.autoGained = true;
 			staticBurst.perkName = "Static Burst";
 			staticBurst.perkDescription = "Grants the ability to briefly overload your shield emitter. The burst shocks any enemies in close proximity, freeing you from grapples for a small energy cost.";
