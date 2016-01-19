@@ -319,7 +319,7 @@ public function talkToAnzhelaAboutAddiction():void
 {
 	clearOutput();
 	showAnzhela();
-	output("You ask Anzhala about the addictions she’s been treating. The Reds seem so regimented; it’s hard to imagine them succumbing to substance abuse.");
+	output("You ask Anzhela about the addictions she’s been treating. The Reds seem so regimented; it’s hard to imagine them succumbing to substance abuse.");
 	output("\n\n<i>“During peacetime - or the closest to peace the Scarlet Federation gets - you’d be right. Drug abuse </i>is<i> a lot lower than in the civilian population. But after seven years of outright war and some terrible policies, that’s no longer the case.”</i>");
 	output("\n\nYou ask her what policies she’s referring to. Solemnly, she puts down her cup, and clasps her hands on her lap.");
 	output("\n\n<i>“... Well, early on, High Command were looking for ways to capitalize on our knowledge of medicine to augment our troops. Back home, they cooked up a bunch of different steroids and performance enhancers, and had us dole them out to select groups of soldiers.”</i>");
@@ -345,7 +345,7 @@ public function talkToAnzhelaAboutAlterants():void
 	output("\n\nYou ask where these chemicals come from. Even though the Federation seems to have decent medical technology, having any kind of transformatives is probably beyond them. After all, they’re still using powder rifles and bi-planes!");
 	output("\n\n<i>“Honestly? The whole thing is rather secretive,”</i> Anzhela openly answers, a worried look on her face. <i>“Even though I administer the drugs, I only know very little about the whole thing,”</i> she shrugs, then continues, <i>“Rumor is that early in the war, there were stories about facilities where transformative treatments were being tested on volunteers, some kind of project to create the ‘perfect myr soldier’. Word is the results were impressive, but nothing like the technology your peoples display.”</i>");
 	// JimNote: Captain Antmerica! I’m leaving an opening for someone to have fun with this. :3
-	output("\n\n<i>“Apparently the offshoots of those experiments are the drugs we use today. The list of side effects is still hideously long, yet we’re still authorized – no, encouraged – to administer them. It’s said that some company called ‘Xenogen’ slipped the Federation a ‘how-to’ guide on genetic manipulation in exchange for... </i>something<i>.”</i> She shrugs again and sips her scova. <i>“...Could be scuttlebutt, though, so make of that what you will.”</i>");
+	output("\n\n<i>“Apparently the offshoots of those experiments are the drugs we use today. The list of side effects is still hideously long, yet we’re still authorized – no, encouraged – to administer them. It’s said that some company called ‘Xenogen’ slipped the Federation a ‘how-to’ guide on genetic manipulation in exchange for... </i>something<i>.”</i> She shrugs again and sips her scova. <i>“... Could be scuttlebutt, though, so make of that what you will.”</i>");
 	// Return to ‘Her Work’ Talk Menu.
 	processTime(4);
 	clearMenu();
@@ -442,12 +442,12 @@ public function talkToAnzhelaAboutTrenchWives():void
 	output("You ask Anzhela what she thinks of trench wives. She narrows her dark eyes.");
 	output("\n\n<i>“... Medical slavery. Getting a woman hooked on your venom without consent and then getting her to be grateful for your drug after the fact. I’ve never, ever seen a gold myr who has been happy with being made a trench wife where the alternative was not being buried six feet under.”</i>");
 	output("\n\nWow. She has <i>really</i> strong opinions on trench wives. You ask her how High Command feels about her views?");
-	output("\n\nAnzhela leans back and lets out a long, deep sigh. <i>“...Thankfully, High Command is on the fence on the matter. It’s a double edged sword - they don’t support the practice, so I’m allowed to speak my mind, at least in private. At the same time, they don’t decry it, so it still keeps happening as a ‘necessary evil’.”</i>");
+	output("\n\nAnzhela leans back and lets out a long, deep sigh. <i>“... Thankfully, High Command is on the fence on the matter. It’s a double edged sword - they don’t support the practice, so I’m allowed to speak my mind, at least in private. At the same time, they don’t decry it, so it still keeps happening as a ‘necessary evil’.”</i>");
 	output("\n\n<i>“It’s a necessary evil that only happens to the beautiful soldiers, mind you. Everyone else who’s not beautiful or of proper age ends up either biting a bullet or sent to camps. Obviously the old and the extremely young - namely civilians caught during the invasion of a city - can’t become trench wives.”</i>");
 	output("\n\n<i>“I would probably still get in trouble if it wasn’t for the fact I’ve saved so many lives and I’m the CMO.”</i>");
 	output("\n\nThe scarlet haired doctor smiles and brushes back her hair. <i>“Sorry. I - I </i>really<i> get worked up when people talk about trench wives. Usually I hold my tongue when it comes to my own people, but since you’re an off-worlder, I kind of exploded all at once.”</i>");
 	output("\n\n<i>“It’s probably because every day I have privates bringing in their drugged-up trench wives, either because they’ve overdosed or not dosed up enough. They’re a lot less careful and use higher amounts of venom on the golds because they’re prisoners, not people.”</i>");
-	output("\n\n<i>“If the wife-keepers cared about them as much as they claim - and it was consensual - they’d not use the venom on them at all from the get go. Take a venom suppressant and not get them hooked in the first place,”</i> she sadly smiles, <i>“...I don’t see many women lining up for that option. They’re not ‘wives’, they’re ‘sex slaves’.”</i>");
+	output("\n\n<i>“If the wife-keepers cared about them as much as they claim - and it was consensual - they’d not use the venom on them at all from the get go. Take a venom suppressant and not get them hooked in the first place,”</i> she sadly smiles, <i>“... I don’t see many women lining up for that option. They’re not ‘wives’, they’re ‘sex slaves’.”</i>");
 	output("\n\nYou ask her about her venom. Surely she has a similar effect on the people she kisses?");
 	output("\n\nAnzhela shakes her head. <i>“I regularly take a venom suppressant. It’s considered strange by my people, but I want someone to be hooked on me for me, not my venom,”</i> She smiles a little saucily and adds, <i>“It also allows me to work on my technique.”</i>");
 	output("\n\n<i>“Those girls who rely on their venom get sloppy, you know, and not in the fun way. If I want a gold girl to stick around, I can make it happen.”</i>");
@@ -559,7 +559,7 @@ public function firstAidWithAnn():void
 		else
 		{
 			output("\n\nAnzhela smiles and touches your tiny wounds, quirking an eyebrow. She looks deep into your eyes.");
-			output("\n\n<i>“...It’s barely a scratch. I’ll fix it right up,”</i> she grins, putting on some new gloves. There’s a bounce to her step. <i>“I’m really glad you’re not very injured.”</i>");
+			output("\n\n<i>“... It’s barely a scratch. I’ll fix it right up,”</i> she grins, putting on some new gloves. There’s a bounce to her step. <i>“I’m really glad you’re not very injured.”</i>");
 		}
 		output("\n\nAfter the CMO gives you some tablets for the pain, she bastes a cool pink goo on your ");
 		if(pc.HP()/pc.HPMax() < .3) output("numerous");
@@ -573,7 +573,7 @@ public function firstAidWithAnn():void
 			output("\n\nOnce she’s finished, Anzhela leans over you, curly locks framing her face. There’s an intense look in her eyes. Her fingertips brush your wrapped up chest.");
 			output("\n\n<i>“You know, I have to give you one more thing to make you all better. Doctor’s orders,”</i> she huskily tells you.");
 			output("\n\nAnzhela inches closer to you. You feel her soft plump lips pressing against yours. One sweet kiss later, she strokes your [pc.hair], a warm look in her alien eyes.");
-			output("\n\n<i>“...There, </i>now<i> you’re all better. Can’t send you off without proper treatment, now can I?”</i> she crosses her arms, a coy smile playing on those wine-red lips.");
+			output("\n\n<i>“... There, </i>now<i> you’re all better. Can’t send you off without proper treatment, now can I?”</i> she crosses her arms, a coy smile playing on those wine-red lips.");
 			output("\n\nFeeling surprised, you ask her if she does that for all her patients. Anzhela shakes her head.");
 			output("\n\n<i>“Of course not! Just the ones I really like,”</i> she winks. <i>“You come back if you get injured, alright? I’ll always patch you right up, good as new.”</i>");
 		}
@@ -583,7 +583,7 @@ public function firstAidWithAnn():void
 			output("\n\nAs usual, Anzhela’s eyes glitter once she’s finished treating you. Leaning over you with curly locks framing her face, she brushes her fingers across your wrapped up chest.");
 			output("\n\n<i>“Now for that last little thing to make you all better,”</i> she huskily tells you.");
 			output("\n\nAnzhela inches closer to you. You feel her soft plump lips pressing against yours. One sweet kiss later, she strokes your [pc.hair], a warm look in her alien eyes.");
-			output("\n\n<i>“...There, </i>now<i> you’re all better. You better keep yourself in proper shape, no matter how much you like getting waited on by a pretty doctor, okay?”</i> She hugs her waist, a coy smile playing on those wine red lips.");
+			output("\n\n<i>“... There, </i>now<i> you’re all better. You better keep yourself in proper shape, no matter how much you like getting waited on by a pretty doctor, okay?”</i> She hugs her waist, a coy smile playing on those wine red lips.");
 		}
 	}
 	//Else // PC is completely uninjured:
@@ -850,7 +850,7 @@ public function cowgirlWithAnzhela():void
 	output(". It’s hard to imagine anyone <i>can’t</i> hear you, but you’re both so caught up in such all-consuming pleasure that you don’t <i>care</i>. All either of you can think about is hungrily pressing and rubbing against each other–you inside of her–as you push each other further towards that exquisite brink.");
 	output("\n\nWith a sharp cry, Anzela pushes herself into your shoulder, trembling wildly and convulsing against you. Her slender hips shake and shudder along with her warm, wet insides, wringing and clenching around your [pc.cockNounSimple " + x + "]. The sweet sound and feel of her cumming sets you off, and you shake against her in turn, shooting your [pc.cum] deep inside of her quaking insides. Your virile seed floods up and into her eagerly awaiting uterus, filling her up with you utterly and completely.");
 	output("\n\nSweaty, satisfied, and thoroughly exhausted, you lie on each other in the hospital bed, your chests rising and falling against each other in perfect rhythm. Her fingertips brush affectionately against your chest, teasing your [pc.skinFurScalesNoun]. Your own reach down and stroke through her luscious hair, enjoying the softness as you both bask in sublime afterglow.");
-	output("\n\nEventually, though, you both have to move. With a reluctant look, Anzhela picks herself off you, her curly locks all over the place and her naked skin covered in a sexy sweat. <i>“...Well, I think that relieved <i>both</i> our needs, don’t you–?”</i> she asks, a glittering look in her dark eyes. <i>“I really could stay in bed all day with you, but I honestly need get back to work. As much as I don’t </i>want<i> to.”</i>");
+	output("\n\nEventually, though, you both have to move. With a reluctant look, Anzhela picks herself off you, her curly locks all over the place and her naked skin covered in a sexy sweat. <i>“... Well, I think that relieved <i>both</i> our needs, don’t you–?”</i> she asks, a glittering look in her dark eyes. <i>“I really could stay in bed all day with you, but I honestly need get back to work. As much as I don’t </i>want<i> to.”</i>");
 	output("\n\nYou admire the sight of the sexy doctor slipping back on her clothes and trying to contain the stream of your [pc.cum] leaking down her thighs. She blushes with delight, pulling her panties and stockings on, and trying her best to hide it beneath her skirt. <i>“... Let’s see if I can last the day without anyone noticing.”</i>");
 	output("\n\nWith a sexy little saunter, the CMO pulls back the screen and strides off. The staff are trying hard not to pay attention to you both, but by the flicking of their eyes, it’s clear they’re <i>very</i> interested in what the doctor and the off-worlder were doing in that cubicle!");
 	// Scene end. Return to menu.
@@ -872,7 +872,7 @@ public function hikeAndFuck():void
 	output("You’re both feverishly all over each other on the way to one of the hospital beds. Between kisses and love bites, <i>somehow</i> you manage to pull the privacy curtain shut.");
 	output("\n\nAnzhela captures your lips with a hungry urgency. She slides her tongue between your parted lips. The doctor’s arms slide around your waist. Spreading her legs, she pulls you close and your hips rest against her stocking clad thighs.");
 	output("\n\nYou pull back and watch as her beautiful dark eyes widen and her plush lips part. <i>“W-why’d you stop?”</i> She breathily asks, and you grin. Her scarlet cheeks are flushed with arousal, and her breathing is hurried. The doctor needs you and she needs you <i>stat</i>.");
-	output("\n\nReaching around Anzhela’s waist, you seize her soft well-rounded myr ass, cupping and squeezing her pliable backside. Moaning in delight, she rubs her skirt-covered ass into your hands. <i>“...Too many clothes. ");
+	output("\n\nReaching around Anzhela’s waist, you seize her soft well-rounded myr ass, cupping and squeezing her pliable backside. Moaning in delight, she rubs her skirt-covered ass into your hands. <i>“... Too many clothes. ");
 	if(pc.isNude()) output("I’m");
 	else output("We’re");
 	output(" wearing WAY too many clothes.”</i>");
@@ -905,7 +905,17 @@ public function vaginalHikeNFuck():void
 	output("With primal need, you grab her gorgeous garter-clad hips and ease your [pc.cock " + x + "] into the hot, silky depths of her welcoming pussy. ");
 	pc.cockChange();
 	if(pc.cocks[x].cLength() <= 6) output("Once your shlong is fully sheathed, you passionately rub your [pc.cockHead " + x + "] against her vulnerable cervix.");
-	else output("With your prodigiously long prick, you passionately rub your [pc.cockHead " + x + "] against her vulnerable cervix.");
+	else
+	{
+		if(pc.cocks[x].cLength() >= 12)
+		{
+			output("With your");
+			if(pc.cocks[x].cLength() >= 15) output(" prodigiously");
+			output(" long prick, y");
+		}
+		else output("Y");
+		output("ou passionately rub your [pc.cockHead " + x + "] against her vulnerable cervix.");
+	}
 	output(" Trickles of feminine excitement leak down her round stocking-clad thighs and she sweetly moans.");
 
 	output("\n\nClinging to the bedsheets, Anzhela’s red curly hair falls free and sexily wild. Her cheeks are flushed with delight and her glasses are falling off her face - the doctor looks deliciously messed up!");
@@ -1034,13 +1044,13 @@ public function annStraponScene():void
 	else output("horny");
 	output("!");
 
-	output("\n\n<i>“How about we pull out one of my favorite toys? I’m sure it’ll be your favorite too,”</i> Anzhela sultrily purrs. After climbing up onto the soft bed and crawling along it–giving you a nice view of her dripping cameltoe–she pulls out something from a bedside drawer. She falls on her back against the pillows and laviciously spreads her legs, giving you a full-on view of her scarlet mound! It’s short lived as she straps a large, twelve-inch male myr cock over the top of it, fastening it securely at her hips. <i>“...So, care for a ride~?”</i>");
+	output("\n\n<i>“How about we pull out one of my favorite toys? I’m sure it’ll be your favorite too,”</i> Anzhela sultrily purrs. After climbing up onto the soft bed and crawling along it–giving you a nice view of her dripping cameltoe–she pulls out something from a bedside drawer. She falls on her back against the pillows and laviciously spreads her legs, giving you a full-on view of her scarlet mound! It’s short lived as she straps a large, twelve-inch male myr cock over the top of it, fastening it securely at her hips. <i>“... So, care for a ride~?”</i>");
 
 	output("\n\nYou grin and");
 	if(pc.isCrotchGarbed()) output(", after stripping off,");
 	output(" climb onto the bed after her. With a little teasing show you lean over and lick her red, bulbous knob, keeping heated eye contact the entire while. She’s breathy with excitement. Your performance is getting her excited! Well, you’ve got a bit more to show her. Feeling a tingling in your stomach, you ");
 	if(pc.isTaur()) output("turn around, ");
-	output("lift yourself up and squat above her massive member, letting it hover above your bare buttocks. Your leg-muscles strain–along with your pucker–as you lower yourself onto her expansive knob. You groan as it stretches open your ring, it’s knotty thickness deliciously sliding inside of your rectum. Inch by inch, you slide her veiny length inside of your butt, letting her lady dick delve deeper inside of you. With a breathy sigh, you feel the skin of your thighs press flush with hers, her knob buried so deep you can almost feel it inside your belly!");
+	output("lift yourself up and squat above her massive member, letting it hover above your bare buttocks. Your leg-muscles strain–along with your pucker–as you lower yourself onto her expansive knob. You groan as it stretches open your ring, its knotty thickness deliciously sliding inside of your rectum. Inch by inch, you slide her veiny length inside of your butt, letting her lady dick delve deeper inside of you. With a breathy sigh, you feel the skin of your thighs press flush with hers, her knob buried so deep you can almost feel it inside your belly!");
 	pc.buttChange(120);
 	output("\n\n<i>“All in?”</i> Anzhela huskily asks, rubbing her hands up your [pc.thighs]. You hazily nod, wiggling in her lap, relishing in the moment. She begins slapping up against your bare buttocks from below, fucking your needy ass. You groan as her thick knob rubs around deep inside of your butt and stirs you up. Your");
 	if(pc.hasCock()) 
