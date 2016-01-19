@@ -9,6 +9,7 @@ import classes.GUI;
 import classes.Items.Accessories.LeithaCharm;
 import classes.Items.Miscellaneous.EmptySlot;
 import classes.Items.Miscellaneous.HorsePill;
+import classes.Items.Transformatives.Clippex;
 import classes.Items.Transformatives.Goblinola;
 import classes.RoomClass;
 import classes.StorageClass;
@@ -451,6 +452,7 @@ public function crew(counter:Boolean = false):Number {
 	}
 	if(!counter) {
 		if(count > 0) {
+			showName("\nCREW");
 			output("Who of your crew do you wish to interact with?" + crewMessages);
 		}
 		addButton(14, "Back", mainGameMenu);
@@ -644,11 +646,13 @@ public function shipMenu():Boolean {
 	{
 		return true;
 	}
+	
 	// Puppyslutmas hook :D
 	if (annoIsCrew() && annoPuppyslutmasEntry())
 	{
 		return true;
 	}
+	
 	// Goo Armor hook
 	if (flags["ANNO_NOVA_UPDATE"] == 2)
 	{
@@ -705,8 +709,20 @@ public function flyMenu():void {
 	//MYRELLION
 	if(flags["PLANET_3_UNLOCKED"] != undefined)
 	{
-		if(shipLocation != "600") addButton(3, "Myrellion", flyTo, "Myrellion");
-		else addDisabledButton(3, "Myrellion", "Myrellion", "You’re already here.");
+		if (flags["KQ2_MYRELLION_STATE"] == undefined)
+		{
+			if(shipLocation != "600") addButton(3, "Myrellion", flyTo, "Myrellion");
+			else addDisabledButton(3, "Myrellion", "Myrellion", "You’re already here.");
+		}
+		else if (flags["KQ2_MYRELLION_STATE"] == 1)
+		{
+			addDisabledButton(3, "Myrellion", "Myrellion", "It would be wise not to visit a planet currently experiencing a heavy nuclear winter...");
+		}
+		else
+		{
+			if (shipLocation != "2I7") addButton(3, "Myrellion", flyTo, "MyrellionDeepCaves");
+			else addDisabledButton(3, "Myrellion", "Myrellion", "You’re already here.");
+		}
 	}
 	else addDisabledButton(3, "Locked", "Locked", "You need to find one of your father’s probes to access this planet’s coordinates and name.");
 	//NEW TEXAS
@@ -724,6 +740,10 @@ public function flyMenu():void {
 		else addDisabledButton(6, "Poe A", "Poe A", "You’re already here.");
 	}
 	else addDisabledButton(6, "Locked", "Locked", "You have not yet learned of this planet.");
+	if (flags["KQ2_QUEST_OFFER"] != undefined && flags["KQ2_QUEST_DETAILED"] == undefined)
+	{
+		addButton(7, "Kara", flyTo, "karaQuest2", "Kara", "Go see what Kara has up her sleeve.");
+	}
 	addButton(14, "Back", mainGameMenu);
 }
 
@@ -733,7 +753,7 @@ public function flyTo(arg:String):void {
 	{
 		flags["SUPRESS TRAVEL EVENTS"] = 0;
 	}
-	else if(arg != "Poe A")
+	else if(!InCollection(arg, ["Poe A", "karaQuest2"]))
 	{
 		var tEvent:Function = tryProcTravelEvent();
 		if (tEvent != null)
@@ -742,6 +762,9 @@ public function flyTo(arg:String):void {
 			return;
 		}
 	}
+	
+	var shortTravel:Boolean = false;
+	var interruptMenu:Boolean = false;
 	
 	clearOutput();
 	
@@ -773,22 +796,37 @@ public function flyTo(arg:String):void {
 		currentLocation = "600";
 		flyToMyrellion();
 	}
+	else if (arg == "MyrellionDeepCaves")
+	{
+		shipLocation = "2I7";
+		currentLocation = "2I7";
+		flyToMyrellionDeepCaves();
+	}
 	else if(arg == "Poe A")
 	{
 		shipLocation = "POESPACE";
 		currentLocation = "POESPACE";
 		output("Electing to have a little fun, you set a course for Poe A and before long, the planet looms before you on the display. It’s not particularly large, for a civilized world, but the traffic for landing vehicles is a little ridiculous. Thousands of craft are coming in every minute, with no sign of the influx slowing down. They’re from all over the galaxy too, even models you’ve never heard of before. Taking your place in the landing queue, you look around at some of the other visitors, eyes watering with envy as you spot a few ships that probably cost as much as this whole planet. Apparently the stories of stars slumming it up during the festival weren’t exaggerated!");
 	}
+	else if (arg == "karaQuest2")
+	{
+		shortTravel = (shipLocation == "600");
+		interruptMenu = true;
+		kq2TravelToKara(shortTravel);
+	}
 	
-	var timeFlown:Number = 600 + rand(30);
+	var timeFlown:Number = (shortTravel ? 30 + rand(10) : 600 + rand(30));
 	StatTracking.track("movement/time flown", timeFlown);
 	processTime(timeFlown);
 	
 	if(landingEventCheck(arg)) return;
 	flags["LANDING_EVENT_CHECK"] = 1;
 	
-	clearMenu();
-	addButton(0, "Next", mainGameMenu);
+	if (!interruptMenu)
+	{
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+	}
 }
 
 public function landingEventCheck(arg:String):Boolean
@@ -1006,6 +1044,20 @@ public function statusTick():void {
 				{
 					var gobbyFaceTF:Goblinola = new Goblinola();
 					eventQueue[eventQueue.length] = gobbyFaceTF.itemGoblinFaceTF;
+				}
+				//Clippex changes!
+				if(pc.statusEffects[x].storageName == "Clippex Gel")
+				{
+					var clippexTF:Clippex = new Clippex();
+					if(pc.statusEffects[x].value2 > 1) eventQueue[eventQueue.length] = clippexTF.itemClippexTFPlus;
+					else eventQueue[eventQueue.length] = clippexTF.itemClippexTF;
+				}
+				//Semen's Friend changes!
+				if(pc.statusEffects[x].storageName == "Semen's Candy")
+				{
+					var semensTF:SemensFriend = new SemensFriend();
+					if(pc.statusEffects[x].value2 > 1) eventQueue[eventQueue.length] = semensTF.itemSemensFriendTFPlus;
+					else eventQueue[eventQueue.length] = semensTF.itemSemensFriendTF;
 				}
 				if(pc.statusEffects[x].storageName == "Red Myr Venom")
 				{
@@ -1544,7 +1596,46 @@ public function processTime(arg:int):void {
 			bombStatusUpdate();
 			if(flags["TARKUS_BOMB_TIMER"] == 0) eventQueue[eventQueue.length] = bombExplodes;
 		}
-
+		
+		if (flags["KQ2_NUKE_STARTED"] != undefined && flags["KQ2_NUKE_EXPLODED"] == undefined)
+		{
+			// Still there!
+			if (flags["KQ2_QUEST_FINISHED"] == undefined)
+			{
+				if (flags["KQ2_NUKE_STARTED"] + KQ2_NUKE_DURATION < GetGameTimestamp())
+				{
+					eventQueue.push(kq2NukeBadend);
+				}
+			}
+			// Left
+			else if (currentLocation == "SHIP INTERIOR")
+			{
+				eventQueue.push(kq2NukeExplodesLater);
+				flags["KQ2_NUKE_EXPLODED"] = 1;
+			}
+			
+			// Followup for Dane to send coordinates to the player, should the need arise
+			if (flags["KQ2_MYRELLION_STATE"] == 1)
+			{
+				if (flags["KQ2_DANE_COORDS_TIMER"] != undefined && flags["KQ2_DANE_COORDS_TIMER"] + 2880 < GetGameTimestamp())
+				{
+					eventQueue.push(kq2DaneCoordEmail);
+				}
+			}
+		}
+		
+		//Clippex procs!
+		if(pc.hasStatusEffect("Clippex Gel"))
+		{
+			var clippexTF:Clippex = new Clippex();
+			clippexTF.itemClippexLustIncrease();
+		}
+		//Semen's Friend procs!
+		if(pc.hasStatusEffect("Semen's Candy"))
+		{
+			var semensTF:SemensFriend = new SemensFriend();
+			semensTF.itemSemensFriendLibidoIncrease();
+		}
 		//Treatment display shit
 		if(pc.hasStatusEffect("Treatment Elasticity Report Q'ed"))
 		{
@@ -1720,7 +1811,9 @@ public function processTime(arg:int):void {
 
 			//Days ticks here!
 			if(hours >= 24) {
+				hours = 0;
 				days++;
+				
 				//Unlock dat shiiit
 				if(flags["HOLIDAY_OWEEN_ACTIVATED"] == undefined && (isHalloweenish() || rand(100) == 0)) eventQueue.push(hollidayOweenAlert);
 				if(pc.hasPerk("Honeypot") && days % 3 == 0) honeyPotBump();
@@ -1740,7 +1833,7 @@ public function processTime(arg:int):void {
 				//Reset Orryx shipments!
 				if(flags["ORRYX_SHIPPED_TODAY"] != undefined) flags["ORRYX_SHIPPED_TODAY"] = undefined;
 				if(days >= 2 && (flags["NEW_TEXAS_COORDINATES_GAINED"] == undefined || !MailManager.isEntryUnlocked("newtexas"))) newTexasEmail();
-				hours = 0;
+				
 				if(chars["ALISS"].lust() >= 70)
 				{
 					chars["ALISS"].orgasm();
@@ -2506,7 +2599,11 @@ public function emailRoulette():void
 	{
 		for(var i:int = 0; i < SpamEmailKeys.length; i++) 
 		{
-			if(!MailManager.isEntryUnlocked(SpamEmailKeys[i]) && rand(2) == 0) mailList.push(SpamEmailKeys[i]);
+			if(	!InCollection(SpamEmailKeys[i], ["burtsmeadhall", "kihaai", "fuckinggoosloots", "fuckinggooslootsII", "kirofucknet"])
+			&&	!MailManager.isEntryUnlocked(SpamEmailKeys[i])
+			&&	rand(2) == 0
+			)
+				mailList.push(SpamEmailKeys[i]);
 		}
 	}
 	
@@ -2542,7 +2639,10 @@ public function emailRoulette():void
 			pc.lust(20);
 		}
 		if(mailKey == "estrobloom" && !pc.hasKeyItem("Coupon - Estrobloom"))
+		{
+			eventBuffer += "\n\n<b>You have gained a coupon for Estrobloom!</b>";
 			pc.createKeyItem("Coupon - Estrobloom", 0.9, 0, 0, 0, "Save 10% on your next purchase of Estrobloom!");
+		}
 		if(mailKey == "hugedicktoday" && pc.isBro() && pc.hasCock())
 		{
 			eventBuffer += " The subject line reads <i>“" + mailSubject + "”</i>. Hell yeah--who wouldn’t want a bigger dick? You quicky open the message to read its contents and the codex lights up with the display:";

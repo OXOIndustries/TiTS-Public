@@ -89,7 +89,7 @@ public function approachJade():void {
 	//List prices and whatnot. Back should go back to Jade's main menu.
 	//Sell Menu
 	chars["JADE"].keeperSell = "Jade tilts her head to the side. <i>\"You wanna sell me splices? Well, even if they don't fit my niche, I can probably turn a profit on them, so why not?\"</i>  She looks at you inquisitively. <i>\"What do you have for me?\"</i>\n";
-	chars["JADE"].keeperGreeting = "Jade extends her arm, gesturing towards the rest of her shop. <i>\"See anything I can help you with?\"</i>";
+	chars["JADE"].keeperGreeting = "Jade extends her arm, gesturing towards the rest of her shop. <i>\"See anything I can help you with?\"</i>\n";
 	itemScreen = mainGameMenu;
 	lootScreen = mainGameMenu;
 	useItemFunction = mainGameMenu;
@@ -278,7 +278,7 @@ public function jadeSexMenu(display:Boolean = true):void {
 			else
 			{
 				output("\n\nJade grabs your hands and pulls them against her weighty chest, letting your fingers sink deep into the sumptuous mounds, her furred flesh bulging out around them, making your digits appear to vanish into the squishy surface. You can't help but give them a squeeze, and while you are so distracted, she grabs your waist and practically drags you to the door, letting you grope her all the while.");
-				output("\n\n<i>\"Come on, " + pc.mfn("handsome","beautiful","my dear") + ", let's gp somewhere private so you can have some alone time with them.");
+				output("\n\n<i>\"Come on, " + pc.mfn("handsome","beautiful","my dear") + ", let's go somewhere private so you can have some alone time with them.");
 			}
 		}
 		//Merge

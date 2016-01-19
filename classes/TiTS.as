@@ -46,6 +46,7 @@
 	import classes.Characters.*;
 
 	// Items
+	import classes.Items.Armor.*;
 	import classes.Items.Protection.*
 	import classes.Items.Guns.*
 	import classes.Items.Melee.*
@@ -137,6 +138,7 @@
 		include "../includes/tavros/saendraXPack1.as";
 		include "../includes/tavros/sellesy.as";
 		include "../includes/tavros/sera.as";
+		include "../includes/tavros/seraXPack1.as";
 		include "../includes/tavros/shearBeauty.as";
 		include "../includes/tavros/shelly.as";
 		include "../includes/tavros/vahn.as";
@@ -244,6 +246,11 @@
 		include "../includes/myrellion/xanthe.as";
 		include "../includes/myrellion/xenogenbiotech.as";
 		
+		// Karaquest 2- Karaharder.
+		include "../includes/events/karaquest2/content.as";
+		include "../includes/events/karaquest2/rooms.as";
+		include "../includes/events/karaquest2/roomFunctions.as";
+		
 		public var chars:Object;
 
 		// This needs to ideally be moved somewhere else, I'm just stopping the GUI code from being used to store game-data models
@@ -257,7 +264,7 @@
 			var value:uint = 0;
 			value += minutes;
 			value += hours * 60;
-			value += days * 24 * 60;
+			value += days * (24 * 60);
 			return value;
 		}
 
@@ -335,7 +342,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.6.28";
+			version = "0.6.30";
 
 			//temporary nonsense variables.
 			temp = 0;

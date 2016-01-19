@@ -406,9 +406,23 @@ public function mimbraneFeed(target:String = "regular", feedValue:int = 1):void
 	{
 		feedAMimbrane("Mimbrane Face", feedValue);
 	}
+	else if (target == "boobs" || target == "chest" || target == "tits")
+	{
+		feedAMimbrane("Mimbrane Boobs", feedValue);
+	}
+	else if (target == "hands" || target == "left hand" || target == "right hand")
+	{
+		if (target == "hands" || target == "left hand") feedAMimbrane("Mimbrane Hand Left", feedValue);
+		if (target == "hands" || target == "right hand") feedAMimbrane("Mimbrane Hand Right", feedValue);
+	}
+	else if (target == "feet" || target == "left foot" || target == "right foot")
+	{
+		if (target == "feet" || target == "left foot") feedAMimbrane("Mimbrane Foot Left", feedValue);
+		if (target == "feet" || target == "right foot") feedAMimbrane("Mimbrane Foot Right", feedValue);
+	}
 	else
 	{
-		throw new Error("target property string was an unexpected value. Only 'all', 'regular', 'cock', 'vag', 'ass' or 'mouth' are supported.");
+		throw new Error("target property string was an unexpected value. Only 'all', 'regular', 'cock', 'vag', 'ass', 'mouth', 'boobs', 'hands' or 'feet' are supported.");
 	}
 	
 }

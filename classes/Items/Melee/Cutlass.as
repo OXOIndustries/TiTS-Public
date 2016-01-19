@@ -35,7 +35,7 @@ package classes.Items.Melee
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "steel cutlass";
+			this.description = "a steel cutlass";
 			
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "A fairly standard steel cutlass for the renaissance reenactor in all of us. This hefty sword is and has been a standard for close-quarters boarding actions since the age of sail and has analogs in most interstellar cultures. A favorite of pirates, raiders and navy officers the galaxy over.";

@@ -65,9 +65,9 @@ public function tanisBowTrainingFirstTime():void
 	output("<i>“Hey,");
 	if (pc.isFeminine()) output(" big game hunter");
 	else output(" man");
-	output(",”</i> you say, stepping over to Tanis’s desk. As you walk, you pull the bow off from over you shoulder and plant the butt of it on the ground beside you. His eyes instantly light up at the sight of it, and his ashen lips twist into a hint of a smile.");
+	output(",”</i> you say, stepping over to Tanis’s desk. As you walk, you pull the bow off from over your shoulder and plant the butt of it on the ground beside you. His eyes instantly light up at the sight of it, and his ashen lips twist into a hint of a smile.");
 	
-	output("\n\n<i>“’Sup,”</i> he answers, eyes wandering over your bow. <i>“Gotta say, if you’re trying to hold up the place, you could have picked a little less conspicuous weapon.”</i>");
+	output("\n\n<i>“’Sup,”</i> he answers, eyes wandering over your bow. <i>“Gotta say, if you’re trying to hold up the place, you could have picked a little less conspicuous of a weapon.”</i>");
 	
 	output("\n\nYou chuckle and counter, <i>“Actually, I was wondering you’ve got some pointers for me. Haven't exactly had a lot of training using something like this before.”</i>");
 	
@@ -81,9 +81,9 @@ public function tanisBowTrainingFirstTime():void
 	output("\n\n<i>“So, no formal training, right?”</i> Tanis says, less a question and more an amused statement of fact. When you nod, he chuckles. <i>“Don’t worry about it. Most people don’t. Bowmanship’s kind of a lost art these days, you know. Some of us leithans keep up the old art: nowhere in the galaxy has game like Leitha, though you have to be ready to be prey as much as predator on our homeworld. A strong, silent, shot will get you further than the big bang of a rifle when there’s monsters the size of houses eager to eat you. If you can bring down a kill without drawing unwanted attention, well, you can’t do much better than a bow.”</i>");
 
 	output("\n\nAs if for emphasis, Tanis pulls an arrow from his back and, in one swift motion, nocks and looses it into the side of a nearby tree. A muted <i>twang</i> echoes as the bowstring snaps home, but you have to admit he’s right: the shot’s an order of magnitude quieter than a gunshot.");
-	if (pc.characterClass == GLOBAL.CLASS_MERCENARY) output(" Nevermind that it’s not hard to get a suppressor for a gun. You’re here to learn, not be pedantic.");
+	if (pc.characterClass == GLOBAL.CLASS_MERCENARY) output(" Never mind that it’s not hard to get a suppressor for a gun. You’re here to learn, not be pedantic.");
 	
-	output("\n\n<i>“So yeah!”</i> he grins, resting his hands on the top of his bow. <i>“My family’s been handing down these shooting techniques for centuries. I can show you the quick and dirty rundown of the basics today, but if you wanna get </i>really<i> good with this this,”</i> he says, reaching over to run a finger along the the curve of your bow. <i>“It’ll take some time and dedication, you know.”</i>");
+	output("\n\n<i>“So yeah!”</i> he grins, resting his hands on the top of his bow. <i>“My family’s been handing down these shooting techniques for centuries. I can show you the quick and dirty rundown of the basics today, but if you wanna get </i>really<i> good with this,”</i> he says, reaching over to run a finger along the curve of your bow. <i>“It’ll take some time and dedication, you know.”</i>");
 
 	output("\n\nYou nod.");
 	
@@ -93,7 +93,7 @@ public function tanisBowTrainingFirstTime():void
 	if (pc.isBiped()) output(" Tanis certainly seems to be experienced with teaching humanoids, as he seems to know your lower body just as well as you do. He’s quickly got you standing like a shining example of an archer.");
 	else if (pc.isNaga()) output(" Your alien lower body seems to get in the way a bit, since you’ve got no proper feet to place. Tanis spends as much time trying to figure your body out as he does instructing you. Eventually, though, he finds a stance that he thinks will work for you, though it’s a bit awkward to hold for more than a few moments. <i>“Gotta build up those abdominal muscles!”</i> he declares, using a hand to straighten your back out.");
 	else if (pc.isTaur() || pc.isDrider()) output(" Tanis is an experienced teacher, of that you have no doubt. He circles your tauric body with a serpent-like grace, using his bow like a staff to shove your legs into proper form. You suck in a sharp breath when his hand is suddenly on your back, forcing you to sit up straight as an arrow.");
-	output(" <i>“There we go, much better. Just hold that pose for a minute. Pretty different from just shooting a gun, right? It’s all about the stance, trust me. Well, that an a lot of hand-eye coordination.");
+	output(" <i>“There we go, much better. Just hold that pose for a minute. Pretty different from just shooting a gun, right? It’s all about the stance, trust me. Well, that and a lot of hand-eye coordination.");
 	if (pc.AQ() >= 66) output(" But I think you’ve got that covered.");
 	else output(" But we’ll work on that. No worries.");
 	output("”</i>");
@@ -163,7 +163,7 @@ public function tanisBowTrainingRepeat():void
 	output("\n\n<i>“Gettin’ pretty badass with that bow!”</i> Tanis laughs, giving you a friendly thump on the shoulder. <i>“See, you don’t need fancy head’s up displays and holographic sights to be a sharpshooter. It’s all about the skill and dedication, right?”</i>");
 	
 	output("\n\nYou nod in agreement - you really feel like you’re starting to get the hang of this.");
-	if (pc.hasVagina()) output(" Then again, you almost wish you weren’t - the way Tanis presses his chest to your back when you he adjusts your stance, the sight of his rippling muscles tensing as he draws his own bow back... yum.");
+	if (pc.hasVagina()) output(" Then again, you almost wish you weren’t - the way Tanis presses his chest to your back when he adjusts your stance, the sight of his rippling muscles tensing as he draws his own bow back... yum.");
 	
 	output("\n\n<i>“Keep practicing like this, and I might have to take you hunting sometime,”</i> Tanis laughs, watching you plant another arrow into a tentacle-monster target. <i>“See how you do against some of the </i>real<i> monsters back on Leitha.");
 	if (pc.level >= 7) output(" I think you’d do pretty well.");
@@ -222,7 +222,7 @@ public function tanisBowTrainingFinaleRepeats():void
 	
 	output("\n\nYou draw one of your special leithan arrows and nock it, aiming at the same tree Tanis just shot - it looks completely unharmed, for all the force just brought against it. You aim and let fly, sending another beeping arrow to slam home into the gray bark. It detonates a moment later, blasting the targets you’d tacked up off the trees - and setting off a cacophony of howling animals, screeching birds, and a car alarm from inside the shop’s lot.");
 	
-	output("\n\n<i>“Whew, that was loaded a little heavy!”</i> Tanis laughs, clapping yon on the shoulder, almost hard enough to stagger you. <i>“Good shot, though. Now, the trick is to stun your target, then use the opportunity to hit it as many times as possible while it’s staggered - or to get the hell away, if you’re in a bad spot. Opening with a concussion shot can save your life if you’re ambushed while wounded or exhausted. So, let’s see you do some quick follow-up shots.”</i>");
+	output("\n\n<i>“Whew, that was loaded a little heavy!”</i> Tanis laughs, clapping you on the shoulder, almost hard enough to stagger you. <i>“Good shot, though. Now, the trick is to stun your target, then use the opportunity to hit it as many times as possible while it’s staggered - or to get the hell away, if you’re in a bad spot. Opening with a concussion shot can save your life if you’re ambushed while wounded or exhausted. So, let’s see you do some quick follow-up shots.”</i>");
 	
 	output("\n\nYou give Tanis a nod, and let fly with a concussive arrow, blasting one of the few remaining targets left standing. The moment the arrow detonates, you draw one of your mundane arrows, nock, and let fly as close to the first point of impact as you can. In what feels like the span of a heartbeat, you hammer three more arrows where the first hand landed.");
 	

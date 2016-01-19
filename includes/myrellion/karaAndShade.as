@@ -1394,6 +1394,7 @@ public function kuitanDoc():void
 public function talkAboutShadesShip():void
 {
 	clearOutput();
+	showShade();
 	output("<i>“That’s a killer ship you’ve got, you know.”</i>");
 	output("\n\nShe smirks. <i>“In more ways than one, kid. But yeah, she’s a beaut. Nova designed her to be a rich playboy’s pleasure yacht, with enough kick to keep the little snots from getting kidnapped by the first pirate to stroll by. She’s not as fast as I’d like even after I stripped out half the crew space for engine mods, but good weapons and good shields make up for it, and I don’t plan on getting into too many ship chases anyway. I don’t have any delusions about being some kinda ace pilot.”</i>");
 	output("\n\n<i>“MS-XIs are kind of expensive, too,”</i> you add.");

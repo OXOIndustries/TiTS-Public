@@ -110,8 +110,39 @@ public function configureMails():void
 	SpamEmailKeys.push("fuckinggooslootsII");
 	
 	MailManager.addMailEntry("kirofucknet", "<i>This message is headed by a big holo-image of Kiro with her massive equine dong shoved to the hilt up some girl’s backside, stretching her sphincter like a rubber band. Kiro’s holding the camera and giving you a big, goofy grin and a thumb’s-up.</i>\n\nKiro Tamahime wants you to join the GalLink group “GalLink Fuckmeet.”\n\nGalLink Fuckmeet: Bone random citizens of the galaxy with no hassle, no commitment, just fun!\n\n<i>Suggested Members: Kiro Tamahime, Saendra en Illya, BigBooty Flahne, Sera Succubus, GirlBoy Alex</i>", "Kiro Tamahime has invited you to the group “GalLink Fuckmeet”", "Kiro Tamahime", "GotHorsecock@GalLink.org", quickPCTo, quickPCToAddress);
+	SpamEmailKeys.push("kirofucknet");
 	
 	MailManager.addMailEntry("saendrathanks", "You’re a lifesaver, captain. Just got patched up by the docs back on Tavros. Said I wouldn’t have lasted much longer, even if I didn’t get killed in the fight. Blood loss. Speaking of loss, old lefty was mangled pretty bad by that shotgun blast. Had to lose it. Good news is I’ve got myself some new chrome to replace it. Could have been a lot worse. I lived through it thanks to you. You’re my new hero, cap.\n\nI’m going to be grounded at Tavros for a bit. If you get the chance, look me up. I owe you a drink (and maybe a little more~).\n\nYour new friend,\nSaendra <3", "Thanks again, hero!", "Saendra en Illya", "FlyGirl@PhoenixCargo.net", quickPCTo, quickPCToAddress);
+	
+	MailManager.addMailEntry("danemyrellioncoords", 
+	function():String {
+		var msg:String = "";
+		
+		//{if fucked on Mhen'ga:
+		if (flags["FOUGHT_DANE_ON_MHENGA"] == 1 && flags["WHUPPED_DANES_ASS_ON_MHENGA"] == undefined) msg += "How’s my favorite cocksleeve doing?";
+		else msg += "Sure hope this is actually your email address...";
+		msg += "\n\nSo I don’t know if you’re actually the one that blew Myrellion up or not. Don’t really care either. Your dickweed cousin fired me right after.";
+		if (rival.mf("m", "f") == "f") msg += " What a bitch. Shoulda fucked her when I had the chance.";
+		else msg += " What an asshole. Glad I’m not working for him anymore.";
+		msg += " Didn’t even get my last paycheck. So I wrote down those dumb coordinates [rival.heShe] was yammering on about on my way out.";
+		msg += "\n\nOops, I must have accidentally attached them to this message. Ha, silly me. Be a shame if somebody put a boot up [rival.name]’s ass on the next planet when [rival.heShe]’s not expecting it.";
+		msg += "\n\nJust sayin’.";
+		//{if fucked:
+		if (flags["FOUGHT_DANE_ON_MHENGA"] == 1 && flags["WHUPPED_DANES_ASS_ON_MHENGA"] == undefined)
+		{
+			msg += "\n\nSoooo if you want a repeat of Mhen’ga, maybe we can hook up sometime? C’mon, I know you liked it ;)"; 
+			if (silly) msg += "\nWoulda save-scummed out of it otherwise!";
+			msg += "\n\n<i>Below the message is attached a picture of Dane’s rock-hard tentacle wang, multiple knots fully engorged between his snowy fingers. Looks like somebody’s been thinking of you...</i>";
+		}
+		msg += "\n\n<i>At the bottom of the message, you see several stellar coordinates: the next probe’s location! Well, looks like Benedict Ausar just saved your inheritance!</i>";
+		
+		return msg;
+	},
+	"Your cousin’s a cocksucker.",
+	"Dane",
+	"doubledog27@ausal.ril",
+	quickPCTo,
+	quickPCToAddress);
 	
 	MailManager.addMailEntry("cuzfuckball", cuzFuckball, "Jealous?", cuzName, cuzMail, quickPCTo, quickPCToAddress);
 	

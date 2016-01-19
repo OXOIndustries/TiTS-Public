@@ -47,6 +47,39 @@ package classes.GameData
 			return atks;
 		}
 		
+		// For a given list of creatures, find the "best fit" for an automatically selected target for an attack that otherwise
+		// doesn't require a target to be selected.
+		// Basically, this is for AoE attacks that don't require an explicit target, but still make reference to an action taking place
+		// against one specific enemy to start the chain of events.
+		private static function GetBestPotentialTarget(hGroup:Array):Creature
+		{
+			if (hGroup.length == 1) return hGroup[0];
+			
+			var possibleCreature:Creature = null;
+			
+			for (var i:int = 0; i < hGroup.length; i++)
+			{
+				var currentCreature:Creature = hGroup[i] as Creature;
+				
+				if (currentCreature.isDefeated()) continue;
+				
+				if (currentCreature is PlayerCharacter && !(possibleCreature is PlayerCharacter))
+				{
+					possibleCreature = currentCreature;
+				}
+				else if (currentCreature.isUniqueInFight && !possibleCreature.isUniqueInFight)
+				{
+					possibleCreature = currentCreature;
+				}
+				else if (possibleCreature == null)
+				{
+					possibleCreature = currentCreature;
+				}
+			}
+			
+			return possibleCreature;
+		}
+		
 		private static var o:CombatAttacks;
 		private static var a:Array;
 		
@@ -242,6 +275,7 @@ package classes.GameData
 			PocketSand.ButtonName = "P. Sand";
 			PocketSand.EnergyCost = 10;
 			PocketSand.RequiresClass = GLOBAL.CLASS_SMUGGLER;
+			PocketSand.RequiresTarget = false;
 			PocketSand.TooltipTitle = "Pocket Sand";
 			PocketSand.TooltipBody = "Produce some sand from your level and use it to blind your enemies! Better aim will help you land the attack.";
 			PocketSand.Implementor = PocketSandImp;
@@ -254,6 +288,7 @@ package classes.GameData
 			FlashGrenade.ButtonName = "F. Grenade";
 			FlashGrenade.EnergyCost = 10;
 			FlashGrenade.RequiresClass = GLOBAL.CLASS_SMUGGLER;
+			FlashGrenade.RequiresTarget = false;
 			FlashGrenade.TooltipTitle = "Flash Grenade";
 			FlashGrenade.TooltipBody = "Produce a rechargable flash grenade and use it to blind your enemy. Better aim will increase the chance of success.";
 			FlashGrenade.Implementor = FlashGrenadeImpl;
@@ -303,7 +338,8 @@ package classes.GameData
 			Grenade.DisabledIfEffectedBy = ["Disarmed"];
 			Grenade.Implementor = GrenadeImpl;
 			Grenade.TooltipTitle = "Grenade";
-			Grenade.TooltipBody = "Does a moderate amount of intelligence-based thermal and kinetic damage to a single opponent.";
+			Grenade.RequiresTarget = false;
+			Grenade.TooltipBody = "Does a moderate amount of intelligence-based thermal and kinetic damage to your enemies.";
 			a.push(Grenade);
 			
 			// GasGren
@@ -314,7 +350,8 @@ package classes.GameData
 			GasGrenade.DisabledIfEffectedBy = ["Disarmed"];
 			GasGrenade.Implementor = GasGrenadeImpl;
 			GasGrenade.TooltipTitle = "Gas Grenade";
-			GasGrenade.TooltipBody = "An unavoidable attack that deals a fair amount of lust damage. Increases slightly with level.";
+			GasGrenade.RequiresTarget = false;
+			GasGrenade.TooltipBody = "An unavoidable attack that deals a fair amount of lust damage to your enemies. Increases slightly with level.";
 			a.push(GasGrenade);
 			
 			// Smuggled Stim
@@ -699,6 +736,36 @@ package classes.GameData
 			}
 		}
 		
+		public static function TamwolfIIAttack(attacker:Creature, target:Creature):void
+		{
+			output("<i>“Enemy detected, " + attacker.mf("master", "mistress") + " " + attacker.uniqueName + "! I will defend you!”</i> Tam-wolf announces, leaping into the fray. He hits, biting ");
+			if (target is PlayerCharacter) output(" you!");
+			else output(target.a + target.uniqueName + ".");
+			
+			var d:Number = attacker.untypedDroneDamage();
+			var dmg:TypeCollection = new TypeCollection( { kinetic: d, electric: d * 0.25 }, DamageFlag.PENETRATING);
+			
+			applyDamage(dmg, attacker, target, "minimal");
+			if (attacker is PlayerCharacter) output(" Good boy!");
+		}
+		
+		public static function ACECannonAttack(attacker:Creature, target:Creature):void
+		{
+			output("The gun on " + (attacker is PlayerCharacter ? "your" : possessive(attacker.uniqueName)) +" shoulder tracks towards " + (target is PlayerCharacter ? "you" : target.uniqueName) +", charging up with power. As " + (attacker is PlayerCharacter ? target.uniqueName : attacker.uniqueName) +" moves, it works on its own, targeting and firing at " + (target is PlayerCharacter ? "you" : target.mfn("him", "her", "it")) +".");
+			
+			if (target.reflexes() / 2 + rand(20) + 1 >= 35)
+			{
+				output(" The shot goes wide!");
+			}
+			else
+			{
+				output(" The shit hits!");
+				
+				var dmg:TypeCollection = new TypeCollection( { burning: attacker.untypedDroneDamage() * 1.33 }, DamageFlag.LASER);
+				applyDamage(dmg, attacker, target, "minimal");
+			}
+		}
+		
 		public static function TamedVarmintAttack(attacker:Creature, target:Creature):void
 		{
 		
@@ -962,7 +1029,11 @@ package classes.GameData
 			
 			var d:TypeCollection = attacker.rangedDamage();
 			
-			if (attacker is PlayerCharacter) d.multiply(1.5);
+			if (attacker is PlayerCharacter)
+			{
+				if (attacker.hasPerk("Heroic Reserves")) d.multiply(2);
+				else d.multiply(1.5);
+			}
 			else d.multiply(1.75);
 			
 			damageRand(d, 15);
@@ -1002,12 +1073,34 @@ package classes.GameData
 		public static var ThermalDisruptor:SingleCombatAttack;
 		private static function ThermalDisruptorImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
-			if (attacker is PlayerCharacter) output("Raising the disruptor, you unleash a wave of burning fire on " + target.a + target.uniqueName);
+			if (attacker is PlayerCharacter) output("Raising the disruptor, you unleash a wave of burning fire on " + target.a + target.uniqueName + ".");
 			else if (target is PlayerCharacter) output(attacker.capitalA + attacker.uniqueName + " spins a long device around from their back, levelling it squarely in your direction. In the blink of an eye it unleashes a wave of burning fire directly at you!");
 			else output(attacker.capitalA + attacker.uniqueName + " spins a long device around from their back, levelling it at " + target.a + target.uniqueName + ", unleashing a wave of burning fire!");
 			
-			var d:int = Math.round(20 + attacker.level * 4 + attacker.intelligence());
-			applyDamage(new TypeCollection( { burning: d } ), attacker, target, "minimal");
+			if (CombatManager.multipleEnemies())
+			{
+				output(" The flames surge, licking at your targets compatriots!");
+			}
+			
+			var targetDamage:int = Math.round(20 + attacker.level * 4 + attacker.intelligence());
+			var baseDamage:TypeCollection = new TypeCollection( { burning: targetDamage } );
+			var pluralDamage:TypeCollection = new TypeCollection( { burning: targetDamage * 2 } );
+			var totalDamage:DamageResult;
+			
+			totalDamage = applyDamage(damageRand((target.isPlural == true ? pluralDamage : baseDamage), 15), attacker, target, "suppress");
+			
+			baseDamage.multiply(0.5);
+			pluralDamage.multiply(0.5);
+			
+			for (var i:int = 0; i < hGroup.length; i++)
+			{
+				if (hGroup[i] != target && !hGroup[i].isDefeated())
+				{
+					totalDamage.addResult(applyDamage(damageRand((target.isPlural == true ? pluralDamage : baseDamage), 15), attacker, hGroup[i], "suppress"));
+				}
+			}
+			
+			outputDamage(totalDamage);
 		}
 		
 		public static var GravidicDisruptor:SingleCombatAttack;
@@ -1017,8 +1110,31 @@ package classes.GameData
 			else if (target is PlayerCharacter) output(attacker.capitalA + attacker.uniqueName + " spins a long device around from their back, levelling it squarely in your direction. Your limbs suddenly feel heavy, a crushing weight bearing down on you from all sides!");
 			else output(attacker.capitalA + attacker.uniqueName + " spins a long device around from their back, levelling it at " + target.a + target.uniqueName + ", unleashing a targeted gravitic disruption in " + target.mfn("his", "her", "its") + " direction!");
 			
-			var d:int = Math.round(15 + attacker.level * 2.5 + attacker.intelligence() / 1.5);
-			applyDamage(new TypeCollection( { unresistablehp: d } ), attacker, target, "minimal");
+			if (CombatManager.multipleEnemies())
+			{
+				output(" The disruption spreads to encompass a small, localized area neatly surrounding your enemies!");
+			}
+			
+			var targetDamage:int = Math.round(15 + attacker.level * 2.5 + attacker.intelligence() / 1.5);
+			var baseDamage:TypeCollection = new TypeCollection( { unresistablehp: targetDamage } );
+			var pluralDamage:TypeCollection = new TypeCollection( { unresistablehp: targetDamage * 2 } );
+			
+			var totalDamage:DamageResult;
+			
+			totalDamage = applyDamage(damageRand((target.isPlural == true ? pluralDamage : baseDamage), 15), attacker, target, "suppress");
+			
+			baseDamage.multiply(0.5);
+			pluralDamage.multiply(0.5);
+			
+			for (var i:int = 0; i < hGroup.length; i++)
+			{
+				if (hGroup[i] != target)
+				{
+					totalDamage.addResult(applyDamage(damageRand((target.isPlural == true ? pluralDamage : baseDamage), 15), attacker, hGroup[i], "suppress"));
+				}
+			}
+			
+			outputDamage(totalDamage);
 		}
 		
 		public static var ShieldHack:SingleCombatAttack;
@@ -1113,38 +1229,56 @@ package classes.GameData
 		public static var PocketSand:SingleCombatAttack;
 		private static function PocketSandImp(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
-			output("With a cry of <i>“Pocket sand!”</i> you produce a handful of sand and throw it at " + target.a + target.uniqueName + ".");
+			var aTarget:Creature = GetBestPotentialTarget(hGroup);
 			
-			if (attacker.aim() / 2 + rand(20) + 6 >= target.reflexes() / 2 + 10 && !target.hasStatusEffect("Blinded"))
+			output("With a cry of <i>“Pocket sand!”</i> you produce a handful of sand and throw it at " + aTarget.a + aTarget.uniqueName + ".");
+			
+			for (var i:int = 0; i < hGroup.length; i++)
 			{
-				target.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0);
+				if (hGroup[i].isDefeated()) continue;
 				
-				output("\n<b>" + target.capitalA + target.uniqueName + " is blinded by the coarse granules.</b>");
-			}
-			else
-			{
-				output("\n" + target.capitalA + target.uniqueName + " manages to keep away from the blinding particles.");
+				var cTarget:Creature = hGroup[i] as Creature;
+				
+				if (attacker.aim() / 2 + rand(20) + 6 >= cTarget.reflexes() / 2 + 10 && !cTarget.hasStatusEffect("Blinded"))
+				{
+					cTarget.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0);
+					
+					output("\n<b>" + cTarget.capitalA + cTarget.uniqueName + " is blinded by the coarse granules.</b>");
+				}
+				else
+				{
+					output("\n" + cTarget.capitalA + cTarget.uniqueName + " manages to keep away from the blinding particles.");
+				}
 			}
 		}
 		
 		public static var FlashGrenade:SingleCombatAttack;
 		private static function FlashGrenadeImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
-			if (attacker is PlayerCharacter) output("You produce one of your rechargeable flash grenades and huck it in the direction of " + target.a + target.uniqueName + ".");
-			else if (target is PlayerCharacter) output(attacker.capitalA + attacker.uniqueName + " produces a flash grenade and hucks it in your direction!");
-			else output(attacker.capitalA + attacker.uniqueName + " produces a flash grenade and hucks it in the direction of " + target.a + target.uniqueName + "!");
+			var aTarget:Creature = GetBestPotentialTarget(hGroup);
 			
-			if (attacker.aim() / 2 + rand(20) + 6 >= target.reflexes() / 2 + 10 && !target.hasStatusEffect("Blinded"))
-			{
-				target.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0);
+			if (attacker is PlayerCharacter) output("You produce one of your rechargeable flash grenades and huck it in the direction of " + aTarget.a + aTarget.uniqueName + ".");
+			else if (aTarget is PlayerCharacter) output(attacker.capitalA + attacker.uniqueName + " produces a flash grenade and hucks it in your direction!");
+			else output(attacker.capitalA + attacker.uniqueName + " produces a flash grenade and hucks it in the direction of " + aTarget.a + aTarget.uniqueName + "!");
+			
+			for (var i:int = 0; i < hGroup.length; i++)
+			{	
+				if (hGroup[i].isDefeated()) continue;
 				
-				if (target is PlayerCharacter) output("\n<b>You're blinded by the luminous flashes.</b>");
-				else output("\n<b>" + target.capitalA + target.uniqueName + " is blinded by the luminous flashes.</b>");
-			}
-			else
-			{
-				if (target is PlayerCharacter) output("\nYou manage to avoid the blinding projectile.");
-				else output("\n" + target.capitalA + target.uniqueName + " manages to avoid the blinding projectile.");
+				var cTarget:Creature = hGroup[i];
+				
+				if (attacker.aim() / 2 + rand(20) + 6 >= cTarget.reflexes() / 2 + 10 && !cTarget.hasStatusEffect("Blinded"))
+				{
+					cTarget.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0);
+					
+					if (cTarget is PlayerCharacter) output("\n<b>You're blinded by the luminous flashes.</b>");
+					else output("\n<b>" + cTarget.capitalA + cTarget.uniqueName + " is blinded by the luminous flashes.</b>");
+				}
+				else
+				{
+					if (cTarget is PlayerCharacter) output("\nYou manage to avoid the blinding projectile.");
+					else output("\n" + cTarget.capitalA + cTarget.uniqueName + " manages to avoid the blinding projectile.");
+				}
 			}
 		}
 		
@@ -1271,40 +1405,59 @@ package classes.GameData
 		public static var Grenade:SingleCombatAttack;
 		private static function GrenadeImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
-			if (attacker is PlayerCharacter) output("Tossing an explosive in the general direction of your target, you unleash an explosive blast of heat on " + target.a + target.uniqueName + "!");
+			var aTarget:Creature = GetBestPotentialTarget(hGroup);
+			
+			if (attacker is PlayerCharacter) output("Tossing an explosive in the general direction of your target, you unleash an explosive blast of heat on " + aTarget.a + aTarget.uniqueName + "!");
 			else if (target is PlayerCharacter) output(attacker.capitalA + attacker.uniqueName + " hucks a small device in your direction, unleashing an explosive blast scant inches from your body!");
-			else output(attacker.capitalA + attacker.uniqueName + " hucks a small device in " + target.a + possessive(target.uniqueName) + " direction, unleashing an explosive blast scant inches from " + target.mfn("his", "her", "its") + " form!");
-			
-			
+			else output(attacker.capitalA + attacker.uniqueName + " hucks a small device in " + aTarget.a + possessive(aTarget.uniqueName) + " direction, unleashing an explosive blast scant inches from " + aTarget.mfn("his", "her", "its") + " form!");
+				
 			var d:int = Math.round(7.5 + attacker.level * 2 + attacker.intelligence() / 2);
-			var damage:TypeCollection = damageRand(new TypeCollection( { kinetic: d, burning: d } ), 15);
+			var totalDamage:DamageResult = new DamageResult();
 			
-			if (target is Cockvine)
+			for (var i:int = 0; i < hGroup[i].length; i++)
 			{
-				kGAMECLASS.adultCockvineGrenadesInEnclosedSpaces(damage, false, false, false);
-				//(damageValue:TypeCollection, pluralNades:Boolean = false, usedLauncher:Boolean = false, isLustGas:Boolean = false):void
+				var damage:TypeCollection = damageRand(new TypeCollection( { kinetic: d, burning: d } ), 15);
+				
+				if (target is Cockvine)
+				{
+					kGAMECLASS.adultCockvineGrenadesInEnclosedSpaces(damage, false, false, false);
+				}
+				
+				totalDamage.addResult(applyDamage(damage, attacker, target, "suppress"));
 			}
 			
-			applyDamage(damage, attacker, target);
+			outputDamage(totalDamage);
 		}
 		
 		public static var GasGrenade:SingleCombatAttack;
 		private static function GasGrenadeImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
+			var aTarget:Creature = GetBestPotentialTarget(hGroup);
+			
 			if (attacker is PlayerCharacter) output("Tossing a hissing grenade in the general direction of your target, you watch the gaseous stuff do its trick.");
-			else if (target is PlayerCharacter) output(attacker.capitalA + attacker.uniqueName + " tosses a small device in your direction, great clouds of thick, gaseous vapour pouring from within its body.");
-			else output(attacker.capitalA + attacker.uniqueName + " tosses a small device in " + target.a + possessive(target.uniqueName) + " direction, a thick trail of gasous vapour hanging heavily in the air to demark the arcing path taken.");
+			else if (aTarget is PlayerCharacter) output(attacker.capitalA + attacker.uniqueName + " tosses a small device in your direction, great clouds of thick, gaseous vapour pouring from within its body.");
+			else output(attacker.capitalA + attacker.uniqueName + " tosses a small device in " + aTarget.a + possessive(aTarget.uniqueName) + " direction, a thick trail of gasous vapour hanging heavily in the air to demark the arcing path taken.");
 			
 			var d:int = 14 + attacker.level * 2;
-			var damage:TypeCollection = damageRand(new TypeCollection( { drug: d } ), 15);
+			var totalDamage:DamageResult = new DamageResult();
 			
-			if (target is Cockvine)
+			for (var i:int = 0; i < hGroup.length; i++)
 			{
-				kGAMECLASS.adultCockvineGrenadesInEnclosedSpaces(damage, false, false, true);
-				//(damageValue:TypeCollection, pluralNades:Boolean = false, usedLauncher:Boolean = false, isLustGas:Boolean = false):void
+				var cTarget:Creature = hGroup[i] as Creature;
+				
+				if (cTarget.isDefeated()) continue;
+				
+				var damage:TypeCollection = damageRand(new TypeCollection( { drug: d } ), 15);
+				
+				if (target is Cockvine)
+				{
+					kGAMECLASS.adultCockvineGrenadesInEnclosedSpaces(damage, false, false, true);
+				}
+				
+				totalDamage.addResult(applyDamage(damage, attacker, target, "suppress"));
 			}
 			
-			applyDamage(damage, attacker, target, "minimal");
+			outputDamage(totalDamage);
 		}
 		
 		public static var SmuggledStimulant:SingleCombatAttack;

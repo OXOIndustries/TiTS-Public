@@ -214,8 +214,16 @@ public function configureRedDeserterFight(tEnemy:Creature):void
 public function approachMyrDesertersNonCombatShit(gold:Boolean = false):void
 {
 	//Load the ants in in case we need 'em
-	if (gold) setEnemy(new MyrGoldFemaleDeserter());
-	else setEnemy(new MyrRedFemaleDeserter());
+	if (gold)
+	{
+		setEnemy(new MyrGoldFemaleDeserter());
+		IncrementFlag("MET_GOLD_DESERTER");
+	}
+	else
+	{
+		setEnemy(new MyrRedFemaleDeserter());
+		IncrementFlag("MET_RED_DESERTER");
+	}
 	showDeserter(gold);
 	author("Jim Thermic");
 	//Encounter is pregnant red myr deserter:

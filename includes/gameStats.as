@@ -1055,7 +1055,7 @@ public function displayQuestLog(showID:String = "All"):void
 				output2("\n<b>* Probe Location:</b> <i>It seems the probe fell deep into the jungles.</i>");
 			}
 			// Scout
-			if(flags["MET_FLAHNE"] == undefined)
+			if(flags["MET_FLAHNE"] != undefined)
 			{
 				output2("\n<b>* Scout Transport:</b> Esbeth");
 				if(flags["SALVAGED VANAE CAMP"] >= 2) output2(", Xenogen Camp");
@@ -1140,7 +1140,7 @@ public function displayQuestLog(showID:String = "All"):void
 		{
 			output2("\n<b><u>Myrellion</u></b>");
 			output2("\n<b>* Status:</b>");
-			if(reclaimedProbeMyrellion()) output2(" Coordinates received");
+			if(reclaimedProbeMyrellion() || (flags["KQ2_MYRELLION_STATE"] == 1 && MailManager.isEntryUnlocked("danemyrellioncoords"))) output2(" Coordinates received");
 			else
 			{
 				output2(" <i>In progress...</i>");
@@ -1149,7 +1149,7 @@ public function displayQuestLog(showID:String = "All"):void
 				else output2(" <i>Probe appears to be in some kind of royal throne room.</i>");
 			}
 			// Scout
-			if(flags["MYRELLION_EMBASSY_VISITED"] != undefined)
+			if(flags["MYRELLION_EMBASSY_VISITED"] != undefined && flags["KQ2_MYRELLION_STATE"] == undefined)
 			{
 				output2("\n<b>* Scout Transport:</b> D.M.Z.");
 				if(flags["NO_ANTS_LAND_TAXI_UNLOCKED"] != undefined) output2(", No Myr’s Land");
@@ -1554,18 +1554,19 @@ public function displayQuestLog(showID:String = "All"):void
 					if(flags["KQ2_CREDS_FIRST"] != undefined) output2(", Kara paid you");
 					if(flags["KQ2_KHANS_FILES"] != undefined) output2(", Took Khan’s files");
 					if(flags["KQ2_LOST_TO_AMARA"] != undefined) output2(", Lost to Amara");
-					if(flags["KQ2_KARA_SACRIFICE"] != undefined) output2(", Kara sacrificed herself");
+					if(flags["KQ2_QUEST_FINISHED"] != undefined) output2(", Completed");
 					// Pirate Base
-					if(9999 == 0)
+					if(flags["KQ2_KARA_WITH_PC"] != undefined || flags["KQ2_BETRAYED_KARA"] != undefined || flags["KQ2_KARA_SACRIFICE"] != undefined)
 					{
 						output2("\n<b>* Kara, Status:</b>");
-						if(flags["KQ2_BETRAYED_KARA"] != undefined) output2(" Betrayed her");
+						if(flags["KQ2_KARA_SACRIFICE"] != undefined) output2(" Sacrificed herself");
+						else if(flags["KQ2_BETRAYED_KARA"] != undefined) output2(" You betrayed her");
 						else if(flags["KQ2_KARA_WITH_PC"] == 1) output2(" At your side");
 						else if(flags["KQ2_KARA_WITH_PC"] == 2) output2(" At the radio tower");
 						else output2(" <i>Unknown</i>");
 						if(flags["KQ2_SHADE_DEAD"] != undefined) output2(", Killed Shade");
 					}
-					if(9999 == 0)
+					if(flags["KQ2_FIGHT_STEPS"] != undefined)
 					{
 						output2("\n<b>* Pirate Base, Entrance:</b>");
 						if(flags["KQ2_RND_ENTRANCE_OPEN"] == 1) output2(" Blown open with tank");
@@ -1581,13 +1582,18 @@ public function displayQuestLog(showID:String = "All"):void
 						else if(flags["KQ2_RF_KENNEL_USED"] == 2) output2(" Used to upgrade Tam-wolf");
 						else output2(" Unused");
 					}
+					if(flags["KQ2_BARRACKS_INTERIOR_ENTERED"] != undefined)
+					{
+						output2("\n<b>* Pirate Base, Barracks:</b> Entered");
+						if(flags["KQ2_TAKEN_ARMOR"] != undefined) output2(", Looted");
+					}
 					if(flags["KQ2_WATSON_MET"] != undefined) output2("\n<b>* Pirate Base, Watson:</b> Met it");
 					if(flags["KQ2_DEFEATED_ENGINEER"] != undefined) output2("\n<b>* Pirate Base, Engineer:</b> Defeated her");
 					if(flags["KQ2_DEFEATED_JUGGERNAUT"] != undefined) output2("\n<b>* Pirate Base, Juggernaut:</b> Defeated him");
 					if(flags["KQ2_DEFEATED_KHAN"] != undefined)
 					{
 						output2("\n<b>* Pirate Base, Dr.Khan:</b> Met him, Defeated him");
-						if(9999 == 0) output2(", Sexed him with Kara");
+						if(flags["KQ2_FUCKED_KHAN"] != undefined) output2(", Sexed him with Kara");
 						if(flags["KQ2_KHAN_LOOTED"] != undefined)
 						{
 							output2(", Looted his room");
@@ -1604,7 +1610,7 @@ public function displayQuestLog(showID:String = "All"):void
 					if(flags["KQ2_NUKE_STARTED"] != undefined)
 					{
 						output2("\n<b>* Pirate Base, Nuke:</b>");
-						if(9999 == 0) output2(" Activated, Detonated, Destroyed Myrellion");
+						if(flags["KQ2_NUKE_EXPLODED"] != undefined) output2(" Activated, Detonated, Destroyed Myrellion");
 						else output2(" Activated " + prettifyMinutes(GetGameTimestamp() - flags["KQ2_NUKE_STARTED"]) + " ago");
 					}
 				}
@@ -2115,17 +2121,25 @@ public function displayEncounterLog(showID:String = "All"):void
 			if(flags["MET_SERA"] != undefined)
 			{
 				output2("\n<b><u>The Dark Chrysalis</u></b>");
-				output2("\n<b>* Sera:</b> Met her");
-				if(flags["SERA_TALKED_ABOUT_BEING_PISSED_OFF"] == undefined) output2(", Pissed off");
+				output2("\n<b>*");
+				if(flags["SERA_TRIPLE_X_RATED"] >= 4) output2(" Mistress");
+				output2(" Sera:</b> Met her");
+				if(flags["SERA_NO_SEX"] == 1) output2(", Pissed off at you indefinitely");
+				else if(flags["SERA_TALKED_ABOUT_BEING_PISSED_OFF"] == undefined) output2(", Pissed off");
 				else output2(", Vented her frustrations");
-				if(flags["FUCKED SERA"] != undefined && flags["FUCKED SERA"] > 0)
+				if(flags["SERA_INCH_STEAL"] != undefined) output2("\n<b>* Sera, Tail Length: </b>" + prettifyLength(36 + seraInchGain()));
+				if(fuckedSeraBefore())
 				{
-					initSeraFuckFlags();
 					output2("\n<b>* Sera, Times Sexed: </b>" + timesFuckedSera());
 					if(flags["TIMES_RODE_BY_SERA"] > 0) output2("\n<b>* Sera, Times She Rode You: </b>" + flags["TIMES_RODE_BY_SERA"]);
 					if(flags["SERA_STUCK_IT_ALL_IN_BUTT"] > 0) output2("\n<b>* Sera, Times She Stuffed Your Ass with Dicks: </b>" + flags["SERA_STUCK_IT_ALL_IN_BUTT"]);
 					if(flags["SERA FUCKED PCS TAILCUNT"] > 0) output2("\n<b>* Sera, Times She Fucked Your Tail Cunt: </b>" + flags["SERA FUCKED PCS TAILCUNT"]);
 					if(flags["SERA_URETHRA_TAILFUCKS"] > 0) output2("\n<b>* Sera, Times She Tail-Fucked Your Urethra: </b>" + flags["SERA_URETHRA_TAILFUCKS"]);
+					if(flags["SERA_EXHIBITION_BLOWJOB"] != undefined) output2("\n<b>* Sera, Times She Gave You a Public Blowjob: </b>" + flags["SERA_EXHIBITION_BLOWJOB"]);
+					if(flags["SERA_IN_JARDI_THREESOME"] != undefined) output2("\n<b>* Sera, Times Sexed in Threesome with Jardi: </b>" + flags["SERA_IN_JARDI_THREESOME"]);
+					if(flags["SERA_FACE_RIDE_TRAINING"] != undefined) output2("\n<b>* Sera, Times She Rode Your Face: </b>" + flags["SERA_FACE_RIDE_TRAINING"]);
+					if(flags["SERA_INCH_STEALING_SEX"] > 0) output2("\n<b>* Sera, Times She Absorbed Your Length: </b>" + flags["SERA_INCH_STEALING_SEX"]);
+					if(flags["SERA_INCH_STEALING_HELP"] > 0) output2("\n<b>* Sera, Times You Untangled Her Tail Cock: </b>" + flags["SERA_INCH_STEALING_HELP"]);
 				}
 				if(flags["PURCHASED_SERAS_GALO"] != undefined || flags["SAENDRA GONNA GO GET A COCK"] >= 2)
 				{
@@ -2135,7 +2149,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					{
 						if(flags["PURCHASED_SERAS_GALO"] != undefined) output2(",");
 						output2(" Saendra’s penis growth drug");
-						if(flags["SAEN_X_SERA_THREESOME"] != undefined) output2(" (with threesome discount)");
+						if(flags["SAEN_X_SERA_THREESOME"] > 0) output2(" (with threesome discount)");
 					}
 				}
 				variousCount++;
@@ -3369,6 +3383,18 @@ public function displayEncounterLog(showID:String = "All"):void
 				{
 					output2("\n<b>* Gene, Unique Sale:</b> GaloMax");
 				}
+				variousCount++;
+			}
+			// Vi-Ko
+			if(flags["MET_VI"] != undefined)
+			{
+				output2("\n<b><u>Gildenmere Medical Hospital</u></b>");
+				output2("\n<b>* Vi:</b> Met her");
+				if(flags["HEALED_BY_VI"] != undefined) output2("\n<b>* Vi, Times Healed By:</b> " + flags["HEALED_BY_VI"]);
+				if(flags["TREATED_BY_VI"] != undefined) output2("\n<b>* Vi, Times Treated By:</b> " + flags["TREATED_BY_VI"]);
+				if(flags["VI_POTENCY_TEST"] != undefined) output2("\n<b>* Vi, Times Administered Potency Test:</b> " + flags["VI_POTENCY_TEST"]);
+				if(flags["VI_SEXED"] != undefined) output2("\n<b>* Vi, Times Sexed:</b> " + flags["VI_SEXED"]);
+				if(flags["VI_TITFUCKED"] != undefined) output2("\n<b>* Vi, Times Titfucked:</b> " + flags["VI_TITFUCKED"]);
 				variousCount++;
 			}
 			// The Honey Nozzle

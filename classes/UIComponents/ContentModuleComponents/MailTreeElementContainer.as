@@ -17,7 +17,7 @@ package classes.UIComponents.ContentModuleComponents
 		private var _content:MovieClip;
 		
 		private var _sortOn:String = "ViewedTimestamp";
-		private var _sortDir:uint = Array.DESCENDING;
+		private var _sortDir:uint = Array.NUMERIC | Array.DESCENDING;
 		
 		public function set sortOn(v:String):void { _sortOn = v; }
 		public function set sortDir(v:uint):void { _sortDir = v; }
@@ -42,9 +42,14 @@ package classes.UIComponents.ContentModuleComponents
 			mouseChildren = true;
 		}
 		
-		private function sortEntries(entries:Array):Array
+		private const SORT_SUBJECT:String = "SUBJECT";
+		private const SORT_SENDER:String = "SENDER";
+		private const SORT_DATE:String = "DATE";
+		private const SORT_UNREAD:String = "UNREAD";
+		
+		private function sortEntries(entries:Array, sortType:String):Array
 		{
-			switch (_sortOn)
+			switch (sortType)
 			{
 				case "SUBJECT":
 					entries.sortOn(["SubjectCache", "UnlockedTimestamp"], [Array.CASEINSENSITIVE, Array.NUMERIC | Array.DESCENDING]);
@@ -80,7 +85,7 @@ package classes.UIComponents.ContentModuleComponents
 					}
 					
 					un.sortOn("UnlockedTimestamp", Array.NUMERIC | Array.DESCENDING);
-					r.sortOn(["UnlockedTimestamp", "ViewedTimestamp"], [Array.NUMERIC | Array.DESCENDING, Array.NUMERIC | Array.DESCENDING]);
+					r.sortOn(["ViewedTimestamp", "UnlockedTimestamp"], [Array.NUMERIC | Array.DESCENDING, Array.NUMERIC | Array.DESCENDING]);
 					
 					entries = un.concat(r);
 					return entries;
@@ -96,7 +101,8 @@ package classes.UIComponents.ContentModuleComponents
 			// (as the entry data is stored in an Object, the order-of-access to create the array returned by getUnlockedEntries()
 			// is not consistent - we can't count on it to be the same, ao every update would change the order mails are displayed).
 			// In reality though, it's unlikely we'd ever have to deal with this JUST for unlocked/viewed datetimes so.
-			cEntries.sortOn(_sortOn, _sortDir);
+			//cEntries.sortOn(_sortOn, _sortDir);
+			cEntries = sortEntries(cEntries, SORT_UNREAD);
 			
 			for (var i:int = 0; i < cEntries.length; i++)
 			{

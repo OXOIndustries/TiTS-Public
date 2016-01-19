@@ -797,7 +797,7 @@ public function askXantheWhyFoxCancelledFirefly():void
 
 	output("\n\n\"<i>... Right now, the rulers of Gildenmere - some say Goddesses - are creaming themselves in panties literally woven from my body. Pretty neat, hmm?”</i>");
 
-	if(!pc.isBimbo()) output("\n\nThat’s another bold claim! Sure, there’s no price tags on anything, but everything you’ve asked about has been very affortable. Surely her clothes can’t be <i>that</i> exclusive.");
+	if(!pc.isBimbo()) output("\n\nThat’s another bold claim! Sure, there’s no price tags on anything, but everything you’ve asked about has been very affordable. Surely her clothes can’t be <i>that</i> exclusive.");
 	else output("\n\nThe thought of a bunch of myr queens creaming themselves in their panties gets you hot and bothered, and you let out a little moan. A second later, you realize something doesn’t add up. \"<i>.... But, like, your clothes don’t seem that expensive to me. I mean, I can afford them.”</i>");
 	output("\n\nWith a conspiratorial gleam in her electric blue colored eyes, Xanthe grins at you. <i>\"Oh, but my dear, they ARE expensive. I always give a special ninety per cent discount to the especially cute ones...”</i>");
 	output("\n\nShe’s definitely not joking. It seems you’ve been getting a hefty discount on everything in the store on account of how " + pc.mfn("handsome","beautiful","cute") + " she finds you. She must really find you attractive!");

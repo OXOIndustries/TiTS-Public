@@ -27,7 +27,7 @@ package classes.Items.Transformatives
 			stackSize = 10;
 			type = GLOBAL.DRUG;
 			
-			shortName = "Kero.Venom";
+			shortName = "Kero.Ven.";
 			longName = "vial of kerokoras venom";
 			
 			TooltipManager.addFullName(shortName, StringUtil.toTitleCase(longName));

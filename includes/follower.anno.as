@@ -551,8 +551,9 @@ public function annoFollowerBuyMenu():void
 
 	shopkeep = anno;
 	anno.keeperBuy = "<i>“Want something from my stock, boss?”</i> Anno asks, picking up a datapad and handing it over to you. <i>“Here’s what’s in inventory at the moment.";
-	if (flags["ANNO_MISSION_OFFER"] == 3) anno.keeperBuy += " Steele Tech’s still supplying us with top-tier equipment, and plenty of it.”</i>";
-	else anno.keeperBuy += "My contacts might be a </i>little<i> more seedy these days, but the equipment they’re hooking me up with isn’t too far behind Steele Tech’s gear.”</i>";
+	if (flags["ANNO_MISSION_OFFER"] == 3) anno.keeperBuy += " Steele Tech’s still supplying us with top-tier equipment, and plenty of it.";
+	else anno.keeperBuy += "My contacts might be a </i>little<i> more seedy these days, but the equipment they’re hooking me up with isn’t too far behind Steele Tech’s gear.";
+	anno.keeperBuy += "”</i>\n";
 	buyItem();
 }
 
@@ -620,6 +621,7 @@ public function annoFollowerSellMenu():void
 	anno.keeperSell = "<i>“Got something weighing you down, boss? I can";
 	if (flags["ANNO_MISSION_OFFER"] == 3) anno.keeperSell += " send just about anything back to Steele Tech for a good profit. Perks of being a field merchant!";
 	else anno.keeperSell += " fence just about anything through my friends. Just give me the word!";
+	anno.keeperSell += "”</i>\n";
 	sellItem();
 }
 

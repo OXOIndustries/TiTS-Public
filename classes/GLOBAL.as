@@ -67,7 +67,8 @@
 		public static const FLAG_CHITINOUS:int								= 34;
 		public static const FLAG_FEATHERED:int								= 35;
 		public static const FLAG_DOUBLE_HEADED:int							= 36;
-		public static const FLAG_GOOEY:int							= 37;
+		public static const FLAG_GOOEY:int									= 37;
+		public static const FLAG_SPIKED:int									= 38;
 		
 		public static const FLAG_NAMES:Array = [
 			"OFFSET -- INVALID",
@@ -108,6 +109,7 @@
 			"Feathered",
 			"Double Headed",
 			"Gooey",
+			"Spiked",
 		];
 		
 		public static const VALID_SKIN_FLAGS:Array = [
@@ -377,6 +379,7 @@
 			FLAG_CHITINOUS,
 			FLAG_FEATHERED,
 			FLAG_GOOEY,
+			FLAG_SPIKED,
 		];
 		
 		public static const VALID_LEG_TYPES:Array = [
@@ -573,7 +576,7 @@
 		
 		public static const NIPPLE_TYPE_NAMES:Array = [
 			"Normal",
-			"Fuckable",
+			"Cunt",
 			"Lipples",
 			"Dick",
 			"Flat",
@@ -619,6 +622,7 @@
 		public static const FLUID_TYPE_NYREA_CUM:int							= 17;
 		//Why special? Cause it matches yer goo color.
 		public static const FLUID_TYPE_SPECIAL_GOO:int							= 18;
+		public static const FLUID_TYPE_CHOCOLATE_CUM:int							= 19;
 		
 		public static const FLUID_TYPE_NAMES:Array = [
 			"Milk",
@@ -640,6 +644,7 @@
 			"Vanilla",
 			"Nyrea Cum",
 			"Goo",
+			"Chocolate Cum",
 		];
 		
 		public static const VALID_CUM_TYPES:Array = [
@@ -654,6 +659,7 @@
 			FLUID_TYPE_NYREA_CUM,
 			FLUID_TYPE_GABILANI_CUM,
 			FLUID_TYPE_SPECIAL_GOO,
+			FLUID_TYPE_CHOCOLATE_CUM,
 		];
 		
 		public static const VALID_GIRLCUM_TYPES:Array = [
@@ -872,9 +878,10 @@
 		public static const NOT_CONSUMED_BY_DEFAULT:int 				= 2;
 		public static const ITEM_FLAG_EFFECT_FLURRYBONUS:int			= 3; // Equipping the items removes the additional miss-chances from flurry attacks.
 		public static const ITEM_FLAG_AIRTIGHT:int 						= 4; // Used for space suits and the like.
-		public static const ITEM_FLAG_SWIMWEAR:int				= 5; // Used specifically for swimming attire.
-		public static const ITEM_FLAG_EXPOSE_FULL:int				= 6; // Used specifically for attire that exposes nipples/breasts and genitals/asshole to the elements.
-		public static const ITEM_FLAG_LUST_WEAPON:int				= 7; // Used specifically for lust-exclusive weapons (that don't do physical damage).
+		public static const ITEM_FLAG_SWIMWEAR:int						= 5; // Used specifically for swimming attire.
+		public static const ITEM_FLAG_EXPOSE_FULL:int					= 6; // Used specifically for attire that exposes nipples/breasts and genitals/asshole to the elements.
+		public static const ITEM_FLAG_LUST_WEAPON:int					= 7; // Used specifically for lust-exclusive weapons (that don't do physical damage).
+		public static const ITEM_FLAG_POWER_ARMOR:int					= 8; // An item designed to be used with power armor.
 		
 		public static const ITEM_FLAG_NAMES:Array = [
 			"Bow Weapon",
@@ -885,6 +892,7 @@
 			"Swimwear",
 			"Fully Exposed",
 			"Lust Weapon",
+			"Power Armor"
 		];
 		
 		/**

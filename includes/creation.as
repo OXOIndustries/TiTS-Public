@@ -1370,6 +1370,8 @@ public function defeatCelise():void
 	output("\n\nWhat do you do with Celise? Ignore her, or feed her and take her on your crew?");
 	
 	CombatManager.genericVictory();
+	userInterface.hideNPCStats();
+	userInterface.leftBarDefaults();
 	
 	clearMenu();
 	addButton(0,"Ignore Her",ignoreCelise);

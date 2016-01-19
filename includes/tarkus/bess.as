@@ -386,7 +386,7 @@ public function bessHeader():void
 	else
 	{
 		showName("\nBEN-14");
-		showBust("BEN")
+		showBust("BEN");
 	}
 	author("JimT");
 }
@@ -709,6 +709,8 @@ public function fuckinLeaveTheBessBot():void
 public function takeBessToZeShip():void
 {
 	currentLocation = "SHIP INTERIOR";
+	var map:* = mapper.generateMap(currentLocation);
+	userInterface.setMapData(map);
 	flags["BESS_IN_RUBBLE"] = 1; // shit flag name sue me
 	
 	clearOutput();
@@ -12954,7 +12956,12 @@ public function bessEventMap(bChance:Boolean = false):void
 	iChance = 2;
 	
 	output("\n<b><u>Main Events</u></b>");
-	if (flags["BESS_EVENT_0"] != undefined)
+	if (flags["BESS_EVENT_0"] == undefined)
+	{
+		output("\n<b>* Next Event:</b> <i>Pending</i>");
+		if (bChance) output(" at 1/" + iChance + " chance");
+	}
+	else
 	{
 		output("\n<b>* Event 0:</b> Completed");
 		if (bChance && flags["BESS_EVENT_1"] == undefined)

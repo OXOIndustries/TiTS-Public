@@ -11,6 +11,12 @@ public function myrellionHangarBonus():Boolean
 		sluttyMcSlutOral();
 		return true;
 	}
+	// KQ2 Entry Proc
+	if (tryProcKQuest2Entry())
+	{
+		return true;
+	}
+	
 	return false;
 }
 
@@ -313,6 +319,12 @@ public function searchBunkerRifleCheck():void
 
 public function myrellionUndergroundCrashSiteBonus():Boolean
 {
+	if (flags["KQ2_MYRELLION_STATE"] == 2)
+	{
+		output(" The beacon sits silent, an ominious red glow flashing across its top like a metronome.");
+		return false;
+	}
+	
 	if(flags["DEEP_CAVES_TAXI_UNLOCKED"] == undefined) 
 	{
 		output("\n\nStill, it seems functional enough. You could probably activate it, setting up a taxi pick-up point.");
@@ -641,6 +653,12 @@ public function fungus1Bonus():Boolean
 
 public function caveBottomEntranceBonus():Boolean
 {
+	if (flags["KQ2_MYRELLION_STATE"] == 2)
+	{
+		output(" There's a hastily painted radiation symbol to one side of the cave here; a universal warning to any who might venture through these parts that it'd probably be prudent <i>not</i> to ascend to the upper levels of the cave system.");
+		return false;
+	}
+	
 	addButton(5,"Ascend",ascendFromDeepCaves,undefined,"Ascend","Climb up and out of these caves to get closer to the surface... and civilization.");
 	return false;
 }
