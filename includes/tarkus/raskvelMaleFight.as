@@ -1560,6 +1560,9 @@ public function seduceTheRaskvelAttackYaNerd():void
 
 	output("\n\nYou stand back and watch with a pleased smile as the three raskvel descend into a howling red ball of flying fists, tails, feet and recriminations, mauling each other in an explosion of sexual aggression, purely to try and win a chance to make it with you. If you wanted to sneak away, this would be the time to do it. Or you could stay and see if you can have some further fun with whoever wins...");
 
+	userInterface.hideNPCStats();
+	userInterface.leftBarDefaults();
+	
 	processTime(3);
 	//[Sneak away] [Stay]
 	clearMenu();
