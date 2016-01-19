@@ -99,7 +99,7 @@ public function kquest2InitRooms():void
 	rooms["K2_YARDD1"].runOnEnter = null;
 	rooms["K2_YARDD1"].planet = planetName;
 	rooms["K2_YARDD1"].system = systemName;
-	rooms["K2_YARDD1"].northExit = "K2_YARDD1";
+	rooms["K2_YARDD1"].northExit = "K2_YARDC1";
 	rooms["K2_YARDD1"].eastExit = "K2_YARDD2";
 	rooms["K2_YARDD1"].addFlag(GLOBAL.OUTDOOR);
 
@@ -165,7 +165,7 @@ public function kquest2InitRooms():void
 	rooms["K2_YARDB2"].runOnEnter = kq2rfYardB2;
 	rooms["K2_YARDB2"].planet = planetName;
 	rooms["K2_YARDB2"].system = systemName;
-	rooms["K2_YARDB2"].northExit = "K2_YARDA1";
+	rooms["K2_YARDB2"].northExit = "K2_YARDA2";
 	rooms["K2_YARDB2"].eastExit = "K2_YARDB3";
 	rooms["K2_YARDB2"].southExit = "K2_YARDC2";
 	rooms["K2_YARDB2"].westExit = "K2_YARDB1";
@@ -178,7 +178,7 @@ public function kquest2InitRooms():void
 	rooms["K2_YARDB3"].planet = planetName;
 	rooms["K2_YARDB3"].system = systemName;
 	rooms["K2_YARDB3"].northExit = "K2_YARDA3";
-	rooms["K2_YARDB3"].eastExit = "K2_RNDENTRANCE1";
+	//rooms["K2_YARDB3"].eastExit = "K2_RNDENTRANCE1";
 	rooms["K2_YARDB3"].southExit = "K2_YARDC3";
 	rooms["K2_YARDB3"].westExit = "K2_YARDB2";
 	rooms["K2_YARDB3"].addFlag(GLOBAL.OUTDOOR);

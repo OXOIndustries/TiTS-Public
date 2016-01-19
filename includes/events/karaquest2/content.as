@@ -1018,7 +1018,7 @@ public function kq2LeaveEngineer():void
 
 	processTime(1);
 
-	currentLocation = "KQ2_BARRACKSINTERIOR";
+	currentLocation = "K2_BARRACKSINTERIOR";
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }

@@ -262,7 +262,9 @@ public function kq2RadioTowerElevator():void
 		output("\n\nYou and Kara step onto the elevator, and you press the <i>“UP”</i> button. It rumbles and shifts underfoot before starting to rise, chugging upwards on an old-fashioned gear track. It takes well over a minute to reach the top floor, which is little more than a chair, a few computer consoles, and an access hatch leading up to the roof and the antennae outside.");
 
 		if (flags["KQ2_RADIO_TOWER_EXPLORED"] == undefined)
-		{		
+		{	
+			flags["KQ2_RADIO_TOWER_EXPLORED"] = 1;
+			
 			output("\n\nA single pirate is on duty, a young man dressed in black armor and resting a shotgun over his knees. He’s fast asleep, a dirty magazine covering his face. Seeing him, Kara puts a finger to her lips before moving stealthily forward, drawing her rifle from over her shoulder. She makes it over to the pirate in utter silence, flashes you a wink over her shoulder, and cracks the rifle butt down on the kid’s face through the magazine. He makes a startled grunt, tenses, and then falls limp.");
 			
 			output("\n\n<i>“Ouch,”</i> Kara laughs, picking up the h-magazine from his face. After a second’s consideration, she hands it over to you. <i>“Here. Souvenir.");
