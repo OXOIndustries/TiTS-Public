@@ -233,6 +233,11 @@ public function mainGameMenu():void {
 	userInterface.perkDisplayButton.Activate();
 }
 
+public function generateMap():void
+{
+	generateMapForLocation(currentLocation);
+}
+
 public function generateMapForLocation(location:String):void
 {
 	userInterface.setMapData(mapper.generateMap(location));

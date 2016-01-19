@@ -1008,6 +1008,9 @@ public function kq2EngineerPCVictory():void
 	flags["KQ2_DEFEATED_ENGINEER"] = 1;
 
 	CombatManager.genericVictory();
+	
+	kquest2RoomStateUpdater();
+	generateMap();
 }
 
 public function kq2LeaveEngineer():void
