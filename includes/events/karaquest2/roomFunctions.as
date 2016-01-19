@@ -242,7 +242,8 @@ public function kq2RadioTowerElevator():void
 			output("\n\nA single pirate is on duty, a young man dressed in black armor and resting a shotgun over his knees. He’s fast asleep, a dirty magazine covering his face. Seeing him, Kara puts a finger to her lips before moving stealthily forward, drawing her rifle from over her shoulder. She makes it over to the pirate in utter silence, flashes you a wink over her shoulder, and cracks the rifle butt down on the kid’s face through the magazine. He makes a startled grunt, tenses, and then falls limp.");
 			
 			output("\n\n<i>“Ouch,”</i> Kara laughs, picking up the h-magazine from his face. After a second’s consideration, she hands it over to you. <i>“Here. Souvenir.");
-			if (silly) output(" Maybe there’ll be some engineer down the line you can bribe with it!”</i>");
+			if (silly) output(" Maybe there’ll be some engineer down the line you can bribe with it!");
+			output("”</i>");
 			
 			pc.createKeyItem("Hentai Magazine");
 			output("\n\n<b>New Key Item: Hentai Magazine</b>.");
