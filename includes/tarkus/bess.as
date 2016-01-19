@@ -12956,8 +12956,7 @@ public function bessEventMap(bChance:Boolean = false):void
 	output("\n<b><u>Main Events</u></b>");
 	if (flags["BESS_EVENT_0"] == undefined)
 	{
-		output("\n<b>* Next Event:</b> <i>Pending</i>");
-		output(" at 1/" + iChance + " chance");
+		output("\n<b>* Next Event:</b> <i>Pending</i> at 1/" + iChance + " chance");
 	}
 	else
 	{
