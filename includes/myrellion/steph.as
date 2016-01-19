@@ -263,8 +263,7 @@ public function stephEncounterLeave():void
 	output("\n\nYou wave and make your way out of the camp.");
 
 	variableRoomUpdateCheck();
-	var map:* = mapper.generateMap(currentLocation);
-	userInterface.setMapData(map);
+	generateMapForLocation(currentLocation);
 	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);

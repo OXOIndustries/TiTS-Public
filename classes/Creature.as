@@ -11346,6 +11346,7 @@ package classes {
 				collection = ["creamy","creamy","creamy","creamy","creamy","delicious","delicious","delicious","sweet","creamy"];
 			} else if (arg == GLOBAL.FLUID_TYPE_CUM) {
 				collection = ["salty","salty","salty","salty","salty","salty","salty","potent","potent","potent"];
+				if(isBimbo()) collection.push("yummy","yummy","yummy","delicious","delicious","tasty");
 			} else if (InCollection(arg, GLOBAL.FLUID_TYPE_HONEY, GLOBAL.FLUID_TYPE_NECTAR)) {
 				collection = ["sweet","sweet","sweet","sweet","sweet","syrupy","syrupy","syrupy","sugary","sugary"];
 			} else if (arg == GLOBAL.FLUID_TYPE_OIL) {
@@ -11489,7 +11490,8 @@ package classes {
 			if (arg == GLOBAL.FLUID_TYPE_MILK) {
 				collection = ["milk","cream"];
 			} else if (InCollection(arg, GLOBAL.FLUID_TYPE_CUM, GLOBAL.FLUID_TYPE_SYDIAN_CUM, GLOBAL.FLUID_TYPE_NYREA_CUM, GLOBAL.FLUID_TYPE_GABILANI_CUM, GLOBAL.FLUID_TYPE_CHOCOLATE_CUM)) {
-				collection = ["cum", "jizz"];
+				collection = ["cum"];
+				if(isBimbo() || isBro()) collection.push("cum","spunk","spunk","jism","jizz");
 			} else if (arg == GLOBAL.FLUID_TYPE_HONEY) {
 				collection = ["honey"];
 			} else if (arg == GLOBAL.FLUID_TYPE_OIL) {

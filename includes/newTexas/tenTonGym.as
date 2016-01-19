@@ -50,8 +50,7 @@ public function passDetector():Boolean
 		showName("NONE\nSHALL PASS");
 		output("A strong arm bars your progress. <i>“Whoah! Sorry, but ya got ta have a pass to use the facilities.”</i>");
 		currentLocation = "569";
-		var map:* = mapper.generateMap(currentLocation);
-		userInterface.setMapData(map);
+		generateMapForLocation(currentLocation);
 		showName("TEN\nTON GYM");
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
@@ -479,8 +478,7 @@ public function purchaseTempGymMembershipConfirm():void
 	pc.credits -= 500;
 	pc.createStatusEffect("Gym Pass", 0, 0, 0, 0, false, "Icon_Haste", "You have a temporary gym pass to the Ten Ton Gym on New Texas.", false, 1440);
 	variableRoomUpdateCheck();
-	var map:* = mapper.generateMap(currentLocation);
-	userInterface.setMapData(map);
+	generateMapForLocation(currentLocation);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -511,8 +509,7 @@ public function purchaseLifetimeGymMembership():void
 	pc.credits -= 10000;
 	pc.createKeyItem("Ten Ton Gym Membership",0,0,0,0);
 	variableRoomUpdateCheck();
-	var map:* = mapper.generateMap(currentLocation);
-	userInterface.setMapData(map);
+	generateMapForLocation(currentLocation);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

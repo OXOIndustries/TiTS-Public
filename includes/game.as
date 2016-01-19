@@ -766,18 +766,30 @@ public function flyTo(arg:String):void {
 	var shortTravel:Boolean = false;
 	var interruptMenu:Boolean = false;
 	
+	if (arg == "karaQuest2")
+	{
+		shortTravel = (shipLocation == "600");
+		interruptMenu = true;
+		kq2TravelToKara(shortTravel);
+	}
+	
+	var timeFlown:Number = (shortTravel ? 30 + rand(10) : 600 + rand(30));
+	StatTracking.track("movement/time flown", timeFlown);
+	processTime(timeFlown);
+	
 	clearOutput();
 	
-	if(arg == "Mhen'ga") {
+	if(arg == "Mhen'ga")
+	{
 		shipLocation = "SHIP HANGAR";
 		currentLocation = "SHIP HANGAR";
-		output("You fly to Mhen'ga");
-		output(" and step out of your ship.");
+		flyToMhenga();
 	}
-	else if(arg == "Tavros") {
+	else if(arg == "Tavros")
+	{
 		shipLocation = "TAVROS HANGAR";
 		currentLocation = "TAVROS HANGAR";
-		output("You fly to Tavros and step out of your ship.");
+		flyToTavros();
 	}
 	else if(arg == "Tarkus")
 	{
@@ -785,7 +797,8 @@ public function flyTo(arg:String):void {
 		currentLocation = "201";
 		landOnTarkus();
 	}
-	else if(arg == "New Texas") {
+	else if(arg == "New Texas")
+	{
 		shipLocation = "500";
 		currentLocation = "500";
 		landOnNewTexas();
@@ -806,20 +819,10 @@ public function flyTo(arg:String):void {
 	{
 		shipLocation = "POESPACE";
 		currentLocation = "POESPACE";
-		output("Electing to have a little fun, you set a course for Poe A and before long, the planet looms before you on the display. It’s not particularly large, for a civilized world, but the traffic for landing vehicles is a little ridiculous. Thousands of craft are coming in every minute, with no sign of the influx slowing down. They’re from all over the galaxy too, even models you’ve never heard of before. Taking your place in the landing queue, you look around at some of the other visitors, eyes watering with envy as you spot a few ships that probably cost as much as this whole planet. Apparently the stories of stars slumming it up during the festival weren’t exaggerated!");
-	}
-	else if (arg == "karaQuest2")
-	{
-		shortTravel = (shipLocation == "600");
-		interruptMenu = true;
-		kq2TravelToKara(shortTravel);
+		flyToPoeA();
 	}
 	
-	var timeFlown:Number = (shortTravel ? 30 + rand(10) : 600 + rand(30));
-	StatTracking.track("movement/time flown", timeFlown);
-	processTime(timeFlown);
-	
-	if(landingEventCheck(arg)) return;
+	if(!interruptMenu && landingEventCheck(arg)) return;
 	flags["LANDING_EVENT_CHECK"] = 1;
 	
 	if (!interruptMenu)
@@ -829,7 +832,18 @@ public function flyTo(arg:String):void {
 	}
 }
 
-public function landingEventCheck(arg:String):Boolean
+public function leaveShipOK():Boolean
+{
+	if(pc.hasStatusEffect("Endowment Immobilized"))
+	{
+		output(" and attempt to head towards the airlock... but you can barely budge an inch from where you are sitting. You’re immobilized. It looks like your endowments have swollen far too large, making it impossible for you to exit your ship! <b>You’ll have to take care of that if you want to leave...</b>");
+		currentLocation = "SHIP INTERIOR";
+		return false;
+	}
+	return true;
+}
+
+public function landingEventCheck(arg:String = ""):Boolean
 {
 	if(flags["LANDING_EVENT_CHECK"] != 1) return false;
 	
@@ -839,6 +853,7 @@ public function landingEventCheck(arg:String):Boolean
 	{
 		if(((annoIsCrew() && flags["ANNOxSYRI_EVENT"] != undefined) || !annoIsCrew()) && syriIsAFuckbuddy() && rand(5) == 0)
 		{
+			currentLocation = "SHIP INTERIOR";
 			gettingSyrisPanties();
 			return true;
 		}
@@ -2137,18 +2152,21 @@ public function nutSwellUpdates():void
 			if(pc.hasPerk("'Nuki Nuts") && pc.balls > 1) eventBuffer += "\n\nUgh, you could really use a chance to offload some [pc.cumNoun]. Your balls have reached the size of basketballs and show no signs of stopping. The squishy, sensitive mass will definitely slow your movements.";
 			//Status - Egregiously Endowed - Movement between rooms takes twice as long, and fleeing from combat is more difficult.
 			pc.createStatusEffect("Egregiously Endowed", 0,0,0,0,false,"Icon_Poison", "Movement between rooms takes twice as long, and fleeing from combat is more difficult.", false, 0);
+			pc.lust(5);
 		}
 		//Hit beachball size >= 15
 		if(pc.ballDiameter() >= 15 && !pc.hasStatusEffect("Ludicrously Endowed"))
 		{
 			if(pc.hasPerk("'Nuki Nuts") && pc.balls > 1) eventBuffer += "\n\nEvery movement is accompanied by a symphony of sensation from your swollen nutsack, so engorged with [pc.cumNoun] that they wobble from their own internal weight. You have to stop from time to time just to keep from being overwhelmed by your own liquid arousal.";
 			pc.createStatusEffect("Ludicrously Endowed", 0,0,0,0,false,"Icon_Poison", "The shifting masses of your over-sized testes cause you to gain fifty percent more lust over time.", false, 0);
+			pc.lust(5);
 		}
 		//Hit barrel size
 		if(pc.ballDiameter() >= 25 && !pc.hasStatusEffect("Overwhelmingly Endowed"))
 		{
 			if(pc.hasPerk("'Nuki Nuts") && pc.balls > 1) eventBuffer += "\n\nWhoah, this is awkward. Your nuts are practically barrel-sized! If you aren’t careful, they drag softly on the ground. Grass is no longer scenery - it’s hundreds of slender tongues tickling your nuts. Mud is an erotic massage. Even sand feels kind of good against your thickened sack, like a vigorous massage.";
 			pc.createStatusEffect("Overwhelmingly Endowed", 0,0,0,0,false,"Icon_Poison", "The shifting masses of your over-sized testes cause you to gain twice as much lust over time.", false, 0);
+			pc.lust(5);
 		}
 		//hit person size
 		if(pc.ballDiameter() >= 40 && !pc.hasStatusEffect("Endowment Immobilized"))
@@ -2163,6 +2181,7 @@ public function nutSwellUpdates():void
 					if(pc.hasPerk("'Nuki Nuts")) eventBuffer += " If a quick fap wasn't illegal here, this would be far simpler. Too bad.";
 				}
 				pc.createStatusEffect("Endowment Immobilized", 0,0,0,0,false,"Icon_Poison", "Your endowments prevent you from moving.", false, 0);
+				pc.lust(5);
 			}
 		}
 	}

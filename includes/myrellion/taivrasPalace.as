@@ -451,7 +451,11 @@ public function queensChambersBonus():Boolean
 		if(flags["CRYSTAL_GOO_DEFEAT"] != undefined) output("\n\nYou can see some gooey slop on the stone floor, near the little hatch Taivra’s pet broodmother goo lives in.");
 		//if NyreaKing & skipped Goofite:
 		else output("\n\nYou can see some gooey slop on the stone floor, near one of the big carpets on the stone floor just under a gloryhole in the wall beside her bed.");
-		if(pc.hasCock()) addButton(1,"Gloryhole",useRepeatGloryhole,undefined,"Use Gloryhole","Well, that’s what it’s there for, right? Stick your dick right into the gloryhole and treat yourself to your queenly mate’s favorite evening pastime.");
+		if(pc.hasCock())
+		{
+			if(pc.lust() >= 33) addButton(1,"Gloryhole",useRepeatGloryhole,undefined,"Use Gloryhole","Well, that’s what it’s there for, right? Stick your dick right into the gloryhole and treat yourself to your queenly mate’s favorite evening pastime.");
+			else addDisabledButton(0,"Gloryhole","Use Gloryhole","You're not aroused enough to consider this.");
+		}
 		else addDisabledButton(0,"Gloryhole","Use Gloryhole","You don't have the equipment to do that.");
 	}
 	//Play <i>“Incubator Goo”</i> encounter on first entry.
@@ -1126,8 +1130,7 @@ public function queenTaivrasThrone(plat190:Boolean = false):void
 	clearOutput();
 	author("Savin");
 	currentLocation = "2E17";
-	var map:* = mapper.generateMap(currentLocation);
-	userInterface.setMapData(map);
+	generateMapForLocation(currentLocation);
 	showTaivra();
 
 	output("You reach the bottom of the winding stairs and push through a silken curtain, stepping into a broad square chamber at the heart of the nyrean palace. You’re instantly greeted by the sounds of sex, the wet beating of flesh on flesh echoing off the stone walls in a cacophony of sensuality. As your eyes adjust to the glare of bright blue lanterns hanging from pillars along the walls, your gaze settles on a room lavishly decorated with animal hide rugs and silky tapestries hanging from behind the Greek-style pillars, showing images of nyrea warriors battling cthonic abominations from an old-Earth artist’s nightmares.");
@@ -1158,7 +1161,8 @@ public function taivraTalk(plat190:Boolean):void
 	addButton(0,"Fight",startFightingQueenButt,plat190,"Fight","No need to drag this out. Time to kick the queen’s ass.");
 	if(flags["TAIVRA_RIVAL_TALK"] == 1) addDisabledButton(1,"Rivals","Rivals","You've already mentioned this.");
 	else addButton(1,"Rivals",explainRivalnessToTaivra,plat190,"Rivals","Try and explain that you and your cousin are rivals - you’re anything but in league with each other!");
-	addButton(2,"Peace",talkOfPeace,plat190,"Peace","Tell the nyrean queen you come in peace. Now that you’re talking to someone in charge, maybe you can work out a deal.");
+	if(flags["TAIVRA_DEAL_UNLOCKED"] == undefined) addButton(2,"Peace",talkOfPeace,plat190,"Peace","Tell the nyrean queen you come in peace. Now that you’re talking to someone in charge, maybe you can work out a deal.");
+	else addDisabledButton(2,"Peace","Peace","You’ve already discussed this!");
 	if(pc.isMischievous()) addButton(3,"Probe",probeTouch,plat190,"Probe","You’re here for the probe. Nothing more, nothing less. You’ll do whatever it takes to make the queen happy in order to get it.");
 	else addDisabledButton(3,"Probe","Probe","This option is for mischievous characters only.");
 	if(flags["TAIVRA_DEAL_UNLOCKED"] == 1) addButton(4,"Deal",dealWithTaivra,plat190,"Deal","You’ve convinced Queen Taivra to listen to your deal. Better make a damn good offer, or else you’ll probably be in for a fight to get that probe.");
@@ -2412,8 +2416,7 @@ public function nyreaKingReturnGreeting():void
 	pc.createPerk("Nyrean Royal",0,0,0,0,"Reduces hostile nyrea attacks and deal increased tease damage to them!");
 	flags["NYREAN_SPOILS"] = GetGameTimestamp();
 	variableRoomUpdateCheck();
-	var map:* = mapper.generateMap(currentLocation);
-	userInterface.setMapData(map);
+	generateMapForLocation(currentLocation);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -2650,8 +2653,7 @@ public function goToTaivrasChambersForSex():void
 	clearOutput();
 	author("Savin");
 	currentLocation = "2C15";
-	var map:* = mapper.generateMap(currentLocation);
-	userInterface.setMapData(map);
+	generateMapForLocation(currentLocation);
 	showName("QUEEN'S\nCHAMBERS");
 	showTaivra();
 	output("With an alluring smile, you ask the nyrean queen if she’d care to retire to her chambers with you.");
@@ -3331,8 +3333,7 @@ public function beatUpPrincessYeSlut():void
 public function leavePrincessRoom():void
 {
 	currentLocation = "2C09";
-	var map:* = mapper.generateMap(currentLocation);
-	userInterface.setMapData(map);
+	generateMapForLocation(currentLocation);
 }
 
 //Leave

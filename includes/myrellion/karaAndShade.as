@@ -396,8 +396,7 @@ public function sureIWantSomeShadePussayTailFuckYes():void
 	pc.lust(30);
 	processTime(15);
 	currentLocation = "602";
-	var map:* = mapper.generateMap(currentLocation);
-	userInterface.setMapData(map);
+	generateMapForLocation(currentLocation);
 	showName("AIRFIELD\nNORTH");
 	//{Shade’s Scenes go Here}
 	clearMenu();
@@ -494,8 +493,7 @@ public function fuckThisShiiitImNotGettingInACatNDogFight():void
 	processTime(10);
 
 	currentLocation = "606";
-	var map:* = mapper.generateMap(currentLocation);
-	userInterface.setMapData(map);
+	generateMapForLocation(currentLocation);
 	showName("SPACER'S\nROW");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -533,8 +531,7 @@ public function lastChanceForHelpingKara():void
 	output("\n\nShe scoffs. <i>“Take it or leave it, friend. You can just walk away.”</i>");
 	
 	currentLocation = "609";
-	var map:* = mapper.generateMap(currentLocation);
-	userInterface.setMapData(map);
+	generateMapForLocation(currentLocation);
 	showName("THE\nGOLDEN PEAK");
 	clearMenu();
 	addButton(14,"Leave",fuckDisBarShit,undefined,"Leave","Fuck this. You hop into the crowd of people fleeing, ducking out of the bar to sounds of gunfire behind you.");
@@ -654,8 +651,7 @@ public function pcAndKaraBeatShade():void
 	//Add Arc Caster to inventory
 	flags["SHADE_DEFEATED_WITH_KARA"] = 1;
 	currentLocation = "606";
-	var map:* = mapper.generateMap(currentLocation);
-	userInterface.setMapData(map);
+	generateMapForLocation(currentLocation);
 	showName("SPACER'S\nROW");
 	CombatManager.genericVictory();
 }
@@ -673,8 +669,7 @@ public function pcAndShadeBeatKara():void
 	flags["KARA_DEFEATED_WITH_SHADE"] = 1;
 	processTime(2);
 	currentLocation = "606";
-	var map:* = mapper.generateMap(currentLocation);
-	userInterface.setMapData(map);
+	generateMapForLocation(currentLocation);
 	showName("SPACER'S\nROW");
 	CombatManager.genericVictory();
 }
@@ -1071,8 +1066,7 @@ public function shadePostCoitusHangouts():void
 		//PC is left in the far north of the airfield.
 		processTime(15);
 		currentLocation = "602";
-		var map:* = mapper.generateMap(currentLocation);
-		userInterface.setMapData(map);
+		generateMapForLocation(currentLocation);
 		showName("AIRFIELD\nNORTH");
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
@@ -1098,8 +1092,7 @@ public function shouldIShadeOrShouldIGo():void
 	output("You hop out of Shade’s bed and start gathering your [pc.gear]. The kaithrit shrugs and lies back, watching you until you’re ready to go.");
 	output("\n\n<i>“Show yourself out, hmm?”</i> she purrs, giving you a parting smile before shutting off her light. You slip on out of the ship, and head out into the airfield.");
 	currentLocation = "602";
-	var map:* = mapper.generateMap(currentLocation);
-	userInterface.setMapData(map);
+	generateMapForLocation(currentLocation);
 	showName("AIRFIELD\nNORTH");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -1133,8 +1126,7 @@ public function recoverWithShade():void
 	output("\n\n<i>“Still here?”</i> she teases, letting the towel fall to the ground as she strides over to her dresser, bending over to pull out a fresh pair of underwear, and giving you a view to die for. She gets dressed quickly, though not without giving you quite the show as she does so. When she’s done, Shade slips an arm through yours and gives you a rough pull out of her cabin. <i>“C’mon, can’t lounge around </i>all<i> day.”</i>");
 	output("\n\nYou chuckle and let yourself be led off the ship, following Shade back out to the airfield. Her ship seals tight behind you, and your lover gives you a final smack on your [pc.butt] before trotting off towards the tavern.");
 	currentLocation = "602";
-	var map:* = mapper.generateMap(currentLocation);
-	userInterface.setMapData(map);
+	generateMapForLocation(currentLocation);
 	showName("AIRFIELD\nNORTH");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -1227,8 +1219,7 @@ public function askShade4Sex():void
 	clearOutput();
 	showShade();
 	currentLocation = "602";
-	var map:* = mapper.generateMap(currentLocation);
-	userInterface.setMapData(map);
+	generateMapForLocation(currentLocation);
 	output("You ask Shade if she’d be up for a little fun.");
 	output("\n\nShe eyes you up and down, a slight smile spreading on her lips. <i>“I might be. What do you say we get out of here - my ship’s parked just down the tarmac.”</i>");
 	output("\n\n<i>“Lead the way,”</i> you say, standing.");
@@ -1572,8 +1563,7 @@ public function goWithShadeToTakeCareOfBusinessYuSlut():void
 	output("\n\nYou follow her to her quarters, where Shade quickly flops down on the edge of her bed and kicks a shallow plastic tub filled with pillow stuffing out from under it. Clearly not her first ovipositing rodeo.");
 	processTime(15);
 	currentLocation = "602";
-	var map:* = mapper.generateMap(currentLocation);
-	userInterface.setMapData(map);
+	generateMapForLocation(currentLocation);
 	showName("AIRFIELD\nNORTH");
 	clearMenu();
 	addButton(0,"Next",helpShadeLayHerEgg2);
@@ -1608,8 +1598,7 @@ public function helpShadeLayHerEgg3():void
 		output("\n\nYou nod and follow Shade back to the bar, hand in hand. As you walk, her tail curls around your waist, more affectionate than normal.");
 		processTime(1);
 		currentLocation = "609";
-		var map:* = mapper.generateMap(currentLocation);
-		userInterface.setMapData(map);
+		generateMapForLocation(currentLocation);
 		showName("THE\nGOLDEN PEAK");
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);

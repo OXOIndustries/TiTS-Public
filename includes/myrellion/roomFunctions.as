@@ -48,7 +48,6 @@ public function flyToMyrellion():void
 {
 	if(flags["VISITED_MYRELLION"] == undefined)
 	{
-		clearOutput();
 		author("Savin");
 		showBust("MYR_GOLD_PILOT");
 		showName("MYR\nESCORT");
@@ -75,9 +74,11 @@ public function flyToMyrellion():void
 		output("\n\nWith that, she gives a signal to the guards, who follow her away towards another hangar building.");
 
 		output("\n\nWell, this is certainly different.");
-		//clearMenu();
-		//addButton(0,"Next",mainGameMenu);
+		
 		flags["VISITED_MYRELLION"] = 1;
+		
+		generateMapForLocation(currentLocation);
+		processTime(5);
 	}
 	else
 	{
@@ -88,6 +89,8 @@ public function flyToMyrellion():void
 		showBust("MYR_GOLD_PILOT");
 		showName("MYR\nESCORT");
 		output("Flying to Myrellion is no quick jaunt down the road, but before you know it, you're guiding your ship back through the atmosphere for a flawless landing on the tarmac, escorted by a squadron of myr pilots in old-timey biplanes.");
+		output("\n\nAfter making sure you are docked properly, you perpare your things");
+		if(leaveShipOK()) output(" and step out of your ship.");
 	}
 }
 
@@ -231,8 +234,7 @@ public function takeATransPortMyrellion(arg:String = ""):void
 	}
 	pc.credits -= 150;
 	currentLocation = arg;
-	var map:* = mapper.generateMap(currentLocation);
-  	this.userInterface.setMapData(map);
+	generateMapForLocation(currentLocation);
 	processTime(25);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -424,8 +426,7 @@ public function aeroplaneFlightShit(kressia:Boolean = true):void
 		output("\n\nYou mumble a curse for the red myr not having a spaceport of their own and put a hand to your own stomach, trying not to puke too. Miserable things, these old planes. Absolutely miserable...");
 		output("\n\nIt's a blessed relief when the plane lands, even if you're nearly certain the bucket of bolts with rattle itself apart when it skids down the runway. But finally, the ride comes to an end and the plane's crew chief kicks the ramp down, letting you and the other passengers shuffle off.");
 		currentLocation = "800";
-  		var map:* = mapper.generateMap(currentLocation);
-		userInterface.setMapData(map);
+  		generateMapForLocation(currentLocation);
 	}
 	//[Next]
 	//Intro to DMZ via Aeroplane
@@ -434,8 +435,7 @@ public function aeroplaneFlightShit(kressia:Boolean = true):void
 	{
 		output("You hop onto a diplomatically-marked plane idling on the runway, bound for the Demilitarized Zone deep in Republic territory. It's only a few minutes of waiting before the captain arrives and the rest of the seats fill up with red myr troops and other offworlders heading back to their ships. The plane takes off punctually, sending you hurtling through the sky towards your destination.\n\nThe plane rocks and shudders seemingly at random, making you and every ant-girl aboard sway uneasily. Engines roar deafeningly outside, and your [pc.ears] keep popping with the random changes in pressure. A couple of times, other passengers get visibly ill, and go for small paper bags tucked in the seats ahead of them.\n\nYou mumble a curse for the red myr not having a spaceport of their own and put a hand to your own stomach, trying not to puke too. Miserable things, these old planes. Absolutely miserable....\n\nIt's a blessed relief when the plane lands, even if you're nearly certain the bucket of bolts with rattle itself apart when it skids down the runway. But finally, the ride comes to an end and the plane's crew chief kicks the ramp down, letting you and the other passengers shuffle off.");
 		currentLocation = "612";
-  		var map2:* = mapper.generateMap(currentLocation);
-		userInterface.setMapData(map2);
+  		generateMapForLocation(currentLocation);
 	}
 	processTime(30+rand(10));
 	clearMenu();
@@ -519,8 +519,7 @@ public function gildenmereElevatorBottomBonus():Boolean
 		else output("their diplomat");
 		output(" for one.");
 		currentLocation = "611";
-  		var map2:* = mapper.generateMap(currentLocation);
-		userInterface.setMapData(map2);
+  		generateMapForLocation(currentLocation);
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 		return true;
@@ -687,8 +686,7 @@ public function deepCavesDescend():void
 		StatTracking.track("movement/time travelled", 61);
 	}
 	currentLocation = "2Y19";
-	var map:* = mapper.generateMap(currentLocation);
-	userInterface.setMapData(map);
+	generateMapForLocation(currentLocation);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -713,8 +711,7 @@ public function ascendFromDeepCaves():void
 		StatTracking.track("movement/time travelled", 20);
 	}
 	currentLocation = "1D18";
-	var map:* = mapper.generateMap(currentLocation);
-	userInterface.setMapData(map);
+	generateMapForLocation(currentLocation);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

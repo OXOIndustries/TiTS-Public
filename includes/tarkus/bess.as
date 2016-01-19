@@ -709,8 +709,7 @@ public function fuckinLeaveTheBessBot():void
 public function takeBessToZeShip():void
 {
 	currentLocation = "SHIP INTERIOR";
-	var map:* = mapper.generateMap(currentLocation);
-	userInterface.setMapData(map);
+	generateMapForLocation(currentLocation);
 	flags["BESS_IN_RUBBLE"] = 1; // shit flag name sue me
 	
 	clearOutput();

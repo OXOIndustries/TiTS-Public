@@ -85,8 +85,7 @@ public function scotlandYardIMeanThollumYardBonus():Boolean
 	{
 		output("The guards stop you. <i>“You’ll have to check in before you are free to roam the facility.”</i>");
 		currentLocation = "735";
-		var map:* = mapper.generateMap(currentLocation);
-		this.userInterface.setMapData(map);
+		generateMapForLocation(currentLocation);
 		showName("THOLLUM\nFOYER");
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
@@ -156,8 +155,7 @@ public function thollumClassroomHallwayBonus():Boolean
 	{
 		output("The guards stop you. <i>“You’ll have to check in before you are free to roam the facility.”</i>");
 		currentLocation = "735";
-		var map:* = mapper.generateMap(currentLocation);
-		this.userInterface.setMapData(map);
+		generateMapForLocation(currentLocation);
 		showName("THOLLUM\nFOYER");
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
@@ -1616,8 +1614,7 @@ public function yarastaClassSitInEpilogue():void
 	output("<i>“So, what did you want to see me about?”</i> Yarasta asks, seating herself among the shroomy stalks.");
 	//return to Yarasta main menu
 	currentLocation = "736";
-	var map:* = mapper.generateMap(currentLocation);
-	this.userInterface.setMapData(map);
+	generateMapForLocation(currentLocation);
 	showName("THOLLUM\nYARD");
 	yarastaMainMenu();
 }

@@ -463,8 +463,7 @@ public function gooVillageThinger():void
 	author("Gardeford");
 	showName("GOO\nVILLAGE");
 	currentLocation = "2S29";
-	var map:* = mapper.generateMap(currentLocation);
-	this.userInterface.setMapData(map);
+	generateMapForLocation(currentLocation);
 	//Set village as met!
 	flags["MET_CGOOS"] = 1;
 	if(pc.canFly()) output("\n\nThe tightness of the passage and the jagged looking rocks at its ceiling make you think twice about flying through it, and you land to get a safer grip.");

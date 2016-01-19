@@ -233,7 +233,7 @@ public function inessaAboutInessa():void
 		output("\n\nYou ask her if she has a [pc.master]. The young woman quickly shakes her head.");
 		output("\n\n<i>“No, no [pc.master] to speak of. I’ve actually never had one - my sister");
 		//Gildenmere nuked
-		if(9999 == 0) output(" was ");
+		if(flags["KQ2_MYRELLION_STATE"] > 0) output(" was ");
 		else output("’s ");
 		output(" a pro Domme though, so I’ve had a little bit of instruction. Other than that, I’m mostly untrained.”</i>");
 
@@ -500,7 +500,7 @@ public function inessaFamily():void
 	showInessa();
 	author("JimThermic");
 	//GildenmereGotNuked:
-	if(9999 == 0)
+	if(flags["KQ2_MYRELLION_STATE"] > 0)
 	{
 		output("You ask Inessa about her sister, since you vaguely remember her saying she was a pro Domme. The butterfly-winged girl’s expression clouds over and her eyes tear up. She sniffles loudly and wipes her eyes.");
 		output("\n\n<i>“U-u-uh... yeah... s-she </i>was<i>... y-you h-hear about that rush planet that got nuked? Myrellion? M-my big sister was on it. S-she had a clothing store...”</i> At this point, the storekeeper gets all choked up, then pups her face in her tiny hands. Unable to hide her grief, her body is wracked by wing-shaking sobs. <i>“... I-I’m s-sorry, c-can we talk about something else–?”</i>");

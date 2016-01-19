@@ -130,8 +130,7 @@ public function kaedeMyrellionDrinks():void
 
 	processTime(15);
 	currentLocation = "609";
-	var map:* = mapper.generateMap(currentLocation);
-	userInterface.setMapData(map);
+	generateMapForLocation(currentLocation);
 	showName("THE\nGOLDEN PEAK");
 
 	kaedeMyrellionBarTalkMenu();
@@ -598,8 +597,7 @@ public function kaedeMyrellionFuckAssCombine(cumInside:Boolean = false):void
 	output("\n\n<i>“See you later, [pc.name],”</i> she says with a smile, heading off onto the tarmac. You disembark, heading back toward the transport hub. Hopefully you’ll get another chance at that cute piece of ass again sometime soon!");
 
 	currentLocation = "600";
-	var map:* = mapper.generateMap(currentLocation);
-	userInterface.setMapData(map);
+	generateMapForLocation(currentLocation);
 	showName("AIRFIELD\nSOUTH");
 
 	processTime(20+rand(10));
@@ -723,8 +721,7 @@ public function kaedeMyrellionSucknRide():void
 	pc.orgasm();
 
 	currentLocation = "600";
-	var map:* = mapper.generateMap(currentLocation);
-	userInterface.setMapData(map);
+	generateMapForLocation(currentLocation);
 	showName("AIRFIELD\nSOUTH");
 
 	clearMenu();

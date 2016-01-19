@@ -582,8 +582,7 @@ public function cockTeaseMillie():void
 	processTime(1);
 
 	currentLocation = "511";
-	var map:* = mapper.generateMap(currentLocation);
-	userInterface.setMapData(map);
+	generateMapForLocation(currentLocation);
 
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
