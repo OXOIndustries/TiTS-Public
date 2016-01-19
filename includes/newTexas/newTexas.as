@@ -22,8 +22,15 @@ public function landOnNewTexas():void
 		if(pc.mf("dude","chick") == "dude") output("friendly nods");
 		else output("hungry looks");
 		output(" as you disembark. A sign nearby points you to <i>“Customs and Visitor Check-in.”</i>");
+		
+		generateMapForLocation(currentLocation);
+		processTime(5);
 	}
-	else output("You fly to New Texas and step out of your ship.");
+	else
+	{
+		output("You fly to New Texas");
+		if(leaveShipOK()) output(" and step out of your ship.");
+	}
 }
 
 
@@ -185,8 +192,7 @@ public function visitorDeskApproach():void
 public function customsFucksYourShitUp():void
 {
 	currentLocation = "TEXAS CUSTOMS";
-	var map:* = mapper.generateMap(currentLocation);
-	this.userInterface.setMapData(map);
+	generateMapForLocation(currentLocation);
 	clearOutput();
 	author("Savin");
 	showName("\nOGRAM");

@@ -135,8 +135,7 @@ public function probeReclamationMhenga(response:int = 0):void
 		restHeal();
 		flags["MHENGA_PROBE_CASH_GOT"] = 1;
 		variableRoomUpdateCheck();
-		var map:* = mapper.generateMap(currentLocation);
-		userInterface.setMapData(map);
+		generateMapForLocation(currentLocation);
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 	}
@@ -216,8 +215,7 @@ public function letRivalGoOnMhenga():void {
 	output("\n\nYou'll just have to get to the next one before your cousin.");
 	processTime(10);
 	variableRoomUpdateCheck();
-	var map:* = mapper.generateMap(currentLocation);
-	userInterface.setMapData(map);
+	generateMapForLocation(currentLocation);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -235,8 +233,7 @@ public function defeatDane():void
 	output("\n\nThere's still time. You can get to the next probe before your cousin, you're sure of it!\n\n");
 	flags["WHUPPED_DANES_ASS_ON_MHENGA"] = 1;
 	variableRoomUpdateCheck();
-	var map:* = mapper.generateMap(currentLocation);
-	userInterface.setMapData(map);
+	generateMapForLocation(currentLocation);
 	CombatManager.genericVictory();
 }
 
@@ -337,6 +334,5 @@ public function daneFuckEpilogue():void {
 	processTime(75+rand(10));
 	CombatManager.genericLoss();
 	variableRoomUpdateCheck();
-	var map:* = mapper.generateMap(currentLocation);
-	userInterface.setMapData(map);
+	generateMapForLocation(currentLocation);
 }

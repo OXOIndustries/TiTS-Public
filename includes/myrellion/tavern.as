@@ -234,8 +234,7 @@ public function reallySmashedEpiloguetoDrinkingWithCandicePartII():void
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 	}
-	var map:* = mapper.generateMap(currentLocation);
-	userInterface.setMapData(map);
+	generateMapForLocation(currentLocation);
 }
 
 /*function bartenderFlirt():void

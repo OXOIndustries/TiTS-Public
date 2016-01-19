@@ -43,6 +43,18 @@ import classes.Items.Transformatives.OvirAce;
 import classes.Util.RandomInCollection;
 import classes.VaginaClass;
 
+public function flyToTavros():void
+{
+	output("You fly to Tavros");
+	if(leaveShipOK()) output(" and step out of your ship.");
+}
+
+public function flyToMhenga():void
+{
+	output("You fly to Mhen'ga");
+	if(leaveShipOK()) output(" and step out of your ship.");
+}
+
 public function mhengaShipHangarFunc():Boolean
 {
 	if (annoIsCrew() && !syriIsCrew() && flags["ANNOxSYRI_EVENT"] == undefined)
@@ -63,8 +75,7 @@ public function puntToShip():Boolean
 	}
 	output("You really don't want to step out into the cold void of space. Maybe you should land somewhere?");
 	currentLocation = "SHIP INTERIOR";
-	var map:* = mapper.generateMap(currentLocation);
-	this.userInterface.setMapData(map);
+	generateMapForLocation(currentLocation);
 	showName("SHIP\nINTERIOR");
 	processTime(1);
 	clearMenu();
@@ -868,8 +879,7 @@ public function mhengaTaxiToXenogen():void
 	output("\n\nYou do so, transferring your payment to the Scout Authority and walking out into the back lot behind the structure. Several small hover-cars are arrayed there, all jungle-patterned and manned by simplistic drone pilots. One of them hails you with a wave of its mechanical arm. You slip into the car, and a moment later you’re on your way, zipping across the jungle of Mhen’ga.");
 	output("\n\nNot long after, you arrive at the camp, and disembark into the jungle. The hover-car zips away a minute later, leaving you behind.");
 	currentLocation = "ABANDONED CAMP";
-	var map:* = mapper.generateMap(currentLocation);
-	this.userInterface.setMapData(map);
+	generateMapForLocation(currentLocation);
 	processTime(15);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -966,8 +976,7 @@ public function tarkusFlyTo(arg:String):void
 	}
 	pc.credits -= 80;
 	currentLocation = arg;
-	var map:* = mapper.generateMap(currentLocation);
-	this.userInterface.setMapData(map);
+	generateMapForLocation(currentLocation);
 	processTime(15);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

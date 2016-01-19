@@ -16,8 +16,7 @@ public function showHoliday(arg:String = "normal"):void
 public function halloweenShipMove():void
 {
 	currentLocation = "SHIP INTERIOR";
-	var map:* = mapper.generateMap(currentLocation);
-	this.userInterface.setMapData(map);
+	generateMapForLocation(currentLocation);
 	showName("SHIP\nINTERIOR");
 }
 
@@ -45,6 +44,14 @@ public function hollidayOweenAlert():void
 	flags["HOLIDAY_OWEEN_ACTIVATED"] = GetGameTimestamp();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
+}
+
+public function flyToPoeA():void
+{
+	author("Adjatha");
+	output("Electing to have a little fun, you set a course for Poe A and before long, the planet looms before you on the display. It’s not particularly large, for a civilized world, but the traffic for landing vehicles is a little ridiculous. Thousands of craft are coming in every minute, with no sign of the influx slowing down. They’re from all over the galaxy too, even models you’ve never heard of before. Taking your place in the landing queue, you look around at some of the other visitors, eyes watering with envy as you spot a few ships that probably cost as much as this whole planet. Apparently the stories of stars slumming it up during the festival weren’t exaggerated!");
+	
+	processTime(5);
 }
 
 //Planetfall

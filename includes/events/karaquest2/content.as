@@ -182,8 +182,8 @@ public function kq2TravelToKara(shortTravel:Boolean):void
 	output(" You turn and lead her out of the airlock and into the ship’s common area.");
 
 	output("\n\n<i>“Nice ship,”</i> she murmurs, a gloved hand running along the bulkhead as she enters, looking cautiously around. <i>“Haven’t been aboard a");
-	// 9999 {ship model}
-	output(" Z14")
+	// {ship model}
+	if(9999 == 9999) output(" Z14")
 	output(" in a while.”</i>");
 
 	//{if PC has Anno aboard:
@@ -2749,14 +2749,26 @@ public function kq2NukeExplodesLater():void
 
 public function flyToMyrellionDeepCaves():void
 {
-	clearOutput();
+	if(flags["VISITED_MYRELLION"] <= 1)
+	{
 	author("Savin");
-
-	output("You guide your ship through the ashen atmosphere of the ruined planet of Myrellion, slowly forging through pillars of radioactive smog and falling ash. Nuclear winter’s set in on the surface, bathing the desert world in white. It’s almost pretty, in away - though you know the glistening coat lies overtop hundreds of craters where cities once lurked below the ground. You wonder if anyone survived, far from the front lines. Could the golds have reached the Federation homeland, pushed so far back as they were?");
 	
+		output("You guide your ship through the ashen atmosphere of the ruined planet of Myrellion, slowly forging through pillars of radioactive smog and falling ash. Nuclear winter’s set in on the surface, bathing the desert world in white. It’s almost pretty, in a way - though you know the glistening coat lies overtop hundreds of craters where cities once lurked below the ground. You wonder if anyone survived, far from the front lines. Could the golds have reached the Federation homeland, pushed so far back as they were?");
+		
 	output("\n\nYou shake the thought and guide your vessel down, towards a fissure in the ground. You should be just above Taivra’s palace, now. With careful, slow precision, you lower yourself through the crack and down into the depths of Myrellion, far beneath the nuked-out myr tunnels. Miles down below the ground. It should still be safe, protected from the radiation by so much rock as you are.");
 	
 	output("\n\nYou park at the bottom of a familiar cavern network and set the ship’s automated scrubbers to clean off the hull before you depart - you don’t want to pick up anything the irradiated surface might have rubbed off on your vessel.");
+		
+		flags["VISITED_MYRELLION"] = 2;
+		
+		processTime(5);
+	}
+	else
+	{
+		output("You fly to the nuked planet of Myrellion, carefully guiding your vessel down towards the ground fissure that leads to the area just above Taivra’s palace. You finally park at the bottom of a nearby cavern");
+		if(leaveShipOK()) output(" and step out of your ship.");
+
+	}
 }
 
 public function kq2DaneCoordEmail():void

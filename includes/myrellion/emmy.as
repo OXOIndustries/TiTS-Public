@@ -142,8 +142,7 @@ public function leaveThisShit():void
 	output("You wave off the too-sexual shopkeep and walk out the door rather than deal with another second of her rudeness.");
 	//move location.
 	currentLocation = "607";
-	var map:* = mapper.generateMap(currentLocation);
-	userInterface.setMapData(map);
+	generateMapForLocation(currentLocation);
 	showName("SPACER'S\nROW");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -1159,8 +1158,7 @@ public function giveEmmyAnItem(item:String):void
 			//boot PC to map square, remove 1x Crystal Shard, remove buttons for other gems and move Emmyquest into crystal shard sub-stage or w/e
 			pc.destroyItem(new CrystalShard());
 			currentLocation = "607";
-			var map:* = mapper.generateMap(currentLocation);
-			this.userInterface.setMapData(map);
+			generateMapForLocation(currentLocation);
 			showName("SPACER'S\nROW");
 			processTime(4);
 			clearMenu();

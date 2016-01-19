@@ -416,8 +416,7 @@ public function getAntSuckedPart2():void
 	output(". You know that she got off, too, trembling violently in her seat and squealing around your shaft. Cocksucking excites her, probably a huge oral fetish. Frankly, sprawled out in the alley beside the shop and feeling sore <i>all</i> over, you’re a little scared of stepping in there ever again.\n\n...Getting blackout drunk had a better aftermath then this. Kinda worth it, though.");
 	// Kicks outside, PC cums, I dunno, eight times. We’ll go with that.
 	currentLocation = "812";
-	var map:* = mapper.generateMap(currentLocation);
-	userInterface.setMapData(map);
+	generateMapForLocation(currentLocation);
 	showName("\nRECOVERING");
 	processTime(3);
 	pc.exhibitionism(1);

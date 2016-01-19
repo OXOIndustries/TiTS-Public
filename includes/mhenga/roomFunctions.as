@@ -337,8 +337,7 @@ public function fastTravelToEsbeth():void
 	output("You squat down next to the bulky comm array and punch in the number of the local U.G.C. Scout base. A quick credit transfer later, and you've got a hover car racing toward you for pickup. A few minutes later it arrives, puttering down into the clearing in the middle of camp with doors open. The drone pilot waves you in, and soon whisks you away back to Esbeth.");
 	pc.credits -= 40;
 	currentLocation = "ESBETH TRAVEL AUTHORITY";
-	var map:* = mapper.generateMap(currentLocation);
-  	this.userInterface.setMapData(map);
+	generateMapForLocation(currentLocation);
 	processTime(15);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

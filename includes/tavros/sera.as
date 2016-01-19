@@ -153,6 +153,8 @@ public function seraAppearance():void
 	output("\n\nA foot-long cock, maybe a bit longer, dangles down between her toned thighs, backed up by a pair of balls that sit on the upper end of the terran norm when it comes to size. Sera's ass is nothing to sneeze at either; it's large, nicely rounded, and crowned with a prehensile, spaded tail. She spanks a cheek with it when she catches you looking, sending a kinetic ripple across her crack. At the same time, the spade at the end seems a little bigger and bulgier, perhaps engorged by the contact.");
 	output("\n\nStrappy thigh-highs and garters join her technological-looking corset to her shapely legs. Her feet are perched upon toe-covering, six-inch platform heels, but she walks in them as if it were the most natural thing in the world, perhaps counterbalanced by the tail you noticed earlier.");
 	output("\n\nAll in all, Sera appears to be the kind of woman who enjoys everything sexuality has to offer and pursues it aggressively.");
+	
+	processTime(1);
 	clearMenu();
 	addButton(0,"Next",approachSera);
 }
@@ -170,6 +172,8 @@ public function talkToSeraAboutWhyShesPissedOff():void
 	output("\n\nThe bare-chested demoness sighs. <i>\"So that's what's bothering me. I missed out on a huge sale, and somewhere on station, a sap who got lucky is telling everyone that my mods are a waste of money. Odds are that he should've wound up looking like an ass from those splices.\"</i>");
 	output("\n\nYour only response is to mutter, <i>\"Damn....\"</i>");
 	output("\n\nSera smiles wryly. <i>\"Yeah. Anyway, sorry I almost brained you with a sculpture on your way in.\"</i> She looks you up and down once more. <i>\"Ehh, you would've been fine anyway. I'll have to throw a little harder if you ever torque me off.\"</i> The smile she flashes you looks more like she's baring her teeth at you. <i>\"Now, what can I do for you?\"</i>");
+	
+	processTime(3);
 	//Toggle scene off, show menu.
 	seraMenu();
 }

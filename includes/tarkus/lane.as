@@ -597,8 +597,7 @@ public function visitLaneAfterDetoxing():void
 		}
 		
 		variableRoomUpdateCheck();
-		var map:* = mapper.generateMap(currentLocation);
-		userInterface.setMapData(map);
+		generateMapForLocation(currentLocation);
 
 		return;
 	}

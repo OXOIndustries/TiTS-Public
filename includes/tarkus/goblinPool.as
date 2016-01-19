@@ -306,6 +306,7 @@ public function arbetzMainOptions(response:int = 0):void
 		output("\n\nUna’s physique embodies the female gabilani stereotype and then some: thick, round hips carrying a pear shaped rump and ample, pendulous boobs. In keeping with the rest of her, this is all very carefully marshaled within a gray skirted business suit, stretched tightly over the succulent swells of her curves. She creaks slightly when she walks. Everything about her speaks of a repressively controlled, ravenous carnality.");
 		output("\n\nAs for her two male staff, they seem so alike it’s difficult to believe they are different species - brown, sleek, otter-like bodies, unruly curly hair, each about five foot eleven. You guess the kaithrit, recognizable by his dusty orange ears and tails, is a very masculine example of his race to match up so well to the human, with his flat, Germanic cheekbones. They are both dressed only in tight-fitting swim shorts, their slim, supple butts and seemly bulges clear to see, and they both carry the clumsy, defiantly prideful demeanor of young men who know they are being ruthlessly objectified.");
 		
+		processTime(2);
 		arbetzMainMenu();
 		addDisabledButton(5, "Appearance");
 		addButton(14, "Back", mainGameMenu);
@@ -320,6 +321,7 @@ public function arbetzMainOptions(response:int = 0):void
 		output("\n\nYou stare at her blankly.");
 		output("\n\n<i>“To cover your membership to Arbetz Travel Agency Premium Klub. Do you honestly expect me to let just any scruffbag gap-yearer cannonball in there? The place’d be overrun in a matter of hours. So either cough up and...”</i> the gabilani searches through her papers and squints at one. <i>“...Experience the Superior Magic of the Premium Klub and Receive Special Offers On Mutirat Treks When You Register Online... or push off.”</i>");
 		
+		processTime(1);
 		// [Pay] [Other Way?] [No]
 		clearMenu();
 		if (pc.credits < 5000) addDisabledButton(0, "Pay", "Pay", "The price is just too damn high!");
