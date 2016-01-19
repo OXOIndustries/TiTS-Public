@@ -1068,7 +1068,7 @@ public function kq2GibEngyDirtyMag():void
 
 	processTime(2);
 
-	currentLocation = "KQ2_BARRACKSINTERIOR";
+	currentLocation = "K2_BARRACKSINTERIOR";
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -1091,7 +1091,7 @@ public function kq2GibEngyCash():void
 
 	processTime(2);
 
-	currentLocation = "KQ2_BARRACKSINTERIOR";
+	currentLocation = "K2_BARRACKSINTERIOR";
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -1176,14 +1176,14 @@ public function kq2GibEngyDankHoles():void
 	output("\n\n<i>“I guess you’re a lover, not a fighter, huh?”</i> she chuckles.");
 
 	pc.createKeyItem("Key Card - R&D Security Pass");
-	output("<b>New Key Item: Key Card - R&D Security Pass</b>.");
+	output("\n\n<b>New Key Item: Key Card - R&D Security Pass</b>.");
 
 	processTime(15+rand(5));
 
 	pc.loadInAss(engineer);
 	pc.orgasm();
 
-	currentLocation = "KQ2_BARRACKSINTERIOR";
+	currentLocation = "K2_BARRACKSINTERIOR";
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
