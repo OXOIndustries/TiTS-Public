@@ -1,8 +1,8 @@
 public function kquest2InitRooms():void
 {
-	var planetName:String = "???";
-	var systemName:String = "???";
-
+	var planetName:String = "PLANET: MYRELLION";
+	var systemName:String = "SYSTEM: SINDATHU";
+	
 	rooms["K2_LZ"] = new RoomClass(this);
 	rooms["K2_LZ"].roomName = "LANDING\NZONE";
 	rooms["K2_LZ"].description = "The edge of the plateau overlooks a vast, sun-scorched desert many miles from the heart of Myrellion's civilization. The <i>Ghost</i> is parked not far from here, out of sight of anybody looking up from the surface.\n\n<i>“Come on, [pc.name], let's get going,”</i> Kara says, adjusting the rifle strap clinging to her chest.";

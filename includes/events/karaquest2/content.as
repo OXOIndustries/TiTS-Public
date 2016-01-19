@@ -254,7 +254,11 @@ public function kq2InitTalkMenu():void
 	else addDisabledButton(0, "Black Void");
 
 	if (flags["KQ2_BV_TALK"] != undefined && flags["KQ2_F_TALK"] == undefined) addButton(1, "Friend", kq2KaraTalkFriend, undefined, "“Friend”", "Who is this friend of yours, Kara?");
-	else if (flags["KQ2_BV_TALK"] != undefined && flags["KQ2_F_TALK"] != undefined) addButton(1, "Push", kq2KaraPushFriend, undefined, "Push “Friend”", "You're not letting her get off the hook that easily.");
+	else if (flags["KQ2_BV_TALK"] != undefined && flags["KQ2_F_TALK"] != undefined)
+	{
+		if (flags["KQ2_F_TALK"] != 2) addButton(1, "Push", kq2KaraPushFriend, undefined, "Push “Friend”", "You're not letting her get off the hook that easily.");
+		else addDisabledButton(1, "Push");
+	}
 	else addDisabledButton(1, "Friend");
 
 	if (flags["KQ2_PLAN_TALK"] == undefined) addButton(2, "Her Plan", kq2KaraThePlan, undefined, "Her Plan", "Let’s talk about this plan of yours, Kara.");
@@ -263,10 +267,10 @@ public function kq2InitTalkMenu():void
 	if (flags["KQ2_EYES_TALK"] == undefined) addButton(3, "Her Eyes", kq2KarasEyes, undefined, "Her Eyes", "Ask kara about those eyes of hers. They look " + (pc.characterClass == GLOBAL.CLASS_ENGINEER ? "artificial" : "... wrong"));
 	else addDisabledButton(3, "Her Eyes");
 
-	if (flags["KQ2_PLACE_TALK"] == undefined) addButton(4, "This Place", kq2ThisPlace, "This Place", "How did Kara know about this place, anyway?");
+	if (flags["KQ2_PLACE_TALK"] == undefined) addButton(4, "This Place", kq2ThisPlace, undefined, "This Place", "How did Kara know about this place, anyway?");
 	else addDisabledButton(4, "This Place");
 
-	if (flags["KQ2_HERSELF_TALK"] == undefined) addButton(5, "Herself", kq2Herself, "Herself", "Ask Kara about herself. You need to know who you're working with, after all.");
+	if (flags["KQ2_HERSELF_TALK"] == undefined) addButton(5, "Herself", kq2Herself, undefined, "Herself", "Ask Kara about herself. You need to know who you're working with, after all.");
 	else addDisabledButton(5, "Herself");
 
 	addButton(14, "Next", kq2InitTalkNext, undefined, "Decisions....", "You've heard enough. Time to make your choice.");
