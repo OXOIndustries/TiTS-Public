@@ -520,6 +520,33 @@ public function kq2rfYardA1():Boolean
 	return false;
 }
 
+public function kq2rfBarracksEntrance():Boolean
+{
+	if (flags["KQ2_BARRACKS_ENTRANCE_ENTERED"] == undefined)
+	{
+		// force combat
+		flags["KQ2_BARRACKS_ENTRANCE_ENTERED"] = 1;
+		kq2FightBlackVoidGrunts();
+		return true;
+	}
+	else
+	{		
+		if (flags["KQ2_FIGHT_STEPS"] == undefined) flags["KQ2_FIGHT_STEPS"] = 0;
+		flags["KQ2_FIGHT_STEPS"]++;
+	
+		if (flags["KQ2_FIGHT_STEPS"] > 4)
+		{
+			if (rand(flags["KQ2_FIGHT_STEPS"]) > 5)
+			{
+				flags["KQ2_FIGHT_STEPS"] = 0;
+				kq2FightBlackVoidGrunts();
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
 public function kq2rfBarracksInterior():Boolean
 {
 	output("The interior of the Black Void barracks looks classic military, with bunk beds arranged in rows all the way across it. Bits of armor and uniforms are scattered around, along with several knocked-out pirates from your scuffle. There’s a door south, back towards the courtyard, and another going west labeled <i>“Security.”</i>");
@@ -574,7 +601,7 @@ public function kq2TakeEngineerArmor():void
 public function kq2EngineerArmorCheck():void
 {
 	if (!pc.hasItemByType(VoidPlateArmor) && !pc.armor is VoidPlateArmor) flags["KQ2_TAKEN_ARMOR"] = undefined;
-	kq2rfBarracksInterior();
+	mainGameMenu();
 }
 
 public function kq2rfSecurityRoom():Boolean
