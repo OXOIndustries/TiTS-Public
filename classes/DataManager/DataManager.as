@@ -293,7 +293,7 @@
 				kGAMECLASS.userInterface.dataButton.Glow();
 				
 				var displayMessage:String = "";
-				displayMessage += "<b>Which slot would you like to delete?</b>\n";
+				displayMessage += "<b>Which slot would you like to delete?</b>\n\n";
 				
 				clearGhostMenu();
 				
@@ -357,7 +357,7 @@
 			kGAMECLASS.userInterface.dataButton.Glow();
 			
 			var displayMessage:String = "";
-			displayMessage += "<b>Which slot would you like to load?</b>\n";
+			displayMessage += "<b>Which slot would you like to load?</b>\n\n";
 			
 			kGAMECLASS.userInterface.clearGhostMenu();
 			
@@ -406,7 +406,7 @@
 			}
 			
 			var displayMessage:String = "";
-			displayMessage += "<b>Which slot would you like to save in?</b>\n";
+			displayMessage += "<b>Which slot would you like to save in?</b>\n\n";
 			
 			kGAMECLASS.userInterface.clearGhostMenu();
 			

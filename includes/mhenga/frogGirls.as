@@ -63,7 +63,7 @@ public function frogGirlsEncounter():void
 		//hasCock: 
 		if(pc.hasCock()) output("\n\nShe starts to walk towards you, her narrow hips swaying sensuously with her every step. Her webbed hands draw up over her smooth belly and across her flat and featureless chest before sliding behind her neck as she gives you a lust filled look. Clearly she is trying to seduce you with her androgynous body.");
 		//!hasCock:
-		else output("\n\nShe starts to walk towards you, her narrow hips swaying sensuously with her every step. Her webbed cross defiantly across her flat and featureless chest before she levels her gaze at you. The posture of her androgynous body is one of frustrated hostility. It looks like you have a fight on your hands.");
+		else output("\n\nShe starts to walk towards you, her narrow hips swaying sensuously with her every step. Her webbed hands cross defiantly across her flat and featureless chest before she levels her gaze at you. The posture of her androgynous body is one of frustrated hostility. It looks like you have a fight on your hands.");
 
 		output("\n\n");
 		processTime(3);
@@ -232,7 +232,7 @@ public function hasCockLossForForgGirls():void
 
 	output("\n\nSugary stars and naked women dance before your eyes, and pleasure courses in an endless circuit through your veins. Your hips jounce uncontrollably, and the wily frog girl repositions her hands so that your [pc.cock " + x + "] slides through them with ease. You feel the conduit of electric bliss begin to focus inside you, driving all your pleasure straight to your sex. Noticing your state, the frog girl pops her tongue from its position as your comforting lollipop, and ");
 	if(pc.cockTotal() == 1) output("encircles your cock in a vice-tight lock");
-	else output("weaves around [pc.eachCock] till they are trapped in a vice-tight lock");
+	else output("weaves around [pc.eachCock] until they are trapped in a vice-tight lock");
 	output(".");
 
 	output("\n\nYour impending orgasm is cut short, and you groan as the feeling rebounds through your body. So much pressure that aches to be released, but held fast by a stopper. The frog girl shakes her head with a sly smile.");
@@ -368,7 +368,7 @@ public function frogGirlFootJoerb():void
 	if(pc.isNice()) output("you tell her with a wink");
 	else if(pc.isMischievous()) output("you tease with a grin");
 	else output("you lie with a disarming chuckle");
-	output(". That puts a lusty smile on her face and she scoots closer to you, moving till she sits within reach of [pc.eachCock].");
+	output(". That puts a lusty smile on her face and she scoots closer to you, moving until she sits within reach of [pc.eachCock].");
 
 	output("\n\nShe leans back on her elbows and brings her legs up to a better position. From where she’s situated her feet easily reach [pc.eachCock], sliding across your burgeoning flesh with fluid motions. These muscles might be developed for movement, but damn if she isn’t good at using them while stationary. The slick, venomous sweat coating her entire body only serves to make it easier for her to caress every inch of your [pc.cocks].");
 
@@ -393,7 +393,7 @@ public function frogGirlFootJoerb():void
 	output(" [pc.eachCock], making sure ");
 	if(pc.cockTotal() == 1) output("it is");
 	else output("they are");
-	output(" entirely coated with sheen of her venom. Her second foot travels under your package, lathering ");
+	output(" entirely coated with a sheen of her venom. Her second foot travels under your package, lathering ");
 	if(pc.hasVagina()) output("the folds of [pc.eachVagina]");
 	else if(pc.balls > 0) output("your [pc.sack]");
 	else output("the [pc.skinFurScales] beneath [pc.eachCock]");
@@ -404,7 +404,7 @@ public function frogGirlFootJoerb():void
 	output("\n\n<i>“Again, again!”</i> laughs the cock-crazed kerokoras as she hurries to milk your [pc.cockBiggest]. The jungle is humid and hot, but the surrounding air still feels cold against the volcanic, lust flamed heat of your [pc.cocks]. You can feel a second load of pressurized [pc.cum] fit to burst free from your over-sensitive flesh, rapidly approaching the sweet release her ministrations promise.");
 	output("\n\nYour muscles tense as you cum again, this time pumping hot [pc.cumNoun] over her lustrous " + enemy.skinTone + " stomach. The sight of your cream running off her sweat-slicked skin only inflames your venom induced libido further. You grasp her firm thighs, one in each hand, and press them tightly together. You can feel the cords of muscle tensed beneath her " + enemy.skinTone + " legs, but the outer flesh remains pliant and soft to the touch.");
 
-	output("\n\nYou slide your [pc.cockBiggest] in between the space below her pelvis, squishing it amidst the towers of her legs. Gently, you begin rock back and forth, using all of your willpower to steady yourself. Your dick");
+	output("\n\nYou slide your [pc.cockBiggest] in between the space below her pelvis, squishing it amidst the towers of her legs. Gently, you begin to rock back and forth, using all of your willpower to steady yourself. Your dick");
 	if(pc.cockTotal() > 1) output("s");
 	output(" slide");
 	if(pc.cockTotal() == 1) output("s");
@@ -690,7 +690,7 @@ public function itemRapeAFrogGirl():void
 {
 	showFrogGirl();
 	pc.destroyItem(new Throbb(), 1);
-	output("The nimble frog-girl walks up to your helpless body, sighing as she appraises you carefully. After a moment she hops over to you and presses your weakened frame into the ground, apparently having made her decision. As you fall to the floor the contents of your pack spill out around you, and the kerokoras to pauses to scan the scattered items. She steps over you to pick something up, and you can see her examining it closely.");
+	output("The nimble frog-girl walks up to your helpless body, sighing as she appraises you carefully. After a moment she hops over to you and presses your weakened frame into the ground, apparently having made her decision. As you fall to the floor the contents of your pack spill out around you, and the kerokoras pauses to scan the scattered items. She steps over you to pick something up, and you can see her examining it closely.");
 	output("\n\n<i>“Hey, isn’t this one of those things sky people use to become babymakers? I wonder what it feels like...”</i> she says, and you hear her gasp as she injects herself with the syringe of Throbb you were carrying. You hear a wet schlick and a moan of pleasure from the frog-girl before she turns to face you.");
 	output("\n\n<i>“This is feeling like a really good idea so far. I very much hope you’ll agree,”</i> she says as she spins back to face you. An 8” long " + enemy.skinTone + ", human-looking dick sprouts from just above her clit, already rock hard and twitching; the need to use it is apparent in its owner’s eyes. The lithe now-futa girl practically hops over to you, kneading your body with her slippery hands as she strips you of your [pc.gear].");
 	output("\n\nThe lusty venom in her sweat seeps into your body as she rubs it in, feeling up every part of your body with fervor. Her fingers slide over your [pc.fullChest], and she giggles when your [pc.nipples] harden with the combination of chemicals and attention. Before the venoms totally inhibit your common sense you manage to keep one thought at the top of your head. This harlot is using YOUR injector of Throbb, and by the stars you’ll get your money’s worth.");

@@ -23,12 +23,12 @@
 			this.shortName = "E's Blade";
 			
 			//Regular name
-			this.longName = "tweaked Vamp Blade";
+			this.longName = "tweaked Vamp blade";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "Emmy’s Vamp Blade";
+			this.description = "Emmy’s Vamp blade";
 			
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "This Kiha-brand melee weapon resembles an old-time arming sword, though the blade is made of ultra-tough modern materials, and covered in a series of small ports and recessed power amps. With a flip of a button, the blade coats itself in crackling electricity. When the blade strikes a shielded opponent, not only does it do damage, but it leeches power from the target’s shield belt and creates a secondary kinetic barrier around the user.\n\nEmmy upgraded its ability to drain shields from a foe at a slight expense to its base damage. It should be an exceptional weapon against shielded foes.";

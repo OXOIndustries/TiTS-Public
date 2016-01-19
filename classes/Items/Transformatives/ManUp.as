@@ -56,7 +56,7 @@
 			
 			kGAMECLASS.clearOutput();
 			author("Lashcharge");
-			kGAMECLASS.showName("MANUP");
+			kGAMECLASS.showName("\nMANUP");
 			
 			if(target is PlayerCharacter) {
 				// Consume:

@@ -63,8 +63,8 @@
 			this.typesBought[this.typesBought.length] = GLOBAL.SHIELD;
 			this.sellMarkup = 1.15;
 			this.buyMarkdown = .5;
-			this.keeperBuy = "You ask what items she has to sell.\n\n<i>\"JoyCo has provided the latest and greatest in affordable medical technology for the adventurer in need. You won't find treatments this good for this price anywhere else!\"</i> V-Ko efficiently rattles off the full list of her wares, their effects, and their prices without pause.";
-			this.keeperSell = "You ask if you can sell her anything.\n\n<i>\"My owners have programmed me to purchase medical-type items and treatments at near galactic bazaar rates.\"</i> V-Ko seems rather pleased about admitting that her purchase prices are substandard.";
+			this.keeperBuy = "You ask what items she has to sell.\n\n<i>\"JoyCo has provided the latest and greatest in affordable medical technology for the adventurer in need. You won't find treatments this good for this price anywhere else!\"</i> V-Ko efficiently rattles off the full list of her wares, their effects, and their prices without pause.\n";
+			this.keeperSell = "You ask if you can sell her anything.\n\n<i>\"My owners have programmed me to purchase medical-type items and treatments at near galactic bazaar rates.\"</i> V-Ko seems rather pleased about admitting that her purchase prices are substandard.\n";
 			this.keeperGreeting = "V-Ko smiles warmly at you.";
 
 			this.femininity = 85;

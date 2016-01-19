@@ -21,7 +21,7 @@ package classes.Items.Melee
 			this.type = GLOBAL.MELEE_WEAPON;
 			
 			this.shortName = "T.Spear";
-			this.longName = "Taivra's spear";
+			this.longName = "queen nyrean spear";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			

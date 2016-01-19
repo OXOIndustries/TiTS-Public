@@ -138,6 +138,7 @@
 		include "../includes/tavros/saendraXPack1.as";
 		include "../includes/tavros/sellesy.as";
 		include "../includes/tavros/sera.as";
+		include "../includes/tavros/seraXPack1.as";
 		include "../includes/tavros/shearBeauty.as";
 		include "../includes/tavros/shelly.as";
 		include "../includes/tavros/vahn.as";

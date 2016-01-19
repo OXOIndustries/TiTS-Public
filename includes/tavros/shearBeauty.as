@@ -333,7 +333,7 @@ public function cutHair(hairInches:Number):void
 		else
 		{
 			output("Ceria sits you down in one of the salon chairs, pulling out a simple razor and a pair of scissors.");
-			output("\n\n<i>“The simplest tools are the best ones. You really need to be able to feel the customer’s hair...get close.”</i> Ceria leans forward a bit as she says this, in the midst of trimming the front of your hair and making sure you get a good, deep look down the front of her cleavage. You’re tempted to reach out and touch if not for the delicacy with which she’s working the scissors, making sure no strand is left out of place. When she’s done Ceria gives you a kiss on the cheek before stepping behind you and drawing your attention to the mirror.");
+			output("\n\n<i>“The simplest tools are the best ones. You really need to be able to feel the customer’s hair... get close.”</i> Ceria leans forward a bit as she says this, in the midst of trimming the front of your hair and making sure you get a good, deep look down the front of her cleavage. You’re tempted to reach out and touch if not for the delicacy with which she’s working the scissors, making sure no strand is left out of place. When she’s done Ceria gives you a kiss on the cheek before stepping behind you and drawing your attention to the mirror.");
 		}
 		output("\n\n<i>“There you go, [pc.name], nice and neat. You look " + pc.mf("a lot more rugged","pretty cute") + " with shorter hair if you ask me.”</i>");
 		output("\n\nCeria pulls away to deposit her tools, giving you some time to admire your new look. <b>Your hair is now " + num2Text(Math.round(hairInches)) + " inches long!</b>");
@@ -574,7 +574,7 @@ public function furColorMenu():void
 	clearOutput();
 	showCeria();
 	author("Couch");
-	output("<i>“Fur, huh? Okay, these are pretty much the same options as hair. We’ve got like vanilla colors, metallics, glowy fur...pick whatever kind you want. Because it’s a full-body treatment, I’m gonna have to charge 1,500 credits for a vanilla or metallic, 1,800 for one of the glowy colors. Fur’s a lot of dye.”</i>");
+	output("<i>“Fur, huh? Okay, these are pretty much the same options as hair. We’ve got like vanilla colors, metallics, glowy fur... pick whatever kind you want. Because it’s a full-body treatment, I’m gonna have to charge 1,500 credits for a vanilla or metallic, 1,800 for one of the glowy colors. Fur’s a lot of dye.”</i>");
 
 	//[Standard] Go to Standard Fur Color
 	//[Metallic] Go to Metallic Fur Color
@@ -913,7 +913,7 @@ public function getOralFromCeria():void
 		output("\n\n<i>“Ooh, you’re giving me some options here. Let’s see here, I think I’ll try...”</i> Her finger hovers back and forth over your groin before settling on ");
 		if(dick) output("[pc.oneCock]");
 		else output("[pc.oneVagina]");
-		output(". <i>“...This one.”</i>");
+		output(". <i>“... This one.”</i>");
 	}
 	
 	var x:int = 0;
@@ -923,7 +923,7 @@ public function getOralFromCeria():void
 		if(x < 0) x = pc.smallestCockIndex();
 		output("\n\nCeria starts off by wrapping a hand around your dick, letting you feel the cool softness of her glittering gloved hand. Despite the metallic appearance her fingers are flawlessly silky smooth, practically gliding across the [pc.cockColor " + x + "] surface of your cock.");
 		output("\n\n<i>“Nice, hm? I’m not enough of a fairy fanatic to want wings, but these? Totally worth losing being able to do my nails for.”</i> Ceria keeps stroking until the very first droplet of [pc.cumColor] pre begins to form at your [pc.cockHead " + x + "], at which point her handjob stops. You’re given just enough time to catch your breath before you finally feel those glittering lips brush your cock, as Ceria tips her head down to envelop the [pc.cockHead " + x + "] and the first inch of your dick with her mouth.");
-		output("\n\nShe holds you there, sucking on the tip of your cock like a candy while her tongue slowly slides back and forth across your cumslit, making sure any [pc.cumFlavor] goodness that starts to bubble out doesn’t stay there for long. Her ears droop just a little as she starts to relax, closing her eyes. Presented with such a tempting target, you can hardly resist, and reach down to start stroking Ceria’s ears. She immediately gives a whimper of pleasure, muffled by your dick in her mouth.");
+		output("\n\nShe holds you there, sucking on the tip of your cock like a candy while her tongue slowly slides back and forth across your cumslit, making sure any [pc.cumFlavor] goodness that starts to bubble out doesn’t stay there for long. Her ears droop just a little as she starts to relax, closing her eyes. Presented with such a tempting target, you can hardly resist, and you reach down to start stroking Ceria’s ears. She immediately gives a whimper of pleasure, muffled by your dick in her mouth.");
 		output("\n\n<i>“Keep sucking.”</i> you tell her, running one finger back and forth along the edge of Ceria’s ear. Ceria shivers, but soon obeys, resuming sucking your dick with a bit more hunger behind it. <i>“That’s a good girl.”</i>");
 		output("\n\nCeria continues to whimper and groan, seemingly getting more pleasure out of the blowjob now than you are. There’s plenty for you to enjoy, though, between her lips wrapped around your [pc.cockHead " + x + "] and her silky fairy glove still wrapped around the base of your shaft");
 		if(pc.hasKnot(x)) output(", your throbbing knot cupped in her palm");
@@ -943,7 +943,7 @@ public function getOralFromCeria():void
 	}
 	else
 	{
-		output("\n\nCeria starts off by licking two of her own fingers, showing off her glittering fairy gloves in the process. <i>“Mmm...totally worth not having nails, these are way better.”</i> Once the metallic blue is glistening with a thin layer of saliva, she slips her fingers into your pussy, gently working them around to help loosen you up a bit and give her a feel for your snatch’s shape. She also takes a moment to rub ");
+		output("\n\nCeria starts off by licking two of her own fingers, showing off her glittering fairy gloves in the process. <i>“Mmm... totally worth not having nails, these are way better.”</i> Once the metallic blue is glistening with a thin layer of saliva, she slips her fingers into your pussy, gently working them around to help loosen you up a bit and give her a feel for your snatch’s shape. She also takes a moment to rub ");
 		x = rand(pc.vaginas.length - 1);
 		if(pc.vaginas[x].clits < 1) output("your labia");
 		else if(pc.vaginas[x].clits == 1) output("your clit");
@@ -963,7 +963,7 @@ public function getOralFromCeria():void
 		else output("[pc.girlCum] all over her face.");
 
 		output("\n\n<i>“Oh, " + pc.mf("hunk","cutie") + ", you really know how to make a girl’s ears feel like heaven. I’m glad I took my pants off first.”</i>");
-		if(pc.wetness() >= 3) output(" Ceria wipes her face down with her hands, licking them clean of your [pc.girlCumNoun]. <i>“Could’ve warned me you were a such a faucet down here, though...well, not that I mind with a pussy as [pc.girlCumFlavor] as yours.”</i>");
+		if(pc.wetness() >= 3) output(" Ceria wipes her face down with her hands, licking them clean of your [pc.girlCumNoun]. <i>“Could’ve warned me you were such a faucet down here, though... well, not that I mind with a pussy as [pc.girlCumFlavor] as yours.”</i>");
 	}
 	output("\n\nYou help Ceria clean up the mess the two of you have made and retrieve your gear before she ushers you out to clean herself off. A minute later she returns to the salon counter, a fresh piece of bubblegum in her mouth and a very satisfied look on her face.");
 	processTime(24);
@@ -999,9 +999,9 @@ public function giveDatElfSlootOral():void
 
 	output("\n\nYou obediently put your hands on Ceria’s hips and start licking, earning a sultry coo from the elf as well as a fresh dose of your sweet reward. One of her hands comes to rest on the back of your head, while the other slips under her shirt to grope her own tit while you tend to her sweet sylvan twat.");
 
-	output("\n\n<i>“Oh, baby...that’s it, [pc.name], right there! Lick me right there!”</i> Every flick of your tongue draws out more nectar for you to savor.  The taste is just light enough that it doesn’t overload your senses, though your tongue’s attentions are certainly overwhelming hers. Ceria throws her head back and lets out a long, loud groan as you pull back enough to play with her clit some, adopting a back-and-forth rhythm of teasing her clit for a few seconds and then licking up the nectar that comes spilling forth from the attention. Ceria’s a vocal one, moaning and egging you on with every lick.");
+	output("\n\n<i>“Oh, baby... that’s it, [pc.name], right there! Lick me right there!”</i> Every flick of your tongue draws out more nectar for you to savor. The taste is just light enough that it doesn’t overload your senses, though your tongue’s attentions are certainly overwhelming hers. Ceria throws her head back and lets out a long, loud groan as you pull back enough to play with her clit some, adopting a back-and-forth rhythm of teasing her clit for a few seconds and then licking up the nectar that comes spilling forth from the attention. Ceria’s a vocal one, moaning and egging you on with every lick.");
 
-	output("\n\n<i>“Come on, come on, keep going!  I’m almost - ah! Yesssss....”</i> For all that she’s crying out from the licking itself, Ceria’s actual orgasm is surprisingly quiet. The bubblegum elf hisses her pleasure as she finds release on your tongue, giving you one last surge of her strawberry nectar to enjoy before you pull away and slip her panties back into place. The leaf immediately forms a tight seal, allowing you to lick her thighs clean with no further leakage from her juicy twat. Ceria lets out a satisfied sigh as you pull away, and once you stand up the elven hairstylist gives you a kiss on the cheek.");
+	output("\n\n<i>“Come on, come on, keep going! I’m almost - ah! Yesssss....”</i> For all that she’s crying out from the licking itself, Ceria’s actual orgasm is surprisingly quiet. The bubblegum elf hisses her pleasure as she finds release on your tongue, giving you one last surge of her strawberry nectar to enjoy before you pull away and slip her panties back into place. The leaf immediately forms a tight seal, allowing you to lick her thighs clean with no further leakage from her juicy twat. Ceria lets out a satisfied sigh as you pull away, and once you stand up the elven hairstylist gives you a kiss on the cheek.");
 
 	output("\n\n<i>“Thanks, " + pc.mf("hunk","cutie") + ", you’re really awesome with that tongue of yours. You want some more, ask any time, ‘kay?”</i>");
 
@@ -1088,7 +1088,7 @@ public function fuckCeria():void
 		}
 		output(" You hold this way, resisting the urge to plow Ceria’s pussy any faster lest you cum before you’ve had your fill. You want her to cum first, want to feel what it’s like for her to be gushing around your dick if she’s already this drenched, and it looks like this horny little elf is going to oblige.");
 
-		output("\n\n<i>“Aah...aahnyeah, [pc.name], more! More!”</i> Ceria’s moans soon grow louder, more desperate, more hungry for her impending release. You give her a grin that’s practically feral, relishing the way her voice just keeps getting higher as she nears her climax. Soon she lets out a scream of relief, her bubblegum cunny gripping your dick as she douses it with a veritable fountain of sugary nectar. Your response is a guttural grunt; with your [pc.balls] feeling tight and ready to burst, the stimulation is plenty enough for you to hit your own climax.");
+		output("\n\n<i>“Aah... aahnyeah, [pc.name], more! More!”</i> Ceria’s moans soon grow louder, more desperate, more hungry for her impending release. You give her a grin that’s practically feral, relishing the way her voice just keeps getting higher as she nears her climax. Soon she lets out a scream of relief, her bubblegum cunny gripping your dick as she douses it with a veritable fountain of sugary nectar. Your response is a guttural grunt; with your [pc.balls] feeling tight and ready to burst, the stimulation is plenty enough for you to hit your own climax.");
 
 		if(pc.cumQ() < 1000) 
 		{
@@ -1096,7 +1096,7 @@ public function fuckCeria():void
 			if(pc.hasVagina()) output(" Underneath your cock, you feel [pc.eachVagina] clench as if gripping a dick of its own, sending [pc.girlCumNoun] streaming down your thighs.");
 			output(") You pause, breathless, soaking in the afterglow for a few long seconds before finally pulling out with one last wet pop. Ceria looks dazed, letting go of your back as her arms drop limp at her sides.");
 
-			output("\n\n<i>“Oh gods, [pc.name], that was great....”</i> As Ceria returns to her senses she scoops up some of the froth with her fingers, popping them into her mouth to sample the mix of sweet and [pc.cumFlavor] flavors. <i>“Mmm...oh, I like. We’ve gotta do this again and soon, " + pc.mf("hunk","cutie") + ".”</i>");
+			output("\n\n<i>“Oh gods, [pc.name], that was great....”</i> As Ceria returns to her senses she scoops up some of the froth with her fingers, popping them into her mouth to sample the mix of sweet and [pc.cumFlavor] flavors. <i>“Mmm... oh, I like. We’ve gotta do this again and soon, " + pc.mf("hunk","cutie") + ".”</i>");
 			output("\n\n<i>“Couldn’t agree more.”</i> you reply with a playful look, taking a bit of a sample for yourself as you help Ceria clean up. She ushers you out once you’ve gotten your gear back on, and comes back out to the counter a minute later with a <i>very</i> satisfied smile clinging to her lips.");
 		}
 		else
@@ -1104,7 +1104,7 @@ public function fuckCeria():void
 			output("\n\nIt comes out of you like a geyser, overcoming the flow of Ceria’s nectar and pushing forcefully back into her womb. At first her depths are hungry for the cum, but your inhuman output is far superior to anything her body is meant for, and soon you’ve got Ceria groaning from the strain as you pack her full of so much [pc.cumNoun] that her belly begins to swell, the once-trim elf looking pregnant by the time the pressure is too much and [pc.cumColor] starts spurting out from around the sides of your dick, splattering against your thighs.");
 			if(pc.hasVagina()) output(" Underneath your cock you feel [pc.eachVagina] twitching as if wishing it was getting such a stuffing, having to settle for sending [pc.girlCumNoun] streaming down your thighs.");
 
-			output("\n\nCeria lets go of your back and goes limp as you pull out, a glazed expression on her face. Even her ears droop as if lacking the strength to hold themselves up, so thoroughly have you fucked the strength out of her. <i>“Ooogh...s-so fulllllll....”</i> For a little bit you think you’ve broken her, but gradually she returns to her senses, her hands roaming across her stretched belly with wonder. <i>“Oh wow, that’s...wow. Warn me the next time you’re going to cum that much, " + pc.mf("hunk","cutie") + ".”</i>");
+			output("\n\nCeria lets go of your back and goes limp as you pull out, a glazed expression on her face. Even her ears droop as if lacking the strength to hold themselves up, so thoroughly have you fucked the strength out of her. <i>“Ooogh... s-so fulllllll....”</i> For a little bit you think you’ve broken her, but gradually she returns to her senses, her hands roaming across her stretched belly with wonder. <i>“Oh wow, that’s... wow. Warn me the next time you’re going to cum that much, " + pc.mf("hunk","cutie") + ".”</i>");
 			output("\n\nYou grin back at her. <i>“No promises.”</i>");
 			output("\n\nIt takes you quite some time to clean up the mess before Ceria ushers you out. She comes back out several minutes later looking good as new, though perhaps weak-legged and with a little more curve to her belly than usual.");
 		}
@@ -1113,7 +1113,7 @@ public function fuckCeria():void
 	{
 		output("\n\nShe may have said she’s not big on anal, but you can hardly tell with how little resistance Ceria’s sphincter offers, taking your [pc.cockHead " + y + "] with a whimper from the elf. At the same time, your [pc.cock " + x + "] is enjoying the pleasure of her pussy, which is so wet and slippery that it’s an absolute breeze to sink inside to the hilt. You’re rewarded with Ceria’s wide-eyed pleasure face as she tries to maintain steady breathing while you fill both of her holes with dick.");
 		pc.cockChange();
-		output("\n\n<i>“Nngh...o-okay, I got this...just go slow, [pc.name], okay?”</i>");
+		output("\n\n<i>“Nngh... o-okay, I got this... just go slow, [pc.name], okay?”</i>");
 		output("\n\nYou agree, wanting to savor this anyway. The tight, rhythmic squeezing of her ass, the drenched softness of her pussy, each of your dicks soaking in a different kind of pleasure that combine for a truly heavenly fuck as you slowly roll your hips. Every time your [pc.cock " + y + "] starts to pull out of her ass it’s with the same motion that your other [pc.cock " + x + "] buries itself to the hilt in her cunt. Every motion draws a little gasp of shock from Ceria as the slightly desynchronized fucking keeps her from ever quite relaxing between thrusts. Oh yes, having two cocks is just the <i>best</i>.");
 		output("\n\nCeria draws her arms around your back");
 		if(pc.hasWings()) output(", her fingers caressing your wingpoints");
@@ -1134,7 +1134,7 @@ public function fuckCeria():void
 			output("\n\nYou feel your [pc.cumNoun] begin to gush forth in alternating spurts, each producing a tiny gasp from Ceria as you fill her with your [pc.cumVisc] spunk. Both of her holes squeeze even tighter, massaging your dicks as if trying to coax even more cum out. Soon there’s a frothy mix of pink and [pc.cumColor] wreathing the sides of [pc.cock " + x + "], while Ceria’s ass does a much better job of holding your [pc.cumNoun] inside.");
 			if(pc.hasVagina()) output(" Underneath your cocks, you feel [pc.eachVagina] clench as if gripping a dick of its own, sending [pc.girlCumNoun] streaming down your thighs.");
 			output(" You can’t help but grin in satisfaction as a little bit of [pc.cumColor] bubbles out from Ceria’s ass as you pull out, with the elf’s arms dropping from your back to go to her belly.");
-			output("\n\n<i>“Oof...still not used to being stuffed back there....”</i> Ceria groans a bit as she rubs herself. <i>“Still, it certainly wasn’t bad. You want to do this again, [pc.name], don’t be afraid to ask.”</i>");
+			output("\n\n<i>“Oof... still not used to being stuffed back there....”</i> Ceria groans a bit as she rubs herself. <i>“Still, it certainly wasn’t bad. You want to do this again, [pc.name], don’t be afraid to ask.”</i>");
 			output("\n\n<i>“Oh, I won’t.”</i> you reply as you reach down to Ceria’s pussy, sampling some of your mixed fluids. Her sugary strawberry flavor makes an excellent complement to your own [pc.cumFlavor] taste, and you end up sampling a few more times as you help Ceria clean up, earning a playful swat from her.");
 			output("\n\n<i>“That’s enough, you greedy " + pc.mf("boy","girl") + ", now get out of here so I can finish.”</i> She ushers you out once you’ve gotten your gear back on, and comes back out to the counter a few minutes later, looking quite satisfied.");
 		}
@@ -1142,8 +1142,8 @@ public function fuckCeria():void
 		{
 			output("\n\nYou can feel the first pulse come flowing up your dual cumveins, a thick dose of [pc.cumNoun] that gushes out of your [pc.cock " + x + "] into Ceria’s waiting cunt. The second follows a moment later, blasting into her ass as you start cumming in a continuous back-and-forth rhythm. Both of her holes squeeze even tighter, her ass practically vicelike around your [pc.cock " + y + "] as if trying to prevent you from filling her in back, but your inhuman output will not be so easily denied. Soon her cries of ecstacy turn to moans of shock as you fill her with so much cum that it makes her once-slim belly swell until she looks practically gravid, her twat and tailpipe alike packed to the brim with your [pc.cumVisc] seed.\n\nYou’d gladly fill her even more, but her tightness isn’t quite so great as to allow that. The excess [pc.cumColor] spunk floods out around the sides of your cocks to cover your thighs in your own [pc.cumNoun].");
 			if(pc.hasVagina()) output(" Underneath your dicks, you feel [pc.eachVagina] twitching as if wishing it was getting so gloriously filled, having to settle for adding a wash of [pc.girlCum] to the mess between your legs.");
-			output("\n\nYou pull out to find Ceria’s gone limp and slack-jawed, letting out a dazed groan. Her eyes are half-shut and her ears drooping low, fucked and stuffed so thoroughly that she’s gone completely insensate. The moment you pull out, massive spurts of [pc.cumNoun] start belching from her pussy, her own juices completely swallowed up by your titanic flood. It looks like she’s not going to come back to her senses for a little while after a fucking like that, so you clean up as best you can and make sure she’s comfortable, giving the elf girl a kiss on the forehead before you take your leave.");
-			output("\n\nIt’s quite a while before Ceria comes back out to the counter, looking back to normal. She shoots you an annoyed look, but you can’t help but notice she’s got a bit of a smile tugging at her cheeks...and she’s looking just a little less trim than usual.");
+			output("\n\nYou pull out to find Ceria’s gone limp and slack-jawed, letting out a dazed groan. Her eyes are half-shut and her ears droop low, fucked and stuffed so thoroughly that she’s gone completely insensate. The moment you pull out, massive spurts of [pc.cumNoun] start belching from her pussy, her own juices completely swallowed up by your titanic flood. It looks like she’s not going to come back to her senses for a little while after a fucking like that, so you clean up as best you can and make sure she’s comfortable, giving the elf girl a kiss on the forehead before you take your leave.");
+			output("\n\nIt’s quite a while before Ceria comes back out to the counter, looking back to normal. She shoots you an annoyed look, but you can’t help but notice she’s got a bit of a smile tugging at her cheeks... and she’s looking just a little less trim than usual.");
 		}
 	}
 	processTime(33+rand(10));
@@ -1160,7 +1160,7 @@ public function fairyFootjob():void
 	clearOutput();
 	showCeria();
 	author("Couch");
-	output("<i>“Oho? Not too many people ask me about that...you want a closer look, " + pc.mf("hunk","cutie") + "? Come on, then, right this way.”</i> Ceria motions for you to follow her into the salon’s break room, her walk emphasizing her hips and legs a bit more than usual to keep your eyes on the glittering blue boots that cover everything from the thigh down, topped off in those sleek metallic slippers. Once inside Ceria gesturing for you to sit down on the leather couch while she snatches up one of the spare cushions and tosses it on the table in front of you. You take a moment to relieve yourself of your gear as you sit, [pc.oneCock] already ");
+	output("<i>“Oho? Not too many people ask me about that... you want a closer look, " + pc.mf("hunk","cutie") + "? Come on, then, right this way.”</i> Ceria motions for you to follow her into the salon’s break room, her walk emphasizing her hips and legs a bit more than usual to keep your eyes on the glittering blue boots that cover everything from the thigh down, topped off in those sleek metallic slippers. Once inside Ceria gestures for you to sit down on the leather couch while she snatches up one of the spare cushions and tosses it on the table in front of you. You take a moment to relieve yourself of your gear as you sit, [pc.oneCock] already ");
 	if(pc.hasSheath(pc.biggestCockIndex()) || pc.hasStatusEffect("Genital Slit")) 
 	{
 		output("poking out of its ");

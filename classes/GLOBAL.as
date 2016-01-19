@@ -67,7 +67,8 @@
 		public static const FLAG_CHITINOUS:int								= 34;
 		public static const FLAG_FEATHERED:int								= 35;
 		public static const FLAG_DOUBLE_HEADED:int							= 36;
-		public static const FLAG_GOOEY:int							= 37;
+		public static const FLAG_GOOEY:int									= 37;
+		public static const FLAG_SPIKED:int									= 38;
 		
 		public static const FLAG_NAMES:Array = [
 			"OFFSET -- INVALID",
@@ -108,6 +109,7 @@
 			"Feathered",
 			"Double Headed",
 			"Gooey",
+			"Spiked",
 		];
 		
 		public static const VALID_SKIN_FLAGS:Array = [
@@ -377,6 +379,7 @@
 			FLAG_CHITINOUS,
 			FLAG_FEATHERED,
 			FLAG_GOOEY,
+			FLAG_SPIKED,
 		];
 		
 		public static const VALID_LEG_TYPES:Array = [
@@ -573,7 +576,7 @@
 		
 		public static const NIPPLE_TYPE_NAMES:Array = [
 			"Normal",
-			"Fuckable",
+			"Cunt",
 			"Lipples",
 			"Dick",
 			"Flat",
@@ -619,6 +622,7 @@
 		public static const FLUID_TYPE_NYREA_CUM:int							= 17;
 		//Why special? Cause it matches yer goo color.
 		public static const FLUID_TYPE_SPECIAL_GOO:int							= 18;
+		public static const FLUID_TYPE_CHOCOLATE_CUM:int							= 19;
 		
 		public static const FLUID_TYPE_NAMES:Array = [
 			"Milk",
@@ -640,6 +644,7 @@
 			"Vanilla",
 			"Nyrea Cum",
 			"Goo",
+			"Chocolate Cum",
 		];
 		
 		public static const VALID_CUM_TYPES:Array = [
@@ -654,6 +659,7 @@
 			FLUID_TYPE_NYREA_CUM,
 			FLUID_TYPE_GABILANI_CUM,
 			FLUID_TYPE_SPECIAL_GOO,
+			FLUID_TYPE_CHOCOLATE_CUM,
 		];
 		
 		public static const VALID_GIRLCUM_TYPES:Array = [

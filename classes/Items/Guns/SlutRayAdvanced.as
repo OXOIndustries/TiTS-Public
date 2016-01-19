@@ -45,8 +45,6 @@ package classes.Items.Guns
 			evasion = 0;
 			fortification = 0;
 			
-			isUsable = false; // 9999 Temporarily unusable
-			
 			version = _latestVersion;
 			
 			attackImplementor = CombatAttacks.SlutRayAttackImpl;

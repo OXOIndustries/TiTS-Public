@@ -1544,7 +1544,7 @@ public function seduceTheRaskvelAttackYaNerd():void
 	output("\n\n<i>“What did she say to you?”</i> says the smallest suspiciously. The biggest makes to grab you; you dart out of his reach.");
 	output("\n\n<i>“Why do you have to be so mean?”</i> you mewl");
 	if(pc.biggestTitSize() >= 3 && pc.isChestGarbed()) output(", allowing your [pc.chest] to shift and heave conspicuously in your [pc.upperGarment]");
-	output(". <i>“All this violence. Why, I’d love to do... such things with strong, youthful boys as you...”</i> you purse your [pc.lips] and allow your [pc.eyes] to drift winsomely over all three, favouring each of them equally. <i>“But when there’s three of you all getting rough together, it’s just, just too much!”</i> The smallest one seems to be in a slight daze, his long flap-like ears and feathers twitching as he gazes at you. You drape yourself over him, very gently caressing his lower back, stopping before the rise of his round, pert bum.");
+	output(". <i>“All this violence. Why, I’d love to do... such things with strong, youthful boys as you...”</i> you purse your [pc.lips] and allow your [pc.eyes] to drift winsomely over all three, favoring each of them equally. <i>“But when there’s three of you all getting rough together, it’s just, just too much!”</i> The smallest one seems to be in a slight daze, his long flap-like ears and feathers twitching as he gazes at you. You drape yourself over him, very gently caressing his lower back, stopping before the rise of his round, pert bum.");
 
 	output("\n\n<i>“I bet those two don’t let you have any fun,”</i> you breathe in his ear. <i>“Always the last and least for you, isn’t it? I can tell, and it makes my heart ache to think of you being so unhappy. Imagine if it were just you and me... if you had me all to yourself...”</i> His breath is coming thick and hard.");
 
@@ -1560,6 +1560,9 @@ public function seduceTheRaskvelAttackYaNerd():void
 
 	output("\n\nYou stand back and watch with a pleased smile as the three raskvel descend into a howling red ball of flying fists, tails, feet and recriminations, mauling each other in an explosion of sexual aggression, purely to try and win a chance to make it with you. If you wanted to sneak away, this would be the time to do it. Or you could stay and see if you can have some further fun with whoever wins...");
 
+	userInterface.hideNPCStats();
+	userInterface.leftBarDefaults();
+	
 	processTime(3);
 	//[Sneak away] [Stay]
 	clearMenu();

@@ -1288,7 +1288,8 @@ public function kq2KhanVictoryMenu():void
 	if (flags["KQ2_KHAN_KHAN"] == undefined) addButton(1, "Talk: Khan", kq2KhanPCVictoryTalkKhan, undefined, "Talk: Dr. Khan", "Talk to the defeated researcher.");
 	else addDisabledButton(1, "Talk: Khan");
 
-	addButton(2, "Fuck Khan", kq2KhanVictoryFuckRouter, undefined, "Fuck Dr. Khan", "Give the doctor a taste of his own medicine. Make him service you orally while Kara milks what's gotta be gallons of spooge via the back door.");
+	if (pc.hasGenitals()) addButton(2, "Fuck Khan", kq2KhanVictoryFuckRouter, undefined, "Fuck Dr. Khan", "Give the doctor a taste of his own medicine. Make him service you orally while Kara milks what's gotta be gallons of spooge via the back door.");
+	else addDisabledButton(2, "Fuck Khan", "Fuck Dr. Khan", "You will need genitals for this!");
 
 	if (flags["KQ2_KHAN_LOOTED"] == undefined)
 	{
@@ -1428,6 +1429,7 @@ public function kq2KhanLeave():void
 
 public function kq2KhanVictoryFuckRouter():void
 {
+	flags["KQ2_FUCKED_KHAN"] = 1;
 	if (pc.hasCock()) kq2KhanPCDickFuck();
 	else kq2KhanPCVagFuck();
 }

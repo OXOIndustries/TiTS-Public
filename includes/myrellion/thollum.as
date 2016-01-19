@@ -342,7 +342,8 @@ public function takeTheThollumTour():void
 	output("\n\n<i>“This is the main foyer, as I’m sure you’ve guessed. The rooms of the thollum connect here, and visitors are received here as well.”</i> She continues forward, opening the large door. <i>“Through here is the thollum courtyard.”</i>");
 
 	output("\n\nThe cavern beyond is carpeted with short, colorful caps that feel springy and resilient under your [pc.feet] when the guard walks you to the center. The flexible, blunted mushrooms must make this place a natural romper room");
-	if(hours >= 19 && hours < 21) output(", particularly since hundreds of myr children are taking their leisure here, dirtying their clothes in rough games and lounging about. A few are even eating the mushrooms, though this could be more by eccentricity than design}. Along the walls are fenced-off sections containing much larger fungi and plants, along with tools and bags that are recognizable as gardening supplies even at this distance");
+	if(hours >= 19 && hours < 21) output(", particularly since hundreds of myr children are taking their leisure here, dirtying their clothes in rough games and lounging about. A few are even eating the mushrooms, though this could be more by eccentricity than design");
+	output(". Along the walls are fenced-off sections containing much larger fungi and plants, along with tools and bags that are recognizable as gardening supplies even at this distance");
 	
 	if(flags["MUSHROOM_TRACKER"] == undefined) flags["MUSHROOM_TRACKER"] = 0;
 	var mushRoom:Number = flags["MUSHROOM_TRACKER"];
@@ -1896,7 +1897,7 @@ public function doYarastaDoggieStyle():void
 	output(" is always wrapped deep in her folds. <i>“More,”</i> she mumbles, then louder: <i>“More!”</i>");
 
 	output("\n\nYou stick it to her, rocking her with the momentum of your plunges. Yarasta grunts and sweats like an animal as the pace picks up, occasionally looking back over her shoulder with a mixture of worry and adoration. Her vagina drools sticky honey-like lube on your ");
-	if(x >= 0) output("shaft, down to the [pc.knot " + x + "]");
+	if(x >= 0) output("shaft, down to the [pc.knot " + x + "].");
 	else if(x == -1) output("alien cock, down to the sensitive slit that conceals it.");
 	else 
 	{
