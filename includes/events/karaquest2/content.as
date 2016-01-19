@@ -999,7 +999,8 @@ public function kq2EngineerPCVictory():void
 
 	output("The lapinara and her drone");
 	if (CombatManager.getHostileCharacters().length > 2) output("s");
-	output(" collapse, utterly defeated. <b>You find a keycard on her person</b>. No doubt this’ll get you into the research facility!");
+	output(" collapse, utterly defeated.");
+	if (!pc.hasKeyItem("Key Card - R&D Security Pass")) output(" <b>You find a keycard on her person</b>. No doubt this’ll get you into the research facility!");
 
 	pc.createKeyItem("Key Card - R&D Security Pass");
 	output("\n\n<b>New Key Item: Key Card - R&D Security Pass</b>.\n\n");

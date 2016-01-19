@@ -38,7 +38,7 @@ package classes.Characters
 			this.a = "the ";
 			this.capitalA = "The ";
 			// this.long = "You're fighting a pirate techie, an ausar woman in a flight suit with a machine pistol at her hip. She's got a shock of blonde hair, perky breasts under her suit, and a shield generator that's thrumming with overcharged energy."
-			this.long = "You're fighting a lapinara engineer, a small pale-skinned creature with big bunny ears, curled horns, and a cute little tail. She's wearing a black breastplate, tall boots, and a jockstrap that can only barely contain her over-sized testicles. Her six-inch canine cock bounces unrestrained in front of her, peeking out of her clothes. She clutches a laser pistol in her hand, tricked out with enough mods to make it a serious damage-dealer.";
+			this.long = "A lapinara engineer, a small pale-skinned creature with big bunny ears, curled horns, and a cute little tail. She's wearing a black breastplate, tall boots, and a jockstrap that can only barely contain her over-sized testicles. Her six-inch canine cock bounces unrestrained in front of her, peeking out of her clothes. She clutches a laser pistol in her hand, tricked out with enough mods to make it a serious damage-dealer.";
 			this.customBlock = "The pirates armor deflects your attack with an alarming ease.";
 			this.isPlural = false;
 			isLustImmune = false;

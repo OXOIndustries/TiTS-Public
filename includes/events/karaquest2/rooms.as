@@ -56,7 +56,8 @@ public function kquest2InitRooms():void
 	rooms["K2_SEWER1"].system = systemName;
 	rooms["K2_SEWER1"].eastExit = "K2_SEWER2";
 	rooms["K2_SEWER1"].westExit = "K2_SEWERENTRANCE";
-	rooms["K2_SEWER1"].addFlag(GLOBAL.OUTDOOR);
+	rooms["K2_SEWER1"].addFlag(GLOBAL.INDOOR);
+	rooms["K2_SEWER1"].addFlag(GLOBAL.HAZARD);
 
 	rooms["K2_SEWER2"] = new RoomClass(this);
 	rooms["K2_SEWER2"].roomName = "\nSEWER";
@@ -66,7 +67,8 @@ public function kquest2InitRooms():void
 	rooms["K2_SEWER2"].system = systemName;
 	rooms["K2_SEWER2"].eastExit = "K2_BASEENTRANCE";
 	rooms["K2_SEWER2"].westExit = "K2_SEWER1";
-	rooms["K2_SEWER2"].addFlag(GLOBAL.OUTDOOR);
+	rooms["K2_SEWER2"].addFlag(GLOBAL.INDOOR);
+	rooms["K2_SEWER2"].addFlag(GLOBAL.HAZARD);
 
 	rooms["K2_BASEENTRANCE"] = new RoomClass(this);
 	rooms["K2_BASEENTRANCE"].roomName = "BASE\nENTRANCE";
@@ -273,7 +275,7 @@ public function kquest2InitRooms():void
 	rooms["K2_SECURITYROOM"].runOnEnter = kq2rfSecurityRoom;
 	rooms["K2_SECURITYROOM"].planet = planetName;
 	rooms["K2_SECURITYROOM"].system = systemName;
-	rooms["K2_SECURITYROOM"].eastExit = "K2_SECURITYROOM";
+	rooms["K2_SECURITYROOM"].eastExit = "K2_BARRACKSINTERIOR";
 	rooms["K2_SECURITYROOM"].addFlag(GLOBAL.INDOOR);
 	rooms["K2_SECURITYROOM"].addFlag(GLOBAL.HAZARD);
 	rooms["K2_SECURITYROOM"].addFlag(GLOBAL.NPC);

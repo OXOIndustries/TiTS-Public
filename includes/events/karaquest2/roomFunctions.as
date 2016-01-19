@@ -23,27 +23,6 @@ public function tryProcKQ2CombatCourtyards():Boolean
 	return false;
 }
 
-public function tryProcKQ2CombatBarracks():Boolean
-{
-	var encounters:Array = [];
-	encounters.push(kq2FightBlackVoidGrunts);
-	
-	if (flags["KQ2_FIGHT_STEPS"] == undefined) flags["KQ2_FIGHT_STEPS"] = 0;
-	flags["KQ2_FIGHT_STEPS"]++;
-	
-	if (flags["KQ2_FIGHT_STEPS"] > 4)
-	{
-		if (rand(flags["KQ2_FIGHT_STEPS"]) > 5)
-		{
-			flags["KQ2_FIGHT_STEPS"] = 0;
-			RandomInCollection(encounters)();
-			return true;
-		}
-	}
-	
-	return false;
-}
-
 public function tryProcKQ2CombatSewers():Boolean
 {
 	var encounters:Array = [];
@@ -187,7 +166,7 @@ public function kq2rfSewer1():Boolean
 
 	output("\n\n<i>“Careful,”</i> Kara whispers, <i>“Don’t know what could be down here...”</i>");
 
-	return false;
+	return tryProcKQ2CombatSewers();
 }
 
 public function kq2rfSewer2():Boolean
@@ -199,7 +178,7 @@ public function kq2rfSewer2():Boolean
 
 	output("\n\nAs you’re walking, Kara taps on a small wrist computer, eyeing a holo-display that flashes across her hand. <i>“East. We want to go east, just a little further.”</i>");
 
-	return false;
+	return tryProcKQ2CombatSewers();
 }
 
 public function kq2rfBaseEntrance():Boolean
