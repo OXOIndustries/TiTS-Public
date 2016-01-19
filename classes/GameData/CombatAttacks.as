@@ -67,7 +67,7 @@ package classes.GameData
 				{
 					possibleCreature = currentCreature;
 				}
-				else if (currentCreature.isUniqueInFight && !possibleCreature.isUniqueInFight)
+				else if (currentCreature.isUniqueInFight && (possibleCreature != null && !possibleCreature.isUniqueInFight))
 				{
 					possibleCreature = currentCreature;
 				}
@@ -1089,8 +1089,8 @@ package classes.GameData
 			
 			totalDamage = applyDamage(damageRand((target.isPlural == true ? pluralDamage : baseDamage), 15), attacker, target, "suppress");
 			
-			baseDamage.multiply(0.5);
-			pluralDamage.multiply(0.5);
+			baseDamage.multiply(0.33);
+			pluralDamage.multiply(0.33);
 			
 			for (var i:int = 0; i < hGroup.length; i++)
 			{
@@ -1123,8 +1123,8 @@ package classes.GameData
 			
 			totalDamage = applyDamage(damageRand((target.isPlural == true ? pluralDamage : baseDamage), 15), attacker, target, "suppress");
 			
-			baseDamage.multiply(0.5);
-			pluralDamage.multiply(0.5);
+			baseDamage.multiply(0.33);
+			pluralDamage.multiply(0.33);
 			
 			for (var i:int = 0; i < hGroup.length; i++)
 			{

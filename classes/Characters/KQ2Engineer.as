@@ -46,13 +46,15 @@ package classes.Characters
 			this.meleeWeapon = new Fists();
 			this.rangedWeapon = new LaserPistol();
 			rangedWeapon.hasRandomProperties = true;
-			rangedWeapon.baseDamage.burning.damageValue = 12;
+			rangedWeapon.baseDamage.burning.damageValue = 18;
 			this.shield = new ReaperArmamentsMarkIIShield();
-			shield.shields = 120;
+			shield.shields = 200;
+			shield.resistances.burning.resistanceValue = 25.0;
+			shield.resistances.electric.resistanceValue = -10;
 			shield.hasRandomProperties = true;
 			
 			this.armor.longName = "flight suit";
-			this.armor.defense = 2;
+			this.armor.defense = 1;
 			this.armor.hasRandomProperties = true;
 			
 			this.physiqueRaw = 10;
@@ -66,9 +68,9 @@ package classes.Characters
 			this.lustRaw = 10;
 			
 			this.XPRaw = 500;
-			this.level = 5;
+			this.level = 7;
 			this.credits = 400 + rand(37);
-			this.HPMod = -35;
+			this.HPMod = 0;
 			this.HPRaw = this.HPMax();
 			
 			this.femininity = 100;
