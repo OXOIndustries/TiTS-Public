@@ -27,7 +27,9 @@ KQ2_RF_KENNEL_USED		-- 0/undefined, unused
 TAMWOLF_DAMAGE_UPGRADE	-- 0/undefined, current damage for undamaged tamwolf
 						-- 1 upgraded/adaptive damage for tamwolf (TODO)
 KQ2_WATSON_MET
-KQ2_DEFEATED_ENGINEER
+KQ2_DEFEATED_ENGINEER	-- 0/undefined, unencountered
+						-- 1, defeated in combat, knocked out
+						-- 2, room locked, rip
 KQ2_DEFEATED_JUGGERNAUT
 KQ2_DEFEATED_KHAN
 KQ2_KHANS_FILES			-- 0/undefined, nothing
@@ -930,7 +932,7 @@ public function kq2EnterEngineersRoom():void
 {
 	if (flags["KQ2_ENGINEER_NUM_DRONES"] == undefined) flags["KQ2_ENGINEER_NUM_DRONES"] = 1 + rand(4);
 
-	if (flags["KQ2_LEFT_ENGINEER"] == undefined)
+	if (flags["KQ2_DEFEATED_ENGINEER"] == undefined)
 	{
 		clearOutput();
 		showKQ2Engineer();
@@ -1000,7 +1002,7 @@ public function kq2EngineerPCVictory():void
 	output(" collapse, utterly defeated. <b>You find a keycard on her person</b>. No doubt this’ll get you into the research facility!");
 
 	pc.createKeyItem("Key Card - R&D Security Pass");
-	output("\n\n<b>New Key Item: Key Card - R&D Security Pass</b>.");
+	output("\n\n<b>New Key Item: Key Card - R&D Security Pass</b>.\n\n");
 
 	flags["KQ2_DEFEATED_ENGINEER"] = 1;
 
@@ -1064,7 +1066,7 @@ public function kq2GibEngyDirtyMag():void
 	output("\n\nSomewhat amazed that actually worked, you take the keycard and leave the lapinara engineer to her business.");
 
 	pc.createKeyItem("Key Card - R&D Security Pass");
-	output("<b>New Key Item: Key Card - R&D Security Pass</b>.");
+	output("\n\n<b>New Key Item: Key Card - R&D Security Pass</b>.");
 
 	processTime(2);
 
@@ -1087,7 +1089,7 @@ public function kq2GibEngyCash():void
 	output(", and quickly make your way out of the security office.");
 
 	pc.createKeyItem("Key Card - R&D Security Pass");
-	output("<b>New Key Item: Key Card - R&D Security Pass</b>.");
+	output("\n\n<b>New Key Item: Key Card - R&D Security Pass</b>.");
 
 	processTime(2);
 
@@ -1184,6 +1186,8 @@ public function kq2GibEngyDankHoles():void
 	pc.orgasm();
 
 	currentLocation = "K2_BARRACKSINTERIOR";
+	flags["KQ2_DEFEATED_ENGINEER"] = 2;
+	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -1422,7 +1426,7 @@ public function kq2KhanLeave():void
 	
 	output("\n\n<i>“Slaves taking slaves,”</i> Kara grunts, picking the remote back up from the floor and pressing it into your hand. <i>“");
 	if (kara.isMischievous() || kara.isAss()) output(" And I was just starting to feel good about freeing them. ");
-	output("Your turn, [pc.name]. Let’s go find us some red bugs.”</i>");
+	output("Your turn, [pc.name]. Let’s go find us some red bugs.”</i>\n\n");
 
 	CombatManager.genericVictory();
 }
@@ -1509,7 +1513,7 @@ public function kq2KhanPCDickFuck():void
 
 	output("\n\nFinished with the kui-tan, Kara gives the defeated, cum-stuffed doctor a little push. He groans and collapses, slipping into a state of sated unconsciousness.");
 
-	output("\n\n<i>“That was too good for him,”</i> a few of the gold myr girls mumble, glowering at their erstwhile master. You silently gather your gear and leave Khan to his sleep.");
+	output("\n\n<i>“That was too good for him,”</i> a few of the gold myr girls mumble, glowering at their erstwhile master. You silently gather your gear and leave Khan to his sleep.\n\n");
 
 	processTime(30+rand(5));
 	pc.orgasm();
@@ -1587,7 +1591,7 @@ public function kq2KhanPCVagFuck():void
 
 	output("\n\nFinished with the kui-tan, Kara gives the defeated, cum-stuffed doctor a little push. He groans and collapses, slipping into a state of sated unconsciousness.");
 	
-	output("\n\n<i>“That was too good for him,”</i> a few of the gold myr girls mumble, glowering at their erstwhile master. You silently gather your gear and leave Khan to his sleep.");
+	output("\n\n<i>“That was too good for him,”</i> a few of the gold myr girls mumble, glowering at their erstwhile master. You silently gather your gear and leave Khan to his sleep.\n\n");
 
 	processTime(30+rand(5));
 	pc.orgasm();
@@ -1798,7 +1802,7 @@ public function kq2ShadePCVictoryKaraHard():void
 	
 	output("\n\nHoly shit.");
 	
-	output("\n\nKara lets out a short sigh and racks the charger on her pistol. <i>“What’re you waiting for? Let’s go!”</i>");
+	output("\n\nKara lets out a short sigh and racks the charger on her pistol. <i>“What’re you waiting for? Let’s go!”</i>\n\n");
 
 	flags["KQ2_SHADE_DEAD"] = 1;
 
@@ -1830,7 +1834,7 @@ public function kq2ShadePCVictoryKaraNotHard():void
 	
 	output("\n\n<i>“Ah, fuck,”</i> Shade groans, sitting back against the wall. <i>“I’m getting too old for this shit.”</i>");
 	
-	output("\n\n<i>“Stay down,”</i> Kara warns, racking the charger on her pistol. The huntress doesn’t challenge her threat, and Kara turns to you. <i>“C’mon, [pc.name], let’s go! We’re almost home free!”</i>");
+	output("\n\n<i>“Stay down,”</i> Kara warns, racking the charger on her pistol. The huntress doesn’t challenge her threat, and Kara turns to you. <i>“C’mon, [pc.name], let’s go! We’re almost home free!”</i>\n\n");
 
 	CombatManager.genericVictory();
 }
@@ -1986,7 +1990,7 @@ public function kq2JuggernautPCVictoryII(takeWeapon:Boolean):void
 	else output(" drop the unwanted weapon");
 	output(" and follow Kara into the elevator car. She punches the <i>“close”</i> button, though the doors end up just bouncing off the juggernaut’s chest, squeezing him between them. With a sigh, Kara drags his body out of the way, and the doors close.");
 	
-	output("\n\n<i>“Alright. Up to the roof we go, [pc.name].”</i>");
+	output("\n\n<i>“Alright. Up to the roof we go, [pc.name].”</i>\n\n");
 
 	CombatManager.genericVictory();
 }
@@ -2224,7 +2228,7 @@ public function kq2AmaraPCVictory():void
 	// Nuke due to explode within 30 minutes
 	if (flags["KQ2_NUKE_STARTED"] != undefined)
 	{
-		output(" And just in time: you cover your eyes as a nuke goes off in the caldera, a flash of light followed by a shockwave that makes your teeth ache. Luckily, the re-activated shields protect you from harm.");
+		output(" And just in time: you cover your eyes as a nuke goes off in the caldera, a flash of light followed by a shockwave that makes your teeth ache. Luckily, the re-activated shields protect you from harm.\n\n");
 		flags["KQ2_NUKE_EXPLODED"] = 1;
 	}
 

@@ -1,3 +1,20 @@
+import classes.RoomClass;
+public function kquest2RoomStateUpdater():void
+{
+	// Engineers room
+	var tRoom:RoomClass = rooms["K2_SECURITYROOM"];
+	if (flags["KQ2_DEFEATED_ENGINEER"] == undefined)
+	{
+		if (!tRoom.hasFlag(GLOBAL.NPC)) tRoom.addFlag(GLOBAL.NPC);
+		if (!tRoom.hasFlag(GLOBAL.HAZARD)) tRoom.addFlag(GLOBAL.HAZARD);
+	}
+	else if (flags["KQ2_DEFEATED_ENGINEER"] == 1)
+	{
+		if (tRoom.hasFlag(GLOBAL.NPC)) tRoom.removeFlag(GLOBAL.NPC);
+		if (tRoom.hasFlag(GLOBAL.HAZARD)) tRoom.removeFlag(GLOBAL.HAZARD);
+	}
+}
+
 public function kquest2InitRooms():void
 {
 	var planetName:String = "PLANET: MYRELLION";

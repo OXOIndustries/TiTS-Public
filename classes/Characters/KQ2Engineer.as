@@ -20,6 +20,7 @@ package classes.Characters
 	
 	import classes.Engine.Utility.weightedRand;
 	import classes.Engine.Utility.num2Text;
+	import classes.Items.Miscellaneous.EmptySlot;
 	
 	//Low health, mid armor, heavy shields. Carries a rapid-fire, low-damage gun. Level 5.
 
@@ -197,19 +198,26 @@ package classes.Characters
 				var worstPerc:Number = 1.0;
 				var shieldTarget:Creature = null;
 				
+				var thisPerc:Number = 1.0;				
+				
 				for (var i:int = 0; i < alliedCreatures.length; i++)
 				{
 					if (alliedCreatures[i].isDefeated()) continue;
 					
-					var thisPerc:Number = alliedCreatures[i].shieldsMax() / alliedCreatures[i].shields();
+					thisPerc = (alliedCreatures[i].shields() <= 0 ? 0 : alliedCreatures[i].shields() / alliedCreatures[i].shieldsMax());
+					
 					if (thisPerc < worstPerc)
 					{
 						shieldTarget = alliedCreatures[i];
+						worstPerc = thisPerc;
 					}
 				}
 				
-				shieldBoost(shieldTarget);
-				return;
+				if (shieldTarget != null && worstPerc < 0.5)
+				{
+					shieldBoost(shieldTarget);
+					return;
+				}
 			}
 			
 			var attacks:Array = [];
@@ -257,7 +265,7 @@ package classes.Characters
 				output("The lapinara rushes over to");
 				if (numAlive > 1) output(" one of");
 				output(" her drone");
-				if (numAlive > 1) output(" s");
+				if (numAlive > 1) output("s");
 				output(" and takes a knee next to it, yanking off its back panel and starting to pull wires. After a moment's work, the drone's shields flicker with renewed strength.");
 			}
 			

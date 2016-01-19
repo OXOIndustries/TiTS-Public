@@ -1004,7 +1004,7 @@ package classes.GameData
 		{
 			if (!(attacker is PlayerCharacter))
 			{
-				output(attacker.capitalA + attacker.uniqueName + " smiles as a high-pitched emanates from " + attacker.mfn("his", "her", "its") + " " + attacker.rangedWeapon.longName + "!");
+				output(attacker.capitalA + attacker.uniqueName + " smiles as a high-pitched whine emanates from " + attacker.mfn("his", "her", "its") + " " + attacker.rangedWeapon.longName + "!");
 			}
 			
 			if (rangedCombatMiss(attacker, target))

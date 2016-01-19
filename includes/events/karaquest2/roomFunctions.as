@@ -609,14 +609,14 @@ public function kq2rfSecurityRoom():Boolean
 	//PC fights the Black Void Engineer here.
 	output("A small stairway leads up from the barracks’ main floor and up to the security office. A set of windows overlook the courtyard, and over the wasteland leading up to the base.");
 
-	if (flags["KQ2_DEFEATED_ENGINEER"] == undefined)
+	if (flags["KQ2_DEFEATED_ENGINEER"] == undefined || flags["KQ2_DEFEATED_ENGINEER"] == 2)
 	{
 		kq2EnterEngineersRoom();
 		return true;
 	}
 	else
 	{
-		output(" A set of simple controls gave the engineer, now lying in a heap on the ground, command over the heavy machine-guns at the gate and allowed him to summon and direct reinforcements.");
+		output(" A set of simple controls gave the engineer, now lying in a heap on the ground, command over the heavy machine-guns at the gate and allowed her to summon and direct reinforcements.");
 
 		if (!pc.hasKeyItem("Key Card - R&D Security Pass"))
 		{
