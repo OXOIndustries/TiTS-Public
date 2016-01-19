@@ -873,6 +873,8 @@ public function kq2WatsonTalkIntervention():void
 	output("\n\nWith a little encouragement, Kara collects herself. <i>“Right... right. Before we leave, there’s something I need to know. Let’s get to Khan’s office. I need to see something.");
 
 	processTime(10);
+	
+	flags["KQ2_TALKED_TO_WATSON"] = 1;
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -1010,7 +1012,6 @@ public function kq2EngineerPCVictory():void
 	CombatManager.genericVictory();
 	
 	kquest2RoomStateUpdater();
-	generateMap();
 }
 
 public function kq2LeaveEngineer():void

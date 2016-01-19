@@ -264,7 +264,7 @@ public function kq2RadioTowerElevator():void
 			output("\n\nYou wish her the same, and hit the <i>“DOWN”</i> button once again.");
 		}
 
-		flags["KQ2_KARA_WITH_PC"] = 2;
+		flags["KQ2_KARA_WITH_PC"] = undefined;
 	}
 	else
 	{
@@ -327,7 +327,7 @@ public function kq2rfYardB3():Boolean
 	else output(" are unlocked");
 	output(".");
 
-	if (flags["KQ2_RND_ENTRANCE_OPEN"] == 0)
+	if (flags["KQ2_RND_ENTRANCE_OPEN"] == undefined)
 	{
 		if (pc.hasKeyItem("Key Card - R&D Security Pass"))
 		{
@@ -428,7 +428,7 @@ public function kq2rfEnterRNDFirstTime():void
 {
 	clearOutput();
 
-	if (flags["KQ2_KARA_WITH_PC"] == 2)
+	if (flags["KQ2_KARA_WITH_PC"] == undefined)
 	{
 		output("You wave at the radio tower, trying to signal Kara to come over. She’s back with you momentarily, running across the courtyard as quick as she can.");
 
@@ -436,7 +436,7 @@ public function kq2rfEnterRNDFirstTime():void
 	}
 	else
 	{
-		output("\n\n<i>“Whoo! For a second there, I didn’t think we’d make it this far. C’mon, we’re almost there!”</i>");
+		output("<i>“Whoo! For a second there, I didn’t think we’d make it this far. C’mon, we’re almost there!”</i>");
 	}
 
 	output("\n\nKara shouts, leaping through the");
@@ -456,7 +456,7 @@ public function kq2rfYardA1():Boolean
 
 	output("\n\nThere’s a kennel here, made of steel and bearing several power hook-ups. A tag on the side of it indicates it’s a <i>“Fenris assault drone charging and repair station”</i> made by KihaCorp.");
 
-	if (pc.accessory is TamWolfDamaged || pc.hasItemByType(TamWolfDamaged))
+	if (flags["KQ2_RF_KENNEL_USED"] == undefined && (pc.accessory is TamWolfDamaged || pc.hasItemByType(TamWolfDamaged)))
 	{
 		output("\n\nTam-wolf stalks toward the kennel and sniffs at one of the charging bays. <i>“M-m-[pc.master], I am baaaaadly damaged. With your permission, I will-will-will initiate repair protocooooools.”</i>");
 
@@ -475,6 +475,7 @@ public function kq2rfYardA1():Boolean
 		}
 
 		flags["KQ2_RF_KENNEL_USED"] = 1;
+		flags["TAMWOLF_FIXED_IN_KENNEL"] = 1;
 	}
 	else if (flags["KQ2_RF_KENNEL_USED"] == undefined && (pc.accessory is TamWolf || pc.hasItemByType(TamWolf)))
 	{
