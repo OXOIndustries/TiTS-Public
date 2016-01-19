@@ -545,7 +545,7 @@ public function varmintOnShipBonus(btnSlot:int = 0):String
 		if(pc.isBimbo())
 		{
 			bonusText += " SO CUTE!";
-			btnText = "<i>Who’s a good little cutie-wooty? You are! Oh, yes you are~!</i>";
+			btnText = "<i>Who’s a good little cutie-wooty? You are! Oh, yes you are!</i>";
 		}
 		else btnText = "Check up on the critter.";
 		

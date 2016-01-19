@@ -79,7 +79,7 @@ public function zodeeGivesFirstGalomax():void
 	else if(pc.isNice()) output("<i>“I’m [pc.name], and I think I’d like that.”</i>");
 	else if(pc.isMischievous()) output("<i>“I go by [pc.name]. I sure hope you aren’t too sore when I’m scoring crate loads of riches out from under your nose.”</i>");
 	else output("<i>“Good luck with that. I’m [pc.name]. Remember it.”</i>");
-	output("\n\nZo’dee shrugs nonchalantly, but your eyes are firmly drawn to the wiggle of her hips, brought out in stark relief by the glistening shine of her bodysuit, as she walks away. <i>“Maybe. Be careful with that GaloMax by the way. I hear it’s pretty permanent. Or get as much as you can, I don’t really care. Maybe I want you all gooey and slutty~?”</i>\n\n");
+	output("\n\nZo’dee shrugs nonchalantly, but your eyes are firmly drawn to the wiggle of her hips, brought out in stark relief by the glistening shine of her bodysuit, as she walks away. <i>“Maybe. Be careful with that GaloMax by the way. I hear it’s pretty permanent. Or get as much as you can, I don’t really care. Maybe I want you all gooey and slutty?”</i>\n\n");
 	flags["MET_ZODEE"] = 1;
 	flags["ZODEE_GALOQUEST"] = 1;
 	quickLoot(new GaloMax());
@@ -166,7 +166,7 @@ public function helpZodeeWithHerEggProblem():void
 	output(". Zo’dee bucks powerfully another few times, expelling two more orbs, yet her frenetic motions die down afterward, expended. More eggs still lie within her. You can feel them rolling past your palm, pushed into position by whatever her race has in place of muscles. But Zo’dee seems spent. Her eyes are closed, her tongue is hanging free, and her antennae are drooping so low they verge on pressing against her face.");
 	output("\n\nWeak twitches are the most your cummed-out companion can offer, but you did promise her you would help her with her egg problem. And there are still so many eggs to wring out of her.");
 	output("\n\nShifting position, you ease Zo’dee onto the ground with her legs akimbo, splayed to either side of the puddle of eggs and rahn-butter. Then, squatting behind her, you get both hands on her still-stuffed ovipositor and work it over in earnest. She whimpers and cums again, splattering a half-dozen eggs onto the pile in rapid succession. You don’t pause or slow, mercilessly stroking her off, pumping her with sure, firm strokes until her body stops offering you more eggs - and the flood of creamy spooge tapers down to a drizzle.");
-	output("\n\nZo’dee’s head lolls back, and she looks at you with a dazzling smile. <i>“O-oh, I might have to keep you...”</i> She grabs your head and forcefully kisses you, popping free with a ‘Mwah~’");
+	output("\n\nZo’dee’s head lolls back, and she looks at you with a dazzling smile. <i>“O-oh, I might have to keep you...”</i> She grabs your head and forcefully kisses you, popping free with a ‘Mwah’");
 	output("\n\nYou stumble up, a little confused at her sudden recovery and fumbling for your words.");
 	output("\n\n<i>“Maybe next time I’ll have you suck me off even when I’m </i>not<i> full of eggs. I bet that mouth of yours is just as good as your hands.”</i> Zo’dee produces the bottle of GaloMax and chucks it your way. <i>“See ya around, slut.”</i>");
 	output("\n\nYou catch the bottle and shake it. A single pill rattles around inside.");

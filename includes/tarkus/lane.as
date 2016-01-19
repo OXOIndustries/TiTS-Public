@@ -1854,7 +1854,7 @@ public function fuckedByMaleLane():void
 
 	output("\n\n<i>“Is this what you had in mind?”</i> Lane asks you. His voice comes out unevenly between his thrusts. <i>“Pressed into my bed, getting fucked like an animal by your master? Do you want my cum inside you, and to come back for seconds when it leaks out?”</i>");
 
-	output("\n\n<i>“Yeeeeeesssssss~”</i> you moan languidly. You spread your legs wider, giving him more space to fuck you with. You wish his cock could get thicker, to split you wider, to give you <i>more</i> of him. His desires are yours, and you want nothing more than to be fucked by Lane and have him shoot his warm lizard load inside of you.");
+	output("\n\n<i>“Yeeeeeesssssss,”</i> you moan languidly. You spread your legs wider, giving him more space to fuck you with. You wish his cock could get thicker, to split you wider, to give you <i>more</i> of him. His desires are yours, and you want nothing more than to be fucked by Lane and have him shoot his warm lizard load inside of you.");
 
 	output("\n\n<i>“You’re a good bitch.”</i> He gets off of you and stands back onto his feet, never letting himself pull out. He smacks onto your [pc.ass] with both hands again, turning the [pc.skinFurScales] redder than before. With his new leverage and grip, he resumes pounding you into the fabric.");
 
@@ -3090,7 +3090,7 @@ public function firstTimeLaneFPCFGenderless():void
 
 		output("\n\nYou grip onto the bedsheets as best as you can for your own support, but your hands feel weak. Your body goes stiff as Lane viciously scissors you. You look up at her as she pants down at you with every rock of her tight body against yours – the way she grins and breathes and moves just looks so <i>right</i> to you, especially where you are. Her cunt feels electrifying on you, and you’ve never felt quite as alive as you are now, fulfilling your life’s dream of being fucked by Lane. The sweat starts building up on your body, rolling off in rivulets, but Lane’s body remains clean and clear through the whole ordeal.");
 
-		output("\n\n<i>“That’s gooooood~”</i> Lane moans out, her voice rocked and stuttered with her every movement against you. You agree, without as many words. You feel the comforter of the bed scrunch up around your back as she forces your body across it while she fucks you, pounding you into her mattress with the whole weight of her body. Your whole body feels like it’s on fire");
+		output("\n\n<i>“That’s gooooood,”</i> Lane moans out, her voice rocked and stuttered with her every movement against you. You agree, without as many words. You feel the comforter of the bed scrunch up around your back as she forces your body across it while she fucks you, pounding you into her mattress with the whole weight of her body. Your whole body feels like it’s on fire");
 		if (!pc.isNaga()) output(" – you’ve lost the feeling in your left leg, but you hardly care.");
 
 		if (pc.hasVagina())

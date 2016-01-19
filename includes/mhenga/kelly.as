@@ -2263,7 +2263,7 @@ public function kellyHyperPlayAwwwYiss():void
 		output("\n\n<i>\"Mmm... let's take this to bed, shall we?\"</i> Kelly suggests. WIth no reason to oppose her, you let her lead the way to the bedroom.");
 	}
 	//All variants rejoin here//
-	output("\n\nOnce in the bedroom, Kelly wastes no time; she steals a quick kiss from you, then clambers onto the bed in a kneeling position, one leg half-curled under her, exposing the juicy bunny-cunny that her four bloated balls would normally obscure. <i>\"I'm waiting~\"</i> she says, drawing the word out and then giggling, tail flicking teasingly towards you. <i>\"Let's do it this way; it's easier to find your target,\"</i> she chuckles.");
+	output("\n\nOnce in the bedroom, Kelly wastes no time; she steals a quick kiss from you, then clambers onto the bed in a kneeling position, one leg half-curled under her, exposing the juicy bunny-cunny that her four bloated balls would normally obscure. <i>\"I'm waiting...\"</i> she says, drawing the word out and then giggling, tail flicking teasingly towards you. <i>\"Let's do it this way; it's easier to find your target,\"</i> she chuckles.");
 
 	output("\n\nWell, if that's what she wants, who are you to argue? You close the distance between you, reaching out with one hand to gently cup one cheek of her luscious ass, feeling the plump muscle squish pleasingly under your grip. Your partner lets out a trilling noise of approval, shaking her hips and the air filling with a sweet scent as her twin shafts rain a steady trickling stream of precum. You continue to grope and squeeze, caressing her ass with your fingers in approval.");
 	//Kind:
