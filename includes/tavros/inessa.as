@@ -23,7 +23,7 @@ public function firstTimeHappyTail():void
 	output("\n\nThere’s a little giggle from the distant counter as you calm yourself - it takes a few seconds for your mind to register it was the sound of a whip-crack door alarm.");
 	output("\n\n<i>“Sorry, sorry!”</i> A light-hearted, silvery voice calls out, <i>“That noise can be a little shocking the first time, but it’ll grow on you.”</i>");
 	output("\n\nFrom behind one of the racks, a smiling, blue-skinned butterfly-girl steps out. Her fae-like wings flitter behind her as she grins at you, star-like eyes glittering. The young woman’s soft breasts are brazenly on display; cuppable handfuls with delectable little nipples. When your eyes travel downwards, however, they’re met with gilded silver and a big, obnoxious lock. She’s wearing a chastity belt! You notice the whole store is filled to the brim with sex gear of all persuasions.");
-	output("\n\n<i>“So, what brings you to my store, stranger~?”</i> She melodically asks, multi-faceted wings fluttering behind her. <i>“... Or are you here for the view?”</i> She follows up by pressing her arms against the sides of her pert peaks and pushing them out. They’re small, but dangerous!");
+	output("\n\n<i>“So, what brings you to my store, stranger?”</i> She melodically asks, multi-faceted wings fluttering behind her. <i>“... Or are you here for the view?”</i> She follows up by pressing her arms against the sides of her pert peaks and pushing them out. They’re small, but dangerous!");
 	// New Page
 	processTime(3);
 	clearMenu();
@@ -45,11 +45,11 @@ public function meetingHappyTailz():void
 
 		//Nice:
 		if(pc.isNice()) output("\n\n<i>“Oh, of course I don’t mind!”</i> The alien girl beams and stops pushing out her chest. <i>“I’m a saeri, though I was born a siel. We’re a polymorphic race, different forms, you know. You should have seen me back then–I was huuuge!”</i>");
-		else if(pc.isMischievous()) output("\n\n<i>“You flatterer! I’m really not </i>that<i> special, you know~?”</i> The alien girl blushes and stops pushing out her chest. <i>“I’m a saeri, though I was born a siel. We’re a polymorphic race, different forms, you know. You should have seen me back then–I was huuuge!”</i>");
-		else output("\n\n<i>“Mmm~? Besides a bored shop assistant?”</i> The alien girl blinks and stops pushing out her chest. <i>“... OH! I’m a saeri, though I was born a siel. We’re a polymorphic race, different forms, you know. You should have seen me back then–I was huuuge!”</i>");
+		else if(pc.isMischievous()) output("\n\n<i>“You flatterer! I’m really not </i>that<i> special, you know?”</i> The alien girl blushes and stops pushing out her chest. <i>“I’m a saeri, though I was born a siel. We’re a polymorphic race, different forms, you know. You should have seen me back then–I was huuuge!”</i>");
+		else output("\n\n<i>“Mmm? Besides a bored shop assistant?”</i> The alien girl blinks and stops pushing out her chest. <i>“... OH! I’m a saeri, though I was born a siel. We’re a polymorphic race, different forms, you know. You should have seen me back then–I was huuuge!”</i>");
 
 		output("\n\n<i>“Anyway, my name’s Inessa, but you can call me ‘Nessa’ - everyone does! And if there’s anything you need, feel free to ask. I’d be happy to help!”</i>");
-		output("\n\nYour codex informs you that it’s unlocked a new species entry on saeri. Perhaps you should give it a look~?");
+		output("\n\nYour codex informs you that it’s unlocked a new species entry on saeri. Perhaps you should give it a look?");
 		// Unlock Saeri codex entry.
 		CodexManager.unlockEntry("Saeri");
 	}
@@ -270,7 +270,7 @@ public function domOrSwitchInessa(dom:Boolean):void
 	// Mark PC off as Dominant for when talking to Inessa for future reference.
 	if(dom) flags["INESSA_BDSM_SETTING"] = "dom";
 	else flags["INESSA_BDSM_SETTING"] = "switch";
-	output("<i>“Reeeallly~?”</i> Inessa’s eyes light up. <i>“... Are you a, you know, a ");
+	output("<i>“Reeeallly?”</i> Inessa’s eyes light up. <i>“... Are you a, you know, a ");
 	if(dom) output("dominant");
 	else output("switch");
 	output(" who’s into girls? Like, specifically blue-skinned saeri girls? Just, you know, asking. For reasons.”</i>");
@@ -396,11 +396,11 @@ public function skinModsInessa():void
 		output("\n\n<i>“Amazing! Must have been quite the skin modder,”</i> you genuinely exclaim. Getting such accurate detail in her genetics must have taken skill, time, and money.");
 		output("\n\n<i>“She is, though half of it is genetic advantage. My species takes very well to gene mods,”</i> Inessa explains, turning her back to you and gesturing to her smooth upper back. <i>“... See, I got this one done yesterday, and you can hardly tell - no inflammation or anything!”</i>");
 		output("\n\nShe lifts up her silvery-white hair braid so you can see it better. You spot a tattoo between her shoulder blades with just four words written in fancy, looped letters: ‘Love Me, Lash Me”</i>.");
-		output("\n\n<i>“... Is that a request~?”</i> You ask, quirking a brow.");
-		output("\n\nThe alien girl blushes, letting go of her braid. <i>“Whoops, I didn’t realise how that came across! I, um, I really was just showing you my skin mods.”</i> She then leans back and looks up at you, her soft blue-green eyes shining. <i>“... Unless, of course, you wanted it to be~?”</i>");
+		output("\n\n<i>“... Is that a request?”</i> You ask, quirking a brow.");
+		output("\n\nThe alien girl blushes, letting go of her braid. <i>“Whoops, I didn’t realise how that came across! I, um, I really was just showing you my skin mods.”</i> She then leans back and looks up at you, her soft blue-green eyes shining. <i>“... Unless, of course, you wanted it to be?”</i>");
 		output("\n\n<i>“You know... if you wanted to... love and lash me.”</i>");
 		output("\n\nHer kissable lips are slightly parted, hovering very close to yours. You can feel her gentle breath warmly brushing over your own mouth, her breathing hurried and heated.");
-		output("\n\nThe sweet smell of flowers fill the air. The electricity is palpable. Do you kiss her~?");
+		output("\n\nThe sweet smell of flowers fill the air. The electricity is palpable. Do you kiss her?");
 		processTime(5);
 		pc.lust(15);
 
@@ -520,14 +520,14 @@ public function inessaFamily():void
 			output("\n\n<i>“Of course! Bondage is a noble profession among my species, even if it’s just selling the goods. My sister actually owns the store and makes the goods.”</i>");
 			output("\n\nYou ask her if her sister lives on Tavros, since you haven’t seen her about. The saeri shopkeeper shakes her head.");
 			output("\n\n<i>“No. Xanthe’s running a second store over on Myrellion - some boonie planet full of honey-filled ant girls - Zyi knows </i>why<i>.”</i> Inessa self-consciously touches her modest bust and pouts, <i>“... I hear they’ve all got melon-sized tits. Personally, I don’t see the appeal.");
-			if(pc.biggestTitSize() >+ 5) output(" I-I mean, not that there’s anything wrong with </i>your breasts~!”<i> She hastily adds.");
+			if(pc.biggestTitSize() >+ 5) output(" I-I mean, not that there’s anything wrong with </i>your breasts!”<i> She hastily adds.");
 			output("”</i>");
 
 			//Met Xanthe Before:
 			if(flags["MET_XANTHE"] != undefined)
 			{
 				output("\n\nYou’re more caught up on the name. <i>“... Xanthe? As in, Silken Serenity Xanthe?”</i> You’re more than a little gobsmacked. What are the chances of running into her sister, several star-systems away?");
-				output("\n\n<i>“Oh, you’ve met my sister?”</i> It’s Inessa’s turn to look stunned. <i>“... Wow, what are the odds? That’s crazy~!”</i>");
+				output("\n\n<i>“Oh, you’ve met my sister?”</i> It’s Inessa’s turn to look stunned. <i>“... Wow, what are the odds? That’s crazy!”</i>");
 				output("\n\n<i>“She didn’t, you know, tie you up and do anything </i>weird<i> to you, did she? She’s been tying me up at the drop of a hat since I was little. Once, I stole one of her holo-novels, and she hung me from the roof for </i>days<i>.”</i>");
 				//You’re Xanthe’s Sub:
 				if(xantheIsDommingPC())
@@ -881,7 +881,7 @@ public function blowjobFromInessa():void
 	if(pc.cockTotal() > 1) output("s");
 	output(" and lovingly scooping up every single drop.");
 	output("\n\n<i>“Good girl,”</i> you " + pc.mf("huskily","breathily") + " praise her, reaching out and stroking the top of her head. Like a kitten, Inessa instinctively leans into the palm of your hand, her soft hair rubbing against your fingers. There’s a blissfully happy look in her bright eyes.");
-	output("\n\n<i>“D-did you want anything else~?”</i> The butterfly-winged girl asks, your [pc.cum] dribbling down her chin and dripping on her small blue breasts. You shake your head");
+	output("\n\n<i>“D-did you want anything else?”</i> The butterfly-winged girl asks, your [pc.cum] dribbling down her chin and dripping on her small blue breasts. You shake your head");
 	if(pc.isCrotchGarbed()) output(" and tuck your [pc.cocksLight] away");
 	output(", thoroughly satisfied.");
 	// Return to shop menu.
@@ -927,13 +927,13 @@ public function cunnilingusInessa():void
 			output(". You then stride out when Inessa isn’t looking and plant your bare buttocks on the counter, pointedly crossing your legs. With a low whistle, you call the butterfly-winged shopkeeper over, who bounds up immediately.");
 		}
 	}
-	output("\n\n<i>“Hi, can I help you~?”</i> Inessa cheerily asks, hands clasped neatly in front of her. Your sense of sadistic excitement heightens. Like a cat and a mouse, you want to play with her, to see how she’ll react to what you have planned–and which direction she will skitter! Time to put on your best poker face...");
+	output("\n\n<i>“Hi, can I help you?”</i> Inessa cheerily asks, hands clasped neatly in front of her. Your sense of sadistic excitement heightens. Like a cat and a mouse, you want to play with her, to see how she’ll react to what you have planned–and which direction she will skitter! Time to put on your best poker face...");
 
 	output("\n\n<i>“Oh, yes, you </i>can<i> actually,”</i> you cheerfully remark, spreading your [pc.thighs] wide");
 	if(hasSkirt()) output(", lifting the lower hem of your [pc.armor],");
 	output(" and putting your [pc.vaginas] pointedly on display. <i>“... I need someone to lick this for me, and you look like you’re just right for the job.”</i>");
 
-	output("\n\nThe butterfly-winged girl’s reaction is <i>priceless</i>. Her starry eyes fly wide open and her mouth gapes. <i>“Whuh-what did you say~?”</i> She positively squeaks. In response, you sensuously reach down, pointedly parting your [pc.vaginaColor] lips. You’re a little <i>moist</i> inside–what from all the teasing–and the subby girl blushes at the very lewd sight.");
+	output("\n\nThe butterfly-winged girl’s reaction is <i>priceless</i>. Her starry eyes fly wide open and her mouth gapes. <i>“Whuh-what did you say?”</i> She positively squeaks. In response, you sensuously reach down, pointedly parting your [pc.vaginaColor] lips. You’re a little <i>moist</i> inside–what from all the teasing–and the subby girl blushes at the very lewd sight.");
 	output("\n\n<i>“I said </i>lick me<i>. You’re good for that much, aren’t you?”</i> You tease, rolling one of your fingertips over [pc.oneClit]. Inessa blushes and tries to look away, but her eyes keep flicking excitedly to your bare [pc.vaginaColor] mound. Still, the butterfly-winged beauty submits to your unreasonable demand, placing her delicate fingers on your parted thighs. After squatting down, she positions her burning cheeks below them and inches closer towards your [pc.vaginaNoun], buffering it with excited warm breaths.");
 	if(hasSkirt()) output(" Her head disappears beneath the hem of your skirt, though you can still see her smooth naked back and cute fae-like wings.");
 
@@ -957,7 +957,7 @@ public function breastTeaseInessaShit():void
 	author("JimThermic");
 	output("You look at Inessa’s petite blue breasts and delectable little nipples. Small as they are, she’s shown you they still make delicious cleavage when pushed together–and an idea springs into your head. Perhaps it would be interesting to come up with a situation in which you can play with them...");
 	output("\n\nFirst off, it’s best to prepare a proper stage. Walking around the store, you spot a four-poster bondage bed, complete with silk sheets. <i>Perfect</i>, you think. Sitting down in it, you call her over. The saeri girl quickly skips over; it’s truly admirable how quick she comes when called.");
-	output("\n\n<i>“Hi! Is there something you need~?”</i> Inessa asks, her butterfly wings flitting about. She unconsciously presses her upper arms against the sides of her breasts, pressing her handfuls together and out. It’s admirable how she works with what she has, and truth be told, there’s something appealing about her little peaks.");
+	output("\n\n<i>“Hi! Is there something you need?”</i> Inessa asks, her butterfly wings flitting about. She unconsciously presses her upper arms against the sides of her breasts, pressing her handfuls together and out. It’s admirable how she works with what she has, and truth be told, there’s something appealing about her little peaks.");
 	output("\n\n<i>“Yes, there is,”</i> you remark, petting the bed. <i>“I want to try out this bed. I’m not exactly sure I want to buy it otherwise.”</i>");
 	output("\n\nInessa’s eyes shoot open, an excited look in her eyes. <i>“Oh, this is a really good bondage bed, made of solid Selyan oak!”</i> She reaches out to stroke one of the ornate posts. <i>“There’s plenty of fasteners for ropes, but the great thing is that you can just use it as a normal bed if you want. It’s super comfy.”</i>");
 	output("\n\n<i>“Prove it,”</i> you dare her, pushing yourself back on the bed and lying down. <i>“Lie in bed with me. I want to see what it feels like with another person in it. I don’t want to buy it and just find out it’s too small...”</i>");
@@ -1160,7 +1160,7 @@ public function cuffNFuck():void
 	//Random text output (⅓ chance):
 	else if(rand(2) == 0)
 	{
-		output("\n\n<i>“Wha-what did you do to me~?!”</i> [enemy.name] splutters. [enemy.HisHer] [enemy.ass] wiggles about enticingly as [enemyter.heShe] tries to tug free of the cuffs to no avail.");
+		output("\n\n<i>“Wha-what did you do to me?!”</i> [enemy.name] splutters. [enemy.HisHer] [enemy.ass] wiggles about enticingly as [enemyter.heShe] tries to tug free of the cuffs to no avail.");
 		output("\n\nStriding up to your prostrate opponent, you stroke [enemy.hisHer] butt and give it a ");
 		if(pc.isNice()) output("playful pat");
 		else if(pc.isMischievous()) output("cheeky slap");
@@ -1638,7 +1638,7 @@ public function gravCuffsCowgirlBangu():void
 	output("\n\n<i>“It’s time for a milking. I’m so full, I feel like my nipples are going to start squirting any minute!”</i>");
 	output("\n\n<i>“I wonder if we’ll get fucked when we’re in the milker? I sure hope so. It’s been SO long since I’ve gotten knocked up.”</i>");
 
-	output("\n\n<i>“Oh hey, who’s that~?”</i> one of the beauties excitedly exclaims, pointing directly at you. <i>“");
+	output("\n\n<i>“Oh hey, who’s that?”</i> one of the beauties excitedly exclaims, pointing directly at you. <i>“");
 	if(flags["TEXAS_GRAVCUFFS_COWORGY"] == undefined) output("Is it a new [pc.guyGirl]? I’ve never seen [pc.himHer] before!");
 	else output("It’s that [pc.guyGirl] from last time - [pc.heShe]’s all cuffed down again!");
 	output("”</i>");
@@ -1700,7 +1700,7 @@ public function gravCuffsCowgirlBangu():void
 	else if(pc.cumQ() < 500) output("was a bit");
 	else if(pc.cumQ() < 5000) output("was a lot");
 	else output("was a ton");
-	output(", wasn’t it?”</i> <i>“I wonder if that’s all [pc.heShe], like, has.”</i> <i>“It’s kinda fun to do the milking for once~!”</i> They excitedly exclaim, running their feminine fingers all through the moist seed");
+	output(", wasn’t it?”</i> <i>“I wonder if that’s all [pc.heShe], like, has.”</i> <i>“It’s kinda fun to do the milking for once!”</i> They excitedly exclaim, running their feminine fingers all through the moist seed");
 	if(pc.hasFur()) output(" matting");
 	else output(" coating");
 	output(" your [pc.skinFurScalesNoun]. A brunette bovine-girl thoughtlessly licks it off her fingers. You watch as her soft pink tongue is coated in your [pc.cumColor] [pc.cumNoun]. <i>“... Mmm! Tastes [pc.cumFlavor].");
@@ -1729,7 +1729,7 @@ public function gravCuffsCowgirlBangu():void
 
 	output("\n\nUnable to last under such pleasurable duress, you quickly reach your peak. With a loud, shivering cry, you shoot your virile load inside the busty bovine’s pussy. With each groaning flex of your shaft, you feel your hot spunk shooting up and out of your prick, basting the inside of her fertile womb in [pc.cumColor] and seeding it with your sperm. As you tremble in the throes of your second orgasm in mere minutes, the cow girl lifts her hefty butt off you and parts her lower lips, giving you a nice, long look at her now [pc.cumVisc] pussy. Talk about a creampie!");
 
-	output("\n\n<i>“...[pc.HeShe] came again? Okay, my turn~!”</i> another busty beauty chimes in. Not even waiting for your most recent orgasm to subside, she switches with the first, reaching for ");
+	output("\n\n<i>“...[pc.HeShe] came again? Okay, my turn!”</i> another busty beauty chimes in. Not even waiting for your most recent orgasm to subside, she switches with the first, reaching for ");
 	if(pc.cockTotal() == 1) output("your well-used dick");
 	else if(pc.cockTotal() == 2) output("your second, unused cock");
 	else output("one of your unused cocks");
@@ -1927,7 +1927,7 @@ public function faceStrapOnShitForInessa():void
 	output("\n\nWhen you pull yourself up and off her strapped-on face-dick, Inessa nearly falls to the floor, totally wiped out by her orgasm");
 	if(pc.hasVagina()) output("s");
 	output(" and your merciless fucking of her face. You reach out and stroke her head, telling her she did a good job, and she lets out a satisfied, if spacy little purr, nuzzling into your hand. There is a rather obvious puddle between her twitching thighs, marking her delight despite her gleaming chastity belt. You then pull off the mask and toss it aside.");
-	output("\n\n<i>“D-did you want anything else~?”</i> Inessa asks, and you shake your head. As if she could do anything else right now! After a little while, she gets to her feet, and stumbles to grab a mop.");
+	output("\n\n<i>“D-did you want anything else?”</i> Inessa asks, and you shake your head. As if she could do anything else right now! After a little while, she gets to her feet, and stumbles to grab a mop.");
 	IncrementFlag("INESSA_FACE_STRAPPED");
 	// Return to shop menu.
 	processTime(29);
