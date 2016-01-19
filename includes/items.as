@@ -735,6 +735,7 @@ public function combatInventoryMenu():void
 	output("What item would you like to use?");
 	output("\n\n");
 	inventoryDisplay();
+	equipmentDisplay();
 	for (var i:int = 0; i < pc.inventory.length; i++)
 	{
 		var tItem:ItemSlotClass = pc.inventory[i];

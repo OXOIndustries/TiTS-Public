@@ -1140,7 +1140,7 @@ public function displayQuestLog(showID:String = "All"):void
 		{
 			output2("\n<b><u>Myrellion</u></b>");
 			output2("\n<b>* Status:</b>");
-			if(reclaimedProbeMyrellion()) output2(" Coordinates received");
+			if(reclaimedProbeMyrellion() || (flags["KQ2_MYRELLION_STATE"] == 1 && MailManager.isEntryUnlocked("danemyrellioncoords"))) output2(" Coordinates received");
 			else
 			{
 				output2(" <i>In progress...</i>");
@@ -1149,7 +1149,7 @@ public function displayQuestLog(showID:String = "All"):void
 				else output2(" <i>Probe appears to be in some kind of royal throne room.</i>");
 			}
 			// Scout
-			if(flags["MYRELLION_EMBASSY_VISITED"] != undefined)
+			if(flags["MYRELLION_EMBASSY_VISITED"] != undefined && flags["KQ2_MYRELLION_STATE"] == undefined)
 			{
 				output2("\n<b>* Scout Transport:</b> D.M.Z.");
 				if(flags["NO_ANTS_LAND_TAXI_UNLOCKED"] != undefined) output2(", No Myr’s Land");
@@ -1554,18 +1554,19 @@ public function displayQuestLog(showID:String = "All"):void
 					if(flags["KQ2_CREDS_FIRST"] != undefined) output2(", Kara paid you");
 					if(flags["KQ2_KHANS_FILES"] != undefined) output2(", Took Khan’s files");
 					if(flags["KQ2_LOST_TO_AMARA"] != undefined) output2(", Lost to Amara");
-					if(flags["KQ2_KARA_SACRIFICE"] != undefined) output2(", Kara sacrificed herself");
+					if(flags["KQ2_QUEST_FINISHED"] != undefined) output2(", Completed");
 					// Pirate Base
-					if(9999 == 0)
+					if(flags["KQ2_KARA_WITH_PC"] != undefined || flags["KQ2_BETRAYED_KARA"] != undefined || flags["KQ2_KARA_SACRIFICE"] != undefined)
 					{
 						output2("\n<b>* Kara, Status:</b>");
-						if(flags["KQ2_BETRAYED_KARA"] != undefined) output2(" Betrayed her");
+						if(flags["KQ2_KARA_SACRIFICE"] != undefined) output2(" Sacrificed herself");
+						else if(flags["KQ2_BETRAYED_KARA"] != undefined) output2(" You betrayed her");
 						else if(flags["KQ2_KARA_WITH_PC"] == 1) output2(" At your side");
 						else if(flags["KQ2_KARA_WITH_PC"] == 2) output2(" At the radio tower");
 						else output2(" <i>Unknown</i>");
 						if(flags["KQ2_SHADE_DEAD"] != undefined) output2(", Killed Shade");
 					}
-					if(9999 == 0)
+					if(flags["KQ2_FIGHT_STEPS"] != undefined)
 					{
 						output2("\n<b>* Pirate Base, Entrance:</b>");
 						if(flags["KQ2_RND_ENTRANCE_OPEN"] == 1) output2(" Blown open with tank");
@@ -1581,13 +1582,18 @@ public function displayQuestLog(showID:String = "All"):void
 						else if(flags["KQ2_RF_KENNEL_USED"] == 2) output2(" Used to upgrade Tam-wolf");
 						else output2(" Unused");
 					}
+					if(flags["KQ2_BARRACKS_INTERIOR_ENTERED"] != undefined)
+					{
+						output2("\n<b>* Pirate Base, Barracks:</b> Entered");
+						if(flags["KQ2_TAKEN_ARMOR"] != undefined) output2(", Looted");
+					}
 					if(flags["KQ2_WATSON_MET"] != undefined) output2("\n<b>* Pirate Base, Watson:</b> Met it");
 					if(flags["KQ2_DEFEATED_ENGINEER"] != undefined) output2("\n<b>* Pirate Base, Engineer:</b> Defeated her");
 					if(flags["KQ2_DEFEATED_JUGGERNAUT"] != undefined) output2("\n<b>* Pirate Base, Juggernaut:</b> Defeated him");
 					if(flags["KQ2_DEFEATED_KHAN"] != undefined)
 					{
 						output2("\n<b>* Pirate Base, Dr.Khan:</b> Met him, Defeated him");
-						if(9999 == 0) output2(", Sexed him with Kara");
+						if(flags["KQ2_FUCKED_KHAN"] != undefined) output2(", Sexed him with Kara");
 						if(flags["KQ2_KHAN_LOOTED"] != undefined)
 						{
 							output2(", Looted his room");
@@ -1604,7 +1610,7 @@ public function displayQuestLog(showID:String = "All"):void
 					if(flags["KQ2_NUKE_STARTED"] != undefined)
 					{
 						output2("\n<b>* Pirate Base, Nuke:</b>");
-						if(9999 == 0) output2(" Activated, Detonated, Destroyed Myrellion");
+						if(flags["KQ2_NUKE_EXPLODED"] != undefined) output2(" Activated, Detonated, Destroyed Myrellion");
 						else output2(" Activated " + prettifyMinutes(GetGameTimestamp() - flags["KQ2_NUKE_STARTED"]) + " ago");
 					}
 				}
