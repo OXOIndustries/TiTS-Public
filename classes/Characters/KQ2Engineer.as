@@ -195,16 +195,21 @@ package classes.Characters
 			
 			if (!hasStatusEffect("Shield Regen Cooldown"))
 			{
-				var worstPerc:Number = 1.0;
-				var shieldTarget:Creature = null;
+				// Short-circuit- if the engineer is below 50%, she'll use it on herself
+				if ((shields() / shieldsMax()) < 0.5)
+				{
+					shieldBoost(this);
+					return;
+				}
 				
-				var thisPerc:Number = 1.0;				
+				var worstPerc:Number = 1.0;
+				var shieldTarget:Creature = null;				
 				
 				for (var i:int = 0; i < alliedCreatures.length; i++)
 				{
 					if (alliedCreatures[i].isDefeated()) continue;
 					
-					thisPerc = (alliedCreatures[i].shields() <= 0 ? 0 : alliedCreatures[i].shields() / alliedCreatures[i].shieldsMax());
+					var thisPerc:Number = (alliedCreatures[i].shields() <= 0 ? 0 : alliedCreatures[i].shields() / alliedCreatures[i].shieldsMax());
 					
 					if (thisPerc < worstPerc)
 					{

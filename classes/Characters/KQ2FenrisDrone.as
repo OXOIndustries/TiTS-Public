@@ -156,7 +156,7 @@ package classes.Characters
 			this.createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
 			
 			isUniqueInFight = true;
-			btnTargetText = "Droid";
+			btnTargetText = "FenrisDrone";
 			
 			this._isLoading = false;
 		}
