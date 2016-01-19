@@ -386,7 +386,7 @@ public function bessHeader():void
 	else
 	{
 		showName("\nBEN-14");
-		showBust("BEN")
+		showBust("BEN");
 	}
 	author("JimT");
 }
@@ -709,6 +709,8 @@ public function fuckinLeaveTheBessBot():void
 public function takeBessToZeShip():void
 {
 	currentLocation = "SHIP INTERIOR";
+	var map:* = mapper.generateMap(currentLocation);
+	userInterface.setMapData(map);
 	flags["BESS_IN_RUBBLE"] = 1; // shit flag name sue me
 	
 	clearOutput();

@@ -452,6 +452,7 @@ public function crew(counter:Boolean = false):Number {
 	}
 	if(!counter) {
 		if(count > 0) {
+			showName("\nCREW");
 			output("Who of your crew do you wish to interact with?" + crewMessages);
 		}
 		addButton(14, "Back", mainGameMenu);
