@@ -822,11 +822,11 @@ public function flyTo(arg:String):void {
 		flyToPoeA();
 	}
 	
-	if(!interruptMenu && landingEventCheck(arg)) return;
-	flags["LANDING_EVENT_CHECK"] = 1;
-	
 	if (!interruptMenu)
 	{
+		if(landingEventCheck(arg)) return;
+		flags["LANDING_EVENT_CHECK"] = 1;
+		
 		clearMenu();
 		addButton(0, "Next", mainGameMenu);
 	}

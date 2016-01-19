@@ -1018,7 +1018,7 @@ public function kq2LeaveEngineer():void
 
 	processTime(1);
 
-	currentLocation = "KQ2_BARRACKSINTERIOR";
+	currentLocation = "K2_BARRACKSINTERIOR";
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -1068,7 +1068,7 @@ public function kq2GibEngyDirtyMag():void
 
 	processTime(2);
 
-	currentLocation = "KQ2_BARRACKSINTERIOR";
+	currentLocation = "K2_BARRACKSINTERIOR";
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -1091,7 +1091,7 @@ public function kq2GibEngyCash():void
 
 	processTime(2);
 
-	currentLocation = "KQ2_BARRACKSINTERIOR";
+	currentLocation = "K2_BARRACKSINTERIOR";
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -1183,7 +1183,7 @@ public function kq2GibEngyDankHoles():void
 	pc.loadInAss(engineer);
 	pc.orgasm();
 
-	currentLocation = "KQ2_BARRACKSINTERIOR";
+	currentLocation = "K2_BARRACKSINTERIOR";
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
