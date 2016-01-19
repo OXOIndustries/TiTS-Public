@@ -824,8 +824,6 @@ public function flyTo(arg:String):void {
 	
 	if (!interruptMenu)
 	{
-	if (!interruptMenu)
-	{
 		if(landingEventCheck(arg)) return;
 		flags["LANDING_EVENT_CHECK"] = 1;
 		
