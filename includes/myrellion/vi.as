@@ -985,7 +985,7 @@ public function viPotencyTest():void
 	//hugeCumsOrMore: 
 	if(totalBigBalloons >= 3) output("the space around her is filled with gigantic");
 	else output("her cleavage is utterly lined with");
-	output(" [pc.cumColor] [pc.cumNoun]-filled baggies, all adoringly milked out from your [pc.cocksNoun]");
+	output(" [pc.cumColor] [pc.cumNoun]-filled baggies, all adoringly milked out from your [pc.cocksNounSimple]");
 	if(totalBigBalloons > 0) 
 	{
 		output(" - to say nothing of the " + num2Text(totalBigBalloons) + " spunk-bag");
