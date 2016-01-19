@@ -382,15 +382,11 @@
 
 			flags = new Dictionary();
 
-			// Major class variable setup: ------------------------------------------------------------
 			initializeRooms();
 			initializeMyrellionRooms();
+			kquest2InitRooms();
 			
-			// dick about with mapper: ------------------------------------------------------------
 			mapper = new Mapper(this.rooms)
-
-			//Lazy man shortcuts! Need reset after reinitialization of data.
-			//pc = chars[0];
 
 			this.chars["PC"] = new PlayerCharacter();
 			_perkDB = new Perks();

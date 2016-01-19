@@ -140,7 +140,8 @@ public function kq2rfRappelPoint():Boolean
 	output("<i>“Alright, we’ve got a good vantage on the base from here,”</i> Kara says, taking a knee on the cliff side. She taps a finger to her temple, and you can see a slight glimmer in her eyes, shifting almost imperceptibly. <i>“I see a few guards on the perimeter. Electric fence surrounding the base, a couple of machine-gun nests at the gate.");
 	if (kara.isNice()) output(" Good thing we’ve got another way in.");
 	else if (kara.isMischievous()) output(" Definitely don’t want to go knocking.");
-	else output(" They’ll never know what hit ‘em.”</i>");
+	else output(" They’ll never know what hit ‘em.");
+	output("”</i>");
 
 	output("\n\nKara stands and points down, almost straight to the base of the plateau. <i>“Sewer entrance is just below us. Give me the go, and I’ll shoot a grappling line down.”</i>");
 
