@@ -766,17 +766,6 @@ public function flyTo(arg:String):void {
 	var shortTravel:Boolean = false;
 	var interruptMenu:Boolean = false;
 	
-	if (arg == "karaQuest2")
-	{
-		shortTravel = (shipLocation == "600");
-		interruptMenu = true;
-		kq2TravelToKara(shortTravel);
-	}
-	
-	var timeFlown:Number = (shortTravel ? 30 + rand(10) : 600 + rand(30));
-	StatTracking.track("movement/time flown", timeFlown);
-	processTime(timeFlown);
-	
 	clearOutput();
 	
 	if(arg == "Mhen'ga")
@@ -822,8 +811,17 @@ public function flyTo(arg:String):void {
 		flyToPoeA();
 	}
 	
-	if (!interruptMenu)
+	if (arg == "karaQuest2")
 	{
+		shortTravel = (shipLocation == "600");
+		interruptMenu = true;
+		kq2TravelToKara(shortTravel);
+	}
+	
+	var timeFlown:Number = (shortTravel ? 30 + rand(10) : 600 + rand(30));
+	StatTracking.track("movement/time flown", timeFlown);
+	processTime(timeFlown);
+	
 	if (!interruptMenu)
 	{
 		if(landingEventCheck(arg)) return;
