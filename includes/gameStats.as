@@ -3385,6 +3385,18 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				variousCount++;
 			}
+			// Vi-Ko
+			if(flags["MET_VI"] != undefined)
+			{
+				output2("\n<b><u>Gildenmere Medical Hospital</u></b>");
+				output2("\n<b>* Vi:</b> Met her");
+				if(flags["HEALED_BY_VI"] != undefined) output2("\n<b>* Vi, Times Healed By:</b> " + flags["HEALED_BY_VI"]);
+				if(flags["TREATED_BY_VI"] != undefined) output2("\n<b>* Vi, Times Treated By:</b> " + flags["TREATED_BY_VI"]);
+				if(flags["VI_POTENCY_TEST"] != undefined) output2("\n<b>* Vi, Times Administered Potency Test:</b> " + flags["VI_POTENCY_TEST"]);
+				if(flags["VI_SEXED"] != undefined) output2("\n<b>* Vi, Times Sexed:</b> " + flags["VI_SEXED"]);
+				if(flags["VI_TITFUCKED"] != undefined) output2("\n<b>* Vi, Times Titfucked:</b> " + flags["VI_TITFUCKED"]);
+				variousCount++;
+			}
 			// The Honey Nozzle
 			if(flags["MET_DALLY"] != undefined)
 			{
