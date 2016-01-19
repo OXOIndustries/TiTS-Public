@@ -1004,7 +1004,7 @@ package classes.GameData
 		{
 			if (!(attacker is PlayerCharacter))
 			{
-				output(attacker.capitalA + attacker.uniqueName + " smiles as a high-pitched emanates from " + attacker.mfn("his", "her", "its") + " " + attacker.rangedWeapon.longName + "!");
+				output(attacker.capitalA + attacker.uniqueName + " smiles as a high-pitched whine emanates from " + attacker.mfn("his", "her", "its") + " " + attacker.rangedWeapon.longName + "!");
 			}
 			
 			if (rangedCombatMiss(attacker, target))
@@ -1414,16 +1414,19 @@ package classes.GameData
 			var d:int = Math.round(7.5 + attacker.level * 2 + attacker.intelligence() / 2);
 			var totalDamage:DamageResult = new DamageResult();
 			
-			for (var i:int = 0; i < hGroup[i].length; i++)
+			for (var i:int = 0; i < hGroup.length; i++)
 			{
+				var cTarget:Creature = hGroup[i];
+				if (cTarget.isDefeated()) continue;
+				
 				var damage:TypeCollection = damageRand(new TypeCollection( { kinetic: d, burning: d } ), 15);
 				
-				if (target is Cockvine)
+				if (cTarget is Cockvine)
 				{
 					kGAMECLASS.adultCockvineGrenadesInEnclosedSpaces(damage, false, false, false);
 				}
 				
-				totalDamage.addResult(applyDamage(damage, attacker, target, "suppress"));
+				totalDamage.addResult(applyDamage(damage, attacker, cTarget, "suppress"));
 			}
 			
 			outputDamage(totalDamage);
@@ -1449,12 +1452,12 @@ package classes.GameData
 				
 				var damage:TypeCollection = damageRand(new TypeCollection( { drug: d } ), 15);
 				
-				if (target is Cockvine)
+				if (cTarget is Cockvine)
 				{
 					kGAMECLASS.adultCockvineGrenadesInEnclosedSpaces(damage, false, false, true);
 				}
 				
-				totalDamage.addResult(applyDamage(damage, attacker, target, "suppress"));
+				totalDamage.addResult(applyDamage(damage, attacker, cTarget, "suppress"));
 			}
 			
 			outputDamage(totalDamage);

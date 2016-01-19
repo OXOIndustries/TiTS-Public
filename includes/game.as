@@ -824,6 +824,8 @@ public function flyTo(arg:String):void {
 	
 	if (!interruptMenu)
 	{
+	if (!interruptMenu)
+	{
 		if(landingEventCheck(arg)) return;
 		flags["LANDING_EVENT_CHECK"] = 1;
 		
@@ -1449,6 +1451,9 @@ public function variableRoomUpdateCheck():void
 	// Crystal Goo Silly Modes
 	if(silly) rooms["2O25"].southExit = "2O27";
 	else rooms["2O25"].southExit = "";
+	
+	// KQuest
+	kquest2RoomStateUpdater();
 }
 
 public function processTime(arg:int):void {

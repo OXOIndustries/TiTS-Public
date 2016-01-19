@@ -114,7 +114,7 @@ package classes.GameData
 		
 		public function displayFightLocation():void
 		{
-			var r:String = (roomString != null ? "FIGHT:\n" + roomString : null);
+			var r:String = (roomString != null ? "FIGHT:\n" + roomString : kGAMECLASS.userInterface.planetText);
 			var p:String = (planetString != null ? planetString : kGAMECLASS.userInterface.planetText);
 			var s:String = (systemString != null ? systemString : kGAMECLASS.userInterface.systemText);
 			

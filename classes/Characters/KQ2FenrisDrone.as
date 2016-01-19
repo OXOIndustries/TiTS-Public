@@ -16,6 +16,7 @@ package classes.Characters
 	import classes.GameData.CombatAttacks;
 	import classes.GameData.CombatManager;
 	import classes.Engine.Interfaces.output;
+	import classes.StringUtil;
 	
 	/**
 	 * ...
@@ -176,7 +177,7 @@ package classes.Characters
 	
 		private function blindAttack(target:Creature):void
 		{
-			output(uniqueName + " spins around, positioning its backside toward you and hiking a leg. Oh for fuck's...");
+			output(StringUtil.capitalize(uniqueName) + " spins around, positioning its backside toward you and hiking a leg. Oh for fuck's...");
 			
 			if (rangedCombatMiss(this, target, -1, 2))
 			{
@@ -192,7 +193,7 @@ package classes.Characters
 		
 		private function biteAttack(target:Creature):void
 		{
-			output(uniqueName + " has a clear shot at "+ (target is PlayerCharacter ? "you" : target.a + target.short) + " through the weapons fire. With a fearsome digital growl, the cyberhound launches itself at "+ (target is PlayerCharacter ? "you" : target.mfn("him", "her", "it")) +" for a savage mauling!");
+			output(StringUtil.capitalize(uniqueName) + " has a clear shot at "+ (target is PlayerCharacter ? "you" : target.a + target.short) + " through the weapons fire. With a fearsome digital growl, the cyberhound launches itself at "+ (target is PlayerCharacter ? "you" : target.mfn("him", "her", "it")) +" for a savage mauling!");
 			
 			if (combatMiss(this, target))
 			{

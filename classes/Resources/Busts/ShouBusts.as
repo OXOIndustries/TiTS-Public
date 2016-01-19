@@ -134,6 +134,7 @@
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/kara.png", mimeType = "image/png")]
 		public var Bust_KARA:Class;
+		public var Bounds_KARA:Rectangle = new Rectangle(14, 0, 62, 77);
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/kara_nude.png", mimeType = "image/png")]
 		public var Bust_KARA_NUDE:Class;
 

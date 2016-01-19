@@ -1044,7 +1044,7 @@ public function annStraponScene():void
 	else output("horny");
 	output("!");
 
-	output("\n\n<i>“How about we pull out one of my favorite toys? I’m sure it’ll be your favorite too,”</i> Anzhela sultrily purrs. After climbing up onto the soft bed and crawling along it–giving you a nice view of her dripping cameltoe–she pulls out something from a bedside drawer. She falls on her back against the pillows and laviciously spreads her legs, giving you a full-on view of her scarlet mound! It’s short lived as she straps a large, twelve-inch male myr cock over the top of it, fastening it securely at her hips. <i>“... So, care for a ride~?”</i>");
+	output("\n\n<i>“How about we pull out one of my favorite toys? I’m sure it’ll be your favorite too,”</i> Anzhela sultrily purrs. After climbing up onto the soft bed and crawling along it–giving you a nice view of her dripping cameltoe–she pulls out something from a bedside drawer. She falls on her back against the pillows and laviciously spreads her legs, giving you a full-on view of her scarlet mound! It’s short lived as she straps a large, twelve-inch male myr cock over the top of it, fastening it securely at her hips. <i>“... So, care for a ride?”</i>");
 
 	output("\n\nYou grin and");
 	if(pc.isCrotchGarbed()) output(", after stripping off,");

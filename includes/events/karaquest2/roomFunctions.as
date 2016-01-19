@@ -160,8 +160,17 @@ public function kq2RappelIn():void
 	
 	output("\n\n<i>“After you,”</i> she grins, motioning downwards.");
 	
-	output("\n\n{if PC is Misch: <i>“Oh, no, ladies first. I insist,”</i> you answer with a grin of your own. Kara rolls her eyes but agrees, grabbing the rope and sliding down out of sight. You follow her down a few seconds later{, surprised that the rope can actually bear your bestial half’s weight}.");
-	output("\n\n{Else: You nod and grab the rope.} The descent is slow going, taking you more than a hundred feet down from the plateau to the lowland surface. You hit dirt with a slight THUD, {catching up to Kara // joined by Kara a moment later}. She looks around a moment, then nods toward the open maw of a cave entrance not far away. <i>“There we go. Should be a crack in the floor of that cavern that’ll drop us right into the base’s waste pumps. Just a short ways from there to the base interior. C’mon, let’s move.”</i>");
+	if (pc.isMischievous())
+	{
+		output("\n\n<i>“Oh, no, ladies first. I insist,”</i> you answer with a grin of your own. Kara rolls her eyes but agrees, grabbing the rope and sliding down out of sight. You follow her down a few seconds later");
+		if (!pc.isBiped()) output(", surprised that the rope can actually bear your bestial half’s weight");
+		output(".");
+	}
+	else output("\n\nYou nod and grab the rope.");
+	output(" The descent is slow going, taking you more than a hundred feet down from the plateau to the lowland surface. You hit dirt with a slight THUD,");
+	if (pc.isMischievous()) output(" catching up to Kara");
+	else output(" joined by Kara a moment later");
+	output(". She looks around a moment, then nods toward the open maw of a cave entrance not far away. <i>“There we go. Should be a crack in the floor of that cavern that’ll drop us right into the base’s waste pumps. Just a short ways from there to the base interior. C’mon, let’s move.”</i>");
 
 	// [Next]
 	currentLocation = "K2_SEWERENTRANCE";
@@ -171,7 +180,10 @@ public function kq2RappelIn():void
 
 public function kq2rfSewer1():Boolean
 {
-	output("The sewers under the Black Void base are all concrete and stink, a dark tunnel so low that {you and your companion have to squat to pass through // you’re glad of your diminutive height - Kara’s having to duck down to get by}.");
+	output("The sewers under the Black Void base are all concrete and stink, a dark tunnel so low that");
+	if (pc.tallness >= (kara.tallness - 6)) output(" you and your companion have to squat to pass through");
+	else output(" you’re glad of your diminutive height - Kara’s having to duck down to get by");
+	output(".");
 
 	output("\n\n<i>“Careful,”</i> Kara whispers, <i>“Don’t know what could be down here...”</i>");
 
@@ -180,7 +192,10 @@ public function kq2rfSewer1():Boolean
 
 public function kq2rfSewer2():Boolean
 {
-	output("The sewers under the Black Void base are all concrete and stink, a dark tunnel so low that {you and your companion have to squat to pass through // you’re glad of your diminutive height - Kara’s having to duck down to get by}. You’ve reached a cross-way in the sewer, directing sewage from all over through one channel.");
+	output("The sewers under the Black Void base are all concrete and stink, a dark tunnel so low that");
+	if (pc.tallness >= (kara.tallness - 6)) output(" you and your companion have to squat to pass through");
+	else output(" you’re glad of your diminutive height - Kara’s having to duck down to get by");
+	output(". You’ve reached a cross-way in the sewer, directing sewage from all over through one channel.");
 
 	output("\n\nAs you’re walking, Kara taps on a small wrist computer, eyeing a holo-display that flashes across her hand. <i>“East. We want to go east, just a little further.”</i>");
 
@@ -189,7 +204,10 @@ public function kq2rfSewer2():Boolean
 
 public function kq2rfBaseEntrance():Boolean
 {
-	output("The sewers under the Black Void base are all concrete and stink, a dark tunnel so low that {you and your companion have to squat to pass through // you’re glad of your diminutive height - Kara’s having to duck down to get by}. There’s a ladder here, leading up to a manhole overhead.");
+	output("The sewers under the Black Void base are all concrete and stink, a dark tunnel so low that");
+	if (pc.tallness >= (kara.tallness - 6)) output(" you and your companion have to squat to pass through");
+	else output(" you’re glad of your diminutive height - Kara’s having to duck down to get by");
+	output(". There’s a ladder here, leading up to a manhole overhead.");
 	
 	output("\n\n<i>“Alright. Up we go,”</i> Kara whispers. <i>“Thank God. Don’t think I could stand the </i>stink<i> much longer...”</i>");
 
@@ -201,7 +219,10 @@ public function kq2GoBaseEntrance():void
 {
 	clearOutput();
 
-	output("It’s a short climb from the sewers up to the base itself. Kara goes first, using her dagger to hack through a flimsy lock on the manhole cover before popping it open. You blink in the sudden rush of {sunlight // light from the base’s floodlights}. You scramble up to the surface after Kara, ducking down with behind a stack of crates shoved up against the base of a tall building bristling with antennas, giving you a modicum of concealment from the wide open entrance to the base.");
+	output("It’s a short climb from the sewers up to the base itself. Kara goes first, using her dagger to hack through a flimsy lock on the manhole cover before popping it open. You blink in the sudden rush of");
+	if (hours >= 6 && hours <= 19) output(" sunlight");
+	else output(" light from the base’s floodlights");
+	output(". You scramble up to the surface after Kara, ducking down with behind a stack of crates shoved up against the base of a tall building bristling with antennas, giving you a modicum of concealment from the wide open entrance to the base.");
 	
 	output("\n\n<i>“We’re in,”</i> Kara says, and you don’t think she’s talking to you. She nods to herself, then looks at you. <i>“Right. Research facility is north-east, across this courtyard. Wouldn’t be surprised if it’s locked up tight, so we might want to go hunting for a keycard, maybe in that barracks there,”</i> she says, pointing straight ahead to the north, towards a squat structure from which several black-clad men with machine pistols are coming. <i>“Or, I could try to override the lock - but you’ll need to cover me for a few minutes if I do. Either way works for me.”</i>");
 	
@@ -224,7 +245,10 @@ public function kq2rfBaseSewer():Boolean
 
 public function kq2rfRadioTower():Boolean
 {
-	output("The radio tower is a towering concrete structure, the bottom of which is dominated by supply crates and an industrial lift going upwards. There’s a deadbolt security lock on the door, meaning that Kara won’t have any unexpected visitors {if you decide to leave her here // while she’s on overwatch}.");
+	output("The radio tower is a towering concrete structure, the bottom of which is dominated by supply crates and an industrial lift going upwards. There’s a deadbolt security lock on the door, meaning that Kara won’t have any unexpected visitors");
+	if (flags["KQ2_KARA_WITH_PC"] == 1) output(" if you decide to leave her here");
+	else output(" while she’s on overwatch");
+	output(".");
 
 	addButton(0, "Elevator", kq2RadioTowerElevator);
 
@@ -238,7 +262,9 @@ public function kq2RadioTowerElevator():void
 		output("\n\nYou and Kara step onto the elevator, and you press the <i>“UP”</i> button. It rumbles and shifts underfoot before starting to rise, chugging upwards on an old-fashioned gear track. It takes well over a minute to reach the top floor, which is little more than a chair, a few computer consoles, and an access hatch leading up to the roof and the antennae outside.");
 
 		if (flags["KQ2_RADIO_TOWER_EXPLORED"] == undefined)
-		{		
+		{	
+			flags["KQ2_RADIO_TOWER_EXPLORED"] = 1;
+			
 			output("\n\nA single pirate is on duty, a young man dressed in black armor and resting a shotgun over his knees. He’s fast asleep, a dirty magazine covering his face. Seeing him, Kara puts a finger to her lips before moving stealthily forward, drawing her rifle from over her shoulder. She makes it over to the pirate in utter silence, flashes you a wink over her shoulder, and cracks the rifle butt down on the kid’s face through the magazine. He makes a startled grunt, tenses, and then falls limp.");
 			
 			output("\n\n<i>“Ouch,”</i> Kara laughs, picking up the h-magazine from his face. After a second’s consideration, she hands it over to you. <i>“Here. Souvenir.");
@@ -495,6 +521,33 @@ public function kq2rfYardA1():Boolean
 	return false;
 }
 
+public function kq2rfBarracksEntrance():Boolean
+{
+	if (flags["KQ2_BARRACKS_ENTRANCE_ENTERED"] == undefined)
+	{
+		// force combat
+		flags["KQ2_BARRACKS_ENTRANCE_ENTERED"] = 1;
+		kq2FightBlackVoidGrunts();
+		return true;
+	}
+	else
+	{		
+		if (flags["KQ2_FIGHT_STEPS"] == undefined) flags["KQ2_FIGHT_STEPS"] = 0;
+		flags["KQ2_FIGHT_STEPS"]++;
+	
+		if (flags["KQ2_FIGHT_STEPS"] > 4)
+		{
+			if (rand(flags["KQ2_FIGHT_STEPS"]) > 5)
+			{
+				flags["KQ2_FIGHT_STEPS"] = 0;
+				kq2FightBlackVoidGrunts();
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
 public function kq2rfBarracksInterior():Boolean
 {
 	output("The interior of the Black Void barracks looks classic military, with bunk beds arranged in rows all the way across it. Bits of armor and uniforms are scattered around, along with several knocked-out pirates from your scuffle. There’s a door south, back towards the courtyard, and another going west labeled <i>“Security.”</i>");
@@ -549,7 +602,7 @@ public function kq2TakeEngineerArmor():void
 public function kq2EngineerArmorCheck():void
 {
 	if (!pc.hasItemByType(VoidPlateArmor) && !pc.armor is VoidPlateArmor) flags["KQ2_TAKEN_ARMOR"] = undefined;
-	kq2rfBarracksInterior();
+	mainGameMenu();
 }
 
 public function kq2rfSecurityRoom():Boolean
@@ -557,14 +610,14 @@ public function kq2rfSecurityRoom():Boolean
 	//PC fights the Black Void Engineer here.
 	output("A small stairway leads up from the barracks’ main floor and up to the security office. A set of windows overlook the courtyard, and over the wasteland leading up to the base.");
 
-	if (flags["KQ2_DEFEATED_ENGINEER"] == undefined)
+	if (flags["KQ2_DEFEATED_ENGINEER"] == undefined || flags["KQ2_DEFEATED_ENGINEER"] == 2)
 	{
 		kq2EnterEngineersRoom();
 		return true;
 	}
 	else
 	{
-		output(" A set of simple controls gave the engineer, now lying in a heap on the ground, command over the heavy machine-guns at the gate and allowed him to summon and direct reinforcements.");
+		output(" A set of simple controls gave the engineer, now lying in a heap on the ground, command over the heavy machine-guns at the gate and allowed her to summon and direct reinforcements.");
 
 		if (!pc.hasKeyItem("Key Card - R&D Security Pass"))
 		{

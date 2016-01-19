@@ -1,3 +1,20 @@
+import classes.RoomClass;
+public function kquest2RoomStateUpdater():void
+{
+	// Engineers room
+	var tRoom:RoomClass = rooms["K2_SECURITYROOM"];
+	if (flags["KQ2_DEFEATED_ENGINEER"] == undefined)
+	{
+		if (!tRoom.hasFlag(GLOBAL.NPC)) tRoom.addFlag(GLOBAL.NPC);
+		if (!tRoom.hasFlag(GLOBAL.HAZARD)) tRoom.addFlag(GLOBAL.HAZARD);
+	}
+	else if (flags["KQ2_DEFEATED_ENGINEER"] == 1)
+	{
+		if (tRoom.hasFlag(GLOBAL.NPC)) tRoom.removeFlag(GLOBAL.NPC);
+		if (tRoom.hasFlag(GLOBAL.HAZARD)) tRoom.removeFlag(GLOBAL.HAZARD);
+	}
+}
+
 public function kquest2InitRooms():void
 {
 	var planetName:String = "PLANET: MYRELLION";
@@ -80,11 +97,12 @@ public function kquest2InitRooms():void
 	rooms["K2_RADIOTOWER"].northExit = "K2_YARDD3";
 	rooms["K2_RADIOTOWER"].westExit = "K2_BASESEWER";
 	rooms["K2_RADIOTOWER"].addFlag(GLOBAL.OUTDOOR);
+	rooms["K2_RADIOTOWER"].addFlag(GLOBAL.OBJECTIVE);
 
 	rooms["K2_YARDD2"] = new RoomClass(this);
 	rooms["K2_YARDD2"].roomName = "TRAINING\nYARD";
 	rooms["K2_YARDD2"].description = "The courtyard of the base is wide and open, with little in the way of cover other than a few supply crates or ID-locked vehicles parked around the entrance. You can see a barracks to the north, the door to the research facility to the east, and a radio tower to the south-east.\n\nThe sewer entrance is just south of you.";
-	rooms["K2_YARDD2"].runOnEnter = null;
+	rooms["K2_YARDD2"].runOnEnter = tryProcKQ2CombatCourtyards;
 	rooms["K2_YARDD2"].planet = planetName;
 	rooms["K2_YARDD2"].system = systemName;
 	rooms["K2_YARDD2"].northExit = "K2_YARDC2";
@@ -92,32 +110,35 @@ public function kquest2InitRooms():void
 	rooms["K2_YARDD2"].southExit = "K2_BASESEWER";
 	rooms["K2_YARDD2"].westExit = "K2_YARDD1";
 	rooms["K2_YARDD2"].addFlag(GLOBAL.OUTDOOR);
+	rooms["K2_YARDD2"].addFlag(GLOBAL.HAZARD);
 
 	rooms["K2_YARDD1"] = new RoomClass(this);
 	rooms["K2_YARDD1"].roomName = "TRAINING\nYARD";
 	rooms["K2_YARDD1"].description = "The courtyard of the base is wide and open, with little in the way of cover other than a few supply crates or ID-locked vehicles parked around the entrance. You can see a barracks to the north, the door to the research facility to the east, and a radio tower to the south-east. ";
-	rooms["K2_YARDD1"].runOnEnter = null;
+	rooms["K2_YARDD1"].runOnEnter = tryProcKQ2CombatCourtyards;
 	rooms["K2_YARDD1"].planet = planetName;
 	rooms["K2_YARDD1"].system = systemName;
-	rooms["K2_YARDD1"].northExit = "K2_YARDD1";
+	rooms["K2_YARDD1"].northExit = "K2_YARDC1";
 	rooms["K2_YARDD1"].eastExit = "K2_YARDD2";
 	rooms["K2_YARDD1"].addFlag(GLOBAL.OUTDOOR);
+	rooms["K2_YARDD1"].addFlag(GLOBAL.HAZARD);
 
 	rooms["K2_YARDD3"] = new RoomClass(this);
 	rooms["K2_YARDD3"].roomName = "TRAINING\nYARD";
 	rooms["K2_YARDD3"].description = "The courtyard of the base is wide and open, with little in the way of cover other than a few supply crates or ID-locked vehicles parked around the entrance. You can see a barracks to the north, the door to the research facility to the east, and a radio tower just south of you. ";
-	rooms["K2_YARDD3"].runOnEnter = null;
+	rooms["K2_YARDD3"].runOnEnter = tryProcKQ2CombatCourtyards;
 	rooms["K2_YARDD3"].planet = planetName;
 	rooms["K2_YARDD3"].system = systemName;
 	rooms["K2_YARDD3"].northExit = "K2_YARDC3";
 	rooms["K2_YARDD3"].southExit = "K2_RADIOTOWER";
 	rooms["K2_YARDD3"].westExit = "K2_YARDD2";
 	rooms["K2_YARDD3"].addFlag(GLOBAL.OUTDOOR);
+	rooms["K2_YARDD3"].addFlag(GLOBAL.HAZARD);
 
 	rooms["K2_YARDC2"] = new RoomClass(this);
 	rooms["K2_YARDC2"].roomName = "TRAINING\nYARD";
 	rooms["K2_YARDC2"].description = "The courtyard of the base is wide and open, with little in the way of cover other than a few supply crates or ID-locked vehicles parked around the entrance. You can see a barracks to the north, the door to the research facility to the east, and a radio tower to the south-east. ";
-	rooms["K2_YARDC2"].runOnEnter = null;
+	rooms["K2_YARDC2"].runOnEnter = tryProcKQ2CombatCourtyards;
 	rooms["K2_YARDC2"].planet = planetName;
 	rooms["K2_YARDC2"].system = systemName;
 	rooms["K2_YARDC2"].northExit = "K2_YARDB2";
@@ -125,39 +146,43 @@ public function kquest2InitRooms():void
 	rooms["K2_YARDC2"].southExit = "K2_YARDD2";
 	rooms["K2_YARDC2"].westExit = "K2_YARDC1";
 	rooms["K2_YARDC2"].addFlag(GLOBAL.OUTDOOR);
+	rooms["K2_YARDC2"].addFlag(GLOBAL.HAZARD);
 
 	rooms["K2_YARDC1"] = new RoomClass(this);
 	rooms["K2_YARDC1"].roomName = "TRAINING\nYARD";
 	rooms["K2_YARDC1"].description = "The courtyard of the base is wide and open, with little in the way of cover other than a few supply crates or ID-locked vehicles parked around the entrance. You can see a barracks to the north, the door to the research facility to the east, and a radio tower to the south-east.\n\nThere's a gate in the electric fence here. Just outside it is a machine-gun nest surrounded by sandbags and shield projectors. Too bad you can't reach them...";
-	rooms["K2_YARDC1"].runOnEnter = null;
+	rooms["K2_YARDC1"].runOnEnter = tryProcKQ2CombatCourtyards;
 	rooms["K2_YARDC1"].planet = planetName;
 	rooms["K2_YARDC1"].system = systemName;
 	rooms["K2_YARDC1"].northExit = "K2_YARDB1";
 	rooms["K2_YARDC1"].eastExit = "K2_YARDC2";
 	rooms["K2_YARDC1"].southExit = "K2_YARDD1";
 	rooms["K2_YARDC1"].addFlag(GLOBAL.OUTDOOR);
+	rooms["K2_YARDC1"].addFlag(GLOBAL.HAZARD);
 
 	rooms["K2_YARDC3"] = new RoomClass(this);
 	rooms["K2_YARDC3"].roomName = "TRAINING\nYARD";
 	rooms["K2_YARDC3"].description = "The courtyard of the base is wide and open, with little in the way of cover other than a few supply crates or ID-locked vehicles parked around the entrance. You can see a barracks to the north, the door to the research facility to the north-east, and a radio tower to the south. ";
-	rooms["K2_YARDC3"].runOnEnter = null;
+	rooms["K2_YARDC3"].runOnEnter = tryProcKQ2CombatCourtyards;
 	rooms["K2_YARDC3"].planet = planetName;
 	rooms["K2_YARDC3"].system = systemName;
 	rooms["K2_YARDC3"].northExit = "K2_YARDB3";
 	rooms["K2_YARDC3"].southExit = "K2_YARDD3";
 	rooms["K2_YARDC3"].westExit = "K2_YARDC2";
 	rooms["K2_YARDC3"].addFlag(GLOBAL.OUTDOOR);
+	rooms["K2_YARDC3"].addFlag(GLOBAL.HAZARD);
 
 	rooms["K2_YARDB1"] = new RoomClass(this);
 	rooms["K2_YARDB1"].roomName = "TRAINING\nYARD";
 	rooms["K2_YARDB1"].description = "The courtyard of the base is wide and open, with little in the way of cover other than a few supply crates or ID-locked vehicles parked around the entrance. You can see a barracks to the north, the door to the research facility to the east, and a radio tower to the south-east.\n\nThere's a gate in the electric fence here. Just outside it is a machine-gun nest surrounded by sandbags and shield projectors. Too bad you can't reach them...";
-	rooms["K2_YARDB1"].runOnEnter = null;
+	rooms["K2_YARDB1"].runOnEnter = tryProcKQ2CombatCourtyards;
 	rooms["K2_YARDB1"].planet = planetName;
 	rooms["K2_YARDB1"].system = systemName;
 	rooms["K2_YARDB1"].northExit = "K2_YARDA1";
 	rooms["K2_YARDB1"].eastExit = "K2_YARDB2";
 	rooms["K2_YARDB1"].southExit = "K2_YARDC1";
 	rooms["K2_YARDB1"].addFlag(GLOBAL.OUTDOOR);
+	rooms["K2_YARDB1"].addFlag(GLOBAL.HAZARD);
 
 	rooms["K2_YARDB2"] = new RoomClass(this);
 	rooms["K2_YARDB2"].roomName = "TRAINING\nYARD";
@@ -165,11 +190,12 @@ public function kquest2InitRooms():void
 	rooms["K2_YARDB2"].runOnEnter = kq2rfYardB2;
 	rooms["K2_YARDB2"].planet = planetName;
 	rooms["K2_YARDB2"].system = systemName;
-	rooms["K2_YARDB2"].northExit = "K2_YARDA1";
+	rooms["K2_YARDB2"].northExit = "K2_YARDA2";
 	rooms["K2_YARDB2"].eastExit = "K2_YARDB3";
 	rooms["K2_YARDB2"].southExit = "K2_YARDC2";
 	rooms["K2_YARDB2"].westExit = "K2_YARDB1";
 	rooms["K2_YARDB2"].addFlag(GLOBAL.OUTDOOR);
+	rooms["K2_YARDB2"].addFlag(GLOBAL.HAZARD);
 
 	rooms["K2_YARDB3"] = new RoomClass(this);
 	rooms["K2_YARDB3"].roomName = "TRAINING\nYARD";
@@ -182,6 +208,7 @@ public function kquest2InitRooms():void
 	rooms["K2_YARDB3"].southExit = "K2_YARDC3";
 	rooms["K2_YARDB3"].westExit = "K2_YARDB2";
 	rooms["K2_YARDB3"].addFlag(GLOBAL.OUTDOOR);
+	rooms["K2_YARDB3"].addFlag(GLOBAL.HAZARD);
 
 	rooms["K2_YARDA1"] = new RoomClass(this);
 	rooms["K2_YARDA1"].roomName = "TRAINING\nYARD";
@@ -192,11 +219,12 @@ public function kquest2InitRooms():void
 	rooms["K2_YARDA1"].eastExit = "K2_YARDA2";
 	rooms["K2_YARDA1"].southExit = "K2_YARDB1";
 	rooms["K2_YARDA1"].addFlag(GLOBAL.OUTDOOR);
+	rooms["K2_YARDA1"].addFlag(GLOBAL.HAZARD);
 
 	rooms["K2_YARDA2"] = new RoomClass(this);
 	rooms["K2_YARDA2"].roomName = "TRAINING\nYARD";
 	rooms["K2_YARDA2"].description = "The courtyard of the base is wide and open, with little in the way of cover other than a few supply crates or ID-locked vehicles parked around the entrance. You can see the door to the research facility to the south-east, and a radio tower to the south-east.\n\nYou're right in front of the Black Void barracks. Going to be a lot of pirates in there.";
-	rooms["K2_YARDA2"].runOnEnter = null;
+	rooms["K2_YARDA2"].runOnEnter = tryProcKQ2CombatCourtyards;
 	rooms["K2_YARDA2"].planet = planetName;
 	rooms["K2_YARDA2"].system = systemName;
 	rooms["K2_YARDA2"].northExit = "K2_BARRACKSENTRANCE";
@@ -204,26 +232,29 @@ public function kquest2InitRooms():void
 	rooms["K2_YARDA2"].southExit = "K2_YARDB2";
 	rooms["K2_YARDA2"].westExit = "K2_YARDA1";
 	rooms["K2_YARDA2"].addFlag(GLOBAL.OUTDOOR);
+	rooms["K2_YARDA2"].addFlag(GLOBAL.HAZARD);
 
 	rooms["K2_YARDA3"] = new RoomClass(this);
 	rooms["K2_YARDA3"].roomName = "TRAINING\nYARD";
 	rooms["K2_YARDA3"].description = "The courtyard of the base is wide and open, with little in the way of cover other than a few supply crates or ID-locked vehicles parked around the entrance. You can see a barracks to the west, the door to the research facility to the south-east, and a radio tower to the south.";
-	rooms["K2_YARDA3"].runOnEnter = null;
+	rooms["K2_YARDA3"].runOnEnter = tryProcKQ2CombatCourtyards;
 	rooms["K2_YARDA3"].planet = planetName;
 	rooms["K2_YARDA3"].system = systemName;
 	rooms["K2_YARDA3"].southExit = "K2_YARDB3";
 	rooms["K2_YARDA3"].westExit = "K2_YARDA2";
 	rooms["K2_YARDA3"].addFlag(GLOBAL.OUTDOOR);
+	rooms["K2_YARDA3"].addFlag(GLOBAL.HAZARD);
 
 	rooms["K2_BARRACKSENTRANCE"] = new RoomClass(this);
 	rooms["K2_BARRACKSENTRANCE"].roomName = "BARRACKS\nENTRANCE";
 	rooms["K2_BARRACKSENTRANCE"].description = "The interior of the Black Void barracks looks classic military, with bunk beds arranged in rows all the way across it. Bits of armor and uniforms are scattered around, along with several knocked-out pirates from your scuffle. There's a door going north. ";
-	rooms["K2_BARRACKSENTRANCE"].runOnEnter = null; //PC guaranteed to fight the first time in this square
+	rooms["K2_BARRACKSENTRANCE"].runOnEnter = kq2rfBarracksEntrance; //PC guaranteed to fight the first time in this square
 	rooms["K2_BARRACKSENTRANCE"].planet = planetName;
 	rooms["K2_BARRACKSENTRANCE"].system = systemName;
 	rooms["K2_BARRACKSENTRANCE"].northExit = "K2_BARRACKSINTERIOR";
 	rooms["K2_BARRACKSENTRANCE"].southExit = "K2_YARDA2";
-	rooms["K2_BARRACKSENTRANCE"].addFlag(GLOBAL.OUTDOOR);
+	rooms["K2_BARRACKSENTRANCE"].addFlag(GLOBAL.INDOOR);
+	rooms["K2_BARRACKSENTRANCE"].addFlag(GLOBAL.HAZARD);
 
 	rooms["K2_BARRACKSINTERIOR"] = new RoomClass(this);
 	rooms["K2_BARRACKSINTERIOR"].roomName = "\nBARRAKCS";
@@ -233,7 +264,8 @@ public function kquest2InitRooms():void
 	rooms["K2_BARRACKSINTERIOR"].system = systemName;
 	rooms["K2_BARRACKSINTERIOR"].southExit = "K2_BARRACKSENTRANCE";
 	rooms["K2_BARRACKSINTERIOR"].westExit = "K2_SECURITYROOM";
-	rooms["K2_BARRACKSINTERIOR"].addFlag(GLOBAL.OUTDOOR);
+	rooms["K2_BARRACKSINTERIOR"].addFlag(GLOBAL.INDOOR);
+	rooms["K2_BARRACKSINTERIOR"].addFlag(GLOBAL.HAZARD);
 
 	rooms["K2_SECURITYROOM"] = new RoomClass(this);
 	rooms["K2_SECURITYROOM"].roomName = "SECURITY\nROOM";
@@ -242,7 +274,9 @@ public function kquest2InitRooms():void
 	rooms["K2_SECURITYROOM"].planet = planetName;
 	rooms["K2_SECURITYROOM"].system = systemName;
 	rooms["K2_SECURITYROOM"].eastExit = "K2_SECURITYROOM";
-	rooms["K2_SECURITYROOM"].addFlag(GLOBAL.OUTDOOR);
+	rooms["K2_SECURITYROOM"].addFlag(GLOBAL.INDOOR);
+	rooms["K2_SECURITYROOM"].addFlag(GLOBAL.HAZARD);
+	rooms["K2_SECURITYROOM"].addFlag(GLOBAL.NPC);
 
 	rooms["K2_RNDENTRANCE1"] = new RoomClass(this);
 	rooms["K2_RNDENTRANCE1"].roomName = "R&D\nENTRANCE";
