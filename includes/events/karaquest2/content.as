@@ -10,6 +10,7 @@ KQ2_QUEST_BEGIN			-- Players decision about starting the quest
 						-- 2 player rejected
 KQ2_QUEST_FINISHED		-- 0/undefined, nope
 						-- 1, finished, left, gone, woop
+						-- 2, finished but some bad shit happened (kara died, etc)
 KQ2_SEX_PAY				-- Player asked for sexytimes as extra payment
 KQ2_CREDS_FIRST			-- Player asked for additional credits up front
 KQ2_KARA_WITH_PC		-- Karas current location
@@ -898,8 +899,7 @@ public function kq2WatsonSelfDestruct():void
 	addButton(1, "No", mainGameMenu);
 }
 
-// 9999 - make this time value actually agree with the game time it will take for the player to actually be able to get the fuck out.
-public static const KQ2_NUKE_DURATION:int = 800;
+public static const KQ2_NUKE_DURATION:int = 90;
 
 public function kq2NukeIt():void
 {
@@ -2142,6 +2142,7 @@ public function kq2AmaraBetrayKara():void
 
 	//Return PC to ship.
 	flags["KQ2_BETRAYED_KARA"] = 1;
+	flags["KQ2_QUEST_FINISHED"] = 2;
 	currentLocation = "SHIP INTERIOR";
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -2224,6 +2225,7 @@ public function kq2FightAmara():void
 	CombatManager.setFriendlyCharacters([pc, kara]);
 	CombatManager.setHostileCharacters(h);
 	CombatManager.victoryCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, h[0]);
+	CombatManager.displayLocation("AMARA");
 	CombatManager.victoryScene(kq2AmaraPCVictory);
 	CombatManager.lossScene(kq2AmaraPCDefeat);
 	CombatManager.beginCombat();
@@ -2273,8 +2275,9 @@ public function kq2AmaraPCVictory():void
 	}
 
 	// This should work, because we know we're not gonna be looting anything...
+	output("\n\n");
 	CombatManager.genericVictory();
-
+	
 	clearMenu();
 	addButton(0, "Next", kq2AmaraPCVictoryII);
 }
@@ -2284,6 +2287,10 @@ public function kq2AmaraPCVictoryII():void
 	clearOutput();
 	showKara();
 
+	clearMenu();
+	userInterface.hideNPCStats();
+	userInterface.leftBarDefaults();
+	
 	var creditAmount:int;
 	if (flags["KQ2_CREDS_FIRST"] == 1) creditAmount = 15000;
 	else creditAmount = 30000;
@@ -2334,7 +2341,7 @@ public function kq2KaraNoSexPls():void
 	clearOutput();
 	showKara();
 
-	output("\n\nYou gently let Kara down on that idea, but she takes it in stride. <i>“Yeah. Sure. No problem,”</i> she laughs, rubbing the back of her neck. <i>“Anyway, I should head out. Find a bar somewhere. Could use a drink to calm down, if nothing else. See you around, [pc.name].”</i>");
+	output("You gently let Kara down on that idea, but she takes it in stride. <i>“Yeah. Sure. No problem,”</i> she laughs, rubbing the back of her neck. <i>“Anyway, I should head out. Find a bar somewhere. Could use a drink to calm down, if nothing else. See you around, [pc.name].”</i>");
 
 	output("\n\nShe gives you a surprisingly firm handshake before she cycles the airlock and lets you leave, waving farewell as you depart.");
 
@@ -2408,6 +2415,7 @@ public function kq2AmaraSpecialEnd():void
 	//Return PC to ship. No reward, no harem, no nothing. Dump all Lust built up.
 	pc.lustRaw = 0;
 	flags["KQ2_KARA_SACRIFICE"] = 1;
+	flags["KQ2_QUEST_FINISHED"] = 2;
 	currentLocation = "SHIP INTERIOR";
 
 	clearMenu();

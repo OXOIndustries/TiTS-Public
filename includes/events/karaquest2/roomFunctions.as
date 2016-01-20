@@ -646,13 +646,29 @@ public function kq2rfBreakRoom():Boolean
 	return false;
 }
 
+public function kq2rfHelipadElevator():Boolean
+{
+	output("The elevator connects three floors of the Black Void base: the main level, the research level below, and a helipad on the roof.");
+	
+	if (flags["KQ2_DEFEATED_JUGGERNAUT"] == 1)
+	{
+		output("\n\nThe roof's been caved in, and a dead pirate in massive armor lies on the floor of the car. You're amazed the elevator is still functional.");
+	}
+	
+	addButton(0, "Labs", move, "K2_LABELEVATOR");
+	addButton(1, "Lobby", move, "K2_LOBBYELEVATOR");
+	addDisabledButton(2, "Roof");
+	
+	return false;
+}
+
 public function kq2rfLobbyElevator():Boolean
 {
 	output("The elevator connects three floors of the Black Void base: the main level, the research level below, and a helipad on the roof.");
 
 	if (flags["KQ2_DEFEATED_JUGGERNAUT"] == 1)
 	{
-		output("The roof's been caved in, and a dead pirate in massive armor lies on the floor of the car. You're amazed the elevator is still functional.");
+		output("\n\nThe roof's been caved in, and a dead pirate in massive armor lies on the floor of the car. You're amazed the elevator is still functional.");
 	}
 
 	addButton(0, "Labs", move, "K2_LABELEVATOR");
@@ -799,13 +815,19 @@ public function kq2rfRoof1():Boolean
 		kq2EncounterShade();
 		return true;
 	}
-	else if (flags["KQ2_FOUGHT_AMARA"] == undefined)
+
+	return false;
+}
+
+public function kq2rfHelipad():Boolean
+{
+	if (flags["KQ2_FOUGHT_AMARA"] == undefined)
 	{
 		kq2EncounterAmara();
 		return true;
 	}
-
-	return false;
+	
+	return true;
 }
 
 public function kq2rfLabElevator():Boolean
@@ -814,7 +836,7 @@ public function kq2rfLabElevator():Boolean
 
 	if (flags["KQ2_DEFEATED_JUGGERNAUT"] == 1)
 	{
-		output("The roof's been caved in, and a dead pirate in massive armor lies on the floor of the car. You're amazed the elevator is still functional.");
+		output("\n\nThe roof's been caved in, and a dead pirate in massive armor lies on the floor of the car. You're amazed the elevator is still functional.");
 	}
 
 	if (flags["KQ2_DEFEATED_JUGGERNAUT"] == undefined && flags["KQ2_KHANS_FILES"] != undefined)
@@ -838,6 +860,7 @@ public function kq2rfLabElevator():Boolean
 		CombatManager.newGroundCombat();
 		CombatManager.setFriendlyCharacters(f);
 		CombatManager.setHostileCharacters([new KQ2Juggernaut()]);
+		CombatManager.displayLocation("JUGGERNAUT");
 		CombatManager.victoryScene(kq2JuggernautPCVictory);
 		CombatManager.lossScene(kq2CapturedByPiratesBadEnd);
 
@@ -847,7 +870,7 @@ public function kq2rfLabElevator():Boolean
 	}
 
 	addDisabledButton(0, "Labs");
-	addButton(1, "Lobby", move, "KQ2_LOBBYELEVATOR");
+	addButton(1, "Lobby", move, "K2_LOBBYELEVATOR");
 	addButton(2, "Roof", move, "K2_HELIPADELEVATOR");
 
 	return false;
