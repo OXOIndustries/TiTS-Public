@@ -285,23 +285,24 @@ package classes.Characters
 			
 			output("<i>“Hand me one of my special concoctions!”</i> Khan snaps at one of his lab-coat-wearing harem girls. She quickly scampers over to a nearby desk and rushes back with a small pink grenade. <i>“Have a taste of my LUSTBANGS!”</i> he screams, throwing the grenade at you. It explodes in a cloud of pink mist which rolls over you");
 			if (kara != null) output(" and Kara");
-			output(".\n");
+			output(".");
 			
-			if(pc.hasArmor() && pc.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT)) output(" As the mist spreads around you, you find yourself lucky enough to be wearing some airtight armor! No telling how that stuff might affect your senses.");
+			if(pc.hasArmor() && pc.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT)) output("\nAs the mist spreads around you, you find yourself lucky enough to be wearing some airtight armor! No telling how that stuff might affect your senses.");
 			else
 			{
 				output("\nRather than choking on it, though");
 				
-			if (pc.reflexes() / 2 + rand(20) + 1 >= 25)
-			{
-				output(", you manage to cover your mouth and dive out of the cloud.");
-			}
-			else
-			{
-				hitPC = true;
-				output(" you feel your skin flush with heat. Your [pc.crotch] burns with unwanted desire as the poison cloud overwhelms you!");
-				
-				applyDamage(new TypeCollection( { drug: 15 + rand(6) } ), this, pc, "minimal");
+				if (pc.reflexes() / 2 + rand(20) + 1 >= 25)
+				{
+					output(", you manage to cover your mouth and dive out of the cloud.");
+				}
+				else
+				{
+					hitPC = true;
+					output(" you feel your skin flush with heat. Your [pc.crotch] burns with unwanted desire as the poison cloud overwhelms you!");
+					
+					applyDamage(new TypeCollection( { drug: 15 + rand(6) } ), this, pc, "minimal");
+				}
 			}
 			
 			if (kara)
@@ -321,7 +322,6 @@ package classes.Characters
 					applyDamage(new TypeCollection( { drug: 15 + rand(6) } ), this, kara, "minimal");
 				}
 			}
-		}
 		}
 		
 		private function ballWorship(hostiles:Array):void
