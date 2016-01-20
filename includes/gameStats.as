@@ -1556,8 +1556,8 @@ public function displayQuestLog(showID:String = "All"):void
 					if(flags["KQ2_KHANS_FILES"] != undefined) output2(", Took Khan’s files");
 					if(flags["KQ2_LOST_TO_AMARA"] != undefined) output2(", Lost to Amara");
 					if(flags["KQ2_BETRAYED_KARA"] != undefined) output2(", You betrayed Kara");
-					else if(flags["KQ2_KARA_SACRIFICE"] != undefined) output2(", Kara sacrificed herself");
-					else if(flags["KQ2_QUEST_FINISHED"] != undefined) output2(", Completed");
+					if(flags["KQ2_KARA_SACRIFICE"] != undefined) output2(", Kara sacrificed herself");
+					if(flags["KQ2_QUEST_FINISHED"] != undefined) output2(", Completed");
 					// Pirate Base
 					if(flags["KQ2_KARA_WITH_PC"] != undefined)
 					{
