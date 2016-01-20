@@ -1044,8 +1044,7 @@ public function kq2BribeEngineer():void
 	//[Sex] [Money] [Dirty Magazine]
 	clearMenu();
 	addButton(0, "Sex", kq2GibEngyDankHoles, undefined, "Sex", "Bend over and let the lapinara bust a nut in your backside in exchange for the keycard.");
-	if (pc.credits >= 1000) addButton(1, "Money", kq2GibEngyCash, undefined, "Money", "Give the lapinara some money in trade. Considering who she works for, it’d probably take 1,000 credits to convince her.");
-	else addDisabledButton(1, "Money", "Money", "You don’t think you have enough spare money for this. Considering who she works for, it’d probably take 1,000 credits to convince her.");
+	addButton(1, "Money", kq2GibEngyCash, undefined, "Money", "Give the lapinara some money in trade. Considering who she works for, it'd probably take 1,000 credits to convince her.");
 	if (pc.hasKeyItem("Hentai Magazine")) addButton(2, "DirtyMag", kq2GibEngyDirtyMag, undefined, "Dirty Magazine", "Try and pawn off that dirty magazine Kara gave you on the lapinara.");
 }
 
@@ -1071,8 +1070,6 @@ public function kq2GibEngyDirtyMag():void
 	
 	output("\n\nSomewhat amazed that actually worked, you take the keycard and leave the lapinara engineer to her business.");
 
-	pc.removeKeyItem("Hentai Magazine");
-	output("\n\n<b>Removed Key Item: Hentai Magazine</b>.");
 	pc.createKeyItem("Key Card - R&D Security Pass");
 	output("\n\n<b>New Key Item: Key Card - R&D Security Pass</b>.");
 
@@ -1089,8 +1086,6 @@ public function kq2GibEngyCash():void
 	showKQ2Engineer();
 
 	output("<i>“...give me a thousand credits!”</i> she says, extending a hand to you, palm open and expectant. You dig a credit chit out of your pack and plant it in her outstretched hand. The engineer squeals in excitement, bouncing around on her powerful legs. <i>“Score! Take the card, I’m going on a SHOPPING SPREE! Whoo!”</i>");
-	
-	pc.credits -= 1000;
 	
 	output("\n\nShe grabs a keycard off of the desk behind her and tosses it at you. You narrowly snatch it away from the fangs of");
 	if (flags["KQ2_ENGINEER_NUM_DRONES"] > 1) output(" one of");
@@ -1162,8 +1157,6 @@ public function kq2GibEngyDankHoles():void
 	if (pc.ass.looseness() < 3) output(" So tight, too! You’re gonna make me work for it, huh?");
 	else output(" And so loose! I feel like I’m just sliding in!");
 	output("”</i>");
-	
-	pc.buttChange(engineer.cockVolume(0));
 
 	output("\n\nYou give the lapinara a little grin over your shoulder, and relax in her hands, enjoying the feeling of her prick inside you,");
 	if (pc.ass.looseness() < 3) output(" stretching you out");
