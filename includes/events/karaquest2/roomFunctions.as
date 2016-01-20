@@ -236,7 +236,7 @@ public function kq2rfRadioTower():Boolean
 
 public function kq2RadioTowerElevator():void
 {
-	if (flags["KQ2_KARA_WITH_PC"] != undefined)
+	if (flags["KQ2_KARA_WITH_PC"] == 1)
 	{
 		output("\n\nYou and Kara step onto the elevator, and you press the <i>“UP”</i> button. It rumbles and shifts underfoot before starting to rise, chugging upwards on an old-fashioned gear track. It takes well over a minute to reach the top floor, which is little more than a chair, a few computer consoles, and an access hatch leading up to the roof and the antennae outside.");
 
@@ -264,7 +264,7 @@ public function kq2RadioTowerElevator():void
 			output("\n\nYou wish her the same, and hit the <i>“DOWN”</i> button once again.");
 		}
 
-		flags["KQ2_KARA_WITH_PC"] = undefined;
+		flags["KQ2_KARA_WITH_PC"] = 2;
 	}
 	else
 	{
@@ -283,13 +283,15 @@ public function kq2RadioTowerElevator():void
 
 public function kq2rfYardB2():Boolean
 {
-	output("\n\nThe courtyard of the base is wide and open, with little in the way of cover other than a few supply crates or ID-locked vehicles parked around the entrance. You can see a barracks to the north, the door to the research facility to the east, and a radio tower to the south-east.");
+	output("The courtyard of the base is wide and open, with little in the way of cover other than a few supply crates or ID-locked vehicles parked around the entrance. You can see a barracks to the north, the door to the research facility to the east, and a radio tower to the south-east.");
 	
 	output("\n\nThere’s a god-damned tank here, just sitting beside a few other vehicles. The hover-platforms look badly busted and you’re not sure if the engine sitting exposed on the front is any good, but it’s still a <i>tank</i>.");
 	if (pc.characterClass == GLOBAL.CLASS_MERCENARY)
 	{
 		output(" Hey, you could do something with that....");
-		addButton(0, "Use Tank", kq2UseTank, undefined, "Use the Tank", "That sure is a nice door the research facility has. It'd be a shame if something were to... <i>happen</i> to it. Hop in that tank, crane the main gun around, and knock.");
+		if(flags["KQ2_RND_ENTRANCE_OPEN"] == undefined) addButton(0, "Use Tank", kq2UseTank, undefined, "Use the Tank", "That sure is a nice door the research facility has. It'd be a shame if something were to... <i>happen</i> to it. Hop in that tank, crane the main gun around, and knock.");
+		else if(flags["KQ2_RND_ENTRANCE_OPEN"] == 1) addDisabledButton(0, "Use Tank", "Use the Tank", "You've already used this--no point in using it again unless you want to bring the whole place down.");
+		else addDisabledButton(0, "Use Tank", "Use the Tank", "The doors are already open--there's really no point in causing unnecessary destruction here...");
 	}
 	else
 	{
@@ -310,7 +312,7 @@ public function kq2UseTank():void
 	output("\n\nFire in the hole! You squeeze the trigger and cover your ears, wincing as the massive gun blows a chunk out of the door. The whole tank recoils with the blast, leaving you stunned for a moment with ears ringing. You manage to gather your wits enough to peek out the hatch, and grin maniacally to yourself as you see the front door to the facility crash inwards.");
 
 	output("\n\n<i>“That’s one way to get inside,”</i> Kara laughs");
-	if (flags["KQ2_KARA_WITH_PC"] == 2) output(" over the tank’s radio. <i>“I’ll meet you at the doors - or what’s left of ‘em!”</i>");
+	if (flags["KQ2_KARA_WITH_PC"] != 1) output(" over the tank’s radio. <i>“I’ll meet you at the doors - or what’s left of ‘em!”</i>");
 	output(".");
 	
 	clearMenu();
@@ -393,14 +395,16 @@ public function kq2rfKaraOverride():void
 {
 	clearOutput();
 
-	if (flags["KQ2_KARA_WITH_PC"] == 2)
+	if (flags["KQ2_KARA_WITH_PC"] != 1)
 	{
 		output("You wave at the radio tower, trying to signal Kara to come over. She’s back with you momentarily, running across the courtyard as quick as she can.");
 
-		if (kara.isMischievous()) output("\n\n<i>“Miss me?”</i> she grins, giving you a playful wink.");
+		if (kara.isMischievous()) output("\n\n<i>“Miss me?”</i> she grins, giving you a playful wink. ");
+		
+		flags["KQ2_KARA_WITH_PC"] = 1;
 	}
 
-	output("\n\n<i>“Alright, cover me,”</i> Kara says, taking a knee next to the computer and pulling a wire from her wrist device to the door panel. <i>“This’ll take a minute. Make sure I don’t get shot in the back, alright?”</i>");
+	output("<i>“Alright, cover me,”</i> Kara says, taking a knee next to the computer and pulling a wire from her wrist device to the door panel. <i>“This’ll take a minute. Make sure I don’t get shot in the back, alright?”</i>");
 
 	output("\n\nYou nod and turn to face the open courtyard. Now that you’re stuck in one place, you can see several black-armored Void soldiers rushing towards you. You ready your [pc.rangedWeapon] and take cover next to the door. This is going to be rough...");
 
@@ -410,6 +414,9 @@ public function kq2rfKaraOverride():void
 	CombatManager.victoryCondition(CombatManager.SURVIVE_WAVES, 5);
 	CombatManager.victoryScene(kq2KaraHotwiresSumDoors);
 	CombatManager.lossScene(kq2CapturedByPiratesBadEnd);
+	
+	clearMenu();
+	addButton(0, "Next", CombatManager.beginCombat);
 }
 
 public function kq2KaraHotwiresSumDoors():void
@@ -428,11 +435,13 @@ public function kq2rfEnterRNDFirstTime():void
 {
 	clearOutput();
 
-	if (flags["KQ2_KARA_WITH_PC"] == undefined)
+	if (flags["KQ2_KARA_WITH_PC"] != 1)
 	{
 		output("You wave at the radio tower, trying to signal Kara to come over. She’s back with you momentarily, running across the courtyard as quick as she can.");
 
 		if (kara.isMischievous()) output("\n\n<i>“Miss me?”</i> she grins, giving you a playful wink. <i>“Alright, we’re in! God job, [pc.name]!”</i>");
+		
+		flags["KQ2_KARA_WITH_PC"] = 1;
 	}
 	else
 	{
@@ -560,13 +569,13 @@ public function kq2rfBarracksInterior():Boolean
 				}
 			}
 		}
+	}
 	
 		if (flags["KQ2_TAKEN_ARMOR"] == undefined)
 		{
-			output(" You can see a full suit of armor sitting on one of the bunks. Looks usable.");
+		output("\n\nYou can see a full suit of armor sitting on one of the bunks. Looks usable.\n\n");
 			addButton(0, "TakeArmor", kq2TakeEngineerArmor);
 		}
-	}
 
 	return false;
 }
@@ -581,8 +590,16 @@ public function kq2TakeEngineerArmor():void
 
 public function kq2EngineerArmorCheck():void
 {
-	if (!pc.hasItemByType(VoidPlateArmor) && !pc.armor is VoidPlateArmor) flags["KQ2_TAKEN_ARMOR"] = undefined;
+	if (pc.armor is VoidPlateArmor || pc.hasItemByType(VoidPlateArmor))
+	{
 	mainGameMenu();
+		return;
+	}
+	clearOutput();
+	output("You put the armor back where you found it.");
+	flags["KQ2_TAKEN_ARMOR"] = undefined;
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
 
 public function kq2rfSecurityRoom():Boolean
@@ -614,6 +631,8 @@ public function kq2rfTakeKeycard():void
 	clearOutput();
 
 	output("\n\nYou pick up the keycard. Score! This should get you into the research facility, no problem.");
+	pc.createKeyItem("Key Card - R&D Security Pass");
+	output("\n\n<b>New Key Item: Key Card - R&D Security Pass</b>.");
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -672,8 +691,9 @@ public function kq2rfLobbyElevator():Boolean
 	}
 
 	addButton(0, "Labs", move, "K2_LABELEVATOR");
-	addDisabledButton(1, "Lobby");
-	addButton(2, "Roof", move, "K2_HELIPADELEVATOR");
+	addDisabledButton(1, "Lobby", "Main Level", "You are already on this floor.");
+	if(flags["KQ2_DEFEATED_JUGGERNAUT"] != undefined) addButton(2, "Roof", move, "K2_HELIPADELEVATOR");
+	else addDisabledButton(2, "Roof", "Helipad", "You need to go <i>down</i> to the labs, not up!");
 
 	return false;
 }
@@ -834,7 +854,7 @@ public function kq2rfLabElevator():Boolean
 {
 	output("The elevator connects three floors of the Black Void base: the research level, the main level above, and a helipad on the roof.");
 
-	if (flags["KQ2_DEFEATED_JUGGERNAUT"] == 1)
+	if (flags["KQ2_DEFEATED_JUGGERNAUT"] != undefined)
 	{
 		output("\n\nThe roof's been caved in, and a dead pirate in massive armor lies on the floor of the car. You're amazed the elevator is still functional.");
 	}
@@ -869,9 +889,10 @@ public function kq2rfLabElevator():Boolean
 		return true;
 	}
 
-	addDisabledButton(0, "Labs");
-	addButton(1, "Lobby", move, "K2_LOBBYELEVATOR");
-	addButton(2, "Roof", move, "K2_HELIPADELEVATOR");
+	addDisabledButton(0, "Labs", "Research Level", "You are already on this floor.");
+	addButton(1, "Lobby", move, "KQ2_LOBBYELEVATOR");
+	if(flags["KQ2_KHANS_FILES"] != undefined) addButton(2, "Roof", move, "K2_HELIPADELEVATOR");
+	else addDisabledButton(2, "Roof", "Helipad", "You can't go there--Kara isn't finished with what she has to do here yet!");
 
 	return false;
 }

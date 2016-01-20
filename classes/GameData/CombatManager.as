@@ -166,6 +166,7 @@ package classes.GameData
 			}
 			clearMenu();
 			addButton(0, "Next", function():void {
+				userInterface().mainButtonsReset();
 				userInterface().hideNPCStats();
 				userInterface().leftBarDefaults();
 				kGAMECLASS.mainGameMenu();

@@ -600,7 +600,7 @@ public function kq2QUESTTIME():void
 
 	author("Savin");
 
-	showName("THE GHOST");
+	showName("THE\nGHOST");
 
 	output("A moment later and you’re aboard the <i>Ghost</i>, Kara’s ship, looking around at the sleek, bright white of the interior. She’s a new ship, still squeaky clean and polished to a shine. Consoles run along the length of every corridor you pass through on the way to the bridge. The whole ship has an oddly sterile feel - not like the cozy home you’ve made out of your own ship.");
 
@@ -669,7 +669,7 @@ public function kq2QUESTTIMEII():void
 
 	author("Savin");
 
-	showName("THE GHOST");
+	showName("THE\nGHOST");
 
 	output("The trip goes by quickly and peacefully, until you hit the arid atmosphere of Myrellion. The ship shudders with turbulence, and you watch as Logan hammers several controls on a console above her. Part of the forward screen flickers off, replaced by a bird-eye view of the desert - some kind of probe’s camera, maybe? The second screen focuses in on some kind of walled compound sitting the bottom of a deep caldera, surrounded by nothing for miles and miles around. You squint, and think you make out all of three, maybe four buildings on the surface.");
 	
@@ -934,7 +934,7 @@ public function kq2EnterEngineersRoom():void
 {
 	if (flags["KQ2_ENGINEER_NUM_DRONES"] == undefined) flags["KQ2_ENGINEER_NUM_DRONES"] = 1 + rand(4);
 
-	if (flags["KQ2_DEFEATED_ENGINEER"] == undefined)
+	if (flags["KQ2_DEFEATED_ENGINEER"] == undefined || flags["KQ2_LEFT_ENGINEER"] == undefined)
 	{
 		clearOutput();
 		showKQ2Engineer();
@@ -1002,10 +1002,12 @@ public function kq2EngineerPCVictory():void
 	output("The lapinara and her drone");
 	if (CombatManager.getHostileCharacters().length > 2) output("s");
 	output(" collapse, utterly defeated.");
-	if (!pc.hasKeyItem("Key Card - R&D Security Pass")) output(" <b>You find a keycard on her person</b>. No doubt this’ll get you into the research facility!");
-
-	pc.createKeyItem("Key Card - R&D Security Pass");
-	output("\n\n<b>New Key Item: Key Card - R&D Security Pass</b>.\n\n");
+	if (!pc.hasKeyItem("Key Card - R&D Security Pass"))
+	{
+		output(" <b>You find a keycard on her person</b>. No doubt this’ll get you into the research facility!");
+		pc.createKeyItem("Key Card - R&D Security Pass");
+		output("\n\n<b>New Key Item: Key Card - R&D Security Pass</b>.\n\n");
+	}
 
 	flags["KQ2_DEFEATED_ENGINEER"] = 1;
 
@@ -1054,7 +1056,7 @@ public function kq2GibEngyDirtyMag():void
 	clearOutput();
 	showKQ2Engineer();
 
-	output("<i>“...give me that magazine!”</i> she says, pointing to the hentai comic sticking out of your pack.");
+	output("<i>“... give me that magazine!”</i> she says, pointing to the hentai comic sticking out of your pack.");
 	
 	output("\n\nWell, that’s a pretty low price. You take it out and give it to the tiny dick-girl, noticing her cock harden as she takes possession of it. Her dog");
 	if (flags["KQ2_ENGINEER_NUM_DRONES"] > 1) output("s");
@@ -1078,6 +1080,7 @@ public function kq2GibEngyDirtyMag():void
 
 	processTime(2);
 
+	flags["KQ2_LEFT_ENGINEER"] = 2;
 	currentLocation = "K2_BARRACKSINTERIOR";
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -1088,7 +1091,7 @@ public function kq2GibEngyCash():void
 	clearOutput();
 	showKQ2Engineer();
 
-	output("<i>“...give me a thousand credits!”</i> she says, extending a hand to you, palm open and expectant. You dig a credit chit out of your pack and plant it in her outstretched hand. The engineer squeals in excitement, bouncing around on her powerful legs. <i>“Score! Take the card, I’m going on a SHOPPING SPREE! Whoo!”</i>");
+	output("<i>“... give me a thousand credits!”</i> she says, extending a hand to you, palm open and expectant. You dig a credit chit out of your pack and plant it in her outstretched hand. The engineer squeals in excitement, bouncing around on her powerful legs. <i>“Score! Take the card, I’m going on a SHOPPING SPREE! Whoo!”</i>");
 	
 	pc.credits -= 1000;
 	
@@ -1103,6 +1106,7 @@ public function kq2GibEngyCash():void
 
 	processTime(2);
 
+	flags["KQ2_LEFT_ENGINEER"] = 3;
 	currentLocation = "K2_BARRACKSINTERIOR";
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -1115,7 +1119,7 @@ public function kq2GibEngyDankHoles():void
 
 	var engineer:KQ2Engineer = new KQ2Engineer();
 
-	output("<i>“...bend over and let me fuck you!”</i> the lapinara finishes, thrusting her crotch at you. Her bright red puppy pecker bobs eagerly, a tiny glint of moisture already on its tip. <i>“All the other pirates call me a parasite and won’t touch me! Please... I’m so horny, I’ll trade the card for just a quick fuck.”</i>");
+	output("<i>“... bend over and let me fuck you!”</i> the lapinara finishes, thrusting her crotch at you. Her bright red puppy pecker bobs eagerly, a tiny glint of moisture already on its tip. <i>“All the other pirates call me a parasite and won’t touch me! Please... I’m so horny, I’ll trade the card for just a quick fuck.”</i>");
 
 	if (flags["KQ2_KARA_WITH_PC"] == 1) output("\n\n<i>“I’ll just, uh, wait outside.... Cover the door for you.”</i> Kara says, slipping away.");
 
@@ -1292,6 +1296,9 @@ public function kq2KhanPCVictory():void
 	
 	output("\n\nKhan sucks in a breath, rubbing his cheek. <i>“L-look, we can work something out, right? Come on, you’re all reasonable people... right?”</i>");
 
+	userInterface.hideNPCStats();
+	userInterface.leftBarDefaults();
+	
 	//[Talk: Gold Myr] [Talk: Khan] [Fuck Khan] [Loot Room] [Leave]
 	kq2KhanVictoryMenu();
 }
@@ -1360,7 +1367,7 @@ public function kq2KhanPCVictoryTalkKhan():void
 
 	output("You approach Doctor Khan, still slumped against a wall, desperately trying to look small while he struggles with the firmly-placed hardlight cage locking down his cock. He reeks of lust-vapors and cum, with streaks of pink staining his fur where the grenade detonated next to him.");
 	
-	output("\n\n<i>“Doesn’t look like he has much to say,”</i> Kara says, curling a lip in disgust at him. <i>“Then again, maybe he could use a little... help.. with that.”</i>");
+	output("\n\n<i>“Doesn’t look like he has much to say,”</i> Kara says, curling a lip in disgust at him. <i>“Then again, maybe he could use a little... help... with that.”</i>");
 	
 	output("\n\nAs if for emphasis, Kara adjusts the fabric of her catsuit, revealing a pretty impressive bulge in her black-clad crotch. <i>“Teach this bastard a lesson...”</i>");
 
@@ -1792,7 +1799,7 @@ public function kq2EncounterShade():void
 		
 		output("\n\n<i>“I don’t like being played, kid,”</i> she whispers. <i>“Even if it was a damn </i>good<i> play. Assuming Amara doesn’t string you and your friend up, I’m gonna have words for you next time we talk.”</i>");
 		
-		output("\n\nYou nod your understand, and try to move by. She holds you in place for another moment, though: just long enough to plant a small kiss on your cheek. <i>“For luck. You’ll need it.”</i>");
+		output("\n\nYou nod understandingly and try to move by. She holds you in place for another moment, though: just long enough to plant a small kiss on your cheek. <i>“For luck. You’ll need it.”</i>");
 		
 		//Restore some PC Health, Energy. Increase +5 Lust.
 		pc.HP(pc.HPMax() * 0.15);
@@ -2660,6 +2667,9 @@ public function kq2PostKaraSexyCombine(gotFucked:Boolean = false):void
 	else if (kara.isMischievous()) output(" you’ve got places to be, things to do...");
 	else output(" I’ve pretty much worn you out, but...");
 	output("”</i>");
+	
+	IncrementFlag("SEXED_KARA");
+	flags["KQ2_KARA_WITH_PC"] = undefined;
 
 	//[Stay] [Go]
 	clearMenu();
@@ -2735,7 +2745,7 @@ public function kq2NukeBadend():void
 	output("\n\n<i>“Five... four... three...”</i>");
 	
 	output("\n\nShitshitshit.");
-	if (flags["KQ2_KARA_WITH_PC"] != undefined) output(" You grab Kara’s hand, staring into the cat-girls eyes in your last moments. She gives you a reproachful, sad look, but takes your hand in hers as the");
+	if (flags["KQ2_KARA_WITH_PC"] == 1) output(" You grab Kara’s hand, staring into the cat-girls eyes in your last moments. She gives you a reproachful, sad look, but takes your hand in hers as the");
 	else output(" The");
 	output(" P.A. announces <i>“Two... one. Nuclear detonation imminent. Goodbye.”</i>");
 	
@@ -2799,13 +2809,13 @@ public function flyToMyrellionDeepCaves():void
 {
 	if(flags["VISITED_MYRELLION"] <= 1)
 	{
-	author("Savin");
-	
+		author("Savin");
+		
 		output("You guide your ship through the ashen atmosphere of the ruined planet of Myrellion, slowly forging through pillars of radioactive smog and falling ash. Nuclear winter’s set in on the surface, bathing the desert world in white. It’s almost pretty, in a way - though you know the glistening coat lies overtop hundreds of craters where cities once lurked below the ground. You wonder if anyone survived, far from the front lines. Could the golds have reached the Federation homeland, pushed so far back as they were?");
 		
-	output("\n\nYou shake the thought and guide your vessel down, towards a fissure in the ground. You should be just above Taivra’s palace, now. With careful, slow precision, you lower yourself through the crack and down into the depths of Myrellion, far beneath the nuked-out myr tunnels. Miles down below the ground. It should still be safe, protected from the radiation by so much rock as you are.");
-	
-	output("\n\nYou park at the bottom of a familiar cavern network and set the ship’s automated scrubbers to clean off the hull before you depart - you don’t want to pick up anything the irradiated surface might have rubbed off on your vessel.");
+		output("\n\nYou shake the thought and guide your vessel down, towards a fissure in the ground. You should be just above Taivra’s palace, now. With careful, slow precision, you lower yourself through the crack and down into the depths of Myrellion, far beneath the nuked-out myr tunnels. Miles down below the ground. It should still be safe, protected from the radiation by so much rock as you are.");
+		
+		output("\n\nYou park at the bottom of a familiar cavern network and set the ship’s automated scrubbers to clean off the hull before you depart - you don’t want to pick up anything the irradiated surface might have rubbed off on your vessel.");
 		
 		flags["VISITED_MYRELLION"] = 2;
 		
