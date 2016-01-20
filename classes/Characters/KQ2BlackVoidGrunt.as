@@ -54,9 +54,9 @@ package classes.Characters
 			this.armor.defense = 5;
 			this.armor.hasRandomProperties = true;
 			
-			this.physiqueRaw = 17;
-			this.reflexesRaw = 15;
-			this.aimRaw = 16;
+			this.physiqueRaw = 20;
+			this.reflexesRaw = 28;
+			this.aimRaw = 22;
 			this.intelligenceRaw = 12;
 			this.willpowerRaw = 14;
 			this.libidoRaw = 20;
@@ -65,12 +65,10 @@ package classes.Characters
 			this.lustRaw = 10;
 			
 			this.XPRaw = 125;
-			this.level = 5;
+			this.level = 6;
 			this.credits = 80 + rand(80);
 			this.HPMod = 0;
 			this.HPRaw = this.HPMax();
-			
-			this.createPerk("Multiple Attacks",1,0,0,0,"");
 			
 			this.femininity = 35;
 			this.eyeType = GLOBAL.TYPE_HUMAN;

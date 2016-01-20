@@ -1249,8 +1249,9 @@ public function kq2EncounterKhan():void
 	CombatManager.victoryScene(kq2KhanPCVictory);
 	CombatManager.lossScene(kq2KhanPCDefeat);
 	CombatManager.displayLocation("DR KHAN");
-	CombatManager.encounterText("You're fighting Doctor Khan, a kui-tan male with a pair of balls {that look more like a couple economy-sized beanbag chairs underneath him // that would make even Kiro jealous -- or wet. It's hard to tell!} The doctor's carrying an over-sized lightning gun, but is otherwise unarmed and unarmored -- he's sitting buck naked on his mammoth balls. A shimmering green hardlight device encloses his cock, which seems to be at full mast, but is completely untended to by the girls surrounding him.\n\nSeveral gold myr girls surround the doctor, fawning over him with blissful, vapid expressions on their faces. They're clad in nothing but open-faced lab coats, showing off bare breasts and groins, and each wears a small metal collar around her neck, displaying a tiny holographic tag. They lovingly caress his sack, chest, any inch of tender flesh save for the light-bound cock between his raised legs.");
+	CombatManager.encounterText("You're fighting Doctor Khan, a kui-tan male with a pair of balls"+ (flags["MET_KIRO"] == undefined ? " that look more like a couple economy-sized beanbag chairs underneath him." : " that would make even Kiro jealous -- or wet. It's hard to tell!") +" The doctor's carrying an over-sized lightning gun, but is otherwise unarmed and unarmored -- he's sitting buck naked on his mammoth balls. A shimmering green hardlight device encloses his cock, which seems to be at full mast, but is completely untended to by the girls surrounding him.\n\nSeveral gold myr girls surround the doctor, fawning over him with blissful, vapid expressions on their faces. They're clad in nothing but open-faced lab coats, showing off bare breasts and groins, and each wears a small metal collar around her neck, displaying a tiny holographic tag. They lovingly caress his sack, chest, any inch of tender flesh save for the light-bound cock between his raised legs.");
 
+	clearMenu();
 	addButton(0, "Fight!", CombatManager.beginCombat);
 }
 
@@ -1379,10 +1380,10 @@ public function kq2KhanPCVictoryLootRoom():void
 	kq2KhanVictoryMenu();
 }
 
-public function kq2LootLabCoat():void
+public function kq2LootLabCoat(noncombatMenu:Boolean = false):void
 {
 	flags["KQ2_KHAN_LOOTED_COAT"] = 1;
-	lootScreen = kq2LabCoatCheck;
+	lootScreen = (noncombatMenu ? kq2LabCoatCheckMenu : kq2LabCoatCheck);
 	itemCollect([new KhansLabCoat()]);
 }
 
@@ -1391,7 +1392,7 @@ public function kq2LabCoatCheck():void
 {
 	if (pc.armor is KhansLabCoat || pc.hasItemByType(KhansLabCoat))
 	{
-	kq2KhanVictoryMenu();
+		kq2KhanVictoryMenu();
 		return;
 	}
 	clearOutput();
@@ -1401,10 +1402,24 @@ public function kq2LabCoatCheck():void
 	addButton(0, "Next", kq2KhanVictoryMenu);
 }
 
-public function kq2LootArcCaster():void
+public function kq2LabCoatCheckMenu():void
+{
+	if (pc.armor is KhansLabCoat || pc.hasItemByType(KhansLabCoat))
+	{
+		mainGameMenu();
+		return;
+	}
+	clearOutput();
+	output("You put the coat back where you found it.");
+	flags["KQ2_KHAN_LOOTED_COAT"] = undefined;
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function kq2LootArcCaster(noncombatMenu:Boolean = false):void
 {
 	flags["KQ2_KHAN_LOOTED_CASTER"] = 1;
-	lootScreen = kq2LootArcCasterCheck;
+	lootScreen = (noncombatMenu ? kq2LootArcCasterCheckMenu : kq2LootArcCasterCheck);
 	itemCollect([new KhansArcCaster()]);
 }
 
@@ -1412,7 +1427,7 @@ public function kq2LootArcCasterCheck():void
 {
 	if (pc.rangedWeapon is KhansArcCaster || pc.hasItemByType(KhansArcCaster))
 	{
-	kq2KhanVictoryMenu();
+		kq2KhanVictoryMenu();
 		return;
 	}
 	clearOutput();
@@ -1420,6 +1435,20 @@ public function kq2LootArcCasterCheck():void
 	flags["KQ2_KHAN_LOOTED_CASTER"] = undefined;
 	clearMenu();
 	addButton(0, "Next", kq2KhanVictoryMenu);
+}
+
+public function kq2LootArcCasterCheckMenu():void
+{
+	if (pc.rangedWeapon is KhansArcCaster || pc.hasItemByType(KhansArcCaster))
+	{
+		mainGameMenu();
+		return;
+	}
+	clearOutput();
+	output("You put the gun back where you found it.");
+	flags["KQ2_KHAN_LOOTED_CASTER"] = undefined;
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
 
 public function kq2KhanLeave():void

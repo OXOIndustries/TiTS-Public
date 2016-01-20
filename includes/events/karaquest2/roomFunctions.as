@@ -703,6 +703,12 @@ public function kq2rfKhansLab():Boolean
 		output("\n\nYou and Kara should probably deal with Khan's files before you leave the R&D level.");
 	}
 
+	if (flags["KQ2_KHAN_LOOTED_COAT"] == undefined) addItemButton(0, new KhansLabCoat(), kq2LootLabCoat, true);
+	else addDisabledButton(0, "LabCoat", "Lab Coat", "You've already taken it!");
+
+	if (flags["KQ2_KHAN_LOOTED_CASTER"] == undefined) addItemButton(1, new KhansArcCaster(), kq2LootArcCaster, true);
+	else addDisabledButton(1, "ArcCaster", "Arc Caster", "You've already taken it!")
+
 	return false;
 }
 
