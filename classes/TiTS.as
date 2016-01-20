@@ -486,6 +486,8 @@
 			
 			toggleWTF();
 			
+			if (!inCombat()) userInterface.showBust("none");
+			
 			if (evt.currentTarget is MainButton)
 			{
 				trace("Button " + (evt.currentTarget as MainButton).buttonName + " clicked");
@@ -509,7 +511,6 @@
 			
 			if (!inCombat()) 
 			{
-				this.userInterface.showBust("none");
 				if (pc != null && pc.short != "Uncreated" && pc.short != "uncreated" && pc.short != "")
 				{
 					updatePCStats();
