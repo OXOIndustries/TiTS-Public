@@ -657,7 +657,7 @@ public function kq2rfLobbyElevator():Boolean
 
 	addButton(0, "Labs", move, "K2_LABELEVATOR");
 	addDisabledButton(1, "Lobby");
-	addButton(2, "Roof", move, "K2_ROOFELEVATOR");
+	addButton(2, "Roof", move, "K2_HELIPADELEVATOR");
 
 	return false;
 }
@@ -848,7 +848,7 @@ public function kq2rfLabElevator():Boolean
 
 	addDisabledButton(0, "Labs");
 	addButton(1, "Lobby", move, "KQ2_LOBBYELEVATOR");
-	addButton(2, "Roof", move, "K2_ROOFELEVATOR");
+	addButton(2, "Roof", move, "K2_HELIPADELEVATOR");
 
 	return false;
 }
