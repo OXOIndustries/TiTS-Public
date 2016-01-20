@@ -31,10 +31,11 @@ public function nevrieHeader(isNude:Boolean = false):void
 	author("Savin");
 }
 
-public function mcallisterHeader():void
+public function mcallisterHeader(isNude:Boolean = false):void
 {
 	showName("DOCTOR\nMCALLISTER");
-	showBust("MCALLISTER");
+	if(isNude) showBust("BYRON_NUDE");
+	else showBust("BYRON");
 	author("Savin");
 }
 
@@ -785,7 +786,7 @@ public function mcallisterMeetThemII():void
 public function mcallisterMeetThemIII():void
 {
 	clearOutput();
-	mcallisterHeader();
+	mcallisterHeader(true);
 
 	output("<i>“Hey there,”</i> you say, smiling at the pair of colorful ant-girls. Their attention immediately fixes on you, and they both return your smile.");
 	
@@ -851,7 +852,7 @@ public function mcallisterMeetThemIII():void
 public function mcallisterMyrGirlsCocky():void
 {
 	clearOutput();
-	mcallisterHeader();
+	mcallisterHeader(true);
 
 	var selCock:int = pc.biggestCockIndex();
 
@@ -925,7 +926,7 @@ public function mcallisterMyrGirlsCocky():void
 public function mcallisterMyrGirlsCunty():void
 {
 	clearOutput();
-	mcallisterHeader();
+	mcallisterHeader(true);
 	
 	var ppMcAllister:PregnancyPlaceholder = new PregnancyPlaceholder();
 	if (!ppMcAllister.hasCock()) ppMcAllister.createCock();
@@ -1060,7 +1061,7 @@ public function mcallisterMeetThemGoAlongII():void
 public function mcallisterMeetThemNoThanks():void
 {
 	clearOutput();
-	mcallisterHeader();
+	mcallisterHeader(true);
 
 	output("This might be a little more than you were bargaining for. You slip away, heading towards the decontamination chamber and quickly cycling through it. The handful of research assistants gathered outside give you queer looks as you pass them by, adjusting your gear as you go. You note that the one-way mirror is still open, giving you a front-row view of the proceedings inside. By the time you get out there, you’re treated to a show of Doctor McAllister balls-deep in the cunt of the gold myr girl while the red uses her venom-laced mouth to lick around his nipples, rubbing her pussy all across the gold’s face as she does so. You find the button that changes the position of the screen, and quickly bring it down to give the trio what privacy you can.");
 
