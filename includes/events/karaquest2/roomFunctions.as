@@ -236,7 +236,7 @@ public function kq2rfRadioTower():Boolean
 
 public function kq2RadioTowerElevator():void
 {
-	if (flags["KQ2_KARA_WITH_PC"] != undefined)
+	if (flags["KQ2_KARA_WITH_PC"] == 1)
 	{
 		output("\n\nYou and Kara step onto the elevator, and you press the <i>“UP”</i> button. It rumbles and shifts underfoot before starting to rise, chugging upwards on an old-fashioned gear track. It takes well over a minute to reach the top floor, which is little more than a chair, a few computer consoles, and an access hatch leading up to the roof and the antennae outside.");
 
@@ -264,7 +264,7 @@ public function kq2RadioTowerElevator():void
 			output("\n\nYou wish her the same, and hit the <i>“DOWN”</i> button once again.");
 		}
 
-		flags["KQ2_KARA_WITH_PC"] = undefined;
+		flags["KQ2_KARA_WITH_PC"] = 2;
 	}
 	else
 	{
@@ -310,7 +310,7 @@ public function kq2UseTank():void
 	output("\n\nFire in the hole! You squeeze the trigger and cover your ears, wincing as the massive gun blows a chunk out of the door. The whole tank recoils with the blast, leaving you stunned for a moment with ears ringing. You manage to gather your wits enough to peek out the hatch, and grin maniacally to yourself as you see the front door to the facility crash inwards.");
 
 	output("\n\n<i>“That’s one way to get inside,”</i> Kara laughs");
-	if (flags["KQ2_KARA_WITH_PC"] == 2) output(" over the tank’s radio. <i>“I’ll meet you at the doors - or what’s left of ‘em!”</i>");
+	if (flags["KQ2_KARA_WITH_PC"] != 1) output(" over the tank’s radio. <i>“I’ll meet you at the doors - or what’s left of ‘em!”</i>");
 	output(".");
 	
 	clearMenu();
@@ -393,7 +393,7 @@ public function kq2rfKaraOverride():void
 {
 	clearOutput();
 
-	if (flags["KQ2_KARA_WITH_PC"] == 2)
+	if (flags["KQ2_KARA_WITH_PC"] != 1)
 	{
 		output("You wave at the radio tower, trying to signal Kara to come over. She’s back with you momentarily, running across the courtyard as quick as she can.");
 
@@ -428,7 +428,7 @@ public function kq2rfEnterRNDFirstTime():void
 {
 	clearOutput();
 
-	if (flags["KQ2_KARA_WITH_PC"] == undefined)
+	if (flags["KQ2_KARA_WITH_PC"] != 1)
 	{
 		output("You wave at the radio tower, trying to signal Kara to come over. She’s back with you momentarily, running across the courtyard as quick as she can.");
 

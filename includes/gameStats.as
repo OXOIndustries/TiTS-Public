@@ -1552,19 +1552,19 @@ public function displayQuestLog(showID:String = "All"):void
 					else output2(", Undecided about mission");
 					if(flags["KQ2_SEX_PAY"] != undefined) output2(", Kara sexed you");
 					if(flags["KQ2_CREDS_FIRST"] != undefined) output2(", Kara paid you");
+					if(flags["KQ2_SHADE_DEAD"] != undefined) output2(", Kara killed Shade");
 					if(flags["KQ2_KHANS_FILES"] != undefined) output2(", Took Khan’s files");
 					if(flags["KQ2_LOST_TO_AMARA"] != undefined) output2(", Lost to Amara");
-					if(flags["KQ2_QUEST_FINISHED"] != undefined) output2(", Completed");
+					if(flags["KQ2_BETRAYED_KARA"] != undefined) output2(", You betrayed Kara");
+					else if(flags["KQ2_KARA_SACRIFICE"] != undefined) output2(", Kara sacrificed herself");
+					else if(flags["KQ2_QUEST_FINISHED"] != undefined) output2(", Completed");
 					// Pirate Base
-					if(flags["KQ2_KARA_WITH_PC"] != undefined || flags["KQ2_BETRAYED_KARA"] != undefined || flags["KQ2_KARA_SACRIFICE"] != undefined)
+					if(flags["KQ2_KARA_WITH_PC"] != undefined)
 					{
 						output2("\n<b>* Kara, Status:</b>");
-						if(flags["KQ2_KARA_SACRIFICE"] != undefined) output2(" Sacrificed herself");
-						else if(flags["KQ2_BETRAYED_KARA"] != undefined) output2(" You betrayed her");
 						else if(flags["KQ2_KARA_WITH_PC"] == 1) output2(" At your side");
 						else if(flags["KQ2_KARA_WITH_PC"] == 2) output2(" At the radio tower");
 						else output2(" <i>Unknown</i>");
-						if(flags["KQ2_SHADE_DEAD"] != undefined) output2(", Killed Shade");
 					}
 					if(flags["KQ2_FIGHT_STEPS"] != undefined)
 					{
@@ -3882,7 +3882,7 @@ public function displayEncounterLog(showID:String = "All"):void
 		if(flags["MET_KARA"] != undefined)
 		{
 			output2("\n<b>* Kara:</b> Met her");
-			if(flags["SEXED_KARA"] != undefined) output2(", Sexed her");
+			if(flags["KQ2_SEX_PAY"] != undefined || flags["SEXED_KARA"] != undefined) output2(", Sexed her");
 			roamCount++;
 		}
 		// Kirobutts!

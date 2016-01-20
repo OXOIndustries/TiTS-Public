@@ -2655,6 +2655,7 @@ public function kq2PostKaraSexyCombine(gotFucked:Boolean = false):void
 	output("”</i>");
 	
 	IncrementFlag("SEXED_KARA");
+	flags["KQ2_KARA_WITH_PC"] = undefined;
 
 	//[Stay] [Go]
 	clearMenu();
@@ -2730,7 +2731,7 @@ public function kq2NukeBadend():void
 	output("\n\n<i>“Five... four... three...”</i>");
 	
 	output("\n\nShitshitshit.");
-	if (flags["KQ2_KARA_WITH_PC"] != undefined) output(" You grab Kara’s hand, staring into the cat-girls eyes in your last moments. She gives you a reproachful, sad look, but takes your hand in hers as the");
+	if (flags["KQ2_KARA_WITH_PC"] == 1) output(" You grab Kara’s hand, staring into the cat-girls eyes in your last moments. She gives you a reproachful, sad look, but takes your hand in hers as the");
 	else output(" The");
 	output(" P.A. announces <i>“Two... one. Nuclear detonation imminent. Goodbye.”</i>");
 	
@@ -2794,13 +2795,13 @@ public function flyToMyrellionDeepCaves():void
 {
 	if(flags["VISITED_MYRELLION"] <= 1)
 	{
-	author("Savin");
-	
+		author("Savin");
+		
 		output("You guide your ship through the ashen atmosphere of the ruined planet of Myrellion, slowly forging through pillars of radioactive smog and falling ash. Nuclear winter’s set in on the surface, bathing the desert world in white. It’s almost pretty, in a way - though you know the glistening coat lies overtop hundreds of craters where cities once lurked below the ground. You wonder if anyone survived, far from the front lines. Could the golds have reached the Federation homeland, pushed so far back as they were?");
 		
-	output("\n\nYou shake the thought and guide your vessel down, towards a fissure in the ground. You should be just above Taivra’s palace, now. With careful, slow precision, you lower yourself through the crack and down into the depths of Myrellion, far beneath the nuked-out myr tunnels. Miles down below the ground. It should still be safe, protected from the radiation by so much rock as you are.");
-	
-	output("\n\nYou park at the bottom of a familiar cavern network and set the ship’s automated scrubbers to clean off the hull before you depart - you don’t want to pick up anything the irradiated surface might have rubbed off on your vessel.");
+		output("\n\nYou shake the thought and guide your vessel down, towards a fissure in the ground. You should be just above Taivra’s palace, now. With careful, slow precision, you lower yourself through the crack and down into the depths of Myrellion, far beneath the nuked-out myr tunnels. Miles down below the ground. It should still be safe, protected from the radiation by so much rock as you are.");
+		
+		output("\n\nYou park at the bottom of a familiar cavern network and set the ship’s automated scrubbers to clean off the hull before you depart - you don’t want to pick up anything the irradiated surface might have rubbed off on your vessel.");
 		
 		flags["VISITED_MYRELLION"] = 2;
 		
