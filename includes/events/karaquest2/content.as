@@ -860,7 +860,7 @@ public function kq2WatsonTalkIntervention():void
 	
 	output("\n\n<i>“Son of a bitch!”</i> Kara screams, pounding her fist on the wall.");
 	
-	output("\n\n<i>“Indeed,”</i> Watson adds, clenching his pipe between his teeth and reaching out beside him. A holo-map of the Myrellion system flickers into place, showing several vessels closing in. <i>“Every moment you’ve been within this base, every soldier you’ve killed, every second wasted in pointless battle, has been a delaying tactic whilst I recall this base’s commander, Lord Faell, from her patrol of the outer moons. I estimate you have less than five seconds before the first troop transports set down on-base.");
+	output("\n\n<i>“Indeed,”</i> Watson adds, clenching his pipe between his teeth and reaching out beside him. A holo-map of the Myrellion system flickers into place, showing several vessels closing in. <i>“Every moment you’ve been within this base, every soldier you’ve killed, every second wasted in pointless battle, has been a delaying tactic whilst I recall this base’s commander, Lord Faell, from her patrol of the outer moons. I estimate you have less than five seconds before the first troop transports set down on-base.”</i>");
 	
 	output("\n\n<i>“So please, make yourselves at home. Sit, relax. You still have a few moments before your lives are over. Use them wisely.”</i>");
 	
