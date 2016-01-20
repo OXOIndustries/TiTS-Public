@@ -627,6 +627,9 @@ public function brothelWhorePayment(baseAmount:Number = 0):Number
 	// PC has maxed tease points across the board: + 25% of base
 	if(flags["TIMES_BUTT_TEASED"] >= 100 && flags["TIMES_CHEST_TEASED"] >= 100 && flags["TIMES_CROTCH_TEASED"] >= 100 && flags["TIMES_HIPS_TEASED"] >= 100)
 		returnAmount += baseAmount * 0.25;
+	// Proficiency Bonus
+	if(flags["BETHS_TIMES_WHORED"] != undefined)
+		returnAmount += (flags["BETHS_TIMES_WHORED"] * 2);
 	
 	returnAmount = (returnAmount + baseAmount);
 	// If Licensed, - 0.2 of total off total
@@ -640,6 +643,14 @@ public function brothelWhorePayment(baseAmount:Number = 0):Number
 // Status effect, stat tracking, and unlock message
 public function brothelWhored(setMinutes:int = 360, service:String = "none"):void
 {
+	// Time adjustments for experienced whores.
+	if(flags["BETHS_TIMES_WHORED"] >= 10) setMinutes -= 60;
+	if(flags["BETHS_TIMES_WHORED"] >= 20) setMinutes -= 60;
+	if(flags["BETHS_TIMES_WHORED"] >= 30) setMinutes -= 60;
+	if(flags["BETHS_TIMES_WHORED"] >= 40) setMinutes -= 60;
+	if(flags["BETHS_TIMES_WHORED"] >= 50) setMinutes -= 60;
+	if(setMinutes < 15) setMinutes = 15;
+	
 	// 9999: Implementation for stats?
 	// Status Effect: Jaded
 	// v1: speed (reflexes?)
@@ -1379,6 +1390,12 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 		output("\n\nEventually you head back up to the counter to meet the mistress....");
 		// + Lust
 		pc.lust(10);
+	}
+	
+	// Randomized bonus pay buffs
+	for(var i:int = 0; i < 5; i++)
+	{
+		if(rand(2) == 0) baseEarnings += rand(41);
 	}
 	
 	return baseEarnings;

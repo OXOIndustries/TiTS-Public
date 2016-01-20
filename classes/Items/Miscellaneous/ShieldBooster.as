@@ -59,13 +59,13 @@
 				if (targetCreature == kGAMECLASS.pc)
 				{
 					kGAMECLASS.clearOutput();
-					kGAMECLASS.output("You need to have a shield generator in order to use a shield booster.\n");
+					kGAMECLASS.output("You need to have a shield generator in order to use a shield booster.");
 				}
 				else
 				{
-					if(inCombat()) kGAMECLASS.output("\n");
+					if(inCombat()) kGAMECLASS.output("\n\n");
 					else kGAMECLASS.clearOutput();
-					kGAMECLASS.output(targetCreature.capitalA + targetCreature.short + " can't use a shield booster without a shield generator!\n");
+					kGAMECLASS.output(targetCreature.capitalA + targetCreature.short + " can't use a shield booster without a shield generator!");
 				}
 				return false;
 			}
@@ -75,13 +75,13 @@
 				if (targetCreature == kGAMECLASS.pc)
 				{
 					kGAMECLASS.clearOutput();
-					kGAMECLASS.output("You probably shouldn't use a shield booster while having full shields... You might overload something.\n");
+					kGAMECLASS.output("You probably shouldn't use a shield booster while having full shields... You might overload something.");
 				}
 				else
 				{
-					if(inCombat()) kGAMECLASS.output("\n");
+					if(inCombat()) kGAMECLASS.output("\n\n");
 					else kGAMECLASS.clearOutput();
-					kGAMECLASS.output(targetCreature.capitalA + targetCreature.short + " pulls out a shield booster, but quickly puts it back.\n");
+					kGAMECLASS.output(targetCreature.capitalA + targetCreature.short + " pulls out a shield booster, but quickly puts it back.");
 				}
 				return false;
 			}
@@ -91,13 +91,13 @@
 				if (targetCreature == kGAMECLASS.pc)
 				{
 					kGAMECLASS.clearOutput();
-					kGAMECLASS.output("Using another shield booster would probably destroy your shield generator.\n");
+					kGAMECLASS.output("Using another shield booster would probably destroy your shield generator.");
 				}
 				else
 				{
-					if(inCombat()) kGAMECLASS.output("\n");
+					if(inCombat()) kGAMECLASS.output("\n\n");
 					else kGAMECLASS.clearOutput();
-					kGAMECLASS.output(targetCreature.capitalA + targetCreature.short + " cannot use another shield booster--doing so will risk destroying " + targetCreature.mfn("his","her","its") + " shield generator.\n");
+					kGAMECLASS.output(targetCreature.capitalA + targetCreature.short + " cannot use another shield booster--doing so will risk destroying " + targetCreature.mfn("his","her","its") + " shield generator.");
 				}
 				return false;
 			}

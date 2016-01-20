@@ -815,8 +815,7 @@ public function flyTo(arg:String):void {
 		currentLocation = "POESPACE";
 		flyToPoeA();
 	}
-	
-	if (arg == "karaQuest2")
+	else if (arg == "karaQuest2")
 	{
 		shortTravel = (shipLocation == "600");
 		interruptMenu = true;
