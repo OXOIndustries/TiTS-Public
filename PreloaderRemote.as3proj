@@ -4,19 +4,18 @@
   <output>
     <movie outputType="Application" />
     <movie input="" />
-    <movie path="bin\TITS_AIR.swf" />
+    <movie path="bin\PreloaderRemote.swf" />
     <movie fps="24" />
     <movie width="1200" />
     <movie height="800" />
-    <movie version="13" />
-    <movie minorVersion="0" />
-    <movie platform="AIR Mobile" />
+    <movie version="11" />
+    <movie minorVersion="9" />
+    <movie platform="Flash Player" />
     <movie background="#3D5174" />
-    <movie preferredSDK="Flex 4.6.0, AIR 20.0;4.6.0, 20.0;" />
   </output>
   <!-- Other classes to be compiled into your SWF -->
   <classpaths>
-    <class path="." />
+    <class path="" />
   </classpaths>
   <!-- Build options -->
   <build>
@@ -43,8 +42,8 @@
     <option linkReport="" />
     <option loadExterns="" />
     <option staticLinkRSL="True" />
-    <option additional="-managers flash.fonts.AFEFontManager" />
-    <option compilerConstants="CONFIG::IMAGEPACK,false&#xA;CONFIG::AIR,true&#xA;CONFIG::FLASH,false&#xA;CONFIG::NETWORK,false" />
+    <option additional="" />
+    <option compilerConstants="" />
     <option minorVersion="" />
   </build>
   <!-- SWC Include Libraries -->
@@ -53,7 +52,7 @@
   </includeLibraries>
   <!-- SWC Libraries -->
   <libraryPaths>
-    <element path="style_uiscroll.swc" />
+    <!-- example: <element path="..." /> -->
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>
@@ -73,7 +72,7 @@
   </library>
   <!-- Class files to compile (other referenced classes will automatically be included) -->
   <compileTargets>
-    <compile path="classes\TiTS.as" />
+    <compile path="classes\Preloader\Remote\RemotePreloader.as" />
   </compileTargets>
   <!-- Paths to exclude from the Project Explorer tree -->
   <hiddenPaths>
@@ -86,8 +85,8 @@
   <!-- Other project options -->
   <options>
     <option showHiddenPaths="False" />
-    <option testMovie="Custom" />
-    <option testMovieCommand="Run.bat" />
+    <option testMovie="Default" />
+    <option testMovieCommand="" />
   </options>
   <!-- Plugin storage -->
   <storage />

@@ -4,15 +4,15 @@
   <output>
     <movie outputType="Application" />
     <movie input="" />
-    <movie path="bin\TITS_AIR.swf" />
+    <movie path="bin\TITS-PreloadSupport.swf" />
     <movie fps="24" />
     <movie width="1200" />
     <movie height="800" />
-    <movie version="13" />
-    <movie minorVersion="0" />
-    <movie platform="AIR Mobile" />
+    <movie version="11" />
+    <movie minorVersion="9" />
+    <movie platform="Flash Player" />
     <movie background="#3D5174" />
-    <movie preferredSDK="Flex 4.6.0, AIR 20.0;4.6.0, 20.0;" />
+    <movie preferredSDK="Flex 4.6.0, AIR 16.0;4.6.0, 16.0;" />
   </output>
   <!-- Other classes to be compiled into your SWF -->
   <classpaths>
@@ -23,7 +23,7 @@
     <option accessible="False" />
     <option advancedTelemetry="False" />
     <option allowSourcePathOverlap="False" />
-    <option benchmark="False" />
+    <option benchmark="True" />
     <option es="False" />
     <option inline="False" />
     <option locale="" />
@@ -39,12 +39,12 @@
     <option useNetwork="True" />
     <option useResourceBundleMetadata="True" />
     <option warnings="True" />
-    <option verboseStackTraces="False" />
+    <option verboseStackTraces="True" />
     <option linkReport="" />
     <option loadExterns="" />
     <option staticLinkRSL="True" />
-    <option additional="-managers flash.fonts.AFEFontManager" />
-    <option compilerConstants="CONFIG::IMAGEPACK,false&#xA;CONFIG::AIR,true&#xA;CONFIG::FLASH,false&#xA;CONFIG::NETWORK,false" />
+    <option additional="" />
+    <option compilerConstants="CONFIG::IMAGEPACK,false&#xA;CONFIG::useFlexClasses,false&#xA;CONFIG::AIR,false&#xA;CONFIG::FLASH,true&#xA;CONFIG::NETWORK,true" />
     <option minorVersion="" />
   </build>
   <!-- SWC Include Libraries -->
@@ -65,7 +65,7 @@
   </rslPaths>
   <!-- Intrinsic Libraries -->
   <intrinsics>
-    <!-- example: <element path="..." /> -->
+    <element path="Library\AS3\frameworks\FlashIDE" />
   </intrinsics>
   <!-- Assets to embed into the output SWF -->
   <library>
@@ -86,8 +86,8 @@
   <!-- Other project options -->
   <options>
     <option showHiddenPaths="False" />
-    <option testMovie="Custom" />
-    <option testMovieCommand="Run.bat" />
+    <option testMovie="ExternalPlayer" />
+    <option testMovieCommand="" />
   </options>
   <!-- Plugin storage -->
   <storage />
