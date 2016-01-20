@@ -34,10 +34,18 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/bigT_nude.png", mimeType = "image/png")]
 		public var Bust_BIGT_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/black_void_engineer.png", mimeType = "image/png")]
+		public var Bust_BLACK_VOID_ENGINEER:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/brynn.png", mimeType = "image/png")]
 		public var Bust_BRYNN:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/brynn_nude.png", mimeType = "image/png")]
 		public var Bust_BRYNN_NUDE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/byron.png", mimeType = "image/png")]
+		public var Bust_BYRON:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/byron_nude.png", mimeType = "image/png")]
+		public var Bust_BYRON_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/cameron.png", mimeType = "image/png")]
 		public var Bust_CAMERON:Class;
@@ -65,6 +73,9 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/droid_security.png", mimeType = "image/png")]
 		public var Bust_DROID_SECURITY:Class;
 		public var Bounds_DROID_SECURITY:Rectangle = new Rectangle(60, 0, 63, 66);
+
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/dr_khan.png", mimeType = "image/png")]
+		public var Bust_DR_KHAN:Class;
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/ellie.png", mimeType = "image/png")]
 		public var Bust_ELLIE:Class;
@@ -103,14 +114,6 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/frog_8.png", mimeType = "image/png")]
 		public var Bust_FROG_8:Class;
 
-		[Embed(source = "../../../assets/images/npcs/shou_puppy/fungal_myr_spores.png", mimeType = "image/png")]
-		public var Bust_MYR_INFECTED_FEMALE:Class;
-		/*ALT [Embed(source = "../../../assets/images/npcs/shou_puppy/fungal_myr.png", mimeType = "image/png")]
-		public var Bust_MYR_INFECTED_FEMALE:Class;*/
-
-		[Embed(source = "../../../assets/images/npcs/shou_puppy/fungal_myr_queen_spores.png", mimeType = "image/png")]
-		public var Bust_MYR_INFECTED_QUEEN:Class;
-
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/gianna.png", mimeType = "image/png")]
 		public var Bust_GIANNA_NUDE:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/gianna_med.png", mimeType = "image/png")]
@@ -142,6 +145,19 @@
 		public var Bust_LIEVE:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/lieve_nude.png", mimeType = "image/png")]
 		public var Bust_LIEVE_NUDE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/logan.png", mimeType = "image/png")]
+		public var Bust_LOGAN:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/logan_nude.png", mimeType = "image/png")]
+		public var Bust_LOGAN_NUDE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/fungal_myr_spores.png", mimeType = "image/png")]
+		public var Bust_MYR_INFECTED_FEMALE:Class;
+		/*ALT [Embed(source = "../../../assets/images/npcs/shou_puppy/fungal_myr.png", mimeType = "image/png")]
+		public var Bust_MYR_INFECTED_FEMALE:Class;*/
+
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/fungal_myr_queen_spores.png", mimeType = "image/png")]
+		public var Bust_MYR_INFECTED_QUEEN:Class;
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/nevrie_nude.png", mimeType = "image/png")]
 		public var Bust_NEVRIE:Class;

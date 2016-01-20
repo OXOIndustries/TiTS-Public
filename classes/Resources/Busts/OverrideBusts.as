@@ -27,7 +27,6 @@
 		[Embed(source = "../../../assets/images/npcs/jacques00/deep_lake_queen.png", mimeType = "image/png")]
 		public var Bust_QUEENOFTHEDEEP:Class;
 
-
 		[Embed(source = "../../../assets/images/npcs/drBadger.png", mimeType = "image/png")]
 		public var Bust_DRBADGER:Class;
 		[Embed(source = "../../../assets/images/npcs/dr_badger_bimbo.png", mimeType = "image/png")]
@@ -58,6 +57,9 @@
 		public var Bust_HOLIDAY_HORSE:Class;
 		[Embed(source = "../../../assets/images/npcs/holiday_trap.png", mimeType = "image/png")]
 		public var Bust_HOLIDAY_TRAP:Class;
+
+		[Embed(source = "../../../assets/images/npcs/inessa_nude.png", mimeType = "image/png")]
+		public var Bust_INESSA_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/jacques00/irellia.png", mimeType = "image/png")]
 		public var Bust_IRELLIA:Class;
