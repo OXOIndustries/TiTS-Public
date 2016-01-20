@@ -498,6 +498,15 @@
 				trace("Button " + evt.currentTarget.caption.text + " clicked.");
 			}
 			
+			if (evt.currentTarget.arg == undefined)
+			{
+				if (evt.currentTarget.func != null) evt.currentTarget.func();
+			}
+			else
+			{
+				if (evt.currentTarget.func != null) evt.currentTarget.func(evt.currentTarget.arg);
+			}
+			
 			if (!inCombat()) 
 			{
 				this.userInterface.showBust("none");
@@ -506,15 +515,6 @@
 					updatePCStats();
 					updateDisplays();
 				}
-			}
-			
-			if (evt.currentTarget.arg == undefined)
-			{
-				if (evt.currentTarget.func != null) evt.currentTarget.func();
-			}
-			else
-			{
-				if (evt.currentTarget.func != null) evt.currentTarget.func(evt.currentTarget.arg);
 			}
 			
 			userInterface.updateTooltip((evt.currentTarget as DisplayObject));
