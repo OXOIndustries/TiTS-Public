@@ -23,12 +23,12 @@
 			this.shortName = "L.Saber";
 			
 			//Regular name
-			this.longName = "lava saber";
+			this.longName = "Lava Saber";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a lava saber";
+			this.description = "a Lava Saber";
 			
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "Feared for their relentless, burning strikes, Lava Sabers use directed hardlight fields to constrain a reservoir of liquid metal into a blade-like shape. Their heavy, insulated sheaths use kinetic energy capture to recharge the top-end capacitors in the hilt and minimize their power draw when not in use.";
