@@ -156,7 +156,7 @@ package classes.Characters
 			this.createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
 			
 			isUniqueInFight = true;
-			btnTargetText = "Droid";
+			btnTargetText = "FenrisDrone";
 			
 			this._isLoading = false;
 		}
@@ -177,7 +177,7 @@ package classes.Characters
 	
 		private function blindAttack(target:Creature):void
 		{
-			output(StringUtil.capitalize(uniqueName) + " spins around, positioning its backside toward you and hiking a leg. Oh for fuck's...");
+			output(StringUtil.upperCase(uniqueName, false) + " spins around, positioning its backside toward you and hiking a leg. Oh for fuck's...");
 			
 			if (rangedCombatMiss(this, target, -1, 2))
 			{
@@ -193,7 +193,7 @@ package classes.Characters
 		
 		private function biteAttack(target:Creature):void
 		{
-			output(StringUtil.capitalize(uniqueName) + " has a clear shot at "+ (target is PlayerCharacter ? "you" : target.a + target.short) + " through the weapons fire. With a fearsome digital growl, the cyberhound launches itself at "+ (target is PlayerCharacter ? "you" : target.mfn("him", "her", "it")) +" for a savage mauling!");
+			output(StringUtil.upperCase(uniqueName, false) + " has a clear shot at "+ (target is PlayerCharacter ? "you" : target.a + target.short) + " through the weapons fire. With a fearsome digital growl, the cyberhound launches itself at "+ (target is PlayerCharacter ? "you" : target.mfn("him", "her", "it")) +" for a savage mauling!");
 			
 			if (combatMiss(this, target))
 			{

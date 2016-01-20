@@ -873,6 +873,8 @@ public function kq2WatsonTalkIntervention():void
 	output("\n\nWith a little encouragement, Kara collects herself. <i>“Right... right. Before we leave, there’s something I need to know. Let’s get to Khan’s office. I need to see something.");
 
 	processTime(10);
+	
+	flags["KQ2_TALKED_TO_WATSON"] = 1;
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -999,7 +1001,8 @@ public function kq2EngineerPCVictory():void
 
 	output("The lapinara and her drone");
 	if (CombatManager.getHostileCharacters().length > 2) output("s");
-	output(" collapse, utterly defeated. <b>You find a keycard on her person</b>. No doubt this’ll get you into the research facility!");
+	output(" collapse, utterly defeated.");
+	if (!pc.hasKeyItem("Key Card - R&D Security Pass")) output(" <b>You find a keycard on her person</b>. No doubt this’ll get you into the research facility!");
 
 	pc.createKeyItem("Key Card - R&D Security Pass");
 	output("\n\n<b>New Key Item: Key Card - R&D Security Pass</b>.\n\n");
@@ -1007,6 +1010,8 @@ public function kq2EngineerPCVictory():void
 	flags["KQ2_DEFEATED_ENGINEER"] = 1;
 
 	CombatManager.genericVictory();
+	
+	kquest2RoomStateUpdater();
 }
 
 public function kq2LeaveEngineer():void

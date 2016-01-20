@@ -19,7 +19,7 @@
 		//constructor
 		public function Kara()
 		{
-			this._latestVersion = 1;
+			this._latestVersion = 2;
 			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
@@ -57,7 +57,7 @@
 			this.intelligenceRaw = 25;
 			this.willpowerRaw = 15;
 			this.libidoRaw = 70;
-			this.HPMod = 125;
+			this.HPMod = 0;
 			this.shieldsRaw = this.shieldsMax();
 			this.energyRaw = 100;
 			this.lustRaw = 15;
@@ -198,6 +198,11 @@
 			this.sexualPreferences.setPref(GLOBAL.SEXPREF_EXOTIC_BODYSHAPE, GLOBAL.REALLY_DISLIKES_SEXPREF);
 			
 			this._isLoading = false;
+		}
+		
+		public function UpgradeVersion1(o:Object):void
+		{
+			o.HPMod = 0;
 		}
 		
 		override public function get bustDisplay():String

@@ -38,7 +38,7 @@ package classes.Characters
 			this.a = "the ";
 			this.capitalA = "The ";
 			// this.long = "You're fighting a pirate techie, an ausar woman in a flight suit with a machine pistol at her hip. She's got a shock of blonde hair, perky breasts under her suit, and a shield generator that's thrumming with overcharged energy."
-			this.long = "You're fighting a lapinara engineer, a small pale-skinned creature with big bunny ears, curled horns, and a cute little tail. She's wearing a black breastplate, tall boots, and a jockstrap that can only barely contain her over-sized testicles. Her six-inch canine cock bounces unrestrained in front of her, peeking out of her clothes. She clutches a laser pistol in her hand, tricked out with enough mods to make it a serious damage-dealer.";
+			this.long = "A lapinara engineer, a small pale-skinned creature with big bunny ears, curled horns, and a cute little tail. She's wearing a black breastplate, tall boots, and a jockstrap that can only barely contain her over-sized testicles. Her six-inch canine cock bounces unrestrained in front of her, peeking out of her clothes. She clutches a laser pistol in her hand, tricked out with enough mods to make it a serious damage-dealer.";
 			this.customBlock = "The pirates armor deflects your attack with an alarming ease.";
 			this.isPlural = false;
 			isLustImmune = false;
@@ -46,13 +46,15 @@ package classes.Characters
 			this.meleeWeapon = new Fists();
 			this.rangedWeapon = new LaserPistol();
 			rangedWeapon.hasRandomProperties = true;
-			rangedWeapon.baseDamage.burning.damageValue = 12;
+			rangedWeapon.baseDamage.burning.damageValue = 18;
 			this.shield = new ReaperArmamentsMarkIIShield();
-			shield.shields = 120;
+			shield.shields = 200;
+			shield.resistances.burning.resistanceValue = 25.0;
+			shield.resistances.electric.resistanceValue = -10;
 			shield.hasRandomProperties = true;
 			
 			this.armor.longName = "flight suit";
-			this.armor.defense = 2;
+			this.armor.defense = 1;
 			this.armor.hasRandomProperties = true;
 			
 			this.physiqueRaw = 10;
@@ -66,9 +68,9 @@ package classes.Characters
 			this.lustRaw = 10;
 			
 			this.XPRaw = 500;
-			this.level = 5;
+			this.level = 7;
 			this.credits = 400 + rand(37);
-			this.HPMod = -35;
+			this.HPMod = 0;
 			this.HPRaw = this.HPMax();
 			
 			this.femininity = 100;
@@ -195,16 +197,21 @@ package classes.Characters
 			
 			if (!hasStatusEffect("Shield Regen Cooldown"))
 			{
-				var worstPerc:Number = 1.0;
-				var shieldTarget:Creature = null;
+				// Short-circuit- if the engineer is below 50%, she'll use it on herself
+				if ((shields() / shieldsMax()) < 0.5)
+				{
+					shieldBoost(this);
+					return;
+				}
 				
-				var thisPerc:Number = 1.0;				
+				var worstPerc:Number = 1.0;
+				var shieldTarget:Creature = null;				
 				
 				for (var i:int = 0; i < alliedCreatures.length; i++)
 				{
 					if (alliedCreatures[i].isDefeated()) continue;
 					
-					thisPerc = (alliedCreatures[i].shields() <= 0 ? 0 : alliedCreatures[i].shields() / alliedCreatures[i].shieldsMax());
+					var thisPerc:Number = (alliedCreatures[i].shields() <= 0 ? 0 : alliedCreatures[i].shields() / alliedCreatures[i].shieldsMax());
 					
 					if (thisPerc < worstPerc)
 					{
