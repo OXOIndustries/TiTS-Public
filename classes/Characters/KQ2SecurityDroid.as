@@ -40,7 +40,7 @@ package classes.Characters
 			this.long = "";
 			this.customDodge = "Somehow, the drone manages to skirt out of the way of your fire.";
 			this.customBlock = "The hardened exterior of the drone absorbs your attack.";
-			this.isPlural = true;
+			this.isPlural = false;
 			isLustImmune = true;
 			
 			this.meleeWeapon = new Fists();
@@ -56,11 +56,11 @@ package classes.Characters
 			this.armor.longName = "steel plates";
 			this.armor.defense = 3;
 			this.armor.hasRandomProperties = true;
-			this.shield = new BasicShield();
+			armor.resistances.addFlag(DamageFlag.ABLATIVE);
 			
 			this.physiqueRaw = 5;
-			this.reflexesRaw = 5;
-			this.aimRaw = 10;
+			this.reflexesRaw = 25;
+			this.aimRaw = 25;
 			this.intelligenceRaw = 0;
 			this.willpowerRaw = 0;
 			this.libidoRaw = 0;
@@ -69,12 +69,17 @@ package classes.Characters
 			this.lustRaw = 0;
 			
 			baseHPResistances = new TypeCollection();
-			baseHPResistances.electric.damageValue = -40.0;
+			baseHPResistances.electric.resistanceValue = -40.0;
+			baseHPResistances.burning.resistanceValue = 40.0;
+			baseHPResistances.corrosive.resistanceValue = 40.0;
+			baseHPResistances.freezing.resistanceValue = 40.0;
+			baseHPResistances.kinetic.resistanceValue = 40.0;
+			baseHPResistances.poison.resistanceValue = 40.0;
 			
 			this.XPRaw = 100;
-			this.level = 4;
+			this.level = 6;
 			this.credits = 0;
-			this.HPMod = 0;
+			this.HPMod = 75;
 			this.shieldsRaw = this.shieldsMax();
 			this.HPRaw = this.HPMax();
 			

@@ -55,24 +55,30 @@ package classes.Characters
 			
 			this.armor.longName = "steel plates";
 			this.armor.defense = 3;
+			armor.resistances.addFlag(DamageFlag.ABLATIVE);
 			this.armor.hasRandomProperties = true;
 			this.shield = new BasicShield();
 			
 			this.physiqueRaw = 8;
-			this.reflexesRaw = 4;
-			this.aimRaw = 14;
-			this.intelligenceRaw = 1;
-			this.willpowerRaw = 20;
+			this.reflexesRaw = 20;
+			this.aimRaw = 20;
+			this.intelligenceRaw = 5;
+			this.willpowerRaw = 30;
 			this.libidoRaw = 0;
 			this.shieldsRaw = 0;
 			this.energyRaw = 100;
 			this.lustRaw = 0;
 			
 			baseHPResistances = new TypeCollection();
-			baseHPResistances.electric.damageValue = -40.0;
+			baseHPResistances.electric.resistanceValue = -40.0;
+			baseHPResistances.burning.resistanceValue = 40.0;
+			baseHPResistances.corrosive.resistanceValue = 40.0;
+			baseHPResistances.freezing.resistanceValue = 40.0;
+			baseHPResistances.kinetic.resistanceValue = 40.0;
+			baseHPResistances.poison.resistanceValue = 40.0;
 			
 			this.XPRaw = 100;
-			this.level = 4;
+			this.level = 6;
 			this.credits = 0;
 			this.HPMod = 0;
 			this.shieldsRaw = this.shieldsMax();

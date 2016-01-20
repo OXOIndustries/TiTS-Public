@@ -70,8 +70,6 @@ package classes.Characters
 			this.HPMod = 0;
 			this.HPRaw = this.HPMax();
 			
-			this.createPerk("Multiple Attacks",1,0,0,0,"");
-			
 			this.femininity = 35;
 			this.eyeType = GLOBAL.TYPE_HUMAN;
 			this.eyeColor = "black";
