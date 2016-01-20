@@ -1562,9 +1562,16 @@ public function displayQuestLog(showID:String = "All"):void
 					if(flags["KQ2_KARA_WITH_PC"] != undefined)
 					{
 						output2("\n<b>* Kara, Status:</b>");
-						else if(flags["KQ2_KARA_WITH_PC"] == 1) output2(" At your side");
+						if(flags["KQ2_KARA_WITH_PC"] == 1) output2(" At your side");
 						else if(flags["KQ2_KARA_WITH_PC"] == 2) output2(" At the radio tower");
 						else output2(" <i>Unknown</i>");
+					}
+					// Nuke 'em, Rico!
+					if(flags["KQ2_NUKE_STARTED"] != undefined)
+					{
+						output2("\n<b>* Pirate Base, Nuke:</b>");
+						if(flags["KQ2_NUKE_EXPLODED"] != undefined) output2(" Activated, Detonated, Destroyed Myrellion");
+						else output2(" Activated " + prettifyMinutes(GetGameTimestamp() - flags["KQ2_NUKE_STARTED"]) + " ago");
 					}
 					if(flags["KQ2_FIGHT_STEPS"] != undefined)
 					{
@@ -1587,9 +1594,6 @@ public function displayQuestLog(showID:String = "All"):void
 						output2("\n<b>* Pirate Base, Barracks:</b> Entered");
 						if(flags["KQ2_TAKEN_ARMOR"] != undefined) output2(", Looted");
 					}
-					if(flags["KQ2_WATSON_MET"] != undefined) output2("\n<b>* Pirate Base, Watson:</b> Met it");
-					if(flags["KQ2_DEFEATED_ENGINEER"] != undefined) output2("\n<b>* Pirate Base, Engineer:</b> Defeated her");
-					if(flags["KQ2_DEFEATED_JUGGERNAUT"] != undefined) output2("\n<b>* Pirate Base, Juggernaut:</b> Defeated him");
 					if(flags["KQ2_DEFEATED_KHAN"] != undefined)
 					{
 						output2("\n<b>* Pirate Base, Dr.Khan:</b> Met him, Defeated him");
@@ -1599,20 +1603,28 @@ public function displayQuestLog(showID:String = "All"):void
 							output2(", Looted his room");
 							if(flags["KQ2_KHAN_LOOTED_COAT"] != undefined || flags["KQ2_KHAN_LOOTED_CASTER"] != undefined)
 							{
-								output2(" and took his");
+								output2(", Took his");
 								if(flags["KQ2_KHAN_LOOTED_COAT"] != undefined) output2(" coat");
 								if(flags["KQ2_KHAN_LOOTED_COAT"] != undefined && flags["KQ2_KHAN_LOOTED_CASTER"] != undefined) output2(" and");
 								if(flags["KQ2_KHAN_LOOTED_CASTER"] != undefined) output2(" gun");
 							}
 						}
 					}
-					// Nuke 'em, Rico!
-					if(flags["KQ2_NUKE_STARTED"] != undefined)
+					if(flags["KQ2_LEFT_ENGINEER"] != undefined || flags["KQ2_DEFEATED_ENGINEER"] != undefined)
 					{
-						output2("\n<b>* Pirate Base, Nuke:</b>");
-						if(flags["KQ2_NUKE_EXPLODED"] != undefined) output2(" Activated, Detonated, Destroyed Myrellion");
-						else output2(" Activated " + prettifyMinutes(GetGameTimestamp() - flags["KQ2_NUKE_STARTED"]) + " ago");
+						output2("\n<b>* Pirate Base, Engineer:</b> Encountered her");
+						if(flags["KQ2_LEFT_ENGINEER"] == 2) output2(", Bribed her with porn");
+						if(flags["KQ2_LEFT_ENGINEER"] == 3) output2(", Bribed her with money");
+						if(flags["KQ2_DEFEATED_ENGINEER"] != undefined)
+						{
+							output2(", Defeated her");
+							if(flags["KQ2_DEFEATED_ENGINEER"] == 2) output2(" with sex");
+							else output2(" in combat");
+						}
+						else output2(", Left her alone");
 					}
+					if(flags["KQ2_DEFEATED_JUGGERNAUT"] != undefined) output2("\n<b>* Pirate Base, Juggernaut:</b> Defeated him");
+					if(flags["KQ2_WATSON_MET"] != undefined) output2("\n<b>* Pirate Base, Watson:</b> Met it");
 				}
 				sideCount++;
 			}

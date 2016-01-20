@@ -3031,6 +3031,7 @@ package classes.GameData
 			showCombatDescriptions();
 			showCombatMenu();
 			showCombatUI(true);
+			userInterface().levelUpOff();
 		}
 		
 		private function validateContainer():void
@@ -3577,6 +3578,7 @@ package classes.GameData
 		
 		private function postCombatReturnToMenu():void
 		{
+			userInterface().mainButtonsReset();
 			userInterface().hideNPCStats();
 			userInterface().leftBarDefaults();
 			kGAMECLASS.mainGameMenu();

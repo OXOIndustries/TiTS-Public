@@ -8,7 +8,7 @@ public function kquest2RoomStateUpdater():void
 		if (!tRoom.hasFlag(GLOBAL.NPC)) tRoom.addFlag(GLOBAL.NPC);
 		if (!tRoom.hasFlag(GLOBAL.HAZARD)) tRoom.addFlag(GLOBAL.HAZARD);
 	}
-	else if (flags["KQ2_DEFEATED_ENGINEER"] == 1)
+	else
 	{
 		if (tRoom.hasFlag(GLOBAL.NPC)) tRoom.removeFlag(GLOBAL.NPC);
 		if (tRoom.hasFlag(GLOBAL.HAZARD)) tRoom.removeFlag(GLOBAL.HAZARD);
@@ -208,7 +208,8 @@ public function kquest2InitRooms():void
 	rooms["K2_YARDB2"].southExit = "K2_YARDC2";
 	rooms["K2_YARDB2"].westExit = "K2_YARDB1";
 	rooms["K2_YARDB2"].addFlag(GLOBAL.OUTDOOR);
-	rooms["K2_YARDB2"].addFlag(GLOBAL.HAZARD);
+	//rooms["K2_YARDB2"].addFlag(GLOBAL.HAZARD);
+	rooms["K2_YARDB2"].addFlag(GLOBAL.OBJECTIVE);
 
 	rooms["K2_YARDB3"] = new RoomClass(this);
 	rooms["K2_YARDB3"].roomName = "TRAINING\nYARD";
@@ -270,7 +271,7 @@ public function kquest2InitRooms():void
 	rooms["K2_BARRACKSENTRANCE"].addFlag(GLOBAL.HAZARD);
 
 	rooms["K2_BARRACKSINTERIOR"] = new RoomClass(this);
-	rooms["K2_BARRACKSINTERIOR"].roomName = "\nBARRAKCS";
+	rooms["K2_BARRACKSINTERIOR"].roomName = "\nBARRACKS";
 	//rooms["K2_BARRACKSINTERIOR"].description = "";
 	rooms["K2_BARRACKSINTERIOR"].runOnEnter = kq2rfBarracksInterior; //PC guaranteed to fight the first time in this square
 	rooms["K2_BARRACKSINTERIOR"].planet = planetName;
@@ -363,7 +364,7 @@ public function kquest2InitRooms():void
 	rooms["K2_LAB1"].addFlag(GLOBAL.INDOOR);
 
 	rooms["K2_KHANSLAB"] = new RoomClass(this);
-	rooms["K2_KHANSLAB"].roomName = "\nKHANS LAB";
+	rooms["K2_KHANSLAB"].roomName = "\nKHAN'S LAB";
 	//rooms["K2_KHANSLAB"].description = "desc";
 	rooms["K2_KHANSLAB"].runOnEnter = kq2rfKhansLab;
 	rooms["K2_KHANSLAB"].planet = planetName;

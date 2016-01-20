@@ -599,7 +599,7 @@ public function kq2QUESTTIME():void
 
 	author("Savin");
 
-	showName("THE GHOST");
+	showName("THE\nGHOST");
 
 	output("A moment later and you’re aboard the <i>Ghost</i>, Kara’s ship, looking around at the sleek, bright white of the interior. She’s a new ship, still squeaky clean and polished to a shine. Consoles run along the length of every corridor you pass through on the way to the bridge. The whole ship has an oddly sterile feel - not like the cozy home you’ve made out of your own ship.");
 
@@ -668,7 +668,7 @@ public function kq2QUESTTIMEII():void
 
 	author("Savin");
 
-	showName("THE GHOST");
+	showName("THE\nGHOST");
 
 	output("The trip goes by quickly and peacefully, until you hit the arid atmosphere of Myrellion. The ship shudders with turbulence, and you watch as Logan hammers several controls on a console above her. Part of the forward screen flickers off, replaced by a bird-eye view of the desert - some kind of probe’s camera, maybe? The second screen focuses in on some kind of walled compound sitting the bottom of a deep caldera, surrounded by nothing for miles and miles around. You squint, and think you make out all of three, maybe four buildings on the surface.");
 	
@@ -934,7 +934,7 @@ public function kq2EnterEngineersRoom():void
 {
 	if (flags["KQ2_ENGINEER_NUM_DRONES"] == undefined) flags["KQ2_ENGINEER_NUM_DRONES"] = 1 + rand(4);
 
-	if (flags["KQ2_DEFEATED_ENGINEER"] == undefined)
+	if (flags["KQ2_DEFEATED_ENGINEER"] == undefined || flags["KQ2_LEFT_ENGINEER"] == undefined)
 	{
 		clearOutput();
 		showKQ2Engineer();
@@ -1002,10 +1002,12 @@ public function kq2EngineerPCVictory():void
 	output("The lapinara and her drone");
 	if (CombatManager.getHostileCharacters().length > 2) output("s");
 	output(" collapse, utterly defeated.");
-	if (!pc.hasKeyItem("Key Card - R&D Security Pass")) output(" <b>You find a keycard on her person</b>. No doubt this’ll get you into the research facility!");
-
-	pc.createKeyItem("Key Card - R&D Security Pass");
-	output("\n\n<b>New Key Item: Key Card - R&D Security Pass</b>.\n\n");
+	if (!pc.hasKeyItem("Key Card - R&D Security Pass"))
+	{
+		output(" <b>You find a keycard on her person</b>. No doubt this’ll get you into the research facility!");
+		pc.createKeyItem("Key Card - R&D Security Pass");
+		output("\n\n<b>New Key Item: Key Card - R&D Security Pass</b>.\n\n");
+	}
 
 	flags["KQ2_DEFEATED_ENGINEER"] = 1;
 
@@ -1078,6 +1080,7 @@ public function kq2GibEngyDirtyMag():void
 
 	processTime(2);
 
+	flags["KQ2_LEFT_ENGINEER"] = 2;
 	currentLocation = "K2_BARRACKSINTERIOR";
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -1103,6 +1106,7 @@ public function kq2GibEngyCash():void
 
 	processTime(2);
 
+	flags["KQ2_LEFT_ENGINEER"] = 3;
 	currentLocation = "K2_BARRACKSINTERIOR";
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -1292,6 +1296,9 @@ public function kq2KhanPCVictory():void
 	
 	output("\n\nKhan sucks in a breath, rubbing his cheek. <i>“L-look, we can work something out, right? Come on, you’re all reasonable people... right?”</i>");
 
+	userInterface.hideNPCStats();
+	userInterface.leftBarDefaults();
+	
 	//[Talk: Gold Myr] [Talk: Khan] [Fuck Khan] [Loot Room] [Leave]
 	kq2KhanVictoryMenu();
 }
@@ -1793,7 +1800,7 @@ public function kq2EncounterShade():void
 		
 		output("\n\n<i>“I don’t like being played, kid,”</i> she whispers. <i>“Even if it was a damn </i>good<i> play. Assuming Amara doesn’t string you and your friend up, I’m gonna have words for you next time we talk.”</i>");
 		
-		output("\n\nYou nod your understand, and try to move by. She holds you in place for another moment, though: just long enough to plant a small kiss on your cheek. <i>“For luck. You’ll need it.”</i>");
+		output("\n\nYou nod understandingly and try to move by. She holds you in place for another moment, though: just long enough to plant a small kiss on your cheek. <i>“For luck. You’ll need it.”</i>");
 		
 		//Restore some PC Health, Energy. Increase +5 Lust.
 		pc.HP(pc.HPMax() * 0.15);
