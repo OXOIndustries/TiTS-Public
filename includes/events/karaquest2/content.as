@@ -2653,6 +2653,8 @@ public function kq2PostKaraSexyCombine(gotFucked:Boolean = false):void
 	else if (kara.isMischievous()) output(" you’ve got places to be, things to do...");
 	else output(" I’ve pretty much worn you out, but...");
 	output("”</i>");
+	
+	IncrementFlag("SEXED_KARA");
 
 	//[Stay] [Go]
 	clearMenu();

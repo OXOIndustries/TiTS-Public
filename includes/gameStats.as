@@ -3882,6 +3882,7 @@ public function displayEncounterLog(showID:String = "All"):void
 		if(flags["MET_KARA"] != undefined)
 		{
 			output2("\n<b>* Kara:</b> Met her");
+			if(flags["SEXED_KARA"] != undefined) output2(", Sexed her");
 			roamCount++;
 		}
 		// Kirobutts!
