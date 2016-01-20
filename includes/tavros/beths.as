@@ -1381,5 +1381,11 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 		pc.lust(10);
 	}
 	
+	// Randomized bonus pay buffs
+	for(var i:int = 0; i < 5; i++)
+	{
+		if(rand(2) == 0) baseEarnings += rand(41);
+	}
+	
 	return baseEarnings;
 }
