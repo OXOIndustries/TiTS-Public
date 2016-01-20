@@ -627,6 +627,8 @@ public function brothelWhorePayment(baseAmount:Number = 0):Number
 	// PC has maxed tease points across the board: + 25% of base
 	if(flags["TIMES_BUTT_TEASED"] >= 100 && flags["TIMES_CHEST_TEASED"] >= 100 && flags["TIMES_CROTCH_TEASED"] >= 100 && flags["TIMES_HIPS_TEASED"] >= 100)
 		returnAmount += baseAmount * 0.25;
+	// Proficiency Bonus
+	if(flags["BETHS_TIMES_WHORED"] != undefined) returnAmount += (flags["BETHS_TIMES_WHORED"] * 2);
 	
 	returnAmount = (returnAmount + baseAmount);
 	// If Licensed, - 0.2 of total off total
