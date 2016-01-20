@@ -142,17 +142,8 @@ package classes.Characters
 			//20 - inconceivably large/big/huge etc
 			this.buttRatingRaw = 2;
 			//No dicks here!
-			this.createCock();
-			this.shiftCock(0, GLOBAL.TYPE_CANINE);
-			this.cocks[0].cLengthRaw = 6;
-			this.createVagina();
-			this.girlCumType = GLOBAL.FLUID_TYPE_GIRLCUM;
-			this.vaginalVirgin = false;
-			this.vaginas[0].loosenessRaw = 2;
-			this.vaginas[0].wetnessRaw = 4;
-			this.vaginas[0].bonusCapacity = 10;
-			this.vaginas[0].vaginaColor = "pink";
-			this.vaginas[0].type = GLOBAL.TYPE_LAPINARA;
+			this.cocks = [new CockClass()];
+			this.vaginas = [new VaginaClass()];
 			//balls
 			this.balls = 0;
 			this.cumMultiplierRaw = 6;
