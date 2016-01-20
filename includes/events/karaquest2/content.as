@@ -1373,10 +1373,10 @@ public function kq2KhanPCVictoryLootRoom():void
 	kq2KhanVictoryMenu();
 }
 
-public function kq2LootLabCoat():void
+public function kq2LootLabCoat(noncombatMenu:Boolean = false):void
 {
 	flags["KQ2_KHAN_LOOTED_COAT"] = 1;
-	lootScreen = kq2LabCoatCheck;
+	lootScreen = (noncombatMenu ? kq2LabCoatCheckMenu : kq2LabCoatCheck);
 	itemCollect([new KhansLabCoat()]);
 }
 
@@ -1385,7 +1385,7 @@ public function kq2LabCoatCheck():void
 {
 	if (pc.armor is KhansLabCoat || pc.hasItemByType(KhansLabCoat))
 	{
-	kq2KhanVictoryMenu();
+		kq2KhanVictoryMenu();
 		return;
 	}
 	clearOutput();
@@ -1395,10 +1395,24 @@ public function kq2LabCoatCheck():void
 	addButton(0, "Next", kq2KhanVictoryMenu);
 }
 
-public function kq2LootArcCaster():void
+public function kq2LabCoatCheckMenu():void
+{
+	if (pc.armor is KhansLabCoat || pc.hasItemByType(KhansLabCoat))
+	{
+		mainGameMenu();
+		return;
+	}
+	clearOutput();
+	output("You put the coat back where you found it.");
+	flags["KQ2_KHAN_LOOTED_COAT"] = undefined;
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function kq2LootArcCaster(noncombatMenu:Boolean = false):void
 {
 	flags["KQ2_KHAN_LOOTED_CASTER"] = 1;
-	lootScreen = kq2LootArcCasterCheck;
+	lootScreen = (noncombatMenu ? kq2LootArcCasterCheckMenu : kq2LootArcCasterCheck);
 	itemCollect([new KhansArcCaster()]);
 }
 
@@ -1406,7 +1420,7 @@ public function kq2LootArcCasterCheck():void
 {
 	if (pc.rangedWeapon is KhansArcCaster || pc.hasItemByType(KhansArcCaster))
 	{
-	kq2KhanVictoryMenu();
+		kq2KhanVictoryMenu();
 		return;
 	}
 	clearOutput();
@@ -1414,6 +1428,20 @@ public function kq2LootArcCasterCheck():void
 	flags["KQ2_KHAN_LOOTED_CASTER"] = undefined;
 	clearMenu();
 	addButton(0, "Next", kq2KhanVictoryMenu);
+}
+
+public function kq2LootArcCasterCheckMenu():void
+{
+	if (pc.rangedWeapon is KhansArcCaster || pc.hasItemByType(KhansArcCaster))
+	{
+		mainGameMenu();
+		return;
+	}
+	clearOutput();
+	output("You put the gun back where you found it.");
+	flags["KQ2_KHAN_LOOTED_CASTER"] = undefined;
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
 
 public function kq2KhanLeave():void
