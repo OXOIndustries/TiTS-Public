@@ -57,15 +57,17 @@ package classes.Characters
 			this.armor.defense = 1;
 			this.armor.hasRandomProperties = true;
 			
+			baseHPResistances.tease.resistanceValue = 10.0;
+			
 			this.physiqueRaw = 10;
-			this.reflexesRaw = 18;
-			this.aimRaw = 18;
+			this.reflexesRaw = 35;
+			this.aimRaw = 25;
 			this.intelligenceRaw = 25;
 			this.willpowerRaw = 8;
 			this.libidoRaw = 20;
 			this.shieldsRaw = shieldsMax();
 			this.energyRaw = 100;
-			this.lustRaw = 10;
+			this.lustRaw = 33;
 			
 			this.XPRaw = 500;
 			this.level = 7;

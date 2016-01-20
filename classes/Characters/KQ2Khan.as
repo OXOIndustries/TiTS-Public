@@ -29,7 +29,7 @@ package classes.Characters
 			this.version = _latestVersion;
 			this._neverSerialize = true;
 			
-			this.short = "doctor khan";
+			this.short = "Doctor Khan";
 			this.originalRace = "kui-tan";
 			this.a = "";
 			this.capitalA = "";
@@ -43,25 +43,36 @@ package classes.Characters
 			rangedWeapon = new KhansArcCaster();
 			
 			shield = new JoyCoPremiumShield();
+			shield.shields = 120;
+			shield.resistances.burning.resistanceValue = 15.0;
+			shield.resistances.electric.resistanceValue = 15.0;
+			shield.resistances.kinetic.resistanceValue = 15.0;
+			
+			shield.hasRandomProperties = true;
+			
 			armor = new KhansLabCoat();
 			
 			baseHPResistances.tease.resistanceValue = -50.0;
+			baseHPResistances.drug.resistanceValue = -50.0;
+			baseHPResistances.pheromone.resistanceValue = -50.0;
+			baseHPResistances.psionic.resistanceValue = -50.0;
 			
-			this.physiqueRaw = 17;
-			this.reflexesRaw = 15;
-			this.aimRaw = 16;
-			this.intelligenceRaw = 12;
-			this.willpowerRaw = 14;
-			this.libidoRaw = 20;
+			this.physiqueRaw = 25;
+			this.reflexesRaw = 10;
+			this.aimRaw = 38;
+			this.intelligenceRaw = 32;
+			this.willpowerRaw = 25;
+			this.libidoRaw = 40;
 			this.shieldsRaw = 40;
 			this.energyRaw = 100;
-			this.lustRaw = 10;
+			this.lustRaw = 11;
 			
 			this.XPRaw = 500;
-			this.level = 5;
+			this.level = 8;
 			this.credits = 80 + rand(80);
-			this.HPMod = 0;
+			this.HPMod = 140;
 			this.HPRaw = this.HPMax();
+			shieldsRaw = shieldsMax();
 			
 			this.femininity = 35;
 			this.eyeType = GLOBAL.TYPE_HUMAN;
@@ -167,6 +178,7 @@ package classes.Characters
 			this.ass.wetnessRaw = 0;
 			
 			createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
+			createPerk("Inhuman Desire", 100, 0, 0, 0, "");
 			
 			isUniqueInFight = true;
 			btnTargetText = "Dr Khan";
@@ -189,7 +201,7 @@ package classes.Characters
 			enemyAttacks.push( { v: arcCaster, w: 40 } );
 			enemyAttacks.push( { v: labGirlsStriptease, w: 10 } );
 			enemyAttacks.push( { v: lustbang, w: 30 } );
-			enemyAttacks.push( { v: ballWorship, w: lust() } );
+			if (lust() >= 110 && !hasStatusEffect("Worship Cooldown")) enemyAttacks.push( { v: ballWorship, w: lust() } );
 			
 			var attack:Function = weightedRand(enemyAttacks);
 			
@@ -273,11 +285,11 @@ package classes.Characters
 			
 			output("<i>“Hand me one of my special concoctions!”</i> Khan snaps at one of his lab-coat-wearing harem girls. She quickly scampers over to a nearby desk and rushes back with a small pink grenade. <i>“Have a taste of my LUSTBANGS!”</i> he screams, throwing the grenade at you. It explodes in a cloud of pink mist which rolls over you");
 			if (kara != null) output(" and Kara");
-			output(". Rather than choking on it, though");
+			output(".\nRather than choking on it, though");
 			
 			if (pc.reflexes() / 2 + rand(20) + 1 >= 25)
 			{
-				output(", you manage to cover your mouth and dive out of the cloud");
+				output(", you manage to cover your mouth and dive out of the cloud.");
 			}
 			else
 			{
@@ -291,13 +303,13 @@ package classes.Characters
 			{
 				if (kara.reflexes() / 2 + rand(20) + 1 >= 25)
 				{
-					output(" Looks like Kara got clear");
+					output("\nLooks like Kara got clear");
 					if (!hitPC) output(", too");
 					output(".");
 				}
 				else
 				{
-					output(" Kara’s looking much more flushed by the time the cloud clears");
+					output("\nKara’s looking much more flushed by the time the cloud clears");
 					if (hitPC) output(", too");
 					output(".");
 					
@@ -308,6 +320,8 @@ package classes.Characters
 		
 		private function ballWorship(hostiles:Array):void
 		{
+			createStatusEffect("Worship Cooldown", 4);
+			
 			output("<i>“Girls... I... I need some relief !”</i> Khan cries, wiggling around on his testicular throne and waving a small remote at his harem. The huge, swollen sacks of his balls jiggle and quake under him, and a visible gush of semen squirts out of his bound cock, splattering on the top of his nads. His harem is quick to leap to their master’s aid, hands playing across his swollen sac, tongues and breasts and wet cooches rubbing all over him. The scientist groans and bucks his hips as his harem worship his balls, spooge drooling from the tip of his cock.");
 			
 			var pc:Creature;

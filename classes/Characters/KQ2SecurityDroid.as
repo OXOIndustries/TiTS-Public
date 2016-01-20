@@ -16,6 +16,7 @@ package classes.Characters
 	import classes.GameData.CombatAttacks;
 	import classes.GameData.CombatManager;
 	import classes.Engine.Interfaces.output;
+	import classes.StringUtil;
 	
 	/**
 	 * ...
@@ -34,8 +35,8 @@ package classes.Characters
 			// Needs a few things checked.
 			this.short = "security drone";
 			this.originalRace = "Automaton";
-			this.a = "the ";
-			this.capitalA = "The ";
+			this.a = "";
+			this.capitalA = "";
 			this.long = "";
 			this.customDodge = "Somehow, the drone manages to skirt out of the way of your fire.";
 			this.customBlock = "The hardened exterior of the drone absorbs your attack.";
@@ -176,7 +177,7 @@ package classes.Characters
 		
 		private function droneZap(target:Creature):void
 		{
-			output(uniqueName + " fires its zap-gun at " + (target is PlayerCharacter ? "you" : target.a + target.short));
+			output(StringUtil.upperCase(uniqueName, false) + " fires its zap-gun at " + (target is PlayerCharacter ? "you" : target.a + target.short));
 			
 			if (!rangedCombatMiss(this, target))
 			{
@@ -191,7 +192,7 @@ package classes.Characters
 		
 		private function droneKamikaze(hostileCreatures:Array):void
 		{
-			output(uniqueName + " makes a series of rapid beeps, showering the the area with sparks as it shudders forward. The beeping quickens as the dying drone picks up speed, rushing toward you as if it means to crash into you!");
+			output(StringUtil.upperCase(uniqueName, false) + " makes a series of rapid beeps, showering the the area with sparks as it shudders forward. The beeping quickens as the dying drone picks up speed, rushing toward you as if it means to crash into you!");
 			
 			// Cheaty-check- if Khan isn't involved in the fight, then its in the sewers
 			if (!CombatManager.hasEnemyOfClass(KQ2Khan))
