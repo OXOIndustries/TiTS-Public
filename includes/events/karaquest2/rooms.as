@@ -24,6 +24,20 @@ public function kquest2RoomStateUpdater():void
 	{
 		if (tRoom.hasFlag(GLOBAL.NPC)) tRoom.removeFlag(GLOBAL.NPC);
 	}
+	
+	// Khans Room
+	tRoom = rooms["K2_KHANSLAB"];
+	if (flags["KQ2_DEFEATED_KHAN"] == undefined)
+	{
+		if (!tRoom.hasFlag(GLOBAL.NPC)) tRoom.addFlag(GLOBAL.NPC);
+		if (!tRoom.hasFlag(GLOBAL.HAZARD)) tRoom.addFlag(GLOBAL.HAZARD);
+	}
+	else
+	{
+		if (tRoom.hasFlag(GLOBAL.NPC)) tRoom.removeFlag(GLOBAL.NPC);
+		if (tRoom.hasFlag(GLOBAL.HAZARD)) tRoom.removeFlag(GLOBAL.HAZARD);
+	}
+	
 }
 
 public function kquest2InitRooms():void
