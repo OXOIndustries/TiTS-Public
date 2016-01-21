@@ -39,28 +39,43 @@ package classes.Characters
 			isLustImmune = false;
 			
 			meleeWeapon = new ShockBlade();
-			rangedWeapon = new MagnumPistol();			
+			rangedWeapon = new MagnumPistol();
+			rangedWeapon.longName = "chaingun";
+			rangedWeapon.attackNoun = "burst";
+			rangedWeapon.hasRandomProperties = true;
+			rangedWeapon.baseDamage.kinetic.damageValue = 25;
+			rangedWeapon.attack = 5;
+			
 			shield = new JoyCoPremiumShield();
+			shield.shields = 180;
+			shield.hasRandomProperties = true;
+			
 			armor = new VoidPlateArmor();
+			armor.defense = 30;
+			armor.resistances.kinetic.resistanceValue = 25.0;
+			armor.resistances.freezing.resistanceValue = -25.0;
+			armor.resistances.burning.resistanceValue = 15.0;
+			armor.hasRandomProperties = true;
+			
 			accessory = new ACECannon();
 			
-			this.physiqueRaw = 17;
-			this.reflexesRaw = 15;
-			this.aimRaw = 16;
+			this.physiqueRaw = 30;
+			this.reflexesRaw = 25;
+			this.aimRaw = 30;
 			this.intelligenceRaw = 12;
-			this.willpowerRaw = 14;
+			this.willpowerRaw = 35;
 			this.libidoRaw = 20;
 			this.shieldsRaw = 40;
 			this.energyRaw = 100;
 			this.lustRaw = 10;
 			
 			this.XPRaw = 500;
-			this.level = 5;
+			this.level = 7;
 			this.credits = 80 + rand(80);
-			this.HPMod = 0;
+			this.HPMod = 200;
 			this.HPRaw = this.HPMax();
 			
-			this.femininity = 35;
+			this.femininity = 80;
 			this.eyeType = GLOBAL.TYPE_HUMAN;
 			this.eyeColor = "black";
 			this.tallness = 68;
@@ -116,7 +131,7 @@ package classes.Characters
 			//10 - curvy//flaring
 			//15 - child-bearing/fertile
 			//20 - inhumanly wide
-			this.hipRatingRaw = 0;
+			this.hipRatingRaw = 8;
 			//buttRating
 			//0 - buttless
 			//2 - tight
@@ -127,7 +142,7 @@ package classes.Characters
 			//13 - expansive
 			//16 - huge
 			//20 - inconceivably large/big/huge etc
-			this.buttRatingRaw = 2;
+			this.buttRatingRaw = 8;
 			//No dicks here!
 			this.cocks = new Array();
 			this.createCock();
@@ -155,7 +170,7 @@ package classes.Characters
 			this.clitLength = .5;
 			this.pregnancyMultiplierRaw = 1;
 			
-			this.breastRows[0].breastRatingRaw = 0;
+			this.breastRows[0].breastRatingRaw = 6;
 			this.nippleColor = "black";
 			this.milkMultiplier = 0;
 			this.milkType = GLOBAL.FLUID_TYPE_MILK;

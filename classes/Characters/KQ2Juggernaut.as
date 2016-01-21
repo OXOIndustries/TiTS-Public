@@ -35,23 +35,26 @@ package classes.Characters
 			this.long = "You're fighting a Black Void Juggernaut, a behemoth of a man strapped into a suit of military-spec powered armor. Not an inch of flesh is visible under all that armor, just the outline of a face hidden behind a holographic Jolly Roger on his helmet.";
 			this.customBlock = "The pirate’s armor deflects your attack with alarming ease.";
 			this.isPlural = false;
-			isLustImmune = true;
+			isLustImmune = false;
 			
 			this.meleeWeapon = new Fists();
 			
 			rangedWeapon = new AegisLightMG();
-			rangedWeapon.attack = 0; // Remove the penalty as the dudes wearing the requisite armor etc.
+			rangedWeapon.attack = 2; // Remove the penalty as the dudes wearing the requisite armor etc.
+			rangedWeapon.baseDamage.kinetic.damageValue = 35;
 			rangedWeapon.hasRandomProperties = true;
 			
 			this.shield = new JoyCoPremiumShield();
+			shield.shields = 150;
+			shield.hasRandomProperties = true;
 			
 			this.armor.longName = "black void power armor";
 			this.armor.defense = 25;
 			this.armor.hasRandomProperties = true;
 			
-			this.physiqueRaw = 17;
-			this.reflexesRaw = 15;
-			this.aimRaw = 16;
+			this.physiqueRaw = 35;
+			this.reflexesRaw = 5;
+			this.aimRaw = 30;
 			this.intelligenceRaw = 12;
 			this.willpowerRaw = 14;
 			this.libidoRaw = 20;
@@ -60,12 +63,10 @@ package classes.Characters
 			this.lustRaw = 10;
 			
 			this.XPRaw = 500;
-			this.level = 5;
+			this.level = 7;
 			this.credits = 80 + rand(80);
-			this.HPMod = 0;
+			this.HPMod = 180;
 			this.HPRaw = this.HPMax();
-			
-			this.createPerk("Multiple Attacks",1,0,0,0,"");
 			
 			this.femininity = 35;
 			this.eyeType = GLOBAL.TYPE_HUMAN;
@@ -172,6 +173,7 @@ package classes.Characters
 			
 			createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
 			createStatusEffect("Disarm Immune");
+			createStatusEffect("Stun Immune");
 			
 			isUniqueInFight = true;
 			btnTargetText = "Juggernaut";
@@ -221,6 +223,8 @@ package classes.Characters
 		
 		private function fullPowerToTheDeflectors():void
 		{
+			createStatusEffect("GunShield Overloaded");
+			
 			output("<i>“THAT THE BEST YOU GOT!?”</i> the pirate roars as his machinegun’s tower shield shorts out, leaving him... not without a shield, you see, as another protective layer flickers to life around his armor. Standard-issue shield belt. <i>“COME GET SOME MORE, BITCHES!”</i>");
 			shields(shieldsMax() * 0.5);
 		}

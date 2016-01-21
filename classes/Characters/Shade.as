@@ -19,7 +19,7 @@
 		//constructor
 		public function Shade()
 		{
-			this._latestVersion = 1;
+			this._latestVersion = 2;
 			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
@@ -44,6 +44,13 @@
 			this.rangedWeapon = new ArcCaster();
 
 			this.shield = new ReaperArmamentsMarkIIShield();
+			shield.resistances.burning.resistanceValue = 30.0;
+			shield.resistances.corrosive.resistanceValue = 30.0;
+			shield.resistances.electric.resistanceValue = 30.0;
+			shield.resistances.freezing.resistanceValue = 30.0;
+			shield.resistances.kinetic.resistanceValue = 30.0;
+			shield.resistances.poison.resistanceValue = 30.0;
+			shield.hasRandomProperties = true;
 			
 			this.accessory = new LightningDuster();
 			
@@ -53,7 +60,7 @@
 			this.intelligenceRaw = 15;
 			this.willpowerRaw = 25;
 			this.libidoRaw = 50;
-			this.HPMod = 125;
+			this.HPMod = 0;
 			this.shieldsRaw = this.shieldsMax();
 			this.energyRaw = 100;
 			this.lustRaw = 15;
@@ -193,6 +200,20 @@
 			this.sexualPreferences.setPref(GLOBAL.SEXPREF_EXOTIC_BODYSHAPE, GLOBAL.REALLY_DISLIKES_SEXPREF);
 
 			this._isLoading = false;
+		}
+		
+		public function UpgradeVersion1(o:Object):void
+		{
+			var s:ReaperArmamentsMarkIIShield = new ReaperArmamentsMarkIIShield();
+			s.resistances.burning.resistanceValue = 30.0;
+			s.resistances.corrosive.resistanceValue = 30.0;
+			s.resistances.electric.resistanceValue = 30.0;
+			s.resistances.freezing.resistanceValue = 30.0;
+			s.resistances.kinetic.resistanceValue = 30.0;
+			s.resistances.poison.resistanceValue = 30.0;
+			s.hasRandomProperties = true;
+			
+			o.shield = s.getSaveObject();
 		}
 		
 		override public function get bustDisplay():String

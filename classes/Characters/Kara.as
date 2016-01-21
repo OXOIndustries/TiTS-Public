@@ -19,7 +19,7 @@
 		//constructor
 		public function Kara()
 		{
-			this._latestVersion = 2;
+			this._latestVersion = 3;
 			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
@@ -50,6 +50,13 @@
 			this.rangedWeapon.hasRandomProperties = true;
 
 			this.shield = new ReaperArmamentsMarkIIShield();
+			shield.resistances.burning.resistanceValue = 30.0;
+			shield.resistances.corrosive.resistanceValue = 30.0;
+			shield.resistances.electric.resistanceValue = 30.0;
+			shield.resistances.freezing.resistanceValue = 30.0;
+			shield.resistances.kinetic.resistanceValue = 30.0;
+			shield.resistances.poison.resistanceValue = 30.0;
+			shield.hasRandomProperties = true;
 			
 			this.physiqueRaw = 31;
 			this.reflexesRaw = 21;
@@ -203,6 +210,20 @@
 		public function UpgradeVersion1(o:Object):void
 		{
 			o.HPMod = 0;
+		}
+		
+		public function UpgradeVersion2(o:Object):void
+		{
+			var s:ReaperArmamentsMarkIIShield = new ReaperArmamentsMarkIIShield();
+			s.resistances.burning.resistanceValue = 30.0;
+			s.resistances.corrosive.resistanceValue = 30.0;
+			s.resistances.electric.resistanceValue = 30.0;
+			s.resistances.freezing.resistanceValue = 30.0;
+			s.resistances.kinetic.resistanceValue = 30.0;
+			s.resistances.poison.resistanceValue = 30.0;
+			s.hasRandomProperties = true;
+			
+			o.shield = s.getSaveObject();
 		}
 		
 		override public function get bustDisplay():String

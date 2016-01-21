@@ -42,9 +42,9 @@ package classes.Items.Guns
 			
 			//Information
 			this.basePrice = 6700;
-			this.attack = 4;
+			this.attack = 2;
 			
-			baseDamage.electric.damageValue = 20;
+			baseDamage.electric.damageValue = 14;
 			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
 			this.addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
 			
