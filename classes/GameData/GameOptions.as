@@ -21,6 +21,8 @@ package classes.GameData
 			colourDamageValueOutput = true;
 			saveNotesToggle = true;
 			overwriteToggle = true;
+			authorToggle = true;
+			vendorToggle = true;
 		}
 		
 		public function setBustPriority(artist:String, priority:int):void
@@ -88,7 +90,8 @@ package classes.GameData
 		public var colourDamageValueOutput:Boolean;
 		public var saveNotesToggle:Boolean;
 		public var overwriteToggle:Boolean;
-		
+		public var authorToggle:Boolean;
+		public var vendorToggle:Boolean;
 	}
 
 }

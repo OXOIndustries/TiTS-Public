@@ -272,7 +272,7 @@ public function shop(keeper:Creature):void {
 public function buyItem():void {
 	clearOutput();
 	output(shopkeep.keeperBuy);
-	var buyOptions:Boolean = true;
+	var buyOptions:Boolean = kGAMECLASS.gameOptions.vendorToggle;
 	var temp:Number = 0;
 	clearMenu();
 	for(var x:int = 0; x < shopkeep.inventory.length; x++) {
@@ -385,7 +385,7 @@ public function buyItemGo(arg:ItemSlotClass):void {
 public function sellItem():void {
 	clearOutput();
 	output(shopkeep.keeperSell);
-	var sellOptions:Boolean = true;
+	var sellOptions:Boolean = kGAMECLASS.gameOptions.vendorToggle;
 	clearMenu();
 	for(var x:int = 0; x < pc.inventory.length; x++) {
 		//If slot has something in it.
