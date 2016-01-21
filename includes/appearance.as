@@ -509,6 +509,23 @@ public function appearance(forTarget:Creature):void
 			{
 				if(target.horns > 0) output2(" Two curled ram horns twist back from your forehead, curling over your [target.ears] like a satyr out of terran legend.");
 			}
+			//Rhinoceros horn!
+			else if(target.hornType == GLOBAL.TYPE_RHINO)
+			{
+				// Default
+				if(target.horns == 1) output2(" A thick, wide keratin horn emerges from your forehead, " + num2Text(int(target.hornLength)) + "-inches long and sporting a slight upward curve.");
+				// More rhino-esque
+				else if(target.horns == 2) output2(" Protruding from the bridge of your nose, a thick, " + num2Text(int(target.hornLength)) + "-inch long keratin horn emerges, sporting a slight upward curve and followed by a smaller, smoother bump of horn right behind it.");
+				// Triceratops!
+				else if(target.horns == 3) output2(" Two thick, wide keratin horns emerge from your forehead, " + num2Text(int(target.hornLength)) + "-inches long with a slight upward curve. A third, smaller horn protrudes from, and perpendicular to, your nose bridge.");
+				// Too many horns...
+				else output2(" Thick, keratin horns emerge from your forehead and face, all varying sizes, with the largest at about " + num2Text(int(target.hornLength)) + "-inches long. They all protrude forward and slightly curve upwards, creating a very menacing pincusion-like visage.");
+			}
+			//Unicorn horn!
+			else if(target.hornType == GLOBAL.TYPE_NARWHAL)
+			{
+				if(target.horns > 0) output2(" A slender ivory horn extends from your forehead, " + num2Text(int(target.hornLength)) + "-inches long with a spiral pattern of ridges and grooves up its length, giving it a graceful appearance.");
+			}
 		}
 		else if(target.hasStatusEffect("Horn Bumps")) output2(" <b>Your forehead is red and irritated in two different places. The upraised bumps stand out quite visibly.</b>");
 		//BODY PG HERE

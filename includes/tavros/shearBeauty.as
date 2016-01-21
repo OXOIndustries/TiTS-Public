@@ -120,6 +120,13 @@ public function buyFromCeria():void
 	}
 	else
 	{
+		if(flags["UNLOCKED_JUNKYARD_PLANET"] != undefined)
+		{
+			if(!chars["CERIA"].hasItem(new Hornitol())) chars["CERIA"].inventory.push(new Hornitol());
+			chars["CERIA"].keeperBuy += " Off to the side, there is a clear jar that contains a number of white gumball-like pills.";
+		}
+		else chars["CERIA"].destroyItem(new Hornitol());
+		
 		if(flags["PLANET_3_UNLOCKED"] != undefined)
 		{
 			if(!chars["CERIA"].hasItem(new DoveBalm())) chars["CERIA"].inventory.push(new DoveBalm());

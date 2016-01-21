@@ -12850,6 +12850,7 @@ package classes {
 			var descript: String = "";
 			var randt: Number = rand(10);
 			var descripted: Number = 0;
+			var types: Array = [];
 	
 			if(hasStatusEffect("Horn Bumps"))
 			{
@@ -12914,8 +12915,7 @@ package classes {
 						descripted++;
 					}
 					//foot
-					else if (hornLength == 12)
-					{
+					else if (hornLength == 12) {
 						descript += "foot-long";
 						descripted++;
 					}
@@ -12939,34 +12939,38 @@ package classes {
 				}
 				//Descriptive descriptions - 50% chance of being called
 				if (rand(3) == 0 && descripted < 2) {
-					if (hornType == GLOBAL.TYPE_DRACONIC) {
-						if (descripted > 0) descript += ", ";
-						descript += "draconic";
-						descripted++;
+					switch (hornType)
+					{
+						case GLOBAL.TYPE_DRACONIC:
+							types.push("draconic");
+							break;
+						case GLOBAL.TYPE_DEMONIC:
+							types.push("demonic", "sinister");
+							break;
+						case GLOBAL.TYPE_BOVINE:
+							types.push("bovine");
+							break;
+						case GLOBAL.TYPE_LIZAN:
+							types.push("reptilian");
+							break;
+						case GLOBAL.TYPE_DEER:
+							types.push("deer-like");
+							break;
+						case GLOBAL.TYPE_GOAT:
+							types.push("ram");
+							break;
+						case GLOBAL.TYPE_RHINO:
+							types.push("rhino");
+							if(horns > 2) types.push("dinosaur", "saurian");
+							break;
+						case GLOBAL.TYPE_NARWHAL:
+							types.push("narwhal", "unicorn-like");
+							break;
 					}
-					if (hornType == GLOBAL.TYPE_DEMONIC) {
+					if(types.length > 0)
+					{
 						if (descripted > 0) descript += ", ";
-						descript += "demonic";
-						descripted++;
-					}
-					if (hornType == GLOBAL.TYPE_BOVINE) {
-						if (descripted > 0) descript += ", ";
-						descript += "bovine";
-						descripted++;
-					}
-					if (hornType == GLOBAL.TYPE_LIZAN) {
-						if (descripted > 0) descript += ", ";
-						descript += "reptilian";
-						descripted++;
-					}
-					if (hornType == GLOBAL.TYPE_DEER) {
-						if (descripted > 0) descript += ", ";
-						descript += "deer-like";
-						descripted++;
-					}
-					if (hornType == GLOBAL.TYPE_GOAT) {
-						if (descripted > 0) descript += ", ";
-						descript += "ram";
+						descript += RandomInCollection(types);
 						descripted++;
 					}
 				}
@@ -12974,7 +12978,7 @@ package classes {
 				if (descripted > 0) descript += " ";
 				descript += hornNoun();
 			}
-	
+			
 			return descript;
 		}
 		public function hornsNoun():String 
