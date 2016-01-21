@@ -64,6 +64,9 @@ package classes.Preloader
 			return _gPreloaderStatePercentFormatter;
 		}
 		
+		[Embed(source = "../../assets/images/logos/steele_tech_logo_a.png")]
+		public var STEELE_LOGO:Class;
+		
 		private var _steeleLogo:Bitmap;
 		
 		private var _progressBar:Sprite;
@@ -82,12 +85,20 @@ package classes.Preloader
 		
 		private function BuildDisplay():void
 		{
+			_steeleLogo = new STEELE_LOGO();
+			_steeleLogo.smoothing = true;
+			_steeleLogo.width = 800;
+			_steeleLogo.height = 533;
+			_steeleLogo.x = 200;
+			_steeleLogo.y = 75;
+			addChild(_steeleLogo);
+			
 			var backBar:Sprite = new Sprite();
 			backBar.graphics.beginFill(gForegroundColour);
 			backBar.graphics.drawRect(0, 0, 804, 54);
 			backBar.graphics.endFill();
 			backBar.x = 198;
-			backBar.y = 373;
+			backBar.y = 623;
 			addChild(backBar);
 			
 			_progressBar = new Sprite();
@@ -95,7 +106,7 @@ package classes.Preloader
 			_progressBar.graphics.drawRect(0, 0, 1, 50);
 			_progressBar.graphics.endFill();
 			_progressBar.x = 200;
-			_progressBar.y = 375;
+			_progressBar.y = 625;
 			_progressBar.width = 0;
 			addChild(_progressBar);
 			
@@ -104,13 +115,13 @@ package classes.Preloader
 			_maskBar.graphics.drawRect(0, 0, 1, 50);
 			_maskBar.graphics.endFill();
 			_maskBar.x = 200;
-			_maskBar.y = 375;
+			_maskBar.y = 625;
 			_maskBar.width = 0;
 			addChild(_maskBar);
 			
 			_loadTextBack = new TextField();
 			_loadTextBack.x = 200;
-			_loadTextBack.y = 359;
+			_loadTextBack.y = 609;
 			_loadTextBack.width = 800;
 			_loadTextBack.height = 75;
 			_loadTextBack.defaultTextFormat = gPreloaderStateBackFormatter;
@@ -123,7 +134,7 @@ package classes.Preloader
 			
 			_loadTextFront = new TextField();
 			_loadTextFront.x = 200;
-			_loadTextFront.y = 359;
+			_loadTextFront.y = 609;
 			_loadTextFront.width = 800;
 			_loadTextFront.height = 75;
 			_loadTextFront.defaultTextFormat = gPreloaderStateFrontFormatter;
@@ -137,7 +148,7 @@ package classes.Preloader
 			
 			_loadPercent = new TextField();
 			_loadPercent.x = 200;
-			_loadPercent.y = 359;
+			_loadPercent.y = 609;
 			_loadPercent.width = 800;
 			_loadPercent.height = 75;
 			_loadPercent.defaultTextFormat = gPreloaderStatePercentFormatter;
