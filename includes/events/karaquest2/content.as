@@ -10,6 +10,7 @@ KQ2_QUEST_BEGIN			-- Players decision about starting the quest
 						-- 2 player rejected
 KQ2_QUEST_FINISHED		-- 0/undefined, nope
 						-- 1, finished, left, gone, woop
+						-- 2, finished but some bad shit happened (kara died, etc)
 KQ2_SEX_PAY				-- Player asked for sexytimes as extra payment
 KQ2_CREDS_FIRST			-- Player asked for additional credits up front
 KQ2_KARA_WITH_PC		-- Karas current location
@@ -599,7 +600,7 @@ public function kq2QUESTTIME():void
 
 	author("Savin");
 
-	showName("THE GHOST");
+	showName("THE\nGHOST");
 
 	output("A moment later and you’re aboard the <i>Ghost</i>, Kara’s ship, looking around at the sleek, bright white of the interior. She’s a new ship, still squeaky clean and polished to a shine. Consoles run along the length of every corridor you pass through on the way to the bridge. The whole ship has an oddly sterile feel - not like the cozy home you’ve made out of your own ship.");
 
@@ -668,7 +669,7 @@ public function kq2QUESTTIMEII():void
 
 	author("Savin");
 
-	showName("THE GHOST");
+	showName("THE\nGHOST");
 
 	output("The trip goes by quickly and peacefully, until you hit the arid atmosphere of Myrellion. The ship shudders with turbulence, and you watch as Logan hammers several controls on a console above her. Part of the forward screen flickers off, replaced by a bird-eye view of the desert - some kind of probe’s camera, maybe? The second screen focuses in on some kind of walled compound sitting the bottom of a deep caldera, surrounded by nothing for miles and miles around. You squint, and think you make out all of three, maybe four buildings on the surface.");
 	
@@ -860,7 +861,7 @@ public function kq2WatsonTalkIntervention():void
 	
 	output("\n\n<i>“Son of a bitch!”</i> Kara screams, pounding her fist on the wall.");
 	
-	output("\n\n<i>“Indeed,”</i> Watson adds, clenching his pipe between his teeth and reaching out beside him. A holo-map of the Myrellion system flickers into place, showing several vessels closing in. <i>“Every moment you’ve been within this base, every soldier you’ve killed, every second wasted in pointless battle, has been a delaying tactic whilst I recall this base’s commander, Lord Faell, from her patrol of the outer moons. I estimate you have less than five seconds before the first troop transports set down on-base.");
+	output("\n\n<i>“Indeed,”</i> Watson adds, clenching his pipe between his teeth and reaching out beside him. A holo-map of the Myrellion system flickers into place, showing several vessels closing in. <i>“Every moment you’ve been within this base, every soldier you’ve killed, every second wasted in pointless battle, has been a delaying tactic whilst I recall this base’s commander, Lord Faell, from her patrol of the outer moons. I estimate you have less than five seconds before the first troop transports set down on-base.”</i>");
 	
 	output("\n\n<i>“So please, make yourselves at home. Sit, relax. You still have a few moments before your lives are over. Use them wisely.”</i>");
 	
@@ -898,8 +899,7 @@ public function kq2WatsonSelfDestruct():void
 	addButton(1, "No", mainGameMenu);
 }
 
-// 9999 - make this time value actually agree with the game time it will take for the player to actually be able to get the fuck out.
-public static const KQ2_NUKE_DURATION:int = 800;
+public static const KQ2_NUKE_DURATION:int = 90;
 
 public function kq2NukeIt():void
 {
@@ -934,7 +934,7 @@ public function kq2EnterEngineersRoom():void
 {
 	if (flags["KQ2_ENGINEER_NUM_DRONES"] == undefined) flags["KQ2_ENGINEER_NUM_DRONES"] = 1 + rand(4);
 
-	if (flags["KQ2_DEFEATED_ENGINEER"] == undefined)
+	if (flags["KQ2_DEFEATED_ENGINEER"] == undefined || flags["KQ2_LEFT_ENGINEER"] == undefined)
 	{
 		clearOutput();
 		showKQ2Engineer();
@@ -1002,10 +1002,12 @@ public function kq2EngineerPCVictory():void
 	output("The lapinara and her drone");
 	if (CombatManager.getHostileCharacters().length > 2) output("s");
 	output(" collapse, utterly defeated.");
-	if (!pc.hasKeyItem("Key Card - R&D Security Pass")) output(" <b>You find a keycard on her person</b>. No doubt this’ll get you into the research facility!");
-
-	pc.createKeyItem("Key Card - R&D Security Pass");
-	output("\n\n<b>New Key Item: Key Card - R&D Security Pass</b>.\n\n");
+	if (!pc.hasKeyItem("Key Card - R&D Security Pass"))
+	{
+		output(" <b>You find a keycard on her person</b>. No doubt this’ll get you into the research facility!");
+		pc.createKeyItem("Key Card - R&D Security Pass");
+		output("\n\n<b>New Key Item: Key Card - R&D Security Pass</b>.\n\n");
+	}
 
 	flags["KQ2_DEFEATED_ENGINEER"] = 1;
 
@@ -1044,7 +1046,8 @@ public function kq2BribeEngineer():void
 	//[Sex] [Money] [Dirty Magazine]
 	clearMenu();
 	addButton(0, "Sex", kq2GibEngyDankHoles, undefined, "Sex", "Bend over and let the lapinara bust a nut in your backside in exchange for the keycard.");
-	addButton(1, "Money", kq2GibEngyCash, undefined, "Money", "Give the lapinara some money in trade. Considering who she works for, it'd probably take 1,000 credits to convince her.");
+	if (pc.credits >= 1000) addButton(1, "Money", kq2GibEngyCash, undefined, "Money", "Give the lapinara some money in trade. Considering who she works for, it’d probably take 1,000 credits to convince her.");
+	else addDisabledButton(1, "Money", "Money", "You don’t think you have enough spare money for this. Considering who she works for, it’d probably take 1,000 credits to convince her.");
 	if (pc.hasKeyItem("Hentai Magazine")) addButton(2, "DirtyMag", kq2GibEngyDirtyMag, undefined, "Dirty Magazine", "Try and pawn off that dirty magazine Kara gave you on the lapinara.");
 }
 
@@ -1053,7 +1056,7 @@ public function kq2GibEngyDirtyMag():void
 	clearOutput();
 	showKQ2Engineer();
 
-	output("<i>“...give me that magazine!”</i> she says, pointing to the hentai comic sticking out of your pack.");
+	output("<i>“... give me that magazine!”</i> she says, pointing to the hentai comic sticking out of your pack.");
 	
 	output("\n\nWell, that’s a pretty low price. You take it out and give it to the tiny dick-girl, noticing her cock harden as she takes possession of it. Her dog");
 	if (flags["KQ2_ENGINEER_NUM_DRONES"] > 1) output("s");
@@ -1070,11 +1073,14 @@ public function kq2GibEngyDirtyMag():void
 	
 	output("\n\nSomewhat amazed that actually worked, you take the keycard and leave the lapinara engineer to her business.");
 
+	pc.removeKeyItem("Hentai Magazine");
+	output("\n\n<b>Removed Key Item: Hentai Magazine</b>.");
 	pc.createKeyItem("Key Card - R&D Security Pass");
 	output("\n\n<b>New Key Item: Key Card - R&D Security Pass</b>.");
 
 	processTime(2);
 
+	flags["KQ2_LEFT_ENGINEER"] = 2;
 	currentLocation = "K2_BARRACKSINTERIOR";
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -1085,7 +1091,9 @@ public function kq2GibEngyCash():void
 	clearOutput();
 	showKQ2Engineer();
 
-	output("<i>“...give me a thousand credits!”</i> she says, extending a hand to you, palm open and expectant. You dig a credit chit out of your pack and plant it in her outstretched hand. The engineer squeals in excitement, bouncing around on her powerful legs. <i>“Score! Take the card, I’m going on a SHOPPING SPREE! Whoo!”</i>");
+	output("<i>“... give me a thousand credits!”</i> she says, extending a hand to you, palm open and expectant. You dig a credit chit out of your pack and plant it in her outstretched hand. The engineer squeals in excitement, bouncing around on her powerful legs. <i>“Score! Take the card, I’m going on a SHOPPING SPREE! Whoo!”</i>");
+	
+	pc.credits -= 1000;
 	
 	output("\n\nShe grabs a keycard off of the desk behind her and tosses it at you. You narrowly snatch it away from the fangs of");
 	if (flags["KQ2_ENGINEER_NUM_DRONES"] > 1) output(" one of");
@@ -1098,6 +1106,7 @@ public function kq2GibEngyCash():void
 
 	processTime(2);
 
+	flags["KQ2_LEFT_ENGINEER"] = 3;
 	currentLocation = "K2_BARRACKSINTERIOR";
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -1110,7 +1119,7 @@ public function kq2GibEngyDankHoles():void
 
 	var engineer:KQ2Engineer = new KQ2Engineer();
 
-	output("<i>“...bend over and let me fuck you!”</i> the lapinara finishes, thrusting her crotch at you. Her bright red puppy pecker bobs eagerly, a tiny glint of moisture already on its tip. <i>“All the other pirates call me a parasite and won’t touch me! Please... I’m so horny, I’ll trade the card for just a quick fuck.”</i>");
+	output("<i>“... bend over and let me fuck you!”</i> the lapinara finishes, thrusting her crotch at you. Her bright red puppy pecker bobs eagerly, a tiny glint of moisture already on its tip. <i>“All the other pirates call me a parasite and won’t touch me! Please... I’m so horny, I’ll trade the card for just a quick fuck.”</i>");
 
 	if (flags["KQ2_KARA_WITH_PC"] == 1) output("\n\n<i>“I’ll just, uh, wait outside.... Cover the door for you.”</i> Kara says, slipping away.");
 
@@ -1157,6 +1166,8 @@ public function kq2GibEngyDankHoles():void
 	if (pc.ass.looseness() < 3) output(" So tight, too! You’re gonna make me work for it, huh?");
 	else output(" And so loose! I feel like I’m just sliding in!");
 	output("”</i>");
+	
+	pc.buttChange(engineer.cockVolume(0));
 
 	output("\n\nYou give the lapinara a little grin over your shoulder, and relax in her hands, enjoying the feeling of her prick inside you,");
 	if (pc.ass.looseness() < 3) output(" stretching you out");
@@ -1285,6 +1296,9 @@ public function kq2KhanPCVictory():void
 	
 	output("\n\nKhan sucks in a breath, rubbing his cheek. <i>“L-look, we can work something out, right? Come on, you’re all reasonable people... right?”</i>");
 
+	userInterface.hideNPCStats();
+	userInterface.leftBarDefaults();
+	
 	//[Talk: Gold Myr] [Talk: Khan] [Fuck Khan] [Loot Room] [Leave]
 	kq2KhanVictoryMenu();
 }
@@ -1353,7 +1367,7 @@ public function kq2KhanPCVictoryTalkKhan():void
 
 	output("You approach Doctor Khan, still slumped against a wall, desperately trying to look small while he struggles with the firmly-placed hardlight cage locking down his cock. He reeks of lust-vapors and cum, with streaks of pink staining his fur where the grenade detonated next to him.");
 	
-	output("\n\n<i>“Doesn’t look like he has much to say,”</i> Kara says, curling a lip in disgust at him. <i>“Then again, maybe he could use a little... help.. with that.”</i>");
+	output("\n\n<i>“Doesn’t look like he has much to say,”</i> Kara says, curling a lip in disgust at him. <i>“Then again, maybe he could use a little... help... with that.”</i>");
 	
 	output("\n\nAs if for emphasis, Kara adjusts the fabric of her catsuit, revealing a pretty impressive bulge in her black-clad crotch. <i>“Teach this bastard a lesson...”</i>");
 
@@ -1361,7 +1375,7 @@ public function kq2KhanPCVictoryTalkKhan():void
 	kq2KhanVictoryMenu();
 }
 
-public function kq2KhanPCVictoryLootRoom():void
+public function kq2KhanPCVictoryLootRoom(noncombatMenu:Boolean = false):void
 {
 	clearOutput();
 	author("Savin");
@@ -1370,11 +1384,21 @@ public function kq2KhanPCVictoryLootRoom():void
 
 	pc.credits += 2500 + rand(27);
 	flags["KQ2_KHAN_LOOTED"] = 1;
-	kq2KhanVictoryMenu();
+	if (noncombatMenu == false)
+	{
+		clearMenu();
+		kq2KhanVictoryMenu();
+	}
+	else
+	{
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+	}
 }
 
 public function kq2LootLabCoat(noncombatMenu:Boolean = false):void
 {
+	output("\n\n");
 	flags["KQ2_KHAN_LOOTED_COAT"] = 1;
 	lootScreen = (noncombatMenu ? kq2LabCoatCheckMenu : kq2LabCoatCheck);
 	itemCollect([new KhansLabCoat()]);
@@ -1388,11 +1412,8 @@ public function kq2LabCoatCheck():void
 		kq2KhanVictoryMenu();
 		return;
 	}
-	clearOutput();
-	output("You put the coat back where you found it.");
 	flags["KQ2_KHAN_LOOTED_COAT"] = undefined;
-	clearMenu();
-	addButton(0, "Next", kq2KhanVictoryMenu);
+	kq2KhanVictoryMenu();
 }
 
 public function kq2LabCoatCheckMenu():void
@@ -1402,15 +1423,13 @@ public function kq2LabCoatCheckMenu():void
 		mainGameMenu();
 		return;
 	}
-	clearOutput();
-	output("You put the coat back where you found it.");
 	flags["KQ2_KHAN_LOOTED_COAT"] = undefined;
-	clearMenu();
-	addButton(0, "Next", mainGameMenu);
+	mainGameMenu();
 }
 
 public function kq2LootArcCaster(noncombatMenu:Boolean = false):void
 {
+	output("\n\n");
 	flags["KQ2_KHAN_LOOTED_CASTER"] = 1;
 	lootScreen = (noncombatMenu ? kq2LootArcCasterCheckMenu : kq2LootArcCasterCheck);
 	itemCollect([new KhansArcCaster()]);
@@ -1423,11 +1442,8 @@ public function kq2LootArcCasterCheck():void
 		kq2KhanVictoryMenu();
 		return;
 	}
-	clearOutput();
-	output("You put the gun back where you found it.");
 	flags["KQ2_KHAN_LOOTED_CASTER"] = undefined;
-	clearMenu();
-	addButton(0, "Next", kq2KhanVictoryMenu);
+	kq2KhanVictoryMenu();
 }
 
 public function kq2LootArcCasterCheckMenu():void
@@ -1437,11 +1453,8 @@ public function kq2LootArcCasterCheckMenu():void
 		mainGameMenu();
 		return;
 	}
-	clearOutput();
-	output("You put the gun back where you found it.");
 	flags["KQ2_KHAN_LOOTED_CASTER"] = undefined;
-	clearMenu();
-	addButton(0, "Next", mainGameMenu);
+	mainGameMenu();
 }
 
 public function kq2KhanLeave():void
@@ -1786,7 +1799,7 @@ public function kq2EncounterShade():void
 		
 		output("\n\n<i>“I don’t like being played, kid,”</i> she whispers. <i>“Even if it was a damn </i>good<i> play. Assuming Amara doesn’t string you and your friend up, I’m gonna have words for you next time we talk.”</i>");
 		
-		output("\n\nYou nod your understand, and try to move by. She holds you in place for another moment, though: just long enough to plant a small kiss on your cheek. <i>“For luck. You’ll need it.”</i>");
+		output("\n\nYou nod understandingly and try to move by. She holds you in place for another moment, though: just long enough to plant a small kiss on your cheek. <i>“For luck. You’ll need it.”</i>");
 		
 		//Restore some PC Health, Energy. Increase +5 Lust.
 		pc.HP(pc.HPMax() * 0.15);
@@ -2136,6 +2149,7 @@ public function kq2AmaraBetrayKara():void
 
 	//Return PC to ship.
 	flags["KQ2_BETRAYED_KARA"] = 1;
+	flags["KQ2_QUEST_FINISHED"] = 2;
 	currentLocation = "SHIP INTERIOR";
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -2218,6 +2232,7 @@ public function kq2FightAmara():void
 	CombatManager.setFriendlyCharacters([pc, kara]);
 	CombatManager.setHostileCharacters(h);
 	CombatManager.victoryCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, h[0]);
+	CombatManager.displayLocation("AMARA");
 	CombatManager.victoryScene(kq2AmaraPCVictory);
 	CombatManager.lossScene(kq2AmaraPCDefeat);
 	CombatManager.beginCombat();
@@ -2267,8 +2282,9 @@ public function kq2AmaraPCVictory():void
 	}
 
 	// This should work, because we know we're not gonna be looting anything...
+	output("\n\n");
 	CombatManager.genericVictory();
-
+	
 	clearMenu();
 	addButton(0, "Next", kq2AmaraPCVictoryII);
 }
@@ -2278,6 +2294,10 @@ public function kq2AmaraPCVictoryII():void
 	clearOutput();
 	showKara();
 
+	clearMenu();
+	userInterface.hideNPCStats();
+	userInterface.leftBarDefaults();
+	
 	var creditAmount:int;
 	if (flags["KQ2_CREDS_FIRST"] == 1) creditAmount = 15000;
 	else creditAmount = 30000;
@@ -2328,7 +2348,7 @@ public function kq2KaraNoSexPls():void
 	clearOutput();
 	showKara();
 
-	output("\n\nYou gently let Kara down on that idea, but she takes it in stride. <i>“Yeah. Sure. No problem,”</i> she laughs, rubbing the back of her neck. <i>“Anyway, I should head out. Find a bar somewhere. Could use a drink to calm down, if nothing else. See you around, [pc.name].”</i>");
+	output("You gently let Kara down on that idea, but she takes it in stride. <i>“Yeah. Sure. No problem,”</i> she laughs, rubbing the back of her neck. <i>“Anyway, I should head out. Find a bar somewhere. Could use a drink to calm down, if nothing else. See you around, [pc.name].”</i>");
 
 	output("\n\nShe gives you a surprisingly firm handshake before she cycles the airlock and lets you leave, waving farewell as you depart.");
 
@@ -2402,6 +2422,7 @@ public function kq2AmaraSpecialEnd():void
 	//Return PC to ship. No reward, no harem, no nothing. Dump all Lust built up.
 	pc.lustRaw = 0;
 	flags["KQ2_KARA_SACRIFICE"] = 1;
+	flags["KQ2_QUEST_FINISHED"] = 2;
 	currentLocation = "SHIP INTERIOR";
 
 	clearMenu();
@@ -2646,6 +2667,9 @@ public function kq2PostKaraSexyCombine(gotFucked:Boolean = false):void
 	else if (kara.isMischievous()) output(" you’ve got places to be, things to do...");
 	else output(" I’ve pretty much worn you out, but...");
 	output("”</i>");
+	
+	IncrementFlag("SEXED_KARA");
+	flags["KQ2_KARA_WITH_PC"] = undefined;
 
 	//[Stay] [Go]
 	clearMenu();
@@ -2721,7 +2745,7 @@ public function kq2NukeBadend():void
 	output("\n\n<i>“Five... four... three...”</i>");
 	
 	output("\n\nShitshitshit.");
-	if (flags["KQ2_KARA_WITH_PC"] != undefined) output(" You grab Kara’s hand, staring into the cat-girls eyes in your last moments. She gives you a reproachful, sad look, but takes your hand in hers as the");
+	if (flags["KQ2_KARA_WITH_PC"] == 1) output(" You grab Kara’s hand, staring into the cat-girls eyes in your last moments. She gives you a reproachful, sad look, but takes your hand in hers as the");
 	else output(" The");
 	output(" P.A. announces <i>“Two... one. Nuclear detonation imminent. Goodbye.”</i>");
 	
@@ -2785,13 +2809,13 @@ public function flyToMyrellionDeepCaves():void
 {
 	if(flags["VISITED_MYRELLION"] <= 1)
 	{
-	author("Savin");
-	
+		author("Savin");
+		
 		output("You guide your ship through the ashen atmosphere of the ruined planet of Myrellion, slowly forging through pillars of radioactive smog and falling ash. Nuclear winter’s set in on the surface, bathing the desert world in white. It’s almost pretty, in a way - though you know the glistening coat lies overtop hundreds of craters where cities once lurked below the ground. You wonder if anyone survived, far from the front lines. Could the golds have reached the Federation homeland, pushed so far back as they were?");
 		
-	output("\n\nYou shake the thought and guide your vessel down, towards a fissure in the ground. You should be just above Taivra’s palace, now. With careful, slow precision, you lower yourself through the crack and down into the depths of Myrellion, far beneath the nuked-out myr tunnels. Miles down below the ground. It should still be safe, protected from the radiation by so much rock as you are.");
-	
-	output("\n\nYou park at the bottom of a familiar cavern network and set the ship’s automated scrubbers to clean off the hull before you depart - you don’t want to pick up anything the irradiated surface might have rubbed off on your vessel.");
+		output("\n\nYou shake the thought and guide your vessel down, towards a fissure in the ground. You should be just above Taivra’s palace, now. With careful, slow precision, you lower yourself through the crack and down into the depths of Myrellion, far beneath the nuked-out myr tunnels. Miles down below the ground. It should still be safe, protected from the radiation by so much rock as you are.");
+		
+		output("\n\nYou park at the bottom of a familiar cavern network and set the ship’s automated scrubbers to clean off the hull before you depart - you don’t want to pick up anything the irradiated surface might have rubbed off on your vessel.");
 		
 		flags["VISITED_MYRELLION"] = 2;
 		

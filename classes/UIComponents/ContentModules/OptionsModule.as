@@ -76,6 +76,7 @@ package classes.UIComponents.ContentModules
 			addMultiToggleControl("Toggle game difficulty and content.", "Easy Mode", "easyMode", "Silly Mode", "sillyMode");
 			addMultiToggleControl("Toggle damage output display styles.", "Combine Damage", "combineDamageValueOutput", "Color Damage", "colourDamageValueOutput");
 			addMultiToggleControl("Toggle save notes and file overwrite prompt.", "Save Notes", "saveNotesToggle", "Overwrite Prompt", "overwriteToggle");
+			addMultiToggleControl("Toggle author visibility and vendor handling.", "Scene By", "authorToggle", "Buy/Sell Prompt", "vendorToggle");
 			
 			addBustPreferenceControl();
 			

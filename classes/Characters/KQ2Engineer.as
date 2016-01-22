@@ -78,7 +78,7 @@ package classes.Characters
 			this.femininity = 100;
 			this.eyeType = GLOBAL.TYPE_LAPINARA;
 			this.eyeColor = "black";
-			this.tallness = 68;
+			this.tallness = 45;
 			this.thickness = 20;
 			this.tone = 70;
 			this.hairColor = "black";
@@ -88,7 +88,7 @@ package classes.Characters
 			this.hairType = GLOBAL.TYPE_LAPINARA;
 			this.beardLength = 0;
 			this.beardStyle = 0;
-			this.skinType = GLOBAL.SKIN_TYPE_SKIN;
+			this.skinType = GLOBAL.SKIN_TYPE_FUR;
 			this.skinTone = "pale";
 			this.skinFlags = new Array();
 			this.faceType = GLOBAL.TYPE_LAPINARA;
@@ -144,16 +144,25 @@ package classes.Characters
 			//20 - inconceivably large/big/huge etc
 			this.buttRatingRaw = 2;
 			//No dicks here!
-			this.cocks = [new CockClass()];
-			this.vaginas = [new VaginaClass()];
+			this.createCock();
+			this.shiftCock(0, GLOBAL.TYPE_CANINE);
+			this.cocks[0].cLengthRaw = 6;
+			this.createVagina();
+			this.girlCumType = GLOBAL.FLUID_TYPE_GIRLCUM;
+			this.vaginalVirgin = false;
+			this.vaginas[0].loosenessRaw = 2;
+			this.vaginas[0].wetnessRaw = 4;
+			this.vaginas[0].bonusCapacity = 10;
+			this.vaginas[0].vaginaColor = "pink";
+			this.vaginas[0].type = GLOBAL.TYPE_LAPINARA;
 			//balls
-			this.balls = 0;
+			this.balls = 2;
 			this.cumMultiplierRaw = 6;
 			//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
 			this.cumQualityRaw = 1;
 			this.cumType = GLOBAL.FLUID_TYPE_CUM;
-			this.ballSizeRaw = 1.5;
-			this.ballFullness = 1;
+			this.ballSizeRaw = 16;
+			this.ballFullness = 100;
 			//How many "normal" orgams worth of jizz your balls can hold.
 			this.ballEfficiency = 10;
 			//Scales from 0 (never produce more) to infinity.

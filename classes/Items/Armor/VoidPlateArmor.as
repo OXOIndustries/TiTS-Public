@@ -26,9 +26,9 @@ package classes.Items.Armor
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
-			this.description = "a heavily modified set of hardened, energy absorbant armor plates";
+			this.description = "a heavily modified set of hardened, energy absorbent armor plates";
 			
-			this.tooltip = "TS-T armor features an engineered hybrid of materials, utilizing a mesh of complex fullerene molecules to suspend a trade-secret mixture of secondary elements in isolation. The result is a tunable sacrificial material; a highly energy resistant, light weight armor, that can be reconfigured to dissipate a variety of energy emissions.\n\nThe mark IV variation of the armoring system integrated a series of material refinements designed to better combat laser and other energy-based weapons.\n\nThis set of armor has been further modified by Black Void engineers; it looks slightly bulkier than standard sets of TS-T plating, and is adorned in the ‘official’ black-red shades of the organisation.";
+			this.tooltip = "TS-T armor features an engineered hybrid of materials, utilizing a mesh of complex fullerene molecules to suspend a trade-secret mixture of secondary elements in isolation. The result is a tunable sacrificial material; a highly energy resistant, light weight armor, that can be reconfigured to dissipate a variety of energy emissions.\n\nThe mark IV variation of the armoring system integrated a series of material refinements designed to better combat laser and other energy-based weapons.\n\nThis set of armor has been further modified by Black Void engineers; it looks slightly bulkier than standard sets of TS-T plating, and is adorned in the ‘official’ black-red shades of the organization.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

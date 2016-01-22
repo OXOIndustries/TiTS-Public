@@ -486,6 +486,8 @@
 			
 			toggleWTF();
 			
+			if (!inCombat()) userInterface.showBust("none");
+			
 			if (evt.currentTarget is MainButton)
 			{
 				trace("Button " + (evt.currentTarget as MainButton).buttonName + " clicked");
@@ -498,16 +500,6 @@
 				trace("Button " + evt.currentTarget.caption.text + " clicked.");
 			}
 			
-			if (!inCombat()) 
-			{
-				this.userInterface.showBust("none");
-				if (pc != null && pc.short != "Uncreated" && pc.short != "uncreated" && pc.short != "")
-				{
-					updatePCStats();
-					updateDisplays();
-				}
-			}
-			
 			if (evt.currentTarget.arg == undefined)
 			{
 				if (evt.currentTarget.func != null) evt.currentTarget.func();
@@ -515,6 +507,15 @@
 			else
 			{
 				if (evt.currentTarget.func != null) evt.currentTarget.func(evt.currentTarget.arg);
+			}
+			
+			if (!inCombat()) 
+			{
+				if (pc != null && pc.short != "Uncreated" && pc.short != "uncreated" && pc.short != "")
+				{
+					updatePCStats();
+					updateDisplays();
+				}
 			}
 			
 			userInterface.updateTooltip((evt.currentTarget as DisplayObject));

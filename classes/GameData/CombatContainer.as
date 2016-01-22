@@ -114,7 +114,7 @@ package classes.GameData
 		
 		public function displayFightLocation():void
 		{
-			var r:String = (roomString != null ? "FIGHT:\n" + roomString : kGAMECLASS.userInterface.planetText);
+			var r:String = (roomString != null ? "FIGHT:\n" + roomString : kGAMECLASS.userInterface.roomText);
 			var p:String = (planetString != null ? planetString : kGAMECLASS.userInterface.planetText);
 			var s:String = (systemString != null ? systemString : kGAMECLASS.userInterface.systemText);
 			
@@ -3031,6 +3031,7 @@ package classes.GameData
 			showCombatDescriptions();
 			showCombatMenu();
 			showCombatUI(true);
+			userInterface().levelUpOff();
 		}
 		
 		private function validateContainer():void
@@ -3577,6 +3578,7 @@ package classes.GameData
 		
 		private function postCombatReturnToMenu():void
 		{
+			userInterface().mainButtonsReset();
 			userInterface().hideNPCStats();
 			userInterface().leftBarDefaults();
 			kGAMECLASS.mainGameMenu();

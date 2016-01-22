@@ -34,7 +34,7 @@ package classes.Items.Guns
 			this.description = "an arc caster once owned by a doctor Khan";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "A big, bulky hand cannon charged with a JoyCo hovercar battery, the Arc Caster projects a stream of electricity that can burn through shields, armor, and flesh with equal ease. A skilled user can cause the caster's stream to arc between multiple targets, making it a favored weapon for crowd control situations.\n\nThis ones been on the recieving end of a few modifications by its previous owner.";
+			this.tooltip = "A big, bulky hand cannon charged with a JoyCo hovercar battery, the Arc Caster projects a stream of electricity that can burn through shields, armor, and flesh with equal ease. A skilled user can cause the caster's stream to arc between multiple targets, making it a favored weapon for crowd control situations.\n\nThis ones been on the receiving end of a few modifications by its previous owner.";
 			this.attackVerb = "shock";
 			attackNoun = "electric arc"
 			
@@ -42,9 +42,9 @@ package classes.Items.Guns
 			
 			//Information
 			this.basePrice = 8200;
-			this.attack = 2;
+			this.attack = 4;
 			
-			baseDamage.electric.damageValue = 18;
+			baseDamage.electric.damageValue = 25;
 			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
 			this.addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
 			

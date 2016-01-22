@@ -2916,8 +2916,8 @@ public function vagisilSexForEmbry(spentTime:Boolean = false):void
 		output(" out of her. Your tongues lash and dance with each other and you drunkenly relish in her sweet taste.");
 		output("\n\nShe strokes your cheek and her fingers dance along your [pc.skinFurScales]. You pull back, and there’s the biggest, most satisfied smile on her face.");
 		if(flags["EMBRY_GLASSES"] != undefined) output(" The eyes behind those glasses");
-		else output(" Her");
-		output(" eyes are glittering, filled with some awe-inspiring light, and they are are lovingly locked with your own.");
+		else output(" Her eyes");
+		output(" are glittering, filled with some awe-inspiring light, and they are are lovingly locked with your own.");
 
 		// First time / Virgin
 		if(embry.vaginalVirgin)
@@ -2976,9 +2976,9 @@ public function vagisilSexForEmbry(spentTime:Boolean = false):void
 		output("\n\nSwallowed by white hot bliss, you fall against her, both of you laying there in a state of complete exhaustion. You’re not sure if seconds, minutes, or hours pass. When you can finally muster up the energy to move, you fiercely kiss her, your spent [pc.cockNoun] still buried within her.");
 		output("\n\n[embry.name] moans into your lips. She pulls you closer, unwilling to let you out of her, even as your [pc.cum] dribbles down her skin between you and coats her [embry.thighs]. Your tongues lash and dance with each other and you drunkenly relish in her sweet taste.");
 		output("\n\nShe strokes your cheek and her fingers dance along your [pc.skinFurScales]. You pull back, and there’s the biggest, most satisfied smile on her face. ");
-		if(flags["EMBRY_GLASSES"] != undefined) output("The eyes behind those glasses ");
-		else output("Her ");
-		output("eyes are glittering, filled with some awe-inspiring light, and they are lovingly locked with your own.");
+		if(flags["EMBRY_GLASSES"] != undefined) output("The eyes behind those glasses");
+		else output("Her eyes");
+		output(" are glittering, filled with some awe-inspiring light, and they are lovingly locked with your own.");
 
 		// Embry’s a virgin
 		if(embry.vaginalVirgin)

@@ -8,7 +8,7 @@ public function kquest2RoomStateUpdater():void
 		if (!tRoom.hasFlag(GLOBAL.NPC)) tRoom.addFlag(GLOBAL.NPC);
 		if (!tRoom.hasFlag(GLOBAL.HAZARD)) tRoom.addFlag(GLOBAL.HAZARD);
 	}
-	else if (flags["KQ2_DEFEATED_ENGINEER"] == 1)
+	else
 	{
 		if (tRoom.hasFlag(GLOBAL.NPC)) tRoom.removeFlag(GLOBAL.NPC);
 		if (tRoom.hasFlag(GLOBAL.HAZARD)) tRoom.removeFlag(GLOBAL.HAZARD);
@@ -24,6 +24,20 @@ public function kquest2RoomStateUpdater():void
 	{
 		if (tRoom.hasFlag(GLOBAL.NPC)) tRoom.removeFlag(GLOBAL.NPC);
 	}
+	
+	// Khans Room
+	tRoom = rooms["K2_KHANSLAB"];
+	if (flags["KQ2_DEFEATED_KHAN"] == undefined)
+	{
+		if (!tRoom.hasFlag(GLOBAL.NPC)) tRoom.addFlag(GLOBAL.NPC);
+		if (!tRoom.hasFlag(GLOBAL.HAZARD)) tRoom.addFlag(GLOBAL.HAZARD);
+	}
+	else
+	{
+		if (tRoom.hasFlag(GLOBAL.NPC)) tRoom.removeFlag(GLOBAL.NPC);
+		if (tRoom.hasFlag(GLOBAL.HAZARD)) tRoom.removeFlag(GLOBAL.HAZARD);
+	}
+	
 }
 
 public function kquest2InitRooms():void
@@ -208,7 +222,8 @@ public function kquest2InitRooms():void
 	rooms["K2_YARDB2"].southExit = "K2_YARDC2";
 	rooms["K2_YARDB2"].westExit = "K2_YARDB1";
 	rooms["K2_YARDB2"].addFlag(GLOBAL.OUTDOOR);
-	rooms["K2_YARDB2"].addFlag(GLOBAL.HAZARD);
+	//rooms["K2_YARDB2"].addFlag(GLOBAL.HAZARD);
+	rooms["K2_YARDB2"].addFlag(GLOBAL.OBJECTIVE);
 
 	rooms["K2_YARDB3"] = new RoomClass(this);
 	rooms["K2_YARDB3"].roomName = "TRAINING\nYARD";
@@ -270,7 +285,7 @@ public function kquest2InitRooms():void
 	rooms["K2_BARRACKSENTRANCE"].addFlag(GLOBAL.HAZARD);
 
 	rooms["K2_BARRACKSINTERIOR"] = new RoomClass(this);
-	rooms["K2_BARRACKSINTERIOR"].roomName = "\nBARRAKCS";
+	rooms["K2_BARRACKSINTERIOR"].roomName = "\nBARRACKS";
 	//rooms["K2_BARRACKSINTERIOR"].description = "";
 	rooms["K2_BARRACKSINTERIOR"].runOnEnter = kq2rfBarracksInterior; //PC guaranteed to fight the first time in this square
 	rooms["K2_BARRACKSINTERIOR"].planet = planetName;
@@ -343,7 +358,7 @@ public function kquest2InitRooms():void
 	rooms["K2_LOBBYELEVATOR"].addFlag(GLOBAL.LIFTDOWN);
 
 	rooms["K2_LABELEVATOR"] = new RoomClass(this);
-	rooms["K2_LABELEVATOR"].roomName = "ELEVATOR\nR&D LABS";
+	rooms["K2_LABELEVATOR"].roomName = "ELEVATOR:\nR&D LABS";
 	//rooms["K2_LABELEVATOR"].description = "desc";
 	rooms["K2_LABELEVATOR"].runOnEnter = kq2rfLabElevator;
 	rooms["K2_LABELEVATOR"].planet = planetName;
@@ -363,7 +378,7 @@ public function kquest2InitRooms():void
 	rooms["K2_LAB1"].addFlag(GLOBAL.INDOOR);
 
 	rooms["K2_KHANSLAB"] = new RoomClass(this);
-	rooms["K2_KHANSLAB"].roomName = "\nKHANS LAB";
+	rooms["K2_KHANSLAB"].roomName = "\nKHAN'S LAB";
 	//rooms["K2_KHANSLAB"].description = "desc";
 	rooms["K2_KHANSLAB"].runOnEnter = kq2rfKhansLab;
 	rooms["K2_KHANSLAB"].planet = planetName;
@@ -436,12 +451,12 @@ public function kquest2InitRooms():void
 
 	rooms["K2_HELIPADELEVATOR"] = new RoomClass(this);
 	rooms["K2_HELIPADELEVATOR"].roomName = "ELEVATOR:\nHELIPAD";
-	rooms["K2_HELIPADELEVATOR"].description = "desc";
-	rooms["K2_HELIPADELEVATOR"].runOnEnter = null;
+	rooms["K2_HELIPADELEVATOR"].description = "";
+	rooms["K2_HELIPADELEVATOR"].runOnEnter = kq2rfHelipadElevator;
 	rooms["K2_HELIPADELEVATOR"].planet = planetName;
 	rooms["K2_HELIPADELEVATOR"].system = systemName;
 	rooms["K2_HELIPADELEVATOR"].eastExit = "K2_ROOF1"
-	rooms["K2_HELIPADELEVATOR"].addFlag(GLOBAL.OUTDOOR);
+	rooms["K2_HELIPADELEVATOR"].addFlag(GLOBAL.INDOOR);
 
 	rooms["K2_ROOF1"] = new RoomClass(this);
 	rooms["K2_ROOF1"].roomName = "\nROOF";
@@ -452,13 +467,15 @@ public function kquest2InitRooms():void
 	rooms["K2_ROOF1"].northExit = "K2_HELIPAD";
 	rooms["K2_ROOF1"].westExit = "K2_HELIPADELEVATOR";
 	rooms["K2_ROOF1"].addFlag(GLOBAL.OUTDOOR);
+	rooms["K2_ROOF1"].addFlag(GLOBAL.HAZARD);
 
 	rooms["K2_HELIPAD"] = new RoomClass(this);
 	rooms["K2_HELIPAD"].roomName = "ROOF\nHELIPAD";
-	rooms["K2_HELIPAD"].description = "desc";
-	rooms["K2_HELIPAD"].runOnEnter = null;
+	rooms["K2_HELIPAD"].description = "";
+	rooms["K2_HELIPAD"].runOnEnter = kq2rfHelipad;
 	rooms["K2_HELIPAD"].planet = planetName;
 	rooms["K2_HELIPAD"].system = systemName;
 	rooms["K2_HELIPAD"].southExit = "K2_ROOF1";
 	rooms["K2_HELIPAD"].addFlag(GLOBAL.OUTDOOR);
+	rooms["K2_HELIPAD"].addFlag(GLOBAL.HAZARD);
 }

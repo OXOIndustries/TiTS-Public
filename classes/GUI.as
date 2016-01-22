@@ -748,12 +748,18 @@
 		
 		public function author(name:String):void
 		{
-			_leftSideBar.generalInfoBlock.sceneAuthor = name;
+			if(kGAMECLASS.gameOptions.authorToggle)
+				_leftSideBar.generalInfoBlock.sceneAuthor = name;
+			else
+				_leftSideBar.generalInfoBlock.HideScene();
 		}
 		
 		public function showSceneTag():void
 		{
-			_leftSideBar.generalInfoBlock.ShowScene();
+			if(kGAMECLASS.gameOptions.authorToggle)
+				_leftSideBar.generalInfoBlock.ShowScene();
+			else
+				_leftSideBar.generalInfoBlock.HideScene();
 		}
 		
 		// Useful methods to paste over some issues throughout the codebase whilst mid-refactor
