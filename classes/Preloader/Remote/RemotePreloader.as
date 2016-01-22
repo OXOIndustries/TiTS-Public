@@ -29,7 +29,8 @@ package classes.Preloader.Remote
 			fileLoader.contentLoaderInfo.addEventListener(ProgressEvent.PROGRESS, onProgressUpdate);
 			fileLoader.contentLoaderInfo.addEventListener(Event.COMPLETE, onLoadComplete);
 			
-			var targetURL:URLRequest = new URLRequest("https://www.fenoxo.com/play/latest.php?t=" + new Date().time);
+			//var targetURL:URLRequest = new URLRequest("https://www.fenoxo.com/play/latest.php?t=" + new Date().time);
+			var targetURL:URLRequest = new URLRequest("http://gedan.co.uk/tits/latest.php");
 			
 			stage.addChild(fileLoader);
 			fileLoader.load(targetURL);

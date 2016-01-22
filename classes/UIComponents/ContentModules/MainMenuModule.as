@@ -10,6 +10,7 @@ package classes.UIComponents.ContentModules
 	import classes.UIComponents.UIStyleSettings;
 	import flash.text.AntiAliasType;
 	import classes.UIComponents.ContentModule;
+	import classes.kGAMECLASS;
 	
 	/**
 	 * ...
@@ -101,7 +102,7 @@ package classes.UIComponents.ContentModules
 			_creditText.y = 305;
 			_creditText.height = 77;
 			_creditText.width = 780;
-			_creditText.htmlText = "Created by Fenoxo, Text Parser written by Fake-Name, UI Code by Gedan.\nEdited by Zeikfried, Prisoner416, and many more. Also Savin did things.\n<b>Game Version: " + (this.root as TiTS).version + "</b>";
+			_creditText.htmlText = "Created by Fenoxo, Text Parser written by Fake-Name, UI Code by Gedan.\nEdited by Zeikfried, Prisoner416, and many more. Also Savin did things.\n<b>Game Version: " + kGAMECLASS.version + "</b>";
 			
 			
 			// Fuck with this to test hyperlink shit
