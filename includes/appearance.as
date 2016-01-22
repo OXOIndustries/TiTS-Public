@@ -509,6 +509,23 @@ public function appearance(forTarget:Creature):void
 			{
 				if(target.horns > 0) output2(" Two curled ram horns twist back from your forehead, curling over your [target.ears] like a satyr out of terran legend.");
 			}
+			//Rhinoceros horn!
+			else if(target.hornType == GLOBAL.TYPE_RHINO)
+			{
+				// Default
+				if(target.horns == 1) output2(" A thick, wide keratin horn emerges from your forehead, " + num2Text(int(target.hornLength)) + "-inches long and sporting a slight upward curve.");
+				// More rhino-esque
+				else if(target.horns == 2) output2(" Protruding from the bridge of your nose, a thick, " + num2Text(int(target.hornLength)) + "-inch long keratin horn emerges, sporting a slight upward curve and followed by a smaller, smoother bump of horn right behind it.");
+				// Triceratops!
+				else if(target.horns == 3) output2(" Two thick, wide keratin horns emerge from your forehead, " + num2Text(int(target.hornLength)) + "-inches long with a slight upward curve. A third, smaller horn protrudes from, and perpendicular to, your nose bridge.");
+				// Too many horns...
+				else output2(" Thick, keratin horns emerge from your forehead and face, all varying sizes, with the largest at about " + num2Text(int(target.hornLength)) + "-inches long. They all protrude forward and slightly curve upwards, creating a very menacing pincusion-like visage.");
+			}
+			//Unicorn horn!
+			else if(target.hornType == GLOBAL.TYPE_NARWHAL)
+			{
+				if(target.horns > 0) output2(" A slender ivory horn extends from your forehead, " + num2Text(int(target.hornLength)) + "-inches long with a spiral pattern of ridges and grooves up its length, giving it a graceful appearance.");
+			}
 		}
 		else if(target.hasStatusEffect("Horn Bumps")) output2(" <b>Your forehead is red and irritated in two different places. The upraised bumps stand out quite visibly.</b>");
 		//BODY PG HERE
@@ -1930,11 +1947,6 @@ public function crotchStuff(forTarget:Creature = null):void
 			else output2("the massive hole that is your " + target.vaginaDescript(0) + ".");
 			//Flavor
 			vaginaBonusForAppearance(null, 0, false);
-			//Ovipositor
-			if(target.vaginas[0].hasFlag(GLOBAL.FLAG_OVIPOSITOR))
-			{
-				output2(" Moving its internal muscles, you know it has the ability to lay eggs into another orifice.");
-			}
 		}
 		//MULTICOOCH!
 		else if(target.vaginaTotal() > 1) 
@@ -1980,11 +1992,6 @@ public function crotchStuff(forTarget:Creature = null):void
 					{
 						vaginaBonusForAppearance(null, temp, false);
 					}
-				}
-				//Ovipositor
-				if(target.vaginas[temp].hasFlag(GLOBAL.FLAG_OVIPOSITOR))
-				{
-					output2(" Moving its internal muscles, you know it has the ability to lay eggs into another orifice.");
 				}
 				if (temp == 0 && target.hasStatusEffect("Mimbrane Pussy") && target.statusEffectv3("Mimbrane Pussy") > 3)
 				{
@@ -2171,7 +2178,7 @@ public function dickBonusForAppearance(forTarget:Creature = null, x:int = 0):voi
 	if((target.cocks[x].hasFlag(GLOBAL.FLAG_NUBBY) && target.cocks[x].cType != GLOBAL.TYPE_FELINE) || target.cocks[x].hasFlag(GLOBAL.FLAG_RIBBED))
 	{
 		output2(" It is");
-		if(target.cocks[x].hasFlag(GLOBAL.FLAG_NUBBY)) output2(" covered in barb-like nubs");
+		if(target.cocks[x].hasFlag(GLOBAL.FLAG_NUBBY)) output2(" covered in barb-like nubs, each filled with hypersensitive nerve clusters");
 		else output2(" lined with rib-like protrusions");
 		output2(", soft and rounded enough to massage any passage into which it is inserted.");
 	}
@@ -2311,6 +2318,18 @@ public function vaginaBonusForAppearance(forTarget:Creature = null, x:int = 0, e
 	else if(target.vaginas[x].type == GLOBAL.TYPE_GABILANI) {
 		if(!eachOne) output2(" The special muscles around your vagina are strong and powerful, making it possible to swallow any insertion without the need to push it in.");
 		else output2("\nThe special muscles around your talented vaginas are strong and powerful, making it possible to swallow insertions without the need of external forces to push them in.");
+	}
+	
+	//Nubby
+	if(target.vaginas[x].hasFlag(GLOBAL.FLAG_NUBBY) && target.vaginas[x].type != GLOBAL.TYPE_SIREN) {
+		if(!eachOne) output2(" The lips and insides are covered in numerous nub-like protrusions, each filled with hypersensitive nerve clusters.");
+		else output2(" Their lips and insides are covered in numerous nub-like protrusions, each filled with hypersensitive nerve clusters.");
+	}
+	//Ovipositor
+	if(target.vaginas[x].hasFlag(GLOBAL.FLAG_OVIPOSITOR))
+	{
+		if(!eachOne) output2(" Moving its internal muscles, you know it has the ability to lay eggs into another orifice.");
+		else output2(" Moving their internal muscles, you know they have the ability to lay eggs into another orifice.");
 	}
 	
 	if (forTarget != null) setTarget(null);

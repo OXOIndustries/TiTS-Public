@@ -45,9 +45,14 @@ public function emmyBonusNotes():Boolean
 		flags["SEEN_EMMY"] = 1;
 	}
 	//Repeat, don’t know name
-	else
+	else if(flags["MET_EMMY"] == undefined)
 	{
 		output("\n\nThe same jackaless is sitting on the counter of her shop, passing the time between her customers. With her legs crossed and her buxom chest, she could almost pass for a pure female, but those powerful thighs can’t quite conceal the outline of a none-too-feminine bulge.");
+	}
+	//Repeat, don't know name
+	else
+	{
+		output("\n\nGrinning from behind the countertop is the store’s KihaCorp representative, Emmy. The jackaless’s curvy form is just as you remembered it, shrink-wrapped into a skin-hugging jumpsuit that leaves nothing to the imagination. Her mixed genders are as obvious as the forearm-sized distention running from her crotch to her chest.");
 	}
 	if(flags["APPROACHED_EMMY"] == undefined) addButton(0,"Jackal",emmyFirstTimeApproach);
 	else if(flags["MET_EMMY"] == undefined) addButton(0,"Jackal",emmyRepeatGreetings);

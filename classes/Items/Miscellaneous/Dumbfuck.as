@@ -26,12 +26,12 @@ package classes.Items.Miscellaneous
 			this.shortName = "Dumbfuck";
 			
 			//Regular name
-			this.longName = "purple dumbfuck pill";
+			this.longName = "purple Dumbfuck pill";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a purple dumbfuck pill";
+			this.description = "a purple Dumbfuck pill";
 			
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "It's just a little purple pill, but it's one of the most illegal drugs in the U.G.C. You'll want to read up on it before you even consider using it. Check your codex if you haven't already.";

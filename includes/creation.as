@@ -55,6 +55,7 @@ public function startCharacterCreation(e:Event = null):void
 
 	// Codex entries
 	CodexManager.unlockedEntryList = new Array();
+	CodexManager.viewedEntryList = new Array();
 	
 	// Stat Tracking
 	StatTracking.resetStorage();

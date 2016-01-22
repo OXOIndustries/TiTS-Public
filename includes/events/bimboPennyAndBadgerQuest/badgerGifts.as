@@ -1536,7 +1536,7 @@ public function sexWithBimboBadger():void
 	else addDisabledButton(0,"Get Blowjob","Get Blowjob","You need a dick to get a blowjob.");
 	if(pc.hasVagina()) addButton(1,"Get Licked",getEatenOutByBimboBadgerRepeat,undefined,"Get Licked","Have a nice, long session with her muzzle buried in your pussy");
 	else addDisabledButton(1,"Get Licked","Get Licked","You need a vagina to get licked out.");
-	if(pc.hasCock() && pc.cockThatFits(chars["DRBADGER"].analCapacity()) >= 0) addButton(2,"FuckHerAss",fuckBimboBadgersAssRepeated,undefined,"Fuck Her Ass","Fuck this bimbo hard from behind.");
+	if(pc.hasCock()) addButton(2,"FuckHerAss",fuckBimboBadgersAssRepeated,undefined,"Fuck Her Ass","Fuck this bimbo hard from behind.");
 	else addDisabledButton(2,"FuckHerAss","Fuck Her Ass","You need a penis to fuck her ass.");
 
 	if(pc.isBimbo() && pc.hasCock() && pc.hasVagina()) addButton(3,"Bimbo Sex",doctorBadgerBimboSex,undefined,"Bimbo Sex","Like, totally have the most sex!");

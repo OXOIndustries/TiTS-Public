@@ -22,7 +22,7 @@
 			//Used on inventory buttons
 			this.shortName = "Honeyseed";
 			//Regular name
-			this.longName = "honeyseed";
+			this.longName = "Honeyseed";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			

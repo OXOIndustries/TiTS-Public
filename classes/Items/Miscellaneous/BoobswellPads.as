@@ -25,12 +25,12 @@
 			this.shortName = "Boobswell P.";
 			
 			//Regular name
-			this.longName = "boobswell pads";
+			this.longName = "Boobswell pads";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a set of boobswell pads";
+			this.description = "a set of Boobswell pads";
 
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "These slim, cup-shaped pads come with a handy adhesive that allows them to stick to the underside of the bust, or else be slipped stealthily into a bra. So long as these pads are worn, they will slowly massage and feed hormones and nanomachines into your breasts, causing them to increase in size over time. They only last 3 days, however, before they wear out.";

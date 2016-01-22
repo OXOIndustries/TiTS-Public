@@ -31,6 +31,7 @@ public function drBadgerMenu():void
 	shopkeep = chars["DRBADGER"];
 	//Unlock dumbfuck codex
 	CodexManager.unlockEntry("Dumbfuck");
+	CodexManager.unlockEntry("Gush");
 	clearMenu();
 	addButton(0,"Buy",buyItem,undefined,"Buy something from Doctor Badger.");
 	addButton(1,"Sell",sellItem,undefined,"Sell something from Doctor Badger.");

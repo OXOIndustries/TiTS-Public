@@ -187,6 +187,8 @@
 		public static const TYPE_DARK_SYLVAN:int 							= 59;
 		public static const TYPE_MYR:int 									= 60;
 		public static const TYPE_SAURIAN:int								= 61;
+		public static const TYPE_RHINO:int									= 62;
+		public static const TYPE_NARWHAL:int								= 63;
 		
 		public static const TYPE_NAMES:Array = [
 			"Human",
@@ -251,6 +253,8 @@
 			"Dark Sylvan",
 			"Myr",
 			"Saurian",
+			"Rhino",
+			"Narwhal",
 		];
 		
 		public static const VALID_FACE_TYPES:Array = [
@@ -445,6 +449,8 @@
 			TYPE_DRACONIC,
 			TYPE_DEER,
 			TYPE_GOAT,
+			TYPE_RHINO,
+			TYPE_NARWHAL,
 		];
 		
 		public static const VALID_WING_TYPES:Array = [

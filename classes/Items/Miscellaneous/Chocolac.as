@@ -21,12 +21,12 @@
 			//Used on inventory buttons
 			this.shortName = "Chocolac";
 			//Regular name
-			this.longName = "chocolac";
+			this.longName = "ChocoLac";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a jar of chocolac";
+			this.description = "a jar of ChocoLac";
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "This creamy brown jar's label depicts a pastoral field of darkly colored bovines on one side; on the other, the bovines are more humanoid in shape: buxom human girls toting massive mammaries and buckets of what could only be chocolate milk. One of them is smiling invitingly at you, a speech bubble informing you that this one-use cream is sure to turn your own natural lactation into a delicious, thick chocolate milk.";
 			

@@ -27,7 +27,7 @@
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a pill called Knot a Problem";
+			this.description = "a pill called ‘Knot a Problem’";
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "Designed by an infamous ausar playgirl-scientist, this designer gene-therapy pill has a precise focus: upon consumption, it will mutate any cock into growing a canine knot. If a knot is already present, the consumer will be gifted with a thicker, girthier bitch-breaker.";
 			

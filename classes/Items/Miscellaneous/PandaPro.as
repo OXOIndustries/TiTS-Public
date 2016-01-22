@@ -22,7 +22,7 @@
 			//Used on inventory buttons
 			this.shortName = "Panda Pro";
 			//Regular name
-			this.longName = "panda pro";
+			this.longName = "Panda Pro";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			

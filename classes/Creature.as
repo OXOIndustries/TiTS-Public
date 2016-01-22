@@ -4746,9 +4746,9 @@ package classes {
 			// Adjectives: 50%
 			if(rand(2) == 0)
 			{
-				if (InCollection(armType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_BADGER, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_DEMONIC)) adjective.push("clawed");
+				if (hasClawedHands()) adjective.push("clawed");
+				if (hasPaddedHands()) adjective.push("padded");
 				if (InCollection(armType, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_BADGER, GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_PANDA)) adjective.push("bestial");
-				if (InCollection(armType, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_PANDA)) adjective.push("padded");
 				if (hasArmFlag(GLOBAL.FLAG_GOOEY)) adjective.push("slimy", "slick", "gooey");
 				else if (InCollection(armType, GLOBAL.TYPE_ARACHNID, GLOBAL.TYPE_DRIDER, GLOBAL.TYPE_BEE, GLOBAL.TYPE_LEITHAN)) adjective.push("chitinous");
 			}
@@ -4768,8 +4768,8 @@ package classes {
 			// Adjectives: 50%
 			if(rand(2) == 0)
 			{
-				if (InCollection(armType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_BADGER, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_DEMONIC)) adjective.push("clawed");
-				if (InCollection(armType, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_PANDA)) adjective.push("padded");
+				if (hasClawedHands()) adjective.push("clawed");
+				if (hasPaddedHands()) adjective.push("padded");
 				if (InCollection(armType, GLOBAL.TYPE_EQUINE)) adjective.push("hoof-tipped");
 				if (hasArmFlag(GLOBAL.FLAG_GOOEY)) adjective.push("slimy", "slick", "gooey");
 				else if (InCollection(armType, GLOBAL.TYPE_ARACHNID, GLOBAL.TYPE_DRIDER, GLOBAL.TYPE_BEE, GLOBAL.TYPE_LEITHAN)) adjective.push("chitinous");
@@ -4780,6 +4780,12 @@ package classes {
 			if (output != "") output += " ";
 			output += "finger";
 			return output;
+		}
+		public function hasClawedHands(): Boolean {
+			return InCollection(armType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_BADGER, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_DEMONIC);
+		}
+		public function hasPaddedHands(): Boolean {
+			return InCollection(armType, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_PANDA);
 		}
 		public function lowerBody():String {
 			var output: String = "";
@@ -10252,6 +10258,15 @@ package classes {
 				{
 					//Don't match? NOT MATCHED. GTFO.
 					if(vaginas[x].type != vaginas[x-1].type) return false;
+					//Flag check
+					if(vaginas[x].vagooFlags.length == vaginas[x-1].vagooFlags.length)
+					{
+						for(var i:int = 0; i < vaginas[x].vagooFlags.length; i++)
+						{
+							if(!vaginas[x-1].hasFlag(vaginas[x].vagooFlags[i])) return false;
+						}
+					}
+					else return false;
 				}
 			}
 			return true;
@@ -12850,6 +12865,7 @@ package classes {
 			var descript: String = "";
 			var randt: Number = rand(10);
 			var descripted: Number = 0;
+			var types: Array = [];
 	
 			if(hasStatusEffect("Horn Bumps"))
 			{
@@ -12914,8 +12930,7 @@ package classes {
 						descripted++;
 					}
 					//foot
-					else if (hornLength == 12)
-					{
+					else if (hornLength == 12) {
 						descript += "foot-long";
 						descripted++;
 					}
@@ -12939,34 +12954,38 @@ package classes {
 				}
 				//Descriptive descriptions - 50% chance of being called
 				if (rand(3) == 0 && descripted < 2) {
-					if (hornType == GLOBAL.TYPE_DRACONIC) {
-						if (descripted > 0) descript += ", ";
-						descript += "draconic";
-						descripted++;
+					switch (hornType)
+					{
+						case GLOBAL.TYPE_DRACONIC:
+							types.push("draconic");
+							break;
+						case GLOBAL.TYPE_DEMONIC:
+							types.push("demonic", "sinister");
+							break;
+						case GLOBAL.TYPE_BOVINE:
+							types.push("bovine");
+							break;
+						case GLOBAL.TYPE_LIZAN:
+							types.push("reptilian");
+							break;
+						case GLOBAL.TYPE_DEER:
+							types.push("deer-like");
+							break;
+						case GLOBAL.TYPE_GOAT:
+							types.push("ram");
+							break;
+						case GLOBAL.TYPE_RHINO:
+							types.push("rhino");
+							if(horns > 2) types.push("dinosaur", "saurian");
+							break;
+						case GLOBAL.TYPE_NARWHAL:
+							types.push("narwhal", "unicorn-like");
+							break;
 					}
-					if (hornType == GLOBAL.TYPE_DEMONIC) {
+					if(types.length > 0)
+					{
 						if (descripted > 0) descript += ", ";
-						descript += "demonic";
-						descripted++;
-					}
-					if (hornType == GLOBAL.TYPE_BOVINE) {
-						if (descripted > 0) descript += ", ";
-						descript += "bovine";
-						descripted++;
-					}
-					if (hornType == GLOBAL.TYPE_LIZAN) {
-						if (descripted > 0) descript += ", ";
-						descript += "reptilian";
-						descripted++;
-					}
-					if (hornType == GLOBAL.TYPE_DEER) {
-						if (descripted > 0) descript += ", ";
-						descript += "deer-like";
-						descripted++;
-					}
-					if (hornType == GLOBAL.TYPE_GOAT) {
-						if (descripted > 0) descript += ", ";
-						descript += "ram";
+						descript += RandomInCollection(types);
 						descripted++;
 					}
 				}
@@ -12974,7 +12993,7 @@ package classes {
 				if (descripted > 0) descript += " ";
 				descript += hornNoun();
 			}
-	
+			
 			return descript;
 		}
 		public function hornsNoun():String 
