@@ -12,7 +12,7 @@ package classes.Preloader
 	 * ...
 	 * @author Gedan
 	 */
-	public class BasePreloader extends Sprite
+	public class BasePreloader extends MovieClip
 	{
 		// These settings are stolen from UIComponents to minimise the size of the preloader by not having to include it
 		private static const gBackgroundColour:uint = 0x3D5174;
