@@ -566,6 +566,7 @@ public function bonusFunction213():Boolean
 	return false;
 }
 
+/*
 public function novaShipHangarElevator():Boolean
 {
 	if (flags["DECK13_COMPLETE"] == undefined)
@@ -578,6 +579,7 @@ public function novaShipHangarElevator():Boolean
 	}
 	return false;
 }
+*/
 
 public function novaMainDeckElevator():Boolean
 {
@@ -585,6 +587,12 @@ public function novaMainDeckElevator():Boolean
 	{
 		output("\n\nYou step up to the elevator and press the call button. The doors don’t respond.");
 		output("\n\nHm. The shaft must have been destroyed when the planet blew up, sealing the doors indefinitely....");
+		
+		return false;
+	}
+	if (flags["DECK13_COMPLETE"] == undefined)
+	{
+		output("\n\nYou step up to the elevator and press the call button. Immediately, the doors slide open, but no car comes.");
 		
 		return false;
 	}
@@ -609,7 +617,7 @@ public function novaElevatorControlPanel():void
 	if (currentLocation != "NOVA MAIN DECK ELEVATOR") addButton(0, "Main Deck", move, "NOVA MAIN DECK ELEVATOR");
 	else addDisabledButton(0, "Main Deck");
 	
-	if (currentLocation != "DECK 13 ELEVATOR SHAFT" && ((flags["ANNO_MISSION_OFFER"] >= 2 && flags["ANNO_MISSION_OFFER"] != undefined) || flags["DECK13_COMPLETE"] == 1)) addButton(1, "Deck 13", move, "DECK 13 ELEVATOR SHAFT");
+	if (currentLocation != "DECK 13 ELEVATOR SHAFT") addButton(1, "Deck 13", move, "DECK 13 ELEVATOR SHAFT");
 	else addDisabledButton(1, "Deck 13");
 	
 	addButton(14, "Back", mainGameMenu);
