@@ -2138,7 +2138,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["SERA_TRIPLE_X_RATED"] >= 4) output2(", Mistress");
 				else
 				{
-					else if(flags["SERA_TALKED_ABOUT_BEING_PISSED_OFF"] == undefined) output2(", Pissed off");
+					if(flags["SERA_TALKED_ABOUT_BEING_PISSED_OFF"] == undefined) output2(", Pissed off");
 					else output2(", Vented her frustrations");
 				}
 				if(flags["SERA_INCH_STEAL"] != undefined) output2("\n<b>* Sera, Tail Length: </b>" + prettifyLength(36 + seraInchGain()));
