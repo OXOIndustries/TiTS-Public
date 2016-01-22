@@ -541,19 +541,9 @@ public function pcVictoryOverNyrea():void
 	addButton(1, "Ride Cock", rideNyreaDick);
 	if (pc.hasTailCock()) addButton(2, "Docking", nyreaTailcockDocking); //Needs a tailcock less than 3 inches thick. Length is irrelevant.
 	else addDisabledButton(2, "Docking", "Docking", "Requires a tailcock.");
+	//Cuff&Fuck
+	cuffNFuckButton(3, enemy);
 	
-	if(pc.hasItem(new GravCuffs()) && pc.lust() >= 33)
-	{
-		var fitsInside:Boolean = false;
-		if(enemy.hasVagina()) fitsInside = (pc.cockThatFits(enemy.vaginalCapacity(0)) >= 0);
-		else fitsInside = (pc.cockThatFits(enemy.analCapacity()) >= 0);
-
-		if(pc.hasCock() && fitsInside) addButton(3,"Cuff&Fuck",cuffNFuck,undefined,"Cuff & Fuck","Use your grav-cuffs to pin down [enemy.name] and have your way with [enemy.hisHer] [pc.vagOrAssNoun]! Requires Grav-cuffs and a penis.");
-		else if(pc.hasCock()) addDisabledButton(3,"Cuff&Fuck","Cuff & Fuck","You can cuff [enemy.himHer] down, but you wouldn't be able to fit inside.");
-		else addDisabledButton(3,"Cuff&Fuck","Cuff & Fuck","You need a penis to make use of your grav-cuffs this way.");
-		//output(" CUFFIES");
-	}
-	//else output(" NO CUFFIES");
 	// 9999 territory - need something decent for leaving after victory without fucking
 	addButton(14, "Leave", function():void {
 		clearOutput();

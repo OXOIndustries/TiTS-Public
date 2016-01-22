@@ -1193,15 +1193,7 @@ public function defeatHostileZil():void {
 		addButton(9,"Capture",useTheCaptureHarness);
 		output("\n\n<b>Doctor Julian Haswell wanted you to use a capture harness on a zil. Now would be the perfect time.</b>");
 	}
-	if(pc.hasItem(new GravCuffs()) && pc.lust() >= 33)
-	{
-		var fitsInside:Boolean = false;
-		if(enemy.hasVagina()) fitsInside = (pc.cockThatFits(enemy.vaginalCapacity(0)) >= 0);
-		else fitsInside = (pc.cockThatFits(enemy.analCapacity()) >= 0);
-		if(pc.hasCock() && fitsInside) addButton(5,"Cuff&Fuck",cuffNFuck,undefined,"Cuff & Fuck","Use your grav-cuffs to pin down [enemy.name] and have your way with [enemy.hisHer] [pc.vagOrAssNoun]! Requires Grav-cuffs and a penis.");
-		else if(pc.hasCock()) addDisabledButton(5,"Cuff&Fuck","Cuff & Fuck","You can cuff [enemy.himHer] down, but you wouldn't be able to fit inside.");
-		else addDisabledButton(5,"Cuff&Fuck","Cuff & Fuck","You need a penis to make use of your grav-cuffs this way.");
-	}
+	
 	output("\n\n");
 	addButton(14,"Leave",CombatManager.genericVictory);
 }

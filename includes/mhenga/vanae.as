@@ -419,12 +419,9 @@ public function vanaePCVictory():void
 
 			// [Vaginal Sex] [Tit Fuck] [Nipple Fuck] [Squirt & Jerk] [Cunnilingus] 
 			// [Sixty Nine - BJ] [Sixty Nine - Cunni] [Tenta Sex - Vag] [Tenta Sex - Anal] [Milk Bath]
-			var fitsInside:Boolean = false;
-			if(enemy.hasVagina()) fitsInside = (pc.cockThatFits(enemy.vaginalCapacity(0)) >= 0);
-			else fitsInside = (pc.cockThatFits(enemy.analCapacity()) >= 0);
-			if(pc.hasCock() && pc.hasItem(new GravCuffs()) && fitsInside) addButton(9,"Cuff&Fuck",cuffNFuck,undefined,"Cuff & Fuck","Use your grav-cuffs to pin down [enemy.name] and have your way with [enemy.hisHer] [pc.vagOrAssNoun]! Requires Grav-cuffs and a penis.");
-			else if(pc.hasCock() && pc.hasItem(new GravCuffs())) addDisabledButton(9,"Cuff&Fuck","Cuff & Fuck","You can cuff [enemy.himHer] down, but you wouldn't be able to fit inside.");
-			else if(pc.hasItem(new GravCuffs())) addDisabledButton(9,"Cuff&Fuck","Cuff & Fuck","You need a penis to make use of your grav-cuffs this way.");
+			
+			//Cuff&Fuck
+			cuffNFuckButton(9, enemy);
 		}
 		else
 		{
@@ -443,15 +440,8 @@ public function vanaePCVictory():void
 
 			// No requirements
 			addButton(1, "Cunnilingus", vanaeVictorySexIntro, "maiden_cunni", "Cunnilingus", "Claim her alien pussy with your mouth and eat her out.");
-			if(pc.hasItem(new GravCuffs()))
-			{
-				var fitsInside2:Boolean = false;
-				if(enemy.hasVagina()) fitsInside2 = (pc.cockThatFits(enemy.vaginalCapacity(0)) >= 0);
-				else fitsInside2 = (pc.cockThatFits(enemy.analCapacity()) >= 0);
-				if(pc.hasCock() && fitsInside2) addButton(2,"Cuff&Fuck",cuffNFuck,undefined,"Cuff & Fuck","Use your grav-cuffs to pin down [enemy.name] and have your way with [enemy.hisHer] [pc.vagOrAssNoun]! Requires Grav-cuffs and a penis.");
-				else if(pc.hasCock()) addDisabledButton(2,"Cuff&Fuck","Cuff & Fuck","You can cuff [enemy.himHer] down, but you wouldn't be able to fit inside.");
-				else addDisabledButton(2,"Cuff&Fuck","Cuff & Fuck","You need a penis to make use of your grav-cuffs this way.");
-			}
+			//Cuff&Fuck
+			cuffNFuckButton(2, enemy);
 		}
 	}
 	else
