@@ -718,30 +718,25 @@ public function VKoIVsCodex():void
 	clearOutputCodex();
 	showBust("VI");
 	outputCodex(header("V-Ko IV Nursedroids"));
-	outputCodex("The V-Ko IV is a more expensive, advanced variant of the original V-Ko model, coded with a more organic and lively bedside manner. Another noticeable difference is the inclusion of a prehensile tail, which can be used for treatment, or as a dock for many medical apparatus.\n\n");
-	outputCodex("Several model variants were released, each designed to fit into different social settings, including versions designed to integrate into unclothed societies.\n\n");
+	outputCodex("The V-Ko IV is a more expensive, advanced variant of the original V-Ko model, coded with a more organic and lively bedside manner. Another noticeable difference is the inclusion of a prehensile tail, which can be used for treatment, or as a dock for many medical apparatus.\n\nSeveral model variants were released, each designed to fit into different social settings, including versions designed to integrate into unclothed societies.\n\n");
 	outputCodex("<b>Sexes:</b> V-Ko IVs are all female in appearance, and unlike the original line of V-Ko units, have perfectly functional genitalia. This additional feature helps with the administering of stress relief.\n");
 	outputCodex("<b>Height:</b> 5’4”</i>");
 	outputCodex("\n<b>Weight:</b> 60 kg.");
 	outputCodex("\n<b>Hair:</b> V-Ko IV nursedroids are available with any length, color, or style of hair.");
 	outputCodex("\n<b>Eyes:</b> Just like their hair, their eyes can come in any color. However, they all have the cross-shaped identification patterns in the center of their ocular receptors, to stop them being confused with other kinds of synthetics.");
-	outputCodex("\n<b>Skin:</b> V-Ko IV’s have the same synthflesh as the first generation V-Ko models with self-heating functionality, nearly identical in texture to terran skin. Their skin is always a ivory white to aid in identification. Similar to the original model, their clothes are modified synthflesh designed to appear as garments.\n\n");
+	outputCodex("\n<b>Skin:</b> V-Ko IV’s have the same synthflesh as the first generation V-Ko models with self-heating functionality, nearly identical in texture to terran skin. Their skin is always a ivory white to aid in identification. Similar to the original model, their clothes are modified synthflesh designed to appear as garments.");
+	outputCodex("\n\n");
 	outputCodex(blockHeader("Sexual Characteristics"));
-	outputCodex("V-Ko IV’s have a marked difference from the original V-Ko line, in that they possess distinct sexual characteristics. They have distinctive breasts and either a hidden or visible synthetic vagina and anus. These are both designed to be highly controllable, pliable, and self-lubricating, allowing for intercourse with a variety of species. Not only that, their vagina can be removed for hand-held use like an onahole, or even attached as an extension to the ends of their JoyCords.");
-	outputCodex("\n\nWhile it appears on first glance that the V-Ko VI’s have a built-on outfit like previous models, they can in fact remove a seamless patch of fabric from each of their breasts, revealing perfectly functioning nipples. When the patch is removed, a V-Ko appears as if they are wearing a maternity top. V-Ko VI’s can lactate from their nipples, producing many kinds of milk for infant young.");
-	outputCodex("\n\nUnlike the mainline V-Ko Nursedroids, V-Ko IV’s use their JoyCords as charging extensions, able to plug them into the nearest power port. This functionality – along with the lactation capacity – is a carry-over from JoyCo’s Maia Series, carried over for mass production.\n\n");
+	outputCodex("V-Ko IV’s have a marked difference from the original V-Ko line, in that they possess distinct sexual characteristics. They have distinctive breasts and either a hidden or visible synthetic vagina and anus. These are both designed to be highly controllable, pliable, and self-lubricating, allowing for intercourse with a variety of species. Not only that, their vagina can be removed for hand-held use like an onahole, or even attached as an extension to the ends of their JoyCords.\n\nWhile it appears on first glance that the V-Ko VI’s have a built-on outfit like previous models, they can in fact remove a seamless patch of fabric from each of their breasts, revealing perfectly functioning nipples. When the patch is removed, a V-Ko appears as if they are wearing a maternity top. V-Ko VI’s can lactate from their nipples, producing many kinds of milk for infant young.\n\nUnlike the mainline V-Ko Nursedroids, V-Ko IV’s use their JoyCords as charging extensions, able to plug them into the nearest power port. This functionality – along with the lactation capacity – is a carry-over from JoyCo’s Maia Series, carried over for mass production.");
+	outputCodex("\n\n");
 	outputCodex(blockHeader("Virtual Intelligence"));
-	outputCodex("V-Ko IV’s are Virtual Intelligences, just like previous models. However, with an additional fifty million extra lines of code programmed in, they act far more organic than their predecessors, possessing a more fluid and personable bedside manner. They still fall well short of an AI-D in terms of functionality, and possess no embedded sentience libraries.\n\n");
-	outputCodex("V-Ko IV’s are incredibly honest by nature. They are functionally incapable of lying, completely lacking the programming that allows them to do so. They can, however, still keep patient confidentiality.\n\n");
+	outputCodex("V-Ko IV’s are Virtual Intelligences, just like previous models. However, with an additional fifty million extra lines of code programmed in, they act far more organic than their predecessors, possessing a more fluid and personable bedside manner. They still fall well short of an AI-D in terms of functionality, and possess no embedded sentience libraries.\n\nV-Ko IV’s are incredibly honest by nature. They are functionally incapable of lying, completely lacking the programming that allows them to do so. They can, however, still keep patient confidentiality.");
+	outputCodex("\n\n");
 	outputCodex(blockHeader("Abilities"));
-	outputCodex("Just like the original models, V-Ko IV’s are designed to provide low-cost medical healthcare in places where proper hospitals are in short supply. They possess the same miniature medicine producing machinery inside their torsos, acting as a portable mini-hospital.");
-	outputCodex("\n\nNoticeably different, however, is their ability to deliver medical treatment through a range of means, from medicine-delivering kisses to dermal-penetrating aerosol blasts from their tail-tips. This functionality allows them to give treatment in a range of relaxing or pleasurable methods, or even when pinning the patient down with their arms and legs.");
-	outputCodex("\n\nCustomer feedback surveys have shown users are overwhelmingly pleased with the new series’s bedside manner.");
-	outputCodex("\n\nAlso different is the sexual relief functionality programmed into the V-Ko IV’s. These programs were cut and carried over from other profitable lines such as the Maia Series VI’s, saving on development time and money.\n\n");
+	outputCodex("Just like the original models, V-Ko IV’s are designed to provide low-cost medical healthcare in places where proper hospitals are in short supply. They possess the same miniature medicine producing machinery inside their torsos, acting as a portable mini-hospital.\n\nNoticeably different, however, is their ability to deliver medical treatment through a range of means, from medicine-delivering kisses to dermal-penetrating aerosol blasts from their tail-tips. This functionality allows them to give treatment in a range of relaxing or pleasurable methods, or even when pinning the patient down with their arms and legs.\n\nCustomer feedback surveys have shown users are overwhelmingly pleased with the new series’s bedside manner.\n\nAlso different is the sexual relief functionality programmed into the V-Ko IV’s. These programs were cut and carried over from other profitable lines such as the Maia Series VI’s, saving on development time and money.");
+	outputCodex("\n\n");
 	outputCodex(blockHeader("Custom Modifications"));
-	outputCodex("As with most of their product lines, JoyCo allows for a number of custom modifications to the V-Ko IV’s. Many well-off users purchase these models to rebuild from scratch, particularly as aphrodisiac-dispensing fuck-toys.");
-	outputCodex("\n\nThere are reports of V-Ko IV’s being used in illegal industries to administer mind-controlling drugs to slaves or junkies, taking advantage of their affordable cost and drug-making functions.");
-	outputCodex("\n\nThe most popular modification to make to a V-Ko IV is to install a pleasure-reward interface, allowing a unit to feel a digital approximation of sexual pleasure during intercourse. This modification is not officially sanctioned by JoyCo, as repeated use of this interface may corrupt a VI’s subroutines.");
+	outputCodex("As with most of their product lines, JoyCo allows for a number of custom modifications to the V-Ko IV’s. Many well-off users purchase these models to rebuild from scratch, particularly as aphrodisiac-dispensing fuck-toys.\n\nThere are reports of V-Ko IV’s being used in illegal industries to administer mind-controlling drugs to slaves or junkies, taking advantage of their affordable cost and drug-making functions.\n\nThe most popular modification to make to a V-Ko IV is to install a pleasure-reward interface, allowing a unit to feel a digital approximation of sexual pleasure during intercourse. This modification is not officially sanctioned by JoyCo, as repeated use of this interface may corrupt a VI’s subroutines.");
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("V-Ko IVs");
 }
@@ -1370,26 +1365,46 @@ public function myrFungusCodex():void
 public function crystalGooCodexEntry():void
 {
 	clearOutputCodex();
-	showBust("GOOCUBATOR"); // 9999 - Placeholder!
+	showBust("GOOCUBATOR");
 	outputCodex(header("Ganrael"));
 	outputCodex("<b>Name (Singular & Plural):</b> Ganrael");
-	outputCodex("\n<b>Sexes:</b> PLACEHOLDER");
-	outputCodex("\n<b>Height:</b> PLACEHOLDER");
-	outputCodex("\n<b>Weight:</b> PLACEHOLDER");
-	outputCodex("\n<b>Hair & Fur:</b> PLACEHOLDER");
-	outputCodex("\n<b>Eyes:</b> PLACEHOLDER");
-	outputCodex("\n\n");
-	outputCodex(blockHeader("Features"));
-	outputCodex("PLACEHOLDER");
-	outputCodex("\n\n");
-	outputCodex(blockHeader("Environs Typically Inhabited"));
-	outputCodex("PLACEHOLDER");
-	outputCodex("\n\n");
-	outputCodex(blockHeader("Reproduction"));
-	outputCodex("PLACEHOLDER");
-	outputCodex("\n\n");
-	outputCodex(blockHeader("History"));
-	outputCodex("PLACEHOLDER");
+	outputCodex("\n<b>Sexes:</b> Monogendered");
+	outputCodex("\n<b>Height:</b> 5 to 6 feet. Some exceptional specimens can reach up to eight feet of height, though their dietary requirements to maintain such mass makes such individuals exceedingly rare.");
+	outputCodex("\n<b>Senses:</b> As goo-type creatures, the Ganrael have very limited perceptive organs. They are capable of 360 degree sight and have acute senses of smell and hearing. Most ganrael, will affect humanoid eyes and ears as part of their limited shapeshifting, in order to appear more familiar and appealing to their mates.");
+	// Gardeford
+	if(silly)
+	{
+		outputCodex("\n<b>Skin:</b> Ganrael come in a variety of colors, ranging from viridian (the most common), through red, purple, dark blues, and rarely brighter shades of yellow, orange, and pink.");
+		outputCodex("\n\n");
+		outputCodex(blockHeader("Combat"));
+		outputCodex("Unlike many goo creatures, the ganrael are not stealth predators, but prefer to openly challenge their opponents. This shift in tactics compared to similar species is likely based in the ganrael’s unique evolutionary adaptation: armor. Species like the rahn and galotians are completely soft-bodied, constantly keeping their gooey extremities saturated with liquid to maintain their easy range of motion and shape-shifting abilities, with varying levels of penetrable dermises. Ganrael instead have adapted to slowly dry out and harden their outermost layers of goo, which eventually crystallizes into a nearly diamond-hard armor plating around the subject.\n\nThis hardened outer armor protects the otherwise vulnerable ganrael inside, allowing it to engage in direct combat against even armed foes, such as the myrmedion who live in the upper caverns above the ganraels’ natural habitat. This crystal armor regenerates quickly with focus and food consumption on the part of the ganrael, and can even be adapted to grow semi-organic weapons for use: many ganrael hunt with crystal daggers, axes, or spears.");
+		outputCodex("\n\n");
+		outputCodex(blockHeader("Environs Typically Inhabited"));
+		outputCodex("Ganrael are natives of Myrellion, specifically the deepest caverns on the planet. Most live their entire lives without ever seeing the surface, though thanks to the abundance of bioluminescent fungus and creatures within the deep caves the ganrael retain their ability to see in low to high lighting. Ganrael prefer wet, humid areas in the caves, particularly those near underground lakes, rivers, and thermal vents.");
+		outputCodex("\n\n");
+		outputCodex(blockHeader("Reproduction"));
+		outputCodex("Ganrael, like most goo creatures, have distinctly non-mammalian reproduction patterns. Though some ganrael will adapt the appearance of one gender or the other, they are fundamentally a mono-gendered race, with any individual capable of bearing children. When a ganrael is ready to mate and bear children, it need only acquire the genetic material of another compatible creature -- male or female, semen or any other form of genetic carrier. The genetic material can then be absorbed through the skin (or, more commonly, inserted into the bearer through penetrative sex). Ganrael have several erogenous zones in their natural forms, and usually shift these to more traditional areas when mimicking humanoid shapes so that both the ganrael and its mate can enjoy the proceedings.\n\nOnce proper genetic material has been absorbed, the ganrael’s reproductive cycle begins. Over the course of the next 24 hours, the ganrael will begin to divide its cells, with half of the resultant cells carrying the new genetic material mixed with the parents’. The parent ganrael will shed its crystal armor and effectively split in two, resulting in a smaller (some say younger) copy of the parent along with a fully-formed child. Both parent and child are fairly weak for the next few days, requiring some time to gather their energy and eat enough to begin restoring their full size and armor plating. Between “insemination” and the resultant ganrael being fit to hunt again, perhaps a full week has passed.");
+		outputCodex("\n\n");
+		outputCodex(blockHeader("Culture & Society"));
+		outputCodex("Most ganrael are nomadic, moving through the caverns in pursuit of game and mates. There are relatively few ganrael settlements and little in the way of organized civilization. At best, a family unit of a mated pair and their children may stay together until the children are old enough to hunt on their own, at which point the family usually disintegrates. Ganrael are, as a rule, individualists who struggle to work together with other creatures (of their own race or others), which has prevented any sort of organized ganrael society from cropping up over the years.");
+	}
+	// Zeikfried
+	else
+	{
+		outputCodex("\n<b>Skin:</b> Ganrael come in a variety of colors, ranging from green (the most common), through red, pink, purple, and dark blues. Rarely, some specimens of yellow or orange coloration have been seen, though they appear to be vastly in the minority.");
+		outputCodex("\n\n");
+		outputCodex(blockHeader("Combat"));
+		outputCodex("Unlike many goo creatures, the ganrael are not stealth predators, but prefer to openly challenge their opponents. This shift in tactics compared to similar species is likely based in the ganrael’s unique evolutionary adaptation: armor. Species like the rahn and galotians are completely soft-bodied, constantly keeping their gooey extremities saturated with liquid to maintain their easy range of motion and shape-shifting abilities, with varying levels of penetrable dermises. Ganrael instead have adapted to slowly dry out and harden their outermost layers of goo, which eventually crystallizes into a nearly diamond-hard armor plating around the subject.\n\nThis hardened outer armor protects the otherwise vulnerable ganrael inside, allowing it to engage in direct combat against even armed foes, such as the myrmedion who live in the upper caverns above the ganraels’ natural habitat. Crystal armor regenerates quickly with focus and food consumption on the part of the ganrael, and can even be adapted to grow semi-biological weapons for use: many ganrael hunt with crystal daggers, axes, or spears.");
+		outputCodex("\n\n");
+		outputCodex(blockHeader("Environs Typically Inhabited"));
+		outputCodex("Ganrael are natives of Myrellion, specifically the deepest caverns on the planet. Most live their entire lives without seeing the surface, though thanks to the abundance of bioluminescent cave fungus and creatures within the deep caves the ganrael retain their ability to see in light. Ganrael prefer wet, humid areas in the caves, particularly those near underground lakes, rivers, and thermal vents.");
+		outputCodex("\n\n");
+		outputCodex(blockHeader("Reproduction"));
+		outputCodex("Ganrael, like most goo creatures, have distinctly non-mammalian reproduction patterns. Though some ganrael will adapt the appearance of one gender or the other, they are fundamentally a mono-gendered race, with any individual capable of bearing children. When a ganrael is ready to mate and bear children, it need only acquire the genetic material of another compatible creature - male or female, semen or other form of genetic carrier. The genetic material can then be absorbed through the skin (or, more commonly, inserted into the bearer through penetrative sex). Ganrael have several erogenous zones in their natural form, and usually shift these to more traditional areas when mimicking humanoid shape so that both the ganrael and its mate can enjoy the proceedings.\n\nOnce proper genetic material has been absorbed, the ganrael’s reproductive cycle begins. Over the course of the next 24 hours, the ganrael will begin to divide its cells, with half of the resultant cells carrying the new genetic material mixed with the parent’s. The parent ganrael will shed its crystal armor and effectively split in two, resulting in a smaller (some say younger) copy of the parent along with a fully-formed child. Both parent and child are fairly weak for the next few days, requiring some time to gather their energy and eat enough to begin restoring their full size and armor plating. Between “insemination” and the resultant ganrael being fit to hunt again, perhaps a full week has passed.");
+		outputCodex("\n\n");
+		outputCodex(blockHeader("Culture & Society"));
+		outputCodex("Most ganrael are nomadic, moving through the caverns in pursuit of game and mates. There are relatively few ganrael settlements and little in the way of organized civilization. At best, a family unit of a mated pair of their children may stay together until the children are old enough to hunt on their own, at which point the family usually disintegrates. Ganrael are, as a rule, individualists who struggle to work together with other creatures (of their own race or others), which has made organized ganrael societies rare, and keeps them relatively small and insignificant.");
+	}
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Ganrael");
 }

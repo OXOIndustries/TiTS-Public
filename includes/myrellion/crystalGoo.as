@@ -11,14 +11,14 @@ public function showGooKeep():void
 }
 
 //Crystal goo knight encounter
-/*
 public function crystalGooFenBurps():void
 {
 	author("Gardeford");
 	showGardeGoo();
 	
-	setEnemy(new CrystalKnight());
-
+	var gooKnight:Creature = new GooKnight()
+	setEnemy(gooKnight);
+	
 	//load encounter to determine color, for reasons.
 	if(flags["MET_GOO_KNIGHT"] == undefined)
 	{
@@ -39,9 +39,16 @@ public function crystalGooFenBurps():void
 		output("\n\nYou hear clanking on the rocks just in time to avoid a slash from a ganraen knight. It looks like you’re a popular choice for their attacks. You ready your weapons and prepare to fight.");
 	}
 	clearMenu();
-	//addButton(0,"Next",startCombatLight);
+	
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(gooKnight);
+	CombatManager.victoryScene(beatUpCrystalGoo);
+	CombatManager.lossScene(gooKnightLossRouter);
+	CombatManager.displayLocation("GOO KNIGHT");
+	
+	addButton(0,"Next",CombatManager.beginCombat);
 }
-*/
 
 public function gooKnightLossRouter():void
 {
@@ -474,7 +481,11 @@ public function gooVillageThinger():void
 	output(", and you shield yourself as numerous heavy plates clang down atop you. Once the cacophony ends you have a little time to recover your bearings, calming your breathing as you hold what you now see are multicolored crystals above your head.");
 	output("\n\nSuddenly, the plates covering you liquefy, coating you in more of the sticky goo that covered the passage. You do your best to wipe it from your eyes, blinking the last of it away to find out what happened. A group of variably colored goo-girls - and some with male forms as well - surround you, staring on with wide-eyed, apprehensive expressions. Your codex gives a slime-muffled beep to tell you that these are ganrael, ");
 	if(CodexManager.entryUnlocked("Ganrael")) output("but you already knew that");
-	else output("a race of crystal forming goos");
+	else
+	{
+		output("a race of crystal forming goos");
+		CodexManager.unlockEntry("Ganrael");
+	}
 	output(".");
 	output("\n\nYou look around, noticing a number of small huts formed from crystalline panels. A bad feeling about the gemstone plates that covered you crosses your mind before the sticky gel that covers you solidifies, trapping you in place. The formerly surprised expressions shift to annoyed glares as your new captors close in around you. An orange-colored girl with a braid secured by citrines looms over you, and the others halt.");
 	output("\n\n<i>“You knocked over my house,”</i> she states with heated fervor. Her frame looks incredibly tense for being less than fully solid, and she gives you a soul withering frown. The rest of her kin shake their heads and furrow their brows, looking ready to deliver mob justice. Heat flushes through your face as you try to think of a way out.");
@@ -735,6 +746,7 @@ public function visitCrystalGooShop():void
 	else output("clap happily, wondering which of the blobs you should get");
 	output(".");
 	flags["MET_CGOO_SHOPKEEP"] = 1;
+	CodexManager.unlockEntry("Ganrael");
 	//The shopkeeps wares include purple, yellow, orange, green, black, red, blue, white, and pink. alternating every day in groups of 4
 	//[buy goo ball][talk][leave]
 	clearMenu();
