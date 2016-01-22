@@ -47,9 +47,14 @@ public function thollumFoyerBonus():Boolean
 	{
 		output("An enormous, weatherbeaten stone complex, the thollum, stands around you. This is an institution that processes the hundreds of female gold myr children born to Irellia every year - housing, rearing, education, and job placement are all handled inside this labyrinthine structure. Guards stand posted in the main foyer you’re currently at, and it’s a safe bet that there are more in the other rooms.");
 		//(if time 2200-0559)
-		if(hours >= 22 || hours < 6) output(" They notice you, and warn you away. Doesn’t look like you’re allowed to wander around the building at night.");
+		if(hours >= 22 || hours < 6) 
+		{
+			output(" They notice you, and warn you away. Doesn’t look like you’re allowed to wander around the building at night.");
+			addDisabledButton(0,"Check In","Check In","School visitation at night is by-prior-arrangement only.");
+		}
 		//present ‘Check In’ if incomplete and time 0600-2159
-		else addButton(0,"Check In",checkInTheThollum);
+		else addButton(0,"Check In",checkInTheThollum,undefined,"Check In","Visit the myr version of a girls’ boarding school. Due to the sheer number of anklebiters, shinpads are recommended.");
+
 	}
 	//else if PC has completed ‘Check In’ and time is not 2200-0559
 	else
@@ -68,9 +73,22 @@ public function thollumFoyerBonus():Boolean
 			if(hours == 21 && flags["MET_YARASTA"] != undefined)
 			{
 				output("\n\nYarasta is most likely in her chamber at the foot of the stairs, one floor below. If you want to visit, you’ll need to ask a guard to deliver her a message.");
+				var fuckingTooltipShitGottaBeSoGorramComplex:String = "Check in with Yarasta. She’s ";
+				if(hours == 6) fuckingTooltipShitGottaBeSoGorramComplex += "in class alone.";
+				else if(hours >= 7 && hours < 12) fuckingTooltipShitGottaBeSoGorramComplex += "with her class.";
+				else if(hours >= 13 && hours < 18) fuckingTooltipShitGottaBeSoGorramComplex += "with her class.";
+				//(1200-1259 or 1800-1859)
+				else if(hours == 12 || hours == 18) fuckingTooltipShitGottaBeSoGorramComplex += "eating alone in the courtyard.";
+				else if(hours == 19 || hours == 20) 
+				{
+					fuckingTooltipShitGottaBeSoGorramComplex += "working in the classroom with ";
+					if(flags["MET_GIALA"] == undefined) fuckingTooltipShitGottaBeSoGorramComplex += "a friend.";
+					else fuckingTooltipShitGottaBeSoGorramComplex += "Giala.";
+				}
+				else fuckingTooltipShitGottaBeSoGorramComplex += "in her quarters below the foyer.";
 				addButton(1,"Yarasta",approachYarasta);
 			}
-			addButton(0,"Take Tour",takeTheThollumTour);
+			addButton(0,"Take Tour",takeTheThollumTour,undefined,"Take Tour","Be shown around the thollum by the guard.");
 			//display button ‘Take the Tour’, if hour 2100 and she is unlocked also display ‘Yarasta’
 		}
 	}
@@ -221,7 +239,7 @@ public function thollumPassScene():void
 		output("\n\nLyralla considers this. <i>“Perhaps. Why do you wish to visit?”</i>");
 		output("\n\n<i>“I’m curious,”</i> you explain. <i>“It must be pretty strange to handle a hundred or more children at once.”</i>");
 	}
-	else if(pc.isMischievous())
+	else if(pc.isMischievous() && !pc.isBro())
 	{
 		output("<i>“Like to visit the thollum, if you don’t mind.”</i>");
 		output("\n\nLyralla’s eyebrow raises quizzically. <i>“I probably don’t, but let’s find out: what’s the purpose of your visit?”</i>");
@@ -261,7 +279,7 @@ public function checkInTheThollum():void
 		if(pc.isBro()) output(" Maybe you could trade some lifting tips?");
 		output("\n\n<i>“Sorry. You may not enter,”</i> the woman says, handing back your pass. <i>“This is just a standard pass. Feel free to go anywhere else in Irellia’s sector - I recommend seeing The Honey Nozzle at least once, if you haven’t yet.”</i>");
 		if(pc.isBimbo()) output("\n\n<i>“But I wanna scope the school,”</i> you whine.");
-		else if(pc.isBro()) output("\n\n<i>“Well, ");
+		else if(pc.isBro()) output("\n\n<i>“You sure?”</i> You look her up and down, then pat your crotch. <i>“Well what about this pass right here?”</i>");
 		else if(pc.isNice()) output("\n\n<i>“I had my heart set on looking around the thollum,”</i> you reply.");
 		else
 		{
@@ -583,7 +601,7 @@ public function yarastaMainMenu():void
 	else 
 	{
 		addButton(1,"Talk",talkToYarasta,undefined,"Talk","Chat up the myr prefect.");
-		addDisabledButton(2,"Audit Class","Audit Class","Yarasta’s class is in recess right now. It’d be creepy if you just sat in the back alone and stare.");
+		addDisabledButton(2,"Audit Class","Audit Class","Yarasta’s class is in recess right now. It’d be creepy if you just sat in the back alone and stared.");
 	}
 	//Sex
 	if(flags["YARASTA_SCHEDULE_TALK"] == undefined) addDisabledButton(3,"Sex","Sex","You barely know the prefect. While it’s possible she’s down for casual sex beneath that prim exterior, you’re far more likely to catch a hand for asking.");
@@ -640,7 +658,7 @@ public function talkToYarasta():void
 			output("\n\nThe skinny myr laughs. <i>“I feel like I’m a young girl again, sneaking " + pc.mf("a boy","a friend") + " into my room after curfew.”</i>");
 			output("\n\nYou stop and consider that. ");
 			if(pc.isBimbo()) output("<i>“You used to get people past all those guards? You’re, like, really smart.”</i>");
-			else if(pc.isMischievous()) output("<i>“If you could get by so many police, why pick an honest job?”</i>");
+			else if(pc.isMischievous() && !pc.isBro()) output("<i>“If you could get by so many police, why pick an honest job?”</i>");
 			else output("<i>“Must have been hard, with all the guards.”</i>");
 
 			output("\n\n<i>“Not at all,”</i> she says, slipping into teacher mode with a finger poised in the air. <i>“While it’s true that there are a number of Gildenmere police now stationed at the thollums, this is a new change stemming from recent upheavals - before the war and the arrival of visitors from other worlds, the prefects and sumins kept order among the students.”</i>");
@@ -774,7 +792,7 @@ public function talkToYarastaAboutTheThollum():void
 	}
 	output("\n\nYarasta pauses here to wipe her glasses on her blouse as she plots out the important points of the subject in her head. <i>“The basic principle is that we prefects are assigned a group of girls and escort said girls from shortly after birth to productive adulthood - hence the colored vests and skirts with the easily-seen emblems, each for a specific prefect’s class. By being with them the entire time, we can see deficiencies and talents as they take shape. With help from the sumins, we are able to guide the girls toward careers that make the best of their individual abilities and personalities and give extra attention to any critical skills they lack. Once the girls graduate, we take up a new class fresh out of the nursery and begin again.”</i>");
 	output("\n\n");
-	if(pc.isBimbo())
+	if(pc.isBimbo() || pc.isBro())
 	{
 		output("You digest the explanation as best you can until you encounter an idea that you can’t get down your craw. <i>“Uh, does that mean you have to know, like... everything?”</i>");
 	}
@@ -868,7 +886,7 @@ public function pryIntoYarastasSchedule():void
 	processTime(19);
 	flags["YARASTA_SCHEDULE_TALK"] = 1;
 	clearMenu();
-	if(pc.lust() < 33) addDisabledButton(0,"Flirt","Flirt","Maybe you’ll try that when your more in the mood.");
+	if(pc.lust() < 33) addDisabledButton(0,"Flirt","Flirt","Maybe you’ll try that when you're more in the mood.");
 	else if(!pc.hasGenitals() && !pc.hasTailCock() && !pc.hasHardLightEquipped() && !pc.hasDickNipples()) addDisabledButton(0,"The prefect wouldn’t be interested in your lack of sexual endowments.");
 	else addButton(0,"Flirt",yarastaSexApproach,undefined,"Flirt","Ask Yarasta if she’d like to have some adult fun.");
 
@@ -1395,7 +1413,7 @@ public function lesboThreeWayYarastaAndGiala():void
 	{
 		output("<i>“How about a little girl time, just the three of us?”</i> you suggest.");
 	}
-	else if(pc.isMischievous())
+	else if(pc.isMischievous() && !pc.isBro())
 	{
 		output("<i>“Can I parlay the parley into a pair lay?”</i> you retort.");
 	}
@@ -1487,9 +1505,11 @@ public function herSecretsYarasta():void
 	showYarasta();
 	if(flags["TALK_YARASTAS_SECRETS"] == undefined)
 	{
-		if(pc.isBimbo()) 
+		if(pc.isBimbo() || pc.isBro()) 
 		{
-			output("<i>“So, um, how come you never talk about yourself?”</i> you ask.");
+			output("<i>“So,");
+			if(pc.isBimbo()) output(" um,");
+			output(" how come you never talk about yourself?”</i> you ask.");
 			output("\n\n<i>“I talk about myself all the time,”</i> replies the prefect. <i>“I was talking about myself thirty seconds after we met.”</i>");
 			output("\n\n<i>“No, I mean, like... your childhood and stuff,”</i> you persist.");
 		}
@@ -1681,10 +1701,19 @@ public function yarastaSexApproach():void
 		showYarasta(true);
 		if(pc.isBimbo()) 
 		{
-			output("<i>“Let’s fuck!”</i> you exclaim.");
+			if(pc.isBimbo()) output("<i>“Let’s fuck!”</i> you exclaim.");
+			else output("<i>“Let’s fuck!”</i> you growl.");
 			output("\n\n<i>“Love your directness,”</i> replies Yarasta. She checks to make sure no kids are near, and then starts to undress.");
-			output("\n\n<i>“So, like... can I pick how we do it this time?”</i> you ask, watching her pulled-up blouse expose creamy skin as she untucks it.");
-			output("\n\nShe looks up. <i>“I don’t know - </i>can<i> you?”</i>");
+			if(pc.isBimbo()) 
+			{
+				output("\n\n<i>“So, like... can I pick how we do it this time?”</i> you ask, watching her pulled-up blouse expose creamy skin as she untucks it.");
+				output("\n\nShe looks up. <i>“I don’t know - </i>can<i> you?”</i>");
+			}
+			else 
+			{
+				output("\n\n<i>“So, I'll pick how we do it this time then. Fairs fair.”</i> you suggest, watching her pulled-up blouse expose creamy skin as she untucks it.");
+				output("\n\nShe looks up. <i>“Sure you can handle all that responsibility?”</i>");
+			}			
 		}
 		else if(pc.isNice())
 		{
@@ -2144,7 +2173,7 @@ public function getABlowie():void
 	else output("wetting them in pre and saliva and wrapping them around your cock until it feels like you’re fucking an onahole with a tongue at the end.");
 	output(" Your climax draws closer, and eager to achieve it, you thrust so far in that ");
 
-	if(cLength > 5) output("you can see her adam’s apple bulge just before ");
+	if(cLength > 5) output("you can see her Adam’s apple bulge just before ");
 	output("she convulses around you.");
 
 	//dog knot and cock short enough (16-18in cock length max) to knot outcome
