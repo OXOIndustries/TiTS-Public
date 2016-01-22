@@ -26,12 +26,12 @@
 			this.shortName = "Pussybloom";
 			
 			//Regular name
-			this.longName = "pussybloom pill";
+			this.longName = "Pussybloom pill";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a pussybloom pill";
+			this.description = "a Pussybloom pill";
 			
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "Originally intended as a feminine enhancer, it was discovered to cause non-females to permanently grow a vagina of their own. In light of this, the product was rebranded by Xenogen Biotech, repriced, and sold as an effective way of gaining or changing sex. It is still seen as the most effective and safest way to become a woman or hermaphrodite despite its high price tag.\n\nWomen still gain advantage from it, if they can afford it. The microsurgeon and chemical cocktail packed into the pink pill is quite effective at increasing the capacity of a given orifice, making inter-species breeding a snap. Increases in fertility are a known and documented side effect.";

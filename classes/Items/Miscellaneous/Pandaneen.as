@@ -23,7 +23,7 @@
 			//Used on inventory buttons
 			this.shortName = "Pandaneen";
 			//Regular name
-			this.longName = "pandaneen pill";
+			this.longName = "Pandaneen pill";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			

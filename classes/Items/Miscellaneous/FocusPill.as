@@ -24,12 +24,12 @@
 			//Used on inventory buttons
 			this.shortName = "FocusPill";
 			//Regular name
-			this.longName = "focus pill";
+			this.longName = "Focus pill";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a pill labeled 'focus'";
+			this.description = "a pill labeled 'Focus'";
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "Created in joint venture between JoyCo and Xenogen to help their scientists on important projects, Focus Pills give you a momentary sense of calm and emotionless insight. Reduces active lust, and grants a short-term bonus to Intelligence.";
 			

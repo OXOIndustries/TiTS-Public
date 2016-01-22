@@ -26,12 +26,12 @@
 			this.shortName = "Pussyblossom";
 			
 			//Regular name
-			this.longName = "pussyblossom pill";
+			this.longName = "Pussyblossom pill";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a pussyblossom pill";
+			this.description = "a Pussyblossom pill";
 			
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "After the success of Pussybloom, Xenogen developed an enhanced version that would cause growth of additional vaginas, though usually no more than three. The extra R&D came with a cost, and while Pussyblossom is more potent than its cousin, it’s also far more expensive.\n\nThese purple pills come in packets covered in warnings about growing additional genitals, fertility increases, and disclaimers about pregnancy.";

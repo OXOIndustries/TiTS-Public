@@ -27,11 +27,11 @@ package classes.Items.Transformatives
 			type = GLOBAL.FOOD;
 			
 			shortName = "Goblinola";
-			longName = "goblinola snack bar";
+			longName = "Goblinola snack bar";
 			
 			TooltipManager.addFullName(shortName, StringUtil.toTitleCase(longName));
 			
-			description = "a healthy goblinola snack bar";
+			description = "a healthy Goblinola snack bar";
 			tooltip = "A snack bar that is gaudily advertised on its plastic wrap as a tasty, healthy treat for the gabilani on the go. Your codex indicates that it is edible and quite nourishing, but is also likely to trigger the reconfiguration function of your nanites.";
 			
 			TooltipManager.addTooltip(shortName, tooltip);
@@ -670,7 +670,7 @@ package classes.Items.Transformatives
 			{
 				clearOutput();
 				// Consuming:
-				output("You unwrap the goblinola and munch on the stuff.");
+				output("You unwrap the Goblinola and munch on the stuff.");
 				if(!inCombat()) output(" There are some constants that hold true the galaxy over, and health snacks are one of them: It’s reasonably tasty, takes a while to chew and is vaguely unsatisfying.");
 				output(" Your stomach is left a little unsettled.");
 				if (healing > 0) output(" (<b>+" + healing + " HP</b>)");

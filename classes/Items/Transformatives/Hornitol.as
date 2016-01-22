@@ -25,7 +25,7 @@
 			
 			TooltipManager.addFullName(shortName, StringUtil.toTitleCase(longName));
 			
-			description = "a pill labeled Hornitol";
+			description = "a pill labeled ‘Hornitol’";
 			tooltip = "This is a large white pill comparable in size to a gumball. The labeling says that it contains microsurgeons that will cause the user to grow a horn, along with all of the raw material necessary to form the horn. The packaging warns that if the user has existing horns, they will likely be confused for usable raw material by the microsurgeons.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);

@@ -24,12 +24,12 @@
 			this.shortName = "Nuki C.";
 			
 			//Regular name
-			this.longName = "packet of 'nuki cookies";
+			this.longName = "packet of ‘Nuki Cookies";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a packet of 'nuki cookies";
+			this.description = "a packet of ‘Nuki Cookies";
 			
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "Sometimes called tanuki treats, ‘Nuki Cookies were created shortly after kui-tan joined the UGC. Xenogen Biotech used the new aliens’ genetic structures to improve upon primitive body modifications oft used by terran furries. The resulting product became a popular choice for kui-tan wishing to recover from mutations as well as thrill-seeking body-modders.\n\nThey appear as a pair of cookies wrapped in clear cellophane, far more palatable than a pill or a medipen. The boys in the lab must have agonized over how to package gene-weaving microsurgeons into tasty chocolate. Mmmm... chocolate.";

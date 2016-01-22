@@ -4746,9 +4746,9 @@ package classes {
 			// Adjectives: 50%
 			if(rand(2) == 0)
 			{
-				if (InCollection(armType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_BADGER, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_DEMONIC)) adjective.push("clawed");
+				if (hasClawedHands()) adjective.push("clawed");
+				if (hasPaddedHands()) adjective.push("padded");
 				if (InCollection(armType, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_BADGER, GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_PANDA)) adjective.push("bestial");
-				if (InCollection(armType, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_PANDA)) adjective.push("padded");
 				if (hasArmFlag(GLOBAL.FLAG_GOOEY)) adjective.push("slimy", "slick", "gooey");
 				else if (InCollection(armType, GLOBAL.TYPE_ARACHNID, GLOBAL.TYPE_DRIDER, GLOBAL.TYPE_BEE, GLOBAL.TYPE_LEITHAN)) adjective.push("chitinous");
 			}
@@ -4768,8 +4768,8 @@ package classes {
 			// Adjectives: 50%
 			if(rand(2) == 0)
 			{
-				if (InCollection(armType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_BADGER, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_DEMONIC)) adjective.push("clawed");
-				if (InCollection(armType, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_PANDA)) adjective.push("padded");
+				if (hasClawedHands()) adjective.push("clawed");
+				if (hasPaddedHands()) adjective.push("padded");
 				if (InCollection(armType, GLOBAL.TYPE_EQUINE)) adjective.push("hoof-tipped");
 				if (hasArmFlag(GLOBAL.FLAG_GOOEY)) adjective.push("slimy", "slick", "gooey");
 				else if (InCollection(armType, GLOBAL.TYPE_ARACHNID, GLOBAL.TYPE_DRIDER, GLOBAL.TYPE_BEE, GLOBAL.TYPE_LEITHAN)) adjective.push("chitinous");
@@ -4780,6 +4780,12 @@ package classes {
 			if (output != "") output += " ";
 			output += "finger";
 			return output;
+		}
+		public function hasClawedHands(): Boolean {
+			return InCollection(armType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_BADGER, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_DEMONIC);
+		}
+		public function hasPaddedHands(): Boolean {
+			return InCollection(armType, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_PANDA);
 		}
 		public function lowerBody():String {
 			var output: String = "";
@@ -10252,6 +10258,15 @@ package classes {
 				{
 					//Don't match? NOT MATCHED. GTFO.
 					if(vaginas[x].type != vaginas[x-1].type) return false;
+					//Flag check
+					if(vaginas[x].vagooFlags.length == vaginas[x-1].vagooFlags.length)
+					{
+						for(var i:int = 0; i < vaginas[x].vagooFlags.length; i++)
+						{
+							if(!vaginas[x-1].hasFlag(vaginas[x].vagooFlags[i])) return false;
+						}
+					}
+					else return false;
 				}
 			}
 			return true;
