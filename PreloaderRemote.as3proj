@@ -4,7 +4,7 @@
   <output>
     <movie outputType="Application" />
     <movie input="" />
-    <movie path="bin\PreloaderRemote.swf" />
+    <movie path="bin\TiTS_Preloader.swf" />
     <movie fps="24" />
     <movie width="1200" />
     <movie height="800" />
