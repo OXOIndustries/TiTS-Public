@@ -1,4 +1,6 @@
-﻿/*Inessa and the Happy Tails
+﻿import classes.Items.Toys.GravCuffs;
+
+/*Inessa and the Happy Tails
 By JimThermic
 
 Concept
@@ -1149,7 +1151,7 @@ public function cuffNFuck():void
 	//Random text output (⅓ chance):
 	if(rand(3) == 0)
 	{
-		output("\n\n <i>“W-what’s going on--?”</i> [enemy.name] stammers. [enemy.HeShe] tries to pull [enemy.hisHer] [enemy.skinColor] hands off the ground, but [enemy.heShe] can’t budge an inch.");
+		output("\n\n<i>“W-what’s going on--?”</i> [enemy.name] stammers. [enemy.HeShe] tries to pull [enemy.hisHer] [enemy.skinColor] hands off the ground, but [enemy.heShe] can’t budge an inch.");
 		output("\n\nStriding up to your prostrate opponent, you stroke [enemy.hisHer] butt and give it a ");
 		if(pc.isNice()) output("playful pat");
 		else if(pc.isMischievous()) output("cheeky slap");
@@ -1238,7 +1240,7 @@ public function cuffNFuck():void
 	output(".");
 
 	output("\n\n<i>“");
-	if(rand(5) == 0) output("Did you just cum?”</i>");
+	if(rand(5) == 0) output("Did you just cum?");
 	else if(rand(4) == 0) output("Funny, I swear you just came just then.");
 	else if(rand(3) == 0) output("Weren’t you just saying you weren’t enjoying yourself? Such a liar!");
 	else if(rand(2) == 0) output("You just came around my [pc.cockNoun " + x + "] - how did it feel?");
@@ -1264,7 +1266,8 @@ public function cuffNFuck():void
 		else output("bowels until they are");
 		output(" filled with your seed.");
 	}
-	else if(pc.cumQ() < 4000) {
+	else if(pc.cumQ() < 4000)
+	{
 		output("A font of [pc.cumNoun] surges from your cock-tip and quickly fills up [enemy.hisHer] ");
 		if(enemy.hasVagina()) output("[enemy.pussy] and womb");
 		else output("bowels");
@@ -1289,6 +1292,14 @@ public function cuffNFuck():void
 		else output("out of [enemy.hisHer] [enemy.vagOrAss]");
 	}
 	output(".");
+	
+	// NPC Pregnancy handling
+	if(enemy.hasVagina())
+	{
+		if(enemy is RaskvelFemale) knockUpRaskChance();
+		if(enemy is MyrRedFemaleDeserter) knockUpRedBitchChance();
+	}
+	
 	processTime(33);
 	pc.orgasm();
 	enemy.orgasm();
