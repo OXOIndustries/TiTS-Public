@@ -2133,12 +2133,14 @@ public function displayEncounterLog(showID:String = "All"):void
 			if(flags["MET_SERA"] != undefined)
 			{
 				output2("\n<b><u>The Dark Chrysalis</u></b>");
-				output2("\n<b>*");
-				if(flags["SERA_TRIPLE_X_RATED"] >= 4) output2(" Mistress");
-				output2(" Sera:</b> Met her");
+				output2("\n<b>* Sera:</b> Met her");
 				if(flags["SERA_NO_SEX"] == 1) output2(", Pissed off at you indefinitely");
-				else if(flags["SERA_TALKED_ABOUT_BEING_PISSED_OFF"] == undefined) output2(", Pissed off");
-				else output2(", Vented her frustrations");
+				if(flags["SERA_TRIPLE_X_RATED"] >= 4) output2(", Mistress");
+				else
+				{
+					else if(flags["SERA_TALKED_ABOUT_BEING_PISSED_OFF"] == undefined) output2(", Pissed off");
+					else output2(", Vented her frustrations");
+				}
 				if(flags["SERA_INCH_STEAL"] != undefined) output2("\n<b>* Sera, Tail Length: </b>" + prettifyLength(36 + seraInchGain()));
 				if(fuckedSeraBefore())
 				{
