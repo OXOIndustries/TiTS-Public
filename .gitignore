@@ -215,16 +215,8 @@ pip-log.txt
 .mr.developer.cfg
 
 #.swf files
-TiTS.swf
-RECOVER_TITS.fla
-
 /devTools/roomEd/main.spec
-RECOVER_style_uiscroll.fla
-TITS.html
 includes/NPCTemplates.as
-*.html
 RECOVER_*
-TiTS_Imagepack.swf
 devTools/scripts/Packages/User/Package Control.sublime-settings
-TiTS_AIR.swf
-*.sublime-workspace
+TiTS.sublime-workspace
