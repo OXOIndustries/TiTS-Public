@@ -16,7 +16,7 @@ public function crystalGooFenBurps():void
 	author("Gardeford");
 	showGardeGoo();
 	
-	var gooKnight:Creature = new GooKnight()
+	var gooKnight:Creature = new GooKnight();
 	setEnemy(gooKnight);
 	
 	//load encounter to determine color, for reasons.
