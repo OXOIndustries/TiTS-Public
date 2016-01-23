@@ -1144,6 +1144,7 @@ public function shadeAtTheBar():Boolean
 {
 	if(flags["SHADE_ON_UVETO"] != undefined && flags["KQ2_QUEST_OFFER"] != undefined && flags["KQ2_QUEST_FINISHED"] == undefined) return false; //9999 Shade does not show up during Kara Quest 2 if she's on Uveto. REMOVE THIS LINE AND ENABLE NEXT LINES WHEN UVETO IS ACTUALLY IMPLEMENTED.
 	//9999 if(flags["KQ2_SHADE_DEAD"] != undefined) return false;
+	//9999 if(flags["KQ2_SHADE_UNCONSCIOUS"] != undefined && (flags["KQ2_SHADE_UNCONSCIOUS"] + (2 * 24 * 60)) > GetGameTimestamp()) return false;
 	//9999 if(flags["SHADE_ON_UVETO"] != undefined) return false;
 	if(flags["SHADE_AND_KARA_RESOLVED_THINGS_THEMSELVES"] != undefined) return false;
 	if(flags["SHADE_DEFEATED_WITH_KARA"] != undefined) return false;
