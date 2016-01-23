@@ -245,15 +245,15 @@ public function brynnLeave():void
 		output("You can barely manage to keep your tongue in your mouth - and your hands");
 		if (pc.hasCock() || pc.hasVagina())
 		{
-			if (pc.isCrotchGarbed()) output(" out of your pants and");
+			if (!pc.isCrotchExposed()) output(" out of your pants and");
 		}
 		else if (pc.biggestTitSize() > 1)
 		{
-			if (pc.isChestGarbed()) output(" out of your shirt and")
+			if (!pc.isChestExposed()) output(" out of your shirt and")
 		}
 		else
 		{
-			if (pc.isCrotchGarbed()) output(" out of your pants and");
+			if (!pc.isCrotchExposed()) output(" out of your pants and");
 		}
 		output(" away from your");
 
