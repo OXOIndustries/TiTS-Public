@@ -6793,7 +6793,7 @@ package classes {
 			if(fullnessDelta + milkFullness > 100)
 			{
 				//Vanae milk just caps at 100.
-				if(milkType == GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK) milkFullness = 100;
+				if(InCollection(milkType, GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK, GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK)) milkFullness = 100;
 				else
 				{
 					//If we start below 100, do that normally first

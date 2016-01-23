@@ -1882,6 +1882,8 @@ public function kq2ShadePCVictoryKaraNotHard():void
 	output("\n\n<i>“Ah, fuck,”</i> Shade groans, sitting back against the wall. <i>“I’m getting too old for this shit.”</i>");
 	
 	output("\n\n<i>“Stay down,”</i> Kara warns, racking the charger on her pistol. The huntress doesn’t challenge her threat, and Kara turns to you. <i>“C’mon, [pc.name], let’s go! We’re almost home free!”</i>\n\n");
+	
+	flags["KQ2_SHADE_UNCONSCIOUS"] = 1;
 
 	CombatManager.genericVictory();
 }
@@ -2059,7 +2061,7 @@ public function kq2EncounterAmara():void
 	if (flags["KQ2_SHADE_ENCOUNTERED"] != undefined)
 	{
 		output(", past Shade’s");
-		if (flags["KQ2_SHADE_DEAD"] == 1) output(" smouldering corpse")
+		if (flags["KQ2_SHADE_DEAD"] != undefined) output(" smouldering corpse")
 		else if (flags["SEXED_SHADE"] != undefined) output(" aborted ambush"); // Fucked Shade- you don't fight her so
 		else output(" failed ambush");
 	}

@@ -814,7 +814,7 @@ package classes.GameData
 				}
 				else
 				{
-					output(attacker.mfn("He","She","It") + " he misses.");
+					output(attacker.mfn("He","She","It") + " misses.");
 				}
 			}
 			//Extra miss for blind

@@ -1,10 +1,11 @@
 ﻿import classes.Items.Miscellaneous.SmallEgg;
 
-public function shellyDisplay():void
+public function shellyDisplay(nude:Boolean = false):void
 {
-	if(flags["KNOW_SHELLYS_NAME"] == undefined) userInterface.showName("BUNNY\nWOMAN");
-	else userInterface.showName("\nSHELLY");
-	userInterface.showBust("SHELLY");
+	if(flags["KNOW_SHELLYS_NAME"] == undefined) showName("BUNNY\nWOMAN");
+	else showName("\nSHELLY");
+	if(!nude) showBust("SHELLY");
+	else showBust("SHELLY_NUDE");
 	author("Gardeford");
 }
 
@@ -58,6 +59,12 @@ public function investigateSlashShelly():void
 	{
 		if(pc.hasCock() && pc.lust() >= 33) addButton(2,"Sex",sexWithShelly);
 		else addDisabledButton(2,"Sex","Sex","Sex with Shelly requires both a phallus and lust to be at or above 33.");
+		
+		if(flags["ASSISTED_SHELLY_WITH_LAYING"] >= 3)
+		{
+			if(silly) addButton(6,"Assist+",shellyIntenseEggLaying,undefined,"Uneggspected Eggspelling in Eggcess","<i><b>Really</b></i> help Shelly lay some eggs. <i>Eggcelsior!</i>");
+			else addButton(6,"Assist+",shellyIntenseEggLaying,undefined,"Intense Egg Laying Session","<i><b>Really</b></i> help Shelly lay some eggs.");
+		}
 	}
 	else addDisabledButton(2,"Sex","Sex","Shelly isn't interested in sex unless you've already \"Assist\"ed her.");
 	addButton(14,"Leave",mainGameMenu);
@@ -77,7 +84,7 @@ public function talkToShelly():void
 	output("\n\nYou chuckle, telling her that part of her problem might be people thinking she’s just pregnant in a bar. She frowns slightly and removes her hand.");
 	output("\n\n<i>“Yeah I guess, but you only got half the story. The trial I was in was more than a year ago. Apparently the test drug they gave me was a little too effective, so whenever these eggs come out more replace them near immediately. The drug that’s going to markets is improved, no permanent effects. They must have realized people would make that mistake like you thought though. The company gave me a job promoting the product, and it's okay money - enough to rent a room on the station,”</i> she says, sounding a little more optimistic at the end.");
 	output("\n\nYou mention that you heard her mentioning “layings” and ask what that entails. She blushes and sets the sign off to the side, weaving her fingers together and looking around to see if anyone else is listening.");
-	output("\n\n<i>“Well, so i’m full of eggs, and even though they keep coming back, laying is fairly regular. Usually it's just once every couple days, but they can be… coerced to come out sooner. If you get over the fact that they came out of a person, they taste really sweet,”</i> she says with an embarrassed smile. Without really thinking about it, you tell her you’d be happy to assist her with laying eggs if she ever wanted help. The dusky saleswoman’s pink bunny ears turn beet red as she takes in your words, and you realize what you said.");
+	output("\n\n<i>“Well, so i’m full of eggs, and even though they keep coming back, laying is fairly regular. Usually it's just once every couple days, but they can be... coerced to come out sooner. If you get over the fact that they came out of a person, they taste really sweet,”</i> she says with an embarrassed smile. Without really thinking about it, you tell her you’d be happy to assist her with laying eggs if she ever wanted help. The dusky saleswoman’s pink bunny ears turn beet red as she takes in your words, and you realize what you said.");
 	output("\n\n<i>“W-well, if you really wanted too, I’d be ok with it. If I just wait for it to happen, they kinda build up and get heavier. My name is Shelly by the way,”</i> she says, brushing her hair away from her face. You aren’t sure if she’s desperate or if you made that big of an impression being the only person who came up and talked to her, but it seems she’d be willing to let you help her, and all that entails. You give her your first name in return and tell her you’ll probably be back soon.");
 	flags["KNOW_SHELLYS_NAME"] = 1;
 	//pass 30 min
@@ -89,7 +96,7 @@ public function talkToShelly():void
 //Assist
 public function assistShellyLaying():void
 {
-	flags["ASSISTED_SHELLY_WITH_LAYING"] = 1;
+	IncrementFlag("ASSISTED_SHELLY_WITH_LAYING");
 	clearOutput();
 	shellyDisplay();
 	output("You tell Shelly if she wants some assistance with her egg laying, you’re available now. She nods, grinning and gripping your hand tightly as she pulls you to one of the back rooms. The room is well lit and surprisingly comfortable-looking for what you would expect from a bar like this.");
@@ -136,11 +143,12 @@ public function getShellyPregContainer():PregnancyPlaceholder
 public function sexWithShelly():void
 {
 	clearOutput();
-	shellyDisplay();
-	userInterface.showBust("SHELLY_NUDE");
+	shellyDisplay(true);
+	
 	var x:int = pc.cockThatFits(100);
 	if(x < 0) x = pc.smallestCockIndex();
 	processTime(50+rand(10));
+	
 	output("You ask Shelly if she’d be up for a little more than just egg-laying assistance. She looks confused for a moment before realization lights up her face.");
 	output("\n\n<i>“Really? You’d do that, with me?”</i> she asks, obviously happy but not totally sure.");
 	output("\n\nYou tell her there’s nothing you’d rather do more at the moment. She takes your arm, pulling you into the back room nearly bouncing on her heels. When you arrive in the comfortable looking lodging, She turns around, presses herself against you, and ");
@@ -176,7 +184,7 @@ public function sexWithShelly():void
 	else
 	{
 		output("\n\nYou silhouette the dark skinned delicacy with your hands, prodding her to bend forward in front of the bed. Shelly bends sensually, holding her pussy open with two fingers and aiming a seductive gaze at you over her shoulder. You lean your upper body over her, grasping a breast in each hand and giving her a deep kiss.");
-		output("\n\nAfter a moment you bring your tauric half up, feeling your underside brush over her smooth back till [pc.cock " + x + "] slides like a puzzle piece between her cheeks. You rub back and forth against her, letting her prepare for penetration and teasing her at the same time. She grips [pc.cock " + x + "] with the tips of her fingers, caressing the underside whenever you pull back.");
+		output("\n\nAfter a moment you bring your tauric half up, feeling your underside brush over her smooth back until [pc.cock " + x + "] slides like a puzzle piece between her cheeks. You rub back and forth against her, letting her prepare for penetration and teasing her at the same time. She grips [pc.cock " + x + "] with the tips of her fingers, caressing the underside whenever you pull back.");
 		output("\n\nYou brace yourself on the bed and look at Shelly. She's holding herself up with one elbow and smiling at you as she polishes your [pc.cockNoun " + x + "] with her hand. The sight is too much to resist, and you rearrange yourself one more time, lining [pc.cock " + x + "] up with the entrance to her vagina. Your [pc.cockHead " + x + "] pushes into her folds, penetrating her easily");
 		if(pc.cockVolume(x) <= 50) output(" til you hilt inside her");
 		else output(" til your tip bumps into her cervix");
@@ -196,8 +204,7 @@ public function sexWithShelly():void
 public function humanoidsCumOutsideShelly():void
 {
 	clearOutput();
-	shellyDisplay();
-	userInterface.showBust("SHELLY_NUDE");
+	shellyDisplay(true);
 	output("Deciding to honor her wish, you piston a few more times for build-up and then gently lay her on the bed, popping your cock out of her pussy just in time. [pc.EachCock] pulses with orgasmic bliss, spurting blasts of [pc.cum] all over her body. A few ropes reach her face, painting parts of her dusky body [pc.cumColor]. She smiles and thanks you for not cumming inside.");
 
 	//if first time: 
@@ -210,8 +217,7 @@ public function humanoidsCumOutsideShelly():void
 public function humanoidsCumInsideShelly():void
 {
 	clearOutput();
-	shellyDisplay();
-	userInterface.showBust("SHELLY_NUDE");
+	shellyDisplay(true);
 	output("Ignoring her warning, you piston several times inside her before hilting in preparation for the coming torrent. Your rapid thrusts set off her second orgasm, and you give her a kiss as her body clamps around you. Her tightened insides are too much to resist, and your dick blows its load inside her egg filled womb.");
 	if(pc.cockTotal() > 2) output(" Your other cocks spurt wildly over her legs and the underside of her stomach.");
 	else if(pc.cockTotal() == 2) output(" Your other cock spurts wildly over her legs and the underside of her stomach.");
@@ -226,8 +232,7 @@ public function humanoidsCumInsideShelly():void
 public function taursCumOutsideShelly():void
 {
 	clearOutput();
-	shellyDisplay();
-	userInterface.showBust("SHELLY_NUDE");
+	shellyDisplay(true);
 	output("Deciding to honor her wish, you thrust a few more times, popping out of her velvety box just in time. [pc.EachCock] pulses with orgasmic fervor, spurting your load over her butt and back. Your cum paints her back [pc.cumColor], and a few shots even make it to her neck. She smiles weakly and thanks you for not cumming inside.");
 	//(if first time: Curious, you ask her why not.)
 	if(flags["KNOWS_ABOUT_SHELLY_CUM_REACTION"] == undefined) output("\n\nCurious, you ask her why not.");
@@ -239,8 +244,7 @@ public function taursCumOutsideShelly():void
 public function taursCumInsideShelly():void
 {
 	clearOutput();
-	shellyDisplay();
-	userInterface.showBust("SHELLY_NUDE");
+	shellyDisplay(true);
 	output("Ignoring her warning, you piston your powerful hips a few more times, finally hilting inside her in preparation for flooding her with seed. Your thrusts start her orgasm anew, and she bites the sheets, now soaked in sugary fluids. Her tightened insides are too much to resist in the heat of the moment, and your breath catches as you’re overwhelmed by lust. Your dick pumps its load into her egg-stuffed womb.");
 	if(pc.cockTotal() > 1)
 	{
@@ -274,4 +278,94 @@ public function omniShellyEpilogueBlurb():void
 	processTime(5);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
+}
+
+//Inside
+public function shellyIntenseEggLaying(pageNum:int = 1):void
+{
+	clearOutput();
+	shellyDisplay(true);
+	
+	if(pageNum == 1)
+	{
+		output("You ask Shelly if she’d be up for a little more intensive session of egg-laying. She cocks an eyebrow, not fully sure of your meaning, but interested enough that you think she’ll accept. After a few moments of thought she nods, pulling you into the back room she uses to lay her eggs. You follow eagerly, her sugary scent making your mouth water.");
+		output("\n\n<i>“Alright, now what’s this intensity you’re talking about?”</i> she asks, turning to face you. You tell her");
+		if(flags["ASSISTED_SHELLY_WITH_INTENSE_LAYING"] == undefined) output(" it’s a surprise, but the first egg will be coming out while she’s still standing");
+		else output(" it’s the same kind of treatment as last time");
+		output(". As you speak you");
+		if(!pc.isNude()) output(" strip from your [pc.clothes] before stepping");
+		else output(" step");
+		output(" closer to her, unhooking her denim bikini and freeing her dusky mounds.");
+		output("\n\nBeads of sugary milk have already begun to form on her nipples, and you take a slow drink from one as you work the button on her shorts. You gently tug them down over her ample booty, revealing a pair of lace panties. This time they match her hair in color, a shiny bright blue. You end your drink, letting some of the milk stay on your lips as you plant wet kisses along her egg-filled belly.");
+		output("\n\nUnder the dark mountain of her stomach you find her glistening slit. You prompt her to open her legs a little further, spreading her lips as you press your own into them. Her hard clit is like sweet candy as you roll your tongue over it, lapping up her juices with gusto. Your pleased to feel her legs quiver as you lick, and you can hear her trying to contain her voice.");
+		output("\n\nYour fingers join your lips, playing around her entrance teasingly. Your other hand reaches around her back, giving her ass a squeeze and toying with the cottony fuzz of her bunny tail. You see Shelly’s arms move out of sight above her belly, assumedly to play with her tits. Sure enough you soon see small streams of milk trickling into your vision, dripping onto your face and mixing with her other juices.");
+		output("\n\nThe egg-filled bunny girl’s candied liquids set you on a sugar high, licking her faster and faster as it increases. Your fingers now penetrate her sopping hole, and she moans as they rub the sensitive walls of her insides. The muscles of her squeezable butt tense in your hand, and you massage the dusky flesh as you work her clit.");
+		output("\n\nHer voice grows louder and louder as you continue, wobbling on her legs as her pleasure builds. She holds your head to steady herself, and you nearly lose your own footing as you’re used as a table. You grin as she shudders, and feel her entire body tensing as she cums. Her noises catch in her throat, unable to escape the spasming vessel that contains them.");
+		output("\n\n<i>“Oooooh. The first egg is c-coming,”</i> she says, her voice slurring as her balance wobbles. You hold out both hands, giving her one last lick before pulling back. In short time, a small pink egg pushes its way out of her, plopping into your hands with a small splash. Once the effort is over the strength leaves Shelly’s body, and she collapses onto the bed, holding herself up with her arms and knees.");
+		
+		processTime(10);
+		pc.milkInMouth(getShellyPregContainer());
+		pc.girlCumInMouth(getShellyPregContainer());
+		pc.lust(5);
+		clearMenu();
+		addButton(0, "Next", shellyIntenseEggLaying, 2);
+		return;
+	}
+	else if(pageNum == 2)
+	{
+		output("<i>“");
+		if(flags["ASSISTED_SHELLY_WITH_INTENSE_LAYING"] == undefined) output("Is that all? that wasn’t much different from norm");
+		else output("Yeah, this way is the be");
+		output("-ahhh,”</i> she begins, but you interrupt her before she can finish, plugging her now easily visible hole with your tongue. The remnants of her previous orgasm set her insides to clutching tightly around your oral muscle. You kiss her hole like the mouth of a lover, tonguing sensuously at its corners.");
+		output("\n\nYou give her legs a bear hug as you continue to lick her inside and out, inhaling her sugary scent like a drug. The smell is intoxicating, and every breath you take is accompanied by a twinge from your groin. Your attentions draw coos and hums from the egg-stuffed bunny, and you reach up to cup one of her dusky D-cups.");
+		output("\n\nThe chocolate colored orb is as soft as the bed she kneels on, and still dripping with a few beads of milk that let your hand coat it with a sugary sheen. Her upper arms seem to be losing their strength about as fast as her legs did, and you wonder how much longer she’ll be able to hold herself in her current position.");
+		output("\n\nBeing a curious person, you can’t help but test out such a thought. You grip both of her ebony ass-cheeks, squeezing them and spreading her wider as you intensify your treatment of her nethers. Candied juices drip from her hungry cunt, soaking the bed beneath it. Her arms wobble one more time before she falls forward, no longer able to hold against your assault.");
+		output("\n\nHer front falls, pressing into the bedding, and she buries her face in a pillow, unable to completely muffle the loud moan that comes next. You rub her burdened belly, starting at the sides of her now smushed breasts and continuing until you reach the top of her pelvis. You trace lines over her skin with your fingertips, eliciting a number of pleased noises and twitches from the happy bunny.");
+		output("\n\nYou give her a break for a moment, more to catch a breather for yourself than to give her a rest. Sticky strands of the sugary slut’s juices cling you your mouth breaking as you lick your lips, mixing with your saliva. Your tongue is coated in a similar mixture, so the sweet syrup is too thick too completely remove, and your lips cling to her irresistibly smooth butt for a moment when you kiss it.");
+		output("\n\nYou squeeze Shelly’s cute cotton tail like a sponge, giggling in your sugar induced high as the fur tickles your fingers. You blow on the base of the fuzzy thing, your giggle becoming a laugh when her cheeks clench in response. You pull back for a second, pulling off the dusky beauty’s blindingly white socks and planting a sugar slickened kiss on the sole of each foot. Her toes splay out as you do so, and you lace your fingers through them as you return your attention upward.");
+		output("\n\nOn the way you plant a smooch on the underside of the chocolate bunny’s belly, transitioning to a lick that travels up her trail of dripping juices all the way to her snatch. You’re pleased to see her clenching the bed sheets in each hand, and slow down to a tantalizing gait as your [pc.tongue] slides over her entrance.");
+		output("\n\nShelly holds her breath as she waits for your oral muscle to finish its path. What kind of person would you be if you denied her? Just as your [pc.tongue] is about to leave the top of her pussy, you dive back, plunging it as deeply as you can into her. The breath she had held sighs out, rising into an orgasmic moan as her entire body shudders.");
+		output("\n\nIt would appear that the dark skinned rabbit was holding in a lot more than you’d thought. sweetened juices splash your face as a new egg bumps into your tongue. You pull back in surprise, letting the white striped ovoid plop out of her with the next giant spasm of pleasure. You catch the new egg in your hands, placing it next to the pink one from before.");
+		output("\n\nYou don’t give the beleaguered bunny a chance to rest, flipping her over while she’s still cumming from the last bout of fun. You dive into her still clenching cunt, sucking her candied clit for a few seconds before moving on the biggest dessert. Now that she’s flipped over your [pc.tongue] has a new area of muscle to explore.");
+		output("\n\n<i>“W-wait, I’m still c-cumming!”</i> she half shouts between moans. You ignore her plea, instead opting to slather her inner thighs with kisses as they instinctively close around your head. The bright pink clit that your nose is rubbing against is blinding against the darker flesh that surrounds you.");
+		output("\n\n<i>“M-more cumming...”</i> she says, her voice trailing off into quiet moans as her body is rocked with a mind melting orgasm. The bed beneath her is soaked with milk and fem-cum, filling the air with her enticingly sweet scent. The smell of it batters through your self restraint, urging you to let your licks last longer and longer.");
+		output("\n\nYou gently massage her egg-filled midsection, coaxing it with touches to release another into your safe keeping. You pause periodically to give her breasts a rough squeeze, the coating of milk making them nearly slip out of your grip each time. Soon her entire front is covered in a slick sheen of shiny milk, letting your hands slide easily to whatever portion you wish to fondle.");
+		output("\n\nShelly’s vocalizations have been reduced to exhausted moans, her legs loosening on your neck and dropping to rest on your shoulders");
+		if(pc.hasWings()) output(", the toes brushing your [pc.wings]");
+		output(". She attempts to grasp your head but her slippery fingers run");
+		if(pc.hasHair()) output(" through your [pc.hair]");
+		else output(" over your scalp");
+		output(" unsuccessfully. You take one of her hands as she pulls them back, giving it a reassuring squeeze.");
+		output("\n\nShe squeezes back as best as she can, grunting numbly as your nose bumps a particularly sensitive spot on her clit. You swirl your [pc.tongue] around inside her, stirring up the walls of her vagina as it tightens fitfully around you. A part of you is surprised that you haven’t gotten another egg yet, but you can’t give up now.");
+		output("\n\nWith your unoccupied hand, you slip under her butt, sliding easily under the squishy cheek with the her sugary lube paving the way. You pause when you reach the now flattened bunny tail, eliciting a yelp from it’s owner when you give it a solid tug. Her legs unconsciously open a little wider as you draw your finger in a circle around its base, tracing your thumb slowly along her flesh until you reach her asshole. You rub up and down the exposed orifice, reveling in the feeling of her plush assflesh on every side.");
+		output("\n\nAfter a few cycles, you slip your thumb into her fem-cum slicked butt. Shelly tries to vocalize her pleasure, but it comes out in a moaning half-purr as she tenses, her legs lifting herself up on your shoulders. You do your best to move the encased digit, but her heated passage constricts it too tightly to do much. You continue licking throughout the process, not giving her rest for anything.");
+		output("\n\nYou stroke the rabbit-like tail above her butt, now too soaked with juices to be fuzzy, but still feeling soft as velvet. Her moans cease completely, catching in her throat as you give the silky brush three short tugs. More for your own benefit than hers, you set your fingers in a circle, letting them feel along the entire outer edge of the fluffy ball until they meet on the other side. You reverse the direction afterwards, travelling back to the base and a few inches up her tailbone. She manages a short gasp as her fur is stroked backwards, setting her already molten thoughts into disarray.");
+		output("\n\nGradually her shock is overridden, and she sinks back to the warm, wet, cradle of the bed. Your thumb digs deeper, matching your [pc.tongue] in intensity once she no longer has the strength to stop it. A sugary haze covers your vision, and you pull away for a second to catch your breath, face dripping strands of syrupy fem-cum.");
+		output("\n\n<i>“Cum-cumming... Big egg cumming,”</i> the bunny girl manages between silent moans. It takes your hazy mind a second to remember what she’s talking about, but you duck back just in time for the bottom of a giant egg to bump you in the nose. You hear Shelly give a distressed vocalization as she pushes to no end. It would seem you’re mouth-fucking was so intense that she doesn’t have strength left to get the last egg out.");
+		
+		pc.lust(10);
+		pc.girlCumInMouth(getShellyPregContainer());
+		processTime(20);
+		clearMenu();
+		addButton(0, "Next", shellyIntenseEggLaying, 3);
+		return;
+	}
+	else if(pageNum == 3)
+	{
+		output("You assist her in the only way you can think of, by continuing said mouth-fuck. You attempt to clean the egg off the juices that coat it’s shell. Your effort are in vain, as your [pc.tongue] is coated with just as much of the sticky substance. The only recourse is to settle with suckling her clit until she cums again.");
+		output("\n\nYou dig in, rolling the sensitive bud again and again, using your fingers when your mouth tires. Shelly continues her instinctive pushing and distressing, failing each time and relaxing for a few haggard breaths before trying again. You almost think the cycle will be endless, but a lucky circumstance prevents such a loop.");
+		output("\n\nYour efforts finally pay off as she cums once again, pushing at the same time hard enough that the large egg plops out onto the saturated bed sheet. Her orgasm splatters your face with a squirt of syrup in the process. You’ve already begun to crash from the sugar rush of the original intake, and despite your best efforts to clean your face only end up smearing the sticky goo.");
+		output("\n\nYou give up after a few minutes, crawling up next to the utterly spent rabbit and snuggling into her side with a sticky kiss to her neck. Shelly seems to have fallen asleep, breathing deeply as she recovers. You join her in rest and warmth for the time being, not wanting to leave with your face covered in sugar and unsure what to do.");
+		output("\n\nThe two of you wake up a couple hours later, stuck to the bed but feeling somewhat rested. You wash off in the shower, freeing your face from the prison of crystallized sugar. When you get back you kiss the dusky girl goodbye, gathering your things and stretching before heading back to your previous endeavors. Shelly waves as you leave, smiling dreamily and rearranging the three eggs you left her with.");
+		
+		// (pass 4 hours)
+		processTime(180 + rand(45));
+		IncrementFlag("ASSISTED_SHELLY_WITH_LAYING");
+		IncrementFlag("ASSISTED_SHELLY_WITH_INTENSE_LAYING");
+		pc.girlCumInMouth(getShellyPregContainer());
+		pc.lust(5 + rand(21));
+		pc.shower();
+	}
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);	
 }
