@@ -65,7 +65,7 @@ public function brynnRandomBarnEventFunc():Boolean
 				output(" Your [pc.cocks] throb");
 				if (pc.cocks.length == 1) output("s");
 				output(" insistently,");
-				if (pc.isCrotchGarbed())
+				if (!pc.isCrotchExposed())
 				{
 					output(" swelling");
 					if (pc.biggestCockLength() > 12) output(" uncomfortably");
