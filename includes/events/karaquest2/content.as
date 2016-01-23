@@ -2426,9 +2426,8 @@ public function kq2AmaraSpecialEnd():void
 	flags["KQ2_KARA_SACRIFICE"] = 1;
 	flags["KQ2_QUEST_FINISHED"] = 2;
 	currentLocation = "SHIP INTERIOR";
-
-	clearMenu();
-	addButton(0, "Next", mainGameMenu);
+	
+	CombatManager.genericLoss();
 }
 
 public function kq2KaraSexytimes():void

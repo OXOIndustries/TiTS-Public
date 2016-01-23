@@ -397,10 +397,11 @@ public function showPerksList():void
 public function crewRecruited():Number
 {
 	var counter:Number = 0;
-	if(flags["RECRUITED_CELISE"] > 0) counter++;
-	if(reahaRecruited()) counter++;
+	if (flags["RECRUITED_CELISE"] > 0) counter++;
+	if (reahaRecruited()) counter++;
 	if (!annoNotRecruited()) counter++;
 	if (bessIsFollower()) counter++;
+	if (varmintIsTame()) counter++;
 	return counter;
 }
 
