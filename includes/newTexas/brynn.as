@@ -77,29 +77,29 @@ public function brynnRandomBarnEventFunc():Boolean
 				else
 				{
 					output(" quickly swelling to full-mast and leaving little doubt as to the effect the thick smell of sex is having on your person.");
-				} 
-				if (pc.hasVagina())
-				{
-					output(" Your [pc.cunts]");
-					if (pc.hasCock())
-					{
-						output(" follow");
-						if (pc.vaginas.length == 1) output("s");
-						output(" suit, fluttering");
-					}
-					else
-					{
-						output(" flutter");
-						if (pc.vaginas.length == 1) output("s");
-						output(" and flush");
-						if (pc.vaginas.length == 1) output("es");
-					}
-					output(" with need as arousal begins to bead around your quim");
-					if (pc.vaginas.length > 1) output("s, ");
-					else output(", ");
-					if (pc.hasCock()) output(" as equally");
-					output(" sensitive to the scent of a powerful, virile male wanting for a tight cunt to fill.");
 				}
+			}
+			if (pc.hasVagina())
+			{
+				output(" Your [pc.cunts]");
+				if (pc.hasCock())
+				{
+					output(" follow");
+					if (pc.vaginas.length == 1) output("s");
+					output(" suit, fluttering");
+				}
+				else
+				{
+					output(" flutter");
+					if (pc.vaginas.length == 1) output("s");
+					output(" and flush");
+					if (pc.vaginas.length == 1) output("es");
+				}
+				output(" with need as arousal begins to bead around your quim");
+				if (pc.vaginas.length > 1) output("s, ");
+				else output(", ");
+				if (pc.hasCock()) output(" as equally");
+				output(" sensitive to the scent of a powerful, virile male wanting for a tight cunt to fill.");
 			}
 
 			output("\n\nDeep, guttural groans of encouragement emanate from one of the stalls in your proximity, simply adding further confirmation that there's somebody getting hot and heavy nearby.");
