@@ -8,6 +8,7 @@
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
 	import classes.Engine.Interfaces.author;
+	import classes.Util.InCollection;
 	import classes.Util.RandomInCollection;
 	
 	public class SkySap extends ItemSlotClass
@@ -373,11 +374,12 @@
 				// PC must have A cup or larger breasts
 				// PC must not already have Vanae milk
 				// The PC begins to lactate (if not already doing so) and lactation type becomes Vanae_Maiden, Vanae_Huntress, or Vanae_Matron.
-				if(pc.biggestTitSize() >= 1 && pc.milkType != GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK && pc.vanaeScore() > 2 && changes < changeLimit && rand(4) == 0)
+				if(pc.biggestTitSize() >= 1 && !InCollection(pc.milkType, GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK, GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK) && pc.vanaeScore() > 2 && changes < changeLimit && rand(4) == 0)
 				{
 					outputB("\n\nYou grab your [pc.breasts] and feel a churning, filling sensation inside of them. Your [pc.nipplesNoun] poke out through your fingertips, lewdly erect, and [pc.milk] begins to orgasmically spurt from your udders. You moan and milk your wildly spurting peaks, literally creaming yourself long and hard.");
 					// Milk change here to Vanae_maiden, Vanae_Huntress, or Vanae_Matron milk.
-					pc.milkType = GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK;
+					if(pc.hasVirginVagina()) pc.milkType = GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK;
+					else pc.milkType = GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK;
 					if(pc.milkMultiplier < 80) pc.milkMultiplier = 80;
 					if(pc.milkFullness < 50) pc.milkFullness = 50;
 					outputB("\n\nDrowning in pleasure, you utterly cum out the contents of your [pc.breasts] until they're emptied, and something new fills it instead. Fruity, [pc.milkColor] fluid flows out from between your fingers. Bringing your digits up, you lick some off. Just a little taste is enough to make you flush with arousal. Your breast milk is now filled with aphrodisiacs. <b>You now have [pc.milkColor] vanae breast milk!</b>");
