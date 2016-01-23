@@ -669,7 +669,7 @@ public function kq2rfHelipadElevator():Boolean
 {
 	output("The elevator connects three floors of the Black Void base: the main level, the research level below, and a helipad on the roof.");
 	
-	if (flags["KQ2_DEFEATED_JUGGERNAUT"] == 1)
+	if (flags["KQ2_DEFEATED_JUGGERNAUT"] != undefined)
 	{
 		output("\n\nThe roof's been caved in, and a dead pirate in massive armor lies on the floor of the car. You're amazed the elevator is still functional.");
 	}
@@ -685,7 +685,7 @@ public function kq2rfLobbyElevator():Boolean
 {
 	output("The elevator connects three floors of the Black Void base: the main level, the research level below, and a helipad on the roof.");
 
-	if (flags["KQ2_DEFEATED_JUGGERNAUT"] == 1)
+	if (flags["KQ2_DEFEATED_JUGGERNAUT"] != undefined)
 	{
 		output("\n\nThe roof's been caved in, and a dead pirate in massive armor lies on the floor of the car. You're amazed the elevator is still functional.");
 	}
@@ -701,7 +701,7 @@ public function kq2rfLobbyElevator():Boolean
 public function kq2rfLab1():Boolean
 {
 	output("A stark white laboratory sits just outside the elevator room. Everything here is sleek, high technology bathed in sterile light");
-	if (flags["KQ2_DEFEATED_JUGGERNAUT"] == 1) output(", though much of the equipment has been torn apart by the Juggernaut’s gunfire");
+	if (flags["KQ2_DEFEATED_JUGGERNAUT"] != undefined) output(", though much of the equipment has been torn apart by the Juggernaut’s gunfire");
 	output(". A hatch sits against the eastern wall, sealed from your side by a large circular handle. A warning painted in big, red letters advises against going through without <i>“proper safety equipment”</i> - whatever that is - and that nothing may come or go through the door ahead without thorough screening.");
 
 	if (flags["KQ2_LAB1_ENTERED"] == undefined)
@@ -733,7 +733,7 @@ public function kq2rfKhansLab():Boolean
 		else output(" trying to pick up the pieces of their work, occasionally shooting their former master dark looks.");
 	}
 
-	if (flags["KQ2_WATSON_MET"] == 1 && flags["KQ2_KHANS_FILES"] == undefined)
+	if (flags["KQ2_WATSON_MET"] != undefined && flags["KQ2_KHANS_FILES"] == undefined)
 	{
 		flags["NAV_DISABLED"] = NAV_WEST_DISABLE;
 		output("\n\nYou and Kara should probably deal with Khan's files before you leave the R&D level.");
@@ -822,11 +822,11 @@ public function kq2rfRoof1():Boolean
 {
 	output("This access walkway connects the shack-like box of the elevator to the helipad to the north. Among several small shuttles, a single heavy gunship is parked there with its engines already running. Something tells you that you’re not alone up here.");
 
-	if (flags["KQ2_SHADE_UNCONSCIOUS"] == 1)
+	if (flags["KQ2_SHADE_UNCONSCIOUS"] != undefined)
 	{
 		output("\n\nShade, the kaithrit bounty hunter from back at the tavern, is lying unconscious on the ground.");
 	}
-	else if (flags["KQ2_SHADE_DEAD"] == 1)
+	else if (flags["KQ2_SHADE_DEAD"] != undefined)
 	{
 		output("\n\nShade, the kaithrit bounty hunter from back at the tavern, is lying face-down in a pool of smoking blood and plasma. Beside you, Kara looks utterly unremorseful.");
 	}
@@ -890,7 +890,7 @@ public function kq2rfLabElevator():Boolean
 	}
 
 	addDisabledButton(0, "Labs", "Research Level", "You are already on this floor.");
-	addButton(1, "Lobby", move, "KQ2_LOBBYELEVATOR");
+	addButton(1, "Lobby", move, "K2_LOBBYELEVATOR");
 	if(flags["KQ2_KHANS_FILES"] != undefined) addButton(2, "Roof", move, "K2_HELIPADELEVATOR");
 	else addDisabledButton(2, "Roof", "Helipad", "You can't go there--Kara isn't finished with what she has to do here yet!");
 
