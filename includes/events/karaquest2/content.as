@@ -2381,8 +2381,6 @@ public function kq2AmaraSpecialEnd():void
 	clearOutput();
 	kq2ShowAmara();
 
-	flags["KQ2_QUEST_FINISHED"] = 1;
-
 	output("The pirates are just too much for you. Their leader, Amara, fights like a tank, and packs more firepower than all her goons combined. Kara grunts beside you, collapsed on the deck and  clutching her belly. Blood runs out between her fingers, drooling in thick rivulets to splatter on the concrete.");
 	
 	output("\n\nThe pirate lord hefts her chaingun up onto her shoulder and strides toward you, a great big grin on her blue-painted lips. <i>“Well. Bragga’s gonna be </i>pissed<i> I kicked your shit in for her, kitten,”</i> she laughs, grabbing Kara by the collar and heaving her up off the ground.");

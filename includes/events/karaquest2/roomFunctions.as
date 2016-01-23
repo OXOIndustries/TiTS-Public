@@ -353,6 +353,7 @@ public function kq2rfYardB3():Boolean
 		flags["NAV_DISABLED"] = NAV_EAST_DISABLE;
 		addButton(0, "Enter R&D", kq2rfEnterRNDFirstTime);
 	}
+	else flags["NAV_DISABLED"] = undefined;
 
 	return false;
 }
@@ -373,7 +374,7 @@ public function kq2rfManualOverride():void
 
 	output("\n\nIt’s a quick matter to rip some of the wiring out, cross it, and short out the security system. After about a minute of work, the door slides open. Success!");
 
-	flags["KQ2_RND_ENTRANCE_OPEN"] = 3
+	flags["KQ2_RND_ENTRANCE_OPEN"] = 3;
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -421,14 +422,16 @@ public function kq2rfKaraOverride():void
 
 public function kq2KaraHotwiresSumDoors():void
 {
+	CombatManager.genericVictory();
+	
 	output("\n\n<i>“We’re in!”</i> Kara cheers as the doors slide open. <i>“C’mon, let’s go!”</i>");
 
 	flags["KQ2_RND_ENTRANCE_OPEN"] = 4;
 	flags["KQ2_KARA_WITH_PC"] = 1;
-	clearMenu();
-	addButton(0, "Next", mainGameMenu);
 	
-	// 9999 maybe force pc inside and then close door behind.
+	// maybe force pc inside and then close door behind.
+	clearMenu();
+	addButton(0, "Enter R&D", kq2rfEnterRNDFirstTime);
 }
 
 public function kq2rfEnterRNDFirstTime():void

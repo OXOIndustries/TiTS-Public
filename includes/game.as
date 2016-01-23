@@ -401,6 +401,7 @@ public function crewRecruited():Number
 	if (reahaRecruited()) counter++;
 	if (!annoNotRecruited()) counter++;
 	if (bessIsFollower()) counter++;
+	if (hasGooArmor()) counter++;
 	if (varmintIsTame()) counter++;
 	return counter;
 }

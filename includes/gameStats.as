@@ -1557,7 +1557,9 @@ public function displayQuestLog(showID:String = "All"):void
 					if(flags["KQ2_LOST_TO_AMARA"] != undefined) output2(", Lost to Amara");
 					if(flags["KQ2_BETRAYED_KARA"] != undefined) output2(", You betrayed Kara");
 					if(flags["KQ2_KARA_SACRIFICE"] != undefined) output2(", Kara sacrificed herself");
-					if(flags["KQ2_QUEST_FINISHED"] != undefined) output2(", Completed");
+					if(flags["KQ2_QUEST_FINISHED"] == 1) output2(", Completed");
+					else if(flags["KQ2_QUEST_FINISHED"] == 2) output2(", Failed");
+					else output2(", <i>In progress...</i>");
 					// Pirate Base
 					if(flags["KQ2_KARA_WITH_PC"] != undefined)
 					{
