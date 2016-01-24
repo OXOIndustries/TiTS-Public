@@ -989,7 +989,7 @@ public function rewardFromDoctorBadger():void
 		output("\n\nYou feel her take the gun-thing off you, and slide a credit chit back in its place. Wow!");
 		output("\n\n<i>“By the way, I found out that Penny had a side business selling Throbb, and she’s probably going to be a bit too distracted now to keep that up. We’re not so different, her and I, so if you ever need something to give you an even <i>bigger</i> cock, well, you know who to come to...”</i>");
 		output("\n\nEventually you finish up, and with a pat on the butt Dr Badger lets you know that you’re done here. You start to head out, but as you go she calls out one last thing.");
-		output("\n\n<i>“Oh, and I’ll let you know if I have any more work for you. You did such a good job, I’m sure I’ll have some... interesting things for you in the future.</i>");
+		output("\n\n<i>“Oh, and I’ll let you know if I have any more work for you. You did such a good job, I’m sure I’ll have some... interesting things for you in the future.”</i>");
 		pc.loadInMouth(pc);
 		pc.loadInMouth(chars["DRBADGER"]);
 	}
@@ -997,7 +997,7 @@ public function rewardFromDoctorBadger():void
 	pc.credits += 3000;
 	pc.removeKeyItem("Doctor Badger's Bimbo Raygun - Programmed for use on Penny.");
 	//[Take from player quest item <i>“Bimbo Raygun”</i>. Give player 3,000 credits.]
-	//[Add Buy Throbb button when using Dr Badger as a store]		
+	//[Add Buy Throbb button when using Dr Badger as a store]
 	flags["BADGER_QUEST"] = 3;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

@@ -307,8 +307,8 @@ public function buyItem():void {
 			}
 			else {
 				trace("SHOWAN HIDE BUTTONS");
-				if(x <= 13) addDisabledButton(x,shopkeep.inventory[x].shortName + " x" + shopkeep.inventory[x].quantity);
-				if(x > 13) addDisabledButton(x+1,shopkeep.inventory[x].shortName + " x" + shopkeep.inventory[x].quantity);
+				if(x <= 13) addDisabledButton(x, shopkeep.inventory[x].shortName + " x" + shopkeep.inventory[x].quantity);
+				if(x > 13) addDisabledButton(x + 1, shopkeep.inventory[x].shortName + " x" + shopkeep.inventory[x].quantity);
 			}
 		}
 	}
@@ -396,14 +396,18 @@ public function sellItem():void {
 				output("\n" + StringUtil.upperCase(pc.inventory[x].description, false) + " - " + getSellPrice(shopkeep,pc.inventory[x].basePrice) + " credits.");
 				if(sellOptions)
 				{
-					if(x <= 13) addItemButton(x, pc.inventory[x], sellItemQuantity, pc.inventory[x], null, null, pc, shopkeep);
+					if (x <= 13) addItemButton(x, pc.inventory[x], sellItemQuantity, pc.inventory[x], null, null, pc, shopkeep);
 					if (x > 13) addItemButton(x + 1, pc.inventory[x], sellItemQuantity, pc.inventory[x], null, null, pc, shopkeep);
 				}
 				else
 				{
-					if(x <= 13) addItemButton(x, pc.inventory[x], sellItemGo, pc.inventory[x], null, null, pc, shopkeep);
+					if (x <= 13) addItemButton(x, pc.inventory[x], sellItemGo, pc.inventory[x], null, null, pc, shopkeep);
 					if (x > 13) addItemButton(x + 1, pc.inventory[x], sellItemGo, pc.inventory[x], null, null, pc, shopkeep);
 				}
+			}
+			else {
+				if(x <= 13) addDisabledButton(x, pc.inventory[x].shortName + " x" + pc.inventory[x].quantity, StringUtil.toDisplayCase(pc.inventory[x].longName), "The vendor is not interested in this item.");
+				if(x > 13) addDisabledButton(x + 1, pc.inventory[x].shortName + " x" + pc.inventory[x].quantity, StringUtil.toDisplayCase(pc.inventory[x].longName), "The vendor is not interested in this item.");
 			}
 		}
 	}
