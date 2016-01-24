@@ -330,6 +330,11 @@
 
 		public function TiTS()
 		{
+			addEventListener(Event.ADDED_TO_STAGE, init);
+		}
+		
+		private function init(e:Event):void
+		{	
 			loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, uncaughtErrorHandler);
 			
 			kGAMECLASS = this;
@@ -392,7 +397,14 @@
 			this.chars["PC"] = new PlayerCharacter();
 			_perkDB = new Perks();
 			
-			this.addEventListener(Event.ADDED_TO_STAGE, init);
+			inputManager = new InputManager(stage, false);
+			setupInputControls();
+			
+			// set up the user interface: ------------------------------------------------------------
+			userInterface = new GUI(this, stage);
+			clearMenu();
+
+			addEventListener(Event.FRAME_CONSTRUCTED, finishInit);
 		}
 		
 		private function uncaughtErrorHandler(e:UncaughtErrorEvent):void
@@ -407,18 +419,6 @@
 				clearMenu();
 				addButton(14, "Next", mainGameMenu);
 			}
-		}
-		
-		private function init(e:Event):void
-		{
-			this.inputManager = new InputManager(stage, false);
-			this.setupInputControls();
-			
-			// set up the user interface: ------------------------------------------------------------
-			this.userInterface = new GUI(this, stage);
-			this.clearMenu();
-
-			this.addEventListener(Event.FRAME_CONSTRUCTED, finishInit);
 		}
 		
 		private function finishInit(e:Event):void

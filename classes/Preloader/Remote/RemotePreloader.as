@@ -33,15 +33,10 @@ package classes.Preloader.Remote
 			fileLoader.contentLoaderInfo.addEventListener(ProgressEvent.PROGRESS, onProgressUpdate);
 			fileLoader.contentLoaderInfo.addEventListener(Event.COMPLETE, onLoadComplete);
 			
-			//var targetURL:URLRequest = new URLRequest("https://www.fenoxo.com/play/latest.php" /*?t=" + new Date().time*/);
-			//var requestHeaders:URLRequestHeader = new URLRequestHeader("pragma", "no-cache");
-			var request:URLRequest = new URLRequest("http://gedan.co.uk/tits/latest.php");
-			//request.data = new URLVariables("cache=no+cache");
-			//request.method = URLRequestMethod.POST;
-			//request.requestHeaders.push(requestHeaders);
+			var targetURL:URLRequest = new URLRequest("https://www.fenoxo.com/play/latest_remote.php");
 			
 			stage.addChild(fileLoader);
-			fileLoader.load(request);
+			fileLoader.load(targetURL);
 		}
 		
 		private function onProgressUpdate(e:ProgressEvent):void
