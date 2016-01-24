@@ -8,6 +8,7 @@ package classes.Preloader.Internal
 	import flash.events.IOErrorEvent;
 	import flash.utils.getDefinitionByName;
 	import classes.Util.log;
+	import flash.system.Security;
 	
 	/**
 	 * ...
@@ -19,7 +20,8 @@ package classes.Preloader.Internal
 		
 		public function InternalPreloader() 
 		{
-			
+			Security.allowDomain("*");
+			Security.allowInsecureDomain("*");
 		}
 		
 		override public function beginLoad():void

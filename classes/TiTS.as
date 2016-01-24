@@ -76,6 +76,7 @@
 	import flash.events.UncaughtErrorEvent;
 	import flash.events.UncaughtErrorEvents;
 	import flash.display.LoaderInfo;
+	import flash.system.Security;
 
 	//Build the bottom drawer
 	public class TiTS extends MovieClip
@@ -330,6 +331,8 @@
 
 		public function TiTS()
 		{
+			Security.allowDomain("*");
+			Security.allowInsecureDomain("*");
 			addEventListener(Event.ADDED_TO_STAGE, init);
 		}
 		

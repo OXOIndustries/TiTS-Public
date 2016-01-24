@@ -23,6 +23,7 @@ package classes.Preloader.Remote
 		public function RemotePreloader() 
 		{
 			Security.allowDomain("*");
+			Security.allowInsecureDomain("*");
 		}
 		
 		private var fileLoader:Loader;
@@ -34,6 +35,7 @@ package classes.Preloader.Remote
 			fileLoader.contentLoaderInfo.addEventListener(Event.COMPLETE, onLoadComplete);
 			
 			var targetURL:URLRequest = new URLRequest("https://www.fenoxo.com/play/latest_remote.php");
+			//var targetURL:URLRequest = new URLRequest("http://gedan.co.uk/tits/latest_remote.php");
 			
 			stage.addChild(fileLoader);
 			fileLoader.load(targetURL);
