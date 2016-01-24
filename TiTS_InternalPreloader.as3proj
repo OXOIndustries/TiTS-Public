@@ -4,7 +4,7 @@
   <output>
     <movie outputType="Application" />
     <movie input="" />
-    <movie path="bin\TiTS_Preloader.swf" />
+    <movie path="bin\TITS_InternalPreloader.swf" />
     <movie fps="24" />
     <movie width="1200" />
     <movie height="800" />
@@ -12,17 +12,18 @@
     <movie minorVersion="9" />
     <movie platform="Flash Player" />
     <movie background="#3D5174" />
+    <movie preferredSDK="Flex 4.6.0, AIR 16.0;4.6.0, 16.0;" />
   </output>
   <!-- Other classes to be compiled into your SWF -->
   <classpaths>
-    <class path="" />
+    <class path="." />
   </classpaths>
   <!-- Build options -->
   <build>
     <option accessible="False" />
     <option advancedTelemetry="False" />
     <option allowSourcePathOverlap="False" />
-    <option benchmark="False" />
+    <option benchmark="True" />
     <option es="False" />
     <option inline="False" />
     <option locale="" />
@@ -35,15 +36,15 @@
     <option showDeprecationWarnings="True" />
     <option showUnusedTypeSelectorWarnings="True" />
     <option strict="True" />
-    <option useNetwork="True" />
+    <option useNetwork="False" />
     <option useResourceBundleMetadata="True" />
     <option warnings="True" />
-    <option verboseStackTraces="False" />
+    <option verboseStackTraces="True" />
     <option linkReport="" />
     <option loadExterns="" />
     <option staticLinkRSL="True" />
-    <option additional="" />
-    <option compilerConstants="" />
+    <option additional="-frame=TiTSRoot,classes.TiTS" />
+    <option compilerConstants="CONFIG::IMAGEPACK,false&#xA;CONFIG::useFlexClasses,false&#xA;CONFIG::AIR,false&#xA;CONFIG::FLASH,true" />
     <option minorVersion="" />
   </build>
   <!-- SWC Include Libraries -->
@@ -52,7 +53,7 @@
   </includeLibraries>
   <!-- SWC Libraries -->
   <libraryPaths>
-    <!-- example: <element path="..." /> -->
+    <element path="style_uiscroll.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>
@@ -64,7 +65,7 @@
   </rslPaths>
   <!-- Intrinsic Libraries -->
   <intrinsics>
-    <!-- example: <element path="..." /> -->
+    <element path="Library\AS3\frameworks\FlashIDE" />
   </intrinsics>
   <!-- Assets to embed into the output SWF -->
   <library>
@@ -72,7 +73,7 @@
   </library>
   <!-- Class files to compile (other referenced classes will automatically be included) -->
   <compileTargets>
-    <compile path="classes\Preloader\Remote\RemotePreloader.as" />
+    <compile path="classes\Preloader\Internal\InternalPreloader.as" />
   </compileTargets>
   <!-- Paths to exclude from the Project Explorer tree -->
   <hiddenPaths>
@@ -85,7 +86,7 @@
   <!-- Other project options -->
   <options>
     <option showHiddenPaths="False" />
-    <option testMovie="Default" />
+    <option testMovie="ExternalPlayer" />
     <option testMovieCommand="" />
   </options>
   <!-- Plugin storage -->

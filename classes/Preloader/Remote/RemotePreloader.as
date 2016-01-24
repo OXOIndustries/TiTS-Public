@@ -6,8 +6,12 @@ package classes.Preloader.Remote
 	import flash.events.Event;
 	import flash.events.ProgressEvent;
 	import flash.net.URLRequest;
+	import flash.net.URLRequestHeader;
+	import flash.net.URLVariables;
+	import flash.net.URLRequestMethod;
 	import flash.utils.ByteArray;
 	import flash.system.Security;
+	import classes.Util.log;
 	
 	/**
 	 * ...
@@ -19,9 +23,10 @@ package classes.Preloader.Remote
 		public function RemotePreloader() 
 		{
 			Security.allowDomain("*");
+			Security.allowInsecureDomain("*");
 		}
 		
-		var fileLoader:Loader;
+		private var fileLoader:Loader;
 		
 		override public function beginLoad():void
 		{
@@ -29,7 +34,8 @@ package classes.Preloader.Remote
 			fileLoader.contentLoaderInfo.addEventListener(ProgressEvent.PROGRESS, onProgressUpdate);
 			fileLoader.contentLoaderInfo.addEventListener(Event.COMPLETE, onLoadComplete);
 			
-			var targetURL:URLRequest = new URLRequest("https://www.fenoxo.com/play/latest.php?t=" + new Date().time);
+			var targetURL:URLRequest = new URLRequest("https://www.fenoxo.com/play/latest_remote.php");
+			//var targetURL:URLRequest = new URLRequest("http://gedan.co.uk/tits/latest_remote.php");
 			
 			stage.addChild(fileLoader);
 			fileLoader.load(targetURL);

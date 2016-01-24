@@ -76,6 +76,7 @@
 	import flash.events.UncaughtErrorEvent;
 	import flash.events.UncaughtErrorEvents;
 	import flash.display.LoaderInfo;
+	import flash.system.Security;
 
 	//Build the bottom drawer
 	public class TiTS extends MovieClip
@@ -330,6 +331,13 @@
 
 		public function TiTS()
 		{
+			Security.allowDomain("*");
+			Security.allowInsecureDomain("*");
+			addEventListener(Event.ADDED_TO_STAGE, init);
+		}
+		
+		private function init(e:Event):void
+		{	
 			loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, uncaughtErrorHandler);
 			
 			kGAMECLASS = this;
@@ -342,7 +350,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.6.31";
+			version = "0.6.32";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -392,7 +400,14 @@
 			this.chars["PC"] = new PlayerCharacter();
 			_perkDB = new Perks();
 			
-			this.addEventListener(Event.ADDED_TO_STAGE, init);
+			inputManager = new InputManager(stage, false);
+			setupInputControls();
+			
+			// set up the user interface: ------------------------------------------------------------
+			userInterface = new GUI(this, stage);
+			clearMenu();
+
+			addEventListener(Event.FRAME_CONSTRUCTED, finishInit);
 		}
 		
 		private function uncaughtErrorHandler(e:UncaughtErrorEvent):void
@@ -407,18 +422,6 @@
 				clearMenu();
 				addButton(14, "Next", mainGameMenu);
 			}
-		}
-		
-		private function init(e:Event):void
-		{
-			this.inputManager = new InputManager(stage, false);
-			this.setupInputControls();
-			
-			// set up the user interface: ------------------------------------------------------------
-			this.userInterface = new GUI(this, stage);
-			this.clearMenu();
-
-			this.addEventListener(Event.FRAME_CONSTRUCTED, finishInit);
 		}
 		
 		private function finishInit(e:Event):void
