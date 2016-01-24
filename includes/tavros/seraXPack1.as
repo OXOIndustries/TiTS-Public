@@ -584,7 +584,7 @@ public function seraInchStealingIntro(response:String = ""):void
 			// more than 1 cock:
 			else
 			{
-				output("\n\n<i>“Mmm,”</i> she says with deep contentment. <i>“So cute. So well suited for my eager little " + pc.mf("bitch boy", "dick girl") + ".” She reaches out and takes you by the chin, making you stare into her face. Her expression is sober. “I can’t shrink that any further. If I do, it’ll disappear for good.” There’s a long pause. “Do you really want me to do it?”</i>");
+				output("\n\n<i>“Mmm,”</i> she says with deep contentment. <i>“So cute. So well suited for my eager little " + pc.mf("bitch boy", "dick girl") + ".”</i> She reaches out and takes you by the chin, making you stare into her face. Her expression is sober. <i>“I can’t shrink that any further. If I do, it’ll disappear for good.”</i> There’s a long pause. <i>“Do you really want me to do it?”</i>");
 				
 				if(pc.removeCockUnlocked(cockIndex, 1) && !pc.isBro()) addButton(0, "Yes", seraInchStealing, "standard", "Yes", "Choose to shrink your [pc.cock " + cockIndex + "] completely.");
 				else addDisabledButton(0, "Yes", "Yes", "Something is preventing your [pc.cock " + cockIndex + "] from being removed!");
@@ -1323,7 +1323,7 @@ public function seraSexXXXhibitionBlowjob(arg:Array):void
 			{
 				output(" [pc.anus] seizes up around the whirring dildo");
 				if(pc.hasCock()) output(", forcing [pc.eachCock] to an almost dry, aching orgasm");
-				if(pc.hasVagina() && pc.isSquirter()) output(" as your [pc.eachVaginas] spurt juices everywhere");
+				if(pc.hasVagina() && pc.isSquirter()) output(" as your [pc.eachVagina] spurt juices everywhere");
 			}
 			output(". Once she’s warmed your stomach she pulls out step by step, surging her seed down your gullet, filling your mouth full of it before finally pulling out and splattering your face and [pc.hair] with the last few pulses. At last, she staggers back and collapses on her stool, semi-flaccid and oozing.");
 			output("\n\n<i>“Whew!”</i> she sighs with deep satisfaction, gazing at you with heavy-lidded yellow eyes. <i>“You should feel grateful to that guy, you know. I planned to keep you under there for a lot longer.”</i> You swallow deeply. You suspect pleading with her to let you go and, in particular, remove the dildo still juddering away inside your sorely-abused tunnel would probably result in her leaving you where you are. You grope for something that might work.");
@@ -1410,7 +1410,7 @@ public function seraSexXXXhibitionBlowjob(arg:Array):void
 			{
 				output(" [pc.anus] seizes up around the whirring dildo");
 				if(pc.hasCock()) output(", forcing [pc.eachCock] to an almost dry, aching orgasm");
-				if(pc.hasVagina() && pc.isSquirter()) output(" as your [pc.eachVaginas] spurt juices everywhere");
+				if(pc.hasVagina() && pc.isSquirter()) output(" as your [pc.eachVagina] spurt juices everywhere");
 			}
 			output(". The whole universe narrows down to the vibrator stuffed in you and Sera’s cock; the dim understanding that you can escape this pleasure hell makes you focus on it intently, trying to excite and entice her as best you can with the sucking, roiling movements of your mouth and tongue.");
 			output("\n\nFinally real urgency clenches her body up again; she scratches the counter with her claws, gasping as she pummels your throat strenuously with her bulging end, a fresh peak in sight. Your subdued moans join her gloating crows as she surges jizz down your throat, every bit as copious an ejaculation as the first. This time she pulls out before she’s half done, taking the time to clutch her foot-long pole and thoroughly paint you with her thick, musky seed. Unable to flinch or cover yourself, you take the hot, slimy shower on your [pc.face], [pc.hair] and [pc.chest]. At long last, she staggers back and collapses on her stool, semi-flaccid and oozing. After a few long, panting moments, she opens her yellow eyes to gaze down at you.");
@@ -1681,9 +1681,9 @@ public function seraSexXXXJardiThreesome(response:String = "jardis"):void
 			if(!pc.isNude()) output(" each other’s");
 			else output(" her");
 			output(" clothes. Enjoy yourselves");
-			if(9999 == 0) output(" like an owned pair of sluts should");
+			if(flags["SERA_IN_JARDI_THREESOME"] == undefined) output(" like an owned pair of sluts should");
 			output(".");
-			output(" {Not too much, though. I’m the one who’s going to make you two cum.}");
+			if(flags["SERA_IN_JARDI_THREESOME"] == undefined) output(" Not too much, though. I’m the one who’s going to make you two cum.");
 			output("”</i> You slide off Jardi’s blouse, undo her bra slowly, and when her pretty, petite breasts are exposed engulf a nipple with your mouth.");
 			if(!pc.isNude()) output(" Her hands slide beneath your [pc.gear], exploring and touching you with her pleasantly moist digits as she unclasps and unwraps you as you do the same for her, unbuttoning her blouse, exposing her pretty, petite breasts, engulfing a nipple as you do. She coos as you continue to work, slowly divesting her of her slacks and pink panties.");
 			else output(" With your clothes already long gone the goo-girl has nothing to do but coo and slide her pleasantly moist hands down your frame, exploring you as you slowly divest her of her slacks and pink panties.");
@@ -2235,7 +2235,10 @@ public function seraSexXXXTitfuckLuckyDip(arg:Array):void
 		if(vagIndex >= 0) output(", your pussy quaking and wetting itself ecstatically");
 		else if(cockIndex >= 0) output(", your prick surging lines of cum onto the counter as your prostate is mercilessly milked");
 		else output(", your ass quaking ecstatically");
-		output(". Sera fucks you with regal heedlessness throughout, keeping hold of your hands and head firmly so you are made to wriggle and spasm your high out impaled on her cock. Only when you are a quivering mess does she push to her own peak, hissing and groaning wordlessly as she embeds herself deep into your brutalized tunnel, her claws digging into you as her cock bulges and she pumps a new, thick, warm load into your depths. Your eyes roll as she fills your womb/intestines with her seed, pulling out after a series of deeply satisfied exhalations to spurt the last of it over your [pc.ass] and lower back.");
+		output(". Sera fucks you with regal heedlessness throughout, keeping hold of your hands and head firmly so you are made to wriggle and spasm your high out impaled on her cock. Only when you are a quivering mess does she push to her own peak, hissing and groaning wordlessly as she embeds herself deep into your brutalized tunnel, her claws digging into you as her cock bulges and she pumps a new, thick, warm load into your depths. Your eyes roll as she fills your");
+		if(vagIndex >= 0) output(" womb");
+		else output(" intestines");
+		output(" with her seed, pulling out after a series of deeply satisfied exhalations to spurt the last of it over your [pc.ass] and lower back.");
 		output("\n\nThe succubus collapses back on to her chair, breathing heavily, satiated at last – for the next ten minutes or so, anyway. You pitch onto your side, soaked from head to bottom, panting hard yourself. She’s taking you in with heavy-lidded eyes - you, covered from head to toe in her cum, leaking more of it gently from your");
 		if(vagIndex >= 0) output(" [pc.vagina " + vagIndex + "]");
 		else output(" [pc.anus]");
