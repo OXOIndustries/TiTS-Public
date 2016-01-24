@@ -6,7 +6,7 @@ $latest_filename = '';
 $d = dir(".");
 while (false !== ($entry = $d->read()))
 {
-		if (is_file($entry) && strpos($entry, "TiTS_") !== false && strpos($entry, "InternalPreloader") !== false && strpos($entry, ".swf") !== false && filemtime($entry) > $latest_time)
+	if (is_file($entry) && strcasecmp($entry, "TiTS_RemotePreloader.swf") != 0 && strpos($entry, "TiTS_") !== false && strpos($entry, "InternalPreloader") === false && strpos($entry, ".swf") !== false && filemtime($entry) > $latest_time)
 	{
 		$latest_time = filemtime($entry);
 		$latest_filename = $entry;
