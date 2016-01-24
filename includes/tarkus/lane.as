@@ -1562,7 +1562,7 @@ public function payTheLaneTax():void
 
 	if (lane.mf("m", "f") == "m")
 	{
-		flags["LANE_MALE_SEXED"] = 1;
+		flags["LANE_MALE_SEXED"] = 2;
 
 		availScenes.push(suckLanesDick);
 		availScenes.push(fuckedByMaleLane);
@@ -1571,7 +1571,7 @@ public function payTheLaneTax():void
 	}
 	else
 	{
-		flags["LANE_FEMALE_SEXED"] = 1;
+		flags["LANE_FEMALE_SEXED"] = 2;
 
 		availScenes.push(munchLanesCarpet);
 		availScenes.push(fuckedByFemLane);
@@ -2521,8 +2521,11 @@ public function firstTimeLaneMPCM():void
 	{
 		output(" the veritable lake of cum you’ve submerged his room in");
 	}
-	output(". He makes his way to the dresser against the far wall, and he redresses himself in a spare set of white, airy clothing. When he’s done, he looks just like the day you met him. <i>“Here’s the deal, [pc.name],”</i> he says. You listen to his words raptly. <i>“You’re going to wire me five hundred credits every twenty-four solar hours. If you can’t afford it, just send me what you have.”</i> You nod in understanding; you had agreed to this before. <i>“If you want to be hypnotized again, I’ll charge you the regular fee for the regular service. But you’re... going to pay me a tax. The ‘Body Tax’. I’ll be taking a little extra from you physically.”</i> You feel a fire beginning to stoke in your pelvis, and you tell him that you’re looking forward to it.");
-
+	output(". He makes his way to the dresser against the far wall, and he redresses himself in a spare set of white, airy clothing. When he’s done, he looks just like the day you met him.");
+	
+	if(flags["LANE_MALE_SEXED"]==1){
+		output("\n\n<i>“Here’s the deal, [pc.name],”</i> he says. You listen to his words raptly. <i>“You’re going to wire me five hundred credits every twenty-four solar hours. If you can’t afford it, just send me what you have.”</i> You nod in understanding; you had agreed to this before. <i>“If you want to be hypnotized again, I’ll charge you the regular fee for the regular service. But you’re... going to pay me a tax. The ‘Body Tax’. I’ll be taking a little extra from you physically.”</i> You feel a fire beginning to stoke in your pelvis, and you tell him that you’re looking forward to it.");
+	}
 	output("\n\n<i>“That’s a good pet,”</i> he tells you. <i>“Now, get dressed. As much as I’d like to fuck you every hour of the day, it doesn’t pay the bills. Go out there and make me my money.”</i> He then leaves you alone in his room, without so much as a glance. But you like that quality about Lane – a sort of hard, unforgiving solidarity of a man who takes what he wants. Thinking of him as a vicious sexual conqueror makes you hot all over again.");
 
 	output("\n\nStill, you do what you’re told. In just minutes, your [pc.armor] is back on, and you leave his bedroom. Lane is sitting at his desk as though nothing had happened; you give him a sultry grin that he does not return, before you leave his little hut and return to the caves of Venar.");
@@ -2668,9 +2671,9 @@ public function firstTimeLaneMPCFH():void
 	output("\n\nUnfortunately, your mouth loses the battle with Lane’s genital slit, and his cock disappears inside his body. You persistently lap at his slit like a bitch until he pulls himself away from you");
 	if (pc.hasCock()) output(". The sexy sound of your cum peeling between your skin and his rings through the air");
 	output(". You lay on his bed, wanting more, as he makes his way to one of his dressers. From it, he pulls out another set of clothing: an undergarment; a set of translucent, pants; and a thin shirt. When he’s dressed, he looks exactly as the day you had met him.");
-
-	output("\n\n<i>“Here’s the deal, [pc.name],”</i> he says. You listen to his words raptly. <i>“You’re going to wire me five hundred credits every twenty-four solar hours. If you can’t afford it, just send me what you have.”</i> You nod in understanding; you had agreed to this before. <i>“If you want to be hypnotized again, I’ll charge you the regular fee for the regular service. But you’re... going to pay me a tax. The ‘Body Tax’. I’ll be taking a little extra from you physically.”</i> You feel a fire beginning to stoke in your pelvis, and you tell him that you’re looking forward to it.");
-
+	if(flags["LANE_MALE_SEXED"]==1){
+		output("\n\n<i>“Here’s the deal, [pc.name],”</i> he says. You listen to his words raptly. <i>“You’re going to wire me five hundred credits every twenty-four solar hours. If you can’t afford it, just send me what you have.”</i> You nod in understanding; you had agreed to this before. <i>“If you want to be hypnotized again, I’ll charge you the regular fee for the regular service. But you’re... going to pay me a tax. The ‘Body Tax’. I’ll be taking a little extra from you physically.”</i> You feel a fire beginning to stoke in your pelvis, and you tell him that you’re looking forward to it.");
+	}
 	output("\n\n<i>“That’s a good pet,”</i> he tells you. <i>“Now, get dressed. As much as I’d like to fuck you every hour of the day, it doesn’t pay the bills. Go out there and make me my money.”</i> He then leaves you alone in his room, without so much as a glance. But you like that quality about Lane – a sort of hard, unforgiving solidarity of a man who takes what he wants. Thinking of him as a vicious sexual conqueror makes you hot all over again.");
 
 	output("\n\nStill, you do what you’re told. In just minutes, your [pc.armor] is back on, and you leave his bedroom. Lane is sitting at his desk as though nothing had happened; you give him a sultry grin that he does not return, before you leave his little hut and return to the caves of Venar.");
@@ -2899,11 +2902,12 @@ public function firstTimeLaneFPCMH():void
 	output("I think making you my personal cum pump was a good idea after all.”</i> You sincerely thank her for her praise, and your hand trails down her body once more, gripping at her scaly ass as well as you can from your angle.");
 
 	output("\n\nAfter you’ve copped a good feel, Lane pulls herself off of you. <i>“I’m gonna have to wash up,”</i> she sighs, looking across her body. She hasn’t sweat a drop, naturally, but you’ve more than made up for her particular lack of bodily fluids, and the stink of your love making clings to her scales like glue. You lean on one side, watching her as she goes to one of her dressers, and from it, she pulls out a perfectly identical set of white, airy clothing, like she was wearing before.");
-
-	output("\n\n<i>“Here’s the deal, [pc.name].”</i> You sit up and listen to her words rapturously. <i>“From now on, after every twenty-four Terran hours, you will wire me five hundred credits. If you can’t afford it, just wire me what you have. I’ll believe you.”</i> You nod in understanding – you had discussed this with her before. <i>“If you want to get hypnotized, I’ll charge you the regular fee. But, from now on, you’ll have to... pay me a tax. The ‘Give Lane Your Body’ tax. I’ll be taking a little extra from you, physically.”</i> Your [pc.cock] begins to inflate once more as you fantasize it: your very body, belonging to Lane’s every sexy whim.");
-	if (pc.biggestCockVolume() <= 32) output(" <i>“Hopefully you’ll be... better equipped for when the time comes.”</i>");
-	if (pc.biggestCockVolume() > lane.vaginalCapacity() * 0.75) output(" <i>“You may want to... look into ‘male reduction’ in the meantime. There can be too much of a good thing, you know.”</i>");
-
+	
+	if(flags["LANE_FEMALE_SEXED"]==1){
+		output("\n\n<i>“Here’s the deal, [pc.name].”</i> You sit up and listen to her words rapturously. <i>“From now on, after every twenty-four Terran hours, you will wire me five hundred credits. If you can’t afford it, just wire me what you have. I’ll believe you.”</i> You nod in understanding – you had discussed this with her before. <i>“If you want to get hypnotized, I’ll charge you the regular fee. But, from now on, you’ll have to... pay me a tax. The ‘Give Lane Your Body’ tax. I’ll be taking a little extra from you, physically.”</i> Your [pc.cock] begins to inflate once more as you fantasize it: your very body, belonging to Lane’s every sexy whim.");
+		if (pc.biggestCockVolume() <= 32) output(" <i>“Hopefully you’ll be... better equipped for when the time comes.”</i>");
+		if (pc.biggestCockVolume() > lane.vaginalCapacity() * 0.75) output(" <i>“You may want to... look into ‘male reduction’ in the meantime. There can be too much of a good thing, you know.”</i>");
+	}
 	output("\n\nOut of turn, you ask her if there’s any chance of Lane getting pregnant. You admit that you feel you’re a little young to have kids yourself, but if Lane wants any, you’re all for it. <i>“I’ve never heard of a Daynar cross-breeding with a species like yours,”</i> she says, humming in thought, <i>“but there’s no risk of it anyway. JoyCo’s been good to us Daynarians.”</i> You don’t press the subject further. If Lane ever wants kids, you’re sure she’ll tell you.");
 
 	output("\n\n<i>“You’re a good pet,”</i> Lane tells you, <i>“but I’m afraid fucking you doesn’t pay my bills. That’s not the sort of business I run, unfortunately. Get dressed, and get out there and make me some money.”</i> And then she just leaves you alone in her room, her clothes still in her arms. That was a little cold, the way she talked to you like a tool, but that’s just one of the many things you like about Lane – she’s focused on what she wants, and when she doesn’t want money for her business, she wants you. Thinking of her as a sort of predator, sexual or otherwise, makes your [pc.cock] stiffen all the more.");
@@ -3147,11 +3151,12 @@ public function firstTimeLaneFPCFGenderless():void
 
 	output("\n\n<i>“You did very well, [pc.name],”</i> she praises as she turns away, towards one of her dressers on the far wall. From its drawers, she pulls out a fresh set of her airy, light clothing, precisely identical to her previous outfit. Once the crease of her ass vanishes beneath her thick undergarment, you resign that you’re not going to get any more out of her right now. <i>“I think I’ve made a good decision on making you my personal sex toy, don’t you?”</i> You agree with her wholeheartedly; you’ve never been so sincere before. You’d do anything if it meant being with Lane and providing her pleasure.");
 
-	output("\n\n<i>“Here’s what’s going to happen.”</i> You roll over and sit up, peeling yourself from her bedsheets as you listen to her rapturously. <i>“From now on, after every twenty-four Terran hours, you will wire me five hundred credits. If you can’t afford it, just send me what you can. I’ll believe you. You wouldn’t lie to me.”</i> You nod your head – your earlier discussion still fresh in your memory. <i>“If you want to get hypnotized again, I’ll charge you the regular fee, but from now on, you’re... I’m going to tax you for it. It’s called the ‘Give Lane Your Body Tax.’ You’ll be giving something a little extra back to me for my service.”</i> You lick your [pc.lips]");
-	if (pc.hasVagina()) output(" and your [pc.vagina] gets a little moist all over again");
-	output(" at the very thought of it.");
-	if (pc.hasTongueFlag(GLOBAL.FLAG_PREHENSILE)) output(" <i>“Whatever you took to make your tongue so long and talented, [pc.name]... I wouldn’t mind if you took a little more.”</i>");
-
+	if(flags["LANE_FEMALE_SEXED"]==1){
+		output("\n\n<i>“Here’s what’s going to happen.”</i> You roll over and sit up, peeling yourself from her bedsheets as you listen to her rapturously. <i>“From now on, after every twenty-four Terran hours, you will wire me five hundred credits. If you can’t afford it, just send me what you can. I’ll believe you. You wouldn’t lie to me.”</i> You nod your head – your earlier discussion still fresh in your memory. <i>“If you want to get hypnotized again, I’ll charge you the regular fee, but from now on, you’re... I’m going to tax you for it. It’s called the ‘Give Lane Your Body Tax.’ You’ll be giving something a little extra back to me for my service.”</i> You lick your [pc.lips]");
+		if (pc.hasVagina()) output(" and your [pc.vagina] gets a little moist all over again");
+		output(" at the very thought of it.");
+		if (pc.hasTongueFlag(GLOBAL.FLAG_PREHENSILE)) output(" <i>“Whatever you took to make your tongue so long and talented, [pc.name]... I wouldn’t mind if you took a little more.”</i>");
+	}
 	output("\n\n<i>“Now then.”</i> When she’s finished, she stands before you, fully dressed and looking almost no different from when you had walked into her hut just an hour ago. <i>“As cute as you are, and as much as I wouldn’t mind going again, I’m afraid fucking my new property doesn’t pay the bills. Get out there and make me some money.”</i> And, without another word, she leaves the room, leaving you naked and soaked in a variety of juices. That was a little harsh, the way she talked to you like you were a tool in her toolbox, but in a way, that sort of attitude is what makes Lane so attractive to you – the way she’s focused on what she wants, like a predator, and when she’s done with it, she leaves it for her next target.");
 
 	output("\n\nYou peel yourself from her bed and gather your belongings. Once your fully dressed once more, you leave her room, walking your way back through her ‘office.’ She’s found something to entertain her in her codex, and she barely even looks at you as you leave.");
