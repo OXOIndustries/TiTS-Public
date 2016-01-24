@@ -389,7 +389,7 @@ package classes {
 		}
 		public function toneUnlocked(newTone:Number):Boolean
 		{
-			if(hasSkinFlag(GLOBAL.FLAG_SQUISHY) && newTone >= toneMax()) return false;
+			if(hasSkinFlag(GLOBAL.FLAG_SQUISHY) && newTone > tone && newTone >= toneMax()) return false;
 			return true;
 		}
 		public function toneLockedMessage():String
