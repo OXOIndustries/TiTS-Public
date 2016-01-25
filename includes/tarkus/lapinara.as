@@ -18,7 +18,6 @@ public function encounterALapinara():void
 		output("\n\n<i>“Hello, lover,”</i> she coos, sniffing you, feeling you all over. As the strange little alien pokes and prods at your body, your Codex beeps in an urgent message: <i>“Lapinara detected. These rabbit-like aliens enter an aggressive rut-like state when their ovaries have eggs ready. They will then attempt to implant these eggs into a host via an ovipositor. Avoidance is recommended if at all possible.”</i>");
 		output("\n\nYou flail about frantically until the creature loses her grip, falling to the ground with a light thud. You’re now able to get a good look at her. She is most definitely a lapinara. She gets up, shaking off dust. Her expression of glee turns into one of mischief and malice.");
 		output("\n\n<i>“They’re fun when they play hard to get!”</i>\n\nLooks like this girl isn’t taking no for an answer!");
-		flags["ENCOUNTERED_PARASITIC_LAPINARA"] = 1;
 		CodexManager.unlockEntry("Lapinara");
 	}
 	//[Subsequent Encounters]
@@ -27,7 +26,7 @@ public function encounterALapinara():void
 		output("\n\nYou hear a familiar scurrying of feet from somewhere behind you. You immediately turn around, ready to face your assailant. Sure enough, she’s right there, her eyes wide in an expression of surprise.");
 		output("\n\n<i>“So it looks like the prey is getting smart? Oh, I do love a challenge!”</i>");
 	}
-	flags["ENCOUNTERED_PARASITIC_LAPINARA"]++;
+	IncrementFlag("ENCOUNTERED_PARASITIC_LAPINARA");
 	
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyCharacters(pc);
@@ -44,12 +43,13 @@ public function lapinaraBust():void
 {
 	if (enemy != null && enemy is LapinaraFemale)
 	{
-		userInterface.showBust(enemy.bustDisplay);
+		showBust(enemy.bustDisplay);
 	}
 	else
 	{
-		userInterface.showBust("LAPINARA");
+		showBust("LAPINARA");
 	}
+	showName("LAPINARA\nFEMALE");
 }
 	
 /*Tail Trip:

@@ -376,7 +376,7 @@ public function lassoAVarmint(attacker:Creature, target:Creature):void
 public function pcVictoryVsVarmints():void
 {
 	author("Savin");
-	showName("FIGHT:\nVARMINT");
+	showName("DEFEATED:\nVARMINT");
 	showBust("VARMINT");
 	if(enemy.hasStatusEffect("Lassoed"))
 	{
@@ -407,7 +407,7 @@ public function pcLosesToVarmint():void
 {
 	clearOutput();
 	author("Savin");
-	showName("FIGHT:\nVARMINT");
+	showName("LOST VS:\nVARMINT");
 	showBust("VARMINT");
 	pc.HP(-(pc.HPMax()-1));
 	pc.lust(-50);

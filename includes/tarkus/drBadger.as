@@ -29,12 +29,10 @@ public function bimbotoriumHallBonus():Boolean
 public function drBadgerMenu():void
 {
 	shopkeep = chars["DRBADGER"];
-	//Unlock dumbfuck codex
-	CodexManager.unlockEntry("Dumbfuck");
-	CodexManager.unlockEntry("Gush");
+	
 	clearMenu();
-	addButton(0,"Buy",buyItem,undefined,"Buy something from Doctor Badger.");
-	addButton(1,"Sell",sellItem,undefined,"Sell something from Doctor Badger.");
+	addButton(0,"Buy",drBadgerBuyMenu,undefined,"Buy","Buy something from Doctor Badger.");
+	addButton(1,"Sell",sellItem,undefined,"Sell","Sell something to Doctor Badger.");
 	if(flags["DR_BADGER_BIMBOED_PC"] == undefined && !pc.hasPerk("Ditz Speech")) addButton(5,"Be Hero",heyDocImAHero,undefined,"Be Hero","Volunteer that you're a hero. After your first encounter with the Doctor, you're fairly sure this is going to result in some heavy brain-drain.");
 	else addDisabledButton(5,"Be Hero","Be Hero","Uhm, you don't really like, remember what this was all about.");
 
@@ -52,6 +50,20 @@ public function drBadgerMenu():void
 		else addDisabledButton(6,"Job","Job","You've already accepted her \"job offer.\"");
 	}
 	addButton(14,"Leave",mainGameMenu);
+}
+public function drBadgerBuyMenu():void
+{
+	// Shop unlocks
+	if(flags["BADGER_QUEST"] >= 3 && !chars["DRBADGER"].hasItemByType(Throbb)) chars["DRBADGER"].inventory.push(new Throbb());
+	else chars["DRBADGER"].destroyItem(new Throbb());
+	
+	shopkeep = chars["DRBADGER"];
+	
+	//Unlock dumbfuck codex
+	CodexManager.unlockEntry("Dumbfuck");
+	CodexManager.unlockEntry("Gush");
+	
+	buyItem();
 }
 
 //PC Enters Doc Badger’s Shack

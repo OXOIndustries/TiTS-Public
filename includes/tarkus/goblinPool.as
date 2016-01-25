@@ -96,8 +96,6 @@ public function arbetzMainApproach():Boolean
 	// Intros
 	if (arbetzActiveHours())
 	{
-		showUna();
-		
 		// First
 		if (flags["ARBETZ_ENTERED"] == undefined)
 		{
@@ -126,7 +124,7 @@ public function arbetzMainApproach():Boolean
 			else output("You approach the main building and step inside.");
 			
 			// Happens once per day for an hour at random:
-			if (flags["UNA_MET"] != undefined && !pc.hasStatusEffect("Arbetz Busy Hour") && !pc.hasStatusEffect("Arbetz Busy Cooldown") && rand(5) == 0)
+			if (flags["UNA_MET"] != undefined && !pc.hasStatusEffect("Arbetz Busy Hour") && !pc.hasStatusEffect("Arbetz Busy Cooldown") && rand(10) == 0)
 			{
 				pc.createStatusEffect("Arbetz Busy Hour", 0, 0, 0, 0, true, "", "", false, 60);
 				pc.createStatusEffect("Arbetz Busy Cooldown", 0, 0, 0, 0, true, "", "", false, 1440);
@@ -149,6 +147,8 @@ public function arbetzMainApproach():Boolean
 			// Standard:
 			else
 			{
+				showBust("UNA", "PETR");
+				
 				// 20% chance of proccing when PC approaches front desk
 				if (flags["UNA_MET"] != undefined && (flags["ARBETZ_SEX_ONE_BOY"] != undefined || flags["ARBETZ_SEX_TWO_BOYS"] != undefined) && rand (5) == 0)
 				{
@@ -220,11 +220,12 @@ public function arbetzMainInitialOptions(response:int = 0):void
 {
 	clearOutput();
 	author("Nonesuch");
-	showUna();
 	
 	// Aid
 	if (response == 1)
 	{
+		showUna();
+		
 		// HP less than 90%:
 		if (pc.HP() < 90)
 		{
@@ -1423,6 +1424,7 @@ public function arbetzPoolBonus():Boolean
 	if (arbetzActiveHours())
 	{
 		author("Nonesuch");
+		showBust("GODI");
 		
 		// Blurb
 		output("You are standing beside the pool. It’s blue, decently sized, has a diving board and winks fractured beams of Tarkus’s sun back at you merrily. The area around it is paved in white and has deckchairs here and there. On one of these");

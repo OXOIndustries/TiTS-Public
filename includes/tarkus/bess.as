@@ -568,6 +568,8 @@ public function findingBessBonusFunc():Boolean
 public function findASilverObject():void
 {
 	clearOutput();
+	showName("SILVER\nOBJECT");
+	author("JimT");
 
 	output("You abandon caution for curiosity and inch closer towards the silvery object.");
 	output("\n\nAs you close in, you realize two things. One, it is much larger than it first appeared. Two, the shape of the part that is sticking out is easy to identify.");
@@ -610,6 +612,9 @@ public function setBessGender(pref:String = "auto"):void
 public function setBessSex(bessesStartingSexHahaThatsNotHowYouWriteAPossessive:String = "female"):void
 {
 	clearOutput();
+	showName("SILVER\nFOOT");
+	author("JimT");
+	
 	output("On closer examination, it definitely looks like a " + bessesStartingSexHahaThatsNotHowYouWriteAPossessive + " foot. The real question though is if you want to dig this thing up and see what it is...?");
 	
 	if(bessesStartingSexHahaThatsNotHowYouWriteAPossessive == "female")
@@ -633,6 +638,9 @@ public function setBessSex(bessesStartingSexHahaThatsNotHowYouWriteAPossessive:S
 public function digUpAFukkinSexbat():void
 {
 	clearOutput();
+	showName("SILVER\nSYNTHETIC");
+	author("JimT");
+	
 	output("Curiosity gets the better of you as you decide to dig it up. Getting rid of all the junk on top of it is a quick and easy process.");
 	output("\n\nSoon a silvery humanoid body, distinctly " + bess.mf("masculine","feminine") + " and covered in segmented lines, is revealed amongst the rubble. An incredibly shapely rear is glinting back up at you, connected to " + bess.mf("manly","womanly") + " thighs and hips of glistening chrome.");
 	output("\n\nWhat a butt! You can't help but reach out and poke it, just to see if it is real. For <i>exploratory</i> purposes, of course.");
@@ -687,6 +695,7 @@ public function digUpAFukkinSexbat():void
 public function fuckinLeaveTheBessBot():void
 {
 	clearOutput();
+	showName("\n???");
 	author("Gedan");
 	
 	flags["BESS_IN_RUBBLE"] = 0;
@@ -713,6 +722,9 @@ public function takeBessToZeShip():void
 	flags["BESS_IN_RUBBLE"] = 1; // shit flag name sue me
 	
 	clearOutput();
+	showName("SHIP\nINTERIOR");
+	author("JimT");
+	
 	if (bess.hasVagina())
 	{
 		output("It’s a good thing the female unit is so light - it takes you far less time to get her back to the ship than you first thought. She’s so soft to the touch that it is hard to believe she’s really a machine.");
@@ -739,6 +751,8 @@ public function takeBessToZeShip():void
 public function plugBessesFatAssInPartII():void
 {
 	clearOutput();
+	bessHeader();
+	
 	output("Your Codex bleeps at you when the unit is apparently finished charging. You finish your drink and head back down to the cargo bay.");
 	output("\n\nWhen you get there, the " + bess.mf("male", "female") + " android is already retracting the coupling cable out of the wall with a satisfied sigh. As [bess.heShe] stands upright it slides back inside [bess.hisHer] body and disappears completely from sight.");
 	output("\n\nYou can hear [bess.hisHer] rear compartment closing with a small clicking noise.");
@@ -795,6 +809,9 @@ public function decisionTimeForBessMenu():void
 public function sellOfBessDatWhore():void
 {
 	clearOutput();
+	showName("SELL\n" + bess.mf("BEN", "BESS") + " UNIT");
+	author("JimT");
+	
 	output("You decide you’d rather sell [bess.himHer] on the black market for some quick credits than keep [bess.himHer]. After making a discreet listing on the extranet, you eventually find a willing buyer for your " + bess.mf("Ben-14", "Bess-13") + " unit.");
 	output("\n\nThe handoff takes place in a secluded section of a nearby planet, barren enough to land the ship and avoid any contact with any locals. When you get to the meeting place, another starship is already waiting for you. ");
 	output("\n\nThe hull of the spacecraft has clearly seen better days; either the owner is blowing more money on your " + bess.mf("Ben", "Bess") + " Unit than on their starship, or they actually like it looking like a flying garbage heap.");
@@ -815,6 +832,9 @@ public function sellOfBessDatWhore():void
 public function handBessOverToAuthorities():void
 {
 	clearOutput();
+	showName("TURN IN\nTO U.G.C.");
+	author("JimT");
+	
 	output("Deciding that the sex-bot doesn’t belong to you and you should probably hand [bess.himHer] over to authorities, you ring and arrange for [bess.himHer] to be picked up. You’re surprised a U.G.C. official is actually going out of their way to Tarkus to pick up a sex bot.");
 	output("\n\nWhen the official shows up in the Novahome docking bay, you find out why. Apparently there’s a standing order for all " + bess.mf("Ben-14", "Bess-13") + " Unit AIs put out by JoyCo. It seems you’re entitled to a bounty for bringing the <i>“dangerous sex bot”</i> in.");
 	output("\n\nLooking at [bess.hisHer] confused eyes as you hand [bess.himHer] over, it’s hard to imagine [bess.heShe]’s a danger. Still, it seems you dodged a bullet by turning [bess.himHer] in. Not only that, apparently owning a AI version of the units is considered a criminal offense.");
@@ -832,6 +852,8 @@ public function handBessOverToAuthorities():void
 public function releaseBessBenWhatever():void
 {
 	clearOutput();
+	bessHeader();
+	
 	output("You tell the " + bess.mf("male", "female") + " synthetic that [bess.heShe] is free to do as [bess.heShe] pleases, and that you are not [bess.hisHer] [pc.Master]. It seems like the right thing to do.");
 	output("\n\nHowever, [bess.heShe] seems to have difficulty processing what you are saying, almost as if you were speaking a foreign language.");
 	output("\n\n<i>“What do you mean, [pc.Master]? I am a " + bess.mf("Ben-14", "Bess-13") + " unit, and I belong to you! I am your personal unit. I am not designed to belong to myself.”</i> " + bess.mf("He furrows his brow, looking perplexed by your statement", "Her voice seems to quiver a little") + ". The concept of not belonging to someone seems to be outside of [bess.hisHer] programming.");
@@ -848,6 +870,9 @@ public function releaseBessBenWhatever():void
 public function dumpTheBessBot():void
 {
 	clearOutput();
+	showName("DUMP\n" + bess.mf("BEN", "BESS") + " UNIT");
+	author("JimT");
+	
 	output("Rather than keep the silver android, you decide that it’s best just to kick [bess.himHer] off your ship and let [bess.himHer] aimlessly wander Tarkus now that you’ve activated [bess.himHer]. Someone else can deal with [bess.himHer] - it’s just too much trouble.");
 	output("\n\nDespite [bess.hisHer] pleas, you shove [bess.himHer] in the airlock and vent [bess.himHer] out, sending [bess.himHer] flying out into a pile of junk. In the end [bess.heShe]’s just an object only pretending to have feelings – no different to the broken holos and pieces of pipe littering the whole crappy planet.");
 	output("\n\nThings are nice and quiet after that.");
@@ -866,6 +891,9 @@ public function dumpTheBessBot():void
 public function waitAtTavrosBess():void
 {
 	clearOutput();
+	showName(bess.mf("BEN", "BESS") + " UNIT\nAT TAVROS");
+	author("JimT");
+	
 	output("You decide you don’t have a place for [bess.himHer] on the ship at the moment and you don’t want to get rid of [bess.himHer]. You do have a space dock at Tavros Station though.");
 	output("\n\nIt is a bit out of your way, but you fly all the way back and drop [bess.himHer] there for the time being. That way, you can pick [bess.himHer] up once you know what you want to do with [bess.himHer].");
 	output("\n\n(<b>The " + bess.mf("Ben-14", "Bess-13") + " unit has been dropped at Tavros Station! You can pick [bess.himHer] up later if you want to have [bess.himHer] join your crew.</b>)");
@@ -881,6 +909,7 @@ public function waitAtTavrosBess():void
 public function keepBessYouSloot():void
 {
 	clearOutput();
+	bessHeader();
 	flags["BESS_LOCATION"] = BESS_ON_CREW;
 
 	//Tutorial / Configure 
@@ -914,6 +943,7 @@ public function keepBessYouSloot():void
 public function nameBessForRealsies():void
 {
 	clearOutput();
+	bessHeader();
 	output("What do you decide to name [bess.himHer]?");
 	displayInput();
 	this.userInterface.textInput.text = chars["BESS"].mf("Ben","Bess");

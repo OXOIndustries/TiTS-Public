@@ -1,6 +1,7 @@
 package classes.Preloader 
 {
 	import flash.display.Bitmap;
+	import flash.display.MovieClip;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.text.TextField;
@@ -11,15 +12,15 @@ package classes.Preloader
 	 * ...
 	 * @author Gedan
 	 */
-	public class BasePreloader extends Sprite
+	public class BasePreloader extends MovieClip
 	{
 		// These settings are stolen from UIComponents to minimise the size of the preloader by not having to include it
 		private static const gBackgroundColour:uint = 0x3D5174;
 		private static const gForegroundColour:uint = 0x333E52;
 		private static const gHighlightColour:uint = 0x8D31B0;
 		
-		[Embed(source = "../../assets/Univers 59 Ultra Condensed.ttf", fontName = "Univers UltraCondensed", advancedAntiAliasing = true, mimeType = "application/x-font-truetype", embedAsCFF = false, unicodeRange = "U+0025, U+002e, U+0030-U+0039, U+0041, U+0043-U+0045, U+0047, U+0049, U+004c-U+0050, U+0054, U+0062, U+006b")]
-		private static const UniversFont:String;
+		[Embed(source = "../../assets/MinUnivers.ttf", fontName = "MinUnivers", advancedAntiAliasing = true, mimeType = "application/x-font-truetype", embedAsCFF = false, unicodeRange = "U+0025, U+002e, U+0030-U+0039, U+0041, U+0043-U+0045, U+0047, U+0049, U+004c-U+0050, U+0054, U+0062, U+006b")]
+		private static const MinUniversFont:String;
 		
 		private static var _gPreloaderStateFrontFormatter:TextFormat;
 		public static function get gPreloaderStateFrontFormatter():TextFormat
@@ -30,7 +31,7 @@ package classes.Preloader
 				_gPreloaderStateFrontFormatter.size = 69;
 				_gPreloaderStateFrontFormatter.color = gForegroundColour;
 				_gPreloaderStateFrontFormatter.align = TextFormatAlign.LEFT;
-				_gPreloaderStateFrontFormatter.font = "Univers UltraCondensed";
+				_gPreloaderStateFrontFormatter.font = "MinUnivers";
 				_gPreloaderStateFrontFormatter.kerning = true;
 			}
 			return _gPreloaderStateFrontFormatter;
@@ -44,7 +45,7 @@ package classes.Preloader
 				_gPreloaderStateBackFormatter.size = 69;
 				_gPreloaderStateBackFormatter.color = gBackgroundColour;
 				_gPreloaderStateBackFormatter.align = TextFormatAlign.LEFT;
-				_gPreloaderStateBackFormatter.font = "Univers UltraCondensed";
+				_gPreloaderStateBackFormatter.font = "MinUnivers";
 				_gPreloaderStateBackFormatter.kerning = true;
 			}
 			return _gPreloaderStateBackFormatter;
@@ -58,7 +59,7 @@ package classes.Preloader
 				_gPreloaderStatePercentFormatter.size = 69;
 				_gPreloaderStatePercentFormatter.color = 0xFFFFFF;
 				_gPreloaderStatePercentFormatter.align = TextFormatAlign.RIGHT;
-				_gPreloaderStatePercentFormatter.font = "Univers UltraCondensed";
+				_gPreloaderStatePercentFormatter.font = "MinUnivers";
 				_gPreloaderStatePercentFormatter.kerning = true;
 			}
 			return _gPreloaderStatePercentFormatter;

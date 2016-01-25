@@ -181,6 +181,12 @@ public function talkToSeraAboutWhyShesPissedOff():void
 // Talk
 public function talkToSera():void
 {
+	if(flags["SERA_TALKS_PAST"] != undefined && flags["SERA_TALKS_PRESENT"] != undefined && flags["SERA_TALKS_DEMONS"] != undefined && flags["SERA_TALKS_FURRIES"] != undefined && flags["SERA_IN_JARDI_THREESOME"] > 0 && 9999 == 0)
+	{
+		// 9999 - Party Invite
+		return;
+	}
+	
 	clearOutput();
 	author("Nonesuch");
 	showSera();
@@ -214,11 +220,12 @@ public function seraTalkTopics(response:String = ""):void
 		output("\n\n<i>“You’re religious?”</i>");
 		output("\n\n<i>“What do you think?”</i> she sneers, displaying her sharp teeth at you, her horns gently glowing green. <i>“Look, I don’t care what you or anyone else believes. Ol’ fossil-planting sky magician ain’t got nothing on the illusions some people live under. But I hate - HATE – people telling me what to do and think, and that’s all that organized religion is.”</i> She pauses. <i>“I did like some of the imagery, though. In the old scripture. Sin, and temptation, and - the concept of a fall from grace resulting in new, dirty knowledge and ideas and above all </i>power<i>. Yeah, I liked that a lot.”</i> She drums her fingers on the counter and sighs. <i>“But apart from that, fucking hated it. Everything I’ve ever done has been about getting away from my upbringing. The rules, the rosaries, the bible lessons, what you were supposed to think about them rather than what you actually did, my mom making me eat cigarettes, the uptight biddies who ran the place, the fucking uniform...”</i>");
 		output("\n\nYou can’t help but ");
-		if(pc.isBimbo() || pc.isNice())output("giggle");
+		if(pc.isBimbo() || pc.isNice()) output("giggle");
 		else output("snicker");
 		output(" to yourself as a thought occurs. Several parts of Sera glow at you balefully.");
 		output("\n\n<i>“Laugh it up,”</i> she growls. <i>“That image you’ve got in your head right now? The white blouse, school skirt and pigtails? That’s you, next time we fuck.”</i>");
 		processTime(5);
+		flags["SERA_TALKS_PAST"] = 1;
 		addDisabledButton(0,"Early Life");
 	}
 	else if(response == "recent life")
@@ -230,6 +237,7 @@ public function seraTalkTopics(response:String = ""):void
 		output("\n\nYou think about bringing up your own dad, but decide that would probably be a bad idea right now. Instead, you ask if she misses Earth.");
 		output("\n\n<i>“Sometimes,”</i> she admits. She toys with a dreamcatcher’s dangling phalluses, set near her chair. <i>“It’s still a wonderful world, though you don’t really realize that until you’ve been to a few others. And it was a bit of a wrench leaving all my bitches behind. But even there I think I needed a fresh start, and it’s not so hard to find new ones. You don’t even need to look. You display what you are and adopt the right attitude, they come to you.”</i> She grins at you, pleased and possessive.");
 		processTime(6);
+		flags["SERA_TALKS_PRESENT"] = 1;
 		addDisabledButton(1,"Recent Life");
 	}
 	else if(response == "demons")
@@ -238,7 +246,7 @@ public function seraTalkTopics(response:String = ""):void
 		output("\n\n<i>“It wasn’t easy,”</i> Sera says, her cerulean lips curling into a smile, your question clearly pleasing her. <i>“It began with penis envy, pure and simple. Coming of age in an all-girl’s religious school – you know how many of them I wanted to bang? All that uptightness, all that starch, all those things you weren’t allowed to talk about, with no release to it all, goddamn... every time a classmate started to fret about something like the font of the school magazine, I just wanted to bend her over my table and make her think about nothing but how good it is to get royally rammed for the rest of the day. And eventually, fingers weren’t enough. So I sold my jet-bike, and used the money for a mod.”</i> She slides her hand along her veiny shaft fondly.");
 		output("\n\n<i>“Wasn’t as big as this then. But it was big enough to make me the most popular girl in the final year. Even the cliquesters and girls who took the One thing seriously, who’d call me a slut or Satan’s bitch in the corridor... they’d come. And come. And come. That was the best, when they did. When I made them say my name. Almost made up for the rest of my childhood, that did.”</i> She sighs blissfully, turgid with memory.");
 		output("\n\n<i>“And the demon stuff?”</i> you supply.");
-		output("\n\n<i>“Hmm? Well, after that it became a bit of an obsession. I loved biblical imagery, and I loved that feeling I had in that final year, of being an irresistible corruptive influence... the fact that it wound my parents up no end was just a pleasing side-effect. If they’d known I would grow horns by the time I was twenty, maybe they wouldn’t have blown a gasket quite so hard when I got a piercing at fifteen. Fortunately many other people had the same urges as me long before, so finding demon mods wasn’t hard. Refining it, though, becoming exactly what I wanted... that was difficult.”</i> She thins her lips, absently touching the pale glow on her ivory horns.");
+		output("\n\n<i>“Hmm? Well, after that it became a bit of an obsession. I loved biblical imagery, and I loved that feeling I had in that final year, of being an irresistible corruptive influence... the fact that it wound my parents up to no end was just a pleasing side-effect. If they’d known I would grow horns by the time I was twenty, maybe they wouldn’t have blown a gasket quite so hard when I got a piercing at fifteen. Fortunately many other people had the same urges as me long before, so finding demon mods wasn’t hard. Refining it, though, becoming exactly what I wanted... that was difficult.”</i> She thins her lips, absently touching the pale glow on her ivory horns.");
 		output("\n\n<i>“You’ve got to be so careful, dosing yourself with mods, getting the exact the effect you need. First time I took the phosphorous mod, I ended up glowing on my tits and back too – took me forever to find something that reversed it just enough for it to stay on my horns. And Lucifier was only a temp-mod back then, so I had to hit the right combo of incubus and succubus boosters so that I kept a body to die for whilst growing out a nice, big dick. Tough. And expensive.”</i> She pauses for a moment, introspective.");
 		if(silly) output("\n\n<i>“You could just save scum,”</i> you murmur.");
 		else output("\n\n<i>“You what?”</i> You shake your head, grinning it away. She glares at you suspiciously for a moment longer before continuing.");
@@ -248,6 +256,7 @@ public function seraTalkTopics(response:String = ""):void
 		output("\n\n<i>“That’s none of your business,”</i> she answers tersely. <i>“You are my fuck toy, not accountant. But just so we’re clear, I am fine. So long as this shop is a success. And it will be.”</i>");
 		output("\n\nYou may have gained an insight into why she hates Fur Effect so much.");
 		processTime(10);
+		flags["SERA_TALKS_DEMONS"] = 1;
 		addDisabledButton(2,"Demons");
 	}
 	else if(response == "furries")
@@ -275,6 +284,7 @@ public function seraTalkTopics(response:String = ""):void
 			output("\n\n<i>“If I had a problem with you looking like someone who works in a kiddie amusement park you would know about it by now, sweetheart,”</i> she says. She leers at you toothily. <i>“I actually </i>like<i> you that way. Working out the aggression on one of the clowns themselves? More satisfying than I thought.”</i>");
 		}
 		processTime(4);
+		flags["SERA_TALKS_FURRIES"] = 1;
 		addDisabledButton(3,"Furries");
 	}
 }

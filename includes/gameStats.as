@@ -284,11 +284,14 @@ public function statisticsScreen(showID:String = "All"):void
 					}
 					else output2("\n<b><u>" + StringUtil.toTitleCase(num2Ordinal(x + 1)) + " Breast Row</u></b>");
 					output2("\n<b>* Breast, Count: </b>" + pc.breastRows[x].breasts);
-					output2("\n<b>* Breast, Size: </b>" + StringUtil.toTitleCase(pc.breastCup(x)));
-					if(pc.breastRows[x].breasts != 1) output2("s");
-					if(pc.breastRows[x].breastRating() >= 200) output2(" (" + formatFloat(pc.breastRows[x].breastRating(), 3) + ")");
-					if(pc.breastRows[x].breastRatingHoneypotMod != 0) output2("\n<b>* Breast, Honeypot Size Rating: </b>" + formatFloat(pc.breastRows[x].breastRatingHoneypotMod, 3));
-					if(pc.breastRows[x].breastRatingLactationMod != 0) output2("\n<b>* Breast, Lactation Size Rating: </b>" + formatFloat(pc.breastRows[x].breastRatingLactationMod, 3));
+					if(pc.breastRows[x].breastRating() > 0)
+					{
+						output2("\n<b>* Breast, Size: </b>" + StringUtil.toTitleCase(pc.breastCup(x)));
+						if(pc.breastRows[x].breasts != 1) output2("s");
+						if(pc.breastRows[x].breastRating() >= 200) output2(" (" + formatFloat(pc.breastRows[x].breastRating(), 3) + ")");
+						if(pc.breastRows[x].breastRatingHoneypotMod != 0) output2("\n<b>* Breast, Honeypot Size Rating: </b>" + formatFloat(pc.breastRows[x].breastRatingHoneypotMod, 3));
+						if(pc.breastRows[x].breastRatingLactationMod != 0) output2("\n<b>* Breast, Lactation Size Rating: </b>" + formatFloat(pc.breastRows[x].breastRatingLactationMod, 3));
+					}
 					output2("\n<b>* Nipple, Type: </b>" + " " + GLOBAL.NIPPLE_TYPE_NAMES[pc.breastRows[x].nippleType]);
 					if(pc.breastRows[x].fuckable()) output2(", Fuckable");
 					if(pc.breastRows[x].nippleType == GLOBAL.NIPPLE_TYPE_DICK) output2("\n<b>* Nipple, Genital Type: </b>" + GLOBAL.TYPE_NAMES[pc.dickNippleType]);
@@ -1557,7 +1560,9 @@ public function displayQuestLog(showID:String = "All"):void
 					if(flags["KQ2_LOST_TO_AMARA"] != undefined) output2(", Lost to Amara");
 					if(flags["KQ2_BETRAYED_KARA"] != undefined) output2(", You betrayed Kara");
 					if(flags["KQ2_KARA_SACRIFICE"] != undefined) output2(", Kara sacrificed herself");
-					if(flags["KQ2_QUEST_FINISHED"] != undefined) output2(", Completed");
+					if(flags["KQ2_QUEST_FINISHED"] == 1) output2(", Completed");
+					else if(flags["KQ2_QUEST_FINISHED"] == 2) output2(", Failed");
+					else output2(", <i>In progress...</i>");
 					// Pirate Base
 					if(flags["KQ2_KARA_WITH_PC"] != undefined)
 					{
