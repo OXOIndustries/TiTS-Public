@@ -463,8 +463,9 @@ public function raskyNotInterestedInYerWeirdShit():void
 //Face-Sitting Footjobs
 public function raskvelGirlsSitsIfTheyFits(combat:Boolean = false):void
 {
-	userInterface.showBust("RASKVEL_FEMALE_NUDE");
-	userInterface.showName("LOST VS: F.\nRASKVEL");
+	showBust("RASKVEL_FEMALE_NUDE");
+	if(combat) showName("LOST VS: F.\nRASKVEL");
+	else showName("RASKVEL\nFEMALE");
 	//By Savin
 	author("Savin");
 	//{Combat Loss: Have a Dick}
@@ -539,8 +540,9 @@ public function getRaskVelTailPegged(combat:Boolean = false):void
 {
 	//By Savin
 	author("Savin");
-	userInterface.showBust("RASKVEL_FEMALE_NUDE");
-	userInterface.showName("LOST VS: F.\nRASKVEL");
+	showBust("RASKVEL_FEMALE_NUDE");
+	if(combat) showName("LOST VS: F.\nRASKVEL");
+	else showName("RASKVEL\nFEMALE");
 	//{Combat Loss: Don't Have a Dick}
 	if(combat)
 	{
@@ -612,8 +614,9 @@ public function getRaskVelTailPegged(combat:Boolean = false):void
 //Huge Dicks Get Dosed With Aphrodisiac While Being Forcefully Worshipped
 public function hugeDicksGetForceWorshippedByFemRaskvel(fromCombat:Boolean = false):void
 {
-	userInterface.showBust("RASKVEL_FEMALE_NUDE");
-	userInterface.showName("LOST VS: F.\nRASKVEL");
+	showBust("RASKVEL_FEMALE_NUDE");
+	if(fromCombat) showName("LOST VS: F.\nRASKVEL");
+	else showName("RASKVEL\nFEMALE");
 	//HP loss
 	if(pc.HP() < 1)
 	{
