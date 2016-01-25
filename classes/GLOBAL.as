@@ -384,6 +384,7 @@
 			FLAG_FEATHERED,
 			FLAG_GOOEY,
 			FLAG_SPIKED,
+			FLAG_STICKY,
 		];
 		
 		public static const VALID_LEG_TYPES:Array = [

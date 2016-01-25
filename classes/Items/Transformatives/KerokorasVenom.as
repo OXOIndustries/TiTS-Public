@@ -522,7 +522,7 @@ package classes.Items.Transformatives
 						{
 							if(target.legTypeUnlocked(GLOBAL.TYPE_FROG))
 							{
-								output("\n\nYou fall flat on your [pc.butt] as your [pc.feet] tense and spasm, slowly rearranging till they become three-toed webbed feet, exactly like the kerokoras. You wiggle and stretch your new digits, getting used to them before continuing on your way.");
+								output("\n\nYou fall flat on your [pc.butt] as your [pc.feet] tense and spasm, slowly rearranging until they become three-toed webbed feet, exactly like the kerokoras. You wiggle and stretch your new digits, getting used to them before continuing on your way.");
 								
 								target.legType = GLOBAL.TYPE_FROG;
 								target.clearLegFlags();
@@ -533,6 +533,21 @@ package classes.Items.Transformatives
 							}
 							else output("\n\n" + target.legTypeLockedMessage());
 						}
+					}
+					// Arms
+					if(changes < changeLimit && target.armType == GLOBAL.TYPE_HUMAN && rand(2) == 0)
+					{
+						if(target.armTypeUnlocked(GLOBAL.TYPE_FROG))
+						{
+							output("\n\nA sudden flush makes you raise your arms in surprise. Spotting your hands, you find that they sweat a viscous, gooey substance, making them glisten in the light. Your trembling fingers begin elongating ever-so-slightly, the nails soften as each tip bulges out into a bulbous shape, and new skin expands between each digit. When your arm transformation completes, you find that <b>you now have sticky, webbed hands!</b>");
+							
+							target.armType = GLOBAL.TYPE_FROG;
+							target.clearArmFlags();
+							target.addArmFlag(GLOBAL.FLAG_SMOOTH);
+							target.addArmFlag(GLOBAL.FLAG_STICKY);
+							changes++
+						}
+						else output("\n\n" + target.armTypeLockedMessage());
 					}
 					// get frog tongue
 					if(changes < changeLimit && target.tongueType != GLOBAL.TYPE_FROG && rand(2) == 0)
