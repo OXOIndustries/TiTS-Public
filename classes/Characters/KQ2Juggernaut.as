@@ -49,7 +49,7 @@ package classes.Characters
 			shield.hasRandomProperties = true;
 			
 			this.armor.longName = "black void power armor";
-			this.armor.defense = 25;
+			this.armor.defense = 15;
 			this.armor.hasRandomProperties = true;
 			
 			this.physiqueRaw = 35;
@@ -58,7 +58,7 @@ package classes.Characters
 			this.intelligenceRaw = 12;
 			this.willpowerRaw = 14;
 			this.libidoRaw = 20;
-			this.shieldsRaw = 40;
+			this.shieldsRaw = this.shieldsMax();
 			this.energyRaw = 100;
 			this.lustRaw = 10;
 			

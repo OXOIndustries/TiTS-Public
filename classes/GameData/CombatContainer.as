@@ -3069,7 +3069,9 @@ package classes.GameData
 			{
 				if (_friendlies.length > 1) output("\n\nTogether, y");
 				else output("\n\nY");
-				output("ou're fighting " + num2Text(enemiesAlive()) + " hostiles:");
+				output("ou're fighting ");
+				if (enemiesAlive() == 1) output("one hostile:");
+				else output(num2Text(enemiesAlive()) + " hostiles:");
 			}
 			
 			// TODO: I guess this would be the place to point out blindness or whatever.

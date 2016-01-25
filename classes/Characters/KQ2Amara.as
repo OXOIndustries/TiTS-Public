@@ -51,7 +51,7 @@ package classes.Characters
 			shield.hasRandomProperties = true;
 			
 			armor = new VoidPlateArmor();
-			armor.defense = 30;
+			armor.defense = 20;
 			armor.resistances.kinetic.resistanceValue = 25.0;
 			armor.resistances.freezing.resistanceValue = -25.0;
 			armor.resistances.burning.resistanceValue = 15.0;
@@ -65,7 +65,7 @@ package classes.Characters
 			this.intelligenceRaw = 12;
 			this.willpowerRaw = 35;
 			this.libidoRaw = 20;
-			this.shieldsRaw = 40;
+			this.shieldsRaw = shieldsMax();
 			this.energyRaw = 100;
 			this.lustRaw = 10;
 			
