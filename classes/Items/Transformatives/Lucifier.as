@@ -85,7 +85,7 @@ package classes.Items.Transformatives
 			var select:int = 0;
 			var x:int = 0;
 			var demonSkinColor:Array = ["red", "purple", "indigo", "dark blue"];
-			var demonEyeColor:Array = ["crimson", "ruby", "gold", "platinum", "pearl", "glowing amber", "glowing white", "glowing white", "luminous yellow"];
+			var demonEyeColor:Array = ["crimson", "ruby", "gold", "platinum", "pearl", "glowing amber", "glowing red", "glowing white", "luminous yellow"];
 			
 			// Standard dose
 			var TFList:Array = [];
