@@ -1424,7 +1424,6 @@ public function arbetzPoolBonus():Boolean
 	if (arbetzActiveHours())
 	{
 		author("Nonesuch");
-		showBust("GODI");
 		
 		// Blurb
 		output("You are standing beside the pool. It’s blue, decently sized, has a diving board and winks fractured beams of Tarkus’s sun back at you merrily. The area around it is paved in white and has deckchairs here and there. On one of these");
