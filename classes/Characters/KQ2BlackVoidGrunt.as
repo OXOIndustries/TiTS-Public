@@ -16,6 +16,7 @@ package classes.Characters
 	import classes.Engine.Combat.DamageTypes.*;
 	import classes.Engine.Combat.*; 
 	import classes.Engine.Interfaces.output;
+	import classes.StringUtil;
 	
 	
 	public class KQ2BlackVoidGrunt extends Creature
@@ -222,7 +223,7 @@ package classes.Characters
 		
 		private function machinePistols(target:Creature):void
 		{
-			output("One of the pirates brings his machine pistol to bear, firing a burst of toward " + (target is PlayerCharacter ? "you" : target.a + target.short) + "!");
+			output(StringUtil.capitalize(uniqueName, false) + " brings his machine pistol to bear, firing a burst of toward " + (target is PlayerCharacter ? "you" : target.a + target.short) + "!");
 			if (rangedCombatMiss(this, target, -1, 3))
 			{
 				output(" The burst misses!");
@@ -238,7 +239,7 @@ package classes.Characters
 		private function groupFlashbang(targets:Array):void
 		{
 			// Flashbang
-			output("One of the pirates pulls another disk-like grenade from his belt and slides it across the deck, placing it " + (targets.length > 1 ? "between you and Kara!" : "right at your feet!") +" The flashbang detonates with deafening force,");
+			output(StringUtil.capitalize(uniqueName, false) + " pulls another disk-like grenade from his belt and slides it across the deck, placing it " + (targets.length > 1 ? "between you and Kara!" : "right at your feet!") +" The flashbang detonates with deafening force,");
 
 			var pc:Creature;
 			var kara:Creature;
@@ -291,7 +292,7 @@ package classes.Characters
 		private function sx1GroupSmokeGrenade(hostileCreatures:Array):void
 		{
 			// Smoke Grenade
-			output("One of the pirates pulls a cylindrical grenade from his belt and hurls it between you and him. Smoke billows out of the grenade after a loud POP, making it almost impossible to see. <b>Aim reduced!</b>");
+			output(StringUtil.capitalize(uniqueName, false) + " pulls a cylindrical grenade from his belt and hurls it between you and him. Smoke billows out of the grenade after a loud POP, making it almost impossible to see. <b>Aim reduced!</b>");
 			
 			for (var i:int = 0; i < hostileCreatures.length; i++)
 			{
@@ -304,7 +305,7 @@ package classes.Characters
 		public function concGrenade(hostileCreatures:Array):void
 		{
 			// Concussion Grenade
-			output("One of the pirates grabs a red grenade off of his belt and hurls it at you. A second later, the grenade detonates in a rib-crushing wave of kinetic force that nearly knocks you on your ass!");
+			output(StringUtil.capitalize(uniqueName, false) + " grabs a red grenade off of his belt and hurls it at you. A second later, the grenade detonates in a rib-crushing wave of kinetic force that nearly knocks you on your ass!");
 			
 			for (var i:int = 0; i < hostileCreatures.length; i++)
 			{
