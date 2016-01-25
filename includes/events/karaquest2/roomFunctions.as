@@ -177,6 +177,13 @@ public function kq2rfSewer2():Boolean
 	output(". You’ve reached a cross-way in the sewer, directing sewage from all over through one channel.");
 
 	output("\n\nAs you’re walking, Kara taps on a small wrist computer, eyeing a holo-display that flashes across her hand. <i>“East. We want to go east, just a little further.”</i>");
+	
+	if (flags["KQ2_FORCED_SEWER_FIGHT"] == undefined)
+	{
+		flags["KQ2_FORCED_SEWER_FIGHT"] = 1;
+		kq2FightSecDrones();
+		return true;
+	}
 
 	return tryProcKQ2CombatSewers();
 }
