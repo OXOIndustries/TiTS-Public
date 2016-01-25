@@ -283,17 +283,31 @@
 		
 		public function updateDesc():void
 		{
-			var hostiles:Array = CombatManager.getHostileCharacters();
-			
-			if (hostiles.indexOf(this) == -1)
+			// TODO: This is workaroundy- ideally the combat container inits should be static and thus could be directly compared
+			// f.ex:
+			// if (CombatManager.combatEncounter() == CombatEncounters.KaraVsShadeFight)
+			if (flags["KQ2_QUEST_BEGIN"] == undefined)
 			{
-				long = "Beside you stands Kara";
+				var hostiles:Array = CombatManager.getHostileCharacters();
+				
+				if (hostiles.indexOf(this) == -1)
+				{
+					long = "Beside you stands Kara";
+				}
+				else
+				{
+					long = "You’re fighting Kara";
+				}
+				long += ", a mysterious kaithrit with cobalt locks and eerie eyes. Her cloak hangs loosely from her shoulders, revealing a skin-tight black shirt that hugs and accentuates her hefty E-cups. Her legs are mostly naked, barely covered by a lopsided half-skirt over one leg. In one hand, she’s carrying a compact plasma pistol, humming with energy and glowing with green light. Her off-hand grips the hilt of a hardlight blade back-handed, holding a flashing blade of purple force behind her.";
 			}
 			else
 			{
-				long = "You’re fighting Kara";
+				long = "Beside you stands Kara, a ";
+				if (isNice()) long += "sweet";
+				else if (isMischievous()) long += "mischievous";
+				else long += "hard-ass";
+				long += " kaithrit with cobalt locks and eerie cybernetic eyes. She's wearing a skin-tight synth-leather bodysuit that hugs and accentuates her hefty E-cups. A green half-skirt that hangs like a cape around her waist, swishing about with every motion. In one hand, she’s carrying a compact plasma pistol, humming with energy and glowing with green light. Her off-hand grips the hilt of a hardlight blade back-handed, holding a flashing blade of purple force at the ready behind her. A sleek black marksman's rifle is slung over one shoulder, waiting for use.";
 			}
-			long += ", a mysterious kaithrit with cobalt locks and eerie eyes. Her cloak hangs loosely from her shoulders, revealing a skin-tight black shirt that hugs and accentuates her hefty E-cups. Her legs are mostly naked, barely covered by a lopsided half-skirt over one leg. In one hand, she’s carrying a compact plasma pistol, humming with energy and glowing with green light. Her off-hand grips the hilt of a hardlight blade back-handed, holding a flashing blade of purple force behind her.";
 		}
 		
 		private function stimboost(target:Creature):void
