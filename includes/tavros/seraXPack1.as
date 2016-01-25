@@ -1823,7 +1823,7 @@ public function seraSexXXXJardiThreesome(response:String = "jardis"):void
 				if(pc.hasVagina() && pc.isSquirter()) output(", forcing your cunt to sound like a tap itself");
 				output(". Urgently you focus your attention on your mistress’s asshole, searching in deep to tongue at her prostate.");
 				output("\n\n<i>“S’right you cum-colored cocksleeve, I’m your spring melt,”</i> Sera declaims. <i>“So what are you?”</i>");
-				output("\n\n<i>“I’m your w - I’m your waterf...”</i> It’s lost as Jardi orgasms. It sounds exactly like somebody tipped a bucket of water onto the bed. Even from where you are, your arms and [pc.chest] are splattered with warm fluid. Every inch of Sera’s spade penetrates you and you clench your arms around her waist as you cum, [] []");
+				output("\n\n<i>“I’m your w - I’m your waterf...”</i> It’s lost as Jardi orgasms. It sounds exactly like somebody tipped a bucket of water onto the bed. Even from where you are, your arms and [pc.chest] are splattered with warm fluid. Every inch of Sera’s spade penetrates you and you clench your arms around her waist as you cum,");
 				if(pc.hasVagina()) output(" your [pc.vagina] flexing ecstatically around her tail, your [pc.hips] pumping into it as hard as they can as you bury every inch of your tongue into her ass.");
 				else if(pc.hasCock()) output(" your [pc.cock] flexing out streamers of cum onto the bed and your chest, your [pc.hips] pumping into it as hard as they can as you bury every inch of your tongue into her ass.");
 				else output(" your [pc.anus] flexing tremulously around her tail, your [pc.hips] pumping into it as hard as they can as you bury every inch of your tongue into her ass.");
