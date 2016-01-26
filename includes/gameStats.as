@@ -267,6 +267,7 @@ public function statisticsScreen(showID:String = "All"):void
 			{
 				output2("\n<b><u>Lactation</u></b>");
 				output2("\n<b>* Milk, Type: </b>" + GLOBAL.FLUID_TYPE_NAMES[pc.milkType]);
+				output2("\n<b>* Milk, Capacity: </b>" + formatFloat(pc.milkFullness, 1) + "%");
 				output2("\n<b>* Milk, Current: </b>" + Math.round(pc.milkFullness/100 * pc.milkCapacity()) + " mLs");;
 				output2("\n<b>* Milk, Max: </b>" + pc.milkCapacity() + " mLs");
 				output2("\n<b>* Milk, Production Training: </b>" + formatFloat(pc.milkMultiplier, 1) + "%");
@@ -338,6 +339,9 @@ public function statisticsScreen(showID:String = "All"):void
 			else output2(" Taken");
 			// Cum Stats
 			output2("\n<b>* Cum, Type: </b>" + GLOBAL.FLUID_TYPE_NAMES[pc.cumType]);
+			output2("\n<b>* Cum, Capacity:</b>");
+			if(pc.ballSizeRaw > 0 && pc.perkv1("'Nuki Nuts") > 0) output2(" " + formatFloat(pc.ballFullness + ((pc.perkv1("'Nuki Nuts")/pc.ballSizeRaw) * 100), 1) + "%");
+			else output2(" " + formatFloat(pc.ballFullness, 1) + "%");
 			output2("\n<b>* Cum, Current Internal: </b>" + pc.currentCum() + " mLs");
 			output2("\n<b>* Cum, Probable Ejaculation: </b> " + pc.cumQ() + " mLs");
 			output2("\n<b>* Cum, Max: </b>" + pc.maxCum() + " mLs");
@@ -3553,7 +3557,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				if(flags["RENVRA_RACE_TALK"] != undefined && flags["RENVRA_KIDS_TALK"] != undefined)
 				{
-					output2("\n<b>* Renvra, Egg Fertility: </b>" + formatFloat(chars["RENVRA"].cumQualityRaw, 3) + "%");
+					output2("\n<b>* Renvra, Egg Fertility: </b>" + formatFloat(chars["RENVRA"].cumQualityRaw, 1) + "%");
 				}
 				variousCount++;
 			}
