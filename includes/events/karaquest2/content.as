@@ -2466,7 +2466,7 @@ public function kq2KaraSexytimes():void
 	}
 	else
 	{
-		addButton(0, "TakeDick", kq2KaraTakeKittydick, undefined, "Take Her Dick", "[PLACEHOLDER]");
+		addButton(0, "TakeDick", kq2KaraTakeKittydick, undefined, "Take Her Dick", "Ride her kitty cock!");
 		addButton(1, "FuckHer", kq2KaraFuckKittysKitty, undefined, "Fuck Kara", "Fuck Pussy's Pussy!");
 	}
 }
