@@ -87,7 +87,6 @@
 		
 		//Core Game Stuff
 		include "../includes/appearance.as";
-		include "../includes/combat.as";
 		include "../includes/ControlBindings.as";
 		include "../includes/CodexEntries.as";
 		include "../includes/CodexFiction.as";
@@ -316,8 +315,6 @@
 
 		public var flags:Dictionary;
 
-		public var combatStage:*;
-
 		// LE MAP
 		public var mapper:Mapper;
 
@@ -354,7 +351,6 @@
 
 			//temporary nonsense variables.
 			temp = 0;
-			combatStage = 0;
 
 			import classes.Creature;
 			import classes.ItemSlotClass;
