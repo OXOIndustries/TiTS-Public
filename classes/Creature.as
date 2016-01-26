@@ -33,6 +33,7 @@ package classes {
 	import classes.Util.InCollection;
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	import classes.Engine.Utility.plural;
+	import classes.Engine.Utility.possessive;
 	import classes.Engine.Combat.DamageTypes.DamageType;
 	import classes.Engine.Utility.weightedRand;
 
@@ -8709,7 +8710,7 @@ package classes {
 			//25% tightness desc
 			if (rand(4) == 0 || (ass.looseness() <= 1 && rand(4) <= 2)) {
 				if (descripted > 0) desc += ", ";
-				if (analVirgin && ass.hymen) {
+				if (analVirgin) {
 					if (rand(3) == 0) desc += "virgin";
 					else if (rand(2) == 0) desc += "unspoiled";
 					else desc += "unclaimed";
@@ -12524,7 +12525,7 @@ package classes {
 				}
 				else
 				{
-					output("<b>" + short + " has succumbed to " + mf("his", "her") + " desires and lost " + mf("his", "her"));
+					output("<b>" + capitalA + short + " has succumbed to " + mf("his", "her") + " desires and lost " + mf("his", "her"));
 					if (hasVagina()) output(" masculine");
 					output(" virginity.</b>");
 				}
@@ -12579,36 +12580,34 @@ package classes {
 				if (display)
 				{
 					if (spacingsF) output(" ");
+					output("<b>");
 					if (this is PlayerCharacter)
 					{
 						if (holePointer.hymen && hole >= 0)
 						{
-							output("<b>Your hymen is torn</b>");
+							output("Your hymen is torn");
 							holePointer.hymen = false;
 						}
-						else output("<b>You have been penetrated</b>");
+						else output("You have been penetrated");
 						
-						if (hole >= 0 && vaginalVirgin) output("<b>, robbing you of your vaginal virginity</b>");
-						
-						else if (analVirgin) output("<b>, robbing you of your anal virginity</b>");
-						
-						output("<b>.</b>");
+						if (hole >= 0 && vaginalVirgin) output(", robbing you of your vaginal virginity");
+						else if (analVirgin) output(", robbing you of your anal virginity");
+						output(".");
 					}
 					else
 					{
-						if (holePointer.hymen)
+						if (holePointer.hymen && hole >= 0)
 						{
-							output("<b>" + short + "s hymen is torn</b>");
+							output(capitalA + possessive(short) + " hymen is torn");
 							holePointer.hymen = false;
 						}
-						else output("<b>" + short + " has been penetrated</b>");
+						else output(capitalA + short + " has been penetrated");
 						
-						if (hole >= 0 && vaginalVirgin)	output("<b>, robbing " + mf("him", "her") + " of " + mf("his", "her") + " vaginal virginity</b>");
-						
-						else if (analVirgin) output("<b>, robbing " + mf("him", "her") + " of " + mf("his", "her") + " anal virginity</b>");
-						
-						output("<b>.</b>");
+						if (hole >= 0 && vaginalVirgin)	output(", robbing " + mf("him", "her") + " of " + mf("his", "her") + " vaginal virginity");
+						else if (analVirgin) output(", robbing " + mf("him", "her") + " of " + mf("his", "her") + " anal virginity");
+						output(".");
 					}
+					output("</b>");
 					if(spacingsB) output(" ");
 				}
 				
@@ -12651,11 +12650,11 @@ package classes {
 						}
 						else
 						{
-							if(holePointer.looseness() >= 5) output("<b>" + short + "s " + vaginaDescript(hole) + " is stretched painfully wide, gaped in a way that practically invites huge monster-cocks to plow " + mf("him", "her") +".</b>");
-							else if(holePointer.looseness() >= 4) output("<b>" + short + "s " + vaginaDescript(hole) + " painfully stretches, the lips now wide enough to gape slightly.</b>");
-							else if(holePointer.looseness() >= 3) output("<b>" + short + "s " + vaginaDescript(hole) + " is now somewhat loose.</b>");
-							else if(holePointer.looseness() >= 2) output("<b>" + short + "s " + vaginaDescript(hole) + " is a little more used to insertions.</b>");
-							else output("<b>" + short + "s " + vaginaDescript(hole) + " is stretched out a little bit.</b>");
+							if(holePointer.looseness() >= 5) output("<b>" + capitalA + possessive(short) + " " + vaginaDescript(hole) + " is stretched painfully wide, gaped in a way that practically invites huge monster-cocks to plow " + mf("him", "her") +".</b>");
+							else if(holePointer.looseness() >= 4) output("<b>" + capitalA + possessive(short) + " " + vaginaDescript(hole) + " painfully stretches, the lips now wide enough to gape slightly.</b>");
+							else if(holePointer.looseness() >= 3) output("<b>" + capitalA + possessive(short) + " " + vaginaDescript(hole) + " is now somewhat loose.</b>");
+							else if(holePointer.looseness() >= 2) output("<b>" + capitalA + possessive(short) + " " + vaginaDescript(hole) + " is a little more used to insertions.</b>");
+							else output("<b>" + capitalA + possessive(short) + " " + vaginaDescript(hole) + " is stretched out a little bit.</b>");
 						}
 					}
 					else {
@@ -12669,11 +12668,11 @@ package classes {
 						}
 						else
 						{
-							if(holePointer.looseness() >= 5) output("<b>" + short + "s " + assholeDescript() + " is stretched painfully wide, gaped in a way that practically invites huge monster-cocks to plow " + mf("him", "her") +".</b>");
-							else if(holePointer.looseness() >= 4) output("<b>" + short + "s " + assholeDescript() + " painfully stretches, the lips now wide enough to gape slightly.</b>");
-							else if(holePointer.looseness() >= 3) output("<b>" + short + "s " + assholeDescript() + " is now somewhat loose.</b>");
-							else if(holePointer.looseness() >= 2) output("<b>" + short + "s " + assholeDescript() + " is a little more used to insertions.</b>");
-							else output("<b>" + short + "s " + assholeDescript() + " is stretched out a little bit.</b>");
+							if(holePointer.looseness() >= 5) output("<b>" + capitalA + possessive(short) + " " + assholeDescript() + " is stretched painfully wide, gaped in a way that practically invites huge monster-cocks to plow " + mf("him", "her") +".</b>");
+							else if(holePointer.looseness() >= 4) output("<b>" + capitalA + possessive(short) + " " + assholeDescript() + " painfully stretches, the lips now wide enough to gape slightly.</b>");
+							else if(holePointer.looseness() >= 3) output("<b>" + capitalA + possessive(short) + " " + assholeDescript() + " is now somewhat loose.</b>");
+							else if(holePointer.looseness() >= 2) output("<b>" + capitalA + possessive(short) + " " + assholeDescript() + " is a little more used to insertions.</b>");
+							else output("<b>" + capitalA + possessive(short) + " " + assholeDescript() + " is stretched out a little bit.</b>");
 						}
 					}
 					if(spacingsB) output(" ");
