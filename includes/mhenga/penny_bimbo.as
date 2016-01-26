@@ -4,27 +4,31 @@
 public function approachBimboPenny():void
 {
 	clearOutput();
-	showPenny(true);
 	abeAuthor();
 	//First Time
 	if(flags["SEEN_BIMBO_PENNY"] == undefined)
 	{
+		flags["SEEN_BIMBO_PENNY"] = 1;
+		showPenny(true);
+		generateMap();
+		
 		output("You head over to Penny’s desk, finding her sitting up straight at her chair, looking surprisingly perky and attentive. <i>“Oh, h-”</i> a weird look crosses her face briefly, but she recovers and finishes, <i>“hi [pc.name]!”</i>");
 		output("\n\n<i>“Hi,”</i> you answer. <i>“How are you doing? You seem... distracted.”</i>");
 		output("\n\nPenny giggles. <i>“Okay, you caught me!”</i> She throws her hands up in the air, then leans in close and whispers, as though telling a secret. <i>“I was finding it really hard to like, concentrate, and plus I had to deal with so much cum even </i>I<i> was having trouble drinking it all. But then, well, the problem solved itself!</i>");
 		output("\n\nShe waves for you to come over, and, curious, you step around the desk. The first thing you see is that she’s not wearing any clothes from the waist down - although that’s hardly unusual - but then you see a shape down between her legs.");
-		output("\n\nIt takes a little while before you figure out what it is, because at first it doesn’t really look like <i>anything</i>, just a big blob of... something. And then you see it - it’s Flahne. She’s on her knees, her face buried in Penny’s crotch, and you can see the fox-girl’s cock going inside her mouth and most of the way down her throat. The reason why you didn’t recognise Flahne at first is because she’s almost completely white, her body bulging a little bit under the massive loads Penny has clearly been feeding her for some time.");
+		output("\n\nIt takes a little while before you figure out what it is, because at first it doesn’t really look like <i>anything</i>, just a big blob of... something. And then you see it - it’s Flahne. She’s on her knees, her face buried in Penny’s crotch, and you can see the fox-girl’s cock going inside her mouth and most of the way down her throat. The reason why you didn’t recognize Flahne at first is because she’s almost completely white, her body bulging a little bit under the massive loads Penny has clearly been feeding her for some time.");
 		output("\n\n<i>“Ta-da!”</i> Penny announces happily. <i>“Flahne here has been really helpful in making sure I can still get work done, haven’t you?”</i>");
 		output("\n\nFlahne pulls herself back, making Penny shudder as her dripping cock is pulled free to give Flahne room to speak. Finally she turns up to you and shrugs. <i>“It’s a living,”</i> she says simply.");
 		output("\n\nPenny giggles again, slapping Flahne lightly. <i>“Oh you tease, acting like it’s all </i>such<i> a big trouble. You know as well as I do that you started drooling the second I told you about all this, and you couldn’t </i>wait<i> to help me out.”</i>");
 		output("\n\nShe looks back up at you, pouting just a little bit. <i>“Do you know, I didn’t even have to like, go looking for her or anything? The second you left after we first did this I heard something out the window and she was just like, there. I swear she must be able to like, smell cum or something, and we both know I was putting out a </i>lot<i> of it.”</i>");
 		output("\n\nYou both turn back to Flahne, and you think that maybe she blushes slightly, even though it’s hard to tell given her current coloring. She doesn’t say anything though, she just slides herself back onto Penny’s cock, making both of them shudder with pleasure.");
 		output("\n\n<i>“So,”</i> Penny says eventually, <i>“what can I do ya for?”</i>");
-		flags["SEEN_BIMBO_PENNY"] = 1;
 	}
 	//Repeat
 	else
 	{
+		showPenny(true);
+		
 		//IF PC HAS APPROACHED PENNY AFTER SHE HAS BEEN BIMBO’D BEFORE AND THE TIME IS BETWEEN 0800 AND 1700
 		if(hours >= 8 && hours < 17)
 		{
