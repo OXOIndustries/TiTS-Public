@@ -2,8 +2,21 @@ import classes.Characters.KQ2BlackVoidGrunt;
 import classes.GameData.CombatManager;
 import classes.Items.Accessories.TamWolfDamaged;
 
+public function kq2CombatSuppression():Boolean
+{
+	if (flags["KQ2_SUPPRESS_COMBAT"] != undefined)
+	{
+		flags["KQ2_SUPPRESS_COMBAT"] = undefined;
+		return true;
+	}
+	
+	return false;
+}
+
 public function tryProcKQ2CombatCourtyards():Boolean
 {
+	if (kq2CombatSuppression()) return false;
+	
 	var encounters:Array = [];
 	encounters.push(kq2FightBlackVoidGrunts);
 	
@@ -25,6 +38,8 @@ public function tryProcKQ2CombatCourtyards():Boolean
 
 public function tryProcKQ2CombatSewers():Boolean
 {
+	if (kq2CombatSuppression()) return false;
+	
 	var encounters:Array = [];
 	encounters.push(kq2FightSecDrones);
 	
@@ -72,6 +87,7 @@ public function kq2MooksVictory():void
 	
 	output("The pirates collapse, unable to put up much more of a fight after what you've done to them. You kick their weapons away and tie them up to make sure you don't have any surprises when they've recovered.");
 	
+	flags["KQ2_SUPPRESS_COMBAT"] = 1;
 	// maybe sneaky loot a securemp/hammer carbine one time across all fights with them?
 	
 	CombatManager.genericVictory();
@@ -110,6 +126,8 @@ public function kq2DroneVictory():void
 	output("The last of the drones pops in a hail of sparks and goes crashing to the ground. Kara twirls her plasma gun around her finger and blows a wisp of smoke from the barrel.");
 
 	output("<i>“C’mon.”</i> she says, holstering it. <i>“They’ve probably alerted base security. We need to hurry!”</i>");
+	
+	flags["KQ2_SUPPRESS_COMBAT"] = 1;
 	
 	CombatManager.genericVictory();
 }
@@ -177,6 +195,13 @@ public function kq2rfSewer2():Boolean
 	output(". You’ve reached a cross-way in the sewer, directing sewage from all over through one channel.");
 
 	output("\n\nAs you’re walking, Kara taps on a small wrist computer, eyeing a holo-display that flashes across her hand. <i>“East. We want to go east, just a little further.”</i>");
+	
+	if (flags["KQ2_FORCED_SEWER_FIGHT"] == undefined)
+	{
+		flags["KQ2_FORCED_SEWER_FIGHT"] = 1;
+		kq2FightSecDrones();
+		return true;
+	}
 
 	return tryProcKQ2CombatSewers();
 }
@@ -523,17 +548,20 @@ public function kq2rfBarracksEntrance():Boolean
 		return true;
 	}
 	else
-	{		
-		if (flags["KQ2_FIGHT_STEPS"] == undefined) flags["KQ2_FIGHT_STEPS"] = 0;
-		flags["KQ2_FIGHT_STEPS"]++;
-	
-		if (flags["KQ2_FIGHT_STEPS"] > 4)
+	{	
+		if (!kq2CombatSuppression())
 		{
-			if (rand(flags["KQ2_FIGHT_STEPS"]) > 5)
+			if (flags["KQ2_FIGHT_STEPS"] == undefined) flags["KQ2_FIGHT_STEPS"] = 0;
+			flags["KQ2_FIGHT_STEPS"]++;
+		
+			if (flags["KQ2_FIGHT_STEPS"] > 4)
 			{
-				flags["KQ2_FIGHT_STEPS"] = 0;
-				kq2FightBlackVoidGrunts();
-				return true;
+				if (rand(flags["KQ2_FIGHT_STEPS"]) > 5)
+				{
+					flags["KQ2_FIGHT_STEPS"] = 0;
+					kq2FightBlackVoidGrunts();
+					return true;
+				}
 			}
 		}
 	}
@@ -553,12 +581,8 @@ public function kq2rfBarracksInterior():Boolean
 	}
 	else
 	{
-		if (flags["KQ2_NO_COMBAT"] != undefined)
+		if (!kq2CombatSuppression())
 		{
-			flags["KQ2_NO_COMBAT"] = undefined;
-		}
-		else
-		{		
 			if (flags["KQ2_FIGHT_STEPS"] == undefined) flags["KQ2_FIGHT_STEPS"] = 0;
 			flags["KQ2_FIGHT_STEPS"]++;
 		
@@ -574,11 +598,11 @@ public function kq2rfBarracksInterior():Boolean
 		}
 	}
 	
-		if (flags["KQ2_TAKEN_ARMOR"] == undefined)
-		{
-		output("\n\nYou can see a full suit of armor sitting on one of the bunks. Looks usable.\n\n");
-			addButton(0, "TakeArmor", kq2TakeEngineerArmor);
-		}
+	if (flags["KQ2_TAKEN_ARMOR"] == undefined)
+	{
+	output("\n\nYou can see a full suit of armor sitting on one of the bunks. Looks usable.\n\n");
+		addButton(0, "TakeArmor", kq2TakeEngineerArmor);
+	}
 
 	return false;
 }
@@ -587,7 +611,7 @@ public function kq2TakeEngineerArmor():void
 {
 	lootScreen = kq2EngineerArmorCheck;
 	flags["KQ2_TAKEN_ARMOR"] = 1;
-	flags["KQ2_NO_COMBAT"] = 1;
+	flags["KQ2_SUPPRESS_COMBAT"] = 1;
 	itemCollect([new VoidPlateArmor()]);
 }
 

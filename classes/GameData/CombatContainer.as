@@ -3069,7 +3069,9 @@ package classes.GameData
 			{
 				if (_friendlies.length > 1) output("\n\nTogether, y");
 				else output("\n\nY");
-				output("ou're fighting " + num2Text(enemiesAlive()) + " hostiles:");
+				output("ou're fighting ");
+				if (enemiesAlive() == 1) output("one hostile:");
+				else output(num2Text(enemiesAlive()) + " hostiles:");
 			}
 			
 			// TODO: I guess this would be the place to point out blindness or whatever.
@@ -3295,14 +3297,14 @@ package classes.GameData
 					// Legacy mode kinda- if we're in a single-enemy fight, don't output anything.
 					if (_hostiles.length > 1)
 					{
-						output("\n\n" + _hostiles[i].capitalA + _hostiles[i].uniqueName + " falls to the ground,");
+						output("\n\n" + StringUtil.capitalize(_hostiles[i].uniqueName, false) + " falls to the ground,");
 						if (_hostiles[i].HP() <= 0) output(" defeated.");
 						else output(" stricken with lust.");
 					}
 				}
 				else if (_hostiles[i].isDefeated() && _hostiles[i].alreadyDefeated == true)
 				{
-					output("\n\n" + _hostiles[i].capitalA + _hostiles[i].uniqueName + " lies on the ground, defeated.");
+					output("\n\n" + StringUtil.capitalize(_hostiles[i].uniqueName, false) + " lies on the ground, defeated.");
 				}
 			}
 			

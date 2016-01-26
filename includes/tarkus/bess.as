@@ -3543,22 +3543,24 @@ public function talkToBessAboutOutfits():void
 	
 	bessCIW(10, "Schoolgirl", SchoolgirlOutfit, "Schoolgirl", "Schoolgirl");
 	bessCIW(11, "Cheerleader", CheerleaderUniform, "Cheerleader Uniform", "CheerleaderUniform");
-	bessCIW(12, "Bunnygirl", BunnyOutfit, "Bunnygirl Outfit", "Bunnygirl Outfit");
-	bessCIW(13, "Military", MilitaryUniform, "Military Uniform", "Military Uniform");
+	bessCIW(12, "Waitress", WaitressUniform, "Waitress Uniform", "Waitress Uniform");
+	bessCIW(13, "Bunnygirl", BunnyOutfit, "Bunnygirl Outfit", "Bunnygirl Outfit");
 	
 	addButton(14, "Back", talkToBessAboutClothes);
 	
-	bessCIW(15, "Pirate", SpacePirateOutfit, "Space Pirate", "Space Pirate");
-	bessCIW(16, "R.Fem Armor", RevealingFemaleArmor, "Revealing Female Armor", "Revealing Female Armor");
-	bessCIW(17, "R.Male Armor", RevealingMaleArmor, "Revealing Male Armor", "Revealing Male Armor");
-	bessCIW(18, "T.Zipsuit", TransparentZipsuit, "Transparent Zipsuit", "Transparent Zipsuit");
-	bessCIW(19, "Butler", ButlerOutfit, "Butler Outfit", "Butler Outfit");
+	bessCIW(15, "Military", MilitaryUniform, "Military Uniform", "Military Uniform");
+	bessCIW(16, "Pirate", SpacePirateOutfit, "Space Pirate", "Space Pirate");
+	bessCIW(17, "R.Fem Armor", RevealingFemaleArmor, "Revealing Female Armor", "Revealing Female Armor");
+	bessCIW(18, "R.Male Armor", RevealingMaleArmor, "Revealing Male Armor", "Revealing Male Armor");
+	bessCIW(19, "T.Zipsuit", TransparentZipsuit, "Transparent Zipsuit", "Transparent Zipsuit");
 	
-	bessCIW(20, "M.Doctor", MaleDoctorOutfit, "Male Doctor Outfit", "Male Doctor Outfit");
-	bessCIW(21, "F.Doctor", FemaleDoctorOutfit, "Female Doctor Outfit", "Female Doctor Outfit");
-	bessCIW(22, "Schoolboy", SchoolboyOutfit, "Schoolboy Outfit", "Schoolboy Outfit");
-	bessCIW(23, "StrapHarness", LeatherStrapHarness, "Leather Strap Harness", "Leather Strap Harness");
-	bessCIW(24, "BlackDress", LittleBlackDress, "Little Black Dress", "Little Black Dress");
+	bessCIW(20, "Butler", ButlerOutfit, "Butler Outfit", "Butler Outfit");
+	bessCIW(21, "M.Doctor", MaleDoctorOutfit, "Male Doctor Outfit", "Male Doctor Outfit");
+	bessCIW(22, "F.Doctor", FemaleDoctorOutfit, "Female Doctor Outfit", "Female Doctor Outfit");
+	bessCIW(23, "Schoolboy", SchoolboyOutfit, "Schoolboy Outfit", "Schoolboy Outfit");
+	bessCIW(24, "StrapHarness", LeatherStrapHarness, "Leather Strap Harness", "Leather Strap Harness");
+	
+	bessCIW(25, "BlackDress", LittleBlackDress, "Little Black Dress", "Little Black Dress");
 	
 	addButton(29, "Back", talkToBessAboutClothes);
 	

@@ -1824,7 +1824,7 @@ public function defeatKaska():void
 		output("\n\nYou take the device in case you need it to disarm the bomb and consider your options.");
 		if(flags["TARKUS_BOMB_TIMER"] >= 60) output(" She didn't seem to be worried about the bomb going off any time soon. Maybe she would like a chance to slake your lusts.");
 	}
-	pc.createKeyItem("Kaska's Detonator",0,0,0,0);
+	if (!pc.hasKeyItem("Kaska's Detonator")) pc.createKeyItem("Kaska's Detonator",0,0,0,0);
 	processTime(1);
 	//Options
 	if(pc.lust() >= 33)

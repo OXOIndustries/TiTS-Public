@@ -932,7 +932,7 @@ public function showKQ2Engineer():void
 
 public function kq2EnterEngineersRoom():void
 {
-	if (flags["KQ2_ENGINEER_NUM_DRONES"] == undefined) flags["KQ2_ENGINEER_NUM_DRONES"] = 1 + rand(4);
+	if (flags["KQ2_ENGINEER_NUM_DRONES"] == undefined) flags["KQ2_ENGINEER_NUM_DRONES"] = 2 + rand(2);
 
 	if (flags["KQ2_DEFEATED_ENGINEER"] == undefined || flags["KQ2_LEFT_ENGINEER"] == undefined)
 	{
