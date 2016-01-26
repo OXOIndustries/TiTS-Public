@@ -4465,7 +4465,10 @@ package classes {
 			return false;
 		}
 		public function isImmobilized(): Boolean {
-			return (hasStatusEffect("Stunned") || hasStatusEffect("Paralyzed") || hasStatusEffect("Naleen Coiled"));
+			return (hasStatusEffect("Stunned") || hasStatusEffect("Paralyzed") || isGrappled());
+		}
+		public function isGrappled(): Boolean {
+			return (hasStatusEffect("Grappled") || hasStatusEffect("Naleen Coiled") || hasStatusEffect("Cockvine Grip"));
 		}
 		public function legs(forceType: Boolean = false, forceAdjective: Boolean = false): String 
 		{

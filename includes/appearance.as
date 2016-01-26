@@ -1020,8 +1020,16 @@ public function appearance(forTarget:Creature):void
 				else output2(" dark-red");
 				output2(" tip.");
 			}
+			// Demonic
+			else if (target.tailGenitalArg == GLOBAL.TYPE_DEMONIC)
+			{
+				output2(" Most of the length of the thing is coated in "+ target.skinTone +" skin, culminating in a thick bulge at the base and");
+				if(target.tailGenitalColor != "") output2(" " + indefiniteArticle(target.tailGenitalColor));
+				else output2(" a dark purple");
+				output2(" shaft lined with sensitive nodules up to the tip.");
+			}
 			// Ribbed
-			else
+			else if (target.hasTailFlag(GLOBAL.FLAG_RIBBED))
 			{
 				output2(" Most of the length of the thing is coated in "+ target.skinTone +" skin, culminating in");
 				if(target.tailGenitalColor != "" && rand(2) == 0) output2(" " + indefiniteArticle(target.tailGenitalColor) + " shaft with");
