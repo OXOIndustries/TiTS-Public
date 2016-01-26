@@ -515,8 +515,8 @@ public function kq2PayFirst():void
 	
 	output("\n\nThat’s pretty reasonable, you figure.");
 
-	addDisabledButton(5, "");
-	addDisabledButton(6, "");
+	removeButton(5);
+	removeButton(6);
 	flags["KQ2_CREDS_FIRST"] = 1;
 
 	processTime(2);
@@ -536,8 +536,8 @@ public function kq2SexFirst():void
 	else if (kara.isAss()) output(" If you don’t get yourself killed, anyway.");
 	output("”</i>");
 
-	addDisabledButton(5, "");
-	addDisabledButton(6, "");
+	removeButton(5);
+	removeButton(6);
 	flags["KQ2_SEX_PAY"] = 1;
 
 	processTime(2);
@@ -2087,7 +2087,7 @@ public function kq2EncounterAmara():void
 	addButton(0, "Money", kq2EncounterAmaraMoney, undefined, "For The Money", "Say that you're here for the money. Like she said, just a hired gun.");
 	addButton(1, "HelpKara", kq2EncounterAmaraKara, undefined, "For Kara", "Say that you came here to help a friend.");
 	addButton(2, "FuckPirates", kq2EncounterAmaraFuckPirates, undefined, "Fuck Pirates", "You're just here to fuck up some pirates!");
-	addButton(3, "Silence", kq2EncounterAmaraSilent, undefined, "Stay Silent", "");
+	addButton(3, "Silence", kq2EncounterAmaraSilent, undefined, "Stay Silent", "Don't answer her question.");
 }
 
 public function kq2EncounterAmaraMoney():void
@@ -2466,7 +2466,7 @@ public function kq2KaraSexytimes():void
 	}
 	else
 	{
-		addButton(1, "TakeDick", kq2KaraTakeKittydick, undefined, "Take Her Dick", "[PLACEHOLDER]");
+		addButton(0, "TakeDick", kq2KaraTakeKittydick, undefined, "Take Her Dick", "[PLACEHOLDER]");
 		addButton(1, "FuckHer", kq2KaraFuckKittysKitty, undefined, "Fuck Kara", "Fuck Pussy's Pussy!");
 	}
 }
