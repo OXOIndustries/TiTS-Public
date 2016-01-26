@@ -155,6 +155,19 @@ public function vahnSexMenu():void
 		else addDisabledButton(1,"GiveAnal","Give Anal","You're too big for Vahn.");
 	}
 	else addDisabledButton(1,"GiveAnal","GiveAnal","You need a dick in order to give him some anal.");
+	if(pc.hasVagina())
+	{
+		if(pc.hasVagina) addButton(2,"Ride Cowgirl",catchVahnCowgirl,undefined,"Ride Cowgirl","Take Vahn aboard and ride his rocket to the stars.")
+		else addDisabledButton(2,"Ride Cowgirl","Ride Cowgirl","You need a pussy to take Vahn for a ride like this.")
+	}
+	if(pc.hasVagina())
+	{
+		if(pc.hasVagina) addButton(3,"Pussy Rub",vahnRubsYourPussy,undefined,"Pussy Rub","Have Vahn rub on your muff to get you off.")
+		else addDisabledButton(3,"Pussy Rub","Pussy Rub","You need a pussy to get Vahn to rub on it. Duh.")
+	}
+	addButton(4,"Catch Anal",vahnFucksYourButt,undefined,"Catch Anal","See if you can get the ausar mechanic to get to work on your backdoor...");
+	addButton(5,"Give Handjob",giveVahnAHandy,undefined,"Give Handjob","Bend Vahn over and play with his tasty red rocket... and maybe something dirtier...");
+
 	addButton(14,"Back",VahnTheMechanic);
 }
 
@@ -368,36 +381,279 @@ public function giveVahnAnal():void
 	addButton(0,"Next",mainGameMenu);
 }
 
+//Catch Vaginal in Cowgirl
+public function catchVahnCowgirl():void
+{
+	clearOutput();
+	showVahn();
+
+output("You suggest to Vahn that you both retire to your ship for some relaxation time.");
+
+output("\n\n<i>“You don’t have to ask me twice,”</i> Vahn grins, bright eyes shining. He places a hand on your hip. Is that his bushy tail brushing against your side? He must be quite excited!");
+
+output("\n\nEven though he’s got his arm around you, you’re the one to take the lead. You both head up the cargo ramp and into your ship.");
+
+output("\n\nWhen you get to the door to your quarters, you insist that he go first. There’s a glimmer of curiosity in his eyes as he opens the door and walks inside. As he turns to face you, you give his athletic chest a little shove, pushing him back onto the bed. The half-ausar lets out a surprised cry as he <i>whumps</i> down on the sheets. With a mischievous grin, you ");
+if (pc.isNude())
+{
+	output("straddle his waist.");
+}
+else 
+{
+	output("swiftly strip off and then straddle his waist.");
+}
+output("\n\n<i>“Taking charge, I take it?”</i> Vahn asks, sucking in a breath as your hands slide over his strapping upper half. You stroke his hard pectorals and feel a pleasurable flutter in your belly: he really is a work of art. The carnal admiration is mutual; you can feel his wide green eyes ogling your ");
+if(pc.biggestTitSize() >= 2)
+{
+	output("naked breasts.");
+}
+else 
+{
+	output("own chest.");
+}
+output("His hands slide up your hips and trail up your sides. An electric shiver shoots up your spine: you feel awfully flushed, set astir by his touch. As his hands slide around your front to ");
+if(pc.biggestTitSize() >= 2) output("cup your breasts and ");
+output("pinch your nipples, you bite back a heated moan. The way he’s flicking your stiffening buds has got you all worked up; it’s all you can do not to squirm with delight in his lap!");
+
+output("\n\nBetween your naked thighs and up against your mound, you can feel something hot and hard. It’s barely constricted beneath his jumpsuit, swelling up and towards his belly with every passing second. You moan and rub yourself against it, feeling his throbbing heat even through his jumpsuit. Knowing that you’re getting him this hard – him just playing with your ");
+ if(pc.biggestTitSize() >= 2) output("breasts and ");
+ output("nipples – is getting you all kinds of hot!");
+ if(pc.hasCock()) output("Your own [pc.cocks] slap");
+ if(pc.cockTotal() >= 2) output("s");
+ output(" excitedly against your belly and swell with arousal.}");
+
+output("\n\nUnwilling to wait a second longer, you reach down and undo the lower half of Vahn’s jumpsuit. The second you do, his ")
+if(pc.hasCock()) output("own "); 
+output("half-ausar cock springs out. Preparing him first, you ");
+if(pc.hasCock()) output("lift your own [pc.cocks] out of the way and ");
+output("rub your slick slit against his undershaft, coating his veiny length in your lube-like juices. Your lover moans and rubs up and back against you in carnal rhythm, twitching against your womanhood.");
+
+output("\n\nOnce you’re satisfied that you’re both slickened up enough, you slide forward and line up his swollen crown with your slit. You then ease yourself back and down onto Vahn’s cockhead. The sensation of his aroused flesh slipping inside of you makes you reel with delight. Inch by glorious inch, you sink onto his rigid shaft, rewarded by the sensation of his bulbous crown rubbing up deep inside of you. When at last your pussy is kissing his turgid knot, you feel gloriously full and utterly impaled upon his straining staff. You can feel every pulse from his prick against your inner walls, every little flex of his swollen crown.");
+
+output("\n\nLooking down at Vahn, the look of transcendent pleasure on his face is getting you even wetter. The puppy boy is definitely enjoying the feel of your slick pussy wrapped around his prick. Deciding to give him something to <i>really</i> get happy about, you clench and squeeze around his half-doggie dick, coaxing a breathy moan from his lips. Excited and encouraged by his reaction, you rock and gyrate in his lap, swooning as his hardness rubs and grinds deep inside of you.");
+if(pc.hasCock()) output(" Pre-cum drools down your [pc.cocks] and lubricates your grinding loins, making things even hotter and wetter");
+
+output("\n\nYou feel the blonde hunk’s hands reach around and firmly grab your ass. He gives your rump a nice tight squeeze. At the same time he begins slapping upwards, literally bouncing you on his cock. You let out a squeal of delight as you’re enthusiastically pistoned from below. Desperately, you wrap your arms around his neck, holding on as he lewdly slaps up against your ass. Every urgent thrust causes your heart to leap and your thighs to shake. You’re gushing down his length every time he withdraws, and moaning with delight with his cock’s return. Your toes curl up, your eyes roll back, and all you can do is buck needily against him. It’s like your life’s purpose, your raison d’être; there’s nothing else other than grinding up against his dick!");
+
+output("\n\nIt’s not long before the pleasure is just too much. Your world goes white and you give a shuddering cry, climaxing hard on his flexing cock. You shiver and ");
+if(pc.isSquirter()) output("spastically squirt [pc.girlCumNoun] all over his waist, thin streams jumping from between your pussylips and splashing all over his belly.");
+else("gush [pc.girlCumNoun] down his shaft and balls.");
+if(pc.hasCock()) output(" Your [pc.cock] spasms and you shoot [pc.cumNoun] all over his flexing abs, painting it in [pc.cumVisc] [pc.cumColor].");
+output(" Glorious waves of utter ecstasy sweep through your body and you shudder uncontrollably, wracked by wave after wave of wondrous rapture. It’s a miracle you can keep yourself upright as you convulse and cream yourself all over his cock!");
+
+output("\n\nAs you experience your dizzying release, you instinctively clench around Vahn’s veiny cock, wetly wringing it with utter abandon. Stimulated by your squeezing snatch, his canine knot swells up and presses back against your inner walls. You hear him let out a glorious groan and feel him shooting his warm sperm inside of you, flexing and filling you with spurt after spurt of his thermal seed. Trapped in by his knot, his sticky spunk pools inside of your pussy, filling it up to the brim and then some. Your [pc.cunt] happily coaxes out every drop of ausar cum he has to give. No doubt his doggie seed is swimming around your [pc.race] eggs, eager to fertilize them.");
+
+output("\n\nUtterly spent, you fall forward and onto his chest, legs splayed wide over his. Knotted by his cock, you’re not going anywhere; it’s a perfect chance to snuggle. Vahn grins and strokes your");
+if(!pc.hasHair()) output("cheek");
+else output("hair");
+output(". Even though you’re so utterly filled with him, you still feel a tiny stream of slickness dribbling down your [pc.legs]. Your lower belly feels so warm and is pressed up against his toned abs. You lift your head and give him a long, passionate kiss, which is hungrily returned.");
+
+output("\n\nAfter making out and snuggling for a glorious half hour, his knot finally deflates, freeing you from his lap. As you slowly and lazily pull off, his sloppy prick plops from your well-packed pussy. Almost immediately, a slick stream of white spills from between your swollen netherlips. Noticing Vahn is loving the erotic sight, you pointedly part your lower lips with your fingers, ")
+if(pc.hasCock()) output("pushing your own [pc.cocks] out of the way and ");
+output("showing off his messy creampie. His cheeks flush and he slips his fingers into your sodden snatch, stirring them about. You tremble and moan, definitely enjoying the sensation. A few quick rubs of your clit and you’re creaming yourself–or really, creaming out <i>his</i> cream–in gooey spurts.");
+
+output("\n\nNow utterly spent, you fall back into the sheets with a contented sigh. Every inch of you is singing, and your inner thighs are wonderfully slick with his cum. Vahn falls down next to you and wraps his arms around your belly. You can feel his fluffy tail brushing up against your leg; a pleasantly soft sensation.");
+
+output("\n\nYou don’t know when you do, but you fall asleep against him, dozing off against each other. It’s only when his com device begins buzzing that you both drag yourself from your delectably dozy nap.");
+
+output("\n\n<i>“My next shift’s about to start. I’ve got to get ready,”</i> Vahn tells you. He punctuates his explanation with a sizzling kiss on your lips, to which you rouse and respond instantly. He’s then dressed and out the door, back to work. You get yourself up and out of bed. How is he still leaking out of you after that nap? He must have shot a <i>lot</i> of cum inside of you!");
+	processTime(120+rand(10));
+	flags["SEXED_VAHN"] = 1;
+	pc.orgasm();
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Vahn Pussy Rubs
+public function vahnRubsYourPussy():void
+{
+	clearOutput();
+	showVahn();
+
+output("With a saucy little smile, you grab Vahn’s hand and lead him to a much quieter part of the docking bay. Once you’re sure nobody’s able to see you both, you ");
+if (pc.isNude())
+{
+	output("strip down and ");
+}
+output("plant your butt on a sleek cargo crate. Then, with a sultry and deliberate slowness, you part your thighs. You feel a rush of exhilaration as you expose your [pc.pussy] to him");
+if(pc.hasCock())
+	{
+	if(pc.hasCock()) output("-pushing your [pc.cocks] ");
+	{
+		if(pc.balls > 0) output("and [pc.balls] out of the way–and");
+		else output("-and")
+	}
+	}
+else output(", ");
+output(" even going so far as to spread it with your fingers.");
+
+output("\n\nVahn is utterly spellbound by the sight of your snatch");
+if(pc.totalVaginas() > 1) output("es");
+output(", mouth agape and wide glimmering green eyes fixated on your [pc.pussyColor] puss");
+if(pc.totalVaginas() > 1) output("ies");
+else output("y");
+output(". Your loins tingle with voyeuristic delight, and your own attention travels down to the palpable pitching in his lower jumpsuit.");
+
+output("\n\n<i>“Mmm, you look all pent up down there. We should do something about that,”</i> you murmur, beckoning him closer with a crooked finger. He hurriedly steps forward and you swiftly undo the lower half of his jumpsuit. The moment you do, his fleshy manhood springs out and smacks excitedly against your hand, thumping it with his hardness! You swoon at the sight and musky smell of his swollen crown and gaping cockhole– every groove and veiny ridge of his prick looks absolutely delicious. It makes you just want to wrap your mouth around it and suck him off, to taste his sweaty goodness on your tongue, to utterly lap up the flavor of his dick.");
+
+output("\n\nAs you soak in the sight of his magnificent manhood, Vahn’s hands wrap around your waist and he pointedly presses it against your needy sex. With a breathy sigh, you wrap your legs around his waist, encouraging his delicious caresses against your nethers. He rubs back and forth against your lips and strokes his firmness against your [pc.clits]. Coiling pleasure begins to mount in your belly, building and building with every grinding movement against your parted pussylips.");
+if(pc.hasCock()) output(" Your [pc.cocks] spring to attention and excitedly slap against your belly, untouched yet fully erect!");
+
+output("\n\nIt’s not long before you’re needily and insistently rocking your hips against his, meeting his bucking thrusts with shuddering gasps and coating his throbbing cock in your slickness. You want him so badly inside of you that you’re whimpering and trying to coax his crown inside of you. Every time it brushes your entryway, he pulls back and presses it against your lovebud instead! The throbbing pleasure from your shared friction shoots up from your loins and shorts out your thoughts. Suddenly, you can’t stop your thighs from shaking about–the pleasure is so overwhelming, you can’t stop yourself!");
+
+output("\n\nWhimpering and grinding up against him, you’re lost to carnal desire, a slave to the wet heat and friction of your shared loins. Then, just when you can’t take it a second longer, you let out a breathy cry and come <i>hard</i> all over his pressing prick, liberally coating it in your gushing girl-juice from shaft to scrotum! ");
+if(pc.hasCock()) output("Spurts of [pc.cumColor] jump from your [pc.cocks], coating his belly in your [pc.cumVisc] love goo. ");
+output("Your toes curl in delight and you press the balls your feet against his sculptured ass, coaxing him to press harder against your climaxing cunny.You hear the ausar technician moan and his prick flex, followed by a warm sticky spurt along your ");
+if(pc.hasCock()) output("own belly in turn");
+else output("belly");
+output("; you’re dimly aware he just came ");
+if(pc.hasCock()) output("right back");
+output(" on you! It strengthens your thrumming buzz as you grind against his squirting cock, coaxing out every last gooey burst onto your [pc.skinFurScalesNoun]");
+
+output("\n\nSweaty and satisfied, you both cling to each other, enjoying in the afterglow of your near-simultaneous climaxes. You feel him nibbling on your neck and you shiver with delight. His lips are teasing at your collarbone; every inch of you is electric and sensitive.");
+
+output("\n\n<i>“I thought you were going to slip it inside of me?”</i> You ask, resting your chin against him. The smell of his freshly sweaty body is divine. You suckle off and relish in the taste of his salty sweat. Is he doing the same to you, you wonder?");
+
+output("\n\n<i>“I couldn’t help myself. Just rubbing against your pussy was a delight,”</i> Vahn admits. His cum-covered cock is still pressing against your netherlips and painting your folds with his sticky white seed. Far more of it is warming your belly, coating it in his wonderful warmth.");
+
+output("\n\nAfter you both clean up–or at least as much as you can–");
+if (pc.isNude())
+{
+	output("Vahn slips his things back on and you both");
+}
+else output("you both slip your things back on and");
+output(" head back to the main hanger. There’s an utterly satisfied smile on the ausar mechanic’s face and, given the soreness of your cheeks, yours as well!");
+
+	processTime(15+rand(10));
+	flags["SEXED_VAHN"] = 1;
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+
+//Vahn Fucks Your Butt (Of Course Savin Had Something To Do With This)
+public function vahnFucksYourButt():void
+{
+	clearOutput();
+	showVahn();
+
+output("With a sensuous smile, you grab Vahn’s hand and lead the sandy-haired ausar up your cargo ramp. When you’re finally out of sight, ");
+if (pc.isNude())
+{
+	output("you turn to him and slide your hands down your naked body");
+}
+else output("you shamelessly strip down in front of him");
+output(". The male tech’s eyes go wide, and there’s a pointed stiffness pitching in his lower overalls–he definitely appreciates the sight!");
+
+output("\n\n<i>“Oh wow...”</i> He murmurs, openly ogling your sexy body. Peeling off his jumpsuit, you’re greeted with the ");
+if (flags["SEXED_VAHN"] != undefined) output("sight of his long, thick cock. Ten inches of delicious rigidity is poking up and pressing against his taut belly–it’s completely terran except for the knot at his base.");
+else output("familiar sight of his ten inch cock!")
+
+output("\n\nWith a little grin, you bend over a crate and invitingly raise your rump to him. Glancing over your shoulder, you watch with barely concealed delight as he firmly grabs your hips and plants his pecker right between your cheeks!");
+
+output("\n\nAs he caresses his knotty prick back and forth, you shiver with delight, relishing in his throbbing heat raunchily rubbing between your [pc.skinColor] buttocks. You’re giddy with the thought of him going further, putting that oh-so-hard dick deep inside of you. Your flexing star is just inches away, begging for his touch.");
+if(pc.analVirgin) output("It’s your first time, so you have no idea how it will feel... yet you’re filled with this giddy <i>need</i> that you can’t put words to; you’ve never wanted anything more in your life!");
+
+output("\n\nHis entry comes without so much as a warning; just a slight pull back and pressing against your sensitive pucker. You groan as your asshole stretches deliciously around his engorged head... time stands still for a blissful moment as he caresses your hole, inching inside of you. A moment of give later, and your spread-wide pucker is kissing around the base of his crown; his dick-head is totally inside of you.");
+ if(pc.analVirgin) output("<b>Congratulations; you’ve lost your anal virginity!</b>");
+
+output("\n\nHis delectably thick cock slips further inside of you, stimulating your inner ass. You groan with delight as your whole body from tip to toe thrums with pleasure. Greedy for more, you lift up your rump, eager to get him as deep as he can go. Mentally, you relax your sphincter, and you’re immediately rewarded with three more inches of throbbing man meat inside of you.");
+if(pc.hasCock()) 
+{
+output("As you breathily gasp and clutch the crate, you can feel his crown deep inside of you and caressing your prostate.");
+output(" Waves of pleasure course through your helpless body; you’re being driven absolutely delirious by his thrusting doggie dick! Your ");
+	if(pc.cockTotal() == 1) output("own cock jerks and slaps");
+	else output("own cocks jerk and slap");
+output(" excitedly against your belly, untouched but utterly rigid from his rectal entry.");
+}
+if(pc.hasVagina())
+{
+	output(" Your ");
+	if (pc.totalVaginas() == 1) output("pussy is");
+	else output("pussies are");
+output(" untouched but warm as slick as can be, thoroughly aroused by his entry!");
+}
+else output ("With no sex organs to speak of, you’re loving him using your ass-pussy!}");
+
+output("\n\nJust as you think you can take no more, his already engorged knot begins to swell ");
+if(pc.hasCock())
+{
+if(pc.hasCock()) output("right against your spongy prostate, plugging");
+else output("and utterly plugs");
+}
+output(" up your poor butt. You’re wracked with sizzling white hot pleasure, losing all self control as your body goes into a spasmic shuddering fit! You cry out in pleasure and your ");
+if(pc.hasCock())
+{
+if(pc.cockTotal() == 1) output("[pc.cocksNoun] jerks and shoot [pc.cum] all over the crate and your belly, jerking and jumping around with nothing to hold it down");
+if(pc.cockTotal() > 1) output("[pc.cocksNoun] jerk and shoot [pc.cum] all over the crate and your belly, jerking and jumping around with nothing to hold them down");
+if(pc.isHerm()) output("At the same time, your");
+}
+if(pc.hasVagina()) output("[pc.cunt] splatters with excitement, the coiled pleasure in your lower belly releasing all at once");
+if(pc.hasGenitals() == false) output("[pc.legOrLegs] quake and you feel a molten release from your quivering rump");
+output("You can feel Vahn’s doggie cock pulsing and squirting his slick warm seed deep inside of your butt, bathing your insides with his boy-juice and slowly filling you up.");
+
+output("\n\nFor what seems like forever, you’re being pumped full of his ausar spunk. Every time his knot pulses and flexes and his cockhead jumps inside of you, you quiver with delight, unable to keep your [pc.thighs] still. Knotted on his cock, you can’t go anywhere; your ass is literally locked to his twitching dick! His arms wrap around you and he pulls you against his hard chest. He presses his lips against your neck and gives it a suckling kiss, making you shiver right down to your dick-filled rump. The blonde ausar is so <i>inside</i> of you that you feel almost one with him, filled up with him from behind and below. You wouldn’t go anywhere even if you could! His knot flexes again and you let out a enraptured cry, cumming all over again from your puppy-plugged ass!");
+
+output("\n\nAfter half an hour of utter ecstasy, Vahn’s knot finally deflates inside of you, slipping out with a loud and lewd <i>plop</i>. Unable to use your legs any longer, you fall forward onto the crate with a near-delirious groan. You can feel his hot creamy jizz sliding out of your stretched asshole and down your [pc.legs], though so much more is still packed inside your ass. Your belly feels so full with him; how much did he cum, anyway? You rub it with a happy sigh, trying to clench your pucker in a futile attempt to keep all his seed inside of your ass.");
+
+output("\n\n<i>“That was wonderful. </i>You<i> are wonderful,”</i> Vahn breathily exclaims, littering kisses on your lower back. All you can do is moan–words are totally beyond you right now. Even the feel of his fluffy tail caressing against you is enough to make you have a little shivering fit. You’re just too receptive to sensation right now: every inch of you is thrumming!");
+
+output("\n\nWhen you’re finally able to stand, Vahn gives you a long, passionate kiss before slipping back to work. You too pick up your things, still a little unsteady on your feet. If you stay this giddy for the rest of the day, you’re not sure how you’re going to get anything done!");
+
+	processTime(40+rand(10));
+	flags["SEXED_VAHN"] = 1;
+	pc.orgasm();
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
 
 
 
+//Give Vahn a Handjob
+public function giveVahnAHandy():void
+{
+	clearOutput();
+	showVahn();
+
+output("You glance around. There’s not many ground crew around at all, and they all look far off and busy. With a mischievous grin, you turn to Vahn and gesture towards his loins.");
+
+output("\n\n<i>“Whip out your cock.”</i>");
 
 
+output("\n\nAfter a nervous look around, Vahn undoes the lower front of his jumpsuit. ");
+if (flags["SEXED_VAHN"] = undefined) output("You’re greeted with the sight of his long, thick cock–at least ten inches long and totally terran except for the canine knot at his base");
+else output("He whips out his creamy ten-inch cock. It dangles out impressively as his cheeks burn.");
 
+output("\n\n<i>“Good boy. Now turn around!”</i> You order him. The half-canine mechanic turns around. His fluffy tail is wagging excitedly as you order him around. Perhaps he liked being called a good boy?");
 
+output("\n\nWell, he’s going to like his next treat. You wrap your arms around his slender waist and slide one of your hands down his hard belly. With your ");
+if(pc.biggestTitSize() >= 2) output("breasts squished");
+else output ("chest pressed");
+output(" up against the resilient muscles of his back, you begin to slowly jerk off his semi-flaccid cock, clasping it softly between your fingers. You nibble on his ear and whisper in it, asking if he likes your hand on his cock.");
 
+output("\n\nVahn groans and nods. He’s stiffening and twitching in your hand, his knot swelling against your pinky finger. You give a satisfied grin and continue to milk his growing puppy erection, delighting in his short little gasps and breathy moans. You rub his sensitive crown with your thumb and feel his strong, lean body shiver in response. His cockhead flexes and flares, pumping out slick pearlescent drops of pre-cum which dribbles down his length. It slides over and warms your fingers, slipping between every gap and grove, producing more lubricant for your milking.");
 
+output("\n\nIt’s not long before he becomes putty in your hand, lustily bucking the air and trying to actively fuck your hand. You grin and switch your hands around, replacing your slick semen-covered digits for a fresh pair. Instead, you take your sticky digits and wiggle them into the tail hole in his jumpsuit, taking advantage of the gap to press them into his unsuspecting pucker. Vahn whines with delight as one of your cum-soaked fingers slide right up and into his rectum, wiggling about and teasing him inside.");
 
+output("\n\n<i>“Oh, so you like it up the ass? You’ve got your own cum in your butthole–you naughty boy,”</i> you tease, nibbling on one of his sensitive canine ears. At the same time you taunt him, you slip another finger in and press it up against his prostate, all the while giving his twitching rod a nice big squeeze.");
 
+output("\n\nVahn cries out with delight as your taunting words push him over the edge. With a shuddering gasp, his thick shaft flexes in your hand and he shoots out a thick, gooey splurt of cum. Sticky ropes of white jump out from his cock and splatter all over the work bench in front of him as he shivers and twitches with transcendent delight. His doggie knot swells to the size of a tennis ball and pulses against your lower hand, locking with it instead of a woman. You grin and milk out his eagerly spurting cum, giving each sticky arc a little more oomph.");
 
+output("\n\n<i>“Theeere’s a good boy. Let it all out,”</i> you whisper in his ear. You milk his bulbous prostate, stroking his spongy flesh and feeling his pucker flex and squeeze your fingers. He lets out another sweet cry and spurts a <i>second</i> time all over the bench, climaxing from your fingers buried knuckle-deep up his butthole. Such a cutie! You work him from front and back until he’s utterly spent, then pull out your fingers with a lewd ‘plop’.");
 
+output("\n\n<i>“Ooh, we made a real mess,”</i> Vahn breathily utters, face burning red. He’s tucking his slick ten-incher back in his pants, trying to hide his sticky shaft from the approaching ground crew. You both quickly beat it behind some crates and sneak up onto your ship, getting out of sight just in time.");
 
+output("\n\n<i>“Hey, who came all over the bench");
+if (flags["HANDIED_VAHN"] != undefined) output("<b> again</b>");
+output("?”</i> A voice calls out, presumably one of the ground crew. You both grin and split up, making sure to stay clear of the scene of the crime for a while!");
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	processTime(10+rand(10));
+	flags["SEXED_VAHN"] = 1;
+	flags["HANDIED_VAHN"] = 1;
+	pc.lust(33);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
