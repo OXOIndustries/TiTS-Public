@@ -156,6 +156,7 @@ public function fuckBimboPenny():void
 	output("\n\nShe picks her chair up off the ground and sits down, wiping her clawed fingers slowly along her sticky fur and sucking it clean after every swipe. <i>“Let me know when you’re good to go again!”</i> she says in between mouthfuls.");
 	processTime(38);
 	pc.orgasm();
+	IncrementFlag("SEXED_PENNY");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -205,6 +206,7 @@ public function getFuckedByBimboPenny():void
 	pc.orgasm();
 	if(x >= 0) pc.loadInCunt(penny,x);
 	else pc.loadInAss(penny);
+	IncrementFlag("SEXED_PENNY");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
