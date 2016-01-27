@@ -142,6 +142,7 @@ public function fuckBimboPenny():void
 	output("\n\nPenny’s first answer is just a happy little moan, pushing back onto your cock ever so slightly but still waiting for you to make the first move. <i>“I know, right?”</i> she says eventually. <i>“It’s like, I can remember that there was a point where I was all shy and unsure about wanting a big ol’ cock, but like, now it all just seems so dumb!”</i> She reaches down, taking her dick in her hands and putting it up on the desk in front of her before starting to eagerly jerk herself off. <i>“I mean, come on! How could I be unsure about </i>this<i>! It’s the best! I get to cum and cum and... fuck and be coated in... cum...”</i>");
 	output("\n\nYou realize that she’s just about to get herself off just from her hands and from thinking about how much of a cum slut she’s become, so with a grin you press your cock into her waiting slit before she finishes without you. She cries out in pleasure as you do, her hands quickly moving off her shaft to steady herself against the desk. Taking that as encouragement you settle into a pounding rhythm, pushing her forwards again and again as she eagerly takes your length inside her.");
 	pc.cockChange();
+	penny.cuntChange(0, penny.cockVolume(pc.cockThatFits(penny.vaginalCapacity(0))));
 	output("\n\n<i>“Yes! Yes! Yes!”</i> she gasps with each thrust, rocking back into you to heighten the sensations. <i>“I... I need... more!”</i>");
 	output("\n\nReaching down beneath herself, she once again wraps one of her hands around her thick shaft. You’re fucking her hard, but clearly she wants even more, wants to make sure she takes advantage of every part of the body you’ve given her. Pressing her cock up between her swaying tits she starts losing herself, letting go and eagerly embracing the urges and needs you’ve brought out in her. Her canine muzzle kisses at the tip of her cock every time one of your powerful thrusts pushes it towards her, her long tongue mixing drool with her dripping pre-cum.");
 	output("\n\nIt doesn’t take long of this to make her cum, her knees locking forwards against the desk as her hips tremble, her cock spurting again and again all over her face. She’s quickly left with a dripping puddle to happily slather herself with, licking up as much as she can even as more slick whiteness pulses from her churning balls.");
@@ -155,6 +156,8 @@ public function fuckBimboPenny():void
 	output("\n\nYou’re not sure what to make of that, but she giggles before you can respond. <i>“Nah, don’t worry, I’m just kidding. That’d be fun, but there’s all like, reasons why it’s not likely to happen.”</i> She sighs. <i>“Well, I guess for now I’d better make the most of you when you’re around.”</i>");
 	output("\n\nShe picks her chair up off the ground and sits down, wiping her clawed fingers slowly along her sticky fur and sucking it clean after every swipe. <i>“Let me know when you’re good to go again!”</i> she says in between mouthfuls.");
 	processTime(38);
+	penny.orgasm();
+	penny.loadInCunt(pc, 0);
 	pc.orgasm();
 	IncrementFlag("SEXED_PENNY");
 	clearMenu();
@@ -206,6 +209,7 @@ public function getFuckedByBimboPenny():void
 	pc.orgasm();
 	if(x >= 0) pc.loadInCunt(penny,x);
 	else pc.loadInAss(penny);
+	penny.orgasm();
 	IncrementFlag("SEXED_PENNY");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -300,6 +304,9 @@ public function getOralFromBimboPenny():void
 	output("\n\n<i>“Thanks [pc.name]!”</i> she says perkily, straightening back up as you get off her desk, <i>“I </i>super<i> needed that.”</i>. She bites her lip, pouting a little bit as she adds. <i>“Let- let me know if you want to do anything else, please? I could always go for another round...”</i>");
 	processTime(33);
 	pc.orgasm();
+	penny.orgasm();
+	penny.loadInMouth(pc);
+	IncrementFlag("SEXED_PENNY");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -341,6 +348,9 @@ public function givePennyACumBath():void
 	output(", but she just manages to keep up by hurriedly lapping up as much cum as she can.");
 	output("\n\nIt takes a while, but eventually her needful thrusts and arching jets of white cum die down enough that she can stop focussing her tongue on licking up as much cum as possible, at least for long enough to say quickly <i>“Care to join me then, [pc.name]?”</i>");
 	processTime(33);
+	penny.orgasm();
+	penny.orgasm();
+	penny.orgasm();
 	//Add Buttons
 	//[Yes][No]
 	clearMenu();
@@ -405,6 +415,7 @@ public function playWithFlahne():void
 	output("\n\nWinking as you turn and leave, you say simply, <i>“Have fun!”</i>");
 
 	processTime(25);
+	penny.orgasm();
 	pc.lust(10);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
