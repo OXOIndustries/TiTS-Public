@@ -1430,7 +1430,7 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 public function bethsPermaContractBadEnd(response:String = "ask"):void
 {
 	clearOutput();
-	author("Savin");
+	author("Nonesuch");
 	
 	if(response == "ask")
 	{
