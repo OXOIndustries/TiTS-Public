@@ -385,6 +385,7 @@ public function postSexShower():void {
 	
 	//Boost libido and stick PC in empty jail room.
 	pc.libido(1);
+	pc.shower();
 	processTime(50);
 	this.clearMenu();
 	this.addButton(0,"Next",mainGameMenu);
@@ -519,6 +520,7 @@ public function finishLosingToZilYouLoser():void {
 	//Reduce libido and stick PC in empty jail room.
 	//(NO WAY SAV-O)
 	pc.libido(2);
+	pc.shower();
 	//Pass 30m
 	processTime(30);
 	flags["ZIL_PROBLEM_DEALT_WITH"] = 1;
@@ -563,6 +565,7 @@ public function beatPennysZilPartII():void {
 	//Reduce libido and stick PC in empty jail room.
 	flags["ZIL_PROBLEM_DEALT_WITH"] = 1;
 	pc.libido(-.5);
+	pc.shower();
 	//Pass 30m
 	processTime(30);
 	CombatManager.genericVictory();
@@ -666,7 +669,7 @@ public function pennySexFirstTime():void {
 		if(pc.tallness <= 60) output("your ear");
 		else if(pc.tallness <= 72) output("your neck");
 		else output("your side");
-		output(", <i>“...or who knows what she’ll do.”</i>");
+		output(", <i>“... or who knows what she’ll do.”</i>");
 		
 		output("\n\nThe fox-morph grabs your [pc.butt] in her hands, squeezing your cheeks momentarily, distracting you from the loss of heat against your front. Once she lets go, you discover that Penny has circled around you. She’s at a doorway now, her butt wiggling in your direction with her tail upraised as she fiddles with the portal’s control panel. You come after her, but the door chooses that moment to open, allowing Penny to slip away. The last thing you see is the flash of a tail vanishing into the darkness. Well, you may as well follow and finish what you started...");
 		//[Next]
@@ -823,6 +826,7 @@ public function firstTimePennyShowerSex():void {
 	pc.orgasm();
 	penny.loadInCunt(pc);
 	processTime(75+rand(25));
+	pc.shower();
 	this.clearMenu();
 	this.addButton(0,"Next",mainGameMenu);
 }
@@ -958,6 +962,7 @@ public function femaleFirstTimePennyLesboz():void {
 	output("mate. We’ll have to do something like this again, and soon.”</i> She smiles. <i>“It is nice to finally cut loose with someone. I just hope you don’t mind too much when I get all riled up and get a little predatory on you.”</i> Her hand traces down your flank. <i>“You are one delicious piece of prey, though.”</i>");
 	output("\n\nThe conversation dies away, and the two of you get dressed to go on your separate ways. You find yourself on the receiving end of a tonguing kiss before Penny goes back to work, looking more satisfied than you’ve ever seen her.");
 	processTime(55+rand(25));
+	pc.shower();
 	this.clearMenu();
 	this.addButton(0,"Next",mainGameMenu);
 }
@@ -970,7 +975,7 @@ public function stickAHugeDickInPennysWorld():void {
 	output("Stepping into the next room, you hear the gentle sound of a running shower. You follow the auditory trail through another doorway, getting hit by a wave of steam and a view of feminine curves all at once. Penny is standing in a surprisingly large shower stall with the door open and the water running down her back, slicking her fur down so that it shines with the moisture. She beckons you closer, saying, <i>“I don’t bite... much.”</i>");
 	
 	output("\n\nYou step over the lip of a large basin at the base of the shower, similar to a giant-sized tub, and let the water wash over your nude form. [pc.EachCock] is already suitably hard after the striptease Penny gave you. This is only a problem due to the mass of your [pc.cockBiggest]. It juts hard out in front of you, pressing against Penny’s belly button when you first enter, eager to reach inside her but so big that there’s no way the petite fennec could handle such a big, bitch-breaking fuck-stick. She shifts sideways, dragging it across her moisture-glossed fur inadvertently in a way that makes you groan. No matter how you move, your titanic endowment always seems to butt up against her body, forcing her to acknowledge your dick while simultaneously dulling your wits, flooding your mind with a haze of lustful impulses.");
-	output("\n\nGrabbing hold of your [pc.cockBiggest], the fox-girl giggles, pointing it up so that it’s a bit less obtrusive. Her fingers can’t even fully encircle its thickness; the best she can do is lamely heft the shaft, her fingers sinking slightly into the fleshy mast due to its weight. <i>“You know, I had meant to ambush you and take you as my prey, but hung like that...”</i> Penny half growls, half purrs, <i>“...there’s no doubt about it. You’re my mate... my thick... pulsating... monstrously endowed mate.”</i> Penny leans forward to lick you, letting her warm, slippery tongue slide across every vein and feature, her moist nose exhaling panting breaths that wash across the rest of the twitching package.");
+	output("\n\nGrabbing hold of your [pc.cockBiggest], the fox-girl giggles, pointing it up so that it’s a bit less obtrusive. Her fingers can’t even fully encircle its thickness; the best she can do is lamely heft the shaft, her fingers sinking slightly into the fleshy mast due to its weight. <i>“You know, I had meant to ambush you and take you as my prey, but hung like that...”</i> Penny half growls, half purrs, <i>“... there’s no doubt about it. You’re my mate... my thick... pulsating... monstrously endowed mate.”</i> Penny leans forward to lick you, letting her warm, slippery tongue slide across every vein and feature, her moist nose exhaling panting breaths that wash across the rest of the twitching package.");
 	
 	output("\n\nYou lean against the wall and grab a nearby shower rung, nonchalantly standing there as the prick-hungry vixen worships your musky tool, rubbing her face against it with great enthusiasm. ");
 	if(pc.hasKnot(x)) output("When she sees your knot, she gives it a happy squeeze.");
@@ -1060,6 +1065,7 @@ public function stickAHugeDickInPennysWorld():void {
 	output("\n\nThe conversation dies away, and the two of you get dressed to go on your separate ways. You find yourself on the receiving end of a tonguing kiss before Penny goes back to work, looking more satisfied than you’ve ever seen her.");
 	pc.orgasm();
 	processTime(45+rand(25));
+	pc.shower();
 	this.clearMenu();
 	this.addButton(0,"Next",mainGameMenu);
 }
@@ -1370,7 +1376,7 @@ public function touchFluffyTail():void {
 	else output("grabbing your [pc.butt]");
 	output(" almost immediately, rubbing your most sensitive places with knowing caresses.");
 	
-	output("\n\n<i>“Now, my prey, I think it’s time you...”</i> Penny leans over, bending almost double to put her face next to your ear, <i>“...satisfy the predator, don’t you think?”</i> The ‘k’ in think is punctuated by the sound of her jaws snapping closed.");
+	output("\n\n<i>“Now, my prey, I think it’s time you...”</i> Penny leans over, bending almost double to put her face next to your ear, <i>“... satisfy the predator, don’t you think?”</i> The ‘k’ in think is punctuated by the sound of her jaws snapping closed.");
 	output("\n\nIt looks like Penny has got you where she wants you. What do you do?");
 	pc.lust(15);
 	//Display sex menu.
@@ -2390,6 +2396,7 @@ public function postPennyFrottage():void {
 	//Reset lust
 	//Pass 50 minutes.
 	processTime(15);
+	pc.shower();
 	this.clearMenu();
 	this.addButton(0,"Next",mainGameMenu);
 }
@@ -2547,6 +2554,7 @@ public function pennyOverTheDeskRoughFuck():void {
 	processTime(110+rand(20));
 	pc.orgasm();
 	if (pc.hasCock()) penny.loadInCunt(pc);
+	pc.shower();
 	this.clearMenu();
 	this.addButton(0,"Next",mainGameMenu);
 }
@@ -3175,7 +3183,7 @@ public function pennyVsFlahneWhoWillOutslutWho():void
 	var pennyBust:String = "PENNY_NUDE";
 	if(flags["PENNY_BADGER_BIMBO"] != undefined || pennyIsCumSlut())
 	{
-		pennyBust = "PENNY_BIMBO"
+		pennyBust = "PENNY_BIMBO";
 		if(penny.hasCock(GLOBAL.TYPE_EQUINE)) pennyBust = "PENNY_BIMBO_HORSE";
 	}
 	userInterface.showBust(pennyBust, "FLAHNE_NUDE");
@@ -3323,6 +3331,7 @@ public function givePennyAHossCawk():void
 	
 	processTime(5);
 	pc.lust(7);
+	penny.orgasm();
 	clearMenu();
 	
 	addButton(0,"Next",pennyGrowsAHorseCockPart2);
@@ -3337,7 +3346,7 @@ public function pennyGrowsAHorseCockPart2():void
 	{
 		output("<i>“Well? You did this to me; you need to take responsibility!”</i> Penny says with a lusty grin on her face. You gulp before reaching down and grasping the enormous cock towering from your previously female lover. Her eyes roll back in her head as the alien sensation of having her cock stroked for the first time washes over her. Her hands reach up to squeeze and knead her huge tits as you stroke your hand up and down her length. Her oozing cunt drools her nectar into an ever-growing puddle under her fat balls.");
 		output("\n\nThe musky scent emanating from Penny’s horse-cock makes your head feel dizzy as heat suffuses your body; before you realize what you’re doing your lips are opening wide, and you’re leaning in to take the flared tip of her cock into your mouth. The salty flavor of fresh horse-cock nearly makes you cum yourself as you look up past Penny’s huge tits into her lust-addled eyes.");
-		output("\n\n<i>“Ohhh god... I didn’t...know it... Unghhh! It would feel soooo goooooood!”</i> She drools as you feel her balls tense up, and Penny fires the first of many loads to come from her virgin cock. Load after load of her creamy seed washes into your mouth. You gulp it down with abandon; the flavor is salty and sweet and uniquely Penny. She coos as she runs a hand ");
+		output("\n\n<i>“Ohhh god... I didn’t... know it... Unghhh! It would feel soooo goooooood!”</i> She drools as you feel her balls tense up, and Penny fires the first of many loads to come from her virgin cock. Load after load of her creamy seed washes into your mouth. You gulp it down with abandon; the flavor is salty and sweet and uniquely Penny. She coos as she runs a hand ");
 		if(pc.hasHair()) output("lovingly through your hair");
 		else output("lovingly atop your head");
 		output(" as you minister to her throbbing cock. You finally pull away as her orgasm abates, and her cock softens and slithers back into her sheath to hang innocuously from her crotch.");
@@ -3348,6 +3357,8 @@ public function pennyGrowsAHorseCockPart2():void
 		penny.cocks[0].cLengthRaw = 16;
 		penny.balls = 2;
 		if(penny.ballSizeRaw < 11) penny.ballSizeRaw = 11;
+		pc.loadInMouth(penny);
+		pc.loadInMouth(penny);
 	}
 	//Six inch penny
 	else if(penny.cocks[0].cLengthRaw <= 6)
@@ -3355,12 +3366,14 @@ public function pennyGrowsAHorseCockPart2():void
 		output("<i>“Oh, [pc.name], that was awesome!”</i> Penny giggles before reaching down and tugging on the sheath to remove it from her cock. A bemused expression flits across her face as she tugs again, a bit more sharply, and hisses in pain. Penny shifts in her seat so as to get a better look at her groin and as she moves her legs, the big heavy balls attached to the sheath become squished roughly between her thighs. A howl of pain escapes her throat as she reaches down and grasps them. <i>“I... I can feel them, [pc.name]! W-what’s happening to me!?”</i>");
 		output("\n\nYou bend down and take a look at the toy attached to Penny’s genitals. Penny hisses a painful breath as you give her nuts a light slap, setting them to swaying back and forth. She looks at you angrily as you smile awkwardly back at her. You lean in to look at the seam around the base of the sheath. Rather, you would if you could find it; the rubbery material seems to have fused with Penny’s groin. You can see veins running from her furry flesh into the dark dusky skin of her new equine sheath and balls. You look into the murky darkness at the opening of her tube, a sweet musky scent wafts from deep within. You unconsciously lick your lips before pulling away and telling Penny the bad news.");
 		output("\n\n<i>“Attached to me?! Oh gods, what is it going to do to me!? I can’t even...”</i> The breath catches in her chest as Penny looks strangely down at the sheath attached to her crotch. Her huge nuts pulse and throb, and you see big thick veins rising on the outside of her fleshy tube. Penny gasps while you watch the blood rushing into her groin. Gasping in awe, you both stare at the flared tip of a fat horse-cock when it snakes its way out of the end of her sheath. It dribbles thick drops of glittering pre-cum which drip down into a small puddle on the floor. With each pulse of her racing heart, more and more mottled flesh slides from the dusky sheath. Finally the growth subsides as the towering horse-cock reaches a massive 12 inches from Penny’s crotch.");
-		output("\n\nPenny’s eyes betray her utter shock as you both stare at the enormous pole reaching from her groin. It gently pulses with her heartbeat and the flat head lies neatly inside her wobbling tits. <i>“W-well, I did say I always wanted one of these...”</i> Penny supplies in her stupor. <i>“I...I think I need to go think about this, in the bathroom, alone, for a few hours. You can see yourself out, right my mate?”</i> She says as she looks at you like a deer caught in headlights. Penny stumbles a bit as her massive balls alter the way she has to walk so as to not injure herself. Her gigantic horse dong wobbles in front of her, her hands incredulously running up and down its length. You see her pause before getting to the door; a shudder runs through her body as her voice catches in her throat. Penny’s weighty nuts tense up as she fires a huge load of creamy equine cum onto the floor in front of her. Her knees give out and she plops to the floor, her huge balls slapping heavily into the puddle of cum eliciting a pained moan from the busty fox.");
+		output("\n\nPenny’s eyes betray her utter shock as you both stare at the enormous pole reaching from her groin. It gently pulses with her heartbeat and the flat head lies neatly inside her wobbling tits. <i>“W-well, I did say I always wanted one of these...”</i> Penny supplies in her stupor. <i>“I... I think I need to go think about this, in the bathroom, alone, for a few hours. You can see yourself out, right my mate?”</i> She says as she looks at you like a deer caught in headlights. Penny stumbles a bit as her massive balls alter the way she has to walk so as to not injure herself. Her gigantic horse dong wobbles in front of her, her hands incredulously running up and down its length. You see her pause before getting to the door; a shudder runs through her body as her voice catches in her throat. Penny’s weighty nuts tense up as she fires a huge load of creamy equine cum onto the floor in front of her. Her knees give out and she plops to the floor, her huge balls slapping heavily into the puddle of cum eliciting a pained moan from the busty fox.");
 		output("\n\n<i>“I..I think I’ll have to get used to this, [pc.name].”</i> she says with a smile before picking herself up and walking into the bathroom. You decide to leave her be for now; you can always come back and play with your new toy whenever you want.");
 		penny.shiftCock(0,GLOBAL.TYPE_EQUINE);
 		penny.cocks[0].cLengthRaw = 12;
 		penny.balls = 2;
 		if(penny.ballSizeRaw < 11) penny.ballSizeRaw = 11;
+		penny.orgasm();
+		penny.orgasm();
 	}
 	//12 inch pennmy
 	else if(penny.cocks[0].cLengthRaw <= 12)
@@ -3377,6 +3390,8 @@ public function pennyGrowsAHorseCockPart2():void
 		penny.cocks[0].cLengthRaw = 16;
 		penny.balls = 2;
 		if(penny.ballSizeRaw < 11) penny.ballSizeRaw = 11;
+		penny.loadInMouth(penny);
+		penny.loadInMouth(penny);
 	}
 	else
 	{
@@ -3388,6 +3403,8 @@ public function pennyGrowsAHorseCockPart2():void
 		penny.cocks[0].cLengthRaw = 20;
 		penny.balls = 2;
 		if(penny.ballSizeRaw < 11) penny.ballSizeRaw = 11;
+		penny.loadInMouth(penny);
+		penny.loadInMouth(penny);
 	}
 	if(!CodexManager.entryUnlocked("SynthSheath"))
 	{
