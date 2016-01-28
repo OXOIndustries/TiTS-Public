@@ -12,6 +12,7 @@
 	import classes.UIComponents.ContentModules.MailModule;
 	import classes.UIComponents.ContentModules.MainMenuModule;
 	import classes.UIComponents.ContentModules.OptionsModule;
+	import classes.UIComponents.ContentModules.RotateMinigameModule;
 	import classes.UIComponents.LeftSideBar;
 	import classes.UIComponents.MainButton;
 	import classes.UIComponents.RightSideBar;
@@ -155,6 +156,7 @@
 			ConfigureMails();
 			this.ConfigureLevelUp();
 			this.ConfigureOptions();
+			this.ConfigureMinigame();
 			
 			this.setupRightSidebar();
 			this.setupLeftSidebar();
@@ -457,6 +459,18 @@
 			pOptions.visible = false;
 		}
 		
+		private function ConfigureMinigame():void
+		{
+			var pMinigame:RotateMinigameModule = new RotateMinigameModule();
+			titsClassPtr.addChild(pMinigame);
+			_availableModules[pMinigame.moduleName] = pMinigame;
+			
+			pMinigame.x = 200;
+			pMinigame.y = 0;
+			
+			pMinigame.visible = false;
+		}
+		
 		/**
 		 * Attempt to display a target module
 		 * @param	module
@@ -600,6 +614,24 @@
 			}
 			
 			this.clearGhostMenu();
+		}
+		
+		public function showMinigame():void
+		{
+			if (_currentModule.moduleName != "RotateMinigame")
+			{
+				this.showTargetOutput("RotateMinigame");
+			}
+		}
+		
+		public function getMinigameModule():RotateMinigameModule
+		{
+			if (_currentModule.moduleName != "RotateMinigame")
+			{
+				throw new Error("The currently displayed module is not the minigame module.");
+			}
+			
+			return this._currentModule as RotateMinigameModule;
 		}
 		
 		private function showTargetOutput(v:String):void

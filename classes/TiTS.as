@@ -73,6 +73,9 @@
 	import classes.Engine.Map.*;
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	
+	import classes.UIComponents.ContentModuleComponents.RGMK;
+	import classes.UIComponents.ContentModules.RotateMinigameModule;
+	
 	import flash.events.UncaughtErrorEvent;
 	import flash.events.UncaughtErrorEvents;
 	import flash.display.LoaderInfo;

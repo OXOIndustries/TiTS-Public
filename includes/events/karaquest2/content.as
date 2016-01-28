@@ -907,8 +907,8 @@ public function kq2NukeIt():void
 
 	output("You rip the console’s wireless plug out, just in case Watson’s watching, and hit the activation sequence. Here we go!");
 
-	// 9999 probably wise to format the value better ("T-minus: 6 hours" etc)
-	output("\n\n<i>“Nuclear Cleansing System Activated,”</i> a feminine voice drones from the console. <i>“Detonation in T-minus: " + KQ2_NUKE_DURATION + " minutes. Please get to minimum safe distance.”</i>");
+	// probably wise to format the value better ("T-minus: 6 hours" etc)
+	output("\n\n<i>“Nuclear Cleansing System Activated,”</i> a feminine voice drones from the console. <i>“Detonation in T-minus: " + prettifyMinutes(KQ2_NUKE_DURATION) + ". Please get to minimum safe distance.”</i>");
 	
 	output("\n\n<i>“Wait, what did you just do?”</i> Kara blinks, ears perking straight up. <i>“Woah, wait, didn’t you hear about that... that fleet in orbit? They’ll glass the whole planet!”</i>");
 	
@@ -934,14 +934,13 @@ public function kq2EnterEngineersRoom():void
 {
 	if (flags["KQ2_ENGINEER_NUM_DRONES"] == undefined) flags["KQ2_ENGINEER_NUM_DRONES"] = 2 + rand(2);
 
-	if (flags["KQ2_DEFEATED_ENGINEER"] == undefined || flags["KQ2_LEFT_ENGINEER"] == undefined)
+	if (flags["KQ2_DEFEATED_ENGINEER"] == undefined && flags["KQ2_LEFT_ENGINEER"] == undefined)
 	{
 		clearOutput();
 		showKQ2Engineer();
 
 		output("You step into the security room, and immediately are greeted by the sound of low, metallic grating that’s almost like growling. You take a step back as a huge, black canine robot stalks out of the shadows, its teeth bared. Behind it stands a small, feminine figure - not quite four feet in height, with svelte curves that are muted by a ballistic breastplate that’s much too bulky for its user. She’s nearly naked aside from the plate and a pair of high-heeled boots... and a jockstrap that’s barely holding back a pair of oversized testicles, out of which bobs a six-inch canine cock. The diminutive creature scowls at you, hands on her hips, the pair of bunny-ears atop her head lying flat back against her scalp, showing off a pair of demonic-looking horns that sprout out from her orange hair.");
 		
-		//9999
 		if (CodexManager.entryUnlocked("Lapinara")) output("\n\nIt takes you a good moment to realize the creature’s a lapinara, clearly unlike those you’ve seen before!");
 		else
 		{
@@ -1002,6 +1001,7 @@ public function kq2EngineerPCVictory():void
 	output("The lapinara and her drone");
 	if (CombatManager.getHostileCharacters().length > 2) output("s");
 	output(" collapse, utterly defeated.");
+	
 	if (!pc.hasKeyItem("Key Card - R&D Security Pass"))
 	{
 		output(" <b>You find a keycard on her person</b>. No doubt this’ll get you into the research facility!");
@@ -1203,6 +1203,7 @@ public function kq2GibEngyDankHoles():void
 
 	currentLocation = "K2_BARRACKSINTERIOR";
 	flags["KQ2_DEFEATED_ENGINEER"] = 2;
+	kquest2RoomStateUpdater();
 	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -1472,7 +1473,7 @@ public function kq2KhanLeave():void
 	output(" at you. Nervously, she says, <i>“Um... speaking of slaves. I thought you should know, we brought several red myr prisoners of war with us. It... it was better than letting them rot in camps, we thought. They’re down the hall, to the west. They deserve better than what we’ve done to them.”</i>");
 	
 	output("\n\n<i>“Slaves taking slaves,”</i> Kara grunts, picking the remote back up from the floor and pressing it into your hand. <i>“");
-	if (kara.isMischievous() || kara.isAss()) output(" And I was just starting to feel good about freeing them. ");
+	if (kara.isMischievous() || kara.isAss()) output("And I was just starting to feel good about freeing them. ");
 	output("Your turn, [pc.name]. Let’s go find us some red bugs.”</i>\n\n");
 
 	CombatManager.genericVictory();
@@ -1875,9 +1876,10 @@ public function kq2ShadePCVictoryKaraNotHard():void
 	if (numDronesAlive > 0)
 	{
 		output(", and the wolf drone");
-		if (numDronesAlive > 1) output("s cease their attack, freezing in place as their master ceases to direct them.");
-		else output(" ceases its attack, freezing in place as its master ceases to direct it.")
+		if (numDronesAlive > 1) output("s cease their attack, freezing in place as their master ceases to direct them");
+		else output(" ceases its attack, freezing in place as its master ceases to direct it");
 	}
+	output(".");
 	
 	output("\n\n<i>“Ah, fuck,”</i> Shade groans, sitting back against the wall. <i>“I’m getting too old for this shit.”</i>");
 	
@@ -2279,7 +2281,7 @@ public function kq2AmaraPCVictory():void
 	// Nuke due to explode within 30 minutes
 	if (flags["KQ2_NUKE_STARTED"] != undefined)
 	{
-		output(" And just in time: you cover your eyes as a nuke goes off in the caldera, a flash of light followed by a shockwave that makes your teeth ache. Luckily, the re-activated shields protect you from harm.\n\n");
+		output(" And just in time: you cover your eyes as a nuke goes off in the caldera, a flash of light followed by a shockwave that makes your teeth ache. Luckily, the re-activated shields protect you from harm.");
 		flags["KQ2_NUKE_EXPLODED"] = 1;
 	}
 
@@ -2417,7 +2419,7 @@ public function kq2AmaraSpecialEnd():void
 	else if (annoIsCrew() && !reahaIsCrew()) output(" Anno comes");
 	else if (!annoIsCrew() && reahaIsCrew()) output(" Reaha comes");
 	if (annoIsCrew() || reahaIsCrew()) output(" to ask how it went and where the other ship is. You don’t have anything to say, but that silence speaks volumes.");
-	output("...");
+	output("...\n\n");
 	
 	//Return PC to ship. No reward, no harem, no nothing. Dump all Lust built up.
 	pc.lustRaw = 0;
@@ -2737,7 +2739,7 @@ public function kq2NukeBadend():void
 {
 	clearOutput();
 
-	output("You’re moving as fast as you can, rushing towards the way out of this hell hole... but not fast enough. Over your head, you hear a crackling P.A. system announce in a mechanical, feminine voice: <i>“Self Destruct sequence activating in ten. Nine. Eight...”</i>");
+	output("You’re moving as fast as you can, rushing towards the way out of this hell hole... but not fast enough. Over your head, you hear a crackling P.A. system announce in a mechanical, feminine voice: <i>“Self Destruct sequence activating in: Ten. Nine. Eight...”</i>");
 	
 	output("\n\nYou push yourself harder, knowing there’s no way to escape the blast, but desperate nonetheless.");
 	
