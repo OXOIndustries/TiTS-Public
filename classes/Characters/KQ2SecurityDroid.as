@@ -225,9 +225,15 @@ package classes.Characters
 			
 			if (hostileCreatures.length == 1)
 			{
-				if (!hitPC) output(" You manage to avoid the blast!");
-				else output(" The shrapnel tears into you!");
-				applyDamage(damageRand(baseDamage, 15), this, pc, "minimal");
+				if (!hitPC)
+				{
+					output(" You manage to avoid the blast!");
+				}
+				else
+				{
+					output(" The shrapnel tears into you!");
+					applyDamage(damageRand(baseDamage, 15), this, pc, "minimal");
+				}
 			}
 			else
 			{
@@ -252,6 +258,10 @@ package classes.Characters
 					output(" Both you and Kara manage to avoid the blast!");
 				}
 			}
+			
+			// Asploded!
+			this.HP(-9000);
+			this.energy(-9000);
 		}
 	}
 }
