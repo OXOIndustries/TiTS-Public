@@ -56,7 +56,7 @@ package classes.Characters
 			
 			this.XPRaw = 100;
 			this.level = 4;
-			this.credits = 300 + rand(200);
+			this.credits = 100 + rand(68);
 			this.HPMod = -20;
 			this.HPRaw = this.HPMax();
 			

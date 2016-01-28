@@ -54,7 +54,10 @@ public function drBadgerMenu():void
 public function drBadgerBuyMenu():void
 {
 	// Shop unlocks
-	if(flags["BADGER_QUEST"] >= 3 && !chars["DRBADGER"].hasItemByType(Throbb)) chars["DRBADGER"].inventory.push(new Throbb());
+	if(flags["BADGER_QUEST"] >= 3)
+	{
+		if(!chars["DRBADGER"].hasItemByType(Throbb)) chars["DRBADGER"].inventory.push(new Throbb());
+	}
 	else chars["DRBADGER"].destroyItem(new Throbb());
 	
 	shopkeep = chars["DRBADGER"];

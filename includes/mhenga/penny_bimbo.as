@@ -8,8 +8,11 @@ public function approachBimboPenny():void
 	//First Time
 	if(flags["SEEN_BIMBO_PENNY"] == undefined)
 	{
-		flags["SEEN_BIMBO_PENNY"] = 1;
-		showPenny(true);
+		var pennyBust:String = "PENNY_BIMBO";
+		if(penny.hasCock(GLOBAL.TYPE_EQUINE)) pennyBust = "PENNY_BIMBO_HORSE";
+		showBust("FLAHNE_NUDE", pennyBust);
+		showName("PENNY &\nFLAHNE");
+		rooms["CUSTOMS OFFICE"].removeFlag(GLOBAL.NPC);
 		generateMap();
 		
 		output("You head over to Penny’s desk, finding her sitting up straight at her chair, looking surprisingly perky and attentive. <i>“Oh, h-”</i> a weird look crosses her face briefly, but she recovers and finishes, <i>“hi [pc.name]!”</i>");
@@ -23,6 +26,9 @@ public function approachBimboPenny():void
 		output("\n\nShe looks back up at you, pouting just a little bit. <i>“Do you know, I didn’t even have to like, go looking for her or anything? The second you left after we first did this I heard something out the window and she was just like, there. I swear she must be able to like, smell cum or something, and we both know I was putting out a </i>lot<i> of it.”</i>");
 		output("\n\nYou both turn back to Flahne, and you think that maybe she blushes slightly, even though it’s hard to tell given her current coloring. She doesn’t say anything though, she just slides herself back onto Penny’s cock, making both of them shudder with pleasure.");
 		output("\n\n<i>“So,”</i> Penny says eventually, <i>“what can I do ya for?”</i>");
+		
+		flags["SEEN_BIMBO_PENNY"] = 1;
+		processTime(5);
 	}
 	//Repeat
 	else
