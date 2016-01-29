@@ -1053,6 +1053,13 @@ package classes {
 			else return "Despite the heat in your groin, nothing changed down there.";
 		}
 		
+		public function makeBallsInternal(): void
+		{
+			// Convert total ball cum volume to prostate cum volume--to simulate "internal" balls.
+			if(balls > 0) ballSizeRaw = ((ballSizeRaw * ballSizeRaw * balls) / 2);
+			balls = 0;
+		}
+		
 		// @FENCUMFIX - Switch these two blocks around if you want to easily stick a breakpoint on what this value is getting set to
 		public var ballFullness: Number = 50;
 		
