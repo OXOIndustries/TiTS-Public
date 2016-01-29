@@ -27,8 +27,7 @@ public function appearance(forTarget:Creature):void
 	setTarget(forTarget);
 
 	clearOutput2();
-	if(currentLocation == "SHIP INTERIOR") setLocation("SHIP\nINTERIOR", rooms[rooms["SHIP INTERIOR"].outExit].planet, rooms[rooms["SHIP INTERIOR"].outExit].system);
-	else setLocation(rooms[currentLocation].roomName, rooms[currentLocation].planet, rooms[currentLocation].system);
+	showLocationName();
 	showName("\nAPPEARANCE");
 	clearGhostMenu();
 	addGhostButton(14, "Back", pcAppearance);

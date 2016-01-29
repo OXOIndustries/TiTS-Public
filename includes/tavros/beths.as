@@ -57,10 +57,10 @@ public function metBeth():Boolean
 
 public function showBrothelLady(nude:Boolean = false):void
 {
-	if(flags["KAT_MET"] != undefined) userInterface.showName("\nKAT");
-	else userInterface.showName("BROTHEL\nMISTRESS");
-	if(!nude) userInterface.showBust("BORING_MISTRESS");
-	else userInterface.showBust("BORING_MISTRESS_NUDE");
+	if(flags["KAT_MET"] != undefined) showName("\nKAT");
+	else showName("BROTHEL\nMISTRESS");
+	if(!nude) showBust("BORING_MISTRESS");
+	else showBust("BORING_MISTRESS_NUDE");
 }
 public function getKatPregContainer():PregnancyPlaceholder
 {
@@ -441,7 +441,7 @@ public function brothelTurnTrixLady():void
 	(	flags["BETHS_CONTRACT_WHORE"] != undefined
 	&&	flags["BETHS_TIMES_WHORED_ROOMS"] >= 2
 	&&	flags["BETHS_TIMES_GOOD_YIELD"] >= 1
-	&&	(flags["BETHS_TIMES_WHORED_ALL"] != undefined && flags["BETHS_TIMES_WHORED_ALL"] % 4 == 0)
+	&&	(flags["BETHS_TIMES_WHORED"] != undefined && flags["BETHS_TIMES_WHORED"] % 4 == 0)
 	)
 	{
 		bethsPermaContractBadEnd();
@@ -611,7 +611,7 @@ public function brothelTurnTrixContract(choice:int = 0):void
 }
 
 // Payment calculation
-public function brothelWhorePayment(baseAmount:Number = 0):Number
+public function brothelWhorePayment(baseAmount:Number = 0, service:String = "none"):Number
 {
 	// Whoring Formulas
 	// All numbers are suggestions. Basic premise: the more the PC offers, and the more enticing their body is, the more they earn.
@@ -652,7 +652,10 @@ public function brothelWhorePayment(baseAmount:Number = 0):Number
 	// If Freelance, /2 total
 	else returnAmount = Math.floor(returnAmount * 0.5);
 	
-	if(returnAmount / baseAmount >= 0.75) IncrementFlag("BETHS_TIMES_GOOD_YIELD");
+	if(InCollection(service, ["all", "rooms"]))
+	{
+		if(returnAmount / baseAmount >= 0.75) IncrementFlag("BETHS_TIMES_GOOD_YIELD");
+	}
 	
 	return returnAmount;
 }
@@ -748,7 +751,7 @@ public function brothelTurnTrixFreelanceWhore(service:String = "none"):void
 		output("\n\nAfter a few hours, reproductive fluid of every description, flavor and color is dripping thickly out of every single one of your holes, and you are feeling sore and thoroughly used. You take your earnings up to the counter and reluctantly split it with the mistress.");
 	}
 	
-	totalEarnings = brothelWhorePayment(baseEarnings);
+	totalEarnings = brothelWhorePayment(baseEarnings, service);
 	// Low yield:
 	if(totalEarnings <= 0)
 	{
@@ -877,7 +880,7 @@ public function brothelTurnTrixLicensedWhore(service:String = "none"):void
 		pc.lust(10);
 	}
 	
-	totalEarnings = brothelWhorePayment(baseEarnings);
+	totalEarnings = brothelWhorePayment(baseEarnings, service);
 	// Low yield:
 	if(totalEarnings <= 0)
 	{
@@ -1458,7 +1461,7 @@ public function bethsPermaContractBadEnd(response:String = "ask"):void
 		processTime(1);
 		clearMenu();
 		addButton(0, "Whore", brothelTurnTrixLicensedMenu, false);
-		addButton(14, "Back", mainGameMenu);
+		addButton(14, "Leave", mainGameMenu);
 		return;
 	}
 	else if(response == "sign")
@@ -1478,6 +1481,7 @@ public function bethsPermaContractBadEnd(response:String = "ask"):void
 		output("\n\nYou shiver with the erotic implications of these transformations, and sigh as you shift over and consider the other novelty of your new form.");
 		output("\n\n<i>“Aww, don’t worry,”</i> leers Kat, looking with you in the mirror at the <i>“Property of Beth’s”</i> tattoo on your [pc.ass]. <i>“We’ll get that off you eventually.”</i>");
 		
+		pc.createStatusEffect("Temporary Nudity Cheat");
 		pc.skinType = GLOBAL.SKIN_TYPE_SKIN;
 		pc.clearSkinFlags();
 		pc.addSkinFlag(GLOBAL.FLAG_SMOOTH);
@@ -1539,6 +1543,7 @@ public function bethsPermaContractBadEnd(response:String = "ask"):void
 		{
 			pc.orgasm();
 		}
+		pc.credits = 0;
 	}
 	
 	badEnd("GAME OVER.");

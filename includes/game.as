@@ -59,6 +59,7 @@ public function processEventBuffer():Boolean
 	{
 		clearOutput();
 		output("<b>" + possessive(pc.short) + " log:</b>" + eventBuffer);
+		showLocationName();
 		eventBuffer = "";
 		clearMenu();
 		addButton(0, "Next", mainGameMenu);
@@ -79,6 +80,12 @@ public function isNavDisabled(umask:uint):Boolean
 	if (flags["NAV_DISABLED"] != undefined && flags["NAV_DISABLED"] & umask) return true;
 	
 	return false;
+}
+
+public function showLocationName():void
+{
+	if(currentLocation == "SHIP INTERIOR") setLocation("SHIP\nINTERIOR", rooms[rooms["SHIP INTERIOR"].outExit].planet, rooms[rooms["SHIP INTERIOR"].outExit].system);
+	else setLocation(rooms[currentLocation].roomName, rooms[currentLocation].planet, rooms[currentLocation].system);
 }
 
 public function mainGameMenu():void {
@@ -128,8 +135,7 @@ public function mainGameMenu():void {
 	//Display the room description
 	clearOutput();
 	output(rooms[currentLocation].description);
-	if(currentLocation == "SHIP INTERIOR") setLocation("SHIP\nINTERIOR", rooms[rooms["SHIP INTERIOR"].outExit].planet, rooms[rooms["SHIP INTERIOR"].outExit].system);
-	else setLocation(rooms[currentLocation].roomName, rooms[currentLocation].planet, rooms[currentLocation].system);
+	showLocationName();
 	if(inCombat()) 
 		output("\n\n<b>You’re still in combat, you ninny!</b>");
 	if(pc.hasStatusEffect("Temporary Nudity Cheat"))
