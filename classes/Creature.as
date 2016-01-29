@@ -7114,7 +7114,7 @@ package classes {
 			if (!hasCock()) return 0;
 			var quantity: Number = 0;
 			//lust - 50% = normal output. 0 = 75%. 100 = +125% output.
-			var lustCoefficient: Number = (lust() / 2 + 75) / 100;
+			var lustCoefficient: Number = ((lust() / 2) + 75) / 100;
 			quantity = cumMultiplier() * lustCoefficient * maxCum() / ballEfficiency;
 			//Rut means bigger, ball-draining orgasms.
 			quantity += statusEffectv1("Rut");
@@ -7184,7 +7184,7 @@ package classes {
 				cumDelta /= 2;
 			}
 			//Crossing into 60% fullness? Hit 60, then cut in half.
-			if(ballFullness < 60 && ballFullness + cumDelta * minutes >= 60)
+			if(ballFullness < 60 && (ballFullness + (cumDelta * minutes)) >= 60)
 			{
 				//Find amount of change needed to hit 60.
 				subDelta = 60 - ballFullness;
@@ -7195,28 +7195,27 @@ package classes {
 				cumDelta /= 2;
 			}
 			//Just hit full balls!
-			if(balls > 0 && ballFullness + cumDelta * minutes >= 100 && ballFullness < 100 && this is PlayerCharacter)
+			if((balls > 0 || hasCock()) && (ballFullness + (cumDelta * minutes)) >= 100 && ballFullness < 100 && this is PlayerCharacter)
 			{
 				trace("BLUE BALLS FOR: " + short);
 				//Hit max cum - standard message
 				kGAMECLASS.eventBuffer += "\n\nYou’re feeling a little... excitable, a little randy even. It won’t take much to excite you so long as your [pc.balls] ";
-				if(balls == 1) kGAMECLASS.eventBuffer += "is";
+				if(balls == 0 || balls == 1) kGAMECLASS.eventBuffer += "is";
 				else kGAMECLASS.eventBuffer += "are";
 				kGAMECLASS.eventBuffer += " this full.";
 				if(hasPerk("'Nuki Nuts") && balls > 1) kGAMECLASS.eventBuffer += " Of course, your kui-tan physiology will let your balls balloon with additional seed. They've already started to swell. Just make sure to empty them before they get too big!";
 				createStatusEffect("Blue Balls", 0,0,0,0,false,"Icon_Poison", "Take 25% more lust damage in combat!", false, 0);
 			}
-
+			
 			ballFullness += (cumDelta * minutes);
 			
-
 			//trace("AFTER FULLNESS: " + ballFullness);
 			if (ballFullness >= 100) 
 			{
 				if(hasPerk("'Nuki Nuts") && balls > 1)
 				{
 					//Figure out a % of normal size to add based on %s.
-					var nutChange:Number = ballFullness/100 - 1;
+					var nutChange:Number = (ballFullness/100) - 1;
 					//Get the actual bonus number to add. Keep it to 2 decimals.
 					var nutBonus:Number = Math.round(ballSizeRaw * nutChange * 100)/100;
 					trace("NUT BONUS: " + nutBonus);
@@ -7242,7 +7241,7 @@ package classes {
 			if (!hasVagina()) return 0;
 			var quantity: Number = 0;
 			// lust - 50% = normal output. 0 = 75%. 100 = +125% output.
-			var lustCoefficient: Number = (lust() / 2 + 75) / 100;
+			var lustCoefficient: Number = ((lust() / 2) + 75) / 100;
 			var girlCumMultiplier: Number = 0;
 			var girlCumAmount: Number = 0;
 			var squirterBonus: Number = 0;
@@ -8589,7 +8588,7 @@ package classes {
 					if (rando == 1) desc += "four ";
 					if (rando == 2) desc += "four ";
 				}
-				else desc += num2Text(balls);
+				else desc += num2Text(balls) + " ";
 			}
 			//Not in appearance screen? Okay
 			else if (!hasStatusEffect("Uniball") && rand(5) == 0 && !forceSingular) {
@@ -8617,7 +8616,7 @@ package classes {
 					if (rando == 1) desc += "four ";
 					if (rando == 2) desc += "four ";
 				}
-				else desc += num2Text(balls);
+				else desc += num2Text(balls) + " ";
 			}
 			//size!
 			if (ballSize() > 1 && (rand(3) <= 1 || forceSize)) {
