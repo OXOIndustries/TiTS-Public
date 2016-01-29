@@ -1420,7 +1420,7 @@ public function newTexanGanguBangu():void
 	//else // No front genitals:
 	if(!frontPussy && !frontCock)
 	{
-		output("\n\n<i>“Look at this - [pc.heShe]’s about to cream himself!”</i> The first bull grabs one of your [pc.nipples] and roughly squeezes it, causing you to whimper in delight.");
+		output("\n\n<i>“Look at this - [pc.heShe]’s about to cream [pc.himHer]self!”</i> The first bull grabs one of your [pc.nipples] and roughly squeezes it, causing you to whimper in delight.");
 		output("\n\n<i>“Your ass belongs to us now, slut.”</i>");
 	}
 	output("\n\nA thrilling shiver courses through your body from their demeaning words. This is your true nature; not [pc.fullName], galactic adventurer, but a naughty, bull-cum loving slut! Every inch of you <i>aches</i> for their throbbing horse-cocks, yearning for them rubbing ");
