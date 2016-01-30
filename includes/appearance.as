@@ -1881,7 +1881,7 @@ public function crotchStuff(forTarget:Creature = null):void
 			else output2(StringUtil.capitalize(indefiniteArticle(target.sackDescript(true,true))) + " with " + sTesticleDesc + " swings heavily beneath your " + target.multiCockDescript() + ".");
 		}
 		//Does it mention the dick at the end of the sentence? If so, dont use pronoun here:
-		if(target.hasCock() && !target.hasStatusEffect("Uniball") && target.skinType != GLOBAL.SKIN_TYPE_SCALES)
+		if(target.hasCock() && !target.hasStatusEffect("Uniball"))
 		{
 			if(target.balls == 1) output2(" You estimate the testicle to be about " + num2Text(Math.round(target.ballSize())) + " ");
 			else output2(" You estimate each testicle to be about " + num2Text(Math.round(target.ballSize())) + " ");
