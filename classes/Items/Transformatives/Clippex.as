@@ -50,7 +50,10 @@
 			{
 				author("Nonesuch");
 				
-				kGAMECLASS.output("The sharp smell of the gene mod stings your nostrils as you undo the cap, unsheathe the oozing brush, and delicately apply the thick, white gloop to your [pc.nipples]. It quickly sinks into your skin. Your [pc.chest] is left feeling rather tender");
+				kGAMECLASS.output("The sharp smell of the gene mod stings your nostrils as you undo the cap, unsheathe the oozing brush, and delicately apply the thick, white gloop to your [pc.nipples]. It quickly sinks into your skin. Your [pc.chest]");
+				if(target.hasBreasts()) kGAMECLASS.output(" are");
+				else kGAMECLASS.output(" is");
+				kGAMECLASS.output(" left feeling rather tender");
 				if(!target.isChestExposed()) kGAMECLASS.output(", the texture of your [pc.upperGarment] firmly engaging your attention");
 				kGAMECLASS.output(".");
 				
