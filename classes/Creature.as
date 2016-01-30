@@ -7195,12 +7195,12 @@ package classes {
 				cumDelta /= 2;
 			}
 			//Just hit full balls!
-			if((balls > 0 || hasCock()) && (ballFullness + (cumDelta * minutes)) >= 100 && ballFullness < 100 && this is PlayerCharacter)
+			if(balls > 0 && (ballFullness + (cumDelta * minutes)) >= 100 && ballFullness < 100 && this is PlayerCharacter)
 			{
 				trace("BLUE BALLS FOR: " + short);
 				//Hit max cum - standard message
 				kGAMECLASS.eventBuffer += "\n\nYou’re feeling a little... excitable, a little randy even. It won’t take much to excite you so long as your [pc.balls] ";
-				if(balls == 0 || balls == 1) kGAMECLASS.eventBuffer += "is";
+				if(balls == 1) kGAMECLASS.eventBuffer += "is";
 				else kGAMECLASS.eventBuffer += "are";
 				kGAMECLASS.eventBuffer += " this full.";
 				if(hasPerk("'Nuki Nuts") && balls > 1) kGAMECLASS.eventBuffer += " Of course, your kui-tan physiology will let your balls balloon with additional seed. They've already started to swell. Just make sure to empty them before they get too big!";
