@@ -1000,6 +1000,8 @@ public function move(arg:String, goToMainMenu:Boolean = true):void {
 	flags["ENCOUNTERS_DISABLED"] = undefined;
 
 	var moveMinutes:int = rooms[currentLocation].moveMinutes;
+	//Moveable immobilization adds more minutes!
+	moveMinutes += immobilizedUpdate(true);
 	//Huge nuts slow you down
 	if(pc.hasStatusEffect("Egregiously Endowed")) moveMinutes *= 2;
 	if(pc.hasItem(new DongDesigner())) moveMinutes *= 2;
@@ -1946,6 +1948,7 @@ public function processTime(arg:int):void {
 	//Check to see if something changed in body part notices
 	milkMultiplierGainNotificationCheck();
 	nutSwellUpdates();
+	immobilizedUpdate();
 
 	//Queue up dumbfuck procs
 	if(pc.hasStatusEffect("Dumbfuck"))
@@ -2154,6 +2157,91 @@ public function racialPerkUpdateCheck():void
 	}
 }
 
+public function immobilizedUpdate(count:Boolean = false):Number
+{
+	if(!pc.hasStatusEffect("Endowment Immobilized")) return -1;
+	
+	var bodyPart:Array = [];
+	
+	if(pc.balls > 0 && pc.ballDiameter() >= 40) bodyPart.push("balls");
+	else if(pc.hasBreasts() && 9999 == 0) bodyPart.push("boobs");
+	else if(9999 == 0) bodyPart.push("belly");
+	else if(9999 == 0) bodyPart.push("butt");
+	
+	if(!count)
+	{
+		var bodyText: String = "";
+		var partList:Array = [];
+		
+		// Hoverboard exception!
+		if(pc.hasItem(new Hoverboard()))
+		{
+			eventBuffer += "\n\nWhile your";
+			if(bodyPart.length > 0)
+			{
+				if(InCollection("balls", bodyPart))
+				{
+					if(pc.balls == 0) partList.push("gigantic gonad");
+					else partList.push("gigantic gonads");
+				}
+				if(InCollection("boobs", bodyPart)) partList.push("titanic tits");
+				if(InCollection("belly", bodyPart)) partList.push("bloated belly");
+				if(InCollection("butt", bodyPart)) partList.push("epic ass cheeks");
+				
+				if (partList.length == 1) bodyText += partList[0];
+				else
+				{
+					for (var x: int = 0; x < partList.length; x++)
+					{
+						bodyText += partList[x];
+						
+						if(partList.length == 2 && x == 0)
+						{
+							bodyText += " and ";
+						}
+						else if(x < partList.length - 2)
+						{
+							bodyText += ", ";
+						}
+						else if(x < partList.length - 1)
+						{
+							bodyText += ", and ";
+						}
+					}
+				}
+				eventBuffer += " " + bodyText;
+			}
+			else eventBuffer += " enormous body parts";
+			eventBuffer += " make";
+			if(InCollection(bodyText, "gigantic gonad", "bloated belly")) eventBuffer += "s";
+			eventBuffer += " it impossible for you to move at all, you luckily have a remedy for that... Pulling out your pink hoverboard, you carefully guide it under your";
+			if(bodyPart.length == 1)
+			{
+				if(bodyPart[0] == "balls") eventBuffer += " [pc.sack]";
+				else if(bodyPart[0] == "boobs") eventBuffer += " [pc.chest]";
+				else if(bodyPart[0] == "belly") eventBuffer += " [pc.belly]";
+				else if(bodyPart[0] == "butt") eventBuffer += " [pc.butt]";
+				else eventBuffer += " body";
+			}
+			else eventBuffer += " body";
+			eventBuffer += ", relishing in the friction that’s cause by rubbing";
+			if(bodyPart.length == 1 && bodyPart[0] == "boobs") eventBuffer += " them";
+			else eventBuffer += " it";
+			eventBuffer += " against the toy’s surface. With a few audible struggles, the hoverboard does its job and lifts your immobilizing weight off the ground! Now you can travel with ease... more or less.";
+			
+			removeImmobilized();
+			pc.lust(5 * bodyPart.length);
+		}
+	}
+	
+	return bodyPart.length;
+}
+public function removeImmobilized():void
+{
+	eventBuffer += "\n\n<b>You’re no longer immobilized by your out-sized equipment!</b>";
+	pc.removeStatusEffect("Endowment Immobilized");
+}
+
 public function nutSwellUpdates():void
 {
 	if(pc.balls > 0)
@@ -2181,20 +2269,22 @@ public function nutSwellUpdates():void
 			pc.lust(5);
 		}
 		//hit person size
-		if(pc.ballDiameter() >= 40 && !pc.hasStatusEffect("Endowment Immobilized"))
+		if(pc.ballDiameter() >= 40 && !pc.hasStatusEffect("Endowment Immobilized") && !pc.hasItem(new Hoverboard()))
 		{
-			if(pc.balls > 1) 
+			eventBuffer += "\n\nYou strain as hard as you can, but there’s just no helping it. You’re immobilized. Your";
+			if(pc.balls == 1) eventBuffer += " testicle is";
+			else eventBuffer += " balls are";
+			eventBuffer += " just too swollen to allow you to move anywhere. The bulk of your body weight is right there in your teste";
+			if(pc.balls != 1) eventBuffer += "s";
+			eventBuffer += ", and there’s nothing you can do about it.";
+			if(canShrinkNuts()) eventBuffer += ".. well, almost nothing. A nice, long orgasm ought to fix this!";
+			else 
 			{
-				eventBuffer += "\n\nYou strain as hard as you can, but there’s just no helping it. You’re immobilized. Your balls are just too swollen to allow you to move anywhere. The bulk of your body weight is right there in your testes, and there’s nothing you can do about it.";
-				if(canShrinkNuts()) eventBuffer += ".. well, almost nothing. A nice, long orgasm ought to fix this!";
-				else 
-				{
-					eventQueue[eventQueue.length] = bigBallBadEnd;
-					if(pc.hasPerk("'Nuki Nuts")) eventBuffer += " If a quick fap wasn't illegal here, this would be far simpler. Too bad.";
-				}
-				pc.createStatusEffect("Endowment Immobilized", 0,0,0,0,false,"Icon_Poison", "Your endowments prevent you from moving.", false, 0);
-				pc.lust(5);
+				eventQueue[eventQueue.length] = bigBallBadEnd;
+				if(pc.hasPerk("'Nuki Nuts")) eventBuffer += " If a quick fap wasn't illegal here, this would be far simpler. Too bad.";
 			}
+			pc.createStatusEffect("Endowment Immobilized", 0,0,0,0,false,"Icon_Poison", "Your endowments prevent you from moving.", false, 0);
+			pc.lust(5);
 		}
 	}
 	nutStatusCleanup();
@@ -2215,10 +2305,9 @@ public function canShrinkNuts():Boolean
 
 public function nutStatusCleanup():void
 {
-	if(pc.hasStatusEffect("Endowment Immobilized") && (pc.balls == 0 || pc.ballDiameter() < 40))
+	if(pc.hasStatusEffect("Endowment Immobilized") && (pc.balls == 0 || pc.ballDiameter() < 40) && immobilizedUpdate(true) == 1)
 	{
-		eventBuffer += "\n\nYou're no longer immobilized by your out-sized equipment!";
-		pc.removeStatusEffect("Endowment Immobilized");
+		removeImmobilized();
 	}
 	if((pc.balls == 0 || pc.ballDiameter() < 25) && pc.hasStatusEffect("Overwhelmingly Endowed")) pc.removeStatusEffect("Overwhelmingly Endowed");
 	if((pc.balls == 0 || pc.ballDiameter() < 15) && pc.hasStatusEffect("Ludicrously Endowed")) pc.removeStatusEffect("Ludicrously Endowed");

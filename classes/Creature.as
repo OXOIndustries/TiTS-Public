@@ -4473,7 +4473,7 @@ package classes {
 			return false;
 		}
 		public function isImmobilized(): Boolean {
-			return (hasStatusEffect("Stunned") || hasStatusEffect("Paralyzed") || isGrappled());
+			return (hasStatusEffect("Stunned") || hasStatusEffect("Paralyzed") || isGrappled() || hasStatusEffect("Endowment Immobilized"));
 		}
 		public function isGrappled(): Boolean {
 			return (hasStatusEffect("Grappled") || hasStatusEffect("Naleen Coiled") || hasStatusEffect("Cockvine Grip"));
