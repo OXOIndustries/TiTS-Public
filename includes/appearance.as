@@ -2198,7 +2198,7 @@ public function dickBonusForAppearance(forTarget:Creature = null, x:int = 0):voi
 	if((target.cocks[x].hasFlag(GLOBAL.FLAG_NUBBY) && target.cocks[x].cType != GLOBAL.TYPE_FELINE) || target.cocks[x].hasFlag(GLOBAL.FLAG_RIBBED))
 	{
 		output2(" It is");
-		if(target.cocks[x].hasFlag(GLOBAL.FLAG_NUBBY)) output2(" covered in barb-like nubs, each filled with hypersensitive nerve clusters");
+		if(target.cocks[x].hasFlag(GLOBAL.FLAG_NUBBY)) output2(" covered in nub-like protrusions, spread out evenly across the shaft");
 		else output2(" lined with rib-like protrusions");
 		output2(", soft and rounded enough to massage any passage into which it is inserted.");
 	}
@@ -2342,8 +2342,8 @@ public function vaginaBonusForAppearance(forTarget:Creature = null, x:int = 0, e
 	
 	//Nubby
 	if(target.vaginas[x].hasFlag(GLOBAL.FLAG_NUBBY) && target.vaginas[x].type != GLOBAL.TYPE_SIREN) {
-		if(!eachOne) output2(" The lips and insides are covered in numerous nub-like protrusions, each filled with hypersensitive nerve clusters.");
-		else output2(" Their lips and insides are covered in numerous nub-like protrusions, each filled with hypersensitive nerve clusters.");
+		if(!eachOne) output2(" The lips and insides are covered in numerous nub-like protrusions.");
+		else output2(" Their lips and insides are covered in numerous nub-like protrusions.");
 	}
 	//Ovipositor
 	if(target.vaginas[x].hasFlag(GLOBAL.FLAG_OVIPOSITOR))
