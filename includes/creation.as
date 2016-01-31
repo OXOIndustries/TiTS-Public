@@ -468,7 +468,7 @@ public function chooseHairColor():void {
 	//NEW
 	author("Fenoxo & JimThermic");
 	// More neatening and spacing.
-	output("<i>“Great,”</i> the doctor nods, entering the information with his stylus. <i>“I thought of asking for his adult weight in pounds, but knowing you, you would have taken me seriously. Your kitchen staff will be the ones who control </i>that<i>.”</i>");
+	output("<i>“Great,”</i> the doctor nods, entering the information with his stylus. <i>“I thought of asking for the child's adult weight in pounds, but knowing you, you would have taken me seriously. Your kitchen staff will be the ones who control </i>that<i>.”</i>");
 	output("\n\n<i>“Okaaay... what about hair color? We can do black, like yours was, or any other natural colors pretty easily.”</i>");
 	output("\n\n<b>What color is your character’s hair?</b>");
 	
