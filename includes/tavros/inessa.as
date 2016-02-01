@@ -1738,7 +1738,9 @@ public function gravCuffsCowgirlBangu():void
 	if(pc.cockTotal() > 1) output(" and jerked");
 	output(". You’re in heaven!");
 
-	output("\n\nUnable to last under such pleasurable duress, you quickly reach your peak. With a loud, shivering cry, you shoot your virile load inside the busty bovine’s pussy. With each groaning flex of your shaft, you feel your hot spunk shooting up and out of your prick, basting the inside of her fertile womb in [pc.cumColor] and seeding it with your sperm. As you tremble in the throes of your second orgasm in mere minutes, the cow girl lifts her hefty butt off you and parts her lower lips, giving you a nice, long look at her now [pc.cumVisc] pussy. Talk about a creampie!");
+	output("\n\nUnable to last under such pleasurable duress, you quickly reach your peak. With a loud, shivering cry, you shoot your");
+	if(pc.virility() > 0) output(" virile");
+	output(" load inside the busty bovine’s pussy. With each groaning flex of your shaft, you feel your hot spunk shooting up and out of your prick, basting the inside of her fertile womb in [pc.cumColor] and seeding it with your sperm. As you tremble in the throes of your second orgasm in mere minutes, the cow girl lifts her hefty butt off you and parts her lower lips, giving you a nice, long look at her now [pc.cumVisc] pussy. Talk about a creampie!");
 
 	output("\n\n<i>“...[pc.HeShe] came again? Okay, my turn!”</i> another busty beauty chimes in. Not even waiting for your most recent orgasm to subside, she switches with the first, reaching for ");
 	if(pc.cockTotal() == 1) output("your well-used dick");

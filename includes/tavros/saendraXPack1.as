@@ -1227,10 +1227,11 @@ public function zilCallGirlPregTime(percentage:Boolean = false):Number
 {
 	if (flags["ZIL_CALLGIRL_PREG"] != undefined && flags["ZIL_CALLGIRL_GESTATION"] != undefined)
 	{
+		var pregTime:Number = (GetGameTimestamp() - flags["ZIL_CALLGIRL_PREG"]);
 		// Returns a percentage 0% to 100% of completion, for simplicity!
-		if (percentage) return formatFloat((((GetGameTimestamp() - flags["ZIL_CALLGIRL_PREG"])/flags["ZIL_CALLGIRL_GESTATION"]) * 100), 2);
+		if (percentage) return formatFloat(((pregTime / flags["ZIL_CALLGIRL_GESTATION"]) * 100), 2);
 		// Otherwise, returns the time pregnant (in minutes)
-		else return (GetGameTimestamp() - flags["ZIL_CALLGIRL_PREG"]);
+		else return pregTime;
 	}
 	return -1;
 }
@@ -1549,7 +1550,7 @@ public function zilCallGirlFuckHer():void
 	processTime(25);
 	
 	// Try to get her pregnant!
-	zilCallGirlKnockUp(pc.cumQuality());
+	zilCallGirlKnockUp(pc.virility());
 	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);

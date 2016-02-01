@@ -219,7 +219,15 @@ public function raskVelBabeGetsDoggieStyled():void
 		if(pc.cumQ() <= 500)
 		{}
 		else if(pc.cumQ() <= 2000) output(", not caring when her belly forms a noticeable cum-paunch.");
-		else output(", not caring when her belly rounds with your obscene virility, pumping full of nice, hot, fertile seed that is sure to turn that cum-dome into a proper, pregnant belly in no time.");
+		else
+		{
+			output(", not caring when her belly rounds with your obscene");
+			if(pc.virility() > 0) output(" virility");
+			else output(" amounts of spunk");
+			output(", pumping full of nice, hot");
+			if(pc.virility() > 0) output(", fertile");
+			output(" seed that is sure to turn that cum-dome into a proper, pregnant belly in no time.");
+		}
 		output(" Her hands massage her mound as she's filled, gathering the dripping [pc.cum] into her hands and slathering it all over her ");
 		if(pc.cumQ() <= 500) output("cock-distorted belly");
 		else output("rounding belly");
@@ -237,7 +245,13 @@ public function raskVelBabeGetsDoggieStyled():void
 		else 
 		{
 			output(" The thick spurts round the raskvel's trim tummy into a nicely-filled dome in no time, and her perfectly plugged pussy wrings you tighter in excitement at such treatment.");
-			if(pc.cumQ() >= 2000) output("  She's less pleased when you continue to cum, filling her with nice, hot, virile seed until that dome is stretched into a sloshing pregnant belly, her scales and skin shiny from how taut they've become. The pressure threatens to push you back out, but elastic lizard-woman's body gives just enough to let you enjoy the feeling of completely stuffing her snatch.");
+			if(pc.cumQ() >= 2000)
+			{
+				output(" She's less pleased when you continue to cum, filling her with");
+				if(pc.virility() > 0) output(" nice, hot, virile");
+				else output(" massive amounts of");
+				output(" seed until that dome is stretched into a sloshing pregnant belly, her scales and skin shiny from how taut they've become. The pressure threatens to push you back out, but elastic lizard-woman's body gives just enough to let you enjoy the feeling of completely stuffing her snatch.");
+			}
 		}
 		output("\n\nAs your passion wanes, your dick remains stubbornly knotted inside the small girl's passage. She's suspended on your [pc.cock " + x + "] like the breeding bitch she's become, forced to let your [pc.cum] simmer in her vulnerable womb until your knot decides to deflate, which happens roughly thirty minutes later, after the last of your orgasm trickles its way inside.");
 	}
@@ -726,7 +740,9 @@ public function hugeDicksGetForceWorshippedByFemRaskvel(fromCombat:Boolean = fal
 		output(" shot");
 		output(".");
 	}
-	output("\n\nThe huge spunk-bubble is twisted off just past the top of your penis, and the whole mess is pulled away. The cool feeling of evaporating sexual juices causes [pc.eachCock] to shrivel faster while recover. Unfortunately, the raskvel has time to rummage through your equipment and tie off her prize before she goes. She even waves goodbye, saying, <i>\"Thanks for the good time, love. Be a dear and come back later if you want to see how your juice took.\"</i>");
+	output("\n\nThe huge spunk-bubble is twisted off just past the top of your penis, and the whole mess is pulled away. The cool feeling of evaporating sexual juices causes [pc.eachCock] to shrivel faster while recover. Unfortunately, the raskvel has time to rummage through your equipment and tie off her prize before she goes. She even waves goodbye, saying, <i>\"Thanks for the good time, love. Be a dear and come back later if you want to see how your juice took.");
+	if(pc.virility() <= 0) output(".. if you're a virile one, that is.");
+	output("\"</i>");
 	processTime(30+rand(10));
 	knockUpRaskChance();
 	pc.orgasm();
@@ -916,7 +932,12 @@ public function giveRaskvelSomeDongToSuckle():void
 		else if(pc.cumQ() < 1000) output("thick streams leak");
 		else output("it hoses");
 		output(" from the corners of her mouth");
-		if(pc.cumQ() >= 2000) output(", soaking the front half of her body in a reminder of your excessive virility");
+		if(pc.cumQ() >= 2000)
+		{
+			output(", soaking the front half of her body in a reminder of your excessive");
+			if(pc.virility() > 0) output(" virility");
+			else output(" productivity");
+		}
 		output(".");
 	}
 	//Knot
@@ -1091,6 +1112,7 @@ public function watchDatRaskvelEggLayyyy():void
 
 public function knockUpRaskChance():void
 {
+	if(pc.virility() <= 0) return;
 	//If one's already preggos, no go
 	if(flags["RASKVEL_PREG_TIMER"] == undefined)
 	{

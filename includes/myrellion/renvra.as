@@ -1164,7 +1164,11 @@ public function fuckRenvrasUrethra():void
 		processTime(33);
 		pc.orgasm();
 		//improve odds of fertilized eggs for next Renvra laying by 40-100% percent depending on PC cum and adjust dialogue in sex menu/old laying scene
-		if(renvra.cumQualityRaw < 8) renvra.cumQualityRaw += 5;
+		if(renvra.cumQualityRaw < 8)
+		{
+			renvra.cumQualityRaw += 4;
+			renvra.cumQualityRaw += Math.round(pc.virility());
+		}
 	}
 	//dildo branch
 	else

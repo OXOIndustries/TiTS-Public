@@ -399,6 +399,11 @@ public function sureIWantSomeShadePussayTailFuckYes():void
 	generateMapForLocation(currentLocation);
 	showName("AIRFIELD\nNORTH");
 	//{Shade’s Scenes go Here}
+	shadeSexMenu(true);
+}
+
+public function shadeSexMenu(intro:Boolean = false):void
+{
 	clearMenu();
 	//Shade starts straddling the PC. Still wearing her undies, no bra or clothes.
 	//[Cunt Tail Fuck]
@@ -412,22 +417,28 @@ public function sureIWantSomeShadePussayTailFuckYes():void
 	
 	//[Rim & Wank] (if PC has no cunt; else) [Lick & Wank]
 	//PC must have taken Shade’s hardlight strapon at least once. Must be effeminate enough to use female pronouns and possess a cock. Is a [vagOrAss] scene.
-	if(pc.hasCock() && pc.mf("he","She") == "She" && flags["TAKEN_SHADES_HARDLIGHT"] != undefined)
+	if (pc.hasCock() && pc.mf("he","She") == "She" && flags["TAKEN_SHADES_HARDLIGHT"] != undefined)
 	{
-		if(pc.hasVagina()) addButton(2,"Lick & Wank",rimAndWankOrLickAndWankWhoKnowsSloot,undefined,"Lick & Wank","Get licked and wanked.");
+		if (pc.hasVagina()) addButton(2,"Lick & Wank",rimAndWankOrLickAndWankWhoKnowsSloot,undefined,"Lick & Wank","Get licked and wanked.");
 		else addButton(2,"Rim & Wank",rimAndWankOrLickAndWankWhoKnowsSloot,undefined,"Rim & Wank","Get rimmed and wanked off.");
 	}
-	else if(flags["TAKEN_SHADES_HARDLIGHT"] == undefined) addDisabledButton(2,"Wank?","Wank?","You have to have taken Shade's hardlight strapon to qualify for this scene, as well as be a girly femmy-type guy.");
+	else if (flags["TAKEN_SHADES_HARDLIGHT"] == undefined) addDisabledButton(2,"Wank?","Wank?","You have to have taken Shade's hardlight strapon to qualify for this scene, as well as be a girly femmy-type guy.");
 	else addDisabledButton(2,"Wank?","Wank?","You aren't enough of a girlyboy to get wanked off like some kind of femboy.");
 	
 	//Shade Tailcock v. Tailcunt Scene
 	//Because it’s only been requested literally 50 billion times. Just another add to her normal sex menu.
-	if(pc.hasTailCock() && pc.tailCount > 0) addButton(3,"Tailsex",shadeTailSex,undefined,"Tailsex","You’ve got a tail-cock, Shade’s got a tail-cunt... it seems like a match made in heaven, so why not let your tail-genitalia have some fun together?");
+	if (pc.hasTailCock() && pc.tailCount > 0) addButton(3,"Tailsex",shadeTailSex,undefined,"Tailsex","You’ve got a tail-cock, Shade’s got a tail-cunt... it seems like a match made in heaven, so why not let your tail-genitalia have some fun together?");
 	else addDisabledButton(3,"TailSex","TailSex","You would need some kind of tail-mounted penis to try this...");
 	
 	//PC + Shade Double Titfuck. Add to Shade's sex menu. PC must have a dick of at least 18 inches, and breasts of at least D-cup.
-	if (pc.hasCock() && pc.biggestCockLength() >= 20 && pc.biggestTitSize() > 4) addButton(5, "DoubleTitfuck", shadeDoubleTitfuck, undefined, "DoubleTitfuck","You and Shade are both pretty stacked, and your cock's already so hard against your belly... maybe the two of you could put your tits to use to give you some relief.");
-	else addDisabledButton(5,"DoubleTitfuck","DoubleTitfuck","You'd need big tits and a bigger cock to coax Shade into a double titfucking!");
+	if (pc.hasCock() && pc.biggestCockLength() >= 20 && pc.biggestTitSize() > 4) addButton(4, "DoubleTitfuck", shadeDoubleTitfuck, undefined, "DoubleTitfuck","You and Shade are both pretty stacked, and your cock's already so hard against your belly... maybe the two of you could put your tits to use to give you some relief.");
+	else addDisabledButton(4,"DoubleTitfuck","DoubleTitfuck","You'd need big tits and a bigger cock to coax Shade into a double titfucking!");
+	
+	if (!intro && pc.hasGenitals()) addButton(5, "Boobship", shadeBoobWorship, undefined, "Boob Worship", "Get hands on with Shades glorious chestpillows.");
+	else if (!intro) addDisabledButton(5, "Boobship", "Boob Worship", "You need genitalia to properly worship Shade's chestpillows.");
+	else addDisabledButton(5, "Locked", "Locked", "Maybe if you got to know her a little better...");
+	
+	if(!intro) addButton(14,"Back",shouldIShadeOrShouldIGo);
 }
 
 //[Trip and Fall]
@@ -1241,33 +1252,8 @@ public function askShade4Sex():void
 	processTime(15);
 
 	//{Shade’s Scenes go Here}
+	shadeSexMenu();
 	clearMenu();
-	if(pc.hasCock()) addButton(0,"Cunt Tail",cuntTailShadeFux,undefined,"Cunt Tail","Let her use her cunt tail on you. It probably feels pretty good.");
-	//[Take Hardlight]
-	//vagOrAss. PC gives tailcunt oral. 
-	addButton(1,"CatchHardlight",takeShadesHardlightPenisInYerBoot,undefined,"CatchHardlight","Take it from a hardlight strapon.");
-	//[Rim & Wank] (if PC has no cunt; else) [Lick & Wank]
-	//PC must have taken Shade’s hardlight strapon at least once. Must be effeminate enough to use female pronouns and possess a cock. Is a [vagOrAss] scene.
-	if(pc.hasCock() && pc.mf("he","She") == "She" && flags["TAKEN_SHADES_HARDLIGHT"] != undefined)
-	{
-		if(pc.hasVagina()) addButton(2,"Lick & Wank",rimAndWankOrLickAndWankWhoKnowsSloot,undefined,"Lick & Wank","Get licked and wanked.");
-		else addButton(2,"Rim & Wank",rimAndWankOrLickAndWankWhoKnowsSloot,undefined,"Rim & Wank","Get rimmed and wanked off.");
-	}
-	else if(flags["TAKEN_SHADES_HARDLIGHT"] == undefined) addDisabledButton(2,"Wank?","Wank?","You have to have taken Shade's hardlight strapon to qualify for this scene, as well as be a girly femmy-type guy.");
-	else addDisabledButton(2,"Wank?","Wank?","You aren't enough of a girlyboy to get wanked off like some kind of femboy.");
-	//Shade Tailcock v. Tailcunt Scene
-	//Because it’s only been requested literally 50 billion times. Just another add to her normal sex menu.
-	if(pc.hasTailCock() && pc.tailCount > 0) addButton(3,"Tailsex",shadeTailSex,undefined,"Tailsex","You’ve got a tail-cock, Shade’s got a tail-cunt... it seems like a match made in heaven, so why not let your tail-genitalia have some fun together?");
-	else addDisabledButton(3,"TailSex","TailSex","You would need some kind of tail-mounted penis to try this...");
-
-	if (pc.hasCock() || pc.hasVagina()) addButton(4, "Boobship", shadeBoobWorship, undefined, "Boob Worship", "Get hands on with Shades glorious chestpillows.");
-	else addDisabledButton(4, "Boobship", "Boob Worship", "You need genitalia to properly worship Shade's chestpillows.");
-	
-	//PC + Shade Double Titfuck. Add to Shade's sex menu. PC must have a dick of at least 18 inches, and breasts of at least D-cup.
-	if (pc.hasCock() && pc.biggestCockLength() >= 20 && pc.biggestTitSize() > 4) addButton(5, "DoubleTitfuck", shadeDoubleTitfuck, undefined, "DoubleTitfuck","You and Shade are both pretty stacked, and your cock's already so hard against your belly... maybe the two of you could put your tits to use to give you some relief.");
-	else addDisabledButton(5,"DoubleTitfuck","DoubleTitfuck","You'd need big tits and a bigger cock to coax Shade into a double titfucking!");
-
-	addButton(14,"Back",shouldIShadeOrShouldIGo);
 }
 
 //Talk
@@ -1505,6 +1491,8 @@ public function runesYouTurdShade():void
 //Set to 1 on insemination. Counts up every hour. Resets on its own after a week.
 public function inseminateShadesCuntTail():void
 {
+	if(pc.virility() <= 0) return;
+	
 	if(flags["SHADE_INSEMINATION_COUNTER"] == undefined) flags["SHADE_INSEMINATION_COUNTER"] = 1;
 	flags["SHADES_CUNTTAIL_FED"] = 1;
 }
