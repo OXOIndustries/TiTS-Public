@@ -442,7 +442,7 @@
 					//4 to 4.5
 					else if(pc.ballSizeRaw <= 13)
 					{
-						kGAMECLASS.output("\n\nYour nuts churn with their barely-suppresed");
+						kGAMECLASS.output("\n\nYour nuts churn with their barely-suppressed");
 						if (target.virility() > 0) kGAMECLASS.output(", virile");
 						kGAMECLASS.output(" [pc.cumNoun]-load, working on overtime to make your next orgasm hotter, wetter, and all around messier. The sense of need in your swollen cum-factories rises higher and higher, driving to look down and pant with lust. Pre-cum leaks from you like a sieve, and your balls are bigger than ever. You give them a familiar squeeze, kneading the growing boys until your body relaxes, the change finished.");
 						pc.ballFullness = 100;
