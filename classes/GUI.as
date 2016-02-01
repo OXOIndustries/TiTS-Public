@@ -1145,15 +1145,12 @@
 				_availableModules["PrimaryOutput"].hideInput();
 			}
 			
-			menuButtonsOn();
-			messengerOn();
-			perksOn();
-			levelUpOn();
-
+			mainButtonsReset();
+			
 			_buttonTray.showKeyBinds();
 		}
 
-		//4. MIAN MENU STUFF
+		//4. MAIN MENU STUFF
 		public function mainMenuButtonOn():void 
 		{
 			_leftSideBar.menuButton.Activate();
@@ -1233,10 +1230,6 @@
 			{
 				mainMenuButtonOn();
 				dataOn();
-				/*
-				perksOn();
-				messengerOn();
-				*/
 			}
 		}
 		
@@ -1245,10 +1238,6 @@
 			appearanceOff();
 			mainMenuButtonOff();
 			dataOff();
-			/*
-			perksOff();
-			messengerOff();
-			*/
 		}
 		
 		public function mainButtonsOnly():void 
