@@ -7893,7 +7893,11 @@ package classes {
 		//Remove cock
 		public function removeCock(arraySpot:int, totalRemoved:int): void {
 			removeJunk(cocks, arraySpot, totalRemoved);
-			if(!hasCock()) removeStatusEffect("Blue Balls");
+			if(!hasCock())
+			{
+				removeStatusEffect("Blue Balls");
+				removePerk("Firing Blanks");
+			}
 		}
 		public function removeCockUnlocked(arraySpot:int = 0, totalRemoved:int = 1):Boolean
 		{
@@ -7926,6 +7930,10 @@ package classes {
 		//Remove vaginas
 		public function removeVagina(arraySpot: int = 0, totalRemoved: int = 1): void {
 			removeJunk(vaginas, arraySpot, totalRemoved);
+			if(!hasVagina())
+			{
+				removePerk("Sterile");
+			}
 		}
 		public function removeVaginaUnlocked(arraySpot:int = 0, totalRemoved:int = 1):Boolean
 		{
@@ -12192,7 +12200,7 @@ package classes {
 		 */
 		public function virility():Number
 		{
-			if (hasStatusEffect("Infertile")) return 0;
+			if (hasStatusEffect("Infertile") || hasPerk("Firing Blanks")) return 0;
 			
 			return cumQuality();
 		}
@@ -12217,7 +12225,7 @@ package classes {
 		public var fertilityMod:Number = 0;
 		public function fertility():Number
 		{
-			if (hasStatusEffect("Infertile")) return 0;
+			if (hasStatusEffect("Infertile") || hasPerk("Sterile")) return 0;
 			
 			return fertilityRaw + fertilityMod;
 		}
