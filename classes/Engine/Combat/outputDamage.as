@@ -19,8 +19,8 @@ package classes.Engine.Combat
 		
 		var tMsg:String = "";
 		
-		var numDisplayed:int = 0;
-		var numDigits:int = 0;
+		//var numDisplayed:int = 0;
+		//var numDigits:int = 0;
 		
 		if (damageResult.shieldDamage > 0 || damageResult.hpDamage > 0 || (damageResult.lustDamage > 0 || damageResult.lustResisted == true))
 		{
@@ -29,8 +29,8 @@ package classes.Engine.Combat
 				tMsg += "(<b>";
 				if (damageResult.shieldDamage > 0)
 				{
-					numDisplayed++;
-					numDigits += Math.log(damageResult.shieldDamage) + 1;
+					//numDisplayed++;
+					//numDigits += Math.log(damageResult.shieldDamage) + 1;
 					
 					if (colour) tMsg += "S: -<span class='shield'>" + Math.round(damageResult.shieldDamage) + "</span>";
 					else tMsg += "S: -" + Math.round(damageResult.shieldDamage);
@@ -39,8 +39,8 @@ package classes.Engine.Combat
 				}
 				if (damageResult.hpDamage > 0)
 				{
-					numDisplayed++;
-					numDigits += Math.log(damageResult.hpDamage) + 1;
+					//numDisplayed++;
+					//numDigits += Math.log(damageResult.hpDamage) + 1;
 					
 					if (colour) tMsg += "H: -<span class='hp'>" + Math.round(damageResult.hpDamage) + "</span>";
 					else tMsg += "H: -" + Math.round(damageResult.hpDamage);
@@ -48,8 +48,8 @@ package classes.Engine.Combat
 				}
 				if (damageResult.lustDamage > 0 || damageResult.lustResisted == true)
 				{
-					numDisplayed++;
-					numDigits += Math.log(damageResult.lustDamage) + 1;
+					//numDisplayed++;
+					//numDigits += Math.log(damageResult.lustDamage) + 1;
 					
 					if (colour) tMsg += "L: -<span class='lust'>" + Math.round(damageResult.lustDamage) + "</span>";
 					else tMsg += "L: -" + Math.round(damageResult.lustDamage);
