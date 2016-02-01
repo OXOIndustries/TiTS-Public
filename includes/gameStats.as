@@ -53,6 +53,7 @@ public function statisticsScreen(showID:String = "All"):void
 		}
 		else output2("\n<b>* Race: </b>" + StringUtil.toTitleCase(pc.originalRace));
 		output2("\n<b>* Height: </b>" + prettifyLength(pc.tallness));
+		output2("\n<b>* Weight: </b>" + prettifyWeight(pc.fullBodyWeight()));
 		output2("\n<b>* Sex: </b>");
 		if(pc.hasCock() && !pc.hasVagina()) output2("Male");
 		else if(!pc.hasCock() && pc.hasVagina()) output2("Female");
@@ -70,6 +71,8 @@ public function statisticsScreen(showID:String = "All"):void
 		if(pc.isBro()) output2(", Brute");
 		output2("\n<b>* Alcohol Tolerance: </b>" + pc.tolerance() + "/100");
 		output2("\n<b>* Exhibitionism: </b>" + formatFloat(pc.exhibitionism(), 1) + "/100");
+		output2("\n<b>* Carry Threshold: </b>" + prettifyWeight(pc.bodyStrength()));
+		//if(pc.weightQ("full") > 0) output2(" (" + pc.weightQ("full") + " %)");
 		// Head
 		output2("\n<b><u>Head</u></b>");
 		output2("\n<b>* Face: </b>" + GLOBAL.TYPE_NAMES[pc.faceType]);
@@ -251,6 +254,11 @@ public function statisticsScreen(showID:String = "All"):void
 				output2(" " + pc.totalBreasts() + " Breast");
 				if(pc.totalBreasts() != 1) output2("s");
 			}
+			if(pc.breastRows.length > 1)
+			{
+				output2("\n<b>* Breasts, Weight: </b>" + prettifyWeight(pc.bodyPartWeight("breast")) + ", total");
+				if(pc.weightQ("breast") > 0) output2(" (" + pc.weightQ("breast") + " %)");
+			}
 			if(pc.hasNipples())
 			{
 				output2("\n<b>* Nipples:</b>");
@@ -258,7 +266,7 @@ public function statisticsScreen(showID:String = "All"):void
 				if(pc.nippleColor != "") output2(" " + StringUtil.toDisplayCase(pc.nippleColor));
 				output2(" Nipple");
 				if(pc.totalNipples() != 1) output2("s");
-				if(pc.totalNipples() > 1) output2(", " + pc.nipplesPerBreast + " per Breast");
+				if(pc.totalNipples() > 1) output2(", " + pc.nipplesPerBreast + " per breast");
 				if(pc.isLactating()) output2(", Lactation Active");
 				if(pc.nipplesPierced != 0) output2("\n<b>* Nipple Piercing: </b>" + pc.nipplesPierced + " " + StringUtil.toDisplayCase(pc.nipplesPShort));
 			}
@@ -292,6 +300,8 @@ public function statisticsScreen(showID:String = "All"):void
 						if(pc.breastRows[x].breastRating() >= 200) output2(" (" + formatFloat(pc.breastRows[x].breastRating(), 3) + ")");
 						if(pc.breastRows[x].breastRatingHoneypotMod != 0) output2("\n<b>* Breast, Honeypot Size Rating: </b>" + formatFloat(pc.breastRows[x].breastRatingHoneypotMod, 3));
 						if(pc.breastRows[x].breastRatingLactationMod != 0) output2("\n<b>* Breast, Lactation Size Rating: </b>" + formatFloat(pc.breastRows[x].breastRatingLactationMod, 3));
+						output2("\n<b>* Breast Row, Weight: </b>" + prettifyWeight(pc.bodyPartWeight("breast", x)));
+						if(pc.weightQ("breast", x) > 0) output2(" (" + pc.weightQ("breast", x) + " %)");
 					}
 					output2("\n<b>* Nipple, Type: </b>" + " " + GLOBAL.NIPPLE_TYPE_NAMES[pc.breastRows[x].nippleType]);
 					if(pc.breastRows[x].fuckable()) output2(", Fuckable");
@@ -322,7 +332,13 @@ public function statisticsScreen(showID:String = "All"):void
 				output2(" " + pc.cocks.length + " Penis");
 				if(pc.cocks.length != 1) output2("es");
 			}
-			if(pc.balls <= 0) output2(", Prostate");
+			if(pc.balls <= 0)
+			{
+				output2(", Prostate");
+				output2("\n<b>* Prostate, Volume: </b>" + prettifyVolume(pc.ballVolume(), 1));
+				output2("\n<b>* Prostate, Weight: </b>" + prettifyWeight(pc.bodyPartWeight("testicle")));
+				if(pc.weightQ("testicle") > 0) output2(" (" + pc.weightQ("testicle") + " %)");
+			}
 			else if(pc.balls > 0)
 			{
 				if(pc.cocks.length > 0) output2(",");
@@ -333,10 +349,19 @@ public function statisticsScreen(showID:String = "All"):void
 				if(pc.balls != 1) output2(", each");
 				output2("\n<b>* Testicle, Volume: </b>" + prettifyVolume(pc.ballVolume(), 1));
 				if(pc.balls != 1) output2(", each");
+				output2("\n<b>* Testicle, Weight: </b>" + prettifyWeight(pc.bodyPartWeight("testicle")));
+				if(pc.balls != 1) output2(", total");
+				if(pc.weightQ("testicle") > 0) output2(" (" + pc.weightQ("testicle") + " %)");
 			}
 			output2("\n<b>* Penis, Virginity:</b>");
 			if(pc.cockVirgin) output2(" Virgin");
 			else output2(" Taken");
+			if(pc.cocks.length > 1)
+			{
+				output2("\n<b>* Penis, Weight: </b>" + prettifyWeight(pc.bodyPartWeight("penis")));
+				if(pc.cocks.length > 1) output2(", total");
+				if(pc.weightQ("penis") > 0) output2(" (" + pc.weightQ("penis") + " %)");
+			}
 			// Cum Stats
 			output2("\n<b>* Cum, Type: </b>" + GLOBAL.FLUID_TYPE_NAMES[pc.cumType]);
 			output2("\n<b>* Cum, Capacity:</b>");
@@ -377,6 +402,8 @@ public function statisticsScreen(showID:String = "All"):void
 					}
 					else output2("\n<b>* Volume: </b>" + prettifyVolume(pc.cockVolume(x)));
 					output2("\n<b>* Capacity: </b>" + prettifyVolume(pc.cockCapacity(x)));
+					output2("\n<b>* Weight: </b>" + prettifyWeight(pc.bodyPartWeight("penis", x)));
+					if(pc.weightQ("penis", x) > 0) output2(" (" + pc.weightQ("penis", x) + " %)");
 					if(pc.cocks[x].pierced != 0) output2("\n<b>* Piercing: </b>" + pc.cocks[x].pierced + " " + StringUtil.toDisplayCase(pc.cocks[x].pShort));
 					if(pc.cocks[x].sock != "") output2("\n<b>* Sock: </b>" + StringUtil.toDisplayCase(pc.cocks[x].sock));
 				}
@@ -397,6 +424,13 @@ public function statisticsScreen(showID:String = "All"):void
 				output2(" " + pc.totalClits() +" Clit");
 				if(pc.totalClits() != 1) output2("s");
 				if(pc.clitLength != 0) output2("\n<b>* Clitoris, Length: </b>" + prettifyLength(pc.clitLength));
+				if(pc.totalClits() != 1) output2(", each");
+				if(pc.vaginas.length > 1)
+				{
+					output2("\n<b>* Clitoris, Weight: </b>" + prettifyWeight(pc.bodyPartWeight("clitoris")));
+					if(pc.totalClits() != 1) output2(", total");
+					if(pc.weightQ("clitoris") > 0) output2(" (" + pc.weightQ("clitoris") + " %)");
+				}
 			}
 			output2("\n<b>* Vagina, Virginity:</b>");
 			if(pc.vaginalVirgin) output2(" Virgin");
@@ -442,7 +476,13 @@ public function statisticsScreen(showID:String = "All"):void
 					output2("\n<b>* Looseness Level: </b>" + formatFloat(pc.vaginas[x].looseness(), 3));
 					output2("\n<b>* Wetness Level: </b>" + formatFloat(pc.vaginas[x].wetness(), 3));
 					if(pc.vaginas[x].wetness() >= 4) output2(", Squirter");
-					if(pc.vaginas[x].clits > 0) output2("\n<b>* Clitoris: </b>" + pc.vaginas[x].clits);
+					if(pc.vaginas[x].clits > 0)
+					{
+						output2("\n<b>* Clitoris: </b>" + pc.vaginas[x].clits);
+						output2("\n<b>* Clitoris, Weight: </b>" + prettifyWeight(pc.bodyPartWeight("clitoris", x)));
+						if(pc.vaginas[x].clits != 1) output2(", total");
+						if(pc.weightQ("clitoris", x) > 0) output2(" (" + pc.weightQ("clitoris", x) + " %)");
+					}
 					if(pc.vaginas[x].clitPierced != 0) output2("\n<b>* Clit Piercing: </b>" + pc.vaginas[x].clitPierced + " " + StringUtil.toDisplayCase(pc.vaginas[x].clitPShort));
 					if(pc.vaginas[x].labiaPierced != 0) output2("\n<b>* Labia Piercing: </b>" + pc.vaginas[x].labiaPierced + " " + StringUtil.toDisplayCase(pc.vaginas[x].labiaPShort));
 				}
@@ -454,6 +494,8 @@ public function statisticsScreen(showID:String = "All"):void
 		if(pc.isPregnant()) output2("\n<b>* Belly, Size Rating, Total:</b>");
 		else output2("\n<b>* Belly, Size Rating:</b>");
 		output2(" " + formatFloat(pc.bellyRating(), 3));
+		output2("\n<b>* Belly, Weight: </b>" + prettifyWeight(pc.bodyPartWeight("belly")));
+		if(pc.weightQ("belly") > 0) output2(" (" + pc.weightQ("belly") + " %)");
 		if(pc.isPregnant())
 		{
 			output2("\n<b>* Active Pregnancies, Total: </b>" + pc.totalPregnancies());
@@ -497,6 +539,8 @@ public function statisticsScreen(showID:String = "All"):void
 		output2("\n<b><u>Ass</u></b>");
 		output2("\n<b>* Hip, Size Rating: </b>" + formatFloat(pc.hipRating(), 3));
 		output2("\n<b>* Butt, Size Rating: </b>" + formatFloat(pc.buttRating(), 3));
+		output2("\n<b>* Butt, Weight: </b>" + prettifyWeight(pc.bodyPartWeight("butt")));
+		if(pc.weightQ("butt") > 0) output2(" (" + pc.weightQ("butt") + " %)");
 		output2("\n<b>* Anus:</b> 1, Asshole");
 		output2("\n<b>* Anus, Virginity:</b>");
 		if(pc.analVirgin) output2(" Virgin");
@@ -849,6 +893,31 @@ public function statisticsScreen(showID:String = "All"):void
 }
 
 // Prettify Volume!
+// amount: pounds
+// printMeters: -1 is pounds, 0 is both pounds and grams, 1 is grams only
+public function prettifyWeight(amount:Number, printMeters:int = -1):String
+{
+	var retStr:String = "";
+	if(printMeters < 1)
+	{
+		retStr += formatFloat(amount, 3) + " lb";
+		if(amount != 1) retStr += "s";
+	}
+	// Prettified meters
+	if(printMeters > -1)
+	{
+		if(printMeters == 0) retStr += " (";
+		// Convert pounds to grams!
+		// 1 lb = 453.592 g or .0453592 kg
+		amount *= 453.592;
+		if(amount < 1000) retStr += formatFloat(amount, 3) + " g";
+		else retStr += formatFloat((amount / 1000), 3) + " kg";
+		if(printMeters == 0) retStr += ")";
+	}
+	return retStr;
+}
+
+// Prettify Volume!
 // amount: cubic inches
 // printMeters: -1 is inches, 0 is both inches and meters, 1 is meters only
 public function prettifyVolume(amount:Number, printMeters:int = -1):String
@@ -913,6 +982,7 @@ public function prettifyLength(amount:Number, printMeters:int = -1):String
 					// Build fractions
 					if(den != "") retStr += " <sup>" + num + "</sup>/<sub>" + den + "</sub>";
 				}
+				else if(fraction > 0.01) retStr += " 0";
 				retStr += "\"";
 			}
 		}

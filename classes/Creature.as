@@ -13086,6 +13086,292 @@ package classes {
 			return description;
 		}
 		
+		// Calculates the value of body strength (carry threshold).
+		public function bodyStrength():Number
+		{
+			// Raw body weight
+			var nBodyWeight:Number = bodyWeight();
+			// Muscles buff, how much extra body weight can PC lift
+			var nMuscles:Number = ((tone * nBodyWeight) * (physique() / 100));
+			// Assume weakest PC can lift their own body weight, each physique point adds 'm' more pounds
+			var m:Number = 5;
+			var nStrength:Number = nBodyWeight + nMuscles + (physique() * m);
+			// Modifiers:
+			if(hasStatusEffect("Buzzed")) nStrength += (m/2);
+			if(hasStatusEffect("Drunk")) nStrength += m;
+			if(hasStatusEffect("Smashed")) nStrength += (2*m);
+			
+			return nStrength;
+		}
+		// Calculates the body weight, without the extra bits.
+		public function bodyWeight():Number
+		{
+			// Simple BMI: 20 is underweight, 25 is average, 30 is overweight
+			var nBMI:Number = (25 + ((thickness - 50) / 10));
+			// Raw body weight, assume without extra parts
+			var nWeight: Number = ((tallness / 12) * nBMI * (tallness / 75));
+			
+			// Tiny boost for heeps
+			if(hipRating() > 0) nWeight += (hipRating() * (tallness / 60) * 0.1);
+			
+			// Special bodies
+			if(isGoo()) nWeight *= (0.75 + ((legCount - 1) * 0.125));
+			else if(isTaur()) nWeight *= (1.75 + ((legCount - 4) * 0.125));
+			else if(isNaga()) nWeight *= (1.5 + ((legCount - 1) * 0.125));
+			else if(isDrider()) nWeight *= (1.25 + (legCount * 0.05));
+			else if(legCount > 2) nWeight *= (1 + (legCount * 0.125));
+			
+			return nWeight;
+		}
+		public function fullBodyWeight():Number
+		{
+			return bodyPartWeight("total");
+		}
+		private function bodyPartParse(partName:String = "none"):String
+		{
+			// Parsing stuff:
+			if(InCollection(partName, "total", "all", "body", "everything", "full")) partName = "total";
+			else if(InCollection(partName, "breast", "breasts", "boob", "boobs", "tit", "tits")) partName = "breast";
+			else if(InCollection(partName, "belly", "tummy", "stomach", "womb")) partName = "belly";
+			else if(InCollection(partName, "butt", "ass", "booty", "rump", "rear", "hiney")) partName = "butt";
+			else if(InCollection(partName, "clitoris", "clit", "clits", "button", "buzzer")) partName = "clitoris";
+			else if(InCollection(partName, "penis", "penises", "cock", "cocks", "dong", "wiener")) partName = "penis";
+			else if(InCollection(partName, "testicle", "testicles", "balls", "scrotum", "nuts")) partName = "testicle";
+			
+			return partName;
+		}
+		// Calculates weight of a body part.
+		public function bodyPartWeight(partName:String = "none", partNum: Number = -1):Number
+		{
+			// Initialize variables:
+			var num: int = 0;
+			var tempSize: Number = 0;
+			var weight: Number = 0;
+			var weightBreast: Number = 0;
+			var weightBelly: Number = 0;
+			var weightButt: Number = 0;
+			var weightClitoris: Number = 0;
+			var weightPenis: Number = 0;
+			var weightTesticle: Number = 0;
+			var weightFluid: Number = 0; // Used for fluid weight
+			var weightFat: Number = 0; // Used for excess weight
+			
+			partName = bodyPartParse(partName);
+			
+			// Everything:
+			if(partName == "total")
+			{
+				weight += bodyWeight();
+				partNum = -1;
+			}
+			// Breasts:
+			if(partName == "breast" || partName == "total")
+			{
+				// Get total size/volume:
+				tempSize = 0;
+				if(partNum >= 0)
+				{
+					tempSize += breastRows[partNum].breastRating() * breastRows[partNum].breasts;
+				}
+				else
+				{
+					for (num = 0; num < breastRows.length; num++)
+					{
+						tempSize += breastRows[num].breastRating() * breastRows[num].breasts;
+					}
+				}
+				// Calculate weight: Simple, Each cup is 10/25th lbs.
+				weightBreast += tempSize * 0.4;
+				// Modifiers:
+				if(hasPerk("Fertility")) weightBreast *= 0.75;
+				if(milkQ() > 0)
+				{
+					weightFluid = milkQ();
+					if(InCollection(milkType, GLOBAL.FLUID_TYPE_HONEY, GLOBAL.FLUID_TYPE_MILKSAP, GLOBAL.FLUID_TYPE_CUMSAP, GLOBAL.FLUID_TYPE_NECTAR)) weightFluid *= 0.005;
+					else if(InCollection(milkType, GLOBAL.FLUID_TYPE_CUM, GLOBAL.FLUID_TYPE_GABILANI_CUM, GLOBAL.FLUID_TYPE_NYREA_CUM)) weightFluid *= 0.0035;
+					else weightFluid *= 0.0025;
+					if(isMilkTank()) weightFluid *= 0.5;
+					else if(hasPerk("Milky") || hasPerk("Treated Milk")) weightFluid *= 0.75;
+					if(partNum >= 0) weightFluid /= bRows();
+					weightBreast += weightFluid;
+				}
+				if(thickness > tone)
+				{
+					weightFat = (thickness - tone) * 0.01;
+					if(partNum >= 0) weightFat /= bRows();
+					weightBreast += weightFat;
+				}
+			}
+			// Belly:
+			if(partName == "belly" || partName == "total")
+			{
+				// Get size/volume:
+				tempSize = bellyRating() * (tallness / 60);
+				// Calculate weight: Simple, Each size is a pound and a half.
+				weightBelly += tempSize * 1.5;
+				// Modifiers:
+				if(isPregnant() && hasPerk("Breed Hungry")) weightBelly *= 0.75;
+				if(thickness > tone)
+				{
+					weightFat = (thickness - tone) * 0.01 * (tallness / 60);
+					weightBelly += weightFat;
+				}
+			}
+			// Butt:
+			if(partName == "butt" || partName == "total")
+			{
+				// Get size/volume:
+				tempSize = buttRating() * (tallness / 60);
+				// Calculate weight: Simple, Each size is half a pound.
+				weightButt += tempSize * 0.5;
+				// Modifiers:
+				if(thickness > tone)
+				{
+					weightFat = (thickness - tone) * 0.01 * (tallness / 60);
+					weightButt += weightFat;
+				}
+			}
+			// Clitoris:
+			if(partName == "clitoris" || partName == "total")
+			{
+				// Get total length:
+				tempSize = 0;
+				if(partNum >= 0) tempSize += clitLength * vaginas[partNum].clits;
+				else tempSize += clitLength * totalClits();
+				// Calculate weight: Simple, Each inch of length is 1/80th lbs.
+				weightClitoris += tempSize * 0.0125;
+				// Modifiers:
+				if(hasPerk("Hung")) weightClitoris *= 0.75;
+			}
+			// Penis:
+			if(partName == "penis" || partName == "total")
+			{
+				// Get total size/volume:
+				tempSize = 0;
+				if(partNum >= 0)
+				{
+					tempSize += cockVolume(partNum);
+				}
+				else
+				{
+					for (num = 0; num < cocks.length; num++)
+					{
+						tempSize += cockVolume(num);
+					}
+				}
+				// Calculate weight: Simple, Each volume unit is 1/20th lbs.
+				weightPenis += tempSize * 0.05;
+				// Modifiers:
+				if(partNum >= 0)
+				{
+					if(hasKnot(partNum))
+					{
+						weightFat = cocks[partNum].thickness() * cocks[partNum].knotMultiplier * 0.25;
+						weightPenis += weightFat;
+					}
+				}
+				else
+				{
+					for (num = 0; num < cocks.length; num++)
+					{
+						if(hasKnot(num))
+						{
+							weightFat = cocks[num].thickness() * cocks[num].knotMultiplier * 0.25;
+							weightPenis += weightFat;
+						}
+					}
+				}
+				if(hasPerk("Hung")) weightPenis *= 0.75;
+			}
+			// Testicles:
+			if(partName == "testicle" || partName == "total")
+			{
+				// Get total size/volume:
+				if(balls <= 0) num = 1;
+				else num = balls;
+				tempSize = ballVolume();
+				// Calculate weight: Simple, Each volume unit is 1/80th lbs.
+				weightTesticle += tempSize * num * 0.0125;
+				// Modifiers:
+				if(cumQ() > 0)
+				{
+					// Maybe only 50% is housed in the balls?
+					weightFluid = cumQ() * 0.5;
+					if(InCollection(cumType, GLOBAL.FLUID_TYPE_HONEY, GLOBAL.FLUID_TYPE_MILKSAP, GLOBAL.FLUID_TYPE_CUMSAP, GLOBAL.FLUID_TYPE_NECTAR)) weightFluid *= 0.005;
+					else if(InCollection(cumType, GLOBAL.FLUID_TYPE_CUM, GLOBAL.FLUID_TYPE_GABILANI_CUM, GLOBAL.FLUID_TYPE_NYREA_CUM)) weightFluid *= 0.0035;
+					else weightFluid *= 0.0025;
+					if(hasPerk("Potent") && hasPerk("Breed Hungry")) weightFluid *= 0.5;
+					else if(hasPerk("Potent") || hasPerk("Breed Hungry")) weightFluid *= 0.75;
+					if(partNum > 0 && partNum <= balls) weightFluid = (weightFluid / partNum);
+					weightTesticle += weightFluid;
+				}
+				if(hasPerk("Bulgy")) weightTesticle *= 0.75;
+			}
+			
+			// Add up all the weights
+			weight += weightBreast;
+			weight += weightBelly;
+			weight += weightButt;
+			weight += weightClitoris;
+			weight += weightPenis;
+			weight += weightTesticle;
+			
+			return weight;
+		}
+		// Weight Quotient for comparisons between strength (weight load).
+		public function weightQ(partName:String = "none", partNum: Number = -1):Number
+		{
+			partName = bodyPartParse(partName);
+			
+			var weight: Number = bodyPartWeight(partName, partNum);
+			
+			// Compare to strength:
+			return Math.round((weight / bodyStrength()) * 100);
+		}
+		// Is a part of anatomy heavy?
+		// partName: String, name of part, 'total' for everything.
+		// partNum: Number, row number or array ID if 0 or higher.
+		public function isHeavy(partName:String = "none", partNum: Number = -1):Boolean
+		{
+			if(weightQ(partName, partNum) > 50) return true;
+			return false;
+		}
+		// Height Ratio for comparisons.
+		public function heightRatio(partName:String = "none", partNum: Number = -1):Number
+		{
+			var nRatio: Number = 0;
+			
+			if(partName == "total") { /* Nothing! */ }
+			else if(partName == "breast")
+			{
+				if(hasBreasts())
+				{
+					if(partNum >= 0) nRatio = bRating(partNum) / tallness;
+					else nRatio = biggestTitSize() / tallness;
+				}
+			}
+			else if(partName == "belly") nRatio = bellyRating() / tallness;
+			else if(partName == "butt") nRatio = buttRating() / tallness;
+			else if(partName == "clitoris")
+			{
+				if(hasVagina()) nRatio = clitLength / tallness;
+			}
+			else if(partName == "penis")
+			{
+				if(hasCock())
+				{
+					if(partNum >= 0) nRatio = cLength(partNum) / tallness;
+					else nRatio = biggestCockLength() / tallness;
+				}
+			}
+			else if(partName == "testicle")
+			{
+				if(balls > 0) nRatio = ballDiameter() / tallness;
+			}
+			
+			return nRatio;
+		}
+		
 		public function isDefeated():Boolean
 		{
 			if (HP() <= 0 || lust() >= lustMax()) return true;

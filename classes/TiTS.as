@@ -95,6 +95,7 @@
 		include "../includes/CodexFiction.as";
 		include "../includes/creation.as";
 		include "../includes/debug.as";
+		include "../includes/dynamicGrowth.as";
 		include "../includes/engine.as";
 		include "../includes/game.as";
 		include "../includes/gameStats.as";
