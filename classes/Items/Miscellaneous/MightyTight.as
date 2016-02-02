@@ -57,6 +57,7 @@
 			
 			kGAMECLASS.clearOutput();
 			author("Couch");
+			kGAMECLASS.showName("MIGHTY\nTIGHT");
 			
 			//Consumption Text
 			var pc:Creature = target;
