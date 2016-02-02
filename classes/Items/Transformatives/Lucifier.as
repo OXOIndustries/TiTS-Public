@@ -1,6 +1,7 @@
 package classes.Items.Transformatives 
 {
 	import classes.Engine.Interfaces.*;
+	import classes.Engine.Utility.rand;
 	import classes.GLOBAL;
 	import classes.kGAMECLASS;
 	import classes.ItemSlotClass;
@@ -8,8 +9,6 @@ package classes.Items.Transformatives
 	import classes.StringUtil;
 	import classes.Creature;
 	import classes.Characters.PlayerCharacter;
-	import classes.Engine.Interfaces.*;
-	import classes.Engine.Utility.rand;
 	import classes.Util.InCollection;
 	import classes.Util.RandomInCollection;
 	
