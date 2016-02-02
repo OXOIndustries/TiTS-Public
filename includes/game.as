@@ -1118,6 +1118,13 @@ public function statusTick():void {
 						}
 					}
 				}
+				//Mighty Tight ends!
+				if(pc.statusEffects[x].storageName == "Mighty Tight")
+				{
+					eventBuffer += "\n\nPausing for a moment, you feel your backdoor";
+					if(pc.hasVagina()) eventBuffer += " and [pc.vaginas]";
+					eventBuffer += " relaxing a bit. It is probably safe to say that you are no longer under the effects of Mighty Tight.";
+				}
 				//Boobswell ends!
 				if(pc.statusEffects[x].storageName == "Boobswell Pads")
 				{
@@ -1129,8 +1136,21 @@ public function statusTick():void {
 				//Treatment finishing.
 				if(pc.statusEffects[x].storageName == "The Treatment")
 				{
-					eventBuffer += "\n\n<b>The Treatment is over.</b> You aren’t sure why or how you know, but you know it all the same. Well, there’s nothing left to do but enjoy your enhanced body to the fullest! ...While hunting for Dad’s probes, of course. It’s the best way to meet sexy new aliens.";
+					eventBuffer += "\n\n<b>The Treatment is over.</b> You aren’t sure why or how you know, but you know it all the same. Well, there’s nothing left to do but enjoy your enhanced body to the fullest! ... While hunting for Dad’s probes, of course. It’s the best way to meet sexy new aliens.";
 					eventBuffer += "\n\nOnce you claim you fortune, you can retire on New Texas, maybe even get your own private milker.";
+				}
+				//Sterilex/Infertile ends!
+				if(pc.statusEffects[x].storageName == "Infertile")
+				{
+					eventBuffer += "\n\nA strange tingling sensation spreads through your loins as your microsurgeons are suddenly reinvigorated. Your codex then beeps to notify you that you have regained your";
+					if(pc.hasGenitals())
+					{
+						if(pc.hasVagina()) eventBuffer += " fertility";
+						if(pc.isHerm()) eventBuffer += " and";
+						if(pc.hasCock()) eventBuffer += " virility";
+					}
+					else eventBuffer += " fertility and virility should you ever have the genitals for them";
+					eventBuffer += ". <b>Your ability to potentionally create life has been restored!</b>";
 				}
 				if(pc.statusEffects[x].storageName == "Mead") 
 				{
