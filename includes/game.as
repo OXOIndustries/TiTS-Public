@@ -1122,8 +1122,9 @@ public function statusTick():void {
 				if(pc.statusEffects[x].storageName == "Mighty Tight")
 				{
 					eventBuffer += "\n\nPausing for a moment, you feel your backdoor";
-					if(pc.hasVagina()) eventBuffer += " and [pc.vaginas]";
-					eventBuffer += " relaxing a bit. It is probably safe to say that you are no longer under the effects of Mighty Tight.";
+					if(pc.hasVagina()) eventBuffer += " and [pc.vaginas] relaxing";
+					else eventBuffer += " relax";
+					eventBuffer += " a bit. It is probably safe to say that you are no longer under the effects of Mighty Tight.";
 				}
 				//Boobswell ends!
 				if(pc.statusEffects[x].storageName == "Boobswell Pads")
