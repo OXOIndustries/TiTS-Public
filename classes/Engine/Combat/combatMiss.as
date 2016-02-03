@@ -1,5 +1,6 @@
 package classes.Engine.Combat 
 {
+	import classes.Characters.PlayerCharacter;
 	import classes.Creature;
 	import classes.Engine.Utility.rand;
 	
@@ -22,7 +23,8 @@ package classes.Engine.Combat
 		}
 		//10% miss chance for lucky breaks!
 		if (target.hasPerk("Lucky Breaks") && rand(100) <= 9) return true;
-		if(target.hasPerk("Melee Immune")) return true;
+		if (target.hasPerk("Melee Immune")) return true;
+		if (target.hasStatusEffect("GooCamo") && rand(3) <= 1) return true; 
 		return false;
 	}
 

@@ -7339,6 +7339,11 @@ package classes {
 			if (cocks.length > 1) return true;
 			return false;
 		}
+		
+		public function hasVaginas():Boolean
+		{
+			return vaginas.length > 1;
+		}
 
 		public function hasGenitals():Boolean
 		{

@@ -893,12 +893,12 @@ package classes.GameData
 			else
 			{
 				var af:Function = pc.meleeWeapon.attackImplementor == null ? CombatAttacks.MeleeAttack : pc.meleeWeapon.attackImplementor;
-				addButton(0, "Attack", selectSimpleAttack, af, "Attack", "Attack a single enemy with a melee strike. Damage is based on physique.");
+				addButton(0, "Attack", selectSimpleAttack, { func: af, isMelee: true }, "Attack", "Attack a single enemy with a melee strike. Damage is based on physique.");
 			}
 			
 			// shoot
 			var sf:Function = pc.rangedWeapon.attackImplementor == null ? CombatAttacks.RangedAttack : pc.rangedWeapon.attackImplementor;
-			addButton(1, StringUtil.upperCase(pc.rangedWeapon.attackVerb), selectSimpleAttack, sf, "Ranged Attack", "Attack a single enemy with a ranged weapon. Damage is based on aim.");
+			addButton(1, StringUtil.upperCase(pc.rangedWeapon.attackVerb), selectSimpleAttack, { func: sf, isRanged: true }, "Ranged Attack", "Attack a single enemy with a ranged weapon. Damage is based on aim.");
 			
 			//
 			// inventory
@@ -908,10 +908,10 @@ package classes.GameData
 			
 			// tease
 			if (pc.hasStatusEffect("Myr Venom Withdrawal")) addDisabledButton(5, "Tease", "Tease", "Without the venom, teasing just seems... fruitless.");
-			else addButton(5, "Tease", selectSimpleAttack, generateTeaseMenu, "Tease Menu", "Opens up your menu of available lust-targeting attacks. It is recommended that the ‘Sense’ option be used beforehand.");
+			else addButton(5, "Tease", selectSimpleAttack, { func: generateTeaseMenu }, "Tease Menu", "Opens up your menu of available lust-targeting attacks. It is recommended that the ‘Sense’ option be used beforehand.");
 			
 			// sense
-			addButton(6, "Sense", selectSimpleAttack, generateSenseMenu, "Sense", "Attempts to get a feel for a foe's likes and dislikes. Absolutely critical for someone who plans on seducing " + pc.mf("his", "her") + " way out of a fight.");
+			addButton(6, "Sense", selectSimpleAttack, { func: generateSenseMenu }, "Sense", "Attempts to get a feel for a foe's likes and dislikes. Absolutely critical for someone who plans on seducing " + pc.mf("his", "her") + " way out of a fight.");
 			
 			// wait
 			addButton(8, "Wait", waitRound, undefined, "Wait", "There's no real reason to this unless you're just dragging out combat to see what your enemy will do.");
@@ -955,20 +955,36 @@ package classes.GameData
 				else if (hasEnemyOfClass(GrayPrime)) kGAMECLASS.grayPrimeFailEscape();
 				else if (hasEnemyOfClass(MaidenVanae) || hasEnemyOfClass(HuntressVanae)) kGAMECLASS.vanaeWaitWhilstGrappled();
 				else output("You choose not to act.");
+				processCombat();
 			}
-			else output("You choose not to act.");
-			processCombat();
+			else if (_hostiles.length == 1 && _hostiles[i] is CrystalGooT1 && (_hostiles[i] as CrystalGooT1).ShouldIntercept())
+			{
+				(_hostiles[i] as CrystalGooT1).SneakSqueezeAttackReaction( { isWait: true } );
+			}
+			else
+			{
+				output("You choose not to act.");
+				processCombat();
+			}
 		}
 		
 		private function fantasizeRound():void
 		{
 			clearOutput();
-			output("You decide you'd rather fantasize than fight back at this point. Why bother when your enem");
-			if(enemiesAlive() > 1) output("ies are");
-			else output("y is");
-			output(" so alluring?");
-			pc.lust(20+rand(20));
-			processCombat();	
+			
+			if (_hostiles.length == 1 && _hostiles[i] is CrystalGooT1 && (_hostiles[i] as CrystalGooT1).ShouldIntercept())
+			{
+				(_hostiles[i] as CrystalGooT1).SneakSqueezeAttackReaction( { isFantasize: true } );
+			}
+			else
+			{
+				output("You decide you'd rather fantasize than fight back at this point. Why bother when your enem");
+				if(enemiesAlive() > 1) output("ies are");
+				else output("y is");
+				output(" so alluring?");
+				pc.lust(20+rand(20));
+				processCombat();	
+			}
 		}
 		
 		private function standupRound():void
@@ -1441,7 +1457,7 @@ package classes.GameData
 			processCombat();
 		}
 		
-		public function selectSimpleAttack(f:Function):void
+		public function selectSimpleAttack(attackOpts:Object):void
 		{
 			var t:Creature = null;
 			
@@ -1463,15 +1479,16 @@ package classes.GameData
 			
 			if (t == null)
 			{
-				selectSimpleTarget(f);
+				selectSimpleTarget(attackOpts);
 			}
 			else
 			{
-				executeSimpleAttack( { func: f, tar: t } );
+				attackOpts.tar = t;
+				executeSimpleAttack(attackOpts);
 			}
 		}
 		
-		public function selectSimpleTarget(f:Function):void
+		public function selectSimpleTarget(attackOpts:Object):void
 		{
 			clearMenu();
 			
@@ -1480,7 +1497,7 @@ package classes.GameData
 			{
 				if (!_hostiles[i].isDefeated())
 				{
-					addButton(bOff, (_hostiles[i] as Creature).buttonText, executeSimpleAttack, { func:f, tar: _hostiles[i] } );
+					addButton(bOff, (_hostiles[i] as Creature).buttonText, executeSimpleAttack, attackOpts );
 					bOff++;
 				}
 			}
@@ -1497,10 +1514,17 @@ package classes.GameData
 			kGAMECLASS.setAttacker(pc);
 			kGAMECLASS.setEnemy(opts.tar);
 			
-			opts.func(pc, opts.tar);
+			if (opts.tar is CrystalGooT1 && (target as CrystalGooT1).ShouldIntercept())
+			{
+				(opts.tar as CrystalGooT1).SneakSqueezeAttackReaction(opts);
+			}
+			else
+			{
+				opts.func(pc, opts.tar);
+			}
 			
 			// Hacky workaround to defer process combat for special cases.
-			if (opts.func != generateTeaseMenu)
+			if (opts.func != generateTeaseMenu && opts.func != generateSenseMenu)
 			{
 				processCombat();
 			}
@@ -1581,8 +1605,17 @@ package classes.GameData
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_EXOTIC_BODYSHAPE);
 			
 			clearOutput();
-			buttTeaseText(target);
-			applyTeaseDamage(pc, target, teaseCount, "BUTT", likeAdjustments);
+			
+			if (target is CrystalGooT1 && (target as CrystalGooT1).ShouldIntercept())
+			{
+				(target as CrystalGooT1).SneakSqueezeAttackReaction( { isTease: true } );
+			}
+			else
+			{
+				buttTeaseText(target);
+				applyTeaseDamage(pc, target, teaseCount, "BUTT", likeAdjustments);
+			}
+			
 			processCombat();
 		}
 				
@@ -1732,8 +1765,17 @@ package classes.GameData
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_LACTATION);
 			
 			clearOutput();
-			chestTeaseText(target);
-			applyTeaseDamage(pc, target, teaseCount, "CHEST", likeAdjustments);
+			
+			if (target is CrystalGooT1 && (target as CrystalGooT1).ShouldIntercept())
+			{
+				(target as CrystalGooT1).SneakSqueezeAttackReaction( { isTease: true } );
+			}
+			else
+			{
+				chestTeaseText(target);
+				applyTeaseDamage(pc, target, teaseCount, "CHEST", likeAdjustments);
+			}
+			
 			processCombat();
 		}
 		
@@ -1858,8 +1900,16 @@ package classes.GameData
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_EXOTIC_BODYSHAPE);
 		
 			clearOutput();
-			hipsTeaseText(target);
-			applyTeaseDamage(pc, target, teaseCount, "HIPS", likeAdjustments);
+			
+			if (target is CrystalGooT1 && (target as CrystalGooT1).ShouldIntercept())
+			{
+				(target as CrystalGooT1).SneakSqueezeAttackReaction( { isTease: true } );
+			}
+			else
+			{
+				hipsTeaseText(target);
+				applyTeaseDamage(pc, target, teaseCount, "HIPS", likeAdjustments);
+			}
 			processCombat();
 		}
 		
@@ -1975,8 +2025,16 @@ package classes.GameData
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_HERMAPHRODITE);
 			
 			clearOutput();
-			crotchTeaseText(target);
-			applyTeaseDamage(pc, target, teaseCount, "CROTCH", likeAdjustments);
+			
+			if (target is CrystalGooT1 && (target as CrystalGooT1).ShouldIntercept())
+			{
+				(target as CrystalGooT1).SneakSqueezeAttackReaction( { isTease:true } );
+			}
+			else
+			{
+				crotchTeaseText(target);
+				applyTeaseDamage(pc, target, teaseCount, "CROTCH", likeAdjustments);
+			}
 			processCombat();
 		}
 		
@@ -2356,8 +2414,16 @@ package classes.GameData
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_LACTATION);
 			
 			clearOutput();
-			squirtTeaseText(target);
-			applyTeaseDamage(pc, target, teaseCount, "SQUIRT", likeAdjustments);
+			
+			if (target is CrystalGooT1 && (target as CrystalGooT1).ShouldIntercept())
+			{
+				(target as CrystalGooT1).SneakSqueezeAttackReaction( { isSquirt: true } );
+			}
+			else
+			{
+				squirtTeaseText(target);
+				applyTeaseDamage(pc, target, teaseCount, "SQUIRT", likeAdjustments);
+			}
 			processCombat();
 		}
 		

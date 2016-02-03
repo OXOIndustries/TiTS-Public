@@ -27,7 +27,8 @@ package classes.Engine.Combat
 		//Take cover chance
 		if(target.hasStatusEffect("Taking Cover") && rand(100) + 1 < 90) return true;
 		//10% miss chance for lucky breaks!
-		if(target.hasPerk("Lucky Breaks") && rand(100) <= 9) return true;
+		if (target.hasPerk("Lucky Breaks") && rand(100) <= 9) return true;
+		if (target.hasStatusEffect("GooCamo") && rand(3) <= 1) return true;
 		
 		return false;
 	}
