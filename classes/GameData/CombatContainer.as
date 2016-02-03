@@ -1909,6 +1909,7 @@ package classes.GameData
 		
 		public function hipsTeaseText(target:Creature):void 
 		{
+			var msg:String = "";
 			var choices:Array = new Array();
 
 			if(pc.hipRating() < 4) choices.push(0);
