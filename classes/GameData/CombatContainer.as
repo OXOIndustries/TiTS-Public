@@ -2026,6 +2026,7 @@ package classes.GameData
 		
 		private function crotchTeaseText(target:Creature):void 
 		{
+			var msg:String = "";
 			var temp:int = 0;
 			var choices:Array = new Array();
 			if(pc.hasCock()) {
@@ -2303,17 +2304,18 @@ package classes.GameData
 				else output("fluids");
 				output(" to take a taste.");
 
-				output("\n\n<i>“");
-				if(pc.hasCock() && pc.hasVagina()) output("[pc.CumFlavor] and [pc.girlCumFlavor], two great tastes that go great together. Herm " + pc.mf("boys","girls") + " really do get the best of everything.");
+				msg = "\n\n<i>“";
+				if(pc.hasCock() && pc.hasVagina()) msg += "[pc.CumFlavor] and [pc.girlCumFlavor], two great tastes that go great together. Herm " + pc.mf("boys","girls") + " really do get the best of everything.";
 				//Male: 
-				else if(pc.hasCock()) output("Sure you don’t want some of this [pc.cumNoun] for yourself? It’s nice and [pc.cumFlavor], " + pc.mf("a real man’s spunk","perfect for a “girl” like me") + ".");
+				else if(pc.hasCock()) msg += "Sure you don’t want some of this [pc.cumNoun] for yourself? It’s nice and [pc.cumFlavor], " + pc.mf("a real man’s spunk","perfect for a “girl” like me") + ".";
 				else if(pc.hasVagina()) 
 				{
-					output("Mmm, can’t get enough of that all-natural [pc.girlCumFlavor] taste. Come get some");
-					if(pc.wettestVaginalWetness() >= 3) output(". I’ve got plenty to go around");
+					msg += "Mmm, can’t get enough of that all-natural [pc.girlCumFlavor] taste. Come get some";
+					if(pc.wettestVaginalWetness() >= 3) msg += ". I’ve got plenty to go around";
 					output(".");
 				}
-				output("”</i>");
+				msg += "”</i>";
+				output(msg);
 
 				output("\n\nYou don’t give your foe much longer to watch your self-serve taste test before you ");
 				if(pc.isCrotchGarbed()) output(" cover back up");
@@ -2338,10 +2340,11 @@ package classes.GameData
 				if(pc.isCrotchGarbed()) output("You slip your [pc.lowerGarments] down just enough to reveal");
 				else output("You adjust your thighs to highlight");
 				output(" where your [pc.skinFurScalesColor] starts to give way to the dusky shade of [pc.oneVagina], drawing your target’s gaze.");
-				output("\n\n<i>“Surprised? When I saw ");
-				if(target is ZilFemale) output("you girls");
-				else output("your zil girls");
-				output(" with those exotic pussies, I just had to try it for myself.”</i>");
+				msg = "\n\n<i>“Surprised? When I saw ";
+				if(target is ZilFemale) msg += "you girls";
+				else msg += "your zil girls";
+				msg += " with those exotic pussies, I just had to try it for myself.”</i>";
+				output(msg);
 				//clothed:
 				if(pc.isCrotchGarbed()) output(" Your [pc.lowerGarment] comes down the rest of the way");
 				else output(" You move your thighs away");
@@ -2349,24 +2352,27 @@ package classes.GameData
 				//[pc.vaginaColor == gold]
 				if(pc.vaginas[0].vaginaColor == "gold") 
 				{
-					output(" <i>“See? Just like ");
-					if(target is ZilFemale) output("yours");
-					else output("the ones you’re used to");
-					output(".”</i>");
+					msg = " <i>“See? Just like ";
+					if(target is ZilFemale) msg += "yours";
+					else msg += "the ones you’re used to";
+					msg += ".”</i>";
+					output(msg);
 				}
 				else output(" <i>“But I thought another color on the inside would look even nicer.”</i>");
 				//[pc.girlCum == honey]
 				if(pc.girlCumType == GLOBAL.FLUID_TYPE_HONEY) 
 				{
-					output("\n\n<i>“I even cum honey now");
-					if(pc.vaginas[0].wetness() >= 3) output(", a lot more than most zil even");
-					output(".”</i>");
+					msg = "\n\n<i>“I even cum honey now";
+					if(pc.vaginas[0].wetness() >= 3) msg += ", a lot more than most zil even";
+					msg += ".”</i>";
+					output(msg);
 				}
 				else 
 				{
-					output("\n\n<i>“The taste is totally different, though. So, [pc.girlCumFlavor] compared to what you’re used to, though I bet you’d love it if you tried it.");
-					if(pc.vaginas[0].wetness() >= 3) output(" There’s a lot, so you’d have to make sure to drink up every drop.");
-					output("”</i>");
+					msg = "\n\n<i>“The taste is totally different, though. So, [pc.girlCumFlavor] compared to what you’re used to, though I bet you’d love it if you tried it.";
+					if(pc.vaginas[0].wetness() >= 3) msg += " There’s a lot, so you’d have to make sure to drink up every drop.";
+					msg += "”</i>";
+					output(msg);
 				}
 				output("\n\nYou allow your fingers to rub up and down across your folds, showcasing it for your foe. <i>“I’ve gotta say, I’m really loving having a honeypot like this... maybe I’ll give you a taste, if you’re a good " + target.mfn("boy","girl","... thing") + ".”</i>");
 				//Clothed:
@@ -2422,6 +2428,7 @@ package classes.GameData
 			
 			var factor:Number = 1;
 			var bonus:int = 0;
+			var msg:String = "";
 			
 			if (likeAdjustments && likeAdjustments.length > 0)
 			{
@@ -2453,29 +2460,30 @@ package classes.GameData
 				}
 				else if(target.isLustImmune == true) 
 				{
-					output("\n\n<b>" + target.capitalA + target.uniqueName);
-					if(target.isPlural) output(" don’t");
-					else output(" doesn’t");
-					output(" seem to care to care for your erotically-charged display.</b>");
+					msg = "\n\n<b>" + target.capitalA + target.uniqueName;
+					if(target.isPlural) msg += " don’t";
+					else msg += " doesn’t";
+					msg += " seem to care to care for your erotically-charged display.</b>";
+					output(msg);
 				}
 				else if(teaseType == "SQUIRT") 
 				{
 					output("\n\nYour milk goes wide.");
-					output(" (0)");
+					output(" (<b>0</b>)");
 					teaseSkillUp(teaseType);
 				}
 				else if (target is HuntressVanae || target is MaidenVanae)
 				{
 					output("\n\n");
 					output(teaseReactions(0, target));
-					output(" (0)");
+					output(" (<b>0</b>)");
 					teaseSkillUp(teaseType);
 				}
 				else if (target is WetraHound)
 				{
 					output("\n\n");
 					kGAMECLASS.wetraHoundAnimalIntellect();
-					output(" (0)");
+					output(" (<b>0</b>)");
 					teaseSkillUp(teaseType);
 				}
 				else
@@ -2484,7 +2492,7 @@ package classes.GameData
 					if(target.isPlural) output(" resist");
 					else output(" resists");
 					output(" your erotically charged display... this time.");
-					output(" (0)");
+					output(" (<b>0</b>)");
 					teaseSkillUp(teaseType);
 				}
 			}
@@ -2764,10 +2772,12 @@ package classes.GameData
 						if (t_enemy.HP() <= 0) output("<b>You’ve knocked the resistance out of " + t_enemy.a + t_enemy.uniqueName + ".</b>\n\n");
 						else if (t_enemy.lust() >= 100) 
 						{
-							output("<b>" + t_enemy.capitalA + t_enemy.short + " </b>");
-							if(CombatManager.multipleEnemies()) output("<b>are </b>");
-							else output("<b>is </b>");
-							output("<b>too turned on to fight.</b>\n\n");
+							var msg:String = "";
+							msg = "<b>" + t_enemy.capitalA + t_enemy.short;
+							if(CombatManager.multipleEnemies()) msg += " are";
+							else msg += " is";
+							msg += " too turned on to fight.</b>\n\n";
+							output(msg);
 						}
 						
 						kGAMECLASS.setEnemy(t_enemy);

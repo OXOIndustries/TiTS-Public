@@ -262,11 +262,13 @@
 				damageRand(damage, 15);
 				applyDamage(damage, this, target);
 				
-				output("\n\nThe cat-girl grins, blowing the smoke from her launcher’s barrel. <i>“Bam said the man! Feel free to surrender any time... I won’t be too rough on you!”</i>");
-				output("\n\nHer grin turns savage. <i>“Just kidding! I like it");
-				if (kGAMECLASS.silly && hasStatusEffect("Phase 2")) output(" ruff");
-				else output(" rough");
-				output("!”</i>");
+				var msg:String = "";
+				msg += "\n\nThe cat-girl grins, blowing the smoke from her launcher’s barrel. <i>“Bam said the man! Feel free to surrender any time... I won’t be too rough on you!”</i>";
+				msg += "\n\nHer grin turns savage. <i>“Just kidding! I like it";
+				if (kGAMECLASS.silly && hasStatusEffect("Phase 2")) msg += " ruff";
+				else msg += " rough";
+				msg += "!”</i>";
+				output(msg);
 			}
 		}
 		
