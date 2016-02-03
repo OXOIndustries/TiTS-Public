@@ -983,7 +983,7 @@ package classes.GameData
 			}
 			else
 			{
-				output("It has no effect!");
+				output("\nIt has no effect!");
 			}
 		}
 		
