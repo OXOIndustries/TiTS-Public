@@ -1137,7 +1137,7 @@ public function statusTick():void {
 				//Treatment finishing.
 				if(pc.statusEffects[x].storageName == "The Treatment")
 				{
-					eventBuffer += "\n\n<b>The Treatment is over.</b> You aren’t sure why or how you know, but you know it all the same. Well, there’s nothing left to do but enjoy your enhanced body to the fullest! ... While hunting for Dad’s probes, of course. It’s the best way to meet sexy new aliens.";
+					eventBuffer += "\n\n<b>The Treatment is over.</b> You aren’t sure why or how you know, but you know it all the same. Well, there’s nothing left to do but enjoy your enhanced body to the fullest! ...While hunting for Dad’s probes, of course. It’s the best way to meet sexy new aliens.";
 					eventBuffer += "\n\nOnce you claim you fortune, you can retire on New Texas, maybe even get your own private milker.";
 				}
 				//Sterilex/Infertile ends!
