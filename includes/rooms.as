@@ -41,11 +41,20 @@ public function initializeRooms():void
 	rooms["SHIP INTERIOR"].addFlag(GLOBAL.BED);
 	rooms["SHIP INTERIOR"].addFlag(GLOBAL.PRIVATE);
 
+	rooms["CREATION"] = new RoomClass(this);
+	rooms["CREATION"].roomName = "";
+	rooms["CREATION"].description = "";
+	rooms["CREATION"].planet = "PLANET: TERRA";
+	rooms["CREATION"].system = "SYSTEM: SOL";
+	rooms["CREATION"].moveMinutes = 1;
+	rooms["CREATION"].runOnEnter = puntToShip;
+	rooms["CREATION"].addFlag(GLOBAL.OUTDOOR);
+
 	rooms["SPACE"] = new RoomClass(this);
-	rooms["SPACE"].roomName = "SPACE";
+	rooms["SPACE"].roomName = "\nSPACE";
 	rooms["SPACE"].description = "";
 	rooms["SPACE"].planet = "PLANET: NONE";
-	rooms["SPACE"].system = "SYSTEM: ARA ARA";
+	rooms["SPACE"].system = "SYSTEM: UNKNOWN";
 	//rooms["SPACE"].outExit = shipLocation;
 	//rooms["SPACE"].outText = "Exit";
 	rooms["SPACE"].moveMinutes = 1;
@@ -53,12 +62,10 @@ public function initializeRooms():void
 	rooms["SPACE"].addFlag(GLOBAL.OUTDOOR);
 
 	rooms["POESPACE"] = new RoomClass(this);
-	rooms["POESPACE"].roomName = "SPACE";
+	rooms["POESPACE"].roomName = "\nSPACE";
 	rooms["POESPACE"].description = "";
 	rooms["POESPACE"].planet = "PLANET: POE A";
 	rooms["POESPACE"].system = "SYSTEM: POE";
-	//rooms["POESPACE"].outExit = shipLocation;
-	//rooms["POESPACE"].outText = "Exit";
 	rooms["POESPACE"].moveMinutes = 1;
 	rooms["POESPACE"].runOnEnter = puntToShip;
 	rooms["POESPACE"].addFlag(GLOBAL.OUTDOOR);
@@ -3071,7 +3078,7 @@ public function initializeRooms():void
 	//#68 METAL\nRAVINE
 	rooms["268"] = new RoomClass(this);
 	rooms["268"].roomName = "METAL\nRAVINE";
-	rooms["268"].description = "This deep, dark crevice between two house-sized plates is about the quietest, most shadowy place you've found on planet. The air is marketly still, and drifts of fine dust have accumulated against the giant sheets of metal into small mounds. There's nowhere to travel but north from here.";
+	rooms["268"].description = "This deep, dark crevice between two house-sized plates is about the quietest, most shadowy place you've found on planet. The air is markedly still, and drifts of fine dust have accumulated against the giant sheets of metal into small mounds. There's nowhere to travel but north from here.";
 	rooms["268"].runOnEnter = cockBoxDiscoveryBlurb;
 	rooms["268"].northExit = "267";
 	rooms["268"].planet = "PLANET: TARKUS";

@@ -4,27 +4,37 @@
 public function approachBimboPenny():void
 {
 	clearOutput();
-	showPenny(true);
 	abeAuthor();
 	//First Time
 	if(flags["SEEN_BIMBO_PENNY"] == undefined)
 	{
+		var pennyBust:String = "PENNY_BIMBO";
+		if(penny.hasCock(GLOBAL.TYPE_EQUINE)) pennyBust = "PENNY_BIMBO_HORSE";
+		showBust("FLAHNE_NUDE", pennyBust);
+		showName("PENNY &\nFLAHNE");
+		rooms["CUSTOMS OFFICE"].removeFlag(GLOBAL.NPC);
+		generateMap();
+		
 		output("You head over to Penny’s desk, finding her sitting up straight at her chair, looking surprisingly perky and attentive. <i>“Oh, h-”</i> a weird look crosses her face briefly, but she recovers and finishes, <i>“hi [pc.name]!”</i>");
 		output("\n\n<i>“Hi,”</i> you answer. <i>“How are you doing? You seem... distracted.”</i>");
 		output("\n\nPenny giggles. <i>“Okay, you caught me!”</i> She throws her hands up in the air, then leans in close and whispers, as though telling a secret. <i>“I was finding it really hard to like, concentrate, and plus I had to deal with so much cum even </i>I<i> was having trouble drinking it all. But then, well, the problem solved itself!</i>");
 		output("\n\nShe waves for you to come over, and, curious, you step around the desk. The first thing you see is that she’s not wearing any clothes from the waist down - although that’s hardly unusual - but then you see a shape down between her legs.");
-		output("\n\nIt takes a little while before you figure out what it is, because at first it doesn’t really look like <i>anything</i>, just a big blob of... something. And then you see it - it’s Flahne. She’s on her knees, her face buried in Penny’s crotch, and you can see the fox-girl’s cock going inside her mouth and most of the way down her throat. The reason why you didn’t recognise Flahne at first is because she’s almost completely white, her body bulging a little bit under the massive loads Penny has clearly been feeding her for some time.");
+		output("\n\nIt takes a little while before you figure out what it is, because at first it doesn’t really look like <i>anything</i>, just a big blob of... something. And then you see it - it’s Flahne. She’s on her knees, her face buried in Penny’s crotch, and you can see the fox-girl’s cock going inside her mouth and most of the way down her throat. The reason why you didn’t recognize Flahne at first is because she’s almost completely white, her body bulging a little bit under the massive loads Penny has clearly been feeding her for some time.");
 		output("\n\n<i>“Ta-da!”</i> Penny announces happily. <i>“Flahne here has been really helpful in making sure I can still get work done, haven’t you?”</i>");
 		output("\n\nFlahne pulls herself back, making Penny shudder as her dripping cock is pulled free to give Flahne room to speak. Finally she turns up to you and shrugs. <i>“It’s a living,”</i> she says simply.");
 		output("\n\nPenny giggles again, slapping Flahne lightly. <i>“Oh you tease, acting like it’s all </i>such<i> a big trouble. You know as well as I do that you started drooling the second I told you about all this, and you couldn’t </i>wait<i> to help me out.”</i>");
 		output("\n\nShe looks back up at you, pouting just a little bit. <i>“Do you know, I didn’t even have to like, go looking for her or anything? The second you left after we first did this I heard something out the window and she was just like, there. I swear she must be able to like, smell cum or something, and we both know I was putting out a </i>lot<i> of it.”</i>");
 		output("\n\nYou both turn back to Flahne, and you think that maybe she blushes slightly, even though it’s hard to tell given her current coloring. She doesn’t say anything though, she just slides herself back onto Penny’s cock, making both of them shudder with pleasure.");
 		output("\n\n<i>“So,”</i> Penny says eventually, <i>“what can I do ya for?”</i>");
+		
 		flags["SEEN_BIMBO_PENNY"] = 1;
+		processTime(5);
 	}
 	//Repeat
 	else
 	{
+		showPenny(true);
+		
 		//IF PC HAS APPROACHED PENNY AFTER SHE HAS BEEN BIMBO’D BEFORE AND THE TIME IS BETWEEN 0800 AND 1700
 		if(hours >= 8 && hours < 17)
 		{
@@ -138,6 +148,7 @@ public function fuckBimboPenny():void
 	output("\n\nPenny’s first answer is just a happy little moan, pushing back onto your cock ever so slightly but still waiting for you to make the first move. <i>“I know, right?”</i> she says eventually. <i>“It’s like, I can remember that there was a point where I was all shy and unsure about wanting a big ol’ cock, but like, now it all just seems so dumb!”</i> She reaches down, taking her dick in her hands and putting it up on the desk in front of her before starting to eagerly jerk herself off. <i>“I mean, come on! How could I be unsure about </i>this<i>! It’s the best! I get to cum and cum and... fuck and be coated in... cum...”</i>");
 	output("\n\nYou realize that she’s just about to get herself off just from her hands and from thinking about how much of a cum slut she’s become, so with a grin you press your cock into her waiting slit before she finishes without you. She cries out in pleasure as you do, her hands quickly moving off her shaft to steady herself against the desk. Taking that as encouragement you settle into a pounding rhythm, pushing her forwards again and again as she eagerly takes your length inside her.");
 	pc.cockChange();
+	penny.cuntChange(0, penny.cockVolume(pc.cockThatFits(penny.vaginalCapacity(0))));
 	output("\n\n<i>“Yes! Yes! Yes!”</i> she gasps with each thrust, rocking back into you to heighten the sensations. <i>“I... I need... more!”</i>");
 	output("\n\nReaching down beneath herself, she once again wraps one of her hands around her thick shaft. You’re fucking her hard, but clearly she wants even more, wants to make sure she takes advantage of every part of the body you’ve given her. Pressing her cock up between her swaying tits she starts losing herself, letting go and eagerly embracing the urges and needs you’ve brought out in her. Her canine muzzle kisses at the tip of her cock every time one of your powerful thrusts pushes it towards her, her long tongue mixing drool with her dripping pre-cum.");
 	output("\n\nIt doesn’t take long of this to make her cum, her knees locking forwards against the desk as her hips tremble, her cock spurting again and again all over her face. She’s quickly left with a dripping puddle to happily slather herself with, licking up as much as she can even as more slick whiteness pulses from her churning balls.");
@@ -151,7 +162,10 @@ public function fuckBimboPenny():void
 	output("\n\nYou’re not sure what to make of that, but she giggles before you can respond. <i>“Nah, don’t worry, I’m just kidding. That’d be fun, but there’s all like, reasons why it’s not likely to happen.”</i> She sighs. <i>“Well, I guess for now I’d better make the most of you when you’re around.”</i>");
 	output("\n\nShe picks her chair up off the ground and sits down, wiping her clawed fingers slowly along her sticky fur and sucking it clean after every swipe. <i>“Let me know when you’re good to go again!”</i> she says in between mouthfuls.");
 	processTime(38);
+	penny.orgasm();
+	penny.loadInCunt(pc, 0);
 	pc.orgasm();
+	IncrementFlag("SEXED_PENNY");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -201,6 +215,8 @@ public function getFuckedByBimboPenny():void
 	pc.orgasm();
 	if(x >= 0) pc.loadInCunt(penny,x);
 	else pc.loadInAss(penny);
+	penny.orgasm();
+	IncrementFlag("SEXED_PENNY");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -294,6 +310,9 @@ public function getOralFromBimboPenny():void
 	output("\n\n<i>“Thanks [pc.name]!”</i> she says perkily, straightening back up as you get off her desk, <i>“I </i>super<i> needed that.”</i>. She bites her lip, pouting a little bit as she adds. <i>“Let- let me know if you want to do anything else, please? I could always go for another round...”</i>");
 	processTime(33);
 	pc.orgasm();
+	penny.orgasm();
+	penny.loadInMouth(pc);
+	IncrementFlag("SEXED_PENNY");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -335,6 +354,9 @@ public function givePennyACumBath():void
 	output(", but she just manages to keep up by hurriedly lapping up as much cum as she can.");
 	output("\n\nIt takes a while, but eventually her needful thrusts and arching jets of white cum die down enough that she can stop focussing her tongue on licking up as much cum as possible, at least for long enough to say quickly <i>“Care to join me then, [pc.name]?”</i>");
 	processTime(33);
+	penny.orgasm();
+	penny.orgasm();
+	penny.orgasm();
 	//Add Buttons
 	//[Yes][No]
 	clearMenu();
@@ -399,6 +421,7 @@ public function playWithFlahne():void
 	output("\n\nWinking as you turn and leave, you say simply, <i>“Have fun!”</i>");
 
 	processTime(25);
+	penny.orgasm();
 	pc.lust(10);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

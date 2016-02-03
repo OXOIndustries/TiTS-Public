@@ -32,6 +32,11 @@ public function creationRouter(e:Event = null):void {
 	}
 }
 
+public function creationHeader(sName:String = ""):void
+{
+	showLocationName();
+	showName(sName);
+}
 public function startCharacterCreation(e:Event = null):void 
 {
 	chars["PC"] = new PlayerCharacter();
@@ -66,6 +71,9 @@ public function startCharacterCreation(e:Event = null):void
 	clearOutput();
 	if(stage.contains(userInterface.textInput)) removeInput();
 	setLocation("THE\nPAST","PLANET: TERRA","SYSTEM: SOL");
+	currentLocation = "CREATION";
+	shipLocation = "CREATION";
+	creationHeader("THE\nPAST");
 	
 	//OLD
 	/*
@@ -129,7 +137,7 @@ public function chooseStartingRace(race:String = "human"):void {
 	clearOutput();
 	pc.removeCocks();
 	pc.removeVaginas();
-	setLocation("NAME AND\nRACE","PLANET: TERRA","SYSTEM: SOL");
+	creationHeader("NAME AND\nRACE");
 	
 	//OLD
 	/*
@@ -348,7 +356,7 @@ public function setStartingSex(sex:int = 1):void {
 //Choose Height:
 public function chooseHeight():void {
 	clearOutput();
-	setLocation("CHOOSING\nHEIGHT","PLANET: TERRA","SYSTEM: SOL");
+	creationHeader("CHOOSING\nHEIGHT");
 	
 	//OLD
 	/*
@@ -423,7 +431,7 @@ public function applyHeight():void {
 
 public function chooseThickness():void {
 	clearOutput();
-	setLocation("CHOOSING\nTHICKNESS","PLANET: TERRA","SYSTEM: SOL");
+	creationHeader("CHOOSING\nTHICKNESS");
 	
 	//OLD
 	/*
@@ -458,7 +466,7 @@ public function applyThickness(arg:Number):void {
 //Hair Color:
 public function chooseHairColor():void {
 	clearOutput();
-	setLocation("SELECTING HAIR\nPIGMENT","PLANET: TERRA","SYSTEM: SOL");
+	creationHeader("SELECTING HAIR\nPIGMENT");
 	
 	//OLD
 	/*
@@ -468,7 +476,7 @@ public function chooseHairColor():void {
 	//NEW
 	author("Fenoxo & JimThermic");
 	// More neatening and spacing.
-	output("<i>“Great,”</i> the doctor nods, entering the information with his stylus. <i>“I thought of asking for his adult weight in pounds, but knowing you, you would have taken me seriously. Your kitchen staff will be the ones who control </i>that<i>.”</i>");
+	output("<i>“Great,”</i> the doctor nods, entering the information with his stylus. <i>“I thought of asking for the child’s adult weight in pounds, but knowing you, you would have taken me seriously. Your kitchen staff will be the ones who control </i>that<i>.”</i>");
 	output("\n\n<i>“Okaaay... what about hair color? We can do black, like yours was, or any other natural colors pretty easily.”</i>");
 	output("\n\n<b>What color is your character’s hair?</b>");
 	
@@ -518,7 +526,7 @@ public function applyHairColor(arg:String = "black"):void {
 //Eye Color:
 public function chooseEyeColor():void {
 	clearOutput();
-	setLocation("SELECTING EYE\nPIGMENT","PLANET: TERRA","SYSTEM: SOL");
+	creationHeader("SELECTING EYE\nPIGMENT");
 	
 	//OLD
 	/*
@@ -570,7 +578,8 @@ public function applyeEyeColor(eyeColor:String = "brown"):void {
 public function chooseSkinTone():void
 {
 	clearOutput();
-	setLocation("SELECTING\nSKIN PIGMENT","PLANET: TERRA","SYSTEM: SOL");
+	creationHeader("SELECTING\nSKIN PIGMENT");
+	
 	output("<i>“Great. How about skin pigmentation?”</i>");
 	output("\n\n<b>What color is your character’s skin?</b>");
 	clearMenu();
@@ -611,7 +620,7 @@ public function applySkinTone(skinTone:String = "pale"):void {
 //Boob Size:
 public function chooseBreastSize():void {
 	clearOutput();
-	setLocation("SELECTING\nBREAST SIZE","PLANET: TERRA","SYSTEM: SOL");
+	creationHeader("SELECTING\nBREAST SIZE");
 	
 	//OLD
 	/*
@@ -678,7 +687,7 @@ public function applyBreastSize(size:int = 0):void {
 //Junk Size (Males/Futas)
 public function chooseYourJunkSize():void {
 	clearOutput();
-	setLocation("SETTING PENIS\nLENGTH","PLANET: TERRA","SYSTEM: SOL");
+	creationHeader("SETTING PENIS\nLENGTH");
 	
 	//OLD
 	/*
@@ -758,7 +767,7 @@ public function applyJunkSize(arg:int = 0):void {
 //Vaginal Capabilities
 public function chooseYourVagina():void {
 	clearOutput();
-	setLocation("SELECT VAGINAL\nTRAITS","PLANET: TERRA","SYSTEM: SOL");
+	creationHeader("SELECT VAGINAL\nTRAITS");
 	
 	//OLD
 	/*
@@ -801,7 +810,7 @@ public function fullyUpgradeCunt():void {
 //Sexual Gift
 public function chooseSexualGift():void {
 	clearOutput();
-	setLocation("CHOOSING A\nSEXUAL GIFT","PLANET: TERRA","SYSTEM: SOL");
+	creationHeader("CHOOSING A\nSEXUAL GIFT");
 	
 	//OLD
 	/*
@@ -961,7 +970,7 @@ public function applySexualGift(arg:String = "none"):void {
 //Pick a Physical Affinity
 public function chooseAPhysicalAffinity():void {
 	clearOutput();
-	setLocation("CHOOSING AN\nAFFINITY","PLANET: TERRA","SYSTEM: SOL");
+	creationHeader("CHOOSING AN\nAFFINITY");
 	
 	//OLD
 	/*
@@ -1005,7 +1014,7 @@ public function chooseHowPCIsRaised():void {
 	if(pc.affinity == "reflexes") pc.reflexesRaw++;
 	if(pc.affinity == "aim") pc.aimRaw++;
 	if(pc.affinity == "willpower") pc.willpowerRaw++;
-	setLocation("CHOOSING\nUPBRINGING","PLANET: TERRA","SYSTEM: SOL");
+	creationHeader("CHOOSING\nUPBRINGING");
 	
 	//OLD
 	/*
@@ -1075,7 +1084,7 @@ public function applyUpbringing(arg:int = 0):void {
 public function chooseAlignment():void {
 	clearOutput();
 	//Neutral neutral. Filthy neutrals.
-	setLocation("SELECT\nA NATURE","PLANET: TERRA","SYSTEM: SOL");
+	creationHeader("SELECT\nA NATURE");
 	
 	//OLD
 	/*
@@ -1133,7 +1142,7 @@ public function chooseGenderIdentity():void
 	pc.removeStatusEffect("Force Male Gender");
 	pc.removeStatusEffect("Force Fem Gender");
 	clearOutput();
-	setLocation("SELECT\nA GENDER","PLANET: TERRA","SYSTEM: SOL");
+	creationHeader("SELECT\nA GENDER");
 	
 	author("JimThermic");
 	// Figured it'd be nice to give people this option straight up from the tutorial, instead of having to find it later via the appearance screen.
@@ -1171,7 +1180,7 @@ public function chooseClass():void {
 	clearOutput();
 	pc.maxOutHP();
 	pc.maxOutEnergy();
-	setLocation("SELECT\nA CLASS", "PLANET: TERRA", "SYSTEM: SOL");
+	creationHeader("SELECT\nA CLASS");
 		
 	// Modify In Creation to know we now DO want to show stats
 	(pc as Creature).addStatusValue("In Creation", 1, 1);
@@ -1197,7 +1206,8 @@ public function chooseClass():void {
 }
 public function classConfirm(arg:int = 0):void {
 	clearOutput();
-	setLocation("SELECT\nA CLASS","PLANET: TERRA","SYSTEM: SOL");
+	creationHeader("SELECT\nA CLASS");
+	
 	if(arg == GLOBAL.CLASS_SMUGGLER) output("<b><u>Smuggler</u></b>:\nAs a smuggler, your abilities would rely heavily on having good reflexes and either aim or physique, depending on your method of attack. You’d learn to be pretty sneaky, fly well, and hit your foes where they least expect it, all while making your living in the underbelly of the United Galactic Confederacy, or U.G.C. The life of a smuggler is one of profit through luck and skill.");
 	else if(arg == GLOBAL.CLASS_MERCENARY) output("<b><u>Mercenary</u></b>:\nAs a mercenary, you’d depend on raw physique or aim for your attacks, focusing more on a good battle plan and tough armor than anything else. You’d learn to overpower your foes with sheer strength and determination, defend yourself with all manner of weapons and equipment, and fly a ship when the situation calls for it. The life of a mercenary is one of profit through violence.");
 	else if(arg == GLOBAL.CLASS_ENGINEER) output("<b><u>Tech Specialist</u></b>:\nAs a tech specialist, your abilities would rely heavily on your intelligence and aim. You’d learn to work with all kinds of technologies, perhaps even make your own robotic defense turrets! Your intellect would be your greatest weapon, though you wouldn’t shy away from tweaking your own high-tech ranged weaponry. The life of a tech specialist is one of profit through smart decisions and superior technology.");
@@ -1237,8 +1247,13 @@ public function setClass(arg:int = 0):void {
 //Tutorial Skip Option
 public function tutorialSkipOption():void {
 	clearOutput();
-	setLocation("TUTORIAL\nSKIP", "TAVROS STATION", "SYSTEM: KALAS");
+	
+	currentLocation = "TAVROS HANGAR";
+	shipLocation = "TAVROS HANGAR";
+	creationHeader("TUTORIAL\nSKIP");
+	
 	output("Would you like to play through the story and tutorial or skip to gameplay?");
+	
 	//[Tutorial] [Skip]
 	clearMenu();
 	if (pc.hasVagina() || pc.hasCock()) addButton(0, "Tutorial", tutorialIntro);
@@ -1249,7 +1264,8 @@ public function tutorialSkipOption():void {
 //Death of a Great Man
 public function tutorialIntro():void {
 	clearOutput();
-	setLocation("PRESENT\nDAY","TAVROS STATION","SYSTEM: KALAS");
+	creationHeader("PRESENT\nDAY");
+	
 	pc.removeStatusEffect("In Creation");
 	output("Your dad’s health had been declining throughout your years of education, but you never really worried too much about it. He was super rich, able to afford his own private doctors, so the thought that one day he could disappear never entered your mind. When you started your career, he was there to see you off, smiling gregariously, but your job made it difficult to stay in touch. Most communications were done via written messages, until even those became scarce. You had assumed it to be a consequence of your different schedules and busy work lives, then...");
 	output("\n\nThe news of his death arrived in a brief missive, containing an invitation to a funeral as well as a travel voucher to get you there. You quit your job on the spot. The way Dad talked, you’re sure he would have wanted you to take over the family business. What could have killed him? He always seemed so big and imposing. Even when his back was bent by age, he still had vital energy about him, seeming as busy as a man a tenth of his age. You don’t know why anti-agathic treatments stopped working on him. Worse, he aged far more rapidly than he should have, losing his youth in a short decade.");
@@ -1262,7 +1278,8 @@ public function tutorialIntro():void {
 
 public function tutorialIntro2():void {
 	clearOutput();
-	setLocation("THE\nFUNERAL","TAVROS STATION","SYSTEM: KALAS");
+	creationHeader("THE\nFUNERAL");
+	
 	output("The funeral is closed casket with no viewing, which is expected given the shape Dad was in the last time you saw him. His body was riddled with the lines of age and marked with liver spots and pre-cancerous lumps, and he didn’t want to be remembered that way. Thankfully, the ceremony is swift and fairly small. There are only family and friends here, though you wager a large amount of the ‘family’ is distant relations hoping to catch some of the inheritance.");
 	output("\n\nMuch of the wake passes in a daze, with you swarmed by distant relations and well wishers, forced to shake hands and share hugs with people you don’t know while they offer barely-felt, useless platitudes that do nothing to assuage your loss.");
 	output("\n\nYou’re on your way over to your father’s real friends, people you’ve actually seen around his mansion growing up, when his lawyer intercepts you and pulls you aside.");
@@ -1274,7 +1291,8 @@ public function tutorialIntro2():void {
 
 public function tutorialIntro3():void {
 	clearOutput();
-	setLocation("THE\nWILL","TAVROS STATION","SYSTEM: KALAS");
+	creationHeader("THE\nWILL");
+	
 	output("You follow the lawyer’s brisk stride with a bit of difficulty. He’s a samarin; long-limbed, yellow-skinned, and not overly inclined to slow his walk for your comfort. He also talks the entire way.");
 	output("\n\n<i>“Your father’s will was a bit unconventional. He’s lucky my firm has had such wonderful dealings with him over the years, or I would not have been willing to undertake such a... complicated executorship.”</i>");
 	output("\n\nYou shrug, figuring your dad had a lot of wealth to distribute.");
@@ -1304,7 +1322,8 @@ public function tutorialIntro3():void {
 
 public function tutorialIntro4():void {
 	clearOutput();
-	setLocation("THE\nWILL","TAVROS STATION","SYSTEM: KALAS");
+	creationHeader("THE\nWILL");
+	
 	output("The next room is empty, save for a comfy looking, leather recliner. You actually recognize it as one of your father’s favorites. The arm rests are only a little more worn than you remember. A holo projector protrudes from the ceiling, aimed at the empty space in front of the chair. With nothing else to do, you seat yourself. The projector kicks on and your Dad’s face appears.");
 	output("\n\n<i>“Hey there, " + pc.mf("sport","princess") + ". If you’re seeing this, then my wrinkled old ass has finally kicked the bucket. I hope you aren’t too torn up over it; I’ve lived a long full life, longer than most people are lucky enough to live. Do me a favor and knock back a whiskey for me after this,”</i> the phantom image of your father says. A hand clips in front of his face as he rubs at his age-silvered goatee. <i>“Unfortunately, while I am seeing that your mother is taken care of, I’m not just handing the company over to you. Not yet, anyway.”</i>");
 	output("\n\nYou glance down at the Codex and the vial in your hand. What did the old coot plan for you?");
@@ -1336,7 +1355,8 @@ public function tutorialIntro4():void {
 public function openDoorToTutorialCombat():void {
 	clearOutput();
 	showCelise();
-	setLocation("YOUR\nINHERITANCE","TAVROS STATION","SYSTEM: KALAS");
+	creationHeader("YOUR\nINHERITANCE");
+	
 	output("You open the doorway and step through a little hesitantly, your hands on your " + pc.rangedWeapon.longName + " and " + pc.meleeWeapon.longName + " in case you need them. Visible light slowly increases as the systems dial up in response to your presence, illuminating an amorphous green blob that huddles in the corner. The semi-transparent, emerald mass bulges out at the base and turns to regard you. You aren’t sure how you can make such an assessment when it has no visible face or eyes, but it definitely seems to be reacting to you and you alone. Lurching violently, a bubbling mass erupts from the top of it, sparkling as it builds higher and higher, the cylindrical distention reforming into a more familiar, humanoid shape.");
 	output("\n\nDense insets reveal themselves to be eyes. Darker hued bulges resolve into shapely lips. Excess material drapes down the back of the growing creature into a mane of unkempt, wild hair. The alien makes a sound that resembles a sigh of relief as arms separate from the sides of what must be its torso, while strings of fluid hang between the newborn appendages and the rest of her, reminding you just how gooey this thing is. Finally, the front of the chest bulges out into a pair of pert breasts. At least, they seemed that way at first. More and more liquid flows from seemingly endless reservoirs inside the thing, bloating the improvised mammaries bigger, fuller, and rounder with each passing second. The goo-girl doesn’t stop them until they obscure the bulk of her torso, reminding you of some of the racier porn-stars out there on the extranet.");
 	output("\n\nWith her bust jiggling and wobbling in such a titanic manner that you feel it might separate from her chest, the gelatinous gal runs her hands over and through the new, bulgy boobs, giggling as your eyes follow her motions. She chirps, <i>“Hiya! You look like you taste pretty good! I think I’ll drain you dry...”</i>");
@@ -1363,6 +1383,8 @@ public function defeatCelise():void
 {
 	clearOutput();
 	showCelise();
+	creationHeader("\nCELISE");
+	
 	output("Celise groans, <i>“Come on, fuck me! Please? Don’t just... leave me like this! I need your juiiiiice!”</i> The last word comes out as a high-pitched, nearly orgasmic whine. Her masturbation gets faster and more lewd with every passing second.");
 	output("\n\nVictor’s hologram faces you and explains, <i>“If you’re seeing this, you learned how to disable Celise. Good work. The key is on the shelf next to the exit.”</i> He sighs and continues, <i>“Most things you run into won’t be nearly as easy to deal with. You’ll want to make sure to master the skills of your vocation and use them to the best of your ability. As you develop your abilities, you’ll find that many of them can be chained together to be more effective. Make sure you do that, or you’ll have a hard time beating some of the galaxy’s worst.”</i>");
 	output("\n\nYou put away your weapons and go to grab your key when a barely cohesive hand wraps around your " + pc.foot() + ". There isn’t enough force behind it to immobilize you, but it does catch your attention. Celise is looking up at you with pleading eyes that would make an Earth puppy proud.");
@@ -1382,7 +1404,8 @@ public function defeatCelise():void
 public function skipCeliseOption():void
 {
 	clearOutput();
-	setLocation("TUTORIAL\nSKIP", "TAVROS STATION", "SYSTEM: KALAS");
+	creationHeader("TUTORIAL\nSKIP");
+	
 	showCelise();
 	chars["PC"].removeStatusEffect("In Creation");
 	output("What do you do with Celise? Ignore her, or take her on your crew?");
@@ -1402,7 +1425,8 @@ public function takeCeliseSkip():void
 //Ignore Celise
 public function ignoreCelise():void {
 	clearOutput();
-	setLocation("\nKEYS","TAVROS STATION","SYSTEM: KALAS");
+	creationHeader("\nKEYS");
+	
 	output("You ignore the hand and pull free, grabbing the keys as you step out to inspect your ship.");
 	//[Next]
 	clearMenu();
@@ -1413,7 +1437,8 @@ public function takeCelise():void {
 	pc.removeStatusEffect("Round"); // Uh, this was removed in the previous function. Duplicate?
 	clearOutput();
 	showCelise();
-	setLocation("\nCELISE","TAVROS STATION","SYSTEM: KALAS");
+	creationHeader("\nCELISE");
+	
 	//Feed Celise [Male]
 	if(pc.hasCock()) {
 		output("Smiling a little lustily, you strip out of your gear and toss it up on the shelf, next to the key. Celise smiles beatifically up at you, her eyes practically humping every bit of exposed " + pc.skinFurScales() + " as you reveal yourself. As soon as your " + pc.cocksDescript());
@@ -1492,6 +1517,7 @@ public function takeCelise():void {
 public function takeCeliseAsACrewMember():void {
 	clearOutput();
 	showCelise();
+	creationHeader("\nCELISE");
 	//{Nice}
 	if(pc.isNice()) output("You smile broadly and admit that you’d be happier to have her along; the more the merrier, in fact!");
 	//{Mischievious}
@@ -1513,7 +1539,9 @@ public function takeCeliseAsACrewMember():void {
 //Check Out Your Ship
 public function checkOutYourShip():void {
 	clearOutput();
-	setLocation("SHIP\nHANGAR","TAVROS STATION","SYSTEM: KALAS");
+	creationHeader("SHIP\nHANGAR");
+	generateMap();
+	
 	output("A sprawling, brightly lit hangar greets your eyes, empty save for a single ship near the back. Your gaze is pulled away from the distant craft by the sheer size of the enclosure. A hangar like this must have cost your father a veritable fortune to buy out - not much considering how wealthy he was, but no insignificant chunk of change. Magnetically-bounded plasma shields hold in the atmosphere while remaining transparent enough for you to view the nearby warp gate and inky blackness beyond. Perhaps the only thing this place couldn’t hold would be a capital ship, but a number of moorings with connective umbilicals stand by to tether one outside in that extreme scenario.");
 	output("\n\nYou chuckle and wonder if you’ll ever need anything that grandiose while you turn your attention back to the light craft in the corner, currently surrounded by techs. Breezing up to them, you get your first good look at your inheritance; in short, it’s a bit of a junker. The hull plating is ancient and rusted in a dozen places where the paint has long since rotted off. Whole pieces of it are still on the floor, being cut into with plasma torches to replace dead tech, and the design of it is a century out of date. You bite back your sigh before it leaves your mouth, noting the newly installed engines and computer systems. Still, new engines don’t make it look any less like a elderly rim-jockey’s heap.");
 	output("\n\n<i>“Hello there! You must be the young Captain Steele! A pleasure to meet you,”</i> one of the technicians says once he spots you. <i>“Sorry the ship is in such rough shape. Towing it all the way out here took a little longer than anticipated, so we got a late start. We’re pulling a double shift to get it all done by tonight. Just give us a little more time, maybe get a bite to eat and a place to stay 'til morning. She’ll look a hundred times better once we finish up, I promise.”</i>");
@@ -1528,7 +1556,9 @@ public function checkOutYourShip():void {
 public function getFoodAndDrink():void {
 	//Meet your rival
 	clearOutput();
-	setLocation("ANON'S\nBAR","TAVROS STATION","SYSTEM: KALAS");
+	creationHeader("ANON'S BAR\nAND BOARD");
+	generateMapForLocation("ANON'S BAR AND BOARD");
+	
 	output("Heady alcoholic scents combine with drug-laced smoke and salty food to give this place the unquestionable aroma of a seedy bar. Three-breasted waitresses balancing trays full of drinks one-handed sashay around in short skirts and sheer tops, their gait made awkward by their three legs and small feet. One of them notices you and asks, <i>“A drink for you, hun?”</i>");
 	output("\n\nAfter a moment, you decide to order a whiskey. Regardless of your personal feelings, Dad asked you to knock one back for him. You may as well humor the dead codger, even if he did make acquiring your inheritance a trial and a half. At that point, your belly rumbles, and you realize that you haven’t had anything to eat since this morning.");
 	output("\n\n<i>“How about I bring out some hot buns with that for you to munch on. You can look over the menu while you snack.”</i> She doesn't wait around for an answer, moving off to drop a single drink off at a nearby table on her way to the kitchen. The drink is scooped up by a figure obscured by the bar's dusky atmosphere. It's difficult to make out much about... the humanoid shape, but its gender and features elude you. There’s nothing else to do, so you ponder the nearby person... just what sex are they?");
@@ -1541,7 +1571,9 @@ public function getFoodAndDrink():void {
 public function jackJillSkip():void
 {
 	clearOutput();
-	setLocation("ANON'S\nBAR", "TAVROS STATION", "SYSTEM: KALAS");
+	creationHeader("ANON'S BAR\nAND BOARD");
+	generateMapForLocation("ANON'S BAR AND BOARD");
+	
 	output("What gender is your rival?");
 	
 	clearMenu();
@@ -1589,7 +1621,8 @@ public function setRivalGender(sex:int = 0):void
 public function rivalSpillsTheBeans():void {
 	clearOutput();
 	showRival();
-	setLocation("MEETING\n" + chars["RIVAL"].short.toUpperCase(),"TAVROS STATION","SYSTEM: KALAS");
+	creationHeader("MEETING\n" + chars["RIVAL"].short.toUpperCase());
+	
 	output(chars["RIVAL"].mf("He","She") + "’s " + chars["RIVAL"].mf("male","female") + ", surely. Just as you make that conclusion, " + chars["RIVAL"].mf("he","she") + " turns and spots you. You lean back and try to make yourself look as inconspicuous as a bored, leering stranger can, but it must not work out too well. The silhouette gets up and snatches " + chars["RIVAL"].mf("his","her") + " drink, walking towards you with a slow, overly confident gait that betrays its owner’s nimbleness. You ball your fists and hope that you’re not going to get in a fight on a day like today.");
 	output("\n\nLuckily, the figure resolves into someone more familiar: " + chars["RIVAL"].short + " Steele, obviously on station for the same reason as you. " + chars["RIVAL"].short + " is your cousin, though in this case, familiarity breeds no affection. " + chars["RIVAL"].mf("His","Her") + " father is Maximilian Steele, your Dad’s brother and all around conniving bastard. Uncle Max made his fortune by following your father and filing time-shifted, forged claims on as many of your father’s finds as he could. The worst part of it is that some of the claims actually held up in court, allowing him to make out nearly as well as Dad with a fraction of the risk.");
 	output("\n\n" + chars["RIVAL"].short + " pulls you from your thoughts with a snide greeting, <i>“Hello, cousin.”</i> The last part is enunciated in a sneer. Perhaps " + chars["RIVAL"].mf("he","she") + " was brought up with a similar tale, demonizing your father. You wouldn’t put it past Uncle Max.");
@@ -1612,7 +1645,8 @@ public function rivalSpillsTheBeans():void {
 public function ohShitGameStarts():void {
 	clearOutput();
 	showRival();
-	setLocation("THE\nMESSAGE","TAVROS STATION","SYSTEM: KALAS");
+	creationHeader("THE\nMESSAGE");
+	
 	output("When you rise, the Codex beeps and says, <i>“Message received.”</i> You flip it open to read the missive, instead getting blasted with your snotty cousin’s voice as " + chars["RIVAL"].mf("he","she") + " says, <i>“Good morning sleepyhead. I just wanted to let you know that I left not long after you went to bed. My ship does have luxurious sleeping quarters for ten, after all. Ta ta!”</i>");
 	output("\n\n<i>“Message complete,”</i> the codex blithely states.");
 	output("\n\nYou hastily don your gear and scramble over to the hangar, hoping it has a replicator capable of making something approximating a decent breakfast. The techs are gone, probably sleeping after a full night’s work. The ship looks completely different all finished up. It’s been painted bright red with silvery stripes. Looking at it again, you realize that you recognize this from some of your father’s holo-pics, at least the ones he’d let you see. This is the same ship that he took out on the Thirteenth Planet Rush, almost two centuries ago.");
@@ -1626,6 +1660,7 @@ public function ohShitGameStarts():void {
 	clearMenu();
 	currentLocation = "TAVROS HANGAR";
 	shipLocation = "TAVROS HANGAR";
+	generateMap();
 
 	if (false)//if(demo) 
 		addButton(0,"Next",demoOver);
@@ -1636,6 +1671,8 @@ public function ohShitGameStarts():void {
 public function demoOver():void {
 	clearOutput();
 	setLocation("DEMO\nCOMPLETE","THANKS FOR PLAYING","AND SUPPORTING ME.");
+	gameOverEvent = true;
+	
 	output("This concludes the full TiTS introductory sequence. Keep your eyes peeled for supporter-only releases and the eventual public pre-releases as I get more done.");
 	clearMenu();
 	addButton(0,"Appearance",appearanceTest);

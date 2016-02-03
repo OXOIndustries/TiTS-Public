@@ -1343,7 +1343,13 @@ public function doggieStyleWithMyrBitches(gold:Boolean = false):void
 	output(" snatch, filling it with your seed.");
 
 	//Red+NotPregnant: 
-	if(!gold && !enemy.isPregnant()) output("\n\nDeep inside of her alien womb, your [pc.cumVisc] seed swims up and seeks her eggs, basting them in your [pc.cumColor] virility.");
+	if(!gold && !enemy.isPregnant())
+	{
+		output("\n\nDeep inside of her alien womb, your [pc.cumVisc] seed swims up and seeks her eggs, basting them in your [pc.cumColor]");
+		if(pc.virility() > 0) output(" virility");
+		else output(" spunk");
+		output(".");
+	}
 
 	//Knot:
 	if(pc.hasKnot(x)) output("\n\nAs you continuously cum inside of her, your [pc.knot " + x + "] swells inside of her, locking deep inside of her sloppy pussy. She lets out a cry of surprise as you lock with her, followed by a low, throaty moan. Heightening her pleasure, you gyrate your hips. The stirring and spurting of your [pc.cockHead " + x + "] inside of her [pc.cumNoun]-filled hole drives her to insensibility and reduces her to a babbling, pleasure-wrecked mess.");
@@ -1936,7 +1942,7 @@ public function knockUpRedBitchChance():void
 	{
 		var bonusChance:int = pc.cumQ()/ 50 + 10;
 		if(bonusChance > 25) bonusChance = 25;
-		bonusChance *= pc.cumQuality();
+		bonusChance *= pc.virility();
 		if(bonusChance > 75) bonusChance = 75;
 
 		if(rand(100) + 1 <= bonusChance)

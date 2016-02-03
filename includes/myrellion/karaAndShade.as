@@ -396,9 +396,13 @@ public function sureIWantSomeShadePussayTailFuckYes():void
 	pc.lust(30);
 	processTime(15);
 	currentLocation = "602";
-	generateMapForLocation(currentLocation);
-	showName("AIRFIELD\nNORTH");
+	generateMap();
 	//{Shade’s Scenes go Here}
+	shadeSexMenu(true);
+}
+
+public function shadeSexMenu(intro:Boolean = false):void
+{
 	clearMenu();
 	//Shade starts straddling the PC. Still wearing her undies, no bra or clothes.
 	//[Cunt Tail Fuck]
@@ -412,22 +416,28 @@ public function sureIWantSomeShadePussayTailFuckYes():void
 	
 	//[Rim & Wank] (if PC has no cunt; else) [Lick & Wank]
 	//PC must have taken Shade’s hardlight strapon at least once. Must be effeminate enough to use female pronouns and possess a cock. Is a [vagOrAss] scene.
-	if(pc.hasCock() && pc.mf("he","She") == "She" && flags["TAKEN_SHADES_HARDLIGHT"] != undefined)
+	if (pc.hasCock() && pc.mf("he","She") == "She" && flags["TAKEN_SHADES_HARDLIGHT"] != undefined)
 	{
-		if(pc.hasVagina()) addButton(2,"Lick & Wank",rimAndWankOrLickAndWankWhoKnowsSloot,undefined,"Lick & Wank","Get licked and wanked.");
+		if (pc.hasVagina()) addButton(2,"Lick & Wank",rimAndWankOrLickAndWankWhoKnowsSloot,undefined,"Lick & Wank","Get licked and wanked.");
 		else addButton(2,"Rim & Wank",rimAndWankOrLickAndWankWhoKnowsSloot,undefined,"Rim & Wank","Get rimmed and wanked off.");
 	}
-	else if(flags["TAKEN_SHADES_HARDLIGHT"] == undefined) addDisabledButton(2,"Wank?","Wank?","You have to have taken Shade's hardlight strapon to qualify for this scene, as well as be a girly femmy-type guy.");
+	else if (flags["TAKEN_SHADES_HARDLIGHT"] == undefined) addDisabledButton(2,"Wank?","Wank?","You have to have taken Shade's hardlight strapon to qualify for this scene, as well as be a girly femmy-type guy.");
 	else addDisabledButton(2,"Wank?","Wank?","You aren't enough of a girlyboy to get wanked off like some kind of femboy.");
 	
 	//Shade Tailcock v. Tailcunt Scene
 	//Because it’s only been requested literally 50 billion times. Just another add to her normal sex menu.
-	if(pc.hasTailCock() && pc.tailCount > 0) addButton(3,"Tailsex",shadeTailSex,undefined,"Tailsex","You’ve got a tail-cock, Shade’s got a tail-cunt... it seems like a match made in heaven, so why not let your tail-genitalia have some fun together?");
+	if (pc.hasTailCock() && pc.tailCount > 0) addButton(3,"Tailsex",shadeTailSex,undefined,"Tailsex","You’ve got a tail-cock, Shade’s got a tail-cunt... it seems like a match made in heaven, so why not let your tail-genitalia have some fun together?");
 	else addDisabledButton(3,"TailSex","TailSex","You would need some kind of tail-mounted penis to try this...");
 	
 	//PC + Shade Double Titfuck. Add to Shade's sex menu. PC must have a dick of at least 18 inches, and breasts of at least D-cup.
-	if (pc.hasCock() && pc.biggestCockLength() >= 20 && pc.biggestTitSize() > 4) addButton(5, "DoubleTitfuck", shadeDoubleTitfuck, undefined, "DoubleTitfuck","You and Shade are both pretty stacked, and your cock's already so hard against your belly... maybe the two of you could put your tits to use to give you some relief.");
-	else addDisabledButton(5,"DoubleTitfuck","DoubleTitfuck","You'd need big tits and a bigger cock to coax Shade into a double titfucking!");
+	if (pc.hasCock() && pc.biggestCockLength() >= 20 && pc.biggestTitSize() > 4) addButton(4, "DoubleTitfuck", shadeDoubleTitfuck, undefined, "DoubleTitfuck","You and Shade are both pretty stacked, and your cock's already so hard against your belly... maybe the two of you could put your tits to use to give you some relief.");
+	else addDisabledButton(4,"DoubleTitfuck","DoubleTitfuck","You'd need big tits and a bigger cock to coax Shade into a double titfucking!");
+	
+	if (!intro && pc.hasGenitals()) addButton(5, "Boobship", shadeBoobWorship, undefined, "Boob Worship", "Get hands on with Shades glorious chestpillows.");
+	else if (!intro) addDisabledButton(5, "Boobship", "Boob Worship", "You need genitalia to properly worship Shade's chestpillows.");
+	else addDisabledButton(5, "Locked", "Locked", "Maybe if you got to know her a little better...");
+	
+	if(!intro) addButton(14,"Back",shouldIShadeOrShouldIGo);
 }
 
 //[Trip and Fall]
@@ -493,8 +503,7 @@ public function fuckThisShiiitImNotGettingInACatNDogFight():void
 	processTime(10);
 
 	currentLocation = "606";
-	generateMapForLocation(currentLocation);
-	showName("SPACER'S\nROW");
+	generateMap();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -531,8 +540,7 @@ public function lastChanceForHelpingKara():void
 	output("\n\nShe scoffs. <i>“Take it or leave it, friend. You can just walk away.”</i>");
 	
 	currentLocation = "609";
-	generateMapForLocation(currentLocation);
-	showName("THE\nGOLDEN PEAK");
+	generateMap();
 	clearMenu();
 	addButton(14,"Leave",fuckDisBarShit,undefined,"Leave","Fuck this. You hop into the crowd of people fleeing, ducking out of the bar to sounds of gunfire behind you.");
 	addButton(0,"Help Shade",helpShadeOutLastChance,undefined,"Help Shade","Help out Shade, the bounty hunter.");
@@ -651,8 +659,7 @@ public function pcAndKaraBeatShade():void
 	//Add Arc Caster to inventory
 	flags["SHADE_DEFEATED_WITH_KARA"] = 1;
 	currentLocation = "606";
-	generateMapForLocation(currentLocation);
-	showName("SPACER'S\nROW");
+	generateMap();
 	CombatManager.genericVictory();
 }
 
@@ -669,8 +676,7 @@ public function pcAndShadeBeatKara():void
 	flags["KARA_DEFEATED_WITH_SHADE"] = 1;
 	processTime(2);
 	currentLocation = "606";
-	generateMapForLocation(currentLocation);
-	showName("SPACER'S\nROW");
+	generateMap();
 	CombatManager.genericVictory();
 }
 
@@ -1066,8 +1072,7 @@ public function shadePostCoitusHangouts():void
 		//PC is left in the far north of the airfield.
 		processTime(15);
 		currentLocation = "602";
-		generateMapForLocation(currentLocation);
-		showName("AIRFIELD\nNORTH");
+		generateMap();
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 	}
@@ -1092,8 +1097,7 @@ public function shouldIShadeOrShouldIGo():void
 	output("You hop out of Shade’s bed and start gathering your [pc.gear]. The kaithrit shrugs and lies back, watching you until you’re ready to go.");
 	output("\n\n<i>“Show yourself out, hmm?”</i> she purrs, giving you a parting smile before shutting off her light. You slip on out of the ship, and head out into the airfield.");
 	currentLocation = "602";
-	generateMapForLocation(currentLocation);
-	showName("AIRFIELD\nNORTH");
+	generateMap();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1126,8 +1130,7 @@ public function recoverWithShade():void
 	output("\n\n<i>“Still here?”</i> she teases, letting the towel fall to the ground as she strides over to her dresser, bending over to pull out a fresh pair of underwear, and giving you a view to die for. She gets dressed quickly, though not without giving you quite the show as she does so. When she’s done, Shade slips an arm through yours and gives you a rough pull out of her cabin. <i>“C’mon, can’t lounge around </i>all<i> day.”</i>");
 	output("\n\nYou chuckle and let yourself be led off the ship, following Shade back out to the airfield. Her ship seals tight behind you, and your lover gives you a final smack on your [pc.butt] before trotting off towards the tavern.");
 	currentLocation = "602";
-	generateMapForLocation(currentLocation);
-	showName("AIRFIELD\nNORTH");
+	generateMap();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1221,8 +1224,6 @@ public function askShade4Sex():void
 {
 	clearOutput();
 	showShade();
-	currentLocation = "602";
-	generateMapForLocation(currentLocation);
 	output("You ask Shade if she’d be up for a little fun.");
 	output("\n\nShe eyes you up and down, a slight smile spreading on her lips. <i>“I might be. What do you say we get out of here - my ship’s parked just down the tarmac.”</i>");
 	output("\n\n<i>“Lead the way,”</i> you say, standing.");
@@ -1239,35 +1240,11 @@ public function askShade4Sex():void
 	output("\n\nIt’s a short trip to Shade’s bunk, but you’re buck naked by the time you reach it. The kaithrit huntress gives you a lascivious wink over her shoulder as she pops the door open and guides you through. Her quarters are cluttered, a random assortment of clothes, gun parts, and chunks of armor scattered across the floor beneath punk rock posters and kaithrit grav-balls. In one fluid motion, she faces you, slips her arms out of her jacket sleeves, and pulls her shirt off over her head, giving you an eyeful of big, E-cup tits barely restrained by a black sports bra.\n\nShade takes a single step towards you, pressing herself tight against you, letting you feel those lush mounds compress against your [pc.chest]... before she gives you a rough shove onto the bed, sending you tumbling onto your back. Her pants hit the deck with an audible <i>thump</i> of a gunbelt clattering on steel before she hops in after you, straddling your [pc.hips] and slipping a hand under her bra to cup her breast, slipping the garment off to reveal the sun-kissed mounds beneath it, and letting a slim silver necklace fall free, dangling over you.");
 	output("\n\n<i>“Now then,”</i> Shade purrs, <i>“what to do with you...?”</i>");
 	processTime(15);
-
-	//{Shade’s Scenes go Here}
-	clearMenu();
-	if(pc.hasCock()) addButton(0,"Cunt Tail",cuntTailShadeFux,undefined,"Cunt Tail","Let her use her cunt tail on you. It probably feels pretty good.");
-	//[Take Hardlight]
-	//vagOrAss. PC gives tailcunt oral. 
-	addButton(1,"CatchHardlight",takeShadesHardlightPenisInYerBoot,undefined,"CatchHardlight","Take it from a hardlight strapon.");
-	//[Rim & Wank] (if PC has no cunt; else) [Lick & Wank]
-	//PC must have taken Shade’s hardlight strapon at least once. Must be effeminate enough to use female pronouns and possess a cock. Is a [vagOrAss] scene.
-	if(pc.hasCock() && pc.mf("he","She") == "She" && flags["TAKEN_SHADES_HARDLIGHT"] != undefined)
-	{
-		if(pc.hasVagina()) addButton(2,"Lick & Wank",rimAndWankOrLickAndWankWhoKnowsSloot,undefined,"Lick & Wank","Get licked and wanked.");
-		else addButton(2,"Rim & Wank",rimAndWankOrLickAndWankWhoKnowsSloot,undefined,"Rim & Wank","Get rimmed and wanked off.");
-	}
-	else if(flags["TAKEN_SHADES_HARDLIGHT"] == undefined) addDisabledButton(2,"Wank?","Wank?","You have to have taken Shade's hardlight strapon to qualify for this scene, as well as be a girly femmy-type guy.");
-	else addDisabledButton(2,"Wank?","Wank?","You aren't enough of a girlyboy to get wanked off like some kind of femboy.");
-	//Shade Tailcock v. Tailcunt Scene
-	//Because it’s only been requested literally 50 billion times. Just another add to her normal sex menu.
-	if(pc.hasTailCock() && pc.tailCount > 0) addButton(3,"Tailsex",shadeTailSex,undefined,"Tailsex","You’ve got a tail-cock, Shade’s got a tail-cunt... it seems like a match made in heaven, so why not let your tail-genitalia have some fun together?");
-	else addDisabledButton(3,"TailSex","TailSex","You would need some kind of tail-mounted penis to try this...");
-
-	if (pc.hasCock() || pc.hasVagina()) addButton(4, "Boobship", shadeBoobWorship, undefined, "Boob Worship", "Get hands on with Shades glorious chestpillows.");
-	else addDisabledButton(4, "Boobship", "Boob Worship", "You need genitalia to properly worship Shade's chestpillows.");
+	currentLocation = "602";
+	generateMap();
 	
-	//PC + Shade Double Titfuck. Add to Shade's sex menu. PC must have a dick of at least 18 inches, and breasts of at least D-cup.
-	if (pc.hasCock() && pc.biggestCockLength() >= 20 && pc.biggestTitSize() > 4) addButton(5, "DoubleTitfuck", shadeDoubleTitfuck, undefined, "DoubleTitfuck","You and Shade are both pretty stacked, and your cock's already so hard against your belly... maybe the two of you could put your tits to use to give you some relief.");
-	else addDisabledButton(5,"DoubleTitfuck","DoubleTitfuck","You'd need big tits and a bigger cock to coax Shade into a double titfucking!");
-
-	addButton(14,"Back",shouldIShadeOrShouldIGo);
+	//{Shade’s Scenes go Here}
+	shadeSexMenu();
 }
 
 //Talk
@@ -1505,6 +1482,8 @@ public function runesYouTurdShade():void
 //Set to 1 on insemination. Counts up every hour. Resets on its own after a week.
 public function inseminateShadesCuntTail():void
 {
+	if(pc.virility() <= 0) return;
+	
 	if(flags["SHADE_INSEMINATION_COUNTER"] == undefined) flags["SHADE_INSEMINATION_COUNTER"] = 1;
 	flags["SHADES_CUNTTAIL_FED"] = 1;
 }
@@ -1566,8 +1545,7 @@ public function goWithShadeToTakeCareOfBusinessYuSlut():void
 	output("\n\nYou follow her to her quarters, where Shade quickly flops down on the edge of her bed and kicks a shallow plastic tub filled with pillow stuffing out from under it. Clearly not her first ovipositing rodeo.");
 	processTime(15);
 	currentLocation = "602";
-	generateMapForLocation(currentLocation);
-	showName("AIRFIELD\nNORTH");
+	generateMap();
 	clearMenu();
 	addButton(0,"Next",helpShadeLayHerEgg2);
 }
@@ -1601,8 +1579,7 @@ public function helpShadeLayHerEgg3():void
 		output("\n\nYou nod and follow Shade back to the bar, hand in hand. As you walk, her tail curls around your waist, more affectionate than normal.");
 		processTime(1);
 		currentLocation = "609";
-		generateMapForLocation(currentLocation);
-		showName("THE\nGOLDEN PEAK");
+		generateMap();
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 	}

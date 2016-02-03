@@ -266,7 +266,7 @@ public function phoenixBridgeShields():void
 	//{PC hasn't routed the power}
 	if (flags["FALL OF THE PHOENIX FLUX COUPLING STATUS"] != 2)
 	{
-		output("\"<i>There's the button,</i>\" the disembodied A.I. says. A moment passes as she tries to point it out, san body. \"<i>Uh... the big green one. Under the fuzzy dice.</i>\"");
+		output("\"<i>There's the button,</i>\" the disembodied A.I. says. A moment passes as she tries to point it out, sans body. \"<i>Uh... the big green one. Under the fuzzy dice.</i>\"");
 
 		output("\n\n\"<i>Right,</i>\" you say, pressing the button.");
 

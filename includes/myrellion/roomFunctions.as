@@ -89,7 +89,7 @@ public function flyToMyrellion():void
 		showBust("MYR_GOLD_PILOT");
 		showName("MYR\nESCORT");
 		output("Flying to Myrellion is no quick jaunt down the road, but before you know it, you're guiding your ship back through the atmosphere for a flawless landing on the tarmac, escorted by a squadron of myr pilots in old-timey biplanes.");
-		output("\n\nAfter making sure you are docked properly, you perpare your things");
+		output("\n\nAfter making sure you are docked properly, you prepare your things");
 		if(leaveShipOK()) output(" and step out of your ship.");
 	}
 }

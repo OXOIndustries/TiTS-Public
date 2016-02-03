@@ -1332,6 +1332,7 @@
 			
 			//Update room placement:
 			kGAMECLASS.variableRoomUpdateCheck();
+			kGAMECLASS.showLocationName();
 			// Returns the backup
 			return false;
 		}

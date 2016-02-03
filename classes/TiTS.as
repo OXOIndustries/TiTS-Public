@@ -73,6 +73,9 @@
 	import classes.Engine.Map.*;
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	
+	import classes.UIComponents.ContentModuleComponents.RGMK;
+	import classes.UIComponents.ContentModules.RotateMinigameModule;
+	
 	import flash.events.UncaughtErrorEvent;
 	import flash.events.UncaughtErrorEvents;
 	import flash.display.LoaderInfo;
@@ -87,12 +90,12 @@
 		
 		//Core Game Stuff
 		include "../includes/appearance.as";
-		include "../includes/combat.as";
 		include "../includes/ControlBindings.as";
 		include "../includes/CodexEntries.as";
 		include "../includes/CodexFiction.as";
 		include "../includes/creation.as";
 		include "../includes/debug.as";
+		include "../includes/dynamicGrowth.as";
 		include "../includes/engine.as";
 		include "../includes/game.as";
 		include "../includes/gameStats.as";
@@ -134,6 +137,7 @@
 		include "../includes/tavros/beths.as";
 		include "../includes/tavros/inessa.as";
 		include "../includes/tavros/jade.as";
+		include "../includes/tavros/oviliumBonus.as";
 		include "../includes/tavros/reaha.as";
 		include "../includes/tavros/reaha.expansion.as";
 		include "../includes/tavros/saendraXPack1.as";
@@ -316,8 +320,6 @@
 
 		public var flags:Dictionary;
 
-		public var combatStage:*;
-
 		// LE MAP
 		public var mapper:Mapper;
 
@@ -354,7 +356,6 @@
 
 			//temporary nonsense variables.
 			temp = 0;
-			combatStage = 0;
 
 			import classes.Creature;
 			import classes.ItemSlotClass;
