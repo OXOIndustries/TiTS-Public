@@ -263,10 +263,10 @@
 				applyDamage(damage, this, target);
 				
 				output("\n\nThe cat-girl grins, blowing the smoke from her launcher's barrel. <i>“Bam said the man! Feel free to surrender any time... I won't be too rough on you!”</i>");
-				output("\n\nHer grin turns savage. <i>“Just kidding! I like it");
-				if (kGAMECLASS.silly && hasStatusEffect("Tamwolf Out")) output(" ruff!");
-				else output(" rough!");
-				output("”</i>");
+				output("\n\nHer grin turns savage. <i>“Just kidding! I like it</i>");
+				if (kGAMECLASS.silly && hasStatusEffect("Tamwolf Out")) output("<i> ruff!</i>");
+				else output("<i> rough!</i>");
+				output("<i>”</i>");
 			}
 		}
 		
