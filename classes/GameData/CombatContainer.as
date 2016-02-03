@@ -1642,7 +1642,7 @@ package classes.GameData
 			if(pc.hasCuntTail() && flags["TIMES_BUTT_TEASED"] > 25) choices.push(6);
 			if(pc.hasCockTail()) choices.push(7);
 			//Reqs: PC is clothed, PC has a cock and either a trap-pouch, internal gonads or no balls, PC has no vagina, PC is feminine-looking
-			if(pc.isCrotchGarbed() && pc.hasCock() && (pc.balls == 0 || pc.hasStatusEffect("Uniball")) && !pc.hasVagina() && pc.femininity >= 60) choices.push(8);
+			if(!pc.isCrotchExposed() && pc.hasCock() && (pc.balls == 0 || pc.hasStatusEffect("Uniball")) && !pc.hasVagina() && pc.femininity >= 60) choices.push(8);
 			if(pc.hasVagina() && pc.wettestVaginalWetness() >= 3) choices.push(9);
 
 			//pick our winner!
@@ -1723,7 +1723,7 @@ package classes.GameData
 			else if(select == 9)
 			{
 				//Clothed:
-				if(pc.isCrotchGarbed()) output("You open your [pc.lowerGarments] as you");
+				if(!pc.isCrotchExposed()) output("You open your [pc.lowerGarments] as you");
 				else output("You");
 				output(" turn and bend over to show off your [pc.butt]");
 				if(pc.hasCock()) output(", [pc.cocks],");
@@ -1732,12 +1732,12 @@ package classes.GameData
 				if(pc.totalVaginas() > 1) output("one cunny");
 				else output("your cunny");
 				output(" and stick your thumb inside your [pc.asshole], beginning to lightly finger your backdoor. You pull your fingers away");
-				if(pc.isCrotchGarbed()) output(" and slide your [pc.lowerGarments] back into place");
+				if(!pc.isCrotchExposed()) output(" and slide your [pc.lowerGarments] back into place");
 				output(", looking over your shoulder at your foe seductively.");
 			}
 			else if(select == 3) {
 				output("You turn away");
-				if(pc.isCrotchGarbed()) output(", slide down your clothing,");
+				if(!pc.isCrotchExposed()) output(", slide down your clothing,");
 				output(" and bounce your [pc.butt] up and down hypnotically");
 				//Big butts = extra text + higher success
 				if(pc.buttRating() >= 10) {
@@ -1788,23 +1788,23 @@ package classes.GameData
 				if(rand(3) != 0 && pc.tone >= 70)
 				{
 					//Clothed:
-					if(pc.isChestGarbed()) output("Shedding your [pc.upperGarments], you");
+					if(!pc.isChestExposed()) output("Shedding your [pc.upperGarments], you");
 					else output("You");
 					output(" flex your arms, showing off the bulging biceps. After a bit of posing");
 					output(" you slap your chest with one hand, producing a loud crack of muscle on muscle as your palm meets your iron-hard pectoral.");
 					output(" After a good few seconds of showing off,");
-					if(pc.isChestGarbed()) output(" you close your [pc.upperGarments] and");
+					if(!pc.isChestExposed()) output(" you close your [pc.upperGarments] and");
 					else output(" you cease your posing and");
 					output(" return your gaze to the fight.");
 				}
-				else if(pc.isChestGarbed()) output("You peel open your [pc.upperGarments] to expose your [pc.chest] and [pc.nipples], running a hand up your [pc.skinFurScales] to one as you lock eyes with your target. You make sure that every bit of your musculature is open and on display before you bother to cover back up.");
+				else if(!pc.isChestExposed()) output("You peel open your [pc.upperGarments] to expose your [pc.chest] and [pc.nipples], running a hand up your [pc.skinFurScales] to one as you lock eyes with your target. You make sure that every bit of your musculature is open and on display before you bother to cover back up.");
 				else output("Naked as you are, there’s nothing you need to do to expose your [pc.chest] and [pc.nipples], and running a hand up your [pc.skinFurScales] only enhances the delicious exposure. You make sure that every bit of your musculature is open and on display before you adopt a less sensual pose.")
 			}
 			//Titties!
 			else 
 			{
 				var choices:Array = new Array();
-				if(pc.milkFullness > 50 && pc.isChestGarbed()) 
+				if(pc.milkFullness > 50 && !pc.isChestExposed()) 
 				{
 					choices.push(0);
 					choices.push(0);
@@ -1814,7 +1814,7 @@ package classes.GameData
 				//Reqs: PC is wearing clothes but no bra, PC’s biggest breast row is at least a D-cup
 				if(pc.isChestGarbed() && !pc.hasUpperGarment() && pc.biggestTitSize() >= 4) choices.push(2);
 				//Reqs: PC is wearing something covering their top, has at least as many prehensile tails as nips
-				if(pc.isChestGarbed() && pc.tailCount >= pc.totalNipples()) choices.push(3);
+				if(!pc.isChestExposed() && pc.tailCount >= pc.totalNipples()) choices.push(3);
 				//Reqs: PC has very high tone
 				if(pc.tone >= 70) choices.push(4);
 
@@ -1840,18 +1840,18 @@ package classes.GameData
 				{
 					//HYPER TIIIIITS
 					if(pc.biggestTitSize() >= 15) {
-						if(pc.isChestGarbed()) output("With a slow pivot and sultry look, you reach up to your [pc.upperGarments] and peel away the offending coverings with deliberate slowness. With each inch of breast-flesh you expose, your smile grows wider. You pause above your [pc.nipples] before letting them out with a flourish, digging your hands in to your soft, incredibly well-endowed chest in a display of mammary superiority. You cover up after a moment with a knowing smile.");
+						if(!pc.isChestExposed()) output("With a slow pivot and sultry look, you reach up to your [pc.upperGarments] and peel away the offending coverings with deliberate slowness. With each inch of breast-flesh you expose, your smile grows wider. You pause above your [pc.nipples] before letting them out with a flourish, digging your hands in to your soft, incredibly well-endowed chest in a display of mammary superiority. You cover up after a moment with a knowing smile.");
 						else output("Your [pc.fullChest] is already completely uncovered, but that doesn’t stop you from bringing your hands up to the more-than-ample cleavage and enhancing it by pressing down from each side. Your fingers sink deeply into your busty bosom as you look up at your chosen target, then, with a smile, you gentle shake them, making your titanic mammaries wobble oh-so-enticingly.")
 						if(pc.biggestTitSize() >= 25) output(" There’s just so much breastflesh there; it feels good to use it.");
 					}
 					//Big TiTS!
 					else if(pc.biggestTitSize() >= 4) {
-						if(pc.isChestGarbed()) output("You peel away your [pc.upperGarments] with careful, slow tugs to expose your [pc.fullChest]. Only after you’ve put yourself on display do you look back at your target and truly begin to tease, starting with a knowing wink. Then, you grab hold of your [pc.chest] and cup them to enhance your cleavage, lifting one then the other in a slow, sensuous display. Covering them up is something you do a little a regretfully.");
+						if(!pc.isChestExposed()) output("You peel away your [pc.upperGarments] with careful, slow tugs to expose your [pc.fullChest]. Only after you’ve put yourself on display do you look back at your target and truly begin to tease, starting with a knowing wink. Then, you grab hold of your [pc.chest] and cup them to enhance your cleavage, lifting one then the other in a slow, sensuous display. Covering them up is something you do a little a regretfully.");
 						else output("You delicately trace a finger up your [pc.belly] to your exposed cleavage, slowing as it nestles in place. Your motion causes your breasts to gently sway as you explore yourself, and you pause to look at your target. With one hand, you squeeze your left tit, crushing your other hand’s finger into it while you grope yourself. With your erotic display complete, you release yourself and stretch, glad to be uncovered.");
 					}
 					//Petite ones!
 					else {
-						if(pc.isChestGarbed()) output("You remove your [pc.upperGarments] with ease to free the perfectly rounded, perky breasts. You run your hands across the [pc.skinFurScales] to thumb at your nipples and grace your target with a lascivious look before putting the girls away a little regretfully.");
+						if(!pc.isChestExposed()) output("You remove your [pc.upperGarments] with ease to free the perfectly rounded, perky breasts. You run your hands across the [pc.skinFurScales] to thumb at your nipples and grace your target with a lascivious look before putting the girls away a little regretfully.");
 						else output("With your [pc.fullChest] on complete display, you arch your back to present yourself as pleasingly as possible. Your hands wind their way up to your [pc.nipples] and give them a little tweak, sliding down the supple curve of your underbust. You give your target a smile before you stop, but even now, your bared [pc.skinFurScales] will taunt " + target.mfn("him","her","it") + ".");
 					}
 				}
@@ -1870,14 +1870,14 @@ package classes.GameData
 				else if(select == 4)
 				{
 					//Clothed:
-					if(pc.isChestGarbed()) output("Shedding your [pc.upperGarments], you");
+					if(!pc.isChestExposed()) output("Shedding your [pc.upperGarments], you");
 					else output("You");
 					output(" flex your arms, showing off the bulging biceps. After a bit of posing");
 					if(pc.biggestTitSize() < 1) output(" you slap your chest with one hand, producing a loud crack of muscle on muscle as your palm meets your iron-hard pectoral.");
 					else if(pc.biggestTitSize() <= 3) output(" you stretch to show off your sleek chest, turning your upper body so they can see the way your breasts fit the form of your highly-toned physique.");
 					else output(" you give one of your breasts a grope, showing off how you’re every bit as curvy as a girl without your incredible musculature.");
 					output(" After a good few seconds of showing off,");
-					if(pc.isChestGarbed()) output(" you close your [pc.upperGarments] and");
+					if(!pc.isChestExposed()) output(" you close your [pc.upperGarments] and");
 					else output(" you cease your posing and");
 					output(" return your gaze to the fight.");
 				}
@@ -1943,16 +1943,17 @@ package classes.GameData
 			//Reqs: PC is in combat with a naleen, PC has a naga tail
 			else if(select == 4)
 			{
-				output("You slither towards the ");
-				if(pc.race() == "naleen") output("other ");
-				output("naleen, idly swaying your [pc.hips] to show off your tail.");
+				msg = "You slither towards the ";
+				if(pc.race() == "naleen") msg += "other ";
+				msg += "naleen, idly swaying your [pc.hips] to show off your tail.";
 				//PC’s original race is not some sort of naga that may be introduced in the future:
-				output(" <i>“I used to have spindly little legs, you know.”</i>");
-				//PC’s original race is some sort of naga: <i>“Plenty of other races out there have spindly little legs they have to move around on.”</i>
-				output(" You offer a smirk of superiority as you slither in a circle around your foe, your tail leaving a trail in the brush where it passes. <i>“This is </i>much<i> better, don’t you agree?");
-				if(pc.race() != "naleen") output(" I may not be a naleen, but I can still appreciate a strong, </i>thick<i> snake tail like mine... or yours.");
+				msg += " <i>“I used to have spindly little legs, you know.”</i>";
+				//PC’s original race is some sort of naga: msg += " <i>“Plenty of other races out there have spindly little legs they have to move around on.”</i>";
+				msg += " You offer a smirk of superiority as you slither in a circle around your foe, your tail leaving a trail in the brush where it passes. <i>“This is </i>much<i> better, don’t you agree?";
+				if(pc.race() != "naleen") msg += " I may not be a naleen, but I can still appreciate a strong, </i>thick<i> snake tail like mine... or yours.";
 				else output(" Becoming a naleen’s given me an appreciation for big, long tails like this one... or like yours.");
-				output("”</i> You let your tailtip brush over some of your foe’s length before you pull away, allowing them a brief view of your backside and your tail curling up to support you as you resume the fight.");
+				msg += "”</i> You let your tailtip brush over some of your foe’s length before you pull away, allowing them a brief view of your backside and your tail curling up to support you as you resume the fight.";
+				output(msg);
 			}
 			//Reqs: Hips skill 75+
 			//flags["TIMES_HIPS_TEASED"]
@@ -2063,7 +2064,7 @@ package classes.GameData
 			var select:int = choices[rand(choices.length)];
 			//1 - dick!
 			if(select == 1) {
-				if(pc.isCrotchGarbed()) output("You open your [pc.lowerGarments] just enough to let ");
+				if(!pc.isCrotchExposed()) output("You open your [pc.lowerGarments] just enough to let ");
 				else output("You shift position while ");
 				output("your [pc.cocks]");
 				if(pc.balls > 0) output(" and [pc.balls]");
@@ -2080,14 +2081,15 @@ package classes.GameData
 			}	
 			//3 - cunt!
 			else if(select == 3) {
-				if(pc.isCrotchGarbed()) output("You coyly open your [pc.lowerGarments]");
+				if(!pc.isCrotchExposed()) output("You coyly open your [pc.lowerGarments]");
 				else output("You coyly gesture to your groin");
 				if(pc.hasPerk("Ditz Speech")) output(" and giggle, <i>“Is this, like, what you wanted to see?”</i> ");
 				else {
-					output(" and purr, <i>“Does the thought of a hot, ");
-					if(pc.hasCock() && pc.hasVagina()) output("futanari ");
-					else output("sexy ");
-					output("body turn you on?”</i> ");
+					msg = " and purr, <i>“Does the thought of a hot, ";
+					if(pc.hasCock() && pc.hasVagina()) msg += "futanari ";
+					else msg += "sexy ";
+					msg += "body turn you on?”</i> ";
+					output(msg);
 				}
 				if(target.isPlural) output(possessive(target.capitalA + target.uniqueName) + " gazes are riveted on your groin as you run your fingers up and down your folds seductively.");
 				else output(possessive(target.capitalA + target.uniqueName) + "’s gaze is riveted on your groin as you run your fingers up and down your folds seductively.");
@@ -2111,7 +2113,7 @@ package classes.GameData
 			else if(select == 14)
 			{
 				//PC has clothes or a lower undergarment on: 
-				if(pc.isCrotchGarbed()) output("You open your [pc.lowerGarments] to reveal");
+				if(!pc.isCrotchExposed()) output("You open your [pc.lowerGarments] to reveal");
 				else output("You direct your foe’s attention to");
 				output(" [pc.oneVagina], already dripping wet. A brush of your fingers across your folds leaves them glistening with [pc.girlCumVisc] fluid, and you give your target a grin before popping your fingers into your mouth, working your [pc.tongue] around the intruding digits to lick up every last [pc.girlCumFlavor] drop.");
 				if ((pc.armor.shortName == "" && pc.lowerUndergarment.shortName != "") || (pc.armor.shortName != "" && pc.lowerUndergarment.shortName == ""))
@@ -2121,7 +2123,7 @@ package classes.GameData
 					else output(" on your crotch.");
 				}
 				//PC has both undergarments and clothes:
-				else if (pc.isCrotchGarbed()) output(" You close back up your [pc.lowerGarments], flushing slightly at the sensation of the fluid trapped within your [pc.lowerGarment].");
+				else if (!pc.isCrotchExposed()) output(" You close back up your [pc.lowerGarments], flushing slightly at the sensation of the fluid trapped within your [pc.lowerGarment].");
 				//PC is nude or only has a bra:
 				else 
 				{
@@ -2147,20 +2149,20 @@ package classes.GameData
 			//Reqs: PC has a vagina with maximum wetness
 			else if(select == 6)
 			{
-				if(pc.isCrotchGarbed()) output("You slip off your [pc.lowerGarments]");
+				if(!pc.isCrotchExposed()) output("You slip off your [pc.lowerGarments]");
 				else output("You only need to face your [pc.crotch] towards your enemy");
 				output(" and cock your hips to one side, letting the [pc.girlCum] gushing from between your thighs speak for itself. You casually drop a hand to between your [pc.thighs] and sample a bit of the river, popping your fingers into your mouth to savor the [pc.girlCumFlavor] treat.");
 				//Skill 50+:
 				if(flags["TIMES_CROTCH_TEASED"] > 50) output(" You dip your fingers into the [pc.girlCumNoun] again, this time holding out your fingers towards your foe invitingly before again licking yourself clean. <i>“Imagine what it’s like when I’m actually cumming.”</i>");
 				output(" You give your foe a heady grin as you ");
-				if(pc.isCrotchGarbed()) output("pull your [pc.lowerGarments] back up, producing a wet sound as your endless flow is plugged back up - for now.");
+				if(!pc.isCrotchExposed()) output("pull your [pc.lowerGarments] back up, producing a wet sound as your endless flow is plugged back up - for now.");
 				else output("return your attention to the fight, [pc.girlCumColor] still streaming freely down your [pc.legOrLegs].");
 			}
 			//Reqs: PC has a cock with a knot
 			else if(select == 7)
 			{
 				//Clothed: 
-				if(pc.isCrotchGarbed()) output("You open your [pc.lowerGarments]");
+				if(!pc.isCrotchExposed()) output("You open your [pc.lowerGarments]");
 				else
 				{
 					if(!pc.isTaur()) output("You stand with your");
@@ -2207,7 +2209,7 @@ package classes.GameData
 					output("FORESKIN ERROR: 8===D");
 				}
 				//Clothed:
-				if(pc.isCrotchGarbed())
+				if(!pc.isCrotchExposed())
 				{
 					output("You free your [pc.cocks] from ");
 					if(pc.cockTotal() == 1) output("its");
@@ -2225,7 +2227,7 @@ package classes.GameData
 				}
 				if(flags["TIMES_CROTCH_TEASED"] > 50) output(" Getting a little creative, you slip one of your fingers inside your exotic covering to stroke the [pc.cockHead " + temp + "] within and draw out a little of [pc.cumVisc] preseed before you pinch the base of your foreskin and draw your fingers upward, causing a little bit of [pc.cumColor] fluid to bubble from the opening of your shroud.");
 				output(" After a few moments, ");
-				if(pc.isCrotchGarbed()) output("you close up your [pc.lowerGarments]");
+				if(!pc.isCrotchExposed()) output("you close up your [pc.lowerGarments]");
 				else output("you let go of yourself");
 				output(" and return your eyes to the fight.");
 			}
@@ -2242,10 +2244,10 @@ package classes.GameData
 					output("FLARE ERROR: 8===D");
 				}
 				//Clothed:
-				if(pc.isCrotchGarbed()) output("You open your [pc.lowerGarments] and");
+				if(!pc.isCrotchExposed()) output("You open your [pc.lowerGarments] and");
 				else output("You");
 				output(" draw attention to [pc.oneCock], your flare already getting nice and wide. Your finger traces around the edge and underside of the thick ring, before coming up and over to brush the [pc.cockHead " + temp + "] above it. A bit of [pc.cum] comes away with your fingertip, showing off just how ready your flare is to be plunged inside the nearest willing hole... if they can take it. The thought of it makes you smirk as you ");
-				if(pc.isCrotchGarbed()) output("cover up");
+				if(!pc.isCrotchExposed()) output("cover up");
 				else output("return to attention");
 				output(", ready to continue.");
 			}
@@ -2263,29 +2265,29 @@ package classes.GameData
 					output("MEDIAL RING ERROR: 8===D");
 				}
 				//Clothed:
-				if(pc.isCrotchGarbed()) output("As your [pc.lowerGarments] come away from");
+				if(!pc.isCrotchExposed()) output("As your [pc.lowerGarments] come away from");
 				else output("As you draw your foe’s attention to");
 				output(" your [pc.cocks], you opt to focus on a different part of your shaft from the usual. Your hand goes up to your [pc.cockHead " + temp + "], but soon slides halfway down your shaft to the masculine ring wrapped around the center of your dick. Your finger traces around its edge, pressing inward just enough to showcase the slightly spongy texture of your all-natural ribbing. You pull your hand away");
-				if(pc.isCrotchGarbed()) output(" and cover up.");
+				if(!pc.isCrotchExposed()) output(" and cover up.");
 				else output(" and let your cock relax.");
 			}
 			//Reqs: PC has a dick, PC has extremely high cum volume
 			else if(select == 11)
 			{
 				//Clothed:
-				if(pc.isCrotchGarbed()) output("You open your [pc.lowerGarments]");
+				if(!pc.isCrotchExposed()) output("You open your [pc.lowerGarments]");
 				else output("You direct your foe’s attention to between your thighs");
 				if(pc.hasSheath(0)) output(" and let [pc.oneCock] out of its sheath");
 				else if(pc.hasStatusEffect("Genital Slit")) output(" and let [pc.oneCock] slip out of your genital slit");
 				output(", a little bit of pre-cum already bubbling from your [pc.cockHead]. You give yourself a light handjob, enough to make your [pc.cumVisc] fluid squirt with volume comparable to a normal human’s full orgasm. <i>“My [pc.balls] can barely keep all this [pc.cumNoun] in.... Think your " + target.vagOrAss(0) + " can do any better?”</i> You let go of your cum-packed cock");
-				if(pc.isCrotchGarbed()) output(" and cover up");
+				if(!pc.isCrotchExposed()) output(" and cover up");
 				output(", ready to resume the fight.");
 			}
 			//Reqs: Crotch skill 50+
 			else if(select == 12)
 			{
 				//Clothed: 
-				if(pc.isCrotchGarbed()) output("You slip off your [pc.lowerGarments]");
+				if(!pc.isCrotchExposed()) output("You slip off your [pc.lowerGarments]");
 				else output("You take a moment to relish being uncovered");
 				output(" and let your hands descend to your [pc.crotch]. ");
 				if(pc.hasCock()) output("One of your hands takes [pc.oneCock] near the tip, thumb circling the [pc.cockHead]. ");
@@ -2318,7 +2320,7 @@ package classes.GameData
 				output(msg);
 
 				output("\n\nYou don’t give your foe much longer to watch your self-serve taste test before you ");
-				if(pc.isCrotchGarbed()) output(" cover back up");
+				if(!pc.isCrotchExposed()) output(" cover back up");
 				else 
 				{
 					output(" return your attention to the fight");
@@ -2337,7 +2339,7 @@ package classes.GameData
 			else if(select == 13)
 			{
 				//PC is relevantly clothed: 
-				if(pc.isCrotchGarbed()) output("You slip your [pc.lowerGarments] down just enough to reveal");
+				if(!pc.isCrotchExposed()) output("You slip your [pc.lowerGarments] down just enough to reveal");
 				else output("You adjust your thighs to highlight");
 				output(" where your [pc.skinFurScalesColor] starts to give way to the dusky shade of [pc.oneVagina], drawing your target’s gaze.");
 				msg = "\n\n<i>“Surprised? When I saw ";
@@ -2346,7 +2348,7 @@ package classes.GameData
 				msg += " with those exotic pussies, I just had to try it for myself.”</i>";
 				output(msg);
 				//clothed:
-				if(pc.isCrotchGarbed()) output(" Your [pc.lowerGarment] comes down the rest of the way");
+				if(!pc.isCrotchExposed()) output(" Your [pc.lowerGarment] comes down the rest of the way");
 				else output(" You move your thighs away");
 				output(", allowing you to spread yourself to reveal your [pc.vaginaColor] interior.");
 				//[pc.vaginaColor == gold]
@@ -2376,7 +2378,7 @@ package classes.GameData
 				}
 				output("\n\nYou allow your fingers to rub up and down across your folds, showcasing it for your foe. <i>“I’ve gotta say, I’m really loving having a honeypot like this... maybe I’ll give you a taste, if you’re a good " + target.mfn("boy","girl","... thing") + ".”</i>");
 				//Clothed:
-				if(pc.isCrotchGarbed()) output(" You close up your [pc.lowerGarments]");
+				if(!pc.isCrotchExposed()) output(" You close up your [pc.lowerGarments]");
 				else output(" You adjust your thighs back to their normal stance");
 				output(" as you say this, taking a moment to suck your fingers clean with a wink.");
 			}
