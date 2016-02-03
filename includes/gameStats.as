@@ -371,7 +371,7 @@ public function statisticsScreen(showID:String = "All"):void
 			output2("\n<b>* Cum, Probable Ejaculation: </b> " + pc.cumQ() + " mLs");
 			output2("\n<b>* Cum, Max: </b>" + pc.maxCum() + " mLs");
 			output2("\n<b>* Refractory Rate: </b>" + Math.round(pc.refractoryRate*1000)/10 + " %");
-			if(pc.hasStatusEffect("Infertile") || pc.hasStatusEffect("Firing Blanks")) output2("\n<b>* Virility:</b> Infertile");
+			if(pc.virility() <= 0) output2("\n<b>* Virility:</b> Infertile");
 			else output2("\n<b>* Virility: </b>" + Math.round(pc.virility()*1000)/10 + " %");
 			// Cocks
 			if(pc.cocks.length >= 1)
@@ -439,7 +439,7 @@ public function statisticsScreen(showID:String = "All"):void
 			output2("\n<b>* Girlcum, Type: </b>" + GLOBAL.FLUID_TYPE_NAMES[pc.girlCumType]);
 			output2("\n<b>* Girlcum, Probable Ejaculation: </b> " + pc.girlCumQ() + " mLs");
 			// Fertility
-			if(pc.hasStatusEffect("Infertile") || pc.hasStatusEffect("Sterile")) output2("\n<b>* Fertility:</b> Infertile");
+			if(pc.fertility() <= 0) output2("\n<b>* Fertility:</b> Infertile");
 			else
 			{
 				output2("\n<b>* Fertility: </b>" + Math.round(pc.fertility()*1000)/10 + " %");
@@ -524,13 +524,22 @@ public function statisticsScreen(showID:String = "All"):void
 					else if(pc.pregnancyData[x].pregnancyType == "RenvraFullPregnancy") output2(" Renvra");
 					else if(pc.pregnancyData[x].pregnancyType == "CockvinePregnancy") output2(" Cockvine");
 					else if(pc.pregnancyData[x].pregnancyType == "DeepQueenPregnancy") output2(" Water Queen");
+					else if(pc.pregnancyData[x].pregnancyType == "OviliumEggPregnancy") output2(" Ovilium, Eggs");
 					else output2(" <i>Unknown</i>");
 					if(pc.pregnancyData[x].pregnancyIncubation > -1)
 					{
 						output2("\n<b>* Pregnancy, Gestation Time: </b>" + prettifyMinutes(pc.pregnancyData[x].pregnancyIncubation));
 						output2("\n<b>* Pregnancy, Incubation Speed Modifier: </b>" + Math.round(pc.pregnancyData[x].pregnancyIncubationMulti*1000)/10 + " %");
 					}
-					if(pc.pregnancyData[x].pregnancyQuantity > 0) output2("\n<b>* Pregnancy, Offspring Count: </b>" + pc.pregnancyData[x].pregnancyQuantity);
+					if(pc.pregnancyData[x].pregnancyQuantity > 0)
+					{
+						var pChildType:int = PregnancyManager.getPregnancyChildType(pc, x);
+						output2("\n<b>* Pregnancy,");
+						if(pChildType == GLOBAL.CHILD_TYPE_SEED) output2(" Seedling");
+						else if(pChildType == GLOBAL.CHILD_TYPE_EGGS) output2(" Egg");
+						else output2(" Offspring");
+						output2(" Count: </b>" + pc.pregnancyData[x].pregnancyQuantity);
+					}
 				}
 			}
 		}
@@ -767,6 +776,8 @@ public function statisticsScreen(showID:String = "All"):void
 			}
 			if(nyreanEggs > 0)
 				output2("\n<b>* Births, Nyrean Eggs, Total: </b>" + nyreanEggs);
+			if(StatTracking.getStat("pregnancy/ovilium eggs laid") > 0)
+				output2("\n<b>* Births, Ovilium Eggs, Total: </b>" + StatTracking.getStat("pregnancy/ovilium eggs laid"));
 			if(StatTracking.getStat("pregnancy/renvra kids") > 0)
 				output2("\n<b>* Births, Renvra’s Children: </b>" + StatTracking.getStat("pregnancy/renvra kids"));
 			if(StatTracking.getStat("pregnancy/venus pitcher seeds") > 0)

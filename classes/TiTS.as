@@ -137,6 +137,7 @@
 		include "../includes/tavros/beths.as";
 		include "../includes/tavros/inessa.as";
 		include "../includes/tavros/jade.as";
+		include "../includes/tavros/oviliumBonus.as";
 		include "../includes/tavros/reaha.as";
 		include "../includes/tavros/reaha.expansion.as";
 		include "../includes/tavros/saendraXPack1.as";

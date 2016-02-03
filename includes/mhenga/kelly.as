@@ -131,6 +131,11 @@ public function kellyOfficeApproach():void {
 		if(!chars["KELLY"].hasItem(new Honeydew())) chars["KELLY"].inventory.push(new Honeydew());
 		if(!chars["KELLY"].hasItem(new Honeypot())) chars["KELLY"].inventory.push(new Honeypot());
 	}
+	if(debug || flags["ASSISTED_SHELLY_WITH_LAYING"] != undefined)
+	{
+		if(!chars["KELLY"].hasItem(new Ovilium())) chars["KELLY"].inventory.push(new Ovilium());
+	}
+	else chars["KELLY"].destroyItem(new Ovilium(), 1);
 	output("Kelly looks up at your approach, smiling to see you with her usual chipper attitude. \"<i>Welcome back to Xenogen Research Labs, where the wonders of biotechnology never cease! How may I help you, ");
 	output("[pc.name]");
 	//{my friend}/{honey}

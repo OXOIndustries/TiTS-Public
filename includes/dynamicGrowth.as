@@ -28,7 +28,7 @@ private var percentButts:Array = [25, 50, 75, 100];
 
 public function immobilizedUpdate(count:Boolean = false):Number
 {
-	if(!pc.hasStatusEffect("Endowment Immobilized")) return -1;
+	if(!pc.hasStatusEffect("Endowment Immobilized")) return 0;
 	
 	var bodyPart:Array = [];
 	

@@ -13207,10 +13207,26 @@ package classes {
 			{
 				// Get size/volume:
 				tempSize = bellyRating() * (tallness / 60);
-				// Calculate weight: Simple, Each size is a pound and a half.
-				weightBelly += tempSize * 1.5;
+				// Calculate weight: Simple, Each size is half a pound.
+				weightBelly += tempSize * 0.5;
 				// Modifiers:
-				if(isPregnant() && hasPerk("Breed Hungry")) weightBelly *= 0.75;
+				if(isPregnant())
+				{
+					// offspring weight
+					for (num = 0; num < pregnancyData.length; num++)
+					{
+						if(isPregnant(num))
+						{
+							tempSize = pregnancyData[num].pregnancyBellyRatingContribution;
+							var pChildType:int = PregnancyManager.getPregnancyChildType(this, num);
+							if(pChildType == GLOBAL.CHILD_TYPE_LIVE) tempSize *= 1;
+							else if(pChildType == GLOBAL.CHILD_TYPE_EGGS) tempSize *= 0.50;
+							else if(pChildType == GLOBAL.CHILD_TYPE_SEED) tempSize *= 0.35;
+							weightBelly += tempSize;
+						}
+					}
+					if(hasPerk("Breed Hungry")) weightBelly *= 0.75;
+				}
 				if(thickness > tone)
 				{
 					weightFat = (thickness - tone) * 0.01 * (tallness / 60);
