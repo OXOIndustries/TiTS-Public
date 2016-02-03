@@ -112,7 +112,7 @@ public function myrellionManorAdminRoom():Boolean
 		output("\n\n<i>“Steele,”</i> she purrs. <i>“Captain Steele.”</i> Her voice isn’t unpleasant, but there’s something icy and dangerous about it. The way she says your name reminds you of a predator that’s thinking over the best time to pounce on its target. Her eyes drift down to");
 		if (pc.hasMeleeWeapon()) output(" your [pc.meleeWeapon] and narrow before moving on to");
 		if (pc.hasRangedWeapon()) output(" your [pc.rangedWeapon] and");
-		output(" the [pc.gear] you’re wearing.");
+		output(" the [pc.clothes] you’re wearing.");
 		
 		// maybe do an inv check for ANY weapons
 		var hasWeaponInv:Boolean = pc.hasWeapon();
