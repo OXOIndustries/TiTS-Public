@@ -1104,7 +1104,15 @@ public function shipStorageMenuRoot():void
 		output("\n\nNearby, the TamaniCorp Dong Designer hums with life.");
 		addButton(5,"D.Designer",useInstalledDickBox,undefined,"Dong Designer","Use the TamaniCorp Hora Series Dong Designer you found on Tarkus.");
 	}
-	
+	if(kGAMECLASS.flags["EGG_TRAINER_INSTALLED"] == 1) 
+	{
+		output("\n\nYour bright pink Egg Trainer is sitting in the corner, rumbling slightly as the heating and cleaning processes inside it percolate.");
+		//if PC has a belly full of eggs:
+		if(9999 == 0) output(" You run a hand across your swollen belly, vaguely wishing you could squat the current load out... only to get another mind-melting orgasm from the next batch going in!");
+		//if PC has a faux-preg egg: 
+		else if(9999 == 0) output(" You run a hand across your [pc.belly]. You could get your Faux Preg Egg out at any time with the device, if you wanted to.");
+		addButton(6,"EggTrainer",repeatEggTrainerApproach,undefined,"Egg Trainer","Put your Egg Trainer to use.");
+	}
 	addButton(14, "Back", mainGameMenu);
 }
 

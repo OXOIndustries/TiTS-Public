@@ -104,6 +104,7 @@
 		include "../includes/items.as";
 		include "../includes/MailEntries.as";
 		include "../includes/masturbation.as";
+		include "../includes/masturbation.eggTrainer.as";
 		include "../includes/NPCTemplates.as";
 		include "../includes/rooms.as";
 		include "../includes/roomFunctions.as";
