@@ -12,8 +12,8 @@
 	
 	public class EggWhiteSmall extends ItemSlotClass
 	{
-		public var eggSize:String = "small";
-		public var eggColor:String = "glowing white";
+		private var eggSize:String = "small";
+		private var eggColor:String = "glowing white";
 		
 		public function EggWhiteSmall()
 		{
@@ -24,17 +24,20 @@
 			type = GLOBAL.FOOD;
 			
 			shortName = "Sm.WhtEgg";
-			longName = eggSize + " " + eggColor + " egg";
+			longName = eggSize + ", " + eggColor + " egg";
 			
 			TooltipManager.addFullName(shortName, StringUtil.toTitleCase(longName));
 			
-			description = indefiniteArticle(eggSize) + " " + eggColor + " egg";
+			description = indefiniteArticle(eggSize) + ", " + eggColor + " egg";
 			
 			tooltip = kGAMECLASS.oviliumEggTooltip(eggSize, eggColor);
 			
 			TooltipManager.addTooltip(shortName, tooltip);
 			
 			basePrice = 40;
+			
+			combatUsable = true;
+			targetsSelf = true;
 			
 			version = _latestVersion;
 		}

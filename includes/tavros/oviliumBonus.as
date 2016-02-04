@@ -59,19 +59,22 @@ public function oviliumEffects():void
 		}
 		else
 		{
+			var hasEmptyWomb:Boolean = (pc.totalPregnancies() < pc.totalVaginas());
+			
 			if (pc.fertilityRaw < 3)
 			{
 				output("As the alabaster fluid slides down your throat you feel [pc.eachVagina] wetten considerably. You drift off into a daydream as you drink the rest of the egg filling potion. In your fantasy, you’re");
 				if (rand(2) == 0) output(" lying in bed with the mate of your dreams, letting them kiss your pregnant belly as the two of you drift off to sleep");
 				else output(" sitting at your owner’s feet, heavily pregnant with the eggs they graciously allowed you to carry");
 				output(". You shake your head to clear your vision, blushing slightly as you realize what you were thinking.");
+				if (hasEmptyWomb) output("\n\n");
 				
 				pc.fertilityRaw += 0.5;
 				pc.lust(5);
 				processTime(8);
 			}
 			// ([if pc has vag]: pc becomes preg with eggs -- one womb at a time!)
-			if (pc.totalPregnancies() < pc.totalVaginas())
+			if (hasEmptyWomb)
 			{
 				output("You feel a pleasurable popping in your abdomen as the glowing drink hits your stomach. Egg after egg seemingly appears from nothing in your womb.");
 				if (!pc.isNude()) output(" The upper portion of your outfit distends as y");
@@ -183,7 +186,7 @@ public function oviliumEffectCheck():void
 private function oviliumEggReward(bigEgg:Boolean = false):void
 {
 	var eggList:Array = [];
-	// Egg items:40% chance normal egg: small egg, restore 10% hp. Big egg, restore 30% hp.
+	// Egg items:40% chance normal egg
 	// 50% chance of special egg
 	if (!bigEgg)
 	{
@@ -225,47 +228,52 @@ public function oviliumEggTooltip(eggSize:String = "none", eggColor:String = "no
 public function eatOviliumEgg(eggSize:String = "none", eggColor:String = "none"):void
 {
 	clearOutput();
-	if (silly) showName("\nYUM!");
 	author("Gardeford");
-	
-	output("You take one bite of the " + eggColor + " egg in your hands and before you know it the whole thing is gone. Its taste is hard to place. It was good, but you can’t for the life of you think of anything to compare it to.");
-	
+		
 	var effectTF:String = "none"
 	var nVal:Number = 0;
 	
-	if (eggColor == "none")
+	output("You take one bite of the " + eggColor + " egg in your hands and before you know it the whole thing is gone.");
+	if(!inCombat())
 	{
-		/* No changes */
+		if (silly) showName("\nYUM!");
+		
+		output(" Its taste is hard to place. It was good, but you can’t for the life of you think of anything to compare it to.");
+		
+		if (eggColor == "none")
+		{
+			/* No changes */
+		}
+		// pink egg: boost pc fluid production, big gives larger increase.
+		else if (eggColor == "pink")
+		{
+			effectTF = "fluid";
+			if (eggSize == "small") nVal = 1;
+			if (eggSize == "large") nVal = 2;
+		}
+		// blue egg: accelerate current pregnancy by 2 hours, big delays 4 hours.
+		else if (eggColor == "blue")
+		{
+			effectTF = "preggcelleration";
+			if (eggSize == "small") nVal = -2;
+			if (eggSize == "large") nVal = 4;
+		}
+		// Glowing white egg: increase fertility/virility slightly. big egg bigger increase.
+		else if (eggColor == "glowing white")
+		{
+			effectTF = "fertility";
+			if (eggSize == "small") nVal = 0.25;
+			if (eggSize == "large") nVal = 0.50;
+		}
 	}
-	// pink egg: boost pc fluid production, big gives larger increase.
-	else if (eggColor == "pink")
-	{
-		effectTF = "fluid";
-		if (eggSize == "small") nVal = 1;
-		if (eggSize == "large") nVal = 2;
-	}
-	// blue egg: accelerate current pregnancy by 2 hours, big delays 4 hours.
-	else if (eggColor == "blue")
-	{
-		effectTF = "preggcelleration";
-		if (eggSize == "small") nVal = -2;
-		if (eggSize == "large") nVal = 4;
-	}
-	// Glowing white egg: increase fertility/virility slightly. big egg bigger increase.
-	else if (eggColor == "glowing white")
-	{
-		effectTF = "fertility";
-		if (eggSize == "small") nVal = 0.25;
-		if (eggSize == "large") nVal = 0.50;
-	}
-	
 	// Effects, go!
-	oviliumEggTF(effectTF, nVal, eggSize);
+	oviliumEggTF(effectTF, nVal, eggSize, eggColor);
 }
 
-// NPC effects
+// NPC and "normal" effects
 public function npcEatOviliumEgg(target:Creature = null, eggSize:String = "none", eggColor:String = "none"):void
 {
+	// small egg, restore 10% hp. Big egg, restore 30% hp.
 	var healing:int = 5;
 	if(eggSize == "small") healing = 10;
 	if(eggSize == "large") healing = 30;
@@ -275,16 +283,24 @@ public function npcEatOviliumEgg(target:Creature = null, eggSize:String = "none"
 		healing = target.HPMax() - target.HP();
 	}
 	
-	if(inCombat()) output("\n\n");
-	else clearOutput();
-	output(target.capitalA + target.short + " eats " + indefiniteArticle(eggSize) + " " + eggColor + " egg");
-	if(healing > 0) output(" and instantly regains a little health! (<b>+" + healing + " HP</b>)");
-	else output(" but to no effect.");
+	if(target is PlayerCharacter)
+	{
+		if(healing > 0) output(" You feel better almost immediately! (<b>+" + healing + " HP</b>)");
+		else output(" Nothing changes except for the taste in your mouth.");
+	}
+	else
+	{
+		if(inCombat()) output("\n\n");
+		else clearOutput();
+		output(target.capitalA + target.short + " eats " + indefiniteArticle(eggSize) + " " + eggColor + " egg");
+		if(healing > 0) output(" and instantly regains a little health! (<b>+" + healing + " HP</b>)");
+		else output(" but to no effect.");
+	}
 	target.HP(healing);
 }
 
 // Effects:
-public function oviliumEggTF(effectTF:String = "none", nVal:Number = 0, eggSize:String = "none"):void
+private function oviliumEggTF(effectTF:String = "none", nVal:Number = 0, eggSize:String = "none", eggColor:String = "none"):void
 {
 	var changes:int = 0;
 	var x:int = 0;
@@ -326,7 +342,6 @@ public function oviliumEggTF(effectTF:String = "none", nVal:Number = 0, eggSize:
 					pc.vaginas[x].wetnessRaw += nVal;
 					if (pc.vaginas[x].wetnessRaw > 100) pc.vaginas[x].wetnessRaw = 100;
 					num++;
-					changes++;
 				}
 			}
 			if (num > 0)
@@ -336,6 +351,8 @@ public function oviliumEggTF(effectTF:String = "none", nVal:Number = 0, eggSize:
 				if (nVal <= 1) msg += " slightly";
 				else msg += " much";
 				msg += " wetter than you were before.";
+				
+				changes++;
 			}
 		}
 	}
@@ -392,19 +409,7 @@ public function oviliumEggTF(effectTF:String = "none", nVal:Number = 0, eggSize:
 	
 	if(changes <= 0)
 	{
-		var healing:int = 5;
-		if(eggSize == "small") healing = 10;
-		if(eggSize == "large") healing = 30;
-		
-		if(pc.HP() + healing > pc.HPMax())
-		{
-			healing = pc.HPMax() - pc.HP();
-		}
-		
-		if(healing > 0) output(" You feel better almost immediately! (<b>+" + healing + " HP</b>)");
-		else output(" Nothing changes except for the taste in your mouth.");
-		
-		pc.HP(healing);
+		npcEatOviliumEgg(pc, eggSize, eggColor);
 	}
 	else output("\n\n" + msg);
 }
