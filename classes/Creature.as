@@ -1056,7 +1056,14 @@ package classes {
 		public function makeBallsInternal(): void
 		{
 			// Convert total ball cum volume to prostate cum volume--to simulate "internal" balls.
-			if(balls > 0) ballSizeRaw = ((ballSizeRaw * ballSizeRaw * balls) / 2);
+			if(balls > 0) 
+			{
+				//Cut the below due to it actually massively inflating internal ball size.
+				//ballSizeRaw = ((ballSizeRaw * ballSizeRaw * balls) / 2);
+				
+				//If diameter is greater than six inches, reduce size to make diameter be six. Only so much room inside.
+				if(ballDiameter() >= 6) ballSizeRaw = 6*Math.PI;
+			}
 			balls = 0;
 		}
 		
@@ -12599,13 +12606,13 @@ package classes {
 					{
 						if (holePointer.hymen && hole >= 0)
 						{
-							output("Your hymen is torn");
+							output("<b>Your hymen is torn</b>");
 							holePointer.hymen = false;
 						}
-						else output("You have been penetrated");
+						else output("<b>You have been penetrated</b>");
 						
-						if (hole >= 0 && vaginalVirgin) output(", robbing you of your vaginal virginity");
-						else if (analVirgin) output(", robbing you of your anal virginity");
+						if (hole >= 0 && vaginalVirgin) output("<b>, robbing you of your vaginal virginity</b>");
+						else if (analVirgin) output("<b>, robbing you of your anal virginity</b>");
 						output(".");
 					}
 					else
