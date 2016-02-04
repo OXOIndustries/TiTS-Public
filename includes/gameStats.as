@@ -748,81 +748,91 @@ public function statisticsScreen(showID:String = "All"):void
 		}
 		
 		//Births header!
-		if(StatTracking.getStat("pregnancy/total births") > 0)
+		var totalOffspring:Number = StatTracking.getStat("pregnancy/total births");
+		var totalProduce:Number = 0;
+		totalProduce += StatTracking.getStat("pregnancy/ovilium eggs laid");
+		if((totalOffspring + totalProduce) > 0)
 		{
 			output2("\n\n" + blockHeader("Reproduction Statistics", false));
-			output2("\n<b><u>Offspring</u></b>");
-			output2("\n<b>* Total: </b>" + StatTracking.getStat("pregnancy/total births"));
-			// Mother
-			if(StatTracking.getStat("pregnancy/cockvine seedlings birthed") > 0)
-				output2("\n<b>* Births, Cockvines: </b>" + StatTracking.getStat("pregnancy/cockvine seedlings birthed"));
-			if(StatTracking.getStat("pregnancy/cockvine seedlings captured") > 0)
-				output2("\n<b>* Births, Cockvines, Captured: </b>" + StatTracking.getStat("pregnancy/cockvine seedlings captured"));
-			var nyreanEggs:Number = 0;
-			if(StatTracking.getStat("pregnancy/nyrea eggs") > 0)
+			if(totalOffspring)
 			{
-				nyreanEggs += StatTracking.getStat("pregnancy/nyrea eggs");
-				output2("\n<b>* Births, Nyrean Eggs, Huntress: </b>" + StatTracking.getStat("pregnancy/nyrea eggs"));
-			}
-			if(StatTracking.getStat("pregnancy/renvra eggs") > 0)
-			{
-				nyreanEggs += StatTracking.getStat("pregnancy/renvra eggs");
-				output2("\n<b>* Births, Nyrean Eggs, Renvra: </b>" + StatTracking.getStat("pregnancy/renvra eggs"));
-			}
-			if(StatTracking.getStat("pregnancy/royal nyrea eggs") > 0)
-			{
-				nyreanEggs += StatTracking.getStat("pregnancy/royal nyrea eggs");
-				output2("\n<b>* Births, Nyrean Eggs, Royal: </b>" + StatTracking.getStat("pregnancy/royal nyrea eggs"));
-			}
-			if(nyreanEggs > 0)
-				output2("\n<b>* Births, Nyrean Eggs, Total: </b>" + nyreanEggs);
-			if(StatTracking.getStat("pregnancy/ovilium eggs laid") > 0)
-				output2("\n<b>* Births, Ovilium Eggs, Total: </b>" + StatTracking.getStat("pregnancy/ovilium eggs laid"));
-			if(StatTracking.getStat("pregnancy/renvra kids") > 0)
-				output2("\n<b>* Births, Renvra’s Children: </b>" + StatTracking.getStat("pregnancy/renvra kids"));
-			if(StatTracking.getStat("pregnancy/venus pitcher seeds") > 0)
-				output2("\n<b>* Births, Venus Pitcher Seeds: </b>" + StatTracking.getStat("pregnancy/venus pitcher seeds"));
-			if(StatTracking.getStat("pregnancy/fertilized venus pitcher seeds/day care") > 0)
-				output2("\n<b>* Births, Venus Pitcher Seeds @ Daycare: </b>" + StatTracking.getStat("pregnancy/fertilized venus pitcher seeds/day care"));
-			if(StatTracking.getStat("pregnancy/unfertilized venus pitcher seed") > 0)
-				output2("\n<b>* Births, Venus Pitcher Seeds, Unfertilized: </b>" + StatTracking.getStat("pregnancy/unfertilized venus pitcher seed"));
-			if(StatTracking.getStat("pregnancy/queen of the deep eggs") > 0)
-				output2("\n<b>* Births, Water Queen Young: </b>" + StatTracking.getStat("pregnancy/queen of the deep eggs"));
-			// Father
-			if(StatTracking.getStat("pregnancy/briha kids") > 0)
-			{
-				output2("\n<b>* Fathered, Briha’s Children:</b>");
-				var unnamedBrihaKids:Number = StatTracking.getStat("pregnancy/briha kids");
-				if(flags["BRIHA_OLDEST_SPAWN_AGE"] != undefined)
+				output2("\n<b><u>Offspring</u></b>");
+				output2("\n<b>* Total: </b>" + StatTracking.getStat("pregnancy/total births"));
+				// Mother
+				if(StatTracking.getStat("pregnancy/cockvine seedlings birthed") > 0)
+					output2("\n<b>* Births, Cockvines: </b>" + StatTracking.getStat("pregnancy/cockvine seedlings birthed"));
+				if(StatTracking.getStat("pregnancy/cockvine seedlings captured") > 0)
+					output2("\n<b>* Births, Cockvines, Captured: </b>" + StatTracking.getStat("pregnancy/cockvine seedlings captured"));
+				var nyreanEggs:Number = 0;
+				if(StatTracking.getStat("pregnancy/nyrea eggs") > 0)
 				{
-					output2(" Aya");
-					unnamedBrihaKids--;
-					if(unnamedBrihaKids > 1) output2(",");
+					nyreanEggs += StatTracking.getStat("pregnancy/nyrea eggs");
+					output2("\n<b>* Births, Nyrean Eggs, Huntress: </b>" + StatTracking.getStat("pregnancy/nyrea eggs"));
 				}
-				if(flags["BRIHA_SECOND_OLDEST_SPAWN_AGE"] != undefined)
+				if(StatTracking.getStat("pregnancy/renvra eggs") > 0)
 				{
-					if(unnamedBrihaKids == 1) output2(" and");
-					output2(" Brahn");
-					unnamedBrihaKids--;
-					if(unnamedBrihaKids > 0) output2(",");
+					nyreanEggs += StatTracking.getStat("pregnancy/renvra eggs");
+					output2("\n<b>* Births, Nyrean Eggs, Renvra: </b>" + StatTracking.getStat("pregnancy/renvra eggs"));
 				}
-				if(unnamedBrihaKids < StatTracking.getStat("pregnancy/briha kids"))
+				if(StatTracking.getStat("pregnancy/royal nyrea eggs") > 0)
 				{
-					output2(" and " + num2Text(unnamedBrihaKids) + " other");
-					if(unnamedBrihaKids != 1) output2("s");
+					nyreanEggs += StatTracking.getStat("pregnancy/royal nyrea eggs");
+					output2("\n<b>* Births, Nyrean Eggs, Royal: </b>" + StatTracking.getStat("pregnancy/royal nyrea eggs"));
 				}
-				else output2(" " + unnamedBrihaKids);
+				if(nyreanEggs > 0)
+					output2("\n<b>* Births, Nyrean Eggs, Total: </b>" + nyreanEggs);
+				if(StatTracking.getStat("pregnancy/renvra kids") > 0)
+					output2("\n<b>* Births, Renvra’s Children: </b>" + StatTracking.getStat("pregnancy/renvra kids"));
+				if(StatTracking.getStat("pregnancy/venus pitcher seeds") > 0)
+					output2("\n<b>* Births, Venus Pitcher Seeds: </b>" + StatTracking.getStat("pregnancy/venus pitcher seeds"));
+				if(StatTracking.getStat("pregnancy/fertilized venus pitcher seeds/day care") > 0)
+					output2("\n<b>* Births, Venus Pitcher Seeds @ Daycare: </b>" + StatTracking.getStat("pregnancy/fertilized venus pitcher seeds/day care"));
+				if(StatTracking.getStat("pregnancy/unfertilized venus pitcher seed") > 0)
+					output2("\n<b>* Births, Venus Pitcher Seeds, Unfertilized: </b>" + StatTracking.getStat("pregnancy/unfertilized venus pitcher seed"));
+				if(StatTracking.getStat("pregnancy/queen of the deep eggs") > 0)
+					output2("\n<b>* Births, Water Queen Young: </b>" + StatTracking.getStat("pregnancy/queen of the deep eggs"));
+				// Father
+				if(StatTracking.getStat("pregnancy/briha kids") > 0)
+				{
+					output2("\n<b>* Fathered, Briha’s Children:</b>");
+					var unnamedBrihaKids:Number = StatTracking.getStat("pregnancy/briha kids");
+					if(flags["BRIHA_OLDEST_SPAWN_AGE"] != undefined)
+					{
+						output2(" Aya");
+						unnamedBrihaKids--;
+						if(unnamedBrihaKids > 1) output2(",");
+					}
+					if(flags["BRIHA_SECOND_OLDEST_SPAWN_AGE"] != undefined)
+					{
+						if(unnamedBrihaKids == 1) output2(" and");
+						output2(" Brahn");
+						unnamedBrihaKids--;
+						if(unnamedBrihaKids > 0) output2(",");
+					}
+					if(unnamedBrihaKids < StatTracking.getStat("pregnancy/briha kids"))
+					{
+						output2(" and " + num2Text(unnamedBrihaKids) + " other");
+						if(unnamedBrihaKids != 1) output2("s");
+					}
+					else output2(" " + unnamedBrihaKids);
+				}
+				if(StatTracking.getStat("pregnancy/briha sons") > 0)
+					output2("\n<b>* Fathered, Briha’s Sons: </b>" + StatTracking.getStat("pregnancy/briha sons"));
+				if(StatTracking.getStat("pregnancy/briha daughters") > 0)
+					output2("\n<b>* Fathered, Briha’s Daughters: </b>" + StatTracking.getStat("pregnancy/briha daughters"));
+				if(StatTracking.getStat("pregnancy/raskvel sired/total") > 0)
+					output2("\n<b>* Fathered, Raskvel Eggs: </b>" + StatTracking.getStat("pregnancy/raskvel sired/total"));
+				if(StatTracking.getStat("pregnancy/raskvel sired/day care") > 0)
+					output2("\n<b>* Fathered, Raskvel @ Daycare: </b>" + StatTracking.getStat("pregnancy/raskvel sired/day care"));
+				if(StatTracking.getStat("pregnancy/zil callgirl kids") > 0)
+					output2("\n<b>* Fathered, Zil Call Girl Children: </b>" + StatTracking.getStat("pregnancy/zil callgirl kids"));
 			}
-			if(StatTracking.getStat("pregnancy/briha sons") > 0)
-				output2("\n<b>* Fathered, Briha’s Sons: </b>" + StatTracking.getStat("pregnancy/briha sons"));
-			if(StatTracking.getStat("pregnancy/briha daughters") > 0)
-				output2("\n<b>* Fathered, Briha’s Daughters: </b>" + StatTracking.getStat("pregnancy/briha daughters"));
-			if(StatTracking.getStat("pregnancy/raskvel sired/total") > 0)
-				output2("\n<b>* Fathered, Raskvel Eggs: </b>" + StatTracking.getStat("pregnancy/raskvel sired/total"));
-			if(StatTracking.getStat("pregnancy/raskvel sired/day care") > 0)
-				output2("\n<b>* Fathered, Raskvel @ Daycare: </b>" + StatTracking.getStat("pregnancy/raskvel sired/day care"));
-			if(StatTracking.getStat("pregnancy/zil callgirl kids") > 0)
-				output2("\n<b>* Fathered, Zil Call Girl Children: </b>" + StatTracking.getStat("pregnancy/zil callgirl kids"));
+			if(totalProduce)
+			{
+				output2("\n<b><u>Produce</u></b>");
+				if(StatTracking.getStat("pregnancy/ovilium eggs laid") > 0)
+					output2("\n<b>* Births, Ovilium Eggs, Total: </b>" + StatTracking.getStat("pregnancy/ovilium eggs laid"));
+			}
 		}
 		
 		//======PARASITE STATISTICS=====//
