@@ -42,19 +42,22 @@ public function drBadgerMenu():void
 		else if(flags["BADGER_QUEST"] == undefined) 
 		{
 			//[mouse-over text for button is: [See just what this "job offer" is that the doctor has for you]
-			addButton(6,"Job",drBadgerJobOffer,undefined,"Job","See just what this \"job offer\" is that the doctor has for you.")
+			addButton(6,"Job",drBadgerJobOffer,undefined,"Job","See just what this “job offer” is that the doctor has for you.")
 		}
-		else if(flags["BADGER_QUEST"] == 1) addDisabledButton(6,"Job","Job","You've already accepted her \"job offer.\" Go find Penny!");
+		else if(flags["BADGER_QUEST"] == 1) addDisabledButton(6,"Job","Job","You've already accepted her “job offer.” Go find Penny!");
 		else if(flags["BADGER_QUEST"] == 2) addButton(6,"Reward",rewardFromDoctorBadger,undefined,"Reward","You did what you were asked, time to get rewarded!");
 		else if(flags["BADGER_QUEST"] == 3) addDisabledButton(6,"Job","Job","You already did her job.");
-		else addDisabledButton(6,"Job","Job","You've already accepted her \"job offer.\"");
+		else addDisabledButton(6,"Job","Job","You've already accepted her “job offer”");
 	}
 	addButton(14,"Leave",mainGameMenu);
 }
 public function drBadgerBuyMenu():void
 {
 	// Shop unlocks
-	if(flags["BADGER_QUEST"] >= 3 && !chars["DRBADGER"].hasItemByType(Throbb)) chars["DRBADGER"].inventory.push(new Throbb());
+	if(flags["BADGER_QUEST"] >= 3)
+	{
+		if(!chars["DRBADGER"].hasItemByType(Throbb)) chars["DRBADGER"].inventory.push(new Throbb());
+	}
 	else chars["DRBADGER"].destroyItem(new Throbb());
 	
 	shopkeep = chars["DRBADGER"];
@@ -75,8 +78,7 @@ public function drBadgerBonusShit():Boolean
 	if(flags["MET_DR_BADGER"] == undefined)
 	{
 		flags["MET_DR_BADGER"] = 1;
-		userInterface.showBust("DRBADGER");
-		userInterface.showName("DR.\nBADGER");
+		showDrBadger();
 		output("The door swings open easily as you push at it, stepping cautiously inside. It’s surprisingly dark in here, and you squint in an attempt to make out more than just a vague suggestion of the four walls around you.");
 		output("\n\nSuddenly there’s an overwhelmingly bright flash of light, and you find yourself thrown back up against the inside of the door as it’s slammed shut behind you. A shrill beeping fills your ears as your equipment overloads dramatically, the tell-tale tingle of an EMP pulse ringing through your head. You have just enough time to register that this all means you’re completely defenseless when the feeling of claws digging lightly into your chest draws your attention to what exactly is happening in front of you.");
 		output("\n\nThere’s someone there, holding you easily up against the door with one hand and leering as they do so. It doesn’t take much to figure out that this must be Doctor Badger; with black fur covering their plump, curvy body except for the white muzzle marking her as a mustelid. The tight-fitting white nurse’s shirt they’re wearing not only presents them as some sort of medical professional, but also highlights the bulging breasts that show her up as enthusiastically female. She notices you looking, and while one red-gloved hand keeps you pressed firmly against the wall, the other casually points your head downwards, where you soon see she’s not wearing any pants. This lets her frankly massive black cock and balls hang down freely from her crotch, her shaft decorated rather than concealed by the odd half-sleeve featuring a red and white cross wrapped around it. The only other clothes she’s wearing are a pair of red thigh high boots, which match nicely with the long sleeved gloves you can still feel pressing against your [pc.skinFurScales]. The whole effect of her outfit and demeanor does rather scream “mad doctor”, although “madly perverted” probably seems a little more accurate.");
@@ -91,13 +93,13 @@ public function drBadgerBonusShit():Boolean
 	}
 	else
 	{
-		//Room desc
-		output("The inside of the \"good\" doctor's shop is much the same as you remember it, complete with giant brain-lasers and devices whose purpose you don't even want to hazard. She's every bit the mad scientist you'd expect, which makes her the perfect person to sell you some of the less savory items the galaxy has to offer.\n\n");
 		if(flags["BADGER_QUEST"] == -3) 
 		{
 			bimboBadgerShopStuff();
 			return false;
 		}
+		//Room desc
+		output("The inside of the <i>“good”</i> doctor's shop is much the same as you remember it, complete with giant brain-lasers and devices whose purpose you don't even want to hazard. She's every bit the mad scientist you'd expect, which makes her the perfect person to sell you some of the less savory items the galaxy has to offer.\n\n");
 	}
 	addButton(0,"Dr.Badger",repeatBadgerApproach,undefined,"Dr. Badger","Check in with the curvy, bimbo badger.");
 	return false;
@@ -106,8 +108,7 @@ public function drBadgerBonusShit():Boolean
 public function repeatBadgerApproach():void
 {
 	clearOutput();
-	userInterface.showBust("DRBADGER");
-	userInterface.showName("DR.\nBADGER");
+	showDrBadger();
 	author("Abe E. Seedy");
 	//REPEAT GREETING NON-BIMBOIFIED
 	if(flags["DR_BADGER_BIMBOED_PC"] == undefined && !pc.hasPerk("Ditz Speech"))
@@ -148,8 +149,7 @@ public function repeatBadgerApproach():void
 public function yesImAHeroHurhurDurhurGurhurhurhurShit():void
 {
 	clearOutput();
-	userInterface.showBust("DRBADGER");
-	userInterface.showName("DR.\nBADGER");
+	showDrBadger();
 	author("Abe E. Seedy");
 	output("<i>“Oh, really?”</i>, she answers, one eyebrow arching upwards with amused curiosity. She steps a little to the side, still keeping you pinned up against the door, but now letting you see the large, complicated-looking machine behind her. It’s some sort of... ray gun, by the looks of it, but industrial-sized; some massive squatting mess of tangled wires and haphazardly bolted together metal, and the only thing you can say for sure about it is that it’s very definitely pointing at you. Your eyes flick back to Dr Badger, and seeing your expression she starts grinning disturbingly. <i>“Heroes”</i>, she says, squeezing your throat again lightly for emphasis at the word, <i>“earn themselves a session with my patented bimbo-making machine over there</i>.”");
 	output("\n\nBetween that ominous machine and the leering Dr Badger herself, you pretty quickly determine that saying the wrong thing here would have some fairly significant consequences. That said, something about her tells you that whatever she has in mind <i>would</i> probably be highly enjoyable, if you’re up for the sort of outsized genitalia and overblown libidos she seems to be all about, that is.");
@@ -165,8 +165,7 @@ public function yesImAHeroHurhurDurhurGurhurhurhurShit():void
 public function noImNotAHeroYouFuckingBimboDoctor():void
 {
 	clearOutput();
-	userInterface.showBust("DRBADGER");
-	userInterface.showName("DR.\nBADGER");
+	showDrBadger();
 	author("Abe E. Seedy");
 	output("<i>“Oh”</i>. She looks down for a moment, seeming to almost deflate as she relaxes a little. When she looks back up at you, you realize she looks a little... disappointed, somehow? <i>“Well... are you sure</i>?”, she asks hopefully.");
 	output("\n\nShe steps a little to the side, still keeping you pinned up against the door, but now letting you see the large, complicated-looking machine behind her. It’s some sort of... ray gun, by the looks of it, but industrial-sized; some massive squatting mess of tangled wires and haphazardly bolted together metal, and the only thing you can say for sure about it is that it’s very definitely pointing at you. Your eyes flick back to Dr Badger, and she perks back up on seeing your wide-eyed expression. <i>“Heroes”</i>, she says with a hungry grin, <i>“earn themselves a session with my patented bimbo-making machine over there</i>.”");
@@ -182,8 +181,7 @@ public function noImNotAHeroYouFuckingBimboDoctor():void
 public function heyDocImAHero():void
 {
 	clearOutput();
-	userInterface.showBust("DRBADGER");
-	userInterface.showName("DR.\nBADGER");
+	showDrBadger();
 	author("Abe E. Seedy");
 	output("Doctor Badger grins widely, pressing you a little harder against the door as she moves one hand down to retrieve a remote control from some hidden pocket. <i>“Well, </i>hero”, she teases, <i>“let’s see just how heroic you are once I’ve had some fun with you...”</i>");
 	output("\n\nShe presses a prominent button on the remote, releasing you and stepping away to the side in one fluid motion. Before you can react you hear the machine in front of you whirr menacingly, and then a great white beam shoots out of it, bathing your head in a thick, hazy glow.");
@@ -484,8 +482,7 @@ public function heyDocImAHero():void
 public function heyDocImJustHereToShop():void
 {
 	clearOutput();
-	userInterface.showBust("DRBADGER");
-	userInterface.showName("DR.\nBADGER");
+	showDrBadger();
 	author("Abe E. Seedy");
 	output("The Doctor glares at you intently for a few seconds, and then turns away with an exaggerated sigh. <i>“Fiiine</i>!” She releases you, walking back over to a cluttered workbench in the corner, more or less entirely uninterested in you now that you’ve turned out not to be the type of fun she was hoping for.");
 	output("\n\n<i>“What can I interest you in then? I’m a little low on stock at the moment, but I’ve got a shipment of pills that will get your engine revving.”</i> She rolls her eyes for a moment, mumbling to herself, <i>“not as much as I could have in person, but </i>oh well.”");
@@ -498,45 +495,46 @@ public function heyDocImJustHereToShop():void
 
 //[BREAK YOURSELF FREE]
 //9999 - unused. Feels like a copout. Maybe thread the goo bit into with non-goos still getting screwed.
+/*
 public function omgBreakFreeFromDat():void
 {
-    clearOutput();
-    userInterface.showBust("DRBADGER");
-    userInterface.showName("DR.\nBADGER");
-    author("Abe E. Seedy");
-    output("You don’t fancy going along with whatever plans this mad doctor has, but at the same time you’re not about to meekly beg her to let you go either. You’re [pc.name] Steele");
-    if(pc.isNice()) output(" and you are not going to put up with any of that!");
-    else if(pc.isMischievous()) output(", dammit! Who is she to try to tell you what you can do?");
-    else output("! No one fucks with you and gets away with it!");
-    // If the PC has a goo form
-    if(pc.isGoo()) output("\n\nYou pause for a moment to roll your eyes dramatically, then you simply <i>relax</i>. In moments whatever grip Dr Badger had on you is lost, your entire body melting away into formlessness, and the sudden shift puts her so off-balance that she slumps awkwardly to the floor. You flow past her as an unstoppable mass, reforming in moments on the other side of the room. You grab a comfortingly solid piece of machinery as your limbs re-emerge, raising it over your head like a club.");
-    // If PC does not have a goo form, and Intelligence is higher than both Physique or Reflexes
-    else if((pc.intelligence() > pc.physique()) || (pc.intelligence() > pc.reflexes())) output("\n\nGiven that Dr Badger has you firmly by the throat you’re left at a distinct disadvantage, but as your eyes flick frantically across the room you manage to catch sight of a way to get out of this. You spot a support beam in the wall already straining under a heavy load, and realize that the ramshackle nature of the doctor’s hut looks like it could be used against her. You swing yourself out towards it, catching the doctor by surprise as you manage to land a heavy blow with one flailing limb. At first she’s simply confused, surprised by your seemingly random movements, but soon she catches sight of the smile on your face and the expectant look in your eyes. Following your gaze upwards, she manages to see just in time that a section of the roof is already beginning to slip, and she has barely half a second to throw herself backwards before several feet of metal collapses right where she was standing. She lands heavily, sprawled on her ass by the awkward dodge, and in the few seconds it takes her to recover you’re already readying your weapon and resetting your disabled equipment.");
-    // If PC does not have a goo form, and Physique or Reflexes or both is higher than or equal to Intelligence
-    else output("\n\nYou grit your teeth and push away from the door behind you, which fortunately manages to hold together despite the impressive force you put on it. Your sudden surge manages to catch Dr Badger off-guard, and the two of you tumble forwards onto the floor, her hand losing its grip around your throat as you fall. You manage to roll to your feet faster than she does, and before she can ready herself again you’ve managed to get a hold of some comfortingly solid piece of machinery, holding it up like a club and fully ready to defend yourself.");
-    // Merged
-    output("\n\nYou’re expecting a fight, but instead Dr Badger just laughs.");
-    if(pc.isNice()) output(" You don't understand why she would mock you in such a way, but seeing the serious look on");
-    else if(pc.isMischievous()) output(" Alright, if she wants to dance, you'll make her fucking dance... Though seeing the wry smirk on");
-    else output(" The contempt of it almost makes you want to attack her more, but seeing the anger in");
-    output(" your face she raises her hands in apology. <i>“No, no, don’t get me wrong. I’m just surprised. It’s been so long since anyone actually </i>challenged<i> me. The locals are fun to play with and all, but they have so little </i>fight<i> in them. It’s nice to meet someone I can have a little... back and forth with</i>.”");
-    output("\n\nShe raises herself to her feet, her hands lowered and non-threatening, and in response you");
-    if(pc.isNice()) output(" carefully");
-    else output(" begrudgingly");
-    output(" lower your weapon a little too, although you still keep your eyes on her warily.");
-    output("\n\n<i>“If it’s all the same to you though”</i>, she continues, <i>“I would prefer if we don't get into an actual fight. I feel like we can respect each other, and I have so little equipment with me here, I’d hate for any of it to get broken.”</i>");
-    output("\n\nSomehow that last part seems almost like a threat, as though, as far as she’s concerned, the worst outcome of a fight between the two of you would be a few broken items.");
-    if(pc.isNice()) output(" With that said,");
-    else if(pc.isMischievous()) output(" You’re inclined to disagree, but that said,");
-    else output(" You would probably floor her on the spot, but");
-    output(" she seems to consider any conflict you had resolved, and you’re not sure");
-    if(pc.isNice()) output(" enough in your");
-    else output(" of her");
-    output(" abilities that you want to risk forcing the issue.");
-    output("\n\nShe moves behind a pile of junk which you only now realize conceals a desk, pulling up a chair nonchalantly and sitting down. She fishes around in the pile of detritus, pulling out what look like a pair of elaborate sunglasses, except silver and completely opaque. She hits a button on the side and suddenly you notice an array of red dots flicking on around the room, seemingly signalling a web of cameras you can only assume feed into her new eyewear.");
-    output("\n\n<i>“Now”</i>, she says, <i>“if you’d like to shop instead, I could certainly use some income to get things a little more off the ground here. I don’t have much now, but I’ve got big plans...”</i>");
-    
-    clearMenu();
-    if(silly) addButton(0,"Next",drBadgerMenu,undefined,"Hmm...","Welp, that happened.");
-    else addButton(0,"Next",drBadgerMenu);
+	clearOutput();
+	showDrBadger();
+	author("Abe E. Seedy");
+	output("You don’t fancy going along with whatever plans this mad doctor has, but at the same time you’re not about to meekly beg her to let you go either. You’re [pc.name] Steele");
+	if(pc.isNice()) output(" and you are not going to put up with any of that!");
+	else if(pc.isMischievous()) output(", dammit! Who is she to try to tell you what you can do?");
+	else output("! No one fucks with you and gets away with it!");
+	// If the PC has a goo form
+	if(pc.isGoo()) output("\n\nYou pause for a moment to roll your eyes dramatically, then you simply <i>relax</i>. In moments whatever grip Dr Badger had on you is lost, your entire body melting away into formlessness, and the sudden shift puts her so off-balance that she slumps awkwardly to the floor. You flow past her as an unstoppable mass, reforming in moments on the other side of the room. You grab a comfortingly solid piece of machinery as your limbs re-emerge, raising it over your head like a club.");
+	// If PC does not have a goo form, and Intelligence is higher than both Physique or Reflexes
+	else if((pc.intelligence() > pc.physique()) || (pc.intelligence() > pc.reflexes())) output("\n\nGiven that Dr Badger has you firmly by the throat you’re left at a distinct disadvantage, but as your eyes flick frantically across the room you manage to catch sight of a way to get out of this. You spot a support beam in the wall already straining under a heavy load, and realize that the ramshackle nature of the doctor’s hut looks like it could be used against her. You swing yourself out towards it, catching the doctor by surprise as you manage to land a heavy blow with one flailing limb. At first she’s simply confused, surprised by your seemingly random movements, but soon she catches sight of the smile on your face and the expectant look in your eyes. Following your gaze upwards, she manages to see just in time that a section of the roof is already beginning to slip, and she has barely half a second to throw herself backwards before several feet of metal collapses right where she was standing. She lands heavily, sprawled on her ass by the awkward dodge, and in the few seconds it takes her to recover you’re already readying your weapon and resetting your disabled equipment.");
+	// If PC does not have a goo form, and Physique or Reflexes or both is higher than or equal to Intelligence
+	else output("\n\nYou grit your teeth and push away from the door behind you, which fortunately manages to hold together despite the impressive force you put on it. Your sudden surge manages to catch Dr Badger off-guard, and the two of you tumble forwards onto the floor, her hand losing its grip around your throat as you fall. You manage to roll to your feet faster than she does, and before she can ready herself again you’ve managed to get a hold of some comfortingly solid piece of machinery, holding it up like a club and fully ready to defend yourself.");
+	// Merged
+	output("\n\nYou’re expecting a fight, but instead Dr Badger just laughs.");
+	if(pc.isNice()) output(" You don't understand why she would mock you in such a way, but seeing the serious look on");
+	else if(pc.isMischievous()) output(" Alright, if she wants to dance, you'll make her fucking dance... Though seeing the wry smirk on");
+	else output(" The contempt of it almost makes you want to attack her more, but seeing the anger in");
+	output(" your face she raises her hands in apology. <i>“No, no, don’t get me wrong. I’m just surprised. It’s been so long since anyone actually </i>challenged<i> me. The locals are fun to play with and all, but they have so little </i>fight<i> in them. It’s nice to meet someone I can have a little... back and forth with</i>.”");
+	output("\n\nShe raises herself to her feet, her hands lowered and non-threatening, and in response you");
+	if(pc.isNice()) output(" carefully");
+	else output(" begrudgingly");
+	output(" lower your weapon a little too, although you still keep your eyes on her warily.");
+	output("\n\n<i>“If it’s all the same to you though”</i>, she continues, <i>“I would prefer if we don't get into an actual fight. I feel like we can respect each other, and I have so little equipment with me here, I’d hate for any of it to get broken.”</i>");
+	output("\n\nSomehow that last part seems almost like a threat, as though, as far as she’s concerned, the worst outcome of a fight between the two of you would be a few broken items.");
+	if(pc.isNice()) output(" With that said,");
+	else if(pc.isMischievous()) output(" You’re inclined to disagree, but that said,");
+	else output(" You would probably floor her on the spot, but");
+	output(" she seems to consider any conflict you had resolved, and you’re not sure");
+	if(pc.isNice()) output(" enough in your");
+	else output(" of her");
+	output(" abilities that you want to risk forcing the issue.");
+	output("\n\nShe moves behind a pile of junk which you only now realize conceals a desk, pulling up a chair nonchalantly and sitting down. She fishes around in the pile of detritus, pulling out what look like a pair of elaborate sunglasses, except silver and completely opaque. She hits a button on the side and suddenly you notice an array of red dots flicking on around the room, seemingly signalling a web of cameras you can only assume feed into her new eyewear.");
+	output("\n\n<i>“Now”</i>, she says, <i>“if you’d like to shop instead, I could certainly use some income to get things a little more off the ground here. I don’t have much now, but I’ve got big plans...”</i>");
+	
+	clearMenu();
+	if(silly) addButton(0,"Next",drBadgerMenu,undefined,"Hmm...","Welp, that happened.");
+	else addButton(0,"Next",drBadgerMenu);
 }
+*/

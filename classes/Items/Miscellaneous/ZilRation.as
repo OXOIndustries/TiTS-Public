@@ -73,7 +73,7 @@
 					if(target.libido() < 10) kGAMECLASS.output("\n\nIdly daydreaming as you examine the lingering taste in your mouth, you find yourself considering the zil and their oddly sexual rituals and society. Do they try to fuck every stranger they meet? What would it be like to live like that.... You shake your head to clear the errant thoughts away, a slight blush on your [pc.skin].");
 					else if(target.libido() < 30) {
 						kGAMECLASS.output("\n\nYou idly rub at your crotch");
-						if(target.isCrotchGarbed()) kGAMECLASS.output(" through your [pc.lowerGarment]");
+						if(!target.isCrotchExposed()) kGAMECLASS.output(" through your [pc.lowerGarment]");
 						kGAMECLASS.output(" while entertaining a daydream about an encounter will a zil in the jungle. " + target.mf("She","He") + " comes upon you before you're ready and instead of fighting, you offer not to resist... in exchange for more rations.\n\nShaking your head to clear away the increasingly lustful fantasy, you can't help but wonder if this stuff is effecting you somehow... spiking your libido to match the aliens' own.");
 						target.lust(5);
 					}
@@ -232,7 +232,7 @@
 				if(target.skinTone == "yellow" && target.nippleColor != "black" && changes < changeLimit && rand(3) == 0)
 				{
 					kGAMECLASS.output("\n\nYou nearly miss your [pc.nipples] turning black");
-					if(target.isChestGarbed()) kGAMECLASS.output(" underneath your [pc.upperGarment]");
+					if(!target.isChestExposed()) kGAMECLASS.output(" underneath your [pc.upperGarment]");
 					kGAMECLASS.output(", but there's no ignoring the almost glossy shine that your chest has gained. It certainly draws the eye....");
 					target.nippleColor = "black";
 					changes++;
@@ -321,7 +321,7 @@
 				if(target.totalClits() == 1) kGAMECLASS.output("it peeks out of its hood");
 				else kGAMECLASS.output("they peek out of their hoods");
 				kGAMECLASS.output(", growing to a full, rigid size almost immediately. ");
-				if(target.isCrotchGarbed()) kGAMECLASS.output("You pull open your [pc.lowerGarment] to check on the sudden change");
+				if(!target.isCrotchExposed()) kGAMECLASS.output("You pull open your [pc.lowerGarment] to check on the sudden change");
 				else kGAMECLASS.output("You bend over to check on the sudden change");
 				kGAMECLASS.output(" just in time to see ");
 				if(target.totalClits() == 1) kGAMECLASS.output("it");
@@ -635,7 +635,6 @@
 			if (choices.length > 0)
 			{
 				x = choices[rand(choices.length)];
-				if(choices.length == 0) x = -1;
 				//If you got a dick that needs thickening, take the chance!
 				if(x != -1 && changes < changeLimit && rand(2) == 0) {
 					kGAMECLASS.output("\n\nOhhh, something feels nice in your crotch. You reach down to find the source, grabbing your [pc.cock " + x + "] ");
@@ -679,8 +678,8 @@
 			//Trappy Smoothpouch! - requires balls small enough
 			if(target.balls > 0 && target.balls < 4 && !target.hasStatusEffect("Uniball") && changes < changeLimit && rand(3) == 0) {
 				kGAMECLASS.output("\n\nIt starts with a tingle in your crotch to get your attention. ");
-				if(!target.isCrotchGarbed()) {
-					kGAMECLASS.output("You pull open your [pc.upperGarment] curiously. ");
+				if(!target.isCrotchExposed()) {
+					kGAMECLASS.output("You pull open your [pc.lowerGarment] curiously. ");
 				}
 				kGAMECLASS.output("Then, every fold, hair, wrinkle, and blemish on your [pc.sack] smooths away, leaving nothing behind by perfect, glossy [pc.skinNoun]. It pulls a little tighter, compacting around your [pc.balls] without actually shrinking them, framing them into an adorable pouch.");
 				changes++;
@@ -688,7 +687,12 @@
 			}
 
 			//Facial Hair vanishes!
-			//Your [pc.beard] tickles, and when you scratch it, your hand comes away covered in hair. A snow of [haircolor] falls from your chin, leaving it bare and smooth. <b>You no longer have facial hair.</b>
+			if(target.hasBeard() && rand(5) == 0)
+			{
+				kGAMECLASS.output("\n\nYour [pc.beard] tickles, and when you scratch it, your hand comes away covered in hair. A snow of [pc.hairColor] falls from your chin, leaving it bare and smooth. <b>You no longer have facial hair.</b>");
+				target.removeBeard();
+				changes++;
+			}
 
 			//Facial hair stops growing!
 			//A painful feeling runs through your chin, but nothing changes outwardly. A closer inspection using the sensors on your codex reveals that <b>your facial hair has stopped growing.</b>

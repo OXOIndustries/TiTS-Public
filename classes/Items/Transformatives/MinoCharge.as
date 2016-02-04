@@ -688,6 +688,7 @@ package classes.Items.Transformatives
 				changes++;
 				
 				output("\n\nThere’s a churning in your [pc.balls], but it feels like a growth in quality, not quantity. You feel loaded and ready to breed, packing new virility in your [pc.cumNoun].");
+				if (target.virility() <= 0) output(" Maybe you can make use of it if you weren’t otherwise infertile...");
 			}
 			
 			//Low chance to increase libido
@@ -698,7 +699,12 @@ package classes.Items.Transformatives
 				changes++;
 				
 				output("\n\nThe heat surging in your veins leaves you feeling fierce and lusty. You can’t help but flex your muscles, picturing a plethora of soft, jiggly cow-girls offering up their milk to you");
-				if (target.hasCock()) output(" and sucking your dick, unable to get enough of your thick, virile cum");
+				if (target.hasCock())
+				{
+					output(" and sucking your dick, unable to get enough of your thick");
+					if (target.virility() > 0) output(", virile");
+					output(" cum");
+				}
 				output(". Even the other bulls have to submit to you, the biggest, beefiest stud on the ranch with your own personal harem of milk-sluts to suck and fuck any way you please.");
 				
 				if (target.hasCock()) 

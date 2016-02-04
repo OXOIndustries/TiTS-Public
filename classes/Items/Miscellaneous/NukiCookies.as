@@ -411,7 +411,10 @@
 					//2.5” diameter to 3 diameter
 					else if(pc.ballSizeRaw <= 8)
 					{
-						kGAMECLASS.output("\n\nThe [pc.skin] of your [pc.sack] pulls tight, stretched from within. New weight is settling in your [pc.balls], making them swell with newfound virility, reminding you now more than ever that kui-tan are reknowned for having large balls. <b>Yours are easily apple-sized at this point.</b>");
+						kGAMECLASS.output("\n\nThe [pc.skin] of your [pc.sack] pulls tight, stretched from within. New weight is settling in your [pc.balls], making them swell with");
+						if (target.virility() > 0) kGAMECLASS.output(" newfound virility");
+						else kGAMECLASS.output(" greater amounts of spunk");
+						kGAMECLASS.output(", reminding you now more than ever that kui-tan are reknowned for having large balls. <b>Yours are easily apple-sized at this point.</b>");
 						pc.ballSizeRaw = 9.5;
 						//+1 libido
 						pc.slowStatGain("libido",1);
@@ -439,7 +442,9 @@
 					//4 to 4.5
 					else if(pc.ballSizeRaw <= 13)
 					{
-						kGAMECLASS.output("\n\nYour nuts churn with their barely-suppresed, virile [pc.cumNoun]-load, working on overtime to make your next orgasm hotter, wetter, and all around messier. The sense of need in your swollen cum-factories rises higher and higher, driving to look down and pant with lust. Pre-cum leaks from you like a sieve, and your balls are bigger than ever. You give them a familiar squeeze, kneading the growing boys until your body relaxes, the change finished.");
+						kGAMECLASS.output("\n\nYour nuts churn with their barely-suppressed");
+						if (target.virility() > 0) kGAMECLASS.output(", virile");
+						kGAMECLASS.output(" [pc.cumNoun]-load, working on overtime to make your next orgasm hotter, wetter, and all around messier. The sense of need in your swollen cum-factories rises higher and higher, driving to look down and pant with lust. Pre-cum leaks from you like a sieve, and your balls are bigger than ever. You give them a familiar squeeze, kneading the growing boys until your body relaxes, the change finished.");
 						pc.ballFullness = 100;
 						//+25 lust
 						pc.lust(25);

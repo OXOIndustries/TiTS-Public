@@ -4,6 +4,7 @@
 	import classes.Creature;
 	import classes.GameData.Pregnancy.Handlers.CockvinePregnancy;
 	import classes.GameData.Pregnancy.Handlers.NyreaHuntressPregnancy;
+	import classes.GameData.Pregnancy.Handlers.OviliumEggPregnancy;
 	import classes.GameData.Pregnancy.Handlers.RenvraEggPregnancy;
 	import classes.GameData.Pregnancy.Handlers.RenvraFullPregnancy;
 	import classes.GameData.Pregnancy.Handlers.RoyalEggPregnancy;
@@ -27,6 +28,7 @@
 			PregnancyManager.insertNewHandler(new NyreaHuntressPregnancy());
 			PregnancyManager.insertNewHandler(new QueenOfTheDeepPregnancy());
 			PregnancyManager.insertNewHandler(new RoyalEggPregnancy());
+			PregnancyManager.insertNewHandler(new OviliumEggPregnancy());
 		}
 		
 		// Would use a vector, but vectors can't store derived types. WORST VECTOR CLASS EVER.
@@ -125,6 +127,15 @@
 					if ((_pregHandlers[tarCreature.pregnancyData[i].pregnancyType] as BasePregnancyHandler).pregnancyChildType == childType) return true;
 				}
 			}
+			
+			return false;
+		}
+		
+		public static function getPregnancyChildType(tarCreature:Creature, pregSlot:int):int
+		{
+			if (!tarCreature.isPregnant()) return -1;
+			
+			return (_pregHandlers[tarCreature.pregnancyData[pregSlot].pregnancyType] as BasePregnancyHandler).pregnancyChildType;
 			
 			return false;
 		}

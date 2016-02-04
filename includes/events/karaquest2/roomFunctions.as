@@ -1,6 +1,8 @@
 import classes.Characters.KQ2BlackVoidGrunt;
 import classes.GameData.CombatManager;
 import classes.Items.Accessories.TamWolfDamaged;
+import classes.UIComponents.ContentModules.RotateMinigameModule;
+import classes.UIComponents.ContentModuleComponents.RGMK;
 
 public function kq2CombatSuppression():Boolean
 {
@@ -85,7 +87,7 @@ public function kq2MooksVictory():void
 {
 	clearOutput();
 	
-	output("The pirates collapse, unable to put up much more of a fight after what you've done to them. You kick their weapons away and tie them up to make sure you don't have any surprises when they've recovered.");
+	output("The pirates collapse, unable to put up much more of a fight after what you’ve done to them. You kick their weapons away and tie them up to make sure you don’t have any surprises when they’ve recovered.\n\n");
 	
 	flags["KQ2_SUPPRESS_COMBAT"] = 1;
 	// maybe sneaky loot a securemp/hammer carbine one time across all fights with them?
@@ -113,8 +115,8 @@ public function kq2FightSecDrones():void
 	CombatManager.setHostileCharacters(h);
 	CombatManager.victoryScene(kq2DroneVictory);
 	CombatManager.lossScene(kq2CapturedByPiratesBadEnd);
-	CombatManager.displayLocation("SEC. DROIDS");
-	CombatManager.encounterText("You're fighting a flight of small scout drones. Each drone is about the size of your fist, just a ball of metal built around a hover-platform and a tiny zap-gun. They're quick moving, though, and speed around you in a constant hail of electrical discharge.");
+	CombatManager.displayLocation("SEC. DRONES");
+	CombatManager.encounterText("You’re fighting a flight of small scout drones. Each drone is about the size of your fist, just a ball of metal built around a hover-platform and a tiny zap-gun. They’re quick moving, though, and speed around you in a constant hail of electrical discharge.");
 
 	clearMenu();
 	addButton(0, "Next", CombatManager.beginCombat);
@@ -125,7 +127,7 @@ public function kq2DroneVictory():void
 	clearOutput();
 	output("The last of the drones pops in a hail of sparks and goes crashing to the ground. Kara twirls her plasma gun around her finger and blows a wisp of smoke from the barrel.");
 
-	output("<i>“C’mon.”</i> she says, holstering it. <i>“They’ve probably alerted base security. We need to hurry!”</i>");
+	output("<i>“C’mon.”</i> she says, holstering it. <i>“They’ve probably alerted base security. We need to hurry!”</i>\n\n");
 	
 	flags["KQ2_SUPPRESS_COMBAT"] = 1;
 	
@@ -340,6 +342,7 @@ public function kq2UseTank():void
 	if (flags["KQ2_KARA_WITH_PC"] != 1) output(" over the tank’s radio. <i>“I’ll meet you at the doors - or what’s left of ‘em!”</i>");
 	output(".");
 	
+	processTime(2);
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -387,20 +390,52 @@ public function kq2rfManualOverride():void
 {
 	clearOutput();
 
-	output("\n\nYou look around to make sure you’re not about to get shot, then");
-	if (pc.tallness > 90) output(" take a knee");
+	output("You look around to make sure you’re not about to get shot, then");
+	if (pc.tallness > 90 && pc.hasKnees()) output(" take a knee");
 	else output(" lean down");
 	output(" next to the computer and pop it open.");
 	if (flags["KQ2_KARA_WITH_PC"] == 1) output("Cover me,”</i> you say to Kara");
 	else output(" You’ll have to trust Kara to cover you from the tower");
 	output(". And she does so: the moment you look away, you hear the sound of gunfire around you - a few bullets slam into the metal near you, but nobody gets near you as you work.");
 
-	// 9999 - [Lock-picking Minigame from Silence Here]
+	// [Lock-picking Minigame from Silence Here]
+	clearMenu();
+	addButton(0, "Next", kq2rfManualOverrideMinigame);
+}
 
-	output("\n\nIt’s a quick matter to rip some of the wiring out, cross it, and short out the security system. After about a minute of work, the door slides open. Success!");
+private function kq2rfManualOverrideMinigame():void
+{
+	userInterface.showMinigame();
+	var gm:RotateMinigameModule = userInterface.getMinigameModule();
+	
+	var g:uint = RGMK.NODE_GOAL;
+	var i:uint = RGMK.NODE_INTERACT;
+	var l:uint = RGMK.NODE_LOCKED;
+	
+	var n:uint = RGMK.CON_NORTH;
+	var e:uint = RGMK.CON_EAST;
+	var s:uint = RGMK.CON_SOUTH;
+	var w:uint = RGMK.CON_WEST;
+	
+	gm.setPuzzleState(kq2rfManualOverrideSuccess, 5, 5,
+	[
+		i | n | e,	i | n | s,	i | w | e,	i | n | e,	g | s    ,
+		i | s | w,	i | w | e,	i | n | e,	i | n | e,	i | s | e,
+		i | n | w,	i | n | s,	g | n | w,	i | n | s,	l        ,
+		i | w | e,	l        ,	i | n | e,	i | e | w,	i | n | e,
+		g | n | e,	i | n | s,	i | s | e,	i | e | s,	g | n    
+	]);
+}
+
+public function kq2rfManualOverrideSuccess():void
+{
+	clearOutput();
+
+	output("It’s a quick matter to rip some of the wiring out, cross it, and short out the security system. After about a minute of work, the door slides open. Success!");
 
 	flags["KQ2_RND_ENTRANCE_OPEN"] = 3;
 
+	processTime(2);
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -413,6 +448,7 @@ public function kq2rfUseKeycard():void
 
 	flags["KQ2_RND_ENTRANCE_OPEN"] = 2;
 
+	processTime(1);
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -455,6 +491,7 @@ public function kq2KaraHotwiresSumDoors():void
 	flags["KQ2_KARA_WITH_PC"] = 1;
 	
 	// maybe force pc inside and then close door behind.
+	processTime(2);
 	clearMenu();
 	addButton(0, "Enter R&D", kq2rfEnterRNDFirstTime);
 }
@@ -513,6 +550,7 @@ public function kq2rfYardA1():Boolean
 
 		flags["KQ2_RF_KENNEL_USED"] = 1;
 		flags["TAMWOLF_FIXED_IN_KENNEL"] = 1;
+		processTime(2);
 	}
 	else if (flags["KQ2_RF_KENNEL_USED"] == undefined && (pc.accessory is TamWolf || pc.hasItemByType(TamWolf)))
 	{
@@ -533,6 +571,7 @@ public function kq2rfYardA1():Boolean
 			pc.destroyItemByType(TamWolf);
 			pc.inventory.push(new TamWolfII());
 		}
+		processTime(2);
 	}
 
 	return false;
@@ -634,7 +673,7 @@ public function kq2rfSecurityRoom():Boolean
 	//PC fights the Black Void Engineer here.
 	output("A small stairway leads up from the barracks’ main floor and up to the security office. A set of windows overlook the courtyard, and over the wasteland leading up to the base.");
 
-	if (flags["KQ2_DEFEATED_ENGINEER"] == undefined || flags["KQ2_DEFEATED_ENGINEER"] == 2)
+	if (flags["KQ2_DEFEATED_ENGINEER"] == undefined)
 	{
 		kq2EnterEngineersRoom();
 		return true;

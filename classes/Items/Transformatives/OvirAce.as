@@ -353,7 +353,7 @@ package classes.Items.Transformatives
 						else output(" settles");
 						output(" in somewhere just above your dick, and all that's left beneath is a smooth patch of skin. No one would ever know you had balls.");
 
-						target.balls = 0;
+						target.makeBallsInternal();
 					}
 					else
 					{

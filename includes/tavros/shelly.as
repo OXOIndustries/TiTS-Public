@@ -54,6 +54,7 @@ public function investigateSlashShelly():void
 	clearMenu();
 	addButton(0,"Talk",talkToShelly);
 	if(flags["TALKED_TO_SHELLY"] == 1) addButton(1,"Assist",assistShellyLaying,undefined,"Assist","Help Shelly lay some eggs.");
+	else if(flags["KNOW_SHELLYS_NAME"] == undefined) addDisabledButton(1,"Assist","Assist","You must talk to the bunny woman before you can assist her with anything.");
 	else addDisabledButton(1,"Assist","Assist","You must talk to Shelly before you can assist her with anything.");
 	if(flags["ASSISTED_SHELLY_WITH_LAYING"] != undefined)
 	{
@@ -84,7 +85,7 @@ public function talkToShelly():void
 	output("\n\nYou chuckle, telling her that part of her problem might be people thinking she’s just pregnant in a bar. She frowns slightly and removes her hand.");
 	output("\n\n<i>“Yeah I guess, but you only got half the story. The trial I was in was more than a year ago. Apparently the test drug they gave me was a little too effective, so whenever these eggs come out more replace them near immediately. The drug that’s going to markets is improved, no permanent effects. They must have realized people would make that mistake like you thought though. The company gave me a job promoting the product, and it's okay money - enough to rent a room on the station,”</i> she says, sounding a little more optimistic at the end.");
 	output("\n\nYou mention that you heard her mentioning “layings” and ask what that entails. She blushes and sets the sign off to the side, weaving her fingers together and looking around to see if anyone else is listening.");
-	output("\n\n<i>“Well, so i’m full of eggs, and even though they keep coming back, laying is fairly regular. Usually it's just once every couple days, but they can be... coerced to come out sooner. If you get over the fact that they came out of a person, they taste really sweet,”</i> she says with an embarrassed smile. Without really thinking about it, you tell her you’d be happy to assist her with laying eggs if she ever wanted help. The dusky saleswoman’s pink bunny ears turn beet red as she takes in your words, and you realize what you said.");
+	output("\n\n<i>“Well, so I’m full of eggs, and even though they keep coming back, laying is fairly regular. Usually it's just once every couple days, but they can be... coerced to come out sooner. If you get over the fact that they came out of a person, they taste really sweet,”</i> she says with an embarrassed smile. Without really thinking about it, you tell her you’d be happy to assist her with laying eggs if she ever wanted help. The dusky saleswoman’s pink bunny ears turn beet red as she takes in your words, and you realize what you said.");
 	output("\n\n<i>“W-well, if you really wanted too, I’d be ok with it. If I just wait for it to happen, they kinda build up and get heavier. My name is Shelly by the way,”</i> she says, brushing her hair away from her face. You aren’t sure if she’s desperate or if you made that big of an impression being the only person who came up and talked to her, but it seems she’d be willing to let you help her, and all that entails. You give her your first name in return and tell her you’ll probably be back soon.");
 	flags["KNOW_SHELLYS_NAME"] = 1;
 	//pass 30 min

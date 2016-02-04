@@ -2542,6 +2542,8 @@ public function useRepeatGloryhole():void
 //Fertilization stuff. Use for sorting Taivra pregger setup?
 public function taivraFertilize():void
 {
+	if(pc.virility() <= 0) return;
+	
 	flags["TAIVRA_FERTILE"] = GetGameTimestamp();
 }
 public function taivraHasFertileEggs():Boolean

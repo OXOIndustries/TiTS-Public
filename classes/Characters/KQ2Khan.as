@@ -224,7 +224,7 @@ package classes.Characters
 				
 				if (rand(5) > 0)
 				{					
-					output(" The bolt arcs from " + (target is PlayerCharacter ? "you" : "Kara") +" to " + (target is PlayerCharacter ? "Kara" : "you") +", blasting " + (target is PlayerCharacter ? "her" : "you") +" as well!");
+					output("\nThe bolt arcs from " + (target is PlayerCharacter ? "you" : "Kara") +" to " + (target is PlayerCharacter ? "Kara" : "you") +", blasting " + (target is PlayerCharacter ? "her" : "you") +" as well!");
 					applyDamage(damageRand(rangedDamage(), 15), this, target, "minimal");
 				}
 			}

@@ -57,10 +57,10 @@ public function metBeth():Boolean
 
 public function showBrothelLady(nude:Boolean = false):void
 {
-	if(flags["KAT_MET"] != undefined) userInterface.showName("\nKAT");
-	else userInterface.showName("BROTHEL\nMISTRESS");
-	if(!nude) userInterface.showBust("BORING_MISTRESS");
-	else userInterface.showBust("BORING_MISTRESS_NUDE");
+	if(flags["KAT_MET"] != undefined) showName("\nKAT");
+	else showName("BROTHEL\nMISTRESS");
+	if(!nude) showBust("BORING_MISTRESS");
+	else showBust("BORING_MISTRESS_NUDE");
 }
 public function getKatPregContainer():PregnancyPlaceholder
 {
@@ -434,6 +434,20 @@ public function rideDatRahnBitchsOvi():void
 // Turn Tricks
 public function brothelTurnTrixLady():void
 {
+	// Permanent Contract
+	// Requirements: PC is licensed, has used rooms at least twice, has gotten > 74% yield from [Rooms] or [Everything] at least once
+	// Scene repeats every four times PC uses [Turn Tricks]
+	if
+	(	flags["BETHS_CONTRACT_WHORE"] != undefined
+	&&	flags["BETHS_TIMES_WHORED_ROOMS"] >= 2
+	&&	flags["BETHS_TIMES_GOOD_YIELD"] >= 1
+	&&	(flags["BETHS_TIMES_WHORED"] != undefined && flags["BETHS_TIMES_WHORED"] % 4 == 0)
+	)
+	{
+		bethsPermaContractBadEnd();
+		return;
+	}
+	
 	clearOutput();
 	showBrothelLady();
 	author("Nonesuch");
@@ -597,7 +611,7 @@ public function brothelTurnTrixContract(choice:int = 0):void
 }
 
 // Payment calculation
-public function brothelWhorePayment(baseAmount:Number = 0):Number
+public function brothelWhorePayment(baseAmount:Number = 0, service:String = "none"):Number
 {
 	// Whoring Formulas
 	// All numbers are suggestions. Basic premise: the more the PC offers, and the more enticing their body is, the more they earn.
@@ -632,10 +646,16 @@ public function brothelWhorePayment(baseAmount:Number = 0):Number
 		returnAmount += (flags["BETHS_TIMES_WHORED"] * 2);
 	
 	returnAmount = (returnAmount + baseAmount);
+	
 	// If Licensed, - 0.2 of total off total
 	if(flags["BETHS_CONTRACT_WHORE"] != undefined) returnAmount = Math.floor(returnAmount * 0.8);
 	// If Freelance, /2 total
 	else returnAmount = Math.floor(returnAmount * 0.5);
+	
+	if(InCollection(service, ["all", "rooms"]))
+	{
+		if(returnAmount / baseAmount >= 0.75) IncrementFlag("BETHS_TIMES_GOOD_YIELD");
+	}
 	
 	return returnAmount;
 }
@@ -731,7 +751,7 @@ public function brothelTurnTrixFreelanceWhore(service:String = "none"):void
 		output("\n\nAfter a few hours, reproductive fluid of every description, flavor and color is dripping thickly out of every single one of your holes, and you are feeling sore and thoroughly used. You take your earnings up to the counter and reluctantly split it with the mistress.");
 	}
 	
-	totalEarnings = brothelWhorePayment(baseEarnings);
+	totalEarnings = brothelWhorePayment(baseEarnings, service);
 	// Low yield:
 	if(totalEarnings <= 0)
 	{
@@ -740,7 +760,7 @@ public function brothelTurnTrixFreelanceWhore(service:String = "none"):void
 		output("\n\nBefore you can utter a response she cuts you off, slamming her hand on the table. Her once bored, emotionless face changes into a slight scowl as she stares at you dead in the eyes.");
 		output("\n\n<i>“This place is a whorehouse, do you understand? Whore. House. Only two kinds of people come in here to do business and they are: the clients... and the <b>WHORES</b>. Which one of those are you?”</i> Turning her head down towards the desk, she takes a moment for a mental breather until her expression relaxes. She then continues, <i>“Listen, if you’re not going to whore yourself properly on the floor, then don’t bother wasting my time. Please see yourself out.”</i>");
 	}
-	else if(totalEarnings <= baseEarnings)
+	else if(totalEarnings / baseEarnings < 0.75)
 	{
 		if(service != "all")
 		{
@@ -776,15 +796,21 @@ public function brothelTurnTrixFreelanceWhore(service:String = "none"):void
 }
 
 // Licensed
-public function brothelTurnTrixLicensedMenu():void
+public function brothelTurnTrixLicensedMenu(showFull:Boolean = true):void
 {
 	clearOutput();
-	showBrothelLady();
-	author("Nonesuch");
 	
-	output("<i>“Atta girl,”</i> Kat says. <i>“Pretty busy in here today - we need all the hands we can get. And mouths.”</i>");
-	output("\n\nYou consider the smoky, dimly lit room full of assorted engineers, smugglers, mercenaries, travelers, mafiosi and gamblers. Mostly male, mostly human or ausar, mostly looking for the good time you could provide.");
-	output("\n\nHow much are you putting on offer?");
+	if(showFull)
+	{
+		showBrothelLady();
+		author("Nonesuch");
+		output("<i>“Atta girl,”</i> Kat says. <i>“Pretty busy in here today - we need all the hands we can get. And mouths.”</i>");
+		output("\n\nYou consider the smoky, dimly lit room full of assorted engineers, smugglers, mercenaries, travelers, mafiosi and gamblers. Mostly male, mostly human or ausar, mostly looking for the good time you could provide.");
+		output("\n\n");
+	}
+	else showName("TURN\nTRICKS");
+	
+	output("How much are you putting on offer?");
 	
 	clearMenu();
 	// [Mouth] [Vag] [Everything] [Rooms]
@@ -854,7 +880,7 @@ public function brothelTurnTrixLicensedWhore(service:String = "none"):void
 		pc.lust(10);
 	}
 	
-	totalEarnings = brothelWhorePayment(baseEarnings);
+	totalEarnings = brothelWhorePayment(baseEarnings, service);
 	// Low yield:
 	if(totalEarnings <= 0)
 	{
@@ -863,7 +889,7 @@ public function brothelTurnTrixLicensedWhore(service:String = "none"):void
 		output("\n\nBefore you can utter a response she cuts you off, slamming her hand on the table. Her once bored, emotionless face changes into a slight scowl as she stares at you dead in the eyes.");
 		output("\n\n<i>“This place is a whorehouse, do you understand? Whore. House. Only two kinds of people come in here to do business and they are: the clients... and the <b>WHORES</b>. Which one of those did you sign up for again?”</i> Turning her head down towards the desk, she takes a moment for a mental breather until her expression relaxes. She then continues, <i>“Listen, if you’re not going to whore yourself properly on the floor, then don’t bother wasting my time. Please see yourself out.”</i>");
 	}
-	else if(totalEarnings <= baseEarnings)
+	else if(totalEarnings / baseEarnings < 0.75)
 	{
 		if(service != "all")
 		{
@@ -1399,4 +1425,126 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 	}
 	
 	return baseEarnings;
+}
+
+// Permanent Contract
+// Requirements: PC is licensed, has used rooms at least twice, has gotten > 74% yield from [Rooms] or [Everything] at least once
+// Scene procs when PC approaches desk next when not Jaded
+public function bethsPermaContractBadEnd(response:String = "ask"):void
+{
+	clearOutput();
+	author("Nonesuch");
+	
+	if(response == "ask")
+	{
+		showBrothelLady();
+		showName("CONTRACT\nOFFER");
+		
+		output("<i>“Hey [pc.name]. Got a minute before you go on shift?”</i> Kat shuffles around under her desk. <i>“I keep saying I want to offer you a better contract, don’t I? I managed to have a word with Beth, and I’ve got you exactly that.”</i> She pushes the electronic form over to you. <i>“Same basic terms - 80/20 - but we want to give you some mod work, free up front, and your own room. It’ll push what you bring in way up, make you one of our star attractions.”</i>");
+		output("\n\nYou look at the form, with the signature box at the bottom blinking. <b>It seems to have significantly more small print than the first one...</b>");
+		
+		processTime(2);
+		// [Sign] [Don’t Sign]
+		clearMenu();
+		addButton(0, "Sign", bethsPermaContractBadEnd, "sign");
+		addButton(1, "Don’t Sign", bethsPermaContractBadEnd, "don't sign");
+		return;
+	}
+	else if(response == "don't sign")
+	{
+		showBrothelLady();
+		showName("REFUSED\nCONTRACT");
+		
+		output("<i>“You must think I was born yesterday,”</i> you say, pushing the form back. Kat shrugs and smirks, completely unabashed.");
+		output("\n\n<i>“Just want to make the career you’re made for happen, babycakes. As long as you keep pleasing the punters and being a good rug-munch afterwards, I don’t really care.”</i>");
+		
+		processTime(1);
+		clearMenu();
+		addButton(0, "Whore", brothelTurnTrixLicensedMenu, false);
+		addButton(14, "Leave", mainGameMenu);
+		return;
+	}
+	else if(response == "sign")
+	{
+		showBrothelLady();
+		showName("PROPERTY\nOF BETH’S");
+		
+		output("<i>“You won’t regret this, [pc.name],”</i> the brothel mistress smiles, as she watches you sign the dotted line. <i>“Come on into the back - I can’t wait to see how these mods Beth has got lined up turn out.”</i>");
+		output("\n\n.....");
+		output("\n\nA few hours later you lie on a bed and admire yourself in a full length mirror, exhilarated and slightly overwhelmed at what the three med-pens have done to you.");
+		if(pc.skinType == GLOBAL.SKIN_TYPE_SKIN && !InCollection(pc.skinTone, ["green", "lime green", "emerald", "viridescent"])) output(" Your skin is now a hairless, faintly luminescent lime-green, and your sweat - which is oilier and seems to form more readily - has a wonderful citrus scent");
+		else output(" As well as being hairless and faintly luminescent, the oily sweat which now readily forms on your skin has a wonderful citrus scent");
+		output(". Your new tentacle pussy waves at you with its chubby pink tentacles, each of the ganglions on the inside almost as sensitive as a clit. Experimentally, you stick two fingers in your mouth, past your [pc.lips], beyond your");
+		if(pc.hasTongueFlag(GLOBAL.FLAG_LONG)) output(" long tongue");
+		else output(" new, extendable twelve inch tongue");
+		output(" and find that what Kat has told you is true - any gag reflex you had is long gone, and the inside of your throat feels... ribbed.");
+		output("\n\nYou shiver with the erotic implications of these transformations, and sigh as you shift over and consider the other novelty of your new form.");
+		output("\n\n<i>“Aww, don’t worry,”</i> leers Kat, looking with you in the mirror at the <i>“Property of Beth’s”</i> tattoo on your [pc.ass]. <i>“We’ll get that off you eventually.”</i>");
+		
+		pc.createStatusEffect("Temporary Nudity Cheat");
+		pc.skinType = GLOBAL.SKIN_TYPE_SKIN;
+		pc.clearSkinFlags();
+		pc.addSkinFlag(GLOBAL.FLAG_SMOOTH);
+		pc.addSkinFlag(GLOBAL.FLAG_LUBRICATED);
+		pc.skinTone = "luminescent lime green";
+		if (!pc.hasVagina()) pc.createVagina();
+		for(i = 0; i < pc.vaginas.length; i++)
+		{
+			pc.shiftVagina(i, GLOBAL.TYPE_SIREN);
+			pc.vaginas[i].vaginaColor = "pink";
+		}
+		if (!pc.hasTongueFlag(GLOBAL.FLAG_LONG))
+		{
+			pc.tongueType = GLOBAL.TYPE_LEITHAN;
+			pc.clearTongueFlags();
+			pc.addTongueFlag(GLOBAL.FLAG_PREHENSILE);
+			pc.addTongueFlag(GLOBAL.FLAG_LONG);
+		}
+		
+		processTime((3 * 60) + rand(11));
+		clearMenu();
+		addButton(0, "Next", bethsPermaContractBadEnd, "end");
+		return;
+	}
+	else if(response == "end")
+	{
+		showName("FOREVER\n24");
+		
+		output("She’s right, although not in the way you imagine. The terms of your new contract stipulate that you have to pay for the mods - and they are some of the most expensive on the market - at a catastrophic interest rate. Factor in the rent on your room and you really don’t get to see much of your 80%, no matter how many hot, creamy loads you suck down, or how lascivious the displays you put on with the other whores, or how many times you take it in your dripping holes.");
+		output("\n\nFortunately Kat eradicates any lingering misgivings you have by introducing you to the wonder of pleasure patches. Just one makes the prospect of fucking four kui-tan at the same time live on cam in your room not daunting, but a burning necessity. Of course the patches are highly addictive, and come out of your salary too.");
+		output("\n\nEventually your contract is bought out (at a fantastic profit to Beth) by a human pirate warlord. You’re serving on his pleasure barge about a year later.");
+		output("\n\n<i>“Unf! Doesn’t matter how I modify you, 24,”</i> he sighs, sitting back on his couch, leaking horse cock bobbing. <i>“That asshole of yours is always going to be your best quality.”</i>");
+		output("\n\n<i>“Thank you, sir,”</i> you smile, feeling the hot cum slowly inch down your [pc.thigh], giving him a lascivious lick of the [pc.lips]. You are able to respond because your larynx bio-chip is set to <i>“normal”</i> today, as opposed to <i>“kitty cat”</i> or <i>“good puppy”</i>. He unfastens your chain and slaps the number on your [pc.ass], sending a thrill down your spine from the maso-chip implanted in your neck. All of these mods came out of your salary, of course - at a heavy interest rate. The maso-chip ensures you <i>like</i> that fact.");
+		output("\n\n<i>“You jiggle along, 24. See to the other guests.”</i>");
+		output("\n\n<i>“Yes, sir.”</i>");
+		output("\n\nYou get up, tweak your [pc.nipples] so that the lime liqueur in your full boobs is beading naturally, and then sashay through the dusky, drug-smoked and music-throbbing room. One of the many rutting, drinking or dancing revellers here will quickly find a use for you... which you’ll be orgasmically good at. You have found your true calling, and it has nothing to do with being a boring old CEO.");
+		
+		days += 392;
+		processTime(rand(36));
+		
+		var i:int = 0;
+		var x:int = 0;
+		var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
+		if (!pp.hasCock()) pp.createCock();
+		
+		for(i = 0; i < 300; i++)
+		{
+			pc.loadInMouth(pp);
+			pc.buttChange(pp.cockVolume(0), false);
+			pc.loadInAss(pp);
+			if(rand(2) == 0)
+			{
+				x = rand(pc.totalVaginas());
+				pc.cuntChange(x, pp.cockVolume(0), false);
+				pc.loadInCunt(pp, x);
+			}
+		}
+		for(i = 0; i < 9001; i++)
+		{
+			pc.orgasm();
+		}
+		pc.credits = 0;
+	}
+	
+	badEnd("GAME OVER.");
 }

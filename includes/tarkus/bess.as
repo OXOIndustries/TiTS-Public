@@ -12535,7 +12535,7 @@ public function bessMilkers(opts:Array = null):void
 		output(".");
 	}
 
-	if (bess.hasCock())
+	if (pc.hasCock())
 	{
 		output("\n\nUnable to hold back any longer, you move up behind [bess.himHer],");
 		if (!pc.isNude()) output(" strip off your gear,");

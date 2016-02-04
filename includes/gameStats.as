@@ -53,6 +53,7 @@ public function statisticsScreen(showID:String = "All"):void
 		}
 		else output2("\n<b>* Race: </b>" + StringUtil.toTitleCase(pc.originalRace));
 		output2("\n<b>* Height: </b>" + prettifyLength(pc.tallness));
+		output2("\n<b>* Weight: </b>" + prettifyWeight(pc.fullBodyWeight()));
 		output2("\n<b>* Sex: </b>");
 		if(pc.hasCock() && !pc.hasVagina()) output2("Male");
 		else if(!pc.hasCock() && pc.hasVagina()) output2("Female");
@@ -61,7 +62,7 @@ public function statisticsScreen(showID:String = "All"):void
 		if(pc.hasStatusEffect("Force Fem Gender")) output2("\n<b>* Gender Preference:</b> Female");
 		else if(pc.hasStatusEffect("Force Male Gender")) output2("\n<b>* Gender Preference:</b> Male");
 		else output2("\n<b>* Gender Alignment: </b>" + pc.mfn("Male","Female","Androgynous"));
-		output2("\n<b>* Femininity</b> <i>(Negative is Masculine)</i><b>: </b>" + Math.round((pc.femininity - 50) * 2) + "%");
+		output2("\n<b>* Femininity</b> <i>(Negative is Masculine)</i><b>: </b>" + Math.round((pc.femininity - 50) * 2) + " %");
 		output2("\n<b>* Personality Score: </b>" + Math.round(pc.personality));
 		if(pc.isNice()) output2(", Kind");
 		if(pc.isMischievous()) output2(", Mischievous");
@@ -70,6 +71,8 @@ public function statisticsScreen(showID:String = "All"):void
 		if(pc.isBro()) output2(", Brute");
 		output2("\n<b>* Alcohol Tolerance: </b>" + pc.tolerance() + "/100");
 		output2("\n<b>* Exhibitionism: </b>" + formatFloat(pc.exhibitionism(), 1) + "/100");
+		output2("\n<b>* Carry Threshold: </b>" + prettifyWeight(pc.bodyStrength()));
+		//if(pc.weightQ("full") > 0) output2(" (" + pc.weightQ("full") + " %)");
 		// Head
 		output2("\n<b><u>Head</u></b>");
 		output2("\n<b>* Face: </b>" + GLOBAL.TYPE_NAMES[pc.faceType]);
@@ -251,6 +254,11 @@ public function statisticsScreen(showID:String = "All"):void
 				output2(" " + pc.totalBreasts() + " Breast");
 				if(pc.totalBreasts() != 1) output2("s");
 			}
+			if(pc.breastRows.length > 1)
+			{
+				output2("\n<b>* Breasts, Weight: </b>" + prettifyWeight(pc.bodyPartWeight("breast")) + ", total");
+				if(pc.weightQ("breast") > 0) output2(" (" + pc.weightQ("breast") + " %)");
+			}
 			if(pc.hasNipples())
 			{
 				output2("\n<b>* Nipples:</b>");
@@ -258,7 +266,7 @@ public function statisticsScreen(showID:String = "All"):void
 				if(pc.nippleColor != "") output2(" " + StringUtil.toDisplayCase(pc.nippleColor));
 				output2(" Nipple");
 				if(pc.totalNipples() != 1) output2("s");
-				if(pc.totalNipples() > 1) output2(", " + pc.nipplesPerBreast + " per Breast");
+				if(pc.totalNipples() > 1) output2(", " + pc.nipplesPerBreast + " per breast");
 				if(pc.isLactating()) output2(", Lactation Active");
 				if(pc.nipplesPierced != 0) output2("\n<b>* Nipple Piercing: </b>" + pc.nipplesPierced + " " + StringUtil.toDisplayCase(pc.nipplesPShort));
 			}
@@ -267,10 +275,11 @@ public function statisticsScreen(showID:String = "All"):void
 			{
 				output2("\n<b><u>Lactation</u></b>");
 				output2("\n<b>* Milk, Type: </b>" + GLOBAL.FLUID_TYPE_NAMES[pc.milkType]);
+				output2("\n<b>* Milk, Capacity: </b>" + formatFloat(pc.milkFullness, 1) + " %");
 				output2("\n<b>* Milk, Current: </b>" + Math.round(pc.milkFullness/100 * pc.milkCapacity()) + " mLs");;
 				output2("\n<b>* Milk, Max: </b>" + pc.milkCapacity() + " mLs");
-				output2("\n<b>* Milk, Production Training: </b>" + formatFloat(pc.milkMultiplier, 1) + "%");
-				output2("\n<b>* Milk, Production Bonus: </b>" + Math.round(pc.milkRate*100)/10 + "%");
+				output2("\n<b>* Milk, Production Training: </b>" + formatFloat(pc.milkMultiplier, 1) + " %");
+				output2("\n<b>* Milk, Production Bonus: </b>" + Math.round(pc.milkRate*100)/10 + " %");
 			}
 			// Breasts
 			if(pc.totalBreasts() > 0)
@@ -291,6 +300,8 @@ public function statisticsScreen(showID:String = "All"):void
 						if(pc.breastRows[x].breastRating() >= 200) output2(" (" + formatFloat(pc.breastRows[x].breastRating(), 3) + ")");
 						if(pc.breastRows[x].breastRatingHoneypotMod != 0) output2("\n<b>* Breast, Honeypot Size Rating: </b>" + formatFloat(pc.breastRows[x].breastRatingHoneypotMod, 3));
 						if(pc.breastRows[x].breastRatingLactationMod != 0) output2("\n<b>* Breast, Lactation Size Rating: </b>" + formatFloat(pc.breastRows[x].breastRatingLactationMod, 3));
+						output2("\n<b>* Breast Row, Weight: </b>" + prettifyWeight(pc.bodyPartWeight("breast", x)));
+						if(pc.weightQ("breast", x) > 0) output2(" (" + pc.weightQ("breast", x) + " %)");
 					}
 					output2("\n<b>* Nipple, Type: </b>" + " " + GLOBAL.NIPPLE_TYPE_NAMES[pc.breastRows[x].nippleType]);
 					if(pc.breastRows[x].fuckable()) output2(", Fuckable");
@@ -299,8 +310,8 @@ public function statisticsScreen(showID:String = "All"):void
 					{
 						if(pc.breastRows[x].nippleType == GLOBAL.NIPPLE_TYPE_DICK)
 						{
-							output2("\n<b>* Nipple, Length, Flaccid: </b>" + prettifyLength(pc.nippleLength(x)));
-							output2("\n<b>* Nipple, Length, Erect: </b>" + prettifyLength(pc.nippleLength(x) * pc.dickNippleMultiplier));
+							output2("\n<b>* Nipple, Length, Flaccid: </b>" + prettifyLength(pc.nippleLength(0)));
+							output2("\n<b>* Nipple, Length, Erect: </b>" + prettifyLength(pc.nippleLength(0) * pc.dickNippleMultiplier));
 						}
 						else output2("\n<b>* Nipple, Length: </b>" + prettifyLength(pc.nippleLength(x)));
 						if(pc.breastRows[x].breasts != 1) output2(" each");
@@ -321,7 +332,13 @@ public function statisticsScreen(showID:String = "All"):void
 				output2(" " + pc.cocks.length + " Penis");
 				if(pc.cocks.length != 1) output2("es");
 			}
-			if(pc.balls <= 0) output2(", Prostate");
+			if(pc.balls <= 0)
+			{
+				output2(", Prostate");
+				output2("\n<b>* Prostate, Volume: </b>" + prettifyVolume(pc.ballVolume(), 1));
+				output2("\n<b>* Prostate, Weight: </b>" + prettifyWeight(pc.bodyPartWeight("testicle")));
+				if(pc.weightQ("testicle") > 0) output2(" (" + pc.weightQ("testicle") + " %)");
+			}
 			else if(pc.balls > 0)
 			{
 				if(pc.cocks.length > 0) output2(",");
@@ -332,18 +349,30 @@ public function statisticsScreen(showID:String = "All"):void
 				if(pc.balls != 1) output2(", each");
 				output2("\n<b>* Testicle, Volume: </b>" + prettifyVolume(pc.ballVolume(), 1));
 				if(pc.balls != 1) output2(", each");
+				output2("\n<b>* Testicle, Weight: </b>" + prettifyWeight(pc.bodyPartWeight("testicle")));
+				if(pc.balls != 1) output2(", total");
+				if(pc.weightQ("testicle") > 0) output2(" (" + pc.weightQ("testicle") + " %)");
 			}
 			output2("\n<b>* Penis, Virginity:</b>");
 			if(pc.cockVirgin) output2(" Virgin");
 			else output2(" Taken");
+			if(pc.cocks.length > 1)
+			{
+				output2("\n<b>* Penis, Weight: </b>" + prettifyWeight(pc.bodyPartWeight("penis")));
+				if(pc.cocks.length > 1) output2(", total");
+				if(pc.weightQ("penis") > 0) output2(" (" + pc.weightQ("penis") + " %)");
+			}
 			// Cum Stats
 			output2("\n<b>* Cum, Type: </b>" + GLOBAL.FLUID_TYPE_NAMES[pc.cumType]);
+			output2("\n<b>* Cum, Capacity:</b>");
+			if(pc.ballSizeRaw > 0 && pc.perkv1("'Nuki Nuts") > 0) output2(" " + formatFloat(pc.ballFullness + ((pc.perkv1("'Nuki Nuts")/pc.ballSizeRaw) * 100), 1) + " %");
+			else output2(" " + formatFloat(pc.ballFullness, 1) + " %");
 			output2("\n<b>* Cum, Current Internal: </b>" + pc.currentCum() + " mLs");
 			output2("\n<b>* Cum, Probable Ejaculation: </b> " + pc.cumQ() + " mLs");
 			output2("\n<b>* Cum, Max: </b>" + pc.maxCum() + " mLs");
-			output2("\n<b>* Refractory Rate: </b>" + Math.round(pc.refractoryRate*1000)/10 + "%");
-			if(pc.hasStatusEffect("Infertile") || pc.hasStatusEffect("Firing Blanks")) output2("\n<b>* Virility:</b> Infertile");
-			else output2("\n<b>* Virility: </b>" + Math.round(pc.virility()*1000)/10 + "%");
+			output2("\n<b>* Refractory Rate: </b>" + Math.round(pc.refractoryRate*1000)/10 + " %");
+			if(pc.virility() <= 0) output2("\n<b>* Virility:</b> Infertile");
+			else output2("\n<b>* Virility: </b>" + Math.round(pc.virility()*1000)/10 + " %");
 			// Cocks
 			if(pc.cocks.length >= 1)
 			{
@@ -373,6 +402,8 @@ public function statisticsScreen(showID:String = "All"):void
 					}
 					else output2("\n<b>* Volume: </b>" + prettifyVolume(pc.cockVolume(x)));
 					output2("\n<b>* Capacity: </b>" + prettifyVolume(pc.cockCapacity(x)));
+					output2("\n<b>* Weight: </b>" + prettifyWeight(pc.bodyPartWeight("penis", x)));
+					if(pc.weightQ("penis", x) > 0) output2(" (" + pc.weightQ("penis", x) + " %)");
 					if(pc.cocks[x].pierced != 0) output2("\n<b>* Piercing: </b>" + pc.cocks[x].pierced + " " + StringUtil.toDisplayCase(pc.cocks[x].pShort));
 					if(pc.cocks[x].sock != "") output2("\n<b>* Sock: </b>" + StringUtil.toDisplayCase(pc.cocks[x].sock));
 				}
@@ -393,6 +424,13 @@ public function statisticsScreen(showID:String = "All"):void
 				output2(" " + pc.totalClits() +" Clit");
 				if(pc.totalClits() != 1) output2("s");
 				if(pc.clitLength != 0) output2("\n<b>* Clitoris, Length: </b>" + prettifyLength(pc.clitLength));
+				if(pc.totalClits() != 1) output2(", each");
+				if(pc.vaginas.length > 1)
+				{
+					output2("\n<b>* Clitoris, Weight: </b>" + prettifyWeight(pc.bodyPartWeight("clitoris")));
+					if(pc.totalClits() != 1) output2(", total");
+					if(pc.weightQ("clitoris") > 0) output2(" (" + pc.weightQ("clitoris") + " %)");
+				}
 			}
 			output2("\n<b>* Vagina, Virginity:</b>");
 			if(pc.vaginalVirgin) output2(" Virgin");
@@ -401,11 +439,11 @@ public function statisticsScreen(showID:String = "All"):void
 			output2("\n<b>* Girlcum, Type: </b>" + GLOBAL.FLUID_TYPE_NAMES[pc.girlCumType]);
 			output2("\n<b>* Girlcum, Probable Ejaculation: </b> " + pc.girlCumQ() + " mLs");
 			// Fertility
-			if(pc.hasStatusEffect("Infertile") || pc.hasStatusEffect("Sterile")) output2("\n<b>* Fertility:</b> Infertile");
+			if(pc.fertility() <= 0) output2("\n<b>* Fertility:</b> Infertile");
 			else
 			{
-				output2("\n<b>* Fertility: </b>" + Math.round(pc.fertility()*1000)/10 + "%");
-				output2("\n<b>* Fertility, Speed Modifier: </b>" + Math.round(pc.pregnancyIncubationBonusMother()*1000)/10 + "%");
+				output2("\n<b>* Fertility: </b>" + Math.round(pc.fertility()*1000)/10 + " %");
+				output2("\n<b>* Fertility, Speed Modifier: </b>" + Math.round(pc.pregnancyIncubationBonusMother()*1000)/10 + " %");
 				output2("\n<b>* Fertility, Quantity Bonus: </b>" + Math.round(pc.pregnancyMultiplier()));
 				if(pc.hasStatusEffect("Venus Pitcher Seed Residue")) output2("\n<b>* Fertility, Venus Pitcher Seed Residue, Time Left: </b>" + prettifyMinutes(pc.getStatusMinutes("Venus Pitcher Seed Residue")));
 			}
@@ -438,7 +476,13 @@ public function statisticsScreen(showID:String = "All"):void
 					output2("\n<b>* Looseness Level: </b>" + formatFloat(pc.vaginas[x].looseness(), 3));
 					output2("\n<b>* Wetness Level: </b>" + formatFloat(pc.vaginas[x].wetness(), 3));
 					if(pc.vaginas[x].wetness() >= 4) output2(", Squirter");
-					if(pc.vaginas[x].clits > 0) output2("\n<b>* Clitoris: </b>" + pc.vaginas[x].clits);
+					if(pc.vaginas[x].clits > 0)
+					{
+						output2("\n<b>* Clitoris: </b>" + pc.vaginas[x].clits);
+						output2("\n<b>* Clitoris, Weight: </b>" + prettifyWeight(pc.bodyPartWeight("clitoris", x)));
+						if(pc.vaginas[x].clits != 1) output2(", total");
+						if(pc.weightQ("clitoris", x) > 0) output2(" (" + pc.weightQ("clitoris", x) + " %)");
+					}
 					if(pc.vaginas[x].clitPierced != 0) output2("\n<b>* Clit Piercing: </b>" + pc.vaginas[x].clitPierced + " " + StringUtil.toDisplayCase(pc.vaginas[x].clitPShort));
 					if(pc.vaginas[x].labiaPierced != 0) output2("\n<b>* Labia Piercing: </b>" + pc.vaginas[x].labiaPierced + " " + StringUtil.toDisplayCase(pc.vaginas[x].labiaPShort));
 				}
@@ -450,6 +494,8 @@ public function statisticsScreen(showID:String = "All"):void
 		if(pc.isPregnant()) output2("\n<b>* Belly, Size Rating, Total:</b>");
 		else output2("\n<b>* Belly, Size Rating:</b>");
 		output2(" " + formatFloat(pc.bellyRating(), 3));
+		output2("\n<b>* Belly, Weight: </b>" + prettifyWeight(pc.bodyPartWeight("belly")));
+		if(pc.weightQ("belly") > 0) output2(" (" + pc.weightQ("belly") + " %)");
 		if(pc.isPregnant())
 		{
 			output2("\n<b>* Active Pregnancies, Total: </b>" + pc.totalPregnancies());
@@ -478,13 +524,22 @@ public function statisticsScreen(showID:String = "All"):void
 					else if(pc.pregnancyData[x].pregnancyType == "RenvraFullPregnancy") output2(" Renvra");
 					else if(pc.pregnancyData[x].pregnancyType == "CockvinePregnancy") output2(" Cockvine");
 					else if(pc.pregnancyData[x].pregnancyType == "DeepQueenPregnancy") output2(" Water Queen");
+					else if(pc.pregnancyData[x].pregnancyType == "OviliumEggPregnancy") output2(" Ovilium, Eggs");
 					else output2(" <i>Unknown</i>");
 					if(pc.pregnancyData[x].pregnancyIncubation > -1)
 					{
 						output2("\n<b>* Pregnancy, Gestation Time: </b>" + prettifyMinutes(pc.pregnancyData[x].pregnancyIncubation));
-						output2("\n<b>* Pregnancy, Incubation Speed Modifier: </b>" + Math.round(pc.pregnancyData[x].pregnancyIncubationMulti*1000)/10 + "%");
+						output2("\n<b>* Pregnancy, Incubation Speed Modifier: </b>" + Math.round(pc.pregnancyData[x].pregnancyIncubationMulti*1000)/10 + " %");
 					}
-					if(pc.pregnancyData[x].pregnancyQuantity > 0) output2("\n<b>* Pregnancy, Offspring Count: </b>" + pc.pregnancyData[x].pregnancyQuantity);
+					if(pc.pregnancyData[x].pregnancyQuantity > 0)
+					{
+						var pChildType:int = PregnancyManager.getPregnancyChildType(pc, x);
+						output2("\n<b>* Pregnancy,");
+						if(pChildType == GLOBAL.CHILD_TYPE_SEED) output2(" Seedling");
+						else if(pChildType == GLOBAL.CHILD_TYPE_EGGS) output2(" Egg");
+						else output2(" Offspring");
+						output2(" Count: </b>" + pc.pregnancyData[x].pregnancyQuantity);
+					}
 				}
 			}
 		}
@@ -493,6 +548,8 @@ public function statisticsScreen(showID:String = "All"):void
 		output2("\n<b><u>Ass</u></b>");
 		output2("\n<b>* Hip, Size Rating: </b>" + formatFloat(pc.hipRating(), 3));
 		output2("\n<b>* Butt, Size Rating: </b>" + formatFloat(pc.buttRating(), 3));
+		output2("\n<b>* Butt, Weight: </b>" + prettifyWeight(pc.bodyPartWeight("butt")));
+		if(pc.weightQ("butt") > 0) output2(" (" + pc.weightQ("butt") + " %)");
 		output2("\n<b>* Anus:</b> 1, Asshole");
 		output2("\n<b>* Anus, Virginity:</b>");
 		if(pc.analVirgin) output2(" Virgin");
@@ -533,13 +590,13 @@ public function statisticsScreen(showID:String = "All"):void
 		output2("\n\n" + blockHeader("Combat Statistics", false));
 		// Physical Combat
 		output2("\n<b><u>Physical Combat</u></b>");
-		output2("\n<b>* Accuracy Bonus, Melee: </b>" + pc.attack(true) + "%");
-		output2("\n<b>* Accuracy Bonus, Ranged: </b>" + pc.attack(false) + "%");
-		output2("\n<b>* Critical Chance, Melee: </b>" + pc.critBonus(true) + "%");
-		output2("\n<b>* Critical Chance, Ranged: </b>" + pc.critBonus(false) + "%");
+		output2("\n<b>* Accuracy Bonus, Melee: </b>" + pc.attack(true) + " %");
+		output2("\n<b>* Accuracy Bonus, Ranged: </b>" + pc.attack(false) + " %");
+		output2("\n<b>* Critical Chance, Melee: </b>" + pc.critBonus(true) + " %");
+		output2("\n<b>* Critical Chance, Ranged: </b>" + pc.critBonus(false) + " %");
 		output2("\n<b>* Defense, Armor: </b>" + pc.defense());
 		output2("\n<b>* Defense, Shields: </b>" + pc.shieldDefense());
-		output2("\n<b>* Evasion Bonus: </b>" + pc.evasion() + "%");
+		output2("\n<b>* Evasion Bonus: </b>" + pc.evasion() + " %");
 		output2("\n<b>* Fortification: </b>" + pc.fortification());
 		// Melee
 		if(pc.meleeDamage().unresistable_hp.damageValue != 0)
@@ -573,19 +630,19 @@ public function statisticsScreen(showID:String = "All"):void
 			output2("\n<b>* Ranged Damage, Poison: </b>" + pc.rangedDamage().poison.damageValue);
 		// Resist
 		if((pc.getShieldResistances().unresistable_hp.resistanceValue + pc.getHPResistances().unresistable_hp.resistanceValue) != 0)
-			output2("\n<b>* Resistance, HP: </b>" + (pc.getShieldResistances().unresistable_hp.resistanceValue + pc.getHPResistances().unresistable_hp.resistanceValue) + "%");
+			output2("\n<b>* Resistance, HP: </b>" + (pc.getShieldResistances().unresistable_hp.resistanceValue + pc.getHPResistances().unresistable_hp.resistanceValue) + " %");
 		if((pc.getShieldResistances().kinetic.resistanceValue + pc.getHPResistances().kinetic.resistanceValue) != 0)
-			output2("\n<b>* Resistance, Kinetic: </b>" + (pc.getShieldResistances().kinetic.resistanceValue + pc.getHPResistances().kinetic.resistanceValue) + "%");
+			output2("\n<b>* Resistance, Kinetic: </b>" + (pc.getShieldResistances().kinetic.resistanceValue + pc.getHPResistances().kinetic.resistanceValue) + " %");
 		if((pc.getShieldResistances().electric.resistanceValue + pc.getHPResistances().electric.resistanceValue) != 0)
-			output2("\n<b>* Resistance, Electric: </b>" + (pc.getShieldResistances().electric.resistanceValue + pc.getHPResistances().electric.resistanceValue) + "%");
+			output2("\n<b>* Resistance, Electric: </b>" + (pc.getShieldResistances().electric.resistanceValue + pc.getHPResistances().electric.resistanceValue) + " %");
 		if((pc.getShieldResistances().burning.resistanceValue + pc.getHPResistances().burning.resistanceValue) != 0)
-			output2("\n<b>* Resistance, Burning: </b>" + (pc.getShieldResistances().burning.resistanceValue + pc.getHPResistances().burning.resistanceValue) + "%");
+			output2("\n<b>* Resistance, Burning: </b>" + (pc.getShieldResistances().burning.resistanceValue + pc.getHPResistances().burning.resistanceValue) + " %");
 		if((pc.getShieldResistances().freezing.resistanceValue + pc.getHPResistances().freezing.resistanceValue) != 0)
-			output2("\n<b>* Resistance, Freezing: </b>" + (pc.getShieldResistances().freezing.resistanceValue + pc.getHPResistances().freezing.resistanceValue) + "%");
+			output2("\n<b>* Resistance, Freezing: </b>" + (pc.getShieldResistances().freezing.resistanceValue + pc.getHPResistances().freezing.resistanceValue) + " %");
 		if((pc.getShieldResistances().corrosive.resistanceValue + pc.getHPResistances().corrosive.resistanceValue) != 0)
-			output2("\n<b>* Resistance, Corrosive: </b>" + (pc.getShieldResistances().corrosive.resistanceValue + pc.getHPResistances().corrosive.resistanceValue) + "%");
+			output2("\n<b>* Resistance, Corrosive: </b>" + (pc.getShieldResistances().corrosive.resistanceValue + pc.getHPResistances().corrosive.resistanceValue) + " %");
 		if((pc.getShieldResistances().poison.resistanceValue + pc.getHPResistances().poison.resistanceValue) != 0)
-			output2("\n<b>* Resistance, Poison: </b>" + (pc.getShieldResistances().poison.resistanceValue + pc.getHPResistances().poison.resistanceValue) + "%");
+			output2("\n<b>* Resistance, Poison: </b>" + (pc.getShieldResistances().poison.resistanceValue + pc.getHPResistances().poison.resistanceValue) + " %");
 		// Sexual Combat
 		output2("\n<b><u>Sexual Combat</u></b>");
 		// Melee
@@ -612,15 +669,15 @@ public function statisticsScreen(showID:String = "All"):void
 			output2("\n<b>* Ranged Damage, Tease: </b>" + pc.rangedDamage().tease.damageValue);
 		// Resist
 		if(pc.getLustResistances().unresistable_lust.resistanceValue != 0)
-			output2("\n<b>* Resistance, Lust: </b>" + pc.getLustResistances().unresistable_lust.resistanceValue + "%");
+			output2("\n<b>* Resistance, Lust: </b>" + pc.getLustResistances().unresistable_lust.resistanceValue + " %");
 		if(pc.getLustResistances().psionic.resistanceValue != 0)
-			output2("\n<b>* Resistance, Psionic: </b>" + pc.getLustResistances().psionic.resistanceValue + "%");
+			output2("\n<b>* Resistance, Psionic: </b>" + pc.getLustResistances().psionic.resistanceValue + " %");
 		if(pc.getLustResistances().drug.resistanceValue != 0)
-			output2("\n<b>* Resistance, Drug: </b>" + pc.getLustResistances().drug.resistanceValue + "%");
+			output2("\n<b>* Resistance, Drug: </b>" + pc.getLustResistances().drug.resistanceValue + " %");
 		if(pc.getLustResistances().pheromone.resistanceValue != 0)
-			output2("\n<b>* Resistance, Pheromone: </b>" + pc.getLustResistances().pheromone.resistanceValue + "%");
+			output2("\n<b>* Resistance, Pheromone: </b>" + pc.getLustResistances().pheromone.resistanceValue + " %");
 		if(pc.getLustResistances().tease.resistanceValue != 0)
-			output2("\n<b>* Resistance, Tease: </b>" + pc.getLustResistances().tease.resistanceValue + "%");
+			output2("\n<b>* Resistance, Tease: </b>" + pc.getLustResistances().tease.resistanceValue + " %");
 		// Sexy Stuff
 		output2("\n<b>* Sexiness: </b>" + pc.sexiness());
 		var teases:Array = [-1, -1, -1, -1];
@@ -719,6 +776,8 @@ public function statisticsScreen(showID:String = "All"):void
 			}
 			if(nyreanEggs > 0)
 				output2("\n<b>* Births, Nyrean Eggs, Total: </b>" + nyreanEggs);
+			if(StatTracking.getStat("pregnancy/ovilium eggs laid") > 0)
+				output2("\n<b>* Births, Ovilium Eggs, Total: </b>" + StatTracking.getStat("pregnancy/ovilium eggs laid"));
 			if(StatTracking.getStat("pregnancy/renvra kids") > 0)
 				output2("\n<b>* Births, Renvra’s Children: </b>" + StatTracking.getStat("pregnancy/renvra kids"));
 			if(StatTracking.getStat("pregnancy/venus pitcher seeds") > 0)
@@ -845,6 +904,31 @@ public function statisticsScreen(showID:String = "All"):void
 }
 
 // Prettify Volume!
+// amount: pounds
+// printMeters: -1 is pounds, 0 is both pounds and grams, 1 is grams only
+public function prettifyWeight(amount:Number, printMeters:int = -1):String
+{
+	var retStr:String = "";
+	if(printMeters < 1)
+	{
+		retStr += formatFloat(amount, 3) + " lb";
+		if(amount != 1) retStr += "s";
+	}
+	// Prettified meters
+	if(printMeters > -1)
+	{
+		if(printMeters == 0) retStr += " (";
+		// Convert pounds to grams!
+		// 1 lb = 453.592 g or .0453592 kg
+		amount *= 453.592;
+		if(amount < 1000) retStr += formatFloat(amount, 3) + " g";
+		else retStr += formatFloat((amount / 1000), 3) + " kg";
+		if(printMeters == 0) retStr += ")";
+	}
+	return retStr;
+}
+
+// Prettify Volume!
 // amount: cubic inches
 // printMeters: -1 is inches, 0 is both inches and meters, 1 is meters only
 public function prettifyVolume(amount:Number, printMeters:int = -1):String
@@ -909,6 +993,7 @@ public function prettifyLength(amount:Number, printMeters:int = -1):String
 					// Build fractions
 					if(den != "") retStr += " <sup>" + num + "</sup>/<sub>" + den + "</sub>";
 				}
+				else if(fraction > 0.01) retStr += " 0";
 				retStr += "\"";
 			}
 		}
@@ -1714,9 +1799,9 @@ public function displayQuestLog(showID:String = "All"):void
 					{
 						output2(", Addicted");
 						if(pc.hasStatusEffect("Myr Venom Withdrawal")) output2(", Undergoing withdrawal");
-						output2("\n<b>* Venom Addiction Level: </b>" + flags["VENOM_ADDICTION"] + "%");
+						output2("\n<b>* Venom Addiction Level: </b>" + flags["VENOM_ADDICTION"] + " %");
 					}
-					else output2("\n<b>* Venom Dosage Level: </b>" + flags["VENOM_PROGRESS"] + "%");
+					else output2("\n<b>* Venom Dosage Level: </b>" + flags["VENOM_PROGRESS"] + " %");
 				}
 				else
 				{
@@ -2102,7 +2187,7 @@ public function displayEncounterLog(showID:String = "All"):void
 						if(reahaIsCrew()) output2(" (Onboard Ship)");
 						else if(flags["REAHA_IS_CREW"] == 2) output2(" (At Tavros Station)");
 						else if(flags["REAHA_IS_CREW"] == 3) output2(" (At New Texas)");
-						output2("\n<b>* Reaha, Confidence: </b>" + reahaConfidence() + "%");
+						output2("\n<b>* Reaha, Confidence: </b>" + reahaConfidence() + " %");
 						if(flags["REAHA_MILKMODS_UNLOCKED"] != undefined)
 						{
 							output2("\n<b>* Reaha, Milk Type: </b>" + GLOBAL.FLUID_TYPE_NAMES[chars["REAHA"].milkType]);
@@ -2110,7 +2195,7 @@ public function displayEncounterLog(showID:String = "All"):void
 						}
 						if(flags["REAHA_TALK_ADDICTION_CURE"] != undefined)
 						{
-							output2("\n<b>* Reaha, Patch Addiction: </b>" + reahaAddiction() + "%");
+							output2("\n<b>* Reaha, Patch Addiction: </b>" + reahaAddiction() + " %");
 							if(flags["REAHA_ADDICTION_CURED"] != undefined) output2(", Cured");
 							else output2(", Ongoing");
 						}
@@ -2276,7 +2361,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					output2("\n<b>* Ellie:</b> Met her");
 					if(flags["SUCKED_ELLIES_TITS"] != undefined) output2(", Sucked her tits");
 					if(flags["ELLIE_EMBARASSED_LIL_DICK_FUCK"] != undefined) output2(", Fucked her with an embarrassingly small dick for her size");
-					if(flags["NEPH_AFFECTION"] != undefined) output2("\n<b>* Ellie, Affection: </b>" + flags["NEPH_AFFECTION"] + "%");
+					if(flags["NEPH_AFFECTION"] != undefined) output2("\n<b>* Ellie, Affection: </b>" + flags["NEPH_AFFECTION"] + " %");
 					if(flags["ELLIE_SEXED"] != undefined) output2("\n<b>* Ellie, Times Sexed: </b>" + flags["ELLIE_SEXED"]);
 				}
 				// BBQ, Mmmm...
@@ -2625,7 +2710,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					else output2(" Met her");
 					if(flags["KELLY_CONFESSED"] != undefined) output2(", Confessed her affection");
 					if(flags["KELLY_HAD_A_MEAL_SHARED"] != undefined) output2(", Shared a meal together");
-					if(flags["KELLY_ATTRACTION"] != undefined) output2("\n<b>* Kelly, Attraction: </b>" + flags["KELLY_ATTRACTION"] + "%");
+					if(flags["KELLY_ATTRACTION"] != undefined) output2("\n<b>* Kelly, Attraction: </b>" + flags["KELLY_ATTRACTION"] + " %");
 					if(flags["KELLY_SEXED"] != undefined) output2("\n<b>* Kelly, Times Sexed: </b>" + flags["KELLY_SEXED"]);
 					if(flags["KELLY_BLOWJOBS_GIVEN"] != undefined) output2("\n<b>* Kelly, Times Given Her Blowjobs: </b>" + flags["KELLY_BLOWJOBS_GIVEN"]);
 					if(flags["KELLY_HYPERPLAY_COUNT"] != undefined) output2("\n<b>* Kelly, Times Hyperplay: </b>" + flags["KELLY_HYPERPLAY_COUNT"]);
@@ -2701,7 +2786,7 @@ public function displayEncounterLog(showID:String = "All"):void
 						output2(" cum-slut");
 					}
 				}
-				if(flags["PENNY_AFFECTION"] != undefined) output2("\n<b>* Penny, Affection: </b>" + flags["PENNY_AFFECTION"] + "%");
+				if(flags["PENNY_AFFECTION"] != undefined) output2("\n<b>* Penny, Affection: </b>" + flags["PENNY_AFFECTION"] + " %");
 				if(flags["PENNY_FUTA_TALK"] != undefined) output2("\n<b>* Penny, Lust: </b>" + chars["PENNY"].lust());
 				if(flags["PENNY_THROBB_PURCHASE_UNLOCKED"] != undefined) output2("\n<b>* Penny, Throbb:</b> Available for purchase");
 				if(flags["PENNY_THROBB_USES"] != undefined) output2("\n<b>* Penny, Throbb, Times Used: </b>" + flags["PENNY_THROBB_USES"]);
@@ -2800,7 +2885,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				{
 					output2("\n<b>* Elder Venus Pitcher, Times Encountered: </b>" + flags["TIMES_VENUS_PITCHER_ELDER_ENCOUNTERED"]);
 					if(flags["TIMES_CAUGHT_BY_ELDER_VENUS_PITCHER"] != undefined) output2("\n<b>* Elder Venus Pitcher, Times Hypnotized By: </b>" + flags["TIMES_CAUGHT_BY_ELDER_VENUS_PITCHER"]);
-					if(venusSubmission() > 0) output2("\n<b>* Elder Venus Pitcher, Submission: </b>" + formatFloat(venusSubmission(), 1) + "%");
+					if(venusSubmission() > 0) output2("\n<b>* Elder Venus Pitcher, Submission: </b>" + formatFloat(venusSubmission(), 1) + " %");
 				}
 				if(flags["TIMES_MET_FEMZIL"] != undefined) output2("\n<b>* Female Zil, Times Encountered: </b>" + flags["TIMES_MET_FEMZIL"]);
 				if(flags["ENCOUNTERED_ZIL"] != undefined)
@@ -3047,7 +3132,7 @@ public function displayEncounterLog(showID:String = "All"):void
 						if(flags["BESS_EVENT_28"] != undefined) output2(", Taste-bud");
 					}
 					// Affection/Relationship
-					if(flags["BESS_AFFECTION"] != undefined && flags["BESS_AFFECTION"] > 0) output2("\n<b>* [bess.name], Affection: </b>" + flags["BESS_AFFECTION"] + "%");
+					if(flags["BESS_AFFECTION"] != undefined && flags["BESS_AFFECTION"] > 0) output2("\n<b>* [bess.name], Affection: </b>" + flags["BESS_AFFECTION"] + " %");
 					output2("\n<b>* [bess.name], Relationship:</b>");
 					if(flags["BESS_JUST_A_SEXBOT"] == 1) output2(" Sexbot");
 					else if(flags["BESS_EVENT_19_REJECTION"] != undefined)
@@ -3553,7 +3638,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				if(flags["RENVRA_RACE_TALK"] != undefined && flags["RENVRA_KIDS_TALK"] != undefined)
 				{
-					output2("\n<b>* Renvra, Egg Fertility: </b>" + formatFloat(chars["RENVRA"].cumQualityRaw, 3) + "%");
+					output2("\n<b>* Renvra, Egg Fertility: </b>" + formatFloat(chars["RENVRA"].cumQualityRaw, 1) + " %");
 				}
 				variousCount++;
 			}
@@ -3911,7 +3996,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			output2("\n<b>* Kiro:</b>");
 			if(flags["KIRO_DISABLED_MINUTES"] > 0) output2(" Away");
 			else output2(" Active");
-			output2("\n<b>* Kiro, Trust: </b>" + kiroTrust() + "%");
+			output2("\n<b>* Kiro, Trust: </b>" + kiroTrust() + " %");
 			if(flags["KIRO_DRINKING_CONTEST_RESULTS"] != undefined)
 			{
 				output2("\n<b>* Kiro, Drinking Contest, Last Result:</b>");
@@ -3973,7 +4058,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				else if(flags["SAENDRA_XPACK1_CREDITOFFER"] == 2) output2(", Paid cost to release the <i>Phoenix</i>");
 				else if(flags["SAENDRA OFFERED CREDITS"] != undefined) output2(", Offered credits to repair the <i>Phoenix</i>");
 			}
-			if(flags["SAEN MET AT THE BAR"] != undefined) output2("\n<b>* Saendra, Affection: </b>" + saendraAffection() + "% (" + flags["SAENDRA_MAX_AFFECTION"] + "% Max)");
+			if(flags["SAEN MET AT THE BAR"] != undefined) output2("\n<b>* Saendra, Affection: </b>" + saendraAffection() + " % (" + flags["SAENDRA_MAX_AFFECTION"] + " % Max)");
 			if(flags["SAENDRA TALKED ABOUT FUTA"] != undefined)
 			{
 				output2("\n<b>* Saendra, Futafication:</b>");

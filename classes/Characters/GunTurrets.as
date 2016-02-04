@@ -33,8 +33,8 @@
 			this.originalRace = "Automaton";
 			this.a = "the ";
 			this.capitalA = "The ";
-			this.long = "A mass of turrets and floating drones have been set up like a firing squad in the foyer of the lift station, all barrels training on you. A rag-tag mix of makes and models, most of them look like they belong in antique tech shops - or scrap heaps. But that doesn't mean they're not dangerous: you're surrounded by a hail of lead every time you try and move, made worse as the cat-girl controlling them takes pot-shots at you between the incoming volleys.";
-			this.customDodge = "Somehow, the turrets' swivelling moves them out of the way.";
+			this.long = "A mass of turrets and floating drones have been set up like a firing squad in the foyer of the lift station, all barrels training on you. A rag-tag mix of makes and models, most of them look like they belong in antique tech shops - or scrap heaps. But that doesn’t mean they’re not dangerous: you’re surrounded by a hail of lead every time you try and move, made worse as the cat-girl controlling them takes pot-shots at you between the incoming volleys.";
+			this.customDodge = "Somehow, the turrets’ swivelling moves them out of the way.";
 			this.customBlock = "The armor plates soak up your attack.";
 			this.isPlural = true;
 			isLustImmune = true;
@@ -170,7 +170,7 @@
 				turretVolleyAttackMotherFucker(target);
 				return;
 			}
-			if(HP()/HPMax() < .5 && !hasStatusEffect("Phase 2"))
+			if(HP()/HPMax() < 0.5 && !hasStatusEffect("Phase 2"))
 			{
 				tamtamPhaseTwoLetsGo(target);
 				return;
@@ -192,14 +192,14 @@
 		
 		private function tamwolfOilslick(target:Creature):void
 		{
-			output("Beneath the wall of turrets, the cyberhound Tam-wolf spins around, positioning his back to you and hiking a leg. Oh, for fuck's...");
+			output("Beneath the wall of turrets, the cyberhound Tam-wolf spins around, positioning his back to you and hiking a leg. Oh, for fuck’s...");
 			//Miss:
-			if(rangedCombatMiss(this, target)) output("\n\nYou're able to get out of the way as a slick streak of machine oils squirts past you, splattering across the floor behind you. The drone-dog whines pitifully as his mistress, the <i>other</i> Tam, snaps, <i>\"Bad doggy! You made a mess!\"</i>");
+			if(rangedCombatMiss(this, target)) output("\n\nYou’re able to get out of the way as a slick streak of machine oils squirts past you, splattering across the floor behind you. The drone-dog whines pitifully as his mistress, the <i>other</i> Tam, snaps, <i>“Bad doggy! You made a mess!”</i>");
 			//Hit:
 			else
 			{
 				output("\n\nYou try and cover your eyes, but too late! A streak of machine oil jets out of the drone dog, splattering across your face! <b>You are blinded!</b>");
-				target.createStatusEffect("Blinded",rand(3)+1,0,0,0,false,"Blind","You're blinded and cannot see! Accuracy is reduced, and ranged attacks are far more likely to miss.",true,0);
+				target.createStatusEffect("Blinded",rand(3)+1,0,0,0,false,"Blind","You’re blinded and cannot see! Accuracy is reduced, and ranged attacks are far more likely to miss.",true,0);
 			}
 		}
 		
@@ -207,11 +207,11 @@
 		{
 			output("The gunfire dies down, but just enough to give the great big robo-dog Tam-wolf a clear shot at you. With a fearsome digital growl, the cyberhound launches itself at you for a savage mauling!");
 			//Miss:
-			if(combatMiss(this, target)) output("\n\nYou dodge aside, letting the cyberhound's momentum carry him past you. Still, the drone makes a solid landing, skidding to a halt with teeth bared.");
+			if(combatMiss(this, target)) output("\n\nYou dodge aside, letting the cyberhound’s momentum carry him past you. Still, the drone makes a solid landing, skidding to a halt with teeth bared.");
 			//Hit:
 			else
 			{
-				output("\n\nYou get your arm up in time to block the bite, but wince in pain as the cybehound's fangs sink into ");
+				output("\n\nYou get your arm up in time to block the bite, but wince in pain as the cybehound’s fangs sink into ");
 				if(target.armor.shortName == "") output("you");
 				else output("your [pc.armor]");
 				output(".");
@@ -226,16 +226,16 @@
 		public function tamtamPhaseTwoLetsGo(target:Creature):void
 		{
 			//{Play when the Turret Fight reaches half its normal health}
-			output("You're slowly tearing through the turrets. The foyer has certainly seen better days: it's littered with broken bits of machinery and destroyed turret husks, not to mention the walls riddled with bullet holes. Still, you're making progress, and the cat-girl behind the counter is starting to look awful nervous. Finally, she plants her hands on her (now that you look, surprisingly big) hips and scowls at you.");
-			output("\n\n<i>\"Look at what you did to my poor turrets! What did they ever do to you, huh!?\"</i> she shouts over the din of gunfire as her pets continue to fire at you. <i>\"Well fine! Boss said nobody gets past here, so I'll just have to use my SUPER SECRET WEAPON! Come on out, boy!\"</i>");
+			output("You’re slowly tearing through the turrets. The foyer has certainly seen better days: it’s littered with broken bits of machinery and destroyed turret husks, not to mention the walls riddled with bullet holes. Still, you’re making progress, and the cat-girl behind the counter is starting to look awful nervous. Finally, she plants her hands on her (now that you look, surprisingly big) hips and scowls at you.");
+			output("\n\n<i>“Look at what you did to my poor turrets! What did they ever do to you, huh!?”</i> she shouts over the din of gunfire as her pets continue to fire at you. <i>“Well fine! Boss said nobody gets past here, so I’ll just have to use my SUPER SECRET WEAPON! Come on out, boy!”</i>");
 			output("\n\nWhat!? You look up just in time to see the door behind the desk being bashed open and a huge, quadrupedal black form rush out. It leaps over the desk, skidding to a halt between you and the guns, barring a set of glittering metallic teeth. It looks like ");
 			if(target.characterClass != GLOBAL.CLASS_ENGINEER) output("some kind of crazy cyber dog");
 			else output("a canid-formed Fenris-class attack drone");
 			output(", complete with a razor claws and fangs.");
-			output("\n\n<i>\"Go get " + target.mf("him","her") + ", Tam-wolf!\"</i> the cat-girl cheers, pumping a fist into the air.");
-			output("\n\n<i>\"Yes, mistress Tam,\"</i> a synthesized robotic voice answers, following by a bass-heavy digital growl.");
+			output("\n\n<i>“Go get " + target.mf("him","her") + ", Tam-wolf!”</i> the cat-girl cheers, pumping a fist into the air.");
+			output("\n\n<i>“Yes, mistress Tam,”</i> a synthesized robotic voice answers, following by a bass-heavy digital growl.");
 			
-			long = "A mass of turrets and floating drones have been set up like a firing squad in the foyer of the lift station, all barrels training on you. A rag-tag mix of makes and models, most of them look like they belong in antique tech shops -- or scrap heaps. But that doesn't mean they're not dangerous: you're surrounded by a hail of lead every time you try and move, made worse as the cat-girl controlling them takes pot-shots at you between the incoming volleys. Between you and the drones, making your life a lot tougher, is a powerfully built canine attack drone with razor-sharp fangs ready to tear into you!";
+			long = "A mass of turrets and floating drones have been set up like a firing squad in the foyer of the lift station, all barrels training on you. A rag-tag mix of makes and models, most of them look like they belong in antique tech shops -- or scrap heaps. But that doesn’t mean they’re not dangerous: you’re surrounded by a hail of lead every time you try and move, made worse as the cat-girl controlling them takes pot-shots at you between the incoming volleys. Between you and the drones, making your life a lot tougher, is a powerfully built canine attack drone with razor-sharp fangs ready to tear into you!";
 			short = "Tams and turrets";
 			createStatusEffect("Phase 2",0,0,0,0,true,"","",true,0);
 		}
@@ -243,7 +243,7 @@
 		private function thermalDisruptorFromTam(target:Creature):void
 		{
 			output("Out of the corner of your eye, you catch sight of the cat-girl loading a big shell into what looks like a wrist-launcher. Oh, shit.");
-	output("\n\n<i>“Hope you didn’t need your FACE!”</i> she cheers, leveling her wrist at you and firing!");
+			output("\n\n<i>“Hope you didn’t need your FACE!”</i> she cheers, leveling her wrist at you and firing!");
 			//Miss:
 			if(rangedCombatMiss(this, target))
 			{
@@ -252,21 +252,23 @@
 			//Hit:
 			else
 			{
-				output("\n\nThe disruptor shot slams straight into you, burning at you in a conflagration of fire! ");
+				output("\n\nThe disruptor shot slams straight into you, burning at you in a conflagration of fire!");
 				if(!target.hasStatusEffect("Degraded Armor")) 
 				{
-					output("<b>The effectiveness of your armor is temporarily reduced!</b> ");
+					output(" <b>The effectiveness of your armor is temporarily reduced!</b>");
 					target.createStatusEffect("Degraded Armor", 0, 0, 0, 0, false, "DefenseDown", "Your armor is temporarily degraded and will not provide any defensive benefit.", true, 0);
 				}
 				var damage:TypeCollection = new TypeCollection( { burning: 18 } );
 				damageRand(damage, 15);
 				applyDamage(damage, this, target);
 				
-				output("\n\nThe cat-girl grins, blowing the smoke from her launcher's barrel. <i>“Bam said the man! Feel free to surrender any time... I won't be too rough on you!”</i>");
-				output("\n\nHer grin turns savage. <i>“Just kidding! I like it</i>");
-				if (kGAMECLASS.silly && hasStatusEffect("Tamwolf Out")) output("<i> ruff!</i>");
-				else output("<i> rough!</i>");
-				output("<i>”</i>");
+				var msg:String = "";
+				msg += "\n\nThe cat-girl grins, blowing the smoke from her launcher’s barrel. <i>“Bam said the man! Feel free to surrender any time... I won’t be too rough on you!”</i>";
+				msg += "\n\nHer grin turns savage. <i>“Just kidding! I like it";
+				if (kGAMECLASS.silly && hasStatusEffect("Phase 2")) msg += " ruff";
+				else msg += " rough";
+				msg += "!”</i>";
+				output(msg);
 			}
 		}
 		
@@ -278,7 +280,7 @@
 		
 		private function turretVolleyAttackMotherFucker(target:Creature):void
 		{
-			output("You find yourself under a hail of gunfire, every turret in the room bearing down on you and firing full-auto, sacrificing accuracy for sheer volume of firepower. And it's working: duck and weave as you might, there's a stream of bullets crashing behind you, tearing into the walls with deafening force.\n");
+			output("You find yourself under a hail of gunfire, every turret in the room bearing down on you and firing full-auto, sacrificing accuracy for sheer volume of firepower. And it’s working: duck and weave as you might, there’s a stream of bullets crashing behind you, tearing into the walls with deafening force.\n");
 			
 			var asFlurry:Boolean = !hasStatusEffect("Turret Aimhacks");
 			
@@ -293,7 +295,7 @@
 		
 		private function laserSightShot(target:Creature):void
 		{
-			output("Ducking and weaving through the storm of bullets headed your way, you see the cat-girl standing stock still, a holographic scope appearing over the barrel of her laser pistol. <i>\"Heads up!\"</i> she grins, leveling the gun right at you.");
+			output("Ducking and weaving through the storm of bullets headed your way, you see the cat-girl standing stock still, a holographic scope appearing over the barrel of her laser pistol. <i>“Heads up!”</i> she grins, leveling the gun right at you.");
 			//Miss:
 			if(rangedCombatMiss(this, target))
 			{
@@ -302,7 +304,7 @@
 			//Hit:
 			else
 			{
-				output("\n\nShe squeezes the trigger, and a bright bolt of laser fire slams right into you, nearly knocking you off your [pc.feet]! Damn, she's a deadeye!");
+				output("\n\nShe squeezes the trigger, and a bright bolt of laser fire slams right into you, nearly knocking you off your [pc.feet]! Damn, she’s a deadeye!");
 				var damage:TypeCollection = damage(false);
 				damage.add(aim() / 2);
 				damage.multiply(2.2);

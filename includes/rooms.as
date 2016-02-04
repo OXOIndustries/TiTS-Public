@@ -41,11 +41,20 @@ public function initializeRooms():void
 	rooms["SHIP INTERIOR"].addFlag(GLOBAL.BED);
 	rooms["SHIP INTERIOR"].addFlag(GLOBAL.PRIVATE);
 
+	rooms["CREATION"] = new RoomClass(this);
+	rooms["CREATION"].roomName = "";
+	rooms["CREATION"].description = "";
+	rooms["CREATION"].planet = "PLANET: TERRA";
+	rooms["CREATION"].system = "SYSTEM: SOL";
+	rooms["CREATION"].moveMinutes = 1;
+	rooms["CREATION"].runOnEnter = puntToShip;
+	rooms["CREATION"].addFlag(GLOBAL.OUTDOOR);
+
 	rooms["SPACE"] = new RoomClass(this);
-	rooms["SPACE"].roomName = "SPACE";
+	rooms["SPACE"].roomName = "\nSPACE";
 	rooms["SPACE"].description = "";
 	rooms["SPACE"].planet = "PLANET: NONE";
-	rooms["SPACE"].system = "SYSTEM: ARA ARA";
+	rooms["SPACE"].system = "SYSTEM: UNKNOWN";
 	//rooms["SPACE"].outExit = shipLocation;
 	//rooms["SPACE"].outText = "Exit";
 	rooms["SPACE"].moveMinutes = 1;
@@ -53,12 +62,10 @@ public function initializeRooms():void
 	rooms["SPACE"].addFlag(GLOBAL.OUTDOOR);
 
 	rooms["POESPACE"] = new RoomClass(this);
-	rooms["POESPACE"].roomName = "SPACE";
+	rooms["POESPACE"].roomName = "\nSPACE";
 	rooms["POESPACE"].description = "";
 	rooms["POESPACE"].planet = "PLANET: POE A";
 	rooms["POESPACE"].system = "SYSTEM: POE";
-	//rooms["POESPACE"].outExit = shipLocation;
-	//rooms["POESPACE"].outText = "Exit";
 	rooms["POESPACE"].moveMinutes = 1;
 	rooms["POESPACE"].runOnEnter = puntToShip;
 	rooms["POESPACE"].addFlag(GLOBAL.OUTDOOR);
