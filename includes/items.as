@@ -22,7 +22,7 @@ public function useItem(item:ItemSlotClass):Boolean {
 	{
 		trace("Need to find where the use button for this item was generated and disable it with isUsable == false checks.");
 		clearOutput();
-		output("Unable to use " + item.longName + ".");
+		output("Unable to use " + item.description + ".");
 		//clearMenu();
 		//addButton(14,"Back",useItemFunction);
 		return false;
@@ -30,7 +30,7 @@ public function useItem(item:ItemSlotClass):Boolean {
 	if (item.quantity == 0) 
 	{
 		clearOutput();
-		output("Attempted to use " + item.longName + " which had zero quantity.");
+		output("Attempted to use " + item.description + " which had zero quantity.");
 		this.clearMenu();
 		this.addButton(14,"Back",useItemFunction);
 		return false;
@@ -981,7 +981,7 @@ public function itemCollect(newLootList:Array, clearScreen:Boolean = false):void
 
 public function discardItem(lootList:Array):void {
 	clearOutput();
-	output("You discard " + lootList[0].longName + " (x" + lootList[0].quantity + ").\n\n");
+	output("You discard " + lootList[0].description + " (x" + lootList[0].quantity + ").\n\n");
 	lootList.splice(0,1);
 	this.clearMenu();
 	if(lootList.length > 0) this.addButton(0,"Next",itemCollect, lootList);
@@ -990,6 +990,7 @@ public function discardItem(lootList:Array):void {
 
 public function replaceItemPicker(lootList:Array):void {
 	clearOutput();
+	output("You have " + lootList[0].description + " (x" + lootList[0].quantity + ") but there is no room left in your inventory.\n\n");
 	output("What will you replace?");
 	this.clearMenu();
 	for(var x:int = 0; x < pc.inventory.length; x++) {
@@ -1041,7 +1042,7 @@ public function replaceItemGo(args:Array):void
 	var indice:int = args[0];
 	var lootList:Array = args[1];
 	clearOutput();
-	output("You toss out " + pc.inventory[indice].longName + "(x" + pc.inventory[indice].quantity + ") to make room for " + lootList[0].longName + "(x" + lootList[0].quantity + ").");
+	output("You toss out " + pc.inventory[indice].description + " (x" + pc.inventory[indice].quantity + ") to make room for " + lootList[0].description + " (x" + lootList[0].quantity + ").");
 	pc.inventory[indice] = lootList[0];
 	lootList.splice(0,1);
 	this.clearMenu();

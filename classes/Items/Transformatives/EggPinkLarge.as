@@ -12,8 +12,8 @@
 	
 	public class EggPinkLarge extends ItemSlotClass
 	{
-		public var eggSize:String = "large";
-		public var eggColor:String = "pink";
+		private var eggSize:String = "large";
+		private var eggColor:String = "pink";
 		
 		public function EggPinkLarge()
 		{
@@ -24,17 +24,20 @@
 			type = GLOBAL.FOOD;
 			
 			shortName = "Lg.PinkEgg";
-			longName = eggSize + " " + eggColor + " egg";
+			longName = eggSize + ", " + eggColor + " egg";
 			
 			TooltipManager.addFullName(shortName, StringUtil.toTitleCase(longName));
 			
-			description = indefiniteArticle(eggSize) + " " + eggColor + " egg";
+			description = indefiniteArticle(eggSize) + ", " + eggColor + " egg";
 			
 			tooltip = kGAMECLASS.oviliumEggTooltip(eggSize, eggColor);
 			
 			TooltipManager.addTooltip(shortName, tooltip);
 			
 			basePrice = 60;
+			
+			combatUsable = true;
+			targetsSelf = true;
 			
 			version = _latestVersion;
 		}
