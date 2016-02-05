@@ -38,216 +38,6 @@ You lose 1 level of Egg Trained each week you go without either using the machin
 
 //Ship Tooltip: Your bright pink Egg Trainer is sitting in the corner, rumbling slightly as the heating and cleaning processes inside it percolate. {if PC has a belly full of eggs: You run a hand across your swollen belly, vaguely wishing you could squat the current load out... only to get another mind-melting orgasm from the next batch going in! //if PC has a faux-preg egg: You run a hand across your [pc.belly]. You could get your Faux Preg Egg out at any time with the device, if you wanted to.}
 
-public function eggTrainingEggCount():Number
-{
-	if(flags["EGG_TRAINING"] == undefined) return (6 + rand(7));
-	else if(flags["EGG_TRAINING"] == 1) return (10 + rand(16));
-	else if(flags["EGG_TRAINING"] == 2) return (20 + rand(21));
-	else if(flags["EGG_TRAINING"] == 3) return (35 + rand(36));
-	else if(flags["EGG_TRAINING"] == 4) return (50 + rand(31));
-	else if(flags["EGG_TRAINING"] == 5) return (75 + rand(26));
-	else return 9002;
-}
-
-public function carryTrainingBonusBlurbCheck():void
-{
-	var msg:String = "";
-	if(pc.hasStatusEffect("Eggy Belly") && rand(15) == 0)
-	{	
-		if((flags["CARRY_TRAINING_BONUS_PROC"] + 60*24 < GetGameTimestamp()) || flags["CARRY_TRAINING_BONUS_PROC"] == undefined)
-		{
-			//Event: Jiggle Jiggle!
-			//Play sometimes when PC is walking. Increase Lust by 10 per Training level.
-			msg += "\n\nYour progress is interrupted by a sudden shift in your [pc.belly], making you nearly double over with intense, overwhelming pleasure. Just feeling the ";
-			if(pc.totalBabiesOfType("EggTrainerCarryTraining") < 18) msg += "dozen";
-			else if(pc.totalBabiesOfType("EggTrainerCarryTraining") < 75) msg += "dozens";
-			else msg += "close to a hundred";
-			msg += " eggs moving around inside you, jiggling with your movements, is almost enough to make you cum on the spot. You bite your lip and hold on, ";
-
-			if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC)) msg += "ignoring the curious looks from passersby.";
-			else if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC) && pc.exhibitionism() >= 33) 
-			{
-				msg += "more than a little aroused by the way people are looking at you.";
-				pc.lust(5);
-			}
-			else msg += "thankful that you’re all alone.";
-			msg += "\n\nYour body’s betrayal lasts only for a moment before the eggs settle down again. You sigh, taking a deep breath to steady yourself before you get going again, a ";
-			if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC) && pc.exhibitionism() >= 33) msg += "good deal";
-			else msg += "little";
-			msg += " more flushed than before.";
-			
-			kGAMECLASS.eventBuffer += ParseText(msg);
-			//Reset cooldown
-			flags["CARRY_TRAINING_BONUS_PROC"] = GetGameTimestamp();
-		}
-	}
-}
-
-public function eggTrainerCarryTrainingEnds(pregSlot:int, pregEggs:int):void
-{
-	clearOutput();
-	showName("\nEGGS!");
-	author("Gardeford");
-	
-	// (eggs here now)
-	output("The contraction knocks you right off your [pc.feet]. The eggs are coming out now and nothing is going to stop them. You");
-	if (pc.hasLegs())
-	{
-		if (!pc.isCrotchExposed()) output(" pull off your [pc.lowerGarments] as best you can, spreading your [pc.legs] so the eggs can exit more easily");
-		else output(" spread your [pc.legs] so the eggs can get out more easily, you wouldn’t want any of them to break");
-	}
-	else 
-	{
-		if(pregSlot == 3) output(" lie down so that your [pc.asshole] is at a good angle for laying eggs");
-		else output(" lie down so that your [pc.vagina " + pregSlot + "] is at a good angle for laying eggs");
-	}
-	output(".");
-	output("\n\nYou feel the contractions quickening and prepare to push the eggs out. Steeling yourself for the coming eggs, you prepare to push, expecting it to be a bit tough. Contrary to your beliefs, as soon as you push a torrent of eggs slip through your passage. The suddenness of it causes your muscles to tense, [pc.legs] splaying out in the air. Before you can recover your wits a few more eggs slide out of you and into the pile.");
-	
-	// (normal)
-	output("\n\nYou can’t resist any longer as the final eggs leave your body, cumming as the last of them are pushed out. Spasms rock your body, pumping out two or three eggs at a time until your ");
-	if(pregSlot == 3) output("ass");
-	else output("womb");
-	output(" is empty. You lie on the ground, resting for a moment until you’ve recovered enough to get up. A small probe emblazoned with the Steele logo appears seemingly out of nowhere, picking up all but one of the eggs with a couple beeps. You assume it’s taking the eggs somewhere to deal with, but since these eggs aren’t of the hatching variety you aren’t completely sure.");
-		
-	output("\n\nAfter all that, <b>you count having laid " + num2Text(pregEggs) + " eggs");
-	output("!</b>");
-	
-	pc.energy(-1 * pregEggs);
-	processTime(20 + rand(11));
-	
-	//Do stuff
-	bonusEggTrainingLayEffects(pregSlot, pregEggs);
-	
-	//Yay
-	clearMenu();
-	addButton(0,"Next",finalEggTCleanup);
-}
-
-//Cleans up status effects and boots back to mainGameMenu
-public function finalEggTCleanup():void
-{
-	if (!pc.hasStatusEffect("Eggy Belly")) return;
-	
-	for (var i:int = 0; i < pc.pregnancyData.length; i++)
-	{
-		var pData:PregnancyData = pc.pregnancyData[i];
-		if (pData.pregnancyType == "EggTrainerCarryTraining") 
-		{
-			mainGameMenu();
-			return;
-		}
-	}
-	pc.removeStatusEffect("Eggy Belly");
-	mainGameMenu();
-}
-
-public function bonusEggTrainingLayEffects(pregSlot:int, pregEggs:int):void
-{
-	var effect:Boolean = false;
-	//0: Random 6-12 eggs. Can't use Carry Training or Faux Preg Egg options.
-	//1: Random 10-25 eggs. Carry Training unlocked. 
-	if(pregSlot != 3) pc.cuntChange(pregSlot, 200);
-	//2: Random 20-40 eggs. Huge, permanent looseness and wetness bonus. 
-	//Raise minimum gape one step to 3.
-	if(flags["EGG_TRAINING"] >= 2 && pregEggs > 30)
-	{
-		if(pregSlot != 3) 
-		{
-			if(pc.vaginas[pregSlot].minLooseness < 3 && pc.vaginas[pregSlot].loosenessRaw > pc.vaginas[pregSlot].minLooseness) 
-			{
-				pc.vaginas[pregSlot].minLooseness++;
-				output("\n\n<b>After all that stretching, you're pretty sure your vagina is going to have a tough time tightening back up... if it can at all.</b>");
-				effect = true;
-			}
-		}
-		else
-		{
-			if(pc.ass.minLooseness < 3 && pc.ass.loosenessRaw > pc.ass.minLooseness)
-			{
-				pc.ass.minLooseness++;
-				output("\n\n<b>After all that stretching, you're pretty sure your ass is going to have a tough time tightening back up... if it can at all.</b>");
-				effect = true;
-			}
-		}
-	}
-	//3: Random 35-70 eggs. Faux Preg Egg unlocked. 
-	//4: Random 50-80 eggs. Moderate raw Bonus Capacity for all holes.
-	if(flags["EGG_TRAINING"] >= 4 && pregEggs > 50 && !effect)
-	{
-		if(pregSlot != 3)
-		{
-			if(pc.vaginas[pregSlot].bonusCapacity < 200)
-			{
-				pc.vaginas[pregSlot].bonusCapacity += 25;
-				output("\n\n<b>You're pretty sure you've gotten a little stretchier down there from the experience.");
-				effect = true;
-			}
-		}
-		else
-		{
-			if(pc.ass.bonusCapacity < 200)
-			{
-				pc.ass.bonusCapacity += 25;
-				output("\n\n<b>You're pretty sure you've gotten a little stretchier down there from the experience.");
-				effect = true;
-			}
-		}
-	}
-	//5: Random 75-100 eggs. Huge, permanent looseness bonus.
-	if(flags["EGG_TRAINING"] >= 5 && pregEggs > 75 && !effect)
-	{
-		if(pregSlot != 3) 
-		{
-			if(pc.vaginas[pregSlot].minLooseness < 5 && pc.vaginas[pregSlot].loosenessRaw > pc.vaginas[pregSlot].minLooseness) 
-			{
-				pc.vaginas[pregSlot].minLooseness++;
-				output("\n\n<b>After all that stretching, you're pretty sure your vagina is going to have a tough time tightening back up... if it can at all.</b>");
-				effect = true;
-			}
-		}
-		else
-		{
-			if(pc.ass.minLooseness < 5 && pc.ass.loosenessRaw > pc.ass.minLooseness)
-			{
-				pc.ass.minLooseness++;
-				output("\n\n<b>After all that stretching, you're pretty sure your ass is going to have a tough time tightening back up... if it can at all.</b>");
-				effect = true;
-			}
-		}
-	}
-}
-
-/*
-output("\n\nFaux Preg Egg");
-output("\n\n//FPE basically acts like a normal pregnancy, occupying the given womb/butt and preventing anything else from taking root. It grows (very) slowly over time, basically about 2x the rate of a 9-month human pregnancy. If we have the ability to determine when a given orifice gets semen/etc. blasted into it, then the FPE basically absorbs cum to get bigger - increases slightly in size per load of cum. Having a very wet orifice also increases its growth rate, to about 3x human rate.");
-
-output("\n\n//Very Small Egg (Unnoticable Belly)");
-output("\n\nThough it’s not quite noticable yet, you’re well aware that there’s a slowly growing egg inside you.");
-
-
-output("\n\n//Small Egg (Slight Belly)");
-output("\n\nThe faux preg egg inside you has grown somewhat, causing your belly to expand. You’ve got a slight, barely noticeable but false baby bump now.");
-
-
-output("\n\n//Medium Egg (Moderate Belly, ~3-4 months preggers looking)");
-output("\n\n//Slight passive lust gain");
-output("\n\nYou’ve got a fairly sizable belly now, thanks to the ever-growing TamaniCorp egg inside you. If moves ever so slightly with every step, making you shiver with pleasure almost constantly.");
-
-
-output("\n\n//Big Egg (5-8 months preggers)");
-output("\n\nYour egg has grown bigger and bigger, now stretching your {womb // bowels} so thoroughly that you look positively <i>gravid</i>. You’re nearly as big around as a woman in her third trimester, and constantly find yourself putting your arms around your [pc.belly] to support the weight. It feels wonderful, when you’re not complaining about your back or struggling through doors - the feeling of your belly stretched out around the sheer size of the egg, the way it moves around inside you - it’s constantly bathing you in pleasurable sensations.");
-
-output("\n\n//Very Big Egg (9 Months +)");
-output("\n\n//Modest passive Lust gain.");
-output("\n\nYour belly has grown to the size of a woman about to give birth - and maybe a little more at that! The egg inside you has swollen to massive proportions, stretching your body out as if you’re carrying a pair of twins inside you. Every slight motion you make causes the tremendous weight inside you to shift and churn, sending shockwaves of ecstatic pleasure through you.");
-
-
-output("\n\n//Giga Hyper Eggo (Jacques Tier But With Belly)");
-output("\n\n//Major passive Lust gain");
-output("\n\nYour egg has grown truly, unnaturally, enormously massive inside you. Your belly is swollen beyond anything you’d have thought possible, stretching out ahead of you in swollen majesty. Every step, every slight motion you make, is nearly orgasmic now. You can’t help but play with yourself constantly: not sexually, but simply rubbing your hands on your [pc.belly]. Sometimes, you find yourself spending minutes just enjoying the feeling of fullness, of your fingers brushing across your taut flesh. You can’t wait to see how big it can get...");
-*/
-
 //Installing it in the Ship
 //Inventory -> Egg Trainer. Sets it up in the Cargo hold, just like a Dong Designer. 
 public function eggTrainerInstallation():void
@@ -302,6 +92,8 @@ public function eggTrainerMenu():void
 		addButton(1,"Egg Trainer",eggTrainingMachineTime,undefined,"Egg Training","Have the machine fill you with eggs and lube, then lay them right back into the cleaning pool. Something tells you between a tentacle fucking and a two-way oviposition, you’d be in for a wild ride.");
 		if(flags["EGG_TRAINING"] == undefined) addDisabledButton(2,"Carry Train","Carry Train","You aren't experienced enough with this machine to try this.");
 		else addButton(2,"Carry Train",carryTrainingWithEggMachine,undefined,"Carry Train","Have the tentacle-device fill you with eggs. This option advertises TamaniCorp brand Lock-Lube, made to ensure that your eggs are lodged inside you for a good long while... You’ll be carrying so many eggs that you’ll look positively pregnant for about a week, it tells you.");
+		if(flags["EGG_TRAINING"] >= 4) addButton(3,"Faux Preg",fauxPregImplantation,undefined,"Faux Preg","This special <i>“service”</i> causes the tentacle to fuck a single, unique egg into you - what the screen labels a <i>“faux-preg egg.”</i> This special egg lodges inside you and grows, grows, grows inside you until your belly is completely gravid. And there’s no way it’s coming out once it goes in without some medical intervention, or the help of the Egg Trainer machine. All the joys of being perpetually, gravidly pregnant without the inevitable childbirth.");
+		else addDisabledButton(3,"Faux Preg","Faux Preg","You are not yet experienced enough for this. You'll have to work up to it.");
 	}
 	else
 	{
@@ -309,7 +101,8 @@ public function eggTrainerMenu():void
 		addDisabledButton(2,"Carry Train","Carry Train","You have no room for eggs.");
 		addDisabledButton(3,"Faux Preg","Faux Preg","You have no room for eggs.");
 	}
-	addButton(14,"Leave",shipStorageMenuRoot);
+	if(pc.hasPregnancyOfType("EggTrainerFauxPreg")) addButton(3,"Remove Egg",eggTrainerPreggoRemoval,undefined,"Remove Egg","Have the Egg Trainer remove your Faux Preg Egg... somehow?");
+	addButton(14,"Leave",leaveEggMachine);
 }
 
 //Raw Tentacle
@@ -733,95 +526,413 @@ public function carryTrainingWithEggMachine():void
 	else pc.loadInAss(ppCarryTraining);
 
 	if(flags["EGG_TRAINING"] != 5) IncrementFlag("EGG_TRAINING");
-
+	IncrementFlag("CARRY_TRAINING_TIMES");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
 
+public function eggTrainingEggCount():Number
+{
+	if(flags["EGG_TRAINING"] == undefined) return (6 + rand(7));
+	else if(flags["EGG_TRAINING"] == 1) return (10 + rand(16));
+	else if(flags["EGG_TRAINING"] == 2) return (20 + rand(21));
+	else if(flags["EGG_TRAINING"] == 3) return (35 + rand(36));
+	else if(flags["EGG_TRAINING"] == 4) return (50 + rand(31));
+	else if(flags["EGG_TRAINING"] == 5) return (75 + rand(26));
+	else return 9002;
+}
 
-/*
-output("\n\n");
+public function carryTrainingBonusBlurbCheck():void
+{
+	var msg:String = "";
+	if(pc.hasStatusEffect("Eggy Belly") && rand(15) == 0)
+	{	
+		if((flags["CARRY_TRAINING_BONUS_PROC"] + 60*24 < GetGameTimestamp()) || flags["CARRY_TRAINING_BONUS_PROC"] == undefined)
+		{
+			//Event: Jiggle Jiggle!
+			//Play sometimes when PC is walking. Increase Lust by 10 per Training level.
+			msg += "\n\nYour progress is interrupted by a sudden shift in your [pc.belly], making you nearly double over with intense, overwhelming pleasure. Just feeling the ";
+			if(pc.totalBabiesOfType("EggTrainerCarryTraining") < 18) msg += "dozen";
+			else if(pc.totalBabiesOfType("EggTrainerCarryTraining") < 75) msg += "dozens";
+			else msg += "close to a hundred";
+			msg += " eggs moving around inside you, jiggling with your movements, is almost enough to make you cum on the spot. You bite your lip and hold on, ";
 
-output("\n\nFaux Preg");
-output("\n\n//Replace with <i>“Remove Egg”</i> if already has Faux Preg Egg installed in body.");
-output("\n\n//This special <i>“service”</i> causes the tentacle to fuck a single, unique egg into you - what the screen labels a <i>“faux-preg egg.”</i> This special egg lodges inside you and grows, grows, grows in your {womb / bowels} until your belly is completely gravid. And there’s no way it’s coming out once it goes in without some medical intervention, or the help of the Egg Trainer machine. All the joys of being perpetually, gravidly pregnant without the inevitable childbirth.");
+			if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC)) msg += "ignoring the curious looks from passersby.";
+			else if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC) && pc.exhibitionism() >= 33) 
+			{
+				msg += "more than a little aroused by the way people are looking at you.";
+				pc.lust(5);
+			}
+			else msg += "thankful that you’re all alone.";
+			msg += "\n\nYour body’s betrayal lasts only for a moment before the eggs settle down again. You sigh, taking a deep breath to steady yourself before you get going again, a ";
+			if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC) && pc.exhibitionism() >= 33) msg += "good deal";
+			else msg += "little";
+			msg += " more flushed than before.";
+			
+			kGAMECLASS.eventBuffer += ParseText(msg);
+			//Reset cooldown
+			flags["CARRY_TRAINING_BONUS_PROC"] = GetGameTimestamp();
+		}
+	}
+}
 
+public function eggTrainerCarryTrainingEnds(pregSlot:int, pregEggs:int):void
+{
+	clearOutput();
+	showName("\nEGGS!");
+	author("Gardeford");
+	
+	// (eggs here now)
+	output("The contraction knocks you right off your [pc.feet]. The eggs are coming out now and nothing is going to stop them. You");
+	if (pc.hasLegs())
+	{
+		if (!pc.isCrotchExposed()) output(" pull off your [pc.lowerGarments] as best you can, spreading your [pc.legs] so the eggs can exit more easily");
+		else output(" spread your [pc.legs] so the eggs can get out more easily, you wouldn’t want any of them to break");
+	}
+	else 
+	{
+		if(pregSlot == 3) output(" lie down so that your [pc.asshole] is at a good angle for laying eggs");
+		else output(" lie down so that your [pc.vagina " + pregSlot + "] is at a good angle for laying eggs");
+	}
+	output(".");
+	output("\n\nYou feel the contractions quickening and prepare to push the eggs out. Steeling yourself for the coming eggs, you prepare to push, expecting it to be a bit tough. Contrary to your beliefs, as soon as you push a torrent of eggs slip through your passage. The suddenness of it causes your muscles to tense, [pc.legs] splaying out in the air. Before you can recover your wits a few more eggs slide out of you and into the pile.");
+	
+	// (normal)
+	output("\n\nYou can’t resist any longer as the final eggs leave your body, cumming as the last of them are pushed out. Spasms rock your body, pumping out two or three eggs at a time until your ");
+	if(pregSlot == 3) output("ass");
+	else output("womb");
+	output(" is empty. You lie on the ground, resting for a moment until you’ve recovered enough to get up. A small probe emblazoned with the Steele logo appears seemingly out of nowhere, picking up all but one of the eggs with a couple beeps. You assume it’s taking the eggs somewhere to deal with, but since these eggs aren’t of the hatching variety you aren’t completely sure.");
+		
+	output("\n\nAfter all that, <b>you count having laid " + num2Text(pregEggs) + " eggs");
+	output("!</b>");
+	
+	pc.energy(-1 * pregEggs);
+	processTime(20 + rand(11));
+	
+	//Do stuff
+	bonusEggTrainingLayEffects(pregSlot, pregEggs);
+	
+	//Yay
+	clearMenu();
+	addButton(0,"Next",finalEggTCleanup);
+}
 
-output("\n\nHaving thoroughly enjoyed the other services your lewd little egg-trainer has to offer, you wistfully contemplate the <i>“faux preg egg”</i> option {wondering what it does, exactly // already yearing for the wonderfully, impossibly full sensation inside you at all times}. You press the button, and are treated to another of the brief holographic demonstrations. This time, the device cheerily advertises TamaniCorp’s latest and greatest scientific breakthrough: an egg that will actually grow inside you like a child, swelling your womb over weeks and months like a real pregnancy... without the inevitable letdown of birth. You could stay forever gravid if you wanted, perhaps even ever expanding. The video fails to mention if there’s an upper limit on just how swollen this one little egg can get, but judging from some of the promotional pictures it uses - displaying Tamani herself reclining on a couch, nude and with legs splayed to show off a belly that looks far, far larger than what you’d expect from a human pregnancy... you’re not convinced the lascivious executive’s company was too concerned about limitations.");
+//Cleans up status effects and boots back to mainGameMenu
+public function finalEggTCleanup():void
+{
+	if (!pc.hasStatusEffect("Eggy Belly")) return;
+	
+	for (var i:int = 0; i < pc.pregnancyData.length; i++)
+	{
+		var pData:PregnancyData = pc.pregnancyData[i];
+		if (pData.pregnancyType == "EggTrainerCarryTraining") 
+		{
+			mainGameMenu();
+			return;
+		}
+	}
+	pc.removeStatusEffect("Eggy Belly");
+	mainGameMenu();
+}
 
-output("\n\nThe holographic Tamani on-screen gives you a wink, rubbing her tremendous belly, and text on-screen tells you simply <i>“Good luck, slut!”</i>");
+public function bonusEggTrainingLayEffects(pregSlot:int, pregEggs:int):void
+{
+	var effect:Boolean = false;
+	//0: Random 6-12 eggs. Can't use Carry Training or Faux Preg Egg options.
+	//1: Random 10-25 eggs. Carry Training unlocked. 
+	if(pregSlot != 3) pc.cuntChange(pregSlot, 200);
+	else pc.buttChange(200);
+	//2: Random 20-40 eggs. Huge, permanent looseness and wetness bonus. 
+	//Raise minimum gape one step to 3.
+	if(flags["EGG_TRAINING"] >= 2 && pregEggs > 30)
+	{
+		if(pregSlot != 3)
+		{
+			if(pc.vaginas[pregSlot].bonusCapacity < 50)
+			{
+				pc.vaginas[pregSlot].bonusCapacity += 10;
+				output("\n\n<b>You're pretty sure you've gotten a little stretchier down there from the experience.");
+				effect = true;
+			}
+		}
+		else
+		{
+			if(pc.ass.bonusCapacity < 50)
+			{
+				pc.ass.bonusCapacity += 10;
+				output("\n\n<b>You're pretty sure you've gotten a little stretchier down there from the experience.");
+				effect = true;
+			}
+		}
+	}
+	//3: Random 35-70 eggs. Faux Preg Egg unlocked. 
+	//4: Random 50-80 eggs. Moderate raw Bonus Capacity for all holes.
+	if(flags["EGG_TRAINING"] >= 4 && pregEggs > 50 && !effect)
+	{
+		if(pregSlot != 3)
+		{
+			if(pc.vaginas[pregSlot].bonusCapacity < 200)
+			{
+				pc.vaginas[pregSlot].bonusCapacity += 25;
+				output("\n\n<b>You're pretty sure you've gotten a good bit stretchier down there from the experience.");
+				effect = true;
+			}
+		}
+		else
+		{
+			if(pc.ass.bonusCapacity < 200)
+			{
+				pc.ass.bonusCapacity += 25;
+				output("\n\n<b>You're pretty sure you've gotten a good bit stretchier down there from the experience.");
+				effect = true;
+			}
+		}
+	}
+	//5: Random 75-100 eggs. Huge, permanent looseness bonus.
+	if(flags["EGG_TRAINING"] >= 5 && pregEggs > 75 && !effect)
+	{
+		if(pregSlot != 3)
+		{
+			if(pc.vaginas[pregSlot].bonusCapacity < 300)
+			{
+				pc.vaginas[pregSlot].bonusCapacity += 50;
+				output("\n\n<b>You're pretty sure you've gotten a lot stretchier down there from the experience.");
+				effect = true;
+			}
+		}
+		else
+		{
+			if(pc.ass.bonusCapacity < 300)
+			{
+				pc.ass.bonusCapacity += 50;
+				output("\n\n<b>You're pretty sure you've gotten a lot stretchier down there from the experience.");
+				effect = true;
+			}
+		}
+	}
+}
 
-output("\n\nNot sure how you feel about getting called a slut by a sophisticated deep-fryer, you neverthless do as you always do. Your body shivers with anticipation, even knowing that though this time you’re not in for the sudden, orgasmic swelling of a dozen... or ten dozen... eggs being pumped inside you one after the other. This is going to be a slow, steady build-up, a change in lifestyle to let you enjoy the fruits of your {nocunt: wanna-be} womb. Following the screen’s familiar instructions, you {if taur: awkwardly move to position your lower body over the entire box, angling your [pc.vagOrAss " + x + "] towards the saddle. //if naga: coil yourself around the box, angling your [pc.vagOrAss " + x + "] into the fuck-saddle as best you can. //if goo: squirm around the box, all but enveloping the entire box and wiggling your behind into the saddle. //else: swing a leg awkwardly over the edge of the box, plopping down in the seat of the saddle.} The moment you’re seated, the holoscreen on the front of the box swivels around to face you, and a pair of metal bars slide out from the sides of the box, giving you something to hold onto.");
+//Faux Preg
+//Replace with <i>“Remove Egg”</i> if already has Faux Preg Egg installed in body.
+//This special <i>“service”</i> causes the tentacle to fuck a single, unique egg into you - what the screen labels a <i>“faux-preg egg.”</i> This special egg lodges inside you and grows, grows, grows in your {womb / bowels} until your belly is completely gravid. And there’s no way it’s coming out once it goes in without some medical intervention, or the help of the Egg Trainer machine. All the joys of being perpetually, gravidly pregnant without the inevitable childbirth.
 
-output("\n\nThis time, though, the top of the heat-and-clean tub inside doesn’t come sliding off. Instead, the screen blinks a reminder that you’re not going to be able to get the faux-pre egg out on your own... ever... without serious medical intervention, or the use of the machine again since it can flood your hole with a special deflation agent. At least you can remove it any time you want if you just come back to the egg trainer.");
+public function fauxPregImplantation():void
+{
+	clearOutput();
+	showName("EGG\nTRAINER");
+	author("Savin");
+	var x:int = pc.findEmptyPregnancySlot(0);
+	//If all holes full, pick a vagina.
+	if(x == -1) 
+	{
+		if(pc.hasVagina()) x = rand(pc.totalVaginas());
+	}
+	//If butt select, convert to lazyman butts for vagOrAss
+	if(x == 3) x = -1;
+	output("Having thoroughly enjoyed the other services your lewd little egg-trainer has to offer, you wistfully contemplate the <i>“faux preg egg”</i> option ");
+	if(flags["FAUXPREG_TIMES"] == undefined) output("wondering what it does, exactly");
+	else output("already yearing for the wonderfully, impossibly full sensation inside you at all times");
+	output(". You press the button, and are treated to another of the brief holographic demonstrations. This time, the device cheerily advertises TamaniCorp’s latest and greatest scientific breakthrough: an egg that will actually grow inside you like a child, swelling your womb over weeks and months like a real pregnancy... without the inevitable letdown of birth. You could stay forever gravid if you wanted, perhaps even ever expanding. The video fails to mention if there’s an upper limit on just how swollen this one little egg can get, but judging from some of the promotional pictures it uses - displaying Tamani herself reclining on a couch, nude and with legs splayed to show off a belly that looks far, far larger than what you’d expect from a human pregnancy... you’re not convinced the lascivious executive’s company was too concerned about limitations.");
+	output("\n\nThe holographic Tamani on-screen gives you a wink, rubbing her tremendous belly, and text on-screen tells you simply <i>“Good luck, slut!”</i>");
+	output("\n\nNot sure how you feel about getting called a slut by a sophisticated deep-fryer, you neverthless do as you always do. Your body shivers with anticipation, even knowing that though this time you’re not in for the sudden, orgasmic swelling of a dozen... or ten dozen... eggs being pumped inside you one after the other. This is going to be a slow, steady build-up, a change in lifestyle to let you enjoy the fruits of your ");
+	//nocunt:
+	if(x < 0) output("wanna-be ");
+	output("womb. Following the screen’s familiar instructions, you");
+	if(pc.isTaur()) output(" awkwardly move to position your lower body over the entire box, angling your [pc.vagOrAss " + x + "] towards the saddle.");
+	else if(pc.isNaga()) output(" coil yourself around the box, angling your [pc.vagOrAss " + x + "] into the fuck-saddle as best you can.");
+	else if(pc.isGoo()) output(" squirm around the box, all but enveloping the entire box and wiggling your behind into the saddle.");
+	else output(" swing a leg awkwardly over the edge of the box, plopping down in the seat of the saddle.");
+	output(" The moment you’re seated, the holoscreen on the front of the box swivels around to face you, and a pair of metal bars slide out from the sides of the box, giving you something to hold onto.");
 
-output("\n\nNothing actually happens for a long moment, though, until you lean forward over the box and take hold of the metal bars. A faint heat starts rising from the metal, and you feel a shuddering vibration as the machine {under you // between your [pc.legs]} hums to life. You squeeze your eyes shut and hold on tight as a thick, tapered tentacle wriggles up from the machine and presses its pointed crown against your [pc.vagOrAss " + x + "]. It gives you a squirt of lube, painting your thighs and ass indiscriminately before forging again. There’s a moment of pressure as it aligns itself, and then the familiar, wonderful pleasure that presages the real treat; the tentacle slithers inside you, stretching your hole ever wider as it grows thicker, and inch after inch of smooth tube is fed into your [pc.vagOrAss " + x + "].");
+	output("\n\nThis time, though, the top of the heat-and-clean tub inside doesn’t come sliding off. Instead, the screen blinks a reminder that you’re not going to be able to get the faux-pre egg out on your own... ever... without serious medical intervention, or the use of the machine again since it can flood your hole with a special deflation agent. At least you can remove it any time you want if you just come back to the egg trainer.");
 
-output("\n\nYou moan out your enjoyment, bucking your [pc.hips] back against the steadily thrusting artificial member. The familiar sensation still sends a thrill through you no matter how many times you get to enjoy it. Your knuckles turn white, squeezing down around the handle bars and letting the tentacle fuck you. It’s more vigorous and more thorough in its business than it strictly needs to be, you well know by now, but you can hardly complain as it {milks your prostate // pounds your pussy} to orgasm. {if cock: Your [pc.cock] sprays its load all over the top of the box, throbbing and squirting in wondrous ways even without a single bit of direct stimulation.}");
+	output("\n\nNothing actually happens for a long moment, though, until you lean forward over the box and take hold of the metal bars. A faint heat starts rising from the metal, and you feel a shuddering vibration as the machine ");
+	if(pc.legCount <= 1) output("under you ");
+	else output("between your [pc.legs] ");
+	output("hums to life. You squeeze your eyes shut and hold on tight as a thick, tapered tentacle wriggles up from the machine and presses its pointed crown against your [pc.vagOrAss " + x + "]. It gives you a squirt of lube, painting your thighs and ass indiscriminately before forging again. There’s a moment of pressure as it aligns itself, and then the familiar, wonderful pleasure that presages the real treat; the tentacle slithers inside you, stretching your hole ever wider as it grows thicker, and inch after inch of smooth tube is fed into your [pc.vagOrAss " + x + "].");
+	output("\n\nYou moan out your enjoyment, bucking your [pc.hips] back against the steadily thrusting artificial member. The familiar sensation still sends a thrill through you no matter how many times you get to enjoy it. Your knuckles turn white, squeezing down around the handle bars and letting the tentacle fuck you. It’s more vigorous and more thorough in its business than it strictly needs to be, you well know by now, but you can hardly complain as it ");
+	if(x < 0 && pc.hasCock()) output("milks your prostate ");
+	else if(x < 0) output("pounds your ass ");
+	else output("pounds your pussy ");
+	output("to orgasm.");
+	if(pc.hasCock()) output(" Your [pc.cock] sprays its load all over the top of the box, throbbing and squirting in wondrous ways even without a single bit of direct stimulation.");
+	if(x >= 0) pc.cuntChange(x,pc.vaginalCapacity(x));
+	else pc.buttChange(pc.analCapacity());
 
-output("\n\nWith a soft moan, you slump forward against the grip of the trainer box. You can feel the tentacle pumping lube into your [pc.vagOrAss " + x + "] like a cock blowing its load, making sure that your insides are completely soaked and ready for anything. After a moment, the holoscreen blinks the message, <i>“Egg implanted! Be sure to feed your baby with lots of cum!”</i>");
+	output("\n\nWith a soft moan, you slump forward against the grip of the trainer box. You can feel the tentacle pumping lube into your [pc.vagOrAss " + x + "] like a cock blowing its load, making sure that your insides are completely soaked and ready for anything. After a moment, the holoscreen blinks the message, <i>“Egg implanted! Be sure to feed your baby with lots of cum!”</i>");
+	output("\n\nThe tentacle slips out of you without a moment’s more notice, leaving you feeling a little gaped, and a little more full. But you didn’t even feel the egg go inside you! You huff, feeling cheated by the lack of sensation... then again, when your body’s been trained to take dozens and dozens of eggs all at once, what’s a lone little egg to you?");
+	output("\n\nYou sigh, hoping the egg doesn’t fall out of your loose hole as you grab your gear back and stagger to the washroom to clean up.");
+	//[Next]
 
-output("\n\nThe tentacle slips out of you without a moment’s more notice, leaving you feeling a little gaped, and a little more full. But you didn’t even feel the egg go inside you! You huff, feeling cheated by the lack of sensation... then again, when your body’s been trained to take dozens and dozens of eggs all at once, what’s a lone little egg to you?");
+	processTime(25);
+	pc.orgasm();
 
-output("\n\nYou sigh, hoping the egg doesn’t fall out of your loose hole as you grab your gear back and stagger to the washroom to clean up.");
+	// Preggos!
+	var ppCarryTraining:PregnancyPlaceholder = new PregnancyPlaceholder();
+	ppCarryTraining.impregnationType = "EggTrainerFauxPreg";
+	//Actually put the impregnationshit in.
+	if(x >= 0) pc.loadInCunt(ppCarryTraining, x);
+	else pc.loadInAss(ppCarryTraining);
 
-output("\n\n[Next]");
+	if(flags["EGG_TRAINING"] != 5) IncrementFlag("EGG_TRAINING");
+	IncrementFlag("FAUXPREG_TIMES");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
 
+//Remove Egg
+//Have the Egg Trainer remove your Faux Preg Egg... somehow?
+public function eggTrainerPreggoRemoval():void
+{
+	clearOutput();
+	author("Savin");
+	showName("EGG\nTRAINER");
 
+	var x:int = pc.findPregnancyOfType("EggTrainerFauxPreg");
+	var slot:int = x;
+	var pData:PregnancyData = pc.pregnancyData[slot] as PregnancyData;
+	if(x == 3) x = -1;
+	output("As enjoyable as it’s been, you’ve decided it’s time to let go of your faux-preg egg. ");
+	if(x >= 0) output("If anything, having it has made you crave a real baby - or just a belly full of alien eggs - more than ever! ");
+	output("You run a hand over your [pc.belly], feeling an odd connection to the synthetic pregnancy that’s been growing inside you. It’s been fun.");
 
+	output("\n\nWith a sigh, you tap the egg-trainer’s holoscreen and select the removal option. As usual, it tells you to disrobe and relax in the saddle, assuring you that it’ll take care of everything. You do as it says, settling down in the fuck-saddle and angling your pregnant hole with the slit under your [pc.butt]. You don’t even need to be told to grab the handlebars and relax, familiar with the device’s modus operandi as you are. Still, it goes through the usual motions of facing the screen towards you and telling you that, depending on how gravid you’ve let yourself get, this might be a hell of a ride.");
 
+	output("\n\nLooks like the <i>“faux pregnancy”</i> even includes birth. You shudder with anticipation, feeling your excitement mount. The tentacle’s bay opens under you, and the familiar, wriggling crown quickly presses against your [pc.vagOrAss " + x + "], spraying your ass and thighs indiscriminately with hot, slick lube. A little moan escapes your lips, forced out by a slow but insistent insertion that spreads your hole open wider and wider.");
+	if(pc.hasCock()) 
+	{
+		if(pc.cockTotal() == 1) output(" Your [pc.cock] is soon as hard as diamonds, begging for attention you don’t want to give it");
+		else output(" Your [pc.cocks] are soon as hard as diamonds, begging for attention you don't want to give them");
+		output("; letting the tentacle milk all the cum out of you is so much sweeter than giving in and using your hands!");
+	}
 
+	output("\n\nYou rock your hips back against the tentacle, taking it as deep as you can. It fills you with lube, squirting the stuff into your ");
+	if(x == -1) output("bowels");
+	else output("womb");
+	output(" and making sure that every blessed inch of your insides is absolutely drenched. After a few minutes of its usual, pleasant fucking, though... something changes. The tentacle goes completely still and rigid inside you, not budging an inch even against your grinding hips - the way it’s buried in your [pc.vagOrAss " + x + "], you can’t move at all!");
 
-output("\n\nRemove Egg");
-output("\n\n//Have the Egg Trainer remove your Faux Preg Egg... somehow?");
+	output("\n\nWith a grunt of displeasure, you try and squirm off the tentacle, but it holds you firm for a long moment. During the still second, you realize that the tentacle isn’t entirely frozen: it’s swelling, ever so slightly, but definitely growing thicker inside you. You gulp, feeling the slow and steady sensation of being stretched out by the inflating pseudo-phallus. When it finishes, you’re almost painfully stretched, groaning constantly from the intense pressure in your loins - and the fire of arousal burning in you, desperate for more.");
 
-output("\n\nAs enjoyable as it’s been, you’ve decided it’s time to let go of your faux-preg egg. {Vagpreg: If anything, having it has made you crave a real baby - or just a belly full of alien eggs - more than ever!} You run a hand over your [pc.belly], feeling an odd connection to the synthetic pregnancy that’s been growing inside you. It’s been fun.");
+	if(x >= 0) pc.cuntChange(x,pc.vaginalCapacity(x));
+	else pc.buttChange(pc.analCapacity());
 
-output("\n\nWith a sigh, you tap the egg-trainer’s holoscreen and select the removal option. As usual, it tells you to disrobe and relax in the saddle, assuring you that it’ll take care of everything. You do as it says, settling down in the fuck-saddle and angling your pregnant hole with the slit under your [pc.butt]. You don’t even need to be told to grab the handlebars and relax, familiar with the device’s modus operandi as you are. Still, it goes through the usual motions of facing the screen towards you and telling you that, depending on how gravid you’ve let yourself get, this might be a hell of a ride.");
+	output("\n\nSomething ice-cold and sticky sprays from the tentacle’s tapered tip, blasting the bottom of the egg inside you. You yelp in surprise, almost orgasming from the shock... and finish as the tentacle decides it’s done, and slides right out of you. Gasping and crying out, you buck in the saddle and drench yourself and your trainer machine in ");
+	if(pc.hasVagina() && pc.hasCock()) output("both masculine and feminine cum");
+	else if(pc.hasGenitals()) output("cum");
+	else output("artificial lubricants");
+	output(" The unexpected climax leaves you slumping against the machine, knuckles white from how hard you’re gripping the handlebars and leaking lube from your pregnant hole.");
 
-output("\n\nLooks like the <i>“faux pregnancy”</i> even includes birth. You shudder with anticipation, feeling your excitement mount. The tentacle’s bay opens under you, and the familiar, wriggling crown quickly presses against your [pc.vagOrAss " + x + "], spraying your ass and thighs indiscriminately with hot, slick lube. A little moan escapes your lips, forced out by a slow but insistent insertion that spreads your hole open wider and wider. {Your [pc.cock] is soon as hard as diamonds, begging for attention you don’t want to give it: letting the tentacle milk all the cum out of you is so much sweeter than giving in and using your hands!}");
+	output("\n\nWhatever the tendril shot into your ");
+	if(x >= 0) output("womb");
+	else output("gut");
+	output(" seems to have affected your egg. The synthetic orb shifts restlessly inside you");
 
-output("\n\nYou rock your hips back against the tentacle, taking it as deep as you can. It fills you with lube, squirting the stuff into your {bowels // womb} and making sure that every blessed inch of your insides is absolutely drenched. After a few minutes of its usual, pleasant fucking, though... something changes. The tentacle goes completely still and rigid inside you, not budging an inch even against your grinding hips - the way it’s buried in your [pc.vagOrAss " + x + "], you can’t move at all!");
+	//if gravid or bigger: 
+	if(pData.pregnancyBellyRatingContribution >= 50) output(" and, thankfully, seems to lose some of its mass. A waterfall of sexual fluids release from the pent-up ball, flooding out of you the same way the trainer-box’s lube does. As the ball drains, your belly ever so slowly deflates, down to a slightly more manageable size. You’re no longer nearly so overwhelmingly gravid now, but when the flood abates, you’re still left with a big, prominent baby bump.");
+	else if(pData.pregnancyBellyRatingContribution >= 20) output(" A small waterfall of pent-up sexual fluids cascades out of you as the ball of synthetic egg deflates somewhat, shrinking down with agonizingly pleasurable slowness until it’s just a big, firm baby bump bloating your belly out.");
+	else output(" Your gut gurgles uneasily as the egg dislodges and shrinks a bit, getting properly aligned for what’s to come.");
 
-output("\n\nWith a grunt of displeasure, you try and squirm off the tentacle, but it holds you firm for a long moment. During the still second, you realize that the tentacle isn’t entirely frozen: it’s swelling, ever so slightly, but definitely growing thicker inside you. You gulp, feeling the slow and steady sensation of being stretched out by the inflating pseudo-phallus. When it finishes, you’re almost painfully stretched, groaning constantly from the intense pressure in your loins - and the fire of arousal burning in you, desperate for more.");
+	output("\n\nThe holoscreen helpfully tells you to please face your rump into the lube-tank. The lid slides off, revealing the sloshing tank of hot, steamy lube for you to give <i>“birth”</i> into. You swing your [pc.legs] forward, grabbing your belly to steady yourself as you feel the egg start to drop. A big, bold, pink word appears on screen: <i>“<b>PUSH</b>.”</i>");
 
-output("\n\nSomething ice-cold and sticky sprays from the tentacle’s tapered tip, blasting the bottom of the egg inside you. You yelp in surprise, almost orgasming from the shock... and finish as the tentacle decides it’s done, and slides right out of you. Gasping and crying out, you buck in the saddle and drench yourself and your trainer machine in {fem- // both masculine and feminine }cum. The unexpected climax leaves you slumping against the machine, knuckles white from how hard you’re gripping the handlebars and leaking lube from your pregnant hole.");
+	//Small egg fork:
+	if(pData.pregnancyBellyRatingContribution >= 30)
+	{
+		output("\n\nYou grit your teeth and push as hard as you can, bracing against the box for a little extra leverage.");
+		output("\n\nThe egg inside you might not have grown very much, but it’s still bigger than what would normally pass through you - and bigger than the average TamaniCorp egg. Whatever the tentacle pumped into you ");
+		if(x >= 0) output("has relaxed your womb, making it open up and regurgitate its unwanted occupant");
+		else output("is make your ass spasm, finally flushing the thick bundle of synthetic substance that’s been nesting inside you for ages");
+		output(". You grunt and push, and nearly orgasm again thanks to how well-trained to pump out eggs your body has become.");
 
-output("\n\nWhatever the tendril shot into your {womb / gut} seems to have affected your egg. The synthetic orb shifts restlessly inside you{if gravid or bigger: and, thankfully, seems to lose some of its mass. A waterfall of sexual fluids release from the pent-up ball, flooding out of you the same way the trainer-box’s lube does. As the ball drains, your belly ever so slowly deflates, down to a slightly more manageable size. You’re no longer nearly so overwhelmingly gravid now, but when the flood abates, you’re still left with a big, prominent baby bump. //less than gravid, bigger than baby bump: A small waterfall of pent-up sexual fluids cascades out of you as the ball of synthetic egg deflates somewhat, shrinking down with agonizingly pleasurable slowness until it’s just a big, firm baby bump bloating your belly out. //else: Your gut gurgles uneasily as the egg dislodges and shrinks a bit, getting properly aligned for what’s to come.}");
+		output("\n\nIt doesn’t take long for your trained muscles long to work the egg out, right up to your ");
+		if(x == -1) output("anal ring");
+		else output("pussy-lips");
+		output(" and then, with a climactic burst of effort, it pops out and goes sailing into the lube-bath, splashing into the tank with its friends. The breath goes out of you with a ragged gasp of pleasure, and you all but collapse backwards. A feeling of utter, absolute contentment spreads slowly through you. After that, you feel like you could drift off to sleep.");
 
-output("\n\nThe holoscreen helpfully tells you to please face your rump into the lube-tank. The lid slides off, revealing the sloshing tank of hot, steamy lube for you to give <i>“birth”</i> into. You swing your [pc.legs] forward, grabbing your belly to steady yourself as you feel the egg start to drop. A big, bold, pink word appears on screen: <i>“<b>PUSH</b>.”</i>");
+		output("\n\nThe machine beeps something at you, but you’re way too worn out to get up and read it. Smiling to yourself, you glance into the tub, and see a black ball of what looks like plastic about twice the size of the other eggs resting atop the trainer’s payload, slowly submerging in the heated lube. A pang of... regret? Longing? Some emotion you can’t quite put words to tugs at your heartstrings for a moment as the lid slides closed, and you’re left to recover.");
+	}
+	//Bigger Egg Fork:
+	else
+	{
+		output("\n\nYou know oviposition is just another part of the process, but isn’t this a little big? The egg inside you is still absolutely huge, probably bigger around than an actual baby. Lucky you, the tentacle’s lube has relaxed your [pc.vagOrAss " + x + "], making your hope open wide of its own accord. You moan, shuddering as a heavy, heavy weight shifts downwards in your [pc.belly], starting to make its descent.");
+		output("\n\nAll you can do is push as hard as you can! The egg moves slowly down, coaxed by your well-trained muscles, but the sheer size of it drives you wild with pleasure and strain. Your hole is stretched wider and wider open, forced to bear the immense pressure of the egg’s descent through your body. The sensation is overwhelming, making you scream with orgasmic ecstasy, echoing your voice from the bulkheads all throughout the deck.");
+		output("\n\nAfter several minutes of pushing until your knuckles are white and your [pc.vagOrAss " + x + "] is radiating with agonizing pleasure, you can feel the egg starting to crown. Your hole stretches even wider than before, straining to its absolute limit to accommodate the slick, smooth bulk of the artificial egg. The holoscreen urgently flashes its command to push again, giving you the only guidance you’re going to get. So you keep pushing, throwing every ounce of will and force you’ve got into getting the over-sized egg out of you. You can actually feel your belly deflating, getting smaller as the massive weight that’s been stretching it out finally departs.");
+		output("\n\nWith one last, climactic push, you feel the sweet release as the egg hurtles out of your [pc.vagOrAss " + x + "] on a bed of lube and cum. Orgasm hits you again when you finally lay your faux-preg egg, rocking your body with unbearable pleasure. Though you hear a splash of it tumbling into the lube-bath inside the box, you can’t muster the strength to sit up and look. The trainer machine bleeps something at you and shuts off, leaving you to slowly recover.");
+		output("\n\nWhen you’ve finally caught your breath, you manage to stagger up and glance into the lube bath. The egg is sitting at the top, deflating. Already, it’s barely any bigger than the normal eggs inside, a big ball of black synthetic material about the size of your fist. Your heart throbs with familiar yearning, remembering the time you were so intimately connected.");
+		output("\n\nSighing to yourself, you close the lube bath and stagger off to clean up.");
+	}
+	//Clear dat shit, yo.
+	bonusFauxEggEffects(slot);
+	pc.bellyRatingMod -= pData.pregnancyBellyRatingContribution;
+	pData.reset();
+	pc.removeStatusEffect("Egg Addled 3");
+	pc.removeStatusEffect("Egg Addled 2");
+	pc.removeStatusEffect("Egg Addled 1");
+	processTime(35);
+	pc.orgasm();
+	pc.energy(-10);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
 
-output("\n\n{Small egg fork:");
-output("\n\nYou grit your teeth and push as hard as you can, bracing against the box for a little extra leverage.");
+public function bonusFauxEggEffects(pregSlot:int):void
+{
+	var pData:PregnancyData = pc.pregnancyData[slot] as PregnancyData;
+	var effect:Boolean = false;
+	
+	if(pregSlot != 3) pc.cuntChange(pregSlot, pData.pregnancyBellyRatingContribution * 20);
+	else pc.buttChange(pData.pregnancyBellyRatingContribution * 20);
+	
+	if(flags["EGG_TRAINING"] >= 5 && pData.pregnancyBellyRatingContribution >= 55)
+	{
+		if(pregSlot != 3) 
+		{
+			if(pc.vaginas[pregSlot].minLooseness < 5) 
+			{
+				pc.vaginas[pregSlot].minLooseness++;
+				output("\n\n<b>After all that stretching, you're pretty sure your vagina is going to have a tough time tightening back up... if it can at all.</b>");
+				effect = true;
+			}
+		}
+		else
+		{
+			if(pc.ass.minLooseness < 5)
+			{
+				pc.ass.minLooseness++;
+				output("\n\n<b>After all that stretching, you're pretty sure your ass is going to have a tough time tightening back up... if it can at all.</b>");
+				effect = true;
+			}
+		}
+	}
+	//Raise minimum gape one step to 3.
+	else if(pData.pregnancyBellyRatingContribution >= 25)
+	{
+		if(pregSlot != 3) 
+		{
+			if(pc.vaginas[pregSlot].minLooseness < 3) 
+			{
+				pc.vaginas[pregSlot].minLooseness++;
+				output("\n\n<b>After all that stretching, you're pretty sure your vagina is going to have a tough time tightening back up... if it can at all.</b>");
+				effect = true;
+			}
+		}
+		else
+		{
+			if(pc.ass.minLooseness < 3)
+			{
+				pc.ass.minLooseness++;
+				output("\n\n<b>After all that stretching, you're pretty sure your ass is going to have a tough time tightening back up... if it can at all.</b>");
+				effect = true;
+			}
+		}
+	}	
+}
 
-output("\n\nThe egg inside you might not have grown very much, but it’s still bigger than what would normally pass through you - and bigger than the average TamaniCorp egg. Whatever the tentacle pumped into you {has relaxed your womb, making it open up and regurgitate its unwanted occupant // is make your ass spasm, finally flushing the thick bundle of synthetic substance that’s been nesting inside you for ages}. You grunt and push, and nearly orgasm again thanks to how well-trained to pump out eggs your body has become.");
-
-output("\n\nIt doesn’t take long for your trained muscles long to work the egg out, right up to your {anal ring // pussy-lips} and then, with a climactic burst of effort, it pops out and goes sailing into the lube-bath, splashing into the tank with its friends. The breath goes out of you with a ragged gasp of pleasure, and you all but collapse backwards. A feeling of utter, absolute contentment spreads slowly through you. After that, you feel like you could drift off to sleep.");
-
-output("\n\nThe machine beeps something at you, but you’re way too worn out to get up and read it. Smiling to yourself, you glance into the tub, and see a black ball of what looks like plastic about twice the size of the other eggs resting atop the trainer’s payload, slowly submerging in the heated lube. A pang of... regret? Longing? Some emotion you can’t quite put words to tugs at your heartstrings for a moment as the lid slides closed, and you’re left to recover.");
-
-
-
-output("\n\n{Bigger Egg Fork:");
-output("\n\nYou know oviposition is just another part of the process, but isn’t this a little big? The egg inside you is still absolutely huge, probably bigger around than an actual baby. Lucky you, the tentacle’s lube has relaxed your [pc.vagOrAss " + x + "], making your hope open wide of its own accord. You moan, shuddering as a heavy, heavy weight shifts downwards in your [pc.belly], starting to make its descent.");
-
-output("\n\nAll you can do is push as hard as you can! The egg moves slowly down, coaxed by your well-trained muscles, but the sheer size of it drives you wild with pleasure and strain. Your hole is stretched wider and wider open, forced to bear the immense pressure of the egg’s descent through your body. The sensation is overwhelming, making you scream with orgasmic ecstasy, echoing your voice from the bulkheads all throughout the deck.");
-
-output("\n\nAfter several minutes of pushing until your knuckles are white and your [pc.vagOrAss " + x + "] is radiating with agonizing pleasure, you can feel the egg starting to crown. Your hole stretches even wider than before, straining to its absolute limit to accommodate the slick, smooth bulk of the artificial egg. The holoscreen urgently flashes its command to push again, giving you the only guidance you’re going to get. So you keep pushing, throwing every ounce of will and force you’ve got into getting the over-sized egg out of you. You can actually feel your belly deflating, getting smaller as the massive weight that’s been stretching it out finally departs.");
-
-output("\n\nWith one last, climactic push, you feel the sweet release as the egg hurtles out of your [pc.vagOrAss " + x + "] on a bed of lube and cum. Orgasm hits you again when you finally lay your faux-preg egg, rocking your body with unbearable pleasure. Though you hear a splash of it tumbling into the lube-bath inside the box, you can’t muster the strength to sit up and look. The trainer machine bleeps something at you and shuts off, leaving you to slowly recover.");
-
-output("\n\nWhen you’ve finally caught your breath, you manage to stagger up and glance into the lube bath. The egg is sitting at the top, deflating. Already, it’s barely any bigger than the normal eggs inside, a big ball of black synthetic material about the size of your fist. Your heart throbs with familiar yearning, remembering the time you were so intimately connected.");
-
-output("\n\nSighing to yourself, you close the lube bath and stagger off to clean up.");
-
-
-
-
-
-
-
-
-output("\n\nLeave");
-output("\n\nYou decide against using the egg trainer, and put it on standby for the time being. The screen flickers off, and the burbling noises you occasionally hear inside it fade to a low murmur.");
-*/
+//Leave
+public function leaveEggMachine():void
+{
+	clearOutput();
+	author("Savin");
+	output("You decide against using the egg trainer, and put it on standby for the time being. The screen flickers off, and the burbling noises you occasionally hear inside it fade to a low murmur.");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}

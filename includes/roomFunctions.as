@@ -295,6 +295,16 @@ public function debugMenusThree():void
 	addButton(2, "2v1", pcPlusAnnoVsOneEnemy);
 	addButton(3, "2v2", pcPlusAnnoVsTwoEnemies);
 	addButton(4, "CLUSTER", maximumClusterfuck);
+	addButton(10, "SUPERTIME", superTimePassage);
+}
+
+public function superTimePassage():void
+{
+	clearOutput();
+	output("Passing 30 days.");
+	processTime(60*24*30);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 public function instaLossTestLust():void
