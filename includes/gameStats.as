@@ -1406,13 +1406,20 @@ public function displayQuestLog(showID:String = "All"):void
 			{
 				output2("\n<b><u>Zil Capture</u></b>");
 				output2("\n<b>* Status:</b>");
-				if(flags["CAPTURED_A_FEMALE_ZIL_FOR_DR_HASWELL"] != undefined && flags["CAPTURED_A_MALE_ZIL_FOR_DR_HASWELL"] != undefined) output2(" Completed");
+				if(flags["FIRST_CAPTURED_ZIL_REPORTED_ON"] != undefined && flags["SECOND_CAPTURED_ZIL_REPORTED_ON"] != undefined) output2(" Completed");
+				else if(flags["JULIANS_QUEST_DISABLED"] != undefined) output2(" Disabled");
+				else if
+				(	(flags["FIRST_CAPTURED_ZIL_REPORTED_ON"] == undefined && (flags["CAPTURED_A_FEMALE_ZIL_FOR_DR_HASWELL"] != undefined || flags["CAPTURED_A_MALE_ZIL_FOR_DR_HASWELL"] != undefined))
+				||	(flags["SECOND_CAPTURED_ZIL_REPORTED_ON"] == undefined && (flags["CAPTURED_A_FEMALE_ZIL_FOR_DR_HASWELL"] != undefined && flags["CAPTURED_A_MALE_ZIL_FOR_DR_HASWELL"] != undefined))
+				)	output2(" <i>Return to Dr. Haswell!</i>");
 				else output2(" <i>In progress...</i>");
 				output2("\n<b>* Female Zil:</b>");
 				if(flags["CAPTURED_A_FEMALE_ZIL_FOR_DR_HASWELL"] != undefined) output2(" Captured");
+				else if(flags["JULIANS_QUEST_DISABLED"] != undefined) output2(" Not captured");
 				else output2(" <i>In progress...</i>");
 				output2("\n<b>* Male Zil:</b>");
 				if(flags["CAPTURED_A_MALE_ZIL_FOR_DR_HASWELL"] != undefined) output2(" Captured");
+				else if(flags["JULIANS_QUEST_DISABLED"] != undefined) output2(" Not captured");
 				else output2(" <i>In progress...</i>");
 				sideCount++;
 			}
