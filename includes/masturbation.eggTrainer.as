@@ -876,7 +876,7 @@ public function eggTrainerPreggoRemoval():void
 
 public function bonusFauxEggEffects(pregSlot:int):void
 {
-	var pData:PregnancyData = pc.pregnancyData[slot] as PregnancyData;
+	var pData:PregnancyData = pc.pregnancyData[pregSlot] as PregnancyData;
 	var effect:Boolean = false;
 	
 	if(pregSlot != 3) pc.cuntChange(pregSlot, pData.pregnancyBellyRatingContribution * 20);
