@@ -185,6 +185,7 @@ public function rawTentacleGogogo():void
 	
 	processTime(22);
 	pc.orgasm();
+	pc.shower();
 	processTime(4);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -386,6 +387,7 @@ public function layingTrainingTwo():void
 	IncrementFlag("EGG_TRAINING_TIMES");
 
 	pc.orgasm();
+	pc.shower();
 	processTime(5);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -516,6 +518,7 @@ public function carryTrainingWithEggMachine():void
 	output("\n\n<i>“Take good care of ‘em, sugar!”</i> the holo-screen tells you, and the tentacle gives you a resounding slap on the ass before wriggling back into its hole. You groan, running your hands across your lumpy belly as the machine shuts down, leaving you to recover - and to enjoy your wonderfully pregnant belly before you eventually get up and stagger towards the shower, slowly adjusting to your new weight.");
 
 	pc.lust(50+rand(10));
+	pc.shower();
 	processTime(25);
 
 	// Preggos!
@@ -603,8 +606,7 @@ public function eggTrainerCarryTrainingEnds(pregSlot:int, pregEggs:int):void
 	else output("womb");
 	output(" is empty. You lie on the ground, resting for a moment until you’ve recovered enough to get up. A small probe emblazoned with the Steele logo appears seemingly out of nowhere, picking up all but one of the eggs with a couple beeps. You assume it’s taking the eggs somewhere to deal with, but since these eggs aren’t of the hatching variety you aren’t completely sure.");
 		
-	output("\n\nAfter all that, <b>you count having laid " + num2Text(pregEggs) + " eggs");
-	output("!</b>");
+	output("\n\nAfter all that, <b>you count having laid " + num2Text(pregEggs) + " eggs!</b>");
 	
 	pc.energy(-1 * pregEggs);
 	processTime(20 + rand(11));
