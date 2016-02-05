@@ -926,7 +926,7 @@ public function bonusFauxEggEffects(pregSlot:int):void
 				effect = true;
 			}
 		}
-	}	
+	}
 }
 
 //Leave
