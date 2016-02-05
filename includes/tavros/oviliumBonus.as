@@ -40,21 +40,15 @@ public function oviliumEffects():void
 			// 25% preg speeded by 2 hours:
 			else
 			{
-				output(" and you feel a jolt inside. For a moment you worry about your pregnancy, but your codex informs you that you’re suddenly a few hours ahead of schedule.");
+				var nVal:int = 2 + rand(2);
 				
-				//var plusMinutes:int = (-2 * 60);
-				//var pregMinutes:int = 0;
-				for (var i:int = 0; i < pc.pregnancyData.length; i++)
-				{
-					if (pc.isPregnant(i))
-					{
-						//pregMinutes = pc.pregnancyData[i].pregnancyIncubation + plusMinutes;
-						//if (pregMinutes < 0) pregMinutes = 1;
-						//pc.pregnancyData[i].pregnancyIncubation = pregMinutes;
-						
-						pc.pregnancyData[i].pregnancyIncubationMulti += 0.5;
-					}
-				}
+				output(" and you feel a jolt inside. For a moment you worry about your pregnancy, but your codex informs you that you’re suddenly a");
+				if(nVal == 2) output(" couple");
+				else output(" few");
+				output(" hours ahead of schedule.");
+				
+				preggcelleration(-1 * nVal * 60);
+				
 				if (rand(2) == 0) oviliumEggBump();
 			}
 			processTime(2);
@@ -108,12 +102,22 @@ public function oviliumEggBump():void
 		{
 			if (pc.pregnancyData[i].pregnancyType == "OviliumEggPregnancy")
 			{
+				var bigEgg:Boolean = (pc.statusEffectv2("Ovilium") == 0);
 				var chances:int = Math.floor(pc.pregnancyData[i].pregnancyQuantity / 4);
 				for (var x:int = 0; x < 12; x++)
 				{
 					if (changes < 12 && rand(chances) == 0)
 					{
 						pc.pregnancyData[i].pregnancyQuantity++;
+						pc.pregnancyData[i].pregnancyBellyRatingContribution += 0.125;
+						pc.bellyRatingMod += 0.125;
+						if(bigEgg)
+						{
+							pc.pregnancyData[i].pregnancyQuantity++;
+							pc.pregnancyData[i].pregnancyBellyRatingContribution += 2;
+							pc.bellyRatingMod += 2;
+							bigEgg = false;
+						}
 						changes++;
 					}
 				}
@@ -134,6 +138,33 @@ public function oviliumEggBump():void
 		pc.addStatusValue("Ovilium", 2, 1);
 	}
 }
+// Pregnancy multiplier bump.
+public function preggcelleration(plusMinutes:int = 0):int
+{
+	var num:int = 0;
+	
+	for (var i:int = 0; i < pc.pregnancyData.length; i++)
+	{
+		if (pc.isPregnant(i))
+		{
+			// Minute sum/difference
+			var pregMinutes:int = pc.pregnancyData[i].pregnancyIncubation + plusMinutes;
+			// Get current multiplier
+			var pregMulti:Number = pc.pregnancyData[i].pregnancyIncubationMulti;
+			// Convert difference into multiplier
+			if (pregMulti > 0)
+			{
+				if (pregMinutes > 0) pregMulti *= (pc.pregnancyData[i].pregnancyIncubation / pregMinutes);
+				else pregMulti += 90;
+				// Set multiplier
+				pc.pregnancyData[i].pregnancyIncubationMulti = pregMulti;
+				num++;
+			}
+		}
+	}
+	
+	return num;
+}
 
 // Laying eggs
 public function oviliumPregnancyEnds(pregSlot:int, pregEggs:int, totalEggs:int):void
@@ -151,7 +182,7 @@ public function oviliumPregnancyEnds(pregSlot:int, pregEggs:int, totalEggs:int):
 	}
 	else output(" lie down so that your [pc.vagina " + pregSlot + "] is at a good angle for laying eggs");
 	output(".");
-	output("\n\nYou feel the contractions quickening and prepare to push the eggs out. Steeling yourself for the coming eggs, you prepare to push, expecting it to be a bit tough. Contrary to your beliefs, as soon as you push a torrent of eggs slip through your passage. The suddenness of it causes your muscles to tense, [pc.legs] splaying out in the air. Before you can recover your wits a few more eggs slide out of you and into the pile.");
+	output("\n\nYou feel the contractions quickening and prepare to push the eggs out. Steeling yourself for the coming eggs, you prepare to push, expecting it to be a bit tough. Contrary to your beliefs, as soon as you push a torrent of eggs slip through your passage. The suddenness of it causes your muscles to tense, [pc.legs] splaying out in the air. Before you can recover your wits, a few more eggs slide out of you and into the pile.");
 	
 	var bigEgg:Boolean = false;
 	
@@ -189,8 +220,7 @@ public function oviliumEffectCheck():void
 	
 	for (var i:int = 0; i < pc.pregnancyData.length; i++)
 	{
-		var pData:PregnancyData = pc.pregnancyData[i];
-		if (pData.pregnancyType == "OviliumEggPregnancy") return;
+		if (pc.pregnancyData[i].pregnancyType == "OviliumEggPregnancy") return;
 	}
 	
 	pc.removeStatusEffect("Ovilium");
@@ -269,8 +299,8 @@ public function eatOviliumEgg(eggSize:String = "none", eggColor:String = "none")
 		else if (eggColor == "blue")
 		{
 			effectTF = "preggcelleration";
-			if (eggSize == "small") nVal = 0.5;
-			if (eggSize == "large") nVal = -0.5;
+			if (eggSize == "small") nVal = (-2);
+			if (eggSize == "large") nVal = (2);
 		}
 		// Glowing white egg: increase fertility/virility slightly. big egg bigger increase.
 		else if (eggColor == "glowing white")
@@ -373,22 +403,15 @@ private function oviliumEggTF(effectTF:String = "none", nVal:Number = 0, eggSize
 	// (Preg accel)
 	else if (effectTF == "preggcelleration")
 	{
-		num = 0;
-		for (x = 0; x < pc.pregnancyData.length; x++)
-		{
-			if (pc.isPregnant(x))
-			{
-				pc.pregnancyData[x].pregnancyIncubationMulti += nVal;
-				num++;
-			}
-		}
+		num = preggcelleration(nVal * 60);
+		
 		if (num > 0)
 		{
 			msg += "A thrilling spasm throbs at your cervix, nearly buckling your legs. Your codex informs you that the pregnanc";
 			if (num != 1)msg += "y";
 			else msg += "ies";
 			msg += " you’ve been expecting have been";
-			if (nVal > 0) msg += " expedited";
+			if (nVal < 0) msg += " expedited";
 			else msg += " delayed";
 			msg += ".";
 			

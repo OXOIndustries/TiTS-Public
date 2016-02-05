@@ -372,7 +372,11 @@ public function statisticsScreen(showID:String = "All"):void
 			output2("\n<b>* Cum, Max: </b>" + pc.maxCum() + " mLs");
 			output2("\n<b>* Refractory Rate: </b>" + Math.round(pc.refractoryRate*1000)/10 + " %");
 			if(pc.virility() <= 0) output2("\n<b>* Virility:</b> Infertile");
-			else output2("\n<b>* Virility: </b>" + Math.round(pc.virility()*1000)/10 + " %");
+			else
+			{
+				output2("\n<b>* Virility: </b>" + Math.round(pc.virility()*1000)/10 + " %");
+				output2("\n<b>* Virility, Speed Modifier: </b>" + Math.round(pc.pregnancyIncubationBonusFather()*1000)/10 + " %");
+			}
 			// Cocks
 			if(pc.cocks.length >= 1)
 			{
@@ -501,7 +505,8 @@ public function statisticsScreen(showID:String = "All"):void
 			output2("\n<b>* Active Pregnancies, Total: </b>" + pc.totalPregnancies());
 			for (x = 0; x < pc.pregnancyData.length; x++)
 			{
-				if(pc.pregnancyData[x].pregnancyType != "")
+				var pData:PregnancyData = pc.pregnancyData[x];
+				if(pData.pregnancyType != "")
 				{
 					if(x != 3)
 					{
@@ -513,32 +518,34 @@ public function statisticsScreen(showID:String = "All"):void
 						if(silly) output2("\n<b><u>Anal Womb</u></b>");
 						else output2("\n<b><u>Bowels</u></b>");
 					}
-					output2("\n<b>* Belly, Size Rating: </b>" + formatFloat(pc.pregnancyData[x].pregnancyBellyRatingContribution, 3));
+					output2("\n<b>* Belly, Size Rating: </b>" + formatFloat(pData.pregnancyBellyRatingContribution, 3));
 					output2("\n<b>* Pregnancy, Type:</b>");
-					if(pc.pregnancyData[x].pregnancyType == "HumanPregnancy") output2(" Human");
-					else if(pc.pregnancyData[x].pregnancyType == "VenusPitcherSeedCarrier") output2(" Venus Pitcher, Seed");
-					else if(pc.pregnancyData[x].pregnancyType == "VenusPitcherFertilizedSeedCarrier") output2(" Venus Pitcher, Seed, Fertilized");
-					else if(pc.pregnancyData[x].pregnancyType == "NyreaEggPregnancy") output2(" Nyrean Huntress, Eggs");
-					else if(pc.pregnancyData[x].pregnancyType == "RoyalEggPregnancy") output2(" Royal Nyrea, Eggs");
-					else if(pc.pregnancyData[x].pregnancyType == "RenvraEggPregnancy") output2(" Renvra, Eggs");
-					else if(pc.pregnancyData[x].pregnancyType == "RenvraFullPregnancy") output2(" Renvra");
-					else if(pc.pregnancyData[x].pregnancyType == "CockvinePregnancy") output2(" Cockvine");
-					else if(pc.pregnancyData[x].pregnancyType == "DeepQueenPregnancy") output2(" Water Queen");
-					else if(pc.pregnancyData[x].pregnancyType == "OviliumEggPregnancy") output2(" Ovilium, Eggs");
+					if(pData.pregnancyType == "HumanPregnancy") output2(" Human");
+					else if(pData.pregnancyType == "VenusPitcherSeedCarrier") output2(" Venus Pitcher, Seed");
+					else if(pData.pregnancyType == "VenusPitcherFertilizedSeedCarrier") output2(" Venus Pitcher, Seed, Fertilized");
+					else if(pData.pregnancyType == "NyreaEggPregnancy") output2(" Nyrean Huntress, Eggs");
+					else if(pData.pregnancyType == "RoyalEggPregnancy") output2(" Royal Nyrea, Eggs");
+					else if(pData.pregnancyType == "RenvraEggPregnancy") output2(" Renvra, Eggs");
+					else if(pData.pregnancyType == "RenvraFullPregnancy") output2(" Renvra");
+					else if(pData.pregnancyType == "CockvinePregnancy") output2(" Cockvine");
+					else if(pData.pregnancyType == "DeepQueenPregnancy") output2(" Water Queen");
+					else if(pData.pregnancyType == "OviliumEggPregnancy") output2(" Ovilium, Eggs");
 					else output2(" <i>Unknown</i>");
-					if(pc.pregnancyData[x].pregnancyIncubation > -1)
+					if(pData.pregnancyIncubation > -1)
 					{
-						output2("\n<b>* Pregnancy, Gestation Time: </b>" + prettifyMinutes(pc.pregnancyData[x].pregnancyIncubation));
-						output2("\n<b>* Pregnancy, Incubation Speed Modifier: </b>" + Math.round(pc.pregnancyData[x].pregnancyIncubationMulti*1000)/10 + " %");
+						var pIncubation:int = pData.pregnancyIncubation;
+						var pIncubationMulti:Number = pData.pregnancyIncubationMulti;
+						output2("\n<b>* Pregnancy, Gestation Time: </b>" + prettifyMinutes(Math.floor(pIncubation * (1 / pIncubationMulti))));
+						if(pIncubationMulti != 1) output2("\n<b>* Pregnancy, Incubation Speed Modifier: </b>" + Math.round(pIncubationMulti * 1000)/10 + " %");
 					}
-					if(pc.pregnancyData[x].pregnancyQuantity > 0)
+					if(pData.pregnancyQuantity > 0)
 					{
 						var pChildType:int = PregnancyManager.getPregnancyChildType(pc, x);
 						output2("\n<b>* Pregnancy,");
 						if(pChildType == GLOBAL.CHILD_TYPE_SEED) output2(" Seedling");
 						else if(pChildType == GLOBAL.CHILD_TYPE_EGGS) output2(" Egg");
 						else output2(" Offspring");
-						output2(" Count: </b>" + pc.pregnancyData[x].pregnancyQuantity);
+						output2(" Count: </b>" + pData.pregnancyQuantity);
 					}
 				}
 			}
@@ -757,7 +764,7 @@ public function statisticsScreen(showID:String = "All"):void
 			if(totalOffspring)
 			{
 				output2("\n<b><u>Offspring</u></b>");
-				output2("\n<b>* Total: </b>" + StatTracking.getStat("pregnancy/total births"));
+				output2("\n<b>* Total: </b>" + totalOffspring);
 				// Mother
 				if(StatTracking.getStat("pregnancy/cockvine seedlings birthed") > 0)
 					output2("\n<b>* Births, Cockvines: </b>" + StatTracking.getStat("pregnancy/cockvine seedlings birthed"));
@@ -830,6 +837,7 @@ public function statisticsScreen(showID:String = "All"):void
 			if(totalProduce)
 			{
 				output2("\n<b><u>Produce</u></b>");
+				output2("\n<b>* Total: </b>" + totalProduce);
 				if(StatTracking.getStat("pregnancy/ovilium eggs laid") > 0)
 					output2("\n<b>* Births, Ovilium Eggs, Total: </b>" + StatTracking.getStat("pregnancy/ovilium eggs laid"));
 			}
