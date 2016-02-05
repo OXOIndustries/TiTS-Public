@@ -87,7 +87,5 @@ package classes.GameData.Pregnancy.Handlers
 			else if (pData.pregnancyQuantity <= 75) return "Your skin is unevenly bulging and shifts constantly as the many, many eggs inside you. Every step makes your full gut jiggle, sending little shockwaves of pleasure through you.";
 			else return "Your belly is hugely swollen, full of what must be near to a hundred plastic eggs that rustle, shift, and jostle inside you with even the slightest motion. You’re in a constantly state of near-orgasmic high from the unending sensation, shivering every time you take a step or rub a hand against your belly.";
 		}
-		
 	}
-
 }
