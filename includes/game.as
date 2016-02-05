@@ -1794,6 +1794,8 @@ public function processTime(arg:int):void {
 			{
 				treatmentHourProcs();
 			}
+			//Egg trainer stuff
+			carryTrainingBonusBlurbCheck();
 			//Cunt stretching stuff
 			if(pc.hasVagina()) {
 				for(x = 0; x < pc.totalVaginas(); x++) {
