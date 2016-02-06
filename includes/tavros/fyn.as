@@ -61,6 +61,8 @@ public function playFynsDoorScene():void {
 	
 	output("Do you knock on the large oak door?");
 	
+	processTime(1);
+	
 	clearMenu();
 	addButton(0, "Yes", knockOnFynsDoor, undefined, "Knock", "Why not? You're kind of curious to see who lives inside... you only live once, right?");
 	addButton(1, "No", walkAwayFromFynsDoor, undefined, "Don't knock", "Just walk away. After all, what reason do you have to knock on some random's door?");
@@ -74,6 +76,8 @@ public function walkAwayFromFynsDoor():void {
 	
 	//throw player out on corridor
 	currentLocation = "RESIDENTIAL DECK 11";
+	
+	processTime(1);
 	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -90,11 +94,15 @@ public function knockOnFynsDoor():void {
 		output("\n\n“So what are you waiting for? Come on inside, and let's get started.” The door is fully open now, and he's gesturing for you to go inside.");
 		output("\n\nFor some reason, standing this close to him, you can smell fresh male sweat. Has he been exercising? You can definitely see a slight sheen to his muscles.");
 		output("\n\nWhat do you do?");
+		
+		processTime(5);
 	}
 	else 
 	{
 		output("You knock on the door again, deciding to give it another try. Not long after you're finished knocking, the door swings half open and the same tall, shirtless man steps out. He quirks one of his distinctively dark brows, shooting you a curious, slightly amused look. “... Back again? I'm not a doorman, you know. And I <i>do</i> charge by the hour.”");
 		output("\n\n“So what are you waiting for? Come on inside, and let's get started.” The door is fully open now, and he's gesturing for you to go inside. What do you do?");
+	
+		processTime(2);
 	}
 	
 	flags["MET_FYN"] = true;
@@ -113,6 +121,8 @@ public function backOutOfGoingIntoFynsApartment():void {
 	else output("“Nope. Wrong door. See ya.” You wave and hastily walk off.");
 	
 	output(" The look of amusement doesn't leave the handsome crimson-skinned man's face, even as he slips back inside and closes the door. What was <i>that</i> all about?");
+	
+	processTime(2);
 	
 	//throw player out on corridor
 	currentLocation = "RESIDENTIAL DECK 11";
@@ -140,6 +150,8 @@ public function goIntoFynsApartment():void {
 	
 	output(". The devilish-looking man stretches out, absentmindedly baring his broad shoulders and chest. He looks perfectly at home without a shirt; but then again, he <i>is</i> home, isn't he?");
 	output("\n\n“... So, do you have a lot of experience, or is this first time?”");
+	
+	processTime(5);
 	
 	clearMenu();
 	addButton(0, "Lots", resolveFynConfusion, 'lots', "Lots", "Oh yeah, you've got, uh, *tons* of experience... in whatever it is that he's talking about. Bluff like a pro!");
@@ -219,6 +231,8 @@ public function resolveFynConfusion(type:String):void {
 	flags["FYN_APARTMENT_ENTERED"] = true;
 	CodexManager.unlockEntry("Vildarii");
 	
+	processTime(10 + rand(5));
+	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -253,6 +267,8 @@ public function fynMenu():void {
 			output("\n\n“Greetings! Just catching up on some light reading. Fascinating things those siel come up with. There's more knots in some of these bindings than an ausar orgy.”");
 			break;
 	}
+	
+	processTime(1);
 	
 	clearMenu();
 	addButton(0, "Appearance", fynAppearance);
@@ -302,8 +318,6 @@ public function fynTalk():void {
 	if(flags["FYN_TALKED_ABOUT_HOBBIES"]) addButton(7, "Fencing", fynTalksAboutFencing);
 	else addDisabledButton(7, "Fencing", "Fencing", "You don't know him well enough to talk about that.");
 	addButton(14, "Back", fynMenu);
-	
-	
 }
 
 public function fynTalksAboutFyn():void {
@@ -383,6 +397,8 @@ public function fynTalksAboutFynPcFlirts():void {
 	
 	fynTalksAboutFynPartTwo();
 	
+	processTime(10 + rand(5));
+	
 	clearMenu();
 	addButton(14, "Back", fynTalk);
 }
@@ -404,6 +420,8 @@ public function fynTalksAboutFynPcPlaysHardToGet():void {
 	
 	fynTalksAboutFynPartTwo();
 	
+	processTime(2);
+	
 	clearMenu();
 	addButton(14, "Back", fynTalk);
 }
@@ -422,6 +440,8 @@ public function fynTalksAboutFynPcIsNoFlirt():void {
 	
 	fynTalksAboutFynPartTwo();
 	
+	processTime(2);
+	
 	clearMenu();
 	addButton(14, "Back", fynTalk);
 }
@@ -432,6 +452,8 @@ public function fynTalksAboutFynPartTwo():void {
 	output("\n\n“My full name is Fyn Wilder; or at least, that's my full stage name. Apparently 'Eriladar' apparently wasn't distinctive enough, or too hard to pronounce, so my agent suggested I axe it,” he gives a light shrug, “'Fyn Wilder' seemed like a good fit.”");
 	output("\n\n“I'm twenty eight, and my home planet is Merope, in the Pleaides star cluster. That's not too far from terra, galaxy-wise, so we got a lot of terran culture growing up. I'm actually a bit of a terraphile, truth be told; some of the old earth cultures had some real character.”");
 	output("\n\n“Loving terran culture is probably what attracted to me to the stage,” the raven-haired man pointedly touches his throat, “Thankfully, my family had me genetically modified before I was born; my vocal cords are sliced with a fanfir's. It was all the rage with vildarii back then, and it really helped keep up with the competition.”");
+
+	processTime(5);
 }
 
 public function fynTalksAboutHobbies():void {
@@ -445,6 +467,7 @@ public function fynTalksAboutHobbies():void {
 	if(fynRelationshipStatus() >= 1) output("\n\nBondage? You picture yourself trussed up in of silk, put on display for Ryn's satisfaction. That's <i>one</i> way to get in his bedroom, apparently!");
 	
 	flags["FYN_TALKED_ABOUT_HOBBIES"] = true;
+	processTime(5 + rand(5));
 	
 	clearMenu();
 	addButton(14, "Back", fynTalk);
@@ -461,6 +484,8 @@ public function fynTalksAboutSex():void {
 	output("\n\nIt's a bit surprising to hear such a wild and wicked looking guy is actually somewhat monogamous. Or rather, he's into open relationships, for all his kinks.");
 	
 	flags["FYN_TALKED_ABOUT_SEX"] = true;
+	
+	processTime(5 + rand(5));
 	
 	clearMenu();
 	addButton(14, "Back", fynTalk);
@@ -482,6 +507,8 @@ public function fynTalksAboutVildarii():void {
 	output("\n\n“Well, I can change the overall texture, shape, and color of everything, really. Sprouting ausar ears or kaithrit whiskers, for example, or even an extra phallus should the mood suit me. On a good day, I can do a tail, but that's a <i>lot</i> of work.”");
 	output("\n\n“That said, it's not as easy as it looks. Every time I change, I need to binge eat like crazy; transforming burns up things like fats and sugars, so come performance time, I've got to chow down like my life depends on it. Not a bad deal, though, eating so much and never having it hit the hips.”");
 	
+	processTime(10 + rand(5));
+	
 	clearMenu();
 	addButton(14, "Back", fynTalk);
 }
@@ -494,6 +521,8 @@ public function fynTalksAboutCareer():void {
 	output("\n\n“Yeah. Well, I did make it big time. I was cast a big role with the Starlanders; that's a theatrical company that do holo-productions as well. I would have been broadcast large as life, all three dimensions across countless star systems...”");
 	output("\n\nFyn pauses and looks off into a random direction, furrowing his brow.”... And someone very close to me died. I didn't really have it in my heart to perform after that,” he pauses for a moment. “...It nearly killed my agent, but I decided to quit and come out here to the edges of Rush space.”");
 	output("\n\nYou ask him what he's looking for, out here on the edges of known space, and Fyn gives a somber smile. “Honestly? I don't know. All I knew is I wasn't going to find it back there in the core.”");
+	
+	processTime(10 + rand(5));
 	
 	clearMenu();
 	addButton(14, "Back", fynTalk);
@@ -512,6 +541,8 @@ public function fynTalksAboutDancing():void {
 	output("\n\n“When I do it, hun, it's an art. Trust me. Being able to make someone's practically flutter back into their head, just with how much you're winding them up? Forget art; that's practically <i>magic</i>.”");
 	
 	if(fynRelationshipStatus() >= 1) output("\n\nYou look down at Fyn's hips, imagining him giving you a hot strip tease... and suddenly you feel <i>yourself</i> swooning. He's not half wrong; that <i>would</i> be like magic.");
+	
+	processTime(10 + rand(5));
 	
 	clearMenu();
 	addButton(14, "Back", fynTalk);
@@ -541,6 +572,8 @@ public function fynTalksAboutSinging():void {
 	output("\n\nSo, does that mean Fyn can do what fanfir can do? The singer smiles and shakes his head.");
 	output("\n\n“Not to that degree. I mean, fanfir have massive throats. Even when they talk, it's truly captivating. My birthright only gives me a superior singing range.”");
 	
+	processTime(10 + rand(5));
+	
 	clearMenu();
 	addButton(14, "Back", fynTalk);
 }
@@ -556,6 +589,8 @@ public function fynTalksAboutFencing():void {
 	output("\n\nJust like everything he does, Fyn seems rather passionate about fencing, too. You could probably get you to teach him a few things about it. Maybe it'll help you out in rush space?");
 	
 	flags["FYN_TALKED_ABOUT_FENCING"] = true;
+	
+	processTime(10 + rand(5));
 	
 	clearMenu();
 	addButton(14, "Back", fynTalk);
@@ -641,6 +676,8 @@ public function fynTeachesDancing():void {
 	
 	flags["FYN_TAUGHT_DANCING"] = true;
 	
+	processTime(30 + rand(10));
+	
 	clearMenu();
 	addButton(0, "Next", fynMenu);
 }
@@ -691,6 +728,8 @@ public function fynTeachesStripping():void
 			break;
 	}
 	
+	processTime(30 + rand(10));
+	
 	clearMenu();
 	addButton(0, "Next", fynMenu);
 }
@@ -735,6 +774,8 @@ public function fynTeachesFencing():void
 			output("\n\nFyn feints against you for a while, leading by example and showing you some different kinds. You then practice what you've learned on him, trying to break through his defenses. Once the lesson is over, you feel like you're more astute than ever, and on top of your game.");
 			break;
 	}
+	
+	processTime(30 + rand(10));
 	
 	clearMenu();
 	addButton(0, "Next", fynMenu);
