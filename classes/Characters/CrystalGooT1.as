@@ -257,6 +257,12 @@ package classes.Characters
 				return;
 			}
 			
+			if (skipTurn)
+			{
+				skipTurn = false;
+				return;
+			}
+			
 			var attacks:Array = [];
 			
 			attacks.push( { v: LashOut, w: (hasStatusEffect("Unarmored") ? 10 : 40) } );
@@ -435,16 +441,17 @@ package classes.Characters
 		}
 		
 		private var skipIntercept:Boolean = false;
+		private var skipTurn:Boolean = false;
 		
 		public function SneakSqueezeAttackReaction(attackOpts:Object):void
 		{
 			// isMelee, isRanged, isTease, isSquirt, isSpecial, isAOE, isWait, isStand
-			// isFantasize
+			// isFantasize, isFlee
 			
 			var pc:PlayerCharacter = kGAMECLASS.pc;
 			var pcHit:Boolean = false;
 			
-			if (attackOpts["isMelee"] != undefined)
+			if (attackOpts["isMelee"] != undefined || attackOpts["isRanged"] != undefined)
 			{
 				if (rand(10) == 0)
 				{
@@ -455,6 +462,7 @@ package classes.Characters
 				{
 					output("You "+ pc.meleeWeapon.attackVerb +" blindly, hoping to hit the lurking ganrael, but fail. It bursts from cover in a different direction and slams into you.");
 				}
+				skipTurn = false;
 			}
 			else if (attackOpts["isSquirt"] != undefined)
 			{
@@ -462,44 +470,103 @@ package classes.Characters
 				{
 					output("You squirt blindly and barely manage a glancing hit on the lurking ganrael just as it bursts from cover! The alien seems stunned, but its momentum carries it into you anyway.");
 					pcHit = true;
+					skipTurn = false;
 				}
 				else
 				{
 					output("You squirt blindly, hoping to hit the lurking ganrael, but fail. It bursts from cover in a different direction and slams into you.");
+					skipTurn = false;
 				}
 			}
 			else if (attackOpts["isTease"] != undefined)
 			{
 				output("You pose alluringly, but with no clue where the alien is, you have no way of knowing if your slutty seduction has hit its mark.");
+				skipTurn = false;
 			}
-			else if (attackOpts["isPsionic"] != undefined)
+			else if (attackOpts["isAOE"] != undefined)
 			{
-				// 9999 {(psionic tease)You focus and reach for the ganrael’s mind, trying to project a wave of arousal. A hidden consciousness links with yours, and shivers at the intrusive, sexual imagery.
+				output(" The ganrael reels from your indiscriminate attack, revealing itself and costing it the element of surprise.");
+				removeStatusEffect("GooCamo");
+				createStatusEffect("GooCamo Cooldown", 3);
+				skipTurn = false;
+				return;
+			}
+			
+			if (attackOpts["isWait"] != undefined)
+			{
+				output("You stop moving and try to calm yourself, preparing for the blow.");
+				if (rand(10) <= 3)
+				{
+					output(" The ganrael sails at you and you throw it to the ground. It skitters away and, though its stoic mask doesn’t show it, seems a little surprised.");
+					removeStatusEffect("GooCamo");
+					createStatusEffect("GooCamo Cooldown", 3);
+					skipTurn = true;
+					return;
+				}
+				else
+				{
+					output("\n\nYour newfound tranquility makes it slightly less stressful when the ganrael tackles you from cover and wraps you up in its body, laughing.");
+					pc.createStatusEffect("Grappled", 9999);
+				}
+			}
+			else if (attackOpts["isFlee"] != undefined)
+			{
+				if (pc.hasWings())
+				{
+					output("You beat your [pc.wings] and fly as high as the cave allows, intent on escaping this trap. But when you pick a direction and flee,");
+					if (hasStatusEffect("Unarmored")) output(" goopy fingers");
+					else output(" hard hands");
+					output(" grab your [pc.foot] and bring you violently to the ground! The ganrael wraps you in its body, pinning your wings.");
+				}
+				else
+				{
+					output("The skittering sounds bore in from all directions until you can’t take it anymore, and you bolt. But when you pass an outcropping of rock, a blur tackles you, bringing you the the ground! The ganrael wraps you in its body, laughing.");
+				}
+			}
+			else
+			{
+				output(" The creature bowls you over and its body wraps around you! You’re trapped!");
 			}
 		}
 		
 		private function SneakSqueeze(target:Creature):void
 		{
-			// automatically used the turn after false retreat succeeds
-			// NPC has almost perfect dodge chance and high tease reduction during this turn (PC is firing blind)
-			// flashbang/other indiscriminate AOE works as normal and also cancels the attack, revealing the gan (but with the usual risk inherent from using one in the caves)
-			// very high base hit rate on attack; can be lowered to med if PC selects ‘Wait’ (but not ‘Stand’)
-			// grapples+maybe trips PC (tackles to ground; omit trip if too powerful)
-			// extra penalty to PC escape chance on the turn the attack is launched (don’t know where your enemy is and you don’t know where ‘away’ is); damage/trip if PC tries and fails to escape
+			//grapple does med crushing damage per turn if NPC armored or very light crushing plus decent lust damage when unarmored (slops into sensitive places)
+			//static burst and etc. skills break free of grapple in one turn, else PC must struggle based on relevant stat; 
+			// escape check is more forgiving if ganrael is unarmored
+			
+			//if unarmored
+			if (target.armor is EmptySlot || target.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || target.armor.hasFlag(GLOBAL.ITEM_FLAG_SWIMWEAR))
+			{
+				output("The ganrael’s gooey body spreads over you, working into your");
+				if (target.armor is EmptySlot || target.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)) output(" crotch and licking at your [pc.legFurScales].");
+				else output(" [pc.gear], hunting for sensitive spots.");
+				output(" Blood hammers in your temples and your needy");
+				if (target.hasCocks() || target.hasVaginas() || target.isHerm()) output(" sexes throb");
+				else if (target.hasCock() || target.hasVagina()) output(" sex throbs");
+				else output(" asshole throbs");
+				output(" inches away from its tendrils, demanding attention.");
+				//lust damage
+				applyDamage(new TypeCollection( { tease: 5 + rand(5) } ), this, target, "minimal"); // 9999 damage
+			}
+			//if armored
+			else
+			{
+				output("The ganrael’s unforgiving trunk tightens around you.");
+				if (target.shields() > 0) output(" Your shield crackles dangerously.");
+				else if (target.isGoo()) output(" It’s mildly uncomfortable until your amorphous body flows out of the way.");
+				else output(" You panic as trapped blood dims your vision and numbs you. You’ve got to get free!");
+				
+				var damage:Number = 10;
+				if (target.isGoo()) damage -= 3;
+				damage += rand(damage);
+				
+				applyDamage(new TypeCollection( { kinetic: damage }, DamageFlag.CRUSHING ), this, target, "minimal");
+			}
 
-//if PC not waiting or running, ganrael’s attack text
-The creature bowls you over and its body wraps around you! You’re trapped!
+//PC struggle text
+{(armored NPC & str success)You shove the creature’s legs away and batter from its grasp! /(armored & rfx success)It shifts its grip, and you use the chance to free your upper body! The alien tries to keep hold, but you worm the rest of the way out. /(unarmored & str success)It’s like punching taffy, but you batter so many lumps into the malleable ganrael that it releases you. /(unarmored & rfx success)Moving with the flow of gooey skin, you slip the creature’s grip like wet soap. /(else fail)Your struggles fail to free you from the alien’s grip! }
 
-//tack-on text for PC’s AOE attacks this turn
-The ganrael reels from your indiscriminate attack, revealing itself and costing it the element of surprise.
-//no grapple; up to you if it uses a different attack
-
-//if PC waits
-You stop moving and try to calm yourself, preparing for the blow. {(dodge)The ganrael sails at you and you throw it to the ground. It skitters away and, though its stoic mask doesn’t show it, seems a little surprised. /(failed dodge)Your newfound tranquility makes it slightly less stressful when the ganrael tackles you from cover and wraps you up in its body, laughing. }
-
-//if PC tries to run and fails (replacement texts)
-{(wings)You beat your [pc.wings] and fly as high as the cave allows, intent on escaping this trap. But when you pick a direction and flee, {hard hands/goopy fingers} grab your [pc.foot] and bring you violently to the ground! The ganrael wraps you in its body, pinning your wings. /(else)The skittering sounds bore in from all directions until you can’t take it anymore, and you bolt. But when you pass an outcropping of rock, a blur tackles you, bringing you the the ground! The ganrael wraps you in its body, laughing. }
-//PC takes kinetic damage from impact and is tripped
 		}
 	}
 }
