@@ -148,6 +148,8 @@
 		include "../includes/tavros/shearBeauty.as";
 		include "../includes/tavros/shelly.as";
 		include "../includes/tavros/vahn.as";
+		include "../includes/tavros/aina.as";
+		include "../includes/tavros/fyn.as";
 		
 		//First planet
 		include "../includes/mhenga/burt.as";
