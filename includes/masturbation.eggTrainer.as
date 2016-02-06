@@ -822,7 +822,7 @@ public function eggTrainerPreggoRemoval():void
 	if(pc.hasVagina() && pc.hasCock()) output("both masculine and feminine cum");
 	else if(pc.hasGenitals()) output("cum");
 	else output("artificial lubricants");
-	output(" The unexpected climax leaves you slumping against the machine, knuckles white from how hard you’re gripping the handlebars and leaking lube from your pregnant hole.");
+	output(". The unexpected climax leaves you slumping against the machine, knuckles white from how hard you’re gripping the handlebars and leaking lube from your pregnant hole.");
 
 	output("\n\nWhatever the tendril shot into your ");
 	if(x >= 0) output("womb");
@@ -831,13 +831,13 @@ public function eggTrainerPreggoRemoval():void
 
 	//if gravid or bigger: 
 	if(pData.pregnancyBellyRatingContribution >= 50) output(" and, thankfully, seems to lose some of its mass. A waterfall of sexual fluids release from the pent-up ball, flooding out of you the same way the trainer-box’s lube does. As the ball drains, your belly ever so slowly deflates, down to a slightly more manageable size. You’re no longer nearly so overwhelmingly gravid now, but when the flood abates, you’re still left with a big, prominent baby bump.");
-	else if(pData.pregnancyBellyRatingContribution >= 20) output(" A small waterfall of pent-up sexual fluids cascades out of you as the ball of synthetic egg deflates somewhat, shrinking down with agonizingly pleasurable slowness until it’s just a big, firm baby bump bloating your belly out.");
-	else output(" Your gut gurgles uneasily as the egg dislodges and shrinks a bit, getting properly aligned for what’s to come.");
+	else if(pData.pregnancyBellyRatingContribution >= 20) output(". A small waterfall of pent-up sexual fluids cascades out of you as the ball of synthetic egg deflates somewhat, shrinking down with agonizingly pleasurable slowness until it’s just a big, firm baby bump bloating your belly out.");
+	else output(". Your gut gurgles uneasily as the egg dislodges and shrinks a bit, getting properly aligned for what’s to come.");
 
 	output("\n\nThe holoscreen helpfully tells you to please face your rump into the lube-tank. The lid slides off, revealing the sloshing tank of hot, steamy lube for you to give <i>“birth”</i> into. You swing your [pc.legs] forward, grabbing your belly to steady yourself as you feel the egg start to drop. A big, bold, pink word appears on screen: <i>“<b>PUSH</b>.”</i>");
 
 	//Small egg fork:
-	if(pData.pregnancyBellyRatingContribution >= 30)
+	if(pData.pregnancyBellyRatingContribution < 30)
 	{
 		output("\n\nYou grit your teeth and push as hard as you can, bracing against the box for a little extra leverage.");
 		output("\n\nThe egg inside you might not have grown very much, but it’s still bigger than what would normally pass through you - and bigger than the average TamaniCorp egg. Whatever the tentacle pumped into you ");
@@ -855,7 +855,7 @@ public function eggTrainerPreggoRemoval():void
 	//Bigger Egg Fork:
 	else
 	{
-		output("\n\nYou know oviposition is just another part of the process, but isn’t this a little big? The egg inside you is still absolutely huge, probably bigger around than an actual baby. Lucky you, the tentacle’s lube has relaxed your [pc.vagOrAss " + x + "], making your hope open wide of its own accord. You moan, shuddering as a heavy, heavy weight shifts downwards in your [pc.belly], starting to make its descent.");
+		output("\n\nYou know oviposition is just another part of the process, but isn’t this a little big? The egg inside you is still absolutely huge, probably bigger around than an actual baby. Lucky you, the tentacle’s lube has relaxed your [pc.vagOrAss " + x + "], making your hole open wide of its own accord. You moan, shuddering as a heavy, heavy weight shifts downwards in your [pc.belly], starting to make its descent.");
 		output("\n\nAll you can do is push as hard as you can! The egg moves slowly down, coaxed by your well-trained muscles, but the sheer size of it drives you wild with pleasure and strain. Your hole is stretched wider and wider open, forced to bear the immense pressure of the egg’s descent through your body. The sensation is overwhelming, making you scream with orgasmic ecstasy, echoing your voice from the bulkheads all throughout the deck.");
 		output("\n\nAfter several minutes of pushing until your knuckles are white and your [pc.vagOrAss " + x + "] is radiating with agonizing pleasure, you can feel the egg starting to crown. Your hole stretches even wider than before, straining to its absolute limit to accommodate the slick, smooth bulk of the artificial egg. The holoscreen urgently flashes its command to push again, giving you the only guidance you’re going to get. So you keep pushing, throwing every ounce of will and force you’ve got into getting the over-sized egg out of you. You can actually feel your belly deflating, getting smaller as the massive weight that’s been stretching it out finally departs.");
 		output("\n\nWith one last, climactic push, you feel the sweet release as the egg hurtles out of your [pc.vagOrAss " + x + "] on a bed of lube and cum. Orgasm hits you again when you finally lay your faux-preg egg, rocking your body with unbearable pleasure. Though you hear a splash of it tumbling into the lube-bath inside the box, you can’t muster the strength to sit up and look. The trainer machine bleeps something at you and shuts off, leaving you to slowly recover.");
