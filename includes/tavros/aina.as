@@ -189,13 +189,8 @@ public function helpAina():void
 	clearMenu();
 	
 	addButton(0, "OfferSex", helpAinaWithSex);
-
-	if(pc.intelligence() >= 10 || pc.characterClass == GLOBAL.CLASS_ENGINEER) {
-		addButton(1, "FixToy", helpAinaByFixingHerToy);
-		addButton(2,"Leave", leaveAinaAlone);
-	} else {
-		addButton(1,"Leave", leaveAinaAlone);
-	}
+	if(pc.intelligence() >= 10 || pc.characterClass == GLOBAL.CLASS_ENGINEER) addButton(1, "FixToy", helpAinaByFixingHerToy);
+	addButton(14,"Leave", leaveAinaAlone);
 }
 
 //PC fixes Alina's 
@@ -329,9 +324,7 @@ public function ainaMenu():void
 {
 	clearOutput();
 	showAina();
-	
-	output("met this circle" + ainaMetThisCycle() + "\n\n");
-	
+		
 	if(ainaIsInHeat()) {
 		output("Aina waves and clops over to you. She looks visibly flushed as she brushes back a honey-gold bang. “Hi there, [pc.short]. Sorry if I'm a little scatterbrained right now. I'm, um,");
 	
@@ -550,16 +543,8 @@ public function ainaSexMenu():void
 	clearMenu();
 	addButton(0, "RearEntry", ainaSexedFromBehind);
 	addButton(1, "Fisting", ainaSexedFisting);
-	
-	if(flags["AINA_TALKED_ABOUT_TOYS"]) 
-	{ 
-		addButton(2, "Wand&Anal", ainaSexedWithAnalWand);
-		addButton(3, "Back", ainaMenu);
-	}
-	else
-	{
-		addButton(2, "Back", ainaMenu);
-	}
+	if(flags["AINA_TALKED_ABOUT_TOYS"]) addButton(2, "Wand&Anal", ainaSexedWithAnalWand);
+	addButton(14, "Back", ainaMenu);
 }
 
 public function ainaSexedFromBehind():void
