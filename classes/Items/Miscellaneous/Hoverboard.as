@@ -61,6 +61,7 @@
 				//Consume:
 				kGAMECLASS.clearOutput();
 				kGAMECLASS.output("So long as you keep this item in your inventory, you use it automatically to speed travel.");
+				if(target.hasStatusEffect("Endowment Immobilized")) kGAMECLASS.output(".. assuming that you aren’t over the weight limit, that is....");
 			}
 			else {
 				kGAMECLASS.clearOutput();

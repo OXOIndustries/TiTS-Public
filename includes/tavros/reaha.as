@@ -665,8 +665,8 @@ public function ReahaBrothelSexMenu():void
 {
 	clearOutput();
 	author("Savin");
-	if(flags["KAT_MET"] != undefined) userInterface.showName("KAT AND\nREAHA");
-	else userInterface.showName("MISTRESS AND\nREAHA");
+	if(flags["KAT_MET"] != undefined) userInterface.showName("KAT &\nREAHA");
+	else userInterface.showName("MISTRESS &\nREAHA");
 	userInterface.showBust("BORING_MISTRESS","REAHA");
 	
 
@@ -729,8 +729,7 @@ public function askAboutBusinessLikeASir():void
 public function newGirlsGroooooovy():void
 {
 	clearOutput();
-	userInterface.showName("BROTHEL\nMISTRESS");
-	userInterface.showBust("BORING_MISTRESS");
+	showBrothelLady();
 	author("Zeikfried");
 	//first time only
 	if(flags["ASKED_AFTER_THE_GIRLS"] == undefined)
@@ -780,8 +779,7 @@ public function buyYourselfACowslut():void
 {
 	author("Savin");
 	clearOutput();
-	userInterface.showName("BROTHEL\nMISTRESS");
-	userInterface.showBust("BORING_MISTRESS");
+	showBrothelLady();
 	output("Curious, you ask what the price on the cow-girl's contract is.");
 	output("\n\nThe mistress cocks an eyebrow at you, but dutifully flips through a few screens on her slate before making a tsking sound, nibbling on one of her big crimson lips. \"<i>Poor little Reaha here was in pretty deep, but she's been working here for a while, so she's cleared a good chunk of her debt. Let's see... hmm, the boss's got a note here, looks like she'll take five grand for the cow. Pretty good deal for what we paid for her. So what do you say, hun? She in your price range?</i>\"");
 	//output("\n\n<b>Buying the contract is currently disabled due to unfinished content.</b>");
@@ -797,8 +795,7 @@ public function noCowslutsForYou():void
 {
 	author("Savin");
 	clearOutput();
-	userInterface.showName("BROTHEL\nMISTRESS");
-	userInterface.showBust("BORING_MISTRESS");
+	showBrothelLady();
 	clearMenu();
 	output("You shake your head, saying that you can't make that deal just now. The mistress shrugs and flicks her datapad idly. \"So, what'll it be, then? Just a go at her, or can I show you the door?\"");
 
@@ -1047,8 +1044,7 @@ public function RideReahasStraponAtTheBrothel():void
 public function talkToBrothelLadyRepeatAgain():void
 {
     clearOutput();
-    showName("BROTHEL\nMISTRESS");
-    showBust("BORING_MISTRESS");
+    showBrothelLady();
 	author("JJ-Cup");
     output("You decide to approach the mistress again. Your entrance diverts her attention as she sets her tablet down and turns to greet you. With unremarkable boredom, she drones, \"<i>Welcome to Beth's Busty Broads. If you're here for our");
     if(silly) output(" big ass, blow-out sale-a-thon");

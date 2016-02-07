@@ -73,6 +73,9 @@
 	import classes.Engine.Map.*;
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	
+	import classes.UIComponents.ContentModuleComponents.RGMK;
+	import classes.UIComponents.ContentModules.RotateMinigameModule;
+	
 	import flash.events.UncaughtErrorEvent;
 	import flash.events.UncaughtErrorEvents;
 	import flash.display.LoaderInfo;
@@ -92,6 +95,7 @@
 		include "../includes/CodexFiction.as";
 		include "../includes/creation.as";
 		include "../includes/debug.as";
+		include "../includes/dynamicGrowth.as";
 		include "../includes/engine.as";
 		include "../includes/game.as";
 		include "../includes/gameStats.as";
@@ -100,6 +104,7 @@
 		include "../includes/items.as";
 		include "../includes/MailEntries.as";
 		include "../includes/masturbation.as";
+		include "../includes/masturbation.eggTrainer.as";
 		include "../includes/NPCTemplates.as";
 		include "../includes/rooms.as";
 		include "../includes/roomFunctions.as";
@@ -133,6 +138,7 @@
 		include "../includes/tavros/beths.as";
 		include "../includes/tavros/inessa.as";
 		include "../includes/tavros/jade.as";
+		include "../includes/tavros/oviliumBonus.as";
 		include "../includes/tavros/reaha.as";
 		include "../includes/tavros/reaha.expansion.as";
 		include "../includes/tavros/saendraXPack1.as";
@@ -347,7 +353,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.6.32";
+			version = "0.6.33";
 
 			//temporary nonsense variables.
 			temp = 0;

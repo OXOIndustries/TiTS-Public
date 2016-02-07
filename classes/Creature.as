@@ -33,6 +33,7 @@ package classes {
 	import classes.Util.InCollection;
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	import classes.Engine.Utility.plural;
+	import classes.Engine.Utility.possessive;
 	import classes.Engine.Combat.DamageTypes.DamageType;
 	import classes.Engine.Utility.weightedRand;
 
@@ -1050,6 +1051,20 @@ package classes {
 		{
 			if(balls > 0) return "Despite the heat in your [pc.balls], nothing changed down there.";
 			else return "Despite the heat in your groin, nothing changed down there.";
+		}
+		
+		public function makeBallsInternal(): void
+		{
+			// Convert total ball cum volume to prostate cum volume--to simulate "internal" balls.
+			if(balls > 0) 
+			{
+				//Cut the below due to it actually massively inflating internal ball size.
+				//ballSizeRaw = ((ballSizeRaw * ballSizeRaw * balls) / 2);
+				
+				//If diameter is greater than six inches, reduce size to make diameter be six. Only so much room inside.
+				if(ballDiameter() >= 6) ballSizeRaw = 6*Math.PI;
+			}
+			balls = 0;
 		}
 		
 		// @FENCUMFIX - Switch these two blocks around if you want to easily stick a breakpoint on what this value is getting set to
@@ -4465,7 +4480,10 @@ package classes {
 			return false;
 		}
 		public function isImmobilized(): Boolean {
-			return (hasStatusEffect("Stunned") || hasStatusEffect("Paralyzed") || hasStatusEffect("Naleen Coiled"));
+			return (hasStatusEffect("Stunned") || hasStatusEffect("Paralyzed") || isGrappled() || hasStatusEffect("Endowment Immobilized"));
+		}
+		public function isGrappled(): Boolean {
+			return (hasStatusEffect("Grappled") || hasStatusEffect("Naleen Coiled") || hasStatusEffect("Cockvine Grip"));
 		}
 		public function legs(forceType: Boolean = false, forceAdjective: Boolean = false): String 
 		{
@@ -7103,7 +7121,7 @@ package classes {
 			if (!hasCock()) return 0;
 			var quantity: Number = 0;
 			//lust - 50% = normal output. 0 = 75%. 100 = +125% output.
-			var lustCoefficient: Number = (lust() / 2 + 75) / 100;
+			var lustCoefficient: Number = ((lust() / 2) + 75) / 100;
 			quantity = cumMultiplier() * lustCoefficient * maxCum() / ballEfficiency;
 			//Rut means bigger, ball-draining orgasms.
 			quantity += statusEffectv1("Rut");
@@ -7173,7 +7191,7 @@ package classes {
 				cumDelta /= 2;
 			}
 			//Crossing into 60% fullness? Hit 60, then cut in half.
-			if(ballFullness < 60 && ballFullness + cumDelta * minutes >= 60)
+			if(ballFullness < 60 && (ballFullness + (cumDelta * minutes)) >= 60)
 			{
 				//Find amount of change needed to hit 60.
 				subDelta = 60 - ballFullness;
@@ -7184,7 +7202,7 @@ package classes {
 				cumDelta /= 2;
 			}
 			//Just hit full balls!
-			if(balls > 0 && ballFullness + cumDelta * minutes >= 100 && ballFullness < 100 && this is PlayerCharacter)
+			if(balls > 0 && (ballFullness + (cumDelta * minutes)) >= 100 && ballFullness < 100 && this is PlayerCharacter)
 			{
 				trace("BLUE BALLS FOR: " + short);
 				//Hit max cum - standard message
@@ -7195,17 +7213,16 @@ package classes {
 				if(hasPerk("'Nuki Nuts") && balls > 1) kGAMECLASS.eventBuffer += " Of course, your kui-tan physiology will let your balls balloon with additional seed. They've already started to swell. Just make sure to empty them before they get too big!";
 				createStatusEffect("Blue Balls", 0,0,0,0,false,"Icon_Poison", "Take 25% more lust damage in combat!", false, 0);
 			}
-
+			
 			ballFullness += (cumDelta * minutes);
 			
-
 			//trace("AFTER FULLNESS: " + ballFullness);
 			if (ballFullness >= 100) 
 			{
 				if(hasPerk("'Nuki Nuts") && balls > 1)
 				{
 					//Figure out a % of normal size to add based on %s.
-					var nutChange:Number = ballFullness/100 - 1;
+					var nutChange:Number = (ballFullness/100) - 1;
 					//Get the actual bonus number to add. Keep it to 2 decimals.
 					var nutBonus:Number = Math.round(ballSizeRaw * nutChange * 100)/100;
 					trace("NUT BONUS: " + nutBonus);
@@ -7231,7 +7248,7 @@ package classes {
 			if (!hasVagina()) return 0;
 			var quantity: Number = 0;
 			// lust - 50% = normal output. 0 = 75%. 100 = +125% output.
-			var lustCoefficient: Number = (lust() / 2 + 75) / 100;
+			var lustCoefficient: Number = ((lust() / 2) + 75) / 100;
 			var girlCumMultiplier: Number = 0;
 			var girlCumAmount: Number = 0;
 			var squirterBonus: Number = 0;
@@ -7888,7 +7905,11 @@ package classes {
 		//Remove cock
 		public function removeCock(arraySpot:int, totalRemoved:int): void {
 			removeJunk(cocks, arraySpot, totalRemoved);
-			if(!hasCock()) removeStatusEffect("Blue Balls");
+			if(!hasCock())
+			{
+				removeStatusEffect("Blue Balls");
+				removePerk("Firing Blanks");
+			}
 		}
 		public function removeCockUnlocked(arraySpot:int = 0, totalRemoved:int = 1):Boolean
 		{
@@ -7914,13 +7935,17 @@ package classes {
 		}
 		public function removeVaginasLockedMessage():String
 		{
-			if (hasStatusEffect("Mimbrane Pussy")) return "A powerful stretching overtakes your " + vaginaDescript(0) + ", your Mimbrane doing everything in its power to keep the feminine canyon from vanishing. Seems you won’t be able to get rid of your pussy so long as the parasite is in control of it.";
+			if (hasStatusEffect("Mimbrane Pussy")) return "A powerful stretching overtakes your " + vaginaDescript(0) + ", your Mimbrane is doing everything in its power to keep the feminine canyon from vanishing. Seems you won’t be able to get rid of your pussy so long as the parasite is in control of it.";
 			else return "Your body practically glows with groin-focused effort, keeping you from losing your genitalia entirely.";
 		}
 
 		//Remove vaginas
 		public function removeVagina(arraySpot: int = 0, totalRemoved: int = 1): void {
 			removeJunk(vaginas, arraySpot, totalRemoved);
+			if(!hasVagina())
+			{
+				removePerk("Sterile");
+			}
 		}
 		public function removeVaginaUnlocked(arraySpot:int = 0, totalRemoved:int = 1):Boolean
 		{
@@ -7930,7 +7955,7 @@ package classes {
 		}
 		public function removeVaginaLockedMessage():String
 		{
-			if (vaginas.length == 1 && hasStatusEffect("Mimbrane Pussy")) return "A powerful stretching overtakes your " + vaginaDescript(0) + ", your Mimbrane doing everything in its power to keep the feminine canyon from vanishing. Seems you won’t be able to get rid of your pussy so long as the parasite is in control of it.";
+			if (vaginas.length == 1 && hasStatusEffect("Mimbrane Pussy")) return "A powerful stretching overtakes your " + vaginaDescript(0) + ", your Mimbrane is doing everything in its power to keep the feminine canyon from vanishing. Seems you won’t be able to get rid of your pussy so long as the parasite is in control of it.";
 			if (isPregnant()) return "A powerful sensation can be felt in your womb. Your body actively fights the change, keeping you from losing your pregnant vagina entirely.";
 			else return "Your body practically glows with groin-focused effort, keeping you from losing your genitalia entirely.";
 		}
@@ -8583,7 +8608,7 @@ package classes {
 					if (rando == 1) desc += "four ";
 					if (rando == 2) desc += "four ";
 				}
-				else desc += num2Text(balls);
+				else desc += num2Text(balls) + " ";
 			}
 			//Not in appearance screen? Okay
 			else if (!hasStatusEffect("Uniball") && rand(5) == 0 && !forceSingular) {
@@ -8611,7 +8636,7 @@ package classes {
 					if (rando == 1) desc += "four ";
 					if (rando == 2) desc += "four ";
 				}
-				else desc += num2Text(balls);
+				else desc += num2Text(balls) + " ";
 			}
 			//size!
 			if (ballSize() > 1 && (rand(3) <= 1 || forceSize)) {
@@ -8711,7 +8736,7 @@ package classes {
 			//25% tightness desc
 			if (rand(4) == 0 || (ass.looseness() <= 1 && rand(4) <= 2)) {
 				if (descripted > 0) desc += ", ";
-				if (analVirgin && ass.hymen) {
+				if (analVirgin) {
 					if (rand(3) == 0) desc += "virgin";
 					else if (rand(2) == 0) desc += "unspoiled";
 					else desc += "unclaimed";
@@ -10281,7 +10306,7 @@ package classes {
 			return true;
 		}
 		public function multiCockDescript(dynamicLength:Boolean = false): String {
-			if (cocks.length < 1) return "<B>Error: multiCockDescript() called with no penises present.</B>";
+			if (cocks.length < 1) return "<b>Error: multiCockDescript() called with no penises present.</b>";
 			//Get cock counts
 			var descript: String = "";
 			var rando: Number = 0;
@@ -12187,7 +12212,7 @@ package classes {
 		 */
 		public function virility():Number
 		{
-			if (hasStatusEffect("Infertile")) return 0;
+			if (hasStatusEffect("Infertile") || hasPerk("Firing Blanks")) return 0;
 			
 			return cumQuality();
 		}
@@ -12212,7 +12237,7 @@ package classes {
 		public var fertilityMod:Number = 0;
 		public function fertility():Number
 		{
-			if (hasStatusEffect("Infertile")) return 0;
+			if (hasStatusEffect("Infertile") || hasPerk("Sterile")) return 0;
 			
 			return fertilityRaw + fertilityMod;
 		}
@@ -12332,6 +12357,15 @@ package classes {
 			for (var i:int = 0; i < pregnancyData.length; i++)
 			{
 				if ((pregnancyData[i] as PregnancyData).pregnancyType != "") count++;
+			}
+			return count;
+		}
+		public function totalBabiesOfType(type:String):int
+		{
+			var count:int = 0;
+			for (var i:int = 0; i < pregnancyData.length; i++)
+			{
+				if ((pregnancyData[i] as PregnancyData).pregnancyType == type) count += (pregnancyData[i] as PregnancyData).pregnancyQuantity;
 			}
 			return count;
 		}
@@ -12516,22 +12550,24 @@ package classes {
 			if (cockVirgin && hasCock())
 			{
 				cockVirgin = false;
-				if(spacingsF) output(" ");
-				
+				var msg:String = "";
+				if(spacingsF) msg += " ";
+				msg += "<b>"
 				if (this is PlayerCharacter)
 				{
-					output("<b>You have succumbed to your desires and lost your </b>");
-					if (hasVagina()) output("<b>masculine </b>");
-					output("<b>virginity.</b>");
+					msg += "You have succumbed to your desires and lost your";
+					if (hasVagina()) msg += " masculine";
+					msg += " virginity.";
 				}
 				else
 				{
-					output("<b>" + short + " has succumbed to " + mf("his", "her") + " desires and lost " + mf("his", "her"));
-					if (hasVagina()) output(" masculine");
-					output(" virginity.</b>");
+					msg += capitalA + short + " has succumbed to " + mf("his", "her") + " desires and lost " + mf("his", "her");
+					if (hasVagina()) msg += " masculine";
+					msg += " virginity.";
 				}
-				
-				if (spacingsB) output(" ");
+				msg += "</b>"
+				if (spacingsB) msg += " ";
+				output(msg);
 				return true;
 			}
 			return false;
@@ -12580,38 +12616,38 @@ package classes {
 			if (holePointer.hymen || (hole < 0 && analVirgin) || (hole >= 0 && vaginalVirgin)) {
 				if (display)
 				{
-					if (spacingsF) output(" ");
+					var msg:String = "";
+					if (spacingsF) msg += " ";
+					msg += "<b>";
 					if (this is PlayerCharacter)
 					{
 						if (holePointer.hymen && hole >= 0)
 						{
-							output("<b>Your hymen is torn</b>");
+							msg += "Your hymen is torn";
 							holePointer.hymen = false;
 						}
-						else output("<b>You have been penetrated</b>");
+						else msg += "You have been penetrated";
 						
-						if (hole >= 0 && vaginalVirgin) output("<b>, robbing you of your vaginal virginity</b>");
-						
-						else if (analVirgin) output("<b>, robbing you of your anal virginity</b>");
-						
-						output("<b>.</b>");
+						if (hole >= 0 && vaginalVirgin) msg += ", robbing you of your vaginal virginity";
+						else if (analVirgin) msg += ", robbing you of your anal virginity";
+						msg += ".";
 					}
 					else
 					{
-						if (holePointer.hymen)
+						if (holePointer.hymen && hole >= 0)
 						{
-							output("<b>" + short + "s hymen is torn</b>");
+							msg += capitalA + possessive(short) + " hymen is torn";
 							holePointer.hymen = false;
 						}
-						else output("<b>" + short + " has been penetrated</b>");
+						else msg += capitalA + short + " has been penetrated";
 						
-						if (hole >= 0 && vaginalVirgin)	output("<b>, robbing " + mf("him", "her") + " of " + mf("his", "her") + " vaginal virginity</b>");
-						
-						else if (analVirgin) output("<b>, robbing " + mf("him", "her") + " of " + mf("his", "her") + " anal virginity</b>");
-						
-						output("<b>.</b>");
+						if (hole >= 0 && vaginalVirgin)	msg += ", robbing " + mf("him", "her") + " of " + mf("his", "her") + " vaginal virginity";
+						else if (analVirgin) msg += ", robbing " + mf("him", "her") + " of " + mf("his", "her") + " anal virginity";
+						msg += ".";
 					}
-					if(spacingsB) output(" ");
+					msg += "</b>";
+					if(spacingsB) msg += " ";
+					output(msg);
 				}
 				
 				if (hole >= 0 && vaginalVirgin) 
@@ -12653,11 +12689,11 @@ package classes {
 						}
 						else
 						{
-							if(holePointer.looseness() >= 5) output("<b>" + short + "s " + vaginaDescript(hole) + " is stretched painfully wide, gaped in a way that practically invites huge monster-cocks to plow " + mf("him", "her") +".</b>");
-							else if(holePointer.looseness() >= 4) output("<b>" + short + "s " + vaginaDescript(hole) + " painfully stretches, the lips now wide enough to gape slightly.</b>");
-							else if(holePointer.looseness() >= 3) output("<b>" + short + "s " + vaginaDescript(hole) + " is now somewhat loose.</b>");
-							else if(holePointer.looseness() >= 2) output("<b>" + short + "s " + vaginaDescript(hole) + " is a little more used to insertions.</b>");
-							else output("<b>" + short + "s " + vaginaDescript(hole) + " is stretched out a little bit.</b>");
+							if(holePointer.looseness() >= 5) output("<b>" + capitalA + possessive(short) + " " + vaginaDescript(hole) + " is stretched painfully wide, gaped in a way that practically invites huge monster-cocks to plow " + mf("him", "her") +".</b>");
+							else if(holePointer.looseness() >= 4) output("<b>" + capitalA + possessive(short) + " " + vaginaDescript(hole) + " painfully stretches, the lips now wide enough to gape slightly.</b>");
+							else if(holePointer.looseness() >= 3) output("<b>" + capitalA + possessive(short) + " " + vaginaDescript(hole) + " is now somewhat loose.</b>");
+							else if(holePointer.looseness() >= 2) output("<b>" + capitalA + possessive(short) + " " + vaginaDescript(hole) + " is a little more used to insertions.</b>");
+							else output("<b>" + capitalA + possessive(short) + " " + vaginaDescript(hole) + " is stretched out a little bit.</b>");
 						}
 					}
 					else {
@@ -12671,11 +12707,11 @@ package classes {
 						}
 						else
 						{
-							if(holePointer.looseness() >= 5) output("<b>" + short + "s " + assholeDescript() + " is stretched painfully wide, gaped in a way that practically invites huge monster-cocks to plow " + mf("him", "her") +".</b>");
-							else if(holePointer.looseness() >= 4) output("<b>" + short + "s " + assholeDescript() + " painfully stretches, the lips now wide enough to gape slightly.</b>");
-							else if(holePointer.looseness() >= 3) output("<b>" + short + "s " + assholeDescript() + " is now somewhat loose.</b>");
-							else if(holePointer.looseness() >= 2) output("<b>" + short + "s " + assholeDescript() + " is a little more used to insertions.</b>");
-							else output("<b>" + short + "s " + assholeDescript() + " is stretched out a little bit.</b>");
+							if(holePointer.looseness() >= 5) output("<b>" + capitalA + possessive(short) + " " + assholeDescript() + " is stretched painfully wide, gaped in a way that practically invites huge monster-cocks to plow " + mf("him", "her") +".</b>");
+							else if(holePointer.looseness() >= 4) output("<b>" + capitalA + possessive(short) + " " + assholeDescript() + " painfully stretches, the lips now wide enough to gape slightly.</b>");
+							else if(holePointer.looseness() >= 3) output("<b>" + capitalA + possessive(short) + " " + assholeDescript() + " is now somewhat loose.</b>");
+							else if(holePointer.looseness() >= 2) output("<b>" + capitalA + possessive(short) + " " + assholeDescript() + " is a little more used to insertions.</b>");
+							else output("<b>" + capitalA + possessive(short) + " " + assholeDescript() + " is stretched out a little bit.</b>");
 						}
 					}
 					if(spacingsB) output(" ");
@@ -13073,6 +13109,308 @@ package classes {
 			description += noun;
 			
 			return description;
+		}
+		
+		// Calculates the value of body strength (carry threshold).
+		public function bodyStrength():Number
+		{
+			// Raw body weight
+			var nBodyWeight:Number = bodyWeight();
+			// Muscles buff, how much extra body weight can PC lift
+			var nMuscles:Number = ((tone * nBodyWeight) * (physique() / 100));
+			// Assume weakest PC can lift their own body weight, each physique point adds 'm' more pounds
+			var m:Number = 5;
+			var nStrength:Number = nBodyWeight + nMuscles + (physique() * m);
+			// Modifiers:
+			if(hasStatusEffect("Buzzed")) nStrength += (m/2);
+			if(hasStatusEffect("Drunk")) nStrength += m;
+			if(hasStatusEffect("Smashed")) nStrength += (2*m);
+			
+			return nStrength;
+		}
+		// Calculates the body weight, without the extra bits.
+		public function bodyWeight():Number
+		{
+			// Simple BMI: 20 is underweight, 25 is average, 30 is overweight
+			var nBMI:Number = (25 + ((thickness - 50) / 10));
+			// Raw body weight, assume without extra parts
+			var nWeight: Number = ((tallness / 12) * nBMI * (tallness / 75));
+			
+			// Tiny boost for heeps
+			if(hipRating() > 0) nWeight += (hipRating() * (tallness / 60) * 0.1);
+			
+			// Special bodies
+			if(isGoo()) nWeight *= (0.75 + ((legCount - 1) * 0.125));
+			else if(isTaur()) nWeight *= (1.75 + ((legCount - 4) * 0.125));
+			else if(isNaga()) nWeight *= (1.5 + ((legCount - 1) * 0.125));
+			else if(isDrider()) nWeight *= (1.25 + (legCount * 0.05));
+			else if(legCount > 2) nWeight *= (1 + (legCount * 0.125));
+			
+			return nWeight;
+		}
+		public function fullBodyWeight():Number
+		{
+			return bodyPartWeight("total");
+		}
+		private function bodyPartParse(partName:String = "none"):String
+		{
+			// Parsing stuff:
+			if(InCollection(partName, "total", "all", "body", "everything", "full")) partName = "total";
+			else if(InCollection(partName, "breast", "breasts", "boob", "boobs", "tit", "tits")) partName = "breast";
+			else if(InCollection(partName, "belly", "tummy", "stomach", "womb")) partName = "belly";
+			else if(InCollection(partName, "butt", "ass", "booty", "rump", "rear", "hiney")) partName = "butt";
+			else if(InCollection(partName, "clitoris", "clit", "clits", "button", "buzzer")) partName = "clitoris";
+			else if(InCollection(partName, "penis", "penises", "cock", "cocks", "dong", "wiener")) partName = "penis";
+			else if(InCollection(partName, "testicle", "testicles", "balls", "scrotum", "nuts")) partName = "testicle";
+			
+			return partName;
+		}
+		// Calculates weight of a body part.
+		public function bodyPartWeight(partName:String = "none", partNum: Number = -1):Number
+		{
+			// Initialize variables:
+			var num: int = 0;
+			var tempSize: Number = 0;
+			var weight: Number = 0;
+			var weightBreast: Number = 0;
+			var weightBelly: Number = 0;
+			var weightButt: Number = 0;
+			var weightClitoris: Number = 0;
+			var weightPenis: Number = 0;
+			var weightTesticle: Number = 0;
+			var weightFluid: Number = 0; // Used for fluid weight
+			var weightFat: Number = 0; // Used for excess weight
+			
+			partName = bodyPartParse(partName);
+			
+			// Everything:
+			if(partName == "total")
+			{
+				weight += bodyWeight();
+				partNum = -1;
+			}
+			// Breasts:
+			if(partName == "breast" || partName == "total")
+			{
+				// Get total size/volume:
+				tempSize = 0;
+				if(partNum >= 0)
+				{
+					tempSize += breastRows[partNum].breastRating() * breastRows[partNum].breasts;
+				}
+				else
+				{
+					for (num = 0; num < breastRows.length; num++)
+					{
+						tempSize += breastRows[num].breastRating() * breastRows[num].breasts;
+					}
+				}
+				// Calculate weight: Simple, Each cup is 10/25th lbs.
+				weightBreast += tempSize * 0.4;
+				// Modifiers:
+				if(hasPerk("Fertility")) weightBreast *= 0.75;
+				if(milkQ() > 0)
+				{
+					weightFluid = milkQ();
+					if(InCollection(milkType, GLOBAL.FLUID_TYPE_HONEY, GLOBAL.FLUID_TYPE_MILKSAP, GLOBAL.FLUID_TYPE_CUMSAP, GLOBAL.FLUID_TYPE_NECTAR)) weightFluid *= 0.005;
+					else if(InCollection(milkType, GLOBAL.FLUID_TYPE_CUM, GLOBAL.FLUID_TYPE_GABILANI_CUM, GLOBAL.FLUID_TYPE_NYREA_CUM)) weightFluid *= 0.0035;
+					else weightFluid *= 0.0025;
+					if(isMilkTank()) weightFluid *= 0.5;
+					else if(hasPerk("Milky") || hasPerk("Treated Milk")) weightFluid *= 0.75;
+					if(partNum >= 0) weightFluid /= bRows();
+					weightBreast += weightFluid;
+				}
+				if(thickness > tone)
+				{
+					weightFat = (thickness - tone) * 0.01;
+					if(partNum >= 0) weightFat /= bRows();
+					weightBreast += weightFat;
+				}
+			}
+			// Belly:
+			if(partName == "belly" || partName == "total")
+			{
+				// Get size/volume:
+				tempSize = bellyRating() * (tallness / 60);
+				// Calculate weight: Simple, Each size is half a pound.
+				weightBelly += tempSize * 0.5;
+				// Modifiers:
+				if(isPregnant())
+				{
+					// offspring weight
+					for (num = 0; num < pregnancyData.length; num++)
+					{
+						if(isPregnant(num))
+						{
+							tempSize = pregnancyData[num].pregnancyBellyRatingContribution;
+							var pChildType:int = PregnancyManager.getPregnancyChildType(this, num);
+							if(pChildType == GLOBAL.CHILD_TYPE_LIVE) tempSize *= 1;
+							else if(pChildType == GLOBAL.CHILD_TYPE_EGGS) tempSize *= 0.50;
+							else if(pChildType == GLOBAL.CHILD_TYPE_SEED) tempSize *= 0.35;
+							weightBelly += tempSize;
+						}
+					}
+					if(hasPerk("Breed Hungry")) weightBelly *= 0.75;
+				}
+				if(thickness > tone)
+				{
+					weightFat = (thickness - tone) * 0.01 * (tallness / 60);
+					weightBelly += weightFat;
+				}
+			}
+			// Butt:
+			if(partName == "butt" || partName == "total")
+			{
+				// Get size/volume:
+				tempSize = buttRating() * (tallness / 60);
+				// Calculate weight: Simple, Each size is half a pound.
+				weightButt += tempSize * 0.5;
+				// Modifiers:
+				if(thickness > tone)
+				{
+					weightFat = (thickness - tone) * 0.01 * (tallness / 60);
+					weightButt += weightFat;
+				}
+			}
+			// Clitoris:
+			if(partName == "clitoris" || partName == "total")
+			{
+				// Get total length:
+				tempSize = 0;
+				if(partNum >= 0) tempSize += clitLength * vaginas[partNum].clits;
+				else tempSize += clitLength * totalClits();
+				// Calculate weight: Simple, Each inch of length is 1/80th lbs.
+				weightClitoris += tempSize * 0.0125;
+				// Modifiers:
+				if(hasPerk("Hung")) weightClitoris *= 0.75;
+			}
+			// Penis:
+			if(partName == "penis" || partName == "total")
+			{
+				// Get total size/volume:
+				tempSize = 0;
+				if(partNum >= 0)
+				{
+					tempSize += cockVolume(partNum);
+				}
+				else
+				{
+					for (num = 0; num < cocks.length; num++)
+					{
+						tempSize += cockVolume(num);
+					}
+				}
+				// Calculate weight: Simple, Each volume unit is 1/20th lbs.
+				weightPenis += tempSize * 0.05;
+				// Modifiers:
+				if(partNum >= 0)
+				{
+					if(hasKnot(partNum))
+					{
+						weightFat = cocks[partNum].thickness() * cocks[partNum].knotMultiplier * 0.25;
+						weightPenis += weightFat;
+					}
+				}
+				else
+				{
+					for (num = 0; num < cocks.length; num++)
+					{
+						if(hasKnot(num))
+						{
+							weightFat = cocks[num].thickness() * cocks[num].knotMultiplier * 0.25;
+							weightPenis += weightFat;
+						}
+					}
+				}
+				if(hasPerk("Hung")) weightPenis *= 0.75;
+			}
+			// Testicles:
+			if(partName == "testicle" || partName == "total")
+			{
+				// Get total size/volume:
+				if(balls <= 0) num = 1;
+				else num = balls;
+				tempSize = ballVolume();
+				// Calculate weight: Simple, Each volume unit is 1/80th lbs.
+				weightTesticle += tempSize * num * 0.0125;
+				// Modifiers:
+				if(cumQ() > 0)
+				{
+					// Maybe only 50% is housed in the balls?
+					weightFluid = cumQ() * 0.5;
+					if(InCollection(cumType, GLOBAL.FLUID_TYPE_HONEY, GLOBAL.FLUID_TYPE_MILKSAP, GLOBAL.FLUID_TYPE_CUMSAP, GLOBAL.FLUID_TYPE_NECTAR)) weightFluid *= 0.005;
+					else if(InCollection(cumType, GLOBAL.FLUID_TYPE_CUM, GLOBAL.FLUID_TYPE_GABILANI_CUM, GLOBAL.FLUID_TYPE_NYREA_CUM)) weightFluid *= 0.0035;
+					else weightFluid *= 0.0025;
+					if(hasPerk("Potent") && hasPerk("Breed Hungry")) weightFluid *= 0.5;
+					else if(hasPerk("Potent") || hasPerk("Breed Hungry")) weightFluid *= 0.75;
+					if(partNum > 0 && partNum <= balls) weightFluid = (weightFluid / partNum);
+					weightTesticle += weightFluid;
+				}
+				if(hasPerk("Bulgy")) weightTesticle *= 0.75;
+			}
+			
+			// Add up all the weights
+			weight += weightBreast;
+			weight += weightBelly;
+			weight += weightButt;
+			weight += weightClitoris;
+			weight += weightPenis;
+			weight += weightTesticle;
+			
+			return weight;
+		}
+		// Weight Quotient for comparisons between strength (weight load).
+		public function weightQ(partName:String = "none", partNum: Number = -1):Number
+		{
+			partName = bodyPartParse(partName);
+			
+			var weight: Number = bodyPartWeight(partName, partNum);
+			
+			// Compare to strength:
+			return Math.round((weight / bodyStrength()) * 100);
+		}
+		// Is a part of anatomy heavy?
+		// partName: String, name of part, 'total' for everything.
+		// partNum: Number, row number or array ID if 0 or higher.
+		public function isHeavy(partName:String = "none", partNum: Number = -1):Boolean
+		{
+			if(weightQ(partName, partNum) > 50) return true;
+			return false;
+		}
+		// Height Ratio for comparisons.
+		public function heightRatio(partName:String = "none", partNum: Number = -1):Number
+		{
+			var nRatio: Number = 0;
+			
+			if(partName == "total") { /* Nothing! */ }
+			else if(partName == "breast")
+			{
+				if(hasBreasts())
+				{
+					if(partNum >= 0) nRatio = bRating(partNum) / tallness;
+					else nRatio = biggestTitSize() / tallness;
+				}
+			}
+			else if(partName == "belly") nRatio = bellyRating() / tallness;
+			else if(partName == "butt") nRatio = buttRating() / tallness;
+			else if(partName == "clitoris")
+			{
+				if(hasVagina()) nRatio = clitLength / tallness;
+			}
+			else if(partName == "penis")
+			{
+				if(hasCock())
+				{
+					if(partNum >= 0) nRatio = cLength(partNum) / tallness;
+					else nRatio = biggestCockLength() / tallness;
+				}
+			}
+			else if(partName == "testicle")
+			{
+				if(balls > 0) nRatio = ballDiameter() / tallness;
+			}
+			
+			return nRatio;
 		}
 		
 		public function isDefeated():Boolean

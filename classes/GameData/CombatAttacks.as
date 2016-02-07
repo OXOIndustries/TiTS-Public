@@ -768,15 +768,19 @@ package classes.GameData
 		
 		public static function TamedVarmintAttack(attacker:Creature, target:Creature):void
 		{
-		
-			output("Your pet varmint hoots and hisses at " + target.a + target.uniqueName + ", standing protectively in front of you and raising its spiky hackles.");
+			if (attacker is PlayerCharacter) output("Your pet varmint hoots and hisses at " + target.a + target.uniqueName + ",");
+			else output(attacker.mfn("His", "Her", "Its") + " pet varmint hoots and hisses at you,");
+			if (attacker.isGrappled()) output(" pacing about defensively near " + (attacker is PlayerCharacter ? "you" : attacker.mfn("him", "her", "it")));
+			else output(" standing protectively in front of " + (attacker is PlayerCharacter ? "you" : attacker.mfn("him", "her", "it")));
+			output(" and raising its spiky hackles.");
 			if (rand(10) <= 2)
 			{
-				output(" It lunges into battle, but it can’t find purchase on your foe!");
+				output(" It lunges into battle, but it can’t find purchase on " + (attacker is PlayerCharacter ? "your foe" : "you") + "!");
 			}
 			else
 			{
-				output(" It lunges towards " + target.a + target.uniqueName + ", shrieking like a banshee. Its fangs sink into your enemy, rending viciously at " + target.mfn("him", "her", "it") + "!");
+				if (attacker is PlayerCharacter) output(" It lunges towards " + target.a + target.uniqueName + ", shrieking like a banshee. Its fangs sink into your enemy, rending viciously at " + target.mfn("him", "her", "it") + "!");
+				else output(" Shrieking like a banshee, it lunges towards you and its fangs sink in, rending at you viciously!");
 				applyDamage(attacker.droneDamage(), attacker, target, "minimal");
 			}
 		}
@@ -979,7 +983,7 @@ package classes.GameData
 			}
 			else
 			{
-				output("It has no effect!");
+				output("\nIt has no effect!");
 			}
 		}
 		

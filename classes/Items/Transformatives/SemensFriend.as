@@ -115,6 +115,7 @@
 			var x:int = 0;
 			var i: int = 0;
 			var ballDiameter:Number = target.ballDiameter();
+			var removeBottoms:Boolean = false;
 			
 			//Build a list of all potential TFs
 			var TFList:Array = new Array();
@@ -169,7 +170,13 @@
 					if(target.ballsUnlocked(2))
 					{
 						kGAMECLASS.eventBuffer += "Heat condenses into two small spheres in your groin, and then slowly shifts outwards. You swing your [pc.hips] slightly to confirm it; <b>you’ve grown a pair of testicles!</b>";
-						if(!target.hasCock()) kGAMECLASS.eventBuffer += " Man do they look weird without anything between them. You’d better hope you don’t get blue balls in your current state...";
+						if(!target.hasCock())
+						{
+							kGAMECLASS.eventBuffer += " Man";
+							if(!removeBottoms && !target.isCrotchExposed()) kGAMECLASS.eventBuffer += " would";
+							else kGAMECLASS.eventBuffer += " do";
+							kGAMECLASS.eventBuffer += " they look weird without anything between them. You’d better hope you don’t get blue balls in your current state...";
+						}
 						
 						target.balls = 2;
 						target.ballSizeRaw = 2;
@@ -229,8 +236,13 @@
 				//#4 Increase cum production
 				else if(select == 4)
 				{
-					if(target.hasCock()) kGAMECLASS.eventBuffer += " [pc.OneCock] hardens and darkens slightly, a drop of [pc.cum] forming at its tip. ";
-					kGAMECLASS.eventBuffer += "You feel...juicier.";
+					if(target.hasCock())
+					{
+						kGAMECLASS.eventBuffer += "[pc.OneCock] hardens";
+						if(removeBottoms || target.isCrotchExposed()) kGAMECLASS.eventBuffer += " and darkens slightly";
+						kGAMECLASS.eventBuffer += ", a drop of [pc.cum] forming at its tip. ";
+					}
+					kGAMECLASS.eventBuffer += "You feel... juicier.";
 					
 					target.refractoryRate++;
 				}
@@ -249,7 +261,7 @@
 				{
 					if(target.ballsUnlocked(4))
 					{
-						kGAMECLASS.eventBuffer += "You close your eyes as you feel boiling pressure grow in your [pc.balls] again. It feels uncontrollable this time, as if your ball";
+						kGAMECLASS.eventBuffer += "You close your eyes as you feel boiling pressure grow in your [pc.balls]. It feels uncontrollable, as if your ball";
 						if(target.balls == 1) kGAMECLASS.eventBuffer += " is";
 						else kGAMECLASS.eventBuffer += "s are";
 						kGAMECLASS.eventBuffer += " going to explode, and when you feel something burst out of your sack you think for one horrible moment that’s exactly what’s happened. You feel no pain though - just a sensation of deep release - and after the pressure fades you feel vaguely yet ineffably stronger, testosterone coursing through your veins. A rummage around downstairs tells you why: <b>you’ve grown";
@@ -266,12 +278,20 @@
 						kGAMECLASS.eventBuffer += target.ballsLockedMessage();
 					}
 				}
-				//#7 If balls > 5” grow quad
+				//#7 Change cum to chocolate colored and flavored (requires cock)
 				else if(select == 7)
 				{
 					if(target.cumTypeUnlocked(GLOBAL.FLUID_TYPE_CHOCOLATE_CUM))
 					{
-						kGAMECLASS.eventBuffer += "The heat coalesces into a deep, leaden need, your [pc.balls] prickling and tightening with lust, and suddenly [pc.eachCock] is bulgingly erect. You fight back the urge to masturbate crowding your mind but it doesn’t even seem to matter; hot fluid rises up your shaft and oozes out of your swollen [pc.cockheads] thickly without any stimulation whatsoever. You look down in disbelief. Brown?! Caught somewhere between disgust and awe, you gingerly swab your finger in the rich burnt sienna that is dripping from your prick and press it to your tongue. Sweet and warm flavored; immediately recognizable. Presumably your cum will still act like cum but for all other intents and purposes, <b>you now ejaculate chocolate.</b>";
+						kGAMECLASS.eventBuffer += "The heat in your groin coalesces into a deep, leaden need";
+						if(target.balls > 0) kGAMECLASS.eventBuffer += ", your [pc.balls] prickling and tightening with lust,";
+						kGAMECLASS.eventBuffer += " and suddenly [pc.eachCock] is bulgingly erect.";
+						if(!removeBottoms && !target.isCrotchExposed())
+						{
+							kGAMECLASS.eventBuffer += " In the thrill of the moment, your hands do quick work of your [pc.lowerGarments].";
+							removeBottoms = true;
+						}
+						kGAMECLASS.eventBuffer += " You fight back the urge to masturbate crowding your mind but it doesn’t even seem to matter; hot fluid rises up your shaft and oozes out of your swollen [pc.cockheads] thickly without any stimulation whatsoever. You look down in disbelief. Brown?! Caught somewhere between disgust and awe, you gingerly swab your finger in the rich burnt sienna that is dripping from your prick and press it to your tongue. Sweet and warm flavored; immediately recognizable. Presumably your cum will still act like cum but for all other intents and purposes, <b>you now ejaculate chocolate.</b>";
 						if(target.isAss()) kGAMECLASS.eventBuffer += " Now if only you could work out how to piss money too, you’d have bitches all over you.";
 						
 						target.cumType = GLOBAL.FLUID_TYPE_CHOCOLATE_CUM;
@@ -285,7 +305,10 @@
 			}
 			
 			// Effect over:
-			kGAMECLASS.eventBuffer += "\n\nThe sensation in your groin from the candy has finally been lifted.";
+			kGAMECLASS.eventBuffer += "\n\n";
+			if(removeBottoms) kGAMECLASS.eventBuffer += "You quickly reclothe as t";
+			else kGAMECLASS.eventBuffer += "T";
+			kGAMECLASS.eventBuffer += "he sensation in your groin from the candy has finally been lifted.";
 			return;
 		}
 	}
