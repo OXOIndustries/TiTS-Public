@@ -53,7 +53,7 @@ public function unlockAinasRoom():void {
 	rooms["RESIDENTIAL DECK 15"].southExit = "RESIDENTIAL DECK 18";
 	
 	//refresh map bit to actually show new room
-	generateMapForLocation("RESIDENTIAL DECK 18");
+	generateMapForLocation(currentLocation);
 }
 
 //this function hides her room on the map
@@ -64,7 +64,7 @@ public function lockAinasRoom():void {
 	//unset room - not the prettiest way to do it, but there is no function to remove rooms (?)
 	rooms["RESIDENTIAL DECK 18"] = new RoomClass(this);
 	
-	generateMapForLocation("RESIDENTIAL DECK 15");
+	generateMapForLocation(currentLocation);
 }
 
 //approach Aina in the West Walkway of the residental deck(#15)
