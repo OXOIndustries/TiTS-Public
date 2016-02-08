@@ -816,8 +816,8 @@ public function applyFynTeachingEffect(lessonTaught:String = ""):void
 		else 
 		{
 			//reset duration to full length
-			var effect:StorageClass = pc.getStatusEffect("Lightning Moves");
-			effect.minutesLeft = 4320;
+			var effect2:StorageClass = pc.getStatusEffect("Lightning Moves");
+			effect2.minutesLeft = 4320;
 		}
 	}
 }
