@@ -9,6 +9,7 @@
 //AINA_TALKED_ABOUT_HERSELF:	If the player asked Aina about herself in the past (true or undefined)
 //AINA_TALKED_ABOUT_TOYS:		If the player asked Aina about her sextoys (true or undefined)
 //AINA_SEXED_WITH_TOY:			If the player did her Anal&Wand scene in the past (true or undefined)
+//AINA_SHOWER_USED:				If the player used the shower in Aina's apartment (true or undefined)
 
 
 //Heat mechanics: 
@@ -311,6 +312,10 @@ public function ainaIsVirgin():Boolean {
 public function ainaSexed(times:int):void {
 	if(flags["AINA_SEXED"] == undefined) flags["AINA_SEXED"] = 0;
 	flags["AINA_SEXED"] += times;
+	
+	//currently applies to all sex scenes, but since this may not be the case in the future,
+	//the effect is kept as a seperate function
+	applyAinaMareMuskEffect();
 }
 
 //render Button for meeting Aina in her apartment on the residential deck(#18)
@@ -351,9 +356,10 @@ public function ainaMenu():void
 	addButton(0, "Appearance", ainaAppearance);
 	if(!ainaIsInHeat()) addButton(1, "Talk", ainaTalk);
 	else addDisabledButton(1, "Talk", "Talk", "Aina must not be in heat to talk to her.");
-	//addDisabledButton(2, "Tea", "Tea", "Aina must not be in heat to enjoy a cup of tea."); //Listed in DOC but no text was supplied for it
 	addButton(2, "OfferSex", ainaSexMenu);
-	addButton(3,"Leave",mainGameMenu);
+	addButton(3, "Shower", ainaShower);
+	
+	addButton(14,"Leave",mainGameMenu);
 }
 
 public function ainaAppearance():void
@@ -524,9 +530,23 @@ public function ainaTalksAboutSexToys():void
 	ainaTalkNavigation(ainaTalksAboutSexToys);
 }
 
-public function ainaTea():void
+public function ainaShower():void
 {
-	//No text provided in DOC
+	if (flags["AINA_SHOWER_USED"] == undefined) output("You ask Aina if you can use her shower, and she nods enthusiastically.\n\n“Sure! Just on the right.”");
+	
+	output("You hop into the centauress' impressively large shower to clean yourself off. Rivulets of water run down your [pc.skinFurScales]. You rub soap all over your body and then clean it off, leaving you perfectly spotless.");
+	output("\n\nHopping out, you let out a happy sigh, rubbing a towel over your [pc.hair]. You're feeling refreshed in so many ways!");
+	output("\n\n<b>You are now clean!</b>");
+	
+	processTime(10 + rand(5));
+	
+	pc.shower();
+	addButton(14, "Back", ainaMenu);
+}
+
+public function applyAinaMareMuskEffect():void 
+{
+	pc.createStatusEffect("Mare Musk",0,0,0,0,false,"Icon_Smelly","You smell like a horny mare! The potent female scent is sure to drive others wild—though it gets you a little worked up as well.",false,0);
 }
 
 public function ainaSexMenu():void
@@ -652,9 +672,7 @@ public function ainaSexedFromBehind():void
 	else
 	{
 	output("\n\n“That was amazing... just like last time...” Aina blushes, absentmindedly tucking a messed-up lock behind her ear. “Um, you know, if you're ever in Res Deck again, feel free to call around. I always love having you over... whether we're talking or, you know, doing other things...”");
-	output("\n\nYou nod and grab your things. Your whole body reeks of mare musk! You're pretty sure anyone within a mile could smell it. You ask Aina if you can use her shower, and she nods enthusiastically.");
-	output("\n\n“Sure! Just on the right.”");
-	output("\n\nAfter using her shower to clean off, you let out a happy sigh, ruffling a towel over your [pc.hair]. You're feeling refreshed in so many ways!");
+	output("\n\nYou nod and grab your things. Your whole body reeks of mare musk! You're pretty sure anyone within a mile could smell it.");
 	}
 	
 	ainaSexed(1);
@@ -696,13 +714,12 @@ public function ainaSexedFisting():void
 
 	if(ainaIsVirgin())
 	{
-		output("\n\n“M-my first time... I never knew proper mating could be so amazing,” Aina blushes, absentmindedly tucking a messed-up lock behind her ear. “I, um, I'm still feeling kind of lightheaded. Kind of floaty, even. Oh, the mess! Did I really leak out that much? Maybe you should use my shower to clean off. It's on the right.”");
-		output("\n\nTaking her up on the offer, you duck into her shower, cleaning all her fem-cum off. It takes a while! After you get out, Aina approaches you, looking thoroughly embarrassed.");
-		output("\n\n“Um, thank you so much. I really needed that. I-If you're ever in the Res Deck again, maybe look me up? I'd be more than willing to fit you in... um, I mean have you over!”");
+		output("\n\n“M-my first time... I never knew proper mating could be so amazing,” Aina blushes, absentmindedly tucking a messed-up lock behind her ear. “I, um, I'm still feeling kind of lightheaded. Kind of floaty, even. Oh, the mess! Did I really leak out that much?!”");
+		output("\n\nLooking thoroughly embarrassed, the centauress grabs a vacuu-mop. “Um, thank you so much. I really needed that. I-If you're ever in the Res Deck again, maybe look me up? I'd be more than willing to fit you in... um, I mean have you over!”");
+		output("\n\nYou grin and grab your things, leaving Aina to clean up. Given how wet she was, you imagine it's going to take quite a while.");
 	}
 	else{
-		output("\n\nWhen she's caught her breath, Aina turns around, her pale cheeks burning red. “Um, sorry. I got you a bit wet, didn't I? Maybe you should use my shower to clean off? It's on the right.”");
-		output("\n\nAfter using her shower to clean off, you let out a happy sigh, ruffling a towel over your [pc.hair]. You're feeling refreshed in so many ways!");
+		output("\n\n“That was amazing... just like last time...” Aina blushes, absentmindedly tucking a messed-up lock behind her ear. “Um, you know, if you're ever in Res Deck again, feel free to call around. I always love having you over... whether we're talking or, you know, doing other things...”");
 	}
 	
 	ainaSexed(1);
@@ -767,10 +784,8 @@ public function ainaSexedWithAnalWand():void
 	if(flags["AINA_SEXED_WITH_TOY"] == undefined) output(" “You're so much better with my toys than I am");
 	else output(" “You're amazing");
 	
-	output(",” Aina blushes, tucking back her thoroughly messed up locks. It takes you both some time before you're able to stand. Sniffing yourself, you realize your whole body reeks of mare musk! You're pretty sure anyone within a mile could smell it. You ask Aina if you can use her shower, and she nods enthusiastically.");
-	output("\n\n“Sure! Just on the right.”");
-	output("\n\nAfter using her shower to clean off, you let out a happy sigh, ruffling a towel over your [pc.hair]. You're feeling refreshed in so many ways!");
-
+	output(",” Aina blushes, tucking back her thoroughly messed up locks. It takes you both some time before you're able to stand. Sniffing yourself, you realize your whole body reeks of mare musk! You're pretty sure anyone within a mile could smell it.");
+	
 	ainaSexed(1);
 	flags["AINA_SEXED_WITH_TOY"] = true;
 	
