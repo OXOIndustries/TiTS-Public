@@ -299,24 +299,39 @@ public function fynTalk():void {
 	
 	output("What do you want to talk about?");
 	
+	fynTalkNavigation();
+}
+
+public function fynTalkNavigation(activeTopic:Function = undefined):void {
 	clearMenu();
-	addButton(0, "Fyn", fynTalksAboutFyn);
-	//unlocked after talked about Fyn
-	if(flags["FYN_TALKED_ABOUT_FYN"]) addButton(1, "Hobbies", fynTalksAboutHobbies); 
+	
+	if(activeTopic == fynTalksAboutFyn) addDisabledButton(0, "Fyn", "Fyn", "You just spoke about that.");
+	else addButton(0, "Fyn", fynTalksAboutFyn, undefined, "Fyn", "Ask Fyn about himself.");
+	
+	if(activeTopic == fynTalksAboutHobbies) addDisabledButton(1, "Hobbies", "Hobbies", "You just spoke about that.");
+	else if(flags["FYN_TALKED_ABOUT_FYN"]) addButton(1, "Hobbies", fynTalksAboutHobbies, undefined, "Hobbies", "Ask Fyn about his hobbies."); 
 	else addDisabledButton(1, "Hobbies", "Hobbies", "You don't know him well enough to talk about that.");
-	//unlocked after talked about hobbies + relationship 1+
-	if(flags["FYN_TALKED_ABOUT_HOBBIES"] && fynRelationshipStatus() >= 1) addButton(2, "Sex", fynTalksAboutSex);
+	
+	if(activeTopic == fynTalksAboutSex) addDisabledButton(2, "Sex", "Sex", "You just spoke about that.");
+	else if(flags["FYN_TALKED_ABOUT_HOBBIES"] && fynRelationshipStatus() >= 1) addButton(2, "Sex", fynTalksAboutSex, undefined, "Ask Fyn about his sexual interests.");
 	else if (flags["FYN_TALKED_ABOUT_HOBBIES"] == undefined) addDisabledButton(2, "Sex", "Sex", "You don't know him well enough to talk about that.");
 	else addDisabledButton(2, "Sex", "Sex", "Fyn has no interest in talking about sex with you."); //pc did not firt and blocked sex menu
-	addButton(3, "Vildarii", fynTalksAboutVildarii);
-	addButton(4, "Career", fynTalksAboutCareer);
-	addButton(5, "Dancing", fynTalksAboutDancing);
-	//unlocked after talked about Fyn
-	if(flags["FYN_TALKED_ABOUT_FYN"]) addButton(6, "Singing", fynTalksAboutSinging); 
+	
+	if(activeTopic == fynTalksAboutVildarii) addDisabledButton(3, "Vildarii", "Vildarii", "You just spoke about that.");
+	else addButton(3, "Vildarii", fynTalksAboutVildarii, undefined, "Vildarii", "Ask Fyn about his race.");
+	if(activeTopic == fynTalksAboutCareer) addDisabledButton(4, "Career", "Career", "You just spoke about that.");
+	else addButton(4, "Career", fynTalksAboutCareer, undefined, "Career", "Ask Fyn about his career.");
+	if(activeTopic == fynTalksAboutDancing) addDisabledButton(5, "Dancing", "Dancing", "You just spoke about that.");
+	else addButton(5, "Dancing", fynTalksAboutDancing, undefined, "Dancing", "Ask Fyn about dancing.");
+	
+	if(activeTopic == fynTalksAboutSinging) addDisabledButton(6, "Singing", "Singing", "You just spoke about that.");
+	else if(flags["FYN_TALKED_ABOUT_FYN"]) addButton(6, "Singing", fynTalksAboutSinging, undefined, "Singing", "Ask Fyn about singing."); 
 	else addDisabledButton(6, "Singing", "Singing", "You don't know him well enough to talk about that.");
-	//unlocked after talked about hobbies
-	if(flags["FYN_TALKED_ABOUT_HOBBIES"]) addButton(7, "Fencing", fynTalksAboutFencing);
+	
+	if(activeTopic == fynTalksAboutFencing) addDisabledButton(7, "Fencing", "Fencing", "You just spoke about that.");
+	else if(flags["FYN_TALKED_ABOUT_HOBBIES"]) addButton(7, "Fencing", fynTalksAboutFencing, undefined, "Fencing", "Ask Fyn about fencing.");
 	else addDisabledButton(7, "Fencing", "Fencing", "You don't know him well enough to talk about that.");
+	
 	addButton(14, "Back", fynMenu);
 }
 
@@ -341,7 +356,7 @@ public function fynTalksAboutFyn():void {
 		
 		fynTalksAboutFynPartTwo();
 		
-		addButton(14, "Back", fynTalk);
+		fynTalkNavigation(fynTalksAboutFyn);
 	}
 }
 
@@ -399,8 +414,7 @@ public function fynTalksAboutFynPcFlirts():void {
 	
 	processTime(10 + rand(5));
 	
-	clearMenu();
-	addButton(14, "Back", fynTalk);
+	fynTalkNavigation(fynTalksAboutFyn);
 }
 
 public function fynTalksAboutFynPcPlaysHardToGet():void {
@@ -422,8 +436,7 @@ public function fynTalksAboutFynPcPlaysHardToGet():void {
 	
 	processTime(2);
 	
-	clearMenu();
-	addButton(14, "Back", fynTalk);
+	fynTalkNavigation(fynTalksAboutFyn);
 }
 
 public function fynTalksAboutFynPcIsNoFlirt():void {
@@ -442,8 +455,7 @@ public function fynTalksAboutFynPcIsNoFlirt():void {
 	
 	processTime(2);
 	
-	clearMenu();
-	addButton(14, "Back", fynTalk);
+	fynTalkNavigation(fynTalksAboutFyn);
 }
 
 //the second part of Fyns flirt talk to be appended to all three possible answers
@@ -469,8 +481,7 @@ public function fynTalksAboutHobbies():void {
 	flags["FYN_TALKED_ABOUT_HOBBIES"] = true;
 	processTime(5 + rand(5));
 	
-	clearMenu();
-	addButton(14, "Back", fynTalk);
+	fynTalkNavigation(fynTalksAboutHobbies);
 }
 
 public function fynTalksAboutSex():void {
@@ -487,8 +498,7 @@ public function fynTalksAboutSex():void {
 	
 	processTime(5 + rand(5));
 	
-	clearMenu();
-	addButton(14, "Back", fynTalk);
+	fynTalkNavigation(fynTalksAboutSex);
 }
 
 public function fynTalksAboutVildarii():void {
@@ -509,8 +519,7 @@ public function fynTalksAboutVildarii():void {
 	
 	processTime(10 + rand(5));
 	
-	clearMenu();
-	addButton(14, "Back", fynTalk);
+	fynTalkNavigation(fynTalksAboutVildarii);
 }
 
 public function fynTalksAboutCareer():void {
@@ -524,8 +533,7 @@ public function fynTalksAboutCareer():void {
 	
 	processTime(10 + rand(5));
 	
-	clearMenu();
-	addButton(14, "Back", fynTalk);
+	fynTalkNavigation(fynTalksAboutCareer);
 }
 
 public function fynTalksAboutDancing():void {
@@ -544,8 +552,7 @@ public function fynTalksAboutDancing():void {
 	
 	processTime(10 + rand(5));
 	
-	clearMenu();
-	addButton(14, "Back", fynTalk);
+	fynTalkNavigation(fynTalksAboutDancing);
 }
 
 public function fynTalksAboutSinging():void {
@@ -574,8 +581,7 @@ public function fynTalksAboutSinging():void {
 	
 	processTime(10 + rand(5));
 	
-	clearMenu();
-	addButton(14, "Back", fynTalk);
+	fynTalkNavigation(fynTalksAboutSinging);
 }
 
 public function fynTalksAboutFencing():void {
@@ -592,8 +598,7 @@ public function fynTalksAboutFencing():void {
 	
 	processTime(10 + rand(5));
 	
-	clearMenu();
-	addButton(14, "Back", fynTalk);
+	fynTalkNavigation(fynTalksAboutFencing);
 }
 
 public function fynLessons():void {
