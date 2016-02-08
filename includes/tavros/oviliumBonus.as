@@ -40,38 +40,37 @@ public function oviliumEffects():void
 			// 25% preg speeded by 2 hours:
 			else
 			{
-				output(" and you feel a jolt inside. For a moment you worry about your pregnancy, but your codex informs you that you’re suddenly a few hours ahead of schedule.");
+				var nVal:int = 2 + rand(2);
 				
-				var plusMinutes:int = (-2 * 60);
-				var pregMinutes:int = 0;
-				for (var i:int = 0; i < pc.pregnancyData.length; i++)
-				{
-					if (pc.isPregnant(i))
-					{
-						pregMinutes = pc.pregnancyData[i].pregnancyIncubation + plusMinutes;
-						if (pregMinutes < 0) pregMinutes = 1;
-						pc.pregnancyData[i].pregnancyIncubation = pregMinutes;
-					}
-				}
+				output(" and you feel a jolt inside. For a moment you worry about your pregnancy, but your codex informs you that you’re suddenly a");
+				if(nVal == 2) output(" couple");
+				else output(" few");
+				output(" hours ahead of schedule.");
+				
+				preggcelleration(-1 * nVal * 60);
+				
 				if (rand(2) == 0) oviliumEggBump();
 			}
 			processTime(2);
 		}
 		else
 		{
+			var hasEmptyWomb:Boolean = (pc.totalPregnancies() < pc.totalVaginas());
+			
 			if (pc.fertilityRaw < 3)
 			{
 				output("As the alabaster fluid slides down your throat you feel [pc.eachVagina] wetten considerably. You drift off into a daydream as you drink the rest of the egg filling potion. In your fantasy, you’re");
 				if (rand(2) == 0) output(" lying in bed with the mate of your dreams, letting them kiss your pregnant belly as the two of you drift off to sleep");
 				else output(" sitting at your owner’s feet, heavily pregnant with the eggs they graciously allowed you to carry");
 				output(". You shake your head to clear your vision, blushing slightly as you realize what you were thinking.");
+				if (hasEmptyWomb) output("\n\n");
 				
 				pc.fertilityRaw += 0.5;
 				pc.lust(5);
 				processTime(8);
 			}
 			// ([if pc has vag]: pc becomes preg with eggs -- one womb at a time!)
-			if (pc.totalPregnancies() < pc.totalVaginas())
+			if (hasEmptyWomb)
 			{
 				output("You feel a pleasurable popping in your abdomen as the glowing drink hits your stomach. Egg after egg seemingly appears from nothing in your womb.");
 				if (!pc.isNude()) output(" The upper portion of your outfit distends as y");
@@ -96,26 +95,75 @@ public function oviliumEffects():void
 // (If the pc gets cummed inside while eggpreg with ovilium, after sex this happens)
 public function oviliumEggBump():void
 {
-	eventBuffer += "\n\nYou hear a slick pop and feel your womb expand slightly as one or two of the eggs inside multiply. You feel a little more full, and rub your egg pregnant stomach contentedly.";
-	// if first sex after preg:
-	if (pc.statusEffectv2("Ovilium") == 0) eventBuffer += " In addition to the popping noise you hear an odd sucking noise inside you. You figure it’s something to do with the eggs and don’t think too much about it, apart from noticing your womb feels a bit heavier.";
+	var changes:int = 0;
+	for (var i:int = 0; i < pc.pregnancyData.length; i++)
+	{
+		if (pc.isPregnant(i))
+		{
+			if (pc.pregnancyData[i].pregnancyType == "OviliumEggPregnancy")
+			{
+				var bigEgg:Boolean = (pc.statusEffectv2("Ovilium") == 0);
+				var chances:int = Math.floor(pc.pregnancyData[i].pregnancyQuantity / 4);
+				for (var x:int = 0; x < 12; x++)
+				{
+					if (changes < 12 && rand(chances) == 0)
+					{
+						pc.pregnancyData[i].pregnancyQuantity++;
+						pc.pregnancyData[i].pregnancyBellyRatingContribution += 0.125;
+						pc.bellyRatingMod += 0.125;
+						if(bigEgg)
+						{
+							pc.pregnancyData[i].pregnancyQuantity++;
+							pc.pregnancyData[i].pregnancyBellyRatingContribution += 2;
+							pc.bellyRatingMod += 2;
+							bigEgg = false;
+						}
+						changes++;
+					}
+				}
+			}
+		}
+	}
+	if (changes > 0)
+	{
+		eventBuffer += "\n\nYou hear a slick pop and feel your womb expand slightly as one";
+		if (changes != 1) eventBuffer += " or two";
+		eventBuffer += " of the eggs inside multipl";
+		if (changes == 1) eventBuffer += "ies";
+		else eventBuffer += "y";
+		eventBuffer += ". You feel a little more full, and rub your egg pregnant stomach contentedly.";
+		// if first sex after preg:
+		if (pc.statusEffectv2("Ovilium") == 0) eventBuffer += " In addition to the popping noise you hear an odd sucking sound inside you. You figure it’s something to do with the eggs and don’t think too much about it, apart from noticing your womb feeling a bit heavier.";
+		
+		pc.addStatusValue("Ovilium", 2, 1);
+	}
+}
+// Pregnancy multiplier bump.
+public function preggcelleration(plusMinutes:int = 0):int
+{
+	var num:int = 0;
 	
 	for (var i:int = 0; i < pc.pregnancyData.length; i++)
 	{
 		if (pc.isPregnant(i))
 		{
-			var pTemp:PregnancyData = pc.pregnancyData[i];
-			if (pTemp.pregnancyType == "OviliumEggPregnancy")
+			// Minute sum/difference
+			var pregMinutes:int = pc.pregnancyData[i].pregnancyIncubation + plusMinutes;
+			// Get current multiplier
+			var pregMulti:Number = pc.pregnancyData[i].pregnancyIncubationMulti;
+			// Convert difference into multiplier
+			if (pregMulti > 0)
 			{
-				var pEggs:int = pc.pregnancyData[i].pregnancyQuantity;
-				for (var x:int = 0; x < pEggs; x++)
-				{
-					pc.pregnancyData[i].pregnancyQuantity += rand(2);
-				}
+				if (pregMinutes > 0) pregMulti *= (pc.pregnancyData[i].pregnancyIncubation / pregMinutes);
+				else pregMulti += 90;
+				// Set multiplier
+				pc.pregnancyData[i].pregnancyIncubationMulti = pregMulti;
+				num++;
 			}
 		}
 	}
-	pc.addStatusValue("Ovilium", 2, 1);
+	
+	return num;
 }
 
 // Laying eggs
@@ -134,7 +182,7 @@ public function oviliumPregnancyEnds(pregSlot:int, pregEggs:int, totalEggs:int):
 	}
 	else output(" lie down so that your [pc.vagina " + pregSlot + "] is at a good angle for laying eggs");
 	output(".");
-	output("\n\nYou feel the contractions quickening and prepare to push the eggs out. Steeling yourself for the coming eggs, you prepare to push, expecting it to be a bit tough. Contrary to your beliefs, as soon as you push a torrent of eggs slip through your passage. The suddenness of it causes your muscles to tense, [pc.legs] splaying out in the air. Before you can recover your wits a few more eggs slide out of you and into the pile.");
+	output("\n\nYou feel the contractions quickening and prepare to push the eggs out. Steeling yourself for the coming eggs, you prepare to push, expecting it to be a bit tough. Contrary to your beliefs, as soon as you push a torrent of eggs slip through your passage. The suddenness of it causes your muscles to tense, [pc.legs] splaying out in the air. Before you can recover your wits, a few more eggs slide out of you and into the pile.");
 	
 	var bigEgg:Boolean = false;
 	
@@ -172,8 +220,7 @@ public function oviliumEffectCheck():void
 	
 	for (var i:int = 0; i < pc.pregnancyData.length; i++)
 	{
-		var pData:PregnancyData = pc.pregnancyData[i];
-		if (pData.pregnancyType == "OviliumEggPregnancy") return;
+		if (pc.pregnancyData[i].pregnancyType == "OviliumEggPregnancy") return;
 	}
 	
 	pc.removeStatusEffect("Ovilium");
@@ -183,7 +230,7 @@ public function oviliumEffectCheck():void
 private function oviliumEggReward(bigEgg:Boolean = false):void
 {
 	var eggList:Array = [];
-	// Egg items:40% chance normal egg: small egg, restore 10% hp. Big egg, restore 30% hp.
+	// Egg items:40% chance normal egg
 	// 50% chance of special egg
 	if (!bigEgg)
 	{
@@ -225,66 +272,79 @@ public function oviliumEggTooltip(eggSize:String = "none", eggColor:String = "no
 public function eatOviliumEgg(eggSize:String = "none", eggColor:String = "none"):void
 {
 	clearOutput();
-	if (silly) showName("\nYUM!");
 	author("Gardeford");
-	
-	output("You take one bite of the " + eggColor + " egg in your hands and before you know it the whole thing is gone. Its taste is hard to place. It was good, but you can’t for the life of you think of anything to compare it to.");
-	
+		
 	var effectTF:String = "none"
 	var nVal:Number = 0;
 	
-	if (eggColor == "none")
+	output("You take one bite of the " + eggColor + " egg in your hands and before you know it the whole thing is gone.");
+	if (!inCombat())
 	{
-		/* No changes */
+		if (silly) showName("\nYUM!");
+		
+		output(" Its taste is hard to place. It was good, but you can’t for the life of you think of anything to compare it to.");
+		
+		if (eggColor == "none")
+		{
+			/* No changes */
+		}
+		// pink egg: boost pc fluid production, big gives larger increase.
+		else if (eggColor == "pink")
+		{
+			effectTF = "fluid";
+			if (eggSize == "small") nVal = 1;
+			if (eggSize == "large") nVal = 2;
+		}
+		// blue egg: accelerate current pregnancy by 2 hours, big delays 4 hours.
+		else if (eggColor == "blue")
+		{
+			effectTF = "preggcelleration";
+			if (eggSize == "small") nVal = (-2);
+			if (eggSize == "large") nVal = (2);
+		}
+		// Glowing white egg: increase fertility/virility slightly. big egg bigger increase.
+		else if (eggColor == "glowing white")
+		{
+			effectTF = "fertility";
+			if (eggSize == "small") nVal = 0.25;
+			if (eggSize == "large") nVal = 0.50;
+		}
 	}
-	// pink egg: boost pc fluid production, big gives larger increase.
-	else if (eggColor == "pink")
-	{
-		effectTF = "fluid";
-		if (eggSize == "small") nVal = 1;
-		if (eggSize == "large") nVal = 2;
-	}
-	// blue egg: accelerate current pregnancy by 2 hours, big delays 4 hours.
-	else if (eggColor == "blue")
-	{
-		effectTF = "preggcelleration";
-		if (eggSize == "small") nVal = -2;
-		if (eggSize == "large") nVal = 4;
-	}
-	// Glowing white egg: increase fertility/virility slightly. big egg bigger increase.
-	else if (eggColor == "glowing white")
-	{
-		effectTF = "fertility";
-		if (eggSize == "small") nVal = 0.25;
-		if (eggSize == "large") nVal = 0.50;
-	}
-	
 	// Effects, go!
-	oviliumEggTF(effectTF, nVal, eggSize);
+	oviliumEggTF(effectTF, nVal, eggSize, eggColor);
 }
 
-// NPC effects
+// NPC and "normal" effects
 public function npcEatOviliumEgg(target:Creature = null, eggSize:String = "none", eggColor:String = "none"):void
 {
+	// small egg, restore 10% hp. Big egg, restore 30% hp.
 	var healing:int = 5;
-	if(eggSize == "small") healing = 10;
-	if(eggSize == "large") healing = 30;
+	if (eggSize == "small") healing = 10;
+	if (eggSize == "large") healing = 30;
 	
-	if(target.HP() + healing > target.HPMax())
+	if (target.HP() + healing > target.HPMax())
 	{
 		healing = target.HPMax() - target.HP();
 	}
 	
-	if(inCombat()) output("\n\n");
-	else clearOutput();
-	output(target.capitalA + target.short + " eats " + indefiniteArticle(eggSize) + " " + eggColor + " egg");
-	if(healing > 0) output(" and instantly regains a little health! (<b>+" + healing + " HP</b>)");
-	else output(" but to no effect.");
+	if (target is PlayerCharacter)
+	{
+		if (healing > 0) output(" You feel better almost immediately! (<b>+" + healing + " HP</b>)");
+		else output(" Nothing changes except for the taste in your mouth.");
+	}
+	else
+	{
+		if (inCombat()) output("\n\n");
+		else clearOutput();
+		output(target.capitalA + target.short + " eats " + indefiniteArticle(eggSize) + " " + eggColor + " egg");
+		if (healing > 0) output(" and instantly regains a little health! (<b>+" + healing + " HP</b>)");
+		else output(" but to no effect.");
+	}
 	target.HP(healing);
 }
 
 // Effects:
-public function oviliumEggTF(effectTF:String = "none", nVal:Number = 0, eggSize:String = "none"):void
+private function oviliumEggTF(effectTF:String = "none", nVal:Number = 0, eggSize:String = "none", eggColor:String = "none"):void
 {
 	var changes:int = 0;
 	var x:int = 0;
@@ -321,12 +381,11 @@ public function oviliumEggTF(effectTF:String = "none", nVal:Number = 0, eggSize:
 			num = 0;
 			for(x = 0; x < pc.vaginas.length; x++)
 			{
-				if (pc.vaginas[x].wetnessRaw < 100)
+				if (pc.vaginas[x].wetnessRaw < 5)
 				{
 					pc.vaginas[x].wetnessRaw += nVal;
-					if (pc.vaginas[x].wetnessRaw > 100) pc.vaginas[x].wetnessRaw = 100;
+					if (pc.vaginas[x].wetnessRaw > 5) pc.vaginas[x].wetnessRaw = 5;
 					num++;
-					changes++;
 				}
 			}
 			if (num > 0)
@@ -336,25 +395,16 @@ public function oviliumEggTF(effectTF:String = "none", nVal:Number = 0, eggSize:
 				if (nVal <= 1) msg += " slightly";
 				else msg += " much";
 				msg += " wetter than you were before.";
+				
+				changes++;
 			}
 		}
 	}
 	// (Preg accel)
 	else if (effectTF == "preggcelleration")
 	{
-		num = 0;
-		var plusMinutes:int = (nVal * 60);
-		var pregMinutes:int = 0;
-		for (x = 0; x < pc.pregnancyData.length; x++)
-		{
-			if (pc.isPregnant(x))
-			{
-				pregMinutes = pc.pregnancyData[x].pregnancyIncubation + plusMinutes;
-				if (pregMinutes < 0) pregMinutes = 1;
-				pc.pregnancyData[x].pregnancyIncubation = pregMinutes;
-				num++;
-			}
-		}
+		num = preggcelleration(nVal * 60);
+		
 		if (num > 0)
 		{
 			msg += "A thrilling spasm throbs at your cervix, nearly buckling your legs. Your codex informs you that the pregnanc";
@@ -390,21 +440,9 @@ public function oviliumEggTF(effectTF:String = "none", nVal:Number = 0, eggSize:
 		}
 	}
 	
-	if(changes <= 0)
+	if (changes <= 0)
 	{
-		var healing:int = 5;
-		if(eggSize == "small") healing = 10;
-		if(eggSize == "large") healing = 30;
-		
-		if(pc.HP() + healing > pc.HPMax())
-		{
-			healing = pc.HPMax() - pc.HP();
-		}
-		
-		if(healing > 0) output(" You feel better almost immediately! (<b>+" + healing + " HP</b>)");
-		else output(" Nothing changes except for the taste in your mouth.");
-		
-		pc.HP(healing);
+		npcEatOviliumEgg(pc, eggSize, eggColor);
 	}
 	else output("\n\n" + msg);
 }

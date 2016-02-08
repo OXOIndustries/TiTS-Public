@@ -1062,7 +1062,10 @@ package classes {
 				//ballSizeRaw = ((ballSizeRaw * ballSizeRaw * balls) / 2);
 				
 				//If diameter is greater than six inches, reduce size to make diameter be six. Only so much room inside.
-				if(ballDiameter() >= 6) ballSizeRaw = 6*Math.PI;
+				//if(ballDiameter() >= 6) ballSizeRaw = 6*Math.PI;
+				
+				// WhyNotBoth.gif?
+				ballSizeRaw = Math.min((6 * Math.PI), ((ballSizeRaw * ballSizeRaw * balls) / 2));
 			}
 			balls = 0;
 		}
@@ -10301,7 +10304,7 @@ package classes {
 			return true;
 		}
 		public function multiCockDescript(dynamicLength:Boolean = false): String {
-			if (cocks.length < 1) return "<B>Error: multiCockDescript() called with no penises present.</B>";
+			if (cocks.length < 1) return "<b>Error: multiCockDescript() called with no penises present.</b>";
 			//Get cock counts
 			var descript: String = "";
 			var rando: Number = 0;
@@ -12355,6 +12358,15 @@ package classes {
 			}
 			return count;
 		}
+		public function totalBabiesOfType(type:String):int
+		{
+			var count:int = 0;
+			for (var i:int = 0; i < pregnancyData.length; i++)
+			{
+				if ((pregnancyData[i] as PregnancyData).pregnancyType == type) count += (pregnancyData[i] as PregnancyData).pregnancyQuantity;
+			}
+			return count;
+		}
 		
 		/**
 		 * Find the index of the first empty pregnancy slot
@@ -12536,22 +12548,24 @@ package classes {
 			if (cockVirgin && hasCock())
 			{
 				cockVirgin = false;
-				if(spacingsF) output(" ");
-				
+				var msg:String = "";
+				if(spacingsF) msg += " ";
+				msg += "<b>"
 				if (this is PlayerCharacter)
 				{
-					output("<b>You have succumbed to your desires and lost your </b>");
-					if (hasVagina()) output("<b>masculine </b>");
-					output("<b>virginity.</b>");
+					msg += "You have succumbed to your desires and lost your";
+					if (hasVagina()) msg += " masculine";
+					msg += " virginity.";
 				}
 				else
 				{
-					output("<b>" + capitalA + short + " has succumbed to " + mf("his", "her") + " desires and lost " + mf("his", "her"));
-					if (hasVagina()) output(" masculine");
-					output(" virginity.</b>");
+					msg += capitalA + short + " has succumbed to " + mf("his", "her") + " desires and lost " + mf("his", "her");
+					if (hasVagina()) msg += " masculine";
+					msg += " virginity.";
 				}
-				
-				if (spacingsB) output(" ");
+				msg += "</b>"
+				if (spacingsB) msg += " ";
+				output(msg);
 				return true;
 			}
 			return false;
@@ -12600,36 +12614,38 @@ package classes {
 			if (holePointer.hymen || (hole < 0 && analVirgin) || (hole >= 0 && vaginalVirgin)) {
 				if (display)
 				{
-					if (spacingsF) output(" ");
-					output("<b>");
+					var msg:String = "";
+					if (spacingsF) msg += " ";
+					msg += "<b>";
 					if (this is PlayerCharacter)
 					{
 						if (holePointer.hymen && hole >= 0)
 						{
-							output("<b>Your hymen is torn</b>");
+							msg += "Your hymen is torn";
 							holePointer.hymen = false;
 						}
-						else output("<b>You have been penetrated</b>");
+						else msg += "You have been penetrated";
 						
-						if (hole >= 0 && vaginalVirgin) output("<b>, robbing you of your vaginal virginity</b>");
-						else if (analVirgin) output("<b>, robbing you of your anal virginity</b>");
-						output(".");
+						if (hole >= 0 && vaginalVirgin) msg += ", robbing you of your vaginal virginity";
+						else if (analVirgin) msg += ", robbing you of your anal virginity";
+						msg += ".";
 					}
 					else
 					{
 						if (holePointer.hymen && hole >= 0)
 						{
-							output(capitalA + possessive(short) + " hymen is torn");
+							msg += capitalA + possessive(short) + " hymen is torn";
 							holePointer.hymen = false;
 						}
-						else output(capitalA + short + " has been penetrated");
+						else msg += capitalA + short + " has been penetrated";
 						
-						if (hole >= 0 && vaginalVirgin)	output(", robbing " + mf("him", "her") + " of " + mf("his", "her") + " vaginal virginity");
-						else if (analVirgin) output(", robbing " + mf("him", "her") + " of " + mf("his", "her") + " anal virginity");
-						output(".");
+						if (hole >= 0 && vaginalVirgin)	msg += ", robbing " + mf("him", "her") + " of " + mf("his", "her") + " vaginal virginity";
+						else if (analVirgin) msg += ", robbing " + mf("him", "her") + " of " + mf("his", "her") + " anal virginity";
+						msg += ".";
 					}
-					output("</b>");
-					if(spacingsB) output(" ");
+					msg += "</b>";
+					if(spacingsB) msg += " ";
+					output(msg);
 				}
 				
 				if (hole >= 0 && vaginalVirgin) 

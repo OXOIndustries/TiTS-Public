@@ -372,7 +372,11 @@ public function statisticsScreen(showID:String = "All"):void
 			output2("\n<b>* Cum, Max: </b>" + pc.maxCum() + " mLs");
 			output2("\n<b>* Refractory Rate: </b>" + Math.round(pc.refractoryRate*1000)/10 + " %");
 			if(pc.virility() <= 0) output2("\n<b>* Virility:</b> Infertile");
-			else output2("\n<b>* Virility: </b>" + Math.round(pc.virility()*1000)/10 + " %");
+			else
+			{
+				output2("\n<b>* Virility: </b>" + Math.round(pc.virility()*1000)/10 + " %");
+				output2("\n<b>* Virility, Speed Modifier: </b>" + Math.round(pc.pregnancyIncubationBonusFather()*1000)/10 + " %");
+			}
 			// Cocks
 			if(pc.cocks.length >= 1)
 			{
@@ -501,7 +505,8 @@ public function statisticsScreen(showID:String = "All"):void
 			output2("\n<b>* Active Pregnancies, Total: </b>" + pc.totalPregnancies());
 			for (x = 0; x < pc.pregnancyData.length; x++)
 			{
-				if(pc.pregnancyData[x].pregnancyType != "")
+				var pData:PregnancyData = pc.pregnancyData[x];
+				if(pData.pregnancyType != "")
 				{
 					if(x != 3)
 					{
@@ -513,32 +518,34 @@ public function statisticsScreen(showID:String = "All"):void
 						if(silly) output2("\n<b><u>Anal Womb</u></b>");
 						else output2("\n<b><u>Bowels</u></b>");
 					}
-					output2("\n<b>* Belly, Size Rating: </b>" + formatFloat(pc.pregnancyData[x].pregnancyBellyRatingContribution, 3));
+					output2("\n<b>* Belly, Size Rating: </b>" + formatFloat(pData.pregnancyBellyRatingContribution, 3));
 					output2("\n<b>* Pregnancy, Type:</b>");
-					if(pc.pregnancyData[x].pregnancyType == "HumanPregnancy") output2(" Human");
-					else if(pc.pregnancyData[x].pregnancyType == "VenusPitcherSeedCarrier") output2(" Venus Pitcher, Seed");
-					else if(pc.pregnancyData[x].pregnancyType == "VenusPitcherFertilizedSeedCarrier") output2(" Venus Pitcher, Seed, Fertilized");
-					else if(pc.pregnancyData[x].pregnancyType == "NyreaEggPregnancy") output2(" Nyrean Huntress, Eggs");
-					else if(pc.pregnancyData[x].pregnancyType == "RoyalEggPregnancy") output2(" Royal Nyrea, Eggs");
-					else if(pc.pregnancyData[x].pregnancyType == "RenvraEggPregnancy") output2(" Renvra, Eggs");
-					else if(pc.pregnancyData[x].pregnancyType == "RenvraFullPregnancy") output2(" Renvra");
-					else if(pc.pregnancyData[x].pregnancyType == "CockvinePregnancy") output2(" Cockvine");
-					else if(pc.pregnancyData[x].pregnancyType == "DeepQueenPregnancy") output2(" Water Queen");
-					else if(pc.pregnancyData[x].pregnancyType == "OviliumEggPregnancy") output2(" Ovilium, Eggs");
+					if(pData.pregnancyType == "HumanPregnancy") output2(" Human");
+					else if(pData.pregnancyType == "VenusPitcherSeedCarrier") output2(" Venus Pitcher, Seed");
+					else if(pData.pregnancyType == "VenusPitcherFertilizedSeedCarrier") output2(" Venus Pitcher, Seed, Fertilized");
+					else if(pData.pregnancyType == "NyreaEggPregnancy") output2(" Nyrean Huntress, Eggs");
+					else if(pData.pregnancyType == "RoyalEggPregnancy") output2(" Royal Nyrea, Eggs");
+					else if(pData.pregnancyType == "RenvraEggPregnancy") output2(" Renvra, Eggs");
+					else if(pData.pregnancyType == "RenvraFullPregnancy") output2(" Renvra");
+					else if(pData.pregnancyType == "CockvinePregnancy") output2(" Cockvine");
+					else if(pData.pregnancyType == "DeepQueenPregnancy") output2(" Water Queen");
+					else if(pData.pregnancyType == "OviliumEggPregnancy") output2(" Ovilium, Eggs");
 					else output2(" <i>Unknown</i>");
-					if(pc.pregnancyData[x].pregnancyIncubation > -1)
+					if(pData.pregnancyIncubation > -1)
 					{
-						output2("\n<b>* Pregnancy, Gestation Time: </b>" + prettifyMinutes(pc.pregnancyData[x].pregnancyIncubation));
-						output2("\n<b>* Pregnancy, Incubation Speed Modifier: </b>" + Math.round(pc.pregnancyData[x].pregnancyIncubationMulti*1000)/10 + " %");
+						var pIncubation:int = pData.pregnancyIncubation;
+						var pIncubationMulti:Number = pData.pregnancyIncubationMulti;
+						output2("\n<b>* Pregnancy, Gestation Time: </b>" + prettifyMinutes(Math.floor(pIncubation * (1 / pIncubationMulti))));
+						if(pIncubationMulti != 1) output2("\n<b>* Pregnancy, Incubation Speed Modifier: </b>" + Math.round(pIncubationMulti * 1000)/10 + " %");
 					}
-					if(pc.pregnancyData[x].pregnancyQuantity > 0)
+					if(pData.pregnancyQuantity > 0)
 					{
 						var pChildType:int = PregnancyManager.getPregnancyChildType(pc, x);
 						output2("\n<b>* Pregnancy,");
 						if(pChildType == GLOBAL.CHILD_TYPE_SEED) output2(" Seedling");
 						else if(pChildType == GLOBAL.CHILD_TYPE_EGGS) output2(" Egg");
 						else output2(" Offspring");
-						output2(" Count: </b>" + pc.pregnancyData[x].pregnancyQuantity);
+						output2(" Count: </b>" + pData.pregnancyQuantity);
 					}
 				}
 			}
@@ -748,81 +755,95 @@ public function statisticsScreen(showID:String = "All"):void
 		}
 		
 		//Births header!
-		if(StatTracking.getStat("pregnancy/total births") > 0)
+		var totalOffspring:Number = StatTracking.getStat("pregnancy/total births");
+		var totalProduce:Number = 0;
+		totalProduce += StatTracking.getStat("pregnancy/ovilium eggs laid");
+		totalProduce += StatTracking.getStat("pregnancy/egg trainer eggs laid");
+		if((totalOffspring + totalProduce) > 0)
 		{
 			output2("\n\n" + blockHeader("Reproduction Statistics", false));
-			output2("\n<b><u>Offspring</u></b>");
-			output2("\n<b>* Total: </b>" + StatTracking.getStat("pregnancy/total births"));
-			// Mother
-			if(StatTracking.getStat("pregnancy/cockvine seedlings birthed") > 0)
-				output2("\n<b>* Births, Cockvines: </b>" + StatTracking.getStat("pregnancy/cockvine seedlings birthed"));
-			if(StatTracking.getStat("pregnancy/cockvine seedlings captured") > 0)
-				output2("\n<b>* Births, Cockvines, Captured: </b>" + StatTracking.getStat("pregnancy/cockvine seedlings captured"));
-			var nyreanEggs:Number = 0;
-			if(StatTracking.getStat("pregnancy/nyrea eggs") > 0)
+			if(totalOffspring)
 			{
-				nyreanEggs += StatTracking.getStat("pregnancy/nyrea eggs");
-				output2("\n<b>* Births, Nyrean Eggs, Huntress: </b>" + StatTracking.getStat("pregnancy/nyrea eggs"));
-			}
-			if(StatTracking.getStat("pregnancy/renvra eggs") > 0)
-			{
-				nyreanEggs += StatTracking.getStat("pregnancy/renvra eggs");
-				output2("\n<b>* Births, Nyrean Eggs, Renvra: </b>" + StatTracking.getStat("pregnancy/renvra eggs"));
-			}
-			if(StatTracking.getStat("pregnancy/royal nyrea eggs") > 0)
-			{
-				nyreanEggs += StatTracking.getStat("pregnancy/royal nyrea eggs");
-				output2("\n<b>* Births, Nyrean Eggs, Royal: </b>" + StatTracking.getStat("pregnancy/royal nyrea eggs"));
-			}
-			if(nyreanEggs > 0)
-				output2("\n<b>* Births, Nyrean Eggs, Total: </b>" + nyreanEggs);
-			if(StatTracking.getStat("pregnancy/ovilium eggs laid") > 0)
-				output2("\n<b>* Births, Ovilium Eggs, Total: </b>" + StatTracking.getStat("pregnancy/ovilium eggs laid"));
-			if(StatTracking.getStat("pregnancy/renvra kids") > 0)
-				output2("\n<b>* Births, Renvra’s Children: </b>" + StatTracking.getStat("pregnancy/renvra kids"));
-			if(StatTracking.getStat("pregnancy/venus pitcher seeds") > 0)
-				output2("\n<b>* Births, Venus Pitcher Seeds: </b>" + StatTracking.getStat("pregnancy/venus pitcher seeds"));
-			if(StatTracking.getStat("pregnancy/fertilized venus pitcher seeds/day care") > 0)
-				output2("\n<b>* Births, Venus Pitcher Seeds @ Daycare: </b>" + StatTracking.getStat("pregnancy/fertilized venus pitcher seeds/day care"));
-			if(StatTracking.getStat("pregnancy/unfertilized venus pitcher seed") > 0)
-				output2("\n<b>* Births, Venus Pitcher Seeds, Unfertilized: </b>" + StatTracking.getStat("pregnancy/unfertilized venus pitcher seed"));
-			if(StatTracking.getStat("pregnancy/queen of the deep eggs") > 0)
-				output2("\n<b>* Births, Water Queen Young: </b>" + StatTracking.getStat("pregnancy/queen of the deep eggs"));
-			// Father
-			if(StatTracking.getStat("pregnancy/briha kids") > 0)
-			{
-				output2("\n<b>* Fathered, Briha’s Children:</b>");
-				var unnamedBrihaKids:Number = StatTracking.getStat("pregnancy/briha kids");
-				if(flags["BRIHA_OLDEST_SPAWN_AGE"] != undefined)
+				output2("\n<b><u>Offspring</u></b>");
+				output2("\n<b>* Total: </b>" + totalOffspring);
+				// Mother
+				if(StatTracking.getStat("pregnancy/cockvine seedlings birthed") > 0)
+					output2("\n<b>* Births, Cockvines: </b>" + StatTracking.getStat("pregnancy/cockvine seedlings birthed"));
+				if(StatTracking.getStat("pregnancy/cockvine seedlings captured") > 0)
+					output2("\n<b>* Births, Cockvines, Captured: </b>" + StatTracking.getStat("pregnancy/cockvine seedlings captured"));
+				var nyreanEggs:Number = 0;
+				if(StatTracking.getStat("pregnancy/nyrea eggs") > 0)
 				{
-					output2(" Aya");
-					unnamedBrihaKids--;
-					if(unnamedBrihaKids > 1) output2(",");
+					nyreanEggs += StatTracking.getStat("pregnancy/nyrea eggs");
+					output2("\n<b>* Births, Nyrean Eggs, Huntress: </b>" + StatTracking.getStat("pregnancy/nyrea eggs"));
 				}
-				if(flags["BRIHA_SECOND_OLDEST_SPAWN_AGE"] != undefined)
+				if(StatTracking.getStat("pregnancy/renvra eggs") > 0)
 				{
-					if(unnamedBrihaKids == 1) output2(" and");
-					output2(" Brahn");
-					unnamedBrihaKids--;
-					if(unnamedBrihaKids > 0) output2(",");
+					nyreanEggs += StatTracking.getStat("pregnancy/renvra eggs");
+					output2("\n<b>* Births, Nyrean Eggs, Renvra: </b>" + StatTracking.getStat("pregnancy/renvra eggs"));
 				}
-				if(unnamedBrihaKids < StatTracking.getStat("pregnancy/briha kids"))
+				if(StatTracking.getStat("pregnancy/royal nyrea eggs") > 0)
 				{
-					output2(" and " + num2Text(unnamedBrihaKids) + " other");
-					if(unnamedBrihaKids != 1) output2("s");
+					nyreanEggs += StatTracking.getStat("pregnancy/royal nyrea eggs");
+					output2("\n<b>* Births, Nyrean Eggs, Royal: </b>" + StatTracking.getStat("pregnancy/royal nyrea eggs"));
 				}
-				else output2(" " + unnamedBrihaKids);
+				if(nyreanEggs > 0)
+					output2("\n<b>* Births, Nyrean Eggs, Total: </b>" + nyreanEggs);
+				if(StatTracking.getStat("pregnancy/renvra kids") > 0)
+					output2("\n<b>* Births, Renvra’s Children: </b>" + StatTracking.getStat("pregnancy/renvra kids"));
+				if(StatTracking.getStat("pregnancy/venus pitcher seeds") > 0)
+					output2("\n<b>* Births, Venus Pitcher Seeds: </b>" + StatTracking.getStat("pregnancy/venus pitcher seeds"));
+				if(StatTracking.getStat("pregnancy/fertilized venus pitcher seeds/day care") > 0)
+					output2("\n<b>* Births, Venus Pitcher Seeds @ Daycare: </b>" + StatTracking.getStat("pregnancy/fertilized venus pitcher seeds/day care"));
+				if(StatTracking.getStat("pregnancy/unfertilized venus pitcher seed") > 0)
+					output2("\n<b>* Births, Venus Pitcher Seeds, Unfertilized: </b>" + StatTracking.getStat("pregnancy/unfertilized venus pitcher seed"));
+				if(StatTracking.getStat("pregnancy/queen of the deep eggs") > 0)
+					output2("\n<b>* Births, Water Queen Young: </b>" + StatTracking.getStat("pregnancy/queen of the deep eggs"));
+				// Father
+				if(StatTracking.getStat("pregnancy/briha kids") > 0)
+				{
+					output2("\n<b>* Fathered, Briha’s Children:</b>");
+					var unnamedBrihaKids:Number = StatTracking.getStat("pregnancy/briha kids");
+					if(flags["BRIHA_OLDEST_SPAWN_AGE"] != undefined)
+					{
+						output2(" Aya");
+						unnamedBrihaKids--;
+						if(unnamedBrihaKids > 1) output2(",");
+					}
+					if(flags["BRIHA_SECOND_OLDEST_SPAWN_AGE"] != undefined)
+					{
+						if(unnamedBrihaKids == 1) output2(" and");
+						output2(" Brahn");
+						unnamedBrihaKids--;
+						if(unnamedBrihaKids > 0) output2(",");
+					}
+					if(unnamedBrihaKids < StatTracking.getStat("pregnancy/briha kids"))
+					{
+						output2(" and " + num2Text(unnamedBrihaKids) + " other");
+						if(unnamedBrihaKids != 1) output2("s");
+					}
+					else output2(" " + unnamedBrihaKids);
+				}
+				if(StatTracking.getStat("pregnancy/briha sons") > 0)
+					output2("\n<b>* Fathered, Briha’s Sons: </b>" + StatTracking.getStat("pregnancy/briha sons"));
+				if(StatTracking.getStat("pregnancy/briha daughters") > 0)
+					output2("\n<b>* Fathered, Briha’s Daughters: </b>" + StatTracking.getStat("pregnancy/briha daughters"));
+				if(StatTracking.getStat("pregnancy/raskvel sired/total") > 0)
+					output2("\n<b>* Fathered, Raskvel Eggs: </b>" + StatTracking.getStat("pregnancy/raskvel sired/total"));
+				if(StatTracking.getStat("pregnancy/raskvel sired/day care") > 0)
+					output2("\n<b>* Fathered, Raskvel @ Daycare: </b>" + StatTracking.getStat("pregnancy/raskvel sired/day care"));
+				if(StatTracking.getStat("pregnancy/zil callgirl kids") > 0)
+					output2("\n<b>* Fathered, Zil Call Girl Children: </b>" + StatTracking.getStat("pregnancy/zil callgirl kids"));
 			}
-			if(StatTracking.getStat("pregnancy/briha sons") > 0)
-				output2("\n<b>* Fathered, Briha’s Sons: </b>" + StatTracking.getStat("pregnancy/briha sons"));
-			if(StatTracking.getStat("pregnancy/briha daughters") > 0)
-				output2("\n<b>* Fathered, Briha’s Daughters: </b>" + StatTracking.getStat("pregnancy/briha daughters"));
-			if(StatTracking.getStat("pregnancy/raskvel sired/total") > 0)
-				output2("\n<b>* Fathered, Raskvel Eggs: </b>" + StatTracking.getStat("pregnancy/raskvel sired/total"));
-			if(StatTracking.getStat("pregnancy/raskvel sired/day care") > 0)
-				output2("\n<b>* Fathered, Raskvel @ Daycare: </b>" + StatTracking.getStat("pregnancy/raskvel sired/day care"));
-			if(StatTracking.getStat("pregnancy/zil callgirl kids") > 0)
-				output2("\n<b>* Fathered, Zil Call Girl Children: </b>" + StatTracking.getStat("pregnancy/zil callgirl kids"));
+			if(totalProduce)
+			{
+				output2("\n<b><u>Produce</u></b>");
+				output2("\n<b>* Total: </b>" + totalProduce);
+				if(StatTracking.getStat("pregnancy/ovilium eggs laid") > 0)
+					output2("\n<b>* Births, Ovilium Eggs, Total: </b>" + StatTracking.getStat("pregnancy/ovilium eggs laid"));
+				if(StatTracking.getStat("pregnancy/egg trainer eggs laid") > 0)
+					output2("\n<b>* Births, TamaniCorp Egg Trainer Eggs, Total: </b>" + StatTracking.getStat("pregnancy/egg trainer eggs laid"));
+			}
 		}
 		
 		//======PARASITE STATISTICS=====//
@@ -1385,13 +1406,20 @@ public function displayQuestLog(showID:String = "All"):void
 			{
 				output2("\n<b><u>Zil Capture</u></b>");
 				output2("\n<b>* Status:</b>");
-				if(flags["CAPTURED_A_FEMALE_ZIL_FOR_DR_HASWELL"] != undefined && flags["CAPTURED_A_MALE_ZIL_FOR_DR_HASWELL"] != undefined) output2(" Completed");
+				if(flags["FIRST_CAPTURED_ZIL_REPORTED_ON"] != undefined && flags["SECOND_CAPTURED_ZIL_REPORTED_ON"] != undefined) output2(" Completed");
+				else if(flags["JULIANS_QUEST_DISABLED"] != undefined) output2(" Disabled");
+				else if
+				(	(flags["FIRST_CAPTURED_ZIL_REPORTED_ON"] == undefined && (flags["CAPTURED_A_FEMALE_ZIL_FOR_DR_HASWELL"] != undefined || flags["CAPTURED_A_MALE_ZIL_FOR_DR_HASWELL"] != undefined))
+				||	(flags["SECOND_CAPTURED_ZIL_REPORTED_ON"] == undefined && (flags["CAPTURED_A_FEMALE_ZIL_FOR_DR_HASWELL"] != undefined && flags["CAPTURED_A_MALE_ZIL_FOR_DR_HASWELL"] != undefined))
+				)	output2(" <i>Return to Dr. Haswell!</i>");
 				else output2(" <i>In progress...</i>");
 				output2("\n<b>* Female Zil:</b>");
 				if(flags["CAPTURED_A_FEMALE_ZIL_FOR_DR_HASWELL"] != undefined) output2(" Captured");
+				else if(flags["JULIANS_QUEST_DISABLED"] != undefined) output2(" Not captured");
 				else output2(" <i>In progress...</i>");
 				output2("\n<b>* Male Zil:</b>");
 				if(flags["CAPTURED_A_MALE_ZIL_FOR_DR_HASWELL"] != undefined) output2(" Captured");
+				else if(flags["JULIANS_QUEST_DISABLED"] != undefined) output2(" Not captured");
 				else output2(" <i>In progress...</i>");
 				sideCount++;
 			}
@@ -4250,7 +4278,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			miscCount++;
 		}
 		// Sexploration: The Sex Toys
-		if(flags["NIVAS_BIONAHOLE_USES"] != undefined || flags["SYRI_BIONAHOLE_USES"] != undefined || flags["TAMANI_HOLED"] != undefined || flags["GRAVCUFFS_USES"] != undefined || flags["HOVERHOLE_USES"] != undefined)
+		if(flags["NIVAS_BIONAHOLE_USES"] != undefined || flags["SYRI_BIONAHOLE_USES"] != undefined || flags["TAMANI_HOLED"] != undefined || flags["GRAVCUFFS_USES"] != undefined || flags["HOVERHOLE_USES"] != undefined || flags["EGG_TRAINER_INSTALLED"] != undefined || pc.hasItem(new EggTrainer()))
 		{
 			output2("\n<b><u>Sex Toys</u></b>");
 			// BionaHoles
@@ -4261,6 +4289,20 @@ public function displayEncounterLog(showID:String = "All"):void
 			if(flags["GRAVCUFFS_USES"] != undefined) output2("\n<b>* Grav-Cuffs, Times Used: </b>" + flags["GRAVCUFFS_USES"]);
 			// Hover Hole
 			if(flags["HOVERHOLE_USES"] != undefined) output2("\n<b>* Hovering Pocket-Pussy, Times Used: </b>" + flags["HOVERHOLE_USES"]);
+			// Egg Trainer
+			if(flags["EGG_TRAINER_INSTALLED"] != undefined || pc.hasItem(new EggTrainer()))
+			{
+				output2("\n<b>* TamaniCorp, Egg Trainer:</b>");
+				if(flags["EGG_TRAINER_INSTALLED"] != undefined) output2(" Installed");
+				else output2(" Acquired");
+				if(flags["EGG_TRAINING_TIMES"] != undefined)
+				{
+					output2(", Used");
+					if(flags["EGG_TRAINING_TIMES"] > 1) output2(" " + flags["EGG_TRAINING_TIMES"] + " times");
+				}
+				if(flags["EGG_TRAINING"] != undefined) output2("\n<b>* TamaniCorp, Egg Trainer, Training Level: </b>" + flags["EGG_TRAINING"]);
+				if(flags["CARRY_TRAINING_TIMES"] != undefined) output2("\n<b>* TamaniCorp, Egg Trainer, Times Carry Training: </b>" + flags["CARRY_TRAINING_TIMES"]);
+			}
 			miscCount++;
 		}
 		

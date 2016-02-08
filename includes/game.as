@@ -1507,7 +1507,9 @@ public function processTime(arg:int):void {
 	if (pc.hasStatusEffect("Overwhelmingly Endowed")) productionFactor *= 2;
 	
 	if (pc.hasStatusEffect("Red Myr Venom")) productionFactor *= 1.5;
-	
+	if (pc.hasStatusEffect("Egg Addled 1")) productionFactor *= 1.25;
+	if (pc.hasStatusEffect("Egg Addled 3")) productionFactor *= 1.75;
+		
 	//BOOZE QUADRUPLES TIEM!
 	if(pc.hasStatusEffect("X-Zil-rate") || pc.hasStatusEffect("Mead") || pc.hasStatusEffect("X-Zil-rate"))
 	productionFactor *= 4;
@@ -1531,6 +1533,7 @@ public function processTime(arg:int):void {
 
 	//Used to establish a cap
 	var lustCap:Number = Math.round(pc.lustMax() * .75);
+	if(pc.hasStatusEffect("Egg Addled 2")) lustCap = pc.lustMax();
 	//Not going over lustcap? Proceed as normal.
 	if(pc.lust() + (arg * productionFactor) < lustCap)
 	{
@@ -1794,6 +1797,8 @@ public function processTime(arg:int):void {
 			{
 				treatmentHourProcs();
 			}
+			//Egg trainer stuff
+			carryTrainingBonusBlurbCheck();
 			//Cunt stretching stuff
 			if(pc.hasVagina()) {
 				for(x = 0; x < pc.totalVaginas(); x++) {

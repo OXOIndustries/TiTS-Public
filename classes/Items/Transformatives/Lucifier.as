@@ -311,7 +311,7 @@ package classes.Items.Transformatives
 				{
 					if(target.libido() < 100)
 					{
-						output("\n\nAs time goes on the sweetness left in your mouth by the gene mod seems to change to an aftertaste of spiciness. A heat thrums through your body with each beat of your heart, seeming to gather with each pass, making you feel frustrated and pent up.");
+						output("As time goes on the sweetness left in your mouth by the gene mod seems to change to an aftertaste of spiciness. A heat thrums through your body with each beat of your heart, seeming to gather with each pass, making you feel frustrated and pent up.");
 						if(target.libido() < 50)
 						{
 							output(" By Christ does this stuff make you feel horny.");

@@ -344,36 +344,57 @@ public function galoMaxTFProc():void
 		output(".");
 		//Used haircolor since that’s what we’re setting gooshit off of.
 		output("\n\nRibbons of viscous juice spill from your ");
-		if(pc.hasCock()) 
+		if(pc.hasGenitals())
 		{
-			output("[pc.cocks]");
-			if(pc.hasVagina()) output(" and ");
+			if(pc.hasCock()) 
+			{
+				output("[pc.cocks]");
+				if(pc.hasVagina()) output(" and ");
+			}
+			if(pc.hasVagina()) output("[pc.vaginas]");
 		}
-		if(pc.hasVagina()) output("[pc.vaginas]");
-		output(", oozing along your bizarrely clenching ");
-		if(pc.hasCock()) output("[pc.cockColor]");
-		else output("[pc.vaginaColor]");
-		output(" skin, painting it [pc.cumColor] in its wake. It almost looks like you’re cumming, but without the enjoyment the associated act would entail. Instead, you’re slumped on the floor, trying not to slump over while paradoxical contractions wreath you in tingling goo.");
+		else output("[pc.crotch]");
+		output(", oozing along your");
+		if(pc.hasGenitals())
+		{
+			output(" bizarrely clenching ");
+			if(pc.hasCock()) output("[pc.cockColor]");
+			else output("[pc.vaginaColor]");
+		}
+		else output(" bare");
+		output(" skin, painting it [pc.cumColor] in its wake. It almost looks like you’re cumming");
+		if(!pc.hasGenitals())output(" - if you had a vagina that is -");
+		else output(",");
+		output(" but without the enjoyment the associated act would entail. Instead, you’re slumped on the floor, trying not to slump over while paradoxical contractions wreath you in tingling goo.");
 		output("\n\nIt does feel kind of good, in an unusual kind of way. You feel like a passenger in a remote-controlled body, one that insists on making its crotch so hot that it threatens to liquefy under the deluge. It’d be maddening if you hadn’t expected something like this to happen. Rapid pants, whining gasps, and splatters fill the air with their lurid echoes. Aeons seem to pass while you lie there, fruitlessly twitching, bathing your ");
 		if(pc.balls > 0) output("[pc.balls]");
 		else output("crotch");
 		output(" in goo. Just when you fear it will never end, the flow stops, and your head clears.");
 		output("\n\nYou try to clean up, but no matter how much of the gooey slop you wipe away, there always seems to be more underneath. No amount of toweling off seems to help");
-		if(pc.hasCock())
+		if(pc.hasGenitals())
 		{
-			output(", and it isn’t until you see your fingers <i>through</i> ");
-			if(pc.cockTotal() > 1) output("a");
-			else output("your");
-			output(" semi-transparent cock that you realize what’s happened.");
+			if(pc.hasCock())
+			{
+				output(", and it isn’t until you see your fingers <i>through</i> ");
+				if(pc.cockTotal() > 1) output("a");
+				else output("your");
+				output(" semi-transparent cock that you realize what’s happened.");
+			}
+			else output(", and it isn’t until you see the edge of a finger through a freshly-cleaned nether-lip that you realize what’s happened.");
+			output(" <b>Your genitalia... your whole pubic mound, really, has become [pc.hairColor] and gooey, just like your hair.</b>");
 		}
-		else output(", and it isn’t until you see the edge of a finger through a freshly-cleaned nether-lip that you realize what’s happened.");
-		output(" <b>Your genitalia... your whole pubic mound, really, has become [pc.hairColor] and gooey, just like your hair.</b>");
+		else
+		{
+			output(", and it isn’t until you see the edge of a finger through the skin that you realize what’s happened.");
+			output(" <b>Your... your whole “pubic” area really has become gooey, just like your hair.</b>");
+		}
 		output("\n\n<i>Maybe you can shift things around down there too...</i>");
 		pc.createStatusEffect("Goo Crotch");
 		//Elasticity to 3
 		//Cocks/Cunts to goo
 		if(pc.elasticity < 3) pc.elasticity = 3;
-		for(var x:int = 0; x < pc.totalCocks(); x++)
+		var x:int = 0;
+		for(x = 0; x < pc.totalCocks(); x++)
 		{
 			if(!pc.hasCockFlag(GLOBAL.FLAG_GOOEY,x)) pc.cocks[x].addFlag(GLOBAL.FLAG_GOOEY);
 			pc.cocks[x].cockColor = pc.hairColor;

@@ -130,8 +130,11 @@ public function acceptZilCapMission():void {
 	output("You grab the capture harness and nod to the scientist. \"<i>I'll do it.</i>\"");
 	output("\n\n\"<i>Excellent!</i>\" Julian cheers. \"<i>Male or female will do. I need them both eventually. The credits will be transferred to your account as soon as we have the creature in custody. Now...</i>\" Julian seats himself, \"<i>if you'll excuse me, there is a mountain of work to do and only one researcher to get it all done.</i>\" He turns back to his work, dismissing you without another word.");
 	//Display key item gain message "Capture Harness"
-	output("\n\n(<b>Gained Key Item: Capture Harness</b> - You can use this to capture a defeated zil for Dr. Haswell.)");
-	pc.createKeyItem("Capture Harness",0,0,0,0);
+	if(!pc.hasKeyItem("Capture Harness"))
+	{
+		output("\n\n(<b>Gained Key Item: Capture Harness</b> - You can use this to capture a defeated zil for Dr. Haswell.)");
+		pc.createKeyItem("Capture Harness",0,0,0,0);
+	}
 	processTime(1);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -224,8 +227,11 @@ public function acceptRepeatZilMission():void {
 	output("Picking up the familiar, compact harness, you nod to Julian.");
 	output("\n\n\"<i>Fantastic! I can't wait to have another subject in the lab.</i>\" He taps a key to open the door and seats himself, returning to his undoubtedly massive workload. \"<i>This is the beginning of a beautiful partnership, [pc.name],</i>\" he idly admits after settling in.");
 	//Key item notification "Capture Harness"
-	output("\n\n(<b>Gained Key Item: Capture Harness</b> - You can use this to capture a defeated zil for Dr. Haswell.)");
-	pc.createKeyItem("Capture Harness",0,0,0,0);
+	if(!pc.hasKeyItem("Capture Harness"))
+	{
+		output("\n\n(<b>Gained Key Item: Capture Harness</b> - You can use this to capture a defeated zil for Dr. Haswell.)");
+		pc.createKeyItem("Capture Harness",0,0,0,0);
+	}
 	processTime(1);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

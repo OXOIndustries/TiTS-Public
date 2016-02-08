@@ -104,6 +104,7 @@
 		include "../includes/items.as";
 		include "../includes/MailEntries.as";
 		include "../includes/masturbation.as";
+		include "../includes/masturbation.eggTrainer.as";
 		include "../includes/NPCTemplates.as";
 		include "../includes/rooms.as";
 		include "../includes/roomFunctions.as";
@@ -333,8 +334,12 @@
 
 		public function TiTS()
 		{
-			Security.allowDomain("*");
-			Security.allowInsecureDomain("*");
+			CONFIG::FLASH
+			{
+				Security.allowDomain("*");
+				Security.allowInsecureDomain("*");
+			}
+			
 			addEventListener(Event.ADDED_TO_STAGE, init);
 		}
 		
@@ -352,7 +357,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.6.32";
+			version = "0.6.33";
 
 			//temporary nonsense variables.
 			temp = 0;

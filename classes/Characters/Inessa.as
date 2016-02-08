@@ -7,6 +7,7 @@
 	import classes.Items.Toys.GravCuffs;
 	import classes.Items.Toys.NivasBionaHole;
 	import classes.Items.Toys.TamaniBionaHole;
+	import classes.Items.Toys.EggTrainer;
 	import classes.Items.Melee.Whip;
 	import classes.Items.Melee.BioWhip;
 	import classes.Items.Apparel.MaidOutfit;
@@ -34,6 +35,7 @@
 			this.inventory.push(new GravCuffs());
 			this.inventory.push(new NivasBionaHole());
 			this.inventory.push(new TamaniBionaHole());
+			this.inventory.push(new EggTrainer());
 
 			this.inventory.push(new Whip());
 			//Unlocks at Myrellion unlock~

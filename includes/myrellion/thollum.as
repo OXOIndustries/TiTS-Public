@@ -1699,7 +1699,7 @@ public function yarastaSexApproach():void
 	else
 	{
 		showYarasta(true);
-		if(pc.isBimbo()) 
+		if(pc.isBimbo() || pc.isBro()) 
 		{
 			if(pc.isBimbo()) output("<i>“Let’s fuck!”</i> you exclaim.");
 			else output("<i>“Let’s fuck!”</i> you growl.");
@@ -1711,7 +1711,7 @@ public function yarastaSexApproach():void
 			}
 			else 
 			{
-				output("\n\n<i>“So, I'll pick how we do it this time then. Fairs fair.”</i> you suggest, watching her pulled-up blouse expose creamy skin as she untucks it.");
+				output("\n\n<i>“So, I’ll pick how we do it this time then. Fair’s fair.”</i> you suggest, watching her pulled-up blouse expose creamy skin as she untucks it.");
 				output("\n\nShe looks up. <i>“Sure you can handle all that responsibility?”</i>");
 			}			
 		}

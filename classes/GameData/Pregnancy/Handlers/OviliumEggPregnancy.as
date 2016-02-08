@@ -31,15 +31,77 @@ package classes.GameData.Pregnancy.Handlers
 			_pregnancyChildType = GLOBAL.CHILD_TYPE_EGGS;
 			
 			var msg:String = "";
+			var x:int = 0;
 			var eggSizeRating:Number = 0.125; // just in case this value needs tweaking
 			
+			// Grow belly every hour, withc special events at a certain hour.
+			for (x = 11; x >= 1; x--)
+			{
+				// (8 hours left)
+				if (x == 8)
+				{
+					this.addStageProgression((x * 60), function(pregSlot:int):void
+					{
+						var pData:PregnancyData = (kGAMECLASS.pc as PlayerCharacter).pregnancyData[pregSlot];
+						kGAMECLASS.pc.bellyRatingMod += eggSizeRating * pData.pregnancyQuantity;
+						pData.pregnancyBellyRatingContribution += eggSizeRating * pData.pregnancyQuantity;
+						
+						msg = "\n\nA ticklish throbbing ignites in your loins, signaling the start of the birthing process. It’s only a matter of time now before the eggs push their way out of you";
+						if (StatTracking.getStat("pregnancy/ovilium eggs laid") > 0) msg += ", leaving you empty once more";
+						msg += ". Some part of you yearns for that release, while another is content with rubbing your pregnant-looking stomach.";
+						
+						kGAMECLASS.eventBuffer += ParseText(msg);
+						kGAMECLASS.pc.energy(-5);
+						kGAMECLASS.pc.lust(10);
+					}, true);
+				}
+				// (with 4 hours left)
+				else if (x == 4)
+				{
+					this.addStageProgression((x * 60), function(pregSlot:int):void
+					{
+						var pData:PregnancyData = (kGAMECLASS.pc as PlayerCharacter).pregnancyData[pregSlot];
+						kGAMECLASS.pc.bellyRatingMod += eggSizeRating * pData.pregnancyQuantity;
+						pData.pregnancyBellyRatingContribution += eggSizeRating * pData.pregnancyQuantity;
+						
+						msg = "\n\nYour stomach lets out a contraction that nearly causes you to lose your balance. The eggs inside you must be nearly ready to lay. You’d say you still have some time to get things done.";
+						
+						kGAMECLASS.eventBuffer += ParseText(msg);
+						kGAMECLASS.pc.energy(-10);
+					}, true);
+				}
+				// (2 hour warning)
+				if (x == 2)
+				{
+					this.addStageProgression((x * 60), function(pregSlot:int):void
+					{
+						var pData:PregnancyData = (kGAMECLASS.pc as PlayerCharacter).pregnancyData[pregSlot];
+						kGAMECLASS.pc.bellyRatingMod += eggSizeRating * pData.pregnancyQuantity;
+						pData.pregnancyBellyRatingContribution += eggSizeRating * pData.pregnancyQuantity;
+						
+						msg = "\n\nYou";
+						if (kGAMECLASS.pc.hasKnees()) msg += "r knees buckle";
+						else msg += " almost trip over yourself";
+						msg += " as a contraction hits you. These eggs are coming soon, so unless you’re planning on showing everyone around, you had better get to somewhere personal. The eggs won’t wait once it’s time.";
+						
+						kGAMECLASS.eventBuffer += ParseText(msg);
+						kGAMECLASS.pc.energy(-20);
+					}, true);
+				}
+				// Every hour, grow eggs/belly.
+				else
+				{
+					this.addStageProgression((x * 60), function(pregSlot:int):void
+					{
+						var pData:PregnancyData = (kGAMECLASS.pc as PlayerCharacter).pregnancyData[pregSlot];
+						kGAMECLASS.pc.bellyRatingMod += eggSizeRating * pData.pregnancyQuantity;
+						pData.pregnancyBellyRatingContribution += eggSizeRating * pData.pregnancyQuantity;
+					}, true);
+				}
+			}
 			// (random before laying, +lust if repeat)
 			this.addStageProgression(((2.5 * 60) + (rand(_basePregnancyIncubationTime - (3 * 60)))), function(pregSlot:int):void
 			{
-				var pData:PregnancyData = (kGAMECLASS.pc as PlayerCharacter).pregnancyData[pregSlot];
-				kGAMECLASS.pc.bellyRatingMod += eggSizeRating * pData.pregnancyQuantity;
-				pData.pregnancyBellyRatingContribution += eggSizeRating * pData.pregnancyQuantity;
-				
 				msg = "\n\nYou find yourself idly tapping your belly, running a hand over the smooth [pc.skinFurScales]. The relatively quick pregnancy induced by the drug means you’ll be laying within the day.";
 				if (StatTracking.getStat("pregnancy/ovilium eggs laid") > 0)
 				{
@@ -47,62 +109,6 @@ package classes.GameData.Pregnancy.Handlers
 					kGAMECLASS.pc.lust(10);
 				}
 				kGAMECLASS.eventBuffer += ParseText(msg);
-			}, true);
-			// (with 10 hours left)
-			this.addStageProgression((10 * 60), function(pregSlot:int):void
-			{
-				var pData:PregnancyData = (kGAMECLASS.pc as PlayerCharacter).pregnancyData[pregSlot];
-				kGAMECLASS.pc.bellyRatingMod += eggSizeRating * pData.pregnancyQuantity;
-				pData.pregnancyBellyRatingContribution += eggSizeRating * pData.pregnancyQuantity;
-			}, true);
-			// (with 8 hours left)
-			this.addStageProgression((8 * 60), function(pregSlot:int):void
-			{
-				var pData:PregnancyData = (kGAMECLASS.pc as PlayerCharacter).pregnancyData[pregSlot];
-				kGAMECLASS.pc.bellyRatingMod += eggSizeRating * pData.pregnancyQuantity;
-				pData.pregnancyBellyRatingContribution += eggSizeRating * pData.pregnancyQuantity;
-				
-				msg = "\n\nA ticklish throbbing ignites in your loins, signaling the start of the birthing process. It’s only a matter of time now before the eggs push their way out of you";
-				if (StatTracking.getStat("pregnancy/ovilium eggs laid") > 0) msg += ", leaving you empty once more";
-				msg += ". Some part of you yearns for that release, while another is content with rubbing your pregnant-looking stomach.";
-				
-				kGAMECLASS.eventBuffer += ParseText(msg);
-				kGAMECLASS.pc.energy(-5);
-				kGAMECLASS.pc.lust(10);
-			}, true);
-			// (with 6 hours left)
-			this.addStageProgression((6 * 60), function(pregSlot:int):void
-			{
-				var pData:PregnancyData = (kGAMECLASS.pc as PlayerCharacter).pregnancyData[pregSlot];
-				kGAMECLASS.pc.bellyRatingMod += eggSizeRating * pData.pregnancyQuantity;
-				pData.pregnancyBellyRatingContribution += eggSizeRating * pData.pregnancyQuantity;
-			}, true);
-			// (with 4 hours left)
-			this.addStageProgression((4 * 60), function(pregSlot:int):void
-			{
-				var pData:PregnancyData = (kGAMECLASS.pc as PlayerCharacter).pregnancyData[pregSlot];
-				kGAMECLASS.pc.bellyRatingMod += eggSizeRating * pData.pregnancyQuantity;
-				pData.pregnancyBellyRatingContribution += eggSizeRating * pData.pregnancyQuantity;
-				
-				msg = "\n\nYour stomach lets out a contraction that nearly causes you to lose your balance. The eggs inside you must be nearly ready to lay. You’d say you still have some time to get things done.";
-				
-				kGAMECLASS.eventBuffer += ParseText(msg);
-				kGAMECLASS.pc.energy(-10);
-			}, true);
-			// (2 hour warning)
-			this.addStageProgression((2 * 60), function(pregSlot:int):void
-			{
-				var pData:PregnancyData = (kGAMECLASS.pc as PlayerCharacter).pregnancyData[pregSlot];
-				kGAMECLASS.pc.bellyRatingMod += eggSizeRating * pData.pregnancyQuantity;
-				pData.pregnancyBellyRatingContribution += eggSizeRating * pData.pregnancyQuantity;
-				
-				msg = "\n\nYou";
-				if(kGAMECLASS.pc.hasKnees()) msg += "r knees buckle";
-				else msg += " almost trip over yourself";
-				msg += " as a contraction hits you. These eggs are coming soon, so unless you’re planning on showing everyone around, you had better get to somewhere personal. The eggs won’t wait once it’s time.";
-				
-				kGAMECLASS.eventBuffer += ParseText(msg);
-				kGAMECLASS.pc.energy(-20);
 			}, true);
 			
 			_onSuccessfulImpregnation = oviliumOnSuccessfulImpregnation;
@@ -115,7 +121,7 @@ package classes.GameData.Pregnancy.Handlers
 			
 			var pData:PregnancyData = mother.pregnancyData[pregSlot] as PregnancyData;
 			var pEggs:int = pData.pregnancyQuantity;
-			pData.pregnancyBellyRatingContribution += (1.25 * pEggs);
+			pData.pregnancyBellyRatingContribution += (1 * pEggs);
 			mother.bellyRatingMod += pData.pregnancyBellyRatingContribution;
 			
 			if (!mother.hasStatusEffect("Ovilium"))
