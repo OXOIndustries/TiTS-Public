@@ -373,17 +373,25 @@ public function ainaTalk():void
 	
 	output("What would you like to talk about with Aina?");
 	
+	ainaTalkNavigation();
+}
+
+public function ainaTalkNavigation(activeTopic:Function = undefined):void {
 	clearMenu();
-	addButton(0, "Her", ainaTalksAboutHerself);
-	
-	if(flags["AINA_TALKED_ABOUT_HERSELF"] == true) addButton(1, "Botany", ainaTalksAboutBotany); 
+	if(activeTopic == ainaTalksAboutHerself) addDisabledButton(0, "Her", "Her", "You just spoke about that.");
+	else addButton(0, "Her", ainaTalksAboutHerself, undefined, "Her", "Ask Aina about herself.");
+	if(activeTopic == ainaTalksAboutBotany) addDisabledButton(1, "Botany", "Botany", "You just spoke about that.");
+	else if(flags["AINA_TALKED_ABOUT_HERSELF"] == true) addButton(1, "Botany", ainaTalksAboutBotany, undefined, "Botany", "Ask Aina about her interest in botany."); 
 	else addDisabledButton(1, "Botany", "Botany", "You don't know her well enough to talk about that.");
-	
-	addButton(2, "Centaur", ainaTalksAboutCentaurs);
-	addButton(3, "Mating", ainaTalksAboutMating);
-	addButton(4, "A.Cashing", ainaTalksAboutCashing);
-	addButton(5, "SexToys", ainaTalkAboutSexToys);
-	addButton(14, "Leave", mainGameMenu);
+	if(activeTopic == ainaTalksAboutCentaurs) addDisabledButton(2, "Centaurs", "Centaurs", "You just spoke about that.");
+	else addButton(2, "Centaurs", ainaTalksAboutCentaurs, undefined, "Centaurs", "Ask Aina about her species.");
+	if(activeTopic == ainaTalksAboutMating) addDisabledButton(3, "Mating", "Mating", "You just spoke about that.");
+	else addButton(3, "Mating", ainaTalksAboutMating, undefined, "Mating", "Ask Aina about her frequent bouts of estrus.");
+	if(activeTopic == ainaTalksAboutACashing) addDisabledButton(4, "A.Cashing", "Astrocashing", "You just spoke about that.");
+	else addButton(4, "A.Cashing", ainaTalksAboutACashing, undefined, "Ask Aina about the random objects decorating her apartment.");
+	if(activeTopic == ainaTalksAboutSexToys) addDisabledButton(5, "SexToys", "Sex Toys", "You just spoke about that.");
+	else addButton(5, "SexToys", ainaTalksAboutSexToys, undefined, "Sex Toys", "Ask Aina about her sex toys.");
+	addButton(14, "Back", ainaMenu);
 }
 
 public function ainaTalksAboutHerself():void
@@ -402,9 +410,7 @@ public function ainaTalksAboutHerself():void
 	flags["AINA_TALKED_ABOUT_HERSELF"] = true;
 	
 	processTime(5);
-	
-	clearMenu();
-	addButton(0, "Back", ainaTalk);
+	ainaTalkNavigation(ainaTalksAboutHerself);
 }
 
 public function ainaTalksAboutBotany():void
@@ -421,9 +427,7 @@ public function ainaTalksAboutBotany():void
 	output("\n\n“One of the farmers gave me a taste. They were so fresh and <i>crisp</i>. It felt like magic. From then, I knew I wanted to be a botanist; to fill worlds with flowers and edible foods. The universe has so much to offer, you know? Stuff we're still finding every day. Combinations and spices, from the sun and the rain, things that we'd never think to add. That's why I love botany.”");
 	
 	processTime(5);
-	
-	clearMenu();
-	addButton(0, "Back", ainaTalk);
+	ainaTalkNavigation(ainaTalksAboutBotany);
 }
 
 public function ainaTalksAboutCentaurs():void
@@ -448,10 +452,7 @@ public function ainaTalksAboutCentaurs():void
 	output("\n\n“Anyway, that's how I became a centaur—selling fast terrible cheeseburgers and watered down soft drink. It gave me a new appreciation for home grown food, at least.”");
 	
 	processTime(5);
-	showAina();
-	
-	clearMenu();
-	addButton(0, "Back", ainaTalk);
+	ainaTalkNavigation(ainaTalksAboutCentaurs);
 }
 
 public function ainaTalksAboutMating():void
@@ -470,12 +471,10 @@ public function ainaTalksAboutMating():void
 	if(ainaIsVirgin()) output(" “Though, you know, I'd prefer to be grinding up against, you know, you.”");
 	
 	processTime(5);
-	
-	clearMenu();
-	addButton(0, "Back", ainaTalk);
+	ainaTalkNavigation(ainaTalksAboutMating);
 }
 
-public function ainaTalksAboutCashing():void
+public function ainaTalksAboutACashing():void
 {
 	clearOutput();
 	showAina();
@@ -499,12 +498,10 @@ public function ainaTalksAboutCashing():void
 	output("\n\n“Well, yeah, you could sort of say that,” you cough.");
 	
 	processTime(5);
-	
-	clearMenu();
-	addButton(0, "Back", ainaTalk);
+	ainaTalkNavigation(ainaTalksAboutACashing);
 }
 
-public function ainaTalkAboutSexToys():void
+public function ainaTalksAboutSexToys():void
 {
 	clearOutput();
 	showAina();
@@ -522,10 +519,9 @@ public function ainaTalkAboutSexToys():void
 	
 	processTime(5);
 	
-	clearMenu();
-	addButton(0, "Back", ainaTalk);
-	
 	flags["AINA_TALKED_ABOUT_TOYS"] = true;
+	
+	ainaTalkNavigation(ainaTalksAboutSexToys);
 }
 
 public function ainaTea():void
