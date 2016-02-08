@@ -1,3 +1,5 @@
+import classes.StorageClass;
+
 //Available Flags
 
 //MET_FYN:						If the PC met Fyn (true or undefined)
@@ -679,9 +681,10 @@ public function fynTeachesDancing():void {
 			break;
 	}
 	
-	flags["FYN_TAUGHT_DANCING"] = true;
-	
 	processTime(30 + rand(10));
+	applyFynTeachingEffect("dancing");
+	
+	flags["FYN_TAUGHT_DANCING"] = true;
 	
 	clearMenu();
 	addButton(0, "Next", fynMenu);
@@ -734,6 +737,7 @@ public function fynTeachesStripping():void
 	}
 	
 	processTime(30 + rand(10));
+	applyFynTeachingEffect("stripping");
 	
 	clearMenu();
 	addButton(0, "Next", fynMenu);
@@ -781,9 +785,41 @@ public function fynTeachesFencing():void
 	}
 	
 	processTime(30 + rand(10));
+	applyFynTeachingEffect("fencing");
 	
 	clearMenu();
 	addButton(0, "Next", fynMenu);
+}
+
+//Apply non-stacking status effects based on the lesson taken. They last three days.
+public function applyFynTeachingEffect(lessonTaught:String = ""):void
+{
+	if(lessonTaught == "dancing" || lessonTaught == "stripping") 
+	{
+		if(!pc.hasStatusEffect("Sexy Moves")) 
+		{
+			pc.createStatusEffect("Sexy Moves",0,0,0,0,false,"OffenseUp","Your recent lessons pay off, you feel as sexy as ever — and it shows.",false,4320);
+		} 
+		else 
+		{
+			//reset duration to full length
+			var effect:StorageClass = pc.getStatusEffect("Sexy Moves");
+			effect.minutesLeft = 4320;
+		}
+	}
+	if(lessonTaught == "fencing") 
+	{
+		if(!pc.hasStatusEffect("Lightning Moves")) 
+		{
+			pc.createStatusEffect("Lightning Moves",0,0,0,0,false,"OffenseUp","Your recent fencing lessons give you an edge during fights.",false,4320);
+		} 
+		else 
+		{
+			//reset duration to full length
+			var effect:StorageClass = pc.getStatusEffect("Lightning Moves");
+			effect.minutesLeft = 4320;
+		}
+	}
 }
 
 public function fynSexMenu():void 

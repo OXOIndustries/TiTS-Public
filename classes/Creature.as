@@ -3366,6 +3366,9 @@ package classes {
 			modifiedDamage.add(accessory.baseDamage);
 			modifiedDamage.add(shield.baseDamage);
 			
+			//Add bonus to both melee and ranged attacks
+			if (hasStatusEffect("Lightning Moves")) modifiedDamage.multiply(1.1);
+			
 			return modifiedDamage;
 		}
 		public function defense(): Number 
@@ -3426,6 +3429,8 @@ package classes {
 				if(hasFur()) temp -= statusEffectv1("Sweaty") * 5;
 				temp -= statusEffectv1("Sweaty") * 5;
 			}
+			//Apply sexy moves before flat boni effects
+			if (hasStatusEffect("Sexy Moves")) temp *= 1.1;
 			//Gain Sexy Thinking - gives sexiness bonus equal to (100-IQ-25)/20 + (100-WQ-25)/20
 			if(hasPerk("Sexy Thinking"))
 			{
@@ -3457,6 +3462,8 @@ package classes {
 			if (hasPerk("Improved Agility")) {
 				temp += 10;
 			}
+			//Apply sexy moves before flat boni effects
+			if (hasStatusEffect("Sexy Moves")) temp *= 1.1;
 			if (hasStatusEffect("Riposting"))
 			{
 				temp += 15;
