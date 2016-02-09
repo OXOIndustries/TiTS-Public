@@ -1277,7 +1277,7 @@ public function kq2KhanPCVictory():void
 	if (kara.isNice()) output("<i>“Oh, no you don’t,”</i> Kara says, swatting the grenade back at him mid-air.");
 	else if (kara.isMischievous()) output("<i>“Think fast!”</i> Kara shouts, grabbing the grenade mid-air and beaning Khan in the head with it.");
 	else output("Kara back-hands the grenade out of the air, letting it roll back towards its owner.");
-	output(" It detonates in a pink cloud that utterly envelops him and his harem, spreading out almost far enough to draw you into it, too. Just a little whiff of the brightly-colored gas sends a shiver up pleasure up your spine.");
+	output(" It detonates in a pink cloud that utterly envelops him and his harem, spreading out almost far enough to draw you into it, too. Just a little whiff of the brightly-colored gas sends a shiver of pleasure up your spine.");
 
 	output("\n\nKara, too, flushes a bit as vapors waft past her. <i>“Whew. That’s some potent stuff,”</i> she murmurs, adjusting the band of her half-skirt to make the sheer cloth cover a bit more of her crotch.");
 	
@@ -1687,7 +1687,7 @@ public function kq2KhanPCDefeat():void
 	
 	output("\n\nAt your master’s command, you crawl over to Kara, wrapping your hands around her firm thighs. You’d never realized how wonderful she smelled, a wonderfully heady must wafting straight into your nostrils as you bury yourself between her legs. She moans, shivering as your [pc.tongue] licks at the nubby crown of her feline prick. The taste sets your mind on fire, a rush of heat and desire flooding through you at the first touch of her cockhead on your lips.");
 	
-	output("\n\n<i>“Eager, too,”</i> Master beams. <i>“What do you think of [pc.himher] so far, dear?”</i>");
+	output("\n\n<i>“Eager, too,”</i> Master beams. <i>“What do you think of [pc.himHer] so far, dear?”</i>");
 
 	output("\n\n<i>“So... so good,”</i> Kara moans, planting a hand atop your [pc.hair] and urging you on. You couldn’t resist her if you wanted - and God knows, you don’t want to. You eagerly swallow almost a foot of kittydick, going from the tip to kissing the base in the blink of an eye. Your companion purrs, her tails curling around to caress you as you fellate her. Your hands gravitate to her balls - though nowhere near as magnificent as your master’s, they’re still a nice, hefty handful. Compelled to show Master what you can do to a pair of nuts, you gently massage them, rolling her nads between your fingers. You can almost feel them churning, so full that you don’t think you’ll need to do much more than caress them to milk out all her sweet, salty seed. You give her the slightest squeeze and let your mouth finish her, bobbing on her cock until Kara makes a sweet little squeal and unleashes a torrent of seed into your mouth. You choke it down with ease, swallowing every drop the kaithrit girl can give you - you have to show the master that you can handle him, after all! You can only imagine how much cum he’ll grace you with when you finally prove your worth.");
 
@@ -1699,7 +1699,7 @@ public function kq2KhanPCDefeat():void
 	
 	output("\n\n<i>“Do you think [pc.heShe] deserves to join my darling girls here?”</i> he asks her, patting the heads of a pair of golden girls beside him. They mewl happily, leaning in against their master, caressing his sack. A couple of them move, shifting to make a spot for you among them - for you, and Kara. Your companion nods emphatically, and after a moment’s consideration, Master motions you over to him.");
 	
-	output("\n\nYou swell with pride as you are invited to sit at your master’s feet, and quickly find yourself snuggled up to the warm, soft swell of his mighty balls, your arms wrapped around your own personal expanse of kui-tan nuts. Master groans as you settle against him, a thick squirt of spunk drooling from his member to rain down upon your and your fellow harem sluts. You reach up and lick it up eagerly, competing with the other girls to get at the wonderfully rich, salty treat. Every drop you can get, you swallow greedily; the taste is utterly divine, better than the best candy you’ve ever tasted.");
+	output("\n\nYou swell with pride as you are invited to sit at your master’s feet, and quickly find yourself snuggled up to the warm, soft swell of his mighty balls, your arms wrapped around your own personal expanse of kui-tan nuts. Master groans as you settle against him, a thick squirt of spunk drooling from his member to rain down upon you and your fellow harem sluts. You reach up and lick it up eagerly, competing with the other girls to get at the wonderfully rich, salty treat. Every drop you can get, you swallow greedily; the taste is utterly divine, better than the best candy you’ve ever tasted.");
 	
 	output("\n\nA small, soft hand plays across the top of your head. You look up, still licking, to see Master looking down upon you with a smile. <i>“Good... I think my keepers will be very pleased to see you. Like this, of course. You’ll be here forever, of course, won’t you? No, I’ll not let a catch like you and your friend out of my grip, damn the pirates. You’re mine now, understand?”</i>");
 	
@@ -1778,7 +1778,7 @@ public function kq2EncounterShade():void
 		
 		output("\n\n<i>Shit.</i>");
 		
-		output("\n\nThe buxom kaithrit looks down at your and your companion with a mix of contempt and disappointment written across her face. Her eyes settle on you. <i>“Well, this is the last place I ever hoped to run into you, kid,”</i> she says, slowly lowering her lightning gun. <i>“Last person with you, too.”</i>");
+		output("\n\nThe buxom kaithrit looks down at you and your companion with a mix of contempt and disappointment written across her face. Her eyes settle on you. <i>“Well, this is the last place I ever hoped to run into you, kid,”</i> she says, slowly lowering her lightning gun. <i>“Last person with you, too.”</i>");
 		
 		output("\n\n<i>“");
 		if (kara.isMischievous()) output("I see you brought friends this time... might actually be a fair fight now!");
