@@ -60,6 +60,13 @@ public function emmyBonusNotes():Boolean
 	return false;
 }
 
+public function isMyrellionMorph(target:Creature):Boolean
+{
+	if(target == null) return false;
+	var race:String = target.race();
+	return (InCollection(race, ["myr", "nyrea", "gold myr", "red myr", "orange myr"]));
+}
+
 //First Time Approach
 public function emmyFirstTimeApproach():void
 {
@@ -67,8 +74,7 @@ public function emmyFirstTimeApproach():void
 	showEmmy();
 	output("With a shrug, you amble on up to the excessively-endowed KihaCorp rep.");
 	//Myr or Nyrea Race
-	var race:String = pc.race();
-	if(race == "myr" || race == "nyrea" || race == "gold myr" || race == "red myr" || race == "orange myr")
+	if(isMyrellionMorph(pc))
 	{
 		output("\n\n<i>“I’m sorry, but we’re not licensed to distribute weapons to state militaries, and due to the present conflict, any weapon distributed to a [pc.race] would undoubtedly find its way into military use.”</i> The jackaless sighs, dragging her fingers through her lush, black hair. <i>“Look, between you and me, I’d love to give you all the guns and shields you can carry, but rules are rules. There’s a lot I can get away with, but that would cost my job. Understand?”</i> She looks at you condescendingly, an eyebrow raised as if she expects you not to.");
 		output("\n\n<i>“But... I’m not a myr,”</i> you try to explain.");
@@ -155,6 +161,11 @@ public function leaveThisShit():void
 
 public function emmyRepeatWrapper():void
 {
+	if(isMyrellionMorph(pc))
+	{
+		emmyFirstTimeApproach();
+		return;
+	}
 	if(MailManager.isEntryViewed("emmy_gift_starter") && flags["EMMY_QUEST"] == 1)
 	{
 		clearOutput();
