@@ -759,6 +759,7 @@ public function statisticsScreen(showID:String = "All"):void
 		var totalProduce:Number = 0;
 		totalProduce += StatTracking.getStat("pregnancy/ovilium eggs laid");
 		totalProduce += StatTracking.getStat("pregnancy/egg trainer eggs laid");
+		totalProduce += StatTracking.getStat("pregnancy/unfertilized venus pitcher seeds");
 		if((totalOffspring + totalProduce) > 0)
 		{
 			output2("\n\n" + blockHeader("Reproduction Statistics", false));
@@ -792,11 +793,11 @@ public function statisticsScreen(showID:String = "All"):void
 				if(StatTracking.getStat("pregnancy/renvra kids") > 0)
 					output2("\n<b>* Births, Renvra’s Children: </b>" + StatTracking.getStat("pregnancy/renvra kids"));
 				if(StatTracking.getStat("pregnancy/venus pitcher seeds") > 0)
-					output2("\n<b>* Births, Venus Pitcher Seeds: </b>" + StatTracking.getStat("pregnancy/venus pitcher seeds"));
+					output2("\n<b>* Births, Venus Pitcher Seeds, Total: </b>" + StatTracking.getStat("pregnancy/venus pitcher seeds"));
+				if(StatTracking.getStat("pregnancy/venus pitcher seeds") > 0)
+					output2("\n<b>* Births, Venus Pitcher Seeds, Planted: </b>" + (StatTracking.getStat("pregnancy/venus pitcher seeds") - StatTracking.getStat("pregnancy/fertilized venus pitcher seeds/day care") - StatTracking.getStat("pregnancy/unfertilized venus pitcher seeds")));
 				if(StatTracking.getStat("pregnancy/fertilized venus pitcher seeds/day care") > 0)
 					output2("\n<b>* Births, Venus Pitcher Seeds @ Daycare: </b>" + StatTracking.getStat("pregnancy/fertilized venus pitcher seeds/day care"));
-				if(StatTracking.getStat("pregnancy/unfertilized venus pitcher seed") > 0)
-					output2("\n<b>* Births, Venus Pitcher Seeds, Unfertilized: </b>" + StatTracking.getStat("pregnancy/unfertilized venus pitcher seed"));
 				if(StatTracking.getStat("pregnancy/queen of the deep eggs") > 0)
 					output2("\n<b>* Births, Water Queen Young: </b>" + StatTracking.getStat("pregnancy/queen of the deep eggs"));
 				// Father
@@ -843,6 +844,8 @@ public function statisticsScreen(showID:String = "All"):void
 					output2("\n<b>* Births, Ovilium Eggs, Total: </b>" + StatTracking.getStat("pregnancy/ovilium eggs laid"));
 				if(StatTracking.getStat("pregnancy/egg trainer eggs laid") > 0)
 					output2("\n<b>* Births, TamaniCorp Egg Trainer Eggs, Total: </b>" + StatTracking.getStat("pregnancy/egg trainer eggs laid"));
+				if(StatTracking.getStat("pregnancy/unfertilized venus pitcher seeds") > 0)
+					output2("\n<b>* Births, Venus Pitcher Seeds, Unfertilized: </b>" + StatTracking.getStat("pregnancy/unfertilized venus pitcher seeds"));
 			}
 		}
 		

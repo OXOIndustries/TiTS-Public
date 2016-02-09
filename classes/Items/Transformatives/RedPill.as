@@ -304,6 +304,9 @@ package classes.Items.Transformatives
 				}
 				//Red Myr Venom
 				//Gain slight resistance to Lust (Chemical) damage
+				var bSizeChange:Boolean = false;
+				var iBreastNum:int = 0;
+				var bb:int = 0
 				if(changes < changeLimit && !pc.hasPerk("Myr Venom") && rand(4) == 0 && pc.myrScore() >= 4)
 				{
 					output("\n\nYou feel a sudden burning in your mouth, a strange sensation that feels like thickened, hot saliva dribbling from your canines. It's actually quite nice, you find, sucking down the alien chemical that seems to be generating in your mouth.");
@@ -318,9 +321,9 @@ package classes.Items.Transformatives
 					if(pc.hasPerk("Honeypot"))
 					{
 						// Reset boob sizes
-						var bSizeChange:Boolean = false;
-						var iBreastNum:int = pc.totalBreasts();
-						for(var bb:int = 0; bb < pc.bRows(); bb++)
+						bSizeChange = false;
+						iBreastNum = pc.totalBreasts();
+						for(bb = 0; bb < pc.bRows(); bb++)
 						{
 							if(pc.breastRows[bb].breastRatingHoneypotMod != 0)
 							{
@@ -346,9 +349,9 @@ package classes.Items.Transformatives
 				if(changes < changeLimit && pc.hasPerk("Honeypot") && rand(4) == 0)
 				{
 					// Reset boob sizes
-					var bSizeChange:Boolean = false;
-					var iBreastNum:int = pc.totalBreasts();
-					for(var bb:int = 0; bb < pc.bRows(); bb++)
+					bSizeChange = false;
+					iBreastNum = pc.totalBreasts();
+					for(bb = 0; bb < pc.bRows(); bb++)
 					{
 						if(pc.breastRows[bb].breastRatingHoneypotMod != 0)
 						{

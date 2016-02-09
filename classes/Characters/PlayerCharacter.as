@@ -46,7 +46,7 @@ package classes.Characters
 			}
 			if(!cumFrom.hasStatusEffect("Ovilium Effect") && hasStatusEffect("Ovilium"))
 			{
-				kGAMECLASS.oviliumEggBump();
+				kGAMECLASS.oviliumEggBump(cumFrom, vagIndex);
 			}
 			if (cumFrom != null)
 			{
