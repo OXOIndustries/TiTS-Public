@@ -283,7 +283,7 @@ public function honeyWineIntro():void
 	clearMenu();
 	if(pc.credits >= 1000) addItemButton(0, new HoneyWine(), buyDatHunhunWine);
 	else addDisabledButton(0,"Buy","Buy","You don't have enough credits for that. It costs <b>1000 credits</b>.");
-	addButton(4,"Back",repeatApproachAsennia);
+	addButton(14,"Back",repeatApproachAsennia);
 }
 
 public function buyDatHunhunWine():void
