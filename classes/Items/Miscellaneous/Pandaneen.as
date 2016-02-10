@@ -210,16 +210,27 @@
 						}
 						
 						//Balls swell up to apple sized (rating == 3) (rarely)
-						if(((target.ballSizeRaw < 3 && target.ballSizeUnlocked(3) && !target.hasPerk("Bulgy")) || (target.ballSizeRaw < 6 && target.ballSizeUnlocked(6) && target.hasPerk("Bulgy"))) && rand(4) == 0 && changes < changeLimit)
+						if
+						(	target.balls > 0
+						&&	((target.ballSizeRaw < 3 && target.ballSizeUnlocked(3) && !target.hasPerk("Bulgy")) || (target.ballSizeRaw < 6 && target.ballSizeUnlocked(6) && target.hasPerk("Bulgy")))
+						&&	rand(4) == 0 && changes < changeLimit)
 						{
 							//Ballsize <= 1
 							if(target.ballSizeRaw < 1)
 							{
 								kGAMECLASS.output("\n\nA groan slips free of your [pc.lips] as something changes down below you. Whatever it is, it feels good. [pc.EachCock] is hard from the sensation alone. You squirm in place as <b>you feel your [pc.sack] stretching with new weight, swelling up to contain your new, ");
-								kGAMECLASS.output("baseball-sized ball");
+								if(target.hasPerk("Bulgy")) 
+								{
+									kGAMECLASS.output("baseball-sized ball");
+									target.ballSizeRaw = 7.85;
+								}
+								else 
+								{
+									kGAMECLASS.output("large ball");
+									target.ballSizeRaw = 6;
+								}
 								if(target.balls > 1) kGAMECLASS.output("s");
 								kGAMECLASS.output(".</b>");
-								target.ballSizeRaw = 4;
 							}
 							//Ballsize == 2
 							else
@@ -227,7 +238,7 @@
 								kGAMECLASS.output("\n\nYou gasp in delight in surprise when you feel the familiar weight of your [pc.balls] surge. Reaching down");
 								if(target.isCrotchGarbed()) kGAMECLASS.output(" into your [pc.lowerGarment]");
 								kGAMECLASS.output(", you gently rub your swelling sack, enjoying the sheer fullness of it. <b>Your new, ");
-								if(!target.hasPerk("Bulgy")) 
+								if(target.hasPerk("Bulgy")) 
 								{
 									kGAMECLASS.output("apple-sized endowment");
 									target.ballSizeRaw = 9.5;
@@ -243,7 +254,7 @@
 							changes++;
 							target.lust(7+rand(3));
 						}
-						else if ((!target.ballSizeUnlocked(3) && !target.hasPerk("Bulgy"))||(!target.ballSizeUnlocked(6) && target.hasPerk("Bulgy")))
+						else if (target.balls > 0 && ((!target.ballSizeUnlocked(3) && !target.hasPerk("Bulgy")) || (!target.ballSizeUnlocked(6) && target.hasPerk("Bulgy"))))
 						{
 							kGAMECLASS.output(target.ballSizeLockedMessage());
 						}

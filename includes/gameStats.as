@@ -758,6 +758,7 @@ public function statisticsScreen(showID:String = "All"):void
 		var totalOffspring:Number = StatTracking.getStat("pregnancy/total births");
 		var totalProduce:Number = 0;
 		totalProduce += StatTracking.getStat("pregnancy/ovilium eggs laid");
+		totalProduce += StatTracking.getStat("pregnancy/egg trainer eggs laid");
 		if((totalOffspring + totalProduce) > 0)
 		{
 			output2("\n\n" + blockHeader("Reproduction Statistics", false));
@@ -840,6 +841,8 @@ public function statisticsScreen(showID:String = "All"):void
 				output2("\n<b>* Total: </b>" + totalProduce);
 				if(StatTracking.getStat("pregnancy/ovilium eggs laid") > 0)
 					output2("\n<b>* Births, Ovilium Eggs, Total: </b>" + StatTracking.getStat("pregnancy/ovilium eggs laid"));
+				if(StatTracking.getStat("pregnancy/egg trainer eggs laid") > 0)
+					output2("\n<b>* Births, TamaniCorp Egg Trainer Eggs, Total: </b>" + StatTracking.getStat("pregnancy/egg trainer eggs laid"));
 			}
 		}
 		
@@ -1403,13 +1406,20 @@ public function displayQuestLog(showID:String = "All"):void
 			{
 				output2("\n<b><u>Zil Capture</u></b>");
 				output2("\n<b>* Status:</b>");
-				if(flags["CAPTURED_A_FEMALE_ZIL_FOR_DR_HASWELL"] != undefined && flags["CAPTURED_A_MALE_ZIL_FOR_DR_HASWELL"] != undefined) output2(" Completed");
+				if(flags["FIRST_CAPTURED_ZIL_REPORTED_ON"] != undefined && flags["SECOND_CAPTURED_ZIL_REPORTED_ON"] != undefined) output2(" Completed");
+				else if(flags["JULIANS_QUEST_DISABLED"] != undefined) output2(" Disabled");
+				else if
+				(	(flags["FIRST_CAPTURED_ZIL_REPORTED_ON"] == undefined && (flags["CAPTURED_A_FEMALE_ZIL_FOR_DR_HASWELL"] != undefined || flags["CAPTURED_A_MALE_ZIL_FOR_DR_HASWELL"] != undefined))
+				||	(flags["SECOND_CAPTURED_ZIL_REPORTED_ON"] == undefined && (flags["CAPTURED_A_FEMALE_ZIL_FOR_DR_HASWELL"] != undefined && flags["CAPTURED_A_MALE_ZIL_FOR_DR_HASWELL"] != undefined))
+				)	output2(" <i>Return to Dr. Haswell!</i>");
 				else output2(" <i>In progress...</i>");
 				output2("\n<b>* Female Zil:</b>");
 				if(flags["CAPTURED_A_FEMALE_ZIL_FOR_DR_HASWELL"] != undefined) output2(" Captured");
+				else if(flags["JULIANS_QUEST_DISABLED"] != undefined) output2(" Not captured");
 				else output2(" <i>In progress...</i>");
 				output2("\n<b>* Male Zil:</b>");
 				if(flags["CAPTURED_A_MALE_ZIL_FOR_DR_HASWELL"] != undefined) output2(" Captured");
+				else if(flags["JULIANS_QUEST_DISABLED"] != undefined) output2(" Not captured");
 				else output2(" <i>In progress...</i>");
 				sideCount++;
 			}
@@ -4268,7 +4278,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			miscCount++;
 		}
 		// Sexploration: The Sex Toys
-		if(flags["NIVAS_BIONAHOLE_USES"] != undefined || flags["SYRI_BIONAHOLE_USES"] != undefined || flags["TAMANI_HOLED"] != undefined || flags["GRAVCUFFS_USES"] != undefined || flags["HOVERHOLE_USES"] != undefined)
+		if(flags["NIVAS_BIONAHOLE_USES"] != undefined || flags["SYRI_BIONAHOLE_USES"] != undefined || flags["TAMANI_HOLED"] != undefined || flags["GRAVCUFFS_USES"] != undefined || flags["HOVERHOLE_USES"] != undefined || flags["EGG_TRAINER_INSTALLED"] != undefined || pc.hasItem(new EggTrainer()))
 		{
 			output2("\n<b><u>Sex Toys</u></b>");
 			// BionaHoles
@@ -4279,6 +4289,20 @@ public function displayEncounterLog(showID:String = "All"):void
 			if(flags["GRAVCUFFS_USES"] != undefined) output2("\n<b>* Grav-Cuffs, Times Used: </b>" + flags["GRAVCUFFS_USES"]);
 			// Hover Hole
 			if(flags["HOVERHOLE_USES"] != undefined) output2("\n<b>* Hovering Pocket-Pussy, Times Used: </b>" + flags["HOVERHOLE_USES"]);
+			// Egg Trainer
+			if(flags["EGG_TRAINER_INSTALLED"] != undefined || pc.hasItem(new EggTrainer()))
+			{
+				output2("\n<b>* TamaniCorp, Egg Trainer:</b>");
+				if(flags["EGG_TRAINER_INSTALLED"] != undefined) output2(" Installed");
+				else output2(" Acquired");
+				if(flags["EGG_TRAINING_TIMES"] != undefined)
+				{
+					output2(", Used");
+					if(flags["EGG_TRAINING_TIMES"] > 1) output2(" " + flags["EGG_TRAINING_TIMES"] + " times");
+				}
+				if(flags["EGG_TRAINING"] != undefined) output2("\n<b>* TamaniCorp, Egg Trainer, Training Level: </b>" + flags["EGG_TRAINING"]);
+				if(flags["CARRY_TRAINING_TIMES"] != undefined) output2("\n<b>* TamaniCorp, Egg Trainer, Times Carry Training: </b>" + flags["CARRY_TRAINING_TIMES"]);
+			}
 			miscCount++;
 		}
 		
