@@ -90,6 +90,7 @@
 		
 		//Core Game Stuff
 		include "../includes/appearance.as";
+		include "../includes/BackerCredits.as";
 		include "../includes/ControlBindings.as";
 		include "../includes/CodexEntries.as";
 		include "../includes/CodexFiction.as";

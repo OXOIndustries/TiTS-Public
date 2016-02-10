@@ -359,17 +359,31 @@
 		 */
 		private function creditsHandler():void
 		{
-			/*
 			clearOutput2();
-			output2("\nThis is a placeholder. Keep your eye on the 'Scene by:\' box in the lower left corner of the UI for information on who wrote scenes as they appear. Thank you!");
 			
-			mainButtonsOnly();
+			// Had to do this- our output mechanics choked to fucking DEATH on the size of the output otherwise.
+			
+			outputBuffer2 += kGAMECLASS.blockHeader("STAFF:");
+			outputBuffer2 += "Fenoxo, Savin, Gedan, Shou, Adjatha.\n\n";
+			
+			outputBuffer2 += kGAMECLASS.blockHeader("CONTRIBUTORS:");
+			outputBuffer2 += "Jacques00, JimT, Zeikfried, Fake-Name, Prisoner416.\n\n";
+			
+			outputBuffer2 += kGAMECLASS.blockHeader("BACKERS:");
+			
+			for (var i:int = 0; i < TiTS.BACKER_COLLECTION.length; i++)
+			{
+				// Going to have to think about this a little. 
+				// Eventually, the display rendering code starts to choke if we ask it to render a single line that is
+				// very long. Quick workaround is to just jam new lines in every so often.
+				outputBuffer2 += TiTS.BACKER_COLLECTION[i] + ",\n";
+			}
+			
+			output2();
+			
 			clearGhostMenu();
-			if (kGAMECLASS.pc.short.length == 0) addGhostButton(4, "Back", showMainMenu);
-			else addGhostButton(4, "Back", backToPrimaryOutput);
-			*/
-			
-			trace("Placeholder method handler whilst we build a content module to contain credits details. Sorry :(");
+			addGhostButton(0, "Back", showMainMenu);
+			//kGAMECLASS.OutputBackerCredits();
 		}
 		
 		/**
