@@ -268,7 +268,7 @@ public function herBusinessAsennia():void
 	output("\n\nAsennia shakes her head with a laugh. <i>“No, no. I’m quite happy to have my business to manage, but thank you for the offer. Speaking of offers,”</i> she adds, tossing the honey-soaked rag aside. <i>“Would you like a drink, [pc.name]?”</i>");
 	processTime(18);
 	asseniaMenu();
-	addDisabledButton(2,"Her Business","Her Business","You just finished that discussion.");
+	addDisabledButton(3,"Her Business","Her Business","You just finished that discussion.");
 }
 
 
