@@ -6,16 +6,16 @@ package classes.Engine.Utility
 	 */
 	public class MathUtil 
 	{
-		public static function LinearInterpolate(p1:Number, p2:Number, value:Number):Number
+		public static function LinearInterpolate(p1:Number, p2:Number, f:Number):Number
 		{
 			return p1 + f * (p2 - p1);
 		}
 		
-		public static function Clamp(min:Number, max:Number, value:Number):Number
+		public static function Clamp(min:Number, max:Number, f:Number):Number
 		{
-			if (value < min) return min;
-			if (value > max) return max;
-			return value;
+			if (f < min) return min;
+			if (f > max) return max;
+			return f;
 		}
 	}
 

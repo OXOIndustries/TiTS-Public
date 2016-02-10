@@ -201,7 +201,7 @@ package classes.Characters
 			}
 			
 			// Interpolate the armor value as a percent between a multiplier between 1 and 0.33. Use this multiplier to modify the base reflex value of the enemy.
-			reflexsRaw = MathUtil.LinearInterpolate(0.33, 1, shieldsMax() / shields()) * baseReflexes;
+			reflexesRaw = MathUtil.LinearInterpolate(0.33, 1, shieldsMax() / shields()) * baseReflexes;
 			shield.resistances.kinetic.resistanceValue = MathUtil.LinearInterpolate(0, 1, shieldsMax() / shields()) * baseShieldKineticResistance;
 		}
 		
@@ -281,11 +281,11 @@ package classes.Characters
 			
 			if (!hasStatusEffect("Unarmored"))
 			{
-				numHits = Math.round(((shieldsMax() / shields()) / 0.25)) + 2;
+				numAttacks = Math.round(((shieldsMax() / shields()) / 0.25)) + 2;
 				meleeWeapon = kickMeleeWeapon;
 				
 				output("The ganrael lashes out with its legs!");
-				for (i = 0; i < numHits; i++)
+				for (i = 0; i < numAttacks; i++)
 				{
 					output("\n");
 					CombatAttacks.SingleMeleeAttackImpl(this, target, false, "melee");
@@ -433,7 +433,7 @@ package classes.Characters
 		public function ShouldIntercept():Boolean
 		{
 			// Return true if we should fuck the players current action off and redirect it through SneakSqueezeAttackReaction
-			if (hasStatusEffect("GooCamo") && !_skipIntercept)
+			if (hasStatusEffect("GooCamo") && !skipIntercept)
 			{
 				
 			}
@@ -563,10 +563,57 @@ package classes.Characters
 				
 				applyDamage(new TypeCollection( { kinetic: damage }, DamageFlag.CRUSHING ), this, target, "minimal");
 			}
-
-//PC struggle text
-{(armored NPC & str success)You shove the creature’s legs away and batter from its grasp! /(armored & rfx success)It shifts its grip, and you use the chance to free your upper body! The alien tries to keep hold, but you worm the rest of the way out. /(unarmored & str success)It’s like punching taffy, but you batter so many lumps into the malleable ganrael that it releases you. /(unarmored & rfx success)Moving with the flow of gooey skin, you slip the creature’s grip like wet soap. /(else fail)Your struggles fail to free you from the alien’s grip! }
-
+		}
+		
+		public function SneakSqueezeStruggle(target:Creature):void
+		{
+			var escaped:Boolean = false;
+			
+			//PC struggle text
+			if (!(target.armor is EmptySlot) && target.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+			{
+				if (target.physique() > target.reflexes())
+				{
+					if ((target.physique() + rand(30) / 2) > (physique() - (target.statusEffectv1("Grappled") * 5)))
+					{
+						output("You shove the creature’s legs away and batter from its grasp!");
+						escaped = true;
+					}
+				}
+				else
+				{
+					if ((target.reflexes() + rand(30) / 2) > (reflexes() - (target.statusEffectv1("Grappled") * 5)))
+					{
+						output("It shifts its grip, and you use the chance to free your upper body! The alien tries to keep hold, but you worm the rest of the way out.");
+						escaped = true;
+					}
+				}
+			}
+			else
+			{
+				if (target.physique() > target.reflexes())
+				{
+					if ((target.physique() + rand(30) / 2) > (physique() - (target.statusEffectv1("Grappled") * 5)))
+					{
+						output("It’s like punching taffy, but you batter so many lumps into the malleable ganrael that it releases you.");
+						escaped = true;
+					}
+				}
+				else
+				{
+					if ((target.reflexes() + rand(30) / 2) > (reflexes() - (target.statusEffectv1("Grappled") * 5)))
+					{
+						output("Moving with the flow of gooey skin, you slip the creature’s grip like wet soap. / (else fail) Your struggles fail to free you from the alien’s grip!");
+						escaped = true;
+					}
+				}
+			}
+			
+			if (escaped)
+			{
+				target.removeStatusEffect("Grappled");
+				createStatusEffect("Grappled", 2);
+			}
 		}
 	}
 }

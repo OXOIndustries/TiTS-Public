@@ -957,9 +957,9 @@ package classes.GameData
 				else output("You choose not to act.");
 				processCombat();
 			}
-			else if (_hostiles.length == 1 && _hostiles[i] is CrystalGooT1 && (_hostiles[i] as CrystalGooT1).ShouldIntercept())
+			else if (_hostiles.length == 1 && _hostiles[0] is CrystalGooT1 && (_hostiles[0] as CrystalGooT1).ShouldIntercept())
 			{
-				(_hostiles[i] as CrystalGooT1).SneakSqueezeAttackReaction( { isWait: true } );
+				(_hostiles[0] as CrystalGooT1).SneakSqueezeAttackReaction( { isWait: true } );
 			}
 			else
 			{
@@ -972,9 +972,9 @@ package classes.GameData
 		{
 			clearOutput();
 			
-			if (_hostiles.length == 1 && _hostiles[i] is CrystalGooT1 && (_hostiles[i] as CrystalGooT1).ShouldIntercept())
+			if (_hostiles.length == 1 && _hostiles[0] is CrystalGooT1 && (_hostiles[0] as CrystalGooT1).ShouldIntercept())
 			{
-				(_hostiles[i] as CrystalGooT1).SneakSqueezeAttackReaction( { isFantasize: true } );
+				(_hostiles[0] as CrystalGooT1).SneakSqueezeAttackReaction( { isFantasize: true } );
 			}
 			else
 			{
