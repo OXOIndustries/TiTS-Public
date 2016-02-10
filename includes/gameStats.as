@@ -4019,6 +4019,8 @@ public function displayEncounterLog(showID:String = "All"):void
 		{
 			output2("\n<b>* Kara:</b> Met her");
 			if(flags["KQ2_SEX_PAY"] != undefined || flags["SEXED_KARA"] != undefined) output2(", Sexed her");
+			if(flags["KQ2_KARA_SACRIFICE"] != undefined) output2(", Inactive");
+			if(flags["KQ2_BETRAYED_KARA"] != undefined) output2(", <i>Whereabouts unknown</i>");
 			roamCount++;
 		}
 		// Kirobutts!
@@ -4145,6 +4147,7 @@ public function displayEncounterLog(showID:String = "All"):void
 		{
 			output2("\n<b>* Shade:</b> Met her");
 			if(flags["TOLD_SHADE_SHES_YER_SIS"] != undefined) output2(", Told her she’s your sister");
+			if(flags["KQ2_SHADE_DEAD"] != undefined) output2(", Inactive");
 			if(flags["SHADE_GOT_HELP_WITH_LAYING"] != undefined)
 			{
 				output2("\n<b>* Shade, Tail Cunt:</b> Helped her with laying egg");
