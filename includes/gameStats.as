@@ -2366,16 +2366,17 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["MET_AINA"] == undefined) output2("\n<b>* Centaur Girl:</b> Seen her");
 					else
 					{
-						output2("\n<b>* Aina:</b> Met her");
+						output2("\n<b>* Aina:</b>");
+						if(ainaIsInHeat()) output2(" In heat,");
+						output2(" Met her");
 						if(flags["HELPED_AINA"] == true)
 						{
 							output2(", Helped");
 							if(flags["AINA_WAND_FIXED"] == true) output2(" fix her sex-toy");
 							else output2(" her");
 						}
-						if(ainaIsInHeat()) output2(", She is in heat");
-						if(flags["AINA_SEXED"] != undefined) output2("\n<b>* Aina, Times Sexed: </b>" + flags["AINA_SEXED"]);
-						if(flags["AINA_SEXED_WITH_TOY"] != undefined) output2("\n<b>* Aina, Times Fucked with Anal Wand: </b>" + flags["AINA_SEXED_WITH_TOY"]);
+						if(flags["AINA_SEXED"] > 0) output2("\n<b>* Aina, Times Sexed: </b>" + flags["AINA_SEXED"]);
+						if(flags["AINA_SEXED_WITH_TOY"] > 0) output2("\n<b>* Aina, Times Fucked with Anal Wand: </b>" + flags["AINA_SEXED_WITH_TOY"]);
 					}
 				}
 				// Fyn
@@ -2385,7 +2386,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					else
 					{
 						output2("\n<b>* Fyn:</b> Met him");
-						if(flags["FYN_SEXED"] != undefined) output2("\n<b>* Fyn, Times Sexed: </b>" + flags["FYN_SEXED"]);
+						if(flags["FYN_SEXED"] > 0) output2("\n<b>* Fyn, Times Sexed: </b>" + flags["FYN_SEXED"]);
 					}
 				}
 				variousCount++;

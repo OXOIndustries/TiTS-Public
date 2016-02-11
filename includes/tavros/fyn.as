@@ -55,7 +55,8 @@ public function finsApartmentBonus():Boolean
 	if(flags["FYN_APARTMENT_ENTERED"] == true)
 	{
 		output("This incredibly large apartment must have cost a small fortune of credits to buy, far and above the normal fare in Tavros station. The polished synth-oak floors look indistinguishable from the real thing, giving the whole place a glamorous air. The common area is huge, filled with a circular island-like kitchen and seating around the outskirts. It's the sort of place where many people can visit quite easily. There's an open doorway leading to a lush looking bedroom with silky sheets and a king sized bed. The bedhead has silk ropes around it... whatever could <i>they</i> be for? Another room seems to lead to a dance studio.");
-		showFynsApartment();
+		
+		addButton(0, "Fyn", fynMenu);
 	}
 	else
 	{
@@ -97,7 +98,7 @@ public function walkAwayFromFynsDoor():void {
 
 public function knockOnFynsDoor():void {
 	clearOutput();
-	showBust("FYN");
+	showFyn();
 	
 	if(flags["SEEN_FYN"] == undefined) {
 		output("You decide to give in to your curiosity and rap your knuckles against the sturdy wooden door. Is it real oak, you wonder?");
@@ -126,7 +127,7 @@ public function knockOnFynsDoor():void {
 
 public function backOutOfGoingIntoFynsApartment():void {
 	clearOutput();
-	showBust("FYN");
+	showFyn();
 	
 	if(pc.isNice()) output("Apologizing for wasting his time, you quickly back off and take your leave.");
 	else if(pc.isMischievous()) output("<i>“Sorry, wrong apartment. Thanks for your time!”</i> you exclaim, taking your leave.");
@@ -145,8 +146,7 @@ public function backOutOfGoingIntoFynsApartment():void {
 
 public function goIntoFynsApartment():void {
 	clearOutput();
-	showBust("FYN");
-	showName("APARTMENT\n112");
+	showFyn();
 	
 	currentLocation = "RESIDENTIAL DECK 19";
 	generateMapForLocation(currentLocation);
@@ -179,8 +179,7 @@ public function goIntoFynsApartment():void {
 //come clean and tell fyn you have no idea what he is talking about
 public function resolveFynConfusion(type:String):void {
 	clearOutput();
-	showBust("FYN");
-	showName("APARTMENT\n112");
+	showFyn();
 	
 	switch(type) {
 		case 'come_clean' :
@@ -257,11 +256,6 @@ public function resolveFynConfusion(type:String):void {
 	addButton(0, "Next", mainGameMenu);
 }
 
-public function showFynsApartment():void {
-	showBust("FYN");
-	addButton(0, "Fyn", fynMenu);
-}
-
 public function fynMenu():void {
 	showFyn();
 	clearOutput();
@@ -315,6 +309,8 @@ public function fynAppearance():void {
 	output("\n\nLooking down from the nape of his neck, the first thing to notice is his broad, proud shoulders and chest. They're held with some inner confidence that never seems to falter. Perhaps it's his dancing training that gives him such perfect, unwavering poise. Said chest is well displayed by his silk black shirt, deliberately left open all the way down to his slender stomach. His whole body in fact has a perfect V-like shape, starting at the shoulders down to his narrow hips; and if his shapely ass is any indication, they possess some serious thrusting power.");
 	output("\n\nHis pants are hugging his crotch in a rather suggestive way. They seem to be dance-compatible, allowing for ease of movement, and for the vildarii male to show off his impressive flexibility.");
 	output("\n\nIndependent of his physique, whenever you're close to him, you always catch a hint of a particular, alluring scent; a mixture between fresh rain and a distinctive <i>maleness</i>.");
+	
+	addDisabledButton(0, "Appearance");
 }
 
 public function fynTalk():void {
@@ -872,8 +868,8 @@ public function fynSexMenu():void
 	
 		var ravishText:String = (pc.isBimbo()) ? "HulkRavish" : "OrcRavish";
 		
-		addButton(0, "Hike&Fuck", fynSexHikeAndFuck);
-		addButton(1, "Double.D", fynSexDoubleD);
+		addButton(0, "Hike&Fuck", fynSexHikeAndFuck, undefined, "Hike and Fuck", "Let him have his way with you.");
+		addButton(1, "Double.D", fynSexDoubleD, undefined, "Double Dicked", "Ask him to use his polymorph ability to double the fun.");
 		if(!pc.isTaur()) addButton(2, ravishText, fynSexOrcRavish, undefined, ravishText, "It involves getting butt ravished by an orc-transformed Fyn. Who'd have thunk it?");
 		else addDisabledButton(2, ravishText, ravishText, "You can't be a taur to get ravished by an orc-transformed Fyn.");
 		
@@ -885,6 +881,14 @@ public function fynSexHikeAndFuck():void
 {
 	clearOutput();
 	showFyn(true);
+	
+	var useVagina:Boolean = false;
+	var vagIdx:int = -1;
+	if(pc.hasVagina() && !pc.isTaur())
+	{
+		vagIdx = rand(pc.totalVaginas());
+		useVagina = true;
+	}
 	
 	output("You watch wide-eyed as Fyn suddenly strides towards you. There's a purposeful look in his captivating eyes. He stops tantalizingly close");
 	
@@ -916,7 +920,7 @@ public function fynSexHikeAndFuck():void
 		output(".");
 	}
 	 
-	if(pc.hasVagina() && !pc.isTaur()) {
+	if(useVagina) {
 		output(" He pulls out his manhood and presses it against your slick wetness, joining his body to yours.");
 		if(pc.vaginalVirgin) output(" You feel a momentary pain, followed by a warm trickling down your thigh. Blushing furiously, you cling to him, letting out a little whine.");
 	}
@@ -928,7 +932,7 @@ public function fynSexHikeAndFuck():void
 	}
 	
 	//if a female vaginal virgin or a male anal virgin or a taur anal virgin (as fem taurs get anal pen.)
-	if ((pc.hasVagina() && pc.vaginalVirgin) || (pc.hasCock() && pc.analVirgin) || (pc.isTaur() && pc.analVirgin)) 
+	if ((useVagina && pc.vaginalVirgin) || (!useVagina && pc.analVirgin)) 
 	{
 		output("\n\nFyn stops, pulling back with wide eyes. <i>“... I'm sorry, was I your first?”</i> You nod in response, nuzzling into him, and urging him to continue. ");
 	}
@@ -937,18 +941,18 @@ public function fynSexHikeAndFuck():void
 	}
 	
 	output("You gasp as you feel his engorged tip sliding up inside of you, making its way into your belly. Needily, you rock your hips and grind");
-	if(pc.hasVagina() && !pc.isTaur()) output(" against his hips and base");
+	if(useVagina) output(" against his hips and base");
 	else output(" your [pc.ass] back against him");
 	
 	output(", groaning as his stiff rod stirs around and makes its presence felt inside of your");
 	
-	if(pc.hasVagina() && !pc.isTaur()) output(" sex.");
+	if(useVagina) output(" sex.");
 	else output(" rump.");
 	
-	if(pc.hasVagina() && !pc.isTaur())
+	if(useVagina)
 	{
-		pc.cuntChange(0, chars["FYN"].cockVolume(0), true, true, false);
-		pc.loadInCunt(chars["FYN"], 0);
+		pc.cuntChange(vagIdx, chars["FYN"].cockVolume(0), true, true, false);
+		pc.loadInCunt(chars["FYN"], vagIdx);
 	}
 	else 
 	{
@@ -957,7 +961,7 @@ public function fynSexHikeAndFuck():void
 	}
 	
 	output("\n\nYour devilish lover's muscular hips slap against your");
-	if(pc.hasVagina() && !pc.isTaur()) 
+	if(useVagina) 
 	{
 		if (pc.hasLegs() && !pc.isNaga()) output(" inner thighs");
 		else output(" body");
@@ -968,7 +972,7 @@ public function fynSexHikeAndFuck():void
 	
 	output(". He's groaning long and low, his own fingers clinging to your");
 	
-	if(pc.hasVagina() && !pc.isTaur()) output(" back");
+	if(useVagina) output(" back");
 	else if(!pc.isTaur()) output(" stomach");
 	else output(" animal ass");
 	
@@ -983,12 +987,12 @@ public function fynSexHikeAndFuck():void
 	
 	output(" You feel a slick warmth spreading out inside your");
 	
-	if(pc.hasVagina() && !pc.isTaur()) output(" pussy");
+	if(useVagina) output(" [pc.pussyNoun " + vagIdx + "]");
 	else output(" ass");
 	
 	output(" as his cock flexes and clenches. You blush and swoon with delight; he's cumming inside of you!");
 	
-	if(pc.hasVagina() && !pc.isTaur()) output("You bury your face into his neck, pressed sizzlingly close.");
+	if(useVagina) output(" You bury your face into his neck, pressed sizzlingly close.");
 	
 	if(!pc.isTaur()) 
 	{
@@ -998,12 +1002,12 @@ public function fynSexHikeAndFuck():void
 	
 	output("\n\n<i>“... I can feel");
 	
-	if(pc.hasVagina()) output(" you running down my cock");
+	if(useVagina) output(" you running down my cock");
 	else output(" my heat filling you up");
 	
 	output(",”</i> Fyn deeply murmurs. You grin; you can <i>also</i> feel his creamy slickness");
 	
-	if(pc.hasVagina() && !pc.isTaur()) output(" sliding out of where the two of you are joined. Far more, though, is still");
+	if(useVagina) output(" sliding out of where the two of you are joined. Far more, though, is still");
 	output(" inside of you, penned in by his half-erect cock and leaving an exquisite warmth.");
 	output("\n\nOnce he pulls out, you readjust yourself, feeling utterly dopey and quite flushed. Meanwhile, Fyn has a mischievous, self-satisfied look in his eyes; clearly he relished just ravishing you on the spot!");
 	
@@ -1020,6 +1024,22 @@ public function fynSexDoubleD():void {
 	clearOutput();
 	showFyn(true);
 	
+	var useVagina:Boolean = false;
+	var vagList:Array = [];
+	if(pc.hasVagina())
+	{
+		vagList[0] = rand(pc.totalVaginas());
+		if(pc.totalVaginas() > 1)
+		{
+			vagList[1] = rand(pc.totalVaginas());
+			while (vagList[0] == vagList[1])
+			{
+				vagList[1] = rand(pc.totalVaginas());
+			}
+		}
+		useVagina = true;
+	}
+	
 	if(flags["FYN_SEXED_DOUBLE_DICK"] == undefined) {
 		output("Curious, you ask Fyn if he's able to grow a second dick? An amused look lights his face. Without warning, the dark-haired man shamelessly strips off his pants, leaving you staring at his scarlet manhood. It hangs in a foreskin halfway to his knee.");
 	} 
@@ -1029,7 +1049,7 @@ public function fynSexDoubleD():void {
 	
 	output("\n\n<i>“Give me a moment,”</i> he states, closing his eyes in apparent focus. A second protrusion begins to form above his shaft. The lump grows in size and juts outwards, rolling down the length of his already existing cock. It stops short of his crown. It duplicates its shape, leaving him with two huge hanging dicks, one resting on top of the other. <i>“There you go. Interested in double the pleasure?”</i>"); 
 	
-	if(pc.hasVagina() && !pc.isTaur()) 
+	if(useVagina && !pc.isTaur()) 
 	{
 		output("\n\n<i>“Oh, I don't know, are you?”</i> you grin");
 		
@@ -1047,8 +1067,8 @@ public function fynSexDoubleD():void {
 			output(" and gesture down to your [pc.pussies].");
 		}
 		output(" <i>“Care to use");
-		if (pc.vaginas.length == 1) output(" this and my ass at the same time");
-		if (pc.vaginas.length > 1) output(" these");
+		if (vagList.length == 1) output(" this and my ass at the same time");
+		else output(" these");
 		output("?”</i>");
 	}
 	//else male or taur
@@ -1058,55 +1078,55 @@ public function fynSexDoubleD():void {
 		if(!pc.isNude()) output(" stripping off and");
 		output(" poking your");
 		
-		if(pc.hasVagina()) output(" [pc.pussies] and");
+		if(useVagina) output(" [pc.pussies] and");
 		output(" [pc.ass] out teasingly at him.");
 	}
 	
 	output("\n\nFyn grins and strides up, seizing your hips in his powerful hands. Already, you can feel his twin dicks teasingly touching");
 	
-	if(pc.hasVagina() && !pc.isTaur()) output(" against your bared sex");
+	if(useVagina && !pc.isTaur()) output(" against your bared sex");
 	else output(" between your buttocks");
 	output(". The devilish man gives a pointed grind, and you feel his stiffening flesh coax and caress");
 	
-	if(pc.hasVagina()) output(" your womanly lips");
+	if(useVagina) output(" your womanly lips");
 	else output(" your crevasse");
 	
 	output(". A delicious shiver shoots up from your");
 	
-	if(pc.hasVagina()) output(" loins");
+	if(useVagina) output(" loins");
 	else output(" loins");
 	
 	output(" - the smallest sampling of the pleasure to come.");
 	output("\n\n<i>“Suck me,”</i> Fyn commands, standing back. His crimson cocks are at half mast; it seems he wants them at full peak! Dropping to your [pc.knees], you inch towards his magnificent tools, greedily inhaling his musky scent. It's even more potent with <i>two</i> dicks; you're rendered positively dizzy by his potent penile aroma. You wrap one hand around his first prick, slowly jerking his foreskin as you kiss and suckle on its twin. The response is immediate: his pricks stiffening and twitching, and you feel a giddy sense of pride. Playing with <i>two</i> is so much more fun than one!");
-	output("\n\n<i>“Enjoying yourself down there?”</i> You hear from above, and give a happy little nod. A large palm is rested on your head, giving you an encouraging stroke. You grin and wrap your [pc.lips] around his swelling glans. With little laps, you tease his flexing cockhole, relishing in his rumbling groans. The flavor of his muscular shafts is delicious; you could really suck and tease his twin shafts all day. You shiver as a thick, creamy dollop of pre drools out of the cockhead in your mouth, the other glistening just above your hand. Who said you can't have your cake and eat it too~? You hungrily lap it up, then look up at your double-dicked lover with wide, [pc.eyeColor] eyes for approval. He strokes your cheek, and you nuzzle into it with a muffled purr.");
+	output("\n\n<i>“Enjoying yourself down there?”</i> You hear from above, and give a happy little nod. A large palm is rested on your head, giving you an encouraging stroke. You grin and wrap your [pc.lips] around his swelling glans. With little laps, you tease his flexing cockhole, relishing in his rumbling groans. The flavor of his muscular shafts is delicious; you could really suck and tease his twin shafts all day. You shiver as a thick, creamy dollop of pre drools out of the cockhead in your mouth, the other glistening just above your hand. Who said you can't have your cake and eat it too? You hungrily lap it up, then look up at your double-dicked lover with wide, [pc.eyeColor] eyes for approval. He strokes your cheek, and you nuzzle into it with a muffled purr.");
 	output("\n\n<i>“Bend over,”</i> Fyn orders you out of the blue, and you happily obey. Turning around, you raise your rump for him. You moan as his spit-slicked dick sliiiides into your");
 	
-	if(pc.hasVagina()) output(" [pc.pussies]");
+	if(useVagina) output(" [pc.pussies]");
 	else output(" [pc.asshole]");
 	
 	output(" and up inside of you, filling you in one swift motion. You groan as his powerful hips press flush against your ass. Inside your");
 	
-	if(pc.hasVagina()) output(" belly");
+	if(useVagina) output(" belly");
 	else output(" backside");
 	
 	output(", you can feel his engorged head flexing and straining against your inner walls. Absolute ecstasy swallows your senses, stirred further by every shift of his");
 	
-	if(pc.hasVagina()) output(" pussy-plunged");
+	if(useVagina) output(" pussy-plunged");
 	else output(" butt-buried");
 	
 	output(" manhood.");
 	
-	if(pc.hasVagina()) 
+	if(useVagina) 
 	{
 		output("\n\nJust when you think it can't get any better, you feel his <i>other</i> fleshy crown pressing against");
-		if(pc.vaginas.length == 1) output(" your sensitive cunt");
-		if(pc.vaginas.length > 1) output(" another pair of your sensitive lower lips");
+		if(vagList.length == 1) output(" your sensitive cunt");
+		else output(" another pair of your sensitive lower lips");
 		
 		output(". You quiver and moan as he buries both manhoods inside you at once, twitching deliciously in your");
 	
-		if(pc.vaginas.length == 1) output(" pussy and butt");
-		if(pc.vaginas.length == 2) output(" own twin pussies");
-		if(pc.vaginas.length > 2) output(" own two pussies");
+		if(vagList.length == 1) output(" [pc.pussyNoun " + vagList[0] + "] and butt");
+		else if(pc.matchedVaginas()) output(" own twin pussies");
+		else output(" own two pussies");
 		
 		output(". Ohhhh gooddd.... it really <i>is</i> twice the pleasure, just like being double-teamed! You needily push yourself back against his glorious, pleasure-bringing thrusts, your [pc.thighs] quaking and covered in your [pc.girlCumVisc], streaming pussy juices.");
 	}
@@ -1120,37 +1140,44 @@ public function fynSexDoubleD():void {
 		output(". With one dick inside of your rump and another frotting, your muscular lover rides your [pc.ass]. Ohhhh gooddd.... it really <i>is</i> twice the pleasure! You needily push yourself back against his glorious, pleasure-bringing thrusts, your [pc.thighs] quaking with delight.");
 	}
 	
-	if (pc.vaginas.length > 1 && !pc.isTaur())
+	if (vagList.length > 1 && !pc.isTaur())
 	{	
-		pc.cuntChange(0, chars["FYN"].cockVolume(0), true, true, false);
-		pc.cuntChange(1, chars["FYN"].cockVolume(0), true, true, false);
-		pc.loadInCunt(chars["FYN"], 0);
-		pc.loadInCunt(chars["FYN"], 1);
+		pc.cuntChange(vagList[0], chars["FYN"].cockVolume(0), true, true, false);
+		pc.cuntChange(vagList[1], chars["FYN"].cockVolume(0), true, true, false);
+		pc.loadInCunt(chars["FYN"], vagList[0]);
+		pc.loadInCunt(chars["FYN"], vagList[1]);
 	}
 	else 
 	{
-		if(pc.vaginas.length == 1) pc.cuntChange(0, chars["FYN"].cockVolume(0), true, true, false);
+		if(vagList.length == 1)
+		{
+			pc.cuntChange(vagList[0], chars["FYN"].cockVolume(0), true, true, false);
+			pc.loadInCunt(chars["FYN"], vagList[0]);
+		}
 		pc.buttChange(chars["FYN"].cockVolume(0), true, true, false);
 		pc.loadInAss(chars["FYN"]);
 	}
 	
 	output("\n\nWith a loud cry, you utterly cream yourself,");
 	
-	if(pc.hasVagina())
+	if(useVagina)
 	{
 		output(" spilling your [pc.girlCum] all over his");
-		if(pc.vaginas.length == 1) output(" cock");
-		if(pc.vaginas.length > 1) output(" cocks");
-		if(pc.hasVagina() && pc.hasCock()) output(" and");
+		if(vagList.length == 1) output(" cock");
+		else output(" cocks");
+		if(useVagina && pc.hasCock()) output(" and");
 	}
 	if(pc.hasCock()) output(" shooting hot, sticky spunk all over your [pc.belly]");
 	if(!pc.hasVagina() && !pc.hasCock()) output("spasmodically shaking in the throes of your genital-less orgasm");
 	
 	output(". Your cry is turned to a throaty, primal moan as you feel his hot seed shooting inside of your");
 	
-	if(pc.hasVagina()) output(" [pc.pussies], filling");
-	if(pc.vaginas.length == 1) output(" it");
-	if(pc.vaginas.length > 1) output(" them");
+	if(useVagina)
+	{
+		output(" [pc.pussies]");
+		if(vagList.length == 1) output(" and [pc.ass]");
+		else output(", filling them up");
+	}
 	if(!pc.hasVagina()) output(" [pc.ass], filling it up");
 	
 	output(" to the spunk-soaked brim. When he finally pulls out with a loud 'plop', you moan and feel him leaking all down your [pc.legs], though much more of his warmth stays inside of you!");

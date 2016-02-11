@@ -41,7 +41,7 @@ public function checkIfAinaIsAround():Boolean
 }
 
 //this function displays AinasRoom on the map
-public function unlockAinasRoom():void {
+public function unlockAinasRoom(genMap:Boolean = false):void {
 	//define Room
 	rooms["RESIDENTIAL DECK 18"] = new RoomClass(this);
 	rooms["RESIDENTIAL DECK 18"].roomName = "AINA'S\nAPARTMENT";
@@ -59,24 +59,24 @@ public function unlockAinasRoom():void {
 	rooms["RESIDENTIAL DECK 15"].southExit = "RESIDENTIAL DECK 18";
 	
 	//refresh map bit to actually show new room
-	generateMapForLocation(currentLocation);
+	if(genMap) generateMapForLocation(currentLocation);
 }
 
 //this function hides her room on the map
-public function lockAinasRoom():void {
+public function lockAinasRoom(genMap:Boolean = false):void {
 	//remove door towards Aina's apartment
 	rooms["RESIDENTIAL DECK 15"].southExit = null;
 	
 	//unset room - not the prettiest way to do it, but there is no function to remove rooms (?)
 	rooms["RESIDENTIAL DECK 18"] = new RoomClass(this);
 	
-	generateMapForLocation(currentLocation);
+	if(genMap) generateMapForLocation(currentLocation);
 }
 
 //approach Aina in the West Walkway of the residental deck(#15)
 public function approachAinaOnTheWalkway():void
 {
-	showBust("AINA");
+	showAina();
 	
 	//set basic flags
 	flags["AINA_DAY_MET"] = days;
@@ -90,7 +90,7 @@ public function approachAinaOnTheWalkway():void
 	output("\n\nShe's definitely not a Leithan; modded, perhaps? Her human half is covered in a champagne-colored sweater and a cream linen skirt, the hem falling down to her horse-like knees. It utterly fails to cover up her tauric body, though, or her bristly horse tail. Her honey-blonde hair is tied back in a far less literal ponytail, secured with a lace ribbon.");
 
 	if(pc.isBimbo()) output("\n\n<i>“Oh, sure! What's the favor?”</i> you ask, eyes glimmering. Will it involve sex, you wonder? You really hope it involves sex! All your favorite things do.");
-	else if(pc.isBro()) output("\n\n<i>“Oh, sure! What's the favor?”</i> you ask, eyes glimmering. Will it involve sex, you wonder? You really hope it involves sex! All your favorite things do.");
+	else if(pc.isBro()) output("\n\n<i>“Eh, sure. I'll hear you out babe,”</i> you huff, crossing your arms. She looks like a fine ride, and you're always keen to listen to a fair piece of filly.");
 	else {
 		output("\n\n<i>“... What's the favor?”</i> you");
 		
@@ -140,8 +140,8 @@ public function helpAina():void
 {
 	//remove Aina's icon from walkway, unlock her room and port player there
 	rooms["RESIDENTIAL DECK 15"].removeFlag(GLOBAL.NPC);
-	unlockAinasRoom();
 	currentLocation = "RESIDENTIAL DECK 18";
+	unlockAinasRoom(true);
 	
 	clearOutput();
 	flags["MET_AINA"] = true;
@@ -192,9 +192,11 @@ public function helpAina():void
 	else output(", even though you're not a taur!");
 	
 	processTime(10+rand(5));
-	clearMenu();
+	pc.lust(20);
 	
-	addButton(0, "Offer Sex", helpAinaWithSex);
+	clearMenu();
+	if(pc.lust() >= 33) addButton(0, "Offer Sex", helpAinaWithSex);
+	else addDisabledButton(0,"Offer Sex","Offer Sex","You aren't aroused enough for this.");
 	if(pc.IQ() >= 40 || pc.characterClass == GLOBAL.CLASS_ENGINEER) addButton(1, "Fix Toy", helpAinaByFixingHerToy);
 	else addDisabledButton(1,"Fix Toy","Fix Toy","You have no idea how to fix it.");
 	addButton(14,"Leave", leaveAinaAlone);
@@ -214,7 +216,7 @@ public function helpAinaByFixingHerToy():void
 	else if(pc.isMischievous()) output("\n\n<i>“All done. [pc.name] Steele: galactic adventurer and sex-toy repair.”</i>");
 	else output("\n\n<i>“There. Good as new. Try not to break it next time.”</i>");
 	
-	output("\n\nThe honey-blonde centauress clicks the wand on, and it whirrs in her grasp. With blushing cheeks, she bows to you. <i>“T-thank you so much. Honestly, this solves all my problems. I'm meant to be studying for an exam, and I just can't concentrate. You've really saved my hide!”</i>");
+	output("\n\nThe honey-blonde centauress clicks the wand on, and it whirrs in her grasp. With blushing cheeks, she bows to you. <i>“Th-thank you so much. Honestly, this solves all my problems. I'm meant to be studying for an exam, and I just can't concentrate. You've really saved my hide!”</i>");
 	output("\n\n<i>“Anytime you want to stop around, feel free to do so. I brew a mean cup of tea. Um... but if you don't mind, could you excuse me? Got to, you know, do some stuff....”</i>");
 	output("\n\nYou grin and head off, leaving the centauress to have her alone time, your good deed done.");
 	
@@ -224,7 +226,7 @@ public function helpAinaByFixingHerToy():void
 	processTime(15+rand(10));
 	
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	addButton(0,"Next", move, "RESIDENTIAL DECK 15");
 }
 
 public function helpAinaWithSex():void
@@ -245,7 +247,7 @@ public function helpAinaWithSex():void
 public function leaveAinaAlone():void
 {
 	currentLocation = "RESIDENTIAL DECK 15";
-	lockAinasRoom();
+	lockAinasRoom(true);
 	clearOutput();
 	
 	flags["HELPED_AINA"] = false;
@@ -253,8 +255,8 @@ public function leaveAinaAlone():void
 	output("With incredible difficulty, you shake your head of the musk-induced lust threatening to take control of you, and hastily bid her adieu. The whimpering centauress still thanks you for your help, waving as you make a quick dash for the door. As soon as you're out, you take in a deep breath of fresh, pheromone-free air. Whew!");
 	output("\n\nIt takes a few minutes to get back to normal, though you still feel a palpable tingling in your loins.");
 	
-	pc.lust(20);
 	processTime(2);
+	pc.lust(5);
 	
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -339,6 +341,8 @@ public function ainaMenu():void
 		output("”</i>");
 		
 		output("\n\nYou can definitely smell it! Every time her equine tail flicks, you're hit with a fresh wave of her musky mare-scent. The moment you get a whiff of her juicy cunt, you feel the instinct to <i>breed</i> her like crazy.");
+		
+		pc.lust(5);
 	}
 	else
 	{
@@ -374,6 +378,8 @@ public function ainaAppearance():void
 	output("Aina is what you'd call the girl next door, if the girl next door was a chestnut-colored centaur. From her champagne-colored sweater to her long cream-linen skirt, she hardly flashes her assets. That said, they're definitely there; it's hard to miss the curvaceous swell of her breasts.");
 	output("\n\nHer honey-blonde hair is tied back with a lace ribbon, hanging down her back in a ponytail. Her tawny eyes are soft edged, matching the warm smile usually lighting up her lips. Her fair skin is soft and youthful.");
 	output("\n\nHer rump, like that of any centauress, is sizably huge. Even though her hem is long, it does nothing to cover it up, leaving her puffy-lipped equine pussy openly exposed. She doesn't seem self-conscious about it, holding her human and tauric halves to different standards.");
+	
+	addDisabledButton(0, "Appearance");
 }
 
 public function ainaTalk():void
@@ -566,7 +572,7 @@ public function ainaSexMenu(text:Boolean = true):void
 		clearOutput();
 		showAina();
 		
-		output("...What do you suggest?");
+		output("... What do you suggest?");
 	}
 	
 	clearMenu();
@@ -577,7 +583,7 @@ public function ainaSexMenu(text:Boolean = true):void
 			if(pc.cockThatFits(2000) >= 0)
 			{
 				//Dick too small?
-				if(pc.cockVolume(pc.cockThatFits(2000)) < 4.5)
+				if(pc.cLength(pc.cockThatFits(2000)) < 4.5)
 				{
 					if(pc.cockTotal() == 1) addDisabledButton(0,"Fuck Her","Fuck Her","You're too small for her to notice, really.");
 					else addDisabledButton(0,"Fuck Her","Fuck Her","You're too small to fuck her, and if you have a bigger cock, it's probably too big.");
@@ -591,7 +597,7 @@ public function ainaSexMenu(text:Boolean = true):void
 			if(pc.cockThatFits(2000) >= 0)
 			{
 				//Dick too small?
-				if(pc.cockVolume(pc.cockThatFits(2000)) < 4.5)
+				if(pc.cLength(pc.cockThatFits(2000)) < 4.5)
 				{
 					if(pc.cockTotal() == 1) addDisabledButton(0,"Breed Her","Breed Her","You're too small for her to notice, really.");
 					else addDisabledButton(0,"Breed Her","Breed Her","You're too small to fuck her, and if you have a bigger cock, it's probably too big.");
@@ -602,10 +608,11 @@ public function ainaSexMenu(text:Boolean = true):void
 		}
 	}
 	else addDisabledButton(0,"Fuck Her","Fuck Her","You need a penis in order to do this.");
-	addButton(1, "Fisting", ainaSexedFisting);
-	if(flags["AINA_TALKED_ABOUT_TOYS"]) addButton(2, "Wand&Anal", ainaSexedWithAnalWand);
+	addButton(1, "Fisting", ainaSexedFisting, undefined, "Fisting", "Give her mare cunt a healthy fisting.");
+	if(flags["AINA_TALKED_ABOUT_TOYS"]) addButton(2, "Wand&Anal", ainaSexedWithAnalWand, undefined, "Wand and Anal", "Put a spell on her anus using her magical toy wands.");
 	else addDisabledButton(2,"Locked","Locked","You have to talk to her about something to unlock this option.");
-	addButton(14, "Back", ainaMenu);
+	
+	if(text) addButton(14, "Back", ainaMenu);
 }
 
 public function ainaSexedFromBehind():void
