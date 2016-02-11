@@ -3433,7 +3433,7 @@ package classes {
 			}
 			//Apply sexy moves before flat boni effects
 			if (hasStatusEffect("Sexy Moves")) temp *= 1.1;
-			if (hasStatusEffect("Mare Musk")) temp += 10;
+			if (hasStatusEffect("Mare Musk")) temp += 2;
 			//Gain Sexy Thinking - gives sexiness bonus equal to (100-IQ-25)/20 + (100-WQ-25)/20
 			if(hasPerk("Sexy Thinking"))
 			{
