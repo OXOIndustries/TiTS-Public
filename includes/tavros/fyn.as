@@ -934,13 +934,12 @@ public function fynSexHikeAndFuck():void
 	//TODO: use Fyn Class to determine cockVolume
 	if(pc.hasVagina() && !pc.isTaur())
 	{	
-		pc.cuntChange(0, 40, true, true, false);
-		//currently broken for null reference pointer, because of ovilium update
-		//pc.loadInCunt();
+		pc.cuntChange(0, chars["FYN"].cockVolume(0), true, true, false);
+		pc.loadInCunt();
 	}
 	else 
 	{
-		pc.buttChange(40, true, true, false);
+		pc.buttChange(chars["FYN"].cockVolume(0), true, true, false);
 		pc.loadInAss();
 	}
 	
@@ -1104,19 +1103,19 @@ public function fynSexDoubleD():void {
 		else output(" bare mound");
 		output(". With one dick inside of your rump and another frotting, your muscular lover rides your [pc.ass]. Ohhhh gooddd.... it really <i>is</i> twice the pleasure! You needily push yourself back against his glorious, pleasure-bringing thrusts, your [pc.thighs] quaking with delight.");
 	}
-	
+
 	//TODO: use Fyn Class to determine cockVolume
 	if (pc.vaginas.length > 1 && !pc.isTaur())
 	{	
-		pc.cuntChange(0, 40, true, true, false);
-		pc.cuntChange(1, 40, true, true, false);
+		pc.cuntChange(0, chars["FYN"].cockVolume(0), true, true, false);
+		pc.cuntChange(1, chars["FYN"].cockVolume(0), true, true, false);
 		//currently broken for null reference pointer, because of ovilium update
 		//pc.loadInCunt();
 	}
 	else 
 	{
-		if(pc.vaginas.length == 1) pc.cuntChange(0, 40, true, true, false);
-		pc.buttChange(40, true, true, false);
+		if(pc.vaginas.length == 1) pc.cuntChange(0, chars["FYN"].cockVolume(0), true, true, false);
+		pc.buttChange(chars["FYN"].cockVolume(0), true, true, false);
 		pc.loadInAss();
 	}
 	
@@ -1239,7 +1238,7 @@ public function fynSexOrcRavish():void {
 	else output(" your bowels with his extremely stiff cock.");
 	
 	//higher cockVolumn than in Fyn class because of orc transform
-	pc.buttChange(150, true, true, false);
+	pc.buttChange(chars["FYN"].cockVolume(0) * 4, true, true, false);
 	pc.loadInAss();
 	
 	output("\n\n<i>“Holding on, slut?”</i> He grunts. You nod, reaching up and clinging to a nearby pillow. Just in time! One powerful thrust of his hips later, and every inch of your parted rump is stuffed with");
@@ -1269,7 +1268,7 @@ public function fynSexOrcRavish():void {
 	output(". Your quaking buttocks clench his girthy orchood, and with a guttural cry, you feel him flexing and shooting pure warmth deep inside of your rectum, filling it with his slick spunk.");
 	
 	output("\n\nWhen he pulls out, you can feel it lewdly rolling out and down your butt-crack and back. You blush furiously, reaching up and spreading your [pc.ass]. Your green-skinned lover takes one look at your parted, cum-smeared pucker and looks riled up again! Grabbing his stiffening rod, he plunges it back into your sloppy hole. Buried once more up to the hilt, he begins slapping enthusiastically against your already worn buttocks. After already cumming, you're overloaded with such <i>intense</i> sensory feedback - it's too much for you to handle! You babble and whimper in delight. Rolling back your eyes and drooling down your cheek, you're a helpless passenger swept up in a storm of pleasure. Your mind is utterly swallowed by the tidal forces, yet your body instinctively bucks back against the rutting beast on its own. You cum <i>again</i>, shivering and twitching, your upper body limp and lower body spasming. It doesn't stop him! He has his way with you until you have came more times than you can count, and at last, <i>he's</i> entirely spent!");
-	pc.buttChange(300, true, true, false);
+	pc.buttChange(chars["FYN"].cockVolume(0) * 6, true, true, false);
 
 	output("\n\nWhen you finally come to, you feel something soft beneath you. Your ass is unmistakably sore; even the slightest wiggle makes you wince! At the same time, it's packed full of gooey warmth. Every inch of your [pc.skinFurScalesNoun] is singing with happiness. You are definitely one well bred slut! A dopey grin crosses your [pc.lips] as you swiftly fall back into slumber.... You're going to need to rest this one off.");
 	output("\n\n<b>A few hours later...</b>");
