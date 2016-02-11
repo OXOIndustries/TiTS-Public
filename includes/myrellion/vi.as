@@ -754,7 +754,7 @@ public function rideVi():void
 	if(flags["VI_PLEASURE_TALKED"] == undefined) output("\n\nWhat was that, some kind of digital orgasm..? You’re surprised, since that shouldn’t be possible, but also");
 	else output("\n\nAfter watching her cute digital orgasm, you’re");
 	output(" rock hard. ");
-	if(pc.isTaur()) output("Grabbing her twitching ivory tail in one hand,");
+	if(!pc.isTaur()) output("Grabbing her twitching ivory tail in one hand,");
 	else output("Putting your front [pc.footOrFeet] on the bed, you prepare yourself to mount the comparatively tiny nurse-droid, then");
 	output(" you plunge [pc.oneCock] into her squirting snatch. Her passage is so warm and slick that it only takes a few seconds before you’re buried in her right up to the hilt.");
 	pc.cockChange();
