@@ -1207,6 +1207,23 @@ public function statusTick():void {
 
 public function variableRoomUpdateCheck():void
 {
+	/* TAVROS STATION */
+	
+	//Residental Deck
+	//Place Aina's NPC flag depending whenever or not the PC meet her + generate her room
+	if(flags["HELPED_AINA"] == undefined) 
+	{ 
+		rooms["RESIDENTIAL DECK 15"].addFlag(GLOBAL.NPC);
+	}
+	else if(flags["HELPED_AINA"] == true) 
+	{ 
+		rooms["RESIDENTIAL DECK 15"].removeFlag(GLOBAL.NPC);
+		unlockAinasRoom();
+	} else {
+		rooms["RESIDENTIAL DECK 15"].removeFlag(GLOBAL.NPC);
+		lockAinasRoom();
+	}
+	
 	/* MHENGA */
 	
 	//Kelly's work - close/open Xenogen Biotech.

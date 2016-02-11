@@ -106,10 +106,15 @@ public function hangarBonus():Boolean
 	if(currentLocation == "LIFT: MERCHANT DECK") {
 		output("\n\n<b>You are currently on the merchant deck.</b>");
 		addButton(7,"Down",liftMove, "TAVROS LIFT");
+		addButton(5,"Up",liftMove, "LIFT: RESIDENTIAL DECK");
 	}
 	else if(currentLocation == "TAVROS LIFT") {
 		output("\n\n<b>You are currently on the hangar deck.</b>");
 		addButton(5,"Up",liftMove, "LIFT: MERCHANT DECK");
+	} 
+	else if(currentLocation == "LIFT: RESIDENTIAL DECK") {
+		output("\n\n<b>You are currently on the residential deck.</b>");
+		addButton(7,"Down",liftMove, "LIFT: MERCHANT DECK");
 	}
 	return false;
 }
@@ -1023,4 +1028,29 @@ public function fixCommsOnTarkus():void
 	processTime(1);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
+}
+
+//adds a Button for the Notice Board on the residential deck on Tavros
+public function tavrosResidentialDeckNoticeBoard():void {
+	addButton(0,"NoticeBoard",displayNoticeBoardRD);
+}
+
+public function displayNoticeBoardRD():void {
+	clearOutput();
+	
+	output("While this public notice board is holographic, it's easy to bring up a digipen and scribble whatever you want on it. There's a section for official notices to deck residents, informing them of maintenance schedules and other important events. The rest is for use by the public; filled with general requests or advertisements.");
+	
+	if(flags["AINA_NOTICE_1_READ"] == undefined) output("\n\n<b>New:</b>");
+	else output("\n\nSeen before:");
+	output(" It appears someone in the western walkway, room 154, is looking for a 'discreet individual' to help them with an unspecified problem. Pretty ambiguous.");
+	
+	if(flags["FYN_NOTICE_1_READ"] == undefined) output("\n\n<b>New:</b>");
+	else output("\n\nSeen before:");
+	output(" There's a notice for 'interested individuals' to visit the eastern walkway for 'lessons', room 112. There seems to have been more to the message, but someone else has placed their own holo notice over it.");
+
+	flags["AINA_NOTICE_1_READ"] = true;
+	flags["FYN_NOTICE_1_READ"] = true;
+	
+	clearMenu();
+	addButton(0,"Back",mainGameMenu);
 }
