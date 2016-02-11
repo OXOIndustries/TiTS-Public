@@ -696,6 +696,7 @@ public function initializeRooms():void
 	rooms["RESIDENTIAL DECK 11"].addFlag(GLOBAL.INDOOR);
 	rooms["RESIDENTIAL DECK 11"].addFlag(GLOBAL.PUBLIC);
 	rooms["RESIDENTIAL DECK 11"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	rooms["RESIDENTIAL DECK 11"].runOnEnter = playFynsDoorScene;
 	
 	//1012 North Walkway 1
 	rooms["RESIDENTIAL DECK 12"] = new RoomClass(this);
@@ -791,7 +792,7 @@ public function initializeRooms():void
 	rooms["RESIDENTIAL DECK 19"].addFlag(GLOBAL.INDOOR);
 	rooms["RESIDENTIAL DECK 19"].addFlag(GLOBAL.PRIVATE);
 	rooms["RESIDENTIAL DECK 19"].addFlag(GLOBAL.NPC);
-	rooms["RESIDENTIAL DECK 19"].runOnEnter = checkFynDoorScene;
+	rooms["RESIDENTIAL DECK 19"].runOnEnter = finsApartmentBonus;
 	
 	//END RESIDENTIAL DECK
 	

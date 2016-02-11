@@ -3372,7 +3372,7 @@ package classes {
 			modifiedDamage.add(shield.baseDamage);
 			
 			//Add bonus to both melee and ranged attacks
-			if (hasStatusEffect("Lightning Moves")) modifiedDamage.multiply(1.1);
+			if (hasStatusEffect("Lightning Moves")) modifiedDamage.multiply(1.05);
 			
 			return modifiedDamage;
 		}
