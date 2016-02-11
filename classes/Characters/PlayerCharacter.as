@@ -44,12 +44,12 @@ package classes.Characters
 				if(cumFrom != null) addBiomass(cumFrom.cumQ());
 				else addBiomass(10);
 			}
-			if(!cumFrom.hasStatusEffect("Ovilium Effect") && hasStatusEffect("Ovilium"))
-			{
-				kGAMECLASS.oviliumEggBump(cumFrom, vagIndex);
-			}
 			if (cumFrom != null)
 			{
+				if(!cumFrom.hasStatusEffect("Ovilium Effect") && hasStatusEffect("Ovilium"))
+				{
+					kGAMECLASS.oviliumEggBump(cumFrom, vagIndex);
+				}
 				return this.tryKnockUp(cumFrom, vagIndex);
 			}
 			
