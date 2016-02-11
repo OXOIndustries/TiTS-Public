@@ -1415,6 +1415,7 @@ public function variableRoomUpdateCheck():void
 		else rooms["735"].removeFlag(GLOBAL.NPC);
 	}
 	// Steph Myrellion shit
+	/*
 	if (flags["STEPH_WATCHED"] == undefined)
 	{
 		rooms["1F22"].removeFlag(GLOBAL.NPC);
@@ -1430,6 +1431,7 @@ public function variableRoomUpdateCheck():void
 			rooms["1F22"].removeFlag(GLOBAL.NPC);
 		}
 	}
+	*/
 	// Doc McAllister
 	if (mcallisterIsIn())
 	{
