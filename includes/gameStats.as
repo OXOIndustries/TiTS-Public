@@ -747,6 +747,7 @@ public function statisticsScreen(showID:String = "All"):void
 		if(flags["TOOK_DELILAHS_BUTTGINITY"] != undefined) totalVirginitiesTaken++;
 		if(flags["TOOK_PRINCESS_BUTTGINITY"] != undefined) totalVirginitiesTaken++;
 		if(flags["ANZHELA_ANALED"] != undefined) totalVirginitiesTaken++;
+		if(!ainaIsVirgin()) totalVirginitiesTaken++;
 		if(sleepingPartner != "" || totalVirginitiesTaken > 0)
 		{
 			output2("\n<b><u>Sexploration</u></b>");
@@ -2352,6 +2353,40 @@ public function displayEncounterLog(showID:String = "All"):void
 					output2("\n<b>* Nahri:</b>");
 					if(9999 == 1) output2(" Met her");
 					else output2(" Heard of her");
+				}
+				variousCount++;
+			}
+			// Residential Deck Stuff!
+			if(flags["AINA_DAY_MET"] != undefined || flags["SEEN_FYN"] == true)
+			{
+				output2("\n<b><u>Residential Deck</u></b>");
+				// Aina
+				if(flags["AINA_DAY_MET"] != undefined)
+				{
+					if(flags["MET_AINA"] == undefined) output2("\n<b>* Centaur Girl:</b> Seen her");
+					else
+					{
+						output2("\n<b>* Aina:</b> Met her");
+						if(flags["HELPED_AINA"] == true)
+						{
+							output2(", Helped");
+							if(flags["AINA_WAND_FIXED"] == true) output2(" fix her sex-toy");
+							else output2(" her");
+						}
+						if(ainaIsInHeat()) output2(", She is in heat");
+						if(flags["AINA_SEXED"] != undefined) output2("\n<b>* Aina, Times Sexed: </b>" + flags["AINA_SEXED"]);
+						if(flags["AINA_SEXED_WITH_TOY"] != undefined) output2("\n<b>* Aina, Times Fucked with Anal Wand: </b>" + flags["AINA_SEXED_WITH_TOY"]);
+					}
+				}
+				// Fyn
+				if(flags["SEEN_FYN"] == true)
+				{
+					if(flags["MET_FYN"] == undefined) output2("\n<b>* Shirtless Man:</b> Seen him");
+					else
+					{
+						output2("\n<b>* Fyn:</b> Met him");
+						if(flags["FYN_SEXED"] != undefined) output2("\n<b>* Fyn, Times Sexed: </b>" + flags["FYN_SEXED"]);
+					}
 				}
 				variousCount++;
 			}

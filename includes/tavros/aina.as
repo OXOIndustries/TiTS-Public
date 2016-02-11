@@ -21,9 +21,10 @@
 
 public function showAina(nude:Boolean = false):void
 {
-	showName("\nAINA");
-	showBust("AINA");
-	if(nude) showBust("AINA_NUDE");
+	if(!flags["MET_AINA"]) showName("CENTAUR\nGIRL");
+	else showName("\nAINA");
+	if(!nude) showBust("AINA");
+	else showBust("AINA_NUDE");
 	author("JimThermic");
 }
 
@@ -75,7 +76,7 @@ public function lockAinasRoom():void {
 //approach Aina in the West Walkway of the residental deck(#15)
 public function approachAinaOnTheWalkway():void
 {
-	showAina();
+	showBust("AINA");
 	
 	//set basic flags
 	flags["AINA_DAY_MET"] = days;
@@ -103,10 +104,10 @@ public function approachAinaOnTheWalkway():void
 	output("\n\nNow that you're standing close to her, you swear you can smell a potent, feminine musk. With each flick of her tail, it becomes that much more intense. It hotly surges through your veins and down into your loins, making your");
 
 	if(!pc.hasCock() && !pc.hasVagina()) output(" hips shiver.");
-    else if(pc.hasCock() && !pc.hasVagina()) output(" [pc.cocks] pointedly stiffen.");
-    else if(!pc.hasCock() && pc.hasVagina()) output(" [pc.pussies] ache.");
-    else output(" [pc.cocks] pointedly stiffen and your [pc.pussies] ache.");
-
+	else if(pc.hasCock() && !pc.hasVagina()) output(" [pc.cocks] pointedly stiffen.");
+	else if(!pc.hasCock() && pc.hasVagina()) output(" [pc.pussies] ache.");
+	else output(" [pc.cocks] pointedly stiffen and your [pc.pussies] ache.");
+	
 	output("\n\nWhat do you do?");
 	
 	processTime(2);
@@ -143,6 +144,7 @@ public function helpAina():void
 	currentLocation = "RESIDENTIAL DECK 18";
 	
 	clearOutput();
+	flags["MET_AINA"] = true;
 	showAina();
 	
 	output("The chestnut-covered centauress claps her hands together. There's a bright, relieved smile on her face, and her equine ears flicker. <i>“Thank you! I'm sorry to just ask you out of nowhere, but I'm really in a bind here,”</i> she answers.");
@@ -161,14 +163,15 @@ public function helpAina():void
 	output("\n\n<i>“... Um, I dropped something under here. Well, more to the point, it fell and rolled under. I can't reach it, it's too low...”</i> Aina explains, squirming on the spot. Whatever it is, it seems important.");
 	
 	if(pc.isTaur())
-	{	
-		if(pc.isBimbo()) output("\n\n<i>“Oh wow, sounds like quite a pickle! ");
-		else if(pc.isTreated()) output("\n\n<i>“Humph! So you ask the big, tough " + pc.mf("guy", "girl") + " to handle it? ");
-		else if(pc.isNice()) output("\n\n<i>“I'm sorry, I don't think I can either. ");
-		else if(pc.isMischievous()) output("\n\n<i>“We're two peas in a pod, hon. ");
-		else output("\n\n<i>“So you ask another taur? Smart.");
+	{
+		output("\n\n<i>“");
+		if(pc.isBimbo()) output("Oh wow, sounds like quite a pickle!");
+		else if(pc.isTreated()) output("Humph! So you ask the big, tough " + pc.mf("guy", "girl") + " to handle it?");
+		else if(pc.isNice()) output("I'm sorry, I don't think I can either.");
+		else if(pc.isMischievous()) output("We're two peas in a pod, hon.");
+		else output("So you ask another taur? Smart.");
 		
-		output(" I'm kind of in the same predicament you are...”</i> You look around and spot a broom cupboard. <i>“...Got any long objects in there? We might be able to use one to fish it out.”</i>");
+		output(" I'm kind of in the same predicament you are...”</i> You look around and spot a broom cupboard. <i>“... Got any long objects in there? We might be able to use one to fish it out.”</i>");
 		output("\n\n<i>“Oh, of course!”</i> Aina facepalms, looking genuinely embarrassed. <i>“... Why didn't I think of that?”</i>");
 		output("\n\nYou go and get a broom from the cupboard, particularly long and taur-friendly. Hooking it under the table, you fish out the object. As it rolls into view, you pointedly blink. From its dome-like head and the words 'Levi-wand' on the side, it's safe to assume it's a sex toy.");
 		output("\n\nThe blonde-haired centauress leans over and picks it up, her face turning several shades redder than before. ");
@@ -234,12 +237,7 @@ public function helpAinaWithSex():void
 	
 	output("What do you suggest?");
 	
-	clearMenu();
-	
-	if((pc.hasCock() && pc.biggestCockLength() >= 5) && !pc.isTaur()) addButton(0, "Fuck Her", ainaSexedFromBehind);
-	else addDisabledButton(0, "Fuck Her", "Fuck Her", "You need a cock to do this and not be a taur.");
-	
-	addButton(1, "Fisting", ainaSexedFisting);
+	ainaSexMenu(false);
 }
 
 //PC leaves Aina's apartment without helping her. 
@@ -333,21 +331,23 @@ public function ainaMenu():void
 	clearOutput();
 	showAina();
 		
-	if(ainaIsInHeat()) {
+	if(ainaIsInHeat())
+	{
 		output("Aina waves and clops over to you. She looks visibly flushed as she brushes back a honey-gold bang. <i>“Hi there, [pc.short]. Sorry if I'm a little scatterbrained right now. I'm, um,");
-	
-		if(ainaMetThisCycle()) output(" still in heat.”</i>");
-		else output(" in heat again.”</i>");
+		if(ainaMetThisCycle()) output(" still in heat.");
+		else output(" in heat again.");
+		output("”</i>");
 		
 		output("\n\nYou can definitely smell it! Every time her equine tail flicks, you're hit with a fresh wave of her musky mare-scent. The moment you get a whiff of her juicy cunt, you feel the instinct to <i>breed</i> her like crazy.");
 	}
-	else {
+	else
+	{
 		output("Aina warmly waves and clops over to you, brushing back a honey-gold bang. <i>“Hey there!");
-		
 		if(ainaMetThisCycle() && ainaLastMetInHeat()) output(" Finally out of heat, thank goodness.");
 		else output(" Always good to see your face around here.");
+		output("”</i>");
 		
-		output("\n\n<i>“I just finished brewing up a pot of tea — did you want some?”</i>");
+		output("\n\n<i>“I just finished brewing up a pot of tea - did you want some?”</i>");
 	}
 	
 	//Upate the last time Aina was met
@@ -431,10 +431,10 @@ public function ainaTalksAboutBotany():void
 	output("You ask Aina about her interest in botany. She grins and trots over to a sealed off room, pressing her pale hand against a palm-pad. With a whoosh, the door opens, revealing a separate indoor greenhouse. Rows and rows of vibrant plant life line the shelves. As you approach, a symphony of floral scents hit your senses. You reel in olfactory bliss!");
 	output("\n\n<i>“This is my growing area. Half are my class projects, while the rest are for pleasure, selling, or food. I've got cuttings from all sorts of planets, even Earth! I've got some lovely lavender and coriander, not to mention quite a few teas.”</i>");
 	output("\n\nShe picks some herbal leaves and hands them to you. Crisp, strong, and nostalgic; it reminds you of your home on Terra. <i>“... It smells so fresh. Nothing like the replicated stuff.”</i>");
-	output("\n\nAina screws up her nose. <i>“Oh, eugh, no! Replicator food is the <i>worst</i>. I mean, if I had to live on it, I would, but nothing beats authentic, grown food. Even synthetic soil alters the taste. I try to source real soil for growing and use water with natural bacteria from the plant's home planet. Every little thing makes a difference, you know?”</i>");
+	output("\n\nAina screws up her nose. <i>“Oh, eugh, no! Replicator food is the </i>worst<i>. I mean, if I had to live on it, I would, but nothing beats authentic, grown food. Even synthetic soil alters the taste. I try to source real soil for growing and use water with natural bacteria from the plant's home planet. Every little thing makes a difference, you know?”</i>");
 	output("\n\n<i>“Sounds intricate,”</i> you admit, looking at the aromatic herbs. Such a small thing takes so much work to replicate in space. Food with these must taste amazing. <i>“So, is the smell and taste why you love botany?”</i>");
 	output("\n\n<i>“That's part of it. I grew up on Vaernes. It's a core world, deep in the Rosette Nebula,”</i> Aina stroked a leafy plant, <i>“Most of the planet is covered in continental cities. Half the food supply is imported from a sister planet. We went on a class trip when I was in primary school. I'd never seen so much open space; so far and so wide, just filled with beautiful, growing plants! They were just Ma'ora beans, but it moved me.”</i>");
-	output("\n\n<i>“One of the farmers gave me a taste. They were so fresh and <i>crisp</i>. It felt like magic. From then, I knew I wanted to be a botanist; to fill worlds with flowers and edible foods. The universe has so much to offer, you know? Stuff we're still finding every day. Combinations and spices, from the sun and the rain, things that we'd never think to add. That's why I love botany.”</i>");
+	output("\n\n<i>“One of the farmers gave me a taste. They were so fresh and </i>crisp<i>. It felt like magic. From then, I knew I wanted to be a botanist; to fill worlds with flowers and edible foods. The universe has so much to offer, you know? Stuff we're still finding every day. Combinations and spices, from the sun and the rain, things that we'd never think to add. That's why I love botany.”</i>");
 	
 	processTime(5);
 	ainaTalkNavigation(ainaTalksAboutBotany);
@@ -457,9 +457,9 @@ public function ainaTalksAboutCentaurs():void
 	output("\n\nSo why bother becoming a taur, you ask?");
 	output("\n\n<i>“It might sound a little silly, but I like to think I've always been a centaur, deep down. I've always loved natural things; plants, running, open spaces. A real problem when you live on a planet covered in giga-cities.”</i>");
 	output("\n\n<i>“I first found out about centaurs when I was playing a fantasy game a friend leant me in high school. It had this beautiful centaur mare in it, and even though she was a bit character, I just found myself identifying so much with her and her species. I read up on the myths and fiction... I ended up visiting centaur extranet sites a lot.”</i>");
-	output("\n\n<i>“It got so bad that my parents caught me, um, masturbating to stallion porn...”</i> Aina blushes, squirming on the spot. <i>“... I-I was mortified. There I was, legs spread and fingers deep, touching myself to a life-size horseman holo. I was <i>so</i> grounded it wasn't funny. It didn't stop me. I ended up on virtual boards, talking to others who'd gone centaur and never looked back. They gave me the confidence to make the change.”</i>");
+	output("\n\n<i>“It got so bad that my parents caught me, um, masturbating to stallion porn...”</i> Aina blushes, squirming on the spot. <i>“... I-I was mortified. There I was, legs spread and fingers deep, touching myself to a life-size horseman holo. I was </i>so<i> grounded it wasn't funny. It didn't stop me. I ended up on virtual boards, talking to others who'd gone centaur and never looked back. They gave me the confidence to make the change.”</i>");
 	output("\n\n<i>“I walked in, told my parents it was happening one way or another, and that was that. There was shouting, but I stood my ground. They said they weren't paying for it, so I got a part-time job at McChow Hut. It took me three years to save up the money. Sometimes I thought about just taking out a loan, but I was too scared of defaulting.”</i>");
-	output("\n\n<i>“Anyway, that's how I became a centaur—selling fast terrible cheeseburgers and watered down soft drink. It gave me a new appreciation for home grown food, at least.”</i>");
+	output("\n\n<i>“Anyway, that's how I became a centaur - selling fast terrible cheeseburgers and watered down soft drinks. It gave me a new appreciation for home grown food, at least.”</i>");
 	
 	processTime(5);
 	ainaTalkNavigation(ainaTalksAboutCentaurs);
@@ -473,10 +473,11 @@ public function ainaTalksAboutMating():void
 	output("You ask Aina about her frequent bouts of estrus. It seems pretty problematic, by the looks of things.");
 	output("\n\nThe honey-blonde student shakes her head. <i>“O-oh no, not really! I mean, it's just a part of nature, right? The urge to mate exists in humans, too, and especially species like ausar and leithans. It's just nature's way of saying 'Mate already, girl!' I-I mean, it's pretty manageable, especially since you");
 	
-	if(flags["AINA_WAND_FIXED"] != true) output(" came and helped me out.”</i>");
-	else output(" fixed my toy.”</i>");
+	if(flags["AINA_WAND_FIXED"] != true) output(" came and helped me out.");
+	else output(" fixed my toy.");
+	output("”</i>");
 	
-	output("\n\n<i>“If anything, when I'm in heat and my needs are, you know, met, I feel this dopey, absolutely happy feeling... it's a bit hard to describe? Like what I'm doing is <i>so</i> right. So long as I'm able to get off, I'm good to still do most things... though I find myself grinding against things a <i>lot</i> more often,”</i> Aina blushes.");
+	output("\n\n<i>“If anything, when I'm in heat and my needs are, you know, met, I feel this dopey, absolutely happy feeling... it's a bit hard to describe? Like what I'm doing is </i>so<i> right. So long as I'm able to get off, I'm good to still do most things... though I find myself grinding against things a </i>lot<i> more often,”</i> Aina blushes.");
 
 	if(!ainaIsVirgin()) output(" <i>“Though, you know, I'd prefer to be grinding up against, you know, you.”</i>");
 	
@@ -491,19 +492,19 @@ public function ainaTalksAboutACashing():void
 	
 	output("You spot a shelf in Aina's apartment cluttered with strangely random nick-knacks. There's a little toy ausar soldier, an ancient-looking flint and steel lighter, a blue bandanna... it all seems completely out of place in her otherwise neat, stylish apartment.");
 	
-	if(pc.isBimbo()) output("\n\n<i>“Oh hey, what's with those thingy-things over there?”</i> ");
-	else if(pc.isBro()) output("\n\n<i>“Yo, babe. What's with the crap on the shelf?”</i> ");
+	if(pc.isBimbo()) output("\n\n<i>“Oh hey, what's with those thingy-things over there?”</i>");
+	else if(pc.isBro()) output("\n\n<i>“Yo, babe. What's with the crap on the shelf?”</i>");
 	else output("\n\n<i>“That's a strange bunch of stuff on that shelf. What's with it?”</i>");
 	
 	output(" you ask, gesturing for emphasis.");
 	output("\n\nThe centauress looks over at the shelf, then turns back, golden eyes glinting excitedly. <i>“Oh, you're asking about my swag? I've collected it from all over the galaxy!”</i>");
 	output("\n\n<i>“Your... swag?”</i>");
 	output("\n\n<i>“Yeah, my swag! It's from Astrocaching. It's a hobby of mine. Do you know it?”</i>");
-	output("\n\nYou shake your head. Aina pulls a small palm-size device and shows it to you. With a click, a three-dimensional representation of the station floats above the screen, with a green dot showing her position. There's also a few smaller dots in blue. It's a CPS—a cosmos positioning system.");
+	output("\n\nYou shake your head. Aina pulls a small palm-size device and shows it to you. With a click, a three-dimensional representation of the station floats above the screen, with a green dot showing her position. There's also a few smaller dots in blue. It's a CPS - a cosmos positioning system.");
 	output("\n\n<i>“Astrocaching is a real-world, galactic treasure hunting game using SPS devices, dating back to Terra. It's loads of fun. Basically, people leave astrocaches around the galaxy, then drop some coordinates on the extranet. People navigate there and attempt to find the nearby cache nearby. It's just like being a real treasure hunter!”</i>");
 	output("\n\n<i>“When you get there, there's always a digital logbook inside, where you sign down your name. There's also swag; things people have left behind in the cache. You can take anything you want, but you've got to leave something in its place of equal value. See, I found that stuff in the caches I opened and took them, but I left something small in trade for the next person to take.”</i>");
 	output("\n\nYou ask her if the blue dots on Tavros are astrocache coordinates. The centauress nods and touches one. Suddenly a small screen pops up, with not only the general area the cache is hidden, but its type, size, and difficulty. This one appears to be three stars.");
-	output("\n\n<i>“Some are harder than others. I've only got as high as two stars. I hear you can find some neat swag in the bigger ones. There's ones as small as a bottle, others large as a shipping container. You don't really do it for the swag, though, but more for the adventure, you know? Sometimes it takes hours to find a cache, and you find someone's hidden it as a fake log. Other times, there's riddles to find caches, or ones that lead to <i>other</i> caches.”</i>");
+	output("\n\n<i>“Some are harder than others. I've only got as high as two stars. I hear you can find some neat swag in the bigger ones. There's ones as small as a bottle, others large as a shipping container. You don't really do it for the swag, though, but more for the adventure, you know? Sometimes it takes hours to find a cache, and you find someone's hidden it as a fake log. Other times, there's riddles to find caches, or ones that lead to </i>other<i> caches.”</i>");
 	output("\n\n<i>“Have you ever been on a treasure hunt like that?”</i>");
 	output("\n\n<i>“Well, yeah, you could sort of say that,”</i> you cough.");
 	
@@ -518,14 +519,14 @@ public function ainaTalksAboutSexToys():void
 	
 	output("You notice Aina's collection of sex toys in an open drawer. Most of them are clitoral wands, though there's a few anal toys as well. Aina notices where your gaze has gone and her cheeks flush.");
 	output("\n\n<i>“That's... that's not supposed to be open,”</i> she stammers out, trotting quickly over to the drawer. Before she can shut it, you ask her about all her toys. The centauress pauses and pulls out one of the butt-plugs, nervously playing with it in her hands. Why has she got so many of them?");
-	output("\n\n<i>“Well, it's been really tough to find a good one. I'm too nervous to try the centaur-specific ones... you know, the ones that float with a mind of their own? That's way too scary, like, what if it goes out of control? It's kind of like having a <i>ghost</i> floating around.”</i>");
+	output("\n\n<i>“Well, it's been really tough to find a good one. I'm too nervous to try the centaur-specific ones... you know, the ones that float with a mind of their own? That's way too scary, like, what if it goes out of control? It's kind of like having a </i>ghost<i> floating around.”</i>");
 	output("\n\n<i>“I'd rather do it myself or have someone else involved, you know?”</i>");
 	output("\n\nYou ask her about the butt-plugs, anal dildoes and beads she owns. Some of the butt-plugs are the size of footballs! Does she enjoy that sort of thing?");
 	output("\n\nAina squirms and gives a nervous nod. <i>“Yeah, I mean, I didn't want to give up my virginity to a toy, so I started experimenting in... you know, other areas. I really like the sensation of being filled.”</i>");
-	output("\n\n<i>“Problem is, ever since I became a centaur, I can take in a lot back there. It used to be a lot easier—a few fingers would be plenty.”</i>");
+	output("\n\n<i>“Problem is, ever since I became a centaur, I can take in a lot back there. It used to be a lot easier - a few fingers would be plenty.”</i>");
 	output("\n\n<i>“Now, I need really big stuff like this. It's not all bad though. Some of them vibrate, which actually helps with my studying.”</i>");
-	output("\n\n<i>“Which one's your favorite?”</i> you ask. Aina brushes back one of her bangs and then shly picks up a translucent toy with both hands. The eighteen inch see-through horse cock takes both hands to hold, and even then it's spilling out of her grasp. Even though it's transparent, every vein and groove of the animalistic shaft is realistic, with the exception of the flared and round suction cup at its base.");
-	output("\n\n<i>“This one, definitely. It's hands free, though I've only used it, well, in my rump. Once I put it between my breasts, which was kind of nice. After cleaning it, of course,”</i> Aina quickly adds. The saleswoman said it can be slipped into a strap-on belt, which came with it. I prefer to just slap it against the shower wall and use it. It's easy to clean up after I get all messy.”</i> She blushes. <i>“Good thing it's waterproof.”</i>");
+	output("\n\n<i>“Which one's your favorite?”</i> you ask. Aina brushes back one of her bangs and then shyly picks up a translucent toy with both hands. The eighteen inch see-through horse cock takes both hands to hold, and even then it's spilling out of her grasp. Even though it's transparent, every vein and groove of the animalistic shaft is realistic, with the exception of the flared and round suction cup at its base.");
+	output("\n\n<i>“This one, definitely. It's hands free, though I've only used it, well, in my rump. Once I put it between my breasts, which was kind of nice. After cleaning it, of course,”</i> Aina quickly adds. <i>“The saleswoman said it can be slipped into a strap-on belt, which came with it. I prefer to just slap it against the shower wall and use it. It's easy to clean up after I get all messy.”</i> She blushes. <i>“Good thing it's waterproof.”</i>");
 	
 	processTime(5);
 	
@@ -538,8 +539,11 @@ public function ainaShower():void
 {
 	clearOutput();
 
-	if (flags["AINA_SHOWER_USED"] == undefined) output("You ask Aina if you can use her shower, and she nods enthusiastically.\n\n<i>“Sure! Just on the right.”</i>\n\n");
-	
+	if (flags["AINA_SHOWER_USED"] == undefined)
+	{
+		output("You ask Aina if you can use her shower, and she nods enthusiastically.\n\n<i>“Sure! Just on the right.”</i>\n\n");
+		flags["AINA_SHOWER_USED"] = true;
+	}
 	output("You hop into the centauress' impressively large shower to clean yourself off. Rivulets of water run down your [pc.skinFurScales]. You rub soap all over your body and then clean it off, leaving you perfectly spotless.");
 	output("\n\nHopping out, you let out a happy sigh, rubbing a towel over your [pc.hair]. You're feeling refreshed in so many ways!");
 	output("\n\n<b>You are now clean!</b>");
@@ -552,21 +556,50 @@ public function ainaShower():void
 
 public function applyAinaMareMuskEffect():void 
 {
-	if(!pc.hasStatusEffect("Mare Musk")) pc.createStatusEffect("Mare Musk",0,0,0,0,false,"Icon_Smelly","You smell like a horny mare! The potent female scent is sure to drive others wild—though it gets you a little worked up as well.",false,0);
+	if(!pc.hasStatusEffect("Mare Musk")) pc.createStatusEffect("Mare Musk",0,0,0,0,false,"Icon_Smelly","You smell like a horny mare! The potent female scent is sure to drive others wild - though it gets you a little worked up as well.",false,0);
 }
 
-public function ainaSexMenu():void
+public function ainaSexMenu(text:Boolean = true):void
 {
-	clearOutput();
-	showAina();
-	
-	output("...What do you suggest?");
+	if(text)
+	{
+		clearOutput();
+		showAina();
+		
+		output("...What do you suggest?");
+	}
 	
 	clearMenu();
 	if(pc.hasCock())
 	{
-		if(pc.cockThatFits(2000) >= 0) addButton(0, "Fuck Her", ainaSexedFromBehind);
-		else addDisabledButton(0,"Fuck Her","Fuck Her","<b>You're too big</b> - even for a centaur!");
+		if(!pc.isTaur())
+		{
+			if(pc.cockThatFits(2000) >= 0)
+			{
+				//Dick too small?
+				if(pc.cockVolume(pc.cockThatFits(2000)) < 4.5)
+				{
+					if(pc.cockTotal() == 1) addDisabledButton(0,"Fuck Her","Fuck Her","You're too small for her to notice, really.");
+					else addDisabledButton(0,"Fuck Her","Fuck Her","You're too small to fuck her, and if you have a bigger cock, it's probably too big.");
+				}
+				else addButton(0, "Fuck Her", ainaSexedFromBehind,undefined,"Fuck Her","Put your Tab A into her Slot B.");
+			}
+			else addDisabledButton(0,"Fuck Her","Fuck Her","<b>You're too big</b> - even for a centaur!");
+		}
+		else
+		{
+			if(pc.cockThatFits(2000) >= 0)
+			{
+				//Dick too small?
+				if(pc.cockVolume(pc.cockThatFits(2000)) < 4.5)
+				{
+					if(pc.cockTotal() == 1) addDisabledButton(0,"Breed Her","Breed Her","You're too small for her to notice, really.");
+					else addDisabledButton(0,"Breed Her","Breed Her","You're too small to fuck her, and if you have a bigger cock, it's probably too big.");
+				}
+				else addButton(0,"Breed Her",breedAinaAsATaur,undefined,"Breed Her","Show her what real sex with a real 'taur is like!");
+			}
+			else addDisabledButton(0,"Breed Her","Breed Her","You need a penis that will actually fit inside her for this. You're too big, even for her capacious cunt.");
+		}
 	}
 	else addDisabledButton(0,"Fuck Her","Fuck Her","You need a penis in order to do this.");
 	addButton(1, "Fisting", ainaSexedFisting);
@@ -586,7 +619,7 @@ public function ainaSexedFromBehind():void
 		
 		if(ainaIsVirgin()) 
 		{
-			output("\n\n<i>“Ruh-really? But I've never been with anyone but a toy!”</i> Aina exclaims. As much as she's blushing, she's also squirming on the spot. Eventually, she can't handle it anymore, giving into her lust, <i>“...Okay, you can mount me, but be gentle, okay?”</i>");
+			output("\n\n<i>“Ruh-really? But I've never been with anyone but a toy!”</i> Aina exclaims. As much as she's blushing, she's also squirming on the spot. Eventually, she can't handle it anymore, giving into her lust, <i>“... Okay, you can mount me, but be gentle, okay?”</i>");
 		
 			if(pc.isNude()) output("\n\nWith you already naked and ready, ");
 			else output("\n\nAs you strip off,");
@@ -598,11 +631,12 @@ public function ainaSexedFromBehind():void
 		{
 			output("\n\n<i>“I suppose we've done");
 			
-			if(flags["AINA_SEXED"] >= 5) output(" it so many times, you're practically my mate now...”</i> ");
-			else output(" it before, another time wouldn't hurt...”</i> ");
+			if(flags["AINA_SEXED"] >= 5) output(" it so many times, you're practically my mate now...");
+			else output(" it before, another time wouldn't hurt...");
+			output("”</i> ");
 			
 			if(pc.isCrotchGarbed()) output("You strip off as she");
-			else output(" She");
+			else output("She");
 			
 			output(" turns her big backside towards you, pointedly lifting her tail. Her huge horse-like sex is extremely puffy and wet, flaring invitingly at you. As you're hit with a fresh wave of her potent musky scent, you reel with delight and your loins stiffen with primitive desire.");
 		}
@@ -611,10 +645,11 @@ public function ainaSexedFromBehind():void
 	else 
 	{
 		output("You move over and stroke Aina's shapely backside, suggesting that maybe the two of you could mate again? The honey-blonde centauress blushes, not rejecting your advances. If anything, her equine tail is swishing a little excitedly, and you can smell the slightest stirring of her feminine scent in the air; is she getting wet from just you touching her?");
-		output("\n\n<i>“U-um, I suppose we've done it");
+		output("\n\n<i>“U-um, I suppose we've done");
 		
-		if(flags["AINA_SEXED"] >= 5) output(" it so many times, you're practically my mate...”</i> ");
-		else output(" it before, another time wouldn't hurt...”</i> ");
+		if(flags["AINA_SEXED"] >= 5) output(" it so many times, you're practically my mate...");
+		else output(" it before, another time wouldn't hurt...");
+		output("”</i> ");
 		
 		output(" Aina breathily exclaims, clasping her hands to her chest. Timidly, she turns her big backside towards you, and slowly lifts her tail. You grin as you see her huge horse-like sex, already looking a little puffy and wet. Her mare sex flares, whumphing you with a wave of her potent pheromones. Your [pc.cocksLight] immediately stiffen");
 		if(pc.cocks.length == 1) output("s");
@@ -622,12 +657,12 @@ public function ainaSexedFromBehind():void
 		else output(" in response, eager to breed.");
 	}
 	
-	output("\n\nHungry for her taste, you lean forward and bury your face between her sloppy folds, lapping at her wetness with your tongue. As she shivers and whinnies, you feel her exquisitely sweet, tangy taste roll across your tastebuds — she's so intoxicating! You bury your nose further, deeper, hungry for her centaur juice. Even as it gushes out and excitedly floods all over your cheeks and chin, you can't get enough!");
+	output("\n\nHungry for her taste, you lean forward and bury your face between her sloppy folds, lapping at her wetness with your tongue. As she shivers and whinnies, you feel her exquisitely sweet, tangy taste roll across your tastebuds - she's so intoxicating! You bury your nose further, deeper, hungry for her centaur juice. Even as it gushes out and excitedly floods all over your cheeks and chin, you can't get enough!");
 	
-	if(ainaIsVirgin()) output("\n\n<i>“I've never had someone's face down there~!”</i> the inexperienced centauress gasps, her equine tail swishing wildly about.");
-	else output("\n\n<i>“Th-that feels so good~!”</i> the deflowered centauress gasps, her mare tail swishing wildly about.");
+	if(ainaIsVirgin()) output("\n\n<i>“I've never had someone's face down there!”</i> the inexperienced centauress gasps, her equine tail swishing wildly about.");
+	else output("\n\n<i>“Th-that feels so good!”</i> the deflowered centauress gasps, her mare tail swishing wildly about.");
 	
-	output(" Not only is her potent pussy juice streaming down your chin and ");
+	output(" Not only is her potent pussy juice streaming down your chin and");
 	
 	if(!pc.hasBreasts()) output(" chest");
 	else output(" between your breasts");
@@ -641,7 +676,7 @@ public function ainaSexedFromBehind():void
 	
 	output("\n\nGrabbing your [pc.biggestCock], you line it up with her silky black cunt lips, then give a forceful thrust.");
 	
-	if(ainaIsVirgin()) output(" There's a slight resistance, then a sudden give, and the virgin centauress gives a tiny squeal. As you slide into her unsullied depths, she gives a shivering moan, taking her very first cock! ");
+	if(ainaIsVirgin()) output(" There's a slight resistance, then a sudden give, and the virgin centauress gives a tiny squeal. As you slide into her unsullied depths, she gives a shivering moan, taking her very first cock!");
 	else output(" Aina's cunt is so wet, warm, and welcoming!");
 	
 	output(" You're completely engulfed inside of her in no time at all. Her body-temperature is much higher than a human's; it feels like you're going to melt just being sheathed inside her flaring mare snatch.");
@@ -653,7 +688,7 @@ public function ainaSexedFromBehind():void
 	var x:int = pc.cockThatFits(2000);
 	if(x < 0) x = pc.smallestCockIndex();
 	output(" Aina breathily gasps. She presses herself back against you, needily and insistently, her sizable rump rubbing against your lower half. Linked by your [pc.cock " + x + "], streams of her pussy-juice run out of her honeypot. With each slapping thrust of your hips, there's a lewd squelching noise, and even more of her musky wetness dribbles down between her quaking thighs. You grab onto her swishing horse-tail, using it to hold on against her bucking thrusts. This lusty centauress is quite the ride!");
-	output("\n\nAs you slap against her equine ass, you look up to see Aina breathily stripping off her modest sweater and bra and tossing them aside. With obvious inexperience, she fondles her now-naked breasts, pinching at her pointed peaks. You grin and slap your hips against her lower half—pressing your cockhead deeper inside her sloppy quim—and she lets out a sweet-lipped cry. Her fondling becomes rougher and needier, giving you a delightful show as you thoroughly fuck her, twitching tail in hand!");
+	output("\n\nAs you slap against her equine ass, you look up to see Aina breathily stripping off her modest sweater and bra and tossing them aside. With obvious inexperience, she fondles her now-naked breasts, pinching at her pointed peaks. You grin and slap your hips against her lower half - pressing your cockhead deeper inside her sloppy quim - and she lets out a sweet-lipped cry. Her fondling becomes rougher and needier, giving you a delightful show as you thoroughly fuck her, twitching tail in hand!");
 	output("\n\nWhen she cums, she lets out a loud whinny and her slippery cunt clamps down HARD on your cock, a series of muscular rings squeezing your length from your [pc.knot " + x + "] to your crown. As she whimpers and trembles, hot girl-juice sprays your pulsing head from inside her sloppy honeypot. The pleasurable pressure bastes and batters your twitching tip, setting you off in turn. With a final primal thrust, you shoot your [pc.cumVisc] sperm into her equine womb,");
 	
 	if(pc.cumQ() < 100) output(" lightly bathing her eggs in your spurting seed.");
@@ -687,8 +722,8 @@ public function ainaSexedFromBehind():void
 	} 
 	else
 	{
-	output("\n\n<i>“That was amazing... just like last time...”</i> Aina blushes, absentmindedly tucking a messed-up lock behind her ear. <i>“Um, you know, if you're ever in Res Deck again, feel free to call around. I always love having you over... whether we're talking or, you know, doing other things....”</i>");
-	output("\n\nYou nod and grab your things. Your whole body reeks of mare musk! You're pretty sure anyone within a mile could smell it.");
+		output("\n\n<i>“That was amazing... just like last time...”</i> Aina blushes, absentmindedly tucking a messed-up lock behind her ear. <i>“Um, you know, if you're ever in Res Deck again, feel free to call around. I always love having you over... whether we're talking or, you know, doing other things....”</i>");
+		output("\n\nYou nod and grab your things. Your whole body reeks of mare musk! You're pretty sure anyone within a mile could smell it.");
 	}
 	
 	ainaSexed(1);
@@ -716,7 +751,7 @@ public function ainaSexedFisting():void
 	else output(" velvety");
 	
 	output(" hind-lips.");
-	output("\n\n<i>“O-oh, what um, <i>exactly</i> did you have in mind?”</i> the honey-blonde centauress asks. She blushingly glances over her shoulder, straining to see what you're going to do with her rump.");
+	output("\n\n<i>“O-oh, what um, </i>exactly<i> did you have in mind?”</i> the honey-blonde centauress asks. She blushingly glances over her shoulder, straining to see what you're going to do with her rump.");
 	output("\n\nYou grin and slide your hand down and out of her sight. Slowly and sensually, you trail your fingertips up her lush lower lips. Aina trembles against your tracing hand, her horse-tail excitedly swishing about. Reaching down, you pointedly rub her thumb-sized clit. As soon as you do, her front knees buckle, and she presses her human-half against the couch, her gigantic equine butt in the air. Her flanks are trembling, and she's whinnying in delight.");
 	output("\n\n<i>“So, you like that?”</i> you ask, rubbing her womanly bud. It's a rhetorical question; streams of slippery mare juice are drooling out of her swollen black-lipped sex, wetting the ground beneath her quaking thighs.");
 	output("\n\n<i>“Y-yes!”</i> Aina whimpers, needily pressing her pussy back against your caressing fingers. You up the ante, sliding your fingers into her sloppy slit. There's so little resistance that your whole <i>hand</i> is quickly swallowed up inside of her. God, she's so fiercely hot and wet inside! Not only that, her walls are velvety soft and welcoming. They tease your trapped digits with their slippery soft feel, squeezing them with relish.");
@@ -734,7 +769,8 @@ public function ainaSexedFisting():void
 		output("\n\nLooking thoroughly embarrassed, the centauress grabs a vacuu-mop. <i>“Um, thank you so much. I really needed that. I-If you're ever in the Res Deck again, maybe look me up? I'd be more than willing to fit you in... um, I mean have you over!”</i>");
 		output("\n\nYou grin and grab your things, leaving Aina to clean up. Given how wet she was, you imagine it's going to take quite a while.");
 	}
-	else{
+	else
+	{
 		output("\n\n<i>“That was amazing... just like last time...”</i> Aina blushes, absentmindedly tucking a messed-up lock behind her ear. <i>“Um, you know, if you're ever in Res Deck again, feel free to call around. I always love having you over... whether we're talking or, you know, doing other things...”</i>");
 	}
 	
@@ -753,14 +789,14 @@ public function ainaSexedWithAnalWand():void
 	
 	output("Knowing that Aina likes sex toys, you offer to use them on her since she has trouble using them on herself. The blonde centauress blushes and squirms at your suggestion, but she doesn't look unhappy.");
 
-	if(flags["AINA_SEXED_WITH_TOY"] == undefined) output("\n\n<i>“Really, you'd do that for me? I'd love that");
-	else output("\n\n<i>“I'd love to fool around again. You're way better with my toys than I am");
-	
+	output("\n\n<i>“");
+	if(flags["AINA_SEXED_WITH_TOY"] == undefined) output("Really, you'd do that for me? I'd love that");
+	else output("I'd love to fool around again. You're way better with my toys than I am");
 	output(",”</i> Aina exclaims, a little breathy with excitement.");
 	
 	output("\n\nYou both head to the bedroom, where she slips off her champagne-colored sweater. Her creamy breasts spring out and bounce a little; seems she's not wearing a bra today! Her nipples are already stiff and puckered with excitement and her cute pink areolae are lightly crinkled. She clasps her hands down at her horse half. She inadvertently presses her slender arms against the sides of her breasts, pressing her well-rounded swells up and together in the process. You could throw a credit down that cleavage!");
 	output("\n\nYou don't get to enjoy the sight for nearly long enough, as Aina trots over to her special drawer and pulls out a number of toys. She places them one by one on the bed, then steps back, tucking back a blonde bang with a shy look.");
-	output("\n\n<i>“So these are the toys you want to use?”</i> You ask, picking up the biggest object there; a translucent, eighteen inch horse-cock. It jiggles in your hand, but squeezing it you realise it's actually got a lot of girth. Aina blushes and nods, squirming visibly on the spot.");
+	output("\n\n<i>“So these are the toys you want to use?”</i> You ask, picking up the biggest object there; a translucent, eighteen inch horse-cock. It jiggles in your hand, but squeezing it you realize it's actually got a lot of girth. Aina blushes and nods, squirming visibly on the spot.");
 	output("\n\n<i>“Yes. Those are the ones I really want.”</i> She's breathing a little heavily and her back-hoofs are trying not to stomp. You gesture for her to turn around and she obediently does so, backing back her chestnut colored rump. Her black-lipped horse sex is already dripping wet and gushing down her thighs. With her slick sex so close, you're hit with a fresh wave of her musky scent. It's a dizzying scent, one that you're quickly intoxicated by!");
 
 	if(pc.hasCock())
@@ -783,17 +819,20 @@ public function ainaSexedWithAnalWand():void
 	output("\n\n<i>“Is it all in yet?”</i> She breathily asks, golden-hair loosened and pressed down towards the ground. Her swishing mare-tail is still lifted up with her rump, seductively impaled with the phallic protrusion. You shake your head and push in a few more inches, delighting in the very visible sight of the flat horse-head sinking further and further into the depths of her twitching rectum. The more you push, the sloppier and wetter her equine pussy gets, spilling everywhere as you finally bottom the eighteen-inch toy inside of her with a loud <i>plop</i>. Impossibly full with such a long, thick length of stallion cock, the honey-haired mare whinnies and wrings the toy's entire length, her doughnut-like sphincter squeezing and stretching its base. She's going at it so hard that you're sure any man would have blown in her ass by now; as it is, the flexing toy is barely holding out!");
 	output("\n\nYou pick up one of her magic wands and click it on, feeling it whir and buzz in your hand. You press the toy's vibrating apple-sized head against her musky mare-sex and stroke it back and forth. Aina moans lewdly and rubs her juicy horse-snatch against the whirring tool in your hands. She's melting and bucking back with animalistic need, the air almost steamy with her pussy warmth. You grab her horse-tail and lustily rub the quaking wand against her bulbous black clit and the chestnut centauress lets out a pleasured squeal. You can see the clenching of her inner ass through the translucent toy packing her mare pucker, lewdly milking the stallion length as if it were a real cock stuffed in her hindquarters!");
 	output("\n\n<i>“Naughty girl, wringing that cock so well in your ass,”</i> you tease her, all the while stroking her dripping and flaring gash back and forth, and pressing against her clit. Aina's whinnying with delight, front legs completely buckled, hind quarters raised, and her anus erotically squeezing the stallion-length toy. Drops of her hot mare juice splatter down the wand and down your arm. You're lust-drunk on both her mare musk and you begin aggressively whizzing the toy along her slit like you're fucking her with it, your other fist full of twitching tail. The centauress whines and bucks back against you, fucking you right back!");
-	output("\n\n<i>“I'm, I'm going to cum~!”</i> Aina squeals a few seconds before it happens. With quaking hind-legs, her sloppy slit flares and you're utterly basted in thick gushes of her potent pussy juice, soaking you in her fragrant scent. As she splatters you in her girl-spunk, her doughnut-like anus clenches her butt-toy so hard it distorts in her rectum, warping in shape! Meanwhile your [pc.hips] shake uncontrollably as her intoxicating musk seizes your senses and sets off a full-body orgasm in");
+	output("\n\n<i>“I'm, I'm going to cum!”</i> Aina squeals a few seconds before it happens. With quaking hind-legs, her sloppy slit flares and you're utterly basted in thick gushes of her potent pussy juice, soaking you in her fragrant scent. As she splatters you in her girl-spunk, her doughnut-like anus clenches her butt-toy so hard it distorts in her rectum, warping in shape! Meanwhile your [pc.hips] shake uncontrollably as her intoxicating musk seizes your senses and sets off a full-body orgasm in");
 	
 	if(!(pc.lowerUndergarment is EmptySlot)) output(" your [pc.lowerUndergarment]");
-	else output("your nethers");
+	else output(" your nethers");
 	
 	output(", making you");
 	
-	if(pc.hasCock() && !pc.hasVagina()) output(" shoot your spunk");
-	if(pc.hasCock() && pc.hasVagina()) output(" and");
-	if(!pc.hasCock() && pc.hasVagina()) output(" splatter your nether lips with your girl juice");
-	if(!pc.hasCock() && !pc.hasVagina()) output(" quake with delight");
+	if(pc.hasGenitals())
+	{
+		if(pc.hasCock()) output(" shoot your spunk");
+		if(pc.isHerm()) output(" and");
+		if(pc.hasVagina()) output(" splatter your nether lips with girl juice");
+	}
+	else output(" quake with delight");
 	
 	output(". Your equine lover twitches and then collapses in a sweaty mess. Thankfully she falls forward, so she doesn't land on you!");
 	
@@ -805,7 +844,7 @@ public function ainaSexedWithAnalWand():void
 	
 	//Commented out since you do her in the butt and it shouldnt affect her vaginal virgnity.
 	//ainaSexed(1);
-	flags["AINA_SEXED_WITH_TOY"] = true;
+	IncrementFlag("AINA_SEXED_WITH_TOY");
 	applyAinaMareMuskEffect();
 	
 	processTime(20 + rand(15));
@@ -813,4 +852,81 @@ public function ainaSexedWithAnalWand():void
 	
 	clearMenu();
 	addButton(0, "Next", ainaMenu);
+}
+
+//BreedHer
+// PC must have cock.
+// Must Be Taur
+// Cock must be 5 inches or longer.
+public function breedAinaAsATaur():void
+{
+	clearOutput();
+	showAina(true);
+	//Aina'sNotInHeat:
+	if(!ainaIsInHeat())
+	{
+		output("You lock eyes with the blonde centauress and begin to trot towards her. Her pale cheeks flush and she begins to clomp self-consciously on the spot. She seems to be getting worked up by your proximity. You’re hit out of nowhere with the scent of her musky mare-snatch, but she’s not in heat! Noticing your look of surprise, she fidgets awkwardly on the spot.");
+		output("\n\n<i>“I-I can smell you. You know, as " + pc.mf("a stallion","another centaur") + ". It’s getting me a little worked up,”</i> Aina confesses. Her equine tail is unconciously flicking and sweeping her fragrant pussy-scent all about, making things even worse! Suddenly her equine rump is looking <i>really</i> attractive and thoroughly mountable...\n\n");
+	}
+	output("You can’t stand it any longer. With a loud primal whinny of your own, you rear up and raise your forelegs, staggering forward and dropping your upper body on the pretty mare’s lower back.");
+	output("\n\n<i>“Wha-what are you doing?!”</i> Aina breathily exclaims. You don’t even hear her; your mind is too consumed with equine instinct to mount and mate with the ");
+	if(ainaIsVirgin()) output("virgin");
+	else output("slutty");
+
+	var x:int = pc.cockThatFits(2000);
+	if(x < 0) x = pc.smallestCockIndex();
+
+	output(" mare. A single forceful thrust later, and you’re plunging yourself between her silky black cunt-lips, relishing in the silky feel of her sloppy sex swallowing your [pc.cockHead " + x + "]. ");
+	if(ainaIsVirgin()) output("There’s a slight resistance, then a sudden give, and the virgin centauress gives a tiny squeal. As you slide into her unsullied depths, she gives a shivering moan, mounted by a stallion for the very first time!");
+	else 
+	{
+		output("Aina’s cunt is so wet, warm, and welcoming! You’re pressed ");
+		if(pc.balls > 0) output("[pc.balls]-deep");
+		else output("base-deep");
+		output(" inside of her in no time at all. Her body-temperature is much higher than a human’s; it feels like you’re going to melt just being sheathed inside her exquisite equine snatch.");
+	}
+	pc.cockChange();
+
+	output("\n\nIntoxicated with pleasure and the scent of her musk, you buck and slap your lower body against her madly wiggling backside.  With each squelching thrust, your [pc.cockNoun " + x + "] sends streams of her pussy-juice streaming out of her flaring honeypot, splattering the ground between her trembling taur-thighs. You can feel her swishing horse-tail brushing your animal belly with each carnal thrust.");
+
+	output("\n\nSoon that massive rump of hers is bucking back needily against you as she meets your mighty thrusts. Both of your bodies are covered in a fine sheen of sweat from your mating rhythm. Flushing with delight, the centauress hastily strips off her sweater and presses her smooth back against your chest, rubbing almost insistently against you. Satisfying her human half, you fiercely seize her breasts in your hands, and she lets out a whinnying gasp of delight. Every time you pinch and roll her pert pink nipples, her sloppy quim hotly gushes and squeezes your stirring rod, coaxing hot pre into her juicy tunnel. Neither of you could stop even if you wanted to, your animal halves grinding and slapping against each other with carnal need.");
+
+	output("\n\n<i>“Breed me!”</i> Aina sweetly cries, creaming herself once more around your [pc.cock " + x + "]. She’s shaking and stomping her hooves against the ground, thermal girl-juice basting and bathing your loins as she excitedly cums. Her slippery cunt is clamping down and wringing your whole twitching length, her muscular rings working you over from tip to base. With a final thrust, you bury your [pc.cockHead " + x + "] deep inside of her sloppy quim, your eyes rolling back as you unload your [pc.cum] inside her musky tunnel. Your seed spills upwards and into her equine womb, ");
+	//SmallCum::
+	if(pc.cumQ() < 400) output("lightly bathing her eggs");
+	//Mid:
+	else if(pc.cumQ() < 6000) output("filling it to the brim");
+	//Large: 
+	else output("swelling both it and her belly");
+	output(" with your tauric seed.");
+	if(pc.hasKnot(x)) output(" Your knot swells inside of her copious cunt and keeps you locked in place until you’ve unloaded every last drop, trapping it inside for maximum mating success!");
+	
+	output("\n\nWhen you dismount and ");
+	if(pc.hasKnot(x)) output("<i>finally</i> ");
+	output("pull out, there’s a loud ‘plop’, and the mixture of your spunk and her fragrant fem-cum leaks out from her dusky mare snatch. The centauress lets out a dreamy sigh and turns around, hand stroking through her hair, another clasped modestly in front of her creamy, youthful breasts.");
+
+	//First Time:
+	if(ainaIsVirgin())
+	{
+		output("\n\n<i>“M-my first time... I never knew proper mating could be so amazing,”</i> Aina blushes, absentmindedly tucking a messed-up lock behind her ear. <i>“I, um, I’m still feeling kind of lightheaded. Kind of floaty, even. I think maybe I should sit down? Oh, the mess! Did I really leak out that much?!”</i>");
+		output("\n\nLooking thoroughly embarrassed, the centauress grabs a vacuu-mop. <i>“Um, thank you so much. I really needed that. I-If you’re ever in the Res Deck again, maybe look me up? I’d be more than willing to fit you in... um, I mean have you over!”</i>");
+		output("\n\nYou grin and grab your things, leaving Aina to clean up. Given how wet she was, you imagine it’s going to take quite a while.");
+	}
+	//Repeat:
+	else
+	{
+		output("\n\n<i>“I-I can’t believe you just mated me out of the blue like that,”</i> Aina blushes, absentmindedly tucking a messed-up lock behind her ear. <i>“Um, you know, if you’re ever in Res Deck again, feel free to call around. I always love having you over... whether we’re talking or, you know, doing other things...”</i>");
+		output("\n\nYou nod and grab your things. Your whole body reeks of mare musk! You’re pretty sure anyone within a mile could smell it.");
+	}
+
+	// Apply 'Mare Musk' effect to player.
+	// Count Aina as now deflowered, if not already.
+	// Scene end. Exit her menu. Still in apartment.
+	ainaSexed(1);
+
+	processTime(17);
+	pc.orgasm();
+
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }

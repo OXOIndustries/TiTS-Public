@@ -784,7 +784,7 @@ public function initializeRooms():void
 	//1019 Fyn's Apartment
 	rooms["RESIDENTIAL DECK 19"] = new RoomClass(this);
 	rooms["RESIDENTIAL DECK 19"].roomName = "FYN'S\nAPARTMENT";
-	rooms["RESIDENTIAL DECK 19"].description = "This incredibly large apartment must have cost a small fortune of credits to buy, far and above the normal fare in Tavros station. The polished synth-oak floors look indistinguishable from the real thing, giving the whole place a glamorous air. The common area is huge, filled with a circular island-like kitchen and seating around the outskirts. It's the sort of place where many people can visit quite easily. There's an open doorway leading to a lush looking bedroom with silky sheets and a king sized bed. The bedhead has silk ropes around it... whatever could <i>they</i> be for? Another room seems to lead to a dance studio.";
+	rooms["RESIDENTIAL DECK 19"].description = "";
 	rooms["RESIDENTIAL DECK 19"].planet = "TAVROS STATION";
 	rooms["RESIDENTIAL DECK 19"].system = "SYSTEM: KALAS";
 	rooms["RESIDENTIAL DECK 19"].southExit = "RESIDENTIAL DECK 11";
