@@ -1017,7 +1017,7 @@ public function move(arg:String, goToMainMenu:Boolean = true):void {
 	trace("Printing map for " + currentLocation);
 	//mapper.printMap(map);
 	//process time here, then back to mainGameMenu!
-	mainGameMenu();
+	if(goToMainMenu) mainGameMenu();
 }
 
 public function statusTick():void {

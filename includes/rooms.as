@@ -200,7 +200,7 @@ public function initializeRooms():void
 	//104 "LIFT: MERCHANT DECK". In The Lift - Merchant's Thoroughfare
 	rooms["LIFT: MERCHANT DECK"] = new RoomClass(this);
 	rooms["LIFT: MERCHANT DECK"].roomName = "LIFT: MERCHANT\nDECK";
-	rooms["LIFT: MERCHANT DECK"].description = "You're within a stuffy tube of metal and plastic. Steady, mechanical thrums suffuse the air around you. The inside of the cylinder-like lift is lined by a brass-hued railing, used to steady oneself during high speed travel through the kilometers-long station.\n\nThere's a sturdy mechanical keypad with which to designate your target level. Right now, the only floors of interest are the hangar, merchant and residential levels.";
+	rooms["LIFT: MERCHANT DECK"].description = "";
 	rooms["LIFT: MERCHANT DECK"].planet = "TAVROS STATION";
 	rooms["LIFT: MERCHANT DECK"].system = "SYSTEM: KALAS";
 	rooms["LIFT: MERCHANT DECK"].eastExit = "MERCHANT'S THOROUGHFARE2";
@@ -228,7 +228,7 @@ public function initializeRooms():void
 	//106"TAVROS LIFT". In The Lift - The Hangar
 	rooms["TAVROS LIFT"] = new RoomClass(this);
 	rooms["TAVROS LIFT"].roomName = "LIFT: HANGAR\nDECK";
-	rooms["TAVROS LIFT"].description = "You're within a stuffy tube of metal and plastic. Steady, mechanical thrums suffuse the air around you. The inside of the cylinder-like lift is lined by a brass-hued railing, used to steady oneself during high speed travel through the kilometers-long station.\n\nThere's a sturdy mechanical keypad with which to designate your target level. Right now, the only floors of interest are the hangar, merchant and residential levels.";
+	rooms["TAVROS LIFT"].description = "";
 	rooms["TAVROS LIFT"].planet = "TAVROS STATION";
 	rooms["TAVROS LIFT"].system = "SYSTEM: KALAS";
 	rooms["TAVROS LIFT"].eastExit = "TAVROS HANGAR";
@@ -545,7 +545,7 @@ public function initializeRooms():void
 	//1001 Lift RESIDENTIAL Deck (Technically Deck 1 in the Docs)
 	rooms["LIFT: RESIDENTIAL DECK"] = new RoomClass(this);
 	rooms["LIFT: RESIDENTIAL DECK"].roomName = "LIFT: RES\nDECK";
-	rooms["LIFT: RESIDENTIAL DECK"].description = "You're within a stuffy tube of metal and plastic. Steady, mechanical thrums suffuse the air around you. The inside of the cylinder-like lift is lined by a brass-hued railing, used to steady oneself during high speed travel through the kilometers-long station.\n\nThere's a sturdy mechanical keypad with which to designate your target level. Right now, the only floors of interest are the hangar, merchant and residential levels.";
+	rooms["LIFT: RESIDENTIAL DECK"].description = "";
 	rooms["LIFT: RESIDENTIAL DECK"].planet = "TAVROS STATION";
 	rooms["LIFT: RESIDENTIAL DECK"].system = "SYSTEM: KALAS";
 	rooms["LIFT: RESIDENTIAL DECK"].northExit = "RESIDENTIAL DECK 6";

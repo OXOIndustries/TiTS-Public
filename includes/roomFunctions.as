@@ -98,8 +98,13 @@ public function xenogenOutsideBlurb():Boolean
 
 public function hangarBonus():Boolean 
 {
+	output("You’re within a stuffy tube of metal and plastic. Steady, mechanical thrums suffuse the air around you. The inside of the cylinder-like lift is lined by a brass-hued railing, used to steady oneself during high speed travel through the kilometers-long station.\n\nThere’s a sturdy mechanical keypad with which to designate your target level. Right now, the only floors of interest are the hangar, merchant and residential levels.");
+	
 	if (flags["SAENDRA_XPACK1_STATUS"] == 1 || flags["SAENDRA_XPACK1_STATUS"] == 2)
 	{
+		output("\n\nYou also have the option to take the lift up to Deck 92 to meet up with Saendra");
+		if(flags["SAENDRA_XPACK1_STATUS"] == 2) output(". You are sure taking your time about it though");
+		output("--whatever she contacted you about, it sounded pretty urgent.");
 		addButton(0, "Deck 92", saendraX1LiftGo); 
 	}
 	
@@ -166,10 +171,11 @@ public function phoenixLocationSetter():Boolean
 	return false;
 }
 
-public function liftMove(destination:String):void {
-	move(destination,false);
+public function liftMove(destination:String):void
+{	
 	clearOutput();
 	output("Your stomach drops as the lift kicks into gear. The gentle, steady thrum of powerful machinery fills the metallic tube as you are brought to your destination, slowly decelerating when you arrive.");
+	move(destination,false);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
