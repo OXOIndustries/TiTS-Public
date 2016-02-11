@@ -21,7 +21,8 @@
 
 public function showAina(nude:Boolean = false):void
 {
-	showName("\nAINA");
+	if(!flags["MET_AINA"]) showName("CENTAUR\nGIRL");
+	else showName("\nAINA");
 	showBust("AINA");
 	if(nude) showBust("AINA_NUDE");
 	author("JimThermic");
@@ -143,6 +144,7 @@ public function helpAina():void
 	currentLocation = "RESIDENTIAL DECK 18";
 	
 	clearOutput();
+	flags["MET_AINA"] = true;
 	showAina();
 	
 	output("The chestnut-covered centauress claps her hands together. There's a bright, relieved smile on her face, and her equine ears flicker. <i>“Thank you! I'm sorry to just ask you out of nowhere, but I'm really in a bind here,”</i> she answers.");

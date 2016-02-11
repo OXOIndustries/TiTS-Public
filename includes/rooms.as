@@ -544,7 +544,7 @@ public function initializeRooms():void
 	
 	//1001 Lift RESIDENTIAL Deck (Technically Deck 1 in the Docs)
 	rooms["LIFT: RESIDENTIAL DECK"] = new RoomClass(this);
-	rooms["LIFT: RESIDENTIAL DECK"].roomName = "LIFT:\nRESIDENTIAL DECK";
+	rooms["LIFT: RESIDENTIAL DECK"].roomName = "LIFT:\nRESIDENTIAL";
 	rooms["LIFT: RESIDENTIAL DECK"].description = "You're within a stuffy tube of metal and plastic. Steady, mechanical thrums suffuse the air around you. The inside of the cylinder-like lift is lined by a brass-hued railing, used to steady oneself during high speed travel through the kilometers-long station.\n\nThere's a sturdy mechanical keypad with which to designate your target level. Right now, the only floors of interest are the hangar, and the merchant and residential levels.";
 	rooms["LIFT: RESIDENTIAL DECK"].planet = "TAVROS STATION";
 	rooms["LIFT: RESIDENTIAL DECK"].system = "SYSTEM: KALAS";
@@ -561,7 +561,7 @@ public function initializeRooms():void
 	
 	//1002 South Plaza
 	rooms["RESIDENTIAL DECK 2"] = new RoomClass(this);
-	rooms["RESIDENTIAL DECK 2"].roomName = "SOUTH PLAZA";
+	rooms["RESIDENTIAL DECK 2"].roomName = "\nSOUTH PLAZA";
 	rooms["RESIDENTIAL DECK 2"].description = "You're in front of a row of elevator shafts surrounded by a large plaza area. The design reminds you of a city square, but instead of a fountain feature, the lifts are the centerpiece. Still, there's all the common fare of a common space; there are decorative garden beds with exotic yet harmless shrubbery and park benches to sit on.\n\nBeyond the sprawling public space and in each of the four cardinal directions are residential arcades; high-roofed walkways marked by countless successive arches.\n\nA holographic board floats here, littered with community notices for deck residents. It seems anyone can put a message here, and quite a few people have taken advantage of it.";
 	rooms["RESIDENTIAL DECK 2"].planet = "TAVROS STATION";
 	rooms["RESIDENTIAL DECK 2"].system = "SYSTEM: KALAS";
@@ -591,7 +591,7 @@ public function initializeRooms():void
 	
 	//1004 East Plaza
 	rooms["RESIDENTIAL DECK 4"] = new RoomClass(this);
-	rooms["RESIDENTIAL DECK 4"].roomName = "EAST PLAZA";
+	rooms["RESIDENTIAL DECK 4"].roomName = "EAST\nPLAZA";
 	rooms["RESIDENTIAL DECK 4"].description = "There's a large lush patch of purple plants here in the plaza. They're covered in patchy blue spots. Soft, cyan blossoms are poking out from them on long, dangly stems. They smell fresh and crisp rather than floral.\n\nThe plaza stretches out north to south, but there's a large residential arcade to the east. It seems to head all the way out to a residential ward, though the thoroughfare itself is lined with doors to residential apartments.";
 	rooms["RESIDENTIAL DECK 4"].planet = "TAVROS STATION";
 	rooms["RESIDENTIAL DECK 4"].system = "SYSTEM: KALAS";
@@ -618,7 +618,7 @@ public function initializeRooms():void
 	
 	//1006 North Plaza
 	rooms["RESIDENTIAL DECK 6"] = new RoomClass(this);
-	rooms["RESIDENTIAL DECK 6"].roomName = "NORTH PLAZA";
+	rooms["RESIDENTIAL DECK 6"].roomName = "NORTH\nPLAZA";
 	rooms["RESIDENTIAL DECK 6"].description = "You're standing on the north side of the plaza and in front of a large row of elevator shafts. All around you is a massive public plaza, filled with scenic shrubbery and paved walkways. There's a few park benches as well, which residents seem to be making full use of.\n\nAt each of the cardinal points are gigantic residential arcades that continue out as far as the eye can see. Just like the walls of the plaza, the arcades are lined with residential entrances. It must be nice to walk right out your door and into such a nice garden-filled space.\n\nYou can head in any direction, with south heading back into the elevators and north heading into one of the residential thoroughfares. East and west heads around the plaza.";
 	rooms["RESIDENTIAL DECK 6"].planet = "TAVROS STATION";
 	rooms["RESIDENTIAL DECK 6"].system = "SYSTEM: KALAS";
@@ -646,7 +646,7 @@ public function initializeRooms():void
 	
 	//1008 West Plaza
 	rooms["RESIDENTIAL DECK 8"] = new RoomClass(this);
-	rooms["RESIDENTIAL DECK 8"].roomName = "WEST PLAZA";
+	rooms["RESIDENTIAL DECK 8"].roomName = "WEST\nPLAZA";
 	rooms["RESIDENTIAL DECK 8"].description = "This part of the plaza is filled with shielded aviaries housing all kinds of colorful winged creatures. When they're not hovering about, they're resting in their nests, most of which are built in hollowed out trees. A rainbow-hued, six-winged bird seems to have pride of place at the top of the largest tree.\n\nThere's a large arcade-like thoroughfare to the west, stretching out all the way to a far off residential ward. Identical to the plaza, the side-walls are lined with residential entryways, each decorated as the owner sees fit.\n\nBesides the west walkway, you can head north or south here and circle around the plaza. This side doesn't seem to have an entry point to the elevators.";
 	rooms["RESIDENTIAL DECK 8"].planet = "TAVROS STATION";
 	rooms["RESIDENTIAL DECK 8"].system = "SYSTEM: KALAS";

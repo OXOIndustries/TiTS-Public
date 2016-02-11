@@ -19,7 +19,10 @@ import classes.StorageClass;
 //display fyn's name + author infos
 public function showFyn(nude:Boolean = false):void
 {
-	showName("\nFYN");
+	if(flags["MET_FYN"]) showName("\nFYN");
+	else showName("SHIRTLESS\nMAN");
+	if(nude) showBust("FYN_NUDE");
+	else showBust("FYN");
 	author("JimThermic");
 }
 
@@ -95,7 +98,7 @@ public function knockOnFynsDoor():void {
 	clearOutput();
 	showFyn();
 	
-	if(flags["MET_FYN"] == undefined) {
+	if(flags["SEEN_FYN"] == undefined) {
 		output("You decide to give in to your curiosity and rap your knuckles against the sturdy wooden door. Is it real oak, you wonder?");
 		output("\n\nJust as you don't think anyone's going to answer, the door swings half open and a tall, shirtless man steps out. He quirks one of his distinctively dark brows, shooting you a curious, slightly amused look. <i>“...Well, you took your time.”</i>");
 		output("\n\nWow. Looking at this guy is like looking at a work of art. Even though he's clearly not human—the vermillion skin and pointed ears are a dead give away—his well-sculptured figure is distinctly terran in shape. His eyes are full of fire; passionate burning orbs with black, tiger-like slits.");
@@ -113,7 +116,7 @@ public function knockOnFynsDoor():void {
 		processTime(2);
 	}
 	
-	flags["MET_FYN"] = true;
+	flags["SEEN_FYN"] = true;
 	
 	clearMenu();
 	addButton(0, "Go In", goIntoFynsApartment, undefined, "Go in", "Why not see where this goes? Could be kind of fun.");
@@ -144,6 +147,7 @@ public function goIntoFynsApartment():void {
 	showFyn();
 	
 	currentLocation = "RESIDENTIAL DECK 19";
+	generateMapForLocation(currentLocation);
 
 	output("You go with the flow, stepping through the threshold. The door closes soundly behind you. The tall, shirtless man strides past you and through the apartment. Does he expect you to follow?");
 	output("\n\nYou follow in his footsteps through the huge, luxurious apartment, reeling a little at the amount of credits it must have cost. From the polished synth-oak floors to the artwork pieces, there's definitely a glamorous air to the place. Whoever he is, he's definitely wealthy, there's no doubt about that. Spotting an open doorway, you see the beginnings of a bedroom, replete with a silky, king sized bed. It's not hard to see the silk ropes tied to the foot of the bed... it's not hard to guess what <i>they</i> would be for.");
@@ -215,6 +219,8 @@ public function resolveFynConfusion(type:String):void {
 	else output("you bluntly respond.");
 	
 	output("\n\n<i>“I'm Fyn Wilder. Honestly, I thought you were here for some private dancing lessons. Samba, belly dancing, strip-tease, that sort of thing..”</i>");
+	flags["MET_FYN"] = true;
+	showName("\nFYN");
 	output("\n\nFyn Wilder... Fyn Wilder... wait, you've heard that name before. Something in the recent holos, about a young, talented performer... but his face looks different from the images you've seen. When you question him about it, he gives a rich laugh.");
 	output("\n\n<i>“That's me. Though I very rarely go onto the stage with this face. Not unless I'm playing the terran devil, anyway. Usually something a little more like this...”</i> Fyn then waves a hand dramatically in front of his face. There's a sudden shift, and you're left gaping at a terran-looking man with surprisingly brown hair and facial stubble.");
 	
@@ -250,6 +256,7 @@ public function resolveFynConfusion(type:String):void {
 
 public function showFynsApartment():void {
 	showFyn();
+	showName("FYN'S\nAPARTMENT");
 	addButton(0, "Fyn", fynMenu);
 }
 
@@ -863,7 +870,7 @@ public function fynSexMenu():void
 public function fynSexHikeAndFuck():void 
 {
 	clearOutput();
-	showFyn();
+	showFyn(true);
 	
 	output("You watch wide-eyed as Fyn suddenly strides towards you. There's a purposeful look in his captivating eyes. He stops tantalizingly close");
 	
@@ -999,7 +1006,7 @@ public function fynSexHikeAndFuck():void
 
 public function fynSexDoubleD():void {
 	clearOutput();
-	showFyn();
+	showFyn(true);
 	
 	if(flags["FYN_SEXED_DOUBLE_DICK"] == undefined) {
 		output("Curious, you ask Fyn if he's able to grow a second dick? An amused look lights his face. Without warning, the dark-haired man shamelessly strips off his pants, leaving you staring at his scarlet manhood. It hangs in a foreskin halfway to his knee.");
@@ -1149,7 +1156,7 @@ public function fynSexDoubleD():void {
 
 public function fynSexOrcRavish():void {
 	clearOutput();
-	showFyn();
+	showFyn(true);
 	
 	if(flags["FYN_TALKED_ABOUT_SAVEWORDS"] == undefined) 
 	{
