@@ -236,12 +236,7 @@ public function helpAinaWithSex():void
 	
 	output("What do you suggest?");
 	
-	clearMenu();
-	
-	if((pc.hasCock() && pc.biggestCockLength() >= 5) && !pc.isTaur()) addButton(0, "Fuck Her", ainaSexedFromBehind);
-	else addDisabledButton(0, "Fuck Her", "Fuck Her", "You need a cock to do this and not be a taur.");
-	
-	addButton(1, "Fisting", ainaSexedFisting);
+	ainaSexMenu(false);
 }
 
 //PC leaves Aina's apartment without helping her. 
@@ -557,18 +552,46 @@ public function applyAinaMareMuskEffect():void
 	if(!pc.hasStatusEffect("Mare Musk")) pc.createStatusEffect("Mare Musk",0,0,0,0,false,"Icon_Smelly","You smell like a horny mare! The potent female scent is sure to drive others wild—though it gets you a little worked up as well.",false,0);
 }
 
-public function ainaSexMenu():void
+public function ainaSexMenu(text:Boolean = true):void
 {
-	clearOutput();
-	showAina();
+	if(text)
+	{
+		clearOutput();
+		showAina();
 	
-	output("...What do you suggest?");
-	
+		output("...What do you suggest?");
+	}	
 	clearMenu();
 	if(pc.hasCock())
 	{
-		if(pc.cockThatFits(2000) >= 0) addButton(0, "Fuck Her", ainaSexedFromBehind);
-		else addDisabledButton(0,"Fuck Her","Fuck Her","<b>You're too big</b> - even for a centaur!");
+		if(!pc.isTaur())
+		{
+			if(pc.cockThatFits(2000) >= 0) 
+			{
+				//Dick too small?
+				if(pc.cockVolume(pc.cockThatFits(2000)) < 4.5) 
+				{
+					if(pc.cockTotal() == 1) addDisabledButton(0,"Fuck Her","Fuck Her","You're too small for her to notice, really.");
+					else addDisabledButton(0,"Fuck Her","Fuck Her","You're too small to fuck her, and if you have a bigger cock, it's probably too big.");
+				}
+				else addButton(0, "Fuck Her", ainaSexedFromBehind,undefined,"Fuck Her","Put your Tab A into her Slot B.");
+			}
+			else addDisabledButton(0,"Fuck Her","Fuck Her","<b>You're too big</b> - even for a centaur!");
+		}
+		else
+		{
+			if(pc.cockThatFits(2000) >= 0) 
+			{
+				//Dick too small?
+				if(pc.cockVolume(pc.cockThatFits(2000)) < 4.5) 
+				{
+					if(pc.cockTotal() == 1) addDisabledButton(0,"Breed Her","Breed Her","You're too small for her to notice, really.");
+					else addDisabledButton(0,"Breed Her","Breed Her","You're too small to fuck her, and if you have a bigger cock, it's probably too big.");
+				}
+				else addButton(0,"Breed Her",breedAinaAsATaur,undefined,"Breed Her","Show her what real sex with a real 'taur is like!");
+			}
+			else addDisabledButton(0,"Breed Her","Breed Her","You need a penis that will actually fit inside her for this. You're too big, even for her capacious cunt.");
+		}
 	}
 	else addDisabledButton(0,"Fuck Her","Fuck Her","You need a penis in order to do this.");
 	addButton(1, "Fisting", ainaSexedFisting);
@@ -815,4 +838,82 @@ public function ainaSexedWithAnalWand():void
 	
 	clearMenu();
 	addButton(0, "Next", ainaMenu);
+}
+
+
+//BreedHer
+// PC must have cock.
+// Must Be Taur
+// Cock must be 5 inches or longer.
+public function breedAinaAsATaur():void
+{
+	clearOutput();
+	showAina(true);
+	//Aina'sNotInHeat:
+	if(!ainaIsInHeat())
+	{
+		output("You lock eyes with the blonde centauress and begin to trot towards her. Her pale cheeks flush and she begins to clomp self-consciously on the spot. She seems to be getting worked up by your proximity. You’re hit out of nowhere with the scent of her musky mare-snatch, but she’s not in heat! Noticing your look of surprise, she fidgets awkwardly on the spot.");
+		output("\n\n<i>“I-I can smell you. You know, as " + pc.mf("a stallion","another centaur") + ". It’s getting me a little worked up,”</i> Aina confesses. Her equine tail is unconciously flicking and sweeping her fragrant pussy-scent all about, making things even worse! Suddenly her equine rump is looking <i>really</i> attractive and thoroughly mountable...\n\n");
+	}
+	output("You can’t stand it any longer. With a loud primal whinny of your own, you rear up and raise your forelegs, staggering forward and dropping your upper body on the pretty mare’s lower back.");
+	output("\n\n<i>“Wha-what are you doing?!”</i> Aina breathily exclaims. You don’t even hear her; your mind is too consumed with equine instinct to mount and mate with the ");
+	if(ainaIsVirgin()) output("virgin");
+	else output("slutty");
+
+	var x:int = pc.cockThatFits(2000);
+	if(x < 0) x = pc.smallestCockIndex();
+
+	output(" mare. A single forceful thrust later, and you’re plunging yourself between her silky black cunt-lips, relishing in the silky feel of her sloppy sex swallowing your [pc.cockHead " + x + "]. ");
+	if(ainaIsVirgin()) output("There’s a slight resistance, then a sudden give, and the virgin centauress gives a tiny squeal. As you slide into her unsullied depths, she gives a shivering moan, mounted by a stallion for the very first time!");
+	else 
+	{
+		output("Aina’s cunt is so wet, warm, and welcoming! You’re pressed ");
+		if(pc.balls > 0) output("[pc.balls]-deep");
+		else output("base-deep");
+		output(" inside of her in no time at all. Her body-temperature is much higher than a human’s; it feels like you’re going to melt just being sheathed inside her exquisite equine snatch.");
+	}
+	pc.cockChange();
+
+	output("\n\nIntoxicated with pleasure and the scent of her musk, you buck and slap your lower body against her madly wiggling backside.  With each squelching thrust, your [pc.cockNoun " + x + "] sends streams of her pussy-juice streaming out of her flaring honeypot, splattering the ground between her trembling taur-thighs. You can feel her swishing horse-tail brushing your animal belly with each carnal thrust.");
+
+	output("\n\nSoon that massive rump of hers is bucking back needily against you as she meets your mighty thrusts. Both of your bodies are covered in a fine sheen of sweat from your mating rhythm. Flushing with delight, the centauress hastily strips off her sweater and presses her smooth back against your chest, rubbing almost insistently against you. Satisfying her human half, you fiercely seize her breasts in your hands, and she lets out a whinnying gasp of delight. Every time you pinch and roll her pert pink nipples, her sloppy quim hotly gushes and squeezes your stirring rod, coaxing hot pre into her juicy tunnel. Neither of you could stop even if you wanted to, your animal halves grinding and slapping against each other with carnal need.");
+
+	output("\n\n<i>“Breed me!”</i> Aina sweetly cries, creaming herself once more around your [pc.cock " + x + "]. She’s shaking and stomping her hooves against the ground, thermal girl-juice basting and bathing your loins as she excitedly cums. Her slippery cunt is clamping down and wringing your whole twitching length, her muscular rings working you over from tip to base. With a final thrust, you bury your [pc.cockHead " + x + "] deep inside of her sloppy quim, your eyes rolling back as you unload your [pc.cum] inside her musky tunnel. Your seed spills upwards and into her equine womb, ");
+	//SmallCum::
+	if(pc.cumQ() < 400) output("lightly bathing her eggs");
+	//Mid:
+	else if(pc.cumQ() < 6000) output("filling it to the brim");
+	//Large: 
+	else output("swelling both it and her belly");
+	output(" with your tauric seed.");
+	if(pc.hasKnot(x)) output(" Your knot swells inside of her copious cunt and keeps you locked in place until you’ve unloaded every last drop, trapping it inside for maximum mating success!");
+	
+	output("\n\nWhen you dismount and ");
+	if(pc.hasKnot(x)) output("<i>finally</i> ");
+	output("pull out, there’s a loud ‘plop’, and the mixture of your spunk and her fragrant fem-cum leaks out from her dusky mare snatch. The centauress lets out a dreamy sigh and turns around, hand stroking through her hair, another clasped modestly in front of her creamy, youthful breasts.");
+
+	//First Time:
+	if(ainaIsVirgin())
+	{
+		output("\n\n<i>“M-my first time... I never knew proper mating could be so amazing,”</i> Aina blushes, absentmindedly tucking a messed-up lock behind her ear. <i>“I, um, I’m still feeling kind of lightheaded. Kind of floaty, even. I think maybe I should sit down? Oh, the mess! Did I really leak out that much?!”</i>");
+		output("\n\nLooking thoroughly embarrassed, the centauress grabs a vacuu-mop. <i>“Um, thank you so much. I really needed that. I-If you’re ever in the Res Deck again, maybe look me up? I’d be more than willing to fit you in... um, I mean have you over!”</i>");
+		output("\n\nYou grin and grab your things, leaving Aina to clean up. Given how wet she was, you imagine it’s going to take quite a while.");
+	}
+	//Repeat:
+	else
+	{
+		output("\n\n<i>“I-I can’t believe you just mated me out of the blue like that,”</i> Aina blushes, absentmindedly tucking a messed-up lock behind her ear. <i>“Um, you know, if you’re ever in Res Deck again, feel free to call around. I always love having you over... whether we’re talking or, you know, doing other things...”</i>");
+		output("\n\nYou nod and grab your things. Your whole body reeks of mare musk! You’re pretty sure anyone within a mile could smell it.");
+	}
+
+	// Apply 'Mare Musk' effect to player.
+	// Count Aina as now deflowered, if not already.
+	// Scene end. Exit her menu. Still in apartment.
+	ainaSexed(1);
+
+	processTime(17);
+	pc.orgasm();
+
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
