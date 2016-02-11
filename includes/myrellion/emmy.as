@@ -23,11 +23,12 @@ import classes.Characters.PlayerCharacter;
 //EMMY_FLOWER_GIFTED - Have you given her a flower? If undefined and you passed it on the quest, you did it via email.
 //EMMY_TRADE_OFFERED - offered to sell Emmy shit yet.
 
-public function showEmmy():void
+public function showEmmy(nude:Boolean = false):void
 {
 	if(flags["MET_EMMY"] == undefined) showName("KIHACORP\nREP.");
 	else showName("\nEMMY");
-	showBust("EMMY");
+	if(!nude) showBust("EMMY");
+	else showBust("EMMY_NUDE");
 }
 
 //In-Room Bonus Notes
@@ -1652,7 +1653,7 @@ public function emmySixtyNine():void
 public function suckEmmysCockDuring69():void
 {
 	clearOutput();
-	showEmmy();
+	showEmmy(true);
 	output("You grab hold of her suit zipper and yank it down, allowing a bloated canine cock to spring out, complete with a tapered head and bulgy knot. Emmy fidgets nervously when you grab the member, already slick with pre-cum. It firms perceptibly beneath your fingers and fills the air with the musky odor of a herm long-denied, aided by the matted fur below, pasted down by her dick and its drippings.");
 	output("\n\nYou tease, <i>“");
 	if(pc.isBimbo()) output("I couldn’t not stick a cock like this in my mouth! It’s just too yummy looking.");
@@ -1712,7 +1713,7 @@ public function suckEmmysCockDuring69():void
 public function lickEmmysPussyDuring69():void
 {
 	clearOutput();
-	showEmmy();
+	showEmmy(true);
 	output("You grab hold of her suit zipper and yank it down, allowing a bloated canine cock to spring out. The vulgar phallus is hardly your target - just another obstacle on the quest for cunt. You edge it out of the way with your elbow and lift her sack to reveal a gleaming treasure box. Her black lips are puffy with need and so wet that the underside of her balls may as well be an extension of her cunt.");
 	output("\n\nYou tease, <i>“I think this little lady needs the attention a little more.");
 	if(pc.isBimbo()) output(" I bet she’s super delic-deli... uhmm, yummy!");
@@ -1742,7 +1743,7 @@ public function lickEmmysPussyDuring69():void
 public function emmy69MiddleOfScene(youSuck:int):void
 {
 	clearOutput();
-	showEmmy();
+	showEmmy(true);
 	var x:int = 0;
 	var emmySucks:int = 0;
 	//Emmy Sucks Yer Cock
@@ -1801,7 +1802,7 @@ public function emmy69MiddleOfScene(youSuck:int):void
 public function emmy69OrgasmTime(args:Array):void
 {
 	clearOutput();
-	showEmmy();
+	showEmmy(true);
 	var youSuck:int = args[0];
 	var emmySucks:int = args[1];
 	var x:int = args[2];
@@ -1879,7 +1880,7 @@ public function emmy69Epilogue(args:Array):void
 public function emmyCockSlobber():void
 {
 	clearOutput();
-	showEmmy();
+	showEmmy(true);
 	author("Frogapus&Fenoxo");
 	output("<i>“");
 	if(pc.isBimbo()) output("Shut up and... just let me suck that cock,");
@@ -1967,7 +1968,7 @@ public function emmyCockSlobber():void
 public function eatOutEmmysVagYouPoorPussyAddictedSod():void
 {
 	clearOutput();
-	showEmmy();
+	showEmmy(true);
 	output("<i>“");
 	if(pc.isBimbo()) output("Your poor pussy is so totally ignored! The poor thing needs some attentions, Ems! Good thing you’ve got me here to take care of you");
 	else if(pc.isNice()) output("It’s my turn to take care of you, Em");
