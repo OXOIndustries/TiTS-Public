@@ -300,7 +300,7 @@ public function tradeWivEmmy():void
 		shopkeep.keeperSell += "\n\nSilken fingertips lay themselves across your busily working hands. <i>“Don’t be so hasty, ";
 		if(flags["MET_EMMY"] != undefined) shopkeep.keeperSell += "[pc.name]";
 		else shopkeep.keeperSell += "[pc.race]";
-		shopkeep.keeperSell += ". I’ll still deal with you. It just has to be under the table...”</i> She glances around, noting the distinct lack of tables. <i>“...so to speak.”</i>";
+		shopkeep.keeperSell += ". I’ll still deal with you. It just has to be under the table...”</i> She glances around, noting the distinct lack of tables. <i>“... so to speak.”</i>";
 		flags["EMMY_TRADE_OFFERED"] = 1;
 	}
 	//Repeat
@@ -607,7 +607,7 @@ public function askEmmyBoutMeleeShit():void
 		if(flags["MET_EMMY"] == undefined) output("Emmy’s");
 		else output("The appreciative herm’s");
 		output(" cock is straining against her jumpsuit by the time you finish, at least two or three inches longer than before. A little drool has even collected on her top-shelf tits, making the gleaming white of her outfit shine even brighter in the artificial light. The bitch is actually panting, but when she sees you staring, she wipes the drool off her muzzle and awkwardly minces her way back behind the counter.");
-		output("\n\n<i>“...Ooookay, so uh... did you have any other questions or did you...”</i> she trails off into nothing and violently shakes her head. <i>“Sorry, was there something else I could answer for you?”</i> She seems a little more in control of herself for the moment, but her hungry eyes tell a different tale.");
+		output("\n\n<i>“... Ooookay, so uh... did you have any other questions or did you...”</i> she trails off into nothing and violently shakes her head. <i>“Sorry, was there something else I could answer for you?”</i> She seems a little more in control of herself for the moment, but her hungry eyes tell a different tale.");
 	}
 	processTime(4);
 	emmyTalkMenu(askEmmyBoutMeleeShit);
@@ -1040,7 +1040,7 @@ public function moreSeriousEmmyTalkAboutEmail():void
 	if(!(pc.armor is EmptySlot)) output("through your [pc.armor].");
 	else output("against your [pc.skin].");
 
-	output("\n\nYour head is spinning, and you’d like nothing better than to bed Emmy right here and now. Still, it sounds like she wants you to tend to her for a chance. <i>“...what?”</i> you pant, confused.");
+	output("\n\nYour head is spinning, and you’d like nothing better than to bed Emmy right here and now. Still, it sounds like she wants you to tend to her for a chance. <i>“... what?”</i> you pant, confused.");
 
 	output("\n\nThe seemingly ravenous jackaless gradually masters her ardor, separating herself from you a finger at a time. <i>“Sorry, I just get so... so sex-crazy around you. You have no idea how badly I want you here. At all hours of the day, I’m just lounging around the shop and wishing you’d suck me off, tongue my pussy until your face is all shiny and I’m painting my tits white. Or that you’d just fondle me through the suit and make me work the rest of the day, soaking in my own cum, ya know?”</i>");
 
@@ -1480,7 +1480,7 @@ public function emmyCunnilingusFinale():void
 	output("<i>“How’s that?”</i> Emmy purrs between attempts to clean your [pc.girlCum] from her mouth. So much of her face is stained with the evidence of your love that she’ll be grooming for a good while yet.");
 	output("\n\nThe best answer you can manage are a few breathy pants and a nod as you climb back up onto your elbows.");
 	output("\n\nEmmy giggles and helps you up, though not without a few slips. The suit shrouding her fingertips is slick with your spent passion. Pussy-scent clings to her like perfume, twice as strong and far more enjoyable. It summons up pangs of remembered pleasure to flutter across your belly.");
-	output("\n\n<i>“Damn,”</i> you exhale, <i>“...that was good.”</i>");
+	output("\n\n<i>“Damn,”</i> you exhale, <i>“... that was good.”</i>");
 	output("\n\nEmmy smiles, though her tongue still slips out in a feeble attempt to groom her cunt-soiled face. <i>“Great. Now while you cool down, I’ve got to freshen up. Some of us still have a store to run.”</i> The jackaless makes for the ‘Employees Only’ door, her knees pressed together. Every step is accompanied by the sound of liquid sloshing inside her one-piece suit. Her hips sway pendulously from side to side, the byproduct of her body’s desire for every ounce of friction upon her own unsated folds.");
 	output("\n\nYou gather your things, and by the time you’re ready to go, the jackaless has returned, wearing a fresh white jumpsuit and a smile. Damn, she’s fast.");
 	processTime(4);
