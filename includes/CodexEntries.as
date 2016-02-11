@@ -38,6 +38,7 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Thraggen", thraggenCodexEntry,true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Varmints", varmintCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Gryvain", gryvainCodexEntry, true);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Vildarii", vildariiCodexEntry);
 	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MHENGA, "Mhen'ga", "Cunt Snakes", cuntSnakeCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MHENGA, "Mhen'ga", "Kerokoras",kerokorasCodexEntry);
@@ -672,6 +673,39 @@ public function thraggenCodexEntry():void
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Thraggen");
 }
+public function vildariiCodexEntry():void 
+{
+	clearOutputCodex();
+	showBust("9999");
+	outputCodex(header("Vildarii"));
+	outputCodex("<b>Name (Singular & Plural):</b> Vildarii");
+	outputCodex("\n<b>Pronunciation:</b> 'Vil-dahr-ee'");
+	outputCodex("\n<b>Sexes:</b> Male, Female");
+	outputCodex("\n<b>Height:</b> From five to six feet, with rare exceptions on either side of the spectrum.");
+	outputCodex("\n<b>Weight:</b> Between 60 to 85 kilograms, with males generally being 10 kilograms heavier than females on average.");
+	outputCodex("\n<b>Average Lifespan:</b> Vildarii have a natural lifespan of up to two centuries. Scientists believe this longevity is directly related to their inherently morphic biology.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Appearance"));
+	outputCodex("Vildarii are one of a handful of polymorphic races currently integrated into the UGC. As humanoid shapeshifters, they are able to take other humanoid forms, so long as these new forms do not deviate excessively from their natural, 'true' form. As such, it can be quite hard to identify a vildarii from appearance alone, unless they are assuming this form.\n\nWhile many polymorphic races have natural forms that lack distinct protrusions and sexual characteristics, vildarii are not one of them, possessing a natural form that is not too different that from a terran human. Still, there are distinct physical characteristics that set them apart; every single vildarii has vermillion-red skin, jet black hair, and large pointed ears, typically five inches in length. Many races describe vidariii ears as being distinctly 'elf-like'.\n\nBy far the most distinctive physical characteristic of the race is their cat-like eyes; while their sclera is white, their irises are a fiery-crimson with black slits.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Polymorphism"));
+	outputCodex("Sitting somewhere in the center of polymorphic ability, vildarii are all born with this trait, but not all are equal in its application. Like any physical activity, there are those who work and train at polymorphism, honing this art to a higher standard than others. While all vildarii take part in classes to train this trait as part of average schooling, the average member of the species can usually change their physical coloration and eyes, but nothing else. Those who continue to study and train this ability can make further, more extreme changes.\n\nThe more a physical alteration deviates from one's natural state, the more of a toll it takes on the body. Most vildarii cannot perpetually assume an alternate form for more than a day without at the very least one hour-long break. On top of this, the act of polymorphism—particularly the initial transformation—consumes a massive amount of bodily nutrients, particularly fats, sugars, and protein. For those who transform regularly, these must be replenished each and every time. It is not unusual to see vildarii binge-eating certain foods, while still appearing physically fit.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Typical Environments"));
+	outputCodex("Vildarii have been part of the UGC for several rushes, and benefited from not being the first polymorphic race to join, completely avoiding the fears and prejudices leveled against earlier species. After their genetic sequence was mapped into scanning devices, they incorporated themselves with ease into galactic society, since becoming as readily accepted as races such as the Ausar and Kaithrit.\n\nThe species can be found on almost any planet, blending in both physically and culturally. Vildarii are naturally morphic in both mind and body, loving to immerse themselves in other cultures and absorb all there is to offer.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Society"));
+	outputCodex("Vildarii are generally considered hedonists; travelling to distant stars just to relish in local cuisines, arts, and above all, sensual pleasures there is to offer. The galaxy is generally considered a sampling plate, and with their long life-spans, they have plenty of time to taste-test it all. It is perhaps not surprising in that light that the species is a wholehearted advocate of the UGC's Rush program. Some vildarii will even join non-integrated species in secret; making themselves look like a local member to indulge in their lifestyle, unhindered by alien prejudice.\n\nMost vildarii spend a great deal of time trying to be as physically and socially amicable as possible. Many vildari get genetic splicing done to this effect, particularly getting potent pheromone glands to maximize their appeal.\n\nThe most common career paths for a vildarii are diplomacy, social sciences, performing arts, modelling, and prostitution.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Reproduction and Sex"));
+	outputCodex("While vildarii are polymorphic, their reproductive biology is rather straightforward and similar to terran humans. They have males and females carrying sperm and ova respectively. Through intercourse, sperm is delivered to the ova, fertilizing it and forming an embryo. Pregnancy usually lasts six months, resulting in the birth of a child, or more rarely, twins.\n\nThere is one significant difference between vildarii sperm and ova, and that of humans. While humans can only successfully produce offspring with a select number of species, vildarii are able to breed with nearly any known species. This is a result of both their ability to shift the arrangement of their sexual organs, and the naturally adaptive nature of their sperm and ova. For example, while humans and most other species cannot produce offspring with a leithan, this is not an obstacle for a vildarii, whose sperm and ova would adapt to couple with the selective species.\n\nMost matings with other species results in a half-vildarii; a native with with the skin coloration, hair, and limited morphic properties of a vildarii.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Religion"));
+	outputCodex("Vildarii have a native religious order called 'Followers of the Infinite Aspect'. They believe a single entity exists that represents all things, able to take the face and empathise with every species and being in the universe. They believe being able to comprehend such a being is nigh-impossible, but adherents strive to emulate the Infinite Aspect by living their lives in other people's shoes and trying to see the universe from as many aspects as possible.");
+	
+	CodexManager.viewedEntry("Vildarii");
+}
+
 public function varmintCodex():void
 {
 	clearOutputCodex();
