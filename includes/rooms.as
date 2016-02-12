@@ -199,8 +199,8 @@ public function initializeRooms():void
 
 	//104 "LIFT: MERCHANT DECK". In The Lift - Merchant's Thoroughfare
 	rooms["LIFT: MERCHANT DECK"] = new RoomClass(this);
-	rooms["LIFT: MERCHANT DECK"].roomName = "LIFT: MERCHANT\nDECK";
-	rooms["LIFT: MERCHANT DECK"].description = "You're within a stuffy tube of metal and plastic. Steady, mechanical thrums suffuse the air around you. The inside of the cylinder-like lift is lined by a brass-hued railing, used to steady oneself during high speed travel through the kilometers-long station.\n\nThere's a sturdy mechanical keypad with which to designate your target level. Right now, the only floors of interest are the hangar, and the merchant and residential levels.";
+	rooms["LIFT: MERCHANT DECK"].roomName = "LIFT:\nMERCHANT";
+	rooms["LIFT: MERCHANT DECK"].description = "";
 	rooms["LIFT: MERCHANT DECK"].planet = "TAVROS STATION";
 	rooms["LIFT: MERCHANT DECK"].system = "SYSTEM: KALAS";
 	rooms["LIFT: MERCHANT DECK"].eastExit = "MERCHANT'S THOROUGHFARE2";
@@ -227,8 +227,8 @@ public function initializeRooms():void
 
 	//106"TAVROS LIFT". In The Lift - The Hangar
 	rooms["TAVROS LIFT"] = new RoomClass(this);
-	rooms["TAVROS LIFT"].roomName = "LIFT: HANGAR\nDECK";
-	rooms["TAVROS LIFT"].description = "You're within a stuffy tube of metal and plastic. Steady, mechanical thrums suffuse the air around you. The inside of the cylinder-like lift is lined by a brass-hued railing, used to steady oneself during high speed travel through the kilometers-long station.\n\nThere's a sturdy mechanical keypad with which to designate your target level. Right now, the only floors of interest are the hangar, and the merchant and residential levels.";
+	rooms["TAVROS LIFT"].roomName = "LIFT:\nHANGAR";
+	rooms["TAVROS LIFT"].description = "";
 	rooms["TAVROS LIFT"].planet = "TAVROS STATION";
 	rooms["TAVROS LIFT"].system = "SYSTEM: KALAS";
 	rooms["TAVROS LIFT"].eastExit = "TAVROS HANGAR";
@@ -545,7 +545,7 @@ public function initializeRooms():void
 	//1001 Lift RESIDENTIAL Deck (Technically Deck 1 in the Docs)
 	rooms["LIFT: RESIDENTIAL DECK"] = new RoomClass(this);
 	rooms["LIFT: RESIDENTIAL DECK"].roomName = "LIFT:\nRESIDENTIAL";
-	rooms["LIFT: RESIDENTIAL DECK"].description = "You're within a stuffy tube of metal and plastic. Steady, mechanical thrums suffuse the air around you. The inside of the cylinder-like lift is lined by a brass-hued railing, used to steady oneself during high speed travel through the kilometers-long station.\n\nThere's a sturdy mechanical keypad with which to designate your target level. Right now, the only floors of interest are the hangar, and the merchant and residential levels.";
+	rooms["LIFT: RESIDENTIAL DECK"].description = "";
 	rooms["LIFT: RESIDENTIAL DECK"].planet = "TAVROS STATION";
 	rooms["LIFT: RESIDENTIAL DECK"].system = "SYSTEM: KALAS";
 	rooms["LIFT: RESIDENTIAL DECK"].northExit = "RESIDENTIAL DECK 6";
@@ -561,8 +561,8 @@ public function initializeRooms():void
 	
 	//1002 South Plaza
 	rooms["RESIDENTIAL DECK 2"] = new RoomClass(this);
-	rooms["RESIDENTIAL DECK 2"].roomName = "\nSOUTH PLAZA";
-	rooms["RESIDENTIAL DECK 2"].description = "You're in front of a row of elevator shafts surrounded by a large plaza area. The design reminds you of a city square, but instead of a fountain feature, the lifts are the centerpiece. Still, there's all the common fare of a common space; there are decorative garden beds with exotic yet harmless shrubbery and park benches to sit on.\n\nBeyond the sprawling public space and in each of the four cardinal directions are residential arcades; high-roofed walkways marked by countless successive arches.\n\nA holographic board floats here, littered with community notices for deck residents. It seems anyone can put a message here, and quite a few people have taken advantage of it.";
+	rooms["RESIDENTIAL DECK 2"].roomName = "SOUTH\nPLAZA";
+	rooms["RESIDENTIAL DECK 2"].description = "You're in front of a row of elevator shafts surrounded by a large plaza area. The design reminds you of a city square, but instead of a fountain feature, the lifts are the centerpiece. Still, there's all the common fare of a common space; there are decorative garden beds with exotic yet harmless shrubbery and park benches to sit on.\n\nBeyond the sprawling public space and in each of the four cardinal directions are residential arcades; high-roofed walkways marked by countless successive arches.";
 	rooms["RESIDENTIAL DECK 2"].planet = "TAVROS STATION";
 	rooms["RESIDENTIAL DECK 2"].system = "SYSTEM: KALAS";
 	rooms["RESIDENTIAL DECK 2"].northExit = "LIFT: RESIDENTIAL DECK";
@@ -784,7 +784,7 @@ public function initializeRooms():void
 	//1019 Fyn's Apartment
 	rooms["RESIDENTIAL DECK 19"] = new RoomClass(this);
 	rooms["RESIDENTIAL DECK 19"].roomName = "FYN'S\nAPARTMENT";
-	rooms["RESIDENTIAL DECK 19"].description = "This incredibly large apartment must have cost a small fortune of credits to buy, far and above the normal fare in Tavros station. The polished synth-oak floors look indistinguishable from the real thing, giving the whole place a glamorous air. The common area is huge, filled with a circular island-like kitchen and seating around the outskirts. It's the sort of place where many people can visit quite easily. There's an open doorway leading to a lush looking bedroom with silky sheets and a king sized bed. The bedhead has silk ropes around it... whatever could <i>they</i> be for? Another room seems to lead to a dance studio.";
+	rooms["RESIDENTIAL DECK 19"].description = "";
 	rooms["RESIDENTIAL DECK 19"].planet = "TAVROS STATION";
 	rooms["RESIDENTIAL DECK 19"].system = "SYSTEM: KALAS";
 	rooms["RESIDENTIAL DECK 19"].southExit = "RESIDENTIAL DECK 11";

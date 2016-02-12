@@ -893,12 +893,12 @@ package classes.GameData
 			else
 			{
 				var af:Function = pc.meleeWeapon.attackImplementor == null ? CombatAttacks.MeleeAttack : pc.meleeWeapon.attackImplementor;
-				addButton(0, "Attack", selectSimpleAttack, af, "Attack", "Attack a single enemy with a melee strike. Damage is based on physique.");
+				addButton(0, "Attack", selectSimpleAttack, { func: af, isMelee: true }, "Attack", "Attack a single enemy with a melee strike. Damage is based on physique.");
 			}
 			
 			// shoot
 			var sf:Function = pc.rangedWeapon.attackImplementor == null ? CombatAttacks.RangedAttack : pc.rangedWeapon.attackImplementor;
-			addButton(1, StringUtil.upperCase(pc.rangedWeapon.attackVerb), selectSimpleAttack, sf, "Ranged Attack", "Attack a single enemy with a ranged weapon. Damage is based on aim.");
+			addButton(1, StringUtil.upperCase(pc.rangedWeapon.attackVerb), selectSimpleAttack, { func: sf, isRanged: true }, "Ranged Attack", "Attack a single enemy with a ranged weapon. Damage is based on aim.");
 			
 			//
 			// inventory
@@ -908,10 +908,10 @@ package classes.GameData
 			
 			// tease
 			if (pc.hasStatusEffect("Myr Venom Withdrawal")) addDisabledButton(5, "Tease", "Tease", "Without the venom, teasing just seems... fruitless.");
-			else addButton(5, "Tease", selectSimpleAttack, generateTeaseMenu, "Tease Menu", "Opens up your menu of available lust-targeting attacks. It is recommended that the ‘Sense’ option be used beforehand.");
+			else addButton(5, "Tease", selectSimpleAttack, { func: generateTeaseMenu }, "Tease Menu", "Opens up your menu of available lust-targeting attacks. It is recommended that the ‘Sense’ option be used beforehand.");
 			
 			// sense
-			addButton(6, "Sense", selectSimpleAttack, generateSenseMenu, "Sense", "Attempts to get a feel for a foe’s likes and dislikes. Absolutely critical for someone who plans on seducing " + pc.mf("his", "her") + " way out of a fight.");
+			addButton(6, "Sense", selectSimpleAttack, { func: generateSenseMenu }, "Sense", "Attempts to get a feel for a foe’s likes and dislikes. Absolutely critical for someone who plans on seducing " + pc.mf("his", "her") + " way out of a fight.");
 			
 			// wait
 			addButton(8, "Wait", waitRound, undefined, "Wait", "There’s no real reason to this unless you’re just dragging out combat to see what your enemy will do.");
@@ -955,20 +955,36 @@ package classes.GameData
 				else if (hasEnemyOfClass(GrayPrime)) kGAMECLASS.grayPrimeFailEscape();
 				else if (hasEnemyOfClass(MaidenVanae) || hasEnemyOfClass(HuntressVanae)) kGAMECLASS.vanaeWaitWhilstGrappled();
 				else output("You choose not to act.");
+				processCombat();
 			}
-			else output("You choose not to act.");
-			processCombat();
+			else if (_hostiles.length == 1 && _hostiles[0] is CrystalGooT1 && (_hostiles[0] as CrystalGooT1).ShouldIntercept())
+			{
+				(_hostiles[0] as CrystalGooT1).SneakSqueezeAttackReaction( { isWait: true } );
+			}
+			else
+			{
+				output("You choose not to act.");
+				processCombat();
+			}
 		}
 		
 		private function fantasizeRound():void
 		{
 			clearOutput();
-			output("You decide you’d rather fantasize than fight back at this point. Why bother when your enem");
-			if(enemiesAlive() > 1) output("ies are");
-			else output("y is");
-			output(" so alluring?");
-			pc.lust(20+rand(20));
-			processCombat();	
+			
+			if (_hostiles.length == 1 && _hostiles[0] is CrystalGooT1 && (_hostiles[0] as CrystalGooT1).ShouldIntercept())
+			{
+				(_hostiles[0] as CrystalGooT1).SneakSqueezeAttackReaction( { isFantasize: true } );
+			}
+			else
+			{
+				output("You decide you'd rather fantasize than fight back at this point. Why bother when your enem");
+				if(enemiesAlive() > 1) output("ies are");
+				else output("y is");
+				output(" so alluring?");
+				pc.lust(20+rand(20));
+				processCombat();	
+			}
 		}
 		
 		private function standupRound():void
@@ -1485,7 +1501,7 @@ package classes.GameData
 			processCombat();
 		}
 		
-		public function selectSimpleAttack(f:Function):void
+		public function selectSimpleAttack(attackOpts:Object):void
 		{
 			var t:Creature = null;
 			
@@ -1507,15 +1523,16 @@ package classes.GameData
 			
 			if (t == null)
 			{
-				selectSimpleTarget(f);
+				selectSimpleTarget(attackOpts);
 			}
 			else
 			{
-				executeSimpleAttack( { func: f, tar: t } );
+				attackOpts.tar = t;
+				executeSimpleAttack(attackOpts);
 			}
 		}
 		
-		public function selectSimpleTarget(f:Function):void
+		public function selectSimpleTarget(attackOpts:Object):void
 		{
 			clearMenu();
 			
@@ -1524,7 +1541,7 @@ package classes.GameData
 			{
 				if (!_hostiles[i].isDefeated())
 				{
-					addButton(bOff, (_hostiles[i] as Creature).buttonText, executeSimpleAttack, { func:f, tar: _hostiles[i] } );
+					addButton(bOff, (_hostiles[i] as Creature).buttonText, executeSimpleAttack, attackOpts );
 					bOff++;
 				}
 			}
@@ -1541,10 +1558,17 @@ package classes.GameData
 			kGAMECLASS.setAttacker(pc);
 			kGAMECLASS.setEnemy(opts.tar);
 			
-			opts.func(pc, opts.tar);
+			if (opts.tar is CrystalGooT1 && (opts.tar as CrystalGooT1).ShouldIntercept())
+			{
+				(opts.tar as CrystalGooT1).SneakSqueezeAttackReaction(opts);
+			}
+			else
+			{
+				opts.func(pc, opts.tar);
+			}
 			
 			// Hacky workaround to defer process combat for special cases.
-			if (opts.func != generateTeaseMenu)
+			if (opts.func != generateTeaseMenu && opts.func != generateSenseMenu)
 			{
 				processCombat();
 			}
@@ -1625,8 +1649,17 @@ package classes.GameData
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_EXOTIC_BODYSHAPE);
 			
 			clearOutput();
-			buttTeaseText(target);
-			applyTeaseDamage(pc, target, teaseCount, "BUTT", likeAdjustments);
+			
+			if (target is CrystalGooT1 && (target as CrystalGooT1).ShouldIntercept())
+			{
+				(target as CrystalGooT1).SneakSqueezeAttackReaction( { isTease: true } );
+			}
+			else
+			{
+				buttTeaseText(target);
+				applyTeaseDamage(pc, target, teaseCount, "BUTT", likeAdjustments);
+			}
+			
 			processCombat();
 		}
 				
@@ -1671,7 +1704,7 @@ package classes.GameData
 				if(pc.lowerUndergarment.shortName != "") output("unseen ");
 				output("goods. Your ass shaking has gotten faster and more tasteful with all of that practice, and you rock your [pc.butt] as best as you can to show that off.");
 			}
-			else if(select == 2) output("You quickly strip out of your [pc.armor] and turn around, giving your [pc.butt] a hard slap and showing your enemy the real prize: your [pc.asshole]. With a smirk, you easily plunge your hand inside, burying yourself up to the wrist inside your anus. You give yourself a quick fisting, watching the enemy over your shoulder while you moan lustily, being sure to give them a good show. You withdraw your hand and give your ass another sexy spank before readying for combat again.");
+			else if(select == 2) output("You quickly strip out of your [pc.armor] and turn around, giving your [pc.butt] a hard slap and showing your enemy the real prize: your [pc.asshole].  With a smirk, you easily plunge your hand inside, burying yourself up to the wrist inside your anus.  You give yourself a quick fisting, watching the enemy over your shoulder while you moan lustily, being sure to give them a good show.  You withdraw your hand and give your ass another sexy spank before readying for combat again.");
 			//Reqs: PC has at least one tail with the Fluffy tag
 			else if(select == 4)
 			{
@@ -1697,12 +1730,12 @@ package classes.GameData
 				{
 					output(" to reveal the slick entrance. A bit of fluid drips from the tip of your [pc.tailgina], wet and ready for mating.");
 				}
-				else output(" just enough to reveal a bit of the interior. You take it slow on opening your tailcunt the rest of the way, until you can use two fingers to hold the dripping entrance open, leaving your other hand free to run its fingers over the exotic folds, pressing in just enough to show your foe how slippery soft your tailpussy really is.");
+				else output(" just enough to reveal a bit of the interior.  You take it slow on opening your tailcunt the rest of the way, until you can use two fingers to hold the dripping entrance open, leaving your other hand free to run its fingers over the exotic folds, pressing in just enough to show your foe how slippery soft your tailpussy really is.");
 			}
 			//Reqs: PC has a cock-tail
 			else if(select == 7)
 			{
-				output("You curl your [pc.cockTail] around to flex it back and forth a bit in front of your foe, showing off the alien endowment you’ve picked up. You arrange your tail into a spiral shape and then piston it sharply like a coiled spring, making a loud snapping sound from the force of it striking the air.");
+				output("You curl your [pc.cockTail] around to flex it back and forth a bit in front of your foe, showing off the alien endowment you’ve picked up.  You arrange your tail into a spiral shape and then piston it sharply like a coiled spring, making a loud snapping sound from the force of it striking the air.");
 			}
 			//Reqs: PC is clothed, PC has a cock and either a trap-pouch, internal gonads or no balls, PC has no vagina, PC is feminine-looking
 			else if(select == 8)
@@ -1741,7 +1774,7 @@ package classes.GameData
 				output(" and bounce your [pc.butt] up and down hypnotically");
 				//Big butts = extra text + higher success
 				if(pc.buttRating() >= 10) {
-					output(", making it jiggle delightfully. Your target even gets a few glimpses of the [pc.asshole] between your cheeks.");
+					output(", making it jiggle delightfully.  Your target even gets a few glimpses of the [pc.asshole] between your cheeks.");
 				}
 				//Small butts = less damage, still high success
 				else {
@@ -1776,8 +1809,17 @@ package classes.GameData
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_LACTATION);
 			
 			clearOutput();
-			chestTeaseText(target);
-			applyTeaseDamage(pc, target, teaseCount, "CHEST", likeAdjustments);
+			
+			if (target is CrystalGooT1 && (target as CrystalGooT1).ShouldIntercept())
+			{
+				(target as CrystalGooT1).SneakSqueezeAttackReaction( { isTease: true } );
+			}
+			else
+			{
+				chestTeaseText(target);
+				applyTeaseDamage(pc, target, teaseCount, "CHEST", likeAdjustments);
+			}
+			
 			processCombat();
 		}
 		
@@ -1790,7 +1832,7 @@ package classes.GameData
 					//Clothed:
 					if(!pc.isChestExposed()) output("Shedding your [pc.upperGarments], you");
 					else output("You");
-					output(" flex your arms, showing off the bulging biceps. After a bit of posing");
+					output(" flex your arms, showing off the bulging biceps.  After a bit of posing");
 					output(" you slap your chest with one hand, producing a loud crack of muscle on muscle as your palm meets your iron-hard pectoral.");
 					output(" After a good few seconds of showing off,");
 					if(!pc.isChestExposed()) output(" you close your [pc.upperGarments] and");
@@ -1872,7 +1914,7 @@ package classes.GameData
 					//Clothed:
 					if(!pc.isChestExposed()) output("Shedding your [pc.upperGarments], you");
 					else output("You");
-					output(" flex your arms, showing off the bulging biceps. After a bit of posing");
+					output(" flex your arms, showing off the bulging biceps.  After a bit of posing");
 					if(pc.biggestTitSize() < 1) output(" you slap your chest with one hand, producing a loud crack of muscle on muscle as your palm meets your iron-hard pectoral.");
 					else if(pc.biggestTitSize() <= 3) output(" you stretch to show off your sleek chest, turning your upper body so they can see the way your breasts fit the form of your highly-toned physique.");
 					else output(" you give one of your breasts a grope, showing off how you’re every bit as curvy as a girl without your incredible musculature.");
@@ -1902,8 +1944,16 @@ package classes.GameData
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_EXOTIC_BODYSHAPE);
 		
 			clearOutput();
-			hipsTeaseText(target);
-			applyTeaseDamage(pc, target, teaseCount, "HIPS", likeAdjustments);
+			
+			if (target is CrystalGooT1 && (target as CrystalGooT1).ShouldIntercept())
+			{
+				(target as CrystalGooT1).SneakSqueezeAttackReaction( { isTease: true } );
+			}
+			else
+			{
+				hipsTeaseText(target);
+				applyTeaseDamage(pc, target, teaseCount, "HIPS", likeAdjustments);
+			}
 			processCombat();
 		}
 		
@@ -1915,7 +1965,7 @@ package classes.GameData
 			if(pc.hipRating() < 4) choices.push(0);
 			else if(pc.hipRating() >= 10) choices.push(1);
 			else choices.push(2);
-			//Reqs: PC has a naga tail
+			//Reqs:  PC has a naga tail
 			if(pc.isNaga()) choices.push(3);
 			//Reqs: PC is in combat with a naleen, PC has a naga tail
 			if(target is Naleen && pc.isNaga()) choices.push(4);
@@ -1972,7 +2022,7 @@ package classes.GameData
 				}
 				//Nude:
 				else output("You take a moment to ready yourself");
-				output(" before drawing your hands up over your head. You start in on rocking your [pc.hips], treating your foe to a dance");
+				output(" before drawing your hands up over your head.  You start in on rocking your [pc.hips], treating your foe to a dance");
 				if(pc.tone < 30 && pc.thickness >= 60) output(" that gets your [pc.belly] jiggling");
 				else output(" that shows off your [pc.belly], the light glinting off your [pc.skinFurScales] as it moves");
 				output(". Your hands slowly descend and move outwards to your sides, remaining largely steady while the bulk of your motion remains in your hips and belly, though there’s just enough motion in your [pc.legOrLegs] to show those off as well");
@@ -2021,8 +2071,16 @@ package classes.GameData
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_HERMAPHRODITE);
 			
 			clearOutput();
-			crotchTeaseText(target);
-			applyTeaseDamage(pc, target, teaseCount, "CROTCH", likeAdjustments);
+			
+			if (target is CrystalGooT1 && (target as CrystalGooT1).ShouldIntercept())
+			{
+				(target as CrystalGooT1).SneakSqueezeAttackReaction( { isTease:true } );
+			}
+			else
+			{
+				crotchTeaseText(target);
+				applyTeaseDamage(pc, target, teaseCount, "CROTCH", likeAdjustments);
+			}
 			processCombat();
 		}
 		
@@ -2154,7 +2212,7 @@ package classes.GameData
 				else output("You only need to face your [pc.crotch] towards your enemy");
 				output(" and cock your hips to one side, letting the [pc.girlCum] gushing from between your thighs speak for itself. You casually drop a hand to between your [pc.thighs] and sample a bit of the river, popping your fingers into your mouth to savor the [pc.girlCumFlavor] treat.");
 				//Skill 50+:
-				if(flags["TIMES_CROTCH_TEASED"] > 50) output(" You dip your fingers into the [pc.girlCumNoun] again, this time holding out your fingers towards your foe invitingly before again licking yourself clean. <i>“Imagine what it’s like when I’m actually cumming.”</i>");
+				if(flags["TIMES_CROTCH_TEASED"] > 50) output(" You dip your fingers into the [pc.girlCumNoun] again, this time holding out your fingers towards your foe invitingly before again licking yourself clean.  <i>“Imagine what it’s like when I’m actually cumming.”</i>");
 				output(" You give your foe a heady grin as you ");
 				if(!pc.isCrotchExposed()) output("pull your [pc.lowerGarments] back up, producing a wet sound as your endless flow is plugged back up - for now.");
 				else output("return your attention to the fight, [pc.girlCumColor] still streaming freely down your [pc.legOrLegs].");
@@ -2247,7 +2305,7 @@ package classes.GameData
 				//Clothed:
 				if(!pc.isCrotchExposed()) output("You open your [pc.lowerGarments] and");
 				else output("You");
-				output(" draw attention to [pc.oneCock], your flare already getting nice and wide. Your finger traces around the edge and underside of the thick ring, before coming up and over to brush the [pc.cockHead " + temp + "] above it. A bit of [pc.cum] comes away with your fingertip, showing off just how ready your flare is to be plunged inside the nearest willing hole... if they can take it. The thought of it makes you smirk as you ");
+				output(" draw attention to [pc.oneCock], your flare already getting nice and wide. Your finger traces around the edge and underside of the thick ring, before coming up and over to brush the [pc.cockHead " + temp + "] above it. A bit of [pc.cum] comes away with your fingertip, showing off just how ready your flare is to be plunged inside the nearest willing hole... if they can take it.  The thought of it makes you smirk as you ");
 				if(!pc.isCrotchExposed()) output("cover up");
 				else output("return to attention");
 				output(", ready to continue.");
@@ -2268,7 +2326,7 @@ package classes.GameData
 				//Clothed:
 				if(!pc.isCrotchExposed()) output("As your [pc.lowerGarments] come away from");
 				else output("As you draw your foe’s attention to");
-				output(" your [pc.cocks], you opt to focus on a different part of your shaft from the usual. Your hand goes up to your [pc.cockHead " + temp + "], but soon slides halfway down your shaft to the masculine ring wrapped around the center of your dick. Your finger traces around its edge, pressing inward just enough to showcase the slightly spongy texture of your all-natural ribbing. You pull your hand away");
+				output(" your [pc.cocks], you opt to focus on a different part of your shaft from the usual.  Your hand goes up to your [pc.cockHead " + temp + "], but soon slides halfway down your shaft to the masculine ring wrapped around the center of your dick.  Your finger traces around its edge, pressing inward just enough to showcase the slightly spongy texture of your all-natural ribbing.  You pull your hand away");
 				if(!pc.isCrotchExposed()) output(" and cover up.");
 				else output(" and let your cock relax.");
 			}
@@ -2409,8 +2467,16 @@ package classes.GameData
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_LACTATION);
 			
 			clearOutput();
-			squirtTeaseText(target);
-			applyTeaseDamage(pc, target, teaseCount, "SQUIRT", likeAdjustments);
+			
+			if (target is CrystalGooT1 && (target as CrystalGooT1).ShouldIntercept())
+			{
+				(target as CrystalGooT1).SneakSqueezeAttackReaction( { isSquirt: true } );
+			}
+			else
+			{
+				squirtTeaseText(target);
+				applyTeaseDamage(pc, target, teaseCount, "SQUIRT", likeAdjustments);
+			}
 			processCombat();
 		}
 		
@@ -2518,8 +2584,8 @@ package classes.GameData
 				output("\n\n");
 				if(teaseType == "SQUIRT") 
 				{
-					if(target.isPlural) output(target.capitalA + target.uniqueName + " are splattered with your [pc.milk], unable to get it off. All of a sudden, their faces begin to flush, and they look quite aroused.");
-					else output(target.capitalA + target.uniqueName + " is splattered with your [pc.milk], unable to get it off. All of a sudden, " + target.mfn("his","her","its") + " " + target.face() + " begins to flush, and " + target.mfn("he","she","it") + " looks quite aroused.");
+					if(target.isPlural) output(target.capitalA + target.uniqueName  + " are splattered with your [pc.milk], unable to get it off. All of a sudden, their faces begin to flush, and they look quite aroused.");
+					else output(target.capitalA + target.uniqueName  + " is splattered with your [pc.milk], unable to get it off. All of a sudden, " + target.mfn("his","her","its") + " " + target.face() + " begins to flush, and " + target.mfn("he","she","it") + " looks quite aroused.");
 				}
 				else output(teaseReactions(damage,target));
 				target.lust(damage);
@@ -2601,7 +2667,7 @@ package classes.GameData
 				else buffer = "The wispy amazon parts her thighs and begins to stroke her twin clits to your lewd display, unable to stop herself. A few seconds later she jerks her webbed back, flushing wildly.";
 			}
 			else if (target.isPlural) {
-				if (damage == 0) buffer = target.capitalA + target.uniqueName + " seem unimpressed.";
+				if (damage == 0) buffer = target.capitalA + target.uniqueName  + " seem unimpressed.";
 				else if (damage < 4) buffer = target.capitalA + target.uniqueName + " look intrigued by what they see.";
 				else if (damage < 10) buffer = target.capitalA + target.uniqueName + " definitely seem to be enjoying the show.";
 				else if (damage < 15) buffer = target.capitalA + target.uniqueName + " openly stroke themselves as they watch you.";

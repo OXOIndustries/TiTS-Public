@@ -257,7 +257,7 @@ public function availableFaps(roundTwo:Boolean = false):Array
 		faps.push(fap);
 	}
 	//Use Vi's vagina, if ye fit.
-	if(pc.hasKeyItem("Vi's Vagina") && pc.hasCock() && pc.cockThatFits(chars["VI"].vaginalCapacity(0)) >= 0)
+	if(pc.hasKeyItem("Vi's Vagina"))
 	{
 		fap = new FapCommandContainer();
 		fap.text = "Vi's Vagina";

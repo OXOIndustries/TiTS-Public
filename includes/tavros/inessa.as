@@ -1133,7 +1133,7 @@ public function cuffNFuckButton(btnSlot:int = 0, sexedFoe:Creature = null):void
 		
 		setEnemy(sexedFoe); // This should already be set by the combat system, so really we're only setting it in cases where we got here outside of combat.
 		
-		if(pc.hasCock() && fitsInside) addButton(btnSlot, "Cuff&Fuck", cuffNFuck, undefined, "Cuff & Fuck", "Use your grav-cuffs to pin down [enemy.name] and have your way with [monster.hisHer] [pc.vagOrAss]! Requires Grav-cuffs and a penis.");
+		if(pc.hasCock() && fitsInside) addButton(btnSlot, "Cuff&Fuck", cuffNFuck, undefined, "Cuff & Fuck", "Use your grav-cuffs to pin down [enemy.name] and have your way with [enemy.hisHer] [enemy.vagOrAss]! Requires Grav-cuffs and a penis.");
 		else if(pc.hasCock()) addDisabledButton(btnSlot, "Cuff&Fuck", "Cuff & Fuck", "You can cuff [enemy.himHer] down, but you wouldn't be able to fit inside.");
 		else addDisabledButton(btnSlot, "Cuff&Fuck", "Cuff & Fuck", "You need a penis to make use of your grav-cuffs this way.");
 	}

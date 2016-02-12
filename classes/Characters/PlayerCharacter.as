@@ -48,7 +48,7 @@ package classes.Characters
 			{
 				if(!cumFrom.hasStatusEffect("Ovilium Effect") && hasStatusEffect("Ovilium"))
 				{
-					kGAMECLASS.oviliumEggBump();
+					kGAMECLASS.oviliumEggBump(cumFrom, vagIndex);
 				}
 				return this.tryKnockUp(cumFrom, vagIndex);
 			}

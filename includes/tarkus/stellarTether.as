@@ -736,7 +736,8 @@ public function hackTheRocketPodsOnTarkus():void
 		processTime(2);
 		flags["ROCKET_PODS_HACKED"] = 1;
 		clearMenu();
-		addButton(0,"Next",mainGameMenu);
+		CombatManager.abortCombat();
+		//addButton(0,"Next",mainGameMenu);
 	}
 }
 
