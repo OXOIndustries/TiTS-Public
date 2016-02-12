@@ -72,12 +72,15 @@ public function finsApartmentBonus():Boolean
 }
 
 public function playFynsDoorScene():void {
-	output("\n\nDo you knock on the large oak door?");
+	//only render knock button if player didn't yet enter Fyn's apartment yet
+	if(flags["FYN_APARTMENT_ENTERED"] != true) {
+		output("\n\nDo you knock on the large oak door?");
 	
-	processTime(1);
-	
-	clearMenu();
-	addButton(0, "Knock", knockOnFynsDoor, undefined, "Knock", "Why not? You're kind of curious to see who lives inside... you only live once, right?");
+		processTime(1);
+		
+		clearMenu();
+		addButton(0, "Knock", knockOnFynsDoor, undefined, "Knock", "Why not? You're kind of curious to see who lives inside... you only live once, right?");
+	}
 }
 
 /*Cut do to reworking intro bits
