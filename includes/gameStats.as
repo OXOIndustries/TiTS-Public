@@ -3754,6 +3754,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Like, Steph Irson, theee Galactic Huntress!
+			/*
 			if(flags["STEPH_WATCHED"] != undefined && flags["STEPH_WORK_CHOICE"] != undefined)
 			{
 				output2("\n<b><u>A Cavern</u></b>");
@@ -3769,6 +3770,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				else output2(" <i>Unknown</i>");
 				variousCount++;
 			}
+			*/
 			// Crab Lady
 			if(flags["QUEEN_OF_THE_DEEP_ENCOUNTERED"] != undefined)
 			{
