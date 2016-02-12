@@ -1090,6 +1090,13 @@ public function statusTick():void {
 					//Bit of a hacky solution
 					gogoVenomShit = true;
 				}
+				// Mhen'gan Mango finishes!
+				if(pc.statusEffects[x].storageName == "The Mango")
+				{
+					eventBuffer += "\n\nYour attractive aura fades from you as your sexiness returns to normal levels.";
+					if (silly && rand(3) != 0) eventBuffer += " You could no longer handle the mango!";
+					else eventBuffer += " The wild mango’s effect has worn off!";
+				}
 				//Jaded wears off!
 				if(pc.statusEffects[x].storageName == "Jaded")
 				{

@@ -2964,9 +2964,10 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Resources
-			if(flags["TAGGED_MHENGA_OXONIUM_DEPOSIT"] != undefined || flags["UTHRA HARVEST DAY"] != undefined)
+			if(flags["TAGGED_MHENGA_OXONIUM_DEPOSIT"] != undefined || flags["UTHRA HARVEST DAY"] != undefined || flags["FOUND_MANGO"] != undefined)
 			{
 				output2("\n<b><u>Mhen’gan Resources</u></b>");
+				if(flags["FOUND_MANGO"] != undefined) output2("\n<b>* Mhen’gan Mango, Times Found: </b>" + flags["FOUND_MANGO"]);
 				if(flags["TAGGED_MHENGA_OXONIUM_DEPOSIT"] != undefined) output2("\n<b>* Oxonium Deposit: </b> Found");
 				if(flags["UTHRA HARVEST DAY"] != undefined) output2("\n<b>* Uthra Sap, Days Since Last Harvest: </b>" + (days - flags["UTHRA HARVEST DAY"]));
 				
