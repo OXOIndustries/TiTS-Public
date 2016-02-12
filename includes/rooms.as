@@ -199,8 +199,8 @@ public function initializeRooms():void
 
 	//104 "LIFT: MERCHANT DECK". In The Lift - Merchant's Thoroughfare
 	rooms["LIFT: MERCHANT DECK"] = new RoomClass(this);
-	rooms["LIFT: MERCHANT DECK"].roomName = "LIFT: MERCHANT\nDECK";
-	rooms["LIFT: MERCHANT DECK"].description = "Steady, mechanical thrums suffuse the stuffy air inside this tube of metal and plastic. There is a brass-hued railing to stablize oneself with during the highspeed travel through the kilometers-long station and a sturdy mechanical keypad with which to designate your target level. Much of the lift stations look to be inactive; right now, the hangar and the merchant's thoroughfare are the only areas reachable by lift.";
+	rooms["LIFT: MERCHANT DECK"].roomName = "LIFT:\nMERCHANT";
+	rooms["LIFT: MERCHANT DECK"].description = "";
 	rooms["LIFT: MERCHANT DECK"].planet = "TAVROS STATION";
 	rooms["LIFT: MERCHANT DECK"].system = "SYSTEM: KALAS";
 	rooms["LIFT: MERCHANT DECK"].eastExit = "MERCHANT'S THOROUGHFARE2";
@@ -227,8 +227,8 @@ public function initializeRooms():void
 
 	//106"TAVROS LIFT". In The Lift - The Hangar
 	rooms["TAVROS LIFT"] = new RoomClass(this);
-	rooms["TAVROS LIFT"].roomName = "LIFT: HANGAR\nDECK";
-	rooms["TAVROS LIFT"].description = "Steady, mechanical thrums suffuse the stuffy air inside this tube of metal and plastic. There is a brass-hued railing to stablize oneself with during the highspeed travel through the kilometers-long station and a sturdy mechanical keypad with which to designate your target level. Much of the lift stations look to be inactive; right now, the hangar and the merchant's thoroughfare are the only areas reachable by lift.";
+	rooms["TAVROS LIFT"].roomName = "LIFT:\nHANGAR";
+	rooms["TAVROS LIFT"].description = "";
 	rooms["TAVROS LIFT"].planet = "TAVROS STATION";
 	rooms["TAVROS LIFT"].system = "SYSTEM: KALAS";
 	rooms["TAVROS LIFT"].eastExit = "TAVROS HANGAR";
@@ -534,6 +534,268 @@ public function initializeRooms():void
 	rooms["INESSA"].addFlag(GLOBAL.PUBLIC);
 	rooms["INESSA"].addFlag(GLOBAL.COMMERCE);
 	rooms["INESSA"].runOnEnter = happyTailsBonus;
+	
+	
+	//=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
+	//=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
+	//				TAVROS RESIDENTIAL DECK
+	//=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
+	//=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
+	
+	//1001 Lift RESIDENTIAL Deck (Technically Deck 1 in the Docs)
+	rooms["LIFT: RESIDENTIAL DECK"] = new RoomClass(this);
+	rooms["LIFT: RESIDENTIAL DECK"].roomName = "LIFT:\nRESIDENTIAL";
+	rooms["LIFT: RESIDENTIAL DECK"].description = "";
+	rooms["LIFT: RESIDENTIAL DECK"].planet = "TAVROS STATION";
+	rooms["LIFT: RESIDENTIAL DECK"].system = "SYSTEM: KALAS";
+	rooms["LIFT: RESIDENTIAL DECK"].northExit = "RESIDENTIAL DECK 6";
+	rooms["LIFT: RESIDENTIAL DECK"].southExit = "RESIDENTIAL DECK 2";
+	rooms["LIFT: RESIDENTIAL DECK"].westExit = "";
+	rooms["LIFT: RESIDENTIAL DECK"].eastExit = "";
+	rooms["LIFT: RESIDENTIAL DECK"].moveMinutes = 1;
+	rooms["LIFT: RESIDENTIAL DECK"].addFlag(GLOBAL.INDOOR);
+	rooms["LIFT: RESIDENTIAL DECK"].addFlag(GLOBAL.LIFTDOWN);
+	rooms["LIFT: RESIDENTIAL DECK"].addFlag(GLOBAL.PUBLIC);
+	rooms["LIFT: RESIDENTIAL DECK"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	rooms["LIFT: RESIDENTIAL DECK"].runOnEnter = hangarBonus;
+	
+	//1002 South Plaza
+	rooms["RESIDENTIAL DECK 2"] = new RoomClass(this);
+	rooms["RESIDENTIAL DECK 2"].roomName = "SOUTH\nPLAZA";
+	rooms["RESIDENTIAL DECK 2"].description = "You're in front of a row of elevator shafts surrounded by a large plaza area. The design reminds you of a city square, but instead of a fountain feature, the lifts are the centerpiece. Still, there's all the common fare of a common space; there are decorative garden beds with exotic yet harmless shrubbery and park benches to sit on.\n\nBeyond the sprawling public space and in each of the four cardinal directions are residential arcades; high-roofed walkways marked by countless successive arches.";
+	rooms["RESIDENTIAL DECK 2"].planet = "TAVROS STATION";
+	rooms["RESIDENTIAL DECK 2"].system = "SYSTEM: KALAS";
+	rooms["RESIDENTIAL DECK 2"].northExit = "LIFT: RESIDENTIAL DECK";
+	rooms["RESIDENTIAL DECK 2"].southExit = "RESIDENTIAL DECK 16";
+	rooms["RESIDENTIAL DECK 2"].westExit = "RESIDENTIAL DECK 9";
+	rooms["RESIDENTIAL DECK 2"].eastExit = "RESIDENTIAL DECK 3";
+	rooms["RESIDENTIAL DECK 2"].moveMinutes = 1;
+	rooms["RESIDENTIAL DECK 2"].addFlag(GLOBAL.INDOOR);
+	rooms["RESIDENTIAL DECK 2"].addFlag(GLOBAL.PUBLIC);
+	rooms["RESIDENTIAL DECK 2"].addFlag(GLOBAL.OBJECTIVE);
+	rooms["RESIDENTIAL DECK 2"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	rooms["RESIDENTIAL DECK 2"].runOnEnter = tavrosResidentialDeckNoticeBoard;
+	
+	//1003 South-East Plaza
+	rooms["RESIDENTIAL DECK 3"] = new RoomClass(this);
+	rooms["RESIDENTIAL DECK 3"].roomName = "SOUTH-EAST\nPLAZA";
+	rooms["RESIDENTIAL DECK 3"].description = "This corner of the residential plaza is quite busy. The foot traffic is between the large elevator shafts in the center of the plaza and people's dwellings. There are apartments lining the plaza, a premium spot for anyone in a rush.\n\nThere are some large trees here casting shade upon the paved ground. The only breeze is from the deck's air conditioning systems, which keep everything at a nice, mild temperature.\n\nYou can follow the curve of the plaza here northward, towards the bridge to the western ward. You can also head west where the entrance to the deck's elevators are.";
+	rooms["RESIDENTIAL DECK 3"].planet = "TAVROS STATION";
+	rooms["RESIDENTIAL DECK 3"].system = "SYSTEM: KALAS";
+	rooms["RESIDENTIAL DECK 3"].northExit = "RESIDENTIAL DECK 4";
+	rooms["RESIDENTIAL DECK 3"].westExit = "RESIDENTIAL DECK 2";
+	rooms["RESIDENTIAL DECK 3"].moveMinutes = 1;
+	rooms["RESIDENTIAL DECK 3"].addFlag(GLOBAL.INDOOR);
+	rooms["RESIDENTIAL DECK 3"].addFlag(GLOBAL.PUBLIC);
+	rooms["RESIDENTIAL DECK 3"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	
+	//1004 East Plaza
+	rooms["RESIDENTIAL DECK 4"] = new RoomClass(this);
+	rooms["RESIDENTIAL DECK 4"].roomName = "EAST\nPLAZA";
+	rooms["RESIDENTIAL DECK 4"].description = "There's a large lush patch of purple plants here in the plaza. They're covered in patchy blue spots. Soft, cyan blossoms are poking out from them on long, dangly stems. They smell fresh and crisp rather than floral.\n\nThe plaza stretches out north to south, but there's a large residential arcade to the east. It seems to head all the way out to a residential ward, though the thoroughfare itself is lined with doors to residential apartments.";
+	rooms["RESIDENTIAL DECK 4"].planet = "TAVROS STATION";
+	rooms["RESIDENTIAL DECK 4"].system = "SYSTEM: KALAS";
+	rooms["RESIDENTIAL DECK 4"].northExit = "RESIDENTIAL DECK 5";
+	rooms["RESIDENTIAL DECK 4"].southExit = "RESIDENTIAL DECK 3";
+	rooms["RESIDENTIAL DECK 4"].eastExit = "RESIDENTIAL DECK 10";
+	rooms["RESIDENTIAL DECK 4"].moveMinutes = 1;
+	rooms["RESIDENTIAL DECK 4"].addFlag(GLOBAL.INDOOR);
+	rooms["RESIDENTIAL DECK 4"].addFlag(GLOBAL.PUBLIC);
+	rooms["RESIDENTIAL DECK 4"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	
+	//1005 North-East Plaza
+	rooms["RESIDENTIAL DECK 5"] = new RoomClass(this);
+	rooms["RESIDENTIAL DECK 5"].roomName = "NORTH-EAST\nPLAZA";
+	rooms["RESIDENTIAL DECK 5"].description = "This part of the plaza is marked by large, leafy ferns, and by their distinctly green look, they're likely terran. Some station tourists are stopping to take photos; they must be authentic palm trees. They lack coconuts, either through rigorous pruning or selective breeding, making it safe for pedestrians to pass beneath.\n\nThe plaza continues east and south in a wide curve.";
+	rooms["RESIDENTIAL DECK 5"].planet = "TAVROS STATION";
+	rooms["RESIDENTIAL DECK 5"].system = "SYSTEM: KALAS";
+	rooms["RESIDENTIAL DECK 5"].southExit = "RESIDENTIAL DECK 4";
+	rooms["RESIDENTIAL DECK 5"].westExit = "RESIDENTIAL DECK 6";
+	rooms["RESIDENTIAL DECK 5"].moveMinutes = 1;
+	rooms["RESIDENTIAL DECK 5"].addFlag(GLOBAL.INDOOR);
+	rooms["RESIDENTIAL DECK 5"].addFlag(GLOBAL.PUBLIC);
+	rooms["RESIDENTIAL DECK 5"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	
+	//1006 North Plaza
+	rooms["RESIDENTIAL DECK 6"] = new RoomClass(this);
+	rooms["RESIDENTIAL DECK 6"].roomName = "NORTH\nPLAZA";
+	rooms["RESIDENTIAL DECK 6"].description = "You're standing on the north side of the plaza and in front of a large row of elevator shafts. All around you is a massive public plaza, filled with scenic shrubbery and paved walkways. There's a few park benches as well, which residents seem to be making full use of.\n\nAt each of the cardinal points are gigantic residential arcades that continue out as far as the eye can see. Just like the walls of the plaza, the arcades are lined with residential entrances. It must be nice to walk right out your door and into such a nice garden-filled space.\n\nYou can head in any direction, with south heading back into the elevators and north heading into one of the residential thoroughfares. East and west heads around the plaza.";
+	rooms["RESIDENTIAL DECK 6"].planet = "TAVROS STATION";
+	rooms["RESIDENTIAL DECK 6"].system = "SYSTEM: KALAS";
+	rooms["RESIDENTIAL DECK 6"].northExit = "RESIDENTIAL DECK 12";
+	rooms["RESIDENTIAL DECK 6"].southExit = "LIFT: RESIDENTIAL DECK";
+	rooms["RESIDENTIAL DECK 6"].westExit = "RESIDENTIAL DECK 7";
+	rooms["RESIDENTIAL DECK 6"].eastExit = "RESIDENTIAL DECK 5";
+	rooms["RESIDENTIAL DECK 6"].moveMinutes = 1;
+	rooms["RESIDENTIAL DECK 6"].addFlag(GLOBAL.INDOOR);
+	rooms["RESIDENTIAL DECK 6"].addFlag(GLOBAL.PUBLIC);
+	rooms["RESIDENTIAL DECK 6"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	
+	//1007 North-West Plaza
+	rooms["RESIDENTIAL DECK 7"] = new RoomClass(this);
+	rooms["RESIDENTIAL DECK 7"].roomName = "NORTH-WEST\nPLAZA";
+	rooms["RESIDENTIAL DECK 7"].description = "It's hard not to be dazzled by this portion of the plaza. Between the walkways are clusters of prismatic crystals, ranging in size from tiny gem-like shrubs to twenty-foot monoliths. Artificial light flows from above, striking the stones and causing them to sparkle.\n\nA few water features run over the crystals, causing their scintillating light to flurry about beneath the ripples. It's almost hypnotic, but very relaxing. Understandably, there's a lot of public seating about.\n\nThe plaza curves here from west to south, lined by various residential apartments.";
+	rooms["RESIDENTIAL DECK 7"].planet = "TAVROS STATION";
+	rooms["RESIDENTIAL DECK 7"].system = "SYSTEM: KALAS";
+	rooms["RESIDENTIAL DECK 7"].southExit = "RESIDENTIAL DECK 8";
+	rooms["RESIDENTIAL DECK 7"].eastExit = "RESIDENTIAL DECK 6";
+	rooms["RESIDENTIAL DECK 7"].moveMinutes = 1;
+	rooms["RESIDENTIAL DECK 7"].addFlag(GLOBAL.INDOOR);
+	rooms["RESIDENTIAL DECK 7"].addFlag(GLOBAL.PUBLIC);
+	rooms["RESIDENTIAL DECK 7"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	
+	//1008 West Plaza
+	rooms["RESIDENTIAL DECK 8"] = new RoomClass(this);
+	rooms["RESIDENTIAL DECK 8"].roomName = "WEST\nPLAZA";
+	rooms["RESIDENTIAL DECK 8"].description = "This part of the plaza is filled with shielded aviaries housing all kinds of colorful winged creatures. When they're not hovering about, they're resting in their nests, most of which are built in hollowed out trees. A rainbow-hued, six-winged bird seems to have pride of place at the top of the largest tree.\n\nThere's a large arcade-like thoroughfare to the west, stretching out all the way to a far off residential ward. Identical to the plaza, the side-walls are lined with residential entryways, each decorated as the owner sees fit.\n\nBesides the west walkway, you can head north or south here and circle around the plaza. This side doesn't seem to have an entry point to the elevators.";
+	rooms["RESIDENTIAL DECK 8"].planet = "TAVROS STATION";
+	rooms["RESIDENTIAL DECK 8"].system = "SYSTEM: KALAS";
+	rooms["RESIDENTIAL DECK 8"].northExit = "RESIDENTIAL DECK 7";
+	rooms["RESIDENTIAL DECK 8"].southExit = "RESIDENTIAL DECK 9";
+	rooms["RESIDENTIAL DECK 8"].westExit = "RESIDENTIAL DECK 14";
+	rooms["RESIDENTIAL DECK 8"].moveMinutes = 1;
+	rooms["RESIDENTIAL DECK 8"].addFlag(GLOBAL.INDOOR);
+	rooms["RESIDENTIAL DECK 8"].addFlag(GLOBAL.PUBLIC);
+	rooms["RESIDENTIAL DECK 8"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+
+	//1009 South-West Plaza
+	rooms["RESIDENTIAL DECK 9"] = new RoomClass(this);
+	rooms["RESIDENTIAL DECK 9"].roomName = "SOUTH-WEST\nPLAZA";
+	rooms["RESIDENTIAL DECK 9"].description = "This area has a lot of strange interpretive art. There are a number of residents dwelling near them, each arguing about what exactly the messy-looking statues are. It's like an inkblot test; everyone seems to see something a little different.\n\nThe plaza curves around here from north to west. The latter leads to the front of the deck's elevators.";
+	rooms["RESIDENTIAL DECK 9"].planet = "TAVROS STATION";
+	rooms["RESIDENTIAL DECK 9"].system = "SYSTEM: KALAS";
+	rooms["RESIDENTIAL DECK 9"].northExit = "RESIDENTIAL DECK 8";
+	rooms["RESIDENTIAL DECK 9"].eastExit = "RESIDENTIAL DECK 2";
+	rooms["RESIDENTIAL DECK 9"].moveMinutes = 1;
+	rooms["RESIDENTIAL DECK 9"].addFlag(GLOBAL.INDOOR);
+	rooms["RESIDENTIAL DECK 9"].addFlag(GLOBAL.PUBLIC);
+	rooms["RESIDENTIAL DECK 9"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+
+	//1010 East Walkway 1
+	rooms["RESIDENTIAL DECK 10"] = new RoomClass(this);
+	rooms["RESIDENTIAL DECK 10"].roomName = "EAST\nWALKWAY";
+	rooms["RESIDENTIAL DECK 10"].description = "The eastern thoroughfare is massive and multi-laned, with some residents opting to take small hover-carts between the plaza elevators and the outer wards. Thankfully, the small yet speedy vehicles don't share the same routes as the pedestrians, only scooting along the inner lanes.\n\nThere are many residential estates located in the plaza, some with vehicles parked out front and console locked.\n\nYou can head east and follow the long walkway, or west and to the central plaza.";
+	rooms["RESIDENTIAL DECK 10"].planet = "TAVROS STATION";
+	rooms["RESIDENTIAL DECK 10"].system = "SYSTEM: KALAS";
+	rooms["RESIDENTIAL DECK 10"].westExit = "RESIDENTIAL DECK 4";
+	rooms["RESIDENTIAL DECK 10"].eastExit = "RESIDENTIAL DECK 11";
+	rooms["RESIDENTIAL DECK 10"].moveMinutes = 1;
+	rooms["RESIDENTIAL DECK 10"].addFlag(GLOBAL.INDOOR);
+	rooms["RESIDENTIAL DECK 10"].addFlag(GLOBAL.PUBLIC);
+	rooms["RESIDENTIAL DECK 10"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	
+	//1011 East Walkway 2
+	rooms["RESIDENTIAL DECK 11"] = new RoomClass(this);
+	rooms["RESIDENTIAL DECK 11"].roomName = "EAST\nWALKWAY";
+	rooms["RESIDENTIAL DECK 11"].description = "There are a number of double story apartments here with balconies, easily fitting into the high-roofed residential arcade. There's also a dock for hover carts and a small payment terminal, for those not wishing to walk back and forth down the thoroughfare.\n\nThere's a particularly large apartment to the north of here. The classy pillars and archways mix with the lascivious color scheme of red and gold, making it look like an upper-class bordello more than a residence. The holo-sign next to the door reads 112.\n\nThere's a large steel wall to the east. West leads back in the direction of the central plaza.";
+	rooms["RESIDENTIAL DECK 11"].planet = "TAVROS STATION";
+	rooms["RESIDENTIAL DECK 11"].system = "SYSTEM: KALAS";
+	rooms["RESIDENTIAL DECK 11"].northExit = "RESIDENTIAL DECK 19";
+	rooms["RESIDENTIAL DECK 11"].westExit = "RESIDENTIAL DECK 10";
+	rooms["RESIDENTIAL DECK 11"].moveMinutes = 1;
+	rooms["RESIDENTIAL DECK 11"].addFlag(GLOBAL.INDOOR);
+	rooms["RESIDENTIAL DECK 11"].addFlag(GLOBAL.PUBLIC);
+	rooms["RESIDENTIAL DECK 11"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	rooms["RESIDENTIAL DECK 11"].runOnEnter = playFynsDoorScene;
+	
+	//1012 North Walkway 1
+	rooms["RESIDENTIAL DECK 12"] = new RoomClass(this);
+	rooms["RESIDENTIAL DECK 12"].roomName = "NORTH\nWALKWAY";
+	rooms["RESIDENTIAL DECK 12"].description = "The northward walkway is huge both longways and upward, making it easier for larger species to get about. Hover-carts are for rent here, allowing easy travel around the residential deck. You notice some of them have different steering wheels and seating, allowing for all sorts of species to make use of them.\n\nThe residential buildings lining this part of the deck aren't very decorated, and those that are have been done with cheap holos. You can easily see through the flickering facades, making such holo-decor all but pointless.\n\nTo the north, the walkway continues for quite some time. The central plaza lies to the south, along with the elevators that allow deck transit.";
+	rooms["RESIDENTIAL DECK 12"].planet = "TAVROS STATION";
+	rooms["RESIDENTIAL DECK 12"].system = "SYSTEM: KALAS";
+	rooms["RESIDENTIAL DECK 12"].northExit = "RESIDENTIAL DECK 13";
+	rooms["RESIDENTIAL DECK 12"].southExit = "RESIDENTIAL DECK 6";
+	rooms["RESIDENTIAL DECK 12"].moveMinutes = 1;
+	rooms["RESIDENTIAL DECK 12"].addFlag(GLOBAL.INDOOR);
+	rooms["RESIDENTIAL DECK 12"].addFlag(GLOBAL.PUBLIC);
+	rooms["RESIDENTIAL DECK 12"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	
+	//1013 North Walkway 2
+	rooms["RESIDENTIAL DECK 13"] = new RoomClass(this);
+	rooms["RESIDENTIAL DECK 13"].roomName = "NORTH\nWALKWAY";
+	rooms["RESIDENTIAL DECK 13"].description = "This largely unlived in part of the deck is almost achingly quiet, each footstep echoing down the incredibly tall and long walkway. Each room has ridiculously cheap pricing on it. There are also a few advertising boards up, mostly displaying the latest movies and soft-drink products.\n\nSouth leads towards the central plaza. There's a large steel wall to the north. It seems that part of the station is still under construction.";
+	rooms["RESIDENTIAL DECK 13"].planet = "TAVROS STATION";
+	rooms["RESIDENTIAL DECK 13"].system = "SYSTEM: KALAS";
+	rooms["RESIDENTIAL DECK 13"].southExit = "RESIDENTIAL DECK 12";
+	rooms["RESIDENTIAL DECK 13"].moveMinutes = 1;
+	rooms["RESIDENTIAL DECK 13"].addFlag(GLOBAL.INDOOR);
+	rooms["RESIDENTIAL DECK 13"].addFlag(GLOBAL.PUBLIC);
+	rooms["RESIDENTIAL DECK 13"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	
+	//1014 West Walkway 1
+	rooms["RESIDENTIAL DECK 14"] = new RoomClass(this);
+	rooms["RESIDENTIAL DECK 14"].roomName = "WEST\nWALKWAY";
+	rooms["RESIDENTIAL DECK 14"].description = "The western walkway has a lot of glitzy looking apartments. It's only a <i>very</i> close look and touch that reveals they're all covered in hard-light holos, not designed out of gold and marble. By the look of the few who haven't 'covered up', they're actually exceptionally plain; probably why their owners invested in the hard-light flourish. The walkway continues west for quite a while. It's a considerably shorter walk back east and to the deck's public plaza.";
+	rooms["RESIDENTIAL DECK 14"].planet = "TAVROS STATION";
+	rooms["RESIDENTIAL DECK 14"].system = "SYSTEM: KALAS";
+	rooms["RESIDENTIAL DECK 14"].westExit = "RESIDENTIAL DECK 15";
+	rooms["RESIDENTIAL DECK 14"].eastExit = "RESIDENTIAL DECK 8";
+	rooms["RESIDENTIAL DECK 14"].moveMinutes = 1;
+	rooms["RESIDENTIAL DECK 14"].addFlag(GLOBAL.INDOOR);
+	rooms["RESIDENTIAL DECK 14"].addFlag(GLOBAL.PUBLIC);
+	rooms["RESIDENTIAL DECK 14"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	
+	//1015 West Walkway 2
+	rooms["RESIDENTIAL DECK 15"] = new RoomClass(this);
+	rooms["RESIDENTIAL DECK 15"].roomName = "WEST\nWALKWAY";
+	rooms["RESIDENTIAL DECK 15"].description = "This part of the walkway is fairly standard. There's a few humble decorations outside the stock-standard doors: pot plants, mats, the usual fare. Even in space and during such an advanced technological era, some things don't change all that much.\n\nTo the south, you notice a residence with two barn-like doors. Attached to the artificial windows are boxes filled with blossoming flowers. The number beside the door is 154.\n\nThe thoroughfare here ends in a gigantic steel wall to the west. Seems that part of the station is still under construction. You can only head back east.";
+	rooms["RESIDENTIAL DECK 15"].planet = "TAVROS STATION";
+	rooms["RESIDENTIAL DECK 15"].system = "SYSTEM: KALAS";
+	//rooms["RESIDENTIAL DECK 15"].southExit = "RESIDENTIAL DECK 18"; -> added to game.as
+	rooms["RESIDENTIAL DECK 15"].eastExit = "RESIDENTIAL DECK 14";
+	rooms["RESIDENTIAL DECK 15"].moveMinutes = 1;
+	rooms["RESIDENTIAL DECK 15"].addFlag(GLOBAL.INDOOR);
+	rooms["RESIDENTIAL DECK 15"].addFlag(GLOBAL.PUBLIC);
+	rooms["RESIDENTIAL DECK 15"].addFlag(GLOBAL.NPC);
+	rooms["RESIDENTIAL DECK 15"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	rooms["RESIDENTIAL DECK 15"].runOnEnter = checkIfAinaIsAround;
+	
+	//1016 South Walkway 1
+	rooms["RESIDENTIAL DECK 16"] = new RoomClass(this);
+	rooms["RESIDENTIAL DECK 16"].roomName = "SOUTH\nWALKWAY";
+	rooms["RESIDENTIAL DECK 16"].description = "The considerably large southern arcade stretches out as far as the eye can see, but many of the residences are for sale. By the looks of things, they're unlived in, which means this part of the deck must be brand new. Given the Rush started not long ago, it's not surprising—galactic expansion <i>is</i> the name of the game right now. You can head south and along the walkway, or north and towards the public plaza.";
+	rooms["RESIDENTIAL DECK 16"].planet = "TAVROS STATION";
+	rooms["RESIDENTIAL DECK 16"].system = "SYSTEM: KALAS";
+	rooms["RESIDENTIAL DECK 16"].northExit = "RESIDENTIAL DECK 2";
+	rooms["RESIDENTIAL DECK 16"].southExit = "RESIDENTIAL DECK 17";
+	rooms["RESIDENTIAL DECK 16"].moveMinutes = 1;
+	rooms["RESIDENTIAL DECK 16"].addFlag(GLOBAL.INDOOR);
+	rooms["RESIDENTIAL DECK 16"].addFlag(GLOBAL.PUBLIC);
+	rooms["RESIDENTIAL DECK 16"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	
+	//1017 South Walkway 2
+	rooms["RESIDENTIAL DECK 17"] = new RoomClass(this);
+	rooms["RESIDENTIAL DECK 17"].roomName = "SOUTH\nWALKWAY";
+	rooms["RESIDENTIAL DECK 17"].description = "This part of the thoroughfare shines with countless holo-decorated apartments. The light-projected exteriors spruce up the otherwise plain exteriors, transforming this region into a shimmering cultural hotpot. One of the apartments to the west doesn't have a virtual exterior, but it <i>does</i> have a rather pimped-out looking hoverbike. Black, sleek looking plates cover its outside, with constantly shifting flame-paint on the sides; must be digital. Looks like a two-seater.\n\nA fair way north is the central plaza and the deck elevators. There's a large steel wall to the south with 'under construction' written on it.";
+	rooms["RESIDENTIAL DECK 17"].planet = "TAVROS STATION";
+	rooms["RESIDENTIAL DECK 17"].system = "SYSTEM: KALAS";
+	rooms["RESIDENTIAL DECK 17"].northExit = "RESIDENTIAL DECK 16";
+	rooms["RESIDENTIAL DECK 17"].moveMinutes = 1;
+	rooms["RESIDENTIAL DECK 17"].addFlag(GLOBAL.INDOOR);
+	rooms["RESIDENTIAL DECK 17"].addFlag(GLOBAL.PUBLIC);
+	rooms["RESIDENTIAL DECK 17"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+
+	//1018 Aina's Apartment
+	//Added in variableRoomUpdateCheck() in game.as since the room is only available 
+	//if the PC helped Aina - and adding it in her code was not enough as it persisted
+	//onload for other characters.
+
+	//1019 Fyn's Apartment
+	rooms["RESIDENTIAL DECK 19"] = new RoomClass(this);
+	rooms["RESIDENTIAL DECK 19"].roomName = "FYN'S\nAPARTMENT";
+	rooms["RESIDENTIAL DECK 19"].description = "";
+	rooms["RESIDENTIAL DECK 19"].planet = "TAVROS STATION";
+	rooms["RESIDENTIAL DECK 19"].system = "SYSTEM: KALAS";
+	rooms["RESIDENTIAL DECK 19"].southExit = "RESIDENTIAL DECK 11";
+	rooms["RESIDENTIAL DECK 19"].moveMinutes = 1;
+	rooms["RESIDENTIAL DECK 19"].addFlag(GLOBAL.INDOOR);
+	rooms["RESIDENTIAL DECK 19"].addFlag(GLOBAL.PRIVATE);
+	rooms["RESIDENTIAL DECK 19"].addFlag(GLOBAL.NPC);
+	rooms["RESIDENTIAL DECK 19"].runOnEnter = finsApartmentBonus;
+	
+	//END RESIDENTIAL DECK
+	
 
 	//0. Ship Hanger
 	rooms["SHIP HANGAR"] = new RoomClass(this);

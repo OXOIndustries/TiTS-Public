@@ -125,7 +125,7 @@
 				}
 				
 				// Sterilize:
-				else if(!target.hasPerk("Sterile") || !target.hasPerk("Firing Blanks"))
+				else if((target.hasVagina() && !target.hasPerk("Sterile")) || (target.hasCock() && !target.hasPerk("Firing Blanks")))
 				{
 					kGAMECLASS.output("You take your " + num2Ordinal(target.statusEffectv1("Infertile") + 1) + " Sterilex without waiting for the first to end, and immediately feel an unplugged sensation inside you. Even after the Sterilex wears off, you’re not going to");
 					

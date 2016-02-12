@@ -382,7 +382,7 @@ public function kq2KarasEyes():void
 	
 	output("\n\nKara winces, looking pointedly away from you when you ask. <i>“I... lost them. No, that’s too easy. A pirate bitch took them - a Dread Lord of the Black Void, I found out later. She had me dead to rights, was going to chain me up and sell me and my crew as slaves on the black market. We’d gone after the same treasure as the Void, and ended up damaging her ship in the crossfire. I’d intended to go out in a blaze of glory, but somehow we survived... and ended up surrounded by pirate troopers.”</i>");
 	
-	output("\n\nSelling us would have put a dent in that debt, if a Terran warship hadn’t hit her when it did. The pirate bitch ran, but not before trying to blast my brains all over the deck. Last shot at vengeance for what I did. She missed, mostly, but the laser blast boiled my eyes. My crew pulled me out while the pirates scrambled to get away, and I got patched up at a medbay on New Texas.”</i>");
+	output("\n\n<i>“Selling us would have put a dent in that debt, if a Terran warship hadn’t hit her when it did. The pirate bitch ran, but not before trying to blast my brains all over the deck. Last shot at vengeance for what I did. She missed, mostly, but the laser blast boiled my eyes. My crew pulled me out while the pirates scrambled to get away, and I got patched up at a medbay on New Texas.”</i>");
 	
 	output("\n\nShe gives a wry chuckle and rubs at her cheeks. Now that she’s this close, with her hood down, you can see faint scarring all around her cyber eyes. <i>“Lucky me,");
 	if (flags["KQ2_F_TALK"] == 2) output(" Chow");
@@ -1277,7 +1277,7 @@ public function kq2KhanPCVictory():void
 	if (kara.isNice()) output("<i>“Oh, no you don’t,”</i> Kara says, swatting the grenade back at him mid-air.");
 	else if (kara.isMischievous()) output("<i>“Think fast!”</i> Kara shouts, grabbing the grenade mid-air and beaning Khan in the head with it.");
 	else output("Kara back-hands the grenade out of the air, letting it roll back towards its owner.");
-	output(" It detonates in a pink cloud that utterly envelops him and his harem, spreading out almost far enough to draw you into it, too. Just a little whiff of the brightly-colored gas sends a shiver up pleasure up your spine.");
+	output(" It detonates in a pink cloud that utterly envelops him and his harem, spreading out almost far enough to draw you into it, too. Just a little whiff of the brightly-colored gas sends a shiver of pleasure up your spine.");
 
 	output("\n\nKara, too, flushes a bit as vapors waft past her. <i>“Whew. That’s some potent stuff,”</i> she murmurs, adjusting the band of her half-skirt to make the sheer cloth cover a bit more of her crotch.");
 	
@@ -1515,7 +1515,7 @@ public function kq2KhanPCDickFuck():void
 	
 	output("\n\nYou allow your pleasure to guide you, spurring your movements faster, pounding Khan’s face until he’s gagging on your dick, spittle drooling down from the corners of his mouth. You’re merciless in your face-fucking, knowing full well he’d have treated you no better were your places reversed. The kui-tan’s mouth is nothing but an onahole for you to abuse, the fuck as hard as you can until you spill your seed down his throat.");
 	
-	output("\n\n<i>“That’s better,”</i> Kara coos, shifting her hand behind Khan. She shifts her hips back, dragging her spiny feline shaft down through the furry cleavage of Khan’s backside, out of sight into the kui-tan’s crack. She lifts her hand out of the way, and thrusts her hips in hard against Khan’s upraised ass. He cries out, squealing almost girlishly as Kara hammers home into his boypussy. The tongue that was slavishly servicing your cock falls still, stunned by the sudden penetration. Khan’s caged prick erupts in a geyser of white cream, cum spewing out of his otherwise average prick like from a firehose.");
+	output("\n\n<i>“That’s better,”</i> Kara coos, shifting her hand behind Khan. She shifts her hips back, dragging her spiny feline shaft down through the furry cleavage of Khan’s backside, out of sight into the kui-tan’s crack. She lifts her hand out of the way, and thrusts her hips in hard against Khan’s upraised ass. He cries out, squealing almost girlishly as Kara hammers home into his boypussy. The tongue that was slavishly servicing your cock falls still, stunned by the sudden penetration. Khan’s caged prick erupts in a geyser of white cream, cum spewing out of his otherwise average prick like a firehose.");
 	
 	output("\n\nKara’s eyes go wide at the sight, startled by the deluge she’s caused - and the visible shrinking of Khan’s sack as just the one thrust starts to empty him. It takes a few moments for Kara to recover from her shock and start moving after that. When she does, Khan lurches forward on your shaft, thrust up by the force of Kara’s hips battering his plush behind. He blinks lazily, as if recovering from a trance, and starts to moan like a bitch in heat around your [pc.cock] as his ass is fucked. Not so high and mighty now, is he?");
 	
@@ -1602,7 +1602,7 @@ public function kq2KhanPCVagFuck():void
 	
 	output("\n\nYou move your [pc.hips] in answer, grinding against the kui-tan’s little muzzle. You allow your pleasure to guide you, spurring your movements faster, rubbing yourself against Khan’s face until he’s drowning in your pussy, fur darkening with your leaking excitement. You’re merciless in your grasp on him, keeping Khan buried deep in your nethers, knowing full well he’d have treated you no better were your places reversed. The thought spurs your movements on faster, demanding you seize your pleasure from his writhing tongue.");
 	
-	output("\n\n<i>“That’s better,”</i> Kara coos, shifting her hand behind Khan. She rocks her hips back, dragging her spiny feline shaft down through the furry cleavage of Khan’s backside, out of sight and into the kui-tan’s crack. She lifts her hand out of the way, and thrusts her hips in hard against Khan’s upraised ass. He cries out, squealing almost girlishly as Kara hammers home into his boypussy. The tongue that was slavishly slithering through your sex falls still, stunned by the sudden penetration. Khan’s caged prick erupts in a geyser of white cream, cum spewing out of his otherwise average prick like from a firehose.");
+	output("\n\n<i>“That’s better,”</i> Kara coos, shifting her hand behind Khan. She rocks her hips back, dragging her spiny feline shaft down through the furry cleavage of Khan’s backside, out of sight and into the kui-tan’s crack. She lifts her hand out of the way, and thrusts her hips in hard against Khan’s upraised ass. He cries out, squealing almost girlishly as Kara hammers home into his boypussy. The tongue that was slavishly slithering through your sex falls still, stunned by the sudden penetration. Khan’s caged prick erupts in a geyser of white cream, cum spewing out of his otherwise average prick like a firehose.");
 
 	output("\n\nKara’s eyes go wide at the sight, startled by the deluge she’s caused - and the visible shrinking of Khan’s sack as just the one thrust starts to empty him. It takes a few moments for Kara to recover from her shock and start moving after that. When she does, Khan lurches forward into your crotch, thrust up by the force of Kara’s hips battering his plush behind. He blinks lazily, as if recovering from a trance, and starts to moan like a bitch in heat into your [pc.cunt] as his ass is fucked. Not so high and mighty now, is he?");
 	
@@ -1687,7 +1687,7 @@ public function kq2KhanPCDefeat():void
 	
 	output("\n\nAt your master’s command, you crawl over to Kara, wrapping your hands around her firm thighs. You’d never realized how wonderful she smelled, a wonderfully heady must wafting straight into your nostrils as you bury yourself between her legs. She moans, shivering as your [pc.tongue] licks at the nubby crown of her feline prick. The taste sets your mind on fire, a rush of heat and desire flooding through you at the first touch of her cockhead on your lips.");
 	
-	output("\n\n<i>“Eager, too,”</i> Master beams. <i>“What do you think of [pc.himher] so far, dear?”</i>");
+	output("\n\n<i>“Eager, too,”</i> Master beams. <i>“What do you think of [pc.himHer] so far, dear?”</i>");
 
 	output("\n\n<i>“So... so good,”</i> Kara moans, planting a hand atop your [pc.hair] and urging you on. You couldn’t resist her if you wanted - and God knows, you don’t want to. You eagerly swallow almost a foot of kittydick, going from the tip to kissing the base in the blink of an eye. Your companion purrs, her tails curling around to caress you as you fellate her. Your hands gravitate to her balls - though nowhere near as magnificent as your master’s, they’re still a nice, hefty handful. Compelled to show Master what you can do to a pair of nuts, you gently massage them, rolling her nads between your fingers. You can almost feel them churning, so full that you don’t think you’ll need to do much more than caress them to milk out all her sweet, salty seed. You give her the slightest squeeze and let your mouth finish her, bobbing on her cock until Kara makes a sweet little squeal and unleashes a torrent of seed into your mouth. You choke it down with ease, swallowing every drop the kaithrit girl can give you - you have to show the master that you can handle him, after all! You can only imagine how much cum he’ll grace you with when you finally prove your worth.");
 
@@ -1699,7 +1699,7 @@ public function kq2KhanPCDefeat():void
 	
 	output("\n\n<i>“Do you think [pc.heShe] deserves to join my darling girls here?”</i> he asks her, patting the heads of a pair of golden girls beside him. They mewl happily, leaning in against their master, caressing his sack. A couple of them move, shifting to make a spot for you among them - for you, and Kara. Your companion nods emphatically, and after a moment’s consideration, Master motions you over to him.");
 	
-	output("\n\nYou swell with pride as you are invited to sit at your master’s feet, and quickly find yourself snuggled up to the warm, soft swell of his mighty balls, your arms wrapped around your own personal expanse of kui-tan nuts. Master groans as you settle against him, a thick squirt of spunk drooling from his member to rain down upon your and your fellow harem sluts. You reach up and lick it up eagerly, competing with the other girls to get at the wonderfully rich, salty treat. Every drop you can get, you swallow greedily; the taste is utterly divine, better than the best candy you’ve ever tasted.");
+	output("\n\nYou swell with pride as you are invited to sit at your master’s feet, and quickly find yourself snuggled up to the warm, soft swell of his mighty balls, your arms wrapped around your own personal expanse of kui-tan nuts. Master groans as you settle against him, a thick squirt of spunk drooling from his member to rain down upon you and your fellow harem sluts. You reach up and lick it up eagerly, competing with the other girls to get at the wonderfully rich, salty treat. Every drop you can get, you swallow greedily; the taste is utterly divine, better than the best candy you’ve ever tasted.");
 	
 	output("\n\nA small, soft hand plays across the top of your head. You look up, still licking, to see Master looking down upon you with a smile. <i>“Good... I think my keepers will be very pleased to see you. Like this, of course. You’ll be here forever, of course, won’t you? No, I’ll not let a catch like you and your friend out of my grip, damn the pirates. You’re mine now, understand?”</i>");
 	
@@ -1778,7 +1778,7 @@ public function kq2EncounterShade():void
 		
 		output("\n\n<i>Shit.</i>");
 		
-		output("\n\nThe buxom kaithrit looks down at your and your companion with a mix of contempt and disappointment written across her face. Her eyes settle on you. <i>“Well, this is the last place I ever hoped to run into you, kid,”</i> she says, slowly lowering her lightning gun. <i>“Last person with you, too.”</i>");
+		output("\n\nThe buxom kaithrit looks down at you and your companion with a mix of contempt and disappointment written across her face. Her eyes settle on you. <i>“Well, this is the last place I ever hoped to run into you, kid,”</i> she says, slowly lowering her lightning gun. <i>“Last person with you, too.”</i>");
 		
 		output("\n\n<i>“");
 		if (kara.isMischievous()) output("I see you brought friends this time... might actually be a fair fight now!");
