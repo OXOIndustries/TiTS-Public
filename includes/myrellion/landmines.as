@@ -3,7 +3,7 @@ import classes.Items.Accessories.Minesweeper;
 public function tryEncounterLandmines():Boolean
 {
 	var hitChance:int = 100;
-	if(pc.hasItem(new Hoverboard())) hitChance += 20;
+	if(pc.hasItem(new Hoverboard())) hitChance += 200;
 	
 	if (rand(hitChance) <= 2)
 	{
