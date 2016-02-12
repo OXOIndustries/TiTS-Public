@@ -191,7 +191,7 @@
 			createStatusEffect("Sporebutt", 2, 1, 1, 1);
 			
 			isUniqueInFight = true;
-			btnTargetText = "RougeBot";
+			btnTargetText = "RogueBot";
 			
 			this._isLoading = false;
 
@@ -199,7 +199,7 @@
 		
 		override public function get bustDisplay():String
 		{
-			return "ROUGEBOT";
+			return "ROGUEBOT";
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void

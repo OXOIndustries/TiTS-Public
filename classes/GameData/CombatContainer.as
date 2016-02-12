@@ -583,7 +583,7 @@ package classes.GameData
 					if(target.statusEffectv1("Porno Hacked Drone") <= 0)
 					{
 						if (target is PlayerCharacter) output("\n\n<b>With a grinding click the porn beaming out of your drone snuffs out, finally getting the better of the sexbot’s hacking routine, and returns to your side.</b>");
-						else output("\n\n<b>" + target.capitalA + possessive(target.uniqueName) + " drone whirrs slightly, the porn beaming from it snuffing out in short order. Having finally managed to expel the rouge instructions hacked into the thing, it returns to its owners side.</b>");
+						else output("\n\n<b>" + target.capitalA + possessive(target.uniqueName) + " drone whirrs slightly, the porn beaming from it snuffing out in short order. Having finally managed to expel the rogue instructions hacked into the thing, it returns to its owners side.</b>");
 						target.removeStatusEffect("Porno Hacked Drone");
 					}
 					else
