@@ -3757,6 +3757,9 @@ package classes.GameData
 			
 			pc.credits += sumCredits;
 			
+			//Roshan Blue gives 25% more xp and lowers willpower by 30% until next rest
+			if(pc.hasStatusEffect("Roshan Blue")) sumXP += Math.floor(sumXP*0.25);
+			
 			// Add up XP, but don't permit the players current XP to overcap
 			if (sumXP + pc.XP() > pc.XPMax())
 			{

@@ -634,7 +634,7 @@ public function initializeRooms():void
 	//1007 North-West Plaza
 	rooms["RESIDENTIAL DECK 7"] = new RoomClass(this);
 	rooms["RESIDENTIAL DECK 7"].roomName = "NORTH-WEST\nPLAZA";
-	rooms["RESIDENTIAL DECK 7"].description = "It's hard not to be dazzled by this portion of the plaza. Between the walkways are clusters of prismatic crystals, ranging in size from tiny gem-like shrubs to twenty-foot monoliths. Artificial light flows from above, striking the stones and causing them to sparkle.\n\nA few water features run over the crystals, causing their scintillating light to flurry about beneath the ripples. It's almost hypnotic, but very relaxing. Understandably, there's a lot of public seating about.\n\nThe plaza curves here from west to south, lined by various residential apartments.";
+	rooms["RESIDENTIAL DECK 7"].description = "It's hard not to be dazzled by this portion of the plaza. Between the walkways are clusters of prismatic crystals, ranging in size from tiny gem-like shrubs to twenty-foot monoliths. Artificial light flows from above, striking the stones and causing them to sparkle.\n\nA few water features run over the crystals, causing their scintillating light to flurry about beneath the ripples. It's almost hypnotic, but very relaxing. Understandably, there's a lot of public seating about. Among the normal tables, and nestled beneath some of the larger crystals, are 4D chess tables - square, black and white cage-like objects floating in mid-air, each flanked by a pair of chairs.\n\nThe plaza curves here from west to south, lined by various residential apartments.";
 	rooms["RESIDENTIAL DECK 7"].planet = "TAVROS STATION";
 	rooms["RESIDENTIAL DECK 7"].system = "SYSTEM: KALAS";
 	rooms["RESIDENTIAL DECK 7"].southExit = "RESIDENTIAL DECK 8";
@@ -643,6 +643,7 @@ public function initializeRooms():void
 	rooms["RESIDENTIAL DECK 7"].addFlag(GLOBAL.INDOOR);
 	rooms["RESIDENTIAL DECK 7"].addFlag(GLOBAL.PUBLIC);
 	rooms["RESIDENTIAL DECK 7"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	rooms["RESIDENTIAL DECK 7"].runOnEnter = playSemithChessScene;
 	
 	//1008 West Plaza
 	rooms["RESIDENTIAL DECK 8"] = new RoomClass(this);
@@ -674,15 +675,29 @@ public function initializeRooms():void
 	//1010 East Walkway 1
 	rooms["RESIDENTIAL DECK 10"] = new RoomClass(this);
 	rooms["RESIDENTIAL DECK 10"].roomName = "EAST\nWALKWAY";
-	rooms["RESIDENTIAL DECK 10"].description = "The eastern thoroughfare is massive and multi-laned, with some residents opting to take small hover-carts between the plaza elevators and the outer wards. Thankfully, the small yet speedy vehicles don't share the same routes as the pedestrians, only scooting along the inner lanes.\n\nThere are many residential estates located in the plaza, some with vehicles parked out front and console locked.\n\nYou can head east and follow the long walkway, or west and to the central plaza.";
+	rooms["RESIDENTIAL DECK 10"].description = "The eastern thoroughfare is massive and multi-laned, with some residents opting to take small hover-carts between the plaza elevators and the outer wards. Thankfully, the small yet speedy vehicles don't share the same routes as the pedestrians, only scooting along the inner lanes.\n\nThere are many residential estates located in the plaza, some with vehicles parked out front and console locked.\n\nTo the south is a tall but narrow apartment, its facade decorated in understated dull red and slate trimmings, mimicking an old-fashioned brick townhouse. Its door and windows are slightly smaller and lower than seems to be the norm around here. The holo-number next to the door reads 107.";
 	rooms["RESIDENTIAL DECK 10"].planet = "TAVROS STATION";
 	rooms["RESIDENTIAL DECK 10"].system = "SYSTEM: KALAS";
+	rooms["RESIDENTIAL DECK 10"].southExit = "RESIDENTIAL DECK SEMITHS APARTMENT";
 	rooms["RESIDENTIAL DECK 10"].westExit = "RESIDENTIAL DECK 4";
 	rooms["RESIDENTIAL DECK 10"].eastExit = "RESIDENTIAL DECK 11";
 	rooms["RESIDENTIAL DECK 10"].moveMinutes = 1;
 	rooms["RESIDENTIAL DECK 10"].addFlag(GLOBAL.INDOOR);
 	rooms["RESIDENTIAL DECK 10"].addFlag(GLOBAL.PUBLIC);
 	rooms["RESIDENTIAL DECK 10"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	rooms["RESIDENTIAL DECK 10"].runOnEnter = updateDescriptionWithSemithsEventualPresence;
+	
+	//Semith Apartment
+	rooms["RESIDENTIAL DECK SEMITHS APARTMENT"] = new RoomClass(this);
+	rooms["RESIDENTIAL DECK SEMITHS APARTMENT"].roomName = "SEMITH'S\nAPARTMENT";
+	rooms["RESIDENTIAL DECK SEMITHS APARTMENT"].description = "Semith's home is a series of cozy spaces orientated quite vertically. A circular lift in the middle of the tall apartment can soundlessly transport you from a plush lounge stuffed with squashy settees, to a spice-scented kitchen, to an incredibly untidy study, to who knows what else. Semith likes synth-mahogany, and it shows. Every space is furnished in rich red-brown, with pieces of artwork straddling the line between tasteful and unsettling here and there.";
+	rooms["RESIDENTIAL DECK SEMITHS APARTMENT"].planet = "TAVROS STATION";
+	rooms["RESIDENTIAL DECK SEMITHS APARTMENT"].system = "SYSTEM: KALAS";
+	rooms["RESIDENTIAL DECK SEMITHS APARTMENT"].northExit = "RESIDENTIAL DECK 10";
+	rooms["RESIDENTIAL DECK SEMITHS APARTMENT"].moveMinutes = 1;
+	rooms["RESIDENTIAL DECK SEMITHS APARTMENT"].addFlag(GLOBAL.INDOOR);
+	rooms["RESIDENTIAL DECK SEMITHS APARTMENT"].addFlag(GLOBAL.PRIVATE);
+	rooms["RESIDENTIAL DECK SEMITHS APARTMENT"].runOnEnter = playSemithsApartmentScene
 	
 	//1011 East Walkway 2
 	rooms["RESIDENTIAL DECK 11"] = new RoomClass(this);

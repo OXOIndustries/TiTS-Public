@@ -1082,6 +1082,14 @@ public function displayNoticeBoardRD():void {
 	else output("<b>Seen Before:</b>");
 	output(" There's a notice for 'interested individuals' to visit the eastern walkway for 'lessons', room 112. There seems to have been more to the message, but someone else has placed their own holo notice over it.");
 	
+	output("\n\n");
+	if(flags["SEMITH_NOTICE_1_READ"] == undefined) {
+		output("<b>New:</b>");
+		flags["SEMITH_NOTICE_1_READ"] = true;
+	}
+	else output("<b>Seen Before:</b>");
+	output(" “Itching for a game of 4D chess?” reads one note, in tall, loopy cursive. “The North West plaza has tables. Always around in the afternoons.”");
+	
 	processTime(2);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

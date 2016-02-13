@@ -593,6 +593,9 @@ public function sleep(outputs:Boolean = true):void {
 		if(currentLocation == "SHIP INTERIOR") grayGooSpessSkype();
 	}
 	
+	//remove status effects
+	pc.removeStatusEffect("Roshan Blue");
+	
 	clearMenu();
 	if(currentLocation == "SHIP INTERIOR")
 	{
@@ -1229,6 +1232,13 @@ public function variableRoomUpdateCheck():void
 		rooms["RESIDENTIAL DECK 15"].removeFlag(GLOBAL.NPC);
 		lockAinasRoom();
 	}
+	//Place/remove Semith's NPC flag from chess area based on time and if pc played with him already
+	if ((hours >= 12 && hours <= 17 && !playedChessWithSemithToday())) rooms["RESIDENTIAL DECK 7"].addFlag(GLOBAL.NPC);
+	else rooms["RESIDENTIAL DECK 7"].removeFlag(GLOBAL.NPC);
+	
+	//Place/remove Semith's NPC flag from his apartment based on time.
+	if (hours > 17) rooms["RESIDENTIAL DECK SEMITHS APARTMENT"].addFlag(GLOBAL.NPC);
+	else rooms["RESIDENTIAL DECK SEMITHS APARTMENT"].removeFlag(GLOBAL.NPC);
 	
 	/* MHENGA */
 	

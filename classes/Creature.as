@@ -3091,6 +3091,8 @@ package classes {
 
 			//Level 7 Merc Perk
 			if(hasPerk("Iron Will")) currWill += Math.floor(physique()/5);
+			//Roshan Blue gives 25% more xp and lowers willpower by 30% until next rest
+			if(hasStatusEffect("Roshan Blue")) currWill -= Math.floor(currWill*0.3);
 			
 			if (currWill > willpowerMax())
 			{
