@@ -157,7 +157,7 @@ package classes.Characters
 			this.ass.wetnessRaw = 3;
 			this.ass.loosenessRaw = 3;
 			this.ass.bonusCapacity = 120;
-			this.analVirgin = true;
+			this.analVirgin = false;
 			
 			this.version = _latestVersion;
 			this._isLoading = false;
