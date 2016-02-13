@@ -765,7 +765,7 @@ public function kq2MeetWatson():void
 	
 	output("\n\nAs Kara slowly moves toward the couch, the projection shifts from words into a humanoid shape - a rotund, short man in an expensive suit jacket and a deer stalker cap, puffing on a pipe. He looks up at you with small, cold eyes swimming with code.");
 
-	output("\n\n<i>“Ah, yes, you’ll forgive me for the wait. Most of my higher-level processes were occupied elsewhere. You may call me Watson, if you’d be so kind,”</i> he says, puffing a holographic circle of smoke from the end of his pipe. He looks to your companion and scowls, <i>“You must be Captain Volke of the </i>Silence<i>, yes? I’m led to believe this incident was a long time in coming. Longer than expected: it’s been several months since the unfortunate business aboard the N.S.V. </i>Constellation</i>.”</i>");
+	output("\n\n<i>“Ah, yes, you’ll forgive me for the wait. Most of my higher-level processes were occupied elsewhere. You may call me Watson, if you’d be so kind,”</i> he says, puffing a holographic circle of smoke from the end of his pipe. He looks to your companion and scowls, <i>“You must be Captain Volke of the </i>Silence<i>, yes? I’m led to believe this incident was a long time in coming. Longer than expected: it’s been several months since the unfortunate business aboard the N.S.V. </i>Constellation<i>.”</i>");
 
 	output("\n\n<i>“Unfortunate business!?”</i> Kara snaps, stomping up and jabbing a finger into the hologram’s belly. <i>“Your Dread Bitch shot out my eyes!”</i>");
 
