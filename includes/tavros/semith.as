@@ -525,8 +525,9 @@ public function semithSexDoggieStyle():void {
 		for(var index:int = 0; index < pc.vaginas.length; index++) {
 			//ignore already found vag
 			if(x != index) {
-				//since the tail lacks a length/width a volume of 15 is assumed
-				if(pc.vaginalCapacity(index) >= chars["SEMITH"].cockVolume(0)) {
+				//since the tail lacks a length/width take Semith cock volumn + 10 as
+				//the tail is described as 'thicker' at some point
+				if(pc.vaginalCapacity(index) >= chars["SEMITH"].cockVolume(0) + 10) {
 					y = index;
 					hasSecondVaginaWhichCanFitSemithCock = true;
 				}
