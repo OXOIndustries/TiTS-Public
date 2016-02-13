@@ -112,9 +112,9 @@ public function viAppearance():void
 	output("You take a good look at Vi. As soon as you begin to stare, her shyness subroutines start playing. Her snowy cheeks are visibly flushed.");
 	output("\n\n<i>“I hope my hardware is to your satisfaction, " + pc.mf("sir","ma’am") + ". I would hate to be below the recommended or minimum specifications.”</i>");
 	output("\n\nWell, when it comes to <i>one</i> area, she’s definitely first rate. Her hefty, well-formed breasts are a work of art, upon which her violet side-plait comfortably rests. Her incredible bust is made even more pronounced by her tight-fitting corset, which lifts and presses it together, forming distinctively deep cleavage.");
-	output("\n\nBelow the hem of this, however, she’s wearing nothing but a garter belt and stockings, leaving her smooth feminine mound brazenly on display. ");
+	output("\n\nBelow the hem of this, however, she’s wearing nothing but a garter belt and stockings, leaving her smooth feminine mound brazenly on display.");
 	//Borrowed Her Pussy:
-	if(pc.hasKeyItem("Vi's Vagina")) output("Right now it’s utterly featureless, since you’ve purloined her actual pussy. ");
+	if(pc.hasKeyItem("Vi's Vagina")) output("Right now it’s utterly featureless, since you’ve purloined her actual pussy.");
 	output(" She’s so scantily-clad that it would be hard to tell she was a medical bot at all, if it wasn’t for her white nurse’s cap with a red cross on it, and a pair of medical gloves. A closer examination shows every piece of clothing is actually attached to her snowy skin.");
 	output("\n\nTwo other features really stand out; her midnight black eyes with pale, cross-shaped irises, and her snowy white tail. The latter is very long and visibly prehensile – you’ve seen her use it to pick up all sorts of things with little effort.");
 	output("\n\nThere’s a small inscription on her upper right arm: <i>“V-Ko Model IV”</i>.");
@@ -633,7 +633,12 @@ public function returnVisPussyPot():void
 	showVi();
 	author("JimThermic");
 	output("Handing over her purloined pussy, Vi positions it between her stocking-clad thighs and inserts it back into her body. There’s a little bit of wiggling before it’s finally back in place.");
-	output("\n\n<i>“... There! I should be back at full functionality now, " + pc.mf("sir","ma’am") + ". Please don’t run off with JoyCo property again!”</i> Vi pleads. At the same time, she looks a <i>little</i> pleased, perhaps with how you were using her pussy in its absence?");
+	output("\n\n<i>“... There! I should be back at full functionality now, " + pc.mf("sir","ma’am") + ". Please don’t run off with JoyCo property again!”</i> Vi pleads.");
+	if(flags["VI_PUSSY_FAPPED"] != undefined)
+	{
+		output(" At the same time, she looks a <i>little</i> pleased, perhaps with how you were using her pussy in its absence?");
+		flags["VI_PUSSY_FAPPED"] = undefined;
+	}
 	processTime(1);
 	// Vi gets her pussy back.
 	// Remove Vi’s pocket pussy from player’s key inventory.
@@ -878,6 +883,7 @@ public function viPotencyTest():void
 	clearOutput();
 	showVi();
 	author("JimThermic");
+	
 	output("<i>“How about I give you a potency test?”</i> Vi ");
 	if(flags["VI_SEXED"] != undefined && flags["VI_SEXED"] >= 10) output("breathily");
 	else output("brightly");
@@ -939,7 +945,7 @@ public function viPotencyTest():void
 	output("\n\n<i>“That’s the first one. A test isn’t a test until it’s conclusive!”</i> Vi merrily exclaims, slipping the now-used condom off your prick and tying it off. She places ");
 	if(cum >= 700) output("it beside her, the overfilled balloon barely balancing there as she slips the next one on");
 	else output("it upon her rack, giving you a saucy sight to look at as she slips the next one on");
-	output(". This time she jerks off your prick instead, mercilessly jerking and wringing your sheathe until you cum, taking no prisoners! Your second load is less than the first, and she methodically whips the rubber off, ");
+	output(". This time she jerks off your prick instead, mercilessly jerking and wringing your [pc.sheathBiggest] until you cum, taking no prisoners! Your second load is less than the first, and she methodically whips the rubber off, ");
 	pc.orgasm();
 	cum = pc.cumQ();
 	totalCum += cum;
@@ -1800,7 +1806,7 @@ public function viPussyFapScene():void
 	if(currentLocation == "SHIP INTERIOR") output(", using your ship as a relay");
 	output(".");
 
-	output("\n\nWith one hand, you hold the sheathe her snatch is contained within. With the other, you part her petal-soft folds, peering eagerly within. Under your gaze, her rippled insides clench and relax. A swelling sense of satisfaction fills your chest. Even from so far away, the nurse is definitely feeling it! You dip a [pc.skinColor] finger inside of her slowly slickening insides. They clench around it! You push your digit further inside of her, wiggling it about, relishing in her wettening warmth. At the same time, you brush her clit with your thumb, attacking her from within and outside. Slick lubricant drools out from her folds and dribbles down your fingertips, warming them with her sweet smelling lady-cum. Her snatch is so warm and realistic, that it’s hard to tell between it and a real woman’s!");
+	output("\n\nWith one hand, you hold the sheath her snatch is contained within. With the other, you part her petal-soft folds, peering eagerly within. Under your gaze, her rippled insides clench and relax. A swelling sense of satisfaction fills your chest. Even from so far away, the nurse is definitely feeling it! You dip a [pc.skinColor] finger inside of her slowly slickening insides. They clench around it! You push your digit further inside of her, wiggling it about, relishing in her wettening warmth. At the same time, you brush her clit with your thumb, attacking her from within and outside. Slick lubricant drools out from her folds and dribbles down your fingertips, warming them with her sweet smelling lady-cum. Her snatch is so warm and realistic, that it’s hard to tell between it and a real woman’s!");
 
 	output("\n\nYou slide in a second and a third digit, pistoning them inside her slick lady-lips. The sound of her sloppy, slurping lips being fucked with your fingers makes you even hotter and hornier, knowing that far off the nurse is whimpering with delight as she’s being triple-fingered between her quaking thighs. There’s a sudden tight clench around your digits, followed by a thin, clear stream of fluid jumping up and splashing in your face. Your cheeks, nose, and mouth are sopping wet; did she just squirt on you?! Licking your lips, there’s the slightest hint of sweetness to her taste. While you savor her flavor, her slippery white folds spasm around your digits, wringing them for all they’re worth!");
 
@@ -1857,6 +1863,7 @@ public function viPussyFapScene():void
 
 	processTime(15);
 	pc.orgasm();
+	IncrementFlag("VI_PUSSY_FAPPED");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
