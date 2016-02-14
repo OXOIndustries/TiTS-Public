@@ -156,7 +156,7 @@ public function cockBoxMenu(x:int):void
 	if(flags["COCKBOX_UPGRADE"] != undefined)
 	{
 		addButton(6,"Demonic",dickBoxTFColorSelect,[x,GLOBAL.TYPE_DEMONIC],"Demonic","Get a knotted, nubby and sinister-looking penis.");
-		addButton(7,"Tentacle",dickBoxTFColorSelect,[x,GLOBAL.TYPE_DEMONIC],"Tentacle","Get a prehnesile tentacle penis.");
+		addButton(7,"Tentacle",dickBoxTFColorSelect,[x,GLOBAL.TYPE_TENTACLE],"Tentacle","Get a prehensile tentacle penis.");
 		addButton(8,"Draconic",dickBoxTFColorSelect,[x,GLOBAL.TYPE_DRACONIC],"Draconic","Get a tapered and knotted dragon penis.");
 	}
 	
