@@ -501,7 +501,7 @@ public function searchTheQueensChambers():void
 	//sumbody get on dis
 	var gems:GemSatchel = new GemSatchel();
 	lootScreen = lootTaivrasGemsCheck;
-	itemCollect([gems], true);
+	itemCollect([gems]);
 }
 public function lootTaivrasGemsCheck():void
 {
@@ -1075,7 +1075,7 @@ public function armorGooVictoryShits():void
 	//show armorbutt?
 	showName("GOO\nARMOR");
 	showBust("GRAYGOO");
-	output("<i>“Oh, hey,”</i> [goo.name] says, poking her head out. <i>“that crystal stuff she made was really cool, huh?”</i>");
+	output("<i>“Oh, hey,”</i> [goo.name] says, poking her head out, <i>“that crystal stuff she made was really cool, huh?”</i>");
 	output("\n\nYou pause, taken aback by your normally-passive suit of goo’s sudden outburst. Still, you nod: the crystal on that ganrael broodmare was certainly useful to her.");
 	output("\n\n<i>“Could I, um... get a sample, maybe?”</i> [goo.name] asks sweetly, reaching her head around on a stalk of gray goop to give you a puppy-dog look. <i>“I bet I could replicate it! Make myself an even better bodysuit for you!”</i>");
 	output("\n\nWell, if she can give you an edge in combat, you can hardly pass that up. You turn back to the moaning pile of defeated goo-broodmare and crouch down beside her, letting [goo.name] go to work. The bubbly gray goo hops ");

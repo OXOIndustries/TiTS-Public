@@ -4187,6 +4187,8 @@ public function displayEncounterLog(showID:String = "All"):void
 			output2("\n<b>* Shade:</b> Met her");
 			if(flags["TOLD_SHADE_SHES_YER_SIS"] != undefined) output2(", Told her she’s your sister");
 			if(flags["KQ2_SHADE_DEAD"] != undefined) output2(", Inactive");
+			else if(shadeAtTheBar()) output2(", Active (On Myrellion)");
+			else if(flags["SHADE_ON_UVETO"] != undefined) output2(", Active (On Uveto)");
 			if(flags["SHADE_GOT_HELP_WITH_LAYING"] != undefined)
 			{
 				output2("\n<b>* Shade, Tail Cunt:</b> Helped her with laying egg");
