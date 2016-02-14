@@ -1746,7 +1746,7 @@ public function displayQuestLog(showID:String = "All"):void
 						else output2(", Left her alone");
 					}
 					if(flags["KQ2_DEFEATED_JUGGERNAUT"] != undefined) output2("\n<b>* Pirate Base, Juggernaut:</b> Defeated him");
-					if(flags["KQ2_WATSON_MET"] != undefined) output2("\n<b>* Pirate Base, Watson:</b> Met it");
+					if(flags["KQ2_WATSON_MET"] != undefined) output2("\n<b>* Pirate Base, Watson:</b> Met him");
 				}
 				sideCount++;
 			}

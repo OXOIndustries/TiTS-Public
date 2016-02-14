@@ -1704,7 +1704,8 @@ public function kq2KhanPCDefeat():void
 	output("\n\nA small, soft hand plays across the top of your head. You look up, still licking, to see Master looking down upon you with a smile. <i>“Good... I think my keepers will be very pleased to see you. Like this, of course. You’ll be here forever, of course, won’t you? No, I’ll not let a catch like you and your friend out of my grip, damn the pirates. You’re mine now, understand?”</i>");
 	
 	output("\n\nYou do. You understand, and thank Master for not letting anybody take you away from him. Not ever...");
-
+	
+	flags["KQ2_KARA_WITH_PC"] = undefined;
 	badEnd();
 }
 
@@ -2002,6 +2003,7 @@ public function kq2CapturedByPiratesBadEndII():void
 
 	output("\n\n<i>“And don’t even think about stopping. Not that you could, anyway,”</i> your new owner smirks, hooking a finger through a loop on your collar and dragging you into the base.");
 
+	flags["KQ2_KARA_WITH_PC"] = undefined;
 	badEnd();
 }
 
@@ -2152,6 +2154,7 @@ public function kq2AmaraBetrayKara():void
 	output("\n\nYou relax in your captain’s chair a little later, wondering what you could buy with all this money...");
 
 	//Return PC to ship.
+	flags["KQ2_KARA_WITH_PC"] = undefined;
 	flags["KQ2_BETRAYED_KARA"] = 1;
 	flags["KQ2_QUEST_FINISHED"] = 2;
 	currentLocation = "SHIP INTERIOR";
@@ -2398,7 +2401,7 @@ public function kq2AmaraSpecialEnd():void
 	
 	output("\n\nSuddenly, you hear a shrill beeping sound from behind you. The guards stop, looking back just in time to see Kara grinning like a maniac, a small silver orb in her hand.");
 	
-	output("\n\nShe screams <i>“Run, [pc.name]!”</i> and smashes the orb into Amara’s unexpecting face. You’re thrown down by a concussive blast wave and a rush of heat");
+	output("\n\nShe screams, <i>“Run, [pc.name]!”</i> and smashes the orb into Amara’s unexpecting face. You’re thrown down by a concussive blast wave and a rush of heat");
 	if (!pc.isBald()) output(" that scorches your hair");
 	output(", leaving you flat on your face. Your ears ring painfully, making it a force of effort to stagger up. The guards lie on the ground - looks like they took the brunt of the blast. There’s nothing where Kara and Amara had been. Nothing but a scorch mark on the ground and bits of burning debris.");
 	
@@ -2423,6 +2426,7 @@ public function kq2AmaraSpecialEnd():void
 	
 	//Return PC to ship. No reward, no harem, no nothing. Dump all Lust built up.
 	pc.lustRaw = 0;
+	flags["KQ2_KARA_WITH_PC"] = undefined;
 	flags["KQ2_KARA_SACRIFICE"] = 1;
 	flags["KQ2_QUEST_FINISHED"] = 2;
 	currentLocation = "SHIP INTERIOR";
@@ -2752,6 +2756,7 @@ public function kq2NukeBadend():void
 	
 	output("\n\nAnd then there’s a flash of searing pain. Then nothing.");
 
+	flags["KQ2_KARA_WITH_PC"] = undefined;
 	badEnd();
 }
 
