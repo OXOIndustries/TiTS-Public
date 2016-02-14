@@ -3916,7 +3916,7 @@ public function talkToBessRemoveGlasses():void
 
 	flags["BESS_GLASSES"] = 0;
 
-	output("<b>[bess.name] has remove [bess.hisHer] glasses!</b>");
+	output("<b>[bess.name] has removed [bess.hisHer] glasses!</b>");
 
 	bessFunctionsMenu();
 }
