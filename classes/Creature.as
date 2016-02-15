@@ -1062,7 +1062,10 @@ package classes {
 				//ballSizeRaw = ((ballSizeRaw * ballSizeRaw * balls) / 2);
 				
 				//If diameter is greater than six inches, reduce size to make diameter be six. Only so much room inside.
-				if(ballDiameter() >= 6) ballSizeRaw = 6*Math.PI;
+				//if(ballDiameter() >= 6) ballSizeRaw = 6*Math.PI;
+				
+				// WhyNotBoth.gif?
+				ballSizeRaw = Math.min((6 * Math.PI), ((ballSizeRaw * ballSizeRaw * balls) / 2));
 			}
 			balls = 0;
 		}
@@ -3369,7 +3372,7 @@ package classes {
 			modifiedDamage.add(shield.baseDamage);
 			
 			//Add bonus to both melee and ranged attacks
-			if (hasStatusEffect("Lightning Moves")) modifiedDamage.multiply(1.1);
+			if (hasStatusEffect("Lightning Moves")) modifiedDamage.multiply(1.05);
 			
 			return modifiedDamage;
 		}
@@ -3433,7 +3436,7 @@ package classes {
 			}
 			//Apply sexy moves before flat boni effects
 			if (hasStatusEffect("Sexy Moves")) temp *= 1.1;
-			if (hasStatusEffect("Mare Musk")) temp += 10;
+			if (hasStatusEffect("Mare Musk")) temp += 2;
 			//Gain Sexy Thinking - gives sexiness bonus equal to (100-IQ-25)/20 + (100-WQ-25)/20
 			if(hasPerk("Sexy Thinking"))
 			{
@@ -7365,6 +7368,11 @@ package classes {
 		public function hasCocks(): Boolean {
 			if (cocks.length > 1) return true;
 			return false;
+		}
+		
+		public function hasVaginas():Boolean
+		{
+			return vaginas.length > 1;
 		}
 
 		public function hasGenitals():Boolean

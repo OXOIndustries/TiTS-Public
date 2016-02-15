@@ -258,6 +258,11 @@ public function shop(keeper:Creature):void {
 		approachVi();
 		return;
 	}
+	else if(keeper is DoctorLash)
+	{
+		mainGameMenu();
+		return;
+	}
 	clearOutput();
 	output(keeper.keeperGreeting);
 	shopkeep = keeper;

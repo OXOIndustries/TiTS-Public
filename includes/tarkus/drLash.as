@@ -230,7 +230,8 @@ public function genitalRemovalShit():void
 	clearMenu();
 	if(pc.hasGenitals())
 	{
-		if(pc.isBimbo() && pc.hasVagina()) addDisabledButton(0,"Pure Purge","Pure Purge","Ew! You don't want to get rid of your pussy!");
+		if(pc.hasStatusEffect("GaloMax")) addDisabledButton(0,"Pure Purge","Pure Purge","You probably shouldn't do this while under the effects of GaloMax.");
+		else if(pc.isBimbo() && pc.hasVagina()) addDisabledButton(0,"Pure Purge","Pure Purge","Ew! You don't want to get rid of your pussy!");
 		else if(pc.isBro() && pc.hasCock()) addDisabledButton(0,"Pure Purge","Pure Purge","No way! You're not losing your junk.");
 		else if(pc.isPregnant()) addDisabledButton(0,"Pure Purge","Pure Purge","Dr. Lash has no interest in ending your unborn offspring.");
 		else if(!pc.hasGenitals()) addDisabledButton(0,"Pure Purge","Pure Purge","You don't have any genitals!");
@@ -238,22 +239,30 @@ public function genitalRemovalShit():void
 		else addDisabledButton(0,"Pure Purge","Pure Purge","You cannot afford this treatment.");
 	}
 	else addDisabledButton(0,"Pure Purge","Pure Purge","You don't have genitals to remove.");
-	if(pc.hasCock() && pc.isBro()) addDisabledButton(1,"Priaprism P.","Priaprism Purge","No way! You're not losing your junk.");
+	if(pc.hasCock() && pc.hasStatusEffect("GaloMax")) addDisabledButton(1,"Priaprism P.","Priaprism Purge","You probably shouldn't do this while under the effects of GaloMax.");
+	else if(pc.hasCock() && pc.isBro()) addDisabledButton(1,"Priaprism P.","Priaprism Purge","No way! You're not losing your junk.");
 	else if(!pc.hasCock()) addDisabledButton(1,"Priaprism P.","Priaprism Purge","You don't have a phallus to remove.");
 	else if(pc.credits >= 5000) addButton(1,"Priaprism P.",lashTreatment,"priaprism purge","Priaprism Purge","5,000 credits. Removes all masculinity endowments, big and small.");
 	else addDisabledButton(1,"Priaprism P.","Priaprism Purge","You do not have the credits for this treatment.");
 
-	if(pc.hasCock() && pc.isBro()) addDisabledButton(2,"Phallus P.","Phallus Purge","No way! You're not losing your junk.");
+	if(pc.hasCock() && pc.hasStatusEffect("GaloMax")) addDisabledButton(2,"Phallus P.","Phallus Purge","You probably shouldn't do this while under the effects of GaloMax.");
+	else if(pc.hasCock() && pc.isBro()) addDisabledButton(2,"Phallus P.","Phallus Purge","No way! You're not losing your junk.");
 	else if(!pc.hasCock()) addDisabledButton(2,"Phallus P.","Phallus Purge","You don't have a penis to lose.");
 	else if(pc.credits >= 10000) addButton(2,"Phallus P.",lashTreatment,"phallus pruning","Phallus Pruning","10,000 credits. Removes a single phallus of the doctor’s choice.");
 	else addDisabledButton(2,"Phallus P.","Phallus Purge","You cannot afford this treatment.");
 
-	if(pc.balls > 0 && pc.isBro()) addDisabledButton(3,"Neutering","Neutering","No way! You're not getting rid of your junk!");
+	if(pc.balls > 0 && pc.hasStatusEffect("GaloMax")) addDisabledButton(3,"Neutering","Neutering","You probably shouldn't do this while under the effects of GaloMax.");
+	else if(pc.balls > 0 && pc.isBro()) addDisabledButton(3,"Neutering","Neutering","No way! You're not getting rid of your junk!");
 	else if(pc.balls == 0) addDisabledButton(3,"Neutering","Neutering","You don't have any balls to lose.");
 	else if(pc.credits >= 4000) addButton(3,"Neutering",lashTreatment,"neutering","Neutering","4,000 credits. Removes external gonads and testicular tissue.");
 	else addDisabledButton(3,"Neutering","Neutering","You cannot afford this treatment.");
 
-	if(pc.hasVagina() && pc.isBimbo())
+	if(pc.hasVagina() && pc.hasStatusEffect("GaloMax"))
+	{
+		addDisabledButton(4,"Birth-P.","Birth-Proofing","You probably shouldn't do this while under the effects of GaloMax.");
+		addDisabledButton(5,"Vagina R.","Vagina Removal","You probably shouldn't do this while under the effects of GaloMax.");
+	}
+	else if(pc.hasVagina() && pc.isBimbo())
 	{
 		addDisabledButton(4,"Birth-P.","Birth-Proofing","Noooo! You don't wanna lose your lady parts!");
 		addDisabledButton(5,"Vagina R.","Vagina Removal","Noooo! You don't wanna lose your lady parts!");

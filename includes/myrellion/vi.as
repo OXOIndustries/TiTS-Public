@@ -754,7 +754,7 @@ public function rideVi():void
 	if(flags["VI_PLEASURE_TALKED"] == undefined) output("\n\nWhat was that, some kind of digital orgasm..? You’re surprised, since that shouldn’t be possible, but also");
 	else output("\n\nAfter watching her cute digital orgasm, you’re");
 	output(" rock hard. ");
-	if(pc.isTaur()) output("Grabbing her twitching ivory tail in one hand,");
+	if(!pc.isTaur()) output("Grabbing her twitching ivory tail in one hand,");
 	else output("Putting your front [pc.footOrFeet] on the bed, you prepare yourself to mount the comparatively tiny nurse-droid, then");
 	output(" you plunge [pc.oneCock] into her squirting snatch. Her passage is so warm and slick that it only takes a few seconds before you’re buried in her right up to the hilt.");
 	pc.cockChange();
@@ -1765,6 +1765,23 @@ public function viPussyFapScene():void
 	clearOutput();
 	showVi();
 	author("JimThermic");
+	
+	if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC))
+	{
+		output("As much as you may like to use it, Vi’s vagina isn’t something you can readily play with in public. Make sure you are in a location that’s a little less populated before attempting to do that!");
+		
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+		return;
+	}
+	
+	// Select anatomy
+	var hasGenital:Array = [];
+	var useGenital:String = "anus";
+	if(pc.hasCock() && pc.cockThatFits(chars["VI"].vaginalCapacity(0)) >= 0) hasGenital.push("penis");
+	if(pc.hasVagina()) hasGenital.push("vagina");
+	if(hasGenital.length > 0) useGenital = hasGenital[rand(hasGenital.length)];
+	
 	output("You feel the familiar flush of arousal spreading across your [pc.skinFurScalesNoun]. Your heart beats faster. Your thoughts are swallowed in a haze of base arousal. You find your fingers reaching for your sensitive erogenous zones. Acting on instinct, you touch and rub them, enjoying the rewarding zings of pleasure shooting up from your ");
 	if(pc.biggestTitSize() >= 1 || !pc.hasGenitals()) output("[pc.nipples]");
 	else if(pc.hasCock()) 
@@ -1788,7 +1805,7 @@ public function viPussyFapScene():void
 	output("\n\nYou slide in a second and a third digit, pistoning them inside her slick lady-lips. The sound of her sloppy, slurping lips being fucked with your fingers makes you even hotter and hornier, knowing that far off the nurse is whimpering with delight as she’s being triple-fingered between her quaking thighs. There’s a sudden tight clench around your digits, followed by a thin, clear stream of fluid jumping up and splashing in your face. Your cheeks, nose, and mouth are sopping wet; did she just squirt on you?! Licking your lips, there’s the slightest hint of sweetness to her taste. While you savor her flavor, her slippery white folds spasm around your digits, wringing them for all they’re worth!");
 
 	//If PC has a cock, roll 50% chance of this text appearing. Else use the other text.
-	if(pc.hasCock() && rand(2) == 0)
+	if(useGenital == "penis" && rand(2) == 0)
 	{
 		output("\n\nOnce her sloppy pussy stops spasming, you ");
 		if(currentLocation == "SHIP INTERIOR") output("lie down on your bed");

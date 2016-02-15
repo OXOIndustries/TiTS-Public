@@ -19,7 +19,10 @@ import classes.StorageClass;
 //display fyn's name + author infos
 public function showFyn(nude:Boolean = false):void
 {
-	showName("\nFyn");
+	if(flags["MET_FYN"]) showName("\nFYN");
+	else showName("SHIRTLESS\nMAN");
+	if(nude) showBust("FYN_NUDE");
+	else showBust("FYN");
 	author("JimThermic");
 }
 
@@ -47,29 +50,40 @@ public function fynSexed(times:int):void {
 	flags["FYN_SEXED"] += times;
 }
 
-public function checkFynDoorScene():void {
-	if(flags["FYN_APARTMENT_ENTERED"] == true) 
+public function finsApartmentBonus():Boolean
+{
+	if(flags["FYN_APARTMENT_ENTERED"] == true)
 	{
-		showFynsApartment();
-	} 
-	else {
-		playFynsDoorScene();
+		output("This incredibly large apartment must have cost a small fortune of credits to buy, far and above the normal fare in Tavros station. The polished synth-oak floors look indistinguishable from the real thing, giving the whole place a glamorous air. The common area is huge, filled with a circular island-like kitchen and seating around the outskirts. It's the sort of place where many people can visit quite easily. There's an open doorway leading to a lush looking bedroom with silky sheets and a king sized bed. The bedhead has silk ropes around it... whatever could <i>they</i> be for? Another room seems to lead to a dance studio.");
+		
+		addButton(0, "Fyn", fynMenu);
 	}
+	else
+	{
+		output("The door is closed. You'll need to knock.");
+		currentLocation = "RESIDENTIAL DECK 11";
+		clearMenu();
+		addButton(0,"Next", mainGameMenu);
+		showName("EAST\nWALKWAY");
+		generateMapForLocation(currentLocation);
+		return true;
+	}
+	return false;
 }
 
 public function playFynsDoorScene():void {
-	clearOutput();
-	showFyn();
+	//only render knock button if player didn't yet enter Fyn's apartment yet
+	if(flags["FYN_APARTMENT_ENTERED"] != true) {
+		output("\n\nDo you knock on the large oak door?");
 	
-	output("Do you knock on the large oak door?");
-	
-	processTime(1);
-	
-	clearMenu();
-	addButton(0, "Yes", knockOnFynsDoor, undefined, "Knock", "Why not? You're kind of curious to see who lives inside... you only live once, right?");
-	addButton(1, "No", walkAwayFromFynsDoor, undefined, "Don't knock", "Just walk away. After all, what reason do you have to knock on some random's door?");
+		processTime(1);
+		
+		clearMenu();
+		addButton(0, "Knock", knockOnFynsDoor, undefined, "Knock", "Why not? You're kind of curious to see who lives inside... you only live once, right?");
+	}
 }
 
+/*Cut do to reworking intro bits
 public function walkAwayFromFynsDoor():void {
 	clearOutput();
 	showFyn();
@@ -83,17 +97,17 @@ public function walkAwayFromFynsDoor():void {
 	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
-}
+}*/
 
 public function knockOnFynsDoor():void {
 	clearOutput();
 	showFyn();
 	
-	if(flags["MET_FYN"] == undefined) {
+	if(flags["SEEN_FYN"] == undefined) {
 		output("You decide to give in to your curiosity and rap your knuckles against the sturdy wooden door. Is it real oak, you wonder?");
-		output("\n\nJust as you don't think anyone's going to answer, the door swings half open and a tall, shirtless man steps out. He quirks one of his distinctively dark brows, shooting you a curious, slightly amused look. “... Well, you took your time.”");
-		output("\n\nWow. Looking at this guy is like looking at a work of art. Even though he's clearly not human—the vermillion skin and pointed ears are a dead give away—his well-sculptured figure is distinctly terran in shape. His eyes are full of fire; passionate burning orbs with black, tiger-like slits.");
-		output("\n\n“So what are you waiting for? Come on inside, and let's get started.” The door is fully open now, and he's gesturing for you to go inside.");
+		output("\n\nJust as you don't think anyone's going to answer, the door swings half open and a tall, shirtless man steps out. He quirks one of his distinctively dark brows, shooting you a curious, slightly amused look. <i>“... Well, you took your time.”</i>");
+		output("\n\nWow. Looking at this guy is like looking at a work of art. Even though he's clearly not human - the vermillion skin and pointed ears are a dead give away - his well-sculptured figure is distinctly terran in shape. His eyes are full of fire; passionate burning orbs with black, tiger-like slits.");
+		output("\n\n<i>“So what are you waiting for? Come on inside, and let's get started.”</i> The door is fully open now, and he's gesturing for you to go inside.");
 		output("\n\nFor some reason, standing this close to him, you can smell fresh male sweat. Has he been exercising? You can definitely see a slight sheen to his muscles.");
 		output("\n\nWhat do you do?");
 		
@@ -101,16 +115,16 @@ public function knockOnFynsDoor():void {
 	}
 	else 
 	{
-		output("You knock on the door again, deciding to give it another try. Not long after you're finished knocking, the door swings half open and the same tall, shirtless man steps out. He quirks one of his distinctively dark brows, shooting you a curious, slightly amused look. “... Back again? I'm not a doorman, you know. And I <i>do</i> charge by the hour.”");
-		output("\n\n“So what are you waiting for? Come on inside, and let's get started.” The door is fully open now, and he's gesturing for you to go inside. What do you do?");
+		output("You knock on the door again, deciding to give it another try. Not long after you're finished knocking, the door swings half open and the same tall, shirtless man steps out. He quirks one of his distinctively dark brows, shooting you a curious, slightly amused look. <i>“... Back again? I'm not a doorman, you know. And I </i>do<i> charge by the hour.”</i>");
+		output("\n\n<i>“So what are you waiting for? Come on inside, and let's get started.”</i> The door is fully open now, and he's gesturing for you to go inside. What do you do?");
 	
 		processTime(2);
 	}
 	
-	flags["MET_FYN"] = true;
+	flags["SEEN_FYN"] = true;
 	
 	clearMenu();
-	addButton(0, "GoIn", goIntoFynsApartment, undefined, "Go in", "Why not see where this goes? Could be kind of fun.");
+	addButton(0, "Go In", goIntoFynsApartment, undefined, "Go in", "Why not see where this goes? Could be kind of fun.");
 	addButton(1, "Nope!", backOutOfGoingIntoFynsApartment, undefined, "Don't go in", "Time to back out of here. He's clearly mistaken you for someone else!");
 }
 
@@ -118,9 +132,9 @@ public function backOutOfGoingIntoFynsApartment():void {
 	clearOutput();
 	showFyn();
 	
-	if(pc.isNice()) output("Apologising for wasting his time, you quickly back off and take your leave.");
-	else if(pc.isMischievous()) output("“Sorry, wrong apartment. Thanks for your time!” you exclaim, taking your leave.");
-	else output("“Nope. Wrong door. See ya.” You wave and hastily walk off.");
+	if(pc.isNice()) output("Apologizing for wasting his time, you quickly back off and take your leave.");
+	else if(pc.isMischievous()) output("<i>“Sorry, wrong apartment. Thanks for your time!”</i> you exclaim, taking your leave.");
+	else output("<i>“Nope. Wrong door. See ya.”</i> You wave and hastily walk off.");
 	
 	output(" The look of amusement doesn't leave the handsome crimson-skinned man's face, even as he slips back inside and closes the door. What was <i>that</i> all about?");
 	
@@ -137,9 +151,12 @@ public function goIntoFynsApartment():void {
 	clearOutput();
 	showFyn();
 	
+	currentLocation = "RESIDENTIAL DECK 19";
+	generateMapForLocation(currentLocation);
+
 	output("You go with the flow, stepping through the threshold. The door closes soundly behind you. The tall, shirtless man strides past you and through the apartment. Does he expect you to follow?");
 	output("\n\nYou follow in his footsteps through the huge, luxurious apartment, reeling a little at the amount of credits it must have cost. From the polished synth-oak floors to the artwork pieces, there's definitely a glamorous air to the place. Whoever he is, he's definitely wealthy, there's no doubt about that. Spotting an open doorway, you see the beginnings of a bedroom, replete with a silky, king sized bed. It's not hard to see the silk ropes tied to the foot of the bed... it's not hard to guess what <i>they</i> would be for.");
-	output("\n\nYou're not lead there, though, but rather to a circular island-like kitchen in the common area, surrounded by an abundance of seating. Your host turns to you and runs a hand through his long, midnight-black hair. “...Would you like a drink? We're pretty well stocked here.”");
+	output("\n\nYou're not lead there, though, but rather to a circular island-like kitchen in the common area, surrounded by an abundance of seating. Your host turns to you and runs a hand through his long, midnight-black hair. <i>“... Would you like a drink? We're pretty well stocked here.”</i>");
 
 	output("\n\nYou");
 	if(pc.isNice()) output(" politely");
@@ -148,10 +165,11 @@ public function goIntoFynsApartment():void {
 	
 	output(" accept, and he fetches you both a drink, sitting down on one of the comfy-looking curved sofas. You sit opposite from him");
 	
-	if (pc.isTaur()) output(", crouching down with your tauric body/sinking into the cushions");
+	if (pc.isTaur()) output(", crouching down with your tauric body");
+	else output(", sinking into the cushions");
 	
 	output(". The devilish-looking man stretches out, absentmindedly baring his broad shoulders and chest. He looks perfectly at home without a shirt; but then again, he <i>is</i> home, isn't he?");
-	output("\n\n“... So, do you have a lot of experience, or is this first time?”");
+	output("\n\n<i>“So, do you have a lot of experience, or is this first time?”</i>");
 	
 	processTime(5);
 	
@@ -169,66 +187,68 @@ public function resolveFynConfusion(type:String):void {
 	switch(type) {
 		case 'come_clean' :
 			output("You figure it's time to come clean, and admit that you have <i>no</i> idea what's going on. His powerful brows raise in sudden comprehension, his whole face soon following suit.");
-			output("\n\n“Ah. So you knocked on the door, and then I assumed...” Instead of looking upset, however, he looks deeply amused.");
+			output("\n\n<i>“Ah. So you knocked on the door, and then I assumed...”</i> Instead of looking upset, however, he looks deeply amused.");
 			break;
 		case 'lots' :
-			output("“Interesting. It'll be good to do it with someone who can keep up,” the dark-haired man smiles. He crooks a finger and touches his chin, looking at you with an intense and thoroughly <i>interested</i> gaze.");
+			output("<i>“Interesting. It'll be good to do it with someone who can keep up,”</i> the dark-haired man smiles. He crooks a finger and touches his chin, looking at you with an intense and thoroughly <i>interested</i> gaze.");
 			
 			break;
 		case 'none' :
-			output("“Oh, so I'll be your first? That's quite a responsibility,” the dark-haired man smiles, a glint in his eyes. His intense brows are raised; he suddenly looks <i>very</i> interested in you.");
+			output("<i>“Oh, so I'll be your first? That's quite a responsibility,”</i> the dark-haired man smiles, a glint in his eyes. His intense brows are raised; he suddenly looks <i>very</i> interested in you.");
 			break;
 	}
 	
 	if(type == 'lots' || type == 'none') {
-		output("\n\n“...How about we just do it here and now, then?” he offers, his baritone voice lowering to a distinctively sensual note. Hopping off the couch, he then confidently strides up to you, taking your hand and pointedly pulling you upright! You find yourself pressed against his superbly well formed chest");
+		output("\n\n<i>“... How about we just do it here and now, then?”</i> he offers, his baritone voice lowering to a distinctively sensual note. Hopping off the couch, he then confidently strides up to you, taking your hand and pointedly pulling you upright! You find yourself pressed against his superbly well formed chest");
 		
-		if(pc.tallness < 60 || pc.tallness < 84) output(", his narrow waist pressing against yours");
+		if(pc.tallness > 60 && pc.tallness < 84) output(", his narrow waist pressing against yours");
 		output(".");
 		output(" You gasp; is he rubbing <i>that</i> against");
 		if(pc.hasCock()) output(" <i>yours</i>");
 		else output(" you");
 		output(" on purpose?");
 		
-		output("\n\n“What, right here, in the living room?”");
-		output("\n\n“Of course. No need to make a big song and dance about it. After all, it's not your first time, so the living room should be fine...” He grabs your hand in his, firmly grasping it, bringing his symmetrical face closer to yours. His body smell is masculine and fresh. “...Are you ready?”");
-		output("\n\nYou nod, a hand reaching up to tentatively run through his dark, long hair. It's so soft and shiny, almost criminally so, the sort that you could run your hands through for hours. “... Yes. Let's do it.”");
-		output("\n\nAt that moment, he pauses, looking deep into your eyes. His powerful brows then raise in sudden comprehension, his whole expression following suit. “... Ah. You... have no idea what I'm talking about, do you?”");
-		output("\n\nYou shake your head, and he pulls back a little. Rather than bothered, he looks distinctly amused. “You just walked up and knocked on my door, didn't you? And then I assumed...”");
-		output("\n\n“Yup.”");
+		output("\n\n<i>“What, right here, in the living room?”</i>");
+		output("\n\n<i>“Of course. No need to make a big song and dance about it. After all, it's not your first time, so the living room should be fine...”</i> He grabs your hand in his, firmly grasping it, bringing his symmetrical face closer to yours. His body smell is masculine and fresh. <i>“... Are you ready?”</i>");
+		output("\n\nYou nod, a hand reaching up to tentatively run through his dark, long hair. It's so soft and shiny, almost criminally so, the sort that you could run your hands through for hours. <i>“... Yes. Let's do it.”</i>");
+		output("\n\nAt that moment, he pauses, looking deep into your eyes. His powerful brows then raise in sudden comprehension, his whole expression following suit. <i>“... Ah. You... have no idea what I'm talking about, do you?”</i>");
+		output("\n\nYou shake your head, and he pulls back a little. Rather than bothered, he looks distinctly amused. <i>“You just walked up and knocked on my door, didn't you? And then I assumed...”</i>");
+		output("\n\n<i>“Yup.”</i>");
 	}
 	
-	output("\n\n“... Right. So, perhaps introductions, then?”");
-	output("\n\n“Seems like a good place to start,”");
+	output("\n\n<i>“... Right. So, perhaps introductions, then?”</i>");
+	output("\n\n<i>“Seems like a good place to start,”</i>");
 	
 	if(pc.isNice()) output(" you warmly answer.");
 	else if(pc.isMischievous()) output(" you grin. It <i>was</i> pretty fun to lead him on like that.");
 	else output("you bluntly respond.");
 	
-	output("\n\n“I'm Fyn Wilder. Honestly, I thought you were here for some private dancing lessons. Samba, belly dancing, strip-tease, that sort of thing..”");
+	output("\n\n<i>“I'm Fyn Wilder. Honestly, I thought you were here for some private dancing lessons. Samba, belly dancing, strip-tease, that sort of thing..”</i>");
+	flags["MET_FYN"] = true;
+	showName("\nFYN");
 	output("\n\nFyn Wilder... Fyn Wilder... wait, you've heard that name before. Something in the recent holos, about a young, talented performer... but his face looks different from the images you've seen. When you question him about it, he gives a rich laugh.");
-	output("\n\n“That's me. Though I very rarely go onto the stage with this face. Not unless I'm playing the terran devil, anyway. Usually something a little more like this...” Fyn then waves a hand dramatically in front of his face. There's a sudden shift, and you're left gaping at a terran-looking man with surprisingly brown hair and facial stubble.");
+	output("\n\n<i>“That's me. Though I very rarely go onto the stage with this face. Not unless I'm playing the terran devil, anyway. Usually something a little more like this...”</i> Fyn then waves a hand dramatically in front of his face. There's a sudden shift, and you're left gaping at a terran-looking man with surprisingly brown hair and facial stubble.");
 	
-	output("\n\n“... You're");
+	output("\n\n<i>“... You're");
 	if(CodexManager.entryUnlocked("Vildarii")) output(" a vildarii");
 	else output(" a polymorph");
-	output("!” you exclaim in stunned surprise. His dark eyes are glinting with amusement, relishing in your reaction. A true performer, through and through.");
+	output("!”</i> you exclaim in stunned surprise. His dark eyes are glinting with amusement, relishing in your reaction. A true performer, through and through.");
 	
-	output("\n\n“Of course;");
+	output("\n\n<i>“Of course;");
 	if(CodexManager.entryUnlocked("Vildarii")) output(" vildarii");
 	else output(" we polymorphs");
-	output(" are natural performers. Some better than others, of course,” he adds, with no small hint of pride. “Anyway, my cards are on the table. How about yours? You never told me your name.”");
+	output(" are natural performers. Some better than others, of course,”</i> he adds, with no small hint of pride. <i>“Anyway, my cards are on the table. How about yours? You never told me your name.”</i>");
 	
-	output("\n\n“[pc.name] Steele,” you tell him. Fyn's eyes definitely light up. After all, he's not the only famous one in the room.");
-	output("\n\n“Heir to the mining magnate? Well, that's something! I heard something about your cousin and you being in some sort of race?”");
-	output("\n\nYou grumble aloud. Yeah, " + chars["RIVAL"].mf("him","her") + ". Fyn diplomatically changes the topic. “Ah, like that, huh? Anyway, enjoy your drink, and if you want, I'm doing private lessons. After all, I wouldn't say no to having such a");
+	output("\n\n<i>“[pc.name] Steele,”</i> you tell him. Fyn's eyes definitely light up. After all, he's not the only famous one in the room.");
+	output("\n\n<i>“Heir to the mining magnate? Well, that's something! I heard something about your cousin and you being in some sort of race?”</i>");
+	output("\n\nYou grumble aloud. Yeah, " + chars["RIVAL"].mf("him","her") + ". Fyn diplomatically changes the topic. <i>“Ah, like that, huh? Anyway, enjoy your drink, and if you want, I'm doing private lessons. After all, I wouldn't say no to having such a");
 	
 	if(pc.femininity >= 65) output(" beautiful");
 	else if(pc.femininity <= 35) output(" handsome");
 	else output(" striking-looking");
 	
 	output(" " + pc.mf("man", "woman")); 
-	output(" as my student.”");
+	output(" as my student.”</i>");
 	
 	flags["FYN_APARTMENT_ENTERED"] = true;
 	CodexManager.unlockEntry("Vildarii");
@@ -237,11 +257,6 @@ public function resolveFynConfusion(type:String):void {
 	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
-}
-
-public function showFynsApartment():void {
-	showFyn();
-	addButton(0, "Fyn", fynMenu);
 }
 
 public function fynMenu():void {
@@ -254,19 +269,19 @@ public function fynMenu():void {
 	switch(random) {
 		case 0 :
 			output("The devilish-looking dancer is leaning against the kitchen bench in the middle of the room. He waves as you enter, a glint in his fiery eyes.");
-			output("\n\n“Hello there, " + pc.mf("Mr", "Ms") + " Steele. Always delighted to see you walk through my door.”");
+			output("\n\n<i>“Hello there, " + pc.mf("Mr.", "Ms.") + " Steele. Always delighted to see you walk through my door.”</i>");
 			break;
 		case 1 :
 			output("Fyn is reclining in a comfy looking lounge chair, sipping a glass of whisky and listening to music. As you enter, he clicks it off, and stands up.");
-			output("\n\n“" + pc.mf("Mr", "Ms") + " Steele! I was just sitting and having a drink. Here for lessons, or perhaps something else?”");
+			output("\n\n<i>“" + pc.mf("Mr.", "Ms.") + " Steele! I was just sitting and having a drink. Here for lessons, or perhaps something else?”</i>");
 			break;
 		case 2 :
 			output("Fyn is doing some stretches, a look of intensity in his eyes. As you approach, however, his powerful brows relax and his eyes shine.");
-			output("\n\n“Ah, " + pc.mf("Mr", "Ms") + " Steele. What can I do for you today?”");
+			output("\n\n<i>“Ah, " + pc.mf("Mr.", "Ms.") + " Steele. What can I do for you today?”</i>");
 			break;
 		case 3 :
 			output("You catch Fyn reading a book. He's flicking through the pages, though he's standing up as he reads it. When you come over, he grins and marks the page. It seems to be a book on bondage techniques.");
-			output("\n\n“Greetings! Just catching up on some light reading. Fascinating things those siel come up with. There's more knots in some of these bindings than an ausar orgy.”");
+			output("\n\n<i>“Greetings! Just catching up on some light reading. Fascinating things those siel come up with. There's more knots in some of these bindings than an ausar orgy.”</i>");
 			break;
 	}
 	
@@ -277,7 +292,11 @@ public function fynMenu():void {
 	addButton(1, "Talk", fynTalk);
 	addButton(2, "Lesson", fynLessons);
 	
-	if(flags["FYN_TALKED_ABOUT_SEX"] == true) addButton(3, "Sex", fynSexMenu);
+	if(flags["FYN_TALKED_ABOUT_SEX"] == true)
+	{
+		if(pc.lust() >= 33) addButton(3, "Sex", fynSexMenu);
+		else addDisabledButton(3, "Sex", "Sex", "You are not aroused enough for that.");
+	}
 	else addDisabledButton(3, "Sex", "Sex", "You don't know him well enough to suggest that.");
 	
 	addButton(14, "Leave", mainGameMenu);
@@ -293,6 +312,8 @@ public function fynAppearance():void {
 	output("\n\nLooking down from the nape of his neck, the first thing to notice is his broad, proud shoulders and chest. They're held with some inner confidence that never seems to falter. Perhaps it's his dancing training that gives him such perfect, unwavering poise. Said chest is well displayed by his silk black shirt, deliberately left open all the way down to his slender stomach. His whole body in fact has a perfect V-like shape, starting at the shoulders down to his narrow hips; and if his shapely ass is any indication, they possess some serious thrusting power.");
 	output("\n\nHis pants are hugging his crotch in a rather suggestive way. They seem to be dance-compatible, allowing for ease of movement, and for the vildarii male to show off his impressive flexibility.");
 	output("\n\nIndependent of his physique, whenever you're close to him, you always catch a hint of a particular, alluring scent; a mixture between fresh rain and a distinctive <i>maleness</i>.");
+	
+	addDisabledButton(0, "Appearance");
 }
 
 public function fynTalk():void {
@@ -315,7 +336,7 @@ public function fynTalkNavigation(activeTopic:Function = undefined):void {
 	else addDisabledButton(1, "Hobbies", "Hobbies", "You don't know him well enough to talk about that.");
 	
 	if(activeTopic == fynTalksAboutSex) addDisabledButton(2, "Sex", "Sex", "You just spoke about that.");
-	else if(flags["FYN_TALKED_ABOUT_HOBBIES"] && fynRelationshipStatus() >= 1) addButton(2, "Sex", fynTalksAboutSex, undefined, "Ask Fyn about his sexual interests.");
+	else if(flags["FYN_TALKED_ABOUT_HOBBIES"] && fynRelationshipStatus() >= 1) addButton(2, "Sex", fynTalksAboutSex, undefined, "Sex", "Ask Fyn about his sexual interests.");
 	else if (flags["FYN_TALKED_ABOUT_HOBBIES"] == undefined) addDisabledButton(2, "Sex", "Sex", "You don't know him well enough to talk about that.");
 	else addDisabledButton(2, "Sex", "Sex", "Fyn has no interest in talking about sex with you."); //pc did not firt and blocked sex menu
 	
@@ -344,7 +365,7 @@ public function fynTalksAboutFyn():void {
 	
 	if(flags["FYN_TALKED_ABOUT_FYN"] == undefined) {
 		output("You ask Fyn a little bit about himself. The devilish dancer quirks an eyebrow, shooting you a deliberately sultry look.");
-		output("\n\n“Why, are you interested...?” he asks, crossing his arms over his barely covered chest.");
+		output("\n\n<i>“Why, are you interested...?”</i> he asks, crossing his arms over his barely covered chest.");
 		
 		flags["FYN_TALKED_ABOUT_FYN"] = true;
 		
@@ -368,12 +389,12 @@ public function fynTalksAboutFynPcFlirts():void {
 	
 	fynAdjustRelationshipStatus(1);
 	
-	output("“And what if I was, hmm—?” you respond, sauntering up to him and stroking his cheek. He grabs your hand and kisses it, a very intense look in his eyes. You feel your heart skip, just a little, with the incredibly delicious tension in the air.");
-	output("\n\n“... Well then, I'd just have to keep your interest, because you certainly have <i>mine</i>,” Fyn intones, kissing your fingertips. Intoxicated by the sensation, you let out a little moan, wondering <i>where</i> this is headed. His hands then slide down your arms, trailing their way down to your waist. You're pulled against him, deliciously close, your face ever so close to his... you can feel his gorgeous lips, his heated breath, brushing against the sensitive [pc.skinFurScales] of your neck.");
-	output("\n\n“Well... where to start? My name is Fyn Wilder, though that's not my real name; just a stage name...” He informs you, now kissing your ear. A tremble courses through your body; a wonderful little shock. “... My real name is Eriladar. I'm from Merope in the Pleaides star cluster.”");
-	output("\n\n“Do you know of Merope? She was a nymph, a caretaker of Bacchus, the god of theatre, fertility, and ecstasy. They called him 'the god who comes'.”");
+	output("<i>“And what if I was, hmm?”</i> you respond, sauntering up to him and stroking his cheek. He grabs your hand and kisses it, a very intense look in his eyes. You feel your heart skip, just a little, with the incredibly delicious tension in the air.");
+	output("\n\n<i>“Well then, I'd just have to keep your interest, because you certainly have <i>mine</i>,”</i> Fyn intones, kissing your fingertips. Intoxicated by the sensation, you let out a little moan, wondering <i>where</i> this is headed. His hands then slide down your arms, trailing their way down to your waist. You're pulled against him, deliciously close, your face ever so close to his... you can feel his gorgeous lips, his heated breath, brushing against the sensitive [pc.skinFurScales] of your neck.");
+	output("\n\n<i>“Well... where to start? My name is Fyn Wilder, though that's not my real name; just a stage name...”</i> He informs you, now kissing your ear. A tremble courses through your body; a wonderful little shock. <i>“My real name is Eriladar. I'm from Merope in the Pleaides star cluster.”</i>");
+	output("\n\n<i>“Do you know of Merope? She was a nymph, a caretaker of Bacchus, the god of theatre, fertility, and ecstasy. They called him 'the god who comes'.”</i>");
 	output("\n\nHow fitting! As his soft, kissing lips trail sweetly down your neck, you quiver with delight. Ecstasy and coming are definitely on <i>your</i> mind! His fingers cling to your waist, holding you fast, and you lift your chin just a <i>little</i> so he can kiss you better. Meanwhile, his words are like honey to your ears...");
-	output("\n\n“... Some of those earth cultures had real character. Loving terran culture is what attracted me to the stage. Good thing my family had me gene-modded before I was born; vocal cords touched up with a fanfir's.”");
+	output("\n\n<i>“Some of those earth cultures had real character. Loving terran culture is what attracted me to the stage. Good thing my family had me gene-modded before I was born; vocal cords touched up with a fanfir's.”</i>");
 	
 	//Brief bit just for non taurs
 	if(!pc.isTaur()) 
@@ -403,16 +424,16 @@ public function fynTalksAboutFynPcFlirts():void {
 		else output(" down below.");
 	}
 	
-	output("\n\n“How about you, my dear—any modifications? I'd believe it; you're criminally easy on the eyes,” Ryn asks, suckling upon your neck. You gasp as your supple skin [pc.skinFurScalesNoun] is pulled into his mouth; almost torturously teased! H-how has he found your sweet spot already, the one between your collarbone and neck—?");
-	output("\n\n“Y-yes, a little bit of modding...” you breathily admit, <i>far</i> more interested in what's happening with your neck and his lips.");
-	output("\n\n... And then, he's pulling back! You huff");
+	output("\n\n<i>“How about you, my dear - any modifications? I'd believe it; you're criminally easy on the eyes,”</i> Ryn asks, suckling upon your neck. You gasp as your supple skin [pc.skinFurScalesNoun] is pulled into his mouth; almost torturously teased! H-how has he found your sweet spot already, the one between your collarbone and neck--?");
+	output("\n\n<i>“Charmer...”</i> you breathily husk, <i>far</i> more interested in what's happening with your neck and his lips.");
+	output("\n\n...And then, he's pulling back! You huff");
 	
 	if(pc.femininity >= 70) output(" and shoot him a pouty look");
 	
-	output(". He, however, has a sparkle in his eyes. “Oh, did you want it to go further? You should have said so.”");
-	output("\n\nYou flush. He wants to hear it from your lips, to have <i>that</i> kind of power over you. Like a maestro, coaxing each lusty note from your lips. Do you dare give it to him...?");
+	output(". He, however, has a sparkle in his eyes. <i>“Oh, did you want it to go further? You should have said so.”</i>");
+	output("\n\nYou flush. He wants to hear it from your lips, to have <i>that</i> kind of power over you. Like a maestro, coaxing each lusty note from your lips. Do you dare give it to him?");
 	
-	fynTalksAboutFynPartTwo();
+	//fynTalksAboutFynPartTwo();
 	
 	processTime(10 + rand(5));
 	
@@ -426,13 +447,13 @@ public function fynTalksAboutFynPcPlaysHardToGet():void {
 	fynAdjustRelationshipStatus(1);
 	
 	output("You grin, telling him you don't deny you find him <i>interesting</i>, but it's simple curiosity, nothing more! By the telling glint in his eyes, you feel he doesn't believe you; which isn't surprising, since <i>you</i> don't believe you. Still, he takes your word for it, quirking one of those delicious brows.");
-	output("\n\n“... Well, far be it from me to spurn the attentions of such a");
+	output("\n\n<i>“... Well, far be it from me to spurn the attentions of such a");
 	
 	if(pc.femininity >= 65) output(" gorgeous ");
 	else output(" good-looking ");
 	
 	output(pc.mf("man", "woman"));
-	output(". I suppose I'll just have to tell you everything there is to know about myself.”");
+	output(". I suppose I'll just have to tell you everything there is to know about myself.”</i>");
 	
 	fynTalksAboutFynPartTwo();
 	
@@ -451,7 +472,7 @@ public function fynTalksAboutFynPcIsNoFlirt():void {
 	else if(pc.isMischievous()) output(" light-heartedly");
 	else output(" bluntly");
 	
-	output(" tell Fyn that he's not your type. He looks wounded, or perhaps faux-wounded? “... Ah, that's a shame. Oh well, I suppose my loss is someone else's gain.”");
+	output(" tell Fyn that he's not your type. He looks wounded, or perhaps faux-wounded? <i>“Ah, that's a shame. Oh well, I suppose my loss is someone else's gain.”</i>");
 	
 	fynTalksAboutFynPartTwo();
 	
@@ -463,9 +484,9 @@ public function fynTalksAboutFynPcIsNoFlirt():void {
 //the second part of Fyns flirt talk to be appended to all three possible answers
 //as well as to the repeat scene of the flirt talk
 public function fynTalksAboutFynPartTwo():void {
-	output("\n\n“My full name is Fyn Wilder; or at least, that's my full stage name. Apparently 'Eriladar' apparently wasn't distinctive enough, or too hard to pronounce, so my agent suggested I axe it,” he gives a light shrug, “'Fyn Wilder' seemed like a good fit.”");
-	output("\n\n“I'm twenty eight, and my home planet is Merope, in the Pleaides star cluster. That's not too far from terra, galaxy-wise, so we got a lot of terran culture growing up. I'm actually a bit of a terraphile, truth be told; some of the old earth cultures had some real character.”");
-	output("\n\n“Loving terran culture is probably what attracted to me to the stage,” the raven-haired man pointedly touches his throat, “Thankfully, my family had me genetically modified before I was born; my vocal cords are sliced with a fanfir's. It was all the rage with vildarii back then, and it really helped keep up with the competition.”");
+	output("\n\n<i>“My full name is Fyn Wilder; or at least, that's my full stage name. Apparently 'Eriladar' wasn't distinctive enough, or too hard to pronounce, so my agent suggested I axe it,”</i> he gives a light shrug, <i>“'Fyn Wilder' seemed like a good fit.”</i>");
+	output("\n\n<i>“I'm twenty eight, and my home planet is Merope, in the Pleaides star cluster. That's not too far from Terra, galaxy-wise, so we got a lot of terran culture growing up. I'm actually a bit of a terraphile, truth be told; some of the old Earth cultures had some real character.”</i>");
+	output("\n\n<i>“Loving terran culture is probably what attracted to me to the stage,”</i> the raven-haired man pointedly touches his throat, <i>“Thankfully, my family had me genetically modified before I was born; my vocal cords are spliced with a fanfir's. It was all the rage with vildarii back then, and it really helped keep up with the competition.”</i>");
 
 	processTime(5);
 }
@@ -475,10 +496,10 @@ public function fynTalksAboutHobbies():void {
 	showFyn();
 	
 	output("You ask him what his hobbies are, and he doesn't even need time to think.");
-	output("\n\n“Sex. No doubt about it. It's the only thing that comes close to performing. If I could fill my whole day with sex, I would,” Fyn stretches, much like a cat. Or perhaps rather a tiger, given those distinctive eyes of his. “That said, I do have <i>other</i> hobbies. Dancing and singing, obviously. Parties are pretty high up there; you can never go wrong with good company, drink, and music. I'm pretty sybaritic.”");
-	output("\n\n“Other than that, I love to fence—which, let's face it, is almost dancing—and bondage. Nothing more satisfying than finishing off a good bit of knotwork, particularly if you're dressing up a pretty thing with it and putting [pc.himHer] on display.”");
+	output("\n\n<i>“Sex. No doubt about it. It's the only thing that comes close to performing. If I could fill my whole day with sex, I would,”</i> Fyn stretches, much like a cat. Or perhaps rather a tiger, given those distinctive eyes of his. <i>“That said, I do have </i>other<i> hobbies. Dancing and singing, obviously. Parties are pretty high up there; you can never go wrong with good company, drink, and music. I'm pretty sybaritic.”</i>");
+	output("\n\n<i>“Other than that, I love to fence - which, let's face it, is almost dancing - and bondage. Nothing more satisfying than finishing off a good bit of knotwork, particularly if you're dressing up a pretty thing with it and putting [pc.himHer] on display.”</i>");
 	
-	if(fynRelationshipStatus() >= 1) output("\n\nBondage? You picture yourself trussed up in of silk, put on display for Ryn's satisfaction. That's <i>one</i> way to get in his bedroom, apparently!");
+	if(fynRelationshipStatus() >= 1) output("\n\nBondage? You picture yourself trussed up in ropes of silk, put on display for Ryn's satisfaction. That's <i>one</i> way to get in his bedroom, apparently!");
 	
 	flags["FYN_TALKED_ABOUT_HOBBIES"] = true;
 	processTime(5 + rand(5));
@@ -491,9 +512,9 @@ public function fynTalksAboutSex():void {
 	showFyn();
 	
 	output("Fyn seems awfully interested in sex. He also said he was into bondage. You ask the devilish-looking man if he's a Dominant.");
-	output("\n\n“Yes, I'm definitely a Dom. That's not to say I don't like vanilla; I love a taste of the traditional just as much as I like having a tied-up treat in the playroom,” he explains, then winks. “And yes, I <i>do</i> have a playroom. I buy a lot from the Happy Tails, and not all of it fits in the bedroom.”");
-	output("\n\n“Do you have a sub?” you ask, and he shakes his head.");
-	output("\n\n“No, I <i>did</i> have one, but not anymore—a lover and a sub. I'm not polyamorous, so I like to be dedicated to one person at a time. I don't mind if my lover sleeps around, so long as their heart belongs to me. I'm rather possessive that way.”");
+	output("\n\n<i>“Yes, I'm definitely a Dom. That's not to say I don't like vanilla; I love a taste of the traditional just as much as I like having a tied-up treat in the playroom,”</i> he explains, then winks. <i>“And yes, I </i>do<i> have a playroom. I buy a lot from the Happy Tails, and not all of it fits in the bedroom.”</i>");
+	output("\n\n<i>“Do you have a sub?”</i> you ask, and he shakes his head.");
+	output("\n\n<i>“No, I </i>did<i> have one, but not anymore - a lover and a sub. I'm not polyamorous, so I like to be dedicated to one person at a time. I don't mind if my lover sleeps around, so long as their heart belongs to me. I'm rather possessive that way.”</i>");
 	output("\n\nIt's a bit surprising to hear such a wild and wicked looking guy is actually somewhat monogamous. Or rather, he's into open relationships, for all his kinks.");
 	
 	flags["FYN_TALKED_ABOUT_SEX"] = true;
@@ -508,16 +529,16 @@ public function fynTalksAboutVildarii():void {
 	showFyn();
 	
 	output("You ask Fyn about the vildarii. You're interested to hear about his species. The midnight-haired man seems happy to answer your questions, leaning back a little as he does so.");
-	output("\n\n“... Well, where to start? We're fantastic, mostly because I'm one of them,” Fyn states, a playful glint in his eyes.");
-	output("\n\n“Humble!”");
-	output("\n\n“I know, I am. All performers are, you know,” he winks, then crosses his arms. “Hmm, I guess I should give a serious answer, spreading culture and all that. Where to start?”");
-	output("\n\n“How about the fact you're all polymorphs?” you suggest, and he nods.");
-	output("\n\n“Yes, we are, though we're not the best out there. Not the worst, either. A lot of people think we're just all born with the ability to switch into whatever we please, but it's not really that simple.");
-	output("\n\n“It actually takes an awful lot of training over many, many years, and even then, you've got to have a natural knack for it. It's a bit like singing, in that respect. Most terrans and ausar can sing, for example, but not all are good at it.”");
-	output("\n\n“Not only did I study polymorphing at school, I specialized in it at theatrical college. I also honed it as a stripper while I was paying off my tuition fees. It's a lot of work, this face changing business,” Fyn explains, giving a faux-sigh. “Most everyday vildarii can only change their color, and the shape of our eyes and ears. The dead giveaways.”");
-	output("\n\n“And you—?” you ask, your curiosity piqued.");
-	output("\n\n“Well, I can change the overall texture, shape, and color of everything, really. Sprouting ausar ears or kaithrit whiskers, for example, or even an extra phallus should the mood suit me. On a good day, I can do a tail, but that's a <i>lot</i> of work.”");
-	output("\n\n“That said, it's not as easy as it looks. Every time I change, I need to binge eat like crazy; transforming burns up things like fats and sugars, so come performance time, I've got to chow down like my life depends on it. Not a bad deal, though, eating so much and never having it hit the hips.”");
+	output("\n\n<i>“Well, where to start? We're fantastic, mostly because I'm one of them,”</i> Fyn states, a playful glint in his eyes.");
+	output("\n\n<i>“Humble!”</i>");
+	output("\n\n<i>“I know, I am. All performers are, you know,”</i> he winks, then crosses his arms. <i>“Hmm, I guess I should give a serious answer, spreading culture and all that. Where to start?”</i>");
+	output("\n\n<i>“How about the fact you're all polymorphs?”</i> you suggest, and he nods.");
+	output("\n\n<i>“Yes, we are, though we're not the best out there. Not the worst, either. A lot of people think we're just all born with the ability to switch into whatever we please, but it's not really that simple.”</i>");
+	output("\n\n<i>“It actually takes an awful lot of training over many, many years, and even then, you've got to have a natural knack for it. It's a bit like singing, in that respect. Most terrans and ausar can sing, for example, but not all are good at it.”</i>");
+	output("\n\n<i>“Not only did I study polymorphing at school, I specialized in it at theatrical college. I also honed it as a stripper while I was paying off my tuition fees. It's a lot of work, this face changing business,”</i> Fyn explains, giving a faux-sigh. <i>“Most everyday vildarii can only change their color, and the shape of our eyes and ears. The dead giveaways.”</i>");
+	output("\n\n<i>“And you?”</i> you ask, your curiosity piqued.");
+	output("\n\n<i>“Well, I can change the overall texture, shape, and color of everything, really. Sprouting ausar ears or kaithrit whiskers, for example, or even an extra phallus should the mood suit me. On a good day, I can do a tail, but that's a </i>lot<i> of work.”</i>");
+	output("\n\n<i>“That said, it's not as easy as it looks. Every time I change, I need to binge eat like crazy; transforming burns up things like fats and sugars, so come performance time, I've got to chow down like my life depends on it. Not a bad deal, though, eating so much and never having it hit the hips.”</i>");
 	
 	processTime(10 + rand(5));
 	
@@ -529,9 +550,9 @@ public function fynTalksAboutCareer():void {
 	showFyn();
 	
 	output("You ask Fyn about his career. You recall that he was meant to be a young up-and-coming actor, at least if the holos were to be believed.");
-	output("\n\n“Yeah. Well, I did make it big time. I was cast a big role with the Starlanders; that's a theatrical company that do holo-productions as well. I would have been broadcast large as life, all three dimensions across countless star systems...”");
-	output("\n\nFyn pauses and looks off into a random direction, furrowing his brow.”... And someone very close to me died. I didn't really have it in my heart to perform after that,” he pauses for a moment. “...It nearly killed my agent, but I decided to quit and come out here to the edges of Rush space.”");
-	output("\n\nYou ask him what he's looking for, out here on the edges of known space, and Fyn gives a somber smile. “Honestly? I don't know. All I knew is I wasn't going to find it back there in the core.”");
+	output("\n\n<i>“Yeah. Well, I did make it big time. I was cast a big role with the Starlanders; that's a theatrical company that do holo-productions as well. I would have been broadcast large as life, all three dimensions across countless star systems...”</i>");
+	output("\n\nFyn pauses and looks off into a random direction, furrowing his brow. <i>“And someone very close to me died. I didn't really have it in my heart to perform after that,”</i> he pauses for a moment. <i>“... It nearly killed my agent, but I decided to quit and come out here to the edges of Rush space.”</i>");
+	output("\n\nYou ask him what he's looking for, out here on the edges of known space, and Fyn gives a somber smile. <i>“Honestly? I don't know. All I knew is I wasn't going to find it back there in the core.”</i>");
 	
 	processTime(10 + rand(5));
 	
@@ -543,12 +564,12 @@ public function fynTalksAboutDancing():void {
 	showFyn();
 	
 	output("You ask Fyn why he loves dancing so much. The midnight-haired man strokes his chin, seemingly trying to articulate his answer.");
-	output("\n\n“Well, it's expression. It's energy. It's... quite obviously hard to explain. You're in the moment, and in that moment you're <i>free</i>; nothing else matters. You're just swallowed by this adrenaline rush, this sort of pure, all-encompassing joy.”");
+	output("\n\n<i>“Well, it's expression. It's energy. It's... quite obviously hard to explain. You're in the moment, and in that moment you're </i>free<i>; nothing else matters. You're just swallowed by this adrenaline rush, this sort of pure, all-encompassing joy.”</i>");
 	output("\n\nBy the passionate glint in his eyes, it seems he <i>really</i> likes dancing. You ask him what kind he likes.");
-	output("\n\n“Well, I have a soft spot for ballroom dancing; there's something particular about the intimate dynamic of two people dancing, bodies pressed together. Theatrical dance too, though that's more expression.”");
-	output("\n\n“Oh, and and strip tease. Definitely strip tease.”");
+	output("\n\n<i>“Well, I have a soft spot for ballroom dancing; there's something particular about the intimate dynamic of two people dancing, bodies pressed together. Theatrical dance too, though that's more expression.”</i>");
+	output("\n\n<i>“Oh, and and strip tease. Definitely strip tease.”</i>");
 	output("\n\nYou remark that strip tease doesn't seem to fit with the other two classical arts, and Fyn winks.");
-	output("\n\n“When I do it, hun, it's an art. Trust me. Being able to make someone's practically flutter back into their head, just with how much you're winding them up? Forget art; that's practically <i>magic</i>.”");
+	output("\n\n<i>“When I do it, hun, it's an art. Trust me. Being able to make someone's practically flutter back into their head, just with how much you're winding them up? Forget art; that's practically </i>magic<i>.”</i>");
 	
 	if(fynRelationshipStatus() >= 1) output("\n\nYou look down at Fyn's hips, imagining him giving you a hot strip tease... and suddenly you feel <i>yourself</i> swooning. He's not half wrong; that <i>would</i> be like magic.");
 	
@@ -562,24 +583,24 @@ public function fynTalksAboutSinging():void {
 	showFyn();
 	
 	output("You remember Fyn mentioning he was a singer who had fanfir gene mods spliced in before he was born, so you ask him about it.");
-	output("\n\n“Yeah; know much about the fanfir? Gigantic, dragon-like creatures, like out of Der Ring des Nibelungen. Actually, I sang with a female fanfir during Der Ring des Nibelungen; I was Sigurd, and she played the dragon. Her, uh hypnotic voice was <i>very</i> captivating. Even though I slayed her on stage, she was the one who felled <i>me</i>; apparently she had quite the taste for young male actors.”");
+	output("\n\n<i>“Yeah; know much about the fanfir? Gigantic, dragon-like creatures, like out of Der Ring des Nibelungen. Actually, I sang with a female fanfir during Der Ring des Nibelungen; I was Sigurd, and she played the dragon. Her, uh hypnotic voice was </i>very<i> captivating. Even though I slayed her on stage, she was the one who felled </i>me<i>; apparently she had quite the taste for young male actors.”</i>");
 	
 	//if pc's intelligance is higher than half the current max
 	if(pc.intelligence() > (pc.intelligenceMax() / 2))
 	{
-		output("\n\n“Der Ring der Nibelungen? Isn't the dragon meant to be played by a man?” you ask, recalling the famous terran opera. The moment you say that, Fyn's eyes fly open, and his smile couldn't be wider.");
-		output("\n\n“...You know it? Yes, the dragon <i>is</i> meant to be played by a man, traditionally. There were a few creative differences. The role of the Norn was played entirely by one siel woman, who had six arms to play string instruments with.”");
-		output("\n\n“Nibelungen is rarely performed outside of the sol system. My belief is Tiana—the lady fanfir—bankrolled the production to have her pick of young, strapping singers.”");
+		output("\n\n<i>“Der Ring der Nibelungen? Isn't the dragon meant to be played by a man?”</i> you ask, recalling the famous terran opera. The moment you say that, Fyn's eyes fly open, and his smile couldn't be wider.");
+		output("\n\n<i>“You know it? Yes, the dragon </i>is<i> meant to be played by a man, traditionally. There were a few creative differences. The role of the Norn was played entirely by one siel woman, who had six arms to play string instruments with.”</i>");
+		output("\n\n<i>“Nibelungen is rarely performed outside of the Sol system. My belief is Tiana, the lady fanfir, bankrolled the production to have her pick of young, strapping singers.”</i>");
 	}
 	else 
 	{
-		output("\n\nYou state that you've never heard of the piece, and Fyn nods. “I'm not surprised. It's a pretty rare piece, hardly performed outside of the sol system. My belief is Tiana—the lady fanfir—bankrolled the production to have her pick of young, strapping singers.”");
+		output("\n\nYou state that you've never heard of the piece, and Fyn nods. <i>“I'm not surprised. It's a pretty rare piece, hardly performed outside of the sol system. My belief is Tiana, the lady fanfir, bankrolled the production to have her pick of young, strapping singers.”</i>");
 	}
 	
-	output("\n\n“If it wasn't for the fact someone new came along to play with, I doubt I'd have escaped her clutches. The fanfir have highly evolved vocal cords; they can lightly manipulate your thoughts and even hormones through their singing. It's much like being caught under a witch's spell.”");
-	output("\n\n“That said, even though I abhor being on the bottom, I'd <i>highly</i> recommend sleeping with a fanfir if you get the chance. It's definitely an experience and a half.”");
+	output("\n\n<i>“If it wasn't for the fact someone new came along to play with, I doubt I'd have escaped her clutches. The fanfir have highly evolved vocal cords; they can lightly manipulate your thoughts and even hormones through their singing. It's much like being caught under a witch's spell.”</i>");
+	output("\n\n<i>“That said, even though I abhor being on the bottom, I'd </i>highly<i> recommend sleeping with a fanfir if you get the chance. It's definitely an experience and a half.”</i>");
 	output("\n\nSo, does that mean Fyn can do what fanfir can do? The singer smiles and shakes his head.");
-	output("\n\n“Not to that degree. I mean, fanfir have massive throats. Even when they talk, it's truly captivating. My birthright only gives me a superior singing range.”");
+	output("\n\n<i>“Not to that degree. I mean, fanfir have massive throats. Even when they talk, it's truly captivating. My birthright only gives me a superior singing range.”</i>");
 	
 	processTime(10 + rand(5));
 	
@@ -591,10 +612,10 @@ public function fynTalksAboutFencing():void {
 	showFyn();
 	
 	output("Fencing seems like an interesting hobby, so you ask Fyn about it. He strides over to a wicker-basket and pulls out a what looks like a fencing sword. The raven-haired man gives it a lazy flourish.");
-	output("\n\n“... Good for footwork. That's why I originally started. Some learn it for practicality—rushers in particular—while other for sport. Me? I do it for fun.”");
+	output("\n\n<i>“Good for footwork. That's why I originally started. Some learn it for practicality - rushers in particular - while other for sport. Me? I do it for fun.”</i>");
 	output("\n\nHe hands you the fencing sword, and you take it. Feels light, very light; some sort of special blade? There's a switch at the handle, and you flick it. There's suddenly a low hum coming from the blade, and when you touch it against the ground, there's a light blue crack.");
-	output("\n\n“It's a stun blade. I'm not one for wearing silly outfits or wearing shields. It's one of the few sports that requires both mind and body in even measure. Self discipline, too. Whether you win or lose, with fencing, it's up to you. Misinterpret a parry, you change tactics or you lose. You need quick thinking <i>and</i> quick feet.”");
-	output("\n\nJust like everything he does, Fyn seems rather passionate about fencing, too. You could probably get you to teach him a few things about it. Maybe it'll help you out in rush space?");
+	output("\n\n<i>“It's a stun blade. I'm not one for wearing silly outfits or wearing shields. It's one of the few sports that requires both mind and body in even measure. Self discipline, too. Whether you win or lose, with fencing, it's up to you. Misinterpret a parry, you change tactics or you lose. You need quick thinking </i>and<i> quick feet.”</i>");
+	output("\n\nJust like everything he does, Fyn seems rather passionate about fencing, too. You could probably get him to teach you a few things about it. Maybe it'll help you out in rush space?");
 	
 	flags["FYN_TALKED_ABOUT_FENCING"] = true;
 	
@@ -613,71 +634,79 @@ public function fynLessons():void {
 	addButton(0, "Dancing", fynTeachesDancing);
 	addButton(1, "Stripping", fynTeachesStripping);
 	if(flags["FYN_TALKED_ABOUT_FENCING"] == true) addButton(2, "Fencing", fynTeachesFencing);
+	
+	addButton(14, "Back", fynMenu);
 }
 
 public function fynTeachesDancing():void {
 	clearOutput();
 	showFyn();
 	
-	if(flags["FYN_TAUGHT_DANCING"] == undefined) 
+	if(flags["FYN_TAUGHT_DANCING"] == undefined || pc.isNude()) 
 	{
-		output("“There's a dance studio next door. You might want to change into something more comfortable, though,” Fyn grins.");
+		output("<i>“");
+		if(flags["FYN_TAUGHT_DANCING"] == undefined) output("There's a dance studio next door. ");
+		output("You might want to change into something more comfortable, though,”</i> Fyn grins.");
 		
 		if(pc.isNude()) 
 		{
-			output("\n\n“But why wear clothes when I could be naked?” you ask, putting a pointed hand on your bare hip.");
+			output("\n\n<i>“But why wear clothes when I could be naked?”</i> you ask, putting a pointed hand on your bare hip.");
 		
-			if (fynRelationshipStatus() >= 1) output("\n\n“Well, if you dance like that, we're not going to end up dancing; we're going to end up in the bedroom,” Fyn wiggles a brow. “... So it's clothes and classes, or no clothes and no classes.”");
-			else output("\n\n“Who said the clothes were for you? There's no way I can teach you when you're naked like that!”");
+			if (fynRelationshipStatus() >= 1) output("\n\n<i>“Well, if you dance like that, we're not going to end up dancing; we're going to end up in the bedroom,”</i> Fyn wiggles a brow. <i>“So it's clothes and classes, or no clothes and no classes.”</i>");
+			else output("\n\n<i>“Who said the clothes were for you? There's no way I can teach you when you're naked like that!”</i>");
+			
+			clearMenu();
+			addButton(0, "Next", fynMenu);
+			return;
 		}
+		
+		output("\n\n");
 	}
 	//if pc had dance lessons before
-	else
-	{
-		output("You head into a side room and, after throwing on some dance-friendly clothes");
-		if (pc.isTaur() || pc.isNaga()) output(" onto your upper half");
-		output(", meet him in the side studio. There's some music already playing and Fyn is standing in the middle of the room. He then starts the lesson.");
-	}
+	output("You head into a side room and, after throwing on some dance-friendly clothes");
+	if (pc.isTaur() || pc.isNaga()) output(" onto your upper half");
+	output(", meet him in the side studio. There's some music already playing and Fyn is standing in the middle of the room. He then starts the lesson.");
 	
 	//generate random number between 0-4
 	var random:int = rand(5);
 	
 	switch(random) {
 		case 0 :
-			output("\n\n“Today, we'll be doing general dance technique. Posture is important to all forms of dance,” Fyn explains, straightening himself out, “You need to stand straight, push your shoulders down and back, and hold your head up. Just this simple thing alone does wonders for any dancer.”");
-			output("\n\n“Another simple yet effective trick is <i>smiling</i>. Whether you're doing a striptease or a tango, a smile is an expression of pleasure, happiness, and amusement. If you smile while you're dancing, people will get the feeling you love what you are doing. Even if you're dancing on your own, smile—you love to dance, so let it show!”");
+			output("\n\n<i>“Today, we'll be doing general dance technique. Posture is important to all forms of dance,”</i> Fyn explains, straightening himself out, <i>“You need to stand straight, push your shoulders down and back, and hold your head up. Just this simple thing alone does wonders for any dancer.”</i>");
+			output("\n\n<i>“Another simple yet effective trick is </i>smiling<i>. Whether you're doing a striptease or a tango, a smile is an expression of pleasure, happiness, and amusement. If you smile while you're dancing, people will get the feeling you love what you are doing. Even if you're dancing on your own, smile - you love to dance, so let it show!”</i>");
 			output("\n\nAfter going over the theory, the lesson turns to practice. Fyn coaches you on proper posture and poise, circling around and giving advice where he thinks it needs work.");
-			output("\n\n“Good job! The fundamentals are vitally important; no matter what you build, if the foundation is sloppy, the whole thing won't stay standing. You can practice your poise while doing anything, so try to wherever and whenever you can!”");
+			output("\n\n<i>“Good job! The fundamentals are vitally important; no matter what you build, if the foundation is sloppy, the whole thing won't stay standing. You can practice your poise while doing anything, so try to wherever and whenever you can!”</i>");
 			break;
 		case 1 :
-			output("\n\n“Today, we'll be doing general dance technique,” Fyn informs you, tapping his head. “Half of becoming a good dancer is dealing with what's up here. There's anxieties and stresses that build up when you try to dance. There's an inner critic in your head, just like a little child trying to distract you from doing worthwhile things. Telling you you're being judged and you're lacking. Hit the ignore button on them!”");
-			output("\n\n“So instead of thinking, feel. Don't focus on the actual steps, but think about how it feels. The more you allow your body to do the dance thinking, the more you'll develop muscle memory, and stop worrying in your head.”");
+			output("\n\n<i>“Today, we'll be doing general dance technique,”</i> Fyn informs you, tapping his head. <i>“Half of becoming a good dancer is dealing with what's up here. There's anxieties and stresses that build up when you try to dance. There's an inner critic in your head, just like a little child trying to distract you from doing worthwhile things. Telling you you're being judged and you're lacking. Hit the ignore button on them!”</i>");
+			output("\n\n<i>“So instead of thinking, feel. Don't focus on the actual steps, but think about how it feels. The more you allow your body to do the dance thinking, the more you'll develop muscle memory, and stop worrying in your head.”</i>");
 			output("\n\nAfter going over the theory, the lesson turns to practice. Just as he suggested, you try to dance on instinct, going with your feelings rather than your thoughts. It's incredibly liberating, and you find your whole body relaxes, making it easier to dance in turn.");
 			break;
 		case 2 : 
-			output("\n\n“Today, we'll be doing salsa lessons,” Fyn grins, taking you by the hands. “Now, Salsa is a popular kind of terran dance style that spread out to Alpha Centaurii. There, it turned into what's called the 'Hot Trot'; they ditched the twirls and kept the footwork.");
-			if (pc.isTaur()) output("Since you're a taur, we'll be doing the Hot Trot.");
-			output("\n\n“The reason is simple; in many styles of Salsa, as a dancer shifts their weight by stepping, their upper body remains level and nearly unaffected. That means it's perfect for leithans to show off their fancy hoofwork, so long as their partner isn't trying to twirl them. Instead, they incorporated the swift side-trot and the cross-trot, allowing them to rotate around the floor in a fast, showy pattern.”");
-			output("\n\n“Practicing with Cha-Cha music is a great way to practice Salsa, because it's essentially Salsa, but slower. Now, as the follower, you need to be attuned to what the leader is telling you to do. Move instinctively in the direction I'm pushing you in, going with the flow.”");
+			output("\n\n<i>“Today, we'll be doing salsa lessons,”</i> Fyn grins, taking you by the hands. <i>“Now, Salsa is a popular kind of terran dance style that spread out to Alpha Centaurii. There, it turned into what's called the 'Hot Trot'; they ditched the twirls and kept the footwork.");
+			if (pc.isTaur()) output(" Since you're a taur, we'll be doing the Hot Trot.");
+			output("”</i>");
+			output("\n\n<i>“The reason is simple; in many styles of Salsa, as a dancer shifts their weight by stepping, their upper body remains level and nearly unaffected. That means it's perfect for leithans to show off their fancy hoofwork, so long as their partner isn't trying to twirl them. Instead, they incorporated the swift side-trot and the cross-trot, allowing them to rotate around the floor in a fast, showy pattern.”</i>");
+			output("\n\n<i>“Dancing with Cha-Cha music is a great way to practice Salsa, because it's essentially Salsa, but slower. Now, as the follower, you need to be attuned to what the leader is telling you to do. Move instinctively in the direction I'm pushing you in, going with the flow.”</i>");
 			output("\n\nYou practice Salsa, Hot Trot, and Cha-Cha with Fyn for a while, moving to the beat of the New Latin rhythm. Once you're finished, you're totally puffed! Fyn has a knowing look on his face.");
-			output("\n\n“...Yeah, dancing those styles can be pretty exhausting; they've got a pretty high beat-count compared to normal dances, so you naturally speed up. But you should feel good, you nailed it!”");
+			output("\n\n<i>“Yeah, dancing those styles can be pretty exhausting; they've got a pretty high beat-count compared to normal dances, so you naturally speed up. But you should feel good, you nailed it!”</i>");
 			break;
 		case 3 : 
-			output("\n\n“Today, we'll be doing belly dancing lessons,” Fyn takes a step back and strips off his shirt.");
+			output("\n\n<i>“Today, we'll be doing belly dancing lessons,”</i> Fyn takes a step back and strips off his shirt.");
 			if (fynRelationshipStatus() >= 1) output(" You try quite hard not to ogle his utterly male physique, but fail utterly!");
-			output("“Now, contrary to common belief, anyone can belly dance, no matter their sex or physique, so long as they have hips. Here, let me show you.”");
+			output("<i>“Now, contrary to common belief, anyone can belly dance, no matter their sex or physique, so long as they have hips. Here, let me show you.”</i>");
 			output("\n\nYou watch as Fyn sensually gyrates his narrow hips, then begins to thrust and punctuate it to the beat of the music. He uses hip rolls, lifts and twists in time with the music, even moving his chest and shoulders in time with the beat.");
-			output("\n\n“... See? That's one element of belly dancing; percussive movement. There's also fluid movement—that's the kind best suited to galotians and rahn—where you continuously move your body in flows and coils. It requires a great deal of abdominal muscle control. Then there's shimmying, which can give the impression you're moving a lot more than you are; shimmying with your knees, hips, shoulders, they all add to the dance.”");
-			output("\n\n“Throw in some other movements like traveling steps, turns, spins, kicks, backbends, and head-tosses, and you've got yourself quite the show, no matter how masculine or feminine you look. We'll go over each of these moves individually, then combine them over time, working our way up to a full-blown belly dance.”");
+			output("\n\n<i>“See? That's one element of belly dancing; percussive movement. There's also fluid movement - that's the kind best suited to galotians and rahn - where you continuously move your body in flows and coils. It requires a great deal of abdominal muscle control. Then there's shimmying, which can give the impression you're moving a lot more than you are; shimmying with your knees, hips, shoulders, they all add to the dance.”</i>");
+			output("\n\n<i>“Throw in some other movements like traveling steps, turns, spins, kicks, backbends, and head-tosses, and you've got yourself quite the show, no matter how masculine or feminine you look. We'll go over each of these moves individually, then combine them over time, working our way up to a full-blown belly dance.”</i>");
 			output("\n\nAfter going over the theory, the lesson turns to practice. Just as he said, you practice all the individual elements, then add them bit by bit to your dancing routine. By the end of the lesson, you're totally exhausted; moving so much is a real workout!");
 			break;
 		case 4 :
-			output("\n\n“Today, we'll be doing flamenco lessons,” Fyn takes a step back. His fiery eyes are glinting. “... I have to admit, I <i>love</i> Flamenco. It's one of my favorite styles of dance.”");
-			output("\n\n“The word 'flamenco' comes from a terran word for 'flame' or 'fire', and that's because it's full of expressive, passionate, and seductive moves. It's high intensity, and involves a lot of rhythm, finger-snapping and hand-claps. It also goes fantastically with singing, which, of course, I love.”");
-			output("\n\nFyn really does sound passionate about it! But then, what doesn't he sound passionate about? “... Now, with flamenco, it can be performed solo, or with a partner. But most important is the feeling, the passion! You hold yourself proudly, expressively using your arms and stamping your feet. You must dance it as if you are on fire with your emotions.”");
-			output("\n\n“Here are some moves, repeat after me. It's mostly improvised—all passionate things are—so do not feel pressured to learn all the moves at once.”");
+			output("\n\n<i>“Today, we'll be doing flamenco lessons,”</i> Fyn takes a step back. His fiery eyes are glinting. <i>“I have to admit, I </i>love<i> Flamenco. It's one of my favorite styles of dance.”</i>");
+			output("\n\n<i>“The word 'flamenco' comes from a terran word for 'flame' or 'fire', and that's because it's full of expressive, passionate, and seductive moves. It's high intensity, and involves a lot of rhythm, finger-snapping and hand-claps. It also goes fantastically with singing, which, of course, I love.”</i>");
+			output("\n\nFyn really does sound passionate about it! But then, what doesn't he sound passionate about? <i>“Now, with flamenco, it can be performed solo, or with a partner. But most important is the feeling, the passion! You hold yourself proudly, expressively using your arms and stamping your feet. You must dance it as if you are on fire with your emotions.”</i>");
+			output("\n\n<i>“Here are some moves, repeat after me. It's mostly improvised - all passionate things are - so do not feel pressured to learn all the moves at once.”</i>");
 			output("\n\nYou watch and try to repeat his passionate, flurrying dances, feeling the heat rise in the air. The dancing <i>is</i> wild, and outrageously fun, and even when you're exhausted otherwise you <i>still</i> feel a lasting thrill.");
-			output("\n\n“Fantastic! The flamenco suits you. You must have a <i>lot</i> of passion in your heart,” Fyn remarks, then winks, “Remember to practice in your spare time. Just try not to be so hot that you set fire to something.”");
+			output("\n\n<i>“Fantastic! The flamenco suits you. You must have a </i>lot<i> of passion in your heart,”</i> Fyn remarks, then winks, <i>“Remember to practice in your spare time. Just try not to be so hot that you set fire to something.”</i>");
 			break;
 	}
 	
@@ -702,37 +731,37 @@ public function fynTeachesStripping():void
 	
 	switch(random) {
 		case 0 :
-			output("\n\n“The most important part of a strip tease is often the most overlooked. It's not your tits, your package, or your ass; it's your <i>eyes</i>,” he stresses, gesturing with twin fingers to his own fiery orbs. “... Keep eye contact! The way you look at your partner is the most vital and <i>powerful</i> elements of a striptease.”");
-			output("\n\n“It helps to assume some kind of persona; something sexy, like a French dominatrix, or a Russian spy. Perhaps a devil; that's my personal favorite.”");
+			output("\n\n<i>“The most important part of a strip tease is often the most overlooked. It's not your tits, your package, or your ass; it's your </i>eyes<i>,”</i> he stresses, gesturing with twin fingers to his own fiery orbs. <i>“Keep eye contact! The way you look at your partner is the most vital and </i>powerful<i> elements of a striptease.”</i>");
+			output("\n\n<i>“It helps to assume some kind of persona; something sexy, like a French dominatrix, or a Russian spy. Perhaps a devil; that's my personal favorite.”</i>");
 			output("\n\nAfter going over the theory, the lesson turns to practice. You attempt to dance while keeping steady eye contact... and it's harder than it looks! Keeping a sensual stare while moving about is tricky, and you have a renewed respect for strippers. At the end of the lesson, Fyn grins and throws you a towel.");
 			break;
 		case 1 :
-			output("\n\n“Wearing nothing is for amateurs. There's no surprise, no mystery, no presentation. If you want to truly tantalize someone, you want <i>layers</i>. Not too much, not too little. Things you can take off in a seemingly effortless manner, deliberately and slowly, in order to work your 'victim' into a sexual frenzy.”");
-			output("\n\n“Don't just choose your outfit for them; pick it for you, too. Wear something that fits you well and makes you feel sexy. A successful strip isn't about what outfit the audience would prefer; it's about exuding confidence and sensuality, so focus on what makes <i>you</i> feel that way.”");
+			output("\n\n<i>“Wearing nothing is for amateurs. There's no surprise, no mystery, no presentation. If you want to truly tantalize someone, you want </i>layers<i>. Not too much, not too little. Things you can take off in a seemingly effortless manner, deliberately and slowly, in order to work your 'victim' into a sexual frenzy.”</i>");
+			output("\n\n<i>“Don't just choose your outfit for them; pick it for you, too. Wear something that fits you well and makes you feel sexy. A successful strip isn't about what outfit the audience would prefer; it's about exuding confidence and sensuality, so focus on what makes </i>you<i> feel that way.”</i>");
 			output("\n\nAfter going over the theory, the lesson turns to practice. You're given a few easy-to-wear pieces and asked to strip them off, slowly and sensually, projecting confidence. It's tricky to not rush it! At the end of the lesson, Fyn grins and throws you a towel.");
-			output("\n\n“It's harder with an outfit someone else gives you; you did well. Try stripping in a few different outfits—you never know <i>when</i> you'll have to strip tease your way out of a situation,” Fyn winks.");
+			output("\n\n<i>“It's harder with an outfit someone else gives you; you did well. Try stripping in a few different outfits. You never know </i>when<i> you'll have to strip tease your way out of a situation,”</i> Fyn winks.");
 			break;
 		case 2 :
-			output("\n\n“Always remember, when it comes to stripping, there are no strict rules. Don't just memorize a dance routine, or think there's an 'order' of undressing. What a turn off, for you <i>and</i> the audience! Just play it by ear, <i>watch</i> their faces, do what you like, and above all, enjoy the process!”");
-			output("\n\n“If you feel more comfortable with routine, that's okay, but add your own touch—your own flare—to your performance. Own it, it's yours!”");
+			output("\n\n<i>“Always remember, when it comes to stripping, there are no strict rules. Don't just memorize a dance routine, or think there's an 'order' of undressing. What a turn off, for you </i>and<i> the audience! Just play it by ear, </i>watch<i> their faces, do what you like, and above all, enjoy the process!”</i>");
+			output("\n\n<i>“If you feel more comfortable with routine, that's okay, but add your own touch - your own flare - to your performance. Own it, it's yours!”</i>");
 			output("\n\nAfter going over the theory, the lesson turns to practice. After dancing a few routines, you're asked to free-style the strip tease. It takes a little getting used to making things up on the fly, but once you start to feel the music in the background, it becomes much easier.");
 			break;
 		case 3 :
-			output("\n\n“When it comes to stripping, a tried-and-true starter is going from the top—unbuttoning it slooowly—while making steady eye contact. Catch them with your gaze, draw it out, maybe move to your skirt or pants. Play around with your clothes a bit, twirling them, or throwing them at your audience. Make it fun, keep them guessing—it's called a strip <i>tease</i> for a reason!”");
-			output("\n\n“Don't just throw things everywhere, though. Let some things fall to the floor; there's things that fall down better than others. Slip tops, baby dolls—these are <i>perfect</i> for sliding down your body. Remove them while standing up, and make eye contact the entire time with your partner.”");
+			output("\n\n<i>“When it comes to stripping, a tried-and-true starter is going from the top - unbuttoning it slooowly - while making steady eye contact. Catch them with your gaze, draw it out, maybe move to your skirt or pants. Play around with your clothes a bit, twirling them, or throwing them at your audience. Make it fun, keep them guessing - it's called a strip </i>tease<i> for a reason!”</i>");
+			output("\n\n<i>“Don't just throw things everywhere, though. Let some things fall to the floor; there's things that fall down better than others. Slip tops, baby dolls - these are </i>perfect<i> for sliding down your body. Remove them while standing up, and make eye contact the entire time with your partner.”</i>");
 			output("\n\nAfter going over the theory, the lesson turns to practice. Fyn asks you to undo your top slowly, and for some reason, it's harder than it looks to make look sexy at the same time. You twirl around your top, tossing it at him, then do it again a few times with just letting it fall to the floor. At the end, the dancer gives a round of applause.");
-			output("\n\n“Good job! This lesson's an easy one to practice, particularly in front of a mirror. Then again, an audience is always better, so maybe ask a lucky friend,” Fyn suggests, wearing a very mischievous smile.");
+			output("\n\n<i>“Good job! This lesson's an easy one to practice, particularly in front of a mirror. Then again, an audience is always better, so maybe ask a lucky friend,”</i> Fyn suggests, wearing a very mischievous smile.");
 			break;
 		case 4 :
-			output("\n\n“You're in control when it comes to the strip tease. Wherever you want your audience's eyes to go? Make your hands go there. And whatever you do is right, because it's your show, and you set the rules. You can even forbid them to touch you, if that's your desire; the playful act will tease them even more, giving you more control over them and over the power of your dance.”");
-			output("\n\n“Remember; it's not your technique that seduces; it's your mood and distinctive manner. Move confidently but slowly; if you breath deeply, it will slow you down and add subtle sensuality to your moves.”");
+			output("\n\n<i>“You're in control when it comes to the strip tease. Wherever you want your audience's eyes to go? Make your hands go there. And whatever you do is right, because it's your show, and you set the rules. You can even forbid them to touch you, if that's your desire; the playful act will tease them even more, giving you more control over them and over the power of your dance.”</i>");
+			output("\n\n<i>“Remember; it's not your technique that seduces; it's your mood and distinctive manner. Move confidently but slowly; if you breathe deeply, it will slow you down and add subtle sensuality to your moves.”</i>");
 			output("\n\nAfter going over the theory, the lesson turns to practice. You practice breathing and using your hands to draw eyes where you want them to go, moving as slowly and confidently as possible. You seem to be doing well, because there's an approving smile playing on Fyn's lips.");
 			break;
 		case 5 :
-			output("\n\n“For most species, the groin is where an audience's attention naturally wants to go. It's also what you want to leave for <i>last</i>, whether you're male, female, or otherwise.”");
-			output("\n\n“Even if you've got the equipment to dazzle them, don't. Mystery is a delicious spice that is at the heart of a striptease. If you wiggle your naked body around on stage, half the fun is already gone; they may as well pack up and leave.”");
-			output("\n\n“Underwear last! And yes, remember to wear it before the performance begins. For those who can't always reach their underwear, like leithans, it's the top that comes last; whatever's hiding your last erogenous zone. Your audience is salivating over whatever body parts they're fantasizing about. Chest. Stomach. Ass. Groin. Reveal each one slowly, make them wait for it. Keep them on the edge of their seat!”");
-			output("\n\nAfter going over the theory, the lesson turns to practice. You practice drawing out your striptease, keeping particular parts of your body covered until the last, then saucily revealing it in slow, deliberate movements. When you finish, Fyn nods, a look of approval in his eyes.");
+			output("\n\n<i>“For most species, the groin is where an audience's attention naturally wants to go. It's also what you want to leave for </i>last<i>, whether you're male, female, or otherwise.”</i>");
+			output("\n\n<i>“Even if you've got the equipment to dazzle them, don't. Mystery is a delicious spice that is at the heart of a striptease. If you wiggle your naked body around on stage, half the fun is already gone; they may as well pack up and leave.”</i>");
+			output("\n\n<i>“Underwear last! And yes, remember to wear it before the performance begins. For those who can't always reach their underwear, like leithans, it's the top that comes last; whatever's hiding your last erogenous zone. Your audience is salivating over whatever body parts they're fantasizing about. Chest. Stomach. Ass. Groin. Reveal each one slowly, make them wait for it. Keep them on the edge of their seat!”</i>");
+			output("\n\nAfter going over the theory, the lesson turns to practice. You practice drawing out your striptease, keeping particular parts of your body covered until the last moment, then saucily revealing it in slow, deliberate movements. When you finish, Fyn nods, a look of approval in his eyes.");
 			break;
 	}
 	
@@ -755,31 +784,31 @@ public function fynTeachesFencing():void
 	
 	switch(random) {
 		case 0 :
-			output("\n\n“Today, we'll be focusing on lunging and flunging. A lunge is one of the most standard but highly effective attacking movements. First, assume the basic fencing position...” Fyn gets in stance, “... then, extend your right foot as far as possible without overstretching or losing your balance.”");
-			output("\n\n“As you lunge towards your opponent, you want to <i>extend</i> your sword arm and engage them with a stab or slash. A flunge is basically a flying lunge—hence the name—where you do it with a flying leap. It gives you a greater element of surprise and speed, but don't use it too much, because it leaves you wide open!”");
+			output("\n\n<i>“Today, we'll be focusing on lunging and flunging. A lunge is one of the most standard but highly effective attacking movements. First, assume the basic fencing position...”</i> Fyn gets in stance, <i>“... then, extend your right foot as far as possible without overstretching or losing your balance.”</i>");
+			output("\n\n<i>“As you lunge towards your opponent, you want to </i>extend<i> your sword arm and engage them with a stab or slash. A flunge is basically a flying lunge - hence the name - where you do it with a flying leap. It gives you a greater element of surprise and speed, but don't use it too much, because it leaves you wide open!”</i>");
 			output("\n\nYou practice lunging, both on ground and in the air, with Fyn. The flurry of cracking blades is exhilarating, and you feel the adrenaline coursing through your body. When practice is finished, your heart is rushing, but you're riding a fencer's high!");
 			break;
 		case 1 :
-			output("\n\n“Today, we'll be focusing on the 'passata sotto'. It's an evasive movement twist. First, I want you to attack me—go for my upper body or head.”");
+			output("\n\n<i>“Today, we'll be focusing on the 'passata sotto'. It's an evasive movement twist. First, I want you to attack me - go for my upper body or head.”</i>");
 			output("\n\nYou lunge forward with the blade, striking where he says. As you do so, Fyn suddenly drops to one knee, placing one hand on the ground. As you loom over him, he straightens his sword arm, striking you on your exposed chest!");
-			output("\n\n“... The 'passata sotto' is an evasive movement and counter-attack, involving a drop and twist. It's a risky move, because if you time it wrong, or misread your opponent's body language, you're going to get skewered. Only use it when you're sure where they're going to strike! Now you try.”");
+			output("\n\n<i>“The 'passata sotto' is an evasive movement and counter-attack, involving a drop and twist. It's a risky move, because if you time it wrong, or misread your opponent's body language, you're going to get skewered. Only use it when you're sure where they're going to strike! Now you try.”</i>");
 			output("\n\nAs Fyn strikes at you with mock blows, you attempt to replicate the passata sotto, ducking under his blade and striking at his body. Getting the timing right is hard! It occurs to you that you could use this with either gun or sword, just so long as you evade and strike.");
 			break;
 		case 2 :
-			output("\n\n“Today, we're working on parry and riposte. I want you to strike at me, wherever you wish.”");
+			output("\n\n<i>“Today, we're working on parry and riposte. I want you to strike at me, wherever you wish.”</i>");
 			output("\n\nYou lunge at Fyn, and he quickly parries your blade. While you're outstretched, he quickly strikes back, tapping you on the arm.");
-			output("\n\n“A parry is a defensive move where you block or deflect an opponent's attack with your blade. It doesn't need to be your blade, though; it could be a gun barrel, or even an object you pick up off the ground. The main thing is to figure out where your opponent's hit will land, then move your defending weapon in a certain sweeping path to knock it off course.”");
-			output("\n\n“Like water, you want to redirect, not directly oppose. Then, when your opponent is stretched out, strike back! Nothing is more shocking to someone then reaching out to strike someone, and instead of landing a hit, getting struck back instead.”");
+			output("\n\n<i>“A parry is a defensive move where you block or deflect an opponent's attack with your blade. It doesn't need to be your blade, though; it could be a gun barrel, or even an object you pick up off the ground. The main thing is to figure out where your opponent's hit will land, then move your defending weapon in a certain sweeping path to knock it off course.”</i>");
+			output("\n\n<i>“Like water, you want to redirect, not directly oppose. Then, when your opponent is stretched out, strike back! Nothing is more shocking in combat than reaching out to strike someone, and rather than landing the hit, getting struck back instead.”</i>");
 			output("\n\nYou practice parrying and riposting with Fyn until you swear your arm is going to fall off! After the lesson, though, you're feeling like you're much better for drilling in the basics.");
 			break;
 		case 3 :
-			output("\n\n“Today, we'll be working on counter-attacks and remise. A counter attack is where, as your opponent attacks, you launch one right back at them. The aim is not to parry, but to hit the opponent before they hit you. Even though they strike first, you want to <i>hit</i> first, and take them down before they land their hit.”");
-			output("\n\n“From a counter-attack, we'll practice going into a remise. A remise is a short series of attacks where you do not withdraw your weapon arm; you just keep on striking without mercy. When you've got an opponent off-guard and open, you want to deal all the damage you can, to put an end to the fight as soon as possible!");
+			output("\n\n<i>“Today, we'll be working on counter-attacks and remise. A counter attack is where, as your opponent attacks, you launch one right back at them. The aim is not to parry, but to hit the opponent before they hit you. Even though they strike first, you want to </i>hit<i> first, and take them down before they land their hit.”</i>");
+			output("\n\n<i>“From a counter-attack, we'll practice going into a remise. A remise is a short series of attacks where you do not withdraw your weapon arm; you just keep on striking without mercy. When you've got an opponent off-guard and open, you want to deal all the damage you can, to put an end to the fight as soon as possible!”</i>");
 			output("\n\nYou practice counter-attacking and remise with Fyn; it occurs to you as you train that the same principles apply for any weapon, not just fencing. At the end, you feel much more confident having something swung at you, and in the fact that if need be, <i>you'll</i> be the last one standing at the end of a fight!");
 			break;
 		case 4 :
-			output("\n\n“Today, we'll be practicing feints. Feints are one of the best moves in your repertoire; you always want to keep your opponents off-guard and guessing. Never be predictable,” Fyn grins; you get the impression he doesn't just mean with fencing!");
-			output("\n\n“... You want to trick your opponent by launching one or more fake attacks, with the intent of creating a gap in their defense. When you do, you want to do it from different distances and with many different footwork combinations. If you use the same feint, over and over, they'll see through it in no time.");
+			output("\n\n<i>“Today, we'll be practicing feints. Feints are one of the best moves in your repertoire; you always want to keep your opponents off-guard and guessing. Never be predictable,”</i> Fyn grins; you get the impression he doesn't just mean with fencing!");
+			output("\n\n<i>“... You want to trick your opponent by launching one or more fake attacks, with the intent of creating a gap in their defense. When you do, you want to do it from different distances and with many different footwork combinations. If you use the same feint, over and over, they'll see through it in no time.”</i>");
 			output("\n\nFyn feints against you for a while, leading by example and showing you some different kinds. You then practice what you've learned on him, trying to break through his defenses. Once the lesson is over, you feel like you're more astute than ever, and on top of your game.");
 			break;
 	}
@@ -798,7 +827,7 @@ public function applyFynTeachingEffect(lessonTaught:String = ""):void
 	{
 		if(!pc.hasStatusEffect("Sexy Moves")) 
 		{
-			pc.createStatusEffect("Sexy Moves",0,0,0,0,false,"OffenseUp","Your recent lessons pay off, you feel as sexy as ever — and it shows.",false,4320);
+			pc.createStatusEffect("Sexy Moves",0,0,0,0,false,"OffenseUp","Your recent lessons pay off, you feel as sexy as ever - and it shows.",false,4320);
 		} 
 		else 
 		{
@@ -806,6 +835,7 @@ public function applyFynTeachingEffect(lessonTaught:String = ""):void
 			var effect:StorageClass = pc.getStatusEffect("Sexy Moves");
 			effect.minutesLeft = 4320;
 		}
+		pc.removeStatusEffect("Lightning Moves");
 	}
 	if(lessonTaught == "fencing") 
 	{
@@ -819,6 +849,7 @@ public function applyFynTeachingEffect(lessonTaught:String = ""):void
 			var effect2:StorageClass = pc.getStatusEffect("Lightning Moves");
 			effect2.minutesLeft = 4320;
 		}
+		pc.removeStatusEffect("Sexy Moves");
 	}
 }
 
@@ -840,8 +871,8 @@ public function fynSexMenu():void
 	
 		var ravishText:String = (pc.isBimbo()) ? "HulkRavish" : "OrcRavish";
 		
-		addButton(0, "Hike&Fuck", fynSexHikeAndFuck);
-		addButton(1, "Double.D", fynSexDoubleD);
+		addButton(0, "Hike&Fuck", fynSexHikeAndFuck, undefined, "Hike and Fuck", "Let him have his way with you.");
+		addButton(1, "Double.D", fynSexDoubleD, undefined, "Double Dicked", "Ask him to use his polymorph ability to double the fun.");
 		if(!pc.isTaur()) addButton(2, ravishText, fynSexOrcRavish, undefined, ravishText, "It involves getting butt ravished by an orc-transformed Fyn. Who'd have thunk it?");
 		else addDisabledButton(2, ravishText, ravishText, "You can't be a taur to get ravished by an orc-transformed Fyn.");
 		
@@ -852,7 +883,15 @@ public function fynSexMenu():void
 public function fynSexHikeAndFuck():void 
 {
 	clearOutput();
-	showFyn();
+	showFyn(true);
+	
+	var useVagina:Boolean = false;
+	var vagIdx:int = -1;
+	if(pc.hasVagina() && !pc.isTaur())
+	{
+		vagIdx = rand(pc.totalVaginas());
+		useVagina = true;
+	}
 	
 	output("You watch wide-eyed as Fyn suddenly strides towards you. There's a purposeful look in his captivating eyes. He stops tantalizingly close");
 	
@@ -860,8 +899,8 @@ public function fynSexHikeAndFuck():void
 	else output(" to");
 	
 	output(" you. Your gazes meet and lock, and you find yourself suddenly swept away from reality, caught up in the intensity of those fiery, glowing eyes.");
-	output("\n\n“Wuh-what are you doing?” you half-whisper, under your breath.");
-	output("\n\n“I'm going to kiss you, of course,” Fyn informs you, as if this was decided long ahead of time. As you open your mouth to protest, he leans forward and seals it with his own supple lips. His tongue, untamed, dances with yours, filling your mouth with an unspeakable, exquisite <i>sweetness</i>.");
+	output("\n\n<i>“Wuh-what are you doing?”</i> you half-whisper, under your breath.");
+	output("\n\n<i>“I'm going to kiss you, of course,”</i> Fyn informs you, as if this was decided long ahead of time. As you open your mouth to protest, he leans forward and seals it with his own supple lips. His tongue, untamed, dances with yours, filling your mouth with an unspeakable, exquisite <i>sweetness</i>.");
 	output("\n\nIt's impossible not to swoon. You find your arms subconsciously slipping around his slender waist, your fingertips clasping desperately, frantically, at his delicious back. Do you want this? Right now you do, more than anything in your life; so much it hurts. Your tongue reaches out to his, yearningly, dancing with it in heavenly harmony.");
 	output("\n\nYou feel a pressing at the small of your back; a hand, to stop you from falling? He pulls his lips back, and you're left staring up into those impossibly handsome eyes that seem to hold all the mysteries of the universe. A pair of powerful hands slide up the side of your thighs");
 
@@ -884,7 +923,7 @@ public function fynSexHikeAndFuck():void
 		output(".");
 	}
 	 
-	if(pc.hasVagina() && !pc.isTaur()) {
+	if(useVagina) {
 		output(" He pulls out his manhood and presses it against your slick wetness, joining his body to yours.");
 		if(pc.vaginalVirgin) output(" You feel a momentary pain, followed by a warm trickling down your thigh. Blushing furiously, you cling to him, letting out a little whine.");
 	}
@@ -896,38 +935,36 @@ public function fynSexHikeAndFuck():void
 	}
 	
 	//if a female vaginal virgin or a male anal virgin or a taur anal virgin (as fem taurs get anal pen.)
-	if ((pc.hasVagina() && pc.vaginalVirgin) || (pc.hasCock() && pc.analVirgin) || (pc.isTaur() && pc.analVirgin)) 
+	if ((useVagina && pc.vaginalVirgin) || (!useVagina && pc.analVirgin)) 
 	{
-		output("\n\nFyn stops, pulling back with wide eyes. “... I'm sorry, was I your first?” You nod in response, nuzzling into him, and urging him to continue.");
+		output("\n\nFyn stops, pulling back with wide eyes. <i>“... I'm sorry, was I your first?”</i> You nod in response, nuzzling into him, and urging him to continue. ");
 	}
 	else {
 		output("\n\n");
 	}
 	
-	output(" You gasp as you feel his engorged tip sliding up inside of you, making its way into your belly. Needily, you rock your hips and grind");
-	if(pc.hasVagina() && !pc.isTaur()) output(" against his hips and base");
+	output("You gasp as you feel his engorged tip sliding up inside of you, making its way into your belly. Needily, you rock your hips and grind");
+	if(useVagina) output(" against his hips and base");
 	else output(" your [pc.ass] back against him");
 	
 	output(", groaning as his stiff rod stirs around and makes its presence felt inside of your");
 	
-	if(pc.hasVagina() && !pc.isTaur()) output(" sex.");
+	if(useVagina) output(" sex.");
 	else output(" rump.");
 	
-	//TODO: use Fyn Class to determine cockVolume
-	if(pc.hasVagina() && !pc.isTaur())
-	{	
-		pc.cuntChange(0, 40, true, true, true);
-		//currently broken for null reference pointer, because of ovilium update
-		//pc.loadInCunt();
+	if(useVagina)
+	{
+		pc.cuntChange(vagIdx, chars["FYN"].cockVolume(0), true, true, false);
+		pc.loadInCunt(chars["FYN"], vagIdx);
 	}
 	else 
 	{
-		pc.buttChange(40, true, true, true);
-		pc.loadInAss();
+		pc.buttChange(chars["FYN"].cockVolume(0), true, true, false);
+		pc.loadInAss(chars["FYN"]);
 	}
 	
 	output("\n\nYour devilish lover's muscular hips slap against your");
-	if(pc.hasVagina() && !pc.isTaur()) 
+	if(useVagina) 
 	{
 		if (pc.hasLegs() && !pc.isNaga()) output(" inner thighs");
 		else output(" body");
@@ -938,7 +975,7 @@ public function fynSexHikeAndFuck():void
 	
 	output(". He's groaning long and low, his own fingers clinging to your");
 	
-	if(pc.hasVagina() && !pc.isTaur()) output(" back");
+	if(useVagina) output(" back");
 	else if(!pc.isTaur()) output(" stomach");
 	else output(" animal ass");
 	
@@ -953,42 +990,58 @@ public function fynSexHikeAndFuck():void
 	
 	output(" You feel a slick warmth spreading out inside your");
 	
-	if(pc.hasVagina() && !pc.isTaur()) output(" pussy");
+	if(useVagina) output(" [pc.pussyNoun " + vagIdx + "]");
 	else output(" ass");
 	
 	output(" as his cock flexes and clenches. You blush and swoon with delight; he's cumming inside of you!");
 	
-	if(pc.hasVagina() && !pc.isTaur()) output("You bury your face into his neck, pressed sizzlingly close.");
+	if(useVagina) output(" You bury your face into his neck, pressed sizzlingly close.");
 	
 	if(!pc.isTaur()) 
 	{
 		output("\n\nYou feel a stroke against your cheek. Crooning instinctively, you press yourself against his digits, feeling delightedly dazed.");
-		if (pc.hasVagina()) output("\n\nThere's a sweet pressing against your lips—another kiss! You return it instinctively, giddily, like embracing a long-time lover.");
+		if (pc.hasVagina()) output("\n\nThere's a sweet pressing against your lips - another kiss! You return it instinctively, giddily, like embracing a long-time lover.");
 	}
 	
-	output("\n\n“... I can feel");
+	output("\n\n<i>“... I can feel");
 	
-	if(pc.hasVagina()) output(" you running down my cock");
+	if(useVagina) output(" you running down my cock");
 	else output(" my heat filling you up");
 	
-	output(",” Fyn deeply murmurs. You grin; you can <i>also</i> feel his creamy slickness");
+	output(",”</i> Fyn deeply murmurs. You grin; you can <i>also</i> feel his creamy slickness");
 	
-	if(pc.hasVagina() && !pc.isTaur()) output(" sliding out of where the two of you are joined. Far more, though, is still");
+	if(useVagina) output(" sliding out of where the two of you are joined. Far more, though, is still");
 	output(" inside of you, penned in by his half-erect cock and leaving an exquisite warmth.");
 	output("\n\nOnce he pulls out, you readjust yourself, feeling utterly dopey and quite flushed. Meanwhile, Fyn has a mischievous, self-satisfied look in his eyes; clearly he relished just ravishing you on the spot!");
 	
 	fynSexed(1);
 	
-	pc.orgasm();
 	processTime(15 + rand(10));
+	pc.orgasm();
 	
 	clearMenu();
-	addButton(0, "Next", fynMenu);
+	addButton(0, "Next", mainGameMenu);
 }
 
 public function fynSexDoubleD():void {
 	clearOutput();
-	showFyn();
+	showFyn(true);
+	
+	var useVagina:Boolean = false;
+	var vagList:Array = [];
+	if(pc.hasVagina())
+	{
+		vagList[0] = rand(pc.totalVaginas());
+		if(pc.totalVaginas() > 1)
+		{
+			vagList[1] = rand(pc.totalVaginas());
+			while (vagList[0] == vagList[1])
+			{
+				vagList[1] = rand(pc.totalVaginas());
+			}
+		}
+		useVagina = true;
+	}
 	
 	if(flags["FYN_SEXED_DOUBLE_DICK"] == undefined) {
 		output("Curious, you ask Fyn if he's able to grow a second dick? An amused look lights his face. Without warning, the dark-haired man shamelessly strips off his pants, leaving you staring at his scarlet manhood. It hangs in a foreskin halfway to his knee.");
@@ -997,85 +1050,92 @@ public function fynSexDoubleD():void {
 		output("With flushing cheeks, you ask Fyn if he can do that trick where he grows two dicks again? He flashes you a roguish grin and nods. The dark-haired man then shamelessly strips off his pants, leaving you staring at his scarlet manhood, hanging halfway to his knee.");
 	}
 	
-	output("\n\n“Give me a moment,” he states, closing his eyes in apparent focus. A second protrusion begins to form above his shaft. The lump grows in size and protrudes outwards, rolling down the length of his already existing cock. It stops short of his crown. It duplicates its shape, leaving him with two huge hanging dicks, one resting on top of the other. “There you go. Interested in double the pleasure?”");
+	output("\n\n<i>“Give me a moment,”</i> he states, closing his eyes in apparent focus. A second protrusion begins to form above his shaft. The lump grows in size and juts outwards, rolling down the length of his already existing cock. It stops short of his crown. It duplicates its shape, leaving him with two huge hanging dicks, one resting on top of the other. <i>“There you go. Interested in double the pleasure?”</i>"); 
 	
-	if(pc.hasVagina() && !pc.isTaur()) 
+	if(useVagina && !pc.isTaur()) 
 	{
-		output("\n\n“Oh, I don't know, are you~?” you grin");
+		output("\n\n<i>“Oh, I don't know, are you?”</i> you grin");
 		
 		if(!pc.isNude()) {
-		output(" sliding your [pc.armor] off. Then you");
-		if (!(pc.lowerUndergarment is EmptySlot)) output(" slide your [pc.lowerUndergarment] to one side and");
-		output(" flash him your [pc.pussies].");
+			if(!(pc.armor is EmptySlot)) output(", sliding your [pc.armor] off. Then you");
+			if(!(pc.lowerUndergarment is EmptySlot))
+			{
+				if(pc.armor is EmptySlot) output(". Then you");
+				output(" slide your [pc.lowerUndergarment] to one side and");
+			}
+			output(" flash him your [pc.pussies].");
 		}
 		else 
 		{
 			output(" and gesture down to your [pc.pussies].");
 		}
-		output(" “Care to use");
-		if (pc.vaginas.length == 1) output(" this and my ass at the same time?”");
-		if (pc.vaginas.length > 1) output(" these?”");
+		output(" <i>“Care to use");
+		if (vagList.length == 1) output(" this and my ass at the same time");
+		else output(" these");
+		output("?”</i>");
 	}
 	//else male or taur
 	else
 	{
-		output("\n\n“Of course! That is, if you think you can handle it?” you tease,");
+		output("\n\n<i>“Of course! That is, if you think you can handle it?”</i> you tease,");
 		if(!pc.isNude()) output(" stripping off and");
 		output(" poking your");
 		
-		if(pc.hasVagina()) output(" [pc.pussies] and");
+		if(useVagina) output(" [pc.pussies] and");
 		output(" [pc.ass] out teasingly at him.");
 	}
 	
 	output("\n\nFyn grins and strides up, seizing your hips in his powerful hands. Already, you can feel his twin dicks teasingly touching");
 	
-	if(pc.hasVagina() && !pc.isTaur()) output(" against your bared sex");
+	if(useVagina && !pc.isTaur()) output(" against your bared sex");
 	else output(" between your buttocks");
 	output(". The devilish man gives a pointed grind, and you feel his stiffening flesh coax and caress");
 	
-	if(pc.hasVagina()) output(" your womanly lips");
+	if(useVagina) output(" your womanly lips");
 	else output(" your crevasse");
 	
 	output(". A delicious shiver shoots up from your");
 	
-	if(pc.hasVagina()) output(" loins");
+	if(useVagina) output(" loins");
 	else output(" loins");
 	
-	output("—the smallest sampling of the pleasure to come.");
-	output("\n\n“Suck me,” Fyn commands, standing back. His crimson cocks are at half mast; it seems he wants them at full peak! Dropping to your [pc.knees], you inch towards his magnificent tools, greedily inhaling his musky scent. It's even more potent with <i>two</i> dicks; you're rendered positively dizzy by his potent penile aroma. You wrap one hand around his first prick, slowly jerking his foreskin as you kiss and suckle on its twin. The response is immediate—his pricks stiffening and twitching—and you feel a giddy sense of pride. Playing with <i>two</i> is so much more fun than one!");
-	output("\n\n“Enjoying yourself down there?” You hear from above, and give a happy little nod. A large palm is rested on your head, giving you an encouraging stroke. You grin and wrap your [pc.lips] around his swelling glans. With little laps, you tease his flexing cockhole, relishing in his rumbling groans. The flex of his muscular shafts is delicious; you could really suck and tease his twin shafts all day. You shiver as a thick, creamy dollop of pre drools out of the cockhead in your mouth, the other glistening just above your hand. Who said you can't have your cake and eat it too~? You hungrily lap it up, then look up at your double-dicked lover with wide [pc.eyeColor] eyes for approval. He strokes your cheek, and you nuzzle into it with a muffled purr.");
-	output("\n\n“Bend over,” Fyn orders you out of the blue, and you happily obey. Turning around, you raise your rump for him. You moan as his spit-slicked dick sliiiides into your");
+	output(" - the smallest sampling of the pleasure to come.");
+	output("\n\n<i>“Suck me,”</i> Fyn commands, standing back. His crimson cocks are at half mast; it seems he wants them at full peak! Dropping to your [pc.knees], you inch towards his magnificent tools, greedily inhaling his musky scent. It's even more potent with <i>two</i> dicks; you're rendered positively dizzy by his potent penile aroma. You wrap one hand around his first prick, slowly jerking his foreskin as you kiss and suckle on its twin. The response is immediate: his pricks stiffening and twitching, and you feel a giddy sense of pride. Playing with <i>two</i> is so much more fun than one!");
+	output("\n\n<i>“Enjoying yourself down there?”</i> You hear from above, and give a happy little nod. A large palm is rested on your head, giving you an encouraging stroke. You grin and wrap your [pc.lips] around his swelling glans. With little laps, you tease his flexing cockhole, relishing in his rumbling groans. The flavor of his muscular shafts is delicious; you could really suck and tease his twin shafts all day. You shiver as a thick, creamy dollop of pre drools out of the cockhead in your mouth, the other glistening just above your hand. Who said you can't have your cake and eat it too? You hungrily lap it up, then look up at your double-dicked lover with wide, [pc.eyeColor] eyes for approval. He strokes your cheek, and you nuzzle into it with a muffled purr.");
+	output("\n\n<i>“Bend over,”</i> Fyn orders you out of the blue, and you happily obey. Turning around, you raise your rump for him. You moan as his spit-slicked dick sliiiides into your");
 	
-	if(pc.hasVagina()) output(" [pc.pussies]");
+	if(useVagina) output(" [pc.pussies]");
 	else output(" [pc.asshole]");
 	
 	output(" and up inside of you, filling you in one swift motion. You groan as his powerful hips press flush against your ass. Inside your");
 	
-	if(pc.hasVagina()) output(" belly");
+	if(useVagina) output(" belly");
 	else output(" backside");
 	
 	output(", you can feel his engorged head flexing and straining against your inner walls. Absolute ecstasy swallows your senses, stirred further by every shift of his");
 	
-	if(pc.hasVagina()) output(" pussy-plunged");
+	if(useVagina) output(" pussy-plunged");
 	else output(" butt-buried");
 	
 	output(" manhood.");
 	
-	if(pc.hasVagina()) 
+	if(useVagina) 
 	{
 		output("\n\nJust when you think it can't get any better, you feel his <i>other</i> fleshy crown pressing against");
-		if(pc.vaginas.length == 1) output(" your sensitive cunt");
-		if(pc.vaginas.length > 1) output(" another pair of your sensitive lower lips");
+		if(vagList.length == 1) output(" your sensitive cunt");
+		else output(" another pair of your sensitive lower lips");
 		
 		output(". You quiver and moan as he buries both manhoods inside you at once, twitching deliciously in your");
 	
-		if(pc.vaginas.length == 1) output(" pussy and butt");
-		if(pc.vaginas.length > 1) output("own twin pussies");
+		if(vagList.length == 1) output(" [pc.pussyNoun " + vagList[0] + "] and butt");
+		else if(pc.matchedVaginas()) output(" own twin pussies");
+		else output(" own two pussies");
 		
 		output(". Ohhhh gooddd.... it really <i>is</i> twice the pleasure, just like being double-teamed! You needily push yourself back against his glorious, pleasure-bringing thrusts, your [pc.thighs] quaking and covered in your [pc.girlCumVisc], streaming pussy juices.");
 	}
 	//male or taur
-	else{
+	else
+	{
 		output("\n\nJust when you think it can't get any better, you feel his <i>other</i> fleshy rod sliding up between your [pc.thighs], until it's resting against your");
 		
 		if(pc.hasCock()) output(" own [pc.biggestCock]");
@@ -1083,72 +1143,81 @@ public function fynSexDoubleD():void {
 		output(". With one dick inside of your rump and another frotting, your muscular lover rides your [pc.ass]. Ohhhh gooddd.... it really <i>is</i> twice the pleasure! You needily push yourself back against his glorious, pleasure-bringing thrusts, your [pc.thighs] quaking with delight.");
 	}
 	
-	//TODO: use Fyn Class to determine cockVolume
-	if (pc.vaginas.length > 1 && !pc.isTaur())
+	if (vagList.length > 1 && !pc.isTaur())
 	{	
-		pc.cuntChange(0, 40, true, true, true);
-		pc.cuntChange(1, 40, true, true, true);
-		//currently broken for null reference pointer, because of ovilium update
-		//pc.loadInCunt();
+		pc.cuntChange(vagList[0], chars["FYN"].cockVolume(0), true, true, false);
+		pc.cuntChange(vagList[1], chars["FYN"].cockVolume(0), true, true, false);
+		pc.loadInCunt(chars["FYN"], vagList[0]);
+		pc.loadInCunt(chars["FYN"], vagList[1]);
 	}
 	else 
 	{
-		if(pc.vaginas.length == 1) pc.cuntChange(0, 40, true, true, true);
-		pc.buttChange(40, true, true, true);
-		pc.loadInAss();
+		if(vagList.length == 1)
+		{
+			pc.cuntChange(vagList[0], chars["FYN"].cockVolume(0), true, true, false);
+			pc.loadInCunt(chars["FYN"], vagList[0]);
+		}
+		pc.buttChange(chars["FYN"].cockVolume(0), true, true, false);
+		pc.loadInAss(chars["FYN"]);
 	}
 	
 	output("\n\nWith a loud cry, you utterly cream yourself,");
 	
-	if(pc.hasVagina()) output(" spilling your [pc.girlCum] all over his");
-	if(pc.vaginas.length == 1) output(" cock");
-	if(pc.vaginas.length > 1) output(" cocks");
-	if(pc.hasVagina() && pc.hasCock()) output(" and");
+	if(useVagina)
+	{
+		output(" spilling your [pc.girlCum] all over his");
+		if(vagList.length == 1) output(" cock");
+		else output(" cocks");
+		if(useVagina && pc.hasCock()) output(" and");
+	}
 	if(pc.hasCock()) output(" shooting hot, sticky spunk all over your [pc.belly]");
 	if(!pc.hasVagina() && !pc.hasCock()) output("spasmodically shaking in the throes of your genital-less orgasm");
 	
 	output(". Your cry is turned to a throaty, primal moan as you feel his hot seed shooting inside of your");
 	
-	if(pc.hasVagina()) output(" [pc.pussies], filling");
-	if(pc.vaginas.length == 1) output(" it");
-	if(pc.vaginas.length > 1) output(" them");
+	if(useVagina)
+	{
+		output(" [pc.pussies]");
+		if(vagList.length == 1) output(" and [pc.ass]");
+		else output(", filling them up");
+	}
 	if(!pc.hasVagina()) output(" [pc.ass], filling it up");
 	
-	output("to the spunk-soaked brim. When he finally pulls out with a loud 'plop', you moan and feel him leaking all down your [pc.legs], though much more of his warmth stays inside of you!");
-	output("\n\n“You're right. Twice the pleasure is twice as good,” Fyn grins, cleaning himself off and redressing. You look at his now cloth-covered loins. Some part of you wants even <i>more</i> of his cock, even though you just took two of them!");
+	output(" to the spunk-soaked brim. When he finally pulls out with a loud 'plop', you moan and feel him leaking all down your [pc.legs], though much more of his warmth stays inside of you!");
+	output("\n\n<i>“You're right. Twice the pleasure is twice as good,”</i> Fyn grins, cleaning himself off and redressing. You look at his now cloth-covered loins. Some part of you wants even <i>more</i> of his cock, even though you just took two of them!");
 	
 
 	fynSexed(1);
 	
 	flags["FYN_SEXED_DOUBLE_DICK"] = true;
 	
-	pc.orgasm();
 	processTime(15 + rand(10));
+	pc.orgasm();
 	
 	clearMenu();
-	addButton(0, "Next", fynMenu);
+	addButton(0, "Next", mainGameMenu);
 }
 
 public function fynSexOrcRavish():void {
 	clearOutput();
-	showFyn();
+	showFyn(true);
 	
 	if(flags["FYN_TALKED_ABOUT_SAVEWORDS"] == undefined) 
 	{
 		output("You tell Fyn that you have a rather particular fantasy; one that involves getting forcefully ravished by, well,");
 		
-		if (pc.isBimbo()) output(" the Hulk");
+		if (pc.isBimbo()) output(" a hulking brute");
 		else output("an orc");
 		
 		output("! Is that the sort of thing he can do, you ask?");
-		output("\n\nThere's a distinctive glint in Fyn's eyes, “Of course. I can easily grant that sort of wish. But you know, once I get in character, it's <i>very</i> hard to snap me out. For all intents and purposes, I <i>will</i> be a lusty");
+		output("\n\nThere's a distinctive glint in Fyn's eyes, <i>“Of course. I can easily grant that sort of wish. But you know, once I get in character, it's </i>very<i> hard to snap me out. For all intents and purposes, I </i>will<i> be a lusty");
 		
-		if (pc.isBimbo()) output(" Hulk");
+		if (pc.isBimbo()) output(" hulk");
 		else output(" orc");
 		
-		output(" trying to rape you. So we need a safe word.”");
-		output("\n\n“A safe word?” You muse, spying a dancing book on the table. “How about... tango?”");
-		output("\n\n“Tango will do. Are you sure you want to do this?”");
+		output(" trying to rape you. So we need a safe word.”</i>");
+		output("\n\n<i>“A safe word?”</i> You muse, spying a dancing book on the table. <i>“How about... tango?”</i>");
+		output("\n\n<i>“Tango will do. Are you sure you want to do this?”</i>");
 		output("\n\nYou nod, cheeks burning. It's always been a fantasy of yours!");
 		
 		flags["FYN_TALKED_ABOUT_SAVEWORDS"] = true;
@@ -1157,54 +1226,50 @@ public function fynSexOrcRavish():void {
 	{
 		output("You tell Fyn that you have a rather particular fantasy; one that involves getting forcefully ravished by, well,");
 		
-		if(pc.isBimbo()) output(" the Hulk");
+		if(pc.isBimbo()) output(" a hulking brute");
 		else output("an orc");
 		
 		output("! Is that the sort of thing he can do, you ask?");
-		output("\n\nThere's a distinctive glint in Fyn's eyes, “Of course. I can easily grant that sort of wish. You remember the safe word, right?”");
-		output("\n\nYou nod. “Tango, yeah? Do you think we'll need it?”");
-		output("\n\n“Of course. Once I get in character, I <i>will</i> be a lusty");
+		output("\n\nThere's a distinctive glint in Fyn's eyes, <i>“Of course. I can easily grant that sort of wish. You remember the safe word, right?”</i>");
+		output("\n\nYou nod. <i>“Tango, yeah? Do you think we'll need it?”</i>");
+		output("\n\n<i>“Of course. Once I get in character, I </i>will<i> be a lusty");
 		
-		if(pc.isBimbo()) output(" Hulk");
+		if(pc.isBimbo()) output(" hulk");
 		else output(" orc");
 		
-		output(" trying to rape you. Brace yourself, " + pc.mf("man", "woman") + ".");
+		output(" trying to rape you. Brace yourself, " + pc.mf("man", "woman") + ".”</i>");
 		output("\n\nYou nod, cheeks burning. It seems your fantasy is going to come true again!");
-	} else 
+	}
+	else 
 	{
-		output("You ask Fyn if he can transform into an orc again and ravish you. With a glint in his eyes, he nods. “Of course. It was a <i>lot</i> of fun last time.”");
+		output("You ask Fyn if he can transform into an orc again and ravish you. With a glint in his eyes, he nods. <i>“Of course. It was a </i>lot<i> of fun last time.”</i>");
 	}
 	
-	output("\n\nThe polymorph strips off his shirt and stands there. He closes his eyes and brings his closed fists to his waist. His head lowers, facial expression covered by his hair. His taut muscles then begin to shift and move. They begin to expand, becoming bulkier and more prominent. His pectorals protrude until they look like they belong on a professional body-builder... or more accurately, some sort of primal, tribal warrior. Similar changes occur down at his abs, arms, and legs, until the muscular man is nearly twice the size he was before—it's incredible to watch! All of his skin begins to change at once, shifting to an olive green. His dark hair pulls back into his scalp");
+	output("\n\nThe polymorph strips off his shirt and stands there. He closes his eyes and brings his closed fists to his waist. His head lowers, facial expression covered by his hair. His taut muscles then begin to shift and move. They begin to expand, becoming bulkier and more prominent. His pectorals protrude until they look like they belong on a professional body-builder... or more accurately, some sort of primal, tribal warrior. Similar changes occur down at his abs, arms, and legs, until the muscular man is nearly twice the size he was before - it's incredible to watch! All of his skin begins to change at once, shifting to an olive green. His dark hair pulls back into his scalp");
 	
 	if(!pc.isBimbo()) output(", raising the curtain on the two pointed tusks he now has jutting out from his fat lower lip");
 	else output(". You are now standing before what is unmistakably");
 	
-	if(pc.isBimbo()) output(" a crime-fighting superhero");
+	if(pc.isBimbo()) output(" a sexual behemoth");
 	else output(" a bulky behemoth of an orc");
 	output(", with a whopping bulge in his torn pants to match.");
 	
 	output(" He narrows his eyes. A forceful shove. You're knocked back and sprawling on to the carpet. As you topple ass over head, you let out a surprised shout. W-what's going on?");
 	if(!pc.isNude()) output(" When everything stops moving, you feel the fabric of your clothing being forcibly stripped off.");
 	
-	output(" You shiver, buck naked and upside down, your [pc.knees] somewhere near your cheeks! A fierce slap is delivered to your bare buttocks, and you squeal in surprise. It stings—but more than that, it's embarrassing as hell!");
-	output("\n\n“Your [pc.skinColor] ass is");
-	
-	if(pc.isBimbo()) output(" the Hulk's now");
-	
-	else output(" mine");
-	output(" now, bitch,” the");
+	output(" You shiver, buck naked and upside down, your [pc.footOrFeet] somewhere near your cheeks! A fierce slap is delivered to your bare buttocks, and you squeal in surprise. It stings—but more than that, it's embarrassing as hell!"); 
+	output("\n\n<i>“Your [pc.skinColor] ass is mine now, bitch,”</i> the");
 	
 	if(pc.isBimbo()) output(" green");
 	else output(" orcish");
 	output(" man grunts. His thick, powerful digits squeeze your stinging butt. His property?! You gasp as he suddenly yanks you by your [pc.legs]. You're left on your back, looking up at his fierce yellow eyes and");
 	
-	if(pc.isBimbo()) output(" big");
+	if(pc.isBimbo()) output(" powerful");
 	else output(" tusked");
-	output(" lips, curled in a snarl. And—oh fuck—you can see his massive green tool now, but it's pink on top with pearly lumps. “Time to get butt-bred.");
-	
-	if(pc.isBimbo()) output(" Hulk smash puny hole!”");
-	else output(" For the goddamn horde.”");
+	output(" lips, curled in a snarl. And - oh fuck - you can see his massive green tool now, but it's pink on top with pearly lumps. <i>“Time to get butt-bred."); 
+	if(pc.isBimbo()) output(" Hulk smash puny hole!");
+	else output(" For the goddamn horde.");
+	output("”</i>");
 	
 	output("\n\nDespite your protests, you're pinned down with a powerful hand, helpless as he");
 	if(pc.hasLegs() && !pc.isNaga()) output(" spreads your legs and");
@@ -1216,12 +1281,11 @@ public function fynSexOrcRavish():void {
 	else output(" your bowels with his extremely stiff cock.");
 	
 	//higher cockVolumn than in Fyn class because of orc transform
-	pc.buttChange(150, true, true, true);
-	pc.loadInAss();
+	pc.buttChange((chars["FYN"].cockVolume(0) * 4), true, true, false);
 	
-	output("\n\n“Holding on, slut?” He grunts. You nod, reaching up and clinging to a nearby pillow. Just in time! One powerful thrust of his hips later, and every inch of your parted rump is stuffed with");
+	output("\n\n<i>“Holding on, slut?”</i> He grunts. You nod, reaching up and clinging to a nearby pillow. Just in time! One powerful thrust of his hips later, and every inch of your parted rump is stuffed with");
 	
-	if(pc.isBimbo()) output(" banner bacon");
+	if(pc.isBimbo()) output(" cock bigger and greener than a zucchini");
 	else output(" orcish cock");
 	
 	output("! You whimper with delight; as his primal prick stretches your inner rump, pleasure <i>explodes</i> out into every inch of your body. Your [pc.legs] can't stop shaking! All you can do is moan and squeal as he thoroughly and possessively fucks your [pc.skinColor] butt, breeding you like the bitch you are!");
@@ -1245,16 +1309,27 @@ public function fynSexOrcRavish():void {
 	
 	output(". Your quaking buttocks clench his girthy orchood, and with a guttural cry, you feel him flexing and shooting pure warmth deep inside of your rectum, filling it with his slick spunk.");
 	
-	output("\n\nWhen he pulls out, you can feel it lewdly rolling out and down your butt-crack and back. You blush furiously, reaching up and spreading your [pc.ass]. Your green-skinned lover takes one look at your parted, cum-smeared pucker and looks riled up again! Grabbing his stiffening rod, he plunges it back into your sloppy hole. Buried once more up to the hilt, he begins slapping enthusiastically against your already worn buttocks. After already cumming, you're overloaded with such <i>intense</i> sensory feedback—it's too much for you to handle! You babble and whimper in delight. Rolling back your eyes and drooling down your cheek, you're a helpless passenger swept up in a storm of pleasure. Your mind is utterly swallowed by the tidal forces, yet your body instinctively bucks back against the rutting beast on its own. You cum <i>again</i>, shivering and twitching, your upper body limp and lower body spasming. It doesn't stop him! He has his way with you until you have came more times than you can count, and at last, <i>he's</i> entirely spent!");
+	output("\n\nWhen he pulls out, you can feel it lewdly rolling out and down your butt-crack and back. You blush furiously, reaching up and spreading your [pc.ass]. Your green-skinned lover takes one look at your parted, cum-smeared pucker and looks riled up again! Grabbing his stiffening rod, he plunges it back into your sloppy hole. Buried once more up to the hilt, he begins slapping enthusiastically against your already worn buttocks. After already cumming, you're overloaded with such <i>intense</i> sensory feedback - it's too much for you to handle! You babble and whimper in delight. Rolling back your eyes and drooling down your cheek, you're a helpless passenger swept up in a storm of pleasure. Your mind is utterly swallowed by the tidal forces, yet your body instinctively bucks back against the rutting beast on its own. You cum <i>again</i>, shivering and twitching, your upper body limp and lower body spasming. It doesn't stop him! He has his way with you until you have came more times than you can count, and at last, <i>he's</i> entirely spent!");
 	output("\n\nWhen you finally come to, you feel something soft beneath you. Your ass is unmistakably sore; even the slightest wiggle makes you wince! At the same time, it's packed full of gooey warmth. Every inch of your [pc.skinFurScalesNoun] is singing with happiness. You are definitely one well bred slut! A dopey grin crosses your [pc.lips] as you swiftly fall back into slumber... you're going to need to rest this one off...");
-	output("\n\n<b>... A few hours later ... </b>");
-	output("\n\nThere's a poking at your cheek. You mumble and wave it away. There's a rich chuckle. Opening a single eye, you see a scarlet face staring back at you. Fyn? It seems he's transformed back. You realise you're on the couch, underneath a blanket. Your polymorph lover is drinking what seems to be a shake of some kind, though there's a lot of empty plates before him.");
-	output("\n\n“You're awake. Guess we both had quite the recovery time,” he remarks, sipping from the straw. “Your");
+	output("\n\n<b>... A few hours later ...</b>");
+	
+	
+	
+	output("\n\nWhen he pulls out, you can feel it lewdly rolling out and down your butt-crack and back. You blush furiously, reaching up and spreading your [pc.ass]. Your green-skinned lover takes one look at your parted, cum-smeared pucker and looks riled up again! Grabbing his stiffening rod, he plunges it back into your sloppy hole. Buried once more up to the hilt, he begins slapping enthusiastically against your already worn buttocks. After already cumming, you're overloaded with such <i>intense</i> sensory feedback - it's too much for you to handle! You babble and whimper in delight. Rolling back your eyes and drooling down your cheek, you're a helpless passenger swept up in a storm of pleasure. Your mind is utterly swallowed by the tidal forces, yet your body instinctively bucks back against the rutting beast on its own. You cum <i>again</i>, shivering and twitching, your upper body limp and lower body spasming. It doesn't stop him! He has his way with you until you have came more times than you can count, and at last, <i>he's</i> entirely spent!");
+	pc.buttChange(chars["FYN"].cockVolume(0) * 6, true, true, false);
+	pc.loadInAss(chars["FYN"]);
+	pc.loadInAss(chars["FYN"]);
+	
+	output("\n\nWhen you finally come to, you feel something soft beneath you. Your ass is unmistakably sore; even the slightest wiggle makes you wince! At the same time, it's packed full of gooey warmth. Every inch of your [pc.skinFurScalesNoun] is singing with happiness. You are definitely one well bred slut! A dopey grin crosses your [pc.lips] as you swiftly fall back into slumber.... You're going to need to rest this one off.");
+	output("\n\n<b>A few hours later...</b>");
+	
+	output("\n\nThere's a poking at your cheek. You mumble and wave it away. There's a rich chuckle. Opening a single eye, you see a scarlet face staring back at you. Fyn? It seems he's transformed back. You realize you're on the couch, underneath a blanket. Your polymorph lover is drinking what seems to be a shake of some kind, though there's a lot of empty plates before him.");
+	output("\n\n<i>“You're awake. Guess we both had quite the recovery time,”</i> he remarks, sipping from the straw. <i>“Your");
 	
 	if(pc.isNude()) output(" things");
 	else output(" clothes");
 	
-	output(" are there. I didn't want to wake you. You looked like you needed the rest.”");
+	output(" are there. I didn't want to wake you. You looked like you needed the rest.”</i>");
 	output("\n\nYou thank him, and after you've mustered the energy, slip your stuff back on. What a fucking! You rub your butt again, a dopey smile on your face. Geez, you're still leaking down your [pc.legs]!");
 	
 	fynSexed(1);
@@ -1262,9 +1337,9 @@ public function fynSexOrcRavish():void {
 	if(flags["FYN_SEXED_ORC_RAVISH"] == undefined) flags["FYN_SEXED_ORC_RAVISH"] = 1;
 	else flags["FYN_SEXED_ORC_RAVISH"]++;
 	
-	pc.orgasm();
 	processTime(30 + rand(15));
+	for(var z:int = 0; z < 7; z++) { pc.orgasm(); }
 	
 	clearMenu();
-	addButton(0, "Next", fynMenu);
+	addButton(0, "Next", mainGameMenu);
 }

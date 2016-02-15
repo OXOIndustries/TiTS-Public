@@ -395,7 +395,7 @@
 				// Effect: Less than 2 balls - Increases testicle count until 2
 				else if(select == 2)
 				{
-					kGAMECLASS.output("You");
+					kGAMECLASS.output("\n\nYou");
 					if(target.isCrotchGarbed()) kGAMECLASS.output(" take a peek inside your [pc.lowerUndergarment]");
 					else kGAMECLASS.output(" look down at your groin");
 					kGAMECLASS.output(" as a fervent heat appears ");
@@ -403,7 +403,7 @@
 					else if(target.hasCock()) kGAMECLASS.output(" right below your [pc.cock].");
 					else if(target.hasVagina()) kGAMECLASS.output(" right above your [pc.vagina].");
 					else kGAMECLASS.output(" right in the middle of your crotch.");
-					if(target.balls <= 0) kGAMECLASS.output(" The skin of that area bulges out and proceeds to loosen, thicken, and loosen again. It continues this sluggish process for several minutes, until the empty skin is large enough, upon which it finally scrunches up into an empty scrotum. <b>Seems like you have grown a [pc.furSkinScales] ballsack.</b>");
+					if(target.balls <= 0) kGAMECLASS.output(" The skin of that area bulges out and proceeds to loosen, thicken, and loosen again. It continues this sluggish process for several minutes, until the empty skin is large enough, upon which it finally scrunches up into an empty scrotum. <b>Seems like you have grown a [pc.skinFurScales] ballsack.</b>");
 					else kGAMECLASS.output(" The transformation begins in your ballsack. Slowly it scrunches inward, the skin aggregating and holding your balls painfully tight against your body. Then, all at once, it loosens quickly. Your ball breathes in relief; now hanging much lower due to your looser sack.");
 					kGAMECLASS.output("\n\nNow that your sack is ready, the feverish sensation builds again and concentrates on the flesh behind it. You bring your fingers toward it and feel a tiny lump forming inside. Slowly the lump turns into a small oval, sensitive to your touch. A");
 					if(target.balls <= 0) kGAMECLASS.output("nother");

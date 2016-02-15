@@ -304,6 +304,9 @@ package classes.Items.Transformatives
 				}
 				//Red Myr Venom
 				//Gain slight resistance to Lust (Chemical) damage
+				var bSizeChange:Boolean = false;
+				var iBreastNum:int = 0;
+				var bb:int = 0
 				if(changes < changeLimit && !pc.hasPerk("Myr Venom") && rand(4) == 0 && pc.myrScore() >= 4)
 				{
 					output("\n\nYou feel a sudden burning in your mouth, a strange sensation that feels like thickened, hot saliva dribbling from your canines. It's actually quite nice, you find, sucking down the alien chemical that seems to be generating in your mouth.");
@@ -318,9 +321,9 @@ package classes.Items.Transformatives
 					if(pc.hasPerk("Honeypot"))
 					{
 						// Reset boob sizes
-						var bSizeChange:Boolean = false;
-						var iBreastNum:int = pc.totalBreasts();
-						for(var bb:int = 0; bb < pc.bRows(); bb++)
+						bSizeChange = false;
+						iBreastNum = pc.totalBreasts();
+						for(bb = 0; bb < pc.bRows(); bb++)
 						{
 							if(pc.breastRows[bb].breastRatingHoneypotMod != 0)
 							{
@@ -341,6 +344,34 @@ package classes.Items.Transformatives
 						// Remove perk!
 						pc.removePerk("Honeypot");
 					}
+				}
+				// Alternately remove Honeypot
+				if(changes < changeLimit && pc.hasPerk("Honeypot") && rand(4) == 0)
+				{
+					// Reset boob sizes
+					bSizeChange = false;
+					iBreastNum = pc.totalBreasts();
+					for(bb = 0; bb < pc.bRows(); bb++)
+					{
+						if(pc.breastRows[bb].breastRatingHoneypotMod != 0)
+						{
+							pc.breastRows[bb].breastRatingHoneypotMod == 0;
+							bSizeChange = true;
+						}
+					}
+					output("\n\nSuddenly, your body instantaneously shivers all over and you feel your [pc.chest] and [pc.skin] tingle.");
+					if(bSizeChange)
+					{
+						output(" Your breast");
+						if(iBreastNum != 1) output("s");
+						output(" deflate");
+						if(iBreastNum == 1) output("s");
+						output(", squirting and dribbling [pc.milk] from your [pc.nipples] as the tingling sensation pushes the fluid out.");
+					}
+					output(" When the feeling passes, you double check your Codex and confirm that <b>you have lost the mass-displacing Honeypot genes from your previous transformation</b>. It seems the genes are not compatible with this drug...");
+					// Remove perk!
+					pc.removePerk("Honeypot");
+					changes++;
 				}
 
 				//Lactation Typechange

@@ -31,6 +31,11 @@ public function oviliumEffects():void
 			if (!pc.isPregnant(x)) selWomb.push(x);
 		}
 		
+		// Create Ovilium Impregnator
+		var ppOvilium:PregnancyPlaceholder = new PregnancyPlaceholder();
+		ppOvilium.impregnationType = "OviliumEggPregnancy";
+		ppOvilium.createStatusEffect("Ovilium Effect");
+		
 		// (If no open wombs(already preg))
 		if (selWomb.length == 0)
 		{
@@ -42,14 +47,17 @@ public function oviliumEffects():void
 			{
 				var nVal:int = 2 + rand(2);
 				
-				output(" and you feel a jolt inside. For a moment you worry about your pregnancy, but your codex informs you that you’re suddenly a");
-				if(nVal == 2) output(" couple");
+				output(" and you feel a jolt inside. For a moment you worry about your pregnanc");
+				if (pc.totalPregnancies() == 1) output("y");
+				else output("ies");
+				output(", but your codex informs you that you’re suddenly a");
+				if (nVal == 2) output(" couple");
 				else output(" few");
 				output(" hours ahead of schedule.");
 				
 				preggcelleration(-1 * nVal * 60);
 				
-				if (rand(2) == 0) oviliumEggBump();
+				if (rand(2) == 0) oviliumEggBump(ppOvilium, -1);
 			}
 			processTime(2);
 		}
@@ -80,10 +88,6 @@ public function oviliumEffects():void
 				processTime(5);
 				
 				// Preggos!
-				var ppOvilium:PregnancyPlaceholder = new PregnancyPlaceholder();
-				ppOvilium.impregnationType = "OviliumEggPregnancy";
-				ppOvilium.createStatusEffect("Ovilium Effect");
-				
 				pc.loadInCunt(ppOvilium, selWomb[rand(selWomb.length)]);
 			}
 		}
@@ -93,35 +97,22 @@ public function oviliumEffects():void
 }
 
 // (If the pc gets cummed inside while eggpreg with ovilium, after sex this happens)
-public function oviliumEggBump():void
+public function oviliumEggBump(cumFrom:Creature = null, vagIndex:int = -1):void
 {
+	if (cumFrom == null) return;
+	
+	var cumQ:Number = cumFrom.cumQ();
 	var changes:int = 0;
-	for (var i:int = 0; i < pc.pregnancyData.length; i++)
+	
+	if (vagIndex >= 0)
 	{
-		if (pc.isPregnant(i))
+		changes += oviliumEggBumpEggs(vagIndex, cumQ);
+	}
+	else
+	{
+		for (var i:int = 0; i < pc.pregnancyData.length; i++)
 		{
-			if (pc.pregnancyData[i].pregnancyType == "OviliumEggPregnancy")
-			{
-				var bigEgg:Boolean = (pc.statusEffectv2("Ovilium") == 0);
-				var chances:int = Math.floor(pc.pregnancyData[i].pregnancyQuantity / 4);
-				for (var x:int = 0; x < 12; x++)
-				{
-					if (changes < 12 && rand(chances) == 0)
-					{
-						pc.pregnancyData[i].pregnancyQuantity++;
-						pc.pregnancyData[i].pregnancyBellyRatingContribution += 0.125;
-						pc.bellyRatingMod += 0.125;
-						if(bigEgg)
-						{
-							pc.pregnancyData[i].pregnancyQuantity++;
-							pc.pregnancyData[i].pregnancyBellyRatingContribution += 2;
-							pc.bellyRatingMod += 2;
-							bigEgg = false;
-						}
-						changes++;
-					}
-				}
-			}
+			changes += oviliumEggBumpEggs(i, cumQ);
 		}
 	}
 	if (changes > 0)
@@ -137,6 +128,35 @@ public function oviliumEggBump():void
 		
 		pc.addStatusValue("Ovilium", 2, 1);
 	}
+}
+private function oviliumEggBumpEggs(iWomb:int = -1, cumQ:Number = 0):int
+{
+	var changes:int = 0;
+	
+	if (pc.pregnancyData[iWomb].pregnancyType == "OviliumEggPregnancy")
+	{
+		var bigEgg:Boolean = (pc.statusEffectv2("Ovilium") == 0);
+		var chances:int = Math.floor(pc.pregnancyData[iWomb].pregnancyQuantity / 6);
+		for (var x:int = 0; x < 12; x++)
+		{
+			if (changes < 12 && rand(chances) == 0)
+			{
+				pc.pregnancyData[iWomb].pregnancyQuantity++;
+				pc.pregnancyData[iWomb].pregnancyBellyRatingContribution += 0.125;
+				pc.bellyRatingMod += 0.125;
+				if (bigEgg)
+				{
+					pc.pregnancyData[iWomb].pregnancyQuantity++;
+					pc.pregnancyData[iWomb].pregnancyBellyRatingContribution += 2;
+					pc.bellyRatingMod += 2;
+					bigEgg = false;
+				}
+				changes++;
+			}
+		}
+	}
+	
+	return changes;
 }
 // Pregnancy multiplier bump.
 public function preggcelleration(plusMinutes:int = 0):int
