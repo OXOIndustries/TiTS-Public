@@ -100,7 +100,6 @@ public function approachKiroAtTheBar():void
 public function kiroMenu():void
 {
 	clearMenu();
-	showKiro();
 	addButton(1,"Wingman",playWingmanWithKiro,undefined,"Play Wingman","Hang out with Kiro and help her get laid. With balls like that, she probably needs it.");
 	addButton(2,"DrinkOff",kiroDrankinConterst,undefined,"Drinking Contest","See who can hold their liquor better...");
 	if(pc.lust() < 33) addDisabledButton(3,"Sex","Sex","You aren't really interested in sex at the moment.");

@@ -927,7 +927,7 @@ public function kq2rfLabElevator():Boolean
 
 	if (flags["KQ2_DEFEATED_JUGGERNAUT"] == undefined && flags["KQ2_KHANS_FILES"] != undefined)
 	{
-		showBust("KARA", "KQ2JUGGERNAUT");
+		showBust("KARA", "JUGGERNAUT");
 		author("Savin");
 		showName("\nJUGGERNAUT");
 		

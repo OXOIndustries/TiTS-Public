@@ -159,9 +159,10 @@ public function myrellionManorAdminRoom():Boolean
 	}
 }
 
-public function selleraHeader():void
+public function selleraHeader(nude:Boolean = false):void
 {
-	showBust("SELLERA");
+	if(!nude) showBust("SELLERA");
+	else showBust("SELLERA_NUDE");
 	showName("\nSELLERA");
 	author("Kaiju"); // ?
 }

@@ -14,6 +14,10 @@
 		//[Embed(source = "../../../assets/images/npcs/gianna.png", mimeType = "image/png")]
 		//public var Bust_GIANNA:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/amara.png", mimeType = "image/png")]
+		public var Bust_AMARA:Class;
+		public var Bounds_AMARA:Rectangle = new Rectangle(28, 2, 58, 64);
+		
 		//Placeholder for futurestuff [Embed(source = "../../../assets/images/npcs/jacques00/nehzara.png", mimeType = "image/png")]
 		//.public var Bust_ANZHELA:Class;
 
@@ -137,6 +141,11 @@
 
 		[Embed(source = "../../../assets/images/npcs/jacques00/scalla.png", mimeType = "image/png")]
 		public var Bust_SCALLA:Class;
+
+		[Embed(source = "../../../assets/images/npcs/sellera.png", mimeType = "image/png")]
+		public var Bust_SELLERA:Class;
+		[Embed(source = "../../../assets/images/npcs/sellera_nude.png", mimeType = "image/png")]
+		public var Bust_SELLERA_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/sierva.png", mimeType = "image/png")]
 		public var Bust_SIERVA:Class;

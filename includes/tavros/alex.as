@@ -26,10 +26,11 @@ Aside: BUT WHAT DO DICK SIZES MEAN TO ALEX?
 [Catch Anal]
 [Bail Once More]*/
 
-public function alexNameBustDiplay():void {
-	userInterface.showBust("ALEX");
-	if(flags["FUCKED_ALEX"] != undefined || flags["LAST_MINUTE_ALEX_BACK_OUT"] != undefined) userInterface.showName("\nALEX");
-	else userInterface.showName("PRETTY\nBOY");
+public function alexNameBustDiplay(nude:Boolean = false):void {
+	if(!nude) showBust("ALEX");
+	else showBust("ALEX_NUDE");
+	if(flags["FUCKED_ALEX"] != undefined || flags["LAST_MINUTE_ALEX_BACK_OUT"] != undefined) showName("\nALEX");
+	else showName("PRETTY\nBOY");
 }
 
 public function getAlexPregContainer():PregnancyPlaceholder
@@ -416,8 +417,7 @@ public function alexSexMenu(display:Boolean = true):void {
 public function pitchIntoAlexsBoyPussy():void {
 	clearOutput();
 	author("RadicalBroseph");
-	alexNameBustDiplay();
-	showBust("ALEX_NUDE");
+	alexNameBustDiplay(true);
 	//If none of your cocks fit:
 	if(pc.cockThatFits(200) < 0)
 	{
@@ -556,8 +556,7 @@ public function pitchIntoAlexsBoyPussy():void {
 public function catchVaginalFromAlex():void {
 	clearOutput();
 	author("RadicalBroseph");
-	alexNameBustDiplay();
-	showBust("ALEX_NUDE");
+	alexNameBustDiplay(true);
 	var x:int = pc.cuntThatFits(20);
 	if(x < 0) x = rand(pc.vaginas.length);
 	output("You smile down at Alex and ");
@@ -717,9 +716,8 @@ public function catchVaginalFromAlex():void {
 //(Dickhavers again (Fun variant for herms if I get to it))
 public function frottageWithAlex():void {
 	clearOutput();
-	alexNameBustDiplay();
+	alexNameBustDiplay(true);
 	author("RadicalBroseph");
-	showBust("ALEX_NUDE");
 	var x:int = pc.biggestCockIndex();
 	output("Smiling ");
 	if(pc.isAss()) output("wolfishly");
@@ -1034,9 +1032,8 @@ public function frottageWithAlex():void {
 //(Fun for everyone)
 public function catchAnalFromAlex():void {
 	clearOutput();
-	alexNameBustDiplay();
+	alexNameBustDiplay(true);
 	author("RadicalBroseph");
-	showBust("ALEX_NUDE");
 	//if taur or some kind of caterpillar thing:
 	if(pc.isTaur()) output("You straighten up, leaving Alex lying on the bed, then pull a graceful about-face, turning so your [pc.butt] faces him, and glance over your shoulder as you sway your [pc.hips] seductively.");
 	//if biped, naga, goo, tripod: 
