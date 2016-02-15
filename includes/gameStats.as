@@ -4057,7 +4057,7 @@ public function displayEncounterLog(showID:String = "All"):void
 		if(flags["MET_KARA"] != undefined)
 		{
 			output2("\n<b>* Kara:</b> Met her");
-			if(flags["KQ2_SEX_PAY"] != undefined || flags["SEXED_KARA"] != undefined) output2(", Sexed her");
+			if(flags["SEXED_KARA"] != undefined) output2(", Sexed her");
 			if(flags["KQ2_KARA_SACRIFICE"] != undefined) output2(", Inactive");
 			if(flags["KQ2_BETRAYED_KARA"] != undefined) output2(", <i>Whereabouts unknown</i>");
 			roamCount++;
@@ -4186,7 +4186,7 @@ public function displayEncounterLog(showID:String = "All"):void
 		{
 			output2("\n<b>* Shade:</b> Met her");
 			if(flags["TOLD_SHADE_SHES_YER_SIS"] != undefined) output2(", Told her she’s your sister");
-			if(flags["KQ2_SHADE_DEAD"] != undefined) output2(", Inactive");
+			if(flags["KQ2_SHADE_DEAD"] != undefined || flags["SHADE_DISABLED"] == 1) output2(", Inactive");
 			else if(shadeAtTheBar()) output2(", Active (On Myrellion)");
 			else if(flags["SHADE_ON_UVETO"] != undefined) output2(", Active (On Uveto)");
 			if(flags["SHADE_GOT_HELP_WITH_LAYING"] != undefined)
@@ -4198,12 +4198,9 @@ public function displayEncounterLog(showID:String = "All"):void
 			{
 				if(chars["SHADE"].isLactating()) output2("\n<b>* Shade, Milk Type: </b>" + GLOBAL.FLUID_TYPE_NAMES[chars["SHADE"].milkType]);
 			}
-			if(flags["SEXED_SHADE"] != undefined)
-			{
-				output2("\n<b>* Shade, Sexual History:</b> Sexed her");
-				if(flags["TAKEN_SHADES_HARDLIGHT"] != undefined) output2(", Fucked by her hardlight strap-on");
-				if(flags["SHADE_BOOBWORSHIP"] != undefined) output2(", Worshipped her boobs");
-			}
+			if(flags["SEXED_SHADE"] != undefined) output2("\n<b>* Shade, Times Sexed: </b>" + flags["SEXED_SHADE"]);
+			if(flags["TAKEN_SHADES_HARDLIGHT"] != undefined) output2("\n<b>* Shade, Times Fucked by Her Hardlight Strap-on: </b>" + flags["TAKEN_SHADES_HARDLIGHT"]);
+			if(flags["SHADE_BOOBWORSHIP"] != undefined) output2("\n<b>* Shade, Times Worshipped Her Boobs: </b>" + flags["SHADE_BOOBWORSHIP"]);
 			roamCount++;
 		}
 		// Zo'dee
