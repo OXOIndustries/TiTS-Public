@@ -3044,7 +3044,7 @@ public function kq2ShadeFollowUpAmends():void
 	{
 		output("\n\nShade nods at the thought, chewing her lip. <i>“Look, I’m leaving in a few hours.");
 		// if beat Amara in KQ2:
-		if(flags["KQ2_QUEST_FINISHED"] == 1) output(" You and your friend put my daughter’s father in the hospital. I’ve got to check in on her.");
+		if(flags["KQ2_QUEST_FINISHED"] != undefined) output(" You and your friend put my daughter’s father in the hospital. I’ve got to check in on her.");
 		else output(" Amara and I have some catching up to do while she’s here.");
 		output(" After that... I’m off this rock. Going back home to Uveto.”</i>");
 		
