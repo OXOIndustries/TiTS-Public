@@ -167,6 +167,7 @@ public function vahnSexMenu():void
 	}
 	addButton(4,"Catch Anal",vahnFucksYourButt,undefined,"Catch Anal","See if you can get the ausar mechanic to get to work on your backdoor...");
 	addButton(5,"Give Handjob",giveVahnAHandy,undefined,"Give Handjob","Bend Vahn over and play with his tasty red rocket... and maybe something dirtier...");
+	addButton(6,"Dommy Anal",vahnDomsYourButt,undefined,"Dommy Anal","Get Vahn to take the lead and claim your ass for his own!")
 
 	addButton(14,"Back",VahnTheMechanic);
 }
@@ -654,6 +655,57 @@ output("?”</i> A voice calls out, presumably one of the ground crew. You both 
 	flags["SEXED_VAHN"] = 1;
 	flags["HANDIED_VAHN"] = 1;
 	pc.lust(33);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+
+//Vahn Anal Dom
+public function vahnDomsYourButt():void
+{
+	clearOutput();
+	showVahn();
+	author("Gortys");
+
+output("Maybe it’s something about that big ‘ol ausar brain of his, or the way he looks in that sexy little jumpsuit, but you’ve got an itch to scratch and that blonde cutie in front of you feels the most applicable candidate.");
+
+output("\n\nYou give Vahn a pleading look with your [pc.eyes] as you seductively sway your [pc.hips] against his midriff. You nibble on your [pc.lipChaste] when you feel a bulge already beginning to present itself to you. <i>“How about we sneak off and blow off some steam?”</i> You eagerly suggest.");
+
+output("\n\nVahn is more than happy to oblige you in some recreational activities as he eagerly gropes your [pc.ass] before ushering you onboard your own vessel, though you do catch a few suspicious glances being shot toward you and your ausar lover as you enter. You quietly slip into the captain’s quarters of your ship, Vahn following behind.");
+
+output("\n\nYou’re already tearing off your equipment as Vahn makes himself more comfortable and bare behind you. By the time you’ve fully undressed, he’s eagerly groping your [pc.ass]. The sensation of his soft but firm hands on your underside already has you softly moaning into your lover. You crane your head to get Vahn’s attention, <i>“Show me what a big, strong ausar you are - unless, you’re not up to it,”</i> you jokingly tease.");
+
+output("\n\n<i>“How about we give you that bone you so desperately want then?”</i> Vahn growls dominantly into your [pc.ear].");
+
+output("\n\nVahn shoves you firmly onto the bed, grasping your [pc.hips] in his hands to raise your [pc.ass] to a more appreciable position. He delicately wraps his fingers around your [pc.lowerUndergarment] before tugging them down to rest between your ankles. He doesn’t waste time in getting you all lubed up. His tongue slurps wetly on your [pc.ass] as he prepares you for what’s to come.");
+
+output("\n\nSince you’re all properly lubed up and practically <i>begging</i> to get that knot tied inside you; Vahn begins to press his impressive nine inch canine cock against your [pc.ass]. The initial entry is a bit of a touch and go even with his saliva coating your entrance. Though, with a bit of effort he quickly begins to get into a rhythm of gently pounding into your ass which incites delicious moans from you.");
+
+output("\n\nThe techie above you gently goes balls deep into you with each thrust, hands firmly grasping your waist. His knot bumps into your [pc.asshole] occasionally; reminding you of what you’re really after from this cute blonde ausar. You feel his hips begin to pound into you more solidly. His thrusts speed up just a bit as he’s sure you’ve comfortably adjusted to his size.");
+
+output("\n\nWith the romantic sex finding a close Vahn begins to place his upper body over your backside; groaning powerfully into your [pc.ear] whilst he has a tight grip on your shoulders. Once he’s found a proper position over his submissive lover, his hips really get to work as he plows his cock into your [pc.asshole] with vigour. By now, you’re moaning like a bitch in heat underneath him. To be honest, at this point you’d want nothing more than to be just that for your ausar.");
+
+output("\n\nYour enthusiastic lover goes for a firm but delicate reach around on those currently sensitive frontal bits of yours. His rough paws giving you quite the stimulation you need to really get into this hardcore romp between you two. The excitement swelling within from being handled like this gets you back-thrusting onto your lover’s crotch even harder.");
+
+output("\n\nThough you’re far too focused on the satisfying feeling of his large member bottoming out inside you with the oh-so present knot grinding into your [pc.asshole], occasionally shoving your ass back to meet his thrusts in an attempt to get him to knot you. ");
+
+output("\n\nVahn catches on rather quick to what you’re planning and begins to increase the velocity of his thrusts. With a constant rough pounding into your [pc.ass], the knot ever so slowly begins to get inside. With a few more jazzed-up thrusts from Vahn his glorious organic butt plug lodges itself inside. The mixture of pain and pleasure from the large insertion has you moaning under the ausar mechanic.");
+
+output("\n\nWith his knot fully enveloped by your [pc.asshole], his thrusts become erratic and you sense what’s coming next. You give one final thrust with your ass into his waist before he goes all the way inside you and unloads rope after rope of that creamy jizz you’ve been after. Nothing goes to waste as the excess is trapped behind his knot. Though, mercifully, he hasn’t forgotten about you in all this bliss.");
+
+output("\n\nHis soft hand is still fondling you, and with the combined pleasure of getting knotted and cummed into whilst your lover pleasures you from the front you finally explode ");
+if(pc.hasCock()) output("with [pc.cumVisc] ropes of [pc.cumNoun]");
+else if (pc.hasVagina()) output("with squirts of femcum that splatter");
+else output("with sexless sensation, leaving you to scream and collapse");
+
+output(" all over the soft sheets of your bed. Once you’ve calmed down, Vahn gently tugs you onto the bed to snuggle with him. The warm embrace of his arms around you as you gently lull to sleep.");
+
+output("\n\nYou awake some time later, Vahn seemingly gone. Semen seems to be freshly leaking out of your ass so you suppose he didn’t get his knot out too long ago. You quickly get yourself up, grab your things and get ready to head out.");
+
+	processTime(40+rand(10));
+	flags["SEXED_VAHN"] = 1;
+	pc.orgasm();
+	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
