@@ -1738,7 +1738,7 @@ public function kq2EncounterShade():void
 		
 		output("\n\n<i>“Wouldn’t be much of a bounty hunter if I did,”</i> Shade laughs, whistling to her assault drones. They advance, lowering their heads and growling metallically. <i>“Now, why don’t you and your friend come quietly, hmm?");
 		//{if didn’t fight Shade: 
-		output(" And </i>you<i>, [pc.name]... that was a dirty trick you pulled. Damned scummy... maybe I’ll beat some better manners into you.");
+		if(flags["DISTRACTED_SHADE"] != undefined || flags["TRIPPED_ON_SHADE"] != undefined) output(" And </i>you<i>, [pc.name]... that was a dirty trick you pulled. Damned scummy... maybe I’ll beat some better manners into you.");
 		output("”</i>");
 		
 		output("\n\nNot likely!");
@@ -1785,7 +1785,7 @@ public function kq2EncounterShade():void
 		if (kara.isMischievous()) output("I see you brought friends this time... might actually be a fair fight now!");
 		else
 		{
-			output(" If you want a fight, Shade, come on. We’ll send you packing");
+			output("If you want a fight, Shade, come on. We’ll send you packing");
 			if (flags["SHADE_DEFEATED_WITH_KARA"] != undefined) output(" again");
 			output(" if we have to.");
 		}
@@ -2873,3 +2873,231 @@ public function kq2DaneCoordEmail():void
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
+
+// Follow Up w/ Shade
+// next time PC interacts with Shade on Myrellion, if she’s still there. Must not have killed Shade/blown up Myrellion, etc.
+public function kq2ShadeFollowUp():void
+{
+	clearOutput();
+	showShade();
+	author("Savin");
+	
+	output("You quietly sit down at the familiar table in the back corner of the Golden Peak, across from your lover. She doesn’t look up from her holo-screen at first, pointedly ignoring you for several uncomfortable seconds before shuddering out a long, heavy sigh. The matronly kaithrit leans forward, resting her temples in her hands, still not meeting the gaze you’ve been training on her since you sat down, expectant.");
+	output("\n\n<i>“So,”</i> she finally says, shielding her eyes behind her laced fingers. <i>“This... is not a conversation I wanted to have.”</i>");
+	output("\n\nYou neither.");
+	if(pc.isMischievous()) output(" Part of you wants to suggest if that’s the case, you should both forget all about it. But you think better of it, and hold your snark back for once.");
+	output("\n\nShade takes a deep breath, holds it a moment, and lets it go until her chest looks ready to collapse. Finally, she runs a hand through her silvered hair and looks up at you. Her face is unreadable. Cold. Tired. You can’t tell if she’s angry or sad or just <i>done</i> with you. <i>“I always thought you turned up on a hell of a night, kiddo. First good turn I’d had in this dump... should have known it was a lie. A good one, too. Must have been, since I fell hook, line, and sinker for you. What I don’t get is </i>why<i>. Why’d you go all the way with it; with me? Was this all some kind of sick game to you, or...”</i>");
+	output("\n\nShe makes something between a laugh and a sigh and turns away, staring off into the crowd for a long while. Looks like she’s waiting for an answer. Your explanation. Why <i>did</i> you sleep with her?");
+	
+	processTime(5);
+	
+	kq2ShadeFollowUpMenu();
+}
+public function kq2ShadeFollowUpMenu():void
+{
+	// [A Good Fuck] [Like Shade] [For Kara] [Lie: Coincidence] [Say Nothing]
+	clearMenu();
+	addButton(0, "A Good Fuck", kq2ShadeFollowUpResponse, "fuck", "A Good Fuck", "She was good for a fuck, that’s why. What’s so surprising about that?");
+	addButton(1, "Like Shade", kq2ShadeFollowUpResponse, "shade", "Like Shade", "You really do like Shade. Even if it was just a job at first, it became more than that to you...");
+	addButton(2, "For Kara", kq2ShadeFollowUpResponse, "kara", "For Kara", "Tell Shade that you had to. Kara paid you to distract the bounty huntress, so you made damn sure she’d be distracted.");
+	addButton(3, "Lie:Coincidence", kq2ShadeFollowUpResponse, "coincidence", "Lie: Coincidence", "Tell Shade this is all a big misunderstanding. Kara hired you later -- this is all some big coincidence you’ve gotten caught up in.");
+	addButton(4, "Say Nothing", kq2ShadeFollowUpResponse, "nothing", "Say Nothing", "Keep your silence. Answering isn’t going to help here.");
+}
+
+//Append choice to previous page.
+public function kq2ShadeFollowUpResponse(response:String = "none"):void
+{
+	clearOutput();
+	showShade();
+	author("Savin");
+	
+	if(response == "nothing")
+	{
+		output("You keep your lips shut, looking away from the huntress. ");
+		output("\n\nAfter a long while, several minutes at least, Shade stands up. You keep your gaze locked where it is while she rises to her feet and walks out, straight for the door. Her hand brushes on your shoulder one last time before she departs, fading into the crowd.");
+		output("\n\nYou sit for a while after that, letting");
+		if(flags["MET_EMBRY"] != undefined) output(" [embry.name]");
+		else output(" the waitress");
+		output(" bring you a drink to ease your nerves. You can’t sit around forever, though.");
+	}
+	else if(response == "coincidence")
+	{
+		//+Heavy Mischievous.
+		pc.addMischievous(20);
+		
+		output("You spend the next few minutes explaining the Shade the convoluted web of lies that you’re able to spin. The story you tell would make a damn fine novel full of intrigue and hard-boiled action. It was all happenstance that you met Shade when she was hunting Kara, that you met the beautiful femme-fatale later and she swept you up in her adventure, only to run into your precious lover in the middle of it all. How were you to know Shade worked for pirates, or helping one cat-girl would throw you into conflict with the other. You’re an innocent bystander in all of this!");
+		output("\n\nShe listens to every word, silent and still as a statue until you wrap up your story with your arrival here, coming to try and explain what’s happened.");
+		
+		// if Ultra-High Misch Personality:
+		var mischief:Number = pc.personality;
+		// Maybe Smugglers get a bonus to this? Dunno!
+		if(pc.characterClass == GLOBAL.CLASS_SMUGGLER)
+		{
+			if(mischief < 48) mischief++;
+			if(mischief < 49) mischief++;
+			if(mischief > 51) mischief--;
+			if(mischief > 52) mischief--;
+		}
+		if(mischief > 45 && mischief <= 55)
+		{
+			output("\n\nA moment of silence passes when your story ends. And then, out of nowhere, Shade laughs. A long, hearty, throaty laugh. Her head swings back, and her arms wrap around her stomach. You blink away your surprise as you realize your lover’s absolutely losing her shit.");
+			output("\n\n<i>“Fucking hell,”</i> she finally says, wiping her eyes. <i>“I don’t even know what to say to that.”</i>");
+			output("\n\nYou’re not sure if your lie’s paid off or not until Shade finally calms down and leans back in her chair, reaching down to caress the green serpent sitting in her lap. <i>“I don’t normally believe in coincidences, but...”</i> she shakes her head and reaches across the table, taking your hand in hers. <i>“Fuck it. Fuck the blue-haired tramp. Fuck the Void, even. I just want one thing from you, [pc.name]...”</i>");
+			
+			processTime(2);
+			clearMenu();
+			addButton(0, "Next", kq2ShadeFollowUpAmends);
+			return;
+		}
+		else
+		{
+			output("\n\nA moment of silence passes when your story ends. And then, out of nowhere, Shade laughs. A wry, dark laugh that leaves her hanging her head. <i>“That’s... yeah, sure,”</i> she grunts, running a hand back through her silver hair and standing up. <i>“I think I need some fresh air. See you around, kid.”</i>");
+			output("\n\nWithout a word more, Shade stands and shoves her hands in her pockets. She gives you one last, lugubrious look before walking through the door and out into the crowd.");
+			output("\n\nYou sit for a while after that, letting");
+			if(flags["MET_EMBRY"] != undefined) output(" [embry.name]");
+			else output(" the waitress");
+			output(" bring you a drink to ease your nerves. You can’t sit around forever, though.");
+		}
+	}
+	else if(response == "kara")
+	{
+		output("You tell Shade the truth: the Kara paid you to distract her that day. You decided to make absolutely sure Shade was nowhere near her quarry, and if that meant sex, then so be it. Anything to make sure Kara got out alright.");
+		
+		if(flags["SEXED_SHADE"] <= 1)
+		{
+			output("\n\nShade nods slowly as you finish your explanation. <i>“I guess... I guess I can respect that,”</i> she sighs, looking pointedly away from you. <i>“I’ve done worse in my life. I just... no, I don’t have the right to complain. I didn’t exactly state up front whom I was working for, either.”</i>");
+			output("\n\nAfter a moment, Shade leans back in her chair and looks you over, appraisingly. <i>“Alright. I appreciate the honesty, [pc.name]. I appreciate it... but you and I are through. No vendetta, no grudge, but I don’t ever want to see you again. I’m done with this shithole planet.”</i>");
+			output("\n\nShe gets up, starting towards the door, but stops beside you. You feel the familiar, heavy warmth of her hand on your shoulder one last time before she passes you by, vanishing in the crowd.");
+			output("\n\nYou sit for a while after that, letting");
+			if(flags["MET_EMBRY"] != undefined) output(" [embry.name]");
+			else output(" the waitress");
+			output(" bring you a drink to ease your nerves. You can’t sit around forever, though.");
+		}
+		else
+		{
+			output("\n\nShade’s eyes narrow at you. <i>“I could understand that if it had been a one night stand, kid. Might have even respected it. But to string me along like that? What the </i>fuck<i>, [pc.name]? Why?”</i>");
+			
+			//Remove this option and Lie. Keep everything else.
+			kq2ShadeFollowUpMenu();
+			addDisabledButton(2, "For Kara");
+			addDisabledButton(3, "Lie:Coincidence");
+			return;
+		}
+	}
+	else if(response == "shade")
+	{
+		//+Kindness
+		pc.addNice(10);
+		
+		output("You tell Shade the truth: while it might have started out as just a job to you, you found over time that you actually really like your one-time mark -- you genuinely wanted to spend more time with Shade. Since then, you’ve enjoyed the time you’ve spent with her. ");
+		output("\n\nAnd you absolutely did not want it to end this way. ");
+		output("\n\nShade’s head lowers as you talk, ears tucking down against her silvery hair. When you’ve finished, she sighs heavily and plants her elbows on the lip of the table, resting her chin in her hands. <i>“Is that right?”</i>");
+		output("\n\nYou nod. You don’t know what else you can say to make amends with Shade, and she doesn’t seem ready to ask for anything. The huntress just stares at you for a long while, thinking. You’re starting to think she’s not going to say anything at all when she finally breaks down, taking a deep breath. <i>“I believe you,”</i> she finally murmurs, looking you dead in the eye now. <i>“I don’t exactly know what to do with that, but there it is.”</i>");
+		output("\n\nHer words feel like a huge weight’s been lifted from your shoulders, and you let out a long sigh. As if sensing you relax, Shade tsks her tongue and adds, <i>“You’re not off the hook, kiddo. Oh, no. I told you I don’t like getting played, even if it... turns into something different. Look, I just want one thing from you, [pc.name]...”</i>");
+		
+		processTime(2);
+		clearMenu();
+		addButton(0, "Next", kq2ShadeFollowUpAmends);
+		return;
+	}
+	else if(response == "fuck")
+	{
+		//+Hardness
+		pc.addHard(10);
+		
+		output("<i>“It was a good fuck. Nothing more,”</i> you say with a shrug. Shade’s a hot momma, after all, and knows her way around the bedroom. You used her for the pleasure, nothing more. And, you think, she got a little something out of it too. ");
+		output("\n\nShade scowls at you, and the next thing you know you’re reeling back, pain sparking out from your [pc.face]. Your cheek burns painfully, and you blink away stars from your vision just in time to see Shade walking off in a huff. You think about reaching out for her, but think better of it -- after a hit that hard, an armed and dangerous babe like her might just get violent if you did.");
+		output("\n\nWith a sigh, you order a drink -- heavy on the ice -- and press it to your cheek. Ouch.");
+		
+		pc.HP(-10);
+	}
+	
+	//Remove Shade from Myrellion. Doesn’t like PC anymore. 
+	flags["SHADE_DISABLED"] = 1;
+	
+	processTime(2);
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+// From Like Shade or High Misch var. of Lie.
+// if Probe Dungeon not done: Shade stays at the bar, but PC can’t interact with her. 
+// if Probe Dungeon done: Shade leaves, and moves to Uveto.
+public function kq2ShadeFollowUpAmends():void
+{
+	clearOutput();
+	showShade();
+	author("Savin");
+	
+	output("Shade squeezes your hand, looking at you with those golden eyes of hers. You take her hand, hoping to hear something that will keep the two of you together. She holds your gaze for a long moment, thinking, before finally saying what it is she wants from you: <i>“I’m going to need some time to think, [pc.name]. Maybe a lot of time. Just... I’m almost done here on Myrellion. About done with this whole planet. I’ll call you when I’m ready. <b>If</b> I’m ready.”</i>");
+	output("\n\nYou nod, sadly. It’s understandable, you guess, though it hurts all the same. You can only hope that maybe some day - someday soon - she’ll be ready to talk again.");
+	
+	// if Probe Dungeon Not Done:
+	if(!reclaimedProbeMyrellion())
+	{
+		output("\n\nShade gives you a faint smile, motioning towards the door -- a dismissal, though not entirely unkind. You give her hand a squeeze in kind before standing, and leaving the huntress to decide on the future of your relationship. If there <i>is</i> a future.");
+		
+		flags["SHADE_DISABLED"] = -1;
+	}
+	// if Probe Dungeon done:
+	else
+	{
+		output("\n\nShade nods at the thought, chewing her lip. <i>“Look, I’m leaving in a few hours.");
+		// if beat Amara in KQ2:
+		if(flags["KQ2_QUEST_FINISHED"] == 1) output(" You and your friend put my daughter’s father in the hospital. I’ve got to check in on her.");
+		else output(" Amara and I have some catching up to do while she’s here.");
+		output(" After that... I’m off this rock. Going back home to Uveto.”</i>");
+		
+		flags["SHADE_ON_UVETO"] = 1;
+	}
+	output("\n\nShe releases your hand and stands, turning towards the door. <i>“Like I said, I’ll call you when I’m ready to talk again. I just need some time to deal with... this.”</i>");
+	output("\n\nYou nod say your farewells, left to watch the huntress leave... hopefully not for the last time. ");
+	
+	processTime(5);
+	
+	flags["KQ2_SHADE_AWAY_TIME"] = GetGameTimestamp();
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+// Probe Reclamation Modification
+// If Shade’s still on-planet, not dead, doesn’t hate PC after the dungeon. Add on where Shade comes in during the Probe Reclamation scene:
+// Unlock Uveto on GalMap, if it wasn’t already.
+public function KQ2shadeHalfSisterOhNoes():void
+{
+	clearOutput();
+	showShade();
+	author("Savin");
+	
+	output("...and just save yourself from face-planting into a familiar pair of breasts barely held back by a ballistic vest.");
+	output("\n\n<i>“Woah, easy there,”</i> Shade laughs, giving you a gentle but firm push out of her personal space. <i>“Going somewhere?”</i>");
+	output("\n\nYou laugh off the near-collision and say that you just found one of your dad’s probes, loaded with the coordinates you need for the next leg of your quest. You might not be around Myrellion much after this, you add, hoping to provoke some decision from the thus-far reticent huntress.");
+	output("\n\nLuckily, it doesn’t look like your meeting was a coincidence. Shade nods and plants a heavy, firm hand on your shoulder. <i>“Good for you, kid. Looks like I’m off, too.");
+	if(flags["KQ2_QUEST_FINISHED"] != undefined) output(" Amara’s out of the hospital, and it’s been too long since I’ve seen my kid.");
+	else output(" It’s been too damn long since I’ve seen my kid.");
+	output(" Gonna head back to Uveto.”</i>");
+	output("\n\nYour gut forms a knot the moment she says it. No reunion, no forgiveness. Just her... vanishing?");
+	output("\n\nShade looks pointedly away, leaning back against the black probe floating on its hover-cart while she starts to speak. She doesn’t so much as open her mouth before the probe bleeps and its screens start glowing.");
+	output("\n\n<i>“Uh...”</i> Shade blinks, staring at the probe. <i>“Did I do something?”</i>");
+	output("\n\nOne of the Steele Tech pilots jogs over, pulling his Codex back out. <i>“Hey, weren’t these things only supposed to turn on for you, " + pc.mf("Mr.","Ms.") + " Steele?”</i>");
+	output("\n\n<i>“Yeah,”</i> you admit. <i>“Me or anybody with enough of my Dad’s DNA.”</i>");
+	output("\n\n<i>“Oh, shit,”</i> Shade says, forcing a chuckle. <i>“That’s a hell of a bug.");
+	if(pc.race() == "kaithrit" || pc.race() == "half-kaithrit") output(" What, does it think I’m your mom or something?");
+	else output(" What, does it think I’m your long-lost sister or something?");
+	output("”</i>");
+	output("\n\nThe company pilot punches a few buttons on his Codex and waves its scanner over the banged-up old probe, mumbling about that specific model of probe and software hiccups. After a moment, though, he scratches his stubbly chin and furrows his brow. You and Shade both look at him expectantly, but rather than assuring you it’s just some random bug in the century-old probe, he pushes another button and turns the scanner towards Shade.");
+	output("\n\n<i>“Hey,”</i> Shade scowls. <i>“What gives?”</i>");
+	output("\n\nThe knot that’s been sitting in your stomach only gets tighter as the pilot’s Codex beeps at him, its screen flashing in his face. Despite your distance of late, you reach over and take your lover’s hand, assuring her it’s probably just a bug. She doesn’t object to the gesture, which for a second, puts your mind at ease.");
+	output("\n\nAfter a couple more moments, the pilot makes a perplexed grunt and flips the Codex over and hands it to you screen-down. That alone is enough to make you worry - what the hell is going on? You take a peek at the Codex’s screen, where you see a bio-scanner readout showing your lover and all sorts of privacy-invading data: her age, blood type, a racial blurb about kaithrit... and a DNA analysis. Several computer-generated pinpoints cover the analysis, comparing several points on hers to your father’s - and yours. A red data readout in the corner gives what, to your untrained mind, is a meaningless series of compatibility notes summarized in big, bold capitals: <b>Chance of Close Relation: 98.356%</b>. Uh-oh...");
+	output("\n\nYou curse your randy father under your breath, suddenly realizing what’s happened... and what you’ve done. Why the hell couldn’t he have left a list of all his bastards somewhere!?");
+	// if talked about her history:
+	if(flags["SHADE_TALKED_ABOUT_FAMILY"] != undefined) output(" Then again, maybe you should have seen this coming. She did say her father was a wealthy, mystery playboy. Even if she’s a full kaithrit, your dad never spent long as any one race. He could easily have been a cat-boy forty years ago or so, well before he started to get sick...");
+	output("\n\nWith a sigh, you look between the revelatory Codex screen and Shade, sitting against the side of the probe with a hint of concern betrayed on her face. What do you say?");
+	
+	processTime(14);
+	// [Reveal] [Hide]
+	clearMenu();
+	addButton(0, "Reveal", revealShadesDad,undefined, "Reveal", "Tell Shade the truth. She was able to activate the probe because, like you and [rival.name], she carries your father’s genes. More importantly, though, the two of you have been unknowingly incestuous.");
+	addButton(1, "Hide", hideShadesRelation,undefined, "Hide", "Don’t tell Shade what your employee’s uncovered. No need to rock the cat-girl’s boat like that. Especially if you want to keep your affair with your new-found sister going.");
+}
+
