@@ -2154,6 +2154,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					{
 						output2(", Sexed him");
 						if(flags["FUCKED_VAHNS_ASS"] != undefined) output2(", Fucked his ass");
+						if(flags["HANDIED_VAHN"] != undefined) output2(", Gave him a handjob");
 					}
 				}
 				variousCount++;
