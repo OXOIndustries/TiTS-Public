@@ -1066,7 +1066,7 @@ public function yeahSureIWannaCumMoreSlut():void
 	else if(pc.ballEfficiency + pc.cumMultiplierRaw < 400) changeTier = 1;
 	else changeTier = 0.5;
 
-	pc.ballEfficiency += changeTier;
+	pc.cumMultiplierRaw += changeTier;
 	//Cumratio is shit
 	if(cumRatio < 2.5) 
 	{
