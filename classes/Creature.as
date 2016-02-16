@@ -3806,6 +3806,12 @@ package classes {
 		public function eyesDescript(): String {
 			return plural(eyeDescript());
 		}
+		
+		public function hasLongTongue():Boolean
+		{
+			return hasTongueFlag(GLOBAL.FLAG_LONG) || hasTongueFlag(GLOBAL.FLAG_PREHENSILE);
+		}
+		
 		public function tongueDescript(): String {
 			var adjectives:Array = new Array();
 			var types:Array = new Array();
@@ -13551,6 +13557,16 @@ package classes {
 		
 		public var btnTargetText:String // Base text used for buttons
 		public var buttonText:String; // Transient version of ^ with a unique ID appended
+		
+		public function hasLipPiercing():Boolean
+		{
+			return false; // 9999
+		}
+		
+		public function hasTonguePiercing():Boolean
+		{
+			return false; // 9999
+		}
 		
 	}
 }
