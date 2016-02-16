@@ -96,6 +96,7 @@
 	prepChar(justUpdate, "CRYSTALKNIGHT", GooKnight);
 	prepChar(justUpdate, "PETR", Petr);
 	prepChar(justUpdate, "VI", Vi);
+	prepChar(justUpdate, "FYN", Fyn);
 	
 	// Check all characters have version information set
 	for (var prop:String in chars)

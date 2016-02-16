@@ -134,9 +134,11 @@
 		include "../includes/events/bimboPennyAndBadgerQuest/badgerGifts.as";
 
 		//Tavros Station
+		include "../includes/tavros/aina.as";
 		include "../includes/tavros/aliss.as";
 		include "../includes/tavros/alex.as";
 		include "../includes/tavros/beths.as";
+		include "../includes/tavros/fyn.as";
 		include "../includes/tavros/inessa.as";
 		include "../includes/tavros/jade.as";
 		include "../includes/tavros/oviliumBonus.as";
@@ -182,6 +184,7 @@
 		include "../includes/tarkus/drBadger.as";
 		include "../includes/tarkus/drLash.as";
 		include "../includes/tarkus/dumbfuckBonus.as";
+		include "../includes/tarkus/goblinPool.as";
 		include "../includes/tarkus/grayGoo.as";
 		include "../includes/tarkus/lane.as";
 		include "../includes/tarkus/lapinara.as";
@@ -193,7 +196,6 @@
 		include "../includes/tarkus/stellarTether.as";
 		include "../includes/tarkus/sydianMale.as";
 		include "../includes/tarkus/theMess.as";
-		include "../includes/tarkus/goblinPool.as";
 
 		//Third planet
 		include "../includes/newTexas/newTexas.as";
@@ -1125,6 +1127,10 @@
 		public function get kara():Kara
 		{
 			return chars["KARA"];
+		}
+		public function get fyn():Fyn
+		{
+			return chars["FYN"];
 		}
 	}
 }

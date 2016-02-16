@@ -747,6 +747,7 @@ public function statisticsScreen(showID:String = "All"):void
 		if(flags["TOOK_DELILAHS_BUTTGINITY"] != undefined) totalVirginitiesTaken++;
 		if(flags["TOOK_PRINCESS_BUTTGINITY"] != undefined) totalVirginitiesTaken++;
 		if(flags["ANZHELA_ANALED"] != undefined) totalVirginitiesTaken++;
+		if(!ainaIsVirgin()) totalVirginitiesTaken++;
 		if(sleepingPartner != "" || totalVirginitiesTaken > 0)
 		{
 			output2("\n<b><u>Sexploration</u></b>");
@@ -759,6 +760,7 @@ public function statisticsScreen(showID:String = "All"):void
 		var totalProduce:Number = 0;
 		totalProduce += StatTracking.getStat("pregnancy/ovilium eggs laid");
 		totalProduce += StatTracking.getStat("pregnancy/egg trainer eggs laid");
+		totalProduce += StatTracking.getStat("pregnancy/unfertilized venus pitcher seeds");
 		if((totalOffspring + totalProduce) > 0)
 		{
 			output2("\n\n" + blockHeader("Reproduction Statistics", false));
@@ -792,11 +794,11 @@ public function statisticsScreen(showID:String = "All"):void
 				if(StatTracking.getStat("pregnancy/renvra kids") > 0)
 					output2("\n<b>* Births, Renvra’s Children: </b>" + StatTracking.getStat("pregnancy/renvra kids"));
 				if(StatTracking.getStat("pregnancy/venus pitcher seeds") > 0)
-					output2("\n<b>* Births, Venus Pitcher Seeds: </b>" + StatTracking.getStat("pregnancy/venus pitcher seeds"));
+					output2("\n<b>* Births, Venus Pitcher Seeds, Total: </b>" + StatTracking.getStat("pregnancy/venus pitcher seeds"));
+				if(StatTracking.getStat("pregnancy/venus pitcher seeds") > 0)
+					output2("\n<b>* Births, Venus Pitcher Seeds, Planted: </b>" + (StatTracking.getStat("pregnancy/venus pitcher seeds") - StatTracking.getStat("pregnancy/fertilized venus pitcher seeds/day care") - StatTracking.getStat("pregnancy/unfertilized venus pitcher seeds")));
 				if(StatTracking.getStat("pregnancy/fertilized venus pitcher seeds/day care") > 0)
 					output2("\n<b>* Births, Venus Pitcher Seeds @ Daycare: </b>" + StatTracking.getStat("pregnancy/fertilized venus pitcher seeds/day care"));
-				if(StatTracking.getStat("pregnancy/unfertilized venus pitcher seed") > 0)
-					output2("\n<b>* Births, Venus Pitcher Seeds, Unfertilized: </b>" + StatTracking.getStat("pregnancy/unfertilized venus pitcher seed"));
 				if(StatTracking.getStat("pregnancy/queen of the deep eggs") > 0)
 					output2("\n<b>* Births, Water Queen Young: </b>" + StatTracking.getStat("pregnancy/queen of the deep eggs"));
 				// Father
@@ -843,6 +845,8 @@ public function statisticsScreen(showID:String = "All"):void
 					output2("\n<b>* Births, Ovilium Eggs, Total: </b>" + StatTracking.getStat("pregnancy/ovilium eggs laid"));
 				if(StatTracking.getStat("pregnancy/egg trainer eggs laid") > 0)
 					output2("\n<b>* Births, TamaniCorp Egg Trainer Eggs, Total: </b>" + StatTracking.getStat("pregnancy/egg trainer eggs laid"));
+				if(StatTracking.getStat("pregnancy/unfertilized venus pitcher seeds") > 0)
+					output2("\n<b>* Births, Venus Pitcher Seeds, Unfertilized: </b>" + StatTracking.getStat("pregnancy/unfertilized venus pitcher seeds"));
 			}
 		}
 		
@@ -2349,6 +2353,41 @@ public function displayEncounterLog(showID:String = "All"):void
 					output2("\n<b>* Nahri:</b>");
 					if(9999 == 1) output2(" Met her");
 					else output2(" Heard of her");
+				}
+				variousCount++;
+			}
+			// Residential Deck Stuff!
+			if(flags["AINA_DAY_MET"] != undefined || flags["SEEN_FYN"] == true)
+			{
+				output2("\n<b><u>Residential Deck</u></b>");
+				// Aina
+				if(flags["AINA_DAY_MET"] != undefined)
+				{
+					if(flags["MET_AINA"] == undefined) output2("\n<b>* Centaur Girl:</b> Seen her");
+					else
+					{
+						output2("\n<b>* Aina:</b>");
+						if(ainaIsInHeat()) output2(" In heat,");
+						output2(" Met her");
+						if(flags["HELPED_AINA"] == true)
+						{
+							output2(", Helped");
+							if(flags["AINA_WAND_FIXED"] == true) output2(" fix her sex-toy");
+							else output2(" her");
+						}
+						if(flags["AINA_SEXED"] > 0) output2("\n<b>* Aina, Times Sexed: </b>" + flags["AINA_SEXED"]);
+						if(flags["AINA_SEXED_WITH_TOY"] > 0) output2("\n<b>* Aina, Times Fucked with Anal Wand: </b>" + flags["AINA_SEXED_WITH_TOY"]);
+					}
+				}
+				// Fyn
+				if(flags["SEEN_FYN"] == true)
+				{
+					if(flags["MET_FYN"] == undefined) output2("\n<b>* Shirtless Man:</b> Seen him");
+					else
+					{
+						output2("\n<b>* Fyn:</b> Met him");
+						if(flags["FYN_SEXED"] > 0) output2("\n<b>* Fyn, Times Sexed: </b>" + flags["FYN_SEXED"]);
+					}
 				}
 				variousCount++;
 			}
@@ -4016,6 +4055,8 @@ public function displayEncounterLog(showID:String = "All"):void
 		{
 			output2("\n<b>* Kara:</b> Met her");
 			if(flags["KQ2_SEX_PAY"] != undefined || flags["SEXED_KARA"] != undefined) output2(", Sexed her");
+			if(flags["KQ2_KARA_SACRIFICE"] != undefined) output2(", Inactive");
+			if(flags["KQ2_BETRAYED_KARA"] != undefined) output2(", <i>Whereabouts unknown</i>");
 			roamCount++;
 		}
 		// Kirobutts!
@@ -4142,6 +4183,7 @@ public function displayEncounterLog(showID:String = "All"):void
 		{
 			output2("\n<b>* Shade:</b> Met her");
 			if(flags["TOLD_SHADE_SHES_YER_SIS"] != undefined) output2(", Told her she’s your sister");
+			if(flags["KQ2_SHADE_DEAD"] != undefined) output2(", Inactive");
 			if(flags["SHADE_GOT_HELP_WITH_LAYING"] != undefined)
 			{
 				output2("\n<b>* Shade, Tail Cunt:</b> Helped her with laying egg");

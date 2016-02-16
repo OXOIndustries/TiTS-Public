@@ -225,13 +225,17 @@
 			return false;
 		}
 		
+		override public function bellyRating():Number
+		{
+			if(!isPregnant() || kGAMECLASS.flags["BRIHA_INCUBATION_TIMER"] > 90) return 0;
+			return (11 + Math.round(kGAMECLASS.flags["BRIHA_INCUBATION_TIMER"]/1.5));
+		}
 		
-		override public function bellyDescript(bForceSize:Boolean = false): String {
+		override public function bellyDescript(bForceSize:Boolean = false):String
+		{
 			var sBuilder:String = "";
 
-			var belly:Number = 0;
-			if(kGAMECLASS.flags["BRIHA_INCUBATION_TIMER"] > 90) belly = 0;
-			else belly = 11 + Math.round(kGAMECLASS.flags["BRIHA_INCUBATION_TIMER"]/1.5);
+			var belly:Number = bellyRating();
 
 			var sizeDescripts:Array = new Array();
 			var pregDescripts:Array = new Array();

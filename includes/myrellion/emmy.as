@@ -23,11 +23,12 @@ import classes.Characters.PlayerCharacter;
 //EMMY_FLOWER_GIFTED - Have you given her a flower? If undefined and you passed it on the quest, you did it via email.
 //EMMY_TRADE_OFFERED - offered to sell Emmy shit yet.
 
-public function showEmmy():void
+public function showEmmy(nude:Boolean = false):void
 {
 	if(flags["MET_EMMY"] == undefined) showName("KIHACORP\nREP.");
 	else showName("\nEMMY");
-	showBust("EMMY");
+	if(!nude) showBust("EMMY");
+	else showBust("EMMY_NUDE");
 }
 
 //In-Room Bonus Notes
@@ -60,6 +61,13 @@ public function emmyBonusNotes():Boolean
 	return false;
 }
 
+public function isMyrellionMorph(target:Creature):Boolean
+{
+	if(target == null) return false;
+	var race:String = target.race();
+	return (InCollection(race, ["myr", "nyrea", "gold myr", "red myr", "orange myr"]));
+}
+
 //First Time Approach
 public function emmyFirstTimeApproach():void
 {
@@ -67,8 +75,7 @@ public function emmyFirstTimeApproach():void
 	showEmmy();
 	output("With a shrug, you amble on up to the excessively-endowed KihaCorp rep.");
 	//Myr or Nyrea Race
-	var race:String = pc.race();
-	if(race == "myr" || race == "nyrea" || race == "gold myr" || race == "red myr" || race == "orange myr")
+	if(isMyrellionMorph(pc))
 	{
 		output("\n\n<i>“I’m sorry, but we’re not licensed to distribute weapons to state militaries, and due to the present conflict, any weapon distributed to a [pc.race] would undoubtedly find its way into military use.”</i> The jackaless sighs, dragging her fingers through her lush, black hair. <i>“Look, between you and me, I’d love to give you all the guns and shields you can carry, but rules are rules. There’s a lot I can get away with, but that would cost my job. Understand?”</i> She looks at you condescendingly, an eyebrow raised as if she expects you not to.");
 		output("\n\n<i>“But... I’m not a myr,”</i> you try to explain.");
@@ -155,6 +162,11 @@ public function leaveThisShit():void
 
 public function emmyRepeatWrapper():void
 {
+	if(isMyrellionMorph(pc))
+	{
+		emmyFirstTimeApproach();
+		return;
+	}
 	if(MailManager.isEntryViewed("emmy_gift_starter") && flags["EMMY_QUEST"] == 1)
 	{
 		clearOutput();
@@ -288,7 +300,7 @@ public function tradeWivEmmy():void
 		shopkeep.keeperSell += "\n\nSilken fingertips lay themselves across your busily working hands. <i>“Don’t be so hasty, ";
 		if(flags["MET_EMMY"] != undefined) shopkeep.keeperSell += "[pc.name]";
 		else shopkeep.keeperSell += "[pc.race]";
-		shopkeep.keeperSell += ". I’ll still deal with you. It just has to be under the table...”</i> She glances around, noting the distinct lack of tables. <i>“...so to speak.”</i>";
+		shopkeep.keeperSell += ". I’ll still deal with you. It just has to be under the table...”</i> She glances around, noting the distinct lack of tables. <i>“... so to speak.”</i>";
 		flags["EMMY_TRADE_OFFERED"] = 1;
 	}
 	//Repeat
@@ -595,7 +607,7 @@ public function askEmmyBoutMeleeShit():void
 		if(flags["MET_EMMY"] == undefined) output("Emmy’s");
 		else output("The appreciative herm’s");
 		output(" cock is straining against her jumpsuit by the time you finish, at least two or three inches longer than before. A little drool has even collected on her top-shelf tits, making the gleaming white of her outfit shine even brighter in the artificial light. The bitch is actually panting, but when she sees you staring, she wipes the drool off her muzzle and awkwardly minces her way back behind the counter.");
-		output("\n\n<i>“...Ooookay, so uh... did you have any other questions or did you...”</i> she trails off into nothing and violently shakes her head. <i>“Sorry, was there something else I could answer for you?”</i> She seems a little more in control of herself for the moment, but her hungry eyes tell a different tale.");
+		output("\n\n<i>“... Ooookay, so uh... did you have any other questions or did you...”</i> she trails off into nothing and violently shakes her head. <i>“Sorry, was there something else I could answer for you?”</i> She seems a little more in control of herself for the moment, but her hungry eyes tell a different tale.");
 	}
 	processTime(4);
 	emmyTalkMenu(askEmmyBoutMeleeShit);
@@ -1028,7 +1040,7 @@ public function moreSeriousEmmyTalkAboutEmail():void
 	if(!(pc.armor is EmptySlot)) output("through your [pc.armor].");
 	else output("against your [pc.skin].");
 
-	output("\n\nYour head is spinning, and you’d like nothing better than to bed Emmy right here and now. Still, it sounds like she wants you to tend to her for a chance. <i>“...what?”</i> you pant, confused.");
+	output("\n\nYour head is spinning, and you’d like nothing better than to bed Emmy right here and now. Still, it sounds like she wants you to tend to her for a chance. <i>“... what?”</i> you pant, confused.");
 
 	output("\n\nThe seemingly ravenous jackaless gradually masters her ardor, separating herself from you a finger at a time. <i>“Sorry, I just get so... so sex-crazy around you. You have no idea how badly I want you here. At all hours of the day, I’m just lounging around the shop and wishing you’d suck me off, tongue my pussy until your face is all shiny and I’m painting my tits white. Or that you’d just fondle me through the suit and make me work the rest of the day, soaking in my own cum, ya know?”</i>");
 
@@ -1468,7 +1480,7 @@ public function emmyCunnilingusFinale():void
 	output("<i>“How’s that?”</i> Emmy purrs between attempts to clean your [pc.girlCum] from her mouth. So much of her face is stained with the evidence of your love that she’ll be grooming for a good while yet.");
 	output("\n\nThe best answer you can manage are a few breathy pants and a nod as you climb back up onto your elbows.");
 	output("\n\nEmmy giggles and helps you up, though not without a few slips. The suit shrouding her fingertips is slick with your spent passion. Pussy-scent clings to her like perfume, twice as strong and far more enjoyable. It summons up pangs of remembered pleasure to flutter across your belly.");
-	output("\n\n<i>“Damn,”</i> you exhale, <i>“...that was good.”</i>");
+	output("\n\n<i>“Damn,”</i> you exhale, <i>“... that was good.”</i>");
 	output("\n\nEmmy smiles, though her tongue still slips out in a feeble attempt to groom her cunt-soiled face. <i>“Great. Now while you cool down, I’ve got to freshen up. Some of us still have a store to run.”</i> The jackaless makes for the ‘Employees Only’ door, her knees pressed together. Every step is accompanied by the sound of liquid sloshing inside her one-piece suit. Her hips sway pendulously from side to side, the byproduct of her body’s desire for every ounce of friction upon her own unsated folds.");
 	output("\n\nYou gather your things, and by the time you’re ready to go, the jackaless has returned, wearing a fresh white jumpsuit and a smile. Damn, she’s fast.");
 	processTime(4);
@@ -1641,7 +1653,7 @@ public function emmySixtyNine():void
 public function suckEmmysCockDuring69():void
 {
 	clearOutput();
-	showEmmy();
+	showEmmy(true);
 	output("You grab hold of her suit zipper and yank it down, allowing a bloated canine cock to spring out, complete with a tapered head and bulgy knot. Emmy fidgets nervously when you grab the member, already slick with pre-cum. It firms perceptibly beneath your fingers and fills the air with the musky odor of a herm long-denied, aided by the matted fur below, pasted down by her dick and its drippings.");
 	output("\n\nYou tease, <i>“");
 	if(pc.isBimbo()) output("I couldn’t not stick a cock like this in my mouth! It’s just too yummy looking.");
@@ -1701,7 +1713,7 @@ public function suckEmmysCockDuring69():void
 public function lickEmmysPussyDuring69():void
 {
 	clearOutput();
-	showEmmy();
+	showEmmy(true);
 	output("You grab hold of her suit zipper and yank it down, allowing a bloated canine cock to spring out. The vulgar phallus is hardly your target - just another obstacle on the quest for cunt. You edge it out of the way with your elbow and lift her sack to reveal a gleaming treasure box. Her black lips are puffy with need and so wet that the underside of her balls may as well be an extension of her cunt.");
 	output("\n\nYou tease, <i>“I think this little lady needs the attention a little more.");
 	if(pc.isBimbo()) output(" I bet she’s super delic-deli... uhmm, yummy!");
@@ -1731,7 +1743,7 @@ public function lickEmmysPussyDuring69():void
 public function emmy69MiddleOfScene(youSuck:int):void
 {
 	clearOutput();
-	showEmmy();
+	showEmmy(true);
 	var x:int = 0;
 	var emmySucks:int = 0;
 	//Emmy Sucks Yer Cock
@@ -1790,7 +1802,7 @@ public function emmy69MiddleOfScene(youSuck:int):void
 public function emmy69OrgasmTime(args:Array):void
 {
 	clearOutput();
-	showEmmy();
+	showEmmy(true);
 	var youSuck:int = args[0];
 	var emmySucks:int = args[1];
 	var x:int = args[2];
@@ -1868,7 +1880,7 @@ public function emmy69Epilogue(args:Array):void
 public function emmyCockSlobber():void
 {
 	clearOutput();
-	showEmmy();
+	showEmmy(true);
 	author("Frogapus&Fenoxo");
 	output("<i>“");
 	if(pc.isBimbo()) output("Shut up and... just let me suck that cock,");
@@ -1956,7 +1968,7 @@ public function emmyCockSlobber():void
 public function eatOutEmmysVagYouPoorPussyAddictedSod():void
 {
 	clearOutput();
-	showEmmy();
+	showEmmy(true);
 	output("<i>“");
 	if(pc.isBimbo()) output("Your poor pussy is so totally ignored! The poor thing needs some attentions, Ems! Good thing you’ve got me here to take care of you");
 	else if(pc.isNice()) output("It’s my turn to take care of you, Em");

@@ -98,18 +98,28 @@ public function xenogenOutsideBlurb():Boolean
 
 public function hangarBonus():Boolean 
 {
+	output("You’re within a stuffy tube of metal and plastic. Steady, mechanical thrums suffuse the air around you. The inside of the cylinder-like lift is lined by a brass-hued railing, used to steady oneself during high speed travel through the kilometers-long station.\n\nThere’s a sturdy mechanical keypad with which to designate your target level. Right now, the only floors of interest are the hangar, merchant and residential levels.");
+	
 	if (flags["SAENDRA_XPACK1_STATUS"] == 1 || flags["SAENDRA_XPACK1_STATUS"] == 2)
 	{
+		output("\n\nYou also have the option to take the lift up to Deck 92 to meet up with Saendra");
+		if(flags["SAENDRA_XPACK1_STATUS"] == 2) output(". You are sure taking your time about it though");
+		output("--whatever she contacted you about, it sounded pretty urgent.");
 		addButton(0, "Deck 92", saendraX1LiftGo); 
 	}
 	
 	if(currentLocation == "LIFT: MERCHANT DECK") {
 		output("\n\n<b>You are currently on the merchant deck.</b>");
 		addButton(7,"Down",liftMove, "TAVROS LIFT");
+		addButton(5,"Up",liftMove, "LIFT: RESIDENTIAL DECK");
 	}
 	else if(currentLocation == "TAVROS LIFT") {
 		output("\n\n<b>You are currently on the hangar deck.</b>");
 		addButton(5,"Up",liftMove, "LIFT: MERCHANT DECK");
+	} 
+	else if(currentLocation == "LIFT: RESIDENTIAL DECK") {
+		output("\n\n<b>You are currently on the residential deck.</b>");
+		addButton(7,"Down",liftMove, "LIFT: MERCHANT DECK");
 	}
 	return false;
 }
@@ -161,10 +171,11 @@ public function phoenixLocationSetter():Boolean
 	return false;
 }
 
-public function liftMove(destination:String):void {
-	move(destination,false);
+public function liftMove(destination:String):void
+{	
 	clearOutput();
 	output("Your stomach drops as the lift kicks into gear. The gentle, steady thrum of powerful machinery fills the metallic tube as you are brought to your destination, slowly decelerating when you arrive.");
+	move(destination,false);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -488,12 +499,19 @@ public function quickLoot(... args):void
 	itemCollect(args);
 }
 
+public function mhengaActiveBounty():Boolean
+{
+	var openQuests:int = 0;
+	
+	if(flags["SEEN_JULIANS_AD"] == undefined) openQuests++;
+	
+	if(openQuests > 0) return true;
+	return false;
+}
 public function bountyBoardExtra():Boolean
 {
 	output("\n\nA large bulletin board has been erected against the wall of the building to the north.");
-	var openQuests:int = 0;
-	if(flags["SEEN_JULIANS_AD"] == undefined) openQuests++;
-	if(openQuests > 0) output(" <b>There are new notices there.</b>");
+	if(mhengaActiveBounty()) output(" <b>There are new notices there.</b>");
 	addButton(0,"Bulletins",checkOutBountyBoard);
 	return false;
 }
@@ -501,19 +519,21 @@ public function checkOutBountyBoard():void
 {
 	clearOutput();
 	output("The bounty board is covered in simple leaflets, papers, and all manner of other detritus. Most appear to be for mundane tasks like trading construction equipment, advertising repair services, or business advertisements. Still, there's at least one that stands out.");
+	
 	output("\n\n");
 	if(flags["SEEN_JULIANS_AD"] == undefined) {
-		output("<b>New: </b>");
+		output("<b>New:</b>");
 		flags["SEEN_JULIANS_AD"] = 1;
 	}
 	else {
-		if(flags["SECOND_CAPTURED_ZIL_REPORTED_ON"] == 1) output("<b>Completed: </b>");
-		else if(flags["ACCEPTED_JULIANS_ZIL_CAPTURE_MISSION"] == 1) output("<b>Accepted: </b>");
-		else output("<b>Seen Before: </b>");
+		if(flags["SECOND_CAPTURED_ZIL_REPORTED_ON"] == 1) output("<b>Completed:</b>");
+		else if(flags["ACCEPTED_JULIANS_ZIL_CAPTURE_MISSION"] == 1) output("<b>Accepted:</b>");
+		else output("<b>Seen Before:</b>");
 	}
 	output(" Dr. Julian of the Xenogen Biotech labs on the south end of town is looking for 'a strapping, adventurous type' to brave the jungles in search of something he can use for his research.");
 	if(flags["SECOND_CAPTURED_ZIL_REPORTED_ON"] == 1) output(" You know from experience that it's quite lucrative.");
 	else output(" It seems like it could be quite lucrative.");
+	
 	processTime(2);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -1021,6 +1041,48 @@ public function fixCommsOnTarkus():void
 	output("A few well placed kinetic repairs knock the crust loose from the antennas. The screen lights up. Perfect!");
 	flags["TARKUS_TAXI_STOP_UNLOCKED"] = 1;
 	processTime(1);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//adds a Button for the Notice Board on the residential deck on Tavros
+public function tavrosRDActiveNotice():Boolean
+{
+	var openNotice:int = 0;
+	
+	if(flags["AINA_NOTICE_1_READ"] == undefined) openNotice++;
+	if(flags["FYN_NOTICE_1_READ"] == undefined) openNotice++;
+	
+	if(openNotice > 0) return true;
+	return false;
+}
+public function tavrosResidentialDeckNoticeBoard():void
+{
+	output("\n\nA holographic board floats here, littered with community notices for deck residents. It seems anyone can put a message here, and quite a few people have taken advantage of it.");
+	addButton(0,"NoticeBoard",displayNoticeBoardRD);
+}
+public function displayNoticeBoardRD():void {
+	clearOutput();
+	
+	output("While this public notice board is holographic, it's easy to bring up a digipen and scribble whatever you want on it. There's a section for official notices to deck residents, informing them of maintenance schedules and other important events. The rest is for use by the public; filled with general requests or advertisements.");
+	
+	output("\n\n");
+	if(flags["AINA_NOTICE_1_READ"] == undefined) {
+		output("<b>New:</b>");
+		flags["AINA_NOTICE_1_READ"] = true;
+	}
+	else output("<b>Seen Before:</b>");
+	output(" It appears someone in the western walkway, room 154, is looking for a 'discreet individual' to help them with an unspecified problem. Pretty ambiguous.");
+	
+	output("\n\n");
+	if(flags["FYN_NOTICE_1_READ"] == undefined) {
+		output("<b>New:</b>");
+		flags["FYN_NOTICE_1_READ"] = true;
+	}
+	else output("<b>Seen Before:</b>");
+	output(" There's a notice for 'interested individuals' to visit the eastern walkway for 'lessons', room 112. There seems to have been more to the message, but someone else has placed their own holo notice over it.");
+	
+	processTime(2);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

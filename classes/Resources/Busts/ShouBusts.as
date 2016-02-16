@@ -82,6 +82,11 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/ellie_nude.png", mimeType = "image/png")]
 		public var Bust_ELLIE_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/emmy.png", mimeType = "image/png")]
+		public var Bust_EMMY:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/emmy_nude.png", mimeType = "image/png")]
+		public var Bust_EMMY_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/embry_0.png", mimeType = "image/png")]
 		public var Bust_EMBRY_0:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/embry_0_nude.png", mimeType = "image/png")]
@@ -216,6 +221,8 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/valeria.png", mimeType = "image/png")]
 		public var Bust_VALERIA:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/wetra_hound.png", mimeType = "image/png")]
+		public var Bust_WETRAHOUND:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/wetraxxel.png", mimeType = "image/png")]
 		public var Bust_WETRAXXEL:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/wetraxxel_nude.png", mimeType = "image/png")]
