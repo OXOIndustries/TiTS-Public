@@ -297,6 +297,10 @@ package classes {
 			if (!(lowerUndergarment is EmptySlot)) r.combineResistances(lowerUndergarment.resistances);
 			if (!(upperUndergarment is EmptySlot)) r.combineResistances(upperUndergarment.resistances);
 			if (!(accessory is EmptySlot)) r.combineResistances(accessory.resistances);
+			
+			// Effect: Boosts max HP and poison resistance by 10% for 24 hours
+			if (hasStatusEffect("Heart Tea")) r.poison.damageValue = r.poison.damageValue * 1.1;
+			
 			return r;
 		}
 		
@@ -2836,6 +2840,9 @@ package classes {
 				hitPoints += level * 5;
 			if (characterClass == GLOBAL.CLASS_ENGINEER)
 				hitPoints -= level * 5;
+				
+			if (hasStatusEffect("Heart Tea")) hitPoints *= 1.1;
+				
 			return hitPoints;
 		}
 		public function maxHP(): Number {
