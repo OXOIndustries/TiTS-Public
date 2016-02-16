@@ -912,7 +912,7 @@ public function viPotencyTest():void
 	//PC has multi-cocks:
 	if(pc.cockTotal() > 1) output(" – now one of many – ");
 	else output(" ");
-	output("and pulls out a box of condoms from underneath the bed. She pulls out one and removes the rubbery ring from a packet, placing it flush on your [pc.cockHeadBiggest]. <i>“... Here’s the bit I like the most!”</i> The violet-haired nurse exclaims. Placing her plush lips on the tip of your prick, she masterfully slides the prophylactic down your prick, sliding her soft lips down and around it at the same time. By the time she reaches your [pc.knot], your twitching tip is completely buried in her ");
+	output("and pulls out a box of condoms from underneath the bed. She pulls out one and removes the rubbery ring from a packet, placing it flush on your [pc.cockHeadBiggest]. <i>“... Here’s the bit I like the most!”</i> The violet-haired nurse exclaims. Placing her plush lips on the tip of your prick, she masterfully slides the prophylactic down your prick, sliding her soft lips down and around it at the same time. By the time she reaches your [pc.knotBiggest], your twitching tip is completely buried in her ");
 	if(pc.biggestCockLength() < 7) output("mouth");
 	//mid:
 	else if(pc.biggestCockLength() < 10) output("gullet");
