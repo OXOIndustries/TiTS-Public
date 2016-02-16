@@ -1733,7 +1733,7 @@ public function yarastaSexApproach():void
 		{
 			output("<i>“I think I’d rather fuck the shit out of you than talk,”</i> you say domineeringly.");
 			output("\n\nYarasta looks over her glasses at you. <i>“As long as your ");
-			if(pc.hasVagina()) output("penis");
+			if(pc.hasCock()) output("penis");
 			else if(pc.hasVagina()) output("vagina");
 			else output("butthole");
 			output(" isn’t as dirty as your mouth.”</i>");
@@ -2369,6 +2369,7 @@ public function ladyType69():void
 	processTime(32);
 	pc.girlCumInMouth();
 	pc.orgasm();
+	IncrementFlag("SEXED_YARASTA");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

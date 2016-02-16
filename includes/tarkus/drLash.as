@@ -161,7 +161,7 @@ public function dontBeADumbShitAtGreetingPartDues():void
 	if(pc.isMischievous()) output(" This doesn’t exactly look like the kind of place you’d go for a broken limb or a cavity.");
 	output("”</i>");
 	output("\n\nStretching his top two arms wide to show off his lab, the good doctor replies, <i>“Research, of course! The greatest calling an individual could ever pursue! The kind of calling that mating and breeding always seem to get in the way of. Could you imagine where we’d be, technologically, if we didn’t have our most brilliant technicians constantly throwing away their careers to look after pint-sized, imperfect clones of themselves? Or worse, simply letting their lusts overwhelm their scientific pursuits like that cock-craving ausar down the hall.”</i>");
-	output("\n\nAn almost serpentine grin spreads across his fingers while his lower two arms steeple their fingers together. <i>“We could be kings of solar systems, galaxy-hopping starlords whose creations could reshape the very fabrics of reality. And we’d be so much closer, if it wasn’t for the UGC’s constant meddling.”</i>");
+	output("\n\nAn almost serpentine grin spreads across his lips while his lower two arms steeple their fingers together. <i>“We could be kings of solar systems, galaxy-hopping starlords whose creations could reshape the very fabrics of reality. And we’d be so much closer, if it wasn’t for the UGC’s constant meddling.”</i>");
 	output("\n\nHe shakes his head, seemingly calming himself. <i>“That’s neither here nor there. What is important is that ");
 	if(pc.hasGenitals())
 	{
