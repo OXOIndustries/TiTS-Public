@@ -1059,45 +1059,60 @@ public function yeahSureIWannaCumMoreSlut():void
 	trace("ORIGINAL GOO SHIT!");
 	trace("RATIO: " + cumRatio + " Efficiency: " + pc.ballEfficiency + " cumMultiplierRaw: " + pc.cumMultiplierRaw);
 	var changeTier:Number = 0;
-	if(pc.ballEfficiency + pc.cumMultiplierRaw < 25) changeTier = 10;
-	else if(pc.ballEfficiency + pc.cumMultiplierRaw < 50) changeTier = 7;
-	else if(pc.ballEfficiency + pc.cumMultiplierRaw < 100) changeTier = 5;
-	else if(pc.ballEfficiency + pc.cumMultiplierRaw < 200) changeTier = 4;
-	else if(pc.ballEfficiency + pc.cumMultiplierRaw < 400) changeTier = 3;
-	else changeTier = 1;
+	if(pc.ballEfficiency + pc.cumMultiplierRaw < 25) changeTier = 6;
+	else if(pc.ballEfficiency + pc.cumMultiplierRaw < 50) changeTier = 5;
+	else if(pc.ballEfficiency + pc.cumMultiplierRaw < 100) changeTier = 4;
+	else if(pc.ballEfficiency + pc.cumMultiplierRaw < 200) changeTier = 2.5;
+	else if(pc.ballEfficiency + pc.cumMultiplierRaw < 400) changeTier = 1;
+	else changeTier = 0.5;
 
 	pc.ballEfficiency += changeTier;
 	//Cumratio is shit
-	if(cumRatio < 2.5) pc.ballEfficiency = (5 * pc.cumMultiplierRaw) - pc.ballEfficiency;
+	if(cumRatio < 2.5) 
+	{
+		pc.ballEfficiency += 12 * changeTier;
+	}
 	//Normalish
-	else if(cumRatio < 4) pc.ballEfficiency = (8 * pc.cumMultiplierRaw) - pc.ballEfficiency;
+	else if(cumRatio < 4) 
+	{
+		//pc.ballEfficiency = (8 * pc.cumMultiplierRaw) - pc.ballEfficiency;
+		pc.ballEfficiency += 11 * changeTier;
+	}
 	//Close to this TF's goal:
-	else if(cumRatio < 7) pc.ballEfficiency = (8 * pc.cumMultiplierRaw) - pc.ballEfficiency;
+	else if(cumRatio < 7) 
+	{
+		//pc.ballEfficiency = (8 * pc.cumMultiplierRaw) - pc.ballEfficiency;
+		pc.ballEfficiency += 10 * changeTier;
+	}
 	//Perfect goal!
 	else if(cumRatio < 9)
 	{
 		//Keep it "perfect"
-		pc.ballEfficiency = (8 * pc.cumMultiplierRaw) - pc.ballEfficiency;
+		//pc.ballEfficiency = (8 * pc.cumMultiplierRaw) - pc.ballEfficiency;
+		pc.ballEfficiency += 8 * changeTier;
 	}
 	//Too high
 	else if(cumRatio < 12)
 	{
-		pc.ballEfficiency = (8 * pc.cumMultiplierRaw) - pc.ballEfficiency;
+		//pc.ballEfficiency = (8 * pc.cumMultiplierRaw) - pc.ballEfficiency;
+		pc.ballEfficiency += 6 * changeTier;
 	}
 	//Way Too high
 	else if(cumRatio < 20)
 	{
-		pc.ballEfficiency = (11 * pc.cumMultiplierRaw) - pc.ballEfficiency;
+		//pc.ballEfficiency = (11 * pc.cumMultiplierRaw) - pc.ballEfficiency;
+		pc.ballEfficiency += 3 * changeTier;
 	}
 	//Obscenely high
 	else if(cumRatio < 50)
 	{
-		pc.ballEfficiency = (15 * pc.cumMultiplierRaw) - pc.ballEfficiency;
+		//pc.ballEfficiency = (15 * pc.cumMultiplierRaw) - pc.ballEfficiency;
+		pc.ballEfficiency += 1 * changeTier;
 	}
 	//Ridic high.
 	else
 	{
-		pc.ballEfficiency = (45 * pc.cumMultiplierRaw) - pc.ballEfficiency;
+		//pc.ballEfficiency = (45 * pc.cumMultiplierRaw) - pc.ballEfficiency;
 	}
 	trace("POST TF GOOSHIT!");
 	trace("RATIO: " + cumRatio + " Efficiency: " + pc.ballEfficiency + " cumMultiplierRaw: " + pc.cumMultiplierRaw);
