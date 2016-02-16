@@ -67,6 +67,10 @@
 
 		[Embed(source = "../../../assets/images/npcs/gats/Dr_Haswell.png", mimeType = "image/png")]
 		public var Bust_DR_HASWELL:Class;
+
+		[Embed(source = "../../../assets/images/npcs/gats/Tamwolf.png", mimeType = "image/png")]
+		public var Bust_FENRISDRONEIV:Class;
+		public var Bounds_FENRISDRONEIV:Rectangle = new Rectangle(48, 16, 64, 64);
 		
 		[Embed(source = "../../../assets/images/npcs/gats/Flahne.png", mimeType = "image/png")]
 		public var Bust_FLAHNE:Class;

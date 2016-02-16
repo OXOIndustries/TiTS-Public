@@ -189,7 +189,7 @@ public function myrellionNevrieMenu(cFunc:Function = null):void
 public function myrellionNevrieShop(isDiscount:Boolean = false):void
 {
 	clearOutput();
-	nevrieHeader();
+	nevrieHeader(isDiscount);
 
 	flags["NEVRIE_SHOPPED"] = 1;
 
@@ -308,7 +308,7 @@ public function myrellionNevrieDiscount():void
 public function myrellionNevrieBlowjerb():void
 {
 	clearOutput();
-	nevrieHeader();
+	nevrieHeader(true);
 
 	output("You grin at her and take a step around the side of the desk. <i>“Well, if you insist.”</i>");
 

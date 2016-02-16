@@ -436,7 +436,7 @@ public function flahneSexMenu(display:Boolean = true):void {
 	else this.addDisabledButton(4,"Bend Her Over","Bend Her Over","This scene requires you have a dick that would fit inside Flahne's vagina.");
 
 	//Gardeford's Exhibitionism Scenes
-	if(flags["FLAHNE_EXHIBITIONISM_UNLOCKED"] == 1 && flags["FLAHNE_DESK_DISABLED"] == undefined)
+	if(flags["FLAHNE_EXHIBITIONISM_UNLOCKED"] == 1 && flags["FLAHNE_DESK_DISABLED"] != 1)
 	{
 		if(pc.cockThatFits(chars["FLAHNE"].vaginalCapacity()) >= 0 && pc.hasCock()) 
 			addButton(5,"(M)Exhibition",flahneIfMalesFitTheySitExhibitionism,undefined,"(M)Exhibition","Get Flahne to try some exhibitionism and get your rocks off in the process.");

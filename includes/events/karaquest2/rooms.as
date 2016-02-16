@@ -401,7 +401,7 @@ public function kquest2InitRooms():void
 	rooms["K2_LAB2"].addFlag(GLOBAL.INDOOR);
 
 	rooms["K2_KHANSQUARTERS"] = new RoomClass(this);
-	rooms["K2_KHANSQUARTERS"].roomName = "KHANS\nQUARTERS";
+	rooms["K2_KHANSQUARTERS"].roomName = "KHAN'S\nQUARTERS";
 	//rooms["K2_KHANSQUARTERS"].description = "desc";
 	rooms["K2_KHANSQUARTERS"].runOnEnter = kq2rfKhansQuarters;
 	rooms["K2_KHANSQUARTERS"].planet = planetName;

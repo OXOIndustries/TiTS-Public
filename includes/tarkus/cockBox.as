@@ -152,6 +152,13 @@ public function cockBoxMenu(x:int):void
 	addButton(3,"Kui-Tan",dickBoxTFColorSelect,[x,GLOBAL.TYPE_KUITAN],"Kui-Tan","Get a bulbous penis, like the kui-tan.");
 	addButton(4,"Leithan",dickBoxTFColorSelect,[x,GLOBAL.TYPE_NAGA],"Leithan","Get a smooth, tapered penis like that of a leithan.");
 	addButton(5,"Terran",dickBoxTFColorSelect,[x,GLOBAL.TYPE_HUMAN],"Human","Get a fleshy, pink penis, like a terran.");
+	// Unlockables
+	if(flags["COCKBOX_UPGRADE"] != undefined)
+	{
+		addButton(6,"Demonic",dickBoxTFColorSelect,[x,GLOBAL.TYPE_DEMONIC],"Demonic","Get a knotted, nubby and sinister-looking penis.");
+		addButton(7,"Tentacle",dickBoxTFColorSelect,[x,GLOBAL.TYPE_TENTACLE],"Tentacle","Get a prehensile tentacle penis.");
+		addButton(8,"Draconic",dickBoxTFColorSelect,[x,GLOBAL.TYPE_DRACONIC],"Draconic","Get a tapered and knotted dragon penis.");
+	}
 	
 	addButton(14,"Back",useInstalledDickBox);
 }
@@ -163,7 +170,7 @@ public function dickBoxTFColorSelect(args:Array):void
 	var cIdx:int = args[0];
 	var cType:int = args[1];
 	
-	if(flags["COCKBOX_COLOR_UPGRADE"] == undefined)
+	if(flags["COCKBOX_UPGRADE"] == undefined)
 	{
 		dickBoxTF([cIdx, cType]);
 		return;
@@ -254,7 +261,7 @@ public function dickBoxTF(args:Array):void
 		}
 	}
 	output("As soon as you");
-	if(flags["COCKBOX_COLOR_UPGRADE"] != undefined) output(" select a color");
+	if(flags["COCKBOX_UPGRADE"] != undefined) output(" select a color");
 	else output(" finalize your selection");
 	output(", the machine hums into action, vibrating vigorously around your [pc.cock " + args[0] + "]. ");
 	if(flags["USED_DONG_DESIGNER"] == undefined) output("It’s more intense than you expected.");
@@ -395,7 +402,7 @@ public function cockBoxDickDoublingHijinx(args:Array):void
 	author("Fenoxo");
 	showName("\nUH OH!");
 	output("The moment you");
-	if(flags["COCKBOX_COLOR_UPGRADE"] != undefined) output(" select a chosen color");
+	if(flags["COCKBOX_UPGRADE"] != undefined) output(" select a chosen color");
 	else output(" finalize your selection");
 	output(", something goes wrong. A flashing orange and red notification appears above a crossed-out progress bar:\n\n\t<b>Warning: Multiple phalli detected. TamaniCorp can not be held responsible for any deviations in our advanced mutation protocols.</b>\n\t<b>Compensating...</b>\n\t<b>Error: Single phallus detected in multiple mode. Reverting to prevent damage to user. Please do not attempt to remove your penises from the device or irreversible genetic damage may occur.</b>");
 	if(flags["DONG_DESIGNER_MALFUNCTIONED"] == undefined) output("\n\nUh oh.");

@@ -773,7 +773,7 @@ public function cuntTailShadeFux():void
 	output("\n\nShade’s climax washes over you in a rush of femcum and a scream of pleasure that  reverberates through her quarters. You keep on licking, just doing what you’re doing and letting the kaithrit huntress ride through it. Her hips move faster, bouncing on your probing tongue through her orgasm until she’s nothing more than a gasping, moaning puddle of mewling pleasure in your hands. With a final groan, she rolls off of you, flopping onto her back beside you. Her cunt-tail coils around her leg, coming to rest on your [pc.crotch], lips brushing back against your well-milked prick.");
 	processTime(24);
 	pc.orgasm();
-	flags["SEXED_SHADE"] = 1;
+	IncrementFlag("SEXED_SHADE");
 	inseminateShadesCuntTail();
 	clearMenu();
 	addButton(0,"Next",shadePostCoitusHangouts);
@@ -828,8 +828,8 @@ public function takeShadesHardlightPenisInYerBoot():void
 	output("\n\nWhen she comes down from her orgasmic high, Shade’s head comes to rest on your [pc.chest] as she catches her breath. Slowly, one of her hands works its way back and flips off the hardlight, leaving you suddenly empty without the satisfaction of withdrawal. You groan, but coil your [pc.legOrLegs] tightly around your lover’s neck. Shade gives your thigh an affectionate pat before extricating herself from your grasp, rolling onto her back beside you.");
 	processTime(20);
 	pc.orgasm();
-	flags["SEXED_SHADE"] = 1;
-	flags["TAKEN_SHADES_HARDLIGHT"] = 1;
+	IncrementFlag("SEXED_SHADE");
+	IncrementFlag("TAKEN_SHADES_HARDLIGHT");
 	clearMenu();
 	addButton(0,"Next",shadePostCoitusHangouts);
 }
@@ -912,9 +912,9 @@ public function rimAndWankOrLickAndWankWhoKnowsSloot():void
 	output("\n\nShade finishes by giving you a light, playful smack on the ass.");
 	processTime(17);
 	pc.orgasm();
-	flags["SEXED_SHADE"] = 1;
+	IncrementFlag("SEXED_SHADE");
 	inseminateShadesCuntTail();
-	flags["TAKEN_SHADES_HARDLIGHT"] = 1;
+	IncrementFlag("TAKEN_SHADES_HARDLIGHT");
 	clearMenu();
 	addButton(0,"Next",shadePostCoitusHangouts);
 }
@@ -1012,7 +1012,7 @@ public function shadeTailSex():void
 	pc.orgasm();
 	pc.orgasm();
 	//[Next] //to Combine
-	flags["SEXED_SHADE"] = 1;
+	IncrementFlag("SEXED_SHADE");
 	inseminateShadesCuntTail();
 	clearMenu();
 	addButton(0,"Next",shadePostCoitusHangouts);
@@ -1051,7 +1051,7 @@ public function shadeDoubleTitfuck():void
 	processTime(30);
 	pc.orgasm();
 	//[Next] //to Combine
-	flags["SEXED_SHADE"] = 1;
+	IncrementFlag("SEXED_SHADE");
 	clearMenu();
 	addButton(0,"Next",shadePostCoitusHangouts);
 }
@@ -1146,6 +1146,7 @@ public function shadeQuestNeedsTurnIn():Boolean
 public function shadeAtTheBar():Boolean
 {
 	if(flags["SHADE_ON_UVETO"] != undefined && flags["KQ2_QUEST_OFFER"] != undefined && flags["KQ2_QUEST_FINISHED"] == undefined) return false; //9999 Shade does not show up during Kara Quest 2 if she's on Uveto. REMOVE THIS LINE AND ENABLE NEXT LINES WHEN UVETO IS ACTUALLY IMPLEMENTED.
+	//9999 if(flags["SHADE_DISABLED"] == 1) return false;
 	//9999 if(flags["KQ2_SHADE_DEAD"] != undefined) return false;
 	//9999 if(flags["KQ2_SHADE_UNCONSCIOUS"] != undefined && (flags["KQ2_SHADE_UNCONSCIOUS"] + (2 * 24 * 60)) > GetGameTimestamp()) return false;
 	//9999 if(flags["SHADE_ON_UVETO"] != undefined) return false;
@@ -1772,8 +1773,8 @@ public function shadeBoobWorship():void
 
 	//[Next] //Same after-sex scene as normal
 	processTime(20);
-	flags["SEXED_SHADE"] = 1;
-	flags["SHADE_BOOBWORSHIP"] = 1;
+	IncrementFlag("SEXED_SHADE");
+	IncrementFlag("SHADE_BOOBWORSHIP");
 	
 	if (shade.canLactate())
 	{

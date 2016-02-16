@@ -696,7 +696,7 @@ public function fuckYesPlantLadyIllSaveYou():void
 	CombatManager.setHostileCharacters(new GardeBot());
 	CombatManager.victoryScene(beatUpConstructoBot);
 	CombatManager.lossScene(roboQueenFightPCLoss);
-	CombatManager.displayLocation("ROUGE BOT");
+	CombatManager.displayLocation("ROGUE BOT");
 	
 	addButton(0,"Next",CombatManager.beginCombat);
 }

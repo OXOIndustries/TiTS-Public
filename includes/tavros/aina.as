@@ -394,8 +394,8 @@ public function ainaTalk():void
 
 public function ainaTalkNavigation(activeTopic:Function = undefined):void {
 	clearMenu();
-	if(activeTopic == ainaTalksAboutHerself) addDisabledButton(0, "Her", "Her", "You just spoke about that.");
-	else addButton(0, "Her", ainaTalksAboutHerself, undefined, "Her", "Ask Aina about herself.");
+	if(activeTopic == ainaTalksAboutHerself) addDisabledButton(0, "Her", "Herself", "You just spoke about that.");
+	else addButton(0, "Her", ainaTalksAboutHerself, undefined, "Herself", "Ask Aina about herself.");
 	if(activeTopic == ainaTalksAboutBotany) addDisabledButton(1, "Botany", "Botany", "You just spoke about that.");
 	else if(flags["AINA_TALKED_ABOUT_HERSELF"] == true) addButton(1, "Botany", ainaTalksAboutBotany, undefined, "Botany", "Ask Aina about her interest in botany."); 
 	else addDisabledButton(1, "Botany", "Botany", "You don't know her well enough to talk about that.");
@@ -403,8 +403,8 @@ public function ainaTalkNavigation(activeTopic:Function = undefined):void {
 	else addButton(2, "Centaurs", ainaTalksAboutCentaurs, undefined, "Centaurs", "Ask Aina about her species.");
 	if(activeTopic == ainaTalksAboutMating) addDisabledButton(3, "Mating", "Mating", "You just spoke about that.");
 	else addButton(3, "Mating", ainaTalksAboutMating, undefined, "Mating", "Ask Aina about her frequent bouts of estrus.");
-	if(activeTopic == ainaTalksAboutACashing) addDisabledButton(4, "A.Cashing", "Astrocashing", "You just spoke about that.");
-	else addButton(4, "A.Cashing", ainaTalksAboutACashing, undefined, "Ask Aina about the random objects decorating her apartment.");
+	if(activeTopic == ainaTalksAboutACashing) addDisabledButton(4, "A.Caching", "Astrocaching", "You just spoke about that.");
+	else addButton(4, "A.Caching", ainaTalksAboutACashing, undefined, "Astrocaching", "Ask Aina about the random objects decorating her apartment.");
 	if(activeTopic == ainaTalksAboutSexToys) addDisabledButton(5, "SexToys", "Sex Toys", "You just spoke about that.");
 	else addButton(5, "SexToys", ainaTalksAboutSexToys, undefined, "Sex Toys", "Ask Aina about her sex toys.");
 	addButton(14, "Back", ainaMenu);
