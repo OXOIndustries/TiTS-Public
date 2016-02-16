@@ -28,8 +28,7 @@
 			TooltipManager.addFullName(shortName, StringUtil.toTitleCase(longName));
 			
 			description = "a ripe mhen’gan mango";
-			tooltip = "This tropical jungle fruit is native to the wilds of Mhen’ga. It is known for being extremely ripe and sweet, even long after falling from the tree.";
-			if (kGAMECLASS.silly) tooltip += "\n\nFor some reason, you find the mango to be completely <i>irresistable</i>...";
+			tooltip = "This tropical jungle fruit is native to the wilds of Mhen’ga. It is known for being extremely ripe and sweet, even long after falling from the tree.\n\nFor some reason, you find the mango to be completely <i>irresistable</i>....";
 			
 			TooltipManager.addTooltip(shortName, tooltip);
 			
@@ -127,14 +126,14 @@
 					if (!inCombat()) kGAMECLASS.output("\n");
 					if (!target.hasStatusEffect("The Mango"))
 					{
-						kGAMECLASS.output("\nAn attractive aura of pheromones surrounds you");
+						kGAMECLASS.output("\nYou feel suprisingly sensuous");
 						if (!inCombat()) kGAMECLASS.output(", making you feel like a sexual magnet to others nearby");
-						kGAMECLASS.output(". You are now sexier after eating that!");
+						kGAMECLASS.output(". Others are now more likely to be attracted to you!");
 						haveTheMango(target);
 					}
 					else
 					{
-						kGAMECLASS.output("\nThe familiar pheromonal aura of attractiveness surrounds you... ");
+						kGAMECLASS.output("\nThe familiar sensation of attractiveness surrounds you... ");
 						haveTheMango(target);
 						
 						// Deep in thought of the mango...
@@ -163,7 +162,7 @@
 								if (CodexManager.entryViewed("Vanae")) randBlurb.push(" vanae... ‘Hey, can you see how many fingers I’m holding up?’");
 								if (CodexManager.entryViewed("Venus Pitchers")) randBlurb.push(" Venus pitcher... ‘Hey, do you know what you get when you plant kisses?’");
 								if (CodexManager.entryViewed("Zil")) randBlurb.push(" zil... ‘Hey, does the </i>‘bee’s knees’<i> mean the same thing to you as it does to me?’");
-								if (CodexManager.entryViewed("The Treatment")) randBlurb.push(" Treated cowgirl... ‘Hey, stop being a cowgirl and milk </i>me<i> for a change, okay?’--But she’ll probably just look on cluelessly and moo... but that’s not the point!");
+								if (CodexManager.entryViewed("The Treatment")) randBlurb.push(" Treated cowgirl... ‘Hey, stop being a cowgirl and milk </i>me<i> for a change, okay?’ - But she’ll probably just look on cluelessly and moo... but that’s not the point!");
 								randBlurb.push(" falling meteorite... ‘Hey, would you hold still for a second?’");
 								msg += randBlurb[rand(randBlurb.length)];
 								// Mango!

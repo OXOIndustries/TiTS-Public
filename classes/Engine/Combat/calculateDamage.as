@@ -72,6 +72,12 @@ package classes.Engine.Combat
 					if	(target.hasStatusEffect("Stunned") && target.hasStatusEffect("Blinded")) baseHPDamage.add(attacker.level);
 				}
 
+				//Burninate the countryside
+				if (baseHPDamage.getTotal() > 0 && baseHPDamage.hasFlag(DamageFlag.CHANCE_APPLY_BURN) && rand(5) == 0)
+				{
+					target.createStatusEffect("Burn",2,0,0,0,false,"Icon_Smelly","Burning for thermal damage over time.",true,0);
+				}
+
 				//Special counter - added when PC melees something. Eaten at the end of the round.
 				if(attacker is PlayerCharacter && !target.hasStatusEffect("Melee Counter")) target.createStatusEffect("Melee Counter",0,0,0,0);
 			}
@@ -83,12 +89,13 @@ package classes.Engine.Combat
 				}
 				
 				// Ranged crit 
-				if(attacker.critBonus(false) >= rand(100) + 1 && attacker is PlayerCharacter)
+				if(attacker.critBonus(false) >= rand(100) + 1 && (attacker is PlayerCharacter || attacker.hasPerk("Can Crit")))
 				{
 					damageResult.wasCrit = true;
 					baseHPDamage.multiply(2);
 				}
 				
+				// Sneak Attack (AKA Aimed Shot)
 				if ((target.hasStatusEffect("Stunned") || target.hasStatusEffect("Blinded")) && attacker.hasPerk("Aimed Shot")) 
 				{
 					output("\n<b>Aimed shot!</b>");
@@ -97,6 +104,7 @@ package classes.Engine.Combat
 					if(target.hasStatusEffect("Stunned") && target.hasStatusEffect("Blinded")) baseHPDamage.add(attacker.level);
 				}
 				
+				//Burninate the countryside
 				if (baseHPDamage.getTotal() > 0 && baseHPDamage.hasFlag(DamageFlag.CHANCE_APPLY_BURN) && rand(5) == 0)
 				{
 					target.createStatusEffect("Burn",2,0,0,0,false,"Icon_Smelly","Burning for thermal damage over time.",true,0);

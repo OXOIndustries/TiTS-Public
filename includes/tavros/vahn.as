@@ -648,7 +648,7 @@ public function giveVahnAHandy():void
 	output("\n\n<i>“Whip out your cock.”</i>");
 	
 	output("\n\nAfter a nervous look around, Vahn undoes the lower front of his jumpsuit. ");
-	if (flags["SEXED_VAHN"] = undefined) output("You’re greeted with the sight of his long, thick cock – at least ten inches long and totally terran except for the canine knot at his base");
+	if (flags["SEXED_VAHN"] == undefined) output("You’re greeted with the sight of his long, thick cock – at least ten inches long and totally terran except for the canine knot at his base");
 	else output("He whips out his creamy ten-inch cock. It dangles out impressively as his cheeks burn.");
 	
 	output("\n\n<i>“Good boy. Now turn around!”</i> You order him. The half-canine mechanic turns around. His fluffy tail is wagging excitedly as you order him around. Perhaps he liked being called a good boy?");

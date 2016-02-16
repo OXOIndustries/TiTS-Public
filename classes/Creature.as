@@ -3195,6 +3195,7 @@ package classes {
 		}
 		public function slowStatGain(stat:String, arg:Number = 0):Number {
 			var statCurrent: Number = 0;
+			var statPercent: Number = 0;
 			var change: Number = 0;
 			// Affinity
 			if(stat == affinity)
@@ -3202,29 +3203,53 @@ package classes {
 				arg *= 1.5;
 			}
 			// Normal
-			if (stat == "physique") statCurrent = physique();
-			else if (stat == "reflexes") statCurrent = reflexes();
-			else if (stat == "aim") statCurrent = aim();
-			else if (stat == "intelligence") statCurrent = intelligence();
-			else if (stat == "willpower") statCurrent = willpower();
-			else if (stat == "libido") statCurrent = libido();
+			if (stat == "physique") 
+			{
+				statCurrent = physique();
+				statPercent = statCurrent / physiqueMax() * 100;
+			}
+			else if (stat == "reflexes") 
+			{
+				statCurrent = reflexes();
+				statPercent = statCurrent / reflexesMax() * 100;
+			}
+			else if (stat == "aim") 
+			{
+				statCurrent = aim();
+				statPercent = statCurrent / aimMax() * 100;
+			}
+			else if (stat == "intelligence") 
+			{
+				statCurrent = intelligence();
+				statPercent = statCurrent / intelligenceMax() * 100;
+			}
+			else if (stat == "willpower") 
+			{
+				statCurrent = willpower();
+				statPercent = statCurrent / willpowerMax() * 100;
+			}
+			else if (stat == "libido") 
+			{
+				statCurrent = libido();
+				statPercent = statCurrent / libidoMax() * 100;
+			}
 			else {
 				kGAMECLASS.output("ERROR: slowStatGain called with stat argument of " + stat + ". This isn't a real stat!");
 				return 0;
 			}
 			while (arg > 0) {
 				arg--;
-				if (statCurrent + change < 30) change++;
-				else if (statCurrent + change < 40) change += .9;
-				else if (statCurrent + change < 50) change += .8;
-				else if (statCurrent + change < 60) change += .7;
-				else if (statCurrent + change < 65) change += .6;
-				else if (statCurrent + change < 70) change += .5;
-				else if (statCurrent + change < 75) change += .4;
-				else if (statCurrent + change < 80) change += .3;
-				else if (statCurrent + change < 85) change += .25;
-				else if (statCurrent + change < 90) change += .2;
-				else if (statCurrent + change < 95) change += .15;
+				if (statPercent < 30) change++;
+				else if (statPercent < 40) change += .9;
+				else if (statPercent < 50) change += .8;
+				else if (statPercent < 60) change += .7;
+				else if (statPercent < 65) change += .6;
+				else if (statPercent < 70) change += .5;
+				else if (statPercent < 75) change += .4;
+				else if (statPercent < 80) change += .3;
+				else if (statPercent < 85) change += .25;
+				else if (statPercent < 90) change += .2;
+				else if (statPercent < 95) change += .15;
 				if(arg < 0) arg = 0;
 			}
 			if (stat == "physique") return physique(change);
@@ -7597,7 +7622,8 @@ package classes {
 				case GLOBAL.TYPE_HUMAN:
 				case GLOBAL.TYPE_INHUMAN:
 					cocks[slot].knotMultiplier = 1;
-					cocks[slot].cockColor = "pink";
+					if(skinTone == "dark" || skinTone == "ebony" || skinTone == "chocolate") cocks[slot].cockColor = "ebony";
+					else cocks[slot].cockColor = "pink";
 					break;
 				case GLOBAL.TYPE_CANINE:
 				case GLOBAL.TYPE_VULPINE:
