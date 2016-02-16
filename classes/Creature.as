@@ -7622,7 +7622,8 @@ package classes {
 				case GLOBAL.TYPE_HUMAN:
 				case GLOBAL.TYPE_INHUMAN:
 					cocks[slot].knotMultiplier = 1;
-					cocks[slot].cockColor = "pink";
+					if(skinTone == "dark" || skinTone == "ebony" || skinTone == "chocolate") cocks[slot].cockColor = "ebony";
+					else cocks[slot].cockColor = "pink";
 					break;
 				case GLOBAL.TYPE_CANINE:
 				case GLOBAL.TYPE_VULPINE:
