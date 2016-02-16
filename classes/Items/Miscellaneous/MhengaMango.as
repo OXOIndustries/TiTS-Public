@@ -28,8 +28,7 @@
 			TooltipManager.addFullName(shortName, StringUtil.toTitleCase(longName));
 			
 			description = "a ripe mhen’gan mango";
-			tooltip = "This tropical jungle fruit is native to the wilds of Mhen’ga. It is known for being extremely ripe and sweet, even long after falling from the tree.";
-			if (kGAMECLASS.silly) tooltip += "\n\nFor some reason, you find the mango to be completely <i>irresistable</i>...";
+			tooltip = "This tropical jungle fruit is native to the wilds of Mhen’ga. It is known for being extremely ripe and sweet, even long after falling from the tree.\n\nFor some reason, you find the mango to be completely <i>irresistable</i>....";
 			
 			TooltipManager.addTooltip(shortName, tooltip);
 			
