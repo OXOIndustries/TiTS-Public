@@ -97,6 +97,7 @@
 	prepChar(justUpdate, "PETR", Petr);
 	prepChar(justUpdate, "VI", Vi);
 	prepChar(justUpdate, "FYN", Fyn);
+	prepChar(justUpdate, "SEMITH", Semith);
 	
 	// Check all characters have version information set
 	for (var prop:String in chars)
