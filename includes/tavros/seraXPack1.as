@@ -1170,6 +1170,7 @@ public function seraSexXXXRouter():void
 	
 	var choices:Array = new Array();
 	var newScenes:Array = new Array();
+	var chance:int = 1;
 	
 	// Exhibition blowjob
 	if(flags["SERA_EXHIBITION_BLOWJOB"] == undefined) newScenes.push(seraSexXXXhibitionBlowjobStart);
@@ -1182,7 +1183,10 @@ public function seraSexXXXRouter():void
 	choices.push(seraSexXXXGetRiddenStart);
 	// Titfuck/Vaginal or Anal + Lucky Dip
 	if(flags["SERA_TIT_FUCK_LUCKY_DIP"] == undefined) newScenes.push(seraSexXXXTitfuckLuckyDipStart);
-	choices.push(seraSexXXXTitfuckLuckyDipStart);
+	if(flags["SERA_UNLOCK_CLIPPEX"] != undefined) chance += 2;
+	if(flags["SERA_UNLOCK_SEMENS"] != undefined) chance += 2;
+	if(flags["SERA_UNLOCK_LUCIFIER"] != undefined) chance += 2;
+	if(rand(chance) == 0) choices.push(seraSexXXXTitfuckLuckyDipStart);
 	
 	// Go go sexytimes
 	if(newScenes.length > 0) newScenes[rand(newScenes.length)]();

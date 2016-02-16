@@ -2279,6 +2279,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["SERA_INCH_STEALING_SEX"] > 0) output2("\n<b>* Sera, Times She Absorbed Your Length: </b>" + flags["SERA_INCH_STEALING_SEX"]);
 					if(flags["SERA_INCH_STEALING_HELP"] > 0) output2("\n<b>* Sera, Times You Untangled Her Tail Cock: </b>" + flags["SERA_INCH_STEALING_HELP"]);
 				}
+				//if(pc.hasStatusEffect("Sera Credit Debt")) output2("\n<b>* Sera, Credit Debt: </b>" + pc.statusEffectv1("Sera Credit Debt") + " credits");
 				if(flags["PURCHASED_SERAS_GALO"] != undefined || flags["SAENDRA GONNA GO GET A COCK"] >= 2)
 				{
 					output2("\n<b>* Sera, Unique Sale:</b>");
