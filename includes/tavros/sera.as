@@ -103,7 +103,7 @@ public function seraMenu():void
 
 	addButton(0,"Appearance",seraAppearance);
 	addButton(1,"Buy",buyItem);
-	addButton(2,"Sell",sellItem);
+	addButton(2,"Sell",seraSellCheck);
 	if(flags["SERA_TALKED_ABOUT_BEING_PISSED_OFF"] == undefined)
 	{
 		addButton(3,"WhySoMad?",talkToSeraAboutWhyShesPissedOff);
@@ -142,6 +142,41 @@ public function seraMenu():void
 	addButton(14,"Back",mainGameMenu);
 }
 
+//Sell Routing
+public function seraSellCheck():void
+{
+	if(pc.statusEffectv1("Sera Credit Debt") > 9000)
+	{
+		clearOutput();
+		showSera();
+		
+		var timeLeft:int = pc.getStatusMinutes("Sera Credit Debt");
+		
+		output("You ask the demoness if she would be willing to purchase any of your items.");
+		output("\n\nSera looks at you a moment and flips open her sales terminal, taking a quick glance at her numbers for the week. <i>“Umm, how about... no.”</i>");
+		output("\n\nYou give her a disapproving look.");
+		output("\n\n<i>“Hey, I don’t know how it is on </i>your<i> star in the galaxy, but in the world I live in: if I don’t have the cash, I can’t buy your junk.”</i> She gives a knowing scoff. <i>“Are you </i>trying<i> to run me under? I have a business to run here - I’m not a bank!”</i>");
+		output("\n\nYou try to interject, but she answers your response with her own. <i>“Look, money is tight here, so give me...");
+		if(timeLeft >= (5 * 24 * 60)) output(" about a week or so from now");
+		else if(timeLeft >= (3 * 24 * 60)) output(" a few days or so from now");
+		else if(timeLeft >= (2 * 24 * 60)) output(" a couple more days");
+		else if(timeLeft >= (12 * 60)) output(" until tomorrow");
+		else output(" some more hours until my account clears");
+		output(" and then ask again, okay?”</i> After recomposing herself, she continues with a forced grin, <i>“In the meantime, if you have some expendable credit chits, feel free to browse my </i>lovely<i> inventory....”</i>");
+		
+		processTime(2);
+		clearMenu();
+		addButton(0, "Nevermind", seraMenu);
+		addButton(1, "Buy", buyItem);
+		return;
+	}
+	
+	shopkeep = chars["SERA"];
+	chars["SERA"].keeperSell = "You ask the demon-lady if she would be willing to purchase any of your items.\n\n"
+	if(pc.statusEffectv1("Sera Credit Debt") > 3000) chars["SERA"].keeperSell += "Sera winces a bit and looks at you. "
+	chars["SERA"].keeperSell += "<i>“Sure, I’ll buy any resellable drugs you might have - but I’m not made of money so don’t think I’ll be buying from you willy-nilly like some other shopkeepers. Debt’s a fucking bitch, you hear?”</i>\n\nWhat would you like to sell?\n";
+	sellItem();
+}
 //Appearance
 public function seraAppearance():void
 {
