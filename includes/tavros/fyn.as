@@ -1313,9 +1313,6 @@ public function fynSexOrcRavish():void {
 	output("\n\nWhen you finally come to, you feel something soft beneath you. Your ass is unmistakably sore; even the slightest wiggle makes you wince! At the same time, it's packed full of gooey warmth. Every inch of your [pc.skinFurScalesNoun] is singing with happiness. You are definitely one well bred slut! A dopey grin crosses your [pc.lips] as you swiftly fall back into slumber... you're going to need to rest this one off...");
 	output("\n\n<b>... A few hours later ...</b>");
 	
-	
-	
-	output("\n\nWhen he pulls out, you can feel it lewdly rolling out and down your butt-crack and back. You blush furiously, reaching up and spreading your [pc.ass]. Your green-skinned lover takes one look at your parted, cum-smeared pucker and looks riled up again! Grabbing his stiffening rod, he plunges it back into your sloppy hole. Buried once more up to the hilt, he begins slapping enthusiastically against your already worn buttocks. After already cumming, you're overloaded with such <i>intense</i> sensory feedback - it's too much for you to handle! You babble and whimper in delight. Rolling back your eyes and drooling down your cheek, you're a helpless passenger swept up in a storm of pleasure. Your mind is utterly swallowed by the tidal forces, yet your body instinctively bucks back against the rutting beast on its own. You cum <i>again</i>, shivering and twitching, your upper body limp and lower body spasming. It doesn't stop him! He has his way with you until you have came more times than you can count, and at last, <i>he's</i> entirely spent!");
 	pc.buttChange(chars["FYN"].cockVolume(0) * 6, true, true, false);
 	pc.loadInAss(chars["FYN"]);
 	pc.loadInAss(chars["FYN"]);
