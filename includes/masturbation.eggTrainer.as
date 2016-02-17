@@ -476,8 +476,8 @@ public function carryTrainingWithEggMachine():void
 
 	output("\n\nAnd that was just the first egg. Another thick engorgement wriggles its way up through the tube, making it push out on your lubed-up walls, rubbing its dozens and dozens of rounded nubs against you. The orgasmic pleasure tearing through you refuses to abate, especially with that kind of handling - and with another thick, heavy bulb plopping into your body, followed by another... and another. You watch with bulging eyes as egg after egg slurps out of the see-through tub and vanishes into the throbbing tube beneath you. Your [pc.butt] bounces on the fuck-saddle, riding that plastic shaft as it thoroughly breeds your [pc.vagOrAss " + x + "] with its eggy load.");
 
-	//{@eggTraining: eggTrained pc} //That’s a new stat to see how many eggs you can take!
-	//== 1
+	// {@eggTraining: eggTrained pc} //That’s a new stat to see how many eggs you can take!
+	// == 1
 	if(flags["EGG_TRAINING"] == 1) 
 	{
 		output("\n\nThe tentacle squirts and thrusts, laying a belly-straining load of tumbling spheres inside you. You lose count after six big, orgasmic pops that bloat your ");
@@ -485,7 +485,7 @@ public function carryTrainingWithEggMachine():void
 		else output("gut");
 		output(". By the time the wriggling tentacle finishes, you’re a swollen and sordidly wet mess, drooling hot lube like a waterfall from your well-fucked hole. One of your hands slips down to your [pc.belly], feeling a distinct set of uneven bulges pushing against your [pc.skin] from within.");
 	}
-	//>3 more words here.
+	// >3 more words here.
 	else if(flags["EGG_TRAINING"] > 3)
 	{
 		output("\n\nThe familiar, wonderful pleasure of the tentacle hammers through you, burrowing deep inside to discharge its belly-filling load. Eggs come flooding easily out of its engorged cockhead, blasting into your ");
@@ -498,7 +498,7 @@ public function carryTrainingWithEggMachine():void
 		else output("in your swollen womb");
 		output(". The sensation is wonderful, comforting... you find yourself wrapping your arms around yourself, basking in the artificial sense of motherhood and the very real, all-encompassing sense of fullness.");
 	}
-	//!= 0
+	// != 0
 	else if(flags["EGG_TRAINING"] != 0) 
 	{
 		output("\n\nThe tentacle just keeps on fucking you, ceaselessly filling your belly with its artificial get. Egg after egg squeezes through its bloated head and into your ");

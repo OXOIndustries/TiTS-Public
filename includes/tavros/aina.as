@@ -6,9 +6,11 @@
 //AINA_SEXED:					If the PC helped her by sexing her up, but also keeps counting further encounters (int, 0+)
 //AINA_DAY_MET:					The day Aina was first met, used to calculate her heat status (int, 1+)
 //AINA_LAST_DAY_MET:			The last day Aina was met, needed for some responses in conjunction with heat (int, 1+)
+//AINA_LAST_DAY_RELIEVED:		The exact day Aina was last sexed (also counts the time her toy was fixed)
+//AINA_LAST_HOUR_RELIEVED:		The exact hour Aina was last sexed (also counts the time her toy was fixed)
 //AINA_TALKED_ABOUT_HERSELF:	If the player asked Aina about herself in the past (true or undefined)
 //AINA_TALKED_ABOUT_TOYS:		If the player asked Aina about her sextoys (true or undefined)
-//AINA_SEXED_WITH_TOY:			If the player did her Anal&Wand scene in the past (true or undefined)
+//AINA_SEXED_WITH_TOY:			If the player did her Anal&Wand scene in the past (int, 0+ or undefined)
 //AINA_SHOWER_USED:				If the player used the shower in Aina's apartment (true or undefined)
 
 
@@ -223,6 +225,10 @@ public function helpAinaByFixingHerToy():void
 	flags["HELPED_AINA"] = true;
 	flags["AINA_WAND_FIXED"] = true;
 	
+	//Not by PC, but it allows the PC to talk to her at the first meeting
+	flags["AINA_LAST_DAY_RELIEVED"] = days;
+	flags["AINA_LAST_HOUR_RELIEVED"] = hours;
+	
 	processTime(15+rand(10));
 	
 	clearMenu();
@@ -302,6 +308,20 @@ public function ainaLastMetInHeat():Boolean {
 	else return false;
 }
 
+//returns true/false depending if Aina was sexed in the last two hours
+public function ainaRecentlyRelieved():Boolean {
+	//Aina never relieved before, return false
+	if (flags["AINA_LAST_DAY_RELIEVED"] == undefined) return false;
+	
+	var day_relieved:int = flags["AINA_LAST_DAY_RELIEVED"];
+	var hour_relieved:int = flags["AINA_LAST_HOUR_RELIEVED"];
+	
+	//convert to days to hours, sum up corresponding hours
+	//then check difference against two hour treshold
+	if((days*24 + hours) - (day_relieved*24 + hour_relieved) <= 2) return true;
+	else return false;
+}
+
 //returns true/false depending if Aina is a virgin or not
 public function ainaIsVirgin():Boolean {
 	if(flags["AINA_SEXED"] > 0) {
@@ -335,14 +355,22 @@ public function ainaMenu():void
 		
 	if(ainaIsInHeat())
 	{
-		output("Aina waves and clops over to you. She looks visibly flushed as she brushes back a honey-gold bang. <i>“Hi there, [pc.short]. Sorry if I'm a little scatterbrained right now. I'm, um,");
-		if(ainaMetThisCycle()) output(" still in heat.");
-		else output(" in heat again.");
-		output("”</i>");
+		if (!ainaRecentlyRelieved()) {
+			output("Aina waves and clops over to you. She looks visibly flushed as she brushes back a honey-gold bang. <i>“Hi there, [pc.short]. Sorry if I'm a little scatterbrained right now. I'm, um,");
 		
-		output("\n\nYou can definitely smell it! Every time her equine tail flicks, you're hit with a fresh wave of her musky mare-scent. The moment you get a whiff of her juicy cunt, you feel the instinct to <i>breed</i> her like crazy.");
-		
-		pc.lust(5);
+			if(ainaMetThisCycle()) output(" still in heat.");
+			else output(" in heat again.");
+			output("”</i>");
+			
+			output("\n\nYou can definitely smell it! Every time her equine tail flicks, you're hit with a fresh wave of her musky mare-scent. The moment you get a whiff of her juicy cunt, you feel the instinct to <i>breed</i> her like crazy.");
+			
+			pc.lust(5);
+		} 
+		else 
+		{
+			output("Aina clops over to you, her skin covered in a sweaty sheen. Her honey-blonde hair is thoroughly tousled. <i>“Whew. What a relief! I can think straight for a bit. Thanks for that.”</i>");
+			output("\n\n<i>“Did you want a cup of tea or something? I can brew something up to replenish your energy.”</i>");
+		}
 	}
 	else
 	{
@@ -361,11 +389,12 @@ public function ainaMenu():void
 	
 	clearMenu();
 	addButton(0, "Appearance", ainaAppearance);
-	if(!ainaIsInHeat()) addButton(1, "Talk", ainaTalk);
+	if(!ainaIsInHeat() || ainaRecentlyRelieved()) addButton(1, "Talk", ainaTalk);
 	else addDisabledButton(1, "Talk", "Talk", "Aina is in no state for talking.");
-	if(pc.lust() >= 33) addButton(2, "Offer Sex", ainaSexMenu);
-	else addDisabledButton(2,"Offer Sex","Offer Sex","You aren't aroused enough for this.");
-	addButton(3, "Shower", ainaShower);
+	addButton(2, "Tea", ainaSharesSomeTea, undefined, "Tea", "Take Aina up on her Tea offer.");
+	if(pc.lust() >= 33) addButton(3, "Offer Sex", ainaSexMenu);
+	else addDisabledButton(3,"Offer Sex","Offer Sex","You aren't aroused enough for this.");
+	addButton(4, "Shower", ainaShower);
 	
 	addButton(14,"Leave",mainGameMenu);
 }
@@ -382,6 +411,57 @@ public function ainaAppearance():void
 	addDisabledButton(0, "Appearance");
 }
 
+public function ainaSharesSomeTea():void
+{
+	clearOutput();
+	showAina();
+	
+	//generate random number between 0-4
+	var random:int = rand(5);
+	
+	switch(random) {
+		case 0 :
+			output("Aina pours out some tea in little porcelain cups patterned with cherry-blossoms. You both sit down and blow on the steaming cups. There's something relaxing about the radiant warmth in your hand and the refreshing floral smell of the tea. You haven't even tasted it and you feel reinvigorated.");
+			output("\n\n<i>“What kind of tea is this?”</i> you ask, a little curious. It's hard to pick the type of tea just by looking at it, the water being a transparent greeny yellow.");
+			output("\n\n<i>“It's 'Dragon's Well', a type of Green Tea. I got it from a cutting at market, and I've been growing some in my nursery,”</i> Aina happily explains, opening the teapot to show you its contents. Inside are flat, sword-like green leaves bobbing about. <i>“See that? You've got to pan fire them so they curl, that's how you get that shape.”</i>");
+			output("\n\nSounds like a lot of work! You take a sip. The green tea has a mild grassy taste, no doubt why the centauress loves it. Since it's not too overpowering, it's the sort of tea one could sit around and drink all day.");
+			output("\n\nAfter you've finished a cup, you thank her for the green tea. Aina puts away the teapot and cleans up, looking a little chuffed with herself.");
+			output("\n\n<i>“I'm glad you liked it! I've been wanting to try out this strain of leaf. It's always better to have someone to share it with, you know?”</i> The centauress blushes, wiping off the table where you sat.");
+			break;
+		case 1 : 
+			output("You take Aina up on her offer for tea and sit down. The honey-blonde centauress busies herself brewing you up a cup, then places it down in front of you. Through the steam, you can see the contents are a semi-transparent caramel.");
+			output("\n\n<i>“It's Darjeeling Tea from the Amira sector. A lot of people call it the 'champagne of teas'. It's got a nice, floral scent.”</i>");
+			output("\n\nYou inhale the steam coming off the teacup, appreciating the tickling odor. When you taste it, though, it's got a musky spiciness that almost contradicts its scent. You say as much, and Aina nods, sipping her own tea.");
+			output("\n\n<i>“Yeah, it can be slightly mouth-drying too. I'm only sometimes in the mood for Darjeeling; today's one of those days.”</i>");
+			output("\n\nTo almost counter the taste, Aina serves up some tiny tea-cakes for you to eat. She seems to have baked them herself. Picking some out, they're pretty tasty, and just the thing to balance out the tea.");
+			output("\n\nOnce you're done, you thank her for the tea and cakes. You're feeling quite refreshed!");
+			break;
+		case 2 : 
+			output("You nod and sit down, taking Aina up on her offer for tea. She places out a cup in front of you and leans over to pour a creamy stream from her teapot. Her well-rounded breasts are stretching against her sweater as she does, and you get a glimpse of her bra strap. For some reason, the brief flicker of her underwear is somewhat arousing, and you feel a {pc.hasCock: stirring/else: tingling} sensation in your loins.");
+			output("\n\n<i>“This is some milk tea for a change. It's nice to give the palette a rest and get back to the basics every so often, don't you think?”</i>");
+			output("\n\nYou nod and sip the creamy tea. Even though she says that, the tea has a slight fresh and mellow, sweet taste. It's very refreshing to drink. Afterwards, you feel fully invigorated, and say as much.");
+			output("\n\n<i>“That'd be my wonderful company, of course! I'm sure the tea helps a little bit too,”</i> Aina admits with a wink, cleaning up the tea cups.");
+			break;
+		case 3 : 
+			output("Taking the honey-blonde centauress up on the offer, you sit down while she serves up some tea. She puts down a porcelain cup in front of you and fills it up. The contents are black as night. It has a brisk, strong scent. She serves up some sweet baked goods to go with it.");
+			output("\n\n<i>“Here, this will take the edge off. It's always good to have black tea this strong with something sweet,”</i> Aina offers.");
+			output("\n\nYou pick up one of the colorfully topped cupcakes and savor it along with the tea. She's right; both of them together work to take the rough edges off, making something truly delicious. Almost as interesting are all the different toppings on the cakes. It's a feast for your eyes <i>and</i> your stomach.");
+			output("\n\n<i>“Have as many as you want. I always make them in big batches,”</i> Aina informs you. There's no way you can eat as many as she put out. As a centaur, she has quite the appetite!");
+			output("\n\nOnce you're done, you feel well and truly stuffed on tea and sweets. Your blood is practically singing with all the sugar and caffeine the centauress gave you!");
+			break;
+		case 4 :
+			output("You sit down while Aina brews up some tea. She takes a lot of care preparing it, from the water she uses to the time she steeps it. When she brings it over on a tray, it smells absolutely delicious, serving it up in patterned porcelain cups.");
+			output("\n\n<i>“I hope you like it. It's a herbal tea I made called 'Lovers Blossom'.”</i>");
+			output("\n\nThe floral and herbal scent tickles your nose; there's even a hint of cinnamon. You blow the cup and then take a sip. It's just as flavorful as it is fragrant. You savor the exotic taste of her home-made tea, each sip thoroughly enjoyable. Aina refills your cup until you've had enough, keeping the contents of the teapot hot for you.");
+			output("\n\nOnce you're done, you thank Aina for the tea, and she beams and takes the teacups away. You're feeling incredibly refreshed, both from taking a break from your travels, and from the tea.");
+			break;
+	}
+
+	applyAinaHearTeaEffect();
+	
+	addDisabledButton(2, "Tea", "Tea", "You just had tea with her.");
+}
+
 public function ainaTalk():void
 {
 	clearOutput();
@@ -394,8 +474,8 @@ public function ainaTalk():void
 
 public function ainaTalkNavigation(activeTopic:Function = undefined):void {
 	clearMenu();
-	if(activeTopic == ainaTalksAboutHerself) addDisabledButton(0, "Her", "Her", "You just spoke about that.");
-	else addButton(0, "Her", ainaTalksAboutHerself, undefined, "Her", "Ask Aina about herself.");
+	if(activeTopic == ainaTalksAboutHerself) addDisabledButton(0, "Her", "Herself", "You just spoke about that.");
+	else addButton(0, "Her", ainaTalksAboutHerself, undefined, "Herself", "Ask Aina about herself.");
 	if(activeTopic == ainaTalksAboutBotany) addDisabledButton(1, "Botany", "Botany", "You just spoke about that.");
 	else if(flags["AINA_TALKED_ABOUT_HERSELF"] == true) addButton(1, "Botany", ainaTalksAboutBotany, undefined, "Botany", "Ask Aina about her interest in botany."); 
 	else addDisabledButton(1, "Botany", "Botany", "You don't know her well enough to talk about that.");
@@ -403,8 +483,8 @@ public function ainaTalkNavigation(activeTopic:Function = undefined):void {
 	else addButton(2, "Centaurs", ainaTalksAboutCentaurs, undefined, "Centaurs", "Ask Aina about her species.");
 	if(activeTopic == ainaTalksAboutMating) addDisabledButton(3, "Mating", "Mating", "You just spoke about that.");
 	else addButton(3, "Mating", ainaTalksAboutMating, undefined, "Mating", "Ask Aina about her frequent bouts of estrus.");
-	if(activeTopic == ainaTalksAboutACashing) addDisabledButton(4, "A.Cashing", "Astrocashing", "You just spoke about that.");
-	else addButton(4, "A.Cashing", ainaTalksAboutACashing, undefined, "Ask Aina about the random objects decorating her apartment.");
+	if(activeTopic == ainaTalksAboutACashing) addDisabledButton(4, "A.Caching", "Astrocaching", "You just spoke about that.");
+	else addButton(4, "A.Caching", ainaTalksAboutACashing, undefined, "Astrocaching", "Ask Aina about the random objects decorating her apartment.");
 	if(activeTopic == ainaTalksAboutSexToys) addDisabledButton(5, "SexToys", "Sex Toys", "You just spoke about that.");
 	else addButton(5, "SexToys", ainaTalksAboutSexToys, undefined, "Sex Toys", "Ask Aina about her sex toys.");
 	addButton(14, "Back", ainaMenu);
@@ -563,6 +643,11 @@ public function ainaShower():void
 public function applyAinaMareMuskEffect():void 
 {
 	if(!pc.hasStatusEffect("Mare Musk")) pc.createStatusEffect("Mare Musk",0,0,0,0,false,"Icon_Smelly","You smell like a horny mare! The potent female scent is sure to drive others wild - though it gets you a little worked up as well.",false,0);
+}
+
+public function applyAinaHearTeaEffect():void 
+{
+	if(!pc.hasStatusEffect("Heart Tea")) pc.createStatusEffect("Heart Tea",0,0,0,0,false,"Pill","Aina's special blend, brewed with care, makes you feel healthier than ever!",false,1440);
 }
 
 public function ainaSexMenu(text:Boolean = true):void
@@ -735,6 +820,9 @@ public function ainaSexedFromBehind():void
 	
 	ainaSexed(1);
 	
+	flags["AINA_LAST_DAY_RELIEVED"] = days;
+	flags["AINA_LAST_HOUR_RELIEVED"] = hours;
+	
 	processTime(20 + rand(15));
 	pc.orgasm();
 	
@@ -784,6 +872,9 @@ public function ainaSexedFisting():void
 	ainaSexed(1);
 	processTime(20 + rand(15));
 	pc.lust(35);
+	
+	flags["AINA_LAST_DAY_RELIEVED"] = days;
+	flags["AINA_LAST_HOUR_RELIEVED"] = hours;
 	
 	clearMenu();
 	addButton(0, "Next", ainaMenu);
@@ -853,6 +944,9 @@ public function ainaSexedWithAnalWand():void
 	//ainaSexed(1);
 	IncrementFlag("AINA_SEXED_WITH_TOY");
 	applyAinaMareMuskEffect();
+	
+	flags["AINA_LAST_DAY_RELIEVED"] = days;
+	flags["AINA_LAST_HOUR_RELIEVED"] = hours;
 	
 	processTime(20 + rand(15));
 	pc.orgasm();
@@ -930,6 +1024,9 @@ public function breedAinaAsATaur():void
 	// Count Aina as now deflowered, if not already.
 	// Scene end. Exit her menu. Still in apartment.
 	ainaSexed(1);
+	
+	flags["AINA_LAST_DAY_RELIEVED"] = days;
+	flags["AINA_LAST_HOUR_RELIEVED"] = hours;
 
 	processTime(17);
 	pc.orgasm();

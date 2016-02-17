@@ -297,6 +297,10 @@ package classes {
 			if (!(lowerUndergarment is EmptySlot)) r.combineResistances(lowerUndergarment.resistances);
 			if (!(upperUndergarment is EmptySlot)) r.combineResistances(upperUndergarment.resistances);
 			if (!(accessory is EmptySlot)) r.combineResistances(accessory.resistances);
+			
+			// Effect: Boosts max HP and poison resistance by 10% for 24 hours
+			if (hasStatusEffect("Heart Tea")) r.poison.damageValue = r.poison.damageValue * 1.1;
+			
 			return r;
 		}
 		
@@ -2836,6 +2840,9 @@ package classes {
 				hitPoints += level * 5;
 			if (characterClass == GLOBAL.CLASS_ENGINEER)
 				hitPoints -= level * 5;
+				
+			if (hasStatusEffect("Heart Tea")) hitPoints *= 1.1;
+				
 			return hitPoints;
 		}
 		public function maxHP(): Number {
@@ -3091,6 +3098,8 @@ package classes {
 
 			//Level 7 Merc Perk
 			if(hasPerk("Iron Will")) currWill += Math.floor(physique()/5);
+			//Roshan Blue gives 25% more xp and lowers willpower by 30% until next rest
+			if(hasStatusEffect("Roshan Blue")) currWill -= Math.floor(currWill*0.3);
 			
 			if (currWill > willpowerMax())
 			{
@@ -3195,6 +3204,7 @@ package classes {
 		}
 		public function slowStatGain(stat:String, arg:Number = 0):Number {
 			var statCurrent: Number = 0;
+			var statPercent: Number = 0;
 			var change: Number = 0;
 			// Affinity
 			if(stat == affinity)
@@ -3202,29 +3212,53 @@ package classes {
 				arg *= 1.5;
 			}
 			// Normal
-			if (stat == "physique") statCurrent = physique();
-			else if (stat == "reflexes") statCurrent = reflexes();
-			else if (stat == "aim") statCurrent = aim();
-			else if (stat == "intelligence") statCurrent = intelligence();
-			else if (stat == "willpower") statCurrent = willpower();
-			else if (stat == "libido") statCurrent = libido();
+			if (stat == "physique") 
+			{
+				statCurrent = physique();
+				statPercent = statCurrent / physiqueMax() * 100;
+			}
+			else if (stat == "reflexes") 
+			{
+				statCurrent = reflexes();
+				statPercent = statCurrent / reflexesMax() * 100;
+			}
+			else if (stat == "aim") 
+			{
+				statCurrent = aim();
+				statPercent = statCurrent / aimMax() * 100;
+			}
+			else if (stat == "intelligence") 
+			{
+				statCurrent = intelligence();
+				statPercent = statCurrent / intelligenceMax() * 100;
+			}
+			else if (stat == "willpower") 
+			{
+				statCurrent = willpower();
+				statPercent = statCurrent / willpowerMax() * 100;
+			}
+			else if (stat == "libido") 
+			{
+				statCurrent = libido();
+				statPercent = statCurrent / libidoMax() * 100;
+			}
 			else {
 				kGAMECLASS.output("ERROR: slowStatGain called with stat argument of " + stat + ". This isn't a real stat!");
 				return 0;
 			}
 			while (arg > 0) {
 				arg--;
-				if (statCurrent + change < 30) change++;
-				else if (statCurrent + change < 40) change += .9;
-				else if (statCurrent + change < 50) change += .8;
-				else if (statCurrent + change < 60) change += .7;
-				else if (statCurrent + change < 65) change += .6;
-				else if (statCurrent + change < 70) change += .5;
-				else if (statCurrent + change < 75) change += .4;
-				else if (statCurrent + change < 80) change += .3;
-				else if (statCurrent + change < 85) change += .25;
-				else if (statCurrent + change < 90) change += .2;
-				else if (statCurrent + change < 95) change += .15;
+				if (statPercent < 30) change++;
+				else if (statPercent < 40) change += .9;
+				else if (statPercent < 50) change += .8;
+				else if (statPercent < 60) change += .7;
+				else if (statPercent < 65) change += .6;
+				else if (statPercent < 70) change += .5;
+				else if (statPercent < 75) change += .4;
+				else if (statPercent < 80) change += .3;
+				else if (statPercent < 85) change += .25;
+				else if (statPercent < 90) change += .2;
+				else if (statPercent < 95) change += .15;
 				if(arg < 0) arg = 0;
 			}
 			if (stat == "physique") return physique(change);
@@ -3437,6 +3471,8 @@ package classes {
 			//Apply sexy moves before flat boni effects
 			if (hasStatusEffect("Sexy Moves")) temp *= 1.1;
 			if (hasStatusEffect("Mare Musk")) temp += 2;
+			//You cannot handle the Mango!
+			if (hasStatusEffect("The Mango")) temp += statusEffectv1("The Mango");
 			//Gain Sexy Thinking - gives sexiness bonus equal to (100-IQ-25)/20 + (100-WQ-25)/20
 			if(hasPerk("Sexy Thinking"))
 			{
@@ -7601,7 +7637,8 @@ package classes {
 				case GLOBAL.TYPE_HUMAN:
 				case GLOBAL.TYPE_INHUMAN:
 					cocks[slot].knotMultiplier = 1;
-					cocks[slot].cockColor = "pink";
+					if(skinTone == "dark" || skinTone == "ebony" || skinTone == "chocolate") cocks[slot].cockColor = "ebony";
+					else cocks[slot].cockColor = "pink";
 					break;
 				case GLOBAL.TYPE_CANINE:
 				case GLOBAL.TYPE_VULPINE:

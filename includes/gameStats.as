@@ -1746,7 +1746,7 @@ public function displayQuestLog(showID:String = "All"):void
 						else output2(", Left her alone");
 					}
 					if(flags["KQ2_DEFEATED_JUGGERNAUT"] != undefined) output2("\n<b>* Pirate Base, Juggernaut:</b> Defeated him");
-					if(flags["KQ2_WATSON_MET"] != undefined) output2("\n<b>* Pirate Base, Watson:</b> Met it");
+					if(flags["KQ2_WATSON_MET"] != undefined) output2("\n<b>* Pirate Base, Watson:</b> Met him");
 				}
 				sideCount++;
 			}
@@ -2154,6 +2154,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					{
 						output2(", Sexed him");
 						if(flags["FUCKED_VAHNS_ASS"] != undefined) output2(", Fucked his ass");
+						if(flags["HANDIED_VAHN"] != undefined) output2(", Gave him a handjob");
 					}
 				}
 				variousCount++;
@@ -2278,6 +2279,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["SERA_INCH_STEALING_SEX"] > 0) output2("\n<b>* Sera, Times She Absorbed Your Length: </b>" + flags["SERA_INCH_STEALING_SEX"]);
 					if(flags["SERA_INCH_STEALING_HELP"] > 0) output2("\n<b>* Sera, Times You Untangled Her Tail Cock: </b>" + flags["SERA_INCH_STEALING_HELP"]);
 				}
+				//if(pc.hasStatusEffect("Sera Credit Debt")) output2("\n<b>* Sera, Credit Debt: </b>" + pc.statusEffectv1("Sera Credit Debt") + " credits");
 				if(flags["PURCHASED_SERAS_GALO"] != undefined || flags["SAENDRA GONNA GO GET A COCK"] >= 2)
 				{
 					output2("\n<b>* Sera, Unique Sale:</b>");
@@ -2964,9 +2966,10 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Resources
-			if(flags["TAGGED_MHENGA_OXONIUM_DEPOSIT"] != undefined || flags["UTHRA HARVEST DAY"] != undefined)
+			if(flags["TAGGED_MHENGA_OXONIUM_DEPOSIT"] != undefined || flags["UTHRA HARVEST DAY"] != undefined || flags["FOUND_MANGO"] != undefined)
 			{
 				output2("\n<b><u>Mhen’gan Resources</u></b>");
+				if(flags["FOUND_MANGO"] != undefined) output2("\n<b>* Mhen’gan Mango, Times Found: </b>" + flags["FOUND_MANGO"]);
 				if(flags["TAGGED_MHENGA_OXONIUM_DEPOSIT"] != undefined) output2("\n<b>* Oxonium Deposit: </b> Found");
 				if(flags["UTHRA HARVEST DAY"] != undefined) output2("\n<b>* Uthra Sap, Days Since Last Harvest: </b>" + (days - flags["UTHRA HARVEST DAY"]));
 				
@@ -3753,6 +3756,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Like, Steph Irson, theee Galactic Huntress!
+			/*
 			if(flags["STEPH_WATCHED"] != undefined && flags["STEPH_WORK_CHOICE"] != undefined)
 			{
 				output2("\n<b><u>A Cavern</u></b>");
@@ -3768,6 +3772,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				else output2(" <i>Unknown</i>");
 				variousCount++;
 			}
+			*/
 			// Crab Lady
 			if(flags["QUEEN_OF_THE_DEEP_ENCOUNTERED"] != undefined)
 			{
@@ -4054,7 +4059,7 @@ public function displayEncounterLog(showID:String = "All"):void
 		if(flags["MET_KARA"] != undefined)
 		{
 			output2("\n<b>* Kara:</b> Met her");
-			if(flags["KQ2_SEX_PAY"] != undefined || flags["SEXED_KARA"] != undefined) output2(", Sexed her");
+			if(flags["SEXED_KARA"] != undefined) output2(", Sexed her");
 			if(flags["KQ2_KARA_SACRIFICE"] != undefined) output2(", Inactive");
 			if(flags["KQ2_BETRAYED_KARA"] != undefined) output2(", <i>Whereabouts unknown</i>");
 			roamCount++;
@@ -4183,7 +4188,9 @@ public function displayEncounterLog(showID:String = "All"):void
 		{
 			output2("\n<b>* Shade:</b> Met her");
 			if(flags["TOLD_SHADE_SHES_YER_SIS"] != undefined) output2(", Told her she’s your sister");
-			if(flags["KQ2_SHADE_DEAD"] != undefined) output2(", Inactive");
+			if(flags["KQ2_SHADE_DEAD"] != undefined || flags["SHADE_DISABLED"] == 1) output2(", Inactive");
+			else if(shadeAtTheBar()) output2(", Active (On Myrellion)");
+			else if(flags["SHADE_ON_UVETO"] != undefined) output2(", Active (On Uveto)");
 			if(flags["SHADE_GOT_HELP_WITH_LAYING"] != undefined)
 			{
 				output2("\n<b>* Shade, Tail Cunt:</b> Helped her with laying egg");
@@ -4193,12 +4200,9 @@ public function displayEncounterLog(showID:String = "All"):void
 			{
 				if(chars["SHADE"].isLactating()) output2("\n<b>* Shade, Milk Type: </b>" + GLOBAL.FLUID_TYPE_NAMES[chars["SHADE"].milkType]);
 			}
-			if(flags["SEXED_SHADE"] != undefined)
-			{
-				output2("\n<b>* Shade, Sexual History:</b> Sexed her");
-				if(flags["TAKEN_SHADES_HARDLIGHT"] != undefined) output2(", Fucked by her hardlight strap-on");
-				if(flags["SHADE_BOOBWORSHIP"] != undefined) output2(", Worshipped her boobs");
-			}
+			if(flags["SEXED_SHADE"] != undefined) output2("\n<b>* Shade, Times Sexed: </b>" + flags["SEXED_SHADE"]);
+			if(flags["TAKEN_SHADES_HARDLIGHT"] != undefined) output2("\n<b>* Shade, Times Fucked by Her Hardlight Strap-on: </b>" + flags["TAKEN_SHADES_HARDLIGHT"]);
+			if(flags["SHADE_BOOBWORSHIP"] != undefined) output2("\n<b>* Shade, Times Worshipped Her Boobs: </b>" + flags["SHADE_BOOBWORSHIP"]);
 			roamCount++;
 		}
 		// Zo'dee

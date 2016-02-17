@@ -42,6 +42,9 @@ public function jungleEncounterChances():Boolean {
 		choices[rand(choices.length)]();
 		return true;
 	}
+	
+	if (tryEncounterMango()) return true;
+	
 	return false;
 }
 
@@ -80,6 +83,9 @@ public function jungleMiddleEncounters():Boolean {
 		choices[rand(choices.length)]();
 		return true;
 	}
+	
+	if (tryEncounterMango()) return true;
+	
 	return false;
 }
 
@@ -155,7 +161,9 @@ public function jungleDeepEncounters():Boolean {
 		return true;
 	}
 	if(pc.level < 2) output("\n\n<b>You can't help but feel that this part of the jungle would chew you up and spit you out. Maybe you should come back after leveling up a little bit.</b>");
-
+	
+	if (tryEncounterMango()) return true;
+	
 	return false;
 }
 
@@ -490,4 +498,54 @@ public function mhengaThickMistRoom1():Boolean
 	output(" are damp from all the moisture in the air. Things are getting quite chilly.\n\nYou can hear a river to the west, which means you probably can't proceed that way. Everywhere else seems fine, you think...");
 	
 	return mhengaVanaeCombatZone();
+}
+
+// Can you handle the mango?
+public function tryEncounterMango():Boolean
+{
+	var getChance:int = 50;
+	
+	if (rand(getChance) <= 2)
+	{
+		encounterMango();
+		return true;
+	}
+	return false;
+}
+public function encounterMango(choice:String = "encounter"):void
+{
+	if(choice == "encounter")
+	{
+		clearOutput();
+		showName("A FRUITY\nFIND!");
+		
+		output("On the foliage-covered floor,");
+		if(flags["FOUND_MANGO"] == undefined) output(" a bright red-orange fruit catches your attention--it’s just sticking out there like a sore thumb. You pick it up and find that it’s actually a healthy-looking mango. It looks ripe enough to eat on the spot!");
+		else if(flags["FOUND_MANGO"] == 1) output(" you find another red-orange mango that’s ripe for the taking. Lucky you!");
+		else output(" you spot an unclaimed Mhen’gan mango looking quite ripe and delicious.");
+		output(" Would you like to take it with you?");
+		
+		processTime(1);
+		IncrementFlag("FOUND_MANGO");
+		
+		clearMenu();
+		addButton(0, "Take It", encounterMango, "take it");
+		addButton(1, "Leave It", encounterMango, "leave it");
+	}
+	else if(choice == "take it")
+	{
+		clearOutput();
+		output("Licking your lips, you take a hold of the juicy fruit.");
+		output("\n\n");
+		
+		quickLoot(new MhengaMango());
+	}
+	else if(choice == "leave it")
+	{
+		clearOutput();
+		output("You decide to leave it where you found it, but just as soon as you finish the thought, a shadowy blur runs across the jungle floor with a quick <i>woosh!</i> You can barely make out the critter but it vanishes into the shrubbery as quickly as it came. Looking back, you find a small leaf fall on the spot where the fruit once was. You guess if you weren’t going to take it, something else would....");
+		
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+	}
 }

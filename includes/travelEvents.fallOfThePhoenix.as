@@ -375,6 +375,8 @@ public function phoenixCargo():Boolean
 		}
 		else if (flags["FALL OF THE PHOENIX DEFEATED PIRATES"] == undefined)
 		{
+			showBust("VOIDPIRATE", "VOIDPIRATE", "VOIDPIRATE");
+			
 			output("\"<i>Okay, we're in. Atmosphere and pressure restoring in the damaged sections as we speak. I'm showing several life-signs in the cargo bay: it looks like they drilled in via assault pod. Captain en Illya's still alive, I think. Be ready for a fight.</i>\"");
 
 			output("\n\nYou nod, and kick open the cargo bay door. You find yourself overlooking the bay proper, walking out into a catwalk over the bay, two stairs leading downwards along the sides. Below, you can see several men in black, skintight spacesuits taking cover behind crates and barrels, trading gunfire with a lone figure sitting in a pool of her own blood, firing a heavy-looking Hammer pistol one-handed as she clutches her side. ");
@@ -425,6 +427,7 @@ public function loseToPhoenixPirates():void
 	flags["FALL OF THE PHOENIX STATUS"] = -1;
 	flags["FALL OF THE PHOENIX DEFEATED PIRATES"] = -1;
 	clearOutput();
+	showBust("MIRIAN", "VOIDPIRATE", "VOIDPIRATE");
 	author("Savin");
 
 	output("You never saw the blow coming. Under a hail of gunfire, you dive into cover, only to find a pair of pirates with stun batons leaping at you. Though you throw one of them off, the other connects, shocking you; with a scream, you crumple to the ground, only to be shocked again and again, until blackness takes you...");

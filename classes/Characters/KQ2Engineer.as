@@ -198,7 +198,7 @@ package classes.Characters
 		
 		override public function get bustDisplay():String
 		{
-			return "VOID_ENGINEER";
+			return "KQ2ENGINEER";
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void

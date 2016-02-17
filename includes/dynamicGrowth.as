@@ -129,7 +129,7 @@ public function bodyPartUpdates(partName:String = "none"):void
 		if(partName == "testicle" && pc.balls > 0)
 		{
 			//Hit basketball size >= 9
-			if(weightQ >= lvlRatioBalls[0] && heightQ >= lvlRatioBalls[0] && !pc.hasStatusEffect("Egregiously Endowed"))
+			if(weightQ >= percentBalls[0] && heightQ >= lvlRatioBalls[0] && !pc.hasStatusEffect("Egregiously Endowed"))
 			{
 				eventBuffer += "\n\nUgh, you could really use a chance to offload some [pc.cumNoun]. You";
 				if(pc.ballDiameter() >= 9 && pc.ballDiameter() < 12)
@@ -149,7 +149,7 @@ public function bodyPartUpdates(partName:String = "none"):void
 				pc.lust(5);
 			}
 			//Hit beachball size >= 15
-			if(weightQ >= lvlRatioBalls[1] && heightQ >= lvlRatioBalls[1] && !pc.hasStatusEffect("Ludicrously Endowed"))
+			if(weightQ >= percentBalls[1] && heightQ >= lvlRatioBalls[1] && !pc.hasStatusEffect("Ludicrously Endowed"))
 			{
 				eventBuffer += "\n\nEvery movement is accompanied by a symphony of sensation from your swollen nutsack, so engorged with [pc.cumNoun] that it wobbles from its own internal weight. You have to stop from time to time just to keep from being overwhelmed by your own liquid arousal.";
 				
@@ -157,7 +157,7 @@ public function bodyPartUpdates(partName:String = "none"):void
 				pc.lust(5);
 			}
 			//Hit barrel size
-			if(weightQ >= lvlRatioBalls[2] && heightQ >= lvlRatioBalls[2] && !pc.hasStatusEffect("Overwhelmingly Endowed"))
+			if(weightQ >= percentBalls[2] && heightQ >= lvlRatioBalls[2] && !pc.hasStatusEffect("Overwhelmingly Endowed"))
 			{
 				eventBuffer += "\n\nWhoah, this is awkward. Your";
 				if(pc.balls == 1) eventBuffer += " testicle is";
@@ -175,7 +175,7 @@ public function bodyPartUpdates(partName:String = "none"):void
 				pc.lust(5);
 			}
 			//hit person size
-			if(weightQ >= lvlRatioBalls[3] && heightQ >= lvlRatioBalls[3] && !pc.hasStatusEffect("Endowment Immobilized") && !pc.hasItem(new Hoverboard()))
+			if(weightQ >= percentBalls[3] && heightQ >= lvlRatioBalls[3] && !pc.hasStatusEffect("Endowment Immobilized") && !pc.hasItem(new Hoverboard()))
 			{
 				eventBuffer += "\n\nYou strain as hard as you can, but there’s just no helping it. You’re immobilized. Your";
 				if(pc.balls == 1) eventBuffer += " testicle is";

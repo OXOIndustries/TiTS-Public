@@ -3511,7 +3511,7 @@ public function annoxKaedeFuckThem(inShop:Boolean = true):void
 	
 	output("\n\nYou’re quick to follow the canid girls out of the");
 	if (inShop) output(" shop and down a few decks to Anno’s place in the heart of the ship");
-	else output(" bar and up a few decks to Kaede’s apartment on the station.");
+	else output(" bar and up a few decks to Kaede’s apartment on the station");
 	output(". You can’t help but grin as you watch their tails brush and intertwine while they walk, hand in hand, down the way.");
 	if (inShop) output(" Anno unlocks her apartment door with a flourish, pulling the both of you in and commanding the lights to dim <i>“to something sexy.”</i> Her");
 	else output(" Kaede hastily unlocks her apartment door, Anno urging her to work faster admist a flurry of lustful, teasing gropes. The moment the door slides open, Anno bundles both herself and Kaede through the opening in a hurry. Once inside, the snowy-haired ausar commands the lights to dim <i>“to something sexy.”</i> The");

@@ -356,7 +356,11 @@ public function loseToPraetorianNyreaPt2():void
 		if(pc.credits < lostCreds) lostCreds = pc.credits;
 	}
 	output("You end up getting dumped back in the nyrea village you passed through, not far from the merchant row. The guards give you a few more harsh words and a little more teasing before they go");
-	if(lostCreds > 0) output(" - and they even liberate you of " + num2Text(lostCreds) + " credits, too");
+	if(lostCreds > 0) 
+	{
+		output(" - and they even liberate you of " + num2Text(lostCreds) + " credits, too");
+		pc.credits -= lostCreds;
+	}
 	output(". Several commoners look on with wide eyes as you’re dumped off, and the guards return to the palace.");
 
 	output("\n\nYou groan and stagger back to your [pc.footOrFeet], thankful the nyrea left you your equipment. Gonna have to try again if you want to face your cousin and find the probe...\n\n");
@@ -501,7 +505,7 @@ public function searchTheQueensChambers():void
 	//sumbody get on dis
 	var gems:GemSatchel = new GemSatchel();
 	lootScreen = lootTaivrasGemsCheck;
-	itemCollect([gems], true);
+	itemCollect([gems]);
 }
 public function lootTaivrasGemsCheck():void
 {
@@ -1075,7 +1079,7 @@ public function armorGooVictoryShits():void
 	//show armorbutt?
 	showName("GOO\nARMOR");
 	showBust("GRAYGOO");
-	output("<i>“Oh, hey,”</i> [goo.name] says, poking her head out. <i>“that crystal stuff she made was really cool, huh?”</i>");
+	output("<i>“Oh, hey,”</i> [goo.name] says, poking her head out, <i>“that crystal stuff she made was really cool, huh?”</i>");
 	output("\n\nYou pause, taken aback by your normally-passive suit of goo’s sudden outburst. Still, you nod: the crystal on that ganrael broodmare was certainly useful to her.");
 	output("\n\n<i>“Could I, um... get a sample, maybe?”</i> [goo.name] asks sweetly, reaching her head around on a stalk of gray goop to give you a puppy-dog look. <i>“I bet I could replicate it! Make myself an even better bodysuit for you!”</i>");
 	output("\n\nWell, if she can give you an edge in combat, you can hardly pass that up. You turn back to the moaning pile of defeated goo-broodmare and crouch down beside her, letting [goo.name] go to work. The bubbly gray goo hops ");
@@ -2251,6 +2255,13 @@ public function probeReclamationShit():void
 //Unlock Uveto on GalMap, if it wasn’t already.
 public function shadeHalfSisterShit():void
 {
+	// KQ2 variant
+	if(flags["KQ2_QUEST_FINISHED"] != undefined)
+	{
+		KQ2shadeHalfSisterOhNoes();
+		return;
+	}
+	
 	clearOutput();
 	showShade();
 	author("Savin");
@@ -2269,7 +2280,7 @@ public function shadeHalfSisterShit():void
 
 	output("\n\n<i>“Uveto VII. I’ve got a house there, a little place is Irestead I managed to buy. I sort of fell in love with the planet the first time I was there, decided to put down roots... at least as much as somebody in my line of work can. ");
 	//if Lovers: 
-	if(flags["SEXED_SHADE"] == 1) output("You should drop by sometime. I’ll show you around, make you dinner... maybe give you a few reasons to stay a while.");
+	if(flags["SEXED_SHADE"] != undefined) output("You should drop by sometime. I’ll show you around, make you dinner... maybe give you a few reasons to stay a while.");
 	//elseif Fought Kara:
 	else if(flags["KARA_DEFEATED_WITH_SHADE"] == 1) output("You’ve got skills, you know, [pc.name]. You should swing by sometime. I could show you a few things, get you some training at the Stormguard temple. You could be a real badass hunter if you put your mind to it.");
 	else output("If you’re ever on-planet, look me up. I’ll buy you a drink.");
@@ -2293,15 +2304,15 @@ public function shadeHalfSisterShit():void
 	output("\n\n<i>“Hey,”</i> Shade scowls. <i>“What gives?”</i>");
 
 	output("\n\nYou feel a knot forming in your gut as the pilot’s Codex beeps at him, its screen flashing in his face.");
-	if(flags["SEXED_SHADE"] == 1) output(" Gulping, you reach over and take your lover’s hand, assuring her it’s probably just a bug... right?");
+	if(flags["SEXED_SHADE"] != undefined) output(" Gulping, you reach over and take your lover’s hand, assuring her it’s probably just a bug... right?");
 
 	output("\n\nAfter a couple more moments, the pilot makes a perplexed grunt and flips the Codex over and hands it to you screen-down. That alone is enough to make you worry - what the hell is going on? You take a peek at the Codex’s screen, where you see a bio-scanner readout showing your ");
-	if(flags["SEXED_SHADE"] != 1) output("kaithrit friend");
+	if(flags["SEXED_SHADE"] == undefined) output("kaithrit friend");
 	else output("lover");
 	output(" and all sorts of privacy-invading data: her age, blood type, a racial blurb about kaithrit... and a DNA analysis. Several computer-generated pinpoints cover the analysis, comparing several points on hers to your father’s - and yours. A red data readout in the corner gives what, to your untrained mind, is a meaningless series of compatibility notes summarized in big, bold capitals: <b>Chance of Close Relation: 98.356%</b>. Uh-oh...");
 
 	output("\n\nYou curse your randy father under your breath, suddenly realizing what’s happened");
-	if(flags["SEXED_SHADE"] == 1) output("... and what you’ve done");
+	if(flags["SEXED_SHADE"] != undefined) output("... and what you’ve done");
 	output(". Why the hell couldn’t he have left a list of all his bastards somewhere!?");
 	//if talked about her history:
 	if(flags["SHADE_TALKED_ABOUT_FAMILY"] == 1) output(" Then again, maybe you should have seen this coming. She did say her father was a wealthy, mystery playboy. Even if she’s a full kaithrit, your dad never spent long as any one race. He could easily have been a cat-boy forty years ago or so, well before he started to get sick...");
@@ -2309,9 +2320,9 @@ public function shadeHalfSisterShit():void
 	processTime(14);
 	//[Reveal] [Hide]
 	clearMenu();
-	if(flags["SEXED_SHADE"] == 1) addButton(0,"Reveal",revealShadesDad,undefined,"Reveal","Tell Shade the truth. She was able to activate the probe because, like you and [rival.name], she carries your father’s genes. More importantly, though, the two of you have been unknowingly incestuous.");
+	if(flags["SEXED_SHADE"] != undefined) addButton(0,"Reveal",revealShadesDad,undefined,"Reveal","Tell Shade the truth. She was able to activate the probe because, like you and [rival.name], she carries your father’s genes. More importantly, though, the two of you have been unknowingly incestuous.");
 	else addButton(0,"Reveal",revealShadesDad,undefined,"Reveal","Tell Shade the truth. She was able to activate the probe because, like you and [rival.name], she carries your father’s genes.")
-	if(flags["SEXED_SHADE"] == 1) addButton(1,"Hide",hideShadesRelation,undefined,"Hide","Don’t tell Shade what your employee’s uncovered. No need to rock the cat-girl’s boat like that. Especially if you want to keep your affair with your new-found sister going.");
+	if(flags["SEXED_SHADE"] != undefined) addButton(1,"Hide",hideShadesRelation,undefined,"Hide","Don’t tell Shade what your employee’s uncovered. No need to rock the cat-girl’s boat like that. Especially if you want to keep your affair with your new-found sister going.");
 	else addButton(1,"Hide",hideShadesRelation,undefined,"Hide","Don’t tell Shade what your employee’s uncovered. No need to rock the cat-girl’s boat like that.");
 }
 
@@ -2325,11 +2336,16 @@ public function revealShadesDad():void
 	author("Savin");
 	output("You take a breath to steel yourself, and hand the Codex to Shade with all the relevant data on full display. She takes it warily, golden eyes scanning across the screen. The corners of her mouth twitch as she reads it, and looks up at you over the top of the screen.");
 	//if Lover!Shade:
-	if(flags["SEXED_SHADE"] == 1) 
+	if(flags["SEXED_SHADE"] != undefined) 
 	{
 		output("\n\n<i>“Oh... shit,”</i> she breathes, staring at you with wide eyes. <i>“Is this for real, [pc.name]?”</i>");
 		output("\n\nYou nod slowly. It’s hard to know what to say in a situation like this");
-		if(pc.isMischievous()) output("... other than <i>“Hey, sis, nice to meet you!”</i>\n\nWhich doesn’t earn you anything but a scowl");
+		if(pc.isMischievous())
+		{
+			output("... other than <i>“Hey, sis, nice to meet you!”</i>\n\nWhich doesn’t earn you anything but a");
+			if(flags["KQ2_QUEST_FINISHED"] != undefined) output(" fearsome");
+			output(" scowl");
+		}
 		output(". Shade curses, setting the tablet down on top of the beeping probe. Her gaze drifts from you, and her fingers start to drum on the top of the probe. You try to ask if she’s alright, but when you approach with a comforting hand outstretched, Shade recoils onto her feet and turns away, her coat billowing back behind her.");
 		output("\n\n<i>“I, uh, I need to go,”</i> she says hastily, striding off at just short of a run. You take a step to follow her, but the perplexed pilot puts a hand on your shoulder to stop you.");
 		output("\n\nYou sigh, and let her go. You’re freaking out more than a little bit yourself... what a fucked-up little family your Dad’s left you!");
@@ -2387,9 +2403,12 @@ public function hideShadesRelation():void
 	output("\n\n<i>“So...?”</i> Shade asks, hopping off the old black probe as the pilots start pushing it on its hover-platform and into the cargo hold of their ship. Her gaze turns suspiciously towards you.");
 	output("\n\nYou flash her a disarming smile. <i>“Like I figured, the probe’s just old and bugged out,”</i> you lie. <i>“Couldn’t tell my DNA from a nyrea’s. We’ll get it fixed up before sending it back out.”</i>");
 	output("\n\nShe nods slowly. You’re not sure if your ruse is working, but thankfully the cat-girl doesn’t challenge your story. Instead, she shoves her hands into her duster’s pockets and laughs. <i>“Well, that’s why I don’t buy much from Steele Tech. No offense.”</i>");
-	output("\n\n<i>“None taken,”</i> you say, trying not to sigh with relief.");
-	output("\n\nShade winks at you and turns towards the northern tarmac. <i>“Alright, I’m out of here, [pc.name]. My offer stands, if you’re ever on Uveto. I’m heading back now, I guess. Good luck with your probe, kiddo.”</i>");
-	output("\n\nShe waves over her shoulder, and her cunt-like tail winks its pink slit alluring as she walks.");
+	output("\n\n<i>“None taken,”</i> you say, trying not to sigh with");
+	if(flags["KQ2_QUEST_FINISHED"] != undefined) output(" overwhelming");
+	output(" relief.");
+	if(flags["KQ2_QUEST_FINISHED"] != undefined) output("\n\nShade nods at you and turns towards the northern tarmac. <i>“Alright, I’m out of here, [pc.name]. Maybe after I get settled back in, we’ll talk. Good luck with your probe, kiddo.”</i>");
+	else output("\n\nShade winks at you and turns towards the northern tarmac. <i>“Alright, I’m out of here, [pc.name]. My offer stands, if you’re ever on Uveto. I’m heading back now, I guess. Good luck with your probe, kiddo.”</i>");
+	output("\n\nShe waves over her shoulder, and her cunt-like tail winks its pink slit alluringly as she walks.");
 	output("\n\nYou watch her go, until she’s lost in the crowd of myr on the tarmac. After that, you let go of a long-held breath and wipe your brow. You’re not sure if Shade believed you, but for now, you’ve got other things to worry about: there’s a new leg of your journey ahead of you!");
 	flags["UVETO_UNLOCKED"] = 1;
 	flags["SHADE_ON_UVETO"] = 1;

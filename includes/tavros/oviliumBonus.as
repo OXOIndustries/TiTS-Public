@@ -136,8 +136,9 @@ private function oviliumEggBumpEggs(iWomb:int = -1, cumQ:Number = 0):int
 	if (pc.pregnancyData[iWomb].pregnancyType == "OviliumEggPregnancy")
 	{
 		var bigEgg:Boolean = (pc.statusEffectv2("Ovilium") == 0);
-		var chances:int = Math.floor(pc.pregnancyData[iWomb].pregnancyQuantity / 6);
-		for (var x:int = 0; x < 12; x++)
+		var clutchEggs:int = pc.pregnancyData[iWomb].pregnancyQuantity;
+		var chances:int = Math.floor(clutchEggs / 6);
+		for (var x:int = 0; x < clutchEggs; x++)
 		{
 			if (changes < 12 && rand(chances) == 0)
 			{

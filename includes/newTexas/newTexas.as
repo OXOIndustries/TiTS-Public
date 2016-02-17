@@ -174,9 +174,10 @@ public function visitorDeskApproach():void
 	if(reahaIsCrew()) output("Damn, Reaha’s got nothing on the cows here....");
 
 	output("\n\n<i>“Sorry about the wait!”</i> the cow-girl says with a big smile. <i>“My name’s Amma, and I just need a few things from you before you can head on out to the fields. Trust me, you’re going to have so much fun!");
-	if(pc.mf("dude","") == "dude") output(" There’s plenty of girls just like me who’re going to be so happy to meet you!”</i>");
-	else if(pc.biggestTitSize() < 7) output(" I think New Texas’s got just what you need to spice up your life, cutie!”</i>");
-	else output(" You look like you’d fit right in here, miss! A couple days on New Texas and you won’t ever want to leave!”</i>");
+	if(pc.mf("dude","") == "dude") output(" There’s plenty of girls just like me who’re going to be so happy to meet you!");
+	else if(pc.biggestTitSize() < 7) output(" I think New Texas’s got just what you need to spice up your life, cutie!");
+	else output(" You look like you’d fit right in here, miss! A couple days on New Texas and you won’t ever want to leave!");
+	output("”</i>");
 
 	output("\n\nShe picks up a holo-slate with a few blanks on it and hands it over to you. <i>“Just sign the register here and you’re all set. Oh! And if you want the Treatment, just go to the gift shop in the ranch house. You can even get a delicious salad from the restaurant while you’re getting treated. Or a steak or something, I guess. Or you could go play with the " + pc.mf("studs","girls") + " in the barns: they’re always open to visitors!”</i>");
 	output("\n\nAs she’s speaking, you sign your name and ship ID. Once done, a green light flickers on the screen, and a banner announces that you’re done - welcome to New Texas! <i>“Great! All done, sugar! Just head on out through the door there, and have lots of fun. If you have any questions, Oggy and I are always here to answer ‘em.”</i>");
@@ -212,21 +213,22 @@ public function repeatOgramApproach():void
 	showName("\nOGRAM");
 	showBust("OGRAM");
 	output("You step over to the customs desk and clear your throat to get Ogram’s attention. ");
-	output("<i>“Sup, " + pc.mf("bro","beautiful") + "?”</i> Og says with a friendly nod. ");
+	output("<i>“‘Sup, " + pc.mf("bro","beautiful") + "?”</i> Og says with a friendly nod. ");
 
+	output("<i>“");
 	//if PC is Disarmed: 
 	if(pc.hasStatusEffect("Disarmed"))
 	{
-		output("<i>“Lemme know when you’re ready to go, and I’ll hand your weapons back over.");
+		output("Lemme know when you’re ready to go, and I’ll hand your weapons back over.");
 	}
 	//If PC is armed:
 	else
 	{
-		output("<i>“If you want to go into the ranch, you’ll need to check your weapons with me.");
+		output("If you want to go into the ranch, you’ll need to check your weapons with me.");
 	}
 	output("”</i>");
 	//If sex’d:
-	if(flags["FUCKED_TEXAN_CUSTOMS"] != undefined) output(" <i>“Or would ya rather double-team the cow again?”</i>");
+	if(flags["FUCKED_TEXAN_CUSTOMS"] != undefined) output(" With a grin he adds, <i>“Or would ya rather double-team the cow again?”</i>");
 
 	//[Talk] [Sex] [Rearm] [Disarm]
 	clearMenu();
@@ -640,7 +642,7 @@ public function spitRoastAmmoOnYerDicks():void
 	output("\n\nAmma breaks her kiss with Ogram to give you a wink over her shoulder. <i>“Go ahead and fuck me, [pc.name]. Oggy’s got me soooo ready for you!”</i>");
 
 	output("\n\nThat’s an invitation that’s hard to turn down. You shrug yourself out of your [pc.gear] and grab [pc.oneCock]");
-	if(pc.isCrotchGarbed()) output(", finally freeing your turgid rod from the confines of your [pc.lowerGarment]");
+	if(!pc.isCrotchExposed()) output(", finally freeing your turgid rod from the confines of your [pc.lowerGarment]");
 	output(". Amma gasps happily as your prick flops onto her back and wiggles herself back against you, grinding your [pc.cock " + x + "] into crack of her ass. You shudder with pleasure as she puts just the perfect amount of pressure on your cock, squeezing it between her plump cheeks and riding it up and down. You give her a sharp swat on the ass, making her jiggly butt bounce. Another spank, and she squeals in delight -- and quickly finds her mouth plugged full of Ogram’s lengthy bovine dong. Her cry of pleasure is muffled into a low, husky moan around Og’s dick, but she’s hardly complaining about it: indeed, her slim tail swishes faster as she starts to suckle on her lover’s rod.");
 
 	output("\n\nYour own hand slips down between Amma’s legs, brushing across the wet gash between her legs. She shivers happily at your touch, spreading her legs nice and wide as a brace of your digits slide easily into her, spreading her slutty hole out for you. God <i>damn</i> she’s wet, almost like an ausar the way she’s all but drooling her excitement across your fingers. You pull them out and ");
@@ -740,10 +742,10 @@ public function worshipZeBullCawk():void
 	output("\n\nYou’re not sure you can wait that long... but by God you’ll try. Anything is worth the sweet release of your bullish mate. He starts to thrust, fucking your mouth like an onahole, pounding you back into the soft buffer of his lover’s udders, her flesh rippling with every impact as his speed mounts. Faster and harder, each thrust carrying his titanic cock deeper inside you until your stomach feels like it’s bulging with his sheer length, your throat stretching like a well-trained pussy around him. You can feel every pulse of his heartbeat through his cock now, every shudder he makes as you pleasure him, the swelling of his member as your tight throat brings him to orgasm.");
 	output("\n\n<i>“Deep breath!”</i> he shouts, moments before he cums. You have just enough time to do so before he rams his cock down to the hilt and unloads, bypassing your mouth entirely and shooting his wad right into your gut. You gasp and gag, unable to breathe as he cums, bloating your belly with a monstrous load of seed. You’re all but seeing stars by the time he starts to withdraw, still spewing spunk into you from his visibly lightening balls. The tip pops out of your mouth just at the tail end of his climax, blasting your tongue with a thick spray, following by your face and Amma’s, marking you both as Ogram’s bitches. You both eagerly open wide for the bull’s load, happily accepting his seed as it sprays across your faces until you’re dripping with it.");
 	output("\n\nYou’d probably have collapsed if not for Amma behind you, gently rocking you as Ogram finishes with you. <i>“You did good, honey!”</i> she coos, her breath hot and heavy against your [pc.ear]. <i>“Oggy hasn’t shot a load like that in ages!”</i>");
-	output("\n\nHe chuckles. <i>“She’s being modest, " + pc.mf("buddy","beautiful") + ". But seriously: if you suck cock that good, you’re welcome back any time.\”</i>");
+	output("\n\nHe chuckles. <i>“She’s being modest, " + pc.mf("buddy","beautiful") + ". But seriously: if you suck cock that good, you’re welcome back any time.”</i>");
 	if(pc.hasCock()) 
 	{
-		output(" <i>“I might even share Amma with you, if you play your cards right.”</i>");
+		output(" Leaning in he adds, <i>“I might even share Amma with you, if you play your cards right.”</i>");
 		output("\n\nShe swats him on the knee.");
 	}
 	output("\n\nYou give the pair a half-conscious nod as you’re helped up and start to");
@@ -776,8 +778,9 @@ public function useDaMilkar():void
 	{
 		showName("MILKER\nOPERATOR");
 		output("You step up to the cow-girl sitting on the stool and ask if you can use the machine here. The busty bovine looks up, looks you up and down, and giggles. <i>“Sorry, honey. I don’t think you... uh... have the right bits and pieces to use this machine.");
-		if(pc.biggestTitSize() >= 1) output(" Why don’t you head on down to one of the other stalls? I’m sure the girls there will treat you right!”</i>");
-		else output(" Maybe you ought to go down to the gift shop and ask Ellie for some enhancements, that way you can use the other machines, at least!”</i>");
+		if(pc.biggestTitSize() >= 1) output(" Why don’t you head on down to one of the other stalls? I’m sure the girls there will treat you right!");
+		else output(" Maybe you ought to go down to the gift shop and ask Ellie for some enhancements, that way you can use the other machines, at least!");
+		output("”</i>");
 		processTime(1);
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
@@ -837,8 +840,9 @@ public function okayEllieYaCuntLetsMilkMeFirstTime():void
 	//if First time: 
 	if(StatTracking.getStat("milkers/prostate milker uses") == 0) output("You nod and introduce yourself in turn. ");
 	output("The auburn-tressed cow-girl grins and leads you into the stall, shutting the door behind you, flipping a little lock that turns on an OCCUPIED sign on the door. <i>“Not a lot of bulls need to use the boy-milker here - that’s a prostate milker if you want to get fancy - so you get to have some privacy, at least. Well, aside from me, anyway! Don’t worry, you’ll barely know I’m here. Unless you want to, anyway,”</i> Carrie says, giving you a little wink. <i>“");
-	if(!pc.isNude()) output("Anyway, let’s get you out of those clothes, alright?”</i>");
-	else output("I’ll hold onto your gear for you, alright?”</i>");
+	if(!pc.isNude()) output("Anyway, let’s get you out of those clothes, alright?");
+	else output("I’ll hold onto your gear for you, alright?");
+	output("”</i>");
 
 	output("\n\nA little nervously, you do as the cow asks, stripping off your [pc.gear] and handing your equipment over piece by piece. Carrie lays it all out on a small table inside the stall before turning back to you, giving you a reassuring smile even as her wandering eyes take in your nude form. <i>“Alrighty then! Let me help you get strapped into the machine here,”</i> she says, practically skipping back to your side and indicating ");
 	if(!pc.isBiped()) output("for you to just step up onto and over the machine, putting the weight of your belly onto it -- <i>“don’t worry, it can take your weight, no problem!”</i>");
@@ -1270,9 +1274,9 @@ public function stephIrsonBySavinWhoSaysHesTiredOfTreatedCowBimbosThenMakesHerAT
 	
 	flags["STEPH_WATCHED"] = 1;
 	
-	output("You seat yourself on one of the benches in the grill, kicking your [pc.feet] up onto the table and turning your attention to the sizable Super-HD Viewscreen mounted above the bar. As you sit, the last commercial break is just coming to an end, instructing you to purchase the Treatment from the gift shop in the lobby before the screen fades to a superimposed logo of <b>Steph Irson: Galactic Huntress</b>, a popular nature show. Beneath the title script, a warning appears in large red letters: \"<i>This Show Rated X, Adults Only, by the Galactic Entertainment Ratings Board for Graphic, Sexual, and Disturbing Imagery. You Have Been Warned.</i>\"");
+	output("You seat yourself on one of the benches in the grill, kicking your [pc.feet] up onto the table and turning your attention to the sizable Super-HD Viewscreen mounted above the bar. As you sit, the last commercial break is just coming to an end, instructing you to purchase the Treatment from the gift shop in the lobby before the screen fades to a superimposed logo of <b>Steph Irson: Galactic Huntress</b>, a popular nature show. Beneath the title script, a warning appears in large red letters: <i>“This Show Rated X, Adults Only, by the Galactic Entertainment Ratings Board for Graphic, Sexual, and Disturbing Imagery. You Have Been Warned.”</i>");
 	output("\n\nThe camera pans down from a wide-angled shot of the vast, sweeping plains of Grand Teh to finally focus on the hostess, Steph, sitting atop a simple wooden fence at the field’s edge, one leg crossed over the other, showing off the calves beneath her sheer short-shorts. To her right and left are a pair of prodigiously-endowed cow-girls, their massive breasts bare, resting atop the fence-posts as they look placidly off into the distance behind the camera, both chewing on what looks like lettuce.");
-	output("\n\n<i>“Welcome to a special edition of </i>Galactic Huntress,”</i> Steph Irson says, as ever in her strong New Brisbane accent. As the camera zooms in on her face, you’re treated to a close-up view of the perky cat-ears now resting atop her hair, as well as the odd, almost metallic-gray color of her lips and irises. Every time she blinks or speaks, the colors seem to shift and swim, as if alive and moving.");
+	output("\n\n<i>“Welcome to a special edition of </i>Galactic Huntress<i>,”</i> Steph Irson says, as ever in her strong New Brisbane accent. As the camera zooms in on her face, you’re treated to a close-up view of the perky cat-ears now resting atop her hair, as well as the odd, almost metallic-gray color of her lips and irises. Every time she blinks or speaks, the colors seem to shift and swim, as if alive and moving.");
 	output("\n\nShe continues: <i>“Today we’re coming back toward the core for a look at some more domesticated species. It’s always important to remember that, though the frontier is a wild and untamed place, full of wonders and mysteries and strange new life, each of the worlds you and I would call the Core were, once upon a time, just as wild as Mhen’ga or Tarkus. Today we’re on Grand Teh, once an inhospitable world that humanity carved out into an idyllic paradise. Rather than relying on advanced technology as many colonies do, Grand Teh’s retained its peaceful, farm-like appearance. This planet’s green fields and friendly farm-hands go on for as far as the eye can see.”</i>");
 	output("\n\nSmiling at the camera as it zooms back out, Steph puts a friendly hand on the shoulders of the two cow-girls beside her. One of them moos quietly, looking up at her. <i>“Here we’ve got Grand Teh’s native inhabitants, the Tehans. Generations of traditional genetic modifications have given them a cute, bovine appearance -- and a whole new meaning to sexual dimorphism. Males and females of Grand Teh are pretty different physically and mentally. We’re going to see just how so!”</i>");
 	output("\n\nSteph hops nimbly from the fence post and takes one of the cow-girls by the arm, giving her a gentle tug towards the camera’s left. The cow moos, her floppy ears perking up. <i>“Milk time?”</i> she asks, obediently following along behind Steph.");
@@ -1304,12 +1308,12 @@ public function stephIrsonEp3Pt2():void
 	output("\n\nAs she’s talking, Steph’s walks out of the stall and back into the barn proper. Her <i>“quest”</i> takes her all the way to the other end of the barn, where in the background of her narration, you can see a huge, muscular man pounding away at one of the harnessed-up cowgirls, plunging his cock into her spread pussy as the automated milkers work their magic on her. Seeing the proceedings out of the corner of her gray eye, Steph freezes mid-step, hunching down and whispering to the camera drone, <i>“Alright, here we go. I’m going to have to be very, very careful not to earn this bull’s ire. Small words, a non-threatening tone.... I absolutely do not want to be seen as a threat, especially during what must be mating season here on Teh.”</i>");
 	output("\n\nIn proper <i>Galactic Huntress</i> fashion, Steph starts to creep up toward the bull, stealthily making her way up behind his pistoning hips. The camera drone floats around to get a better picture of him: mostly human, but freakishly tall, with massive bull horns growing from his brow. The man’s muscular to the point of a bodybuilder, with a thick layer of body hair that clings tightly to his darkly tanned skin. His jaw is locked in a frown of effort, and he’s grunting deeply, almost like a real bull. Every powerful hip-thrust sends the cow-girl rocking in her harness, her assflesh rippling with the impacts.");
 	output("\n\n<i>“G’day, mate!”</i> Steph says suddenly from the stud’s side, leaning against the stall wall.");
-	output("\n\n<i>“’Sup,”</i> he answers, not breaking pace nor looking up.");
+	output("\n\n<i>“‘Sup,”</i> he answers, not breaking pace nor looking up.");
 	output("\n\nInching closer, Steph asks, <i>“Got a sec to answer some questions, big boy? For the viewers at home?”</i>");
 	output("\n\n<i>“Working,”</i> he grunts, slapping the cow-girl on the ass. She shrieks, a large red-mark left on her behind.");
 	output("\n\nSteph pouts. <i>“C’mon, you’re the first stud I’ve seen all day.”</i>");
 	output("\n\nThe bull finally looks away from the jiggling cow-butt between his legs and glowers at the huntress. <i>“Lady, I’m balls-deep in a bitch right now. Can you wait like, five minutes?”</i>");
-	output("\n\n<i>“That doesn’t make for exciting television, now does it?”</i> Steph says, arms crossed. As she does so, her camera drone shudders and re-focuses on the gap between the stud and his breeder, zooming in on his huge cock pounding her spread pussy and giving you a gloriously high-def view of the fem-cum spurting out around his rod. Now <i>that</i>'s some good television. ");
+	output("\n\n<i>“That doesn’t make for exciting television, now does it?”</i> Steph says, arms crossed. As she does so, her camera drone shudders and re-focuses on the gap between the stud and his breeder, zooming in on his huge cock pounding her spread pussy and giving you a gloriously high-def view of the fem-cum spurting out around his rod. Now <i>that</i>'s some good television.");
 	output("\n\n“You sure I can't borrow you for a minute?” Steph purrs, her feline ears perking up atop her head as one of her arms reaches out to caress the thick, tense muscles on the Treated man's arm.");
 	output("\n\nThe stud hilts himself in the cow and grunts with bestial enthusiasm, his breath hot and heavy as the camera drone focuses in on him, and then on thoroughly-bred cow beneath him. With another feral grunt, the bull takes a step back from the well-fucked cow-slut and letts a torrent of spooge pour out of her packed pussy, a waterfall of white that very nearly splatters on the camera drone. When it recovers, you’re treated to a full-frontal view of the stud’s cock: a huge equine phallus almost as long as his arm dangling between his muscular legs.");
 	output("\n\nHe turns to Steph with a toothy grin and grabs the Huntress’s ass in both hands, pulling the khaki-clad hostess up against himself. Steph makes a pathetic little yelp as she’s all but hauled off of her feet, her bare legs rubbing up against the bull’s half-hard prick - which immediately smears her tanned flesh with thick, white cream.");
@@ -1326,33 +1330,33 @@ public function stephIrsonEp3Pt3():void
 	author("Savin");
 	showName("STEPH\nIRSON");
 	showBust("STEPH_3_NUDE");
-output("<i>“Hey, I’m not a-”</i> Steph starts to say, getting cut off when the bull bucks her onto the milker. His free hand all but rips her shirt off by the back, leaving tattered fragments of cloth hanging limply from Steph’s shoulders.");
-output("\n\n<i>“Why don’t you interview this?”</i> he chuckles, aiming the camera drone down to watch as he cranes Steph’s head into the thighs of the cow-girl he was just fucking, rubbing the huntress’s nose into the cream-packed slit between them. The cow immediately starts to moan, arching her back and clutching at her over-sized jugs - you can’t see the action up close, but something tells you Steph isn’t exactly resisting the bull’s direction.");
-output("\n\nThe stud chuckles and steps back, keeping one hand firmly planted on Steph’s back as he circles around, giving you - and the hundreds of thousands of other viewers across the galaxy - an ultra-HD panoramic of Steph Irson lapping up his cum from the cow’s twat. <i>“Always wanted to do a porno,”</i> he laughs, almost boomingly loud so close to the drone’s microphone.");
-output("\n\nHe lets go of Steph’s back, and grunts approvingly when she stays right where he put her, making his bovine bottom moan and squirm between the attentions of the milker and Steph's apparently very talented tongue. The bull makes quick work of the rest of Steph’s clothing, yanking away her tattered top and pulling her khaki booty shorts down around her ankles, revealed a pussy with silver-grey lips.");
-output("\n\n<i>“Woah, what do we have here?”</i> the bull says, crouching down behind the bent-over huntress and focusing the drone in on her drooling sex. <i>“Nice and smooth and painted up...”</i> he reaches forward to tease a finger along her lips, tracing a thick digit around her sex before plunging a pair of them inside her... and then the rest in quick succession, burying himself to the wrist.");
-output("\n\n<i>“Damn, babe, that’s some fine work you’ve got done down her. Fuckin’ stretchy as hell... it’s like you were just </i>made<i> for takin’ big dicks, huh?”</i>");
-output("\n\nSteph yelps something, trying to sit up but finding herself trapped in the iron grasp of the cow-girl’s thighs. The bovine babe’s legs are wrapped around Steph’s shoulders, the camera reveals, pulling the huntress deeper and deeper into the cow’s cunny... and the growing lake of moisture pooling under her ass, drool and cum and feminine excitement mixing into what you can only imagine to be an heady aroma. Steph must be going insane down there...");
-output("\n\n<i>“Fuck it, guess I don’t need to get you warmed up after all,”</i> the bull laughs, pulling his fist out of Steph’s cunt and standing up, leaving her silver lips so agape it looks like you could just roll a bowling ball into her. The bull grabs his mammoth dick and hefts it up, flopping the hardening equine erection right onto Steph’s bubble butt. The huntress yelps and cries out - you’re not sure if in pleasure or alarm, as her words are drowned out in cow-girl pussy.");
-output("\n\nSpeaking of cow-girls, the babe Steph’s eating out takes the opportunity to let out a bellowing <i>“Mooooo!”</i> and throw her head back in a sign of ultimate pleasure, spraying Steph down with a geyser of fem-spunk and discharged bull-seed in what looks like an orgasm of legendary proportions.");
-output("\n\nA moment later and the cow flops heavily onto her back, completely still. <i>“Damn,”</i> the bull grunts, craning the camera up to look at the blissed-out look on his partner’s face, eyes rolled back up and mouth agape. <i>“Guess you know how to handle a cow... Heh, I bet you’d like some of that same treatment, wouldn’t you, slut?”</i>");
-output("\n\n<i>“I AM NOT A-”</i> Steph finally manages to say, digging her head out from the cow-girl’s thick, cum-splattered thighs. The camera automatically zooms in on her face, giving you a perfect look at her wet cheeks and the rivulets of white spilling down from her silver lips.");
-output("\n\nThe bull cuts her off with a rough spank that makes her ass jiggle under his heavy rod, and Steph’s words coil into a scream of pleasure.");
-output("\n\n<i>“Don’t think I heard you, slut,”</i> the bull grunts, digging his fingers into Steph’s behind and massaging her ample ass, squeezing and kneading until she’s moaning and quivering in his grasp. <i>“Ready for me to make you a real cow, yet?”</i>");
-output("\n\nSteph answers with a wordless moan, grinding back against the bull and wiggling her hips. The immense stud just laughs and starts to move his hips, sliding his still-slick shaft between her asscheeks. As he does so, he moves his hands from the huntress’s butt to the passed-out cow’s tits, yanking the milker pumps off of her plump breasts with a squirt of white cream that rains down all over Steph.");
-output("\n\n<i>“Smile for the camera, babe,”</i> the bull grunts, bringing the camera around to look Steph in her spunk-splattered face. As he does so, he reaches up and attaches to milkers to her perky handfuls of boobs. She immediately starts to moan, arching her back as the suction cups try and drain her of... nothing.");
-output("\n\nThe bull grunts and cocks an eyebrow, as if he can’t understand why there’s not a flood of white cream pouring out of Steph’s tits. It hits him a moment later, and he laughs heartily, giving her a smack on the ass for emphasis. <i>“Oh, right. Hah, been ages since I found a slut who didn’t just turn into a milky mess when I hooked her up. But I bet you wanna fix that, don’t ya? You want the whole New Texas experience... for your viewers at home.”</i>");
-output("\n\nHe reaches over to where several articles of clothing are hanging on the wall and fishes a small bottle out of the cow-girl’s purse, rolling in in his hand for the camera to reveal the big, friendly words <i>“BOVINIUM”</i> labeled on it. <i>“Some of the cows here take these if they’re not all the way satisfied with what the Treatment gives ‘em,”</i> the bulls says, opening the bottle and tipping out a cute little gummy cow into his hand. <i>“Just in case they want bigger tits or even more milk. Sounds about right up your alley.”</i>");
-output("\n\nSteph’s eyes go wide as the big, burly bull looms over her... but you notice she doesn’t seem to resist as he places his gummy-laden hand over her lips, tipping the candies into the Huntress’s mouth.");
-output("\n\nSeveral of the cow-folk who’ve gathered around you to watch the <i>Galactic Huntress</i> all cheer and bellow variations on <i>“yee-haw”</i> and <i>“moo!”</i> The whole restaurant seems to come alight with activity - everyone’s in an uproar as the Huntress starts to change bodily, her once-perky tits expanding, and her thighs and hips thickening like a proper New Texan cow. You watch with mounting arousal as Steph’s body changes in front of the camera, her tits growing and growing with added weight. They fill out to a pair of huge, jiggling jugs - perfect circles resting high on her chest, with tan skin only emphasizing the puffy pink teats at their tips.");
-output("\n\nTips that start to bud with moisture. Steph groans as the suction tubes latched onto her expanding bust start to coax out a trickle of... of milk! Those candies really are making her just like a good little cow, thick and milky and moaning as she’s drained of what her body’s now producing. The bull grins, reaching forward to sink his hand into Steph’s super-soft boob, squeezing until she cries out. And, you note, her hand starts to slip down towards her cunt, which the camera drone shows to be all but drooling with excitement.");
-output("\n\n<i>“<i>What’s that, babe? Need a little attention down there?</i>”</i> the bull growls, grabbing Steph’s hand before she can start to masturbate, making her moan as her body’s subjected to irresistible pleasure from the milker. She’s like a limp, leaking doll in his hands, tiny and helpless as the stud picks her up, turns her around so she’s facing her camera drone, and drops her down on his flared cockhead.");
-output("\n\n<i>“<i>Alright, let’s finish this! You following me, camera drone?</i>”</i> he laughs, slamming Steph down on his cock. The drone dutifully zooms in on the action, focused in as his massive shaft spreads Steph wide. You watch as the Huntress is bounced up and down by his bucking hips, her gut distending to make room for the sheer mass of cock inside her cunt, stretching and compacting as the bull fucks her brains out. Steph cries out, grabbing at the stud’s arms, her tits, anything she can to steady her bouncing, jiggling, orgasming body.");
-output("\n\nSteph’s climax is as loud as it is wet, heralded by a scream of pleasure at the bottom of one of the bull’s bucks, when every inch of cockflesh that can be is crammed into her. The camera watches close as her pussy sprays out a thick load of femcum, splattering the camera lens with that and a geyser of milk sloshing out from her heavy, bouncing tits and through the milker’s tubes.");
-output("\n\nSatisfied that he’s put the huntress in her place, the bull takes a step forward and presses Steph into the wall of the stall, squishing her between his body and the hard boards. With her immobilized, he’s free to grip her hips and start pounding, thrusting as hard and deep as he can to get himself off in the bovinified-Steph’s sodden box. He doesn’t take all that long to reach his peak when he puts his mind to it, and soon he’s grunting with effort, balls visibly clenching as he prepares to cum.");
-output("\n\nAt the last moment, the bull pulls out, leaving Steph’s pussy gaping. He grabs his cock and aims it over her like a hose, letting the mammoth tool loose to spray a torrent of thick seed over Steph’s back and ass, practically plastering her to the wall with his sticky load. By the time he’s done, Steph looks like a snow-woman, completely covered in white spunk. The bull grins, slaps her ass, and turns to leave...");
-output("\n\n... Only to turn back, grab the camera drone right out of the air, and give it a toothy grin. <i>“That’s it for this week’s episode of </i>Galactic Slutress<i>. Tune in next week to watch this big-titted bimbo get fucked by something else. Oh - and hi, mom!”</i>");
-output("\n\nThe camera feed cuts out, and a commercial break cuts in.");
+	output("<i>“Hey, I’m not a-”</i> Steph starts to say, getting cut off when the bull bucks her onto the milker. His free hand all but rips her shirt off by the back, leaving tattered fragments of cloth hanging limply from Steph’s shoulders.");
+	output("\n\n<i>“Why don’t you interview this?”</i> he chuckles, aiming the camera drone down to watch as he cranes Steph’s head into the thighs of the cow-girl he was just fucking, rubbing the huntress’s nose into the cream-packed slit between them. The cow immediately starts to moan, arching her back and clutching at her over-sized jugs - you can’t see the action up close, but something tells you Steph isn’t exactly resisting the bull’s direction.");
+	output("\n\nThe stud chuckles and steps back, keeping one hand firmly planted on Steph’s back as he circles around, giving you - and the hundreds of thousands of other viewers across the galaxy - an ultra-HD panoramic of Steph Irson lapping up his cum from the cow’s twat. <i>“Always wanted to do a porno,”</i> he laughs, almost boomingly loud so close to the drone’s microphone.");
+	output("\n\nHe lets go of Steph’s back, and grunts approvingly when she stays right where he put her, making his bovine bottom moan and squirm between the attentions of the milker and Steph's apparently very talented tongue. The bull makes quick work of the rest of Steph’s clothing, yanking away her tattered top and pulling her khaki booty shorts down around her ankles, revealed a pussy with silver-grey lips.");
+	output("\n\n<i>“Woah, what do we have here?”</i> the bull says, crouching down behind the bent-over huntress and focusing the drone in on her drooling sex. <i>“Nice and smooth and painted up...”</i> he reaches forward to tease a finger along her lips, tracing a thick digit around her sex before plunging a pair of them inside her... and then the rest in quick succession, burying himself to the wrist.");
+	output("\n\n<i>“Damn, babe, that’s some fine work you’ve got done down her. Fuckin’ stretchy as hell... it’s like you were just </i>made<i> for takin’ big dicks, huh?”</i>");
+	output("\n\nSteph yelps something, trying to sit up but finding herself trapped in the iron grasp of the cow-girl’s thighs. The bovine babe’s legs are wrapped around Steph’s shoulders, the camera reveals, pulling the huntress deeper and deeper into the cow’s cunny... and the growing lake of moisture pooling under her ass, drool and cum and feminine excitement mixing into what you can only imagine to be an heady aroma. Steph must be going insane down there...");
+	output("\n\n<i>“Fuck it, guess I don’t need to get you warmed up after all,”</i> the bull laughs, pulling his fist out of Steph’s cunt and standing up, leaving her silver lips so agape it looks like you could just roll a bowling ball into her. The bull grabs his mammoth dick and hefts it up, flopping the hardening equine erection right onto Steph’s bubble butt. The huntress yelps and cries out - you’re not sure if in pleasure or alarm, as her words are drowned out in cow-girl pussy.");
+	output("\n\nSpeaking of cow-girls, the babe Steph’s eating out takes the opportunity to let out a bellowing <i>“Mooooo!”</i> and throw her head back in a sign of ultimate pleasure, spraying Steph down with a geyser of fem-spunk and discharged bull-seed in what looks like an orgasm of legendary proportions.");
+	output("\n\nA moment later and the cow flops heavily onto her back, completely still. <i>“Damn,”</i> the bull grunts, craning the camera up to look at the blissed-out look on his partner’s face, eyes rolled back up and mouth agape. <i>“Guess you know how to handle a cow... Heh, I bet you’d like some of that same treatment, wouldn’t you, slut?”</i>");
+	output("\n\n<i>“I AM NOT A-”</i> Steph finally manages to say, digging her head out from the cow-girl’s thick, cum-splattered thighs. The camera automatically zooms in on her face, giving you a perfect look at her wet cheeks and the rivulets of white spilling down from her silver lips.");
+	output("\n\nThe bull cuts her off with a rough spank that makes her ass jiggle under his heavy rod, and Steph’s words coil into a scream of pleasure.");
+	output("\n\n<i>“Don’t think I heard you, slut,”</i> the bull grunts, digging his fingers into Steph’s behind and massaging her ample ass, squeezing and kneading until she’s moaning and quivering in his grasp. <i>“Ready for me to make you a real cow, yet?”</i>");
+	output("\n\nSteph answers with a wordless moan, grinding back against the bull and wiggling her hips. The immense stud just laughs and starts to move his hips, sliding his still-slick shaft between her asscheeks. As he does so, he moves his hands from the huntress’s butt to the passed-out cow’s tits, yanking the milker pumps off of her plump breasts with a squirt of white cream that rains down all over Steph.");
+	output("\n\n<i>“Smile for the camera, babe,”</i> the bull grunts, bringing the camera around to look Steph in her spunk-splattered face. As he does so, he reaches up and attaches to milkers to her perky handfuls of boobs. She immediately starts to moan, arching her back as the suction cups try and drain her of... nothing.");
+	output("\n\nThe bull grunts and cocks an eyebrow, as if he can’t understand why there’s not a flood of white cream pouring out of Steph’s tits. It hits him a moment later, and he laughs heartily, giving her a smack on the ass for emphasis. <i>“Oh, right. Hah, been ages since I found a slut who didn’t just turn into a milky mess when I hooked her up. But I bet you wanna fix that, don’t ya? You want the whole New Texas experience... for your viewers at home.”</i>");
+	output("\n\nHe reaches over to where several articles of clothing are hanging on the wall and fishes a small bottle out of the cow-girl’s purse, rolling in in his hand for the camera to reveal the big, friendly words <i>“BOVINIUM”</i> labeled on it. <i>“Some of the cows here take these if they’re not all the way satisfied with what the Treatment gives ‘em,”</i> the bulls says, opening the bottle and tipping out a cute little gummy cow into his hand. <i>“Just in case they want bigger tits or even more milk. Sounds about right up your alley.”</i>");
+	output("\n\nSteph’s eyes go wide as the big, burly bull looms over her... but you notice she doesn’t seem to resist as he places his gummy-laden hand over her lips, tipping the candies into the Huntress’s mouth.");
+	output("\n\nSeveral of the cow-folk who’ve gathered around you to watch the <i>Galactic Huntress</i> all cheer and bellow variations on <i>“yee-haw”</i> and <i>“moo!”</i> The whole restaurant seems to come alight with activity - everyone’s in an uproar as the Huntress starts to change bodily, her once-perky tits expanding, and her thighs and hips thickening like a proper New Texan cow. You watch with mounting arousal as Steph’s body changes in front of the camera, her tits growing and growing with added weight. They fill out to a pair of huge, jiggling jugs - perfect circles resting high on her chest, with tan skin only emphasizing the puffy pink teats at their tips.");
+	output("\n\nTips that start to bud with moisture. Steph groans as the suction tubes latched onto her expanding bust start to coax out a trickle of... of milk! Those candies really are making her just like a good little cow, thick and milky and moaning as she’s drained of what her body’s now producing. The bull grins, reaching forward to sink his hand into Steph’s super-soft boob, squeezing until she cries out. And, you note, her hand starts to slip down towards her cunt, which the camera drone shows to be all but drooling with excitement.");
+	output("\n\n<i>“What’s that, babe? Need a little attention down there?”</i> the bull growls, grabbing Steph’s hand before she can start to masturbate, making her moan as her body’s subjected to irresistible pleasure from the milker. She’s like a limp, leaking doll in his hands, tiny and helpless as the stud picks her up, turns her around so she’s facing her camera drone, and drops her down on his flared cockhead.");
+	output("\n\n<i>“Alright, let’s finish this! You following me, camera drone?”</i> he laughs, slamming Steph down on his cock. The drone dutifully zooms in on the action, focused in as his massive shaft spreads Steph wide. You watch as the Huntress is bounced up and down by his bucking hips, her gut distending to make room for the sheer mass of cock inside her cunt, stretching and compacting as the bull fucks her brains out. Steph cries out, grabbing at the stud’s arms, her tits, anything she can to steady her bouncing, jiggling, orgasming body.");
+	output("\n\nSteph’s climax is as loud as it is wet, heralded by a scream of pleasure at the bottom of one of the bull’s bucks, when every inch of cockflesh that can be is crammed into her. The camera watches close as her pussy sprays out a thick load of femcum, splattering the camera lens with that and a geyser of milk sloshing out from her heavy, bouncing tits and through the milker’s tubes.");
+	output("\n\nSatisfied that he’s put the huntress in her place, the bull takes a step forward and presses Steph into the wall of the stall, squishing her between his body and the hard boards. With her immobilized, he’s free to grip her hips and start pounding, thrusting as hard and deep as he can to get himself off in the bovinified-Steph’s sodden box. He doesn’t take all that long to reach his peak when he puts his mind to it, and soon he’s grunting with effort, balls visibly clenching as he prepares to cum.");
+	output("\n\nAt the last moment, the bull pulls out, leaving Steph’s pussy gaping. He grabs his cock and aims it over her like a hose, letting the mammoth tool loose to spray a torrent of thick seed over Steph’s back and ass, practically plastering her to the wall with his sticky load. By the time he’s done, Steph looks like a snow-woman, completely covered in white spunk. The bull grins, slaps her ass, and turns to leave...");
+	output("\n\n... Only to turn back, grab the camera drone right out of the air, and give it a toothy grin. <i>“That’s it for this week’s episode of </i>Galactic Slutress<i>. Tune in next week to watch this big-titted bimbo get fucked by something else. Oh - and hi, mom!”</i>");
+	output("\n\nThe camera feed cuts out, and a commercial break cuts in.");
 	pc.lust(10);
 	processTime(29);
 	clearMenu();
@@ -1781,8 +1785,8 @@ public function carrieBlowjobIntro():void
 			if(pc.cockTotal() == 1) output("the glass jar");
 			else output("a multitude of glass jars");
 			output(".");
-			output("\n\n<i>“Off peak special time,”</i> she breathes.");
-			//? output("\n\n<i>“Snack time,”</i> she breathes.");
+			if(flags["CORA_SUCKED"] == undefined || rand(2) == 0) output("\n\n<i>“Off peak special time,”</i> she breathes.");
+			else output("\n\n<i>“Snack time,”</i> she breathes.");
 			processTime(4);
 			clearMenu();
 			addButton(0,"Next",carrieBlowjobsGo);
@@ -1865,7 +1869,7 @@ public function carrieBlowjobsGo():void
 		}
 		else output("<i>“I’ll make it even better for you next time. You deserve it, for giving me such a big load!”</i>");
 		output("\n\nFeeling a warm glow which stretches from your mind right down to your groin, you ");
-		if(pc.isCrotchGarbed()) output("tuck yourself back into your garments and ");
+		if(!pc.isCrotchExposed()) output("tuck yourself back into your garments and ");
 		output("walk slowly back to the milking machine with Carrie, leaving her with a fond squeeze of her soft ass.");
 		flags["CARRIE_BLOWJOBBED"] = 1;
 	}
@@ -1877,9 +1881,9 @@ public function carrieBlowjobsGo():void
 		{
 			output("<i>“This is my sis, Cora,”</i> says Carrie as you step into the yard behind the milking barn. Another cow girl dressed in denim gets up from tapping nails into a fence, smiles and wiggles the fingers of one hand at you. She’s got a more oval face than Carrie but is otherwise sweetly similar - red hair; curves that would be mesmerizingly ample anywhere but New Texas; button nose; glossy, cock-sucking lips.");
 			output("\n\n<i>“She usually works in the milk-bottling place,”</i> Carrie goes on, pressing her soft weight into your side, <i>“but I had her come over cuz I thought maybe you’d drop by.”</i>");
-			output("\n\n<i>“My sis has got the much cooler job,”</i> Cora says, her toothy smile widening as she eyes you up. <i>“Refrigerators’re heavy <i>and</i> dull.”</i>");
+			output("\n\n<i>“My sis has got the much cooler job,”</i> Cora says, her toothy smile widening as she eyes you up. <i>“Refrigerators’re heavy </i>and<i> dull.”</i>");
 			output("\n\n<i>“T’ain’t usually interesting,”</i> replies Carrie gently. <i>“But...”</i> you finish the sentence by ");
-			if(pc.isCrotchGarbed()) output("undoing your [pc.lowerGarments] and ");
+			if(!pc.isCrotchExposed()) output("undoing your [pc.lowerGarments] and ");
 			output("flourishing [pc.eachCock] with an easy grin.");
 
 			output("\n\n<i>“Oh wow,”</i> coos Cora. <i>“You weren’t kiddin’ about needin’ help, were you? ");
@@ -1904,7 +1908,7 @@ public function carrieBlowjobsGo():void
 		{
 			output("<i>“Hey, big " + pc.mf("guy","girl") + ".”</i> Cora gets up from her handiwork and gives you a bright smile as you step into the back yard with Carrie.");
 			output("\n\n<i>“Fridges don’t seem to need much maintenance these days,”</i> you observe. Carrie’s hand is ");
-			if(pc.isCrotchGarbed()) output("tracing the outline of your [pc.cock " + x + "] through your [pc.lowerUndergarment].");
+			if(!pc.isCrotchExposed()) output("tracing the outline of your [pc.cock " + x + "] through your [pc.lowerUndergarment].");
 			else output("gently stroking your bare, swinging [pc.cock " + x + "].");
 
 			output("\n\n<i>“Not at this time of ");
@@ -1966,7 +1970,7 @@ public function carrieBlowjobsGo():void
 			output("\n\nA minute later you’re in the grassy back lot of the milking barn, back against the oak tree, getting your [pc.cock " + x + "] and [pc.cock " + y + "] enthusiastically sucked. Cora and Carrie kneel side by side, tails lazily swishing above their plush, naked butts. You had them take their clothes off aside from their cowbells beforehand - things are going to get very messy, after all - and the view from here is just wonderful. Their warm, wet, worshipful mouths travel up and down your rods, licking every inch and tracing each bulging vein, both bell-ends lavished and squeezed until they are radiating pure, straining pleasure, two hands gently stroking and pulling at the straining bases. You find yourself trying to keep your breathing level, to scrap against the rough bark at your bark, anything to not tip over the edge, anything to let this kind of oral ecstasy go on forever.");
 			output("\n\nCora looks up leisurely and giggles at your expression.");
 			output("\n\n<i>“Aww, is this a bit too much, big " + pc.mf("guy","girl") + "?”</i> she extends her tongue and teasingly drags it all the way up the underside of your [pc.cock " + y + "], holding your gaze all the while. You exhale as it makes a rivulet of pre dribble out of your [pc.cockHead " + y + "], which she laps up, eyes going dreamy.");
-			output("\n\n<i>“Slow down sis, slow down,”</i> Carrie says softly. <i>“Can’t get a good load if you force [pc.himHer] like that... <i>“");
+			output("\n\n<i>“Slow down sis, slow down,”</i> Carrie says softly. <i>“Can’t get a good load if you force [pc.himHer] like that...”</i>");
 			output("\n\nThe two auburn cow-girls shift around your overgrown maleness, trying different things with vocal enjoyment, and you find if you gruff out instructions they follow them happily - both made incredibly pliant and sensitized by your presence and the taste of [pc.cum] on their tongues.");
 			if(pc.balls > 1) output(" They take it in turns to lap and suckle your [pc.balls], making them thrum and bulge with heat, all the while the other licks and masturbates [pc.eachCock], keeping each teased and tightened to a fiery degree whilst your testicles are given the worshipful saliva gloss a flagrant alpha beast like you demands.");
 			output(" You have Carrie splay herself on the grass before you, fingering her protuberant pussy and fondling her nipples whilst you grip her sister behind the head and firmly face fuck her, her hands tightening on your [pc.hips] as [pc.biggestCock] spears into the wonderful tightness of her throat again and again.");
@@ -2085,7 +2089,7 @@ public function carrieBlowjobsGo():void
 		}
 		else output(" <i>“Cute " + pc.mf("bulls","amazons") + " with heavy loads like you are always welcome in the quiet hours!”</i>");
 		output("\n\nFeeling a warm glow which stretches from your mind right down to your groin, you ");
-		if(pc.isCrotchGarbed()) output("tuck yourself back into your garments and ");
+		if(!pc.isCrotchExposed()) output("tuck yourself back into your garments and ");
 		output("walk slowly back to the milking machine with Carrie, leaving her with a fond squeeze of her plump ass.");
 	}
 	processTime(34);

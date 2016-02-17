@@ -146,6 +146,7 @@
 		include "../includes/tavros/reaha.expansion.as";
 		include "../includes/tavros/saendraXPack1.as";
 		include "../includes/tavros/sellesy.as";
+		include "../includes/tavros/semith.as";
 		include "../includes/tavros/sera.as";
 		include "../includes/tavros/seraXPack1.as";
 		include "../includes/tavros/shearBeauty.as";
@@ -1131,6 +1132,10 @@
 		public function get fyn():Fyn
 		{
 			return chars["FYN"];
+		}
+		public function get semith():Semith
+		{
+			return chars["SEMITH"];
 		}
 	}
 }

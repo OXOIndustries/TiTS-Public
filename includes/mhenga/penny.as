@@ -95,7 +95,7 @@ public function pennyRoomDesc():void {
 			output("\n\n<i>“Something I can help you with, " + pc.mf("Mister","Miss") + "... ?”</i> the law woman asks.");
 			output("\n\nReturning her level gaze, you realize that the seated fennec is remarkably short. She can’t be any taller than five feet standing up! You inform the short, chesty fennec that you were merely getting to know the town and wanted to introduce yourself to the locals.");
 			
-			output("\n\nThe police lady runs an sandy-furred hand through her mohawk, clearly exasperated. <i>“I guess you’re new here, huh?”</i> With no better response, ");
+			output("\n\nThe police lady runs a sandy-furred hand through her mohawk, clearly exasperated. <i>“I guess you’re new here, huh?”</i> With no better response, ");
 			if(pc.isNice()) output("you nod");
 			else if(pc.isMischievous()) output("you shrug noncommittally");
 			else output("you smirk and tip your head");

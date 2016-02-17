@@ -2335,7 +2335,7 @@ public function takeOverAlisssShopForPuppySlootPeanutButterStrapons():void
 	else output("just take my money already.");
 	output("”</i>");
 
-	output("\n\n<i>“Great!”</i> Aliss grins, <i>“Let me slip out of these, and I’ll box up a fresh pair for you, miss Dorna.”</i>");
+	output("\n\n<i>“Great!”</i> Aliss grins, <i>“Let me slip out of these, and I’ll box up a fresh pair for you, Miss Dorna.”</i>");
 	output("\n\nYou follow Anno up to the register, and she eagerly pays for the <i>“enhanced”</i> negligee. She’s practically giddy by the time you leave <i>Mi Amour</i>, murmuring to herself how she’s going to get a kick out of showing them to her girlfriend");
 	if(pc.mf("","f") == "f") output(", not to mention what she’s going to do to you when she gets back to the ship");
 	output(".");
