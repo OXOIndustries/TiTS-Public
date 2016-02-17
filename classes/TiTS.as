@@ -220,6 +220,7 @@
 		include "../includes/myrellion/cockvines.as";
 		include "../includes/myrellion/cockvineseedling.as";
 		include "../includes/myrellion/crystalGoo.as";
+		include "../includes/myrellion/CrystalGooVersionToo.as"
 		include "../includes/myrellion/dally.as";
 		include "../includes/myrellion/embassy.as";
 		include "../includes/myrellion/embry.as";
