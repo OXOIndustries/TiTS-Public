@@ -228,10 +228,16 @@ public function knowBethsOvir():Boolean
 //tooltip disabled, hour 1000, 1300, 1600: The doh’rahn is on stage right now. She only dances for an hour at a time, so you could just come back in a bit if you’d like to buy her services. Have 100 credits handy.
 //tooltip disabled, no money: You need 100 credits for conjugals, and you don’t have the money!
 
+public function showVaande(nude:Boolean = false):void
+{
+	if(!nude) showBust("VAANDE");
+	else showBust("VAANDE_NUDE");
+	showName("\nVAANDE");
+}
 public function vaandeGo():void
 {
 	clearOutput();
-	showName("\nVAANDE");
+	showVaande();
 	author("Zeikfried");
 	//(if time 1000-0559)
 	if(hours >= 10 || hours < 6) output("The mistress doesn’t look up when you ask to see the doh’rahn. <i>“Past the curtain and down the stairs, second door on the left. Swipe at the credit scanner and mind the warning on the door.”</i>\n\n");
@@ -287,7 +293,7 @@ public function vaandeCockChoice():String
 public function fuckVaandesPuss():void
 {
 	clearOutput();
-	showName("\nVAANDE");
+	showVaande(true);
 	author("Zeikfried");
 	output("Vaande looks delighted when you tell her that you want to use your " + vaandeCockChoice() + ". <i>“Oh, that sounds simply lovely,”</i> she sighs. <i>“Won’t you ");
 	if(!pc.isNude()) output("undress yourself and then ");
@@ -340,7 +346,7 @@ public function fuckVaandesPuss():void
 public function rideDatRahnBitchsOvi():void
 {
 	clearOutput();
-	showName("\nVAANDE");
+	showVaande(true);
 	var x:int = rand(pc.totalVaginas());
 	if(!pc.hasVagina()) x = -1;
 	output("Vaande receives your request with equanimity. <i>“Oh, is that so?”</i> the doh’rahn asks, seating herself on the bed and crossing her legs. <i>“Why don’t you show me just how much you want my egg-cock?”</i>");
