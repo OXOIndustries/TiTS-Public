@@ -157,12 +157,12 @@ public function vahnSexMenu():void
 	else addDisabledButton(1,"GiveAnal","GiveAnal","You need a dick in order to give him some anal.");
 	if(pc.hasVagina())
 	{
-		if(pc.hasVagina) addButton(2,"Ride Cowgirl",catchVahnCowgirl,undefined,"Ride Cowgirl","Take Vahn aboard and ride his rocket to the stars.")
+		if(pc.hasVagina()) addButton(2,"Ride Cowgirl",catchVahnCowgirl,undefined,"Ride Cowgirl","Take Vahn aboard and ride his rocket to the stars.")
 		else addDisabledButton(2,"Ride Cowgirl","Ride Cowgirl","You need a pussy to take Vahn for a ride like this.")
 	}
 	if(pc.hasVagina())
 	{
-		if(pc.hasVagina) addButton(3,"Pussy Rub",vahnRubsYourPussy,undefined,"Pussy Rub","Have Vahn rub on your muff to get you off.")
+		if(pc.hasVagina()) addButton(3,"Pussy Rub",vahnRubsYourPussy,undefined,"Pussy Rub","Have Vahn rub on your muff to get you off.")
 		else addDisabledButton(3,"Pussy Rub","Pussy Rub","You need a pussy to get Vahn to rub on it. Duh.")
 	}
 	addButton(4,"Catch Anal",vahnFucksYourButt,undefined,"Catch Anal","See if you can get the ausar mechanic to get to work on your backdoor...");
@@ -625,7 +625,7 @@ output("\n\n<i>“Whip out your cock.”</i>");
 
 
 output("\n\nAfter a nervous look around, Vahn undoes the lower front of his jumpsuit. ");
-if (flags["SEXED_VAHN"] = undefined) output("You’re greeted with the sight of his long, thick cock–at least ten inches long and totally terran except for the canine knot at his base");
+if (flags["SEXED_VAHN"] == undefined) output("You’re greeted with the sight of his long, thick cock–at least ten inches long and totally terran except for the canine knot at his base");
 else output("He whips out his creamy ten-inch cock. It dangles out impressively as his cheeks burn.");
 
 output("\n\n<i>“Good boy. Now turn around!”</i> You order him. The half-canine mechanic turns around. His fluffy tail is wagging excitedly as you order him around. Perhaps he liked being called a good boy?");

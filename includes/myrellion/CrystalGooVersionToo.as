@@ -1,3 +1,8 @@
+public function encounterCrystalGooV2():void 
+{
+	
+}	
+
 public function crystalGooEncounterType1():void
 {
 	var tEnemy:Creature = new CrystalGooT1();
@@ -5,6 +10,7 @@ public function crystalGooEncounterType1():void
 	// First time with a type 1 (type 2 tracked separately)
 	if (flags["CRYSTALGOO_T1_ENCOUNTERS"] == undefined)
 	{
+		flags["CRYSTALGOO_T1_ENCOUNTERS"] = 0;
 		output("\n\nA ‘shff’ sound intrudes on your attention, but you find no one. The only other living things nearby are the lichens, mushrooms, and insects, none of which are large enough to make the noise. An eerie sensation of being watched stiffens your back.");
 		
 		output("\n\nYou move another step, and hear another ‘shff’. Convinced now that you’re not alone, you check again and find a patch of fungi upon a lichen carpet that tremble of themselves, without wind. The unnerving little mushrooms stop moving after a few seconds, and you turn away again, cold fingers of panic tightening on your throat.");
@@ -107,6 +113,77 @@ public function crystalGooEncounterType1():void
 			output("\n\n<b>It’s a fight!</b>");
 		}
 	}
+
+	flags["CRYSTALGOO_T1_ENCOUNTERS"]++;
+
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.victoryScene(pcDefeatsCrystalGooToo);
+	CombatManager.lossScene(crystalGooPCLoss);
+	CombatManager.setHostileCharacters(tEnemy);
+	CombatManager.displayLocation("CRYSTAL GOO");
+
+	clearMenu();
+	addButton(0, "Next", CombatManager.beginCombat);
+}
+
+public function encounterCrystalGooType2():void
+{
+	var tEnemy:Creature = new CrystalGooT2();
+
+	//encounter intro
+	//no (intentional) ambush; ganrael is open, martially proud, and aggressive (physically and sexually)
+	//when choosing a color for the NPC, green is most common, blue next, then yellow, then pink - finally, red should be exceedingly rare (1%)
+
+	//first time for type 2
+	if (flags["CRYSTALGOO_T2_ENCOUNTERS"] == undefined)
+	{
+		flags["CRYSTALGOO_T2_ENCOUNTERS"] = 0;
+		output("\n\nA feminine figure stands in the center of this area, immobile, like a statue. Tiny glowing mushrooms lend it an unworldly air; you creep closer for an examination and the details come into relief.");
+		
+		output("\n\nThe piece’s beauty is remarkable. It’s suited in "+enemy.skinTone+" armor shaped to resemble a nude woman. The chestplate is ornamented with two smooth breasts, at least C-cup, and circling to the rear reveals a toned back and shoulders above a depending plate molded like a tight, cute butt. Even the head, with its short, pointed ears and representation of cropped, wavy hair, is a masked helmet covering the true face underneath. Darker, glossier "+enemy.skinTone+", perhaps representing the model’s skin, is visible on the few unarmored areas like the groin.");
+		if (CodexManager.entryUnlocked("Nyrea")) output(" It very much resembles an idealized version of the nyrea who call these caves home.");
+		
+		output("\n\nThe poor thing looks like a victim of a horrible attack; crude picks and needles protrude from gaps in its armor. Perhaps it honors some ill-fated messenger who brought warning to her people despite terrible wounds. The stone is clean and unweathered by age; whoever put it here must have done so recently. The feet stand in the dirt rather than on a plinth, posing some question as to how it’s expected to stay upright.");
+		
+		output("\n\nYou’ve almost completed your somber tour when the statue turns its head and speaks. <i>“How do I look? Cute?”</i>");
+		
+		output("\n\nYou stagger backwards; the statue steps forward to maintain the distance, but stops when you raise a");
+		if (pc.hasEquippedWeapon()) output(" weapon");
+		else output(" fist");
+		output(". <i>“");
+		if (pc.race().indexOf("nyrea") != -1) output("Nyrea always want to fight...");
+		else if (pc.race().indexOf("myr") != -1 || pc.race().indexOf("zil") != -1) output("Do you really want to fight so far from home, myr?");
+		else if (pc.isGoo()) output("Are you trying to poach my territory? That’s not nice,");
+		else output("Oh? We can fight if you like,");
+		output("<i>“ it sighs, in a feminine voice.");
+		
+		output("\n\nYour codex beeps out a warning too late: <i>“Ganrael detected. An amorphous, intelligent lifeform capable of hardening its outer skin into exoskeletal arms and armor. Available reports indicate that ganrael will attempt to harvest genetic material from individuals they encounter.”</i> On cue, the statue closes in!");
+		
+		output("\n\n<b>It’s a fight!</b>");
+		//go to fight
+	}
+	else
+	{
+		//repeat
+		output("\n\nThe statuesque figure of a ganrael dominates the area’s ethos, her hand outstretched in a");
+		var randSelect:int = rand(3);
+		if (randSelect == 0) output(" striving, inspirational pose");
+		else if (randSelect == 1) output(" seductive finger curl");
+		else output(" stern, martial command");
+		output(". Not apt to be fooled twice, you take a defensive stance. When she sees you prepared to attack, she speaks.");
+		
+		output("\n\n<i>“Are you sure you want fight already");
+		if (pc.race().indexOf("nyrea") != -1) output(", nyrea");
+		else if (pc.race().indexOf("myr") != -1 || pc.race().indexOf("zil") != -1) output(", myr");
+		else if (pc.isGoo()) output(", droplet");
+		output("?”</i> she asks, in a singsong tone. <i>“If you want to stop and look for a bit, that’s fine. I like it when you look.”</i> She can’t be serious... can she?");
+		
+		output("\n\n<b>It’s a fight!</b>");
+		//go to fight
+	}
+
+	flags["CRYSTALGOO_T2_ENCOUNTERS"]++;
 
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyCharacters(pc);
