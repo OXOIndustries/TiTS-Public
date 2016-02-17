@@ -21,6 +21,11 @@
 		//Placeholder for futurestuff [Embed(source = "../../../assets/images/npcs/jacques00/nehzara.png", mimeType = "image/png")]
 		//.public var Bust_ANZHELA:Class;
 
+		[Embed(source = "../../../assets/images/npcs/cass.png", mimeType = "image/png")]
+		public var Bust_CASS:Class;
+		[Embed(source = "../../../assets/images/npcs/cass_nude.png", mimeType = "image/png")]
+		public var Bust_CASS_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/jacques00/dally.png", mimeType = "image/png")]
 		public var Bust_DALLY:Class;
 		[Embed(source = "../../../assets/images/npcs/jacques00/dally_nude.png", mimeType = "image/png")]
@@ -52,7 +57,7 @@
 		[Embed(source = "../../../assets/images/npcs/jacques00/gray_goo_giga.png", mimeType = "image/png")]
 		public var Bust_GRAY_GOO_GIGA:Class;
 
-		[Embed(source = "../../../assets/images/npcs/hand_so.png", mimeType = "image/png")]
+		[Embed(source = "../../../assets/images/npcs/jacques00/hand_so.png", mimeType = "image/png")]
 		public var Bust_HAND_SO:Class;
 
 		[Embed(source = "../../../assets/images/npcs/holiday.png", mimeType = "image/png")]
@@ -149,6 +154,11 @@
 
 		[Embed(source = "../../../assets/images/npcs/sierva.png", mimeType = "image/png")]
 		public var Bust_SIERVA:Class;
+
+		[Embed(source = "../../../assets/images/npcs/vaande.png", mimeType = "image/png")]
+		public var Bust_VAANDE:Class;
+		[Embed(source = "../../../assets/images/npcs/vaande_nude.png", mimeType = "image/png")]
+		public var Bust_VAANDE_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/jacques00/varmint.png", mimeType = "image/png")]
 		public var Bust_VARMINT:Class;
