@@ -356,7 +356,11 @@ public function loseToPraetorianNyreaPt2():void
 		if(pc.credits < lostCreds) lostCreds = pc.credits;
 	}
 	output("You end up getting dumped back in the nyrea village you passed through, not far from the merchant row. The guards give you a few more harsh words and a little more teasing before they go");
-	if(lostCreds > 0) output(" - and they even liberate you of " + num2Text(lostCreds) + " credits, too");
+	if(lostCreds > 0) 
+	{
+		output(" - and they even liberate you of " + num2Text(lostCreds) + " credits, too");
+		pc.credits -= lostCreds;
+	}
 	output(". Several commoners look on with wide eyes as you’re dumped off, and the guards return to the palace.");
 
 	output("\n\nYou groan and stagger back to your [pc.footOrFeet], thankful the nyrea left you your equipment. Gonna have to try again if you want to face your cousin and find the probe...\n\n");
