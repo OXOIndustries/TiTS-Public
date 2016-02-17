@@ -108,7 +108,7 @@ public function approachSemithPlayingChess():void
 		
 		if(!CodexManager.entryUnlocked("Vulkrimi")) 
 		{
-			output("\n\n<b>Your codex vibrates, discretely informing you that it has updated with the details of Semith's race.</b>");
+			output("\n\n<b>Your codex vibrates, discretely informing you that it has updated with the details of Semith's race - the vulkrimi.</b>");
 			CodexManager.unlockEntry("Vulkrimi");
 		}
 		//update Semith display name after introduction
@@ -182,7 +182,7 @@ public function semithAppearance(calledForChessScene:Boolean = true): void
 	clearOutput();
 	showSemith();
 	
-	output("Semith is a 4'11”</i> maroon-skinned vulkrim. He isn't squat or dwarf-like, his thin but fairly muscular frame entirely proportional to his size. Like most vulkrim he has had the majority of his natural carapace armor removed, retaining only the two covering his shoulders, like two shiny black shoulder-guards. His skin is elastic, hairless and latex-like with a dull shine. However, he has gene-modded himself so he has dark brown, human-like hair on his head: shoulder length and swept back on his scalp, crafted into arching brows and an immaculate beard on his face. He has a narrow but quite handsome face, with a strong, roman nose, high cheekbones and pointed ears, and sports a pair of small, curved horns. He dresses as smartly as he grooms, in a casual blazer, cotton shirt and trousers.");
+	output("Semith is a 4'11” maroon-skinned vulkrim. He isn't squat or dwarf-like, his thin but fairly muscular frame entirely proportional to his size. Like most vulkrim he has had the majority of his natural carapace armor removed, retaining only the two covering his shoulders, like two shiny black shoulder-guards. His skin is elastic, hairless and latex-like with a dull shine. However, he has gene-modded himself so he has dark brown, human-like hair on his head: shoulder length and swept back on his scalp, crafted into arching brows and an immaculate beard on his face. He has a narrow but quite handsome face, with a strong, roman nose, high cheekbones and pointed ears, and sports a pair of small, curved horns. He dresses as smartly as he grooms, in a casual blazer, cotton shirt and trousers.");
 	output("\n\nHis most obviously alien feature is his big, scorpion-like tail, bursting out above his thin, athletic butt and curving right around over his head. He has had it de-stung, so it simply has a blunt, ankylosaurus-like tip - albeit with a curious, horizontal slit.");
 
 	if(flags["SEMITH_SEXED"] > 0) output(" You know by now that inside that is sheathed a six inch gene-modded secondary dick, which is quick to become erect and slide out when aroused. Between his smooth, muscular thighs his other foreskinned cock - a similar size and shape but complete with a bloated pair of balls and a sheath - is to be found.");
@@ -453,7 +453,7 @@ public function semithSexMenu():void {
 	//Don't pass time here, else it can happen pc gets booted from the room (which is fine after sex)
 	
 	if(!pc.hasCock()) addDisabledButton(0, "Buttfuck", "Buttfuck", "You need a cock to buttfuck the vulkrim.");
-	else if (pc.hasCock() && pc.cockThatFits(chars["SEMITH"].analCapacity())) addDisabledButton(0, "Buttfuck", "Buttfuck", "You are too well endowed for Semith.");
+	else if (pc.hasCock() && pc.cockThatFits(chars["SEMITH"].analCapacity()) < 0) addDisabledButton(0, "Buttfuck", "Buttfuck", "You are too well endowed for Semith.");
 	else addButton(0, "Buttfuck", semithSexButtfuck, undefined, "Buttfuck", "Fuck his snack-sized ass.");
 	
 	if(!pc.hasVagina()) addDisabledButton(1, "Doggie", "Doggie", "You need a pussy for Semith to fuck it.");
@@ -473,18 +473,19 @@ public function semithSexButtfuck():void {
 	if(x < 0) x = pc.smallestCockIndex();
 	
 	output("You answer that question by forcibly turning that smirk over into the leather, exposing his rear. His red hips are fairly full and muscular, but the ass itself is pert and narrow - incredibly cutely-sized, even for a guy as small as this. You clamber on top of him, breathing into his pointed ear and bending the chitin of his curving tail away and down with the weight of your [pc.chest], flopping your [pc.cock " + x + "] onto his tiny buttocks. The rounded segments of his tail quiver slightly beneath you.");
-	output("\n\n<i>“You'll, um... be careful back there, won't you?”</i> Semith says, slightly muffled. For the first time, he sounds less than completely self-assured. He tenses up a bit when you begin to rub your cock between his asscheeks, delighting in how smooth and warm his latex-like skin is. You frown; him being all tensed is absolutely no good for your purposes. <i>“I don't... very rarely... like this... </i>” He trails off in a sighing gasp when you reach around and find those evidently extremely sensitive holes below his shoulder blades. You stroke at those at the same time as you slide your [pc.cock " + x + "] along the line of his crack, using that wonderful, sleek pertness to work more heat and urgency into your sex whilst you make him get used to its presence, opening his cheeks with your hardness to expose his incredibly tight, red anus.");
+	output("\n\n<i>“You'll, um... be careful back there, won't you?”</i> Semith says, slightly muffled. For the first time, he sounds less than completely self-assured. He tenses up a bit when you begin to rub your cock between his asscheeks, delighting in how smooth and warm his latex-like skin is. You frown; him being all tensed is absolutely no good for your purposes. <i>“I don't... very rarely... like this...</i>” He trails off in a sighing gasp when you reach around and find those evidently extremely sensitive holes below his shoulder blades. You stroke at those at the same time as you slide your [pc.cock " + x + "] along the line of his crack, using that wonderful, sleek pertness to work more heat and urgency into your sex whilst you make him get used to its presence, opening his cheeks with your hardness to expose his incredibly tight, red anus.");
 	output("\n\nHe tightens up again when you press your [pc.cockhead " + x + "] against it, gasping gruffly, and for a moment you think it’s going to be impossible. The need swelling your");
 	
 	if(pc.balls > 0) output(" [pc.balls]");
 	else output(" cock");
 	
 	output(" compels you with pulsing insistence to find a solution. You move a hand down from the vulkrim’s holes to find the thick root of his semi-erect, foreskinned dick, first gently stroking it and then firmly wringing it when it becomes rock-hard and almost burningly hot in your hand.");
-	output("\n\n<i>“Ooh. Ok, so you’re… good at that… </i>” huffs Semith, arching his back a bit, tail bumping excitedly into your [pc.chest]. You grin and up the jerking of your wrist a bit, still stroking away at his breathing holes with your other hand. You haven’t withdrawn your [pc.cockhead " + x + "], and you can feel his incredibly tight rose relaxing a bit around it. <i>“Keep doing it exactly like that… </i>” demands the pint-sized alien, seemingly unaware. <i>“Exactly like that… </i>”");
+	output("\n\n<i>“Ooh. Ok, so you’re… good at that… </i>” huffs Semith, arching his back a bit, tail bumping excitedly into your [pc.chest]. You grin and up the jerking of your wrist a bit, still stroking away at his breathing holes with your other hand. You haven’t withdrawn your [pc.cockhead " + x + "], and you can feel his incredibly tight rose relaxing a bit around it. <i>“Keep doing it exactly like that… </i>” demands the pint-sized alien, seemingly unaware. <i>“Exactly like that…</i>”");
 	output("\n\nYou push forward and penetrate that incredibly tight ass, opening his fuckhole with one determined thrust of your [pc.hips]. He cries out and clenches up almost unbearably around your bulging meat… and then he relaxes slightly, with deep breaths getting used to how you’re stretching him, aided by the deep lust you’ve stoked in him by teasing his most sensitive areas. You grin; putty in your hands. You keep wanking him with generous pulls of your wrist as you bury more and more of your [pc.cock " + x + "] in him with careful pushes of your hips, luxuriating in how wonderfully close his hot flesh clutches around you, urging you on to make full, flagrant use of this red cocksleeve.");
 
 	if(pc.tallness > 64) output("\n\nAs your rut deepens, it gets increasingly hard to ignore the urge to pick the little devil up, bounce him on your lap, walk him around embedded on your dick… as fun as that might be, you feel that might be a little rude. Still, once every inch of your cock is rammed deep into his ass, it’s impossible not to grip his shoulders and move him up and down your length, using him like an onahole that grunts and gasps, clearly exasperated by this treatment but too caught up by the intensity of the sex to be able to vocalize it.");
 	else output("\n\nIt’s fairly unusual for you to have a partner who doesn’t completely overwhelm you with their size. You are able to grip your [pc.legOrLegs] into his sofa, clasp his strong hips with your hands and really pump into the little devil, enjoying the chorus of gasps and grunts this draws out of him.");
+	pc.cockChange();
 
 	output("\n\nYou clap your [pc.hips] Semith’s pint-sized ass again, shivering and biting your [pc.lips] at how his hot tunnel clenches up and down your [pc.cock " + x + "]. Oh Void, that is good. It’s imperative you make him enjoy this as much as possible, so he lets you do it again, and again… the bobbing of his tail ahead of you, his second, cock flopping around above his well-groomed head, catches your attention. You catch it, move your hand up and down his thick meat at the same time as once again, you send your masterful grip running along the shaft between his hard hips, giving him a double reach-around as you continue to thrust into his delightful tightness.");
 	output("\n\n<i>“Fuck,”</i> groans Semith, hands tightening on the leather, head thrown back. <i>“That’s… fucking ridiculous… </i>” He simply howls when you gently circle the sensitive, bulging head of his tail cock with a single finger, and his tunnel clutches up around the steady pump of your [pc.cock " + x + "]. Both of his dicks bulge and then flex out jets of pearly white cum, spattering freely over the soft leather and carpet, coaxed out by the firm wring of your hands and the filthy slap of your");
@@ -497,7 +498,7 @@ public function semithSexButtfuck():void {
 
 	if(pc.cumQ() > 1500) output(" There’s no way someone so small can take the gallons of seed you spray out, and a large amount of your jizz mingles with Semith’s, dripping and splattered everywhere.");
 
-	output("\n\nWhen finally you are spent, you withdraw your gently throbbing cock out of the little demon’s badly abused as (it comes free with an almost audible <i>“pop”</i>) and flop back onto a part of the sofa not plastered in cum, watching him with a glow of post-coital contentment as he slowly turns over, chest still heaving, and looks over at you with disbelief and gratification fighting for control of his narrow, handsome features.");
+	output("\n\nWhen finally you are spent, you withdraw your gently throbbing cock out of the little demon’s badly abused as (it comes free with an almost audible “pop”) and flop back onto a part of the sofa not plastered in cum, watching him with a glow of post-coital contentment as he slowly turns over, chest still heaving, and looks over at you with disbelief and gratification fighting for control of his narrow, handsome features.");
 	output("\n\n<i>“Do you do this a lot, then?”</i> he says eventually. The amount of semen currently soaking into his expensive furnishings catches his attention and he sighs. <i>“Barge into people’s homes and then bugger them senseless? Even I didn’t do that in my pirate years.”</i>");
 	output("\n\n<i>“Wasted opportunity, if you ask me,”</i> you reply with a winning smile. He flicks his tail at you exasperatedly as he gets up, cocks flopping, to go find his clean-bot, but you can tell from the satiated smile he’s trying not to show you that you succeeded in making him enjoy this.");
 	output("\n\nBy the time you’ve cleaned yourself up Semith is back in his shirt and trousers, lolling back and enjoying his smoke-bubble machine; it's as if nothing occurred at all.");
@@ -538,7 +539,7 @@ public function semithSexDoggieStyle():void {
 	//if pc is tail sexed in this scene
 	var tailSexed:Boolean = false;
 	
-	output("You smirk and disengage from him, deliberately sliding your [pc.leg] over the hot, red hardness of his dick as you turn around and give him a coy look around the curve of your [pc.skinColor] [pc.butt].");
+	output("You smirk and disengage from him, deliberately sliding your [pc.leg] over the hot, red hardness of his dick as you turn around and give him a coy look around the curve of your [pc.butt].");
 	output("\n\n<i>“I dunno, big boy,”</i> you tease. <i>“See anything that interests you?”</i>");
 	
 	//can't use [pc.eachVagina] because of sentence begin
@@ -658,10 +659,10 @@ public function semithSexDoggieStyle():void {
 	
 	if(pc.hasTailCunt()) output(" and the milking tightness of your [pc.cuntTail]");
 	output(". The sensation of getting packed out with thick, alien seed is inescapably wonderful, and you orgasm again to it, your cunt");
-	if(tailSexed) output("s");
+	if(tailSexed || hasSecondVaginaWhichCanFitSemithCock) output("s");
 	
 	output(" eagerly kneading Semith's smooth, thick length");
-	if(tailSexed) output("s");
+	if(tailSexed || hasSecondVaginaWhichCanFitSemithCock) output("s");
 	
 	output(" for every last drop. You hump each other fiercely for long seconds, riding out the shared high, carelessly");
 	if(pc.isSquirter()) output(" spraying");
@@ -690,6 +691,7 @@ public function semithSexDoggieStyle():void {
 	
 	pc.orgasm();
 	processTime(20 + rand(15));
+	pc.shower();
 	semithSexed(1);
 	
 	clearMenu();
@@ -789,6 +791,7 @@ public function semithSexCatchAnal(): void {
 	pc.loadInAss(chars["SEMITH"]);
 	
 	processTime(20 + rand(15));
+	pc.shower();
 	semithSexed(1);
 	
 	clearMenu();
@@ -799,12 +802,11 @@ public function updateDescriptionWithSemithsEventualPresence():void {
 	//Player knows where Semith lives
 	if(flags["SEMITH_INVITED_PC"] == true) {
 		if(hours < 17) {
-			output("The lights are off and it looks shut up tight — it seems like Semith is not at home.")
+			output(" The lights are off and it looks shut up tight — it seems like Semith is not at home.")
 		} else {
-			output("A number of mellow lights are on — it looks like Semith is home.");
+			output(" A number of mellow lights are on — it looks like Semith is home.");
 		}
 	}
-	
 	//Render end of original room description
 	output("\n\nYou can head east and follow the long walkway, or west and to the central plaza.");
 }
