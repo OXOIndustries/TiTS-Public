@@ -252,7 +252,7 @@ package classes.Characters
 			}
 			
 			var blindedPC:Boolean = rand(10) != 0;
-			var blindedSaen:Boolean = rand(10) != 0;
+			var blindedSaen:Boolean = saen != null && rand(10) != 0;
 			
 			if (blindedPC && blindedSaen)
 			{
