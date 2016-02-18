@@ -7637,7 +7637,7 @@ package classes {
 				case GLOBAL.TYPE_HUMAN:
 				case GLOBAL.TYPE_INHUMAN:
 					cocks[slot].knotMultiplier = 1;
-					if(skinTone == "dark" || skinTone == "ebony" || skinTone == "chocolate") cocks[slot].cockColor = "ebony";
+					if(InCollection(skinTone, "dark", "ebony", "chocolate")) cocks[slot].cockColor = "ebony";
 					else cocks[slot].cockColor = "pink";
 					break;
 				case GLOBAL.TYPE_CANINE:
@@ -7731,8 +7731,9 @@ package classes {
 					cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
 					break;
 				case GLOBAL.TYPE_NYREA:
-					cocks[slot].cockColor = RandomInCollection(["silver", "gray", "black"]);
-					cocks[slot].knotMultiplier = 1;
+					cocks[slot].cockColor = "pink";
+					cocks[slot].knotMultiplier = 1.2;
+					cocks[slot].addFlag(GLOBAL.FLAG_KNOTTED);
 					break;
 				case GLOBAL.TYPE_DAYNAR:
 					cocks[slot].cockColor = "purple";
