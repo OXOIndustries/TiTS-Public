@@ -2106,6 +2106,14 @@ public function racialPerkUpdateCheck():void
 			pc.removePerk("Fecund Figure");
 		}
 	}
+	if(pc.statusEffectv4("Vanae Markings") > 0)
+	{
+		if(pc.balls <= 0)
+		{
+			eventBuffer += "\n\nA tingling sensations hits your crotch as you feel something fading away... Your codex beeps, informing you that the last remnants of your " + pc.skinAccent + " testicular tattoos have left your body, leaving the area bare.";
+			pc.setStatusValue("Vanae Markings", 4, 0);
+		}
+	}
 }
 
 public function badEnd(displayGG:String = "GAME OVER"):void 

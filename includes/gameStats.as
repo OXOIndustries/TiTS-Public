@@ -345,6 +345,7 @@ public function statisticsScreen(showID:String = "All"):void
 				output2(" " + pc.balls + " Testicle");
 				if(pc.balls != 1) output2("s");
 				if(pc.hasStatusEffect("Uniball")) output2(", Uniball");
+				if(pc.statusEffectv4("Vanae Markings") > 0) output2(", " + StringUtil.toDisplayCase(pc.skinAccent) + " Markings");
 				output2("\n<b>* Testicle, Size: </b>" + prettifyLength(pc.ballDiameter()) + " across, " + prettifyLength(pc.ballSize()) + " around");
 				if(pc.balls != 1) output2(", each");
 				output2("\n<b>* Testicle, Volume: </b>" + prettifyVolume(pc.ballVolume(), 1));
@@ -2922,6 +2923,11 @@ public function displayEncounterLog(showID:String = "All"):void
 					output2("\n<b>* Kelly:</b>");
 					if(hours >= 6 && hours < 17) output2(" Met her");
 					else output2(" At bar");
+					if(flags["KELLY_SKYSAP_COLLECT"] != undefined)
+					{
+						output2("\n<b>* Kelly, Sky Sap, Containers Collected: </b>" + flags["KELLY_SKYSAP_COLLECT"]);
+						if(flags["SYNTHSAP_UNLOCKED"] == undefined && pc.hasStatusEffect("SynthSap Research")) output2(" (Researching... " + prettifyMinutes(pc.getStatusMinutes("SynthSap Research")) + ")");
+					}
 				}
 				variousCount++;
 			}

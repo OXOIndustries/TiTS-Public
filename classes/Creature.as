@@ -7754,6 +7754,12 @@ package classes {
 					cocks[slot].cockColor = RandomInCollection(["pink", "pink", "olive", "purple"]);
 					cocks[slot].addFlag(GLOBAL.FLAG_DOUBLE_HEADED);
 					break;
+				case GLOBAL.TYPE_VANAE:
+					cocks[slot].knotMultiplier = 1;
+					cocks[slot].cockColor = "luminous violet";
+					cocks[slot].addFlag(GLOBAL.FLAG_SMOOTH);
+					cocks[slot].addFlag(GLOBAL.FLAG_LUBRICATED);
+					break;
 			}
 		}
 		//PC can fly?
@@ -10660,6 +10666,9 @@ package classes {
 				case GLOBAL.TYPE_GABILANI:
 					collection = ["gabilani", "goblin"];
 					break;
+				case GLOBAL.TYPE_VANAE:
+					collection = ["vanae", "cephalopod-like"];
+					break;
 				case GLOBAL.TYPE_INHUMAN:
 					collection = ["inhuman", "human-like", "alien"];
 					break;
@@ -10771,6 +10780,9 @@ package classes {
 			} else if (type == GLOBAL.TYPE_GABILANI) {
 				adjectives.push("alien", "bulbous", "double-crowned", "gabilani", "goblin", "inhuman", "exotic", "two-headed");
 				nouns.push("goblin-dick", "goblin-cock", "goblin-prick", "gabilani-dick", "gabilani-cock", "gabilani-prick");
+			} else if (type == GLOBAL.TYPE_VANAE) {
+				adjectives.push("vanae", "alien", "suckler-tipped", "vanae", "cephalopod-like", "inhuman", "exotic");
+				nouns.push("vanae-dick", "vanae-cock", "vanae-prick");
 			} else if (type == GLOBAL.TYPE_INHUMAN) {
 				adjectives.push("inhuman", "human-like", "almost-human", "alien");
 			} else {
@@ -11469,7 +11481,7 @@ package classes {
 				collection = ["creamy","creamy","creamy","delicious","delicious","sweet","strawberry-flavored","fruity","rich"];
 			} else if (arg == GLOBAL.FLUID_TYPE_SYDIAN_CUM) {
 				collection = ["citrusy","citrusy","citrusy","citrusy","citrusy","tangy","tangy","tangy","metallic","metallic"];
-			} else if (InCollection(arg, GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK, GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK)) {
+			} else if (InCollection(arg, GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK, GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK, GLOBAL.FLUID_TYPE_VANAE_CUM)) {
 				collection = ["sweet","fruity"];
 			} else if (arg == GLOBAL.FLUID_TYPE_LEITHAN_MILK) {
 				collection = ["tangy","tangy","tangy","tangy","tangy","sweet","sweet","sweet","intoxicating","intoxicating"];
@@ -11495,7 +11507,7 @@ package classes {
 			//CUM & MILK TYPES
 			if (InCollection(arg, GLOBAL.FLUID_TYPE_MILK, GLOBAL.FLUID_TYPE_CHOCOLATE_MILK, GLOBAL.FLUID_TYPE_STRAWBERRY_MILK, GLOBAL.FLUID_TYPE_VANILLA)) {
 				collection = ["creamy"];
-			} else if (InCollection(arg, GLOBAL.FLUID_TYPE_CUM, GLOBAL.FLUID_TYPE_SYDIAN_CUM)) {
+			} else if (InCollection(arg, GLOBAL.FLUID_TYPE_CUM, GLOBAL.FLUID_TYPE_SYDIAN_CUM, GLOBAL.FLUID_TYPE_VANAE_CUM)) {
 				collection = ["thick","thick","thick","slick","creamy"];
 			} else if (InCollection(arg, GLOBAL.FLUID_TYPE_HONEY, GLOBAL.FLUID_TYPE_NECTAR)) {
 				collection = ["sticky","sticky","sticky","slick","slick"];
@@ -11551,6 +11563,8 @@ package classes {
 				collection = ["pink","pink","pink","pink","pink","milky-pink","milky-pink","milky-pink","pink-marbled cream","pink-marbled cream"];
 			} else if (arg == GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK) {
 				collection = ["violet","violet","violet","violet","violet","milky-violet","milky-violet","milky-violet","violet-marbled cream","violet-marbled cream"];
+			} else if (arg == GLOBAL.FLUID_TYPE_VANAE_CUM) {
+				collection = ["blue","blue","glowing blue","glowing blue","glow-in-the-dark"];
 			} else if (arg == GLOBAL.FLUID_TYPE_LEITHAN_MILK) {
 				collection = ["alabaster","alabaster","alabaster","alabaster","alabaster","semi-transparent","semi-transparent","semi-transparent","off-white","off-white"];
 			} else if (arg == GLOBAL.FLUID_TYPE_NYREA_CUM) {
@@ -11578,10 +11592,11 @@ package classes {
 			else if (InCollection(arg, GLOBAL.FLUID_TYPE_STRAWBERRY_MILK, GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK)) return "pink";
 			else if (arg == GLOBAL.FLUID_TYPE_SYDIAN_CUM) return "silver";
 			else if (arg == GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK) return "purple";
+			else if (arg == GLOBAL.FLUID_TYPE_VANAE_CUM) return "blue";
 			else if (arg == GLOBAL.FLUID_TYPE_NYREA_CUM) return "purple";
 			else if (arg == GLOBAL.FLUID_TYPE_GABILANI_CUM) return "white";
 			else if (arg == GLOBAL.FLUID_TYPE_GABILANI_GIRLCUM) return "gray";
-			else if (arg == GLOBAL.FLUID_TYPE_SPECIAL_GOO) 
+			else if (arg == GLOBAL.FLUID_TYPE_SPECIAL_GOO)
 			{
 				if(skinType == GLOBAL.SKIN_TYPE_GOO) return skinTone;
 				else if(hairType == GLOBAL.HAIR_TYPE_GOO) return hairColor;
@@ -11595,7 +11610,7 @@ package classes {
 			//CUM & MILK TYPES
 			if (arg == GLOBAL.FLUID_TYPE_MILK) {
 				collection = ["milk","cream"];
-			} else if (InCollection(arg, GLOBAL.FLUID_TYPE_CUM, GLOBAL.FLUID_TYPE_SYDIAN_CUM, GLOBAL.FLUID_TYPE_NYREA_CUM, GLOBAL.FLUID_TYPE_GABILANI_CUM, GLOBAL.FLUID_TYPE_CHOCOLATE_CUM)) {
+			} else if (InCollection(arg, GLOBAL.FLUID_TYPE_CUM, GLOBAL.FLUID_TYPE_SYDIAN_CUM, GLOBAL.FLUID_TYPE_NYREA_CUM, GLOBAL.FLUID_TYPE_GABILANI_CUM, GLOBAL.FLUID_TYPE_CHOCOLATE_CUM, GLOBAL.FLUID_TYPE_VANAE_CUM)) {
 				collection = ["cum"];
 				if(isBimbo() || isBro()) collection.push("cum","spunk","spunk","jism","jizz");
 			} else if (arg == GLOBAL.FLUID_TYPE_HONEY) {
@@ -12153,6 +12168,13 @@ package classes {
 				else if (temp <= 2) return "doubled glans";
 				else if (temp <= 3) return "twinned tip";
 				else return "doubled cock-head";
+			} else if (type == GLOBAL.TYPE_VANAE) {
+				temp = rand(5);
+				if (temp == 0) return "suckler crown";
+				else if (temp <= 1) return "suckered head";
+				else if (temp <= 2) return "bowl-like glans";
+				else if (temp <= 3) return "sucker tip";
+				else return "suckered cock-head";
 			}
 			/*else if (type == 9999) {
 				temp = rand(5);
@@ -13268,10 +13290,7 @@ package classes {
 				if(hasPerk("Fertility")) weightBreast *= 0.75;
 				if(milkQ() > 0)
 				{
-					weightFluid = milkQ();
-					if(InCollection(milkType, GLOBAL.FLUID_TYPE_HONEY, GLOBAL.FLUID_TYPE_MILKSAP, GLOBAL.FLUID_TYPE_CUMSAP, GLOBAL.FLUID_TYPE_NECTAR)) weightFluid *= 0.005;
-					else if(InCollection(milkType, GLOBAL.FLUID_TYPE_CUM, GLOBAL.FLUID_TYPE_GABILANI_CUM, GLOBAL.FLUID_TYPE_NYREA_CUM)) weightFluid *= 0.0035;
-					else weightFluid *= 0.0025;
+					weightFluid = fluidWeight(milkQ());
 					if(isMilkTank()) weightFluid *= 0.5;
 					else if(hasPerk("Milky") || hasPerk("Treated Milk")) weightFluid *= 0.75;
 					if(partNum >= 0) weightFluid /= bRows();
@@ -13394,10 +13413,7 @@ package classes {
 				if(cumQ() > 0)
 				{
 					// Maybe only 50% is housed in the balls?
-					weightFluid = cumQ() * 0.5;
-					if(InCollection(cumType, GLOBAL.FLUID_TYPE_HONEY, GLOBAL.FLUID_TYPE_MILKSAP, GLOBAL.FLUID_TYPE_CUMSAP, GLOBAL.FLUID_TYPE_NECTAR)) weightFluid *= 0.005;
-					else if(InCollection(cumType, GLOBAL.FLUID_TYPE_CUM, GLOBAL.FLUID_TYPE_GABILANI_CUM, GLOBAL.FLUID_TYPE_NYREA_CUM)) weightFluid *= 0.0035;
-					else weightFluid *= 0.0025;
+					weightFluid = fluidWeight(cumQ() * 0.5);
 					if(hasPerk("Potent") && hasPerk("Breed Hungry")) weightFluid *= 0.5;
 					else if(hasPerk("Potent") || hasPerk("Breed Hungry")) weightFluid *= 0.75;
 					if(partNum > 0 && partNum <= balls) weightFluid = (weightFluid / partNum);
@@ -13415,6 +13431,15 @@ package classes {
 			weight += weightTesticle;
 			
 			return weight;
+		}
+		// Calculates the weight of an amount of fluid.
+		public function fluidWeight(fluidAmount: Number = 0):Number
+		{
+			if(InCollection(cumType, GLOBAL.FLUID_TYPE_HONEY, GLOBAL.FLUID_TYPE_MILKSAP, GLOBAL.FLUID_TYPE_CUMSAP, GLOBAL.FLUID_TYPE_NECTAR)) fluidAmount *= 0.005;
+			else if(InCollection(cumType, GLOBAL.FLUID_TYPE_CUM, GLOBAL.FLUID_TYPE_GABILANI_CUM, GLOBAL.FLUID_TYPE_NYREA_CUM, GLOBAL.FLUID_TYPE_VANAE_CUM)) fluidAmount *= 0.0035;
+			else fluidAmount *= 0.0025;
+			
+			return fluidAmount;
 		}
 		// Weight Quotient for comparisons between strength (weight load).
 		public function weightQ(partName:String = "none", partNum: Number = -1):Number

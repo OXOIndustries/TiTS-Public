@@ -630,6 +630,7 @@
 		//Why special? Cause it matches yer goo color.
 		public static const FLUID_TYPE_SPECIAL_GOO:int							= 18;
 		public static const FLUID_TYPE_CHOCOLATE_CUM:int							= 19;
+		public static const FLUID_TYPE_VANAE_CUM:int							= 20;
 		
 		public static const FLUID_TYPE_NAMES:Array = [
 			"Milk",
@@ -652,6 +653,7 @@
 			"Nyrea Cum",
 			"Goo",
 			"Chocolate Cum",
+			"Vanae Cum",
 		];
 		
 		public static const VALID_CUM_TYPES:Array = [

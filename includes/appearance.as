@@ -1896,7 +1896,9 @@ public function crotchStuff(forTarget:Creature = null):void
 		if(ballDisplayDiameter != 1) output2(" inches");
 		else output2(" inch");
 		output2(" across.");
-	}	
+		//Vanaeballs
+		if(target.statusEffectv4("Vanae Markings") > 0) output2(" Flowing across the surface of your nutsack are intricate markings that glow " + target.skinAccent + ", softly pulsing with life.");
+	}
 	//VAGOOZ
 	if(target.vaginas.length > 0) {
 		if(target.hasCock()) output2("\n\n");
@@ -2193,6 +2195,10 @@ public function dickBonusForAppearance(forTarget:Creature = null, x:int = 0):voi
 		if(target.cocks[x].hasFlag(GLOBAL.FLAG_FORESKINNED)) output2(" There’s a lot in common between human and zil genitals, but the alien member you’re packing has a much longer, stretchier foreskin than most terrans can pack. It also");
 		else output2(" The zil-like member you’re packing ");
 		output2(" looks vaguely glossy, like you oiled it up just a moment ago.");
+	}
+	//Vanae flavor
+	else if(target.cocks[x].cType == GLOBAL.TYPE_VANAE) {
+		output2(" The marine-like phallus has a tip capped with a cephalopod-shaped sucker, used to grasp and tug through sensitive depths for insemination or stimulation.");
 	}
 	//Nubby or Ribbed
 	if((target.cocks[x].hasFlag(GLOBAL.FLAG_NUBBY) && target.cocks[x].cType != GLOBAL.TYPE_FELINE) || target.cocks[x].hasFlag(GLOBAL.FLAG_RIBBED))
