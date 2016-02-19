@@ -315,7 +315,7 @@ public function wrapUpSemithChessMatch(): void
 }
 
 //check if the player can enter the apartment and what message to display if not
-public function playSemithsApartmentScene():void {	
+public function playSemithsApartmentScene():Boolean {	
 	
 	//inform player he can't enter because he doesn't know the apartment owner
 	if(!flags["SEMITH_INVITED_PC"]) 
@@ -354,11 +354,13 @@ public function playSemithsApartmentScene():void {
 		generateMapForLocation(currentLocation);
 		clearMenu();
 		addButton(0, "Next", mainGameMenu);
+		return true;
 	}
 	//or, if player knows Semith and arrives between 17 o'clock and midnight, show his apartment
 	else
 	{
 		showSemithsApartment();
+		return false;
 	}
 }
 
@@ -798,7 +800,7 @@ public function semithSexCatchAnal(): void {
 	addButton(0, "Next", mainGameMenu);
 }
 
-public function updateDescriptionWithSemithsEventualPresence():void {
+public function updateDescriptionWithSemithsEventualPresence():Boolean {
 	//Player knows where Semith lives
 	if(flags["SEMITH_INVITED_PC"] == true) {
 		if(hours < 17) {
@@ -809,4 +811,6 @@ public function updateDescriptionWithSemithsEventualPresence():void {
 	}
 	//Render end of original room description
 	output("\n\nYou can head east and follow the long walkway, or west and to the central plaza.");
+	
+	return false;
 }

@@ -1,13 +1,17 @@
-public function showKaedeAndCass():void
+public function showKaedeAndCass(kaedeNude:Boolean = false, cassNude:Boolean = false):void
 {
 	author("Savin");
 	showName("CASS\n& KAEDE");
-	showBust("KAEDE","CASS");
+	if(kaedeNude && cassNude) showBust("KAEDE_NUDE","CASS_NUDE");
+	else if(kaedeNude) showBust("KAEDE_NUDE","CASS");
+	else if(cassNude) showBust("KAEDE","CASS_NUDE");
+	else showBust("KAEDE","CASS");
 }
-public function showKaede():void
+public function showKaede(nude:Boolean = false):void
 {
 	showName("\nKAEDE");
-	showBust("KAEDE");
+	if(!nude) showBust("KAEDE");
+	else showBust("KAEDE_NUDE");
 }
 
 public function hasMetKaede():Boolean
@@ -926,7 +930,7 @@ public function wentDrinkingWithKaedeAfterMeetingCass():void
 public function meetCassWithKaede():void
 {
 	clearOutput();
-	showKaedeAndCass();
+	showKaedeAndCass(false, true);
 	flags["SEXED_CASS"] = 1;
 	output("<i>“I’ve got a better idea,”</i> you say, letting your arms slide down the svelte half-breed’s back until you’re cupping her perky behind. <i>“Why don’t you and I go after Cass, and let me take care of her for you while you rest.”</i>");
 	output("\n\nKaede’s blue eyes go wide, but you feel her fluffy tail spring up behind her. <i>“O-oh! That’s, um, that’s one idea,”</i> she murmurs, chewing on her lip. <i>“I couldn’t ask you to do that, but...”</i>");
@@ -988,7 +992,7 @@ public function meetCassWithKaede():void
 public function cockVersionOfCaedeCassFuck():void
 {
 	clearOutput();
-	showKaedeAndCass();
+	showKaedeAndCass(false, true);
 	output("With the giggling cow-girl spreading her legs beneath you, sensually inviting you to take her as rough and hard as you’d like, you find yourself operating on bestial instinct, ramming your [pc.hips] forward and grinding your [pc.cock] against Cass’s sodden slit, all but slipping into her sultry folds. She arches her back, chewing a lip around a lusty moan as you slide your prick into her welcoming embrace.");
 	output("\n\n<i>“Oooh, ");
 	if(pc.cocks[0].cLength() < 6) output("don’t tell Kaede, but I looove tiny little cocks like yours! They just fit sooo nice!”</i> she purrs, squeezing her cavernous twat amazingly tight around you.");
@@ -1030,7 +1034,7 @@ public function cockVersionOfCaedeCassFuck():void
 public function inviteKaedeToCassFuck():void
 {
 	clearOutput();
-	showKaedeAndCass();
+	showKaedeAndCass(true, true);
 	output("<i>“C’mon, Kaede,”</i> you grin, wiggling your ass at the reticent half-breed. <i>“Why don’t you come on in?”</i>");
 	output("\n\nShe chuckles nervously, shuffling her feet on the hard flood. <i>“Uh, you know, I’d love to, but... I mean, somebody’s got to keep an eye on Kayla, and...”</i>");
 	output("\n\nHer excuses get cut off by a mooing moan from her lover at the climax of one of your thrusts. Kaede comes back into view, her erection painfully obvious through her jeans - and obviously uncomfortable for its owner. Kaede blushes, tail tucked between her legs, trying hard not to look at you as you hammer her lover into the couch. The cow-girl moans and moos with abandon, milky mammaries jiggling in the most delightful ways against your face.");
@@ -1071,7 +1075,7 @@ public function inviteKaedeToCassFuck():void
 public function cumInKaedesAssDuringCassThreesome():void
 {
 	clearOutput();
-	showKaedeAndCass();
+	showKaedeAndCass(true, true);
 	output("The choice practically makes itself. You grunt and grip Kaede’s hips a little tighter, a sure sign to her that she’s about to get a hot, sticky treat.");
 	output("\n\n<i>“D-do it!”</i> she manages to cry, pulling herself off of Cass’s tit long enough to try and speak. <i>“I-I wanna feel what Cass does! Give it to me!”</i>");
 	output("\n\nHer last word trails off into a mindless scream of pleasure as you pound her ass and blow your load, hammering all the [pc.cumNoun] you have to offer deep into her tight little pucker.");
@@ -1092,7 +1096,7 @@ public function cumInKaedesAssDuringCassThreesome():void
 public function cumInCassesCuntDuringKaedeThreesome():void
 {
 	clearOutput();
-	showKaedeAndCass();
+	showKaedeAndCass(true, true);
 	flags["PUT_LOAD_IN_CASS"] = 1;
 	output("<i>“Move that ass, Kaede!”</i> you grin, grabbing her by the butt and yanking her hips back. Kaede yelps in surprise as her knotted cock is unceremoniously unplugged from Cass’s sweet little slit, spraying a final wad of thin, watery spunk across the kitty-cow’s thighs from the sheer shock. You don’t bother to move Kaede any further, allowing her to continue resting atop Cass as you wipe your schlong off her butt and then drive it back home.");
 	output("\n\n<i>“Woah!”</i> Cass manages to gasp, before any thought of forming words is washed out of her mind with shockwaves of pleasure that make her mammoth mammaries bounce like balloons. It’s a whole lot wetter in here since the last time you thrusted into Cass’s cooch, her already legendary dampness amplified by the better part of half an hour of uninterrupted fucking, and what must be a half-dozen loads from Kaede’s rapidly-diminishing stockpile of spunk.");
@@ -1118,7 +1122,7 @@ public function cumInCassesCuntDuringKaedeThreesome():void
 public function joinInCleaningUpCassKaedePostScene():void
 {
 	clearOutput();
-	showKaedeAndCass();
+	showKaedeAndCass(true, true);
 	output("Deciding that you can’t leave a job unfinished, you slink down to your [pc.knees] on the floor, leaning over the arm-rest to get your mouth right on level with Cass’s cooch.");
 	output("\n\n<i>“W-what-”</i> Kaede starts, right until you give her a deep, long kiss... and scoop out a little of the cum she’s ready to swallow on your [pc.tongue], claiming a share of your mixed load for yourself. She murmurs a soft <i>“Oh. Ohhhh,”</i> and lets her eyes flit closed, enjoying the kiss while it lasts. When you break it, you give her a playful wink and lean in to Cass’s cum-slathered puss, dragging your [pc.tongue] between her thick labia and scooping up even more of Kaede’s cum.");
 	output("\n\nSuch a gentle" + pc.mf("","wo") + "man!”</i> Cass, now apparently much more clear-headed, giggles. <i>“You’ve definitely got a keeper here, baby.”</i>");
@@ -1133,7 +1137,7 @@ public function joinInCleaningUpCassKaedePostScene():void
 public function postCassKaedeOrgasmEpilogue():void
 {
 	clearOutput();
-	showKaedeAndCass();
+	showKaedeAndCass(true, true);
 	output("You start to try and get up, but find yourself being pulled back down into the valley between the kitty-cow’s tits. She gives you a fierce hug and a more than playful tug on your [pc.cock], ending with a kiss on the cheek as she releases you from both her warm embraces. She sighs happily as you finally get away from the couch and start looking for your [pc.gear], watching your bare body with obvious appreciation.");
 	output("\n\nKaede, though, is already asleep. She lets out a cute little snore, nuzzling against Cass’s thigh and crotch.");
 	output("\n\n<i>“Poor thing’s worn out,”</i> Cass whispers. <i>“I definitely drained her too dry today, but... oh, I was so happy to see her again. I love my baby daddy here.”</i>");
@@ -1150,7 +1154,7 @@ public function postCassKaedeOrgasmEpilogue():void
 public function bustANutDuringCassKaedeThreesome():void
 {
 	clearOutput();
-	showKaedeAndCass();
+	showKaedeAndCass(false, true);
 	flags["PUT_LOAD_IN_CASS"] = 1;
 	output("Well, Kaede did bring you here for a reason: to satisfy her sexually-voracious lover! You latch on to Cass’s other tit, sucking hard until a spray of milk fills your cheeks, and start hammering your hips into her just as hard as you can. Cass throws her head back with a bestial moo of ecstasy, clenching hard around your pounding cock and wordlessly babbling, begging you to cum. At this point, you couldn’t resist her if you tried!");
 	output("\n\nYou give the kitty-cow a rough bite on the nipple, one last spark of pleasure to send her over the edge again as your [pc.cock] throbs with impending need. One last thrust sees you buried as deep into her lurid sex as you can go before you blow, making sure your [pc.cockHead] is poised perfectly to flood her womb with seed. With a last, feral grunt, you let loose deep inside your bovine lover, feeling your cock swell up and shoot off in a shockwave of pleasure that leaves you gasping around Cass’s breast. The cow-girl moos and wiggles happily underneath you, soaking up every drop you have to give her");
@@ -1181,7 +1185,7 @@ public function bustANutDuringCassKaedeThreesome():void
 public function vaginalCassKaedeThreesome():void
 {
 	clearOutput();
-	showKaedeAndCass();
+	showKaedeAndCass(false, true);
 	output("You’ve never seen a kaithrit so completely soaked as Cass right now, like she’d boiling in an absolute swamp of excitement in that too-tight catsuit of hers. Her quim squelches and squirts as you drive your fingers inside and explore the slick, clenching walls of her inner sex.");
 	output("\n\nThough you doubt you’ll be able to satisfy the buxom bovine’s cumsluttery addiction like Kaede... well, she tried... you can most certainly get Cass off a few times while her lover recovers from the hours of unending abuse of her cock. Giving Cass your best flirtatious smile, you shimmy down until your face is on level with her crotch and let your [pc.tongue] go to work.");
 	output("\n\n<i>“Ooh!”</i> Cass giggles, rocking her legs and hips against your [pc.face]. Her meaty labia part at the insistent probing of your tongue, granting you access to the sultry passage between them. Your entrance gives the cat-girl a thrill, vocalized with a sensual moan. Her twin tails coil around your neck and shoulders, weakly urging you even deeper into her groin’s embrace.");
@@ -1214,7 +1218,7 @@ public function vaginalCassKaedeThreesome():void
 public function girlsCassMeetingEpilogue():void
 {
 	clearOutput();
-	showKaedeAndCass();
+	showKaedeAndCass(false, true);
 	//Pass +1d3 hours
 	//-25 Energy, add Sweaty condition
 	output("Cass’s final orgasm barely elicits a whimper from the sweaty, cum-drenched kitty. It’s taken many, many rounds of vigorous oral sex to get her this far, but finally the treated slut’s starting to wear out despite all that sexual stamina. With a heavy sigh of contentment, you feel Cass let out the last of her tension around your sore tongue in a strained trickle of fem-cum, adding to the veritable lake the two of you have made on her couch.");
