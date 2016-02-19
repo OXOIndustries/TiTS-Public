@@ -1240,9 +1240,8 @@ public function variableRoomUpdateCheck():void
 		lockAinasRoom();
 	}
 	//Place/remove Semith's NPC flag from chess area based on time and if pc played with him already
-	if ((hours >= 12 && hours <= 17 && !playedChessWithSemithToday())) rooms["RESIDENTIAL DECK 7"].addFlag(GLOBAL.NPC);
+	if (hours >= 12 && hours <= 17) rooms["RESIDENTIAL DECK 7"].addFlag(GLOBAL.NPC);
 	else rooms["RESIDENTIAL DECK 7"].removeFlag(GLOBAL.NPC);
-	
 	//Place/remove Semith's NPC flag from his apartment based on time.
 	if (hours > 17) rooms["RESIDENTIAL DECK SEMITHS APARTMENT"].addFlag(GLOBAL.NPC);
 	else rooms["RESIDENTIAL DECK SEMITHS APARTMENT"].removeFlag(GLOBAL.NPC);

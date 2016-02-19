@@ -1111,7 +1111,7 @@ public function displayNoticeBoardRD():void {
 		flags["SEMITH_NOTICE_1_READ"] = true;
 	}
 	else output("<b>Seen Before:</b>");
-	output(" “Itching for a game of 4D chess?” reads one note, in tall, loopy cursive. “The North West plaza has tables. Always around in the afternoons.”");
+	output(" “Itching for a game of 4D chess?” reads one note, in tall, loopy cursive. “The north-west plaza has tables. Always around in the afternoons.”");
 	
 	processTime(2);
 	clearMenu();
