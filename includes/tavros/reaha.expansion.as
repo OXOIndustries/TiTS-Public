@@ -250,7 +250,7 @@ public function reahaTalkTreatment():void
 	
 	output("\n\nYou can see Reaha’s fingers digging into the sheets on her bed. Slowly, you say, <i>“Do you know how it works?”</i>");
 	
-	output("\n\n<i>“Nobody does,”</i> Reaha says. <i>“Except the scientists who make it, anyway. Maybe Big T., too. Probably. I don’t know, they keep everything about the Treatment a secret. I could be some horrible alien virus for all I know. What’s important is what it does.”</i>");
+	output("\n\n<i>“Nobody does,”</i> Reaha says. <i>“Except the scientists who make it, anyway. Maybe Big T., too. Probably. I don’t know, they keep everything about the Treatment a secret. It could be some horrible alien virus for all I know. What’s important is what it does.”</i>");
 	
 	output("\n\nYou shrug. <i>“Well, tell me about it.”</i>");
 	
