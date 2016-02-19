@@ -7732,7 +7732,7 @@ package classes {
 					break;
 				case GLOBAL.TYPE_NYREA:
 					cocks[slot].cockColor = "pink";
-					cocks[slot].knotMultiplier = 1.2;
+					cocks[slot].knotMultiplier = 1.66;
 					cocks[slot].addFlag(GLOBAL.FLAG_KNOTTED);
 					break;
 				case GLOBAL.TYPE_DAYNAR:
