@@ -75,7 +75,10 @@ package classes {
 				"buttonText",
 				"btnTargetText",
 				"alreadyDefeated",
-				"shieldDisplayName"
+				"shieldDisplayName",
+				"skipIntercept",
+				"skipTurn",
+				"_skipRound"
 			);
 
 			cocks = new Array();

@@ -45,7 +45,7 @@ package classes.Characters
 			this.version = _latestVersion;
 			this._neverSerialize = true;
 			
-			this.short = "ganrael ambusher";
+			this.short = "ganrael deadeye";
 			this.originalRace = "ganrael";
 			this.a = "the ";
 			this.capitalA = "The ";
@@ -77,7 +77,6 @@ package classes.Characters
 			
 			shield = new BasicShield();
 			shield.shields = 100;
-			baseShieldKineticResistance = shield.resistances.kinetic.resistanceValue = 20.0;
 			
 			shield.hasRandomProperties = true;
 			
@@ -146,7 +145,7 @@ package classes.Characters
 			this.createStatusEffect("Stun Immune");
 			
 			isUniqueInFight = true;
-			btnTargetText = "GooAmbusher";
+			btnTargetText = "GooDeadeye";
 			sexualPreferences.setRandomPrefs(2 + rand(3));
 			
 			Randomise();
@@ -156,8 +155,8 @@ package classes.Characters
 		
 		override public function get bustDisplay():String
 		{
-			if (shields() > 0) return "CRYSTAL_GOO_ARMORED";
-			else return "CRYSTAL_GOO_UNARMORED";
+			if (shields() > 0) return "CRYSTAL_GOO_T2_ARMORED";
+			else return "CRYSTAL_GOO_T2_UNARMORED";
 		}
 		
 		public function Randomise():void
@@ -170,34 +169,25 @@ package classes.Characters
 		
 		public function UpdateState():void
 		{
-			if (hasStatusEffect("GooCamo"))
+			if (!hasStatusEffect("Unarmored"))
 			{
-				long = "The ganrael is hidden among the stones and fungi at the moment, prowling for the best direction to strike from. Disturbing scuttling sounds echo in the chamber, and you’ve no doubt that you’ll get another look all too soon.";		
-			}
-			else if (!hasStatusEffect("Unarmored"))
-			{
-				long = "The ganrael ambusher is a frightful sight. Tens of skittering, insectile legs shift and clatter beneath its  lichen cloak";
-				if (!kGAMECLASS.pc.hasStatusEffect("Grappled")) long += ", propelling it through pillars and over rocks in a constant attempt to flank you";
-				long += ". Though it usually stays low to take advantage of its camouflage, its nine-foot body is capable of dangerous leverage when it rears to strike. It’s covered with hard, sculpted plates that provide formidable defense, and its gauntleted hands ward blows. The uppermost section of its trunk resembles a";
-				if (flags["MET_NYREA_ALPHA"] != undefined || flags["MET_NYREA_BETA"] != undefined) long += " nyrea";
-				else long += " woman";
-				long += " sculpted from " + skinTone+" stone.";
-				if (shields() < shieldsMax() * 0.66) long += " Chips and cracks in its armor show the soft, gooey flesh underneath - the consequences of your attack.";
+				long = "The alien facing you may seem a bit too stiff to be a threat, but really, she’s just lazy and vain. If you stop admiring her smooth " + skinTone+" curves, teardrop breasts, and pixie face for even a moment, she’ll have no qualms about throwing as many sharp objects as it takes to get your attention again.";
+				if (shields() < shieldsMax()) long += "The chips your attacks have left in her don’t seem to impede her ego in the least.";
 			}
 			else
 			{
-				long = "The ganrael’s meticulously-curated covering is in ruins, and its movement has slowed considerably. Underneath the shattered guise is a blank, flat-bodied neuter. It still attempts to circle you, but its trunk now resembles a chubby "+ skinTone +" caterpillar rather than a frightening insectile predator in both grace and shape. Slashes of color are visible through damaged lichen leftovers and it leaves a trail of crystal dust, undermining its camouflage.";
+				long = "The ganrael’s ego has collapsed with its armor. No longer the picture of a busty heroine, the sexless, faceless "+skinTone+" blank that was inside has redoubled its offense and its hand hovers over the next missile almost as soon as it’s thrown one. You should finish this quickly, unless you like being pelted with anything and everything that’s not nailed down."
 			}
 			
 			if (shields() > 0)
 			{
-				if (!hasStatusEffect("Force It Gender")) createStatusEffect("Force It Gender");
-				if (hasStatusEffect("Force Fem Gender")) removeStatusEffect("Force Fem Gender");
+				if (hasStatusEffect("Force It Gender")) removeStatusEffect("Forced It Gender");
+				if (!hasStatusEffect("Forced Fem Gender")) createStatusEffect("Force Fem Gender");
 			}
 			else
 			{
-				if (hasStatusEffect("Force It Gender")) removeStatusEffect("Forced It Gender");
-				if (!hasStatusEffect("Forced Fem Gender")) createStatusEffect("Force Fem Gender");
+				if (!hasStatusEffect("Force It Gender")) createStatusEffect("Force It Gender");
+				if (hasStatusEffect("Force Fem Gender")) removeStatusEffect("Force Fem Gender");	
 			}
 			
 			// Interpolate the armor value as a percent between a multiplier between 1 and 0.33. Use this multiplier to modify the base reflex value of the enemy.
@@ -241,379 +231,271 @@ package classes.Characters
 		{
 			UpdateState();
 			
+			if (_skipRound)
+			{
+				_skipRound = false;
+				return;
+			}
+			
 			var target:Creature = selectTarget(hostileCreatures);
 			if (target == null) return;
 			
-			// Force update the output here for the goo being hidden
-			if (hasStatusEffect("GooCamo"))
-			{
-				FalseRetreat(target);
-			}
-			
-			// If this is the first round that goo camo has persisted, use a special attack
-			if (hasStatusEffect("GooCamo") && statusEffectv1("GooCamo") == 1)
-			{
-				SneakSqueeze(target);
-				return;
-			}
-			
-			if (skipTurn)
-			{
-				skipTurn = false;
-				return;
-			}
-			
 			var attacks:Array = [];
 			
-			attacks.push( { v: LashOut, w: (hasStatusEffect("Unarmored") ? 10 : 40) } );
-			attacks.push( { v: HaveANiceTrip, w: (hasStatusEffect("Unarmored") ? 20 : 10) } );
-			if (!hasStatusEffect("GooCamo Cooldown")) attacks.push( { v: FalseRetreat, w: (hasStatusEffect("Unarmored") ? 20 : 10) } );
-			
-			//tactics change as armor depletes; gets less evasive, slower, and less damaging as leg-points break off
-		}
-		
-		private function LashOut(target:Creature):void
-		{
-			//high use chance/main attack while armored
-
-			var numAttacks:int = 0;
-			var i:int = 0;
-			
-			if (!hasStatusEffect("Unarmored"))
+			if (!hasStatusEffect("Blinded"))
 			{
-				numAttacks = Math.round(((shieldsMax() / shields()) / 0.25)) + 2;
-				meleeWeapon = kickMeleeWeapon;
-				
-				output("The ganrael lashes out with its legs!");
-				for (i = 0; i < numAttacks; i++)
-				{
-					output("\n");
-					CombatAttacks.SingleMeleeAttackImpl(this, target, false, "melee");
-				}
-			}
-//texs		else
-			{
-				meleeWeapon = slapMeleeWeapon;
-				
-				output("The ganrael slaps at you with its goopy hands!");
-				for (i = 0; i < 2; i++)
-				{
-					output("\n");
-					CombatAttacks.SingleMeleeAttackImpl(this, target, false, "melee");
-				}
-			}
-		}
-		
-		private function HaveANiceTrip(target:Creature):void
-		{
-			var missed:Boolean;
-			
-			if (!hasStatusEffect("Unarmored"))
-			{
-				// without ‘unarmored’ status:
-				// -rarely used, but accurate
-				// -trips PC
-				// -kinetic damage
-
-				output("The ganrael swipes at your [pc.feet] with its trunk!");
-				
-				missed = combatMiss(this, target, -1, 0.5);
-				if (missed && target.hasWings()) output(" It connects, but your wings keep you upright anyway.");
-				else if (missed && !target.hasWings()) output(" You easily hop over it.");
-				else
-				{
-					output(" It takes out your support and you crash to the cave floor!");
-					applyDamage(new TypeCollection( { kinetic: 7 + rand(5) } ), this, target, "minimal");
-					target.createStatusEffect("Tripped");
-				}
+				if (energy() >= 15) attacks.push( { v: ThrowPick, w: 30 } );
+				if (energy() >= 15 && target.hasStatusEffect("Bleeding")) attacks.push( { v: ThrowNeedle, w: 30 } );
+				attacks.push( { v: CrystalBackhand, w: 10 } );
+				if (energy() <= 15) attacks.push( { v: ThrowImprov, w: 20 } );
 			}
 			else
 			{
-				//with ‘unarmored’:
-				// -commonly used but inaccurate (enough to avoid annoying player)
-				// -still trips PC
-				// -light lust damage (PC falls on plush, soft-bodied goo)
-				
-				missed = combatMiss(this, target, -1, 3);
-
-				output("The ganrael tries to stick to you, clinging at you with gooey fingers and being a nuisance.");
-				if (missed) output(" You manage to keep away from it.");
-				else
-				{
-					output(" Your [pc.foot] slips on its gooey trunk and you stumble, landing right on the alien’s body! It drags you to the ground, oozing warm tongues of flesh into your intimate places. Using all your focus, you");
-					if (target.lust() >= target.lustMax() * 0.66) output(" barely");
-					output(" resist its caresses and roll away.");
-					target.createStatusEffect("Tripped");
-					applyDamage(new TypeCollection( { tease: 5 + rand(3) } ), this, target, "minimal");
-				}
+				attacks.push( { v: CrystalBackhand, w: 10 } );
 			}
+			
+			if (energy() >= 50 && CombatManager.getRoundCount() >= 4) attacks.push( { v: ThrowAFit, w: 1000 } );
+			
+			weightedRand(attacks)(target);
 		}
 		
-		private function FalseRetreat(target:Creature):void
+		private function CGender(a:String, b:String):String
 		{
-			// Geddynote:
-			// The presence of GooCamo on a target infers a 66% miss chance after ALL other modifiers have been taken into account.
-			// combatMiss and rangedCombatMiss are where this is hooked up.
-			
-			//gan drops flat and attempts to hide using camouflage; 
-			// PC must pass combined int+aim check to keep track of gan (base check value should require med-high scores in both or perfect score in one and med score in other - scaled to regional difficulty)
-			//higher odds of use if unarmored
-			//one-turn cooldown (gan never uses it two turns in a row; ignore this if excessive handicap)
-			//check gets easier as gan loses armor and therefore camo falls off (either gradated or flat modifier)
-			//check also easier for techs with the drone active (flat modifier)
-			//tripped PC gets penalty to check
-			
-			if (hasStatusEffect("GooCamo"))
-			{
-				addStatusValue("GooCamo", 1, 1);
-			}
-			else
-			{
-				createStatusEffect("GooCamo", 0);
-			}
-			
-			var chanceRoll:Number = (target.aim() + target.intelligence() + rand(40) / 3);
-			
-			output("The ganrael drops and begins to weave through the rocks, trying to elude you!");
-			
-			// This is a mess, but its the clearest way I can handle this.
-			
-			var baseFailure:Number = (intelligence() + aim()) / 2;
-			if (chanceRoll > baseFailure)
-			{
-				removeStatusEffect("GooCamo");
-				createStatusEffect("GooCamo Cooldown", 2);
-				output(" You keep sight of it with your superior aim and honed intelligence.");
-				return;
-			}
-			
-			baseFailure -= (statusEffectv1("Camo Weight") * 5);
-			if (chanceRoll > baseFailure )
-			{
-				removeStatusEffect("GooCamo");
-				createStatusEffect("GooCamo Cooldown", 2);
-				output(" It’s hard to track, but damage has left colorful gaps in the lichen covering.");
-				return;
-			}
-			
-			if (hasStatusEffect("Unarmored"))
-			{
-				baseFailure *= 0.8;
-				if (chanceRoll > baseFailure)
-				{
-					removeStatusEffect("GooCamo");
-					createStatusEffect("GooCamo Cooldown", 2);
-					output(" Its exposed " + skinTone +" and goopy sounds stick out well enough that you can keep tracking it.");
-					return;
-				}
-			}
-			
-			if (target.hasPerk("Combat Drone"))
-			{
-				baseFailure *= 0.8;
-				if (chanceRoll > baseFailure)
-				{
-					removeStatusEffect("GooCamo");
-					createStatusEffect("GooCamo Cooldown", 2);
-					output(" Your drone continues to track it, making it easy to reacquire.");
-					return;
-				}
-			}
-			
-			if (target.hasStatusEffect("Tripped"))
-			{
-				output(" It takes advantage of your grounded state, moving through blind spots until you lose it completely. The cave echoes with its scuffling gait, like the earth is shifting in preparation to swallow you.");
-			}
-			else
-			{
-				output(" Despite your best efforts, you lose track of it. The cave echoes with skitters and laughs, no two from the same direction, and your anxiety mounts.");
-			}
+			if (!hasStatusEffect("Unarmored")) return a;
+			return b;
 		}
 		
 		public function ShouldIntercept():Boolean
 		{
-			// Return true if we should fuck the players current action off and redirect it through SneakSqueezeAttackReaction
-			if (hasStatusEffect("GooCamo") && !skipIntercept)
-			{
-				
-			}
-			return false;
+			if (hasStatusEffect("Blinded")) return false;
+			if (hasStatusEffect("Unarmored")) return false;
+			return true;
 		}
 		
-		private var skipIntercept:Boolean = false;
-		private var skipTurn:Boolean = false;
+		private var _skipRound:Boolean = false;
 		
-		public function SneakSqueezeAttackReaction(attackOpts:Object):void
+		public function SpecialAction(attackOpts:Object):void
 		{
-			// isMelee, isRanged, isTease, isSquirt, isSpecial, isAOE, isWait, isStand
-			// isFantasize, isFlee
+			// only used if the ganrael is not blind or unarmored and the player selects ‘Wait’,‘Fantasize’, 
+			// or any other choice where PC stops acting and pays full attention to the ganrael (e.g. concentrating hard to deliver a psionic tease)
+			// NPC aborts any other attack and strikes a pose for a random effect (basically pauses combat to wait for PC to act again)
+
+			// lusty pose - always if PC uses psionic tease (when added), randomly otherwise
+			// adds lust to PC
 			
-			var pc:PlayerCharacter = kGAMECLASS.pc;
-			var pcHit:Boolean = false;
+			_skipRound = true;
 			
-			if (attackOpts["isMelee"] != undefined || attackOpts["isRanged"] != undefined)
-			{
-				if (rand(10) == 0)
-				{
-					output("You " + pc.meleeWeapon.attackVerb +" blindly and barely manage a glancing hit on the lurking ganrael just as it bursts from cover! The alien seems stunned, but its momentum carries it into you anyway.");
-					pcHit = true;
-				}
-				else
-				{
-					output("You "+ pc.meleeWeapon.attackVerb +" blindly, hoping to hit the lurking ganrael, but fail. It bursts from cover in a different direction and slams into you.");
-				}
-				skipTurn = false;
-			}
-			else if (attackOpts["isSquirt"] != undefined)
-			{
-				if (rand(10) == 0)
-				{
-					output("You squirt blindly and barely manage a glancing hit on the lurking ganrael just as it bursts from cover! The alien seems stunned, but its momentum carries it into you anyway.");
-					pcHit = true;
-					skipTurn = false;
-				}
-				else
-				{
-					output("You squirt blindly, hoping to hit the lurking ganrael, but fail. It bursts from cover in a different direction and slams into you.");
-					skipTurn = false;
-				}
-			}
-			else if (attackOpts["isTease"] != undefined)
-			{
-				output("You pose alluringly, but with no clue where the alien is, you have no way of knowing if your slutty seduction has hit its mark.");
-				skipTurn = false;
-			}
-			else if (attackOpts["isAOE"] != undefined)
-			{
-				output(" The ganrael reels from your indiscriminate attack, revealing itself and costing it the element of surprise.");
-				removeStatusEffect("GooCamo");
-				createStatusEffect("GooCamo Cooldown", 3);
-				skipTurn = false;
-				return;
-			}
+			var randSelect:int = rand(3);
 			
-			if (attackOpts["isWait"] != undefined)
+			// if (attackOpts["isPsionic"] != undefined)
+			if (9999 == 0 || randSelect == 0)
 			{
-				output("You stop moving and try to calm yourself, preparing for the blow.");
-				if (rand(10) <= 3)
-				{
-					output(" The ganrael sails at you and you throw it to the ground. It skitters away and, though its stoic mask doesn’t show it, seems a little surprised.");
-					removeStatusEffect("GooCamo");
-					createStatusEffect("GooCamo Cooldown", 3);
-					skipTurn = true;
-					return;
-				}
-				else
-				{
-					output("\n\nYour newfound tranquility makes it slightly less stressful when the ganrael tackles you from cover and wraps you up in its body, laughing.");
-					pc.createStatusEffect("Grappled", 9999);
-				}
+				output("\n\nThe ganrael");
+				// psi tease
+				if (9999 == 0) output(" reacts to the perverted images you’re sending by acting them out,");
+				else output(" basks in your attention,");
+				output(" groping her chest and spreading her legs to expose her groin. A hand slides into her crotch, and she claps her thighs together with a whorish moan. She holds the pose, trembling slightly and drinking in your gaze as blood rushes to your crotch. If her mask could wink, she’d be doing it hard enough to shake eyelashes loose.");
 			}
-			else if (attackOpts["isFlee"] != undefined)
+			else if (randSelect == 2)
 			{
-				if (pc.hasWings())
-				{
-					output("You beat your [pc.wings] and fly as high as the cave allows, intent on escaping this trap. But when you pick a direction and flee,");
-					if (hasStatusEffect("Unarmored")) output(" goopy fingers");
-					else output(" hard hands");
-					output(" grab your [pc.foot] and bring you violently to the ground! The ganrael wraps you in its body, pinning your wings.");
-				}
-				else
-				{
-					output("The skittering sounds bore in from all directions until you can’t take it anymore, and you bolt. But when you pass an outcropping of rock, a blur tackles you, bringing you the the ground! The ganrael wraps you in its body, laughing.");
-				}
+				//grow a needle
+				//restores one needle(‘s worth of energy)
+				energy(15);
+				output("\n\nThe ganrael makes good use of the lull in combat. Flourishing one hand, she grips a fingertip and begins to pull, stretching out the soft gap and twisting it into a thin braid. The flesh clouds and hardens, and she breaks the finger at the narrowest place to form a new needle!");
 			}
 			else
 			{
-				output(" The creature bowls you over and its body wraps around you! You’re trapped!");
+				//silly martial valor pose
+				//no effect
+				output("\n\nThe ganrael takes advantage of your attention to strike a military pose, holding her head high and raising a hand in salute to an unseen superior. The out-of-place patriotism makes you miss civilization a little.");
 			}
 		}
 		
-		private function SneakSqueeze(target:Creature):void
+		private function ThrowImprov(target:Creature):void
 		{
-			//grapple does med crushing damage per turn if NPC armored or very light crushing plus decent lust damage when unarmored (slops into sensitive places)
-			//static burst and etc. skills break free of grapple in one turn, else PC must struggle based on relevant stat; 
-			// escape check is more forgiving if ganrael is unarmored
+			//never used unless missile inventory/energy is too low to attack with the selected projectile
+			//slings an item from the ground (usually a rock), does rock damage
+			//if current NPC armor < max armor, chance of throwing an armor shard with slight bonus damage (compared to rock) and bleed
+
+			output("The ganrael snatches at " + CGender("her", "its") +" body for something to throw but comes up empty. With a jerky sweep, " + CGender("she", "it") +" grabs an object from the ground and flings it instead!");
 			
-			//if unarmored
-			if (target.armor is EmptySlot || target.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || target.armor.hasFlag(GLOBAL.ITEM_FLAG_SWIMWEAR))
+			if (rangedCombatMiss(this, target))
 			{
-				output("The ganrael’s gooey body spreads over you, working into your");
-				if (target.armor is EmptySlot || target.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)) output(" crotch and licking at your [pc.legFurScales].");
-				else output(" [pc.gear], hunting for sensitive spots.");
-				output(" Blood hammers in your temples and your needy");
-				if (target.hasCocks() || target.hasVaginas() || target.isHerm()) output(" sexes throb");
-				else if (target.hasCock() || target.hasVagina()) output(" sex throbs");
-				else output(" asshole throbs");
-				output(" inches away from its tendrils, demanding attention.");
-				//lust damage
-				applyDamage(new TypeCollection( { tease: 5 + rand(5) } ), this, target, "minimal"); // 9999 damage
+				output(" You move and it sails by harmlessly.");
 			}
-			//if armored
 			else
 			{
-				output("The ganrael’s unforgiving trunk tightens around you.");
-				if (target.shields() > 0) output(" Your shield crackles dangerously.");
-				else if (target.isGoo()) output(" It’s mildly uncomfortable until your amorphous body flows out of the way.");
-				else output(" You panic as trapped blood dims your vision and numbs you. You’ve got to get free!");
+				var bShard:Boolean = false;
+				if (shields() < shieldsMax() && rand(5) >= 1) bShard = true;
 				
-				var damage:Number = 10;
-				if (target.isGoo()) damage -= 3;
-				damage += rand(damage);
+				var rockDamage:TypeCollection = new TypeCollection( { kinetic: 7 } );
+				var shardDamage:TypeCollection = new TypeCollection( { kinetic: 15 }, DamageFlag.PENETRATING);
 				
-				applyDamage(new TypeCollection( { kinetic: damage }, DamageFlag.CRUSHING ), this, target, "minimal");
+				var dr:DamageResult = applyDamage(bShard ? shardDamage : rockDamage, this, target, "suppress");
+				
+				if (dr.shieldDamage > 0 && dr.hpDamage <= 0)
+				{
+					output(" It glances off your shield.");
+				}
+				else if (dr.hpDamage > 0)
+				{
+					if (!bShard)
+					{
+						output(" A rock hits you!");
+					}
+					else
+					{
+						output(" A sharp pain spreads and you look down to see a shard of crystal plating sticking out!");
+						if (!target.hasStatusEffect("Bleeding"))
+						{
+							output(" <b>You’re bleeding!</b>");
+							target.createStatusEffect("Bleeding", 1, 3, 15, 0, false, "Icon_Crying", "You're bleeding!", true, 0);
+						}
+						else
+						{
+							output(" <b>You're bleeding a little!</b>");
+							// Add a stack and refresh duration
+							target.addStatusValue("Bleeding", 1, 1);
+							target.setStatusValue("Bleeding", 2, 3);
+						}
+					}
+				}
+				
+				outputDamage(dr);
 			}
 		}
 		
-		public function SneakSqueezeStruggle(target:Creature):void
+		private function ThrowAFit(target:Creature):void
 		{
-			var escaped:Boolean = false;
+			energy( -55); // enfroce only once use / fight via energycost
 			
-			//PC struggle text
-			if (!(target.armor is EmptySlot) && target.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+			//throws out multiple projectiles of both types for 70-80% inventory cost and multiple hits/bleeds (big damage upfront and harsh bleed for huge damage total spread over multiple turns)
+			//number of attacks and or a modifier should allow for blunderbuss-style accuracy even if PC re-blinds her on the turn of the attack
+			output("Shaking with anger, the ganrael throws out picks and needles in handfuls, barraging you with a hail of jagged crystal!");
+			
+			for (var i:int = 0; i < 5; i++)
 			{
-				if (target.physique() > target.reflexes())
-				{
-					if ((target.physique() + rand(30) / 2) > (physique() - (target.statusEffectv1("Grappled") * 5)))
-					{
-						output("You shove the creature’s legs away and batter from its grasp!");
-						escaped = true;
-					}
-				}
-				else
-				{
-					if ((target.reflexes() + rand(30) / 2) > (reflexes() - (target.statusEffectv1("Grappled") * 5)))
-					{
-						output("It shifts its grip, and you use the chance to free your upper body! The alien tries to keep hold, but you worm the rest of the way out.");
-						escaped = true;
-					}
-				}
+				if (rand(2) == 0) ThrowPick(target, false);
+				else ThrowNeedle(target, false);
+			}
+		}
+		
+		private function ThrowPick(target:Creature, bInitial:Boolean = true):void
+		{
+			if (bInitial)
+			{
+				energy( -15);
+
+				output("The ganrael grabs the ‘shroom stalk of one of");
+				if (hasStatusEffect("Unarmored")) output(" its");
+				else output(" her"); 
+				output(" picks and hurls it at you!");
 			}
 			else
 			{
-				if (target.physique() > target.reflexes())
-				{
-					if ((target.physique() + rand(30) / 2) > (physique() - (target.statusEffectv1("Grappled") * 5)))
-					{
-						output("It’s like punching taffy, but you batter so many lumps into the malleable ganrael that it releases you.");
-						escaped = true;
-					}
-				}
-				else
-				{
-					if ((target.reflexes() + rand(30) / 2) > (reflexes() - (target.statusEffectv1("Grappled") * 5)))
-					{
-						output("Moving with the flow of gooey skin, you slip the creature’s grip like wet soap. / (else fail) Your struggles fail to free you from the alien’s grip!");
-						escaped = true;
-					}
-				}
+				output("The ganrael hurls a pick at you!");
 			}
 			
-			if (escaped)
+			if (rangedCombatMiss(this, target))
 			{
-				target.removeStatusEffect("Grappled");
-				createStatusEffect("Grappled", 2);
+				output(" You step aside ably.");
+			}
+			else
+			{
+				var dr:DamageResult = applyDamage(new TypeCollection( { kinetic: 20 }, DamageFlag.PENETRATING), this, target, "suppress");
+				
+				if (dr.shieldDamage > 0 && dr.hpDamage <= 0) output(" It bounces off your shield, leaving a streak of jagged light that slowly fades.");
+				else if (dr.hpDamage > 0) output(" It embeds itself, creating a painful, ragged puncture.");
+				
+				outputDamage(dr);
+				
+				if (dr.hpDamage > 0)
+				{
+					if (!target.hasStatusEffect("Bleeding"))
+					{
+						output(" <b>You’re bleeding!</b>");
+						target.createStatusEffect("Bleeding", 1, 3, 15, 0, false, "Icon_Crying", "You're bleeding!", true, 0);
+					}
+					else
+					{
+						output(" <b>Your bleeding is aggravated further!</b>");
+						// Add a stack and refresh duration
+						target.addStatusValue("Bleeding", 1, 1);
+						target.setStatusValue("Bleeding", 2, 3);
+					}
+				}
 			}
 		}
+		
+		private function ThrowNeedle(target:Creature, bInitial:Boolean = true):void
+		{
+			if (bInitial)
+			{
+				energy( -15);
+				
+				output("The alien pulls a needle from");
+				if (!hasStatusEffect("Unarmored")) output(" under her plating");
+				else output(" its skin");
+				output(" and flings it at you!");
+			}
+			else
+			{
+				output("The ganrael hurls a needle at you!");
+			}
+			
+			if (rangedCombatMiss(this, target))
+			{
+				output(" It whizzes by as you twist away.");
+			}
+			else
+			{
+				var dr:DamageResult = applyDamage(new TypeCollection( { kinetic: 15 }, DamageFlag.PENETRATING), this, target, "suppress");
+				
+				if (dr.shieldDamage > 0 && dr.hpDamage <= 0) output(" It pings off your shield.");
+				else if (dr.hpDamage > 0) output(" The needle’s splintered tip catches in your skin, causing pain every time you move!");
+				
+				outputDamage(dr);
+				
+				if (dr.hpDamage > 0)
+				{
+					if (target.hasStatusEffect("Bleeding"))
+					{
+						output(" <b>Your bleeding is aggravated further!</b>");
+						target.addStatusValue("Bleeding", 1, 1);
+						target.setStatusValue("Bleeding", 2, 3);
+					}
+				}
+			}
+		}
+		
+		public function CrystalBackhand(target:Creature):void
+		{
+			output("The ganrael casts aside " + CGender("her", "its") +" dignity and slaps at you with " + CGender("her", "its") +" hands!");
+			if (hasStatusEffect("Blinded")) output(" " + CGender("Her", "Its") +" frustration at being unable to see you comes out in wide, flailing blows!");
+			
+			var currDam:TypeCollection;
+			var dam:TypeCollection 
+			
+			// switch out melee weapon based on armor state
+			if (hasStatusEffect("Unarmored"))
+			{
+				// light kin dam
+				dam = new TypeCollection( { kinetic: 10 } );
+				currDam = meleeWeapon.baseDamage;
+				meleeWeapon.baseDamage = dam;
+			}
+			else
+			{
+				// med kin crushing dam
+				dam = new TypeCollection( { kinetic: 20 }, DamageFlag.CRUSHING);
+				currDam = meleeWeapon.baseDamage;
+				meleeWeapon.baseDamage = dam;
+			}
+			
+			CombatAttacks.MeleeAttack(this, target);
+			
+			meleeWeapon.baseDamage = currDam;
+		}
+		
 	}
 }
