@@ -10,7 +10,7 @@
 		//[Embed(source = "../../../assets/images/npcs/alex.png", mimeType = "image/png")]
 		//public var Bust_ALEX:Class;
 		
-		[Embed(source = "../../../assets/images/npcs/amara.png", mimeType = "image/png")]
+		[Embed(source = "../../../assets/images/npcs/jay_echo/amara.png", mimeType = "image/png")]
 		public var Bust_AMARA:Class;
 		public var Bounds_AMARA:Rectangle = new Rectangle(28, 2, 58, 64);
 		
@@ -68,7 +68,7 @@
 		[Embed(source = "../../../assets/images/npcs/holiday_trap.png", mimeType = "image/png")]
 		public var Bust_HOLIDAY_TRAP:Class;
 		
-		[Embed(source = "../../../assets/images/npcs/inessa_nude.png", mimeType = "image/png")]
+		[Embed(source = "../../../assets/images/npcs/jay_echo/inessa_nude.png", mimeType = "image/png")]
 		public var Bust_INESSA_NUDE:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/jacques00/irellia.png", mimeType = "image/png")]
@@ -109,7 +109,7 @@
 		[Embed(source = "../../../assets/images/npcs/jacques00/matron_oserre.png", mimeType = "image/png")]
 		public var Bust_MATRON_OSERRE:Class;
 		
-		[Embed(source = "../../../assets/images/npcs/mayren.png", mimeType = "image/png")]
+		[Embed(source = "../../../assets/images/npcs/jay_echo/mayren.png", mimeType = "image/png")]
 		public var Bust_MAYREN:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/millie.png", mimeType = "image/png")]
@@ -148,12 +148,12 @@
 		[Embed(source = "../../../assets/images/npcs/jacques00/scalla.png", mimeType = "image/png")]
 		public var Bust_SCALLA:Class;
 		
-		[Embed(source = "../../../assets/images/npcs/sellera.png", mimeType = "image/png")]
+		[Embed(source = "../../../assets/images/npcs/jay_echo/sellera.png", mimeType = "image/png")]
 		public var Bust_SELLERA:Class;
-		[Embed(source = "../../../assets/images/npcs/sellera_nude.png", mimeType = "image/png")]
+		[Embed(source = "../../../assets/images/npcs/jay_echo/sellera_nude.png", mimeType = "image/png")]
 		public var Bust_SELLERA_NUDE:Class;
 		
-		[Embed(source = "../../../assets/images/npcs/sierva.png", mimeType = "image/png")]
+		[Embed(source = "../../../assets/images/npcs/jay_echo/sierva.png", mimeType = "image/png")]
 		public var Bust_SIERVA:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/adjatha/vaande.png", mimeType = "image/png")]
