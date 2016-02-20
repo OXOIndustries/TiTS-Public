@@ -63,7 +63,7 @@ public function bimboPennyTalk():void
 	showPenny();
 	abeAuthor();
 	//IF PC IS A BIMBO
-	//IF PC IS A BIMBO [whether Dr Badger brand or not]
+	//IF PC IS A BIMBO [whether Dr. Badger brand or not]
 	if(pc.isBimbo() || pcBimboedByBadger())
 	{
 		output("You walk over, grabbing Penny in a big hug. <i>“Oh my goodness, how much fun are you having?”</i>");
@@ -252,21 +252,21 @@ public function getOralFromBimboPenny():void
 	{
 		output("sliding her lips down the length of your [pc.biggestCock]. Her eyes roll up in her head in bliss - clearly, this is exactly what she loves to do.");
 		if(pc.isBimbo()) output(" And why wouldn’t she? Sucking cock feels like, <i>so</i> great, why wouldn’t she love doing it?");
-		output(" It feels pretty great on your side too, she is <i>good</i> at this. Her lips are so soft and plump that they feel like they’re designed to wrap perfectly around any and all cocks (and, knowing Dr Badger, they probably are). Her tongue works your [pc.biggestCockhead] lovingly, scooping up your [pc.cumColor] pre-cum and shivering in pleasure every time she swallows a fresh batch.");
+		output(" It feels pretty great on your side too, she is <i>good</i> at this. Her lips are so soft and plump that they feel like they’re designed to wrap perfectly around any and all cocks (and, knowing Dr. Badger, they probably are). Her tongue works your [pc.biggestCockhead] lovingly, scooping up your [pc.cumColor] pre-cum and shivering in pleasure every time she swallows a fresh batch.");
 	}
 	//IF PC DOES NOT HAVE A COCK BUT HAS A VAGINA = 
 	else if(pc.hasVagina())
 	{
 		output("sliding her tongue tongue happily inside your [pc.biggestVagina]. She coos happily as you pull her close, licking at your insides while her plump lips brush against your [pc.oneClitPerVagina]. Her eyes roll up in her head in bliss - clearly, this is exactly what she loves to do.");
 		if(pc.isBimbo()) output(" And why wouldn’t she? Eating out a pussy feels like, <i>so</i> great, why wouldn’t she love doing it?");
-		output(" It feels pretty great on your side too, she is <i>good</i> at this. Her lips are so soft and plump that they feel just perfect against your clit, and she’s so skilled at moving her tongue inside you that it feels like it was designed for it (and, knowing Dr Badger, it probably was). She presses herself close, making sure none of your [pc.girlCum] escapes and shivering in pleasure every time she swallows a fresh batch.");
+		output(" It feels pretty great on your side too, she is <i>good</i> at this. Her lips are so soft and plump that they feel just perfect against your clit, and she’s so skilled at moving her tongue inside you that it feels like it was designed for it (and, knowing Dr. Badger, it probably was). She presses herself close, making sure none of your [pc.girlCum] escapes and shivering in pleasure every time she swallows a fresh batch.");
 	}
 	//IF PC DOES NOT HAVE A COCK OR A VAGINA = 
 	else
 	{
 		output("and you spin around again in anticipation, leaning forward so she can eat out your ass. She takes to it happily, her plump lips kissing at your soft flesh while her tongue sweeps eagerly along your rim. Her eyes roll up in her head in bliss - clearly, this is exactly what she loves to do.");
 		if(pc.isBimbo()) output(" And why wouldn’t she? Eating someone out feels like, <i>so</i> great, why wouldn’t she love doing it?");
-		output(" It feels pretty great on your side too, she is <i>good</i> at this. It’s like she was designed for it (and, knowing Dr Badger, she probably was).");
+		output(" It feels pretty great on your side too, she is <i>good</i> at this. It’s like she was designed for it (and, knowing Dr. Badger, she probably was).");
 	}
 	output(" Despite all the ways ");
 	if(!pc.isBimbo()) output("she’s changed physically");
@@ -274,13 +274,13 @@ public function getOralFromBimboPenny():void
 	output(", the hottest thing about might be the fact that she so clearly <i>needs</i> this. You don’t think she even eats or drinks anything else any more, she’s just a perfect, needy, eager cumslut, all day, every day.");
 	output("\n\nYou did that. ");
 	if(!pc.isBimbo()) output("You took this fierce, dedicated policewoman, and fucked her and changed her until she had a big, dripping cock, until her tits were so large they can barely fit in her uniform when she can be bothered to wear it, until all she wants to do is lie back on the ground and cover herself with cum again and again so that she can get to lick it all up. And she’s so happy with the results that she’ll eagerly service you in whatever way you ask every time you ask because it’s the only way she can think of to say thank you. Although, to be fair, that’s also how she says ‘hello’ now.");
-	output("\n\nYou corrupted her. You fixed her. You made her yours. And she’ll beg you to use her every bit as much as you could possibly want to, because you made her need it too. You can see why Dr Badger went full mad scientist over this.");
+	output("\n\nYou corrupted her. You fixed her. You made her yours. And she’ll beg you to use her every bit as much as you could possibly want to, because you made her need it too. You can see why Dr. Badger went full mad scientist over this.");
 	//IF PC IS A BIMBO
 	if(pc.isBimbo()) 
 	{
 		output(" You took this stuffy, angry cop and showed her how <i>good</i> it feels to be a slut. You showed her that her tits should be big, and always out and ready to receive the fresh blast of cum that’s your reward for being a good bimbo. You showed her how good it is to have her very own cock, so she can always have her lips wrapped around one and fresh cum to drink, even when she’s by herself. You showed her that it doesn’t matter if she constantly has to fall to all fours, even when she’s trying to get work done or trying to go somewhere or talk to someone or something, because she’s just hit with that <i>need</i> and she has to at <i>least</i> jerk herself off, making a nice fresh puddle of cum for her to push her muzzle into and lap up - that’s fine, that’s what she <i>should</i> be doing, because she’s a nice eager bimbo cumslut, and what could be more important than that?");
 		output("\n\nYou showed her how good being a bimbo is. You spread your gift to her. Maybe you can spread it more. Maybe you’ll spread it to everyone. Maybe you can make everyone a nice, happy, slutty bimbo, just like you and Penny, make this whole sector big tits, swinging cocks and dripping cum. And you right at the front of all of it, fucking and being fucked, spreading the bimbo gospel to every new recruit you fill with your cum.");
-		output("\n\nWow, you think suddenly, so <i>that’s</i> what Dr Badger is all about. She really <i>is</i> smart.");
+		output("\n\nWow, you think suddenly, so <i>that’s</i> what Dr. Badger is all about. She really <i>is</i> smart.");
 	}
 	output("\n\nWith all of that going through your head, and with Penny doing such good work on you, it isn’t long before you finally orgasm. You grab her close, ");
 	if(pc.hasCock())

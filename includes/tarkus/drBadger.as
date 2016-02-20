@@ -13,7 +13,7 @@ public function bimbotoriumHallBonus():Boolean
 {
 	if(flags["DR_BADGER_TURNED_IN"] != undefined) 
 	{
-		output("There’s a run-down shack in a quiet corner with a sign reading <i>“Doctor Badger’s Free Clinic”</i>, though the shake has been all but mummified in flickering holographic police tape. A couple of uniformed Peacekeepers are standing outside, keeping the curious raskvel from entering the premises. <b>It looks like Doctor Badger’s offices have been shut down for good.</b>");
+		output("There’s a run-down shack in a quiet corner with a sign reading <i>“Doctor Badger’s Free Clinic”</i>, though the shack has been all but mummified in flickering holographic police tape. A couple of uniformed Peacekeepers are standing outside, keeping the curious raskvel from entering the premises. <b>It looks like Doctor Badger’s offices have been shut down for good.</b>");
 		rooms[currentLocation].northExit = "";
 	}
 	else output("The Novahome tunnel comes to an abrupt end here, closed off by a wall of solid metal and rusted-shut hatch doors. You can spot places where repairs have been attempted, but none of the entrances seem to be in a working state. There's still plenty of buildings around, and a clear path leads west, back the way you came. A few open-air stalls are even set up here, where you suppose the property values are low.\n\nThere’s a run-down shack in a quiet corner with a sign reading “Doctor Badger’s Free Clinic”, although on second glance the “Free Clinic” part has been hastily crossed out, and underneath someone has written “Lab”. That’s also been crossed out, and the odd term “Bimbotorium” written underneath that. That’s followed by a smiley face, and a crude drawing of a pair of breasts. Odd.");
@@ -38,7 +38,7 @@ public function drBadgerMenu():void
 
 	if(flags["MET_DR_BADGER"] != undefined)
 	{
-		if(flags["BADGER_QUEST"] == -2) addButton(6,"Zap Her!",bimboZapDrBadger,undefined,"Zap Her!","Turn the tables on Dr Badger, zapping her with your reprogrammed raygun and turning her into a bimbo instead of Penny.");
+		if(flags["BADGER_QUEST"] == -2) addButton(6,"Zap Her!",bimboZapDrBadger,undefined,"Zap Her!","Turn the tables on Dr. Badger, zapping her with your reprogrammed raygun and turning her into a bimbo instead of Penny.");
 		else if(flags["BADGER_QUEST"] == undefined) 
 		{
 			//[mouse-over text for button is: [See just what this "job offer" is that the doctor has for you]
@@ -132,15 +132,15 @@ public function repeatBadgerApproach():void
 		applyDamage(new TypeCollection( { tease: 10 } ), null, pc, "minimal");
 	}
 	//Add Text/Buttons
-	//[add text to Dr Badger space, for after first encounter]
+	//[add text to Dr. Badger space, for after first encounter]
 	if(flags["BADGER_QUEST"] == undefined)
 	{
-		output("\n\nLooking you up and down for a moment, Dr Badger raises an eyebrow. <i>“Actually, I might have a job for you, if you’re interested...”</i>");
+		output("\n\nLooking you up and down for a moment, Dr. Badger raises an eyebrow. <i>“Actually, I might have a job for you, if you’re interested...”</i>");
 		//[Job]
 	}
 	else if(flags["BADGER_QUEST"] == 2) 
 	{
-		output("\n\n<b>Now that you’ve taken care of Penny for Dr Badger, you should probably talk to her about your reward.</b>");
+		output("\n\n<b>Now that you’ve taken care of Penny for Dr. Badger, you should probably talk to her about your reward.</b>");
 	}
 	drBadgerMenu();
 }
@@ -151,13 +151,13 @@ public function yesImAHeroHurhurDurhurGurhurhurhurShit():void
 	clearOutput();
 	showDrBadger();
 	author("Abe E. Seedy");
-	output("<i>“Oh, really?”</i>, she answers, one eyebrow arching upwards with amused curiosity. She steps a little to the side, still keeping you pinned up against the door, but now letting you see the large, complicated-looking machine behind her. It’s some sort of... ray gun, by the looks of it, but industrial-sized; some massive squatting mess of tangled wires and haphazardly bolted together metal, and the only thing you can say for sure about it is that it’s very definitely pointing at you. Your eyes flick back to Dr Badger, and seeing your expression she starts grinning disturbingly. <i>“Heroes”</i>, she says, squeezing your throat again lightly for emphasis at the word, <i>“earn themselves a session with my patented bimbo-making machine over there</i>.”");
-	output("\n\nBetween that ominous machine and the leering Dr Badger herself, you pretty quickly determine that saying the wrong thing here would have some fairly significant consequences. That said, something about her tells you that whatever she has in mind <i>would</i> probably be highly enjoyable, if you’re up for the sort of outsized genitalia and overblown libidos she seems to be all about, that is.");
+	output("<i>“Oh, really?”</i>, she answers, one eyebrow arching upwards with amused curiosity. She steps a little to the side, still keeping you pinned up against the door, but now letting you see the large, complicated-looking machine behind her. It’s some sort of... ray gun, by the looks of it, but industrial-sized; some massive squatting mess of tangled wires and haphazardly bolted together metal, and the only thing you can say for sure about it is that it’s very definitely pointing at you. Your eyes flick back to Dr. Badger, and seeing your expression she starts grinning disturbingly. <i>“Heroes”</i>, she says, squeezing your throat again lightly for emphasis at the word, <i>“earn themselves a session with my patented bimbo-making machine over there</i>.”");
+	output("\n\nBetween that ominous machine and the leering Dr. Badger herself, you pretty quickly determine that saying the wrong thing here would have some fairly significant consequences. That said, something about her tells you that whatever she has in mind <i>would</i> probably be highly enjoyable, if you’re up for the sort of outsized genitalia and overblown libidos she seems to be all about, that is.");
 
 	output("\n\n<i>“So...”</i> she concludes, licking her surprisingly plump lips, <i>“are you </i>sure<i> you’re a hero?”</i>");
 	//[I’m a hero] [I’m just here to shop]
 	clearMenu();
-	addButton(0,"Hero",heyDocImAHero,undefined,"Hero","Yeah... this probably going to result in a fight or rapid bimbofication; that much seems clear.");
+	addButton(0,"Hero",heyDocImAHero,undefined,"Hero","Yeah... this is probably going to result in a fight or rapid bimbofication; that much seems clear.");
 	addButton(1,"Shopper",heyDocImJustHereToShop,undefined,"Shopper","Telling her that you're just shopping around might be the best plan.");
 }
 
@@ -168,12 +168,12 @@ public function noImNotAHeroYouFuckingBimboDoctor():void
 	showDrBadger();
 	author("Abe E. Seedy");
 	output("<i>“Oh”</i>. She looks down for a moment, seeming to almost deflate as she relaxes a little. When she looks back up at you, you realize she looks a little... disappointed, somehow? <i>“Well... are you sure</i>?”, she asks hopefully.");
-	output("\n\nShe steps a little to the side, still keeping you pinned up against the door, but now letting you see the large, complicated-looking machine behind her. It’s some sort of... ray gun, by the looks of it, but industrial-sized; some massive squatting mess of tangled wires and haphazardly bolted together metal, and the only thing you can say for sure about it is that it’s very definitely pointing at you. Your eyes flick back to Dr Badger, and she perks back up on seeing your wide-eyed expression. <i>“Heroes”</i>, she says with a hungry grin, <i>“earn themselves a session with my patented bimbo-making machine over there</i>.”");
-	output("\n\nBetween that ominous machine and the leering Dr Badger herself, you pretty quickly determine that saying the wrong thing here would have some fairly significant consequences. That said, something about her tells you that whatever she has in mind would probably be highly enjoyable, if you’re up for the sort of outsized genitalia and overblown libidos she seems to be all about, that is.");
+	output("\n\nShe steps a little to the side, still keeping you pinned up against the door, but now letting you see the large, complicated-looking machine behind her. It’s some sort of... ray gun, by the looks of it, but industrial-sized; some massive squatting mess of tangled wires and haphazardly bolted together metal, and the only thing you can say for sure about it is that it’s very definitely pointing at you. Your eyes flick back to Dr. Badger, and she perks back up on seeing your wide-eyed expression. <i>“Heroes”</i>, she says with a hungry grin, <i>“earn themselves a session with my patented bimbo-making machine over there</i>.”");
+	output("\n\nBetween that ominous machine and the leering Dr. Badger herself, you pretty quickly determine that saying the wrong thing here would have some fairly significant consequences. That said, something about her tells you that whatever she has in mind would probably be highly enjoyable, if you’re up for the sort of outsized genitalia and overblown libidos she seems to be all about, that is.");
 	output("\n\n<i>“So...”</i>, she concludes, licking her surprisingly plump lips, <i>“what do you say? Are you </i>sure<i> you’re not a hero?”</i>");
 	//[I’m a hero] [I’m just here to shop]
 	clearMenu();
-	addButton(0,"Hero",heyDocImAHero,undefined,"Hero","Yeah... this probably going to result in rapid bimbofication; that much seems clear.");
+	addButton(0,"Hero",heyDocImAHero,undefined,"Hero","Yeah... this is probably going to result in rapid bimbofication; that much seems clear.");
 	addButton(1,"JustShop",heyDocImJustHereToShop,undefined,"JustShop","A civilized option for a civilized result.");
 }
 
@@ -185,7 +185,7 @@ public function heyDocImAHero():void
 	author("Abe E. Seedy");
 	output("Doctor Badger grins widely, pressing you a little harder against the door as she moves one hand down to retrieve a remote control from some hidden pocket. <i>“Well, </i>hero”, she teases, <i>“let’s see just how heroic you are once I’ve had some fun with you...”</i>");
 	output("\n\nShe presses a prominent button on the remote, releasing you and stepping away to the side in one fluid motion. Before you can react you hear the machine in front of you whirr menacingly, and then a great white beam shoots out of it, bathing your head in a thick, hazy glow.");
-	output("\n\nIt feels... nice. Warm. You tense yourself for something dramatic to happen, but after several seconds you eventually re-open your eyes, and hesitantly wave a hand in front of your face. Several more seconds pass, and absolutely nothing continues to happen. Maybe it doesn’t work? Or maybe your protective enhancements were too powerful for it? Laughing, you strike a confident, heroic pose, turning to face Dr Badger again now that you’ve defeated her nefarious plan, only to discover her bearing down on you while holding a large hypodermic needle filled with some brightly glowing substance.");
+	output("\n\nIt feels... nice. Warm. You tense yourself for something dramatic to happen, but after several seconds you eventually re-open your eyes, and hesitantly wave a hand in front of your face. Several more seconds pass, and absolutely nothing continues to happen. Maybe it doesn’t work? Or maybe your protective enhancements were too powerful for it? Laughing, you strike a confident, heroic pose, turning to face Dr. Badger again now that you’ve defeated her nefarious plan, only to discover her bearing down on you while holding a large hypodermic needle filled with some brightly glowing substance.");
 	output("\n\nYou don’t have time to do anything more than stare before she jabs you with the needle, pressing the plunger down and pumping whatever’s inside it into your body. She doesn’t even bother to restrain you after that; simply pulling the needle out with shrug and explaining <i>“I’ve never been much of an engineer unfortunately, but I do have a soft spot for sneaking up and surprising people...”</i>");
 	output("\n\nYou feel a thick warmth flowing into you from the needle, a pink fog filling up your mind as you fall helplessly to your [pc.knees]. <i>“That’s just a little something to get you in the right... frame of mind”</i>, the Doctor says, shifting her stance a little as you sink down to be level with her waist. From there you get a good view of her thick cock, and after a sudden start you realize that you’ve started drooling. It just looks so... you can’t describe it, but you <i>need</i> it; you can’t help but be enraptured as you watch her casually unwrap the sleeve from around it.");
 	output("\n\nYou make a move forwards, but she stops you with a firm hand on your head. <i>“Ah-ah-ah”</i>, she taunts, wagging a finger at you for emphasis, <i>“not so fast. First we have to get you nice and conditioned...”</i>");
@@ -206,7 +206,7 @@ public function heyDocImAHero():void
 	//IF PC BODYTYPE IS THIN/NOT PLUMP
 	if(pc.thickness < 75) 
 	{
-		output("\n\nYou feel your body begin to swell dramatically, rounding out until you look like the Doctor herself, all the to better show off your sexually-charged figure to all onlookers. <b>Your body is now plump and curvy</b>.");
+		output("\n\nYou feel your body begin to swell dramatically, rounding out until you look like the Doctor herself, all the to better to show off your sexually-charged figure to all onlookers. <b>Your body is now plump and curvy</b>.");
 		pc.thickness = 75;
 		//IF PC DOES NOT HAVE TWO LEGS
 		if(pc.legCount != 2) 
@@ -273,7 +273,7 @@ public function heyDocImAHero():void
 	{
 		output("\n\nYou grimace as the feeling of fullness moves to concentrate on your crotch, the sensation so overpowering for a moment that your [pc.knees] almost buckle");
 		if(pc.legCount == 1) output("s");
-		output(" beneath it. You can feel the fluid pumping into you, surge after surge flowing through your body and aiming directly for your cock, which soon shudders and responds to the massive increase in pressure. It presses out from you slowly, building outwards with every pulse and almost knocking your [pc.legOrLegs] out from under you at the sheer intensity of it, leaving you struggling to keep breathing as your cock fills absolutely with this new, surging fluid. You want to cum, you <i>need</i> to cum, but you can’t - all you can do is clutch desperately at the top of the podium while your shaft slowly grows to become large enough to almost match Dr Badger herself. <b>Your cock is now very large</b>!");
+		output(" beneath it. You can feel the fluid pumping into you, surge after surge flowing through your body and aiming directly for your cock, which soon shudders and responds to the massive increase in pressure. It presses out from you slowly, building outwards with every pulse and almost knocking your [pc.legOrLegs] out from under you at the sheer intensity of it, leaving you struggling to keep breathing as your cock fills absolutely with this new, surging fluid. You want to cum, you <i>need</i> to cum, but you can’t - all you can do is clutch desperately at the top of the podium while your shaft slowly grows to become large enough to almost match Dr. Badger herself. <b>Your cock is now very large</b>!");
 		pc.cocks[0].cLengthRaw = 11;
 	}
 	//IF PC HAS MORE THAN ONE NON-TAIL COCK
@@ -282,7 +282,7 @@ public function heyDocImAHero():void
 		output("\n\nYour extra cock");
 		if(pc.cockTotal() > 2) output("s flow ");
 		else output(" flows ");
-		output("together like they were liquid themselves, feeding their mass into your main cock, ensuring you’re more focussed on receiving breeding than being able to breed others. <b>You now have only one very large cock on your groin</b>!");
+		output("together like they were liquid themselves, feeding their mass into your main cock, ensuring you’re more focused on receiving breeding than being able to breed others. <b>You now have only one very large cock on your groin</b>!");
 		
 		while(pc.cockTotal() > 1)
 		{
@@ -292,7 +292,7 @@ public function heyDocImAHero():void
 	//IF PC DOES NOT HAVE BALLS
 	if(pc.balls == 0)
 	{
-		output("\n\nThe flow of fluid shifts within you, moving to pool at the very base of your crotch. Here it simply builds unstoppably, dragging a groan from you as you feel your body swell in response, a growing set of balls descending slowly. The fluid focusses on these mercilessly; pumping them so achingly full that they feel like they’re overflowing - a constant, endless, churning torturing you as your seed demands to be spent, and even then you’re not sure how much release you would get from any one single orgasm. <b>You now have very large balls</b>!");
+		output("\n\nThe flow of fluid shifts within you, moving to pool at the very base of your crotch. Here it simply builds unstoppably, dragging a groan from you as you feel your body swell in response, a growing set of balls descending slowly. The fluid focuses on these mercilessly; pumping them so achingly full that they feel like they’re overflowing - a constant, endless, churning torturing you as your seed demands to be spent, and even then you’re not sure how much release you would get from any one single orgasm. <b>You now have very large balls</b>!");
 		pc.balls = 2;
 		pc.ballSizeRaw = 4;
 		if(pc.cumMultiplierRaw < 60) pc.cumMultiplierRaw = 60;
@@ -301,8 +301,8 @@ public function heyDocImAHero():void
 	//IF PC HAS SMALLER THAN LARGE BALLS, OR HAS LESS THAN LARGE CUM PRODUCTION
 	if(pc.maxCum() < 500 && pc.balls > 0)
 	{
-		if(pc.balls > 1) output("\n\nThe flow of fluid shifts within you, moving to pool heavily in your balls. Here it simply builds unstoppably, dragging a groan from you as you feel them swell in response. The fluid focusses on them mercilessly, pumping them so achingly full that they grow dramatically. They feel like they’re overflowing - a constant, endless churning torturing you as your seed demands to be spent, and even then you’re not sure how much release you would get from any one single orgasm. <b>Your balls are now very productive</b>!");
-		else output("\n\nThe flow of fluid shifts within you, moving to pool heavily in your ball. Here it simply builds unstoppably, dragging a groan from you as you feel it swell in response. The fluid focusses on it mercilessly, pumping it so achingly full that it grows dramatically. It feels like it's overflowing - a constant, endless churning torturing you as your seed demands to be spent, and even then you’re not sure how much release you would get from any one single orgasm. <b>Your ball is extra productive</b>!");
+		if(pc.balls > 1) output("\n\nThe flow of fluid shifts within you, moving to pool heavily in your balls. Here it simply builds unstoppably, dragging a groan from you as you feel them swell in response. The fluid focuses on them mercilessly, pumping them so achingly full that they grow dramatically. They feel like they’re overflowing - a constant, endless churning torturing you as your seed demands to be spent, and even then you’re not sure how much release you would get from any one single orgasm. <b>Your balls are now very productive</b>!");
+		else output("\n\nThe flow of fluid shifts within you, moving to pool heavily in your ball. Here it simply builds unstoppably, dragging a groan from you as you feel it swell in response. The fluid focuses on it mercilessly, pumping it so achingly full that it grows dramatically. It feels like it's overflowing - a constant, endless churning torturing you as your seed demands to be spent, and even then you’re not sure how much release you would get from any one single orgasm. <b>Your ball is extra productive</b>!");
 
 		if(pc.ballSizeRaw < 4) pc.ballSizeRaw = 4;
 		if(pc.cumMultiplierRaw < 60) pc.cumMultiplierRaw = 60;
@@ -321,7 +321,7 @@ public function heyDocImAHero():void
 		output("\n\nThere’s a sudden shift inside you, and suddenly you feel a distinct pleasure sinking into the very base of your crotch, below even your balls. The sensation is almost blissful; after all the straining fullness from the fluid earlier this response is enough to make your head sink happily down to one side, your tongue lolling out of your mouth in pleasure. With a shudder you feel a slit opening");
 		if(pc.legCount > 1) output(" between your [pc.legs]");
 		else output(" at your crotch");
-		output(", and you can’t help but smile dopily as you feel it become wonderfully slick and deep; literally dripping with enough ready-made lubrication to leave you always available for use by almost any size of client. <b>You now have capacious vagina</b>!");
+		output(", and you can’t help but smile dopily as you feel it become wonderfully slick and deep; literally dripping with enough ready-made lubrication to leave you always available for use by almost any size of client. <b>You now have a capacious vagina</b>!");
 		pc.createVagina();
 		pc.vaginas[0].wetnessRaw = 3;
 		pc.vaginas[0].loosenessRaw = 2;
@@ -426,7 +426,7 @@ public function heyDocImAHero():void
 	else output(".");
 	if(pc.femininity < 75) pc.femininity = 75;
 	if(pc.lipMod < 1) pc.lipMod = 1;
-	output("\n\n<i>“There girl”</i>, Dr Badger coos, <i>“doesn’t that feel better? Don’t you like being one of my perfect bimbos better than being a silly hero?”</i>");
+	output("\n\n<i>“There girl”</i>, Dr. Badger coos, <i>“doesn’t that feel better? Don’t you like being one of my perfect bimbos better than being a silly hero?”</i>");
 	output("\n\nYou nod happily. You’d agree to anything she says, but especially in this case because when she calls you a bimbo your body responds instinctively; making thick strands of pre-cum leak from your straining cock while your slit moistens even further in excitement.");
 	output("\n\n<i>“You should be flattered. I don’t normally make copies of myself - weakens the brand, you know - but I decided I liked the idea of a slutty badger bimbo running around the galaxy, fucking new and exciting people. I’ve left you with more intelligence than most too - for now at least - just because I want you to be able to <i>try</i> to keep up with the hero business, even as your juicy cock <i>aches</i> for release.");
 	if(pc.hasCockTail() || pc.hasTailgina()) output(" I couldn’t help but leave your most interesting feature intact too. I must say I’ve never seen a tail like yours up close before, and a beauty like that would have been a shame to lose.");
@@ -436,8 +436,8 @@ public function heyDocImAHero():void
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
-	output("\n\nIt’s several minutes before your eyes uncross from the delirious bliss of your repeated climaxes. When you can finally see clearly you look up to find Dr Badger again looking down at you with a smile, idly re-applying the half-sleeve to her cock. While you do still find her scent powerfully alluring, it seems like now that you’ve been serviced the lustful haze that clouded your mind seems to have let up a little. It’s still a little hard to think, and you’re sure you’ve dropped some IQ points, but you <i>are</i> able to think of something other than sex, at least. Her cock catches your eye, and you swallow nervously as you mentally add “for now” to that last statement.");
-	output("\n\n<i>“Now”</i>, Dr Badger says nonchalantly, as though nothing unusual had happened, <i>“with that... consultation out of the way, do you care to buy any of my take home products? I’ve got some lovely pills that will give you a nice little bimbo kick, although nowhere near as much as my personal attention.”");
+	output("\n\nIt’s several minutes before your eyes uncross from the delirious bliss of your repeated climaxes. When you can finally see clearly you look up to find Dr. Badger again looking down at you with a smile, idly re-applying the half-sleeve to her cock. While you do still find her scent powerfully alluring, it seems like now that you’ve been serviced the lustful haze that clouded your mind seems to have let up a little. It’s still a little hard to think, and you’re sure you’ve dropped some IQ points, but you <i>are</i> able to think of something other than sex, at least. Her cock catches your eye, and you swallow nervously as you mentally add “for now” to that last statement.");
+	output("\n\n<i>“Now”</i>, Dr. Badger says nonchalantly, as though nothing unusual had happened, <i>“with that... consultation out of the way, do you care to buy any of my take home products? I’ve got some lovely pills that will give you a nice little bimbo kick, although nowhere near as much as my personal attention.”");
 	//Give PC “Dumbfuck” perk, set at unlock level 9 (Breed-Hungry: +5 fertility rating and balls fill to halfway much faster than normal)
 	//Easy Perk
 	if(!pc.hasPerk("Easy"))
@@ -506,15 +506,15 @@ public function omgBreakFreeFromDat():void
 	else if(pc.isMischievous()) output(", dammit! Who is she to try to tell you what you can do?");
 	else output("! No one fucks with you and gets away with it!");
 	// If the PC has a goo form
-	if(pc.isGoo()) output("\n\nYou pause for a moment to roll your eyes dramatically, then you simply <i>relax</i>. In moments whatever grip Dr Badger had on you is lost, your entire body melting away into formlessness, and the sudden shift puts her so off-balance that she slumps awkwardly to the floor. You flow past her as an unstoppable mass, reforming in moments on the other side of the room. You grab a comfortingly solid piece of machinery as your limbs re-emerge, raising it over your head like a club.");
+	if(pc.isGoo()) output("\n\nYou pause for a moment to roll your eyes dramatically, then you simply <i>relax</i>. In moments whatever grip Dr. Badger had on you is lost, your entire body melting away into formlessness, and the sudden shift puts her so off-balance that she slumps awkwardly to the floor. You flow past her as an unstoppable mass, reforming in moments on the other side of the room. You grab a comfortingly solid piece of machinery as your limbs re-emerge, raising it over your head like a club.");
 	// If PC does not have a goo form, and Intelligence is higher than both Physique or Reflexes
-	else if((pc.intelligence() > pc.physique()) || (pc.intelligence() > pc.reflexes())) output("\n\nGiven that Dr Badger has you firmly by the throat you’re left at a distinct disadvantage, but as your eyes flick frantically across the room you manage to catch sight of a way to get out of this. You spot a support beam in the wall already straining under a heavy load, and realize that the ramshackle nature of the doctor’s hut looks like it could be used against her. You swing yourself out towards it, catching the doctor by surprise as you manage to land a heavy blow with one flailing limb. At first she’s simply confused, surprised by your seemingly random movements, but soon she catches sight of the smile on your face and the expectant look in your eyes. Following your gaze upwards, she manages to see just in time that a section of the roof is already beginning to slip, and she has barely half a second to throw herself backwards before several feet of metal collapses right where she was standing. She lands heavily, sprawled on her ass by the awkward dodge, and in the few seconds it takes her to recover you’re already readying your weapon and resetting your disabled equipment.");
+	else if((pc.intelligence() > pc.physique()) || (pc.intelligence() > pc.reflexes())) output("\n\nGiven that Dr. Badger has you firmly by the throat you’re left at a distinct disadvantage, but as your eyes flick frantically across the room you manage to catch sight of a way to get out of this. You spot a support beam in the wall already straining under a heavy load, and realize that the ramshackle nature of the doctor’s hut looks like it could be used against her. You swing yourself out towards it, catching the doctor by surprise as you manage to land a heavy blow with one flailing limb. At first she’s simply confused, surprised by your seemingly random movements, but soon she catches sight of the smile on your face and the expectant look in your eyes. Following your gaze upwards, she manages to see just in time that a section of the roof is already beginning to slip, and she has barely half a second to throw herself backwards before several feet of metal collapses right where she was standing. She lands heavily, sprawled on her ass by the awkward dodge, and in the few seconds it takes her to recover you’re already readying your weapon and resetting your disabled equipment.");
 	// If PC does not have a goo form, and Physique or Reflexes or both is higher than or equal to Intelligence
-	else output("\n\nYou grit your teeth and push away from the door behind you, which fortunately manages to hold together despite the impressive force you put on it. Your sudden surge manages to catch Dr Badger off-guard, and the two of you tumble forwards onto the floor, her hand losing its grip around your throat as you fall. You manage to roll to your feet faster than she does, and before she can ready herself again you’ve managed to get a hold of some comfortingly solid piece of machinery, holding it up like a club and fully ready to defend yourself.");
+	else output("\n\nYou grit your teeth and push away from the door behind you, which fortunately manages to hold together despite the impressive force you put on it. Your sudden surge manages to catch Dr. Badger off-guard, and the two of you tumble forwards onto the floor, her hand losing its grip around your throat as you fall. You manage to roll to your feet faster than she does, and before she can ready herself again you’ve managed to get a hold of some comfortingly solid piece of machinery, holding it up like a club and fully ready to defend yourself.");
 	// Merged
-	output("\n\nYou’re expecting a fight, but instead Dr Badger just laughs.");
+	output("\n\nYou’re expecting a fight, but instead Dr. Badger just laughs.");
 	if(pc.isNice()) output(" You don't understand why she would mock you in such a way, but seeing the serious look on");
-	else if(pc.isMischievous()) output(" Alright, if she wants to dance, you'll make her fucking dance... Though seeing the wry smirk on");
+	else if(pc.isMischievous()) output(" All right, if she wants to dance, you’ll make her fucking dance... Though seeing the wry smirk on");
 	else output(" The contempt of it almost makes you want to attack her more, but seeing the anger in");
 	output(" your face she raises her hands in apology. <i>“No, no, don’t get me wrong. I’m just surprised. It’s been so long since anyone actually </i>challenged<i> me. The locals are fun to play with and all, but they have so little </i>fight<i> in them. It’s nice to meet someone I can have a little... back and forth with</i>.”");
 	output("\n\nShe raises herself to her feet, her hands lowered and non-threatening, and in response you");

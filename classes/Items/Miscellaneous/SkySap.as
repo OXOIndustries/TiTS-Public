@@ -3,7 +3,7 @@
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
 	import classes.Creature;
-	import classes.kGAMECLASS;	
+	import classes.kGAMECLASS;
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
@@ -68,7 +68,9 @@
 			if(target is PlayerCharacter) {
 				buff = "";
 				author("JimThermic");
+				
 				kGAMECLASS.output("You take a deep breath and bring the bamboo-like container to your lips. The creamy liquid spills onto your tongue, and you're surprised how thick and rich it is. For a while you roll it around on your tongue, savouring the taste, before you finally swallow it.");
+				
 				kGAMECLASS.processTime(2);
 				
 				//Skin Change
@@ -215,7 +217,6 @@
 					pc.lipColor = getVanaeAccentColor(pc);
 					changes++;
 				}
-
 				//Vanae Pussy Gain (Pussy)
 				// Changes PC  pussy type to Vanae
 				// Must not be a vanae pussy type already
@@ -283,13 +284,13 @@
 				if(x >= 0 && changes < changeLimit && rand(3) == 0 && hasVanaeSkinColor(pc)) {
 					outputB("\n\nThe lips of [pc.onePussy] begins to ache, though not unpleasantly so. ");
 					//Frontgenitals: 
-					if(9999 == 9999) outputB("You part your lower lips with your fingers, and seek out the source of the odd sensation. ");
+					if(pc.genitalLocation() <= 1) outputB("You part your lower lips with your fingers, and seek out the source of the odd sensation. ");
 					outputB("At the top of your folds, ");
 					//AlreadyGotClit: 
 					if(pc.vaginas[x].clits == 1) outputB("right near your [pc.clit], you feel a small secondary bud begin to form.");
 					else outputB("you feel two buds begin to form.");
 					//Frontgenitals: 
-					if(9999 == 9999) outputB(" You instinctively rub and massage it, trying to coax it to the surface.");
+					if(pc.genitalLocation() <= 1) outputB(" You instinctively rub and massage it, trying to coax it to the surface.");
 
 					outputB("\n\nWhen they finally emerge, you experience a swift, unexpected orgasm. You cry out and [pc.girlCum] ");
 					if(!pc.isSquirter()) outputB("dribbles down you");
@@ -416,7 +417,7 @@
 							}
 						}
 					}
-					else 
+					else
 					{
 						outputB(" You no longer have a " + pc.simpleCockNoun(pc.smallestCockIndex()));
 						pc.removeCock(pc.smallestCockIndex(),1);
@@ -437,6 +438,7 @@
 					outputB("</b>")
 					changes++;
 				}
+				
 				// One or more TF occurs
 				if(changes > 0)
 				{
@@ -446,9 +448,11 @@
 				// else No TFs
 				else kGAMECLASS.output("\n\nYou finish off the contents. Other than lighting up your tastebuds, nothing happens to you from consuming the sky sap.");
 			}
-			else {
-				kGAMECLASS.output(target.capitalA + target.short + " eats the rations to no effect.");
+			else
+			{
+				kGAMECLASS.output(target.capitalA + target.short + " drinks the container to no effect.");
 			}
+			
 			return false;
 		}
 		protected function rand(max:Number):Number
@@ -457,7 +461,7 @@
 		}
 		protected function hasVanaeSkinColor(pc:Creature):Boolean
 		{
-			if(pc.skinTone == "pale violet" || pc.skinTone == "pale purple" || pc.skinTone == "pale blue" || pc.skinTone == "pale pink" || pc.skinTone == "pale orange" || pc.skinTone == "pale green" || pc.skinTone == "pale" || pc.skinTone == "pale gold") return true;
+			if(InCollection(pc.skinTone, "pale violet", "pale purple", "pale blue", "pale pink", "pale orange", "pale green", "pale", "pale gold")) return true;
 			return false;
 		}
 		protected function outputB(arg:String):void

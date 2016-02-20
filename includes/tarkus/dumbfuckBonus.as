@@ -182,7 +182,7 @@ public function procDumbfuckStuff():void
 		output(". This stuff is doing stuff to your head to make it feel that good. You should go give whatever scientist came up with this stuff the best fuck of " + pc.mf("his","her") + " life!");
 	}
 	//OhfuckhowIthink? (less than 15)
-	else if(flags["DUMBFUCK_SNEEZES"] <= 15) output("\n\nYou shudder and " + pc.mf("laugh","giggle") + " uncontrollably at how " + pc.mf("silly and ","") + "full of fuck your head is getting. You idly stretch, being sure to rub a [pc.nipple] for good luck before wiping away the mucus. Maybe you can have some sex that's so good you'll max out the good feelings from mr. pill in your bloodstr... bloods... body.");
+	else if(flags["DUMBFUCK_SNEEZES"] <= 15) output("\n\nYou shudder and " + pc.mf("laugh","giggle") + " uncontrollably at how " + pc.mf("silly and ","") + "full of fuck your head is getting. You idly stretch, being sure to rub a [pc.nipple] for good luck before wiping away the mucus. Maybe you can have some sex that's so good you'll max out the good feelings from Mr. pill in your bloodstr... bloods... body.");
 	//Sixteen
 	else if(flags["DUMBFUCK_SNEEZES"] <= 16) output("\n\nOhhhh wow. You wipe up the mess and marvel at how good you feel. Too good, in fact. It's hard to make decisions when you're floating on a cloud of euphoria, hormones, and need, and you definitely need to fuck soon. If only you could keep your hands out of your loins or away from your nipples. Each time you touch them it's like a miniature orgasm, and you didn't want those, right?");
 	//Seventeen+
@@ -250,7 +250,7 @@ public function procDumbfuckStuff():void
 	//Gain Fuck Sense
 	if(flags["DUMBFUCK_SNEEZES"] >= 15 && !pc.hasPerk("Fuck Sense"))
 	{
-		output("\n\nYou bet you could tell exactly what would drive someone wild now. All it would take is a few seconds to look and you'd know how fuck them. Did that pill do this?");
+		output("\n\nYou bet you could tell exactly what would drive someone wild now. All it would take is a few seconds to look and you'd know how to fuck them. Did that pill do this?");
 		output("\n\n(<b>Perk Gained: Fuck Sense</b> - The Sense ability now relies on your libido rather than intelligence.)");
 		pc.createPerk("Fuck Sense",15,0,0,0,"Allows your sense ability to base success off your libido instead of intelligence.");
 	}

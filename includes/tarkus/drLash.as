@@ -56,7 +56,7 @@ public function meetDrLashYaCunt():void
 	else output("Ease off the trigger a bit. I can see myself out.");
 	output("”</i>");
 
-	output("\n\nThe labcoat-sporting alien waves his arms apologetically and drawls in a curiously neutral voice. <i>“Nevermind. In my haste, I believed you to be one of the pint-sized troublemakers that so infest this vessel - raskvel, I believe they call themselves. Do stay if you wish... so long as you do not plan to fornicate in my lab. Sexual effluvia is such a bother to clean, and the raskvel get it </i>everywhere<i>.”</i>");
+	output("\n\nThe labcoat-sporting alien waves his arms apologetically and drawls in a curiously neutral voice. <i>“Never mind. In my haste, I believed you to be one of the pint-sized troublemakers that so infest this vessel - raskvel, I believe they call themselves. Do stay if you wish... so long as you do not plan to fornicate in my lab. Sexual effluvia is such a bother to clean, and the raskvel get it </i>everywhere<i>.”</i>");
 	output("\n\nFlickering in what can only be described as an electronic blink, the scientist’s goggles regard you intently. <i>“You aren’t going to make a mess of my lab, are you?”</i>");
 	output("\n\nAre you?");
 	processTime(2);
@@ -165,7 +165,7 @@ public function dontBeADumbShitAtGreetingPartDues():void
 	output("\n\nHe shakes his head, seemingly calming himself. <i>“That’s neither here nor there. What is important is that ");
 	if(pc.hasGenitals())
 	{
-		output("I can free  you from your meddlesome genitalia ");
+		output("I can free you from your meddlesome genitalia ");
 		if(pc.biggestTitSize() >= 1) output("and distracting breasts ");
 		output("for a price.");
 		if((pc.hasCock() && pc.hasVagina()) || pc.totalCocks() > 1 || pc.totalVaginas() > 1) output(" If you’ll consent to a total removal, I’ll wave many of my standard fees.");
@@ -518,7 +518,7 @@ public function whyDrLashDoesShit():void
 	output("\n\nHe meets your gaze with his mechanical, crimson eyes and smiles in a way that sends shivers down your spine. <i>“Simple experimentation. I worked for a company that delighted in all things sexual. You might have heard of them - Tamani Corp. They make a significant profit with the volume of business they’re dealing, all based on the back of reproduction-driven perversions. I decided the best way to deepen my understanding of the relevant tissues was to experiment on my own, starting with a thorough, microsurgeon-assisted deconstruction.”</i>");
 	output("\n\nLooking intently at your reaction, Doctor Lash asks, <i>“Do you know what I found?”</i>");
 	output("\n\nYou answer with a brief, negative shake of your head.");
-	output("\n\n<i>“I found clarity. I found peace.”</i> He straightens the folds of his labcoat and straightens his posture. <i>“I found solace from the pernicious, throbbing desires of my loins. I could focus on my work without my body’s base needs constantly threatening derail my train of thought. I knew immediately that I could never go back to the way I was. There was no point in it. If anything, others had to join me. As you can imagine, I self-terminated my employment not long after.”</i>");
+	output("\n\n<i>“I found clarity. I found peace.”</i> He straightens the folds of his labcoat and straightens his posture. <i>“I found solace from the pernicious, throbbing desires of my loins. I could focus on my work without my body’s base needs constantly threatening to derail my train of thought. I knew immediately that I could never go back to the way I was. There was no point in it. If anything, others had to join me. As you can imagine, I self-terminated my employment not long after.”</i>");
 	output("\n\nDo you want to ask him something else?");
 	clearMenu();
 	addButton(0,"Yes",talkToDocLash);
@@ -545,7 +545,7 @@ public function keepFlirtingWithLash():void
 {
 	clearOutput();
 	showDrLash();
-	output("<i>“Pshh, just let me help  you have some fun.”</i>");
+	output("<i>“Pshh, just let me help you have some fun.”</i>");
 	output("\n\nThe scientist sighs heavily. <i>“Should you encounter an afterlife, do try and put in a good word for Doctor Lash. Or don’t. It matters little.”</i>");
 	processTime(1);
 	clearMenu();

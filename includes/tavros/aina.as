@@ -437,7 +437,10 @@ public function ainaSharesSomeTea():void
 			output("\n\nOnce you're done, you thank her for the tea and cakes. You're feeling quite refreshed!");
 			break;
 		case 2 : 
-			output("You nod and sit down, taking Aina up on her offer for tea. She places out a cup in front of you and leans over to pour a creamy stream from her teapot. Her well-rounded breasts are stretching against her sweater as she does, and you get a glimpse of her bra strap. For some reason, the brief flicker of her underwear is somewhat arousing, and you feel a {pc.hasCock: stirring/else: tingling} sensation in your loins.");
+			output("You nod and sit down, taking Aina up on her offer for tea. She places out a cup in front of you and leans over to pour a creamy stream from her teapot. Her well-rounded breasts are stretching against her sweater as she does, and you get a glimpse of her bra strap. For some reason, the brief flicker of her underwear is somewhat arousing, and you feel a");
+			if(pc.hasCock()) output(" stirring");
+			else output(" tingling");
+			output(" sensation in your loins.");
 			output("\n\n<i>“This is some milk tea for a change. It's nice to give the palette a rest and get back to the basics every so often, don't you think?”</i>");
 			output("\n\nYou nod and sip the creamy tea. Even though she says that, the tea has a slight fresh and mellow, sweet taste. It's very refreshing to drink. Afterwards, you feel fully invigorated, and say as much.");
 			output("\n\n<i>“That'd be my wonderful company, of course! I'm sure the tea helps a little bit too,”</i> Aina admits with a wink, cleaning up the tea cups.");
