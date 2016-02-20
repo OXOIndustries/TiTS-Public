@@ -77,7 +77,7 @@ package classes.Characters
 			
 			shield = new BasicShield();
 			shield.shields = 100;
-			
+			baseShieldKineticResistance = shield.resistances.kinetic.resistanceValue = 25.0;
 			shield.hasRandomProperties = true;
 			
 			this.physiqueRaw = 30;
@@ -93,7 +93,7 @@ package classes.Characters
 			this.XPRaw = 450;
 			this.level = 7;
 			this.credits = 0;
-			this.HPMod = 100;
+			this.HPMod = 5;
 			this.shieldsRaw = this.shieldsMax();
 			this.HPRaw = this.HPMax();
 			this.shieldDisplayName = "ARMOR";
@@ -191,11 +191,11 @@ package classes.Characters
 			}
 			
 			// Interpolate the armor value as a percent between a multiplier between 1 and 0.33. Use this multiplier to modify the base reflex value of the enemy.
-			reflexesRaw = MathUtil.LinearInterpolate(0.33, 1, shieldsMax() / shields()) * baseReflexes;
-			shield.resistances.kinetic.resistanceValue = MathUtil.LinearInterpolate(0, 1, shieldsMax() / shields()) * baseShieldKineticResistance;
+			reflexesRaw = MathUtil.LinearInterpolate(0.33, 1, shields() / shieldsMax()) * baseReflexes;
+			shield.resistances.kinetic.resistanceValue = MathUtil.LinearInterpolate(0, 1, shields() / shieldsMax()) * baseShieldKineticResistance;
 		}
 		
-		public function OnTakeDamage(incomingDamage:TypeCollection):void
+		override public function OnTakeDamage(incomingDamage:TypeCollection):void
 		{
 			if (shields() <= 0)
 			{
@@ -213,16 +213,9 @@ package classes.Characters
 					{
 						shieldsRaw = (typedDamageTotal * 0.66);
 						
-						if (incomingDamage.burning.damageValue > 0) output(" The scorched flesh hisses and bubbles at the site of the damage, hardening into a jagged, scar-like plate!");
-						else output(" The cold causes hundreds of tiny crystals to form, clouding and stiffening the site into a sandpapery plate!");
+						if (incomingDamage.burning.damageValue > 0) OnTakeDamageOutput = "The scorched flesh hisses and bubbles at the site of the damage, hardening into a jagged, scar-like plate!";
+						else OnTakeDamageOutput = "The cold causes hundreds of tiny crystals to form, clouding and stiffening the site into a sandpapery plate!";
 					}
-				}
-			}
-			else if (shields() > 0)
-			{
-				if (incomingDamage.kinetic.damageValue > 0)
-				{
-					output(" The ganrael’s rounded gauntlets deflect some of the force!");
 				}
 			}
 		}
@@ -239,6 +232,12 @@ package classes.Characters
 			
 			var target:Creature = selectTarget(hostileCreatures);
 			if (target == null) return;
+			
+			if (OnTakeDamageOutput != null)
+			{
+				output(OnTakeDamageOutput + "\n\n");
+				OnTakeDamageOutput = null;
+			}
 			
 			var attacks:Array = [];
 			
@@ -375,6 +374,7 @@ package classes.Characters
 			
 			for (var i:int = 0; i < 5; i++)
 			{
+				output("\n");
 				if (rand(2) == 0) ThrowPick(target, false);
 				else ThrowNeedle(target, false);
 			}
@@ -402,7 +402,7 @@ package classes.Characters
 			}
 			else
 			{
-				var dr:DamageResult = applyDamage(new TypeCollection( { kinetic: 20 }, DamageFlag.PENETRATING), this, target, "suppress");
+				var dr:DamageResult = applyDamage(new TypeCollection( { kinetic: (bInitial ? 20 : 10) }, DamageFlag.PENETRATING), this, target, "suppress");
 				
 				if (dr.shieldDamage > 0 && dr.hpDamage <= 0) output(" It bounces off your shield, leaving a streak of jagged light that slowly fades.");
 				else if (dr.hpDamage > 0) output(" It embeds itself, creating a painful, ragged puncture.");
@@ -449,7 +449,7 @@ package classes.Characters
 			}
 			else
 			{
-				var dr:DamageResult = applyDamage(new TypeCollection( { kinetic: 15 }, DamageFlag.PENETRATING), this, target, "suppress");
+				var dr:DamageResult = applyDamage(new TypeCollection( { kinetic: (bInitial ? 15 : 7.5) }, DamageFlag.PENETRATING), this, target, "suppress");
 				
 				if (dr.shieldDamage > 0 && dr.hpDamage <= 0) output(" It pings off your shield.");
 				else if (dr.hpDamage > 0) output(" The needle’s splintered tip catches in your skin, causing pain every time you move!");
@@ -470,8 +470,8 @@ package classes.Characters
 		
 		public function CrystalBackhand(target:Creature):void
 		{
-			output("The ganrael casts aside " + CGender("her", "its") +" dignity and slaps at you with " + CGender("her", "its") +" hands!");
-			if (hasStatusEffect("Blinded")) output(" " + CGender("Her", "Its") +" frustration at being unable to see you comes out in wide, flailing blows!");
+			output("The ganrael casts aside " + CGender("her", "its") +" dignity and slaps at you with " + CGender("her", "its") +" hands!\n");
+			if (hasStatusEffect("Blinded")) output(CGender("Her", "Its") +" frustration at being unable to see you comes out in wide, flailing blows!");
 			
 			var currDam:TypeCollection;
 			var dam:TypeCollection 

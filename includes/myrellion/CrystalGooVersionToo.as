@@ -1319,7 +1319,6 @@ public function crystalGooPCLoss():void
 	clearOutput();
 	showCrystalGooToo();
 
-	output("\n\n");
 	if (pc.HP() <= 0) output("You stumble on the dirty cave floor, try to get your balance, and fall again. With a thump, you plop down on your ass.");
 	else output("You quiver and lose balance, falling on your ass. Fantasies parade through your thoughts, distracting you so much that you don’t immediately remember how to stand again.");
 	if (enemy.hasStatusEffect("Unarmored")) output(" The sexless, blank-faced ganrael approaches by inches, trying to conceal its vulnerability until it understands that you’re even worse off. Once it understands, though, it acts.");
@@ -1691,7 +1690,7 @@ public function crystalGooVagooLoss():void
 	//else other PC
 	else
 	{
-		output("\n\n<i>“You have a very good body,<i>“ the ganrael admits. <i>“I’m going to use it until I’m satisfied.”</i>");
+		output("\n\n<i>“You have a very good body,</i>” the ganrael admits. <i>“I’m going to use it until I’m satisfied.”</i>");
 	}
 
 	//merge

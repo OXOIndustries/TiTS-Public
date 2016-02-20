@@ -33,6 +33,8 @@ package classes.Engine.Combat
 		 */
 		var damageResult:DamageResult = calculateDamage(baseDamage, attacker, target, special);
 		
+		target.OnTakeDamage(damageResult.typedTotalDamage);
+		
 		// Damage has already been applied by this point, so we can skip output if we want...
 		if (special == "suppress" || attacker == null)
 		{

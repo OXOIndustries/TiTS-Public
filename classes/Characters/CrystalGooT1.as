@@ -77,7 +77,7 @@ package classes.Characters
 			
 			shield = new BasicShield();
 			shield.shields = 100;
-			baseShieldKineticResistance = shield.resistances.kinetic.resistanceValue = 20.0;
+			baseShieldKineticResistance = shield.resistances.kinetic.resistanceValue = 25.0;
 			
 			shield.hasRandomProperties = true;
 			
@@ -201,11 +201,11 @@ package classes.Characters
 			}
 			
 			// Interpolate the armor value as a percent between a multiplier between 1 and 0.33. Use this multiplier to modify the base reflex value of the enemy.
-			reflexesRaw = MathUtil.LinearInterpolate(0.33, 1, shieldsMax() / shields()) * baseReflexes;
-			shield.resistances.kinetic.resistanceValue = MathUtil.LinearInterpolate(0, 1, shieldsMax() / shields()) * baseShieldKineticResistance;
+			reflexesRaw = MathUtil.LinearInterpolate(0.33, 1, shields() / shieldsMax()) * baseReflexes;
+			shield.resistances.kinetic.resistanceValue = MathUtil.LinearInterpolate(0, 1, shields() / shieldsMax()) * baseShieldKineticResistance;
 		}
 		
-		public function OnTakeDamage(incomingDamage:TypeCollection):void
+		override public function OnTakeDamage(incomingDamage:TypeCollection):void
 		{
 			if (shields() <= 0)
 			{
@@ -223,8 +223,8 @@ package classes.Characters
 					{
 						shieldsRaw = (typedDamageTotal * 0.66);
 						
-						if (incomingDamage.burning.damageValue > 0) output(" The scorched flesh hisses and bubbles at the site of the damage, hardening into a jagged, scar-like plate!");
-						else output(" The cold causes hundreds of tiny crystals to form, clouding and stiffening the site into a sandpapery plate!");
+						if (incomingDamage.burning.damageValue > 0) OnTakeDamageOutput = "The scorched flesh hisses and bubbles at the site of the damage, hardening into a jagged, scar-like plate!";
+						else OnTakeDamageOutput = "The cold causes hundreds of tiny crystals to form, clouding and stiffening the site into a sandpapery plate!";
 					}
 				}
 			}
@@ -232,7 +232,7 @@ package classes.Characters
 			{
 				if (incomingDamage.kinetic.damageValue > 0)
 				{
-					output(" The ganrael’s rounded gauntlets deflect some of the force!");
+					OnTakeDamageOutput = "The ganrael’s rounded gauntlets deflect some of the force!";
 				}
 			}
 		}
@@ -243,6 +243,13 @@ package classes.Characters
 			
 			var target:Creature = selectTarget(hostileCreatures);
 			if (target == null) return;
+			
+			// OnTakeDamage output once we're sure we have a potential target
+			if (OnTakeDamageOutput != null)
+			{
+				output(OnTakeDamageOutput + "\n\n");
+				OnTakeDamageOutput = null;
+			}
 			
 			// Force update the output here for the goo being hidden
 			if (hasStatusEffect("GooCamo"))
