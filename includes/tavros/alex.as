@@ -666,7 +666,12 @@ public function catchVaginalFromAlex():void {
 		if(pc.hasCock()) output(", and your");
 	}
 	else if(pc.hasCock()) output(" Your");
-	if(pc.hasCock()) output("[pc.eachCock] slap against his stomach wetly");
+	if(pc.hasCock())
+	{
+		output(" [pc.cocks] slap");
+		if(pc.cockTotal() == 1) output("s");
+		output(" against his stomach wetly");
+	}
 	output(" as you move faster and faster, moaning ecstatically as Alex thrusts up each time to meet you on the way down.");
 
 	output("\n\nYou’re close, you’re very close ");
