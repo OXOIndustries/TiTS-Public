@@ -1952,6 +1952,12 @@ package classes {
 				case "wings":
 					buffer = wingsDescript();
 					break;
+				case "wingNoun":
+					buffer = wingDescript(true);
+					break;
+				case "wingsNoun":
+					buffer = wingsDescript(true);
+					break;
 				case "arm":
 					buffer = armDescript();
 					break;
@@ -4703,7 +4709,7 @@ package classes {
 			else if(tailCount > 1) return plural(tailDescript());
 			else return "<b>ERROR: Taildescript called with no tails present</b>";
 		}
-		public function wingDescript():String
+		public function wingDescript(nounOnly:Boolean = false):String
 		{
 			var adjectives:Array = new Array();
 			var nouns: Array = ["wing"];
@@ -4768,14 +4774,14 @@ package classes {
 					break;
 			}
 
-			if (rand(2) == 0 && adjectives.length > 0) description += RandomInCollection(adjectives) + " ";
+			if (!nounOnly && rand(2) == 0 && adjectives.length > 0) description += RandomInCollection(adjectives) + " ";
 			description += (nouns.length > 0 ? RandomInCollection(nouns) : "wing");
 			return description;
 		}
-		public function wingsDescript():String
+		public function wingsDescript(nounOnly:Boolean = false):String
 		{
-			if(wingType == GLOBAL.TYPE_SHARK) return wingDescript();
-			return plural(wingDescript());
+			if(wingType == GLOBAL.TYPE_SHARK) return wingDescript(nounOnly);
+			return plural(wingDescript(nounOnly));
 		}
 		public function armsDescript(forceAdjective: Boolean = false):String {
 			return plural(armDescript(forceAdjective));
