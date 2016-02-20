@@ -524,11 +524,17 @@ public function quickLoot(... args):void
 	itemCollect(args);
 }
 
+public function synthSapNoticeUnlock():Boolean
+{
+	return (flags["MET_VANAE_MAIDEN"] != undefined && flags["MET_VANAE_HUNTRESS"] != undefined && CodexManager.entryViewed("Vanae: History"))
+}
+
 public function mhengaActiveBounty():Boolean
 {
 	var openQuests:int = 0;
 	
 	if(flags["SEEN_JULIANS_AD"] == undefined) openQuests++;
+	if(synthSapNoticeUnlock() && flags["SEEN_SYNTHSAP_AD"] == undefined) openQuests++;
 	
 	if(openQuests > 0) return true;
 	return false;
@@ -545,6 +551,7 @@ public function checkOutBountyBoard():void
 	clearOutput();
 	output("The bounty board is covered in simple leaflets, papers, and all manner of other detritus. Most appear to be for mundane tasks like trading construction equipment, advertising repair services, or business advertisements. Still, there's at least one that stands out.");
 	
+	// Zil Capture
 	output("\n\n");
 	if(flags["SEEN_JULIANS_AD"] == undefined) {
 		output("<b>New:</b>");
@@ -558,6 +565,22 @@ public function checkOutBountyBoard():void
 	output(" Dr. Julian of the Xenogen Biotech labs on the south end of town is looking for 'a strapping, adventurous type' to brave the jungles in search of something he can use for his research.");
 	if(flags["SECOND_CAPTURED_ZIL_REPORTED_ON"] == 1) output(" You know from experience that it's quite lucrative.");
 	else output(" It seems like it could be quite lucrative.");
+	// SynthSap
+	if(synthSapNoticeUnlock())
+	{
+		output("\n\n");
+		if(flags["SEEN_SYNTHSAP_AD"] == undefined)
+		{
+			output("<b>New:</b>");
+			flags["SEEN_SYNTHSAP_AD"] = 1;
+		}
+		else
+		{
+			if(flags["SYNTHSAP_UNLOCKED"] != undefined) output("<b>Completed:</b>");
+			else output("<b>Seen Before:</b>");
+		}
+		output(" Xenogen Biotech Labs is seeking samples of ‘Sky Sap’ from the vanae natives. They are offering a monetary reward to anyone who can provide a steady supply of this substance.");
+	}
 	
 	processTime(2);
 	clearMenu();
@@ -1113,7 +1136,7 @@ public function displayNoticeBoardRD():void {
 		flags["SEMITH_NOTICE_1_READ"] = true;
 	}
 	else output("<b>Seen Before:</b>");
-	output(" “Itching for a game of 4D chess?” reads one note, in tall, loopy cursive. “The North West plaza has tables. Always around in the afternoons.”");
+	output(" “Itching for a game of 4D chess?” reads one note, in tall, loopy cursive. “The north-west plaza has tables. Always around in the afternoons.”");
 	
 	processTime(2);
 	clearMenu();

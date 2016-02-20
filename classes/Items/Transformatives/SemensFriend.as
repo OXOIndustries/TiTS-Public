@@ -132,7 +132,7 @@
 			if(target.refractoryRate < 80)
 				TFList.push(4);
 			//#5 Increase male fertility (requires balls)
-			if(target.balls > 0 && target.cumQualityRaw < 1.5)
+			if(target.balls > 0 && target.virility() > 0 && target.cumQualityRaw < 1.5)
 				TFList.push(5);
 			//#6 If balls > 5” grow quad
 			if(isPresistentTF && ballDiameter > 5 && target.balls > 0 && target.balls < 4)

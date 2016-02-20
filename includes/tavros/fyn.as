@@ -71,16 +71,18 @@ public function finsApartmentBonus():Boolean
 	return false;
 }
 
-public function playFynsDoorScene():void {
+public function playFynsDoorScene():Boolean
+{
 	//only render knock button if player didn't yet enter Fyn's apartment yet
-	if(flags["FYN_APARTMENT_ENTERED"] != true) {
+	if(flags["FYN_APARTMENT_ENTERED"] != true)
+	{
 		output("\n\nDo you knock on the large oak door?");
 	
 		processTime(1);
 		
-		clearMenu();
 		addButton(0, "Knock", knockOnFynsDoor, undefined, "Knock", "Why not? You're kind of curious to see who lives inside... you only live once, right?");
 	}
+	return false;
 }
 
 /*Cut do to reworking intro bits
@@ -567,9 +569,9 @@ public function fynTalksAboutDancing():void {
 	output("\n\n<i>“Well, it's expression. It's energy. It's... quite obviously hard to explain. You're in the moment, and in that moment you're </i>free<i>; nothing else matters. You're just swallowed by this adrenaline rush, this sort of pure, all-encompassing joy.”</i>");
 	output("\n\nBy the passionate glint in his eyes, it seems he <i>really</i> likes dancing. You ask him what kind he likes.");
 	output("\n\n<i>“Well, I have a soft spot for ballroom dancing; there's something particular about the intimate dynamic of two people dancing, bodies pressed together. Theatrical dance too, though that's more expression.”</i>");
-	output("\n\n<i>“Oh, and and strip tease. Definitely strip tease.”</i>");
+	output("\n\n<i>“Oh, and strip tease. Definitely strip tease.”</i>");
 	output("\n\nYou remark that strip tease doesn't seem to fit with the other two classical arts, and Fyn winks.");
-	output("\n\n<i>“When I do it, hun, it's an art. Trust me. Being able to make someone's practically flutter back into their head, just with how much you're winding them up? Forget art; that's practically </i>magic<i>.”</i>");
+	output("\n\n<i>“When I do it, hun, it's an art. Trust me. Being able to make someone's lusts and desires flutter back into their head, just with how much you're winding them up? Forget art; that's practically </i>magic<i>.”</i>");
 	
 	if(fynRelationshipStatus() >= 1) output("\n\nYou look down at Fyn's hips, imagining him giving you a hot strip tease... and suddenly you feel <i>yourself</i> swooning. He's not half wrong; that <i>would</i> be like magic.");
 	

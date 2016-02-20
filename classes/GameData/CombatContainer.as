@@ -827,8 +827,8 @@ package classes.GameData
 			clearMenu();
 			if (hasEnemyOfClass(Celise))
 			{
-				if (roundCounter == 1) addButton(0, "Attack", selectSimpleAttack, CombatAttacks.MeleeAttack);
-				else if (roundCounter == 2) addButton(1, StringUtil.upperCase(pc.rangedWeapon.attackVerb), selectSimpleAttack, CombatAttacks.RangedAttack);
+				if (roundCounter == 1) addButton(0, "Attack", selectSimpleAttack, { func: CombatAttacks.MeleeAttack });
+				else if (roundCounter == 2) addButton(1, StringUtil.upperCase(pc.rangedWeapon.attackVerb), selectSimpleAttack, { func: CombatAttacks.RangedAttack });
 				else
 				{
 					if (pc.biggestTitSize() > 2) addButton(5, "Tease", function():void {
@@ -888,7 +888,7 @@ package classes.GameData
 			// attack
 			if (hasEnemyOfClass(Varmint) && pc.hasKeyItem("Lasso"))
 			{
-				addButton(0, "Lasso", selectSimpleAttack, kGAMECLASS.lassoAVarmint, "Lasso", "Use this lasso you’ve been provided with to properly down this varmint.");
+				addButton(0, "Lasso", selectSimpleAttack, { func: kGAMECLASS.lassoAVarmint }, "Lasso", "Use this lasso you’ve been provided with to properly down this varmint.");
 			}
 			else
 			{

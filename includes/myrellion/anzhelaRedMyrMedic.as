@@ -14,7 +14,7 @@ public function showAnzhela(nude:Boolean = false):void
 public function hospitalShit():Boolean
 {
 	output("You’re standing in a busy looking hospital filled with white cotton beds and draw curtains. Busy medical staff bustle back and forth, taking patients charts, checking supplies, and administering pain relief. Even though the architecture is scarred by conflict like everywhere else, the smell of disinfectant lingers here, and everyone’s wearing sterile gloves.");
-	output("\n\nThere are both red and gold myr patients here, being treated equally. A large banner hangs from the wall–white with a red lotus-looking flower. If you had to hazard a guess, it looks like the Scarlet Federation’s version of a Red Cross.");
+	output("\n\nThere are both red and gold myr patients here, being treated equally. A large banner hangs from the wall – white with a red lotus-looking flower. If you had to hazard a guess, it looks like the Scarlet Federation’s version of a Red Cross.");
 	//Met Anzhela:
 	if(flags["MET_ANZHELA"] != undefined) 
 	{
@@ -61,7 +61,7 @@ public function approachAnzhela():void
 		//else if PC is gold myr morph
 		else if(pc.race() == "gold myr")
 		{
-			output("\n\n<i>“... A gold myr? No, not enough arms... <i>“ she murmurs, though loud enough for you to hear. <i>“An alien faux myr, perhaps...? [pc.HeShe]’s so " + pc.mfn("handsome","beautiful","striking") + "...”</i>");
+			output("\n\n<i>“... A gold myr? No, not enough arms...”</i> she murmurs, though loud enough for you to hear. <i>“An alien faux myr, perhaps...? [pc.HeShe]’s so " + pc.mfn("handsome","beautiful","striking") + "...”</i>");
 		}
 		//Else:
 		else
@@ -464,10 +464,10 @@ public function leaveAnzhelasTalkMenu():void
 	clearOutput();
 	showAnzhela();
 	output("Once you’ve finished having a cup of scova with the doctor, you thank her for it, then tell her it’s probably time for you to take off.");
-	output("\n\n<i>“");
-	if(rand(3) == 0) output("Already? Drat, and I was hoping I could pin you down a while longer. Now I’ve got to go back to work!”</i> Anzhela jokes, standing up herself.");
-	else if(rand(2) == 0) output("Thanks for the chat! I very rarely get off my feet, and it’s better to break with good company,”</i> Anzhela smiles, stands up herself.");
-	else output("Next time I’ll have to get some food to go with the scova - at least, if I can procure some,”</i> Anzhela smiles, standing up herself.");
+	output("\n\n");
+	if(rand(3) == 0) output("<i>“Already? Drat, and I was hoping I could pin you down a while longer. Now I’ve got to go back to work!”</i> Anzhela jokes, standing up herself.");
+	else if(rand(2) == 0) output("<i>“Thanks for the chat! I very rarely get off my feet, and it’s better to break with good company,”</i> Anzhela smiles, stands up herself.");
+	else output("<i>“Next time I’ll have to get some food to go with the scova - at least, if I can procure some,”</i> Anzhela smiles, standing up herself.");
 	output(" She walks you to the door and ");
 	//AnzhelaQuestDone: 
 	//if(flags["9999_placeholder"] != undefined) output("kisses your cheek before you depart.");
@@ -694,7 +694,7 @@ public function analExam():void
 
 	output("\n\n<i>“The walls of your rectum are flushed pink with blood and glistening with lubricant. It’s entirely clean and empty. Top notch,”</i> the doctor informs you. Knowing that makes you flush even more - she’s now seen a part of you no one ever has!");
 
-	output("\n\n<i>“You’ve been a very good patient. Now that I’ve taken a look, how about I reward you for all your good work?”</i> Anzhela purrs, closing and pulling the metal speculum out of your bare [pc.skinColor] bum. A reward–what kind of reward?");
+	output("\n\n<i>“You’ve been a very good patient. Now that I’ve taken a look, how about I reward you for all your good work?”</i> Anzhela purrs, closing and pulling the metal speculum out of your bare [pc.skinColor] bum. A reward – what kind of reward?");
 
 	output("\n\nYou don’t have to wait long to find out. The svelte doctor sensuously and slowly begins to fuck your [pc.ass] with the speculum. You groan and dig your feet into the stirrups, fingers digging and clawing at the bed beneath you.");
 	pc.buttChange(pc.analCapacity()/2 + 5);
@@ -827,7 +827,7 @@ public function cowgirlWithAnzhela():void
 	var x:int = pc.cockThatFits(1000);
 	if(x < 0) x = pc.smallestCockIndex();
 
-	output("The good doctor leads you over to one of the hospital beds, and with a loud <i>swish</i> pulls the privacy curtain shut–she doesn’t even turn around to do it! In a hurried, passionate rush, you ");
+	output("The good doctor leads you over to one of the hospital beds, and with a loud <i>swish</i> pulls the privacy curtain shut – she doesn’t even turn around to do it! In a hurried, passionate rush, you ");
 	if(pc.isNude()) output("help her tear off her clothes");
 	else output("both tear off your clothes");
 	output(", and within moments you’re both naked and falling into the bed behind you. Everything is a mess of glorious kisses, moans, and soft skin.");
@@ -847,7 +847,7 @@ public function cowgirlWithAnzhela():void
 
 	output("\n\nYou gloriously grind against each other like that, your hips meeting each other in pagan rhythm. Her beautiful breasts sway and bounce before your eyes as she bounces lustily on your [pc.cock " + x + "], moaning and dribbling her slick girl-juice down your shaft");
 	if(pc.balls > 0) output(" and [pc.balls]");
-	output(". It’s hard to imagine anyone <i>can’t</i> hear you, but you’re both so caught up in such all-consuming pleasure that you don’t <i>care</i>. All either of you can think about is hungrily pressing and rubbing against each other–you inside of her–as you push each other further towards that exquisite brink.");
+	output(". It’s hard to imagine anyone <i>can’t</i> hear you, but you’re both so caught up in such all-consuming pleasure that you don’t <i>care</i>. All either of you can think about is hungrily pressing and rubbing against each other – you inside of her – as you push each other further towards that exquisite brink.");
 	output("\n\nWith a sharp cry, Anzela pushes herself into your shoulder, trembling wildly and convulsing against you. Her slender hips shake and shudder along with her warm, wet insides, wringing and clenching around your [pc.cockNounSimple " + x + "]. The sweet sound and feel of her cumming sets you off, and you shake against her in turn, shooting your [pc.cum] deep inside of her quaking insides. Your virile seed floods up and into her eagerly awaiting uterus, filling her up with you utterly and completely.");
 	output("\n\nSweaty, satisfied, and thoroughly exhausted, you lie on each other in the hospital bed, your chests rising and falling against each other in perfect rhythm. Her fingertips brush affectionately against your chest, teasing your [pc.skinFurScalesNoun]. Your own reach down and stroke through her luscious hair, enjoying the softness as you both bask in sublime afterglow.");
 	output("\n\nEventually, though, you both have to move. With a reluctant look, Anzhela picks herself off you, her curly locks all over the place and her naked skin covered in a sexy sweat. <i>“... Well, I think that relieved <i>both</i> our needs, don’t you–?”</i> she asks, a glittering look in her dark eyes. <i>“I really could stay in bed all day with you, but I honestly need get back to work. As much as I don’t </i>want<i> to.”</i>");
@@ -1019,7 +1019,7 @@ public function anzhelaAnalSexHikeAndFuck():void
 	if(cum >= 10) output(" However, without a spare pair of panties - or perhaps by choice - she simply pulls up her sopping wet panties and pushes down her skirt, hiding her naughty little secret.");
 	output("\n\n");
 	if(cum >= 10) output("<i>“I’m going to be leaking you out of my ass all day, so I may as well wear these,”</i> Anzhela sultrily purrs.");
-	else output("<i>“Y-you know, it’s not so bad in the ass. Is it normal for off-worlders to do it that way?”</i> She breathily asks, a hopeful glimmer in her eyes. There’s never a bad time of day for </i>that<i> to happen,”</i>");
+	else output("<i>“Y-you know, it’s not so bad in the ass. Is it normal for off-worlders to do it that way?”</i> She breathily asks, a hopeful glimmer in her eyes. <i>“There’s never a bad time of day for </i>that<i> to happen,”</i>");
 	output(" She then wraps her arms around your waist and gives you a steamy kiss. <i>“... Come again any time you want to, you know, ‘come again’. It’s good to visit your doctor often, you know?”</i>");
 	output("\n\nWith a wobbly walk, the CMO pulls back the screen. As soon as she leaves the cubicle, she’s immediately mobbed by hospital staff, clearly waiting for her approval for something.");
 	if(cum >= 50) output("\n\nYou grin as you spot a trickle of [pc.cumColor] streaming down one of her thighs. Will anyone else notice, you wonder?");
@@ -1044,13 +1044,13 @@ public function annStraponScene():void
 	else output("horny");
 	output("!");
 
-	output("\n\n<i>“How about we pull out one of my favorite toys? I’m sure it’ll be your favorite too,”</i> Anzhela sultrily purrs. After climbing up onto the soft bed and crawling along it–giving you a nice view of her dripping cameltoe–she pulls out something from a bedside drawer. She falls on her back against the pillows and laviciously spreads her legs, giving you a full-on view of her scarlet mound! It’s short lived as she straps a large, twelve-inch male myr cock over the top of it, fastening it securely at her hips. <i>“... So, care for a ride?”</i>");
+	output("\n\n<i>“How about we pull out one of my favorite toys? I’m sure it’ll be your favorite too,”</i> Anzhela sultrily purrs. After climbing up onto the soft bed and crawling along it – giving you a nice view of her dripping cameltoe – she pulls out something from a bedside drawer. She falls on her back against the pillows and laviciously spreads her legs, giving you a full-on view of her scarlet mound! It’s short lived as she straps a large, twelve-inch male myr cock over the top of it, fastening it securely at her hips. <i>“... So, care for a ride?”</i>");
 
 	output("\n\nYou grin and");
 	if(pc.isCrotchGarbed()) output(", after stripping off,");
 	output(" climb onto the bed after her. With a little teasing show you lean over and lick her red, bulbous knob, keeping heated eye contact the entire while. She’s breathy with excitement. Your performance is getting her excited! Well, you’ve got a bit more to show her. Feeling a tingling in your stomach, you ");
 	if(pc.isTaur()) output("turn around, ");
-	output("lift yourself up and squat above her massive member, letting it hover above your bare buttocks. Your leg-muscles strain–along with your pucker–as you lower yourself onto her expansive knob. You groan as it stretches open your ring, its knotty thickness deliciously sliding inside of your rectum. Inch by inch, you slide her veiny length inside of your butt, letting her lady dick delve deeper inside of you. With a breathy sigh, you feel the skin of your thighs press flush with hers, her knob buried so deep you can almost feel it inside your belly!");
+	output("lift yourself up and squat above her massive member, letting it hover above your bare buttocks. Your leg-muscles strain – along with your pucker – as you lower yourself onto her expansive knob. You groan as it stretches open your ring, its knotty thickness deliciously sliding inside of your rectum. Inch by inch, you slide her veiny length inside of your butt, letting her lady dick delve deeper inside of you. With a breathy sigh, you feel the skin of your thighs press flush with hers, her knob buried so deep you can almost feel it inside your belly!");
 	pc.buttChange(120);
 	output("\n\n<i>“All in?”</i> Anzhela huskily asks, rubbing her hands up your [pc.thighs]. You hazily nod, wiggling in her lap, relishing in the moment. She begins slapping up against your bare buttocks from below, fucking your needy ass. You groan as her thick knob rubs around deep inside of your butt and stirs you up. Your");
 	if(pc.hasCock()) 
@@ -1061,7 +1061,7 @@ public function annStraponScene():void
 	}
 	else if(pc.hasVagina()) 
 	{
-		output(" Your [pc.vaginas] wetten");
+		output(" [pc.vaginas] wetten");
 		if(pc.totalVaginas() == 1) output("s");
 		output(" before her eyes and your");
 	}
@@ -1084,7 +1084,7 @@ public function annStraponScene():void
 	if(!pc.hasGenitals()) output("experiencing a divine butt-induced orgasm");
 	output(". Everything goes white as you quiver and twitch on her lap");
 	if(!pc.isTaur()) output(", hands instinctively squeezing her bra-clad breasts as you cum");
-	output(". When your shivers subside, you lightly fall down on her and press yourself against her, panting heavily. You’re both deliciously sticky and clinging to each other–a deliciously intimate moment for you both. You can still feel her inside of you, even if it isn’t a real cock...");
+	output(". When your shivers subside, you lightly fall down on her and press yourself against her, panting heavily. You’re both deliciously sticky and clinging to each other – a deliciously intimate moment for you both. You can still feel her inside of you, even if it isn’t a real cock...");
 	output("\n\nAfter you’re both able to move once more, you both slip your things back on. There’s a flushed look of satisfaction on Anzhela’s face, even though you’re the one who came! <i>“I really liked watching you ride my cock. It was really exhilarating.”</i> The sexy doctor tells you, stashing the strapon away.");
 
 	// Scene end. Return to menu.

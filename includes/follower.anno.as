@@ -2830,6 +2830,9 @@ public function gooFapNope():void
 
 public function grayGooSpessSkype():void
 {
+	// Nova is not alive or does not have cybernetic body!
+	if(flags["DECK13_GRAY_PRIME_DECISION"] != 1) return;
+	
 	if (hasGooArmor() && flags["ANNO_NOVA_UPDATE"] == 3 && flags["GRAYGOO_SPESS_SKYPE"] == undefined && rand(5) == 0)
 	{
 		flags["GRAYGOO_SPESS_SKYPE"] = 1;

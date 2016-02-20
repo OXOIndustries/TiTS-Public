@@ -2961,7 +2961,7 @@ public function talkToBessAboutGenitals():void
 	addButton(0, "Cock", talkToBessAboutCock);
 	addButton(1, "Pussy", talkToBessAboutPussy);
 	if (bess.hasCock()) addButton(2, "Knot", talkToBessAboutKnot, undefined, "Cock Knot", "Whenever [bess.name] penetrates you with [bess.hisHer] cock, it will swell and lock inside until [bess.heShe] has finished cumming inside.");
-	else addDisabledButton(2, "Knot", "Knot State", "[bess.name] needs to be sporting a cock to configure it's knottyness!");
+	else addDisabledButton(2, "Knot", "Knot State", "[bess.name] needs to be sporting a cock to configure its knottyness!");
 
 	addButton(14, "Back", bessFunctionsMenu);
 }
@@ -6800,7 +6800,7 @@ public function bessEvent5():void
 	
 	output("\n\nYup. This is what happens when you encourage an AI to go outside of their programming. They start addressing an imaginary audience in a starship corridor, that’s what.");
 	
-	output("\n\nRealising you haven’t laughed at [bess.hisHer] gag, [bess.heShe] scratches [bess.hisHer] cheek. <i>“... Huh. Tough crowd, huh? Guess you’re not a fan of observational humor? Syntax errors! Not to worry, I’ve got more material here... somewhere...”</i> [bess.name] quickly shuffles the cards, skipping over quite a few of them.");
+	output("\n\nRealizing you haven’t laughed at [bess.hisHer] gag, [bess.heShe] scratches [bess.hisHer] cheek. <i>“... Huh. Tough crowd, huh? Guess you’re not a fan of observational humor? Syntax errors! Not to worry, I’ve got more material here... somewhere...”</i> [bess.name] quickly shuffles the cards, skipping over quite a few of them.");
 	
 	output("\n\n<i>“Alright, you’re bound to laugh at this one. It’s a bit of a long one, so bear with me. This one almost made me bust open my side laughing, so prepare to have your funny bone tickled - or whichever bone you organics have that is principally responsible for laughter!”</i>");
 	
@@ -8290,13 +8290,13 @@ public function bessEvent17():void
 	}
 	else if (flags["PC_UPBRINGING"] == GLOBAL.UPBRINGING_AUSTERE)
 	{
-		output("\n\n<i>“I had a pretty strict upbringing; I didn’t really get time to play sports. Even though my old man was rich, he made me earn my way from a young age - I never got any hand outs.”</i> You tell [bess.name], realising you’d never told [bess.himHer] how hard you had it growing up. As a Steele, most people automatically assumed you lived a pampered lifestyle from a young age.");
+		output("\n\n<i>“I had a pretty strict upbringing; I didn’t really get time to play sports. Even though my old man was rich, he made me earn my way from a young age - I never got any hand outs.”</i> You tell [bess.name], realizing you’d never told [bess.himHer] how hard you had it growing up. As a Steele, most people automatically assumed you lived a pampered lifestyle from a young age.");
 		
 		output("\n\nThe edge of " + possessive(bess.short) + " eyes soften, then [bess.heShe] gets a little gleam in [bess.hisHer] eyes. <i>“All work and no play? Now I know why your family are called Steeles. How about we recapture some of that lost childhood...?”</i>");
 	}
 	else if (flags["PC_UPBRINGING"] == GLOBAL.UPBRINGING_PAMPERED)
 	{
-		output("\n\n<i>“Sure, I played a fair bit of Graviball, though mostly for social reasons. We had a field built into our space yacht; I’ve even played against a few celebrities.”</i> You admit, realising how pampered you sound right now. Your old man let you live in the lap of luxury growing up, which is probably why he’s making you earn your inheritance now with this galactic treasure hunt.");
+		output("\n\n<i>“Sure, I played a fair bit of Graviball, though mostly for social reasons. We had a field built into our space yacht; I’ve even played against a few celebrities.”</i> You admit, realizing how pampered you sound right now. Your old man let you live in the lap of luxury growing up, which is probably why he’s making you earn your inheritance now with this galactic treasure hunt.");
 		
 		output("\n\n[bess.name] pouts a little bit, spinning the z-g ball on one finger. <i>“... Well okay, this is no private yacht, and I’m no celebrity - just a bot with a ball. Anyway, the point is you know how to play!”</i>");
 	}
@@ -8809,14 +8809,14 @@ public function bessEvent20():void
 	}
 	else if (pc.isMischievous())
 	{
-		output("\n\n<i>“...What you did with the sprinkler system was funny, but this is seriously getting out of hand. Don’t you think we should talk about this?”</i> You lightheartedly remark. If [bess.heShe] tries to bolt again, maybe a flying tackle is in order.");
+		output("\n\n<i>“... What you did with the sprinkler system was funny, but this is seriously getting out of hand. Don’t you think we should talk about this?”</i> You lightheartedly remark. If [bess.heShe] tries to bolt again, maybe a flying tackle is in order.");
 	}
 	else
 	{
 		output("\n\n<i>“... Enough of this ridiculousness! We’re having this out right now. No sprinkler systems, no running away. If you try and bolt, I swear I’ll fly tackle you.”</i> You grumpily inform [bess.himHer] - it took ages to clean up the ship after [bess.hisHer] stunt.");
 	}
 
-	output("\n\nRetracting [bess.hisHer] tail and looking sheepish, [bess.name] turns [bess.hisHer] gaze upwards towards you. [bess.HisHer] [bess.eyeColor] eyes are wavering, yet [bess.heShe] seems ready to finally talk. <i>“... I-I-I’m sorry, I guess I have been going a little crazy since that...when we... kissed.”</i> With the way [bess.hisHer] cheeks flush, you wouldn’t think [bess.heShe] was an AI designed purely for sex.");
+	output("\n\nRetracting [bess.hisHer] tail and looking sheepish, [bess.name] turns [bess.hisHer] gaze upwards towards you. [bess.HisHer] [bess.eyeColor] eyes are wavering, yet [bess.heShe] seems ready to finally talk. <i>“... I-I-I’m sorry, I guess I have been going a little crazy since that... when we... kissed.”</i> With the way [bess.hisHer] cheeks flush, you wouldn’t think [bess.heShe] was an AI designed purely for sex.");
 	
 	output("\n\n<i>“... I’ve been reading, and the more I’ve read, the more it has become clear that my feelings for you... they are more than just that of friendship.”</i>");
 
@@ -8872,7 +8872,7 @@ public function bessEvent20Love():void
 	if (bess.hairLength > 0) output(" [bess.hairColor] haired");
 	output(" synthetic stares at you with a shocked expression - clearly [bess.heShe] didn’t expect you to return [bess.hisHer] feelings.");
 	
-	output("\n\n<i>“...B-b-but loving me means you’ll be subject to ridicule, you’ll be called a toaster-head; you might even get lynched!”</i> [bess.name] exclaims, clearly worried that your feelings might lead to your harm.");
+	output("\n\n<i>“... B-b-but loving me means you’ll be subject to ridicule, you’ll be called a toaster-head; you might even get lynched!”</i> [bess.name] exclaims, clearly worried that your feelings might lead to your harm.");
 	
 	output("\n\n<i>“A human and a machine can’t be together - are you sure you really want to fall for someone like me, a mere synthetic AI?”</i>");
 

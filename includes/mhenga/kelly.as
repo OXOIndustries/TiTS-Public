@@ -5,6 +5,11 @@ public function showKellyName():void
 	if(flags["KELLY_MET"] == undefined) userInterface.showName("BUNNY\nGIRL");
 	else userInterface.showName("\nKELLY");
 }
+public function showKelly(nude:Boolean = false):void {
+	if(!nude) showBust("KELLY");
+	else showBust("KELLY_NUDE");
+	showKellyName();
+}
 
 // Stubtown4compile
 public function kellyAttraction(modValue:int = 0):int
@@ -32,8 +37,7 @@ public function tempNudeOff():void
 //Appearance
 public function kellyAppearance():void {
 	clearOutput();
-	userInterface.showBust("KELLY");
-	showKellyName();
+	showKelly();
 	author("Quiet Browser & LD");
 	output("Louise \"Kelly\" Epona, though if you dare call her <i>Louise</i> she’d be pretty mad at you, is a gene-modded laquine you met on the planet Mhen'gha in the town of Esbeth.");
 	output("\n\nStanding five feet and nine inches tall with a buxom, curvy body strongly resembling a humanoid rabbit, she stares at you through amber eyes with a confident smile. Her rabbit-like ears fall down the back of her skull from the top of her head to her shoulders in an iconic \"Floppy-eared bunny\" look. A rabbit-like tail flashes above her bum, and her bare feet extend into rabbit-like appendages, her legs jointed in an odd fashion that lets her stand on both the balls of her feet, making them digitigrade, or on the heels of her feet, making them look plantigrade, like a human's.");
@@ -70,8 +74,7 @@ public function kellysOfficeBonusFunction():Boolean
 {
 	if(hours >= 6 && hours < 17)
 	{
-		userInterface.showBust("KELLY");
-		showKellyName();
+		showKelly();
 		author("Quiet Browser & LD");
 		//If Player has not met Kelly Yet:
 		if(flags["KELLY_MET"] == undefined) {
@@ -117,25 +120,9 @@ public function kellysOfficeBonusFunction():Boolean
 //Approach
 public function kellyOfficeApproach():void {
 	clearOutput();
-	userInterface.showBust("KELLY");
-	showKellyName();
+	showKelly();
 	author("Quiet Browser & LD");
 
-	//Update her sold items for old saves:
-	if(flags["CAPTURED_A_MALE_ZIL_FOR_DR_HASWELL"] != undefined)
-	{
-		if(!chars["KELLY"].hasItem(new HoneySeed())) chars["KELLY"].inventory.push(new HoneySeed());
-	}
-	if(flags["CAPTURED_A_FEMALE_ZIL_FOR_DR_HASWELL"] != undefined)
-	{
-		if(!chars["KELLY"].hasItem(new Honeydew())) chars["KELLY"].inventory.push(new Honeydew());
-		if(!chars["KELLY"].hasItem(new Honeypot())) chars["KELLY"].inventory.push(new Honeypot());
-	}
-	if(debug || flags["ASSISTED_SHELLY_WITH_LAYING"] != undefined)
-	{
-		if(!chars["KELLY"].hasItem(new Ovilium())) chars["KELLY"].inventory.push(new Ovilium());
-	}
-	else chars["KELLY"].destroyItem(new Ovilium(), 1);
 	output("Kelly looks up at your approach, smiling to see you with her usual chipper attitude. \"<i>Welcome back to Xenogen Research Labs, where the wonders of biotechnology never cease! How may I help you, ");
 	output("[pc.name]");
 	//{my friend}/{honey}
@@ -147,23 +134,60 @@ public function kellyOfficeApproach():void {
 
 public function kellysOfficeMenu():void {
 	clearMenu();
-	userInterface.showBust("KELLY");
-	showKellyName();
-	shopkeep = chars["KELLY"];
+	showKelly();
 	author("Quiet Browser & LD");
+	
+	shopkeep = chars["KELLY"];
+	
 	addButton(0,"Appearance",kellyAppearance);
 	addButton(1,"Talk",talkToKellyInOffice);
 	if(chars["KELLY"].inventory.length == 0) addDisabledButton(2,"Buy","Buy","Kelly does not currently have anything to sell you.");
-	else addButton(2,"Buy",buyItem,undefined,"Buy","Buy some of Xenogen Biotech's wares.");
+	else addButton(2,"Buy",kellysBuyMenu,undefined,"Buy","Buy some of Xenogen Biotech's wares.");
 	addButton(3,"Sell",sellItem,undefined,"Sell","Sell Kelly some of your excess mods.");
+	// SkySap
+	if(flags["KELLY_MET"] != undefined && flags["SEEN_SYNTHSAP_AD"] != undefined)
+	{
+		if(flags["KELLY_SKYSAP_COLLECT"] == undefined) addButton(4,"SkySap",kellySkySapCollect,undefined,"SkySap","Talk to Kelly about the request for ‘Sky Sap’.");
+		else addButton(4,"SkySap",kellySkySapCollect,undefined,"SkySap","Sell some ‘Sky Sap’ to Kelly.");
+	}
 	addButton(14,"Leave",mainGameMenu);
+}
+public function kellysBuyMenu():void
+{
+	//Update her sold items for old saves:
+	if(flags["ASSISTED_SHELLY_WITH_LAYING"] != undefined)
+	{
+		if(!chars["KELLY"].hasItem(new Ovilium())) chars["KELLY"].inventory.push(new Ovilium());
+	}
+	else chars["KELLY"].destroyItem(new Ovilium(), 1);
+	if(flags["CAPTURED_A_MALE_ZIL_FOR_DR_HASWELL"] != undefined)
+	{
+		if(!chars["KELLY"].hasItem(new HoneySeed())) chars["KELLY"].inventory.push(new HoneySeed());
+	}
+	else chars["KELLY"].destroyItem(new HoneySeed(), 1);
+	if(flags["CAPTURED_A_FEMALE_ZIL_FOR_DR_HASWELL"] != undefined)
+	{
+		if(!chars["KELLY"].hasItem(new Honeydew())) chars["KELLY"].inventory.push(new Honeydew());
+		if(!chars["KELLY"].hasItem(new Honeypot())) chars["KELLY"].inventory.push(new Honeypot());
+	}
+	else
+	{
+		chars["KELLY"].destroyItem(new Honeydew(), 1);
+		chars["KELLY"].destroyItem(new Honeypot(), 1);
+	}
+	if(flags["SYNTHSAP_UNLOCKED"] != undefined)
+	{
+		if(!chars["KELLY"].hasItem(new SynthSap())) chars["KELLY"].inventory.push(new SynthSap());
+	}
+	else chars["KELLY"].destroyItem(new SynthSap(), 1);
+	
+	buyItem();
 }
 
 //[=No=]
 public function dontRegisterInKellysOffice():void {
 	clearOutput();
-	userInterface.showBust("KELLY");
-	showKellyName();
+	showKelly();
 	author("Quiet Browser & LD");
 	output("You apologize, but you don’t feel like registering now, so you’ll be leaving.");
 	output("\n\n<i>\"I understand " + pc.mf("sir","ma'am") + ", Xenogen thanks you for your visit. Please come again.\"</i> she says with a polite smile and a nod, indicating the door.\n\nYou walk out.");
@@ -176,8 +200,7 @@ public function dontRegisterInKellysOffice():void {
 //[=Yes=]
 public function registerAtKellysOffice():void {
 	clearOutput();
-	userInterface.showBust("KELLY");
-	showKellyName();
+	showKelly();
 	author("Quiet Browser & LD");
 	flags["KELLY_MET"] = 1;
 	output("Sure thing, you reply.");
@@ -196,8 +219,7 @@ public function talkToKellyInOffice(display:Boolean = true):void {
 		clearOutput();
 		output("\"<i>A friendly chat?</i>\" Kelly repeats. \"<i>Well, sure, I suppose I could use a short break anyway. What do you want to talk about?</i>\"");
 	}
-	userInterface.showBust("KELLY");
-	showKellyName();
+	showKelly();
 	author("Quiet Browser & LD");
 	//Display options
 	//Regardless of Talk option chosen, give +5 Attraction.
@@ -214,8 +236,7 @@ public function talkToKellyInOffice(display:Boolean = true):void {
 public function talkToKellyAboutHerself():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY");
-	showKellyName();
+	showKelly();
 	author("Quiet Browser & LD");
 	output("<i>\"Now, now.\"</i> She waves a finger at you. <i>\"Aren’t you getting a little ahead of yourself?\"</i> She smiles disarmingly.");
 	output("\n\nYou apologize, you didn’t mean to offend her. You were just interested in getting to know her a little better.");
@@ -235,8 +256,7 @@ public function talkToKellyAboutHerself():void
 public function talkToKellyAboutHerRoleAtXenogen():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY");
-	showKellyName();
+	showKelly();
 	author("Quiet Browser & LD");
 	output("\"<i>My role here at Xenogen? Well, that's an easy question,</i>\" she giggles. \"<i>I'm basically a receptionist - you know, I interact with customers, handle intra-office mail, generally try and keep the place running smoothly down here on the ground level, you know?</i>\" she shrugs her shoulders and grins, unabashed by her rather low-level position. \"<i>I suppose the most interesting part of my job is the mod dispensing,</i>\" she adds.");
 	output("\n\nWhen you ask what that means, she puffs her chest out proudly and launches into her explanation. \"<i>Here at Xenogen, we make a wide variety of modifications. Many of our clients come for personally customized changes and transformations, but we do get a significant amount who ultimately are after the same sorts of basic mods. These popularized \"com-mods\" are so frequently requested that we have them stocked and ready. I'm empowered to sell these basic mods literally over the counter to people who are willing to pay the credits for them.</i>\"");
@@ -251,8 +271,7 @@ public function talkToKellyAboutHerRoleAtXenogen():void
 //Working Here
 public function talkToKellyAboutWorkingHere():void {
 	clearOutput();
-	userInterface.showBust("KELLY");
-	showKellyName();
+	showKelly();
 	author("Quiet Browser & LD");
 	output("\"<i>Are you asking how I came to be working here, or if I like working here?</i>\" She giggles, batting her eyelids at you playfully. \"<i>Well, I suppose I can answer both...</i>\" she pokes her tongue out at you momentarily, then looks more serious.");
 	output("\n\n\"<i>I basically hitchhiked my way here after my old ship broke down - stupid overpriced lame piece of crap conked out a couple of systems over. I hocked it for scrap and started thumbing my way; wound up left here because of my last jerkwad captain - probably because I wouldn't sleep with her, the damn size-queen bitch,</i>\" she grumbles at the memory. \"<i>I still had enough credits to get a cheap place to stay, but they weren't going to last forever, and I didn't want to be stuck on this rock permanently, so I started looking around. Xenogen was offering a receptionist position, and I took it.</i>\"");
@@ -267,8 +286,7 @@ public function talkToKellyAboutWorkingHere():void {
 //Flirt
 public function flirtWithKellyInTheOffice():void {
 	clearOutput();
-	userInterface.showBust("KELLY");
-	showKellyName();
+	showKelly();
 	author("Quiet Browser & LD");
 	output("You wonder how Kelly would react if you were to flirt with her a little....");
 	output("\n\nYou lean over her table wearing a seductive expression and ask Kelly how she’s doing.");
@@ -287,8 +305,7 @@ public function flirtWithKellyInTheOffice():void {
 //[=Wait=]
 public function dontFlirtWithKelly():void {
 	clearOutput();
-	userInterface.showBust("KELLY");
-	showKellyName();
+	showKelly();
 	author("Quiet Browser & LD");
 	output("In that case, you guess you’ll just have to wait until later.");
 	output("\n\n<i>\"Don't worry, [pc.name], I promise you I'll make it worthwhile,\"</i> she purrs, and winks. <i>\"Now, how else may I help you?\"</i>");
@@ -299,8 +316,7 @@ public function dontFlirtWithKelly():void {
 //[=FlirtAnyway=]
 public function flirtWithKellyAnyway():void {
 	clearOutput();
-	userInterface.showBust("KELLY");
-	showKellyName();
+	showKelly();
 	author("Quiet Browser & LD");
 	output("You are not taking no for an answer. Without giving her time to react, you grab her by the shoulder and draw her into a kiss.");
 	output("\n\nStunned, she doesn’t put up any resistance as you thrust your [pc.tongue] into her mouth, tasting her as you maneuver yourself over her table.");
@@ -340,8 +356,7 @@ public function flirtWithKellyAnyway():void {
 }
 public function flirtWithKellyAnywayPartII():void {
 	clearOutput();
-	userInterface.showBust("KELLY");
-	showKellyName();
+	showKelly();
 	author("Quiet Browser & LD");
 	output("Not feeling in the mood for a belly-bloating, you wetly pop your mouth free of the cock currently in it and take hold of both of the long, swollen shafts, snatching the mug from Kelly's hand and positioning it to catch the resultant semen.");
 	output("\n\nYou watch in lustful amusement as Kelly's twin glans flare out, swelling into wide flattened heads, visibly bulging as her four balls unleash their copious load. The scent of honey fills the air an instant before great spurts of syrupy orange semen come flying from her dicks, splattering thickly into the mug and rolling over your fingers. You close your eyes to avoid being blinded, the overpowering sweetness filling the air as Kelly just keeps on cumming, and cumming....");
@@ -367,6 +382,85 @@ public function flirtWithKellyAnywayPartII():void {
 	addButton(0,"Next",leaveKellyNext);
 }
 
+//Sky Sap talks
+public function kellySkySapCollect():void
+{
+	clearOutput();
+	showKelly();
+	author("JimThermic");
+	
+	//Synth Sap Sale
+	// When you sell at least x5 Sky Saps to her, she has this message when you talk to her next.
+	if(flags["SYNTHSAP_UNLOCKED"] == undefined && flags["KELLY_SKYSAP_COLLECT"] >= 5 && !pc.hasStatusEffect("SynthSap Research"))
+	{
+		output("Kelly looks up at you as you enter, shooting you her warm, trademark smile, <i>“Oh, [pc.name]! Guess what? We’ve got a new product for sale, all thanks to those sap samples you keep bringing us.”</i>");
+		output("\n\n<i>“It’s called ‘Synth Sap’ - not a terribly original name, if you ask me.”</i>");
+		output("\n\nYou ask Kelly what it does. She brings up a long looking holodoc and reads from it. <i>“... Well, it’s a transformative. Apparently Doctor Haswell tried to create a substance that would recreate the extinct vanae male and bring the species back to life. That’s Xenogen for you - shaking up one world at a time.”</i>");
+		output("\n\nDid he succeed? The secretary flips down the page. She shakes her head. <i>“... Almost, but not quite. If you consume it, it’ll give you the external appearance of what a vanae male was like.”</i>");
+		output("\n\n<i>“Your genitals will transform and apparently you’ll get glow-in-the-dark semen,”</i> Kelly raises an eyebrow, <i>“That sounds... pretty nifty. However, except for a sharp virility spike, your sperm will remain untouched.”</i>");
+		output("\n\n<i>“If you want to buy some, just ask. We’ve got a fair bit in stock. You’ll need to sign a disclaimer before you try it, though -- cutting edge products and all that.”</i>");
+		
+		processTime(2 + rand(2));
+		
+		flags["SYNTHSAP_UNLOCKED"] = 1;
+	}
+	//Sky Sap
+	else
+	{
+		output("<i>“Got some Sky Sap from the natives? Xenogen’s currently offering 100 credits per sample. It’s a great way to make some cash if you don’t mind fighting some amazons.”</i>");
+		processTime(1);
+	}
+	
+	var skySapCount:int = 0;
+	if(pc.inventory.length > 0)
+	{
+		for(var x:int = 0; x < pc.inventory.length; x++)
+		{
+			if(pc.inventory[x] is SkySap) skySapCount += pc.inventory[x].quantity;
+		}
+	}
+	
+	// Can sell Skysap in lots of x1, x5, or x10 (Max stack size).
+	clearMenu();
+	if(skySapCount >= 1) addButton(0,"x1", giveKellySkySap, 1);
+	else addDisabledButton(0,"x1");
+	if(skySapCount >= 5) addButton(1,"x5", giveKellySkySap, 5);
+	else addDisabledButton(1,"x5");
+	if(skySapCount >= 10) addButton(2,"x10", giveKellySkySap, 10);
+	else addDisabledButton(2,"x10");
+	if(skySapCount > 1) addButton(13,"All (x" + skySapCount + ")", giveKellySkySap, skySapCount);
+	addButton(14,"Back", kellysOfficeMenu);
+}
+public function giveKellySkySap(count:int):void
+{
+	clearOutput();
+	showKelly();
+	author("JimThermic");
+	
+	var creds:Number = 0;
+	
+	for(var x:int = 0; x < count; x++)
+	{
+		pc.destroyItem(new SkySap(), 1);
+		IncrementFlag("KELLY_SKYSAP_COLLECT");
+		creds += 100;
+	}
+	
+	if(count == 1) output("You hand over one Sky Sap container.");
+	else output("You hand over " + num2Text(count) + " Sky Sap containers.");
+	output("\n\nWith a smile, Kelly places");
+	if(count == 1) output(" it");
+	else output(" them");
+	output(" into a metallic cooling box and gives you " + creds + " credits worth of chits in return.");
+	
+	pc.credits += creds;
+	
+	if(flags["KELLY_SKYSAP_COLLECT"] >= 5 && flags["SYNTHSAP_UNLOCKED"] == undefined) pc.createStatusEffect("SynthSap Research", 0, 0, 0, 0, true, "", "", false, (2 * 24 * 60));
+	
+	clearMenu();
+	addButton(0,"Next", kellysOfficeMenu);
+}
+
 //At Burt's Mead Hall
 //In The Mead Hall
 //Requires player has activated Kelly at the XRLs
@@ -383,8 +477,7 @@ public function approachKellyAtTheBar():void
 {
 	clearOutput();
 	CodexManager.unlockEntry("Laquines");
-	userInterface.showBust("KELLY");
-	showKellyName();
+	showKelly();
 	author("Quiet Browser & LD");
 	//1st Time:
 	if(flags["KELLY_ENCOUNTERED_AT_THE_BAR"] == undefined)
@@ -419,8 +512,7 @@ public function approachKellyAtTheBar():void
 public function yesKellyDickChicksAreATurnOff():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY");
-	showKellyName();
+	showKelly();
 	author("Quiet Browser & LD");
 	output("She adopts a sorrowful expression and makes a tutting noise, shaking her head. <i>\"Aw, you really think that way? Well, don't worry, a little time with honey-bunny Kelly and your opinion will change,\"</i> she says, now sporting a cocky grin. <i>\"Once you've actually gotten to know the loveliness that is a dickgirl, you'll see just how wrong you used to be,\"</i> she purrs, openly fondling herself now. <i>\"Once you try me out, you'll never go back, I guarantee,\"</i> she sticks her tongue out, wriggling it in an obscene gesture before she draws it back inside, looking full of pride.");
 	clearMenu();
@@ -432,8 +524,7 @@ public function yesKellyDickChicksAreATurnOff():void
 public function noKellyIFuckingLoveDickgirls():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY");
-	showKellyName();
+	showKelly();
 	author("Quiet Browser & LD");
 	output("<i>\"Oh ho,\"</i> she says, grinning smugly. <i>\"Does somebody have a dickgirl fetish, hmm? Do you like a chick with a big, fat cock between her legs...? Well, who wouldn't? Mmm, there's no one better at sex than a herm, you know,\"</i> she croons, leaning back and blatantly caressing her bulging loins. <i>\"Boobs, butt, pole and hole, we've got it all. But then, what am I doing this for? Clearly, you have your head screwed on straight... though if it's a major lack of screwing in your life, don't worry, I can fix that in a jiff,\"</i> she giggles, winking at you saucily.");
 	output("\n\nShe straightens up and stops cupping herself, resting her chin on her breasts and casting you flirtatious eyes across the tables. <i>\"Now that we have that settled... Seems to me there's nobody here with the balls to talk to me apart from you. So, lucky " + pc.mfn("boy","girl","cutey") + ", that means you and I can flirt... all. Night. Long.\"</i> She smirks.");
@@ -460,8 +551,7 @@ public function noKellyIFuckingLoveDickgirls():void
 public function kellyBarMenu():void
 {
 	clearMenu();
-	userInterface.showBust("KELLY");
-	showKellyName();
+	showKelly();
 	author("Quiet Browser & LD");
 	addButton(0,"Talk",talkToKellyAtBar,undefined,"Talk","Bring up Kelly's talk menu.");
 	addButton(1,"Flirt",flirtWithKellyUnknown,undefined,"Flirt","Flirt with the horny laquine. You'll probably get laid.");
@@ -475,8 +565,7 @@ public function kellyBarMenu():void
 public function kellyConfessesHerAffectionForYouAt():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY");
-	showKellyName();
+	showKelly();
 	author("Quiet Browser & LD");
 	flags["KELLY_CONFESSED"] = 1;
 	output("Kelly visibly brightens up when she sees you approaching her. <i>\"[pc.name]! Honey, it's good to see you,\"</i> she jubilantly professes, then looks a little shifty. <i>\"I... ah, I had something I wanted to get off my chest.\"</i>");
@@ -550,8 +639,7 @@ public function kellyConfessesHerAffectionForYouAt():void
 public function hugeCockLacquinesAreHottKelly():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY");
-	showKellyName();
+	showKelly();
 	author("Quiet Browser & LD");
 	output("Personally, you think that’s really hot.");
 	output("\n\n<i>\"Umm... what?\"</i> she blinks in surprise.");
@@ -568,8 +656,7 @@ public function hugeCockLacquinesAreHottKelly():void
 public function thankfulForKellyConfessions():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY");
-	showKellyName();
+	showKelly();
 	author("Quiet Browser & LD");
 	output("You thank her for her honesty, but honestly? If this is the worst she can do, then you don’t really have much to worry about. Plus she seems to have the situation under control anyway.");
 	output("\n\nKelly lets out a breath she wasn't aware she was holding. <i>\"You really have no idea how good it is to hear that - I've had other laquines run away screaming at the sight of what I was packing,\"</i> she tells you. <i>\"I really do appreciate you taking this so calmly,\"</i> she adds, a sincere look on her face.");
@@ -582,8 +669,7 @@ public function thankfulForKellyConfessions():void
 public function dunnoAboutGiantLaquineCocksKelly():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY");
-	showKellyName();
+	showKelly();
 	author("Quiet Browser & LD");
 	output("You’re not sure what to think of it. Personally you expected something more pressing, not that this revelation isn’t important, but... well... you need to think about that.");
 	output("\n\n<i>\"...Well, you haven't run for the hills yet, so I'll take that as a win,\"</i> she comments.");
@@ -594,8 +680,7 @@ public function dunnoAboutGiantLaquineCocksKelly():void
 //All options join here.
 public function endOfLoppeConfession():void
 {
-	userInterface.showBust("KELLY");
-	showKellyName();
+	showKelly();
 	author("Quiet Browser & LD");
 	output("\n\nThe rest of the walk goes by in silence, though Kelly does shoot you some seductive gestures.");
 	output("\n\n<i>\"So... thanks for the company this evening. But...\"</i> she trails off with a mischievous smile.");
@@ -614,8 +699,7 @@ public function endOfLoppeConfession():void
 public function sureGiveMeCumCoffeeKelly():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY");
-	showKellyName();
+	showKelly();
 	author("Quiet Browser & LD");
 	output("<i>\"Two hot, steamy cups coming right up,\"</i> she laughs, turning on her heel to lead the way through the door, ass unabashedly shaking from side to side as she goes. <i>\"Come on in, honey, and I'll set you up a treat,\"</i> she calls over her shoulder to you.");
 	output("\n\nYou eagerly follow after her bobbing tail. Once inside, though, she actually does head straight for the kitchen, where she flicks on a coffee machine on the counter, then bustles to fetch two cups. <i>\"Now...\"</i> she turns to look at you bouncing over. <i>\"While the machine works, I’m sure we can find a way to pass the time?\"</i>");
@@ -629,8 +713,7 @@ public function sureGiveMeCumCoffeeKelly():void
 public function noHotCofeeCheatsPleaseKelly():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY");
-	showKellyName();
+	showKelly();
 	author("Quiet Browser & LD");
 	output("<i>\"No?\"</i> she repeats, brow furrowed. <i>\"Come on, after all I just told you, you’re going to make me wank tonight?\"</i> She slumps her shoulders in a defeated sigh. <i>\"Ok, I guess I can’t force you. Just promise me you’ll come see me soon, ok? Toys just don’t feel as good as the real thing, and my job can be pretty stressful. So it’s your responsibility to help me get off,\"</i> she says, showing you her tongue.");
 	output("\n\n<i>\"Can I at least get a goodbye kiss?\"</i>");
@@ -647,8 +730,7 @@ public function noHotCofeeCheatsPleaseKelly():void
 public function talkToKellyAtBar():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY");
-	showKellyName();
+	showKelly();
 	author("Quiet Browser & LD");
 	//if Not Sexed:
 	if(flags["KELLY_SEXED"] == undefined)
@@ -668,8 +750,7 @@ public function talkToKellyAtBar():void
 public function kellyBarTalkOptions():void
 {
 	clearMenu();
-	userInterface.showBust("KELLY");
-	showKellyName();
+	showKelly();
 	author("Quiet Browser & LD");
 	addButton(0,"About Her",talkToKelly,undefined,"About Her","Ask Kelly about herself.");
 	addButton(1,"Her Mods",talkToKellyAboutHerMods,undefined,"Her Mods","Ask Kelly about what kind of mods she's picked up working for Xenogen.");
@@ -681,8 +762,7 @@ public function kellyBarTalkOptions():void
 public function talkToKelly():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY");
-	showKellyName();
+	showKelly();
 	author("Quiet Browser & LD");
 	output("\"<i>You'd like to know a little about me?</i>\" Kelly replies, momentarily puzzled before regaining her good cheer. \"<i>Well, sure, I can share a few things. My name is Louise Epona - yeah, I know, it sounds kind of odd that I go by Kelly, but I always felt more like a Kelly than a Louise.</i>\" She giggles and pokes her tongue out - it's very long and vibrant yellow, you notice - at how silly her real name is. \"<i>Parents, what can you do about them, huh?</i>\" she says, shrugging her shoulders. <i>\"But seriously, call me Louise and we’re going to have a problem.\"</i> She winks at you. Despite her mocking tone, you do detect a hint of threat....");
 	output("\n\n\"<i>Now, I know what you're probably thinking - I'm a modder as well as a staff member, right? This gorgeous furry coat and these sweet ears and all the rest of it, it all came out of a bio-sculptor's toolkit, yeah?</i>\" she smirks at you and then shakes her head, floppy ears swishing through the air from the motions. \"<i>Well, you'd be partly right. I do have a couple of mods in my system, and I'm very happy with them. However, the most obvious things about me? All natural, I assure you. See, I'm not one of those 'furries' that you humans have, who mod themselves to look more animal-like - though we do have one of those here in Esbeth; you met Penny yet? She's our chief of security, really nice girl, sure you'd like her,</i>\" she interjects into her own conversation. \"<i>Now, where was I? Ah, yes, I'm not a human at all. I'm a laquine.</i>\"");
@@ -699,8 +779,7 @@ public function talkToKelly():void
 public function kissKellyForSecrets():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY");
-	showKellyName();
+	showKelly();
 	author("Quiet Browser & LD");
 	output("You boldly lean forward in an attempt to kiss her.");
 	processTime(2);
@@ -735,8 +814,7 @@ public function kissKellyForSecrets():void
 public function teaseKellyPostKiss():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY");
-	showKellyName();
+	showKelly();
 	author("Quiet Browser & LD");
 	output("No, because most of the time she doesn’t seem very mature.");
 	output("\n\nIf you were expecting that to upset her, though, you'd be quite disappointed. She laughs in delight. <i>\"You know what they say; growing old is mandatory, growing up is optional,\"</i> she says, and salutes you with her glass.");
@@ -749,8 +827,7 @@ public function teaseKellyPostKiss():void
 public function flatterKellyPostKiss():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY");
-	showKellyName();
+	showKelly();
 	author("Quiet Browser & LD");
 	output("Yes, actually. She just seems so energetic... hmm... now you wonder how old she really is?");
 	output("\n\n<i>\"Didn't they ever teach you it's not polite to ask a girl her age?\"</i> she giggles, waving a finger at you as if you were a misbehaving child.");
@@ -766,8 +843,7 @@ public function flatterKellyPostKiss():void
 public function teaseKellyAfterFlattering():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY");
-	showKellyName();
+	showKelly();
 	author("Quiet Browser & LD");
 	output("Maybe, you don’t recall. Maybe she could teach you again? Make sure you won’t forget this time?");
 	output("\n\nShe chuckles to herself. <i>\"Ah, [pc.name], what will I ever do with you?\"</i>");
@@ -778,8 +854,7 @@ public function teaseKellyAfterFlattering():void
 public function playfulKellyAfterFlattering():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY");
-	showKellyName();
+	showKelly();
 	author("Quiet Browser & LD");
 	output("Rolling your eyes in mock exasperation you say, <i>\"Yes, mommy Kelly.\"</i>");
 	output("\n\n<i>\"That's a good " + pc.mf("boy","girl") + ",\"</i> she replies in a soothing, motherly tone, grinning at your dirty look.");
@@ -791,8 +866,7 @@ public function playfulKellyAfterFlattering():void
 public function waitKellyOutAfterFlattering():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY");
-	showKellyName();
+	showKelly();
 	author("Quiet Browser & LD");
 	output("<i>\"If you really must know, I'm 24 standard years old,\"</i> she tells you casually, and takes a sip from her cup. Once she's finished wetting her throat, she continues, <i>\"I grew up in a spaceport, so, growing up, I saw a lot of aliens. I don't know, maybe that's why I always wanted to see what was out there... or maybe I just wanted to share myself with the universe,\"</i> she grins arching her shoulders in a way that makes her bosom heave quite nicely.");
 	output("\n\n<i>\"So, about three years ago, I took my savings and I bought myself a little one-girl starrider and blasted off, just sort of bumming my way across the galaxy. It was just incredible... right up until the day that the stupid thing broke down on me, a couple of systems over,</i>\" she adds, idly thumbing in the direction of galactic south.");
@@ -810,8 +884,7 @@ public function waitKellyOutAfterFlattering():void
 public function talkToKellyAboutHerMods():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY");
-	showKellyName();
+	showKelly();
 	author("Quiet Browser & LD");
 	output("<i>\"Modifications, huh? You sure you wouldn't rather have a little hands on analysis, hmm? Wouldn't that be a much more fun way to find out?\"</i> she winks suggestively at you.");
 	//[Yes] [No]
@@ -824,12 +897,11 @@ public function talkToKellyAboutHerMods():void
 public function yesHandsOnModAnalysisIsTheWayToGoKelly():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY");
-	showKellyName();
 	author("Quiet Browser & LD");
 	//If Attraction <= 25:
 	if(kellyAttraction() <= 25)
 	{
+		showKelly();
 		output("Kelly just giggles and shakes a finger at you in a chastising fashion. <i>\"Sorry, honey; I'm not <b>that</b> easy... but that doesn’t mean I’m <b>that</b> difficult, either. Maybe when we get to know each other better....\"</i>");
 		output("\n\nWell, why doesn’t she tell you about it then?");
 		output("\n\n<i>\"Okay then, if you really wanna know,\"</i> she replies in a perky tone.");
@@ -840,7 +912,7 @@ public function yesHandsOnModAnalysisIsTheWayToGoKelly():void
 	//Else:
 	else
 	{
-		userInterface.showBust("KELLY_NUDE");
+		showKelly(true);
 		output("At your answer, her eyes light up. <i>\"Good choice, honey; I much prefer a hands on sort of demonstration,\"</i> she smirks, pushing herself up from her seat. <i>\"Come on; I'd rather do this sort of testing in my own 'secret lab',\"</i> she informs you, waiting for you to rise as well.");
 		output("\n\nYou rise yourself and follow after her.");
 		output("\n\nSince Esbeth is a young frontier town, Kelly's current choice of home, a cheap little rental unit, doesn't take too long for you to reach. She opens the door quickly and leads the way inside, closing the door after you've followed.");
@@ -954,8 +1026,7 @@ public function yesHandsOnModAnalysisIsTheWayToGoKelly():void
 public function confidentLoppeWillLetYouPoundHerShitTillShesLoose():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY");
-	showKellyName();
+	showKelly();
 	author("Quiet Browser & LD");
 	output("Of course you would. She’s a smart girl, she knew from the very beginning what she was getting into when you first spent the night. She said you’d be hooked after one night with her, but you think it was the other way around. She’s the one that got hooked, and after you’ve stretched her out, she won’t be able to fit anyone but you... not that she’d want to anyway.");
 
@@ -979,8 +1050,7 @@ public function confidentLoppeWillLetYouPoundHerShitTillShesLoose():void
 public function beConfidentAboutNailingKellySheDoOOOOOO():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY");
-	showKellyName();
+	showKelly();
 	author("Quiet Browser & LD");
 	output("But of course it is. She’s a smart girl, she knew from the very beginning what she was getting into when you first spent the night. She said you’d be hooked after one night with her, but you think it was the other way around. She’s the one that got hooked. She needs to keep herself tight so she can enjoy what you have to offer to the fullest.");
 
@@ -1005,8 +1075,7 @@ public function getKellyOff(newScreen:Boolean = false):void
 {
 	if(newScreen) clearOutput();
 	else output("\n\n");
-	userInterface.showBust("KELLY_NUDE");
-	showKellyName();
+	showKelly(true);
 	author("Quiet Browser & LD");
 	output("Focusing back on her velvety interior; you pump your fingers erratically, stimulating her walls and quickly building her up for another orgasm.");
 
@@ -1169,8 +1238,7 @@ public function getKellyOff(newScreen:Boolean = false):void
 public function noJackingKellyOffToTestMods():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY");
-	showKellyName();
+	showKelly();
 	author("Quiet Browser & LD");
 	output("<i>\"Party pooper,\"</i> she huffs. <i>\"Well, alright, if you'd rather I just tell you...\"</i>");
 	//Yes with insufficient Attraction joins here//
@@ -1181,8 +1249,7 @@ public function kellyModsEpilogue(clearScreen:Boolean = false):void
 {
 	if(clearScreen) clearOutput();
 	else output("\n\n");
-	userInterface.showBust("KELLY");
-	showKellyName();
+	showKelly();
 	author("Quiet Browser & LD");
 	output("<i>\"As you might have guessed, my fur's modded; we don't normally come in quite this sexy a coat pattern,\"</i> she giggles. <i>\"I wound up with a zil tongue kind of by accident, but I kept it because I really like what I can do with it,\"</i> as if in emphasis, she sticks it out of her mouth, curling it into a corkscrew pattern before pulling the prehensile appendage back inside. She then looks thoughtful and taps her chin. <i>\"Hmm... do they count if they're inherited from my parents?\"</i> she asks you.");
 
@@ -1200,8 +1267,7 @@ public function kellyModsEpilogue(clearScreen:Boolean = false):void
 public function askKellyAboutHerZilFetish():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY");
-	showKellyName();
+	showKelly();
 	author("Quiet Browser & LD");
 	output("<i>\"Zil fetish, huh?\"</i> She takes a swig of her drink. <i>\"Well, [pc.name]. You really shouldn’t believe everything people say. Always take rumors with a grain of salt,\"</i> she chuckles.");
 	output("\n\n<i>\"Oh, I know I make it an easy one, with the colors and all, but, honestly, I don't have a <b>zil</b> fetish,\"</i> she insists. There's a particular emphasis on the word <i>\"zil\"</i> that makes you suspicious that she's not telling the whole truth.... She sees your look and gives you a knowing grin. <i>\"What? Don't believe me?\"</i> she asks, one hand raising genteelly to her impressive chest.");
@@ -1263,8 +1329,7 @@ public function askKellyAboutHerZilFetish():void
 public function refuseToGoKellysLoveNest():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY");
-	showKellyName();
+	showKelly();
 	author("Quiet Browser & LD");
 	output("Maybe some other time, you reply.");
 
@@ -1278,8 +1343,7 @@ public function refuseToGoKellysLoveNest():void
 public function chooseToGoToKellysLovenest():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY");
-	showKellyName();
+	showKelly();
 	author("Quiet Browser & LD");
 	output("Since she seems to have gotten you, you really have little choice in the matter. You smirk seductively.");
 
@@ -1295,8 +1359,7 @@ public function chooseToGoToKellysLovenest():void
 public function shareAMealWithKelly():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY");
-	showKellyName();
+	showKelly();
 	author("Quiet Browser & LD");
 	processTime(2);
 	//1st time:
@@ -1346,8 +1409,7 @@ public function shareAMealWithKelly():void
 
 public function kellyShopping():void
 {
-	userInterface.showBust("KELLY_NUDE");
-	showKellyName();
+	showKelly(true);
 	author("Quiet Browser & LD");
 	output(" Shopping with her is quite an experience. Kelly can be quite the energetic hopping bunny when she wants to. Since you’re getting a free meal out of this, you don’t mind helping, however it’s true that this is more than simple <i>grocery shopping</i>. Unless skin care, fur care and cleaning supplies suddenly became a part of the cooking process when you were not looking....");
 	//if Strength <= 30:
@@ -1376,8 +1438,7 @@ public function kellyShopping():void
 public function refuseKellysDinnerFirstTimeInvite():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY");
-	showKellyName();
+	showKelly();
 	author("Quiet Browser & LD");
 	output("You tell her that it’s fine. She doesn’t have to get out of her way for you.");
 
@@ -1401,8 +1462,7 @@ public function refuseKellysDinnerFirstTimeInvite():void
 public function doubleRefuseKellyDinnerYouAsshat():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY");
-	showKellyName();
+	showKelly();
 	author("Quiet Browser & LD");
 	output("Though she’s not really asking for much, you still decline her invitation. Maybe some other time.");
 
@@ -1416,8 +1476,7 @@ public function doubleRefuseKellyDinnerYouAsshat():void
 public function helpKellyOutDinnerDate():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY");
-	showKellyName();
+	showKelly();
 	author("Quiet Browser & LD");
 	output("You suppose there’s no harm in <i>helping</i> her then.");
 
@@ -1431,8 +1490,7 @@ public function helpKellyOutDinnerDate():void
 public function noToChoiceAtEndOfKellyShopping():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY");
-	showKellyName();
+	showKelly();
 	author("Quiet Browser & LD");
 	output("You are pretty comfortable as you are already, so you see no sense in stripping down.");
 
@@ -1445,8 +1503,7 @@ public function noToChoiceAtEndOfKellyShopping():void
 public function getComfyAfterKellyShopping():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY_NUDE");
-	showKellyName();
+	showKelly(true);
 	author("Quiet Browser & LD");
 	output("Well, it’s unfair to have her give you so much eye-candy without paying her back for it. That said you start stripping off your [pc.gear], laying it neatly on a nearby table.");
 	//if Attraction =< 50:
@@ -1458,8 +1515,7 @@ public function getComfyAfterKellyShopping():void
 
 public function kellyDinnerPrepGogo():void
 {
-	userInterface.showBust("KELLY_NUDE");
-	showKellyName();
+	showKelly(true);
 	author("Quiet Browser & LD");
 	output("\n\nWith a merry chuckle, she strides back towards the kitchen, stopping at the opening and pulling on a cute apron she had hanging nearby. Properly kitted out to protect herself, she heads on in.");
 
@@ -1486,8 +1542,7 @@ public function kellyDinnerPrepGogo():void
 public function useKellysHoneyForCooking():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY_NUDE");
-	showKellyName();
+	showKelly(true);
 	author("Quiet Browser & LD");
 	var x:int = -1;
 	if(pc.hasCock()) x = pc.cockThatFits(chars["KELLY"]);
@@ -1622,8 +1677,7 @@ public function useKellysHoneyForCooking():void
 public function haveKellyServeAfterUsingHerHoney():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY_NUDE");
-	showKellyName();
+	showKelly(true);
 	author("Quiet Browser & LD");
 	output("Nodding you take your plate and hand it over for her.");
 
@@ -1645,8 +1699,7 @@ public function haveKellyServeAfterUsingHerHoney():void
 public function serveKellyDindinsAfterUsingHerHoney():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY_NUDE");
-	showKellyName();
+	showKelly(true);
 	author("Quiet Browser & LD");
 	output("You get up and extend your hands, motioning for her to hand over her plate. You don’t trust her to set up her dish herself, so you’ll be doing that for her. Make sure she eats all the healthy stuff. Otherwise it’ll all wind up going to her ass and breasts.");
 
@@ -1673,8 +1726,7 @@ public function serveKellyDindinsAfterUsingHerHoney():void
 public function noServingFoodAfterKellyUsesHerCum():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY_NUDE");
-	showKellyName();
+	showKelly(true);
 	author("Quiet Browser & LD");
 	output("You get up, taking your own plate in hand. You thank her, but it’s simpler if you get the food yourself.");
 
@@ -1690,8 +1742,7 @@ public function noServingFoodAfterKellyUsesHerCum():void
 public function eatingWithKellysHoneyForSeasoning():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY_NUDE");
-	showKellyName();
+	showKelly(true);
 	author("Quiet Browser & LD");
 	output("Now that both of you have loaded plates in front of you, Kelly raises her cutlery with a gleeful expression. <i>\"Alright, let's eat!\"</i> she cheers, already putting fork and knife to her ham.");
 
@@ -1744,8 +1795,7 @@ public function eatingWithKellysHoneyForSeasoning():void
 public function refuseDesertFromKellysWang():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY_NUDE");
-	showKellyName();
+	showKelly(true);
 	author("Quiet Browser & LD");
 	output("You shake your head at Kelly. She really has a one-track mind doesn’t she? Well, you apologize, but you’ll have to refuse her invitation.");
 	//if Mischievous:
@@ -1787,8 +1837,7 @@ public function refuseDesertFromKellysWang():void
 public function helpKellyFindHerHoneyThisWasntAPloyForCumPlayAtAll():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY_NUDE");
-	showKellyName();
+	showKelly(true);
 	author("Quiet Browser & LD");
 	output("You easily locate the jar and with a gentle tap on her shoulder you hold it out for her.");
 
@@ -1991,8 +2040,7 @@ public function helpKellyFindHerHoneyThisWasntAPloyForCumPlayAtAll():void
 public function helpKellyCleanUpAfterDindinsWithNormalHoney():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY_NUDE");
-	showKellyName();
+	showKelly(true);
 	author("Quiet Browser & LD");
 	output("You decide you’d rather help her get the dishes done. It’s the least you can do, besides you can relax with her later.");
 	output("\n\nKelly pauses, looking back at you in surprise. <i>\"You wha-?\"</i> she starts, then shakes her head and grins. <i>\"Why, thank you, honey... or do you have some ulterior motive in mind, hmm?\"</i> she grins and pokes her tongue out at you teasingly, then continues on to the kitchen; if that is the case, it clearly doesn't bother her.");
@@ -2035,8 +2083,7 @@ public function helpKellyCleanUpAfterDindinsWithNormalHoney():void
 public function relaxAfterEatingRegularHoneyMealWithKelly():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY_NUDE");
-	showKellyName();
+	showKelly(true);
 	author("Quiet Browser & LD");
 	output("Nodding, you head over to her couch, plopping down and sighing as you lean back and close your eyes for a spell.");
 	output("\n\nKelly carries on into the kitchen nonplussed, and from within you can hear the sounds of running water and dishes being scrubbed. Soon enough, she finishes her tasks and comes out to join you.");
@@ -2046,9 +2093,6 @@ public function relaxAfterEatingRegularHoneyMealWithKelly():void
 //Both choices join here
 public function postMealEpilogue():void
 {
-	userInterface.showBust("KELLY_NUDE");
-	showKellyName();
-	author("Quiet Browser & LD");
 	output("\n\n<i>\"Well, honey... since dinner went down so smooth, how about some dessert before you go, hmm?\"</i> Kelly's voice is husky with desire as she suggests this, one hip outthrust, shafts rising shamelessly before her, one hand kneading her breasts with abandon as she awaits your decision.");
 	processTime(12);
 	//Display Sex Scene options, PC gains a boost to Attraction (say, 15, 20?)//
@@ -2060,8 +2104,7 @@ public function postMealEpilogue():void
 public function flirtWithKellyUnknown():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY");
-	showKellyName();
+	showKelly(true);
 	author("Quiet Browser & LD");
 	output("Kelly's lips curl into a faint grin and she closes her eyes, giving her head a small shake. <i>\"Aw, surely you can do better than that, honey? Don't I deserve a little more attention than that?\"</i> she teases you, opening her eyes as she awaits your response.");
 	processTime(1);
@@ -2075,8 +2118,7 @@ public function flirtWithKellyUnknown():void
 public function aggressiveFlirtingWithKelly():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY_NUDE");
-	showKellyName();
+	showKelly(true);
 	author("Quiet Browser & LD");
 	output("So, she wants more? You’ll give her more....");
 	output("\n\nWithout saying a word, you get up, knocking ");
@@ -2103,8 +2145,7 @@ public function aggressiveFlirtingWithKelly():void
 public function mischievouslyFlirtingWithKelly():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY");
-	showKellyName();
+	showKelly();
 	author("Quiet Browser & LD");
 	output("Better? Well if she says so....");
 
@@ -2133,8 +2174,7 @@ public function mischievouslyFlirtingWithKelly():void
 public function kellyBarFlirtContinuation():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY_NUDE");
-	showKellyName();
+	showKelly(true);
 	author("Quiet Browser & LD");
 	output("As a young frontier town, it doesn't take long to reach Kelly's home, a prefabricated bungalow. Despite being prefabricated, it's roomy enough, with separate rooms for kitchen, living room, bathroom and bedroom. Kelly's taken steps to make it more \"homey\", but you don't get much of a chance to observe these; the moment you are inside, she turns and hungrily kisses you, rubbing herself against your front and letting you feel her erections and the hardness of her nipples as she grinds on you.");
 
@@ -2157,8 +2197,7 @@ public function kellyBarFlirtContinuation():void
 public function kellyBarSexMenu():void
 {
 	clearMenu();
-	userInterface.showBust("KELLY_NUDE");
-	showKellyName();
+	showKelly(true);
 	author("Quiet Browser & LD");
 	//Sex Scenes
 	//Hyperplay
@@ -2194,8 +2233,7 @@ public function kellyHyperPlayAwwwYiss():void
 	if(pc.cockTotal() > 1) y = pc.cockThatFits2(chars["KELLY"].vaginalCapacity());
 	
 	clearOutput();
-	userInterface.showBust("KELLY_NUDE");
-	showKellyName();
+	showKelly(true);
 	author("Quiet Browser & LD");
 	//1st time
 	if(flags["KELLY_HYPERPLAY_COUNT"] == undefined || flags["KELLY_HYPERPLAY_COUNT"] == 0)
@@ -2331,8 +2369,7 @@ public function keepGoingWithFuckingHyperModeKelly():void
 	if(pc.cockTotal() > 1) y = pc.cockThatFits2(chars["KELLY"].vaginalCapacity());
 
 	clearOutput();
-	userInterface.showBust("KELLY_NUDE");
-	showKellyName();
+	showKelly(true);
 	author("Quiet Browser & LD");
 	output("Your hands remain right where they are, locked onto her hips for support. Let her tend to her own maleness; you're more interested in her female parts. With this in mind, you start to thrust even harder than before, your fur-covered lover grunting in effort as she matches you thrust for thrust, moaning her pleasure for all to hear.");
 
@@ -2435,8 +2472,7 @@ public function addAHandjobToKellyHyperFuckPlay():void
 	if(pc.cockTotal() > 1) y = pc.cockThatFits2(chars["KELLY"].vaginalCapacity());
 
 	clearOutput();
-	userInterface.showBust("KELLY_NUDE");
-	showKellyName();
+	showKelly(true);
 	author("Quiet Browser & LD");
 	output("Well, polite is polite....");
 	output("\n\nShe grunts as you drape yourself over her back for added support. <i>\"Wha?\"</i> she starts to ask, then lets out a soft gasp of realization as she feels your hands closing around the base of each shaft. She purrs approvingly, leaning her head back to try and nuzzle her cheek against yours. Your present position makes thrusting into her a little awkward, but you certainly have a good grip on her dicks, which you put to good use.");
@@ -2493,8 +2529,7 @@ public function kellyHyperPlayEpilogue(hugeLoad:Boolean = false):void
 	//If you got two dicks, check to see if one will fit elsewhere
 	if(pc.cockTotal() > 1) y = pc.cockThatFits2(chars["KELLY"].vaginalCapacity());
 	clearOutput();
-	userInterface.showBust("KELLY_NUDE");
-	showKellyName();
+	showKelly(true);
 	author("Quiet Browser & LD");
 	output("With a contented groan, Kelly allows herself to sink to her now-soaked bedding, instinctively shifting to her side");
 	if(hugeLoad) output(", allowing her great belly to slosh and wobble to a stillness");
@@ -2520,8 +2555,7 @@ public function kellyHyperPlayEpilogue(hugeLoad:Boolean = false):void
 public function doKellyInTheBumBUMBUMMMMMMMM():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY_NUDE");
-	showKellyName();
+	showKelly(true);
 	author("Quiet Browser & LD");
 	var x:int = pc.cockThatFits(chars["KELLY"].analCapacity());
 	if(x < 0) x = pc.smallestCockIndex();
@@ -2665,8 +2699,7 @@ public function doKellyInTheBumBUMBUMMMMMMMM():void
 public function getGlazedWhileButtFuckingTheHoneyBunny():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY_NUDE");
-	showKellyName();
+	showKelly(true);
 	author("Quiet Browser & LD");
 	var x:int = pc.cockThatFits(chars["KELLY"].analCapacity());
 	if(x < 0) x = pc.smallestCockIndex();
@@ -2786,8 +2819,7 @@ public function getGlazedWhileButtFuckingTheHoneyBunny():void
 public function deepFuckKellysButthole():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY_NUDE");
-	showKellyName();
+	showKelly(true);
 	var x:int = pc.cockThatFits(chars["KELLY"].vaginalCapacity());
 	if(x < 0) x = pc.smallestCockIndex();
 	author("Quiet Browser & LD");
@@ -3006,8 +3038,7 @@ public function deepFuckKellysButthole():void
 public function oralHer():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY_NUDE");
-	showKellyName();
+	showKelly(true);
 	author("Quiet Browser & LD");
 	output("Kelly grins widely upon hearing your proposal. <i>\"Somebody's feeling hungry, eh? Well then...\"</i> she turns and beckons you to follow her as she heads for the dining room table. With a single graceful motion she springs atop it, momentarily posing with one legs outstretched to help show off her haunches, then curling her legs so that she is kneeling before the edge. Her twin erections bob proudly before her, jutting a foot over the edge as she raises her torso and puts her hands on her ample hips. <i>\"Dinner's on me, honey; today's special is honey-glazed footlongs. Get 'em while they're hot,\"</i> she declares, throwing you a saucy wink.");
 	processTime(1);
@@ -3021,8 +3052,7 @@ public function oralHer():void
 public function kellysCocksGetBLOWN():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY_NUDE");
-	showKellyName();
+	showKelly(true);
 	author("Quiet Browser & LD");
 	if(flags["KELLY_BLOWJOBS_GIVEN"] == undefined) flags["KELLY_BLOWJOBS_GIVEN"] = 1;
 	else flags["KELLY_BLOWJOBS_GIVEN"]++;
@@ -3164,8 +3194,7 @@ public function kellysCocksGetBLOWN():void
 public function drinkAllOfKellysSpoo():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY_NUDE");
-	showKellyName();
+	showKelly(true);
 	author("Quiet Browser & LD");
 	output("Without so much as a warning, you deepthroat her topmost shaft and clamp down her lower one, right at the base, in a vice-like grip.");
 	output("\n\n<i>\"Ack!\"</i> She squeals, her whole body clenching in her chair. <i>\"Honey, w-wha-?\"</i> She moans in pleasure, her whorish cry choking off whatever it was that she was about to say.");
@@ -3204,8 +3233,7 @@ public function drinkAllOfKellysSpoo():void
 public function splatterYourselfWithHoneyBunnysCumAfterGivingHerABJ():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY_NUDE");
-	showKellyName();
+	showKelly(true);
 	author("Quiet Browser & LD");
 	output("You move your hands to knead her balls. Not having a concentrated jet means you’ll lose some pressure and precious honey. So you gotta at least ensure that she’ll cum as much she can to make up for it.");
 	output("\n\n<i>\"Gods, you make me feel so good,\"</i> Kelly moans, thrusting her hips forward for emphasis. You almost think you can feel her balls bulging back against your fingers, growing rounder and riper as they swell with seed in response to your touch. <i>\"Those fingers of yours are pressing all my buttons.");
@@ -3322,37 +3350,36 @@ public function splatterYourselfWithHoneyBunnysCumAfterGivingHerABJ():void
 //Exit strategy
 public function noDrinksForKelly(genderless:Boolean = false):void
 {
-    clearOutput();
-    userInterface.showBust("KELLY_NUDE");
-    showKellyName();
-    
-    output("Even though you had your fill, you shake your head and refuse Kelly's advances.");
-    if(!genderless)
-    {
-        output("\n\nKelly hungrily stares at your [pc.crotch] and frowns, <i>“A-Are you sure, honey?”</i>");
-        if(pc.isNice()) output("\n\n<i>“Thanks for the meal, but I don't think I'm ready to cum at the moment,”</i> you say as you tickle her under her chin with your fingertips.");
-        else if(pc.isMischievous()) output("\n\n<i>“I think I'll hold onto what I've got, thanks.”</i> You are holding your orgasm hostage to see how the honey bunny would react.");
-        else output("\n\n<i>“You've had your orgasm, and now you want mine? You're such a slutty bunny. I think I'll punish you a little for that,”</i> you playfully scold her.");
-        output("\n\nKelly's eyes widen and glaze over. <i>“But after what you've done, I'm sooo thirsty now! I have to have some, please?”</i>");
-        output("\n\nYou are adamant about your decision and shake your head.");
-        output("\n\n<i>“Oh fine, you big fat meanie!”</i> she says, accepting defeat, but not without some retribution.");
-        if(pc.isAss()) output(" You're sure she can manage and advise that she have some water instead. With two loud smacks, your cheek tingles. You give her a surprised look and notice her hands clutched at the base of her two equine sex poles. Did... did she just cock slap you? <i>“Well you don't have to be a jerk about it!”</i>");
-        else output(" She gives you two light smacks on your belly and flicks her head with an exaggerated <i>“hmph!”</i>");
-    }
-    else
-    {
-        output("\n\nKelly does a double take at your [pc.crotch] and turns up to you blushing, <i>“Oh my, [pc.name]... I guess I was so caught up in the moment that I didn't realize...”<\i>");
-        output("\n\nYou give her a knowing grin. She <i>was</i> pretty immersed there, but you can't blame her after making her loose.");
-        output("\n\n<i>“Well, I guess I can manage for now,”<\i> she says. <i>“You know, you should definitely mod some equipment down there. I don't see why you shouldn't--you apparently like genitals enough to know how to please mine.”<\i> She trails her fingers from your blank pelvis upwards, then softly ends at your belly, giving it a light pat.");
-    }
-    output("\n\nAside from her disappointment of not being able to have her way with you, Kelly allows you to quickly rinse off in her shower before you put your [pc.gear] back on and leave her place.");
+	clearOutput();
+	showKelly(true);
 
-    output("\n\n<i>“Farewell, honey! Please drop by any time, but do remember that you should give some after you get some - sharing is caring after all, right?”</i> the laquine lectures with a snarky smile to her lips. <i>“When I go all the way, I want you to go all the way too,”</i> she concludes seductively as she steps back inside, closing the door behind you.");
-    processTime(15+rand(11));
-    pc.shower();
-    pc.lust(10);
-    clearMenu();
-    addButton(0,"Next",leaveKellyNext);
+	output("Even though you had your fill, you shake your head and refuse Kelly's advances.");
+	if(!genderless)
+	{
+		output("\n\nKelly hungrily stares at your [pc.crotch] and frowns, <i>“A-Are you sure, honey?”</i>");
+		if(pc.isNice()) output("\n\n<i>“Thanks for the meal, but I don't think I'm ready to cum at the moment,”</i> you say as you tickle her under her chin with your fingertips.");
+		else if(pc.isMischievous()) output("\n\n<i>“I think I'll hold onto what I've got, thanks.”</i> You are holding your orgasm hostage to see how the honey bunny would react.");
+		else output("\n\n<i>“You've had your orgasm, and now you want mine? You're such a slutty bunny. I think I'll punish you a little for that,”</i> you playfully scold her.");
+		output("\n\nKelly's eyes widen and glaze over. <i>“But after what you've done, I'm sooo thirsty now! I have to have some, please?”</i>");
+		output("\n\nYou are adamant about your decision and shake your head.");
+		output("\n\n<i>“Oh fine, you big fat meanie!”</i> she says, accepting defeat, but not without some retribution.");
+		if(pc.isAss()) output(" You're sure she can manage and advise that she have some water instead. With two loud smacks, your cheek tingles. You give her a surprised look and notice her hands clutched at the base of her two equine sex poles. Did... did she just cock slap you? <i>“Well you don't have to be a jerk about it!”</i>");
+		else output(" She gives you two light smacks on your belly and flicks her head with an exaggerated <i>“hmph!”</i>");
+	}
+	else
+	{
+		output("\n\nKelly does a double take at your [pc.crotch] and turns up to you blushing, <i>“Oh my, [pc.name]... I guess I was so caught up in the moment that I didn't realize...”<\i>");
+		output("\n\nYou give her a knowing grin. She <i>was</i> pretty immersed there, but you can't blame her after making her loose.");
+		output("\n\n<i>“Well, I guess I can manage for now,”<\i> she says. <i>“You know, you should definitely mod some equipment down there. I don't see why you shouldn't--you apparently like genitals enough to know how to please mine.”<\i> She trails her fingers from your blank pelvis upwards, then softly ends at your belly, giving it a light pat.");
+	}
+	output("\n\nAside from her disappointment of not being able to have her way with you, Kelly allows you to quickly rinse off in her shower before you put your [pc.gear] back on and leave her place.");
+
+	output("\n\n<i>“Farewell, honey! Please drop by any time, but do remember that you should give some after you get some - sharing is caring after all, right?”</i> the laquine lectures with a snarky smile to her lips. <i>“When I go all the way, I want you to go all the way too,”</i> she concludes seductively as she steps back inside, closing the door behind you.");
+	processTime(15+rand(11));
+	pc.shower();
+	pc.lust(10);
+	clearMenu();
+	addButton(0,"Next",leaveKellyNext);
 }
 
 public function leaveKellyNext():void
@@ -3366,8 +3393,7 @@ public function eatOutKellysQuoteUnquoteCunny():void
 {
 	pc.girlCumInMouth(chars["KELLY"]);
 	clearOutput();
-	userInterface.showBust("KELLY_NUDE");
-	showKellyName();
+	showKelly(true);
 	author("Quiet Browser & LD");
 	kellyFucked();
 	pc.lust(15+rand(5));
@@ -3614,8 +3640,7 @@ public function eatOutKellysQuoteUnquoteCunny():void
 public function takeANapAfterNiceCunnilingus():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY_NUDE");
-	showKellyName();
+	showKelly(true);
 	author("Quiet Browser & LD");
 	output("You don’t feel like masturbating now, so perhaps a quick nap would help.");
 	//Attraction >= 50:
@@ -3649,8 +3674,7 @@ public function takeANapAfterNiceCunnilingus():void
 public function masturbateAfterKellyLingus():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY_NUDE");
-	showKellyName();
+	showKelly(true);
 	author("Quiet Browser & LD");
 	if(pc.hasCock()) output("Wrapping a hand around your [pc.cockBiggest], you begin to gently stroke yourself. Kelly’s naked body serving as a nice mental picture to aid you in the task");
 	if(pc.hasVagina() && pc.hasCock()) output(" while your other hand");
@@ -3693,8 +3717,7 @@ public function masturbateAfterKellyLingus():void
 public function mischievousNapAfterCunnilingateKelly():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY_NUDE");
-	showKellyName();
+	showKelly(true);
 	author("Quiet Browser & LD");
 	output("Maybe a short nap would be fine....");
 	output("\n\n<i>\"[pc.name]? [pc.name]? Come on, honey, it's time to wake up - you don't really wanna spend the night on my couch, do you?\"</i> a familiar giggle follows those words, chasing you back to the land of the living. As your eyes open, you see Kelly is standing over you, gently shaking you by the shoulder. She smiles at you and offers you your freshly-cleaned gear. <i>\"Here you are; didn't mean to keep you waiting so long. But, if you're that tired, maybe you ought to head back to your ship?\"</i> she suggests.");
@@ -3711,8 +3734,7 @@ public function mischievousNapAfterCunnilingateKelly():void
 //[=Masturbate=]
 public function mischievousMasturbateAfterCunnilingateKelly():void {
 	clearOutput();
-	userInterface.showBust("KELLY_NUDE");
-	showKellyName();
+	showKelly(true);
 	author("Quiet Browser & LD");
 	//if cock:
 	if(pc.hasCock()) output("Wrapping a hand around your [pc.cockBiggest] you begin to gently stroke yourself. The still lingering scent of Kelly’s climax fueling your desire");
@@ -3745,8 +3767,7 @@ public function mischievousMasturbateAfterCunnilingateKelly():void {
 public function nudeNapAfterKellyCunnilingus():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY_NUDE");
-	showKellyName();
+	showKelly(true);
 	author("Quiet Browser & LD");
 	output("Maybe a short nap would be fine....");
 	output("\n\n<i>\"[pc.name]? [pc.name]? Come on, honey, it's time to wake up - you don't really wanna spend the night on my couch, do you?\"</i> a familiar giggle follows those words, chasing you back to the land of the living. As your eyes open, you see Kelly is standing over you, gently shaking you by the shoulder. She gives you a cheeky grin upon realizing you're awake. <i>\"What, is my couch that comfy?\"</i> she asks. <i>\"Personally, I can't recommend it; if you're tired, it might be better to get back to your ship and get some shuteye,\"</i> she recommends.");
@@ -3769,8 +3790,7 @@ public function nudeNapAfterKellyCunnilingus():void
 public function kellyNudeMasturbateAfterCunnilingate():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY_NUDE");
-	showKellyName();
+	showKelly(true);
 	author("Quiet Browser & LD");
 	//if cock:
 	if(pc.hasCock()) output("Wrapping a hand around your [pc.cockBiggest] you begin to gently stroke yourself, the still lingering scent of Kelly’s climax fueling your desire");
@@ -3806,8 +3826,7 @@ public function kellyNudeMasturbateAfterCunnilingate():void
 public function kellyCunnilingusHardEndingNap():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY_NUDE");
-	showKellyName();
+	showKelly(true);
 	author("Quiet Browser & LD");
 	output("\n\n<i>\"[pc.name]? Come on, honey; time to wake up,\"</i> Kelly's voice cuts through your slumber, as does the gentle rocking motions of her shaking you. You wake to find yourself on the couch, wrapped in Kelly's arms for support.");
 
@@ -3841,8 +3860,7 @@ public function kellyCunnilingusHardEndingNap():void
 public function kellyDPForTaursThatWannaGetDPed():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY_NUDE");
-	showKellyName();
+	showKelly(true);
 	author("DiscordDavid");
 	output("You tell Kelly that you’d love it if she could please your entire back half at once.");
 	output("\n\n<i>“<i>Well, I think I can arrange that for you, honey.</i>”</i> She says, biting her lower lip and eying your tauric body.");
@@ -3920,8 +3938,7 @@ public function kellyDPForTaursThatWannaGetDPed():void
 public function taurKellyDPCumInside(x:int):void
 {
 	clearOutput();
-	userInterface.showBust("KELLY_NUDE");
-	showKellyName();
+	showKelly(true);
 	author("DiscordDavid");
 
 	var tailginad:Boolean = false;
@@ -3994,8 +4011,7 @@ public function getCummedOnByKellyDuringTaurDPs(x:int):void
 	}
 
 	clearOutput();
-	userInterface.showBust("KELLY_NUDE");
-	showKellyName();
+	showKelly(true);
 	author("DiscordDavid");
 	output("You take a step forward, wanting to feel her thick honey cover your rear. She obliges, pulling her cocks out.");
 
@@ -4041,8 +4057,7 @@ output("\n\nShe pulls out of you {if you have a pussy-tail, and are not herm: ; 
 public function getDPedByKelly():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY_NUDE");
-	showKellyName();
+	showKelly(true);
 	author("Quiet Browser & LD");
 	output("<i>\"Both at once, huh?\"</i> the laquine purrs as she ogles your naked form. Her long yellow tongue lecherously slides between her lips, eyes half-hooded as she nods to herself. <i>\"Alright, sweet thing, you got yourself a deal. Nothing I like more than putting both of these babies to work,\"</i> she pats her twin erections for emphasis, then pirouettes and starts strutting towards the bedroom, pausing only to turn and give you a crooked finger and a come-hither look.");
 
@@ -4278,8 +4293,7 @@ public function getDPedByKelly():void
 public function getDoubleStuffedByKellyCancelled():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY_NUDE");
-	showKellyName();
+	showKelly(true);
 	author("Quiet Browser & LD");
 	//If Affection < 50:
 	if(kellyAttraction() < 50)
@@ -4462,8 +4476,7 @@ public function getDoubleStuffedByKellyCancelled():void
 public function getBlownByKelly(noIntro:Boolean = false):void
 {
 	clearOutput();
-	userInterface.showBust("KELLY_NUDE");
-	showKellyName();
+	showKelly(true);
 	author("Quiet Browser & LD");
 	if(!noIntro)
 	{
@@ -4574,8 +4587,7 @@ public function getBlownByKelly(noIntro:Boolean = false):void
 public function getLickedOutByKellllaaaahhhh(noIntro:Boolean = false):void
 {
 	clearOutput();
-	userInterface.showBust("KELLY_NUDE");
-	showKellyName();
+	showKelly(true);
 	author("Quiet Browser & LD");
 	if(!noIntro)
 	{

@@ -611,7 +611,7 @@ public function revertGooBody(part:String = "all", consumeBiomass:Boolean = fals
 		if(consumeBiomass) gooBiomass(-20);
 	}
 	// Gel-like legs? (legCount and genitalLocation() are preserved)
-	else if(part == "legs" || part == "all")
+	else if(part == "legs partial" || part == "legs" || part == "all")
 	{
 		var legProperties:Array = [];
 		if(pc.legFlags.length > 0)
@@ -625,8 +625,16 @@ public function revertGooBody(part:String = "all", consumeBiomass:Boolean = fals
 			pc.clearLegFlags();
 			pc.legFlags = legProperties;
 		}
-		pc.legType = GLOBAL.TYPE_GOOEY;
-		if(consumeBiomass) gooBiomass(-20);
+		if(part == "legs partial")
+		{
+			pc.addLegFlag(GLOBAL.FLAG_GOOEY);
+			if(consumeBiomass) gooBiomass(-5000);
+		}
+		else
+		{
+			pc.legType = GLOBAL.TYPE_GOOEY;
+			if(consumeBiomass) gooBiomass(-20);
+		}
 	}
 	// Gel-arms!
 	if(part == "arms" || part == "all")
@@ -939,8 +947,8 @@ public function gooBodyCustomizer():void
 	{
 		if(gooBiomass() >= 20)
 		{
-			if(pc.statusEffectv1("Gel Body") >= 1) addGhostButton(7,"Revert Body",revertGooBodyPart,"mound","Revert Lower Body","Revert your lower body back to an amorphous goo mound.\n\n<b>20 mLs Biomass</b>");
-			else addGhostButton(7,"Revert Legs",revertGooBodyPart,"legs","Revert Lower Body","Revert your lower body back to goo.\n\n<b>20 mLs Biomass</b>");
+			if(pc.statusEffectv1("Gel Body") >= 1) addGhostButton(7,"Revert Body",revertGooBodyLegs,"mound","Revert Lower Body","Revert your lower body back to an amorphous goo mound.\n\n<b>20 mLs Biomass</b>");
+			else addGhostButton(7,"Revert Legs",revertGooBodyLegs,"legs","Revert Lower Body","Revert your lower body back to goo.\n\n<b>20 mLs Biomass</b>");
 		}
 		else addDisabledGhostButton(7,"Revert Legs","Revert Lower Body","You don't have enough biomass for that.\n\n<b>20 mLs Biomass</b>");
 		nonGooPart++;
@@ -1144,6 +1152,23 @@ public function adjustGooBody(arg:Array):void
 	
 	addGhostButton(14,"Back",gooBodyCustomizer);
 }
+public function revertGooBodyLegs(part:String = "legs"):void
+{
+	if(gooBiomass() < 5000)
+	{
+		revertGooBodyPart(part);
+	}
+	else
+	{
+		clearOutput2();
+		output2("Hm, you want to change your [pc.legOrLegs]? Since you seem to have enough biomass, would you like to use a good chunk of it to retain your lower body’s shape as much as possible?");
+		
+		clearGhostMenu();
+		if(part == "mound") addGhostButton(0,"Normal", revertGooBodyPart, part, "Normal Revert", "Just change back to a normal goo mound.\n\n<b>20 mLs Biomass</b>");
+		else addGhostButton(0,"Normal", revertGooBodyPart, part, "Normal Revert", "Just change back to a normal goo lower body.\n\n<b>20 mLs Biomass</b>");
+		addGhostButton(1,"Retain", revertGooBodyPart, "legs partial", "Partial Revert", "Concentrate more mass to keep your lower body’s shape intact while making it gooey.\n\n<b>5000 mLs Biomass</b>");
+	}
+}
 public function revertGooBodyPart(part:String = "all"):void
 {
 	clearOutput2();
@@ -1156,7 +1181,7 @@ public function revertGooBodyPart(part:String = "all"):void
 		if(pc.skinType != GLOBAL.SKIN_TYPE_GOO && pc.hairType != GLOBAL.HAIR_TYPE_GOO) output2(" and");
 		if(pc.hairType != GLOBAL.HAIR_TYPE_GOO) output2(" [pc.hair]");
 	}
-	else if(part == "legs" || part == "mound") output2(" your [pc.legOrlegs]");
+	else if(part == "legs partial" || part == "legs" || part == "mound") output2(" your [pc.legOrlegs]");
 	else if(part == "arms") output2(" your [pc.arms]");
 	else if(part == "tail") output2(" [pc.eachTail]");
 	else output2(" a bag of dicks");
