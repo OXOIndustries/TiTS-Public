@@ -442,7 +442,7 @@ public function semithMenuNavigation(activeTopic:Function = undefined):void {
 		else addDisabledButton(2, "Booty Call", "Booty Call", "You are just not aroused enough for that.");
 	}
 	
-	addButton(14, "Back", mainGameMenu);
+	addButton(14, "Leave", mainGameMenu);
 }
 
 //player and Semith smoke some Roshan blue
