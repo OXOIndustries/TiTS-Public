@@ -116,7 +116,7 @@ public function pennyRoomDesc():void {
 	//Badgurquest raygun handoff 
 	else if(flags["BADGER_QUEST_TIMER"] == -1 && !pc.hasKeyItem("Doctor Badger's Bimbo Raygun - Still programmed for use on Penny.")) 
 	{
-		output("\n\n<b>You got her message, talk to Penny to see how you can <b>turn the tables</b> on Dr Badger!</b>");
+		output("\n\n<b>You got her message, talk to Penny to see how you can <b>turn the tables</b> on Dr. Badger!</b>");
 		addButton(0,"Penny",turnTheTablesOnBadger);
 	}
 	//Shortcut friend penny if bimboed.
@@ -1281,7 +1281,7 @@ public function approachGirlfriendPenny():void {
 	}
 	if(flags["BADGER_QUEST"] == 1)
 	{
-		output("\n\n<b>This is who Dr Badger wanted you to ‘deal with’ for her. You could talk with Penny about this, and see what her opinion is on the subject, or you could just go ahead and zap her.</b>");
+		output("\n\n<b>This is who Dr. Badger wanted you to ‘deal with’ for her. You could talk with Penny about this, and see what her opinion is on the subject, or you could just go ahead and zap her.</b>");
 	}
 	processTime(1);
 	pennyGirlfriendMenu();
@@ -1305,7 +1305,7 @@ public function pennyGirlfriendMenu():void
 	else addDisabledButton(2,"ReportBadger","ReportBadger","You already turned in Doctor Badger.");
 	if(flags["BADGER_QUEST"] == 1)
 	{
-		addButton(3,"BadgerWarn",warnPennyAboutDoctorBadgersNefariousSchemes,undefined,"Warn Her About Dr. Badger","Penny would probably have some opinions about Dr. Badger's plan. Who knows, maybe she’d be into it, or maybe she’ll have some ideas about how to turn the tables on Dr Badger instead.");
+		addButton(3,"BadgerWarn",warnPennyAboutDoctorBadgersNefariousSchemes,undefined,"Warn Her About Dr. Badger","Penny would probably have some opinions about Dr. Badger's plan. Who knows, maybe she’d be into it, or maybe she’ll have some ideas about how to turn the tables on Dr. Badger instead.");
 		if(flags["NO_ZAP_PENNY"] == undefined) 
 		{
 			if(flags["PENNY_BADGER_WARNED"] == undefined) addButton(2,"Zap Penny",surpriseZapPennyWithBimboRay,undefined,"Zap Penny","This seems like a jerk move, but if nothing else you can be pretty sure she’ll probably enjoy the end result, as will you.");
