@@ -989,6 +989,7 @@ public function move(arg:String, goToMainMenu:Boolean = true):void {
 		var nudistPrevention:Boolean = false;
 		if((!pc.isChestGarbed() || pc.isChestExposed()) && pc.biggestTitSize() > 1) nudistPrevention = true;
 		if(!pc.isCrotchGarbed() || pc.isCrotchExposed() || pc.isAssExposed()) nudistPrevention = true;
+		if(InCollection(pc.wingType, GLOBAL.TYPE_DOVEFOUR, GLOBAL.TYPE_DOVESIX)) nudistPrevention = false;
 		if(nudistPrevention)
 		{
 			clearOutput();
