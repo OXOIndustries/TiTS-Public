@@ -717,7 +717,7 @@ public function vulkrimiCodexEntry():void
 	outputCodex("\n<b>Height:</b> Ranges from 4' (120 cm) to 5 feet (150 cm).");
 	outputCodex("\n<b>Weight:</b> Between 20 and 30 kilograms.");
 	outputCodex("\n<b>Skin:</b> Stretchy and frictionless like latex, but normal in texture and appearance. Typically red or blue, but in rare cases purple or obsidian black.");
-	outputCodex("\n<b>Carapace:</b> Loose plates of black or brown chitin. Most vulkrimi surgically remove them.");
+	outputCodex("\n<b>Carapace:</b> Loose plates of black, brown, or orange chitin. Most vulkrimi surgically remove them.");
 	outputCodex("\n<b>Hair:</b> Bald.");
 	outputCodex("\n<b>Horns:</b> Two small horns on their foreheads.");
 	outputCodex("\n<b>Ears:</b> Short elfin ears.");
