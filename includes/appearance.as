@@ -1051,18 +1051,18 @@ public function appearance(forTarget:Creature):void
 		//legType notez!
 		if(target.legType == GLOBAL.TYPE_HUMAN)
 		{
-			if(target.legCount < 4) output2(" " + StringUtil.upperCase(num2Text(target.legCount)) + " normal human legs extend below your waist, ending in normal human feet.");
-			else output2(" You have normal human legs that end in " + target.feet(true,true) + ".");
+			if(target.legCount < 4) output2(" " + StringUtil.upperCase(num2Text(target.legCount)) + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? " gooey" : " normal") + " human legs extend below your waist, ending in normal human feet.");
+			else output2(" You have " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "gooey" : "normal") + " human legs that end in " + target.feet(true,true) + ".");
 		}
 		else if(target.legType == GLOBAL.TYPE_MYR)
 		{
-			if(target.legCount < 4) output2(" " + StringUtil.upperCase(num2Text(target.legCount)) + " human-like legs extend below your waist, covered in numerous chitin plates all the way to your feet.");
-			else output2(" You have human-like legs that end in chitinous feet.");
+			if(target.legCount < 4) output2(" " + StringUtil.upperCase(num2Text(target.legCount)) + " human-like legs extend below your waist, covered in numerous " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "semi-solid" : "chitin") + " plates all the way to your feet.");
+			else output2(" You have human-like legs that end in " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "hardened" : "chitinous") + " feet.");
 		}
 		else if(target.legType == GLOBAL.TYPE_EQUINE || target.legType == GLOBAL.TYPE_BOVINE) 
 		{
-			if(target.legCount == 2) output2(" Your legs are muscled and jointed oddly, covered in fur, and end in a pair of bestial hooves.");
-			else if(target.legCount < 4) output2(" Your legs are muscled and jointed oddly, covered in fur, and end in bestial hooves.");
+			if(target.legCount == 2) output2(" Your legs are muscled and jointed oddly, covered in " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "goo" : "fur") + ", and end in a pair of bestial hooves.");
+			else if(target.legCount < 4) output2(" Your legs are muscled and jointed oddly, covered in " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "goo" : "fur") + ", and end in bestial hooves.");
 			else output2(" You have oddly-jointed legs that end in " + target.feet(true,true) + ".");
 		}
 		else if(target.legType == GLOBAL.TYPE_CANINE) 
@@ -1087,7 +1087,7 @@ public function appearance(forTarget:Creature):void
 			if(target.legCount == 1) output2(" Below your thighs, your flesh is fused together into a very long, snake-like tail, leaving a narrow, connecting gap between your crotch and [target.asshole]. It is");
 			else if(target.legCount < 4) output2(" Below your thighs, " + num2Text(target.legCount) + " wiggling, snake-like appendages allow you to slither around. They are");
 			else output2(" You have wiggling snake-like appendages to propel yourself around on, all");
-			output2(" covered in " + target.scaleColor + "-colored scales.");
+			output2(" covered in " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "goo" : target.scaleColor + "-colored scales") + ".");
 		}
 		//Horse body is placed higher for readability purposes
 		else if(target.legType == GLOBAL.TYPE_SUCCUBUS) 
@@ -1102,7 +1102,7 @@ public function appearance(forTarget:Creature):void
 		}
 		else if(target.legType == GLOBAL.TYPE_BEE) 
 		{
-			output2(" Shimmering, armor-like chitin girds your legs from your toes to your mid-thigh. The sable material is rock hard right up until the ring of soft fluff that grows over the uppermost edge.");
+			output2(" Shimmering, " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "hardened goo" : "armor-like chitin") + " girds your legs from your toes to your mid-thigh. The " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "coating is semi-" : "sable material is rock ") + "hard right up until the ring of soft fluff that grows over the uppermost edge.");
 		}
 		else if(target.legType == GLOBAL.TYPE_GOOEY) 
 		{
@@ -1149,8 +1149,8 @@ public function appearance(forTarget:Creature):void
 		}
 		else if(target.legType == GLOBAL.TYPE_FELINE)
 		{
-			if(target.isTaur()) output2(" Your digitigrade legs end in soft, padded cat-paws.");
-			else output2(" " + StringUtil.upperCase(num2Text(target.legCount)) + " digitigrade legs grow downwards from your waist, ending in soft, padded cat-paws.");
+			if(target.isTaur()) output2(" Your digitigrade legs end in soft, " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "goo-" : "") + "padded cat-paws.");
+			else output2(" " + StringUtil.upperCase(num2Text(target.legCount)) + " digitigrade legs grow downwards from your waist, ending in soft, " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "goo-" : "") + "padded cat-paws.");
 		}
 		else if(target.legType == GLOBAL.TYPE_LIZAN)
 		{
@@ -1164,24 +1164,24 @@ public function appearance(forTarget:Creature):void
 		}
 		else if(target.legType == GLOBAL.TYPE_LAPINE) 
 		{
-			if(target.legCount < 4) output2(" Your legs thicken below the waist as they turn into soft-furred rabbit-like legs. You even have large bunny feet that make hopping around a little easier than walking.");
+			if(target.legCount < 4) output2(" Your legs thicken below the waist as they turn into " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "goo-covered" : "soft-furred") + " rabbit-like legs. You even have large bunny feet that make hopping around a little easier than walking.");
 			else output2(" You have thick rabbit legs that terminate in " + target.feet(true,true) + ". At least jumping should be a breeze.");
 		}
 		else if(target.legType == GLOBAL.TYPE_AVIAN) 
 		{
-			if(target.legCount < 4) output2(" Your legs are covered with " + target.furColor + " plumage. Thankfully the thick, powerful thighs are perfect for launching you into the air, and your feet remain mostly human, even if they are two-toed and tipped with talons.");
-			else output2(" You have " + target.furColor + " plumage across your legs. It ends just above your two-toed, taloned feet.");
+			if(target.legCount < 4) output2(" Your legs are covered with " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "goo" : target.furColor + " plumage") + ". Thankfully the thick, powerful thighs are perfect for launching you into the air, and your feet remain mostly human, even if they are two-toed and tipped with talons.");
+			else output2(" You have " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "gooey" : target.furColor + " plumage across your") + " legs. It ends just above your two-toed, taloned feet.");
 		}
 		else if(target.legType == GLOBAL.TYPE_KANGAROO) 
 		{
-			if(target.legCount < 4) output2(" Your furry legs have short thighs and long calves, with even longer feet ending in prominently-nailed toes.");
-			else output2(" You have " + target.furColor + "-furred legs with short thighs and long calves, perfect for jumping.");
+			if(target.legCount < 4) output2(" Your " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "gooey" : "furry") + " legs have short thighs and long calves, with even longer feet ending in prominently-nailed toes.");
+			else output2(" You have " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "gooey" : target.furColor + "-furred") + " legs with short thighs and long calves, perfect for jumping.");
 		}
 		else if(target.legType == GLOBAL.TYPE_ARACHNID) 
 		{
-			if(target.legCount == 2) output2(" Your legs are covered in a reflective black, insectile carapace up to your mid-thigh, looking more like a pair of ‘fuck-me-boots’ than exoskeleton.");
-			else if(target.legCount < 4) output2(" Your legs are covered in a reflective black, insectile carapace up to your mid-thigh, looking more like ‘fuck-me-boots’ than exoskeleton.");
-			else output2(" Black chitin covers your legs up to the mid-thigh, looking more like a set of ‘fuck-me-boots’ than insectile armor.");
+			if(target.legCount == 2) output2(" Your legs are covered in " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "shiny, hardened goo" : "a reflective black, insectile carapace") + " up to your mid-thigh, looking more like a pair of ‘fuck-me-boots’ than exoskeleton.");
+			else if(target.legCount < 4) output2(" Your legs are covered in " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "shiny, hardened goo" : "a reflective black, insectile carapace") + " up to your mid-thigh, looking more like ‘fuck-me-boots’ than exoskeleton.");
+			else output2(" " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "Hardened goo" : "Black chitin") + " covers your legs up to the mid-thigh, looking more like a set of ‘fuck-me-boots’ than insectile armor.");
 		}
 		else if(target.legType == GLOBAL.TYPE_DRIDER) 
 		{
@@ -1191,16 +1191,16 @@ public function appearance(forTarget:Creature):void
 		else if(target.legType == GLOBAL.TYPE_VULPINE) output2(" Your legs are crooked into high knees with hocks and long feet, like those of a fox; cute bulbous toes decorate the ends.");
 		else if(target.legType == GLOBAL.TYPE_DRACONIC)
 		{
-			if(target.isTaur()) output2(" Your human-like legs are sheathed in scales and end in clawed feet.");
-			else output2(" " + StringUtil.upperCase(num2Text(target.legCount)) + " human-like legs grow down from your " + target.hipDescript() + ", sheathed in scales and ending in clawed feet.");
+			if(target.isTaur()) output2(" Your human-like legs are sheathed in " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "gooey " : "") + "scales and end in clawed feet.");
+			else output2(" " + StringUtil.upperCase(num2Text(target.legCount)) + " human-like legs grow down from your " + target.hipDescript() + ", sheathed in " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "gooey " : "") + "scales and ending in clawed feet.");
 			output2(" There are three long toes on the front, and a small hind-claw on the back.");
 		}
-		else if(target.legType == GLOBAL.TYPE_KUITAN) output2(" Your legs, though covered in fur, are humanlike. Long feet on the ends bear equally long toes, and the pads on the bottoms are quite sensitive to the touch.");
+		else if(target.legType == GLOBAL.TYPE_KUITAN) output2(" Your legs, though covered in " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "goo" : "fur") + ", are humanlike. Long feet on the ends bear equally long toes, and the pads on the bottoms are quite sensitive to the touch.");
 		else if(target.legType == GLOBAL.TYPE_PANDA)
 		{
-			if(target.isTaur()) output2(" Your digitigrade legs end in fluffy panda-paws.");
-			else output2(" " + StringUtil.upperCase(num2Text(target.legCount)) + " digitigrade legs grow downwards from your waist, ending in fluffy panda-paws.");
-			output2(" You even have sharp-looking claws growing from the tips of your short toes.");
+			if(target.isTaur()) output2(" Your digitigrade legs end in " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "gummi-like" : "fluffy") + " panda-paws.");
+			else output2(" " + StringUtil.upperCase(num2Text(target.legCount)) + " digitigrade legs grow downwards from your waist, ending in " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "gummi-like" : "fluffy") + " panda-paws.");
+			output2(" You even have " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "blunt" : "sharp-looking") + " claws growing from the tips of your short toes.");
 		}
 		else if(target.legType == GLOBAL.TYPE_FROG)
 		{
@@ -1211,13 +1211,13 @@ public function appearance(forTarget:Creature):void
 		{
 			if(target.skinType != GLOBAL.SKIN_TYPE_SCALES)
 			{
-				if(target.isTaur()) output2(" Your legs are curiously coated in a layer of scales and end in human-like feet.");
-				else output2(" Your " + num2Text(target.legCount) + " legs are curiously coated in a layer of scales but are otherwise normal, human-like limbs.");
+				if(target.isTaur()) output2(" Your legs are curiously coated in a layer of " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "gooey " : "") + "scales and end in human-like feet.");
+				else output2(" Your " + num2Text(target.legCount) + " legs are curiously coated in a layer of " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "gooey " : "") + "scales but are otherwise normal, human-like limbs.");
 			}
 			else
 			{
-				if(target.isTaur()) output2(" Your scaled, plantigrade legs end in human-like feet.");
-				else output2(" " + StringUtil.upperCase(num2Text(target.legCount)) + " scaled, plantigrade legs extend below your waist, ending in human-like feet.");
+				if(target.isTaur()) output2(" Your " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "gooey" : "scaled") + ", plantigrade legs end in human-like feet.");
+				else output2(" " + StringUtil.upperCase(num2Text(target.legCount)) + " " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "gooey" : "scaled") + ", plantigrade legs extend below your waist, ending in human-like feet.");
 			}
 		}
 		//Catch all
