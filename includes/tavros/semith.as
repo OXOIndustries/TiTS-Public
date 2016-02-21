@@ -446,7 +446,7 @@ public function semithMenuNavigation(activeTopic:Function = undefined):void {
 			)
 		&&	pc.analCapacity() < chars["SEMITH"].cockVolume(0)
 		)
-			addDisabledButton(2, "Sex", "Sex", "You can't do this for some reason... You'll need to have genitals or an asshole that fit him...");
+			addDisabledButton(2, "Sex", "Sex", "You can't do this for some reason... You'll need to have genitals or an asshole that can fit him...");
 		else if(pc.lust() >= 33) addButton(2, "Booty Call", semithSexMenu, undefined, "Booty Call", "You’re here to fuck. Make that clear.");
 		else addDisabledButton(2, "Booty Call", "Booty Call", "You are just not aroused enough for that.");
 	}
@@ -515,10 +515,10 @@ public function semithSexMenu():void {
 	
 	if(!pc.hasVagina()) addDisabledButton(1, "Doggie", "Doggie", "You need a pussy for Semith to fuck it.");
 	//can't imagine there are pc which can't fit in Semith mini dick, but checked non the less:
-	else if (pc.hasVagina() && pc.biggestVaginalCapacity() < chars["SEMITH"].cockVolume(0)) addDisabledButton(1, "Doggie", "Doggie", "Your tiny cunt is too small for even Semith's little prick.");
+	else if (pc.hasVagina() && pc.biggestVaginalCapacity() < chars["SEMITH"].cockVolume(0)) addDisabledButton(1, "Doggie", "Doggie", "Your tiny cunt is too small for Semith's prick.");
 	else addButton(1, "Doggie", semithSexDoggieStyle, undefined, "Doggie", "Take his cock in the pussy.");
 	
-	if(pc.analCapacity() < chars["SEMITH"].cockVolume(0)) addDisabledButton(2, "Catch Anal", "Catch Anal", "Even Semith's small dick is too much for your butt.");
+	if(pc.analCapacity() < chars["SEMITH"].cockVolume(0)) addDisabledButton(2, "Catch Anal", "Catch Anal", "Semith's dick is too much for your butt.");
 	else addButton(2, "Catch Anal", semithSexCatchAnal, undefined, "Catch Anal", "Take it up the butt in a consensual manner.");
 }
 
