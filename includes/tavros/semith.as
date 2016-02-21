@@ -431,14 +431,23 @@ public function semithMenuNavigation(activeTopic:Function = undefined):void {
 	if(activeTopic == semithAppearance) addDisabledButton(0, "Appearance", "Appearance", "You are looking at him right now.");
 	else addButton(0, "Appearance", semithAppearance, false, "Appearance", "Give the vulkrim a once over.");
 	
-	if(activeTopic == semithEnjoysSomeRoshanBlue) addDisabledButton(1, "Sure", "Sure", "You just did that - for a couple of hours no less.");
-	else if(flags["SEMITH_DAY_LAST_SMOKED"] == days) addDisabledButton(1, "Roshan", "Roshan", "You had enough Roshan blue for one day.");
-	else addButton(1, "Sure", semithEnjoysSomeRoshanBlue, undefined, "Roshan blue", "It'll feel good, man.");
+	if(activeTopic == semithEnjoysSomeRoshanBlue) addDisabledButton(1, "Sure", "Roshan Blue", "You just did that - for a couple of hours no less.");
+	else if(flags["SEMITH_DAY_LAST_SMOKED"] == days) addDisabledButton(1, "Roshan", "Roshan Blue", "You had enough Roshan blue for one day.");
+	else addButton(1, "Sure", semithEnjoysSomeRoshanBlue, undefined, "Roshan Blue", "It'll feel good, man.");
 	
 	if(activeTopic == semithSexMenu) addDisabledButton(2, "Sex", "Sex", "You just did that.");
 	else
 	{
-		if(pc.lust() >= 33) addButton(2, "Booty Call", semithSexMenu, undefined, "Booty Call", "You’re here to fuck. Make that clear.");
+		if
+		(	(	!pc.hasGenitals()
+			||	(pc.isHerm() && pc.biggestVaginalCapacity() < chars["SEMITH"].cockVolume(0) && pc.cockThatFits(chars["SEMITH"].analCapacity()) < 0)
+			||	(pc.hasVagina() && pc.biggestVaginalCapacity() < chars["SEMITH"].cockVolume(0))
+			||	(pc.hasCock() && pc.cockThatFits(chars["SEMITH"].analCapacity()) < 0)
+			)
+		&&	pc.analCapacity() < chars["SEMITH"].cockVolume(0)
+		)
+			addDisabledButton(2, "Sex", "Sex", "You can't do this for some reason... You'll need to have genitals or an asshole that fit him...");
+		else if(pc.lust() >= 33) addButton(2, "Booty Call", semithSexMenu, undefined, "Booty Call", "You’re here to fuck. Make that clear.");
 		else addDisabledButton(2, "Booty Call", "Booty Call", "You are just not aroused enough for that.");
 	}
 	
@@ -506,10 +515,10 @@ public function semithSexMenu():void {
 	
 	if(!pc.hasVagina()) addDisabledButton(1, "Doggie", "Doggie", "You need a pussy for Semith to fuck it.");
 	//can't imagine there are pc which can't fit in Semith mini dick, but checked non the less:
-	else if (pc.hasVagina() && pc.vaginalCapacity() < chars["SEMITH"].cockVolume(0)) addDisabledButton(1, "Doggie", "Doggie", "Your tiny cunt is too small for even Semith's little prick.");
+	else if (pc.hasVagina() && pc.biggestVaginalCapacity() < chars["SEMITH"].cockVolume(0)) addDisabledButton(1, "Doggie", "Doggie", "Your tiny cunt is too small for even Semith's little prick.");
 	else addButton(1, "Doggie", semithSexDoggieStyle, undefined, "Doggie", "Take his cock in the pussy.");
 	
-	if(pc.analCapacity() < chars["SEMITH"].cockVolume(0)) addDisabledButton(2, "Catch Anal", "Catch Anal", "Even Semith small dick is too much for your butt.");
+	if(pc.analCapacity() < chars["SEMITH"].cockVolume(0)) addDisabledButton(2, "Catch Anal", "Catch Anal", "Even Semith's small dick is too much for your butt.");
 	else addButton(2, "Catch Anal", semithSexCatchAnal, undefined, "Catch Anal", "Take it up the butt in a consensual manner.");
 }
 
