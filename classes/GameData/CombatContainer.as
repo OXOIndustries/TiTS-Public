@@ -964,6 +964,10 @@ package classes.GameData
 			else
 			{
 				output("You choose not to act.");
+				if (_hostiles.length == 1 && _hostiles[0] is CrystalGooT2 && (_hostiles[0] as CrystalGooT2).ShouldIntercept())
+				{
+					(_hostiles[0] as CrystalGooT2).SpecialAction( { isWait: true } );
+				}
 				processCombat();
 			}
 		}
@@ -982,7 +986,13 @@ package classes.GameData
 				if(enemiesAlive() > 1) output("ies are");
 				else output("y is");
 				output(" so alluring?");
-				pc.lust(20+rand(20));
+				pc.lust(20 + rand(20));
+				
+				if (_hostiles.length == 1 && _hostiles[0] is CrystalGooT2 && (_hostiles[0] as CrystalGooT2).ShouldIntercept())
+				{
+					(_hostiles[0] as CrystalGooT2).SpecialAction( { isFantasize: true } );
+				}
+				
 				processCombat();	
 			}
 		}
