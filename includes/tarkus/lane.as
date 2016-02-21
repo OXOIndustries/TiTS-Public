@@ -913,8 +913,8 @@ public function lanesShopFullyUnder():void
 
 	output("\n\n[lane.HeShe] smirks that familiar smirk when you walk in, and [lane.heShe] drops [lane.hisHer] feet to the floor" + lane.mf("", ", making her bust bounce just slightly from the motion and the vibration") + ".");
 	output(" [lane.HeShe] regulates [lane.hisHer] pulse, and already you’re weak in the [pc.knees] and horny in the loins,");
-	if (pc.hasCock() && !pc.hasVagina()) output(" your [pc.eachCock] rousing to attention, hoping Lane will provide you some ‘other’ service. Beads of your [pc.cum] begin to stain your clothing as you sit.");
-	else if (pc.hasVagina() && !pc.hasCock()) output(" your [pc.vagina] moistening in rapt optimism that Lane will use [lane.hisHer] power over to you give you another life-altering orgasm.");
+	if (pc.hasCock() && !pc.hasVagina()) output(" [pc.eachCock] rousing to attention, hoping Lane will provide you some ‘other’ service. Beads of your [pc.cum] begin to stain your clothing as you sit.");
+	else if (pc.hasVagina() && !pc.hasCock()) output(" [pc.eachVagina] moistening in rapt optimism that Lane will use [lane.hisHer] power over to you give you another life-altering orgasm.");
 	else if (pc.hasVagina() && pc.hasCock()) output(" each and every part of you ready to sink deeper into [lane.hisHer] control, if it means getting off the way only [lane.heShe] can get you off anymore.");
 	else output(" which only serves to frustrate you, but your waking mind knows that your needs are secondary to [lane.hisHer], and providing yourself to Lane is the greatest pleasure you'll ever need.");
 
@@ -2345,7 +2345,7 @@ public function laneFullyHypnotisesYouDumbshit():void
 
 	output("Lane spreads [lane.hisHer] legs apart, already making [lane.himHer]self comfortable before your hypnotized, immobile, impressionable, compliant self... [lane.heShe] doesn’t say anything as [lane.heShe] stares at you, rubbing [lane.himHer]self through the fabric of [lane.hisHer] pants and undergarment, arousing [lane.himHer]self as [lane.heShe] imagines the oh-so-delectable things [lane.heShe] could make [lane.hisHer] absolute favorite customer do...");
 
-	output("\n\n[lane.HeShe] frowns to himself, and [lane.hisHer] eyes wander for a moment. [lane.HeShe] begins to fight with [lane.himHer]self silently, trying to decide if [lane.heShe]’s gone too far already and if [lane.heShe] should just give you what it is you paid for... but that’s a short lived battle, and [lane.hisHer] eyes lock on yours once more, steeled with dangerous, predatory resolve." + lane.mf(" The nub of his penis slowly but determinately erecting underneath his clothing is plainly visible, and he paws at it with one hand.", "Moisture begins to dampen the center of her undergarment as she palms at herself idly, and her musk joins the incense of the candles in your nose."));
+	output("\n\n[lane.HeShe] frowns to [lane.himHer]self, and [lane.hisHer] eyes wander for a moment. [lane.HeShe] begins to fight with [lane.himHer]self silently, trying to decide if [lane.heShe]’s gone too far already and if [lane.heShe] should just give you what it is you paid for... but that’s a short lived battle, and [lane.hisHer] eyes lock on yours once more, steeled with dangerous, predatory resolve." + lane.mf(" The nub of his penis slowly but determinately erecting underneath his clothing is plainly visible, and he paws at it with one hand.", "Moisture begins to dampen the center of her undergarment as she palms at herself idly, and her musk joins the incense of the candles in your nose."));
 
 	output("\n\n<i>“[pc.name]”,</i> [lane.heShe] says, but of course, you don’t answer. <i>“You can no longer stand it. Lane is everything you ever wanted in life. You can’t bear the thought of leaving [lane.hisHer] hut today without fucking [lane.himHer]. " + lane.mf("You want his dick in your mouth; the taste of his cock on your tongue and the feel of his cum in your throat is the greatest pleasure in your life. You want his dick in your ass; knowing that Lane is inside you, owning you, and dominating you, will forever be your wildest, most desirable indulgence.", "You want her cunt in your mouth; her cum is finer than any wine, sweeter than any honey, and smoother than any malt. You want her to dominate you; being underneath her as she asserts herself is where you belong, and nothing is more relieving, more thrilling, or more pleasurable than being where you belong.") + " You will surrender yourself, mentally, physically, and emotionally to Lane, and you will not object to whatever [lane.heShe] desires. [lane.HisHer] wishes, [lane.hisHer] kinks, and [lane.hisHer] desires are now yours.”</i>");
 
@@ -2367,7 +2367,7 @@ public function laneFullyHypnotisesYouDumbshit():void
 
 	output("\n\n<i>“I’m yours! I’m yours until the day I die!”</i>");
 
-	output("\n\n[lane.HeShe] hums to himself. <i>“Starting tomorrow, I want you to wire me five hundred credits each and every day that you are mine, [pc.name].”</i> You look up at [lane.himHer], surprised, mouth agape – your mind is racing with ways you could possibly afford that. <i>“That should be chump change for the heir");
+	output("\n\n[lane.HeShe] hums to [lane.himHer]self. <i>“Starting tomorrow, I want you to wire me five hundred credits each and every day that you are mine, [pc.name].”</i> You look up at [lane.himHer], surprised, mouth agape – your mind is racing with ways you could possibly afford that. <i>“That should be chump change for the heir");
 	if (pc.mf("m", "f") == "f") output("ess");
 	output(" of Steele Tech, I think.”</i>");
 
