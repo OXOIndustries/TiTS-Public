@@ -68,11 +68,25 @@ package classes.Engine.Combat
 			{
 				if (target.isPlural) 
 				{
-					output(" " + target.capitalA + possessive(target.short) + " shields crackle but hold.");
+					if (target.shieldDisplayName.toLowerCase().indexOf("shield") != -1)
+					{
+						output(" " + target.capitalA + possessive(target.short) + " shields crackle but hold.");
+					}
+					else
+					{
+						output(" " + target.capitalA + possessive(target.short) + " armored coatings absorb the brunt of the damage but remain intact.");
+					}
 				}
 				else
 				{
-					output(" " + target.capitalA + possessive(target.short) + " shield crackles but holds."); 
+					if (target.shieldDisplayName.toLowerCase().indexOf("shield") != -1)
+					{
+						output(" " + target.capitalA + possessive(target.short) + " shield crackles but holds."); 
+					}
+					else
+					{
+						output(" " + target.capitalA + possessive(target.short) + " armor absorbs the brunt of the damage but remains intact.");
+					}
 				}
 			}
 		}
@@ -87,11 +101,25 @@ package classes.Engine.Combat
 			{
 				if (target.isPlural) 
 				{
-					output(" There is a concussive boom and tingling aftershock of energy as " + target.a + possessive(target.short) + " shields are breached.");
+					if (target.shieldDisplayName.toLowerCase().indexOf("shield") != -1)
+					{
+						output(" There is a concussive boom and tingling aftershock of energy as " + target.a + possessive(target.short) + " shields are breached.");
+					}
+					else
+					{
+						output(" A series of loud ‘thunks’ ring out as " + target.a + possessive(target.short) + " armored coatings finally fail!");
+					}
 				}
 				else 
 				{
-					output(" There is a concussive boom and tingling aftershock of energy as " + target.a + possessive(target.short) + " shield is breached.");
+					if (target.shieldDisplayName.toLocaleLowerCase().indexOf("shield") != -1)
+					{
+						output(" There is a concussive boom and tingling aftershock of energy as " + target.a + possessive(target.short) + " shield is breached.");
+					}
+					else
+					{
+						output(" A loud ‘thunk’ rings out as " + target.a + possessive(target.short) + " armored coating finally fails!");
+					}
 				}
 			}
 		}

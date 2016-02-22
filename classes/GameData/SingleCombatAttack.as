@@ -19,6 +19,56 @@ package classes.GameData
 		public var EnergyCost:Number = 0; // Base energy cost of the attack
 		public var RequiresTarget:Boolean = true; // Require a target to be selected
 		
+		public static const ATF_MELEE:uint = 1;
+		public static const ATF_RANGED:uint = 2;
+		public static const ATF_TEASE:uint = 3;
+		public static const ATF_SQUIRT:uint = 4;
+		public static const ATF_SPECIAL:uint = 5;
+		public static const ATF_AOE:uint = 6;
+		public static const ATF_WAIT:uint = 7;
+		public static const ATF_STAND:uint = 8;
+		public static const ATF_FANTASIZE:uint = 9;
+		public static const ATF_FLEE:uint = 10;
+		
+		private var AttackTypeFlags:Object;
+		public function SetAttackTypeFlags(... args):void
+		{
+			AttackTypeFlags = { };
+			for each (var elem:uint in args)
+			{
+				switch (elem)
+				{
+					case ATF_MELEE: AttackTypeFlags["isMelee"] = true; break;
+					case ATF_RANGED: AttackTypeFlags["isRanged"] = true; break;
+					case ATF_TEASE: AttackTypeFlags["isTease"] = true; break;
+					case ATF_SQUIRT: AttackTypeFlags["isSquirt"] = true; break;
+					case ATF_SPECIAL: AttackTypeFlags["isSpecial"] = true; break;
+					case ATF_AOE: AttackTypeFlags["isAOE"] = true; break;
+					case ATF_WAIT: AttackTypeFlags["isWait"] = true; break;
+					case ATF_STAND: AttackTypeFlags["isStand"] = true; break;
+					case ATF_FANTASIZE: AttackTypeFlags["isFantasize"] = true; break;
+					case ATF_FLEE: AttackTypeFlags["isFlee"] = true; break;
+					default: trace("Unknown attack type flag value: " + elem); break;
+					
+				}
+			}
+		}
+		public function GetAttackTypeFlags():Object
+		{
+			if (AttackTypeFlags == null) return { };
+			
+			var o:Object = { };
+			for (var key:String in AttackTypeFlags)
+			{
+				if (AttackTypeFlags[key] == true)
+				{
+					o[key] = true;
+				}
+			}
+			return o;
+		}
+		
+		
 		public var RequiresClass:int = -1; // If not -1, limit to specific class
 		public var RequiresPerk:String = null; // If not null, require perk
 		public var RequiresLevel:int = -1; // If not -1, require minimum level
