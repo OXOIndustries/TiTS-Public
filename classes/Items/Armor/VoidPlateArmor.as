@@ -50,7 +50,7 @@ package classes.Items.Armor
 			this.resistances.poison.resistanceValue = 15;
 			
 			this.resistances.addFlag(DamageFlag.MIRRORED);
-			this.resistances.addFlag(DamageFlag.GROUNDED);
+			//this.resistances.addFlag(DamageFlag.GROUNDED);
 			
 			this.version = this._latestVersion;
 		}

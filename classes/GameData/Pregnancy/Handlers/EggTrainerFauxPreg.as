@@ -15,7 +15,7 @@ package classes.GameData.Pregnancy.Handlers
 		public function EggTrainerFauxPreg() 
 		{
 			_handlesType = "EggTrainerFauxPreg";
-			_basePregnancyIncubationTime = 1728000; //Approx 7 days, aka 168 hours
+			_basePregnancyIncubationTime = 172800000;
 			_basePregnancyChance = 1;
 			_alwaysImpregnate = true;
 			_ignoreInfertility = true;
