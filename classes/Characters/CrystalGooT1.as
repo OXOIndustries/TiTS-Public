@@ -76,7 +76,7 @@ package classes.Characters
 			this.rangedWeapon = new EmptySlot();
 			
 			shield = new BasicShield();
-			shield.shields = 100;
+			shield.shields = 80;
 			baseShieldKineticResistance = shield.resistances.kinetic.resistanceValue = 25.0;
 			
 			shield.hasRandomProperties = true;
@@ -258,7 +258,7 @@ package classes.Characters
 			}
 			
 			// If this is the first round that goo camo has persisted, use a special attack
-			if (hasStatusEffect("GooCamo") && statusEffectv1("GooCamo") == 1)
+			if (hasStatusEffect("GooCamo") && (statusEffectv1("GooCamo") == 1 || target.hasStatusEffect("Grappled")))
 			{
 				SneakSqueeze(target);
 				return;
@@ -273,12 +273,27 @@ package classes.Characters
 			var attacks:Array = [];
 			
 			attacks.push( { v: LashOut, w: (hasStatusEffect("Unarmored") ? 10 : 40) } );
-			attacks.push( { v: HaveANiceTrip, w: (hasStatusEffect("Unarmored") ? 20 : 10) } );
+			attacks.push( { v: RegularMelee, w: 30 } );
+			if (!target.hasStatusEffect("Tripped")) attacks.push( { v: HaveANiceTrip, w: (hasStatusEffect("Unarmored") ? 20 : 10) } );
 			if (!hasStatusEffect("GooCamo Cooldown")) attacks.push( { v: FalseRetreat, w: (hasStatusEffect("Unarmored") ? 20 : 10) } );
 			
 			weightedRand(attacks)(target);
 			
 			//tactics change as armor depletes; gets less evasive, slower, and less damaging as leg-points break off
+		}
+		
+		private function RegularMelee(target:Creature):void
+		{
+			if (hasStatusEffect("Unarmored"))
+			{
+				meleeWeapon = slapMeleeWeapon;
+			}
+			else
+			{
+				meleeWeapon = kickMeleeWeapon;
+			}
+			
+			CombatAttacks.MeleeAttack(this, target);
 		}
 		
 		private function LashOut(target:Creature):void
@@ -333,7 +348,7 @@ package classes.Characters
 				{
 					output(" It takes out your support and you crash to the cave floor!");
 					applyDamage(new TypeCollection( { kinetic: 7 + rand(5) } ), this, target, "minimal");
-					target.createStatusEffect("Tripped");
+					target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped!", true, 0);
 				}
 			}
 			else
@@ -352,7 +367,7 @@ package classes.Characters
 					output(" Your [pc.foot] slips on its gooey trunk and you stumble, landing right on the alien’s body! It drags you to the ground, oozing warm tongues of flesh into your intimate places. Using all your focus, you");
 					if (target.lust() >= target.lustMax() * 0.66) output(" barely");
 					output(" resist its caresses and roll away.");
-					target.createStatusEffect("Tripped");
+					target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped!", true, 0);
 					applyDamage(new TypeCollection( { tease: 5 + rand(3) } ), this, target, "minimal");
 				}
 			}
@@ -379,11 +394,12 @@ package classes.Characters
 			else
 			{
 				createStatusEffect("GooCamo", 0, 0, 0, 0, false, "Icon_Blind", "The ganrael is attempting to hide in the surroundings!", true, 0);
+				UpdateState();
 			}
 			
 			var chanceRoll:Number = ((target.aim() + target.intelligence()) / 3);
 			
-			output("The ganrael drops and begins to weave through the rocks, trying to elude you!");
+			output("The ganrael drops and begins to weave through the rocks, trying to elude you!\n\n");
 			
 			// This is a mess, but its the clearest way I can handle this.
 			
@@ -392,7 +408,8 @@ package classes.Characters
 			{
 				removeStatusEffect("GooCamo");
 				createStatusEffect("GooCamo Cooldown", 2);
-				output(" You keep sight of it with your honed aim and superior intelligence.");
+				output(" You keep sight of it with your honed aim and superior intelligence.\n\n");
+				UpdateState();
 				return;
 			}
 			
@@ -401,7 +418,8 @@ package classes.Characters
 			{
 				removeStatusEffect("GooCamo");
 				createStatusEffect("GooCamo Cooldown", 2);
-				output(" It’s hard to track, but damage has left colorful gaps in the lichen covering.");
+				output(" It’s hard to track, but damage has left colorful gaps in the lichen covering.\n\n");
+				UpdateState();
 				return;
 			}
 			
@@ -412,7 +430,8 @@ package classes.Characters
 				{
 					removeStatusEffect("GooCamo");
 					createStatusEffect("GooCamo Cooldown", 2);
-					output(" Its exposed " + skinTone +" and goopy sounds stick out well enough that you can keep tracking it.");
+					output(" Its exposed " + skinTone +" and goopy sounds stick out well enough that you can keep tracking it.\n\n");
+					UpdateState();
 					return;
 				}
 			}
@@ -424,7 +443,8 @@ package classes.Characters
 				{
 					removeStatusEffect("GooCamo");
 					createStatusEffect("GooCamo Cooldown", 2);
-					output(" Your drone continues to track it, making it easy to reacquire.");
+					output(" Your drone continues to track it, making it easy to reacquire.\n\n");
+					UpdateState();
 					return;
 				}
 			}
@@ -498,11 +518,11 @@ package classes.Characters
 				output(" The ganrael reels from your indiscriminate attack, revealing itself and costing it the element of surprise.");
 				removeStatusEffect("GooCamo");
 				createStatusEffect("GooCamo Cooldown", 3);
-				skipTurn = false;
+				UpdateState();
+				skipTurn = true;
 				return;
 			}
-			
-			if (attackOpts["isWait"] != undefined)
+			else if (attackOpts["isWait"] != undefined)
 			{
 				output("You stop moving and try to calm yourself, preparing for the blow.");
 				if (rand(10) <= 3)
@@ -510,13 +530,16 @@ package classes.Characters
 					output(" The ganrael sails at you and you throw it to the ground. It skitters away and, though its stoic mask doesn’t show it, seems a little surprised.");
 					removeStatusEffect("GooCamo");
 					createStatusEffect("GooCamo Cooldown", 3);
+					UpdateState();
 					skipTurn = true;
 					return;
 				}
 				else
 				{
 					output("\n\nYour newfound tranquility makes it slightly less stressful when the ganrael tackles you from cover and wraps you up in its body, laughing.");
-					pc.createStatusEffect("Grappled", 9999);
+					pc.createStatusEffect("Grappled", 0, 40, 0, 0, false, "Constrict", "The ganrael has wrapped itself tight around you!", true, 0);
+					UpdateState();
+					skipTurn = true;
 				}
 			}
 			else if (attackOpts["isFlee"] != undefined)
@@ -527,15 +550,34 @@ package classes.Characters
 					if (hasStatusEffect("Unarmored")) output(" goopy fingers");
 					else output(" hard hands");
 					output(" grab your [pc.foot] and bring you violently to the ground! The ganrael wraps you in its body, pinning your wings.");
+					pc.createStatusEffect("Grappled", 0, 40, 0, 0, false, "Constrict", "The ganrael has wrapped itself tight around you!", true, 0);
+					UpdateState();
+					skipTurn = true;
 				}
 				else
 				{
 					output("The skittering sounds bore in from all directions until you can’t take it anymore, and you bolt. But when you pass an outcropping of rock, a blur tackles you, bringing you the the ground! The ganrael wraps you in its body, laughing.");
+					pc.createStatusEffect("Grappled", 0, 40, 0, 0, false, "Constrict", "The ganrael has wrapped itself tight around you!", true, 0);
+					UpdateState();
+					skipTurn = true;
 				}
+			}
+			else if (attackOpts["isSpecial"] != undefined)
+			{
+				if (rand(10) == 0)
+				{
+					output("You fiddle with your gear as quickly as possible, but before you make much progress a " + skinTone+ " streak crashes into you, sending you tumbling to the ground, the ganrael swiftly landing atop you!");
+					pc.createStatusEffect("Grappled", 0, 40, 0, 0, false, "Constrict", "The ganrael has wrapped itself tight around you!", true, 0);
+					UpdateState();
+				}
+				skipTurn = true;
 			}
 			else
 			{
 				output(" The creature bowls you over and its body wraps around you! You’re trapped!");
+				pc.createStatusEffect("Grappled", 0, 40, 0, 0, false, "Constrict", "The ganrael has wrapped itself tight around you!", true, 0);
+				UpdateState();
+				skipTurn = true;
 			}
 		}
 		
@@ -559,7 +601,10 @@ package classes.Characters
 				//lust damage
 				applyDamage(new TypeCollection( { tease: 5 + rand(5) } ), this, target, "minimal"); // 9999 damage
 				
-				target.createStatusEffect("Grappled", 0, 40, 0, 0, false, "Constrict", "The ganrael has wrapped itself tight around you!", true, 0);
+				if (!target.hasStatusEffect("Grappled"))
+				{
+					target.createStatusEffect("Grappled", 0, 40, 0, 0, false, "Constrict", "The ganrael has wrapped itself tight around you!", true, 0);
+				}
 			}
 			//if armored
 			else
@@ -574,7 +619,11 @@ package classes.Characters
 				damage += rand(damage);
 				
 				applyDamage(new TypeCollection( { kinetic: damage }, DamageFlag.CRUSHING ), this, target, "minimal");
-				target.createStatusEffect("Grappled", 0, 40, 0, 0, false, "Constrict", "The ganrael has wrapped itself tight around you!", true, 0);
+				
+				if (!target.hasStatusEffect("Grappled"))
+				{
+					target.createStatusEffect("Grappled", 0, 40, 0, 0, false, "Constrict", "The ganrael has wrapped itself tight around you!", true, 0);
+				}
 			}
 		}
 		
