@@ -1,6 +1,7 @@
 public function encounterCrystalGooV2():void 
 {
-	
+	if (rand(2) == 0) crystalGooEncounterType1();
+	else crystalGooEncounterType2();
 }	
 
 public function crystalGooEncounterType1():void
@@ -127,7 +128,7 @@ public function crystalGooEncounterType1():void
 	addButton(0, "Next", CombatManager.beginCombat);
 }
 
-public function encounterCrystalGooType2():void
+public function crystalGooEncounterType2():void
 {
 	var tEnemy:Creature = new CrystalGooT2();
 

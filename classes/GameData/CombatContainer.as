@@ -957,14 +957,14 @@ package classes.GameData
 				else output("You choose not to act.");
 				processCombat();
 			}
-			else if (_hostiles.length == 1 && _hostiles[0] is CrystalGooT1 && (_hostiles[0] as CrystalGooT1).ShouldIntercept())
-			{
-				(_hostiles[0] as CrystalGooT1).SneakSqueezeAttackReaction( { isWait: true } );
-			}
 			else
 			{
 				output("You choose not to act.");
-				if (_hostiles.length == 1 && _hostiles[0] is CrystalGooT2 && (_hostiles[0] as CrystalGooT2).ShouldIntercept())
+				if (_hostiles.length == 1 && _hostiles[0] is CrystalGooT1 && (_hostiles[0] as CrystalGooT1).ShouldIntercept({isWait: true}))
+				{
+					(_hostiles[0] as CrystalGooT1).SneakSqueezeAttackReaction( { isWait: true } );
+				}
+				else if (_hostiles.length == 1 && _hostiles[0] is CrystalGooT2 && (_hostiles[0] as CrystalGooT2).ShouldIntercept({ isWait: true }))
 				{
 					(_hostiles[0] as CrystalGooT2).SpecialAction( { isWait: true } );
 				}
@@ -975,26 +975,23 @@ package classes.GameData
 		private function fantasizeRound():void
 		{
 			clearOutput();
+
+			output("You decide you'd rather fantasize than fight back at this point. Why bother when your enem");
+			if(enemiesAlive() > 1) output("ies are");
+			else output("y is");
+			output(" so alluring?");
+			pc.lust(20 + rand(20));
 			
-			if (_hostiles.length == 1 && _hostiles[0] is CrystalGooT1 && (_hostiles[0] as CrystalGooT1).ShouldIntercept())
+			if (_hostiles.length == 1 && _hostiles[0] is CrystalGooT1 && (_hostiles[0] as CrystalGooT1).ShouldIntercept({ isFantasize: true }))
 			{
 				(_hostiles[0] as CrystalGooT1).SneakSqueezeAttackReaction( { isFantasize: true } );
 			}
-			else
+			else if (_hostiles.length == 1 && _hostiles[0] is CrystalGooT2 && (_hostiles[0] as CrystalGooT2).ShouldIntercept({ isFantasize: true }))
 			{
-				output("You decide you'd rather fantasize than fight back at this point. Why bother when your enem");
-				if(enemiesAlive() > 1) output("ies are");
-				else output("y is");
-				output(" so alluring?");
-				pc.lust(20 + rand(20));
-				
-				if (_hostiles.length == 1 && _hostiles[0] is CrystalGooT2 && (_hostiles[0] as CrystalGooT2).ShouldIntercept())
-				{
-					(_hostiles[0] as CrystalGooT2).SpecialAction( { isFantasize: true } );
-				}
-				
-				processCombat();	
+				(_hostiles[0] as CrystalGooT2).SpecialAction( { isFantasize: true } );
 			}
+			
+			processCombat();
 		}
 		
 		private function standupRound():void
@@ -1429,7 +1426,7 @@ package classes.GameData
 			{
 				if (!pc.hasStatusEffect("Reduced Goo"))
 				{
-					addButton(bOff, "Goo Clone", selectSimpleAttack, { func: kGAMECLASS.pcGooClone }, "Goo Clone", "Have [goo.name] hop off and start teasing your enemy. Reduces your armor value, but inflicts lust over time.");
+					addButton(bOff, "Goo Clone", selectSimpleAttack, { func: kGAMECLASS.pcGooClone, isSpecial: true }, "Goo Clone", "Have [goo.name] hop off and start teasing your enemy. Reduces your armor value, but inflicts lust over time.");
 				}
 				else
 				{
@@ -1506,9 +1503,13 @@ package classes.GameData
 			clearOutput();
 			clearMenu();
 			
-			if (opts.tar is CrystalGooT1 && (opts.tar as CrystalGooT1).ShouldIntercept())
+			if (opts.tar is CrystalGooT1 && (opts.tar as CrystalGooT1).ShouldIntercept(opts.attack.GetAttackTypeFlags()))
 			{
-				(opts.tar as CrystalGooT1).SneakSqueezeAttackReaction(opts);
+				(opts.tar as CrystalGooT1).SneakSqueezeAttackReaction(opts.attack.GetAttackTypeFlags());
+			}
+			else if (opts.tar is CrystalGooT2 && (opts.tar as CrystalGooT2).ShouldIntercept(opts.attack.GetAttackTypeFlags()))
+			{
+				(opts.tar as CrystalGooT2).SpecialAction(opts.attack.GetAttackTypeFlags());
 			}
 			else
 			{
@@ -1581,9 +1582,13 @@ package classes.GameData
 			kGAMECLASS.setAttacker(pc);
 			kGAMECLASS.setEnemy(opts.tar);
 			
-			if (opts.tar is CrystalGooT1 && (opts.tar as CrystalGooT1).ShouldIntercept())
+			if (opts.tar is CrystalGooT1 && (opts.tar as CrystalGooT1).ShouldIntercept(opts))
 			{
 				(opts.tar as CrystalGooT1).SneakSqueezeAttackReaction(opts);
+			}
+			else if (opts.tar is CrystalGooT2 && (opts.tar as CrystalGooT2).ShouldIntercept(opts))
+			{
+				(opts.tar as CrystalGooT2).SpecialAction(opts);
 			}
 			else
 			{
@@ -1673,9 +1678,13 @@ package classes.GameData
 			
 			clearOutput();
 			
-			if (target is CrystalGooT1 && (target as CrystalGooT1).ShouldIntercept())
+			if (target is CrystalGooT1 && (target as CrystalGooT1).ShouldIntercept({ isTease: true }))
 			{
 				(target as CrystalGooT1).SneakSqueezeAttackReaction( { isTease: true } );
+			}
+			else if (target is CrystalGooT2 && (target as CrystalGooT2).ShouldIntercept( { isTease: true } ))
+			{
+				(target as CrystalGooT2).SpecialAction( { isTease: true } );
 			}
 			else
 			{
@@ -1833,9 +1842,13 @@ package classes.GameData
 			
 			clearOutput();
 			
-			if (target is CrystalGooT1 && (target as CrystalGooT1).ShouldIntercept())
+			if (target is CrystalGooT1 && (target as CrystalGooT1).ShouldIntercept({ isTease: true }))
 			{
 				(target as CrystalGooT1).SneakSqueezeAttackReaction( { isTease: true } );
+			}
+			else if (target is CrystalGooT2 && (target as CrystalGooT2).ShouldIntercept( { isTease: true } ))
+			{
+				(target as CrystalGooT2).SpecialAction( { isTease: true } );
 			}
 			else
 			{
@@ -1968,9 +1981,13 @@ package classes.GameData
 		
 			clearOutput();
 			
-			if (target is CrystalGooT1 && (target as CrystalGooT1).ShouldIntercept())
+			if (target is CrystalGooT1 && (target as CrystalGooT1).ShouldIntercept({ isTease: true }))
 			{
 				(target as CrystalGooT1).SneakSqueezeAttackReaction( { isTease: true } );
+			}
+			else if (target is CrystalGooT2 && (target as CrystalGooT2).ShouldIntercept( { isTease: true } ))
+			{
+				(target as CrystalGooT2).SpecialAction( { isTease: true } );
 			}
 			else
 			{
@@ -2095,9 +2112,13 @@ package classes.GameData
 			
 			clearOutput();
 			
-			if (target is CrystalGooT1 && (target as CrystalGooT1).ShouldIntercept())
+			if (target is CrystalGooT1 && (target as CrystalGooT1).ShouldIntercept({ isTease: true }))
 			{
-				(target as CrystalGooT1).SneakSqueezeAttackReaction( { isTease:true } );
+				(target as CrystalGooT1).SneakSqueezeAttackReaction( { isTease: true } );
+			}
+			else if (target is CrystalGooT2 && (target as CrystalGooT2).ShouldIntercept( { isTease: true } ))
+			{
+				(target as CrystalGooT2).SpecialAction( { isTease: true } );
 			}
 			else
 			{
@@ -2491,9 +2512,13 @@ package classes.GameData
 			
 			clearOutput();
 			
-			if (target is CrystalGooT1 && (target as CrystalGooT1).ShouldIntercept())
+			if (target is CrystalGooT1 && (target as CrystalGooT1).ShouldIntercept({ isSquirt: true }))
 			{
 				(target as CrystalGooT1).SneakSqueezeAttackReaction( { isSquirt: true } );
+			}
+			else if (target is CrystalGooT2 && (target as CrystalGooT2).ShouldIntercept( { isSquirt: true } ))
+			{
+				(target as CrystalGooT2).SpecialAction( { isSquirt: true } );
 			}
 			else
 			{

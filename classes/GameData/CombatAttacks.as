@@ -97,6 +97,7 @@ package classes.GameData
 			Headbutt.RequiresClass = GLOBAL.CLASS_MERCENARY;
 			Headbutt.TooltipTitle = "Headbutt";
 			Headbutt.TooltipBody = "A physique-based attack that does not benefit from weapon damage but has a chance of stunning your target.";
+			Headbutt.SetAttackTypeFlags(SingleCombatAttack.ATF_MELEE, SingleCombatAttack.ATF_SPECIAL);
 			Headbutt.Implementor = HeadbuttImpl; // headbutt
 			a.push(Headbutt);
 			
@@ -109,6 +110,7 @@ package classes.GameData
 			RapidFire.TooltipTitle = "Rapid Fire";
 			RapidFire.TooltipBody = "Perform a long range attack with two additional, low accuracy shots following it.";
 			RapidFire.IsRangedBased = true;
+			RapidFire.SetAttackTypeFlags(SingleCombatAttack.ATF_RANGED, SingleCombatAttack.ATF_SPECIAL);
 			RapidFire.Implementor = RapidFireImpl; // rapidFire
 			a.push(RapidFire);
 			
@@ -121,6 +123,7 @@ package classes.GameData
 			PowerStrike.TooltipTitle = "Power Strike";
 			PowerStrike.TooltipBody = "Strike once with a melee weapon for 200% of normal damage.";
 			PowerStrike.IsMeleeBased = true;
+			PowerStrike.SetAttackTypeFlags(SingleCombatAttack.ATF_MELEE, SingleCombatAttack.ATF_SPECIAL);
 			PowerStrike.Implementor = PowerStrikeImpl; // powerStrike
 			a.push(PowerStrike);
 			
@@ -131,6 +134,7 @@ package classes.GameData
 			TakeCover.RequiresPerk = "Take Cover";
 			TakeCover.TooltipTitle = "Take Cover";
 			TakeCover.TooltipBody = "Increased ranged evasion to 90% for three turns.";
+			TakeCover.SetAttackTypeFlags(SingleCombatAttack.ATF_SPECIAL);
 			TakeCover.Implementor = TakeCoverImpl; // takeCover;
 			TakeCover.RequiresTarget = false;
 			a.push(TakeCover);
@@ -142,7 +146,8 @@ package classes.GameData
 			CarpetGrenades.RequiresPerk = "Carpet Grenades";
 			CarpetGrenades.DisabledIfEffectedBy = ["Disarmed"];
 			CarpetGrenades.TooltipTitle = "Carpet Grenades";
-			CarpetGrenades.TooltipBody = "An attack that is extra effective against multiple foes. Its damage is increased by level and intelligence."; 
+			CarpetGrenades.TooltipBody = "An attack that is extra effective against multiple foes. Its damage is increased by level and intelligence.";
+			CarpetGrenades.SetAttackTypeFlags(SingleCombatAttack.ATF_AOE, SingleCombatAttack.ATF_SPECIAL);
 			CarpetGrenades.Implementor = CarpetGrenadesImpl; // carpetGrenades
 			CarpetGrenades.RequiresTarget = false;
 			a.push(CarpetGrenades);
@@ -155,6 +160,7 @@ package classes.GameData
 			DetonationCharge.DisabledIfEffectedBy = ["Disarmed"];
 			DetonationCharge.TooltipTitle = "Detonation Charge";
 			DetonationCharge.TooltipBody = "Deals a high amount of level and intelligence-based thermal damage against a single foe.";
+			DetonationCharge.SetAttackTypeFlags(SingleCombatAttack.ATF_RANGED, SingleCombatAttack.ATF_SPECIAL);
 			DetonationCharge.Implementor = DetonationChargeImpl; // detCharge
 			a.push(DetonationCharge);
 			
@@ -166,6 +172,7 @@ package classes.GameData
 			SecondWind.DisabledIfEffectedBy = ["Used Second Wind"];
 			SecondWind.TooltipTitle = "Second Wind";
 			SecondWind.TooltipBody = "Regenerate 50% of your maximum HP and energy once per battle! An invaluable ability for the mercenary in the field.";
+			SecondWind.SetAttackTypeFlags(SingleCombatAttack.ATF_SPECIAL);
 			SecondWind.Implementor = SecondWindImpl;
 			SecondWind.RequiresTarget = false;
 			a.push(SecondWind);
@@ -178,6 +185,7 @@ package classes.GameData
 			ParalyzingShock.TooltipTitle = "Paralyzing Shock";
 			ParalyzingShock.TooltipBody = "An ability with an intelligence-based chance to paralyze a single foe. Enemies with higher physique scores will be more likely to resist its effects!";
 			ParalyzingShock.IsRangedBased = true;
+			ParalyzingShock.SetAttackTypeFlags(SingleCombatAttack.ATF_RANGED, SingleCombatAttack.ATF_SPECIAL);
 			ParalyzingShock.Implementor = ParalyzingShockImpl;
 			a.push(ParalyzingShock);
 			
@@ -191,6 +199,7 @@ package classes.GameData
 			Volley.TooltipTitle = "Volley";
 			Volley.TooltipBody = "Perform a ranged attack with an additional, low-accuracy attack added on. Can blind foes based upon aim and the target's reflexes, but only if done with <b>an energy weapon.</b>";
 			Volley.Implementor = VolleyImpl;
+			Volley.SetAttackTypeFlags(SingleCombatAttack.ATF_RANGED, SingleCombatAttack.ATF_SPECIAL);
 			a.push(Volley);
 			
 			// Overcharge
@@ -204,6 +213,7 @@ package classes.GameData
 			Overcharge.TooltipTitle = "Overcharge";
 			Overcharge.TooltipBody = "A powerful ranged attack, Overcharge deals 150% damage and has a chance of stunning. Higher intelligence increases the chance of successfully stunning your foe.";
 			Overcharge.Implementor = OverchargeImpl;
+			Overcharge.SetAttackTypeFlags(SingleCombatAttack.ATF_RANGED, SingleCombatAttack.ATF_SPECIAL);
 			a.push(Overcharge);
 			
 			// Deflector Regen
@@ -215,6 +225,7 @@ package classes.GameData
 			DeflectorRegeneration.TooltipBody = "Restores a portion of your shields every turn for four turns. Higher intelligence will increase the amount.";
 			DeflectorRegeneration.RequiresTarget = false;
 			DeflectorRegeneration.Implementor = DeflectorRegenerationImpl;
+			DeflectorRegeneration.SetAttackTypeFlags(SingleCombatAttack.ATF_SPECIAL);
 			a.push(DeflectorRegeneration);
 			
 			// Power Surge
@@ -226,6 +237,7 @@ package classes.GameData
 			PowerSurge.TooltipBody = "Restores a moderate amount of shields based on intelligence.";
 			PowerSurge.RequiresTarget = false;
 			PowerSurge.Implementor = PowerSurgeImpl;
+			PowerSurge.SetAttackTypeFlags(SingleCombatAttack.ATF_SPECIAL);
 			a.push(PowerSurge);
 			
 			// Thermal Disruptor
@@ -237,6 +249,7 @@ package classes.GameData
 			ThermalDisruptor.TooltipTitle = "Thermal Disruptor";
 			ThermalDisruptor.TooltipBody = "Deals a large amount of intelligence-based thermal damage to a single target.";
 			ThermalDisruptor.Implementor = ThermalDisruptorImpl;
+			ThermalDisruptor.SetAttackTypeFlags(SingleCombatAttack.ATF_RANGED, SingleCombatAttack.ATF_SPECIAL);
 			a.push(ThermalDisruptor);
 			
 			// Grav Disruptor
@@ -248,6 +261,7 @@ package classes.GameData
 			GravidicDisruptor.TooltipTitle = "Gravidic Disruptor";
 			GravidicDisruptor.TooltipBody = "Deals a moderate amount of intelligence-based, Unresistable damage to a single target.";
 			GravidicDisruptor.Implementor = GravidicDisruptorImpl;
+			GravidicDisruptor.SetAttackTypeFlags(SingleCombatAttack.ATF_RANGED, SingleCombatAttack.ATF_SPECIAL);
 			a.push(GravidicDisruptor);
 			
 			// Shield Hack
@@ -258,6 +272,7 @@ package classes.GameData
 			ShieldHack.TooltipTitle = "Shield Hack";
 			ShieldHack.TooltipBody = "An attack that deals a high amount of electric-typed damage to a target's shields. Damage is increased by intelligence.";
 			ShieldHack.Implementor = ShieldHackImpl;
+			ShieldHack.SetAttackTypeFlags(SingleCombatAttack.ATF_RANGED, SingleCombatAttack.ATF_SPECIAL);
 			a.push(ShieldHack);
 			
 			// Weapon Hack
@@ -268,6 +283,7 @@ package classes.GameData
 			WeaponHack.TooltipTitle = "Weapon Hack";
 			WeaponHack.TooltipBody = "Attempt to neutralize a foe's <b>energy weapon</b> using your intelligence. Smarter foes will resist your attempts.";
 			WeaponHack.Implementor = WeaponHackImpl;
+			WeaponHack.SetAttackTypeFlags(SingleCombatAttack.ATF_RANGED, SingleCombatAttack.ATF_SPECIAL);
 			a.push(WeaponHack);
 			
 			// PocketSand/Flash Grenade
@@ -279,6 +295,7 @@ package classes.GameData
 			PocketSand.TooltipTitle = "Pocket Sand";
 			PocketSand.TooltipBody = "Produce some sand from your level and use it to blind your enemies! Better aim will help you land the attack.";
 			PocketSand.Implementor = PocketSandImp;
+			PocketSand.SetAttackTypeFlags(SingleCombatAttack.ATF_RANGED, SingleCombatAttack.ATF_SPECIAL, SingleCombatAttack.ATF_AOE);
 			PocketSand.ExtendedDisplayabilityCheck = function(target:Creature):Boolean {
 				return kGAMECLASS.silly;
 			};
@@ -292,6 +309,7 @@ package classes.GameData
 			FlashGrenade.TooltipTitle = "Flash Grenade";
 			FlashGrenade.TooltipBody = "Produce a rechargable flash grenade and use it to blind your enemy. Better aim will increase the chance of success.";
 			FlashGrenade.Implementor = FlashGrenadeImpl;
+			FlashGrenade.SetAttackTypeFlags(SingleCombatAttack.ATF_RANGED, SingleCombatAttack.ATF_SPECIAL, SingleCombatAttack.ATF_AOE);
 			FlashGrenade.ExtendedDisplayabilityCheck = function(target:Creature):Boolean {
 				return !kGAMECLASS.silly;
 			};
@@ -305,6 +323,7 @@ package classes.GameData
 			LowBlow.TooltipTitle = "Low Blow";
 			LowBlow.TooltipBody = "A melee ability with a physique-based chance of stunning your target. It does low damage, and stronger foes will be more able to resist being stunned.";
 			LowBlow.Implementor = LowBlowImpl;
+			LowBlow.SetAttackTypeFlags(SingleCombatAttack.ATF_MELEE, SingleCombatAttack.ATF_SPECIAL);
 			a.push(LowBlow);
 			
 			// Disarming Shot
@@ -316,6 +335,7 @@ package classes.GameData
 			DisarmingShot.Implementor = DisarmingShotImpl;
 			DisarmingShot.TooltipTitle = "Disarming Shot";
 			DisarmingShot.TooltipBody = "A single shot that will disable your target's usage of traditional weapons - if it hits. The strike has the same chance of hitting as any other shot. Note that this does not effect creatures or machines with integrated weaponry.";
+			DisarmingShot.SetAttackTypeFlags(SingleCombatAttack.ATF_RANGED, SingleCombatAttack.ATF_SPECIAL);
 			a.push(DisarmingShot);
 			
 			// Stealth
@@ -328,6 +348,7 @@ package classes.GameData
 			StealthFieldGenerator.TooltipTitle = "Stealth Field Generator";
 			StealthFieldGenerator.TooltipBody = "Creates a stealth field that greatly increases your evasion for a few turns.";
 			StealthFieldGenerator.RequiresTarget = false;
+			StealthFieldGenerator.SetAttackTypeFlags(SingleCombatAttack.ATF_SPECIAL);
 			a.push(StealthFieldGenerator);
 			
 			// Grenade
@@ -339,6 +360,7 @@ package classes.GameData
 			Grenade.Implementor = GrenadeImpl;
 			Grenade.TooltipTitle = "Grenade";
 			Grenade.RequiresTarget = false;
+			Grenade.SetAttackTypeFlags(SingleCombatAttack.ATF_AOE, SingleCombatAttack.ATF_RANGED, SingleCombatAttack.ATF_SPECIAL);
 			Grenade.TooltipBody = "Does a moderate amount of intelligence-based thermal and kinetic damage to your enemies.";
 			a.push(Grenade);
 			
@@ -352,6 +374,7 @@ package classes.GameData
 			GasGrenade.TooltipTitle = "Gas Grenade";
 			GasGrenade.RequiresTarget = false;
 			GasGrenade.TooltipBody = "An unavoidable attack that deals a fair amount of lust damage to your enemies. Increases slightly with level.";
+			GasGrenade.SetAttackTypeFlags(SingleCombatAttack.ATF_AOE, SingleCombatAttack.ATF_RANGED, SingleCombatAttack.ATF_SPECIAL);
 			a.push(GasGrenade);
 			
 			// Smuggled Stim
@@ -362,6 +385,7 @@ package classes.GameData
 			SmuggledStimulant.Implementor = SmuggleStimulatImpl;
 			SmuggledStimulant.TooltipTitle = "Smuggled Stimulant";
 			SmuggledStimulant.TooltipBody = "Inject yourself with a smuggled stimulant, causing you to recover 25 energy a turn for three turns.";
+			SmuggledStimulant.SetAttackTypeFlags(SingleCombatAttack.ATF_SPECIAL);
 			SmuggledStimulant.RequiresTarget = false;
 			a.push(SmuggledStimulant);
 			
@@ -374,6 +398,7 @@ package classes.GameData
 			BurstOfEnergy.TooltipTitle = "Burst of Energy";
 			BurstOfEnergy.TooltipBody = "Get a burst of energy, recovering 60 energy.\n\nYou may only do this once per encounter.";
 			BurstOfEnergy.RequiresTarget = false;
+			BurstOfEnergy.SetAttackTypeFlags(SingleCombatAttack.ATF_SPECIAL);
 			a.push(BurstOfEnergy);
 			
 			// Concussive Shot
@@ -389,6 +414,7 @@ package classes.GameData
 			ConcussiveShot.TooltipTitle = "Concussive Shot";
 			ConcussiveShot.TooltipBody = "Fire an explosive arrow at your target, potentially stunning them for 1-2 rounds.";
 			ConcussiveShot.Implementor = ConcussiveShotImpl;
+			ConcussiveShot.SetAttackTypeFlags(SingleCombatAttack.ATF_RANGED, SingleCombatAttack.ATF_SPECIAL);
 			a.push(ConcussiveShot);
 			
 			// Goozooka
@@ -405,6 +431,7 @@ package classes.GameData
 			GoozookaAttack.TooltipTitle = "Goozooka";
 			GoozookaAttack.TooltipBody = "Fire a Gray Goo at your enemy for the princely sum of a single sample of Gray Microbots.";
 			GoozookaAttack.Implementor = GoozookaAttackImpl;
+			GoozookaAttack.SetAttackTypeFlags(SingleCombatAttack.ATF_RANGED, SingleCombatAttack.ATF_SPECIAL);
 			a.push(GoozookaAttack);
 			
 			// Shared NPC Attacks
