@@ -47,7 +47,7 @@ public function crystalGooEncounterType1():void
 		}
 		else output("\n\nThe alien trembles, and if its mouth could open you’re certain it would be salivating. <i>“Pleased to meet you,”</i> it buzzes. <i>“Hold still so I can enjoy myself.”</i>");
 
-		output("<b>It’s a fight!</b>");
+		output("\n\n<b>It’s a fight!</b>");
 	}
 	// Repeat
 	else
@@ -84,7 +84,7 @@ public function crystalGooEncounterType1():void
 
 			//go to fight
 			//begin fight with 11 points of damage on enemy shield if armed, else 3 if unarmed (wibble the numbers with RNG if you feel like it)
-			output("<b>It’s a fight!</b>");
+			output("\n\n<b>It’s a fight!</b>");
 		}
 		else
 		{

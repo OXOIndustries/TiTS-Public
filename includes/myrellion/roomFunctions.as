@@ -799,6 +799,11 @@ public function DeepCavesBonus():Boolean
 			//crystalGooFenBurps();
 			//return true;
 		}
+		else
+		{
+			choices[choices.length] = encounterCrystalGooType2;
+			choices[choices.length] = crystalGooEncounterType1;
+		}
 		if(flags["ZODEE_GALOQUEST"] == undefined) choices.push(zodeeGivesFirstGalomax);
 		if(flags["ZODEE_GALOQUEST"] == 1) choices.push(secondZodeeEncouonterForGaloMax);
 		
@@ -806,5 +811,7 @@ public function DeepCavesBonus():Boolean
 		choices[rand(choices.length)]();
 		return true;
 	}
+	if(rand(2) == 0) encounterCrystalGooType2();
+	else crystalGooEncounterType1();
 	return false;
 }
