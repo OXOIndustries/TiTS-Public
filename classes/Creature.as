@@ -3406,7 +3406,11 @@ package classes {
 					modifiedDamage.multiply(1.2);
 					
 				// Easiest way I can think of conveying base damage - might be better to add this as a flat bonus some other way.
-				modifiedDamage.unresistable_hp.damageValue += statusEffectv1("Concentrated Fire"); 
+				// Only add bonus if the weapons already doing SOME HP damage
+				if (modifiedDamage.hasHPDamage())
+				{
+					modifiedDamage.unresistable_hp.damageValue += statusEffectv1("Concentrated Fire"); 
+				}
 			}
 			
 			modifiedDamage.add(armor.baseDamage);

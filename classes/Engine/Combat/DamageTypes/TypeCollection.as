@@ -32,6 +32,29 @@ package classes.Engine.Combat.DamageTypes
 		public function get tease():DamageType { return typeCollection[DamageType.TEASE]; }
 		public function get unresistable_lust():DamageType { return typeCollection[DamageType.UNRESISTABLE_LUST]; }
 		
+		
+		public function hasHPDamage():Boolean
+		{
+			if (kinetic.damageValue > 0) 			return true;
+			if (electric.damageValue > 0) 			return true;
+			if (burning.damageValue > 0) 			return true;
+			if (freezing.damageValue > 0) 			return true;
+			if (corrosive.damageValue > 0) 			return true;
+			if (poison.damageValue > 0) 			return true;
+			if (unresistable_hp.damageValue > 0) 	return true;
+			return false;
+		}
+		
+		public function hasLustDamage():Boolean
+		{
+			if (psionic.damageValue > 0) 			return true;
+			if (drug.damageValue > 0) 				return true;
+			if (pheromone.damageValue > 0) 			return true;
+			if (tease.damageValue > 0) 				return true;
+			if (unresistable_lust.damageValue > 0) 	return true;
+			return false;
+		}
+		
 		/**
 		 * new TypeCollection({kinetic: 50, burning: 25});
 		 * @param	values
