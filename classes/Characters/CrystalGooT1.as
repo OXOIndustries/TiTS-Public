@@ -59,12 +59,12 @@ package classes.Characters
 			kickMeleeWeapon = new GooeyPsuedopod();
 			kickMeleeWeapon.attackVerb = "kick";
 			kickMeleeWeapon.attackNoun = "kick";
-			kickMeleeWeapon.baseDamage.kinetic.damageValue = 20;
+			kickMeleeWeapon.baseDamage.kinetic.damageValue = 10;
 			kickMeleeWeapon.baseDamage.addFlag(DamageFlag.PENETRATING);
 			kickMeleeWeapon.hasRandomProperties = true;
 			
 			slapMeleeWeapon = new GooeyPsuedopod();
-			slapMeleeWeapon.baseDamage.kinetic.damageValue = 10;
+			slapMeleeWeapon.baseDamage.kinetic.damageValue = 7;
 			slapMeleeWeapon.hasRandomProperties = true;
 			
 			meleeWeapon = kickMeleeWeapon;
@@ -77,14 +77,14 @@ package classes.Characters
 			
 			shield = new BasicShield();
 			shield.shields = 100;
-			baseShieldKineticResistance = shield.resistances.kinetic.resistanceValue = 20.0;
+			baseShieldKineticResistance = shield.resistances.kinetic.resistanceValue = 25.0;
 			
 			shield.hasRandomProperties = true;
 			
-			this.physiqueRaw = 30;
+			this.physiqueRaw = 20;
 			baseReflexes = reflexesRaw = 19;
-			this.aimRaw = 12;
-			this.intelligenceRaw = 1;
+			this.aimRaw = 25;
+			this.intelligenceRaw = 8;
 			this.willpowerRaw = 14;
 			this.libidoRaw = 50;
 			this.shieldsRaw = 0;
@@ -94,7 +94,7 @@ package classes.Characters
 			this.XPRaw = 450;
 			this.level = 7;
 			this.credits = 0;
-			this.HPMod = 100;
+			this.HPMod = 5;
 			this.shieldsRaw = this.shieldsMax();
 			this.HPRaw = this.HPMax();
 			this.shieldDisplayName = "ARMOR";
@@ -201,11 +201,11 @@ package classes.Characters
 			}
 			
 			// Interpolate the armor value as a percent between a multiplier between 1 and 0.33. Use this multiplier to modify the base reflex value of the enemy.
-			reflexesRaw = MathUtil.LinearInterpolate(0.33, 1, shieldsMax() / shields()) * baseReflexes;
-			shield.resistances.kinetic.resistanceValue = MathUtil.LinearInterpolate(0, 1, shieldsMax() / shields()) * baseShieldKineticResistance;
+			reflexesRaw = MathUtil.LinearInterpolate(0.33, 1, shields() / shieldsMax()) * baseReflexes;
+			shield.resistances.kinetic.resistanceValue = MathUtil.LinearInterpolate(0, 1, shields() / shieldsMax()) * baseShieldKineticResistance;
 		}
 		
-		public function OnTakeDamage(incomingDamage:TypeCollection):void
+		override public function OnTakeDamage(incomingDamage:TypeCollection):void
 		{
 			if (shields() <= 0)
 			{
@@ -223,8 +223,8 @@ package classes.Characters
 					{
 						shieldsRaw = (typedDamageTotal * 0.66);
 						
-						if (incomingDamage.burning.damageValue > 0) output(" The scorched flesh hisses and bubbles at the site of the damage, hardening into a jagged, scar-like plate!");
-						else output(" The cold causes hundreds of tiny crystals to form, clouding and stiffening the site into a sandpapery plate!");
+						if (incomingDamage.burning.damageValue > 0) OnTakeDamageOutput = "The scorched flesh hisses and bubbles at the site of the damage, hardening into a jagged, scar-like plate!";
+						else OnTakeDamageOutput = "The cold causes hundreds of tiny crystals to form, clouding and stiffening the site into a sandpapery plate!";
 					}
 				}
 			}
@@ -232,7 +232,7 @@ package classes.Characters
 			{
 				if (incomingDamage.kinetic.damageValue > 0)
 				{
-					output(" The ganrael’s rounded gauntlets deflect some of the force!");
+					OnTakeDamageOutput = "The ganrael’s rounded gauntlets deflect some of the force!";
 				}
 			}
 		}
@@ -244,8 +244,15 @@ package classes.Characters
 			var target:Creature = selectTarget(hostileCreatures);
 			if (target == null) return;
 			
+			// OnTakeDamage output once we're sure we have a potential target
+			if (OnTakeDamageOutput != null)
+			{
+				output(OnTakeDamageOutput + "\n\n");
+				OnTakeDamageOutput = null;
+			}
+			
 			// Force update the output here for the goo being hidden
-			if (hasStatusEffect("GooCamo"))
+			if (hasStatusEffect("GooCamo") && !target.hasStatusEffect("Grappled"))
 			{
 				FalseRetreat(target);
 			}
@@ -269,6 +276,8 @@ package classes.Characters
 			attacks.push( { v: HaveANiceTrip, w: (hasStatusEffect("Unarmored") ? 20 : 10) } );
 			if (!hasStatusEffect("GooCamo Cooldown")) attacks.push( { v: FalseRetreat, w: (hasStatusEffect("Unarmored") ? 20 : 10) } );
 			
+			weightedRand(attacks)(target);
+			
 			//tactics change as armor depletes; gets less evasive, slower, and less damaging as leg-points break off
 		}
 		
@@ -281,7 +290,7 @@ package classes.Characters
 			
 			if (!hasStatusEffect("Unarmored"))
 			{
-				numAttacks = Math.round(((shieldsMax() / shields()) / 0.25)) + 2;
+				numAttacks = Math.round(((shields() / shieldsMax()) / 0.5)) + 1;
 				meleeWeapon = kickMeleeWeapon;
 				
 				output("The ganrael lashes out with its legs!");
@@ -291,7 +300,7 @@ package classes.Characters
 					CombatAttacks.SingleMeleeAttackImpl(this, target, false, "melee");
 				}
 			}
-//texs		else
+			else
 			{
 				meleeWeapon = slapMeleeWeapon;
 				
@@ -369,10 +378,10 @@ package classes.Characters
 			}
 			else
 			{
-				createStatusEffect("GooCamo", 0);
+				createStatusEffect("GooCamo", 0, 0, 0, 0, false, "Icon_Blind", "The ganrael is attempting to hide in the surroundings!", true, 0);
 			}
 			
-			var chanceRoll:Number = (target.aim() + target.intelligence() + rand(40) / 3);
+			var chanceRoll:Number = ((target.aim() + target.intelligence()) / 3);
 			
 			output("The ganrael drops and begins to weave through the rocks, trying to elude you!");
 			
@@ -383,11 +392,11 @@ package classes.Characters
 			{
 				removeStatusEffect("GooCamo");
 				createStatusEffect("GooCamo Cooldown", 2);
-				output(" You keep sight of it with your superior aim and honed intelligence.");
+				output(" You keep sight of it with your honed aim and superior intelligence.");
 				return;
 			}
 			
-			baseFailure -= (statusEffectv1("Camo Weight") * 5);
+			baseFailure -= (statusEffectv1("GooCamo") * 5);
 			if (chanceRoll > baseFailure )
 			{
 				removeStatusEffect("GooCamo");
@@ -422,20 +431,20 @@ package classes.Characters
 			
 			if (target.hasStatusEffect("Tripped"))
 			{
-				output(" It takes advantage of your grounded state, moving through blind spots until you lose it completely. The cave echoes with its scuffling gait, like the earth is shifting in preparation to swallow you.");
+				output(" It takes advantage of your grounded state, moving through blind spots until you lose it completely. The cave echoes with its scuffling gait, like the earth is shifting in preparation to swallow you.\n\n");
 			}
 			else
 			{
-				output(" Despite your best efforts, you lose track of it. The cave echoes with skitters and laughs, no two from the same direction, and your anxiety mounts.");
+				output(" Despite your best efforts, you lose track of it. The cave echoes with skitters and laughs, no two from the same direction, and your anxiety mounts.\n\n");
 			}
 		}
 		
-		public function ShouldIntercept():Boolean
+		public function ShouldIntercept(attackOpts:Object):Boolean
 		{
 			// Return true if we should fuck the players current action off and redirect it through SneakSqueezeAttackReaction
 			if (hasStatusEffect("GooCamo") && !skipIntercept)
 			{
-				
+				return true;
 			}
 			return false;
 		}
@@ -448,6 +457,7 @@ package classes.Characters
 			// isMelee, isRanged, isTease, isSquirt, isSpecial, isAOE, isWait, isStand
 			// isFantasize, isFlee
 			
+			//9999 something to cover for isSpecial as it may not be an actual weapon attack
 			var pc:PlayerCharacter = kGAMECLASS.pc;
 			var pcHit:Boolean = false;
 			
@@ -536,10 +546,10 @@ package classes.Characters
 			// escape check is more forgiving if ganrael is unarmored
 			
 			//if unarmored
-			if (target.armor is EmptySlot || target.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || target.armor.hasFlag(GLOBAL.ITEM_FLAG_SWIMWEAR))
+			if (hasStatusEffect("Unarmored") && (target.armor is EmptySlot && !target.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT)))
 			{
 				output("The ganrael’s gooey body spreads over you, working into your");
-				if (target.armor is EmptySlot || target.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)) output(" crotch and licking at your [pc.legFurScales].");
+				if (target.armor is EmptySlot || !target.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT)) output(" crotch and licking at your [pc.legFurScales].");
 				else output(" [pc.gear], hunting for sensitive spots.");
 				output(" Blood hammers in your temples and your needy");
 				if (target.hasCocks() || target.hasVaginas() || target.isHerm()) output(" sexes throb");
@@ -548,6 +558,8 @@ package classes.Characters
 				output(" inches away from its tendrils, demanding attention.");
 				//lust damage
 				applyDamage(new TypeCollection( { tease: 5 + rand(5) } ), this, target, "minimal"); // 9999 damage
+				
+				target.createStatusEffect("Grappled", 0, 40, 0, 0, false, "Constrict", "The ganrael has wrapped itself tight around you!", true, 0);
 			}
 			//if armored
 			else
@@ -562,6 +574,7 @@ package classes.Characters
 				damage += rand(damage);
 				
 				applyDamage(new TypeCollection( { kinetic: damage }, DamageFlag.CRUSHING ), this, target, "minimal");
+				target.createStatusEffect("Grappled", 0, 40, 0, 0, false, "Constrict", "The ganrael has wrapped itself tight around you!", true, 0);
 			}
 		}
 		
@@ -570,7 +583,7 @@ package classes.Characters
 			var escaped:Boolean = false;
 			
 			//PC struggle text
-			if (!(target.armor is EmptySlot) && target.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+			if (!hasStatusEffect("Unarmored"))
 			{
 				if (target.physique() > target.reflexes())
 				{
@@ -603,7 +616,7 @@ package classes.Characters
 				{
 					if ((target.reflexes() + rand(30) / 2) > (reflexes() - (target.statusEffectv1("Grappled") * 5)))
 					{
-						output("Moving with the flow of gooey skin, you slip the creature’s grip like wet soap. / (else fail) Your struggles fail to free you from the alien’s grip!");
+						output("Moving with the flow of gooey skin, you slip the creature’s grip like wet soap.");
 						escaped = true;
 					}
 				}
@@ -613,6 +626,10 @@ package classes.Characters
 			{
 				target.removeStatusEffect("Grappled");
 				createStatusEffect("Grappled", 2);
+			}
+			else
+			{
+				output("Your struggles fail to free you from the alien’s grip!");
 			}
 		}
 	}
