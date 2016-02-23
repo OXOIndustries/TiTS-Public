@@ -215,6 +215,11 @@
 
 			//Now run chance!
 			manbot = (rand(100) < chance)
+
+			//Second meeting is opposite gender of first.
+			if(kGAMECLASS.flags["MET_SEXBOT_MALE_ON_TARKUS"] != undefined && flags["MET_SEXBOT_FEMALE_ON_TARKUS"] == undefined) manbot = false;
+			if(kGAMECLASS.flags["MET_SEXBOT_MALE_ON_TARKUS"] == undefined && flags["MET_SEXBOT_FEMALE_ON_TARKUS"] != undefined) manbot = true;
+
 			//Female bot:
 			if(!manbot)
 			{

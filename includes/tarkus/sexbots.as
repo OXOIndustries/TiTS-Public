@@ -15,6 +15,7 @@ public function encounterASexBot():void
 	//Technically already in combat. Overwrite!
 	
 	var manbot:Boolean = tSexBot.mf("m", "f") == "m";
+	trace("BOT RESULT: " + tSexBot.mf("m","f"));
 	
 	if(!pc.hasCock() && !pc.hasVagina())
 	{
@@ -77,7 +78,7 @@ public function encounterASexBot():void
 	{
 		IncrementFlag("MET_SEXBOTS_ON_TARKUS");
 		output("\n\nA familiar electronic hum permeates this area of the wastes, and you watch guardedly as a raskvel-shaped sexbot advances serenely out of the nearby wreckage towards you. Word is evidently getting around; its green eyes flicker over you once, and it says nothing before beginning to transform itself into a human sexual ideal. ");
-		if(flags["MET_SEXBOT_MALE_ON_TARKUS"] == 1 && flags["MET_SEXBOT_FEMALE_ON_TARKUS"] == 1)
+		if(flags["MET_SEXBOT_MALE_ON_TARKUS"] != undefined && flags["MET_SEXBOT_FEMALE_ON_TARKUS"] != undefined)
 		{
 			output("It swiftly becomes apparent that this one has chosen to appear ");
 			if(manbot) output("male");
@@ -90,6 +91,7 @@ public function encounterASexBot():void
 			output("Something is slightly different this time. Instead of forming boobs, its slim waist and chest harden, throbbing vibrations beneath the surface of its synthetic skin causing lines and ripples to appear and then define until it is sporting a modest but perfectly formed six pack.");
 			output("\n\nMeanwhile, small fiber cables slide out of the vertical slit between its thighs, busily wrapping themselves around each other. Within moments where its female sex was there is a sturdy and convincingly human penis. As its face transforms its jaw line and nose harden, bringing out a strong, emotionless handsomeness. For its own obtuse reasons this sexbot has chosen to appear male to you.");
 		}
+		//Met ladybot first time
 		else
 		{
 			output("Something is slightly different this time. Instead of forming a fit, flat chest its waist thins as its chest and butt swells, liquid silicone pooling beneath the surface of its synthetic skin until it is sporting an almost impossible hourglass figure, perfect curves sheer in their latex housing.");
