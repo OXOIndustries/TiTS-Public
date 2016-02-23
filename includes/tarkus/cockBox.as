@@ -291,7 +291,7 @@ public function dickBoxTF(args:Array):void
 	}
 	output(" The box is squelching wetly even through the seal. Every lewd squish is matched by a consummate increase in the bubbling bliss around your [pc.cock " + args[0] + "], wreathing it so deeply in pernicious warmth that it may as well be a part of you.");
 
-	output("\n\nYou can’t tell where the electric ecstasy originates on your [pc.cock " + args[0] + "] anymore. Everything is like a formless blob of pleasure. It could be coming from your underside or your [pc.cockHead " + args[0] + "], and you’d be helpless to identify the source. The only thing left to do is grip the machine and try to keep your weakening [pc.legOrLegs] from dropping you to the floor. A " + pc.mf("aggressive growl","whorish moan") + " winds its way out of your throat as your climax mounts.");
+	output("\n\nYou can’t tell where the electric ecstasy originates on your [pc.cock " + args[0] + "] anymore. Everything is like a formless blob of pleasure. It could be coming from your underside or your [pc.cockHead " + args[0] + "], and you’d be helpless to identify the source. The only thing left to do is grip the machine and try to keep your weakening [pc.legOrLegs] from dropping you to the floor. A" + pc.mf("n aggressive growl"," whorish moan") + " winds its way out of your throat as your climax mounts.");
 	output("\n\nYou feel like a star about to go nova, shooting incandescent flares of ");
 	if(pc.balls > 0) output("ball-draining");
 	else output("[pc.cumVisc]");
