@@ -141,7 +141,7 @@ public function encounterCrystalGooType2():void
 		flags["CRYSTALGOO_T2_ENCOUNTERS"] = 0;
 		output("\n\nA feminine figure stands in the center of this area, immobile, like a statue. Tiny glowing mushrooms lend it an unworldly air; you creep closer for an examination and the details come into relief.");
 		
-		output("\n\nThe piece’s beauty is remarkable. It’s suited in "+enemy.skinTone+" armor shaped to resemble a nude woman. The chestplate is ornamented with two smooth breasts, at least C-cup, and circling to the rear reveals a toned back and shoulders above a depending plate molded like a tight, cute butt. Even the head, with its short, pointed ears and representation of cropped, wavy hair, is a masked helmet covering the true face underneath. Darker, glossier "+enemy.skinTone+", perhaps representing the model’s skin, is visible on the few unarmored areas like the groin.");
+		output("\n\nThe piece’s beauty is remarkable. It’s suited in " +tEnemy.skinTone+ " armor shaped to resemble a nude woman. The chestplate is ornamented with two smooth breasts, at least C-cup, and circling to the rear reveals a toned back and shoulders above a depending plate molded like a tight, cute butt. Even the head, with its short, pointed ears and representation of cropped, wavy hair, is a masked helmet covering the true face underneath. Darker, glossier "+tEnemy.skinTone+", perhaps representing the model’s skin, is visible on the few unarmored areas like the groin.");
 		if (CodexManager.entryUnlocked("Nyrea")) output(" It very much resembles an idealized version of the nyrea who call these caves home.");
 		
 		output("\n\nThe poor thing looks like a victim of a horrible attack; crude picks and needles protrude from gaps in its armor. Perhaps it honors some ill-fated messenger who brought warning to her people despite terrible wounds. The stone is clean and unweathered by age; whoever put it here must have done so recently. The feet stand in the dirt rather than on a plinth, posing some question as to how it’s expected to stay upright.");
@@ -156,7 +156,7 @@ public function encounterCrystalGooType2():void
 		else if (pc.race().indexOf("myr") != -1 || pc.race().indexOf("zil") != -1) output("Do you really want to fight so far from home, myr?");
 		else if (pc.isGoo()) output("Are you trying to poach my territory? That’s not nice,");
 		else output("Oh? We can fight if you like,");
-		output("<i>“ it sighs, in a feminine voice.");
+		output("”</i> it sighs, in a feminine voice.");
 		
 		output("\n\nYour codex beeps out a warning too late: <i>“Ganrael detected. An amorphous, intelligent lifeform capable of hardening its outer skin into exoskeletal arms and armor. Available reports indicate that ganrael will attempt to harvest genetic material from individuals they encounter.”</i> On cue, the statue closes in!");
 		
