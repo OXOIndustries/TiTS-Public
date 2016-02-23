@@ -264,11 +264,15 @@ package classes.Characters
 			return b;
 		}
 		
-		public function ShouldIntercept():Boolean
+		public function ShouldIntercept(attackOpts:Object):Boolean
 		{
-			if (hasStatusEffect("Blinded")) return false;
-			if (hasStatusEffect("Unarmored")) return false;
-			return true;
+			if (attackOpts.isWait != undefined || attackOpts.isTease != undefined)
+			{
+				if (hasStatusEffect("Blinded")) return false;
+				if (hasStatusEffect("Unarmored")) return false;
+				return true;
+			}
+			return false;
 		}
 		
 		private var _skipRound:Boolean = false;

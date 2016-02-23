@@ -252,7 +252,7 @@ package classes.Characters
 			}
 			
 			// Force update the output here for the goo being hidden
-			if (hasStatusEffect("GooCamo"))
+			if (hasStatusEffect("GooCamo") && !target.hasStatusEffect("Grappled"))
 			{
 				FalseRetreat(target);
 			}
@@ -378,7 +378,7 @@ package classes.Characters
 			}
 			else
 			{
-				createStatusEffect("GooCamo", 0);
+				createStatusEffect("GooCamo", 0, 0, 0, 0, false, "Icon_Blind", "The ganrael is attempting to hide in the surroundings!", true, 0);
 			}
 			
 			var chanceRoll:Number = ((target.aim() + target.intelligence()) / 3);
@@ -439,7 +439,7 @@ package classes.Characters
 			}
 		}
 		
-		public function ShouldIntercept():Boolean
+		public function ShouldIntercept(attackOpts:Object):Boolean
 		{
 			// Return true if we should fuck the players current action off and redirect it through SneakSqueezeAttackReaction
 			if (hasStatusEffect("GooCamo") && !skipIntercept)
@@ -457,6 +457,7 @@ package classes.Characters
 			// isMelee, isRanged, isTease, isSquirt, isSpecial, isAOE, isWait, isStand
 			// isFantasize, isFlee
 			
+			//9999 something to cover for isSpecial as it may not be an actual weapon attack
 			var pc:PlayerCharacter = kGAMECLASS.pc;
 			var pcHit:Boolean = false;
 			
