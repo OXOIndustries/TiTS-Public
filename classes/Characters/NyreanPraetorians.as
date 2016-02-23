@@ -51,6 +51,8 @@
 			
 			this.shield = new DecentShield();
 			this.meleeWeapon = new NyreanSpear();
+			this.meleeWeapon.hasRandomProperties;
+			this.meleeWeapon.baseDamage.kinetic.damageValue = 5.0;
 			
 			this.physiqueRaw = 21;
 			this.reflexesRaw = 21;
@@ -72,7 +74,7 @@
 			this.XPRaw = 500;
 			this.level = 7;
 			this.credits = 0;
-			this.HPMod = 250;
+			this.HPMod = 225;
 			this.HPRaw = this.HPMax();
 			
 			this.femininity = 100;
