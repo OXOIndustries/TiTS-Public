@@ -124,6 +124,9 @@ public function crystalGooEncounterType1():void
 	CombatManager.setHostileCharacters(tEnemy);
 	CombatManager.displayLocation("CRYSTAL GOO");
 
+	showCrystalGooToo();
+	showName("\nAMBUSH!");
+
 	clearMenu();
 	addButton(0, "Next", CombatManager.beginCombat);
 }
@@ -192,6 +195,9 @@ public function crystalGooEncounterType2():void
 	CombatManager.lossScene(crystalGooPCLoss);
 	CombatManager.setHostileCharacters(tEnemy);
 	CombatManager.displayLocation("CRYSTAL GOO");
+
+	showCrystalGooToo();
+	showName("\nAMBUSH!");
 
 	clearMenu();
 	addButton(0, "Next", CombatManager.beginCombat);

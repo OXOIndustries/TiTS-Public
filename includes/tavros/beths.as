@@ -85,6 +85,7 @@ public function ovirGirlInBeths():void
 	clearOutput();
 	flags["BETHS_OVIR_SEEN"] = 1;
 	showName("OVIR\nGIRL");
+	showBust("OVIR_DANCER");
 	author("Zeikfried");
 	output("You make your way over to the center stage and join the customers watching the ovir. A trifornifilia waitress offers you a drink from a tray, but you wave her off and she lopes away looking peevish. Without the distraction, you’re free to focus on the dancer.");
 	output("\n\nThe ");
@@ -115,6 +116,7 @@ public function watchOvirDancer():void
 {
 	clearOutput();
 	showName("OVIR\nDANCER");
+	showBust("OVIR_DANCER");
 	author("Zeikfried");
 	
 	//(PC masculine enough to be past androgynous)
@@ -151,6 +153,7 @@ public function teaseTheOvir():void
 {
 	clearOutput();
 	showName("OVIR\nDANCER");
+	showBust("OVIR_DANCER_NUDE");
 	author("Zeikfried");
 	output("The more you watch the ‘girl’ move and study her colors, the more you’re sure that she’s actually a male. Guessing by the way she thrives on the attention of the men in the room, the aftermarket nipples poking up under her lacy bra, and the ultra-feminine curves of her body, it’s fairly safe to assume she doesn’t advertise it openly for fear of driving her adoring public’s attention elsewhere. Even so, there’s only one way to demonstrate to the crowd that your hunch is correct.");
 	if(pc.isPsionic())
