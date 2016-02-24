@@ -289,6 +289,10 @@ public function debugMenusTwo():void
 	addItemButton(9, new GooArmor(), function():void {
 		quickLoot(new GooArmor());
 	});
+	
+	addItemButton(10, new DBGShield(), function():void {
+		quickLoot(new DBGShield());
+	});
 }
 
 public function debugFuckWithRival():void
