@@ -140,6 +140,11 @@
 		[Embed(source = "../../../assets/images/npcs/jacques00/nehzara_nude.png", mimeType = "image/png")]
 		public var Bust_NEHZARA_NUDE:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/adjatha/ovir_dancer.png", mimeType = "image/png")]
+		public var Bust_OVIR_DANCER:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/ovir_dancer_nude.png", mimeType = "image/png")]
+		public var Bust_OVIR_DANCER_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/penny_bimbo.png", mimeType = "image/png")]
 		public var Bust_PENNY_BIMBO:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/penny_bimbo_horse.png", mimeType = "image/png")]
