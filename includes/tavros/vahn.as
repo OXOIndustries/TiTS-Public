@@ -714,7 +714,7 @@ public function vahnDomsYourButt():void
 	
 	output("\n\nYour enthusiastic lover goes for a firm but delicate reach around on those currently sensitive frontal bits of yours. His rough paws giving you quite the stimulation you need to really get into this hardcore romp between you two. The excitement swelling within from being handled like this gets you back-thrusting onto your lover’s crotch even harder.");
 	
-	output("\n\nThough you’re far too focused on the satisfying feeling of his large member bottoming out inside you with the oh-so present knot grinding into your [pc.asshole], occasionally shoving your ass back to meet his thrusts in an attempt to get him to knot you.");
+	output("\n\nThough you’re far too focused on the satisfying feeling of his large member bottoming out inside you with the oh-so present knot grinding into your [pc.asshole], you occasionally shove your ass back to meet his thrusts in an attempt to get him to knot you.");
 	
 	output("\n\nVahn catches on rather quick to what you’re planning and begins to increase the velocity of his thrusts. With a constant rough pounding into your [pc.ass], the knot ever so slowly begins to get inside. With a few more jazzed-up thrusts from Vahn his glorious organic butt plug lodges itself inside. The mixture of pain and pleasure from the large insertion has you moaning under the ausar mechanic.");
 	

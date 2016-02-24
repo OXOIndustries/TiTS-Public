@@ -456,13 +456,14 @@ package classes.Items.Transformatives
 			
 			//High chance to gain small bovine horns
 			//Does not change existing horns.
-			if (!target.hasHorns() && rand(3) == 0 && changes < tChanges)
+			if ((target.hasStatusEffect("Horn Bumps") || !target.hasHorns()) && rand(3) == 0 && changes < tChanges)
 			{
-				output("\n\nA tingling sensation comes from your forehead. You reach up and pat at your brow, and find a pair of growing lumps growing from your head. After a few moments, they become very hard, and covered with a velvety softness. <b>They’re a pair of small, cow-like horns!</b>");
+				if(target.hasStatusEffect("Horn Bumps")) output("\n\nA tingling sensation comes from the bumps on your head. You reach up and rub them, only to find them growing larger... Not too soon after, they become very hard, and covered with a velvety softness. <b>They’ve become a pair of small, cow-like horns!</b>");
+				else output("\n\nA tingling sensation comes from your forehead. You reach up and pat at your brow, and find a pair of growing lumps growing from your head. After a few moments, they become very hard, and covered with a velvety softness. <b>They’re a pair of small, cow-like horns!</b>");
 				
 				target.removeHorns();
 				target.hornType = GLOBAL.TYPE_BOVINE;
-				target.hornLength = 3;
+				target.hornLength = 1;
 				target.horns = 2;
 				changes++;
 			}

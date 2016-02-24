@@ -514,7 +514,7 @@ public function omgBreakFreeFromDat():void
 	// Merged
 	output("\n\nYou’re expecting a fight, but instead Dr. Badger just laughs.");
 	if(pc.isNice()) output(" You don't understand why she would mock you in such a way, but seeing the serious look on");
-	else if(pc.isMischievous()) output(" All right, if she wants to dance, you’ll make her fucking dance... Though seeing the wry smirk on");
+	else if(pc.isMischievous()) output(" Alright, if she wants to dance, you’ll make her fucking dance... Though seeing the wry smirk on");
 	else output(" The contempt of it almost makes you want to attack her more, but seeing the anger in");
 	output(" your face she raises her hands in apology. <i>“No, no, don’t get me wrong. I’m just surprised. It’s been so long since anyone actually </i>challenged<i> me. The locals are fun to play with and all, but they have so little </i>fight<i> in them. It’s nice to meet someone I can have a little... back and forth with</i>.”");
 	output("\n\nShe raises herself to her feet, her hands lowered and non-threatening, and in response you");

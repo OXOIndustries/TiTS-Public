@@ -904,7 +904,7 @@ public function mcallisterMyrGirlsCocky():void
 	else output(" stay upright");
 	output(" as the girls lavish your cock with their tongues and hands: they alternate licking you from base to crown, jerking you off wherever their tongues aren’t working");
 	if (pc.balls > 0) output(" and cupping your balls, occasionally kissing and sucking your [pc.balls], churning the pent-up seed inside them");
-	output(". The red ends up with her lips locked around your [pc.cockHead "+selCock+"] while the gold tends to your underside, thoroughly tongue-bathing all "+pc.cocks[selCock].cLength()+" inches of cockflesh.");
+	output(". The red ends up with her lips locked around your [pc.cockHead "+selCock+"] while the gold tends to your underside, thoroughly tongue-bathing all " + num2Text(Math.floor(pc.cocks[selCock].cLength())) + " inches of cockflesh.");
 	
 	output("\n\nUnder that kind of treatment, you can’t keep the girls from their prize for long. Sensing that you’re reaching your limit, the red pops off your cockhead, drool still bridging her lips to your crown; her golden partner joins her just as your [pc.cock "+selCock+"] starts to swell, seed rushing through its passage to meet their welcoming lips.");
 	

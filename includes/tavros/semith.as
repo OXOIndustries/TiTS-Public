@@ -431,14 +431,23 @@ public function semithMenuNavigation(activeTopic:Function = undefined):void {
 	if(activeTopic == semithAppearance) addDisabledButton(0, "Appearance", "Appearance", "You are looking at him right now.");
 	else addButton(0, "Appearance", semithAppearance, false, "Appearance", "Give the vulkrim a once over.");
 	
-	if(activeTopic == semithEnjoysSomeRoshanBlue) addDisabledButton(1, "Sure", "Sure", "You just did that - for a couple of hours no less.");
-	else if(flags["SEMITH_DAY_LAST_SMOKED"] == days) addDisabledButton(1, "Roshan", "Roshan", "You had enough Roshan blue for one day.");
-	else addButton(1, "Sure", semithEnjoysSomeRoshanBlue, undefined, "Roshan blue", "It'll feel good, man.");
+	if(activeTopic == semithEnjoysSomeRoshanBlue) addDisabledButton(1, "Sure", "Roshan Blue", "You just did that - for a couple of hours no less.");
+	else if(flags["SEMITH_DAY_LAST_SMOKED"] == days) addDisabledButton(1, "Roshan", "Roshan Blue", "You had enough Roshan blue for one day.");
+	else addButton(1, "Sure", semithEnjoysSomeRoshanBlue, undefined, "Roshan Blue", "It'll feel good, man.");
 	
 	if(activeTopic == semithSexMenu) addDisabledButton(2, "Sex", "Sex", "You just did that.");
 	else
 	{
-		if(pc.lust() >= 33) addButton(2, "Booty Call", semithSexMenu, undefined, "Booty Call", "You’re here to fuck. Make that clear.");
+		if
+		(	(	!pc.hasGenitals()
+			||	(pc.isHerm() && pc.biggestVaginalCapacity() < chars["SEMITH"].cockVolume(0) && pc.cockThatFits(chars["SEMITH"].analCapacity()) < 0)
+			||	(pc.hasVagina() && pc.biggestVaginalCapacity() < chars["SEMITH"].cockVolume(0))
+			||	(pc.hasCock() && pc.cockThatFits(chars["SEMITH"].analCapacity()) < 0)
+			)
+		&&	pc.analCapacity() < chars["SEMITH"].cockVolume(0)
+		)
+			addDisabledButton(2, "Sex", "Sex", "You can't do this for some reason... You'll need to have genitals or an asshole that can fit him...");
+		else if(pc.lust() >= 33) addButton(2, "Booty Call", semithSexMenu, undefined, "Booty Call", "You’re here to fuck. Make that clear.");
 		else addDisabledButton(2, "Booty Call", "Booty Call", "You are just not aroused enough for that.");
 	}
 	
@@ -506,10 +515,10 @@ public function semithSexMenu():void {
 	
 	if(!pc.hasVagina()) addDisabledButton(1, "Doggie", "Doggie", "You need a pussy for Semith to fuck it.");
 	//can't imagine there are pc which can't fit in Semith mini dick, but checked non the less:
-	else if (pc.hasVagina() && pc.vaginalCapacity() < chars["SEMITH"].cockVolume(0)) addDisabledButton(1, "Doggie", "Doggie", "Your tiny cunt is too small for even Semith's little prick.");
+	else if (pc.hasVagina() && pc.biggestVaginalCapacity() < chars["SEMITH"].cockVolume(0)) addDisabledButton(1, "Doggie", "Doggie", "Your tiny cunt is too small for Semith's prick.");
 	else addButton(1, "Doggie", semithSexDoggieStyle, undefined, "Doggie", "Take his cock in the pussy.");
 	
-	if(pc.analCapacity() < chars["SEMITH"].cockVolume(0)) addDisabledButton(2, "Catch Anal", "Catch Anal", "Even Semith small dick is too much for your butt.");
+	if(pc.analCapacity() < chars["SEMITH"].cockVolume(0)) addDisabledButton(2, "Catch Anal", "Catch Anal", "Semith's dick is too much for your butt.");
 	else addButton(2, "Catch Anal", semithSexCatchAnal, undefined, "Catch Anal", "Take it up the butt in a consensual manner.");
 }
 
@@ -652,7 +661,7 @@ public function semithSexDoggieStyle():void {
 	if(pc.hasCuntTail()) 
 	{
 		output("\n\n<i>“Oh hello,”</i> he suddenly says, slowing down. <i>“Who are you?”</i> It's initially impossible for your pleasure-simmering mind to imagine what he's talking about; it's only when hot, smooth fingers find and run along the dripping insides of the opening to your [pc.cuntTail] that you understand. Your murmured protestation turns into a low groan as he stokes the needy impulses of your alien cunt with firm strokes of his fingers, turning them from their usual low background hum to an all-consuming burn, oozing [pc.femcum] freely.");
-		output("\n\n<i>“What a charming appendage. Could've been designed with vulkrim in mind!”</i> Semith laughs, still balls deep in your [pc.vagina " + x + "]. Your tail responds to his stroking by reactively batting greedily at his groin. <i>“No, not that - up. Good girl. Here... ”</i> You feel a totally different bluntness, thicker and longer than the length currently rubbing the insides of your first pussy, bump against your [pc.cuntTail]'s entrance, which reacts by rearing up eagerly. Your eyes cross as a second later, the little devil drives his big scorpion cock into your cunt tail, sending an unstoppable wave of parasitic pleasure coursing into you. Your [pc.lips] are forced open by a " + pc.mf("groan", "moan") + " of filthy delight as he thrusts firmly into both of your pussies, the ecstasy of getting doubly penetrated overwhelming you.");
+		output("\n\n<i>“What a charming appendage. Could've been designed with vulkrimi in mind!”</i> Semith laughs, still balls deep in your [pc.vagina " + x + "]. Your tail responds to his stroking by reactively batting greedily at his groin. <i>“No, not that - up. Good girl. Here... ”</i> You feel a totally different bluntness, thicker and longer than the length currently rubbing the insides of your first pussy, bump against your [pc.cuntTail]'s entrance, which reacts by rearing up eagerly. Your eyes cross as a second later, the little devil drives his big scorpion cock into your cunt tail, sending an unstoppable wave of parasitic pleasure coursing into you. Your [pc.lips] are forced open by a " + pc.mf("groan", "moan") + " of filthy delight as he thrusts firmly into both of your pussies, the ecstasy of getting doubly penetrated overwhelming you.");
 	
 		tailSexed = true;
 	}
