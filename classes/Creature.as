@@ -11638,6 +11638,7 @@ package classes {
 				collection = ["milk-sap"];
 			} else if (InCollection(arg, GLOBAL.FLUID_TYPE_GIRLCUM, GLOBAL.FLUID_TYPE_GABILANI_GIRLCUM)) {
 				collection = ["girl-cum"];
+				if(isBimbo() || isBro()) collection.push("girl-cum","girl-lube","girl-lube","girl-juice","cunny-honey");
 			} else if (arg == GLOBAL.FLUID_TYPE_CUMSAP) {
 				collection = ["cum-sap","cum-sap","botanical spunk","floral jism"];
 			} else if(InCollection(arg, GLOBAL.FLUID_TYPE_CHOCOLATE_MILK, GLOBAL.FLUID_TYPE_STRAWBERRY_MILK, GLOBAL.FLUID_TYPE_VANILLA)) {
