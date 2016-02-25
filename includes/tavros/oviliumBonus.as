@@ -37,7 +37,7 @@ public function oviliumEffects():void
 		ppOvilium.createStatusEffect("Ovilium Effect");
 		
 		// (If no open wombs(already preg))
-		if (selWomb.length == 0)
+		if (selWomb.length <= 0)
 		{
 			output("A funny fuzzy feeling ripples through your belly,");
 			// 75% no effect:
@@ -63,33 +63,28 @@ public function oviliumEffects():void
 		}
 		else
 		{
-			var hasEmptyWomb:Boolean = (pc.totalPregnancies() < pc.totalVaginas());
-			
 			if (pc.fertilityRaw < 3)
 			{
 				output("As the alabaster fluid slides down your throat you feel [pc.eachVagina] wetten considerably. You drift off into a daydream as you drink the rest of the egg filling potion. In your fantasy, you’re");
 				if (rand(2) == 0) output(" lying in bed with the mate of your dreams, letting them kiss your pregnant belly as the two of you drift off to sleep");
 				else output(" sitting at your owner’s feet, heavily pregnant with the eggs they graciously allowed you to carry");
 				output(". You shake your head to clear your vision, blushing slightly as you realize what you were thinking.");
-				if (hasEmptyWomb) output("\n\n");
+				output("\n\n");
 				
 				pc.fertilityRaw += 0.5;
 				pc.lust(5);
 				processTime(8);
 			}
 			// ([if pc has vag]: pc becomes preg with eggs -- one womb at a time!)
-			if (hasEmptyWomb)
-			{
-				output("You feel a pleasurable popping in your abdomen as the glowing drink hits your stomach. Egg after egg seemingly appears from nothing in your womb.");
-				if (!pc.isNude()) output(" The upper portion of your outfit distends as y");
-				else output(" Y");
-				output("our belly expands with the growing pregnancy, blossoming until it’s pleasantly round.");
-				
-				processTime(5);
-				
-				// Preggos!
-				pc.loadInCunt(ppOvilium, selWomb[rand(selWomb.length)]);
-			}
+			output("You feel a pleasurable popping in your abdomen as the glowing drink hits your stomach. Egg after egg seemingly appears from nothing in your womb.");
+			if (!pc.isNude()) output(" The upper portion of your outfit distends as y");
+			else output(" Y");
+			output("our belly expands with the growing pregnancy, blossoming until it’s pleasantly round.");
+			
+			processTime(5);
+			
+			// Preggos!
+			pc.loadInCunt(ppOvilium, selWomb[rand(selWomb.length)]);
 		}
 	}
 	//clearMenu();
