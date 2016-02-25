@@ -28,7 +28,7 @@ package classes.Items.Protection
 			this.description = "a Delta Borite-Gavlon shield emitter";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "It could be said that, in many ways, GDN systems development of their personal defense shielding technology was a game changer... almost as if their devices, the DBG ranked amongst them, could dramatically unbalance the playing field.\n\nThat is until the item had served its purpose for debugging item tooltips. Now it's little more than a pile of barely functional junk.";
+			this.tooltip = "It could be said that, in many ways, GDN systems development of their personal defense shielding technology was a game changer... almost as if their devices, the DBG ranked amongst them, could dramatically unbalance the playing field.\n\nThat is until the item had served its purpose for debugging item tooltips. Now it's little more than a pile of barely functional junk.\n\nThis is a test parser tag [dbgshieldparsertag]";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

@@ -1137,5 +1137,12 @@
 		{
 			return chars["SEMITH"];
 		}
+		
+		private var _dbgtestvar:int = 0;
+		public function dbgshieldparsertag():String
+		{
+			_dbgtestvar++;
+			return "This tag has been parsed " + _dbgtestvar + " time" + (_dbgtestvar == 1 ? "" : "s") +".";
+		}
 	}
 }
