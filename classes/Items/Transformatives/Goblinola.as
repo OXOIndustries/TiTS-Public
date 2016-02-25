@@ -352,10 +352,9 @@ package classes.Items.Transformatives
 						msg += target.tailTypeLockedMessage();
 					}
 				}
-				
-				if(msg.length > 0) kGAMECLASS.eventBuffer += msg;
 				totalTFs--;
 			}
+			if(msg.length > 0) kGAMECLASS.eventBuffer += msg;
 			return;
 		}
 		//#5b Goblin face: Stage two happens 30 minutes after stage 1 ends, and the face type only changes when stage 2 triggers.
@@ -616,10 +615,9 @@ package classes.Items.Transformatives
 					// v4: ???
 					target.createPerk("Cybernetic Synchronization", 5, 0, 0, 0, "Cybernetic enhancements will give you an additional intelligence capacity boost.");
 				}
-				
-				if(msg.length > 0) kGAMECLASS.eventBuffer += ParseText(msg);
 				totalTFs--;
 			}
+			if(msg.length > 0) kGAMECLASS.eventBuffer += ParseText(msg);
 			return;
 		}
 		

@@ -574,9 +574,9 @@
 					}
 				}
 				//New lines!
-				if(msg.length > 0) kGAMECLASS.eventBuffer += msg;
 				totalTFs--;
 			}
+			if(msg.length > 0) kGAMECLASS.eventBuffer += msg;
 		}
 		
 		private function bigHorsePillMutations(target:Creature):void
@@ -1009,10 +1009,9 @@
 					msg += ParseText(" Now exposed to the air, you're left to gasp as you feel the opening underneath diminishing until there's only a slight crease in your [pc.skin]. Even that fades over the course of a minute or so. <b>Your genital slit is gone.</b>");
 					target.removeStatusEffect("Genital Slit");
 				}
-				
-				if(msg.length > 0) kGAMECLASS.eventBuffer += msg;
 				totalTFs--;
 			}
+			if(msg.length > 0) kGAMECLASS.eventBuffer += msg;
 		}
 		protected function rand(max:Number):Number
 		{
