@@ -503,7 +503,7 @@ public function mhengaThickMistRoom1():Boolean
 // Can you handle the mango?
 public function tryEncounterMango():Boolean
 {
-	var getChance:int = 50;
+	var getChance:int = 100;
 	
 	if (rand(getChance) <= 2)
 	{
