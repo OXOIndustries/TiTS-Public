@@ -155,7 +155,7 @@
 				//#0 Catch all
 				if(select == 0)
 				{
-					msg += "Your [pc.nipples] tingle for a brief moment but nothing seems to happen...";
+					msg += ParseText("Your [pc.nipples] tingle for a brief moment but nothing seems to happen...");
 					if((target.hasCuntNipples() || target.hasLipples()) && target.nippleLengthRatio >= 0.8 && target.smallestTitSize() >= 3)
 					{
 						msg += " Perhaps you already have the all the mutations the Clippex item has to offer.";
@@ -207,20 +207,20 @@
 					{
 						if(!isPresistentTF)
 						{
-							msg += "You flinch as your [pc.nipples] engorge, becoming incredibly tender as they absorb fluid and bulk from your breasts proper. The sensation eventually passes - however";
-								if(!removedTop && !target.isChestExposed()) msg += " the feeling in your [pc.lowerGarment]";
-								else msg += " a glance down";
-								msg += " tells you that your nipples have definitely gotten larger.";
+							msg += ParseText("You flinch as your [pc.nipples] engorge, becoming incredibly tender as they absorb fluid and bulk from your breasts proper. The sensation eventually passes - however");
+							if(!removedTop && !target.isChestExposed()) msg += ParseText(" the feeling in your [pc.lowerGarment]");
+							else msg += " a glance down";
+							msg += " tells you that your nipples have definitely gotten larger.";
 						}
 						else
 						{
 							msg += "You sigh as intense sensation surrounds your [pc.nipples], becoming erect and engorging irresistibly. It’s all you can do to keep your hands away from them. Eventually the beautiful tenderness subsides and";
-								if(!removedTop && !target.isChestExposed())
-								{
-									msg += ", after removing your top,";
-									removedTop = true;
-								}
-								msg += " you look down beatifically to see that your nipples have increased significantly in size.";
+							if(!removedTop && !target.isChestExposed())
+							{
+								msg += ", after removing your top,";
+								removedTop = true;
+							}
+							msg += " you look down beatifically to see that your nipples have increased significantly in size.";
 							// (+10 lust)
 							target.lust(10);
 						}
@@ -238,10 +238,10 @@
 					{
 						if(!removedTop && !target.isChestExposed())
 						{
-							msg += "Your [pc.nipples] tingle powerfully and you are forced to remove your [pc.lowerGarments]. ";
+							msg += ParseText("Your [pc.nipples] tingle powerfully and you are forced to remove your [pc.lowerGarments]. ");
 							removedTop = true;
 						}
-						msg += "You gasp as your nipples suddenly suck themselves inwards, like mouths pulling their lips in. Something wet and warm is happening within your [pc.chest]... when your breasts feel like they’ve finally relaxed you gingerly touch them. Your nipples have become “innies” – all that remains is a [pc.vaginaColor], horizontal slit in place of each. Experimentally, you sink a finger into one and sigh as a delicious sensation shimmers through your boob. They feel every bit as slick and sensitive inside as a vagina.";
+						msg += ParseText("You gasp as your nipples suddenly suck themselves inwards, like mouths pulling their lips in. Something wet and warm is happening within your [pc.chest]... when your breasts feel like they’ve finally relaxed you gingerly touch them. Your nipples have become “innies” – all that remains is a [pc.vaginaColor], horizontal slit in place of each. Experimentally, you sink a finger into one and sigh as a delicious sensation shimmers through your boob. They feel every bit as slick and sensitive inside as a vagina.");
 						
 						for(i = 0; i < target.breastRows.length; i++)
 						{
@@ -267,10 +267,10 @@
 					{
 						if(!removedTop && !target.isChestExposed())
 						{
-							msg += "Your [pc.nipples] convulse powerfully and you are forced to remove your [pc.lowerGarments]. ";
+							msg += ParseText("Your [pc.nipples] convulse powerfully and you are forced to remove your [pc.lowerGarments]. ");
 							removedTop = true;
 						}
-						msg += "You moan as the erotic sensation seizes your nipples, making them dribble fluid in excitement. It’s stronger than it was before, and you twitch and seize up as the entrances to your breasts seem to plump up, become wetter and even more sensitive. When the intensity of it has passed slightly you dare a look down. Each of your nipple cunts have transformed into two pairs of miniature lips: [pc.nippleColor], wet, bee-stung lips. You delicately touch them, and immediately they grasp your fingers, pulling them inwards to suckle them in – you moan again – the velvety insides of your breasts, which are every bit as sensitive and arousing as they were in their previous form. You pull away with some difficulty. They seem to have minds of their own!";
+						msg += ParseText("You moan as the erotic sensation seizes your nipples, making them dribble fluid in excitement. It’s stronger than it was before, and you twitch and seize up as the entrances to your breasts seem to plump up, become wetter and even more sensitive. When the intensity of it has passed slightly you dare a look down. Each of your nipple cunts have transformed into two pairs of miniature lips: [pc.nippleColor], wet, bee-stung lips. You delicately touch them, and immediately they grasp your fingers, pulling them inwards to suckle them in – you moan again – the velvety insides of your breasts, which are every bit as sensitive and arousing as they were in their previous form. You pull away with some difficulty. They seem to have minds of their own!");
 						
 						for(i = 0; i < target.breastRows.length; i++)
 						{
@@ -292,10 +292,10 @@
 			}
 			
 			// Effect over:
-			msg += "\n\nSomething feels like it’s disappeared. You touch your [pc.chest] absently and realize your [pc.nipples] are no longer constantly reminding you of their presence. It seems the tenderness the Clippex caused has finally calmed down.";
-			if(removedTop) msg += " You reclothe yourself, shivering at the new sensations your [pc.nipples] produce underneath the material....";
+			msg += ParseText("\n\nSomething feels like it’s disappeared. You touch your [pc.chest] absently and realize your [pc.nipples] are no longer constantly reminding you of their presence. It seems the tenderness the Clippex caused has finally calmed down.");
+			if(removedTop) msg += ParseText(" You reclothe yourself, shivering at the new sensations your [pc.nipples] produce underneath the material....");
 			
-			if(msg.length > 0) kGAMECLASS.eventBuffer += ParseText(msg);
+			if(msg.length > 0) kGAMECLASS.eventBuffer += msg;
 			return;
 		}
 	}

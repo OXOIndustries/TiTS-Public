@@ -170,7 +170,7 @@
 				{
 					if(target.ballsUnlocked(2))
 					{
-						msg += "Heat condenses into two small spheres in your groin, and then slowly shifts outwards. You swing your [pc.hips] slightly to confirm it; <b>you’ve grown a pair of testicles!</b>";
+						msg += ParseText("Heat condenses into two small spheres in your groin, and then slowly shifts outwards. You swing your [pc.hips] slightly to confirm it; <b>you’ve grown a pair of testicles!</b>");
 						if(!target.hasCock())
 						{
 							msg += " Man";
@@ -207,7 +207,7 @@
 					
 					if(target.ballSizeUnlocked(newBallSize))
 					{
-						msg += "You grunt as pressure in your [pc.balls] expand";
+						msg += ParseText("You grunt as pressure in your [pc.balls] expand");
 						if(target.balls == 1) msg += "s, making it";
 						else msg += ", making them";
 						msg += " bigger and more dense-feeling.";
@@ -239,9 +239,9 @@
 				{
 					if(target.hasCock())
 					{
-						msg += "[pc.OneCock] hardens";
+						msg += ParseText("[pc.OneCock] hardens");
 						if(removeBottoms || target.isCrotchExposed()) msg += " and darkens slightly";
-						msg += ", a drop of [pc.cum] forming at its tip. ";
+						msg += ParseText(", a drop of [pc.cum] forming at its tip. ");
 					}
 					msg += "You feel... juicier.";
 					
@@ -250,10 +250,10 @@
 				//#5 Increase male fertility
 				else if(select == 5)
 				{
-					msg += "Your [pc.sack] tightens up, your";
+					msg += ParseText("Your [pc.sack] tightens up, your");
 					if(target.balls == 1) msg += " testicle";
 					else msg += " balls";
-					msg += " throbbing with a dense, heavy pulse. The intensity of it fades but a background throb in your [pc.balls] remains, your body purposefully stepping up its sperm production.";
+					msg += ParseText(" throbbing with a dense, heavy pulse. The intensity of it fades but a background throb in your [pc.balls] remains, your body purposefully stepping up its sperm production.");
 					
 					target.cumQualityRaw += 0.1;
 				}
@@ -262,7 +262,7 @@
 				{
 					if(target.ballsUnlocked(4))
 					{
-						msg += "You close your eyes as you feel boiling pressure grow in your [pc.balls]. It feels uncontrollable, as if your ball";
+						msg += ParseText("You close your eyes as you feel boiling pressure grow in your [pc.balls]. It feels uncontrollable, as if your ball");
 						if(target.balls == 1) msg += " is";
 						else msg += "s are";
 						msg += " going to explode, and when you feel something burst out of your sack you think for one horrible moment that’s exactly what’s happened. You feel no pain though - just a sensation of deep release - and after the pressure fades you feel vaguely yet ineffably stronger, testosterone coursing through your veins. A rummage around downstairs tells you why: <b>you’ve grown";
@@ -285,14 +285,14 @@
 					if(target.cumTypeUnlocked(GLOBAL.FLUID_TYPE_CHOCOLATE_CUM))
 					{
 						msg += "The heat in your groin coalesces into a deep, leaden need";
-						if(target.balls > 0) msg += ", your [pc.balls] prickling and tightening with lust,";
-						msg += " and suddenly [pc.eachCock] is bulgingly erect.";
+						if(target.balls > 0) msg += ParseText(", your [pc.balls] prickling and tightening with lust,");
+						msg += ParseText(" and suddenly [pc.eachCock] is bulgingly erect.");
 						if(!removeBottoms && !target.isCrotchExposed())
 						{
-							msg += " In the thrill of the moment, your hands do quick work of your [pc.lowerGarments].";
+							msg += ParseText(" In the thrill of the moment, your hands do quick work of your [pc.lowerGarments].");
 							removeBottoms = true;
 						}
-						msg += " You fight back the urge to masturbate crowding your mind but it doesn’t even seem to matter; hot fluid rises up your shaft and oozes out of your swollen [pc.cockheads] thickly without any stimulation whatsoever. You look down in disbelief. Brown?! Caught somewhere between disgust and awe, you gingerly swab your finger in the rich burnt sienna that is dripping from your prick and press it to your tongue. Sweet and warm flavored; immediately recognizable. Presumably your cum will still act like cum but for all other intents and purposes, <b>you now ejaculate chocolate.</b>";
+						msg += ParseText(" You fight back the urge to masturbate crowding your mind but it doesn’t even seem to matter; hot fluid rises up your shaft and oozes out of your swollen [pc.cockheads] thickly without any stimulation whatsoever. You look down in disbelief. Brown?! Caught somewhere between disgust and awe, you gingerly swab your finger in the rich burnt sienna that is dripping from your prick and press it to your tongue. Sweet and warm flavored; immediately recognizable. Presumably your cum will still act like cum but for all other intents and purposes, <b>you now ejaculate chocolate.</b>");
 						if(target.isAss()) msg += " Now if only you could work out how to piss money too, you’d have bitches all over you.";
 						
 						target.cumType = GLOBAL.FLUID_TYPE_CHOCOLATE_CUM;
@@ -311,7 +311,7 @@
 			else msg += "T";
 			msg += "he sensation in your groin from the candy has finally been lifted.";
 			
-			if(msg.length > 0) kGAMECLASS.eventBuffer += ParseText(msg);
+			if(msg.length > 0) kGAMECLASS.eventBuffer += msg;
 			return;
 		}
 	}

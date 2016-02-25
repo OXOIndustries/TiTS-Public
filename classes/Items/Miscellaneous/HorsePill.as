@@ -189,7 +189,7 @@
 						x = target.shortestCockIndex();
 						if(rand(3) == 0)
 						{
-							msg += "You adjust your package and find [pc.oneCock] a little more ";
+							msg += ParseText("You adjust your package and find [pc.oneCock] a little more ");
 							if(target.cocks[x].cLength() <= 8) msg += "hand-filling";
 							else if(target.cocks[x].cLength() <= 15) msg += "overwhelming";
 							else msg += "tremendously large";
@@ -198,7 +198,7 @@
 						//Alternate
 						else if(rand(2) == 0 && !target.isNude())
 						{
-							msg += "Aware of a certain tightness in your [pc.underGarments], you shift your junk. It's ever so slightly larger.";
+							msg += ParseText("Aware of a certain tightness in your [pc.underGarments], you shift your junk. It's ever so slightly larger.");
 							if(target.cocks[x].cLength() <= 10) msg += " You'll be hung like a horse in no time.";
 							else if(target.cocks[x].cLength() <= 15) msg += " You'll be a stallion in no time.";
 							else msg += " You'll be the biggest stud in the galactic pasture in no time.";
@@ -206,7 +206,7 @@
 						//Alternate 2
 						else
 						{
-							msg += "You idly ponder the physics of four-legged sex, getting a little excited by the thought until your [pc.cocks] ";
+							msg += ParseText("You idly ponder the physics of four-legged sex, getting a little excited by the thought until your [pc.cocks] ");
 							if(target.cockTotal() == 1) msg += "is";
 							else msg += "are";
 							msg += " fully erect. It's only then that you discover a quarter inch of additional length";
@@ -231,7 +231,7 @@
 						//1
 						if(rand(3) == 0)
 						{
-							msg += "A muted warmth in your [pc.sack] grabs your attention, and the sensation of a small amount of additional weight keeps it. Your [pc.balls] ";
+							msg += ParseText("A muted warmth in your [pc.sack] grabs your attention, and the sensation of a small amount of additional weight keeps it. Your [pc.balls] ");
 							if(target.balls == 1) msg += "is";
 							else msg += "are";
 							msg += " are little bigger!";
@@ -239,12 +239,12 @@
 						//2
 						else if(rand(2) == 0)
 						{
-							msg += "You stop when your [pc.sack] brushes against a [pc.leg] in the most delightful way. It's been getting progressively more and more in the way over the past hour. You're pretty sure you've gotten a little bigger in the nut department - maybe one or two tenths of an inch of extra diameter. That pill was the real deal.";
+							msg += ParseText("You stop when your [pc.sack] brushes against a [pc.leg] in the most delightful way. It's been getting progressively more and more in the way over the past hour. You're pretty sure you've gotten a little bigger in the nut department - maybe one or two tenths of an inch of extra diameter. That pill was the real deal.");
 						}
 						//3
 						else
 						{
-							msg += "You don't notice it immediately, but at the end of the hour, you do realize that your [pc.sack] is a little larger than before - the better to carry its weightier contents. You wonder how much bigger it's going to make ";
+							msg += ParseText("You don't notice it immediately, but at the end of the hour, you do realize that your [pc.sack] is a little larger than before - the better to carry its weightier contents. You wonder how much bigger it's going to make ");
 							if(target.cockTotal() == 1) msg += "it";
 							else msg += "them";
 							msg += ".";
@@ -254,7 +254,7 @@
 						// 10% Super secret nutsplosion!
 						if(rand(10) == 0 && target.ballSizeRaw < 8 && target.hasPerk("Bulgy"))
 						{
-							msg += "\n\nWith a slight tingling sensation building in your [pc.sack], you let out a shudder. Curious, you try to look and before you realize it, you are suddenly taken aback. The tingling increases tenfold as your [pc.balls] enlarge";
+							msg += ParseText("\n\nWith a slight tingling sensation building in your [pc.sack], you let out a shudder. Curious, you try to look and before you realize it, you are suddenly taken aback. The tingling increases tenfold as your [pc.balls] enlarge");
 							if(target.balls == 1) msg += "s";
 							msg += ", bloating up to twice the size";
 							if(target.balls == 1) msg += " it was";
@@ -279,7 +279,7 @@
 					
 					if (target.ballSizeUnlocked(target.ballSizeRaw - ballMod))
 					{
-						msg += "Walking is getting a little easier with the passage of time. In fact, you're pretty sure it's because your [pc.balls] ";
+						msg += ParseText("Walking is getting a little easier with the passage of time. In fact, you're pretty sure it's because your [pc.balls] ");
 						if(target.balls == 1) msg += "is";
 						else msg += "are";
 						msg += " shrinking. You aren't sure how you didn't notice earlier, but ";
@@ -308,13 +308,13 @@
 						//Multicunt
 						if(target.vaginaTotal() > 1)
 						{
-							msg += "With the assortment of cunt you've managed to accumulate in your crotch, you find yourself wondering how any one of them is supposed to take a suitable member... something big, hard, and... bestial. Glorious, [pc.leg]-dampening moisture is your body's answer. Are you getting wetter? You slide your palm across your slick deltas. Yes, you definitely are. How wonderful!";
+							msg += ParseText("With the assortment of cunt you've managed to accumulate in your crotch, you find yourself wondering how any one of them is supposed to take a suitable member... something big, hard, and... bestial. Glorious, [pc.leg]-dampening moisture is your body's answer. Are you getting wetter? You slide your palm across your slick deltas. Yes, you definitely are. How wonderful!");
 						}
 						//Single cunt
 						else
 						{
 							msg += "Unbidden, you find yourself wondering about how you'd take a truly horse-sized member. Would it hurt? Would you be wet enough? The ";
-							if(target.isCrotchGarbed()) msg += "dampness in your [pc.lowerGarment]";
+							if(target.isCrotchGarbed()) msg += ParseText("dampness in your [pc.lowerGarment]");
 							else msg += "slight shine of moisture on your lower lips";
 							msg += " seems to hint that you're getting closer. You can't resist testing your slickness with a finger. It's definitely getting wetter faster than normal.";
 						}
@@ -339,8 +339,8 @@
 						//Single clits!
 						if(target.totalClits() == 1)
 						{
-							msg += "Something is rubbing down... down in your crotch - in just the right way, too. You suppress a pant of delight as you wiggle your [pc.hips], squeezing your lower lips down around a noticeably engorged buzzer. Is it... is it bigger?";
-							if(target.isCrotchGarbed()) msg += " You pull open your [pc.lowerGarments] to check.";
+							msg += ParseText("Something is rubbing down... down in your crotch - in just the right way, too. You suppress a pant of delight as you wiggle your [pc.hips], squeezing your lower lips down around a noticeably engorged buzzer. Is it... is it bigger?");
+							if(target.isCrotchGarbed()) msg += ParseText(" You pull open your [pc.lowerGarments] to check.");
 							msg += " It definitely is; ";
 							
 							if(target.clitLength < 0.6) msg += "it's getting so big that it would never escape notice.";
@@ -350,7 +350,7 @@
 						//Multiclits
 						else
 						{
-							msg += "Something... no, multiple somethings are rubbing down below - in your crotch. It feels good too. You have to suppress a pant of delight at the sensations, but your [pc.hips] wiggle anyway, squeezing down around the sources of pleasure. Your [pc.clits] are totally erect and definitely bigger. ";
+							msg += ParseText("Something... no, multiple somethings are rubbing down below - in your crotch. It feels good too. You have to suppress a pant of delight at the sensations, but your [pc.hips] wiggle anyway, squeezing down around the sources of pleasure. Your [pc.clits] are totally erect and definitely bigger. ");
 							if(target.clitLength < 0.6) msg += "Why, you're pretty sure they're so large that they'd be impossible to miss, like little pleasure-packed gumballs.";
 							else msg += "There's no way they'll ever be hidden by your netherlips now - they stick out just far enough to make touching and stroking them as easy as breathing.";
 							msg += " You'll have to be careful walking if you don't want to wind up jilling off on the street.";
@@ -367,8 +367,8 @@
 				{
 					if (target.breastRatingUnlocked(target.biggestTitRow(), 6))
 					{
-						if(target.bRows() == 1) msg += "Your [pc.chest]";
-						else msg += "Your [pc.fullChest]";
+						if(target.bRows() == 1) msg += ParseText("Your [pc.chest]");
+						else msg += ParseText("Your [pc.fullChest]");
 						msg += " feel lighter. In fact, you're pretty sure you've lost a ";
 						if(target.biggestTitSize() > 10) msg += "few cup sizes";
 						else msg += "cup size";
@@ -460,7 +460,7 @@
 					//Sub 75%
 					else
 					{
-						msg += "A noise behind you startles you, and you have to stop yourself from lashing out with a [pc.foot]. Damn, that was close. At least you're packing tightly-honed reflexes.";
+						msg += ParseText("A noise behind you startles you, and you have to stop yourself from lashing out with a [pc.foot]. Damn, that was close. At least you're packing tightly-honed reflexes.");
 					}
 					target.slowStatGain("reflexes",1);
 				}
@@ -469,7 +469,7 @@
 				{
 					if (target.hornsUnlocked(0))
 					{
-						msg += "Your [pc.hornsNoun] audibly crack";
+						msg += ParseText("Your [pc.hornsNoun] audibly crack");
 						if(target.horns == 1) msg += "s";
 						msg += ", falling to the ground a second later. Picking ";
 						if(target.horns == 1) msg += "it";
@@ -477,10 +477,10 @@
 						msg += " up, you feel ";
 						if(target.horns == 1) msg += "it";
 						else msg += "them";
-						msg += " crumble away in your hands like loose chalk. You touch the stumps on your head only to have them come away in the same fashion. <b>Unbroken [pc.skinFurScales] ";
+						msg += ParseText(" crumble away in your hands like loose chalk. You touch the stumps on your head only to have them come away in the same fashion. <b>Unbroken [pc.skinFurScales] ");
 						if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) msg += "are";
 						else msg += "is";
-						msg += " all that remains in place of your [pc.horns].</b>";
+						msg += ParseText(" all that remains in place of your [pc.horns].</b>");
 						target.removeHorns();
 					}
 					else
@@ -493,8 +493,8 @@
 				{
 					if (target.antennaeUnlocked(0))
 					{
-						if(target.antennae == 1) msg += "Your [pc.antenna] drops to the ground. Where it once sat, there's only the curious numbness of a missing body part. You feel almost naked without it, but at the same time, it seems... right.";
-						else msg += "Your [pc.antennae] drop to the ground. Where they once sat, there's only the curious numbness of a missing body part. You feel almost naked without them, but at the same time, it seems... right.";
+						if(target.antennae == 1) msg += ParseText("Your [pc.antenna] drops to the ground. Where it once sat, there's only the curious numbness of a missing body part. You feel almost naked without it, but at the same time, it seems... right.");
+						else msg += ParseText("Your [pc.antennae] drop to the ground. Where they once sat, there's only the curious numbness of a missing body part. You feel almost naked without them, but at the same time, it seems... right.");
 						target.removeAntennae();
 					}
 					else
@@ -509,13 +509,13 @@
 					{
 						//No hair -> same result as short hair TF
 						if(!target.hasHair()) {
-							msg += "Idly running a hand over your head, you discover that [pc.hair] has grown to cover your once bald pate. It's about two inches of thick hair.";
+							msg += ParseText("Idly running a hand over your head, you discover that [pc.hair] has grown to cover your once bald pate. It's about two inches of thick hair.");
 							target.hairLength = 2;
 						}
 						//Short hair
 						else if(target.hairLength < 2)
 						{
-							msg += "Idly running a hand over your head, you discover that your [pc.hair] has lengthened noticeably. It's about two inches long.";
+							msg += ParseText("Idly running a hand over your head, you discover that your [pc.hair] has lengthened noticeably. It's about two inches long.");
 							target.hairLength = 2;
 						}
 						//Halfway there!
@@ -553,7 +553,7 @@
 							chosenVagoo = x;
 					}
 					
-					msg += "You are suddenly aware of how totally, completely empty your [pc.vagina " + chosenVagoo + "] is. You can't help but wonder how much more you could fit inside, or how much bigger of a mate you could cram into the hungry void that is your box. Maybe you could find a suitably virile stud to mount you out in a field with nothing but the wind and the sky between you.";
+					msg += ParseText("You are suddenly aware of how totally, completely empty your [pc.vagina " + chosenVagoo + "] is. You can't help but wonder how much more you could fit inside, or how much bigger of a mate you could cram into the hungry void that is your box. Maybe you could find a suitably virile stud to mount you out in a field with nothing but the wind and the sky between you.");
 					target.vaginas[chosenVagoo].bonusCapacity += 5;
 					if(target.vaginas[chosenVagoo].bonusCapacity > 15) target.vaginas[chosenVagoo].bonusCapacity = 15;
 				}
@@ -574,7 +574,7 @@
 					}
 				}
 				//New lines!
-				if(msg.length > 0) kGAMECLASS.eventBuffer += ParseText(msg);
+				if(msg.length > 0) kGAMECLASS.eventBuffer += msg;
 				totalTFs--;
 			}
 		}
@@ -699,10 +699,10 @@
 				{
 					if (target.ballsUnlocked(2))
 					{
-						msg += "Your [pc.sack] feels feverishly warm. There's no other way to describe the pulsating warmth currently coursing through it. ";
-						if(target.isCrotchGarbed()) msg += "You shuck your [pc.lowerGarments] to check it out. ";
+						msg += ParseText("Your [pc.sack] feels feverishly warm. There's no other way to describe the pulsating warmth currently coursing through it. ");
+						if(target.isCrotchGarbed()) msg += ParseText("You shuck your [pc.lowerGarments] to check it out. ");
 						else msg += "You look down to check it out. ";
-						msg += "Strangely, your [pc.balls] are hanging oddly. It seems like they're stuck together. A gentle squeeze confirms your suspicion. Then, before your eyes, they slowly grow together, merging into a pair of much larger nuts. They feel heavy and strange but also undeniably right. <b>You've only got two balls, but they're much bigger.</b>";
+						msg += ParseText("Strangely, your [pc.balls] are hanging oddly. It seems like they're stuck together. A gentle squeeze confirms your suspicion. Then, before your eyes, they slowly grow together, merging into a pair of much larger nuts. They feel heavy and strange but also undeniably right. <b>You've only got two balls, but they're much bigger.</b>");
 						//Ballsize grow based on how many were merged in!
 						target.ballSizeRaw = target.balls/2 * target.ballSizeRaw;
 						target.balls = 2;
@@ -741,7 +741,7 @@
 					
 					if (target.cockTypeUnlocked(cockToBe, GLOBAL.TYPE_EQUINE))
 					{
-						msg += "A pinch of slight discomfort garners your attention, and the immediate blossoming of unnatural warmth within holds it. Building slowly, the strange yet pleasant sensation spreads through your length to your abdominal core. Then, like a butterfly emerging from its cocoon, your [pc.cock " + cockToBe + "] reveals itself, changed ";
+						msg += ParseText("A pinch of slight discomfort garners your attention, and the immediate blossoming of unnatural warmth within holds it. Building slowly, the strange yet pleasant sensation spreads through your length to your abdominal core. Then, like a butterfly emerging from its cocoon, your [pc.cock " + cockToBe + "] reveals itself, changed ");
 						//Ovir or other horsecockalikes
 						if(target.hasCockFlag(GLOBAL.FLAG_BLUNT)) msg += "subtly. The head is still blunt, but its slightly more flared, and the shaft looks so meaty and full of veins that it would only look at home on a beast of burden, note a sapient creature.";
 						else msg += "obviously. The head is flat, blunted, and just slightly wider than the rest of the shaft. Behind it, the shaft is smooth except for veins and a bulgy medial ring about halfway down its length. A cock like this would look more at home on a beast of burden than a sapient being.";
@@ -769,7 +769,7 @@
 				//#6 GROW A SECOND BALL IF ONLY ONE
 				else if(select == 6)
 				{
-					msg += "You suddenly grunt and clench as something deep in your abdomen spasms. A moment later, you feel something slipping out of your body and next to your [pc.ball]. You've grown a second one, identical to the first, and released it into your [pc.sack] to start creating even more [pc.cum].";
+					msg += ParseText("You suddenly grunt and clench as something deep in your abdomen spasms. A moment later, you feel something slipping out of your body and next to your [pc.ball]. You've grown a second one, identical to the first, and released it into your [pc.sack] to start creating even more [pc.cum].");
 					target.balls = 2;
 				}
 				//#7 Horsecunt.
@@ -924,14 +924,14 @@
 						//Single legs
 						if(target.legCount == 1 && target.legCountUnlocked(2))
 						{
-							msg += "Your [pc.leg] goes weak and wobbly. You manage to drop to the ground with less grace than you meant before your strength gives completely. Starting at the tip of your [pc.foot], your [pc.leg] creases before starting to separate in two! The split supports slowly change shape to take on knees and high, digitigrade ankles. At the bottoms of your new legs, hooves form.";
+							msg += ParseText("Your [pc.leg] goes weak and wobbly. You manage to drop to the ground with less grace than you meant before your strength gives completely. Starting at the tip of your [pc.foot], your [pc.leg] creases before starting to separate in two! The split supports slowly change shape to take on knees and high, digitigrade ankles. At the bottoms of your new legs, hooves form.");
 							target.legCount = 2;
 							target.genitalSpot = 0;
 						}
 						//Quad+ legs
 						else if (target.legCount >= 3 && target.legCountUnlocked(4)) 
 						{
-							msg += "Twitching wildly, your [pc.legs] give out, dumping you to the floor in a heap of uncoordinated, splayed limbs. They twitch wildly as they reform, starting at your waist and spreading down. Their bones melt like butter as they flow into newer, more equine shapes, and your [pc.feet] change with them, growing hard and cloven.";
+							msg += ParseText("Twitching wildly, your [pc.legs] give out, dumping you to the floor in a heap of uncoordinated, splayed limbs. They twitch wildly as they reform, starting at your waist and spreading down. Their bones melt like butter as they flow into newer, more equine shapes, and your [pc.feet] change with them, growing hard and cloven.");
 							if(target.legCount > 4) 
 							{
 								msg += " The front four do anyway. Your body shortens up behind them, becoming more traditionally tauric in shape and size.";
@@ -950,7 +950,7 @@
 							msg += "Your legs wobble warningly a moment before dumping you to the ground as they nervelessly twitch. Their shape gets less and less distinct as their structure morphs and shifts, ";
 							if(!target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) msg += "becoming distinctly digitigrade in nature";
 							else msg += "remaining digitigrade but in slightly different proportion";
-							msg += ". Your [pc.feet] curl up into compact, hard keratin, shiny black and cloven. <b>You have hooved feet!</b>";
+							msg += ParseText(". Your [pc.feet] curl up into compact, hard keratin, shiny black and cloven. <b>You have hooved feet!</b>");
 						}
 						target.clearLegFlags();
 						target.addLegFlag(GLOBAL.FLAG_DIGITIGRADE);
@@ -978,11 +978,11 @@
 						else target.furColor = "sable";
 						
 						//Scales
-						if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) msg += "Your scales are flaking off! One after another, the shiny " + target.scaleColor + " little plates are falling to the ground. In their place, [pc.skinFurScales] is springing up, thick and glossy. You brush the last of your scales away as your full-body fur finishes growing in. An odd desire to be brushed nags at your mind.";
+						if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) msg += ParseText("Your scales are flaking off! One after another, the shiny " + target.scaleColor + " little plates are falling to the ground. In their place, [pc.skinFurScales] is springing up, thick and glossy. You brush the last of your scales away as your full-body fur finishes growing in. An odd desire to be brushed nags at your mind.");
 						//Chitin
-						else if(target.skinType == GLOBAL.SKIN_TYPE_CHITIN) msg += "Your chitinous armor cracks loudly. Thankfully, it doesn't hurt even though the fractures are spreading across your body like breaking glass. You peel away a piece and discover [pc.skinFurScales] growing up out of the gap, and as you marvel at it, the rest of your chitin slowly sloughs off. <b>Your whole body is covered in fur, like a horse!</b> An odd desire to be brushed rises up within you.";
+						else if(target.skinType == GLOBAL.SKIN_TYPE_CHITIN) msg += ParseText("Your chitinous armor cracks loudly. Thankfully, it doesn't hurt even though the fractures are spreading across your body like breaking glass. You peel away a piece and discover [pc.skinFurScales] growing up out of the gap, and as you marvel at it, the rest of your chitin slowly sloughs off. <b>Your whole body is covered in fur, like a horse!</b> An odd desire to be brushed rises up within you.");
 						//Skin or whatever!
-						else msg += "Tiny hairs break through the surface of your [pc.skin], making you itch like crazy. It's enough to distract you for sure, and it only gets worse as more and more hair emerges. The ones that came out first are getting longer and thicker, with the newer additions following close behind. Before you know it, your [pc.skin] vanishes under your new coat of [pc.skinFurScales]. <b>You struggle with a strange desire to be brushed as you admire your new horse hair coat.</b>";
+						else msg += ParseText("Tiny hairs break through the surface of your [pc.skin], making you itch like crazy. It's enough to distract you for sure, and it only gets worse as more and more hair emerges. The ones that came out first are getting longer and thicker, with the newer additions following close behind. Before you know it, your [pc.skin] vanishes under your new coat of [pc.skinFurScales]. <b>You struggle with a strange desire to be brushed as you admire your new horse hair coat.</b>");
 					}
 					else
 					{
@@ -1006,11 +1006,11 @@
 					msg += "Your genital slit abruptly bulges, feeling way too tight all of a sudden. You wince as your [pc.cocks] ";
 					if(target.cockTotal() == 1) msg += "is rudely thrust out of its warm, snuggly home.";
 					else msg += "are rudely thrust out of their warm, snuggly homes.";
-					msg += " Now exposed to the air, you're left to gasp as you feel the opening underneath diminishing until there's only a slight crease in your [pc.skin]. Even that fades over the course of a minute or so. <b>Your genital slit is gone.</b>"
+					msg += ParseText(" Now exposed to the air, you're left to gasp as you feel the opening underneath diminishing until there's only a slight crease in your [pc.skin]. Even that fades over the course of a minute or so. <b>Your genital slit is gone.</b>");
 					target.removeStatusEffect("Genital Slit");
 				}
 				
-				if(msg.length > 0) kGAMECLASS.eventBuffer += ParseText(msg);
+				if(msg.length > 0) kGAMECLASS.eventBuffer += msg;
 				totalTFs--;
 			}
 		}

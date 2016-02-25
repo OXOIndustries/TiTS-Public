@@ -134,12 +134,12 @@ package classes.Items.Transformatives
 						// Transformation text (human texture):
 						if(target.skinType == GLOBAL.SKIN_TYPE_SKIN)
 						{
-							msg += "You notice something odd about your skin and find, much to your surprise, that your flesh tone has changed! <b>You now have [pc.skinColor] colored skin.</b>";
+							msg += ParseText("You notice something odd about your skin and find, much to your surprise, that your flesh tone has changed! <b>You now have [pc.skinColor] colored skin.</b>");
 						}
 						// Transformation text (non-human texture):
 						else
 						{
-							msg += "You touch your face in a moment of idle contemplation, and find that it feels very different than usual. You check your reflection in and see that not only has your skin’s texture changed to something much more in line with what a human’s normally is, it’s also turned an unusual [pc.skinColor] color. <b>You now have [pc.skinColor] human skin!</b>";
+							msg += ParseText("You touch your face in a moment of idle contemplation, and find that it feels very different than usual. You check your reflection in and see that not only has your skin’s texture changed to something much more in line with what a human’s normally is, it’s also turned an unusual [pc.skinColor] color. <b>You now have [pc.skinColor] human skin!</b>");
 							target.skinType = GLOBAL.SKIN_TYPE_SKIN;
 							target.clearSkinFlags();
 						}
@@ -176,7 +176,7 @@ package classes.Items.Transformatives
 						msg += "Your scalp has been feeling very itchy for the last hour or so. It hasn’t been bad enough to really mess with your concentration,";
 						target.hairColor = newHairColor;
 						// Transformation text (have hair):
-						if(target.hairLength > 0) msg += " but now a few strands come away in your hands to reveal that your hair color has changed. <b>You’re now sporting [pc.hairColor] hair!</b>";
+						if(target.hairLength > 0) msg += ParseText(" but now a few strands come away in your hands to reveal that your hair color has changed. <b>You’re now sporting [pc.hairColor] hair!</b>");
 						else msg += " but you’re sure something about your head has definitely changed...";
 					}
 					else
@@ -211,7 +211,7 @@ package classes.Items.Transformatives
 						// Transformation text (stage 1):
 						if(!target.hasStatusEffect("Gabilani Face Change"))
 						{
-							msg += "You double over as a sudden wave of pain passes through your [pc.face]. It feels like the bones are grinding against one another! Finally, the pain becomes dull enough that you can keep moving, but it’s still there.";
+							msg += ParseText("You double over as a sudden wave of pain passes through your [pc.face]. It feels like the bones are grinding against one another! Finally, the pain becomes dull enough that you can keep moving, but it’s still there.");
 							// [increase PC fatigue]
 							target.energy(-50);
 							target.createStatusEffect("Gabilani Face Change", 0, 0, 0, 0, true, "", "", false, 30);
@@ -239,7 +239,7 @@ package classes.Items.Transformatives
 						// Transformation text (variation 2):
 						else if(rand(2) == 0) msg += "Your clothes feel unusually loose on you, and you hear a warning beep come from your codex. Apparently, over the last hour or so, <b>you’ve shrunk slightly in height!</b>";
 						// Transformation text (variation 3):
-						else msg += "A groan escapes your lips as you give your [pc.legOrLegs] a rub. They’ve been feeling a bit stiff, and you stretch them out. There is a beep from your codex as it informs you that your recorded height is inaccurate with your actual stature. <b>You’ve shrunk a little over the last hour.</b>";
+						else msg += ParseText("A groan escapes your lips as you give your [pc.legOrLegs] a rub. They’ve been feeling a bit stiff, and you stretch them out. There is a beep from your codex as it informs you that your recorded height is inaccurate with your actual stature. <b>You’ve shrunk a little over the last hour.</b>");
 						
 						target.tallness = newTallness;
 					}
@@ -290,7 +290,7 @@ package classes.Items.Transformatives
 					if(target.legTypeUnlocked(GLOBAL.TYPE_HUMAN) && target.legCountUnlocked(2))
 					{
 						//Transformation text:
-						msg += "The pain of transformation suddenly rushes through your [pc.legOrLegs]. You have no choice but to find a safe place to huddle down and wait for the process to finish. It is an uncomfortable twenty minutes wait for the process to finish, but thankfully what you’re changing into isn’t hugely outlandish. The joints reform and reshape themselves into human-like legs and feet. After a few ginger steps and bends of the knee, you find the sensation of being a plantigrade biped coming quite naturally.";
+						msg += ParseText("The pain of transformation suddenly rushes through your [pc.legOrLegs]. You have no choice but to find a safe place to huddle down and wait for the process to finish. It is an uncomfortable twenty minutes wait for the process to finish, but thankfully what you’re changing into isn’t hugely outlandish. The joints reform and reshape themselves into human-like legs and feet. After a few ginger steps and bends of the knee, you find the sensation of being a plantigrade biped coming quite naturally.");
 						
 						kGAMECLASS.processTime(15 + rand(10));
 						target.legType = GLOBAL.TYPE_HUMAN;
@@ -314,7 +314,7 @@ package classes.Items.Transformatives
 					if(target.armTypeUnlocked(GLOBAL.TYPE_HUMAN))
 					{
 						// Transformation text:
-						msg += "The flesh in your [pc.arms] feels weak and palpitant, and as the sensation increases, you find yourself unable to do anything with them.";
+						msg += ParseText("The flesh in your [pc.arms] feels weak and palpitant, and as the sensation increases, you find yourself unable to do anything with them.");
 						if(target.hasFur()) msg += " Fur sloughs off them in big, uneven chunks.";
 						msg += " It’s with some relief when after about fifteen minutes the transformation completes, and you are able to move your now human arms around and admire them in all their lightly haired, elbow-y glory.";
 						
@@ -353,7 +353,7 @@ package classes.Items.Transformatives
 					}
 				}
 				
-				if(msg.length > 0) kGAMECLASS.eventBuffer += ParseText(msg);
+				if(msg.length > 0) kGAMECLASS.eventBuffer += msg;
 				totalTFs--;
 			}
 			return;
@@ -450,11 +450,11 @@ package classes.Items.Transformatives
 					if(target.cockTypeUnlocked(n, GLOBAL.TYPE_GABILANI))
 					{
 						// Transformation text (PC has undergarments):
-						if(target.hasLowerGarment()) msg += "Your [pc.cock " + n + "] tingles, rubbing against your [pc.lowerUndergarment] somewhat uncomfortably. Finally you check what’s going on downstairs and discover that your member has actually reformed into an alien cock!";
+						if(target.hasLowerGarment()) msg += ParseText("Your [pc.cock " + n + "] tingles, rubbing against your [pc.lowerUndergarment] somewhat uncomfortably. Finally you check what’s going on downstairs and discover that your member has actually reformed into an alien cock!");
 						// Transformation text (PC has no undergarments, but does lower garments):
-						else if(target.isCrotchGarbed()) msg += "Your [pc.cock " + n + "] tingles, rubbing against your [pc.lowerGarments] somewhat uncomfortably. Finally you check what’s going on downstairs and discover that your member has actually reformed into an alien cock!";
+						else if(target.isCrotchGarbed()) msg += ParseText("Your [pc.cock " + n + "] tingles, rubbing against your [pc.lowerGarments] somewhat uncomfortably. Finally you check what’s going on downstairs and discover that your member has actually reformed into an alien cock!");
 						// Transformation text (PC has no undergarments, or lower garments):
-						else msg += "Your [pc.cock " + n + "] tingles, feeling somewhat uncomfortable as the air moves around it. Finally you check what’s going on downstairs and discover that your member has actually reformed into an alien cock!";
+						else msg += ParseText("Your [pc.cock " + n + "] tingles, feeling somewhat uncomfortable as the air moves around it. Finally you check what’s going on downstairs and discover that your member has actually reformed into an alien cock!");
 						msg += " Its tip is now a pair of spherical crowns separated with a deep ridge with an otherwise relatively human shaft linking it to your crotch. <b>You now have a gabilani cock!</b>";
 						
 						target.shiftCock(n, GLOBAL.TYPE_GABILANI);
@@ -515,7 +515,7 @@ package classes.Items.Transformatives
 						msg += "You grunt in surprise";
 						//Not exhibitionist:
 						if(target.exhibitionism() < 50) msg += " and slight embarrassment";
-						msg += " as [pc.eachCock] swells up and oozes pre in a burst of hard heat. You cautiously touch and examine it with your fingers. It’s warm and smells musky as ever, but the color and texture of it has changed to a semi-transparent oil. You snort as you imagine attempting to massage someone with it. <b>You now ejaculate gabilani cum.</b>";
+						msg += ParseText(" as [pc.eachCock] swells up and oozes pre in a burst of hard heat. You cautiously touch and examine it with your fingers. It’s warm and smells musky as ever, but the color and texture of it has changed to a semi-transparent oil. You snort as you imagine attempting to massage someone with it. <b>You now ejaculate gabilani cum.</b>");
 						
 						target.cumType = GLOBAL.FLUID_TYPE_GABILANI_CUM;
 					}
@@ -561,7 +561,7 @@ package classes.Items.Transformatives
 				else if(select == 7)
 				{
 					// > 60% Phy:
-					if(target.PQ() >= 60) msg += "The muscles in your arms and [pc.lowerBody] feel like they’re getting softer and more supple as time goes on, and you’re left with the uneasy impression you’re not as physically capable as you once were. What kind of health food was that, anyway?";
+					if(target.PQ() >= 60) msg += ParseText("The muscles in your arms and [pc.lowerBody] feel like they’re getting softer and more supple as time goes on, and you’re left with the uneasy impression you’re not as physically capable as you once were. What kind of health food was that, anyway?");
 					// < 60% Phy:
 					else msg += "You huff for breath and wipe your brow, heart hammering from all the physical exertion you’ve been putting yourself through recently. In irritation you find yourself dreaming up all sorts of contraptions you could design to ferry yourself around, saving yourself all this unnecessary effort...";
 					
@@ -574,7 +574,7 @@ package classes.Items.Transformatives
 					var virilityChange:Boolean = false;
 					if(target.balls > 0 && target.cumQualityRaw < 3)
 					{
-						msg += ", your [pc.balls] swelling in gratification";
+						msg += ParseText(", your [pc.balls] swelling in gratification");
 						target.cumQualityRaw += 0.01;
 						virilityChange = true;
 						if(target.hasVagina() && target.fertilityRaw < 3) msg += " and";
@@ -582,7 +582,7 @@ package classes.Items.Transformatives
 					if(target.hasVagina() && target.fertilityRaw < 3)
 					{
 						if(!virilityChange) msg += ",";
-						msg += " [pc.eachVagina] moistening with anticipatory need";
+						msg += ParseText(" [pc.eachVagina] moistening with anticipatory need");
 						target.fertilityRaw += 0.01;
 					}
 					msg += ". An increasingly tigerish and prickly urge to breed is stealing over you.";
@@ -593,7 +593,7 @@ package classes.Items.Transformatives
 				//#9 If fully morphed: Hips plus butt increase by 1 after every pregnancy
 				else if(select == 9)
 				{
-					msg += "Hm, you feel a little more bottom heavy than usual. You squeeze your [pc.hip] only to find it getting taut between your fingers. Giving your [pc.butt] a slap, it rebounds back with an odd sensation. Your body seems to have changed to adapt to its fertile nature, flaring out and becoming womanly, at least for your lower body anyway...";
+					msg += ParseText("Hm, you feel a little more bottom heavy than usual. You squeeze your [pc.hip] only to find it getting taut between your fingers. Giving your [pc.butt] a slap, it rebounds back with an odd sensation. Your body seems to have changed to adapt to its fertile nature, flaring out and becoming womanly, at least for your lower body anyway...");
 					msg += "\n\n<b>Perk Gained: Fecund Figure</b> - Gradually, your hips and ass will permanently increase in size during pregnancy.";
 					
 					// Perk: "Fecund Figure"
