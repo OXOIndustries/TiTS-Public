@@ -301,6 +301,7 @@
 			TYPE_GABILANI,
 			TYPE_DEMONIC,
 			TYPE_FROG,
+			TYPE_NYREA,
 		];
 		
 		public static const VALID_TONGUE_TYPES:Array = [
@@ -373,6 +374,7 @@
 			TYPE_OVIR,
 			TYPE_MYR,
 			TYPE_DEMONIC,
+			TYPE_NYREA,
 		];
 
 		public static const VALID_ARM_FLAGS:Array = [
@@ -415,6 +417,7 @@
 			TYPE_OVIR,
 			TYPE_MYR,
 			TYPE_FROG,
+			TYPE_NYREA,
 		];
 		
 		public static const VALID_LEG_FLAGS:Array = [
@@ -631,6 +634,7 @@
 		public static const FLUID_TYPE_SPECIAL_GOO:int							= 18;
 		public static const FLUID_TYPE_CHOCOLATE_CUM:int							= 19;
 		public static const FLUID_TYPE_VANAE_CUM:int							= 20;
+		public static const FLUID_TYPE_NYREA_GIRLCUM:int							= 21;
 		
 		public static const FLUID_TYPE_NAMES:Array = [
 			"Milk",
@@ -654,6 +658,7 @@
 			"Goo",
 			"Chocolate Cum",
 			"Vanae Cum",
+			"Nyrea Girl Cum",
 		];
 		
 		public static const VALID_CUM_TYPES:Array = [
@@ -679,6 +684,7 @@
 			FLUID_TYPE_VANILLA,
 			FLUID_TYPE_GABILANI_GIRLCUM,
 			FLUID_TYPE_SPECIAL_GOO,
+			FLUID_TYPE_NYREA_GIRLCUM,
 		];
 		
 		public static const VALID_MILK_TYPES:Array = [
@@ -702,6 +708,7 @@
 		public static const HAIR_TYPE_TRANSPARENT:int					= 2;
 		public static const HAIR_TYPE_GOO:int							= 3;
 		public static const HAIR_TYPE_TENTACLES:int						= 4;
+		public static const HAIR_TYPE_QUILLS:int						= 5;
 		
 		public static const HAIR_TYPE_NAMES:Array = [
 			"Hair",
@@ -709,6 +716,7 @@
 			"Transparent",
 			"Gooey",
 			"Tentacles",
+			"Quills",
 		];
 
 		public static const GENITAL_SPOT_WAIST:int		= 0;
@@ -793,6 +801,7 @@
 			TYPE_GOOEY,
 			TYPE_SIREN,
 			TYPE_GABILANI,
+			TYPE_NYREA,
 		];
 		
 		// As far as I can tell, at time of writing there are no flags currently used/assigned to vaginas

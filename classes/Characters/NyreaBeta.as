@@ -12,6 +12,7 @@
 	import classes.Items.Miscellaneous.Kirkite;
 	import classes.Items.Miscellaneous.Satyrite;
 	import classes.Items.Drinks.RedMyrVenom;
+	import classes.Items.Transformatives.NyreanCandy;
 	import classes.GLOBAL;
 	import classes.CockClass;
 	
@@ -185,10 +186,13 @@
 			isUniqueInFight = true;
 			btnTargetText = "Nyrea";
 			
+			tallness = 60 + (rand(10) - 5);
+			
 			if (rand(20) == 0) inventory.push(new Kirkite());
 			else if(rand(20) == 0) inventory.push(new Satyrite());
-			else if(rand(3) == 0) inventory.push(new RedMyrVenom());
-			tallness = 60 + (rand(10) - 5);
+			else if (rand(20) == 0) inventory.push(meleeWeapon.makeCopy());
+			else if (rand(3) == 0) inventory.push(new RedMyrVenom());
+			else if (rand(3) == 0) inventory.push(new NyreanCandy());
 			
 			sexualPreferences.setPref(GLOBAL.SEXPREF_FEMININE,		GLOBAL.REALLY_LIKES_SEXPREF);
 			sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_BREASTS,		GLOBAL.REALLY_LIKES_SEXPREF);
@@ -196,11 +200,6 @@
 			sexualPreferences.setPref(GLOBAL.SEXPREF_NEUTER,			GLOBAL.KINDA_DISLIKES_SEXPREF);
 			sexualPreferences.setPref(GLOBAL.SEXPREF_VAGINAL_WETNESS,	GLOBAL.KINDA_LIKES_SEXPREF);
 			sexualPreferences.setPref(GLOBAL.SEXPREF_MASCULINE,		GLOBAL.KINDA_LIKES_SEXPREF);
-			
-			if (rand(20) == 0)
-			{
-				inventory.push(meleeWeapon.makeCopy());
-			}
 			
 			this._isLoading = false;
 		}

@@ -185,8 +185,7 @@ public function emmyRepeatGreetings():void
 	clearOutput();
 	showEmmy();
 	//Repeat Myr Approach
-	var race:String = pc.race();
-	if(race == "myr" || race == "nyrea" || race == "gold myr" || race == "red myr" || race == "orange myr")
+	if(isMyrellionMorph(pc))
 	{
 		output("You walk up to the KihaCorp representative, doing your best to ignore the overt sexually she puts on display - both feminine and masculine. The white and black of her branded jumpsuit seems perfectly painted to her every curve, outlining every nook and cranny of her nipples before being stretched across her cleavage. When she rises to greet you, you can even make out the individual bulges of her testes, sheath, and half-hard cock.");
 		output("\n\n<i>“Whoah there,”</i> the too-sexual shopkeep says, putting her hands up warningly. <i>“I can’t sell to the natives. Didn’t we go over this already? If I sold just one rifle or shield to a single myr, I could lose my job.”</i> She pouts and shakes her head to herself. <i>“It’s a real shame too. Cute native like you would be nice to have around the shop.”</i>");

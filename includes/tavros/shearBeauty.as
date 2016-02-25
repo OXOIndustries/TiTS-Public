@@ -166,13 +166,14 @@ public function hairworkFromCeria():void
 	//[Fur Color] Go to Fur Color Options
 	//[Back] Go to Ceria Main
 	clearMenu();
-	if(pc.hairLength == 0) addButton(0,"Lengthen",lengthenHairChoices,undefined,"Lengthen","Get your hair lengthened.");
-	else addButton(0,"Lengthen",lengthenHairChoices,undefined,"Lengthen","Grow some hair.");
+	if(pc.hairLength <= 0) addButton(0,"Lengthen",lengthenHairChoices,undefined,"Lengthen","Grow some hair.");
+	else addButton(0,"Lengthen",lengthenHairChoices,undefined,"Lengthen","Get your hair lengthened.");
 	if(pc.hairLength > 0) addButton(1,"Cut",getHairCut,undefined,"Cut","Get your hair cut down to size.");
 	else addDisabledButton(1,"Cut","Cut","You need hair in order to get it cut.");
 	if(pc.hairLength > 0) addButton(2,"Color",hairColorMainMenu,undefined,"Color","Try out a new color!");
 	else addDisabledButton(2,"Color","Color","You need something on your head to dye!");
-	if(pc.hairType == 0) addButton(3,"Style",ceriaHairStyleChoices,undefined,"Style","Get your hair styled into something fashionable.");
+	if(pc.hairLength <= 0) addDisabledButton(3,"Style","Style","You need some hair in order to style it!");
+	if(InCollection(pc.hairType, GLOBAL.HAIR_TYPE_REGULAR, GLOBAL.HAIR_TYPE_QUILLS)) addButton(3,"Style",ceriaHairStyleChoices,undefined,"Style","Get your hair styled into something fashionable.");
 	else addDisabledButton(3,"Style","Style","You can only get traditional hair styled here.");
 	if(pc.hasFur() || pc.hasLegFlag(GLOBAL.FLAG_FURRED) || pc.hasTailFlag(GLOBAL.FLAG_FURRED) || pc.hasArmFlag(GLOBAL.FLAG_FURRED)) addButton(4,"Fur Color",furColorMenu,undefined,"Fur Color","Get your fur dyed too!");
 	else addDisabledButton(4,"Fur Color","Fur Color","You don't have fur to dye!");
@@ -549,6 +550,7 @@ public function styleConfirmation(hStyle:String = ""):void
 	else if(hStyle == "braided") output(" ");
 	else if(hStyle == "afro") output(" worn as an ");
 	else if(hStyle == "mohawk") output(" done up as a ");
+	else output(" ");
 	output(hStyle + "? That’ll be 1200 credits.”</i>");
 	processTime(1);
 	//[OK] Go to Styling

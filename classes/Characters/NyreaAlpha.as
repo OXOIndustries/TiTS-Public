@@ -16,6 +16,7 @@
 	import classes.Items.Miscellaneous.Kirkite;
 	import classes.Items.Miscellaneous.Satyrite;
 	import classes.Items.Drinks.RedMyrVenom;
+	import classes.Items.Transformatives.NyreanCandy;
 	
 	import classes.GLOBAL;
 	import classes.GameData.CombatAttacks;
@@ -202,11 +203,12 @@
 			sexualPreferences.setPref(GLOBAL.SEXPREF_MASCULINE,		GLOBAL.KINDA_LIKES_SEXPREF);
 			
 			if (rand(40) == 0) inventory.push(new Kirkite());
-			else if(rand(50) == 0) inventory.push(new Satyrite());
-			else if(rand(20) == 0) inventory.push(new Picardine());
+			else if (rand(50) == 0) inventory.push(new Satyrite());
+			else if (rand(20) == 0) inventory.push(new Picardine());
 			else if (rand(20) == 0)	inventory.push(rangedWeapon.makeCopy());
 			else if (rand(20) == 0) inventory.push(meleeWeapon.makeCopy());
-			else if(rand(3) == 0) inventory.push(new RedMyrVenom());
+			else if (rand(3) == 0) inventory.push(new RedMyrVenom());
+			else if (rand(3) == 0) inventory.push(new NyreanCandy());
 			
 			this._isLoading = false;
 		}
