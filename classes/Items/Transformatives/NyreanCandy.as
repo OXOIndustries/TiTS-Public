@@ -166,7 +166,7 @@
 						output("\n\nAn odd tingle graces the tip of your [pc.ears]. As you reach up to feel them, you’re shocked to find that your ears are ");
 						if(target.earLength < 8) output("grow");
 						else output("chang");
-						output("ing! They don’t stop until they become <b>Eight inch long elfin ears!</b>");
+						output("ing! They don’t stop until they become <b>Eight-inch long elfin ears!</b>");
 						if(kGAMECLASS.silly)
 						{
 							output(" Looks like you are a prissy knife-ears now. Well at least you’re not an asshole.");
