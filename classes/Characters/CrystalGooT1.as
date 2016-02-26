@@ -78,7 +78,7 @@ package classes.Characters
 			shield = new BasicShield();
 			shield.shields = 80;
 			baseShieldKineticResistance = shield.resistances.kinetic.resistanceValue = 25.0;
-			
+			shield.resistances.addFlag(DamageFlag.CRYSTALGOOARMOR);
 			shield.hasRandomProperties = true;
 			
 			this.physiqueRaw = 20;
@@ -156,14 +156,20 @@ package classes.Characters
 		
 		override public function get bustDisplay():String
 		{
-			if (shields() > 0) return "CRYSTAL_GOO_ARMORED";
-			else return "CRYSTAL_GOO_UNARMORED";
+			// Shit out a string like CRYSTAL_GOO_T1_RED or CRYSTAL_GOO_T1_RED_UNAMORED
+			return "CRYSTAL_GOO_T1_"+skinTone.toUpperCase() + (hasStatusEffect("Unarmored") ? "_UNARMORED" : "");
 		}
 		
 		public function Randomise():void
 		{
-			if(rand(2) == 0) skinTone = "green";
-			else skinTone = "blue";
+			var colours:Array = [];
+			colours.push( { v: "green", w: 39 } );
+			colours.push( { v: "blue", w: 25 } );
+			colours.push( { v: "yellow", w: 20 } );
+			colours.push( { v: "pink", w: 15 } );
+			colours.push( { v: "red", w: 1 } );
+			
+			skinTone = weightedRand(colours);
 			
 			UpdateState();
 		}
@@ -205,6 +211,8 @@ package classes.Characters
 			shield.resistances.kinetic.resistanceValue = MathUtil.LinearInterpolate(0, 1, shields() / shieldsMax()) * baseShieldKineticResistance;
 		}
 		
+		private var _hasChangedColour:Boolean = false;
+		
 		override public function OnTakeDamage(incomingDamage:TypeCollection):void
 		{
 			if (shields() <= 0)
@@ -233,6 +241,43 @@ package classes.Characters
 				if (incomingDamage.kinetic.damageValue > 0)
 				{
 					OnTakeDamageOutput = "The ganrael’s rounded gauntlets deflect some of the force!";
+				}
+			}
+			
+			if (skinTone == "green" || skinTone == "pink")
+			{
+				if (incomingDamage.electric.damageValue > 0)
+				{
+					if (OnTakeDamageOutput == null) OnTakeDamageOutput = "";
+					else OnTakeDamageOutput += "\n\n";
+					
+					OnTakeDamageOutput += "The ganrael’s body spasms from the electrical current, and jagged purple scores follow the paths of the arcing bolts!";
+					skinTone = "purple";
+					_hasChangedColour = true;
+				}
+			}
+			else if (skinTone == "blue" || skinTone == "red")
+			{
+				if (incomingDamage.freezing.damageValue > 0)
+				{
+					if (OnTakeDamageOutput == null) OnTakeDamageOutput = "";
+					else OnTakeDamageOutput += "\n\n";
+					
+					OnTakeDamageOutput += "A splotch of light orange color appears at the locus of your freezing attack, and spreads out as the ganrael shivers!";
+					skinTone = "orange";
+					_hasChangedColour = true;
+				}
+			}
+			else if (skinTone == "yellow")
+			{
+				if (incomingDamage.burning.damageValue > 0)
+				{
+					if (OnTakeDamageOutput == null) OnTakeDamageOutput = "";
+					else OnTakeDamageOutput += "\n\n";
+					
+					OnTakeDamageOutput += "The ganrael’s body burns a scarlet, angry red where your thermal attack struck, not only outside but inside as well!";
+					skinTone = "red";
+					_hasChangedColour = true;
 				}
 			}
 		}

@@ -27,6 +27,13 @@ package classes.Engine.Combat
 		// Get shield resistances from the target, and used them to reduce the damage available
 		var damageToShields:TypeCollection = damageResult.remainingDamage.makeCopy();
 		
+		// If this is crystal goo armor, store the base elec damage before resistances...
+		var cgooElecDamage:Number;
+		if (tarResistances.hasFlag(DamageFlag.CRYSTALGOOARMOR))
+		{
+			cgooElecDamage = damageToShields.electric.damageValue;
+		}
+		
 		// Store the total damage before and after resistances -- we'll use this to try and approximate how
 		// much damage we used to break through the shields if we get all the way through
 		var initialTotalDamage:Number = damageToShields.getTotal();
@@ -61,6 +68,13 @@ package classes.Engine.Combat
 			
 			damageResult.remainingDamage = new TypeCollection();
 			
+			// if goo armor, pump on some elec damage back to pass through to hp
+			if (tarResistances.hasFlag(DamageFlag.CRYSTALGOOARMOR))
+			{
+				// outgoing = incoming elec - elec damage after resistances = 100% of damage split across armor and hp
+				damageResult.remainingDamage.electric.damageValue = cgooElecDamage - damageResult.typedShieldDamage.electric.damageValue;
+			}
+			
 			target.shieldsRaw -= damageAfterResistances;
 			
 			return;
@@ -78,6 +92,12 @@ package classes.Engine.Combat
 			
 			damageResult.totalDamage = target.shieldsRaw;
 			damageResult.typedTotalDamage = damageResult.typedShieldDamage.makeCopy();
+			
+			// if goo armor, slap some elec back in the pot
+			if (tarResistances.hasFlag(DamageFlag.CRYSTALGOOARMOR))
+			{
+				damageResult.remainingDamage.electric.damageValue += cgooElecDamage - damageResult.typedShieldDamage.electric.damageValue;
+			}
 			
 			target.shieldsRaw = 0;
 		}

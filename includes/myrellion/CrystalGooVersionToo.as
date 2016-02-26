@@ -1,3 +1,9 @@
+import classes.Items.Transformatives.GooBallBlue;
+import classes.Items.Transformatives.GooBallGreen;
+import classes.Items.Transformatives.GooBallOrange;
+import classes.Items.Transformatives.GooBallPink;
+import classes.Items.Transformatives.GooBallPurple;
+import classes.Items.Transformatives.GooBallRed;
 public function encounterCrystalGooV2():void 
 {
 	if (rand(2) == 0) crystalGooEncounterType1();
@@ -313,12 +319,32 @@ public function pcDefeatsCrystalGooToo():void
 	addButton(14, "Leave", crystalGooLeaveAfterWin);
 }
 
+private function addCrystalGooBallLoot():void
+{
+	if (enemy.hasStatusEffect("Unarmored") && rand(5) <= 1)
+	{	
+		switch (enemy.skinTone)
+		{
+			case "green": enemy.inventory.push(new GooBallGreen()); break;
+			case "blue": enemy.inventory.push(new GooBallBlue()); break;
+			case "yellow": enemy.inventory.push(new GooBallYellow()); break;
+			case "pink": enemy.inventory.push(new GooBallPink()); break;
+			case "red": enemy.inventory.push(new GooBallRed()); break;
+			case "purple": enemy.inventory.push(new GooBallPurple()); break;
+			case "orange": enemy.inventory.push(new GooBallOrange()); break;
+			default: break;
+		}
+	}
+}
+
 public function crystalGooLeaveAfterWin():void
 {
 	clearOutput();
 	showCrystalGooToo();
 	
 	output("You give the ganraels offer a momentary thought, but ultimately opt to leave the " + enemy.skinTone +" goo to their own devices.");
+	
+	addCrystalGooBallLoot();
 	
 	clearMenu();
 	CombatManager.genericVictory();
@@ -450,6 +476,8 @@ public function crystalGooSculptingMale():void
 	processTime(20+rand(10));
 	pc.orgasm();
 
+	addCrystalGooBallLoot();
+	
 	clearMenu();
 	CombatManager.genericVictory();
 }
@@ -633,6 +661,9 @@ public function crystalGooSculptingFem():void
 
 	processTime(30+rand(10));
 	pc.orgasm();
+	
+	addCrystalGooBallLoot();
+	
 	clearMenu();
 	CombatManager.genericVictory();
 }
@@ -909,6 +940,8 @@ public function crystalGooFreeformFucks():void
 	processTime(30+rand(10));
 	pc.orgasm();
 
+	addCrystalGooBallLoot();
+	
 	clearMenu();
 	CombatManager.genericVictory();
 }
@@ -1085,6 +1118,8 @@ public function crystalGooCuddlebug(pcVictory:Boolean = false):void
 		output(" as it slides from your stretched anus, <i>“I told you I’d do all the work.”</i> It rolls over with you clasped in its legs, then opens the");
 		if (pc.hasCock()) output(" semen-stained");
 		output(" cage, placing you on the ground with care. Your head lolls back from the all-over tenderizing you just took. <i>“Bye bye,”</i> it says, leaving you alone to collect your muscle tension and rein in your still-twitching asshole.");
+		addCrystalGooBallLoot();
+		
 		clearMenu();
 		CombatManager.genericVictory();
 	}
@@ -1303,6 +1338,8 @@ public function crystalGooSounding(pcVictory:Boolean = false):void
 		processTime(30+rand(10));
 		pc.orgasm();
 
+		addCrystalGooBallLoot();
+		
 		clearMenu();
 		CombatManager.genericVictory();
 	}
