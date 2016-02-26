@@ -1534,6 +1534,7 @@ public function variableRoomUpdateCheck():void
 
 public function processTime(arg:int):void {
 	var x:int = 0;
+	var msg:String = "";
 	
 	var tightnessChanged:Boolean = false;
 	
@@ -1860,9 +1861,10 @@ public function processTime(arg:int):void {
 					else if(pc.vaginas[x].loosenessRaw >= 2 && pc.vaginas[x].shrinkCounter >= 168) tightnessChanged = true;
 					if(tightnessChanged) {
 						pc.vaginas[x].loosenessRaw--;
-						eventBuffer += "\n\n<b>Your </b>";
-						if(pc.totalVaginas() > 1) eventBuffer += "<b>" + num2Text2(x+1) + "</b> ";
-						eventBuffer += "<b>" + pc.vaginaDescript(x) + " has recovered from its ordeals, tightening up a bit.</b>";
+						msg += "\n\n<b>Your";
+						if(pc.totalVaginas() > 1) msg += " " + num2Text2(x+1);
+						msg += " " + pc.vaginaDescript(x) + " has recovered from its ordeals, tightening up a bit.</b>";
+						eventBuffer += msg;
 					}
 				}
 			}
@@ -2003,8 +2005,9 @@ public function processTime(arg:int):void {
 				{
 					if(pc.fertility() > 0)
 					{
-						pc.addStatusValue("Nyrea Eggs", 1, Math.round(10 * pc.fertility()));
+						pc.addStatusValue("Nyrea Eggs", 1, Math.round(10 * pc.statusEffectv2("Nyrea Eggs") * pc.fertility()));
 						if(pc.hasPerk("Fertility")) pc.addStatusValue("Nyrea Eggs", 1, 10 + rand(11));
+						if(pc.statusEffectv1("Nyrea Eggs") > 1000 && rand(2) == 0) eventBuffer += "\n\nYou feel completely bloated with your production of nyrean eggs... Perhaps you should make some time to expel them?";
 					}
 				}
 				//DAILY MYR VENOM CHECKS
@@ -2080,7 +2083,7 @@ public function racialPerkUpdateCheck():void
 	{
 		if(pc.nukiScore() < 3)
 		{
-			if(pc.balls > 0)
+			if(pc.balls > 1)
 			{
 				//Nuts inflated:
 				if(pc.perkv1("'Nuki Nuts") > 0)
@@ -2091,7 +2094,6 @@ public function racialPerkUpdateCheck():void
 				else
 				{
 					eventBuffer += "\n\nA tingle spreads through your [pc.balls]. Once it fades, you realize that your [pc.sack] is noticeably less elastic. Perhaps you've replaced too much kui-tan DNA to reap the full benefits.";
-					pc.removePerk("'Nuki Nuts");
 				}
 				eventBuffer += "\n\n(<b>Perk Lost: 'Nuki Nuts</b>)";
 				pc.ballSizeMod -= pc.perkv1("'Nuki Nuts");

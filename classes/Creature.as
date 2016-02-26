@@ -2488,7 +2488,7 @@ package classes {
 				{
 					kGAMECLASS.flags["GOO_BIOMASS"] = 0;
 				}
-				if(statusEffectv1("Nyrea Eggs") > 0 && hasACockFlag(GLOBAL.FLAG_OVIPOSITOR))
+				if(statusEffectv1("Nyrea Eggs") > 0 && hasOvipositor())
 				{
 					addStatusValue("Nyrea Eggs", 1, -1 * (6 + rand (5)));
 					if(statusEffectv1("Nyrea Eggs") < 0) setPerkValue("Nyrea Eggs",1,0);
@@ -12426,6 +12426,7 @@ package classes {
 		{
 			var bonus:Number = 0;
 			if(hasPerk("Fecund Figure")) bonus += perkv3("Fecund Figure");
+			if(statusEffectv1("Nyrea Eggs") > 50) bonus += ((statusEffectv1("Nyrea Eggs") - 50) * 0.01);
 			
 			var currBellyRating:Number = bellyRatingRaw + bellyRatingMod + bonus;
 			
@@ -12582,6 +12583,44 @@ package classes {
 		public function canOviposit(): Boolean 
 		{
 			if (canOvipositSpider() || canOvipositBee()) return true;
+			return false;
+		}
+		
+		public function isCockOvipositor(slot:int = -1): Boolean 
+		{
+			if (slot >= 0 && cocks.length > 0 && cocks[slot].hasFlag(GLOBAL.FLAG_OVIPOSITOR)) return true;
+			return false;
+		}
+		public function isVaginaOvipositor(slot:int = -1): Boolean 
+		{
+			if (slot >= 0 && vaginas.length > 0 && vaginas[slot].hasFlag(GLOBAL.FLAG_OVIPOSITOR)) return true;
+			return false;
+		}
+		public function totalOvipositors(): int 
+		{
+			var x:int = 0;
+			var count:int = 0;
+			
+			if (cocks.length > 0)
+			{
+				for(x = 0; x < cocks.length; x++)
+				{
+					if(isCockOvipositor(x)) count++;
+				}
+			}
+			if (vaginas.length > 0)
+			{
+				for(x = 0; x < vaginas.length; x++)
+				{
+					if(isVaginaOvipositor(x)) count++;
+				}
+			}
+			
+			return count;
+		}
+		public function hasOvipositor(): Boolean 
+		{
+			if (totalOvipositors() > 0) return true;
 			return false;
 		}
 		

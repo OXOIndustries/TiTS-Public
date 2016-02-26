@@ -2121,9 +2121,10 @@ package classes.GameData
 				(target as CrystalGooT2).SpecialAction( { isTease: true } );
 			}
 			//Reqs: PC has an aphrodisiac-laced cock big enough to slap
-			else if(pc.biggestCockLength() >= 12 && pc.hasCockFlag(GLOBAL.FLAG_APHRODISIAC_LACED, pc.biggestCockIndex()) && rand(10) == 0)
+			else if(pc.biggestCockLength() >= 12 && pc.hasCockFlag(GLOBAL.FLAG_APHRODISIAC_LACED, pc.biggestCockIndex()) && rand(5) == 0)
 			{
-				output("Smiling coyly, you run up to your opponent and knock them down. Before they can react, you");
+				if(target.isPlural) output("Smiling coyly, you run up to your opponent and knock them down. Before they can react, you");
+				else output("Smiling coyly, you run up to your opponent and knock " + target.mfn("him","her","it") + " down. Before " + target.mfn("he","she","it") + " can react, you");
 				if(!pc.isCrotchExposed())
 				{
 					output(" wrestle your cock out of your");
@@ -2131,7 +2132,8 @@ package classes.GameData
 					else output(" clothes");
 				}
 				else output(" grab your dick");
-				output(" and use it to slap them across the face a few times. You make sure that some of your aphrodisiac dick oil is smeared on their face before jumping back to a safe distance.");
+				if(target.isPlural) output(" and use it to slap them across the face a few times. You make sure that some of your aphrodisiac dick oil is smeared on their face before jumping back to a safe distance.");
+				else output(" and use it to slap " + target.mfn("him","her","it") + " across the face a few times. You make sure that some of your aphrodisiac dick oil is smeared on " + target.mfn("his","her","its") + " face before jumping back to a safe distance.");
 				
 				applyTeaseDamage(pc, target, teaseCount, "DICK SLAP", likeAdjustments);
 			}

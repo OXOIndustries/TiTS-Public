@@ -32,12 +32,11 @@
 			
 			attackVerb = "";
 			
-			basePrice = 1200;
+			basePrice = 600;
 			
 			version = _latestVersion;
 		}
-		// Purchasable: Seifyn's shop
-		// Dropped by: Beta & Alpha Nyrea (Uncommon, but not rare)
+		
 		override public function useFunction(target:Creature, usingCreature:Creature = null):Boolean
 		{
 			kGAMECLASS.clearOutput();
@@ -166,7 +165,7 @@
 						output("\n\nAn odd tingle graces the tip of your [pc.ears]. As you reach up to feel them, you’re shocked to find that your ears are ");
 						if(target.earLength < 8) output("grow");
 						else output("chang");
-						output("ing! They don’t stop until they become <b>Eight-inch long elfin ears!</b>");
+						output("ing! They don’t stop until they become <b>eight-inch long elven ears!</b>");
 						if(kGAMECLASS.silly)
 						{
 							output(" Looks like you are a prissy knife-ears now. Well at least you’re not an asshole.");
@@ -266,7 +265,7 @@
 							output(" arms");
 							if(changeLegs) output(",");
 						}
-						if(changeLegs) output(" [pc.legOrlegs]");
+						if(changeLegs) output(" [pc.legOrLegs]");
 						if(changeArms || changeLegs) output(" and");
 						output(" stomach also go");
 						if(!changeArms && !changeLegs) output("es");
@@ -321,13 +320,23 @@
 					//A slick, slightly puffy vagina. Will increase vaginal wetness to 2. Replaces penis if Steele is male/trans.
 					
 					// IF PC IS HERM
-					if(target.isHerm() && !target.hasCock(GLOBAL.TYPE_NYREA) && !target.hasVaginaType(GLOBAL.TYPE_NYREA) && target.cockTotal() == 1 && target.totalVaginas() == 1)
+					if(target.isHerm() && !target.hasCock(GLOBAL.TYPE_NYREA) && !target.hasVaginaType(GLOBAL.TYPE_NYREA))
 					{
 						if(target.removeCocksUnlocked() && target.removeVaginasUnlocked())
 						{
-							output("\n\nYour [pc.vagina " + selCunt + "] feels like it is on fire! You double over and let out a loud moan.");
-							if(!target.isCrotchExposed()) output(" You rip the clothes from your body for better access to your genitals.");
-							output(" Unable to resist, you try to relieve your arousal, but it feels like your [pc.vaginaNoun " + selCunt + "] is collapsing in on itself! At the same time, [pc.eachCock] suddenly tightens. Holy fuck that hurts, but it feels so good as well! You start beating off in order to get release, but your [pc.cock " + selCock + "] disappears in your pelvis before you can get it going. Your crotch goes featureless for a brief moment, until a new penis and vagina rapidly sprout in their place! You have to admire <b>your new nyrean cock and pussy!</b> You immediately get to work, masturbating both your new parts until you cum and spray all over the floor.");
+							output("\n\nYour [pc.vaginas]");
+							if(target.vaginas.length == 1) output(" feels like it is");
+							else output(" feel like they are");
+							output(" on fire! You double over and let out a loud moan. Unable to resist,");
+							if(!target.isCrotchExposed()) output(" you rip the clothes from your body for better access to your genitals. Y");
+							else output(" y");
+							output("ou try to relieve your arousal, but it feels like your [pc.vaginas]");
+							if(target.vaginas.length == 1) output(" is collapsing in on itself");
+							else output(" are collapsing in on themselves");
+							output("! At the same time, [pc.eachCock] suddenly tightens. Holy fuck that hurts, but it feels so good as well! You start beating off in order to get release, but your [pc.cocks]");
+							if(target.cocks.length == 1) output(" disappears into your pelvis before you can get it");
+							else output(" disappear into your pelvis before you can get them");
+							output(" going. Your crotch goes featureless for a brief moment, until a new penis and vagina rapidly sprout in their place! You have to admire <b>your new nyrean cock and pussy!</b> You immediately get to work, masturbating both your new parts until you cum and spray all over the floor.");
 							
 							target.removeCocks();
 							target.removeVaginas();
@@ -461,7 +470,7 @@
 				}
 				
 				// Cum becomes aphrodisiac :
-				if(changes < changeLimit && target.hasCock(GLOBAL.TYPE_NYREA) && rand(3) == 0)
+				if(changes < changeLimit && target.hasCock(GLOBAL.TYPE_NYREA) && target.cumType != GLOBAL.FLUID_TYPE_NYREA_CUM && rand(3) == 0)
 				{
 					if(target.cumTypeUnlocked(GLOBAL.FLUID_TYPE_NYREA_CUM))
 					{
@@ -478,7 +487,7 @@
 				}
 				// Nyrea Cum
 				//Notes: In order to sort of simulate the eggs that nyrea produce, I have created a new kind of cum type. This cum type is kinda of filled with eggs, but are infertile. This cum is has a bubbly consistency, sort of like this, but with eggs instead of... Tapioca: http://i00.i.aliimg.com/img/pb/346/113/529/529113346_633.jpg
-				if(changes < changeLimit && target.cumType == GLOBAL.FLUID_TYPE_NYREA_CUM && !target.hasStatusEffect("Nyrea Eggs") && rand(4) == 0)
+				if(changes < changeLimit && target.fertility() > 0 && target.hasACockFlag(GLOBAL.FLAG_OVIPOSITOR) && target.cumType == GLOBAL.FLUID_TYPE_NYREA_CUM && !target.hasStatusEffect("Nyrea Eggs") && rand(4) == 0)
 				{
 					//Actual Transformation:
 					output("\n\nYou feel a deep rumbling in your");
@@ -489,14 +498,14 @@
 					else output(" look down");
 					output(" to find [pc.eachCock] stiffening up as a strange, bubbly pre starts to exit your cumslit");
 					if(target.cocks.length > 1) output("s");
-					output(". It feels awfully weird and a little more difficult to push out. You flick a drop of it off [pc.oneCockHead] and feel something strange rolling around in your [pc.cum]. Somehow, you realize that your <b>cum is laced with nyrea eggs!</b>");
+					output(". It feels awfully weird and a little more difficult to push out. You flick a drop of it off [pc.oneCockHead] and feel something strange rolling around in your [pc.cum]. Somehow, you realize that your <b>cum is laced with nyrea eggs!</b> Your codex beeps in confirmation. <b>As long as you remain fertile and keep your nyrean gene count high, you’ll be producing nyrean eggs on a daily basis.</b>");
 					
 					// "Nyrea Eggs" (Like the NPC's variant)
 					// v1: For amount of eggs? Recharge over time?
 					// v2: Multiplier?
 					// v3: ???
 					// v4: ???
-					target.createStatusEffect("Nyrea Eggs", 1000, 1, 0, 0, true, "", "", false, 0);
+					target.createStatusEffect("Nyrea Eggs", 80 + rand(21), 1, 0, 0, true, "", "", false, 0);
 					changes++;
 				}
 				
