@@ -38,6 +38,7 @@ package classes.Engine.Combat.DamageTypes
 		public static const GREATER_DRAINING:uint = 20; //Steals 90% of shield damage dealt
 		public static const VAMPIRIC:uint 		= 21; //Steals 50% of HP damage dealt.
 		public static const GREATER_VAMPIRIC:uint = 22; //Steals 90% of HP damage dealt
+		public static const CRYSTALGOOARMOR:uint = 23;
 		
 		public static const FlagNames:Array = [];
 		
@@ -66,6 +67,7 @@ package classes.Engine.Combat.DamageTypes
 			FlagNames[GREATER_DRAINING] 	= "Greater Draining";
 			FlagNames[VAMPIRIC] 			= "Vampiric";
 			FlagNames[GREATER_VAMPIRIC] 	= "Greater Vampiric";
+			FlagNames[CRYSTALGOOARMOR]		= "Crystal Goo Armor";
 		}
 		
 		private var _thisFlag:uint;

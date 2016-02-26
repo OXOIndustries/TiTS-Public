@@ -795,15 +795,15 @@
 				//#8 Change hair color to black, brown, chestnut, or white (rare)
 				else if(select == 8)
 				{
-					var newHairColour:String = "";
-					if(rand(10) == 0) newHairColour = "white";
-					else if(rand(3) == 0) newHairColour = "chestnut";
-					else if(rand(2) == 0) newHairColour = "brown";
-					else newHairColour = "black";
+					var newhairColor:String = "";
+					if(rand(10) == 0) newhairColor = "white";
+					else if(rand(3) == 0) newhairColor = "chestnut";
+					else if(rand(2) == 0) newhairColor = "brown";
+					else newhairColor = "black";
 					
-					if (target.hairColorUnlocked(newHairColour))
+					if (target.hairColorUnlocked(newhairColor))
 					{
-						target.hairColor = newHairColour;
+						target.hairColor = newhairColor;
 						
 						//Bald
 						if(!target.hasHair()) msg += "Your scalp tingles, but without any hair there, you aren't aware of what changed. Perhaps it changed your hair color, but you can't be sure until you grow some!";
