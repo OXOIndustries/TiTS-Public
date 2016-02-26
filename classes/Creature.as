@@ -1437,6 +1437,10 @@ package classes {
 				case "relaxingRanged":
 					buffer = weaponActionRelax(true, "ranged");
 					break;
+				case "move":
+				case "walk":
+					buffer = moveAction();
+					break;
 				case "lowerUndergarment":
 					buffer = lowerUndergarment.longName;
 					break;
@@ -2439,6 +2443,21 @@ package classes {
 				else if (isPlural) desc += " their " + weaponName;
 				else desc += " " + mfn("his", "her", "its") + " " + weaponName;
 			}
+			return desc;
+		}
+		public function moveAction():String
+		{
+			var desc:String = "";
+			var actions:Array = ["move"];
+			
+			if(hasLegs()) actions.push("walk", "walk", "step");
+			if(isGoo()) actions.push("slide", "crawl");
+			if(isNaga()) actions.push("slither", "slink", "wriggle");
+			if(isCentaur()) actions.push("gallop", "canter");
+			if(isTaur()) actions.push("trot", "lope");
+			if(isDrider()) actions.push("skitter", "flit");
+			
+			desc += RandomInCollection(actions);
 			return desc;
 		}
 		public function shower():void

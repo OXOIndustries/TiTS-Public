@@ -319,7 +319,7 @@ public function appearance(forTarget:Creature):void
 				output2(" cat-like ears have sprouted from the top of your skull.");
 			}
 			else if(target.earType == GLOBAL.TYPE_LIZAN) output2(" A pair of rounded protrusions with small holes on the sides of your skull serve as your ears.");
-			else if(target.earType == GLOBAL.TYPE_LAPINE || target.earType == GLOBAL.TYPE_LEITHAN) output2(" A pair of floppy rabbit ears stick up from the top of your skull, flopping around as you walk.");
+			else if(target.earType == GLOBAL.TYPE_LAPINE || target.earType == GLOBAL.TYPE_LEITHAN) output2(" A pair of floppy rabbit ears stick up from the top of your skull, flopping around as you [target.walk].");
 			else if(target.earType == GLOBAL.TYPE_KANGAROO)
 			{
 				output2(" A pair of long");
@@ -387,7 +387,7 @@ public function appearance(forTarget:Creature):void
 				output2(" feline ears, sprouting from atop your head and pivoting towards any sudden noises.");
 			}
 			else if(target.earType == GLOBAL.TYPE_LIZAN) output2(" The " + target.hairDescript(true,true) + " atop your head makes it nigh-impossible to notice the two small rounded openings that are your ears.");
-			else if(target.earType == GLOBAL.TYPE_LAPINE || target.earType == GLOBAL.TYPE_LEITHAN) output2(" A pair of floppy rabbit ears stick up out of your " + target.hairDescript(true,true) + ", bouncing around as you walk.");
+			else if(target.earType == GLOBAL.TYPE_LAPINE || target.earType == GLOBAL.TYPE_LEITHAN) output2(" A pair of floppy rabbit ears stick up out of your " + target.hairDescript(true,true) + ", bouncing around as you [target.walk].");
 			else if(target.earType == GLOBAL.TYPE_KANGAROO)
 			{
 				output2(" The " + target.hairDescript(true,true) + " atop your head is parted by a pair of long");
@@ -748,7 +748,7 @@ public function appearance(forTarget:Creature):void
 				if(target.hipRating() < 6) output2(", and");
 				if(target.femininity > 50) {
 					if(target.hipRating() >= 6 && target.hipRating() < 10) output2(" that draw the attention of those around you, and");
-					if(target.hipRating() >= 10 && target.hipRating() < 15) output2(" that make you walk with a sexy, swinging gait, and");
+					if(target.hipRating() >= 10 && target.hipRating() < 15) output2(" that make you [target.walk] with a sexy, swinging gait, and");
 					if(target.hipRating() >= 15 && target.hipRating() < 20) output2(" that make it look like you’ve birthed many children, and");
 					if(target.hipRating() >= 20) output2(" that make you look more like an animal waiting to be bred than any kind of human, and");
 				}
@@ -800,7 +800,7 @@ public function appearance(forTarget:Creature):void
 				if(target.buttRating() >= 4 && target.buttRating() < 6) output2(" has the barest amount of sexy jiggle.");
 				if(target.buttRating() >= 6 && target.buttRating() <10) output2(" fills out your clothing nicely.");
 				if(target.buttRating() >= 10 && target.buttRating() < 15) output2(" wobbles enticingly with every step.");
-				if(target.buttRating() >= 15 && target.buttRating() < 20) output2(" wobbles like a bowl full of jello as you walk.");
+				if(target.buttRating() >= 15 && target.buttRating() < 20) output2(" wobbles like a bowl full of jello as you [target.walk].");
 				if(target.buttRating() >= 20) output2(" is obscenely large, bordering freakish, and makes it difficult to run.");
 			}
 			//FITBUTT

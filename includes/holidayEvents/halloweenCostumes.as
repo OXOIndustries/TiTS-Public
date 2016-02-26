@@ -701,7 +701,7 @@ public function partyHardWivSavin():void
 		output("... which you must have forgotten the suit has. Weird...");
 		if(pc.hairColor != "auburn")  pc.hairColor = "auburn";
 		if(pc.hairLength < 14)  pc.hairLength = 14;
-		pc.hairType = GLOBAL.HAIR_TYPE_REGULAR;
+		if(pc.hairTypeUnlocked(GLOBAL.HAIR_TYPE_REGULAR)) pc.hairType = GLOBAL.HAIR_TYPE_REGULAR;
 	}
 	output(" before sauntering onto the crowded dance floor, pushing through a throng of inebriated, costumed revelers. You don’t have much of a costume left on now, save for the skin-tight bodysuit");
 	if(pc.hasLegs()) output(" and the armored leggings");
