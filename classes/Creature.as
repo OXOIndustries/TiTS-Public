@@ -2487,7 +2487,12 @@ package classes {
 				if(statusEffectv1("Goo Vent") == 1)
 				{
 					kGAMECLASS.flags["GOO_BIOMASS"] = 0;
-				} 
+				}
+				if(statusEffectv1("Nyrea Eggs") > 0 && hasACockFlag(GLOBAL.FLAG_OVIPOSITOR))
+				{
+					addStatusValue("Nyrea Eggs", 1, -1 * (6 + rand (5)));
+					if(statusEffectv1("Nyrea Eggs") < 0) setPerkValue("Nyrea Eggs",1,0);
+				}
 			}
 			
 			if (this is PlayerCharacter) 
@@ -7762,6 +7767,7 @@ package classes {
 					cocks[slot].knotMultiplier = 1.66;
 					cocks[slot].addFlag(GLOBAL.FLAG_FLARED);
 					cocks[slot].addFlag(GLOBAL.FLAG_KNOTTED);
+					cocks[slot].addFlag(GLOBAL.FLAG_OVIPOSITOR);
 					break;
 				case GLOBAL.TYPE_DAYNAR:
 					cocks[slot].cockColor = "purple";
@@ -11590,7 +11596,7 @@ package classes {
 				collection = ["thick","thick","thick","creamy","creamy"];
 			} else if (arg == GLOBAL.FLUID_TYPE_NYREA_CUM) {
 				collection = ["thick","thick","thick","slick","creamy"];
-				if(statusEffectv1("Nyrea Eggs") > 10) collection.push("egg-filled","eggy","bubbly","pulpy");
+				if(statusEffectv1("Nyrea Eggs") > 0) collection.push("egg-filled","eggy","bubbly","pulpy");
 			} else if (InCollection(arg, GLOBAL.FLUID_TYPE_GABILANI_CUM, GLOBAL.FLUID_TYPE_GABILANI_GIRLCUM)) {
 				collection = ["oily","coating"];
 			} else if (arg == GLOBAL.FLUID_TYPE_SPECIAL_GOO) {
@@ -13323,7 +13329,7 @@ package classes {
 			else if(InCollection(partName, "butt", "ass", "booty", "rump", "rear", "hiney")) partName = "butt";
 			else if(InCollection(partName, "clitoris", "clit", "clits", "button", "buzzer")) partName = "clitoris";
 			else if(InCollection(partName, "penis", "penises", "cock", "cocks", "dong", "wiener")) partName = "penis";
-			else if(InCollection(partName, "testicle", "testicles", "balls", "scrotum", "nuts")) partName = "testicle";
+			else if(InCollection(partName, "testicle", "testicles", "balls", "scrotum", "nuts", "prostate")) partName = "testicle";
 			
 			return partName;
 		}
@@ -13499,6 +13505,7 @@ package classes {
 					weightFluid = fluidWeight(cumQ() * 0.5);
 					if(hasPerk("Potent") && hasPerk("Breed Hungry")) weightFluid *= 0.5;
 					else if(hasPerk("Potent") || hasPerk("Breed Hungry")) weightFluid *= 0.75;
+					if(hasStatusEffect("Nyrea Eggs")) weightFluid += (0.125 * statusEffectv1("Nyrea Eggs"));
 					if(partNum > 0 && partNum <= balls) weightFluid = (weightFluid / partNum);
 					weightTesticle += weightFluid;
 				}

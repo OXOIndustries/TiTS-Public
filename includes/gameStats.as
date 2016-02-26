@@ -451,6 +451,7 @@ public function statisticsScreen(showID:String = "All"):void
 				output2("\n<b>* Fertility, Speed Modifier: </b>" + Math.round(pc.pregnancyIncubationBonusMother()*1000)/10 + " %");
 				output2("\n<b>* Fertility, Quantity Bonus: </b>" + Math.round(pc.pregnancyMultiplier()));
 				if(pc.hasStatusEffect("Venus Pitcher Seed Residue")) output2("\n<b>* Fertility, Venus Pitcher Seed Residue, Time Left: </b>" + prettifyMinutes(pc.getStatusMinutes("Venus Pitcher Seed Residue")));
+				if(pc.statusEffectv1("Nyrea Eggs") > 0) output2("\n<b>* Fertility, Nyrean Eggs, Quantity: </b>" + pc.statusEffectv1("Nyrea Eggs"));
 			}
 			// Vaginas
 			if(pc.vaginas.length >= 1)

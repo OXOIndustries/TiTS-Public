@@ -1998,6 +1998,15 @@ public function processTime(arg:int):void {
 					}
 					if(pc.perkv4("Fecund Figure") < 0) pc.setPerkValue("Fecund Figure", 4, 0);
 				}
+				// Daily nyrean egg fills
+				if(pc.hasStatusEffect("Nyrea Eggs"))
+				{
+					if(pc.fertility() > 0)
+					{
+						pc.addStatusValue("Nyrea Eggs", 1, Math.round(10 * pc.fertility()));
+						if(pc.hasPerk("Fertility")) pc.addStatusValue("Nyrea Eggs", 1, 10 + rand(11));
+					}
+				}
 				//DAILY MYR VENOM CHECKS
 				//Addicts
 				if(flags["VENOM_ADDICTION"] != undefined)
@@ -2113,6 +2122,27 @@ public function racialPerkUpdateCheck():void
 		{
 			eventBuffer += "\n\nA tingling sensations hits your crotch as you feel something fading away... Your codex beeps, informing you that the last remnants of your " + pc.skinAccent + " testicular tattoos have left your body, leaving the area bare.";
 			pc.setStatusValue("Vanae Markings", 4, 0);
+		}
+	}
+	if(pc.hasStatusEffect("Nyrea Eggs"))
+	{
+		if(pc.nyreaScore() < 3)
+		{
+			eventBuffer += "\n\nYou are interrupted by a shifting in your insides as a bubbling sensation fills your loins, and then... nothing.";
+			if(pc.statusEffectv1("Nyrea Eggs") > 0)
+			{
+				eventBuffer += " Strangely, you feel";
+				if(pc.statusEffectv1("Nyrea Eggs") <= 5) eventBuffer += " as if something is missing.";
+				else if(pc.statusEffectv1("Nyrea Eggs") <= 10) eventBuffer += " a bit lighter now.";
+				else if(pc.statusEffectv1("Nyrea Eggs") <= 50) eventBuffer += " like you have lost some pounds.";
+				else if(pc.statusEffectv1("Nyrea Eggs") <= 100) eventBuffer += " much lighter now.";
+				else eventBuffer += " like a huge weight has been lifted from you.";
+			}
+			eventBuffer += " Double-checking your codex, you find that";
+			if(pc.statusEffectv1("Nyrea Eggs") > 0) eventBuffer += " the nyrean eggs you’ve been carrying in your [pc.cumNoun] have dissolved and absobed into your body";
+			else eventBuffer += " your [pc.cumNoun] is no longer capable of producing eggs anymore";
+			eventBuffer += ". It must be due to the lack of nyrean genes in your system....";
+			pc.removeStatusEffect("Nyrea Eggs");
 		}
 	}
 }
