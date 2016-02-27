@@ -362,7 +362,7 @@ package classes.Items.Transformatives
 		{
 			kGAMECLASS.eventBuffer += "\n\n<u>The goblinola bar has an effect....</u>";
 			// Transformation text (stage 2):
-			kGAMECLASS.eventBuffer += "Finally the pain in your face subsides, and you take a deep breath. You check to see what the damage is and find that your face has restructured itself. Your nose has grown longer and pointier, while your jaw has narrowed a fair bit giving your face a more angular appearance not unlike that of an upside down triangle. <b>You now have a gabilani face!</b>";
+			kGAMECLASS.eventBuffer += "\n\nFinally the pain in your face subsides, and you take a deep breath. You check to see what the damage is and find that your face has restructured itself. Your nose has grown longer and pointier, while your jaw has narrowed a fair bit giving your face a more angular appearance not unlike that of an upside down triangle. <b>You now have a gabilani face!</b>";
 			// Actual face type change
 			target.faceType = GLOBAL.TYPE_GABILANI;
 			target.clearFaceFlags();
