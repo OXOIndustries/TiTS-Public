@@ -2456,6 +2456,7 @@ package classes {
 			if(isCentaur()) actions.push("gallop", "canter");
 			if(isTaur()) actions.push("trot", "lope");
 			if(isDrider()) actions.push("skitter", "flit");
+			if(legType == GLOBAL.TYPE_MLP) actions.push("gallop", "canter", "trot", "lope", "hoof it");
 			
 			desc += RandomInCollection(actions);
 			return desc;
