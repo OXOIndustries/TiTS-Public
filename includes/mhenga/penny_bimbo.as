@@ -52,7 +52,8 @@ public function bimboPennyMenu():void
 {
 	clearMenu();
 	addButton(0,"Talk",bimboPennyTalk);
-	addButton(1,"Sex",bimboPennySex);
+	if(pc.lust() >= 33) addButton(1,"Sex",bimboPennySex);
+	else addDiiabledButton(1,"Sex","Sex","You are not quite in the mood for this at the moment.");
 	addButton(14,"Leave",mainGameMenu);
 }
 
