@@ -99,6 +99,9 @@
 				kGAMECLASS.eventBuffer += ". They really are very tender right now...";
 				
 				target.lust(5);
+				
+				kGAMECLASS.clearMenu();
+				kGAMECLASS.addButton(0, "Next", kGAMECLASS.mainGameMenu);
 			}
 		}
 		public function itemClippexTFPlus():void

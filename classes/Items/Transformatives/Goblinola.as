@@ -368,8 +368,8 @@ package classes.Items.Transformatives
 			target.clearFaceFlags();
 			target.addFaceFlag(GLOBAL.FLAG_ANGULAR);
 			target.removeStatusEffect("Gabilani Face Change");
-			//clearMenu();
-			//addButton(0,"Next",kGAMECLASS.mainGameMenu);
+			clearMenu();
+			addButton(0,"Next",kGAMECLASS.mainGameMenu);
 		}
 		// Sexual and Stat Changes and Perks
 		private function majorGoblinMutations(target:Creature):void
@@ -646,8 +646,8 @@ package classes.Items.Transformatives
 				kGAMECLASS.eventBuffer += "\n\nYou notice that your stomach seems to have settled down now. <b>You’re unlikely to feel any more effects from the goblinola you ate earlier.</b>";
 			}
 			
-			//clearMenu();
-			//addButton(0, "Next", kGAMECLASS.mainGameMenu);
+			clearMenu();
+			addButton(0, "Next", kGAMECLASS.mainGameMenu);
 		}
 		// Face Transformation:
 		public function itemGoblinFaceTF():void

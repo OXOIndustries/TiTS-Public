@@ -96,8 +96,8 @@
 				
 				target.slowStatGain("libido", libGain);
 				
-				//kGAMECLASS.clearMenu();
-				//kGAMECLASS.addButton(0, "Next", kGAMECLASS.mainGameMenu);
+				kGAMECLASS.clearMenu();
+				kGAMECLASS.addButton(0, "Next", kGAMECLASS.mainGameMenu);
 			}
 		}
 		public function itemSemensFriendTFPlus():void
