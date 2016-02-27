@@ -277,7 +277,7 @@ public function venomExpirationNotice():void
 	//Venom Expires
 	else
 	{
-		eventBuffer += "Your [pc.skin] no longer feels quite so flush";
+		eventBuffer += "\n\nYour [pc.skin] no longer feels quite so flush";
 		if(pc.hasFur() || pc.hasScales() || pc.hasFeathers()) output(" beneath your [pc.skinFurScales]");
 		eventBuffer += ". Nor is it quite so sensitive to the touch. The effects of the red myr venom must be subsiding.";
 	}
