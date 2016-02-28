@@ -163,7 +163,7 @@ public function seifynNyreaTalk():void
 	output("\n\nYou drag your eyes off the tops of her breasts peeking through between her arms and ask your first question that pops into your head. <i>“So how come none of you are attacking me? All the nyrea outside have been pretty hostile.”</i>");
 	output("\n\nShe pouts, pursing her blue lips at you. <i>“We’re not </i>all<i> like that, you know. I mean, a lot of us are - especially the females. Some of them can be kind of crazy - but not all of us. Queen Taivra ");
 	if(flags["KILLED_TAIVRA"] == undefined) output("has made a real town out of us. Spent years gathering us all into her harem before settling down here, and put us to work making a village we could all be proud of!");
-	else output("tried to make a town out of us. Before she died//left, anyway. Spent years gathering us all into her harem before settling down here, and put us to work making a village we could all be proud of!");
+	else output("tried to make a town out of us. Spent years gathering us all into her harem before settling down here, and put us to work making a village we could all be proud of!");
 	output("”</i>");
 	output("\n\nWait a second. You’d chalk that up to a translator microbe error, but... <i>“Do you mean </i>you’re<i> not a female?”</i> you ask, glancing down at the nyrea’s girl’s full chest.");
 	output("\n\n<i>“Oh! I-I guess you’ve never met a nyrean male, have you?”</i> she chuckles nervously, running a hand through her long, spine-like hair. <i>“Yeah, I’m a male. Sorry, sometimes I forget most other races work, um... differently.”</i>");
@@ -176,7 +176,7 @@ public function seifynNyreaTalk():void
 	}
 	output("\n\n<i>“So, how exactly </i>do<i> nyrea work, then?”</i> you press, hoping you’re not about to offend the only merchant who can do business with you for miles around.");
 	output("\n\nYou see a faint red blush rise on the merchant-girl... boy’s?... cheeks. <i>“Um, uh... wow, I don’t think I’ve ever been asked that by anybody but my daughters. O-okay, if you don’t know...”</i>");
-	output("\n\nShe blushes even darker, prompting you to tell her she doesn’t have to explain  if she doesn’t want to. You could always read your Codex...");
+	output("\n\nShe blushes even darker, prompting you to tell her she doesn’t have to explain if she doesn’t want to. You could always read your Codex...");
 	output("\n\n<i>“No, no, it’s okay!”</i> she says, forcing a laugh. <i>“Well, um, like I said, I’m a nyrean male. It’s fine to talk about us males with ‘she’ and ‘her’ and all that, by the way. That’s how our language treats us, anyway. So, males like me have a, uh, genital slit between our legs...”</i>");
 	output("\n\nAs she’s speaking, Siefyn crosses her legs, brushing a hand along her skirt from just below the band and up along her stomach, tracing her long fingernails across the dark tan plates of her corset. <i>“Near our stomachs, we’ve got a bunch of sperm sacs, kind of like where someone like a wetraxxel might have her womb. The sacs get ruptured during sex, and the female sucks up the sperm by the bucketful. A lot of females make us use our sac stores to incubate their eggs, too. They’ll oviposit us at the same time they’re draining our sperm, use the sacs that’re left like cushions to protect the eggs we’ve just fertilized.”</i>");
 	output("\n\n<i>“That sounds... incredibly painful.”</i>");
