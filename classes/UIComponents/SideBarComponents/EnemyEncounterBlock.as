@@ -96,13 +96,13 @@ package classes.UIComponents.SideBarComponents
 		
 		public function showStatsForCreature(char:Creature, asInit:Boolean = false):void
 		{
-			if (_shieldBar != null && char != null && char.shieldDisplayName != null)
+			if (_statBlock.shieldBar != null && char != null && char.shieldDisplayName != null)
 			{
-				_shieldBar.caption = char.shieldDisplayName;
+				_statBlock.shieldBar.caption = char.shieldDisplayName;
 			}
-			else if (_shieldBar != null && char == null)
+			else if (_statBlock.shieldBar != null && char == null)
 			{
-				_shieldBar.caption = "SHIELDS";
+				_statBlock.shieldBar.caption = "SHIELD";
 			}
 			
 			_statBlock.shieldBar.updateBar(char.shields(), char.shieldsMax(), asInit);

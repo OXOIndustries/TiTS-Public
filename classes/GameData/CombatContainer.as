@@ -1582,11 +1582,11 @@ package classes.GameData
 			kGAMECLASS.setAttacker(pc);
 			kGAMECLASS.setEnemy(opts.tar);
 			
-			if (opts.tar is CrystalGooT1 && (opts.tar as CrystalGooT1).ShouldIntercept(opts))
+			if (opts.func != generateTeaseMenu && opts.tar is CrystalGooT1 && (opts.tar as CrystalGooT1).ShouldIntercept(opts))
 			{
 				(opts.tar as CrystalGooT1).SneakSqueezeAttackReaction(opts);
 			}
-			else if (opts.tar is CrystalGooT2 && (opts.tar as CrystalGooT2).ShouldIntercept(opts))
+			else if (opts.func != generateTeaseMenu && opts.tar is CrystalGooT2 && (opts.tar as CrystalGooT2).ShouldIntercept(opts))
 			{
 				(opts.tar as CrystalGooT2).SpecialAction(opts);
 			}

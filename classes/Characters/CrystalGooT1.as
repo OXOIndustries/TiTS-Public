@@ -496,11 +496,11 @@ package classes.Characters
 			
 			if (target.hasStatusEffect("Tripped"))
 			{
-				output(" It takes advantage of your grounded state, moving through blind spots until you lose it completely. The cave echoes with its scuffling gait, like the earth is shifting in preparation to swallow you.\n\n");
+				output("It takes advantage of your grounded state, moving through blind spots until you lose it completely. The cave echoes with its scuffling gait, like the earth is shifting in preparation to swallow you.\n\n");
 			}
 			else
 			{
-				output(" Despite your best efforts, you lose track of it. The cave echoes with skitters and laughs, no two from the same direction, and your anxiety mounts.\n\n");
+				output("Despite your best efforts, you lose track of it. The cave echoes with skitters and laughs, no two from the same direction, and your anxiety mounts.\n\n");
 			}
 		}
 		
