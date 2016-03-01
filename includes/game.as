@@ -1025,198 +1025,6 @@ public function move(arg:String, goToMainMenu:Boolean = true):void {
 	if(goToMainMenu) mainGameMenu();
 }
 
-public function statusTick():void {
-	var expiredStatuses:Array = new Array();
-	var y:int = 0;
-	var gogoVenomShit:Boolean = false;
-	for(var x:int = pc.statusEffects.length-1; x >= 0; x--) 
-	{
-		//Some hardcoded removal stuff
-		//Cut condensol if all cocks are gone.
-		if((pc.statusEffects[x].storageName == "Condensol-B" || pc.statusEffects[x].storageName == "Condensol-A") && !pc.hasCock())
-		{
-			expiredStatuses[expiredStatuses.length] = x;
-		}
-		//trace("Checking status effect: " + x + " of " + (pc.statusEffects.length-1));
-		//If times, count dat shit down.
-		if(pc.statusEffects[x].minutesLeft > 0) 
-		{
-			pc.statusEffects[x].minutesLeft--;
-			//TIMER OVER!
-			if(pc.statusEffects[x].minutesLeft <= 0) 
-			{
-				if ((pc.statusEffects[x] as StorageClass).storageName.indexOf("Lane's Hypnosis") != -1)
-				{
-					baseHypnosisWearsOff((pc.statusEffects[x] as StorageClass).storageName);
-				}
-				//CERTAIN STATUSES NEED TO CLEAR SOME SHIT.
-				if(pc.statusEffects[x].storageName == "Crabbst") 
-				{
-					pc.physiqueMod -= pc.statusEffects[x].value2;
-					pc.reflexesMod += pc.statusEffects[x].value2;
-					pc.aimMod += pc.statusEffects[x].value2;
-					pc.intelligenceMod += pc.statusEffects[x].value2;
-					pc.willpowerMod += pc.statusEffects[x].value2;
-				}
-				//Horse pill gets bonus proc!
-				if(pc.statusEffects[x].storageName == "Horse Pill")
-				{
-					var pill:HorsePill = new HorsePill();
-					eventQueue[eventQueue.length] = pill.lastPillTF;
-				}
-				//Goblinola changes!
-				if(pc.statusEffects[x].storageName == "Goblinola Bar")
-				{
-					var gobbyTF:Goblinola = new Goblinola();
-					eventQueue[eventQueue.length] = gobbyTF.itemEndGoblinTF;
-				}
-				//Goblinola face changes
-				if(pc.statusEffects[x].storageName == "Gabilani Face Change")
-				{
-					var gobbyFaceTF:Goblinola = new Goblinola();
-					eventQueue[eventQueue.length] = gobbyFaceTF.itemGoblinFaceTF;
-				}
-				//Clippex changes!
-				if(pc.statusEffects[x].storageName == "Clippex Gel")
-				{
-					var clippexTF:Clippex = new Clippex();
-					if(pc.statusEffects[x].value2 > 1) eventQueue[eventQueue.length] = clippexTF.itemClippexTFPlus;
-					else eventQueue[eventQueue.length] = clippexTF.itemClippexTF;
-				}
-				//Semen's Friend changes!
-				if(pc.statusEffects[x].storageName == "Semen's Candy")
-				{
-					var semensTF:SemensFriend = new SemensFriend();
-					if(pc.statusEffects[x].value2 > 1) eventQueue[eventQueue.length] = semensTF.itemSemensFriendTFPlus;
-					else eventQueue[eventQueue.length] = semensTF.itemSemensFriendTF;
-				}
-				if(pc.statusEffects[x].storageName == "Red Myr Venom")
-				{
-					//Bit of a hacky solution
-					gogoVenomShit = true;
-				}
-				// Mhen'gan Mango finishes!
-				if(pc.statusEffects[x].storageName == "The Mango")
-				{
-					eventBuffer += "\n\nYour attractive aura fades from you as your sexiness returns to normal levels.";
-					if (silly && rand(3) != 0) eventBuffer += " You could no longer handle the mango!";
-					else eventBuffer += " The wild mango’s effect has worn off!";
-				}
-				//Jaded wears off!
-				if(pc.statusEffects[x].storageName == "Jaded")
-				{
-					eventBuffer += "\n\nNo longer bored from your previous whoring session, you feel a bit more refreshed now.";
-				}
-				//Condensol ends!
-				if(pc.statusEffects[x].storageName == "Condensol-A")
-				{
-					if(pc.hasCock())
-					{
-						eventBuffer += "\n\nYou feel your groin relax, and check your [pc.cocks] to discover that everything is more or less as it should be. The Condensol must have worn off.";
-						for(y = 0; y < pc.cockTotal(); y++)
-						{
-							pc.cocks[y].cLengthRaw *= 2;
-						}
-					}
-				}
-				if(pc.statusEffects[x].storageName == "Condensol-B")
-				{
-					if(pc.hasCock())
-					{
-						eventBuffer += "\n\nYou feel your groin relax, and check your [pc.cocks] to discover that everything is more or less as it should be. The Condensol must have worn off.";
-						for(y = 0; y < pc.cockTotal(); y++)
-						{
-							pc.cocks[y].cLengthRaw *= 4;
-						}
-					}
-				}
-				//Mighty Tight ends!
-				if(pc.statusEffects[x].storageName == "Mighty Tight")
-				{
-					eventBuffer += "\n\nPausing for a moment, you feel your backdoor";
-					if(pc.hasVagina()) eventBuffer += " and [pc.vaginas] relaxing";
-					else eventBuffer += " relax";
-					eventBuffer += " a bit. It is probably safe to say that you are no longer under the effects of Mighty Tight.";
-				}
-				//Boobswell ends!
-				if(pc.statusEffects[x].storageName == "Boobswell Pads")
-				{
-					//Message text, last boob size increase. 7 days later.
-					eventBuffer += "\n\nUnfortunately, as you admire your now-larger bosom, you realize that the gentle, wet rumble of the pads has come to a stop. <b>It looks like you’ve exhausted the BoobSwell Pads";
-					if(pc.bRows() > 1) eventBuffer += "on your " + num2Text2(pc.statusEffects[x].value1+1) + " row of breasts";
-					eventBuffer += "!</b> You peel them off your [pc.skinFurScales] and toss them away.";
-				}
-				//Treatment finishing.
-				if(pc.statusEffects[x].storageName == "The Treatment")
-				{
-					eventBuffer += "\n\n<b>The Treatment is over.</b> You aren’t sure why or how you know, but you know it all the same. Well, there’s nothing left to do but enjoy your enhanced body to the fullest! ...While hunting for Dad’s probes, of course. It’s the best way to meet sexy new aliens.";
-					eventBuffer += "\n\nOnce you claim you fortune, you can retire on New Texas, maybe even get your own private milker.";
-				}
-				//Sterilex/Infertile ends!
-				if(pc.statusEffects[x].storageName == "Infertile")
-				{
-					eventBuffer += "\n\nA strange tingling sensation spreads through your loins as your microsurgeons are suddenly reinvigorated. Your codex then beeps to notify you that you have regained your";
-					if(pc.hasGenitals())
-					{
-						if(pc.hasVagina()) eventBuffer += " fertility";
-						if(pc.isHerm()) eventBuffer += " and";
-						if(pc.hasCock()) eventBuffer += " virility";
-					}
-					else eventBuffer += " fertility and virility should you ever have the genitals for them";
-					eventBuffer += ". <b>Your ability to potentionally create life has been restored!</b>";
-				}
-				if(pc.statusEffects[x].storageName == "Mead") 
-				{
-					pc.physiqueMod -= pc.statusEffects[x].value2;
-					pc.reflexesMod += pc.statusEffects[x].value2 * .5;
-					pc.aimMod += pc.statusEffects[x].value2 * .5;
-					pc.intelligenceMod += pc.statusEffects[x].value2 * .5;
-					pc.willpowerMod += pc.statusEffects[x].value2 * .5;
-				}
-				if(pc.statusEffects[x].storageName == "X-Zil-rate")
-				{
-					pc.physiqueMod -= pc.statusEffects[x].value2;
-					trace("X-Zil-rate Expired: " + pc.statusEffects[x].value2);
-				}
-				if(pc.statusEffects[x].storageName == "Quivering Quasar")
-				{
-					pc.physiqueMod -= pc.statusEffects[x].value2;
-					trace("Quivering Quasar: " + pc.statusEffects[x].value2);
-				}
-				if(pc.statusEffects[x].storageName == "Zil Sting")
-				{
-					pc.reflexesMod += pc.statusEffects[x].value1;
-					pc.libidoMod -= pc.statusEffects[x].value1;
-				}
-				if (pc.statusEffects[x].storageName == "Naleen Venom")
-				{
-					pc.physiqueMod += pc.statusEffects[x].value1;
-					pc.aimMod += pc.statusEffects[x].value1;
-					pc.willpowerMod += pc.statusEffects[x].value1;
-					pc.reflexesMod += pc.statusEffects[x].value1;
-				}
-				if (pc.statusEffects[x].storageName == "GaloMax")
-				{
-					eventQueue.push(galoMaxTFProc);
-				}
-				//Mark out the ones that need cut!
-				expiredStatuses[expiredStatuses.length] = x;
-				//trace("Marking slot: " + x + " to cut");
-			}
-		}
-	}	
-	
-	//Cut the statuses that expired and need cut.
-	while(expiredStatuses.length > 0)
-	{
-		trace("REMOVING " + chars["PC"].statusEffects[expiredStatuses[0]].storageName + " in slot " + expiredStatuses[0] + " due to status effect time out.");
-		pc.statusEffects.splice(expiredStatuses[0],1);
-		expiredStatuses.splice(0,1);
-	}
-	//Alright, now do the venom shit - since adding more statuses could fuck shit otherwise
-	if(gogoVenomShit) venomExpirationNotice();
-}
-
 public function variableRoomUpdateCheck():void
 {
 	/* TAVROS STATION */
@@ -1684,7 +1492,7 @@ public function processTime(arg:int):void {
 		minutes++;
 
 		//Status Effect Updates
-		statusTick();
+		pc.statusTick();
 		//AlcoholTic
 		if(pc.hasStatusEffect("Alcohol")) pc.alcoholTic();
 		
@@ -1998,6 +1806,8 @@ public function processTime(arg:int):void {
 					}
 					if(pc.perkv4("Fecund Figure") < 0) pc.setPerkValue("Fecund Figure", 4, 0);
 				}
+				//Reset Emmy Special Intro lockout:
+				flags["EMMY_SPECIAL"] = undefined;
 				//DAILY MYR VENOM CHECKS
 				//Addicts
 				if(flags["VENOM_ADDICTION"] != undefined)
@@ -2048,10 +1858,17 @@ public function processTime(arg:int):void {
 	if (!MailManager.isEntryUnlocked("myrpills") && flags["MCALLISTER_MEETING_TIMESTAMP"] <= (GetGameTimestamp() - (24 * 60))) nevriMailGet();
 	if (!MailManager.isEntryUnlocked("orangepills") && flags["MCALLISTER_MYR_HYBRIDITY"] == 2 && GetGameTimestamp() >= (flags["MCALLISTER_MYR_HYBRIDITY_START"] + (7 * 24 * 60))) nevriOrangeMailGet();
 	if (!MailManager.isEntryUnlocked("bjreminder") && flags["NEVRIE_FIRST_DISCOUNT_DATE"] != undefined && days >= flags["NEVRIE_FIRST_DISCOUNT_DATE"] + 20) nevriBJMailGet();
+
 	//Emmy Mail
 	if (!MailManager.isEntryUnlocked("emmy_apology") && flags["EMMY_EMAIL_TIMER"] <= (GetGameTimestamp() - (24 * 60))) emmyMailGet();
 	//Emmy mail stage 2 START
 	if (!MailManager.isEntryUnlocked("emmy_gift_starter") && flags["EMMY_ORAL_TIMER"] <= (GetGameTimestamp() - (72 * 60))) emmyMailGet2();
+	/* 9999
+	//Emmy mail set up for sextoy go
+	if (!MailManager.isEntryUnlocked("emmy_implant_explain_email") && flags["EMMY_PRESEX_FUN_TIMER"] <= (GetGameTimestamp() - (100 * 60))) emmyMailGet3();
+	if (!MailManager.isEntryUnlocked("emmy_harness_here") && flags["EMMY_TOY_TIMER"] <= GetGameTimestamp()) emmyMailGet4();
+	*/
+
 	//Saendra Mail
 	if (!MailManager.isEntryUnlocked("saendrathanks") && flags["FALL OF THE PHOENIX STATUS"] >= 1 && flags["SAENDRA_DISABLED"] != 1 && rooms[currentLocation].planet != "SHIP: PHOENIX" && currentLocation != "SHIP INTERIOR") saendraPhoenixMailGet();
 	//Anno Mail

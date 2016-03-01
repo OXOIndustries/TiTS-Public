@@ -9,6 +9,10 @@ package classes {
 	import classes.Items.Melee.Fists;
 	import classes.Items.Melee.Rock;
 	import classes.Items.Miscellaneous.EmptySlot;
+	import classes.Items.Miscellaneous.HorsePill;
+	import classes.Items.Transformatives.Goblinola;
+	import classes.Items.Transformatives.Clippex;
+	import classes.Items.Transformatives.SemensFriend;
 	import classes.Items.Accessories.TamWolf;
 	import classes.Items.Accessories.TamWolfDamaged;
 	import classes.Items.Accessories.Allure;
@@ -13657,7 +13661,206 @@ package classes {
 		{
 			return false; // 9999
 		}
-		
+		public function statusTick():void {
+			var expiredStatuses:Array = new Array();
+			var gogoVenomShit:Boolean = false;
+
+			for(var x:int = statusEffects.length-1; x >= 0; x--) 
+			{
+				if(this is PlayerCharacter)
+				{
+					//Some hardcoded removal stuff
+					//Cut condensol if all cocks are gone.
+					if(((statusEffects[x] as StorageClass).storageName == "Condensol-B" || (statusEffects[x] as StorageClass).storageName == "Condensol-A") && !hasCock())
+					{
+						expiredStatuses[expiredStatuses.length] = x;
+					}
+				}
+				//trace("Checking status effect: " + x + " of " + (statusEffects.length-1));
+				//If times, count dat shit down.
+				if((statusEffects[x] as StorageClass).minutesLeft > 0) 
+				{
+					(statusEffects[x] as StorageClass).minutesLeft--;
+					//Expired Statuses
+					if((statusEffects[x] as StorageClass).minutesLeft <= 0) 
+					{
+						//PC specific status shit
+						if (this is PlayerCharacter)
+						{
+							if ((statusEffects[x] as StorageClass).storageName.indexOf("Lane's Hypnosis") != -1)
+							{
+								kGAMECLASS.baseHypnosisWearsOff((statusEffects[x] as StorageClass).storageName);
+							}
+							//CERTAIN STATUSES NEED TO CLEAR SOME SHIT.
+							if((statusEffects[x] as StorageClass).storageName == "Crabbst") 
+							{
+								physiqueMod -= (statusEffects[x] as StorageClass).value2;
+								reflexesMod += (statusEffects[x] as StorageClass).value2;
+								aimMod += (statusEffects[x] as StorageClass).value2;
+								intelligenceMod += (statusEffects[x] as StorageClass).value2;
+								willpowerMod += (statusEffects[x] as StorageClass).value2;
+							}
+							//Horse pill gets bonus proc!
+							if((statusEffects[x] as StorageClass).storageName == "Horse Pill")
+							{
+								var pill:HorsePill = new HorsePill();
+								kGAMECLASS.eventQueue[kGAMECLASS.eventQueue.length] = pill.lastPillTF;
+							}
+							//Goblinola changes!
+							if((statusEffects[x] as StorageClass).storageName == "Goblinola Bar")
+							{
+								var gobbyTF:Goblinola = new Goblinola();
+								kGAMECLASS.eventQueue[kGAMECLASS.eventQueue.length] = gobbyTF.itemEndGoblinTF;
+							}
+							//Goblinola face changes
+							if((statusEffects[x] as StorageClass).storageName == "Gabilani Face Change")
+							{
+								var gobbyFaceTF:Goblinola = new Goblinola();
+								kGAMECLASS.eventQueue[kGAMECLASS.eventQueue.length] = gobbyFaceTF.itemGoblinFaceTF;
+							}
+							//Clippex changes!
+							if((statusEffects[x] as StorageClass).storageName == "Clippex Gel")
+							{
+								var clippexTF:Clippex = new Clippex();
+								if((statusEffects[x] as StorageClass).value2 > 1) kGAMECLASS.eventQueue[kGAMECLASS.eventQueue.length] = clippexTF.itemClippexTFPlus;
+								else kGAMECLASS.eventQueue[kGAMECLASS.eventQueue.length] = clippexTF.itemClippexTF;
+							}
+							//Semen's Friend changes!
+							if((statusEffects[x] as StorageClass).storageName == "Semen's Candy")
+							{
+								var semensTF:SemensFriend = new SemensFriend();
+								if((statusEffects[x] as StorageClass).value2 > 1) kGAMECLASS.eventQueue[kGAMECLASS.eventQueue.length] = semensTF.itemSemensFriendTFPlus;
+								else kGAMECLASS.eventQueue[kGAMECLASS.eventQueue.length] = semensTF.itemSemensFriendTF;
+							}
+							if((statusEffects[x] as StorageClass).storageName == "Red Myr Venom")
+							{
+								//Bit of a hacky solution
+								gogoVenomShit = true;
+							}
+							// Mhen'gan Mango finishes!
+							if((statusEffects[x] as StorageClass).storageName == "The Mango")
+							{
+								kGAMECLASS.eventBuffer += "\n\nYour attractive aura fades from you as your sexiness returns to normal levels.";
+								if (kGAMECLASS.silly && rand(3) != 0) kGAMECLASS.eventBuffer += " You could no longer handle the mango!";
+								else kGAMECLASS.eventBuffer += " The wild mango’s effect has worn off!";
+							}
+							//Jaded wears off!
+							if((statusEffects[x] as StorageClass).storageName == "Jaded")
+							{
+								kGAMECLASS.eventBuffer += "\n\nNo longer bored from your previous whoring session, you feel a bit more refreshed now.";
+							}
+							//Condensol ends!
+							if((statusEffects[x] as StorageClass).storageName == "Condensol-A")
+							{
+								if(hasCock())
+								{
+									kGAMECLASS.eventBuffer += "\n\nYou feel your groin relax, and check your [pc.cocks] to discover that everything is more or less as it should be. The Condensol must have worn off.";
+									for(var y:int = 0; y < cockTotal(); y++)
+									{
+										cocks[y].cLengthRaw *= 2;
+									}
+								}
+							}
+							if((statusEffects[x] as StorageClass).storageName == "Condensol-B")
+							{
+								if(hasCock())
+								{
+									kGAMECLASS.eventBuffer += "\n\nYou feel your groin relax, and check your [pc.cocks] to discover that everything is more or less as it should be. The Condensol must have worn off.";
+									for(var z:int = 0; z < cockTotal(); z++)
+									{
+										cocks[z].cLengthRaw *= 4;
+									}
+								}
+							}
+							//Mighty Tight ends!
+							if((statusEffects[x] as StorageClass).storageName == "Mighty Tight")
+							{
+								kGAMECLASS.eventBuffer += "\n\nPausing for a moment, you feel your backdoor";
+								if(hasVagina()) kGAMECLASS.eventBuffer += " and [pc.vaginas] relaxing";
+								else kGAMECLASS.eventBuffer += " relax";
+								kGAMECLASS.eventBuffer += " a bit. It is probably safe to say that you are no longer under the effects of Mighty Tight.";
+							}
+							//Boobswell ends!
+							if((statusEffects[x] as StorageClass).storageName == "Boobswell Pads")
+							{
+								//Message text, last boob size increase. 7 days later.
+								kGAMECLASS.eventBuffer += "\n\nUnfortunately, as you admire your now-larger bosom, you realize that the gentle, wet rumble of the pads has come to a stop. <b>It looks like you’ve exhausted the BoobSwell Pads";
+								if(bRows() > 1) kGAMECLASS.eventBuffer += "on your " + kGAMECLASS.num2Text2((statusEffects[x] as StorageClass).value1+1) + " row of breasts";
+								kGAMECLASS.eventBuffer += "!</b> You peel them off your [pc.skinFurScales] and toss them away.";
+							}
+							//Treatment finishing.
+							if((statusEffects[x] as StorageClass).storageName == "The Treatment")
+							{
+								kGAMECLASS.eventBuffer += "\n\n<b>The Treatment is over.</b> You aren’t sure why or how you know, but you know it all the same. Well, there’s nothing left to do but enjoy your enhanced body to the fullest! ...While hunting for Dad’s probes, of course. It’s the best way to meet sexy new aliens.";
+								kGAMECLASS.eventBuffer += "\n\nOnce you claim you fortune, you can retire on New Texas, maybe even get your own private milker.";
+							}
+							//Sterilex/Infertile ends!
+							if((statusEffects[x] as StorageClass).storageName == "Infertile")
+							{
+								kGAMECLASS.eventBuffer += "\n\nA strange tingling sensation spreads through your loins as your microsurgeons are suddenly reinvigorated. Your codex then beeps to notify you that you have regained your";
+								if(hasGenitals())
+								{
+									if(hasVagina()) kGAMECLASS.eventBuffer += " fertility";
+									if(isHerm()) kGAMECLASS.eventBuffer += " and";
+									if(hasCock()) kGAMECLASS.eventBuffer += " virility";
+								}
+								else kGAMECLASS.eventBuffer += " fertility and virility should you ever have the genitals for them";
+								kGAMECLASS.eventBuffer += ". <b>Your ability to potentionally create life has been restored!</b>";
+							}
+							if((statusEffects[x] as StorageClass).storageName == "Mead") 
+							{
+								physiqueMod -= (statusEffects[x] as StorageClass).value2;
+								reflexesMod += (statusEffects[x] as StorageClass).value2 * .5;
+								aimMod += (statusEffects[x] as StorageClass).value2 * .5;
+								intelligenceMod += (statusEffects[x] as StorageClass).value2 * .5;
+								willpowerMod += (statusEffects[x] as StorageClass).value2 * .5;
+							}
+							if((statusEffects[x] as StorageClass).storageName == "X-Zil-rate")
+							{
+								physiqueMod -= (statusEffects[x] as StorageClass).value2;
+								trace("X-Zil-rate Expired: " + (statusEffects[x] as StorageClass).value2);
+							}
+							if((statusEffects[x] as StorageClass).storageName == "Quivering Quasar")
+							{
+								physiqueMod -= (statusEffects[x] as StorageClass).value2;
+								trace("Quivering Quasar: " + (statusEffects[x] as StorageClass).value2);
+							}
+							if((statusEffects[x] as StorageClass).storageName == "Zil Sting")
+							{
+								reflexesMod += (statusEffects[x] as StorageClass).value1;
+								libidoMod -= (statusEffects[x] as StorageClass).value1;
+							}
+							if ((statusEffects[x] as StorageClass).storageName == "Naleen Venom")
+							{
+								physiqueMod += (statusEffects[x] as StorageClass).value1;
+								aimMod += (statusEffects[x] as StorageClass).value1;
+								willpowerMod += (statusEffects[x] as StorageClass).value1;
+								reflexesMod += (statusEffects[x] as StorageClass).value1;
+							}
+							if ((statusEffects[x] as StorageClass).storageName == "GaloMax")
+							{
+								kGAMECLASS.eventQueue.push(kGAMECLASS.galoMaxTFProc);
+							}
+						}
+						//Mark out the ones that need cut!
+						expiredStatuses[expiredStatuses.length] = x;
+						//trace("Marking slot: " + x + " to cut");
+					}
+				}
+			}	
+			
+			//Cut the statuses that expired and need cut.
+			while(expiredStatuses.length > 0)
+			{
+				trace("REMOVING " + (statusEffects[expiredStatuses[0]] as StorageClass).storageName + " in slot " + expiredStatuses[0] + " due to status effect time out.");
+				statusEffects.splice(expiredStatuses[0],1);
+				expiredStatuses.splice(0,1);
+			}
+			//Alright, now do the venom shit - since adding more statuses could fuck shit otherwise
+			if(gogoVenomShit) kGAMECLASS.venomExpirationNotice();
+		}
+
+
 		// OnTakeDamage is called as part of applyDamage.
 		// You should generate a message for /deferred/ display in the creature
 		// rather than emitting text immediately. You should then emit it
