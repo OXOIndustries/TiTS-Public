@@ -1582,11 +1582,11 @@ package classes.GameData
 			kGAMECLASS.setAttacker(pc);
 			kGAMECLASS.setEnemy(opts.tar);
 			
-			if (opts.tar is CrystalGooT1 && (opts.tar as CrystalGooT1).ShouldIntercept(opts))
+			if (opts.func != generateTeaseMenu && opts.tar is CrystalGooT1 && (opts.tar as CrystalGooT1).ShouldIntercept(opts))
 			{
 				(opts.tar as CrystalGooT1).SneakSqueezeAttackReaction(opts);
 			}
-			else if (opts.tar is CrystalGooT2 && (opts.tar as CrystalGooT2).ShouldIntercept(opts))
+			else if (opts.func != generateTeaseMenu && opts.tar is CrystalGooT2 && (opts.tar as CrystalGooT2).ShouldIntercept(opts))
 			{
 				(opts.tar as CrystalGooT2).SpecialAction(opts);
 			}
@@ -1678,6 +1678,9 @@ package classes.GameData
 			
 			clearOutput();
 			
+			buttTeaseText(target);
+			applyTeaseDamage(pc, target, teaseCount, "BUTT", likeAdjustments);
+			
 			if (target is CrystalGooT1 && (target as CrystalGooT1).ShouldIntercept({ isTease: true }))
 			{
 				(target as CrystalGooT1).SneakSqueezeAttackReaction( { isTease: true } );
@@ -1685,11 +1688,6 @@ package classes.GameData
 			else if (target is CrystalGooT2 && (target as CrystalGooT2).ShouldIntercept( { isTease: true } ))
 			{
 				(target as CrystalGooT2).SpecialAction( { isTease: true } );
-			}
-			else
-			{
-				buttTeaseText(target);
-				applyTeaseDamage(pc, target, teaseCount, "BUTT", likeAdjustments);
 			}
 			
 			processCombat();
@@ -1842,6 +1840,9 @@ package classes.GameData
 			
 			clearOutput();
 			
+			chestTeaseText(target);
+			applyTeaseDamage(pc, target, teaseCount, "CHEST", likeAdjustments);
+				
 			if (target is CrystalGooT1 && (target as CrystalGooT1).ShouldIntercept({ isTease: true }))
 			{
 				(target as CrystalGooT1).SneakSqueezeAttackReaction( { isTease: true } );
@@ -1850,12 +1851,7 @@ package classes.GameData
 			{
 				(target as CrystalGooT2).SpecialAction( { isTease: true } );
 			}
-			else
-			{
-				chestTeaseText(target);
-				applyTeaseDamage(pc, target, teaseCount, "CHEST", likeAdjustments);
-			}
-			
+				
 			processCombat();
 		}
 		
@@ -1981,6 +1977,9 @@ package classes.GameData
 		
 			clearOutput();
 			
+			hipsTeaseText(target);
+			applyTeaseDamage(pc, target, teaseCount, "HIPS", likeAdjustments);
+				
 			if (target is CrystalGooT1 && (target as CrystalGooT1).ShouldIntercept({ isTease: true }))
 			{
 				(target as CrystalGooT1).SneakSqueezeAttackReaction( { isTease: true } );
@@ -1989,11 +1988,7 @@ package classes.GameData
 			{
 				(target as CrystalGooT2).SpecialAction( { isTease: true } );
 			}
-			else
-			{
-				hipsTeaseText(target);
-				applyTeaseDamage(pc, target, teaseCount, "HIPS", likeAdjustments);
-			}
+
 			processCombat();
 		}
 		
@@ -2112,6 +2107,9 @@ package classes.GameData
 			
 			clearOutput();
 			
+			crotchTeaseText(target);
+			applyTeaseDamage(pc, target, teaseCount, "CROTCH", likeAdjustments);
+				
 			if (target is CrystalGooT1 && (target as CrystalGooT1).ShouldIntercept({ isTease: true }))
 			{
 				(target as CrystalGooT1).SneakSqueezeAttackReaction( { isTease: true } );
@@ -2120,11 +2118,7 @@ package classes.GameData
 			{
 				(target as CrystalGooT2).SpecialAction( { isTease: true } );
 			}
-			else
-			{
-				crotchTeaseText(target);
-				applyTeaseDamage(pc, target, teaseCount, "CROTCH", likeAdjustments);
-			}
+				
 			processCombat();
 		}
 		
@@ -2512,6 +2506,9 @@ package classes.GameData
 			
 			clearOutput();
 			
+			squirtTeaseText(target);
+			applyTeaseDamage(pc, target, teaseCount, "SQUIRT", likeAdjustments);
+				
 			if (target is CrystalGooT1 && (target as CrystalGooT1).ShouldIntercept({ isSquirt: true }))
 			{
 				(target as CrystalGooT1).SneakSqueezeAttackReaction( { isSquirt: true } );
@@ -2520,11 +2517,7 @@ package classes.GameData
 			{
 				(target as CrystalGooT2).SpecialAction( { isSquirt: true } );
 			}
-			else
-			{
-				squirtTeaseText(target);
-				applyTeaseDamage(pc, target, teaseCount, "SQUIRT", likeAdjustments);
-			}
+			
 			processCombat();
 		}
 		
