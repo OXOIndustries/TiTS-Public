@@ -1346,9 +1346,6 @@ public function processTime(arg:int):void {
 	var tightnessChanged:Boolean = false;
 	
 	var productionFactor:Number = 100 / (1920) * ((pc.libido() * 3 + 100) / 100);
-	output("KIRO");
-	if (kiro.fluidSimulate) output("butt");
-	else output("booty");
 	// Ideally most of this character updating shit needs to be shifted into the Creature class itself
 	// Then everything can just get stuffed in this loop as like chars[prop].processTime(arg) and hook everything like that.
 	for (var prop:String in chars)
