@@ -13926,7 +13926,7 @@ package classes {
 				//Figure out how much cum is vented over time.
 				//Should vent 1/2 the current amount over 30 minutes
 				//+a small amount based off the maximum amount full you've been for this proc.
-				amountVented = statusEffects[z].value1 / 2 / 2 + statusEffects[z].value2 / 48
+				amountVented = statusEffects[z].value1 / 4 / 2 + statusEffects[z].value2 / 48
 				//Mult times minutes passed
 				amountVented *= timePassed/60;
 				//trace("CURRENT CUM BANKED: " + statusEffects[z].value1 + " VENTING: " + amountVented);
@@ -13978,7 +13978,7 @@ package classes {
 				//Figure out how much cum is vented over time.
 				//Should vent 1/2 the current amount over 30 minutes
 				//+a small amount based off the maximum amount full you've been for this proc. 
-				amountVented = statusEffects[a].value1 / 2 / 2 + statusEffects[a].value2 / 48
+				amountVented = statusEffects[a].value1 / 4 / 2 + statusEffects[a].value2 / 48
 				//Mult times minutes passed
 				amountVented *= timePassed/60;
 				//Apply to actual status
@@ -14029,7 +14029,7 @@ package classes {
 				//Figure out how much cum is vented over time.
 				//Should vent 1/2 the current amount over 30 minutes
 				//+a small amount based off the maximum amount full you've been for this proc. 
-				amountVented = statusEffects[o].value1 / 6 / 2 + statusEffects[o].value2 / 48
+				amountVented = statusEffects[o].value1 / 8 / 2 + statusEffects[o].value2 / 48
 				//Mult times minutes passed
 				amountVented *= timePassed/60;
 				//Apply to actual status
