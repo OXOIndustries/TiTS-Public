@@ -1346,12 +1346,19 @@ public function processTime(arg:int):void {
 	var tightnessChanged:Boolean = false;
 	
 	var productionFactor:Number = 100 / (1920) * ((pc.libido() * 3 + 100) / 100);
-	
+	output("KIRO");
+	if (kiro.fluidSimulate) output("butt");
+	else output("booty");
 	// Ideally most of this character updating shit needs to be shifted into the Creature class itself
 	// Then everything can just get stuffed in this loop as like chars[prop].processTime(arg) and hook everything like that.
 	for (var prop:String in chars)
 	{
-		if(chars[prop].ballFullness < 100 || chars[prop] == pc) chars[prop].cumProduced(arg);
+		//Cum volume only simulated for those that simulate dat shit.
+		if(chars[prop].fluidSimulate)
+		{
+			if(chars[prop].ballFullness < 100 || chars[prop] is PlayerCharacter) chars[prop].cumProduced(arg);
+			chars[prop].cumFlationSimulate(arg);
+		}
 	}
 	
 	//Double time
@@ -1492,7 +1499,7 @@ public function processTime(arg:int):void {
 		minutes++;
 
 		//Status Effect Updates
-		pc.statusTick();
+		for (var prop:String in chars) { if(chars[prop].statusSimulate) chars[prop].statusTick(); }
 		//AlcoholTic
 		if(pc.hasStatusEffect("Alcohol")) pc.alcoholTic();
 		
