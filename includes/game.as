@@ -1357,6 +1357,7 @@ public function processTime(arg:int):void {
 			chars[prop].cumFlationSimulate(arg);
 		}
 	}
+	pc.cumFlationSimulate(arg);
 	
 	//Double time
 	if (pc.hasPerk("Extra Ardor")) productionFactor *= 2;

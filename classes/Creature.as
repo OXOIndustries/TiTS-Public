@@ -13902,6 +13902,7 @@ package classes {
 			//Place to store draining notices.
 			var notice:String = "";
 			var amountVented:Number
+			var removals:Array = new Array();
 
 			//Find the index value for various types of cumflation.
 			for(var x:int = 0; x < statusEffects.length; x++)
@@ -13969,8 +13970,7 @@ package classes {
 					}
 					//9999 apply cum-drenched flag as appropriate?
 				}
-				//Remove if no more cum!
-				if(statusEffects[z].value1 <= 0) statusEffects.splice(z,1);
+				if(statusEffects[z].value1 <= 0) removals.push("Vaginally-Filled");
 			}
 			//If has anally-filled status effect!
 			if(a >= 0)
@@ -14021,8 +14021,7 @@ package classes {
 					}
 					//9999 apply cum-drenched flag as appropriate?
 				}
-				//Remove if no more cum!
-				if(statusEffects[a].value1 <= 0) statusEffects.splice(a,1);
+				if(statusEffects[a].value1 <= 0) removals.push("Anally-Filled");
 			}
 			//If has orally-filled status effect!
 			if(o >= 0)
@@ -14030,7 +14029,7 @@ package classes {
 				//Figure out how much cum is vented over time.
 				//Should vent 1/2 the current amount over 30 minutes
 				//+a small amount based off the maximum amount full you've been for this proc. 
-				amountVented = statusEffects[o].value1 / 2 / 2 + statusEffects[o].value2 / 48
+				amountVented = statusEffects[o].value1 / 6 / 2 + statusEffects[o].value2 / 48
 				//Mult times minutes passed
 				amountVented *= timePassed/60;
 				//Apply to actual status
@@ -14041,8 +14040,13 @@ package classes {
 					//If Jacques00 or Geddy wants to write stuff for this, feel free, but I'm fine with it being more laid back.
 					//9999 apply cum-drenched flag as appropriate?
 				}
-				//Remove if no more cum!
-				if(statusEffects[o].value1 <= 0) statusEffects.splice(o,1);
+				if(statusEffects[o].value1 <= 0) removals.push("Orally-Filled");
+			}
+			//Remove if no more cum!
+			while(removals.length > 0) 
+			{
+				removeStatusEffect(removals[0]);
+				removals.splice(0,1);
 			}
 			kGAMECLASS.eventBuffer += notice;
 		}
