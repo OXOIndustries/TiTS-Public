@@ -265,7 +265,7 @@ public function showCodex():void
 	//addGhostButton(2, "Log", function():void { } );
 	//addGhostButton(3, "CHEEVOS", function():void { } );
 	addGhostButton(1, "Log", displayQuestLog, flags["TOGGLE_MENU_LOG"]);
-	
+	if(flags["EMMY_QUEST"] >= 6 && flags["EMMY_QUEST"] != undefined) addGhostButton(3,"EmmyRemote",pushEmmysButtonsMenu);
 	addGhostButton(4, "Back", userInterface.showPrimaryOutput);
 }
 
@@ -1497,7 +1497,7 @@ public function processTime(arg:int):void {
 		minutes++;
 
 		//Status Effect Updates
-		for (var prop:String in chars) { if(chars[prop].statusSimulate) chars[prop].statusTick(); }
+		for (prop in chars) { if(chars[prop].statusSimulate) chars[prop].statusTick(); }
 		//AlcoholTic
 		if(pc.hasStatusEffect("Alcohol")) pc.alcoholTic();
 		
@@ -1868,11 +1868,9 @@ public function processTime(arg:int):void {
 	if (!MailManager.isEntryUnlocked("emmy_apology") && flags["EMMY_EMAIL_TIMER"] <= (GetGameTimestamp() - (24 * 60))) emmyMailGet();
 	//Emmy mail stage 2 START
 	if (!MailManager.isEntryUnlocked("emmy_gift_starter") && flags["EMMY_ORAL_TIMER"] <= (GetGameTimestamp() - (72 * 60))) emmyMailGet2();
-	/* 9999
 	//Emmy mail set up for sextoy go
 	if (!MailManager.isEntryUnlocked("emmy_implant_explain_email") && flags["EMMY_PRESEX_FUN_TIMER"] <= (GetGameTimestamp() - (100 * 60))) emmyMailGet3();
 	if (!MailManager.isEntryUnlocked("emmy_harness_here") && flags["EMMY_TOY_TIMER"] <= GetGameTimestamp()) emmyMailGet4();
-	*/
 
 	//Saendra Mail
 	if (!MailManager.isEntryUnlocked("saendrathanks") && flags["FALL OF THE PHOENIX STATUS"] >= 1 && flags["SAENDRA_DISABLED"] != 1 && rooms[currentLocation].planet != "SHIP: PHOENIX" && currentLocation != "SHIP INTERIOR") saendraPhoenixMailGet();

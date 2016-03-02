@@ -2452,6 +2452,8 @@ package classes {
 		{
 			removeStatusEffect("Sweaty");
 			removeStatusEffect("Mare Musk");
+			removeStatusEffect("Cum Soaked");
+			removeStatusEffect("Pussy Drenched");
 		}
 		public function canMasturbate():Boolean
 		{
