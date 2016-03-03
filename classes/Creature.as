@@ -5351,7 +5351,7 @@ package classes {
 			perks.sortOn("storageName", Array.CASEINSENSITIVE);
 		}
 		//Create a status
-		public function createStatusEffect(statusName: String, value1: Number = 0, value2: Number = 0, value3: Number = 0, value4: Number = 0, hidden: Boolean = true, iconName: String = "", tooltip: String = "", combatOnly: Boolean = false, minutesLeft: Number = 0): void {
+		public function createStatusEffect(statusName: String, value1: Number = 0, value2: Number = 0, value3: Number = 0, value4: Number = 0, hidden: Boolean = true, iconName: String = "", tooltip: String = "", combatOnly: Boolean = false, minutesLeft: Number = 0, iconShade:uint = 0xFFFFFF): void {
 			
 			if (hasStatusEffect(statusName)) {
 				trace("Status '" + statusName + "' already present on " + short);
@@ -5369,6 +5369,7 @@ package classes {
 			newStatusEffect.tooltip = tooltip;
 			newStatusEffect.combatOnly = combatOnly;
 			newStatusEffect.minutesLeft = minutesLeft;
+			newStatusEffect.iconShade = iconShade;
 			
 			statusEffects.push(newStatusEffect);
 			
@@ -5572,6 +5573,20 @@ package classes {
 			trace("ERROR: Looking for status '" + storageName + "' to change tooltip but couldn't find it.");
 			return;
 		}
+		
+		public function setStatusIconShade(storageName:String, iconShade:uint):void
+		{
+			for (var i:int = 0; i < statusEffects.length; i++)
+			{
+				if (statusEffects[i].storageName == storageName)
+				{
+					statusEffects[i].iconShade = iconShade;
+					return;
+				}
+			}
+			trace("ERROR: Unable to find '" + storageName +"' to update icon shade.");
+		}
+		
 		public function addStatusMinutes(storageName: String, newMinutes:int):void
 		{
 			var counter: Number = statusEffects.length;

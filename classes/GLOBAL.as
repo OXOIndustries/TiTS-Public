@@ -1015,5 +1015,9 @@
 		public static const CHILD_TYPE_LIVE:uint = 1;
 		public static const CHILD_TYPE_EGGS:uint = 2;
 		public static const CHILD_TYPE_SEED:uint = 3;
+		
+		public static const STATUS_NEUTRAL:uint = 0xFFFFFF;
+		public static const STATUS_BAD:uint = 0xFF0000;
+		public static const STATUS_GOOD:uint = 0x00FF00;
 	}
 }

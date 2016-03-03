@@ -293,6 +293,14 @@ public function debugMenusTwo():void
 	addItemButton(10, new DBGShield(), function():void {
 		quickLoot(new DBGShield());
 	});
+	
+	addButton(13, "Test Effect", function():void {
+		output("\n\nAdding coloured test effect");
+		
+		var colors:Array = [ 0xFF0000, 0x00FF00, 0x0000FF, 0x000000, 0xFFFFFF, 0xFFFF00, 0xFF00FF, 0x00FFFF ];
+		
+		(pc as PlayerCharacter).createStatusEffect("Test Effect " + (rand(1000) + 1), 0, 0, 0, 0, false, "DefenseUp", "A test coloured status effect", false, 600, RandomInCollection(colors));
+	});
 }
 
 public function debugFuckWithRival():void

@@ -284,13 +284,24 @@ package classes.UIComponents.StatusEffectComponents
 		 * @param	icon
 		 * @param	remainingDuration
 		 */
-		public function SetData(statusName:String, tooltipText:String, icon:Class, remainingDuration:int):void
+		public function SetData(statusName:String, tooltipText:String, icon:Class, remainingDuration:int, iconShade:uint):void
 		{
 			this._headerText.text = statusName;
 			this._bodyText.htmlText = "<span class='words'><p>" + tooltipText + "</p></span>";
 			this.UpdateDurationText(remainingDuration);
 			if (!(_iconElement is icon)) CreateIcon(icon);
+			UpdateIconShade(iconShade);
 			this.Resize();
+		}
+		
+		public function UpdateIconShade(iconShade:uint):void
+		{
+			if (_iconElement)
+			{
+				var ct:ColorTransform = new ColorTransform();
+				ct.color = iconShade;
+				_iconElement.transform.colorTransform = ct;
+			}
 		}
 		
 		public function UpdateTooltip(tooltipText:String):void

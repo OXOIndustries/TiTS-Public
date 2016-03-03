@@ -152,7 +152,7 @@
 		 * Create a new child and push it into the storage array
 		 * @param	iconClass
 		 */
-		private function BuildNewChild(effectName:String, iconClass:String, tooltipText:String, durationRemaining:int):StatusEffectElement
+		private function BuildNewChild(effectName:String, iconClass:String, tooltipText:String, durationRemaining:int, iconShade:uint):StatusEffectElement
 		{
 			var iconT:Class;
 
@@ -165,7 +165,7 @@
 				iconT = StatusIcons.Icon_Missing;
 			}
 			
-			return new StatusEffectElement(_childSizeX, _childSizeY, effectName, iconT, tooltipText, durationRemaining, this.mouseHandlerFunc);
+			return new StatusEffectElement(_childSizeX, _childSizeY, effectName, iconT, tooltipText, durationRemaining, iconShade, this.mouseHandlerFunc);
 		}
 
 		/**
@@ -206,7 +206,7 @@
 		 */
 		private function DisplayTooltip(activeObj:StatusEffectElement):void
 		{		
-			_tooltipElement.SetData(activeObj.displayName, activeObj.tooltipText, activeObj.iconType, activeObj.durationRemaining);
+			_tooltipElement.SetData(activeObj.displayName, activeObj.tooltipText, activeObj.iconType, activeObj.durationRemaining, activeObj.iconShade);
 			stage.addChild(_tooltipElement);
 			
 			var tPt:Point = this.localToGlobal(new Point(0, 0));
@@ -391,17 +391,19 @@
 					{
 						for (var vecElem:int = 0; vecElem < _workElems.length; vecElem++)
 						{
-							// If we do, shift the element in question back to the primary vector, and update it's duration.
+							// If we do, shift the element in question back to the primary vector, and update it's duration & color (if required).
 							if (_workElems[vecElem].name == statusEffects[seElem].storageName.toLowerCase())
 							{
 								_workElems[vecElem].durationRemaining = statusEffects[seElem].minutesLeft;
 								_workElems[vecElem].tooltipText = statusEffects[seElem].tooltip;
+								if (_workElems[vecElem].iconShade != statusEffects[seElem].iconShade) _workElems[vecElem].iconShade = statusEffects[seElem].iconShade;
 								
 								// Force through an update of the timer if we're looking at the active tooltip element!
 								if (_workElems[vecElem] == _lastActiveElement)
 								{
 									_tooltipElement.UpdateDurationText(statusEffects[seElem].minutesLeft);
 									_tooltipElement.UpdateTooltip(statusEffects[seElem].tooltip);
+									_tooltipElement.UpdateIconShade(statusEffects[seElem].iconShade);
 								}
 								
 								_childElements.push(_workElems[vecElem]);
@@ -413,7 +415,7 @@
 					// No match? It must be a new effect, so we need to create the displayable element
 					if (!gotMatch)
 					{
-						_childElements.push(this.BuildNewChild(statusEffects[seElem].storageName, statusEffects[seElem].iconName, statusEffects[seElem].tooltip, statusEffects[seElem].minutesLeft));
+						_childElements.push(this.BuildNewChild(statusEffects[seElem].storageName, statusEffects[seElem].iconName, statusEffects[seElem].tooltip, statusEffects[seElem].minutesLeft, statusEffects[seElem].iconShade));
 					}
 				}
 			}
