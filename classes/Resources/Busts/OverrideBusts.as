@@ -165,6 +165,11 @@
 		public var Bust_VAANDE:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/vaande_nude.png", mimeType = "image/png")]
 		public var Bust_VAANDE_NUDE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/adjatha/vahn.png", mimeType = "image/png")]
+		public var Bust_VAHN:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/vahn_nude.png", mimeType = "image/png")]
+		public var Bust_VAHN_NUDE:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/jacques00/varmint.png", mimeType = "image/png")]
 		public var Bust_VARMINT:Class;
