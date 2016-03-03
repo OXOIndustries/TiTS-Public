@@ -932,7 +932,7 @@ package classes.GameData
 			if (attacker is PlayerCharacter) output("You seek cover against ranged attacks.");
 			else output(attacker.capitalA + attacker.uniqueName + " hunkers behind cover, defending themselves against ranged attacks!");
 			
-			attacker.createStatusEffect("Taking Cover", 3, 0, 0, 0, false, "DefenseUp", "Taking cover! Ranged attacks will almost always miss!", true);
+			attacker.createStatusEffect("Taking Cover", 4, 0, 0, 0, false, "DefenseUp", "Taking cover! Ranged attacks will almost always miss!", true);
 		}
 		
 		public static var CarpetGrenades:SingleCombatAttack;
@@ -1422,12 +1422,12 @@ package classes.GameData
 			if (attacker is PlayerCharacter)
 			{
 				output("You activate your stealth field generator, fading into nigh-invisibility.");
-				rounds = 2;
+				rounds = 3;
 			}
 			else
 			{
 				output(attacker.capitalA + attacker.uniqueName + " activates a stealth field generator, fading into nigh-invisibility.");
-				rounds = 3;
+				rounds = 4;
 			}
 			
 			attacker.createStatusEffect("Stealth Field Generator", rounds, 0, 0, 0, false, "DefenseUp", "Provides a massive bonus to evasion chances!", true, 0);

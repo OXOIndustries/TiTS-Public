@@ -362,7 +362,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.6.35";
+			version = "0.6.36";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -1136,6 +1136,10 @@
 		public function get semith():Semith
 		{
 			return chars["SEMITH"];
+		}
+		public function get emmy():Emmy
+		{
+			return chars["EMMY"];
 		}
 		
 		private var _dbgtestvar:int = 0;

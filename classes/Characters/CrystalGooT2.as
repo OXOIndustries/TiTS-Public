@@ -327,7 +327,7 @@ package classes.Characters
 		
 		public function ShouldIntercept(attackOpts:Object):Boolean
 		{
-			if (attackOpts.isWait != undefined || attackOpts.isTease != undefined)
+			if (attackOpts.isWait != undefined || attackOpts.isFantasize != undefined || attackOpts.isPsionic != undefined)
 			{
 				if (hasStatusEffect("Blinded")) return false;
 				if (hasStatusEffect("Unarmored")) return false;
