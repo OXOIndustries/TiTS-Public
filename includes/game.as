@@ -1500,6 +1500,7 @@ public function processTime(arg:int):void {
 
 		//Status Effect Updates
 		for (prop in chars) { if(chars[prop].statusSimulate) chars[prop].statusTick(); }
+		pc.statusTick();
 		//AlcoholTic
 		if(pc.hasStatusEffect("Alcohol")) pc.alcoholTic();
 		
