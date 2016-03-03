@@ -1213,6 +1213,7 @@ public function giveHeadToVi():void
 	// Unlock talk topic ‘Pleasure’ if not unlocked already.
 	// Scene end, back to menu
 	processTime(23);
+	pc.orgasm();
 	IncrementFlag("VI_SEXED");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

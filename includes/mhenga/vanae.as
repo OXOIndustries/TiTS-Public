@@ -355,11 +355,11 @@ public function vanaePCVictory():void
 		if (enemy is HuntressVanae)
 		{
 			// Vaginal
-			if (pc.hasCock() && pc.cockThatFits(217) != -1 && pc.genitalSpot < 2) addButton(0, "Vaginal Sex", vanaeVictorySexIntro, "vaginal", "Vaginal Sex", "Fuck the huntresses pussy.");
+			if (pc.hasCock() && pc.cockThatFits(enemy.vaginalCapacity(0)) != -1 && pc.genitalSpot < 2) addButton(0, "Vaginal Sex", vanaeVictorySexIntro, "vaginal", "Vaginal Sex", "Fuck the huntresses pussy.");
 			else
 			{
 				if (!pc.hasCock()) addDisabledButton(0, "Vaginal Sex", "Vaginal Sex", "You need a cock to fuck the huntresses vagina.");
-				else if (pc.cockThatFits(217) == -1) addDisabledButton(0, "Vaginal Sex", "Vaginal Sex", "Your cock is simply too big to fuck her vagina.");
+				else if (pc.cockThatFits(enemy.vaginalCapacity(0)) == -1) addDisabledButton(0, "Vaginal Sex", "Vaginal Sex", "Your cock is simply too big to fuck her vagina.");
 				else addDisabledButton(0, "Vagial Sex", "Vaginal Sex", "Your Tab-As are in the wrong place to fit into her Slot-Bs!");
 			}
 
@@ -427,7 +427,7 @@ public function vanaePCVictory():void
 		{
 			// Cowgirl Virginity Takin'
 			// Cock, it fits 12 * 4, front/mid genitals
-			if (pc.hasCock() && pc.cockThatFits(217) != -1 && (pc.genitalSpot == 0 || pc.genitalSpot == 1))
+			if (pc.hasCock() && pc.cockThatFits(enemy.vaginalCapacity(0)) != -1 && (pc.genitalSpot == 0 || pc.genitalSpot == 1))
 			{
 				addButton(0, "Cowgirl", vanaeVictorySexIntro, "maiden_virginity", "Cowgirl", "Pop her cherry by having her ride your cock, cowgirl style.");
 			}
@@ -700,7 +700,7 @@ public function vanaeVictorySexIntro(scene:String):void
 
 public function vanaeMaidenTakeVirginity():void
 {
-	var selCock:int = pc.cockThatFits(217);
+	var selCock:int = pc.cockThatFits(enemy.vaginalCapacity(0));
 	if(selCock < 0) selCock = pc.smallestCockIndex();
 	var pcWonFight:Boolean = false;
 	
@@ -913,7 +913,7 @@ public function vanaeHuntressVaginalSex():void
 	clearOutput();
 	vanaeHeader("VICTORY: VANAE\n");
 
-	var selCock:int = pc.cockThatFits(217);
+	var selCock:int = pc.cockThatFits(enemy.vaginalCapacity(0));
 	if(selCock < 0) selCock = pc.smallestCockIndex();
 
 	output("Warming you up first, the blind huntress gets down on all fours and grabs [pc.oneCock] in her webbed hands. You can feel flattened suckers on her palms brushing lightly against your flesh, your [pc.cock " + selCock + "] stiffening and swelling at her gentle touch.");
@@ -1610,7 +1610,7 @@ public function vanaeHuntressPCDefeat():void
 	var options:Array = [];
 
 	// Fuck her cunt -- Cock + size requirement
-	if (pc.hasCock() && pc.cockThatFits(217) != -1) options.push(vanaeHuntressPCDefeatCuntFux);
+	if (pc.hasCock() && pc.cockThatFits(enemy.vaginalCapacity(0)) != -1) options.push(vanaeHuntressPCDefeatCuntFux);
 
 	// Milkbath -- Gender neutral variants
 	options.push(vanaeHuntressPCDefeatMilkbath);
@@ -1656,7 +1656,7 @@ public function vanaeHuntressPCDefeatCuntFux():void
 	else output(" off-worlder");
 	output(". I'm fertile and raring to go.”</i>");
 
-	var selCock:int = pc.cockThatFits(217);
+	var selCock:int = pc.cockThatFits(enemy.vaginalCapacity(0));
 	if(selCock < 0) selCock = pc.smallestCockIndex();
 
 	// If first time breeding with a Vanae huntress.
@@ -2323,7 +2323,7 @@ public function vanaeMaidenPCDefeat():void
 
 	var options:Array = [];
 
-	if (pc.hasCock() && pc.genitalSpot < 2 && pc.cockThatFits(217) != -1) options.push(vanaeMaidenPCDefeatTakeVirginity);
+	if (pc.hasCock() && pc.genitalSpot < 2 && pc.cockThatFits(enemy.vaginalCapacity(0)) != -1) options.push(vanaeMaidenPCDefeatTakeVirginity);
 	options.push(vanaeMaidenPCDefeatCunnilingus);
 	
 	options[rand(options.length)](); // How the fuck did I miss this??!
@@ -2337,7 +2337,7 @@ public function vanaeMaidenPCDefeatTakeVirginity():void
 	// Max girth 4 inches
 	// Max Length 12 inches.
 
-	var selCock:int = pc.cockThatFits(217);
+	var selCock:int = pc.cockThatFits(enemy.vaginalCapacity(0));
 	if(selCock < 0) selCock = pc.smallestCockIndex();
 
 	output("\n\nGetting down on all fours, the youthful huntress reaches down and tentatively touches [pc.oneCock]. She lets out a surprised noise as her slender fingers dance along your length. It is clearly the first time she's ever felt a cock, let alone one like yours.");

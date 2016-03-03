@@ -108,6 +108,7 @@
 		{
 			var target:Creature = kGAMECLASS.chars["PC"];
 			
+			var msg:String = "";
 			var totalTFs:Number = 1;
 			if(rand(2) == 0) totalTFs++;
 			if(rand(2) == 0) totalTFs++;
@@ -142,11 +143,11 @@
 				TFList.push(7);
 			
 			// TF texts
-			kGAMECLASS.eventBuffer += "\n\n<u>The Semen’s Friend candy has an effect....</u>";
+			msg += "\n\n<u>The Semen’s Friend candy has an effect....</u>";
 			
 			while(totalTFs > 0)
 			{
-				kGAMECLASS.eventBuffer += "\n\n";
+				msg += "\n\n";
 				//Pick a TF	
 				x = rand(TFList.length);
 				select = TFList[x];
@@ -155,12 +156,12 @@
 				//#0 Catch all
 				if(select == 0)
 				{
-					kGAMECLASS.eventBuffer += "Your crotch tingles but nothing seems to happen...";
+					msg += "Your crotch tingles but nothing seems to happen...";
 					if(target.cumType != GLOBAL.FLUID_TYPE_CHOCOLATE_CUM && target.balls >= 4 && target.ballDiameter() >= 11 && target.refractoryRate >= 80 && target.cumQualityRaw >= 1.5)
 					{
-						kGAMECLASS.eventBuffer += " Looks like you already have the all the mutations the Semen’s Friend candy has to offer.";
+						msg += " Looks like you already have the all the mutations the Semen’s Friend candy has to offer.";
 					}
-					else kGAMECLASS.eventBuffer += " Maybe the Semen’s Friend candy you ingested is just a dud.";
+					else msg += " Maybe the Semen’s Friend candy you ingested is just a dud.";
 					
 					break;
 				}
@@ -169,13 +170,13 @@
 				{
 					if(target.ballsUnlocked(2))
 					{
-						kGAMECLASS.eventBuffer += "Heat condenses into two small spheres in your groin, and then slowly shifts outwards. You swing your [pc.hips] slightly to confirm it; <b>you’ve grown a pair of testicles!</b>";
+						msg += ParseText("Heat condenses into two small spheres in your groin, and then slowly shifts outwards. You swing your [pc.hips] slightly to confirm it; <b>you’ve grown a pair of testicles!</b>");
 						if(!target.hasCock())
 						{
-							kGAMECLASS.eventBuffer += " Man";
-							if(!removeBottoms && !target.isCrotchExposed()) kGAMECLASS.eventBuffer += " would";
-							else kGAMECLASS.eventBuffer += " do";
-							kGAMECLASS.eventBuffer += " they look weird without anything between them. You’d better hope you don’t get blue balls in your current state...";
+							msg += " Man";
+							if(!removeBottoms && !target.isCrotchExposed()) msg += " would";
+							else msg += " do";
+							msg += " they look weird without anything between them. You’d better hope you don’t get blue balls in your current state...";
 						}
 						
 						target.balls = 2;
@@ -185,17 +186,17 @@
 					}
 					else
 					{
-						kGAMECLASS.eventBuffer += target.ballsLockedMessage();
+						msg += target.ballsLockedMessage();
 					}
 				}
 				//#2 If trap pouch replace with standard sack
 				else if(select == 2)
 				{
-					kGAMECLASS.eventBuffer += "You sigh with something akin to relief as your tightly condensed sack pushes outwards and downwards";
-					if(target.balls == 1) kGAMECLASS.eventBuffer += ", now hanging freely in the open air compared to";
-					else if(target.balls == 2) kGAMECLASS.eventBuffer += ", forming a more readily recognizable pair of bollocks than";
-					else kGAMECLASS.eventBuffer += ", forming a more readily recognizable set of bollocks than";
-					kGAMECLASS.eventBuffer += " the cutesy boy sphere you had before.";
+					msg += "You sigh with something akin to relief as your tightly condensed sack pushes outwards and downwards";
+					if(target.balls == 1) msg += ", now hanging freely in the open air compared to";
+					else if(target.balls == 2) msg += ", forming a more readily recognizable pair of bollocks than";
+					else msg += ", forming a more readily recognizable set of bollocks than";
+					msg += " the cutesy boy sphere you had before.";
 					target.removeStatusEffect("Uniball");
 				}
 				//#3 If balls increase towards 6” by 1”
@@ -206,10 +207,10 @@
 					
 					if(target.ballSizeUnlocked(newBallSize))
 					{
-						kGAMECLASS.eventBuffer += "You grunt as pressure in your [pc.balls] expand";
-						if(target.balls == 1) kGAMECLASS.eventBuffer += "s, making it";
-						else kGAMECLASS.eventBuffer += ", making them";
-						kGAMECLASS.eventBuffer += " bigger and more dense-feeling.";
+						msg += ParseText("You grunt as pressure in your [pc.balls] expand");
+						if(target.balls == 1) msg += "s, making it";
+						else msg += ", making them";
+						msg += " bigger and more dense-feeling.";
 						
 						target.ballSizeRaw = newBallSize;
 						
@@ -221,8 +222,8 @@
 							
 							if(target.ballSizeUnlocked(newBallSize))
 							{
-								if(target.balls == 1) kGAMECLASS.eventBuffer += "You crow as your testicle grows yet bigger, the size of your prestigious sperm-factory matching the density of packed heat you feel within it.";
-								else kGAMECLASS.eventBuffer += "You crow as your balls grow yet bigger, the size of your prestigious sperm-factories matching the density of packed heat you feel within them.";
+								if(target.balls == 1) msg += "You crow as your testicle grows yet bigger, the size of your prestigious sperm-factory matching the density of packed heat you feel within it.";
+								else msg += "You crow as your balls grow yet bigger, the size of your prestigious sperm-factories matching the density of packed heat you feel within them.";
 								
 								target.ballSizeRaw = newBallSize;
 							}
@@ -230,7 +231,7 @@
 					}
 					else
 					{
-						kGAMECLASS.eventBuffer += target.ballSizeLockedMessage();
+						msg += target.ballSizeLockedMessage();
 					}
 				}
 				//#4 Increase cum production
@@ -238,21 +239,21 @@
 				{
 					if(target.hasCock())
 					{
-						kGAMECLASS.eventBuffer += "[pc.OneCock] hardens";
-						if(removeBottoms || target.isCrotchExposed()) kGAMECLASS.eventBuffer += " and darkens slightly";
-						kGAMECLASS.eventBuffer += ", a drop of [pc.cum] forming at its tip. ";
+						msg += ParseText("[pc.OneCock] hardens");
+						if(removeBottoms || target.isCrotchExposed()) msg += " and darkens slightly";
+						msg += ParseText(", a drop of [pc.cum] forming at its tip. ");
 					}
-					kGAMECLASS.eventBuffer += "You feel... juicier.";
+					msg += "You feel... juicier.";
 					
 					target.refractoryRate++;
 				}
 				//#5 Increase male fertility
 				else if(select == 5)
 				{
-					kGAMECLASS.eventBuffer += "Your [pc.sack] tightens up, your";
-					if(target.balls == 1) kGAMECLASS.eventBuffer += " testicle";
-					else kGAMECLASS.eventBuffer += " balls";
-					kGAMECLASS.eventBuffer += " throbbing with a dense, heavy pulse. The intensity of it fades but a background throb in your [pc.balls] remains, your body purposefully stepping up its sperm production.";
+					msg += ParseText("Your [pc.sack] tightens up, your");
+					if(target.balls == 1) msg += " testicle";
+					else msg += " balls";
+					msg += ParseText(" throbbing with a dense, heavy pulse. The intensity of it fades but a background throb in your [pc.balls] remains, your body purposefully stepping up its sperm production.");
 					
 					target.cumQualityRaw += 0.1;
 				}
@@ -261,21 +262,21 @@
 				{
 					if(target.ballsUnlocked(4))
 					{
-						kGAMECLASS.eventBuffer += "You close your eyes as you feel boiling pressure grow in your [pc.balls]. It feels uncontrollable, as if your ball";
-						if(target.balls == 1) kGAMECLASS.eventBuffer += " is";
-						else kGAMECLASS.eventBuffer += "s are";
-						kGAMECLASS.eventBuffer += " going to explode, and when you feel something burst out of your sack you think for one horrible moment that’s exactly what’s happened. You feel no pain though - just a sensation of deep release - and after the pressure fades you feel vaguely yet ineffably stronger, testosterone coursing through your veins. A rummage around downstairs tells you why: <b>you’ve grown";
-						if(target.balls == 1) kGAMECLASS.eventBuffer += " three more balls";
-						else if(target.balls == 2) kGAMECLASS.eventBuffer += " a second pair of balls";
-						else if(target.balls == 3) kGAMECLASS.eventBuffer += " one more testicle";
-						else kGAMECLASS.eventBuffer += " new testicles";
-						kGAMECLASS.eventBuffer += ", giving you four altogether.</b>";
+						msg += ParseText("You close your eyes as you feel boiling pressure grow in your [pc.balls]. It feels uncontrollable, as if your ball");
+						if(target.balls == 1) msg += " is";
+						else msg += "s are";
+						msg += " going to explode, and when you feel something burst out of your sack you think for one horrible moment that’s exactly what’s happened. You feel no pain though - just a sensation of deep release - and after the pressure fades you feel vaguely yet ineffably stronger, testosterone coursing through your veins. A rummage around downstairs tells you why: <b>you’ve grown";
+						if(target.balls == 1) msg += " three more balls";
+						else if(target.balls == 2) msg += " a second pair of balls";
+						else if(target.balls == 3) msg += " one more testicle";
+						else msg += " new testicles";
+						msg += ", giving you four altogether.</b>";
 						
 						target.balls = 4;
 					}
 					else
 					{
-						kGAMECLASS.eventBuffer += target.ballsLockedMessage();
+						msg += target.ballsLockedMessage();
 					}
 				}
 				//#7 Change cum to chocolate colored and flavored (requires cock)
@@ -283,32 +284,34 @@
 				{
 					if(target.cumTypeUnlocked(GLOBAL.FLUID_TYPE_CHOCOLATE_CUM))
 					{
-						kGAMECLASS.eventBuffer += "The heat in your groin coalesces into a deep, leaden need";
-						if(target.balls > 0) kGAMECLASS.eventBuffer += ", your [pc.balls] prickling and tightening with lust,";
-						kGAMECLASS.eventBuffer += " and suddenly [pc.eachCock] is bulgingly erect.";
+						msg += "The heat in your groin coalesces into a deep, leaden need";
+						if(target.balls > 0) msg += ParseText(", your [pc.balls] prickling and tightening with lust,");
+						msg += ParseText(" and suddenly [pc.eachCock] is bulgingly erect.");
 						if(!removeBottoms && !target.isCrotchExposed())
 						{
-							kGAMECLASS.eventBuffer += " In the thrill of the moment, your hands do quick work of your [pc.lowerGarments].";
+							msg += ParseText(" In the thrill of the moment, your hands do quick work of your [pc.lowerGarments].");
 							removeBottoms = true;
 						}
-						kGAMECLASS.eventBuffer += " You fight back the urge to masturbate crowding your mind but it doesn’t even seem to matter; hot fluid rises up your shaft and oozes out of your swollen [pc.cockheads] thickly without any stimulation whatsoever. You look down in disbelief. Brown?! Caught somewhere between disgust and awe, you gingerly swab your finger in the rich burnt sienna that is dripping from your prick and press it to your tongue. Sweet and warm flavored; immediately recognizable. Presumably your cum will still act like cum but for all other intents and purposes, <b>you now ejaculate chocolate.</b>";
-						if(target.isAss()) kGAMECLASS.eventBuffer += " Now if only you could work out how to piss money too, you’d have bitches all over you.";
+						msg += ParseText(" You fight back the urge to masturbate crowding your mind but it doesn’t even seem to matter; hot fluid rises up your shaft and oozes out of your swollen [pc.cockheads] thickly without any stimulation whatsoever. You look down in disbelief. Brown?! Caught somewhere between disgust and awe, you gingerly swab your finger in the rich burnt sienna that is dripping from your prick and press it to your tongue. Sweet and warm flavored; immediately recognizable. Presumably your cum will still act like cum but for all other intents and purposes, <b>you now ejaculate chocolate.</b>");
+						if(target.isAss()) msg += " Now if only you could work out how to piss money too, you’d have bitches all over you.";
 						
 						target.cumType = GLOBAL.FLUID_TYPE_CHOCOLATE_CUM;
 					}
 					else
 					{
-						kGAMECLASS.eventBuffer += target.cumTypeLockedMessage();
+						msg += target.cumTypeLockedMessage();
 					}
 				}
 				totalTFs--;
 			}
 			
 			// Effect over:
-			kGAMECLASS.eventBuffer += "\n\n";
-			if(removeBottoms) kGAMECLASS.eventBuffer += "You quickly reclothe as t";
-			else kGAMECLASS.eventBuffer += "T";
-			kGAMECLASS.eventBuffer += "he sensation in your groin from the candy has finally been lifted.";
+			msg += "\n\n";
+			if(removeBottoms) msg += "You quickly reclothe as t";
+			else msg += "T";
+			msg += "he sensation in your groin from the candy has finally been lifted.";
+			
+			if(msg.length > 0) kGAMECLASS.eventBuffer += msg;
 			return;
 		}
 	}

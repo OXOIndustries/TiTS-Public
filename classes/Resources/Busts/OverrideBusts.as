@@ -7,6 +7,11 @@
 	 */
 	public class OverrideBusts 
 	{
+		[Embed(source = "../../../assets/images/npcs/adjatha/aina.png", mimeType = "image/png")]
+		public var Bust_AINA:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/aina_nude.png", mimeType = "image/png")]
+		public var Bust_AINA_NUDE:Class;
+		
 		//[Embed(source = "../../../assets/images/npcs/alex.png", mimeType = "image/png")]
 		//public var Bust_ALEX:Class;
 		

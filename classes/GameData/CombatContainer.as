@@ -2118,7 +2118,28 @@ package classes.GameData
 			{
 				(target as CrystalGooT2).SpecialAction( { isTease: true } );
 			}
+			//Reqs: PC has an aphrodisiac-laced cock big enough to slap
+			else if(pc.biggestCockLength() >= 12 && pc.hasCockFlag(GLOBAL.FLAG_APHRODISIAC_LACED, pc.biggestCockIndex()) && rand(5) == 0)
+			{
+				if(target.isPlural) output("Smiling coyly, you run up to your opponent and knock them down. Before they can react, you");
+				else output("Smiling coyly, you run up to your opponent and knock " + target.mfn("him","her","it") + " down. Before " + target.mfn("he","she","it") + " can react, you");
+				if(!pc.isCrotchExposed())
+				{
+					output(" wrestle your cock out of your");
+					if(pc.hasArmor() && !pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)) output(" armor");
+					else output(" clothes");
+				}
+				else output(" grab your dick");
+				if(target.isPlural) output(" and use it to slap them across the face a few times. You make sure that some of your aphrodisiac dick oil is smeared on their face before jumping back to a safe distance.");
+				else output(" and use it to slap " + target.mfn("him","her","it") + " across the face a few times. You make sure that some of your aphrodisiac dick oil is smeared on " + target.mfn("his","her","its") + " face before jumping back to a safe distance.");
 				
+				applyTeaseDamage(pc, target, teaseCount, "DICK SLAP", likeAdjustments);
+			}
+			else
+			{
+				crotchTeaseText(target);
+				applyTeaseDamage(pc, target, teaseCount, "CROTCH", likeAdjustments);
+			}
 			processCombat();
 		}
 		
@@ -2582,6 +2603,13 @@ package classes.GameData
 					output(" (<b>0</b>)");
 					teaseSkillUp(teaseType);
 				}
+				else if(teaseType == "DICK SLAP")
+				{
+					output("\n\nYour foe looks more annoyed than aroused at your antics as they wipe your girl lube off.");
+					if(kGAMECLASS.silly) output(" You pity them somewhat. Your [pc.cumNoun] has a lot of nutrients in it...");
+					output(" (<b>0</b>)");
+					teaseSkillUp(teaseType);
+				}
 				else if (target is HuntressVanae || target is MaidenVanae)
 				{
 					output("\n\n");
@@ -2623,10 +2651,16 @@ package classes.GameData
 				damage = Math.ceil(damage);
 			
 				output("\n\n");
-				if(teaseType == "SQUIRT") 
+				if(teaseType == "SQUIRT")
 				{
-					if(target.isPlural) output(target.capitalA + target.uniqueName  + " are splattered with your [pc.milk], unable to get it off. All of a sudden, their faces begin to flush, and they look quite aroused.");
-					else output(target.capitalA + target.uniqueName  + " is splattered with your [pc.milk], unable to get it off. All of a sudden, " + target.mfn("his","her","its") + " " + target.face() + " begins to flush, and " + target.mfn("he","she","it") + " looks quite aroused.");
+					if(target.isPlural) output(target.capitalA + target.uniqueName + " are splattered with your [pc.milk], unable to get it off. All of a sudden, their faces begin to flush, and they look quite aroused.");
+					else output(target.capitalA + target.uniqueName + " is splattered with your [pc.milk], unable to get it off. All of a sudden, " + target.mfn("his","her","its") + " " + target.face() + " begins to flush, and " + target.mfn("he","she","it") + " looks quite aroused.");
+				}
+				if(teaseType == "DICK SLAP")
+				{
+					if(target.isPlural) output(possessive(target.capitalA + target.uniqueName) + " faces look rather flush as they quickly wipe your [pc.cum] off.");
+					else output(possessive(target.capitalA + target.uniqueName) + " face looks rather flush as " + target.mfn("he","she","it") + " quickly wipes your [pc.cum] off.");
+					if(kGAMECLASS.silly) output(" Ha! GOT ‘EM!");
 				}
 				else output(teaseReactions(damage,target));
 				target.lust(damage);

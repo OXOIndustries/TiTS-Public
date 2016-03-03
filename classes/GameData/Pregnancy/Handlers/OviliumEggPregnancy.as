@@ -102,7 +102,7 @@ package classes.GameData.Pregnancy.Handlers
 			// (random before laying, +lust if repeat)
 			this.addStageProgression(((2.5 * 60) + (rand(_basePregnancyIncubationTime - (3 * 60)))), function(pregSlot:int):void
 			{
-				msg = "\n\nYou find yourself idly tapping your belly, running a hand over the smooth [pc.skinFurScales]. The relatively quick pregnancy induced by the drug means you’ll be laying within the day.";
+				msg = "\n\nYou find yourself idly tapping your belly, running a hand over the smooth [pc.skinFurScalesNoun]. The relatively quick pregnancy induced by the drug means you’ll be laying within the day.";
 				if (StatTracking.getStat("pregnancy/ovilium eggs laid") > 0)
 				{
 					msg += " You can’t wait.";

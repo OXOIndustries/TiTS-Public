@@ -493,6 +493,12 @@ public function statisticsScreen(showID:String = "All"):void
 				}
 			}
 		}
+		if(pc.hasOvipositor())
+		{
+			output2("\n<b><u>Ovipositor Organs</u></b>");
+			output2("\n<b>* Total Count: </b>" + pc.totalOvipositors());
+			if(pc.statusEffectv1("Nyrea Eggs") > 0) output2("\n<b>* Fertility, Nyrean Eggs, Total: </b>" + pc.statusEffectv1("Nyrea Eggs"));
+		}
 		
 		// Belly
 		output2("\n<b><u>Belly</u></b>");
@@ -1475,7 +1481,6 @@ public function displayQuestLog(showID:String = "All"):void
 						output2(", Completed");
 					}
 					else output2(" <i>In progress...</i>");
-					if(flags["DECK13_SAMPLES_TAKEN"] != undefined) output2("\n<b>* Gray Goo Samples Taken: </b>" + flags["DECK13_SAMPLES_TAKEN"]);
 					output2("\n<b>* Deck 13:</b>");
 					if(flags["DECK13_REACTOR_DOOR_OPEN"] != undefined) output2(" Reactor door open");
 					else output2(" Reactor door closed");
@@ -1483,6 +1488,7 @@ public function displayQuestLog(showID:String = "All"):void
 					else output2(", Shields off");
 					if(flags["DECK13_ARMORY_ENTERED"] != undefined) output2(", Entered armory");
 					if(flags["DECK13_TAKEN_PISTOL"] != undefined || flags["DECK13_TAKEN_RIFLE"] != undefined) output2(", Looted armory");
+					if(flags["DECK13_SAMPLES_TAKEN"] != undefined) output2("\n<b>* Deck 13, Gray Goo Samples Taken: </b>" + flags["DECK13_SAMPLES_TAKEN"]);
 					if(flags["DECK13_CREW_TALK"] != undefined) output2("\n<b>* Nova:</b> Met her, Found out about her crew");
 					if(flags["GRAY_PRIME_DEFEATED_VIA_HP"] != undefined)
 					{

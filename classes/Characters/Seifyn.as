@@ -9,6 +9,7 @@
 	import classes.Items.Armor.ChitinArmor;
 	import classes.Items.Armor.NyreanChain;
 	import classes.Items.Accessories.MuskRepel;
+	import classes.Items.Transformatives.NyreanCandy;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
 	
@@ -30,7 +31,7 @@
 			this.inventory.push(new CrystalShard());
 			this.inventory.push(new FungalExtract());
 			this.inventory.push(new MuskRepel());
-			//this.inventory.push(new ());
+			this.inventory.push(new NyreanCandy());
 			this.typesBought[this.typesBought.length] = GLOBAL.ARMOR;
 			this.typesBought[this.typesBought.length] = GLOBAL.MELEE_WEAPON;
 			this.typesBought[this.typesBought.length] = GLOBAL.RANGED_WEAPON;

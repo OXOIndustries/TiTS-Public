@@ -1445,6 +1445,10 @@ package classes {
 				case "relaxingRanged":
 					buffer = weaponActionRelax(true, "ranged");
 					break;
+				case "move":
+				case "walk":
+					buffer = moveAction();
+					break;
 				case "lowerUndergarment":
 					buffer = lowerUndergarment.longName;
 					break;
@@ -2449,6 +2453,22 @@ package classes {
 			}
 			return desc;
 		}
+		public function moveAction():String
+		{
+			var desc:String = "";
+			var actions:Array = ["move"];
+			
+			if(hasLegs()) actions.push("walk", "walk", "step");
+			if(isGoo()) actions.push("slide", "crawl");
+			if(isNaga()) actions.push("slither", "slink", "wriggle");
+			if(isCentaur()) actions.push("gallop", "canter");
+			if(isTaur()) actions.push("trot", "lope");
+			if(isDrider()) actions.push("skitter", "flit");
+			if(legType == GLOBAL.TYPE_MLP) actions.push("gallop", "canter", "trot", "lope", "hoof it");
+			
+			desc += RandomInCollection(actions);
+			return desc;
+		}
 		public function shower():void
 		{
 			removeStatusEffect("Sweaty");
@@ -2496,7 +2516,12 @@ package classes {
 				if(statusEffectv1("Goo Vent") == 1)
 				{
 					kGAMECLASS.flags["GOO_BIOMASS"] = 0;
-				} 
+				}
+				if(statusEffectv1("Nyrea Eggs") > 0 && hasOvipositor())
+				{
+					addStatusValue("Nyrea Eggs", 1, -1 * (6 + rand (5)));
+					if(statusEffectv1("Nyrea Eggs") < 0) setPerkValue("Nyrea Eggs",1,0);
+				}
 			}
 			
 			if (this is PlayerCharacter) 
@@ -4478,6 +4503,10 @@ package classes {
 				if (temp <= 7 || appearance) output += "feathers";
 				else if (temp <= 8) output += "fringes";
 				else output += "plumes";
+			} else if (skinType == GLOBAL.SKIN_TYPE_CHITIN) {
+				if (temp <= 7 || appearance) output += "chitin";
+				else if (temp <= 8) output += "armor";
+				else output += "carapace";
 			}
 			return output;
 		}
@@ -4938,6 +4967,7 @@ package classes {
 						case GLOBAL.TYPE_OVIR: adjectives = ["human-like"]; break;
 						case GLOBAL.TYPE_MYR: adjectives = ["chitinous", "armored", scaleColor + "-armored", "chitinous"]; break;
 						case GLOBAL.TYPE_FROG: adjectives = ["frog", "amphibious", "frog-like", "powerful"]; break;
+						case GLOBAL.TYPE_NYREA: adjectives = ["chitinous", "armored", "insect-like", "carapace-covered"]; break;
 					}
 				}
 				//ADJECTIVE!
@@ -5038,6 +5068,8 @@ package classes {
 					adjectives = ["human-like"];
 				else if (legType == GLOBAL.TYPE_MYR)
 					adjectives = ["chitinous", "armored", scaleColor + "-chitin"];
+				else if (legType == GLOBAL.TYPE_NYREA)
+					adjectives = ["chitinous", "armored", "insect-like", "carapace-covered"];
 				//Random goes here!
 				if (adjectives.length > 0) output += RandomInCollection(adjectives);
 			}
@@ -7638,6 +7670,12 @@ package classes {
 					vaginas[slot].minLooseness = 1;
 					vaginas[slot].addFlag(GLOBAL.FLAG_LUBRICATED);
 					break;
+				case GLOBAL.TYPE_NYREA:
+					vaginas[slot].clits = 1;
+					vaginas[slot].vaginaColor = "pink";
+					vaginas[slot].wetnessRaw = 2;
+					vaginas[slot].addFlag(GLOBAL.FLAG_LUBRICATED);
+					break;
 			}
 		}
 		//Change cock type
@@ -7755,7 +7793,9 @@ package classes {
 				case GLOBAL.TYPE_NYREA:
 					cocks[slot].cockColor = "pink";
 					cocks[slot].knotMultiplier = 1.66;
+					cocks[slot].addFlag(GLOBAL.FLAG_FLARED);
 					cocks[slot].addFlag(GLOBAL.FLAG_KNOTTED);
+					cocks[slot].addFlag(GLOBAL.FLAG_OVIPOSITOR);
 					break;
 				case GLOBAL.TYPE_DAYNAR:
 					cocks[slot].cockColor = "purple";
@@ -7988,7 +8028,7 @@ package classes {
 		}
 		
 		//Remove cock
-		public function removeCock(arraySpot:int, totalRemoved:int): void {
+		public function removeCock(arraySpot:int, totalRemoved:int = 1): void {
 			removeJunk(cocks, arraySpot, totalRemoved);
 			if(!hasCock())
 			{
@@ -8100,6 +8140,7 @@ package classes {
 			if (race == "myr" && goldMyrScore() >= 8) race = "gold myr";
 			if (race == "myr" && redMyrScore() >= 8) race = "red myr";
 			if (orangeMyrScore() >= 9) race = "orange myr";
+			if (nyreaScore() >= 5) race = "nyrea";
 			// Human-morphs
 			if (race == "human" && cowScore() >= 4) race = mfn("cow-boy", "cow-girl", "hucow");
 			// Centaur-morphs
@@ -8438,6 +8479,22 @@ package classes {
 			}
 			if (counter > 0 && skinType == GLOBAL.SKIN_TYPE_FUR) counter++;
 			if (counter > 0 && armType == GLOBAL.TYPE_FELINE && hasArmFlag(GLOBAL.FLAG_FURRED)) counter++;
+			return counter;
+		}
+		public function nyreaScore(): int
+		{
+			var counter:int = 0;
+			if (eyeType == GLOBAL.TYPE_NYREA) counter++;
+			if (armType == GLOBAL.TYPE_NYREA) counter++;
+			if (legType == GLOBAL.TYPE_NYREA) counter++;
+			if (faceType == GLOBAL.TYPE_HUMAN)
+			{
+				if (earType == GLOBAL.TYPE_SYLVAN) counter++;
+				if (hasHair() && hairType == GLOBAL.HAIR_TYPE_QUILLS) counter++;
+			}
+			if (counter > 2 && hasCock(GLOBAL.TYPE_NYREA) && cumType == GLOBAL.FLUID_TYPE_NYREA_CUM) counter++;
+			if (counter > 2 && hasVaginaType(GLOBAL.TYPE_NYREA) && girlCumType == GLOBAL.FLUID_TYPE_NYREA_GIRLCUM) counter++;
+			if (hasFur() || hasScales()) counter--;
 			return counter;
 		}
 		public function ovirScore():int
@@ -9692,6 +9749,7 @@ package classes {
 				}
 				if (descripted > 0) descript += " mane";
 				if (hairType == GLOBAL.HAIR_TYPE_FEATHERS) descript += " of feathers";
+				if (hairType == GLOBAL.HAIR_TYPE_QUILLS) descript += " of quills";
 				if (hairType == GLOBAL.HAIR_TYPE_GOO)
 				{
 					descript += " of goo";
@@ -9724,6 +9782,11 @@ package classes {
 					if(rand(2) == 0) descript += "plumage";
 					else descript += "feather-hair";
 				}
+				else if (hairType == GLOBAL.HAIR_TYPE_QUILLS && rand(2) == 0)
+				{
+					if(rand(2) == 0) descript += "spiny-hair";
+					else descript += "quill-hair";
+				}
 				else 
 				{
 					if(hairStyle == "ponytail") descript += "ponytail";
@@ -9744,6 +9807,7 @@ package classes {
 			if (hasPerk("Mane") && hairLength > 3 && rand(2) == 0) {
 				descript += "mane";
 				if (hairType == GLOBAL.HAIR_TYPE_FEATHERS) descript += " of feathers";
+				if (hairType == GLOBAL.HAIR_TYPE_QUILLS) descript += " of quills";
 				if (hairType == GLOBAL.HAIR_TYPE_GOO) descript += " of goo";
 				if (hairType == GLOBAL.HAIR_TYPE_TENTACLES) descript += " of tentacles";
 			}
@@ -9755,6 +9819,7 @@ package classes {
 					if(rand(2) == 0) descript += "plumage";
 					else descript += "feather-hair";
 				}
+				else if (hairType == GLOBAL.HAIR_TYPE_QUILLS) descript += "quill-hair";
 				else descript += "hair";
 			}
 			return descript;
@@ -9764,6 +9829,7 @@ package classes {
 			var descript:String = "";
 			if (hairType == GLOBAL.HAIR_TYPE_TENTACLES || hairStyle == "tentacle") descript += "tentacles";
 			else if (hairType == GLOBAL.HAIR_TYPE_FEATHERS) descript += "feathers";
+			else if (hairType == GLOBAL.HAIR_TYPE_QUILLS) descript += "quills";
 			else if (hairType == GLOBAL.HAIR_TYPE_GOO) descript += "locks of goo";
 			else descript += "locks";
 			return descript;
@@ -9832,6 +9898,7 @@ package classes {
 			if (descripted > 0) descript += " ";
 			if (hairType == GLOBAL.HAIR_TYPE_TENTACLES || hairStyle == "tentacle") descript += "tentacles";
 			else if (hairType == GLOBAL.HAIR_TYPE_FEATHERS) descript += "feathers";
+			else if (hairType == GLOBAL.HAIR_TYPE_QUILLS && rand(2) == 0) descript += "quills";
 			else 
 			{
 				if(hairStyle == "ponytail") descript += "ponytail-bound locks";
@@ -10148,6 +10215,13 @@ package classes {
 						desc += RandomInCollection(["gabilani gash", "dexterous vagina", "goblin cunny", "inhuman honeypot", "well muscled snatch", "capable cunt", "gabilani pussy", "dexterous goblin-cunt"]);
 					else
 						desc += RandomInCollection(["inhuman-pussy", "goblin-cunt", "fuck-hole", "xeno-twat", "goblin-twat", "goblin-snatch", "alien-pussy", "gabilani-pussy", "gabilani-cunt"]);
+				}
+				else if (type == GLOBAL.TYPE_NYREA)
+				{
+					if (!simple)
+						desc += RandomInCollection(["nyrean vagina", "nyrean pussy", "nyrean cunt", "nyrean cunny", "nyrean snatch", "nyrean gash", "boy-pussy", "boy-cunt"]);
+					else
+						desc += RandomInCollection(["inhuman-pussy", "nyrean-cunt", "fuck-hole", "xeno-twat", "nyrean-snatch", "nyrean-pussy", "nyrean-cunt", "boy-pussy", "boy-cunt"]);
 				}
 				else
 				{
@@ -11512,7 +11586,7 @@ package classes {
 				collection = ["tangy","tangy","tangy","tangy","tangy","sweet","sweet","sweet","intoxicating","intoxicating"];
 			} else if (arg == GLOBAL.FLUID_TYPE_VANILLA) {
 				collection = ["sweet","sugary","creamy","vanilla"];
-			} else if (arg == GLOBAL.FLUID_TYPE_NYREA_CUM) {
+			} else if (InCollection(arg, GLOBAL.FLUID_TYPE_NYREA_CUM, GLOBAL.FLUID_TYPE_NYREA_GIRLCUM)) {
 				collection = ["salty","salty","salty","salty","salty","salty","salty","potent","potent","potent"];
 			} else if (arg == GLOBAL.FLUID_TYPE_GABILANI_CUM) {
 				collection = ["salty","potent"];
@@ -11550,11 +11624,14 @@ package classes {
 				collection = ["thick","thick","thick","creamy","creamy"];
 			} else if (arg == GLOBAL.FLUID_TYPE_NYREA_CUM) {
 				collection = ["thick","thick","thick","slick","creamy"];
+				if(statusEffectv1("Nyrea Eggs") > 0) collection.push("egg-filled","eggy","bubbly","pulpy");
 			} else if (InCollection(arg, GLOBAL.FLUID_TYPE_GABILANI_CUM, GLOBAL.FLUID_TYPE_GABILANI_GIRLCUM)) {
 				collection = ["oily","coating"];
 			} else if (arg == GLOBAL.FLUID_TYPE_SPECIAL_GOO) {
 				collection = ["slick","viscous","slippery"]; /* "slimy", */
 			} else if (arg == GLOBAL.FLUID_TYPE_CHOCOLATE_CUM) {
+				collection = ["thick","sticky"];
+			} else if (arg == GLOBAL.FLUID_TYPE_NYREA_GIRLCUM) {
 				collection = ["thick","sticky"];
 			}
 			
@@ -11594,6 +11671,8 @@ package classes {
 				collection = ["alabaster","alabaster","alabaster","alabaster","alabaster","semi-transparent","semi-transparent","semi-transparent","off-white","off-white"];
 			} else if (arg == GLOBAL.FLUID_TYPE_NYREA_CUM) {
 				collection = ["purple","purple"];
+			} else if (arg == GLOBAL.FLUID_TYPE_NYREA_GIRLCUM) {
+				collection = ["off-white","semi-transparent"];
 			} else if (arg == GLOBAL.FLUID_TYPE_GABILANI_CUM) {
 				collection = ["off-white", "semi-clear", "semi-transparent"];
 			} else if (arg == GLOBAL.FLUID_TYPE_GABILANI_GIRLCUM) {
@@ -11619,6 +11698,7 @@ package classes {
 			else if (arg == GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK) return "purple";
 			else if (arg == GLOBAL.FLUID_TYPE_VANAE_CUM) return "blue";
 			else if (arg == GLOBAL.FLUID_TYPE_NYREA_CUM) return "purple";
+			else if (arg == GLOBAL.FLUID_TYPE_NYREA_GIRLCUM) return "white";
 			else if (arg == GLOBAL.FLUID_TYPE_GABILANI_CUM) return "white";
 			else if (arg == GLOBAL.FLUID_TYPE_GABILANI_GIRLCUM) return "gray";
 			else if (arg == GLOBAL.FLUID_TYPE_SPECIAL_GOO)
@@ -11635,7 +11715,7 @@ package classes {
 			//CUM & MILK TYPES
 			if (arg == GLOBAL.FLUID_TYPE_MILK) {
 				collection = ["milk","cream"];
-			} else if (InCollection(arg, GLOBAL.FLUID_TYPE_CUM, GLOBAL.FLUID_TYPE_SYDIAN_CUM, GLOBAL.FLUID_TYPE_NYREA_CUM, GLOBAL.FLUID_TYPE_GABILANI_CUM, GLOBAL.FLUID_TYPE_CHOCOLATE_CUM, GLOBAL.FLUID_TYPE_VANAE_CUM)) {
+			} else if (InCollection(arg, GLOBAL.FLUID_TYPE_CUM, GLOBAL.FLUID_TYPE_SYDIAN_CUM, GLOBAL.FLUID_TYPE_GABILANI_CUM, GLOBAL.FLUID_TYPE_CHOCOLATE_CUM, GLOBAL.FLUID_TYPE_VANAE_CUM)) {
 				collection = ["cum"];
 				if(isBimbo() || isBro()) collection.push("cum","spunk","spunk","jism","jizz");
 			} else if (arg == GLOBAL.FLUID_TYPE_HONEY) {
@@ -11646,6 +11726,7 @@ package classes {
 				collection = ["milk-sap"];
 			} else if (InCollection(arg, GLOBAL.FLUID_TYPE_GIRLCUM, GLOBAL.FLUID_TYPE_GABILANI_GIRLCUM)) {
 				collection = ["girl-cum"];
+				if(isBimbo() || isBro()) collection.push("girl-cum","girl-lube","girl-lube","girl-juice","cunny-honey");
 			} else if (arg == GLOBAL.FLUID_TYPE_CUMSAP) {
 				collection = ["cum-sap","cum-sap","botanical spunk","floral jism"];
 			} else if(InCollection(arg, GLOBAL.FLUID_TYPE_CHOCOLATE_MILK, GLOBAL.FLUID_TYPE_STRAWBERRY_MILK, GLOBAL.FLUID_TYPE_VANILLA)) {
@@ -11656,6 +11737,10 @@ package classes {
 				collection = ["nectar"];
 			} else if (arg == GLOBAL.FLUID_TYPE_LEITHAN_MILK) {
 				collection = ["milk"];
+			} else if (arg == GLOBAL.FLUID_TYPE_NYREA_CUM) {
+				collection = ["girl-cum"];
+			} else if (arg == GLOBAL.FLUID_TYPE_NYREA_GIRLCUM) {
+				collection = ["cum"];
 			} else if (arg == GLOBAL.FLUID_TYPE_SPECIAL_GOO) {
 				collection = ["slime","goo"];
 			}
@@ -12186,6 +12271,13 @@ package classes {
 				else if (temp <= 2) return "monstrous glans";
 				else if (temp <= 3) return "nub-ringed tip";
 				else return "cock-head";
+			} else if (type == GLOBAL.TYPE_NYREA) {
+				temp = rand(5);
+				if (temp == 0) return "x-shaped crown";
+				else if (temp <= 1) return "alien head";
+				else if (temp <= 2) return "flared glans";
+				else if (temp <= 3) return "exotic tip";
+				else return "cock-head";
 			} else if (type == GLOBAL.TYPE_GABILANI) {
 				temp = rand(5);
 				if (temp == 0) return "coupled crown";
@@ -12414,7 +12506,10 @@ package classes {
 		public function bellyRating():Number
 		{
 			var bonus:Number = 0;
+			var eggs:int = statusEffectv1("Nyrea Eggs");
+			
 			//if(hasPerk("Fecund Figure")) - don't need this. Should return 0 if the perk aint real.
+			if(eggs > 50) bonus += (eggs - 50) * 0.01);
 			bonus += perkv3("Fecund Figure");
 			bonus += statusEffectv1("Anally-Filled")/1000;
 			bonus += statusEffectv1("Vaginally-Filled")/1000;
@@ -12575,6 +12670,44 @@ package classes {
 		public function canOviposit(): Boolean 
 		{
 			if (canOvipositSpider() || canOvipositBee()) return true;
+			return false;
+		}
+		
+		public function isCockOvipositor(slot:int = -1): Boolean 
+		{
+			if (slot >= 0 && cocks.length > 0 && cocks[slot].hasFlag(GLOBAL.FLAG_OVIPOSITOR)) return true;
+			return false;
+		}
+		public function isVaginaOvipositor(slot:int = -1): Boolean 
+		{
+			if (slot >= 0 && vaginas.length > 0 && vaginas[slot].hasFlag(GLOBAL.FLAG_OVIPOSITOR)) return true;
+			return false;
+		}
+		public function totalOvipositors(): int 
+		{
+			var x:int = 0;
+			var count:int = 0;
+			
+			if (cocks.length > 0)
+			{
+				for(x = 0; x < cocks.length; x++)
+				{
+					if(isCockOvipositor(x)) count++;
+				}
+			}
+			if (vaginas.length > 0)
+			{
+				for(x = 0; x < vaginas.length; x++)
+				{
+					if(isVaginaOvipositor(x)) count++;
+				}
+			}
+			
+			return count;
+		}
+		public function hasOvipositor(): Boolean 
+		{
+			if (totalOvipositors() > 0) return true;
 			return false;
 		}
 		
@@ -13322,7 +13455,7 @@ package classes {
 			else if(InCollection(partName, "butt", "ass", "booty", "rump", "rear", "hiney")) partName = "butt";
 			else if(InCollection(partName, "clitoris", "clit", "clits", "button", "buzzer")) partName = "clitoris";
 			else if(InCollection(partName, "penis", "penises", "cock", "cocks", "dong", "wiener")) partName = "penis";
-			else if(InCollection(partName, "testicle", "testicles", "balls", "scrotum", "nuts")) partName = "testicle";
+			else if(InCollection(partName, "testicle", "testicles", "balls", "scrotum", "nuts", "prostate")) partName = "testicle";
 			
 			return partName;
 		}
@@ -13498,6 +13631,7 @@ package classes {
 					weightFluid = fluidWeight(cumQ() * 0.5);
 					if(hasPerk("Potent") && hasPerk("Breed Hungry")) weightFluid *= 0.5;
 					else if(hasPerk("Potent") || hasPerk("Breed Hungry")) weightFluid *= 0.75;
+					if(hasStatusEffect("Nyrea Eggs")) weightFluid += (0.125 * statusEffectv1("Nyrea Eggs"));
 					if(partNum > 0 && partNum <= balls) weightFluid = (weightFluid / partNum);
 					weightTesticle += weightFluid;
 				}

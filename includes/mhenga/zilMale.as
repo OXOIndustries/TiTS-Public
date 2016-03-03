@@ -66,8 +66,10 @@ public function winVsZil():void {
 	//Raise lust to 33 minimum, menu.
 	if(pc.lust() < 33) pc.lust(33-pc.lust());
 	clearMenu();
-	if(pc.hasCock() && pc.shortestCockLength() <= 20) addButton(0,"Buttfuck",buttfuckDefeatedZil);
-	else addDisabledButton(0,"Buttfuck","Buttfuck","You'll need a dick shorter than 17\" long to plug this wasp.");
+	//if(pc.hasCock() && pc.shortestCockLength() <= 20) addButton(0,"Buttfuck",buttfuckDefeatedZil);
+	//else addDisabledButton(0,"Buttfuck","Buttfuck","You'll need a dick shorter than 17\" long to plug this wasp.");
+	if(pc.hasCock() && pc.cockThatFits(enemy.analCapacity()) >= 0) addButton(0,"Buttfuck",buttfuckDefeatedZil);
+	else addDisabledButton(0,"Buttfuck","Buttfuck","You'll need a smaller sized cock in order to plug this wasp.");
 	//*Ride His Cock
 	//To cumfinity, and beyond! REQS CUNT
 	if(pc.hasVagina()) addButton(1,"Ride Him",rideDatZilCawk);

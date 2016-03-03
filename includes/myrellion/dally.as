@@ -1034,7 +1034,7 @@ public function dallySucksYouOff():void
 		if(pc.hasKnot(x)) 
 		{
 			output("On the other end, your [pc.knotBiggest] balloons up to its full size");
-			if(pc.cocks[x].thickness() * pc.cocks[x]. knotMultiplier < 5) output(", nearly locking you inside the ant-slut’s greedy maw before he manages to pull back and gasp");
+			if(pc.cocks[x].thickness() * pc.cocks[x].knotMultiplier < 5) output(", nearly locking you inside the ant-slut’s greedy maw before he manages to pull back and gasp");
 			else output(", too big around for the ant-slut’s fingers to properly encompass it. All he can do is stroke and polish your swollen knot, coaxing it to feed him your [pc.cum]");
 			output(". ");
 		}

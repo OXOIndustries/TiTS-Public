@@ -896,7 +896,7 @@ public function kq2rfRoof1():Boolean
 	{
 		output("\n\nShade, the kaithrit bounty hunter from back at the tavern, is lying face-down in a pool of smoking blood and plasma. Beside you, Kara looks utterly unremorseful.");
 	}
-	else if (shadeAtTheBar() && flags["KQ2_SHADE_ENCOUNTERED"] == undefined) // Shade is still on planet
+	else if (flags["SHADE_ON_UVETO"] == undefined && flags["KQ2_SHADE_ENCOUNTERED"] == undefined) // Shade is still on planet
 	{
 		kq2EncounterShade();
 		return true;

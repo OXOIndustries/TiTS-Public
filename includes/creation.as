@@ -94,7 +94,6 @@ public function startCharacterCreation(e:Event = null):void
 	output("\n\nThe real question is, who should the mother be? Many lovers spring to mind, both human and alien. After all, he has no shortage of them. Should his offspring be a pure human, like himself, or perhaps something a little more exotic? Decisions, decisions...");
 	output("\n\n<b>What species would you like your character to be?</b>");
 	
-	hidePCStats();
 	userInterface.hideMinimap();
 	userInterface.setGuiPlayerNameText("");
 	userInterface.resetPCStats();

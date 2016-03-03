@@ -100,8 +100,8 @@
 				
 				target.lust(5);
 				
-				//kGAMECLASS.clearMenu();
-				//kGAMECLASS.addButton(0, "Next", kGAMECLASS.mainGameMenu);
+				kGAMECLASS.clearMenu();
+				kGAMECLASS.addButton(0, "Next", kGAMECLASS.mainGameMenu);
 			}
 		}
 		public function itemClippexTFPlus():void
@@ -112,6 +112,7 @@
 		{
 			var target:Creature = kGAMECLASS.chars["PC"];
 			
+			var msg:String = "";
 			var totalTFs:Number = 2;
 			if(rand(2) == 0) totalTFs++;
 			var select:int = 0;
@@ -144,11 +145,11 @@
 				TFList.push(4);
 			
 			// TF texts
-			kGAMECLASS.eventBuffer += "\n\n<u>The Clippex drug has an effect....</u>";
+			msg += "\n\n<u>The Clippex drug has an effect....</u>";
 			
 			while(totalTFs > 0)
 			{
-				kGAMECLASS.eventBuffer += "\n\n";
+				msg += "\n\n";
 				//Pick a TF	
 				x = rand(TFList.length);
 				select = TFList[x];
@@ -157,12 +158,12 @@
 				//#0 Catch all
 				if(select == 0)
 				{
-					kGAMECLASS.eventBuffer += "Your [pc.nipples] tingle for a brief moment but nothing seems to happen...";
+					msg += ParseText("Your [pc.nipples] tingle for a brief moment but nothing seems to happen...");
 					if((target.hasCuntNipples() || target.hasLipples()) && target.nippleLengthRatio >= 0.8 && target.smallestTitSize() >= 3)
 					{
-						kGAMECLASS.eventBuffer += " Perhaps you already have the all the mutations the Clippex item has to offer.";
+						msg += " Perhaps you already have the all the mutations the Clippex item has to offer.";
 					}
-					else kGAMECLASS.eventBuffer += " Perhaps the Clippex you used is just a dud.";
+					else msg += " Perhaps the Clippex you used is just a dud.";
 					
 					break;
 				}
@@ -171,7 +172,7 @@
 				{
 					if(target.breastRatingUnlocked(smallestTitIndex, (target.breastRows[smallestTitIndex].breastRatingRaw + 1)))
 					{
-						kGAMECLASS.eventBuffer += "You coo as soft flesh bulges into being on your chest, your bosom plumping out.";
+						msg += "You coo as soft flesh bulges into being on your chest, your bosom plumping out.";
 						
 						for(i = 0; i < target.breastRows.length; i++)
 						{
@@ -182,10 +183,10 @@
 						{
 							if(target.breastRatingUnlocked(smallestTitIndex, (target.breastRows[smallestTitIndex].breastRatingRaw + 1)))
 							{
-								kGAMECLASS.eventBuffer += "\n\nEven more softness";
-								if(!removedTop && !target.isChestExposed()) kGAMECLASS.eventBuffer += " develops";
-								else kGAMECLASS.eventBuffer += " appears";
-								kGAMECLASS.eventBuffer += " below you, your already considerable rack increasing in size.";
+								msg += "\n\nEven more softness";
+								if(!removedTop && !target.isChestExposed()) msg += " develops";
+								else msg += " appears";
+								msg += " below you, your already considerable rack increasing in size.";
 								for(i = 0; i < target.breastRows.length; i++)
 								{
 									if (target.breastRows[i].breastRatingRaw < 3) target.breastRows[i].breastRatingRaw++;
@@ -195,7 +196,7 @@
 					}
 					else
 					{
-						kGAMECLASS.eventBuffer += target.breastRatingLockedMessage();
+						msg += target.breastRatingLockedMessage();
 					}
 				}
 				//#2 Increase size of nipples towards 3” by 0.5 per dose
@@ -209,20 +210,20 @@
 					{
 						if(!isPresistentTF)
 						{
-							kGAMECLASS.eventBuffer += "You flinch as your [pc.nipples] engorge, becoming incredibly tender as they absorb fluid and bulk from your breasts proper. The sensation eventually passes - however";
-								if(!removedTop && !target.isChestExposed()) kGAMECLASS.eventBuffer += " the feeling in your [pc.lowerGarment]";
-								else kGAMECLASS.eventBuffer += " a glance down";
-								kGAMECLASS.eventBuffer += " tells you that your nipples have definitely gotten larger.";
+							msg += ParseText("You flinch as your [pc.nipples] engorge, becoming incredibly tender as they absorb fluid and bulk from your breasts proper. The sensation eventually passes - however");
+							if(!removedTop && !target.isChestExposed()) msg += ParseText(" the feeling in your [pc.lowerGarment]");
+							else msg += " a glance down";
+							msg += " tells you that your nipples have definitely gotten larger.";
 						}
 						else
 						{
-							kGAMECLASS.eventBuffer += "You sigh as intense sensation surrounds your [pc.nipples], becoming erect and engorging irresistibly. It’s all you can do to keep your hands away from them. Eventually the beautiful tenderness subsides and";
-								if(!removedTop && !target.isChestExposed())
-								{
-									kGAMECLASS.eventBuffer += ", after removing your top,";
-									removedTop = true;
-								}
-								kGAMECLASS.eventBuffer += " you look down beatifically to see that your nipples have increased significantly in size.";
+							msg += "You sigh as intense sensation surrounds your [pc.nipples], becoming erect and engorging irresistibly. It’s all you can do to keep your hands away from them. Eventually the beautiful tenderness subsides and";
+							if(!removedTop && !target.isChestExposed())
+							{
+								msg += ", after removing your top,";
+								removedTop = true;
+							}
+							msg += " you look down beatifically to see that your nipples have increased significantly in size.";
 							// (+10 lust)
 							target.lust(10);
 						}
@@ -230,7 +231,7 @@
 					}
 					else
 					{
-						kGAMECLASS.eventBuffer += target.nippleLengthRatioLockedMessage();
+						msg += target.nippleLengthRatioLockedMessage();
 					}
 				}
 				//#3 If nipples 3”, morph to nipple cunts
@@ -240,10 +241,10 @@
 					{
 						if(!removedTop && !target.isChestExposed())
 						{
-							kGAMECLASS.eventBuffer += "Your [pc.nipples] tingle powerfully and you are forced to remove your [pc.lowerGarments]. ";
+							msg += ParseText("Your [pc.nipples] tingle powerfully and you are forced to remove your [pc.lowerGarments]. ");
 							removedTop = true;
 						}
-						kGAMECLASS.eventBuffer += "You gasp as your nipples suddenly suck themselves inwards, like mouths pulling their lips in. Something wet and warm is happening within your [pc.chest]... when your breasts feel like they’ve finally relaxed you gingerly touch them. Your nipples have become “innies” – all that remains is a [pc.vaginaColor], horizontal slit in place of each. Experimentally, you sink a finger into one and sigh as a delicious sensation shimmers through your boob. They feel every bit as slick and sensitive inside as a vagina.";
+						msg += ParseText("You gasp as your nipples suddenly suck themselves inwards, like mouths pulling their lips in. Something wet and warm is happening within your [pc.chest]... when your breasts feel like they’ve finally relaxed you gingerly touch them. Your nipples have become “innies” – all that remains is a [pc.vaginaColor], horizontal slit in place of each. Experimentally, you sink a finger into one and sigh as a delicious sensation shimmers through your boob. They feel every bit as slick and sensitive inside as a vagina.");
 						
 						for(i = 0; i < target.breastRows.length; i++)
 						{
@@ -259,7 +260,7 @@
 					}
 					else
 					{
-						kGAMECLASS.eventBuffer += target.nippleTypeLockedMessage();
+						msg += target.nippleTypeLockedMessage();
 					}
 				}
 				//#4 If nipple cunts, morph to nipple mouths
@@ -269,10 +270,10 @@
 					{
 						if(!removedTop && !target.isChestExposed())
 						{
-							kGAMECLASS.eventBuffer += "Your [pc.nipples] convulse powerfully and you are forced to remove your [pc.lowerGarments]. ";
+							msg += ParseText("Your [pc.nipples] convulse powerfully and you are forced to remove your [pc.lowerGarments]. ");
 							removedTop = true;
 						}
-						kGAMECLASS.eventBuffer += "You moan as the erotic sensation seizes your nipples, making them dribble fluid in excitement. It’s stronger than it was before, and you twitch and seize up as the entrances to your breasts seem to plump up, become wetter and even more sensitive. When the intensity of it has passed slightly you dare a look down. Each of your nipple cunts have transformed into two pairs of miniature lips: [pc.nippleColor], wet, bee-stung lips. You delicately touch them, and immediately they grasp your fingers, pulling them inwards to suckle them in – you moan again – the velvety insides of your breasts, which are every bit as sensitive and arousing as they were in their previous form. You pull away with some difficulty. They seem to have minds of their own!";
+						msg += ParseText("You moan as the erotic sensation seizes your nipples, making them dribble fluid in excitement. It’s stronger than it was before, and you twitch and seize up as the entrances to your breasts seem to plump up, become wetter and even more sensitive. When the intensity of it has passed slightly you dare a look down. Each of your nipple cunts have transformed into two pairs of miniature lips: [pc.nippleColor], wet, bee-stung lips. You delicately touch them, and immediately they grasp your fingers, pulling them inwards to suckle them in – you moan again – the velvety insides of your breasts, which are every bit as sensitive and arousing as they were in their previous form. You pull away with some difficulty. They seem to have minds of their own!");
 						
 						for(i = 0; i < target.breastRows.length; i++)
 						{
@@ -287,15 +288,17 @@
 					}
 					else
 					{
-						kGAMECLASS.eventBuffer += target.nippleTypeLockedMessage();
+						msg += target.nippleTypeLockedMessage();
 					}
 				}
 				totalTFs--;
 			}
 			
 			// Effect over:
-			kGAMECLASS.eventBuffer += "\n\nSomething feels like it’s disappeared. You touch your [pc.chest] absently and realize your [pc.nipples] are no longer constantly reminding you of their presence. It seems the tenderness the Clippex caused has finally calmed down.";
-			if(removedTop) kGAMECLASS.eventBuffer += " You reclothe yourself, shivering at the new sensations your [pc.nipples] produce underneath the material....";
+			msg += ParseText("\n\nSomething feels like it’s disappeared. You touch your [pc.chest] absently and realize your [pc.nipples] are no longer constantly reminding you of their presence. It seems the tenderness the Clippex caused has finally calmed down.");
+			if(removedTop) msg += ParseText(" You reclothe yourself, shivering at the new sensations your [pc.nipples] produce underneath the material....");
+			
+			if(msg.length > 0) kGAMECLASS.eventBuffer += msg;
 			return;
 		}
 	}

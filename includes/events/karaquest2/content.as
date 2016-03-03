@@ -2890,6 +2890,7 @@ public function kq2ShadeFollowUp():void
 	output("\n\nShe makes something between a laugh and a sigh and turns away, staring off into the crowd for a long while. Looks like she’s waiting for an answer. Your explanation. Why <i>did</i> you sleep with her?");
 	
 	processTime(5);
+	flags["KQ2_SHADE_ENCOUNTERED"] = 2;
 	
 	kq2ShadeFollowUpMenu();
 }

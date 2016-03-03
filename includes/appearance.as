@@ -267,6 +267,10 @@ public function appearance(forTarget:Creature):void
 		{
 			output2(" Your eyes are gleaming, solid " + target.eyeColor + " orbs that seem to give little away.");
 		}
+		else if (target.eyeType == GLOBAL.TYPE_NYREA)
+		{
+			output2(" Your eyes are solid " + target.eyeColor + " in color. They are well adapted to low light environments, befitting a cave-dwelling species like the nyrea.");
+		}
 		else if (target.eyeType == GLOBAL.TYPE_GABILANI)
 		{
 			if (target.eyeColor == "black") output2(" Your alien eyes are dark as the void, with irises that are completely black and indistinguishible from the pupils themselves, making you appear disconcerting from afar.");
@@ -315,7 +319,7 @@ public function appearance(forTarget:Creature):void
 				output2(" cat-like ears have sprouted from the top of your skull.");
 			}
 			else if(target.earType == GLOBAL.TYPE_LIZAN) output2(" A pair of rounded protrusions with small holes on the sides of your skull serve as your ears.");
-			else if(target.earType == GLOBAL.TYPE_LAPINE || target.earType == GLOBAL.TYPE_LEITHAN) output2(" A pair of floppy rabbit ears stick up from the top of your skull, flopping around as you walk.");
+			else if(target.earType == GLOBAL.TYPE_LAPINE || target.earType == GLOBAL.TYPE_LEITHAN) output2(" A pair of floppy rabbit ears stick up from the top of your skull, flopping around as you [target.walk].");
 			else if(target.earType == GLOBAL.TYPE_KANGAROO)
 			{
 				output2(" A pair of long");
@@ -383,7 +387,7 @@ public function appearance(forTarget:Creature):void
 				output2(" feline ears, sprouting from atop your head and pivoting towards any sudden noises.");
 			}
 			else if(target.earType == GLOBAL.TYPE_LIZAN) output2(" The " + target.hairDescript(true,true) + " atop your head makes it nigh-impossible to notice the two small rounded openings that are your ears.");
-			else if(target.earType == GLOBAL.TYPE_LAPINE || target.earType == GLOBAL.TYPE_LEITHAN) output2(" A pair of floppy rabbit ears stick up out of your " + target.hairDescript(true,true) + ", bouncing around as you walk.");
+			else if(target.earType == GLOBAL.TYPE_LAPINE || target.earType == GLOBAL.TYPE_LEITHAN) output2(" A pair of floppy rabbit ears stick up out of your " + target.hairDescript(true,true) + ", bouncing around as you [target.walk].");
 			else if(target.earType == GLOBAL.TYPE_KANGAROO)
 			{
 				output2(" The " + target.hairDescript(true,true) + " atop your head is parted by a pair of long");
@@ -611,7 +615,7 @@ public function appearance(forTarget:Creature):void
 			if(target.hasArmFlag(GLOBAL.FLAG_CHITINOUS)) output2(" In addition, your forearms are covered by sleek plates of jet-black chitin along the outside of each arm. Smaller pentagonal plates trail up your upper arms and over your shoulders.");
 			else if(target.hasArmFlag(GLOBAL.FLAG_SPIKED)) output2(" In addition, a set of short jet-black bone spikes grow along the outside of each forearm and out of the back of your elbows, giving you an incredibly imposing look.");
 		}
-		else if(target.armType == GLOBAL.TYPE_ARACHNID || target.armType == GLOBAL.TYPE_DRIDER || target.armType == GLOBAL.TYPE_BEE)
+		else if(InCollection(target.armType, GLOBAL.TYPE_ARACHNID, GLOBAL.TYPE_DRIDER, GLOBAL.TYPE_BEE, GLOBAL.TYPE_NYREA))
 		{
 			if(target.hasArmFlag(GLOBAL.FLAG_GOOEY)) output2(" Shiny hardened " + target.scaleColor + " goo covers your arms from the biceps down, resembling a pair of long " + target.scaleColor + " gloves from a distance.");
 			else output2(" Shining black exoskeleton covers your arms from the biceps down, resembling a pair of long black gloves from a distance.");
@@ -744,7 +748,7 @@ public function appearance(forTarget:Creature):void
 				if(target.hipRating() < 6) output2(", and");
 				if(target.femininity > 50) {
 					if(target.hipRating() >= 6 && target.hipRating() < 10) output2(" that draw the attention of those around you, and");
-					if(target.hipRating() >= 10 && target.hipRating() < 15) output2(" that make you walk with a sexy, swinging gait, and");
+					if(target.hipRating() >= 10 && target.hipRating() < 15) output2(" that make you [target.walk] with a sexy, swinging gait, and");
 					if(target.hipRating() >= 15 && target.hipRating() < 20) output2(" that make it look like you’ve birthed many children, and");
 					if(target.hipRating() >= 20) output2(" that make you look more like an animal waiting to be bred than any kind of human, and");
 				}
@@ -796,7 +800,7 @@ public function appearance(forTarget:Creature):void
 				if(target.buttRating() >= 4 && target.buttRating() < 6) output2(" has the barest amount of sexy jiggle.");
 				if(target.buttRating() >= 6 && target.buttRating() <10) output2(" fills out your clothing nicely.");
 				if(target.buttRating() >= 10 && target.buttRating() < 15) output2(" wobbles enticingly with every step.");
-				if(target.buttRating() >= 15 && target.buttRating() < 20) output2(" wobbles like a bowl full of jello as you walk.");
+				if(target.buttRating() >= 15 && target.buttRating() < 20) output2(" wobbles like a bowl full of jello as you [target.walk].");
 				if(target.buttRating() >= 20) output2(" is obscenely large, bordering freakish, and makes it difficult to run.");
 			}
 			//FITBUTT
@@ -1177,7 +1181,7 @@ public function appearance(forTarget:Creature):void
 			if(target.legCount < 4) output2(" Your " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "gooey" : "furry") + " legs have short thighs and long calves, with even longer feet ending in prominently-nailed toes.");
 			else output2(" You have " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "gooey" : target.furColor + "-furred") + " legs with short thighs and long calves, perfect for jumping.");
 		}
-		else if(target.legType == GLOBAL.TYPE_ARACHNID) 
+		else if(InCollection(target.legType, GLOBAL.TYPE_ARACHNID, GLOBAL.TYPE_NYREA)) 
 		{
 			if(target.legCount == 2) output2(" Your legs are covered in " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "shiny, hardened goo" : "a reflective black, insectile carapace") + " up to your mid-thigh, looking more like a pair of ‘fuck-me-boots’ than exoskeleton.");
 			else if(target.legCount < 4) output2(" Your legs are covered in " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "shiny, hardened goo" : "a reflective black, insectile carapace") + " up to your mid-thigh, looking more like ‘fuck-me-boots’ than exoskeleton.");
@@ -2200,6 +2204,10 @@ public function dickBonusForAppearance(forTarget:Creature = null, x:int = 0):voi
 	else if(target.cocks[x].cType == GLOBAL.TYPE_VANAE) {
 		output2(" The marine-like phallus has a tip capped with a cephalopod-shaped sucker, used to grasp and tug through sensitive depths for insemination or stimulation.");
 	}
+	//Nyrean Girl-Cock flavor
+	else if(target.cocks[x].cType == GLOBAL.TYPE_NYREA) {
+		output2(" The pseudo-penis is large and thick, with a shape similar to a horse phallus and lacking any veins. The flared tip is ringed with spikes meant to rupture the sperm sacs of a male nyrea and its slit is in the shape of an ‘x’.");
+	}
 	//Nubby or Ribbed
 	if((target.cocks[x].hasFlag(GLOBAL.FLAG_NUBBY) && target.cocks[x].cType != GLOBAL.TYPE_FELINE) || target.cocks[x].hasFlag(GLOBAL.FLAG_RIBBED))
 	{
@@ -2258,9 +2266,12 @@ public function dickBonusForAppearance(forTarget:Creature = null, x:int = 0):voi
 	if(target.hasKnot(x))
 	{
 		trace("KNOT FIRED!");
-		if(target.cocks[x].knotMultiplier > 1 && target.cocks[x].knotMultiplier < 1.4) output2(" A small knot of thicker flesh is near the base of your " + target.cockDescript(x) + ", ready to expand to help you lodge it inside a female.");
-		if(target.cocks[x].knotMultiplier >= 1.4 && target.cocks[x].knotMultiplier <= 2) output2(" A large bulge of flesh nestles just above the bottom of your " + target.cockDescript(x) + ", to ensure it stays where it belongs during mating.");
-		if(target.cocks[x].knotMultiplier > 2) output2(" The obscenely swollen lump of flesh near the base of your " + target.cockDescript(x) + " looks almost too big for your cock.");
+		if(target.cocks[x].knotMultiplier > 1)
+		{
+			if(target.cocks[x].knotMultiplier < 1.4) output2(" A small knot of thicker flesh is near the base of your " + target.cockDescript(x) + ", ready to expand to help you lodge it inside a female.");
+			else if(target.cocks[x].knotMultiplier <= 2) output2(" A large bulge of flesh nestles just above the bottom of your " + target.cockDescript(x) + ", to ensure it stays where it belongs during mating.");
+			else output2(" The obscenely swollen lump of flesh near the base of your " + target.cockDescript(x) + " looks almost too big for your cock.");
+		}
 		//List thickness
 		output2(" The knot is " + Math.round(target.cocks[x].thickness() * target.cocks[x].knotMultiplier * 10)/10 + " inches wide when at full size.");
 		//Appended to knot texts!
@@ -2344,6 +2355,11 @@ public function vaginaBonusForAppearance(forTarget:Creature = null, x:int = 0, e
 	else if(target.vaginas[x].type == GLOBAL.TYPE_GABILANI) {
 		if(!eachOne) output2(" The special muscles around your vagina are strong and powerful, making it possible to swallow any insertion without the need to push it in.");
 		else output2("\nThe special muscles around your talented vaginas are strong and powerful, making it possible to swallow insertions without the need of external forces to push them in.");
+	}
+	//Nyrean flavor
+	else if(target.vaginas[x].type == GLOBAL.TYPE_NYREA) {
+		if(!eachOne) output2(" The nyrean “pussy” is very soft, warm and puffy. Its interior would is with your [target.girlCum], ready to rear any eggs you might have the (mis)fortune of fertilizing.");
+		else output2("\nEach of your nyrean “pussies” are very soft, warm and puffy. The interior is coated with your [target.girlCum], ready to rear any eggs you might have the (mis)fortune of fertilizing.");
 	}
 	
 	//Nubby
