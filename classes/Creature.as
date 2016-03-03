@@ -12509,7 +12509,7 @@ package classes {
 			var eggs:int = statusEffectv1("Nyrea Eggs");
 			
 			//if(hasPerk("Fecund Figure")) - don't need this. Should return 0 if the perk aint real.
-			if(eggs > 50) bonus += (eggs - 50) * 0.01);
+			if(eggs > 50) bonus += (eggs - 50) * 0.01;
 			bonus += perkv3("Fecund Figure");
 			bonus += statusEffectv1("Anally-Filled")/1000;
 			bonus += statusEffectv1("Vaginally-Filled")/1000;
