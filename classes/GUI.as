@@ -1200,7 +1200,10 @@
 			{
 				_leftSideBar.mailsButton.Deactivate();
 			}
-			else _leftSideBar.mailsButton.Activate();
+			else
+			{
+				titsClassPtr.updateMailStatus();
+			}
 		}
 		
 		public function appearanceOn():void 
