@@ -84,9 +84,10 @@ package classes {
 				"skipIntercept",
 				"skipTurn",
 				"_skipRound",
-				"OnTakeDamageOutput"
+				"OnTakeDamageOutput",
+				"isUniqueInFight"
 			);
-
+			
 			cocks = new Array();
 			vaginas = new Array();
 			breastRows = new Array();
