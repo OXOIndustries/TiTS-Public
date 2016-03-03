@@ -116,7 +116,6 @@ public function emmyMainMenuPostHermHarnessgasm():void
 	else if(emmy.bellyRating() < 40) output("heavily");
 	else output("exquisitely");
 	output(" pregnant jackal.");
-	output("\n\nEMMY BELLYBUNS: " + emmy.bellyRating())
 	emmyMainMenu();
 }
 
