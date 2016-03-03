@@ -16,6 +16,11 @@ public function myrellionHangarBonus():Boolean
 	{
 		return true;
 	}
+	//Procs at the ship
+	if(!pc.hasKeyItem("Panties - Emmy's - Silky, purple, and cum-stained.") && flags["EMMY_QUEST"] >= 6 && flags["EMMY_QUEST"] != undefined){
+		emmysPantiesGet();
+		return true;
+	}
 	
 	return false;
 }

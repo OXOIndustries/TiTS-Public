@@ -1590,8 +1590,8 @@ public function processTime(arg:int):void {
 			
 			minutes = 0;
 			hours++;
+
 			//Hours checks here!
-			
 			if(flags["SHEKKA_TALK_COOLDOWN"] != undefined)
 			{
 				if(flags["SHEKKA_TALK_COOLDOWN"] > 0) flags["SHEKKA_TALK_COOLDOWN"]--;

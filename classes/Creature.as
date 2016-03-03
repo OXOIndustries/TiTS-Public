@@ -1,6 +1,7 @@
 package classes {
 	import classes.Characters.PlayerCharacter;
 	import classes.Characters.PregnancyPlaceholder;
+	import classes.Characters.Emmy;
 	import classes.CockClass;
 	import classes.DataManager.Errors.VersionUpgraderError;
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
@@ -12238,7 +12239,15 @@ package classes {
 			// Only run the knockup shit if the creature actually gets saved
 			if (neverSerialize == false && cumFrom != null)
 			{
-				if(cumflationEnabled() && !isPregnant(vagIndex)) cumflationHappens(cumFrom,vagIndex);
+				if(cumflationEnabled() && !isPregnant(vagIndex)) 
+				{
+					cumflationHappens(cumFrom,vagIndex);
+					if(this is Emmy) 
+					{
+						if(hasStatusEffect("Drain Cooldown")) setStatusMinutes("Drain Cooldown",250);
+						else createStatusEffect("Drain Cooldown",0,0,0,0,false,"PlaceholderIcon","Description",false,250);
+					}
+				}
 				return tryKnockUp(cumFrom, vagIndex);
 			}
 			else
@@ -13715,6 +13724,8 @@ package classes {
 		}
 		public function statusTick():void {
 			var expiredStatuses:Array = new Array();
+			//For storing things that remove statuses AFTER parsing the status list - fixes counter mismatches
+			var postRemovalEffects:Array = new Array();
 			var gogoVenomShit:Boolean = false;
 
 			for(var x:int = statusEffects.length-1; x >= 0; x--) 
@@ -13870,7 +13881,22 @@ package classes {
 									kGAMECLASS.eventQueue.push(kGAMECLASS.galoMaxTFProc);
 									break;
 							}
-
+						}
+						else if(this is Emmy)
+						{
+							//CERTAIN STATUSES NEED TO CLEAR SOME SHIT.
+							switch((statusEffects[x] as StorageClass).storageName)
+							{
+								case "Massaging":
+								case "Slow Fucking":
+									kGAMECLASS.emmyTeaseCum();
+									postRemovalEffects.push(kGAMECLASS.emmyTeaseCumEffects);
+									break;
+								case "Drain Cooldown":
+									kGAMECLASS.emmyCumClearance();
+									postRemovalEffects.push(kGAMECLASS.emmyCumStatusPurge);
+									break;
+							}
 						}
 						//Mark out the ones that need cut!
 						expiredStatuses[expiredStatuses.length] = x;
@@ -13888,6 +13914,13 @@ package classes {
 			}
 			//Alright, now do the venom shit - since adding more statuses could fuck shit otherwise
 			if(gogoVenomShit) kGAMECLASS.venomExpirationNotice();
+
+			//Any post-functions to run?
+			while(postRemovalEffects.length > 0)
+			{
+				postRemovalEffects[0]();
+				postRemovalEffects.splice(0,1);
+			}
 		}
 		//Cumflation
 		//v1 = current in belly
@@ -13905,6 +13938,7 @@ package classes {
 			var notice:String = "";
 			var amountVented:Number
 			var removals:Array = new Array();
+			var cumDrain:Boolean = !hasPerk("No Cum Leakage");
 
 			//Find the index value for various types of cumflation.
 			for(var x:int = 0; x < statusEffects.length; x++)
@@ -13925,15 +13959,18 @@ package classes {
 			//If has vaginally-filled status effect!
 			if(z >= 0)
 			{
-				//Figure out how much cum is vented over time.
-				//Should vent 1/2 the current amount over 30 minutes
-				//+a small amount based off the maximum amount full you've been for this proc.
-				amountVented = statusEffects[z].value1 / 4 / 2 + statusEffects[z].value2 / 48
-				//Mult times minutes passed
-				amountVented *= timePassed/60;
-				//trace("CURRENT CUM BANKED: " + statusEffects[z].value1 + " VENTING: " + amountVented);
-				//Apply to actual status
-				statusEffects[z].value1 -= amountVented;
+				if(cumDrain)
+				{
+					//Figure out how much cum is vented over time.
+					//Should vent 1/2 the current amount over 30 minutes
+					//+a small amount based off the maximum amount full you've been for this proc.
+					amountVented = statusEffects[z].value1 / 4 / 2 + statusEffects[z].value2 / 48
+					//Mult times minutes passed
+					amountVented *= timePassed/60;
+					//trace("CURRENT CUM BANKED: " + statusEffects[z].value1 + " VENTING: " + amountVented);
+					//Apply to actual status
+					statusEffects[z].value1 -= amountVented;
+				}
 				//Special notices!
 				if(this is PlayerCharacter && notice == "")
 				{
@@ -13977,14 +14014,17 @@ package classes {
 			//If has anally-filled status effect!
 			if(a >= 0)
 			{
-				//Figure out how much cum is vented over time.
-				//Should vent 1/2 the current amount over 30 minutes
-				//+a small amount based off the maximum amount full you've been for this proc. 
-				amountVented = statusEffects[a].value1 / 4 / 2 + statusEffects[a].value2 / 48
-				//Mult times minutes passed
-				amountVented *= timePassed/60;
-				//Apply to actual status
-				statusEffects[a].value1 -= amountVented;
+				if(cumDrain)
+				{
+					//Figure out how much cum is vented over time.
+					//Should vent 1/2 the current amount over 30 minutes
+					//+a small amount based off the maximum amount full you've been for this proc. 
+					amountVented = statusEffects[a].value1 / 4 / 2 + statusEffects[a].value2 / 48
+					//Mult times minutes passed
+					amountVented *= timePassed/60;
+					//Apply to actual status
+					statusEffects[a].value1 -= amountVented;
+				}
 				//Special notices!
 				if(this is PlayerCharacter && notice == "")
 				{
@@ -14028,14 +14068,17 @@ package classes {
 			//If has orally-filled status effect!
 			if(o >= 0)
 			{
-				//Figure out how much cum is vented over time.
-				//Should vent 1/2 the current amount over 30 minutes
-				//+a small amount based off the maximum amount full you've been for this proc. 
-				amountVented = statusEffects[o].value1 / 8 / 2 + statusEffects[o].value2 / 48
-				//Mult times minutes passed
-				amountVented *= timePassed/60;
-				//Apply to actual status
-				statusEffects[o].value1 -= amountVented;
+				if(cumDrain)
+				{
+					//Figure out how much cum is vented over time.
+					//Should vent 1/2 the current amount over 30 minutes
+					//+a small amount based off the maximum amount full you've been for this proc. 
+					amountVented = statusEffects[o].value1 / 8 / 2 + statusEffects[o].value2 / 48
+					//Mult times minutes passed
+					amountVented *= timePassed/60;
+					//Apply to actual status
+					statusEffects[o].value1 -= amountVented;
+				}
 				//Special notices!
 				if(this is PlayerCharacter && notice == "")
 				{
