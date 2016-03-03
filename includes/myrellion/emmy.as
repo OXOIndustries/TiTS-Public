@@ -524,14 +524,24 @@ public function talkToEmmy(arg:Function = undefined):void
 	if(pc.isBimbo()) output(", cutie-pie!");
 	else output(".");
 	output("”</i>");
-	output("\n\nGrinning, ");
-	if(flags["MET_EMMY"] != undefined) output("Emmy");
-	else output("the shrink-wrapped rep");
-	output(" leads you to the side of the counter and answers, <i>“I’m always happy to help our shoppers sate their curiosity. Tell me, is there something you’d like a closer look at?”</i> She stands almost uncomfortably close to you");
-	if(pc.tallness < 55) output(", her bulging cock at eye-level.");
-	else if(pc.tallness < 72) output(", her bulging breasts at eye level.");
-	else output(", her bulging breasts jutting out so powerfully that they obscure your view of the rest of her shapely form.");
-	output("\n\nWhat did you want to ask her about?");
+	if(flags["EMMY_QUEST"] >= 6 && flags["EMMY_QUEST"] != undefined)
+	{
+		output("\n\nGrinning, Emmy leads you to the side of the counter and places your hand on her hip. It’s warm. <i>“But you already know me in the biblical sense, don’t you?”</i> She drags your hand up her side to a breast, forcing you to squeeze it. <i>“These breasts...”</i> Her forced grope transitions to the bulging jackal-meat stuffed between her tits, subjecting you hot and heavy thud of her heartbeat through her prick’s many veins. <i>“...this dick...”</i> In short order, you’re cupping her balls and pressing your fingertips into the divot behind. <i>“...and this sopping-wet cunt.”</i>");
+		output("\n\n<i>“Emmy...”</i> you sigh, <i>“I really want to ask you something.”</i>");
+		output("\n\nPouting, the slutty, oversexed hermaphrodite whines, <i>“Okay, okay. Anything you want, sugar-buns.”</i>");
+		pc.lust(5);
+	}
+	else
+	{
+		output("\n\nGrinning, ");
+		if(flags["MET_EMMY"] != undefined) output("Emmy");
+		else output("the shrink-wrapped rep");
+		output(" leads you to the side of the counter and answers, <i>“I’m always happy to help our shoppers sate their curiosity. Tell me, is there something you’d like a closer look at?”</i> She stands almost uncomfortably close to you");
+		if(pc.tallness < 55) output(", her bulging cock at eye-level.");
+		else if(pc.tallness < 72) output(", her bulging breasts at eye level.");
+		else output(", her bulging breasts jutting out so powerfully that they obscure your view of the rest of her shapely form.");
+		output("\n\nWhat did you want to ask her about?");
+	}
 	processTime(5);
 	//[KihaCorp] [Guns] [Melees] [Shields][You]
 	emmyTalkMenu(arg);
@@ -582,7 +592,10 @@ public function kihaCorpGeneral():void
 	output("\n\nGrinning, ");
 	if(flags["MET_EMMY"] != undefined) output("Emmy");
 	else output("the company rep");
-	output(" replies, <i>“Not much for the details, eh? Guess you must be more of a big picture type. Alright... where to start...”</i> She rubs thoughtfully at her jaw, drumming her other hand idly on the machine surface of her store’s countertop. Her eyes light up a moment later, and she starts in, <i>“I guess I’d best cover how they got so big in the first place. It’s as good a starting point as any.”</i>");
+	output(" replies, <i>“Not much for the details, eh? ");
+	if(flags["EMMY_QUEST"] >= 6 && flags["EMMY_QUEST"] != undefined) output("Can’t say I blame you. There’s far more entertaining things we could be doing with our time...”</i> She idly strokes her dick while she thinks, drumming her fingers on the turgid pole.");
+	else output("Guess you must be more of a big picture type. Alright... where to start...”</i> She rubs thoughtfully at her jaw, drumming her other hand idly on the machined surface of her store’s countertop.");
+	output(" Her eyes light up a moment later, and she starts in, <i>“I guess I’d best cover how they got so big in the first place. It’s as good a starting point as any.”</i>");
 	output("\n\nYou nod appreciatively.");
 	output("\n\n<i>“Right, so the way I understand it, KihaCorp started out pretty small, making VI’s and even a few AI’s, but their scientists got damned good at making AI-G’s - grown AI’s that is, the ones that act more like organics than the rest of ‘em. Those AI-D’s can be real cunts to have to deal with on a daily basis, let me tell you, and don’t even get me started on the ones that decided that the best way to complete their programmatic directives was to eliminate or confine their masters. As you can guess, damn near everybody uses AI-G’s now.”</i>");
 	output("\n\nGaining confidence in her speech, ");
@@ -666,7 +679,8 @@ public function askEmmyIfKihaCorpIsDoingWell():void
 	output("\n\n<i>“Yeah... I guess that about covers it then, doesn’t it?”</i> ");
 	if(flags["MET_EMMY"] != undefined) output("Emmy");
 	else output("the shopkeep");
-	output(" muses. <i>“Did you have any other concerns that needed addressing?”</i> She hops up onto the edge of the counter and leans back, showing off a half-hard bulge big enough to shame most ausar. <i>“Anything you wanted a look at?”</i>");
+	if(flags["EMMY_QUEST"] >= 6 && flags["EMMY_QUEST"] != undefined) output("\n\n muses. <i>“Did you have any other hot and pressing concerns that need addressed? I hear that regular orgasms are good for you, you know... and good for healthy relationships too.”</i> She hops up onto the counter and lets her knees drift apart, highlighting balls big enough to be oranges. <i>“You can touch, or we can talk and then touch... or I guess just talk.”</i>");
+	else output(" muses. <i>“Did you have any other concerns that needed addressing?”</i> She hops up onto the edge of the counter and leans back, showing off a half-hard bulge big enough to shame most ausar. <i>“Anything you wanted a look at?”</i>");
 	processTime(5);
 	emmyMainMenu();
 }
@@ -717,6 +731,7 @@ public function askEmmyAboutGuns():void
 	addButton(0,"Yep",buyFromEmmy);
 	addButton(1,"Nah",nahEmmyDontSeeShit);
 	if(flags["EMMY_EMAIL_TIMER"] != undefined && flags["EMMY_APOLOGIZED"] == undefined) addDisabledButton(2,"You","You know all too well that this won't go anywhere.");
+	else if(flags["EMMY_QUEST"] >= 6 && flags["EMMY_QUEST"] != undefined) addButton(2,"You",sexAttemptStart,undefined,"You","Try to get into her pants - not that it's all that hard any more.");
 	else addButton(2,"You",sexAttemptStart,undefined,"You","Try to get into her pants.");
 	//[You] -> Go to first time flirt menu
 	//make sure to route appropriately if sex happened already
@@ -729,7 +744,8 @@ public function nahEmmyDontSeeShit():void
 	showEmmy();
 	if(flags["MET_EMMY"] != undefined) output("Emmy");
 	else output("The curvy jackal");
-	output(" pouts when she hears that, then shrugs. <i>“Well, you wanna talk about something else then?”</i>");
+	if(flags["EMMY_QUEST"] >= 6 && flags["EMMY_QUEST"] != undefined) output("pouts and languidly rolls her shoulders. <i>“Well, I guess we can talk about something else...”</i>");
+	else output(" pouts when she hears that, then shrugs. <i>“Well, you wanna talk about something else then?”</i>");
 	emmyTalkMenu();
 }
 
@@ -828,7 +844,14 @@ public function askEmmyAboutShields():void
 	output("\n\n");
 	if(flags["MET_EMMY"] != undefined) output("Emmy");
 	else output("She");
-	output(" shrugs, <i>“The point is, JoyCo shields protect your body about as well as a small condom would protect my partner’s wombs.”</i>");
+	output(" shrugs, <i>“The point is, JoyCo shields protect your body about as well as a small condom would protect ");
+	if(flags["EMMY_QUEST"] >= 6 && flags["EMMY_QUEST"] != undefined)
+	{
+		if(pc.hasVagina()) output("your womb");
+		else output("your asshole");
+		output(".”</i>");
+	}
+	else output("my partner’s wombs.”</i>");
 	output("\n\n");
 	if(pc.isBimbo()) 
 	{
@@ -873,15 +896,34 @@ public function askEmmyAboutEmmy():void
 		return;
 	}
 	//Known enough
-	output("\n\nThe jackaless squirms uncomfortably before leaning in close. <i>“Normally I wouldn’t tell anyone this... You have to promise not to repeat this to anyone, okay? The higher ups wouldn’t like it.”</i>");
-	output("\n\nYou do");
-	if(pc.isAss()) output(", though you’ll break it in a heartbeat if you think you need to");
-	output(".");
-	output("\n\nThe shop-girl sighs, <i>“Good. I knew I could trust you.”</i> She furtively casts her gaze at the automatic door, and satisfied that it’s still sealed, she explains, <i>“I removed it. We’re not supposed to, but I couldn’t stand it sitting there, broadcasting to every single customer that I’m actually an ausar.”</i>");
+	if(flags["EMMY_QUEST"] >= 6 && flags["EMMY_QUEST"] != undefined)
+	{
+		output("\n\nThe jackaless squirms and sighs. <i>“You know how I feel about my name, but I guess I can explain it to you again, if you really want to hear it once more.”</i>");
+		output("\n\nYou do.");
+		output("\n\nThe shop-slut sighs and marvels at you. <i>“You really are something else. Well, you remember how I made you swear not to tell anyone about this?”</i>");
+		output("\n\nYou nod.");
+		output("\n\n<i>“I ditched it.”</i> Emmy casts a furtive glance in the direction of the automatic door, and satisfied that it’s still sealed, she explains. <i>“We’re not supposed to be working without a name tag, but I couldn’t stand sitting there, broadcasting my awful, awful name, letting everyone know that I'm really just some ausar.”</i>");
+	}
+	else
+	{
+		output("\n\nThe jackaless squirms uncomfortably before leaning in close. <i>“Normally I wouldn’t tell anyone this... You have to promise not to repeat this to anyone, okay? The higher ups wouldn’t like it.”</i>");
+		output("\n\nYou do");
+		if(pc.isAss()) output(", though you’ll break it in a heartbeat if you think you need to");
+		output(".");
+		output("\n\nThe shop-girl sighs, <i>“Good. I knew I could trust you.”</i> She furtively casts her gaze at the automatic door, and satisfied that it’s still sealed, she explains, <i>“I removed it. We’re not supposed to, but I couldn’t stand it sitting there, broadcasting to every single customer that I’m actually an ausar.”</i>");
+	}
 	output("\n\nQuirking an eyebrow in response, you ask, <i>“How would a nametag do that? Does it have a field for species on there or something?”</i>");
 	output("\n\n<i>“No, you don’t get it!”</i> she cries, slapping a palm down on the counter. <i>“My name! Its common on Ausaril and on most ausar colonies. Ever since that ‘Bones of Ypsilon Station’ show was on the air a few decades back, the name took off in popularity, and now anyone who knows anything about the rest of the galaxy knows that I started out as an ausar when they see it.”</i>");
-	output("\n\n<i>“So what am I supposed to call you?”</i> you ask. <i>“'Hey you' doesn’t have a very good ring to it, and a name would make it a lot easier to talk. I’ll even tell you mine; I’m [pc.name].”</i>");
-	output("\n\nYou didn’t know it was possible for a jackal’s (or ausar’s) ears to sink so low. <i>“It’s Emmata, but please, just call me Emmy. It’s what all my friends call me.”</i>");
+	if(flags["EMMY_QUEST"] >= 6 && flags["EMMY_QUEST"] != undefined)
+	{
+		output("\n\n<i>“Come on, Emmy. It’s cute!”</i> you cajole. <i>“It’s part of you, and I like you.”</i>");
+		output("\n\nYou didn’t know it was possible for a jackal’s to blush through her fur. <i>“It’s Emmata, but please, just keep calling me Emmy. Or slut, even. Just not Emmata.”</i>");
+	}
+	else
+	{
+		output("\n\n<i>“So what am I supposed to call you?”</i> you ask. <i>“'Hey you' doesn’t have a very good ring to it, and a name would make it a lot easier to talk. I’ll even tell you mine; I’m [pc.name].”</i>");
+		output("\n\nYou didn’t know it was possible for a jackal’s (or ausar’s) ears to sink so low. <i>“It’s Emmata, but please, just call me Emmy. It’s what all my friends call me.”</i>");
+	}
 	output("\n\nShaking your head, you explain that you still don’t understand why she doesn’t want to be known as a former ausar.");
 	output("\n\n<i>“Because the moment I start modding myself to look how I really wanted to look, instead of just changing my dick or something, they cast me out. My old friends avoided me and spread rumors behind my back. My parents still said they loved me, but they never seemed to want to go anywhere public with me. It broke my heart.”</i> Emmy balls up her fists as she fights back tears and struggles to compose herself.");
 	//Nice/Mischief
@@ -1077,9 +1119,19 @@ public function sexAttemptStart(mainMenu:Boolean = true):void
 	}
 	else 
 	{
-		output("Emmy's eyes flutter low once she realizes your intent. <i>\"Does someone need a little relief?\"</i>\n\nThe ");
-		if(rand(2) == 0) output("bulge in her jumpsuits authoritatively declares her to be the one in need of relief.");
-		else output("way her nipples jut through the thin fabric of her jumpsuit, you wager she's referring to herself.");
+		if(flags["EMMY_QUEST"] >= 6 && flags["EMMY_QUEST"] != undefined)
+		{
+			if(emmy.hasStatusEffect("Massaging") || emmy.hasStatusEffect("Slow Fucking")) output("Emmy groans as the Herm Harness continues to work it’s magic, wringing big, sloppy bubbles of pre-cum out of her cock and pumping them right back around into her twat. She doesn’t even realize you want to do something sexual until you speak up, and once she does, she’s all but begging you. <i>“Yesss, fuck me, [pc.name]. Fuck me so fucking hard.”</i>");
+			else if(emmy.bellyRating() >= 20) output("Emmy smiles once she discovers your intent. <i>“You do realize that I’ve got a bunch of jackal-spunk sloshing around in here, don’t you? All that jizz you made me shoot into myself with this perverted little toy.... It feels so good.”</i> She rubs her belly and moans, <i>“What do you want to do? Anything seems fun.”</i>");
+			else if(rand(2) == 0) output("Emmy knowingly smiles once she divines the intent behind your look. <i>“Need to blow off a little steam, [pc.name]? I understand. Sometimes you see someone so hot... so delectable that you just can’t help it”</i> Her finger traces slow circles around a lewdly jutting nipple. <i>“What should we do?”</i>");
+			else output("Emmy blushes and covers her mouth <i>“Oh, is this a booty call?”</i> She grabs hold of her tits and squeezes, thrusting her brazenly-displayed nipples in your direction. <i>“Fuck I need this. Come here, baby.”</i>");
+		}
+		else
+		{
+			output("Emmy's eyes flutter low once she realizes your intent. <i>\"Does someone need a little relief?\"</i>\n\nThe ");
+			if(rand(2) == 0) output("bulge in her jumpsuits authoritatively declares her to be the one in need of relief.");
+			else output("way her nipples jut through the thin fabric of her jumpsuit, you wager she's referring to herself.");
+		}
 		emmySexMenu();
 	}
 }
