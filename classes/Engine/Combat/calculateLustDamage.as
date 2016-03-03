@@ -38,13 +38,13 @@ package classes.Engine.Combat
 		
 		if (lustDamage.tease.damageValue > 0 && attacker != null) lustDamage.tease.damageValue += attacker.sexiness() / 2;
 		if (lustDamage.tease.damageValue > 0 && attacker != null && attacker.hasPerk("Pheromone Cloud")) lustDamage.pheromone.damageValue += 1 + rand(4);
-		if (lustDamage.tease.damageValue > 0 && target != null && target.hasCock() && attacker.hasStatusEffect("Cum Soaked")) 
+		if (lustDamage.tease.damageValue > 0 && target != null && target.hasCock() && attacker != null && attacker.hasStatusEffect("Cum Soaked")) 
 		{
 			var spunkBonus:Number = attacker.statusEffectv1("Cum Soaked");
 			if (spunkBonus > 5) spunkBonus = 5;
 			lustDamage.tease.damageValue += spunkBonus;
 		}
-		if (lustDamage.tease.damageValue > 0 && target != null && target.hasVagina() && attacker.hasStatusEffect("Pussy Drenched")) 
+		if (lustDamage.tease.damageValue > 0 && target != null && target.hasVagina() && attacker != null && attacker.hasStatusEffect("Pussy Drenched")) 
 		{
 			var slutsauceBonus:Number = attacker.statusEffectv1("Pussy Drenched");
 			if (slutsauceBonus > 5) slutsauceBonus = 5;
