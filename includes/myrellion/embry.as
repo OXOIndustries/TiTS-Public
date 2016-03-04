@@ -523,6 +523,7 @@ public function embryMenu():void
 			if(pc.lust() >= 33) addButton(5,"Sex",embrySexMenu,undefined,"Sex","Have a sexual encounter with her.");
 			else addDisabledButton(5,"Sex","Sex","You aren't aroused enough for a sex act.");
 		}
+		if(!pc.hasKeyItem("Panties - Embry's - Plain, girly pink panties with little hearts.") && flags["EMBRY_TREATMENTS"] == 3 && flags["EMBRY_RELATIONSHIP"] == 3) addButton(6,"Get Panties",embryPanties,undefined,"Get Panties","Try and get a pair of [Embry.name]'s panties. For reasons.");
 	}
 	//[Sex]
 	addButton(14,"Leave",mainGameMenu);
@@ -3006,4 +3007,58 @@ public function vagisilSexForEmbry(spentTime:Boolean = false):void
 	embry.vaginalVirgin = false;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
+}
+
+public function embryPanties():void
+{
+	clearOutput();
+	showEmbry();
+	author("ASpoopyGhost");
+	output("How do you go about getting her panties?");
+	//[Ask] [Order Her]
+	clearMenu();
+	addButton(0,"Ask",askEmbryForHerPanties);
+	addButton(1,"Order Her",demandEmbrysPanties);
+}
+
+//Ask
+public function askEmbryForHerPanties():void
+{
+	clearOutput();
+	showEmbry();
+	author("ASpoopyGhost");
+	output("Grabbing [embry.name] from behind, you pull her up against your chest. The simii waitress happily sighs and rests her head back against you, her eyes fluttering closed. Her tail is stroking affectionately up against your hip. As you kiss the nape of her neck, she lets out a happy little moan.");
+	output("\n\nWhispering in her ear, you ask her for a favor. Specifically, for her panties. As soon as you do, you can feel heat radiating from the simii waitress’s cheeks.");
+	output("\n\n<i>“Muh-my panties? Why? Are you going to sell them?”</i> [embry.name] asks, looking back at you with wide blue eyes. You shake your head and run your hands over her skirt, kissing her ear.");
+	output("\n\n<i>“No. I want them to think of you, no matter where I am. Do you mind?”</i>");
+	output("\n\n<i>“N-no, of course not! Just give me a second.”</i> [embry.name] blushes and untangles herself from your arms. She hurries out to a restroom and, after a little while, comes back hiding something in her hands. She gives it to you with both hands, nuzzling up against your neck. <i>“H-here you go. They’re my panties. Um, good thing I had a spare pair on hand.”</i>");
+	output("\n\nYou ask her why she has spares, and [embry.name]’s cheeks go even redder. <i>“U-uh, um, s-so sometimes when you come to visit... get excited...”</i> she mumbles and trails off. You discreetly check out her panties. They’re what you’d expect from [embry.name]–pink, soft cotton, and utterly girly. And the crotch is slightly moist...");
+	output("\n\n<i>“Naughty girl.”</i> you utter, and give her a sweet kiss. [embry.name] trembles in your arms and nuzzles your cheek.");
+	output("\n\n<i>“I, um, literally got a tingling up my spine when you said that. Is that normal?”</i>");
+	output("\n\nYou nod and kiss her back. She beams with delight and spends some time with you, basking in your company. <b>You have aquired [embry.name]’s panties!</b>");
+	pc.createKeyItem("Panties - Embry's - Plain, girly pink panties with little hearts.");
+	processTime(2);
+	pc.lust(1);
+	embryMenu();
+}
+
+//Order Her
+public function demandEmbrysPanties():void
+{
+	clearOutput();
+	showEmbry();
+	author("ASpoopyGhost");
+	output("<i>“[embry.name]. Take off your panties. Now.”</i> You order her, right there, in the middle of the bar. All the color drains from the simii girl’s face and she stares at you, wide eyed and shocked.");
+	output("\n\n<i>“WUH-w-w-what? M-m-my panties?”</i> [embry.name] stammers, clutching her notepad hard. She’s like a doe in the headlights, her knees lightly pressed together. <i>“Buh-but there’s people watching!!”</i>");
+	output("\n\n<i>“Do it. Now. Or do you want me to take them off in front of everyone for you?”</i>");
+	output("\n\n[embry.name]’s face is burning beet red. Nervously looking around, she places her pad down and waits until nobody is looking. Slipping her hands quickly under her frilly skirt, she slides her underwear down with a little hip wiggle and, when they’re at her ankles, steps out of them. She clutches the little bundle in her hands, now utterly pantyless underneath her maid-like outfit. <i>“I-Is this good enough?”</i>");
+	output("\n\n<i>“Hand them over.”</i>");
+	output("\n\n<i>“W-what, I’ve got to go pantyless all day?!”</i> [embry.name] squeaks. Still, she hands over her bundled up panties to you. While you look them over, she’s squirming on the spot with her hands pressing down her skirt, and her pink tail hanging low. The simii girl couldn’t look more suspicious if she tried.");
+	output("\n\n<i>“Ohh, your panties are a little wet. Did you like doing that?”</i> You tease, pulling out her panties by the ends to display the slightly moist crotch. They’re what you’d expect from [embry.name]–pink, soft cotton, and utterly girly. There’s even a little bow above the crotch. She’s mortified as you display her slickened panties in the public space, letting out another low whine of protest.");
+	output("\n\n<i>“Y-y-you’re so mean! I-I was just, I mean... so mean!”</i> [embry.name] wails and wiggles on the spot. You put away her panties and leave her to her state of distress. Still, you can’t help but notice the tiny glistening below her skirt.");
+	output("\n\nYou’re definitely keeping these for later.\n\n<b>You have aquired [embry.name]’s panties!</b>");
+	pc.createKeyItem("Panties - Embry's - Plain, girly pink panties with little hearts.");
+	processTime(2);
+	pc.lust(1);
+	embryMenu();
 }

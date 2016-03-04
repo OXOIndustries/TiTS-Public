@@ -42,6 +42,11 @@ Xanthe, like most siel, is very mod-happy.*/
 
 public function silkenSerenityExteriorShitz():Boolean
 {
+	//Set up panty shit. Makes sure you have to walk out and come back at least once after becoming her sloot!
+	if(xantheIsDommingPC() && !pc.hasKeyItem("Panties - Xanthe's - Lacy, black siel-silk panties."))
+	{
+		if(!pc.hasStatusEffect("XanthePanties")) pc.createStatusEffect("XanthePanties");
+	}
 	output("You spot an extravagant looking store with sheek marble pillars alongside the entrance. A crowd of stunningly beautiful beings are gathered out the front in a line. They are modelling various garments, armor, and lingerie. Peering closer, you realize they are holograms.\n\nAbove the store is a glimmering, glitzy sign that reads: \"Silken Serenity\". Through the throng of holo-models, you notice the windows are made of mirrored glass.");
 	// The last paragraph of the description is randomly picked. Below are the seven random paragraphs. The race in the paragraph is also picked at random.
 	var choice:int = rand(7);
@@ -368,6 +373,11 @@ public function enterTheSilkenSerenityWhyDidWashHaveToDie():Boolean
 	{
 		output("Far from easily navigable, the interior of the Silken Serenity is an extravagant and fashionable labyrinth. There are different tiers and isles of clothing everywhere, some even overlapping each other in a multi-tiered mess.");
 		output("\n\nAlmost contrary to the chaos, each item has been meticulously constructed to be both fashionable and functional. There’s everything from light combat armor to frilly hand-sewn panties. All of it is chic.");
+		if(pc.hasStatusEffect("XanthePanties"))
+		{
+			getXanthesPantiesSloot();
+			return true;
+		}
 		//if (Xanthe is Domming PC)
 		// This occurs through unlocking Mating through the ‘Sex’ discussion in the Talk Menu, clicking Mating, then saying ‘Yes’ to being her sub.
 		if(xantheIsDommingPC())
@@ -1906,6 +1916,35 @@ public function nothingWithXantheTodayBadumTish():void
 	addButton(0,"Next",mainGameMenu);
 }
 
+//Xanthe
+// An approach. Occurs when Xanthe is Domming PC and they enter the store.
+//  Conditions: if(xantheIsDommingPC()
+//Gifting Scene
+
+public function getXanthesPantiesSloot():void
+{
+	showXanthe();
+	author("ASpoopyGhost");
+	output("\n\nAs you step into the store, you walk to the counter to find an utterly naked Xanthe standing there. Seeing your Mistress completely naked from head to toe–her full blue bosoms and dark nipples pointing out–and her slit-like sexes nestled between her thick alien thighs is utterly mind-blowing. Not worthy of such an exquisite sight, you get down ");
+	if(pc.hasKnees()) output("on your knees");
+	else output("on the ground");
+	output(" instantly and bow your head, not sure if you should look! Your heart is racing as you still picture the sight of her wonderfully naked form that is now practically burnt into your mind, a treasured gift that she has decided to give to you.");
+
+	output("\n\n<i>“My dear, if I did not want you to see me naked, I would not </i>be<i> naked,”</i> Xanthe sultrily informs you in her rich, husky voice. Step by step–and there’s a lot of steps–she saunters towards you, brazen and naked. It’s so admirable how <i>confident</i> she is naked, like a goddess clad in nothing but her own aura of authority. <i>“I have for you a gift, since you’ve been such a good " + pc.mf("boy","girl") + ". Put out your hands.”</i>");
+
+	output("\n\nObediently and instinctively, you put out your hands, flat with palms up. Since she said you could look, you look upwards, but you’re utterly spellbound by her pendulously large breasts right before your eyes. If your heart wasn’t racing enough, your Mistress said she was going to give you a gift. What in the galaxies could it be?");
+	output("\n\nYour Mistress seemingly pulls out a small silky bundle out of nowhere and deposits it in your hands. It feels ultra-smooth; definitely crafted from her own siel silk and hands. You tremble because you already know it’s a very important gift, something she’s made herself. She reaches out and strokes the top of your head. <i>“Open it. Don’t you want to see what it is?”</i>");
+	output("\n\nYou definitely do! With a gulp, you unfoil the tiny bundle. You’re riveted when you realise it’s a pair of silky lace panties, but not just <i>any</i> pair. You’ve seen your Mistress often enough to know what she regularly wears, every artifact of clothing right down to her silky stockings. These are <i>her</i> panties, your Mistress’s panties, and she’s giving them to you! You clutch them to your chest, overwhelmed with emotion. You don’t even know what to say.");
+	output("\n\nYour Mistress, of course, can read you like a book, stroking your cheek. <i>“Now, dear, understand this. Those panties are for you to masturbate with when you’re away from me. You are not to pleasure yourself from now on without using my panties, understood? It is only your Mistress who gives you pleasure, so only my panties can get you off, because they have touched my skin and nethers. Do you understand?”</i>");
+	output("\n\nYou nod feverently. You can’t wait to masturbate with Mistress Xanthe’s panties, which have touched her exquisite sex. It will be the next best thing to having the honor of making love to her and giving her pleasure, and by the sounds of things, knowing that you’re using her panties will give her pleasure as well.");
+	output("\n\n<b>You have acquired Mistress Xanthe’s panties!</b>");
+	processTime(10);
+	pc.lust(10);
+	pc.createKeyItem("Panties - Xanthe's - Lacy, black siel-silk panties.");
+	pc.removeStatusEffect("XanthePanties");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
 /*
 New Clothing / Undergarments
 
