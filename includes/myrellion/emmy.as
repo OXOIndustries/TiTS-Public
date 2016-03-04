@@ -560,6 +560,12 @@ public function emmyTalkMenu(arg:Function = undefined):void
 	else addDisabledButton(3,"Shields","Shields","You just asked that!");
 	if(arg != askEmmyAboutEmmy) addButton(4,"You",askEmmyAboutEmmy,undefined,"You","Ask her about herself. She's quite the mystery.");
 	else addDisabledButton(4,"You","You","You just asked that!");
+	if(arg != emmyImplantFurtherDiscussion)
+	{
+		if(flags["EMMY_QUEST"] >= 5 && flags["EMMY_QUEST"] != undefined) addButton(5,"Implant",emmyImplantFurtherDiscussion,undefined,"Implant","She mentioned a libido-enhancing implant in her email. Maybe you could get some more information on it.");
+		else addDisabledGhostButton(5,"Locked","Locked","You don't know her well enough for this topic!");
+	}
+	else addDisabledGhostButton(5,"Implant","Implant","You just asked her about her implant!");
 	addButton(14,"Back",backToEmmyMain);
 
 }
@@ -1847,6 +1853,60 @@ public function emmyGotHarnessReaction():void
 	pc.lust(5);
 	flags["EMMY_QUEST"] = 6;
 	emmySexMenu();
+}
+
+//[Libido Implant]
+public function emmyImplantFurtherDiscussion():void
+{
+	clearOutput();
+	showEmmy();
+	output("<i>“");
+	if(pc.isBimbo()) output("So you, like, have an implant in your head that’s making act like such a hottie?");
+	else if(pc.isBro()) output("So uh, the thing in your head...?");
+	else if(pc.isNice()) output("About that libido-enhancer... could you tell me more about it?");
+	else if(pc.isMischievous()) output("So were you always this awesome before the libido-enhancer, or is did you just win the side-effect lottery?");
+	else output("Tell me more about the libido enhancer. Does it bother you?");
+	output("”</i>");
+
+	output("\n\nEmmy pulls her hands away from their constant, idly stroking of her erogenous zones and flattens her, ashamed. <i>“Part of me was hoping you wouldn’t ask too much about it. I feel like such an idiot for signing up for it. I should’ve realized how massive the side-effects could be when there was payout like that attached. I figured that the worst case would be having to masturbate an extra time every other day or so, not this constant, endless desire to touch myself, and you, and anyone who walks in the door.”</i>");
+	output("\n\nSighing, the tarty jackaless pauses and looks you in the eyes. After a pregnant pause, she smiles. <i>“It’s not all bad. I might not have ever gotten with you if it hadn’t made me such a shameless flirt, and for that, I have to thank the little guy. And it does feel really, really good. It’s sort of like being in heat... and rut I guess. The desires are all mixed together and warm, and sometimes you just want to throw someone over a table, but sometimes you want them to throw you over the table...”</i>");
+	output("\n\nEmmy shakes her head and sighs. <i>“You know how normally when someone touches you somewhere innocent - on your shoulder or hand or elbow - you barely notice, but when you’re in bed with an attractive mate it can be the best feeling ever? It’s sort of like that all the time, with anybody, even my own hands. And I don’t get mad or sad as often any more. It’s hard to tamp down on positive feelings, like, if someone cuts me off, who cares? Sure, I have to wait an extra minute or whatever, but I can spend that minute thinking about all kinds of dirty, naughty things to say, and smiling all the while.”</i>");
+	output("\n\n<i>“What about the whole becoming a slut thing?”</i> you ask, remembering how hesitant she was when you met her.");
+	//No toy purchase
+	if(flags["EMMY_QUEST"] >= 6 && flags["EMMY_QUEST"] != undefined)
+	{
+		output("\n\n<i>“I guess that ship has sailed,”</i> Emmy admits, a little sadly, <i>“but I think I can live like this. Sales have actually gone up since I’ve started dating you. I guess I’ve gotten a bit friendly with the customers over time - no, not fucking them or anything, but I guess having a busty jackal act like a flirty slut while talking shop like a true gun nut is a good way to move product. A few prudes got scared off, but honestly, who hasn’t seen an alien swaggering around with huge, flopping dick before? It’s not that uncommon.”</i>");
+		output("\n\nShe giggles and strokes her own, showing you exactly what she’s talking about.");
+	}
+	//Purchase
+	else
+	{
+		output("\n\n<i>“That ship has sailed,”</i> Emmy admits while slowly stroking her cock, <i>“but I don’t really mind. Sales are through the roof. The customers love when I’m flirting and squirming while trying to explain the finer points of our flux containment coils or dynamic, scope-based trajectory assistance. I’ve got an amazing [pc.boyGirl]friend who bought me the best, most endlessly fuckable sex-toy on the market, and I can show [pc.himHer] just how grateful I am for [pc.himHer] at any time, on any day, anywhere.”</i>");
+		output("\n\nShe moans, visibly distending the hidden Herm Harness’s tubing with a blob of what can only be pre-cum. An actual orgasm would make far larger bubbles.");
+	}
+	//Merge
+	output("\n\n<i>“So I guess I’m a hermy, furry slut now, everything the ausar conservatives hate. But that’s not what chaffs my balls about this implant situation. No, what bothers me about the implant is how goddamned insecure it is.”</i>");
+	processTime(10);
+	//[Next]
+	clearMenu();
+	addButton(0,"Next",emmyImplantTalk2);
+}
+
+public function emmyImplantTalk2():void
+{
+	clearOutput();
+	showEmmy();
+	output("You look at her curiously. <i>“What do you mean?”</i>");
+	output("\n\n<i>“I took a look at it with some of the imaging equipment I have for maintaining my collection, and it’s built from a generic neural link with off-the-shelf additions and an off-the-shelf connection frequency.”</i> She pulls her hand off her dick and brushes a sable lock out of her eyes. <i>“Anyone with medical encryption codes - or a stolen copy of the UGC-mandated backdoor software that leaked a few years back - could make adjustments to it. Turn it up, turn it down, or even send false sensory data if they really knew what they were doing.”</i>");
+	output("\n\nThat sounds... bad.");
+	output("\n\nEmmy nods in agreement with the look on your face. <i>“Yeah. I’m basically primed for some unscrupulous asshole to come up and skulljack me. Fortunately, it wasn’t hard to build a jammer for that frequency. The only time anyone is going to be making any adjustments to it is when I go back in for the study. I guess I could turn it down myself, but evidence of the tampering might turn up at the end of the study. I don’t have the money to even try to pay </i>that<i> penalty.”</i>");
+	output("\n\n<i>“");
+	if(pc.isNice()) output("You’ve thought of everything, haven’t you, Ems?");
+	else if(pc.isMischievous()) output("I'm kind of surprised you have enough blood left over to power your brain with your dick hard all the time.");
+	else output("You do pretty good for a slut, Ems.");
+	output("”</i>");
+	output("\n\nEmmy’s mouth spreads into a toothy smile. <i>“I try, when I’m not in the bathroom, humping my hands.”</i> She looks down at her dick, then starts idly stroking it, not enough to come anywhere near orgasm, but enough to fill her with pleasure. <i>“So, did you want to have some fun, or did you have more questions?”</i>");
+	emmyTalkMenu(emmyImplantFurtherDiscussion);
 }
 
 public function emmySexMenu():void
