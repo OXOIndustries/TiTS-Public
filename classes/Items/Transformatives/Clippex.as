@@ -71,7 +71,7 @@
 					// "Clippex Gel"
 					// v1: Timestamp!
 					// v2: Dosage counter
-					target.createStatusEffect("Clippex Gel", timerStamp, 1, 0, 0, false, "Pill", "Your nipples tingle by the gel you applied...", false, timerStamp);
+					target.createStatusEffect("Clippex Gel", timerStamp, 1, 0, 0, false, "Pill", "Your nipples tingle by the gel you applied...", false, timerStamp,0xB793C4);
 				}
 			}
 			//Not player!

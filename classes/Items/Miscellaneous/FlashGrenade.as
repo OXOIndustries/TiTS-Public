@@ -106,7 +106,7 @@ package classes.Items.Miscellaneous
 				else kGAMECLASS.output("\n<b>" + targetCreature.capitalA + targetCreature.short + " is blinded by");
 				kGAMECLASS.output(" the luminous flashes.</b>");
 				
-				targetCreature.createStatusEffect("Blinded", 2, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0);
+				targetCreature.createStatusEffect("Blinded", 2, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0,0xFF0000);
 			}
 			else
 			{
@@ -125,7 +125,7 @@ package classes.Items.Miscellaneous
 			if (!targetCreature.hasStatusEffect("Blinded"))
 			{
 				kGAMECLASS.output(" <b>The grenade explodes with a vibrant and overwhelming flash, the sheer magnitude of the effect almost knocking you to your [pc.ass]. You're seeing stars!</b>");
-				targetCreature.createStatusEffect("Blinded", 2, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0);
+				targetCreature.createStatusEffect("Blinded", 2, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0,0xFF0000);
 			}
 			else
 			{

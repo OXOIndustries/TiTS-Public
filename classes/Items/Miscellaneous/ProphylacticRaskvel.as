@@ -58,7 +58,7 @@
 			kGAMECLASS.clearOutput();
 			if(target is PlayerCharacter) {
 				kGAMECLASS.output("You take out the aerosol canister and spray yourself all over with it. It doesn’t smell of anything but wet solvent... but then, you aren’t a raskvel.");
-				if(!target.hasStatusEffect("Raskvel Prophylactic")) target.createStatusEffect("Raskvel Prophylactic", 0, 0, 0, 0, false, "Radio", "The spray currently effecting you will reduce encounters with raskvel.", false, 1200);
+				if(!target.hasStatusEffect("Raskvel Prophylactic")) target.createStatusEffect("Raskvel Prophylactic", 0, 0, 0, 0, false, "Icon_Perfume", "The spray currently effecting you will reduce encounters with raskvel.", false, 1200,0xB793C4);
 				else target.setStatusMinutes("Raskvel Prophylactic",1200);
 			}
 			else {

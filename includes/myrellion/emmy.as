@@ -35,13 +35,13 @@ public function showEmmy(nude:Boolean = false):void
 }
 public function applyCumSoaked(arg:Creature):void
 {
-	if(!arg.hasStatusEffect("Cum Soaked")) arg.createStatusEffect("Cum Soaked",1,0,0,0,false,"Iconbuns","You're drenched in cum! Anyone can tell at a glance what sort of activities you've been engaging in!");
+	if(!arg.hasStatusEffect("Cum Soaked")) arg.createStatusEffect("Cum Soaked",1,0,0,0,false,"Icon_Splatter","You're drenched in cum! Anyone can tell at a glance what sort of activities you've been engaging in!",false,0,0xB793C4);
 	else arg.addStatusValue("Cum Soaked",1,1);
 }
 
 public function applyPussyDrenched(arg:Creature):void
 {
-	if(!arg.hasStatusEffect("Pussy Drenched")) arg.createStatusEffect("Pussy Drenched",1,0,0,0,false,"Iconbuns","You're drenched in cum! Anyone can tell at a glance what sort of activities you've been engaging in!");
+	if(!arg.hasStatusEffect("Pussy Drenched")) arg.createStatusEffect("Pussy Drenched",1,0,0,0,false,"Icon_Water_Drop","You're drenched in cum! Anyone can tell at a glance what sort of activities you've been engaging in!",false,0,0xB793C4);
 	else arg.addStatusValue("Pussy Drenched",1,1);
 }
 
@@ -2578,7 +2578,7 @@ public function eatOutEmmysVagYouPoorPussyAddictedSod():void
 	showEmmy(true);
 	if(flags["EMMY_QUEST"] >= 6 && flags["EMMY_QUEST"] != undefined) 
 	{
-		output("\n\n<i>“Your poor pussy must be so sore after having that thick, hard toy stuffed inside </i>all<i> the time. Why not pop it out and let me give it some love,”</i> you purr, stalking forward.");
+		output("<i>“Your poor pussy must be so sore after having that thick, hard toy stuffed inside </i>all<i> the time. Why not pop it out and let me give it some love,”</i> you purr, stalking forward.");
 	}
 	else
 	{

@@ -160,7 +160,7 @@ package classes.Items.Miscellaneous
 					*/
 
 					pc.createStatusEffect("Treated",0,0,0,0,true,"","",false,0);
-					pc.createStatusEffect("The Treatment",0,0,0,0,false,"Charmed","You are currently under the effects of the Treatment. Who knows what havoc it will wreak upon your system.",false,10080);
+					pc.createStatusEffect("The Treatment",0,0,0,0,false,"Icon_Cow","You are currently under the effects of the Treatment. Who knows what havoc it will wreak upon your system.",false,10080,0xB793C4);
 					//Set values for chicks:
 					if(pc.hasVagina() && !pc.hasCock())
 					{

@@ -110,7 +110,7 @@
 					kGAMECLASS.output("You gulp down the Condensol, feeling the “patented techniques” get to work as [pc.eachCock] tingles. Upon checking you find that the dose has cut the size of your member");
 					if(pc.cockTotal() > 1) kGAMECLASS.output("s roughly in half from their usual size.");
 					else kGAMECLASS.output(" roughly half its usual size.");
-					pc.createStatusEffect("Condensol-A", 0, 0, 0, 0, false, "Icon_OffDown", "Any and all phalli are reduced in size by 50%.", false, 240);
+					pc.createStatusEffect("Condensol-A", 0, 0, 0, 0, false, "Icon_Penis", "Any and all phalli are reduced in size by 50%.", false, 240,0xB793C4);
 					for(x = 0; x < pc.cockTotal(); x++)
 					{
 						pc.cocks[x].cLengthRaw /= 2;
@@ -120,7 +120,7 @@
 				else if(pc.hasStatusEffect("Condensol-A") && !pc.hasStatusEffect("Condensol-B"))
 				{
 					kGAMECLASS.output("You’re big enough that you probably need a double dose. You gulp down a second Condensol, the tingle in [pc.eachCock] intensifying to just on the edge of uncomfortable. You can feel how you’re now a mere quarter of your usual length. Given how tight you’re feeling right now, taking another would probably be a bad idea.");
-					pc.createStatusEffect("Condensol-B", 0, 0, 0, 0, false, "Icon_OffDown", "Any and all phalli are reduced in size by 75%.", false, 240);
+					pc.createStatusEffect("Condensol-B", 0, 0, 0, 0, false, "Icon_Penis", "Any and all phalli are reduced in size by 75%.", false, 240,0xB793C4);
 					pc.removeStatusEffect("Condensol-A");
 					for(x = 0; x < pc.cockTotal(); x++)
 					{

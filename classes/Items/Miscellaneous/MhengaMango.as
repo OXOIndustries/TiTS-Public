@@ -68,8 +68,8 @@
 			// If no mango, give mango
 			if (!target.hasStatusEffect("The Mango"))
 			{
-				if (target is PlayerCharacter) target.createStatusEffect("The Mango", sexyBoost, 0, 0, 0, false, "Charmed", String("You are irresistible!\n\n(" + printPlusMinus(sexyBoost) + " sexiness)"), false, sexyHours);
-				else target.createStatusEffect("The Mango", sexyBoost, 0, 0, 0, false, "Charmed", String(target.capitalA + target.short + " is irresistible!\n\n(" + printPlusMinus(sexyBoost) + " sexiness)"), true, 0);
+				if (target is PlayerCharacter) target.createStatusEffect("The Mango", sexyBoost, 0, 0, 0, false, "Charmed", String("You are irresistible!\n\n(" + printPlusMinus(sexyBoost) + " sexiness)"), false, sexyHours,0xB793C4);
+				else target.createStatusEffect("The Mango", sexyBoost, 0, 0, 0, false, "Charmed", String(target.capitalA + target.short + " is irresistible!\n\n(" + printPlusMinus(sexyBoost) + " sexiness)"), true, 0,0xB793C4);
 			}
 			// If have mango, upgrade mango
 			else

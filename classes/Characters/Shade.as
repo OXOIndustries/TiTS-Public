@@ -331,7 +331,7 @@
 				
 				if (aim() / 2 + rand(20) + 1 >= target.physique() / 2 + 10 && !target.hasStatusEffect("Stunned")) 
 				{
-					target.createStatusEffect("Stunned",1,0,0,0,false,"Stun","Cannot act for a turn.",true,0);
+					target.createStatusEffect("Stunned",1,0,0,0,false,"Stun","Cannot act for a turn.",true,0,0xFF0000);
 					if (target is PlayerCharacter) output(" <b>You are stunned!</b>");
 					else output(" <b>Kara is stunned!</b>");
 				}
@@ -360,7 +360,7 @@
 			{
 				if (target is PlayerCharacter) output("Shade shoots your weapons away with well-placed shots!");
 				else output("Shade shoots Kara's weapon away with a well-placed shot!");
-				target.createStatusEffect("Disarmed",2,0,0,0,false,"Blocked","Cannot use normal melee or ranged attacks!",true,0);
+				target.createStatusEffect("Disarmed",2,0,0,0,false,"Blocked","Cannot use normal melee or ranged attacks!",true,0,0xFF0000);
 			}
 		}
 		

@@ -290,13 +290,13 @@ package classes.Characters
 				if (blindedPC && blindedKara)
 				{
 					output(", blinding you and Kara.");
-					pc.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0);
-					kara.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0);
+					pc.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0,0xFF0000);
+					kara.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0,0xFF0000);
 				}
 				else if (!blindedPC && blindedKara)
 				{
 					output(" and blinds Kara, though you manage to avoid any serious effect.");
-					kara.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0);
+					kara.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0,0xFF0000);
 				}
 				else
 				{
@@ -311,7 +311,7 @@ package classes.Characters
 				if (blindedPC)
 				{
 					output(" and blinds you.");
-					pc.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0);
+					pc.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0,0xFF0000);
 				}
 				else
 				{
@@ -337,7 +337,7 @@ package classes.Characters
 			{
 				if (target is PlayerCharacter) output(" <b>You are stunned!</b>");
 				else output(" <b>Kara is stunned!</b>");
-				target.createStatusEffect("Stunned", 2 + rand(2), 0, 0, 0, false, "Stun", "Cannot act for a while.", true, 0);
+				target.createStatusEffect("Stunned", 2 + rand(2), 0, 0, 0, false, "Stun", "Cannot act for a while.", true, 0,0xFF0000);
 			}
 		}
 		

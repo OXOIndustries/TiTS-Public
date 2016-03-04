@@ -61,7 +61,7 @@ package classes.Items.Transformatives
 					// "Lucifier Candy"
 					// v1: Timestamp!
 					// v2: Dose number
-					target.createStatusEffect("Lucifier Candy", timerStamp, 1, 0, 0, true, "Pill", "The the Lucifier’s candy sweetness linger on your tongue....", false, timerStamp);
+					target.createStatusEffect("Lucifier Candy", timerStamp, 1, 0, 0, true, "Pill", "The the Lucifier’s candy sweetness linger on your tongue....", false, timerStamp,0xB793C4);
 				}
 				
 				itemLucifierTF(kGAMECLASS.chars["PC"]);

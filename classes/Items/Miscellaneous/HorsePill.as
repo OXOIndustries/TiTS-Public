@@ -78,7 +78,7 @@
 				//Initial horsepill setup.
 				else
 				{
-					target.createStatusEffect("Horse Pill",720,1,0,0, false,"Pill", "You are under the effects of at least one horse pill. Flashes of heat and tingly sensations randomly run across your body as you're slowly transformed into a more equine shape.",false,720);
+					target.createStatusEffect("Horse Pill",720,1,0,0, false,"Icon_Horse", "You are under the effects of at least one horse pill. Flashes of heat and tingly sensations randomly run across your body as you're slowly transformed into a more equine shape.",false,720,0xB793C4);
 				}
 				
 			}

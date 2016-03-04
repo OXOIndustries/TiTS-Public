@@ -257,7 +257,7 @@ package classes.Characters
 				if (target.physique() + rand(25) + 1 < 35)
 				{
 					output(" The shock of it leaves " + (target is PlayerCharacter ? "you" : target.a + target.short) + " reeling -- <b>" + (target is PlayerCharacter ? "you're" : target.mfn("he's", "she's", "it's")) + " stunned!</b>");
-					target.createStatusEffect("Stunned", 3, 0, 0, 0, false, "Stun", "Cannot take action!", true, 0);
+					target.createStatusEffect("Stunned", 3, 0, 0, 0, false, "Stun", "Cannot take action!", true, 0,0xFF0000);
 				}
 			}
 			

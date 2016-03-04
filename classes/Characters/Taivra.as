@@ -353,7 +353,7 @@
 				if(physique()/2 + rand(20) + 1 > target.physique()/2 + 10 && !target.hasStatusEffect("Stunned"))
 				{
 					output(" <b>You are stunned!</b>");
-					target.createStatusEffect("Stunned",2,0,0,0,false,"Stun","You cannot act until you recover!",true,0);
+					target.createStatusEffect("Stunned",2,0,0,0,false,"Stun","You cannot act until you recover!",true,0,0xFF0000);
 				}
 			}
 			output(" A moment later and she’s dancing around you, slashing at you with the sharp end.");
@@ -420,7 +420,7 @@
 		private function pocketSandAttack(target:Creature):void
 		{
 			output("Taivra grabs a sack from her belt and hurls it at you, letting the thing tumble open in a cascade of fine grains of powdered rock. You’re smashed right in the face with a hail of sand! <b>You’re blinded!</b>");
-			target.createStatusEffect("Blinded",2+rand(3),0,0,0,false,"Blind","Accuracy is reduced, and ranged attacks are far more likely to miss.",true,0);
+			target.createStatusEffect("Blinded",2+rand(3),0,0,0,false,"Blind","Accuracy is reduced, and ranged attacks are far more likely to miss.",true,0,0xFF0000);
 		}
 		
 		private function taivraConstantLustReduction():void

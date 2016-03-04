@@ -58,7 +58,7 @@
 			kGAMECLASS.clearOutput();
 			if(target is PlayerCharacter) {
 				kGAMECLASS.output("You take out the aerosol canister and spray yourself all over with it. It doesn’t smell of anything but wet solvent... but then, you aren’t a lapinara.");
-				if(!target.hasStatusEffect("Lapinara Prophylactic")) target.createStatusEffect("Lapinara Prophylactic", 0, 0, 0, 0, false, "Radio", "The spray currently effecting you will reduce encounters with lapinara.", false, 1200);
+				if(!target.hasStatusEffect("Lapinara Prophylactic")) target.createStatusEffect("Lapinara Prophylactic", 0, 0, 0, 0, false, "Icon_Perfume", "The spray currently effecting you will reduce encounters with lapinara.", false, 1200,0xB793C4);
 				else target.setStatusMinutes("Lapinara Prophylactic",1200);
 			}
 			else {

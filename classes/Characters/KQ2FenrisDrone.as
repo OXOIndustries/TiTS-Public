@@ -193,7 +193,7 @@ package classes.Characters
 			{
 				output(" A spray of black oil shoots out of " + uniqueName + " and splatters across " + (target is PlayerCharacter ? "you" : target.a + target.short) +", blinding " + (target is PlayerCharacter ? "you" : target.mfn("him", "her", "it")) + ".");
 				
-				target.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0);
+				target.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0,0xFF0000);
 			}
 		}
 		

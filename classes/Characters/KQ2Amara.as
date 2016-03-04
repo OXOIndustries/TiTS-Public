@@ -360,7 +360,7 @@ package classes.Characters
 				
 				if (target.physique() / 2 + rand(20) + 1 < 35)
 				{
-					target.createStatusEffect("Stunned", 3, 0, 0, 0, false, "Stun", "Stunned and cannot act until recovered!", true, 0);
+					target.createStatusEffect("Stunned", 3, 0, 0, 0, false, "Stun", "Stunned and cannot act until recovered!", true, 0,0xFF0000);
 				}
 			}
 		}
