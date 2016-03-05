@@ -16,7 +16,7 @@ while (false !== ($entry = $d->read()))
 if (is_file($latest_filename))
 {
 	header($_SERVER["SERVER_PROTOCOL"] . " 200 OK");
-	header("Cache-Control: public");
+	header("Cache-Control: public, must-revalidate", true);
 	header("Content-Type: application/x-shockwave-flash", true);
 	header("Accept-Ranges: bytes", true);
 	header("Content-Length: " . filesize($latest_filename), true);
