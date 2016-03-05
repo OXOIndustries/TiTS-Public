@@ -1550,8 +1550,13 @@ public function kiroFucksYourCuntPartII(x:int = 0):void
 	if(pc.isBimbo()) output(" Yummy! If you didn’t have other stuff to do, you’d prop yourself up on your shoulders and let the rest drip into your mouth, but it’s better fresh anyway. Maybe you can suck her off next time. Yeah, that’d be awesome!");
 	else output("If you didn’t feel so wonderful, you’d probably give her a snarky remark. Instead, you let her feed you a sample of her cum. It’s about as salty as you’d expect, but somehow, it hits the spot.");
 	processTime(43);
+	pc.loadInCunt(kiro, x);
 	pc.orgasm();
+	kiro.orgasm();
+	pc.loadInCunt(kiro, x);
 	pc.orgasm();
+	kiro.orgasm();
+	pc.loadInCunt(kiro, x);
 	pc.orgasm();
 	kiro.orgasm();
 	clearMenu();

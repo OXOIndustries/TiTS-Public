@@ -28,11 +28,11 @@ if (is_file($latest_filename))
 		header($_SERVER["SERVER_PROTOCOL"] . " 200 OK");
 		header("Cache-Control: max-age=12096000, public", true);
 		header("Expires: " . gmdate("D, d M Y H:i:s \G\M\T", time() + (60 * 60)), true);
-		header("Content-Type: application/x-shockwave-flash", true);
+		header("Content-Type: application/octet-stream", true);
 		header("Accept-Ranges: bytes", true);
 		header("Content-Length: " . filesize($latest_filename), true);
 		header("Connection: keep-alive", true);
-		header("Content-Disposition: attachment; filename=$latest_filename");
+		header("Content-Disposition: attachment; filename=\"$latest_filename\"");
 		readfile($latest_filename);
 	}
 }
