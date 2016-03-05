@@ -65,14 +65,14 @@ public function showDeserter(gold:Boolean = false,nude:Boolean = false):void
 {
 	if(gold)
 	{
-		if(flags["KNOW_RED_MYR_NAME"] == undefined) showName("GOLD MYR\nDESERTER");
+		if(flags["KNOW_GOLD_MYR_NAME"] == undefined) showName("GOLD MYR\nDESERTER");
 		else showName("\nLYS");
 		if(nude) showBust("MYR_GOLD_FEMALE_DESERTER_NUDE");
 		else showBust("MYR_GOLD_FEMALE_DESERTER");
 	}
 	else
 	{
-		if(flags["KNOW_GOLD_MYR_NAME"] == undefined) showName("RED MYR\nDESERTER");
+		if(flags["KNOW_RED_MYR_NAME"] == undefined) showName("RED MYR\nDESERTER");
 		else showName("\nBRIHA");
 		if(nude) showBust("MYR_RED_FEMALE_DESERTER_NUDE");
 		else showBust("MYR_RED_FEMALE_DESERTER");
@@ -1049,6 +1049,7 @@ public function analRedButtStuffMcStuffinButts():void
 
 	myrDeserterEpilogueShitTracker();
 	processTime(15+rand(10));
+	postMyrCoitusPantyFapShit(false);
 	pc.orgasm();
 	if(inCombat()) CombatManager.genericVictory();
 	else
@@ -1225,6 +1226,7 @@ public function cumSplurgeForRedAntSloots():void
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
+	postMyrCoitusPantyFapShit(false);
 	output("\n\n");
 	if(inCombat()) CombatManager.genericVictory();
 	else
@@ -1408,6 +1410,7 @@ public function doggieStyleWithMyrBitches(gold:Boolean = false):void
 	knockUpRedBitchChance();
 
 	pc.orgasm();
+	postMyrCoitusPantyFapShit(gold);
 	if(inCombat()) CombatManager.genericVictory();
 	else
 	{
@@ -1435,6 +1438,9 @@ public function redDildoScrew():void
 	if(inCombat() && (pc.HP() <= 0 || pc.lust() >= pc.lustMax()))
 	{
 		loss = true;
+		clearOutput();
+		author("JimThermic");
+		showDeserter(false);
 		output("From her kitpack, ");
 		if(DontKnowName) output("the ");
 		output("[enemy.name]");
@@ -1690,6 +1696,7 @@ public function redDildoScrew():void
 	processTime(90+rand(10));
 	pc.orgasm();
 	pc.orgasm();
+	postMyrCoitusPantyFapShit(false);
 	if(inCombat()) 
 	{
 		if(!loss) CombatManager.genericVictory();
@@ -1926,6 +1933,7 @@ public function sitAndScrewGoldMyr():void
 	myrDeserterEpilogueShitTracker();
 	processTime(33);
 	pc.orgasm();
+	if(!combatLoss) postMyrCoitusPantyFapShit(true);
 	if(combatLoss) CombatManager.genericLoss();
 	else if(inCombat()) CombatManager.genericVictory();
 	else
@@ -1992,4 +2000,98 @@ public function myrDeserterEpilogueShitTracker():void
 			}
 		}
 	}
+}
+
+public function postMyrCoitusPantyFapShit(forceGold:Boolean = false):void
+{
+	if(forceGold) 
+	{
+		if(flags["KNOW_GOLD_MYR_NAME"] != undefined && flags["LYS_PANTY_OFFER"] == undefined) eventQueue.push(lysPantyCollect);
+	}
+	else 
+	{
+		if(flags["KNOW_RED_MYR_NAME"] != undefined && flags["BRIHA_PANTY_OFFER"] == undefined) eventQueue.push(brihaPantyCollect);
+	}
+}
+
+//Briha / Red Myr Deserter
+// If PC is having sex with her and they know Briha's name, this scene occurs directly after a sex scene. One time event.
+public function brihaPantyCollect():void
+{
+	clearOutput();
+	showName("\nPANTIES");
+	author("ASpoopyGhost");
+	flags["BRIHA_PANTY_OFFER"] = 1;
+	output("Hang on a second.... You look down on the ground and notice there’s a piece of fabric on the ground. Leaning down and picking it up, you realise they’re Briha’s panties. Did she leave them behind? They’re pretty standard issue for a military girl; camo t-backs, with a notably wet crotch.");
+
+	//[Take] [Leave]
+	clearMenu();
+	addButton(0,"Take",takeBrihasPanties,undefined,"Take","Pick those panties up and keep 'em - they're spoils of war!");
+	addButton(1,"Don't",dontTakeBrihasPanties,undefined,"Don't","Leave them where they are. Gross.");
+}
+
+//Take
+public function takeBrihasPanties():void
+{
+	clearOutput();
+	showName("\nPANTIES");
+	author("ASpoopyGhost");
+	output("You pocket Briha’s panties. Either the female soldier forgot, left them as a gift, or really doesn’t mind just walking around commando.");
+	output("\n\n<b>You have obtained Briha’s panties!</b>");
+	pc.createKeyItem("Panties - Briha's - Nylon, camo-print T-back panties.");
+	processTime(1);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Leave
+public function dontTakeBrihasPanties():void
+{
+	clearOutput();
+	showName("\nPANTIES");
+	author("ASpoopyGhost");
+	output("You leave Briha’s panties alone, deciding not to take them.");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//("Panties - Lys's - Sheer black panties.")
+//Lys / Gold Myr Deserter
+// If PC is having sex with her and they know Lys's name, this scene occurs directly after a sex scene. One time event.
+public function lysPantyCollect():void
+{
+	clearOutput();
+	author("ASpoopyGhost");
+	showName("\nPANTIES");
+	flags["LYS_PANTY_OFFER"] = 1;
+	output("Hang on a second. You look down on the ground and notice there’s a piece of fabric on the ground. Leaning down and picking it up, you realise they’re Lys’s panties. Did she leave them behind? The black sheer panties are rather alluring and definitely not military issue. You notice they’ve got a noticeably wet crotch.");
+	//[Take] [Leave]
+	clearMenu();
+	addButton(0,"Take",takeLysPanties,undefined,"Take","Pick those panties up and keep 'em - they're spoils of war!");
+	addButton(1,"Don't",dontTakeLysPanties,undefined,"Don't","Leave them where they are. Gross.");
+}
+
+public function takeLysPanties():void
+{
+	clearOutput();
+	showName("\nPANTIES");
+	author("ASpoopyGhost");
+	output("You pocket Lys’s panties. Either the female soldier forgot, left them as a gift, or really doesn’t mind just walking around commando.");
+	output("\n\n<b>You have obtained Lys’s panties!</b>");
+	// Scene End.
+	pc.createKeyItem("Panties - Lys's - Sheer black panties.");
+	processTime(1);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Leave
+public function dontTakeLysPanties():void
+{
+	clearOutput();
+	author("ASpoopyGhost");
+	showName("\nPANTIES");
+	output("You leave Lys’s panties alone, deciding not to take them.");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }

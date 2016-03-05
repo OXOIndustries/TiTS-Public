@@ -2608,62 +2608,6 @@ public function futaPantiesFapInPussy(waifu:String = ""):void
 	addButton(0,"Next",mainGameMenu);
 }
 
-
-/*
-
-Briha / Red Myr Deserter
-
-// If PC is having sex with her and they know Briha's name, this scene occurs directly after a sex scene. One time event.
-
-
-... Hang on a second. You look down on the ground and notice there's a piece of fabric on the ground. Leaning down and picking it up, you realise they're Briha's panties. Did she leave them behind? They're pretty standard issue for a military girl; camo t-backs, with a notably wet crotch. 
-
-[Take] [Leave]
-
-
-Take
-
-You pocket Briha's panties. Either the female soldier forgot, left them as a gift, or really doesn't mind just walking around commando.
-
-<b>You have obtained Briha's panties!</b>
-
-// Scene End.
-
-
-Leave
-
-You leave Briha's panties alone, deciding not to take them.
-
-// Scene end.
-
-
-Lys / Gold Myr Deserter
-
-// If PC is having sex with her and they know Lys's name, this scene occurs directly after a sex scene. One time event.
-
-
-... Hang on a second. You look down on the ground and notice there's a piece of fabric on the ground. Leaning down and picking it up, you realise they're Lys's panties. Did she leave them behind? The black sheer panties are rather alluring and definitely not military issue. You notice they've got a noticeably wet crotch.
-
-[Take] [Leave]
-
-
-Take
-
-You pocket Lys's panties. Either the female soldier forgot, left them as a gift, or really doesn't mind just walking around commando.
-
-<b>You have obtained Lys's panties!</b>
-
-// Scene End.
-
-
-Leave
-
-You leave Lys's panties alone, deciding not to take them.
-
-// Scene end.
-
-*/
-
 //Panties: Cock Faps
 // PC must have a cock
 public function jackOffWithLadyPantiesYouSicko(waifu:String):void
