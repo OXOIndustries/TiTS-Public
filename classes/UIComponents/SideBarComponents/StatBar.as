@@ -48,7 +48,7 @@ package classes.UIComponents.SideBarComponents
 		{
 			_capBack.text = v;
 			_capFront.text = v;
-			if (Accessibility.active) accessibilityProperties.name = v;
+			//if (Accessibility.active) accessibilityProperties.name = v;
 		}
 		
 		public function get caption():String
