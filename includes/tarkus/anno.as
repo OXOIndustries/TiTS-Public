@@ -3605,7 +3605,7 @@ public function annoxKaedeFuckThem(inShop:Boolean = true):void
 	output(". She groans, legs and tail twitching as she adjusts to your girth inside her, stretching her out nice and wide. <i>“Good girl,”</i> Anno coos, planting a proud little kiss on the swell of Kaede’s balls, stifling a moan of her own as her lover’s attention returns to her oral pleasures. You grin as you see Anno’s tail instinctively rise, making way for Kaede’s probing tongue to dig deep into her. ");
 	
 	output("\n\nFor your part, you let yourself rest inside the halfbreed for a long moment, trying to catch your breath before you slowly start to withdraw. You give her a few tentative thrusts after that, nice and slow... but you can’t settle for that much longer. Anno gives you an approving nod as your pace increases, steadily gaining speed and power with every");
-	if (pc.biggestCockLength() <= 10)
+	if (pc.biggestCockLength() <= 12)
 	{
 		if (pc.balls > 0) output(" balls-deep");
 		else output(" hilting");
