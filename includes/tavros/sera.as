@@ -906,8 +906,9 @@ public function catchEverythingInYoButtBySavinForSeraDogcock():void {
 		output("\n\n<i>\"Mmm, I'll let you in on a secret, meat: the trick to a dick-girl's heart is riiiiight there,\"</i>  she moans, slapping your ass as your cock brushes up against something bulbous inside her.");
 	}
 	output("\n\nSuddenly, you feel a flood of warm wetness inside you. You cry out in pleasure as your ass");
-	if(pc.hasVagina()) output(" and cooch");
-	output(" are bombarded with an unannounced orgasm, signaled only by the suddenly frantic pounding of Sera into your ass, her breath heavy and hot on your back. You take it like a champ, barely buckling under her vigorous thrusts as she fills you with her demonic seed");
+	if(pc.hasVagina()) output(" and cooch are");
+	else output(" is");
+	output(" bombarded with an unannounced orgasm, signaled only by the suddenly frantic pounding of Sera into your ass, her breath heavy and hot on your back. You take it like a champ, barely buckling under her vigorous thrusts as she fills you with her demonic seed");
 	if(pc.hasCockTail()) output(", and even giving it right back to her, thrusting your tail-cock into her ass until you join her in orgasm, the flood of hot cum on your prostate finally throwing you over the edge. You shoot your load deep up the demon's ass, locking you into a cycle of ass-fucking and cumming until you're both exhausted and panting and desperate for more");
 	output(". Grabbing your ass, Sera finally manages to drag herself out of you, spunk drooling from your abused hole");
 	if(pc.hasVagina()) output("s");
