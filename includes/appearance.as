@@ -2358,7 +2358,7 @@ public function vaginaBonusForAppearance(forTarget:Creature = null, x:int = 0, e
 	}
 	//Nyrean flavor
 	else if(target.vaginas[x].type == GLOBAL.TYPE_NYREA) {
-		if(!eachOne) output2(" The nyrean “pussy” is very soft, warm and puffy. Its interior would is with your [target.girlCum], ready to rear any eggs you might have the (mis)fortune of fertilizing.");
+		if(!eachOne) output2(" The nyrean “pussy” is very soft, warm and puffy. Its interior is coated with your [target.girlCum], ready to rear any eggs you might have the (mis)fortune of fertilizing.");
 		else output2("\nEach of your nyrean “pussies” are very soft, warm and puffy. The interior is coated with your [target.girlCum], ready to rear any eggs you might have the (mis)fortune of fertilizing.");
 	}
 	

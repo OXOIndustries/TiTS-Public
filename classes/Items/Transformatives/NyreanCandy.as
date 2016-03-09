@@ -186,7 +186,7 @@
 					{
 						if(target.hasHair())
 						{
-							output("\n\nYour scalp tingles for a brief second. You give an annoyed scoff and start picking at it. You find a random strand of black hair stuck to your fingers. Wait, your hair isn’t black! You stare at the Codex and appraise your <b>new head of [pc.hairLength] black hair!</b> You note that your hair feels pretty spiny. Must be the biology of nyrean hair...");
+							output("\n\nYour scalp tingles for a brief second. You give an annoyed scoff and start picking at it. You find a random strand of black hair stuck to your fingers. Wait, your hair isn’t black! You stare at the Codex and appraise your <b>new head of black hair!</b> You note that your hair feels pretty spiny. Must be the biology of nyrean hair...");
 						}
 						else
 						{
