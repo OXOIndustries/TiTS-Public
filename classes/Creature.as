@@ -1939,6 +1939,15 @@
 				case "cumColor":
 					buffer = cumColor();
 					break;
+				case "cumGem":
+					buffer = cumGem();
+					break;
+				case "girlCumGem":
+					buffer = girlCumGem();
+					break;
+				case "milkGem":
+					buffer = milkGem();
+					break;
 				case "girlCumColor":
 					buffer = girlCumColor();
 					break;
@@ -11705,6 +11714,50 @@
 			else collection = ["ERROR, INVALID FLUID TYPE."];
 			
 			return RandomInCollection(collection);
+		}
+		public function cumGem():String
+		{
+			return fluidGem(cumType);
+		}
+		public function milkGem():String
+		{
+			return fluidGem(milkType);
+		}
+		public function girlCumGem():String
+		{
+			return fluidGem(girlCumType);
+		}
+
+		public function fluidGem(arg:int):String
+		{
+			var fColor:String = fluidColorSimple(arg);
+			switch(fColor)
+			{
+				case "white":
+					return RandomInCollection("pearl","opal");
+				case "pink":
+					return "rose quartz";
+				case "red":
+					return RandomInCollection("Ruby","garnet");
+				case "orange":
+				case "yellow":
+					return RandomInCollection("amber","citrine","topaz");
+				case "green":
+					return RandomInCollection("emerald","jade");
+				case "blue":
+					return RandomInCollection("aquamarine","sapphire");
+				case "purple":
+					return RandomInCollection("amethyst");
+				case "transparent":
+					return RandomInCollection("crystal","diamond");
+				case "brown":
+					return RandomInCollection("citrine");
+				case "silver":
+				case "gray":
+					return RandomInCollection("silver");
+				default:
+					return RandomInCollection("pearl");		
+			}
 		}
 		public function fluidColorSimple(arg: int):String
 		{
