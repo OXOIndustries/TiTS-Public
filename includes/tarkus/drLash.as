@@ -376,6 +376,13 @@ public function lashTreatment2(treatment:String):void
 		}
 		//Flat chestiness.
 		pc.breastRows[0].breastRatingRaw = 0;
+		//Stop milkshit
+		pc.breastRows[0].breastRatingLactationMod = 0;
+		pc.milkFullness = 0;
+		pc.milkMultiplier = 0;
+		//Clear out honeypot bonuses	
+		pc.breastRows[0].breastRatingHoneypotMod = 0;
+
 		if(pc.breastRows[0].nippleType != GLOBAL.NIPPLE_TYPE_FLAT) pc.breastRows[0].nippleType = GLOBAL.NIPPLE_TYPE_NORMAL;
 		pc.nippleLengthRatio = 1;
 		pc.nippleWidthRatio = 1;

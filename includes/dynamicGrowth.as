@@ -655,8 +655,9 @@ public function lactationUpdateHourTick():void
 			eventBuffer += " The swelling from your over-filled [pc.fullChest] goes down as well, leaving you with [pc.breastCupSize]s.";
 			pc.milkFullness = 75;
 		}
-
 	}
+	//Clean up boob size stuff
+	pc.setBoobSwelling();
 }
 
 //Milk Multiplier crosses a 10 point threshold from raising
