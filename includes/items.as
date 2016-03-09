@@ -263,6 +263,11 @@ public function shop(keeper:Creature):void {
 		mainGameMenu();
 		return;
 	}
+	else if(keeper is VKo)
+	{
+		approachVKo();
+		return;
+	}
 	clearOutput();
 	output(keeper.keeperGreeting);
 	shopkeep = keeper;
