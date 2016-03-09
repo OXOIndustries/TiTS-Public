@@ -231,8 +231,8 @@ public function emmyFirstTimeApproach():void
 	if(isMyrellionMorph(pc))
 	{
 		output("\n\n<i>“I’m sorry, but we’re not licensed to distribute weapons to state militaries, and due to the present conflict, any weapon distributed to a [pc.race] would undoubtedly find its way into military use.”</i> The jackaless sighs, dragging her fingers through her lush, black hair. <i>“Look, between you and me, I’d love to give you all the guns and shields you can carry, but rules are rules. There’s a lot I can get away with, but that would cost my job. Understand?”</i> She looks at you condescendingly, an eyebrow raised as if she expects you not to.");
-		output("\n\n<i>“But... I’m not a myr,”</i> you try to explain.");
-		output("\n\n<i>“Right,”</i> the buxom vendor growls, <i>“You just look exactly like one and are trying to buy advanced, core wares from the one shop on Myrrellion that sells them.”</i> One of her upraised ears flicks in annoyance. <i>“Look, even if Xenogen had finished myr transformatives, they wouldn’t be on the market for a year or two still. Save us both some time and leave.”</i>");
+		output("\n\n<i>“But... I’m not a " + pc.race() + ",”</i> you try to explain.");
+		output("\n\n<i>“Right,”</i> the buxom vendor growls, <i>“You just look exactly like one and are trying to buy advanced, core wares from the one shop on Myrrellion that sells them.”</i> One of her upraised ears flicks in annoyance. <i>“Look, even if Xenogen had finished transformatives for the natives here, they wouldn’t be on the market for a year or two still. Save us both some time and leave.”</i>");
 		processTime(2);
 		clearMenu();
 		//[Codex Proof]
@@ -331,7 +331,7 @@ public function emmyRepeatWrapper():void
 		emmyGotHarnessReaction();
 		return;
 	}
-	if(isMyrellionMorph(pc))
+	if(isMyrellionMorph(pc) && (flags["EMMY_QUEST"] < 3 || flags["EMMY_QUEST"] == undefined))
 	{
 		emmyFirstTimeApproach();
 		return;
