@@ -2021,7 +2021,7 @@ public function vanaeHuntressPCDefeatTitfux():void
 
 	output("\n\nWith a violent, shuddering eruption, your [pc.cumNoun] fires up in thick, gooey ropes, splattering the alien huntress right on her face. You cry out as [pc.cumColor] ropes streak up as if fired from a [pc.cock] shaped volcano, falling back down to coat her ample teats in your jism. She lets out a low moan of pleasure, continuing to milk [pc.eachCock] as you spasmically spurt all over her snow white skin.");
 
-	output("\n\nOnce you are done, she pulls back and licks the underside of [pc.onecock], making your whole body tremble with joy. It seems she's not quite finished with you yet, lubing you back up and taking you back into her breast flesh. You relax back, giving yourself over to pleasure...");
+	output("\n\nOnce you are done, she pulls back and licks the underside of [pc.oneCock], making your whole body tremble with joy. It seems she's not quite finished with you yet, lubing you back up and taking you back into her breast flesh. You relax back, giving yourself over to pleasure...");
 
 	output("\n\n... An hour later ...");
 
