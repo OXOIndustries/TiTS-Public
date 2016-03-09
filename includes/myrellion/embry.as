@@ -523,7 +523,7 @@ public function embryMenu():void
 			if(pc.lust() >= 33) addButton(5,"Sex",embrySexMenu,undefined,"Sex","Have a sexual encounter with her.");
 			else addDisabledButton(5,"Sex","Sex","You aren't aroused enough for a sex act.");
 		}
-		if(!pc.hasKeyItem("Panties - Embry's - Plain, girly pink panties with little hearts.") && flags["EMBRY_TREATMENTS"] == 3 && flags["EMBRY_RELATIONSHIP"] == 3) addButton(6,"Get Panties",embryPanties,undefined,"Get Panties","Try and get a pair of [Embry.name]'s panties. For reasons.");
+		if(!pc.hasKeyItem("Panties - Embry's - Plain, girly pink panties with little hearts.") && flags["EMBRY_TREATMENTS"] == 3 && flags["EMBRY_RELATIONSHIP"] == 3) addButton(6,"Get Panties",embryPanties,undefined,"Get Panties","Try and get a pair of [embry.name]'s panties. For reasons.");
 	}
 	//[Sex]
 	addButton(14,"Leave",mainGameMenu);
