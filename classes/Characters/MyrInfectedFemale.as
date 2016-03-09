@@ -199,8 +199,9 @@
 			this.vaginas[0].loosenessRaw = 3;
 			
 			credits = rand(200);
-			if (rand(20) == 0) inventory.push(new Kirkite());
+			if (rand(40) == 0) inventory.push(new Kirkite());
 			else if(rand(20) == 0) inventory.push(new Satyrite());
+			else if (rand(20) == 0) inventory.push(new Picardine());
 			else if(rand(2) == 0) inventory.push(new RedMyrVenom());		
 			sexualPreferences.setRandomPrefs(4 + rand(3),1);
 			sexualPreferences.setPref(GLOBAL.SEXPREF_FEMININE,	GLOBAL.REALLY_LIKES_SEXPREF);
