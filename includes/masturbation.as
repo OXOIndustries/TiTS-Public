@@ -2304,7 +2304,7 @@ public function futaBabePantyfapsRouter():void
 	else
 	{
 		clearOutput();
-		output("You've collected " + pantyFapCount() + " of 4 possible pairs of ladies' underwear. Which will you use?");
+		output("You've collected " + pantyFapCount() + " of 10 possible pairs of ladies' underwear. Which will you use?");
 		clearMenu();
 		var button:int = 0;
 		if(pc.hasKeyItem("Panties - Emmy's - Silky, purple, and cum-stained."))
