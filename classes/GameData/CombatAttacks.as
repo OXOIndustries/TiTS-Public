@@ -408,6 +408,7 @@ package classes.GameData
 			ConcussiveShot.EnergyCost = 25;
 			ConcussiveShot.IsRangedBased = true;
 			ConcussiveShot.RequiresItemFlags = [GLOBAL.ITEM_FLAG_BOW_WEAPON];
+			ConcussiveShot.RequiresPerk = "Concussive Shot";
 			ConcussiveShot.ExtendedDisplayabilityCheck = function():Boolean {
 				return kGAMECLASS.pc.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_BOW_WEAPON);
 			}
