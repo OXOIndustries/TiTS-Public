@@ -806,6 +806,8 @@ public function swallowDatZilCockCauseJooLost():void {
 	output("\n\nYour master has you lick him clean before he buzzes off into the trees, leaving his sensuous taste to remember him by. You sit there, staring at nothing for perhaps thirty minutes. Then, as the effect he had on you evaporates, you realize just how fucking horny you are! You vigorously masturbate for the next two hours before finally sating yourself and passing out.\n\n");
 	//{Blah blah, combat texts.}
 	pc.loadInMouth(chars["ZIL"]);
+	processTime(40);
+	pc.orgasm();
 	CombatManager.genericLoss();
 }
 
