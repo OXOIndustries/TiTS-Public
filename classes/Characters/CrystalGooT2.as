@@ -52,7 +52,7 @@ package classes.Characters
 			this.a = "the ";
 			this.capitalA = "The ";
 			this.long = "";
-			this.customDodge = "The goo's liquid flexibility allows her to handily avoid your attack.";
+			this.customDodge = "The goo's liquid flexibility allows [pc.himHerIt] to handily avoid your attack.";
 			this.customBlock = "The goo's liquidity absorbs a great deal of punishment - without taking damage.";
 			this.isPlural = false;
 			

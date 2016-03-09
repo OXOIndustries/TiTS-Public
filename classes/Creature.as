@@ -1,4 +1,4 @@
-package classes {
+﻿package classes {
 	import classes.Characters.PlayerCharacter;
 	import classes.Characters.PregnancyPlaceholder;
 	import classes.Characters.Emmy;
@@ -2070,6 +2070,9 @@ package classes {
 				case "himHer":
 				case "em":
 					buffer = mf("him", "her");
+					break;
+				case "himHerIt":
+					buffer = mfn("him","her","it");
 					break;
 				case "his":
 				case "hisHer":
