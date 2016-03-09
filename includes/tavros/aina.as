@@ -113,6 +113,7 @@ public function approachAinaOnTheWalkway():void
 	output("\n\nWhat do you do?");
 	
 	processTime(2);
+	pc.lust(10);
 	
 	clearMenu();
 	addButton(0, "Help Her", helpAina);
