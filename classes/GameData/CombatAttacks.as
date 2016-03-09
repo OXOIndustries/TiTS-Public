@@ -686,9 +686,10 @@ package classes.GameData
 				
 				for (i = 0; i < others.length; i++)
 				{
-					if (!others[i].isDefeated())
+					if (!others[i].isDefeated() && others[i] != target)
 					{
-						if (numHits > 0 || i != 0) output("\n");
+						//if (numHits > 0 || i != 0) output("\n");
+						output("\n");
 						if (SingleMeleeAttackImpl(attacker, others[i], false)) numHits++;
 					}
 				}
