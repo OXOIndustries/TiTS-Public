@@ -869,7 +869,12 @@ public function vanaeMaidenCunnilingus():void
 	output("\n\nYou are surprised when your tongue breaches her to find hundreds of little feelers suddenly tickling your tongue tip, the insides of her [enemy.pussy] clearly more alien than the outside. At first it feels odd, but you quickly grow used to it. Continuing to lap out her insides, you are soon rewarded with a flood of her heavenly girl juice gushing onto your tongue.");
 
 	output("\n\nMoaning and lapping up her cunny juice,");
-	if (pc.hasCock()) output(" your [pc.cocks] feel painfully stiff, as if you're going to blow your load all over the ground without a single caress");
+	if (pc.hasCock()) 
+	{
+		output(" your [pc.cocks] feel");
+		if(pc.cockTotal() == 1) output("s");
+		output(" painfully stiff, as if you're going to blow your load all over the ground without a single caress");
+	}
 	else output(" your own thighs tremble and squeeze together. You're pretty sure you're going to cream yourself without a single caress - you're just that turned on by eating out the dainty huntress and tasting her sweet girl juice");
 	output(". Your hands wrap around and grab [enemy.butt], squeezing it firmly.");
 
