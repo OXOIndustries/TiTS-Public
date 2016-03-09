@@ -1650,6 +1650,9 @@ package classes.GameData
 			
 			if ((InCollection(pc.milkType, GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK, GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK) && pc.isLactating()) || (pc.isMilkTank() && pc.canMilkSquirt())) addButton(4, "Milk Squirt", teaseSquirt, target, "Milk Squirt", "Spray the enemy with your [pc.milk], arousing them.");
 			else if (InCollection(pc.milkType, GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK, GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK) || pc.isMilkTank()) addDisabledButton(4, "Milk Squirt", "Milk Squirt", "You do not currently have enough [pc.milkNoun] available to squirt any.");
+			//Reqs: PC has an aphrodisiac-laced cock big enough to slap
+			if(pc.biggestCockLength() >= 12 && pc.hasCockFlag(GLOBAL.FLAG_APHRODISIAC_LACED, pc.biggestCockIndex())) addButton(5,"Dick Slap",dickslap,undefined,"Dick Slap","Slap the enemy with your aphrodisiac-coated dick.");
+
 			addButton(14, "Back", generateCombatMenu, undefined, "Back", "Back out. Recommended if you haven’t yet used “Sense” to determine your foe’s likes and dislikes. Remember you can pull up your appearance screen in combat or use the scene buffer buttons in the lower left corner to compare yourself to your foe’s preferences!");
 		}
 		
@@ -2069,7 +2072,6 @@ package classes.GameData
 				output(".");
 			}
 		}
-
 		private function teaseCrotch(target:Creature):void
 		{
 			var teaseCount:Number = 0;
@@ -2118,31 +2120,60 @@ package classes.GameData
 			{
 				(target as CrystalGooT2).SpecialAction( { isTease: true } );
 			}
-			//Reqs: PC has an aphrodisiac-laced cock big enough to slap
-			else if(pc.biggestCockLength() >= 12 && pc.hasCockFlag(GLOBAL.FLAG_APHRODISIAC_LACED, pc.biggestCockIndex()) && rand(5) == 0)
+			processCombat();
+		}
+		//Reqs: PC has an aphrodisiac-laced cock big enough to slap
+		//if(pc.biggestCockLength() >= 12 && pc.hasCockFlag(GLOBAL.FLAG_APHRODISIAC_LACED, pc.biggestCockIndex()) && rand(5) == 0)
+		private function dickslap(target:Creature):void
+		{
+			var teaseCount:Number = 0;
+			var likeAdjustments:Array = new Array();
+			
+			//Get tease count updated
+			if(flags["TIMES_CROTCH_TEASED"] == undefined) flags["TIMES_CROTCH_TEASED"] = 0;
+			teaseCount = flags["TIMES_CROTCH_TEASED"];
+			if(teaseCount > 100) teaseCount = 100;
+			
+			if(pc.hasCock() && target.sexualPreferences.getPref(GLOBAL.SEXPREF_COCKS) > 0)
+				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_COCKS);
+			if(pc.balls > 0 && target.sexualPreferences.getPref(GLOBAL.SEXPREF_BALLS) > 0) 
+				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_BALLS);
+			if(pc.hasCock() && pc.longestCockLength() >= 12 && target.sexualPreferences.getPref(GLOBAL.SEXPREF_BIG_MALEBITS) > 0) 
+				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_BIG_MALEBITS);
+			if(pc.hasCock() && pc.shortestCockLength() < 7 && target.sexualPreferences.getPref(GLOBAL.SEXPREF_SMALL_MALEBITS) > 0) 
+				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_SMALL_MALEBITS);
+			if((pc.cockTotal() > 1 || pc.vaginaTotal() > 1) && target.sexualPreferences.getPref(GLOBAL.SEXPREF_MULTIPLES) > 0) 
+				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_MULTIPLES);
+			if((pc.hasCock() || pc.longestCockLength() >= 18) && target.sexualPreferences.getPref(GLOBAL.SEXPREF_HYPER) > 0) 
+				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_HYPER);
+			if (pc.hasCock() && pc.hasVagina() && target.sexualPreferences.getPref(GLOBAL.SEXPREF_HERMAPHRODITE) > 0)
+				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_HERMAPHRODITE);
+			
+			clearOutput();
+			if(target.isPlural) output("Smiling coyly, you run up to your opponents and knock them down. Before they can react, you");
+			else output("Smiling coyly, you run up to your opponent and knock " + target.mfn("him","her","it") + " down. Before " + target.mfn("he","she","it") + " can react, you");
+			if(!pc.isCrotchExposed())
 			{
-				if(target.isPlural) output("Smiling coyly, you run up to your opponent and knock them down. Before they can react, you");
-				else output("Smiling coyly, you run up to your opponent and knock " + target.mfn("him","her","it") + " down. Before " + target.mfn("he","she","it") + " can react, you");
-				if(!pc.isCrotchExposed())
-				{
-					output(" wrestle your cock out of your");
-					if(pc.hasArmor() && !pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)) output(" armor");
-					else output(" clothes");
-				}
-				else output(" grab your dick");
-				if(target.isPlural) output(" and use it to slap them across the face a few times. You make sure that some of your aphrodisiac dick oil is smeared on their face before jumping back to a safe distance.");
-				else output(" and use it to slap " + target.mfn("him","her","it") + " across the face a few times. You make sure that some of your aphrodisiac dick oil is smeared on " + target.mfn("his","her","its") + " face before jumping back to a safe distance.");
-				
-				applyTeaseDamage(pc, target, teaseCount, "DICK SLAP", likeAdjustments);
+				output(" wrestle your cock out of your");
+				if(pc.hasArmor() && !pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)) output(" armor");
+				else output(" clothes");
 			}
-			else
+			else output(" grab your dick");
+			if(target.isPlural) output(" and use it to slap them across the face a few times. You make sure that some of your aphrodisiac dick oil is smeared on their face before jumping back to a safe distance.");
+			else output(" and use it to slap " + target.mfn("him","her","it") + " across the face a few times. You make sure that some of your aphrodisiac dick oil is smeared on " + target.mfn("his","her","its") + " face before jumping back to a safe distance.");
+			
+			applyTeaseDamage(pc, target, teaseCount, "DICK SLAP", likeAdjustments);
+				
+			if (target is CrystalGooT1 && (target as CrystalGooT1).ShouldIntercept({ isTease: true }))
 			{
-				crotchTeaseText(target);
-				applyTeaseDamage(pc, target, teaseCount, "CROTCH", likeAdjustments);
+				(target as CrystalGooT1).SneakSqueezeAttackReaction( { isTease: true } );
+			}
+			else if (target is CrystalGooT2 && (target as CrystalGooT2).ShouldIntercept( { isTease: true } ))
+			{
+				(target as CrystalGooT2).SpecialAction( { isTease: true } );
 			}
 			processCombat();
 		}
-		
 		private function crotchTeaseText(target:Creature):void 
 		{
 			var msg:String = "";
@@ -2763,6 +2794,7 @@ package classes.GameData
 		private function teaseSkillUp(teaseType:String):void
 		{
 			if (teaseType == "SQUIRT") teaseType = "CHEST";
+			else if(teaseType == "DICK SLAP") teaseType = "CROTCH";
 			flags["TIMES_" + teaseType + "_TEASED"]++; // the menu display handles wrapping this so w/e
 		}
 		
