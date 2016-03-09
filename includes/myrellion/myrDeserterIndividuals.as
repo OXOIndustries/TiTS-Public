@@ -896,8 +896,7 @@ public function handPlayForGoldWaifusInTraining():void
 	}
 
 	output("\n\n");
-	if(enemy.short != "Lys") output("The ");
-	output("[enemy.name] masterfully teases your loins, ");
+	output("[enemy.Name] masterfully teases your loins, ");
 	if(pc.hasCock()) 
 	{
 		output("stroking and cupping your [pc.cockNounSimple]");
@@ -1370,8 +1369,7 @@ public function doggieStyleWithMyrBitches(gold:Boolean = false):void
 	output(".");
 
 	output("\n\nCrawling on her wobbly knees, ");
-	if(DontKnowName) output("the ");
-	output("[enemy.name] turns around and grabs your sloppy [pc.cockNounSimple " + x + "]. Slowly and intimately, she licks it clean, not letting a single drop of your [pc.cumFlavor] [pc.cumNoun] go to waste.");
+	output("[enemy.Name] turns around and grabs your sloppy [pc.cockNounSimple " + x + "]. Slowly and intimately, she licks it clean, not letting a single drop of your [pc.cumFlavor] [pc.cumNoun] go to waste.");
 
 	//Red/Briha:
 	if(!gold) 

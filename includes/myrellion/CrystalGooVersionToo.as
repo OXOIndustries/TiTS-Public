@@ -734,7 +734,7 @@ public function crystalGooFreeformFucks():void
 			output(" The creature’s flesh offers no resistance, and you spear it on your [pc.cocksLight], [pc.eachCock] plowing its own custom cunt through the yielding plasm.");
 			if (pc.cocks.length == 1) output(" Your horny, stiff dick finds a home");
 			else if (pc.cocks.length == 2) output(" Both of your horny, stiff dicks find homes");
-			else output(" All"+ num2Text(pc.cocks.length) +" of your honry, stiff dicks find homes")
+			else output(" All "+ num2Text(pc.cocks.length) +" of your honry, stiff dicks find homes")
 			output(" in its body, streaming with precum as if the lube weren’t enough already.");
 		}
 		else

@@ -614,7 +614,7 @@ public function initializeMyrellionRooms():void
 	//722 Dawngate Square
 	rooms["722"] = new RoomClass(this);
 	rooms["722"].roomName = "DAWNGATE\nSQUARE";
-	rooms["722"].description = "An path of pure black intersects with Halcyon way, surrounded by a hexagon paved in gold-hued bricks. They don’t have the shining glamor of true gold, but the appearance is close enough to be magnificent all the same. Four mushrooms of immense size lie just beyond the edge of the ring, bathing it all in a brilliant, blue glow. A quartet of statues, each depicting a bare-breasted queen, stand in the center. They lactate thick streams of water into an incessantly bubbling fountain. The locals pay it no mind, but almost every rusher you spot spends a little time gawking.";
+	rooms["722"].description = "A path of pure black intersects with Halcyon way, surrounded by a hexagon paved in gold-hued bricks. They don’t have the shining glamor of true gold, but the appearance is close enough to be magnificent all the same. Four mushrooms of immense size lie just beyond the edge of the ring, bathing it all in a brilliant, blue glow. A quartet of statues, each depicting a bare-breasted queen, stand in the center. They lactate thick streams of water into an incessantly bubbling fountain. The locals pay it no mind, but almost every rusher you spot spends a little time gawking.";
 	rooms["722"].planet = "PLANET: MYRELLION";
 	rooms["722"].system = "SYSTEM: SINDATHU";
 	rooms["722"].northExit = "1J38";
@@ -644,7 +644,7 @@ public function initializeMyrellionRooms():void
 	//724 Halcyon Way
 	rooms["724"] = new RoomClass(this);
 	rooms["724"].roomName = "HALCYON\nWAY";
-	rooms["724"].description = "A rattle-trap vehicle trundles by, coughing more smoke than asthmatic chain-smoker. The crowd parts nervously before it, unused to cars at this point in their technological development. The roadway doesn’t even have sidewalks, designed only for foot traffic. There is a restaurant to the south, or what passes a restaurant here, anyway. Its signage is a statue of positively elephantine proportions. It’s a myr, but one whose breasts are wildly outsized. Behind it is an abdomen big enough to immobilize a greater creature.";
+	rooms["724"].description = "A rattle-trap vehicle trundles by, coughing more smoke than an asthmatic chain-smoker. The crowd parts nervously before it, unused to cars at this point in their technological development. The roadway doesn’t even have sidewalks, designed only for foot traffic. There is a restaurant to the south, or what passes a restaurant here, anyway. Its signage is a statue of positively elephantine proportions. It’s a myr, but one whose breasts are wildly outsized. Behind it is an abdomen big enough to immobilize a greater creature.";
 	rooms["724"].planet = "PLANET: MYRELLION";
 	rooms["724"].system = "SYSTEM: SINDATHU";
 	rooms["724"].eastExit = "723";
