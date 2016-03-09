@@ -3139,7 +3139,7 @@ public function suckGiannasRoboCockDuring69():void
 	}
 	output(" You feel a little bloated yourself. Patting your [pc.belly], you climb up onto your [pc.feet] and give Gianna an appreciative smile. That vibrating tongue of hers is really something!");
 	output("\n\nYou grab towels off the wall and hand one to Gianna. She ");
-	if(giannaPersonality() >= 70) output("smirks. <i>“If you didn’t cum quite so hard, I wouldn’t need to clean up, you know?”</i> She sticks out her tongue at you and lets it buzz for a moment. <i>“Not that you have any choice where this baby is concerned.");
+	if(giannaPersonality() >= 70) output("smirks. <i>“If you didn’t cum quite so hard, I wouldn’t need to clean up, you know?”</i> She sticks out her tongue at you and lets it buzz for a moment. <i>“Not that you have any choice where this baby is concerned.”</i>");
 	else if(giannaPersonality() >= 30) output("giggles. <i>“That was great! Sometime I should set an automated process that’ll keep my tongue out and vibrating while I cum. I bet you could ride one long orgasm for hours!”</i> She blushes, and did her cock just get a little thicker?");
 	else output("nods gratefully. <i>“Thank you. Serving someone again... is pleasing. Knowing that I’m making you cum so hard is the most wonderful feeling in the world.”</i> She shivers with remembered pleasure.");
 	output("\n\nShe holds the door for you once you gather your gear, and you walk back into the barn proper together. It swings closed, hiding the evidence of your tryst from casual inspection. Not that the locals would notice or care.");
@@ -4190,7 +4190,7 @@ public function getButtReamedByFutaGigi():void
 	if(flags["GIANNA_TEMP"] == 1) output("hot, mimicking the over-acting temperature of your robotic partner");
 	else if(flags["GIANNA_TEMP"] == -1) output("cold, almost frigid, just like the robotic beauty it's attached to");
 	else output("lifelike, in the same way Gianna herself is now that it's attached. If it weren't for the vaguely plastic-like texture you feel, not altogether unlike a dildo, you'd be sure you're dealing with a real [gianna.cock]");
-	output(". One of your hands caresses Gianna's twat, running through the well-lubed channel between her lips, and the wraps around the base of her prick.");
+	output(". One of your hands caresses Gianna's twat, running through the well-lubed channel between her lips, and then wraps around the base of her prick.");
 
 	output("\n\n\"<i>Oooh!</i>\" Gianna moans the moment you grab her shaft. \"<i>Oh, that's sensitive! ");
 	if(pc.hasCock()) output("I can see why you love that [pc.cock] of yours! It's nothing like getting my pussy played with....");
