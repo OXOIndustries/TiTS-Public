@@ -974,6 +974,7 @@ public function treatmentHourProcs():void
 			pc.legType = GLOBAL.TYPE_BOVINE;
 			pc.addLegFlag(GLOBAL.FLAG_DIGITIGRADE);
 			pc.addLegFlag(GLOBAL.FLAG_HOOVES);
+			pc.addLegFlag(GLOBAL.FLAG_FURRED);
 		}
 		//Clit Expanding
 		if(pc.totalClits() > 0 && pc.clitLength < .75 && (treatedHours == 113 || treatedHours == 127))
@@ -2397,6 +2398,7 @@ public function treatmentHourProcs():void
 			pc.legType = GLOBAL.TYPE_BOVINE;
 			pc.addLegFlag(GLOBAL.FLAG_DIGITIGRADE);
 			pc.addLegFlag(GLOBAL.FLAG_HOOVES);
+			pc.addLegFlag(GLOBAL.FLAG_FURRED);
 		}
 	}
 }
