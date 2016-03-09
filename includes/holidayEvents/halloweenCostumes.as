@@ -1,5 +1,6 @@
 ﻿public function isHalloweenish():Boolean
 {
+	return true;
 	//checkDate(day:int, month:int, dayRange:int)
 	return checkDate(29, 10, 3);
 }
@@ -157,29 +158,39 @@ public function leaveLikeABitch():void
 	processTime(44);
 	if(pc.hasTailCock() || pc.hasTailCunt())
 	{
-		pc.tailGenital = 0;
-		pc.tailGenitalArg = 0;
-		pc.tailGenitalColor = "";
+		if(pc.tailGenitalUnlocked(0)) pc.tailGenital = 0;
+		if(pc.tailGenitalArgUnlocked(0)) pc.tailGenitalArg = 0;
+		if(pc.tailGenitalColorUnlocked("null")) pc.tailGenitalColor = "";
 		flags["CUNT_TAIL_PREGNANT_TIMER"] = undefined;
 		flags["DAYS_SINCE_FED_CUNT_TAIL"] = undefined;
 	}
-	pc.tailCount = 1;
-	pc.tailType = GLOBAL.TYPE_DEMONIC;
-	pc.clearTailFlags();
-	pc.addTailFlag(GLOBAL.FLAG_PREHENSILE);
-	pc.addTailFlag(GLOBAL.FLAG_LONG);
-	if(pc.hairLength < 12) pc.hairLength = 12;
-	pc.hairColor = "pink";
-	pc.hairType = GLOBAL.HAIR_TYPE_REGULAR;
-	pc.removeHorns();
-	pc.horns = 2;
-	pc.hornLength = 2;
-	pc.hornType = GLOBAL.TYPE_DEMONIC;
-	pc.earLength = 2;
-	pc.earType = GLOBAL.TYPE_DEMONIC;
-	pc.eyeColor = "glowing amber";
-	pc.eyeType = GLOBAL.TYPE_DEMONIC;
-	pc.wingType = GLOBAL.TYPE_SMALLDEMONIC;
+	if(pc.tailCountUnlocked(1)) pc.tailCount = 1;
+	if(pc.tailTypeUnlocked(GLOBAL.TYPE_DEMONIC)) pc.tailType = GLOBAL.TYPE_DEMONIC;
+	if(pc.tailFlagsUnlocked([GLOBAL.FLAG_PREHENSILE,GLOBAL.FLAG_LONG]))
+	{
+		pc.clearTailFlags();
+		pc.addTailFlag(GLOBAL.FLAG_PREHENSILE);
+		pc.addTailFlag(GLOBAL.FLAG_LONG);
+	}
+	
+	if(pc.hairLength < 12 && pc.hairLengthUnlocked(12)) pc.hairLength = 12;
+	if(pc.hairColorUnlocked("pink")) pc.hairColor = "pink";
+	if(pc.hairTypeUnlocked(GLOBAL.HAIR_TYPE_REGULAR)) pc.hairType = GLOBAL.HAIR_TYPE_REGULAR;
+	if(pc.hornsUnlocked(2) && pc.hornTypeUnlocked(GLOBAL.TYPE_DEMONIC))
+	{
+		pc.removeHorns();
+		pc.horns = 2;
+		pc.hornLength = 2;
+		pc.hornType = GLOBAL.TYPE_DEMONIC;
+	}
+	if(pc.earTypeUnlocked(GLOBAL.TYPE_DEMONIC)) 
+	{
+		pc.earType = GLOBAL.TYPE_DEMONIC;
+		pc.earLength = 2;
+	}
+	if(pc.eyeColorUnlocked("glowing amber")) pc.eyeColor = "glowing amber";
+	if(pc.eyeTypeUnlocked(GLOBAL.TYPE_DEMONIC)) pc.eyeType = GLOBAL.TYPE_DEMONIC;
+	if(pc.wingTypeUnlocked(GLOBAL.TYPE_SMALLDEMONIC)) pc.wingType = GLOBAL.TYPE_SMALLDEMONIC;
 	flags["HOLIDAY_OWEEN_LEFT"] = 1;
 	halloweenShipMove();
 	clearMenu();

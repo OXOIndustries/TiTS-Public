@@ -815,7 +815,7 @@
 		}
 		
 		public var tailGenitalColor:String = "pink";
-		public function tailGenitalColorUnlocked(newTailGenitalColor:Number):Boolean
+		public function tailGenitalColorUnlocked(newTailGenitalColor:String):Boolean
 		{
 			return true;
 		}
