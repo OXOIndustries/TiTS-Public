@@ -16,6 +16,7 @@ public function kellyAttraction(modValue:int = 0):int
 {
 	if(flags["KELLY_ATTRACTION"] == undefined) flags["KELLY_ATTRACTION"] = 0;
 	flags["KELLY_ATTRACTION"] += modValue;
+	if(flags["KELLY_ATTRACTION"] >= 100) flags["KELLY_ATTRACTION"] = 100;
 	return flags["KELLY_ATTRACTION"];
 }
 
