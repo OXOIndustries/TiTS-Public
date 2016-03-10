@@ -155,6 +155,8 @@ public function configureMails():void
 
 	MailManager.addMailEntry("the_masque", "Hey, where are you? I thought we agreed to meet up for The Masque? I keep trying to call you, but you’re not answering, so this is my last try. Dude, this shit is wicked. I’m gonna be on the west side of Craven city, but you’ve only got a few days left, so get your ass over here!\n\nWet & Waiting", "The Masque", "Wet & Waiting", "Wet.N.Waiting@GalLink.org", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("syribooks", "Hey, Steele\n\nHere are some books to jump start your reading adventure:\n\n<i>Below is a link to a download archive with numerous books by various authors, most notably: Rondell Ramus, Capser van Beck and Imono Flaest.</i>\n\nEnjoy!\n-Syri", "Read More.", "Syri Dorna", "BlastMaster@GalLink.org", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("lets_fap_unlock",futaLetsPlayerIntroEmail,"You’re in to stuff like this, right?",letsFapUnlockFromName,letsFapUnlockFromEmail,quickPCTo,quickPCToAddress);
+	MailManager.addMailEntry("champeon_comfirmation",athaChampeonConfirmationEmail,"Thank You For Your Support!","Atha Peters","CockAddict001@CumStreamer.com",quickPCTo,quickPCToAddress);
 }
 
 public function cuzName():String

@@ -276,6 +276,15 @@ public function availableFaps(roundTwo:Boolean = false):Array
 		fap.func = cuffSelfRouter;
 		faps.push(fap);
 	}
+	if(MailManager.isEntryViewed("lets_fap_unlock"))
+	{
+		fap = new FapCommandContainer();
+		fap.text = "Smut";
+		fap.ttHeader = "Smut"
+		fap.ttBody = "You could go check out some smutty videos on the extranet.";
+		fap.func = smutFapMenu;
+		faps.push(fap);
+	}
 	return faps;
 }
 

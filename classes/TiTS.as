@@ -132,6 +132,7 @@
 		
 		// Misc Events
 		include "../includes/events/bimboPennyAndBadgerQuest/badgerGifts.as";
+		include "../includes/events/atha_lets_fapper.as";
 
 		//Tavros Station
 		include "../includes/tavros/aina.as";

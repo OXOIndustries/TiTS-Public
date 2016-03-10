@@ -1595,6 +1595,7 @@ public function processTime(arg:int):void {
 			hours++;
 
 			//Hours checks here!
+			letsFapUpdateCheck();
 			if(flags["SHEKKA_TALK_COOLDOWN"] != undefined)
 			{
 				if(flags["SHEKKA_TALK_COOLDOWN"] > 0) flags["SHEKKA_TALK_COOLDOWN"]--;
