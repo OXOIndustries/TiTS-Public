@@ -10362,7 +10362,8 @@
 					if (temp <= 4) vag += "gaped";
 					else if (temp <= 8) vag += "cavernous";
 					else if (temp <= 9) vag += "wide-open";
-					else vag += "ruined";
+					else if (vaginas[vaginaNum].minLooseness > 4) vag += "ruined";
+					else vag += "yawning";
 				}
 				descripted++;
 			}
@@ -12470,6 +12471,9 @@
 		}
 		public function cumflationHappens(cumFrom:Creature, hole:Number):void
 		{
+			// Exceptions
+			if(cumFrom.hasStatusEffect("Ovilium Effect")) return;
+			
 			if(hole >= 0 && hole < 3)
 			{
 				if(!hasStatusEffect("Vaginally-Filled")) createStatusEffect("Vaginally-Filled",cumFrom.cumQ(),cumFrom.cumQ(),cumFrom.cumType,0,false,"Icon_Vagina","You've got some fluids inside you, leftovers from a recent lover.",false,0,0xB793C4);
