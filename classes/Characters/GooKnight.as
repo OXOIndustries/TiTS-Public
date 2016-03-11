@@ -157,8 +157,8 @@ package classes.Characters
 			//No dicks here!
 			this.cocks = new Array();
 			
-			//this.createStatusEffect("Force Fem Gender");
-			this.createStatusEffect("Force It Gender");
+			this.createStatusEffect("Force Fem Gender");
+			//this.createStatusEffect("Force It Gender");
 			this.createStatusEffect("Disarm Immune");
 			this.createStatusEffect("Stun Immune");
 			
