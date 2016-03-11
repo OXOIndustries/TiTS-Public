@@ -244,7 +244,10 @@
 					pc.fertilityRaw += .03;
 				}
 				//Nothing
-				else kGAMECLASS.output("\n\nNo matter how long you wait, nothing happens. What a waste of credits.");
+				else if(!TFed)
+				{
+					kGAMECLASS.output("\n\nNo matter how long you wait, nothing happens. What a waste of credits.");
+				}
 			}
 			else {
 				kGAMECLASS.output(target.capitalA + target.short + " consumes the pill to no effect.");
