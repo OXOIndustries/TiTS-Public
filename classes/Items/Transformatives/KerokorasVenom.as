@@ -34,10 +34,7 @@ package classes.Items.Transformatives
 			
 			description = "a vial of kerokoras venom";
 			
-			tooltip = "A vial of ";
-			if(kGAMECLASS.silly) tooltip += "k";
-			else tooltip += "c";
-			tooltip += "oncentrated kerokoras venom. The liquid sloshes around as you move the bottle, and smells like sweet syrup. The volatile chemistry of the kerokoras will probably affect your body. Given your nanomachine laced immune system, you imagine it’ll have you looking like them in no time.";
+			tooltip = "[altTooltip KerokorasVenom]";
 			
 			TooltipManager.addTooltip(shortName, tooltip);
 			
