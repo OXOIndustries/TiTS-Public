@@ -290,7 +290,7 @@
 			else output("bites, punching through a thin spot in your [pc.upperGarment]");
 			output(". You yell as you feel his venom pumping into your bloodstream. Ceasing your struggle momentarily, your thoughts become hazy and your movements sluggish; suddenly the idea of surrendering to this powerful male’s coils doesn’t sound like such a bad idea....");
 			//Effect: Moderate Speed/Dex/Whatever drain. If reduced to 0, auto lose (as if by lust).
-			if(!target.hasStatusEffect("Naleen Venom")) target.createStatusEffect("Naleen Venom",0,0,0,0,false,"Poison","This venom reduces strength, aim, reflexes, and willpower! If you take in too much of it while fighting a naleen, you'll lose!",false,10);
+			if(!target.hasStatusEffect("Naleen Venom")) target.createStatusEffect("Naleen Venom",0,0,0,0,false,"Poison","This venom reduces strength, aim, reflexes, and willpower! If you take in too much of it while fighting a naleen, you'll lose!",false,10,0xFF0000);
 			target.physiqueMod -= .5;
 			target.aimMod -= .5;
 			target.willpowerMod -= .5;

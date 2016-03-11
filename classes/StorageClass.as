@@ -18,6 +18,7 @@
 		public var tooltip:String = "";
 		public var combatOnly:Boolean = false;
 		public var minutesLeft:Number = 0;
+		public var iconShade:uint = 0xFFFFFF;
 		//MEMBER FUNCTIONS
 	}
 }

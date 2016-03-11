@@ -150,8 +150,13 @@ public function configureMails():void
 	MailManager.addMailEntry("saendraxpack1", "Hey, hero, are you anywhere near Tavros? Please say yes! If you are, I could really use a hand. I’m on Deck 92, up in the construction wing. Expect trouble. Hope I see you soon!\n\n<3", "Hey Hero", "Saendra en Illya", "FlyGirl@PhoenixCargo.net", quickPCTo, quickPCToAddress); 
 	MailManager.addMailEntry("emmy_apology", emmyApologyEmail,"Sorry!","Emmy Astarte","emmy_astarte@cmail.com",quickPCTo,quickPCToAddress);
 	MailManager.addMailEntry("emmy_gift_starter", emmyGiftStarterEmail,"Thinking of You!","Emmy Astarte","emmy_astarte@cmail.com",quickPCTo,quickPCToAddress);
+	MailManager.addMailEntry("emmy_implant_explain_email", emmyImplantExplainEmail,"Something off my chest...","Emmy Astarte","emmy_astarte@cmail.com",quickPCTo,quickPCToAddress);
+	MailManager.addMailEntry("emmy_harness_here", harnessDeliveryMessageFromEmmy,"IT'S HERE!?!","Emmy Astarte","emmy_astarte@cmail.com",quickPCTo,quickPCToAddress);
+
 	MailManager.addMailEntry("the_masque", "Hey, where are you? I thought we agreed to meet up for The Masque? I keep trying to call you, but you’re not answering, so this is my last try. Dude, this shit is wicked. I’m gonna be on the west side of Craven city, but you’ve only got a few days left, so get your ass over here!\n\nWet & Waiting", "The Masque", "Wet & Waiting", "Wet.N.Waiting@GalLink.org", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("syribooks", "Hey, Steele\n\nHere are some books to jump start your reading adventure:\n\n<i>Below is a link to a download archive with numerous books by various authors, most notably: Rondell Ramus, Capser van Beck and Imono Flaest.</i>\n\nEnjoy!\n-Syri", "Read More.", "Syri Dorna", "BlastMaster@GalLink.org", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("lets_fap_unlock",futaLetsPlayerIntroEmail,"You’re in to stuff like this, right?",letsFapUnlockFromName,letsFapUnlockFromEmail,quickPCTo,quickPCToAddress);
+	MailManager.addMailEntry("champeon_comfirmation",athaChampeonConfirmationEmail,"Thank You For Your Support!","Atha Peters","CockAddict001@CumStreamer.com",quickPCTo,quickPCToAddress);
 }
 
 public function cuzName():String
@@ -272,6 +277,46 @@ public function emmyGiftStarterEmail():String
 	if(flags["EMMY_POLY"] == 1) ret += ", even though I could if I wanted to. I bet you’re getting all kinds of sex from those myr girls. Are their pussies as deep as everyone says?";
 	else ret += ".";
 	ret += " I didn’t even jack off myself or break out that dildo I got from Naughty Wyvern (on a whim) afterward, but while I was changing out of the third jumpsuit I soaked that day, I realized that we could probably get a little more serious, if you wanted. Come see me when you’re in the neighborhood.\n\nSloppy kisses,\nEmmy";
+	return ret;
+}
+
+//Come See Me Email - must have 69’s or oral’ed her
+//Explains about her implant and requests a visit to open up the final stage of emmyquest
+public function emmyImplantExplainEmail():String
+{
+	var ret:String = pc.short + "!";
+	ret += "\n\nI’m missing you like crazy back in my shop, and I realized I’d never given you a proper explanation for why I’m being such a prude. I guess it’s just easier to discuss in writing. Funny how hard it is to open up to someone when you’re face to face, but you can bare your soul all over a keyboard.";
+	ret += "\n\nLong story short, I needed some more money to buy a sweet new gun for my collection (A RAILGUN!!!) and volunteered for some medical testing to help pay for it. Credits have a way of slipping through my fingers whenever I see some sweet new tech, and I just had to have it, empty pockets be damned!";
+	ret += "\n\nWow, this feels good to get off my chest. I probably should’ve just to you this upfront, but I didn’t want to make you think I was some over-modded freak. Whatever! You’re too much of a sweety to run off just because I’m in a test group for an experimental libido-enhancer, right? Because I am.";
+	ret += "\n\nIt’s not even that experimental! They’ve had this thing on the market for years in a number of planets, but there’s concern that it can permanently alter brain chemistry when set too high. Apparently some neurologists think it’s possible that it could irreversibly crank your libido, so they’re doing a long-term study to check and see. I don’t think I got to be in the placebo group if this boner is anything to go by.";
+	ret += "\n\nStars, why can’t I think about you without it getting harder? It’s fucking twitching! ...I was going to delete that, but I bet you like reading stuff like that, don’t you?";
+	ret += "\n\nI promised myself I wouldn’t let it turn me into some kind slut with nothing but cumming on her brain - like those cow-sluts from New Texas . I may be horned up, but I’m going to stay in control of it, you know? Even if I keep popping woodies all the time after the study is over, I’m only going to use it on someone I really care about";
+	if(flags["EMMY_POLY"] != undefined) ret += " (and the other people they care about, I guess. Why’d you have to be so damned <i>sexy</i>?)";
+	else ret += ".";
+	ret += " You can see why I’d be sending you so many mixed signals.";
+	ret += "\n\nI think we should talk some more. I’ve got some ideas we could try, and maybe we could step things up a notch, relationship-wise. If I’m going to be leaving wet patches in the crotch of all my jumpsuits from thinking about you, I might as well let you be a little more direct in creating them.";
+	ret += "\n\nStay safe out there,";
+	ret += "\n\n-Ems";
+	return ret;
+}
+
+//Harness Delivery Message
+//flags["EMMY_TOY_TIMER"] = GetGameTimestamp() + 1440;
+public function harnessDeliveryMessageFromEmmy():String
+{
+	var ret:String = pc.short + "!";
+	ret += "\n\nGuess what came in the freighter today? It wasn’t me (this time)! Did you know they actually have pretty roomy bathrooms in those heaps? Not very well insulated, though. Shitty way to travel all told, but it’s the only way to fly if you’re wanting to save credits for a full-auto plasma-cycler.";
+	ret += "\n\nANYWAY, it finally came! I got my herm harness in the mail, and oh my stars, is it ever amazing. It doesn’t look like much when it’s just laying there in the box, but the moment I slipped that big, fake cock inside, my opinion changed up real fast. It feels like I’m being knotted ALL THE TIME, even when there’s not cum squirting out of it. Speaking of that, the sheath. Wow. Just... wow. The texture is out of this world - even better than my mouth and tits. And when I turn it on, my body feels like a fireworks show.";
+	ret += "\n\nI can’t thank you enough. It’s literally impossible. Not only have you been there for me, but you’ve helped me come to terms with my needs in a relatively healthy way. And then on top of that, you fronted 15,000 credits just so that your fuck-hungry girlfriend could feel a little more like your devoted maiden. What if you walked into the shop and found my bent over the countertop, my pussy, balls, dick... even my ass, all on display for you? That’d be a start.";
+	ret += "\n\nI can’t actually do that, though. Someone might walk in, and I’m going to be your sex addict, not the Myrellion village bicycle. I’m going to fuck you so much, " + pc.short + ". Whenever you look my way, my pussy will soak for you. My cock will be hard at the whisper of your name. My balls will ache at night, filling up with seed when I dream of your face.";
+	ret += "\n\nI’m getting a little carried away, but fuck it. I think we both know that this is what you wanted: a chance at my dripping snatch and aching bone. Come visit, " + pc.short + ". I’m going to screw you so hard you’ll ";
+	if(!pc.hasCock()) ret += "be walking bow-legged";
+	else ret += "forget you ever wanted to do anything else";
+	ret += ". Do you mind if I’m on top sometimes? I can set this thing to tease me for hours, and when I get that worked up, I won’t have a hope in all the galaxy of resisting your ass.";
+	ret += "\n\nYour wet and waiting slut,";
+	ret += "\n\nEmmy";
+
+	ret += "\n\nP.S. I swear my dick got an inch longer when I called myself a slut.";
 	return ret;
 }
 

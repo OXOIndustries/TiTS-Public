@@ -654,7 +654,7 @@ public function talkToJadeAboutHerNipples():void {
 		//First Time:
 		if(flags["TALKED_WITH_JADE_ABOUT_NIPPLES_AFTER_NIPPLE_TF"] == undefined)
 		{
-			output("\n\nPrime then? You look at her in confusion.");
+			output("\n\nPrime them? You look at her in confusion.");
 			output("\n\nAt your look, she explains, <i>\"You can see how they're all flat right now? Well, they go like that whenever I'm not horny, and I can't control them well enough to make them pop out when I like. So, I need to get myself turned on first. Just keep on rubbing and touching my tits and out they pop, ready to get to work,\"</i>  she grins lecherously at the thought.");
 		}
 		else

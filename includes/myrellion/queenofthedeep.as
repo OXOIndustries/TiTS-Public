@@ -1010,6 +1010,7 @@ public function queenLactationEvent():void
 	
 	if (pc.milkMultiplier < 75) pc.milkMultiplier = 75;
 	if (pc.milkFullness < 75) pc.milkFullness = 75;
+	pc.setBoobSwelling();
 	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);

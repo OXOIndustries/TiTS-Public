@@ -32,7 +32,7 @@
 			//Longass shit, not sure what used for yet.
 			this.description = "an orange ball of goo";
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This ball of goo smells pretty acrid, so you probably shouldn't eat it. The ganrael use it to alter their gooey locks. Maybe it'll work on more traditional types of hair too?";
+			this.tooltip = "This ball of leftover ganrael gloop has formed a little crust all on its own. It doesn’t have much stiffening power remaining but it could hold something light in place, like hair.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -179,7 +179,7 @@
 		override public function useFunction(target:Creature, usingCreature:Creature = null):Boolean
 		{
 			kGAMECLASS.clearOutput();
-			author("Gardeford");
+			author("Gardeford/Zeikfried");
 			if (target is PlayerCharacter) 
 			{
 				output("You consider the blob of ganrael goo, which has formed a slight crust on its surface. If you wanted, you could probably smear it on something to stiffen it... your hair, for example.");
@@ -235,7 +235,7 @@
 				
 				if (target.hairType == GLOBAL.HAIR_TYPE_GOO && target.hairColor != "orange") addButton(6, "Dye Hair", DyeHair, target, "Dye Hair", "Use the goo to dye your hair.");
 				else if (target.hairType != GLOBAL.HAIR_TYPE_GOO) addDisabledButton(6, "Dye Hair", "Dye Hair", "The gooball can only dye gooey hair types!");
-				else addDisabledButton(6, "Dye Hair", "Dye Hair", "Your hair’s already been dyed the colour of this ball of goo!");
+				else addDisabledButton(6, "Dye Hair", "Dye Hair", "Your hair’s already the color of this ball of goo!");
 				
 				if ((target.skinType == GLOBAL.SKIN_TYPE_GOO || target.hasSkinFlag(GLOBAL.TYPE_GOOEY)) && target.skinTone != "orange") addButton(7, "Dye Body", DyeBody, target, "Dye Body", "Use the goo to dye your gooey body.");
 				else if (target.skinTone == "orange") addDisabledButton(7, "Dye Body", "Dye Body", "Your body is already the same color as this ball of goo!");

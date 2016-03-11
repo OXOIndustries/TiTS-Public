@@ -66,7 +66,7 @@
 					// "Semen's Candy"
 					// v1: Timestamp!
 					// v2: Dose counter
-					target.createStatusEffect("Semen's Candy", timerStamp, 1, 0, 0, false, "Pill", "The Semen’s Friend candy is still in your system.", false, timerStamp);
+					target.createStatusEffect("Semen's Candy", timerStamp, 1, 0, 0, false, "Pill", "The Semen’s Friend candy is still in your system.", false, timerStamp,0xB793C4);
 				}
 			}
 			//Not player!

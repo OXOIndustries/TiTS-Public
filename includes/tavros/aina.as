@@ -113,6 +113,7 @@ public function approachAinaOnTheWalkway():void
 	output("\n\nWhat do you do?");
 	
 	processTime(2);
+	pc.lust(10);
 	
 	clearMenu();
 	addButton(0, "Help Her", helpAina);
@@ -194,7 +195,7 @@ public function helpAina():void
 	else output(", even though you're not a taur!");
 	
 	processTime(10+rand(5));
-	pc.lust(20);
+	pc.lust(25);
 	
 	clearMenu();
 	if(pc.lust() >= 33) addButton(0, "Offer Sex", helpAinaWithSex);
@@ -345,6 +346,7 @@ public function ainaSexed(times:int):void {
 public function ainaApartmentMeet():void 
 {
 	addButton(0,"Aina",ainaMenu);
+	if(!pc.hasKeyItem("Panties - Aina's - Extra-large, striped green centaur panties.")) addButton(1,"HerDresser",ainasDresser,undefined,"Dresser","Check out her dresser.");
 }
 
 //approaching Aina in her apartment
@@ -1034,6 +1036,79 @@ public function breedAinaAsATaur():void
 	processTime(17);
 	pc.orgasm();
 
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Aina
+// Add Dresser option to her house menu once you've got access to it. Disappears once you obtain her panties.
+//[Dresser]
+//tooltip.Dresser: Check out her dresser.
+
+//Dresser
+public function ainasDresser():void
+{
+	clearOutput();
+	showName("AINA'S\nDRESSER");
+	author("ASpoopyGhost");
+	output("You make up an excuse to look in Aina’s dresser, saying that you want to check how her toy’s doing. The blonde centauress blushes and nods, busying herself in the kitchen, while you check through her drawers.");
+	if(silly) output(" It’s an adventurer’s privilege to rummage through civilian’s belongings!");
+	output("\n\nYou’re a little surprised to find out she has an underwear drawer with not just bras but panties in them, and they’re huuuge! You pull out a pair of striped green and white bikini briefs, though they’re wider than most people’s shoulders to fit over her massive equine rump. Not only does she have centaur underwear, the cotton crotch fabric is a bit damp. It’s heavy with her dizzying mare musk, making you horny just <i>holding</i> them...");
+	output("\n\n...What do you do?");
+	pc.lust(10);
+	processTime(2);
+	//[AskToKeep] [Steal] [PutBack]
+	clearMenu();
+	addButton(0,"AskToKeep",askToKeepAinaPanties,undefined,"AskToKeep","Well, you can at least be polite about being pervert.");
+	addButton(1,"Steal",stealAinasPanties,undefined,"Steal","It's not like she bothers to wear them. What a <b>mischievous</b> thing to do!");
+	addButton(2,"Put Back",putThePantiesBack,undefined,"Put Back","This was probably a bad idea.");
+}
+
+//AskToKeep
+public function askToKeepAinaPanties():void
+{
+	clearOutput();
+	showAina();
+	author("ASpoopyGhost");
+	output("You walk back into the living area and boldly ask the blonde student centauress if you can keep her unmentionables for yourself. Aina gapes at you for a moment, before her brain catches up and her cheeks flush.");
+	output("\n\n<i>“Um, well, there’s no reason you can’t? I mean... you’ve really helped me out, so... I don’t wear them often anyway. I tried wearing them before, but I got too wet ");
+	if(ainaIsInHeat()) output("from heat");
+	else output("thinking about... stuff");
+	output(".”</i>");
+	output("\n\nYou take that as a ‘yes’ and pocket her extra-large centaur panties. Now you can enjoy her musky pussy wherever you go!");
+	output("\n\n<b>You have acquired Aina’s panties!</b>");
+	pc.createKeyItem("Panties - Aina's - Extra-large, striped green centaur panties.");
+	// Return to room desc.
+	processTime(2);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Steal
+public function stealAinasPanties():void
+{
+	clearOutput();
+	showName("AINA'S\nPANTIES");
+	author("ASpoopyGhost");
+	output("You discreetly pocket Aina’s musky panties for your own use. It takes you a moment to sneak her extra-large unmentionables away. When you walk out, she seems none the wiser. You notice that even though you can smell her mare pussy scent from a mile off, she seems to be unable to smell her own scent.");
+	output("\n\n<b>You have acquired Aina’s panties!</b>");
+	pc.createKeyItem("Panties - Aina's - Extra-large, striped green centaur panties.");
+	pc.addMischievous(5);
+	// Return to room desc.
+	processTime(2);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//PutBack
+public function putThePantiesBack():void
+{
+	clearOutput();
+	showName("AINA'S\nDRESSER");
+	author("ASpoopyGhost");
+	output("You decide to put her panties back and leave the room.");
+	// Return to room desc.
+	processTime(1);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

@@ -71,13 +71,19 @@ public function approachVKo(showShit:Boolean = true):void {
 	//menu heaaar
 	clearMenu();
 	addButton(0,"Supplies",vkoSupplies);
-	addButton(1,"Examination",getDiseaseProbedYo);
-	if(pc.HP() < pc.HPMax()) addButton(2,"Heal",getHealedByVKo);
-	else addDisabledButton(2,"Heal");
+	addButton(1,"Sell",vKoSellShit);
+	addButton(2,"Examination",getDiseaseProbedYo);
+	if(pc.HP() < pc.HPMax()) addButton(3,"Heal",getHealedByVKo);
+	else addDisabledButton(3,"Heal");
 	addButton(4,"CustomInput",customVKoInputCauseCoolKidsTypeOutTheirSexScenesLikeABoss);
 	addButton(14,"Back",mainGameMenu);
 }
 
+public function vKoSellShit():void
+{
+	shopkeep = chars["VKO"];
+	sellItem();
+}
 public function vkoSupplies():void
 {
 	shopkeep = chars["VKO"];

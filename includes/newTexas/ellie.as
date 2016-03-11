@@ -969,7 +969,12 @@ public function getTailPeggedByTaurBitches():void
 	author("Savin");
 	showBust("ELLIE_NUDE");
 	showName("\nELLIE");
-	output("<i>“Well, since you don’t have a big, throbbing bulldick to stick in me, I guess I’ll just have to return the favor the old-fashioned way, won’t I?”</i> Ellie says, licking her lips as she regards your nude form. <i>“Come on over, honey. I think I know just how to say thank you for that wonderful bit of pussy-eating...”</i>");
+	if(!pc.hasCock())
+	{
+		output("<i>“Well, since you don’t have a big, throbbing bulldick to stick in me, I guess I’ll just have to return the favor the old-fashioned way, won’t I?”</i> Ellie says, licking her lips as she regards your nude form. <i>“Come on over, honey. I think I know just how to say thank you for that wonderful bit of pussy-eating...”</i>");
+	}
+	else if(pc.hasVagina()) output("<i>“Well, since you’ve got a nice, wet pussy over there, we can forget about your [pc.cocks] for a minute and work that needy gash, can't we? I don't </i>need<i> a cock for that either. I can make you feel better than one,”</i> Ellie says, licking her lips as she regards your nude form. <i>“Come on over, honey. I think I know just how to say thank you for that wonderful bit of pussy-eating...”</i>");
+	else output("<i>“Well, since you don't have any proper genitals, I guess I'll have to pay your dirty little o-ring back for that wonderful bit of pussy-eating, won't I?”</i> Ellie asks, licking her lips as she regards your nude form. <i>“Come on over, honey, and relax. This'll only take a few minutes...”</i>");
 	output("\n\nShe beckons you over with a come-hither crook of a finger, still happily pounding away at her gaping cunt with the thick, supple length of her tail. When you make your way over to your tauric lover, she gives you a lascivious smile and pats the bolted iron bar on the wall. <i>“Grab this, sweet thing, and spread ‘em wide!”</i>");
 	output("\n\nIf you weren’t so desperately horny, you might have asked why. As it is, though, you eagerly do as Ellie commands, grasping the cold metal bar and shifting your weight onto it. You wiggle your [pc.legs] apart, and quickly feel Ellie’s hands playing down your back");
 	if(pc.biggestTitSize() >= 1) output(", stopping only to reach around and give your [pc.chest] an affectionate squeeze, eliciting a little gasp of pleasure from you");

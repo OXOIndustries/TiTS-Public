@@ -16,6 +16,11 @@ public function myrellionHangarBonus():Boolean
 	{
 		return true;
 	}
+	//Procs at the ship
+	if(!pc.hasKeyItem("Panties - Emmy's - Silky, purple, and cum-stained.") && flags["EMMY_QUEST"] >= 6 && flags["EMMY_QUEST"] != undefined){
+		emmysPantiesGet();
+		return true;
+	}
 	
 	return false;
 }
@@ -777,13 +782,13 @@ public function DeepCavesBonus():Boolean
 		//Build possible encounters
 		if(flags["KILLED_TAIVRA"] != undefined)
 		{
-			if(rand(10) == 0) choices[choices.length] = encounterNyreaAlpha;
-			if(rand(4) == 0) choices[choices.length] = encounterNyreaBeta;
+			if(rand(3) == 0) choices[choices.length] = encounterNyreaAlpha;
+			if(rand(5) == 0) choices[choices.length] = encounterNyreaBeta;
 		}
 		else
 		{
 			choices[choices.length] = encounterNyreaAlpha;
-			choices[choices.length] = encounterNyreaBeta;
+			choices[choices.length] = encounterNyreaAlpha;
 		}
 		if(flags["LET_FUNGUS_QUEEN_DIE"] != undefined) 
 		{

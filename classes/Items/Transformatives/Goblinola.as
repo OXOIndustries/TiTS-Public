@@ -701,7 +701,7 @@ package classes.Items.Transformatives
 					// "Goblinola Bar"
 					// v1: Timestamp!
 					// v2: Number of major transformations
-					target.createStatusEffect("Goblinola Bar", timerStamp, 1, 0, 0, false, "Icon_Poison", "Your stomach is a little unsettled by the health bar you ate...", false, timerStamp);
+					target.createStatusEffect("Goblinola Bar", timerStamp, 1, 0, 0, false, "Icon_Poison", "Your stomach is a little unsettled by the health bar you ate...", false, timerStamp,0xB793C4);
 				}
 			}
 			//Not the player!

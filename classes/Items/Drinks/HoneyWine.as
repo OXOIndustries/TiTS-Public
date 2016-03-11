@@ -81,8 +81,8 @@
 			target.imbibeAlcohol(35);
 			if(!target.hasStatusEffect("Royal Nectar"))
 			{
-				if (target is PlayerCharacter) target.createStatusEffect("Royal Nectar",30,0,0,0,false,"Charmed","That honey wine packs a punch! You're feeling a lot peppier now.",false,2880);
-				else target.createStatusEffect("Royal Nectar",30,0,0,0,false,"Charmed","That honey wine packs a punch! " + target.capitalA + target.short + " is feeling a lot peppier now.",false,2880);
+				if (target is PlayerCharacter) target.createStatusEffect("Royal Nectar",30,0,0,0,false,"Icon_Wine","That honey wine packs a punch! You're feeling a lot peppier now.",false,2880,0xB793C4);
+				else target.createStatusEffect("Royal Nectar",30,0,0,0,false,"Icon_Wine","That honey wine packs a punch! " + target.capitalA + target.short + " is feeling a lot peppier now.",false,2880,0xB793C4);
 				target.energy(healing);
 			}
 			else target.energy(healing);

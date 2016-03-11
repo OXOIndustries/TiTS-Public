@@ -28,10 +28,12 @@ package classes.UIComponents.StatusEffectComponents
 		private var _statusIcon:Sprite;
 		private var _selectionMask:Sprite;
 		private var _iconElement:Sprite;
+		private var _iconShade:uint;
 		
 		private var _parentMouseHandler:Function;
 		
 		public function get iconType():Class { return _iconT; }
+		public function get iconShade():uint { return _iconShade; }
 		public function get effectName():String { return _displayName; }
 		public function get tooltipText():String { return _tooltipText; }
 		public function get displayName():String { return _displayName; }
@@ -39,6 +41,13 @@ package classes.UIComponents.StatusEffectComponents
 		
 		public function set durationRemaining(v:int):void { _durationRemaining = v; }
 		public function set tooltipText(v:String):void { _tooltipText = v; };
+		public function set iconShade(v:uint)
+		{
+			_iconShade = v;
+			var ct:ColorTransform = new ColorTransform();
+			ct.color = v;
+			_icon.transform.colorTransform = ct;
+		}
 		
 		/**
 		 * Given how constrained the usage of StatusEffectElements are, I can get away with doing a shitload of construction...
@@ -51,7 +60,7 @@ package classes.UIComponents.StatusEffectComponents
 		 * @param	duration
 		 * @param	parentMouseHandler
 		 */
-		public function StatusEffectElement(sizeX:int, sizeY:int, effectName:String, iconT:Class, tooltipText:String, duration:int, parentMouseHandler:Function) 
+		public function StatusEffectElement(sizeX:int, sizeY:int, effectName:String, iconT:Class, tooltipText:String, duration:int, iconShade:uint, parentMouseHandler:Function) 
 		{
 			this._sizeX = sizeX;
 			this._sizeY = sizeY;
@@ -61,6 +70,7 @@ package classes.UIComponents.StatusEffectComponents
 			this._displayName = effectName;
 			this._durationRemaining = duration;
 			this._parentMouseHandler = parentMouseHandler;
+			this._iconShade = iconShade;
 			
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
 		}
@@ -132,9 +142,9 @@ package classes.UIComponents.StatusEffectComponents
 			
 			_icon.x = Math.floor((this.width - _icon.width) / 2);
 			_icon.y = Math.floor((this.height - _icon.height) / 2);
-			var whtT:ColorTransform = new ColorTransform();
-			whtT.color = 0xFFFFFF;
-			_icon.transform.colorTransform = whtT;
+			var ct:ColorTransform = new ColorTransform();
+			ct.color = _iconShade;
+			_icon.transform.colorTransform = ct;
 			
 			// Setup the mask for the selection ring
 			_selectionMask = new Sprite();

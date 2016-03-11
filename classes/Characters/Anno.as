@@ -192,6 +192,7 @@
 			this.vaginas[0].wetnessRaw = 6;
 			this.vaginas[0].loosenessRaw = 1;
 			this.vaginas[0].bonusCapacity = 20;
+			vaginas[0].type = GLOBAL.TYPE_INHUMAN;
 			
 			isUniqueInFight = true;
 			

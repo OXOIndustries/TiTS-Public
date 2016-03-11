@@ -2784,7 +2784,13 @@ public function gardeFordWritesPennySmex():void {
 		else output("Your tongue reaches all the way to her womb and runs little circles around her cervix. Her thighs tense against your head as each rotation is completed. The juices flow into your mouth and down her own body to pool on the table.");
 		output(" The full length of Penny’s body shivers as you explore her depths, and you greedily lap at the fluid that escapes.");
 		output("\n\nSuddenly the fox-girl’s legs tense and her moans grow into screams of ecstasy. You remove one hand from her head and drag it seductively along her trembling body until it reaches her nethers. When it arrives you slowly rub its thumb in circles around her budding clit, and the fur on Penny’s body stands on end as she explodes in orgasm.");
-		if(penny.hasCock()) output(" The fox-girl’s unused [penny.cock] blows its load and spatters on the floor. You slide your hand around her swelling knot and give it light squeezes to simulate pulling out. With each tug Penny’s voice raises to a yip of pleasure before lowering back to soft moans.");
+		if(penny.hasCock()) 
+		{
+			output(" The fox-girl’s unused [penny.cock] blows its load and spatters on the floor. You slide your hand around her ");
+			if(penny.hasKnot()) output("swelling knot ");
+			else output("thick, medial ring ");
+			output("and give it light squeezes to simulate pulling out. With each tug Penny’s voice raises to a yip of pleasure before lowering back to soft moans.");
+		}
 	}
 	//size variation end
 	output("\n\nThe fox-girl lies panting against the table, looking thoroughly exhausted from the ordeal. Little does she know that the pleasure is only half over; ");

@@ -1,6 +1,7 @@
-package classes {
+﻿package classes {
 	import classes.Characters.PlayerCharacter;
 	import classes.Characters.PregnancyPlaceholder;
+	import classes.Characters.Emmy;
 	import classes.CockClass;
 	import classes.DataManager.Errors.VersionUpgraderError;
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
@@ -9,6 +10,10 @@ package classes {
 	import classes.Items.Melee.Fists;
 	import classes.Items.Melee.Rock;
 	import classes.Items.Miscellaneous.EmptySlot;
+	import classes.Items.Miscellaneous.HorsePill;
+	import classes.Items.Transformatives.Goblinola;
+	import classes.Items.Transformatives.Clippex;
+	import classes.Items.Transformatives.SemensFriend;
 	import classes.Items.Accessories.TamWolf;
 	import classes.Items.Accessories.TamWolfDamaged;
 	import classes.Items.Accessories.Allure;
@@ -79,9 +84,10 @@ package classes {
 				"skipIntercept",
 				"skipTurn",
 				"_skipRound",
-				"OnTakeDamageOutput"
+				"OnTakeDamageOutput",
+				"isUniqueInFight"
 			);
-
+			
 			cocks = new Array();
 			vaginas = new Array();
 			breastRows = new Array();
@@ -108,6 +114,9 @@ package classes {
 
 		//Is a creature a 'pluralize' encounter - mob, etc. 
 		public var isPlural:Boolean = false;
+
+		public var fluidSimulate:Boolean = false;
+		public var statusSimulate:Boolean = false;
 
 		public var customDodge: String = "";
 		public var customBlock: String = "";
@@ -806,7 +815,7 @@ package classes {
 		}
 		
 		public var tailGenitalColor:String = "pink";
-		public function tailGenitalColorUnlocked(newTailGenitalColor:Number):Boolean
+		public function tailGenitalColorUnlocked(newTailGenitalColor:String):Boolean
 		{
 			return true;
 		}
@@ -1930,6 +1939,15 @@ package classes {
 				case "cumColor":
 					buffer = cumColor();
 					break;
+				case "cumGem":
+					buffer = cumGem();
+					break;
+				case "girlCumGem":
+					buffer = girlCumGem();
+					break;
+				case "milkGem":
+					buffer = milkGem();
+					break;
 				case "girlCumColor":
 					buffer = girlCumColor();
 					break;
@@ -2061,6 +2079,9 @@ package classes {
 				case "himHer":
 				case "em":
 					buffer = mf("him", "her");
+					break;
+				case "himHerIt":
+					buffer = mfn("him","her","it");
 					break;
 				case "his":
 				case "hisHer":
@@ -2465,6 +2486,8 @@ package classes {
 		{
 			removeStatusEffect("Sweaty");
 			removeStatusEffect("Mare Musk");
+			removeStatusEffect("Cum Soaked");
+			removeStatusEffect("Pussy Drenched");
 		}
 		public function canMasturbate():Boolean
 		{
@@ -2489,11 +2512,10 @@ package classes {
 				// Or allow CumQ to produce whatever, and simply clamp the ballFullness set value here to 0.
 				
 				//ballFullness = Math.round(((currentCum() - cumQ()) / maxCum()) * 100);
-				
 				var cumAmt:Number = Math.round(((currentCum() - cumQ()) / maxCum()) * 100);
 				if (cumAmt < 0) cumAmt = 0;
 				
-				ballFullness = cumAmt;
+				if(this is PlayerCharacter || fluidSimulate) ballFullness = cumAmt;
 
 				//'Nuki Ball Reduction
 				if(perkv1("'Nuki Nuts") > 0 && balls > 1 && this is PlayerCharacter)
@@ -2843,7 +2865,7 @@ package classes {
 		
 		public function cumflationEnabled():Boolean
 		{
-			return false;
+			return (fluidSimulate || this is PlayerCharacter);
 		}
 		public function maxOutCumflation(target:String, source:Creature):void
 		{
@@ -5341,7 +5363,7 @@ package classes {
 			perks.sortOn("storageName", Array.CASEINSENSITIVE);
 		}
 		//Create a status
-		public function createStatusEffect(statusName: String, value1: Number = 0, value2: Number = 0, value3: Number = 0, value4: Number = 0, hidden: Boolean = true, iconName: String = "", tooltip: String = "", combatOnly: Boolean = false, minutesLeft: Number = 0): void {
+		public function createStatusEffect(statusName: String, value1: Number = 0, value2: Number = 0, value3: Number = 0, value4: Number = 0, hidden: Boolean = true, iconName: String = "", tooltip: String = "", combatOnly: Boolean = false, minutesLeft: Number = 0, iconShade:uint = 0xFFFFFF): void {
 			
 			if (hasStatusEffect(statusName)) {
 				trace("Status '" + statusName + "' already present on " + short);
@@ -5359,6 +5381,7 @@ package classes {
 			newStatusEffect.tooltip = tooltip;
 			newStatusEffect.combatOnly = combatOnly;
 			newStatusEffect.minutesLeft = minutesLeft;
+			newStatusEffect.iconShade = iconShade;
 			
 			statusEffects.push(newStatusEffect);
 			
@@ -5562,6 +5585,20 @@ package classes {
 			trace("ERROR: Looking for status '" + storageName + "' to change tooltip but couldn't find it.");
 			return;
 		}
+		
+		public function setStatusIconShade(storageName:String, iconShade:uint):void
+		{
+			for (var i:int = 0; i < statusEffects.length; i++)
+			{
+				if (statusEffects[i].storageName == storageName)
+				{
+					statusEffects[i].iconShade = iconShade;
+					return;
+				}
+			}
+			trace("ERROR: Unable to find '" + storageName +"' to update icon shade.");
+		}
+		
 		public function addStatusMinutes(storageName: String, newMinutes:int):void
 		{
 			var counter: Number = statusEffects.length;
@@ -7312,7 +7349,7 @@ package classes {
 				else kGAMECLASS.eventBuffer += "are";
 				kGAMECLASS.eventBuffer += " this full.";
 				if(hasPerk("'Nuki Nuts") && balls > 1) kGAMECLASS.eventBuffer += " Of course, your kui-tan physiology will let your balls balloon with additional seed. They've already started to swell. Just make sure to empty them before they get too big!";
-				createStatusEffect("Blue Balls", 0,0,0,0,false,"Icon_Poison", "Take 25% more lust damage in combat!", false, 0);
+				createStatusEffect("Blue Balls", 0,0,0,0,false,"Icon_Sperm_Hearts", "Take 25% more lust damage in combat!", false, 0,0xB793C4);
 			}
 			
 			ballFullness += (cumDelta * minutes);
@@ -7333,7 +7370,6 @@ package classes {
 				}
 				ballFullness = 100;
 			}
-
 			//if(this is PlayerCharacter) trace("Post Fullness: " + ballFullness)
 		}
 		public function isSquirter(arg: int = 0): Boolean {
@@ -11679,6 +11715,50 @@ package classes {
 			
 			return RandomInCollection(collection);
 		}
+		public function cumGem():String
+		{
+			return fluidGem(cumType);
+		}
+		public function milkGem():String
+		{
+			return fluidGem(milkType);
+		}
+		public function girlCumGem():String
+		{
+			return fluidGem(girlCumType);
+		}
+
+		public function fluidGem(arg:int):String
+		{
+			var fColor:String = fluidColorSimple(arg);
+			switch(fColor)
+			{
+				case "white":
+					return RandomInCollection("pearl","opal");
+				case "pink":
+					return "rose quartz";
+				case "red":
+					return RandomInCollection("Ruby","garnet");
+				case "orange":
+				case "yellow":
+					return RandomInCollection("amber","citrine","topaz");
+				case "green":
+					return RandomInCollection("emerald","jade");
+				case "blue":
+					return RandomInCollection("aquamarine","sapphire");
+				case "purple":
+					return RandomInCollection("amethyst");
+				case "transparent":
+					return RandomInCollection("crystal","diamond");
+				case "brown":
+					return RandomInCollection("citrine");
+				case "silver":
+				case "gray":
+					return RandomInCollection("silver");
+				default:
+					return RandomInCollection("pearl");		
+			}
+		}
 		public function fluidColorSimple(arg: int):String
 		{
 			if (InCollection(arg, GLOBAL.FLUID_TYPE_LEITHAN_MILK, GLOBAL.FLUID_TYPE_CUMSAP, GLOBAL.FLUID_TYPE_MILK, GLOBAL.FLUID_TYPE_CUM, GLOBAL.FLUID_TYPE_VANILLA, GLOBAL.FLUID_TYPE_MILKSAP)) return "white";
@@ -12323,6 +12403,15 @@ package classes {
 			// Only run the knockup shit if the creature actually gets saved
 			if (neverSerialize == false && cumFrom != null)
 			{
+				if(cumflationEnabled() && !isPregnant(vagIndex)) 
+				{
+					cumflationHappens(cumFrom,vagIndex);
+					if(this is Emmy) 
+					{
+						if(hasStatusEffect("Drain Cooldown")) setStatusMinutes("Drain Cooldown",250);
+						else createStatusEffect("Drain Cooldown",0,0,0,0,false,"PlaceholderIcon","Description",false,250);
+					}
+				}
 				return tryKnockUp(cumFrom, vagIndex);
 			}
 			else
@@ -12335,6 +12424,7 @@ package classes {
 		{
 			if (neverSerialize == false && cumFrom != null)
 			{
+				if(cumflationEnabled()) cumflationHappens(cumFrom,3);
 				return tryKnockUp(cumFrom, 3);
 			}
 			else
@@ -12353,6 +12443,7 @@ package classes {
 		}
 		public function loadInMouth(cumFrom:Creature = null):Boolean
 		{
+			if(cumFrom != null && cumflationEnabled()) cumflationHappens(cumFrom,4);
 			return false;
 		}
 		public function loadInNipples(cumFrom:Creature = null):Boolean
@@ -12376,6 +12467,48 @@ package classes {
 		{
 			if(kGAMECLASS.flags["GOO_BIOMASS"] == undefined) kGAMECLASS.flags["GOO_BIOMASS"] = 0;
 			kGAMECLASS.flags["GOO_BIOMASS"] += arg;
+		}
+		public function cumflationHappens(cumFrom:Creature, hole:Number):void
+		{
+			if(hole >= 0 && hole < 3)
+			{
+				if(!hasStatusEffect("Vaginally-Filled")) createStatusEffect("Vaginally-Filled",cumFrom.cumQ(),cumFrom.cumQ(),cumFrom.cumType,0,false,"Icon_Vagina","You've got some fluids inside you, leftovers from a recent lover.",false,0,0xB793C4);
+				else
+				{
+					//Track the new type.
+					setStatusValue("Vaginally-Filled",3,cumFrom.cumType);
+					//Add the liquid volume.
+					addStatusValue("Vaginally-Filled",1,cumFrom.cumQ());
+					//If new high score, set it.
+					if(statusEffectv1("Vaginally-Filled") > statusEffectv2("Vaginally-Filled")) setStatusValue("Vaginally-Filled",2,statusEffectv1("Vaginally-Filled"));
+				}
+			}
+			else if(hole == 3)
+			{
+				if(!hasStatusEffect("Anally-Filled")) createStatusEffect("Anally-Filled",cumFrom.cumQ(),cumFrom.cumQ(),cumFrom.cumType,0,false,"Icon_Donut","You've got some fluids inside you, leftovers from a recent lover.",false,0,0xB793C4);
+				else
+				{
+					//Track the hole it's in along with the new type.
+					setStatusValue("Anally-Filled",3,cumFrom.cumType);
+					//Add the liquid volume.
+					addStatusValue("Anally-Filled",1,cumFrom.cumQ());
+					//If new high score, set it.
+					if(statusEffectv1("Anally-Filled") > statusEffectv2("Anally-Filled")) setStatusValue("Anally-Filled",2,statusEffectv1("Anally-Filled"));
+				}
+			}
+			else
+			{
+				if(!hasStatusEffect("Orally-Filled")) createStatusEffect("Orally-Filled",cumFrom.cumQ(),cumFrom.cumQ(),cumFrom.cumType,0,false,"Icon_Lips_Glossed","You've got some fluids inside you, leftovers from a recent lover.",false,0,0xB793C4);
+				else
+				{
+					//Track the hole it's in along with the new type.
+					setStatusValue("Orally-Filled",3,cumFrom.cumType);
+					//Add the liquid volume.
+					addStatusValue("Orally-Filled",1,cumFrom.cumQ());
+					//If new high score, set it.
+					if(statusEffectv1("Orally-Filled") > statusEffectv2("Orally-Filled")) setStatusValue("Orally-Filled",2,statusEffectv1("Orally-Filled"));
+				}
+			}
 		}
 		
 		/**
@@ -12445,8 +12578,14 @@ package classes {
 		public function bellyRating():Number
 		{
 			var bonus:Number = 0;
-			if(hasPerk("Fecund Figure")) bonus += perkv3("Fecund Figure");
-			if(statusEffectv1("Nyrea Eggs") > 50) bonus += ((statusEffectv1("Nyrea Eggs") - 50) * 0.01);
+			var eggs:int = statusEffectv1("Nyrea Eggs");
+			
+			//if(hasPerk("Fecund Figure")) - don't need this. Should return 0 if the perk aint real.
+			if(eggs > 50) bonus += (eggs - 50) * 0.01;
+			bonus += perkv3("Fecund Figure");
+			bonus += statusEffectv1("Anally-Filled")/1000;
+			bonus += statusEffectv1("Vaginally-Filled")/1000;
+			bonus += statusEffectv1("Orally-Filled")/1000;
 			
 			var currBellyRating:Number = bellyRatingRaw + bellyRatingMod + bonus;
 			
@@ -12985,7 +13124,7 @@ package classes {
 					reflexesMod -= 1;
 					willpowerMod -= 1;
 					intelligenceMod -= 1;
-					createStatusEffect("Smashed",0,0,0,0, false, "Icon_DizzyDrunk", "You're three sheets to the wind, but you feel like you could flip a truck.\n\nThis status will expire as your alcohol levels drop.", false, 0);
+					createStatusEffect("Smashed",0,0,0,0, false, "Icon_DizzyDrunk", "You're three sheets to the wind, but you feel like you could flip a truck.\n\nThis status will expire as your alcohol levels drop.", false, 0,0xB793C4);
 					kGAMECLASS.eventBuffer += "\n\nWalking is increasingly difficult, but you'll be damned if you don't feel like you can do anything. <b>You're smashed!</b>";
 				}
 				//Drunk
@@ -12997,14 +13136,14 @@ package classes {
 					//Int/reflexes already adjusted from buzzed
 					physiqueMod += 2;
 					reflexesMod -= 1;
-					createStatusEffect("Drunk",0,0,0,0, false, "Icon_DizzyDrunk", "You're feeling a little drunk at the moment. Your faculties and reflexes are dulled, but you feel like you could arm wrestle the world if you were so inclined.\n\nThis status will expire as your alcohol levels drop.", false, 0);
+					createStatusEffect("Drunk",0,0,0,0, false, "Icon_DizzyDrunk", "You're feeling a little drunk at the moment. Your faculties and reflexes are dulled, but you feel like you could arm wrestle the world if you were so inclined.\n\nThis status will expire as your alcohol levels drop.", false, 0,0xB793C4);
 					kGAMECLASS.eventBuffer += "\n\nYour sense of balance is slipping a little. <b>You might be a little drunk. Just a little, you assure yourself.</b>";
 				}
 				//Buzzed
 				//+2 physique & -1 willpower/Intelligence
 				else if(currentLevel >= 25 && !hasStatusEffect("Buzzed") && !hasStatusEffect("Drunk") && !hasStatusEffect("Smashed"))
 				{
-					createStatusEffect("Buzzed",0,0,0,0, false, "Icon_DizzyDrunk", "You're a little buzzed, leaving you feeling strong but a little slower of wit and weaker of will.\n\nThis status will expire as your alcohol levels drop.", false, 0);
+					createStatusEffect("Buzzed",0,0,0,0, false, "Icon_DizzyDrunk", "You're a little buzzed, leaving you feeling strong but a little slower of wit and weaker of will.\n\nThis status will expire as your alcohol levels drop.", false, 0,0xB793C4);
 					physiqueMod += 2;
 					willpowerMod -= 1;
 					intelligenceMod -= 1;
@@ -13038,7 +13177,7 @@ package classes {
 					reflexesMod += 1;
 					willpowerMod += 1;
 					intelligenceMod += 1;
-					createStatusEffect("Drunk",0,0,0,0, false, "Icon_DizzyDrunk", "You're feeling a little drunk at the moment. Your faculties and reflexes are dulled, but you feel like you could arm wrestle the world if you were so inclined.\n\nThis status will expire as your alcohol levels drop.", false, 0);
+					createStatusEffect("Drunk",0,0,0,0, false, "Icon_DizzyDrunk", "You're feeling a little drunk at the moment. Your faculties and reflexes are dulled, but you feel like you could arm wrestle the world if you were so inclined.\n\nThis status will expire as your alcohol levels drop.", false, 0,0xB793C4);
 					kGAMECLASS.eventBuffer += "\n\nYour head is starting to clear a little, but <b>you're still pretty drunk.</b>";
 				}
 				//Drunk -> Buzzed
@@ -13049,7 +13188,7 @@ package classes {
 					//Int/reflexes already adjusted from buzzed
 					physiqueMod -= 2;
 					reflexesMod += 1;
-					createStatusEffect("Buzzed",0,0,0,0, false, "Icon_DizzyDrunk", "You're a little buzzed, leaving you feeling strong but a little slower of wit and weaker of will.\n\nThis status will expire as your alcohol levels drop.", false, 0);
+					createStatusEffect("Buzzed",0,0,0,0, false, "Icon_DizzyDrunk", "You're a little buzzed, leaving you feeling strong but a little slower of wit and weaker of will.\n\nThis status will expire as your alcohol levels drop.", false, 0,0xB793C4);
 					kGAMECLASS.eventBuffer += "\n\nThe more time passes, the more nimble you feel. Your reflexes are sharpening as the alcohol fades from your system. <b>You're only buzzed.</b>";
 				}
 				//Buzzed -> Nothing
@@ -13789,7 +13928,380 @@ package classes {
 		{
 			return false; // 9999
 		}
-		
+		public function statusTick():void {
+			var expiredStatuses:Array = new Array();
+			//For storing things that remove statuses AFTER parsing the status list - fixes counter mismatches
+			var postRemovalEffects:Array = new Array();
+			var gogoVenomShit:Boolean = false;
+
+			for(var x:int = statusEffects.length-1; x >= 0; x--) 
+			{
+				if(this is PlayerCharacter)
+				{
+					//Some hardcoded removal stuff
+					//Cut condensol if all cocks are gone.
+					if(((statusEffects[x] as StorageClass).storageName == "Condensol-B" || (statusEffects[x] as StorageClass).storageName == "Condensol-A") && !hasCock())
+					{
+						expiredStatuses[expiredStatuses.length] = x;
+					}
+				}
+				//trace("Checking status effect: " + x + " of " + (statusEffects.length-1));
+				//If times, count dat shit down.
+				if((statusEffects[x] as StorageClass).minutesLeft > 0) 
+				{
+					(statusEffects[x] as StorageClass).minutesLeft--;
+					//Expired Statuses
+					if((statusEffects[x] as StorageClass).minutesLeft <= 0) 
+					{
+						//PC specific status shit
+						if (this is PlayerCharacter)
+						{
+							//CERTAIN STATUSES NEED TO CLEAR SOME SHIT.
+							switch((statusEffects[x] as StorageClass).storageName)
+							{
+								case "Lane's Hypnosis":
+									kGAMECLASS.baseHypnosisWearsOff((statusEffects[x] as StorageClass).storageName);
+									break;
+								case "Crabbst":
+									physiqueMod -= (statusEffects[x] as StorageClass).value2;
+									reflexesMod += (statusEffects[x] as StorageClass).value2;
+									aimMod += (statusEffects[x] as StorageClass).value2;
+									intelligenceMod += (statusEffects[x] as StorageClass).value2;
+									willpowerMod += (statusEffects[x] as StorageClass).value2;
+									break;
+								case "Horse Pill":
+									var pill:HorsePill = new HorsePill();
+									kGAMECLASS.eventQueue[kGAMECLASS.eventQueue.length] = pill.lastPillTF;
+									break;
+								//Goblinola changes!
+								case "Goblinola Bar":
+									var gobbyTF:Goblinola = new Goblinola();
+									kGAMECLASS.eventQueue[kGAMECLASS.eventQueue.length] = gobbyTF.itemEndGoblinTF;
+									break;
+								case "Gabilani Face Change":
+									var gobbyFaceTF:Goblinola = new Goblinola();
+									kGAMECLASS.eventQueue[kGAMECLASS.eventQueue.length] = gobbyFaceTF.itemGoblinFaceTF;
+									break;
+								//Clippex changes!
+								case "Clippex Gel":
+									var clippexTF:Clippex = new Clippex();
+									if((statusEffects[x] as StorageClass).value2 > 1) kGAMECLASS.eventQueue[kGAMECLASS.eventQueue.length] = clippexTF.itemClippexTFPlus;
+									else kGAMECLASS.eventQueue[kGAMECLASS.eventQueue.length] = clippexTF.itemClippexTF;
+									break;
+								//Semen's Friend changes!
+								case "Semen's Candy":
+									var semensTF:SemensFriend = new SemensFriend();
+									if((statusEffects[x] as StorageClass).value2 > 1) kGAMECLASS.eventQueue[kGAMECLASS.eventQueue.length] = semensTF.itemSemensFriendTFPlus;
+									else kGAMECLASS.eventQueue[kGAMECLASS.eventQueue.length] = semensTF.itemSemensFriendTF;
+									break;
+								case "Red Myr Venom":
+									//Bit of a hacky solution
+									gogoVenomShit = true;
+									break;
+								// Mhen'gan Mango finishes!
+								case "The Mango":
+									kGAMECLASS.eventBuffer += "\n\nYour attractive aura fades from you as your sexiness returns to normal levels.";
+									if (kGAMECLASS.silly && rand(3) != 0) kGAMECLASS.eventBuffer += " You could no longer handle the mango!";
+									else kGAMECLASS.eventBuffer += " The wild mango’s effect has worn off!";
+									break;
+								//Jaded wears off!
+								case "Jaded":
+									kGAMECLASS.eventBuffer += "\n\nNo longer bored from your previous whoring session, you feel a bit more refreshed now.";
+									break;
+								//Condensol ends!
+								case "Condensol-A":
+									if(hasCock())
+									{
+										kGAMECLASS.eventBuffer += "\n\nYou feel your groin relax, and check your [pc.cocks] to discover that everything is more or less as it should be. The Condensol must have worn off.";
+										for(var y:int = 0; y < cockTotal(); y++)
+										{
+											cocks[y].cLengthRaw *= 2;
+										}
+									}
+									break;
+								case "Condensol-B":
+									if(hasCock())
+									{
+										kGAMECLASS.eventBuffer += "\n\nYou feel your groin relax, and check your [pc.cocks] to discover that everything is more or less as it should be. The Condensol must have worn off.";
+										for(var z:int = 0; z < cockTotal(); z++)
+										{
+											cocks[z].cLengthRaw *= 4;
+										}
+									}
+									break;
+								//Mighty Tight ends!
+								case "Mighty Tight":
+									kGAMECLASS.eventBuffer += "\n\nPausing for a moment, you feel your backdoor";
+									if(hasVagina()) kGAMECLASS.eventBuffer += " and [pc.vaginas] relaxing";
+									else kGAMECLASS.eventBuffer += " relax";
+									kGAMECLASS.eventBuffer += " a bit. It is probably safe to say that you are no longer under the effects of Mighty Tight.";
+									break;
+								//Boobswell ends!
+								case "Boobswell Pads":
+									//Message text, last boob size increase. 7 days later.
+									kGAMECLASS.eventBuffer += "\n\nUnfortunately, as you admire your now-larger bosom, you realize that the gentle, wet rumble of the pads has come to a stop. <b>It looks like you’ve exhausted the BoobSwell Pads";
+									if(bRows() > 1) kGAMECLASS.eventBuffer += "on your " + kGAMECLASS.num2Text2((statusEffects[x] as StorageClass).value1+1) + " row of breasts";
+									kGAMECLASS.eventBuffer += "!</b> You peel them off your [pc.skinFurScales] and toss them away.";
+									break;
+								//Treatment finishing.
+								case "The Treatment":
+									kGAMECLASS.eventBuffer += "\n\n<b>The Treatment is over.</b> You aren’t sure why or how you know, but you know it all the same. Well, there’s nothing left to do but enjoy your enhanced body to the fullest! ...While hunting for Dad’s probes, of course. It’s the best way to meet sexy new aliens.";
+									kGAMECLASS.eventBuffer += "\n\nOnce you claim you fortune, you can retire on New Texas, maybe even get your own private milker.";
+									break;
+								//Sterilex/Infertile ends!
+								case "Infertile":
+									kGAMECLASS.eventBuffer += "\n\nA strange tingling sensation spreads through your loins as your microsurgeons are suddenly reinvigorated. Your codex then beeps to notify you that you have regained your";
+									if(hasGenitals())
+									{
+										if(hasVagina()) kGAMECLASS.eventBuffer += " fertility";
+										if(isHerm()) kGAMECLASS.eventBuffer += " and";
+										if(hasCock()) kGAMECLASS.eventBuffer += " virility";
+									}
+									else kGAMECLASS.eventBuffer += " fertility and virility should you ever have the genitals for them";
+									kGAMECLASS.eventBuffer += ". <b>Your ability to potentionally create life has been restored!</b>";
+									break;
+								case "Mead":
+									physiqueMod -= (statusEffects[x] as StorageClass).value2;
+									reflexesMod += (statusEffects[x] as StorageClass).value2 * .5;
+									aimMod += (statusEffects[x] as StorageClass).value2 * .5;
+									intelligenceMod += (statusEffects[x] as StorageClass).value2 * .5;
+									willpowerMod += (statusEffects[x] as StorageClass).value2 * .5;
+									break;
+								case "X-Zil-rate":
+									physiqueMod -= (statusEffects[x] as StorageClass).value2;
+									break;
+								case "Quivering Quasar":
+									physiqueMod -= (statusEffects[x] as StorageClass).value2;
+									break;
+								case "Zil Sting":
+									reflexesMod += (statusEffects[x] as StorageClass).value1;
+									libidoMod -= (statusEffects[x] as StorageClass).value1;
+									break;
+								case "Naleen Venom":
+									physiqueMod += (statusEffects[x] as StorageClass).value1;
+									aimMod += (statusEffects[x] as StorageClass).value1;
+									willpowerMod += (statusEffects[x] as StorageClass).value1;
+									reflexesMod += (statusEffects[x] as StorageClass).value1;
+									break;
+								case "GaloMax":
+									kGAMECLASS.eventQueue.push(kGAMECLASS.galoMaxTFProc);
+									break;
+							}
+						}
+						else if(this is Emmy)
+						{
+							//CERTAIN STATUSES NEED TO CLEAR SOME SHIT.
+							switch((statusEffects[x] as StorageClass).storageName)
+							{
+								case "Massaging":
+								case "Slow Fucking":
+									kGAMECLASS.emmyTeaseCum();
+									postRemovalEffects.push(kGAMECLASS.emmyTeaseCumEffects);
+									break;
+								case "Drain Cooldown":
+									kGAMECLASS.emmyCumClearance();
+									postRemovalEffects.push(kGAMECLASS.emmyCumStatusPurge);
+									break;
+							}
+						}
+						//Mark out the ones that need cut!
+						expiredStatuses[expiredStatuses.length] = x;
+						//trace("Marking slot: " + x + " to cut");
+					}
+				}
+			}	
+			
+			//Cut the statuses that expired and need cut.
+			while(expiredStatuses.length > 0)
+			{
+				trace("REMOVING " + (statusEffects[expiredStatuses[0]] as StorageClass).storageName + " in slot " + expiredStatuses[0] + " due to status effect time out.");
+				statusEffects.splice(expiredStatuses[0],1);
+				expiredStatuses.splice(0,1);
+			}
+			//Alright, now do the venom shit - since adding more statuses could fuck shit otherwise
+			if(gogoVenomShit) kGAMECLASS.venomExpirationNotice();
+
+			//Any post-functions to run?
+			while(postRemovalEffects.length > 0)
+			{
+				postRemovalEffects[0]();
+				postRemovalEffects.splice(0,1);
+			}
+		}
+		//Cumflation
+		//v1 = current in belly
+		//v2 = most had in belly
+		//v3 = most recent cum "type".
+		public function cumFlationSimulate(timePassed:Number):void
+		{
+			//Vag filled
+			var z:int = -1;
+			//Anally Filled
+			var a:int = -1;
+			//Orally filled
+			var o:int = -1;
+			//Place to store draining notices.
+			var notice:String = "";
+			var amountVented:Number
+			var removals:Array = new Array();
+			var cumDrain:Boolean = !hasPerk("No Cum Leakage");
+
+			//Find the index value for various types of cumflation.
+			for(var x:int = 0; x < statusEffects.length; x++)
+			{
+				switch(statusEffects[x].storageName)
+				{
+					case "Anally-Filled":
+						a = x;
+						break;
+					case "Vaginally-Filled":
+						z = x;
+						break;
+					case "Orally-Filled":
+						o = x;
+						break;
+				}
+			}
+			//If has vaginally-filled status effect!
+			if(z >= 0)
+			{
+				if(cumDrain)
+				{
+					//Figure out how much cum is vented over time.
+					//Should vent 1/2 the current amount over 30 minutes
+					//+a small amount based off the maximum amount full you've been for this proc.
+					amountVented = statusEffects[z].value1 / 4 / 2 + statusEffects[z].value2 / 48
+					//Mult times minutes passed
+					amountVented *= timePassed/60;
+					//trace("CURRENT CUM BANKED: " + statusEffects[z].value1 + " VENTING: " + amountVented);
+					//Apply to actual status
+					statusEffects[z].value1 -= amountVented;
+				}
+				//Special notices!
+				if(this is PlayerCharacter && notice == "")
+				{
+					if(amountVented >= 25000) 
+					{
+						notice += "\n\n" + upperCase(fluidViscosity(statusEffects[z].value3)) + " " + fluidNoun(statusEffects[z].value3) + " hoses out ";
+						if(legCount > 1) notice += "from between your [pc.legs] ";
+						else notice += "of you ";
+						notice += "in a seemingly endless tide. You can't even move with wet gushes splattering onto the ground, marking a slut-shaming trail wherever you move.";
+						if(!isCrotchExposed()) notice += " It wouldn't be so bad if most of it didn't wind up inside your [pc.lowerGarments], leaving you slick and musky with residual love.";
+					}
+					else if(amountVented >= 10000)
+					{
+						notice += "\n\nTrailing " + fluidNoun(statusEffects[z].value3) + " behind you like slime from a slug, clearly marking your passage more effectively than any tracking bug ever could. There's nothing you can do about it either, save for waiting for the boundless sexual effluvia to finish spilling from your soiled body.";
+					}
+					else if(amountVented >= 5000)
+					{
+						notice += "\n\nThere's so much " + fluidNoun(statusEffects[z].value3) + " sliding out of you. You can't ";
+						if(isNaga() || isGoo()) notice += "slither a few feet";
+						else notice += "take a step";
+						notice += " without thick blobs of goo rolling down your [pc.leg] to the floor, advertising your sexual adventures to anyone close to enough to see, or smell, you."
+					}
+					else if(amountVented >= 2500)
+					{
+						notice += "\n\n" + upperCase(fluidNoun(statusEffects[z].value3)) + " is everywhere. It just won't stop coming out of you. Sure, the more " + fluidViscosity(statusEffects[z].value3) + " goop leaks out, the tighter your belly becomes, but it's just so damn messy! You're pretty sure you could've filled up a two liter bottle and then some if you were so inclined. Just how thoroughly did you get stuffed?";
+					}
+					else if(amountVented >= 1000)
+					{
+						notice += "\n\n" + upperCase(fluidNoun(statusEffects[z].value3)) + " gets all over the place. It keeps drooling down your [pc.legOrLegs]";
+						if(!isCrotchExposed()) notice += " and getting all over your [pc.lowerGarments]";
+						notice += ", squishing and sliding and making you absolutely reek of sex.";
+					}
+					else if(amountVented >= 500)
+					{
+						notice += "\n\nThere's no lack of " + fluidNoun(statusEffects[z].value3) + " dripping down your [pc.thighs], evidence of your recent and all-too sloppy encounter.";
+					}
+					//9999 apply cum-drenched flag as appropriate?
+				}
+				if(statusEffects[z].value1 <= 0) removals.push("Vaginally-Filled");
+			}
+			//If has anally-filled status effect!
+			if(a >= 0)
+			{
+				if(cumDrain)
+				{
+					//Figure out how much cum is vented over time.
+					//Should vent 1/2 the current amount over 30 minutes
+					//+a small amount based off the maximum amount full you've been for this proc. 
+					amountVented = statusEffects[a].value1 / 4 / 2 + statusEffects[a].value2 / 48
+					//Mult times minutes passed
+					amountVented *= timePassed/60;
+					//Apply to actual status
+					statusEffects[a].value1 -= amountVented;
+				}
+				//Special notices!
+				if(this is PlayerCharacter && notice == "")
+				{
+					if(amountVented >= 25000) 
+					{
+						notice += "\n\n" + upperCase(fluidViscosity(statusEffects[a].value3)) + " " + fluidNoun(statusEffects[a].value3) + " hoses out ";
+						if(legCount > 1) notice += "from between your [pc.legs] ";
+						else notice += "of you ";
+						notice += "in a seemingly endless tide. You can't even move with wet gushes splattering onto the ground, marking a slut-shaming trail wherever you move.";
+						if(!isCrotchExposed()) notice += " It wouldn't be so bad if most of it didn't wind up inside your [pc.lowerGarments], leaving you slick and musky with residual love.";
+					}
+					else if(amountVented >= 10000)
+					{
+						notice += "\n\nTrailing " + fluidNoun(statusEffects[a].value3) + " behind you like slime from a slug, clearly marking your passage more effectively than any tracking bug ever could. There's nothing you can do about it either, save for waiting for the boundless sexual effluvia to finish spilling from your soiled body.";
+					}
+					else if(amountVented >= 5000)
+					{
+						notice += "\n\nThere's so much " + fluidNoun(statusEffects[a].value3) + " sliding out of you. You can't ";
+						if(isNaga() || isGoo()) notice += "slither a few feet";
+						else notice += "take a step";
+						notice += " without thick blobs of goo rolling down your [pc.leg] to the floor, advertising your sexual adventures to anyone close to enough to see, or smell, you."
+					}
+					else if(amountVented >= 2500)
+					{
+						notice += "\n\n" + upperCase(fluidNoun(statusEffects[a].value3)) + " is everywhere. It just won't stop coming out of you. Sure, the more " + fluidViscosity(statusEffects[a].value3) + " goop leaks out, the tighter your belly becomes, but it's just so damn messy! You're pretty sure you could've filled up a two liter bottle and then some if you were so inclined. Just how thoroughly did you get stuffed?";
+					}
+					else if(amountVented >= 1000)
+					{
+						notice += "\n\n" + upperCase(fluidNoun(statusEffects[a].value3)) + " gets all over the place. It keeps drooling down your [pc.legOrLegs]";
+						if(!isCrotchExposed()) notice += " and getting all over your [pc.lowerGarments]";
+						notice += ", squishing and sliding and making you absolutely reek of sex.";
+					}
+					else if(amountVented >= 500)
+					{
+						notice += "\n\nThere's no lack of " + fluidNoun(statusEffects[a].value3) + " dripping down your [pc.thighs], evidence of your recent and all-too sloppy encounter.";
+					}
+					//9999 apply cum-drenched flag as appropriate?
+				}
+				if(statusEffects[a].value1 <= 0) removals.push("Anally-Filled");
+			}
+			//If has orally-filled status effect!
+			if(o >= 0)
+			{
+				if(cumDrain)
+				{
+					//Figure out how much cum is vented over time.
+					//Should vent 1/2 the current amount over 30 minutes
+					//+a small amount based off the maximum amount full you've been for this proc. 
+					amountVented = statusEffects[o].value1 / 8 / 2 + statusEffects[o].value2 / 48
+					//Mult times minutes passed
+					amountVented *= timePassed/60;
+					//Apply to actual status
+					statusEffects[o].value1 -= amountVented;
+				}
+				//Special notices!
+				if(this is PlayerCharacter && notice == "")
+				{
+					//If Jacques00 or Geddy wants to write stuff for this, feel free, but I'm fine with it being more laid back.
+					//9999 apply cum-drenched flag as appropriate?
+				}
+				if(statusEffects[o].value1 <= 0) removals.push("Orally-Filled");
+			}
+			//Remove if no more cum!
+			while(removals.length > 0) 
+			{
+				removeStatusEffect(removals[0]);
+				removals.splice(0,1);
+			}
+			kGAMECLASS.eventBuffer += notice;
+		}
+
 		// OnTakeDamage is called as part of applyDamage.
 		// You should generate a message for /deferred/ display in the creature
 		// rather than emitting text immediately. You should then emit it

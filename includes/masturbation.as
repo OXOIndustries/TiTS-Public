@@ -276,6 +276,15 @@ public function availableFaps(roundTwo:Boolean = false):Array
 		fap.func = cuffSelfRouter;
 		faps.push(fap);
 	}
+	if(MailManager.isEntryViewed("lets_fap_unlock"))
+	{
+		fap = new FapCommandContainer();
+		fap.text = "Smut";
+		fap.ttHeader = "Smut"
+		fap.ttBody = "You could go check out some smutty videos on the extranet.";
+		fap.func = smutFapMenu;
+		faps.push(fap);
+	}
 	return faps;
 }
 
@@ -292,15 +301,6 @@ public function nivasFapSetup():void
 public function TamaniFapSetup():void
 {
 	bionaholeUse("Tamani");
-}
-public function pantyFapCount():Number
-{
-	var count:int = 0;
-	if(pc.hasKeyItem("Panties - Kiro's - Lacy, black, and crotchless.")) count++;
-	if(pc.hasKeyItem("Panties - Penny's - Plain, blue, and crotchless.")) count++;
-	if(pc.hasKeyItem("Panties - Syri's - Sky blue, silky, and extra crotch room.")) count++;
-	if(pc.hasKeyItem("Panties - Saendra's - Ultra-tight and bright pink.")) count++;
-	return count;
 }
 
 public function selectRandomFap(faps:Array):void
@@ -2302,14 +2302,25 @@ public function futaBabePantyfapsRouter():void
 		if(pc.hasKeyItem("Panties - Penny's - Plain, blue, and crotchless.")) futaBabePantyfaps("Penny");
 		if(pc.hasKeyItem("Panties - Saendra's - Ultra-tight and bright pink.")) futaBabePantyfaps("Saendra");
 		if(pc.hasKeyItem("Panties - Syri's - Sky blue, silky, and extra crotch room.")) futaBabePantyfaps("Syri");
+		if(pc.hasKeyItem("Panties - Emmy's - Silky, purple, and cum-stained.")) futaBabePantyfaps("Emmy");
+		if(pc.hasKeyItem("Panties - Embry's - Plain, girly pink panties with little hearts.")) jackOffWithLadyPantiesYouSicko("[embry.name]");
+		if(pc.hasKeyItem("Panties - Xanthe's - Lacy, black siel-silk panties.")) jackOffWithLadyPantiesYouSicko("Xanthe");
+		if(pc.hasKeyItem("Panties - Aina's - Extra-large, striped green centaur panties.")) jackOffWithLadyPantiesYouSicko("Aina");
+		if(pc.hasKeyItem("Panties - Briha's - Nylon, camo-print T-back panties.")) jackOffWithLadyPantiesYouSicko("Briha");
+		if(pc.hasKeyItem("Panties - Lys's - Sheer black panties.")) jackOffWithLadyPantiesYouSicko("Lys");
 	}	
 	//More than one pair? Build a menu.
 	else
 	{
 		clearOutput();
-		output("You've collected " + pantyFapCount() + " of 4 possible pairs of ladies' underwear. Which will you use?");
+		output("You've collected " + pantyFapCount() + " of 10 possible pairs of ladies' underwear. Which will you use?");
 		clearMenu();
 		var button:int = 0;
+		if(pc.hasKeyItem("Panties - Emmy's - Silky, purple, and cum-stained."))
+		{
+			addButton(button,"Emmy's",futaBabePantyfaps,"Emmy","Emmy's Panties","Use Emmy's cum-stained, purple panties for a quick wank.");
+			button++;
+		}
 		if(pc.hasKeyItem("Panties - Kiro's - Lacy, black, and crotchless.")) 
 		{
 			addButton(button,"Kiro's",futaBabePantyfaps,"Kiro","Kiro's Panties","Use Kiro's lacy, crotchless panties for a quick wank.");
@@ -2330,6 +2341,31 @@ public function futaBabePantyfapsRouter():void
 			addButton(button,"Syri's",futaBabePantyfaps,"Syri","Syri's Panties","Use Syri's sky-blue, silky bloomers for a little self-pleasure.");
 			button++;
 		}
+		if(pc.hasKeyItem("Panties - Embry's - Plain, girly pink panties with little hearts.")) 
+		{
+			addButton(button,embry.short + "'s",jackOffWithLadyPantiesYouSicko,"[embry.name]",embry.short + "'s Panties","Use [embry.name]'s pink, heart-covered panties for a little self-pleasure.");
+			button++;
+		}
+		if(pc.hasKeyItem("Panties - Xanthe's - Lacy, black siel-silk panties.")) 
+		{
+			addButton(button,"Xanthe's",jackOffWithLadyPantiesYouSicko,"Xanthe","Xanthe's Panties","Use Xanthe's lacy black panties for a little self-pleasure.");
+			button++;
+		}
+		if(pc.hasKeyItem("Panties - Aina's - Extra-large, striped green centaur panties.")) 
+		{
+			addButton(button,"Aina's",jackOffWithLadyPantiesYouSicko,"Aina","Aina's Panties","Use Aina's large, striped centaur panties for a little self-pleasure.");
+			button++;
+		}
+		if(pc.hasKeyItem("Panties - Briha's - Nylon, camo-print T-back panties.")) 
+		{
+			addButton(button,"Briha's",jackOffWithLadyPantiesYouSicko,"Briha","Briha's Panties","Use Briha's nylon, camo-print panties for a little self-pleasure.");
+			button++;
+		}
+		if(pc.hasKeyItem("Panties - Lys's - Sheer black panties.")) 
+		{
+			addButton(button,"Lys's",jackOffWithLadyPantiesYouSicko,"Lys","Lys's Panties","Use Lys's sheer black panties for a little self-pleasure.");
+			button++;
+		}
 		addButton(14,"Back",masturbateMenu);
 	}
 }
@@ -2342,14 +2378,25 @@ public function futaBabePantySchlicksRouter():void
 		if(pc.hasKeyItem("Panties - Penny's - Plain, blue, and crotchless.")) futaPantiesFapInPussy("Penny");
 		if(pc.hasKeyItem("Panties - Saendra's - Ultra-tight and bright pink.")) futaPantiesFapInPussy("Saendra");
 		if(pc.hasKeyItem("Panties - Syri's - Sky blue, silky, and extra crotch room.")) futaPantiesFapInPussy("Syri");
+		if(pc.hasKeyItem("Panties - Emmy's - Silky, purple, and cum-stained.")) futaPantiesFapInPussy("Emmy");
+		if(pc.hasKeyItem("Panties - Embry's - Plain, girly pink panties with little hearts.")) pureLadyWaifuPussyRubFap("[embry.name]");
+		if(pc.hasKeyItem("Panties - Xanthe's - Lacy, black siel-silk panties.")) pureLadyWaifuPussyRubFap("Xanthe");
+		if(pc.hasKeyItem("Panties - Aina's - Extra-large, striped green centaur panties.")) pureLadyWaifuPussyRubFap("Aina");
+		if(pc.hasKeyItem("Panties - Briha's - Nylon, camo-print T-back panties.")) pureLadyWaifuPussyRubFap("Briha");
+		if(pc.hasKeyItem("Panties - Lys's - Sheer black panties.")) pureLadyWaifuPussyRubFap("Lys");
 	}	
 	//More than one pair? Build a menu.
 	else
 	{
 		clearOutput();
-		output("You've collected " + pantyFapCount() + " of 4 possible pairs of ladies' underwear. Which will you use?");
+		output("You've collected " + pantyFapCount() + " of 10 possible pairs of ladies' underwear. Which will you use?");
 		clearMenu();
 		var button:int = 0;
+		if(pc.hasKeyItem("Panties - Emmy's - Silky, purple, and cum-stained.")) 
+		{
+			addButton(button,"Emmy's",futaPantiesFapInPussy,"Emmy","Emmy's Panties","Use Emmy's purple, cummy panties for a quick jill-off session.");
+			button++;
+		}
 		if(pc.hasKeyItem("Panties - Kiro's - Lacy, black, and crotchless.")) 
 		{
 			addButton(button,"Kiro's",futaPantiesFapInPussy,"Kiro","Kiro's Panties","Use Kiro's lacy, crotchless panties for a quick jill-off session.");
@@ -2370,18 +2417,76 @@ public function futaBabePantySchlicksRouter():void
 			addButton(button,"Syri's",futaPantiesFapInPussy,"Syri","Syri's Panties","Use Syri's sky-blue, silky bloomers for a little self-pleasure.");
 			button++;
 		}
+		if(pc.hasKeyItem("Panties - Embry's - Plain, girly pink panties with little hearts.")) 
+		{
+			addButton(button,embry.short + "'s",pureLadyWaifuPussyRubFap,"[embry.name]",embry.short + "'s Panties","Use [embry.name]'s pink, heart-covered panties for a little self-pleasure.");
+			button++;
+		}
+		if(pc.hasKeyItem("Panties - Xanthe's - Lacy, black siel-silk panties.")) 
+		{
+			addButton(button,"Xanthe's",pureLadyWaifuPussyRubFap,"Xanthe","Xanthe's Panties","Use Xanthe's lacy black panties for a little self-pleasure.");
+			button++;
+		}
+		if(pc.hasKeyItem("Panties - Aina's - Extra-large, striped green centaur panties.")) 
+		{
+			addButton(button,"Aina's",pureLadyWaifuPussyRubFap,"Aina","Aina's Panties","Use Aina's large, striped centaur panties for a little self-pleasure.");
+			button++;
+		}
+		if(pc.hasKeyItem("Panties - Briha's - Nylon, camo-print T-back panties.")) 
+		{
+			addButton(button,"Briha's",pureLadyWaifuPussyRubFap,"Briha","Briha's Panties","Use Briha's nylon, camo-print panties for a little self-pleasure.");
+			button++;
+		}
+		if(pc.hasKeyItem("Panties - Lys's - Sheer black panties.")) 
+		{
+			addButton(button,"Lys's",pureLadyWaifuPussyRubFap,"Lys","Lys's Panties","Use Lys's sheer black panties for a little self-pleasure.");
+			button++;
+		}
 		addButton(14,"Back",masturbateMenu);
 	}
+}
+public function pantyFapCount():Number
+{
+	var count:int = 0;
+	if(pc.hasKeyItem("Panties - Kiro's - Lacy, black, and crotchless.")) count++;
+	if(pc.hasKeyItem("Panties - Penny's - Plain, blue, and crotchless.")) count++;
+	if(pc.hasKeyItem("Panties - Syri's - Sky blue, silky, and extra crotch room.")) count++;
+	if(pc.hasKeyItem("Panties - Saendra's - Ultra-tight and bright pink.")) count++;
+	if(pc.hasKeyItem("Panties - Emmy's - Silky, purple, and cum-stained.")) count++;
+	if(pc.hasKeyItem("Panties - Embry's - Plain, girly pink panties with little hearts.")) count++;
+	if(pc.hasKeyItem("Panties - Xanthe's - Lacy, black siel-silk panties.")) count++;
+	if(pc.hasKeyItem("Panties - Aina's - Extra-large, striped green centaur panties.")) count++;
+	if(pc.hasKeyItem("Panties - Briha's - Nylon, camo-print T-back panties.")) count++;
+	if(pc.hasKeyItem("Panties - Lys's - Sheer black panties.")) count++;
+	return count;
 }
 
 public function getPantyColor(waifu:String = ""):String
 {
-	var pantyColor:String = "some dickgirl";
+	var pantyColor:String = "CODERS DUN GOOFED";
 	if(waifu == "Kiro") pantyColor = "black";
 	else if(waifu == "Penny") pantyColor = "blue";
 	else if(waifu == "Syri") pantyColor = "blue";
 	else if(waifu == "Saendra") pantyColor = "bright pink";
+	else if(waifu == "Emmy") pantyColor = "purple";
+	else if(waifu == "[embry.name]") pantyColor = "pink";
+	else if(waifu == "Xanthe") pantyColor = "black";
+	else if(waifu == "Aina") pantyColor = "striped green";
+	else if(waifu == "Briha") pantyColor = "camo-pattern";
+	else if(waifu == "Lys") pantyColor = "black";
 	return pantyColor;
+}
+
+/* Used in pure female JimT pantyfap scenes */
+public function getPantyTexture(waifu:String = ""):String
+{
+	var pantyTexture:String = "CODERS DUN GOOFED";
+	if(waifu == "[embry.name]") pantyTexture = "soft cotton";
+	else if(waifu == "Xanthe") pantyTexture = "smooth siel-silk";
+	else if(waifu == "Aina") pantyTexture = "stretchy cotton";
+	else if(waifu == "Briha") pantyTexture = "thin nylon";
+	else if(waifu == "Lys") pantyTexture = "sheer";
+	return pantyTexture;
 }
 
 public function futaBabePantyfaps(waifu:String = ""):void
@@ -2462,7 +2567,7 @@ public function futaPantiesFapInPussy(waifu:String = ""):void
 	output("\n\nHolding the soft fabric close to your face, you inhale. Somewhere, long ago, you learned that scent is powerfully bound to the terran memory, and it never seemed more true than at this very moment. The aroma of " + waifu + " conjures up her image in your mind’s eye, complete with a cunt-wrecking cock and a feverishly desirous gaze. You ought to pay her a special visit, the next time you have a chance, maybe sink to your knees and polish her with slow licks until she’s forced to give you the fucking you so crave.");
 	output("\n\nAn audible squelch accompanies the riveting sensation of burying fingertips knuckle deep in your most feminine places. Something " + pantyColor + "-colored and silky soft muffles your joyous croon. You can only assume that you brought " + waifu + "’s panties closer whilst lost in the electric delight of labial friction, and now that you’re breathing through them, you can’t really be bothered to pull them away. " + waifu + " smells as good as you remember, giving your fingers all the reason they need to fly between your folds or feather your [pc.clits].");
 	output("\n\nOpening your mouth, you stuff the panties inside, turning your lover’s underthings into an impromptu gag. It does quite an effective job of muffling your cries of pleasure, and an even better job of reminding you just what she tastes like. Your fingers squish and squelch on their way through your entrance, slipping on the warm, wet bounty that oozes from within. Pleasure races through your overactive nerves like data through quantum entangled relays, instantly transmitting the intense euphoria to your hormone-drenched mind.");
-	output("\n\nWhimpering and quivering, you try to keep your [pc.legs] from quivering. You can practically feel " + waifu + "’s dick inside you, the veiny girth trembling with its own unspent need. It throbs with sympathetic desire, rubbing your most sensitive spots just as you desire them touched. Carefully, you wad up the spit-drenched panties and shove them inside just as your thumb begins to anxiously circle [pc.oneClit], its shaking loosing thrills of ecstasy from the red-hot pleasure buzzer.");
+	output("\n\nWhimpering and quivering, you try to keep your [pc.legOrLegs] from shaking too hard. You can practically feel " + waifu + "’s dick inside you, the veiny girth trembling with its own unspent need. It throbs with sympathetic desire, rubbing your most sensitive spots just as you desire them touched. Carefully, you wad up the spit-drenched panties and shove them inside just as your thumb begins to anxiously circle [pc.oneClit], its shaking loosing thrills of ecstasy from the red-hot pleasure buzzer.");
 	output("\n\nYou cum around those panties,");
 	if(pc.isSquirter())
 	{
@@ -2512,6 +2617,79 @@ public function futaPantiesFapInPussy(waifu:String = ""):void
 	addButton(0,"Next",mainGameMenu);
 }
 
+//Panties: Cock Faps
+// PC must have a cock
+public function jackOffWithLadyPantiesYouSicko(waifu:String):void
+{
+	clearOutput();
+	showName("\nPANTIES!");
+	author("ASpoopyGhost");
+	output("You pull out  " + waifu + "’s panties and hold the bunched up fabric in your hand. They’re your naughty prize, once resting intimately close to her pussy lips, and now yours to play with. Bringing the intimate undle to your face. you inhale deeply. Just smelling the scintillating scent of her sweat and sex–rubbing up against the " + getPantyTexture(waifu) + " all day long–is causing your [pc.cocksNounSimple] to considerably harden. Now you’ve got her scent, ");
+	if(pc.cockTotal() == 1) output("it demands");
+	else output("they demand");
+	output(" to be buried in her musky snatch!");
+
+	output("\n\nDizzy with arousal, you ");
+	if(!pc.isCrotchExposed()) output("tear off your clothes and ");
+	if(currentLocation == "SHIP INTERIOR") output("fall back into your cabin bed");
+	else output("drop to the ground");
+	output(", ");
+	if(pc.legCount > 1) output("spreading your [pc.legs] as wide as you can");
+	else output("succumbing to your desires");
+	output(". You bring the bundle downward and press her intimate apparel against ");
+	if(pc.cockTotal() == 1) output("your erect cock");
+	else output("one of your cocks");
+	output(", running it up and down the underside of your shaft. Where " + waifu + "’s loins once rubbed against is now rubbing against you, and with your head lolling back, you breathily picture her dripping labia lips wetly drawing up and down your length, her moist heat pressing excitedly against your raging rod. You moan out loud and step it up a notch, covering your twitching cockhead in her " + getPantyTexture(waifu) + " crotch-fabric and wrapping it around your crown like a glove. Her panty-fabric strains and shapes to match your pulsating knob. You’re pressing it <i>hard</i> into the place where her musky pussy once rested, fucking it like you were fucking her instead!");
+	output("\n\nMoaning and bucking upwards, the texture of her well-used underwear teases your tip and dilating cockhole. It’s not long before you’re defiling her crotch-fabric with your sticky pre. Your slickness spreads out and forms dark spots in the fabric. With burning cheeks, you groan and buck harder, totally turned on by the idea of staining her sweet underthings with your naughty spunk. You’re breathing hard and wildly wringing the base of your twitching dick, the straining pressure of her panty fabric wildly stimulating your crown like you’re being squeezed by her sex!");
+
+	//TinyJism:
+	if(pc.cumQ() < 9) output("\n\nWith a joyous cry, you spasm and go over the edge, splattering the insides of " + waifu + "’s well-used panties with tiny splutters of your jism. The orgasm is incredibly explosive, even though you’re not, barely marking the inside of her unmentionables. You still wring your dick for every last drop, utterly high off ‘staining’ her precious treasures with your lewd jism. When you finally finish, you’re left panting for breath and thrumming with a glorious afterglow, not to mention a thin sheen of sweat. Wow!");
+	//RegularCums:
+	else if(pc.cumQ() < 100) output("\n\nWith a joyous cry, you spasm and go over the edge, spurting your spunk into the insides of " + waifu + "’s well-used panties. With every spasmic shot, you drench it with more and more of your lewd jism, marking her unmentionables with your own taint. You wring your dick for every last drop, riding the high all the way to the end. When you finally finish, you’re left panting for breath and thrumming with a glorious afterglow, not to mention a thin sheen of sweat. Wow!");
+	//HugeCums:
+	else 
+	{
+		output("\n\nWith a joyous cry, you spasm and go over the edge, blasting your spunk into the insides of " + waifu + "’s well-used panties. Your lewd jism utterly coats her unmentionables in no time at all, utterly drenching every inch with your tainting spunk and coating your entire waist at the same time. You wring your dick for every last gushing burst, riding the high all the way to the end. When you finally finish, you’re left panting for breath and thrumming with a glorious afterglow, not to mention being covered with your own cum. Wow!");
+		applyCumSoaked(pc);
+	}
+	output("\n\nOnce you’re finally able to move, you pick up " + waifu + "’s sticky panties and do what you can to clean them of your spunk for future use. It takes you a while, but you’re pretty sure you’ve got them mostly cleaned of your [pc.cumNoun]. <i>Mostly!</i>");
+	processTime(17+rand(4));
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Panties: Pussy Rubs
+// PC must have a pussy
+public function pureLadyWaifuPussyRubFap(waifu:String):void
+{
+	clearOutput();
+	showName("\nPANTIES!");
+	author("ASpoopyGhost");
+	output("Whipping out " + waifu + "’s panties, you hold the bunched up fabric in your hand. You flush as you look at the naughty prize, knowing that these have been resting intimately close to her pussy all day long, and now belong to you. With bated breath, you bring them up to your nose and deeply inhale. You can still smell her delicious sweat and sex on the " + getPantyTexture(waifu) + ", rubbed up against and marked by her pussy, and now yours to enjoy. Your own nethers begin to tingle thinking about <i>hers</i>, and you feel a heightening urge to rub your pussy up against something like a cat!");
+	output("\n\nThrumming with arousal, you ");
+	if(!pc.isCrotchExposed()) output("pull off your clothes and ");
+	if(currentLocation == "SHIP INTERIOR") output("flumph back into your cabin bed");
+	else output("drop to the ground");
+	output(", ");
+	if(pc.legCount > 1) output("spreading your [pc.legs] as wide as you can");
+	else output("succumbing to your desires");
+	output(". Breathy and excited, you bring the bundle downwards and press her intimate apparel against ");
+	if(!pc.hasVaginas()) output("your needy snatch");
+	else output("one of your pussies");
+	output(", rubbing it up and down your slickening slit. Where " + waifu + "’s loins once rubbed against is now rubbing against you in the same place, and with your head lolling back, you breathily picture her dripping labia lips wetly drawing up and down against yours, her moist heat pressing excitedly against you. Moaning out loud, you press it deeper and between your slickening lips, rubbing the " + getPantyTexture(waifu) + " up against your [pc.clits]. You’re fucking her panties as if you’re fucking her instead, the delicious texture stimulating your sensitive button");
+	if(pc.totalClits() > 1) output("s");
+	output(" and making your [pc.vaginas] sing.");
+
+	output("\n\nBucking wildly against her " + getPantyColor(waifu) + " underwear, it’s not long before you’re defiling her crotch-fabric with your slick wetness, forming dark stains in the fabric. With burning cheeks, you moan and buck harder, totally turned on by the idea of staining her sweet underthings with your naughty girl juices. You’re breathing hard and wildly humping the fabric, knowing her muskiness is touching yours, the panty fabric stroking your [pc.clits] like her own sex meshing up against yours.");
+	output("\n\nWith a deliriously happy cry, you spasm and go over the edge, coating the insides of her " + waifu + "’s well-used panties with your girl juices. You’re practically stuffing her underwear into your spasming pussy as you cum, your fingers dipping the fabric deep into your netherlips as you cum <i>hard</i> on them When you finally finish, you’re left panting for breath and thrumming with a glorious afterglow, not to mention a thin sheen of sweat. Wow!");
+	output("\n\nOnce you’re finally able to move, you pick up " + waifu + "’s sticky panties and do what you can to clean them off for future use.");
+
+	processTime(17+rand(4));
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
 		
 // By JimThermic
 // Exhibition Score: Whatever 'moderate' is. Somewhere between won't publically masturbate at all and total exhibition whore.

@@ -50,6 +50,7 @@ package classes.Characters
 				{
 					kGAMECLASS.oviliumEggBump(cumFrom, vagIndex);
 				}
+				if(cumflationEnabled() && !isPregnant(vagIndex)) cumflationHappens(cumFrom,vagIndex);
 				return this.tryKnockUp(cumFrom, vagIndex);
 			}
 			
@@ -67,6 +68,7 @@ package classes.Characters
 			}
 			if (cumFrom != null)
 			{
+				if(cumflationEnabled()) cumflationHappens(cumFrom,3);
 				return this.tryKnockUp(cumFrom, 3);
 			}
 			
@@ -134,6 +136,7 @@ package classes.Characters
 					if(cumFrom.cumQ() >= 2000) kGAMECLASS.honeyPotBump(true);
 				}
 			}
+			if(cumFrom != null && cumflationEnabled()) cumflationHappens(cumFrom,4);
 			return false;
 		}
 		// *shrug*

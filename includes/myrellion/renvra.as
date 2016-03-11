@@ -611,7 +611,7 @@ public function buttFuckRenvra():void
 	if (pc.hasKnot()) output(", spurred on by the sudden impact of your [pc.knot] pounding her wide open, tying the two of you together");
 	output(". Short, frantic thrusts bring you deeper into her, working out every drop of spooge you can fill her with. By the time you’re done, Renvra’s left panting against the wall, her hands cradling the throbbing shaft of her deflating cock against her belly. She’s a mess of her own pink spunk, smearing across her chest and shoulders and dripping down onto her desk.");
 	output("\n\n<i>“What a mess,”</i> she laughs, rolling her head back and closing her eyes. A plated finger flicks through the pink cream on one of her tits, bringing it up to her mouth to be cleaned off. After a moment’s enjoyment of her own taste, Ren reaches into a shelf nearby, pulls out a fairly thick towel, and begins to clean herself off -- even as you’re still ");
-	if(pc.cockVolume(0) < 300) output("buried");
+	if(!pc.hasKnot()) output("buried");
 	else output("knotted");
 	output(" inside her.");
 

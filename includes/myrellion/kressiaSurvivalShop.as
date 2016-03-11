@@ -166,7 +166,7 @@ public function kressiaSurvivalShopTalkHerShop():void
 	
 	output("\n\n<i>“Old battlefields are beautiful? Now that’s morbid,”</i> Shiare says with what must be the myr equivalent of rolling her eyes.");
 	
-	output("\n\nAnarrie just scowls. <i>“ANYway, I wandered into Kressia, just in time to see the first waves of you... what do you call yourselves - planet-rushers? - coming in from the airfield. They were so completely in awe of the city: ‘an underground civilization, what will they think of next?’ Ha. None of them had done cave exploration before, and here I was at the nexus of the airfield, the trenches, and the biggest access to the deep caves there is for miles around. There were plenty of empty storefronts around, and I knew a little about being a merchant, so... I wrote Shiare and and told her to pack her bags. Money to be made.”</i>");
+	output("\n\nAnarrie just scowls. <i>“ANYway, I wandered into Kressia, just in time to see the first waves of you... what do you call yourselves - planet-rushers? - coming in from the airfield. They were so completely in awe of the city: ‘an underground civilization, what will they think of next?’ Ha. None of them had done cave exploration before, and here I was at the nexus of the airfield, the trenches, and the biggest access to the deep caves there is for miles around. There were plenty of empty storefronts around, and I knew a little about being a merchant, so... I wrote Shiare and told her to pack her bags. Money to be made.”</i>");
 	
 	output("\n\n<i>“What she didn’t say is that this place was going to be a fixer-upper,”</i> Shiare adds, waving one of her four arms around the shop. <i>“A bomb went off just down the street, so we didn’t have any windows, the walls were banged up...”</i>");
 	

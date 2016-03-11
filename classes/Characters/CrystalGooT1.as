@@ -50,7 +50,7 @@ package classes.Characters
 			this.a = "the ";
 			this.capitalA = "The ";
 			this.long = "";
-			this.customDodge = "The goo's liquid flexibility allows her to handily avoid your attack.";
+			this.customDodge = "The goo's liquid flexibility allows it to handily avoid your attack.";
 			this.customBlock = "The goo's liquidity absorbs a great deal of punishment - without taking damage.";
 			this.isPlural = false;
 			
@@ -182,7 +182,7 @@ package classes.Characters
 			}
 			else if (!hasStatusEffect("Unarmored"))
 			{
-				long = "The ganrael ambusher is a frightful sight. Tens of skittering, insectile legs shift and clatter beneath its  lichen cloak";
+				long = "The ganrael ambusher is a frightful sight. Tens of skittering, insectile legs shift and clatter beneath its lichen cloak";
 				if (!kGAMECLASS.pc.hasStatusEffect("Grappled")) long += ", propelling it through pillars and over rocks in a constant attempt to flank you";
 				long += ". Though it usually stays low to take advantage of its camouflage, its nine-foot body is capable of dangerous leverage when it rears to strike. It’s covered with hard, sculpted plates that provide formidable defense, and its gauntleted hands ward blows. The uppermost section of its trunk resembles a";
 				if (flags["MET_NYREA_ALPHA"] != undefined || flags["MET_NYREA_BETA"] != undefined) long += " nyrea";
@@ -496,11 +496,11 @@ package classes.Characters
 			
 			if (target.hasStatusEffect("Tripped"))
 			{
-				output(" It takes advantage of your grounded state, moving through blind spots until you lose it completely. The cave echoes with its scuffling gait, like the earth is shifting in preparation to swallow you.\n\n");
+				output("It takes advantage of your grounded state, moving through blind spots until you lose it completely. The cave echoes with its scuffling gait, like the earth is shifting in preparation to swallow you.\n\n");
 			}
 			else
 			{
-				output(" Despite your best efforts, you lose track of it. The cave echoes with skitters and laughs, no two from the same direction, and your anxiety mounts.\n\n");
+				output("Despite your best efforts, you lose track of it. The cave echoes with skitters and laughs, no two from the same direction, and your anxiety mounts.\n\n");
 			}
 		}
 		
@@ -611,7 +611,7 @@ package classes.Characters
 			{
 				if (rand(10) == 0)
 				{
-					output("You fiddle with your gear as quickly as possible, but before you make much progress a " + skinTone+ " streak crashes into you, sending you tumbling to the ground, the ganrael swiftly landing atop you!");
+					output("You fiddle with your gear as quickly as possible, but before you make much progress a " + skinTone+ " streak crashes into you, sending you tumbling to the ground with the ganrael atop you!");
 					pc.createStatusEffect("Grappled", 0, 40, 0, 0, false, "Constrict", "The ganrael has wrapped itself tight around you!", true, 0);
 					UpdateState();
 				}

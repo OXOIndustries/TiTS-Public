@@ -2581,7 +2581,7 @@ public function annosTriberatorGatorMatorHater():void
 		if(annoIsCrew()) output("desk");
 		else output("bench");
 		output(" and playfully wave it in the air. As soon as you do, Anno straightens up, pushing out her bourgeoning breasts. Her snowy ears perk up and her tail excitedly swishes back and forth.");
-		output("\n\n<i>“Oh-OH! Are you going to use it-?”</i> The canine girl bites her lower lip, looking at you with big, caramel-colored eyes. It seems she <i>really</i> wants you to use the toy on her.");
+		output("\n\n<i>“Oh-OH! Are you going to use it-?”</i> The canine girl bites her lower lip, looking at you with big, blue eyes. It seems she <i>really</i> wants you to use the toy on her.");
 		output("\n\n<i>“Are you going to be a good girl and do as I say...?”</i> you ask, leading her on. She happily nods, so you tell her you will be using it today. She’s over the moons about it.");
 	}
 	// MERGE
@@ -2601,7 +2601,7 @@ public function annosTriberatorGatorMatorHater():void
 		if(flags["ANNO_TRIBERATOR_USED"] == undefined) output("<i>“Oh really? I’d love a helping hand...”</i>");
 		else output("<i>“Fantastic! Let’s get </i>this<i> out of the way then...”</i>");
 		output(" she grins. Standing up, she begins to slowly unzip her snugly fitting catsuit, and you watch the mouthwatering sight. Her brazenly formed breasts are slowly exposed, starting with her considerable cleavage. It’s even more impressive considering she’s not even wearing a bra!");
-		output("\n\nWhen the zip reaches her waist, her plump tits spill free of their confines and jiggle deliciously before your eyes It’s hard to ever get sick of those dusky areolae and big, sensitive nipples. She finishes unzipping and then begins sliding off the suit.  As the snowy-haired ausar  bends over to slide them down, she wildly wiggles her shapely hips, soon revealing her utter disregard for <i>any</i> kind of underwear.");
+		output("\n\nWhen the zip reaches her waist, her plump tits spill free of their confines and jiggle deliciously before your eyes. It’s hard to ever get sick of those dusky areolae and big, sensitive nipples. She finishes unzipping and then begins sliding off the suit.  As the snowy-haired ausar  bends over to slide them down, she wildly wiggles her shapely hips, soon revealing her utter disregard for <i>any</i> kind of underwear.");
 	}
 	output("\n\nNow she’s butt-naked, you order Anno to get on ");
 	if(annoIsCrew()) output("the bed");

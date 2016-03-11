@@ -526,6 +526,7 @@ public function lostDrankinContestToKiroz():void
 	showKiro(true);
 	output("Kiro uses you for hours upon hours. When you’re awake, she claims every single hole as her own, multiple times. When you’re asleep, she snuggles with you, clinging protectively to you with her immense tool plugging you from behind. She leaves at least one nocturnal protein snack for you in the morning. After that, you both shower, and she eats breakfast. You wind up sucking her off under the table for your meal, even though you aren’t really hungry at this point. Your Kui-Tan Mistress insists on it.");
 	output("\n\nIt is a long, sexually exhausting day, but when you leave, it’s as sexually sated as you’ve ever been. Unfortunately, you find yourself thinking of sex a little more readily afterward, almost eager to sink back into the constant depravity you’ve just escaped.");
+	processTime(1380);
 	pc.loadInMouth(chars["KIRO"]);
 	pc.loadInMouth(chars["KIRO"]);
 	pc.loadInAss(chars["KIRO"]);
@@ -535,7 +536,6 @@ public function lostDrankinContestToKiroz():void
 		pc.loadInCunt(chars["KIRO"],rand(pc.totalVaginas()));
 		pc.loadInCunt(chars["KIRO"],rand(pc.totalVaginas()));
 	}
-	processTime(1380);
 	sleepHeal();
 	pc.orgasm();
 	pc.orgasm();
@@ -1550,8 +1550,13 @@ public function kiroFucksYourCuntPartII(x:int = 0):void
 	if(pc.isBimbo()) output(" Yummy! If you didn’t have other stuff to do, you’d prop yourself up on your shoulders and let the rest drip into your mouth, but it’s better fresh anyway. Maybe you can suck her off next time. Yeah, that’d be awesome!");
 	else output("If you didn’t feel so wonderful, you’d probably give her a snarky remark. Instead, you let her feed you a sample of her cum. It’s about as salty as you’d expect, but somehow, it hits the spot.");
 	processTime(43);
+	pc.loadInCunt(kiro, x);
 	pc.orgasm();
+	kiro.orgasm();
+	pc.loadInCunt(kiro, x);
 	pc.orgasm();
+	kiro.orgasm();
+	pc.loadInCunt(kiro, x);
 	pc.orgasm();
 	kiro.orgasm();
 	clearMenu();

@@ -408,6 +408,7 @@ package classes.GameData
 			ConcussiveShot.EnergyCost = 25;
 			ConcussiveShot.IsRangedBased = true;
 			ConcussiveShot.RequiresItemFlags = [GLOBAL.ITEM_FLAG_BOW_WEAPON];
+			ConcussiveShot.RequiresPerk = "Concussive Shot";
 			ConcussiveShot.ExtendedDisplayabilityCheck = function():Boolean {
 				return kGAMECLASS.pc.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_BOW_WEAPON);
 			}
@@ -685,9 +686,10 @@ package classes.GameData
 				
 				for (i = 0; i < others.length; i++)
 				{
-					if (!others[i].isDefeated())
+					if (!others[i].isDefeated() && others[i] != target)
 					{
-						if (numHits > 0 || i != 0) output("\n");
+						//if (numHits > 0 || i != 0) output("\n");
+						output("\n");
 						if (SingleMeleeAttackImpl(attacker, others[i], false)) numHits++;
 					}
 				}
@@ -870,7 +872,7 @@ package classes.GameData
 						if (target.isPlural) output("\n<b>" + target.capitalA + target.uniqueName + " are stunned.</b>");
 						else output("\n<b>" + target.capitalA + target.uniqueName + " is stunned.</b>");
 					}
-					target.createStatusEffect("Stunned", 2, 0, 0, 0, false, "Stun", "Cannot act for a turn.", true, 0);
+					target.createStatusEffect("Stunned", 2, 0, 0, 0, false, "Stun", "Cannot act for a turn.", true, 0,0xFF0000);
 				}
 				else
 				{
@@ -932,7 +934,7 @@ package classes.GameData
 			if (attacker is PlayerCharacter) output("You seek cover against ranged attacks.");
 			else output(attacker.capitalA + attacker.uniqueName + " hunkers behind cover, defending themselves against ranged attacks!");
 			
-			attacker.createStatusEffect("Taking Cover", 3, 0, 0, 0, false, "DefenseUp", "Taking cover! Ranged attacks will almost always miss!", true);
+			attacker.createStatusEffect("Taking Cover", 4, 0, 0, 0, false, "DefenseUp", "Taking cover! Ranged attacks will almost always miss!", true);
 		}
 		
 		public static var CarpetGrenades:SingleCombatAttack;
@@ -1026,7 +1028,7 @@ package classes.GameData
 				else if (attacker is PlayerCharacter) output("<b>" + target.capitalA + target.uniqueName + " is blinded by your " + possessive(attacker.rangedWeapon.longName) + " flashes.</b>\n");
 				else output("<b>" + target.capitalA + target.uniqueName + " is blinded by flashes from " + attacker.a + possessive(attacker.uniqueName) + " " + attacker.rangedWeapon.longName + ".</b>");
 				
-				target.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0);
+				target.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0,0xFF0000);
 			}
 		}
 		
@@ -1075,7 +1077,7 @@ package classes.GameData
 				output("\n");
 				if (target is PlayerCharacter) output("<b>You are stunned!</b>");
 				else output("<b>" + target.capitalA + target.uniqueName + " is stunned!</b>");
-				target.createStatusEffect("Stunned", 1, 0, 0, 0, false, "Stun", "Cannot act for a turn.", true, 0);
+				target.createStatusEffect("Stunned", 1, 0, 0, 0, false, "Stun", "Cannot act for a turn.", true, 0,0xFF0000);
 			}
 		}
 		
@@ -1254,7 +1256,7 @@ package classes.GameData
 			else if (target is PlayerCharacter) output(attacker.capitalA + attacker.uniqueName + " hacks your weapon, disarming you temporarily!");
 			else output(attacker.capitalA + attacker.uniqueName + " hacks " + target.a + possessive(target.uniqueName) + " weapon, disarming " + target.mfn("him", "her", "it") + ".");
 			
-			target.createStatusEffect("Disarmed", 4 + rand(2), 0, 0, 0, false, "Blocked", "Cannot use normal melee or ranged attacks!", true, 0);
+			target.createStatusEffect("Disarmed", 4 + rand(2), 0, 0, 0, false, "Blocked", "Cannot use normal melee or ranged attacks!", true, 0,0xFF0000);
 		}
 		
 		public static var PocketSand:SingleCombatAttack;
@@ -1272,7 +1274,7 @@ package classes.GameData
 				
 				if (attacker.aim() / 2 + rand(20) + 6 >= cTarget.reflexes() / 2 + 10 && !cTarget.hasStatusEffect("Blinded"))
 				{
-					cTarget.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0);
+					cTarget.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0,0xFF0000);
 					
 					output("\n<b>" + cTarget.capitalA + cTarget.uniqueName + " is blinded by the coarse granules.</b>");
 				}
@@ -1300,7 +1302,7 @@ package classes.GameData
 				
 				if (attacker.aim() / 2 + rand(20) + 6 >= cTarget.reflexes() / 2 + 10 && !cTarget.hasStatusEffect("Blinded"))
 				{
-					cTarget.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0);
+					cTarget.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0,0xFF0000);
 					
 					if (cTarget is PlayerCharacter) output("\n<b>You're blinded by the luminous flashes.</b>");
 					else output("\n<b>" + cTarget.capitalA + cTarget.uniqueName + " is blinded by the luminous flashes.</b>");
@@ -1345,7 +1347,7 @@ package classes.GameData
 					if (target is Kaska)
 					{
 						output("\nKaska's eyes cross from the overwhelming pain. She sways back and forth like a drunken sailor before hitting the floor with all the grace of a felled tree. A high pitched squeak of pain rolls out of her plump lips. <b>She's very, very stunned.</b>");
-						target.createStatusEffect("Stunned", 3 + rand(2), 0, 0, 0, false, "Stun", "Cannot act for a while. You hit her balls pretty hard!", true, 0);
+						target.createStatusEffect("Stunned", 3 + rand(2), 0, 0, 0, false, "Stun", "Cannot act for a while. You hit her balls pretty hard!", true, 0,0xFF0000);
 					}
 					else
 					{
@@ -1358,7 +1360,7 @@ package classes.GameData
 							output("\n<b>" + target.capitalA + target.uniqueName + " is stunned.</b>");
 						}
 						
-						target.createStatusEffect("Stunned", 2 + rand(2), 0, 0, 0, false, "Stun", "Cannot act for a while.", true, 0);
+						target.createStatusEffect("Stunned", 2 + rand(2), 0, 0, 0, false, "Stun", "Cannot act for a while.", true, 0,0xFF0000);
 					}
 				}
 				else
@@ -1411,7 +1413,7 @@ package classes.GameData
 			else if (target is PlayerCharacter) output(attacker.capitalA + attacker.uniqueName + " shoots your weapons away with well-placed shots!");
 			else output(attacker.capitalA + attacker.uniqueName + " shoots " + target.a + possessive(attacker.uniqueName) + " weapons away with well-placed shots!");
 			
-			target.createStatusEffect("Disarmed", 4, 0, 0, 0, false, "Blocked", "Cannot use normal melee or ranged attacks!", true, 0);
+			target.createStatusEffect("Disarmed", 4, 0, 0, 0, false, "Blocked", "Cannot use normal melee or ranged attacks!", true, 0,0xFF0000);
 		}
 		
 		public static var StealthFieldGenerator:SingleCombatAttack;
@@ -1422,12 +1424,12 @@ package classes.GameData
 			if (attacker is PlayerCharacter)
 			{
 				output("You activate your stealth field generator, fading into nigh-invisibility.");
-				rounds = 2;
+				rounds = 3;
 			}
 			else
 			{
 				output(attacker.capitalA + attacker.uniqueName + " activates a stealth field generator, fading into nigh-invisibility.");
-				rounds = 3;
+				rounds = 4;
 			}
 			
 			attacker.createStatusEffect("Stealth Field Generator", rounds, 0, 0, 0, false, "DefenseUp", "Provides a massive bonus to evasion chances!", true, 0);
@@ -1540,7 +1542,7 @@ package classes.GameData
 					output(", stunning your enemy!");
 					
 					var rounds:int = 1 + rand(2);
-					target.createStatusEffect("Stunned",rounds,0,0,0,false,"Stun","Cannot act for "+ rounds +" turns.",true,0);
+					target.createStatusEffect("Stunned",rounds,0,0,0,false,"Stun","Cannot act for "+ rounds +" turns.",true,0,0xFF0000);
 				}
 				
 				// Add some burning damage for the explosion
@@ -1626,7 +1628,7 @@ package classes.GameData
 					if (!target.hasStatusEffect("Stunned") && target.physique() + rand(20) + 1 < 40)
 					{
 						output("<b> The hit was hard enough to stun you!</b>");
-						target.createStatusEffect("Stunned",1,0,0,0,false,"Stun","You are stunned and cannot move until you recover!",true,0);
+						target.createStatusEffect("Stunned",1,0,0,0,false,"Stun","You are stunned and cannot move until you recover!",true,0,0xFF0000);
 					}
 					var damage:TypeCollection = attacker.meleeDamage();
 					damage.multiply(2);

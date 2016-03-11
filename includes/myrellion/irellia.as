@@ -623,7 +623,7 @@ public function fuckIrelliasFrontGina():void
 	output(". It feels like fucking liquid ambrosia, immersing yourself in the liquified heat and pleasure.");
 	pc.cockChange();
 
-	output("\n\nQueen Irellia sighs in enjoyment, draping her legs off either side of her “throne” to allow you better access to her juicing cunt. <i>“Ahhh, that hits the spot.”</i> Her upper arms idly toy with her leaking breasts. <i>“To be honest, [pc.name]... I love this.”</i> Slipping between you, one of her lower arms reaches down to press against her clitoris. <i>“I love laying down and letting a male" + pc.mf(""," or beautiful dick-girl") + " like yourself ravish me. If didn’t have to take breaks to keep myself from getting damaged, I’d lie here and breed all day. The handmaidens could handle the other stuff.”</i>");
+	output("\n\nQueen Irellia sighs in enjoyment, draping her legs off either side of her “throne” to allow you better access to her juicing cunt. <i>“Ahhh, that hits the spot.”</i> Her upper arms idly toy with her leaking breasts. <i>“To be honest, [pc.name]... I love this.”</i> Slipping between you, one of her lower arms reaches down to press against her clitoris. <i>“I love laying down and letting a male" + pc.mf(""," or beautiful dick-girl") + " like yourself ravish me. If I didn’t have to take breaks to keep myself from getting damaged, I’d lie here and breed all day. The handmaidens could handle the other stuff.”</i>");
 	output("\n\nHalfway through her admission, ");
 	if(pc.cocks[x].cLength() < 11) output("you finish testing her depths, entering her as fully as possible");
 	else output("you hit your maximum depth. You’re too big to go any further in without hurting one of you");

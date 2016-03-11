@@ -144,7 +144,7 @@ public function customsPassFinale():void
 {
 	output("\n\nYou spend a minute or two filling in your signature or initials on a few forms. Eventually, you hand them over to Ogram, who stamps them. As he does so, you notice the bull-man wince, snaking a hand down under the desk. Maybe he’s got a cramp?");
 	output("\n\n<i>“Alright. Just step on over to the visitor check-in desk. Somebody’ll be with you...”</i> He shudders a little bit, barely muting a curse. <i>“Uh, real soon.”</i>");
-	pc.createStatusEffect("Disarmed",4,0,0,0,false,"Blocked","You've checked all forms of weaponry at New Texas' customs.",false,0);
+	pc.createStatusEffect("Disarmed",4,0,0,0,false,"Blocked","You've checked all forms of weaponry at New Texas' customs.",false,0,0xFF0000);
 	if(pc.hasEquippedWeapon()) flags["CHECKED_GEAR_AT_OGGY"] = 1;
 	processTime(2);
 	clearMenu();
@@ -282,7 +282,7 @@ public function getDisarmedRepeat():void
 	{
 		output("You casually inform him that you don't have any weapons, watching as Og's eyebrow climbs steadily higher.\n\n<i>“I'll have to give you a quick check-over,”</i> he says while waving a portable scanner over your body. <i>“All right, you're clear. Have a good one.”</i>");
 	}
-	pc.createStatusEffect("Disarmed",4,0,0,0,false,"Blocked","You've checked all forms of weaponry at New Texas' customs.",false,0);
+	pc.createStatusEffect("Disarmed",4,0,0,0,false,"Blocked","You've checked all forms of weaponry at New Texas' customs.",false,0,0xFF0000);
 	
 	processTime(1);
 	clearMenu();

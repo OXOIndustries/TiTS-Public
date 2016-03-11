@@ -7,6 +7,7 @@
 	import classes.Items.Miscellaneous.ProphylacticGoblin;
 	import classes.Items.Miscellaneous.ProphylacticLapinara;
 	import classes.Items.Miscellaneous.ProphylacticRaskvel;
+	import classes.Items.Miscellaneous.TarkusJokeBook;
 	import classes.Items.Apparel.ComfortableClothes;
 	
 	public class Colenso extends Creature
@@ -22,6 +23,7 @@
 			this.inventory.push(new ProphylacticLapinara());
 			this.inventory.push(new ProphylacticRaskvel());
 			this.inventory.push(new ProphylacticSydian());
+			this.inventory.push(new TarkusJokeBook());
 			
 			this.typesBought[this.typesBought.length] = GLOBAL.ALL;
 			this.sellMarkup = 1.3;

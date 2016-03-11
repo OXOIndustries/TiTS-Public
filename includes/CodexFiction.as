@@ -177,3 +177,187 @@ public function bullsStrength():void
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Bull’s Strength");
 }
+
+public function DivertingTarkusJokesAndJests():void
+{
+	clearOutputCodex();
+	outputCodex(header("Diverting Jokes and Jests"));
+	outputCodex("<i>compiled by Jaskel Nuch</i>");
+	author("Zeikfried");
+	//{(big font if possible)}
+
+	outputCodex("\n\nBosh the raskvel was worried. His friend asked him, <i>“What’s wrong, Bosh?”</i>");
+	outputCodex("\n\n<i>“Oh, it’s my new girlfriend. I really like her but... she’s a lapinara. Every time she comes over she wants to put her eggs in my butt, and I’m terrified of trying it.”</i>");
+	outputCodex("\n\nHis friend leaned in. <i>“I know a spell that will give you courage. I used it before my last job interview. Would you like me to teach it to you?”</i>");
+	outputCodex("\n\nBosh agreed eagerly, and so his friend wrote down the spell. After a glance, Bosh set about collecting ingredients.");
+	outputCodex("\n\nFirst he had to find a piece of parchment older than the gabilani who owned it. Then the spell required him to write <i>“I will not fear”</i> one hundred times, in Old Raskvel, with ink made from the oilsap of scythe trees. It cost Bosh half a month’s wages to get the paper and ink and another week’s to buy the translation to Old Raskvel runes. Next, the scrawled-on parchment had to be put in a big jug of strong liquor and soaked for two weeks. Bosh did it, though buying so much liquor used up the rest of his month’s wages. Finally, the spell required enzyme scraped from the tail of a male sydian to be added when the soaking finished. Bosh was beaten pretty badly getting the enzyme, but luckily he had the two weeks to recover. On the appointed night, he was loading a medicine dropper with enzyme when he heard a knock at his door.");
+	outputCodex("\n\n<i>“Bosh, it’s been two weeks. You said we could have sex after two weeks, and I’m really, really horny! Let me in!”</i>");
+	outputCodex("\n\nBosh swallowed his panic. <i>“Just a minute, I’m getting ready!”</i> He took out his friend’s instructions and re-read them to make sure he could perform the courage spell correctly. First, he added exactly seven drops of enzyme to the liquor jug. Then he swirled the jug clockwise three times and anti-clockwise four times. Next he fished out the parchment, tore it into seven pieces, and dropped them back into the jug, just as instructed. Finally, to finish the spell, he chugged the entire jug. Then he opened the door.");
+
+	outputCodex("\n\n-----------------------------------------------------------");
+	outputCodex("\n\nWhat separates a living gabilani from an empty prosthetic body?");
+	outputCodex("\n.");
+	outputCodex("\n.");
+	outputCodex("\n.");
+	outputCodex("\nThe condom, hopefully.");
+	outputCodex("\n\n-----------------------------------------------------------");
+
+	outputCodex("\n\nHow does a lapinara mother know when to tell her daughters to come inside?");
+	outputCodex("\n.");
+	outputCodex("\n.");
+	outputCodex("\n.");
+	outputCodex("\nThere’s no need. Lapinara girls always want to come inside.");
+
+	outputCodex("\n\n-----------------------------------------------------------");
+	/*Cut for being extra awful
+	outputCodex("\n\nWhy do sydian men hate having sex with gray goo girls?");
+	outputCodex("\n.");
+	outputCodex("\n.");
+	outputCodex("\n.");
+	outputCodex("\n\nThe goo girls don’t bruise.");
+	outputCodex("\n\n-----------------------------------------------------------");*/
+
+	outputCodex("\n\nWhy do gabilani wear hats and clothes made of foil?");
+	outputCodex("\n.");
+	outputCodex("\n.");
+	outputCodex("\n.");
+	outputCodex("\nTo keep warm.");
+
+	outputCodex("\n\n-----------------------------------------------------------");
+
+	outputCodex("\n\nA lapinara is talking to a gabilani. <i>“You would not believe the day I had. First thing, right, I tripped over this old book I found and got a bloody nose. A raskvel gang hears the noise and shows up to give me crap for being in their turf. I had to run for half an hour to get away from them, and I couldn’t check my compass, so I ended up in the glade! I nearly walked into a scythe tree, and when I backpedaled, a horde of sexbots jumped me! They must’ve ridden me for half a day! My dick feels like a boiled potato, and my balls are so empty my girlfriend could move into them.”</i>");
+
+	outputCodex("\n\nThe gabilani replies, <i>“Do you still have the book?”</i>");
+
+	outputCodex("\n\n-----------------------------------------------------------");
+
+	outputCodex("\n\nWhy do the tubers shipped in from the plains smell musty?");
+	outputCodex("\n.");
+	outputCodex("\n.");
+	outputCodex("\n.");
+	outputCodex("\nLonely raskvel girls.");
+
+	outputCodex("\n\n-----------------------------------------------------------");
+
+	outputCodex("\n\nHow do you stalk a gabilani woman legally?");
+	outputCodex("\n.");
+	outputCodex("\n.");
+	outputCodex("\n.");
+	outputCodex("\nFind the nearest raskvel shop and get her trash out of the ‘sale’ bin.");
+
+	outputCodex("\n\n-----------------------------------------------------------");
+
+	outputCodex("\n\nWhy is it illegal to leave broken sexbots by a raskvel’s door overnight?");
+	outputCodex("\n.");
+	outputCodex("\n.");
+	outputCodex("\n.");
+	outputCodex("\nThey’ll get fixed.");
+
+	outputCodex("\n\n-----------------------------------------------------------");
+
+	outputCodex("\n\nA lapinara comes to a party with a group of males. How do you tell which she’s dating and which are just friends?");
+	outputCodex("\n.");
+	outputCodex("\n.");
+	outputCodex("\n.");
+	outputCodex("\nThe one she’s dating won’t sit down.");
+
+	outputCodex("\n\n-----------------------------------------------------------");
+
+	outputCodex("\n\nTwo sydian women are preparing food. One turns to the other. <i>“This reminds me, Reeka; I haven’t seen your mate at evening meal all this week. And now that I think, you’ve been distracted and you’re not wearing your mother’s choker. Don’t tell me something happened?”</i>");
+
+	outputCodex("\n\n<i>“Er, yes and no,”</i> answers Reeka. <i>“We had an argument and I locked him in our bedchamber to cool off. I always hide the choker in there, so I can’t get to it. That was four days ago. I’ve been talking to him through the door to calm him down, but he’s still angry. I need to think of a way to get him food and water soon.”</i>");
+
+	outputCodex("\n\n<i>“Reeka!”</i> gasps her friend. <i>“You mean to say that all this time, you’ve had a door that locks? Do you think you could store my jewelry in there too?”</i>");
+
+	outputCodex("\n\n-----------------------------------------------------------");
+
+	outputCodex("\n\nWhy did nobody attend the Lapinara Sanctuary’s Grand Ball?");
+	outputCodex("\n.");
+	outputCodex("\n.");
+	outputCodex("\n.");
+	outputCodex("\nBig lapinara balls make people nervous.");
+
+	outputCodex("\n\n-----------------------------------------------------------");
+
+	outputCodex("\n\nWhat are the proper steps to prepare and serve ruskvel for a party?");
+
+	outputCodex("\n\nFirst, roll the dough thin.");
+
+	outputCodex("\n\nSecond, mince the filling.");
+
+	outputCodex("\n\nThird, wrap the filling in the dough.");
+
+	outputCodex("\n\nFourth, bake until brown.");
+
+	outputCodex("\n\nLastly, place the completed dumplings in the garbage where the raskvel guests can find them.");
+
+	outputCodex("\n\n-----------------------------------------------------------");
+
+	outputCodex("\n\nWhy can’t gabilani float in pools deeper than 4’5”</i>?");
+	outputCodex("\n.");
+	outputCodex("\n.");
+	outputCodex("\n.");
+	outputCodex("\nThe slave’s head is below water.");
+
+	outputCodex("\n\n-----------------------------------------------------------");
+
+	outputCodex("\n\nWhy don’t sydian women use vibrators?");
+	outputCodex("\n.");
+	outputCodex("\n.");
+	outputCodex("\n.");
+	outputCodex("\nRusty batteries leak.");
+
+	outputCodex("\n\n-----------------------------------------------------------");
+
+	outputCodex("\n\nWhen is a sydian girl’s pussy at its wettest?");
+	outputCodex("\n.");
+	outputCodex("\n.");
+	outputCodex("\n.");
+	outputCodex("\nWhen it’s raining.");
+
+	outputCodex("\n\n-----------------------------------------------------------");
+
+	outputCodex("\n\nA raskvel walks into her friend’s apartment and notices that there’s a dildo stuck to the wall, five feet up.");
+
+	outputCodex("\n\n<i>“Hey, Tyki, why’s there a dildo way up on your wall?”</i> she asks.");
+
+	outputCodex("\n\nTyki glances at it. <i>“I have a big repair job due in a week. I glued it up there so I could focus on my work.”</i>");
+
+	outputCodex("\n\nHer friend looks impressed. <i>“And how’s that working for you?”</i>");
+
+	outputCodex("\n\n<i>“Terribly,”</i> Tyki answers. <i>“My neighbor has complained about the noise twice and whenever I orgasm, I hit my head on the floor.”</i>");
+
+	outputCodex("\n\n-----------------------------------------------------------");
+
+	outputCodex("\n\nHow do you tell if a gabilani woman is single?");
+	outputCodex("\n.");
+	outputCodex("\n.");
+	outputCodex("\n.");
+	outputCodex("\nTwo of her prosthetic fingers are rustier than the others.");
+
+	outputCodex("\n\n-----------------------------------------------------------");
+
+	outputCodex("\n\nHow do you tell if a gabilani man is single?");
+	outputCodex("\n.");
+	outputCodex("\n.");
+	outputCodex("\n.");
+	outputCodex("\nHis slave has bathed.");
+
+	outputCodex("\n\n-----------------------------------------------------------");
+
+	outputCodex("\n\nWhy’s it so hard to get sydians pregnant?");
+	outputCodex("\n.");
+	outputCodex("\n.");
+	outputCodex("\n.");
+	outputCodex("\nEven with the women, you’re cumming inside assholes.");
+
+	outputCodex("\n\n-----------------------------------------------------------");
+
+	outputCodex("\n\nWhat’s the largest business expense with a lapinara workforce?");
+	outputCodex("\n.");
+	outputCodex("\n.");
+	outputCodex("\n.");
+	outputCodex("\nChild support.");
+	outputCodex("\n");
+	CodexManager.viewedEntry("Diverting Jokes");
+}

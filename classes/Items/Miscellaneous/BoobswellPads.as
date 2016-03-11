@@ -149,7 +149,7 @@
 				kGAMECLASS.output("onto your flat chest. You give a little gasp as the cold adhesive adheres to you, and again as the pads turn suddenly slightly... wet. As if they’re leaking something onto your skin, and makes you go flush with a combination of sudden arousal and chill.");
 			}
 			pc.lust(5);
-			pc.createStatusEffect("Boobswell Pads",arg,0,0,0, false, "LustUp", "The applied boobswell pads are slowly but steadily working to fill out your chest. You can remove them at any point via the \"Remove Swell\" command in the \"Masturbation\" menu, but the pads will still be consumed. They're one use only.", false, 4320);
+			pc.createStatusEffect("Boobswell Pads",arg,0,0,0, false, "LustUp", "The applied boobswell pads are slowly but steadily working to fill out your chest. You can remove them at any point via the \"Remove Swell\" command in the \"Masturbation\" menu, but the pads will still be consumed. They're one use only.", false, 4320,0xB793C4);
 		}
 		protected function rand(max:Number):Number
 		{

@@ -869,7 +869,12 @@ public function vanaeMaidenCunnilingus():void
 	output("\n\nYou are surprised when your tongue breaches her to find hundreds of little feelers suddenly tickling your tongue tip, the insides of her [enemy.pussy] clearly more alien than the outside. At first it feels odd, but you quickly grow used to it. Continuing to lap out her insides, you are soon rewarded with a flood of her heavenly girl juice gushing onto your tongue.");
 
 	output("\n\nMoaning and lapping up her cunny juice,");
-	if (pc.hasCock()) output(" your [pc.cocks] feel painfully stiff, as if you're going to blow your load all over the ground without a single caress");
+	if (pc.hasCock()) 
+	{
+		output(" your [pc.cocks] feel");
+		if(pc.cockTotal() == 1) output("s");
+		output(" painfully stiff, as if you're going to blow your load all over the ground without a single caress");
+	}
 	else output(" your own thighs tremble and squeeze together. You're pretty sure you're going to cream yourself without a single caress - you're just that turned on by eating out the dainty huntress and tasting her sweet girl juice");
 	output(". Your hands wrap around and grab [enemy.butt], squeezing it firmly.");
 
@@ -2021,7 +2026,7 @@ public function vanaeHuntressPCDefeatTitfux():void
 
 	output("\n\nWith a violent, shuddering eruption, your [pc.cumNoun] fires up in thick, gooey ropes, splattering the alien huntress right on her face. You cry out as [pc.cumColor] ropes streak up as if fired from a [pc.cock] shaped volcano, falling back down to coat her ample teats in your jism. She lets out a low moan of pleasure, continuing to milk [pc.eachCock] as you spasmically spurt all over her snow white skin.");
 
-	output("\n\nOnce you are done, she pulls back and licks the underside of [pc.onecock], making your whole body tremble with joy. It seems she's not quite finished with you yet, lubing you back up and taking you back into her breast flesh. You relax back, giving yourself over to pleasure...");
+	output("\n\nOnce you are done, she pulls back and licks the underside of [pc.oneCock], making your whole body tremble with joy. It seems she's not quite finished with you yet, lubing you back up and taking you back into her breast flesh. You relax back, giving yourself over to pleasure...");
 
 	output("\n\n... An hour later ...");
 

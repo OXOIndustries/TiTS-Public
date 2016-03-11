@@ -15,10 +15,11 @@ public function fuckedVahn():Boolean
 {
 	return (flags["SEXED_VAHN"] != undefined);
 }
-public function showVahn():void
+public function showVahn(nude:Boolean = false):void
 {
 	showName("\nVAHN");
-	showBust("VAHN");
+	if(nude) showBust("VAHN_NUDE");
+	else showBust("VAHN");
 	author("JimThermic");
 }
 
@@ -190,7 +191,7 @@ public function vahnSexMenu():void
 public function giveVahnABJ():void
 {
 	clearOutput();
-	showVahn();
+	showVahn(true);
 	
 	var ppVahn:PregnancyPlaceholder = getVahnPregContainer();
 	
@@ -304,7 +305,7 @@ public function giveVahnABJ():void
 public function giveVahnAnal():void
 {
 	clearOutput();
-	showVahn();
+	showVahn(true);
 	var x:int = pc.cockThatFits(550);
 	if(x < 0) x = pc.smallestCockIndex();
 	// Req: Pc must have cock
@@ -406,7 +407,7 @@ public function giveVahnAnal():void
 public function catchVahnCowgirl():void
 {
 	clearOutput();
-	showVahn();
+	showVahn(true);
 	
 	var x:int = rand(pc.vaginas.length);
 	var ppVahn:PregnancyPlaceholder = getVahnPregContainer();
@@ -489,7 +490,7 @@ public function catchVahnCowgirl():void
 public function vahnRubsYourPussy():void
 {
 	clearOutput();
-	showVahn();
+	showVahn(true);
 	
 	var x:int = rand(pc.vaginas.length);
 	
@@ -557,7 +558,7 @@ public function vahnRubsYourPussy():void
 public function vahnFucksYourButt():void
 {
 	clearOutput();
-	showVahn();
+	showVahn(true);
 	
 	var ppVahn:PregnancyPlaceholder = getVahnPregContainer();
 	
@@ -641,7 +642,7 @@ public function vahnFucksYourButt():void
 public function giveVahnAHandy():void
 {
 	clearOutput();
-	showVahn();
+	showVahn(true);
 	
 	output("You glance around. There’s not many ground crew around at all, and they all look far off and busy. With a mischievous grin, you turn to Vahn and gesture towards his loins.");
 	
@@ -687,7 +688,7 @@ public function giveVahnAHandy():void
 public function vahnDomsYourButt():void
 {
 	clearOutput();
-	showVahn();
+	showVahn(true);
 	author("Gortys");
 	
 	var ppVahn:PregnancyPlaceholder = getVahnPregContainer();

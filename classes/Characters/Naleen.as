@@ -251,7 +251,7 @@
 				else output("fuck your ass with her big tail");
 				output(" until you're fast asleep.");
 				//Effect: Moderate Speed/Dex/Whatever drain. If reduced to 0, auto lose (as if by lust).
-				if(!target.hasStatusEffect("Naleen Venom")) target.createStatusEffect("Naleen Venom",0,0,0,0,false,"Poison","This venom reduces strength, aim, reflexes, and willpower! If you take in too much of it while fighting a naleen, you'll lose!",false,10);
+				if(!target.hasStatusEffect("Naleen Venom")) target.createStatusEffect("Naleen Venom",0,0,0,0,false,"Poison","This venom reduces strength, aim, reflexes, and willpower! If you take in too much of it while fighting a naleen, you'll lose!",false,10,0xFF0000);
 				target.physiqueMod -= .5;
 				target.aimMod -= .5;
 				target.willpowerMod -= .5;

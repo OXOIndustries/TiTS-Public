@@ -65,7 +65,7 @@ public function goAheadAndDumbfuck():void
 	}
 	else
 	{
-		pc.createStatusEffect("Dumbfuck", 0, 0, 0, 0, false, "Pill", "You are currently under the effects of \"dumbfuck,\" an illegal drug known for making its users more and more sex-crazed with every orgasm over a 24 hour period. Intelligence loss is also common.", false, 1440);
+		pc.createStatusEffect("Dumbfuck", 0, 0, 0, 0, false, "Pill", "You are currently under the effects of \"dumbfuck,\" an illegal drug known for making its users more and more sex-crazed with every orgasm over a 24 hour period. Intelligence loss is also common.", false, 1440,0xB793C4);
 		pc.intelligence(-1);
 	}
 	processTime(3);

@@ -579,7 +579,7 @@ public function genesModsTalkYou():void
 	{
 		output("\n\nGene frowns.");
 		
-		output("\n\n<i>“A [pc.race], if I’m not mistaken. I’ve got some things that could help with that.”</i> He gestures politely at his computerized list of mods.");
+		output("\n\n<i>“" + indefiniteArticle(pc.race()) + ", if I’m not mistaken. I’ve got some things that could help with that.”</i> He gestures politely at his computerized list of mods.");
 		
 		output("\n\n<i>“I mean,”</i> you say, trying not to grin, <i>“Does the name ‘Steele’ mean anything to you?”</i>");
 	}

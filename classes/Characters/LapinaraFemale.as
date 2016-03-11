@@ -241,7 +241,7 @@
 					if (target.armor.defense > 0 && rand(3) == 0) 
 					{
 						output("The lapinara charges at you, ramming you. However, thanks to your protective armor, she is instead knocked aback, stunned.");
-						createStatusEffect("Stunned",1,0,0,0,false,"Stun","Cannot act for a turn.",true,0);
+						createStatusEffect("Stunned",1,0,0,0,false,"Stun","Cannot act for a turn.",true,0,0xFF0000);
 					}
 					else 
 					{

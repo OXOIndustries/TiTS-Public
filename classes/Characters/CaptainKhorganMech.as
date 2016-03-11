@@ -320,7 +320,7 @@
 				output("\n\nOHSHIT. You scream as the box slams into you with rib-cracking force, hurling you to the edge of the platform, where you only just catch yourself. With a grunt, you scramble back up onto the hover-plat");
 				if (!target.hasStatusEffect("Stunned") && target.physique() + rand(20) + 1 < 15)
 				{
-					target.createStatusEffect("Stunned",1,0,0,0,false,"Stun","You are stunned and cannot move until you recover!",true,0);
+					target.createStatusEffect("Stunned",1,0,0,0,false,"Stun","You are stunned and cannot move until you recover!",true,0,0xFF0000);
 					output(", but find yourself STUNNED");
 				}
 				output(".");

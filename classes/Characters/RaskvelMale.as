@@ -331,7 +331,7 @@
 				{
 					//Stunned:
 					output("\nOne of them clonks you a good one and you stagger back, stunned. Groaning, you wait for the world to stop spinning.");
-					target.createStatusEffect("Stunned",1,0,0,0,false,"Stun","You cannot act for one turn!",true,0);
+					target.createStatusEffect("Stunned",1,0,0,0,false,"Stun","You cannot act for one turn!",true,0,0xFF0000);
 				}
 			}
 		}

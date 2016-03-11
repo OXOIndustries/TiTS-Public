@@ -251,7 +251,7 @@ package classes.Characters
 			if (rand(3) == 0)
 			{
 				output(" and the target's weapon goes flying to the ground in a shower of sparks! Damn, she's a deadshot!");
-				target.createStatusEffect("Disarmed",4,0,0,0,false,"Blocked","Cannot use normal melee or ranged attacks!",true,0);
+				target.createStatusEffect("Disarmed",4,0,0,0,false,"Blocked","Cannot use normal melee or ranged attacks!",true,0,0xFF0000);
 
 				applyDamage(new TypeCollection({kinetic: 7}), this, target, "minimal");
 			}
@@ -372,7 +372,7 @@ package classes.Characters
 				
 				applyDamage(new TypeCollection( { kinetic: 5 }, DamageFlag.BULLET), this, target);
 
-				target.createStatusEffect("Disarmed", 2 + rand(2), 0, 0, 0, false, "Blocked", "Cannot use normal melee or ranged attacks!", true, 0);
+				target.createStatusEffect("Disarmed", 2 + rand(2), 0, 0, 0, false, "Blocked", "Cannot use normal melee or ranged attacks!", true, 0,0xFF0000);
 			}
 		}
 		

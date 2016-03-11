@@ -163,7 +163,7 @@ public function didAnnoyKnowYourDad():void
 	output("<i>\"Did you know my Dad?\"</i> you ask. The way she was talking about him, after all...");
 	output("\n\nThe ausar grins and nods. <i>\"You could say that...\"</i> she says cheekily.");
 	output("\n\nOh, <i>EEEEWWWWWW!</i>");
-	output("\n\nShe snickers, covering her mouth. <i>\"Sorry, sorry. But yeah, I did. Met him at a theoretical physics conference about three years back. I was doing a presentation on warp gate theory, and Victor was out in the audience, I guess. Afterwards, he pulled me aside and asked if I wanted a job. I worked in Steele's R&D for a couple years, before he picked me to lead our team here to Tarkus, right before he died. I didn't know him, uh, </i>personally<i> for very long, but he was a good man. Very kind.\"</i>");
+	output("\n\nShe snickers, covering her mouth. <i>\"Sorry, sorry. But yeah, I did. Met him at a theoretical physics conference about three years back. I was doing a presentation on warp gate theory, and Victor was out in the audience, I guess. Afterwards, he pulled me aside and asked if I wanted a job. I worked in Steele's R&D for a couple years before he picked me to represent us here to Tarkus, right before he died. I didn't know him, uh, </i>personally<i> for very long, but he was a good man. Very kind.\"</i>");
 	//If PC is male:
 	if(pc.hasCock())
 	{
@@ -173,7 +173,7 @@ public function didAnnoyKnowYourDad():void
 		//if PC has a big dick: 
 		else if(pc.biggestCockVolume() <= 1000) output("I think you'll make Victor proud.");
 		else output("a guy like you might just surpass him. I've got a good feeling about you!");
-		output("\"</i> But that's just my two creds.");
+		output(" But that's just my two creds.\"</i>");
 	}
 	//If PC is female:
 	else
@@ -1286,7 +1286,11 @@ public function getSlurpedOnByAnnoz():void
 
 	output("\n\nNot done yet, Anno plants a hand on the wall behind her counter, hooking the other through her suit's belt. You watch appreciatively as she starts to pull her pants down, hips and tail both swishing gaily as she slowly pulls her waistline half way down the swells of her butt cheeks, letting her floofy white appendage pop free. It rises invitingly as she's forced to bend over to remove the rest of the suit, legs spread just enough to give you a glance at the glistening delta joining them, and a pair of heavy, full breasts hanging down from her chest as she pulls the suit down to her feet and slips out it, leaving herself bare but for the fur coating her lower limbs and the aura of need and desire practically radiating off her.");
 
-	output("\n\nBare as an ausar can be, Anno sashays back to the counter and leans over it, finally revealing her bosom to you as it's all but in your face. She grins at you, watching your face as it's overcome with desire, eyes drawn to the luscious curves, the rises and falls of her breasts. <i>\"I think I know where that massage should start back up,\"</i> she hints, sliding up onto the counter and rolling onto her back, giving you easy access to her chest. With a pat on the wood beside her, she invites you in - and you're quick to oblige.");
+	output("\n\nBare as an ausar can be, Anno sashays ");
+
+	if(annoIsCrew()) output("over to your bed ");
+	else output("back to the counter ");
+	output("and leans over it, finally revealing her bosom to you as it's all but in your face. She grins at you, watching your face as it's overcome with desire, eyes drawn to the luscious curves, the rises and falls of her breasts. <i>\"I think I know where that massage should start back up,\"</i> she hints, sliding up onto the counter and rolling onto her back, giving you easy access to her chest. With a pat on the wood beside her, she invites you in - and you're quick to oblige.");
 
 	output("\n\nJoining her atop the counter, you straddle Anno's flared hips, resting your hands on the tops of her [anno.chest]. She moans softly, hands locking behind her head as she closes her eyes and surrenders utterly to you, willing you to act out your desires upon her vulnerable body. You don't need more than that to get you started, and soon your hands are wandering around the mountains of her breasts, rubbing and kneading and squeezing the bounty of boobflesh on display.");
 
@@ -3517,7 +3521,7 @@ public function annoxKaedeFuckThem(inShop:Boolean = true):void
 	else output(" Kaede hastily unlocks her apartment door, Anno urging her to work faster admist a flurry of lustful, teasing gropes. The moment the door slides open, Anno bundles both herself and Kaede through the opening in a hurry. Once inside, the snowy-haired ausar commands the lights to dim <i>“to something sexy.”</i> The");
 	output(" V.I. turns the illumination way down to a sultry, dusky hue, just enough to see the red of Kaede’s hair and tail as Anno slips her arms around her girlfriend’s waist, pulling her back into another kiss. This time it’s more passionate, more intimate: their chests press together, lips parting to allow their tongues to explore each others’ mouths.");
 	
-	output("\n\nAfter a few moments, though, the two ausars turn their attentions to you: hand in hand, they slink over to you with big, lusty smiles, eyes entirely focused on your [pc.cocksLight]. You quickly toss your [pc.gear] aside and sit back on the edge of the bed, leaving yourself bare to the randy girls’ ministrations. Kaede’s prior nervousness is nowhere to be seen now: she even licks her lips at the sight of your manhood, and is the first of the pair of drop to her knees in front of you. Anno stands behind her for a moment, giving you a proud wink as her girlfriend wraps her fingers around your [pc.cock "+ selCock +"], giving it a tentative stroke. ");
+	output("\n\nAfter a few moments, though, the two ausars turn their attentions to you: hand in hand, they slink over to you with big, lusty smiles, eyes entirely focused on your [pc.cocksLight]. You quickly toss your [pc.gear] aside and sit back on the edge of the bed, leaving yourself bare to the randy girls’ ministrations. Kaede’s prior nervousness is nowhere to be seen now: she even licks her lips at the sight of your manhood, and is the first of the pair to drop to her knees in front of you. Anno stands behind her for a moment, giving you a proud wink as her girlfriend wraps her fingers around your [pc.cock "+ selCock +"], giving it a tentative stroke. ");
 	
 	output("\n\n<i>“Red here’d never admit it,”</i> Anno says over her lover’s head, leaning in conspiratorially, <i>“but she was the best little cocksucker back in college. You should see her handle three dicks at-”</i>");
 	
@@ -3605,7 +3609,7 @@ public function annoxKaedeFuckThem(inShop:Boolean = true):void
 	output(". She groans, legs and tail twitching as she adjusts to your girth inside her, stretching her out nice and wide. <i>“Good girl,”</i> Anno coos, planting a proud little kiss on the swell of Kaede’s balls, stifling a moan of her own as her lover’s attention returns to her oral pleasures. You grin as you see Anno’s tail instinctively rise, making way for Kaede’s probing tongue to dig deep into her. ");
 	
 	output("\n\nFor your part, you let yourself rest inside the halfbreed for a long moment, trying to catch your breath before you slowly start to withdraw. You give her a few tentative thrusts after that, nice and slow... but you can’t settle for that much longer. Anno gives you an approving nod as your pace increases, steadily gaining speed and power with every");
-	if (pc.biggestCockLength() <= 10)
+	if (pc.biggestCockLength() <= 12)
 	{
 		if (pc.balls > 0) output(" balls-deep");
 		else output(" hilting");

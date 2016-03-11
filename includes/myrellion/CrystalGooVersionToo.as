@@ -4,6 +4,7 @@ import classes.Items.Transformatives.GooBallOrange;
 import classes.Items.Transformatives.GooBallPink;
 import classes.Items.Transformatives.GooBallPurple;
 import classes.Items.Transformatives.GooBallRed;
+import classes.Items.Transformatives.GooBallYellow;
 public function encounterCrystalGooV2():void 
 {
 	if (rand(2) == 0) crystalGooEncounterType1();
@@ -342,7 +343,7 @@ public function crystalGooLeaveAfterWin():void
 	clearOutput();
 	showCrystalGooToo();
 	
-	output("You give the ganraels offer a momentary thought, but ultimately opt to leave the " + enemy.skinTone +" goo to their own devices.");
+	output("You give the ganrael's offer a momentary thought, but ultimately opt to leave.");
 	
 	addCrystalGooBallLoot();
 	
@@ -512,8 +513,7 @@ public function crystalGooSculptingFem():void
 	
 	output("\n\n<i>“Is this what you like?”</i> the creature asks sweetly, smoothing and unifying its hand-hewn features.");
 	
-	output("\n\nNo, not yet. You bury your hands into the ganrael’s scalp and pull. Using your fingers as both comb and brush, you tease its bare head, picturing a voluminous set of curls that would look at home in any");
-	// 9999 ??? {cosmetics}
+	output("\n\nNo, not yet. You bury your hands into the ganrael’s scalp and pull. Using your fingers as both comb and brush, you tease its bare head, picturing a voluminous set of curls that would look at home in any JoyCo cosmetics");
 	output(" commercial. The ganrael shivers and touches its lips as you produce strand after strand of slippery coiffure, enjoying the creative act as much as you are. When you finish, the creature’s head is crowned with a goopy drape of luxurious hair.");
 	
 	output("\n\nYou admire your efforts, then look lower. The alien’s neckline is a bit masculine, so you push its shoulders down, then pinch two thick ridges to give it elegant collarbones. Its neck vibrates under your touch - the creature is humming and you realize that you were too, engrossed in your erotic work.");
@@ -614,8 +614,9 @@ public function crystalGooSculptingFem():void
 		}
 		else
 		{
-			output("[pc.EachVagina] gushes like a broken dam, flooding its mirror with your [pc.girlCumNoun]. The ganrael shakes with pleasure as her crotch becomes a soup of mingled fluids and the ground a sodden swamp. }When your back finally unlocks, you pull away from the greedy ganrael.");
+			output("[pc.EachVagina] gushes like a broken dam, flooding its mirror with your [pc.girlCumNoun]. The ganrael shakes with pleasure as her crotch becomes a soup of mingled fluids and the ground a sodden swamp.");
 		}
+		output(" When your back finally unlocks, you pull away from the greedy ganrael.");
 		
 		output("\n\n<i>“That was fun,”</i> she sings out, lowering a hand to frig her new cunt. <i>“We should play this game again.”</i> Watching the ideal woman play with her slick pussy is stirring tempting urges. You turn away and gather your things before you lose any more time here, but pocket her suggestion for later.");
 	}
@@ -712,7 +713,12 @@ public function crystalGooFreeformFucks():void
 		if (pc.cocks.length > 1) output("s");
 		output(" and a dribble of precum emerges.");
 	}
-	else if (pc.hasVagina()) output(" [pc.vaginas] flush with color, becoming puffy and sticky with lubrication.");
+	else if (pc.hasVagina()) 
+	{
+		output(" [pc.vaginas] flush");
+		if(!pc.hasVaginas()) output("es");
+		output(" with color, becoming puffy and sticky with lubrication.");
+	}
 	else output(" empty groin comes into sharp relief.");
 	
 	output("\n\n<i>“Is that a sign?”</i> "+cgender("she", "it") +" inquires. Unwilling to endure more pillow talk, you fall on the alien. "+ cgender("She", "It") +" doesn’t resist when your clutching hands lock onto "+ cgender("her", "its") +" hips.");
@@ -728,7 +734,7 @@ public function crystalGooFreeformFucks():void
 			output(" The creature’s flesh offers no resistance, and you spear it on your [pc.cocksLight], [pc.eachCock] plowing its own custom cunt through the yielding plasm.");
 			if (pc.cocks.length == 1) output(" Your horny, stiff dick finds a home");
 			else if (pc.cocks.length == 2) output(" Both of your horny, stiff dicks find homes");
-			else output(" All"+ num2Text(pc.cocks.length) +" of your honry, stiff dicks find homes")
+			else output(" All "+ num2Text(pc.cocks.length) +" of your honry, stiff dicks find homes")
 			output(" in its body, streaming with precum as if the lube weren’t enough already.");
 		}
 		else
@@ -786,7 +792,7 @@ public function crystalGooFreeformFucks():void
 		{
 			output(" mingle with its plasm. The flesh flows and sticks to you, infiltrating your blossom with the tendrils of slime your labia has kneaded up. With concerted effort, the ganrael shudders and pushes mass toward you, swamping your erect button");
 			if (pc.totalClits() > 1) output("s");
-			output(" in a tide of liquid tongues that caresses every side and leave you howling for release.");
+			output(" in a tide of liquid tongues that caresses every side and leaves you howling for release.");
 		}
 		else
 		{
@@ -906,17 +912,18 @@ public function crystalGooFreeformFucks():void
 			//big cum only
 			if (pc.cumQ() > 2500)
 			{
-			output("\n\n[pc.CumNoun] rushes from you in torrents, turning your scheduled deposits into a swamp of plasm-swirled jizz. The elastic ganrael bulges with cum-babies as you dump your tremendous load, and wave upon wave of sperm renders it higher than a leithan’s ceiling and quite unable to move. ”</i>No... more...”</i> it groans. <i>“Ohhh... gonna... pop!”</i>");
-			
-			output("\n\nThe alien’s distended body churns violently, swirling the monster load like an invisible stand mixer and distributing it to every corner. It swells with growth, packing on inches so fast you worry that it’ll explode. Instead, it thrashes and deforms with odd shapes that reach out from the inside. The alien lies flat, and its demon possession starts to emerge, pushing two hands through the stomach to brace against the ground and help a new body climb out. A second ganrael separates from your cum-dump, still carrying your jizzy color.");
-			
-			output("\n\n<i>“Fantastic...”</i> mumbles the original. <i>“Usually takes... longer.”</i> The copy - rather, your offspring - reaches for your dribbling [pc.cockNounSimple "+ cockIdx +"], caressing the crown and collecting an aftershock from your stretched slit; its other parent just looks on, too cum-drunk or debased to stop the sort-of-incest. Filled with unholy ideas, you pull back and look around for your things before you act on them.");
+				output("\n\n[pc.CumNoun] rushes from you in torrents, turning your scheduled deposits into a swamp of plasm-swirled jizz. The elastic ganrael bulges with cum-babies as you dump your tremendous load, and wave upon wave of sperm renders it higher than a leithan’s ceiling and quite unable to move. ”</i>No... more...”</i> it groans. <i>“Ohhh... gonna... pop!”</i>");
+				
+				output("\n\nThe alien’s distended body churns violently, swirling the monster load like an invisible stand mixer and distributing it to every corner. It swells with growth, packing on inches so fast you worry that it’ll explode. Instead, it thrashes and deforms with odd shapes that reach out from the inside. The alien lies flat, and its demon possession starts to emerge, pushing two hands through the stomach to brace against the ground and help a new body climb out. A second ganrael separates from your cum-dump, still carrying your jizzy color.");
+				
+				output("\n\n<i>“Fantastic...”</i> mumbles the original. <i>“Usually takes... longer.”</i> The copy - rather, your offspring - reaches for your dribbling [pc.cockNounSimple "+ cockIdx +"], caressing the crown and collecting an aftershock from your stretched slit; its other parent just looks on, too cum-drunk or debased to stop the sort-of-incest. Filled with unholy ideas, you pull back and look around for your things before you act on them.");
 			}
 			//not big cum
 			else
 			{
-				output("\n\n”</i>I could get addicted to you...”</i> it murmurs, petting your [pc.skinFurScales]. }You pop free of the goo-pussy with a ‘slurp’, still drooling aftershocks. It lies on the cave floor, too hopped up to pretend to focus on you, but you’re sure it’s watching as you collect your things.");
+				output("\n\n”</i>I could get addicted to you...”</i> it murmurs, petting your [pc.skinFurScales].");
 			}
+			output(" You pop free of the goo-pussy with a ‘slurp’, still drooling aftershocks. It lies on the cave floor, too hopped up to pretend to focus on you, but you’re sure it’s watching as you collect your things.");
 		}
 		else
 		{
@@ -1025,8 +1032,12 @@ public function crystalGooCuddlebug(pcVictory:Boolean = false):void
 	output("\n\n<i>“Curious,”</i> the alien remarks. You stare at its mask as it ministers to your vulnerable form - it seems almost doting, somehow.");
 	
 	output("\n\nThe numerous legs finish searching and settle into steady waves, falling onto your back and kneading your [pc.skinFurScales].");
-	if (!pc.isNice()) output(" The unexpected kindness niggles at you. It isn’t the treatment you’d have expected... but there’s no denying that it feels good.");
-	else output(" You shudder, melting atop the creature’s torso. }The tension release continues until your masseuse is satisfied; it tests your muscles, making sure you’ve turned to jelly all over. Your arms are dangling lazily over the creature’s side when you feel its trunk flex, and you raise your head, not expecting what happens next.");
+	if (!pc.isNice()) 
+	{
+		output(" The unexpected kindness niggles at you. It isn’t the treatment you’d have expected... but there’s no denying that it feels good.");
+		output(" You shudder, melting atop the creature’s torso.");
+	}
+	output(" The tension release continues until your masseuse is satisfied; it tests your muscles, making sure you’ve turned to jelly all over. Your arms are dangling lazily over the creature’s side when you feel its trunk flex, and you raise your head, not expecting what happens next.");
 	
 	output("\n\nThe ganrael’s legs fold over your back, sobering you like an ice bath. You turn on reflex - the mask which seemed salutary and welcoming now leers like a predator. Squirm though you may, its cage holds tight. The bottom half of its trunk curls upward,");
 	if (pc.isGoo()) output(" parting your fluid undercarriage and covering your [pc.ass].");
@@ -1226,8 +1237,15 @@ public function crystalGooSounding(pcVictory:Boolean = false):void
 		output("\n\nThe impassive alien makes no acknowledgment but to swirl the sound a bit, dragging your shaft in a cute loop through the air. She pushes, and with the push comes new pressure as the sound descends. The rod advances insolently, pushing through the flesh like a frontiersman parting tall grass. Farther it slides, past the glans, then the neck");
 		if (pc.cocks[cockIdx].cLength() >= 15) output(", then [pc.sheath "+cockIdx+"]");
 		output(", until the stone-faced beauty can insert it no farther.");
-		if (!pc.isTaur() || pc.cocks[cockIdx].cLength() >= 72) output(" She stares up at you, studying.");
-		
+		if(pc.hasKnot(cockIdx)) 
+		{
+			output(" The ganrael's touch lingers on your fleshy ");
+			if(pc.cocks[cockIdx].cType != GLOBAL.TYPE_NYREA) output("knot");
+			else output("egg-knot");
+			output(" a bit too long, and the bulge begins to stiffen. She releases it to extend your pleasure, or torment, further.");
+		}
+		else if (!pc.isTaur() || pc.cocks[cockIdx].cLength() >= 72) output(" She stares up at you, studying.");
+
 		output("\n\n<i>“Looks enjoyable,”</i> the soft voice reverberates. Without waiting for an answer, she pulls at the sound, and whatever response you had turns to a grunt of pleasure. The tip moving back up is like a miniature orgasm on its own, and when your lover pops the bulbous head free, a");
 		if (pc.cumQ() <= 250) output(" trickle");
 		else output(" rush");
@@ -1249,7 +1267,7 @@ public function crystalGooSounding(pcVictory:Boolean = false):void
 		else output(" arches.");
 		if (!pc.isTaur() || pc.cocks[cockIdx].cLength() >= 72) output(" You stare into her face, transfixed by the unemotive "+enemy.skinTone+" mask. A shadow flickers over the stolid mouth, and for a moment the effect is almost like a smile. Then it’s gone.");
 		
-		output("\n\nWith the sound lodged and moving to the ganrael’s whim, she masturbates you, squeezing you against the intruder. She slows every stroke when it gets to the bulb, letting you feel her stiff, pre-slicked palm stutter over it; your orgasm shivers awake as your cock is stroked both inside and out, building up momentum behind the obstruction until it feels like you could burst.  With the toy occupying your cum’s escape route, your impending ejaculation feels like an emergency.");
+		output("\n\nWith the sound lodged and moving to the ganrael’s whim, she masturbates you, squeezing you against the intruder. She slows every stroke when it gets to the bulb, letting you feel her stiff, pre-slicked palm stutter over it; your orgasm shivers awake as your cock is stroked both inside and out, building up momentum behind the obstruction until it feels like you could burst. With the toy occupying your cum’s escape route, your impending ejaculation feels like an emergency.");
 		
 		if (pc.balls <= 0 || pc.ballSize() <= 0) output("\n\n<i>“Cumming!”</i> you announce, part whine and warning.\n\n");
 		else output("\n\nYour tightening scrotum cues the alien.");
@@ -1281,7 +1299,8 @@ public function crystalGooSounding(pcVictory:Boolean = false):void
 		else
 		{
 			output("\n\nThe torrent of jizz you produce is enough to send the sound tumbling through the air. The ganrael barely notices, preoccupied with the blasts of molten love washing over her. With stoic grace, she folds her hands and allows your wild [pc.cockNounSimple] to lurch and fire stroke after stroke after stroke into her sculpted cleavage and elegant neck, washing out her "+enemy.skinTone+" with floods of your own");
-			// {(color mismatch) [pc.cumColor]} 
+			// {(color mismatch)
+			if(enemy.skinTone != pc.fluidColorSimple(pc.cumType)) output(" [pc.cumColor]");
 			output(" until even her shape is obliterated by the [pc.cumVisc], spermy sludge. When you finally sigh and stop cumming, the gooey pile gets to its feet, giggling drunkenly.");
 			
 			output("\n\n<i>“That’s... really something,”</i> she sighs, rubbing semen into the gaps of her armor where it can touch her skin and shivering.");
@@ -1461,7 +1480,7 @@ public function crystalGooUnsexedLoss():void
 	output(" <i>“I always find something.”</i>");
 
 	//if not unarmored
-	if (!pc.hasStatusEffect("Unarmored"))
+	if (!enemy.hasStatusEffect("Unarmored"))
 	{
 		output("\n\nThe ganrael’s fingers slide through again, two this time, and start to explore in detail. "+ cgender("She", "It") +" finds your tongue, finger-walking its rim and outlining your [pc.lipsChaste] before pulling away to deposit the saliva. This repeats a few more times, but you’re not enjoying yourself very much.");
 		if (pc.lust() >= pc.lustMax()) output(" Such unsatisfactory foreplay only cools your ardor;");
@@ -1587,7 +1606,7 @@ public function crystalGooDongerLoss():void
 	output("\n\n");
 	if (enemy.hasStatusEffect("Unarmored"))
 	{
-		output("The ganrael spreads its legs, pressing its crotch against your [pc.knot "+cockIdx+"]. It glides upwards, frotting your shaft with its empty crotch, until it reaches the tip. Then it  slides the last inch, placing your [pc.cockHead "+cockIdx+"] right between its thighs, and descends.");
+		output("The ganrael spreads its legs, pressing its crotch against your [pc.knot "+cockIdx+"]. It glides upwards, frotting your shaft with its empty crotch, until it reaches the tip. Then it slides the last inch, placing your [pc.cockHead "+cockIdx+"] right between its thighs, and descends.");
 	}
 	else if (enemy is CrystalGooT1) output("The ganrael’s fingers hook into its trunk and it begins to tug gently; the plates slide apart, revealing vulnerable flesh. The creature quivers as it exposes itself, almost as if it were shy. It wriggles closer, closing the last few inches and sinking onto you. Your [pc.cock "+cockIdx+"] twitches as your crown is buried in the wet slit.");
 	else output("The ganrael spreads her legs like an impatient whore, and you can already glimpse soft lines of "+enemy.skinTone+" flesh under her armor. Her fingers hook the crotch-covering plate and tug; she shivers and it pulls away, lifting up to expose her. She grabs and pulls you together, impaling herself on your [pc.cockHeadBiggest]. You barely resist at all.");
@@ -1595,7 +1614,7 @@ public function crystalGooDongerLoss():void
 	output("\n\nA soft sigh, almost like a fizz, rumbles from the alien. <i>“That’s good,”</i> "+ cgender("she", "it") +" says. "+ cgender("She", "It") +" wraps "+ cgender("her", "its") +" arms around your");
 	if (pc.isTaur()) output(" chest");
 	else output(" neck");
-	output(". Your [pc.cock "+cockIdx+"] is literally shaping its perfect pussy while it penetrates the creature, displacing gooey plasm that streams over your glans and sucks at your "+enemy.skinTone+". Your partner reaches the base of your tool and rests; you can feel flesh pulse and recede as "+ cgender("she", "it") +" shifts "+ cgender("her", "its") +" insides, and then "+ cgender("she", "it") +" begins to climb again.");
+	output(". Your [pc.cock "+cockIdx+"] is literally shaping its perfect pussy while it penetrates the creature, displacing gooey plasm that streams over your glans and sucks at your [pc.cockColor " + cockIdx + "] skin. Your partner reaches the base of your tool and rests; you can feel flesh pulse and recede as "+ cgender("she", "it") +" shifts "+ cgender("her", "its") +" insides, and then "+ cgender("she", "it") +" begins to climb again.");
 	
 	output("\n\nThe ganrael’s arms unclasp as "+ cgender("she", "it") +" settles into a rhythm, gaining confidence when your hips join the fun. "+ cgender("Her", "Its") +" hands search for something to do, and end up");
 	if (!(pc.upperUndergarment is EmptySlot)) output(" slipping under your [pc.upperUndergarment] to fondle");
@@ -1603,7 +1622,7 @@ public function crystalGooDongerLoss():void
 	output(" your [pc.chest].");
 
 	//if PC not horse and has breasts > B, begin species confusion interlude
-	if (!pc.isTaur() && pc.biggestTitSize() >= 2)
+	if (!pc.isTaur() && pc.biggestTitSize() >= 2 && pc.race() != "nyrea")
 	{
 		if (pc.hasSkinFlag(GLOBAL.FLAG_CHITINOUS) || pc.skinType == GLOBAL.SKIN_TYPE_CHITIN)
 		{
@@ -1637,7 +1656,7 @@ public function crystalGooDongerLoss():void
 	output(" tenses and prepares to fill "+ cgender("her", "it") +" with seed.");
 
 	//only if armored
-	if (enemy.hasStatusEffect("Unarmored"))
+	if (!enemy.hasStatusEffect("Unarmored"))
 	{
 		output("\n\n");
 		if (enemy is CrystalGooT1)
@@ -1673,7 +1692,7 @@ public function crystalGooDongerLoss():void
 		output(" erupts with an oppressive load of [pc.cum]. The ganrael freezes as so much foreign genetic material hits "+ cgender("her", "its") +" system, too high to move.");
 		if (enemy.hasStatusEffect("Unarmored")) output(" Its abdomen bulges with a bubble of [pc.cumColor], swelling so far that the creature is pushed away from you.");
 		else output(" Your jizz hits the creature so hard that its plates start to expand, and bubbles of "+enemy.skinTone);
-		// 9999 {(cum color mismatch)filled with [pc.cumColor] }
+		if(pc.fluidColorSimple(pc.cumType) != enemy.skinTone) output(" filled with [pc.cumColor]");
 		output(" press through the cracks.");
 	}
 
@@ -1685,7 +1704,7 @@ public function crystalGooDongerLoss():void
 	else output(" air");
 	output(" until you start to pass out. Only when you stop resisting does "+ cgender("she", "it") +" realize something’s amiss and let you go, but by then it’s too late - you slip into a fitful faint with the alien calling at you through a fogbank. When you wake up much later, you’re alone except for a barely translatable scrawl written on your chest in your own semen: <i>“u’re the best”</i>.");
 
-	processTime(10+rand(10));
+	processTime(220+rand(10));
 	
 	pc.orgasm();
 	if (!enemy.hasStatusEffect("Unarmored")) pc.orgasm();
@@ -1727,7 +1746,10 @@ public function crystalGooVagooLoss():void
 	//else goo PC
 	else if (pc.isGoo())
 	{
-		output("\n\n<i>“You need to be punished for hunting in my territory,{(type 1) droplet,}<i>“ {she/it} says. <i>“I’m going to find your sweet spots and tease them until you beg me for reprieve.”</i>");
+		output("\n\n<i>“You need to be punished for hunting in my territory,");
+		//{(type 1) droplet,}
+		if(enemy is CrystalGooT1) output(" droplet,");
+		output("<i>“ "+ cgender("she", "it") +" says. <i>“I’m going to find your sweet spots and tease them until you beg me for reprieve.”</i>");
 		
 		output("\n\nYour body quivers at the promise of ‘punishment’.");
 	}

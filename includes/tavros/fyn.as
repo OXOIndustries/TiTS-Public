@@ -1276,7 +1276,7 @@ public function fynSexOrcRavish():void {
 	output("\n\nDespite your protests, you're pinned down with a powerful hand, helpless as he");
 	if(pc.hasLegs() && !pc.isNaga()) output(" spreads your legs and");
 	output(" positions himself right at your poor, quivering buttocks. With a forceful press, he pushes himself between your quivering cheeks, worming his massive dick right up until it's pressing at your twitching pucker. You groan as his contoured cockhead spreads your fleshy ring, insistently pushing inch by inch into your rectum. Fuuuck, he's so big");
-	if(pc.hasVagina()) output(", and he's not even using your [pc.pussiesNoun]");
+	if(pc.hasVagina()) output(", and he's not even using your [pc.vaginas]");
 	
 	output("! You bite your lower lip as he caresses");
 	if(pc.hasCock()) output(" your prostate. His massive tool rocks and rubs against your sweet spot, causing your [pc.cocks] to slap instinctively against your stomach!");

@@ -189,7 +189,7 @@ package classes.Characters
 				if (!target.hasStatusEffect("Stunned") && target.physique() + rand(20) + 1 < 18)
 				{
 					output("<b> The hit was hard enough to stun you!</b>");
-					target.createStatusEffect("Stunned",1,0,0,0,false,"Stun","You are stunned and cannot move until you recover!",true,0);
+					target.createStatusEffect("Stunned",1,0,0,0,false,"Stun","You are stunned and cannot move until you recover!",true,0,0xFF0000);
 				}
 				
 				applyDamage(damage, this, target);

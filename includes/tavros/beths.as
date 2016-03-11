@@ -357,7 +357,7 @@ public function rideDatRahnBitchsOvi():void
 	if(x < 0) output(", compelling you to do whatever it takes to get her inside you.");
 	else 
 	{
-		output(" and begins to drool [pc.girlCumColor] lubrication ");
+		output(" begins to drool [pc.girlCumColor] lubrication ");
 		if(pc.isCrotchGarbed()) output("into your [pc.lowerGarment]");
 		else output("onto your [pc.thighs]");
 		output(".");
