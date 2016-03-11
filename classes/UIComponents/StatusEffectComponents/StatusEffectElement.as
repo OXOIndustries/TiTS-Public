@@ -41,7 +41,7 @@ package classes.UIComponents.StatusEffectComponents
 		
 		public function set durationRemaining(v:int):void { _durationRemaining = v; }
 		public function set tooltipText(v:String):void { _tooltipText = v; };
-		public function set iconShade(v:uint)
+		public function set iconShade(v:uint):void
 		{
 			_iconShade = v;
 			var ct:ColorTransform = new ColorTransform();
