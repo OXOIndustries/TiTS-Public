@@ -1005,7 +1005,10 @@ public function vanaeHuntressVaginalSex():void
 	if (pc.cumQ() <= 50) output(" dribbling");
 	else if (pc.cumQ() <= 600) output(" oozing");
 	else output(" gushing");
-	output(" from her spasming fuck hole. Your [pc.cocks] ache and stiffen at the glorious sight. She follows up by lapping and cleaning your [pc.cumVisc] [pc.cockNounSimple], making sure it is completely spotless.");
+	output(" from her spasming fuck hole. Your [pc.cocks]");
+	if (pc.cockTotal() == 1) output(" aches and stiffens");
+	else output(" ache and stiffen");
+	output(" at the glorious sight. She follows up by lapping and cleaning your [pc.cumVisc] [pc.cockNounSimple], making sure it is completely spotless.");
 
 	enemy.loadInCunt(pc);
 	pc.orgasm();
