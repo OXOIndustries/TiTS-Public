@@ -128,7 +128,7 @@
 					
 					if(target.hasVagina())
 					{
-						if(target.hasCock() && rand(2) == 0) sterilizeMale(target);
+						if(target.hasCock() && !target.hasPerk("Firing Blanks") && rand(2) == 0) sterilizeMale(target);
 						else sterilizeFemale(target);
 					}
 					else sterilizeMale(target);
