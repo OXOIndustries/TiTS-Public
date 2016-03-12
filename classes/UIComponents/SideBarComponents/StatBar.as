@@ -219,21 +219,21 @@ package classes.UIComponents.SideBarComponents
 			_capBack.text = "HP";
 			_capBack.mouseEnabled = false;
 			_capBack.mouseWheelEnabled = false;
-			if (Accessibility.active) _capBack.accessibilityProperties.silent = true;
+			//if (Accessibility.active) _capBack.accessibilityProperties.silent = true;
 			this.addChild(_capBack);
 			
 			_progressBar = new Sprite();
 			_progressBar.graphics.beginFill(UIStyleSettings.gHighlightColour);
 			_progressBar.graphics.drawRect(0, 0, 179, 35);
 			_progressBar.graphics.endFill();
-			if (Accessibility.active) _progressBar.accessibilityProperties.silent = true;
+			//if (Accessibility.active) _progressBar.accessibilityProperties.silent = true;
 			this.addChild(_progressBar);
 			
 			_maskingBar = new Sprite();
 			_maskingBar.graphics.beginFill(0xFF0000);
 			_maskingBar.graphics.drawRect(0, 0, 179, 35);
 			_maskingBar.graphics.endFill();
-			if (Accessibility.active) _maskingBar.accessibilityProperties.silent = true;
+			//if (Accessibility.active) _maskingBar.accessibilityProperties.silent = true;
 			this.addChild(_maskingBar);
 			
 			_capFront = new TextField();
@@ -246,7 +246,7 @@ package classes.UIComponents.SideBarComponents
 			_capFront.text = "HP";
 			_capFront.mouseEnabled = false;
 			_capFront.mouseWheelEnabled = false;
-			if (Accessibility.active) _capFront.accessibilityProperties.silent = true;
+			//if (Accessibility.active) _capFront.accessibilityProperties.silent = true;
 			this.addChild(_capFront);
 			
 			_capFront.mask = _maskingBar;
