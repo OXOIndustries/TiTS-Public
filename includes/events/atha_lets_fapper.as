@@ -68,7 +68,7 @@ public function letsFapUnlockFromName():String
 //Subject: You’re in to stuff like this, right?
 public function futaLetsPlayerIntroEmail():String
 {
-	var ret:String = "Hey " + pc.short + ". I saw this show that you might get a kick out of. Basically, some girl does reviews of different dicks. She uses some machine to give herself a different cock every week and ends up soaked in her own cum more often than not.\n\nIf you’re gonna watch, you probably want to do so from the privacy of your own ship, ha ha.\n\nA site address has been included below.\n\nThe Smut menu has been added to your ship’s Masturbate option!";
+	var ret:String = "Hey " + pc.short + ". I saw this show that you might get a kick out of. Basically, some girl does reviews of different dicks. She uses some machine to give herself a different cock every week and ends up soaked in her own cum more often than not.\n\nIf you’re gonna watch, you probably want to do so from the privacy of your own ship, ha ha.\n\nA site address has been included below.\n\n<b>The Smut menu has been added to your ship’s Masturbate option!</b>";
 	//{Adds new option to Ship’s <i>“Masturbate”</i> menu: <i>“Smut”</i>.}
 	return ret;
 }

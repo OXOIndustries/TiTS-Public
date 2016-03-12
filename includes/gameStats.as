@@ -4364,6 +4364,20 @@ public function displayEncounterLog(showID:String = "All"):void
 			}
 			miscCount++;
 		}
+		// Sexploration: Porny Smuts
+		if(flags["LETS_FAP_ARCHIVES"] != undefined)
+		{
+			output2("\n<b><u>Pornography</u></b>");
+			// Atha's Adventures
+			if(flags["LETS_FAP_ARCHIVES"] != undefined)
+			{
+				output2("\n<b>* Champeon, Atha’s Let’s Fap Series:</b> Donated");
+				if(flags["CUMSTREAM_UNLOCKED"] != undefined) output2(", Geyser Tier");
+				else if(flags["EARLY_LETS_FAPS"] != undefined) output2(", Hydrant Tier");
+				else output2(", Faucet Tier");
+			}
+			miscCount++;
+		}
 		// Sexploration: The Sex Toys
 		if(flags["NIVAS_BIONAHOLE_USES"] != undefined || flags["SYRI_BIONAHOLE_USES"] != undefined || flags["TAMANI_HOLED"] != undefined || flags["GRAVCUFFS_USES"] != undefined || flags["HOVERHOLE_USES"] != undefined || flags["EGG_TRAINER_INSTALLED"] != undefined || pc.hasItem(new EggTrainer()))
 		{
