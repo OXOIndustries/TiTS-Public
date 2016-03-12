@@ -13623,7 +13623,7 @@
 				weightFluid += fluidWeight(statusEffectv1("Anally-Filled"), statusEffectv3("Anally-Filled"));
 				weightFluid += fluidWeight(statusEffectv1("Vaginally-Filled"), statusEffectv3("Vaginally-Filled"));
 				weightFluid += fluidWeight(statusEffectv1("Orally-Filled"), statusEffectv3("Orally-Filled"));
-				//if(hasCock() || balls > 0) weightFluid += fluidWeight(cumQ(), cumType);
+				//if(hasCock() || balls > 0) weightFluid += fluidWeight((cumQ() * 0.5), cumType);
 				weightBelly += weightFluid;
 				if(thickness > tone)
 				{
