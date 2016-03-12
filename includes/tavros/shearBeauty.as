@@ -1103,7 +1103,7 @@ public function fuckCeria():void
 		{
 			output("\n\nYou cum, mixing that sweet nectar with your own [pc.cumFlavor] spunk. Ceria’s cunt squeezes even tighter at the first spurt, milking you for all you’re worth until there’s a frothy mix of pink and [pc.cumColor] bubbling out around the sides of your dick.");
 			if(pc.hasVagina()) output(" Underneath your cock, you feel [pc.eachVagina] clench as if gripping a dick of its own, sending [pc.girlCumNoun] streaming down your thighs.");
-			output(") You pause, breathless, soaking in the afterglow for a few long seconds before finally pulling out with one last wet pop. Ceria looks dazed, letting go of your back as her arms drop limp at her sides.");
+			output(" You pause, breathless, soaking in the afterglow for a few long seconds before finally pulling out with one last wet pop. Ceria looks dazed, letting go of your back as her arms drop limp at her sides.");
 
 			output("\n\n<i>“Oh gods, [pc.name], that was great....”</i> As Ceria returns to her senses she scoops up some of the froth with her fingers, popping them into her mouth to sample the mix of sweet and [pc.cumFlavor] flavors. <i>“Mmm... oh, I like. We’ve gotta do this again and soon, " + pc.mf("hunk","cutie") + ".”</i>");
 			output("\n\n<i>“Couldn’t agree more.”</i> you reply with a playful look, taking a bit of a sample for yourself as you help Ceria clean up. She ushers you out once you’ve gotten your gear back on, and comes back out to the counter a minute later with a <i>very</i> satisfied smile clinging to her lips.");
