@@ -364,15 +364,16 @@ public function buyItemGo(arg:ItemSlotClass):void {
 	
 	output("You purchase " + arg.description + " for " + num2Text(price) + " credits.\n\n");
 
+	pc.credits -= price;
+	
 	//Special Vendor/Item Overrides
 	if(shopkeep is Colenso && arg is TarkusJokeBook)
 	{
-		output("Colenso hands you the card, which you scan into your codex. It beeps.\n\n<b>A new codex entry is available!</b>");
-		//’Next’ button can either return to shop menu or go directly to the codex entry, you choose
-		pc.credits -= price;
-		clearMenu();
-		addButton(0,"Next",buyItem);
+		output("Colenso hands you the card, which you scan into your codex. It beeps.\n\n<b>A new codex entry under Fiction is available!</b>");
 		CodexManager.unlockEntry("Diverting Jokes");
+		//’Next’ button can either return to shop menu or go directly to the codex entry, you choose
+		clearMenu();
+		addButton(0,"Next",colensoBuyMenu);
 		return;
 	}
 	//Emmy magic!
@@ -395,7 +396,6 @@ public function buyItemGo(arg:ItemSlotClass):void {
 			chars["SERA"].destroyItem(new GaloMax());
 		}
 	}
-	pc.credits -= price;
 	//Set everything to take us back to buyItem!
 	itemScreen = buyItem;
 	lootScreen = buyItem;
