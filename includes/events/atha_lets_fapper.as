@@ -185,7 +185,7 @@ public function letsFapUpdateCheck():void
 				else if(letsFapTrack() == 6) flags["LETS_FAP_LATEST"] = letsFapCockTail;
 			}
 		}
-		else if(letsFapUnlockFromName() != "" && rand(10) == 0) letsFapEmailUnlock();
+		else if(letsFapUnlockFromName() != "" && rand(10) == 0 && days > 35) letsFapEmailUnlock();
 	}
 }
 
