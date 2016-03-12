@@ -74,8 +74,16 @@ public function showDeserter(gold:Boolean = false,nude:Boolean = false):void
 	{
 		if(flags["KNOW_RED_MYR_NAME"] == undefined) showName("RED MYR\nDESERTER");
 		else showName("\nBRIHA");
-		if(nude) showBust("MYR_RED_FEMALE_DESERTER_NUDE");
-		else showBust("MYR_RED_FEMALE_DESERTER");
+		if(flags["BRIHA_INCUBATION_TIMER"] != undefined)
+		{
+			if(nude) showBust("BRIHA_PREGNANT_NUDE");
+			else showBust("BRIHA_PREGNANT");
+		}
+		else
+		{
+			if(nude) showBust("BRIHA_NUDE");
+			else showBust("BRIHA");
+		}
 	}
 }
 
@@ -849,7 +857,7 @@ public function handPlayForGoldWaifusInTraining():void
 	{
 		setEnemy(new MyrGoldFemaleDeserter());
 	}
-	showDeserter(true);
+	showDeserter(true,true);
 	output("You ask ");
 	if(enemy.short != "Lys") output("the ");
 	output("[enemy.name] if she’ll pleasure you with all those hands of hers.");
@@ -980,7 +988,7 @@ public function analRedButtStuffMcStuffinButts():void
 	{
 		setEnemy(new MyrRedFemaleDeserter());
 	}
-	showDeserter(false);
+	showDeserter(false,true);
 	var x:int = pc.cockThatFits(chars["RED_DESERTER"]);
 	if(x < 0) x = pc.smallestCockIndex();
 	output("You stride up to ");
@@ -1070,7 +1078,7 @@ public function cumSplurgeForRedAntSloots():void
 	{
 		setEnemy(new MyrRedFemaleDeserter());
 	}
-	showDeserter(false);
+	showDeserter(false,true);
 	output("You ask ");
 	if(enemy.short != "Briha") output("the raven-haired deserter");
 	else output("Briha");
@@ -1254,7 +1262,7 @@ public function doggieStyleWithMyrBitches(gold:Boolean = false):void
 		if (gold) setEnemy(new MyrGoldFemaleDeserter());
 		else setEnemy(new MyrRedFemaleDeserter());
 	}
-	showDeserter(gold);
+	showDeserter(gold,true);
 
 	var x:int = pc.cockThatFits(enemy.vaginalCapacity(0));
 	if(x < 0) x = pc.smallestCockIndex();
@@ -1429,7 +1437,7 @@ public function redDildoScrew():void
 		clearOutput();
 		setEnemy(new MyrRedFemaleDeserter());
 	}
-	showDeserter(false);
+	showDeserter(false,true);
 	var DontKnowName:Boolean = (enemy.short != "Lys" && enemy.short != "Briha");
 	var loss:Boolean = false;
 	//IF PC LOSS:
@@ -1438,7 +1446,7 @@ public function redDildoScrew():void
 		loss = true;
 		clearOutput();
 		author("JimThermic");
-		showDeserter(false);
+		showDeserter(false,true);
 		output("From her kitpack, ");
 		if(DontKnowName) output("the ");
 		output("[enemy.name]");
@@ -1719,7 +1727,7 @@ public function sitAndScrewGoldMyr():void
 	{
 		setEnemy(new MyrGoldFemaleDeserter());
 	}
-	showDeserter(true);
+	showDeserter(true,true);
 	var DontKnowName:Boolean = (enemy.short != "Lys" && enemy.short != "Briha");
 	//IF PC LOSS:
 	var combatLoss:Boolean = (inCombat() && (pc.HP() <= 0 || pc.lust() >= pc.lustMax()));	

@@ -23,6 +23,15 @@
 		public var Bust_ANZHELA:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/anzhela_nude.png", mimeType = "image/png")]
 		public var Bust_ANZHELA_NUDE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/adjatha/briha.png", mimeType = "image/png")]
+		public var Bust_BRIHA:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/briha_nude.png", mimeType = "image/png")]
+		public var Bust_BRIHA_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/briha_pregnant.png", mimeType = "image/png")]
+		public var Bust_BRIHA_PREGNANT:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/briha_pregnant_nude.png", mimeType = "image/png")]
+		public var Bust_BRIHA_PREGNANT_NUDE:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/adjatha/cass.png", mimeType = "image/png")]
 		public var Bust_CASS:Class;
@@ -149,6 +158,9 @@
 		public var Bust_OVIR_DANCER:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/ovir_dancer_nude.png", mimeType = "image/png")]
 		public var Bust_OVIR_DANCER_NUDE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/adjatha/orryx.png", mimeType = "image/png")]
+		public var Bust_ORRYX:Class;
 
 		[Embed(source = "../../../assets/images/npcs/penny_bimbo.png", mimeType = "image/png")]
 		public var Bust_PENNY_BIMBO:Class;
