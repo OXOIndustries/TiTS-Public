@@ -247,7 +247,7 @@ package classes.Characters
 					reflexesMod -= 8;
 					aimMod -= 8;
 					
-					output("She's moved around too much, and suddenly her camouflage is useless. She seems to realize that as well, changing back to her usual skin tones. Now she'll be easier to hit and dodge!");
+					output("\n\nShe's moved around too much, and suddenly her camouflage is useless. She seems to realize that as well, changing back to her usual skin tones. Now she'll be easier to hit and dodge!");
 				}
 			}
 		}
