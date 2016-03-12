@@ -11748,16 +11748,16 @@
 				case "blue":
 					return RandomInCollection("aquamarine","sapphire");
 				case "purple":
-					return RandomInCollection("amethyst");
+					return RandomInCollection("amethyst","amethyst");
 				case "transparent":
 					return RandomInCollection("crystal","diamond");
 				case "brown":
-					return RandomInCollection("citrine");
+					return RandomInCollection("citrine","citrine");
 				case "silver":
 				case "gray":
-					return RandomInCollection("silver");
+					return RandomInCollection("silver","silver");
 				default:
-					return RandomInCollection("pearl");		
+					return RandomInCollection("pearl","pearl");		
 			}
 		}
 		public function fluidColorSimple(arg: int):String
