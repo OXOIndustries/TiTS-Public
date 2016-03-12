@@ -29,10 +29,7 @@
 			
 			description = "a pill labeled ‘Sterilex’";
 			
-			tooltip = "This is a colorfully-packaged box featuring some holovid sales girl.";
-			if(!kGAMECLASS.silly) tooltip += " Equally colorful lettering informs you that this is a powerful one-use contraceptive which is guaranteed to prevent pregnancy without impacting sexual performance.";
-			else tooltip += "\n\n<i>“Hi, Milly Bayes here with new Sterilex! Getting ready for an orgy? Making sure your night on the town doesn’t turn sour? Just not ready to start a family with that special someone? Well now J’ejune Pharmaceutical is there for you with Sterilex! Sterilex’s powerful fast-acting agents provide you with twenty-four full hours of protection for any and all of your sexual organs, with no long-term hazards to your fertility! Don’t rely on condoms or other pills! Get protection you can trust, with Sterilex!”</i>";
-			tooltip += "\n\nBelow this, in much smaller text, is a warning informing you <b>not to take Sterilex more than once within twenty-four hours</b>. It also lists off a long string of minor potential side effects. Within the colorful packaging is a dull gray pill.";
+			tooltip = "[altTooltip Sterilex]";
 			
 			TooltipManager.addTooltip(shortName, tooltip);
 			
@@ -131,7 +128,7 @@
 					
 					if(target.hasVagina())
 					{
-						if(target.hasCock() && rand(2) == 0) sterilizeMale(target);
+						if(target.hasCock() && !target.hasPerk("Firing Blanks") && rand(2) == 0) sterilizeMale(target);
 						else sterilizeFemale(target);
 					}
 					else sterilizeMale(target);

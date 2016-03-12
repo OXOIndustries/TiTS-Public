@@ -1621,8 +1621,36 @@ public function displayQuestLog(showID:String = "All"):void
 					if(MailManager.isEntryViewed("emmy_gift_starter") && flags["EMMY_QUEST"] == 2) output2(", <i>Gift her with a gem!</i>");
 					else output2(", Gave her a gemstone");
 				}
+				if(flags["EMMY_QUEST"] >= 3)
+				{
+					if(MailManager.isEntryViewed("emmy_implant_explain_email") && flags["EMMY_QUEST"] == 3) output2(", <i>Talk to her about her implant!</i>");
+					else if(flags["EMMY_QUEST"] == 4)
+					{
+						output2(", She requests a herm harness");
+						if(flags["GET_ME_ONE"] != undefined) output2(" (You asked for one, too!)");
+						if(pc.credits < 15000) output2(", Too poor to pay 15000 credits");
+						else output2(", Have 15000 credits to pay");
+					}
+					if(flags["EMMY_QUEST"] == 5)
+					{
+						output2(", Paid for herm harness");
+						if(flags["GET_ME_ONE"] != undefined) output2(" (You asked for one, too!)");
+						if(MailManager.isEntryViewed("emmy_harness_here") && flags["EMMY_QUEST"] == 5) output2(", <i>Return to Emmy!</i>");
+					}
+				}
+				if(flags["EMMY_QUEST"] >= 6)
+				{
+					output2(", Paid for and have controls to her herm harness");
+					if(flags["GET_ME_ONE"] != undefined) output2(" (You asked for one, too!)");
+				}
 				if(flags["EMMY_BANNED"] != undefined) output2(", Banned from her shop, Failed");
 				else if(9999 == 0) output2(", Completed");
+				if(flags["EMMY_QUEST"] == 5)
+				{
+					output2("\n<b>Toy Delivery Time:</b>");
+					if(flags["EMMY_TOY_TIMER"] > GetGameTimestamp()) output2(" " + prettifyMinutes(flags["EMMY_TOY_TIMER"] - GetGameTimestamp()));
+					else output2(" <i>Delivered</i>");
+				}
 				sideCount++;
 			}
 			// IrelliaQuest
@@ -3508,6 +3536,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					else if(flags["EMMY_POLY"] != undefined) output2(" You’ve both agreed to be polyamorous");
 					else if(flags["EMMY_BF"] != undefined) output2(" You’re her [pc.boy]friend");
 					else output2(" <i>Unknown</i>");
+					if(9999 == 9999 && flags["EMMY_CREW_REQUESTED"] != undefined) output2(", Asked her to join your crew");
 				}
 				if(flags["EMMY_ORALED"] != undefined) output2("\n<b>* Emmy, Times She Oral Sexed You: </b>" + flags["EMMY_ORALED"]);
 			}
@@ -4332,6 +4361,20 @@ public function displayEncounterLog(showID:String = "All"):void
 			{
 				output2("\n<b>* The Treatment:</b> Known");
 				if(pc.hasStatusEffect("Treated")) output2(", Used");
+			}
+			miscCount++;
+		}
+		// Sexploration: Porny Smuts
+		if(flags["LETS_FAP_ARCHIVES"] != undefined)
+		{
+			output2("\n<b><u>Pornography</u></b>");
+			// Atha's Adventures
+			if(flags["LETS_FAP_ARCHIVES"] != undefined)
+			{
+				output2("\n<b>* Champeon, Atha’s Let’s Fap Series:</b> Donated");
+				if(flags["CUMSTREAM_UNLOCKED"] != undefined) output2(", Geyser Tier");
+				else if(flags["EARLY_LETS_FAPS"] != undefined) output2(", Hydrant Tier");
+				else output2(", Faucet Tier");
 			}
 			miscCount++;
 		}

@@ -1163,7 +1163,7 @@ public function reahaBreastMilkIceCream():void
 	output("\n\nThe two of you quickly make your way out of the customs office and out into the New Texan main street. From there, it’s a hop and a skip to the Iced Teats shop. You usher Reaha up into the storefront, into the refreshing coolness of the shop.");
 	if (flags["REAHA_ICE_CREAM_TIMES"] == undefined) output(" Reaha’s eyes go wide as she sees the girls trapped in glass cases, their teats strapped to suction devices to draw out their milk.");
 	
-	output("\n\n<i>“Hello! Welcome to Iced Teats, <i>“My name is");
+	output("\n\n<i>“Hello, welcome to Iced Teats! My name is");
 	if (!yammiIsOwned()) output(" Yammi");
 	else output(" Salire");
 	output("!  What can I get for you today?”</i> the girl behind the counter chirps happily, indicating the large flavor list behind her.  <i>“We have cones, bowls, or frozen feasts, in any combination of flavors you prefer!”</i>");

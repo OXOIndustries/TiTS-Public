@@ -20,7 +20,7 @@
 			
 			this.quantity = 1;
 			this.stackSize = 10;
-			this.type = GLOBAL.PILL;
+			this.type = GLOBAL.GADGET;
 			//Used on inventory buttons
 			this.shortName = "JokeBook";
 			//Regular name
@@ -31,7 +31,7 @@
 			//Longass shit, not sure what used for yet.
 			this.description = "a joke book";
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "<I>Diverting Jokes and Jests</i>, by Jaskel Nuch. A faded reader card encoded with an old compilation of Tarkus’s most popular jokes. It should still interface with your codex and translate correctly.";
+			this.tooltip = "<i>Diverting Jokes and Jests</i>, by Jaskel Nuch.\n\nA faded reader card encoded with an old compilation of Tarkus’s most popular jokes. It should still interface with your codex and translate correctly.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

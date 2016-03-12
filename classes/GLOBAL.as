@@ -661,6 +661,31 @@
 			"Nyrea Girl Cum",
 		];
 		
+		public static const FLUID_TYPE_SHORT:Array = [
+			"Milk",
+			"Honey",
+			"Cum",
+			"Oil",
+			"M.Sap",
+			"GCum",
+			"C.Sap",
+			"C.Milk",
+			"S.Milk",
+			"S.Cum",
+			"VM.Mlk",
+			"VH.Mlk",
+			"Nectar",
+			"L.Milk",
+			"G.Cum",
+			"G.GCum",
+			"V.Milk",
+			"N.Cum",
+			"Goo",
+			"C.Cum",
+			"V.Cum",
+			"N.GCum",
+		];
+		
 		public static const VALID_CUM_TYPES:Array = [
 			FLUID_TYPE_CUM,
 			FLUID_TYPE_HONEY,

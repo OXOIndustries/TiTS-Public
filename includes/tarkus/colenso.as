@@ -28,7 +28,7 @@ public function colensoMenu():void
 {
 	clearMenu();
 	//[Buy] [Sell] [Prophylactics] [Rumours] [Work]
-	addButton(0,"Buy",buyItem,undefined,"Buy","Buy something from Colenso.");
+	addButton(0,"Buy",colensoBuyMenu,undefined,"Buy","Buy something from Colenso.");
 	addButton(1,"Sell",sellItem,undefined,"Sell","Sell something to Colenso.");
 	addButton(2,"Prophylactics",askColensoAbootProphylactics,undefined,"Prophylactics","Ask Colenso what he means by \"Prophylactics.\"");
 	addButton(3,"Rumors",colensoRumorMillGo,undefined,"Rumors","See if Colenso has heard any interesting rumors.");
@@ -39,7 +39,16 @@ public function colensoMenu():void
 	else addDisabledButton(5,"Sell Prize","Sell Prize","This merchant isn't interested in whatever you're considering to be a prize.");
 	addButton(14,"Back",mainGameMenu);
 }
-
+public function colensoBuyMenu():void
+{
+	if(!CodexManager.entryUnlocked("Diverting Jokes"))
+	{
+		if(!chars["COLENSO"].hasItem(new TarkusJokeBook())) chars["COLENSO"].inventory.push(new TarkusJokeBook());
+	}
+	else chars["COLENSO"].destroyItem(new TarkusJokeBook(), 1);
+	
+	buyItem();
+}
 
 public function colensosRoomBonusFunction():Boolean
 {

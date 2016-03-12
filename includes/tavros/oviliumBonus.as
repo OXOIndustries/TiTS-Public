@@ -279,9 +279,43 @@ private function oviliumEggReward(bigEgg:Boolean = false):void
 // Egg item description
 public function oviliumEggTooltip(eggSize:String = "none", eggColor:String = "none"):String
 {
-	if (eggSize == "small") return "The " + eggColor + " egg is small enough to fit in your palm. It looks rather inconspicuous and normal.";
-	if (eggSize == "large") return "The " + eggColor + " egg is large enough to hold in both hands. It looks like it would make a good, filling meal.";
-	return "This is " + indefiniteArticle(eggColor) + " egg.";
+	var desc:String = "";
+	
+	if (eggSize == "small") desc = "The " + eggColor + " egg is small enough to fit in your palm. It looks rather inconspicuous and normal.";
+	else if (eggSize == "large") desc = "The " + eggColor + " egg is large enough to hold in both hands. It looks like it would make a good, filling meal.";
+	else desc = "This is " + indefiniteArticle(eggColor) + " egg.";
+	
+	switch (eggColor)
+	{
+		case "pink": desc += "[oviliumEggEffect fluid]"; break;
+		case "blue": desc += "[oviliumEggEffect preggcelleration]"; break;
+		case "glowing white": desc += "[oviliumEggEffect fertility]"; break;
+	}
+	
+	return desc;
+}
+public function oviliumEggEffect(effectTF:String = "none"):String
+{
+	var desc:String = "";
+	
+	if (effectTF == "none")
+	{
+		/* Nothing */
+	}
+	else if (effectTF == "fluid")
+	{
+		if(flags["OVILIUM_TF_FLUID"] != undefined) desc += "\n\nEating this will most likely change your fluid production.";
+	}
+	else if (effectTF == "preggcelleration")
+	{
+		if(flags["OVILIUM_TF_PREGGCELLERATION"] != undefined) desc += "\n\nEating this will most likely change your pregnancy duration.";
+	}
+	else if (effectTF == "fertility")
+	{
+		if(flags["OVILIUM_TF_FERTILITY"] != undefined) desc += "\n\nEating this will most likely change your fertility.";
+	}
+	
+	return desc;
 }
 
 // Use egg item
@@ -388,6 +422,8 @@ private function oviliumEggTF(effectTF:String = "none", nVal:Number = 0, eggSize
 				pc.cumMultiplierRaw += nVal;
 				if (pc.cumMultiplierRaw > 100) pc.cumMultiplierRaw = 100;
 				cumUp = true;
+				
+				flags["OVILIUM_TF_FLUID"] = true;
 				changes++;
 			}
 		}
@@ -412,6 +448,7 @@ private function oviliumEggTF(effectTF:String = "none", nVal:Number = 0, eggSize
 				else msg += " much";
 				msg += " wetter than you were before.";
 				
+				flags["OVILIUM_TF_FLUID"] = true;
 				changes++;
 			}
 		}
@@ -431,6 +468,7 @@ private function oviliumEggTF(effectTF:String = "none", nVal:Number = 0, eggSize
 			else msg += " delayed";
 			msg += ".";
 			
+			flags["OVILIUM_TF_PREGGCELLERATION"] = true;
 			changes++;
 		}
 	}
@@ -452,6 +490,8 @@ private function oviliumEggTF(effectTF:String = "none", nVal:Number = 0, eggSize
 		if (num > 0)
 		{
 			msg += "Visions of following in your father’s footsteps play through your head as you finish the egg treat. You feel like making children until your lineage is spread throughout the whole frontier.";
+			
+			flags["OVILIUM_TF_FERTILITY"] = true;
 			changes++;
 		}
 	}

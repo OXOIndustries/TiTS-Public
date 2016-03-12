@@ -23,7 +23,7 @@
 			this.inventory.push(new ProphylacticLapinara());
 			this.inventory.push(new ProphylacticRaskvel());
 			this.inventory.push(new ProphylacticSydian());
-			this.inventory.push(new TarkusJokeBook());
+			//this.inventory.push(new TarkusJokeBook());
 			
 			this.typesBought[this.typesBought.length] = GLOBAL.ALL;
 			this.sellMarkup = 1.3;

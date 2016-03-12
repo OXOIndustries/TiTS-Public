@@ -103,9 +103,11 @@
 		include "../includes/gooExtras.as";
 		include "../includes/lightsOut.as";
 		include "../includes/items.as";
+		include "../includes/items.tooltips.as";
 		include "../includes/MailEntries.as";
 		include "../includes/masturbation.as";
 		include "../includes/masturbation.eggTrainer.as";
+		include "../includes/masturbation.magicMilker.as";
 		include "../includes/NPCTemplates.as";
 		include "../includes/rooms.as";
 		include "../includes/roomFunctions.as";
