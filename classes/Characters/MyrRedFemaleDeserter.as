@@ -216,7 +216,8 @@
 		
 		override public function get bustDisplay():String
 		{
-			return "MYR_RED_FEMALE_DESERTER";
+			if(kGAMECLASS.flags["BRIHA_INCUBATION_TIMER"] != undefined) return "BRIHA_PREGNANT";
+			else return "BRIHA";
 		}
 		
 		override public function isPregnant(x:int = 0):Boolean
