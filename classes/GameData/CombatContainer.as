@@ -953,7 +953,12 @@ package classes.GameData
 			{
 				if (hasEnemyOfClass(Kaska)) kGAMECLASS.doNothingWhileTittyGrappled();
 				else if (hasEnemyOfClass(GrayPrime)) kGAMECLASS.grayPrimeFailEscape();
-				else if (hasEnemyOfClass(MaidenVanae) || hasEnemyOfClass(HuntressVanae)) kGAMECLASS.vanaeWaitWhilstGrappled();
+				else if (hasEnemyOfClass(MaidenVanae) || hasEnemyOfClass(HuntressVanae))
+				{
+					kGAMECLASS.setEnemy(_hostiles[0]);
+					kGAMECLASS.vanaeWaitWhilstGrappled();
+					kGAMECLASS.setEnemy(null);
+				}
 				else output("You choose not to act.");
 				processCombat();
 			}

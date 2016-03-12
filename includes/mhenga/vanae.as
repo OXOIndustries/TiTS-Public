@@ -876,7 +876,7 @@ public function vanaeMaidenCunnilingus():void
 		output(" painfully stiff, as if you're going to blow your load all over the ground without a single caress");
 	}
 	else output(" your own thighs tremble and squeeze together. You're pretty sure you're going to cream yourself without a single caress - you're just that turned on by eating out the dainty huntress and tasting her sweet girl juice");
-	output(". Your hands wrap around and grab [enemy.butt], squeezing it firmly.");
+	output(". Your hands wrap around and grab her [enemy.butt], squeezing it firmly.");
 
 	output("\n\nShe squeals with delight as you forcefully grope and knead her [enemy.ass] - the plethora of sensations sending her careening over the edge. With a sharp cry, her [enemy.legs] spasm and shake as she reaches that white hot peak. Her [enemy.girlCum] splashes and squirts all over your [pc.face] and [pc.tongue] as she utterly drenches you.");
 
