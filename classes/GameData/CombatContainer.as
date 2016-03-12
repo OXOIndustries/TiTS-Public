@@ -1656,7 +1656,7 @@ package classes.GameData
 			if ((InCollection(pc.milkType, GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK, GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK) && pc.isLactating()) || (pc.isMilkTank() && pc.canMilkSquirt())) addButton(4, "Milk Squirt", teaseSquirt, target, "Milk Squirt", "Spray the enemy with your [pc.milk], arousing them.");
 			else if (InCollection(pc.milkType, GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK, GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK) || pc.isMilkTank()) addDisabledButton(4, "Milk Squirt", "Milk Squirt", "You do not currently have enough [pc.milkNoun] available to squirt any.");
 			//Reqs: PC has an aphrodisiac-laced cock big enough to slap
-			if(pc.biggestCockLength() >= 12 && pc.hasCockFlag(GLOBAL.FLAG_APHRODISIAC_LACED, pc.biggestCockIndex())) addButton(5,"Dick Slap",dickslap,undefined,"Dick Slap","Slap the enemy with your aphrodisiac-coated dick.");
+			if(pc.biggestCockLength() >= 12 && pc.hasCockFlag(GLOBAL.FLAG_APHRODISIAC_LACED, pc.biggestCockIndex())) addButton(5, "Dick Slap" , dickslap, target, "Dick Slap", "Slap the enemy with your aphrodisiac-coated dick.");
 
 			addButton(14, "Back", generateCombatMenu, undefined, "Back", "Back out. Recommended if you haven’t yet used “Sense” to determine your foe’s likes and dislikes. Remember you can pull up your appearance screen in combat or use the scene buffer buttons in the lower left corner to compare yourself to your foe’s preferences!");
 		}

@@ -35,14 +35,32 @@ public function showEmmy(nude:Boolean = false):void
 }
 public function applyCumSoaked(arg:Creature):void
 {
-	if(!arg.hasStatusEffect("Cum Soaked")) arg.createStatusEffect("Cum Soaked",1,0,0,0,false,"Icon_Splatter","You're drenched in cum! Anyone can tell at a glance what sort of activities you've been engaging in!",false,0,0xB793C4);
+	var desc:String = "";
+	
+	if(!arg.hasStatusEffect("Cum Soaked"))
+	{
+		if(arg == chars["PC"]) desc = "You’re drenched in cum! Anyone can tell at a glance what sort of activities you’ve been engaging in!";
+		else desc = arg.capitalA + arg.short + " is completely covered in cum!";
+		arg.createStatusEffect("Cum Soaked",1,0,0,0,false,"Icon_Splatter",desc,false,0,0xB793C4);
+	}
 	else arg.addStatusValue("Cum Soaked",1,1);
+	
+	if(arg == chars["PC"]) mimbraneFeed("all");
 }
 
 public function applyPussyDrenched(arg:Creature):void
 {
-	if(!arg.hasStatusEffect("Pussy Drenched")) arg.createStatusEffect("Pussy Drenched",1,0,0,0,false,"Icon_Water_Drop","You're drenched in cum! Anyone can tell at a glance what sort of activities you've been engaging in!",false,0,0xB793C4);
+	var desc:String = "";
+	
+	if(!arg.hasStatusEffect("Pussy Drenched"))
+	{
+		if(arg == chars["PC"]) desc = "You’re drenched in girl-cum! Anyone can tell at a glance what sort of activities you’ve been engaging in!";
+		else desc = arg.capitalA + arg.short + " is completely covered in girl-cum!";
+		arg.createStatusEffect("Pussy Drenched",1,0,0,0,false,"Icon_Water_Drop",desc,false,0,0xB793C4);
+	}
 	else arg.addStatusValue("Pussy Drenched",1,1);
+	
+	if(arg == chars["PC"]) mimbraneFeed("all");
 }
 
 //Push it out?
@@ -1767,7 +1785,7 @@ public function getMeOneEms():void
 	if(!pc.isHerm()) output("But you aren’t even a herm! Besides, ");
 	else output("But ");
 	output("your measurements won’t be static enough to make use of it. You’ll be out there, feasting on alien delicacies that could mutate you or double your waist size. Or, stars forbid, you could wind up stranded or fucked silly by a huge native until that the dildo won’t even properly stimulate you.”</i> She licks your cheek, then the underside of your ear, dragging her warm tongue against the sensitive edge. <i>“Once you’re ready for a more mundane life, I’d be happy to hold the remote for yours.”</i>");
-	output("\n\nShe makes a few good points. That particular model might be best left till after this adventure.");
+	output("\n\nShe makes a few good points. That particular model might be best left until after this adventure.");
 	output("\n\n<i>“So what do you say?”</i> Emmy asks, pouting. <i>“Care to help a girl out?”</i>");
 	//Gray out <i>“get me one”</i>
 	flags["GET_ME_ONE"] = 1;
@@ -1848,7 +1866,7 @@ public function emmyGotHarnessReaction():void
 	output("\n\nEmmy pulls back, looking almost offended. <i>“Just because you can make me howl like a wolf in the night doesn’t mean I’m screaming like a banshee every time.”</i> She quietly adds, <i>“I can moan quietly too. Wanna push the button and find out?”</i>");
 	output("\n\nDo you? It might be fun to watch her blow like a volcano, but she’d surely be down for a fuck if you wanted.");
 	//Push button or sex scenes.
-	output("\n\n<b>Emmy's Harm Harness controls have been added to your Codex!</b>");
+	output("\n\n<b>Emmy's Herm Harness controls have been added to your Codex!</b>");
 	processTime(4);
 	pc.lust(5);
 	flags["EMMY_QUEST"] = 6;
@@ -1937,7 +1955,7 @@ public function emmySexMenu():void
 			else addDisabledButton(5,"Fuck Her","Fuck Her","You're too big to fit inside her!");
 		}
 		else addDisabledButton(5,"Fuck Her","Fuck Her","You don't have a cock to fuck her with.");
-		if(pc.hasVagina()) addButton(6,"Get Fucked",getFuckedByEmmyEmmyEms);
+		if(pc.hasVagina()) addButton(6,"Get Fucked",getFuckedByEmmyEmmyEms,undefined,"Get Fucked","Have her fuck your vagina.");
 		else addDisabledButton(6,"Get Fucked","Get Fucked","You don't have a vagina for Emmy to fuck.");
 	}
 	else

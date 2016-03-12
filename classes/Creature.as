@@ -13581,7 +13581,7 @@
 				if(hasPerk("Fertility")) weightBreast *= 0.75;
 				if(milkQ() > 0)
 				{
-					weightFluid = fluidWeight(milkQ());
+					weightFluid = fluidWeight(milkQ(), milkType);
 					if(isMilkTank()) weightFluid *= 0.5;
 					else if(hasPerk("Milky") || hasPerk("Treated Milk")) weightFluid *= 0.75;
 					if(partNum >= 0) weightFluid /= bRows();
@@ -13619,6 +13619,12 @@
 					}
 					if(hasPerk("Breed Hungry")) weightBelly *= 0.75;
 				}
+				weightFluid = 0;
+				weightFluid += fluidWeight(statusEffectv1("Anally-Filled"), statusEffectv3("Anally-Filled"));
+				weightFluid += fluidWeight(statusEffectv1("Vaginally-Filled"), statusEffectv3("Vaginally-Filled"));
+				weightFluid += fluidWeight(statusEffectv1("Orally-Filled"), statusEffectv3("Orally-Filled"));
+				//if(hasCock() || balls > 0) weightFluid += fluidWeight(cumQ(), cumType);
+				weightBelly += weightFluid;
 				if(thickness > tone)
 				{
 					weightFat = (thickness - tone) * 0.01 * (tallness / 60);
@@ -13644,74 +13650,84 @@
 			{
 				// Get total length:
 				tempSize = 0;
-				if(partNum >= 0) tempSize += clitLength * vaginas[partNum].clits;
-				else tempSize += clitLength * totalClits();
-				// Calculate weight: Simple, Each inch of length is 1/80th lbs.
-				weightClitoris += tempSize * 0.0125;
-				// Modifiers:
-				if(hasPerk("Hung")) weightClitoris *= 0.75;
+				if(hasVagina())
+				{
+					if(partNum >= 0) tempSize += clitLength * vaginas[partNum].clits;
+					else tempSize += clitLength * totalClits();
+					// Calculate weight: Simple, Each inch of length is 1/80th lbs.
+					weightClitoris += tempSize * 0.0125;
+					// Modifiers:
+					if(hasPerk("Hung")) weightClitoris *= 0.75;
+				}
 			}
 			// Penis:
 			if(partName == "penis" || partName == "total")
 			{
 				// Get total size/volume:
 				tempSize = 0;
-				if(partNum >= 0)
+				if(hasCock())
 				{
-					tempSize += cockVolume(partNum);
-				}
-				else
-				{
-					for (num = 0; num < cocks.length; num++)
+					if(partNum >= 0)
 					{
-						tempSize += cockVolume(num);
+						tempSize += cockVolume(partNum);
 					}
-				}
-				// Calculate weight: Simple, Each volume unit is 1/20th lbs.
-				weightPenis += tempSize * 0.05;
-				// Modifiers:
-				if(partNum >= 0)
-				{
-					if(hasKnot(partNum))
+					else
 					{
-						weightFat = cocks[partNum].thickness() * cocks[partNum].knotMultiplier * 0.25;
-						weightPenis += weightFat;
-					}
-				}
-				else
-				{
-					for (num = 0; num < cocks.length; num++)
-					{
-						if(hasKnot(num))
+						for (num = 0; num < cocks.length; num++)
 						{
-							weightFat = cocks[num].thickness() * cocks[num].knotMultiplier * 0.25;
+							tempSize += cockVolume(num);
+						}
+					}
+					// Calculate weight: Simple, Each volume unit is 1/20th lbs.
+					weightPenis += tempSize * 0.05;
+					// Modifiers:
+					if(partNum >= 0)
+					{
+						if(hasKnot(partNum))
+						{
+							weightFat = cocks[partNum].thickness() * cocks[partNum].knotMultiplier * 0.25;
 							weightPenis += weightFat;
 						}
 					}
+					else
+					{
+						for (num = 0; num < cocks.length; num++)
+						{
+							if(hasKnot(num))
+							{
+								weightFat = cocks[num].thickness() * cocks[num].knotMultiplier * 0.25;
+								weightPenis += weightFat;
+							}
+						}
+					}
+					if(hasPerk("Hung")) weightPenis *= 0.75;
 				}
-				if(hasPerk("Hung")) weightPenis *= 0.75;
 			}
 			// Testicles:
 			if(partName == "testicle" || partName == "total")
 			{
 				// Get total size/volume:
-				if(balls <= 0) num = 1;
-				else num = balls;
-				tempSize = ballVolume();
-				// Calculate weight: Simple, Each volume unit is 1/80th lbs.
-				weightTesticle += tempSize * num * 0.0125;
-				// Modifiers:
-				if(cumQ() > 0)
+				tempSize = 0;
+				if(hasCock() || balls > 0)
 				{
-					// Maybe only 50% is housed in the balls?
-					weightFluid = fluidWeight(cumQ() * 0.5);
-					if(hasPerk("Potent") && hasPerk("Breed Hungry")) weightFluid *= 0.5;
-					else if(hasPerk("Potent") || hasPerk("Breed Hungry")) weightFluid *= 0.75;
-					if(hasStatusEffect("Nyrea Eggs")) weightFluid += (0.125 * statusEffectv1("Nyrea Eggs"));
-					if(partNum > 0 && partNum <= balls) weightFluid = (weightFluid / partNum);
-					weightTesticle += weightFluid;
+					if(balls <= 0) num = 1;
+					else num = balls;
+					tempSize = ballVolume();
+					// Calculate weight: Simple, Each volume unit is 1/80th lbs.
+					weightTesticle += tempSize * num * 0.0125;
+					// Modifiers:
+					if(cumQ() > 0)
+					{
+						// Maybe only 50% is housed in the balls?
+						weightFluid = fluidWeight((cumQ() * 0.5), cumType);
+						if(hasPerk("Potent") && hasPerk("Breed Hungry")) weightFluid *= 0.5;
+						else if(hasPerk("Potent") || hasPerk("Breed Hungry")) weightFluid *= 0.75;
+						if(hasStatusEffect("Nyrea Eggs")) weightFluid += (0.125 * statusEffectv1("Nyrea Eggs"));
+						if(partNum > 0 && partNum <= balls) weightFluid = (weightFluid / partNum);
+						weightTesticle += weightFluid;
+					}
+					if(hasPerk("Bulgy")) weightTesticle *= 0.75;
 				}
-				if(hasPerk("Bulgy")) weightTesticle *= 0.75;
 			}
 			
 			// Add up all the weights
@@ -13725,10 +13741,10 @@
 			return weight;
 		}
 		// Calculates the weight of an amount of fluid.
-		public function fluidWeight(fluidAmount: Number = 0):Number
+		public function fluidWeight(fluidAmount: Number = 0, fluidType:int = -1):Number
 		{
-			if(InCollection(cumType, GLOBAL.FLUID_TYPE_HONEY, GLOBAL.FLUID_TYPE_MILKSAP, GLOBAL.FLUID_TYPE_CUMSAP, GLOBAL.FLUID_TYPE_NECTAR)) fluidAmount *= 0.005;
-			else if(InCollection(cumType, GLOBAL.FLUID_TYPE_CUM, GLOBAL.FLUID_TYPE_GABILANI_CUM, GLOBAL.FLUID_TYPE_NYREA_CUM, GLOBAL.FLUID_TYPE_VANAE_CUM)) fluidAmount *= 0.0035;
+			if(InCollection(fluidType, GLOBAL.FLUID_TYPE_HONEY, GLOBAL.FLUID_TYPE_MILKSAP, GLOBAL.FLUID_TYPE_CUMSAP, GLOBAL.FLUID_TYPE_NECTAR)) fluidAmount *= 0.005;
+			else if(InCollection(fluidType, GLOBAL.FLUID_TYPE_CUM, GLOBAL.FLUID_TYPE_GABILANI_CUM, GLOBAL.FLUID_TYPE_NYREA_CUM, GLOBAL.FLUID_TYPE_VANAE_CUM)) fluidAmount *= 0.0035;
 			else fluidAmount *= 0.0025;
 			
 			return fluidAmount;

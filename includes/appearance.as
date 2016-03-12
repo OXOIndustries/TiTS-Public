@@ -559,6 +559,42 @@ public function appearance(forTarget:Creature):void
 			else if(target.wingType == GLOBAL.TYPE_DOVESIX) output2("six wings sprout from your back, each covered in wonderfully soft [pc.furColor] feathers and big enough to be worn like a luxurious ceremonial robe when all six are folded over your body, which you often find yourself doing to help with getting through tight spaces. Despite their sheer bulk, you can still glide with them.");
 		}
 		else output2(".");
+		// Cum Splattered!
+		if(target.hasStatusEffect("Cum Soaked") || target.hasStatusEffect("Pussy Drenched"))
+		{
+			var fluidDesc:String = "";
+			var fluidVisc:Array = [];
+			var fluidLayer:int = 0;
+			var fluidLayers:Number = 0;
+			
+			if(target.hasStatusEffect("Cum Soaked"))
+			{
+				fluidLayers += target.statusEffectv1("Cum Soaked");
+				fluidLayer = target.statusEffectv1("Cum Soaked");
+				if(fluidLayer > 3) fluidLayer = 3;
+				fluidVisc = ["cum", "spooge", "gooey semen" , "goopey spunk"];
+				fluidDesc += fluidVisc[fluidLayer];
+			}
+			if(target.hasStatusEffect("Cum Soaked") && target.hasStatusEffect("Pussy Drenched"))
+			{
+				fluidDesc += " and ";
+			}
+			if(target.hasStatusEffect("Pussy Drenched"))
+			{
+				fluidLayers += target.statusEffectv1("Pussy Drenched");
+				fluidLayer = target.statusEffectv1("Pussy Drenched");
+				if(fluidLayer > 3) fluidLayer = 3;
+				fluidVisc = ["girl-lube", "girl-juice", "slimy girl-cum", "sloppy fem-cum"];
+				fluidDesc += fluidVisc[fluidLayer];
+			}
+			
+			output2(" You are soaked");
+			if(fluidLayers <= 1) output2(" in visible splotches of");
+			else if(fluidLayers <= 2) output2(" in a fine layer of");
+			else if(fluidLayers <= 4) output2(" in layers of");
+			else output2(" from top to bottom with thick layers of");
+			output2(" " + fluidDesc + ", making your messy sexcapades obvious to everyone around you.");
+		}
 		//Vanaebutt Skin
 		if(target.hasStatusEffect("Vanae Markings")) output2(" Swirls of " + target.skinAccent + " trace brighter accents across much of your form.");
 		// Lube skin!
@@ -1342,7 +1378,7 @@ public function appearance(forTarget:Creature):void
 		else if (tempBelly <= 90) 
 		{
 			output2("Your [target.belly] is so big that it makes your [target.skin] tight and shiny");
-			if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.skinType == GLOBAL.SKIN_TYPE_CHITIN)
+			if(InCollection(target.skinType, GLOBAL.SKIN_TYPE_FUR, GLOBAL.SKIN_TYPE_SCALES, GLOBAL.SKIN_TYPE_CHITIN, GLOBAL.SKIN_TYPE_FEATHERS))
 				output2(" under your [target.skinFurScales]");
 			output2(". Movement is a little impractical with the extra bulk.");
 		}
