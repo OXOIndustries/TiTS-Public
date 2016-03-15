@@ -1128,7 +1128,7 @@ public function taurStreetAdventure(config:int = 1):void
 	//Horsecunt and Horsecock
 	else
 	{
-		output("\n\nThe first indication that you might be in trouble is the feeling of cool air against the flare of your artificial erection, now exposed just beyond the edge of your sheath. With that realization comes the knowledge that you can also feel every breeze against your rapidly moistening cuntlips. Sure, they were already wet, but you can feel beads of moisture trickling down them down them. That sensation feeds right back into your cock, the thought of a wet pussy forcing heartbeat after heartbeat worth of new blood into your swelling erection.");
+		output("\n\nThe first indication that you might be in trouble is the feeling of cool air against the flare of your artificial erection, now exposed just beyond the edge of your sheath. With that realization comes the knowledge that you can also feel every breeze against your rapidly moistening cuntlips. Sure, they were already wet, but you can feel beads of moisture trickling down them. That sensation feeds right back into your cock, the thought of a wet pussy forcing heartbeat after heartbeat worth of new blood into your swelling erection.");
 		output("\n\n");
 		if(pc.hasCock()) output("Did getting an erection ever feel this good with your old [pc.cocksNounSimple]?");
 		else output("Does getting an erection always feel like this?");

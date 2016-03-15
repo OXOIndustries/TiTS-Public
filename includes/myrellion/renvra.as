@@ -1533,7 +1533,7 @@ public function renvraDoubleTrouble():void
 		output("<i>“You’re just sheltered,”</i> you say");
 		if(pc.isNice())
 		{
-			output("politely, remembering some of the extreme bulges and toys you’ve seen");
+			output(" politely, remembering some of the extreme bulges and toys you’ve seen");
 			if(pc.characterClass == GLOBAL.CLASS_SMUGGLER) output(" and smuggled");
 			output(".");
 		}

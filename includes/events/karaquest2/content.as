@@ -2715,9 +2715,9 @@ public function kq2PostKaraSexyCombineStay():void
 	output("\n\n<i>“Hey, lover,”</i> a familiar voice says, drawing your eyes to the shadow of the holo-screen, beneath the image of a billowing red sun muted down to only a dim light. Kara’s sitting beside it, wrapped up in a blue bathrobe with her legs crossed under her, sipping at a steaming mug. <i>“Sleep well? I did.”</i>");
 	
 	output("\n\nYou nod and slowly pull yourself out of bed, looking for your gear.");
-	if (!pc.isNude()) output(" Your clothes have been cleaned and folded, sitting at the food of the bed");
+	if (!pc.isNude()) output(" Your clothes have been cleaned and folded, sitting at the foot of the bed");
 	else output(" Your gear’s been stacked neatly at the foot of the bed for you");
-	output(". As you gather your things, Kara sets her mug aside and slips over you you, wrapping her arms around your waist and pressing her cheek into your back. <i>“I can’t thank you enough, [pc.name]. For everything,”</i> she murmurs.");
+	output(". As you gather your things, Kara sets her mug aside and slips over you, wrapping her arms around your waist and pressing her cheek into your back. <i>“I can’t thank you enough, [pc.name]. For everything,”</i> she murmurs.");
 	
 	output("\n\nYou turn in her embrace and give her a fierce hug, taking comfort in the warmth and softness of your kaithrit lover. The two of you spend a little while together, just enjoying each other’s company, before a heavy heart pulls you towards your ship. You still have an adventure of your own to finish.");
 	
