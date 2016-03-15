@@ -148,7 +148,7 @@ package classes.UIComponents.SideBarComponents
 		private function Build():void
 		{	
 			_labelBack = buildLabel(UIStyleSettings.gCompressedStatBarBackTextFormat);
-			if (Accessibility.active) _labelBack.accessibilityProperties.silent = true;
+			//if (Accessibility.active) _labelBack.accessibilityProperties.silent = true;
 			addChild(_labelBack);
 			
 			_bar = new Sprite();

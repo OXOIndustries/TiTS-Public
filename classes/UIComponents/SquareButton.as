@@ -47,7 +47,7 @@
 			_iconPadding = iconPadding;
 			_glowLayer = hasGlow;
 			
-			if (Accessibility.active) accessibilityProperties.forceSimple = true;
+			//if (Accessibility.active) accessibilityProperties.forceSimple = true;
 			
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
 		}

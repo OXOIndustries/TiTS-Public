@@ -75,20 +75,20 @@ package classes.UIComponents.SideBarComponents
 			// Top row
 			_menuButton = new SquareButton(width, height, xPos, yPos, rounding, ButtonIcons.Icon_MainMenu, padding);
 			_menuButton.name = "menuButton";
-			if (Accessibility.active) _menuButton.accessibilityProperties.name = "Main Menu";
+			//if (Accessibility.active) _menuButton.accessibilityProperties.name = "Main Menu";
 			_buttonLayer.addChild(_menuButton);
 			xPos = _menuButton.x + _menuButton.width + spacing;
 			
 			_dataButton = new SquareButton(width, height, xPos, yPos, rounding, ButtonIcons.Icon_Data, padding);
 			_dataButton.name = "dataButton";
-			if (Accessibility.active) _dataButton.accessibilityProperties.name = "Data Menu";
-			if (Accessibility.active) _dataButton.accessibilityProperties.description = "Save or Load game data.";
+			//if (Accessibility.active) _dataButton.accessibilityProperties.name = "Data Menu";
+			//if (Accessibility.active) _dataButton.accessibilityProperties.description = "Save or Load game data.";
 			_buttonLayer.addChild(_dataButton);
 			xPos = _dataButton.x + _dataButton.width + spacing;
 			
 			_quickSaveButton = new SquareButton(width, height, xPos, yPos, rounding, ButtonIcons.Icon_QuickSave, padding);
 			_quickSaveButton.name = "quickSaveButton";
-			if (Accessibility.active) _quickSaveButton.accessibilityProperties.name = "Quick Save";
+			//if (Accessibility.active) _quickSaveButton.accessibilityProperties.name = "Quick Save";
 			_buttonLayer.addChild(_quickSaveButton);
 
 			// Bottom row
@@ -97,27 +97,27 @@ package classes.UIComponents.SideBarComponents
 			
 			_mailsButton = new SquareButton(width, height, xPos, yPos, rounding, ButtonIcons.Icon_Stats, padding);
 			_mailsButton.name = "mailsButton";
-			if (Accessibility.active) _mailsButton.accessibilityProperties.name = "CODEX Messenger";
-			if (Accessibility.active) _mailsButton.accessibilityProperties.description = "In-character messenger system";
+			//if (Accessibility.active) _mailsButton.accessibilityProperties.name = "CODEX Messenger";
+			//if (Accessibility.active) _mailsButton.accessibilityProperties.description = "In-character messenger system";
 			_buttonLayer.addChild(_mailsButton);
 			xPos = _mailsButton.x + _mailsButton.width + spacing;
 			
 			_perksButton = new SquareButton(width, height, xPos, yPos, rounding, ButtonIcons.Icon_Perks, padding);
 			_perksButton.name = "perksButton";
-			if (Accessibility.active) _perksButton.accessibilityProperties.name = "Character Perks";
+			//if (Accessibility.active) _perksButton.accessibilityProperties.name = "Character Perks";
 			_buttonLayer.addChild(_perksButton);
 			xPos = _perksButton.x + _perksButton.width + spacing;
 			
 			_levelUpButton = new SquareButton(width, height, xPos, yPos, rounding, ButtonIcons.Icon_LevelUp, padding);
 			_levelUpButton.name = "levelUpButton";
-			if (Accessibility.active) _levelUpButton.accessibilityProperties.name = "Level Up Character";
+			//if (Accessibility.active) _levelUpButton.accessibilityProperties.name = "Level Up Character";
 			_buttonLayer.addChild(_levelUpButton);
 			
 			// Big bastard apperance button
 			xPos = _quickSaveButton.x + _quickSaveButton.width + 2;
 			_appearanceButton = new SquareButton(72, 70, xPos, 0, rounding, ButtonIcons.Icon_Appearance, padding * 2);
 			_appearanceButton.name = "appearanceButton";
-			if (Accessibility.active) _appearanceButton.accessibilityProperties.name = "Character Appearance";
+			//if (Accessibility.active) _appearanceButton.accessibilityProperties.name = "Character Appearance";
 			_buttonLayer.addChild(_appearanceButton);
 		}
 		
