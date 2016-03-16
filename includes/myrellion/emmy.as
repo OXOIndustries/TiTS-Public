@@ -3322,7 +3322,7 @@ public function getFuckedByEmmyEmmyEms():void
 	//Normal
 	else
 	{
-		output("<i>“I think you need the touch of a real pussy, not that little, plastic sleeve you spend so much of your time obsessing over,”</i> you tease, reaching over to caress Emmy’s bulging member. <i>“I think this this beast needs to remember what it’s like to bend a " + pc.mf("hot body","bitch") + " over and fuck [pc.himHer] into a cum-soaked mess.”</i>");
+		output("<i>“I think you need the touch of a real pussy, not that little, plastic sleeve you spend so much of your time obsessing over,”</i> you tease, reaching over to caress Emmy’s bulging member. <i>“I think this beast needs to remember what it’s like to bend a " + pc.mf("hot body","bitch") + " over and fuck [pc.himHer] into a cum-soaked mess.”</i>");
 		output("\n\nBy the time you reach the end of your diatribe, Emmy is already starting to strip naked. <i>“I think you’re right,”</i> she agrees. The furry horndog cleanly yanks her her suit down and out of the way, then steps out of it in the same motion. She’s gotten far better at this since you’ve started fucking, but her twitching dick and slick cunt are both still all wrapped up in her herm harness. Looking back and forth between the toy and your crotch, Emmy makes up her mind, and the harness hits the ground a second later, still dripping.");
 		output("\n\nYou quirk an eyebrow at the abruptly naked shopkeep and wiggle your ");
 		if(!pc.isCrotchExposed()) output(" still-clothed");
