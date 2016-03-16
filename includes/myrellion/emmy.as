@@ -1882,7 +1882,7 @@ public function emmyImplantFurtherDiscussion():void
 	if(pc.isBimbo()) output("So you, like, have an implant in your head that’s making act like such a hottie?");
 	else if(pc.isBro()) output("So uh, the thing in your head...?");
 	else if(pc.isNice()) output("About that libido-enhancer... could you tell me more about it?");
-	else if(pc.isMischievous()) output("So were you always this awesome before the libido-enhancer, or is did you just win the side-effect lottery?");
+	else if(pc.isMischievous()) output("So were you always this awesome before the libido-enhancer, or did you just win the side-effect lottery?");
 	else output("Tell me more about the libido enhancer. Does it bother you?");
 	output("”</i>");
 
