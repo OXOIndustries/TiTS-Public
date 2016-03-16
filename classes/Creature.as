@@ -4064,7 +4064,7 @@
 			//0-10
 			if (femininity < 10) {
 				faceo = "a square chin";
-				if(!hasBeard() && lipRating() > 2) faceo += ", " + plural(lipDescript(true)) + faceLipMimbraneDescript() + ", and chiseled jawline.";
+				if(!hasBeard() && lipRating() > 2) faceo += ", " + plural(lipDescript(true)) + faceLipMimbraneDescript() + ", and chiseled jawline";
 				else if (!hasBeard()) faceo += " and chiseled jawline";
 				else faceo += ", chiseled jawline, and " + beard();
 			}
