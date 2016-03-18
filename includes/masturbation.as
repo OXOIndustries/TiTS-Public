@@ -2620,16 +2620,17 @@ public function moderateExhibitionOmniFap():void
 	//pc is taur or Neuter:
 	if(taurNeuter)
 	{
-		output("\n\nThat naughty little thought pushes you right over the edge. With a sharp, high-pitched cry, you shiver and ");
-		if(pc.hasCock()) output("shoot your [pc.cum] all over the ground");
+		output("\n\nThat naughty little thought pushes you right over the edge. With a sharp, high-pitched cry, you shiver");
+		if(pc.hasGenitals()) output(", ");
+		if(pc.hasCock()) output("shooting your [pc.cum] all over the ground");
 		if(pc.hasCock() && pc.hasVagina()) output(" and ");
 		if(pc.hasVagina()) 
 		{
-			if(pc.isSquirter()) output("squirt your");
-			else output("gush");
+			if(pc.isSquirter()) output("squirting your");
+			else output("gushing");
 			output(" [pc.girlCum] from your [pc.pussies]");
 		}
-		if(pc.hasGenitals()) output("utterly cream yourself");
+		if(!pc.hasGenitals()) output(" and utterly cream yourself");
 		output(". ");
 		//pc.lactating:
 		if(pc.isLactating())
