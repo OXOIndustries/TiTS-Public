@@ -13,7 +13,9 @@ package classes.Engine.Utility
 		//Various weird pluralize shits
 		if (lastChar == "s") str += "es";
 		else if (nextToLastChar == "s" && lastChar == "h") str += "es";
-		else if (lastChar == "x") str += "es";
+		else if (nextToLastChar == "c" && lastChar == "h") str += "es";
+		else if (nextToLastChar != "z" && lastChar == "z") str += "zes";
+		else if (lastChar == "x" || lastChar == "z") str += "es";
 		//Ends in y and consonant before, ex: pussy -> pussies
 		else if (lastChar == "y" && nextToLastChar != "e" && nextToLastChar != "a" && nextToLastChar != "u" && nextToLastChar != "o" && nextToLastChar != "i") 
 		{

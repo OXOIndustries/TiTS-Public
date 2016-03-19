@@ -56,7 +56,7 @@
 				{
 					if(target.faceTypeUnlocked(GLOBAL.TYPE_HUMAN))
 					{
-						output("\n\nYour [pc.face] starts itching painfully. You try and scratch at it, but as soon as you lay a finger on it, your face contracts in pain. You let out a yell as your face reshapes into a more humanoid form. Thankfully, it ends rather quickly and you find that <b>you have human face now!</b>");
+						output("\n\nYour [pc.face] starts itching painfully. You try and scratch at it, but as soon as you lay a finger on it, your face contracts in pain. You let out a yell as your face reshapes into a more humanoid form. Thankfully, it ends rather quickly and you find that <b>you have a human face now!</b>");
 						
 						target.faceType = GLOBAL.TYPE_HUMAN;
 						target.clearFaceFlags();
@@ -474,7 +474,7 @@
 				{
 					if(target.cumTypeUnlocked(GLOBAL.FLUID_TYPE_NYREA_CUM))
 					{
-						output("\n\nAs you calm down from your pleasure high, you notice that your cum as an odd lavender color to it. You flick a stray strand of cum off your nyrean cock and take an experimental taste. You get a sexual tingle similar to the tingle of the rock candy you consumed not to long ago. <b>Your cum as changed into the aphrodisiac lube of the nyrea!</b>");
+						output("\n\nAs you calm down from your pleasure high, you notice that your cum has an odd lavender color to it. You flick a stray strand of cum off your nyrean cock and take an experimental taste. You get a sexual tingle similar to the tingle of the rock candy you consumed not too long ago. <b>Your cum has changed into the aphrodisiac lube of the nyrea!</b>");
 						
 						for(x = 0; x < target.cocks.length; x++)
 						{
@@ -520,7 +520,7 @@
 				}
 				if(changes == 0)
 				{
-					output("\n\nThe slightly arousing effects dissipate quickly. You certainly don’t feel any different. Looks like the candy was dud. What a shame...");
+					output("\n\nThe slightly arousing effects dissipate quickly. You certainly don’t feel any different. Looks like the candy was a dud. What a shame...");
 				}
 				// Lust Increase
 				else

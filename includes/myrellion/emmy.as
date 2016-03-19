@@ -811,7 +811,7 @@ public function askEmmyBoutMeleeShit():void
 	output(".");
 	if(pc.tone < 30 && pc.tallness < 72) output(" Say, why are you even asking about this stuff? You don’t really have the build to be mixing it up in melee, ya know?”</i>");
 	else if(pc.tone >= 75) output(" Say, you are pretty muscly, aren’t you? I bet you don’t even have to swing a weapon to scare off a few ruffians, do you?”</i> She purrs - a louder, deeper sound than you’d hear from a kaithrit and strokes your arm.");
-	else output("Say, are you really planning to fight up close? It seems risky.”</i>");
+	else output(" Say, are you really planning to fight up close? It seems risky.”</i>");
 
 	//Nonmuscle versions
 	if(pc.tone < 75)
@@ -913,7 +913,7 @@ public function askEmmyAboutEmmy():void
 	//Not known well enough:
 	if(flags["PURCHASED_FROM_EMS"] == undefined)
 	{
-		output("\n\nThe jackal-woman fidgets and says, <i>“That’s not important right now. What is important is.... uh.... getting your the right equipment for your adventures. So, what will you be buying?”</i>");
+		output("\n\nThe jackal-woman fidgets and says, <i>“That’s not important right now. What is important is... uh... getting your the right equipment for your adventures. So, what will you be buying?”</i>");
 		//Reskin menu and go to shop interface
 		processTime(1);
 		emmyMainMenu();
@@ -1094,8 +1094,8 @@ public function sexAttemptStart(mainMenu:Boolean = true):void
 		output("”</i>");
 		output("\n\n<i>“I don’t see a problem here.”</i>");
 		output("\n\nThe jackaless shakes her head and looks up at you with red-rimmed eyes. <i>“I’m not a slut");
-		if(flags["MET_EMMY"] != undefined) output(", [pc.name].");
-		output("”</i> ");
+		if(flags["MET_EMMY"] != undefined) output(", [pc.name]");
+		output(".”</i> ");
 		if(flags["MET_EMMY"] != undefined) output("Emmy");
 		else output("She");
 		output(" straightens. <i>“I’m not going to fuck someone just because I happen to be horny and hot enough to turn on my clients, no matter how fuckably cute they are.”</i> She thumps her fist into the table and swivels her ears to face you, proud and erect. <i>“Just because I feel like I have a week of backed-up cum in my balls doesn’t mean you’ll get a free pass to have your way with me. You’ve got to earn it.”</i>");
@@ -2217,7 +2217,7 @@ public function getBlownByEmmy():void
 	//Hugecum - Liter cola - HEY FARVA, LITER COLA
 	else if(pc.cumQ() < 4000) 
 	{
-		output("\n\nYou unload [pc.cum] like a bottle of soda shaken for far too long, bathing her from tongue to tonsils in a veneer of reproductive release with the first squirt alone. The jackaless has the good graces to look surprised by this turn events. Her cheeks bulge, and messy streams of your excessive load drip from the corners of her mouth. She does her best to keep up with noisy swallows, but nothing could have prepared Emmy for the size of your load. It’s only after you’ve finished that she shows you what you’ve accomplished, opening her mouth to display the flood you’ve so heedlessly released into her mouth. Even after all her swallows, there’s a lot there.");
+		output("\n\nYou unload [pc.cum] like a bottle of soda shaken for far too long, bathing her from tongue to tonsils in a veneer of reproductive release with the first squirt alone. The jackaless has the good graces to look surprised by this turn of events. Her cheeks bulge, and messy streams of your excessive load drip from the corners of her mouth. She does her best to keep up with noisy swallows, but nothing could have prepared Emmy for the size of your load. It’s only after you’ve finished that she shows you what you’ve accomplished, opening her mouth to display the flood you’ve so heedlessly released into her mouth. Even after all her swallows, there’s a lot there.");
 		output("\n\nGrinning, she gulps the last of it down.");
 	}
 	//Kirocum

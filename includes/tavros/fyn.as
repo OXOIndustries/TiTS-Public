@@ -1209,7 +1209,7 @@ public function fynSexOrcRavish():void {
 		output("You tell Fyn that you have a rather particular fantasy; one that involves getting forcefully ravished by, well,");
 		
 		if (pc.isBimbo()) output(" a hulking brute");
-		else output("an orc");
+		else output(" an orc");
 		
 		output("! Is that the sort of thing he can do, you ask?");
 		output("\n\nThere's a distinctive glint in Fyn's eyes, <i>“Of course. I can easily grant that sort of wish. But you know, once I get in character, it's </i>very<i> hard to snap me out. For all intents and purposes, I </i>will<i> be a lusty");

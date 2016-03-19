@@ -297,7 +297,7 @@ public function seraTalkTopics(response:String = ""):void
 	else if(response == "furries")
 	{
 		output("You ask why she hates furries so much.");
-		output("\n\n<i>“They’re just...ugh!”</i> She grasps the air in anger with her claws. <i>“They’re using fucking wax crayons whilst other people are trying to make art. Look, I’m not hung up on animal features per se - they can be nice in moderation.");
+		output("\n\n<i>“They’re just... ugh!”</i> She grasps the air in anger with her claws. <i>“They’re using fucking wax crayons whilst other people are trying to make art. Look, I’m not hung up on animal features per se - they can be nice in moderation.");
 		if(pc.earType == GLOBAL.TYPE_CANINE || pc.earType == GLOBAL.TYPE_FELINE)
 		{
 			output(" Those fluffy ears, for example? Perfect for a cute ");
