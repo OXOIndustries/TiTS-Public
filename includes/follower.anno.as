@@ -1276,7 +1276,7 @@ public function annoFollowerSuckAndFuckSexPartII():void
 
 	processTime(20+rand(10));
 	annoSexed(1);
-	anno.loadInCunt(pc);
+	anno.loadInCunt(pc, 0);
 	pc.orgasm();
 	anno.orgasm();
 	clearMenu();
