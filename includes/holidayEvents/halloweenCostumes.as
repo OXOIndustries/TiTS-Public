@@ -943,7 +943,7 @@ public function hotelPartyPartyParty():void
 	if(pc.hasVagina())
 	{
 		var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
-		pc.loadInCunt(pp);
+		pc.loadInCunt(pp, 0);
 	}
 
 	processTime(77);
@@ -1335,11 +1335,11 @@ public function ladyTaursFuckDane():void
 		pc.orgasm();
 	}
 	//Kiro used for volume~
-	pc.loadInCunt(chars["DANE"]);
-	pc.loadInCunt(chars["KIRO"]);
-	pc.loadInCunt(chars["KIRO"]);
-	pc.loadInCunt(chars["KIRO"]);
-	pc.loadInCunt(chars["KIRO"]);
+	pc.loadInCunt(chars["DANE"], 0);
+	pc.loadInCunt(chars["KIRO"], 0);
+	pc.loadInCunt(chars["KIRO"], 0);
+	pc.loadInCunt(chars["KIRO"], 0);
+	pc.loadInCunt(chars["KIRO"], 0);
 	pc.loadInMouth(chars["DANE"]);
 	pc.loadInMouth(chars["KIRO"]);
 	pc.loadInMouth(chars["KIRO"]);

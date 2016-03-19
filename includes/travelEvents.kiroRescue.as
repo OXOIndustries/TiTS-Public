@@ -744,7 +744,7 @@ public function kirosShipChubnookiFucksYouGud(anal:Boolean = false):void
 	// Lotta fuckyfucky
 	for (var i:int = 0; i < 20; i++)
 	{
-		if (!anal) pc.loadInCunt(kiro);
+		if (!anal) pc.loadInCunt(kiro, selVag);
 		else pc.loadInAss(kiro);
 		kiro.orgasm();
 	}

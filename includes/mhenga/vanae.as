@@ -797,7 +797,7 @@ public function vanaeMaidenTakeVirginity():void
 	else output(" gloriously unload thick jets");
 	output(" of hot, [pc.cumVisc] jism deep inside of her, sullying her untouched womb with your [pc.cumNoun]. All the while she trembles in your lap and receives your spunk inside of her, feeling it spatter blissfully inside her inner walls.");
 	
-	enemy.loadInCunt(pc);
+	enemy.loadInCunt(pc, 0);
 	pc.orgasm();
 	enemy.orgasm();
 
@@ -1010,7 +1010,7 @@ public function vanaeHuntressVaginalSex():void
 	else output(" ache and stiffen");
 	output(" at the glorious sight. She follows up by lapping and cleaning your [pc.cumVisc] [pc.cockNounSimple], making sure it is completely spotless.");
 
-	enemy.loadInCunt(pc);
+	enemy.loadInCunt(pc, 0);
 	pc.orgasm();
 	enemy.orgasm();
 
@@ -1753,8 +1753,8 @@ public function vanaeHuntressPCDefeatCuntFux():void
 	else output(" gushing");
 	output(" from her fuck hole. [pc.EachCock] begins to stiffen and jerk at the glorious sight.");
 
-	enemy.loadInCunt(pc);
-	enemy.loadInCunt(pc);
+	enemy.loadInCunt(pc, 0);
+	enemy.loadInCunt(pc, 0);
 	pc.orgasm();
 	enemy.orgasm();
 
@@ -2262,7 +2262,7 @@ public function vanaeHuntressPCDefeatTentafux():void
 	if ((pc.hasCock() && !pc.hasVagina()) || (!pc.hasCock() && pc.hasVagina())) output(" and all over the place");
 	output(". At the same time she shoots her [enemy.milk] inside of you, filling up your spasming hole.");
 
-	if (isCunt) pc.loadInCunt(enemy);
+	if (isCunt) pc.loadInCunt(enemy, 0);
 	else pc.loadInAss(enemy);
 	enemy.orgasm();
 	pc.orgasm();

@@ -662,9 +662,9 @@ public function renvraEggnancyEnds(pregSlot:int):void
 	output(" The first egg starts pushing through you, slowly but surely reaching");
 	if (pregSlot == 3) output(" your [pc.asshole]");
 	else output(" the lips of your pussy");
-	output(". The stretch is incredible, ");
+	output(". The stretch is incredible,");
 	
-	var tGape:Number;
+	var tGape:Number = 0;
 	
 	if (pregSlot == 3) tGape = pc.ass.looseness();
 	else tGape = pc.vaginas[pregSlot].looseness();
