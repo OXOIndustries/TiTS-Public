@@ -451,7 +451,8 @@ public function ainaSharesSomeTea():void
 			output("Taking the honey-blonde centauress up on the offer, you sit down while she serves up some tea. She puts down a porcelain cup in front of you and fills it up. The contents are black as night. It has a brisk, strong scent. She serves up some sweet baked goods to go with it.");
 			output("\n\n<i>“Here, this will take the edge off. It's always good to have black tea this strong with something sweet,”</i> Aina offers.");
 			output("\n\nYou pick up one of the colorfully topped cupcakes and savor it along with the tea. She's right; both of them together work to take the rough edges off, making something truly delicious. Almost as interesting are all the different toppings on the cakes. It's a feast for your eyes <i>and</i> your stomach.");
-			output("\n\n<i>“Have as many as you want. I always make them in big batches,”</i> Aina informs you. There's no way you can eat as many as she put out. As a centaur, she has quite the appetite!");
+			output("\n\n<i>“Have as many as you want. I always make them in big batches,”</i> Aina informs you.");
+			if(!pc.isTaur() && !pc.isGoo() && !pc.isDrider()) output(" There's no way you can eat as many as she put out. As a centaur, she has quite the appetite!");
 			output("\n\nOnce you're done, you feel well and truly stuffed on tea and sweets. Your blood is practically singing with all the sugar and caffeine the centauress gave you!");
 			break;
 		case 4 :

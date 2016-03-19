@@ -24,6 +24,31 @@
 		[Embed(source = "../../../assets/images/npcs/adjatha/anzhela_nude.png", mimeType = "image/png")]
 		public var Bust_ANZHELA_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/adjatha/atha.png", mimeType = "image/png")]
+		public var Bust_ATHA:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/atha_ausar.png", mimeType = "image/png")]
+		public var Bust_ATHA_AUSAR:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/atha_cocktail.png", mimeType = "image/png")]
+		public var Bust_ATHA_COCKTAIL:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/atha_equine.png", mimeType = "image/png")]
+		public var Bust_ATHA_EQUINE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/atha_kaithrit.png", mimeType = "image/png")]
+		public var Bust_ATHA_KAITHRIT:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/atha_kuitan.png", mimeType = "image/png")]
+		public var Bust_ATHA_KUITAN:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/atha_laquine.png", mimeType = "image/png")]
+		public var Bust_ATHA_LAQUINE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/atha_ovir.png", mimeType = "image/png")]
+		public var Bust_ATHA_OVIR:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/atha_rahn.png", mimeType = "image/png")]
+		public var Bust_ATHA_RAHN:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/atha_rahn_xl.png", mimeType = "image/png")]
+		public var Bust_ATHA_RAHN_XL:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/atha_terran.png", mimeType = "image/png")]
+		public var Bust_ATHA_TERRAN:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/atha_zil.png", mimeType = "image/png")]
+		public var Bust_ATHA_ZIL:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/briha.png", mimeType = "image/png")]
 		public var Bust_BRIHA:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/briha_nude.png", mimeType = "image/png")]

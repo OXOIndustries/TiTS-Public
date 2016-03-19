@@ -5,10 +5,11 @@ Design notes
 Basically does a ‘net show (Let’s Fap) where she gets a variety of cocks, describes the feelings, then jerks off for the audience and gives it a review. Could also do a few variations on the formula, like an <i>“unboxing”</i> video, by trying out a new cock by cream pie’ing a friend’s <i>“box.”</i> Or a live streamed show where she takes prompts from the audience (player can vote on stuff to happen, etc.) Or a silly mode scene where she hosts a Q&A with various references and such in there (’how do you fap with boxing gloves on?’). Could have her videos on <i>“Cum Streamer”</i> or <i>“Tremble”</i> or something like it, possibly making it a subscription service or have her advertise her <i>“Champeon”</i> account for added monies. Players could subscribe to access her much older videos (prequel events). And don’t forget to Love, Comment, and Support!
 */
 
-public function showAtha():void
+public function showAtha(bonus:String = ""):void
 {
 	showName("\nATHA");
-	showBust("ATHA");
+	if(bonus == "") showBust("ATHA");
+	else showBust("ATHA_" + bonus);
 }
 
 //..Introduction Email
@@ -192,22 +193,32 @@ public function letsFapUpdateCheck():void
 public function letsFapSelectionMenu():void
 {
 	clearMenu();
-	if(flags["LETS_FAP_LATEST"] == undefined) flags["LETS_FAP_LATEST"] = letsFapAusar;
+	if(flags["LETS_FAP_LATEST"] == undefined) 
+	{
+		if(letsFapTrack() == 0) flags["LETS_FAP_LATEST"] = letsFapAusar;
+		else if(letsFapTrack() == 1) flags["LETS_FAP_LATEST"] = letsFapLaquine;
+		else if(letsFapTrack() == 2) flags["LETS_FAP_LATEST"] = letsFapKuiTan;
+		else if(letsFapTrack() == 3) flags["LETS_FAP_LATEST"] = letsFapUnboxing;
+		else if(letsFapTrack() == 4) flags["LETS_FAP_LATEST"] = letsFapOvir;
+		else if(letsFapTrack() == 5) flags["LETS_FAP_LATEST"] = letsFapRahnScene;
+		else if(letsFapTrack() == 6) flags["LETS_FAP_LATEST"] = letsFapCockTail;
+	}
 	addButton(0,"Latest Episode",flags["LETS_FAP_LATEST"],undefined,"Latest Episode","Watch the latest episode of Let's Fap!");
 	if(flags["LETS_FAP_ARCHIVES"] != undefined)
 	{
-		addDisabledButton(1,"Terran"," Terran","There seems to be an error preventing you from accessing this episode at the moment.");
-		addButton(2,"Kaithrit",letsFapKaithrit,undefined,"Kaithrit","Watch the second episode of Atha's show, where she tries out a kaithrit penis.");
-		addButton(3,"Zil",letsFapZil,undefined,"Zil","Watch her try out a zil member.");
-		if(letsFapTrack() >= 1 && flags["LETS_FAP_LATEST"] != letsFapAusar) addButton(4,"Ausar",letsFapAusar,undefined,"Ausar","Watch Atha try out an ausar member.");
-		if(letsFapTrack() >= 2 && flags["LETS_FAP_LATEST"] != letsFapLaquine) addButton(5,"Laquine",letsFapLaquine,undefined,"Laquine","Watch Atha try out a laquine member.");
-		if(letsFapTrack() >= 3 && flags["LETS_FAP_LATEST"] != letsFapKuiTan) addButton(6,"Kui-Tan",letsFapKuiTan,undefined,"Kui-Tan","Watch Atha try out a kui-tan member.");
+		addButton(1,"Terran",letsFapTerran,undefined,"Terran","Watch the very first episode of Atha's show!");
+		addButton(2,"Equine",letsFapEquine,undefined,"Equine","Watch Atha try out an equine toy.");
+		addButton(3,"Kaithrit",letsFapKaithrit,undefined,"Kaithrit","Watch Atha try out a kaithrit penis.");
+		addButton(4,"Zil",letsFapZil,undefined,"Zil","Watch her try out a zil member.");
+		if(letsFapTrack() >= 1 && flags["LETS_FAP_LATEST"] != letsFapAusar) addButton(5,"Ausar",letsFapAusar,undefined,"Ausar","Watch Atha try out an ausar member.");
+		if(letsFapTrack() >= 2 && flags["LETS_FAP_LATEST"] != letsFapLaquine) addButton(6,"Laquine",letsFapLaquine,undefined,"Laquine","Watch Atha try out a laquine member.");
+		if(letsFapTrack() >= 3 && flags["LETS_FAP_LATEST"] != letsFapKuiTan) addButton(7,"Kui-Tan",letsFapKuiTan,undefined,"Kui-Tan","Watch Atha try out a kui-tan member.");
 		
-		if(letsFapTrack() >= 4 && flags["LETS_FAP_LATEST"] != letsFapUnboxing) addButton(7,"Unboxing",letsFapUnboxing,undefined,"Unboxing","Watch Atha try out unboxing a toy.");
-		if(letsFapTrack() >= 5 && flags["LETS_FAP_LATEST"] != letsFapOvir) addButton(8,"Ovir",letsFapOvir,undefined,"Ovir","Watch Atha try out an ovir member.");
-		if(letsFapTrack() >= 6 && flags["LETS_FAP_LATEST"] != letsFapRahnScene) addButton(9,"Rahn",letsFapRahnScene,undefined,"Rahn","Watch Atha try out a rahn member.");
+		if(letsFapTrack() >= 4 && flags["LETS_FAP_LATEST"] != letsFapUnboxing) addButton(8,"Unboxing",letsFapUnboxing,undefined,"Unboxing","Watch Atha try out unboxing a toy.");
+		if(letsFapTrack() >= 5 && flags["LETS_FAP_LATEST"] != letsFapOvir) addButton(9,"Ovir",letsFapOvir,undefined,"Ovir","Watch Atha try out an ovir member.");
+		if(letsFapTrack() >= 6 && flags["LETS_FAP_LATEST"] != letsFapRahnScene) addButton(10,"Rahn",letsFapRahnScene,undefined,"Rahn","Watch Atha try out a rahn member.");
 	}
-	if(flags["CUMSTREAM_UNLOCKED"] != undefined) addButton(10,"Live Stream",liveCumstreamerEpisode,undefined,"Live CumStream","Catch her live CumStream!");
+	if(flags["CUMSTREAM_UNLOCKED"] != undefined) addButton(11,"Live Stream",liveCumstreamerEpisode,undefined,"Live CumStream","Catch her live CumStream!");
 	addButton(14,"Back",masturbateMenu);
 }
 
@@ -228,7 +239,7 @@ public function letsFapTrack(arg:int = 0):Number
 public function letsFapAusar():void
 {
 	clearOutput();
-	showAtha();
+	showAtha("ZIL");
 	//First view:
 	if(flags["LATEST_LETS_FAP"] == undefined)
 	{
@@ -250,11 +261,13 @@ public function letsFapAusar():void
 public function ausarLetsFap2():void
 {
 	clearOutput();
-	showAtha();
-	output("When Atha steps back into frame, she is holding a small silk scarf over her crotch. <i>“Drum roll please,”</i> she says with a wink, before dropping the cloth. In place of the small, flesh-folded pucker of her bee dick, now she’s got a raised mound of skin set atop her pelvis. Just a hint of red peeks out from the sheath as her fingers trace lazy circles around the crest. Adjusting her glasses, the camgirl stands on her tippy toes to better frame the alien biology between her legs. <i>“Okay, first thing’s first - this feels WEIRD, ha ha! I mean, it’s like I’ve got all this mass, but it’s inside my body rather than instead of outside? There’s a ton of pressure down there, too! Even soft, it’s like there’s all this potential, ya know?”</i> Her emerald eyes flash with an eager light, and the fingers circling her sheath speed up, fingertips dimpling golden, caramel skin.");
-	output("\n\n<i>“Ha hah, I’m doing a bad job of explaining it. You wouldn’t know I talk for a living, would you? I will say, it’ll be nice to be able to wear tight pants this week, so that’s a point in the ausar’s favor. I always love it when fabric hugs my balls without the cock getting in the way,”</i> she murmurs, her thumb lovingly stroking the taut sack dangling between her plump thighs. <i>“The skin sheath is pretty sensitive,”</i> she continues, squeezing the bulging lips between her forefinger and thumb. <i>“Not bad at all,”</i> she moans, her chest rising in a sigh that threatens the top button of her vest. <i>“I wouldn’t mind having that nibbled on during foreplay, or maybe even slapped,”</i> Atha teases, giving herself an open palmed smack across the pelvis.");
+	showAtha("AUSAR");
+	output("When Atha steps back into frame, she is holding a small silk scarf over her crotch. <i>“Drum roll please,”</i> she says with a wink, before dropping the cloth. In place of the small, flesh-folded pucker of her bee dick, now she’s got a raised mound of skin set atop her pelvis. Just a hint of red peeks out from the sheath as her fingers trace lazy circles around the crest. Adjusting her glasses, the camgirl stands on her tippy toes to better frame the alien biology between her legs. ");
+	output("<i>“Okay, first thing’s first- ausar don’t normally have sheathes. Their anatomy hangs free just like terran organs. But...”</i> she shrugs her shoulders, a little embarrassed. <i>“Well, after playing with my Zil cock all week, I kinda wanted to have a little bit of extra skin to play with! I plugged in a Kui-Tan sheath, but they’re pretty similar organs so hopefully the purists out there will forgive my little tweak.”</i>");
+	output("\n\n<i>“As far at the sheath goes, it feels pretty WEIRD, ha ha! I mean, it’s like I’ve got all this mass, but it’s inside my body rather than instead of outside? There’s a ton of pressure down there, too! Even soft, it’s like there’s all this potential, ya know?”</i> Her emerald eyes flash with an eager light, and the fingers circling her sheath speed up, fingertips dimpling golden, caramel skin.");
+	output("\n\n<i>“Ha hah, I’m doing a bad job of explaining it. You wouldn’t know I talk for a living, would you? I will say, it’ll be nice to be able to wear tight pants this week, so that’s a point in the sheath’s favor. I always love it when fabric hugs my balls without the cock getting in the way,”</i> she murmurs, her thumb lovingly stroking the taut sack dangling between her plump thighs. <i>“The loose skin is pretty sensitive,”</i> she continues, squeezing the bulging lips between her forefinger and thumb. <i>“Not bad at all,”</i> she moans, her chest rising in a sigh that threatens the top button of her vest. <i>“I wouldn’t mind having that nibbled on during foreplay, or maybe even slapped,”</i> Atha teases, giving herself an open palmed smack across the pelvis.");
 	output("\n\n<i>“Oh? Looks like somebody’s come out to play,”</i> the girl remarks with a delighted coo. The crimson tip poking between the girl’s burnished mounds gradually begins to expand and swell, emerging from her sheath one slow inch after another. <i>“Okay, I’m not going to lie- having this thing sliding between these sensitive lips feels friggin’ fantastic. When popping a boner feels as good as stroking it, you know you’re doing something right.”</i> Atha reaches a hand up to cup one of her breasts through the fabric while the other delicately, gently, tantalizingly plays across the inflating surface of the stiffening canid cock.");
-	output("\n\n<i>“Oh, the tip’s so weird,”</i> she giggles. <i>“Because of the sheath, there’s no foreskin or anything. But the shape is really quite interesting!”</i> She thumbs the ausar crest, the sloping, blunted surface twitching at her touch. <i>“Eeee! Look at the cute little tip at the bottom of the cockhead! Oh my god, it looks like a little clit,”</i> she titters, squeezing the ruby peak between her knuckles. She gasps, her open mouth slowly curling into a pleased smile. <i>“Oh, it’s pretty fucking sensitive too,”</i> she chuckles. <i>“I wonder if they use the tip to poke into their mate’s womb? Open the way for the cum to pour in? If you know why ausar have hard, little clit-tips on their penises, leave a comment below for me, kay?”</i>");
+	output("\n\n<i>“Oh, the tip’s so weird,”</i> she giggles. <i>“There’s no foreskin or anything, but the shape is really quite interesting!”</i> She thumbs the ausar crest, the sloping, blunted surface twitching at her touch. <i>“Eeee! Look at the cute little tip at the bottom of the cockhead! Oh my god, it looks like a little clit,”</i> she titters, squeezing the ruby peak between her knuckles. She gasps, her open mouth slowly curling into a pleased smile. <i>“Oh, it’s pretty fucking sensitive too,”</i> she chuckles. <i>“I wonder if they use the tip to poke into their mate’s womb? Open the way for the cum to pour in? If you know why ausar have hard, little clit-tips on their penises, leave a comment below for me, kay?”</i>");
 	output("\n\nWith seven inches of wolf cock wobbling from her crotch, Atha turns to the side to give a better view of the shaft. <i>“So, as you can see, it’s already longer than my hand. I could really go for something bigger, but that’s just the size queen in me being greedy.”</i> She gives the audience a wink and lowers her voice a touch. <i>“Don’t tell anybody, but a really cool fan said that she’s got an inside track on some pretty sweet growth supplements. We might get to see just how big I can get next week. Maybe so big I can’t even walk,”</i> she muses, biting her lower lip and obviously relishing the thought.");
 	output("\n\nShaking her head to dismiss the thought, the camgirl sends a rippling cascade down her nearly four foot long tresses. <i>“You can tell that the ausar dick is doing its job because I can’t focus on doing mine,”</i> she laughs. <i>“So, the shape is pretty cool, too. See how it swells in the middle and gets thinner by the tip and base? I’ll have to change the pressure of my grip as I stroke, which is a good habit to get into anyway, but is also means that I’ve got a milking motion more than just a typical rubbing one. Let me demonstrate,”</i> she adds, reaching offscreen to retrieve a dab of lubricating gel and begins rolling it between her palms.");
 	output("\n\nOnce her hands are nice and glistening, she wraps one around her root while the other curls around her new shaft, fingertips barely able to touch at the widest swell of the canid cock. <i>“Ooo, I think we’ve got a winner, ‘Net,”</i> she sings, one eye closed to better focus on the sensations. <i>“No wonder everybody loves ausar - they’re built to breed! What I wouldn’t give for one of my dear viewers to be here right now,”</i> she moans, her hand speeding up, <i>“just bent over my desk as I shove this thick, hot cock right into their tight little body again and again. Oooo, fuck!”</i> she curses, the pitch of her voice climbing another register as she begins squeezing the firm tip of her canid shaft.");
@@ -307,7 +320,7 @@ public function letsFapLaquine():void
 public function laquineFapPart2():void
 {
 	clearOutput();
-	showAtha();
+	showAtha("LAQUINE");
 	output("<i>“Ha hah, sorry for the delay, it’s just that this one is a bit more intense than I would’ve thought. Maybe it’s the ball transformation? Anyway, let’s get on with the show,”</i> she offers a weak grin, her face flushed almost as red as her vest and tie. Grabbing the clasp at her hip, she whips off her long white skirt with a theatrical flourish.");
 	output("\n\nAt the junction of her tawny, copper legs, a dark mound of flesh rises like the arm hole of a bunched-up sweater. The thick, meaty folds are smooth and as darkly sable as the girl’s pitch black hair. Beneath the plump, carnal sheath, a pair of heavy, apple-sized balls hang tightly against her groin. The glistening ebony flesh of the taut orbs seems almost impossibly dense, as if they were larger on the inside somehow.");
 	output("\n\n<i>“Now, I know some of you are saying that the Hora model already had an equine setting. Well, this is actually a laquine cock, see?”</i> She turns in place slowly, showing off her new organ. <i>“It looks similar, but as anybody who’s been with one of those cute bunnies can tell you - they’re worlds apart. Especially where these are concerned,”</i> she adds, lightly hefting the substantial balls throbbing between her plump thighs.");
@@ -323,7 +336,7 @@ public function laquineFapPart2():void
 public function laquineFapPart3():void
 {
 	clearOutput();
-	showAtha();
+	showAtha("LAQUINE");
 	output("Shaking her head, she returns to the task at hand. <i>“Okay, so the laquine dick has a lot of the good stuff I mentioned in my equine review back a few months ago. You’ve got size, you’ve got heft, and you’ve got this sweet medial ring.”</i> She strokes the bulging band of flesh about 3/4ths of the way down her member with a fond smile. <i>“Fuck, I love how these big horse cocks just make my veins bulge,”</i> she murmurs to herself, fingering some of the throbbing veins twisting their way up the elephantine mass.");
 	output("\n\nThe floppy pole inflates in her hands, not so much growing larger as stiffer. Every wiggling bob she sends down its length produces a tighter oscillation, until the full firmness curves slightly upward from her crotch, a full 14 inches proudly on display. Atha turns to the side, sliding her palm up the length before stopping at the crest, her fingers hooked around to clutch the protuberant cockhead. <i>“The really cool thing about this cock, however, is its head. Take a look!”</i>");
 	output("\n\nTurning back to the camera, Atha moves closer and closer until the massive immensity of her laquine peak fills the screen entirely. <i>“Just look at this beautiful biology,”</i> she says from behind the monstrous mound, her voice tight and strained. The cockhead is vaguely oblong, plump at the top with a smaller, split valley at the bottom. At the bottom center of the pulsing expanse, a fat, external urethra pokes out like a tiny mouth, the muscled tube twitching with the girl’s rising climax.");
@@ -349,7 +362,7 @@ public function laquineFapPart3():void
 public function letsFapKuiTan():void
 {
 	clearOutput();
-	showAtha();
+	showAtha("KUITAN");
 	author("Adjatha");
 	output("When the show starts, Atha is in her usual spot, waving hello to the ‘Net with a cheerful smile on her face. Unlike usual, she seems to have forgotten to put on a shirt, her stacked upper torso barely hidden by her burgundy vest. In place of her typical tie, she’s wearing a small, green bowtie cinched around her thin neck like a silk collar. Her long black hair has been parted down the middle to either side and held in a pair of rope-like pigtails that sweep down the back of her chair to the ground. The camgirl is wearing her usual half-moon glasses on the tip of her tiny nose, her eyes unfocused with dilated pupils. The tiny black gem set in the caramel center of her forehead twinkles as she bobs her head this way and that, as if concealing a juicy secret.");
 	output("\n\n<i>“So, I know what you’re thinking...”</i> she muses aloud. <i>“How could Atha tease the ball-modification of her Dong Designer and then NOT go for a kui-tan review?”</i> She giggles with spritely mirth. <i>“Oh, you poor dears,”</i> she gasps, her fingertips held over her mouth. <i>“To leave you in such suspense! Well, your wait is finally over, my lovely viewers, because I did a little pre-show preparation for this week’s episode!”</i>");
@@ -366,7 +379,7 @@ public function letsFapKuiTan():void
 public function kuiTanLetsFap2():void
 {
 	clearOutput();
-	showAtha();
+	showAtha("KUITAN");
 	author("Adjatha");
 	output("<i>“I’ve got to be careful on this next part,”</i> she mutters to herself as she looks down at the swaying mass in her lap. Clearing her throat, the camgirl raises her voice, gaining an octave. <i>“The balls themselves are crazy sensitive. Like, you would not believe,”</i> she asserts as her fingertips start pressing into the pliant immensity of her sack. <i>“But they’re not over-sensitive, like most balls,”</i> she goes on, her stroking growing more fierce. <i>“Normally, if somebody flicks your balls, you’ll probably double over, right? Not so with kui-tan balls. Pretty much everything transmits as pleasure, no matter how aggressive!”</i> As a demonstration, she raises one hand up and delivers an open-palmed slap, the sharp note of her impact on the cum-filled scrotum sending ripples through her bulk.");
 	output("\n\nThe girl’s mouth opens as her eyes squeeze shut, soundless moans sending shudders down her spine. The donut of her sheath dilates, a hefty shaft nearly the color of her burgundy vest lurches upward, thick blobs of pre-cum sputtering from its tip in a gooey shower that leaves slimy pools of thin liquid speckled across her massive sack. Her shoulders shiver as she slowly begins to breath again. <i>“Wow,”</i> she sighs, panting and struggling to loosen her bowtie. <i>“Yeah, that’s pretty amazing. And oh hey,”</i> she continues, glancing down, <i>“Looks like the star of the show has made her appearance. This lil’ gal is a kui-tan cock. It gets overlooked a lot because of the balls, but don’t think for a minute that it’s not just as cool!”</i>");
@@ -383,7 +396,7 @@ public function kuiTanLetsFap2():void
 public function kuiTanLetsFap3():void
 {
 	clearOutput();
-	showAtha();
+	showAtha("KUITAN");
 	author("Adjatha");
 	output("<i>“Okay, okay, let’s get on with the show,”</i> Atha chuckles, biting her lower lip as she shifts her attention wholly on her throbbing cock and bloated balls. With excited glee, she positions the condom over her heart-shaped crest and quickly rolls it down her length, the thin film sealing her kui-tan member in stretchy latex so tight it may as well have been a second skin. Fingering the resevoir tip with one thumb while her other hand begins pumping up and down her shaft, the camgirl tosses her head back, her heavy pony tails like a bridle around her head.");
 	output("\n\n<i>“Please don’t think less of me,”</i> she pants, voice rising in a keening moan, <i>“but I don’t think I can last very long, guys! My cock is so hot in my hands! My sheath feels tight, like I’ve got a pair of lips locked down, sucking at my root! And this pressure, oh man, you guys. If you could feel this...”</i> she gasps, a shudder electrifying her body with twitching shakes. <i>“Oh, fuck me this is a really bad idea, but...”</i> Reaching off screen again, she pulls out a small vial filled with creamy white fluid. <i>“I read that if kui-tans drink each other’s cum, it sets off a cum-cascade...”</i> she squeaks. <i>“One of you sweet, sexy tanukis sent in your cum for me and well...”</i> She disengages the seal, a hiss of pressurizing vapor steaming from the preservation cap. <i>“Bottoms up!”</i> she toasts, flicking the vial back and emptying the gooey load into her anxious mouth.");
@@ -444,7 +457,7 @@ public function unboxingLetsFap2():void
 public function letsFapOvir():void
 {
 	clearOutput();
-	showAtha();
+	showAtha("OVIR");
 	author("Adjatha");
 	output("Today, Atha seems to be joined by a friend. The dusky skinned human is at her typical seat, vest and tie crisp and crimson while her prodigious hair has been tied up in a massive, messy bun that hangs down around her neck. Towering at her side, managing to look both embarrassed and bored, is a gryvain woman dressed all in tattered, shredded clothing. The loose, well worn shirt covering her C-cup breasts is dull grey with a simple message stenciled on it: <i>“fuck you you fucking fucker.”</i> Her human-like upper torso has a variety of eye-watering tattoos, many of which feature skulls, serpents, and- oddly- butterflies. Her hips and groin are covered by a skirt that seems to have been sewn together from tattered pieces of latex. The wings in her back and the tail thrashing back and forth behind her are covered in blue scales so dark they’re nearly nearly a midnight indigo. A pair of horns curl up from the top of her punky, pink dyed hair.");
 	output("\n\n<i>“Hi everybody!”</i> Atha chirps with a wave. <i>“Like I promised, here’s my pal Nett! ‘Net, meet Nett!”</i> she giggles and the gryvain audibly sighs. <i>“Since I kinda messed up last week, I’m going to make it up to you this week with Nett’s help!”</i> The camgirl looks up at the imposing draconic woman with a fond expression. <i>“She looks so big and scary, but she’s a softy deep down.”</i> She grabs the winged woman’s whipping tail and pulls it in between her pillowy F-cup bosoms for a tight hug. <i>“And she’s my bestest friend!”</i> Nett grimaces with a slight blush and turns her back to the camera, her tail slowly wiggling in Atha’s embrace.");
@@ -481,7 +494,7 @@ public function letsFapOvir():void
 public function letsFapRahnScene():void
 {
 	clearOutput();
-	showAtha();
+	showAtha("RAHN");
 	author("Adjatha");
 	output("When the screen flicks on, Atha is at her usual seat, but she looks considerably less chipper than usual. The normally prim burgundy tie has been looped around her neck like a collar, the long silk hanging down her back like a leash. Her regularly styled and restyled curtain of hair is loose and messy, bunches hanging down and covering half of her face. Her half moon glasses are parked up on the top of her head, all but forgotten, while her vest and shirt are unbuttoned, exposing the caramel valley of her bountiful cleavage and taut belly. She has an expression of blissful exhaustion on her face and hardly seems to have realized that she started the show.");
 	output("\n\nAfter a moment of swaying back and forth, the camgirl notices the broadcasting light on the desk in front of her. She blinks her eyes and looks around for her glasses before giving up on them and pulling her unkempt hair back behind her ears. <i>“Oh, hey everybody. Sorry for the mess,”</i> she weakly laughs with an embarrassed grimace. <i>“Nett kept me playing with my toys all week, so I’m feeling a bit drained. But don’t worry- the show must go on!”</i> She gestures into the air with a single, triumphant finger before realizing she’s put too much momentum into the motion and ends up toppling out of her chair, with an awkward <i>“Gah!”</i>");
@@ -493,7 +506,18 @@ public function letsFapRahnScene():void
 	output("\n\nAmazingly, a small bump surfaces on the cam girl’s abdomen, bubbling larger and fuller as the toy skips quietly across her pelvis. She begins fingering the russet crest of her tit, squeezing the puffy peak until her nipple pops out of its seclusion. Her legs straighten, tensing as the vibe kicks up another notch, the bulge between her hips swelling into a full, phallic protrusion.");
 	output("\n\nWhen at last it seems to stop growing, the floppy Rahn cock is roughly an inch and a half across and 5 inches long. The camgirl switches off the wand to get a better look at the still-vibrating gel. It is roughly the same copper hue as her skin, but slightly translucent and seems to lack any distinguishing characteristics beyond its drooping, sausage-like shape. Panting slightly, trickles of sweat running down the swell of her breasts, the camgirl looks up at the camera with considerably more focus than before.");
 	output("\n\n<i>“Okay, that felt really fucking weird. You know how a regular erection is like you’re suddenly just more aware of the dick that’s always been between your legs? Well, a Rahn cock doesn’t have any feeling beforehand ‘cause it’s not there when it’s not in use. Like, at all. So getting hard is like growing a cock for the first time. Shit’s intense, is what I’m trying to say. Almost feels like it’d respond to my thoughts, if I had more practice. Like exercising a muscle you hardly ever use- it’s there, but you’ve got to really push to flex it. I dunno, I’m not making any sense.”</i> She shakes her head, dislodging the glasses perched on her brow, letting them fall back onto the girl’s nose. With a suddenly business-like intensity, she eyes the camera, emerald eyes blazing.  <i>“Enough foreplay, let’s fap.”</i>");
-	output("\n\nWrapping her hand around the fleshy psuedopod, she begins stroking up and down, gently at first until it’s clear that the phallus seems to be producing its own lubrication. The dull cinnamon skin tone turns to a polished copper in short order, her hand easily sliding along the flaccid gel with wet, slapping strokes. The seamless, rounded tip wobbles back and forth with each pump, glistening but growing no firmer.");
+	processTime(6);
+	pc.lust(8);
+	clearMenu();
+	addButton(0,"Next",rahnFapPart2);
+}
+
+public function rahnFapPart2():void
+{
+	clearOutput();
+	showAtha("RAHN_XL");
+	author("Adjatha");
+	output("Wrapping her hand around the fleshy pseudopod, she begins stroking up and down, gently at first until it’s clear that the phallus seems to be producing its own lubrication. The dull cinnamon skin tone turns to a polished copper in short order, her hand easily sliding along the flaccid gel with wet, slapping strokes. The seamless, rounded tip wobbles back and forth with each pump, glistening but growing no firmer.");
 	output("\n\n<i>“This is... frustrating...”</i> she grumbles between strokes. <i>“I can’t seem to make it hard! Unless...?”</i> Closing her eyes and steadying her breathing, the camgirl slows her fapping motion, taking care to squeeze the squishy girth tighter and tighter each time. Slowly, the goo dick seems to firm up, gradually growing denser yet still yielding. With its new stiffness, it nearly resembles a regular cock, minus any sort of tip or opening.");
 	output("\n\n<i>“That’s pretty cool,”</i> Atha marvels, grinning. <i>“Now if I could just- woah!”</i> Momentarily losing her grip on the jelly phallus, the camgirl’s abdomen ripples and convulses. Her gel cock flops upright as a semi-solid, egg shape pushes itself into the bulk from her groin, thickening the semi-transparent length with an opaque nucleus. <i>“The fuck? Is that how that works? Your load just builds up as these eggs? Sorry guys, I really should’ve done my homework before trying this one out.”</i>");
 	output("\n\nExperimentally, she touches the shaft and winces, leaning forward reflexively. <i>“Ah! Oh, okay... so I guess it gets more sensitive when eggs are inside. That makes sense,”</i> she analyzes slowly. <i>“So, if I started jerking off again...?”</i> she gives herself a few slow pumps, a moan forcing itself past her clenched teeth. <i>“Oh shit yes. That’s the good stuff,”</i> she murmurs. Her free hand grabs the vibrating wands once more and places it right at the seamless peak of her gel cock  while the other jerks with eager intensity. <i>“Come on, baby. Gimme dem eggs,”</i> she coos, with a crooked smile.");
@@ -508,8 +532,8 @@ public function letsFapRahnScene():void
 	output("\n\n<i>“As always, don’t forget to Love, Comment, and Support! Next week’s the season finale, so I hope you’ll join me again. Bye ‘Net!”</i> And with that, the cum-coated camgirl’s feed goes dead.");
 	output("\n\nThe little orange message box pops up asking if you’d like to become a Champeon and support Atha’s cock reviews. Would you like to learn more?");
 	//[Champeon]   [Turn Off]
-	processTime(32);
-	pc.lust(50);
+	processTime(26);
+	pc.lust(42);
 	letsFapTrack(6);
 	champeonOrOffMenu();
 }
@@ -536,7 +560,7 @@ public function letsFapCockTail():void
 public function cockVinePart2():void
 {
 	clearOutput();
-	showAtha();
+	showAtha("COCKTAIL");
 	author("Adjatha");
 	output("Standing, she pulls away her thick skirt to reveal a plain, feminine pelvis, the slight swell of her pussy the only monument between her legs. <i>“I removed my cock to make sure I could give you a full report on this little guy without getting any mixed signals,”</i> she explains, actually looking uncomfortable without a massive phallus to hang in front of the camera. <i>“So, this end,”</i> she lifts the roots, <i>“attaches to a host’s nervous system to begin the bonding. They can hook on in a number of places, but the easiest is right at the base of the spine.”</i>");
 	output("\n\nAtha turns around, showing off the plump, bronze bubble butt she’s been sitting on all this time. Leaning down, to raise her rotund cheeks. Reaching backward, she pulls the rooted end of the cockvine into contact with the peak of her rotund crack. The vine slowly begins to regain its awareness, the thick, pipe-like body undulating slowly to acquaint itself with its new surroundings. The roots wiggle against the camgirl’s skin experimentally, searching for fertile soil. Then, with a sudden, viper quickness, the nubs plunge into her skin like the fangs of an actual snake.");
@@ -553,7 +577,7 @@ public function cockVinePart2():void
 public function cockVinePart3():void
 {
 	clearOutput();
-	showAtha();
+	showAtha("COCKTAIL");
 	author("Adjatha");
 	output("The vine rustles, crinkling as its green coloration bleeds to a brown that mimics Atha’s skintone. With the seam gone and the color a perfect match, it’s nearly impossible to tell that the camgirl didn’t simply grow a massive, 3’ tail. It droops limply in her hands but with a small effort of will, she flexes its length back and forth, up and down. She curls the long member around her thighs and hips, squeezing tight her already dripping pussy as she lifts the wrinkled sheath of its tip to the level of the camera.");
 	output("\n\n<i>“Let’s see what we got in the bonding, eh ‘Net?”</i> she asks with confident glee, apparently forgetting her earlier caution. She slides the thick member up, under her shirt, pumping the bonded member between her F-cups so suddenly that buttons start popping off of her dress shirt. <i>“Woah, this thing is sensitive! Like, even more than a normal dick! Maybe it’s ‘cause the thing’s so new, but even the slightest friction is...”</i> she begins panting, a weak smile on her face, <i>“well, it’s like plunging into Nett’s tight dragon pussy for the first time.”</i>");
@@ -571,7 +595,7 @@ public function cockVinePart3():void
 public function cockVinePart4():void
 {
 	clearOutput();
-	showAtha();
+	showAtha("COCKTAIL");
 	author("Adjatha");
 	output("<i>“This, ‘Net, is Throbb. I’m sure you’ve all heard about it before. Supposedly very addictive and very dangerous. At the very least, very illegal. While I can’t really see the big problem with cockvine seedlings, I can tell you that Throbb is NOT something that you want to toy with,”</i> despite the severity of her tone, the camgirl’s obvious glee is impossible to hide. Her chest heaving, sweat beading on her brow, she slowly raises the medipen to the tip of her cocktail. <i>“Do as I say, don’t do as I do, kids,”</i> she murmurs before touching the jet-pressured device directly to her thumb-sized cumslit and hits the release button. The syringe lets out a faint <i>“hssst”</i> as the drug is sprayed through her skin, directly into the bloodstream of her new tail.");
 	output("\n\nOnce all the blue liquid is gone, Atha sets the pen down on the table with shaky hands. <i>“That wasn’t too bad. Like a little splash of coldness no worse than running an ice cube down your cock. Feels weird at first, but one could definitely get used to it...”</i> she shakes her head. <i>“Ha ha no no. No second hit. Once is enough. Except...”</i> she stares intently at the equine mass trembling on her lap. <i>“Shouldn’t it be growing? That might’ve been a bad batch. Maybe I need to get another...?”</i>");
@@ -588,7 +612,7 @@ public function cockVinePart4():void
 public function cockVinePart5():void
 {
 	clearOutput();
-	showAtha();
+	showAtha("COCKTAIL");
 	author("Adjatha");
 	output("<i>“Okay, the tail. Imagine if, like, your leg - no, arm! Yeah, like you’ve got this arm, ah!”</i> she jiggles as her cock gains another inch. <i>“New arm, right? But like everything on it is like your fingertips, yeah? Now you keep making a fist and the arm gets l-l-larger!”</i> Her balls have swollen too large to be covered by her hand any more, each orb nearly six inches across. <i>“S-s-so the arm gets larger each time you flex, but you’ve got an inch all over it so you keep flexing and as you do so it fills up with more and more blood, but it’s not blood it’s cum and ohdamniticantthinkthisfuckingthingistoo-too... BIG!”</i>");
 	output("\n\nHer tail whips about, apparently no longer under her control. The mass of equine flesh at the tip has grown to nearly 20”</i>, its inflated bulk nearly as large as the camgirl’s face at the flared head. The urethral slit is an inch and a half across and gapes like a tiny, needy mouth, trickles of pearlescent goo leaking from it steadily. Atha experimentally sticks one of her fingers into the lubed hole and her body bucks as if stricken. <i>“Fuuuuuuuuck,”</i> she moans as her tail bulges and surges. Her massive balls tremble and roll in her lap, apparently connected to the tail’s sinuous orgasm, bronze skin pulsing with each throbbing shudder.");
@@ -877,7 +901,7 @@ public function athaLiveShowGo():void
 public function pickAKaithritCock():void
 {
 	clearOutput();
-	showAtha();
+	showAtha("KAITHRIT");
 	author("Adjatha");
 	output("<i>“Kitty cat cock, huh? He heh these are always fun. Back in a sec!”</i>");
 
@@ -979,7 +1003,7 @@ public function pickAKaithritCock():void
 public function cumStreamingZilCock():void
 {
 	clearOutput();
-	showAtha();
+	showAtha("ZIL");
 	author("Adjatha");
 	output("<i>“Bee boy cock, huh? He heh these are always fun. Back in a sec!”</i>");
 
@@ -1062,7 +1086,7 @@ public function ausarCumStreaming():void
 {
 	clearOutput();
 	author("Adjatha");
-	showAtha();
+	showAtha("AUSAR");
 	output("<i>“Puppy pecker, huh? He heh these are always fun. Back in a sec!”</i>");
 
 	output("\n\n\t<b>RavenWulf:</b> Killer.");
@@ -1155,21 +1179,111 @@ public function letsFapTerran():void
 {
 	clearOutput();
 	showAtha();
+	author("Adjatha");
 	output("Selecting the first Let’s Fap from the archives shows a slightly younger Atha, the wide-eyed camgirl poking at some equipment doubtfully. The screen flickers with occasional static, ambient sounds of traffic filtering in. <i>“Well, it’s not great, but it should work,”</i> she mutters, perhaps referencing the video or audio capture. <i>“Okay, so hi,”</i> she begins, waving. <i>“I’m Atha Last-Name-Withheld, and this is my show.”</i> She pauses, biting the tip of her thumb. <i>“Nah, that was terrible. Whatever, roll with it.”</i>");
 	output("\n\nTurning back to the camera, she presses her palms against either side of her breasts, squeezing them together. <i>“So, I’m a girl in case you couldn’t tell. But, like, I’ve always been fascinated by, you know...”</i> she trails off before lowering her voice. <i>“Um. Dicks?”</i> She blushes. <i>“Like, they’re cool and have all kinds of weird parts and I really want to give ‘em a try. I figured that might be something you guys would like to see, so I got this camera and stuff and oh geez this is a dumb idea, why am I doing this?”</i>");
 	output("\n\nAtha slaps her forehead, groaning. <i>“Whatever! It’s too late to chicken out now. So yeah... dicks. Dicks. I’m gonna try em out and you’re gonna watch. It’ll be great times.”</i> She sighs and bops herself on the chin to psych herself up. <i>“So! You’re asking yourself how I’m going to get a dick, right? Well, there’s lots of ways probably, but for this show I’ll be using a TamaniCorp Dong Designer!”</i> She tilts the camera slightly to put the machine into frame before refocusing on herself. <i>“It’s not mine, I just borrowed it from a friend. But they won’t mind as long as nobody tells her,”</i> she adds with a wink.");
 	output("\n\n<i>“Okay, dick-town, population: me. Let’s do this thing!”</i> Atha stands up, apparently wearing pants instead of her usual skirt, and heads off screen to the Dong Designer. There is a long pause, the sound of her fiddling with the instrument, followed by the sound of her hitting the machine several times. When she comes back on camera, Atha seems frustrated. <i>“So APPARENTLY you have to have a dick to use the dong designer? How stupid is that? I’m gonna figure this thing out and get back to you.”</i>");
 	output("\n\nShe switches the capture off and a second later it turns back on. Apparently much later, Atha seems to have lost her tie, grease and scorch stains all over her shirt and hands. <i>“Okay! Camera good? Fine! It took me just about hecking forever, but I think I got the thing working.”</i> She gives a vigorous nod of affirmation and sticks out a fierce thumb’s up, as if it were a weapon. <i>“Dong Designer: take two!”</i>");
-	output("\n\nShe steps off camera again and after a brief pause, her startled cry comes through, followed by a string of invectives that nearly makes you blush. From off screen, Atha’s voice faintly comes through on the capture. <i>“Oh wow, this feels freaky. Is it always going to feel like this? Man, and it keeps going, too. Okay, that’s probably enough. Um, stop? I said that’s enough! Cut it out! Stop you stupid, overclocked piece of space trash!”</i> There is the further sound of a machine being banged and kicked and finally a heavy, wet popping noise.");
+	processTime(4);
+	clearMenu();
+	addButton(0,"Next",letsFapTerran2);
+}
+
+public function letsFapTerran2():void
+{
+	clearOutput();
+	showAtha();
+	author("Adjatha");
+	output("She steps off camera again and after a brief pause, her startled cry comes through, followed by a string of invectives that nearly makes you blush. From off screen, Atha’s voice faintly comes through on the capture. <i>“Oh wow, this feels freaky. Is it always going to feel like this? Man, and it keeps going, too. Okay, that’s probably enough. Um, stop? I said that’s enough! Cut it out! Stop you stupid, overclocked piece of space trash!”</i> There is the further sound of a machine being banged and kicked and finally a heavy, wet popping noise.");
 	output("\n\nGradually, Atha leans into frame, her glasses askew, her face flushed, and a nervous smile on her face. <i>“Okay, so, this is embarrassing, but I think my tweaks to that machine kinda broke it. So... I gotta buy Nett a new Dong Designer. Sorry Nett!”</i> She clasps her hand over her mouth. <i>“Oh, shoot! I shouldn’t have used your name.”</i> closing her eyes with a sigh, she shakes her head. <i>“It’s really hard to think with this thing hanging off of me.”</i>");
-	output("\n\nWhen she steps fully into frame, the camgirl’s pants are bunched around her knees, exposing her pelvis. Where there had been smooth skin before, now a massive, terran cock hangs between her legs - nearly twenty inches long and four inches wide while still flaccid. <i>“Taking those limiters off the dong designer was probably a bad idea, in retrospect,”</i> she admits as she shuffles a little closer to the camera.");
-	output("\n\n<i>“Well, I wanted a dick and this is about as much dick as anybody could ask for,”</i> she admits, unable to suppress a small smile. <i>“Well, I don’t think this monster is going in anybody’s holes any time soon, so I guess we’d better just take stock of the thing.”</i> Lifting the hefty pillar with both hands, she flashes a silly grin as she swings her hips back and forth. <i>“Okay, well it feels pretty good! A lot softer and squishier than I would’ve thought. Like playing with your cheeks,”</i> she says, poking the inside of her cheek with her tongue.");
-	output("\n\nSliding her hands up, she reaches the crest of the shaft, staring doubtfully at her cockhead. <i>“I guess this looks okay, but it’s a little weird with the foreskin.”</i> She flicks the thin folds with her fingers, eyebrows shooting up in surprise. <i>“Woah! okay now this part’s sensitive as hell!”</i> She tries again and her mouth becomes a delighted oval of awe. <i>“Shoot! It’s like the whole tip’s as tender as a clit! Well dang, it’s no wonder guys get hard all the time, with something like this in their pants.");
-	output("\n\nA wicked smile crosses Atha’s face. <i>“Speaking of pants... bear with me, I wanna try something.”</i> Letting go of her massive length, she bends down to lay hold of the clothing hanging at her knees and slowly begins to pull them up, shifting so that her member is funneled down one of the pants legs. She grunts as she reaches her thighs, the added girth making the cloth bulge, but she just barely manages to get the pants on, the outline of her mass clearly visible on her inner thigh. <i>“Ha ha woah! That is tight! She takes a step and flinches. <i>“Ah, maybe too tight,”</i> she adds with a tense frown. <i>“Definitely getting tighter, too.”</i> The camgirl uses her hands to push down against the organ stretching her clothing out, but the dismissive strokes predictably cause only greater swelling.");
+	output("\n\nWhen she steps fully into frame, the camgirl’s pants are bunched around her knees, exposing her pelvis. Where there had been smooth skin before, now a massive, terran cock hangs between her legs- nearly twenty inches long and four inches wide while still flaccid. <i>“Taking those limiters off the dong designer was probably a bad idea, in retrospect,”</i> she admits as she shuffles a little closer to the camera.");
+	output("\n\n<i>“Well, I wanted a dick and this is about as much dick as anybody could ask for,”</i> she admits, unable to suppress a small smile. <i>“I don’t think this monster is going to fit in anybody’s holes any time soon, so I guess we’d better just take stock of the thing.”</i> Lifting the hefty pillar with both hands, she flashes a silly grin as she swings her hips back and forth. <i>“Okay, well it feels pretty good! A lot softer and squishier than I would’ve thought. Like playing with your cheeks,”</i> she says, poking the inside of her cheek with her tongue.");
+	output("\n\nSliding her hands up, she reaches the crest of the shaft, staring doubtfully at her cockhead. <i>“I guess this looks okay, but it’s a little weird with the foreskin.”</i> She flicks the thin folds with her fingers, eyebrows shooting up in surprise. <i>“Woah! okay now this part’s sensitive as hell!”</i> She tries again and her mouth becomes a delighted oval of awe. <i>“Shoot! It’s like the whole tip’s as tender as a clit! Well dang, it’s no wonder guys get hard all the time, with something like this in their pants.”</i>");
+	output("\n\nA wicked smile crosses Atha’s face. <i>“Speaking of pants... bear with me, I wanna try something.”</i> Letting go of her massive length, she bends down to lay hold of the clothing hanging at her knees and slowly begins to pull them up, shifting so that her member is funneled down one of the pants legs. She grunts as she reaches her thighs, the added girth making the cloth bulge, but she just barely manages to get the pants on, the outline of her shaft clearly visible on her inner thigh. <i>“Ha ha woah! That is tight! She takes a step and flinches. <i>“Ah, maybe too tight,”</i> she adds with a tense frown. <i>“Definitely getting tighter, too.”</i> The camgirl uses her hands to push down against the organ stretching her clothing out, but the dismissive strokes predictably cause only greater swelling.");
 	output("\n\n<i>“Okay, pants were a bad call,”</i> she admits, struggling to pull them down again before her expanding phallus tears through the fabric. <i>“What’s up with this thing anyway? It can’t decide if it wants to be soft or hard! And nothing I do seems to make it go back. Is it supposed to fight you?”</i> Bending forward to pull her pants down all the way, the camgirl is struck by her own cock on its way up, the fleshly impact heavy enough to be picked up by her poor audio setup. Startled, Atha stumbles backward, loses her balance and falls on her ass. She collapses, below the view of the camera except for the burgeoning obelisk of her prick.");
-	output("\n\nSlowly rising to her feet, Atha rubs the reddish mark left on her forehead by the traitorous organ. <i>“Gettin’ a little light headed,”</i> she mutters, struggling over to her chair and dropping into it heavily. <i>“It’s really hard to think with this big, throbbing cock in my lap,”</i> she whines, hands struggling to hold the now nearly thirty inch behemoth to one side. With a member that towers over her head, the camgirl offers a weak smile and a helpless shrug. <i>“I guess we’d better take care of this girl before she gets any more out of hand!”</i>");
-	//UNFINISHED?
-	//9999
+	processTime(6);
+	pc.lust(7);
+	clearMenu();
+	addButton(0,"Next",letsFapTerran3);
+}
+public function letsFapTerran3():void
+{
+	clearOutput();
+	showAtha("TERRAN");
+	author("Adjatha");
+	output("Slowly rising to her feet, Atha rubs the reddish mark left on her forehead by the traitorous organ. <i>“Gettin’ a little light headed,”</i> she mutters, struggling over to her chair and dropping into it heavily. <i>“It’s really hard to think with this big, throbbing cock in my lap,”</i> she whines, hands struggling to hold the now nearly thirty inch behemoth to one side. With a member that towers over her head, the camgirl offers a weak smile and a helpless shrug. <i>“I guess we’d better take care of this girl before she gets any more out of hand!”</i>");
+	output("\n\nLacing her fingers together around the swollen cumvein of her jawbreaking behemoth, the camgirl slowly strokes up and down the tense flesh. She presses tightly against the yielding mass, whining with unfamiliar delight. <i>“Hnnn... oh, yes, this is the fucking best,”</i> she purrs. Her hips shift uncontrollably with every pump, mouth opening in an O of shock every time she reaches the nerve-dense peak. Bubbles of pre-cum spurt from the tip of her monster but she hardly notices, the oozing goo quickly worked into her strokes.");
+	output("\n\nThe seeping spoo leaves her terran monster glistening and adds lubrication that speeds her strokes beyond the girl’s capacity to bear. <i>“W-what? It’s - hng! - really tight! Feels - oh! - like a hot pressure...”</i> she moans. Her pumps quick and tight, Atha leans in and begins licking the crested tip of her titanic dick. Veins bulging all over the ponderous mass, she wraps both arms around her cock, squeezing it tightly against her buxom chest and nibbles lightly at the tender tip.");
+	output("\n\n<i>“I just... wanna... put this whole thing in-”</i> her thought is interrupted when a burst of cum shoots out of the overwrought meat and catches her  directly in the face. She freezes in shock and alarm, her cock throbbing before its next blast fires into the open air. Atha gasps raggedly, her shoulders shivering and her body twitching  as the shaft has its way with her. She releases her grip to fondle her breasts, allowing the incredible heft of her fuckstick to drop heavily onto her desk. With the camera at eye-level with the giant phallus, you have a perfect view as the head tenses, its slit widening reflexively. An ivory stream of spunk bursts from the fleshy cannon, the wild spray just barely missing the camera but giving a beautiful view of its splattering passage.");
+	output("\n\n<i>“The camera!”</i> Atha yelps, gathering her colossal cock back into her arms protectively even as another burst nearly robs her of her strength again. <i>“Oooh... ohhh... feels so good,”</i> she mutters, chewing slightly on her lower lip as she strokes, squeezes, and milks the pliant cumvein of her terran titan. Her orgasm goes on and on, thick ropes of rich, virginal cum spurting from the camgirl’s new organ, pooling on her desk as often as it rains down on her quivering form. With a manic voice she tries to explain the sensations of her relentless orgasm, but keeps descending into a babble of cooing glee and sharp exclamations of bliss.");
+	output("\n\nWhen, at last, her sloppy cream slows to a trickle, the camgirl lets her cock drop again, the mammoth member thudding heavily onto her desk with a force that bounces the camera. Atha slouches in her chair, mouth hanging open while she pants helplessly. <i>“Fucking. Yes.”</i> she gasps, her face dripping with the white slime of her first masculine release. <i>“This is for me. This is so very much for me. I am going to pump this thing till I can’t think any more,”</i> she swears with a grin of lust-crazed lunacy. Her emerald eyes are nearly vacant with a far-off euphoria, the tiny onyx gem set in her forehead glittering with her face’s polished lacquer.");
+	processTime(7);
+	pc.lust(20);
+	clearMenu();
+	addButton(0,"Next",letsFapTerran4);
+}
+
+public function letsFapTerran4():void
+{
+	clearOutput();
+	showAtha("TERRAN");
+	author("Adjatha");
+	output("Licking her lips, she starts upright, slightly more aware of herself. Gathering fingerfuls of the seed, she pops the goo into her mouth and thoughtfully rolls it around her mouth before swallowing heavily. <i>“I even like the taste,”</i> she sighs. <i>“Oh man, and if a human cock felt this good, imagine what other cocks must feel like?”</i> Her eyes practically twinkle at the thought. <i>“Yeah, we’re doing this. This is a thing that is definitely getting done. But first...”</i>");
+	output("\n\nShe trails off as she begins stroking her cock again, eager for a second round that the throbbing organ is all too happy to provide. Checking the playback, it seems the video goes on for another three hours as Atha jacks herself into carnal oblivion, cumming another six times before she passes out in her seat, practically glued there by the thick glaze of her dripping seed, eyes half veiled and rolled to the back of her lolling head. This time, when she lets her cock flop onto the desk, it apparently hits something because the feed goes dead.");
+	processTime(20);
+	pc.lust(15);
+	champeonOrOffMenu();
+}
+
+//[NEW] Let's Fap - Equine
+public function letsFapEquine():void
+{
+	clearOutput();
+	showAtha("TERRAN");
+	author("Adjatha");
+	output("When you switch on the archived video, Atha is sitting at her usual place, but the dark skinned camgirl looks a bit run down. Her hair is out of order, her glasses are askew, and deep shadows under her eyes suggest that she’s been pulling some long nights. It’s no wonder she’s so exhausted, you realize as you take in the rest of the scene. Her desk is virtually covered in large, fluid-filled balloons about the size of a melon, tied off at the top and sagging with their ivory wealth. There must be three or four dozen overfilled condoms surrounding the girl, in just one week.");
+	output("\n\nA sharp snap pulls your eyes back up to Atha, who has apparently just finished tying off the latest addition to her hoard. Bouncing the blobby ball in the palm of her hand, she turns to the camera with an irrepressible smile. <i>“Hey ‘Net, it’s Atha. As you can see, I’ve been a bit buy this week. Just checking to make sure the new equipment works, you know. Like... six times a day.”</i> She rolls her head on her shoulders with a deep sigh. <i>“Oooh boy. It’s been a long week!”</i>");
+	output("\n\nSetting the condom down with the others, she raps her fingers on the edge of her desk and gathers her thoughts through the lust-fatigued haze. <i>“Oh! Great news! So I used my last paycheck to buy a new Dong Designer for Nett. She was a little ticked that I borrowed her old one, but we talked it over and she forgave me.”</i> Rolling her eyes upward and offering an impish grin, Atha reaches down and hoists the flaccid mass of her titantic terran cock onto the desk with a thump, sending rippling shock waves through the condoms all around her. <i>“I should say, my new gal pal here did most of the talking...”</i> she teases with a lilting voice.");
+	output("\n\n<i>“Oh! And another thing,”</i> she remembers with a delighted coo, <i>“I set up a Champeon page! I’ll put a little link thingie at the end of the video and if you want to see me try out a bunch of cool dick stuff, consider making a little donation to support me! I figured we’d see how much demand there is to see girls jacking off big ole cocks, but if all the Ultra Porn on my compy is any indication, I’d say folks are pretty into chicks with dicks.”</i> She beams and lifts both thumbs up with an excitement that is steadily overtaking her exhaustion. The soft behemoth on her desk quivers, slowly expanding.");
+	output("\n\n<i>“As for this week, I thought we’d try out some toys. You guys like that kinda stuff, yeah?”</i> Reaching down, she produces a massive dildo that seems to have been crafted to resemble a horse’s phallus. The 15 inch bestial member is dull maroon, speckled with darker spots around the shaft, terminating in a charcoal gray at the medial ring. At the base, a pair of massive, globular balls hang heavily, as if they’re already filled. <i>“Cute girl, huh? I found this while I was sound-proofing this room for recording. I think I got this as a joke gift from a friend? I’d... uh... be lying if I said I didn’t give it a try a few times,”</i> she admits, blushing and glancing over her shoulder.");
+	output("\n\n<i>“But check this out!”</i> She turns the dildo around to reveal a slit in the back, where the balls connect to the cock. She slips a few fingers into the hole, before jamming her fist up to the elbow into gap. <i>“It’s a fuck-toy with options! It seems a bit silly to be fucking a dick from the back, but ha ha just silly enough to be entertaining, I think. So, here we go!”</i>");
+	processTime(7);
+	pc.lust(6);
+	clearMenu();
+	addButton(0,"Next",letsFapEquine2);
+}
+
+public function letsFapEquine2():void
+{
+	clearOutput();
+	showAtha("EQUINE");
+	author("Adjatha");
+	output("Hoisting the floppy dildo next to her own swelling flesh, she positions her cockhead against the slitted entrance with a wild laugh. <i>“Hey, it’s even warm! What a cool toy. I just wish it were bigger...”</i> Next to her erect 20”</i> length, the 15”</i> horse toy is positively puny. Shrugging, she leans forward and starts sliding the rubbery covering over her heft like a second skin. She lets out a deep gasp as inch by inch she slides her member into the too-tight equine length, its flexible composition bulging with the intrusion.");
+	output("\n\nAtha begins panting, gripping the horsecock toy tighter as she pulls it onto her body. <i>“Is this thing already lubricated? Feels soft and wet inside, which is great, but I think the lube’s gone bad ‘cause I’m getting a funny tingling all over. Kind of a... nice one though...”</i> She shivers and grits her teeth, pulling the sheath down with bucking thrusts, fucking the side of the toy with pants and gasps until at last she bottoms out, the toy’s spongy balls slapping against her inner thighs. <i>“Oh, fuck,”</i> she gasps with a whine, <i>“my balls are so heavy...”</i>");
+	output("\n\nThe camgirl stops, freezing in place. She looks down at the 15”</i> horsecock pressed tightly against her pelvis and the hefty pair of testes throbbing between her thighs. <i>“Wait a minute,”</i> she mutters slowly. <i>“This math doesn’t add up. Unless this toy’s bigger on the inside, something’s wrong.”</i> She gingerly reaches out to wrap her hands around the pliant equine member and squeezes, wincing from the pressure. With her other hand, she grasps the hanging orbs and presses a thumb against their yielding surface. The shiny toy in her lap leaps upward at the touch, thrilling at the investigation. <i>“Oh... shoot.”</i>");
+	output("\n\nA blush starts on her cheeks and quickly spreads until her entire face is flushed a polished copper hue. <i>“I’ve heard of stuff like this. They’re called Synth-Sheaths. You put ‘em on and they rewire your biology to make the toy a permanent part of your body.”</i> Experimentally, she tries to pull the horsecock off, but merely succeeds in jerking herself off further, her now flared tip twitching and swollen. <i>“Well... fuck me. Uh, a little help guys?”</i> She looks imploringly at the camera before remembering this is a recording.");
+	processTime(6);
+	pc.lust(10);
+	clearMenu();
+	addButton(0,"Next",letsFapEquine3);
+}
+
+public function letsFapEquine3():void
+{
+	clearOutput();
+	showAtha("EQUINE");
+	author("Adjatha");
+	output("<i>“Right. I’m an idiot. Heck. What am I gonna do now? I’ve got a pony pecker the size of my arm and a pair of cum factories bigger than my fist.”</i> She touches it again, wincing. <i>“And fun me if it doesn’t feel ready to go off at a moment’s notice.”</i> A small trickle of sweat rolls down her brow, her overfull chest gasping with quickening breaths. <i>“I think it’s these big... animal balls. Feels like they’re filling my body with - hrng - like a need. Like I gotta jam this thing in some slut and just pump ‘em full of my spunk.”</i>");
+	output("\n\nShe grabs her horsecock and begins stroking the shiny, supple organ tenderly at first, but quickening her pace with each panting gasp. <i>“Void,”</i> she curses, clasping a hand over her mouth in shock. <i>“Sorry about that,”</i> she apologizes, her wincing. <i>“It’s just a real effort not to blow my load immediately. I didn’t realize horses were so sensitive,”</i> she moans, rocking in her chair with the intensity of her exertion. <i>“The tip, the shaft, the - ah! - the ring... just everything drives me crazy!”</i> Sliding down in her chair until her mouth is hidden behind the swell of her wobbling breasts, the camgirl pumps with both hands. The towering phallus wobbles with her bucking strokes, it’s hefty peak broadening and flaring outward as she climbs this latest peak.");
+	output("\n\n<i>“Gosh dang”</i> Atha cries out as her orgasm swells. <i>“The condoms!”</i> Frantically, she grabs one of the small foil squares on her desk and tries to slide it down onto her member, but the flared head is far too large for a terran ring. <i>“Not on the new equipment!”</i> she moans helplessly, tossing the useless rubber to one side. The camgirl clenches down as hard as she can on the spasming shaft, trying to hold off the inevitable tide. Her bestial anatomy, however, ignores her distress and the climax finds her all the same. The earthy fleshtones of the synth-sheath flush with the girl’s passion, distending as streams rush up her thick cumvein to the mushroomed peak. Balls pulsing, the camgirl cums and cums hard.");
+	output("\n\nFingers twitching and jaw clenched, Atha is swept away in the savage spree of her geysering spunk. Heavy ropes of unnaturally thick jizz spurt from her artificial member, splattering all over the room in a moist shower. Globs plop on top of the mountain of condoms all over her desk, the weight of their impact creating a small avalanche as the cylindrical prophylactics roll madly around the desk. Without her hands to steady it, the erupting peak bows under its own mass, leaning backward to point at the moaning girl herself before releasing another gooey stream into her face. She sputters in surprise and outrage but every attempt to rein in the bucking stallion between her legs simply adds fuel to the fire, igniting fresh spasms of alabaster slime. Sighing from under her dripping ivory mask, she gives in and begins massaging her equine balls, resigned to at least enjoy the gooey spree repainting her room one creamy spurt at a time.");
+	output("\n\nWhen she finishes, the camgirl is virtually buried under the pearl muck of her still-drizzling horsecock. <i>“Well,”</i> she begins weakly, <i>“that didn’t exactly go the way I’d planned it. Note to self: check all your sex toys to see if they’re actually anatomy-altering bio-medical supplies.”</i> Wiping the opaque, syrupy spoo from her eyes, Atha blinks and surveys the damage. <i>“Well, I think my recording equipment survived, so that’s a plus. I gotta waterproof everything in this room, I think.”</i>");
+	output("\n\nTurning to the camera, she offers a tapped out shrug. <i>“Hope you guys enjoyed that little catastrophe! Despite the white molasses dripping down my walls, I actually had a good time.”</i> She swings the now floppy horsecock back and forth, its rubbery girth sagging like a fleshy pendulum. <i>“I guess if you wanna see more stuff like that, be sure to hit the Love button on these videos! If you’ve got ideas for new stuff, leave a comment! And, if you wanna help me make this my full time job, please support me on Champeon!”</i> Waving her drooping member goodbye, she ends the video with a button press.");
+	output("\n\nThe little orange message box pops up asking if you’d like to become a Champeon and support Atha’s cock reviews. Would you like to learn more?");
+	processTime(10);
+	pc.lust(25);
+	champeonOrOffMenu();
 }
 
 //[NEW] Let’s Fap - Kaithrit
@@ -1191,7 +1305,7 @@ public function letsFapKaithrit():void
 public function letsFapKaithrit2():void
 {
 	clearOutput();
-	showAtha();
+	showAtha("KAITHRIT");
 	author("Adjatha");
 	output("<i>“It doesn’t look any-”</i> she pauses as a small collection of bumps start forming around the bottom crest of her cockhead. <i>“Oh! Are those the barbs?”</i> She rubs her fingertips along the slowly swelling nubs. <i>“Well, they don’t feel sharp. Maybe barb is the wrong word for them. Just fleshy little protuberances,”</i> she observes, adjusting her glasses. <i>“Though, I admit, that’s not as catchy.”</i> The bumps grow larger and seem to multiply until the camgirl’s cock practically bristles with them.");
 	output("\n\nAtha lets out a little sigh, rubbing her knees together as her cock hardens with every fresh addition to the nub-studded member. Her shaft, despite stiffening, seems to shrink, gradually losing size until it is a mere five inches long and two inches wide. The greatly reduced member is practically covered in nodules, with the thickest concentration at the head and the root.");
@@ -1207,7 +1321,7 @@ public function letsFapKaithrit2():void
 public function letsFapKaithrit3():void
 {
 	clearOutput();
-	showAtha();
+	showAtha("KAITHRIT");
 	author("Adjatha");
 	output("Her chin tucked down, body leaning back, the lower half of the camgirl’s face is hidden behind the mountainous breasts beneath her shirt and vest. <i>“Dumb kitty cock,”</i> she mumbles, stroking her bulging cumvein through the hardlight sheath. Her tails flick and twitch behind her, rising up and curling around the left side of her chair in excitement. Using her tits to muffle the increasing frequency of her gasps and moans, Atha dutifully pumps at her feline phallus, only barely maintaining the pretense of disinterest.");
 	output("\n\nScrunching her legs up tighter until her knees press against her tits, the camgirl nearly balls herself up as he paws her way towards climax. Her tails whip back and forth in a vigorous, slashing motion, her cat-slit pupils dilating with each passing moment. <i>“Ah! It’s hard- ah!- hard to stroke this- oh!- dick. Hmmm... fuuuuck... all the stupid barbs get in the way,”</i> she whines, her hand having no apparent trouble despite her complaints.");
@@ -1222,7 +1336,7 @@ public function letsFapKaithrit3():void
 public function letsFapKaithrit4():void
 {
 	clearOutput();
-	showAtha();
+	showAtha("KAITHRIT");
 	author("Adjatha");
 	output("When, at last, her orgasm subsides, a hardlight bubble nearly the size of a melon dangles from her bobbing member, its liquid contents sloshing audibly. Remembering herself, Atha glances up at the camera, trying to regain some measure of composure. She slides her feet off the chair and takes a more normal sitting position, straightening her tie and adjusting her glasses. <i>“Hrmprph,”</i> she starts, before realizing she’s still got a tail in her mouth. She spits it out with a blush and runs a hand through her wild, tangled hair, smoothing her feline ears as she does so.");
 	output("\n\n<i>“As I was saying,”</i> she starts again, <i>“the kaithrit cock is probably great for sex with a partner, but by yourself, it’s just not as good as a good ole terran dick.”</i> She heaves a deep sigh of relief, wiping a bit of sweat from her brow, tapping the small jet set into her forehead thoughtfully. <i>“Oh yeah, there was one other thing,”</i> she remembers. <i>“The whole reason why I was using this holodom! ZeroMinus was kind enough to send me the Nepeta for this review and asked that I send him back the cum from the review.”</i> She carefully slides the humming ring off of her cock and hits another button on it, sealing the gap. Hoisting the bloated bubble of pink light in one hand, she shrugs. <i>“I guess fair’s fair. Sorry ZeroMinus, for the negative review, but hopefully this will cheer you up!”</i>");
@@ -1237,7 +1351,7 @@ public function letsFapKaithrit4():void
 public function letsFapZil():void
 {
 	clearOutput();
-	showAtha();
+	showAtha("ZIL");
 	output("The recording flicks on, showing Atha at her custom station, the bronze-skinned camgirl prim and pleased with a rosy cheeked smile. <i>“Hi ‘Net, it’s Atha! I sure hope you guys are having a great day, ‘cause mine is just awesome. You’ll never guess what I got. Not in a decillion years,”</i> she teases, her head cocked slightly to one side. Sitting on the edge of her chair, fingertips drumming on her desk, she patiently waits for a beat before tittering with delight. <i>“Zil rations!”</i> she blurts out, hands balled into tiny, elated fists.");
 	output("\n\nWith a deep breath that threatens to pop the top button on her vest, she calms herself a bit. <i>“Okay, so for those of you who haven’t been following the Planet Rush, one of the new planets is called... M’henga? Mhen’gha? Sorry if I’m mispronouncing this... Mhen’ga? Anyway, it’s this really cool temperate world filled with lush jungles and all kinds of neat wildlife. The primary population consists of these folks called ‘zil,’ who apparently resemble bees found on Terra.”</i>");
 	output("\n\nAtha adjusts her half-moon glasses and seems ready to deliver an entire lecture on the planetary politics of Mhen’ga. As she talks, however, one of her hands slips under the desk and slowly begins to move back and forth. The camgirl doesn’t seem to notice the motion and continues her discussion. <i>“An awesome viewer named TinyBee73 sent me several zil rations, which I wanted to show off on this week’s show.”</i> Reaching offscreen with her free hand, she produces a handful of small, orange tubes. Picking one up and holding it sideways, you can see that it’s a thin, jellied paste that has been affixed to a sticky plastic coating and rolled up for transit.");
