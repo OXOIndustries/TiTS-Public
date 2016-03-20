@@ -426,7 +426,7 @@ public function fynTalksAboutFynPcFlirts():void {
 		else output(" down below.");
 	}
 	
-	output("\n\n<i>“How about you, my dear - any modifications? I'd believe it; you're criminally easy on the eyes,”</i> Ryn asks, suckling upon your neck. You gasp as your supple skin [pc.skinFurScalesNoun] is pulled into his mouth; almost torturously teased! H-how has he found your sweet spot already, the one between your collarbone and neck--?");
+	output("\n\n<i>“How about you, my dear - any modifications? I'd believe it; you're criminally easy on the eyes,”</i> Fyn asks, suckling upon your neck. You gasp as your supple skin [pc.skinFurScalesNoun] is pulled into his mouth; almost torturously teased! H-how has he found your sweet spot already, the one between your collarbone and neck--?");
 	output("\n\n<i>“Charmer...”</i> you breathily husk, <i>far</i> more interested in what's happening with your neck and his lips.");
 	output("\n\n...And then, he's pulling back! You huff");
 	
@@ -501,7 +501,7 @@ public function fynTalksAboutHobbies():void {
 	output("\n\n<i>“Sex. No doubt about it. It's the only thing that comes close to performing. If I could fill my whole day with sex, I would,”</i> Fyn stretches, much like a cat. Or perhaps rather a tiger, given those distinctive eyes of his. <i>“That said, I do have </i>other<i> hobbies. Dancing and singing, obviously. Parties are pretty high up there; you can never go wrong with good company, drink, and music. I'm pretty sybaritic.”</i>");
 	output("\n\n<i>“Other than that, I love to fence - which, let's face it, is almost dancing - and bondage. Nothing more satisfying than finishing off a good bit of knotwork, particularly if you're dressing up a pretty thing with it and putting [pc.himHer] on display.”</i>");
 	
-	if(fynRelationshipStatus() >= 1) output("\n\nBondage? You picture yourself trussed up in ropes of silk, put on display for Ryn's satisfaction. That's <i>one</i> way to get in his bedroom, apparently!");
+	if(fynRelationshipStatus() >= 1) output("\n\nBondage? You picture yourself trussed up in ropes of silk, put on display for Fyn's satisfaction. That's <i>one</i> way to get in his bedroom, apparently!");
 	
 	flags["FYN_TALKED_ABOUT_HOBBIES"] = true;
 	processTime(5 + rand(5));
@@ -1312,15 +1312,13 @@ public function fynSexOrcRavish():void {
 	output(". Your quaking buttocks clench his girthy orchood, and with a guttural cry, you feel him flexing and shooting pure warmth deep inside of your rectum, filling it with his slick spunk.");
 	
 	output("\n\nWhen he pulls out, you can feel it lewdly rolling out and down your butt-crack and back. You blush furiously, reaching up and spreading your [pc.ass]. Your green-skinned lover takes one look at your parted, cum-smeared pucker and looks riled up again! Grabbing his stiffening rod, he plunges it back into your sloppy hole. Buried once more up to the hilt, he begins slapping enthusiastically against your already worn buttocks. After already cumming, you're overloaded with such <i>intense</i> sensory feedback - it's too much for you to handle! You babble and whimper in delight. Rolling back your eyes and drooling down your cheek, you're a helpless passenger swept up in a storm of pleasure. Your mind is utterly swallowed by the tidal forces, yet your body instinctively bucks back against the rutting beast on its own. You cum <i>again</i>, shivering and twitching, your upper body limp and lower body spasming. It doesn't stop him! He has his way with you until you have came more times than you can count, and at last, <i>he's</i> entirely spent!");
-	output("\n\nWhen you finally come to, you feel something soft beneath you. Your ass is unmistakably sore; even the slightest wiggle makes you wince! At the same time, it's packed full of gooey warmth. Every inch of your [pc.skinFurScalesNoun] is singing with happiness. You are definitely one well bred slut! A dopey grin crosses your [pc.lips] as you swiftly fall back into slumber... you're going to need to rest this one off...");
-	output("\n\n<b>... A few hours later ...</b>");
 	
 	pc.buttChange(chars["FYN"].cockVolume(0) * 6, true, true, false);
 	pc.loadInAss(chars["FYN"]);
 	pc.loadInAss(chars["FYN"]);
 	
-	output("\n\nWhen you finally come to, you feel something soft beneath you. Your ass is unmistakably sore; even the slightest wiggle makes you wince! At the same time, it's packed full of gooey warmth. Every inch of your [pc.skinFurScalesNoun] is singing with happiness. You are definitely one well bred slut! A dopey grin crosses your [pc.lips] as you swiftly fall back into slumber.... You're going to need to rest this one off.");
-	output("\n\n<b>A few hours later...</b>");
+	output("\n\nWhen you finally come to, you feel something soft beneath you. Your ass is unmistakably sore; even the slightest wiggle makes you wince! At the same time, it's packed full of gooey warmth. Every inch of your [pc.skinFurScalesNoun] is singing with happiness. You are definitely one well bred slut! A dopey grin crosses your [pc.lips] as you swiftly fall back into slumber... you're going to need to rest this one off...");
+	output("\n\n<b>... A few hours later ...</b>");
 	
 	output("\n\nThere's a poking at your cheek. You mumble and wave it away. There's a rich chuckle. Opening a single eye, you see a scarlet face staring back at you. Fyn? It seems he's transformed back. You realize you're on the couch, underneath a blanket. Your polymorph lover is drinking what seems to be a shake of some kind, though there's a lot of empty plates before him.");
 	output("\n\n<i>“You're awake. Guess we both had quite the recovery time,”</i> he remarks, sipping from the straw. <i>“Your");
@@ -1336,7 +1334,7 @@ public function fynSexOrcRavish():void {
 	if(flags["FYN_SEXED_ORC_RAVISH"] == undefined) flags["FYN_SEXED_ORC_RAVISH"] = 1;
 	else flags["FYN_SEXED_ORC_RAVISH"]++;
 	
-	processTime(30 + rand(15));
+	processTime(150 + rand(15));
 	for(var z:int = 0; z < 7; z++) { pc.orgasm(); }
 	
 	clearMenu();
