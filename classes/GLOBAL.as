@@ -189,6 +189,7 @@
 		public static const TYPE_SAURIAN:int								= 61;
 		public static const TYPE_RHINO:int									= 62;
 		public static const TYPE_NARWHAL:int								= 63;
+		public static const TYPE_HRAD:int									= 64;
 		
 		public static const TYPE_NAMES:Array = [
 			"Human",
@@ -255,6 +256,7 @@
 			"Saurian",
 			"Rhino",
 			"Narwhal",
+			"Hradian",
 		];
 		
 		public static const VALID_FACE_TYPES:Array = [
@@ -443,6 +445,7 @@
 			TYPE_BEE,
 			TYPE_SYDIAN,
 			TYPE_MYR,
+			TYPE_HRAD,
 		];
 		
 		public static const VALID_HORN_TYPES:Array = [
@@ -635,6 +638,8 @@
 		public static const FLUID_TYPE_CHOCOLATE_CUM:int							= 19;
 		public static const FLUID_TYPE_VANAE_CUM:int							= 20;
 		public static const FLUID_TYPE_NYREA_GIRLCUM:int							= 21;
+		public static const FLUID_TYPE_BLUEBERRY_YOGURT:int						= 22;
+		public static const FLUID_TYPE_HRAD_CUM:int								= 23;
 		
 		public static const FLUID_TYPE_NAMES:Array = [
 			"Milk",
@@ -659,6 +664,8 @@
 			"Chocolate Cum",
 			"Vanae Cum",
 			"Nyrea Girl Cum",
+			"Blueberry Yogurt",
+			"Hradian Cum",
 		];
 		
 		public static const FLUID_TYPE_SHORT:Array = [
@@ -684,6 +691,8 @@
 			"C.Cum",
 			"V.Cum",
 			"N.GCum",
+			"B.Ygrt",
+			"H.Cum",
 		];
 		
 		public static const VALID_CUM_TYPES:Array = [
@@ -699,6 +708,7 @@
 			FLUID_TYPE_GABILANI_CUM,
 			FLUID_TYPE_SPECIAL_GOO,
 			FLUID_TYPE_CHOCOLATE_CUM,
+			FLUID_TYPE_HRAD_CUM,
 		];
 		
 		public static const VALID_GIRLCUM_TYPES:Array = [
@@ -710,6 +720,7 @@
 			FLUID_TYPE_GABILANI_GIRLCUM,
 			FLUID_TYPE_SPECIAL_GOO,
 			FLUID_TYPE_NYREA_GIRLCUM,
+			FLUID_TYPE_HRAD_CUM,
 		];
 		
 		public static const VALID_MILK_TYPES:Array = [
@@ -725,6 +736,7 @@
 			FLUID_TYPE_VANILLA,
 			FLUID_TYPE_CUM,
 			FLUID_TYPE_GIRLCUM,
+			FLUID_TYPE_BLUEBERRY_YOGURT,
 		];
 		
 		// HAIRTYPES
@@ -788,6 +800,7 @@
 			TYPE_COCKVINE,
 			TYPE_INHUMAN,
 			TYPE_GABILANI,
+			TYPE_HRAD,
 		];
 		
 		public static const VALID_COCK_FLAGS:Array = [

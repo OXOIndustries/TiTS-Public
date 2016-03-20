@@ -7850,6 +7850,12 @@
 					cocks[slot].addFlag(GLOBAL.FLAG_SMOOTH);
 					cocks[slot].addFlag(GLOBAL.FLAG_LUBRICATED);
 					break;
+				case GLOBAL.TYPE_HRAD:
+					cocks[slot].knotMultiplier = 1;
+					cocks[slot].cockColor = RandomInCollection(["purple", "angry purple", "reddish-purple"]);
+					cocks[slot].addFlag(GLOBAL.FLAG_FORESKINNED);
+					cocks[slot].addFlag(GLOBAL.FLAG_FLARED);
+					break;
 			}
 		}
 		//PC can fly?
@@ -8171,6 +8177,7 @@
 			if (nyreaScore() >= 5) race = "nyrea";
 			// Human-morphs
 			if (race == "human" && cowScore() >= 4) race = mfn("cow-boy", "cow-girl", "hucow");
+			if (race == "human" && hradScore() >= 4) race = "hrad";
 			// Centaur-morphs
 			if (horseScore() >= 3 && isCentaur()) race = taurRace(equineRace());
 			else if (bovineScore() >= 3 && isTaur()) race = rawmfn("bull", "cow", "bovine") + "-taur";
@@ -8449,6 +8456,23 @@
 			if (counter > 2 && cockTotal(GLOBAL.TYPE_EQUINE) > 0) counter++;
 			if (counter > 2 && vaginaTotal(GLOBAL.TYPE_EQUINE) > 0) counter++;
 			if (counter > 3 && hairType == GLOBAL.HAIR_TYPE_REGULAR && hasPerk("Mane")) counter++;
+			return counter;
+		}
+		public function hradScore():int
+		{
+			var counter:int = 0;
+			if (hasAntennae(GLOBAL.TYPE_HRAD))
+			{
+				counter++;
+				if (skinType == GLOBAL.SKIN_TYPE_SKIN && InCollection(skinTone, "emerald", "green", "viridescent")) counter++;
+				if (hairType == GLOBAL.HAIR_TYPE_REGULAR && hairColor == "vibrant purple") counter++;
+				if (InCollection(nippleColor, "bright purple", "pink", "purple","violet")) counter++;
+			}
+			if (counter > 0 && hasCock(GLOBAL.TYPE_HRAD) && balls >= 2) counter++;
+			if (counter > 1 && canLactate() && milkType == GLOBAL.FLUID_TYPE_BLUEBERRY_YOGURT) counter++;
+			if (counter > 1 && hasCock() && cumType == GLOBAL.FLUID_TYPE_HRAD_CUM) counter++;
+			if (counter > 1 && hasVagina() && girlCumType == GLOBAL.FLUID_TYPE_HRAD_CUM) counter++;
+			if (!isBiped() || !hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) counter--;
 			return counter;
 		}
 		public function myrScore(): int
@@ -10797,6 +10821,9 @@
 				case GLOBAL.TYPE_VANAE:
 					collection = ["vanae", "cephalopod-like"];
 					break;
+				case GLOBAL.TYPE_HRAD:
+					collection = ["human", "terran", "bullet-shaped", "bullet-headed"];
+					break;
 				case GLOBAL.TYPE_INHUMAN:
 					collection = ["inhuman", "human-like", "alien"];
 					break;
@@ -10911,6 +10938,8 @@
 			} else if (type == GLOBAL.TYPE_VANAE) {
 				adjectives.push("vanae", "alien", "suckler-tipped", "vanae", "cephalopod-like", "inhuman", "exotic");
 				nouns.push("vanae-dick", "vanae-cock", "vanae-prick");
+			} else if (type == GLOBAL.TYPE_HRAD) {
+				adjectives.push("human", "terran", "bullet-shaped", "bullet-headed");
 			} else if (type == GLOBAL.TYPE_INHUMAN) {
 				adjectives.push("inhuman", "human-like", "almost-human", "alien");
 			} else {
@@ -11621,6 +11650,10 @@
 				collection = ["salty","potent"];
 			} else if (arg == GLOBAL.FLUID_TYPE_GABILANI_GIRLCUM) {
 				collection = ["tangy","flavorful"];
+			} else if (arg == GLOBAL.FLUID_TYPE_BLUEBERRY_YOGURT) {
+				collection = ["blueberry","blueberry","blueberry","delicious","sweet","fruity"];
+			} else if (arg == GLOBAL.FLUID_TYPE_HRAD_CUM) {
+				collection = ["sweet","vanilla","sugary"];
 			} else if (arg == GLOBAL.FLUID_TYPE_SPECIAL_GOO) {
 				collection = ["sweet","tangy","citrusy"];
 			}
@@ -11662,6 +11695,10 @@
 				collection = ["thick","sticky"];
 			} else if (arg == GLOBAL.FLUID_TYPE_NYREA_GIRLCUM) {
 				collection = ["thick","sticky"];
+			} else if (arg == GLOBAL.FLUID_TYPE_BLUEBERRY_YOGURT) {
+				collection = ["thick"];
+			} else if (arg == GLOBAL.FLUID_TYPE_HRAD_CUM) {
+				collection = ["semi-thick","syrupy"];
 			}
 			
 			else collection = ["fluid"];
@@ -11706,6 +11743,10 @@
 				collection = ["off-white", "semi-clear", "semi-transparent"];
 			} else if (arg == GLOBAL.FLUID_TYPE_GABILANI_GIRLCUM) {
 				collection = ["gray", "semi-clear", "semi-transparent"];
+			} else if (arg == GLOBAL.FLUID_TYPE_BLUEBERRY_YOGURT) {
+				collection = ["violet","purple"];
+			} else if (arg == GLOBAL.FLUID_TYPE_HRAD_CUM) {
+				collection = ["translucent white","creamy white","nearly transparent","ghostly white"];
 			} else if (arg == GLOBAL.FLUID_TYPE_SPECIAL_GOO) {
 				if(skinType == GLOBAL.SKIN_TYPE_GOO) collection = [String(skinTone)];
 				else if(hairType == GLOBAL.HAIR_TYPE_GOO) collection = [String(hairColor)];
@@ -11739,7 +11780,7 @@
 				case "pink":
 					return "rose quartz";
 				case "red":
-					return RandomInCollection("Ruby","garnet");
+					return RandomInCollection("ruby","garnet");
 				case "orange":
 				case "yellow":
 					return RandomInCollection("amber","citrine","topaz");
@@ -11774,6 +11815,8 @@
 			else if (arg == GLOBAL.FLUID_TYPE_NYREA_GIRLCUM) return "white";
 			else if (arg == GLOBAL.FLUID_TYPE_GABILANI_CUM) return "white";
 			else if (arg == GLOBAL.FLUID_TYPE_GABILANI_GIRLCUM) return "gray";
+			else if (arg == GLOBAL.FLUID_TYPE_BLUEBERRY_YOGURT) return "purple";
+			else if (arg == GLOBAL.FLUID_TYPE_HRAD_CUM) return "white";
 			else if (arg == GLOBAL.FLUID_TYPE_SPECIAL_GOO)
 			{
 				if(skinType == GLOBAL.SKIN_TYPE_GOO) return skinTone;
@@ -11814,6 +11857,10 @@
 				collection = ["girl-cum"];
 			} else if (arg == GLOBAL.FLUID_TYPE_NYREA_GIRLCUM) {
 				collection = ["cum"];
+			} else if (arg == GLOBAL.FLUID_TYPE_BLUEBERRY_YOGURT) {
+				collection = ["yogurt"];
+			} else if (arg == GLOBAL.FLUID_TYPE_HRAD_CUM) {
+				collection = ["syrup","cum"];
 			} else if (arg == GLOBAL.FLUID_TYPE_SPECIAL_GOO) {
 				collection = ["slime","goo"];
 			}
@@ -12365,6 +12412,13 @@
 				else if (temp <= 2) return "bowl-like glans";
 				else if (temp <= 3) return "sucker tip";
 				else return "suckered cock-head";
+			} else if (type == GLOBAL.TYPE_HRAD) {
+				temp = rand(5);
+				if (temp == 0) return "bullet-shaped tip";
+				else if (temp == 1) return "angry cock-head";
+				else if (temp == 2) return "foreskin-covered crown";
+				else if (temp == 3) return "foreskin-covered tip";
+				else return "bullet-shaped head";
 			}
 			/*else if (type == 9999) {
 				temp = rand(5);
@@ -13465,6 +13519,9 @@
 					adjectives.push("myr", "ant-like", "insect-like", "insectile");
 					nouns.push("feeler");
 					break;
+				case GLOBAL.TYPE_HRAD:
+					adjectives.push("hradian", "bubble-topped", "ball-tipped", "orb-capped", "alien");
+					break;
 			}
 			
 			if(adjectives.length > 0 && rand(2) == 0) description += RandomInCollection(adjectives) + " ";
@@ -13743,7 +13800,7 @@
 		// Calculates the weight of an amount of fluid.
 		public function fluidWeight(fluidAmount: Number = 0, fluidType:int = -1):Number
 		{
-			if(InCollection(fluidType, GLOBAL.FLUID_TYPE_HONEY, GLOBAL.FLUID_TYPE_MILKSAP, GLOBAL.FLUID_TYPE_CUMSAP, GLOBAL.FLUID_TYPE_NECTAR)) fluidAmount *= 0.005;
+			if(InCollection(fluidType, GLOBAL.FLUID_TYPE_HONEY, GLOBAL.FLUID_TYPE_MILKSAP, GLOBAL.FLUID_TYPE_CUMSAP, GLOBAL.FLUID_TYPE_NECTAR, GLOBAL.FLUID_TYPE_BLUEBERRY_YOGURT)) fluidAmount *= 0.005;
 			else if(InCollection(fluidType, GLOBAL.FLUID_TYPE_CUM, GLOBAL.FLUID_TYPE_GABILANI_CUM, GLOBAL.FLUID_TYPE_NYREA_CUM, GLOBAL.FLUID_TYPE_VANAE_CUM)) fluidAmount *= 0.0035;
 			else fluidAmount *= 0.0025;
 			

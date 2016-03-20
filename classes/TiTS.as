@@ -238,6 +238,7 @@
 		include "../includes/myrellion/landmines.as";
 		include "../includes/myrellion/lieve.as";
 		include "../includes/myrellion/liliana.as";
+		include "../includes/myrellion/littleGreenMan.as";
 		include "../includes/myrellion/lyralla.as";
 		include "../includes/myrellion/manor.as";
 		include "../includes/myrellion/merchantQueen.as";
@@ -1069,7 +1070,6 @@
 		{
 			return chars["HUNTRESS_VANAE"];
 		}
-		
 		public function get gianna():Gianna
 		{
 			return chars["GIANNA"];
@@ -1145,6 +1145,10 @@
 		public function get emmy():Emmy
 		{
 			return chars["EMMY"];
+		}
+		public function get liriel():Liriel
+		{
+			return chars["LIRIEL"];
 		}
 		
 		private var _dbgtestvar:int = 0;

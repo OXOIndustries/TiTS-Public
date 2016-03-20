@@ -1959,7 +1959,7 @@ public function crotchStuff(forTarget:Creature = null):void
 				else if (target.statusEffectv3("Mimbrane Pussy") < 13)
 				{
 					output2("Your pussy appears noticably inflated");
-					if (target.isCrotchGarbed())
+					if (!target.isCrotchExposed())
 					{
 						output2(" and creates a slight bulge beneath your");
 						if (target.armor.type == GLOBAL.ARMOR) output2(" armor");
@@ -1970,7 +1970,7 @@ public function crotchStuff(forTarget:Creature = null):void
 				else
 				{
 					output2("Your pussy appears delightfully plump");
-					if (target.isCrotchGarbed())
+					if (!target.isCrotchExposed())
 					{
 						output2(", creating an undeniable bulge in your");
 						if (target.armor.type == GLOBAL.ARMOR) output2(" armor");
@@ -2064,7 +2064,7 @@ public function crotchStuff(forTarget:Creature = null):void
 					else if (target.statusEffectv3("Mimbrane Pussy") < 13)
 					{
 						output2(" It appears noticably inflated");
-						if (target.isCrotchGarbed())
+						if (!target.isCrotchExposed())
 						{
 							output2(" and creates a slight bulge beneath your");
 							if (target.armor.type == GLOBAL.ARMOR) output2(" armor");
@@ -2075,7 +2075,7 @@ public function crotchStuff(forTarget:Creature = null):void
 					else
 					{
 						output2(" It appears delightfully plump");
-						if (target.isCrotchGarbed())
+						if (!target.isCrotchExposed())
 						{
 							output2(", creating an undeniable bulge in your");
 							if (target.armor.type == GLOBAL.ARMOR) output2(" armor");
@@ -2244,6 +2244,13 @@ public function dickBonusForAppearance(forTarget:Creature = null, x:int = 0):voi
 	else if(target.cocks[x].cType == GLOBAL.TYPE_NYREA) {
 		output2(" The pseudo-penis is large and thick, with a shape similar to a horse phallus and lacking any veins. The flared tip is ringed with spikes meant to rupture the sperm sacs of a male nyrea and its slit is in the shape of an ‘x’.");
 	}
+	//Little Green Man
+	else if (target.cocks[x].cType == GLOBAL.TYPE_HRAD) {
+		output2(" The phallic member");
+		if (target.skinFurScalesColor() != target.cocks[x].cockColor) output2(" appears very much two-toned, with " + indefiniteArticle(target.skinFurScalesColor()) + " shaft and ending in " + indefiniteArticle(target.cocks[x].cockColor) + ",");
+		else output2(" has a");
+		output2(" pronounced bullet-shaped tip.");
+	}
 	//Nubby or Ribbed
 	if((target.cocks[x].hasFlag(GLOBAL.FLAG_NUBBY) && target.cocks[x].cType != GLOBAL.TYPE_FELINE) || target.cocks[x].hasFlag(GLOBAL.FLAG_RIBBED))
 	{
@@ -2320,12 +2327,13 @@ public function dickBonusForAppearance(forTarget:Creature = null, x:int = 0):voi
 	// Mimbranes
 	if(x == 0 && target.hasStatusEffect("Mimbrane Cock") && target.statusEffectv3("Mimbrane Cock") > 3)
 	{
-		if (target.isCrotchGarbed()) output2(" It feels");
-		else output2(" It looks");
+		output2(" The phallus itself");
+		if (!target.isCrotchExposed()) output2(" feels");
+		else output2(" looks");
 		if (target.statusEffectv3("Mimbrane Cock") < 8) output2(" slightly swollen");
 		else if (target.statusEffectv3("Mimbrane Cock") < 13) output2(" noticably inflated");
 		else output2(" unnaturally plump");
-		if (target.isCrotchGarbed())
+		if (!target.isCrotchExposed())
 		{
 			output2(" under your");
 			if (target.armor.type == GLOBAL.ARMOR) output2(" armor");

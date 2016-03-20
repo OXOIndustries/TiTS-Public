@@ -1276,6 +1276,15 @@ public function variableRoomUpdateCheck():void
 	{
 		rooms["XBMYRELLIONLAB"].removeFlag(GLOBAL.NPC);
 	}
+	// Liriel's Lemonade Stand
+	if (flags["LIRIEL_MET"] != undefined && lirielStandActiveHours())
+	{
+		rooms["706"].addFlag(GLOBAL.NPC);
+	}
+	else
+	{
+		rooms["706"].removeFlag(GLOBAL.NPC);
+	}
 	//Irellia quest stuff.
 	//IrelliaQuest incomplete. No east passage, people token in main room.
 	if(flags["IRELLIA_QUEST_STATUS"] == undefined || flags["IRELLIA_QUEST_STATUS"] < 6)
