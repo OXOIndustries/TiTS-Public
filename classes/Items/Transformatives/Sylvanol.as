@@ -86,13 +86,15 @@
 		{
 			output("\n\nYou feel your ears contort, ");
 			//Ugh I probably missed like, a million
-			if(pc.earType == GLOBAL.TYPE_BOVINE || pc.earType == GLOBAL.TYPE_EQUINE || pc.earType == GLOBAL.TYPE_CANINE || pc.earType == GLOBAL.TYPE_FELINE || pc.earType == GLOBAL.TYPE_VULPINE) output("remaining at");
-			else output("adjusting to");
+			if(InCollection(pc.earType, GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_KANGAROO, GLOBAL.TYPE_MOUSE, GLOBAL.TYPE_PANDA)) output("adjusting to");
+			else output("remaining at");
 			output(" the sides of your head and changing shape to a form very much like a human’s save for the pointed tips. <b>You have elven ears!</b>");
 			pc.earType = GLOBAL.TYPE_SYLVAN;
 			
 			if(pc.earLength != 0)
 			{
+				// Limit for overly-long ears
+				if(pc.earLength > 12) pc.earLength = 12;
 				output("\n\n This isn’t your first time having this kind of ears, and they seem to have remembered the experience, coming out at the " + pc.earLength + " inches they used to be instead of the standard short ears for a first-time user. Nice.");
 			}
 		}
