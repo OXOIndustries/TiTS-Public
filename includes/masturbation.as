@@ -275,7 +275,7 @@ public function availableFaps(roundTwo:Boolean = false):Array
 		fap.func = cuffSelfRouter;
 		faps.push(fap);
 	}
-	if(MailManager.isEntryViewed("lets_fap_unlock"))
+	if(MailManager.isEntryViewed("lets_fap_unlock") && currentLocation == "SHIP INTERIOR")
 	{
 		fap = new FapCommandContainer();
 		fap.text = "Smut";
