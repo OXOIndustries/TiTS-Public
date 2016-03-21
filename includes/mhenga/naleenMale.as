@@ -922,7 +922,7 @@ public function loseToDudeleenSex(tailIntro:Boolean = false):void {
 		if(pc.hasCock()) output(", extending his tongue to lick a stray strand of [pc.cum] off your [pc.face]");
 		output(".");
 		pc.orgasm();
-		pc.loadInCunt(chars["NALEEN_MALE"]);
+		pc.loadInCunt(chars["NALEEN_MALE"], 0);
 	}
 	//else if two or more Vaginas:
 	else if(pc.totalVaginas() > 1)

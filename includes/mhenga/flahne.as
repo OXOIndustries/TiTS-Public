@@ -549,7 +549,7 @@ public function bendFlahneOver():void {
 		output("\n\n<i>“Bye cutie!”</i>  Flahne calls after you. <i>“I hope you’ll come in here again!”</i>  You can almost hear the snicker in her voice at the double entendre.");
 	}
 	pc.orgasm();
-	flahne.loadInCunt(pc);
+	flahne.loadInCunt(pc, 0);
 	flahneFuckCounter(1);
 	this.clearMenu();
 	this.addButton(0,"Next",mainGameMenu);
@@ -1099,7 +1099,7 @@ public function fuckAndSuckWithFlahne():void {
 	}
 	flahneFuckCounter(1);
 	pc.orgasm();
-	flahne.loadInCunt(pc);
+	flahne.loadInCunt(pc, 0);
 	processTime(30+rand(10));
 	this.clearMenu();
 	this.addButton(0,"Next",mainGameMenu);

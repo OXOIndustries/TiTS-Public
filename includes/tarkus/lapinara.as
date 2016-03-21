@@ -329,7 +329,7 @@ public function hotdoggingALapinara(cockNum:int = 0):void
 	output("\n\nObediently, you let go of your partner, curious to see just where this is going. With a smug grin on her face, she sandwiches your [pc.cock " + x + "] between her soft, succulent ass cheeks. She wraps her tail around your pecker for support, gripping it with one hand as well. Her free hand goes straight to her own dick.");
 	output("\n\n<i>“Ready for a round of hotdogging, big " + pc.mf("boy","girl") + "?”</i>");
 
-	output("\n\nOh, so she wants to go for some hotdogging? Clever girl! You give her a-okay to continue. Without another word, the lapinara skillfully rubbing your length between her spacious rump cheeks. They’re so delightfully soft! Occasionally, she takes the time to give your cock a playful squeeze with her tail and hand as well, stroking herself all the while. It is then that you notice something peculiar about her dick. It’s swollen to nearly three times its original width!");
+	output("\n\nOh, so she wants to go for some hotdogging? Clever girl! You give her the a-okay to continue. Without another word, the lapinara skillfully rubs your length between her spacious rump cheeks. They’re so delightfully soft! Occasionally, she takes the time to give your cock a playful squeeze with her tail and hand as well, stroking herself all the while. It is then that you notice something peculiar about her dick. It’s swollen to nearly three times its original width!");
 	output("\n\n<i>“E-EGG eggeggEGG!”</i> she whines lustily, now pistoning her hand over her pseudocock at a rate you would have never imagined possible.");
 	output("\n\nA mere seconds later, you lose it, blowing your [pc.cumColor] spooge all over her back. At the same time, two soft-shelled eggs shoot from her cock in rapid succession with a loud pop, landing onto your chest. She slumps over you, exhausted and at a loss for breath.");
 	output("\n\n<i>“You’re fucking amazing...”</i> she finally speaks up, a dazed look on her face. <i>“We really need to do that again sometime.”</i>\n\n");
@@ -391,7 +391,7 @@ public function getBlownByLapinara(cockNum:int = 0):void
 		output("\n\nYou nod in response, confirming her suspicions. The lapinara grabs ahold of your cock, sizing it up.");
 
 		output("\n\n<i>“You’re just the right size for me,”</i> she muses. <i>“Perfect! I should be able to take it just fine!”</i>");
-		output("\n\nAnd without another word, she cups her mouth over your [pc.cock " + x + "]. You groan softly as her warmth envelops you. She starts off slow, but it isn’t long before she’s completely deepthroating you, her muscles contracting pleasantly around your length, and she still manages to keep a hand on her own dick. She’s a fucking natural!");
+		output("\n\nWithout another word, she cups her mouth over your [pc.cock " + x + "]. You groan softly as her warmth envelops you. She starts off slow, but it isn’t long before she’s completely deepthroating you, her muscles contracting pleasantly around your length, and she still manages to keep a hand on her own dick. She’s a fucking natural!");
 		
 	}
 	//(Dick/Biggest Dick A Little Big Variant- Between 13 and 20 inches)
@@ -403,7 +403,7 @@ public function getBlownByLapinara(cockNum:int = 0):void
 		else output(" between your [pc.legs].");
 		output("\n\nYou nod in response, confirming her suspicions. The lapinara grabs ahold of your cock, sizing it up.");
 		output("\n\n<i>“It’s a little bigger than what I’m used to...”</i> she muses. <i>“I’m not sure if I can take the whole thing, but I’ll do my best!”</i>");
-		output("\n\nAnd without another word, she cups her mouth over your [pc.cock " + x + "]. You groan softly as her warmth envelops you. She starts off slow, but it isn’t long before she’s got half of your length in her mouth, completely deepthroating it, her muscles contracting pleasantly around your length, and she still manages to keep a hand on her own dick. She’s a fucking natural!");
+		output("\n\nWithout another word, she cups her mouth over your [pc.cock " + x + "]. You groan softly as her warmth envelops you. She starts off slow, but it isn’t long before she’s got half of your length in her mouth, completely deepthroating it, her muscles contracting pleasantly around your length, and she still manages to keep a hand on her own dick. She’s a fucking natural!");
 	}
 	//(Dick/Biggest Dick Too Big Variant- More than 20 inches long)
 	else
@@ -414,9 +414,9 @@ public function getBlownByLapinara(cockNum:int = 0):void
 		else output(" between your [pc.legs].");
 		output("\n\nYou nod in response, confirming her suspicions. The lapinara grabs ahold of your cock, sizing it up.");
 		output("\n\n<i>“Oh my goodness, it’s huge!”</i> she interjects. <i>“I’m not going to be able to take too much of it, but I’ll do my best!”</i>");
-		output("\n\nAnd without another word, she cups her mouth over your [pc.cock " + x + "]. You groan softly as her warmth envelops you. She starts off slow, and isn’t able to take much more than one fourth of the length, but she makes do with what she has, completely deepthroating it, her muscles contracting pleasantly around your length. And she still manages to keep a hand on her own dick. She’s a fucking natural!");
+		output("\n\nWithout another word, she cups her mouth over your [pc.cock " + x + "]. You groan softly as her warmth envelops you. She starts off slow, and isn’t able to take much more than one fourth of the length, but she makes do with what she has, completely deepthroating it, her muscles contracting pleasantly around your length. She still manages to keep a hand on her own dick. She’s a fucking natural!");
 	}
-	output("\n\nEventually, you swear that you can make out words in her muffled grunting. Something about eggs? Nevermind that. Your thoughts are lost in the amazing orgasm that you’re experiencing. ");
+	output("\n\nEventually, you swear that you can make out words in her muffled grunting. Something about eggs? Never mind that. Your thoughts are lost in the amazing orgasm that you’re experiencing. ");
 	//Small-Medium Cums: 
 	if(pc.cumQ() <= 100) output("She swallows the load easily, and you can even make out a faint smile on her lips as she does.");
 	//Large Cums:

@@ -1042,7 +1042,7 @@ public function reahaAddictionTherapyDickwielder():void
 
 	processTime(60);
 
-	reaha.loadInCunt(pc);
+	reaha.loadInCunt(pc, 0);
 
 	reaha.orgasm();
 	pc.orgasm();
@@ -1395,7 +1395,7 @@ public function reahaDommyFuxTimeWait():void
 
 	processTime(30);
 
-	reaha.loadInCunt(pc);
+	reaha.loadInCunt(pc, 0);
 	reaha.orgasm();
 	pc.orgasm();
 	pc.milkInMouth(chars["REAHA"]);

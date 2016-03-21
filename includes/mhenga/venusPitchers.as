@@ -354,6 +354,7 @@ public function tentacleJamTime(stamen:Boolean = true):void {
 	//{Cocktail}
 	if(pc.hasCockTail()) output("\n\nA similar entrance engages your [pc.cockTail], which has long since grown out of hiding in response to the sensuous beauty's lust-inducing juices. They’re even now pouring unhindered into your throat. You wiggle your prehensile appendage and slam it forward, powered by ardent need, burying it as deeply into the succulent tentacle-pussy as you can. Closing around you, the clinging inner folds form a perfect, cock-crafted seal around you member. Internal muscles start to slide and contract along every veiny inch of your [pc.tailCock] to some kind of slow, unspoken beat. You respond by pulling your tail back, sliding it perhaps an inch out of the velvet glove, and thrusting it in as hard as you can. This time, the tendril grips you tighter, and rather than allowing you to lamely try to fuck it, it begins to squeeze from the base to the tip of it so fast that you lose all control of the limb.");
 	//{Vaguyna}
+	var tempVags:int = -1;
 	if(pc.totalVaginas() == 1)
 	{
 		output("\n\nA sinuous slithering can be felt along your [pc.leg], curling slowly around your limb as it winds its way higher, inexorably closing the distance between itself and your [pc.vagina]. You sigh and slump down, but the tentacles holding your arms and [pc.legOrLegs] don't let you any closer to the crawling promise of penetration. Thankfully, it continues its dogged ascent up your body, sliding along the exterior of your vulva");
@@ -361,6 +362,7 @@ public function tentacleJamTime(stamen:Boolean = true):void {
 		output(" a few times as it slowly parts your labia with the curvature of its shaft. It slides back down whilst still pushing against you, angling the cockhead to begin prying you the rest of the way open, pushing insistently as it bathes your lips in lubricants.");
 		output("\n\nYour squeal of pleasure and pain at being forced wide is muffled by the tendril in your mouth. The cock-tentacle impales you. It plows you wide open. Your passage is pulled wide by the large, flared cock as it pushes in all the way to your cervix, bubbling its hot fluids against the slight barrier as it adjusts to your tightness. You instinctively try to move your [pc.legOrLegs], though whether to wrap around an imaginary lover or curl up away from the discomfort, you aren't sure. One thing you are sure of is that you're full. The tendril starts to move, and you whimper as it scrapes along your walls, firing off every nerve in your cunt as it pulls out, only to thrust back in, just starting to properly fuck you.");
 		pc.cuntChange(0,chars["VENUSPITCHER"].cockVolume(0));
+		tempVags = 1;
 	}
 	//{MultiVaguyna}
 	else if(pc.totalVaginas() > 1) {
@@ -369,8 +371,10 @@ public function tentacleJamTime(stamen:Boolean = true):void {
 		output(" a few times as they slowly part your labia with the curvature of their shafts. They slide back down whilst pushing against you, angling their cockheads up to start prying you the rest of the way open, stretching all your cunts at once as they shove insistently on your entrances, bathing them in lubricant.");
 		output("\n\nYour squeal of pleasure and pain at being forced wide open in more than one place at once is muffled by the tendril in your mouth. The cock-tentacles impale you, plowing you wide open. They stretch your passages wide open around their large, flared cocks, pushing them all the way to your cervixes, bubbling their hot fluids against the slight barrier as they adjust to your tightness. You instinctively try to move your [pc.legOrLegs], though whether to wrap around your imagination partners or curl away in discomfort, you aren't sure. One thing you're sure of is that you are incontrovertibly full. The tendrils start to move, and you whimper as they scrape along your walls, firing off every nerve ending in your cunts as they pull out, only to thrust back in, just starting to properly fuck you.");
 		//[cunt stretchin' checks]
+		tempVags = 0;
 		for(var b:int = 0; b < pc.totalVaginas(); b++) {
 			pc.cuntChange(b,chars["VENUSPITCHER"].cockVolume(0));
+			tempVags++;
 		}
 	}
 	//{Cunt Tail}
@@ -455,22 +459,24 @@ public function tentacleJamTime(stamen:Boolean = true):void {
 	}
 	//0 = not knocked up. 1 = converted to carrier. 2 = fertilized.
 	var knockUpPass:int = 0;
-	if (pc.hasVagina()) 
+	if (pc.hasVagina() && tempVags > 0) 
 	{
-		//If Knock
-		if(pc.loadInCunt(chars["VENUSPITCHER"]))
-		{
-			//Seed carrier
-			if(pc.hasPregnancyOfType("VenusPitcherSeedCarrier"))
+		for(var i:int = 0; i < tempVags; i++) {
+			//If Knock
+			if(pc.loadInCunt(chars["VENUSPITCHER"], (tempVags - 1)))
 			{
-				trace("Venus Pitcher unfertilized pregnancy started.");
-				knockUpPass = 1;
-			}
-			//Convert to fertilized carrier
-			else
-			{
-				trace("Venus Pitcher pregnancy upgraded to fertilized.");
-				knockUpPass = 2;
+				//Seed carrier
+				if(pc.hasPregnancyOfType("VenusPitcherSeedCarrier"))
+				{
+					trace("Venus Pitcher unfertilized pregnancy started.");
+					knockUpPass = 1;
+				}
+				//Convert to fertilized carrier
+				else
+				{
+					trace("Venus Pitcher pregnancy upgraded to fertilized.");
+					knockUpPass = 2;
+				}
 			}
 		}
 	}
@@ -954,7 +960,7 @@ public function elderVenusPitchersPlayWithCooches():void {
 	output("\n\nYour eyes roll back as the orgasm drags on and on, [pc.eachVagina] writhing in ecstasy");
 	if(pc.vaginaTotal() >= 1) output(", even though some are empty");
 	output(". A comforting voice instructs, <i>“Cum and cum and cum and cum for me. Remember this pleasure, because your twat is <b>cumming</b> so hard that you’ll want me to seed it every time your womb is empty. You can’t resist. Every lurch of ecstasy in your cunt is conditioning you into a helpless addict.”</i>");
-	pc.loadInCunt(chars["ELDERVENUSPITCHER"]);
+	pc.loadInCunt(chars["ELDERVENUSPITCHER"], x);
 	output("\n\nYour eyes roll back and you black out, still orgasming and being painted by the writhing mass of tentacles. Flashes of repeated fuckings, breast suckling, and hot blasts of seed appear in your memory, though you’re never really anywhere near close enough to consciousness to store a cogent record.");
 	pc.orgasm();
 	processTime(20+rand(10));

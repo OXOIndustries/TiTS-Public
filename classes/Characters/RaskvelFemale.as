@@ -283,7 +283,7 @@
 					output(" Her trajectory carries her square into your face. The lizard-girl's hot cunt squishes up against your [pc.face] as her legs circle behind your neck, and she languidly grinds herself on your face while running her hands ");
 					if(target.hasHair()) output("through your [pc.hair]");
 					else output("over your head");
-					output(". She detaches before you can think to get her off of you, leaving you with the taste of her femininity on your lips and the thought sex on your mind.");
+					output(". She detaches before you can think to get her off of you, leaving you with the taste of her femininity on your lips and the thought of sex on your mind.");
 					applyDamage(new TypeCollection( { tease: 15 + rand(6) } ), this, target, "minimal");
 				}
 			}

@@ -1929,7 +1929,7 @@ public function fuckedByMaleLane():void
 
 	processTime(60);
 
-	if (pc.hasVagina()) pc.loadInCunt(lane);
+	if (pc.hasVagina()) pc.loadInCunt(lane, 0);
 	else pc.loadInAss(lane);
 
 	lane.orgasm();
@@ -2321,7 +2321,7 @@ public function fuckedByFemLane():void
 	
 	processTime(60);
 
-	if (pc.hasCock() && !cockTooBig) lane.loadInCunt(pc);
+	if (pc.hasCock() && !cockTooBig) lane.loadInCunt(pc, 0);
 	if (pc.hasCock() && cockTooBig) pc.loadInMouth(pc);
 
 	pc.orgasm();
@@ -2681,7 +2681,7 @@ public function firstTimeLaneMPCFH():void
 	// Lust reduced to 0, time progresses by 1 hour, place PC one square outside Lane’s Plane
 	processTime(60);
 
-	pc.loadInCunt(lane);
+	pc.loadInCunt(lane, 0);
 
 	pc.orgasm();
 	lane.orgasm();
@@ -2920,7 +2920,7 @@ public function firstTimeLaneFPCMH():void
 	// Lust reduced to 0 time progresses by 1 hour, place PC one square outside Lane’s Plane
 	processTime(60);
 
-	lane.loadInCunt(pc);
+	lane.loadInCunt(pc, 0);
 
 	pc.orgasm();
 	lane.orgasm();

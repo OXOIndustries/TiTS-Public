@@ -2394,7 +2394,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Residential Deck Stuff!
-			if(flags["AINA_DAY_MET"] != undefined || flags["SEEN_FYN"] == true)
+			if(flags["AINA_DAY_MET"] != undefined || flags["SEEN_FYN"] == true || flags["MET_SEMITH"] == true)
 			{
 				output2("\n<b><u>Residential Deck</u></b>");
 				// Aina
@@ -2425,6 +2425,12 @@ public function displayEncounterLog(showID:String = "All"):void
 						output2("\n<b>* Fyn:</b> Met him");
 						if(flags["FYN_SEXED"] > 0) output2("\n<b>* Fyn, Times Sexed: </b>" + flags["FYN_SEXED"]);
 					}
+				}
+				// Semith
+				if(flags["MET_SEMITH"] == true)
+				{
+					output2("\n<b>* Semith:</b> Met him");
+					if(flags["SEMITH_SEXED"] > 0) output2("\n<b>* Semith, Times Sexed: </b>" + flags["SEMITH_SEXED"]);
 				}
 				variousCount++;
 			}
@@ -3276,7 +3282,7 @@ public function displayEncounterLog(showID:String = "All"):void
 						output2("\n<b>* [bess.name], Body, Posterior Size: </b>" + formatFloat(chars["BESS"].buttRating(), 3));
 					}
 					if(flags["BESS_BOOBCHANGED"] != undefined && chars["BESS"].hasNipples()) output2("\n<b>* [bess.name], Nipple Type: </b>" + GLOBAL.NIPPLE_TYPE_NAMES[chars["BESS"].breastRows[0].nippleType]);
-					if(chars["BESS"].isLactating()) output2(", Lactation Active");
+					if(chars["BESS"].isLactating()) output2("\n<b>* [bess.name], Lactation:</b> Active");
 					if(chars["BESS"].hasCock() || chars["BESS"].hasVagina() || flags["BESS_FUCKED"] != undefined)
 					{
 						if(chars["BESS"].hasCock()) output2("\n<b>* [bess.name], Cum Type: </b>" + GLOBAL.FLUID_TYPE_NAMES[chars["BESS"].cumType]);
@@ -3544,25 +3550,32 @@ public function displayEncounterLog(showID:String = "All"):void
 			if(flags["MET_NEVRIE"] != undefined || flags["MET_MCALLISTER"] != undefined)
 			{
 				output2("\n<b><u>Xenogen Biotech Office</u></b>");
-				// Nevrie
-				if(flags["MET_NEVRIE"] != undefined)
-				{
-					output2("\n<b>* Nevrie:</b> Met her");
-					if(flags["FUCKED_NEVRIE"] != undefined) output2(", Sexed her");
-					if(flags["NEVRIE_SHOPPED"] != undefined) output2(", Accessed her shop");
-					if(flags["NEVRIE_DISCOUNT"] != undefined) output2(", Store discount active");
-				}
 				// Byron McAllister
 				if(flags["MET_MCALLISTER"] != undefined)
 				{
 					output2("\n<b>* Dr. McAllister:</b> Met him");
 				}
+				// Nevrie
+				if(flags["MET_NEVRIE"] != undefined)
+				{
+					output2("\n<b>* Nevrie:</b> Met her");
+					if(flags["FUCKED_NEVRIE"] != undefined) output2(", Sexed her");
+					if(flags["NEVRIE_FIRST_DISCOUNT_DATE"] != undefined) output2("\n<b>* Nevrie, Days Since Last Store Discount:</b> " + (days - flags["NEVRIE_FIRST_DISCOUNT_DATE"]));
+				}
 				variousCount++;
 			}
 			// Streets of Gildenmere
-			if(flags["MET_ORRYX"] != undefined)
+			if(flags["MET_ORRYX"] != undefined || flags["LIRIEL_MET"] != undefined)
 			{
 				output2("\n<b><u>Gildenmere</u></b>");
+				// Liriel, Martians
+				if (flags["LIRIEL_MET"] != undefined)
+				{
+					output2("\n<b>* Liriel:</b> Met her");
+					if (flags["LIRIEL_TALK_STAND"] != undefined) output2(", Talked about The Little Green Man stand");
+					if (flags["LIRIEL_BUTTSEXED"] != undefined) output2("\n<b>* Liriel, Times She Fucked Your Ass: </b>" + flags["LIRIEL_BUTTSEXED"]);
+					if (flags["LIRIEL_TITFUCKED"] != undefined) output2("\n<b>* Liriel, Times Titfucked: </b>" + flags["LIRIEL_TITFUCKED"]);
+				}
 				// Orryx, step right up ladies and gents!
 				if(flags["MET_ORRYX"] != undefined)
 				{

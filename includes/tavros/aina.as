@@ -844,7 +844,7 @@ public function ainaSexedFisting():void
 	if(ainaIsInHeat()) output("You suggest a 'hands-on' approach to relieving her tensions,");
 	else output("You tell her that you're actually in the mood for something <i>else</i>,");
 	
-	if(pc.isChestGarbed()) output(" stripping off your [pc.uppergarments] and");
+	if(pc.isChestGarbed()) output(" stripping off your [pc.upperGarments] and");
 	
 	output(" striding up behind her lovely, large rump. Reaching out, you hold your hand in front of her dusky equine slit. Her radiant warmth warms your palm, particularly with each whumphing flare of her");
 

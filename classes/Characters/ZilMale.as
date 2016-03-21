@@ -163,7 +163,6 @@
 			this.milkRate = 0;
 			this.ass.wetnessRaw = 0;
 			this.ass.bonusCapacity += 15
-			this.inventory.push(new ZilRation());
 
 			this.createStatusEffect("Disarm Immune");
 			
@@ -182,10 +181,8 @@
 				cocks[0].cockColor = "gold";
 			}
 			long += ".";
-			if(rand(5) == 0)
-			{
-				inventory.push(new PrimitiveBow());
-			}
+			if(rand(5) == 0) inventory.push(new PrimitiveBow());
+			else inventory.push(new ZilRation());
 		}
 		
 		override public function get bustDisplay():String

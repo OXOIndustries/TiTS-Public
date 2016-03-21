@@ -371,7 +371,7 @@ public function rideDatZilCawk():void {
 	
 	processTime(21+rand(4));
 	pc.orgasm();
-	pc.loadInCunt(chars["ZIL"]);
+	pc.loadInCunt(chars["ZIL"], x);
 	CombatManager.genericVictory();
 }
 
@@ -1246,7 +1246,7 @@ public function theZilPretendToBeHelia():void {
 	output("\n\nAs their climaxes conclude, the spent pair pull away, dropping you into the puddled, mixed sex-juices before turning on each other, grinding their sloppy genitalia against each other as they prepare to fuck away the rest of their insatiable lust. Your eyes flutter closed as your body asserts its need for rest, lulling you into a dreamless, sticky slumber.\n\n");
 	processTime(20+rand(10));
 	pc.orgasm();
-	if (pc.hasVagina()) pc.loadInCunt(chars["ZIL"]);
+	if (pc.hasVagina()) pc.loadInCunt(chars["ZIL"], x);
 	else pc.loadInAss(chars["ZIL"]);
 	pc.loadInMouth(chars["ZILFEMALE"]);
 	processTime(59);

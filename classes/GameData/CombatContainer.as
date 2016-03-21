@@ -2689,14 +2689,14 @@ package classes.GameData
 				output("\n\n");
 				if(teaseType == "SQUIRT")
 				{
-					if(target.isPlural) output(target.capitalA + target.uniqueName + " are splattered with your [pc.milk], unable to get it off. All of a sudden, their faces begin to flush, and they look quite aroused.");
-					else output(target.capitalA + target.uniqueName + " is splattered with your [pc.milk], unable to get it off. All of a sudden, " + target.mfn("his","her","its") + " " + target.face() + " begins to flush, and " + target.mfn("he","she","it") + " looks quite aroused.");
+					if(target.isPlural) output(target.capitalA + target.uniqueName + " are splattered with your [pc.milk], unable to get it off. All of a sudden, their faces begin to flush, and they look quite aroused. ");
+					else output(target.capitalA + target.uniqueName + " is splattered with your [pc.milk], unable to get it off. All of a sudden, " + target.mfn("his","her","its") + " " + target.face() + " begins to flush, and " + target.mfn("he","she","it") + " looks quite aroused. ");
 				}
 				if(teaseType == "DICK SLAP")
 				{
-					if(target.isPlural) output(possessive(target.capitalA + target.uniqueName) + " faces look rather flush as they quickly wipe your [pc.cum] off.");
-					else output(possessive(target.capitalA + target.uniqueName) + " face looks rather flush as " + target.mfn("he","she","it") + " quickly wipes your [pc.cum] off.");
-					if(kGAMECLASS.silly) output(" Ha! GOT ‘EM!");
+					if(target.isPlural) output(possessive(target.capitalA + target.uniqueName) + " faces look rather flush as they quickly wipe your [pc.cum] off. ");
+					else output(possessive(target.capitalA + target.uniqueName) + " face looks rather flush as " + target.mfn("he","she","it") + " quickly wipes your [pc.cum] off. ");
+					if(kGAMECLASS.silly) output(" Ha! GOT ‘EM! ");
 				}
 				else output(teaseReactions(damage,target));
 				target.lust(damage);

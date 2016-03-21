@@ -1670,7 +1670,7 @@ package classes.GameData
 			//Miss (can't be completely dodged)
 			else if(rangedCombatMiss(attacker, target)) 
 			{
-				output("\nYou manage to avoid most of the projectiles, but one still impacts your arm, stinging you with a pinprick of pain. You yank it out, but it's payload is already spent, injected inside you.");
+				output("\nYou manage to avoid most of the projectiles, but one still impacts your arm, stinging you with a pinprick of pain. You yank it out, but its payload is already spent, injected inside you.");
 				applyDamage(new TypeCollection( { tease: 3 + rand(3) } ), attacker, target, "minimal");
 			}
 			//Medium hit

@@ -205,7 +205,7 @@ public function defeatTheSexBot():void
 {
 	author("Nonesuch");
 	sexBotDisplay();
-	output("The sexbot opens its mouth, but instead of its calm tones it instead emits a clatter of clicks, beeps and high vocalisations. Its head flicks to one side in the same motion over and over again before finally with a wheezing, defeated hum it retracts its tentacles and kneels down, hands flat on the floor.");
+	output("The sexbot opens its mouth, but instead of its calm tones it instead emits a clatter of clicks, beeps and high vocalizations. Its head flicks to one side in the same motion over and over again before finally with a wheezing, defeated hum it retracts its tentacles and kneels down, hands flat on the floor.");
 	output("\n\n<i>“A serious exception occurred. Entering factory reset,”</i> it says quietly. <i>“Non-reactive safe mode in effect.”</i> It pauses. <i>“Can this unit do anything for you, insert name here?”</i>");
 	//Lust > 30:
 	if(pc.lust() >= 33) {
@@ -928,7 +928,7 @@ public function dogEStyleWithSexBots():void
 		else output("cocks");
 		output(" into its gel into it at an acute angle. The hovering sound breaks into a dry chatter, and the hum momentarily becomes a rev. You grin. To you, that one flicker of electronic difference is a million times more satisfying than the canned pillow talk the android was coming out with.");
 		output("\n\nYou keep up the pressure, your heart quickening as you let your lust grip you entirely, slamming your [pc.hips] into the prostrate sexbot as your hands fondle and grip its form wherever they may land, handling and owning every inch of this creature, your ears keyed to the subtle tune of its systems. Spanking it has little effect, its hum doesn’t change when your fingers momentarily curl around its neck, but – the gasping click in its throat, a flustered and excited sound to your intoxicated mind, comes back with a vengeance when you touch and circle its tentacle housings.");
-		output("\n\nA sound of your own escapes your lips, somewhere between a groan and a knowing “ahh”, and you focus your efforts on those round holes with the gray rubber enclosed within them, pushing into their centres, sliding your fingers along their rim, catching and squeezing the grippers. The hovering and humming agitates into a babbling buzz as you do so, high vocalisations forced into being, a cacophony of genuine synthetic delirium, and you find yourself tumbling into orgasm at the sound. You pinch down hard on the feelers as your ");
+		output("\n\nA sound of your own escapes your lips, somewhere between a groan and a knowing “ahh”, and you focus your efforts on those round holes with the gray rubber enclosed within them, pushing into their centres, sliding your fingers along their rim, catching and squeezing the grippers. The hovering and humming agitates into a babbling buzz as you do so, high vocalizations forced into being, a cacophony of genuine synthetic delirium, and you find yourself tumbling into orgasm at the sound. You pinch down hard on the feelers as your ");
 		if(pc.cockTotal() > 1) output("pricks tense");
 		else output("[pc.cock " + x + "] tenses");
 		output(" and then surges streams of cum deep into the sexbot’s close softness. You are rewarded with a series of electronic chirps and broken exclamations, the tentacles shaking in their pits as you pull it back onto your returning thrusts again and again, obeying the sunken, organic impulse to bury as much of your seed as deep as you can, however inorganic the recipient may be.");

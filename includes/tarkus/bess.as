@@ -4958,7 +4958,7 @@ public function bessSpendTime28():void
 	clearOutput();
 	bessHeader();
 
-	output("You sit down with [bess.name] to talk. You ask [bess.hisHer] simple questions about [bess.himHer]self and [bess.heShe] eagerly responds, quite happy to give you [bess.hisHer] full specs in every single detail. By the time you’ve both finished talking you know ");
+	output("You sit down with [bess.name] to talk. You ask [bess.himHer] simple questions about [bess.himHer]self and [bess.heShe] eagerly responds, quite happy to give you [bess.hisHer] full specs in every single detail. By the time you’ve both finished talking you know ");
 	output(
 		RandomInCollection(
 			"the exact size of [bess.hisHer] brain",
@@ -11191,7 +11191,7 @@ public function bessGetBlowjob():void
 			{
 				output("\n\nWhen your knot finally goes down, the "+ bess.mf("male synthetic", "synthetic girl") +" seems to be glowing with sheer satisfaction, an utterly blissed-out look in [bess.hisHer] crystalline [bess.eyeColor] eyes. It seems [bess.heShe] thoroughly enjoyed you knotting [bess.hisHer] mouth. <i>“That was the best... my stomach feels like it’s completely filled with nothing but you...”</i>");
 				
-				output("\n\nGiven how long you came in [bess.hisHer] mouth, it probably <i>is</i> filled with you... or at least your spunk. Knowing that gives you a little burst of possessive pride, like you’ve claimed [bess.himHer] with your seed.”</i>");
+				output("\n\nGiven how long you came in [bess.hisHer] mouth, it probably <i>is</i> filled with you... or at least your spunk. Knowing that gives you a little burst of possessive pride, like you’ve claimed [bess.himHer] with your seed.");
 			}
 		}
 	}

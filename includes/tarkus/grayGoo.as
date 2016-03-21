@@ -393,9 +393,9 @@ public function divideAndConquerGinasWithGoos():void
 	pc.loadInAss(chars["GRAYGOO"]);
 	pc.loadInAss(chars["GRAYGOO"]);
 	pc.loadInAss(chars["GRAYGOO"]);
-	pc.loadInCunt(chars["GRAYGOO"]);
-	pc.loadInCunt(chars["GRAYGOO"]);
-	pc.loadInCunt(chars["GRAYGOO"]);
+	pc.loadInCunt(chars["GRAYGOO"], 0);
+	pc.loadInCunt(chars["GRAYGOO"], rand(pc.vaginas.length));
+	pc.loadInCunt(chars["GRAYGOO"], rand(pc.vaginas.length));
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
