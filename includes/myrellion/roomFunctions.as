@@ -594,7 +594,7 @@ public function northwestMushroomParkBonus():Boolean
 {
 	if (flags["LIRIEL_MET"] == undefined)
 	{
-		if (lirielStandActiveHours() && rand(10) == 0) return lirielMyrellionBonus(0);
+		if (lirielStandActiveHours()) return lirielMyrellionBonus(0);
 	}
 	else
 	{

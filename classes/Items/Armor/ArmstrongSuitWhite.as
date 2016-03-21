@@ -30,10 +30,10 @@ package classes.Items.Armor
 			
 			attackVerb = "";
 			
-			basePrice = 2800;
+			basePrice = 3800;
 			attack = 0;
 			defense = 0;
-			shieldDefense = 20;
+			shields = 20;
 			sexiness = 5;
 			critBonus = 0;
 			evasion = 3;
