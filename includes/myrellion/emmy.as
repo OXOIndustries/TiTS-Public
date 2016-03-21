@@ -1748,7 +1748,8 @@ public function giveEmmyTheDoshForHerHermHarnessssss():void
 	processTime(4);
 	//Fuck Her or Get Fucked options.
 	clearMenu();
-	if(pc.hasCock()) addButton(0,"Fuck Her",fuckEmmyProper);
+	if(pc.hasCock() && pc.cockThatFits(emmy.vaginalCapacity(0)) >= 0) addButton(0,"Fuck Her",fuckEmmyProper);
+	else if(pc.hasCock()) addDisabledButton(0,"Fuck Her","Fuck Her","You're too big to fuck her properly.");
 	else addDisabledButton(0,"Fuck Her","Fuck Her","You don't have a cock to fuck her with.");
 	if(pc.hasVagina()) addButton(1,"Get Fucked",getFuckedByEmmyEmmyEms);
 	else addDisabledButton(1,"Get Fucked","Get Fucked","You don't have a vagina for Emmy to fuck.");
