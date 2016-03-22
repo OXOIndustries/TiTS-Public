@@ -509,7 +509,7 @@ package classes.GameData.Pregnancy
 			}
 			else if (target.bellyRating() <= 40)
 			{
-				return "Your belly more noticably distended. You are probably pregnant.";
+				return "Your belly is more noticably distended. You are probably pregnant.";
 			}
 			else if (target.bellyRating() <= 60)
 			{

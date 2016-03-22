@@ -356,7 +356,7 @@ public function initializeMyrellionRooms():void
 	rooms["706"].eastExit = "705";
 	rooms["706"].southExit = "707";
 	rooms["706"].moveMinutes = 3;
-	rooms["706"].runOnEnter = undefined;
+	rooms["706"].runOnEnter = northwestMushroomParkBonus;
 	rooms["706"].addFlag(GLOBAL.INDOOR);
 	rooms["706"].addFlag(GLOBAL.PUBLIC);
 	rooms["706"].addFlag(GLOBAL.CAVE);

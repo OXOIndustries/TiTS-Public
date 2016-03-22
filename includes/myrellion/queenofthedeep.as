@@ -718,7 +718,7 @@ public function queenOfTheDeepCloacaFuck():void
 
 	output("\n\nYou doubt you’ll see it again.");
 
-	queenOfTheDeep.loadInCunt(pc);
+	queenOfTheDeep.loadInCunt(pc, 0);
 	pc.orgasm();
 	if (pc.libido() >= 75) pc.orgasm();
 

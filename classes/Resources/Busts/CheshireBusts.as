@@ -53,6 +53,9 @@ package classes.Resources.Busts
 
 		[Embed(source = "../../../assets/images/npcs/cheshire/Lapinara_2.png", mimeType = "image/png")]
 		public var Bust_LAPINARA_2:Class;
+
+		[Embed(source = "../../../assets/images/npcs/cheshire/liriel.png", mimeType = "image/png")]
+		public var Bust_LIRIEL:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/cheshire/milodanfem.png", mimeType = "image/png")]
 		public var Bust_MILODANFEM:Class;

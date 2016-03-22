@@ -278,7 +278,7 @@ public function venomExpirationNotice():void
 	else
 	{
 		eventBuffer += "\n\nYour [pc.skin] no longer feels quite so flush";
-		if(pc.hasFur() || pc.hasScales() || pc.hasFeathers()) output(" beneath your [pc.skinFurScales]");
+		if(pc.hasFur() || pc.hasScales() || pc.hasFeathers() || pc.hasChitin()) eventBuffer += " beneath your " + pc.skinNoun(false, true);
 		eventBuffer += ". Nor is it quite so sensitive to the touch. The effects of the red myr venom must be subsiding.";
 	}
 	//trace("PROGRESS TO ADDICTION: " + flags["VENOM_PROGRESS"] + " ADDICTION SUPERMAX PROG: " + flags["VENOM_ADDICTION"]);

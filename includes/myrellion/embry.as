@@ -3002,7 +3002,7 @@ public function vagisilSexForEmbry(spentTime:Boolean = false):void
 	output("\n\nYou return to the bar with a smile.");
 	flags["SEXED_EMBRY"] = 1;
 	processTime(45);
-	embry.loadInCunt(pc);
+	embry.loadInCunt(pc, 0);
 	pc.orgasm();
 	embry.vaginalVirgin = false;
 	clearMenu();

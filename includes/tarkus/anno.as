@@ -1372,7 +1372,9 @@ public function putItInAnnosButtYouSloot():void
 
 	output("\n\nSlowly, you start to move your finger in and out, making sure to coat every inch of her tight passage with a nice, thick coating of fem-lube. You try to stretch her out, but just a little bit: gotta keep this hole nice and tight for the main event.");
 
-	output("\n\nTo your surprise, Anno glances over her shoulder at you and gives a nervous half-smile, saying, <i>\"Go on already... stop teasing me and put it in.");
+	output("\n\n");
+	if(chars["ANNO"].analVirgin) output("To your surprise, ");
+	output("Anno glances over her shoulder at you and gives a nervous half-smile, saying, <i>\"Go on already... stop teasing me and put it in.");
 	if(chars["ANNO"].analVirgin) 
 	{
 		output(" Just be gentle... okay? It's... I've never had anything back there before...\"</i>\n\nWoah, what? Anno's never had anal before?");

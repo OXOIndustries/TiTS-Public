@@ -268,6 +268,11 @@ public function shop(keeper:Creature):void {
 		approachVKo();
 		return;
 	}
+	else if(keeper is Liriel)
+	{
+		lirielBackMenu(1);
+		return;
+	}
 	clearOutput();
 	output(keeper.keeperGreeting);
 	shopkeep = keeper;

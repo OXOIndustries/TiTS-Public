@@ -1013,7 +1013,7 @@ public function burtSticksItInThePCsVajayjay():void {
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
-	pc.loadInCunt(chars["BURT"]);
+	pc.loadInCunt(chars["BURT"], x);
 	this.clearMenu();
 	this.addButton(0,"Next",randomBurtSexExit);
 }

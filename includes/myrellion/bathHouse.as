@@ -435,7 +435,7 @@ public function bathHouseGoldMyrGroup():void
 	if(pc.hasCock())
 	{
 		output(" Your [pc.cocks] swell");
-		if(pc.cockTotal() > 1) output("s");
+		if(pc.cockTotal() == 1) output("s");
 		output(", half-erect from the implications. None of the girls bat an eye; one even smiles slightly at the outline.");
 	}
 	output("\n\n<i>“Now, will we have the pleasure of attending you?”</i> prompts the myr who spoke first.");

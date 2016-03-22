@@ -227,7 +227,7 @@ public function flirtWithGeoff():void {
 		
 		output("\n\nAfter he’s finished and withdraws from you, you spend a long minute gathering your breath, enjoying the feeling of each other’s bodies and the sticky humidity, the hissing steam continuing to billow around you diffidently.");
 		output("\n\n<i>“That was - uh. Wow,”</i> says Geoff eventually. Something occurs to him which deflates the huge, gleeful grin he’s radiating at you. <i>“Was it all right for you? I never know if... I mean...”</i> You laugh - his good natured awkwardness fits his lanky physique perfectly somehow. You tell him he did fine. Honestly, for a college kid he <i>is</i> pretty good with his hands. You give him a bit more of a cuddle before putting your clothes on and leaving the scrapyard through the back. Although you’re more than a bit damp, the hot sun will quickly take care of that.");
-		pc.loadInCunt(chars["GEOFF"]);
+		pc.loadInCunt(chars["GEOFF"], 0);
 		pc.orgasm();
 	}
 

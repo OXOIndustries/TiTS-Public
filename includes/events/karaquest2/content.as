@@ -1228,7 +1228,7 @@ public function kq2EncounterKhan():void
 	
 	output("\n\nYou hear a click from across the lab, and have just enough time to dive behind an overturned desk before a lightning bolt screeches across the room, slamming into the wall just behind where you’d stood a moment ago. A laugh booms across the room, drawing your attention to a small man sitting on what at first glance is a large, tan beanbag chair in the corner of the room, a smoking pistol in his hand. Several young women surround him, gold-plated myr girls in white lab coats that hang open from bare shoulders, leaving their nude bodies underneath on shameless display for you: breasts swollen with honey, and honeypots drooling with blatant desire.");
 	
-	output("\n\nOnce the immediate excitement of the man’s shot is over, they begin to fawn over him, chitin-clad hands playing across his soft fur, caressing the seat beneath him, falling to their knees around a canine-shaped cock with three large, turgid knots at full mast - though it remains out of their reach, trapped in a hardlight cage not unlike a chastity belt. He’s a kui-tan, the same tanuki-like race as Ambassador Juro, and as you watch him, you can see that’s not a beanbag chair he’s sitting on, but a pair of almost comically swollen testicals, large enough to keep his feet from touching ground.");
+	output("\n\nOnce the immediate excitement of the man’s shot is over, they begin to fawn over him, chitin-clad hands playing across his soft fur, caressing the seat beneath him, falling to their knees around a canine-shaped cock with three large, turgid knots at full mast - though it remains out of their reach, trapped in a hardlight cage not unlike a chastity belt. He’s a kui-tan, the same tanuki-like race as Ambassador Juro, and as you watch him, you can see that’s not a beanbag chair he’s sitting on, but a pair of almost comically swollen testicles, large enough to keep his feet from touching ground.");
 	
 	output("\n\n<i>“I told you pirate bastards to leave me alone!”</i> the man shouts, snapping off another shot as Kara dives into the room, rolling into cover behind an overturned desk. <i>“You’ll get your devices when they’re damn ready, and not a second before! I’ll not have my work roughshod by impatient peasants who don’t know the meaning of </i>SCIENCE<i>. Nobody rushes DOCTOR SOUTA KHAN!”</i>");
 	
@@ -1963,7 +1963,7 @@ public function kq2CapturedByPiratesBadEndII():void
 	output("\n\n<i>“So. There’s no bounty on you. And I’ll be honest: I’m impressed you got as far as you did. Not impressed enough to let you go, though. It’s too late for that.”</i> She takes a knee in front of you, looking you over with an appraising eye. You hazard a look up, into her green eyes, watching as she runs a black-armored thumb across her blue lips, thinking. After a long, tense moment, she taps an earpiece hidden in one of her jackal-like ears and says, <i>“X.O., go down and secure Khan. Get one of his collars up here for me.”</i>");
 
 	output("\n\n");
-	if (flags["KQ2_DEFEATED_KHAN"] != undefined) output("On no.... ");
+	if (flags["KQ2_DEFEATED_KHAN"] != undefined) output("Oh, no.... ");
 	output("You gulp with dread as the pirate smiles at you, releasing her comms. <i>“I’ll make you a deal, "+ pc.mf("handsome", "beautiful") +". I’m going to put a collar on you. A special collar. That means you belong to me, now. Understand?”</i>");
 
 	output("\n\nYou nod, slowly, dread forming a knot in your stomach. What’s about to happen to you?");
@@ -2715,9 +2715,9 @@ public function kq2PostKaraSexyCombineStay():void
 	output("\n\n<i>“Hey, lover,”</i> a familiar voice says, drawing your eyes to the shadow of the holo-screen, beneath the image of a billowing red sun muted down to only a dim light. Kara’s sitting beside it, wrapped up in a blue bathrobe with her legs crossed under her, sipping at a steaming mug. <i>“Sleep well? I did.”</i>");
 	
 	output("\n\nYou nod and slowly pull yourself out of bed, looking for your gear.");
-	if (!pc.isNude()) output(" Your clothes have been cleaned and folded, sitting at the food of the bed");
+	if (!pc.isNude()) output(" Your clothes have been cleaned and folded, sitting at the foot of the bed");
 	else output(" Your gear’s been stacked neatly at the foot of the bed for you");
-	output(". As you gather your things, Kara sets her mug aside and slips over you you, wrapping her arms around your waist and pressing her cheek into your back. <i>“I can’t thank you enough, [pc.name]. For everything,”</i> she murmurs.");
+	output(". As you gather your things, Kara sets her mug aside and slips over you, wrapping her arms around your waist and pressing her cheek into your back. <i>“I can’t thank you enough, [pc.name]. For everything,”</i> she murmurs.");
 	
 	output("\n\nYou turn in her embrace and give her a fierce hug, taking comfort in the warmth and softness of your kaithrit lover. The two of you spend a little while together, just enjoying each other’s company, before a heavy heart pulls you towards your ship. You still have an adventure of your own to finish.");
 	

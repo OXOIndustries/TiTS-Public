@@ -960,7 +960,7 @@ public function fuckReahasPussyintheBrothel():void
 	pc.credits -= 100;
 	processTime(10+rand(4));
 	pc.orgasm();
-	chars["REAHA"].loadInCunt(pc);
+	chars["REAHA"].loadInCunt(pc, 0);
 	//Clears menu data
 	clearMenu();
 	//Set up a button: first argument is the button index 0 to 14 for the first page.

@@ -139,13 +139,13 @@ public function appearance(forTarget:Creature):void
 		else if(target.faceType == GLOBAL.TYPE_MOUSEMAN) {
 			//appearance
 			output2(" Your face is generally human in shape and structure, with " + target.skin(true,true));
-			if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2(" under your " + target.skinFurScales(true,true));
+			if(InCollection(target.skinType, GLOBAL.SKIN_TYPE_FUR, GLOBAL.SKIN_TYPE_SCALES, GLOBAL.SKIN_TYPE_FEATHERS)) output2(" under your " + target.skinFurScales(true,true));
 			output2(" and mousey buckteeth.");
 		}
 		else if(target.faceType == GLOBAL.TYPE_MOUSE) {
 			//appearance
 			output2(" You have a snubby, tapered mouse’s face, with whiskers, a little pink nose, and ");
-			if(target.skinType != GLOBAL.SKIN_TYPE_FUR && target.skinType != GLOBAL.SKIN_TYPE_SCALES) output2(target.skin(true,true));
+			if(!InCollection(target.skinType, GLOBAL.SKIN_TYPE_FUR, GLOBAL.SKIN_TYPE_SCALES, GLOBAL.SKIN_TYPE_FEATHERS)) output2(target.skin(true,true));
 			else output2(target.skin(true,true) + " under your " + target.skinFurScales(true,true));
 			output2(". Two large incisors complete it.");
 		}
@@ -975,8 +975,8 @@ public function appearance(forTarget:Creature):void
 		}
 		else if(target.tailType == GLOBAL.TYPE_MOUSE) output2(" A naked, " + target.skinTone + " mouse tail pokes from your butt, dragging on the ground and twitching occasionally.");
 		else if(target.tailType == GLOBAL.TYPE_CUNTSNAKE) {
-			if(target.tailCount <= 1) output2(" A sinuous, almost snake-like tail waves behind you, covered in " + target.skinFurScales() + " like the rest of you except at the tip. There, it terminates in " + indefiniteArticle(target.tailVaginaDescript()) + " that always seems to crave fresh sperm.");
-			else output2(" " + StringUtil.upperCase(num2Text(target.tailCount)) + " sinuous, almost snake-like tails wave behind you, covered in " + target.skinFurScales() + " like the rest of you except at the tip. There, they terminate in " + plural(target.tailVaginaDescript()) + " that always seem to crave fresh sperm.");
+			if(target.tailCount <= 1) output2(" A sinuous, almost snake-like tail waves behind you, covered in " + target.skinFurScales(true) + " like the rest of you except at the tip. There, it terminates in " + indefiniteArticle(target.tailVaginaDescript()) + " that always seems to crave fresh sperm.");
+			else output2(" " + StringUtil.upperCase(num2Text(target.tailCount)) + " sinuous, almost snake-like tails wave behind you, covered in " + target.skinFurScales(true) + " like the rest of you except at the tip. There, they terminate in " + plural(target.tailVaginaDescript()) + " that always seem to crave fresh sperm.");
 		}
 		else if(target.tailType == GLOBAL.TYPE_PANDA) {
 			if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2(" A short, slimy panda tail sprouts just above your " + target.buttDescript() + ". It just kind of sits there, not doing much beyond being a gooey little accent.");
@@ -1959,7 +1959,7 @@ public function crotchStuff(forTarget:Creature = null):void
 				else if (target.statusEffectv3("Mimbrane Pussy") < 13)
 				{
 					output2("Your pussy appears noticably inflated");
-					if (target.isCrotchGarbed())
+					if (!target.isCrotchExposed())
 					{
 						output2(" and creates a slight bulge beneath your");
 						if (target.armor.type == GLOBAL.ARMOR) output2(" armor");
@@ -1970,7 +1970,7 @@ public function crotchStuff(forTarget:Creature = null):void
 				else
 				{
 					output2("Your pussy appears delightfully plump");
-					if (target.isCrotchGarbed())
+					if (!target.isCrotchExposed())
 					{
 						output2(", creating an undeniable bulge in your");
 						if (target.armor.type == GLOBAL.ARMOR) output2(" armor");
@@ -2064,7 +2064,7 @@ public function crotchStuff(forTarget:Creature = null):void
 					else if (target.statusEffectv3("Mimbrane Pussy") < 13)
 					{
 						output2(" It appears noticably inflated");
-						if (target.isCrotchGarbed())
+						if (!target.isCrotchExposed())
 						{
 							output2(" and creates a slight bulge beneath your");
 							if (target.armor.type == GLOBAL.ARMOR) output2(" armor");
@@ -2075,7 +2075,7 @@ public function crotchStuff(forTarget:Creature = null):void
 					else
 					{
 						output2(" It appears delightfully plump");
-						if (target.isCrotchGarbed())
+						if (!target.isCrotchExposed())
 						{
 							output2(", creating an undeniable bulge in your");
 							if (target.armor.type == GLOBAL.ARMOR) output2(" armor");
@@ -2244,6 +2244,13 @@ public function dickBonusForAppearance(forTarget:Creature = null, x:int = 0):voi
 	else if(target.cocks[x].cType == GLOBAL.TYPE_NYREA) {
 		output2(" The pseudo-penis is large and thick, with a shape similar to a horse phallus and lacking any veins. The flared tip is ringed with spikes meant to rupture the sperm sacs of a male nyrea and its slit is in the shape of an ‘x’.");
 	}
+	//Little Green Man
+	else if (target.cocks[x].cType == GLOBAL.TYPE_HRAD) {
+		output2(" The phallic member");
+		if (target.skinFurScalesColor() != target.cocks[x].cockColor) output2(" appears very much two-toned, with " + indefiniteArticle(target.skinFurScalesColor()) + " shaft and ending in " + indefiniteArticle(target.cocks[x].cockColor) + ",");
+		else output2(" has a");
+		output2(" pronounced bullet-shaped tip.");
+	}
 	//Nubby or Ribbed
 	if((target.cocks[x].hasFlag(GLOBAL.FLAG_NUBBY) && target.cocks[x].cType != GLOBAL.TYPE_FELINE) || target.cocks[x].hasFlag(GLOBAL.FLAG_RIBBED))
 	{
@@ -2320,12 +2327,13 @@ public function dickBonusForAppearance(forTarget:Creature = null, x:int = 0):voi
 	// Mimbranes
 	if(x == 0 && target.hasStatusEffect("Mimbrane Cock") && target.statusEffectv3("Mimbrane Cock") > 3)
 	{
-		if (target.isCrotchGarbed()) output2(" It feels");
-		else output2(" It looks");
+		output2(" The phallus itself");
+		if (!target.isCrotchExposed()) output2(" feels");
+		else output2(" looks");
 		if (target.statusEffectv3("Mimbrane Cock") < 8) output2(" slightly swollen");
 		else if (target.statusEffectv3("Mimbrane Cock") < 13) output2(" noticably inflated");
 		else output2(" unnaturally plump");
-		if (target.isCrotchGarbed())
+		if (!target.isCrotchExposed())
 		{
 			output2(" under your");
 			if (target.armor.type == GLOBAL.ARMOR) output2(" armor");
