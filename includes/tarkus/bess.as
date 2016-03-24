@@ -5221,11 +5221,11 @@ public function talkToBessAboutPC():void
 
 		if (bessAffection() >= 90)
 		{
-			output("\n\n<i>“I think you are wonderful " + bess.mf(", and the light of my life", ", and treat me like a princess") + "! Even though I spend so much time with you, I feel like I can never get enough.”</i> The silver skinned synthetic wraps [bess.hisHer] arms around your waist. <i>“I know some people would say we’re always in each other’s arms, but I don’t care one bit!”</i>");
+			output("\n\n<i>“I think you are wonderful " + bess.mf(", and the light of my life", ", and you treat me like a princess") + "! Even though I spend so much time with you, I feel like I can never get enough.”</i> The silver skinned synthetic wraps [bess.hisHer] arms around your waist. <i>“I know some people would say we’re always in each other’s arms, but I don’t care one bit!”</i>");
 		}
 		else if (bessAffection() >= 70)
 		{
-			output("\n\n<i>“I think you are wonderful " + bess.mf(", and the light of my life", ", and treat me like a princess") + ". You make my life complete in so many ways, and I’m glad you can always find time to spend with me and make me feel special.”</i>");
+			output("\n\n<i>“I think you are wonderful " + bess.mf(", and the light of my life", ", and you treat me like a princess") + ". You make my life complete in so many ways, and I’m glad you can always find time to spend with me and make me feel special.”</i>");
 		}
 		else if (bessAffection() >= 50)
 		{
