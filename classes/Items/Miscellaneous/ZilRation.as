@@ -521,7 +521,7 @@
 			var x:int = 0;
 			var y:int = 0;
 			var choices:Array;
-			var blockedChoices:Array;
+			var blockedChoices:Array = new Array();
 			
 			//Gain zilcock!
 			if(target.cockTotal(GLOBAL.TYPE_BEE) < target.cockTotal() && changes < changeLimit && rand(3) == 0) {
