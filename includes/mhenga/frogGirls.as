@@ -48,6 +48,7 @@ public function showFrogGirl(tEnemy:Creature = null):void
 
 public function frogGirlsEncounter():void
 {
+	author("Gardeford");
 	var tEnemy:Creature = new FrogGirl();
 	showFrogGirl(tEnemy);
 	IncrementFlag("MET_KEROKORAS");
@@ -131,6 +132,7 @@ public function configFrogGirlFight(tEnemy:Creature):void
 
 public function victoryAgainstTheFrogs():void
 {
+	author("Gardeford");
 	showFrogGirl();
 	//Victory by lust:
 	if(enemy.lust() >= enemy.lustMax()) 
@@ -198,6 +200,7 @@ public function submitToFrogSex(tEnemy:Creature):void
 //should be able to fit just about anything under a foot thick.
 public function hasCockLossForForgGirls():void
 {
+	author("Gardeford");
 	showFrogGirl();
 	var x:int = pc.cockThatFits(enemy.vaginalCapacity(0));
 	if(x < 0) x = pc.biggestCockIndex();
@@ -309,6 +312,7 @@ public function hasCockLossForForgGirls():void
 // No dicks
 public function youDontHaveADickLossToFrogGirls():void
 {
+	author("Gardeford");
 	showFrogGirl();
 	output("The nimble frog-girl walks up to your helpless body, sighing as she appraises you carefully. After a moment she hops over to you and presses your weakened frame into the ground, apparently having made her decision.");
 
@@ -349,6 +353,7 @@ public function youDontHaveADickLossToFrogGirls():void
 public function frogGirlFootJoerb():void
 {
 	clearOutput();
+	author("Gardeford");
 	showFrogGirl();
 
 	output("You step leisurely around your fallen prey, considering just what you should do with her... time and again, your attention is drawn back to her well toned legs and large feet. You ");
@@ -487,6 +492,7 @@ public function naleenAmbushRescueThing():void
 public function rescueTheNaleenFutaFromFrogs():void
 {
 	clearOutput();
+	author("Gardeford");
 	output("<i>“");
 	if(pc.isNice()) output("Back off, I’m not going to sit around while you rape her");
 	else output("Back off, I want her for myself");
@@ -522,6 +528,7 @@ public function loseToForgGorls():void
 public function beatUpSomeForgGoils():void
 {
 	clearOutput();
+	author("Gardeford");
 	//9999 show 2frogs & Naleen
 	output("The two frog girls dart off into the forest, clutching their wounds as they zip out of sight. They’re surprisingly quiet as they run, but you’re perfectly fine with that. You rush to the fallen huntress, preparing to help her should she be injured. To your surprise she rises as you approach; apart from being covered from head to... tail-tip with a still-damp sheen of kerokoras venom.");
 
@@ -550,6 +557,7 @@ public function encounterNaleenWivCocksGuvnah():void
 public function helpNaleenDeCock():void
 {
 	clearOutput();
+	author("Gardeford");
 	//showNaleen();
 	output("\n\nYou bring out {itemName}, and the over-eager snake snatches it from your hand, practically inhaling it before you can tell her what it is. She waits expectantly for a few seconds before frowning with disappointment.");
 	output("\n\n<i>“How long does this stuff take to start working anyway,”</i> she asks impatiently. You offer her another and she takes it, but after this one she rubs her stomach with an unpleasant look on her face. You bring the third to her lips and she takes it reluctantly, pushing away any further attempts to feed her more. You decide it might be best to ");
@@ -688,6 +696,7 @@ output("\n\nBy the time you pull away from the kiss she seems to have passed out
 //Loss - req's throbb & a vagina
 public function itemRapeAFrogGirl():void
 {
+	author("Gardeford");
 	showFrogGirl();
 	pc.destroyItem(new Throbb(), 1);
 	output("The nimble frog-girl walks up to your helpless body, sighing as she appraises you carefully. After a moment she hops over to you and presses your weakened frame into the ground, apparently having made her decision. As you fall to the floor the contents of your pack spill out around you, and the kerokoras pauses to scan the scattered items. She steps over you to pick something up, and you can see her examining it closely.");
@@ -751,6 +760,7 @@ public function itemRapeAFrogGirl():void
 public function femaleVictoryFacesitting():void
 {
 	clearOutput();
+	author("Gardeford");
 	showFrogGirl();
 	output("You saunter over to your defeated would-be attacker. She’s still breathing heavily from the fight, and can hardly keep herself propped up. You lean down, pressing on her washboard flat chest until she falls to her back with a grunt of frustration. You take advantage of her helpless state to poke and prod at her fit physique, her cords of well defined muscle feeling oddly soft beneath her pliant skin.");
 	output("\n\nShe tries to avert her gaze as you think of a good way to punish her, but in her weakened state she can’t move her head very far. You snicker at her attempts, gently returning her head to a forward facing position. As you do so your fingers brush her lips, and you wonder what they would feel like against [pc.eachVagina].");
