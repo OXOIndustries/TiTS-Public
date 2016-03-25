@@ -1489,7 +1489,7 @@ public function mimbranesComplainAndShit():void
 		{
 			if (mimbraneDebug) trace("Mimbrane Balls are sweating!");
 
-			addMimbraneEvent("It’s actually surprising how comfortable a friendly bath-of-sorts in Mimbrane lubricant can feel compared to when its done in an aggressive fashion. A curtain of oily, tingly lust drapes around your [pc.balls], causing them to effortlessly glide about in your [pc.armor]. The typically oppressive humid shroud that comes as a result of this parasitic perspiration is more pleasant to you as well. Though you still aren’t completely immune to just how much the ongoing oil massage turns you on....");
+			addMimbraneEvent("It’s actually surprising how comfortable a friendly bath-of-sorts in Mimbrane lubricant can feel compared to when it is done in an aggressive fashion. A curtain of oily, tingly lust drapes around your [pc.balls], causing them to effortlessly glide about in your [pc.armor]. The typically oppressive humid shroud that comes as a result of this parasitic perspiration is more pleasant to you as well. Though you still aren’t completely immune to just how much the ongoing oil massage turns you on....");
 		}
 
 		if (pc.hasStatusEffect("Mimbrane Boobs") && pc.statusEffectv1("Mimbrane Boobs") >= 3 && rand(100) <= 3)
@@ -4302,7 +4302,7 @@ public function mimbraneMenu():void
 		}
 		if (pc.statusEffectv1("Mimbrane Face") >= 4)
 		{
-			output2("\nIts also offered to disguise itself as a set of lip piercings.");
+			output2("\nIt's also offered to disguise itself as a set of lip piercings.");
 
 			if (flags["MIMBRANE_FACE_APPEARANCE"] != 2)
 			{
