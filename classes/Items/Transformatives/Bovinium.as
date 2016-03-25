@@ -609,7 +609,7 @@ package classes.Items.Transformatives
 				if (target.hasVagina())
 				{
 					output("\n\nYou look down after a few moments, and realize that your");
-					if (target.isGroinCovered()) output(" [pc.lowerUnderGarments]");
+					if (!target.isCrotchExposed()) output(" [pc.lowerGarments]");
 					else output(" thighs");
 					output(" are soaked in fem-cum. Did you just... cream yourself from daydreaming!?");
 					output("\n\nHot!");
