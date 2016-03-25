@@ -1657,7 +1657,7 @@ public function mimbraneSleepEvents():void
 				output("\n\n");
 				if (flags["MIMBRANE_ASS_REPRODUCTION_NOTICED"] != undefined) output(" You’ve gone through this before, you remember. ");
 				output("The reason you aren’t being traumatized or being artificially thrusted to lust’s end is due to the parasite’s natural inclination to not alert its host to its actions. This one apparently isn’t entirely too concerned whether or not you’re awake for its performance. Hell, if nothing else, the Mimbrane’s only gotten more lively now that it isn’t pressed up against your bed.");
-				output("\n\nJust as your curiousity was to turn to cautious exploration, a numbing sensation overtakes your ass. A worried glare over your shoulder doesn’t alert you to anything new; all it makes out is the continued oddity of your parasitic bottom wiggling out of control. What you can’t see is the dead glaze that’s taken residence in the it’s little eyes. The Mimbrane’s consciousness has faded out from its shell. ");
+				output("\n\nJust as your curiousity was to turn to cautious exploration, a numbing sensation overtakes your ass. A worried glare over your shoulder doesn’t alert you to anything new; all it makes out is the continued oddity of your parasitic bottom wiggling out of control. What you can’t see is the dead glaze that’s taken residence in its little eyes. The Mimbrane’s consciousness has faded out from its shell. ");
 				output("\n\nYou run your hands around your [pc.ass] confirming its lack of feeling. But as you run your finger close to your [pc.asshole], it suddenly clenches shut with amazing force! Your finger is unable to find any sort of purchase from what was once a cavernous wet den. Your only guess is that the Mimbrane would rather not have its hole penetrated in any fashion right at the moment. You’re too groggy to get upset over this and challenge the little monster.");
 				output("\n\nA peeling sensation from within your cheeks surprises you next. The parasite must be separating from its second skin. You can make out your new, smaller cheeks as they flex and pull against your [pc.ass]. It’s as if a comically large bandage were being taken off piece by piece from your supple fresh [pc.skin]. Soon, air slinks in and kisses your bottom, letting you know that the parasite has managed to get the edges of its former flesh free. The sensation also alerts you to how moist and tender your behind is. Unbeknownst to you, your new cheeks are covered in a film of Mimbrane sweat.");
 				output("\n\nA final tingling peel right at your still-clamped asshole is all that’s left of the parasite’s work.");
@@ -4296,13 +4296,13 @@ public function mimbraneMenu():void
 		else if (flags["MIMBRANE_FACE_APPEARANCE"] == 2)
 		{
 			addDisabledGhostButton(12, "Face Lip Pc.Ing");
-			output2("\nIt's eyes currently resemble a pair of lip piercings.");
+			output2("\nIts eyes currently resemble a pair of lip piercings.");
 			output2("\nYou could ask it to hide itself as much as possible.");
 			output2("\nYou could also ask it to disguise its eyes as beauty marks.");
 		}
 		if (pc.statusEffectv1("Mimbrane Face") >= 4)
 		{
-			output2("\nIt's also offered to disguise itself as a set of lip piercings.");
+			output2("\nIts also offered to disguise itself as a set of lip piercings.");
 
 			if (flags["MIMBRANE_FACE_APPEARANCE"] != 2)
 			{
@@ -4695,7 +4695,7 @@ public function feedMimbranesWithPussy():void
 
 	if (pc.hasStatusEffect("Mimbrane Cock"))
 	{
-		output("\n\nYour eager [pc.cock] can’t help but feel a tad betrayed as you milk your cooch for all it's worth. The Mimbrane member is too engorged on blood, rocking through your ever-ascending sexual high, to bend down towards the");
+		output("\n\nYour eager [pc.cock] can’t help but feel a tad betrayed as you milk your cooch for all its worth. The Mimbrane member is too engorged on blood, rocking through your ever-ascending sexual high, to bend down towards the");
 		if (pc.wetness() <= 1) output(" brook");
 		else if (pc.wetness() == 2) output(" stream");
 		else if (pc.wetness() <= 3) output(" river");
