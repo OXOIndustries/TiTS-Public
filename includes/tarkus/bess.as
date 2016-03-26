@@ -10434,7 +10434,7 @@ public function bessMorningMessages():void
 	msg += " over you, trailing";
 	if (bess.biggestTitSize() > 0) msg += " them";
 	else msg += " it";
-	msg += " along your [pc.skinFurScalesNoun]. <i>“... Morning, "+ bessPCName() +".”</i> [bess.HisHer] voice practically purrs.";
+	msg += " along your [pc.skinFurScalesNounSimple]. <i>“... Morning, "+ bessPCName() +".”</i> [bess.HisHer] voice practically purrs.";
 
 	msgs.push(msg);
 
@@ -12410,9 +12410,17 @@ public function bessBreastFeed(opts:Array = null):void
 	if (bess.hasCock() || bess.hasVagina())
 	{
 		output(" [bess.HisHer] thighs are a mess with");
-		if (bess.hasCock()) output(" [bess.cum]");
-		if (bess.hasCock() && bess.hasVagina()) output(" and");
-		if (bess.hasVagina()) output(" [bess.girlCum]");
+		if(bess.cumType != bess.girlCumType)
+		{
+			if (bess.hasCock()) output(" [bess.cum]");
+			if (bess.hasCock() && bess.hasVagina()) output(" and");
+			if (bess.hasVagina()) output(" [bess.girlCum]");
+		}
+		else
+		{
+			if (bess.hasCock()) output(" [bess.cum]");
+			else output(" [bess.girlCum]");
+		}
 		output(", occasionally twitching as [bess.heShe] falls back on the ground. [bess.HisHer] nipples really are sensitive!");
 	}
 
@@ -13201,7 +13209,7 @@ public function bessEventMap(bChance:Boolean = false):void
 		if (flags["BESS_EVENT_17"] != undefined)
 		{
 			output("\n<b>* Event 17:</b> Completed");
-			if (bChance && flags["BESS_EVENT_10"] == undefined)
+			if (bChance && flags["BESS_EVENT_18"] == undefined)
 			{
 				nTimer = flags["BESS_EVENT_17"] + (1.5 * 24 * 60);
 				output("\n<b>* Next Event:</b> <i>Pending</i>");
@@ -13213,7 +13221,7 @@ public function bessEventMap(bChance:Boolean = false):void
 		if (flags["BESS_EVENT_18"] != undefined)
 		{
 			output("\n<b>* Event 18:</b> Completed");
-			if (bChance && flags["BESS_EVENT_10"] == undefined)
+			if (bChance && flags["BESS_EVENT_19"] == undefined)
 			{
 				nTimer = flags["BESS_EVENT_18"] + (2 * 24 * 60);
 				var e19Chance:int = 1;
@@ -13225,14 +13233,15 @@ public function bessEventMap(bChance:Boolean = false):void
 				if (bessAffection() < 70) output(" and 70% affection");
 			}
 		}
-	}
-	if (flags["BESS_LOVER"] != undefined)
-	{
 		if (flags["BESS_EVENT_19"] != undefined)
 		{
 			output("\n<b>* Event 19:</b> Completed");
 			if (flags["BESS_EVENT_19_REJECTION"] == 1) output(", [bess.name] has been rejected");
 		}
+	}
+	if (flags["BESS_LOVER"] != undefined)
+	{
+		output("\n<b><u>Lover Events</u></b>");
 		if (flags["BESS_EVENT_20"] != undefined)
 		{
 			output("\n<b>* Event 20:</b> Completed");
@@ -13343,6 +13352,7 @@ public function bessEventMap(bChance:Boolean = false):void
 			if (flags["BESS_EVENT_25_SPINOFF"] == 1) output(", [bess.name] is upset");
 		}
 	}
+	output("\n\n");
 	
 	clearMenu();
 	if (!bChance) addButton(0, "Hint: Off", bessEventMap, true, "Hints", "Toggle hints on.");

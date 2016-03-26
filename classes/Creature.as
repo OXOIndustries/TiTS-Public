@@ -1482,6 +1482,12 @@
 				case "skinFurScalesNoun":
 					buffer = skinNoun(false);
 					break;
+				case "skinNounSimple":
+					buffer = skinNoun(true, true);
+					break;
+				case "skinFurScalesNounSimple":
+					buffer = skinNoun(false, true);
+					break;
 				case "skinFurScalesColor":
 					buffer = skinFurScalesColor();
 					break;
@@ -8905,7 +8911,7 @@
 			if (rando == 6) desc += "teste";
 			if (rando == 7) desc += "gonad";
 			if (rando == 8) desc += "nut";
-			if (balls > 0 || !forceSingular) desc += "s";
+			if (balls != 1 && !forceSingular) desc += "s";
 			return desc;
 		}
 		public function ballDescript(forceCount: Boolean = false, forcedSize: Boolean = false): String {
@@ -8925,7 +8931,7 @@
 			}
 			else if (rando <= 7) desc += "gonad";
 			else desc += "nut";
-			if (asPlural) desc = plural(desc);
+			if (asPlural && balls != 1) desc = plural(desc);
 			return desc;
 		}
 		public function assholeDescript(): String {
