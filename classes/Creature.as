@@ -8101,11 +8101,13 @@
 		public function removeVaginasUnlocked():Boolean
 		{
 			if (hasStatusEffect("Mimbrane Pussy")) return false;
+			if (isPregnant(0) || isPregnant(1) || isPregnant(2)) return false;
 			return true;
 		}
 		public function removeVaginasLockedMessage():String
 		{
 			if (hasStatusEffect("Mimbrane Pussy")) return "A powerful stretching overtakes your " + vaginaDescript(0) + ", your Mimbrane is doing everything in its power to keep the feminine canyon from vanishing. Seems you won’t be able to get rid of your pussy so long as the parasite is in control of it.";
+			if (isPregnant(0) || isPregnant(1) || isPregnant(2)) return "A powerful sensation can be felt in your womb. Your body actively fights the change, keeping you from losing your pregnant vagina entirely.";
 			else return "Your body practically glows with groin-focused effort, keeping you from losing your genitalia entirely.";
 		}
 
