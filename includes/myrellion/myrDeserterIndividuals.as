@@ -67,8 +67,8 @@ public function showDeserter(gold:Boolean = false,nude:Boolean = false):void
 	{
 		if(flags["KNOW_GOLD_MYR_NAME"] == undefined) showName("GOLD MYR\nDESERTER");
 		else showName("\nLYS");
-		if(nude) showBust("MYR_GOLD_FEMALE_DESERTER_NUDE");
-		else showBust("MYR_GOLD_FEMALE_DESERTER");
+		if(nude) showBust("LYS_NUDE");
+		else showBust("LYS");
 	}
 	else
 	{

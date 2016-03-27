@@ -221,7 +221,7 @@ public function appearance(forTarget:Creature):void
 			if(target.skinType == GLOBAL.SKIN_TYPE_SKIN || target.skinType == GLOBAL.SKIN_TYPE_GOO) output2(" Your face is covered in " + target.skin(true,true) + ".");
 			else output2(" Strangely enough, your face is also covered with " + target.skin(true,true) + ".");
 		}
-		
+		if(target.hasStatusEffect("Naoki Stripe") && pc.skinTone != "purple") output2(" A distinctive purple stripe runs across the bridge of your nose.");
 		//M/F stuff!
 		output2(" Overall, your visage has " + target.faceDesc() + ".");
 		//Eyes

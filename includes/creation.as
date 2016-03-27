@@ -1240,8 +1240,15 @@ public function setClass(arg:int = 0):void {
 		pc.upperUndergarment = new classes.Items.Apparel.PlainUndershirt() // (items["11"]);
 	else 
 		pc.upperUndergarment = new classes.Items.Apparel.PlainBra() // (items["10"]);
-	tutorialSkipOption();
-	pc.maxOutHP();
+	if(customPCCheck(false)) 
+	{
+		nameOfDestinyChoice();
+	}
+	else
+	{
+		tutorialSkipOption();
+		pc.maxOutHP();
+	}
 }
 
 //Tutorial Skip Option

@@ -95,6 +95,7 @@
 		include "../includes/CodexEntries.as";
 		include "../includes/CodexFiction.as";
 		include "../includes/creation.as";
+		include "../includes/creation_custom_PCs.as";
 		include "../includes/debug.as";
 		include "../includes/dynamicGrowth.as";
 		include "../includes/engine.as";
