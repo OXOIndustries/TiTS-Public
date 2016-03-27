@@ -141,6 +141,11 @@
 		public var Bust_LYRALLA:Class;
 		[Embed(source = "../../../assets/images/npcs/jacques00/lyralla_nude.png", mimeType = "image/png")]
 		public var Bust_LYRALLA_NUDE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/adjatha/lys.png", mimeType = "image/png")]
+		public var Bust_LYS:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/lys_nude.png", mimeType = "image/png")]
+		public var Bust_LYS_NUDE:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/jacques00/queen_marsail.png", mimeType = "image/png")]
 		public var Bust_MARSAIL:Class;
@@ -150,12 +155,12 @@
 		
 		[Embed(source = "../../../assets/images/npcs/jay_echo/mayren.png", mimeType = "image/png")]
 		public var Bust_MAYREN:Class;
-		
+		/*
 		[Embed(source = "../../../assets/images/npcs/millie.png", mimeType = "image/png")]
 		public var Bust_MILLIE:Class;
 		[Embed(source = "../../../assets/images/npcs/millie_nude.png", mimeType = "image/png")]
 		public var Bust_MILLIE_NUDE:Class;
-		
+		*/
 		[Embed(source = "../../../assets/images/npcs/jacques00/myr_gold_pilot.png", mimeType = "image/png")]
 		public var Bust_MYR_GOLD_PILOT:Class;
 		[Embed(source = "../../../assets/images/npcs/jacques00/myr_gold_soldier.png", mimeType = "image/png")]
