@@ -74,6 +74,9 @@ package classes.Resources
 		[Embed(source = "../../assets/icons/statuseffects/drug-vial.svg", mimeType = "image/svg")]
 		public static var Icon_DrugVial:Class;
 		
+		[Embed(source = "../../assets/icons/statuseffects/gears_three.svg", mimeType = "image/svg")]
+		public static var Icon_Gears_Three:Class;
+
 		[Embed(source = "../../assets/icons/statuseffects/haste.svg", mimeType = "image/svg")]
 		public static var Icon_Haste:Class;
 

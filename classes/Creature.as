@@ -3218,6 +3218,7 @@
 			bonus += perkv1("Inhuman Desire");
 			//trace("Max lust: " + (bonus + 100));
 			if(hasPerk("Venom Slut") && hasStatusEffect("Red Myr Venom")) bonus += 35;
+			if(hasStatusEffect("Perfect Simulant")) bonus += 50;
 			return (100 + bonus);
 		}
 		public function lustMin(): Number {
@@ -3235,24 +3236,34 @@
 		public function physiqueMax(): Number {
 			var bonuses:int = 0;
 			if(hasStatusEffect("Quivering Quasar")) bonuses += 5;
+			if(hasStatusEffect("Perfect Simulant")) bonuses += 3;
 			return level * 5 + bonuses;
 		}
 		public function reflexesMax(): Number {
-			return level * 5;
+			var bonuses:int = 0;
+			if(hasStatusEffect("Perfect Simulant")) bonuses += 3;
+			return level * 5 + bonuses;
 		}
 		public function aimMax(): Number {
-			return level * 5;
+			var bonuses:int = 0;
+			if(hasStatusEffect("Perfect Simulant")) bonuses += 3;
+			return level * 5 + bonuses;
 		}
 		public function intelligenceMax(): Number {
 			var bonuses:int = 0;
 			if(hasPerk("Cybernetic Synchronization")) bonuses += (perkv1("Cybernetic Synchronization") * cyborgScore());
+			if(hasStatusEffect("Perfect Simulant")) bonuses += 3;
 			return level * 5 + bonuses;
 		}
 		public function willpowerMax(): Number {
-			return level * 5;
+			var bonuses:int = 0;
+			if(hasStatusEffect("Perfect Simulant")) bonuses += 3;
+			return level * 5 + bonuses;
 		}
 		public function libidoMax(): Number {
-			return 100;
+			var bonuses:int = 0;
+			if(hasStatusEffect("Perfect Simulant")) bonuses += 50;
+			return 100 + bonuses;
 		}
 		public function libidoMin(): Number {
 			var bonus:int = 0;
