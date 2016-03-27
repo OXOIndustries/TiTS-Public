@@ -467,7 +467,6 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.ballSizeRaw = 18;
 			if(!pc.hasVagina()) pc.createVagina();
 			pc.vaginas[0].wetnessRaw = 3;
-			pc.tallness = 11;
 			pc.tone = 70;
 			pc.thickness = 30;
 			pc.skinType = GLOBAL.SKIN_TYPE_SCALES;
