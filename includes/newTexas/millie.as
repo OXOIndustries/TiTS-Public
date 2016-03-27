@@ -47,8 +47,8 @@ public function approachMillie():void
 		output("\n\nYou’d be a bit more awestruck if she weren’t wearing a pair of overalls that could double as a one-piece swimsuit, or if those same overalls weren’t straining to contain an out-of-this-world rack. She could probably pin a normal terran in her canyon-like cleavage");
 
 		if(CodexManager.entryUnlocked("Raskvel")) output("... or two or three raskvel besides");
-		output(" if she so desired, and she’s built just thick enough that she that she could probably manage it. Her thighs, cushy as they are, still look strong enough to ");
-		if(!silly) output("pin you there for an eternity of lovemaking");
+		output(" if she so desired, and she’s built just thick enough that she that she could probably collar any escapees just as easily. Her thighs, cushy as they are, still look strong enough to ");
+		if(!silly) output("trap you there for an eternity of lovemaking");
 		else output("crush a man’s head like a sparrow’s egg");
 		output(". She looks like she knows it too.");
 
@@ -80,7 +80,7 @@ public function approachMillie():void
 		else output("the other cows get their tits drained properly. A little companionship goes a long way on New Texas.");
 		output(" And well, if a bull ");
 		if(pc.isTreated() && pc.isBro() && pc.hasCock()) output("like you ");
-		output("wanders in here, I can... take care of him too.”</i> She licks her lips, redoubling their shine, and her thighs ease apart. A damp patch is evident in the middle of the straining denim she wears. <i>“I’ve even got some enhancers for visitors who would like to try out what its like to be Treated without taking the plunge.”</i> She rolls her eyes. <i>“We could just talk too.”</i> She tips her head indicating a nearby tablet. <i>“You listen to any music?”</i>");
+		output("wanders in here, I can... take care of him too.”</i> She licks her lips, redoubling their shine, and her thighs ease apart. A damp patch is evident in the middle of the straining denim she wears. <i>“I’ve even got some enhancers for visitors who would like to try out what its like to be Treated without taking the plunge.”</i> She rolls her eyes. <i>“We could just talk, too.”</i> She tips her head indicating a nearby tablet. <i>“You listen to any music?”</i>");
 		if(pc.hasCock()) output(" Her eyes flick back toward your crotch. <i>“Ever fuck while listening to metal?”</i>");
 	}
 	//Meeting Repeat
