@@ -1,4 +1,6 @@
 ﻿import classes.Characters.Anno;
+import classes.Characters.KQ2BlackVoidGrunt;
+import classes.Characters.KQ2SecurityDroid;
 import classes.Characters.PlayerCharacter;
 import classes.Characters.Saendra;
 import classes.Characters.SX1GroupPirates;
@@ -313,13 +315,39 @@ public function debugMenusThree():void
 	clearOutput();
 	output("Debug combat room.");
 	
-	addButton(0, "1v1", pcVsOneEnemy);
-	addButton(1, "1v2", pcVsTwoEnemies);
-	addButton(2, "2v1", pcPlusAnnoVsOneEnemy);
-	addButton(3, "2v2", pcPlusAnnoVsTwoEnemies);
-	addButton(4, "CGoo T1", testGooT1);
-	addButton(5, "CGoo T2", testGooT2);
-	addButton(10, "SUPERTIME", superTimePassage);
+	addButton(0, "Busts", testBusts);
+	addButton(1, "NoBusts", testNoBusts);
+	addButton(2, "Others", testOtherBusts);
+}
+
+public function testOtherBusts():void
+{
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters([new KQ2BlackVoidGrunt(), new KQ2BlackVoidGrunt()]);
+	CombatManager.victoryScene(function():void { CombatManager.genericVictory(); } );
+	CombatManager.lossScene(function():void { CombatManager.genericLoss(); } );
+	CombatManager.beginCombat();
+}
+
+public function testBusts():void
+{
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters([new SecurityDroids(), new SecurityDroids()]);
+	CombatManager.victoryScene(function():void { CombatManager.genericVictory(); } );
+	CombatManager.lossScene(function():void { CombatManager.genericLoss(); } );
+	CombatManager.beginCombat();
+}
+
+public function testNoBusts():void
+{
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters([new KQ2SecurityDroid(), new KQ2SecurityDroid()]);
+	CombatManager.victoryScene(function():void { CombatManager.genericVictory(); } );
+	CombatManager.lossScene(function():void { CombatManager.genericLoss(); } );
+	CombatManager.beginCombat();
 }
 
 public function testGooT1():void
