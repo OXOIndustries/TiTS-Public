@@ -4393,6 +4393,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					var unlockLength:Number = 10080;
 					if(flags["EARLY_LETS_FAPS"] != undefined) unlockLength = 7200;
 					output2(", Next video release");
+					if(GetGameTimestamp() - flags["LETS_FAP_RELEASE_TIMER"] < unlockLength) output2(" ready after " + prettifyMinutes(unlockLength - (GetGameTimestamp() - flags["LETS_FAP_RELEASE_TIMER"])));
 					else output2(" at 13:00");
 				}
 			}
