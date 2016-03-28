@@ -4388,6 +4388,13 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["CUMSTREAM_UNLOCKED"] != undefined) output2(", Geyser Tier");
 				else if(flags["EARLY_LETS_FAPS"] != undefined) output2(", Hydrant Tier");
 				else output2(", Faucet Tier");
+				if(flags["LETS_FAP_RELEASE_TIMER"] != undefined)
+				{
+					var unlockLength:Number = 10080;
+					if(flags["EARLY_LETS_FAPS"] != undefined) unlockLength = 7200;
+					output2(", Next video release");
+					else output2(" at 13:00");
+				}
 			}
 			miscCount++;
 		}
