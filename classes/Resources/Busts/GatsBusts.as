@@ -117,6 +117,11 @@
 		[Embed(source = "../../../assets/images/npcs/gats/Machina.png", mimeType = "image/png")]
 		public var Bust_MACHINA:Class;
 
+		[Embed(source = "../../../assets/images/npcs/gats/millie.png", mimeType = "image/png")]
+		public var Bust_MILLIE:Class;
+		[Embed(source = "../../../assets/images/npcs/gats/millie_nude.png", mimeType = "image/png")]
+		public var Bust_MILLIE_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/gats/Mimbrane.png", mimeType = "image/png")]
 		public var Bust_MIMBRANE:Class;
 

@@ -3218,6 +3218,7 @@
 			bonus += perkv1("Inhuman Desire");
 			//trace("Max lust: " + (bonus + 100));
 			if(hasPerk("Venom Slut") && hasStatusEffect("Red Myr Venom")) bonus += 35;
+			if(hasStatusEffect("Perfect Simulant")) bonus += 50;
 			return (100 + bonus);
 		}
 		public function lustMin(): Number {
@@ -3235,24 +3236,34 @@
 		public function physiqueMax(): Number {
 			var bonuses:int = 0;
 			if(hasStatusEffect("Quivering Quasar")) bonuses += 5;
+			if(hasStatusEffect("Perfect Simulant")) bonuses += 3;
 			return level * 5 + bonuses;
 		}
 		public function reflexesMax(): Number {
-			return level * 5;
+			var bonuses:int = 0;
+			if(hasStatusEffect("Perfect Simulant")) bonuses += 3;
+			return level * 5 + bonuses;
 		}
 		public function aimMax(): Number {
-			return level * 5;
+			var bonuses:int = 0;
+			if(hasStatusEffect("Perfect Simulant")) bonuses += 3;
+			return level * 5 + bonuses;
 		}
 		public function intelligenceMax(): Number {
 			var bonuses:int = 0;
 			if(hasPerk("Cybernetic Synchronization")) bonuses += (perkv1("Cybernetic Synchronization") * cyborgScore());
+			if(hasStatusEffect("Perfect Simulant")) bonuses += 3;
 			return level * 5 + bonuses;
 		}
 		public function willpowerMax(): Number {
-			return level * 5;
+			var bonuses:int = 0;
+			if(hasStatusEffect("Perfect Simulant")) bonuses += 3;
+			return level * 5 + bonuses;
 		}
 		public function libidoMax(): Number {
-			return 100;
+			var bonuses:int = 0;
+			if(hasStatusEffect("Perfect Simulant")) bonuses += 50;
+			return 100 + bonuses;
 		}
 		public function libidoMin(): Number {
 			var bonus:int = 0;
@@ -8090,11 +8101,13 @@
 		public function removeVaginasUnlocked():Boolean
 		{
 			if (hasStatusEffect("Mimbrane Pussy")) return false;
+			if (isPregnant(0) || isPregnant(1) || isPregnant(2)) return false;
 			return true;
 		}
 		public function removeVaginasLockedMessage():String
 		{
 			if (hasStatusEffect("Mimbrane Pussy")) return "A powerful stretching overtakes your " + vaginaDescript(0) + ", your Mimbrane is doing everything in its power to keep the feminine canyon from vanishing. Seems you won’t be able to get rid of your pussy so long as the parasite is in control of it.";
+			if (isPregnant(0) || isPregnant(1) || isPregnant(2)) return "A powerful sensation can be felt in your womb. Your body actively fights the change, keeping you from losing your pregnant vagina entirely.";
 			else return "Your body practically glows with groin-focused effort, keeping you from losing your genitalia entirely.";
 		}
 

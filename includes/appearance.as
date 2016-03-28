@@ -50,7 +50,7 @@ public function appearance(forTarget:Creature):void
 			output2("You started your journey as " + indefiniteArticle(target.originalRace) + ", but you’ve become "+indefiniteArticle(target.race())+" over the course of your adventures.");
 		}
 		output2(" You’re a good " + Math.floor(target.tallness / 12) + " feet");
-		if(target.tallness % 12 != 0) output2(" and " + target.tallness % 12 + " inches");
+		if(target.tallness % 12 != 0) output2(" and " + Math.round(target.tallness % 12) + " inches");
 		output2(" tall by ancient imperial measurements and " + Math.round(target.tallness * 0.0254 * 100)/100 + " meters in the more accepted metric system.");
 		output2(" Right now, you’re");
 		if(target.isNude() || target.armor is EmptySlot) output2(" not wearing a single scrap of armor,");
@@ -221,7 +221,7 @@ public function appearance(forTarget:Creature):void
 			if(target.skinType == GLOBAL.SKIN_TYPE_SKIN || target.skinType == GLOBAL.SKIN_TYPE_GOO) output2(" Your face is covered in " + target.skin(true,true) + ".");
 			else output2(" Strangely enough, your face is also covered with " + target.skin(true,true) + ".");
 		}
-		
+		if(target.hasStatusEffect("Naoki Stripe") && pc.skinTone != "purple") output2(" A distinctive purple stripe runs across the bridge of your nose.");
 		//M/F stuff!
 		output2(" Overall, your visage has " + target.faceDesc() + ".");
 		//Eyes

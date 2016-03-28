@@ -217,7 +217,7 @@
 		
 		override public function get bustDisplay():String
 		{
-			return "MYR_GOLD_FEMALE_DESERTER";
+			return "LYS";
 		}
 		
 		override public function isPregnant(x:int = 0):Boolean
