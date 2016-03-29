@@ -655,6 +655,8 @@ public function shipMenu():Boolean {
 	rooms["SHIP INTERIOR"].outExit = shipLocation;
 	
 	setLocation("SHIP\nINTERIOR", rooms[rooms["SHIP INTERIOR"].outExit].planet, rooms[rooms["SHIP INTERIOR"].outExit].system);
+
+	if(shipLocation == "KIROS SHIP AIRLOCK") output("\n\n<b>You're parked in the hangar of the distressed ship. You can step out to investigate at your leisure.</b>");
 	
 	// Lane follower hook
 	if (tryFollowerLaneIntervention())
