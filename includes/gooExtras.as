@@ -228,7 +228,7 @@ public function galoMaxTFProc():void
 		if(pc.hasFur() || pc.hasScales() || pc.hasFeathers()) output(", nor your [pc.skinFurScales]");
 		output(". You’re just getting... warm... kind of hot really. Like sitting in a tub with water that’s a touch too warm, or snuggling into a hot-blooded lover’s arms while the climate control is on the fritz. That warmth flows radiates out through your whole body, but most of it sinks down, a thick flow that settles deep into your crotch to glow with unnatural lust.");
 		pc.girlCumType = GLOBAL.FLUID_TYPE_SPECIAL_GOO;
-		pc.cumType = GLOBAL.FLUID_TYPE_SPECIAL_GOO;
+		pc.cumType = GLOBAL.FLUID_TYPE_SPECIAL_CUMGOO;
 		//Neuters grow a cunt
 		if(!pc.hasGenitals())
 		{
@@ -678,6 +678,8 @@ public function revertGooBody(part:String = "all", consumeBiomass:Boolean = fals
 public function gooShiftMenu():void
 {
 	clearOutput2();
+	//Fix cumstuff
+	if(pc.cumType == GLOBAL.FLUID_TYPE_SPECIAL_GOO) pc.cumType = GLOBAL.FLUID_TYPE_SPECIAL_CUMGOO;
 	output2("Now that you’re ");
 	if(!pc.isGoo()) output2("part");
 	else output2("a");

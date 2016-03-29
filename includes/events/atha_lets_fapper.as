@@ -202,6 +202,8 @@ public function letsFapSelectionMenu():void
 		else if(letsFapTrack() == 4) flags["LETS_FAP_LATEST"] = letsFapOvir;
 		else if(letsFapTrack() == 5) flags["LETS_FAP_LATEST"] = letsFapRahnScene;
 		else if(letsFapTrack() == 6) flags["LETS_FAP_LATEST"] = letsFapCockTail;
+		//if letsFapTrack returns a garbage value, reset
+		else flags["LETS_FAP_LATEST"] = letsFapAusar;
 	}
 	addButton(0,"Latest Episode",flags["LETS_FAP_LATEST"],undefined,"Latest Episode","Watch the latest episode of Let's Fap!");
 	if(flags["LETS_FAP_ARCHIVES"] != undefined)

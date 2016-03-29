@@ -174,11 +174,21 @@ public function soloMilkingFromMillieAttempt():void
 	showName("\nMILLIE");
 	showBust("MILLIE");
 	output("You inform her that you’d like to use the milkers by yourself.");
-	output("\n\nMillie laughs at that. <i>“Why come to the milk barn if you don’t want a pair of warm hands to massage you while you’re letting down? If you wanna pump your boobs by yourself, go get one of those JoyCo milkers.”</i> She rolls her eyes as if she just said something ridiculous. <i>“Now, you wanna have some fun or not?”</i>");
-	processTime(1);
-	
-	clearMenu();
-	addButton(0,"Next",millieMenu);
+	if(!pc.hasPerk("Mega Milk"))
+	{
+		output("\n\nMillie laughs at that. <i>“Why come to the milk barn if you don’t want a pair of warm hands to massage you while you’re letting down? If you wanna pump your boobs by yourself, go get one of those JoyCo milkers.”</i> She rolls her eyes as if she just said something ridiculous. <i>“Now, you wanna have some fun or not?”</i>");
+		processTime(1);
+		clearMenu();
+		addButton(4,"Back",millieMenu);
+		addButton(1,"Push For It",soloMilkingUpgrade,undefined,"Push For It","Push for Millie to let you get a proper, private milking. Sure some of the girls in the other stalls are by themselves.");
+	}
+	else
+	{	
+		output("\n\nMillie laughs at that. <i>“No way. If I let you in there again, you'll push a bunch of random buttons again. Besides, my ass is still sore from the reaming Mr. Tee gave me.”</i> She rubs at her sore behind. <i>“Sure would've been nice if the Treatment had given my asshole the same tune-up as my vagina.”</i>");
+		processTime(1);
+		clearMenu();
+		addButton(4,"Back",millieMenu);
+	}
 }
 
 //Get Milked
@@ -1037,6 +1047,169 @@ public function millieSucksTitsVol2():void
 		pc.removeStatusEffect("Temporary Treatment");
 	}
 	processTime(24);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+
+//CUSTOM OFFBEATR: 1 Female Lactation, Milking Mishap IE: Milking Machine won't shut off and leads to Orgasm
+//Enubata
+public function soloMilkingUpgrade():void
+{
+	clearOutput();
+	showName("\nMILKING!");
+	//Bimbo
+	if(pc.isBimbo()) 
+	{
+		output("<i>“Come ooon! I can be a boob-milk girl too! ");
+		if(pc.hairLength >= 6) output("You twirl a lock of your hair a little brainlessly");
+		else output("You put on your best pout");
+		output(" and add, <i>“Pleeeeease?”</i>");
+	}
+	//Else
+	else
+	{
+		output("<i>“JoyCo milkers are nothing like this, and I’d like to have some privacy while I do it");
+		if(pc.isNice()) output(", if that’s not too much to ask");
+		output(".”</i>");
+	}
+	//mergebuns
+	output("\n\nMillie looks at you hesitantly, chewing her lower lip back and forth while she mulls it over. Her brow knots, but then she begins to idly rub at a barrel-sized breast, quietly cooing while her thoughtful expression fades. <i>“Yah... sure. Whatever. I needed a break anyway. Maybe Yancy’s free. Just make sure you don’t touch uhm... anything I wouldn’t touch. That thing has a lot of functions that you might not like... at first.”</i> Millie giggles, grabs her tablet, and saunters out the stall door, leaving you with one last tip: <i>“Be sure to enjoy yourself! A moaning cow is a milky cow!”</i>");
+	output("\n\n");
+	if(pc.isTreated()) output("What’s she take you for, an amateur? Of course you’re going to moan - probably scream too. What treated girl wouldn’t?");
+	else if(pc.isBimbo()) output("That sounds super double-dooper fun! You can’t wait to get hooked up to the machine and give it a try. Maybe you’ll even get cum from it!");
+	else if(pc.exhibitionism() >= 66) output("At first, the idea offends your sensibilities, but the more you think about moaning like some kind of wanton, lust-drunk cow for anyone to hear, the more the idea appeals to you. Anyone could hear you and come looking for the source of the sound, and they’d find you all naked and helplessly aroused! The idea sends delightful shivers down your spine.");
+	else output("As if. Well, if it feels that good, maybe, but you have no intention of sounding quite as whorish as the rest of the girls in this barn.");
+	output(" First thing’s first: ");
+	if(!pc.isChestExposed()) output("you’ve got to free these [pc.milkNoun]-laden puppies. You wiggle out of your [pc.upperGarments anxiously.");
+	else output("you’ve got to stop being distracted by the lewdness surrounding you and activate the machine, but it’s so hard!");
+	output(" The air here is warm and humid, almost moist, and it tickles so pleasantly across your [pc.nipples], filthy pheromones and an aura of hedonistic pleasure.");
+	output("\n\nYou walk up to the machine");
+	if(pc.biggestTitSize() >= 6) output(", moving carefully to so as not to accidentally bump any buttons with your burdensome breasts or jutting teats");
+	output(", looking over the buttons, gauges and knobs uncertainly. Most of them aren’t even labelled. The circular gauge is definitely there to report the PSI of something, and the big green button with a cartoonish cow-face will obviously begin the milking cycle. You go ahead and press it, listening to the gentle whirr of the motor revving up, but how do you control the intensity? How do you turn it off?");
+	output("\n\nThen you see it: a button <i>way</i> off to the side with a picture of a giant-sized milk-jug and the word <i>“auto-e”</i> printed below it. Perfect! An automatic milking is just what you need. You go ahead and slap it down, then reach for the quietly humming cups. They’re already faintly sucking, just waiting for you to hold them against a breast and allow them to seal around your [pc.nipples]. Grinning, you hold one up to your left breast and let it take hold, gasping when it forms a perfect seal and tugs the [pc.nipple] out");
+	if(pc.hasInvertedNipples()) output(", popping it out of hiding");
+	output(". You waste no time in putting the other in position");
+	if(pc.totalNipples() > 2) 
+	{
+		output(", but you’re just getting started. You have more nipples that need milking! You find reserve tubes in a drawer and hook them up one after another, surrounding every potential milk-spout in its own, individually suckling chamber");
+		if(pc.totalNipples() >= 6) output(". Never mind that you like an actual cow with so many tubes hanging off of you");
+	}
+	output(".");
+	//Spurty lactation levels
+	if(pc.canMilkSquirt())
+	{
+		output("\n\n[pc.Milk] gushes out before you can even finish hooking yourself up. The relief is palpable; all that pressure venting out from you is dizzyingly wonderful, and you stagger back to lie down on a padded bench, lest you collapse, gushing fluid.");
+		output("\n\nThe soft whirr emanating from the device pitches up to a straining hum, and vacuum pressure around your [pc.nipples] doubles, almost painfully so. This isn’t the relaxing milking you expected! Instead of getting to relax while your frothing fluids are harvested, you’re arching your back and struggling not to cry out. The machine, true to its thoughtless nature, mercilessly draws the [pc.milkNoun] from your body as if you free-flowing squirting wasn’t enough. Noisily, it pulses, lewdly slurping to quench an inexhaustible, robotic thirst.");
+		output("\n\nYou whimper. There is an undeniable erotic thrill to being treated so roughly, but the pain rhythmically coursing through your tender [pc.nipplesNoun] more freely than your [pc.milkNoun] keeps you from truly enjoying yourself. The best you can do is tough it out. At this rate, you’ll be drained dry in no time. The primary storage tank is already sloshing, mostly filled.");
+		output("\n\nGritting your teeth, you close your eyes and wait, almost relieved when your [pc.milkNoun]-flow slows to a less-enthusiastic trickle. Surely the auto function will shut off soon.");
+		output("\n\nBut it doesn’t.");
+		output("\n\nYou [pc.chest] ache. Your [pc.nipples] feel puffy and raw, beyond fully engorged and stretched out into an obscene parody of themselves. You squirt weakly, then subside to a slow dribble. The milker’s cups begin to clear now that your effusive output can drain away, but they do not slow. They suck, noisily, relentlessly, hungry for more than you could ever give.");
+	}
+	//Reluctant lactation levels
+	else
+	{
+		output("\n\n[pc.Milk] doesn’t gush on out immediately, but once the gentle, rhythmic vacuum pressure begins in earnest, your body willingly dispenses its nutritious bounty for the sophisticated device. You stagger back to lie back on the bench, intent on enjoying a gradual, languid draining of your boobs.");
+		output("\n\nYou don’t get to. The gentle whir of the machine gradually pitches up to an angry hum, ratcheting up the suction lockstep with the tone. [pc.Milk] sprays out of you faster than you would think possible, painful and pleasurable. Your [pc.nipples] look obscenely distended under the rapacious onslaught, and the puff up bigger moment by moment. It’s uncomfortable as hell, yet more than a little arousing. You flush at the knowledge of how violently this machine is taking advantage of you, whimpering from something between pleasure and pain.");
+		output("\n\nIt doesn’t stay that way for long. How could it when the milker is pumping you harder than you’ve ever been in your life. Squirming uncomfortably, you groan and whine, feeling your flow slow to a trickle. Your [pc.nipples] are reddish and irritated, but the damned machine is still tugging on you, demanding something you can no longer give. The fucking ‘auto’ mode isn’t turning off! If anything, it’s sucking even harder!");
+		if(pc.isTreated() && pc.isBimbo()) output(" Maybe other cow-girls might like this sort of thing, but it’s rough even for them.");
+		else output(" You don’t understand why the cow-girls here would put up with something like this.");
+	}
+	pc.milked(100);
+	//[Next]
+	pc.lust(5);
+	processTime(10);
+	clearMenu();
+	addButton(0,"Next",soloMilkerFunTimesRaep);
+}
+
+public function soloMilkerFunTimesRaep():void
+{
+	clearOutput();
+	showName("\nMILKING.EXE");
+	output("You’ve had enough of this. Whoever designed the automatic mode was clearly a sadist, and you don’t have to put up with it any longer. You’re not sure that you can. Knowing full well that yanking them off will probably hurt even worse, you reach down and grab hold of the cups, determined to end this hellish experience as soon as possible, no matter the cost.");
+	output("\n\nThen you see a button flashing on the milker’s console. It is clearly stamped with the word <i>“assistance.”</i> Perhaps pushing it will be a better solution. Staggering up onto your [pc.legOrLegs], you stumble closer and smack it with your fist");
+	if(pc.PQ() >= 75) output(" hard enough to rattle the stall door");
+	else if(pc.PQ() >= 95) output(" hard enough to dent the stall door");
+	output(".");
+
+	output("\n\nIt doesn’t stop. Damnit! Instead, a port on the top of the machine opens up, and six glittering, metallic armatures slither out, lined with transparent cabling full of bubbling pink liquid. Two of them grip you by the shoulder and bear you back onto the bench. Another pair ");
+	if(pc.legCount > 2) output("attempt to ");
+	output("restrain your [pc.legOrLegs]");
+	if(pc.legCount > 2 || pc.hasLegFlag(GLOBAL.FLAG_AMORPHOUS)) output(" with varying levels of success");
+	output(". Fighting the panic threatening to tear its way out of your chest, you try to squirm free.");
+	output("\n\nIt’s no use. The metallic tentacles’ grip is implacable, backed up by writhing, segmented steel. One of them appears in front of you, the cold graspers around the edge stretched wide, giving it the appearance of a menacing alien flower. A bizarre, pointed tip extends outward from the center, and before you can ascertain its true purpose, it puffs a cloud of pink mist over your face.");
+	output("\n\nYou’re too surprised to hold in your breath, let alone a reflexive gasp of surprise. It smells just as pink as it looks, almost floral but with a medicinal aftertaste that keeps it from being too pleasant. You try to hold your breath, but as soon as one cloud clears, it puffs out another. The strange gas is already in your lungs anyway, with no chance at escape, you’re going to have to breathe anyway. Giving in, you take in another breath of the stuff and make a real, genuine effort to ascertain (and resist) its effects. Your [pc.chest] still hurt");
+	if(pc.biggestTitSize() < 1) output("s");
+	output(". You aren’t getting dizzy or even euphoric.");
+	output("\n\nPuzzlingly, you seem immune to the effects of the rogue milker’s gas and find yourself relaxing into the soft padding beneath you. It really is quite comfortable. If you weren’t being so roughly manhandled, you might even find the experience enjoyable. And that strange aroma! It isn’t even that bad. You don’t know why you thought it had any sort of aftertaste. It definitely just smells like some kind of flower... mixed with icecream. And rainbows!");
+	output("\n\n<i>“Subject sedation has reached acceptable levels. Beginning automatic enhancement protocols,”</i> announces a disembodied voice.");
+	output("\n\nSo that’s what ‘e’ at the end of ‘auto-e’ stood for! You didn’t tell the machine to give you an automatic milking - you told it to give you an automatic enhancement. That makes sense, you suppose. You do remember ");
+	if(pc.isBimbo()) output("hearing that empty boobs are happy boobs");
+	else output("reading something about how being completely drained of milk would stimulate your body to make even more");
+	output(". Oh! The gas is a sedative. It must be a pretty good one to leave you this clear-headed, and it does explain why the constant, noisy attempts to suck more [pc.milk] from your [pc.chest] are bothering you less and less. Your [pc.nipples] may be hugely swollen, but the suction is starting to feel good, and the edges of the glass tubes feel disturbingly like a lover’s lips now that they’ve had a chance to warm up.");
+	output("\n\nYou moan");
+	if(pc.exhibitionism() < 66 && !pc.isBimbo()) output(", then blush");
+	else output(" shamelessly, hoping someone can hear you enjoying yourself");
+	output(". The sixth tentacle appears alongside its vape-dispensing brother, fitted with a small nozzle - and a darker, almost purplish, payload. You don’t bother to react when it thrusts into your [pc.lipsChaste]. It’s not like you can do anything about it, not now when you’re finally starting to enjoy yourself. Your [pc.nipples] actually feel sort of great. Sure, you’re aware of how magnificently sore they’ve become, but that feeling seems almost disconnected from your perception, like you’re looking at a readout on a holo-display.");
+	output("\n\nAnd without pain bothering you, the pleasure seems twice as strong, like you’ve got all this extra space freed up in your brain to think about how amazing it feels to have your [pc.nipples] tugged.");
+	if(pc.hasCock() && pc.hasVagina()) output(" It’s a real shame the milker didn’t come with attachments for your [pc.cocks] and [pc.vaginas]. You’re hard as hell and wet besides, and a little attention down south would go a long way.");
+	else if(pc.hasVagina())
+	{
+		output(" It’s a real shame the milker didn’t come with a dildo arm. It would feel amazing to have something pumping at your [pc.vaginas] at the same time. You’d probably cum right away.");
+	}
+	else if(pc.hasCock()) output(" It’s a real shame the milker didn’t come with a cock-pump. You’d love to see just how fast you could cum from this kind of stimulation, even though you’ll probably cum eventually anyway.");
+	output(" The padding is already soaked with your freely-drooling [pc.girlCum], every bit as slick and wet as you are.");
+	output(" You wish your hands were free so that you could touch yourself and make yourself feel even better, but with your shoulders and upper arms pinned, you can’t do much but futilely stroke your [pc.hips].");
+
+	output("\n\nThen something grape-flavored splashes onto your [pc.tongue], demanding you either swallow or choke. It’s a pretty easy choice to make; you swallow. Drinking it down isn’t so bad, but the moment you do, the nozzle in your mouth squirts more in even faster, forcing you to guzzle down more. This stuff is stronger than the cloying, floral perfume you’ve gotten to breathe in these fast few minutes for sure. It makes your head dizzy and your [pc.skin] tingle, especially on your [pc.nipplesNoun], which, you are pleased to note, are beading [pc.milkNoun] once more.");
+	output("\n\nYour head is swimming. Your tits are buzzing and and starting to squirt. Your [pc.hips] are rolling and bucking. The whole of your body feels like it’s being cradled by the softly padded bench you’ve been confined to, and you are perfectly relaxed as your [pc.chest] bulge and wobble, expanding, growing, filling up with fresh [pc.milkNoun] to feed the insatiable milker. Gouts of white [pc.milkColor] spray out before long, and you moan into the feeding tube occupying your mouth, wishing you could cry out all the louder. Rainbows explode behind your eyes, and you cum");
+	if(pc.hasCock()) output(", launching [pc.cum] over the metallic tentacles your quivering body");
+	if(pc.hasVagina() && !pc.isSquirter()) output(", leaking [pc.girlCum] everywhere");
+	else if(pc.hasVagina()) output(", spraying [pc.girlCum] all over the tentacles and the machine");
+	output(".");
+	output("\n\nPulling out of your mouth, the orally-obsessed tentacle sprays more violet goo across your [pc.face], and departs, leaving you with the happy pink cloud and the sound of your continuously-productive tits to keep you company. The aftershocks of your orgasm fade into a slow-climbing pleasure, carrying you back to the peak whether you want it or not. Your obscenely bloated [pc.nipplesNoun] sing their lusty song, timed to the tempo of the milker’s rhythmic whirr, straining and squirting orgasmically. They sit at the forefront of your mind, blasting you with pleasure, and you cum again.");
+	output("\n\nAnd again.");
+	output("\n\nMilk splashes to the floor.");
+	output("\n\nAnd the spaces between the ecstasy disappear, leaving you in the white-hot haze of one endless, milkgasm.");
+	var lacBoosted:Boolean = false;
+	if(pc.milkMultiplier < 100) 
+	{
+		pc.milkMultiplier = 100;
+		lacBoosted = true;
+	}
+	pc.milked(100);
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
+	processTime(100);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",millieSoloMilkerMishapEpilogue,lacBoosted);
+}
+
+public function millieSoloMilkerMishapEpilogue(lacBoosted:Boolean):void
+{
+	clearOutput();
+	showName("\nMILLIE");
+	showBust("MILLIE");
+	output("<b>Some time later...</b>");
+	output("\nCold water splashes over your body, jerking you to full wakefulness. You sputter and sit up, but more drenches you, forcing you to hold your arms to block the flow while you blink your bleary eyes.");
+	output("\n\nStopping the stream of water, Millie scowls at you and tosses away the hose. <i>“I knew I should’ve have left you alone with the machine! You used up all the special milk goo!”</i> Shaking her horned head, she trots over, and examines your chest, guilelessly stroking flesh that feels a bit more full than it should. <i>“It looks like it worked pretty well though. You’re lucky I found you instead of one of the bulls, or you’d be getting a hell of a bill.”</i>");
+	output("\n\nYou look down in shock. <b>Your [pc.chest] are bigger, but not so noticeably as your [pc.nipples].</b> All the sucking did a number on you, but <b>you feel like you could go for another milking right now.</b> <i>“Wh-what did that do to me?”</i> you ask");
+	if(!pc.isTreated()) output(", incredulous.");
+	else output(", wondering if the bulls will like you more now that you can milk like a fountain.");
+	output("\n\n<i>“Oh right, you don’t know anything about that stuff, do you? There’s supposed to be a whole pamphlet about it, but the other cow-girls never read them, so we stopped stocking them.”</i> Millie shrugs noncommittally and explains, <i>“I forget what we’re supposed to call it, but you can think of it as a bottomless milk potion.”</i> Squeezing your boobs, the busty cow grins. <i>“Aside from the obvious benefits, you’ll never run dry for long. The moment your tits go empty, your body is gonna start filling ‘em right back up. You’ll be a real great cow now.”</i>");
+	//Not treated/cow
+	if(!pc.isTreated()) output("\n\nYou bite back on your reply and nod, climbing up onto wobbly [pc.legOrLegs] and grabbing your things.");
+	//Treated!
+	else output("\n\nAwesome! You bounce up onto your wobbly [pc.legOrLegs] and give Millie a big hug. It was worth all the discomfort. Now everyone will love you! You grab your things with a smile on your face and a sloshing in your chest.");
+	//Merge
+	//Perk notification <i>“Mega Milk”</i> - always produce milk as if you were 40% full.
+	output("\n\n(<b>Perk Gained: Mega Milk</b> - You will always be able to produce milk as if you were at least 40% full, even if your breasts are empty.)");
+	pc.createPerk("Mega Milk",0,0,0,0,"Allows you to instantly produce a good amount of milk, even when empty.");
+	if(lacBoosted) output(" <b>And if you weren't lactating very hard before, you are now.</b>");
+	processTime(5);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

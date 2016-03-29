@@ -4,6 +4,7 @@ package classes.Characters
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.kGAMECLASS;
 	import classes.GLOBAL;
+	import classes.ItemSlotClass;
 	
 	/**
 	 * Yeah this is kinda bullshit, but it also means we can version the PC data structure like NPCs.
@@ -165,6 +166,37 @@ package classes.Characters
 		}
 		
 		public var ShipStorageInventory:Array = [];
+		public function hasItemInStorage(arg:ItemSlotClass,amount:int = 1):Boolean
+		{
+			if(ShipStorageInventory.length == 0) return false;
+			var foundAmount:int = 0;
+			for(var x:int = 0; x < ShipStorageInventory.length; x++)
+			{
+				if(ShipStorageInventory[x].shortName == arg.shortName) foundAmount += ShipStorageInventory[x].quantity;
+			}
+			if(foundAmount >= amount) return true;
+			return false;
+		}
+		public function destroyItemInStorage(arg:ItemSlotClass,amount:int = 1):void
+		{
+			if(ShipStorageInventory.length == 0) return;
+			var foundAmount:int = 0;
+			for(var x:int = 0; x < ShipStorageInventory.length; x++)
+			{
+				//Item in the slot?
+				if(ShipStorageInventory[x].shortName == arg.shortName) 
+				{
+					//If we still need to eat some, eat em up!
+					while(amount > 0 && ShipStorageInventory[x].quantity > 0) 
+					{
+						ShipStorageInventory[x].quantity--;
+						amount--;
+						if(ShipStorageInventory[x].quantity <= 0) ShipStorageInventory.splice(x,1);
+					}
+				}
+			}
+			return;
+		}
 		
 		public function UpgradeVersion1(d:Object):void
 		{

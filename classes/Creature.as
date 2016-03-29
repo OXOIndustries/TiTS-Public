@@ -720,7 +720,7 @@
 		public var cumType: Number = GLOBAL.FLUID_TYPE_CUM;
 		public function cumTypeUnlocked(newCumType:Number):Boolean
 		{
-			if(cumType == GLOBAL.FLUID_TYPE_SPECIAL_GOO) return false;
+			if(cumType == GLOBAL.FLUID_TYPE_SPECIAL_GOO || cumType == GLOBAL.FLUID_TYPE_SPECIAL_CUMGOO) return false;
 			return true;
 		}
 		public function cumTypeLockedMessage():String
@@ -6837,6 +6837,7 @@
 			}
 			return false;
 		}
+		public function hasNippleCunts(): Boolean { return hasCuntNipples(); }
 		public function hasCuntNipples(): Boolean {
 			var counter: Number = breastRows.length;
 			while (counter > 0) {
@@ -6922,7 +6923,7 @@
 		{
 			if(!hasNipples()) return false;
 			//PC has reached lactation threshold!
-			if(milkMultiplier > 50 || milkFullness >= 50) return true;
+			if(milkMultiplier > 50 || milkFullness >= 50 || hasPerk("Mega Milk")) return true;
 			return false;
 		}
 		public function isLactating(): Boolean {
@@ -6930,7 +6931,7 @@
 			if(canLactate())
 			{
 				//Is there enough milk in yer tits for lactation?
-				if(milkFullness >= 10 || milkQ() >= 1000)
+				if(milkFullness >= 10 || milkQ() >= 1000 || hasPerk("Mega Milk"))
 				{
 					//yes? true!
 					return true;
@@ -6941,7 +6942,7 @@
 		}
 		public function canMilkSquirt():Boolean
 		{
-			if(milkFullness >= 80) return true;
+			if(milkFullness >= 80 || hasPerk("Mega Milk")) return true;
 			return false;
 		}
 		public function isMilkTank():Boolean
@@ -7034,15 +7035,17 @@
 			var total:Number = 0;
 			//So much easier now - just a quick lookup.
 			//Arg -1 = amount from biggest tits.
-			if(arg == -1) return milkFullness/100 * milkCapacity();
+			var fullness:Number = milkFullness;
+			if(fullness < 40 && hasPerk("Mega Milk")) fullness = 40;
+			if(arg == -1) return fullness/100 * milkCapacity();
 			//Arg 99 = amount from all tits
 			else if(arg == 99)
 			{
 				//Total it up!
 				for(var x:int = 0; x < breastRows.length; x++)
 				{
-					//trace("Row " + x + " mLs: " + (milkFullness * milkCapacity(x)));
-					total += milkFullness/100 * milkCapacity(x);
+					//trace("Row " + x + " mLs: " + (fullness * milkCapacity(x)));
+					total += fullness/100 * milkCapacity(x);
 				}
 				//trace("MilkQ total: " + total);
 				return total;
@@ -7051,7 +7054,7 @@
 			else
 			{
 				if(arg < 0 || arg >= breastRows.length) return 0;
-				else return milkFullness/100 * milkCapacity(arg);
+				else return fullness/100 * milkCapacity(arg);
 			}
 			//Failsafe:
 			return 0;
@@ -11673,7 +11676,7 @@
 				collection = ["blueberry","blueberry","blueberry","delicious","sweet","fruity"];
 			} else if (arg == GLOBAL.FLUID_TYPE_HRAD_CUM) {
 				collection = ["sweet","vanilla","sugary"];
-			} else if (arg == GLOBAL.FLUID_TYPE_SPECIAL_GOO) {
+			} else if (arg == GLOBAL.FLUID_TYPE_SPECIAL_GOO || arg == GLOBAL.FLUID_TYPE_SPECIAL_CUMGOO) {
 				collection = ["sweet","tangy","citrusy"];
 			}
 			
@@ -11708,7 +11711,7 @@
 				if(statusEffectv1("Nyrea Eggs") > 0) collection.push("egg-filled","eggy","bubbly","pulpy");
 			} else if (InCollection(arg, GLOBAL.FLUID_TYPE_GABILANI_CUM, GLOBAL.FLUID_TYPE_GABILANI_GIRLCUM)) {
 				collection = ["oily","coating"];
-			} else if (arg == GLOBAL.FLUID_TYPE_SPECIAL_GOO) {
+			} else if (arg == GLOBAL.FLUID_TYPE_SPECIAL_GOO || arg == GLOBAL.FLUID_TYPE_SPECIAL_CUMGOO) {
 				collection = ["slick","viscous","slippery"]; /* "slimy", */
 			} else if (arg == GLOBAL.FLUID_TYPE_CHOCOLATE_CUM) {
 				collection = ["thick","sticky"];
@@ -11766,7 +11769,7 @@
 				collection = ["violet","purple"];
 			} else if (arg == GLOBAL.FLUID_TYPE_HRAD_CUM) {
 				collection = ["translucent white","creamy white","nearly transparent","ghostly white"];
-			} else if (arg == GLOBAL.FLUID_TYPE_SPECIAL_GOO) {
+			} else if (arg == GLOBAL.FLUID_TYPE_SPECIAL_GOO || arg == GLOBAL.FLUID_TYPE_SPECIAL_CUMGOO) {
 				if(skinType == GLOBAL.SKIN_TYPE_GOO) collection = [String(skinTone)];
 				else if(hairType == GLOBAL.HAIR_TYPE_GOO) collection = [String(hairColor)];
 				else collection = ["green","emerald"];
@@ -11836,7 +11839,7 @@
 			else if (arg == GLOBAL.FLUID_TYPE_GABILANI_GIRLCUM) return "gray";
 			else if (arg == GLOBAL.FLUID_TYPE_BLUEBERRY_YOGURT) return "purple";
 			else if (arg == GLOBAL.FLUID_TYPE_HRAD_CUM) return "white";
-			else if (arg == GLOBAL.FLUID_TYPE_SPECIAL_GOO)
+			else if (arg == GLOBAL.FLUID_TYPE_SPECIAL_GOO || arg == GLOBAL.FLUID_TYPE_SPECIAL_CUMGOO)
 			{
 				if(skinType == GLOBAL.SKIN_TYPE_GOO) return skinTone;
 				else if(hairType == GLOBAL.HAIR_TYPE_GOO) return hairColor;
@@ -11882,6 +11885,8 @@
 				collection = ["syrup","cum"];
 			} else if (arg == GLOBAL.FLUID_TYPE_SPECIAL_GOO) {
 				collection = ["slime","goo"];
+			} else if (arg == GLOBAL.FLUID_TYPE_SPECIAL_CUMGOO) {
+				collection = ["slime-spunk","goo-cum","slime-semen","goo-spooge","slime-spooge","goo-spunk","slime-cum"]
 			}
 			
 			else collection = ["ERROR: NONVALID FLUID TYPE PASSED TO fluidNoun."];
