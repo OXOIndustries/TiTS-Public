@@ -621,7 +621,7 @@ public function gooPCsAreFun():void
 	clearOutput();
 	showCelise();
 	author("Gardeford");
-	output("You ask Celise if she’s up for some melty goo fun. She claps excitedly and nods, her tentacles stretching eagerly toward you. You walk forward, feeling her warm body caressing your [pc.legs] before they melt together. The forest of tentacles parts as you walk through it, slowly mixing yourself with the emerald galotian. She sighs above you as your body slides through her. You duck inside, melting and swimming through the mass of tendrils to approach the center");
+	output("You ask Celise if she’s up for some melty goo fun. She claps excitedly and nods, her tentacles stretching eagerly toward you. You walk forward, feeling her warm body caressing your [pc.legs] before they melt together. The forest of tentacles parts as you walk through it, slowly mixing yourself with the emerald galotian. She sighs above you as your body slides through her. You duck inside, melting and swimming through the mass of tendrils to approach the center.");
 	output("\n\nThe feeling is amazing, like being touched over every inch of your body by her lukewarm goo. ");
 	if(pc.skinTone != "green") output("Your colors mix with hers, creating vibrant patterns in the dark green liquid.");
 	else output("Your own green colors compound with hers, creating an even more vibrant shade.");
@@ -631,11 +631,19 @@ public function gooPCsAreFun():void
 	output("\n\nYou hear a liquid sounding splurch before Celise's upper body forms above you in the mass of tentacles. She smiles lustfully at you and leans in for a kiss, falling along the wall until her short upper frame lies atop you. You can feel her almost fully solid evergreen nipples rubbing against your gooey flesh, and you reach through your sides to pinch and pull them deeper. Their owner moans in response and gives you a sloppy kiss, slipping her tongue inside you to play. You trade yours for hers, exploring her body with a tendril of your own.");
 	output("\n\nShe pulls closer to you, and you unsheathe your hands to drape them around her back and lock her in place atop you. Your kissing intensifies so greatly that the two of you begin to sink together, feeling each others pleasure mixing in the process. The feeling of it overwhelms every sense your goo-formed body can emulate, and it responds in the only way it knows how. By coming hard.");
 	output("\n\nYou had nearly forgotten about your genitals, so when they decide to fill Celise’s upper half with a flood of ");
-	if(pc.hasCock()) output("[pc.cum]");
-	if(pc.hasCock() && pc.hasVagina()) output(" and ");
-	if(pc.hasVagina()) output("[pc.girlCum]");
+	if(pc.cumType != pc.girlCumType)
+	{
+		if(pc.hasCock()) output("[pc.cum]");
+		if(pc.hasCock() && pc.hasVagina()) output(" and ");
+		if(pc.hasVagina()) output("[pc.girlCum]");
+	}
+	else
+	{
+		if(pc.hasCock()) output("[pc.cum]");
+		else output("[pc.girlCum]");
+	}
 	output(" you are only able to spasm in her arms as she absorbs it with gusto, her body becoming slightly clouded in the process before she can filter the excess into a further part of her. Your kisses are softer now, leaving the both of you solid, and with an amount of tongue befitting a human couple. Her tongue flexes incredibly wide, letting you hold it between nearly the entirety of your lips as it slides back into her own.");
-	output("\n\nAfter this short respite your explorations become braver once again, You reach inside the emerald goo-girl’s body and scoop up some of your cum before it can leave to be dissolved. You help the ");
+	output("\n\nAfter this short respite your explorations become braver once again, you reach inside the emerald goo-girl’s body and scoop up some of your cum before it can leave to be dissolved. You help the ");
 	if(pc.hasCock()) output("[pc.cumColor]");
 	if(pc.hasCock() && pc.hasVagina()) output(" and ");
 	if(pc.hasVagina()) output("[pc.girlCumColor]");
@@ -656,9 +664,12 @@ public function gooPCsAreFun():void
 	}
 	output(". In a matter of minutes she has you at the edge of orgasm, though this time one that your are perfectly aware of and can feel building within every cell of your gooey form.");
 	output("\n\nThe feelings rise and boil until they refuse to be kept down any longer. ");
-	if(pc.hasCock()) output("[pc.cum]");
-	if(pc.hasCock() && pc.hasVagina()) output(" and ");
-	if(pc.hasVagina()) output("[pc.girlCum]");
+	if(pc.hasCock() && pc.cumType != pc.girlCumType)
+	{
+		output("[pc.Cum]");
+		if(pc.hasVagina()) output(" and [pc.girlCum]");
+	}
+	else output("[pc.GirlCum]");
 	output(" shower");
 	if(!(pc.hasCock() && pc.hasVagina())) output("s");
 	output(" the inner sanctum that houses you as ");
@@ -667,11 +678,19 @@ public function gooPCsAreFun():void
 	output(". Celise licks her lips and moans as your sexual fluids are absorbed by her oversized body. Her hands leave to give your juices ample room to flow, absorbing them across as much of her form as possible to prevent buildup.");
 	output("\n\nTaking advantage of her split attention, you melt down over and into her, mixing inside her body. When you finish the two of you are left with both heads, four arms, your genitals, and her chest. While she still works out what’s going on you take the pair of beautiful B-cups and twist their dark jade nipples, delighting when you feel the sensations along side her. The emerald goo-girl’s head shoots back as she gasps, trying to find words or moans but unable to voice any of them. You continue to abuse the squishy boobs with both hands with utter abandon as she tries to regain her senses.");
 	output("\n\nIn her blind lust her hands search the combined body, ending up at the genitals. She begins to play with them automatically, still thinking they are only connected to you and thinking she’s taking her revenge. You feel the sudden influx of euphoria as it explodes through your body and into her head. You laugh as her tongue lolls out of her mouth, but her hands continue milking, sending rockets of orgasmic glory to obliterate any chance of her thinking.");
-	output("\n\nIn no time at all her berserking thrusts begin to reach your mind as well, and you feel the third round of bliss welling up throughout your [pc.skintone] goo. You let go of her breasts and turn her head toward you, kissing her lust addled lips and closing your eyes. The feedback of your feelings from the kiss and hers run like a revolving door with no exit through your mind, growing to infinite pleasure and probably continuing past the point that it renders you incapable of thinking.");
+	output("\n\nIn no time at all her berserking thrusts begin to reach your mind as well, and you feel the third round of bliss welling up throughout your [pc.skinTone] goo. You let go of her breasts and turn her head toward you, kissing her lust addled lips and closing your eyes. The feedback of your feelings from the kiss and hers run like a revolving door with no exit through your mind, growing to infinite pleasure and probably continuing past the point that it renders you incapable of thinking.");
 	output("\n\nYour body pulses with more energy than you could have thought possible, overfilling even the massive appetite of the tentacled goo girl. Your ");
-	if(pc.hasCock()) output("[pc.cum]");
-	if(pc.hasCock() && pc.hasVagina()) output(" and ");
-	if(pc.hasVagina()) output("[pc.girlCum]");
+	if(pc.cumType != pc.girlCumType)
+	{
+		if(pc.hasCock()) output("[pc.cum]");
+		if(pc.hasCock() && pc.hasVagina()) output(" and ");
+		if(pc.hasVagina()) output("[pc.girlCum]");
+	}
+	else
+	{
+		if(pc.hasCock()) output("[pc.cum]");
+		else output("[pc.girlCum]");
+	}
 	if(!(pc.hasCock() && pc.hasVagina())) output(" dribbles");
 	else output(" dribble");
 	output(" from the tips of her tentacles as they try to absorb it in time. Neither of you can even muster the energy to shout out as you kiss each other and cum in a seemingly endless cycle. The tentacles assist in the only way they know how, encircling the pert B-cups and flicking at their nearly solid nipples. The entirety of her form shudders with the earth-shaking bliss of this cum.");

@@ -1667,7 +1667,7 @@ public function shePaysAttentionToYouSlut():void
 			if(pc.balls > 0) output(", ");
 			else output(" and ");
 			output("[pc.cocksNounSimple]");
-			if(pc.balls > 0) output(", and [pc.balls]");
+			if(pc.balls > 0) output(", and [pc.ballsNoun]");
 			output(", to make them especially pretty.”</i> Your Mistress informs you. She then begins meticulously weaving the soft cord around one breast.");
 			output("\n\nIf you weren’t already swooning from her kiss, you’d be doing so at her promise to make you even more pretty. Your Mistress complimented your [pc.breastsNoun], though indirectly. When she pulls it tight, you let out a sharp gasp.");
 			output("\n\n\"<i>Do you know what happens to your [pc.breastsNoun] when I do this, my love? Blood rushes into them and they become especially sensitive.</i>\" Xanthe caresses your now ballooned breast, bound tight by her silk rope right against your chest. You can feel it squeezing into your sensitive [pc.skinFurScalesNoun], though not enough to <i>completely</i> cut off circulation.");

@@ -231,6 +231,7 @@ public function chooseStartingRace(race:String = "human"):void {
 		pc.faceType = GLOBAL.TYPE_HUMANMASKED;
 		pc.armType = GLOBAL.TYPE_KUITAN;
 		pc.addArmFlag(GLOBAL.FLAG_FURRED);
+		pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
 		//output("male or hermaphroditic");
 		addButton(0,"Male",setStartingSex,1);
 		addDisabledButton(1,"Female","Female","Kui-tan cannot be female.")
