@@ -340,8 +340,8 @@ public function cuddleDatAntBiyooootchToSleepizzles():void
 	output(" She moves to the bed, fluffing the oversized pillow and moving the blankets to make space. When you think she’s finished you plop down on the queen sized cushion, opening your arms and motioning for her to join you.");
 
 	output("\n\n<i>“Come on, I can’t help you sleep if I’m the only one in bed,”</i> you tease, pulling the blankets so that they leave your front visible. The exhausted ant girl doesn’t hesitate as she crawls into the bed next to you.");
-	if(pc.tallness < 63) output("Despite your shorter stature, s");
-	else output("S");
+	if(pc.tallness < 63) output(" Despite your shorter stature, s");
+	else output(" S");
 	output("he positions herself with her head directly on level with your collarbone, her sandy blonde hair just under your chin. She ");
 	if(pc.biggestTitSize() < 5) output("presses herself into your [pc.chest], hugging you tightly as if to anchor herself there");
 	else output("buries her face between your [pc.chest], and you feel her hot breath on your [pc.skinfurscales] as she anchors herself to you with a hug");
