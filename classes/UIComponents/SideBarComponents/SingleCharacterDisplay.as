@@ -59,6 +59,8 @@ package classes.UIComponents.SideBarComponents
 					_statBars.x = 15;
 					_bustImage.x = _statBars.x + _statBars.width + 1;
 				}
+				
+				_bustVisible = v;
 			}
 		}
 		
@@ -117,11 +119,23 @@ package classes.UIComponents.SideBarComponents
 		
 		public function setBust(bustIdx:String):void
 		{
-			if (_loadedBustIdx && _loadedBustIdx == bustIdx) return; // already set, abort to avoid heavy pixel copies
-			_loadedBustIdx = bustIdx;
-			
 			// See if we can even get the bust
 			var bustT:Class = NPCBustImages.getBust(bustIdx);
+			
+			if (bustT == null)
+			{
+				bustVisible = false;
+				return;
+			}
+			
+			// already set, abort to avoid heavy pixel copies, just ensure the element is displayed
+			if (_loadedBustIdx && _loadedBustIdx == bustIdx)
+			{
+				bustVisible = true;
+				return; 
+			}
+			
+			_loadedBustIdx = bustIdx;
 			
 			// No bust? Hide the element entirely and resize everything to fit
 			if (bustT == null)
