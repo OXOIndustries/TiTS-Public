@@ -4338,7 +4338,7 @@ public function initializeRooms():void
 	//Prostate Milk Stall - Savin wrote dis shit.
 	rooms["516"] = new RoomClass(this);
 	rooms["516"].roomName = "MILKING\nSTALL";
-	rooms["516"].description = "Unlike most of the stalls in the Milk Barn, this one isn't closed or empty. A single auburn-haired cow is sitting on a stool near the door, dressed up in a cow-print corset, panties, and stockings, but otherwise the stall is empty. The center of the room is dominated by what looks like a padded steel vaulting horse with several holes drilled into the top. Pipes lead from the holes to drains and other machines along the walls. Looming overhead is a large, powerful-looking mechanical arm, from which dangles a huge floppy pink dildo.\n\nA sign overtop the stall reads in faded letters, \"Male Milker.\" Doesn't take a genius to figure out what that means... ";
+	rooms["516"].description = "";
 	rooms["516"].runOnEnter = manMilkerRoomBonusFunc;
 	rooms["516"].westExit = "511";
 	rooms["516"].moveMinutes = 1;

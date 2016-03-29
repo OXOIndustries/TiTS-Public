@@ -2583,9 +2583,27 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(StatTracking.getStat("milkers/prostate milker uses") > 0 || flags["CARRIE_BLOWJOBBED"] != undefined)
 				{
 					output2("\n<b>* Carrie:</b> Met her");
-					if(flags["CARRIE_BLOWJOBBED"] != undefined) output2(", Gave you a blowjob");
+					if(flags["CARRIE_BLOWJOBBED"] != undefined)
+					{
+						output2(", Gave you a blowjob");
+						if(flags["CARRIE_BLOWJOBBED"] != 1) output2(" " + flags["CARRIE_BLOWJOBBED"] + " times");
+					}
 					if(flags["CARRIE_SMALLCOCK_SUX"] != undefined) output2(", Sucked your small cock");
-					if(flags["CORA_SUCKED"] != undefined) output2("\n<b>* Cora:</b> Met her, Sucked your dick with Carrie");
+					if(flags["CORA_SUCKED"] != undefined)
+					{
+						output2("\n<b>* Cora:</b> Met her, Sucked your dick with Carrie");
+						if(flags["CORA_SUCKED"] != 1) output2(" " + flags["CORA_SUCKED"] + " times");
+					}
+					if(flags["CARRIE_SHOWER_THREESOME"] != undefined)
+					{
+						output2("\n<b>* Carrie and Cora:</b> Had shower threesome");
+						if(flags["CARRIE_SHOWER_THREESOME"] != 1) output2(" " + flags["CARRIE_SHOWER_THREESOME"] + " times");
+					}
+					if(flags["CARRIE_SHOWER_FIVESOME"] != undefined)
+					{
+						output2("\n<b>* Horisha and Peck:</b> Met them, Had shower fivesome with Carrie and Cora");
+						if(flags["CARRIE_SHOWER_FIVESOME"] != 1) output2(" " + flags["CARRIE_SHOWER_FIVESOME"] + " times");
+					}
 				}
 				// Giannannanna
 				if(flags["MET_GIANNA"] != undefined)

@@ -765,6 +765,14 @@ public function newTexasRoadFirstTime():Boolean
 
 public function manMilkerRoomBonusFunc():Boolean
 {
+	output("Unlike most of the stalls in the Milk Barn, this one isn’t closed or empty.");
+	if(StatTracking.getStat("milkers/prostate milker uses") == 0) output(" A single auburn-haired cow");
+	else output(" Carrie");
+	output(" is sitting on a stool near the door, dressed up in a cow-print corset, panties, and stockings, but otherwise the stall is empty. The center of the room is dominated by what looks like a padded steel vaulting horse with several holes drilled into the top. Pipes lead from the holes to drains and other machines along the walls. Looming overhead is a large, powerful-looking mechanical arm, from which dangles a huge");
+	if(StatTracking.getStat("milkers/prostate milker uses") == 0) output(" floppy pink dildo.");
+	else output(" pink dildo - better known as “Mister Floppycock.”");
+	output("\n\nA sign overtop the stall reads in faded letters, “Male Milker.” Doesn’t take a genius to figure out what that means...");
+	
 	if (flags["MILK_BARN_COCKMILKER_BROKEN"] != undefined || flags["MILK_BARN_COCKMILKER_REPAIR_DAYS"] != undefined)
 	{
 		if(flags["MILK_BARN_COCKMILKER_BROKEN"] != undefined)
@@ -775,6 +783,7 @@ public function manMilkerRoomBonusFunc():Boolean
 		else if (flags["MILK_BARN_COCKMILKER_REPAIR_DAYS"] > 0) addDisabledButton(0,"Use Milker","OUT OF ORDER","The machine is currently being repaired. You'll have to wait for it to be fixed first!");
 		else addButton(0,"Use Milker",useDaMilkar,undefined,"Use Milker","It looks like the male milker has finally been fixed. It looks good as new!");
 	}
+	else if(pc.hasStatusEffect("NT Male Milker Disabled")) addDisabledButton(0,"Use Milker","Use Milker","It looks like the milkers are full of stud stock already. Maybe try again later...");
 	else addButton(0,"Use Milker",useDaMilkar,undefined,"Use Milker","Use the male milker. It looks to function based off of prostate stimulation.");
 	return false;
 }
