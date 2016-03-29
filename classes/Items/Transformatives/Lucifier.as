@@ -471,9 +471,9 @@ package classes.Items.Transformatives
 						
 						target.tongueType = GLOBAL.TYPE_DEMONIC;
 						target.clearTongueFlags();
-						target.hasTongueFlag(GLOBAL.FLAG_LONG);
-						target.hasTongueFlag(GLOBAL.FLAG_PREHENSILE);
-						target.hasTongueFlag(GLOBAL.FLAG_TAPERED);
+						target.addTongueFlag(GLOBAL.FLAG_LONG);
+						target.addTongueFlag(GLOBAL.FLAG_PREHENSILE);
+						target.addTongueFlag(GLOBAL.FLAG_TAPERED);
 					}
 					else output(target.tongueTypeLockedMessage());
 				}
