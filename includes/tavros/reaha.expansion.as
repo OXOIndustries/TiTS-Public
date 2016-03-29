@@ -561,7 +561,7 @@ public function reahaTalkAddictionCure():void
 
 		output("<i>“Is there anything I can do to help?”</i> you ask. ");
 		
-		output("\n\n <i>“I don’t... I don’t know, [pc.name]. Unless you want to drop me off at at whatever the lust-patch equivalent of an AA meeting is...”</i>");
+		output("\n\n <i>“I don’t... I don’t know, [pc.name]. Unless you want to drop me off at whatever the lust-patch equivalent of an AA meeting is...”</i>");
 		
 		output("\n\n<i>“Rehab is an option...”</i>");
 		

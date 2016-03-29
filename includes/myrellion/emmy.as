@@ -1647,11 +1647,11 @@ public function seeEmmyAfterImplantConfessionEmail():void
 	else output(pc.mf("horny bastard","horny bitch"));
 	output("... I missed you.”</i> You feel her nose nuzzle your neck and the sharp inhale as she drinks in your scent. <i>“Mmm, I did have something to talk about before someone sexy walked in and distracted me, didn’t I?”</i> Her cock throbs against your [pc.belly].");
 
-	output("\n\n<i>“You did.”</i> You pat her pulsating length and gently push her away, barely suppressing a grin when her hips lurch to rub the her barely-hidden booster rocket against your palm.");
+	output("\n\n<i>“You did.”</i> You pat her pulsating length and gently push her away, barely suppressing a grin when her hips lurch to rub the barely-hidden booster rocket against your palm.");
 
 	output("\n\nAlmost reluctantly, the excessively endowed shop-jackal steps back, struggling not to pant. <i>“I... uh... uhm... I’m getting worse, I guess, [pc.name]. I don’t think fooling around with you has helped any, not that it matters when you jack off as much as I do. Either the implant is wearing down my willpower or it actually cause libido spikes when it’s set this high.”</i> She leans back against the counter and glares at her cock, perhaps wishing that her withering gaze could make the rebellious organ cease broadcasting its torrid demands.");
 	output("\n\nYou offer, <i>“Your message said something about having ideas?”</i>");
-	output("\n\n<i>“Right.”</i> Emmy fidgets, digging a blunted clawtip into her collar and nervously tugging at it. <i>“I don’t want to be the slut this thing is turning me into, but you... you’re the one bearable part this whole situation. I don’t mind acting like a depraved sex-junkie when quite so much when I’m with you, because it’s not just about the sex. There’s a deeper connection at work. The sex is just one way to show how I feel about you.”</i> Her tail swishes nervously behind her, the only physical evidence of the crimson blush hiding behind her glossy fur.");
+	output("\n\n<i>“Right.”</i> Emmy fidgets, digging a blunted clawtip into her collar and nervously tugging at it. <i>“I don’t want to be the slut this thing is turning me into, but you... you’re the one bearable part in this whole situation. I don’t mind acting like a depraved sex-junkie quite so much when I’m with you, because it’s not just about the sex. There’s a deeper connection at work. The sex is just one way to show how I feel about you.”</i> Her tail swishes nervously behind her, the only physical evidence of the crimson blush hiding behind her glossy fur.");
 	output("\n\nNodding, you try to guide her back on topic. <i>“And?”</i>");
 	output("\n\nWords spill out of the half-distracted jackaless’s mouth in a rush. <i>“And I guess what I’m saying is that I think it’d best for both of us, and my sanity, if we could start fucking.”</i> Her eyes flick down, then back up to yours, full of anxiousness. <i>“Like all the time.”</i>");
 	processTime(7);
@@ -1677,7 +1677,7 @@ public function emmyAfterConfessionEmail2():void
 	output("\n\nYour eyes lock onto Emmy’s fingertip, slowly stroking up and down her turgid length, defaulting to self-pleasure while its owner ponders how to respond. <i>“Uh, what?”</i> You spaced out somewhere around ‘wet pussies.’ Did she turn up the temperature in here?");
 	output("\n\nEmmy self-consciously stops herself and giggles. <i>“It’s such a relief to see that you want this as much as me.”</i> She reaches back and spins a hidden hardlight display panel out into a view. On it is something that looks like the bizarre love-child from a threesome of a saddle, a condom, and high-tech, self-strapping bondage gear. <i>“It’s a herm harness. TamaniCorp partnered up with Naughty Wyvern to produce them a year or two back. That cocksheath? That’s actually self-lubricating synthetic flesh lined with thousands of microactuators. It can replicate the feeling of a hard fucking and a slow blowjob with ease, and when you cum, it pumps through the big ol’ ausar cock and straight into your womb for easy disposal!”</i>");
 	output("\n\nYou scratch your head and muse, <i>“What about pregnancy?”</i>");
-	output("\n\nPointing to a glowing annotation, Emmy explains, <i>“There’s an optional filter that renders sperm inert. It works on on cum from 90% of known species, ausars especially.”</i> Emmy leans in close. <i>“And it comes with an extranet connection. I could give you my code and let you fool with it whenever you wanted. You could make me shudder and cum at any time of day, and I could use it to take the edge off any time I get too hot and heavy.”</i> Rubbing her knees together, Emmy moans. <i>“Like now.”</i>");
+	output("\n\nPointing to a glowing annotation, Emmy explains, <i>“There’s an optional filter that renders sperm inert. It works on cum from 90% of known species, ausars especially.”</i> Emmy leans in close. <i>“And it comes with an extranet connection. I could give you my code and let you fool with it whenever you wanted. You could make me shudder and cum at any time of day, and I could use it to take the edge off any time I get too hot and heavy.”</i> Rubbing her knees together, Emmy moans. <i>“Like now.”</i>");
 	processTime(6);
 	pc.lust(11);
 	clearMenu();
@@ -3102,7 +3102,7 @@ public function fuckEmmyProper():void
 	var x:int = pc.cockThatFits(emmy.vaginalCapacity(0));
 	if(x < 0) x = pc.smallestCockIndex();
 	output("\n\n<i>“Stick it in already!”</i> Emmy pants, her tail waving back and forth. Pussy juice beads on her clit, dripping to the floor in the kind of maddening rhythm that demands you stop and do something about it.");
-	output("\n\nWhat’s are you to do but plug that leak? Gripping yourself by the [pc.sheath " + x + "], you line your [pc.cockHead " + x + "] up with Emmy’s more than ready snatch and gently press it against her lips.");
+	output("\n\nWhat are you to do but plug that leak? Gripping yourself by the [pc.sheath " + x + "], you line your [pc.cockHead " + x + "] up with Emmy’s more than ready snatch and gently press it against her lips.");
 	output("\n\n<i>“Ooooh.”</i> Emmy’s lips are stretched out in an ‘O’ of pleasure from the meager contact, her eyes slightly crossed. <i>“M-more.”</i>");
 	output("\n\n<i>“");
 	if(pc.isNice()) output("Your wish is my command,");
@@ -3514,7 +3514,7 @@ public function emmyHyperFucksIntro():void
 		output(" and ");
 		if(pc.balls > 0) output("caresses your [pc.balls]");
 		else output("rubs your [pc.sheathBiggest]");
-		output(" with toes that feel far softer than a terran’s ever could. <i>“Mmm, that’d be nice. I wonder, just how much spunk would you should inside me? Enough to drench my pussy or flood my womb? Or maybe it’s all size and show, with only enough seed for a quick glaze...”</i>");
+		output(" with toes that feel far softer than a terran’s ever could. <i>“Mmm, that’d be nice. I wonder, just how much spunk would you shoot inside me? Enough to drench my pussy or flood my womb? Or maybe it’s all size and show, with only enough seed for a quick glaze...”</i>");
 		output("\n\nYou groan and arch your back, pressing your [pc.cocks] against Emmy’s, letting her fondle and tease you");
 		if(pc.isCrotchGarbed()) output(", nearly unaware that she’s pulled your [pc.lowerGarments] out of the way");
 		output(".");
@@ -3593,7 +3593,7 @@ public function hyperFootjorbsForEms():void
 	if(pc.isBimbo()) output("Like, y");
 	else output("Y");
 	output("ou’re the slut who loves cock so much she spent 15 grand just to give her wrists a break!”</i>");
-	output("\n\nEmmy picks up the pace at the word ‘slut,’ and dives deeper onto her drooling doggie dong. Her feet, soft and fluffy as the are, pick up the pace of their maddeningly pleasant stroking, radiating bursts of pleasure all the way from your [pc.cockHeadBiggest] down to your ");
+	output("\n\nEmmy picks up the pace at the word ‘slut,’ and dives deeper onto her drooling doggie dong. Her feet, soft and fluffy as they are, pick up the pace of their maddeningly pleasant stroking, radiating bursts of pleasure all the way from your [pc.cockHeadBiggest] down to your ");
 	if(pc.hasSheath(x)) output("sheath");
 	else if(pc.hasKnot(x)) output("knot");
 	else output("root");
