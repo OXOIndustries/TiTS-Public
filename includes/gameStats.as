@@ -537,6 +537,7 @@ public function statisticsScreen(showID:String = "All"):void
 					else if(pData.pregnancyType == "CockvinePregnancy") output2(" Cockvine");
 					else if(pData.pregnancyType == "DeepQueenPregnancy") output2(" Water Queen");
 					else if(pData.pregnancyType == "OviliumEggPregnancy") output2(" Ovilium, Eggs");
+					else if(pData.pregnancyType == "PsychicTentacles") output2(" Psychic Tentacle Beast");
 					else output2(" <i>Unknown</i>");
 					if(pData.pregnancyIncubation > -1)
 					{
@@ -798,6 +799,8 @@ public function statisticsScreen(showID:String = "All"):void
 				}
 				if(nyreanEggs > 0)
 					output2("\n<b>* Births, Nyrean Eggs, Total: </b>" + nyreanEggs);
+				if(StatTracking.getStat("pregnancy/psychic tentacle beast birthed") > 0)
+					output2("\n<b>* Births, Psychic Tentacle Beasts: </b>" + StatTracking.getStat("pregnancy/psychic tentacle beast birthed"));
 				if(StatTracking.getStat("pregnancy/renvra kids") > 0)
 					output2("\n<b>* Births, Renvra’s Children: </b>" + StatTracking.getStat("pregnancy/renvra kids"));
 				if(StatTracking.getStat("pregnancy/venus pitcher seeds") > 0)
@@ -3183,6 +3186,14 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["ANNO_ANALSEXED"] != undefined) output2("\n<b>* Anno, Times Fucked Her Ass: </b>" + flags["ANNO_ANALSEXED"]);
 					if(flags["ANNO_TRIBERATOR_USED"] != undefined) output2("\n<b>* Anno, Times Used Her Vibrator: </b>" + flags["ANNO_TRIBERATOR_USED"]);
 				}
+				variousCount++;
+			}
+			// Nessa
+			if(flags["MET_NESSA"] != undefined)
+			{
+				output2("\n<b><u>U.G.C. Scout Authority</u></b>");
+				output2("\n<b>* Nessa:</b> Met her");
+				if(nessaBellyRating() > 0) output2("\n<b>* Nessa, Belly Size Rating:</b> " + nessaBellyRating());
 				variousCount++;
 			}
 			// Shekka
