@@ -603,7 +603,7 @@ public function lactationUpdateHourTick():void
 	//Milk Rate drops by .1 an hour above 200.
 	var originalMultiplier:Number = pc.milkMultiplier;
 	//Bounty bra never loses milkMultiplier!
-	if(pc.upperUndergarment is BountyBra || pc.isPregnant() || pc.hasPerk("Honeypot"))
+	if(pc.upperUndergarment is BountyBra || pc.isPregnant() || pc.hasPerk("Honeypot") || pc.hasPerk("Mega Milk"))
 	{
 
 	}
@@ -621,7 +621,7 @@ public function lactationUpdateHourTick():void
 		}
 	}
 	//Drops a tiny amount if below 50.
-	if(pc.milkMultiplier < 50 && !(pc.upperUndergarment is BountyBra) && !pc.isPregnant() && !pc.hasPerk("Honeypot")) {
+	if(pc.milkMultiplier < 50 && !(pc.upperUndergarment is BountyBra) && !pc.isPregnant() && !pc.hasPerk("Honeypot") && !pc.hasPerk("Mega Milk")) {
 		if(pc.hasPerk("Milky") && pc.hasPerk("Treated Milk")) {}
 		else if(pc.hasPerk("Milky") || pc.hasPerk("Treated Milk")) pc.milkMultiplier -= .02;
 		else pc.milkMultiplier -= 0.1;

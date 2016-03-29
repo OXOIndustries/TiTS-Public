@@ -6837,6 +6837,7 @@
 			}
 			return false;
 		}
+		public function hasNippleCunts(): Boolean { return hasCuntNipples(); }
 		public function hasCuntNipples(): Boolean {
 			var counter: Number = breastRows.length;
 			while (counter > 0) {
@@ -6922,7 +6923,7 @@
 		{
 			if(!hasNipples()) return false;
 			//PC has reached lactation threshold!
-			if(milkMultiplier > 50 || milkFullness >= 50) return true;
+			if(milkMultiplier > 50 || milkFullness >= 50 || hasPerk("Mega Milk")) return true;
 			return false;
 		}
 		public function isLactating(): Boolean {
@@ -6930,7 +6931,7 @@
 			if(canLactate())
 			{
 				//Is there enough milk in yer tits for lactation?
-				if(milkFullness >= 10 || milkQ() >= 1000)
+				if(milkFullness >= 10 || milkQ() >= 1000 || hasPerk("Mega Milk"))
 				{
 					//yes? true!
 					return true;
@@ -6941,7 +6942,7 @@
 		}
 		public function canMilkSquirt():Boolean
 		{
-			if(milkFullness >= 80) return true;
+			if(milkFullness >= 80 || hasPerk("Mega Milk")) return true;
 			return false;
 		}
 		public function isMilkTank():Boolean
@@ -7034,15 +7035,17 @@
 			var total:Number = 0;
 			//So much easier now - just a quick lookup.
 			//Arg -1 = amount from biggest tits.
-			if(arg == -1) return milkFullness/100 * milkCapacity();
+			var fullness:Number = milkFullness;
+			if(fullness < 40 && hasPerk("Mega Milk")) fullness = 40;
+			if(arg == -1) return fullness/100 * milkCapacity();
 			//Arg 99 = amount from all tits
 			else if(arg == 99)
 			{
 				//Total it up!
 				for(var x:int = 0; x < breastRows.length; x++)
 				{
-					//trace("Row " + x + " mLs: " + (milkFullness * milkCapacity(x)));
-					total += milkFullness/100 * milkCapacity(x);
+					//trace("Row " + x + " mLs: " + (fullness * milkCapacity(x)));
+					total += fullness/100 * milkCapacity(x);
 				}
 				//trace("MilkQ total: " + total);
 				return total;
@@ -7051,7 +7054,7 @@
 			else
 			{
 				if(arg < 0 || arg >= breastRows.length) return 0;
-				else return milkFullness/100 * milkCapacity(arg);
+				else return fullness/100 * milkCapacity(arg);
 			}
 			//Failsafe:
 			return 0;

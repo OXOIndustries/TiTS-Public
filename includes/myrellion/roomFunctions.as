@@ -803,7 +803,11 @@ public function DeepCavesBonus():Boolean
 		//if(pc.accessory is JungleLure) flags["NO_MANS_STEP"]++;
 		flags["NO_MANS_STEP"]++;
 	}
-	
+	if(rand(200) == 0) 
+	{
+		quickLoot(new StrangeEgg());
+		return true;
+	}
 	var choices:Array = new Array();
 	//If walked far enough w/o an encounter
 	if((pc.accessory is MuskRepel && flags["NO_MANS_STEP"] >= 10 && rand(4) == 0) || (pc.accessory is MuskLure && flags["NO_MANS_STEP"] >= 3 && rand(2) == 0) || (!(pc.accessory is MuskRepel) && flags["NO_MANS_STEP"] >= 5 && rand(4) == 0)) {

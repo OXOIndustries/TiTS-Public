@@ -130,7 +130,12 @@ public function jungleDeepEncounters():Boolean {
 			}
 		}
 	}
-
+	if(rand(100) == 0 && !pc.hasItem(new StrangeEgg())) 
+	{
+		output("\n\nOh hey, there's a strange looking egg on the ground! Do you take it?\n");
+		addButton(0,"Take It",quickLoot,new StrangeEgg());
+		return false;
+	}
 	var choices:Array = new Array();
 	//If walked far enough w/o an encounter
 	if((pc.accessory is JungleRepel && flags["JUNGLE_STEP"] >= 10 && rand(2) == 0) || (!(pc.accessory is JungleRepel) && flags["JUNGLE_STEP"] >= 5 && rand(2) == 0)) {
