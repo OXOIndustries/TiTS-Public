@@ -1268,6 +1268,8 @@ package classes.GameData
 		
 		private function doStruggleRecover(target:Creature):void
 		{
+			var latexBonus:int = 0;
+			if(target.hasPerk("Black Latex")) latexBonus = 2;
 			// TODO Tweak the shit out of this probably for other NPCs to be able to call into it			
 			if (target is PlayerCharacter) clearOutput();
 			else if (target is Anno)
@@ -1286,14 +1288,14 @@ package classes.GameData
 			{
 				if(target.hasPerk("Escape Artist"))
 				{
-					if(target.reflexes() + rand(20) + 6 + target.statusEffectv1("Naleen Coiled") * 5 > 24) {
+					if(target.reflexes() + rand(20) + 6 + latexBonus + target.statusEffectv1("Naleen Coiled") * 5 > 24) {
 						output("You display a remarkable amount of flexibility as you twist and writhe through the coils to freedom.");
 						target.removeStatusEffect("Naleen Coiled");
 					}
 				}
 				else 
 				{
-					if(target.physique() + rand(20) + 1 + target.statusEffectv1("Naleen Coiled") * 5 > 24) {
+					if(target.physique() + rand(20) + 1 + latexBonus + target.statusEffectv1("Naleen Coiled") * 5 > 24) {
 						output("With a mighty heave, you tear your way out of the coils and onto your [pc.feet].");
 						target.removeStatusEffect("Naleen Coiled");
 					}
@@ -1311,7 +1313,7 @@ package classes.GameData
 			{
 				if (target.hasPerk("Escape Artist"))
 				{
-					if (target.reflexes() + rand(10) > target.statusEffectv1("Mimbrane Smother") * 5)
+					if (target.reflexes() + rand(10) + latexBonus > target.statusEffectv1("Mimbrane Smother") * 5)
 					{
 						output("You keep your cool, calmly feeling around the edges of the parasite attached to your face and manage to find a weakness in its hold; working your fingers into the small imperfection in the Mimbranes seal around your features, you manage to pry it away from you.");
 						target.removeStatusEffect("Mimbrane Smother");
@@ -1319,7 +1321,7 @@ package classes.GameData
 				}
 				else
 				{
-					if (target.physique() + rand(10) > target.statusEffectv1("Mimbrane Smother") * 5)
+					if (target.physique() + rand(10) + latexBonus > target.statusEffectv1("Mimbrane Smother") * 5)
 					{
 						output("You manage to force your fingers under the edge of the Mimbrane smothering you, and forcefully tear it away from your face.");
 						target.removeStatusEffect("Mimbrane Smother");
@@ -1357,7 +1359,7 @@ package classes.GameData
 			{
 				if (target.hasPerk("Escape Artist") && target.reflexes() >= target.physique())
 				{
-					if (target.reflexes() + rand(20) + 7 + target.statusEffectv1("Grappled") * 5 > target.statusEffectv2("Grappled"))
+					if (target.reflexes() + rand(20) + 7 + latexBonus + target.statusEffectv1("Grappled") * 5 > target.statusEffectv2("Grappled"))
 					{
 						if (hasEnemyOfClass(SexBot)) output("You almost dislocate an arm doing it, but, ferret-like, you manage to wriggle out of the sexbot’s coils. Once your hands are free, the droid does not seem to know how to respond, and you are able to grapple the rest of your way out easily, ripping away from its molesting grip. The sexbot clicks and stutters a few times before going back to staring at you blankly, swinging its fibrous limbs over its head.");
 						else if (hasEnemyOfClass(MaidenVanae) || hasEnemyOfClass(HuntressVanae)) kGAMECLASS.vanaeEscapeGrapple("Escape Artist");
@@ -1367,7 +1369,7 @@ package classes.GameData
 				}
 				else
 				{
-					if(target.physique() + rand(20) + 6 + target.statusEffectv1("Grappled") * 5 > target.statusEffectv2("Grappled"))
+					if(target.physique() + rand(20) + 6 + latexBonus + target.statusEffectv1("Grappled") * 5 > target.statusEffectv2("Grappled"))
 					{
 						// TODO It might be an idea to do something similar to how drone targets work now, in that the actual
 						// enemy DOING the grappling is stored as a transient property on the victim of the grapple,
@@ -2609,6 +2611,7 @@ package classes.GameData
 		
 			if (attacker.hasPerk("Pheromone Cloud")) bonus += 1;
 			if (teaseType == "SQUIRT") bonus += 2;
+			if (attacker.hasStatusEffect("Sweet Tooth")) bonus += 1;
 			
 			var sweatyBonus:int = 0;
 			if(attacker.hasStatusEffect("Sweaty") && target.hasPerk("Likes_Sweaty")) 

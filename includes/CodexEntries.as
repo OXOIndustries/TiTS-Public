@@ -72,6 +72,8 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Grav Cuffs", gravCuffsCodex);
 	//9999 CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Holodom", holodomCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Suma Cream", sumaCreamCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "ClearYu", clearYuCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Rubber-Made", rubberMadeCodex);
 	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Technology", "AI Systems", AISystemsCodexEntry, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Technology", "Item Mechanics", mechanicsCodex, true);
@@ -1663,6 +1665,31 @@ public function sumaCreamCodex():void
 	CodexManager.viewedEntry("Suma Cream");
 }
 
+public function clearYuCodex():void
+{
+	clearOutputCodex();
+	showBust("9999");
+	outputCodex(header("ClearYu"));
+	outputCodex("\n<b>Manufactured By:</b> Xenogen Biotech");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("About:"));
+	outputCodex("Never one to completely abandon a product line, when Xenogen discontinued work on Dumbfuck for its unexpected mind-altering side effects, they transferred much of the research to another department, who came up with ClearYu. The candied lollipop vastly increases one's hand-eye coordination, physical reflexes, and bodily responsiveness by hindering the higher brain functions that would normally obstruct these instincts. It's found surprising popularity among mercenaries and adventure seekers who don't mind losing a few points of IQ for a more steady gun hand.");
+	outputCodex("\n");
+	CodexManager.viewedEntry("ClearYu");
+}
+
+public function rubberMadeCodex():void
+{
+	clearOutputCodex();
+	showBust("9999");
+	outputCodex(header("Rubber-Made"));
+	outputCodex("\n<b>Manufactured By:</b> J'ejune Pharmaceuticals");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("About:"));
+	outputCodex("Rubber-Made was originally intended as a body hair removal paste by the overworked and undersupervised folks at J'ejune Pharmaceuticals. They were somewhat taken aback when their product responded vigorously to high levels of moisture, such as is typically found on the inside of one's mouth. The specific incident that lead to this discovery is not recorded, but the company's reputation for lax testing protocols may be responsible.\n\nWhen exposed to moisture and sufficiently agitated, the gum-like product will spread rapidly, synthetically bonding with the subject's underlying skin and fur. This produces a thin, latex-like coating over much if not all of a subject's body. Repeat use creates subsequently thicker layers, potentially subsuming body hair and fur. J'ejune representatives caution against the accidental ingestion of Rubber-Made.");
+	outputCodex("\n");
+	CodexManager.viewedEntry("Rubber-Made");
+}
 
 /* Technology */
 
