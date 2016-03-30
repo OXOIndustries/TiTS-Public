@@ -622,6 +622,7 @@ public function giveBurtABJPartII():void {
 	output("\n\nYour lungs burn as he thrusts down your throat again and again, only drawing back enough to let you catch a breath on occasion. It is intense, and leaves you feeling deeply submissive as he uses you with only the barest concern for your safety required. Your view of the world blurs through tears and shortness of breath, the whole of your existence narrowing to the hands jerking at your [pc.hair], the crotch growing closer and farther in rapid thrusts, and the cock sinking into your body again and again and again.");
 	output("\n\nHe finally slams against your face one last time, groaning as his balls draw up against the base of his cybernetic organ, and his body starts to twitch and spasm with pleasure. You can’t feel his cock surge or pulse, but you can feel a spreading heat within your stomach as he cums directly down your throat. After a few strong pulses, he lets go of your [pc.hair] and pulls back, gasping in pleasure as he plasters the last few shots of his cum into your mouth and across your face.");
 	output("\n\nYou gasp for breath as you recover from his orgasm, feeling breathless, used, and disturbingly turned on by the event.");
+	pc.loadInMouth(chars["BURT"]);
 	//[pg]
 	//[Next] (-1 Will, +5 Lust, Random Sex Exit)
 	pc.lust(5);
@@ -1255,6 +1256,11 @@ public function threeDSurprise():void {
 	output("\n\nOne tentacle finally finds its way to your [pc.asshole], teasing around the entrance slowly before it begins to push into you. You can feel the spinning bristles cleaning your insides as it slowly burrows ever deeper, deeper than anything has ever probed you before, sending tickling sensations and cramps through your bulging abdomen as it flows through every long inch of your gut. Your eyes go wide as you feel something root around in your stomach, followed by the sensation of something going the wrong way through your throat.");
 	output("\n\nYou cough several times as you feel that tentacle continue its obscene journey through your body, and finally watch as it bursts forth from between your lips, squirming and coiling in the air in front of your [pc.face].");
 	output("\n\nBurt finally gets to the controls, turning Three-Dee off, and you feel a rush of motion as the tentacles retract back the way they came, leaving you feeling empty and spent and sore everywhere as your body is dropped to the ground.");
+
+	//Clear the fluids!
+	pc.removeStatusEffect("Anally-Filled");
+	pc.removeStatusEffect("Vaginally-Filled");
+	pc.removeStatusEffect("Orally-Filled");
 	if(flags["TIMES_THREE_D_SURPRISE_SEXED"] == undefined) flags["TIMES_THREE_D_SURPRISE_SEXED"] = 1;
 	else flags["TIMES_THREE_D_SURPRISE_SEXED"]++;
 	pc.orgasm();

@@ -7295,6 +7295,7 @@
 		
 		//Calculate cum return
 		public function cumQ(): Number {
+			if (hasPerk("Fixed CumQ")) return perkv1("Fixed CumQ");
 			if (!hasCock()) return 0;
 			var quantity: Number = 0;
 			//lust - 50% = normal output. 0 = 75%. 100 = +125% output.
