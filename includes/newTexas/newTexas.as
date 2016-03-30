@@ -2129,6 +2129,7 @@ public function carrieSoothingShowerChance():Boolean
 }
 public function carrieSoothingShowerGo(response:String = "intro"):void
 {
+	clearOutput();
 	author("Nonesuch");
 	
 	var x:int = 0;
@@ -2138,7 +2139,6 @@ public function carrieSoothingShowerGo(response:String = "intro"):void
 	switch(response)
 	{
 		case "intro":
-			clearOutput();
 			showName("CARRIE\n& CORA");
 			showBust("CARRIE", "CORA");
 			
@@ -2164,7 +2164,6 @@ public function carrieSoothingShowerGo(response:String = "intro"):void
 			break;
 		// Nah
 		case "nah":
-			clearOutput();
 			showName("CARRIE\n& CORA");
 			showBust("CARRIE", "CORA");
 			
@@ -2180,7 +2179,6 @@ public function carrieSoothingShowerGo(response:String = "intro"):void
 		// A Shower
 		// First / Threesome
 		case "shower intro":
-			clearOutput();
 			showName("SHOWER\nROOM");
 			showBust("CARRIE_NUDE", "CORA_NUDE");
 			
@@ -2190,6 +2188,7 @@ public function carrieSoothingShowerGo(response:String = "intro"):void
 				output("\n\nThey lead you to a quiet shower-block, detached from the main barn. It is monitored, rather cutely, by a cow-mazon and faux-cow couple; the former huge, black and short-haired, the latter blonde, winsome and with an impudent smirk begging for an ass-fuck. The amazon raises an eyebrow when you walk in with your arms full of Carrie and Cora, but says nothing when you sashay past into the warm, wet mist. Evidently this place is as communal and bonk-happy as anywhere else on New Texas.");
 				output("\n\n");
 			}
+			
 			// merge from repeat Threesome
 			output("Once inside a spacious cubicle of your own, you");
 			if(!pc.isNude()) output(" take off your [pc.gear] and then");
@@ -2202,7 +2201,6 @@ public function carrieSoothingShowerGo(response:String = "intro"):void
 			addButton(0, "Next", carrieSoothingShowerGo, "shower threesome p1");
 			break;
 		case "shower threesome p1":
-			clearOutput();
 			showName("SHOWER\nROOM");
 			showBust("CARRIE_NUDE", "CORA_NUDE");
 			
@@ -2225,7 +2223,6 @@ public function carrieSoothingShowerGo(response:String = "intro"):void
 			addButton(0, "Next", carrieSoothingShowerGo, "shower threesome p2");
 			break;
 		case "shower threesome p2":
-			clearOutput();
 			showName("SHOWER\nROOM");
 			showBust("CARRIE_NUDE", "CORA_NUDE");
 			
@@ -2259,7 +2256,6 @@ public function carrieSoothingShowerGo(response:String = "intro"):void
 			else addButton(0, "Next", carrieSoothingShowerGo, "shower threesome end");
 			break;
 		case "shower threesome super cum":
-			clearOutput();
 			showName("SHOWER\nROOM");
 			showBust("CARRIE_NUDE", "CORA_NUDE");
 			
@@ -2287,7 +2283,6 @@ public function carrieSoothingShowerGo(response:String = "intro"):void
 			addButton(0, "Next", carrieSoothingShowerGo, "shower threesome end");
 			break;
 		case "shower threesome end":
-			clearOutput();
 			showName("SHOWER\nROOM");
 			showBust("CARRIE_NUDE", "CORA_NUDE");
 			
@@ -2301,13 +2296,15 @@ public function carrieSoothingShowerGo(response:String = "intro"):void
 			pc.shower();
 			IncrementFlag("CARRIE_SHOWER_THREESOME");
 			clearMenu();
-			addButton(0, "Next", carrieSoothingShowerGo, "shower done");
+			addButton(0, "Next", carrieSoothingShowerDone);
 			break;
 		// Repeat
 		case "shower repeat":
-			clearOutput();
 			showName("SHOWER\nROOM");
 			showBust("HORISHA", "PECK");
+			
+			output("You don’t have to say anything; all you have to do is go across, curl each arm around a warm, giggly cow-girl, breathe in their sweet, milky scent and give their plump butts a good, healthy squeeze. Once again, they lead you to the showers detached from the main barn.");
+			output("\n\n");
 			
 			if(flags["CARRIE_SHOWER_FIVESOME"] == undefined) output("The intimidatingly beautiful ebony amazon");
 			else output("Horisha");
@@ -2328,7 +2325,6 @@ public function carrieSoothingShowerGo(response:String = "intro"):void
 			break;
 		// Join Us
 		case "shower fivesome intro":
-			clearOutput();
 			showName("SHOWER\nROOM");
 			showBust("HORISHA", "PECK");
 			
@@ -2345,7 +2341,6 @@ public function carrieSoothingShowerGo(response:String = "intro"):void
 			addButton(0, "Next", carrieSoothingShowerGo, "shower fivesome p1");
 			break;
 		case "shower fivesome p1":
-			clearOutput();
 			showName("SHOWER\nROOM");
 			showBust("PECK_NUDE", "HORISHA_NUDE", "CARRIE_NUDE", "CORA_NUDE");
 			
@@ -2382,7 +2377,6 @@ public function carrieSoothingShowerGo(response:String = "intro"):void
 			addButton(0, "Next", carrieSoothingShowerGo, "shower fivesome p2");
 			break;
 		case "shower fivesome p2":
-			clearOutput();
 			showName("SHOWER\nROOM");
 			showBust("HORISHA_NUDE", "CORA_NUDE", "CARRIE_NUDE", "PECK_NUDE");
 			
@@ -2415,7 +2409,6 @@ public function carrieSoothingShowerGo(response:String = "intro"):void
 			addButton(0, "Next", carrieSoothingShowerGo, "shower fivesome p3");
 			break;
 		case "shower fivesome p3":
-			clearOutput();
 			showName("SHOWER\nROOM");
 			showBust("HORISHA_NUDE", "CORA_NUDE", "CARRIE_NUDE", "PECK_NUDE");
 			
@@ -2435,7 +2428,6 @@ public function carrieSoothingShowerGo(response:String = "intro"):void
 			addButton(0, "Next", carrieSoothingShowerGo, "shower fivesome p4");
 			break;
 		case "shower fivesome p4":
-			clearOutput();
 			showName("SHOWER\nROOM");
 			showBust("CARRIE_NUDE", "CORA_NUDE");
 			
@@ -2453,13 +2445,14 @@ public function carrieSoothingShowerGo(response:String = "intro"):void
 			pc.shower();
 			IncrementFlag("CARRIE_SHOWER_FIVESOME");
 			clearMenu();
-			addButton(0, "Next", carrieSoothingShowerGo, "shower done");
-			break;
-		case "shower done":
-			if(pc.hasStatusEffect("Cora Showered")) pc.setStatusMinutes("Cora Showered", (72 * 60));
-			else pc.createStatusEffect("Cora Showered", 0, 0, 0, 0, true, "", "", false, (72 * 60));
-			mainGameMenu();
+			addButton(0, "Next", carrieSoothingShowerDone);
 			break;
 	}
+}
+public function carrieSoothingShowerDone():void
+{
+	if(pc.hasStatusEffect("Cora Showered")) pc.setStatusMinutes("Cora Showered", (72 * 60));
+	else pc.createStatusEffect("Cora Showered", 0, 0, 0, 0, true, "", "", false, (72 * 60));
+	mainGameMenu();
 }
 
