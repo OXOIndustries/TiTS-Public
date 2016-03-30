@@ -96,18 +96,19 @@ public function rustCoastEncounters():Boolean {
 	if(flags["RUST_STEP"] >= 5 && rand(3) == 0) {
 		//Reset step counter
 		flags["RUST_STEP"] = 0;
-		if(!pc.hasStatusEffect("Sydian Prophylactic")) choices[choices.length] = encounterMaleSydian;
-		if(!pc.hasStatusEffect("Sydian Prophylactic")) choices[choices.length] = encounterMaleSydian;
-		choices[choices.length] = encounterMaleSydian;
 		
-		choices[choices.length] = encounterDasGooGray;
-		choices[choices.length] = encounterDasGooGray;
-		choices[choices.length] = encounterDasGooGray;
-		if(flags["ZODEE_GALOQUEST"] == undefined) choices.push(zodeeGivesFirstGalomax);
-		if(flags["ZODEE_GALOQUEST"] == 1) choices.push(secondZodeeEncouonterForGaloMax);
+		var e:Array = [];
+		
+		e.push( { v: encounterMaleSydian, w: pc.hasStatusEffect("Sydian Prophylactic") ? 1 : 3 } );
+		e.push( { v: encounterFemaleSydian, w: pc.hasStatusEffect("Sydian Prophylactic") ? 1 : 3 } );
+		
+		e.push( { v: encounterDasGooGray, w: 3 } );
+		
+		if (flags["ZODEE_GALOQUEST"] == undefined) e.push( { v: zodeeGivesFirstGalomax, w: 1 } );
+		if (flags["ZODEE_GALOQUEST"] == 1) e.push( { v: secondZodeeEncouonterForGaloMax, w: 1 } );
 	
 		//Run the event
-		choices[rand(choices.length)]();
+		weightedRand(e)();
 		return true;
 	}
 	if(CodexManager.entryUnlocked("SynthSheath") && rand(90) == 0 && flags["SYNTHSHEATH_TWO_FOUND"] == undefined)
@@ -130,21 +131,22 @@ public function rustRidgesEncounters():Boolean {
 		//Reset step counter
 		flags["RUST_STEP"] = 0;
 		
-		if(!pc.hasStatusEffect("Sydian Prophylactic")) choices[choices.length] = encounterMaleSydian;
-		if(!pc.hasStatusEffect("Sydian Prophylactic")) choices[choices.length] = encounterMaleSydian;
-		choices[choices.length] = encounterMaleSydian;
+		var e:Array = [];
 		
-		if(!pc.hasStatusEffect("Raskvel Prophylactic")) choices[choices.length] = encounterHostileRaskvelFemale;
-		choices[choices.length] = encounterHostileRaskvelFemale;
-		//choices[choices.length] = encounterHostileRaskvelFemale;
-		if(flags["SEXBOT_FACTORY_DISABLED"] == undefined) choices[choices.length] = encounterASexBot;
-		if(flags["SEXBOT_FACTORY_DISABLED"] == undefined) choices[choices.length] = encounterASexBot;
-		if(flags["SEXBOT_FACTORY_DISABLED"] == undefined || rand(2) == 0) choices[choices.length] = encounterASexBot;
-		if(flags["ZODEE_GALOQUEST"] == undefined) choices.push(zodeeGivesFirstGalomax);
-		if(flags["ZODEE_GALOQUEST"] == 1) choices.push(secondZodeeEncouonterForGaloMax);
+		e.push( { v: encounterMaleSydian, w: pc.hasStatusEffect("Sydian Prophylactic") ? 1 : 3 } );
+		e.push( { v: encounterFemaleSydian, w: pc.hasStatusEffect("Sydian Prophylactic") ? 1 : 3 } );
+		e.push( { v: encounterHostileRaskvelFemale, w: pc.hasStatusEffect("Raskvel Prophylactic") ? 1 : 2 } );
+
+		if (flags["SEXBOT_FACTORY_DISABLED"] == undefined)
+		{
+			e.push( { v:encounterASexBot, w: 2 + rand(2) } );
+		}
+		
+		if (flags["ZODEE_GALOQUEST"] == undefined) e.push( { v: zodeeGivesFirstGalomax, w: 1 } );
+		if (flags["ZODEE_GALOQUEST"] == 1) e.push( { v: secondZodeeEncouonterForGaloMax, w: 1 } );
 
 		//Run the event
-		choices[rand(choices.length)]();
+		weightedRand(e)();
 		return true;
 	}
 	if(CodexManager.entryUnlocked("SynthSheath") && rand(90) == 0 && flags["SYNTHSHEATH_TWO_FOUND"] == undefined)
