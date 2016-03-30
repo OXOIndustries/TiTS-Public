@@ -6719,9 +6719,18 @@
 		public function vaginalCapacity(arg: int = 0): Number {
 			//If the player has no vaginas
 			if (vaginas.length == 0) return 0;
-			var amount:Number = vaginas[arg].capacity() * elasticity;
-			if(isTaur()) amount += 400;
-			return amount;
+
+			var capacity:Number = 20;
+			//Factor in looseness! - 2/24/15 - buffed looseness a bunch
+			capacity *= (vaginas[arg].looseness() * 5 + 1)/3;
+			//Add bonuses!
+			capacity += vaginas[arg].bonusCapacity;
+			//CoC-tier wetness 5 will double capacity.
+			capacity *= (vaginas[arg].wetness()+4)/5;
+			//elasticity bonuses!
+			capacity *= elasticity;
+			if(isTaur()) capacity += 400;
+			return capacity;
 		}
 		public function smallestVaginalCapacity(): Number {
 			return vaginalCapacity(smallestVaginaIndex());
@@ -6818,7 +6827,17 @@
 			return index;
 		}
 		public function analCapacity(): Number {
-			return ass.capacity() * elasticity;
+			var capacity:Number = 15;
+			//Factor in looseness! - 2/24/15 - buffed looseness a bunch
+			capacity *= (ass.looseness() * 5 + 1)/3;
+			//Add bonuses!
+			capacity += ass.bonusCapacity;
+			//CoC-tier wetness 5 will double capacity.
+			capacity *= (ass.wetness()+4)/5;
+			//elasticity bonuses!
+			capacity *= elasticity;
+			if(isTaur()) capacity += 100;
+			return capacity;
 		}
 		//Goddamnit Savin
 		public function cockCapacity(x:int = -1): Number

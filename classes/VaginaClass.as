@@ -103,23 +103,6 @@
 		public var clitPShort:String = "";
 		public var clitPLong:String = "";
 		
-		public function capacity():Number {
-			//EXAMPLES
-			//6x1 = 4.18
-			//12x2 = 33.51
-			//20x3 = 127.24
-			//Base starting capacity is 10 (NOPE SHIT IS 30 NOW).
-			var capacity:Number = 20;
-			//Add bonuses!
-			capacity += bonusCapacity;
-			//Factor in looseness! - 2/24/15 - buffed looseness a bunch
-			capacity *= (looseness() * 5 + 1)/3;
-			//CoC-tier wetness 5 will double capacity.
-			capacity *= (wetness()+4)/5;
-			//Round it off and sent it away.
-			return Math.round(capacity*100)/100;
-		}
-		
 		//FLAG CHECKIN!
 		public function hasFlag(arg:int):Boolean {
 			for(var x:int = 0; x < vagooFlags.length;x++) {
