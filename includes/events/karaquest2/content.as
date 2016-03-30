@@ -1341,7 +1341,7 @@ public function kq2KhanPCVictoryTalkMyr():void
 
 	output("You turn your attention from the debilitatingly swollen kui-tan to the ex-harem around him. Between angry glances at their captor, many of them are buttoning up what’s left of their lab coats or recovering bits of clothing scattered across the lab. When you approach them, they set aside whatever it is they’re doing and give you their full attention, saying <i>“thank you”</i> in every way imaginable.");
 	
-	output("\n\nWhen they finally let you get a word in edgewise, you ask a few of them how they managed to end up in a pirate lab in the middle of nowhere. Shamefacedly, one of them answers, <i>“We were all scientists working for a big firm in Gildenmere. We worked in chemical weapons, gases mostly. These... people... approached us just after you offworlders first appeared and made a deal we couldn’t refuse: they offered to share their technology with us if we would help them reproduce our company’s gases. Imagine what we could have done with offworlder weapons -  lasers and cannons and new types of armor! All they wanted were some of our formulas, help setting up the facility...”</i>");
+	output("\n\nWhen they finally let you get a word in edgewise, you ask a few of them how they managed to end up in a pirate lab in the middle of nowhere. Shamefacedly, one of them answers, <i>“We were all scientists working for a big firm in Gildenmere. We worked in chemical weapons, gases mostly. These... people... approached us just after you offworlders first appeared and made a deal we couldn’t refuse: they offered to share their technology with us if we would help them reproduce our company’s gases. Imagine what we could have done with offworlder weapons - lasers and cannons and new types of armor! All they wanted were some of our formulas, help setting up the facility...”</i>");
 	
 	output("\n\n<i>“You’re weapons engineers?”</i> Kara asks, cocking an eyebrow. <i>“And you came here willingly?”</i>");
 	
@@ -2386,7 +2386,7 @@ public function kq2AmaraSpecialEnd():void
 	clearOutput();
 	kq2ShowAmara();
 
-	output("The pirates are just too much for you. Their leader, Amara, fights like a tank, and packs more firepower than all her goons combined. Kara grunts beside you, collapsed on the deck and  clutching her belly. Blood runs out between her fingers, drooling in thick rivulets to splatter on the concrete.");
+	output("The pirates are just too much for you. Their leader, Amara, fights like a tank, and packs more firepower than all her goons combined. Kara grunts beside you, collapsed on the deck and clutching her belly. Blood runs out between her fingers, drooling in thick rivulets to splatter on the concrete.");
 	
 	output("\n\nThe pirate lord hefts her chaingun up onto her shoulder and strides toward you, a great big grin on her blue-painted lips. <i>“Well. Bragga’s gonna be </i>pissed<i> I kicked your shit in for her, kitten,”</i> she laughs, grabbing Kara by the collar and heaving her up off the ground.");
 	if (flags["KQ2_SHADE_DEAD"] != undefined) output(" <i>“Then again, after what you did to Shade, maybe I should just kill you myself, huh?");
