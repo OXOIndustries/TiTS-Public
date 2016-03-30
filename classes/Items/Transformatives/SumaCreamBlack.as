@@ -33,7 +33,7 @@
 			
 			TooltipManager.addTooltip(shortName, tooltip);
 			
-			basePrice = 2000;
+			basePrice = 800;
 			
 			version = _latestVersion;
 		}
