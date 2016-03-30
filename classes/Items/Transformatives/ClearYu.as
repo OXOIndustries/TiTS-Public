@@ -27,7 +27,7 @@
 			TooltipManager.addFullName(shortName, StringUtil.toTitleCase(longName));
 			
 			description = "a lollipop labeled “ClearYu”";
-			tooltip = "A crimson, candy sphere on a white stick that has been tied up in a pink, waxy wrapper. It's a small, trivial looking thing, but somehow the lollipop seems heavier than it should be.";
+			tooltip = "A crimson, candy sphere on a white stick that has been tied up in a pink, waxy wrapper. It’s a small, trivial looking thing, but somehow the lollipop seems heavier than it should be.";
 			
 			TooltipManager.addTooltip(shortName, tooltip);
 			
@@ -83,7 +83,10 @@
 						else if(target.hasVagina()) output("the moistness filling your [pc.clothes] with [pc.girlCum] seems a relatively minor addition.");
 						//neuter: 
 						else output("it nearly robs you of your motor control, your [pc.hips] swaying drunkenly to the fluid bliss within you.");
-						output(" Each muscle in your body flexes in turn, and with each flex comes a sense of complete control. It’s as if you suddenly discovered that you had an extra set of arms and are trying them out for the first time. The drugged haze clings to your brain, settling in for a long occupancy, but the clarity of your body is so intense that it brings tears of joy to your eyes. You’ve lived your entire life inside your body, but now you don’t feel like a passenger or a prisoner.");
+						output(" Is this an overdose? The small portion of you still capable of rational thought fills with white-hot panic, realizing that the drug coursing through your body means to leave you a brainless slave to your own desires. You try to scream, but only manage a lust-drug giggle.");
+						output("\n\nWait. Didn’t dad");
+						if(target.isBimbo()) output("dy");
+						output(" give you something for this? That icky cocktail of immune-whatsits? Even as you’re trying to remember what you were told about your enhancements, a tightness seizes you. Each muscle in your body flexes in turn, and with each flex comes a sense of complete control. It’s as if you suddenly discovered that you had an extra set of arms and are trying them out for the first time. The drugged haze clings to your brain, settling in for a long occupancy, but the clarity of your body is so intense that it brings tears of joy to your eyes. You’ve lived your entire life inside your body, but now you don’t feel like a passenger or a prisoner.");
 						output("\n\nYou’re free.");
 						
 						kGAMECLASS.processTime(10 + rand(3));
