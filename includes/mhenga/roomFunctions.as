@@ -133,8 +133,10 @@ public function jungleDeepEncounters():Boolean {
 	if(rand(100) == 0 && !pc.hasItem(new StrangeEgg())) 
 	{
 		output("\n\nOh hey, there's a strange looking egg on the ground! Do you take it?\n");
+		clearMenu();
 		addButton(0,"Take It",quickLoot,new StrangeEgg());
-		return false;
+		addButton(1, "Don't", mainGameMenu);
+		return true;
 	}
 	var choices:Array = new Array();
 	//If walked far enough w/o an encounter
