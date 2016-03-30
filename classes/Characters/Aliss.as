@@ -120,9 +120,10 @@
 			this.cocks = new Array();
 			this.createCock();
 			this.cocks[0].cThicknessRatioRaw = 1.5;
-			this.cocks[0].cLengthRaw = 8;
-			this.cocks[0].addFlag(GLOBAL.FLAG_TAPERED);
-			this.cocks[0].addFlag(GLOBAL.FLAG_KNOTTED);
+			this.cocks[0].cLengthRaw = 14;
+			this.cocks[0].cType = GLOBAL.TYPE_OVIR;
+			this.cocks[0].addFlag(GLOBAL.FLAG_BLUNT);
+			this.cocks[0].addFlag(GLOBAL.FLAG_FLARED);
 			//balls
 			this.balls = 2;
 			this.cumMultiplierRaw = 3;

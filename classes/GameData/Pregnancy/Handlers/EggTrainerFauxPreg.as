@@ -32,7 +32,7 @@ package classes.GameData.Pregnancy.Handlers
 			
 			var msg:String = "";		
 			// One day in.
-			this.addStageProgression((1728000 - (60*24)), function(pregSlot:int):void
+			this.addStageProgression((172800000 - (60*24)), function(pregSlot:int):void
 			{
 				var pData:PregnancyData = (kGAMECLASS.pc as PlayerCharacter).pregnancyData[pregSlot];
 				pData.pregnancyBellyRatingContribution += 2;
@@ -42,7 +42,7 @@ package classes.GameData.Pregnancy.Handlers
 				//kGAMECLASS.eventBuffer += ParseText(msg);
 			}, true);
 			// One month in
-			this.addStageProgression((1728000 - (60*24*30)), function(pregSlot:int):void
+			this.addStageProgression((172800000 - (60*24*30)), function(pregSlot:int):void
 			{
 				var pData:PregnancyData = (kGAMECLASS.pc as PlayerCharacter).pregnancyData[pregSlot];
 				pData.pregnancyBellyRatingContribution += 3;
@@ -52,7 +52,7 @@ package classes.GameData.Pregnancy.Handlers
 				//kGAMECLASS.eventBuffer += ParseText(msg);
 			}, true);
 			// Two months in
-			this.addStageProgression((1728000 - (60*24*60)), function(pregSlot:int):void
+			this.addStageProgression((172800000 - (60*24*60)), function(pregSlot:int):void
 			{
 				var pData:PregnancyData = (kGAMECLASS.pc as PlayerCharacter).pregnancyData[pregSlot];
 				pData.pregnancyBellyRatingContribution += 5;
@@ -62,7 +62,7 @@ package classes.GameData.Pregnancy.Handlers
 				//kGAMECLASS.eventBuffer += ParseText(msg);
 			}, true);
 			// Three months in
-			this.addStageProgression((1728000 - (60*24*90)), function(pregSlot:int):void
+			this.addStageProgression((172800000 - (60*24*90)), function(pregSlot:int):void
 			{
 				var pData:PregnancyData = (kGAMECLASS.pc as PlayerCharacter).pregnancyData[pregSlot];
 				pData.pregnancyBellyRatingContribution += 5;
@@ -72,7 +72,7 @@ package classes.GameData.Pregnancy.Handlers
 				//kGAMECLASS.eventBuffer += ParseText(msg);
 			}, true);
 			// Four months in
-			this.addStageProgression((1728000 - (60*24*120)), function(pregSlot:int):void
+			this.addStageProgression((172800000 - (60*24*120)), function(pregSlot:int):void
 			{
 				var pData:PregnancyData = (kGAMECLASS.pc as PlayerCharacter).pregnancyData[pregSlot];
 				pData.pregnancyBellyRatingContribution += 5;
@@ -84,7 +84,7 @@ package classes.GameData.Pregnancy.Handlers
 				kGAMECLASS.pc.createStatusEffect("Egg Addled 1",0,0,0,0,false,"Icon_DrugPill","Your lust increases slightly faster over time as a result of the shifting egg inside you.",false,0);
 			}, true);
 			// Five months in
-			this.addStageProgression((1728000 - (60*24*150)), function(pregSlot:int):void
+			this.addStageProgression((172800000 - (60*24*150)), function(pregSlot:int):void
 			{
 				var pData:PregnancyData = (kGAMECLASS.pc as PlayerCharacter).pregnancyData[pregSlot];
 				pData.pregnancyBellyRatingContribution += 5;
@@ -94,7 +94,7 @@ package classes.GameData.Pregnancy.Handlers
 				//kGAMECLASS.eventBuffer += ParseText(msg);
 			}, true);
 			// Six months in
-			this.addStageProgression((1728000 - (60*24*180)), function(pregSlot:int):void
+			this.addStageProgression((172800000 - (60*24*180)), function(pregSlot:int):void
 			{
 				var pData:PregnancyData = (kGAMECLASS.pc as PlayerCharacter).pregnancyData[pregSlot];
 				pData.pregnancyBellyRatingContribution += 5;
@@ -104,7 +104,7 @@ package classes.GameData.Pregnancy.Handlers
 				//kGAMECLASS.eventBuffer += ParseText(msg);
 			}, true);
 			// Seven months in
-			this.addStageProgression((1728000 - (60*24*210)), function(pregSlot:int):void
+			this.addStageProgression((172800000 - (60*24*210)), function(pregSlot:int):void
 			{
 				var pData:PregnancyData = (kGAMECLASS.pc as PlayerCharacter).pregnancyData[pregSlot];
 				pData.pregnancyBellyRatingContribution += 5;
@@ -114,7 +114,7 @@ package classes.GameData.Pregnancy.Handlers
 				//kGAMECLASS.eventBuffer += ParseText(msg);
 			}, true);
 			// Eight months in
-			this.addStageProgression((1728000 - (60*24*240)), function(pregSlot:int):void
+			this.addStageProgression((172800000 - (60*24*240)), function(pregSlot:int):void
 			{
 				var pData:PregnancyData = (kGAMECLASS.pc as PlayerCharacter).pregnancyData[pregSlot];
 				pData.pregnancyBellyRatingContribution += 5;
@@ -124,7 +124,7 @@ package classes.GameData.Pregnancy.Handlers
 				//kGAMECLASS.eventBuffer += ParseText(msg);
 			}, true);
 			// Nine months in
-			this.addStageProgression((1728000 - (60*24*270)), function(pregSlot:int):void
+			this.addStageProgression((172800000 - (60*24*270)), function(pregSlot:int):void
 			{
 				var pData:PregnancyData = (kGAMECLASS.pc as PlayerCharacter).pregnancyData[pregSlot];
 				pData.pregnancyBellyRatingContribution += 5;
@@ -137,7 +137,7 @@ package classes.GameData.Pregnancy.Handlers
 				kGAMECLASS.pc.createStatusEffect("Egg Addled 2",0,0,0,0,false,"Icon_DrugPill","Your lust will increase over time to the maximum - leading to instant combat loss, should you blunder into a fight while distracted by your egg.",false,0);
 			}, true);
 			// Nine months in
-			this.addStageProgression((1728000 - (60*24*400)), function(pregSlot:int):void
+			this.addStageProgression((172800000 - (60*24*400)), function(pregSlot:int):void
 			{
 				var pData:PregnancyData = (kGAMECLASS.pc as PlayerCharacter).pregnancyData[pregSlot];
 				pData.pregnancyBellyRatingContribution += 15;

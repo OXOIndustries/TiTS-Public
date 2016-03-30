@@ -765,6 +765,14 @@ public function newTexasRoadFirstTime():Boolean
 
 public function manMilkerRoomBonusFunc():Boolean
 {
+	output("Unlike most of the stalls in the Milk Barn, this one isn’t closed or empty.");
+	if(StatTracking.getStat("milkers/prostate milker uses") == 0) output(" A single auburn-haired cow");
+	else output(" Carrie");
+	output(" is sitting on a stool near the door, dressed up in a cow-print corset, panties, and stockings, but otherwise the stall is empty. The center of the room is dominated by what looks like a padded steel vaulting horse with several holes drilled into the top. Pipes lead from the holes to drains and other machines along the walls. Looming overhead is a large, powerful-looking mechanical arm, from which dangles a huge");
+	if(StatTracking.getStat("milkers/prostate milker uses") == 0) output(" floppy pink dildo.");
+	else output(" pink dildo - better known as “Mister Floppycock.”");
+	output("\n\nA sign overtop the stall reads in faded letters, “Male Milker.” Doesn’t take a genius to figure out what that means...");
+	
 	if (flags["MILK_BARN_COCKMILKER_BROKEN"] != undefined || flags["MILK_BARN_COCKMILKER_REPAIR_DAYS"] != undefined)
 	{
 		if(flags["MILK_BARN_COCKMILKER_BROKEN"] != undefined)
@@ -775,6 +783,7 @@ public function manMilkerRoomBonusFunc():Boolean
 		else if (flags["MILK_BARN_COCKMILKER_REPAIR_DAYS"] > 0) addDisabledButton(0,"Use Milker","OUT OF ORDER","The machine is currently being repaired. You'll have to wait for it to be fixed first!");
 		else addButton(0,"Use Milker",useDaMilkar,undefined,"Use Milker","It looks like the male milker has finally been fixed. It looks good as new!");
 	}
+	else if(pc.hasStatusEffect("NT Male Milker Disabled")) addDisabledButton(0,"Use Milker","Use Milker","It looks like the milkers are full of stud stock already. Maybe try again later...");
 	else addButton(0,"Use Milker",useDaMilkar,undefined,"Use Milker","Use the male milker. It looks to function based off of prostate stimulation.");
 	return false;
 }
@@ -1007,128 +1016,6 @@ public function mhengaTaxiToXenogen():void
 	currentLocation = "ABANDONED CAMP";
 	generateMapForLocation(currentLocation);
 	processTime(15);
-	clearMenu();
-	addButton(0,"Next",mainGameMenu);
-}
-
-//Tarkus U.G.C. Scout Authority
-//Add to the flight deck of the Nova, 2 spaces east of the LZ. 
-public function tarkusScoutAuthorityOffice():Boolean
-{
-	output("What was once the crew chief’s office overlooking the flight deck has been converted into a U.G.C. scout base, complete with maps and star charts hanging from the walls and a massive board map dominating the center, with landmarks and racial analysis printouts scattered over it. Behind the chief’s desk sits a buxom kaithrit with her bright orange hair pulled back into a long ponytail.");
-	addButton(0,"Scout",tarkusScoutMenu,undefined,"Scout","Talk to the scout about security transportation to different parts of the planet.");
-	//[Scout] (PC hasn’t fixed any comm arrays)
-	return false;
-}
-
-public function tarkusScoutMenu():void
-{
-	clearOutput();
-	author("Savin");
-	showName("\nKAITHRIT\nSCOUT");
-	showBust("KAITHRIT_SCOUT");
-	if(flags["TARKUS_DESTROYED"] != undefined)
-	{
-		output("When you step up to the cat-girl, she looks up from her holoscreen and sighs. <i>“Sorry, there's not really anywhere to take a taxi to anymore.”</i>");
-		clearMenu();
-		addButton(0,"Next",mainGameMenu);
-	}
-	else if(flags["TARKUS_TAXI_STOP_UNLOCKED"] == undefined)
-	{
-		output("When you step up to the cat-girl, she looks up from her work on a holoscreen and gives you an apologetic grin. <i>“Sorry, friend, we’re just getting set up here on Tarkus. All the junk’s sending up so much interference that it’s taking ages to set up proper comm beacons, so there’s no transports going out yet.”</i>");
-		output("\n\n<i>“Ah. Sorry to bother you,”</i> you say, turning to leave.");
-		output("\n\n<i>“No worries. Come on back if any comm arrays go up, and we’ll be able to get you anywhere they cover.”</i>");
-		processTime(1);
-		clearMenu();
-		addButton(0,"Next",mainGameMenu);
-	}
-	//[Scout] (PC has fixed a comm array)
-	else
-	{
-		output("When you step up to the catgirl, she looks up from her work on a holoscreen and gives you a big grin. <i>“Hey there! Welcome to the Scout Authority base. We’re running light transports out into the wasteland now that comm arrays are coming online. So, where can we take you, " + pc.mf("sir","ma’am") + "?”</i>");
-		tarkusTransitMenu();
-	}
-}
-
-public function remoteTarkusScoutMenu():void
-{
-	clearOutput();
-	output("You jab in a few commands, and a moment later, a holographic kaithrit appears onscreen. <i>“Need a lift?”</i> she offers.");
-	output("\n\nYou nod.");
-	output("\n\n<i>“No problem. Where do you want to go?”</i>");
-	showName("\nKAITHRIT\nSCOUT");
-	showBust("KAITHRIT_SCOUT");
-	tarkusTransitMenu();
-}
-
-public function tarkusTransitMenu():void
-{
-	clearMenu();
-	if(pc.credits >= 80) addButton(0,"Novahome",tarkusFlyTo,"TARKUS SCOUT AUTHORITY","Novahome","Secure a lift to Novahome for the low low price of 80 credits.");
-	else addDisabledButton(0,"Novahome","Novahome","You can't afford the 80 credits it would cost to get a ride to Novahome.");
-	if(pc.credits >= 80) addButton(1,"The Lift",tarkusFlyTo,"279","The Lift","Secure a ride to the great lift for the low low price of 80 credits.");
-	else addDisabledButton(1,"The Lift","The Lift","You can't afford the 80 credits it would cost to get a ride to the great lift.");
-
-	if(currentLocation == "279") 
-	{
-		addDisabledButton(1,"The Lift","The Lift","You're already at the great lift comm relay!");
-	}
-	else if(currentLocation == "TARKUS SCOUT AUTHORITY")
-	{
-		addDisabledButton(0,"Novahome","Novahome","You're already at the Novahome scout office.");
-	}
-	addButton(14,"Back",mainGameMenu);
-}
-
-
-//{Destination -- X Credits}
-public function tarkusFlyTo(arg:String):void
-{
-	clearOutput();
-	author("Savin");
-	showName("\nKAITHRIT\nSCOUT");
-	showBust("KAITHRIT_SCOUT");
-	if(currentLocation == "TARKUS SCOUT AUTHORITY")
-	{
-		output("<i>“Alright. I’ll upload the coordinates to one of the transports. Just swipe your credit stick here and head back out into the flight deck. Can’t miss out transports right outside.”</i>");
-		output("\n\nYou do so, transferring your payment to the Scout Authority and walking back into the hangar. Several small hover-cars are arrayed there, all desert-patterned and manned by simplistic drone pilots. One of them hails you with a wave of its mechanical arm. You slip into the car, and a moment later you’re on your way, zipping across the junkyards of Tarkus.");
-		output("\n\nNot long after, you arrive at your destination, and disembark into the wasteland. The hover-car zips away a minute later, leaving you behind.");
-	}
-	else
-	{
-		output("<i>“Alright. I’ll upload the coordinates to one of the transports. Just swipe your credit stick here and we'll have a transport out in a few minutes.”</i>");
-		output("\n\nTrue to the cat-girl's words, a desert-patterned hovercover arrives in minutes, piloted by a simplistic drone pilot that's already beginning to show signs of corrosion from Tarkus' toxic atmosphere. You slip into the car, and a moment later you’re on your way, zipping across the junkyards of Tarkus.");
-		output("\n\nNot long after, you arrive at your destination, and disembark into the wasteland. The hover-car zips away a minute later, leaving you behind.");
-	}
-	pc.credits -= 80;
-	currentLocation = arg;
-	generateMapForLocation(currentLocation);
-	processTime(15);
-	clearMenu();
-	addButton(0,"Next",mainGameMenu);
-}
-
-public function eastTransitStationBonus():Boolean
-{
-	if(flags["TARKUS_TAXI_STOP_UNLOCKED"] == undefined)
-	{
-		output("\n\nA forgotten comm relay is sitting here, its antennas corroded with rust. If you knocked all the crud loose, it could probably get a signal again, allowing you to call for transport.");
-		addButton(0,"Fix Comms",fixCommsOnTarkus);
-	}
-	else
-	{
-		output("\n\nThe comm relay you fixed is sitting here, holoscreen illuminated. You could use it to call for a taxi if you wanted.");
-		addButton(0,"Call Taxi",remoteTarkusScoutMenu);
-	}
-	return false;
-}
-
-public function fixCommsOnTarkus():void
-{
-	clearOutput();
-	output("A few well placed kinetic repairs knock the crust loose from the antennas. The screen lights up. Perfect!");
-	flags["TARKUS_TAXI_STOP_UNLOCKED"] = 1;
-	processTime(1);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

@@ -137,7 +137,15 @@
 						kGAMECLASS.output(target.cockTypeLockedMessage());
 					}
 				}
-				
+				if(changes < changeLimit && rand(3) == 0 && target.cumType != GLOBAL.FLUID_TYPE_CUM && target.hasCock())
+				{
+					if(target.cumTypeUnlocked(GLOBAL.FLUID_TYPE_CUM))
+					{
+						kGAMECLASS.output("\n\nYou feel a sudden clenching in your gut and a dampness down south. Investigating, you find your [pc.cocks] dribbling your [pc.cum], though the odd ejaculation is looking more and more like normal terran spunk by the second. After what feels like a minute of bizarre, pleasureless ejaculation, the flow stops. <b>It looks like you've got normal, terran cum now.</b>");
+						pc.cumType = GLOBAL.FLUID_TYPE_CUM;
+					}
+					else kGAMECLASS.output(target.cumTypeLockedMessage());
+				}
 				if(pc.hasCock() && pc.hasStatusEffect("Genital Slit") && changes < changeLimit && rand(3) == 0)
 				{
 					kGAMECLASS.output("\n\nYou feel [pc.eachCock] come spilling out of ");
@@ -224,6 +232,26 @@
 						if(bonusRowsTFed == 1) kGAMECLASS.output(" Your second row of breasts shrink a bit as well.");
 						else if(bonusRowsTFed > 1) kGAMECLASS.output(" Your other breasts shrink a bit as well.");
 					}
+				}
+				//Girlygoo
+				if(changes < changeLimit && rand(3) == 0 && target.girlCumType != GLOBAL.FLUID_TYPE_GIRLCUM && target.hasVagina())
+				{
+					if(target.girlCumTypeUnlocked(GLOBAL.FLUID_TYPE_GIRLCUM))
+					{
+						kGAMECLASS.output("\n\nA twinge of discomfort in your [pc.vaginas] passes in a heartbeat, causing you to reach down in a panic. Fortunately, nothing feels that different down there, though when you bring your fingers back up, you realize that <b>your [pc.girlCum] has been replaced with clear, terran lubricant.</b>");
+						target.girlCumType = GLOBAL.FLUID_TYPE_GIRLCUM;
+					}
+					else kGAMECLASS.output(target.girlCumTypeLockedMessage());
+				}
+				//Milk!
+				if(changes < changeLimit && rand(3) == 0 && target.milkType != GLOBAL.FLUID_TYPE_MILK && target.canLactate())
+				{
+					if(target.milkTypeUnlocked(GLOBAL.FLUID_TYPE_MILK))
+					{
+						kGAMECLASS.output("\n\nYour feel an unusual tightness in your [pc.chest], and then, without warning, you let down, dribbling [pc.milk] all over yourself. You dab at it in a panic, noticing that the longer it goes on, the more you appear to be lactating traditional terran milk. You sigh with relief when your [pc.nipples] finally stop leaking. <b>You now have normal, terran breast-milk.</b>");
+						target.milkType = GLOBAL.FLUID_TYPE_MILK;
+					}
+					else kGAMECLASS.output(target.girlCumTypeLockedMessage());
 				}
 				//Change arm type to human
 				if(pc.armType != GLOBAL.TYPE_HUMAN && changes < changeLimit && rand(3) == 0)

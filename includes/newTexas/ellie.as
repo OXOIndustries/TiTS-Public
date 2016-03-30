@@ -153,13 +153,21 @@ public function ellieMenu(display:Boolean = true):void
 	clearMenu();
 	elliesShopSetup();
 
-	addButton(0,"Buy",buyItem);
+	addButton(0,"Buy",ellieBuyWrapper);
 	addButton(1,"Sell",sellToEllie);
 	addButton(2,"Talk",talkToEllieYaFuckingSkank);
 	addButton(3,"Suckle",suckleDatCowtaurTeat,undefined,"Suckle","Why not? You are thirsty.");
 	if(pc.lust() >= 33) addButton(4,"Sex",ellieSexScene);
 	else addDisabledButton(4,"Sex","Sex","Somehow, you're still not turned on enough for sex.");
 	addButton(14,"Back",mainGameMenu);
+}
+
+public function ellieBuyWrapper():void
+{
+	//unlock ClearYu Codex
+	CodexManager.unlockEntry("ClearYu");
+	CodexManager.unlockEntry("Rubber-Made");
+	buyItem();
 }
 
 public function sellToEllie():void
@@ -175,6 +183,13 @@ public function sellToEllie():void
 
 public function elliesShopSetup():void
 {
+	if(StatTracking.getStat("milkers/prostate milker uses") > 0)
+	{
+		if(!chars["ELLIE"].hasItemByType(SumaCream)) chars["ELLIE"].inventory.push(new SumaCream());
+		CodexManager.unlockEntry("Suma Cream");
+	}
+	else chars["ELLIE"].destroyItem(new SumaCream());
+	
 	shopkeep = chars["ELLIE"];
 	//Reset purchase prices
 	nephAffection();

@@ -628,7 +628,7 @@ public function queenOfTheDeepCloacaFuck():void
 	clearOutput();
 	queenOfTheDeepHeader();
 	
-	var selCock:int = (pc as Creature).cockThatFits(queenOfTheDeep.ass.capacity());
+	var selCock:int = (pc as Creature).cockThatFits(queenOfTheDeep.analCapacity());
 	
 	if (selCock == -1) selCock = (pc as Creature).smallestCockIndex();
 

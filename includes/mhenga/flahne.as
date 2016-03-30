@@ -877,7 +877,12 @@ public function eatFlahneOutUnderDesk():void {
 	output(" She stammers, <i>“I-I... I... ummm... I’ll be back later! Sorry!”</i>  and darts away.");
 	
 	output("\n\nFlahne moans loudly, and gushes again, shaking from head to toe. It’s marvellous to watch, as her semi-fluid body undulates rather pleasantly through her orgasm.");
-	if(flags["FLAHNE_LIKE_OVIPOSITOR"] > 0) output(" Above, her cock-like organ bloats and explodes, pumping huge blasts of white-hued cum out like some kind of cannon. The jizz-bombs splatter off the top of your enclosure, sticking to the underside of the desk briefly before raining spunk over your entire body. You ignore the one-woman bukkake show and keep going, ensuring that Flahne has as torturously long an orgasm as possible.");
+	if(flags["FLAHNE_LIKE_OVIPOSITOR"] > 0) 
+	{
+		output(" Above, her cock-like organ bloats and explodes, pumping huge blasts of white-hued cum out like some kind of cannon. The jizz-bombs splatter off the top of your enclosure, sticking to the underside of the desk briefly before raining spunk over your entire body. You ignore the one-woman bukkake show and keep going, ensuring that Flahne has as torturously long an orgasm as possible.");
+		applyCumSoaked(pc);
+	}
+
 	output("\n\nHer thighs clamp down on either side of you, surrounding you in squishy, jiggling flesh, compressing your mouth even harder against her gooey mound. Closing your eyes, you drink her girlish ejaculate until her body relaxes and releases you.");
 	
 	output("\n\nPushing out from under the desk, you stretch out with a satisfied grin on your face. Flahne is panting, her eyes heavy and lidded. She whimpers softly as she turns to regard you. <i>“I might have been exaggerating about my focus... a little.”</i>  You smile up at her");
@@ -896,6 +901,8 @@ public function eatFlahneOutUnderDesk():void {
 	//+lust, big MP gain
 	pc.lust(5+rand(5));
 	pc.exhibitionism(1);
+	//Just grabbing a random girl to squirt some ladycum on in...
+	pc.girlCumInMouth(chars["KIRO"]);
 	//Pass 20 minutes + 10 if she licks you clean.
 	processTime(20);
 	if(flags["FLAHNE_LIKE_OVIPOSITOR"] > 0) processTime(10);

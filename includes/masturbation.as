@@ -1814,6 +1814,8 @@ public function gooDickFap():void
 	
 	output("\n\nYou might need to catch your breath first...");
 
+	if(pc.hasVagina()) pc.loadInCunt(goo,0);
+	pc.loadInAss(goo);
 	processTime(20);
 
 	pc.orgasm();
