@@ -1104,7 +1104,9 @@ public function soloMilkingUpgrade():void
 		output("\n\nYou whimper. There is an undeniable erotic thrill to being treated so roughly, but the pain rhythmically coursing through your tender [pc.nipplesNoun] more freely than your [pc.milkNoun] keeps you from truly enjoying yourself. The best you can do is tough it out. At this rate, you’ll be drained dry in no time. The primary storage tank is already sloshing, mostly filled.");
 		output("\n\nGritting your teeth, you close your eyes and wait, almost relieved when your [pc.milkNoun]-flow slows to a less-enthusiastic trickle. Surely the auto function will shut off soon.");
 		output("\n\nBut it doesn’t.");
-		output("\n\nYour [pc.chest] ache. Your [pc.nipples] feel puffy and raw, beyond fully engorged and stretched out into an obscene parody of themselves. You squirt weakly, then subside to a slow dribble. The milker’s cups begin to clear now that your effusive output can drain away, but they do not slow. They suck, noisily, relentlessly, hungry for more than you could ever give.");
+		output("\n\nYour [pc.chest] ache");
+		if(pc.biggestTitSize() < 1) output("s");
+		output(". Your [pc.nipples] feel puffy and raw, beyond fully engorged and stretched out into an obscene parody of themselves. You squirt weakly, then subside to a slow dribble. The milker’s cups begin to clear now that your effusive output can drain away, but they do not slow. They suck, noisily, relentlessly, hungry for more than you could ever give.");
 	}
 	//Reluctant lactation levels
 	else
