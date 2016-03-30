@@ -2655,7 +2655,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					// Temp
 					if(flags["GIANNA_BODY_TALK_RESULT"] != undefined)
 					{
-						output2("\n<b>* Gianna, Body Tempurature:</b>");
+						output2("\n<b>* Gianna, Body Temperature:</b>");
 						if(flags["GIANNA_TEMP"] <= -1) output2(" Cool");
 						else if(flags["GIANNA_TEMP"] >= 1) output2(" Hot");
 						else output2(" Normal");
