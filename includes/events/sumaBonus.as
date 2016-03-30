@@ -296,7 +296,7 @@ public function sumaBadEnd(response:String = "intro"):void
 			else if(currentPlanet == "Myrellion")
 			{
 				if(pc.hasKeyItem("Gildenmere Pass")) nurseLocation.push("GMEREHOSPITAL");
-				else if(pc.hasKeyItem("Kressia Pass")) nurseLocation.push("KRESSIA MEDICAL");
+				if(pc.hasKeyItem("Kressia Pass")) nurseLocation.push("KRESSIA MEDICAL");
 			}
 			
 			if(nurseLocation.length > 0) currentLocation = nurseLocation[rand(nurseLocation.length)];
