@@ -497,10 +497,12 @@
 		public var skinType: Number = 0;
 		public function skinTypeUnlocked(newSkinType:Number):Boolean
 		{
+			if(hasPerk("Black Latex")) return false;
 			return true;
 		}
 		public function skinTypeLockedMessage():String
 		{
+			if(hasPerk("Black Latex")) return "Your rubbery skin briefly tingles, but stops shortly after, blocking any attempt to change it.";
 			return "Your [pc.skin] briefly itches, but nothing happens.";
 		}
 
@@ -3230,6 +3232,7 @@
 		public function lustMin(): Number {
 			var bonus:int = 0;
 			if (hasPerk("Drug Fucked")) bonus += 10;
+			if (hasPerk("Black Latex")) bonus += 10;
 			if (hasStatusEffect("Ellie's Milk")) bonus += 33;
 			if (hasStatusEffect("Lane Detoxing Weakness"))
 			{
@@ -4455,6 +4458,7 @@
 			var adjectives:Array = [];
 			//33% of the time, add an adjective.
 			if (forceAdjective || rand(3) == 0) {
+				if (skinType == GLOBAL.SKIN_TYPE_LATEX) adjectives.push(RandomInCollection(["slick","glistening","squeaky","glossy","oiled","lacquered","sleek","polished","supple"]));
 				if (hasSkinFlag(GLOBAL.FLAG_SMOOTH)) adjectives.push("smooth");
 				if (hasSkinFlag(GLOBAL.FLAG_THICK)) adjectives.push("thick");
 				if (hasSkinFlag(GLOBAL.FLAG_STICKY)) adjectives.push("sticky");
@@ -4537,6 +4541,8 @@
 				if (temp <= 7 || appearance) output += "chitin";
 				else if (temp <= 8) output += "armor";
 				else output += "carapace";
+			} else if (skinType == GLOBAL.SKIN_TYPE_LATEX) {
+				output += RandomInCollection(["latex","rubber","plastic","casing","dermis","film"]);
 			}
 			return output;
 		}
@@ -9785,6 +9791,7 @@
 				descript += "head";
 				return descript;
 			}
+
 			//50% odds of adjectives
 			if ((forceLength || rand(2) == 0) && !InCollection(hairStyle, "afro", "mohawk")) {
 				if (hairLength < 1) {
@@ -9830,6 +9837,12 @@
 				if (descripted > 0) descript += ", ";
 				descript += hairColor;
 				descripted++;
+			}
+			//Latex!
+			if (rand(2) == 0 && descripted <= 1 && hasStatusEffect("Latex Hair"))
+			{
+				if(descripted > 0) descript += ", ";
+				descript += "latex";
 			}
 			//Mane special stuff.
 			if (hasPerk("Mane") && hairLength > 3 && rand(2) == 0) {
@@ -9979,6 +9992,12 @@
 				if (descripted > 0) descript += ", ";
 				descript += hairColor;
 				descripted++;
+			}
+			//Latex!
+			if (rand(2) == 0 && descripted <= 1 && hasStatusEffect("Latex Hair"))
+			{
+				if(descripted > 0) descript += ", ";
+				descript += "latex";
 			}
 			//Not manes
 			//Oddball shit

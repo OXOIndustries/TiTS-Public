@@ -15,6 +15,8 @@
 	import classes.Items.Miscellaneous.MilkmaidsAid;
 	import classes.Items.Miscellaneous.BoobswellPads;
 	import classes.Items.Miscellaneous.Treatment;
+	import classes.Items.Transformatives.ClearYu;
+	import classes.Items.Transformatives.RubberMade;
 	import classes.Items.Accessories.LightningDuster;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
@@ -42,6 +44,8 @@
 			this.inventory.push(new MilkCaramelGushers());
 			this.inventory.push(new MilkmaidsAid());
 			this.inventory.push(new Lactaid());
+			this.inventory.push(new ClearYu());
+			this.inventory.push(new RubberMade());
 			
 			this.short = "Ellie";
 			this.originalRace = "leithan";
