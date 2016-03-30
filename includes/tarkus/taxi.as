@@ -233,7 +233,7 @@ public function inviteNessaToBed():void
 		output("\n\nDamn, she’s picky.");
 		processTime(5);
 		clearMenu();
-		addButton(4,"Back",tarkusScoutMenu);
+		addButton(14,"Back",tarkusScoutMenu);
 	}
 	//Success only from here on out
 	if(!rejected)
