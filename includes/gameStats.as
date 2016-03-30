@@ -3193,7 +3193,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			{
 				output2("\n<b><u>U.G.C. Scout Authority</u></b>");
 				output2("\n<b>* Nessa:</b> Met her");
-				if(nessaBellyRating() > 0) output2("\n<b>* Nessa, Belly Size Rating:</b> " + formatFloat(nessaBellyRating(), 3)));
+				if(nessaBellyRating() > 0) output2("\n<b>* Nessa, Belly Size Rating:</b> " + formatFloat(nessaBellyRating(), 3));
 				variousCount++;
 			}
 			// Shekka
