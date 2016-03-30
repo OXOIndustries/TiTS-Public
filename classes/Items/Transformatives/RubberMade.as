@@ -220,7 +220,7 @@
 		{
 			clearOutput();
 			author("Adjatha");
-			showRival();
+			kGAMECLASS.showRival();
 			output("The pressure of the embrace draws a wheezing squeak from your happy, O-shaped mouth and your latex-sheathed [pc.crotch] begins to leak with your long-delayed orgasm. <i>“Hrm? What’s this?”</i> [rival.name] ponders, noticing the thin, crystal liquid leaking from your body. Leaning in, [rival.heShe] wipes a finger across your fluid and raises it to [rival.hisHer] nose, sniffing curiously. <i>“Is this...?”</i> [rival.heShe] brings it to [rival.hisHer] mouth and licks curiously.");
 			output("\n\nAs if a dam bursting from torrential pressure, your months of edging nearer and nearer to a monumental climax are released in one gushing geyser. ");
 			if(kGAMECLASS.pc.hasVagina()) output("[pc.EachVagina] shudders, spraying [pc.girlCum] in a squirting symphony of blissful release. ");
