@@ -134,8 +134,10 @@
 		include "../includes/travelEvents.kiro.as";
 		
 		// Misc Events
-		include "../includes/events/bimboPennyAndBadgerQuest/badgerGifts.as";
 		include "../includes/events/atha_lets_fapper.as";
+		include "../includes/events/bimboPennyAndBadgerQuest/badgerGifts.as";
+		include "../includes/events/sumaBonus.as";
+		include "../includes/events/tentacle_psychic_hatchling.as";
 
 		//Tavros Station
 		include "../includes/tavros/aina.as";
@@ -200,6 +202,7 @@
 		include "../includes/tarkus/shekka.as";
 		include "../includes/tarkus/stellarTether.as";
 		include "../includes/tarkus/sydianMale.as";
+		include "../includes/tarkus/taxi.as";
 		include "../includes/tarkus/theMess.as";
 
 		//Third planet
@@ -367,7 +370,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.6.42";
+			version = "0.6.43";
 
 			//temporary nonsense variables.
 			temp = 0;

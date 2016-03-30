@@ -1586,6 +1586,8 @@ public function newTexanGanguBangu():void
 	// Lots of exhibition points.
 	// Filled with bull cum, anally and vaginally. Inflation.
 	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
+	pp.createPerk("Fixed CumQ",10000,0,0,0);
+
 	pc.exhibitionism(1);
 	if(pc.hasVagina()) 
 	{
@@ -1776,7 +1778,7 @@ public function cowGirlGanguBanguEpilogue():void
 	clearOutput();
 	showName("PUBLIC\nUSE");
 	author("JimThermic");
-	output("\n\n<b>... Some Time Later...</b>");
+	output("<b>... Some Time Later...</b>");
 	output("\n\n<i>Buzz-buzz-buzz!</i> Dimly and distantly, you realize there’s a noise going off not too far from your [pc.ear]. Every inch of you is filled with diffused, fizzling ecstasy, like you’ve been hollowed out and filled with pure high. There’s a clicking from your wrist and [pc.legOrLegs], and a sudden sense of fresh air around your [pc.skinFurScalesNoun] there.");
 	output("\n\nYou realize it’s the timer, and look down at your splayed, sticky, and thoroughly <i>spent</i> form. The cow-girls are gone, having utterly used and abused you over the last two hours, until your [pc.cocksLight] didn’t have anything else left to give. You smile; your face is completely coated in their girl cum, and your chest is splattered in their sopping wet milk. You’re definitely going to need a shower after this... but part of you doesn’t want to yet clean away the spoils of such a special, near-transcendent experience.");
 

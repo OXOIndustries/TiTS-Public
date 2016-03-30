@@ -71,6 +71,9 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "BionaHoles", bionaholeCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Grav Cuffs", gravCuffsCodex);
 	//9999 CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Holodom", holodomCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Suma Cream", sumaCreamCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "ClearYu", clearYuCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Rubber-Made", rubberMadeCodex);
 	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Technology", "AI Systems", AISystemsCodexEntry, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Technology", "Item Mechanics", mechanicsCodex, true);
@@ -1649,7 +1652,44 @@ public function holodomCodex():void
 	outputCodex("\n");
 	CodexManager.viewedEntry("Holodom");
 }
+public function sumaCreamCodex():void
+{
+	clearOutputCodex();
+	showBust("9999");
+	outputCodex(header("Suma Cream"));
+	outputCodex("\n<b>Manufactured By:</b> J’ejune Pharmaceuticals");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("About:"));
+	outputCodex("J’ejune Pharmaceuticals are not known for their originality, though they’re quite adept at making the best of a bad situation. The “Suma Cream” line of beauty products is no different. Originally intended as a facial cream to bring out plump, rosy cheeks, it was discovered that the plumping agent in the salve had almost no effect on female test subjects, but produced testicular swelling in hermaphrodites and males. When the balm was actually applied directly to the balls, the effect was even more pronounced.\n\nRebranding it as an alternative to Xenogen’s similar products, J’ejune marketed the cream specifically to those who wanted bigger testicles without adopting bovine or kui-tan traits. Their ad slogan “Pinch the pearl and make a kui-tan squirm!” was widely regarded as being both offensive and frankly misleading. Despite marketing missteps, they’ve finally managed to begin shipping the cream to vendors across the rim.\n\nRumors persist that “black pearl” versions of the cream have entered production. The black cream supposedly contains undiluted formula, producing an irresponsible amount of growth. J’ejune denies that such an oversight could’ve occurred, but their history speaks more loudly than their press statements.");
+	outputCodex("\n");
+	CodexManager.viewedEntry("Suma Cream");
+}
 
+public function clearYuCodex():void
+{
+	clearOutputCodex();
+	showBust("9999");
+	outputCodex(header("ClearYu"));
+	outputCodex("\n<b>Manufactured By:</b> Xenogen Biotech");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("About:"));
+	outputCodex("Never one to completely abandon a product line, when Xenogen discontinued work on Dumbfuck for its unexpected mind-altering side effects, they transferred much of the research to another department, who came up with ClearYu. The candied lollipop vastly increases one's hand-eye coordination, physical reflexes, and bodily responsiveness by hindering the higher brain functions that would normally obstruct these instincts. It's found surprising popularity among mercenaries and adventure seekers who don't mind losing a few points of IQ for a more steady gun hand.");
+	outputCodex("\n");
+	CodexManager.viewedEntry("ClearYu");
+}
+
+public function rubberMadeCodex():void
+{
+	clearOutputCodex();
+	showBust("9999");
+	outputCodex(header("Rubber-Made"));
+	outputCodex("\n<b>Manufactured By:</b> J'ejune Pharmaceuticals");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("About:"));
+	outputCodex("Rubber-Made was originally intended as a body hair removal paste by the overworked and undersupervised folks at J'ejune Pharmaceuticals. They were somewhat taken aback when their product responded vigorously to high levels of moisture, such as is typically found on the inside of one's mouth. The specific incident that lead to this discovery is not recorded, but the company's reputation for lax testing protocols may be responsible.\n\nWhen exposed to moisture and sufficiently agitated, the gum-like product will spread rapidly, synthetically bonding with the subject's underlying skin and fur. This produces a thin, latex-like coating over much if not all of a subject's body. Repeat use creates subsequently thicker layers, potentially subsuming body hair and fur. J'ejune representatives caution against the accidental ingestion of Rubber-Made.");
+	outputCodex("\n");
+	CodexManager.viewedEntry("Rubber-Made");
+}
 
 /* Technology */
 

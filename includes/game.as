@@ -655,6 +655,8 @@ public function shipMenu():Boolean {
 	rooms["SHIP INTERIOR"].outExit = shipLocation;
 	
 	setLocation("SHIP\nINTERIOR", rooms[rooms["SHIP INTERIOR"].outExit].planet, rooms[rooms["SHIP INTERIOR"].outExit].system);
+
+	if(shipLocation == "KIROS SHIP AIRLOCK") output("\n\n<b>You're parked in the hangar of the distressed ship. You can step out to investigate at your leisure.</b>");
 	
 	// Lane follower hook
 	if (tryFollowerLaneIntervention())
@@ -770,6 +772,18 @@ public function flyTo(arg:String):void {
 	}
 	else if(!InCollection(arg, ["Poe A", "karaQuest2"]))
 	{
+		//Eggshit Override!
+		if (pc.hasItem(new StrangeEgg()) || pc.hasItemInStorage(new StrangeEgg()))
+		{
+			//PC can preggo with it?
+			//Has an open spot!
+			if(pc.findEmptyPregnancySlot(0) != -1 && !pc.hasPregnancyOfType("PsychicTentacles"))
+			{
+				fuckingEggHatchOhFuck(arg);
+				return;
+			}
+		}
+		//Normal message events.
 		var tEvent:Function = tryProcTravelEvent();
 		if (tEvent != null)
 		{
@@ -1671,6 +1685,8 @@ public function processTime(arg:int):void {
 			}
 			//Egg trainer stuff
 			carryTrainingBonusBlurbCheck();
+			//Nessa cumflationshit
+			nessaBellyTic();
 			//Cunt stretching stuff
 			if(pc.hasVagina()) {
 				for(x = 0; x < pc.totalVaginas(); x++) {

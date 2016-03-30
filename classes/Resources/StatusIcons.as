@@ -92,6 +92,9 @@ package classes.Resources
 		[Embed(source = "../../assets/icons/statuseffects/lips_lick.svg", mimeType = "image/svg")]
 		public static var Icon_Lips_Lick:Class;
 
+		[Embed(source = "../../assets/icons/statuseffects/lollipop.svg", mimeType = "image/svg")]
+		public static var Icon_Lollipop:Class;
+
 		[Embed(source = "../../assets/icons/statuseffects/lust-down.svg", mimeType = "image/svg")]
 		public static var Icon_LustDown:Class;
 		

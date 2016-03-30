@@ -1898,7 +1898,7 @@ public function emmyImplantFurtherDiscussion():void
 	output("\n\nEmmy shakes her head and sighs. <i>“You know how normally when someone touches you somewhere innocent - on your shoulder or hand or elbow - you barely notice, but when you’re in bed with an attractive mate it can be the best feeling ever? It’s sort of like that all the time, with anybody, even my own hands. And I don’t get mad or sad as often any more. It’s hard to tamp down on positive feelings, like, if someone cuts me off, who cares? Sure, I have to wait an extra minute or whatever, but I can spend that minute thinking about all kinds of dirty, naughty things to say, and smiling all the while.”</i>");
 	output("\n\n<i>“What about the whole becoming a slut thing?”</i> you ask, remembering how hesitant she was when you met her.");
 	//No toy purchase
-	if(flags["EMMY_QUEST"] >= 6 && flags["EMMY_QUEST"] != undefined)
+	if(flags["EMMY_QUEST"] < 6)
 	{
 		output("\n\n<i>“I guess that ship has sailed,”</i> Emmy admits, a little sadly, <i>“but I think I can live like this. Sales have actually gone up since I’ve started dating you. I guess I’ve gotten a bit friendly with the customers over time - no, not fucking them or anything, but I guess having a busty jackal act like a flirty slut while talking shop like a true gun nut is a good way to move product. A few prudes got scared off, but honestly, who hasn’t seen an alien swaggering around with huge, flopping dick before? It’s not that uncommon.”</i>");
 		output("\n\nShe giggles and strokes her own, showing you exactly what she’s talking about.");

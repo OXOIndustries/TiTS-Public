@@ -568,6 +568,7 @@
 		public static const SKIN_TYPE_GOO:int                                    = 3;
 		public static const SKIN_TYPE_CHITIN:int                                 = 4;
 		public static const SKIN_TYPE_FEATHERS:int                               = 5;
+		public static const SKIN_TYPE_LATEX:int                               = 6;
 		
 		public static const SKIN_TYPE_NAMES:Array = [
 			"Skin",
@@ -629,17 +630,18 @@
 		public static const FLUID_TYPE_VANAE_HUNTRESS_MILK:int					= 11;
 		public static const FLUID_TYPE_NECTAR:int 								= 12;
 		public static const FLUID_TYPE_LEITHAN_MILK:int							= 13;
-		public static const FLUID_TYPE_GABILANI_CUM:int					= 14;
-		public static const FLUID_TYPE_GABILANI_GIRLCUM:int					= 15;
+		public static const FLUID_TYPE_GABILANI_CUM:int							= 14;
+		public static const FLUID_TYPE_GABILANI_GIRLCUM:int						= 15;
 		public static const FLUID_TYPE_VANILLA:int								= 16;
 		public static const FLUID_TYPE_NYREA_CUM:int							= 17;
 		//Why special? Cause it matches yer goo color.
 		public static const FLUID_TYPE_SPECIAL_GOO:int							= 18;
-		public static const FLUID_TYPE_CHOCOLATE_CUM:int							= 19;
+		public static const FLUID_TYPE_CHOCOLATE_CUM:int						= 19;
 		public static const FLUID_TYPE_VANAE_CUM:int							= 20;
-		public static const FLUID_TYPE_NYREA_GIRLCUM:int							= 21;
+		public static const FLUID_TYPE_NYREA_GIRLCUM:int						= 21;
 		public static const FLUID_TYPE_BLUEBERRY_YOGURT:int						= 22;
 		public static const FLUID_TYPE_HRAD_CUM:int								= 23;
+		public static const FLUID_TYPE_SPECIAL_CUMGOO:int						= 24;
 		
 		public static const FLUID_TYPE_NAMES:Array = [
 			"Milk",

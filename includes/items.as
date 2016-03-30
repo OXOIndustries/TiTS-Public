@@ -381,6 +381,7 @@ public function buyItemGo(arg:ItemSlotClass):void {
 		addButton(0,"Next",colensoBuyMenu);
 		return;
 	}
+	else if(shopkeep is Ellie && arg is SumaCream) arg = sumaCreamRandom();
 	//Emmy magic!
 	else if(shopkeep is Emmy) flags["PURCHASED_FROM_EMS"] = 1;
 	else if(shopkeep is Sera) flags["PURCHASED_FROM_SERA"] = 1;
