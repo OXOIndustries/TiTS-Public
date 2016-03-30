@@ -719,10 +719,11 @@ public function itemRapeAFrogGirl():void
 
 	output("\n\nYou grasp her by the hips, squeezing her tensed muscles and helping her pick up the pace. She attempts to hold on to your own hips, but with her slick skin she just slides off and holds herself up from the ground, her long tongue lolling from her mouth onto your bare stomach, dripping with chemicals that send your libido into overdrive.");
 
-	output("\n\nForcing her to pick up the pace, you ram her into you as fast as you can push and pull. She numbly follows your hands as best she can, chest heaving as juices splash between you when she hilts inside. The toxic lube coated cock flows in and out of [pc.vagina " + x + "], and you lock your legs around her to make sure it gets as deep as it can");
+	output("\n\nForcing her to pick up the pace, you ram her into you as fast as you can push and pull. She numbly follows your hands as best she can, chest heaving as juices splash between you when she hilts inside. The toxic lube coated cock flows in and out of your [pc.vagina " + x + "]");
+	if(pc.legCount > 1) output(", and you lock your [pc.legs] around her to make sure it gets as deep as it can");
 	if(pc.totalVaginas() > 1) 
 	{
-		output(", Your other entrance");
+		output(", your other entrance");
 		if(pc.totalVaginas() > 2) output("s wettening as their");
 		else output("wettening as its");
 		output(" sister is penetrated again and again");
@@ -745,6 +746,8 @@ public function itemRapeAFrogGirl():void
 	output("\n\nWith her brain numbed from the intensity of her orgasm, the frog-girl does the only thing she can make sense of given her situation and begins sucking and slurping the fluids leaking out of your [pc.vagina " + x + "]. Her gooey tongue slides inside you, licking up everything she can reach. You squeeze your [pc.breasts] as she licks, feeling satisfied with your purchase. Maybe you should try this again sometime.");
 	output("\n\nAt least that’s what you thought at first. You shake your head, realizing that a few hours must’ve passed. Your, err, the kerokoras is nowhere to be found, and your body aches now that the poison is wearing off. You gather your gear, grumbling about being careful the next time as you go back to what you were doing before.\n\n");
 
+	//Handy cum dispensor that cums normal cum!
+	pc.loadInCunt(chars["EMMY"],x);
 	processTime(34 + rand(10));
 	pc.orgasm();
 	if (!inCombat())

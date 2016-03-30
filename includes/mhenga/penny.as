@@ -2239,6 +2239,7 @@ public function suckAndLickAtPennyYouDildo(dick:Boolean = true):void {
 	output("\n\nOnce you’ve had your fill, you push the lewd little fox-girl off of you, feeling quite sated and sticky. Penny teases, <i>“Ohhh, mate, you’ve soiled my feet! I need a shower now!”</i> That doesn’t stop her from walking in a way that has her slippery limbs sliding against each other, smearing your leavings higher and higher up her calves on her way to the door. There’s the satisfying click of a lock being disengaged, and Penny scampers away, ");
 	if(penny.hasCock()) output("[penny.cock] flopping comically between her legs, ");
 	output("leaving [pc.cumColor] footprints in her wake. You grab your gear and see your way back out to her office now that you’ve gotten a handle on your baser urges.");
+	pc.loadInMouth(penny);
 	processTime(34);
 	pc.orgasm();
 	this.clearMenu();
