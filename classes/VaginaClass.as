@@ -109,7 +109,7 @@
 			//12x2 = 33.51
 			//20x3 = 127.24
 			//Base starting capacity is 10 (NOPE SHIT IS 30 NOW).
-			var capacity:Number = 30;
+			var capacity:Number = 20;
 			//Add bonuses!
 			capacity += bonusCapacity;
 			//Factor in looseness! - 2/24/15 - buffed looseness a bunch
