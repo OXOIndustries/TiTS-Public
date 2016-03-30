@@ -6827,7 +6827,7 @@
 			return index;
 		}
 		public function analCapacity(): Number {
-			var capacity:Number = 15;
+			var capacity:Number = 20;
 			//Factor in looseness! - 2/24/15 - buffed looseness a bunch
 			capacity *= (ass.looseness() * 5 + 1)/3;
 			//Add bonuses!
