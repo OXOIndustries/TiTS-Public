@@ -71,6 +71,7 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "BionaHoles", bionaholeCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Grav Cuffs", gravCuffsCodex);
 	//9999 CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Holodom", holodomCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Suma Cream", sumaCreamCodex);
 	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Technology", "AI Systems", AISystemsCodexEntry, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Technology", "Item Mechanics", mechanicsCodex, true);
@@ -1648,6 +1649,18 @@ public function holodomCodex():void
 	outputCodex("Holodoms were one of Humphard's first adult products and largely considered their \"first big break\" in the industry. The unassuming metal ring is a one-use hardlight shield designed to be worn around the penis. Activated by a small touch sensor, it is comfortable to wear and small enough that its presence is barely felt by both parties.\n\nBefore the holodom, galactic citizens had to rely on other less enjoyable methods of safe sex. Traditional condoms reduced sensation, body modification and implants were troublesome, and oral supplements were not always cross-species compatible. The holodom offered a quick, easy way to have sex with practically any species without worrying about impregnation or disease.\n\nOn the release of seed, a holodom captures it within the field and keeps it stored in a hard light bubble. For incredibly virile users, this often creates a spectacular 'bubble' of semen that can stress the holodom and potentially cause it to burst.\n\nSome seedy dealers sell fake holodoms that, while holographic, are not 'hard light'. There are a number of customers who buy these products to dupe their sexual partners, often in a bid to get them pregnant.");
 	outputCodex("\n");
 	CodexManager.viewedEntry("Holodom");
+}
+public function sumaCreamCodex():void
+{
+	clearOutputCodex();
+	showBust("9999");
+	outputCodex(header("Suma Cream"));
+	outputCodex("\n<b>Manufactured By:</b> J’ejune Pharmaceuticals");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("About:"));
+	outputCodex("J’ejune Pharmaceuticals are not known for their originality, though they’re quite adept at making the best of a bad situation. The “Suma Cream” line of beauty products is no different. Originally intended as a facial cream to bring out plump, rosy cheeks, it was discovered that the plumping agent in the salve had almost no effect on female test subjects, but produced testicular swelling in hermaphrodites and males. When the balm was actually applied directly to the balls, the effect was even more pronounced.\n\nRebranding it as an alternative to Xenogen’s similar products, J’ejune marketed the cream specifically to those who wanted bigger testicles without adopting bovine or kui-tan traits. Their ad slogan “Pinch the pearl and make a kui-tan squirm!” was widely regarded as being both offensive and frankly misleading. Despite marketing missteps, they’ve finally managed to begin shipping the cream to vendors across the rim.\n\nRumors persist that “black pearl” versions of the cream have entered production. The black cream supposedly contains undiluted formula, producing an irresponsible amount of growth. J’ejune denies that such an oversight could’ve occurred, but their history speaks more loudly than their press statements.");
+	outputCodex("\n");
+	CodexManager.viewedEntry("Suma Cream");
 }
 
 
