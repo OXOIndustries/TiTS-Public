@@ -507,6 +507,7 @@ public function vendingMachineButton(arg:int = 0):Boolean
 public function vendingMachineMenu():void
 {
 	clearOutput();
+	showBust("JOYCO_VENDING_MACHINE");
 	showName("VENDING\nMACHINE");
 	output("You walk over to the vending machine and give it a look. The main draw looks to be <i>JoyCo Power-up Potions</i>, guaranteed to double your pep. The small print spells out: <i>Only while cold. JoyCo is not responsible for food poisoning as a result of consuming warm beverages.</i> You might not be able to tote these wherever you go, but at least you can get a quick pick me up whenever you're feeling down, just five measly credits!");
 	processTime(1);
@@ -522,6 +523,7 @@ public function vendingMachineMenu():void
 public function buyAPowahPotion():void
 {
 	clearOutput();
+	showBust("JOYCO_VENDING_MACHINE");
 	showName("VENDING\nMACHINE");
 	author("Savin");
 	output("You swipe your Codex over a small scanner on the front. The vending machine beeps happily as it siphons off a few credits from your account and rumbles as the replicator inside it works. After a moment, an ice-cold yellow can pops out of the dispenser at the bottom. You take it and crack the tab open, and are instantly overwhelmed by the too-sweet taste of the sugary drink. The can is small enough to knock back its contents in a matter of moments, leaving a slightly burning aftertaste in your mouth as the <i>“potion”</i> goes down.");

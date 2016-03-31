@@ -208,6 +208,11 @@
 		[Embed(source = "../../../assets/images/npcs/gats/Tamwolf.png", mimeType = "image/png")]
 		public var Bust_TAMWOLF:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/gats/una.png", mimeType = "image/png")]
+		public var Bust_UNA:Class;
+		[Embed(source = "../../../assets/images/npcs/gats/una_nude.png", mimeType = "image/png")]
+		public var Bust_UNA_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/gats/Venus_Pitcher.png", mimeType = "image/png")]
 		public var Bust_VENUSPITCHER:Class;
 
