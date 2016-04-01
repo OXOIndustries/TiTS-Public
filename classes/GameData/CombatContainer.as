@@ -1734,17 +1734,22 @@ package classes.GameData
 			else if(select == 1)
 			{
 				output("Swirling away, you find yourself facing away from your enemy. A cunning smile slaps itself across your [pc.face] as you hook your fingers into your " + pc.armor.longName + " and pull down your bottoms to expose your ");
-			if(pc.lowerUndergarment.shortName != "") output(pc.lowerUndergarment.longName + " and ");
-			output("[pc.butt].");
-			if(pc.legCount > 1) output(" Spreading your [pc.legs], y");
-			else output(" Y");
-			output("ou begin to shake your [pc.butt], bouncing ");
+				if(pc.lowerUndergarment.shortName != "") output(pc.lowerUndergarment.longName + " and ");
+				output("[pc.butt].");
+				if(pc.legCount > 1) output(" Spreading your [pc.legs], y");
+				else output(" Y");
+				output("ou begin to shake your [pc.butt], bouncing ");
 				if(pc.lowerUndergarment.shortName != "") output("in your [pc.lowerUndergarment] ");
 				output("and tempting " + target.a + target.uniqueName + " with your ");
 				if(pc.lowerUndergarment.shortName != "") output("unseen ");
 				output("goods. Your ass shaking has gotten faster and more tasteful with all of that practice, and you rock your [pc.butt] as best as you can to show that off.");
 			}
-			else if(select == 2) output("You quickly strip out of your [pc.armor] and turn around, giving your [pc.butt] a hard slap and showing your enemy the real prize: your [pc.asshole].  With a smirk, you easily plunge your hand inside, burying yourself up to the wrist inside your anus.  You give yourself a quick fisting, watching the enemy over your shoulder while you moan lustily, being sure to give them a good show.  You withdraw your hand and give your ass another sexy spank before readying for combat again.");
+			else if(select == 2)
+			{
+				output("You quickly");
+				if(pc.hasArmor() && !pc.isCrotchExposed()) output(" strip out of your [pc.armor] and");
+				output(" turn around, giving your [pc.butt] a hard slap and showing your enemy the real prize: your [pc.asshole].  With a smirk, you easily plunge your hand inside, burying yourself up to the wrist inside your anus.  You give yourself a quick fisting, watching the enemy over your shoulder while you moan lustily, being sure to give them a good show.  You withdraw your hand and give your ass another sexy spank before readying for combat again.");
+			}
 			//Reqs: PC has at least one tail with the Fluffy tag
 			else if(select == 4)
 			{

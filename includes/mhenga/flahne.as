@@ -1065,7 +1065,7 @@ public function fuckAndSuckWithFlahne():void {
 	
 	output("\n\nYou move up to the desk and lean in close, helping to undo the last few buttons on the gel girl’s top. As soon as you finish the last straining one, the massive globes fall free. Your first hand catches one of the breasts as it falls, sinking into the heavenly soft mass, while the other slides down to her waiting slit. The soft flesh parts easily as you trace your fingers around the entrance to her vagina; her slick juices coat them and you can smell the sugars permeating the air around the two of you.");
 	
-	output("\n\nFlahne moans as you rub in circles around the base of her clit-dick. You move the hand that was caressing her tit-flesh, tugging on the nipple before moving to hold her hip and line your " + pc.cockDescript(x) + " up with her waiting slit. Rubbing around the edges, you making sure her sugary lube coats you for the coming penetration. Flahne’s breathing has become heavy, and she tightly grips her own member, squeezing the squishy prick and slowly sliding her hands up and down.");
+	output("\n\nFlahne moans as you rub in circles around the base of her clit-dick. You move the hand that was caressing her tit-flesh, tugging on the nipple before moving to hold her hip and line your " + pc.cockDescript(x) + " up with her waiting slit. Rubbing around the edges, you make sure her sugary lube coats you for the coming penetration. Flahne’s breathing has become heavy, and she tightly grips her own member, squeezing the squishy prick and slowly sliding her hands up and down.");
 	
 	var x:int = pc.cockThatFits(flahne.vaginalCapacity());
 	if(x < 0) x = 0;
@@ -1083,7 +1083,7 @@ public function fuckAndSuckWithFlahne():void {
 	output("\n\nIn short time, you feel the pressure welling up in your ");
 	if(pc.balls > 0) output("[pc.balls]");
 	else output("groin");
-	output(" and thrust as deep into Flahne’s jelly-like box as you can muster. Your [pc.oneCock] explodes inside her ");
+	output(" and thrust as deep into Flahne’s jelly-like box as you can muster. [pc.OneCock] explodes inside her ");
 	if(pc.cumQ() <= 200) output("lining her walls with your [pc.cumColor] jizz.");
 	else output("distending her stomach with your [pc.cum].");
 	//if multicocks:
@@ -1099,11 +1099,11 @@ public function fuckAndSuckWithFlahne():void {
 		output("\n\nYour knot engorges within the snug ring of her sex, preventing you from pulling out. Every time you attempt it a little more of your jizz spurts into Flahne’s belly, causing aftershocks to travel up her ovipositor and down her throat. You spin around for better leverage, moving the swivel chair beneath the two of you. Flahne slides off her desk when you pull and lands on the seat cushion. Your knot pops out of the amber-colored girl with a loud, wet sucking sound");
 		if(pc.cumQ() >= 500) output(", and jizz follows from her abused hole, leaking around your shaft and pooling on the chair");
 		output(".");
-		
-		output("\n\nYou pull free of the gel secretary’s hole and she lets her legs fall; small globs of your cum escape from her hole, but her body rushes to absorb it and most disappear before leaving her skin. She lifts her head as soon as the flow from her ovipositor stops, and it droops to one side. Insatiable, her lips wrap around [pc.eachCock] to suck out any remaining jism. <i>“Mmmm, your cum’s much better than a sucker, [pc.name]. You’d better be back soon,”</i>  she says. Flahne pulls a new skirt and a small towel out of a drawer in her desk; you take the towel and mop up as much of the fluid-stained desk ");
-		if(pc.cumQ() >= 500) output("and floor ");
-		output("as you can while Flahne changes into her new skirt.");
 	}
+	else output("\n\nYou pull free of the gel secretary’s hole and she lets her legs fall; small globs of your cum escape from her hole, but her body rushes to absorb it and most disappear before leaving her skin.");
+	output(" She lifts her head as soon as the flow from her ovipositor stops, and it droops to one side. Insatiable, her lips wrap around [pc.eachCock] to suck out any remaining jism. <i>“Mmmm, your cum’s much better than a sucker, [pc.name]. You’d better be back soon,”</i>  she says. Flahne pulls a new skirt and a small towel out of a drawer in her desk; you take the towel and mop up as much of the fluid-stained desk ");
+	if(pc.cumQ() >= 500) output("and floor ");
+	output("as you can while Flahne changes into her new skirt.");
 	flahneFuckCounter(1);
 	pc.orgasm();
 	flahne.loadInCunt(pc, 0);

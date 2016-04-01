@@ -10225,6 +10225,7 @@
 			if (rand(10) == 0 && tailGenitalColor != "") {
 				if (descripted > 0) vag += ", ";
 				vag += tailGenitalColor;
+				descripted++;
 			}
 			//50% of time, simple cunt.
 			if (rand(2) == 0) {
