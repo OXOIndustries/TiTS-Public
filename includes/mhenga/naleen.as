@@ -486,7 +486,7 @@ public function bendNaleenOver():void {
 	if(y >= 0) output(" as your [pc.cock " + y + "] presses up against her tight rump, straining for a brief moment before the naleen screams as you're in, pushing through her tight rectal channel");
 	output(". Her walls squirm and squeeze around your cock");
 	if(y >= 0) output("s");
-	output(", pushing back hard against you to make your work for every inch. But she's so wet, it barely slows your onslaught. ");
+	output(", pushing back hard against you to make you work for every inch. But she's so wet, it barely slows your onslaught. ");
 	if(y >= 0) output("Her ass gives a bit more of a fight, but the steady push of your hips keeps it going - and your lover's not shy about thrusting her hips back, too, moaning louder with every pump you give into her tight behind. ");
 	output("She's loving every second of it, clutching at her tits and purring so throatily you can feel it all the way back in her quivering quim, a thrumming vibration that spreads to your very core.");
 	pc.cockChange();

@@ -227,7 +227,7 @@ public function hasCockLossForForgGirls():void
 		output("grasps [pc.eachCock], making a happy churr upon seeing your hard length");
 		if(pc.cockTotal() > 1) output("s");
 	}
-	output(". Deft hands play gracefully across your [pc.cock " + x + "], bringing it to full rigidity in seconds. You’re unable to stifle moans as she softly presses her palm against [pc.cockHead " + x + "], rubbing in circles and letting her webbed hands catch the slow streams of pre that have begun to drip from your cum-slit.");
+	output(". Deft hands play gracefully across your [pc.cock " + x + "], bringing it to full rigidity in seconds. You’re unable to stifle moans as she softly presses her palm against your [pc.cockHead " + x + "], rubbing in circles and letting her webbed hands catch the slow streams of pre that have begun to drip from your cum-slit.");
 
 	output("\n\nAs she works on your member, the rest of your body is not left unattended. You watch through your lust fogged vision as the kerokoras’ warm, gooey tongue trails venomous saliva across every accessible part of your body. You feebly attempt to raise an arm to involve yourself in what’s going on, but are reduced to simply bucking your hips against her hands when she gives your arm a lick from shoulder to hand.");
 

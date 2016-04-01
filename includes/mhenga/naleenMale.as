@@ -1203,8 +1203,8 @@ public function maleNaleenSucksPCOff():void
 	if(pc.lipRating() >= 6) output("\n\nYour whorish, cocksucker lips seal around the penis tightly, and their smooth, soft  flesh makes the naleen shiver under your ministrations. You decide to really get going and descend on his shaft. Your [pc.lips] slide down the reptilian prick with ease and massage the senitive dickfesh almost as well as a terran pussy. Your sensitive, pornstar-level dickpillows tingle with pleasure as you wrap them around the naleen’s length.");
 	else output("\n\nGently you circle the penis with your tongue, before you descend on his shaft. You stretch your jaw wide and slide your [pc.lips] down on the reptilian prick.");
 	output("\n\nSoon enough you can feel it poke at the back of your throat. You suppress your gag reflex as best as you can and force the rigid shaft further down. You shudder in delight as it pushes into your tight throat. So does the your lover. The naleen lets out a pleasured cry and another spurt of precum shoots straight into your gullet. By now your [pc.skin] is flushed with arousal and you can barely think straight.");
-	if(pc.isBimbo()) output("\n\nSucking a big cock always gets so so hot and bothered and it feels just soooo good. It’s way more fun to use your mouth for cocksucking than for talking at any rate.");
-	else if(pc.legCount == 1) output("\n\nIn your groin");
+	if(pc.isBimbo()) output("\n\nSucking a big cock always gets so hot and bothered and it feels just soooo good. It’s way more fun to use your mouth for cocksucking than for talking at any rate.");
+	if(pc.legCount == 1) output("\n\nIn your groin");
 	else 
 	{
 		output("\n\nBetween your");
