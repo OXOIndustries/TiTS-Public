@@ -110,7 +110,7 @@
 				{
 					var i:int = 0;
 					
-					output("\n\nThe latest addition to your glistening latex body spreads over you with customary heat. It seems to be going slower than the others, giving you a chance to really enjoy experience. Your squeaking sheath ripples with the acceleration of your heart beat");
+					output("\n\nThe latest addition to your glistening latex body spreads over you with customary heat. It seems to be going slower than the others, giving you a chance to really enjoy the experience. Your squeaking sheath ripples with the acceleration of your heart beat");
 					if(!pc.isNude()) output(" and it’s all you can do to keep from stripping here and now");
 					output(". Discretely, you move your fingertips up and down your tender frame, groping yourself ");
 					if(!pc.isNude()) output(" through your [pc.clothes]");
