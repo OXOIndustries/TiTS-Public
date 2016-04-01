@@ -38,6 +38,11 @@
 		[Embed(source = "../../../assets/images/npcs/gats/Burt_Nude.png", mimeType = "image/png")]
 		public var Bust_BURT_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/gats/cameron.png", mimeType = "image/png")]
+		public var Bust_CAMERON:Class;
+		[Embed(source = "../../../assets/images/npcs/gats/cameron_nude.png", mimeType = "image/png")]
+		public var Bust_CAMERON_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/gats/Captain_Khorgan.png", mimeType = "image/png")]
 		public var Bust_CAPTAIN_KHORGAN:Class;
 		[Embed(source = "../../../assets/images/npcs/gats/Captain_Khorgan_Nude.png", mimeType = "image/png")]
