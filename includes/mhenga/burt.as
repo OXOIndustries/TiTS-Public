@@ -994,7 +994,7 @@ public function burtSticksItInThePCsVajayjay():void {
 		if(pc.biggestTitSize() > 0) 
 		{
 			output("Your [pc.fullChest] bounce");
-			if(pc.totalBreasts()() == 1) output("s");
+			if(pc.totalBreasts() == 1) output("s");
 			output(" wildly with each hilting thrust, drawing his eyes  to them and urging a grin out of the man. ");
 		}
 		//if (cock > 0)
