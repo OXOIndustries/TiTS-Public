@@ -960,7 +960,7 @@ public function getEggedByCrystalGoo():void
 	}
 	if(pc.hasCock()) output("[pc.cocks]");
 	else if(pc.hasVagina()) output("[pc.vaginas]");
-	output(" before turning around and giving yourself a slap on the ass in the go’s direction, drawing her attention from her cowering in the corner. Her big, purple eyes grow wide as she drinks in your naked form; seeing that you’ve captured her gaze, you give her a lusty smile and swish your hips enticingly, using your body to replace the goo’s fear with something a little more palatable to your advances. She makes a pathetic little moan, rubbing her arms around the swollen, hard surface of her crystal belly - apparently a very pleasurable motion, if the way she jiggles and groans afterwards is any indication.");
+	output(" before turning around and giving yourself a slap on the ass in the goo’s direction, drawing her attention from her cowering in the corner. Her big, purple eyes grow wide as she drinks in your naked form; seeing that you’ve captured her gaze, you give her a lusty smile and swish your hips enticingly, using your body to replace the goo’s fear with something a little more palatable to your advances. She makes a pathetic little moan, rubbing her arms around the swollen, hard surface of her crystal belly - apparently a very pleasurable motion, if the way she jiggles and groans afterwards is any indication.");
 	output("\n\nNow that she’s a little more open to you, you shimmy over to the fallen goo while groping and stroking yourself, putting on a show all the way until you’re right beside her.");
 	output("\n\n<i>“W-what’re you...”</i> the goo starts to say, trailing off as you slip down to ");
 	if(pc.legCount != 1) output("straddle her amorphous lower body");
