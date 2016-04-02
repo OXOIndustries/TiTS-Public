@@ -8606,8 +8606,8 @@
 			if (tongueType == GLOBAL.TYPE_OVIR) score++;
 			if (legType == GLOBAL.TYPE_OVIR) score++;
 			if (armType == GLOBAL.TYPE_OVIR && legType == GLOBAL.TYPE_OVIR) score++;
-			if (hasCock(GLOBAL.TYPE_EQUINE) && (balls == 0 || hasStatusEffect("Uniball"))) score++;
-			if ((hasCock(GLOBAL.TYPE_EQUINE) || hasVagina()) && hasStatusEffect("Genital Slit")) score++;
+			if (score > 0 && hasCock(GLOBAL.TYPE_EQUINE) && (balls == 0 || hasStatusEffect("Uniball"))) score++;
+			if (score > 0 && (hasCock(GLOBAL.TYPE_EQUINE) || hasVagina()) && hasStatusEffect("Genital Slit")) score++;
 			if (score > 0 && (faceType == GLOBAL.TYPE_HUMAN && !hasFaceFlag(GLOBAL.FLAG_MUZZLED))) score++;
 			return score;
 		}
