@@ -67,7 +67,11 @@ public function sumaEffects(pillColor:String = "none"):void
 		pc.lust(20);
 		//pc.removeStatusEffect("Uniball");
 		if(pc.balls < 2) pc.balls = 2;
-		if(pc.ballSizeRaw < 30) pc.ballSizeRaw++;
+		if(pc.ballSizeRaw < 30)
+		{
+			pc.ballSizeRaw++;
+			if(pc.hasPerk("Bulgy")) pc.ballSizeRaw++;
+		}
 		
 		clearMenu();
 		addButton(0, "Next", mainGameMenu);
@@ -86,7 +90,11 @@ public function sumaEffects(pillColor:String = "none"):void
 		pc.lust(20);
 		//pc.removeStatusEffect("Uniball");
 		pc.balls = 2;
-		if(pc.ballSizeRaw < 30) pc.ballSizeRaw++;
+		if(pc.ballSizeRaw < 30)
+		{
+			pc.ballSizeRaw++;
+			if(pc.hasPerk("Bulgy")) pc.ballSizeRaw++;
+		}
 		
 		clearMenu();
 		addButton(0, "Next", mainGameMenu);
@@ -155,6 +163,7 @@ public function sumaGrowBalls(pillColor:String = "none"):void
 				//if(pc.balls < 2) pc.balls = 2;
 				//pc.removeStatusEffect("Uniball");
 				pc.ballSizeRaw += 3;
+				if(pc.hasPerk("Bulgy")) pc.ballSizeRaw += 1;
 				pc.lust(20);
 			}
 			// Large Nuts (13”-35” circumference)
@@ -175,6 +184,7 @@ public function sumaGrowBalls(pillColor:String = "none"):void
 				//if(pc.balls < 2) pc.balls = 2;
 				//pc.removeStatusEffect("Uniball");
 				pc.ballSizeRaw += 6;
+				if(pc.hasPerk("Bulgy")) pc.ballSizeRaw += 2;
 				pc.orgasm();
 			}
 			// XXXL Nuts (40”+ circumference)
@@ -204,6 +214,7 @@ public function sumaGrowBalls(pillColor:String = "none"):void
 				//if(pc.balls < 2) pc.balls = 2;
 				//pc.removeStatusEffect("Uniball");
 				pc.ballSizeRaw += 15;
+				if(pc.hasPerk("Bulgy")) pc.ballSizeRaw += 5;
 				pc.cumMultiplierRaw++;
 				pc.slowStatGain("libido", 5);
 				pc.orgasm();
@@ -233,6 +244,7 @@ public function sumaGrowBalls(pillColor:String = "none"):void
 			{
 				pc.ballSizeRaw += 5;
 				if(rand(5) == 0) pc.ballSizeRaw += 5;
+				if(pc.hasPerk("Bulgy")) pc.ballSizeRaw += 1 + rand(3);
 				pc.orgasm();
 			}
 			
@@ -322,6 +334,7 @@ public function sumaBadEnd(response:String = "intro"):void
 			processTime(15 + rand(8));
 			if(pc.ballDiameter() < pc.tallness/2) pc.ballSizeRaw = ((pc.tallness/2) * Math.PI);
 			pc.ballSizeRaw += 30;
+			if(pc.hasPerk("Bulgy")) pc.ballSizeRaw += 10;
 			pc.lust(50);
 			// [Next]
 			clearMenu();
@@ -339,6 +352,7 @@ public function sumaBadEnd(response:String = "intro"):void
 			processTime(30 + rand(16));
 			if(pc.ballDiameter() < pc.tallness) pc.ballSizeRaw = (pc.tallness * Math.PI);
 			pc.ballSizeRaw += 12;
+			if(pc.hasPerk("Bulgy")) pc.ballSizeRaw += 4;
 			pc.lust(50);
 			// [Next]
 			clearMenu();
@@ -355,6 +369,7 @@ public function sumaBadEnd(response:String = "intro"):void
 			hours = rand(24);
 			processTime(rand(60));
 			if(pc.ballDiameter() < 360) pc.ballSizeRaw = (360 * Math.PI);
+			if(pc.hasPerk("Bulgy")) pc.ballSizeRaw *= 1.25;
 			pc.lust(50);
 			
 			// [GAME OVER]

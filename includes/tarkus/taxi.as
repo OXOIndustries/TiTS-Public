@@ -284,6 +284,8 @@ public function nessaFuckTimeLetsGo():void
 			if(pc.cocks[y].cLength() < 30 && pc.cocks[y].cLength() > pc.cocks[x].cLength()) x = y;
 		}
 	}
+	
+	var cumSave:Number = pc.cumQ();
 
 	output("You reach up and grab hold of her ass, marvelling at its sheer size relative to her diminutive frame. Your fingers sink nicely into the squeezable cat-butt, and her twinned tails flutter about happily, brushing your wrists with her silky fur. Pulling her down, you revel in the touch of her molten slit against your surging [pc.cockNoun " + x + "], grinding through the drippy valley happily.");
 
@@ -320,7 +322,7 @@ public function nessaFuckTimeLetsGo():void
 	output("\n\nSomehow, Nessa purrs even louder. Her asscheeks vibrate in your palms, and the lewd clap of her cunt bouncing on your [pc.cock " + x + "] becomes a rapid drumroll. You feel the gates inside you open up, releasing the torrential flood of jizz within your [pc.balls]. A veritable geyser of seed rockets through your bulging boner, blasting your white-hot ecstasy into her willing cunt. Nessa’s purrs cut off the moment your [pc.cum] floods her passage, and she releases a distinctly feline howl of pleasure. Clamping her hips and her pussy down on the, the quivering sex-kitten joins you in orgasm, flexing and stretching to ensure every inch of spurting cock is firmly sealed inside.");
 
 	//Knot and less than 40L jizz
-	if(pc.cumQ() < 40000)
+	if(cumSave < 40000)
 	{
 		if(pc.hasKnot(x)) 
 		{
@@ -341,6 +343,8 @@ public function nessaFuckTimeLetsGo():void
 		output(". [pc.CumNoun] slops out of her with every squirt, soaking you in the bed in [pc.cumColor] mess.");
 		//Add cum splatter flag for PC, cause fuck showers.
 		applyCumSoaked(pc);
+		
+		if(cumSave > 40000) cumSave = 40000 + rand(Math.ceil((pc.cumQ() - 40000) / 2));
 	}
 	//Merge {noPG}
 	output("Nessa rubs her belly with every fresh ejaculation, watching her skin ");
@@ -356,7 +360,7 @@ public function nessaFuckTimeLetsGo():void
 	else output("If you keep doing this, I’m going to wind up being the Novahome’s biggest spunk-bank.");
 	output("”</i>");
 	//BELLY EXPANDO!
-	nessaBellyRating(pc.cumQ());
+	nessaBellyRating(cumSave);
 
 	//Set flag that tracks how much she’s got stored up.
 	//Vent 100mL an hour so really productive PCs can blow her up forever.
