@@ -97,6 +97,10 @@ package classes.Items.Transformatives
 				output("\n\nYou cum at the thought, not that you aren’t awash in a sea of lactic bliss at this very moment, but the upsurge in blissed-out milkiness is enough for you to notice. Maybe you could get someone to milk you? You call out, your voice harsh from your parched throat. Funny how thirsty you’ve gotten, and how easy it is to ignore with boobs like this. Again and again you call out, each time a little more deliriously. Sometimes you just bleat out a moo. Whatever. At least you’ve got your perfect titties.");
 				//Newpage
 			}
+			
+			kGAMECLASS.hours += 4
+			kGAMECLASS.processTime(rand(15));
+			
 			kGAMECLASS.clearMenu();
 			kGAMECLASS.addButton(0,"Next",gushBadEndPartII);
 		}
@@ -119,6 +123,9 @@ package classes.Items.Transformatives
 				//Resume
 				output("\n\nWhen Brynn starts fucking you, you almost protest. How could you, though? You feel so good, and when his cock kisses your pussy lips, it takes all the straps on the chair to keep you from thrusting up and out of it, if only to bury him to the bottom of his cum-slicked sheath. He works his way in slowly, coating himself liberally with some kind of lubricant that’s making you all stretchy and wet.");
 				output("\n\nYour resistance melts away beneath the pleasure. Your tits continue to gush their [pc.milkFlavor] warmth into the tubes. Surely this is the place for you. You can’t imagine being anywhere else, or anything really, not when there’s hard dicks lining up to see you and your amazing boobs. Maybe Cameron will come titfuck you next.");
+				
+				kGAMECLASS.currentLocation = "BrynnsStall";
+				kGAMECLASS.generateMap();
 			}
 			else
 			{
@@ -133,7 +140,14 @@ package classes.Items.Transformatives
 				output("\n\nThe buxom alien pats your head. <i>“Aww, so you can still talk! Maybe I’ll sell you after all. Ones that can talk fetch a higher price.”</i> One hand crudely gropes at your plus-sized milkers, forcing out a thick eruption from a straining nipple. <i>“I’m Zo’dee, not that a prized milker like you will need to know that.”</i> She pauses and licks her lips. <i>“You don’t mind if I take a sample of my new property, do you?”</i>");
 				output("\n\nNew property? Sample? Your head is swimming but your milking feels so damned good that you forget how to say no. What could be wrong with agreeing? You nod your head.");
 				output("\n\nZo’dee giggles. <i>“Of course you’ll say yes, won’t you, my eager little [pc.milkNoun]-slut?”</i> She bends low for a drink, and when her lips meet your [pc.nipple], all you can do is moan your assent, forgetting your mission almost as fast as your new owner’s name.");
+				
+				kGAMECLASS.currentLocation = "SHIP INTERIOR";
+				kGAMECLASS.generateMap();
 			}
+			
+			kGAMECLASS.hours += 2;
+			kGAMECLASS.processTime(15 + rand(15));
+			
 			kGAMECLASS.badEnd();
 		}
 		//METHOD ACTING!
@@ -374,21 +388,12 @@ package classes.Items.Transformatives
 			output("\n\nAfter a few more minutes of raptly watching your finger’s attempts, you manage to stop yourself and catch your breath. What a trip! You still feel a wondrous kind of kinship with your [pc.chest] too, less like they’re a part of you and more like you’ve become a part of them, but that’s okay. There are worse things than having an enhanced portion of your body become so important.");
 			//Dozen or so cums
 			kGAMECLASS.processTime(20+rand(20));
-			pc.orgasm();
-			pc.orgasm();
-			pc.orgasm();
-			pc.orgasm();
-			pc.orgasm();
-			pc.orgasm();
-			pc.orgasm();
-			pc.orgasm();
-			pc.orgasm();
-			if(rand(3) == 0) pc.orgasm();
-			if(rand(3) == 0) pc.orgasm();
-			if(rand(3) == 0) pc.orgasm();
-			if(rand(3) == 0) pc.orgasm();
-			if(rand(3) == 0) pc.orgasm();
-			if(rand(3) == 0) pc.orgasm();
+			
+			for(var i:int = 0; i < 9; i++)
+			{
+				pc.orgasm();
+				if(i > 3 && rand(3) == 0) pc.orgasm();
+			}
 
 			//Summary of changes for the end!
 			output("\n\nNow that you’ve had a chance to breathe, you suppose you ought to see what the Gush did to you. ");

@@ -4,11 +4,11 @@
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
 	import classes.Creature;
-	import classes.kGAMECLASS;	
+	import classes.kGAMECLASS;
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
-	import classes.Engine.Utility.indefiniteArticle;
+	import classes.Items.Transformatives.SumaCream;
 	
 	public class SumaCreamBlack extends ItemSlotClass
 	{
@@ -29,7 +29,7 @@
 			
 			description = "a Suma Black Cream capsule";
 			
-			tooltip = "[sumaCreamTooltip " + pillColor + "]";
+			tooltip = "[altTooltip SumaCreamBlack]";
 			
 			TooltipManager.addTooltip(shortName, tooltip);
 			
@@ -42,7 +42,7 @@
 		{
 			if(target is PlayerCharacter)
 			{
-				kGAMECLASS.sumaEffects(pillColor);
+				SumaCream.sumaEffects(target, pillColor);
 				return true;
 			}
 			else
