@@ -577,6 +577,7 @@
 			"Goo",
 			"Chitin",
 			"Feathers",
+			"Latex",
 		];
 				
 		//NIPPLETYPES
@@ -668,6 +669,7 @@
 			"Nyrea Girl Cum",
 			"Blueberry Yogurt",
 			"Hradian Cum",
+			"Goo Cum",
 		];
 		
 		public static const FLUID_TYPE_SHORT:Array = [
@@ -695,6 +697,7 @@
 			"N.GCum",
 			"B.Ygrt",
 			"H.Cum",
+			"GooCum",
 		];
 		
 		public static const VALID_CUM_TYPES:Array = [
