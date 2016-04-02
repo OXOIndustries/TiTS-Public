@@ -55,6 +55,296 @@ public function encounterFemaleSydian():void
 	CombatManager.beginCombat();
 }
 
+public function sydianFemalePCLoss():void
+{
+	clearOutput();
+	showSydianFemale();
+
+	if (enemy.hasStatusEffect("Unarmored"))
+	{
+		output("\n\nThe woman watches you collapse");
+		if (pc.HP() <= 0) output(" into a beaten pile");
+		else output(" into a lusty stupor");
+		output(". She wavers for a moment, covering her ruined body art with her hands and perhaps considering retaliation. Suddenly she turns and bolts, leaving hissing tracks across the wastes. You lie there disabled for some time before realizing she isn’t coming back to take advantage.");
+		//penalties but no shield debuff
+
+		processTime(5);
+
+		clearMenu();
+		addButton(0, "Next", CombatManager.genericLoss);
+		return;
+	}
+
+	//loss intro, HP loss:
+	if (pc.HP() <= 0)
+	{
+		output("You");
+		if (pc.hasStatusEffect("Tripped")) output(" spread eagle");
+		else output(" buckle");
+		output(" as the woman watches, satisfied...");
+	}
+	else
+	{
+		output("You");
+		if (pc.hasStatusEffect("Tripped")) output(" curl up");
+		else output(" collapse");
+		output(" and begin touching yourself as the alien watches you, pleased by her prowess...");
+	}
+
+	if (pc.hasVagina() && pc.hasCock())
+	{
+		if (pc.femininity >= 50)
+		{
+			if (rand(5) > 0) sydianFemalePCLossHasCock();
+			else sydianFemalePCLossHasVagina();
+		}
+		else
+		{
+			if (rand(8) > 0) sydianFemalePCLossHasCock();
+			else sydianFemalePCLossHasVagina();
+		}
+	}
+	else if (pc.hasCock())
+	{
+		sydianFemalePCLossHasCock();
+	}
+	else
+	{
+		sydianFemalePCLossHasVagina(); // Works for N too
+	}
+}
+
+public function sydianFemalePCLossHasVagina():void
+{
+	output("\n\nThe slaty sydian looks down her nose, scanning your body.");
+	
+	output("\n\n<i>“What have we here but an inferior female?”</i> she says");
+	if (!pc.hasVagina())
+	{
+		output(", ignoring your");
+		if (pc.hasCock()) output(" [pc.cocksLight]");
+		else output(" bare crotch");
+	}
+	output(". <i>“I wonder what made such a weakling think she was welcome in my territory.”</i>");
+	
+	output("\n\n");
+	if (pc.isBimbo()) output("Ugh, like you could care when there’s so much yummy sex out there for the having. <i>“I was on my way to a bangin’ party,”</i> you lie.");
+	else if (pc.isNice() || pc.isBro()) output("<i>“I didn’t mean to intrude,”</i> you apologize. <i>“I was only passing through.”</i>");
+	else output("<i>“I heard this was where the bad bitches hang, so here I am.”</i> You smile.");
+	
+	output("\n\nThe woman");
+	if (pc.isBimbo() || pc.isBro() || pc.isNice()) output(" snorts");
+	else output(" laughs");
+	output(" and squats, not even bothering to conceal her bright orange pussy. She runs a finger along your body, probing everything and");
+	if (!(pc.shield is EmptySlot) && !pc.hasStatusEffect("Rusted Emitters")) output(" smiling at your discomfort when your shield system pops and sparks.");
+	else output(" smiling as her touch infects your body with chemical lust.");
+	if (pc.isPregnant() && pc.bellRating() >= 15)
+	{
+		output(" A hand comes to rest on your swollen [pc.belly].");
+	
+		output("\n\n<i>“Looks like you’ve been taken by a male already,”</i> she muses, rubbing heat into it. <i>“Was he powerful? Or did you succumb to the first servant boy who looked at you with lust in his eyes?”</i>");
+	}
+	output(" Without warning, she shoves her palm");
+	if (pc.hasLowerGarment()) output(" into your [pc.lowerUndergarment]");
+	else output(" into your crotch");
+	output(", cupping");
+	if (pc.hasVagina()) output(" [pc.oneVagina]");
+	else output(" your bare groin");
+	output(".");
+	
+	output("\n\nYou squirm as your body heats to her touch. The alien woman watches, unconcerned");
+	if (pc.hasCock()) output(" despite your swelling [pc.cocksLight]");
+	output(" as fuck-lust turns your vision pink. You sigh as her hand slides away.");
+	
+	output("\n\n<i>“Were I male, I could");
+	if (!pc.hasVagina() || (pc.isPregnant() && pc.bellyRating() >= 15)) output(" have fun with your slutty hole,”</i>");
+	else output(" put a strong baby in you,”</i>");
+	output(" she says, examining the moisture on her hand. You look down, sure that you couldn’t be so lubricated from such poor foreplay, but your hot sex shines wetly. Another trickle works free as the sydian thrusts her tail through her thighs.");
+	
+	output("\n\nShe rubs your fluid into the fuzzy tip, fingering it like a cock. <i>“I’d slide right into you and take my pleasure...”</i> she coos. A fluffy brush jabs your [pc.vagOrAss], enflaming you with chemicals. The concentration of enzyme on her tail spikes fuck-lust straight into your brainstem, and your eyes roll as you begin to grind your hips.");
+	
+	output("\n\nYour cruel captor leans closer. <i>“I could swirl your insides about until you were blind with tears of ecstasy, drooling from both ends and ready to receive my seed.”</i> She taps at your [pc.nipple].");
+	if (pc.biggestTitSize() <= 1) output(" <i>“I could watch your bust grow to a respectable size with milk.”</i>");
+	else if (pc.isLactating()) output(" <i>“I could help ease the pressure of these perverted breasts.”</i>");
+	else if (pc.biggestTitSize() <= 5) output(" <i>“I could watch these fat breasts swell with milk for our child.”</i>");
+	else output(" <i>“I could caress these ridiculous mounds until you came from the stimulation and squirted milk.”</i>");
+	
+	output("\n\nYour blood hammers at your temples when the alien’s branched tail tickles your crotch with a sadistic, sinuous wave");
+	if (pc.hasCock()) output(". Precum covers its surface, deposited there in long ropes by your [pc.cocks], and your");
+	else output(", and your");
+	output(" hands grasp at her plated hips, trying to pull her deeper inside. For one brief moment you make eye contact, and despair washes over you.");
+	
+	output("\n\n<i>“Too bad,”</i> says the woman. <i>“I have no use for you.”</i> Her tail jerks free, leaving you empty and burning with enzyme, and she shoves you to the ground. The sydian struts away with hips swaying in mockery.");
+	
+	output("\n\n<i>“W-wait...”</i> you croak. She glances from the corner of her eye, flicks her tail dismissively, and saunters off.");
+	if (!(pc.shield is EmptySlot) && !pc.hasStatusEffect("Rusted Emitters")) 
+	{
+		output(" On top of being horny enough to fuck an icicle, you remember with grief that your shield isn’t going to work right until you get repairs.");
+	}
+
+	processTime(30+rand(15));
+	pc.orgasm();
+
+	clearMenu();
+	addButton(0, "Next", CombatManager.genericLoss);
+}
+
+public function sydianFemalePCLossHasCock():void
+{
+	output("\n\nThe sydian smiles, eyeing your");
+	if (!pc.isCrotchExposed()) output(" crotch");
+	else output(" [pc.crotch]");
+	output(". She struts over.");
+	
+	output("\n\n<i>“");
+	if (pc.tallness < (12 * 7)) output("Big");
+	else output("Little");
+	output(" boy");
+	output(", what are you doing in my hunting grounds?”</i> she asks sweetly, probing your face with her antennae.");
+	if (!pc.hasStatusEffect("Rusted Emitters") && !(pc.shield is EmptySlot)) output("<b>Her adroit fingers pick over your gear, and you hear a faint popping from your shield system. Fuck. </b>");
+	output(" <i>“Did you come here to be hunted?”</i>");
+	
+	output("\n\nYou swallow hard as the kiss of sydian enzyme spreads through your [pc.skin].");
+	if (pc.isBimbo() || pc.isBro()) output(" <i>“I’m just out here, alone and vulnerable... me and my big, stiff [pc.cocksLight],”</i> you say, thrusting your vulgar pelvis. The woman is taken aback by your brazen sexuality for a moment.");
+	else if (pc.isNice()) output(" <i>“Well, ah... I was looking, I mean, I was hoping to find...”</i> you stammer, cut off when the woman runs her thumb over your lips.");
+	else output(" <i>“I heard you liked big dicks... well, I’m the biggest dick there is,”</i> you quip. She laughs once and cups your face in her hands, looking into your eyes.");
+	
+	var c:int = pc.cockThatFits(enemy.vaginalCapacity());
+
+	output("\n\n<i>“Silly,”</i> she murmurs");
+	if (!pc.isCrotchExposed()) output(", slipping [pc.oneCock] free of your [pc.lowerGarments]");
+	output(", <i>“I’m going to enjoy you.”</i>");
+	if (enemy.lust() < 33 || c == -1)
+	{
+		//low monster lust/all cocks too big outcome
+		output(" As you stare into her opaque, "+enemy.eyeColor+" pools, a niggling voice warns you that ‘enjoy’ might not mean what you hope....");
+
+		output("\n\nThe sydian’s hand wraps around your [pc.cock], spreading aphrodisiac. She pulls her palm away, sliding just her long fingers along the shaft from base to tip. A dollop of precum answers the chemical heat.");
+		
+		output("\n\n<i>“You’re getting off from just my hand,”</i> she chides. <i>“How do you hope to serve a woman?”</i>");
+		
+		output("\n\n");
+		if (pc.isBimbo() || pc.isBro()) output("<i>“It’s ok,”</i> you grunt. <i>“I can come lots.”</i>");
+		else if (pc.isNice() && rival.isFeminine()) output("<i>“With a subpoena,”</i> you grunt, suddenly thinking of your cousin.");
+		else if (pc.isNice() && !rival.isFeminine()) output("<i>“I can use my hands...”</i> you hazard.");
+		else output("<i>“On the dance floor,”</i> you snap.");
+		output(" The alien smiles as your hips begin to pump, fucking through her pre-slicked grip. Her fingers close in, making a tight ring for your [pc.cockNounComplex].");
+		
+		output("\n\n<i>“Mmm,”</i> she hums, staring intently. The woman allows you to penetrate her hand as hard as you like, helping you out by tickling the [pc.sheath] of your cock with her tail and spreading her lust-drug.");
+		if (pc.balls > 0) output(" Her second hand caresses and strokes your [pc.scrotum], heating your balls with chemical love until they promise a huge load.");
+		else if (pc.hasVagina() && pc.balls == 0) output(" A finger of her other hand slides into [pc.oneVagina]; the bloom of warmth that consumes your labia makes you hornier still.");
+		output(" The handjob-turned-handfuck is so good that you feel seconds from orgasm, pumping away at her drugged palm. You grasp her wrist, trying to hold her steady, but this seems to irk her. Before you can finish, she pulls free and shoves you over, leaving a smear of your precum on your");
+		if (pc.isTaur()) output(" flank");
+		else if (pc.isNude()) output(" collar");
+		else output("outermost upper body garment.");
+		
+		output("\n\n<i>“I like the sight of you on the ground,”</i> the woman gibes. Your [pc.cock] sticks up straight, and she curls her tail to caress it with her fluffy, aphrodisiac brush. <i>“It suits you.”</i>");
+		
+		output("\n\nThe extra-large dose hardens your [pc.cockNounSimple] to the point of pain, and you can only whine and pump the air as it tickles and torments without presenting anything to thrust against. She meets your eyes, and you try to communicate your need for release. A perverted distortion of your wish gets through; she places her foot on your shaft, bending it against your [pc.belly].");
+		
+		output("\n\n<i>“You’re a weak boy,”</i> she mocks, stroking the underside with her arch. <i>“Be careful, or the world will grind you underfoot.”</i> She slides your tool between her two large toes, resuming the masturbation with the bare minimum of effort. You can still feel orgasm coming, but with a humiliated whimper instead of a roar.");
+		
+		output("\n\n");
+		if (pc.isBimbo() || pc.isBro()) output("<i>“C’mon,”</i> you wheedle, <i>“I want to shoot my cum in your pussy.”</i>");
+		else if (!pc.isAss()) output("<i>“Aren’t you going to put it in?”</i> you ask, straining to control.");
+		else output("<i>“Fuck,”</i> you groan. <i>“Hurry and get on my cock.”</i>");
+		
+		output("\n\n<i>“Why, you silly...”</i> the woman laughs. She leans down. <i>“I don’t let weaklings come inside me.”</i> Grinding her heel into your [pc.cockHead], she sets off your climax. Your [pc.cockNounSimple]");
+		if (pc.cumQ() <= 150) output(" drools pathetically onto your stomach.");
+		else if (pc.cumQ() <= 1500) output(" shoots several strokes of [pc.cum] onto your chest and stomach.");
+		else output(" explodes onto your stomach, [pc.chest], and face, covering you in [pc.cum].");
+		if (pc.cocks.length > 1 && !pc.isCrotchExposed())
+		{
+			output(" Your other");
+			if (pc.cocks.length == 2) output(" penis squirts");
+			else output(" penises squirt");
+			output(" impotently under your [pc.lowerGarment], filling your clothing with spunk.");
+		}
+		output(" The cruel sydian laughs as your tool twitches and throbs beneath her heel. and pins you there until your unsatisfying orgasm ends. While you stare into the sky");
+		if (!(pc.shield is EmptySlot)) output(", half-remembering a need to fix your shield");
+		output(", you lose consciousness and she escapes.");
+
+		processTime(30+rand(15));
+		pc.orgasm();
+		enemy.orgasm();
+	}
+	else
+	{
+		output("\n\nThe sydian lowers herself onto you, running her hands");
+		if (pc.skinType == GLOBAL.SKIN_TYPE_FUR) output(" through your [pc.skinFurScales]");
+		else output(" over your [pc.belly]");
+		output(".");
+		if (pc.isPregnant() && pc.bellyRating >= 15) output(" The enzyme on her hands relaxes and heats your pregnancy-stretched abdomen, and you sigh.");
+		else output(" The aphrodisiac enzyme bleeds through to your nerves, and you sigh as your skin heats up.");
+		
+		output("\n\n<i>“Normally I wouldn’t let a weakling come inside me,”</i> she says, breathing heavily. It sounds like an excuse... and when she exposes her glittering vagina and begins to rub against [pc.oneCock], you know. <i>“But... one little exception can’t hurt.”</i>");
+		
+		output("\n\n");
+		if (pc.isBimbo() || pc.isBro())
+		{
+			output("The reasoning is lost on you - all that matters is getting inside the slut’s");
+			if (pc.isBimbo()) output(" yummy");
+			output(" cunt and shooting lots of");
+			if (pc.isBimbo()) output(" little spermies");
+			else output(" jizz");
+			output(".");
+		}
+		else if (pc.isAss()) output("You grind back, hoping to <i>make</i> it hurt.");
+		else output("You don’t argue, focused on the dangerous heat at the tip of your cock.");
+		output(" The woman parts her labia with two big fingers, beckoning you in. With a sloppy thrust, you spear her on your [pc.cockNounComplex "+c+"].");
+		
+		output("\n\n<i>“Ahhh,”</i> she moans, delighted. <i>“So good!”</i> Her hands push against the base of your dick, smearing enzyme into your [pc.legFurScales]; the lust-fuel ignites your engine, and you begin to pump your partner. Abruptly,");
+		if (pc.isTaur()) output(" she throws her leg over your ass, squeezing your crotch between armored thighs.");
+		else output(" she leans forward like a toppling stack of magazines, shoving her palms into your shoulders and slamming you to the ground.");
+		
+		output("\n\n<i>“What do you think you’re doing, weakling?”</i> she spits, eyes glinting like");
+		if (enemy.eyeColor == "black") output(" black pearls");
+		else output(" emeralds");
+		output(". <i>“Don’t presume to fuck me like a proper male would!”</i> Her cunt constricts like a vise until the pressure on your dick aches.");
+		
+		output("\n\n");
+		if (pc.isAss()) output("You glare back, but stop moving");
+		else output("You apologize,");
+		output(" and she sits up again. The sydian resumes swiveling her hips, stirring her pussy in pursuit of her own pleasure. Her fingertips scratch at");
+		if (pc.isNude()) output(" your [pc.skinFurScales], leaving angry scores that throb with pain and pleasure,");
+		else if (pc.hasUpperGarment()) output(" [pc.upperUndergarment], leaving angry scores that throb with pain and pleasure,");
+		else if (pc.hasArmor()) output(" your [pc.armor], producing a faint hiss,");
+		output(" and she thrusts her chest out, enjoying your utter abjection. Her cunt is once again relaxed and swallows your dick right down to the [pc.knot "+c+"], slick with lubrication. It gets hotter and hotter as her gyrations become less elegant, until she’s hammering your pelvis and you’re both riding the edge of climax.");
+		
+		output("\n\n<i>“Come!”</i> the woman demands, slapping your ass with her tail. Fuddled with sex and chemistry, your [pc.cockNounSimple "+c+"] unloads,");
+		if (pc.cumQ() <= 150) output(" producing a few embarrassing squirts that represent all you’re capable of.");
+		else if (pc.cumQ() <= 1500) output(" firing five strokes of [pc.cum] that coat her walls and ride gravity back down to touch your [pc.cockHead "+c+"].");
+		else
+		{
+			output(" unleashing a wave of [pc.cum] that lifts her several centimeters. The woman is gobsmacked at the monstrous load");
+			if (pc.hasKnot()) output(", and your [pc.knot "+c+"] swells to plug the hole, causing the unforgiving pressure to split her body armor with a hideous noise. Fragments of dust shower down from the fissure");
+			output(".");
+		} 
+		output(" Her cunt suctions sperm up in an orgasm of its own, clenching and milking your prick as she moans in sweet release.");
+		
+		output("\n\nSpent, the sydian climbs off of you");
+		if (pc.cumQ() > 1500) output(", ignoring the cataract of semen that falls from her");
+		output(". <i>“Not a bad dick,”</i> she muses. <i>“If you were stronger, I might take you as a mate.”</i> The woman leans in for a final whisper. <i>“So... get stronger.”</i>");
+		
+		output("\n\nAs you slip into a doze, you think that");
+		if (!(pc.shield is EmptySlot)) output(" fixing your gear at Novahome, training,");
+		else output(" training");
+		output(" and coming back could be a very good idea.");
+
+		processTime(30+rand(15));
+		enemy.loadInCunt(0, pc);
+		pc.orgasm();
+		enemy.orgasm();
+	}
+	
+	if (!(pc.shield is EmptySlot) && !pc.hasStatusEffect("Rusted Emitters"))
+	{
+		applyRustBroStatus();
+	}
+	clearMenu();
+	addButton(0, "Next", CombatManager.genericLoss);
+}
+
 public function sydianFemalePCVictory():void
 {
 	clearOutput();
@@ -81,6 +371,8 @@ public function sydianFemalePCVictory():void
 		addDisabledButton(0, "Fuck Her");
 		addDisabledButton(1, "Get Licked");
 		addDisabledButton(2, "Give Throbb");
+		addDisabledButton(3, "Call Others");
+		addDisabledButton(4, "Gentle Fuck")
 	}
 	else
 	{
@@ -105,9 +397,529 @@ public function sydianFemalePCVictory():void
 		if (!pc.hasItem(new Throbb())) addDisabledButton(2, "Give Throb", "Give Throb", "You’re not carrying any Throbb.");
 		else if (enemy.hasStatusEffect("Unarmored")) addDisabledButton(2, "Give Throb", "Give Throb", "The broken-armored sydian’s too nervous for you to get a clean stick with the needle.");
 		else addButton(2, "Give Throb", femSydianGiveThrob, undefined, "Give Throb", "Jab the cocky bitch with a dose of Throbb and watch her break down and beg.");
+
+		if (!enemy.hasStatusEffect("Unarmored")) addDisabledButton(3, "CallOthers", "Call Others", "She’s too emotionally and physically intact for other sydians to consider her an easy target.");
+		else addButton(3, "CallOthers", femSydianCallOthers, undefined, "Call Others", "Get some help to humiliate the girl. Depending on who shows up, you might land a three-way or have to hide from a brutal male.");
+
+		if (!enemy.hasStatusEffect("Unarmored")) addDisabledButton(4, "Gentle Fuck", "Gentle Fuck", "She’s not vulnerable enough to regard kindness as anything but a weakness.");
+		else if (enemy.lust < 33) addDisabledButton(4, "Gentle Fuck", "Gentle Fuck", "She’s not turned on enough to play along with you.");
+		else if (pc.hasVagina() || (pc.hasCock() && pc.cockThatFits(enemy.vaginalCapacity())) addButton(4, "Gentle Fuck", femSydianGentleFuck, undefined, "Gentle Fuck", "Show the sydian that sex can be more than a power play.");
+		else addDisabledButton(4, "Gentle Fuck", "Gentle Fuck", "Your genitals are incompatible with the poor girl!");
 	}
 
 	addButton(14, "Leave", CombatManager.genericVictory);
+}
+
+public function femSydianGentleFuck():void
+{
+	clearOutput();
+	showSydianFemale();
+
+	if (pc.isBimbo())
+	{
+		output("Watching this cutie rub her orange pussy and perky tits would be soo hot if she were moaning like a slut instead of cowering. ”</i>Ooh, how come you’re so nervous?”</i> you ask, frustrated. <i>“You should just stick it all out there, like me.”</i> You display your body with a twirl.");
+		
+		output("\n\n<i>“No,”</i> the sydian says, flatly.");
+		
+		output("\n\n<i>“But why-y-y?”</i> you whine. <i>“The more you show off your bod, the more attention you can get... and the more sexy times, too.”</i>");
+		
+		output("\n\nThe bug-girl huffs. <i>“I don’t want attention... I like being covered up.”</i>");
+		
+		output("\n\n<i>“But you like sex?”</i> you challenge. She looks embarrassed and doesn’t answer.");
+	}
+	else if (pc.isBro())
+	{
+		output("(bro)Your blood hammers imagining the girl’s arousal, but the way she’s covering her breasts and rubbing her pussy in secret is no good. <i>“Hey,”</i> you call out, <i>“show me your tits!”</i>");
+		
+		output("\n\nThe sydian balls up even more. <i>“No!”</i>");
+		
+		output("\n\nYou groan. <i>“Come on, why not? You’re really cute!”</i> Thinking a moment, you hit her with your best flirt. <i>“I’d love to get with you... know what I mean?”</i>");
+		
+		output("\n\nThe bug-girl glares at you. <i>“You broke my covering! I hate being without it!”</i>");
+	}
+	else if (!pc.isAss())
+	{
+		output("You’d be the");
+		if (pc.isMischievous() || pc.exhibitionism() >= 66) output(" first");
+		else output(" last");
+		output(" person to encourage public masturbation,");
+		if (pc.isMischievous() || pc.exhibitionism() >= 66) output(" but");
+		else output(" and");
+		output(" the cute bug-girl’s sex show is ruined by her skittish manner. It’s not like there’s a public around anyway. <i>“Hey,”</i> you call, <i>“why are you frightened? I’m not going to do anything.”</i>");
+		
+		output("\n\nHer glare is sullen. <i>“So?”</i>");
+		
+		output("\n\nYou shrug and gesticulate, not sure how to proceed. <i>“‘So?’ You were pretty confident when we met! What’s wrong now?”</i>");
+		
+		output("\n\nThe bug-girl looks at her dusty breasts, squished under a forearm. <i>“You... you broke it. It’s your fault.”</i>");
+		
+		output("\n\nYou stare for a moment before you realize she means her body paint.");
+		if (pc.isNice()) output(" <i>“Well, ah. Sorry. But you did attack me.”</i>");
+		else output("<i>“You should thank me - your insides are much sexier.”</i>");
+		output(" You pause. <i>“You have a good body. Is showing off so bad?”</i>");
+		
+		output("\n\n<i>“I don’t </i>like it<i>!”</i> she snaps.");
+	}
+	else
+	{
+		output("The sydian’s masturbation would almost be worth");
+		if (pc.hasCock()) output(" jerking");
+		else output(" schlicking");
+		output(" to if she would stop covering her cute tits and wet slit. <i>“Come on!”</i> you bark. <i>“You can do it! Rub rub rub-a-dub!”</i>");
+		
+		output("\n\n<i>“W-what?”</i>");
+		
+		output("\n\n<i>“Your pussy’s not going to run away because you work it too hard... what’s wrong with you?”</i> you ask, trying to keep her off-balance.");
+		
+		output("\n\n<i>“I, uh... I’m not... really comfortable.”</i> She stops, and you glare until she squirms. <i>“I don’t like being uncovered.”</i>");
+		
+		output("\n\n<i>“Why the fuck not? You have a pretty hot body.”</i>");
+		
+		output("\n\nThe sydian’s eyes plead with you to stop talking. <i>“I haven’t...”</i>");
+		
+		output("\n\n<i>“Had sex?”</i> you prompt. She blushes.");
+		
+		output("\n\n<i>“No! I mean... I haven’t had good experiences.”</i>");
+	}
+
+	output("\n\nThat says it all. Blessed with insight, you slip your hand over hers and help caress her breast. She flinches, but doesn’t resist. <i>“I see,”</i> you whisper, directing the air at her neck. The bug-girl shivers, and her nipple pokes into your fingers.");
+	
+	output("\n\n<i>“Wh-at are you doing?”</i> she asks, breath hitching.");
+	
+	output("\n\n<i>“Just having some fun,”</i> you answer, clearing debris from her soft skin. <i>“Should I continue?”</i>");
+	
+	output("\n\nShe seems to short-circuit. Probably she’s never been <i>invited</i> to have sex before. You pause, holding her hand and rubbing the palm with your thumb, waiting for her to reboot. She stares at the ground, considering rejecting you but unsure if she wants you to go.");
+
+	if (rand(10 * MathUtil.LinearInterpolate(1, 2, enemy.lustMax() / enemy.lust())) == 0)
+	{
+		//lady says no - small chance
+		//def. count this as a nice action
+		output("\n\n<i>“No,”</i> she says, setting her jaw.");
+
+		output("\n\nYou sigh.");
+		if (pc.isBimbo()) output(" <i>“I was gonna make you feel so gooood, though,”</i> you pout.");
+		else if (pc.isNice()) output(" <i>“Then I’ll respect your wishes,”</i> you declare.");
+		else output(" <i>“Pah. You’re making a mistake, but whatever.”</i>");
+		output(" You release her hand and she blinks stupidly when you bid her goodbye. <i>“We probably won’t meet again.”</i>");
+
+		output("\n\nShe watches you agree not to have sex with unabashed wonder, right up until you’re too far to make out her face anymore.");
+		//end, raise lust some, pass small time
+
+		processTime(7+rand(3));
+		pc.lust(10);
+		pc.addNice(2);
+
+		clearMenu();
+		addButton(0, "Next", CombatManager.genericVictory);
+	}
+	else
+	{
+		//lady says yes - large chance
+		output("\n\n<i>“Um... okay,”</i> she says, raising her "+enemy.eyeColor+" eyes to yours. Grinning, you stop to set aside your [pc.gear] and resume by kissing her. She seems to like it. <i>“Do that again.”</i>");
+		
+		output("\n\nYou kiss again, using your [pc.tongue].");
+		if (pc.hasLongTongue()) output(" She laughs into your mouth as you tickle her with your abnormal oral muscle.");
+		output(" Your hand slips from hers to brush away what’s left of her pulverized body paint. <i>“Hey...”</i> she protests.");
+		
+		output("\n\n<i>“You have");
+		if (pc.isBimbo() || pc.isBro()) output(" pretty");
+		else output(" beautiful");
+		output(" skin,”</i> you interrupt, sliding your lips to her collarbone. The sydian relaxes, allowing you to uncover more; she even helps when you look away, dusting her breasts and throat. You catch her in the act and she pauses, then brazenly thrusts out her chest, which you grope.");
+		
+		output("\n\n<i>“Touch me like that... down here,”</i> murmurs the girl, sliding your hand between her thighs. She holds it there for a moment, then caresses your face. The twin heats of aphrodisiac and her sex linger on your [pc.skin], spurring you to slip the first of several fingers into her. Watching her shift and squirm,");
+		if (pc.hasCock())
+		{
+			output(" your [pc.cocks] protest");
+			if (pc.cocks.length == 1) output("s");
+			output(" the neglect, throbbing and twitching. She notices, and wraps her hand around");
+			if (pc.cocks.length == 1) output(" it");
+			else output(" one");
+			output(", filling it with chemical arousal.");
+		}
+		else
+		{
+			output(" your own [pc.vaginas] clamor");
+			if (pc.vaginas.length == 1) output("s");
+			output(" for affection, drooling [pc.girlCumFlavor] juices. She notices, and slides a thick finger into [pc.oneVagina], spreading chemical lust.");
+		}
+		
+		output("\n\n<i>“That’s good,”</i> the girl sighs. You shiver as her enzymes work, forcing the same feeling in you.");
+		if (pc.hasCock()) output(" Her hand sits on your cock, waiting for a signal that her pussy-focused brain never sends until you thrust gently; the woman bites her lip, chagrined, and begins to masturbate you.");
+		else output(" Her fingers are adroit despite being in an alien - judging by her skill at tickling nerves and finding your clit, she plays with herself often. }Your climax runs at you with long strides, pursued by sydian enzymes and closing fast; you mention it to your eager lover.");
+
+		//male ending - favored if available
+		if (pc.hasCock())
+		{
+			output("\n\nHer eyes twinkle, then become sad as she realizes that your time will come to an end. <i>“Finish inside,”</i> she whispers, leaning forward to show you the breasts you like. <i>“Be my male... at least for a little while longer.”</i>");
+			
+			output("\n\n");
+			if (!pc.isTaur()) output("She climbs into your lap and spreads her pussy. It");
+			else output("She spreads her pussy and it");
+			output(" quivers visibly, puddling on your [pc.leg]. Your [pc.cockNounSimple] aches and drools, ready to burst; the urgency in her eyes tells you that she feels it, too. You line up and slide into her - as soon as you penetrate, she cums.");
+			
+			output("\n\n<i>“Yes! Yess!”</i> she moans, wrapping her arms and legs around you. Her cunt hugs you like a rubber tuxedo, wringing with a desperate hope for virile sperm. You climax,");
+			if (pc.cumQ() <= 150) output(" leaving behind a tiny memento of your oddly-romantic wasteland encounter.");
+			else if (pc.cumQ() <= 1500) output(" basting her pussy with sheets of [pc.cum] to cement your unusual union.");
+			else output(" exploding with fireworks of jizz to celebrate her conversion to your way of love. So much [pc.cum] bubbles from your slit that her eyes well up.");
+			output(" You");
+			if (pc.cumQ() <= 1500) output(" quickly");
+			else output(" slowly");
+			output(" expend yourself and fall onto her.");
+			
+			output("\n\nShe lets you play with her sated body for a while before pushing you off. <i>“I wonder if our species can have children together,”</i> the sydian muses. You look at her and she blinks innocently, then kisses you with inexpert lips. The woman extricates herself and leaves, seeming wistful.");
+			
+			output("\n\nYou think it might be a good idea to visit here again, once in a while.");
+
+			processTime(30+rand(15));
+			enemy.loadInCunt(0, pc);
+			pc.orgasm();
+			enemy.orgasm();
+		}
+		else
+		{
+			output("\n\n<i>“Come with me,”</i> she breathes, helping you frig her sopping hole faster. Her other hand plunges into you, tickling your [pc.vaginaLight] with both thick fingers and spreading pleasure that shifts like a sand dune as your lubrication carries the enzyme along. You may have underestimated just how into you the sydian is - she shrieks and her cunt clamps down, sucking and squeezing your fingers. <i>“Cuh-cumming!”</i> the girl moans.");
+			
+			output("\n\nYour own orgasm arrives with a bang,");
+			if (pc.isSquirter()) output(" and your [pc.vagina] gushes such [pc.girlCum] over her hand that she looks down to check if you’re a boy.");
+			else output(" and your [pc.vagina] sucks so hard that you could swear it had decided on ferrying her enzymes right to your ovaries and hoping for a miracle.");
+			output(" She spasms for a good while longer than you do.");
+			
+			output("\n\n<i>“That </i>was<i> fun,”</i> she agrees, after her body relaxes. <i>“Are there... more friendly women like you out there?”</i>");
+			
+			output("\n\nYou kiss her.");
+			if (pc.isBimbo() || pc.isBro() || pc.isMischievous())
+			{
+				output(" <i>“Totally");
+				if (!pc.isBro()) output(", honey");
+				output(".”</i>");
+			}
+			else output("<i>“Sure. Think about a journey sometime.”</i>");
+			output(" She looks pleased, watching and considering as you collect your things and leave.");
+
+			processTime(30+rand(15));
+			enemy.orgasm();
+			pc.orgasm();
+		}
+	}
+
+	clearMenu();
+	addButton(0, "Next", CombatManager.genericVictory);
+}
+
+// 9999 This will probably need a lot of tweaking to ensure things remain consistent between all of the supported genital configurations.
+public function femSydianCallOthers():void
+{
+	clearOutput();
+	showSydianFemale();
+
+	if (pc.isBimbo() || pc.isBro())
+	{
+		if (pc.isBimbo()) output("\n\n<i>“Ooh, nice tits, honey,”</i>");
+		else output("<i>“Killer tits,”</i>");
+		output(" you flirt, raising your outstretched fingers to your chest in a crude imitation. The woman covers her chest, revealing the tip of her orange pussy. You");
+		if (pc.isAss()) output(" point and laugh");
+		else output(" stare");
+		output(" at her crotch, and she stuffs her hand between her thighs, trying to conceal every bit of flesh you’ve exposed.");
+	}
+	else if (pc.isNice())
+	{
+		output("\n\n<i>“Sorry about that,”</i> you apologize. The bug-girl only covers herself, hiding her tantalizing, cream-colored breasts and sultry orange sex under her dingy arms. <i>“You know,”</i> you offer, <i>“you don’t need to be so ashamed of your body. You could maybe... show it off a little....”</i> Your request falls flat - she only bunches up tighter.");
+	}
+	else
+	{
+		output("\n\n<i>“Hello,”</i> you leer, watching the alien’s liberated breasts rise and fall. <i>“Look what you’ve been hiding.”</i> Flakes of pulverized armor fall away as she covers herself with an arm. When you glance lower, at the thin orange line between her legs, she shifts to cover the gap in her thighs, dislodging more dust. You amuse yourself, making her brush away the crumbling remnants just by eye-fucking her.}");
+	}
+
+	output("\n\n<i>“Stop staring,”</i> she snaps. The sydian won’t give you a decent eyeful of her good bits, and you’re daydreaming of someone else to keep her hands busy when you realize - that’s a real possibility. The girl eyes your distant, thoughtful expression.");
+
+	output("\n\n");
+	if (pc.isNice()) output("You sigh at what you’re about to do. ");
+	output("<i>“Sure. Wait just a moment,”</i> you say.");
+	if (pc.hasRangedWeapon() && !pc.hasBowWeaponEquipped()) output(" You pull your [pc.rangedWeapon] and fire a few shots into the air.");
+	else output(" You slip your fingers into your mouth and whistle as loudly as you can, several times.");
+	output(" <i>“That should get us some company.”</i>");
+
+	var isFemale:Boolean = (pc.hasCock() || pc.hasTailCock() || pc.hasNippleCocks) && rand(2) == 0;
+
+	var emf:Function = function(m:String, f:String) { return (isFemale ? f : m); }
+
+	output("\n\nThe woman looks mortified. After a minute, a clatter of quick-rusting metal junk fanfares another sydian:");
+	if (isFemale) output(" a smug, shapely female.");
+	else output(" a huge, rapacious-looking male.");
+	output(" You conceal yourself while the newcomer takes in the situation; as " + emf("he", "she") +" draws closer, horror breaks over the defeated girl.");
+
+	//female sydian branch opening - req. PC has cock/tailcock/nipcock
+	if (isFemale)
+	{
+		showBust(enemy.bustDisplay, enemy.bustDisplay);
+		output("\n\n<i>“Poor thing,”</i> the newcomer coos in mock sympathy. <i>“Did a powerful male do this to you?”</i> She places her foot on the defeated woman’s crotch, grinding her heel into the vagina.");
+		if (enemy.hairColor == "orange") output(" The girl underfoot squeals as enzymes infiltrate her sex.");
+		else output(" The girl underfoot tries to back away, but the new arrival grabs her hair.");
+
+		if (pc.isBimbo() || pc.isBro())
+		{
+			output("\n\n<i>“With a big, juicy cock,”</i> you announce, revealing yourself");
+			if (pc.hasTailCock()) output(" and poking your tail through your hand just as its alien phallus slides free");
+			else if (pc.hasNippleCocks())
+			{
+				output(" and teasing your areolae to stimulate your [pc.nippleCocks] to");
+				if (!pc.isChestExposed()) output(" form tell-tale bulges in your [pc.upperGarment]");
+				else output(" emerge, drooling");
+			}
+			output(". The two women look at you, one with surprise and the other with fear.");
+		}
+		else if (pc.isNice())
+		{
+			output("\n\n<i>“It was me, actually,”</i> you announce, stepping out of cover. Both women look at you; the newcomer’s eyes drift down to your");
+			if (pc.isCrotchExposed()) output(" [pc.crotch]");
+			else output(" groin");
+			output(", and she");
+			if (pc.hasTailCock() || pc.hasNippleCocks()) output(" frowns");
+			else output(" smiles");
+			output(".");
+			if (pc.hasTailCock()) output(" Her frown changes to a smile as your [pc.tailCock] slithers free.");
+			else if (pc.hasNippleCocks())
+			{
+				output(" Her frown changes to");
+				if (pc.isChestExposed()) output(" a smile as your [pc.nippleCocks] escape their fleshy sheathes");
+				else output(" a quizzical expression as your [pc.upperGarment] bulges with [pc.nippleCocks]");
+			}
+			output(".");
+		}
+		else
+		{
+			output("\n\n<i>“You could say that,”</i> you assert. All eyes dart to you as you step out of cover");
+			if (pc.hasCock()) output(", flaunting your crotch bulge");
+			else if (pc.hasTailCock()) output(" sliding your [pc.tailCock] from its sheath");
+			else if (pc.hasNippleCocks())
+			{
+				output(" extruding your [pc.nippleCocks]");
+				if (!pc.isChestExposed()) output(" and making "+num2Text(pc.totalNipples())+" bulges in your [pc.upperGarment]");
+			}
+			output(".");
+		}
+
+		output("\n\n<i>“Oh, very good,”</i> the new woman says, clasping her hands together. <i>“You’re still here.”</i>");
+		
+		output("\n\nDespite her tone, you keep your [pc.weapon] ready.");
+		if (pc.hasArmor()) output(" It’s difficult to remove your [pc.armor] one-handed, and the");
+		else output(" The");
+		output(" new arrival wastes no time plying you with flattery.");
+		
+		output("\n\n<i>“I do so love a strong male...”</i> she coos.");
+
+		var multicock:Boolean = pc.hasNippleCocks() || pc.cocks.length > 1 || (pc.hasCock() && pc.hasTailCock();
+
+		output("\n\n");
+		if (pc.isBimbo() || pc.isBro() || pc.isNice())
+		{
+			if (pc.isBimbo() || pc.isNice()) output("<i>“Thanks... I guess,”</i>");
+			else output("<i>“You’re in luck then,”</i>");
+			output(" you reply. The newcomer pulls the other girl by the wrist, taking up a worshipful position");
+			if (pc.tallness <= 55) output(" beside");
+			else output(" beneath");
+			output(" your cock");
+			if (multicock) output("s");
+			output(".");
+		}
+		else
+		{
+			output("You");
+			if (pc.isAss() && pc.hasWeapon()) output(" wave your weapon, then");
+			output(" gesture at the two women and at your phallus");
+			if (multicock) output("es");
+			output(", communicating all you need to. The newcomer seems to be aroused by your lack of tact; she grabs the damaged girl by her hand and drags her to you.");
+		}
+		output(" Reverently, she caressess");
+		if (pc.hasCock()) output(" [pc.oneCock]");
+		else if (pc.hasTailCock()) output(" [pc.oneTailCock]");
+		else
+		{
+			if (pc.totalNippes() > 1) output(" one");
+			output(" [pc.nippleCock]");
+		}
+		output("; the heat of her enzyme works in, bringing you to throbbing, ready stiffness.");
+
+		output("\n\nUp to now the defeated girl has been an unwilling attendee-cum-hostage, but after your eyes dart to her a few times, the intact sydian takes notice.");
+
+		output("\n\n<i>“Come on and play,”</i> she cajoles. Her hand,");
+		if (pc.hasCock() || pc.hasTailCock()) output(" [pc.cumVisc]");
+		else output(" [pc.milkVisc]");
+		output(" with your precum, slides from your crown to the shy girl’s stomach, brushing away dust and smearing the pale flesh with a mixture of male lubrication and enzyme that");
+		if (enemy.hairColor == "orange") output(" sends the fire-haired girl into a fuck frenzy");
+		else output(" makes her sigh with arousal");
+		output(".");
+		if (((pc.hasCock() || pc.hasTailCock()) && pc.cumType != GLOBAL.FLUID_TYPE_CUM) || (pc.hasNippleCocks() && pc.milkType != GLOBAL.FLUID_TYPE_MILK))
+		{
+			output(" The cock-loving bitch in charge amuses herself by using your");
+			if (pc.hasCock() || pc.hasTailCock()) output(" [pc.cumColor]");
+			else output(" [pc.milkColor]");
+			output(" pre to re-paint the traditional lines of sydian body art, stroking your dribbling dick whenever her ‘brush’ runs dry, until her poor plaything is re-attired in a lewd suit of jizz armor.");
+		}
+		output(" The exposed woman’s alabaster breasts and silky, trembling stomach rise and fall to the touch of perverse, enzyme-laden deposits.");
+
+		if (pc.isBimbo()) output("\n\n<i>“Oooh, gonna shoot my yummy cum,”</i> you cry,");
+		else output("\n\n<i>“I’m... gonna come,”</i> you admit,");
+		output(" taken with the spectacle. Eager to finish, you thrust through the armored sydian’s hand.");
+
+		if (!multicock)
+		{
+			//female sydian branch ending 1 - solo cocks/tailcocks come inside one
+			output("\n\n<i>“Ohh, don’t waste it,”</i> says the late arrival. <i>“Wouldn’t you like to seed one of us?”</i> She spreads her labia and the broken girl, drugged out of her mind with enzyme and the stink of cum, copies her pose. Seconds from blowing, you make a quick decision and push the latter onto her back.");
+			
+			output("\n\n<i>“Lucky girl,”</i> muses her co-captor. The damaged sydian’s mouth opens and her tongue half-spills out when you shove your");
+			if (pc.hasCock()) output(" [pc.cockNounComplex]");
+			else output(" [pc.tailCock]");
+			output(" into her slippery orange pussy.");
+			
+			output("\n\n<i>“Cum!”</i> she moans, delirious. Your ejaculation");
+			if (pc.cumQ() <= 150) output(" flicks a few meagre squirts of [pc.cum inside, and for a second you’re grateful the ball-busting bitch nearby can’t see.");
+			else if (pc.cumQ() <= 1500) output(" unloads several strokes of [pc.cum] into the bug-girl, and her hands reach for your face as the feeling floods her.");
+			else output(" ambushes the poor thing with such a wave of [pc.cum] that she arches her back from the pressure. Without her armor, her stomach swells from the load.");
+			output(" When the aftershocks cease, you pop free of her");
+			if (pc.cumQ() > 1500) output(" and a gush of [pc.cumColor] follows");
+			output(". The armored sydian is the first to speak.");
+			
+			output("\n\n<i>“I’m envious... I’d love to meet you sometime,”</i> she flirts. She stands, still blooming bright orange, and walks away rubbing her thighs together. The broken girl watches while you collect your gear. Though she says nothing, her dopey grin tells you she feels the same way.");
+		}
+		else
+		{
+			//female sydian branch ending 2 - multiple nipple/tail/cocks or mix’n’match come inside both
+			output("\n\n<i>“Wait!”</i> begs the late arrival, pulling her palm away. <i>“I want your strong sperm!”</i> She slides her labia apart in invitation, and the broken girl, mind-fucked by aphrodisiac and the smell of pre-cum, mimics her. You grunt acknowledgement, rolling onto your back and trying to hold it in.");
+			
+			output("\n\nOne eager and one obedient, the two stand over your");
+			if (pc.hasNippleCocks()) output(" [pc.chest]");
+			else if (pc.hasCock())
+			{
+				output(" [pc.crotch]");
+				if (pc.hasTailCock()) output(" and [pc.tail]");
+			}
+			output(". The heat radiating from their cunts makes it hard not to shoot in the air and hope for the best, but you manage to wait while they lower themselves onto your");
+			if (pc.hasNippleCocks()) output(" [pc.nippleCocks]");
+			else if (pc.cocks.length > 1) output(" [pc.cocksLight]");
+			else if (pc.hasTailCock()) output(" [pc.tailCocks]");
+			else output(" phallic menagerie");
+			output(".");
+			
+			output("\n\n<i>“Now!”</i> cries the lucid one.");
+			
+			output("\n\nYou don’t even hear the cue, already lost in the wet haze of pussy. Your");
+			if (pc.hasCock() || pc.hasTailCock()) output(" [pc.cum]");
+			else output(" [pc.milk]");
+			output(" spurts from you,");
+			if (((pc.hasCock() || pc.hasTailCock()) && pc.cumQ() <= 150) || (pc.hasNippleCocks() && pc.lactationQ() <= 150)) output(" dotting");
+			else output(" splattering");
+			output(" their vaginas.");
+			if (((pc.hasCock() || pc.hasTailCock()) && pc.cumQ() <= 150) || (pc.hasNippleCocks() && pc.lactationQ() <= 150)) output(" The ejaculation lasts barely a second, leaving mere flecks in the sydians’ thirsty tunnels.");
+			else if (((pc.hasCock() || pc.hasTailCock()) && pc.cumQ() <= 1500) || (pc.hasNippleCocks() && pc.lactationQ() <= 1500)) output(" Strokes of jizz climb your cocks like fat earthworms, stimulated ever upward by the enzyme mixed with their pussy juice.");
+			else if if (((pc.hasCock() || pc.hasTailCock()) && pc.cumQ() > 1500) || (pc.hasNippleCocks() && pc.lactationQ() > 1500)) output(" So productive are you that the broken one’s stomach expands, distending while she grins stupidly and holds it. The other looks uncomfortable as her intact armor resists, pushing the flood back out.");
+			
+			output("\n\nYour lovers sit atop you while you cool down. The armored woman kisses you on the cheek, gets up, and leads her dopey-looking counterpart away, both rubbing their bellies in satisfaction.");
+
+			if (pc.hasNippleCocks()) pc.milked();
+		}
+
+		processTime(30+rand(15));
+		enemy.loadInCunt(pc);
+		pc.orgasm();
+	}
+	else
+	{
+		showBust(enemy.bustDisplay, "SYDIAN_MALE");
+
+		//male sydian branch opening - randomly assigned to any sex
+		output("\n\nYou decide not to pop out when you perceive the size of the male; he’s at least seven feet tall and");
+		if (flags["MET_FLAHNE"] != undefined) output(" broader than Flahne’s definition of ‘work ethic’.");
+		else output(" stouter than a radioactive beer.");
+		output("He ");
+		if (enemy.hairColor == "orange") output(" bounds up, energized by the girl’s brilliant orange hair.");
+		else output(" saunters over, gaining energy as it drains from the girl.");
+		
+		output("\n\n<i>“Hello, little thing,”</i> he booms. The broken sydian on the ground curls into a ball, trying to cover her stomach. The male picks her up by the wrists, paying not the least attention to her resistance. His hand is almost the size of her thigh, and when her ruined bodywork is exposed, his smile broadens.");
+		
+		output("\n\n<i>“You’re in a very vulnerable position,”</i> the male rumbles.");
+		if (!pc.isAss()) output(" The cruelty in his tone sends cold shivers though you,");
+		else output(" You tremble with anticipation at the gigantic newcomer’s tone,");
+		output(" and the woman’s "+enemy.eyeColor+" eyes widen as his big mitt swipes the cracked veneer from her breasts.");
+		
+		output("\n\n");
+		if (enemy.hairColor == "orange") output("The fire-headed girl shudders and whines as her destroyed covering is replaced with a bloom of enzyme; her knees clap together and she thrusts her chest forward, betrayed by her body’s lust for a sydian’s touch.");
+		else output("The girl’s pale skin quivers under his touch, and she sighs when her struggles fail to free her from the huge hand.");
+		output(" The display brings great satisfaction to the male, and his orange, fluffy prick emerges from his crotch.");
+		if (pc.hasCock()) output(" Your own [pc.cocksLight] clamor as well, swelling with blood while you watch the bug-girl get manhandled.");
+		else if (pc.hasVagina()) output(" Your [pc.vagina] demands attention as you watch his bushy cock rub against the bug-girl’s labia, and you wish you were receiving the same treatment.");
+		if (!pc.isNice() && !pc.isTaur() && (pc.hasCock() || pc.hasVagina()))
+		{
+			output(" You");
+			if (!pc.isCrotchExposed()) output(" lower your [pc.lowerGarments] and");
+			output(" slide your hand into your crotch.");
+		}
+		
+		output("\n\nThe big male pushes her leg to the side, revealing her fully-bloomed pussy. Grunting, he practically drops her onto his dick. The girl arches her back in panic as gravity forces him in with more speed than she was ready for. She wraps her arms around him and tries to climb up, to take his tool more slowly, but his meaty hands are already at her hips, giving her no choice but to accommodate the entire length.");
+		
+		output("\n\n<i>“Good dick, isn’t it?”</i> he needles, thrusting just a little to make her shiver and sweat. She switches to pushing away from his chest, attempting to lessen the impact when he slams in with full force. Encouraged by her readiness or simply not caring, he shifts his grip to her waist and begins to fuck.");
+		
+		output("\n\n<i>“Ahhh!”</i> cries the girl, scratching at her partner’s armored chest. His strokes are already so intense that her petite breasts bounce wildly. Pitters and patters of lubrication drop from the woman’s crotch, pulled out by the brush-like covering of the brute’s titian tool.");
+		if (!pc.isNice() && !pc.isTaur())
+		{
+			if (pc.hasCock()) output(" The soft sounds of your own dripping precum accompany them.");
+			else if (pc.hasVagina()) output(" Your [pc.vaginas] do their best imitation, producing lube for an imaginary cock and drooling on your fingers.");
+		}
+		
+		output("\n\n<i>“You’re so tight,”</i> the male growls. <i>“I’m going to cum soon.”</i> The girl’s head slumps, enervated, and her");
+		if (enemy.hairColor == "orange") output(" flame-colored");
+		output(" hair waves in the air from the force of his lovemaking. He gropes her with one hand, squeezing a yielding breast, and his thrusts are so vigorous that you can hear the ‘schlick’ sounds of wet sex from feet away.");
+
+		output("\n\n<i>“No...”</i> she grunts, covering his big paw, <i>“... don’t.”</i> She tries to pull him from her vulnerable breast, but he only knocks her hand away.");
+		
+		output("\n\n<i>“Don’t you want the seed of a powerful male?”</i> he teases, passing an antenna through his fist. Coated with a thick sheen of enzyme, he caresses her stomach almost lovingly.");
+		if (enemy.hairColor == "orange") output(" The girl’s skin flushes when the new dose hits; her cunt must have tightened up, because her lover clenches his teeth and pushes as deeply into her as he can.");
+		else output(" Her body relaxes as the aphrodisiac ambushes her, and that’s all the male requires to hilt his cock.");
+		output(" Her jaw drops when she realizes what’s about to happen.");
+		
+		output("\n\nThe male roars as he ejaculates, digging his thumbs into the debased woman’s soft stomach. She screams in pleasure and frustration as his seed pours in, spilling right into her womb.");
+		if (!pc.isNice() && !pc.isTaur())
+		{
+			if (pc.hasCock())
+			{
+				output(" Your own [pc.cum] spurts free at the sight,");
+				if (pc.cumQ() <= 150) output(" climbing from your unproductive [pc.balls] to dribble and drool over your hand.");
+				else if (pc.cumQ() <= 1500) output(" splattering the oily ground.");
+				else output(" erupting in a worrying wave that you hope attracts no attention.");
+			}
+			else if (pc.hasVagina())
+			{
+				output(" Your [pc.vagina] climaxes in sympathy");
+				if (pc.isSquirter()) output(", coating your hand and the dry ground with a thick spray of [pc.girlCum].");
+				else output(" , milking your hand.");
+			}
+		}
+		
+		output("\n\nThe burly sydian’s pumps weaken as his orgasm trails off, and he releases his hold on his partner. She slips off his cock and lands on her ass while his aftershocking tool swings free. He grabs it and works out the last blobs of cum, dropping them on her alabaster stomach. Pleased with his efforts, he turns and strides off, leaving the bug-girl spread eagle with silvery jizz oozing from her savaged hole. Too exhausted to talk, she stares at you, still concealed in your hiding spot, accusing you with her eyes.");
+		
+		output("\n\n");
+		if (pc.isTaur() || (!pc.hasCock() && !pc.hasVagina()) || !pc.isAss()) output("You flush with embarrassment and move away, leaving her to get pregnant in peace.");
+		else
+		{
+			output(" You shiver and move closer, still stroking yourself, until she’s looking straight up at you. With contempt, you flick");
+			if (pc.hasCock()) output(" one last [pc.cumVisc] aftershock of your own");
+			else output(" a glob of [pc.girlCumColor] froth from your pussy");
+			output(" into the woman’s face, then turn and leave.");
+		}
+
+		processTime(30+rand(15));
+		if (!pc.isAss() || pc.isTaur() || (!pc.hasCock() && !pc.hasVagina()))
+		{
+			pc.lust(20+rand(5));
+		}
+		else
+		{
+			pc.orgasm();
+		}
+	}
+
+	clearMenu();
+	addButton(0, "Next", CombatManager.genericVictory);
 }
 
 public function femSydianGiveThrob():void
@@ -170,15 +982,18 @@ public function femSydianGiveThrob():void
 	output("\n\nThe girl stares mutely at the veiny, orange prick dribbling globs of virgin cum, hands hovering nearby but afraid to touch. You give her some time to find her own courage but, when she’s still paralyzed after a minute, sweep up her hand in your own and guide it to the shaft. She shivers as you wrap her fingers, and yours, around it, squishing hot cum between them.");
 
 	enemy.cocks.push(new CockClass());
-	var c:CockClass = enemy.cocks[0];
-	c.cLengthRaw = 6;
-	c.cThicknessRatioRaw = 1.5;
+	var ec:CockClass = enemy.cocks[0];
+	ec.cLengthRaw = 6;
+	ec.cThicknessRatioRaw = 1.5;
 
 	//vag-anal branch - mandatory for F/U, preferred (80-85%) if H or if M and player has selected female gender pronouns or has all cocks too large
 	//preg chance for vag PC
 
 	if (!pc.hasCock() || (rand(100) <= 85 && pc.hasStatusEffect("Force Fem Gender")) || pc.cockThatFits(enemy.vaginalCapacity) == -1)
 	{
+		var v:int = pc.cuntThatFits(enemy.cockVolume(0, true));
+		if (v == -1) pc.biggestVaginaIndex();
+
 		output("\n\n<i>“What is this? My beautiful body...”</i> the sydian whimpers, in a tiny voice.");
 		
 		output("\n\n");
@@ -242,11 +1057,11 @@ public function femSydianGiveThrob():void
 		if (pc.hasVagina()) output(" labia");
 		else output(" asshole");
 		output(", leaving behind a kiss of cum; the sydian’s shoulders tremble from your heat, and her expression of utter concentration is adorable. One push and her cock slides into you, carrying half its last load in with it.");
-		if ((pc.hasVagina() && pc.tightestVaginalLooseness() <= 1) || pc.ass.looseness() <= 1) output(" Even slicked by copious cum, she has to fight to hilt her dick in your [pc.vagOrAss]. The girl groans as tight flesh wrings her hard cock, and stops to recover so she doesn’t blow.");
-		else if ((pc.hasVagina() && pc.tightestVaginalLooseness() <= 3 || pc.ass.looseness() <= 3) output(" Her cock fits perfectly in your [pc.vagOrAss], and the sydian pauses to savor her first penetration.");
+		if ((pc.hasVagina() && pc.vaginas[v].looseness() <= 1) || pc.ass.looseness() <= 1) output(" Even slicked by copious cum, she has to fight to hilt her dick in your [pc.vagOrAss "+v+"]. The girl groans as tight flesh wrings her hard cock, and stops to recover so she doesn’t blow.");
+		else if ((pc.hasVagina() && pc.vaginas[v].looseness() <= 3) || pc.ass.looseness() <= 3) output(" Her cock fits perfectly in your [pc.vagOrAss "+v+"], and the sydian pauses to savor her first penetration.");
 		else
 		{
-			output(" Your [pc.vagOrAss] is so well-used that she overestimates her force and bumps into your");
+			output(" Your [pc.vagOrAss "+v+"] is so well-used that she overestimates her force and bumps into your");
 			if (pc.isTaur()) output(" rump");
 			else output(" chest");
 			output(". She meets your eyes and colors, embarrassed but loving the sensations.");
@@ -258,8 +1073,6 @@ public function femSydianGiveThrob():void
 		if (pc.hasVagina())
 		{
 			output(" greedy, quavering quim.");
-			var v:int = pc.cuntThatFits(enemy.cockVolume(0, true));
-			if (v == -1) v = 0;
 			pc.cuntChange(v, enemy.cockVolume(0, true), true, true);
 		}
 		else
@@ -271,48 +1084,120 @@ public function femSydianGiveThrob():void
 		output("\n\nWhen the virgin has had enough of reverence, she begins to thrust. Her first pushes are sloppy and free-form, like bad art, until she latches onto your [pc.hips]. Aphrodisiac wicks into your [pc.legFurScales] and when the sydian sees you react, she smiles again. She pulls on one antenna, gathering enzyme for you and leaving a little streak of silver cum behind on the bristles. Your breath catches when the laden hand comes to rest on");
 		if (pc.hasVagina()) output(" your [pc.clit]");
 		else output(" the small of your back");
-		output(", shooting heat up your spine, and hers follows when your [pc.vagOrAss] clamps down from the arousal. Your hips jerk by themselves, pushing back against her cum-lubricated fuck while she shivers and tries to stretch the session. It barely works, and her cute moans go higher and higher as she picks up unintentional speed. Your [pc.vagOrAss] burns with need for release, and her aphrodisiac touch dances along your body, tensing the muscles and bringing you to climax.");
+		output(", shooting heat up your spine, and hers follows when your [pc.vagOrAss "+v+"] clamps down from the arousal. Your hips jerk by themselves, pushing back against her cum-lubricated fuck while she shivers and tries to stretch the session. It barely works, and her cute moans go higher and higher as she picks up unintentional speed. Your [pc.vagOrAss "+v+"] burns with need for release, and her aphrodisiac touch dances along your body, tensing the muscles and bringing you to climax.");
 		
 		output("\n\n<i>“Oh... yess...”</i> she moans, sawing into you like a senseless rutting beast. The sydian grunts, and something hot touches a deep place in your");
 		if (pc.hasVagina()) output(" vagina");
 		else output(" rectum");
-		output(". Her orgasm is on, and the second stroke dumps into you, a hot tongue of sperm{(vag) pressing for entrance to your womb}. You shudder as three and four baste your insides, picturing the slivery slime spilling from her. The sydian’s eyes roll and her head lolls on her neck, and watching her enjoy you as hot semen pours in sets off your own pleasure. The poor girl practically melts when your climaxing {cunt/hole} attacks her sensitive cock, falling on top of you while the last strokes meander out.");
-//female orgasm, reduce lust, put sydian load x2 in PC’s cunt
+		output(". Her orgasm is on, and the second stroke dumps into you, a hot tongue of sperm");
+		if (player.hasVagina()) output(" pressing for entrance to your womb");
+		output(". You shudder as three and four baste your insides, picturing the slivery slime spilling from her. The sydian’s eyes roll and her head lolls on her neck, and watching her enjoy you as hot semen pours in sets off your own pleasure. The poor girl practically melts when your climaxing");
+		if (player.hasVagina()) output(" cunt");
+		else output(" hole");
+		output(" attacks her sensitive cock, falling on top of you while the last strokes meander out.");
+		//female orgasm, reduce lust, put sydian load x2 in PC’s cunt
 
-//cock branch
-//pick biggest cock that fits
-The girl moans and cum slops down her sensitized cock, the baby-making batter pressed into a makeshift hot lube by your grip; two aftershocks bubble from her twitching slit as her unwilling dick tries to go soft. The sydian shakes and sighs. “Stop... it’s too much...”
+		processTime(30+rand(15));
 
-Wearing a sick grin, you prepare to show her all-new definitions of ‘too much’. {(bottom clothed and not horse)Your free hand works into your [pc.lowerGarments] and unleashes your [pc.cockNounComplex]/(nude or horse)Your [pc.cockNounComplex] throbs at you}, painfully erect from watching the girl’s growth and first, tear-streaked climax. The sydian, still limp from her ejaculation, only watches -- but when you spread her thighs, she bites her lip in recognition. Her pussy, half-draped in the strings of silver smut that drip down her crotch, quivers...
+		for (var i:int = 0; i < 2; i++)
+		{
+			pc.loadInCunt(v, enemy);
+			enemy.orgasm();
+			pc.orgasm();
+		}
+	}
+	else
+	{
+		var c:int = pc.cockThatFits(enemy.vaginalCapacity());
+		if (c == -1) pc.smallestCock();
 
-{(nice or horses)You pause in position, with your [pc.cockHead] close enough to whisper to her cunt, and look into her eyes. She says and does nothing for ten seconds, and then gives the most minute nod, consenting to the onrush of pleasure. With {(no horse)one hand still stroking her throbbing cock to male ecstasy/(horse)a careful thrust to avoid squeezing her balls, you impale her womanhood on {lesser of cock length or ten} inches of your pleasure tool. /(misch/mean and no horse)Your imagination spins to a perverted scenario, and the sydian looks concerned when you stop to gather her spent load. Her eyes widen to saucers when you coat your cock with her cum, making sure it’s slathered with fertile sydian sperm, and she chews her lip in resignation as your silver-smeared crown nudges at her labia. With evil relish, you thrust forward and deliver her own semen to her pussy, giving it a head-start on your building, churning jizz-wave. }
+		output("\n\nThe girl moans and cum slops down her sensitized cock, the baby-making batter pressed into a makeshift hot lube by your grip; two aftershocks bubble from her twitching slit as her unwilling dick tries to go soft. The sydian shakes and sighs. <i>“Stop... it’s too much...”</i>");
+		
+		output("\n\nWearing a sick grin, you prepare to show her all-new definitions of ‘too much’.");
+		if (!pc.isCrotchExposed() && !pc.isTaur())
+		{
+			output(" Your free hand works into your");
+			if (pc.hasArmor()) output(" [pc.armor]");
+			else output(" [pc.lowerGarments]");
+			output(" and unleashes your [pc.cockNounComplex "+c+"]");
+		}
+		else output(" Your [pc.cockNounComplex "+c+"] throbs at you");
+		output(", painfully erect from watching the girl’s growth and first, tear-streaked climax. The sydian, still limp from her ejaculation, only watches - but when you spread her thighs, she bites her lip in recognition. Her pussy, half-draped in the strings of silver smut that drip down her crotch, quivers...");
+		
+		output("\n\n");
+		if (pc.isNice() || pc.isTaur())
+		{
+			output("You pause in position, with your [pc.cockHead "+c+"] close enough to whisper to her cunt, and look into her eyes. She says and does nothing for ten seconds, and then gives the most minute nod, consenting to the onrush of pleasure. With");
+			if (!pc.isTaur()) output(" one hand still stroking her throbbing cock to male ecstasy");
+			else
+			{
+				output(" a careful thrust to avoid squeezing her balls, you impale her womanhood on");
+				if (pc.cocks[c].cLength() > 10) output(" ten");
+				else output(" " + num2Text(pc.cocks[c].cLength());
+				output(" inches of your pleasure tool.");
+			}
+		}
+		else output("Your imagination spins to a perverted scenario, and the sydian looks concerned when you stop to gather her spent load. Her eyes widen to saucers when you coat your cock with her cum, making sure it’s slathered with fertile sydian sperm, and she chews her lip in resignation as your silver-smeared crown nudges at her labia. With evil relish, you thrust forward and deliver her own semen to her pussy, giving it a head-start on your building, churning jizz-wave.");
+		
+		output("\n\nShe swears in a strange language as you hilt in her slick, orange vagina, and her elbows dance in the dirt from the back-shaking pleasure");
+		if (!pc.isTaur()) output(" you force on her virgin dick. With only one hand free to grip, y");
+		else output(". Y");
+		output("ou’re obliged to start slowly, sinking your [pc.cockNounSimple "+c+"] into the hot sex in time with the slippery");
+		if (pc.isTaur()) output(" flops");
+		else output(" strokes");
+		output(" of her penis, but as the fuck warms up, her flagging tool finally gives up on giving up and gets hard again. The sydian girl’s hand tightens as the pleasure returns, and within a few more thrusts, she’s jerking off");
+		if (!pc.isTaur()) output(" faster than you can guide her. You let go and enjoy");
+		else output(" with gusto. Blocked by your own bulky body, you can only imagine");
+		output(" the spectacle of the girl abandoning herself to hermaphro-heaven.");
+		
+		output("\n\nHer pussy seems to ratchet tighter with every stroke up her cock, until your own prick is fit to burst all over her insides. You exercise titanic restraint, trying to fuck her well enough that she’ll never forget the "+ pc.mf("man", "woman") +" who gave her her first dual orgasm. Judging by the way she writhes like a snake with a pinned tail, she isn’t far off.");
+		
+		output("\n\n<i>“N-no...”</i> she moans, <i>“... cumming soon! Don’t stop!”</i> Her hand is a gray blur on her angry, swollen cock, stroking so hard that pre-cum is flung off the end without the chance to lubricate a damn thing.");
+		if (!pc.isTaur()) output(" As you watch, one of the globlets hits her in the face");
+		else output(" Many of the globlets spatter on your belly");
+		output("; she pays no mind and continues jerking, tickling her urethra with a thumbtip like an experienced masturbator. Your own climax hits you, and you hilt deep in pussy to deliver your seed. The sydian notices, and you can feel her balls tighten with the base of your penis as the anticipation pushes her over her limit. Her pussy begins to quake just as the [pc.cum] climbs your shaft.");
+		
+		output("\n\n");
+		if (pc.cumQ() <= 150) output("Your scanty load squirts out with no more energy than a handful of confetti thrown by a bored coworker at an office party. Her own ejaculation makes a better showing, and");
+		else if (pc.cumQ() <= 1500) output("Your load escapes in several satisfying squirts; the girl flinches as each one touches her pussy. Her prick tries to match you like a synchronized spurting team, and");
+		else output("Your load, more like a loaf, stretches your urethra in great gobs, dumping into the poor girl. Her pussy is filled in the first squirt, but cum keeps coming until her plugged hole resembles a cataract of [pc.cumColor] slime. Her own dick, red with shame and friction,");
+		output(" paints three lines of silvery spunk on her stomach and breastplate as her pussy drinks greedily from your genetic tap.");
+		
+		output("\n\nThe girl and her new master shudder, releasing days and days of tension from her muscles along with the semen of her immense orgasm. Her hand comes to rest at the base of her cock, and you");
+		if (!pc.isTaur()) output(" tickle her balls");
+		else output(" scrape your belly on her frenulum");
+		output(" to bring her back to reality. She laughs");
+		if (!pc.isTaur()) output(", and her silvery cum catches the light as her chest shakes");
+		output(".");
+		
+		if (!pc.isNice() && !pc.isTaur())
+		{
+			output("\n\nWatching her second load cooling on her belly stirs your recent memory. The sydian recognizes the naughty glint in your eye. <i>“Don’t do it...”</i>");
+		
+			output("\n\nYou ignore her entreaties and lean down, collecting every drop of her second load and dripping it into your mouth. The sydian covers her eyes with her sticky hands, embarrassed, as you lift her ass up, spread her labia, and drool the salty, metallic cum into her wide-open pussyhole. <i>“Waste not, want not,”</i> you say, jiggling her hips to give the egg-hunting sperm a sporting chance.");
+		}
 
-She swears in a strange language as you hilt in her slick, orange vagina, and her elbows dance in the dirt from the back-shaking pleasure{(no horse) you force on her virgin dick. With only one hand free to grip, y/(horse). Y}ou’re obliged to start slowly, sinking your [pc.cockNounSimple] into the hot sex in time with the slippery {(horse)flops/(else)strokes} of her penis, but as the fuck warms up, her flagging tool finally gives up on giving up and gets hard again. The sydian girl’s hand tightens as the pleasure returns, and within a few more thrusts, she’s jerking off{(no horse) faster than you can guide her. You let go and enjoy/(horse) with gusto. Blocked by your own bulky body, you can only imagine} the spectacle of the girl abandoning herself to hermaphro-heaven.
+		processTime(30+rand(15));
+		enemy.loadInAss(pc);
+		pc.orgasm();
+		enemy.orgasm();
+		pc.loadInMouth(enemy);
+	}
 
-Her pussy seems to ratchet tighter with every stroke up her cock, until your own prick is fit to burst all over her insides. You exercise titanic restraint, trying to fuck her well enough that she’ll never forget the {man/herm} who gave her her first dual orgasm. Judging by the way she writhes like a snake with a pinned tail, she isn’t far off.
-
-“N-no...” she moans, “... cumming soon! Don’t stop!” Her hand is a gray blur on her angry, swollen cock, stroking so hard that pre-cum is flung off the end without the chance to lubricate a damn thing. {(no horse)As you watch, one of the globlets hits her in the face/(horse)Many of the globlets spatter on your belly}; she pays no mind and continues jerking, tickling her urethra with a thumbtip like an experienced masturbator. Your own climax hits you, and you hilt deep in pussy to deliver your seed. The sydian notices, and you can feel her balls tighten with the base of your penis as the anticipation pushes her over her limit. Her pussy begins to quake just as the [pc.cum] climbs your shaft.
-
-{(li’l cum)Your scanty load squirts out with no more energy than a handful of confetti thrown by a bored coworker at an office party. Her own ejaculation makes a better showing, and /(med cum)Your load escapes in several satisfying squirts; the girl flinches as each one touches her pussy. Her prick tries to match you like a synchronized spurting team, and /(big cum)Your load, more like a loaf, stretches your urethra in great gobs, dumping into the poor girl. Her pussy is filled in the first squirt, but cum keeps coming until her plugged hole resembles a cataract of [pc.cumColor] slime. Her own dick, red with shame and friction, }paints three lines of silvery spunk on her stomach and breastplate as her pussy drinks greedily from your genetic tap.
-
-The girl and her new master shudder, releasing days and days of tension from her muscles along with the semen of her immense orgasm. Her hand comes to rest at the base of her cock, and you {(no horse)tickle her balls/(horse)scrape your belly on her frenulum} to bring her back to reality. She laughs{(no horse), and her silvery cum catches the light as her chest shakes}.
-
-{(misch/mean and no horse)Watching her second load cooling on her belly stirs your recent memory. The sydian recognizes the naughty glint in your eye. “Don’t do it...”
-
-You ignore her entreaties and lean down, collecting every drop of her second load and dripping it into your mouth. The sydian covers her eyes with her sticky hands, embarrassed, as you lift her ass up, spread her labia, and drool the salty, metallic cum into her wide-open pussyhole. “Waste not, want not,” you say, jiggling her hips to give the egg-hunting sperm a sporting chance. }
-//male orgasm, reduce lust
-
-//merge for ending
-She rests quietly with you for a long time before speaking. “That was so strange,” she says. “Um...”
-
-You pull apart from her with a wet, sucking sound{(mean), not really interested in what comes after ‘um’). {(not mean)”Yeah?”}
-
-The sydian thinks for a moment. “Nevermind...” she eventually says. You look into her eyes; she’s uneasy. “It’s fine. I’ll figure something out.” She leans forward and kisses you a final time, then bids you goodbye.
-
-You watch her satisfied hip-sway as she goes, thinking it might be a good idea to stock up on Throbb.
-//end; orgasms and loads as specified in branches
+	output("\n\nShe rests quietly with you for a long time before speaking. <i>“That was so strange,”</i> she says. <i>“Um...”</i>");
+	
+	output("\n\nYou pull apart from her with a wet, sucking sound");
+	if (pc.isAss()) output(", not really interested in what comes after ‘um’");
+	output(".");
+	if (!pc.isAss()) output(" <i>“Yeah?”</i>");
+	
+	output("\n\nThe sydian thinks for a moment. <i>“Nevermind...”</i> she eventually says. You look into her eyes; she’s uneasy. <i>“It’s fine. I’ll figure something out.”</i> She leans forward and kisses you a final time, then bids you goodbye.");
+	
+	output("\n\nYou watch her satisfied hip-sway as she goes, thinking it might be a good idea to stock up on Throbb.");
+	
+	clearMenu();
+	addButton(0, "Next", CombatManager.genericVictory);
 }
-
 
 public function femSydianEatsButtholes():void
 {
