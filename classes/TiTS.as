@@ -136,7 +136,6 @@
 		// Misc Events
 		include "../includes/events/atha_lets_fapper.as";
 		include "../includes/events/bimboPennyAndBadgerQuest/badgerGifts.as";
-		include "../includes/events/sumaBonus.as";
 		include "../includes/events/tentacle_psychic_hatchling.as";
 
 		//Tavros Station

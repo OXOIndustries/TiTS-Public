@@ -345,6 +345,7 @@
 							target.shiftCock(0, GLOBAL.TYPE_NYREA);
 							target.cocks[0].cLengthRaw = 14;
 							target.shiftVagina(0, GLOBAL.TYPE_NYREA);
+							target.girlCumType = GLOBAL.FLUID_TYPE_NYREA_GIRLCUM;
 							target.orgasm();
 							target.orgasm();
 							changes++;
@@ -437,7 +438,7 @@
 				// Penis length adjustments
 				if(changes < changeLimit && dicks.length > 0 && rand(3) == 0)
 				{
-					selCock = rand(dicks.length);
+					selCock = dicks[rand(dicks.length)];
 					
 					if(target.cockLengthUnlocked(selCock, 14))
 					{

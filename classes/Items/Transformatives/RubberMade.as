@@ -78,7 +78,7 @@
 				//Hair
 				if(!pc.hasStatusEffect("Latex Hair"))
 				{
-					output("\n\nYour fingers run over sticky goop in your hair, despairing at the thought of trying to get it out. As your pull them back, blobs of gooey latex form loose webs from your hand to your head. The longer you look at the drooping slime, however, the thicker it gets, as if growing. You shake off the muck and pat up and down your [pc.hairs]. The [pc.hair] seems almost entirely covered by the thin putty of your bubblegum, rapidly cooling in a glistening sheath. Your hand comes away dry and you shake your head at the added weight of your freshly lacquered mane.");
+					output("\n\nYour fingers run over sticky goop in your hair, despairing at the thought of trying to get it out. As your pull them back, blobs of gooey latex form loose webs from your hand to your head. The longer you look at the drooping slime, however, the thicker it gets, as if growing. You shake off the muck and pat up and down your [pc.hairsDescript]. The [pc.hair] seems almost entirely covered by the thin putty of your bubblegum, rapidly cooling in a glistening sheath. Your hand comes away dry and you shake your head at the added weight of your freshly lacquered mane.");
 					pc.createStatusEffect("Latex Hair");
 					output("\n\n<b>You have latex hair!</b>");
 					//{player gains the Latex Hair trait}
@@ -157,9 +157,11 @@
 			author("Adjatha");
 			output("Nah, you decide, chewing gum's a bad habit anyway. Plus, you don't wanna fill your mouth just in case somebody tasty happens to walk by. Ooo, wouldn't that be fun? You plop the wrapped square back in your pocket, mouth watering even without the candy.");
 			output("\n\n");
+			
+			if (!kGAMECLASS.infiniteItems()) kGAMECLASS.itemCollect([new RubberMade()]);
+			
 			kGAMECLASS.clearMenu();
-			if(!kGAMECLASS.infiniteItems()) kGAMECLASS.quickLoot(new RubberMade());
-			else kGAMECLASS.addButton(0,"Next",kGAMECLASS.useItemFunction);
+			kGAMECLASS.addButton(0,"Next",kGAMECLASS.useItemFunction);
 		}
 		public function blowBubsBadEnd(target:Creature):void
 		{
