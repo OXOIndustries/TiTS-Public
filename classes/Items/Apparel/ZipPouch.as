@@ -44,6 +44,7 @@ package classes.Items.Apparel
 			this.fortification = 0;
 			
 			itemFlags = [GLOBAL.ITEM_FLAG_SWIMWEAR];
+			itemFlags = [GLOBAL.ITEM_FLAG_EXPOSE_ASS];
 			
 			this.version = this._latestVersion;
 		}
