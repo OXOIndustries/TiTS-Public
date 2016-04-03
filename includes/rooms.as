@@ -70,6 +70,15 @@ public function initializeRooms():void
 	rooms["POESPACE"].runOnEnter = puntToShip;
 	rooms["POESPACE"].addFlag(GLOBAL.OUTDOOR);
 
+	rooms["GAME OVER"] = new RoomClass(this);
+	rooms["GAME OVER"].roomName = "GAME\nOVER";
+	rooms["GAME OVER"].description = "";
+	rooms["GAME OVER"].planet = "PLANET: NONE";
+	rooms["GAME OVER"].system = "SYSTEM: UNKNOWN";
+	rooms["GAME OVER"].moveMinutes = 1;
+	rooms["GAME OVER"].runOnEnter = undefined;
+	rooms["GAME OVER"].addFlag(GLOBAL.INDOOR);
+
 
 	//100. Hotel Room
 	rooms["HOTEL ROOM"] = new RoomClass(this);
@@ -1218,7 +1227,8 @@ public function initializeRooms():void
 	//30.Between Lichens and Ironwoods
 	rooms["LICHENS AND IRONWOODS 1"] = new RoomClass(this);
 	rooms["LICHENS AND IRONWOODS 1"].roomName = "IRONWOODS\nAND LICHENS";
-	rooms["LICHENS AND IRONWOODS 1"].description = "There's plenty of space to explore on this north-south causeway thanks to the lichen that seems to have eaten back most of the other plant-life. Tight clusters of trees block the way west, and another gigantic variety sprouts up to the east, covered in rust-red bark that closer inspection reveals to be actual iron. The lichens bathe everything but the trees to the east in gentle bioluminescence. They can't seem to grow on the ferrous coverings of the eastern trunks and die off that way.";
+	//rooms["LICHENS AND IRONWOODS 1"].description = "There's plenty of space to explore on this north-south causeway thanks to the lichen that seems to have eaten back most of the other plant-life. Tight clusters of trees block the way west, and another gigantic variety sprouts up to the east, covered in rust-red bark that closer inspection reveals to be actual iron. The lichens bathe everything but the trees to the east in gentle bioluminescence. They can't seem to grow on the ferrous coverings of the eastern trunks and die off that way.";
+	rooms["LICHENS AND IRONWOODS 1"].description = "While the path you now tread is fairly devoid of undergrowth due to some aggressive, alien lichens, there is no shortage of tree life to bar your way. A copse of gray trunks so thick that a child would be challenged to squeeze between them stands defiantly among the lichens to the southwest, even if there’s a path that circumnavigates their northern edge to your west. To the east, huge trees at least thirty feet around dot the landscape, covered in what appears to be rusty red bark. If you touch it, the red comes away like old rust, revealing a gleaming, metallic tree-trunk below. They appear to thin out a bit to the south-east - unadulterated light can be seen in that direction.";
 	rooms["LICHENS AND IRONWOODS 1"].planet = "PLANET: MHEN'GA";
 	rooms["LICHENS AND IRONWOODS 1"].system = "SYSTEM: ARA ARA";
 	rooms["LICHENS AND IRONWOODS 1"].southExit = "LICHENS AT IRONWOODS 1";
@@ -1231,7 +1241,7 @@ public function initializeRooms():void
 	//31. Between Lichens and Ironwoods
 	rooms["LICHENS AND IRONWOODS 2"] = new RoomClass(this);
 	rooms["LICHENS AND IRONWOODS 2"].roomName = "IRONWOODS\nAND LICHENS";
-	rooms["LICHENS AND IRONWOODS 2"].description = "Springing lightly under your [pc.feet] as you move, the soft soil and lichenous mulch below makes your journey surprisingly pleasant, aside from the omnipresent humidity. A wall of gray trees blocks the way west, and a trunk as big as three tanks put together blocks the east. Buzzing insects swirl around everywhere, busy on their own errands. Thankful they don't seem to have much interest in you, perhaps due to your alien physiology.";
+	rooms["LICHENS AND IRONWOODS 2"].description = "Springing lightly under your [pc.feet] as you move, the soft soil and lichenous mulch below makes your journey surprisingly pleasant, aside from the omnipresent humidity. A wall of gray trees blocks the way west, and a trunk as big as three tanks put together blocks the east. Buzzing insects swirl around everywhere, busy on their own errands. Thankfully they don’t seem to have much interest in you, perhaps due to your alien physiology.";
 	rooms["LICHENS AND IRONWOODS 2"].planet = "PLANET: MHEN'GA";
 	rooms["LICHENS AND IRONWOODS 2"].system = "SYSTEM: ARA ARA";
 	rooms["LICHENS AND IRONWOODS 2"].southExit = "LICHENS AND IRONWOODS 1";
@@ -1244,11 +1254,12 @@ public function initializeRooms():void
 	//32. Between Lichens and Ironwoods
 	rooms["LICHENS AND IRONWOODS 3"] = new RoomClass(this);
 	rooms["LICHENS AND IRONWOODS 3"].roomName = "IRONWOODS\nAND LICHENS";
-	rooms["LICHENS AND IRONWOODS 3"].description = "The jungle here is marvelously colorful. Hues of verdant green swim between vibrant yellows and lurid reds, shining up from the interwoven lichens in a rainbow of beauteous light. Whenever you press down upon some of it, the light brightens, lighting the way as you go. Ferrous trees as big as buildings rise up to the east, and smaller gray ones to the west cluster so tightly that you cannot go in that direction.";
+	rooms["LICHENS AND IRONWOODS 3"].description = "The jungle here is marvelously colorful. Hues of verdant green swim between vibrant yellows and lurid reds, shining up from the interwoven lichens in a rainbow of beauteous light. Whenever you press down upon some of it, the light brightens, lighting the way as you go. Ferrous trees as big as buildings rise up to the east, and smaller gray ones to the west cluster so tightly that you cannot go in that direction. There is an obvious track leading east between the looming giants, though: the undergrowth and even some of the trees have been cut back mechanically. The smell of sawdust hangs in the air.";
 	rooms["LICHENS AND IRONWOODS 3"].planet = "PLANET: MHEN'GA";
 	rooms["LICHENS AND IRONWOODS 3"].system = "SYSTEM: ARA ARA";
 	rooms["LICHENS AND IRONWOODS 3"].southExit = "LICHENS AND IRONWOODS 2";
 	rooms["LICHENS AND IRONWOODS 3"].northExit = "LICHENS AT IRONWOODS 2";
+	rooms["LICHENS AND IRONWOODS 3"].eastExit = "THARE PATHWAY";
 	rooms["LICHENS AND IRONWOODS 3"].addFlag(GLOBAL.OUTDOOR);
 	rooms["LICHENS AND IRONWOODS 3"].addFlag(GLOBAL.HAZARD);
 	rooms["LICHENS AND IRONWOODS 3"].addFlag(GLOBAL.FOREST);
@@ -2048,6 +2059,40 @@ public function initializeRooms():void
 	rooms["ESBETH MEDICAL OFFICE"].westExit = "EAST ESBETH";
 	rooms["ESBETH MEDICAL OFFICE"].addFlag(GLOBAL.INDOOR);
 	rooms["ESBETH MEDICAL OFFICE"].addFlag(GLOBAL.MEDICAL);
+
+	// Thare Plantation
+	rooms["THARE PATHWAY"] = new RoomClass(this);
+	rooms["THARE PATHWAY"].roomName = "CLEARED\nPATHWAY";
+	rooms["THARE PATHWAY"].description = "";
+	rooms["THARE PATHWAY"].planet = "PLANET: MHEN'GA";
+	rooms["THARE PATHWAY"].system = "SYSTEM: ARA ARA";
+	rooms["THARE PATHWAY"].westExit = "LICHENS AND IRONWOODS 3";
+	rooms["THARE PATHWAY"].eastExit = "THARE FIELDS";
+	rooms["THARE PATHWAY"].addFlag(GLOBAL.OUTDOOR);
+	rooms["THARE PATHWAY"].addFlag(GLOBAL.HAZARD);
+	rooms["THARE PATHWAY"].addFlag(GLOBAL.FOREST);
+	rooms["THARE PATHWAY"].runOnEnter = plantationApproachBonus;
+	
+	rooms["THARE FIELDS"] = new RoomClass(this);
+	rooms["THARE FIELDS"].roomName = "PLANTATION\nFIELDS";
+	rooms["THARE FIELDS"].description = "";
+	rooms["THARE FIELDS"].planet = "PLANET: MHEN'GA";
+	rooms["THARE FIELDS"].system = "SYSTEM: ARA ARA";
+	rooms["THARE FIELDS"].westExit = "THARE PATHWAY";
+	rooms["THARE FIELDS"].southExit = "THARE MANOR";
+	rooms["THARE FIELDS"].addFlag(GLOBAL.OUTDOOR);
+	rooms["THARE FIELDS"].addFlag(GLOBAL.FOREST);
+	rooms["THARE FIELDS"].runOnEnter = plantationFieldsBonus;
+	
+	rooms["THARE MANOR"] = new RoomClass(this);
+	rooms["THARE MANOR"].roomName = "THARE\nPLANTATION";
+	rooms["THARE MANOR"].description = "";
+	rooms["THARE MANOR"].planet = "PLANET: MHEN'GA";
+	rooms["THARE MANOR"].system = "SYSTEM: ARA ARA";
+	rooms["THARE MANOR"].northExit = "THARE FIELDS";
+	rooms["THARE MANOR"].addFlag(GLOBAL.INDOOR);
+	rooms["THARE MANOR"].addFlag(GLOBAL.BED);
+	rooms["THARE MANOR"].runOnEnter = undefined;
 
 	// Vanae map additions
 	rooms["A TURNING POINT"] = new RoomClass(this);

@@ -2890,6 +2890,18 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["TIMES_ELECTROSTIMMED_BY_VKO"] != undefined) output2(", Got electro-stimulated");
 				variousCount++;
 			}
+			// Thare Plantation
+			if(flags["THARE_MANOR_ENTERED"] != undefined)
+			{
+				output2("\n<b><u>Thare Plantation</u></b>");
+				output2("\n<b>* Professor Darnock:</b> Met him");
+				output2("\n<b>* Able:</b> Met him");
+				if(flags["ABLE_BATHS"] != undefined) output2("\n<b>* Able, Times Bathed By: </b>" + flags["ABLE_BATHS"]);
+				if(flags["ABLE_BUTTSEXED"] != undefined) output2("\n<b>* Able, Times Buttfucked Him: </b>" + flags["ABLE_BUTTSEXED"]);
+				if(flags["ABLE_LICKNFUCKED"] != undefined) output2("\n<b>* Able, Times Licked By and Rode Him: </b>" + flags["ABLE_LICKNFUCKED"]);
+				if(flags["ABLE_BOTHWAYS"] != undefined) output2("\n<b>* Able, Times Rode and Buttfucked Him: </b>" + flags["ABLE_BOTHWAYS"]);
+				variousCount++;
+			}
 			// Pennybutts
 			if(flags["MET_PENNY"] != undefined)
 			{
