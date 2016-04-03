@@ -43,8 +43,9 @@ package classes.Items.Apparel
 			this.evasion = 0;
 			this.fortification = 0;
 			
-			itemFlags = [GLOBAL.ITEM_FLAG_SWIMWEAR];
-			itemFlags = [GLOBAL.ITEM_FLAG_EXPOSE_ASS];
+			itemFlags = [];
+			itemFlags.push(GLOBAL.ITEM_FLAG_SWIMWEAR);
+			itemFlags.push(GLOBAL.ITEM_FLAG_EXPOSE_ASS);
 			
 			this.version = this._latestVersion;
 		}
