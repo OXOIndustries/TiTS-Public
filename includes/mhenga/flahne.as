@@ -876,7 +876,7 @@ public function eatFlahneOutUnderDesk():void {
 	else output("but sixteen inches of quivering, ejaculating orange tool block your view of the figure, and vice versa.");
 	output(" She stammers, <i>“I-I... I... ummm... I’ll be back later! Sorry!”</i>  and darts away.");
 	
-	output("\n\nFlahne moans loudly, and gushes again, shaking from head to toe. It’s marvellous to watch, as her semi-fluid body undulates rather pleasantly through her orgasm.");
+	output("\n\nFlahne moans loudly, and gushes again, shaking from head to toe. It’s marvelous to watch, as her semi-fluid body undulates rather pleasantly through her orgasm.");
 	if(flags["FLAHNE_LIKE_OVIPOSITOR"] > 0) 
 	{
 		output(" Above, her cock-like organ bloats and explodes, pumping huge blasts of white-hued cum out like some kind of cannon. The jizz-bombs splatter off the top of your enclosure, sticking to the underside of the desk briefly before raining spunk over your entire body. You ignore the one-woman bukkake show and keep going, ensuring that Flahne has as torturously long an orgasm as possible.");
