@@ -956,7 +956,7 @@
 			"Swimwear",
 			"Fully Exposed",
 			"Lust Weapon",
-			"Power Armor"
+			"Power Armor",
 			"Chest Exposed",
 			"Groin Exposed",
 			"Ass Exposed",
