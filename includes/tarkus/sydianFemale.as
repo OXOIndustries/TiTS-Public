@@ -53,7 +53,9 @@ public function encounterFemaleSydian():void
 	CombatManager.setHostileCharacters(tEnemy);
 	CombatManager.victoryScene(sydianFemalePCVictory);
 	CombatManager.lossScene(sydianFemalePCLoss);
-	CombatManager.beginCombat();
+	
+	clearMenu();
+	addButton(0, "Fight!", CombatManager.beginCombat);
 }
 
 public function sydianFemalePCLoss():void
@@ -72,7 +74,7 @@ public function sydianFemalePCLoss():void
 		processTime(5);
 
 		clearMenu();
-		addButton(0, "Next", CombatManager.genericLoss);
+		CombatManager.genericLoss();
 		return;
 	}
 
@@ -186,8 +188,7 @@ public function sydianFemalePCLossHasVagina():void
 	processTime(30+rand(15));
 	pc.orgasm();
 
-	clearMenu();
-	addButton(0, "Next", CombatManager.genericLoss);
+	CombatManager.genericLoss();
 }
 
 public function sydianFemalePCLossHasCock():void
@@ -342,8 +343,7 @@ public function sydianFemalePCLossHasCock():void
 	{
 		applyRustBroStatus();
 	}
-	clearMenu();
-	addButton(0, "Next", CombatManager.genericLoss);
+	CombatManager.genericLoss();
 }
 
 public function sydianFemalePCVictory():void
@@ -408,7 +408,7 @@ public function sydianFemalePCVictory():void
 		else addDisabledButton(4, "Gentle Fuck", "Gentle Fuck", "Your genitals are incompatible with the poor girl!");
 	}
 
-	addButton(14, "Leave", CombatManager.genericVictory);
+	CombatManager.genericVictory();
 }
 
 public function femSydianGentleFuck():void
@@ -603,8 +603,7 @@ public function femSydianGentleFuck():void
 		}
 	}
 
-	clearMenu();
-	addButton(0, "Next", CombatManager.genericVictory);
+	CombatManager.genericVictory();
 }
 
 // 9999 This will probably need a lot of tweaking to ensure things remain consistent between all of the supported genital configurations.
@@ -919,8 +918,7 @@ public function femSydianCallOthers():void
 		}
 	}
 
-	clearMenu();
-	addButton(0, "Next", CombatManager.genericVictory);
+	CombatManager.genericVictory();
 }
 
 public function femSydianGiveThrob():void
@@ -1196,8 +1194,7 @@ public function femSydianGiveThrob():void
 	
 	output("\n\nYou watch her satisfied hip-sway as she goes, thinking it might be a good idea to stock up on Throbb.");
 	
-	clearMenu();
-	addButton(0, "Next", CombatManager.genericVictory);
+	CombatManager.genericVictory();
 }
 
 public function femSydianEatsButtholes():void
@@ -1247,7 +1244,7 @@ public function femSydianEatsButtholes():void
 		{
 			output("\n\n<i>“It looks like mine,”</i> she giggles, raising a finger. [pc.OneClitoris] trembles at her chemically-enhanced touch.");
 			if (pc.vaginas[0].type != GLOBAL.TYPE_HUMAN && pc.vaginas[0].type != GLOBAL.TYPE_SYDIAN) output(" <i>“Kind of...”</i>");
-			else if (pc.vaginas[0].color != "orange") output("<i>“Wrong color...”</i>");
+			else if (pc.vaginas[0].vaginaColor != "orange") output("<i>“Wrong color...”</i>");
 		}
 	}
 
@@ -1357,8 +1354,7 @@ public function femSydianEatsButtholes():void
 
 	processTime(30+rand(15));
 	pc.orgasm();
-	clearMenu();
-	addButton(0, "Next", CombatManager.genericVictory);
+	CombatManager.genericVictory();
 }
 
 public function femSydianFuck():void
@@ -1483,8 +1479,7 @@ public function femSydianFuck():void
 	processTime(30+rand(15))
 	enemy.loadInCunt(pc, 0);
 	pc.orgasm();
-	clearMenu();
-	addButton(0, "Next", CombatManager.genericVictory);
+	CombatManager.genericVictory();
 }
 
 

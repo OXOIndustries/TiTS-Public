@@ -42,7 +42,7 @@ package classes.Engine.Combat
 			if (!damageToShields.hasFlag(DamageFlag.CRUSHING) && !damageToShields.hasFlag(DamageFlag.EXPLOSIVE))
 			{
 				sydArmorBypass = damageToShields.makeCopy();
-				sydArmorBypass.multiply(MathUtil.LinearInterpolate(0.0, 0.5, target.shields() / target.shieldsMax()));
+				sydArmorBypass.multiply(MathUtil.LinearInterpolate(1, 0.5, target.shields() / target.shieldsMax()));
 				damageToShields.kinetic.damageValue = 0;
 				damageToShields.electric.damageValue = 0;
 				damageToShields.burning.damageValue = 0;

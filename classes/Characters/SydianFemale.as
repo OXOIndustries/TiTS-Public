@@ -69,9 +69,9 @@
 			this.XPRaw = 250;
 			this.level = 4;
 			this.credits = 0;
-			this.HPMod = 25;
+			this.HPMod = 0;
 			this.HPRaw = this.HPMax();
-			
+			this.shieldsRaw = 100;
 			
 			this.femininity = 70;
 			this.eyeType = GLOBAL.TYPE_SYDIAN;
@@ -292,7 +292,7 @@
 					if (hasStatusEffect("Enzyme")) dd *= 1.33;
 				}
 				
-				applyDamage(new TypeCollection( { kinetic: 12, drug: dd } ), this, target, "minimal");
+				applyDamage(new TypeCollection( { kinetic: 14, drug: dd } ), this, target, "minimal");
 			}
 		}
 
@@ -316,11 +316,11 @@
 					
 					if (!target.hasArmor() || !target.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
 					{
-						dd = 3;
+						dd = 4;
 						if (hasStatusEffect("Enzyme")) dd *= 1.33;
 					}
 					
-					applyDamage(new TypeCollection( { kinetic: 7 + rand(2), drug: dd } ), this, target, "minimal");
+					applyDamage(new TypeCollection( { kinetic: 9 + rand(2), drug: dd } ), this, target, "minimal");
 					
 					target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
 				}
@@ -330,11 +330,11 @@
 					
 					if (!target.hasArmor() || !target.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
 					{
-						dd = 3;
+						dd = 4;
 						if (hasStatusEffect("Enzyme")) dd *= 1.33;
 					}
 					
-					applyDamage(new TypeCollection( { kinetic: 3 + rand(2), drug: dd } ), this, target, "minimal");
+					applyDamage(new TypeCollection( { kinetic: 5 + rand(2), drug: dd } ), this, target, "minimal");
 				}
 			}
 		}
@@ -354,7 +354,7 @@
 				else
 				{
 					output(" Her kick connects with you!");
-					applyDamage(new TypeCollection( { kinetic: 7 + rand(3) } ), this, target, "minimal");
+					applyDamage(new TypeCollection( { kinetic: 9 + rand(3) } ), this, target, "minimal");
 				}
 				output("\n");
 			}
@@ -407,7 +407,7 @@
 			else
 			{
 				output(" Her coy smile distracts you from the tail that caresses your [pc.leg] and then yanks it from under you!");
-				applyDamage(new TypeCollection( { kinetic: 7 + rand(2) } ), this, target, "minimal");
+				applyDamage(new TypeCollection( { kinetic: 9 + rand(2) } ), this, target, "minimal");
 				output(" <b>You're going to have a difficult time fighting from down here!</b>");
 				target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
 			}
@@ -425,7 +425,7 @@
 			else
 			{
 				output(" The tickly brushes and questing fingers are too numerous to stop, and your blood simmers as she searches out your most secret spots.");
-				dam = 8;
+				dam = 6;
 			}
 			if (hasStatusEffect("Enzyme")) dam *= 1.33;
 			applyDamage(new TypeCollection( { tease: dam } ), this, target, "minimal");
