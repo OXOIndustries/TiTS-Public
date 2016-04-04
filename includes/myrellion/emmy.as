@@ -3452,7 +3452,7 @@ public function emmyGetFuckedEppie(x:int):void
 public function emmysPantiesGet():void
 {
 	showName("MYSTERIOUS\nPACKAGE");
-	output("\n\nSomeone left a package against your ship! Wrapped up in brown paper, its only visible marking is a small white tag with your name roughly scrawled across it. You briefly consider that it could be a trick or a trap, planted by cousin to slow you down, but [pc.heShe] seems more interested in rubbing your face in the dirt while [pc.heShe]’s there to see it.");
+	output("\n\nSomeone left a package against your ship! Wrapped up in brown paper, its only visible marking is a small white tag with your name roughly scrawled across it. You briefly consider that it could be a trick or a trap, planted by your cousin to slow you down, but [rival.heShe] seems more interested in rubbing your face in the dirt while [rival.heShe]’s there to see it.");
 	output("\n\nShrugging, you tear it open, anxious to get at whatever prize is inside. You smell a dash of perfume as soon as the paper comes off, partly covering an earthier, almost nutty scent. It’s familiar, but you can’t quite place it.");
 	output("\n\nThen you open the box, revealing exactly what you were smelling - a pair of silky, purple panties with a sorely stretched-out gusset, still soaked from what looks like a night of fun. Off-white splotches mar and clear gloss war for control of the slippery surface, a look (and smell) you’re all too intimately familiar with. These can only belong to your horny jackal girlfriend: Emmy.");
 	output("\n\nA note, printed on moisture-resistant plastic, confirms your assumption:");

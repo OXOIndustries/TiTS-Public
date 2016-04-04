@@ -933,6 +933,9 @@ public function novaHomeTalk():void
 		output("\n\n<i>\"Yeah,\"</i> Anno sighs. <i>\"It's like something out of a horror movie, but so far we're just in the tense part, before the jump scares. There's even been some disappearances, you know? That Shekel girl or whatever across the way's been screaming about it, just about starting a riot... but she's not wrong. I don't think its slavers, though. The pioneers woke this ship up when they landed, and now?\"</i>");
 		output("\n\n<i>\"Anyway, I probably sound like a nut job, huh? Let's just say this place gives me the creeps, boss. If you offered me a ride out on the next shithaul freighter, I wouldn't say no.\"</i>");
 	}
+	
+	CodexManager.unlockEntry("BI/G");
+	
 	processTime(10+rand(2));
 	annoTalkMenu();
 	removeButton(1);
@@ -1979,6 +1982,8 @@ public function annoSpaceSuits():void
 	output("You lean in close to examine the space suits sitting idle on the side of the airlock. There's a dozen of them, all in pristine condition for their age. Each bears the <i>Nova</i>'s emblem proudly on its breast, as well as a smaller set of markings indicating that the spacers who would have worn these were citizens of the United States of America, sponsored by the Bell-Isle/Grunmann corporation.");
 
 	output("\n\n<i>“Either of those names sound familiar to you?”</i> Anno asks, squinting at the I.D. plates. <i>“I recognize the second one, at least: those gray-goo creatures outside. If you muck around in their programming, they insist they were made by Bell-Isle/Grunmann. Maybe... maybe they were part of the ship’s original cargo? But why the hell would anyone take gray-goo into space?”</i>");
+	
+	CodexManager.unlockEntry("BI/G");
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -2032,7 +2037,7 @@ public function lossToSecurityDroid():void
 	showName("LOSS:\nSEC. DROIDS");
 	showBust("DROID_SECURITY","DROID_SECURITY","DROID_SECURITY");
 
-	output("You hear a horrible scream to your side. You pause in your fight just long enough to look, and see Anno crumpled on the ground, motionless. Oh, no.... You turn back, grabbing your [pc.rangedWeapon] to take the murderous drones down... only to see one of their gun barrels leveled at your forehead.");
+	output("You hear a horrible scream to your side. You pause in your fight just long enough to look, and see Anno crumpled on the ground, motionless. Oh, no.... You turn back, grabbing your [pc.heldWeapon] to take the murderous drones down... only to see one of their gun barrels leveled at your forehead.");
 
 	output("\n\n<i>ZAP</i>.");
 
@@ -2453,6 +2458,8 @@ public function deck13MakeGoo():void
 	
 	output("\n\nWell, that’s not exactly what you were expecting from the fuck-happy creatures that escaped the <i>Nova</i>. Still, you nod and say that you are. The gray goo swells up, making a high-pitch squealing sound and hugging herself. <i>“Yaaaaaay! Best friends forever and ever and ever!”</i> she giggles, beaming at you. <i>“Oh! I’m... uh... um... I need a name!”</i>");
 	
+	CodexManager.unlockEntry("BI/G");
+	
 	clearMenu();
 	addButton(0, "Next", deck13MakeGooII);
 }
@@ -2752,6 +2759,14 @@ public function lossToGrayPrime():void
 	
 	output("\n\nThat’s exactly what they do.");
 	
+	processTime(25);
+	pc.removeEquipment("weapons");
+	
+	for(var i:int = 0; i < 36; i++)
+	{
+		pc.orgasm();
+	}
+	
 	badEnd();
 }
 
@@ -2933,6 +2948,8 @@ public function deck13GrayPrimeTalkCrew():void
 	output("\n\n<i>“A gestalt,”</i> Anno suggests.");
 	
 	output("\n\nThe goo nods. <i>“Maybe. For now, you can call us... me... Nova.”</i>");
+	
+	CodexManager.unlockEntry("BI/G");
 
 	deck13GrayPrimeTalkMenu();
 	removeButton(0);

@@ -334,6 +334,7 @@
 			
 			kGAMECLASS.processTime(60 + rand(30));
 			
+			pc.removeAll();
 			for(var i:int = 0; i < 12; i++)
 			{
 				pc.orgasm();
@@ -345,13 +346,14 @@
 		}
 		public function throbbBadEndPartDues():void
 		{
+			kGAMECLASS.currentLocation = "GAME OVER";
+			kGAMECLASS.generateMap();
+			kGAMECLASS.showLocationName();
+			
 			kGAMECLASS.clearOutput();
 			//[Next]
 			kGAMECLASS.output("At some point, you realized that your dreams of following in your Dad's footsteps had died. There was no way you were going to be able to focus long enough to find the probes he left scattered around the universe. You made the best of a rough situation, though, by managing to set up an online holo-show.");
 			kGAMECLASS.output("\n\nOne of your fans was even nice enough to cart you off to a studio with drains and proper recording equipment. You let them worry about the money, of course. It's too much work to keep up with all that garbage when you could be using your time to queue up a hot new porno.");
-			
-			kGAMECLASS.currentLocation = "SHIP INTERIOR";
-			kGAMECLASS.generateMap();
 			
 			kGAMECLASS.days += 30 + rand(6);
 			kGAMECLASS.hours = rand(24);

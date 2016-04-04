@@ -708,7 +708,7 @@ public function pcAndShadeDefeated():void
 	showBust("KARA","SHADE");
 	showName("KARA\n& SHADE");
 	author("Savin");
-	output("You’ve had enough. You throw down your [pc.rangedWeapon] and put your hands up - better a little indignity than death. Shade grunts in disgust, but puts her hands up too - she’s not much better off than you are, after all. The victorious Kara takes one stride towards the both of you, glowers at you, and raises her gun.");
+	output("You’ve had enough. You throw down your [pc.heldWeapon] and put your hands up - better a little indignity than death. Shade grunts in disgust, but puts her hands up too - she’s not much better off than you are, after all. The victorious Kara takes one stride towards the both of you, glowers at you, and raises her gun.");
 	output("\n\nYou wince, closing your eyes as she pulls the trigger. You hear the scream beside you, though, and look to see Shade on the deck, collapsed in a pool of blood and burning plasma. Kara gives a huff and turns her gun toward you.");
 	output("\n\n<i>“You could have just walked away,”</i> she breathes, the last thing you hear before the glow of green flame takes your life.");
 	badEnd();
@@ -1478,7 +1478,11 @@ public function runesYouTurdShade():void
 
 	output("\n\nShade chuckles. <i>“I did. But it dawned on me I didn’t really have anywhere to go. I was too afraid to go home, and I wasn’t exactly well to do back then. Not like now, that’s for sure. Plus I was pregnant, and starting to show. I wasn’t going to be doing much bounty hunting while waddling around in a couple months. So yeah, I stayed with them. For a couple of years, actually. I had Astra, then went in for their warrior training. It was grueling, near military, and all about discipline and keeping cool under pressure. I’ll tell you this: I was a better woman for it, and a better hunter when I set out again. When I decided to go, they sent me off with a feast and well wishes, loaded me down with rune-carved gear and presents for my little girl.”</i>");
 	output("\n\nYour companion gets a wistful look in her eyes, staring far away as she finishes. <i>“I still go back from time to time, either to Uveto or their other churches scattered all over. Like I said, I don’t buy into the higher powers shit, but I... heh, I guess I just like being part of something. Makes me feel good, and gives me something to believe in, even if it’s just philosophical. You can understand that, right?”</i>");
+	
 	processTime(7);
+	
+	CodexManager.unlockEntry("Stormguard");
+	
 	shadeTalkMenu(runesYouTurdShade);
 }
 

@@ -160,8 +160,8 @@
 					kGAMECLASS.output("\n\nYou could rush to get help, or ride it out and go for broke. Just how much do you want big balls?");
 					// [Get Help] [Let em Grow]
 					clearMenu();
-					addButton(0, "Get Help", SumaCream.sumaBadEnd, [pc,"help"]);
-					addButton(1, "Let em Grow", SumaCream.sumaBadEnd, [pc,"grow"]);
+					addButton(0, "Get Help", SumaCream.sumaBadEnd, "help");
+					addButton(1, "Let em Grow", SumaCream.sumaBadEnd, "grow");
 					return;
 				}
 				// Normal
@@ -293,13 +293,12 @@
 		}
 
 		// Overload Bad End
-		public static function sumaBadEnd(arg:Array):void
+		public static function sumaBadEnd(response:String = "none"):void
 		{
 			clearOutput();
 			author("Adjatha");
 			
-			var pc:Creature = arg[0];
-			var response:String = arg[1];
+			var pc:Creature = kGAMECLASS.pc;
 			
 			switch (response)
 			{
@@ -361,7 +360,7 @@
 					pc.lust(50);
 					// [Next]
 					clearMenu();
-					addButton(0, "Next", sumaBadEnd, [pc,"growing"]);
+					addButton(0, "Next", sumaBadEnd, "growing");
 					break;
 				case "growing":
 					kGAMECLASS.showName("SIDE\nEFFECTS");
@@ -379,17 +378,18 @@
 					pc.lust(50);
 					// [Next]
 					clearMenu();
-					addButton(0, "Next", sumaBadEnd, [pc,"bad end"]);
+					addButton(0, "Next", sumaBadEnd, "bad end");
 					break;
 				case "bad end":
+					kGAMECLASS.currentLocation = "GAME OVER";
+					kGAMECLASS.generateMap();
+					kGAMECLASS.showLocationName();
+					
 					kGAMECLASS.showName("CREAM\nFILLED!");
 					kGAMECLASS.output("When someone finally does come for you, you’re too far gone. Every slight touch brings on another orgasm, and every climax swells your balls to ever larger sizes. Steele Tech brings in everything they can to help, but nothing seems to alter your oversaturated, cream-filled body. Estrobloom and Tittyblossom shrink your monumental balls only slightly before they swell back up again, your [pc.cocks] spouting out thick gallons of [pc.cum]. Exotic solutions like Uthra sap is imported from the galactic rim, but nothing can hinder your over-productive bounty. Reluctantly, the decision comes down: you’re in no state to take over Steele Tech.");
 					kGAMECLASS.output("\n\nYour cousin sends a sympathetic though obviously gloating message, assuring you that you’ll be very well provided for. You can even help your father’s company, the note assures you. For one, Steele Tech has a very good case against J’ejune Pharmaceuticals. The lawyers think they can get so much that the suit should put the beauty products mogol under for good. So at least you’ll have some measure of justice.");
 					kGAMECLASS.output("\n\nPlus, the note goes on, the limitless spunk factories that immobilize you will be helpful in providing a steady stream of raw genetic material. Other companies like Xenogen will pay top dollar for such plentiful samples and maybe - one day - they’ll reverse engineer something to fix your condition. In the meantime, a special ship-sized cockmilker is in production, just for you.");
 					kGAMECLASS.output("\n\nYou feel like you should be more upset than you are, but honestly, you’re really looking forward to that milker. The thought of endless gallons being pumped out of your room-sized testes is enough to send you into another lusty haze.");
-					
-					kGAMECLASS.currentLocation = "SHIP INTERIOR";
-					kGAMECLASS.generateMap();
 					
 					kGAMECLASS.days += 20 + rand(11);
 					kGAMECLASS.hours = rand(24);

@@ -642,7 +642,8 @@ public function wetraxxelBrawlerPCVictoryWankHim():void
 	
 	output("\n\nThe brawler grunts and leans back against the rockface, looking completely exhausted. While he recovers, you take the opportunity to crawl off and collect your gear, trying not to move too quickly for fear of all that cum in your belly sloshing around...\n\n");
 
-	// 9999 something about cumflation
+	// something about cumflation
+	pc.maxOutCumflation("mouth", enemy);
 
 	processTime(30+rand(15));
 	pc.orgasm();
@@ -670,6 +671,8 @@ public function wetraxxelBrawlerBadEnd():void
 	
 	output("\n\nSeeing you nod, the huge wetraxxel grunts and grabs your [pc.gear], stripping you down of all your equipment before he hooks his arms under yours and hefts you up off the ground. You yelp, expectations of sex flipped on their heads as you’re throwing over the brawler’s shoulder like a sack of grain. <i>“No more of your foolishness, then. I tire of having to beat you to give you what you want.”</i>");
 	
+	pc.removeAll();
+	
 	output("\n\nYou can’t deny that skipping that particular flavor of foreplay wouldn’t be the worst thing in the world... but something in the wetraxxel’s voice carries a hint of menace in it. You can’t summon up the will to struggle, though: not with your lusts running rampant through you, and his strong, plated hand resting suggestively against your [pc.butt].");
 	
 	output("\n\nThe wetraxxel starts to walk, carrying you through the darkened caves with a sure and steady gait. It takes only a few minutes for you to arrive at a large door set into the western-most part of the cavern wall, which he opens with a key previously secreted on his body. The door slides open, revealing a large and wide-open chamber ahead. The room looks to have been carefully excavated, creating a circular basin some five feet below the door connected by a simple set of stairs.");
@@ -695,6 +698,10 @@ public function wetraxxelBrawlerBadEnd():void
 		output("\n\n<i>“My wives are my own,”</i> he states, matter-of-factly. You have not earned the right to breed with them. Is this understood?”</i>");
 	
 		output("\n\nYou nod. You suppose you didn’t need to use your cock after all - your [pc.vagOrAss] will more than suffice to pleasure your insectile lover.");
+		
+		pc.lowerUndergarment = new PlainBriefs();
+		pc.lowerUndergarment.longName = "iron chastity cage";
+		pc.lowerUndergarment.description = "a iron chastity cage";
 	}
 	else if (pc.cocks.length > 1)
 	{
@@ -709,6 +716,10 @@ public function wetraxxelBrawlerBadEnd():void
 		output("\n\n<i>“My wives are my own,”</i> he states, matter-of-factly. You have not earned the right to breed with them. Is this understood?”</i>");
 		
 		output("\n\nYou nod. You suppose you didn’t need to use your cock after all - your [pc.vagOrAss] will more than suffice to pleasure your insectile lover.");
+		
+		pc.lowerUndergarment = new PlainBriefs();
+		pc.lowerUndergarment.longName = "iron chastity cage";
+		pc.lowerUndergarment.description = "a iron chastity cage";
 	}
 	
 	if (pc.hasVagina())
@@ -720,9 +731,17 @@ public function wetraxxelBrawlerBadEnd():void
 	
 	output("\n\nSlowly, confidently, the wetraxxel sheds his simple loincloth. His huge, heavy cock is already half-hard, and the sight of it sends the women surrounding you into a lustful frenzy. Several of them crawl up towards their husband, fawning over his lengthy shaft with hands and mouth. Every one of them seems eager for a taste, and their caresses quickly bring the bug-man to full hardness.");
 	
-	output("\n\nHis eyes aren’t on his wives, though: they’re on you, utterly and completely. Your skin flushes darkly, and you find your [pc.legs] instinctively spreading out invitingly for your master. You relax as much as you can given what’s happening to you, completely surrendering to the wetraxxel as he mounts you, planting his knees around your [pc.hips] and aligning his two-pronged crown with your [pc.vagOrAss]. Right where it belongs.");
+	output("\n\nHis eyes aren’t on his wives, though: they’re on you, utterly and completely. Your skin flushes darkly, and you find your");
+	if (pc.hasLegs()) output(" [pc.legs] instinctively spreading out");
+	else output("self instinctively bending over");
+	output(" invitingly for your master. You relax as much as you can given what’s happening to you, completely surrendering to the wetraxxel as he mounts you, planting his knees around your [pc.hips] and aligning his two-pronged crown with your [pc.vagOrAss]. Right where it belongs.");
+	
+	if(pc.hasVagina()) pc.cuntChange(0, chars["WETRAXXEL BRAWLER"].cockVolume(0), false);
+	else pc.buttChange(chars["WETRAXXEL BRAWLER"].cockVolume(0), false);
 	
 	output("\n\nNow, and for the rest of your life.");
-
+	
+	processTime(25 + rand(16));
+	
 	badEnd();
 }

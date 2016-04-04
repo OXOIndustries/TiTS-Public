@@ -512,7 +512,7 @@ public function tryEncounterMango():Boolean
 {
 	var getChance:int = 100;
 	
-	if (rand(getChance) <= 2)
+	if (flags["JUNGLE_STEP"] != 0 && rand(getChance) <= 2)
 	{
 		encounterMango();
 		return true;

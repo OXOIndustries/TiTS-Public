@@ -175,6 +175,7 @@
 		include "../includes/mhenga/scrapyard.as";
 		include "../includes/mhenga/syri.as";
 		include "../includes/mhenga/tanis.as";
+		include "../includes/mhenga/tharePlantation.as";
 		include "../includes/mhenga/vanae.as";
 		include "../includes/mhenga/venusPitchers.as";
 		include "../includes/mhenga/vko.as";
