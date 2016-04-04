@@ -5051,6 +5051,7 @@ public function aboutBess3():void
 	output("\n\n<i>“Other than that there are no other methods that come to mind. It’s a good thing that I am not suffering from data loss!”</i>");
 
 	processTime(10+rand(10));
+	CodexManager.unlockEntry("Panara");
 
 	clearMenu();
 	addButton(0, "Next", talkToBessAboutThings);

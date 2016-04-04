@@ -10626,6 +10626,28 @@
 			}
 			return "ERROR: vagina<b>s</b>Descript called with no vaginas.";
 		}
+		// hole tightness checks
+		public function isHoleTight(indexNum:Number = -1):Boolean
+		{
+			if(indexNum >= 0)
+			{
+				if(indexNum >= vaginas.length) return false;
+				if(vaginas[indexNum].looseness() < 2) return true;
+			}
+			else if(ass.looseness() < 2) return true;
+			
+			return false;
+		}
+		public function isVagTight(vagNum:Number = 0):Boolean
+		{
+			if(vagNum >= vaginas.length) return false;
+			return isHoleTight(vagNum);
+		}
+		public function isAssTight():Boolean
+		{
+			return isHoleTight(-1);
+		}
+		// Genital matching
 		public function vaginasMatch():Boolean 
 		{
 			return matchedVaginas();
