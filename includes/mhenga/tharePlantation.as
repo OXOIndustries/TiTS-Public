@@ -361,7 +361,7 @@ public function getAblePregContainer():PregnancyPlaceholder
 	if(!ppAble.hasCock()) ppAble.createCock();
 	ppAble.shiftCock(0, GLOBAL.TYPE_BEE);
 	ppAble.cocks[0].cLengthRaw = 5;
-	ppAble.cocks[0].cThicknessRatioRaw = 1.75;
+	ppAble.cocks[0].cThicknessRatioRaw = 2;
 	ppAble.cocks[0].flaccidMultiplier = 0.20;
 	ppAble.elasticity = 1.25;
 	ppAble.balls = 2;
@@ -732,7 +732,7 @@ public function thareSexResponse(response:String = "none"):void
 			randCunt = [];
 			for(i = 0; i < pc.vaginas.length; i++)
 			{
-				if((pc.vaginalCapacity(i) * 0.75) >= ppAble.cockVolume(0)) randCunt.push(i);
+				if(pc.vaginalCapacity(i) >= ppAble.cockVolume(0)) randCunt.push(i);
 			}
 			if(randCunt.length > 0) x = randCunt[rand(randCunt.length)];
 			if(x == -1) x = pc.biggestVaginaIndex();
@@ -816,7 +816,7 @@ public function thareSexResponse(response:String = "none"):void
 			output("\n\nYou are feeling lush and sensuous from the oral you just received, and the sight of the tight-bodied zil - combining with the sudden rush of heady lust that ensues when he peels back his groin armor and reveals the source of his pheromone fug - make your next series of actions completely irresistible.");
 			output("\n\nWithin thirty seconds you have him pinned down by the elbows, biting your [pc.lips] as you rut him senseless, [pc.butt] planted firmly on his pelvis, bed creaking briskly beneath you.");
 			
-			cuntStretched = (pc.vaginalCapacity(x) <= ppAble.cockVolume(0));
+			if(((pc.vaginalCapacity(x) * 0.5) < ppAble.cockVolume(0)) || pc.isVagTight(x)) cuntStretched = true;
 			pc.cuntChange(x, ppAble.cockVolume(0));
 			
 			output(" You ride your [pc.vagina " + x + "] up his smooth, chubby erection again and again, jerking him into your slick walls energetically, spurred on by the overwhelming smell of deep, oozing honey. Able gasps and arches his back to this treatment, cute nipples on his flat under-chest crying out for the occasional pinch, his squirming sending delicious quakes through your wet sex.");
@@ -851,7 +851,7 @@ public function thareSexResponse(response:String = "none"):void
 			randCunt = [];
 			for(i = 0; i < pc.vaginas.length; i++)
 			{
-				if((pc.vaginalCapacity(i) * 0.75) >= ppAble.cockVolume(0)) randCunt.push(i);
+				if(pc.vaginalCapacity(i) >= ppAble.cockVolume(0)) randCunt.push(i);
 			}
 			if(randCunt.length > 0) x = randCunt[rand(randCunt.length)];
 			if(x == -1) x = pc.biggestVaginaIndex();
@@ -953,7 +953,7 @@ public function thareSexResponse(response:String = "none"):void
 			output(".");
 			output("\n\nThat does the trick. Forgetting his nervousness, the slim zil-boy grips your [pc.butt] with the austere armor of his hands and thrusts his fervid cock past the lips and into the sweltering insides of your pussy with one single, enthusiastic movement.");
 			
-			cuntStretched = (pc.vaginalCapacity(x) <= ppAble.cockVolume(0));
+			if(((pc.vaginalCapacity(x) * 0.5) < ppAble.cockVolume(0)) || pc.isVagTight(x)) cuntStretched = true;
 			pc.cuntChange(x, ppAble.cockVolume(0));
 			
 			output(" The fug of zil pheromones sweetly swamping your senses, as well as the dart of his hands and tongue over the most sensitive points of your body has made [pc.eachVagina] incredibly needy, enflamed by the urgent sex it was so recently left out of and desperate to be filled. You clench up with profound satisfaction around Able’s smooth, chubby erection and grab his cute, round butt, urging him on.");
