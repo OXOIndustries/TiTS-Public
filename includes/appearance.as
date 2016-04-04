@@ -289,6 +289,20 @@ public function appearance(forTarget:Creature):void
 			}
 			output2(" ‘plus’-shaped pupils assess your surroundings with little issue.");
 		}
+		else if (target.eyeType == GLOBAL.TYPE_SYNTHETIC)
+		{
+			if (target.eyeColor == "black") output2(" Your eyes are pitch black with digitally-projected glowing white squares that form each iris,");
+			else
+			{
+				output2(" Your eyes are mapped like a printed circuit board and ");
+				if (hasMetallicEyes) output2(" glisten with rings of metallic " + target.eyeColor);
+				else if (hasGemstoneEyes) output2(" light up with rings of shimmering " + target.eyeColor);
+				else if (hasLuminousEyes) output2(" pulse to life with rings of " + target.eyeColor);
+				else output2(" are decorated with rings of " + StringUtil.capitalize(target.eyeColor));
+				output2(" around each iris,");
+			}
+			output2(" giving them a very synthetic appearance.");
+		}
 		else
 		{
 			if (hasMetallicEyes) output2(" Metallically glistening " + target.eyeColor + " eyes allow you to take in your surroundings without trouble.");
@@ -1589,6 +1603,13 @@ public function boobStuff(forTarget:Creature = null):void
 			else if(target.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_FLAT) {
 				output2(" There isn’t any actual nub to your nipples - just flat, " + target.areolaSizeDescript() + ", " + target.nippleColor + " areolae.");
 			}
+			else if(target.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_INVERTED) {
+				output2(" The " + target.areolaSizeDescript() + " areolae are " + target.nippleColor + ".");
+				output2(" When you’re aroused enough, your " + int(target.nippleLength(0)*10)/10 + "-inch nipples pop out, ready for action.");
+			}
+			else if(target.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_TENTACLED) {
+				output2(" Once you are worked up, several long, prehensile tentacles emerge from their " + target.nippleColor + " home, seeking for an orifice to pleasure.");
+			}
 		}
 		//Lactation and breast cup final!
 		if (target.isLactating())
@@ -1721,6 +1742,12 @@ public function boobStuff(forTarget:Creature = null):void
 				}
 				else if(target.breastRows[temp].nippleType == GLOBAL.NIPPLE_TYPE_FLAT) {
 					output2(" There isn’t any actual nub to the nipples - just flat areolae.");
+				}
+				else if(target.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_INVERTED) {
+					output2(" When you’re aroused enough, the nubs pop out, ready to play.");
+				}
+				else if(target.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_TENTACLED) {
+					output2(" They hide several long, prehensile tentacles, eager for an orifice to pleasure.");
 				}
 			}
 			if(target.breastRows[temp].breastRating() >= 1) output2(" They could easily fill " + indefiniteArticle(target.breastCup(temp)) + " bra.");

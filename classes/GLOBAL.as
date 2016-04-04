@@ -577,6 +577,7 @@
 			"Goo",
 			"Chitin",
 			"Feathers",
+			"Latex",
 		];
 				
 		//NIPPLETYPES
@@ -668,6 +669,7 @@
 			"Nyrea Girl Cum",
 			"Blueberry Yogurt",
 			"Hradian Cum",
+			"Goo Cum",
 		];
 		
 		public static const FLUID_TYPE_SHORT:Array = [
@@ -695,6 +697,7 @@
 			"N.GCum",
 			"B.Ygrt",
 			"H.Cum",
+			"GooCum",
 		];
 		
 		public static const VALID_CUM_TYPES:Array = [
@@ -940,6 +943,9 @@
 		public static const ITEM_FLAG_EXPOSE_FULL:int					= 6; // Used specifically for attire that exposes nipples/breasts and genitals/asshole to the elements.
 		public static const ITEM_FLAG_LUST_WEAPON:int					= 7; // Used specifically for lust-exclusive weapons (that don't do physical damage).
 		public static const ITEM_FLAG_POWER_ARMOR:int					= 8; // An item designed to be used with power armor.
+		public static const ITEM_FLAG_EXPOSE_CHEST:int					= 9; // Used specifically for clothing/armor that exposes nipples/breasts to the elements.
+		public static const ITEM_FLAG_EXPOSE_GROIN:int					= 10; // Used specifically for clothing/armor that exposes genitals to the elements.
+		public static const ITEM_FLAG_EXPOSE_ASS:int					= 11; // Used specifically for clothing/armor that exposes asshole to the elements.
 		
 		public static const ITEM_FLAG_NAMES:Array = [
 			"Bow Weapon",
@@ -950,7 +956,10 @@
 			"Swimwear",
 			"Fully Exposed",
 			"Lust Weapon",
-			"Power Armor"
+			"Power Armor",
+			"Chest Exposed",
+			"Groin Exposed",
+			"Ass Exposed",
 		];
 		
 		/**

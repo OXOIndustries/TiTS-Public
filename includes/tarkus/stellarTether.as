@@ -484,15 +484,40 @@ public function tamtamBadEndPetPooch():void
 
 public function badEndToTamWulfAndTamAndMaybeAlsoTamPartII():void
 {
+	currentLocation = "GAME OVER";
+	generateMap();
+	showLocationName();
+	
 	days += 94;
 	processTime(rand(2400));
+	var i:int = 0;
+	
 	clearOutput();
 	author("Savin");
 	showBust("TAMTAM","TAMWOLF");
 	showName("\nTAM-WOLF");
+	
 	output("<b>Months pass</b>");
+	
+	pc.removeAll();
+	pc.armor = new LeatherStrapHarness();
+	pc.armor.longName = "leather suit";
+	pc.armor.description = "a leather suit";
+	pc.armor.itemFlags.push(GLOBAL.ITEM_FLAG_EXPOSE_ASS);
+	pc.armor.itemFlags.push(GLOBAL.ITEM_FLAG_EXPOSE_GROIN);
+
+	pc.buttChange(500, false);
+	
 	output("\n\nYou can barely feel your extremities. The leather outfit is restraining, tight against your nude body, holding you onto ");
-	if(!pc.hasKnees()) output("your newly grown ");
+	if(!pc.hasKnees())
+	{
+		output("your newly grown ");
+		pc.legCount = 2;
+		pc.legType = GLOBAL.TYPE_HUMAN;
+		pc.clearLegFlags();
+		pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
+		pc.genitalSpot = 0;
+	}
 	output("knees and elbows. Mistress likes you nice and low, just like a real dog. You're slowly becoming more comfortable in your new gait, able to hobble around after her despite the lack of access to your bound forelimbs. Today you find yourself scurrying along the corridor at Mistress's heels, quickly followed by Tam-wolf. A few of the pirate crew actually greet you as you wander past them, reaching down to play with your big puppy ears or grab your [pc.butt] through the thight leather of your bindings. Your drilled-in instincts kick in at their touches, causing your to wiggle your [pc.hips] ");
 	if(pc.tailCount > 0) output("and [pc.tails].");
 	else output(", which makes the fluffy tail plugged into your ass shake for them - and gives you an undeniable thrill of pleasure as the buttplug shifts inside you, unable to escape through the small hole in your suit no matter how much you used to try. Now, you can't imagine living without your constant, fluffy companion.");
@@ -503,6 +528,8 @@ public function badEndToTamWulfAndTamAndMaybeAlsoTamPartII():void
 	output(" excitedly as your Mistress leans down to you, her massive, oh-so-soft mounds tantalizingly close to your [pc.face]. She giggles as you drool a little bit -- whether from the pair of boobs in your face or the smell of your still-warm meal about to be given to you, you couldn't say.");
 
 	output("\n\n<i>\"So hungry! Well, your friends certainly chipped in a lot for you today, didn't they! It's practically full to the rim!\"</i> Mistress says, finally setting the bowl on the deck for you. You bark happily, lunging towards your thick, creamy white meal. You're so lucky the crew likes you so much -- they work so hard to make your breakfast each day, and Mistress is nice enough to collect it all for you. You all but put your face right into the plastic dish, your tongue lapping out into the bowl full of salty and delicious white cream. You dig in, tongue scooping up wad after wad of the crew's thick offering.");
+	
+	pc.maxOutEnergy();
 
 	output("\n\nAs you finally get to sate your hunger, you see from the corner of your eye Mistress taking a familiar remote from her pocket and flicking a nob on it. You wince as the ");
 	if(pc.tailCount > 0) output("vibrator-plug");
@@ -536,8 +563,17 @@ public function badEndToTamWulfAndTamAndMaybeAlsoTamPartII():void
 	output("\n\nYou suddenly wince as... something happens. You can't tell what, but something's... <i>changing</i> inside you. Your chest tightens, straining against your leathers... oh, it hurts!");
 	output("\n\n<i>\"Let me help!\"</i> Mistress grins, grabbing the suit around your chest and releasing it, letting... a ");
 	if(pc.biggestTitSize() >= 1) output("<i>much</i> larger ");
-	output("pair of huge, swinging mammaries drop out onto the deck! You gasp, suddenly realizing the old trick Mistress has used on you, even as your huge tits expand, growing monstrously huge until you're practically lying atop them, your stunted, bound arms unable to touch the ground. As your chest grows, the rest of you does as well, your hips and ass straining against the tight leather of your puppy-suit, threatening to break from your constraints.");
-
+	if(pc.breastRows[pc.biggestTitRow()].breasts == 2) output("pair");
+	else output("set");
+	output(" of huge, swinging mammaries drop out onto the deck! You gasp, suddenly realizing the old trick Mistress has used on you, even as your huge tits expand, growing monstrously huge until you're practically lying atop them, your stunted, bound arms unable to touch the ground. As your chest grows, the rest of you does as well, your hips and ass straining against the tight leather of your puppy-suit, threatening to break from your constraints.");
+	
+	for(i = 0; i < pc.breastRows.length; i++)
+	{
+		if(pc.breastRows[0].breastRatingRaw < ((120/60) * pc.tallness)) pc.breastRows[0].breastRatingRaw = ((120/60) * pc.tallness);
+	}
+	if(pc.hipRatingRaw < 20) pc.hipRatingRaw = 20;
+	if(pc.buttRatingRaw < 20) pc.buttRatingRaw = 20;
+	
 	output("\n\nBetween the strange, stretching feeling in your suddenly much more curvy body and the vibrator still humming away in your ass, you only just stop short of cumming as waves of mutating bliss flow through your changing body. Mistress gently strokes your [pc.hair], cooing what a good puppy you are as you slump out of her lap, usable to sit upright thanks to your heavier bosom.");
 	if (!pc.hasVagina())
 	{
@@ -545,6 +581,7 @@ public function badEndToTamWulfAndTamAndMaybeAlsoTamPartII():void
 		if(pc.legCount > 1) output(" between");
 		else output(" against");
 		output(" your [pc.legOrLegs] -- and that wince turns into a howl of ecstasy as one of her dainty fingers slips inside what you suddenly realize is a new hole. A cunt. But just as soon as she does so, she withdraws, clearly satisfied with your new slit.");
+		pc.createVagina();
 	}
 	else output(" With your new additions straining against your suit, Mistress slips a hand back around your prone body, yanking down the leather around your [pc.ass] to let your womanhood kiss the stale air of the cabin for the first time in what seems like forever.");
 
@@ -573,6 +610,23 @@ public function badEndToTamWulfAndTamAndMaybeAlsoTamPartII():void
 	output("\n\n<i>\"Bitch breaker protocols successful,\"</i> Tam-wolf growls, scrambling forward overtop you, pushing his knot deeper.");
 	output("\n\n<i>\"Go, go, Tam-wolf!\"</i> Mistress cheers, reaching up to pat her robotic pooch on the head.");
 	output("\n\n<i>\"Mistress, I am cumming,\"</i> Tam-wolf announces, his latex member shifting inside you, the knot thickening as a load of synthetic spooge rushes toward you defiled sex. As a flood of hot, sticky, canid seed floods your womb, you're suddenly very, very aware of your new lot in life: even worse than being a dog, you're now reduced to nothing more than the robotic Tam-wolf's breeding bitch, a living onahole for Mistress's alpha hound.");
+	
+	var selCunt:int = pc.vaginas[rand(pc.vaginas.length)];
+	var ppTamWolf:PregnancyPlaceholder = new PregnancyPlaceholder();
+	if(!ppTamWolf.hasCock()) ppTamWolf.createCock();
+	ppTamWolf.shiftCock(0, GLOBAL.TYPE_CANINE);
+	ppTamWolf.cocks[0].cLengthRaw = 5;
+	ppTamWolf.cocks[0].cThicknessRatioRaw = 1.75;
+	ppTamWolf.cocks[0].flaccidMultiplier = 0.20;
+	ppTamWolf.cocks[0].knotMultiplier = 2.5;
+	ppTamWolf.cumType = GLOBAL.FLUID_TYPE_CUM;
+	
+	pc.cuntChange(selCunt, (ppTamWolf.cockVolume(0) * ppTamWolf.cocks[0].knotMultiplier), false);
+	for(i = 0; i < 32; i++)
+	{
+		pc.loadInCunt(ppTamWolf, selCunt);
+		pc.orgasm();
+	}
 	
 	badEnd("GAME OVER!");
 }
@@ -1203,6 +1257,8 @@ public function thraggenAreABunchOfGreenLesboSlutsGardefordToldMeSo():void
 //{If PC loses in the Mecha Fight}
 public function loseToCaptainKhorganBadEnd():void
 {
+	var cockGrow:Boolean = false;
+	
 	clearOutput();
 	author("Savin");
 	showBust("CAPTAIN_KHORGAN_NUDE");
@@ -1241,16 +1297,22 @@ public function loseToCaptainKhorganBadEnd():void
 		}
 		output(".");
 		output("\n\nYou can't help but scream in pleasure as your groin erupts, the skin of your crotch reforming and bulging, growing out from your loins into a thick, long, humanoid prick. Your body convulses, shuddering in pleasure as as your new, throbbing cock forms. ");
+		
+		pc.createCock();
+		processTime(5 + rand(6));
+		cockGrow = true;
 	}
 	else output("\n\n");
 	output("The captain coos");
 	if(!pc.isNude()) output(" as she tears into your equipment, ripping it off");
 	output(" before planting her foot straight on the base of your cock. You groan under the sudden pressure on your member, shifting under the semi-pleasurable weight of her foot on your rod, rubbing you ever-so-slightly as she decides what to do with you.");
-
+	
+	pc.removeAll();
+	
 	output("\n\n<i>\"Not bad,\"</i> Khorgan says with a slight smile, sizing up your prick. She leans back against the deactivated mech, grabbing it for support and kicking off her boot, revealing one of her bare, green feet. She returns them to your crotch, planting her heel under your cock's base and gripping the shaft between her toes, tugging your sensitive flesh upwards. You grimace, shuddering as a strange pleasure washes over you. Khorgan grins, cupping one of her own large, dark tits, squeezing it between her powerful fingers as her foot moves up and down your shaft, jacking you off - just to see you squirm, you think. You try and put on a brave face, resisting her advances, but soon find yourself grunting and moaning, your [pc.hips] moving on their own, bucking into the underside of your captain's foot.");
 	output("\n\nShe grins at your unwilling submission, grinding down hard on your rod until a thick bead of [pc.cum] drools from its tip, smearing across your belly. You fidget, trying to hold back and failing horribly, unable to contain your sounds of pleasure at the surprise footjob. She's relentless, her toes jacking you off with sure, ceaseless motions, only growing stronger as your will weakens. Her toes wrap around you, the firm green skin startlingly smooth on your cock, yet strong enough to nearly make you cum in moments.");
 	output("\n\nYour resistance to her advances crumble to nothing before you can fully understand what's even happening to you; with a grunt, you find yourself cumming");
-	if(!pc.hasCock()) output(", the sensation utterly alien and strange as your new-grown cock cums for the very first time");
+	if(cockGrow) output(", the sensation utterly alien and strange as your new-grown cock cums for the very first time");
 	output(". Your hips buck instinctively as a high moan is torn from your lips by the orgasmic pleasure coursing through your body, and [pc.cumColor] spunk surges up your shaft, working up by the incessant movements of her foot. Your back arches, body nearly going numb as you blow your load, cum blasting from your crown onto your belly, [pc.chest], and the sole of Khorgan's foot.");
 
 	output("\n\nThe captain sucks in a hiss of breath as your hot seed splatters across the bottom of her foot, her lips twisting into a feral grin as you cream yourself. <i>\"Tsk, already? I suppose it can't be helped. And the smell... delicious. Strong.\"</i>");
@@ -1262,14 +1324,14 @@ public function loseToCaptainKhorganBadEnd():void
 	output("\n\nYou recoil as the captain plants her foot back on the deck, now spotless, and hauls you up by the nape of your neck");
 	if(pc.tallness < enemy.tallness) output(", leaving your [pc.feet] dangling beneath you");
 	output(". You stare into her fiery red eyes, and realize that this is your place now, your life. Nothing but the captain's personal stud.");
-	pc.orgasm();
-	pc.orgasm();
-	pc.orgasm();
-	pc.orgasm();
-	pc.orgasm();
-	pc.orgasm();
-	pc.orgasm();
-	pc.orgasm();
+	
+	processTime(10 + rand(11));
+	
+	pc.loadInMouth(pc);
+	for(var i:int = 0; i < 8; i++)
+	{
+		pc.orgasm();
+	}
 	
 	badEnd();
 }
@@ -1786,6 +1848,10 @@ public function kaskaBadEndPartDues():void
 //Next page -> "Some time later..." Describe PC's living conditions and state, focusing on lusting after the next time Mistress will use him/her. End with Kaska coming home with a bimbo cow-girl and the two of you sucking her off together.
 public function kaskaBadEndPartIII():void
 {
+	currentLocation = "GAME OVER";
+	generateMap();
+	showLocationName();
+	
 	clearOutput();
 	author("Fenoxo");
 	showBust("KASKA");
@@ -1798,6 +1864,21 @@ public function kaskaBadEndPartIII():void
 	output("\n\nIt was really hard the first time Kaska went out on jobs. You were home alone, and after a few hours, the need for her became almost overwhelming. It was agony and ecstasy. You'd sit there for hours masturbating to the nastiest dickgirl porn you could find on the extranet, barely doing anything else, just imagining the taste and texture of Kaska on your tongue or in your ass - anywhere, really.");
 	output("\n\nWhen Kaska got home days later, you were an absolute mess. She had to scrub you down in the shower because you hadn't showered the entire time. Of course, her dick was in your mouth the whole time.");
 	output("\n\nAfter that, she'd remember to leave some of her spunk for you in the refrigerator, and you would keep the place spotless in her absence, greeting her on your [pc.knees] and ready for a dose of the fresh stuff. Your sense of initiative dwindled to nothing, but love and submissiveness grew to replace it. You had forgotten your father's fortune by the end of the first week in Kaska's apartment; living with her was the real treasure.");
+	
+	days += 7 + rand(2);
+	processTime((rand(24) * 60) + rand(60));
+	
+	pc.removeAll();
+	pc.shower();
+	
+	for(var i:int = 0; i < 28; i++)
+	{
+		pc.loadInMouth(chars["KASKA"]);
+		if(rand(2) == 0) pc.loadInMouth(chars["KASKA"]);
+		if(rand(4) == 0) pc.loadInMouth(chars["KASKA"]);
+		if(rand(6) == 0) pc.loadInAss(chars["KASKA"]);
+		if(rand(4) == 0) pc.orgasm();
+	}
 	
 	badEnd();
 }

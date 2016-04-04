@@ -1396,6 +1396,9 @@
 				case "weaponStat":
 					buffer = getWeaponName(true);
 					break;
+				case "heldWeapon":
+					buffer = heldWeaponName();
+					break;
 				case "draw":
 					buffer = weaponActionReady(false, "stat", false);
 					break;
@@ -2308,6 +2311,13 @@
 			return "fist";
 		}
 		
+		public function heldWeaponName(fromStat:Boolean = false):String
+		{
+			if(!(rangedWeapon is EmptySlot) && !(rangedWeapon is Rock) && ((meleeWeapon is EmptySlot) || (meleeWeapon is Rock))) return rangedWeapon.longName;
+			if(!(meleeWeapon is EmptySlot) && !(meleeWeapon is Rock) && ((rangedWeapon is EmptySlot) || (rangedWeapon is Rock))) return meleeWeapon.longName;
+			return getWeaponName(true);
+		}
+		
 		public function weaponActionReady(present:Boolean = false, weapon:String = "", full:Boolean = true):String
 		{
 			var desc:String = "";
@@ -2652,13 +2662,13 @@
 		//Used to see if wing-wang-doodles and hatchet-wounds are accessible. Should probably replace most isCrotchGarbed() calls.
 		public function isCrotchExposed(): Boolean {
 			if(!isCrotchGarbed()) return true;
-			return ((armor is EmptySlot || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)) && (lowerUndergarment is EmptySlot || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)));
+			return ((armor is EmptySlot || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN)) && (lowerUndergarment is EmptySlot || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)));
 		}
 		//Badonkadonk check
 		public function isAssExposed():Boolean
 		{
 			if(!isCrotchGarbed()) return true;
-			return ((armor is EmptySlot || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)) && (lowerUndergarment is EmptySlot || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)));
+			return ((armor is EmptySlot || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS)) && (lowerUndergarment is EmptySlot || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)));
 		}
 		public function isGroinCovered(): Boolean {
 			return isCrotchGarbed();
@@ -2672,7 +2682,7 @@
 		public function isChestExposed(): Boolean
 		{
 			if(!isChestCovered()) return true;
-			return ((armor is EmptySlot || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)) && (upperUndergarment is EmptySlot || upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)));
+			return ((armor is EmptySlot || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST)) && (upperUndergarment is EmptySlot || upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)));
 		}
 		public function isChestGarbed(): Boolean {
 			return isChestCovered();
@@ -2721,6 +2731,25 @@
 			}
 			// Nope, no valid swim clothes (or is probably nude!).
 			return false;
+		}
+		
+		public function removeClothes(item:String = "all"):void
+		{
+			if(item == "all" || item == "underwear" || item == "upperUndergarment") upperUndergarment = new EmptySlot();
+			if(item == "all" || item == "underwear" || item == "lowerUndergarment") lowerUndergarment = new EmptySlot();
+			if(item == "all" || item == "clothing" || item == "armor") armor = new EmptySlot();
+		}
+		public function removeEquipment(item:String = "all"):void
+		{
+			if(item == "all" || item == "weapons" || item == "meleeWeapon") meleeWeapon = new EmptySlot();
+			if(item == "all" || item == "weapons" || item == "rangedWeapon") rangedWeapon = new EmptySlot();
+			if(item == "all" || item == "accessory") accessory = new EmptySlot();
+			if(item == "all" || item == "shield") shield = new EmptySlot();
+		}
+		public function removeAll():void
+		{
+			removeClothes();
+			removeEquipment();
 		}
 		
 		//STATS!
@@ -2875,9 +2904,43 @@
 		{
 			return (fluidSimulate || this is PlayerCharacter);
 		}
-		public function maxOutCumflation(target:String, source:Creature):void
+		public function maxOutCumflation(orifice:String, cumFrom:Creature):void
 		{
+			var minMaxFluid:Number = 50000; // mLs
 			
+			minMaxFluid -= cumFrom.cumQ()
+			if(minMaxFluid < 0) minMaxFluid = 0;
+			
+			if(InCollection(orifice, ["all", "vaginas", "vagina 0"]) && hasVagina(0))
+			{
+				cumflationHappens(cumFrom, 0);
+				addStatusValue("Vaginally-Filled", 1, minMaxFluid);
+				if(statusEffectv1("Vaginally-Filled") > statusEffectv2("Vaginally-Filled")) setStatusValue("Vaginally-Filled", 2, statusEffectv1("Vaginally-Filled"));
+			}
+			if(InCollection(orifice, ["all", "vaginas", "vagina 1"]) && hasVagina(1))
+			{
+				cumflationHappens(cumFrom, 1);
+				addStatusValue("Vaginally-Filled", 1, minMaxFluid);
+				if(statusEffectv1("Vaginally-Filled") > statusEffectv2("Vaginally-Filled")) setStatusValue("Vaginally-Filled", 2, statusEffectv1("Vaginally-Filled"));
+			}
+			if(InCollection(orifice, ["all", "vaginas", "vagina 2"]) && hasVagina(2))
+			{
+				cumflationHappens(cumFrom, 2);
+				addStatusValue("Vaginally-Filled", 1, minMaxFluid);
+				if(statusEffectv1("Vaginally-Filled") > statusEffectv2("Vaginally-Filled")) setStatusValue("Vaginally-Filled", 2, statusEffectv1("Vaginally-Filled"));
+			}
+			if(InCollection(orifice, ["all", "ass"]))
+			{
+				cumflationHappens(cumFrom, 3);
+				addStatusValue("Anally-Filled", 1, minMaxFluid);
+				if(statusEffectv1("Anally-Filled") > statusEffectv2("Anally-Filled")) setStatusValue("Anally-Filled", 2, statusEffectv1("Anally-Filled"));
+			}
+			if(InCollection(orifice, ["all", "mouth"]))
+			{
+				cumflationHappens(cumFrom, 4);
+				setStatusValue("Orally-Filled", 3, cumFrom.cumType);
+				if(statusEffectv1("Orally-Filled") > statusEffectv2("Orally-Filled")) setStatusValue("Orally-Filled", 2, statusEffectv1("Orally-Filled"));
+			}
 		}
 		
 		//XP!
@@ -3124,6 +3187,8 @@
 			var currInt:int = intelligenceRaw + intelligenceMod;
 			
 			if (hasStatusEffect("Focus Pill")) currInt += 5;
+			// Slave collar multiplier.
+			if(hasStatusEffect("Psy Slave Collar")) currInt = Math.floor(currInt * statusEffectv1("Psy Slave Collar"));
 
 			if (currInt > intelligenceMax())
 			{
@@ -3165,6 +3230,8 @@
 			if(hasPerk("Iron Will")) currWill += Math.floor(physique()/5);
 			//Roshan Blue gives 25% more xp and lowers willpower by 30% until next rest
 			if(hasStatusEffect("Roshan Blue")) currWill -= Math.floor(currWill*0.3);
+			// Slave collar multiplier.
+			if(hasStatusEffect("Psy Slave Collar")) currWill = Math.floor(currWill * statusEffectv2("Psy Slave Collar"));
 			
 			if (currWill > willpowerMax())
 			{
@@ -3277,6 +3344,8 @@
 		public function libidoMin(): Number {
 			var bonus:int = 0;
 			if(hasPerk("Drug Fucked")) bonus += 40;
+			// Slave collar increases minimum by set level.
+			if(hasStatusEffect("Psy Slave Collar")) bonus += statusEffectv3("Psy Slave Collar");
 			return (0 + bonus);
 		}
 		public function slowStatGain(stat:String, arg:Number = 0):Number {
@@ -8606,8 +8675,8 @@
 			if (tongueType == GLOBAL.TYPE_OVIR) score++;
 			if (legType == GLOBAL.TYPE_OVIR) score++;
 			if (armType == GLOBAL.TYPE_OVIR && legType == GLOBAL.TYPE_OVIR) score++;
-			if (hasCock(GLOBAL.TYPE_EQUINE) && (balls == 0 || hasStatusEffect("Uniball"))) score++;
-			if ((hasCock(GLOBAL.TYPE_EQUINE) || hasVagina()) && hasStatusEffect("Genital Slit")) score++;
+			if (score > 0 && hasCock(GLOBAL.TYPE_EQUINE) && (balls == 0 || hasStatusEffect("Uniball"))) score++;
+			if (score > 0 && (hasCock(GLOBAL.TYPE_EQUINE) || hasVagina()) && hasStatusEffect("Genital Slit")) score++;
 			if (score > 0 && (faceType == GLOBAL.TYPE_HUMAN && !hasFaceFlag(GLOBAL.FLAG_MUZZLED))) score++;
 			return score;
 		}
