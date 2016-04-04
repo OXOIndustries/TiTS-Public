@@ -1,3 +1,4 @@
+import classes.StorageClass;
 public function showSydianFemale():void
 {
 	showName("FIGHT:\nSYDIAN FEMALE");
@@ -353,7 +354,7 @@ public function sydianFemalePCVictory():void
 	//shared intro
 	if (enemy.HP() <= 0)
 	{
-		if (!enemy.hasStatusEffect("Unarmored") output("The sydian coughs and collapses, unable to fight further and unable to flee.");
+		if (!enemy.hasStatusEffect("Unarmored")) output("The sydian coughs and collapses, unable to fight further and unable to flee.");
 		else output("Despite the beating, the sydian still tries to cover her exposed skin with her arms and legs from her new position on the ground.");
 	}
 	else
@@ -1484,4 +1485,83 @@ public function femSydianFuck():void
 	pc.orgasm();
 	clearMenu();
 	addButton(0, "Next", CombatManager.genericVictory);
+}
+
+
+public function sydianPregnancyEnds():void
+{
+	clearOutput();
+
+	var se:StorageClass = pc.getStatusEffect("Sydian Pregnancy Ends");
+	
+	var numChildren:int = se.value1;
+	var bRatingContrib:int = se.value2;
+	var pregSlot:int = se.value3;
+	
+	output("Pain in your gut bends you over and fluid spills");
+	if (!pc.isNude()) output(" into your [pc.lowerUndergarment]");
+	else if (currentLocation == "SHIP INTERIOR") output(" onto the deck");
+	else output(" onto the ground");
+	output(". Oh god, the baby is coming...");
+
+	//on ship without automatic medbay
+	if (currentLocation == "SHIP INTERIOR")
+	{
+	output("\n\nYou grab the nearest medkit and head for your bed, determined to deliver the baby safely. After setting aside your gear, you lie down and begin to breathe in preparation for your labors.");
+	}
+	/*
+	//on ship with auto-medbay (commented until one is available)
+	else
+	{
+		output("You head for the automatic medbay, clutching your trembling stomach. Contractions intensify quickly -- by the time the system finishes its evaluation and moves into action, you're");
+		if (!pc.isNude()) output(" disrobed but");
+		output(" no longer able to speak between breaths.");
+	}
+	*/
+	//in public place
+	else if (InPublicSpace())
+	{
+		output("\n\nA passer-by comes over to check on you, and begins to panic when you explain the situation. You default to giving short, simple orders, and your new deputy calms down. Together, you make it to a place where you can get medical aid.");
+	}
+	else if (InRoomWithFlag(GLOBAL.JUNGLE))
+	{
+		output("\n\nGroaning at the timing, you shed your [pc.gear] and seat yourself among the inhospitable and non-hospital-able terrain. The wish that you'd stayed somewhere indoors and safe hums through your thoughts like a mosquito, but there's no help for it -- you'll have to deliver the baby on your own.");
+	}
+
+	output("\n\nSpasms wrack your pregnant body for the next hour as it works the baby free. During the frenzy you operate mostly on biological autopilot, but glimpse a few details of your new little miracle. The baby drops ");
+	if (rand(10) == 0) output(" head");
+	else output(" feet");
+	output("-first, noodling its way out");
+	if (pc.vaginas[pregSlot].looseness() >= 4) output(" easily");
+	else output(" in a protracted battle with your tight vagina");
+	output(", and the placenta follows.");
+
+	output("\n\nYour new bundle launches into a throaty cry when the air hits its skin. As the pain fades and the endorphin haze clears from your eyes, the noise brings you home to yourself; you gather the squirming baby into your arms and dab the gore away. It's a");
+	var babym:Boolean = false;
+	if (rand(2) == 0)
+	{
+		babym = true;
+		output(" boy");
+	}
+	else output(" girl");
+	output("! A fuzz of");
+	if (rand(10) == 0) output(" green");
+	else if (rand(10) == 0) output(" reddish-orange");
+	else output(" brown ");
+	output(" hair coats");
+	if (babym) output(" his");
+	output(" her");
+	output(" pate and chubby pink hands grasp for yours. Your new baby is a picture-perfect human child.");
+	//{ (comment out if methods to know father are added) 
+	output(" That raises an interesting question. Which human did you sleep with to make such a beautiful");
+	if (babym) output(" boy");
+	else output(" girl");
+	output("?");
+
+	output("\n\nA soft touch on your hand brings you out of your reverie -- your baby seems to know there's more work to do. Sighing, you clean up and cut the cord, then prepare to send " + (babym ? "him":"her") + " off. While the shuttle is in transit, you spend the time playing, letting your little one squeeze your fingers and giggle while you meditate on a name that suits " + (babym ? "him":"her") + ". You even hold up the shuttle, ignoring the drone's automated requests until you can't wait any longer. With a pang in your heart, you bundle your child into the climate-controlled device and watch it return to the shuttle.");
+	
+	SydianPregnancyHandler.sydianCleanupData();
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
