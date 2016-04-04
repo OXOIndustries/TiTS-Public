@@ -254,12 +254,16 @@
 		}
 		public function bubbleYumsBadEnd4(target:Creature):void
 		{
+			kGAMECLASS.currentLocation = "GAME OVER";
+			kGAMECLASS.generateMap();
+			kGAMECLASS.showLocationName();
+			
 			clearOutput();
 			author("Adjatha");
 			kGAMECLASS.showRival();
 			output("When somebody first found you, they mistook you for a lost sex doll. They took you home, cleaned you up, and spent a few weeks playing with every inch of your latex-bound body. Despite the often vigorous activities, you found it impossible to cum, always reaching the peak of climax but never experiencing any kind of release or relief. The delight and frustration built until your already weakened mind fell into a panting, shameless need.");
 			output("\n\nWhen your owner got tired of you, they sold you to a sex shop. The owner must follow the extranet news, because he seemed to recognize the fact that his new doll more or less matched the description of the missing corporate magnate. In a perverse sense of class equality, he bought a second hand suit that he forced your squeaking rubber body into and set you out back in an alley, with a chained collar to make sure nobody carried you off. He left a little sign right where you could see that read: <i>“Fuck a rich heir " + kGAMECLASS.pc.mf("","ess") + " for free!”</i>");
-			output("\n\nThe free sex doll quickly became a favorite spot for the poor- often several at once- using every hole on your latex body until spunk oozed off your glistening, black-varnished skin in thick, slimy cascades. With every new master, your mind slipped a bit further and your climax came just a little closer. Gradually, you grew so excited for more use that you managed to wiggle enough to make happy little squeaking noises. Unfortunately, the rumor that the back alley sex doll had come to life dissuaded your regulars from returning.");
+			output("\n\nThe free sex doll quickly became a favorite spot for the poor - often several at once - using every hole on your latex body until spunk oozed off your glistening, black-varnished skin in thick, slimy cascades. With every new master, your mind slipped a bit further and your climax came just a little closer. Gradually, you grew so excited for more use that you managed to wiggle enough to make happy little squeaking noises. Unfortunately, the rumor that the back alley sex doll had come to life dissuaded your regulars from returning.");
 			output("\n\nThe owner of the sex store tossed you into a closet with a variety of unmovable merchandise, but took small pity on you. He left a couple of vibrators inside you to keep you company. Time passed as you edged closer and closer to climax until, finally, the closet opened again and you found yourself looking at your cousin, [rival.name], directly in the eyes. [rival.HeShe] smiles wickedly, paying the owner of the sex shop ten times what he was asking, and ordering her");
 			if(kGAMECLASS.flags["BEAT_TAIVRA_TIMESTAMP"] == undefined) output(" huge, ausar");
 			output(" bodyguard to carry you back to [rival.hisHer] ship.");
@@ -269,6 +273,7 @@
 			kGAMECLASS.hours = rand(24);
 			kGAMECLASS.processTime(rand(60));
 			target.lust(9000);
+			target.willpower(-50);
 			
 			if(!kGAMECLASS.pc.hasGenitals()) kGAMECLASS.badEnd();
 			else

@@ -1161,7 +1161,7 @@ public function soloMilkerFunTimesRaep():void
 		output(" It’s a real shame the milker didn’t come with a dildo arm. It would feel amazing to have something pumping at your [pc.vaginas] at the same time. You’d probably cum right away.");
 	}
 	else if(pc.hasCock()) output(" It’s a real shame the milker didn’t come with a cock-pump. You’d love to see just how fast you could cum from this kind of stimulation, even though you’ll probably cum eventually anyway.");
-	output(" The padding is already soaked with your freely-drooling [pc.girlCum], every bit as slick and wet as you are.");
+	if(pc.hasVagina() && pc.isSquirter()) output(" The padding is already soaked with your freely-drooling [pc.girlCum], every bit as slick and wet as you are.");
 	output(" You wish your hands were free so that you could touch yourself and make yourself feel even better, but with your shoulders and upper arms pinned, you can’t do much but futilely stroke your [pc.hips].");
 
 	output("\n\nThen something grape-flavored splashes onto your [pc.tongue], demanding you either swallow or choke. It’s a pretty easy choice to make; you swallow. Drinking it down isn’t so bad, but the moment you do, the nozzle in your mouth squirts more in even faster, forcing you to guzzle down more. This stuff is stronger than the cloying, floral perfume you’ve gotten to breathe in these fast few minutes for sure. It makes your head dizzy and your [pc.skin] tingle, especially on your [pc.nipplesNoun], which, you are pleased to note, are beading [pc.milkNoun] once more.");
@@ -1172,20 +1172,58 @@ public function soloMilkerFunTimesRaep():void
 	output(".");
 	output("\n\nPulling out of your mouth, the orally-obsessed tentacle sprays more violet goo across your [pc.face], and departs, leaving you with the happy pink cloud and the sound of your continuously-productive tits to keep you company. The aftershocks of your orgasm fade into a slow-climbing pleasure, carrying you back to the peak whether you want it or not. Your obscenely bloated [pc.nipplesNoun] sing their lusty song, timed to the tempo of the milker’s rhythmic whirr, straining and squirting orgasmically. They sit at the forefront of your mind, blasting you with pleasure, and you cum again.");
 	output("\n\nAnd again.");
-	output("\n\nMilk splashes to the floor.");
+	output("\n\n[pc.MilkNoun] splashes to the floor.");
 	output("\n\nAnd the spaces between the ecstasy disappear, leaving you in the white-hot haze of one endless, milkgasm.");
+	
+	var i:int = 0
+	
+	var ppSoloMilker:PregnancyPlaceholder = new PregnancyPlaceholder();
+	if(!ppSoloMilker.hasCock()) ppSoloMilker.createCock();
+	ppSoloMilker.hairType = GLOBAL.HAIR_TYPE_GOO;
+	ppSoloMilker.hairColor = "violet";
+	ppSoloMilker.cumType = GLOBAL.FLUID_TYPE_SPECIAL_CUMGOO;
+	ppSoloMilker.breastRows[0].breasts = 1;
+	ppSoloMilker.breastRows[0].breastRatingRaw = 48;
+	ppSoloMilker.milkType = GLOBAL.FLUID_TYPE_SPECIAL_CUMGOO;
+	ppSoloMilker.milkMultiplier = 100;
+	ppSoloMilker.milkFullness = 100;
+	
+	for(i = 0; i < 16; i++)
+	{
+		pc.loadInMouth(ppSoloMilker);
+		if(rand(4) == 0) pc.milkInMouth(ppSoloMilker);
+	}
+	
 	var lacBoosted:Boolean = false;
 	if(pc.milkMultiplier < 100) 
 	{
 		pc.milkMultiplier = 100;
 		lacBoosted = true;
 	}
+	
+	for(i = 0; i< pc.breastRows.length; i++)
+	{
+		pc.breastRows[i].breastRatingRaw++;
+		if(pc.bRating(i) < 1)
+		{
+			while(pc.bRating(i) < 1)
+			{
+				pc.breastRows[i].breastRatingRaw++;
+			}
+		}
+	}
+	pc.nippleLengthRatio += 0.50;
+	if(pc.nippleLengthRatio < 3) pc.nippleLengthRatio += 0.50;
+	if(pc.nippleLengthRatio < 3) pc.nippleLengthRatio += 0.50;
+	pc.nippleWidthRatio += 0.25;
+	
 	pc.milked(100);
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
 	processTime(100);
 	pc.orgasm();
+	
 	clearMenu();
 	addButton(0,"Next",millieSoloMilkerMishapEpilogue,lacBoosted);
 }
@@ -1201,6 +1239,9 @@ public function millieSoloMilkerMishapEpilogue(lacBoosted:Boolean):void
 	output("\n\nYou look down in shock. <b>Your [pc.chest] are bigger, but not so noticeably as your [pc.nipples].</b> All the sucking did a number on you, but <b>you feel like you could go for another milking right now.</b> <i>“Wh-what did that do to me?”</i> you ask");
 	if(!pc.isTreated()) output(", incredulous.");
 	else output(", wondering if the bulls will like you more now that you can milk like a fountain.");
+	
+	pc.shower();
+	
 	output("\n\n<i>“Oh right, you don’t know anything about that stuff, do you? There’s supposed to be a whole pamphlet about it, but the other cow-girls never read them, so we stopped stocking them.”</i> Millie shrugs noncommittally and explains, <i>“I forget what we’re supposed to call it, but you can think of it as a bottomless milk potion.”</i> Squeezing your boobs, the busty cow grins. <i>“Aside from the obvious benefits, you’ll never run dry for long. The moment your tits go empty, your body is gonna start filling ‘em right back up. You’ll be a real great cow now.”</i>");
 	//Not treated/cow
 	if(!pc.isTreated()) output("\n\nYou bite back on your reply and nod, climbing up onto wobbly [pc.legOrLegs] and grabbing your things.");

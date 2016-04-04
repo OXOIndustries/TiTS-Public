@@ -842,7 +842,7 @@ public function elderVenusPitchersDickplay():void {
 	}
 	//{Medium Cum}
 	else if(pc.cumQ() <= 1000) {
-		output("\n\nWith the unrivaled ecstasy you’re being exposed to, your body never seems to stop cumming. Normally, you fire out a pretty large amount of [pc.cum], but today you’re launching huge ropes with wild abandon, flooding the inside of the venus pitcher’s marvellous tentacle with the stuff. It manages to drink it all somehow, though the large bulges distort its shape as they wind back into the “wall” of this chamber. There’s a pinch on your arm - not enough to really rouse your attention but you are aware of it. A moment later, the heat of your orgasm intensifies, and there’s a sense of ");
+		output("\n\nWith the unrivaled ecstasy you’re being exposed to, your body never seems to stop cumming. Normally, you fire out a pretty large amount of [pc.cum], but today you’re launching huge ropes with wild abandon, flooding the inside of the venus pitcher’s marvelous tentacle with the stuff. It manages to drink it all somehow, though the large bulges distort its shape as they wind back into the “wall” of this chamber. There’s a pinch on your arm - not enough to really rouse your attention but you are aware of it. A moment later, the heat of your orgasm intensifies, and there’s a sense of ");
 		if(pc.balls > 0) output("increased denseness in your [pc.sack]");
 		else output("tightness in your body");
 		output(". Your eyes roll back in your head as you feed the wonderful woman, pouring an almost unending tide of lust straight into her clutching hole.");

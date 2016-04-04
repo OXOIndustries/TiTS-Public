@@ -46,6 +46,9 @@
 			this.evasion = 0;
 			this.fortification = 0;
 			
+			itemFlags = [];
+			itemFlags.push(GLOBAL.ITEM_FLAG_EXPOSE_CHEST);
+			
 			this.version = _latestVersion;
 		}
 	}

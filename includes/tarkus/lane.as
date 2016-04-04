@@ -688,12 +688,36 @@ public function laneGonnaFuckYourDetoxinAssUp():void
 	output("\n\nThis continues for the better part of an hour, with Lane growing more and more aroused with each command. As your mouth begins to flood with [lane.hisHer] " + lane.mf("[lane.cum]", "[lane.girlCum]") + ", you’re reminded of what a simple, wonderful life you live, and how you’re so fortunate to live it. You do hope this woman succumbs soon – it’d be a crime to hoard your gifts to yourself.");
 
 	processTime(60);
+	
+	pc.removeAll();
+	pc.lust(100);
+	var i:int = 0;
+	if(lane.mf("m", "f") == "m")
+	{
+		for(i = 0; i < 8; i++)
+		{
+			pc.loadInMouth(lane);
+			pc.orgasm();
+		}
+	}
+	else
+	{
+		for(i = 0; i < 8; i++)
+		{
+			pc.girlCumInMouth(lane);
+			pc.orgasm();
+		}
+	}
 
 	badEnd();
 }
 
 public function laneTakesOverTheSteeleFortune():void
 {
+	currentLocation = "GAME OVER";
+	generateMap();
+	setLocation("", "PLANET: VENAR", "SYSTEM: REDACTED");
+	
 	clearOutput();
 
 	laneHeader();
@@ -702,7 +726,7 @@ public function laneTakesOverTheSteeleFortune():void
 
 	output("\n\nYou approach Lane’s hut and see [lane.himHer] lounging, as usual, in [lane.hisHer] chair, boorishly flipping through a few tabs on [lane.hisHer] codex to keep entertained. [lane.HeShe] perks up as soon as [lane.heShe] hears footsteps, and [lane.hisHer] spirits lift as soon as [lane.heShe] sees you. <i>“[pc.name]! You’re really back! I had heard rumors that... is it true? Did you really inherit Steele Tech?”</i>");
 
-	output("\n\nYou assure [lane.himHer] that you have, and you are indeed the new CEO of Steele Tech Industries. Lane wastes no time in standing and practically catapulting over [lane.hisHer] desk to give you a great big celebratory hug. <i>“Congratulations, [pc.name]! You must be so thrilled!”</i> You don’t answer; your sheepish grin says it all. <i>“I can’t believe that the big boss of one of the most lucrative enterprises in the [b]entire[/b] universe is one of my customers! Do you have any idea what that’ll mean for my business?”</i>");
+	output("\n\nYou assure [lane.himHer] that you have, and you are indeed the new CEO of Steele Tech Industries. Lane wastes no time in standing and practically catapulting over [lane.hisHer] desk to give you a great big celebratory hug. <i>“Congratulations, [pc.name]! You must be so thrilled!”</i> You don’t answer; your sheepish grin says it all. <i>“I can’t believe that the big boss of one of the most lucrative enterprises in the <b>entire</b> universe is one of my customers! Do you have any idea what that’ll mean for my business?”</i>");
 
 	output("\n\nYou’re thrilled to see your [lane.master] so happy for your success. You entertain [lane.himHer] and ask what it means. Rather than answer, a lascivious grin spreads across [lane.hisHer] lips as [lane.hisHer] tassels slowly expand, submerging you in the glowing swirls of [lane.hisHer] tattoos and piercings once again. You sigh languidly, submerging yourself in the lights. <i>“It means I won’t have to live in a little mud-tent in the middle of an empty desert anymore.”</i>");
 
@@ -770,7 +794,30 @@ public function laneTakesOverTheSteeleFortuneII():void
 
 	output("\n\nImmediately, Lane’s genital slit begins to expand, and " + lane.mf("his cock surges from him once again, ready for another bout or three", "her pussy slickens and pulls on your cleaning tongue once again, ready for another go or three") + ". Lane only laughs as you set to work on [lane.himHer] for the third time that morning.");
 
+	days += 9 + rand(5);
 	processTime(60);
+	
+	pc.lust(100);
+	pc.removeAll();
+	pc.armor = new BusinessClothes();
+	pc.credits = 0;
+	var i:int = 0;
+	if(lane.mf("m", "f") == "m")
+	{
+		for(i = 0; i < 8; i++)
+		{
+			pc.loadInMouth(lane);
+			pc.orgasm();
+		}
+	}
+	else
+	{
+		for(i = 0; i < 8; i++)
+		{
+			pc.girlCumInMouth(lane);
+			pc.orgasm();
+		}
+	}
 
 	badEnd();
 }

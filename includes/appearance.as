@@ -289,6 +289,20 @@ public function appearance(forTarget:Creature):void
 			}
 			output2(" ‘plus’-shaped pupils assess your surroundings with little issue.");
 		}
+		else if (target.eyeType == GLOBAL.TYPE_SYNTHETIC)
+		{
+			if (target.eyeColor == "black") output2(" Your eyes are pitch black with digitally-projected glowing white squares that form each iris,");
+			else
+			{
+				output2(" Your eyes are mapped like a printed circuit board and ");
+				if (hasMetallicEyes) output2(" glisten with rings of metallic " + target.eyeColor);
+				else if (hasGemstoneEyes) output2(" light up with rings of shimmering " + target.eyeColor);
+				else if (hasLuminousEyes) output2(" pulse to life with rings of " + target.eyeColor);
+				else output2(" are decorated with rings of " + StringUtil.capitalize(target.eyeColor));
+				output2(" around each iris,");
+			}
+			output2(" giving them a very synthetic appearance.");
+		}
 		else
 		{
 			if (hasMetallicEyes) output2(" Metallically glistening " + target.eyeColor + " eyes allow you to take in your surroundings without trouble.");
