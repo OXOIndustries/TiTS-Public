@@ -23,7 +23,7 @@ public function encounterFemaleSydian():void
 		else output("<i>“Show yourself!”</i>");
 		output(" you cry out.");
 		
-		output("\n\nA face pokes up from behind a pile, waving two fuzzy antennae. Despite a fetching brush of " + tEnemy.hairColour + " hair, the multi-faceted "+ tEnemy.eyeColor +" eyes and segmented covering give the creature an insectoid, alien appearance. The impression doesn’t go away when it skitters over the pile like a cockroach - though the slim waist and wide hips hint strongly that this is");
+		output("\n\nA face pokes up from behind a pile, waving two fuzzy antennae. Despite a fetching brush of " + tEnemy.hairColor + " hair, the multi-faceted "+ tEnemy.eyeColor +" eyes and segmented covering give the creature an insectoid, alien appearance. The impression doesn’t go away when it skitters over the pile like a cockroach - though the slim waist and wide hips hint strongly that this is");
 		if (flags["MET_MALE_SYDIAN"] != undefined) output(" a female sydian.");
 		else output(" the female of whatever it is.");
 		
@@ -139,7 +139,7 @@ public function sydianFemalePCLossHasVagina():void
 	output(" and squats, not even bothering to conceal her bright orange pussy. She runs a finger along your body, probing everything and");
 	if (!(pc.shield is EmptySlot) && !pc.hasStatusEffect("Rusted Emitters")) output(" smiling at your discomfort when your shield system pops and sparks.");
 	else output(" smiling as her touch infects your body with chemical lust.");
-	if (pc.isPregnant() && pc.bellRating() >= 15)
+	if (pc.isPregnant() && pc.bellyRating() >= 15)
 	{
 		output(" A hand comes to rest on your swollen [pc.belly].");
 	
@@ -275,7 +275,7 @@ public function sydianFemalePCLossHasCock():void
 		if (pc.skinType == GLOBAL.SKIN_TYPE_FUR) output(" through your [pc.skinFurScales]");
 		else output(" over your [pc.belly]");
 		output(".");
-		if (pc.isPregnant() && pc.bellyRating >= 15) output(" The enzyme on her hands relaxes and heats your pregnancy-stretched abdomen, and you sigh.");
+		if (pc.isPregnant() && pc.bellyRating() >= 15) output(" The enzyme on her hands relaxes and heats your pregnancy-stretched abdomen, and you sigh.");
 		else output(" The aphrodisiac enzyme bleeds through to your nerves, and you sigh as your skin heats up.");
 		
 		output("\n\n<i>“Normally I wouldn’t let a weakling come inside me,”</i> she says, breathing heavily. It sounds like an excuse... and when she exposes her glittering vagina and begins to rub against [pc.oneCock], you know. <i>“But... one little exception can’t hurt.”</i>");
@@ -333,7 +333,7 @@ public function sydianFemalePCLossHasCock():void
 		output(" and coming back could be a very good idea.");
 
 		processTime(30+rand(15));
-		enemy.loadInCunt(0, pc);
+		enemy.loadInCunt(pc, 0);
 		pc.orgasm();
 		enemy.orgasm();
 	}
@@ -385,7 +385,7 @@ public function sydianFemalePCVictory():void
 		else
 		{
 			output(" or just leave her here.");
-			if (pc.hasItem(new Throbb()) output(" There’s an item you’re carrying that might adjust her bad attitude, too.");
+			if (pc.hasItem(new Throbb())) output(" There’s an item you’re carrying that might adjust her bad attitude, too.");
 		}
 
 		if (!pc.hasCock()) addDisabledButton(0, "Fuck Her", "Fuck Her", "You don't have a wiener!");
@@ -403,8 +403,8 @@ public function sydianFemalePCVictory():void
 		else addButton(3, "CallOthers", femSydianCallOthers, undefined, "Call Others", "Get some help to humiliate the girl. Depending on who shows up, you might land a three-way or have to hide from a brutal male.");
 
 		if (!enemy.hasStatusEffect("Unarmored")) addDisabledButton(4, "Gentle Fuck", "Gentle Fuck", "She’s not vulnerable enough to regard kindness as anything but a weakness.");
-		else if (enemy.lust < 33) addDisabledButton(4, "Gentle Fuck", "Gentle Fuck", "She’s not turned on enough to play along with you.");
-		else if (pc.hasVagina() || (pc.hasCock() && pc.cockThatFits(enemy.vaginalCapacity())) addButton(4, "Gentle Fuck", femSydianGentleFuck, undefined, "Gentle Fuck", "Show the sydian that sex can be more than a power play.");
+		else if (enemy.lust() < 33) addDisabledButton(4, "Gentle Fuck", "Gentle Fuck", "She’s not turned on enough to play along with you.");
+		else if (pc.hasVagina() || (pc.hasCock() && pc.cockThatFits(enemy.vaginalCapacity()))) addButton(4, "Gentle Fuck", femSydianGentleFuck, undefined, "Gentle Fuck", "Show the sydian that sex can be more than a power play.");
 		else addDisabledButton(4, "Gentle Fuck", "Gentle Fuck", "Your genitals are incompatible with the poor girl!");
 	}
 
@@ -572,7 +572,7 @@ public function femSydianGentleFuck():void
 			output("\n\nYou think it might be a good idea to visit here again, once in a while.");
 
 			processTime(30+rand(15));
-			enemy.loadInCunt(0, pc);
+			enemy.loadInCunt(pc, 0);
 			pc.orgasm();
 			enemy.orgasm();
 		}
@@ -709,7 +709,7 @@ public function femSydianCallOthers():void
 		
 		output("\n\n<i>“I do so love a strong male...”</i> she coos.");
 
-		var multicock:Boolean = pc.hasNippleCocks() || pc.cocks.length > 1 || (pc.hasCock() && pc.hasTailCock();
+		var multicock:Boolean = pc.hasNippleCocks() || pc.cocks.length > 1 || (pc.hasCock() && pc.hasTailCock());
 
 		output("\n\n");
 		if (pc.isBimbo() || pc.isBro() || pc.isNice())
@@ -736,7 +736,7 @@ public function femSydianCallOthers():void
 		else if (pc.hasTailCock()) output(" [pc.oneTailCock]");
 		else
 		{
-			if (pc.totalNippes() > 1) output(" one");
+			if (pc.totalNipples() > 1) output(" one");
 			output(" [pc.nippleCock]");
 		}
 		output("; the heat of her enzyme works in, bringing you to throbbing, ready stiffness.");
@@ -813,7 +813,7 @@ public function femSydianCallOthers():void
 			output(" their vaginas.");
 			if (((pc.hasCock() || pc.hasTailCock()) && pc.cumQ() <= 150) || (pc.hasNippleCocks() && pc.lactationQ() <= 150)) output(" The ejaculation lasts barely a second, leaving mere flecks in the sydians’ thirsty tunnels.");
 			else if (((pc.hasCock() || pc.hasTailCock()) && pc.cumQ() <= 1500) || (pc.hasNippleCocks() && pc.lactationQ() <= 1500)) output(" Strokes of jizz climb your cocks like fat earthworms, stimulated ever upward by the enzyme mixed with their pussy juice.");
-			else if if (((pc.hasCock() || pc.hasTailCock()) && pc.cumQ() > 1500) || (pc.hasNippleCocks() && pc.lactationQ() > 1500)) output(" So productive are you that the broken one’s stomach expands, distending while she grins stupidly and holds it. The other looks uncomfortable as her intact armor resists, pushing the flood back out.");
+			else if (((pc.hasCock() || pc.hasTailCock()) && pc.cumQ() > 1500) || (pc.hasNippleCocks() && pc.lactationQ() > 1500)) output(" So productive are you that the broken one’s stomach expands, distending while she grins stupidly and holds it. The other looks uncomfortable as her intact armor resists, pushing the flood back out.");
 			
 			output("\n\nYour lovers sit atop you while you cool down. The armored woman kisses you on the cheek, gets up, and leads her dopey-looking counterpart away, both rubbing their bellies in satisfaction.");
 
@@ -990,7 +990,7 @@ public function femSydianGiveThrob():void
 	//vag-anal branch - mandatory for F/U, preferred (80-85%) if H or if M and player has selected female gender pronouns or has all cocks too large
 	//preg chance for vag PC
 
-	if (!pc.hasCock() || (rand(100) <= 85 && pc.hasStatusEffect("Force Fem Gender")) || pc.cockThatFits(enemy.vaginalCapacity) == -1)
+	if (!pc.hasCock() || (rand(100) <= 85 && pc.hasStatusEffect("Force Fem Gender")) || pc.cockThatFits(enemy.vaginalCapacity()) == -1)
 	{
 		var v:int = pc.cuntThatFits(enemy.cockVolume(0, true));
 		if (v == -1) pc.biggestVaginaIndex();
@@ -1043,11 +1043,11 @@ public function femSydianGiveThrob():void
 			else output(" lap");
 		}
 		output(". Her breaths come so heavy they fog the air, and her eyes search yours for permission. A new trickle of lubrication beads atop her crown, unnecessary and almost unnoticeable among the silver, slick semen. Amused by her total inversion, you nod");
-		if (!pc.isNaked()) output(" and begin to strip your [pc.gear]");
+		if (!pc.isNude()) output(" and begin to strip your [pc.gear]");
 		output(". The sydian’s open mouth turns to a smile and she");
 		if (pc.isTaur()) output(" circles to your backside, tracing your flank with one thick, slippery finger.");
 		else if (pc.hasLowerGarment() || pc.hasArmor()) output(" assists you with the clumsy movements of a too-eager virgin. When she’s exposed your bottom, she forgets the rest and automatically guides her cock into position.");
-		else if (pc.isNaked()) output(" immediately positions herself to spear you on her new tool.");
+		else if (pc.isNude()) output(" immediately positions herself to spear you on her new tool.");
 		
 		output("\n\n");
 		if (pc.hasLegs() && !pc.isTaur() && pc.hasVagina())
@@ -1091,9 +1091,9 @@ public function femSydianGiveThrob():void
 		if (pc.hasVagina()) output(" vagina");
 		else output(" rectum");
 		output(". Her orgasm is on, and the second stroke dumps into you, a hot tongue of sperm");
-		if (player.hasVagina()) output(" pressing for entrance to your womb");
+		if (pc.hasVagina()) output(" pressing for entrance to your womb");
 		output(". You shudder as three and four baste your insides, picturing the slivery slime spilling from her. The sydian’s eyes roll and her head lolls on her neck, and watching her enjoy you as hot semen pours in sets off your own pleasure. The poor girl practically melts when your climaxing");
-		if (player.hasVagina()) output(" cunt");
+		if (pc.hasVagina()) output(" cunt");
 		else output(" hole");
 		output(" attacks her sensitive cock, falling on top of you while the last strokes meander out.");
 		//female orgasm, reduce lust, put sydian load x2 in PC’s cunt
@@ -1102,7 +1102,7 @@ public function femSydianGiveThrob():void
 
 		for (var i:int = 0; i < 2; i++)
 		{
-			pc.loadInCunt(v, enemy);
+			pc.loadInCunt(enemy, v);
 			enemy.orgasm();
 			pc.orgasm();
 		}
@@ -1134,7 +1134,7 @@ public function femSydianGiveThrob():void
 			{
 				output(" a careful thrust to avoid squeezing her balls, you impale her womanhood on");
 				if (pc.cocks[c].cLength() > 10) output(" ten");
-				else output(" " + num2Text(pc.cocks[c].cLength());
+				else output(" " + num2Text(pc.cocks[c].cLength()));
 				output(" inches of your pleasure tool.");
 			}
 		}
@@ -1225,7 +1225,7 @@ public function femSydianEatsButtholes():void
 	}
 	else if (pc.isSquirter())
 	{
-		if (!pc.isNaked()) output("You undress, and s");
+		if (!pc.isNude()) output("You undress, and s");
 		else output("S");
 		output("he stares dumbly at your denuded form when you");
 		if (pc.isTaur() || (!pc.hasCock() && !pc.hasVagina())) output(" turn and thrust your [pc.vagOrAss] toward her");
@@ -1327,7 +1327,7 @@ public function femSydianEatsButtholes():void
 	else
 	{
 		output(" your");
-		if (!pc.nippleType == GLOBAL.NIPPLE_TYPE_FLAT) output(" erect");
+		if (!pc.hasFlatNipples()) output(" erect");
 		output(" [pc.nipples]");
 	}
 	if (pc.hasNippleCocks() || pc.isLactating())
@@ -1366,12 +1366,12 @@ public function femSydianFuck():void
 	clearOutput();
 	showSydianFemale();
 
-	var cockIdx:int = (enemy.hasStatusEffect("Unarmored") ? pc.cockThatFits(4, "thickness") : pc.cockThatFits(enemy.vaginalCapacity));
+	var cockIdx:int = (enemy.hasStatusEffect("Unarmored") ? pc.cockThatFits(4, "thickness") : pc.cockThatFits(enemy.vaginalCapacity()));
 	var asTailcock:Boolean = false; // 9999 This is going to require further science, urgh
 
 	output("You push her shoulders to the ground, eyeing the "+ (enemy.hasStatusEffect("Unarmored") ? "crumbling chips that remain of her destroyed bodywork" : "detailed plating of her breasts and stomach") +". The sydian clucks at you.");
 	
-	if (!enemy.hasStatusEffect("Unarmored") output("\n\n<i>“What’s wrong, never seen a pretty girl before?”</i>");
+	if (!enemy.hasStatusEffect("Unarmored")) output("\n\n<i>“What’s wrong, never seen a pretty girl before?”</i>");
 	else output("\n\n<i>“What? Are you going to stare forever?”</i>");
 	
 	output("\n\nShe "+ (enemy.hasStatusEffect("Unarmored") ? "covers her chest" : "displays openly") +" while you set aside your [pc.gear], glaring the whole time. Paying little mind, you push her legs apart");

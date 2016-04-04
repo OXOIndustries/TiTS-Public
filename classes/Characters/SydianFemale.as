@@ -46,7 +46,7 @@
 			
 			this.armor.longName = "chitinous plating";
 			this.armor.defense = 3;
-			this.armor.resistances.corrosive = -25.0;
+			this.armor.resistances.corrosive.resistanceValue = -25.0;
 			this.armor.resistances.addFlag(DamageFlag.ABLATIVE);
 			this.armor.hasRandomProperties = true;
 			
@@ -289,7 +289,7 @@
 				if (!target.hasArmor() || !target.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
 				{
 					dd = 6;
-					if (hasStatusEffect("Enzyme") dd *= 1.33;
+					if (hasStatusEffect("Enzyme")) dd *= 1.33;
 				}
 				
 				applyDamage(new TypeCollection( { kinetic: 12, drug: dd } ), this, target, "minimal");
@@ -317,7 +317,7 @@
 					if (!target.hasArmor() || !target.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
 					{
 						dd = 3;
-						if (hasStatusEffect("Enzyme") dd *= 1.33;
+						if (hasStatusEffect("Enzyme")) dd *= 1.33;
 					}
 					
 					applyDamage(new TypeCollection( { kinetic: 7 + rand(2), drug: dd } ), this, target, "minimal");
@@ -331,7 +331,7 @@
 					if (!target.hasArmor() || !target.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
 					{
 						dd = 3;
-						if (hasStatusEffect("Enzyme") dd *= 1.33;
+						if (hasStatusEffect("Enzyme")) dd *= 1.33;
 					}
 					
 					applyDamage(new TypeCollection( { kinetic: 3 + rand(2), drug: dd } ), this, target, "minimal");

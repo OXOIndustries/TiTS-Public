@@ -114,7 +114,7 @@
 		// Tired of playing silly bastard games with long
 		private var _long:String = "You scrawny, yo."
 		public function get long():String { return _long; }
-		public function set long(v:String) { _long = v; }
+		public function set long(v:String):void { _long = v; }
 		
 		public var capitalA: String = "A ";
 
