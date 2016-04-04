@@ -71,10 +71,10 @@ public function initializeRooms():void
 	rooms["POESPACE"].addFlag(GLOBAL.OUTDOOR);
 
 	rooms["GAME OVER"] = new RoomClass(this);
-	rooms["GAME OVER"].roomName = "GAME\nOVER";
+	rooms["GAME OVER"].roomName = "";
 	rooms["GAME OVER"].description = "";
-	rooms["GAME OVER"].planet = "PLANET: NONE";
-	rooms["GAME OVER"].system = "SYSTEM: UNKNOWN";
+	rooms["GAME OVER"].planet = "";
+	rooms["GAME OVER"].system = "";
 	rooms["GAME OVER"].moveMinutes = 1;
 	rooms["GAME OVER"].runOnEnter = undefined;
 	rooms["GAME OVER"].addFlag(GLOBAL.INDOOR);

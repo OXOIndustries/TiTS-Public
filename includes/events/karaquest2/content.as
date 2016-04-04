@@ -1659,6 +1659,9 @@ public function kq2KhanPCDefeat():void
 	if (!(pc.rangedWeapon is EmptySlot) || !(pc.meleeWeapon is EmptySlot)) output(" and weapons");
 	output(" and sliding the slim metal ring around your neck.");
 	
+	pc.removeAll();
+	pc.createStatusEffect("Psy Slave Collar", 0.5, 0.05, 50, 0, true, "Radio", "This metal collar limits your intelligence capacity and willpower while worn, making you completely subservient to the will of the one who operates it.", false, 0, 0xFF0000);
+	
 	output("\n\n<i>“No... get away...”</i> Kara moans as one of the girls rolls her onto her face, just beside you. Before they collar her, the girls spend a few moments undressing the kaithrit, pulling off her skin-tight top and the skimpy skirt she’s wearing, even pulling her up to her knees so they can yank her underwear off. You watch as her E-cups bounce free, immediately in the grasp of another gold myr, who squeezes and kneads the perfect, soft orbs.");
 	
 	output("\n\nThe other myr makes a cooing sound as she pulls Kara’s boyshorts down her long legs, licking her lips as she says, <i>“Master! This one has a cock! May we... play with it?”</i>");
@@ -1690,6 +1693,9 @@ public function kq2KhanPCDefeat():void
 	output("\n\n<i>“Eager, too,”</i> Master beams. <i>“What do you think of [pc.himHer] so far, dear?”</i>");
 
 	output("\n\n<i>“So... so good,”</i> Kara moans, planting a hand atop your [pc.hair] and urging you on. You couldn’t resist her if you wanted - and God knows, you don’t want to. You eagerly swallow almost a foot of kittydick, going from the tip to kissing the base in the blink of an eye. Your companion purrs, her tails curling around to caress you as you fellate her. Your hands gravitate to her balls - though nowhere near as magnificent as your master’s, they’re still a nice, hefty handful. Compelled to show Master what you can do to a pair of nuts, you gently massage them, rolling her nads between your fingers. You can almost feel them churning, so full that you don’t think you’ll need to do much more than caress them to milk out all her sweet, salty seed. You give her the slightest squeeze and let your mouth finish her, bobbing on her cock until Kara makes a sweet little squeal and unleashes a torrent of seed into your mouth. You choke it down with ease, swallowing every drop the kaithrit girl can give you - you have to show the master that you can handle him, after all! You can only imagine how much cum he’ll grace you with when you finally prove your worth.");
+	
+	pc.loadInMouth(kara);
+	kara.orgasm();
 
 	output("\n\nKara whimpers and falls onto her back, her balls drained. You lick up the last trickles from your chin and turn to your master, eyes imploring.");
 	
@@ -1701,9 +1707,14 @@ public function kq2KhanPCDefeat():void
 	
 	output("\n\nYou swell with pride as you are invited to sit at your master’s feet, and quickly find yourself snuggled up to the warm, soft swell of his mighty balls, your arms wrapped around your own personal expanse of kui-tan nuts. Master groans as you settle against him, a thick squirt of spunk drooling from his member to rain down upon you and your fellow harem sluts. You reach up and lick it up eagerly, competing with the other girls to get at the wonderfully rich, salty treat. Every drop you can get, you swallow greedily; the taste is utterly divine, better than the best candy you’ve ever tasted.");
 	
-	output("\n\nA small, soft hand plays across the top of your head. You look up, still licking, to see Master looking down upon you with a smile. <i>“Good... I think my keepers will be very pleased to see you. Like this, of course. You’ll be here forever, of course, won’t you? No, I’ll not let a catch like you and your friend out of my grip, damn the pirates. You’re mine now, understand?”</i>");
+	var tKhan:KQ2Khan = new KQ2Khan();
+	pc.loadInMouth(tKhan);
+	
+	output("\n\nA small, soft hand plays across the top of your head. You look up, still licking, to see Master looking down upon you with a smile. <i>“Good... I think my keepers will be very pleased to see you. Like this, of course. You’ll be here forever, won’t you? No, I’ll not let a catch like you and your friend out of my grip, damn the pirates. You’re mine now, understand?”</i>");
 	
 	output("\n\nYou do. You understand, and thank Master for not letting anybody take you away from him. Not ever...");
+	
+	processTime(45 + rand(6));
 	
 	flags["KQ2_KARA_WITH_PC"] = undefined;
 	badEnd();
@@ -1945,7 +1956,9 @@ public function kq2CapturedByPiratesBadEndII():void
 
 	output("\n\nShe releases your hand with contemptuous force, making you sway precariously as she turns away from you. <i>“Gunship, head on home. I’ve got to secure things here.”</i>");
 	
-	output("\n\nYou look up in time to see the armored goons hopping into the ship’s bay around Kara and sliding the doors closed. That’s the last you’ll see of her, you know, your heart sinking. The gunship’s engines roar, and the black ships shudders into the sky, angling its bow to the heavens and blasting off. The pirate lord sighs and turns back to you, tucking her crash helmet under her arm. She tosses Kara’s pistol away, letting it clatter off the side of the roof and out of sight.");
+	output("\n\nYou look up in time to see the armored goons hopping into the ship’s bay around Kara and sliding the doors closed.");
+	if (flags["KQ2_SHADE_DEAD"] == undefined) output(" That’s the last you’ll see of her, you know, your heart sinking.");
+	output(" The gunship’s engines roar, and the black ships shudders into the sky, angling its bow to the heavens and blasting off. The pirate lord sighs and turns back to you, tucking her crash helmet under her arm. She tosses Kara’s pistol away, letting it clatter off the side of the roof and out of sight.");
 
 	if (flags["KQ2_SHADE_DEAD"] != undefined)
 	{
@@ -1981,6 +1994,8 @@ public function kq2CapturedByPiratesBadEndII():void
 	
 	output("\n\n<i>“Looks good on you,”</i> your new owner smirks, giving her subordinate a rough clap on the shoulder to send him on his way. She reaches down after that, grabbing the back on your collar and flicking a button. The moment she does, you feel a thrum of energy pass through your neck, and something warm press against your spine.");
 	
+	pc.createStatusEffect("Psy Slave Collar", 0.75, 0.50, 25, 0, true, "Radio", "This metal collar limits your intelligence capacity and willpower while worn, making you completely subservient to the will of the one who operates it.", false, 0, 0xFF0000);
+	
 	output("\n\n<i>“This is the lowest setting,”</i> she explains, drawing her hand up from the collar and across your [pc.hair], gently pushing your head down. As she does, you feel a shudder pass through you, followed by a spreading heat from your back, slowly crawling through your body. <i>“Doctor Khan’s work is truly remarkable, in its perverse way. Stand up.”</i>");
 
 	output("\n\nBefore you can even think, you’re leaping to your [pc.feet]");
@@ -1989,20 +2004,26 @@ public function kq2CapturedByPiratesBadEndII():void
 	
 	output("\n\n<i>“Strip,”</i> she commands. You do so, slowly pulling your gear off. The wind whips hotly around you, scouring your [pc.skinFurScales]. It takes a moment for you to realize what you’ve done - that you offered no resistance, no hesitation.");
 	
+	pc.removeClothes();
+	
 	output("\n\nThe pirate woman smiles. Her eyes slink across your bare body, across skin and "+ pc.rawmf("rigid lines", "soft curves") +", down to your [pc.butt] and your crotch. You’re");
 	if (pc.hasCock()) output(" half-hard already, the heat pulsating through your member in rhythmic waves of pleasure.");
 	else if (pc.hasVagina()) output(" drooling already, staining your thighs with feminine excitement. The heat radiating through your body seems to center on your quim, burning your body.");
 	else output(" The heat in your body seems to coalesce in your bare groin, forming an intense ball of pointless pleasure.");
 	output(" You feel amazing, like any touch would send you over the edge. And the pirate knows it.");
+	
+	pc.lust(50);
 
 	output("\n\n<i>“Touch yourself,”</i> she commands, smiling as you immediately obey, running a hand down your groin");
 	if (pc.hasCock()) output(" and caressing your [pc.cock]");
 	output(". <i>“Good "+ pc.mf("boy", "girl") +". Looks like the collar’s working. Now let me tell you how this is going to work: on the lowest setting - the one I think you need - the collar makes you obedient. Easy to influence, eager to please. Khan says the marked rise in libido is a... how did he phrase it... a ‘happy accident,’ that keeps captives nice and mollified. I think he did it on purpose. It certainly made sure he had a nice little harem of test subjects all too eager to worship his fat, disgusting sack.”</i>");
 
-	output("\n\nShe manages a slight grin, still watching you mindlessly masturbate. The thought of stopping never crosses your mind. <i>“Don’t worry, I won’t make you worship mine,”</i> she murmurs, running a finger along your chin. <i>“Now, let’s you inside and cleaned up. You’ve got a lot of adjustment to do.");
+	output("\n\nShe manages a slight grin, still watching you mindlessly masturbate. The thought of stopping never crosses your mind. <i>“Don’t worry, I won’t make you worship mine,”</i> she murmurs, running a finger along your chin. <i>“Now, let’s get you inside and cleaned up. You’ve got a lot of adjustment to do.");
 
 	output("\n\n<i>“And don’t even think about stopping. Not that you could, anyway,”</i> your new owner smirks, hooking a finger through a loop on your collar and dragging you into the base.");
 
+	processTime(45 + rand(6));
+	
 	flags["KQ2_KARA_WITH_PC"] = undefined;
 	badEnd();
 }

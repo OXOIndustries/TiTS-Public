@@ -305,6 +305,16 @@ public function bigBallBadEnd():void
 	if(rooms[currentLocation].hasFlag(GLOBAL.HAZARD))
 	{
 		output("It isn’t long before the natives of this place take you as an amusement - a live-in toy whose virility is the show-piece of an alien exhibit. You never do manage to get your dad’s fortune, but hey, at least you get to live in relative comfort and have all the orgasms your body can handle.");
+		
+		days += 40 + rand(6);
+		hours = rand(24);
+		processTime(rand(60));
+		
+		for(var i:int = 0; i < 12; i++)
+		{
+			pc.orgasm();
+		}
+		
 		badEnd();
 	}
 	//Not a dangerous area:

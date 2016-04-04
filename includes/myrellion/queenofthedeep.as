@@ -53,6 +53,8 @@ public function queenOfTheDeepInitialEncounter():void
 	output("\n\nEntirely on instinct, your body throws itself back in revulsion, trying desperately to avoid her wet, armored hooks.");
 	
 	output("\n\n<i>“I shan’t ask again, child. Submit to me, and I shall show you a world of pleasure you cannot yet imagine. Or perhaps some strain of misguided heroism plagues you, and you think to test your might against me? Come then, decide: will it be pleasure, or must we battle?”</i>");
+	
+	processTime(5);
 
 	//[Surrender] [Fight]
 	clearMenu();
@@ -103,9 +105,10 @@ public function queenOfTheDeepPCLoss():void
 	}
 
 	// cunts
+	var vi:int = 0;
 	if (pc.hasVagina())
 	{
-		for (var vi:int = 0; vi < pc.vaginas.length; vi++)
+		for (vi = 0; vi < pc.vaginas.length; vi++)
 		{
 			if (!pc.isPregnant(vi))
 			{
@@ -147,6 +150,9 @@ public function queenOfTheDeepPCLoss():void
 	output(" as you are, you’re powerless to resist her directive, and start to suckle from the four stiff nipples on offer. As you surrender into her embrace, her tentacles wrap around you, coiling across your back and slowly worming their way towards your ass.");
 
 	output("\n\nYou feel the heat of venom on you almost instantly, rousing your senses.");
+	
+	pc.lust(100);
+	
 	if (pc.hasCock())
 	{
 		output(" Your [pc.multiCocks] grow");
@@ -178,6 +184,10 @@ public function queenOfTheDeepPCLoss():void
 	output("\n\n<i>“Good,”</i> your captor moans, arching her back into your suckling embrace. <i>“Drink deep, my child. Take nourishment from me, pass it on to my young when they’re planted within you, growing and feeding...”</i>");
 
 	output("\n\nYou gulp down mouthfuls of her seemingly endless bounty, draining her mammoth tits with slowly eroding volition. You feel your body being ravaged by her tendrils - they never penetrate you, never go further than teasing and caressing, just spreading more and more of her wonderful chemical arousal across you until it takes a force of will to remain standing. You’re not even sure you could do that, were it not for her tight embrace and the intoxicating taste of her amber milk.");
+	
+	pc.milkInMouth(queenOfTheDeep);
+	pc.milkInMouth(queenOfTheDeep);
+	pc.milkInMouth(queenOfTheDeep);
 
 	if (pc.isTaur() || pc.isDrider())
 	{
@@ -231,6 +241,24 @@ public function queenOfTheDeepPCLoss():void
 	output("\n\nYou watch its descent eagerly, eyes wide as the tentacle it rides in thrusts deep within you, squirting what feels like thick, viscous liquid into the depths of your bowels. You feel the hit of the queen’s venom immediately, burning away at every last trace of resistance until you’re nothing more than putty in her hands, eagerly relaxing your body for her delicate young.");
 	if (numEmptyVaginas > 1) output(" Other tendrils soon follow, swelling with young and opening your body wide. They spear open your cervixes and discharge gallons of thick, sticky venom into your vacant wombs, creating a chemical nest for the unborn aliens to inhabit.");
 	else if (bEmptyVagina) output(" The tendril fucking your [pc.cunt] follows the other’s example, swelling thicker and forcing your body to open wide for its precious payload. It gently, almost tenderly coaxes open your cervix and ejaculates a rush of thick, sticky venom into your vacant womb, creating a chemical nest for the unborn alien to inhabit.");
+	
+	if (!pc.isPregnant(3))
+	{
+		pc.loadInAss(queenOfTheDeep);
+		(pc as Creature).buttChange(queenOfTheDeep.biggestCockVolume(), false, false, false);
+		if (pc.ass.wetnessRaw < 5) pc.ass.wetnessRaw += 1;
+	}
+
+	for (vi = 0; vi < pc.vaginas.length; vi++)
+	{
+		if (!pc.isPregnant(vi))
+		{
+			pc.loadInCunt(queenOfTheDeep, vi);
+			(pc as Creature).cuntChange(vi, queenOfTheDeep.biggestCockVolume(), false, false, false);
+			if (pc.vaginas[vi].wetnessRaw < 5) pc.vaginas[vi].wetnessRaw += 1;
+		}
+	}
+	pc.libido(10);
 
 	output("\n\nAnother scream of unparalleled pleasure rips itself from your throat as the first of the queen’s young penetrates your now-gaping ass, stretching you unbearably wide around even its seemingly tiny frame before it rushes into your deepest depths, squirted out into the sticky wad of chemicals left for it by the thrashing tentacle ravaging your bowels. A second spawn quickly follows the first, bloating your belly with the growing occupation of the queen’s alien brood.");
 	if (bEmptyAss && !bEmptyVagina) output(" Your ass is soon stuffed full of the queen’s many offspring");
@@ -246,10 +274,12 @@ public function queenOfTheDeepPCLoss():void
 
 		output("\n\nYou feel a cold hand wrap around your [pc.cock], gently stroking from base to tip in a slow, languid motion. It’s only a moment later that you realize the queen’s hand is covered in her venom, using it like lube to stroke you. Moaning, you wiggle your [pc.hips] and press yourself against your loving, caring captor, your body all but begging her for more.");
 
-	output("\n\nShe eagerly provides it, shifting her body until her weighty breasts are positioned on either side of your [pc.cock] and enveloping it between them. You’re suddenly aware of how satin-soft they are; how the milk-swollen orbs compress around your shaft, deforming to make the most perfect pair of cockpillows imaginable. Your orgasm is as inevitable as");
-	if (silly) output(" death and taxes");
-	else output(" every other aspect of your queen’s menagerie of pleasures");
-	output(". With a howl of pure bliss, you unleash a torrent of spunk between the queen’s breasts, splattering her body with your [pc.cumNoun]. She just coos and continues to rub her mounds around your shaft, milking you dry of every drop.");
+		output("\n\nShe eagerly provides it, shifting her body until her weighty breasts are positioned on either side of your [pc.cock] and enveloping it between them. You’re suddenly aware of how satin-soft they are; how the milk-swollen orbs compress around your shaft, deforming to make the most perfect pair of cockpillows imaginable. Your orgasm is as inevitable as");
+		if (silly) output(" death and taxes");
+		else output(" every other aspect of your queen’s menagerie of pleasures");
+		output(". With a howl of pure bliss, you unleash a torrent of spunk between the queen’s breasts, splattering her body with your [pc.cumNoun]. She just coos and continues to rub her mounds around your shaft, milking you dry of every drop.");
+		
+		pc.orgasm();
 	}
 
 	output("\n\nPleasure hammers through you in shockwaves, a new quake born every time the queen’s sinuous");
@@ -257,11 +287,11 @@ public function queenOfTheDeepPCLoss():void
 	else output(" tendril moves");
 	output(" inside you, assailing your venom-burned body with mind-breaking sensation. She wrings orgasms from you as easily as she does your moans and cries, keeping you suspended in wave after wave of pleasure until your body is crammed as full of her spawn as it can possibly be, your belly bloated with writhing masses of the translucent jellyfish you saw before.");
 	
-	pc.orgasm();
-	pc.orgasm();
-	pc.orgasm();
-	pc.orgasm();
-	pc.orgasm();
+	var i:int = 0;
+	for(i = 0; i < 5; i++)
+	{
+		pc.orgasm();
+	}
 
 	output("\n\nOnly then does she release you, slowly drawing her tendril");
 	if (bMultiTentacle) output("s");
@@ -280,6 +310,9 @@ public function queenOfTheDeepPCLoss():void
 	output("\n\nAnd you must grow stronger to better carry the next one.");
 	
 	output("\n\nBut for now, exhaustion takes you.");
+
+	processTime(60 * 4);
+	for (i = 0; i < numEmptyHoles * 3; i++) pc.orgasm();
 	
 	badEnd();
 }
@@ -422,9 +455,10 @@ public function queenOfTheDeepSurrenderIISplit(fromCombat:Boolean):void
 	}
 
 	// cunts
+	var vi:int = 0;
 	if (pc.hasVagina())
 	{
-		for (var vi:int = 0; vi < pc.vaginas.length; vi++)
+		for (vi = 0; vi < pc.vaginas.length; vi++)
 		{
 			if (!pc.isPregnant(vi))
 			{
@@ -521,11 +555,11 @@ public function queenOfTheDeepSurrenderIISplit(fromCombat:Boolean):void
 	else output(" tendril moves");
 	output(" inside you, assailing your venom-burned body with mind-breaking sensation. She wrings orgasms from you as easily as she does your moans and cries, keeping you suspended in wave after wave of pleasure until your body is crammed as full of her spawn as it can possibly be, your belly bloated with writhing masses of the translucent jellyfish you saw before.");
 	
-	pc.orgasm();
-	pc.orgasm();
-	pc.orgasm();
-	pc.orgasm();
-	pc.orgasm();
+	var i:int = 0;
+	for(i = 0; i < 5; i++)
+	{
+		pc.orgasm();
+	}
 
 	output("\n\nOnly then does she release you, slowly drawing her tendril");
 	if (bMultiTentacle) output("s");
@@ -749,9 +783,10 @@ public function queenOfTheDeepGetEgged():void
 	}
 
 	// cunts
+	var vi:int = 0;
 	if (pc.hasVagina())
 	{
-		for (var vi:int = 0; vi < pc.vaginas.length; vi++)
+		for (vi = 0; vi < pc.vaginas.length; vi++)
 		{
 			if (!pc.isPregnant(vi))
 			{
@@ -881,11 +916,11 @@ public function queenOfTheDeepGetEgged():void
 	else output(" tendril moves");
 	output(" inside you, assailing your venom-burned body with mind-breaking sensation. She wrings orgasms from you as easily as she does your moans and cries, keeping you suspended in wave after wave of pleasure until your body is crammed as full of her spawn as it can possibly be, your belly bloated with writhing masses of the translucent jellyfish you saw before.");
 	
-	pc.orgasm();
-	pc.orgasm();
-	pc.orgasm();
-	pc.orgasm();
-	pc.orgasm();
+	var i:int = 0;
+	for(i = 0; i < 5; i++)
+	{
+		pc.orgasm();
+	}
 
 	output("\n\nOnly then does she release you, slowly drawing her tendril");
 	if (bMultiTentacle) output("s");
@@ -904,7 +939,7 @@ public function queenOfTheDeepGetEgged():void
 	output("\n\nYour eyes flutter closed at the queen’s words. Exhaustion takes you.");
 
 	processTime(60 * 4);
-	for (var i:int = 0; i < numEmptyHoles * 3; i++) pc.orgasm();
+	for (i = 0; i < numEmptyHoles * 3; i++) pc.orgasm();
 
 	clearMenu();
 	addButton(0, "Next", queenOfTheDeepGetEggedII);

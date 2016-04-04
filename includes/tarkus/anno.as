@@ -2032,7 +2032,7 @@ public function lossToSecurityDroid():void
 	showName("LOSS:\nSEC. DROIDS");
 	showBust("DROID_SECURITY","DROID_SECURITY","DROID_SECURITY");
 
-	output("You hear a horrible scream to your side. You pause in your fight just long enough to look, and see Anno crumpled on the ground, motionless. Oh, no.... You turn back, grabbing your [pc.rangedWeapon] to take the murderous drones down... only to see one of their gun barrels leveled at your forehead.");
+	output("You hear a horrible scream to your side. You pause in your fight just long enough to look, and see Anno crumpled on the ground, motionless. Oh, no.... You turn back, grabbing your [pc.heldWeapon] to take the murderous drones down... only to see one of their gun barrels leveled at your forehead.");
 
 	output("\n\n<i>ZAP</i>.");
 
@@ -2751,6 +2751,14 @@ public function lossToGrayPrime():void
 	output("\n\nYou shudder as shockwaves of pleasure tear through you, pumping out every moment of orgasm from you that the goo possibly can, drawing your climax out... and out... and out... until you start to think it will never end. That the pumping goo inside you will keep you cumming and cumming forever, hours turning into days into weeks of unending orgasm.");
 	
 	output("\n\nThat’s exactly what they do.");
+	
+	processTime(25);
+	pc.removeEquipment("weapons");
+	
+	for(var i:int = 0; i < 36; i++)
+	{
+		pc.orgasm();
+	}
 	
 	badEnd();
 }
