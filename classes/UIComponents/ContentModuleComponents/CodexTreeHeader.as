@@ -41,9 +41,9 @@ package classes.UIComponents.ContentModuleComponents
 			this.addChild(_background);
 			
 			_label = new TextField();
-			_label.x = 16;
+			_label.x = 12;
 			_label.y = -5;
-			_label.width = 140;
+			_label.width = 152;
 			_label.height = 50;
 			_label.defaultTextFormat = UIStyleSettings.gCodexTreeHeaderFormatter;
 			_label.embedFonts = true;

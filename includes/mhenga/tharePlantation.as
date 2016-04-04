@@ -37,7 +37,12 @@ public function plantationFieldsBonus():Boolean
 	else msg += " The fields are deserted; the only sounds are the night insects and the distant, slightly terrifying strains of the Mhen’gan jungle.";
 	msg += "\n\n";
 	msg += "To the east are some low lying buildings which presumably function as dormitories. To the south, behind a tall wall, gate and manicured lawn, lies a multi-tiered white manor house. Its neo-classical design and spotless frontage, nestled within this tropical paradise, speaks only of immense opulence. On the wall next to the gate is a speaker and a brass sign which reads “THARE PLANTATION. A Snugglé enterprise”.";
-	msg += "\n\n";
+	
+	if(!CodexManager.entryUnlocked("Snugglé"))
+	{
+		msg += "\n\nYour Codex beeps with relevant information on the corporation.";
+		CodexManager.unlockEntry("Snugglé");
+	}
 	
 	output(msg);
 	
@@ -174,8 +179,9 @@ public function tharePlantationManorApproach(response:String = "none"):void
 			else
 			{
 				move("THARE MANOR");
+				showLocationName();
 				
-				showBust("ABLE", "DARNOCK");
+				showBust("DARNOCK", "ABLE");
 				
 				output("You press the button on the comms unit, and a moment later the thrum of approaching zil wings comes from the manor. Able" + pc.mf(" bows politely", " smiles at you shyly") + " as he opens the gate for you.");
 				output("\n\n<i>“Our young friend returns!”</i> beams Professor Darnock, coming down the steps as you approach the palatial grandeur of the manor. <i>“Come, come. I shall have some");
@@ -332,6 +338,7 @@ public function thareManorResponse(response:String = "none"):void
 			break;
 		case "finish yes":
 			showAble();
+			showName("GUEST\nROOM");
 			
 			output("You follow a supple, white-clad rump, a pair of wings the size of hoverboards and the scent of deep honey back out into the marble hall and up a grand staircase. Able leads you into a plush guest room, heavy on dark wood and lace. A large, claw-footed tub catches your eye in the adjoining washroom. Insects dance beyond the tall duraflex windows.");
 			output("\n\n<i>“Can I be of service in any way, [pc.Master]?”</i> murmurs the wasp twink, arms behind his back and gazing at you with half-lidded eyes and a soft smile. The smell of sweet pheromones is more intense in here than it was out on the airy veranda.");
@@ -432,6 +439,7 @@ public function thareAbleResponse(response:String = "none"):void
 			break;
 		case "bath":
 			showAble();
+			showName("GUEST\nROOM");
 			
 			output("The bath is a frightfully old-fashioned affair that doesn’t simply displace water into the deep, ceramic vessel, so you have to turn the taps and wait a few minutes for it to fill. Able mixes in some foam and then stands by with a towel as you discard your [pc.gear].");
 			if(!pc.isNude())
@@ -491,6 +499,7 @@ public function thareAbleResponse(response:String = "none"):void
 			break;
 		case "finish":
 			showAble();
+			showName("GUEST\nROOM");
 			
 			output("You allow yourself a few more minutes of luxuriating in the steamy, opaque water before rising out, gladly accepting the fluffy towel Able hands you. Once you make it clear you’d sooner dry yourself, he goes back to his position by the bedroom door. Massaging your hot, damp form, you eye his supple flesh tightening the fabric of his uniform as he goes.");
 			
@@ -504,6 +513,7 @@ public function thareAbleResponse(response:String = "none"):void
 			break;
 		case "sleep":
 			showAble();
+			showName("GUEST\nROOM");
 			
 			output("<i>“Thank you,”</i> you yawn, <i>“but that will be all.”</i>");
 			output("\n\nAble bows and leaves silently. You");
@@ -519,7 +529,8 @@ public function thareAbleResponse(response:String = "none"):void
 			break;
 		// If PC does not stay night
 		case "siesta":
-			showAble();
+			showDarnock(true);
+			showLocationName();
 			
 			output("You awaken a few hours later feeling thoroughly refreshed, if slightly fuzzy about the time of day. You take your time getting out of bed and dressing yourself, slightly reluctant to leave the plush opulence of the mansion for the muggy hostility of the Mhen’gan jungle. Darnock sees you off at the door, all smiles.");
 			output("\n\n<i>“The best of luck on your adventures, " + pc.mf("Sir", "Miss") + " Steele!”</i> he jollies. <i>“Do drop in again if you’re ever in the area.”</i>");
@@ -533,7 +544,8 @@ public function thareAbleResponse(response:String = "none"):void
 			break;
 		// If PC does stay night
 		case "stay night":
-			showAble();
+			showDarnock(true);
+			showLocationName();
 			
 			output("You awaken the next morning feeling thoroughly refreshed. You take your time getting out of bed and dressing yourself, slightly reluctant to leave the plush opulence of the mansion for the muggy hostility of the Mhen’gan jungle. Darnock sees you off at the door, all smiles.");
 			output("\n\n<i>“The best of luck on your adventures, " + pc.mf("Sir", "Miss") + " Steele!”</i> he jollies. <i>“Do drop in again if you’re ever in the area.”</i>");
@@ -563,6 +575,7 @@ public function thareSexResponse(response:String = "none"):void
 	var z:int = -1;
 	var i:int = 0;
 	var fromBoth:Boolean = (pc.statusEffectv4("Thare Manor Temp Value") != 0);
+	var cuntStretched:Boolean = false;
 	
 	switch (response)
 	{
@@ -719,7 +732,7 @@ public function thareSexResponse(response:String = "none"):void
 			randCunt = [];
 			for(i = 0; i < pc.vaginas.length; i++)
 			{
-				if(pc.vaginalCapacity(i) >= ppAble.cockVolume(0)) randCunt.push(i);
+				if((pc.vaginalCapacity(i) * 0.75) >= ppAble.cockVolume(0)) randCunt.push(i);
 			}
 			if(randCunt.length > 0) x = randCunt[rand(randCunt.length)];
 			if(x == -1) x = pc.biggestVaginaIndex();
@@ -803,11 +816,12 @@ public function thareSexResponse(response:String = "none"):void
 			output("\n\nYou are feeling lush and sensuous from the oral you just received, and the sight of the tight-bodied zil - combining with the sudden rush of heady lust that ensues when he peels back his groin armor and reveals the source of his pheromone fug - make your next series of actions completely irresistible.");
 			output("\n\nWithin thirty seconds you have him pinned down by the elbows, biting your [pc.lips] as you rut him senseless, [pc.butt] planted firmly on his pelvis, bed creaking briskly beneath you.");
 			
+			cuntStretched = (pc.vaginalCapacity(x) <= ppAble.cockVolume(0));
 			pc.cuntChange(x, ppAble.cockVolume(0));
 			
 			output(" You ride your [pc.vagina " + x + "] up his smooth, chubby erection again and again, jerking him into your slick walls energetically, spurred on by the overwhelming smell of deep, oozing honey. Able gasps and arches his back to this treatment, cute nipples on his flat under-chest crying out for the occasional pinch, his squirming sending delicious quakes through your wet sex.");
 			// Big pussy:
-			if(pc.vaginalCapacity(x) >= (ppAble.cockVolume(0) * 1.5)) output("\n\nTruth be told the little guy is lost in your man-eating cunt, his earnest five inches not at all able to fill you up - but the oral you made him give you first has made you wonderfully sensitized, each touch of his thickness against your walls sending delightful buzzes into your core, and you’re quite happy to tighten your thighs around his thin waist and work him ruthlessly hard.");
+			if(!cuntStretched) output("\n\nTruth be told the little guy is lost in your man-eating cunt, his earnest five inches not at all able to fill you up - but the oral you made him give you first has made you wonderfully sensitized, each touch of his thickness against your walls sending delightful buzzes into your core, and you’re quite happy to tighten your thighs around his thin waist and work him ruthlessly hard.");
 			// Small pussy:
 			else output("\n\nWith the galaxy so full of assholes with ludicrously sized schlongs, it’s nice to be able to enjoy a nicely sized dick for once. Able’s earnest five inches plugs your petite pussy up quite nicely, and the oral you made him give you first has made you wonderfully sensitized. You exhale hard as his spasmodic thickness sends delightful buzzes rifling into your core, wonderful to tighten your muscles around and work ruthlessly hard.");
 			// {merge}
@@ -837,7 +851,7 @@ public function thareSexResponse(response:String = "none"):void
 			randCunt = [];
 			for(i = 0; i < pc.vaginas.length; i++)
 			{
-				if(pc.vaginalCapacity(i) >= ppAble.cockVolume(0)) randCunt.push(i);
+				if((pc.vaginalCapacity(i) * 0.75) >= ppAble.cockVolume(0)) randCunt.push(i);
 			}
 			if(randCunt.length > 0) x = randCunt[rand(randCunt.length)];
 			if(x == -1) x = pc.biggestVaginaIndex();
@@ -939,6 +953,7 @@ public function thareSexResponse(response:String = "none"):void
 			output(".");
 			output("\n\nThat does the trick. Forgetting his nervousness, the slim zil-boy grips your [pc.butt] with the austere armor of his hands and thrusts his fervid cock past the lips and into the sweltering insides of your pussy with one single, enthusiastic movement.");
 			
+			cuntStretched = (pc.vaginalCapacity(x) <= ppAble.cockVolume(0));
 			pc.cuntChange(x, ppAble.cockVolume(0));
 			
 			output(" The fug of zil pheromones sweetly swamping your senses, as well as the dart of his hands and tongue over the most sensitive points of your body has made [pc.eachVagina] incredibly needy, enflamed by the urgent sex it was so recently left out of and desperate to be filled. You clench up with profound satisfaction around Able’s smooth, chubby erection and grab his cute, round butt, urging him on.");
@@ -947,7 +962,7 @@ public function thareSexResponse(response:String = "none"):void
 			else output(" gushing");
 			output(" [pc.femcum] freely around it.");
 			// Large capacity:
-			if(pc.vaginalCapacity(x) >= (ppAble.cockVolume(0) * 1.5)) output(" Of course his cute sissy prick can in no way gorge your massive breeding bay to satisfaction, but the little guy deserves credit for the way he jackhammers his slim hips into you with all his boyish energy. He moans breathily, wings twitching, when you flex your [pc.hips] and tighten up around him, trapping him within you and clenching up around his hot cock wetly; you slyly, lovingly slide a hand through his black, fuzzy hair, urging him on.");
+			if(!cuntStretched) output(" Of course his cute sissy prick can in no way gorge your massive breeding bay to satisfaction, but the little guy deserves credit for the way he jackhammers his slim hips into you with all his boyish energy. He moans breathily, wings twitching, when you flex your [pc.hips] and tighten up around him, trapping him within you and clenching up around his hot cock wetly; you slyly, lovingly slide a hand through his black, fuzzy hair, urging him on.");
 			// Small capacity:
 			else output(" His cute sissy prick is perfectly designed to plumb your tight cunt, and its incessant friction sends first shivers and then thrills of pure sensation tingling up your spine, making you squeal with pleasure, grasp his ass hard and squeeze your [pc.hips] around him, urging him on.");
 			output("\n\nEventually driven to frenzy by the feel and heft of you around his chubby, tender little prick, the impassioned zil manservant athletically heaves your [pc.thighs] upwards");
