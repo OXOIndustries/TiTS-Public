@@ -1,0 +1,155 @@
+package classes.GameData.Pregnancy.Handlers 
+{
+	import classes.GameData.Pregnancy.BasePregnancyHandler;
+	import classes.Creature;
+	import classes.PregnancyData;
+	import classes.kGAMECLASS;
+	import classes.GameData.StatTracking;
+	import classes.GLOBAL;
+	import classes.StorageClass;
+	import classes.Engine.Utility.rand;
+	import classes.Engine.Interfaces.ParseText;
+	
+	/**
+	 * ...
+	 * @author Gedan
+	 */
+	public class SydianPregnancyHandler extends BasePregnancyHandler
+	{
+		public function SydianPregnancyHandler() 
+		{
+			_handlesType = "SydianPregnancy";
+			_basePregnancyIncubationTime = 60 * 24 * 270; // 9 Months
+			_basePregnancyChance = 0.1;
+			_alwaysImpregnate = false;
+			_ignoreInfertility = false;
+			_ignoreFatherInfertility = false;
+			_ignoreMotherInfertility = false;
+			_allowMultiplePregnancies = false;
+			_canImpregnateButt = false;
+			_canImpregnateVagina = true;
+			_canFertilizeEggs = false;
+			_pregnancyQuantityMinimum = 1;
+			_pregnancyQuantityMaximum = 3;
+			_definedAverageLoadSize = 800;
+			_pregnancyChildType = GLOBAL.CHILD_TYPE_LIVE;
+			
+			_onDurationEnd = sydianOnDurationEnd;
+			
+			addStageProgression(_basePregnancyIncubationTime - (45 * 24 * 60), function(pregSlot:int):void {
+				kGAMECLASS.eventBuffer += "\n\nYour stomach lurches, and you stop what you're doing. It feels like you're going to puke. Urk... bleah- nope. Just as abruptly, the nausea recedes. What was that about?";
+			}, true);
+			
+			addStageProgression(_basePregnancyIncubationTime - (55 * 24 * 60), function(pregSlot:int):void {
+				kGAMECLASS.eventBuffer += "\n\nYou bend double with nausea again, your stomach violently uneasy. This is too persistent to be a common bug, and any toxic crap you ate would be vomited out by now. A suspicion begins to develop....";
+			}, true);
+			
+			//three - bad sickness, tiny growth 
+			addStageProgression(_basePregnancyIncubationTime - (90 * 24 * 60), function(pregSlot:int):void {
+				kGAMECLASS.eventBuffer += ParseText("\n\nYour queasy stomach has been complaining more and more; you can barely keep meals down." + (kGAMECLASS.pc.bellyRating() < 10 ? " Despite this, your [pc.belly] seems bigger, if anything." : ""));
+				kGAMECLASS.pc.bellyRatingMod += 10;
+				var pData:PregnancyData = kGAMECLASS.pc.pregnancyData[pregSlot];
+				pData.pregnancyBellyRatingContribution += 10;
+				
+			}, true);
+			
+			//four - start to show
+			addStageProgression(_basePregnancyIncubationTime - (120 * 24 * 60), function(pregSlot:int):void {
+				kGAMECLASS.eventBuffer += "\n\nThe cause of the terrible nausea you suffered is visible now - your womb is swollen with new life,";
+				if (kGAMECLASS.pc.bellyRating() < 20) kGAMECLASS.eventBuffer += " turning your belly into a cute bump.";
+				else kGAMECLASS.eventBuffer += " expanding your waistline a bit.";
+				kGAMECLASS.eventBuffer += " A very weak jerk or twitch can be felt from time to time. You're going to be a mother";
+				if (StatTracking.getStat("pregnancy/total births") > 0) kGAMECLASS.eventBuffer += " again";
+				kGAMECLASS.eventBuffer += "!";
+				
+				var pData:PregnancyData = kGAMECLASS.pc.pregnancyData[pregSlot];
+				kGAMECLASS.pc.bellyRatingMod += 10;
+				pData.pregnancyBellyRatingContribution += 10;
+			}, true);
+			
+			//five - getting jolly round - lactation begins
+			addStageProgression(_basePregnancyIncubationTime - (160 * 24 * 60), function(pregSlot:int):void {
+				kGAMECLASS.eventBuffer += ParseText("\n\nYour [pc.belly] " + (kGAMECLASS.pc.bellyRating() <= 30 ? "bulges with your growing fetus" : "is starting to show signs of pregnancy") + ", causing some trouble with your [pc.gear]. " + (kGAMECLASS.pc.isLactating() == false ? "Your nipples have also become tender and sometimes leak... you" : "You") +" feel like a mess, but for some reason you're happy.");
+				
+				kGAMECLASS.pc.bellyRatingMod += 10;
+				var pData:PregnancyData = kGAMECLASS.pc.pregnancyData[pregSlot];
+				pData.pregnancyBellyRatingContribution += 10;
+				
+				kGAMECLASS.pc.milkFullness += 15;
+				
+			}, true);
+			
+			//six - really out there - minor rfx penalty? - @200 days
+			addStageProgression(_basePregnancyIncubationTime - (200 * 24 * 60), function(pregSlot:int):void {
+				kGAMECLASS.eventBuffer += "\n\nCarrying your pregnant belly has become like toting a medicine ball, straining your " + (kGAMECLASS.pc.isTaur() ? "legs" : "back") +" and slowing your movements. The little life within is fairly mauling you with kicks and elbows" + (!kGAMECLASS.pc.isTaur() ? ", but rubbing your belly often seems to calm it down" : "") +". You wonder how much longer you'll have to wait.";
+				
+				var pData:PregnancyData = kGAMECLASS.pc.pregnancyData[pregSlot];
+				kGAMECLASS.pc.bellyRatingMod += 10 + (5 * pData.pregnancyQuantity);
+				pData.pregnancyBellyRatingContribution += 10 + (5 * pData.pregnancyQuantity);
+				
+				if (kGAMECLASS.pc.milkFullness < 10) kGAMECLASS.pc.milkFullness += 15;
+			}, true);
+			
+			//seven - hard to move - rfx penalty increases? - @240 days
+			addStageProgression(_basePregnancyIncubationTime - (240 * 24 * 60), function(pregSlot:int):void
+			{
+				kGAMECLASS.eventBuffer += "\n\nJudging from the size of your swollen belly, you guess that your baby will arrive within the next month. Or perhaps it would be accurate to say you <i>hope</i>. It's hard to stay active with the unwieldy weight - you continually fight back urges to lie in bed and do nothing.";
+				
+				var pData:PregnancyData = kGAMECLASS.pc.pregnancyData[pregSlot];
+				kGAMECLASS.pc.bellyRatingMod += (12 * pData.pregnancyQuantity);
+				pData.pregnancyBellyRatingContribution += (12 * pData.pregnancyQuantity);
+				
+				if (kGAMECLASS.pc.milkFullness < 10) kGAMECLASS.pc.milkFullness += 25;
+				if (kGAMECLASS.pc.milkMultiplier < 1.5) kGAMECLASS.pc.milkMultiplier += 0.15;
+				if (kGAMECLASS.pc.milkRate < 25) kGAMECLASS.pc.milkRate += 5;
+			}, true);
+			
+			//eight - any day now - @260 days
+			addStageProgression(_basePregnancyIncubationTime - (260 * 24 * 60), function(pregSlot:int):void {
+				kGAMECLASS.eventBuffer += "\n\nThe clamor in your distended womb worsens every day as the baby exercises its body. You expect the little hellion's birth within the week, and are torn between excitement and dread.";
+				
+				var pData:PregnancyData = kGAMECLASS.pc.pregnancyData[pregSlot];
+				kGAMECLASS.pc.bellyRatingMod += (12 * pData.pregnancyQuantity);
+				pData.pregnancyBellyRatingContribution += (12 * pData.pregnancyQuantity);
+				
+				if (kGAMECLASS.pc.milkFullness < 20) kGAMECLASS.pc.milkFullness += 25;
+				if (kGAMECLASS.pc.milkMultiplier < 1.5) kGAMECLASS.pc.milkMultiplier += 0.15;
+				if (kGAMECLASS.pc.milkRate < 25) kGAMECLASS.pc.milkRate += 5;
+			}, true);
+		}
+		
+		public static function sydianOnDurationEnd(mother:Creature, pregSlot:int, thisPtr:BasePregnancyHandler):void
+		{
+			var pData:PregnancyData = mother.pregnancyData[pregSlot];
+			
+			if (!mother.hasStatusEffect("Sydian Pregnancy Ends"))
+			{
+				mother.createStatusEffect("Sydian Pregnancy Ends", pData.pregnancyQuantity, pData.pregnancyBellyRatingContribution, pregSlot, 0, true);
+			}
+			
+			if (kGAMECLASS.eventQueue.indexOf(kGAMECLASS.sydianPregnancyEnds) == -1)
+			{
+				kGAMECLASS.eventQueue.push(kGAMECLASS.sydianPregnancyEnds);
+			}
+		}
+		
+		public static function sydianCleanupData():void
+		{
+			for (var i:int = 0; i < kGAMECLASS.pc.pregnancyData.length; i++)
+			{
+				var pData:PregnancyData = kGAMECLASS.pc.pregnancyData[i];
+				if (pData.pregnancyType == "SydianPregnancy")
+				{
+					StatTracking.track("pregnancy/sydian births", pData.pregnancyQuantity);
+					StatTracking.track("pregnancy/total births", pData.pregnancyQuantity);
+					kGAMECLASS.pc.bellyRatingMod -= pData.pregnancyBellyRatingContribution;
+					pData.reset();
+				}
+			}
+			
+			kGAMECLASS.pc.removeStatusEffect("Sydian Pregnancy Ends");
+		}
+		
+	}
+
+}

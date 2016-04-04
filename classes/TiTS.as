@@ -203,6 +203,7 @@
 		include "../includes/tarkus/sydianMale.as";
 		include "../includes/tarkus/taxi.as";
 		include "../includes/tarkus/theMess.as";
+		include "../includes/tarkus/sydianFemale.as";
 
 		//Third planet
 		include "../includes/newTexas/newTexas.as";
