@@ -321,7 +321,7 @@ public function flirtWithKellyAnyway():void {
 	author("Quiet Browser & LD");
 	output("You are not taking no for an answer. Without giving her time to react, you grab her by the shoulder and draw her into a kiss.");
 	output("\n\nStunned, she doesn’t put up any resistance as you thrust your [pc.tongue] into her mouth, tasting her as you maneuver yourself over her table.");
-	output("\n\nShe almost starts kissing you back before she comes to her senses and pushes you back. <i>\"[pc.name]! What the hell!? I already told you we can’t flirt-\"</i> You silence her with a finger, not bothering to grace her with reply. You want her, and you want her now! As a matter of fact... you know she wants you too, if the bulge in her skirt is any indication.");
+	output("\n\nShe almost starts kissing you back before she comes to her senses and pushes you back. <i>\"[pc.name]! What the hell!? I already told you we can’t flirt-\"</i> You silence her with a finger, not bothering to grace her with a reply. You want her, and you want her now! As a matter of fact... you know she wants you too, if the bulge in her skirt is any indication.");
 	output("\n\nYou duck under her table, ");
 	if(pc.reflexes() >= 40) output("nimbly unfastening her belt, ");
 	else output("struggling a bit before you can get her belt undone, ");

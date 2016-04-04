@@ -112,6 +112,9 @@
 		
 		[Embed(source = "../../../assets/images/npcs/jacques00/irellia.png", mimeType = "image/png")]
 		public var Bust_IRELLIA:Class;
+
+		[Embed(source = "../../../assets/images/npcs/adjatha/joyco_vending_machine.png", mimeType = "image/png")]
+		public var Bust_JOYCO_VENDING_MACHINE:Class;
 		
 		//[Embed(source = "../../../assets/images/npcs/adjatha/juro.png", mimeType = "image/png")]
 		//public var Bust_JURO:Class;
@@ -223,6 +226,7 @@
 		
 		[Embed(source = "../../../assets/images/npcs/yancy.png", mimeType = "image/png")]
 		public var Bust_YANCY:Class;
+
 		[Embed(source = "../../../assets/images/npcs/zodee.png", mimeType = "image/png")]
 		public var Bust_ZODEE:Class;
 		

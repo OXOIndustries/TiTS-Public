@@ -177,6 +177,10 @@
 		}
 		public function lollipopSuperBadEnd(target:Creature):void
 		{
+			kGAMECLASS.currentLocation = "GAME OVER";
+			kGAMECLASS.generateMap();
+			kGAMECLASS.showLocationName();
+			
 			clearOutput();
 			author("Adjatha");
 			output("Over the course of a few months, your life has changed completely. All thoughts of your father’s inheritance are gone. As are most of your other thoughts, in fact. All that remains is desire. The desire to experience sensation of any and every sort. In the first month you ran your body ragged fucking anything and everything you possibly could in ways that even Ultra Porn hasn’t explored.");

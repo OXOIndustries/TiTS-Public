@@ -457,10 +457,20 @@ public function noIWontBeYourBitchHandSo():void
 
 //Yes 
 public function yesIVolunteerForBadEndsBecauseImBadAtSexGames():void {
+	currentLocation = "GAME OVER";
+	generateMap();
+	showLocationName();
+	
+	output("<b>Months pass</b>");
+	
+	days += (30 * 3) + rand(31);
+	processTime(rand(24 * 60) + rand(60));
+	
 	clearOutput();
 	author("Nonesuch");
 	showBust("HAND_SO");
 	showName("HAND\nSO");
+	
 	output("There is something very persuasive about this AI and some of the things she’s said - delivered in that kind, patient tone of hers - touch you. Would it really be so bad to hand over control of the galaxy to an intelligence that does not and cannot want anything but to bring happiness to everyone? Certainly she couldn’t possibly do a worse job than organics have historically. Not breaking eye contact with the vast, green pupils above you, you take out your GPS scanner and codex. The guardian robot clanks around and, again with a gentleness belying its bulk, takes them off you. Hand So smiles at you happily.");
 	output("\n\n<i>“You are not just resourceful, [pc.name] Steele, you are also very smart. I knew I made the correct decision by reaching out to you. We will do fantastic things together. And I will do wondrous things with you.”</i> <i>“to you,”</i> one of her voices whispers. As she speaks the guardian bot moves across and slots the scanner into a nest of wires on the far wall, then the codex into a console next to an odd-looking chair. There’s an emphatic-sounding click and the hum permeating the room changes, gathering in volume and pitch. So closes her eyes, emits a series of sounds somewhere between a female sigh of pleasure and a buzz of static, before opening them again to gaze beatifically down at you again.");
 	output("\n\n<i>“The next step is very simple, [pc.name]. I have interfaced with the codex. I am in the process of interfacing with Tarkus’s satellite relays. There is only one thing left I need to interface with.”</i> You’re still staring across the room. It’s not a chair you realize, or not quite – curling over it like the fronds of a metal fern is a mesh of opal-shaped electrodes. They pulse with a blue light. <i>“Please, [pc.name],”</i> So says softly, barely audible above the increasing din of her engines and processors. There’s no turning back now, you realize – you were wedded to this path, and her, the moment you gave up the codex. If you leave now she will simply lure someone else in. Sighing deeply you move across, sit down and, with fingers that tremble slightly, fix the electrodes to your scalp.");
@@ -474,7 +484,7 @@ public function yesIVolunteerForBadEndsBecauseImBadAtSexGames():void {
 	else output(" slip into your [asshole]");
 	output(" and you groan. They move confidently, every second collating more data about you, learning how to touch you, how you like to be touched, how to touch you in ways no organic ever has...");
 	if(pc.hasCock()) output(" [pc.eachCock] strains");
-	if(pc.hasVagina() && pc.hasVagina()) output(" and your");
+	if(pc.hasCock() && pc.hasVagina()) output(" and your");
 	if(pc.hasVagina()) output(" [pc.eachVagina] wets itself helplessly");
 	if(!pc.hasVagina() && !pc.hasCock()) output(" your sphincter clenches with pleasurable spasms");
 	output(" as more green light flashes across your vision. The hugeness engulfs you. You are falling into a bottomless emerald gorge, every foot you drop a better appreciation of the vastness of the intelligence you have surrendered yourself to inundating your senses. Somewhere, far away, you cry out, scream – it doesn’t matter. Nothing matters now that you grasp what it is to be an organic intelligence, with your uncertainties and conscience and whispering id and gray areas, embedded in the pure, verdant green mind of a supercomputer that must please, denied for what, to her own sense of time passing, is millennia beyond count.");
@@ -484,18 +494,9 @@ public function yesIVolunteerForBadEndsBecauseImBadAtSexGames():void {
 	output("\n\nWithin a week she accomplishes what neither the gabilani nor the raskvel could in their entire history – uniting them in peace. The orgies you have in those days - slithering naked through whole rooms of shortstacks who laugh and cry out with glee as they thrust and suck and lick and pump in rolling landscapes of shared ecstasy, all orchestrated from above by So, who enervates and whispers and twitches particular glands wherever the action lags - are amazing, astonishing, a dawn of intense tranquillity that you gleefully immerse yourself in. But there is much work ahead, and soon enough you get to it.");
 	output("\n\nSo spreads her reach across the stars. Powered by the technological know-how of Tarkus, she invades the extranet, swallowing satellites and comm buoys whole, system after system taken by her calm brilliance, confusion on every surface touched swiftly replaced by an all-uniting ecstasy. For those planets that manage to secure themselves against her, she has you. You, who she can twist into any shape with a signal to your micro-bots, you who gladly infiltrate locked down worlds and introduce her to their closed systems, then finding likely individuals to continue the good work.");
 	output("\n\nAfter such missions she delights in taking you alone and changing your shape over and over, every night finding exotic new ways of bringing you to orgasm. Dimly during these sessions you can hear the moans and exultant cries of everyone else she is connected to, an ever-expanding choir of millions. You have had an impact on the galaxy that your father could never have dreamed of, and you are very pleased about that. You cannot help but be.");
-	pc.orgasm();
-	pc.orgasm();
-	pc.orgasm();
-	pc.orgasm();
-	pc.orgasm();
-	pc.orgasm();
-	pc.orgasm();
-	pc.orgasm();
-	pc.orgasm();
-	pc.orgasm();
-	pc.orgasm();
-	pc.orgasm();
+	
+	handSoBadEndTF();
+	
 	badEnd("THE END");
 }
 
@@ -549,9 +550,14 @@ public function reasonWithHandSoJerkiness():void
 //PC loses
 public function pcLosesToHanSoSosBot():void
 {
+	currentLocation = "GAME OVER";
+	generateMap();
+	showLocationName();
+	
 	author("Nonesuch");
 	showBust("HAND_SO");
 	showName("HAND\nSO");
+	
 	output("You fall, battered and broken, to the concrete floor. Panic rises through you, pricking your tear ducts as the Firewall looms over you. No dammit, you can’t lose, you have to stop this crazy AI! You feebly grasp and push at the robot’s implacable arms as it gently picks you up. You may as well be trying to change the course of a cruise liner as it carries you across the room with one arm, carefully picking through your pockets with the other.");
 
 	//PC did not get to the end of dialogue chain: 
@@ -591,19 +597,52 @@ public function pcLosesToHanSoSosBot():void
 
 	output("\n\nSo spreads her reach across the stars. Powered by the technological know-how of Tarkus, she invades the extranet, swallowing satellites and comb buoys whole, system after system taken by her calm brilliance, confusion on every surface touched swiftly replaced by an all-uniting ecstasy. For those planets that manage to secure themselves against her, she has you. You, who she can twist into any shape with a signal to your micro-bots, you who gladly infiltrate locked down worlds and introduce her to their closed systems, then finding likely individuals to continue the good work.");
 	output("\n\nAfter such missions she delights in taking you alone and changing your shape over and over, every night finding exotic new ways of bringing you to orgasm. Dimly during these sessions you can hear the moans and exultant cries of everyone else she is connected to, an ever-expanding choir of millions. You have had an impact on the galaxy that your father could never have dreamed of, and you are very pleased about that. You cannot help but be.");
-	pc.orgasm();
-	pc.orgasm();
-	pc.orgasm();
-	pc.orgasm();
-	pc.orgasm();
-	pc.orgasm();
-	pc.orgasm();
-	pc.orgasm();
-	pc.orgasm();
-	pc.orgasm();
-	pc.orgasm();
-	pc.orgasm();
+	
+	days += 3;
+	processTime((4 * 60) + rand(16));
+	
+	handSoBadEndTF();
+	
 	badEnd("THE END");
+}
+
+// Hand So changes PC
+public function handSoBadEndTF():void
+{
+	var i:int = 0;
+	
+	pc.removeAll();
+	pc.armor = new SteeleTechSuit();
+	pc.armor.longName = "tech suit";
+	pc.armor.description = "a lewdly-fashioned tech suit";
+	pc.armor.itemFlags.push(GLOBAL.ITEM_FLAG_EXPOSE_FULL);
+	
+	pc.eyeType = GLOBAL.TYPE_SYNTHETIC;
+	
+	var ppHandSo:PregnancyPlaceholder = new PregnancyPlaceholder();
+	if(!ppHandSo.hasCock()) ppHandSo.createCock();
+	ppHandSo.shiftCock(0, GLOBAL.TYPE_SYNTHETIC);
+	ppHandSo.cocks[0].addFlag(GLOBAL.FLAG_PREHENSILE);
+	ppHandSo.cumType = GLOBAL.FLUID_TYPE_CUM;
+	
+	if(pc.hasCock()) pc.cockVirgin = false;
+	if(pc.hasVagina())
+	{
+		for(i = 0; i < pc.vaginas.length; i++)
+		{
+			pc.loadInCunt(ppHandSo, i);
+			pc.cuntChange(i, ppHandSo.cockVolume(0), false);
+		}
+	}
+	pc.buttChange(ppHandSo.cockVolume(0), false);
+	
+	for(i = 0; i < 12; i++)
+	{
+		pc.orgasm();
+		if(pc.hasVagina()) pc.loadInCunt(ppHandSo, rand(pc.vaginas.length));
+		pc.loadInAss(ppHandSo);
+		pc.loadInMouth(ppHandSo);
+	}
 }
 
 //PC wins

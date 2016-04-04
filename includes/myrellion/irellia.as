@@ -904,7 +904,7 @@ public function ladyTimeSixtyNinesByFenbroxicoTheDestroyer():void
 	if(pc.hasClit()) output(", only occasionally allowing her oral organ to curl back to poke at [pc.oneClit]’s hood");
 	output(".");
 
-	output("\n\nYou wiggle excitedly, feeling altogether <i>juicy</i>, inside and out from her words. She likes how you taste! And her tongue is marvellous, slipping and sliding around as if it was inside a second home");
+	output("\n\nYou wiggle excitedly, feeling altogether <i>juicy</i>, inside and out from her words. She likes how you taste! And her tongue is marvelous, slipping and sliding around as if it was inside a second home");
 	if(pc.hasClit()) output(", providing just enough stimulation to your clit without overdoing it");
 	output(". You don’t have to ask her for anything - by the time you think of it, she’s already doing it!");
 	output("\n\nPulling back and subbing in your fingertips to give your tired tongue a rest, you call back while strands of honey dangle from your [pc.lips], <i>“");

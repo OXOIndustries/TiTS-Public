@@ -838,6 +838,24 @@ public function loseToRoyalIncuGoo():void
 	output("\n\n<i>“Welcome home,”</i> the goo purrs from all around you. <i>“I bet the queen will be here to fill me full of my daily eggs soon. If you’re lucky... and make me cum a bunch first... I might let some of her precious eggs slip into you, too!”</i>");
 
 	output("\n\nSomething tells you that no matter what you do, you’re going to spend the rest of your life being pumped full of the nyrean queen’s many, many eggs...");
+	
+	processTime(25 + rand(16));
+
+	pc.removeAll();
+	for (var i:int = 0; i < 24; i++)
+	{
+		if (pc.hasVagina())
+		{
+			for (var vi:int = 0; vi < pc.vaginas.length; vi++)
+			{
+				pc.cuntChange(vi, goocubator.cockVolume(0), false);
+				pc.loadInCunt(goocubator, vi);
+			}
+		}
+		pc.buttChange(goocubator.cockVolume(0), false);
+		pc.loadInAss(goocubator);
+	}
+	
 	badEnd();
 }
 
@@ -2023,6 +2041,12 @@ public function loseToQueensTaivra():void
 	output("\n\n<i>“I suppose that will do,”</i> Taivra says contentedly, reclining on her throne. Around her, her harem betas slump to the ground, extricating her tentacles from their bodies. <i>“Though not much in battle, you star-walkers seem to have some skill with your bodies, at least. If you think you can do that again... and again... perhaps I’ll keep you after all.”</i>");
 	output("\n\nShe snaps her fingers, and you feel a pair of nyrean hands on your shoulders, pulling you towards the throne room’s doors.");
 	output("\n\nAnd so ends the story of [pc.name] Steele, one true heir to Victor’s fortune. You’ll spend the rest of your life wondering what you could have been, had things been different. At least you have [rival.name] to commiserate with...");
+	
+	processTime(35 + rand(16));
+
+	pc.removeEquipment();
+	pc.loadInMouth(taivra);
+	
 	badEnd();
 }
 
@@ -2153,8 +2177,18 @@ public function soloTaivraBadEndPart2():void
 	{
 		showBust("TAIVRA","RIVAL");
 		output(" Your cousin, too, finds [rival.himHer]self at your mercy, a permanent fixture in your chambers by way of a solid steel chain and collar. Your first time together is... emotional, to say the least. There’s screaming, clawing, and eventually crying, but you have your way. Eventually [rival.name] learns to love [rival.hisHer] place - even thanks your for saving [rival.hisHer] life. It turns out that with a little effort and training, you couldn’t ask for a better ");
-		if(pc.hasCock()) output("cock-warmer");
-		else if(rival.hasCock() && pc.hasVagina()) output("cock to fill your pussy");
+		if(pc.hasCock())
+		{
+			output("cock-warmer");
+			pc.cockVirgin = false;
+		}
+		else if(rival.hasCock() && pc.hasVagina())
+		{
+			output("cock to fill your pussy");
+			var x:int = rand(pc.vaginas.length);
+			pc.cuntChange(x, rival.cockVolume(0), false);
+			pc.loadInCunt(rival, x);
+		}
 		else output("mate");
 		output(", as incestuous as your union is. More than once after a vigorous fuck session, when [rival.name] thinks you’re fast asleep, [rival.hisHer] head resting on your chest, you’re sure you hear [rival.himHer] say <i>“I love you.”</i>");
 	}
@@ -2164,6 +2198,33 @@ public function soloTaivraBadEndPart2():void
 	output(". You can’t say you’re too sad at night, especially when your loving queen takes you into her bed - nothing ever will make you feel more alive again as when Taivra claims you with her royal scepter, filling your body with the most amazing sensation, and new generations of life for your queen’s growing nation.");
 
 	output("\n\nIt’s not so bad, in the end.");
+	
+	days += 2;
+	processTime((20 * 60) + rand(16));
+	
+	pc.removeAll();
+	pc.armor = new DressClothes();
+	pc.armor.longName = "royal nyrea harem clothes";
+	pc.armor.description = "a set of royal nyrea harem clothes";
+	
+	pc.libido(25);
+	pc.(100);
+	for (var i:int = 0; i < 28; i++)
+	{
+		if (pc.hasVagina())
+		{
+			for (var vi:int = 0; vi < pc.vaginas.length; vi++)
+			{
+				pc.cuntChange(vi, taivra.cockVolume(0), false);
+				pc.loadInCunt(taivra, vi);
+			}
+		}
+		pc.buttChange(taivra.cockVolume(0), false);
+		pc.loadInAss(taivra);
+		pc.loadInMouth(taivra);
+		pc.orgasm();
+	}
+	
 	badEnd();
 }
 
@@ -3306,6 +3367,26 @@ public function princessBadEndPartDeus():void
 	output("\n\nYou wanted to very much.");
 	//[Next]
 	processTime(100);
+	
+	pc.removeAll();
+	var princess:Creature = new Princess();
+	if(pc.hasVagina())
+	{
+		for(var x:int = 0; x < pc.vaginas.length; x++)
+		{
+			pc.loadInCunt(princess, x);
+			pc.cuntChange(x, princess.cockVolume(0), false);
+		}
+	}
+	pc.buttChange(princess.cockVolume(0), false);
+	for(var i:int = 0; i < 12; i++)
+	{
+		if(pc.hasVagina()) pc.loadInCunt(princess, rand(pc.vaginas.length));
+		pc.loadInAss(princess);
+		pc.loadInMouth(princess);
+		pc.orgasm();
+	}
+	
 	clearMenu();
 	addButton(0,"Next",princessBadEndPartTrees);
 }

@@ -46,7 +46,8 @@
 			this.evasion = 0;
 			this.fortification = 0;
 			
-			itemFlags = [GLOBAL.ITEM_FLAG_EXPOSE_FULL];
+			itemFlags = [];
+			itemFlags.push(GLOBAL.ITEM_FLAG_EXPOSE_FULL);
 			
 			this.version = _latestVersion;
 		}

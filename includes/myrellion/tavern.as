@@ -320,7 +320,7 @@ public function stephIrsonEpisode4Part2():void
 	output("\n\nThe nyrea blinks, but accepts Steph’s hand and pulls herself to her feet. <i>“I guess it’s the same everywhere. Even where you offworlders are from, huh?”</i>");
 	output("\n\nSteph giggles. <i>“I don’t mind anymore, really. You sorta get used to everybody wanting to use you like a fucktoy eventually.”</i>");
 	output("\n\n<i>“Tell me about it!”</i> the nyrea smiles, folding her arms behind her back in a way that compels the camera to zoom in on her thrust-out chest, giving you a view of cream-pale flesh and black nipples that are still nice and stiff. <i>“Ugh, I’m so sick of...”</i>");
-	output("\n\nA moment later, the camera zooms up over her shoulder as another nyrea steps out, voice echoing off the stone: <i>“And what a marvellous fucktoy it is.”</i> The second nyrea is clutching a long spear and wearing padded chainmail that just barely conceals her bust... and the massive, half-hard cock bulging between her legs. The camera zooms in, ducking under Steph’s ass to get an angle on the beast that's only just restrained by the nyrea’s chainmail bikini bottom. <i>“If you two had kept wrestling much longer, I might have had to start jacking off. But now that I have your attention, I guess you can take care of my big, thick problem here with your... cute little fucktoy of a breeder body, can’t you?”</i>");
+	output("\n\nA moment later, the camera zooms up over her shoulder as another nyrea steps out, voice echoing off the stone: <i>“And what a marvelous fucktoy it is.”</i> The second nyrea is clutching a long spear and wearing padded chainmail that just barely conceals her bust... and the massive, half-hard cock bulging between her legs. The camera zooms in, ducking under Steph’s ass to get an angle on the beast that's only just restrained by the nyrea’s chainmail bikini bottom. <i>“If you two had kept wrestling much longer, I might have had to start jacking off. But now that I have your attention, I guess you can take care of my big, thick problem here with your... cute little fucktoy of a breeder body, can’t you?”</i>");
 	processTime(6);
 	pc.lust(3);
 	clearMenu();
@@ -507,6 +507,7 @@ public function vendingMachineButton(arg:int = 0):Boolean
 public function vendingMachineMenu():void
 {
 	clearOutput();
+	showBust("JOYCO_VENDING_MACHINE");
 	showName("VENDING\nMACHINE");
 	output("You walk over to the vending machine and give it a look. The main draw looks to be <i>JoyCo Power-up Potions</i>, guaranteed to double your pep. The small print spells out: <i>Only while cold. JoyCo is not responsible for food poisoning as a result of consuming warm beverages.</i> You might not be able to tote these wherever you go, but at least you can get a quick pick me up whenever you're feeling down, just five measly credits!");
 	processTime(1);
@@ -522,6 +523,7 @@ public function vendingMachineMenu():void
 public function buyAPowahPotion():void
 {
 	clearOutput();
+	showBust("JOYCO_VENDING_MACHINE");
 	showName("VENDING\nMACHINE");
 	author("Savin");
 	output("You swipe your Codex over a small scanner on the front. The vending machine beeps happily as it siphons off a few credits from your account and rumbles as the replicator inside it works. After a moment, an ice-cold yellow can pops out of the dispenser at the bottom. You take it and crack the tab open, and are instantly overwhelmed by the too-sweet taste of the sugary drink. The can is small enough to knock back its contents in a matter of moments, leaving a slightly burning aftertaste in your mouth as the <i>“potion”</i> goes down.");

@@ -100,6 +100,7 @@ public function statisticsScreen(showID:String = "All"):void
 		if(pc.hasHair())
 		{
 			if(pc.hairColor != "no") output2(" " + StringUtil.toDisplayCase(pc.hairColor) + ",");
+			if(pc.hasStatusEffect("Latex Hair")) output2(" Latex,");
 			if(pc.hasPerk("Mane")) output2(" Mane,");
 			output2(" " + GLOBAL.HAIR_TYPE_NAMES[pc.hairType]);
 			output2("\n<b>* Hair, Length:</b>");
@@ -2890,6 +2891,18 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["TIMES_ELECTROSTIMMED_BY_VKO"] != undefined) output2(", Got electro-stimulated");
 				variousCount++;
 			}
+			// Thare Plantation
+			if(flags["THARE_MANOR_ENTERED"] != undefined)
+			{
+				output2("\n<b><u>Thare Plantation</u></b>");
+				output2("\n<b>* Professor Darnock:</b> Met him");
+				output2("\n<b>* Able:</b> Met him");
+				if(flags["ABLE_BATHS"] != undefined) output2("\n<b>* Able, Times Bathed By: </b>" + flags["ABLE_BATHS"]);
+				if(flags["ABLE_BUTTSEXED"] != undefined) output2("\n<b>* Able, Times Buttfucked Him: </b>" + flags["ABLE_BUTTSEXED"]);
+				if(flags["ABLE_LICKNFUCKED"] != undefined) output2("\n<b>* Able, Times Licked By and Rode Him: </b>" + flags["ABLE_LICKNFUCKED"]);
+				if(flags["ABLE_BOTHWAYS"] != undefined) output2("\n<b>* Able, Times Rode and Buttfucked Him: </b>" + flags["ABLE_BOTHWAYS"]);
+				variousCount++;
+			}
 			// Pennybutts
 			if(flags["MET_PENNY"] != undefined)
 			{
@@ -3008,7 +3021,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["MET_VANAE_MAIDEN"] != undefined)
 				{
 					output2("\n<b>* Vanae Maiden, Times Encountered: </b>" + flags["MET_VANAE_MAIDEN"]);
-					if(StatTracking.getStat("characters/maiden vanae/cherrys popped") > 0) output2("<b>Vanae Maiden, Total Deflowered: </b>" + StatTracking.getStat("characters/maiden vanae/cherrys popped"));
+					if(StatTracking.getStat("characters/maiden vanae/cherrys popped") > 0) output2("\n<b>Vanae Maiden, Total Deflowered: </b>" + StatTracking.getStat("characters/maiden vanae/cherrys popped"));
 				}
 				if(flags["MET_VANAE_HUNTRESS"] != undefined)
 				{
