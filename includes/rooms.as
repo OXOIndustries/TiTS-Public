@@ -1227,8 +1227,7 @@ public function initializeRooms():void
 	//30.Between Lichens and Ironwoods
 	rooms["LICHENS AND IRONWOODS 1"] = new RoomClass(this);
 	rooms["LICHENS AND IRONWOODS 1"].roomName = "IRONWOODS\nAND LICHENS";
-	//rooms["LICHENS AND IRONWOODS 1"].description = "There's plenty of space to explore on this north-south causeway thanks to the lichen that seems to have eaten back most of the other plant-life. Tight clusters of trees block the way west, and another gigantic variety sprouts up to the east, covered in rust-red bark that closer inspection reveals to be actual iron. The lichens bathe everything but the trees to the east in gentle bioluminescence. They can't seem to grow on the ferrous coverings of the eastern trunks and die off that way.";
-	rooms["LICHENS AND IRONWOODS 1"].description = "While the path you now tread is fairly devoid of undergrowth due to some aggressive, alien lichens, there is no shortage of tree life to bar your way. A copse of gray trunks so thick that a child would be challenged to squeeze between them stands defiantly among the lichens to the southwest, even if there’s a path that circumnavigates their northern edge to your west. To the east, huge trees at least thirty feet around dot the landscape, covered in what appears to be rusty red bark. If you touch it, the red comes away like old rust, revealing a gleaming, metallic tree-trunk below. They appear to thin out a bit to the south-east - unadulterated light can be seen in that direction.";
+	rooms["LICHENS AND IRONWOODS 1"].description = "There's plenty of space to explore on this north-south causeway thanks to the lichen that seems to have eaten back most of the other plant-life. Tight clusters of trees block the way west, and another gigantic variety sprouts up to the east, covered in rust-red bark that closer inspection reveals to be actual iron. The lichens bathe everything but the trees to the east in gentle bioluminescence. They can't seem to grow on the ferrous coverings of the eastern trunks and die off that way.";
 	rooms["LICHENS AND IRONWOODS 1"].planet = "PLANET: MHEN'GA";
 	rooms["LICHENS AND IRONWOODS 1"].system = "SYSTEM: ARA ARA";
 	rooms["LICHENS AND IRONWOODS 1"].southExit = "LICHENS AT IRONWOODS 1";
@@ -1268,7 +1267,7 @@ public function initializeRooms():void
 	//33. An Intersection of Lichens and Ironwoods
 	rooms["LICHENS AT IRONWOODS 2"] = new RoomClass(this);
 	rooms["LICHENS AT IRONWOODS 2"].roomName = "IRONWOODS\nAND LICHENS";
-	rooms["LICHENS AT IRONWOODS 2"].description = "While the path you now tread is fairly devoid of undergrowth due to some aggressive, alien lichens, there is no shortage of tree life to bar your way. A copse of gray trunks so thick that a child would be challenged to squeeze between them stands defiantly among the lichens to the southwest, even if there's a path that circumnavigates their northern edge to your west. To the east, huge trees at least thirty feet around dot the landscape, covered in what appears to be rusty red bark. If you touch it, the red comes away like old rust, revealing a gleaming, metallic tree-trunk below.";
+	rooms["LICHENS AT IRONWOODS 2"].description = "While the path you now tread is fairly devoid of undergrowth due to some aggressive, alien lichens, there is no shortage of tree life to bar your way. A copse of gray trunks so thick that a child would be challenged to squeeze between them stands defiantly among the lichens to the southwest, even if there’s a path that circumnavigates their northern edge to your west. To the east, huge trees at least thirty feet around dot the landscape, covered in what appears to be rusty red bark. If you touch it, the red comes away like old rust, revealing a gleaming, metallic tree-trunk below. They appear to thin out a bit to the south-east - unadulterated light can be seen in that direction.";
 	rooms["LICHENS AT IRONWOODS 2"].planet = "PLANET: MHEN'GA";
 	rooms["LICHENS AT IRONWOODS 2"].system = "SYSTEM: ARA ARA";
 	rooms["LICHENS AT IRONWOODS 2"].northExit = "IRONWOODS 1";
@@ -2085,7 +2084,7 @@ public function initializeRooms():void
 	rooms["THARE FIELDS"].runOnEnter = plantationFieldsBonus;
 	
 	rooms["THARE MANOR"] = new RoomClass(this);
-	rooms["THARE MANOR"].roomName = "THARE\nPLANTATION";
+	rooms["THARE MANOR"].roomName = "THARE\nMANOR";
 	rooms["THARE MANOR"].description = "";
 	rooms["THARE MANOR"].planet = "PLANET: MHEN'GA";
 	rooms["THARE MANOR"].system = "SYSTEM: ARA ARA";

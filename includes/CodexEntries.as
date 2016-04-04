@@ -18,6 +18,8 @@ public function configureCodex():void
 	// This is how I'm proposing we split things up for now -- stuff things into a root category of the relevent system they belong too -- "Organic" etc might be a better long-term solution, but there'll be a lot
 	// of categories that likely won't be very full for a LONG time going down that route
 
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_LOCATION, "Planets", "Panara", panaraCodex);
+	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Anatae", anataeCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Ausar", ausarCodexEntry, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Daynar", daynarCodexEntry);
@@ -50,11 +52,11 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MHENGA, "Mhen'ga", "Venus Pitchers", venusPitcherCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MHENGA, "Mhen'ga", "Zil", zilCodexEntry);
 	
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_TARKUS, "Tarkus","Gabilani",gabilaniCodex);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_TARKUS, "Tarkus","Gray Goos",grayGooCodex);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_TARKUS, "Tarkus","Lapinara",lapinaraCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_TARKUS, "Tarkus","Raskvel",raskVelCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_TARKUS, "Tarkus","Sydians",sydianCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_TARKUS, "Tarkus","Gabilani", gabilaniCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_TARKUS, "Tarkus","Gray Goos", grayGooCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_TARKUS, "Tarkus","Lapinara", lapinaraCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_TARKUS, "Tarkus","Raskvel", raskVelCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_TARKUS, "Tarkus","Sydians", sydianCodexEntry);
 	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MYRELLION, "Myrellion", "Cockvines", cockvinesCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MYRELLION, "Myrellion", "Ganrael", crystalGooCodexEntry);
@@ -63,17 +65,27 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MYRELLION, "Myrellion", "Nyrea", nyreaCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MYRELLION, "Myrellion", "Red Myr", redMyrmedionCodexEntry);
 	
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items","Dumbfuck",dumbfuckCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items","Gush",gushCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items","The Treatment",treatmentCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ROBOT, "Androids", "V-Ko", VKoCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ROBOT, "Androids", "V-Ko IVs", VKoIVsCodex);
+	
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_PERSON, "Public Figures", "Bran Flazingan", branFlazinganCodex);
+	
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_PERSON, "Organizations", "Humphard Inc.", humphardIncCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_PERSON, "Organizations", "Snugglé", snuggleCodex);
+	
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items","Dumbfuck", dumbfuckCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items","Gush", gushCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items","The Treatment", treatmentCodexEntry);
 	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "SynthSheath", synthSheathCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "BionaHoles", bionaholeCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Grav Cuffs", gravCuffsCodex);
-	//9999 CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Holodom", holodomCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Holodom", holodomCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Suma Cream", sumaCreamCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "ClearYu", clearYuCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Rubber-Made", rubberMadeCodex);
+	
+	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Ships", "9999", shipNameCodex);
 	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Technology", "AI Systems", AISystemsCodexEntry, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Technology", "Item Mechanics", mechanicsCodex, true);
@@ -82,9 +94,6 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Dragon’s Hoard", dragonsHordeCodexStory, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Bull’s Strength", bullsStrength, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Diverting Jokes", DivertingTarkusJokesAndJests);
-
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ROBOT, "Androids", "V-Ko", VKoCodex);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ROBOT, "Androids", "V-Ko IVs", VKoIVsCodex);
 }
 
 public function codexHomeFunction():void
@@ -1637,6 +1646,7 @@ public function gravCuffsCodex():void
 	outputCodex("Grav-cuffs are the latest in space age bondage gear designed by Humphard Inc. The cuffs are packed full of features; nearly as many as some mainstream androids.\n\nThe most notable quality of the cuffs is that they are mass adjustable. Once attached, one can make the cuffs (and the cuffed individual) weigh as much or as little as they want. They are also uni-directional, so they can be used to attach the cuffed person to a roof, wall, or other surface with little effort.\n\nPremium cuffs come with several special features, such as a magni lock feature for fastening different cuffs together, voice activation, and a vocal locking system.\n\nGrav-cuffs are notoriously hard to break out of.");
 	if(silly) outputCodex(" They are made out of top secret alloy that Bran Flazingan has patented as \"Hardium\". The Humphard CEO claims the composition of the alloy was inspired by his erect penis, \"the hardest thing in the known galaxy.\"");
 	outputCodex("\n\n");
+	CodexManager.unlockEntry("Humphard Inc.");
 	CodexManager.viewedEntry("Grav Cuffs");
 }
 public function holodomCodex():void
@@ -1650,6 +1660,7 @@ public function holodomCodex():void
 	outputCodex(blockHeader("About:"));
 	outputCodex("Holodoms were one of Humphard's first adult products and largely considered their \"first big break\" in the industry. The unassuming metal ring is a one-use hardlight shield designed to be worn around the penis. Activated by a small touch sensor, it is comfortable to wear and small enough that its presence is barely felt by both parties.\n\nBefore the holodom, galactic citizens had to rely on other less enjoyable methods of safe sex. Traditional condoms reduced sensation, body modification and implants were troublesome, and oral supplements were not always cross-species compatible. The holodom offered a quick, easy way to have sex with practically any species without worrying about impregnation or disease.\n\nOn the release of seed, a holodom captures it within the field and keeps it stored in a hard light bubble. For incredibly virile users, this often creates a spectacular 'bubble' of semen that can stress the holodom and potentially cause it to burst.\n\nSome seedy dealers sell fake holodoms that, while holographic, are not 'hard light'. There are a number of customers who buy these products to dupe their sexual partners, often in a bid to get them pregnant.");
 	outputCodex("\n");
+	CodexManager.unlockEntry("Humphard Inc.");
 	CodexManager.viewedEntry("Holodom");
 }
 public function sumaCreamCodex():void
@@ -1690,6 +1701,7 @@ public function rubberMadeCodex():void
 	outputCodex("\n");
 	CodexManager.viewedEntry("Rubber-Made");
 }
+
 
 /* Technology */
 
@@ -1788,7 +1800,7 @@ public function Bess13CodexEntry():void
 }
 
 
-/* 9999 - Miscellaneous */
+/* Planets */
 
 public function panaraCodex():void
 {
@@ -1797,9 +1809,9 @@ public function panaraCodex():void
 	outputCodex(header("Panara"));
 	outputCodex("<b>Planet Name:</b> Panara");
 	outputCodex("\n<b>Size:</b> Small");
-	outputCodex("\n<b>Species:</b> Panaran Ausar (Thicker fur, wolf or husky-like), Humans.");
+	outputCodex("\n<b>Species:</b> Panaran Ausar (Thicker fur, wolf or husky-like), Humans");
 	outputCodex("\n<b>Climate:</b> Tundra / Arctic Highlands");
-	outputCodex("\n<b>Position:</b> The Lagoon Nebulae, Sagittarius Arm of the Milky Way Galaxy.");
+	outputCodex("\n<b>Position:</b> The Lagoon Nebulae, Sagittarius Arm of the Milky Way Galaxy");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("History:"));
 	outputCodex("Panara is a world hindered by low temperatures and slow growing seasons. What it does have going for it is strategic placement between three important solar systems and low land prices. Because of this, JoyCo built a factory on Panara during the tenth great planet rush in order to build its assist-bot range, taking advantage of not only the planet's galactic position but also its lax labor laws.\n\nA number of loyal ausar JoyCo employees able to handle the harsh winter climates have migrated to Panara over the years. While not technically a sub-species, the Ausar of Panara tend to have thicker fur and tend to be more ‘winter built’ than Ausar elsewhere in the galaxy. Humans, of course, go anywhere cash is to be made.\n\nSince JoyCo set up on Panara, several other enterprises have sprung up on the pivotal industry planet. While JoyCo has the largest factory on the planet, KihaCorp and Pyrite Industries also have industrial facilities there. It is not unusual for big corporations to hold military-related drills on Panara, taking advantage of the tundra planet’s wide open spaces and tight-lipped planetary government.\n\nPanara lacks a lot of culture and has no known recorded indigenous native races. If there is one, neither JoyCo nor the local government have ever recorded its existence.");
@@ -1808,21 +1820,25 @@ public function panaraCodex():void
 	// Might want to rename this to something else, since you probably need to name a lot of planets named as part of the Offbeatr campaign!
 	CodexManager.viewedEntry("Panara");
 }
+
+
+/* People */
+
 public function branFlazinganCodex():void
 {
 	clearOutputCodex();
 	showBust("9999");
 	outputCodex(header("Bran Flazingan"));
 	outputCodex("<b>Full Name:</b> Bran Humpterhard Flazingan");
-	outputCodex("\n<b>Titles:</b> CEO of HumpHard Inc, Humphard Flazingan, The Man with the Giant Wad, Anything-Goes Flazingan, Humpty Dumpty.");
-	outputCodex("\n<b>Species:</b> Human (debatably).");
-	outputCodex("\n<b>Gender:</b> Male.");
+	outputCodex("\n<b>Titles:</b> CEO of HumpHard Inc, Humphard Flazingan, The Man with the Giant Wad, Anything-Goes Flazingan, Humpty Dumpty");
+	outputCodex("\n<b>Species:</b> Human (debatably)");
+	outputCodex("\n<b>Gender:</b> Male");
 	outputCodex("\n<b>Height:</b> 4’ 11”");
 	outputCodex("\n<b>Weight:</b> 198.416 lbs or 90 kg");
 	outputCodex("\n<b>Hair:</b> Very little.");
-	outputCodex("\n<b>Eyes:</b> Blue.");
+	outputCodex("\n<b>Eyes:</b> Blue");
 	outputCodex("\n<b>Genitals:</b> Depends on the weekday.");
-	outputCodex("\n<b>Wings:</b> Private spacecraft.");
+	outputCodex("\n<b>Wings:</b> Private spacecraft");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Features:"));
 	outputCodex("Bran Flazingan is a living breathing example of a man with no looks wielding incredible charisma. Short and portly with a thinning head, his intense blue eyes are about the only alluring thing about him. The rest of his body is typically covered in a flashy suit, though he prefers wearing nothing at all.");
@@ -1836,15 +1852,19 @@ public function branFlazinganCodex():void
 	// Bran Flazingan: Imagine Donald Trump + Rance (AliceSoft Games) + Ron Jeremy. The name is a play on Zap Brannigan.
 	CodexManager.viewedEntry("Bran Flazingan");
 }
+
+
+/* Companies */
+
 public function humphardIncCodex():void
 {
 	clearOutputCodex();
 	showBust("9999");
 	outputCodex(header("Humphard Inc"));
-	outputCodex("<b>Company Name:</b> Humphard Incorporated.");
-	outputCodex("\n<b>Industry:</b> Sex product manufacturer and distributor.");
-	outputCodex("\n<b>Head Office:</b> Tantalus, Evira System.");
-	outputCodex("\n<b>Company Head:</b> CEO Bran Flazingan.");
+	outputCodex("<b>Company Name:</b> Humphard Incorporated");
+	outputCodex("\n<b>Industry:</b> Sex product manufacturer and distributor");
+	outputCodex("\n<b>Head Office:</b> Tantalus, Evira System");
+	outputCodex("\n<b>Company Head:</b> CEO Bran Flazingan");
 	outputCodex("\n\n");
 	outputCodex("Humphard Inc is a company founded by Bran Flazingan over two centuries ago with a single mission statement - \"sexual pleasure is the only intrinsic good.\" Since then Humphard has risen to become the galaxy's number one adult product manufacturer and produces products for almost every conceivable species from the core worlds to the rim.\n\nHumphard products are known for three things; quality, innovation, and pleasure. It takes great pride on always being on the cutting edge and hires countless 'testers' to trial company products.\n\nThe company always has a large number of employees and freelancers traveling about the galaxy to seek inspiration for their products. The most famous of these is none other than the CEO himself, Bran Flazingan, one of the universes' foremost \"sexplorers\" (See Codex Entry: Bran Flazingan).\n\nThe hardlight holographic condom, or 'Holodom', was one of Humphard's first products. The one-use hardlight 'shield' - produced by a small ring slipped around the shaft - revolutionized safe sex around the galaxy (See Codex Entry: \"Holodom\").\n\nAnother famous product is the everflowing cumsucker; a white, semen flavored sphere that can be sucked on for pleasure and literally 'melts in your mouth'. The product has sold incredibly well with cumvores. Popular flavors include Ballbatter, Zilmead, Ausar Ecstasy, LooRahn Lemon, and Rahnsberry.");
 	outputCodex("\n\n");
@@ -1854,5 +1874,21 @@ public function humphardIncCodex():void
 	outputCodex("\nVibrating Lube");
 	outputCodex("\nEverflowing Cumsucker");
 	outputCodex("\n\n");
+	CodexManager.unlockEntry("Bran Flazingan");
+	CodexManager.unlockEntry("Grav Cuffs");
+	CodexManager.unlockEntry("Holodom");
 	CodexManager.viewedEntry("Humphard Inc.");
 }
+public function snuggleCodex():void
+{
+	clearOutputCodex();
+	showBust("9999");
+	outputCodex(header("Snugglé"));
+	outputCodex("<b>Company Name:</b> Snugglé");
+	outputCodex("\n<b>Industry:</b> Agriculture and foods product manufacturer and distributor");
+	outputCodex("\n\n");
+	outputCodex("Snugglé are a food, beverage and agricultural business conglomerate. Originally founded in the Balle neutral trading zone from the shells of several other food concerns following the Great Protein Crisis of 2771, Snugglé expanded over the years and, following several large scale leveraged buy-outs, are the largest such company in the galaxy today. Although originally a producer of human and ausar food, a desire to be competitive in as many markets as possible has led Snugglé’s expansion into producing a wide variety of nutrition, and their logo is recognizable on almost any shop shelf in the galaxy.\n\nOne of the pioneers of corporate planet purchasing - partially because they were one of the few original companies with the assets to accomplish such a thing - Snugglé own 41 agri-worlds today, many of them terraformed specifically to provide maximal output. This vast source of home-grown produce provides them with an unprecedented market advantage within the U.G.C. The labor laws on these planets and other out-sourced Snugglé installations have drawn much criticism, however the company have made efforts to offset this with their commitment to prisoner rehabilitation and native outreach schemes.");
+	outputCodex("\n\n");
+	CodexManager.viewedEntry("Snugglé");
+}
+
