@@ -394,8 +394,9 @@
 					kGAMECLASS.days += 20 + rand(11);
 					kGAMECLASS.hours = rand(24);
 					kGAMECLASS.processTime(rand(60));
-					if(pc.ballDiameter() < 360) pc.ballSizeRaw = (360 * Math.PI);
+					pc.ballSizeRaw += ((360 * Math.PI) + rand(240));
 					if(pc.hasPerk("Bulgy")) pc.ballSizeRaw *= 1.25;
+					pc.createStatusEffect("Endowment Immobilized", 0,0,0,0,false,"Icon_Poison", "Your endowments prevent you from moving.", false, 0);
 					pc.lust(50);
 					
 					// [GAME OVER]
