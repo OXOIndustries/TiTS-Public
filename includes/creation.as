@@ -107,7 +107,7 @@ public function startCharacterCreation(e:Event = null):void
 	addButton(4,"Kui-Tan",confirmRaceChoice,"kui-tan","Kui-Tan Mother","Victor's child would have a kui-tan mother, a race known for its total lack of females and similarities to earth raccoons. Of course, that would make the mother a hermaphrodite - a woman with a vagina and a penis. Half kui-tan usually come into the world as a male or hermaphrodite with one bushy tail, fuzzy ears, and a knotty dick.");
 	//addButton(4,"Cheat",chooseHowPCIsRaised);
 	
-	if (CONFIG::CHARGEN == true)
+	if (GENERATED_CHARACTER["disabled"] == undefined)
 	{
 		addButton(5, "Engineered", testCharGenSelection, undefined, "Engineered Race", "A wholly custom genetically engineered child. A designer babby.");
 	}
