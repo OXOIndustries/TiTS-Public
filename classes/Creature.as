@@ -6467,25 +6467,25 @@
 			}
 			return cocks[arg].cLengthFlaccid();
 		}
-		public function thickestCock(): Number {
+		public function thickestCock():int {
 			if (cocks.length == 0) return 0;
-			var counter: Number = cocks.length;
-			var index: Number = 0;
+			var counter: int = cocks.length;
+			var index: int = 0;
 			while (counter > 0) {
 				counter--;
 				if (cocks[index].thickness() < cocks[counter].thickness()) index = counter;
 			}
 			return index;
 		}
-		public function thinnestCock():Number {
-			if (cocks.length == 0) return -1;
+		public function thinnestCock():int {
+			if (cocks.length <= 0) return -1;
 			if (cocks.length == 1) return 0;
 			
 			var foundCock:int = 0;
 			
 			for (var i:int = 0; i < cocks.length; i++)
 			{
-				if ((cocks[i] as CockClass).thickness() < (cocks[foundCock] as CockClass).thickness())
+				if (cocks[i].thickness() < cocks[foundCock].thickness())
 				{
 					foundCock = i;
 				}
@@ -6494,14 +6494,15 @@
 			return i;
 		}
 		public function thinnestCockThickness():Number {
+			if (cocks.length <= 0) return -1;
+			
 			var foundCock:int = thinnestCock();
 			
-			if (foundCock >= 0) return (cocks[foundCock] as CockClass).thickness();
-			return -1;
+			return cocks[foundCock].thickness();
 		}
 		public function totalGirth(): Number {
 			if (cocks.length == 0) return 0;
-			var counter: int = 0;
+			var counter: Number = 0;
 			for (var x: int = 0; x < cocks.length; x++) {
 				counter += cocks[x].cLength();
 			}
