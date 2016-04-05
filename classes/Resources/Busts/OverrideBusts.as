@@ -223,6 +223,16 @@
 		
 		[Embed(source = "../../../assets/images/npcs/jacques00/varmint.png", mimeType = "image/png")]
 		public var Bust_VARMINT:Class;
+
+		[Embed(source = "../../../assets/images/npcs/adjatha/vi.png", mimeType = "image/png")]
+		public var Bust_VI:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/vi_nude.png", mimeType = "image/png")]
+		public var Bust_VI_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/vi_large.png", mimeType = "image/png")]
+		public var Bust_VI_LARGE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/vi_large_nude.png", mimeType = "image/png")]
+		public var Bust_VI_LARGE_NUDE:Class;
+
 		
 		[Embed(source = "../../../assets/images/npcs/yancy.png", mimeType = "image/png")]
 		public var Bust_YANCY:Class;

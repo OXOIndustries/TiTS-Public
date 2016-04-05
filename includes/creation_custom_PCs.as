@@ -589,30 +589,192 @@ public function customPCCheck(TF:Boolean = false):Boolean
 		According To Offbeatr, I pledged the amount just a few days shy of 2 months ago. If that is within the time frame, then I have included the character information below. Not sure if you wanted a name as well or just the detailed "mini-overview" but I have included everything, short of her background, below.*/
 		case "taki":
 			pc.tallness = 77;
+			pc.scaleColor = "blue";
 			if(!pc.hasCock()) pc.createCock();
 			if(!pc.hasVagina()) pc.createVagina();
-						
+			pc.faceType = GLOBAL.TYPE_DRACONIC;
+			pc.skinType = GLOBAL.SKIN_TYPE_SCALES;
+			pc.legType = GLOBAL.TYPE_DRACONIC;
+			pc.clearLegFlags();
+			pc.addLegFlag(GLOBAL.FLAG_DIGITIGRADE);
+			pc.addLegFlag(GLOBAL.FLAG_SCALED);
+			pc.tailCount = 1;
+			pc.tailType = GLOBAL.TYPE_DRACONIC;
+			pc.clearTailFlags();
+			pc.addTailFlag(GLOBAL.FLAG_SCALED);
+			pc.addTailFlag(GLOBAL.FLAG_LONG);
+			pc.addTailFlag(GLOBAL.FLAG_PREHENSILE);
+			pc.armType = GLOBAL.TYPE_DRACONIC;
+			pc.clitLength = 0.5;
+			pc.balls = 2;
+			pc.ballSizeRaw = 3.5;
+			pc.breastRows[0].breastRatingRaw = 3;
+			pc.cocks[0].cLengthRaw = 20;
+			pc.shiftCock(0, GLOBAL.TYPE_DRACONIC);
+			pc.cumMultiplierRaw = 40;
+			pc.ballEfficiency = 150;
 			break;
-		case "":
-			
+		/*Alexia, Female, normal genitals, Futa Optional, D cup breast, Kind, Pansexual, piercings and Tattooes, Not a total slut. (Space Pirate with a strict moral code, if possible) =), jelvegaa@hotmail.com*/
+		case "alexia":
+			if(pc.hasVagina()) pc.createVagina();
+			pc.breastRows[0].breastRatingRaw = 4;
 			break;
-		case "":
-			
+		/*Name: Brenda Reynolds
+		Age: 35
+		Species: Pig/Boar
+		Gender: Female
+		Height: 6 Ft 5 Inches
+		Weight: 410 lbs.
+		Breast Size: 44DD On First (Top) Row
+		Breast Orientation: Ten Total Breasts/Five Rows Of Two/Get One Cup Size Smaller In Size As You Go Down
+		Genitalia Type: Anthro Vagina, Human In Appearance, Plumper Lips/Labia Than Average. Two Inch Clitoris
+		Temperament: Confrontational. Prone To Immense Mood Swings And Possible Violence
+		Enjoys - Being Pregnant
+		Loathes - Domineering Men
+		If I have left anything you needed for the custom character out, please let me know (assuming I even made the cut to get one)!*/
+		//9999 needs pig parts!
+		case "brenda":
+			pc.tallness = 77;
+			pc.thickness = 100;
+			pc.breastRows[0].breastRatingRaw = 5;
+			pc.createBreastRow();
+			pc.createBreastRow();
+			pc.createBreastRow();
+			pc.createBreastRow();
+			pc.breastRows[1].breastRatingRaw = 4;
+			pc.breastRows[2].breastRatingRaw = 3;
+			pc.breastRows[3].breastRatingRaw = 2;
+			pc.breastRows[4].breastRatingRaw = 1;
+			if(!pc.hasVagina()) pc.createVagina();
+			pc.clitLength = 2;
+			if(pc.femininity < 70) pc.femininity = 70;
 			break;
-		case "":
-			
+		/*Warkonst Height: 1,75m
+		Hair: Short, Black
+		Sex: Futa with 35cm Horse cock and 15cm clit
+		Breasts: NN-Cup 10cm nipples
+		Body: Average
+		Skin Color: Demonic Red
+		Gift: Lots of Jizz
+		Bat Wings
+		2 Demon Horns
+		Horn protruding from heels
+		Succubus Tail
+		Snake Tongue*/
+		case "warkonst":
+			pc.hairColor = "black";
+			pc.hairLength = 1;
+			if(!pc.hasCock()) pc.createCock();
+			pc.shiftCock(0,GLOBAL.TYPE_EQUINE);
+			pc.cocks[0].cLengthRaw = 13.7;
+			pc.clitLength = 6;
+			pc.breastRows[0].breastRatingRaw = 49;
+			pc.skinTone = "red";
+			pc.cumMultiplierRaw = 40;
+			pc.ballEfficiency = 150;
+			pc.horns = 2;
+			pc.hornType = GLOBAL.TYPE_DEMONIC;
+			pc.hornLength = 3;
+			pc.legType = GLOBAL.TYPE_SUCCUBUS;
+			pc.legCount = 2;
+			pc.clearLegFlags();
+			pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
+			pc.addLegFlag(GLOBAL.FLAG_HEELS);
+			pc.tailType = GLOBAL.TYPE_DEMONIC;
+			pc.tailCount = 1;
+			pc.clearTailFlags();
+			pc.addTailFlag(GLOBAL.FLAG_PREHENSILE);
+			pc.addTailFlag(GLOBAL.FLAG_LONG);
+			if(pc.femininity < 80) pc.femininity = 80;
+			pc.wingType = GLOBAL.TYPE_DEMONIC;
+			pc.tongueType = GLOBAL.TYPE_NAGA;
+			pc.clearTongueFlags();
+			pc.addTongueFlag(GLOBAL.FLAG_LONG);
+			pc.addTongueFlag(GLOBAL.FLAG_PREHENSILE);
 			break;
-		case "":
-			
+		/*Sablecaballero Human futanari with curvy body, red long hair, DD breasts, human dick, and all pregnancy/cum production perks.*/
+		case "sablecaballero":
+			if(!pc.hasCock()) pc.createCock();
+			if(!pc.hasVagina()) pc.createVagina();
+			pc.hairLength = 12;
+			pc.hairColor = "red";
+			if(pc.femininity < 70) pc.femininity = 70;
+			pc.breastRows[0].breastRatingRaw = 5;
+			pc.cumMultiplierRaw = 10;
+			pc.ballEfficiency = 30;
+			pc.pregnancyIncubationBonusMotherRaw = 3;
+			pc.hipRatingRaw = 7;
+			pc.buttRatingRaw = 6;
 			break;
-		case "":
-			
+		/*Name: Hikari
+		Female, no penis, normal (virgin) vagina, one row of A-cup breasts
+		4'0", low muscle definition
+		High INT, high SPD, very high fertility rating
+		Pale skin, elfin ears, otherwise human appearance
+		If we're allowed to request things that don't exist (with no guarantee, of course,) maybe some perk or tf that sends her into heat periodically? Otherwise, maybe just starting with some coal (or TiTS equivalent heat-inducing item.)*/
+		case "hikari":
+			if(pc.hasCock()) pc.removeCock(0);
+			if(!pc.hasVagina()) pc.createVagina();
+			if(pc.femininity < 70) pc.femininity = 70;
+			pc.breastRows[0].breastRatingRaw = 1;
+			pc.tallness = 48;
+			pc.intelligence(5);	
+			pc.reflexes(5);
+			pc.aim(5);
+			pc.earType = GLOBAL.TYPE_SYLVAN;
+			pc.earLength = 4+rand(5);
+			pc.tone = 30;
+			pc.skinTone = "fair";
 			break;
-		case "":
-			
+		/*Thanyl Feline, snow-leopard with lynx colouration including ear-tufts if possible, 189 cm tall, lithe and feminine build, ass-length silky blonde hair, red eyes and silver-rimmed rectangular glasses.
+		16 cm long penis, 5 cm thick, humanoid, pink and uncut.
+		Ping-pong ball-sized testicles in a white-furred sac.
+		Uncountable number of red, semi-translucent tentacles extendible from anywhere.
+		Perks: Equivalent of sadist and masochist; openings instantly tighten back up to virginal after sex; equivalent of whispered; equivalent of double attack.*/
+		case "thanyl":
+			pc.earType = GLOBAL.TYPE_FELINE;
+			pc.faceType = GLOBAL.TYPE_FELINE;
+			pc.armType = GLOBAL.TYPE_FELINE;
+			pc.clearArmFlags();
+			pc.addArmFlag(GLOBAL.FLAG_FURRED);
+			pc.legType = GLOBAL.TYPE_FELINE;
+			pc.legCount = 2;
+			pc.clearLegFlags();
+			pc.addLegFlag(GLOBAL.FLAG_FURRED);
+			pc.addLegFlag(GLOBAL.FLAG_DIGITIGRADE);
+			pc.tailType = GLOBAL.TYPE_FELINE;
+			pc.clearTailFlags();
+			pc.addTailFlag(GLOBAL.FLAG_FURRED);
+			pc.addTailFlag(GLOBAL.FLAG_LONG);
+			pc.addTailFlag(GLOBAL.FLAG_PREHENSILE);
+			pc.tallness = 74;
+			pc.thickness = 20;
+			pc.tone = 50;
+			pc.hairLength = 38;
+			pc.hairColor = "blonde";
+			pc.furColor = "white";
+			pc.eyeColor = "red";
+			if(pc.femininity < 70) pc.femininity = 70;
+			if(!pc.hasCock()) pc.createCock();
+			pc.cocks[0].cLengthRaw = 6.2;
+			pc.cocks[0].addFlag(GLOBAL.FLAG_FORESKINNED);
+			pc.ballSizeRaw = 4.5;
+			pc.balls = 2;
 			break;
-		case "":
-			
+		/*Trypticon2008 6 foot 2 inches. medium long red hair. slender but not skinny. Her skin and face are like from Neytiri in Avatar. Flexible enough to self felate her. 2 hidden retractable tentacle on her back (stomach height) that can extend to 2 meters and are 5cm thick. Both have a penis like phallus and the end and are dripping with a slimy lubricant. (can be used for self insertion/pleasure). She has a tail just above her butt that is 1 meter in lenght and is 5 cm at the base and 3cm at the tip what has a phallus shape. Tentacles/tail can impregnate others but not her self.*/
+		case "trypticon":
+			pc.tallness = 74;
+			pc.hairLength = 6;
+			pc.hairColor = "red";
+			pc.thickness = 37;
+			pc.hairType = GLOBAL.HAIR_TYPE_TENTACLES;
+			pc.clearTailFlags();
+			pc.tailType = GLOBAL.TYPE_COCKVINE;
+			pc.tailCount = 1;
+			pc.addTailFlag(GLOBAL.FLAG_PREHENSILE);
+			pc.addTailFlag(GLOBAL.FLAG_LONG);
+			pc.tailGenital = GLOBAL.TAIL_GENITAL_COCK;
+			pc.tailGenitalArg = GLOBAL.TYPE_HUMAN;
 			break;
 		case "":
 			

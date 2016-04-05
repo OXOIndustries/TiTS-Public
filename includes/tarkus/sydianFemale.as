@@ -389,9 +389,12 @@ public function sydianFemalePCVictory():void
 		}
 
 		if (!pc.hasCock()) addDisabledButton(0, "Fuck Her", "Fuck Her", "You don't have a wiener!");
-		else if (pc.cockThatFits(enemy.vaginalCapacity()) == -1) addDisabledButton(0, "Fuck Her", "Fuck Her", "Your wiener is too big! It's a jumbo wiener!");
-		else if (pc.thinnestCockThickness() > 4 && !enemy.hasStatusEffect("Unarmored")) addDisabledButton(0, "Fuck Her", "Fuck Her", "You could fit your wiener inside if her body armor weren't in the way...");
-		else addButton(0, "Fuck Her", femSydianFuck, undefined, "Fuck Her", "Stick your wiener in it.");
+		else
+		{
+			if (pc.cockThatFits(enemy.vaginalCapacity()) == -1) addDisabledButton(0, "Fuck Her", "Fuck Her", "Your wiener is too big! It's a jumbo wiener!");
+			else if (pc.thinnestCockThickness() > 4 && !enemy.hasStatusEffect("Unarmored")) addDisabledButton(0, "Fuck Her", "Fuck Her", "You could fit your wiener inside if her body armor weren't in the way...");
+			else addButton(0, "Fuck Her", femSydianFuck, undefined, "Fuck Her", "Stick your wiener in it.");
+		}
 
 		addButton(1, "Get Licked", femSydianEatsButtholes, undefined, "Get Licked", "Make her service your " + (pc.hasVagina() ? "vagina" : "asshole"));
 
@@ -641,7 +644,7 @@ public function femSydianCallOthers():void
 
 	var isFemale:Boolean = (pc.hasCock() || pc.hasTailCock() || pc.hasNippleCocks) && rand(2) == 0;
 
-	var emf:Function = function(m:String, f:String) { return (isFemale ? f : m); }
+	var emf:Function = function(m:String, f:String):String { return (isFemale ? f : m); }
 
 	output("\n\nThe woman looks mortified. After a minute, a clatter of quick-rusting metal junk fanfares another sydian:");
 	if (isFemale) output(" a smug, shapely female.");
