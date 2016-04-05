@@ -107,25 +107,23 @@ public function startCharacterCreation(e:Event = null):void
 	addButton(4,"Kui-Tan",confirmRaceChoice,"kui-tan","Kui-Tan Mother","Victor's child would have a kui-tan mother, a race known for its total lack of females and similarities to earth raccoons. Of course, that would make the mother a hermaphrodite - a woman with a vagina and a penis. Half kui-tan usually come into the world as a male or hermaphrodite with one bushy tail, fuzzy ears, and a knotty dick.");
 	//addButton(4,"Cheat",chooseHowPCIsRaised);
 	
-	CONFIG::CHARGEN
+	if (CONFIG::CHARGEN == true)
 	{
 		addButton(5, "Engineered", testCharGenSelection, undefined, "Engineered Race", "A wholly custom genetically engineered child. A designer babby.");
 	}
 }
 
-CONFIG::CHARGEN
+public function testCharGenSelection():void
 {
-	public function testCharGenSelection():void
+	clearOutput();
+	output("This is just some test stuff to prove the system works at a base level.");
+	
+	for (var prop:String in GENERATED_CHARACTER)
 	{
-		clearOutput();
-		output("This is just some test stuff to prove the system works at a base level.");
-		
-		for (var prop:String in GENERATED_CHARACTER)
-		{
-			output("\n\n<b>" + prop + ":</b> " + GENERATED_CHARACTER[prop]);
-		}
+		output("\n\n<b>" + prop + ":</b> " + GENERATED_CHARACTER[prop]);
 	}
 }
+
 
 public function confirmRaceChoice(race:String = "human"):void {
 	clearOutput();
