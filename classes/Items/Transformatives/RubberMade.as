@@ -76,7 +76,7 @@
 					//{if the player has non-latex hair, they gain latex hair. The player gains a rank of Latex Skin}
 				}
 				//Hair
-				if(!pc.hasStatusEffect("Latex Hair"))
+				if(pc.hairLength >= 3 && !pc.hasStatusEffect("Latex Hair"))
 				{
 					output("\n\nYour fingers run over sticky goop in your hair, despairing at the thought of trying to get it out. As your pull them back, blobs of gooey latex form loose webs from your hand to your head. The longer you look at the drooping slime, however, the thicker it gets, as if growing. You shake off the muck and pat up and down your [pc.hairsDescript]. The [pc.hair] seems almost entirely covered by the thin putty of your bubblegum, rapidly cooling in a glistening sheath. Your hand comes away dry and you shake your head at the added weight of your freshly lacquered mane.");
 					pc.createStatusEffect("Latex Hair");
@@ -245,6 +245,7 @@
 			{
 				target.orgasm();
 			}
+			target.createStatusEffect("Latex Hair");
 			target.hairColor = "black";
 			target.skinTone = "black";
 			target.skinType = GLOBAL.SKIN_TYPE_LATEX;
