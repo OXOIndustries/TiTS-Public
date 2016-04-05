@@ -5011,7 +5011,7 @@ public function aboutBess1():void
 	output("\n\nTelling [bess.himHer] is only going to make [bess.himHer] confused so you instruct [bess.himHer] to update [bess.hisHer] internal clock to the correct year. [bess.name] doesn’t ask questions and obediently complies with your request.");
 
 	processTime(15+rand(5));
-	CodexManager.unlockEntry("Panara");
+	//CodexManager.unlockEntry("Panara");
 
 	clearMenu();
 	addButton(0, "Next", talkToBessAboutThings);
@@ -5031,7 +5031,7 @@ public function aboutBess2():void
 	output("\n\nIt seems if you want to know more about JoyCo or Panara you can ask her, since this information was stored along with [bess.hisHer] core programming.");
 
 	processTime(10+rand(5));
-	CodexManager.unlockEntry("Panara");
+	//CodexManager.unlockEntry("Panara");
 
 	clearMenu();
 	addButton(0, "Next", talkToBessAboutThings);
@@ -5051,7 +5051,7 @@ public function aboutBess3():void
 	output("\n\n<i>“Other than that there are no other methods that come to mind. It’s a good thing that I am not suffering from data loss!”</i>");
 
 	processTime(10+rand(10));
-	CodexManager.unlockEntry("Panara");
+	//CodexManager.unlockEntry("Panara");
 
 	clearMenu();
 	addButton(0, "Next", talkToBessAboutThings);
@@ -5075,7 +5075,7 @@ public function aboutBess4():void
 	output("\n\n<i>“Someday I would very much like to show you Panara, "+ bessPCName() +". The JoyCo factory there is a marvel to behold, and there are sure to be many products worth your while.”</i>");
 
 	processTime(10+rand(10));
-	CodexManager.unlockEntry("Panara");
+	//CodexManager.unlockEntry("Panara");
 
 	clearMenu();
 	addButton(0, "Next", talkToBessAboutThings);
@@ -5118,7 +5118,7 @@ public function aboutBess6():void
 	output("\n\n<i>“Probably because a VI is very bad at faking an orgasm.”</i> It sounds like a quip, but apparently it’s the truth from [bess.hisHer] expression. <i>“... Not that I </i>do<i> fake orgasms - my pleasure feedback sensors are set too high for that - but VI’s are terrible at reading what their end user wants.”</i> [bess.HeShe] sounds more than a little haughty. <i>“... I mean, unless you’re into non-tailored sexual relief.”</i>");
 
 	processTime(10+rand(10));
-	CodexManager.unlockEntry("Panara");
+	//CodexManager.unlockEntry("Panara");
 
 	clearMenu();
 	addButton(0, "Next", talkToBessAboutThings);
@@ -6979,7 +6979,7 @@ public function bessEvent7DrinkII():void
 	output("\n\n<i>“How can you ever forgive me? You should send me back to Panara to be dismantled. Only really bad AIs break the second directive, I can’t believe I was so careless!”</i> [bess.HeShe] looks at you with wide [bess.eyeColor] eyes, truly and genuinely mortified at the fact [bess.heShe] brought you even the smallest bit of harm.");
 	if (bess.earType != GLOBAL.TYPE_HUMAN) output(" [bess.HisHer] [bess.ears] are visibly drooping, further emphasising [bess.hisHer] remorse.");
 	
-	CodexManager.unlockEntry("Panara");
+	//CodexManager.unlockEntry("Panara");
 
 	clearMenu();
 	addButton(0, "Forgive", bessEvent7DrinkForgive);
@@ -10069,7 +10069,7 @@ public function bessDate4():void
 
 	output("\n\nYou don’t notice [bess.name] reaching down to scoop up a thick clump of snow, balling it up, and throwing it at your side with a wet thump. Suddenly [bess.heShe]’s sounding the war trumpets. <i>“Snowball fight!”</i>");
 	
-	CodexManager.unlockEntry("Panara");
+	//CodexManager.unlockEntry("Panara");
 
 	//[FragYeah] [NoWay]
 	clearMenu();
