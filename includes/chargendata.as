@@ -1,0 +1,1 @@
+public var GENERATED_CHARACTER:Object = { characterName: "Default", origRace: "human", titSize: "0"};

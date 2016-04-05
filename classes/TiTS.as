@@ -271,6 +271,8 @@
 		include "../includes/events/karaquest2/rooms.as";
 		include "../includes/events/karaquest2/roomFunctions.as";
 		
+		include "../includes/chargendata.as";
+		
 		public var chars:Object;
 
 		// This needs to ideally be moved somewhere else, I'm just stopping the GUI code from being used to store game-data models
