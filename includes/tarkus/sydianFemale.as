@@ -641,7 +641,7 @@ public function femSydianCallOthers():void
 
 	var isFemale:Boolean = (pc.hasCock() || pc.hasTailCock() || pc.hasNippleCocks) && rand(2) == 0;
 
-	var emf:Function = function(m:String, f:String) { return (isFemale ? f : m); }
+	var emf:Function = function(m:String, f:String):String { return (isFemale ? f : m); }
 
 	output("\n\nThe woman looks mortified. After a minute, a clatter of quick-rusting metal junk fanfares another sydian:");
 	if (isFemale) output(" a smug, shapely female.");
