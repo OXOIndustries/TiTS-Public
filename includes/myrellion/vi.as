@@ -27,8 +27,16 @@ public function viBonus():Boolean
 
 public function showVi(nude:Boolean = false):void
 {
-	if (!nude) showBust("VI");
-	else showBust("VI_NUDE");
+	if(flags["VI_BIGBOOBS"] == 1)
+	{
+		if(!nude) showBust("VI_LARGE");
+		else showBust("VI_LARGE_NUDE");
+	}
+	else
+	{
+		if (!nude) showBust("VI");
+		else showBust("VI_NUDE");
+	}
 	showName("\nVI");
 }
 
@@ -88,6 +96,7 @@ public function approachViFirstTimePart2():void
 public function viMenu():void
 {
 	clearMenu();
+	showVi();
 	//[Appearance] [Talk] [Heal] [Examination] [S.Relief]
 	//[Buy] [Sell]
 	// tooltip.sRelief: Ask Vi if she can provide you with sexual relief services.
@@ -99,6 +108,10 @@ public function viMenu():void
 	addButton(4,"S.Relief",viSexualRelief,undefined,"S.Relief","Have Vi provide sexual relief.");
 	addButton(5,"Buy",viShop);
 	addButton(6,"Sell",viShop,false);
+	//[Modify]
+	// ‘Pleasure’ talk topic must have been watched, to learn that she’s been tampered with already.
+	if(flags["VI_PLEASURE_TALKED"] != undefined) addButton(7,"Modify",modifyViMenu,undefined,"Modify","Modify Vi’s specs to suit your tastes!");
+	else addDisabledButton(7,"Modify","Modify","She doesn't look like the kind of 'bot that would modify her chassis.");
 	addButton(14,"Leave",mainGameMenu);
 	
 }
@@ -1674,7 +1687,7 @@ public function roughSexWithVi():void
 public function tittyFuckDatVi():void
 {
 	clearOutput();
-	showVi();
+	showVi(true);
 	author("JimThermic");
 	//if (Vi has never revealed she has working boobage):
 	if(flags["VI_TITFUCKED"] == undefined)
@@ -1882,4 +1895,224 @@ public function viPussyFapScene():void
 	IncrementFlag("VI_PUSSY_FAPPED");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
+}
+
+
+//[Modify]
+
+// Add this option to main menu.
+// Modify.name: Modify Vi’s specs to suit your tastes!
+//Modify
+// ‘Pleasure’ talk topic must have been watched, to learn that she’s been tampered with already.
+public function modifyViMenu():void
+{
+	clearOutput();
+	showVi();
+	author("A Spoopy Ghost");
+	//Haven't got permission yet:
+	// You get the ‘permission flag’ via this scene.
+	if(flags["VI_MOD_OKAY"] == undefined)
+	{
+		output("You ask Vi if you can tamper with her hardware? The nurse-droid’s eyes fly open in shock, and she presses a slender hand to her chest.");
+		output("\n\n<i>“Mess with my chassis? That’s incredibly forward, don’t you think?”</i> She breathily exclaims. She then adds, <i>“I’ve already been tampered with already. If you want to make modifications to this unit, you’ll need to contact JoyCo’s technical loans division.”</i>");
+		output("\n\nEven as she says this, you notice her stocking-clad thighs are pressed together. There’s a glistening trickle dribbling down from her snowy-white lips. Her breathing is a little rough, too. Is she getting excited by the prospect of being modified?");
+		processTime(3);
+		//[PushIt] [LeaveIt]
+		clearMenu();
+		addButton(0,"Push It",pushItWithViMod);
+		addButton(1,"Leave It",leaveViWellEnoughAlone)
+		return;
+	}
+	else
+	{
+		//GotPermission:
+		output("You tell Vi that you’d like to tamper with her hardware. The nurse droid shyly nods and presses her thighs together, rubbing them a little. By the flushing of her cheeks and her pale pussy, you can tell she’s excited by the prospect.");
+		output("\n\n<i>“What about me would you like to tamper with today, " + pc.mf("sir","ma’am") + "?”</i>");
+		viBoobSizeMenu();
+	}
+}
+
+//PushIt:
+public function pushItWithViMod():void
+{
+	clearOutput();
+	showVi();
+	author("A Spoopy Ghost");
+	output("<i>“W-well, if you wanted to modify me, I really can’t say no. I’m programmed to obey nearly any request, " + pc.mf("sir","ma’am") + "?”</i> Vi informs you, touching her side tail. In short, you can do whatever you want to her, and she’s not going to object!");
+	// Tick ‘GotPermission’ flag.
+	flags["VI_MOD_OKAY"] = 1;
+	processTime(2);
+	//[IncreaseBoobs] [ShrinkBreasts]
+	viBoobSizeMenu();
+}
+
+public function viBoobSizeMenu():void
+{
+	clearMenu();
+	//Tooltip.increaseboobs: 
+	if(pc.hasItem(new Silicone(), 2)) addButton(0,"IncreaseBoobs",inflateViBoobs,undefined,"IncreaseBoobs","Inflate Vi’s puppies until they’re heavy and hyper-sized!\n\n<b>Cost: 2 units of Silicone</b>");
+	else if(flags["VI_BIGBOOBS"] == 1) addDisabledButton(0,"IncreaseBoobs","IncreaseBoobs","You’ve already filled Vi’s breasts to capacity!")
+	else addDisabledButton(0,"IncreaseBoobs","IncreaseBoobs","Inflate Vi’s puppies until they’re heavy and hyper-sized! You’ll need 2 units of silicone in order to inflate Vi’s breasts");
+	//Tooltip.Shrinkbreasts: 
+	if(flags["VI_BIGBOOBS"] == 1) addButton(1,"ShrinkBreasts",shrinkViBreasts,undefined,"ShrinkBreasts","Bring Vi’s breasts back down to their original size.");
+	else addDisabledButton(1,"ShrinkBreasts","ShrinkBreasts","Her breasts are already as small as they can go.");
+	addButton(14,"Back",viMenu);
+}
+
+//LeaveIt:
+public function leaveViWellEnoughAlone():void
+{
+	clearOutput();
+	showVi();
+	author("A Spoopy Ghost");
+	output("You decide not to press the point. After all, she’s technically not your droid to mess with.");
+	// Return to her main menu. Nothing changes
+	viMenu();
+}
+
+//IncreaseBoobs
+public function inflateViBoobs():void
+{
+	clearOutput();
+	author("A Spoopy Ghost");
+	//FirstTime:
+	if(flags["INFLATED_VI"] == undefined)
+	{
+		output("You pull out your gathered reserves of silicone from New Texas, snatched from the claws of varmints. Now, you’re planning to put it to good use, pumping it into Vi’s titties to make them deliciously big and hefty.");
+		output("\n\nUpon spotting the seized silicone, Vi loudly gasps.  <i>“That’s a Kiha-corp product! You can’t possibly be planning to cross-use company merchandise?”</i> Her silky thighs rub together even more. <i>“Pumping me full of the competitor’s product... that’s so lewd!”</i>");
+		output("\n\nYou ask Vi where her input slot is for the silicone. The femme-bot coughs. <i>“Um, in my nipples, " + pc.mf("sir","ma’am") + ". My unit doesn’t come with a spinal input port for that sort of thing.”</i>");
+	}
+	//Repeat Scene:
+	else
+	{
+		output("Time to pump the pale-skinned bot’s breasts full of soft silicone! As you position the seized substance before her, Vi blushes and squirms on the spot. She’s probably recalling the last time you used it to fill her already tantalizingly large tits.");
+		output("\n\n<i>“It feels strange having my breasts pumped full of another company’s product,”</i> she exclaims, cupping her breasts. <i>“It’s not within my normal operating parameters.”</i>");
+		output("\n\nVi reaches up to her tightly fitting top, and with two swift tugs, pulls down her bra-cups, leaving two holes in her corset. Her bountiful breasts excitedly spill out of the maternity flaps. She scoops up her chest weights with a free arm and presses upwards. Her pert nipples and well-rounded areolae are poking out at you.");
+	}
+	//Vi has never revealed her working boobage
+	// This is ‘flags[<i>“VI_TITFUCKED”</i>]’, but you might want to change it to something more generic because she can now reveal she has working boobage here without the PC ever having titfucked her.
+	if(flags["VI_TITFUCKED"] == undefined)
+	{
+		output("\n\nIn her nipples? You raise an eyebrow and stare at her corset that looks sewn onto her chassis. If she’s got nipples, you can’t see them, and you say as much.");
+		output("\n\n<i>“That’s because you’ve never asked to see them,”</i> Vi playfully replies. <i>“Here, just give me a second...”</i>");
+		output("\n\nAnd with that, Vi reaches up and places her hands on either side of her deliciously deep cleavage. Then, with two swift movements, she tugs down her bra cups, leaving two large holes in her corset! Her bountiful breasts excitedly spill out of the newly revealed maternity flaps and she catches them with an arm, pressing them upwards. Her large areolae and firm, budding nipples are now poking out at you, puckered ever so slightly from the cold. <i>“See? Perfectly functional.”</i>");
+		output("\n\nFor a while, you’re spellbound by her large, creamy breasts and rounded nipples. You do, however, ask her if she means ‘fully functional’ in every sense of the word?");
+		output("\n\n<i>“Of course!”</i> The violet-haired nurse brightly smiles, reaching up with her slender fingers and squeezing one of her springy-looking breasts. A pearlescent drop forms from her nipple and hangs from it, temporarily defying gravity’s pull. <i>“I’m a nursing bot, so it’s only natural that I can nurse in every capacity, " + pc.mf("sir","ma’am") + ".”</i>");
+		output("\n\n<i>“My mammaries are capable of producing milk for any number of species. It’s also a perfect means to deliver medicine to very young children!”</i>");
+		output("\n\nThat explains the maternity-bra look. Still, the way the fabric of her corset frames and hugs her burgeoning breasts–making them look even <i>larger</i> and <i>rounder</i>–is seriously hot. But you have a mission, and that’s to make those breasts even bigger!");
+		// Tick Vi off for showing her working boobage.
+		//Doesn't fuck up titfuck counts and still tracks that it isn't undefined! Everyone wins!
+		flags["VI_TITFUCKED"] = 0;
+	}
+	//VI has revealed her working boobage before:
+	else
+	{
+		output("\n\nVi reaches up to her tightly fitting top, and with two swift tugs, pulls down her bra-cups, leaving two holes in her corset. Her bountiful breasts excitedly spill out of the maternity flaps. She scoops up her chest weights with a free arm and presses upwards. Her pert nipples and well-rounded areolae are poking out at you.");
+	}
+	//First Time:
+	if(flags["INFLATED_VI"] == undefined)
+	{
+		output("\n\nGrabbing two tubes from the silicone, you search for somewhere to insert them. Just when you’re about to ask, Vi brings two fingers to each nipple, making a ‘V’ with her digits. Her puckered nubs begin to stretch out and dilate before your very eyes! Soon you’re gazing into two circular and coin-sized fleshy tunnels in both of her breasts, like entirely new orifices smack-bang in the middle of her crinkled areolae. A small trail of soppy white milk is trailing out of them and dribbling down her curvaceous mounds, like a creek running out of a lumpy tunnel. <i>Are those nipple-pussies?</i>");
+		output("\n\n<i>“Not many people see this particular function of mine. There’s very little reason to access the papilla valves,”</i> Vi explains, long lashes fluttering. <i>“If you slide the tubes in, I can clamp down and begin extraction into my breasts.”</i>");
+		//first time && PC.hasCock:
+		if(pc.hasCock())
+		{
+			output("\n\n[pc.EachCock] stiffens at her words. It’s hard not to imagine her warm milk-slickened nipples clamping around <i>something else</i> and extracting some fluids.");
+			pc.lust(5);
+		}
+	}
+	else
+	{
+		//Repeat Scene:
+		output("\n\nVi brings two fingers to each nipple, making a ‘V’ with her digits. Her puckered nubs begin to stretch out and dilate before your very eyes. Soon you’re gazing into two circular and coin-sized fleshy tunnels in both of her breasts, like entirely new orifices smack-bang in the middle of her crinkled areolae. A small trail of soppy white milk is trailing out of them and dribbling down her curvaceous mounds, like a creek running out of a lumpy tunnel.");
+		output("\n\n<i>“Just like last time, if you slide the tubes into my papilla valves, I can clamp down and begin extraction into my breasts.”</i>");
+	}
+	output("\n\nTitilated, you bring up one of the transparent tubes and slide it into her gaping nipple-holes. You wiggle it into her areolae and deep into her plump breasts. Stopping when you feel some resistance, you take your hand away. With the see-through tubing, you can still see deep into her pale tit-flesh. She clamps down on the plastic tubing and warps its shape. Her lumpy papilla tube presses against it just like a vaginal passage. It’s conveniently hands free, and you slip the other tube into her right breast, watching in amazement as she clamps down on that one as well.");
+	output("\n\n<i>“I’m ready for pumping now, " + pc.mf("sir","ma’am") + ",”</i> Vi blushingly informs you, twin tubes jutting out of her dilated nipple-holes. The sight itself is very lewd, and you feel your ");
+	if(pc.hasCock()) output("[pc.cocks] throb even harder");
+	else output("skin flush and prickle.");
+	output("\n\nReaching down, you flick on the silicone pump, and there’s a low whir. Thick, lucid drops of the sticky liquid roll up the tube and into her tits, chased by thicker gauzy globs that eagerly force themselves deep into her spread out areolae. When the first generous dollop slips and slides into her exposed breasts, the snowy-skinned nurse gasps and her eyelashes wildly flutter. Her buxom chest jiggles with her suddenly erratic breathing. <i>“T-this is so strange to process... I have no parameters for this!”</i>");
+	output("\n\nShe must have <i>some</i> similar parameters, by the way her pale mound is suddenly leaking down her quivering thighs. She loses control of them shortly after, planting her plush butt on the nearby bed and wiggling her butt into it. It’s not long at all before the pristine hospital sheets are soaked with her synthetic lady-juices, leaving a gigantic wet patch right under her rotund and quivering behind. What a naughty girl, messing up the sheets like that!");
+	output("\n\nAs she clings desperately to the sheet fabric, you turn up the pump, grinning as more gauzy globs shoot up the tubes and into her ample breast-flesh. Her already deep cleavage is shivering and shaking about as she wiggles and moans, stimulated and gasping from each slick dollop fired into her yawning nipples. There’s a sharp girlish cry, and a thin arching stream squirts out from her hairless pussy, dripping and splashing on the ground before you. Her snowy-white snatch is now sloppy and wet with her juices, her round clit protruding and engorged, as she reaches down and rubs it instinctively to draw out her orgasm.");
+	output("\n\nWhile she’s cumming, you can see her buxom breasts begin to droop and become heavier and fuller, almost as if each stroke of her quim is increasing its size, making it larger, like a building orgasm. With the pump on high, it’s not long before her swollen tit-flesh is ballooning out until each of her breasts are as scandalously large as watermelons, dangling off her comparatively tiny frame. Her stretched nipples are swelling and stretching in size as well, bringing her bumpy areolae into hypersexualized emphasis, to the point you couldn’t avoid noticing them if you tried.");
+	//PC.hasCock:
+	if(pc.hasCock())
+	{
+		output("\n\nUnable to hold back any longer, you ");
+		if(!pc.isCrotchExposed()) output("whip out");
+		else output("grab your");
+		output(" [pc.oneCock] and smother it between her now mountainous cleavage. Her snowy skin is so soft and smooth that you’re slapping away against her hefty tits in no time, groaning and smacking against her constantly swelling cleavage. The nurse-droid is blushing as you forcibly fuck her billiowing bust, your [pc.cockHead] eager to fire another slick load all over her exterior as she’s pumped inside as well!");
+		pc.lust(500);
+	}
+	output("\n\nStimulating you visually as well as with her involuntary moans, Vi dips a finger inside of her slick pussy and wiggles it about, her pinky pulled back and rubbing against her budding clit. If the bed wasn’t soaked before, it’s drenched down to the mattress now as she violet-haired VI humps the air, her butt-flesh quivering and flexing against an invisible lover plumbing her slit. Her shivering and shaking breasts continue to swell until you can barely see her actual chest at all now; it’s going to be hard for the nurse to take temperatures properly after this!");
+	output("\n\nThere’s an excited squeal, and she throws her head back, her ponytail whipping backwards and slapping against her back. Wracked with orgasmic pleasure, she splutters and shoots a second intermittent pussy-burst all over the ground and her nurse stockings, staining them with her lady cream.");
+	pc.lust(20);
+	if(pc.hasCock()) 
+	{
+		output(" You cry out and unload your own [pc.cumNoun] all over her chest ");
+		if(pc.cumQ() < 7) output("in a tiny [pc.cumColor] splatter");
+		else if(pc.cumQ() < 50) output("in a thick [pc.cumColor] dollop");
+		else if(pc.cumQ() < 500) output("in a thick [pc.cumNoun] pool");
+		else output("in a thick [pc.cumNoun] flood");
+		if(pc.cumQ() >= 50) output(", utterly basting her creamy flesh in your seed");
+		output(".");
+		pc.orgasm();
+	}
+	output(" She then falls back on the bed and touches her now tremendously huge peaks; they’ve so big she’s almost being squashed by her new Q-cups. Perhaps the pump was left on a little too long~?");
+	output("\n\n<i>“I-Is this size satisfactory for you, " + pc.mf("sir","ma’am") +"?”</i> Vi asks, touching her massive mammaries and trying to slip out the now empty silicone tubes. Try as she might, she can’t reach around her own tremendous bust to properly pull them out; her arms are just too short!");
+	output("\n\nYou indulge her and pull out the tubing, and she lets out a breathy sigh. Her distended nipples slowly close, but they still have dimples in the middle. Milk is liberally leaking from her swollen nubs like never before. Is the new silicone enhancements forcing it out? She certainly wasn’t lactating that much before.");
+	output("\n\nWith a little difficulty, Vi clips the maternity-like flaps back over her nipples. Only a few moments later, the material looks a little stained.");
+	output("\n\n<i>“How strange. Constant lactation isn’t within my normal operational parameters,”</i> Vi remarks, touching her ponytail. You’re not surprised, considering you just pumped her full of an unauthorized product. A few side effects are to be expected.");
+	output("\n\n<b>Vi now has Q-cups!</b>");
+	processTime(15);
+	flags["VI_BIGBOOBS"] = 1;
+	IncrementFlag("INFLATED_VI");
+	pc.destroyItem(new Silicone(),2);
+	showVi(true);
+	viMenu();
+}
+
+//ShrinkBreasts
+public function shrinkViBreasts():void
+{
+	clearOutput();
+	author("A Spoopy Ghost");
+	output("You tell Vi that you’re going to be decreasing her breast size. The nurse-droid places her hands underneath her massive melons and lifts them slighty, her hypersexualized nipples jutting pointedly through the corset’s fabric.");
+	output("\n\n<i>“Well, it would make it easier to perform my primary tasks. Though the amount of requests for my secondary functions has leapt by 408%,”</i> Vi informs you, before handing you two nipple cups. <i>“You’ll need these. The process for extraction is slightly different from insertion. I’ll need to be milked.”</i>");
+	output("\n\nYou attach the maternity milking cups to the ends of the transparent tubes, then clamp them onto the violet-haired nurse’s substantially sized nipples. The moment you turn the suction on, they suck her gigantic nubs into the cups and cling onto her breast flesh. She turns her lactation mode off slightly before, then cups her breasts once more. Slowly and with great precision, she rubs her thumbs and fingers into her ample breast flesh, as if she’s a new mother stimulating and working her mammary glands.");
+	output("\n\n<i>“I don’t think it’s coming, " + pc.mf("sir","ma’am") + ". Can I get some assistance?”</i> Vi asks, lashes fluttering. You move up behind her and cup her voluminous breasts, helping her massage her soft and snowy skin. You can feel her internal temperature rising, or perhaps it’s part of the process? Either way she’s wiggling against your loins as you tweak and tease her maternity-cupped nubs, trying to coax the budding fluids out. <i>“O-oh, I think something’s coming!”</i>");
+	output("\n\nTrue enough, you pinch her lower nipple and buds of sticky liquid begin to form around it. They’re sucked quickly into the tube and roll into the collection tank, signalling your success. The more you milk her, the more droplets form, and soon she’s producing dollops of diaphanous liquid right into the cups, like a cowgirl being milked. Vi must be enjoying it by the way she’s wiggling her butt in your lap and rubbing her thighs together, not to mention her breathy little moans. There’s a slickness against your lap, and you realise she’s gotten all wet, just like the time you pumped this stuff into her.");
+	output("\n\n<i>“Please proceed, I’m still functional,”</i> Vi informs you, pressing her slender back up against you. She’s rubbing up against you like a cat despite herself while you milk her massive teats, spilling more and more slickness into the tubes. Noticing she’s letting out more the more worked up she gets, you reach down and slide a hand between her stocking-clad thighs, seeking out her slickened slit. Wiggling a finger inside her wetness, you stir it about, and the nurse-droid along with it! She’s whining and wiggling in your arms while you finger fuck her pussy, rubbing her engorged clit against the middle of your delving digits.");
+	output("\n\nWith a loud cry, she creams herself on your fingers and squirts her girl-juices all over your palm. You feel the wet splattering with an immense sense of satisfaction, watching on as jets of clear fluid stream out of her shrinking bust. With your thoroughly drenched hands, you continue to fuck her sloppy slit while she bucks against you in wild abandon, filling the air with lewd squelching noises. She’s going at it as enthusiastically as if she were fucking");
+	if(!pc.hasCock()) output(" a cock");
+	else 
+	{
+		output(" your cock, and that gives you an idea. Already hard from her naughty display, you position [pc.oneCock] at her wiggling rump and slide your [pc.cockHead] between her twitching buttocks, right up into her relaxed sphincter. The nurse-droid lets out a surprised whine as you bury yourself without warning right up to the hilt, slapping against her shaking buttocks");
+	}
+	output(".");
+
+	//Pc.hasCock:
+	if(pc.hasCock())
+	{
+		output("\n\nSlapping and bouncing Vi on your turgid cock, you simultaneously finger-fuck her sloppy pussy from the front as you piston her pale pucker from behind. Globs of goo keep jumping excitedly from her nubs like never before as you rub your twitching crown around inside her rectum, painting her twitching depths with your dribbling pre-cum.");
+		output("\n\nIt’s not long before she’s squirting once more into your hand, her whole rear end clinging and wringing your rod. Driven over the edge by her erotic squeezing, you groan and shoot your [pc.cum] deep into her rump, ");
+		if(pc.cumQ() < 300) output("splattering it");
+		else output("filling it up");
+		output(" with your seed. She wrings it for every last drop you have, storing your seed deep up inside her sphincter, before you pull out with an unceremonious plop.");
+		pc.orgasm();
+	}
+	else pc.lust(20);
+	output("\n\nWhen the process is finally finished, you pull your shining finger out of her quim. The violet-haired nurse’s breasts are drastically reduced in size, though they’re really just back to how they were before.");
+	output("\n\n<i>“That input was very stimulating for my processors,”</i> Vi exclaims, her snowy-white cheeks flushed. <i>“If you need to do any more modifications, please feel free to do it at any time, " + pc.mf("sir","ma’am") +".”</i>");
+	output("\n\n<b>Vi now has D-cups again!</b>\n\n");
+	flags["VI_BIGBOOBS"] = 0;
+	processTime(25);
+	
+	var silicone:ItemSlotClass = new Silicone();
+	silicone.quantity = 2;
+	itemScreen = viMenu;
+	lootScreen = viMenu;
+	useItemFunction = viMenu;
+	showVi(true);
+	quickLoot(silicone);
 }
