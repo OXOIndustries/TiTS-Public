@@ -85,7 +85,8 @@
 				"skipTurn",
 				"_skipRound",
 				"OnTakeDamageOutput",
-				"isUniqueInFight"
+				"isUniqueInFight",
+				"_long"
 			);
 			
 			cocks = new Array();
@@ -109,7 +110,12 @@
 		public var short: String = "";
 		public var originalRace: String = "human";
 		public var a: String = "a ";
-		public var long: String = "You scrawny, yo.";
+		
+		// Tired of playing silly bastard games with long
+		private var _long:String = "You scrawny, yo."
+		public function get long():String { return _long; }
+		public function set long(v:String):void { _long = v; }
+		
 		public var capitalA: String = "A ";
 
 		//Is a creature a 'pluralize' encounter - mob, etc. 
@@ -6471,6 +6477,28 @@
 			}
 			return index;
 		}
+		public function thinnestCock():Number {
+			if (cocks.length == 0) return -1;
+			if (cocks.length == 1) return 0;
+			
+			var foundCock:int = 0;
+			
+			for (var i:int = 0; i < cocks.length; i++)
+			{
+				if ((cocks[i] as CockClass).thickness() < (cocks[foundCock] as CockClass).thickness())
+				{
+					foundCock = i;
+				}
+			}
+			
+			return i;
+		}
+		public function thinnestCockThickness():Number {
+			var foundCock:int = thinnestCock();
+			
+			if (foundCock >= 0) return (cocks[foundCock] as CockClass).thickness();
+			return -1;
+		}
 		public function totalGirth(): Number {
 			if (cocks.length == 0) return 0;
 			var counter: int = 0;
@@ -6587,7 +6615,17 @@
 						//Store the index of fitting dick
 						else index = counter;
 					}
+				} else if (type == "thickness") {
+					if (cocks[counter].thickness() <= fits) {
+						if (index >= 0) {
+							if (cockVolume(counter, true) > cockVolume(index, true)) {
+								index = counter;
+							}
+						}
+						else index = counter;
+					}
 				}
+				
 			}
 			return index;
 		}

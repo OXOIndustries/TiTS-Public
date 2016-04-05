@@ -491,7 +491,7 @@ public function thareAbleResponse(response:String = "none"):void
 			output("<i>“Thare,”</i> you say, scrubbing your [pc.legOrLegs]. <i>“Strange name. And according to you the zil don’t go in for naming stuff in the first place. Where does it come from?”</i>");
 			output("\n\n<i>“Well, that’s sort of it,”</i> chuckles Able quietly. <i>“When Mr. Darnock first found this place, he rounded on the nearest group of zil and asked ‘What do you call it?’ and they replied ‘I dunno, it’s just there.’ He misheard, and so... He knows now of course, but the signs and maps all bear the name, and I think sir has grown to like it.”</i>");
 			output("\n\n<i>“What was here before?”</i>");
-			output("\n\n<i>“Some cleared land another zil clan had left fallow,”</i> replies Able, looking at his feet. <i>“They always come back here every few years to do some planting and settle for a while. That is the other reason why many zil do not wish to work with Mr. Darnock.”</i>");
+			output("\n\n<i>“A natural clearing claimed by a rival clan,”</i> replies Able, looking at his feet. <i>“They always come back here every few years to reap its bounty, then leave to allow it to regrow. That is the other reason why many zil do not wish to work with Mr. Darnock.”</i>");
 			
 			processTime(2);
 			
