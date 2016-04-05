@@ -389,9 +389,12 @@ public function sydianFemalePCVictory():void
 		}
 
 		if (!pc.hasCock()) addDisabledButton(0, "Fuck Her", "Fuck Her", "You don't have a wiener!");
-		else if (pc.cockThatFits(enemy.vaginalCapacity()) == -1) addDisabledButton(0, "Fuck Her", "Fuck Her", "Your wiener is too big! It's a jumbo wiener!");
-		else if (pc.thinnestCockThickness() > 4 && !enemy.hasStatusEffect("Unarmored")) addDisabledButton(0, "Fuck Her", "Fuck Her", "You could fit your wiener inside if her body armor weren't in the way...");
-		else addButton(0, "Fuck Her", femSydianFuck, undefined, "Fuck Her", "Stick your wiener in it.");
+		else
+		{
+			if (pc.cockThatFits(enemy.vaginalCapacity()) == -1) addDisabledButton(0, "Fuck Her", "Fuck Her", "Your wiener is too big! It's a jumbo wiener!");
+			else if (pc.thinnestCockThickness() > 4 && !enemy.hasStatusEffect("Unarmored")) addDisabledButton(0, "Fuck Her", "Fuck Her", "You could fit your wiener inside if her body armor weren't in the way...");
+			else addButton(0, "Fuck Her", femSydianFuck, undefined, "Fuck Her", "Stick your wiener in it.");
+		}
 
 		addButton(1, "Get Licked", femSydianEatsButtholes, undefined, "Get Licked", "Make her service your " + (pc.hasVagina() ? "vagina" : "asshole"));
 
