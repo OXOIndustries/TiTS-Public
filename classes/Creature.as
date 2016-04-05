@@ -6491,7 +6491,7 @@
 				}
 			}
 			
-			return i;
+			return foundCock;
 		}
 		public function thinnestCockThickness():Number {
 			if (cocks.length <= 0) return -1;

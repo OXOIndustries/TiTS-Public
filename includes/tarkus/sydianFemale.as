@@ -373,7 +373,7 @@ public function sydianFemalePCVictory():void
 		addDisabledButton(1, "Get Licked");
 		addDisabledButton(2, "Give Throbb");
 		addDisabledButton(3, "Call Others");
-		addDisabledButton(4, "Gentle Fuck")
+		addDisabledButton(4, "Gentle Fuck");
 	}
 	else
 	{
@@ -410,8 +410,8 @@ public function sydianFemalePCVictory():void
 		else if (pc.hasVagina() || (pc.hasCock() && pc.cockThatFits(enemy.vaginalCapacity()))) addButton(4, "Gentle Fuck", femSydianGentleFuck, undefined, "Gentle Fuck", "Show the sydian that sex can be more than a power play.");
 		else addDisabledButton(4, "Gentle Fuck", "Gentle Fuck", "Your genitals are incompatible with the poor girl!");
 	}
-
-	CombatManager.genericVictory();
+	
+	addButton(5, "Leave Her", CombatManager.genericVictory);
 }
 
 public function femSydianGentleFuck():void
