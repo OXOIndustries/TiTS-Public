@@ -166,6 +166,7 @@ public function investigateFrogapi():void
 
 	output("\n\n<i>“Good sapient, I am Orryx, a male, if you’re wondering, tove in good standing with the Gyre Galactic Camarilla,”</i> he begins. <i>“Wait! Hold on! I forgot something!”</i> Before you can say a word, he vanishes down into the depths of the podium. The entire structure can’t be more than five feet high, but you hear the sound of splashing and metal clanging before the creature returns.");
 	flags["MET_ORRYX"] = 1;
+	CodexManager.unlockEntry("Camarilla");
 	processTime(3);
 	//break
 	//Next
@@ -262,6 +263,9 @@ public function camarillaRegulations():void
 	output("<i>“All toves are members of the Gyre Grand Camarilla, formerly, the GGC, currently The Camarilla, pending brand re-evaluation,”</i> he explains. <i>“We’re a united species government, except we actually get things done ... because we’re a corporation, you see. Every member pays membership, and membership grants votes, and the more membership you can afford, the more votes you get, and so on and so forth. I don’t want to bore you with the minutia of our inner workings.”</i>");
 	output("\n\n<i>“The thing is, while The Camarilla encourages productive competition and healthy, cutthroat business tactics, it draws the line at interference when there are actual wars occurring. It’s one thing for toves to sell weapons to other species, but it’s quite another when those weapons get used on toves!”</i>");
 	output("\n\n<i>“So as long as this Red versus Gold war goes on, I’m not allowed to directly deal with the myr,”</i> he finishes. <i>“But that’s where you come in, my good sapient.”</i>");
+	
+	CodexManager.unlockEntry("Camarilla");
+	
 	processTime(3);
 	clearMenu();
 	if(flags["MET_ORRYX"] != 2)

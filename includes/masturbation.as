@@ -105,7 +105,7 @@ public function availableFaps(roundTwo:Boolean = false):Array
 		faps.push(fap);
 	}
 	
-	if (hasFeedableMimbranes() && currentLocation == "SHIP INTERIOR")
+	if (hasFeedableMimbranes() && mimbranePrivateLocation())
 	{
 		if (pc.hasCock())
 		{

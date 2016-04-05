@@ -97,6 +97,7 @@
 		include "../includes/creation.as";
 		include "../includes/creation_custom_PCs.as";
 		include "../includes/debug.as";
+		include "../includes/dreams.as";
 		include "../includes/dynamicGrowth.as";
 		include "../includes/engine.as";
 		include "../includes/game.as";
@@ -204,6 +205,7 @@
 		include "../includes/tarkus/sydianMale.as";
 		include "../includes/tarkus/taxi.as";
 		include "../includes/tarkus/theMess.as";
+		include "../includes/tarkus/sydianFemale.as";
 
 		//Third planet
 		include "../includes/newTexas/newTexas.as";
@@ -370,7 +372,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.6.43";
+			version = "0.6.44";
 
 			//temporary nonsense variables.
 			temp = 0;
