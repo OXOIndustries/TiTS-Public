@@ -18,7 +18,7 @@ public function configureCodex():void
 	// This is how I'm proposing we split things up for now -- stuff things into a root category of the relevent system they belong too -- "Organic" etc might be a better long-term solution, but there'll be a lot
 	// of categories that likely won't be very full for a LONG time going down that route
 
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_LOCATION, "Planets", "Panara", panaraCodex);
+	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_LOCATION, "Planets", "Panara", panaraCodex);
 	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Anatae", anataeCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Ausar", ausarCodexEntry, true);
@@ -36,7 +36,7 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Siel", sielCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Saeri", saeriCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Simii", simiiCodex);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Sionach", sionachCodexEntry);
+	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Sionach", sionachCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Thraggen", thraggenCodexEntry,true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Varmints", varmintCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Gryvain", gryvainCodexEntry, true);
@@ -68,7 +68,7 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ROBOT, "Androids", "V-Ko", VKoCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ROBOT, "Androids", "V-Ko IVs", VKoIVsCodex);
 	
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_PERSON, "Public Figures", "Bran Flazingan", branFlazinganCodex);
+	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_PERSON, "Public Figures", "Bran Flazingan", branFlazinganCodex);
 	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Corporations", "Aegis", aegisShipyardsCodex, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Corporations", "BI/G", bellIsleGrunmannCodex);
@@ -1944,7 +1944,11 @@ public function humphardIncCodex():void
 	outputCodex("\n<b>Head Office:</b> Tantalus, Evira System");
 	outputCodex("\n<b>Company Head:</b> CEO Bran Flazingan");
 	outputCodex("\n\n");
-	outputCodex("Humphard Inc is a company founded by Bran Flazingan over two centuries ago with a single mission statement - \"sexual pleasure is the only intrinsic good.\" Since then Humphard has risen to become the galaxy's number one adult product manufacturer and produces products for almost every conceivable species from the core worlds to the rim.\n\nHumphard products are known for three things; quality, innovation, and pleasure. It takes great pride on always being on the cutting edge and hires countless 'testers' to trial company products.\n\nThe company always has a large number of employees and freelancers traveling about the galaxy to seek inspiration for their products. The most famous of these is none other than the CEO himself, Bran Flazingan, one of the universes' foremost \"sexplorers\" (See Codex Entry: Bran Flazingan).\n\nThe hardlight holographic condom, or 'Holodom', was one of Humphard's first products. The one-use hardlight 'shield' - produced by a small ring slipped around the shaft - revolutionized safe sex around the galaxy (See Codex Entry: \"Holodom\").\n\nAnother famous product is the everflowing cumsucker; a white, semen flavored sphere that can be sucked on for pleasure and literally 'melts in your mouth'. The product has sold incredibly well with cumvores. Popular flavors include Ballbatter, Zilmead, Ausar Ecstasy, LooRahn Lemon, and Rahnsberry.");
+	outputCodex("Humphard Inc is a company founded by Bran Flazingan over two centuries ago with a single mission statement - \"sexual pleasure is the only intrinsic good.\" Since then Humphard has risen to become the galaxy's number one adult product manufacturer and produces products for almost every conceivable species from the core worlds to the rim.\n\nHumphard products are known for three things; quality, innovation, and pleasure. It takes great pride on always being on the cutting edge and hires countless 'testers' to trial company products.\n\nThe company always has a large number of employees and freelancers traveling about the galaxy to seek inspiration for their products. The most famous of these is none other than the CEO himself, Bran Flazingan, one of the universes' foremost \"sexplorers\"");
+	//outputCodex(" (See Codex Entry: Bran Flazingan)");
+	outputCodex(".\n\nThe hardlight holographic condom, or 'Holodom', was one of Humphard's first products. The one-use hardlight 'shield' - produced by a small ring slipped around the shaft - revolutionized safe sex around the galaxy");
+	//outputCodex(" (See Codex Entry: \"Holodom\")");
+	outputCodex(".\n\nAnother famous product is the everflowing cumsucker; a white, semen flavored sphere that can be sucked on for pleasure and literally 'melts in your mouth'. The product has sold incredibly well with cumvores. Popular flavors include Ballbatter, Zilmead, Ausar Ecstasy, LooRahn Lemon, and Rahnsberry.");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Notable Humphard Products:"));
 	outputCodex("Grav-Cuffs");
@@ -1952,7 +1956,7 @@ public function humphardIncCodex():void
 	outputCodex("\nVibrating Lube");
 	outputCodex("\nEverflowing Cumsucker");
 	outputCodex("\n\n");
-	CodexManager.unlockEntry("Bran Flazingan");
+	//CodexManager.unlockEntry("Bran Flazingan");
 	CodexManager.unlockEntry("Grav Cuffs");
 	CodexManager.unlockEntry("Holodom");
 	CodexManager.viewedEntry("Humphard Inc.");
