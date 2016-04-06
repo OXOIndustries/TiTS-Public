@@ -7,6 +7,7 @@ package classes.Engine.Combat
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
+	import classes.Engine.Utility.MathUtil;
 	
 	/**
 	 * ...
@@ -32,6 +33,22 @@ package classes.Engine.Combat
 		if (tarResistances.hasFlag(DamageFlag.CRYSTALGOOARMOR))
 		{
 			cgooElecDamage = damageToShields.electric.damageValue;
+		}
+		
+		// If this is sydian armor, if incoming damage isn't a) corrosive, b) penetrating or c) explosive, reduce it and pass it straight to HP
+		if (tarResistances.hasFlag(DamageFlag.SYDIANARMOR))
+		{
+			var sydArmorBypass:TypeCollection;
+			if (!damageToShields.hasFlag(DamageFlag.CRUSHING) && !damageToShields.hasFlag(DamageFlag.EXPLOSIVE))
+			{
+				sydArmorBypass = damageToShields.makeCopy();
+				sydArmorBypass.multiply(MathUtil.LinearInterpolate(1, 0.5, target.shields() / target.shieldsMax()));
+				damageToShields.kinetic.damageValue = 0;
+				damageToShields.electric.damageValue = 0;
+				damageToShields.burning.damageValue = 0;
+				damageToShields.freezing.damageValue = 0;
+				damageToShields.poison.damageValue = 0;
+			}
 		}
 		
 		// Store the total damage before and after resistances -- we'll use this to try and approximate how
@@ -75,6 +92,11 @@ package classes.Engine.Combat
 				damageResult.remainingDamage.electric.damageValue = cgooElecDamage - damageResult.typedShieldDamage.electric.damageValue;
 			}
 			
+			if (tarResistances.hasFlag(DamageFlag.SYDIANARMOR) && sydArmorBypass && sydArmorBypass.getTotal() > 0)
+			{
+				damageResult.remainingDamage = sydArmorBypass;
+			}
+			
 			target.shieldsRaw -= damageAfterResistances;
 			
 			return;
@@ -97,6 +119,11 @@ package classes.Engine.Combat
 			if (tarResistances.hasFlag(DamageFlag.CRYSTALGOOARMOR))
 			{
 				damageResult.remainingDamage.electric.damageValue += cgooElecDamage - damageResult.typedShieldDamage.electric.damageValue;
+			}
+			
+			if (tarResistances.hasFlag(DamageFlag.SYDIANARMOR) && sydArmorBypass && sydArmorBypass.getTotal() > 0)
+			{
+				damageResult.remainingDamage.add(sydArmorBypass);
 			}
 			
 			target.shieldsRaw = 0;

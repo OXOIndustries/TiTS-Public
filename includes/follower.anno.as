@@ -2702,29 +2702,36 @@ public function annoNovaUpdate(asFollower:Boolean = true):void
 	if(flags["TARKUS_DESTROYED"] != undefined && flags["DECK13_SHIELDS_ON"] != 1) output("... or at least what’s left of it");
 	output(". We’re working on dissecting the tech on the </i>Nova<i> the crew was using to mass-produce the goo, but we’re a couple years out from actually producing our own, looks like. We’re dealing with tech several centuries out of date - nobody knows how to use it, all the ports and cables and chips are unavailable and, even if we </i>could<i> get them, they’re woefully inefficient. R&D’s basically having to start from scratch on building their prototypes. Once we get up and running, though, oh man, we’re gonna be able to churn the little bimbos out like you wouldn’t believe. Some of the egg-heads are already talking about branding them as ‘silver galotians.’”</i>");
 	output("\n\nThat’s good, though you were hoping for something a little bit more immediate. Anno shrugs apologetically. <i>“Well, we’re looking into the actual goo itself, too. Trying to reverse-engineer their network A.I., figure out ways to make them do things other than suck dick. I mean, giving JoyCo a run for their money on pleasure droids alone is pretty valuable, but the thing about gray goo - the really exciting part about them - is that they’re both chassis and intelligence rolled together. They just form up to whatever configuration you need ‘em in, as long as you have enough goo. I really wanna see if we can make, say, a giant elephant goo, or turn them into mini-leithans. And that’s not even scratching the surface of their applications. Bell-Isle/Grunmann didn’t know what they were sitting on - or didn’t know how to take advantage of it, anyway. Corporate couldn’t be happier with our work.”</i>");
-	output("\n\nShe smiles proudly, tail wagging behind her. <i>“Oh! We do have one very, very, very early working prototype... here, lemme pull it off my drive,”</i> she adds, pushing a few keys on her holoscreen. After a moment’s work, she pulls a small thumb drive out and hands it to you. <i>“Someone from our military contracts group got ahold of my notes on the goo. We got to talking, and that sort of snowballed into something we’re PRETTY SURE works, though since we’re having trouble fabricating goo back at Corporate, I can’t one-hundred percent vouch for it. Probably works, though. Maybe.”</i>");
-	output("\n\nYou turn the thumb drive over in your hand, looking it over. <i>“So what’s it do?”</i>");
-	output("\n\n<i>“Oh! Right. It’s a primitive combat routine. Should teach a gray goo how to do what she does best - clinging to people and giving ‘em big, squishy boob-hugs - but in battle. Specifically, it should teach the goo to envelop an opponent and molest them into submission. Next generation less-than-lethal goonology.”</i>");
-	output("\n\nNeat. <i>“So, just plug it into a gray goo and I’m good to go?”</i>");
-	output("\n\nAnno shrugs. <i>“Weeeell, I dunno if you’d want to just stick it in any gray goo you find");
-	if (flags["TARKUS_DESTROYED"] == undefined) output(" on Tarkus");
-	else output(", assuming you can even find one. Because, you know, planet go asplode and all");
-	output(". It’s a modification program, not an overwrite. If the goo’s already got it into her head to go around attacking people willy-nilly, she’ll just keep doing that. Except now you have to file paperwork to get her onto planets because now she’s a class-seventy assault droid. With a dick. Made of goo. Anyway, uh... I’d suggest getting a new goo if you can.");
-	if(flags["TARKUS_DESTROYED"] != undefined && flags["DECK13_SHIELDS_ON"] != 1)
+	
+	if(flags["ANNO_NOVA_UPDATE"] == undefined)
 	{
-		output(" Since Deck 13 was wiped out in the blast when Tarkus exploded, it might be harder to find one in the wild... I mean, it’s not like you can find one walking into in a bar or anything, right?");
+		output("\n\nShe smiles proudly, tail wagging behind her. <i>“Oh! We do have one very, very, very early working prototype... here, lemme pull it off my drive,”</i> she adds, pushing a few keys on her holoscreen. After a moment’s work, she pulls a small thumb drive out and hands it to you. <i>“Someone from our military contracts group got ahold of my notes on the goo. We got to talking, and that sort of snowballed into something we’re PRETTY SURE works, though since we’re having trouble fabricating goo back at Corporate, I can’t one-hundred percent vouch for it. Probably works, though. Maybe.”</i>");
+		output("\n\nYou turn the thumb drive over in your hand, looking it over. <i>“So what’s it do?”</i>");
+		output("\n\n<i>“Oh! Right. It’s a primitive combat routine. Should teach a gray goo how to do what she does best - clinging to people and giving ‘em big, squishy boob-hugs - but in battle. Specifically, it should teach the goo to envelop an opponent and molest them into submission. Next generation less-than-lethal goonology.”</i>");
+		output("\n\nNeat. <i>“So, just plug it into a gray goo and I’m good to go?”</i>");
+		output("\n\nAnno shrugs. <i>“Weeeell, I dunno if you’d want to just stick it in any gray goo you find");
+		if (flags["TARKUS_DESTROYED"] == undefined) output(" on Tarkus");
+		else output(", assuming you can even find one. Because, you know, planet go asplode and all");
+		output(". It’s a modification program, not an overwrite. If the goo’s already got it into her head to go around attacking people willy-nilly, she’ll just keep doing that. Except now you have to file paperwork to get her onto planets because now she’s a class-seventy assault droid. With a dick. Made of goo. Anyway, uh... I’d suggest getting a new goo if you can.");
+		if(flags["TARKUS_DESTROYED"] != undefined && flags["DECK13_SHIELDS_ON"] != 1)
+		{
+			output(" Since Deck 13 was wiped out in the blast when Tarkus exploded, it might be harder to find one in the wild... I mean, it’s not like you can find one walking into in a bar or anything, right?");
+		}
+		else
+		{
+			output(" Head");
+			if (shipLocation != "201") output(" on back");
+			else output(" outside");
+			output(" to the </i>Nova<i> and shovel some goo out of the canister on Deck 13. R&D left one dispenser active there just in case.");
+		}
+		output("”</i>");
+		output("\n\nYou pocket the drive and tell Anno you’ll look into it.");
+		output("\n\n<i>“Great! Lemme know how it works out. I think I’ve got some QA forms around here somewhere...”</i>");
+		
+		flags["ANNO_NOVA_UPDATE"] = 1;
 	}
-	else
-	{
-		output(" Head");
-		if (shipLocation != "201") output(" on back");
-		else output(" outside");
-		output(" to the </i>Nova<i> and shovel some goo out of the canister on Deck 13. R&D left one dispenser active there just in case.");
-	}
-	output("”</i>");
-	output("\n\nYou pocket the drive and tell Anno you’ll look into it.");
-	output("\n\n<i>“Great! Lemme know how it works out. I think I’ve got some QA forms around here somewhere...”</i>");
-	if (flags["ANNO_NOVA_UPDATE"] == undefined) flags["ANNO_NOVA_UPDATE"] = 1;
+	
+	CodexManager.unlockEntry("BI/G");
 	
 	if (asFollower)
 	{

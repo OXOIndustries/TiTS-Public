@@ -106,7 +106,24 @@ public function startCharacterCreation(e:Event = null):void
 	addButton(3,"Leithan",confirmRaceChoice,"leithan","Leithan Mother","Victor's child would have a leithan mother, though that race's unique biology would mandate some very expensive scientific intervention to ensure a successful pregnancy. Leithans are powerfully built, six-legged reptile-taurs. Half-leithans come into the world with thick, prehensile tails; unique bunny-like ears; and a tauric body configuration. They have limited skin and hair color options compared to other races. Half-leithan males are born with large reptilian genitalia, and both sexes have rear-mounted sexual organs.");
 	addButton(4,"Kui-Tan",confirmRaceChoice,"kui-tan","Kui-Tan Mother","Victor's child would have a kui-tan mother, a race known for its total lack of females and similarities to earth raccoons. Of course, that would make the mother a hermaphrodite - a woman with a vagina and a penis. Half kui-tan usually come into the world as a male or hermaphrodite with one bushy tail, fuzzy ears, and a knotty dick.");
 	//addButton(4,"Cheat",chooseHowPCIsRaised);
+	
+	if (GENERATED_CHARACTER["disabled"] == undefined)
+	{
+		addButton(5, "Engineered", testCharGenSelection, undefined, "Engineered Race", "A wholly custom genetically engineered child. A designer babby.");
+	}
 }
+
+public function testCharGenSelection():void
+{
+	clearOutput();
+	output("This is just some test stuff to prove the system works at a base level.");
+	
+	for (var prop:String in GENERATED_CHARACTER)
+	{
+		output("\n\n<b>" + prop + ":</b> " + GENERATED_CHARACTER[prop]);
+	}
+}
+
 
 public function confirmRaceChoice(race:String = "human"):void {
 	clearOutput();

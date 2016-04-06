@@ -85,7 +85,8 @@
 				"skipTurn",
 				"_skipRound",
 				"OnTakeDamageOutput",
-				"isUniqueInFight"
+				"isUniqueInFight",
+				"_long"
 			);
 			
 			cocks = new Array();
@@ -109,7 +110,12 @@
 		public var short: String = "";
 		public var originalRace: String = "human";
 		public var a: String = "a ";
-		public var long: String = "You scrawny, yo.";
+		
+		// Tired of playing silly bastard games with long
+		private var _long:String = "You scrawny, yo."
+		public function get long():String { return _long; }
+		public function set long(v:String):void { _long = v; }
+		
 		public var capitalA: String = "A ";
 
 		//Is a creature a 'pluralize' encounter - mob, etc. 
@@ -6461,19 +6467,42 @@
 			}
 			return cocks[arg].cLengthFlaccid();
 		}
-		public function thickestCock(): Number {
+		public function thickestCock():int {
 			if (cocks.length == 0) return 0;
-			var counter: Number = cocks.length;
-			var index: Number = 0;
+			var counter: int = cocks.length;
+			var index: int = 0;
 			while (counter > 0) {
 				counter--;
 				if (cocks[index].thickness() < cocks[counter].thickness()) index = counter;
 			}
 			return index;
 		}
+		public function thinnestCock():int {
+			if (cocks.length <= 0) return -1;
+			if (cocks.length == 1) return 0;
+			
+			var foundCock:int = 0;
+			
+			for (var i:int = 0; i < cocks.length; i++)
+			{
+				if (cocks[i].thickness() < cocks[foundCock].thickness())
+				{
+					foundCock = i;
+				}
+			}
+			
+			return foundCock;
+		}
+		public function thinnestCockThickness():Number {
+			if (cocks.length <= 0) return -1;
+			
+			var foundCock:int = thinnestCock();
+			
+			return cocks[foundCock].thickness();
+		}
 		public function totalGirth(): Number {
 			if (cocks.length == 0) return 0;
-			var counter: int = 0;
+			var counter: Number = 0;
 			for (var x: int = 0; x < cocks.length; x++) {
 				counter += cocks[x].cLength();
 			}
@@ -6587,7 +6616,17 @@
 						//Store the index of fitting dick
 						else index = counter;
 					}
+				} else if (type == "thickness") {
+					if (cocks[counter].thickness() <= fits) {
+						if (index >= 0) {
+							if (cockVolume(counter, true) > cockVolume(index, true)) {
+								index = counter;
+							}
+						}
+						else index = counter;
+					}
 				}
+				
 			}
 			return index;
 		}
@@ -10626,6 +10665,28 @@
 			}
 			return "ERROR: vagina<b>s</b>Descript called with no vaginas.";
 		}
+		// hole tightness checks
+		public function isHoleTight(indexNum:Number = -1):Boolean
+		{
+			if(indexNum >= 0)
+			{
+				if(indexNum >= vaginas.length) return false;
+				if(vaginas[indexNum].looseness() < 2) return true;
+			}
+			else if(ass.looseness() < 2) return true;
+			
+			return false;
+		}
+		public function isVagTight(vagNum:Number = 0):Boolean
+		{
+			if(vagNum >= vaginas.length) return false;
+			return isHoleTight(vagNum);
+		}
+		public function isAssTight():Boolean
+		{
+			return isHoleTight(-1);
+		}
+		// Genital matching
 		public function vaginasMatch():Boolean 
 		{
 			return matchedVaginas();

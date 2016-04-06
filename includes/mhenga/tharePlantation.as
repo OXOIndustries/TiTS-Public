@@ -361,7 +361,7 @@ public function getAblePregContainer():PregnancyPlaceholder
 	if(!ppAble.hasCock()) ppAble.createCock();
 	ppAble.shiftCock(0, GLOBAL.TYPE_BEE);
 	ppAble.cocks[0].cLengthRaw = 5;
-	ppAble.cocks[0].cThicknessRatioRaw = 1.75;
+	ppAble.cocks[0].cThicknessRatioRaw = 2;
 	ppAble.cocks[0].flaccidMultiplier = 0.20;
 	ppAble.elasticity = 1.25;
 	ppAble.balls = 2;
@@ -473,7 +473,7 @@ public function thareAbleResponse(response:String = "none"):void
 			output("\n\n<i>“Before Mr. Darnock came, I was a zil amongst other zil. Happy but ignorant,”</i> replies Able in his calm, measured voice. <i>“I lived amongst the trees and within the moment, prey to the serpent-lions and evil sirens of the deep forest. Now, I have a name and a profession that I enjoy. I have gained perspective my fellows cannot. My sir is right - the coming of people with great knowledge from the stars means we must cast aside our ignorance and connect with them, learn from them. Otherwise we risk annihilation.”</i> ");
 			output("\n\n<i>“And so far,”</i> he goes on in a harder tone, <i>“only Mr. Darnock’s company has reached out to us. Not the people of the place you call Esbeth, who imprison us or drive us away with their giant white stings; not those who call themselves the Zen jinn, who covet the sirens’ dark secrets and kill any that stand in their way; and not the terrible black wings, who stalk this land now, spiriting our folk away.”</i>");
 			output("\n\n<i>“So why haven’t more zil taken him up on his offer?”</i> you say, looking over the tub’s rim at him.");
-			output("\n\n<i>“Um. I’m not </i>typical<i> of zil. I don’t think Mr. Darnock understands this,”</i> the slim zil says, shuffling his carapace-covered feet. <i>“For most zil, in order to get them to obey or even listen to you, first you have to fight them, or make them so aroused they’ll do whatever you say. I never liked that, because I preferred submitting straight away. It just feels so much better, you know? So I was happy to take orders from sir. My brothers and sisters though... for them it was a non-starter, because he refused to fight or have sex with them first.”</i>");
+			output("\n\n<i>“Um. I’m not </i>typical<i> of zil. I don’t think Mr. Darnock understands this,”</i> the slim zil says, shuffling his carapace-covered feet. <i>“For most zil, contests of physicality and sexuality are thrilling, and practically demanded when encountering a strangeer. The struggles reveal the strengths and weaknesses of each party. Only after the struggle and resulting sexual relief do they consider trade or diplomacy. For an outsider, it would be even harder. Naleen and Vanae are poor conversationalists; why should your people be any different? That's why the others you see in the vault will lead off with an assault. I never liked that, because I preferred submitting straight away. It just feels so much better, you know? So I was happy to take orders from sir. My brothers and sisters though... for them it was a non-starter, because Mr. Darnock refused to act as expected.”</i>");
 			
 			processTime(3);
 			
@@ -491,7 +491,7 @@ public function thareAbleResponse(response:String = "none"):void
 			output("<i>“Thare,”</i> you say, scrubbing your [pc.legOrLegs]. <i>“Strange name. And according to you the zil don’t go in for naming stuff in the first place. Where does it come from?”</i>");
 			output("\n\n<i>“Well, that’s sort of it,”</i> chuckles Able quietly. <i>“When Mr. Darnock first found this place, he rounded on the nearest group of zil and asked ‘What do you call it?’ and they replied ‘I dunno, it’s just there.’ He misheard, and so... He knows now of course, but the signs and maps all bear the name, and I think sir has grown to like it.”</i>");
 			output("\n\n<i>“What was here before?”</i>");
-			output("\n\n<i>“Some cleared land another zil clan had left fallow,”</i> replies Able, looking at his feet. <i>“They always come back here every few years to do some planting and settle for a while. That is the other reason why many zil do not wish to work with Mr. Darnock.”</i>");
+			output("\n\n<i>“A natural clearing claimed by a rival clan,”</i> replies Able, looking at his feet. <i>“They always come back here every few years to reap its bounty, then leave to allow it to regrow. That is the other reason why many zil do not wish to work with Mr. Darnock.”</i>");
 			
 			processTime(2);
 			
@@ -732,7 +732,7 @@ public function thareSexResponse(response:String = "none"):void
 			randCunt = [];
 			for(i = 0; i < pc.vaginas.length; i++)
 			{
-				if((pc.vaginalCapacity(i) * 0.75) >= ppAble.cockVolume(0)) randCunt.push(i);
+				if(pc.vaginalCapacity(i) >= ppAble.cockVolume(0)) randCunt.push(i);
 			}
 			if(randCunt.length > 0) x = randCunt[rand(randCunt.length)];
 			if(x == -1) x = pc.biggestVaginaIndex();
@@ -816,7 +816,7 @@ public function thareSexResponse(response:String = "none"):void
 			output("\n\nYou are feeling lush and sensuous from the oral you just received, and the sight of the tight-bodied zil - combining with the sudden rush of heady lust that ensues when he peels back his groin armor and reveals the source of his pheromone fug - make your next series of actions completely irresistible.");
 			output("\n\nWithin thirty seconds you have him pinned down by the elbows, biting your [pc.lips] as you rut him senseless, [pc.butt] planted firmly on his pelvis, bed creaking briskly beneath you.");
 			
-			cuntStretched = (pc.vaginalCapacity(x) <= ppAble.cockVolume(0));
+			if(((pc.vaginalCapacity(x) * 0.5) < ppAble.cockVolume(0)) || pc.isVagTight(x)) cuntStretched = true;
 			pc.cuntChange(x, ppAble.cockVolume(0));
 			
 			output(" You ride your [pc.vagina " + x + "] up his smooth, chubby erection again and again, jerking him into your slick walls energetically, spurred on by the overwhelming smell of deep, oozing honey. Able gasps and arches his back to this treatment, cute nipples on his flat under-chest crying out for the occasional pinch, his squirming sending delicious quakes through your wet sex.");
@@ -851,7 +851,7 @@ public function thareSexResponse(response:String = "none"):void
 			randCunt = [];
 			for(i = 0; i < pc.vaginas.length; i++)
 			{
-				if((pc.vaginalCapacity(i) * 0.75) >= ppAble.cockVolume(0)) randCunt.push(i);
+				if(pc.vaginalCapacity(i) >= ppAble.cockVolume(0)) randCunt.push(i);
 			}
 			if(randCunt.length > 0) x = randCunt[rand(randCunt.length)];
 			if(x == -1) x = pc.biggestVaginaIndex();
@@ -927,6 +927,8 @@ public function thareSexResponse(response:String = "none"):void
 			
 			x = pc.statusEffectv1("Thare Manor Temp Value");
 			if(x == -1) x = pc.biggestVaginaIndex();
+			z = pc.statusEffectv3("Thare Manor Temp Value");
+			if(z == -1) z = pc.smallestCockIndex();
 			
 			output("The smell of oozing, saccharine lust is as strong as it ever was - it’s not as if your rough buttfucking of the poor boy did much to stem the flow - and, with another wooden-sounding crack, the armor around Able’s groin slides back apparently of its own will, revealing the source of the smell. His chubby, gleaming jet-black cock springs upwards, so impatiently erect it bats off his washboard stomach, a tiny bead of honey-seed at its foreskinned tip. You can’t help but coo slightly as the pheromone intoxication heightens, your [pc.nipples]");
 			if(InCollection(pc.breastRows[0].nippleType, [GLOBAL.NIPPLE_TYPE_FUCKABLE, GLOBAL.NIPPLE_TYPE_LIPPLES])) output(" wetting");
@@ -953,7 +955,7 @@ public function thareSexResponse(response:String = "none"):void
 			output(".");
 			output("\n\nThat does the trick. Forgetting his nervousness, the slim zil-boy grips your [pc.butt] with the austere armor of his hands and thrusts his fervid cock past the lips and into the sweltering insides of your pussy with one single, enthusiastic movement.");
 			
-			cuntStretched = (pc.vaginalCapacity(x) <= ppAble.cockVolume(0));
+			if(((pc.vaginalCapacity(x) * 0.5) < ppAble.cockVolume(0)) || pc.isVagTight(x)) cuntStretched = true;
 			pc.cuntChange(x, ppAble.cockVolume(0));
 			
 			output(" The fug of zil pheromones sweetly swamping your senses, as well as the dart of his hands and tongue over the most sensitive points of your body has made [pc.eachVagina] incredibly needy, enflamed by the urgent sex it was so recently left out of and desperate to be filled. You clench up with profound satisfaction around Able’s smooth, chubby erection and grab his cute, round butt, urging him on.");

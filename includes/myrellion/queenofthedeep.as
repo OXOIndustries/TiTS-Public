@@ -1122,6 +1122,9 @@ public function queenDreamEvent():void
 	output("\n\nHappiness overwhelms you, and you return the girl's affectionate kiss, holding onto her back as she leads you into the deepest caves of her homeworld.");
 
 	output("\n\nAround you, you can hear the movements of dozens... hundreds, even... of legs moving through the water as your brood comes home to roost.");
+
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 public function queenAlmostDueMessage():void
