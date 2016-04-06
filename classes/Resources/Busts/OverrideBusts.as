@@ -62,6 +62,9 @@
 		public var Bust_CASS:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/cass_nude.png", mimeType = "image/png")]
 		public var Bust_CASS_NUDE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/adjatha/cockvine_single.png", mimeType = "image/png")]
+		public var Bust_COCKVINE_SEEDLING:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/jacques00/dally.png", mimeType = "image/png")]
 		public var Bust_DALLY:Class;
@@ -233,6 +236,8 @@
 		[Embed(source = "../../../assets/images/npcs/adjatha/vi_large_nude.png", mimeType = "image/png")]
 		public var Bust_VI_LARGE_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/yarasta.png", mimeType = "image/png")]
+		public var Bust_YARASTA:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/yancy.png", mimeType = "image/png")]
 		public var Bust_YANCY:Class;

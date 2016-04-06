@@ -1,0 +1,2 @@
+public var GENERATED_CHARACTER:Object = { disabled: true, characterName: "Default", origRace: "human", titSize: "0" };
+//public var GENERATED_CHARACTER:Object = { characterName: "Default", origRace: "human", titSize: "0"};

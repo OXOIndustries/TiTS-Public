@@ -2,7 +2,7 @@ import classes.Characters.PlayerCharacter;
 public function cockvineSeedlingHeader():void
 {
 	showName("COCK VINE\nSEEDLING");
-	showBust("COCKVINESEEDLING");
+	showBust("COCKVINE_SEEDLING");
 	author("Nonesuch");
 }
 
