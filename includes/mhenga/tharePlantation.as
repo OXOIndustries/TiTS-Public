@@ -927,7 +927,7 @@ public function thareSexResponse(response:String = "none"):void
 			
 			x = pc.statusEffectv1("Thare Manor Temp Value");
 			if(x == -1) x = pc.biggestVaginaIndex();
-			z = pc.statusEffectv1("Thare Manor Temp Value");
+			z = pc.statusEffectv3("Thare Manor Temp Value");
 			if(z == -1) z = pc.smallestCockIndex();
 			
 			output("The smell of oozing, saccharine lust is as strong as it ever was - it’s not as if your rough buttfucking of the poor boy did much to stem the flow - and, with another wooden-sounding crack, the armor around Able’s groin slides back apparently of its own will, revealing the source of the smell. His chubby, gleaming jet-black cock springs upwards, so impatiently erect it bats off his washboard stomach, a tiny bead of honey-seed at its foreskinned tip. You can’t help but coo slightly as the pheromone intoxication heightens, your [pc.nipples]");
