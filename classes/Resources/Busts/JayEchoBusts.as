@@ -16,6 +16,9 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/jay_echo/inessa_nude.png", mimeType = "image/png")]
 		public var Bust_INESSA_NUDE:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/jay_echo/giala_honey.png", mimeType = "image/png")]
+		public var Bust_GIALA:Class;
+
 		[Embed(source = "../../../assets/images/npcs/jay_echo/mayren.png", mimeType = "image/png")]
 		public var Bust_MAYREN:Class;
 		
@@ -26,9 +29,8 @@ package classes.Resources.Busts
 		
 		[Embed(source = "../../../assets/images/npcs/jay_echo/sierva.png", mimeType = "image/png")]
 		public var Bust_SIERVA:Class;
-		
-		// Assumptions
-		[Embed(source = "../../../assets/images/npcs/yarasta.png", mimeType = "image/png")]
+
+		[Embed(source = "../../../assets/images/npcs/jay_echo/yarasta.png", mimeType = "image/png")]
 		public var Bust_YARASTA:Class;
 	}
 
