@@ -203,13 +203,14 @@ package classes.UIComponents.SideBarComponents
 		private function set lastSetBust(v:String):void
 		{
 			_lastSetBust = v;
-			if (v == "none")
+			
+			if (NPCBustImages.hasBustsForCharacter(v))
 			{
-				_configureControl.visible = false;
+				_configureControl.visible = true;
 			}
 			else
 			{
-				_configureControl.visible = true;
+				_configureControl.visible = false;
 			}
 		}
 		private function get lastSetBust():String { return _lastSetBust; }
@@ -248,10 +249,10 @@ package classes.UIComponents.SideBarComponents
 			if (name == "none") bustT = null;
 			else bustT = NPCBustImages.getBust(name);
 			
+			lastSetBust = name;
+			
 			if (bustT != null)
 			{
-				lastSetBust = name;
-				
 				_bustOrderSet = false;
 				
 				// If there is an existing bust
@@ -288,7 +289,6 @@ package classes.UIComponents.SideBarComponents
 			}
 			else
 			{
-				lastSetBust = "none";
 				hideBust();
 			}
 		}
