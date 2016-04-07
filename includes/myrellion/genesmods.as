@@ -66,7 +66,7 @@ public function genesModsInteriorBonus():Boolean
 
 public function geneCockVolume():Number
 {
-	return 20;
+	return 82;
 }
 
 public function genesModsInterior():void
@@ -1333,6 +1333,7 @@ public function genesModsOverCounter():void
 	if (pc.biggestVaginalCapacity() <= geneCockVolume())
 	{
 		output("\n\n<i>“Hmm,”</i> he murmurs a moment later. <i>“A pretty and charmingly sized lady-hole you have down here. Am I the type of brute to resize it as he pleases?”</i> You inhale sharply as you feel the spear-head of his bigger dick restlessly press against your lips, stretching them wide. <i>“No, of course not.”</i> You exhale, a sigh of relief spiked with frustration as it withdraws. Gene arches his hips, bulky chest shifting down the small of your back, and the next moment you feel a more compact protrusion bump against your [pc.vagina " + x + "]. <i>“Not when I deliberately come equipped for sweet pixies like you,”</i> the fanfir growls. He thrusts forward, filling your tight tunnel with six inches of human cock.");
+		pc.cuntChange(x,20);
 		
 		output("\n\nThe winged colossus’s hard thighs slap rhythmically against your [pc.butt] as he pumps you, pressing deep into your wet depths, making you tingle with pleasure with each returning thrust. His huge, turgid bulge-cock slides between your [pc.thighs] as he goes at you; you clench down, tightening your pussy up around his human cock at the same time as squeezing the soft flesh of your thighs around his bigger dick. Gene rumbles his enjoyment to this, and rewards you by picking up the pace, wing claws clutching the counter in order to provide the ballast to stretch the sensitive, clasping pocket you’ve provided with heavy, fervent strokes.");
 		
@@ -1372,6 +1373,7 @@ public function genesModsOverCounter():void
 		if (pc.wettestVaginalWetness() <= 2) output(" drip");
 		else output(" dribble");
 		output(" [pc.girlCum] around it freely. He sighs in intense satisfaction when his quad touches your [pc.hips], his soda-can sized base mired in your heat.");
+		pc.cuntChange(x,geneCockVolume());
 		
 		if (pc.isTreated())
 		{

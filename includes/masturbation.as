@@ -168,7 +168,7 @@ public function availableFaps(roundTwo:Boolean = false):Array
 		faps.push(fap);
 	}
 
-	if (pc.armor is GooArmor)
+	if (hasGooArmor())
 	{
 		fap = new FapCommandContainer();
 		fap.text = "Goo Dicks";

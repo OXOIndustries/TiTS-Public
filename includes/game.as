@@ -416,6 +416,7 @@ public function crew(counter:Boolean = false):Number {
 		clearOutput();
 		clearMenu();
 	}
+	
 	var crewMessages:String = "";
 	var count:int = 0;
 	if(celiseIsCrew()) {
@@ -675,7 +676,7 @@ public function shipMenu():Boolean {
 		addButton(4, "Shower", showerMenu);
 		addButton(5, "Fly", flyMenu);
 	}
-
+	
 	return false;
 }
 
@@ -1985,6 +1986,18 @@ public function racialPerkUpdateCheck():void
 			else eventBuffer += " your [pc.cumNoun] is no longer capable of producing eggs anymore";
 			eventBuffer += ". It must be due to the lack of nyrean genes in your system....";
 			pc.removeStatusEffect("Nyrea Eggs");
+		}
+	}
+	if(pc.hasPerk("Slut Stamp"))
+	{
+		if(!pc.hasGenitals())
+		{
+			eventBuffer += "\n\nA sudden burning sensation hits your lower back, right above your [pc.ass]. You quickly";
+			if(pc.isCrotchGarbed()) eventBuffer += " struggle through your [pc.lowerGarments],";
+			eventBuffer += " turn back and wince hard when the area is instantly struck by a refreshing coolness - as if being splashed on with cold water after being branded. When your hazed vision returns to normal, you see the slutty tattoo that resides there gradually dissolve and vanish before your eyes. It looks like your lack of genitalia makes it easier for you to cope with your libido now.";
+			
+			eventBuffer += "\n\n(<b>Perk Lost: Slut Stamp</b>)";
+			pc.removePerk("Slut Stamp");
 		}
 	}
 }

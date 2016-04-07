@@ -125,6 +125,7 @@
 		include "../includes/follower.celiseGiga.as";
 		
 		//Sidequest shit
+		include "../includes/events/seraSexParty.as";
 
 		//Misc content
 		include "../includes/rivalEncounters.as";
@@ -374,7 +375,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.6.44";
+			version = "0.6.45";
 
 			//temporary nonsense variables.
 			temp = 0;

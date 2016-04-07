@@ -21,6 +21,8 @@ Pussy is very elastic AND wet, giving her a good capacity.
 //Jade Addition
 public function furEffectBonusFunction():Boolean {
 	
+	flags["NAV_DISABLED"] = undefined;
+	
 	output("The sign declared this store to be “Fur Effect,” and you can see why. Your");
 	if (pc.isNaga()) output(" snake-like tail sliters through");
 	else if (pc.isGoo()) output(" gooey pseudopods squish into");

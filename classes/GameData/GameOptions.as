@@ -1,6 +1,7 @@
 package classes.GameData 
 {
 	import classes.DataManager.Serialization.UnversionedSaveable;
+	import classes.Resources.NPCBustImages;
 	/**
 	 * ...
 	 * @author Gedan
@@ -9,7 +10,9 @@ package classes.GameData
 	{
 		public function GameOptions() 
 		{
-			bustPriority = ["ADJATHA", "CHESHIRE", "SHOU", "NOTGATS", "GATS", "OLDGATS"];
+			primaryBustArtist = "ADJATHA";
+			secondaryBustArtist = "SHOU";
+			configuredBustPreferences = { };
 			bustsEnabled = true;
 			bustFallbacks = true;
 			easyMode = false;
@@ -24,11 +27,14 @@ package classes.GameData
 			vendorToggle = true;
 		}
 		
+		public var primaryBustArtist:String = "SHOU";
+		public var secondaryBustArtist:String = "ADJATHA";
+		
+		// p. much a key=>value store of bust name -> artist set
+		public var configuredBustPreferences:Object;
+		
 		// Busts disabled
 		public var bustsEnabled:Boolean;
-		
-		// Priority list of bust names
-		public var bustPriority:Array;
 		
 		// Allow bust fallback images to be displayed
 		public var bustFallbacks:Boolean;

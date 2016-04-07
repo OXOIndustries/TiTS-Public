@@ -27,6 +27,7 @@ public function seraExitToMain():void
 {
 	pc.removeStatusEffect("Temporary Nudity Cheat");
 	pc.removeStatusEffect("Genital Slit Reveal");
+	if(pc.getStatusTooltip("Armor Slot Disabled").indexOf("Sera") != -1) pc.removeStatusEffect("Armor Slot Disabled");
 	mainGameMenu();
 }
 
@@ -1157,6 +1158,7 @@ public function fuckedSeraAsMistress():Boolean
 	if(flags["SERA_IN_JARDI_THREESOME"] != undefined) totalSex += flags["SERA_IN_JARDI_THREESOME"];
 	if(flags["SERA_FACE_RIDE_TRAINING"] != undefined) totalSex += flags["SERA_FACE_RIDE_TRAINING"];
 	if(flags["SERA_TIT_FUCK_LUCKY_DIP"] != undefined) totalSex += flags["SERA_TIT_FUCK_LUCKY_DIP"];
+	if(flags["SERA_PARTY_FUCKED"] != undefined) totalSex += flags["SERA_PARTY_FUCKED"];
 	
 	if(totalSex > 0) return true;
 	
@@ -1891,7 +1893,7 @@ public function seraSexXXXGetRidden(arg:Array):void
 				if(vagIndex >= 0 && flags["SERA_CREATE_VAG"] != undefined) output(" She raises an eyebrow at you and you blush deeply, your thoughts and hers running the same way. <i>“Perhaps I got a bit carried away when I was reshaping you, hmm?”</i>");
 				output(" She sighs and clasps your shoulders, bringing her round, infernal face close to yours.");
 				output("\n\n<i>“Don’t fret over it, though. Your mistress thinks of everything.”</i> She reaches over to the counter, plucks a small remote control off it and points it at the front of the shop. The lock clicks and the windows go dark, except for deep blue neon signage on one, blinking on and off. It looks like the glass has turned one way, but... you squint at the sign as Sera continues to rummage around behind you. SNIM 03 NI KCAB – TULS A GNIOD, blears back at you blandly. It’s accompanied by two line figurines, repeating a vigorous action with every second blink. Both the figurines have smiley faces. The one that isn’t on all fours has two curly lines over its head.");
-				output("\n\nSomething claps down behind you and you jump. Sera has put her chair down in the centre of the room. Tapping impatiently against her thigh is what looks like a long, purple double dildo with a harness built into it halfway down, evidently designed to fuck the wearer whilst they themselves are fucking. One end is relatively modest, a smooth six inches; the other is monstrous, roughly the same size and length as Sera’s dick itself. Only Sera’s doesn’t have round nodules all the way down.");
+				output("\n\nSomething claps down behind you and you jump. Sera has put her chair down in the center of the room. Tapping impatiently against her thigh is what looks like a long, purple double dildo with a harness built into it halfway down, evidently designed to fuck the wearer whilst they themselves are fucking. One end is relatively modest, a smooth six inches; the other is monstrous, roughly the same size and length as Sera’s dick itself. Only Sera’s doesn’t have round nodules all the way down.");
 				output("\n\n<i>“It’s one of my favourite pieces of gear, this,”</i> says Sera lovingly. <i>“So many good features.");
 				if(!pc.isNude()) output(" Take your clothes off.");
 				output("”</i>");
@@ -1964,7 +1966,7 @@ public function seraSexXXXGetRidden(arg:Array):void
 			{
 				output("<i>“Mistress.”</i>");
 				output("\n\n<i>“You’re in luck pet,”</i> Sera purrs. <i>“I need my female side tended to today.”</i> Click. The door locks, the windows go dark and the deep blue neon comes on. In its syncopated light you watch Sera stand. <i>“So you know what that means.”</i> You feel a shuddering thrill as you see the object in her hand; a long, asymmetrical double dildo, with a harness halfway down.");
-				output("\n\nSera picks up her chair and claps it down in the centre of the room. She turns and nods at it with a smirk. She watches, gently tapping the toy into her thigh, flesh gently rippling with each impact as you");
+				output("\n\nSera picks up her chair and claps it down in the center of the room. She turns and nods at it with a smirk. She watches, gently tapping the toy into her thigh, flesh gently rippling with each impact as you");
 				if(!pc.isNude()) output(" slowly take your [pc.gear] off,");
 				output(" crawl across and sit your naked back against its front legs. You sigh shakily as you feel your mistress’s hot palm against your forehead, pushing it back so it is lying on the seat, obediently opening your mouth as the big end of the dildo looms above you. Thick, bumpy synthetic cock s pushed past your [pc.lips]; it almost completely fills your mouth, touching the front of your throat. You can breathe...just. Air hisses through your nose as Sera buckles your head securely to the seat of the chair, leaving the other half of the strap-on pointing at the ceiling. You stare up at it as Sera clacks away, swaying her hips. The only light in the room is the flickering candles and the intermittent blare of blue light from the window. ");
 				output("\n\nAs you hear stilettos tapping back towards you, you curl your fingers around the back legs of the chair in preparation. Sera still can’t help flicking her tail across your body, flicking your [pc.nipples] and make you twitch.");
@@ -2027,7 +2029,7 @@ public function seraSexXXXGetRidden(arg:Array):void
 	else
 	{
 		output("<i>“You’re in luck pet,”</i> Sera purrs. She rises and sashays over to your kneeling form, touching a flawless purple thigh as she runs her claws through your [pc.hair]. <i>“I need my female side tended to today. I’m sure your tender little butthole is glad to hear about that.”</i> She turns around to reach over to the counter, giving you a good look at her trim, bare pussy with its prominent clit, framed by her black harness straps. She retrieves a small remote control and points it at the front of the shop. The lock clicks and the windows go dark, except for deep blue neon signage on one, blinking on and off. It looks like the glass has turned one way, but... you squint at the sign as Sera continues to rummage around behind you. SNIM 03 NI KCAB – TULS A GNIOD, blears back at you blandly. It’s accompanied by two line figurines, repeating a vigorous action with every second blink. Both the figurines have smiley faces. The one that isn’t on all fours has two curly lines over its head.");
-		output("\n\nSomething claps down behind you and you jump. Sera has put her chair in the centre of the room.");
+		output("\n\nSomething claps down behind you and you jump. Sera has put her chair in the center of the room.");
 		output("\n\n<i>“");
 		if(!pc.isNude()) output("Take your clothes off and sit.");
 		else output("Sit.");
@@ -2156,7 +2158,7 @@ public function seraSexXXXTitfuckLuckyDip(arg:Array):void
 	else if(response == "second")
 	{
 		output("She takes a few steps back to lean against the counter with a raspy sigh, her distended cock leaving a dribbled trail of cum on the floor as she goes. You lean back to gather yourself, the alabaster mess oozing down you, and raise a hand to wipe your face.");
-		output("\n\n<i>“No.”</i> You freeze. You were expecting Sera to be lost in a warm, self-centred fuzz of her own but her eyes are open, gazing down at you: golden, playful and cruel. Cat’s eyes. <i>“I’m not done with you yet pet, and you look so much more... appropriate when you’re covered in my jizz. Come here, and prepare your mistress for the good, hard fucking she’s going to give you now.”</i> A warm shudder passes through you as, after a pause, you shift yourself over so you’re between her long legs and wrap one hand around her long, fluid-slicked shaft. Claw-tipped fingers urge you to rise, staying where they are to convex down your back and grip your [pc.ass] as you do whilst continuing to steadily jerk her.");
+		output("\n\n<i>“No.”</i> You freeze. You were expecting Sera to be lost in a warm, self-centered fuzz of her own but her eyes are open, gazing down at you: golden, playful and cruel. Cat’s eyes. <i>“I’m not done with you yet pet, and you look so much more... appropriate when you’re covered in my jizz. Come here, and prepare your mistress for the good, hard fucking she’s going to give you now.”</i> A warm shudder passes through you as, after a pause, you shift yourself over so you’re between her long legs and wrap one hand around her long, fluid-slicked shaft. Claw-tipped fingers urge you to rise, staying where they are to convex down your back and grip your [pc.ass] as you do whilst continuing to steadily jerk her.");
 		output("\n\nShe leans back with a wide, lazy smile, enjoying the luxuriant refractory period you’re providing her with, drinking in your cum-creamed face whilst your grip gently shifts up and down her girth. Blushing, you look down from that gloating, infernally alluring visage, try to ignore the sensation of musky cream steadily oozing down your [pc.chest] and quickly hit on something to busy yourself with. You send your other hand burying beneath her warm, pliant thighs and touch the lips of her pussy. She hums with deep approval, pushing her thighs outwards so you can enter her, curling your fingers into her hot, moist depths as you continue to wring her male sex. In response she gets to work with her own hands, clutching your [pc.ass] tightly before moving inwards, penetrating your");
 		if(vagIndex >= 0) output(" [pc.vagina " + vagIndex + "]");
 		else output(" [pc.anus]");
@@ -2405,11 +2407,3 @@ public function seraSexXXXTitfuckLuckyDipPerform(TFItem:String = ""):void
 		addButton(0, "Next", seraExitToMain);
 	}
 }
-
-/*
-
-Sex Party
-
-https://docs.google.com/document/d/1hXyuUpvyZvcCL9pTQONhgErsRMlIA9lRWkuISBQOykU/edit#
-
-*/

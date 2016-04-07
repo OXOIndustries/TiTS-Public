@@ -864,6 +864,10 @@ public function appearance(forTarget:Creature):void
 				if(target.buttRating() >= 20) output2(" is marvelously large, but completely stacked with muscle.");
 			}
 		}
+		
+		//Tramp Stamps
+		if(target.hasPerk("Slut Stamp")) output2(" To highlight your vulgarity, a tattoo is permanently printed on your lower back, advertising how much of a slut you are to anyone who sees it.");
+		
 		//TAILS
 		if(target.tailType == GLOBAL.TYPE_EQUINE) output2(" A long " + target.hairColor + " horsetail hangs from your " + target.buttDescript() + ", smooth and shiny.");
 		else if(target.tailType == GLOBAL.TYPE_CANINE)

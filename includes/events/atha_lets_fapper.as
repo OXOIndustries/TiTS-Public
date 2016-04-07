@@ -294,7 +294,7 @@ public function ausarLetsFap2():void
 public function champeonOrOffMenu():void
 {
 	clearMenu();
-	addButton(4,"Back",smutFapMenu);
+	addButton(14,"Back",smutFapMenu);
 	if(flags["CUMSTREAM_UNLOCKED"] == undefined) addButton(0,"Champeon",athasChampeonPage);
 	else addDisabledButton(0,"Champeon","Champeon","You've already backed her at the maximum level!");
 }

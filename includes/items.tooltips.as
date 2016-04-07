@@ -6,6 +6,7 @@ public function altTooltip(itemName:String = "none"):String
 	
 	switch(itemName)
 	{
+		// Consumables
 		case "KerokorasVenom":
 			tooltip += "A vial of ";
 			if(silly) tooltip += "k";
@@ -36,6 +37,18 @@ public function altTooltip(itemName:String = "none"):String
 			if(itemName == "SumaCreamBlack") tooltip += " onyx";
 			tooltip += " bead, roughly the size of a pearl. The exterior is a flexible plastic that protects the cream inside from getting everywhere.";
 			if(!CodexManager.entryViewed("Suma Cream")) tooltip += "\n\n<i>(Be sure to check your codex for more information.)</i>";
+			break;
+		
+		// Apparel
+		case "ButlerCostume":
+			tooltip += "This is a highly fetishized butler outfit. It consists of a waistcoat and a smart white shirt with the front cut out, white pasties for the wearer’s nipples, a black bow tie,";
+			if(pc.isBiped()) tooltip += ", a tight pair of black trousers with the seat cut out";
+			tooltip += ", and a white thong.";
+			break;
+		case "SchoolgirlCostume":
+			tooltip += "This is a highly fetishized western school girl outfit. It consists of a thin, clinging white blouse, a frilly pair of white panties with the word “SLUT” emblazoned in pink on the seat";
+			if(pc.isBiped()) tooltip += ", knee-high socks and plimsolls";
+			tooltip += ", and a short plaid skirt one size too small for you.";
 			break;
 	}
 	

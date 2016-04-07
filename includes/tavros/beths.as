@@ -1333,6 +1333,7 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 				output("\n\nYou take the anat’s coat at the door, give him a kiss on the mask, and ask him how his day was. He sits down at the table wearily and talks about how the admiralty are breaking his balls over this and that, whilst you make him a simple supper. After you’ve finished that you have a mild tiff over whose turn it is to take out the garbage. You make it up with some gentle missionary. Anat cocks are quite thin but have a bulbous, bluntly spiked tip which give you tingles deep inside your [pc.vagina " + x + "].");
 				pc.cuntChange(x, pp.cockVolume(0));
 				output("\n\nOnce that’s over, he takes his coat, thanks you gruffly but sincerely, and leaves hurriedly.");
+				CodexManager.unlockEntry("Anatae");
 				processTime(60);
 				pc.loadInCunt(pp, x);
 				pc.orgasm();
@@ -1497,7 +1498,7 @@ public function bethsPermaContractBadEnd(response:String = "ask"):void
 		pc.addSkinFlag(GLOBAL.FLAG_LUBRICATED);
 		pc.skinTone = "luminescent lime green";
 		if (!pc.hasVagina()) pc.createVagina();
-		for(i = 0; i < pc.vaginas.length; i++)
+		for(var i:int = 0; i < pc.vaginas.length; i++)
 		{
 			pc.shiftVagina(i, GLOBAL.TYPE_SIREN);
 			pc.vaginas[i].vaginaColor = "pink";
@@ -1534,12 +1535,19 @@ public function bethsPermaContractBadEnd(response:String = "ask"):void
 		
 		days += 392;
 		processTime(rand(36));
+		pc.credits = 0;
+				
+		// NOOOO
+		// Looping this much when the player has basically zero chance to actually see most of this fall out is insane-
+		// it comes close to hitting the script execution limit in debug builds at least.
+		// It'd be 2000% better to just directly modify the properties that the player can actually /see/ the fall out
+		// of- basically, just the appearance screen once the gameover hits.
 		
+		/*
 		var i:int = 0;
 		var x:int = 0;
 		var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
 		if (!pp.hasCock()) pp.createCock();
-		
 		for(i = 0; i < 300; i++)
 		{
 			pc.loadInMouth(pp);
@@ -1556,7 +1564,8 @@ public function bethsPermaContractBadEnd(response:String = "ask"):void
 		{
 			pc.orgasm();
 		}
-		pc.credits = 0;
+		*/
+		
 	}
 	
 	badEnd("GAME OVER.");

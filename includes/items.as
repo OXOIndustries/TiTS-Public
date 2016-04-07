@@ -40,6 +40,15 @@ public function useItem(item:ItemSlotClass):Boolean {
 		//Equippable items are equipped!
 		if (isEquippableItem(item))
 		{
+			// Preventive measures
+			if(item.type == GLOBAL.ARMOR || item.type == GLOBAL.CLOTHING) 
+			{
+				if(pc.hasStatusEffect("Armor Slot Disabled"))
+				{
+					itemDisabledMessage(pc.getStatusTooltip("Armor Slot Disabled"));
+					return false;
+				}
+			}
 			// Order of operations band-aid.
 			// Item needs to be removed from inventory before being equipped, or it'll exist in two places and fuck up
 			// item replacement. The player can have a "full" inventory including the item they've just equipped!
@@ -816,6 +825,20 @@ public function inventory():void
 }
 
 
+public function itemDisabledMessage(msg:String = "", clearScreen:Boolean = true):void 
+{
+	if(clearScreen) clearOutput();
+	else output("\n\n");
+	
+	if(msg == "") msg = "<b>The item slot for this item has been disabled!</b>";
+	output(msg);
+	
+	if(clearScreen)
+	{
+		clearMenu();
+		addButton(0, "Next", itemScreen);
+	}
+}
 public function unequip(arg:String, next:Boolean = true):void 
 {
 	// Renamed from lootList so I can distinguish old vs new uses
@@ -838,6 +861,11 @@ public function unequip(arg:String, next:Boolean = true):void
 		pc.accessory = new classes.Items.Miscellaneous.EmptySlot();
 	}
 	else if(arg == "armor") {
+		if(pc.hasStatusEffect("Armor Slot Disabled"))
+		{
+			itemDisabledMessage(pc.getStatusTooltip("Armor Slot Disabled"));
+			return;
+		}
 		unequippedItems[unequippedItems.length] = pc.armor;
 		pc.armor = new classes.Items.Miscellaneous.EmptySlot();
 	}
@@ -939,8 +967,8 @@ public function equipItem(arg:ItemSlotClass):void {
 	}
 	else 
 	{
-		this.clearMenu();
-		this.addButton(0,"Next",itemScreen);
+		clearMenu();
+		addButton(0,"Next",itemScreen);
 	}
 }
 
