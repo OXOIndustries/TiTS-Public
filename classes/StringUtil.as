@@ -108,6 +108,18 @@ package  classes
 			
 			return f.toUpperCase() + rem;
 		}
+		
+		// Plus/Minus sign printing
+		public static function printPlusMinus(aVal:Number = 0):String
+		{
+			var sVal:String = "";
+			
+			if (aVal > 0) sVal = String("+" + aVal);
+			else if (aVal < 0) sVal = String("-" + aVal);
+			else sVal = String(aVal);
+			
+			return sVal;
+		}
 	}
 
 }
