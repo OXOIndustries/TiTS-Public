@@ -34,7 +34,7 @@
 		{
 			if (bustName == "none") return false;
 			
-			var _bustName = "Bust_" + bustName;
+			var _bustName:String = "Bust_" + bustName;
 			
 			for (var i:int = 0; i < GLOBAL.VALID_ARTISTS.length; i++)
 			{
