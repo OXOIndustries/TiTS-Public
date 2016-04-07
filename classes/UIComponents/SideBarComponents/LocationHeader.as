@@ -1,8 +1,13 @@
 package classes.UIComponents.SideBarComponents 
 {
+	import classes.Items.Armor.VoidPlateArmor;
+	import classes.Resources.Busts.CharacterBustOverrideSelector;
+	import classes.Resources.StatusIcons;
 	import flash.display.Bitmap;
 	import flash.display.Sprite;
 	import flash.events.Event;
+	import flash.events.MouseEvent;
+	import flash.geom.ColorTransform;
 	import flash.text.TextField;
 	import classes.UIComponents.UIStyleSettings;
 	import flash.text.AntiAliasType;
@@ -26,6 +31,8 @@ package classes.UIComponents.SideBarComponents
 		private var _npcBusts:Sprite;
 		private var _bustBackground:Sprite;
 		private var _bustOrderSet:Boolean;
+		
+		private var _configureControl:Sprite;
 		
 		public function get roomText():String { return _roomText.text; }
 		public function get planetText():String { return _planetText.text; }
@@ -159,7 +166,54 @@ package classes.UIComponents.SideBarComponents
 			_systemText.filters = [UIStyleSettings.gRoomLocationTextGlow];
 			
 			this.addChild(_systemText);
+			
+			_configureControl = new StatusIcons.Icon_Gears_Three();
+			addChild(_configureControl);
+			var ct:ColorTransform = new ColorTransform();
+			ct.color = 0xFFFFFF;
+			_configureControl.transform.colorTransform = ct;
+			_configureControl.alpha = 0.6;
+			_configureControl.width = 20;
+			_configureControl.height = 20;
+			_configureControl.x = _bustBackground.x + _bustBackground.width - 2 - 20;
+			_configureControl.y = _bustBackground.y + 2;
+			_configureControl.addEventListener(MouseEvent.CLICK, openBustConfig);
+			_configureControl.visible = false;
+			var ha:Sprite = new Sprite();
+			ha.graphics.beginFill(0xFFFFFF, 0);
+			ha.graphics.drawRect(0, 0, 20, 20);
+			ha.graphics.endFill();
+			addChild(ha);
+			ha.x = _configureControl.x;
+			ha.y = _configureControl.y;
+			ha.mouseEnabled = false;
+			ha.buttonMode = true;
+			_configureControl.hitArea = ha;
 		}
+		
+		private function openBustConfig(e:Event):void
+		{
+			if (stage.getChildByName("bustSelector")) return;
+			
+			var o:CharacterBustOverrideSelector = new CharacterBustOverrideSelector(lastSetBust);
+			stage.addChild(o);
+		}
+		
+		private var _lastSetBust:String;
+		private function set lastSetBust(v:String):void
+		{
+			_lastSetBust = v;
+			
+			if (NPCBustImages.hasBustsForCharacter(v))
+			{
+				_configureControl.visible = true;
+			}
+			else
+			{
+				_configureControl.visible = false;
+			}
+		}
+		private function get lastSetBust():String { return _lastSetBust; }
 		
 		// Actually, using this, I can do some simple asset/sprite stacking to enable
 		// multiple busts to be displayed, layered on top of each other (similar to ZilPack),
@@ -194,6 +248,8 @@ package classes.UIComponents.SideBarComponents
 			
 			if (name == "none") bustT = null;
 			else bustT = NPCBustImages.getBust(name);
+			
+			lastSetBust = name;
 			
 			if (bustT != null)
 			{
@@ -239,6 +295,8 @@ package classes.UIComponents.SideBarComponents
 		
 		private function showMultipleBusts(args:Array):void
 		{
+			lastSetBust = "none";
+			
 			// Build a list of available busts from the incoming args
 			var available:Array = new Array();
 			var bustT:Class;
