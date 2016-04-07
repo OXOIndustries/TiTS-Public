@@ -646,7 +646,9 @@ public function suckThatMassiveStudlyBrynnDick():void
 
 		didDeepthroat = true;
 	}
-
+	
+	applyCumSoaked(pc);
+	
 	// PROBS TIME FOR A NEW PAGE
 	clearMenu();
 	addButton(0, "Next", suckThatMassiveStudlyBrynnDickII, didDeepthroat);

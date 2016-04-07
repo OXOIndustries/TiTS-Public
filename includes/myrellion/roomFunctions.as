@@ -65,8 +65,6 @@ public function flyToMyrellion():void
 		output("\n\nYou take manual control of your ship for the last few minutes, following the biplane squadron down and across the heat-blasted red rock of the planet, and towards what looks like an airfield in the distance. That turns out to be exactly what it is, you see as you near it: an exceptionally large airport whose planes have mostly been pushed aside or hangared, giving way to a handful of pioneer-looking starships, freighters, and military transports from the battle group in orbit.");
 		output("\n\nYou’re allowed to break off from the planes once you reach the airfield, guiding your ship in a simple vertical landing as the biplanes make use of the one clear runway left. You park your ship, collect your gear, and punch the boarding ramp down. You’re quickly greeted by a group of armed women, all four-armed, antenna-bearing, and abnormally busty beauties clad in military uniforms. ");
 		output("\n\nYour codex beeps: <i>Myr sighted. This ant-like species comes in two varieties, both highly civilized if not technologically advanced. Currently considered ‘tentatively peaceful’ by the Scout Authority. Two entries added for your perusal.</i>");
-		CodexManager.unlockEntry("Red Myr");
-		CodexManager.unlockEntry("Gold Myr");
 
 		output("\n\nYou stow the device when a few of the women nervously point their weapons - old fashioned lever-actions - at you. A few tense moments later, though, the pilot that waved at you saunters up with a slight grin, nodding for the guards to lower their weapons.");
 
@@ -87,16 +85,17 @@ public function flyToMyrellion():void
 	}
 	else
 	{
-		//A quick catch-all. The intro used to unlock the "Myrmedion" codex.
-		//This check ensures older save files will re-unlock the relevant entries.
-		CodexManager.unlockEntry("Red Myr");
-		CodexManager.unlockEntry("Gold Myr");
 		showBust("MYR_GOLD_PILOT");
 		showName("MYR\nESCORT");
 		output("Flying to Myrellion is no quick jaunt down the road, but before you know it, you're guiding your ship back through the atmosphere for a flawless landing on the tarmac, escorted by a squadron of myr pilots in old-timey biplanes.");
 		output("\n\nAfter making sure you are docked properly, you prepare your things");
 		if(leaveShipOK()) output(" and step out of your ship.");
 	}
+	//A quick catch-all. The intro used to unlock the "Myrmedion" codex.
+	//This check ensures older save files will re-unlock the relevant entries.
+	CodexManager.unlockEntry("Red Myr");
+	CodexManager.unlockEntry("Gold Myr");
+	CodexManager.unlockEntry("Scarlet Federation");
 }
 
 public function streetOutsideBarBonus():Boolean

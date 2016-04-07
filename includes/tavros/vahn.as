@@ -593,9 +593,9 @@ public function vahnFucksYourButt():void
 	if(pc.hasVagina())
 	{
 		output(" Your ");
-		if (pc.totalVaginas() == 1) output("pussy is");
-		else output("pussies are");
-		output(" untouched but warm as slick as can be, thoroughly aroused by his entry!");
+		if (pc.totalVaginas() == 1) output("pussy is untouched but is as warm and as slick as it");
+		else output("pussies are untouched but are as warm and as slick as they");
+		output(" can be, thoroughly aroused by his entry!");
 	}
 	else output("With no sex organs to speak of, you’re loving him using your ass-pussy!");
 

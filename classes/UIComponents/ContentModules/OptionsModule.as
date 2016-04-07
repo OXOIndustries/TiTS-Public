@@ -1,7 +1,7 @@
 package classes.UIComponents.ContentModules 
 {
 	import classes.UIComponents.ContentModule;
-	import classes.UIComponents.ContentModuleComponents.BustsPreferenceControl;
+	import classes.UIComponents.ContentModuleComponents.DoubleSelectControl;
 	import classes.UIComponents.ContentModuleComponents.MainMenuButton;
 	import classes.UIComponents.ContentModuleComponents.OptionsControlToggle;
 	import classes.UIComponents.ContentModuleComponents.OptionsTextSizeControl;
@@ -9,6 +9,7 @@ package classes.UIComponents.ContentModules
 	import flash.display.MovieClip;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import classes.GLOBAL;
 	/**
 	 * ...
 	 * @author Gedan
@@ -78,7 +79,16 @@ package classes.UIComponents.ContentModules
 			addMultiToggleControl("Toggle save notes and file overwrite prompt.", "Save Notes", "saveNotesToggle", "Overwrite Prompt", "overwriteToggle");
 			addMultiToggleControl("Toggle author visibility and vendor handling.", "Scene By", "authorToggle", "Buy/Sell Prompt", "vendorToggle");
 			
-			addBustPreferenceControl();
+			addMultiToggleControl("Basic character image settings.", "Busts", "bustsEnabled", "Fallback", "bustFallbacks");
+			
+			var bustControl:DoubleSelectControl = new DoubleSelectControl();
+			_controls.push(bustControl);
+			_controlsContainer.addChild(bustControl);
+			bustControl.y = 5 + _pC.y + _pC.height;
+			_pC = bustControl;
+			
+			bustControl.configure("Advanced character image settings.", "Define who your preferred artists are for character image displays. You can override the displayed bust on a per-character basis by clicking on the image in the top left of the game whenever it is displayed.", "Primary Artist:", "primaryBustArtist", GLOBAL.VALID_ARTISTS, "Secondary Artist:", "secondaryBustArtist", GLOBAL.VALID_ARTISTS);
+			
 			
 			addFontSizeControl();
 		}
@@ -95,24 +105,10 @@ package classes.UIComponents.ContentModules
 			_controls.push(tC);
 			_controlsContainer.addChild(tC);
 			
-			if (_pC != null) tC.y = _pC.y + _pC.height;
-			if (_pC is BustsPreferenceControl) tC.y += 5;
+			if (_pC != null) tC.y = 5 + _pC.y + _pC.height;
 			_pC = tC;
 			
 			tC.configure(d, nA, pA, nB, pB);
-		}
-		
-		private function addBustPreferenceControl():void
-		{
-			for (var i:int = 0; i < 4; i++)
-			{
-				var bpC:BustsPreferenceControl = new BustsPreferenceControl(i, this);
-				_controls.push(bpC);
-				_controlsContainer.addChild(bpC);
-				
-				if (_pC != null) bpC.y = _pC.y + _pC.height;
-				_pC = bpC;
-			}
 		}
 		
 		private function addFontSizeControl():void

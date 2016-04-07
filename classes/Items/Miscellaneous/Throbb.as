@@ -320,6 +320,8 @@
 		}
 		public function throbbBadEnd():void
 		{
+			var pc:Creature = kGAMECLASS.chars["PC"];
+			
 			kGAMECLASS.clearOutput();
 			kGAMECLASS.output("You masturbate on the spot, rubbing your [pc.cockBiggest] again and again while thick rivulets of [pc.cum] spil out of your distended [pc.cockHeadBiggest]. Even though you aren't orgasming, your swollen sack has become so productive that your pre-cum has been replaced by the real deal. You heft and squeeze ");
 			if(kGAMECLASS.pc.balls > 1) kGAMECLASS.output("one ");
@@ -329,27 +331,34 @@
 			kGAMECLASS.output("\n\nPanting as you finish draining your [pc.balls], you try to remember what you were up to before you fell into another drug-fueled fap session. You were exploring or something, but everything was so sexy. Just thinking about some of the aliens you've encountered has your flagging phallus pumping up beautifully. Damn if you think about one more juicy, pliant pussy or pillowy bosom, you're going to have to... ahhh, fuck it. You grab hold of yourself and start jacking off again. You'll figure it out after another cum.");
 			kGAMECLASS.output("\n\nOf course, you don't. You wind up blowing a load all over your face and wondering why anyone would complain about it, and then you start thinking about coating other people's faces with your [pc.cum]. Then, you're right back where you started, letting yourself sink into another self-indulgent rut.");
 			kGAMECLASS.output("\n\nAfter a few dozen cyclic attempts to resume normal life, you give up. It's better to just wrap your hands around your cock and give in to the feelings it provides....");
-			kGAMECLASS.pc.orgasm();
-			kGAMECLASS.pc.orgasm();
-			kGAMECLASS.pc.orgasm();
-			kGAMECLASS.pc.orgasm();
-			kGAMECLASS.pc.orgasm();
-			kGAMECLASS.pc.orgasm();
-			kGAMECLASS.pc.orgasm();
-			kGAMECLASS.pc.orgasm();
-			kGAMECLASS.pc.orgasm();
-			kGAMECLASS.pc.orgasm();
-			kGAMECLASS.pc.orgasm();
-			kGAMECLASS.pc.orgasm();
+			
+			kGAMECLASS.processTime(60 + rand(30));
+			
+			pc.removeAll();
+			for(var i:int = 0; i < 12; i++)
+			{
+				pc.orgasm();
+				if(rand(6) == 0) pc.orgasm();
+			}
+			
 			kGAMECLASS.clearMenu();
 			kGAMECLASS.addButton(0,"Next",throbbBadEndPartDues);
 		}
 		public function throbbBadEndPartDues():void
 		{
+			kGAMECLASS.currentLocation = "GAME OVER";
+			kGAMECLASS.generateMap();
+			kGAMECLASS.showLocationName();
+			
 			kGAMECLASS.clearOutput();
 			//[Next]
 			kGAMECLASS.output("At some point, you realized that your dreams of following in your Dad's footsteps had died. There was no way you were going to be able to focus long enough to find the probes he left scattered around the universe. You made the best of a rough situation, though, by managing to set up an online holo-show.");
 			kGAMECLASS.output("\n\nOne of your fans was even nice enough to cart you off to a studio with drains and proper recording equipment. You let them worry about the money, of course. It's too much work to keep up with all that garbage when you could be using your time to queue up a hot new porno.");
+			
+			kGAMECLASS.days += 30 + rand(6);
+			kGAMECLASS.hours = rand(24);
+			kGAMECLASS.processTime(rand(60));
+			
 			kGAMECLASS.badEnd("GAME OVER - You have overdosed on Throbb.");
 		}
 	}

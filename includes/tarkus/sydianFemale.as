@@ -8,6 +8,7 @@ public function showSydianFemale():void
 
 public function encounterFemaleSydian():void
 {
+	showSydianFemale();
 	var tEnemy:SydianFemale = new SydianFemale();
 
 	if (flags["MET SYDIAN FEMALE"] == undefined)
@@ -373,11 +374,11 @@ public function sydianFemalePCVictory():void
 		addDisabledButton(1, "Get Licked");
 		addDisabledButton(2, "Give Throbb");
 		addDisabledButton(3, "Call Others");
-		addDisabledButton(4, "Gentle Fuck")
+		addDisabledButton(4, "Gentle Fuck");
 	}
 	else
 	{
-		output("You could use her to get off");
+		output(" You could use her to get off");
 		if (enemy.hasStatusEffect("Unarmored"))
 		{
 			output(", though it might be fun to surprise her by being gentle, or to turn her over to her people in her humiliated state.");
@@ -389,9 +390,12 @@ public function sydianFemalePCVictory():void
 		}
 
 		if (!pc.hasCock()) addDisabledButton(0, "Fuck Her", "Fuck Her", "You don't have a wiener!");
-		else if (pc.cockThatFits(enemy.vaginalCapacity()) == -1) addDisabledButton(0, "Fuck Her", "Fuck Her", "Your wiener is too big! It's a jumbo wiener!");
-		else if (pc.thinnestCockThickness() > 4 && !enemy.hasStatusEffect("Unarmored")) addDisabledButton(0, "Fuck Her", "Fuck Her", "You could fit your wiener inside if her body armor weren't in the way...");
-		else addButton(0, "Fuck Her", femSydianFuck, undefined, "Fuck Her", "Stick your wiener in it.");
+		else
+		{
+			if (pc.cockThatFits(enemy.vaginalCapacity()) == -1) addDisabledButton(0, "Fuck Her", "Fuck Her", "Your wiener is too big! It's a jumbo wiener!");
+			else if (pc.thinnestCockThickness() > 4 && !enemy.hasStatusEffect("Unarmored")) addDisabledButton(0, "Fuck Her", "Fuck Her", "You could fit your wiener inside if her body armor weren't in the way...");
+			else addButton(0, "Fuck Her", femSydianFuck, undefined, "Fuck Her", "Stick your wiener in it.");
+		}
 
 		addButton(1, "Get Licked", femSydianEatsButtholes, undefined, "Get Licked", "Make her service your " + (pc.hasVagina() ? "vagina" : "asshole"));
 
@@ -407,7 +411,12 @@ public function sydianFemalePCVictory():void
 		else if (pc.hasVagina() || (pc.hasCock() && pc.cockThatFits(enemy.vaginalCapacity()))) addButton(4, "Gentle Fuck", femSydianGentleFuck, undefined, "Gentle Fuck", "Show the sydian that sex can be more than a power play.");
 		else addDisabledButton(4, "Gentle Fuck", "Gentle Fuck", "Your genitals are incompatible with the poor girl!");
 	}
+	addButton(14, "Leave", leaveHerAfterWin);
+}
 
+public function leaveHerAfterWin():void
+{
+	clearOutput();
 	CombatManager.genericVictory();
 }
 
@@ -623,11 +632,11 @@ public function femSydianCallOthers():void
 	}
 	else if (pc.isNice())
 	{
-		output("\n\n<i>“Sorry about that,”</i> you apologize. The bug-girl only covers herself, hiding her tantalizing, cream-colored breasts and sultry orange sex under her dingy arms. <i>“You know,”</i> you offer, <i>“you don’t need to be so ashamed of your body. You could maybe... show it off a little....”</i> Your request falls flat - she only bunches up tighter.");
+		output("<i>“Sorry about that,”</i> you apologize. The bug-girl only covers herself, hiding her tantalizing, cream-colored breasts and sultry orange sex under her dingy arms. <i>“You know,”</i> you offer, <i>“you don’t need to be so ashamed of your body. You could maybe... show it off a little....”</i> Your request falls flat - she only bunches up tighter.");
 	}
 	else
 	{
-		output("\n\n<i>“Hello,”</i> you leer, watching the alien’s liberated breasts rise and fall. <i>“Look what you’ve been hiding.”</i> Flakes of pulverized armor fall away as she covers herself with an arm. When you glance lower, at the thin orange line between her legs, she shifts to cover the gap in her thighs, dislodging more dust. You amuse yourself, making her brush away the crumbling remnants just by eye-fucking her.}");
+		output("<i>“Hello,”</i> you leer, watching the alien’s liberated breasts rise and fall. <i>“Look what you’ve been hiding.”</i> Flakes of pulverized armor fall away as she covers herself with an arm. When you glance lower, at the thin orange line between her legs, she shifts to cover the gap in her thighs, dislodging more dust. You amuse yourself, making her brush away the crumbling remnants just by eye-fucking her.}");
 	}
 
 	output("\n\n<i>“Stop staring,”</i> she snaps. The sydian won’t give you a decent eyeful of her good bits, and you’re daydreaming of someone else to keep her hands busy when you realize - that’s a real possibility. The girl eyes your distant, thoughtful expression.");
@@ -641,7 +650,7 @@ public function femSydianCallOthers():void
 
 	var isFemale:Boolean = (pc.hasCock() || pc.hasTailCock() || pc.hasNippleCocks) && rand(2) == 0;
 
-	var emf:Function = function(m:String, f:String) { return (isFemale ? f : m); }
+	var emf:Function = function(m:String, f:String):String { return (isFemale ? f : m); }
 
 	output("\n\nThe woman looks mortified. After a minute, a clatter of quick-rusting metal junk fanfares another sydian:");
 	if (isFemale) output(" a smug, shapely female.");
@@ -917,7 +926,7 @@ public function femSydianCallOthers():void
 			pc.orgasm();
 		}
 	}
-
+	output("\n\n");
 	CombatManager.genericVictory();
 }
 

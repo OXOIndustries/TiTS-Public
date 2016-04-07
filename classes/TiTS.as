@@ -97,6 +97,7 @@
 		include "../includes/creation.as";
 		include "../includes/creation_custom_PCs.as";
 		include "../includes/debug.as";
+		include "../includes/dreams.as";
 		include "../includes/dynamicGrowth.as";
 		include "../includes/engine.as";
 		include "../includes/game.as";
@@ -136,7 +137,6 @@
 		// Misc Events
 		include "../includes/events/atha_lets_fapper.as";
 		include "../includes/events/bimboPennyAndBadgerQuest/badgerGifts.as";
-		include "../includes/events/sumaBonus.as";
 		include "../includes/events/tentacle_psychic_hatchling.as";
 
 		//Tavros Station
@@ -176,6 +176,7 @@
 		include "../includes/mhenga/scrapyard.as";
 		include "../includes/mhenga/syri.as";
 		include "../includes/mhenga/tanis.as";
+		include "../includes/mhenga/tharePlantation.as";
 		include "../includes/mhenga/vanae.as";
 		include "../includes/mhenga/venusPitchers.as";
 		include "../includes/mhenga/vko.as";
@@ -270,6 +271,8 @@
 		include "../includes/events/karaquest2/content.as";
 		include "../includes/events/karaquest2/rooms.as";
 		include "../includes/events/karaquest2/roomFunctions.as";
+		
+		include "../includes/chargendata.as";
 		
 		public var chars:Object;
 
@@ -371,7 +374,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.6.43";
+			version = "0.6.44";
 
 			//temporary nonsense variables.
 			temp = 0;

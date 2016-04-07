@@ -127,7 +127,7 @@ package classes.Items.Miscellaneous
 		{
 			kGAMECLASS.clearOutput();
 			kGAMECLASS.output("You put the pill back, thinking it best not to use it.");
-			if (!kGAMECLASS.debug) kGAMECLASS.itemCollect([new Dumbfuck()]);
+			if (!kGAMECLASS.infiniteItems()) kGAMECLASS.itemCollect([new Dumbfuck()]);
 			kGAMECLASS.clearMenu();
 			kGAMECLASS.addButton(0,"Next",kGAMECLASS.useItemFunction);
 		}

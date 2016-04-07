@@ -69,14 +69,14 @@ package classes.Items.Transformatives
 			if(kGAMECLASS.rooms[kGAMECLASS.currentLocation].planet == "PLANET: NEW TEXAS")
 			{
 				output("How long you spent laying there in a pool of your own milk, lowing like some kind brainless sow, you don’t know. What you do know is that the pleasure from Gush never seemed to go away. Sure, the euphoria diminished, but your breasts are just so big and so wonderful that you never really saw a reason to stop tugging on them. Heck, after a while, your sore tits started leaking [pc.milk] again.");
-				output("\n\nIt’s only been four hours since then, and you’re still leaking, still dribbling your marvellous [pc.milkNoun] all over yourself. You lick some off your fingers and hum in wonder at the taste, aware that at some point you should probably seek sustenance, but your fluid-filled boobs are just too heavy to lift. Maybe, just maybe, you could crawl if you really tried, but imagining your perfect [pc.nipplesNoun] dragging across the rough ground just seems wrong. They deserve to be in fingers... or milkers.");
+				output("\n\nIt’s only been four hours since then, and you’re still leaking, still dribbling your marvelous [pc.milkNoun] all over yourself. You lick some off your fingers and hum in wonder at the taste, aware that at some point you should probably seek sustenance, but your fluid-filled boobs are just too heavy to lift. Maybe, just maybe, you could crawl if you really tried, but imagining your perfect [pc.nipplesNoun] dragging across the rough ground just seems wrong. They deserve to be in fingers... or milkers.");
 				output("\n\nYou cum at the thought, not that you aren’t awash in a sea of lactic bliss at this very moment, but the upsurge in blissed-out milkiness is enough for you to notice. It’s almost enough to let you ignore the calloused hands grabbing you under the shoulders and lifting you up and over a broad, well-muscled shoulder.");
-				if(pc.isTreated()) output(" There’s no way a Treated [pc.boy] like you could miss that scent, though. A marvellously musky bull must have picked you up on his way back from the fields, judging by the delightful sheen of sweat he’s covered in.");
-				else output(" There’s no ignoring that pernicious scent, though: marvellously musky with just a hint of some kind of wood. Maybe ceder? Best of all, the hunk carrying you radiates it from every sweat-soaked pore. He must have just come in from the fields.");
+				if(pc.isTreated()) output(" There’s no way a Treated [pc.boy] like you could miss that scent, though. A marvelously musky bull must have picked you up on his way back from the fields, judging by the delightful sheen of sweat he’s covered in.");
+				else output(" There’s no ignoring that pernicious scent, though: marvelously musky with just a hint of some kind of wood. Maybe ceder? Best of all, the hunk carrying you radiates it from every sweat-soaked pore. He must have just come in from the fields.");
 				output("\n\nYou’re way too busy playing with your nipples and sniffing at the air to pay attention to his ramblings, but the bass of his voice absolutely demands your full, attention, momentarily overpowering the throbbing tingles in your tits.");
 				output("\n\n<i>“Cows like you shouldn’t be left alone to get in trouble like that.”</i> His firm hand squeezes your buns");
 				if(!pc.hasVagina() && pc.hasCock()) output(", steadfastly ignoring your drizzling [pc.cocks]");
-				else output(", his thick finger daring to prod at a needy slit");
+				else if(pc.hasVagina()) output(", his thick finger daring to prod at a needy slit");
 				output(". <i>“Got a man somewhere? Or you one of those milk barn girls?”</i>");
 
 				output("\n\nYou fish around for the words to answer, but each time you do, your [pc.nipples] light up like buzzers and scatter all the letters apart into happy frissons of lactic delight. Instead, you let out a plaintive little moan.");
@@ -93,10 +93,13 @@ package classes.Items.Transformatives
 			else
 			{
 				output("How long you spent laying there in a pool of your own milk, lowing like some kind brainless sow, you don’t know. What you do know is that the pleasure from Gush never seemed to go away. Sure, the euphoria diminished, but your breasts are just so big and so wonderful that you never really saw a reason to stop tugging on them. Heck, after a while, your sore tits started leaking [pc.milk] again.");
-				output("\n\nIt’s only been four hours since then, and you’re still leaking, still dribbling your marvellous [pc.milkNoun] all over yourself. You lick some off your fingers and hum in wonder at the taste, aware that at some point you should probably seek sustenance, but your fluid-filled boobs are just too heavy to lift. Maybe, just maybe, you could crawl if you really tried, but imagining your perfect [pc.nipplesNoun] dragging across the rough ground just seems wrong. They deserve to be in fingers... or milkers.");
+				output("\n\nIt’s only been four hours since then, and you’re still leaking, still dribbling your marvelous [pc.milkNoun] all over yourself. You lick some off your fingers and hum in wonder at the taste, aware that at some point you should probably seek sustenance, but your fluid-filled boobs are just too heavy to lift. Maybe, just maybe, you could crawl if you really tried, but imagining your perfect [pc.nipplesNoun] dragging across the rough ground just seems wrong. They deserve to be in fingers... or milkers.");
 				output("\n\nYou cum at the thought, not that you aren’t awash in a sea of lactic bliss at this very moment, but the upsurge in blissed-out milkiness is enough for you to notice. Maybe you could get someone to milk you? You call out, your voice harsh from your parched throat. Funny how thirsty you’ve gotten, and how easy it is to ignore with boobs like this. Again and again you call out, each time a little more deliriously. Sometimes you just bleat out a moo. Whatever. At least you’ve got your perfect titties.");
 				//Newpage
 			}
+			
+			kGAMECLASS.processTime((4 * 60) + rand(15));
+			
 			kGAMECLASS.clearMenu();
 			kGAMECLASS.addButton(0,"Next",gushBadEndPartII);
 		}
@@ -104,24 +107,55 @@ package classes.Items.Transformatives
 		{
 			clearOutput();
 			var pc:PlayerCharacter = kGAMECLASS.pc;
-			kGAMECLASS.showName("\nTITTIES!");
 			if(kGAMECLASS.rooms[kGAMECLASS.currentLocation].planet == "PLANET: NEW TEXAS")
 			{
+				kGAMECLASS.currentLocation = "BrynnsStall";
+				kGAMECLASS.generateMap();
+				kGAMECLASS.showLocationName();
+				kGAMECLASS.showBust("BRYNN_NUDE","CAMERON_NUDE");
+				
+				pc.removeAll();
+				
 				output("The milking chair is really soft and cushiony. It even has ");
-				if(pc.legCount > 1) output("individual supports for [pc.legs] to keep them comfortable and spread.");
+				if(pc.legCount > 1) output("individual supports for your [pc.legs] to keep them comfortable and spread.");
 				else output("supports and straps for your unconventional form, adjustable to thrust your crotch out at a moment’s notice.");
 				output(" The cups feel way better on your [pc.nipples] than your hands ever did, and the food hose hanging above your mouth is there to slake your hunger and thirst whenever you want. You can even stroke your [pc.chest] or a stud’s cock while you drink.");
 				//Nocunt
 				if(!pc.hasVagina())
 				{
 					output("\n\nThere’s a little bit of a mediciny aftertaste, but it’s a small price to pay for the comfort you’re getting to partake in. Even your crotch gets in on the game, tingling with a glow of its own, getting hotter and hotter with every pump on your tits. When you can bear it no longer, you reach down with one hand and rub at it, discovering soft folds and a crease that feels even better when you push down on it. It’s slippery too, not with milk but something else. You add another finger shrug, frigging your new vagina while it deepens to handle a bull-sized load.");
+					
+					pc.createVagina();
+					pc.vaginas[0].minLooseness = 2;
+					pc.vaginas[0].minLooseness = 2;
+					pc.vaginas[0].wetnessRaw = 4;
 				}
 				//Resume
-				output("\n\nWhen Brynn starts fucking you, you almost protest. How could you, though? You feel so good, and when his cock kisses your pussy lips, it takes all the straps on the chair to keep you from thrusting up and out of it, if only to bury him to the bottom of his cum-slicked sheath. He works his way in slowly, coating himself liberally with some kind of lubricant that’s making you all stretchy and wet.");
-				output("\n\nYour resistance melts away beneath the pleasure. Your tits continue to gush their [pc.milkFlavor] warmth into the tubes. Surely this is the place for you. You can’t imagine being anywhere else, or anything really, not when there’s hard dicks lining up to see you and your amazing boobs. Maybe Cameron will come titfuck you next.");
+				output("\n\nWhen");
+				if(!kGAMECLASS.brynnIntroduced()) output(" a bull-horned stud");
+				else output(" Brynn");
+				output(" starts fucking you, you almost protest. How could you, though? You feel so good, and when his cock kisses your pussy lips, it takes all the straps on the chair to keep you from thrusting up and out of it, if only to bury him to the bottom of his cum-slicked sheath. He works his way in slowly, coating himself liberally with some kind of lubricant that’s making you all stretchy and wet.");
+				output("\n\nYour resistance melts away beneath the pleasure. Your tits continue to gush their [pc.milkFlavor] warmth into the tubes. Surely this is the place for you. You can’t imagine being anywhere else, or anything really, not when there’s hard dicks lining up to see you and your amazing boobs. Maybe");
+				if(kGAMECLASS.flags["MET_CAMERON"] == undefined) output(" that girly farmer boy");
+				else output(" Cameron");
+				output(" will come titfuck you next.");
+				
+				pc.cuntChange(0, kGAMECLASS.brynn.cockVolume(0), false);
+				
+				for (var i:int = 0; i < 8; i++)
+				{
+					pc.loadInCunt(kGAMECLASS.brynn, 0);
+					kGAMECLASS.brynn.orgasm();
+					pc.orgasm();
+				}
 			}
 			else
 			{
+				kGAMECLASS.currentLocation = "GAME OVER";
+				kGAMECLASS.generateMap();
+				kGAMECLASS.showLocationName();
+				kGAMECLASS.showBust("ZODEE");
+				
 				output("Water splashing your face rouses you. At some point you passed out, but there’s a nice blue lady there with cute little antennae and big, bouncy breasts of her own. You try to remember how to string together words while your fingers go back to work, pumping and tugging on backed-up teats. The [pc.milk] pours in out thick streams made all the thicker by your dehydration.");
 				output("\n\nShe supplies the words for you. <i>“Too much Gush?”</i>");
 				output("\n\nYou moan and nod, giving her pleading eyes. Maybe she’ll suck on your nipple.");
@@ -134,6 +168,10 @@ package classes.Items.Transformatives
 				output("\n\nNew property? Sample? Your head is swimming but your milking feels so damned good that you forget how to say no. What could be wrong with agreeing? You nod your head.");
 				output("\n\nZo’dee giggles. <i>“Of course you’ll say yes, won’t you, my eager little [pc.milkNoun]-slut?”</i> She bends low for a drink, and when her lips meet your [pc.nipple], all you can do is moan your assent, forgetting your mission almost as fast as your new owner’s name.");
 			}
+			
+			kGAMECLASS.showName("\nTITTIES!");
+			kGAMECLASS.processTime((2 * 60) + 15 + rand(15));
+			
 			kGAMECLASS.badEnd();
 		}
 		//METHOD ACTING!
@@ -188,7 +226,7 @@ package classes.Items.Transformatives
 					//Repeat
 					else
 					{
-						output("\n\nYou know from experience that it takes a little while for the Gush to be fully absorbed by your body. While you wait, you wonder just why you ever let yourself stop lactating. How could you have given up such a marvellous gift, even if it was a bit cumbersome to deal with while sober?");
+						output("\n\nYou know from experience that it takes a little while for the Gush to be fully absorbed by your body. While you wait, you wonder just why you ever let yourself stop lactating. How could you have given up such a marvelous gift, even if it was a bit cumbersome to deal with while sober?");
 					}
 					//merge first/repeat milkgets
 					output("\n\nYou look back down at your tits.");
@@ -287,7 +325,7 @@ package classes.Items.Transformatives
 					}
 					output("\n\nThe flesh under your palm feels <i>good</i> and... right, like it was molded to support the firm press of your digits, to feel every nook and cranny of your hand cup it and support it.");
 					if(pc.biggestTitSize() < 1) output(" There’s more than there used to be too, a wonderful softness that can only be the beginnings of a decent rack.");
-					else output(" There’s so much to hold on to, a marvellous new softness that can only be evidence of a perfectly swelling rack.");
+					else output(" There’s so much to hold on to, a marvelous new softness that can only be evidence of a perfectly swelling rack.");
 					output(" A throaty " + pc.mf("growl","purr") + " escapes your throat as you give yourself over to the sensations, aware for the first time that Gush has well and truly kicked in.");
 					output("\n\n");
 					if(kGAMECLASS.flags["USED_GUSH"] != undefined) output("Just like before, y");
@@ -374,21 +412,12 @@ package classes.Items.Transformatives
 			output("\n\nAfter a few more minutes of raptly watching your finger’s attempts, you manage to stop yourself and catch your breath. What a trip! You still feel a wondrous kind of kinship with your [pc.chest] too, less like they’re a part of you and more like you’ve become a part of them, but that’s okay. There are worse things than having an enhanced portion of your body become so important.");
 			//Dozen or so cums
 			kGAMECLASS.processTime(20+rand(20));
-			pc.orgasm();
-			pc.orgasm();
-			pc.orgasm();
-			pc.orgasm();
-			pc.orgasm();
-			pc.orgasm();
-			pc.orgasm();
-			pc.orgasm();
-			pc.orgasm();
-			if(rand(3) == 0) pc.orgasm();
-			if(rand(3) == 0) pc.orgasm();
-			if(rand(3) == 0) pc.orgasm();
-			if(rand(3) == 0) pc.orgasm();
-			if(rand(3) == 0) pc.orgasm();
-			if(rand(3) == 0) pc.orgasm();
+			
+			for(var i:int = 0; i < 9; i++)
+			{
+				pc.orgasm();
+				if(i > 3 && rand(3) == 0) pc.orgasm();
+			}
 
 			//Summary of changes for the end!
 			output("\n\nNow that you’ve had a chance to breathe, you suppose you ought to see what the Gush did to you. ");

@@ -7,6 +7,8 @@
 	 */
 	public class GatsBusts 
 	{
+		public function get PREVIEW():Class { return Bust_ALEX; }
+		
 		[Embed(source = "../../../assets/images/npcs/gats/Alex.png", mimeType = "image/png")]
 		public var Bust_ALEX:Class;
 		[Embed(source = "../../../assets/images/npcs/gats/Alex_Nude.png", mimeType = "image/png")]
@@ -37,6 +39,11 @@
 		public var Bust_BURT:Class;
 		[Embed(source = "../../../assets/images/npcs/gats/Burt_Nude.png", mimeType = "image/png")]
 		public var Bust_BURT_NUDE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/gats/cameron.png", mimeType = "image/png")]
+		public var Bust_CAMERON:Class;
+		[Embed(source = "../../../assets/images/npcs/gats/cameron_nude.png", mimeType = "image/png")]
+		public var Bust_CAMERON_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/gats/Captain_Khorgan.png", mimeType = "image/png")]
 		public var Bust_CAPTAIN_KHORGAN:Class;
@@ -208,6 +215,11 @@
 		[Embed(source = "../../../assets/images/npcs/gats/Tamwolf.png", mimeType = "image/png")]
 		public var Bust_TAMWOLF:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/gats/una.png", mimeType = "image/png")]
+		public var Bust_UNA:Class;
+		[Embed(source = "../../../assets/images/npcs/gats/una_nude.png", mimeType = "image/png")]
+		public var Bust_UNA_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/gats/Venus_Pitcher.png", mimeType = "image/png")]
 		public var Bust_VENUSPITCHER:Class;
 

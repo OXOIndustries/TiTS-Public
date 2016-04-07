@@ -577,6 +577,7 @@
 			"Goo",
 			"Chitin",
 			"Feathers",
+			"Latex",
 		];
 				
 		//NIPPLETYPES
@@ -668,6 +669,7 @@
 			"Nyrea Girl Cum",
 			"Blueberry Yogurt",
 			"Hradian Cum",
+			"Goo Cum",
 		];
 		
 		public static const FLUID_TYPE_SHORT:Array = [
@@ -695,6 +697,7 @@
 			"N.GCum",
 			"B.Ygrt",
 			"H.Cum",
+			"GooCum",
 		];
 		
 		public static const VALID_CUM_TYPES:Array = [
@@ -940,6 +943,9 @@
 		public static const ITEM_FLAG_EXPOSE_FULL:int					= 6; // Used specifically for attire that exposes nipples/breasts and genitals/asshole to the elements.
 		public static const ITEM_FLAG_LUST_WEAPON:int					= 7; // Used specifically for lust-exclusive weapons (that don't do physical damage).
 		public static const ITEM_FLAG_POWER_ARMOR:int					= 8; // An item designed to be used with power armor.
+		public static const ITEM_FLAG_EXPOSE_CHEST:int					= 9; // Used specifically for clothing/armor that exposes nipples/breasts to the elements.
+		public static const ITEM_FLAG_EXPOSE_GROIN:int					= 10; // Used specifically for clothing/armor that exposes genitals to the elements.
+		public static const ITEM_FLAG_EXPOSE_ASS:int					= 11; // Used specifically for clothing/armor that exposes asshole to the elements.
 		
 		public static const ITEM_FLAG_NAMES:Array = [
 			"Bow Weapon",
@@ -950,7 +956,10 @@
 			"Swimwear",
 			"Fully Exposed",
 			"Lust Weapon",
-			"Power Armor"
+			"Power Armor",
+			"Chest Exposed",
+			"Groin Exposed",
+			"Ass Exposed",
 		];
 		
 		/**
@@ -1059,5 +1068,54 @@
 		public static const STATUS_NEUTRAL:uint = 0xFFFFFF;
 		public static const STATUS_BAD:uint = 0xFF0000;
 		public static const STATUS_GOOD:uint = 0x00FF00;
+		
+		// The list of possible artists that we can pull busts for- each one has a seperate class rather than
+		// the singular override being the fallback, and we need it to be like this for instances where we
+		// have multiple fallbacks for any given character, and we want to let people select them.
+		public static const VALID_ARTISTS:Array = [
+			"NONE",
+			"ADJATHA",
+			"CHESHIRE",
+			"DAMNIT",
+			"DOCBADGER",
+			"DOXY",
+			"GATS",
+			"GATSOLD",
+			"JACQUES",
+			"JAMESAB",
+			"JAYECHO",
+			"SHOU",
+			"WOLFYNAIL"
+		];
+		
+		// Any time we want to show a name, this is where it'll be getting pulled from
+		public static const VALID_ARTISTS_NAMES:Array = [
+			"None",
+			"Adjatha",
+			"Cheshire",
+			"Damnit",
+			"Dr. Badger",
+			"Doxy",
+			"Gats",
+			"Old Gats",
+			"Jacques",
+			"James AB",
+			"Jay Echo",
+			"Shou",
+			"Wolfy-nail"
+		];
+		
+		// These are what show up in the options menu combo boxes
+		public static const SELECTABLE_ARTISTS:Array = [
+			"NONE",
+			"ADJATHA",
+			"CHESHIRE",
+			"GATS",
+			"GATSOLD",
+			"JACQUES",
+			"SHOU"
+		];
+		
+		
 	}
 }

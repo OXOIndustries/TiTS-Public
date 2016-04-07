@@ -44,7 +44,7 @@
     <option loadExterns="" />
     <option staticLinkRSL="True" />
     <option additional="-frame=TiTSRoot,classes.TiTS" />
-    <option compilerConstants="CONFIG::IMAGEPACK,false&#xA;CONFIG::useFlexClasses,false&#xA;CONFIG::AIR,false&#xA;CONFIG::FLASH,true" />
+    <option compilerConstants="CONFIG::IMAGEPACK,false&#xA;CONFIG::useFlexClasses,false&#xA;CONFIG::AIR,false&#xA;CONFIG::FLASH,true&#xA;CONFIG::CHARGEN,false" />
     <option minorVersion="" />
   </build>
   <!-- SWC Include Libraries -->

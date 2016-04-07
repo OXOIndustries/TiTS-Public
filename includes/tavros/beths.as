@@ -1517,6 +1517,10 @@ public function bethsPermaContractBadEnd(response:String = "ask"):void
 	}
 	else if(response == "end")
 	{
+		currentLocation = "GAME OVER";
+		generateMap();
+		showLocationName();
+		
 		showName("FOREVER\n24");
 		
 		output("She’s right, although not in the way you imagine. The terms of your new contract stipulate that you have to pay for the mods - and they are some of the most expensive on the market - at a catastrophic interest rate. Factor in the rent on your room and you really don’t get to see much of your 80%, no matter how many hot, creamy loads you suck down, or how lascivious the displays you put on with the other whores, or how many times you take it in your dripping holes.");

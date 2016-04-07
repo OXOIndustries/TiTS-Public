@@ -26,8 +26,8 @@
 			
 			TooltipManager.addFullName(shortName, StringUtil.toTitleCase(longName));
 			
-			description = "a lollipop labelled \"ClearYu\"";
-			tooltip = "A crimson, candy sphere on a white stick that has been tied up in a pink, waxy wrapper. It's a small, trivial looking thing, but somehow the lollipop seems heavier than it should be.";
+			description = "a lollipop labeled “ClearYu”";
+			tooltip = "A crimson, candy sphere on a white stick that has been tied up in a pink, waxy wrapper. It’s a small, trivial looking thing, but somehow the lollipop seems heavier than it should be.";
 			
 			TooltipManager.addTooltip(shortName, tooltip);
 			
@@ -83,10 +83,16 @@
 						else if(target.hasVagina()) output("the moistness filling your [pc.clothes] with [pc.girlCum] seems a relatively minor addition.");
 						//neuter: 
 						else output("it nearly robs you of your motor control, your [pc.hips] swaying drunkenly to the fluid bliss within you.");
-						output(" Each muscle in your body flexes in turn, and with each flex comes a sense of complete control. It’s as if you suddenly discovered that you had an extra set of arms and are trying them out for the first time. The drugged haze clings to your brain, settling in for a long occupancy, but the clarity of your body is so intense that it brings tears of joy to your eyes. You’ve lived your entire life inside your body, but now you don’t feel like a passenger or a prisoner.");
+						output(" Is this an overdose? The small portion of you still capable of rational thought fills with white-hot panic, realizing that the drug coursing through your body means to leave you a brainless slave to your own desires. You try to scream, but only manage a lust-drug giggle.");
+						output("\n\nWait. Didn’t dad");
+						if(target.isBimbo()) output("dy");
+						output(" give you something for this? That icky cocktail of immune-whatsits? Even as you’re trying to remember what you were told about your enhancements, a tightness seizes you. Each muscle in your body flexes in turn, and with each flex comes a sense of complete control. It’s as if you suddenly discovered that you had an extra set of arms and are trying them out for the first time. The drugged haze clings to your brain, settling in for a long occupancy, but the clarity of your body is so intense that it brings tears of joy to your eyes. You’ve lived your entire life inside your body, but now you don’t feel like a passenger or a prisoner.");
 						output("\n\nYou’re free.");
+						
+						kGAMECLASS.processTime(10 + rand(3));
+						
 						clearMenu();
-						addButton(0,"Next",lollipopSuperBadEnd);
+						addButton(0,"Next",lollipopSuperBadEnd, target);
 						return true;
 					}
 					output("You unwrap another lollipop and stare at it for a moment. The crimson candy is still as bright as alluring as ever, but you notice perhaps for the first time, that the red seems to darken towards the interior. The whorling patterns across its surface are almost mesmeric, drawing you into that dark, unknown depth within.");
@@ -169,14 +175,28 @@
 			}
 			return false;
 		}
-		public function lollipopSuperBadEnd():void
+		public function lollipopSuperBadEnd(target:Creature):void
 		{
+			kGAMECLASS.currentLocation = "GAME OVER";
+			kGAMECLASS.generateMap();
+			kGAMECLASS.showLocationName();
+			
 			clearOutput();
 			author("Adjatha");
 			output("Over the course of a few months, your life has changed completely. All thoughts of your father’s inheritance are gone. As are most of your other thoughts, in fact. All that remains is desire. The desire to experience sensation of any and every sort. In the first month you ran your body ragged fucking anything and everything you possibly could in ways that even Ultra Porn hasn’t explored.");
 			output("\n\nAfter that, you spent your time training every muscle in your body to perfection. You entered a variety of dexterous fields, like pole dancing, gymnastics, climbing and acrobatics, mastering each with a trivial effort that astounded all your competition. The rewards and fame were meaningless- it was the effort alone that mattered to you.");
 			output("\n\nNext, you took up weapons once more, but not in exploration- merely for the joy of practice. A crack shot with every gun you touched, you signed on for mercenary work in the most dangerous regions of space simply to put your body to the test. It was as if everyone around you moved in slow motion, gunning down raiders and pirates with the thoughtless ease of a hardened killer. It simply never occurred to you that your employers might be horrified by the mindless delight you took in demonstrating your expertise. Empathy had been burned out of your seductive, doll-like body.");
 			output("\n\nBoth renown and feared, your name became something of a legend. [pc.name], the lollipop-sucking sexpot who kills with an ease primitive cultures once reserved for gods. Rumors and gossip don’t bother you, though. Nothing bothers you. The bliss of a perfect body more than makes up for the absence of a contemplative mind. Your vacant eyes and perpetually puckered cherry red lips are as empty of doubt and fear as they are of compassion or love.");
+			
+			kGAMECLASS.days += ((30 * 3) + rand(8));
+			kGAMECLASS.hours = rand(24);
+			kGAMECLASS.processTime(rand(60));
+			
+			if(target.lipColor != "ruby") target.lipColor = "ruby";
+			if(target.hairColor != "raven") target.hairColor = "raven";
+			if(target.tallness < 102) target.tallness = 102;
+			if(target.hairLength < target.tallness - 6) target.hairLength = (target.tallness - 6);
+			
 			//BAD END.
 			kGAMECLASS.badEnd();
 		}

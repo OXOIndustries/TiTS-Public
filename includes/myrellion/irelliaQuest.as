@@ -431,6 +431,20 @@ public function beADumbShitFallGuyForTheRebels():void
 	if(!pc.isNude()) output("raises smoke from your [pc.gear]");
 	else output("threatens to fry your gear");
 	output(".\n\nYou stagger up, ears ringing, as security personal swarm the corner, dragging everyone in the area off for interrogation or medical treatment. They’re none too gentle with you, a fact made worse when you test positive for residues instrumental in the construction of that type of bomb.\n\nYou wind up jailed for crimes you didn’t commit, a patsy for a pitiless rebel movement who thought a naive off-worlder would make the perfect fall [pc.guy]. They were right.");
+	
+	if(pc.HPRaw > 5)
+	{
+		pc.HPRaw -= 50;
+		if(pc.HPRaw < 5) pc.HPRaw = 5;
+	}
+	pc.credits = 0;
+	pc.removeEquipment();
+	pc.armor = new ComfortableClothes();
+	pc.armor.longName = "prison jumpsuit";
+	pc.armor.description = "an orange prison jumpsuit";
+	
+	processTime((4 * 60) + rand(16));
+	
 	badEnd();
 }
 
