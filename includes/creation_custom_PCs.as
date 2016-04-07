@@ -345,7 +345,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.cocks[0].cockColor = "neon green";
 			pc.cocks[0].cLengthRaw = 7;
 			if(!pc.hasVagina()) pc.createVagina();
-			pc.vaginas[0].vaginalWetnessRaw = 4;
+			pc.vaginas[0].wetnessRaw = 4;
 			pc.breastRows[0].breastRatingRaw = 3;
 			pc.clitLength = 4;
 			pc.nipplesPerBreast = 2;
