@@ -8409,7 +8409,7 @@
 			if (femininity < 40)
 			{
 				if (hasCock() && hasVagina()) return "bull-futa";
-				if (hasCock() && !hasVagina() && pc.beardLength = 0 && pc.tallness < 63) return "bull-boy";
+				if (hasCock() && !hasVagina() && beardLength == 0 && tallness < 63) return "bull-boy";
 				if (!hasCock() && hasVagina()) return "cow-boy";
 				if (hasCock() && !hasVagina()) return "bull-man";
 				
