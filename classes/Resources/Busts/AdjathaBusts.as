@@ -56,6 +56,10 @@ package classes.Resources.Busts
 		public var Bust_CASS:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/cass_nude.png", mimeType = "image/png")]
 		public var Bust_CASS_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/cora.png", mimeType = "image/png")]
+		public var Bust_CORA:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/cora_nude.png", mimeType = "image/png")]
+		public var Bust_CORA_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/cockvine_single.png", mimeType = "image/png")]
 		public var Bust_COCKVINE_SEEDLING:Class;
