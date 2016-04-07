@@ -70,14 +70,14 @@
 			}
 			
 			// If the primary artist has the bust, use it
-			if (bustName in NPCBustImages[opts.primaryBustArtist])
+			if (("Bust_" + bustName) in NPCBustImages[opts.primaryBustArtist])
 			{
 				tBust = lookupBustInClass(bustName, NPCBustImages[opts.primaryBustArtist], doNude);
 				if (tBust != null) return tBust;
 			}
 			
 			// or the secondary
-			if (bustName in NPCBustImages[opts.secondaryBustArtist])
+			if (("Bust_" + bustName) in NPCBustImages[opts.secondaryBustArtist])
 			{
 				tBust = lookupBustInClass(bustName, NPCBustImages[opts.secondaryBustArtist], doNude);
 				if (tBust != null) return tBust;
