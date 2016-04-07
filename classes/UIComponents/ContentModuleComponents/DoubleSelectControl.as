@@ -216,12 +216,12 @@ package classes.UIComponents.ContentModuleComponents
 			for (var i:int = 0; i < _optsSourceA.length; i++)
 			{
 				// todo more props for labels
-				_optionA.addItem( { data: _optsSourceA[i], label: GLOBAL.VALID_ARTISTS_NAMES[i] } );
+				_optionA.addItem( { data: _optsSourceA[i], label: GLOBAL.VALID_ARTISTS_NAMES[GLOBAL.VALID_ARTISTS.indexOf(_optsSourceA[i])] } );
 			}
 			
 			for (i = 0; i < _optsSourceB.length; i++)
 			{
-				_optionB.addItem( { data: _optsSourceB[i], label: StringUtil.capitalize(_optsSourceB[i]) } );
+				_optionB.addItem( { data: _optsSourceB[i], label: GLOBAL.VALID_ARTISTS_NAMES[GLOBAL.VALID_ARTISTS.indexOf(_optsSourceB[i])] } );
 			}
 			
 			updateStateFromOptions();

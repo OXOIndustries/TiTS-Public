@@ -1,5 +1,7 @@
 package classes.Resources.Busts 
 {
+	import classes.Resources.NPCBustImages;
+	import flash.display.Bitmap;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
@@ -18,6 +20,8 @@ package classes.Resources.Busts
 		private var _artistName:String;
 		public function get artistName():String { return _artistName; }
 		
+		private var _bustName:String
+		
 		public function get selected():Boolean { return (_edge ? _edge.visible : false); }
 		public function set selected(v:Boolean):void { if (_edge) _edge.visible = v; }
 		
@@ -27,8 +31,10 @@ package classes.Resources.Busts
 		private var _contBack:Sprite;
 		private var _bustPreview:Sprite;
 		
-		public function SelectableSingleBustDisplay(artistName:String) 
+		public function SelectableSingleBustDisplay(artistName:String, bustName:String) 
 		{
+			_artistName = artistName;
+			_bustName = "Bust_" + bustName;
 			addEventListener(Event.ADDED_TO_STAGE, init);
 		}
 		
@@ -41,11 +47,11 @@ package classes.Resources.Busts
 		private function Build():void
 		{
 			addEventListener(MouseEvent.CLICK, selectOverride);
-						
+			
 			var artistDisplayName:String = GLOBAL.VALID_ARTISTS_NAMES[GLOBAL.VALID_ARTISTS.indexOf(artistName)];
 			
 			_background = new Sprite();
-			_background.graphics.beginFill(UIStyleSettings.gBackgroundColour);
+			_background.graphics.beginFill(UIStyleSettings.gForegroundColour);
 			_background.graphics.drawRect(0, 0, 230, 270);
 			_background.graphics.endFill();
 			addChild(_background);
@@ -83,6 +89,16 @@ package classes.Resources.Busts
 			_bustPreview = new Sprite();
 			_contBack.addChild(_bustPreview);
 			
+			if (artistName != "NONE")
+			{
+				var bust:Bitmap = new NPCBustImages[_artistName][_bustName];
+				bust.smoothing = true;
+				_bustPreview.addChild(bust);
+				
+				bust.x = Math.round((220 - bust.width) / 2);
+				bust.y = Math.round((200 - bust.height) / 2);
+			}
+			
 			mouseEnabled = true;
 			mouseChildren = true;
 		}
@@ -91,7 +107,7 @@ package classes.Resources.Busts
 		{
 			var setState:Boolean = !selected;
 			
-			(this.parent as CharacterBustOverrideSelector).deselectChildren();
+			(stage.getChildByName("bustSelector") as CharacterBustOverrideSelector).deselectChildren();
 			
 			selected = setState;
 		}

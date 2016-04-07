@@ -1,5 +1,6 @@
 package classes.Resources.Busts 
 {
+	import classes.TiTS;
 	import classes.UIComponents.ContentModuleComponents.MainMenuButton;
 	import classes.UIComponents.MainButton;
 	import flash.display.MovieClip;
@@ -24,13 +25,14 @@ package classes.Resources.Busts
 		private var _container:Sprite;
 		private var _background:Sprite;
 		
-		private var _clearSetting:MainMenuButton;
 		private var _close:MainMenuButton;
+		private var _blank:MainMenuButton;
+		private var _clear:MainMenuButton;
 		
 		public function CharacterBustOverrideSelector(bustName:String) 
 		{
 			super();
-			_bustName = "Bust_" + bustName;
+			_bustName = bustName;
 			name = "bustSelector";
 			_bustDisplays = { };
 			addEventListener(Event.ADDED_TO_STAGE, init);
@@ -49,7 +51,7 @@ package classes.Resources.Busts
 			
 			for (var i:int = 0; i < GLOBAL.VALID_ARTISTS.length; i++)
 			{
-				if (_bustName in NPCBustImages[GLOBAL.VALID_ARTISTS[i]])
+				if (("Bust_" + _bustName) in NPCBustImages[GLOBAL.VALID_ARTISTS[i]])
 				{
 					addSelectableBust(GLOBAL.VALID_ARTISTS[i]);
 				}
@@ -69,7 +71,8 @@ package classes.Resources.Busts
 			}
 			
 			_background = new Sprite();
-			_background.graphics.beginFill(UIStyleSettings.gForegroundColour);
+			_background.graphics.beginFill(UIStyleSettings.gBackgroundColour);
+			_background.graphics.lineStyle(3, UIStyleSettings.gForegroundColour);
 			_background.graphics.drawRect(0, 0, _container.width + 35, _container.height + 80);
 			_background.graphics.endFill();
 			addChildAt(_background, 0);
@@ -80,42 +83,93 @@ package classes.Resources.Busts
 			trace(_background.width);
 			
 			_background.x = Math.round(stage.stageWidth - _background.width) / 2;
-			_background.y = 5;
+			_background.y = 15;
 			_background.addChild(_container);
 			
 			_close = new MainMenuButton();
+			addChild(_close);
 			_close.buttonName = "Save";
 			_close.func = saveSetting;
+			_close.x = _background.width - 10 - _close.width;
+			_close.y = _background.height - 10 - _close.height;
+			_background.addChild(_close);
+			
+			_blank = new MainMenuButton();
+			addChild(_blank);
+			_blank.buttonName = "Hide Character";
+			_blank.func = setNoBustDisplayed;
+			_blank.x = _close.x - _blank.width - 10;
+			_blank.y = _close.y;
+			_background.addChild(_blank);
+			if (_bustName in kGAMECLASS.gameOptions.configuredBustPreferences)
+			{
+				if (kGAMECLASS.gameOptions.configuredBustPreferences[_bustName] == "NONE")
+				{
+					_blank.Highlight();
+				}
+			}
+			
+			_clear = new MainMenuButton();
+			addChild(_clear);
+			_clear.buttonName = "Clear Setting";
+			_clear.func = clearBustSetting;
+			_clear.x = _blank.x - _clear.width - 10;
+			_clear.y = _blank.y;
+			_background.addChild(_clear);
+		}
+		
+		private function clearBustSetting():void
+		{
+			deselectChildren();
+			_clear.Highlight();
+		}
+		
+		private function setNoBustDisplayed():void
+		{
+			deselectChildren();
+			_blank.Highlight();
 		}
 		
 		private function saveSetting():void
 		{
-			var hasSelected:Boolean = false;
 			for (var key:String in _bustDisplays)
 			{
 				if (_bustDisplays[key].selected)
 				{
-					hasSelected = true;
-					kGAMECLASS.gameOptions.configuredBustPreferences[key];
+					kGAMECLASS.gameOptions.configuredBustPreferences[_bustName] = key;
 				}
 			}
 			
-			if (!hasSelected)
+			if (_blank.IsOn())
 			{
-				delete kGAMECLASS.gameOptions.configuredBustPreferences[key];
+				kGAMECLASS.gameOptions.configuredBustPreferences[_bustName] = "NONE";
 			}
 			
+			if (_clear.IsOn())
+			{
+				delete kGAMECLASS.gameOptions.configuredBustPreferences[_bustName];
+			}
+			
+			closeDisplay();
+		}
+		
+		private function closeDisplay():void
+		{
 			stage.removeChild(stage.getChildByName("bustSelector"));
+			kGAMECLASS.showBust(_bustName);
 		}
 		
 		private function addSelectableBust(artistName:String):void
 		{
-			_bustDisplays[artistName] = new SelectableSingleBustDisplay(artistName);
+			_bustDisplays[artistName] = new SelectableSingleBustDisplay(artistName, _bustName);
 			_container.addChild(_bustDisplays[artistName]);
 			
-			if (kGAMECLASS.gameOptions.configuredBustPreferences[_bustName] != undefined)
+			if (_bustName in kGAMECLASS.gameOptions.configuredBustPreferences)
 			{
-				_bustDisplays.selected = true;
+				if (kGAMECLASS.gameOptions.configuredBustPreferences[_bustName] == artistName)
+				{
+					_bustDisplays[artistName].selected = true;
+				}
 			}
 		}
 		
@@ -125,6 +179,9 @@ package classes.Resources.Busts
 			{
 				(_bustDisplays[key] as SelectableSingleBustDisplay).selected = false;
 			}
+			_blank.DeHighlight();
+			_close.DeHighlight();
+			_clear.DeHighlight();
 		}
 	}
 

@@ -30,6 +30,20 @@
 		public static var SHOU:Object = new ShouBusts();
 		public static var WOLFYNAIL:Object = new WolfyNailBusts();
 		
+		public static function hasBustsForCharacter(bustName:String):Boolean
+		{
+			if (bustName == "none") return false;
+			
+			var _bustName:String = "Bust_" + bustName;
+			
+			for (var i:int = 0; i < GLOBAL.VALID_ARTISTS.length; i++)
+			{
+				if (_bustName in NPCBustImages[GLOBAL.VALID_ARTISTS[i]]) return true;
+			}
+			
+			return false;
+		}
+		
 		// Return the required bust class definition based on the current game settings.
 		public static function getBust(bustName:String):Class
 		{
@@ -47,8 +61,10 @@
 			
 			// If there's a configured bust for this ident, use it
 			// TODO: Make this use the same artist for nude/non-nude if one is configured but the other isn't
-			if (opts.configuredBustPreferences[bustName] != undefined)
+			if ((bustName) in opts.configuredBustPreferences)
 			{
+				if (opts.configuredBustPreferences[bustName] == "NONE") return null;
+				
 				tBust = lookupBustInClass(bustName, NPCBustImages[opts.configuredBustPreferences[bustName]], doNude);
 				return tBust;
 			}
