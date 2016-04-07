@@ -495,13 +495,17 @@ public function honeyPotBump(cumShot:Boolean = false):void
 	}
 	else if(pc.breastRows[0].breastRatingHoneypotMod == 0)
 	{
-		eventBuffer += "\n\nYour [pc.chest] feel bigger than normal, swollen ";
+		eventBuffer += "\n\nYour [pc.chest] feel";
+		if(!pc.hasBreasts()) eventBuffer += "s";
+		eventBuffer += " bigger than normal, swollen ";
 		if(cumShot) eventBuffer += "from all the oral calories you’ve taken in.";
 		else eventBuffer += "with the spare calories your honeypot gene has siphoned off of your meals.";
 	}
 	else if(pc.breastRows[0].breastRatingHoneypotMod < 10 && pc.breastRows[0].breastRatingHoneypotMod+1 >= 10)
 	{
-		eventBuffer += "\n\nYour [pc.chest] practically glows with the ever-expanding fruit of your honeypot gene. You wonder just how big you’ll get.";
+		eventBuffer += "\n\nYour [pc.chest] practically glow";
+		if(!pc.hasBreasts()) eventBuffer += "s";
+		eventBuffer += " with the ever-expanding fruit of your honeypot gene. You wonder just how big you’ll get.";
 	}
 	else if(pc.breastRows[0].breastRatingHoneypotMod < 20 && pc.breastRows[0].breastRatingHoneypotMod+1 >= 20)
 	{
@@ -513,11 +517,14 @@ public function honeyPotBump(cumShot:Boolean = false):void
 	}
 	else if(pc.breastRows[0].breastRatingHoneypotMod < 40 && pc.breastRows[0].breastRatingHoneypotMod+1 >= 40)
 	{
-		eventBuffer += "\n\nWherever you go, the eyes of every single passing sapient zero in on your [pc.chest]. It juts from your body like the proud prow of a deep space freighter, filled with a glorious [pc.milkFlavor] bounty. If only they knew - if only they could sense just how great it would be to take your [pc.nipple] in your mouth and suck. An all too pleasurable shudder wracks your spine at the thought.";
+		eventBuffer += "\n\nWherever you go, the eyes of every single passing sapient zero in on your [pc.chest].";
+		if(!pc.hasBreasts()) eventBuffer += " It juts";
+		else eventBuffer += " They jut";
+		eventBuffer += " from your body like the proud prow of a deep space freighter, filled with a glorious [pc.milkFlavor] bounty. If only they knew - if only they could sense just how great it would be to take your [pc.nipple] in your mouth and suck. An all too pleasurable shudder wracks your spine at the thought.";
 	}
 	else if(pc.breastRows[0].breastRatingHoneypotMod < 50 && pc.breastRows[0].breastRatingHoneypotMod+1 >= 50)
 	{
-		eventBuffer += "\n\nIt’s tough not to toddle forward off your [pc.feet] and onto your [pc.milkNoun]-engorged chest. The pressure would probably release a tide of [pc.milkFlavored] juice and still barely put a dent in your super-sized knockers. The honeypot gene is so amazing, the way it makes your body so fruitful... You’ve got to share this beautiful bosom with the galaxy!";
+		eventBuffer += "\n\nIt’s tough not to toddle forward off your [pc.feet] and onto your [pc.milkNoun]-engorged chest. The pressure would probably release a tide of [pc.milkFlavor] juice and still barely put a dent in your super-sized knockers. The honeypot gene is so amazing, the way it makes your body so fruitful... You’ve got to share this beautiful bosom with the galaxy!";
 	}
 	//Bump up boob size for 3 days of eating or a cumshot!
 	for(var cc:int = 0; cc < pc.bRows(); cc++)

@@ -3279,6 +3279,7 @@
 			if (accessory is Allure) currLib += 20;
 			if (hasStatusEffect("Myr Venom Withdrawal")) currLib /= 2;
 			if (hasStatusEffect("Mare Musk")) currLib += 10;
+			if (hasPerk("Slut Stamp") && hasGenitals() && isCrotchGarbed()) currLib += perkv1("Slut Stamp");
 			
 			if (currLib > libidoMax())
 			{
@@ -3306,6 +3307,7 @@
 			var bonus:int = 0;
 			if (hasPerk("Drug Fucked")) bonus += 10;
 			if (hasPerk("Black Latex")) bonus += 10;
+			if (hasStatusEffect("Sexy Costume")) bonus += statusEffectv1("Sexy Costume");
 			if (hasStatusEffect("Ellie's Milk")) bonus += 33;
 			if (hasStatusEffect("Lane Detoxing Weakness"))
 			{
@@ -3345,11 +3347,13 @@
 		public function libidoMax(): Number {
 			var bonuses:int = 0;
 			if(hasStatusEffect("Perfect Simulant")) bonuses += 50;
+			if(hasPerk("Slut Stamp")) bonuses += perkv3("Slut Stamp");
 			return 100 + bonuses;
 		}
 		public function libidoMin(): Number {
 			var bonus:int = 0;
 			if(hasPerk("Drug Fucked")) bonus += 40;
+			if(hasPerk("Slut Stamp")) bonus += perkv2("Slut Stamp");
 			// Slave collar increases minimum by set level.
 			if(hasStatusEffect("Psy Slave Collar")) bonus += statusEffectv3("Psy Slave Collar");
 			return (0 + bonus);
@@ -5683,6 +5687,19 @@
 			trace("ERROR: Looking for status '" + storageName + "' to change tooltip but couldn't find it.");
 			return;
 		}
+		public function getStatusTooltip(storageName: String):String
+		{
+			if (statusEffects.length <= 0) return "";
+			for(var i:int = 0; i < statusEffects.length; i++)
+			{
+				if (statusEffects[i].storageName == storageName)
+				{
+					return statusEffects[i].tooltip;
+				}
+			}
+			trace("ERROR: Unable to find '" + storageName + "' to update icon shade.");
+			return "<b>ERROR: Unable to find '" + storageName + "' to display its tooltip.</b>";
+		}
 		
 		public function setStatusIconShade(storageName:String, iconShade:uint):void
 		{
@@ -7660,6 +7677,14 @@
 		public function isHerm():Boolean
 		{
 			return (hasCock() && hasVagina());
+		}
+		public function totalGenitals():Number
+		{
+			return (cockTotal() + totalVaginas());
+		}
+		public function genitalCount():Number
+		{
+			return totalGenitals();
 		}
 		public function hasTail(tType:Number = 0): Boolean
 		{
@@ -9888,7 +9913,11 @@
 			
 			return areolasize;
 		}
-
+		
+		public function canStyleHairType():Boolean {
+			if(InCollection(hairType, [GLOBAL.HAIR_TYPE_TENTACLES, GLOBAL.HAIR_TYPE_FEATHERS])) return false;
+			return true;
+		}
 		public function hairDescript(forceLength: Boolean = false, forceColor: Boolean = false): String {
 			var descript: String = "";
 			var descripted: Number = 0;

@@ -2781,6 +2781,7 @@ public function grayGooArrivesAtShip():void
 			clearOutput();
 			clearMenu();
 			var oldArmor:ItemSlotClass = pc.armor;
+			oldArmor.onRemove(pc);
 			quickLoot(oldArmor);
 			pc.armor = new GooArmor();
 		});

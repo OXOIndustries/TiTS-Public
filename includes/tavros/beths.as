@@ -1333,6 +1333,7 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 				output("\n\nYou take the anat’s coat at the door, give him a kiss on the mask, and ask him how his day was. He sits down at the table wearily and talks about how the admiralty are breaking his balls over this and that, whilst you make him a simple supper. After you’ve finished that you have a mild tiff over whose turn it is to take out the garbage. You make it up with some gentle missionary. Anat cocks are quite thin but have a bulbous, bluntly spiked tip which give you tingles deep inside your [pc.vagina " + x + "].");
 				pc.cuntChange(x, pp.cockVolume(0));
 				output("\n\nOnce that’s over, he takes his coat, thanks you gruffly but sincerely, and leaves hurriedly.");
+				CodexManager.unlockEntry("Anatae");
 				processTime(60);
 				pc.loadInCunt(pp, x);
 				pc.orgasm();

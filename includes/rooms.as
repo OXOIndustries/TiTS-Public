@@ -192,6 +192,7 @@ public function initializeRooms():void
 	rooms["MERCHANT'S THOROUGHFARE2"].addFlag(GLOBAL.INDOOR);
 	rooms["MERCHANT'S THOROUGHFARE2"].addFlag(GLOBAL.PUBLIC);
 	rooms["MERCHANT'S THOROUGHFARE2"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	rooms["MERCHANT'S THOROUGHFARE2"].runOnEnter = merchantThoroughfareBonus;
 
 	rooms["SHEAR BEAUTY"] = new RoomClass(this);
 	rooms["SHEAR BEAUTY"].roomName = "SHEAR\nBEAUTY";
@@ -513,12 +514,12 @@ public function initializeRooms():void
 	rooms["9017"].addFlag(GLOBAL.INDOOR);
 	rooms["9017"].addFlag(GLOBAL.PUBLIC);
 	rooms["9017"].addFlag(GLOBAL.NUDITY_ILLEGAL);
-	rooms["9017"].runOnEnter = undefined;
+	rooms["9017"].runOnEnter = merchantThoroughfareBonus;
 
 	//9018
 	rooms["9018"] = new RoomClass(this);
 	rooms["9018"].roomName = "MERCHANT'S\nTHOROUGHFARE";
-	rooms["9018"].description = "Crowds are thick this close to the lifts, and the preponderance of nearby shops isn’t helping matters. Most stores closed down, either to get away from the Rush madness or to try to strike it rich themselves. Yet the storefronts in this area are as lively as ever. New businesses have sprung up in the bones of the old, and there’s more than enough clientele to keep them busy.\n\nThe Dark Chrysalis, a shop that specializes in targeted, cosmetic transformatives is doing business to the east. To the west, you see a brightly-lit shop labeled as “Fur Effect.”";
+	rooms["9018"].description = "Crowds are thick this close to the lifts, and the preponderance of nearby shops isn’t helping matters. Most stores closed down, either to get away from the Rush madness or to try to strike it rich themselves. Yet the storefronts in this area are as lively as ever. New businesses have sprung up in the bones of the old, and there’s more than enough clientele to keep them busy.";
 	rooms["9018"].planet = "TAVROS STATION";
 	rooms["9018"].system = "SYSTEM: KALAS";
 	rooms["9018"].northExit = "MERCHANT'S THOROUGHFARE2";
@@ -529,7 +530,7 @@ public function initializeRooms():void
 	rooms["9018"].addFlag(GLOBAL.INDOOR);
 	rooms["9018"].addFlag(GLOBAL.PUBLIC);
 	rooms["9018"].addFlag(GLOBAL.NUDITY_ILLEGAL);
-	rooms["9018"].runOnEnter = undefined;
+	rooms["9018"].runOnEnter = merchantThoroughfareBonus;
 
 	//INESSA
 	rooms["INESSA"] = new RoomClass(this);
@@ -817,6 +818,16 @@ public function initializeRooms():void
 	rooms["RESIDENTIAL DECK 19"].addFlag(GLOBAL.PRIVATE);
 	rooms["RESIDENTIAL DECK 19"].addFlag(GLOBAL.NPC);
 	rooms["RESIDENTIAL DECK 19"].runOnEnter = finsApartmentBonus;
+	
+	//Sera's Disco:3000 Side Quest
+	rooms["RES DECK EAST ESTATE"] = new RoomClass(this);
+	rooms["RES DECK EAST ESTATE"].roomName = "EAST\nESTATE";
+	rooms["RES DECK EAST ESTATE"].description = "";
+	rooms["RES DECK EAST ESTATE"].planet = "TAVROS STATION";
+	rooms["RES DECK EAST ESTATE"].system = "SYSTEM: KALAS";
+	rooms["RES DECK EAST ESTATE"].moveMinutes = 1;
+	rooms["RES DECK EAST ESTATE"].addFlag(GLOBAL.INDOOR);
+	rooms["RES DECK EAST ESTATE"].addFlag(GLOBAL.PUBLIC);
 	
 	//END RESIDENTIAL DECK
 	
