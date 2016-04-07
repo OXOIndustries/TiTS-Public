@@ -8409,9 +8409,11 @@
 			if (femininity < 40)
 			{
 				if (hasCock() && hasVagina()) return "bull-futa";
-				if (hasCock() && !hasVagina() && femininity < 20) return "bull-man";
-				if (hasCock() && !hasVagina()) return "bull-boy";
+				if (hasCock() && !hasVagina() && pc.beardLength = 0 && pc.tallness < 63) return "bull-boy";
 				if (!hasCock() && hasVagina()) return "cow-boy";
+				if (hasCock() && !hasVagina()) return "bull-man";
+				
+				
 				return "bull-morph";
 			}
 			return "part bovine-morph";
