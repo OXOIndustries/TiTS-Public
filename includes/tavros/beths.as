@@ -1498,7 +1498,7 @@ public function bethsPermaContractBadEnd(response:String = "ask"):void
 		pc.addSkinFlag(GLOBAL.FLAG_LUBRICATED);
 		pc.skinTone = "luminescent lime green";
 		if (!pc.hasVagina()) pc.createVagina();
-		for(i = 0; i < pc.vaginas.length; i++)
+		for(var i:int = 0; i < pc.vaginas.length; i++)
 		{
 			pc.shiftVagina(i, GLOBAL.TYPE_SIREN);
 			pc.vaginas[i].vaginaColor = "pink";
