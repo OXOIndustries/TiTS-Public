@@ -2,15 +2,15 @@
 //By Third
 public function showAliss(nude:Boolean = false):void
 {
-	if(!nude) userInterface.showBust("ALISS");
-	else userInterface.showBust("ALISS_NUDE");
-	userInterface.showName("\nALISS");
+	if(!nude) showBust("ALISS");
+	else showBust("ALISS_NUDE");
+	showName("\nALISS");
 }
 //First time enter
 public function miAmoreBonusShit():Boolean
 {
 	author("Third");
-	showAliss();
+	showBust("ALISS");
 	if(flags["MET_ALICE"] == undefined)
 	{
 		flags["MET_ALICE"] = 1;
@@ -50,7 +50,7 @@ public function upperBodyAlice():void
 {
 	clearOutput();
 	author("Third");
-	showAliss();
+	showBust("ALISS");
 	output("You take a look at what <i>Mi Amour</i> has to offer in terms of upper body lingerie.");
 	/*Plain Bra
 	/Lacy Bra
@@ -87,7 +87,7 @@ public function purchaseSomethingFromAliss(purchaseItem:*):void
 {
 	clearOutput();
 	author("Third");
-	showAliss();
+	showBust("ALISS");
 	output("You transfer the credits. ");
 	//Credits
 	pc.credits -= getAlissPrice(purchaseItem);
@@ -475,7 +475,7 @@ public function lowerBodyAlice():void
 {
 	clearOutput();
 	author("Third");
-	showAliss();
+	showBust("ALISS");
 	output("You take a look at what <i>Mi Amour</i> has to offer in terms of lower body lingerie.");
 	/*Plain Panties
 	/Thong
@@ -763,7 +763,7 @@ public function purchaseSomethingHardlightFromAliss(purchaseItem:*):void
 {
 	clearOutput();
 	author("Third");
-	showAliss();
+	showBust("ALISS");
 	output("You transfer the credits for a hardlight-equipped version of your chosen undergarment. ");
 	//Credits
 	pc.credits -= (getAlissPrice(purchaseItem) + 3000);
@@ -786,7 +786,7 @@ public function cocksocksAlice():void
 {
 	clearOutput();
 	author("Third");
-	showAliss();
+	showBust("ALISS");
 	// 9999
 	output("Nothing to see here!");
 	

@@ -610,7 +610,6 @@ public function talkToBrothelLadyNewOmni():void
 {
 	clearOutput();
 	author("Savin & Zeik");
-	showBrothelLady();
 	
 	//time 0600-0959, replace first paragraph of first meeting (or entire intro if repeat)
 	if(hours >= 6 && hours < 10)
@@ -622,6 +621,8 @@ public function talkToBrothelLadyNewOmni():void
 	//other times, same first paragraph, modified for new girls and Reaha’s possible absence
 	else
 	{
+		showBrothelLady();
+		
 		if(flags["TALK_TO_LADY_1ST"] == undefined || rand(2) == 0) output("You approach the mistress, clearing your throat to get her attention. With marked boredom, she intones");
 		else output("You decide to approach the mistress again. Your entrance diverts her attention as she sets her tablet down and turns to greet you. With unremarkable boredom, she drones");
 		output(", <i>“Welcome to Beth's Busty Broads. If you're here for our");
