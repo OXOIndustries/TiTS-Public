@@ -1535,12 +1535,19 @@ public function bethsPermaContractBadEnd(response:String = "ask"):void
 		
 		days += 392;
 		processTime(rand(36));
+		pc.credits = 0;
+				
+		// NOOOO
+		// Looping this much when the player has basically zero chance to actually see most of this fall out is insane-
+		// it comes close to hitting the script execution limit in debug builds at least.
+		// It'd be 2000% better to just directly modify the properties that the player can actually /see/ the fall out
+		// of- basically, just the appearance screen once the gameover hits.
 		
+		/*
 		var i:int = 0;
 		var x:int = 0;
 		var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
 		if (!pp.hasCock()) pp.createCock();
-		
 		for(i = 0; i < 300; i++)
 		{
 			pc.loadInMouth(pp);
@@ -1557,7 +1564,8 @@ public function bethsPermaContractBadEnd(response:String = "ask"):void
 		{
 			pc.orgasm();
 		}
-		pc.credits = 0;
+		*/
+		
 	}
 	
 	badEnd("GAME OVER.");
