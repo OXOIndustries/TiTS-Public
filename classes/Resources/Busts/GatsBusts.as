@@ -7,6 +7,8 @@
 	 */
 	public class GatsBusts 
 	{
+		public function get PREVIEW():Class { return Bust_ALEX; }
+		
 		[Embed(source = "../../../assets/images/npcs/gats/Alex.png", mimeType = "image/png")]
 		public var Bust_ALEX:Class;
 		[Embed(source = "../../../assets/images/npcs/gats/Alex_Nude.png", mimeType = "image/png")]
