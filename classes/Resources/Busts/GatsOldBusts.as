@@ -6,6 +6,8 @@ package classes.Resources.Busts
 	 */
 	public class GatsOldBusts 
 	{
+		public function get PREVIEW():Class { return Bust_FLAHNE; }
+		
 		[Embed(source = "../../../assets/images/npcs/gats_old/cuntSnake.png", mimeType = "image/png")]
 		public var Bust_CUNTSNAKE:Class;
 		

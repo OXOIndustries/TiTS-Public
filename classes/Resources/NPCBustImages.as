@@ -5,17 +5,30 @@
 	import flash.geom.Rectangle;
 	import flash.utils.getDefinitionByName
 	import classes.Resources.Busts.*;
+	import classes.GLOBAL;
+	import classes.Util.RandomInCollection;
 	/**
 	 * ...
 	 * @author Gedan
 	 */
 	public class NPCBustImages 
 	{
-		public static var OVERRIDES:Object = new OverrideBusts();
+		// Special case- basically an empty referencable object that will always be false- set both defaults to NONE and you'll get random every time
+		// Also means it can show up as an option in the list that ima add for customising each bust individually to disable characters you don't want to see.
+		public static var NONE:Object = { }; 
+		
+		public static var ADJATHA:Object = new AdjathaBusts();
+		public static var CHESHIRE:Object = new CheshireBusts();
+		public static var DAMNIT:Object = new DamnitBusts();
+		public static var DOCBADGER:Object = new DocBadgerBusts();
+		public static var DOXY:Object = new DoxyBusts();
 		public static var GATS:Object = new GatsBusts();
 		public static var GATSOLD:Object = new GatsOldBusts();
-		public static var CHESHIRE:Object = new CheshireBusts();
+		public static var JACQUES:Object = new JacquesBusts();
+		public static var JAMESAB:Object = new JamesABBusts();
+		public static var JAYECHO:Object = new JayEchoBusts();
 		public static var SHOU:Object = new ShouBusts();
+		public static var WOLFYNAIL:Object = new WolfyNailBusts();
 		
 		// Return the required bust class definition based on the current game settings.
 		public static function getBust(bustName:String):Class
@@ -32,16 +45,50 @@
 			
 			var tBust:Class;
 			
-			// Check if we have a "forced" override present in the primary bust class.
-			tBust = lookupBustInClass(bustName, NPCBustImages.OVERRIDES, doNude);
-			if (tBust != null) return tBust;
-			
-			for (var i:int = 0; i < kGAMECLASS.gameOptions.bustPriority.length; i++)
+			// If there's a configured bust for this ident, use it
+			// TODO: Make this use the same artist for nude/non-nude if one is configured but the other isn't
+			if (opts.configuredBustPreferences[bustName] != undefined)
 			{
-				tBust = lookupBustInClass(bustName, NPCBustImages[opts.bustPriority[i]], doNude);
+				tBust = lookupBustInClass(bustName, NPCBustImages[opts.configuredBustPreferences[bustName]], doNude);
+				return tBust;
+			}
+			
+			// If the primary artist has the bust, use it
+			if (bustName in NPCBustImages[opts.primaryBustArtist])
+			{
+				tBust = lookupBustInClass(bustName, NPCBustImages[opts.primaryBustArtist], doNude);
 				if (tBust != null) return tBust;
 			}
-						
+			
+			// or the secondary
+			if (bustName in NPCBustImages[opts.secondaryBustArtist])
+			{
+				tBust = lookupBustInClass(bustName, NPCBustImages[opts.secondaryBustArtist], doNude);
+				if (tBust != null) return tBust;
+			}
+			
+			// If fallbacks are enabled...
+			if (opts.bustFallbacks)
+			{
+				// Failing that, try the remaining artists at random- if we find one, set that as the configured value for it
+				var possibleArtists:Array = GLOBAL.VALID_ARTISTS.filter(function(e:*, idx:int, a:Array):Boolean {
+					return !(e == kGAMECLASS.gameOptions.primaryBustArtist || e == kGAMECLASS.gameOptions.secondaryBustArtist || e == "NONE");
+				});
+				
+				while (possibleArtists.length > 0)
+				{
+					var tArtist:String = RandomInCollection(possibleArtists);
+					possibleArtists.splice(possibleArtists.indexOf(tArtist), 1);
+					
+					tBust = lookupBustInClass(bustName, NPCBustImages[tArtist], doNude);
+					if (tBust != null)
+					{
+						opts.configuredBustPreferences[bustName] = tArtist;
+						return tBust;
+					}
+				}
+			}
+			
 			return null;
 		}
 		
@@ -54,18 +101,54 @@
 			var doNude:Boolean = false;
 			if (bustName.indexOf("_NUDE") != -1) doNude = true;
 			
-			bounds = lookupBoundsInClass(bustName, NPCBustImages.OVERRIDES, doNude);
-			if (bounds != null) return bounds;
-			
-			for (var i:int = 0; i < kGAMECLASS.gameOptions.bustPriority.length; i++)
+			// If there's a configured bust for this ident, use it
+			// TODO: Make this use the same artist for nude/non-nude if one is configured but the other isn't
+			if (opts.configuredBustPreferences[bustName] != undefined)
 			{
-				bounds = lookupBoundsInClass(bustName, NPCBustImages[opts.bustPriority[i]], doNude);
+				bounds = lookupBoundsInClass(bustName, NPCBustImages[opts.configuredBustPreferences[bustName]], doNude);
+				return bounds;
+			}
+			
+			// If the primary artist has the bust, use it
+			if (NPCBustImages[opts.primaryBustArtist][bustName] != undefined)
+			{
+				bounds = lookupBoundsInClass(bustName, NPCBustImages[opts.primaryBustArtist], doNude);
 				if (bounds != null) return bounds;
 			}
+			
+			// or the secondary
+			if (NPCBustImages[opts.secondaryBustArtist][bustName] != undefined)
+			{
+				bounds = lookupBoundsInClass(bustName, NPCBustImages[opts.secondaryBustArtist], doNude);
+				if (bounds != null) return bounds;
+			}
+			
+			// If fallbacks are enabled...
+			if (opts.bustFallbacks)
+			{
+				// Failing that, try the remaining artists at random- if we find one, set that as the configured value for it
+				var possibleArtists:Array = GLOBAL.VALID_ARTISTS.filter(function(e:*, idx:int, a:Array):Boolean {
+					return !(e == kGAMECLASS.gameOptions.primaryBustArtist || e == kGAMECLASS.gameOptions.secondaryBustArtist || e == "NONE");
+				});
+				
+				while (possibleArtists.length > 0)
+				{
+					var tArtist:String = RandomInCollection(possibleArtists);
+					possibleArtists.splice(possibleArtists.indexOf(tArtist), 1);
+					
+					bounds = lookupBoundsInClass(bustName, NPCBustImages[tArtist], doNude);
+					if (bounds != null)
+					{
+						opts.configuredBustPreferences[bustName] = tArtist;
+						return bounds;
+					}
+				}
+			}
+			
 			return null;
 		}
 		
-		private static function lookupBoundsInClass(bustName:String, targetClass:Object, nudeMode:Boolean):Rectangle
+		public static function lookupBoundsInClass(bustName:String, targetClass:Object, nudeMode:Boolean):Rectangle
 		{
 			if ("Bounds_" + bustName in targetClass) return targetClass["Bounds_" + bustName];
 			
@@ -84,7 +167,7 @@
 			return null;
 		}
 		
-		private static function lookupBustInClass(bustName:String, targetClass:Object, nudeMode:Boolean):Class
+		public static function lookupBustInClass(bustName:String, targetClass:Object, nudeMode:Boolean):Class
 		{
 			if ("Bust_" + bustName in targetClass) return targetClass["Bust_" + bustName];
 			

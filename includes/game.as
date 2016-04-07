@@ -416,6 +416,7 @@ public function crew(counter:Boolean = false):Number {
 		clearOutput();
 		clearMenu();
 	}
+	
 	var crewMessages:String = "";
 	var count:int = 0;
 	if(celiseIsCrew()) {
@@ -675,7 +676,7 @@ public function shipMenu():Boolean {
 		addButton(4, "Shower", showerMenu);
 		addButton(5, "Fly", flyMenu);
 	}
-
+	
 	return false;
 }
 
