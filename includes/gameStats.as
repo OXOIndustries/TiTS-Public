@@ -1339,6 +1339,25 @@ public function displayQuestLog(showID:String = "All"):void
 		var sideCount:Number = 0;
 		output2("\n\n" + blockHeader("Side Missions", false));
 		
+		if(showID == "Tavros" || showID == "All")
+		{
+			// Sera: Disco 3000
+			if(flags["SERA_PARTY_INVITE"] != undefined)
+			{
+				output2("\n<b><u>Disco 3000</u></b>");
+				output2("\n<b>* Status:</b> Invited");
+				if(flags["SERA_PARTY_INVITE"] == 1) output2(", Attending");
+				if(flags["SERA_PARTY_DATE"] != undefined) output2(", Attended");
+				if(flags["SERA_PARTY_INVITE"] >= 3) output2(", Completed");
+				if(flags["SERA_PARTY_INVITE"] >= 4) output2(", On payroll");
+				if(flags["SERA_PARTY_STAGE1"] != undefined) output2("\n<b>* Selected Costume:</b> " + StringUtil.toDisplayCase(flags["SERA_PARTY_STAGE1"]));
+				if(flags["SERA_PARTY_ATTIRE"] != undefined) output2("\n<b>* Sera, Attire:</b> " + StringUtil.toDisplayCase(flags["SERA_PARTY_ATTIRE"]));
+				output2("\n<b>* Sera, Influence:</b> " + seraInfluence() + " %");
+				if(flags["SERA_SALARY_PAID"] != undefined && flags["SERA_SALARY_DATE"] != undefined) output2("\n<b>* Time Since Last Salary Payment: </b>" + prettifyMinutes(GetGameTimestamp() - flags["SERA_SALARY_DATE"]));
+				
+				sideCount++;
+			}
+		}
 		if(showID == "New Texas" || showID == "All")
 		{
 			// Breaking the male milker
@@ -3377,7 +3396,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Wastes
-			if(flags["MET_GRAY_GOO"] != undefined || flags["ENCOUNTERED_PARASITIC_LAPINARA"] != undefined || (flags["MET_FEMALE_RASKVEL"] != undefined || flags["MET_MALE_RASKVEL_GANG"] != undefined) || flags["MET_SEXBOT_FEMALE_ON_TARKUS"] != undefined || flags["MET_SEXBOT_MALE_ON_TARKUS"] != undefined || flags["MET_SYDIAN_MALE"] != undefined)
+			if(flags["MET_GRAY_GOO"] != undefined || flags["ENCOUNTERED_PARASITIC_LAPINARA"] != undefined || (flags["MET_FEMALE_RASKVEL"] != undefined || flags["MET_MALE_RASKVEL_GANG"] != undefined) || flags["MET_SEXBOT_FEMALE_ON_TARKUS"] != undefined || flags["MET_SEXBOT_MALE_ON_TARKUS"] != undefined || flags["MET_SYDIAN_MALE"] != undefined || flags["MET SYDIAN FEMALE"] != undefined)
 			{
 				output2("\n<b><u>The Wastes</u></b>");
 				if(flags["MET_GRAY_GOO"] != undefined) output2("\n<b>* Gray Goo, Times Encountered: </b>" + flags["MET_GRAY_GOO"]);
@@ -3390,6 +3409,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["MET_MALE_RASKVEL_GANG"] != undefined) output2("\n<b>* Male Raskvel Gang, Times Encountered: </b>" + flags["MET_MALE_RASKVEL_GANG"]);
 				if(flags["MET_SEXBOT_FEMALE_ON_TARKUS"] != undefined) output2("\n<b>* Female Sexbots, Times Encountered: </b>" + flags["MET_SEXBOT_FEMALE_ON_TARKUS"]);
 				if(flags["MET_SEXBOT_MALE_ON_TARKUS"] != undefined) output2("\n<b>* Male Sexbots, Times Encountered: </b>" + flags["MET_SEXBOT_MALE_ON_TARKUS"]);
+				if(flags["MET SYDIAN FEMALE"] != undefined) output2("\n<b>* Female Sydian, Times Encountered: </b>" + flags["MET SYDIAN FEMALE"]);
 				if(flags["MET_SYDIAN_MALE"] != undefined)
 				{
 					output2("\n<b>* Male Sydian, Times Encountered: </b>" + flags["MET_SYDIAN_MALE"]);
@@ -4049,9 +4069,11 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Deep Caverns
-			if(flags["MET_GOO_KNIGHT"] != undefined || flags["MET_INFECTED_MYR_FEMALE"] != undefined || flags["MET_INFECTED_MYR_MALE"] != undefined || flags["MET_NYREA_ALPHA"] != undefined || flags["MET_NYREA_BETA"] != undefined)
+			if(flags["MET_GOO_KNIGHT"] != undefined || flags["MET_INFECTED_MYR_FEMALE"] != undefined || flags["MET_INFECTED_MYR_MALE"] != undefined || flags["MET_NYREA_ALPHA"] != undefined || flags["MET_NYREA_BETA"] != undefined || flags["CRYSTALGOO_T1_ENCOUNTERS"] != undefined || flags["CRYSTALGOO_T2_ENCOUNTERS"] != undefined )
 			{
 				output2("\n<b><u>The Deep Caverns</u></b>");
+				if(flags["CRYSTALGOO_T1_ENCOUNTERS"] != undefined) output2("\n<b>* Ganrael Ambusher, Times Encountered: </b>" + flags["CRYSTALGOO_T1_ENCOUNTERS"]);
+				if(flags["CRYSTALGOO_T2_ENCOUNTERS"] != undefined) output2("\n<b>* Ganrael Deadeye, Times Encountered: </b>" + flags["CRYSTALGOO_T2_ENCOUNTERS"]);
 				if(flags["MET_GOO_KNIGHT"] != undefined) output2("\n<b>* Ganraen Knight, Times Encountered: </b>" + flags["MET_GOO_KNIGHT"]);
 				if(flags["MET_INFECTED_MYR_FEMALE"] != undefined) output2("\n<b>* Female Infected Myr, Times Encountered: </b>" + flags["MET_INFECTED_MYR_FEMALE"]);
 				if(flags["MET_INFECTED_MYR_MALE"] != undefined) output2("\n<b>* Male Infected Myr, Times Encountered: </b>" + flags["MET_INFECTED_MYR_MALE"]);

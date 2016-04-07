@@ -125,6 +125,7 @@
 		include "../includes/follower.celiseGiga.as";
 		
 		//Sidequest shit
+		include "../includes/events/seraSexParty.as";
 
 		//Misc content
 		include "../includes/rivalEncounters.as";

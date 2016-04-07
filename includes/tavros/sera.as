@@ -9,6 +9,8 @@ public function showSera():void
 
 public function seraBonusFunction():Boolean
 {
+	flags["NAV_DISABLED"] = undefined;
+	
 	if(flags["MET_SERA"] == undefined)
 	{
 		approachSera();
@@ -139,6 +141,22 @@ public function seraMenu():void
 	// If PC has unlocked one or all, option removed
 	if(!seraSexXXXTFModsCheck() && flags["PURCHASED_FROM_SERA"] != undefined) addButton(6, "TFs?", seraSexXXXTFModsAsk, undefined, "Specialist Mods?", "Ask Sera about any other mods she might have on sale.");
 	
+	// Salary added to main menu
+	if(flags["SERA_PARTY_INVITE"] >= 4)
+	{
+		// Becomes un-ghosted every seven days
+		if((flags["SERA_SALARY_DATE"] + (7 * 24 * 60)) < GetGameTimestamp())
+		{
+			if(flags["SERA_SALARY_PAID"] == undefined) addButton(7, "Salary", seraGetSalary, undefined, "Salary", "Ask Sera about your weekly salary.");
+			else addButton(7, "Salary", seraGetSalary, undefined, "Salary", "Collect your salary for the week.");
+		}
+		else
+		{
+			if(flags["SERA_SALARY_PAID"] == undefined) addDisabledButton(7, "Salary", "Salary", "You should probably wait until Sera earns enough before trying this.");
+			else addDisabledButton(7, "Salary", "Salary", "You’ve already collected your salary for the week.");
+		}
+	}
+	
 	addButton(14,"Back",mainGameMenu);
 }
 
@@ -216,9 +234,11 @@ public function talkToSeraAboutWhyShesPissedOff():void
 // Talk
 public function talkToSera():void
 {
-	if(flags["SERA_TALKS_PAST"] != undefined && flags["SERA_TALKS_PRESENT"] != undefined && flags["SERA_TALKS_DEMONS"] != undefined && flags["SERA_TALKS_FURRIES"] != undefined && flags["SERA_IN_JARDI_THREESOME"] > 0 && 9999 == 0)
+	// Requires: PC has used every talk option, has activated threesome at least once, select talk
+	if(flags["SERA_TALKS_PAST"] != undefined && flags["SERA_TALKS_PRESENT"] != undefined && flags["SERA_TALKS_DEMONS"] != undefined && flags["SERA_TALKS_FURRIES"] != undefined && flags["SERA_IN_JARDI_THREESOME"] > 0 && flags["SERA_PARTY_INVITE"] == undefined)
 	{
-		// 9999 - Party Invite
+		// Party Invite
+		seraSexPartyIntro();
 		return;
 	}
 	
@@ -239,6 +259,8 @@ public function seraTalkMenu():void
 	addButton(1, "Recent Life", seraTalkTopics, "recent life");
 	addButton(2, "Demons", seraTalkTopics, "demons");
 	addButton(3, "Furries", seraTalkTopics, "furries");
+	if(flags["SERA_PARTY_INVITE"] < 1) addButton(4, "Party", seraSexPartyIntro, "party", "Party", "Follow up with Sera’s invitation.");
+	else if(flags["SERA_PARTY_INVITE"] == 2) addButton(4, "Party?", seraSexPartyConclusion, undefined, "Party?", "Ask Sera how she thinks the networking went.");
 	addButton(14, "Back", seraMenu);
 }
 public function seraTalkTopics(response:String = ""):void
@@ -457,6 +479,7 @@ public function timesFuckedSera():Number
 	if(flags["SERA_IN_JARDI_THREESOME"] != undefined) totalSex += flags["SERA_IN_JARDI_THREESOME"];
 	if(flags["SERA_FACE_RIDE_TRAINING"] != undefined) totalSex += flags["SERA_FACE_RIDE_TRAINING"];
 	if(flags["SERA_TIT_FUCK_LUCKY_DIP"] != undefined) totalSex += flags["SERA_TIT_FUCK_LUCKY_DIP"];
+	if(flags["SERA_PARTY_FUCKED"] != undefined) totalSex += flags["SERA_PARTY_FUCKED"];
 	
 	return totalSex;
 }
