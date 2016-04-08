@@ -137,6 +137,9 @@ public function seraSexPartyIntro(response:String = "intro"):void
 		case "lets go":
 			showSera();
 			
+			// Prevent huge lust boost before the event!
+			var lustTemp:Number = pc.lustRaw;
+			
 			//Time set to 19:00
 			var nHours:Number = (18 - hours);
 			var nMinutes:Number = (60 - minutes);
@@ -148,6 +151,8 @@ public function seraSexPartyIntro(response:String = "intro"):void
 			output("\n\nSera has the house lights on in her back room. Denuded of its shadowy, spacey atmosphere it’s reduced to a disheveled bedroom: A chaos of clothes, makeup and various bottles and jars half-filled with odd-looking ointments and oils. She steps over to her wardrobe and begins to rummage around in it.");
 			output("\n\n<i>“I can’t decide what to wear,”</i> she mutters. <i>“I do envy subs sometimes – making decisions can be a fucking nightmare.”</i>");
 			output("\n\n<i>“What have you--?”</i> you begin. She points at the door without turning around. You turn around to look at what’s hanging there. It takes you a moment to discern exactly what the costume is.");
+			
+			if(pc.lustRaw > lustTemp) pc.lustRaw = lustTemp;
 			
 			// [School Girl] [Butler]
 			clearMenu();
@@ -177,7 +182,7 @@ public function seraSexPartyStage1(response:String = "none"):void
 			if(response == "butler")
 			{
 				output("You touch the fabric of the costume, tracing the cut of it, feeling your heart beat faster. You know that the essential idea of a butler is that they should look dignified at all times – looking at this, you know the exact opposite is going to be true.");
-				output("\n\n<i>“You’d better be in that by the time I turn around,”</i> Your mistress says coolly, examining a hat.");
+				output("\n\n<i>“You’d better be in that by the time I turn around,”</i> your mistress says coolly, examining a hat.");
 				output("\n\nAfter gathering yourself a bit, you get to it. You remove your [pc.gear] and lay the laden dress hanger on the bed. First comes the thin, white shirt. You won’t have to worry about the cotton chafing your [pc.nipples]; the garment has a gaping square hole cut in the center of it, so that your abdomen and [pc.chest] will be bared to the air at all times. Sera provided pasties, at least - small, white circular ones. They and the fabric on your arms and back cling closely to your skin, shifting when you move, constantly reminding you of their presence.");
 				// PC biped:
 				if(pc.isBiped())
@@ -193,9 +198,9 @@ public function seraSexPartyStage1(response:String = "none"):void
 				output("\n\nSera sits herself down behind you and applies the finishing touch; fastens the white collar around your neck and then tightens it, straightening the black bow tie primly. She considers the final product with you in the mirror, her grin widening as she drinks in the vision she’s created, and your cheeks burn as the all-consuming simmer of emotions you so often feel around Sera consumes you; deep embarrassment, shameless arousal, submissive bliss at causing your sadistic mistress pleasure.");
 				output("\n\n<i>“I thought I’d done enough to mark you out from the actual servants that are going to be there, but maybe I haven’t,”</i> she breathes. <i>“You’re pretty damn convincing. Maybe we’re going to have to do a few training lessons here, to make sure I can pick you out at the end. Make sure you’ve got a sweeter, softer mouth than any random waiter I could pick up. You’d like that, wouldn’t you? I could grip your hair and call you Jeeves...”</i> With visible effort, she stops her hand sinking downwards. <i>“... later, maybe. There will be time later...”</i> She takes a deep breath and then gestures irritably at the pile of clothes she’s created on her side of the bed. <i>“I can’t decide. What do you think I should wear?”</i> Flattered and vaguely confused by her asking your opinion, you consider the outfits she’s laid out with as clear a mind as you can.");
 				
-				output("\n\nYou are wearing a sexy butler costume. Equal parts ridiculous to slutty, it consists of a waistcoat and smart white shirt with the front cut out, white pasties plastered over your [pc.nipples], a black bow tie");
+				output("\n\n<b>You are wearing a sexy butler costume. Equal parts ridiculous to slutty, it consists of a waistcoat and smart white shirt with the front cut out, white pasties plastered over your [pc.nipples], a black bow tie");
 				if(pc.isBiped()) output(", a tight pair of black trousers with the seat cut out");
-				output(", and a white thong.");
+				output(", and a white thong.</b>");
 				
 				processTime(15);
 				pc.lust(5);
@@ -219,7 +224,7 @@ public function seraSexPartyStage1(response:String = "none"):void
 					output("\n\n<i>“You should keep it");
 					if(!pc.canStyleHairType()) output(" like that");
 					else output(" that length");
-					output(", you know; much cuter. Easier to hold onto, too.”</i>");
+					output(", you know; much cuter. Easier to hold onto, too.”</i> She turns back to her own clothes.");
 					
 					if(!pc.canStyleHairType()) pc.hairType = GLOBAL.HAIR_TYPE_REGULAR;
 					if(pc.hairLength < 6) pc.hairLength = 6 + rand(4);
@@ -234,7 +239,7 @@ public function seraSexPartyStage1(response:String = "none"):void
 					pc.removeBeard();
 				}
 				// {merge}
-				output("\n\n<i>“You’d better be in that by the time I turn around,”</i> Your mistress says coolly, examining a hat.");
+				output("\n\n<i>“You’d better be in that by the time I turn around,”</i> your mistress says coolly, examining a hat.");
 				output("\n\nAfter gathering yourself a bit, you get to it. You remove your [pc.gear] and lay the laden dress hanger on the bed. First comes the thin, white, cotton blouse; it’s tight on your [pc.chest] and just by shifting around a bit you can tell it’s going to keep your [pc.nipples] tender and");
 				if(InCollection(pc.breastRows[0].nippleType, [GLOBAL.NIPPLE_TYPE_DICK, GLOBAL.NIPPLE_TYPE_NORMAL])) output(" erect");
 				else output(" engorged");
@@ -277,13 +282,16 @@ public function seraSexPartyStage1(response:String = "none"):void
 					output(".");
 					if(pc.isBiped()) output(" Carefully you pull on the knee high socks and plimsolls provided, trying to take your mind off it.");
 					
-					// Create Tramp Stamp
-					output("\n\n(<b>Perk Gained: Slut Stamp</b> - Wearing any form of clothing that dresses your lower body will increase your libido as long as you have genitals to be aroused by.)");
-					// Slut Stamp
-					// v1: Libido bonus (for wearing lower clothes)
-					// v2: Min Libido bonus
-					// v3: Max Libido bonus
-					pc.createPerk("Slut Stamp", 10, 10, 10, 0, "A tattoo permanently emblazoned above your ass makes you horny faster while wearing anything clothing your lower body.");
+					if(pc.isBimbo())
+					{
+						// Create Tramp Stamp
+						output("\n\n(<b>Perk Gained: Slut Stamp</b> - Wearing any form of clothing that dresses your lower body will increase your libido as long as you have genitals to be aroused by.)");
+						// Slut Stamp
+						// v1: Libido bonus (for wearing lower clothes)
+						// v2: Min Libido bonus
+						// v3: Max Libido bonus
+						pc.createPerk("Slut Stamp", 10, 10, 10, 0, "A tattoo permanently emblazoned above your ass makes you horny faster while wearing anything clothing your lower body.");
+					}
 				}
 				output("\n\nYou unclip the crucial piece of your party wear from the hanger and carefully fasten it around your waist. As with everything else, Sera has deliberately chosen a size too small for you; the short plaid skirt will bounce and bob merrily over your");
 				if(pc.isBiped()) output(" [pc.butt]");
@@ -295,13 +303,13 @@ public function seraSexPartyStage1(response:String = "none"):void
 				output(" You sit down, feeling hot, shamefully aroused in this tight, ludicrous uniform. Distracted, you don’t even realize what the little blobs of color still remaining on the rack are until Sera sits down behind you, plucks them off, and takes a handful of your [pc.hair] at the back.");
 				output("\n\n<i>“Aaaand... there we go,”</i> she murmurs as she uses the two scrunchies to give you matching pigtails. She gets up and takes you in from the front. Your cheeks burn as she breaks out into a huge smile at the vision she’s created, that all-consuming simmer of emotions you so often feel around Sera consuming you; deep embarrassment, shameless arousal, submissive bliss at causing your sadistic mistress pleasure.");
 				
-				pc.hairStyle = "pigtails";
-				
 				output("\n\n<i>“Yesssss, that’s it,”</i> she breathes, stroking a nipple. <i>“Look down and blush, </i>be<i> the naughty little schoolgirl. Feel the guilt. You deserve to be punished, don’t you? Oh, that takes me back. I want to cane you and then nail you and then cane and nail you some more until you’re begging me to stop...”</i> With visible effort, she stops her hand sinking downwards. <i>“... later, maybe. There will be time later...”</i> She takes a deep breath and then gestures irritably at the pile of clothes she’s created on her side of the bed. <i>“I can’t decide. What do you think I should wear?”</i> Flattered and vaguely confused by her asking your opinion, you consider the outfits she’s laid out with as clear a mind as you can.");
 				
-				output("\n\nYou are a wearing a schoolgirl costume - although you sincerely hope no <i>actual</i> schoolgirl dresses like this. It consists of a thin, clinging white blouse, a frilly pair of white knickers with the word SLUT emblazoned in pink on the seat,");
+				output("\n\n<b>You are wearing a schoolgirl costume - although you sincerely hope no <i>actual</i> schoolgirl dresses like this. It consists of a thin, clinging white blouse, a frilly pair of white knickers with the word SLUT emblazoned in pink on the seat,");
 				if(pc.isBiped()) output(" knee-high socks and plimsolls,");
-				output(" and a short plaid skirt one size too small for you. To compound all this, your [pc.hair] has been drawn up into bobbing pigtails.");
+				output(" and a short plaid skirt one size too small for you. To compound all this, your [pc.hairNoun] has been drawn up into bobbing pigtails.</b>");
+				
+				pc.hairStyle = "pigtails";
 				
 				processTime(15);
 				pc.lust(5);
@@ -425,7 +433,8 @@ public function seraSexPartyStage1(response:String = "none"):void
 			break;
 		case "arrive":
 			// Move to Res Deck.
-			currentLocation = "RESIDENTIAL DECK 4";
+			//currentLocation = "RESIDENTIAL DECK 4";
+			currentLocation = "RESIDENTIAL DECK 10";
 			generateMap();
 			showLocationName();
 			
@@ -648,8 +657,8 @@ public function seraSexPartyStage2(response:String = "none"):void
 			
 			// [Yes] [No]
 			clearMenu();
-			addButton(0, "Yes", seraSexPartyStage2, "sounds yes");
-			addButton(1, "No", seraSexPartyStage2, "sounds no");
+			addButton(0, "Dive In", seraSexPartyStage2, "sounds yes");
+			addButton(1, "Refuse", seraSexPartyStage2, "sounds no");
 			break;
 		case "sounds no":
 			output("He “pfft”s exasperatedly as you back off. <i>“Typical. Without mommy or daddy ordering you you’ve got </i>zero<i> backbone.”</i>");
@@ -697,7 +706,7 @@ public function seraSexPartyStage2(response:String = "none"):void
 			if(pc.hasVagina()) pc.orgasm();
 			if(pc.isLactating()) pc.milked(100);
 			pc.exhibitionism(1);
-			applyCumSoaked(pc);
+			//applyCumSoaked(pc);
 			applyPussyDrenched(pc);
 			restHeal();
 			
@@ -986,6 +995,13 @@ public function seraSexPartyStage3(response:String = "none"):void
 				flags["SERA_PARTY_STAGE3"] = response;
 			}
 			// {merge}
+			clearMenu();
+			addButton(0, "Next", seraSexPartyStage3, "leave");
+			break;
+		case "leave":
+			showName("ESTATE\nSAUNA");
+			showBust("SERA");
+			
 			output("<i>“Most people have gone to the event room,”</i> Sera says as you emerge. <i>“I’m going there, and I want you there too. Don’t dawdle.”</i> Certainly there’s hardly anybody left in this dully lit room; the only other person you can see is Kirlarwe the anat, who is slumped looking morose in the sauna. You wonder whether to approach him, or follow after Sera.");
 			
 			// [Sauna] [Follow]
@@ -1379,7 +1395,7 @@ public function seraSexPartyStage4(response:String = "none"):void
 			break;
 		// Sera
 		case "sera":
-			showBust("SERA", "VEDICE");
+			showBust("SERA");
 			
 			output("Your mistress instructed you to come here; it would be impolitic not to go to her, to put it lightly. Sera’s fluorescent eyes light up even further when they land on you, carefully picking your way through the heaving bodies towards her.");
 			output("\n\n<i>“My [pc.boy],”</i> she says, lowly and gleefully. She sinks down onto a throne of cushions, carefully shifting the kaithrit and rahn to either side of her - the hands and tail she’s got buried in their nether regions ensuring they won’t go far - and spreads her thighs, displaying her improbably long, thick erection to you");
@@ -1418,7 +1434,17 @@ public function seraSexPartyStage4(response:String = "none"):void
 				else output(" vaginal walls");
 			}
 			output(". The cat-boy’s fluffy ears tickle your [pc.hips] as he gets on his knees below you; behind, you feel the delightful softness of the rahn as she clambers onto Sera’s lap. The alien girl is soon bumping back into you, crying out gleefully as the succubus hungrily does things to her you can’t see but certainly can hear. Sera thrusts her sexes into you and the kaithrit demandingly as she teases the rahn, laughing ecstatically at her ability to satiate her own over-reaching carnal greed.");
-			output("\n\nYou don’t pay any attention to the smooth shifting sound until it is right on top of you; your own world is centered necessarily around the very large, hot obstruction in your butt, your mouth opening to the wonderful sluttiness of being able to take every inch like a champ and reveling in the warm tenseness of an approaching orgasm. Your eyes shoot open when somebody immediately in front of you speaks in a dusky, throaty voice.");
+			
+			processTime(20);
+			flags["SERA_PARTY_STAGE4"] = response;
+			
+			clearMenu();
+			addButton(0, "Next", seraSexPartyStage4, "sera sex");
+			break;
+		case "sera sex":
+			showBust("SERA", "VEDICE");
+			
+			output("You don’t pay any attention to the smooth shifting sound until it is right on top of you; your own world is centered necessarily around the very large, hot obstruction in your butt, your mouth opening to the wonderful sluttiness of being able to take every inch like a champ and reveling in the warm tenseness of an approaching orgasm. Your eyes shoot open when somebody immediately in front of you speaks in a dusky, throaty voice.");
 			output("\n\n<i>“I must say dear, I am quite jealous,”</i> says Vedice, rolling her “r”s as she takes in the scene of frantic decadence in front of her. The incredibly tall and voluptuous snake woman has brought along the person trapped in her incredibly long, patterned coils – a bald, powerfully built ausar with a razor sharp beard, his eyes unfocused – but she pays him zero attention, aside from teasing a red nipple with her tail’s tip. <i>“What an obedient, well-trained toy you’ve brought along! It’s so rare to see that kind of loyalty and dedication displayed at these dos, you know. I wonder - may I make use of [pc.his] mouth?”</i>");
 			output("\n\n<i>“Since you asked so nicely,”</i> says Sera loftily. You are in no state to protest as she gets up and shoves you forward, repositioning you on your hands");
 			if(pc.hasLegs() && pc.hasKnees()) output(" and knees");
@@ -1467,10 +1493,9 @@ public function seraSexPartyStage4(response:String = "none"):void
 			output("\n\n<i>“Sounds good to me,”</i> says Vedice dreamily. <i>“I was just getting started anyway.”</i> ");
 			output("\n\nThis time the cat boy howls and practically jumps off your back to whatever it is she does to him. You moan as the two dommes push into you from either end again, concertina-ing you and drowning everything else in the world out except their dripping, intoxicating, insistent sexes...");
 			
-			processTime(65);
+			processTime(45);
 			// Inf +30
 			seraInfluence(30);
-			flags["SERA_PARTY_STAGE4"] = response;
 			
 			pc.lust(150);
 			pc.orgasm();

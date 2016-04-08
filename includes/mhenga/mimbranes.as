@@ -4120,8 +4120,11 @@ public function mimbranePrivateLocation():Boolean
 	if(currentLocation == "SHIP INTERIOR") return true;
 	if(rooms[currentLocation].hasFlag(GLOBAL.PRIVATE)) return true;
 	if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC)) return false;
+	/*
 	if(pc.exhibitionism() >= 66) return true;
 	return false;
+	*/
+	return true;
 }
 
 //{List of Mimbranes, showing Trust Level, Number of Feedings, and Enabled Toggles}
@@ -4131,6 +4134,10 @@ public function mimbraneMenu():void
 	clearOutput2();
 	//userInterface.showBust("MIMBRANE");
 	clearGhostMenu();
+	
+	var publicNotice:String = "You cannot do this action outside of your ship or in the open.";
+	// update tooltip
+	publicNotice = "Due to U.G.C. laws against foreign parasites, you cannot perform this action in public.";
 
 	output2("You currently have " + attachedMimbranes() + " Mimbrane");
 	if (attachedMimbranes() > 1) output2("s");
@@ -4193,8 +4200,8 @@ public function mimbraneMenu():void
 	{
 		output2("Maybe if you were somewhere a little more private, you could ensure your Mimbranes were properly fed....");
 		
-		addDisabledGhostButton(0, "Cock Feed","Cock Feed","You cannot do this action outside of your ship or in the open.");
-		addDisabledGhostButton(1, "Vag Feed","Vag Feed","You cannot do this action outside of your ship or in the open.");
+		addDisabledGhostButton(0, "Cock Feed","Cock Feed", publicNotice);
+		addDisabledGhostButton(1, "Vag Feed","Vag Feed", publicNotice);
 	}
 	//If all Mimbranes are full
 	else
@@ -4222,8 +4229,8 @@ public function mimbraneMenu():void
 			if (attachedMimbranes() > 1) output2(" none seem");
 			else output2(" it doesn't seem");
 			output2(" that hungry.");
-			addDisabledGhostButton(0, "Cock Feed","Cock Feed","You cannot do this action outside of your ship or in the open.");
-			addDisabledGhostButton(1, "Vag Feed","Vag Feed","You cannot do this action outside of your ship or in the open.");
+			addDisabledGhostButton(0, "Cock Feed","Cock Feed", publicNotice);
+			addDisabledGhostButton(1, "Vag Feed","Vag Feed", publicNotice);
 		}
 	}
 

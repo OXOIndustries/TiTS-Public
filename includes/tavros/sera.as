@@ -45,14 +45,6 @@ public function seraBonusFunction():Boolean
 //Actual Intro Stuff
 public function approachSera():void
 {
-	//9999 Testing
-	flags["SERA_TRIPLE_X_RATED"] =4;
-	flags["SERA_TALKS_PAST"] = 1;
-	flags["SERA_TALKS_PRESENT"] = 1;
-	flags["SERA_TALKS_DEMONS"] = 1;
-	flags["SERA_TALKS_FURRIES"] = 1;
-	flags["SERA_IN_JARDI_THREESOME"] = 40;
-	
 	if(flags["MET_SERA"] == undefined)
 	{
 		showSera();
