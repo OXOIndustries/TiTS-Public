@@ -1358,7 +1358,7 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["SERA_PARTY_INVITE"] >= 4) output2(", On payroll");
 				if(flags["SERA_PARTY_STAGE1"] != undefined) output2("\n<b>* Selected Costume:</b> " + StringUtil.toDisplayCase(flags["SERA_PARTY_STAGE1"]));
 				if(flags["SERA_PARTY_ATTIRE"] != undefined) output2("\n<b>* Sera, Attire:</b> " + StringUtil.toDisplayCase(flags["SERA_PARTY_ATTIRE"]));
-				output2("\n<b>* Sera, Influence:</b> " + seraInfluence() + " %");
+				output2("\n<b>* Sera, Influence Score:</b> " + seraInfluence());
 				if(flags["SERA_SALARY_PAID"] != undefined && flags["SERA_SALARY_DATE"] != undefined) output2("\n<b>* Time Since Last Salary Payment: </b>" + prettifyMinutes(GetGameTimestamp() - flags["SERA_SALARY_DATE"]));
 				
 				sideCount++;
