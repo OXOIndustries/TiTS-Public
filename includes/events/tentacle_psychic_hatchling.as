@@ -183,12 +183,15 @@ public function PsychicTentacleBirthing(pregSlot:int):void
 	output(", gushing the alien creature’s bizarre birthing fluids");
 	if(pc.hasVagina()) output(" and [pc.girlCum]");
 	output(" everywhere. It’s pulling you open from inside, and it feels amazing. <i>You’re basically just a bundle of nerves and flash for your master to grow inside.</i> Just like the rest of the galaxy.");
-	output("\n\nYou moan, feeling every bit the a puppet dancing on strings. Strings of pleasure and ecstasy. Strings that tug you open, letting a foot of burly tentacle splash out into the puddle. Arching your back, you shake your hips lewdly, encouraging the <i>superior being</i> to extend a second tendril from your body. You pet it, then throw back your head and pant, shuddering in inexplicable bliss.");
+	output("\n\nYou moan, feeling every bit like a puppet dancing on strings. Strings of pleasure and ecstasy. Strings that tug you open, letting a foot of burly tentacle splash out into the puddle. Arching your back, you shake your hips lewdly, encouraging the <i>superior being</i> to extend a second tendril from your body. You pet it, then throw back your head and pant, shuddering in inexplicable bliss.");
 	output("\n\nYou never want this to end. You want the tentacles to continue to slide from your body forever. It’s better than any orgasm ever could be, one unending wave of clenching, tremendous pleasure, washing away concerns and filling you placid contentment. You’re so awash in the sensory tsunami that you barely feel the main bulb of its body popping out of you. <i>Master</i> grew so large inside you, and so many of his tentacles are still inside you - the biggest, fattest, most fuckable ones.");
 	if(x == -1) pc.buttChange(2000);
 	else pc.cuntChange(x,2000);
 	output("\n\nIsn’t giving birth supposed to hurt?");
-	output("\n\nWhatever. Squealing and drooling, you collapse, bonelessly jerking your [pc.hips] back and forth to enhance the physical orgasm your body is having. It’s nothing next to the full-on braingasm your inhuman master provides. Your eyes roll back, and a strangled whine worms its way out of your throat, jumping in pitch with every squirming, slickened movement through your gaping [pc.vagOrAssNoun " + x + "].");
+	output("\n\nWhatever. Squealing and drooling, you collapse, bonelessly jerking your [pc.hips] back and forth to enhance the physical orgasm your body is having. It’s nothing next to the full-on braingasm your inhuman master provides. Your eyes roll back, and a strangled whine worms its way out of your throat, jumping in pitch with every squirming, slickened movement through your gaping");
+	if(x == -1) output(" asshole");
+	else output(" [pc.vaginaNoun " + x + "]");
+	output(".");
 	if(x == -1) pc.buttChange(2000);
 	else pc.cuntChange(x,2000);	
 	output("\n\nNo matter how disquieting the sloppy sounds of your birthing may be, <i>they’re music to your ears.</i> You wouldn’t mind having a recording to listen to later. Maybe you could listen when you next masturbate... and pull yourself wide open once more. Or you could keep lying here, semi-conscious and exhausted, releasing your <i>beautiful master</i> on the universe.");
