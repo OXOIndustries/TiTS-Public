@@ -452,6 +452,7 @@ public function statisticsScreen(showID:String = "All"):void
 				output2("\n<b>* Fertility, Speed Modifier: </b>" + Math.round(pc.pregnancyIncubationBonusMother()*1000)/10 + " %");
 				output2("\n<b>* Fertility, Quantity Bonus: </b>" + Math.round(pc.pregnancyMultiplier()));
 				if(pc.hasStatusEffect("Venus Pitcher Seed Residue")) output2("\n<b>* Fertility, Venus Pitcher Seed Residue, Time Left: </b>" + prettifyMinutes(pc.getStatusMinutes("Venus Pitcher Seed Residue")));
+				if(pc.statusEffectv2("Ovilium") > 0) output2("\n<b>* Fertility, Ovilium:</b> Boosted");
 			}
 			// Vaginas
 			if(pc.vaginas.length >= 1)
@@ -538,7 +539,10 @@ public function statisticsScreen(showID:String = "All"):void
 					else if(pData.pregnancyType == "CockvinePregnancy") output2(" Cockvine");
 					else if(pData.pregnancyType == "DeepQueenPregnancy") output2(" Water Queen");
 					else if(pData.pregnancyType == "OviliumEggPregnancy") output2(" Ovilium, Eggs");
+					else if(pData.pregnancyType == "EggTrainerCarryTraining") output2(" Egg Trainer, Eggs");
+					else if(pData.pregnancyType == "EggTrainerFauxPreg") output2(" Egg Trainer");
 					else if(pData.pregnancyType == "PsychicTentacles") output2(" Psychic Tentacle Beast");
+					else if(pData.pregnancyType == "SydianPregnancy") output2(" Sydian");
 					else output2(" <i>Unknown</i>");
 					if(pData.pregnancyIncubation > -1)
 					{
@@ -804,6 +808,8 @@ public function statisticsScreen(showID:String = "All"):void
 					output2("\n<b>* Births, Psychic Tentacle Beasts: </b>" + StatTracking.getStat("pregnancy/psychic tentacle beast birthed"));
 				if(StatTracking.getStat("pregnancy/renvra kids") > 0)
 					output2("\n<b>* Births, Renvra’s Children: </b>" + StatTracking.getStat("pregnancy/renvra kids"));
+				if(StatTracking.getStat("pregnancy/sydian births") > 0)
+					output2("\n<b>* Births, Sydian Young: </b>" + StatTracking.getStat("pregnancy/sydian births"));
 				if(StatTracking.getStat("pregnancy/venus pitcher seeds") > 0)
 					output2("\n<b>* Births, Venus Pitcher Seeds, Total: </b>" + StatTracking.getStat("pregnancy/venus pitcher seeds"));
 				if(StatTracking.getStat("pregnancy/venus pitcher seeds") > 0)
