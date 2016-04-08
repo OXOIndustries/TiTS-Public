@@ -126,14 +126,14 @@
 			}
 			
 			// If the primary artist has the bust, use it
-			if (NPCBustImages[opts.primaryBustArtist][bustName] != undefined)
+			if (("Bust_" + bustName) in NPCBustImages[opts.primaryBustArtist])
 			{
 				bounds = lookupBoundsInClass(bustName, NPCBustImages[opts.primaryBustArtist], doNude);
 				if (bounds != null) return bounds;
 			}
 			
 			// or the secondary
-			if (NPCBustImages[opts.secondaryBustArtist][bustName] != undefined)
+			if (("Bust_" + bustName) in NPCBustImages[opts.secondaryBustArtist])
 			{
 				bounds = lookupBoundsInClass(bustName, NPCBustImages[opts.secondaryBustArtist], doNude);
 				if (bounds != null) return bounds;
