@@ -518,7 +518,7 @@ public function seraSexPartyStage2(response:String = "none"):void
 			clearMenu();
 			addButton(0, "Say Hello", seraSexPartyStage2, "hello");
 			if(outfitPC == "butler") addButton(1, "Bow", seraSexPartyStage2, "bow");
-			else if(outfitPC == "schoolgirl") addButton(1, "Curtsey", seraSexPartyStage2, "curtsy");
+			else if(outfitPC == "schoolgirl") addButton(1, "Curtsy", seraSexPartyStage2, "curtsy");
 			else addButton(1, "Appease", seraSexPartyStage2, "appease");
 			addButton(2, "Do Nothing", seraSexPartyStage2, "nothing");
 			break;
@@ -545,7 +545,7 @@ public function seraSexPartyStage2(response:String = "none"):void
 				else if(outfitPC == "schoolgirl") {
 					output(" take the fringes of your skirt");
 					if(pc.hasLegs() && pc.hasKnees()) output(", bend a knee");
-					output(" and curtsey");
+					output(" and curtsy");
 				}
 				else output(" greet them");
 				output(" deferentially.");
