@@ -184,6 +184,7 @@ public function sydianFemalePCLossHasVagina():void
 	if (!(pc.shield is EmptySlot) && !pc.hasStatusEffect("Rusted Emitters")) 
 	{
 		output(" On top of being horny enough to fuck an icicle, you remember with grief that your shield isn’t going to work right until you get repairs.");
+		applyRustBroStatus();
 	}
 
 	processTime(30+rand(15));
@@ -408,7 +409,7 @@ public function sydianFemalePCVictory():void
 
 		if (!enemy.hasStatusEffect("Unarmored")) addDisabledButton(4, "Gentle Fuck", "Gentle Fuck", "She’s not vulnerable enough to regard kindness as anything but a weakness.");
 		else if (enemy.lust() < 33) addDisabledButton(4, "Gentle Fuck", "Gentle Fuck", "She’s not turned on enough to play along with you.");
-		else if (pc.hasVagina() || (pc.hasCock() && pc.cockThatFits(enemy.vaginalCapacity()))) addButton(4, "Gentle Fuck", femSydianGentleFuck, undefined, "Gentle Fuck", "Show the sydian that sex can be more than a power play.");
+		else if (pc.hasVagina() || (pc.hasCock() && pc.cockThatFits(enemy.vaginalCapacity()) != -1)) addButton(4, "Gentle Fuck", femSydianGentleFuck, undefined, "Gentle Fuck", "Show the sydian that sex can be more than a power play.");
 		else addDisabledButton(4, "Gentle Fuck", "Gentle Fuck", "Your genitals are incompatible with the poor girl!");
 	}
 	addButton(14, "Leave", leaveHerAfterWin);
@@ -1117,7 +1118,7 @@ public function femSydianGiveThrob():void
 	else
 	{
 		var c:int = pc.cockThatFits(enemy.vaginalCapacity());
-		if (c == -1) pc.smallestCock();
+		if (c == -1) c = pc.smallestCock();
 
 		output("\n\nThe girl moans and cum slops down her sensitized cock, the baby-making batter pressed into a makeshift hot lube by your grip; two aftershocks bubble from her twitching slit as her unwilling dick tries to go soft. The sydian shakes and sighs. <i>“Stop... it’s too much...”</i>");
 		

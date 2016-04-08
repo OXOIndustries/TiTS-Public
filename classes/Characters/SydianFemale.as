@@ -201,7 +201,7 @@
 		
 		override public function get long():String
 		{
-			var str:String = "This alien spends so much time moving and lashing her brushed tail that it’s difficult to see details. She’s within inches of five feet, and her untidy" + hairColor + " hair shifts with her movement, parting around her fluffy antennae and sometimes hiding her " + eyeColor +" eyes. An orange wink is visible between her legs, unconcealed by any scrap of clothing.";
+			var str:String = "This alien spends so much time moving and lashing her brushed tail that it’s difficult to see details. She’s within inches of five feet, and her untidy " + hairColor + " hair shifts with her movement, parting around her fluffy antennae and sometimes hiding her " + eyeColor + " eyes. An orange wink is visible between her legs, unconcealed by any scrap of clothing.";
 			if (shields() >= shieldsMax() * 0.8) str += " Segmented armor plates cover her whole body except her face and scalp. Incredibly flexible, she drops to all fours when the terrain is too uneven, always moving, always watching you.";
 			else if (shields() >= 0) str += " Segmented insectoid armor covers her, though major cracks are visible on her chest and stomach. She crouches and crawls often, trying to protect these areas as she circles you.";
 			else str += " Segmented chitin armor covers some of her, but the ‘plates’ from her throat down to her groin have collapsed under your attacks, revealing soft skin underneath. She’s moving far more evasively than when the fight began.";
