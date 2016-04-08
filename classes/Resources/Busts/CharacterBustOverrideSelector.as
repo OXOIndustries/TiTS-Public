@@ -73,18 +73,17 @@ package classes.Resources.Busts
 			_background = new Sprite();
 			_background.graphics.beginFill(UIStyleSettings.gBackgroundColour);
 			_background.graphics.lineStyle(3, UIStyleSettings.gForegroundColour);
-			_background.graphics.drawRect(0, 0, _container.width + 35, _container.height + 80);
+			_background.graphics.drawRect(0, 0, 735, _container.height + 80);
 			_background.graphics.endFill();
 			addChildAt(_background, 0);
-			_container.x = 10;
-			_container.y = 10;
-			
-			trace(stage.width);
-			trace(_background.width);
 			
 			_background.x = Math.round(stage.stageWidth - _background.width) / 2;
 			_background.y = 15;
 			_background.addChild(_container);
+			
+			_container.x = Math.round((735 - _container.width) / 2) - 10;
+			_container.y = 10;
+			
 			
 			_close = new MainMenuButton();
 			addChild(_close);
