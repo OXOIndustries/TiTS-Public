@@ -1606,7 +1606,7 @@ public function insideSteeleTechPostPlanetCrack():Boolean
 {
 	clearOutput();
 	author("Savin");
-	showAnno();
+	showBust("ANNO");
 	//Inside Descriptor (First Time)
 	if(flags["MET_ANNO"] == undefined)
 	{

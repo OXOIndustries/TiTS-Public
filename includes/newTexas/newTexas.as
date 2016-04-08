@@ -1129,13 +1129,21 @@ public function noIDontWantToSellBabies():void
 	addButton(0,"Next",mainGameMenu);
 }
 
+
+public function showHerman(nude:Boolean = false):void
+{
+	if(!nude) showBust("HERMAN");
+	else showBust("HERMAN_NUDE");
+	if(flags["MET_HERMAN"] == undefined) showName("BULL\nCHEF");
+	else showName("\nHERMAN");
+}
+
 //[Food]
 public function getFoodAtBigTs():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("HERMAN");
-	showName("\nHERMAN");
+	showHerman();
 	//Food (First Time)
 	if(flags["MET_HERMAN"] == undefined)
 	{
@@ -1176,8 +1184,7 @@ public function orderUp(order:String = ""):void
 {
 	clearOutput();
 	author("Savin");
-	showBust("HERMAN");
-	showName("\nHERMAN");
+	showHerman();
 	output("You give Herman your order, which he punches in on the register. He hands you a numbered ticket: <i>“Be right up, " + pc.mf("buddy","missy") + ".”</i>");
 	output("\n\nYou take your ticket and head over to one of the benches to wait. Before you can even sit down, though, you hear Chef Herman calling out your number. Damn, that’s fast! You return to the chef, pick up your order, complete with a side of fries and a big ol’ soda, and take your seat. A few bites is all it takes to convince you that Chef Herman’s cookin is finger-licking good!");
 	//{Energy Restored. Slight gain to thickness; salads slightly reduce thickness}. 
@@ -1218,8 +1225,7 @@ public function bbqToGo():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("HERMAN");
-	showName("\nHERMAN");
+	showHerman();
 	output("<i>“One to-go box, please,”</i> you say, pulling out your cred stick.");
 	output("\n\n<i>“Good choice! These babies will keep good for ages, but pop the top and it’ll be hot like it was right off the grill and as tasty as the day I cooked it,”</i> Herman says proudly as he rings you up. From under the counter, he hands over a big, black-and-white mottled box that’s ever-so-slightly warm to the touch and smells delicious.");
 	pc.credits -= 20;
@@ -1247,8 +1253,7 @@ public function lootBBQ():void {
 public function specialOrdersForTreatedGals():void
 {
 	author("Savin");
-	showBust("HERMAN");
-	showName("\nHERMAN");
+	showHerman();
 	clearOutput();
 	output("You lean over the counter, looking the chef up and down, your eyes drawn toward the thick, heavy bulge tenting the chef’s greasy apron. <i>“Uh, is there something I can get you, miss...?”</i> he starts to ask, before his gaze follows you down.");
 	output("\n\nGrinning lasciviously, you point down to the suddenly-larger bulge and say, <i>“I’ll take a great big helping of that, Chef.”</i>");

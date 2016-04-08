@@ -272,6 +272,9 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/wetraxxel_nude.png", mimeType = "image/png")]
 		public var Bust_WETRAXXEL_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/xanthe.png", mimeType = "image/png")]
+		public var Bust_XANTHE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/yammi.png", mimeType = "image/png")]
 		public var Bust_YAMMI:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/yammi_nude.png", mimeType = "image/png")]

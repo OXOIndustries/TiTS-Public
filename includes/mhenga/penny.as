@@ -66,9 +66,8 @@ public function showPennyName():void
 	if(flags["MET_PENNY"] == undefined) userInterface.showName("POLICE\nWOMAN");
 	else userInterface.showName("\nPENNY");
 }
-public function showPenny(nude:Boolean = false):void
+public function showPennyBust(nude:Boolean = false):void
 {
-	showPennyName();
 	if(flags["PENNY_BADGER_BIMBO"] != undefined || pennyIsCumSlut())
 	{
 		var pennyBust:String = "PENNY_BIMBO";
@@ -82,11 +81,16 @@ public function showPenny(nude:Boolean = false):void
 		else showBust("PENNY_NUDE");
 	}
 }
+public function showPenny(nude:Boolean = false):void
+{
+	showPennyName();
+	showPennyBust(nude);
+}
 
 //First Encounter
 //Appended to room description!
 public function pennyRoomDesc():void {
-	showPenny();
+	showPennyBust();
 	
 	if(flags["ZIL_PROBLEM_DEALT_WITH"] == undefined) {
 		if(flags["MET_PENNY"] == undefined) {
