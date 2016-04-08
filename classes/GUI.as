@@ -536,6 +536,8 @@
 				if (_currentModule != null) _previousModule = _currentModule.name;
 				_currentModule = _availableModules[module];
 				this.clearGhostMenu();
+				
+				if (titsClassPtr.stage) titsClassPtr.stage.focus = null;
 			}
 			else
 			{
