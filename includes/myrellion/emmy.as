@@ -145,7 +145,7 @@ public function gravidEmmyHarnessOverride():void
 	{
 		outputCodex("Grinning");
 		if(pc.isMischievous()) outputCodex(" mischievously");
-		else if(pc.isAss()) outputCodex("evilly");
+		else if(pc.isAss()) outputCodex(" evilly");
 		outputCodex(", you activate Emmy’s herm-harness, fully looking forward to watching the gallons of backed-up spunk escape around the toy’s knot.");
 		outputCodex("\n\n<i>“Naughty [pc.boy], [pc.name].”</i> Emmy coos, waggling one finger while the other continues to play with her tummy. <i>“I disabled your remote access code as soon as I recovered from your last present. You’ll just have to wait for me to work off this load before filling the Emmy-tank up again.”</i> She giggles and bats her eyelashes. <i>“");
 		if(pc.hasCock()) outputCodex("Maybe you could get yourself a dick and see if you can do a better job sometime.");
