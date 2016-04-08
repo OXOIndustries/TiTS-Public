@@ -13,7 +13,6 @@ Used to be into Theater before he grew up and got a job. Still holding out hope 
 //Yancy & His Slutmilker
 public function yancyBonusSloots():Boolean
 {
-	showBust("YANCY");
 	//Unmet
 	if(flags["MET_YANCY"] == undefined)
 	{

@@ -343,7 +343,7 @@ Black nipple tassels (+2 Sexiness) - 1000 Creds
 public function enterTheSilkenSerenityWhyDidWashHaveToDie():Boolean
 {
 	clearOutput();
-	showXanthe();
+	showBust("XANTHE");
 	//First Visit
 	if(flags["MET_XANTHE"] == undefined)
 	{

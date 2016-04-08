@@ -75,7 +75,7 @@ public function kellysOfficeBonusFunction():Boolean
 {
 	if(hours >= 6 && hours < 17)
 	{
-		showKelly();
+		showBust("KELLY");
 		author("Quiet Browser & LD");
 		//If Player has not met Kelly Yet:
 		if(flags["KELLY_MET"] == undefined) {

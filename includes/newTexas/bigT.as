@@ -18,7 +18,6 @@ public function bigTOfficeBonusBullshit():Boolean
 	//if T isn't dead/broken:
 	if(1 == 1) output("The towering bull-like governor is sitting at his desk, busily talking and typing, managing the world's affairs all from his desk.");
 	showBust("BIGT");
-	showName("BIG\nT.");
 	author("Savin");
 	if(flags["MET_ZEPHYR"] == undefined)
 	{

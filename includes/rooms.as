@@ -2561,7 +2561,7 @@ public function initializeRooms():void
 	rooms["209"].addFlag(GLOBAL.PUBLIC);
 	
 	rooms["LASH OFFICE"] = new RoomClass(this);
-	rooms["LASH OFFICE"].roomName = "EAST\nNOVAHOME";
+	rooms["LASH OFFICE"].roomName = "MAKESHIFT\nLABORATORY";
 	rooms["LASH OFFICE"].description = "";
 	rooms["LASH OFFICE"].runOnEnter = drLashOfficeBonus;
 	rooms["LASH OFFICE"].northExit = "209";
