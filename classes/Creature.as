@@ -2668,13 +2668,13 @@
 		//Used to see if wing-wang-doodles and hatchet-wounds are accessible. Should probably replace most isCrotchGarbed() calls.
 		public function isCrotchExposed(): Boolean {
 			if(!isCrotchGarbed()) return true;
-			return ((armor is EmptySlot || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN)) && (lowerUndergarment is EmptySlot || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)));
+			return ((armor is EmptySlot || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN)) && (lowerUndergarment is EmptySlot || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN)));
 		}
 		//Badonkadonk check
 		public function isAssExposed():Boolean
 		{
 			if(!isCrotchGarbed()) return true;
-			return ((armor is EmptySlot || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS)) && (lowerUndergarment is EmptySlot || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)));
+			return ((armor is EmptySlot || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS)) && (lowerUndergarment is EmptySlot || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS)));
 		}
 		public function isGroinCovered(): Boolean {
 			return isCrotchGarbed();
@@ -2688,7 +2688,7 @@
 		public function isChestExposed(): Boolean
 		{
 			if(!isChestCovered()) return true;
-			return ((armor is EmptySlot || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST)) && (upperUndergarment is EmptySlot || upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)));
+			return ((armor is EmptySlot || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST)) && (upperUndergarment is EmptySlot || upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST)));
 		}
 		public function isChestGarbed(): Boolean {
 			return isChestCovered();
@@ -2741,16 +2741,16 @@
 		
 		public function removeClothes(item:String = "all"):void
 		{
-			if(item == "all" || item == "underwear" || item == "upperUndergarment") upperUndergarment = new EmptySlot();
-			if(item == "all" || item == "underwear" || item == "lowerUndergarment") lowerUndergarment = new EmptySlot();
-			if(item == "all" || item == "clothing" || item == "armor") armor = new EmptySlot();
+			if(item == "all" || item == "underwear" || item == "upperUndergarment") { upperUndergarment.onRemove(this); upperUndergarment = new EmptySlot(); }
+			if(item == "all" || item == "underwear" || item == "lowerUndergarment") { lowerUndergarment.onRemove(this); lowerUndergarment = new EmptySlot(); }
+			if(item == "all" || item == "clothing" || item == "armor") { armor.onRemove(this); armor = new EmptySlot(); }
 		}
 		public function removeEquipment(item:String = "all"):void
 		{
-			if(item == "all" || item == "weapons" || item == "meleeWeapon") meleeWeapon = new EmptySlot();
-			if(item == "all" || item == "weapons" || item == "rangedWeapon") rangedWeapon = new EmptySlot();
-			if(item == "all" || item == "accessory") accessory = new EmptySlot();
-			if(item == "all" || item == "shield") shield = new EmptySlot();
+			if(item == "all" || item == "weapons" || item == "meleeWeapon") { meleeWeapon.onRemove(this); meleeWeapon = new EmptySlot(); }
+			if(item == "all" || item == "weapons" || item == "rangedWeapon") { rangedWeapon.onRemove(this); rangedWeapon = new EmptySlot(); }
+			if(item == "all" || item == "accessory") { accessory.onRemove(this); accessory = new EmptySlot(); }
+			if(item == "all" || item == "shield") { shield.onRemove(this); shield = new EmptySlot(); }
 		}
 		public function removeAll():void
 		{

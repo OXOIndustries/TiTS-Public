@@ -528,15 +528,20 @@ public function tailCockCeliseFaps():void {
 public function vaginalFap():void {
 	clearOutput();
 	output("You ");
-	if(pc.isNude()) output("lazily twist what little gear you wear to the side so as not to bump your arm into it while masturbating and smile to yourself about the practical advantages of being nude.");
+	if(pc.isNude() || (pc.isCrotchExposed() && pc.isChestCovered())) {
+		output("lazily twist what little gear you wear to the side so as not to bump your arm into it while masturbating and smile to yourself about the practical advantages of being");
+		if(pc.isNude()) output(" nude");
+		else output(" mostly naked");
+		output(".");
+	}
 	else {
 		clearList();
-		if(pc.armor.shortName != "") addToList("wriggle out of your [pc.armor]");
-		if(pc.lowerUndergarment.shortName != "") {
+		if(pc.armor.shortName != "" && !pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN)) addToList("wriggle out of your [pc.armor]");
+		if(pc.lowerUndergarment.shortName != "" && !pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN)) {
 			addToList("push your [pc.lowerUndergarment] down");
 			trace("LOWER ON LIST");
 		}
-		if(pc.upperUndergarment.shortName != "") {
+		if(pc.upperUndergarment.shortName != "" && !pc.upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !pc.upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST)) {
 			addToList("pull your [pc.upperUndergarment] off over your head");
 			trace("UPPER ON LIST");
 		}
@@ -635,11 +640,11 @@ public function vaginalFap():void {
 public function singleDickFap():void {
 	clearOutput();
 	clearList();
-	if(pc.isNude() || (pc.armor.shortName == "" && pc.lowerUndergarment.shortName == "")) output("You sigh and stretch, letting [pc.eachCock] hang free. Sometimes, it's good to be nude. You");
+	if(pc.isNude() || pc.isCrotchExposed()) output("You sigh and stretch, letting [pc.eachCock] hang free. Sometimes, it's good to be nude. You");
 	else {
-		if(pc.armor.shortName != "") {
+		if(!pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN)) {
 			output("You go ahead and pop open the bottom half of your [pc.armor]");
-			if(pc.lowerUndergarment.shortName != "") output(" and [pc.lowerUndergarment]");
+			if(!pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN)) output(" and [pc.lowerUndergarment]");
 			output(" to free [pc.eachCock], and you");
 		}
 		else output("You go ahead and pull down your [pc.lowerUndergarment] to free [pc.eachCock], and you");
@@ -774,12 +779,12 @@ public function singleDickFap():void {
 public function multiCockFap():void {
 	clearOutput();
 	output("There's no time like the present to deal with the insistent pulsations originating down south. You ");
-	if(!pc.isNude()) {
+	if(!pc.isNude() || (!pc.isCrotchExposed() && !pc.isChestExposed())) {
 		output("strip out of your ");
 		clearList();
-		if(pc.armor.shortName != "") addToList("[pc.armor]");
-		if(pc.lowerUndergarment.shortName != "") addToList("[pc.lowerUndergarment]");
-		if(pc.upperUndergarment.shortName != "") addToList("[pc.upperUndergarment]");
+		if(pc.armor.shortName != "" && !pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN)) addToList("[pc.armor]");
+		if(pc.lowerUndergarment.shortName != "" && !pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN)) addToList("[pc.lowerUndergarment]");
+		if(pc.upperUndergarment.shortName != "" && !pc.upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !pc.upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST)) addToList("[pc.upperUndergarment]");
 		output(formatList() + " to expose your [pc.cocks]. With the multiple endowments that you bear, there's no doubt that this is going to be a very messy, if enjoyable, experience.");
 	}
 	else output("find yourself a good spot to settle your nude form and remove the few pieces of kit you keep with you. There's no point in making a mess of your equipment after all.");
@@ -1134,7 +1139,7 @@ public function milkturbation():void
 	//Passing time first for cheatsiedoodles.
 	processTime(10+rand(5));
 	//No top
-	if(!pc.isChestGarbed())
+	if(pc.isChestExposed())
 	{
 		output("Going around uncovered certainly makes it easier to get ahold of your ");
 		if(pc.milkFullness >= 200) output("achy, leaking teats");
@@ -1506,7 +1511,14 @@ public function wutwutindabuttbuttFap():void
 		else output(" anal");
 		output(" experience,"); 
 
-		if (pc.hasVagina())
+		if (pc.ass.wetness() >= 2) 
+		{
+			output(" you circle your fingertips around your wet bum, making sure to collect");
+			if (pc.ass.wetness() >= 3) output(" a liberal amount of lubrication");
+			else output(" as much lubrication as you can muster");
+			output("; you have a feeling you'll need all the help you can get.");
+		}
+		else if (pc.hasVagina())
 		{
 			output(" you take advantage of your [pc.vagina " + pc.highestWetnessIndex() + "] and coat your fingers with a");
 			if (pc.wettestVaginalWetness() >= 3) output(" liberal");
@@ -1525,11 +1537,13 @@ public function wutwutindabuttbuttFap():void
 
 		if (pc.ass.looseness() <= 1)
 		{
-			output("\n\nProperly prepared, you use a solitary, lubricated finger to gingerly ply at the ring of your [pc.asshole], encountering plenty of resistance in the process.");
+			if(pc.ass.wetness() < 2) output("\n\nProperly prepared, you use a solitary, lubricated finger to gingerly ply at the ring of your [pc.asshole], encountering plenty of resistance in the process.");
+			else output("\n\nYou gingerly ply at the ring of your [pc.asshole] with your slicked fingers, encountering plenty of resistance in the process.");
 		}
 		else
 		{
-			output("\n\nProperly prepared, you gently prod at your [pc.asshole] with your lubricated fingers, gently easing the tips past the tight ring.");
+			if(pc.ass.wetness() < 2) output("\n\nProperly prepared, you gently prod at your [pc.asshole] with your lubricated fingers, carefully easing the tips past the tight ring.");
+			else output("\n\nYou gently prod at your [pc.asshole] with your slicked fingers, carefully easing the tips past the tight ring.");
 		}
 	}
 	else if (pc.ass.looseness() <= 4)
@@ -1902,7 +1916,7 @@ public function goddamnitJimTAndYourExhibitionism():void
 	else author("JimThermic");
 
 	//GotLowerGarment - armor or underwear:
-	if(pc.isCrotchGarbed())
+	if(pc.isCrotchGarbed() && !pc.isCrotchExposed())
 	{
 		output("Void, you're so damn horny! Beneath your [pc.lowerGarment], your loins ache needily.");
 		if(pc.hasCock() || pc.hasVagina()) 
@@ -1946,7 +1960,7 @@ public function goddamnitJimTAndYourExhibitionism():void
 	output(" peer at you curiously, wondering what's the matter. The longer they look, the fiercer the forbidden flame burns between your loins. You yearn to stroke it, <i>expose</i> it, display it in front of everyone....");
 
 	//PCWearingArmor:
-	if(!(pc.armor is EmptySlot))
+	if(!(pc.armor is EmptySlot) && !pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL))
 	{
 		output("\n\nBefore their eyes, you begin slowly stripping off your [pc.armor]. They watch on with wide open eyes and mouths as you peel it off your [pc.skinFurScales], exposing your bare body to the gaping onlookers. You can feel their looks lingering on and roaming around your body, causing you to shiver with delight.");
 		//GotUpperUndergarment:
@@ -2404,7 +2418,7 @@ public function jackOffWithLadyPantiesYouSicko(waifu:String):void
 	clearOutput();
 	showName("\nPANTIES!");
 	author("ASpoopyGhost");
-	output("You pull out  " + waifu + "’s panties and hold the bunched up fabric in your hand. They’re your naughty prize, once resting intimately close to her pussy lips, and now yours to play with. Bringing the intimate undle to your face. you inhale deeply. Just smelling the scintillating scent of her sweat and sex–rubbing up against the " + getPantyTexture(waifu) + " all day long–is causing your [pc.cocksNounSimple] to considerably harden. Now you’ve got her scent, ");
+	output("You pull out " + waifu + "’s panties and hold the bunched up fabric in your hand. They’re your naughty prize, once resting intimately close to her pussy lips, and now yours to play with. Bringing the intimate undle to your face. you inhale deeply. Just smelling the scintillating scent of her sweat and sex–rubbing up against the " + getPantyTexture(waifu) + " all day long–is causing your [pc.cocksNounSimple] to considerably harden. Now you’ve got her scent, ");
 	if(pc.cockTotal() == 1) output("it demands");
 	else output("they demand");
 	output(" to be buried in her musky snatch!");
@@ -3201,7 +3215,7 @@ public function shipShowerFappening(scene:String = ""):void
 		if (pc.vaginas[n].looseness() <= 1) output(" It squeezes so hard without you even having to try, and when you clench your pussy muscles you’re almost afraid you’ll bend the metal out of shape from how tight you are. Afraid, yet you can’t help but grin at the thought. You know nobody out there could resist the thought of plunging their cock into a hole that promises such grip, such sinful squeezing.");
 		else if (pc.vaginas[n].looseness() <= 3) output(" Your inner muscles massage that probing metal just right, offering pleasurable resistance but letting it slide as deep as you want it. It’s the perfect fit for your perfectly trained pussy, the product of experience making a once-inexperienced hole into a professional cock-milker.");
 		else output(" You love the way the whole thing slips inside with nary a drop of resistance from your loose, sloppy hole. You feed it in further until only the tube is sticking out, careful not to let the water pressure make it slip out. Yet there’s hardly any pressure at all, just the sensation of water blasting away at your pussy walls, a sensation those silly tight girls could never experience. Your cunt is completely ruined, a total size queen’s twat, and you wouldn’t have it any other way.");
-		if (pc.hasCock()) output("\n\nAbove the heady pleasure stemming from your pussy you feel yourself throbbing, your masculine aspect providing a perfect counterpoint to your steamy feminine slit. You don’t even want to touch right now.  You don’t have to. You can just let [pc.eachCock] hang there and revel in your hermaphroditic endowments, each rhythmic clench of your cunt accompanied with a twitch of your cock. With every twitch you feel your cumslit widening from within, pushed open by that slowly-building pressure of preseed aching to come out.");
+		if (pc.hasCock()) output("\n\nAbove the heady pleasure stemming from your pussy you feel yourself throbbing, your masculine aspect providing a perfect counterpoint to your steamy feminine slit. You don’t even want to touch right now. You don’t have to. You can just let [pc.eachCock] hang there and revel in your hermaphroditic endowments, each rhythmic clench of your cunt accompanied with a twitch of your cock. With every twitch you feel your cumslit widening from within, pushed open by that slowly-building pressure of preseed aching to come out.");
 		output("\n\nYour free hand comes up,");
 		if (!pc.hasBreasts()) output(" palm lying against the back of your head as you look down past your chest at the display. You don’t want to distract yourself with anything else, just relax and savor the pleasure of your pussy.");
 		else if (pc.biggestTitSize() < 4) output(" cupping one of your breasts and setting to rubbing as you look down past your cleavage to watch your pussy in action. Your [pc.fingers] brush across your nipple, adding the occasional girlish gasp to the steadier moaning slipping forth from your lips. You’re just the right size to be able to see everything, and it makes you so very, very pleased. Maybe being bigger would be fun, but you’re pretty happy being able to watch when there’s a cock making your pussy sing with pleasure. Or a shower head, for that matter.");

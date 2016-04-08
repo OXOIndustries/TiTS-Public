@@ -503,8 +503,7 @@ public function badEndToTamWulfAndTamAndMaybeAlsoTamPartII():void
 	pc.armor = new LeatherStrapHarness();
 	pc.armor.longName = "leather suit";
 	pc.armor.description = "a leather suit";
-	pc.armor.itemFlags.push(GLOBAL.ITEM_FLAG_EXPOSE_ASS);
-	pc.armor.itemFlags.push(GLOBAL.ITEM_FLAG_EXPOSE_GROIN);
+	pc.armor.itemFlags = [GLOBAL.ITEM_FLAG_EXPOSE_FULL];
 
 	pc.buttChange(500, false);
 	
@@ -569,7 +568,7 @@ public function badEndToTamWulfAndTamAndMaybeAlsoTamPartII():void
 	
 	for(i = 0; i < pc.breastRows.length; i++)
 	{
-		if(pc.breastRows[0].breastRatingRaw < ((120/60) * pc.tallness)) pc.breastRows[0].breastRatingRaw = ((120/60) * pc.tallness);
+		if(pc.breastRows[0].breastRatingRaw < ((120/60) * pc.tallness)) pc.breastRows[0].breastRatingRaw = (((120/60) * pc.tallness) + 20);
 	}
 	if(pc.hipRatingRaw < 20) pc.hipRatingRaw = 20;
 	if(pc.buttRatingRaw < 20) pc.buttRatingRaw = 20;
@@ -581,7 +580,6 @@ public function badEndToTamWulfAndTamAndMaybeAlsoTamPartII():void
 		if(pc.legCount > 1) output(" between");
 		else output(" against");
 		output(" your [pc.legOrLegs] -- and that wince turns into a howl of ecstasy as one of her dainty fingers slips inside what you suddenly realize is a new hole. A cunt. But just as soon as she does so, she withdraws, clearly satisfied with your new slit.");
-		pc.createVagina();
 	}
 	else output(" With your new additions straining against your suit, Mistress slips a hand back around your prone body, yanking down the leather around your [pc.ass] to let your womanhood kiss the stale air of the cabin for the first time in what seems like forever.");
 
@@ -611,17 +609,19 @@ public function badEndToTamWulfAndTamAndMaybeAlsoTamPartII():void
 	output("\n\n<i>\"Go, go, Tam-wolf!\"</i> Mistress cheers, reaching up to pat her robotic pooch on the head.");
 	output("\n\n<i>\"Mistress, I am cumming,\"</i> Tam-wolf announces, his latex member shifting inside you, the knot thickening as a load of synthetic spooge rushes toward you defiled sex. As a flood of hot, sticky, canid seed floods your womb, you're suddenly very, very aware of your new lot in life: even worse than being a dog, you're now reduced to nothing more than the robotic Tam-wolf's breeding bitch, a living onahole for Mistress's alpha hound.");
 	
+	if(!pc.hasVagina()) pc.createVagina();
 	var selCunt:int = pc.vaginas[rand(pc.vaginas.length)];
+	
 	var ppTamWolf:PregnancyPlaceholder = new PregnancyPlaceholder();
 	if(!ppTamWolf.hasCock()) ppTamWolf.createCock();
 	ppTamWolf.shiftCock(0, GLOBAL.TYPE_CANINE);
-	ppTamWolf.cocks[0].cLengthRaw = 5;
-	ppTamWolf.cocks[0].cThicknessRatioRaw = 1.75;
+	ppTamWolf.cocks[0].cLengthRaw = 15;
+	ppTamWolf.cocks[0].cThicknessRatioRaw = 3;
 	ppTamWolf.cocks[0].flaccidMultiplier = 0.20;
 	ppTamWolf.cocks[0].knotMultiplier = 2.5;
 	ppTamWolf.cumType = GLOBAL.FLUID_TYPE_CUM;
 	
-	pc.cuntChange(selCunt, (ppTamWolf.cockVolume(0) * ppTamWolf.cocks[0].knotMultiplier), false);
+	pc.cuntChange(selCunt, (pc.vaginalCapacity(selCunt) + (ppTamWolf.cockVolume(0) * ppTamWolf.cocks[0].knotMultiplier)), false);
 	for(i = 0; i < 32; i++)
 	{
 		pc.loadInCunt(ppTamWolf, selCunt);
@@ -1304,7 +1304,7 @@ public function loseToCaptainKhorganBadEnd():void
 	}
 	else output("\n\n");
 	output("The captain coos");
-	if(!pc.isNude()) output(" as she tears into your equipment, ripping it off");
+	if(!pc.isNude() && !pc.isCrotchExposed()) output(" as she tears into your equipment, ripping it off");
 	output(" before planting her foot straight on the base of your cock. You groan under the sudden pressure on your member, shifting under the semi-pleasurable weight of her foot on your rod, rubbing you ever-so-slightly as she decides what to do with you.");
 	
 	pc.removeAll();
@@ -1567,7 +1567,7 @@ public function defeatedByKaska():void
 				if(pc.cockTotal() > 1) output("s aren't");
 				else output(" isn't");
 				output(" far behind.");
-				if(pc.isCrotchGarbed()) 
+				if(!pc.isCrotchExposed()) 
 				{
 					output(" You can feel your [pc.lowerGarment] slipping and sliding wetly against ");
 					if(pc.cockTotal() == 1) output("it");
@@ -1589,7 +1589,7 @@ public function defeatedByKaska():void
 			if(pc.hasVagina())
 			{
 				output("\n\nAnd your [pc.vaginas].... You're wet. As wet as you've ever been and then a little bit more. ");
-				if(pc.lowerUndergarment.shortName != "") output("There must be a puddle in your [pc.underGarment] by now. ");
+				if(!pc.isCrotchExposed()) output("There must be a puddle in your [pc.underGarment] by now. ");
 				output("You can practically feel your vulva pumping up, bloating with surges of erogenous energy");
 				if(pc.hasClit()) output(" that leave your [pc.clits] hard and ready");
 				output(". Your [pc.hips] wiggle a little on their own, and it's enough for you to feel netherlips slipping and sliding against one another. [pc.EachVagina] is practically fucking itself with your every move.");
@@ -1973,7 +1973,7 @@ public function victoryKaskaDicksex():void
 	showName("\nKASKA");
 	var x:int = pc.cockThatFits(chars["KASKA"].vaginalCapacity(0));
 	if(x < 0) x = pc.smallestCockIndex();
-	if(pc.isCrotchGarbed())
+	if(!pc.isCrotchExposed())
 	{
 		output("Opening up your [pc.lowerGarments], you select ");
 		if(pc.cockTotal() > 1) output("the biggest of ");
@@ -2067,7 +2067,7 @@ public function makeKaskaSuchYerCoochLikeABaws():void
 	author("Fenoxo");
 	showBust("KASKA");
 	showName("\nKASKA");
-	if(pc.isCrotchGarbed()) output("You lazily open your [pc.lowerGarments],");
+	if(!pc.isCrotchExposed()) output("You lazily open your [pc.lowerGarments],");
 	else output("You lazily step forward,");
 	output(" intending to get some quick, oral relief from this pirate ");
 	if(flags["TARKUS_BOMB_TIMER"] != 0) output("before dealing with the potentially planet-cracking bomb");

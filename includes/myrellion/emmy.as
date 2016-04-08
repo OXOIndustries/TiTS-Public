@@ -332,7 +332,6 @@ public function leaveThisShit():void
 	//move location.
 	currentLocation = "607";
 	generateMapForLocation(currentLocation);
-	showName("SPACER'S\nROW");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }	
@@ -1178,7 +1177,7 @@ public function repeatPreFlowerSexAttempt():void
 public function venusPitcherBonusFlower():void
 {
 	clearOutput();
-	showEmmy();
+	showName("AN EXOTIC\nFLOWER!");
 	output("Ever since Emmy asked you for an exotic flower, you’ve kept your eyes open for a good one, and now there’s one laying on the ground right in front of you! The venus pitcher must have shed this one in her hurry to escape underground, leaving a pink and purple bloom that’s sure the dazzle the eye and delight the nostrils. You even sniff it a few times to make sure it doesn’t have any of that sneezy pollen that clouds the air around the plant-women.");
 	if(venusSubmission() >= 40) output(" Sadly, it doesn’t.");
 	//Acquire bloom
@@ -1454,7 +1453,7 @@ public function giveEmmyAnItem(item:String):void
 			pc.destroyItem(new CrystalShard());
 			currentLocation = "607";
 			generateMapForLocation(currentLocation);
-			showName("SPACER'S\nROW");
+			showLocationName();
 			processTime(4);
 			clearMenu();
 			addButton(0,"Next",mainGameMenu);
