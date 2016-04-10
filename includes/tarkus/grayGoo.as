@@ -129,7 +129,7 @@ public function pcDefeatsGrayGooInTheNameOfLove():void
 		{
 			addButton(1,"MutualFap",mutualGooMasturbation,undefined,"Mutual Masturbation","It starts out as a blowjob but winds up being so much more!");
 			if(pc.cockTotal() > 1) addButton(2,"MultiFuck",multiCockMayhem,undefined,"Multicock Fuck","Use multiple dicks on her simultaneously.")
-			else addDisabledButton(2,"MultiFuck");
+			else addDisabledButton(2,"MultiFuck", "If only you had more than one cock....");
 		}
 		else
 		{
