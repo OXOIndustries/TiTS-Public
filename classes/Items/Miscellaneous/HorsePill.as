@@ -97,12 +97,12 @@
 			}
 			else smallHorsePillMutations(kGAMECLASS.chars["PC"]);
 			if(done) kGAMECLASS.eventBuffer += "\n\n<b>Your body calms down. The pills must have worn off.</b>";
-			kGAMECLASS.clearMenu();
-			kGAMECLASS.addButton(0,"Next",kGAMECLASS.mainGameMenu);
+			//kGAMECLASS.clearMenu();
+			//kGAMECLASS.addButton(0,"Next",kGAMECLASS.mainGameMenu);
 		}
 		public function lastPillTF():void {
 			pillTF(true);
-			kGAMECLASS.mainGameMenu();
+			//kGAMECLASS.mainGameMenu();
 		}
 		private function smallHorsePillMutations(target:Creature):void
 		{

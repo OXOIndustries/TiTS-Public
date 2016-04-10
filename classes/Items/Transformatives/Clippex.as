@@ -100,8 +100,8 @@
 				
 				target.lust(5);
 				
-				kGAMECLASS.clearMenu();
-				kGAMECLASS.addButton(0, "Next", kGAMECLASS.mainGameMenu);
+				//kGAMECLASS.clearMenu();
+				//kGAMECLASS.addButton(0, "Next", kGAMECLASS.mainGameMenu);
 			}
 		}
 		public function itemClippexTFPlus():void

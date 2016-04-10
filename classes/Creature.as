@@ -14273,28 +14273,28 @@
 									break;
 								case "Horse Pill":
 									var pill:HorsePill = new HorsePill();
-									kGAMECLASS.eventQueue[kGAMECLASS.eventQueue.length] = pill.lastPillTF;
+									pill.lastPillTF();
 									break;
 								//Goblinola changes!
 								case "Goblinola Bar":
 									var gobbyTF:Goblinola = new Goblinola();
-									kGAMECLASS.eventQueue[kGAMECLASS.eventQueue.length] = gobbyTF.itemEndGoblinTF;
+									gobbyTF.itemEndGoblinTF();
 									break;
 								case "Gabilani Face Change":
 									var gobbyFaceTF:Goblinola = new Goblinola();
-									kGAMECLASS.eventQueue[kGAMECLASS.eventQueue.length] = gobbyFaceTF.itemGoblinFaceTF;
+									gobbyFaceTF.itemGoblinFaceTF();
 									break;
 								//Clippex changes!
 								case "Clippex Gel":
 									var clippexTF:Clippex = new Clippex();
-									if((statusEffects[x] as StorageClass).value2 > 1) kGAMECLASS.eventQueue[kGAMECLASS.eventQueue.length] = clippexTF.itemClippexTFPlus;
-									else kGAMECLASS.eventQueue[kGAMECLASS.eventQueue.length] = clippexTF.itemClippexTF;
+									if((statusEffects[x] as StorageClass).value2 > 1) clippexTF.itemClippexTFPlus();
+									else clippexTF.itemClippexTF();
 									break;
 								//Semen's Friend changes!
 								case "Semen's Candy":
 									var semensTF:SemensFriend = new SemensFriend();
-									if((statusEffects[x] as StorageClass).value2 > 1) kGAMECLASS.eventQueue[kGAMECLASS.eventQueue.length] = semensTF.itemSemensFriendTFPlus;
-									else kGAMECLASS.eventQueue[kGAMECLASS.eventQueue.length] = semensTF.itemSemensFriendTF;
+									if((statusEffects[x] as StorageClass).value2 > 1) semensTF.itemSemensFriendTFPlus();
+									else semensTF.itemSemensFriendTF();
 									break;
 								case "Red Myr Venom":
 									//Bit of a hacky solution

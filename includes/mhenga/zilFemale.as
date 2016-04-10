@@ -198,7 +198,7 @@ public function leaveHostileZil():void {
 			if(pc.hasCock())
 			{
 				output(" Your [pc.cocks] fairly ");
-				if(pc.armor.shortName != "" || pc.lowerUndergarment.shortName != "") output("fill your garments");
+				if(!pc.isCrotchExposed() && (pc.armor.shortName != "" || pc.lowerUndergarment.shortName != "")) output("fill your garments");
 				else output("cover the ground");
 				output("with precum");
 			}
@@ -208,7 +208,7 @@ public function leaveHostileZil():void {
 				if(pc.totalVaginas() == 1) output("is");
 				else output("are");
 				output(" wet enough to soak ");
-				if(pc.armor.shortName != "" || pc.lowerUndergarment.shortName != "") output("your garments");
+				if(!pc.isCrotchExposed() && (pc.armor.shortName != "" || pc.lowerUndergarment.shortName != "")) output("your garments");
 				else output("the ground");
 			}
 			output(", and you can’t do anything but stare at the slowly approaching wasp woman, imagining what perverted things she’ll do to you. As she reaches out and caresses your face, your mouth opens but makes no sound. She hums pleasantly, knowing she’ll get what she’s after.");
@@ -371,9 +371,9 @@ public function missionaryWithAZilGirl():void {
 	userInterface.showBust("ZILFEMALE");
 	userInterface.showName("FEMALE\nZIL");
 	output("With the wasp girl's legs nice and spread for you, it isn't long before you smell the wafting cloud of her sexual scent. Immediately, [pc.eachCock] stiffens");
-	if(pc.armor.shortName != "" || pc.lowerUndergarment.shortName != "") {
+	if(!pc.isCrotchExposed() && (pc.armor.shortName != "" || pc.lowerUndergarment.shortName != "")) {
 		output(" in your ");
-		if(pc.lowerUndergarment.shortName != "") output("[pc.lowerUndergarment]");
+		if(pc.lowerUndergarment.shortName != "" && !pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN)) output("[pc.lowerUndergarment]");
 		else output("[pc.armor]");
 		output(", tenting visibly.");
 	}
@@ -1436,9 +1436,8 @@ public function smotherDatBeeSlutInDickYo():void {
 	clearOutput();
 	userInterface.showBust("ZILFEMALE");
 	userInterface.showName("FEMALE\nZIL");
-	if(pc.armor.shortName != "" && pc.lowerUndergarment.shortName != "") output("You slip out of your [pc.armor] just in time to see your [pc.lowerUndergarment] tenting dangerously around your [pc.cockBiggest]. It takes a few moments of struggling to get the rest of your clothing off, but when you feel yourself flop free, a shudder of relief travels up your spine.");	
-	else if(pc.armor.shortName != "") output("You slip out of your [pc.armor] as quickly as possible, lest your [pc.cockBiggest] tear it off for you, or worse, get stuck inside.");
-	
+	if(!pc.isCrotchExposed() && pc.armor.shortName != "" && pc.lowerUndergarment.shortName != "") output("You slip out of your [pc.armor] just in time to see your [pc.lowerUndergarment] tenting dangerously around your [pc.cockBiggest]. It takes a few moments of struggling to get the rest of your clothing off, but when you feel yourself flop free, a shudder of relief travels up your spine.");	
+	else if(pc.armor.shortName != "" && !pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN)) output("You slip out of your [pc.armor] as quickly as possible, lest your [pc.cockBiggest] tear it off for you, or worse, get stuck inside.");
 	else {
 		output("You wriggle to drop the pieces of gear you carry on your ");
 		if(pc.upperUndergarment.shortName != "") output("mostly ");
@@ -1476,12 +1475,15 @@ public function smotherDatBeeSlutInDickYo():void {
 	else if(pc.cumQ() <= 50) {
 		output("\n\nThe next shot is just as big as the first, and this time, either your aim has improved on your partner is trying to swallow it all. You don't feel an ounce of resistance as your [pc.cum] spews forth, washing straight into the zil's noisily gulping mouth. Her eyelids close as your rope trails off into droplets, satisfied with the sample she's swallowed, yet her tongue unspools, revealing a hollow nature as it seals itself around your twitching cumslit just in time to catch the last few pulses of distilled delight in its tubular embrace, passing it directly to her belly.");
 		output("\n\n<i>“Mmm, not too bad, off-worlder,”</i>  the alien coos as she wipes a trickle of [pc.cumColor] from the edge of her mouth. <i>“Though from how big you are I was expecting to get drenched!”</i>  She licks her lips. <i>“I bet you probably just used it all on someone else already, huh?”</i>  There's a mischievous glint twinkling in her eye.");
+		pc.orgasm();
 	}
 	//Cum is less than 500
 	else if(pc.cumQ() <= 500) {
 		output("\n\nThe next shot feels like it's twice as big as the first, and this time, either your aim has improved or the dick-hungry whore is guiding you straight to the prize: her sucking, glazed mouth. You bathe her tongue in the slippery morass of your release, flooding her oral cavity to such a degree that her cheeks bulge and runnels of [pc.cumColor] leak from the corners of her mouth. Her throat noisily attempts to gulp down the heavy load, but you fill it as fast as she can swallow, not stopping until she's taken three large swallows.");
 		output("\n\nThe wasp-like woman grabs your [pc.cockHeadBiggest] in both hands to steady it, unspooling her tongue to your quivering cumslit while gasping for air. A light, ticklish pressure seals around your organ's tiny slit, revealing the zil's tongue to be hollow just in time for your next release. You blast [pc.cum] straight into the tubular proboscis before she's completely ready, stretching the hollow, organic pipe to twice its original diameter as you completely fill it, pouring your need into her in a direct path to her stomach. A noisy gurgle comes from her belly, but she manages to take it all with a pleasure-dazed smile.");
 		output("\n\n<i>“Mmm, nice and filling, big " + pc.mf("boy","girl") + "...”</i>  she sighs as she separates from your dick, letting the last few drops spatter across her face. <i>“No one has ever pinned me under their dick like that before. It was almost worth losing to you!”</i>");
+		pc.orgasm();
+		pc.orgasm();
 	}
 	//Cum is more than 500
 	else {
@@ -1498,10 +1500,16 @@ public function smotherDatBeeSlutInDickYo():void {
 			else output("puddle deep enough to nearly drown her");
 			output(".");
 			if(pc.cumQ() >= 50000) output(" You keep going, eventually creating a small river of juices that drains through the jungle, flowing off towards who-knows where.");
+			pc.orgasm();
+			pc.orgasm();
+			pc.orgasm();
 		}
 		//Else
 		else output("\n\nThe succussive shots take their toll, each one smaller than the one proceeding it but still easily capable of giving the zil-girl a thorough [pc.cumNoun]-treatment.");
 		output(" Sputtering, swallowing, and moaning, the pretty little thing does her best to come down from her climactic bliss, rolling her hips languidly beneath your slow-shrinking staff as she clears her mouth and nose. Her voice is dazed and muted when she speaks, barely audible at first but growing in intensity with every word. <i>“That was wonderful. I've never... never had a male take me so. You are, without a doubt, the most wonderfully virile creature I've ever met. Perhaps I'll have a queen from this.”</i>  She wipes the cum from her eyes. <i>“Maybe I'll even manage to beat you next time. I could do so much to this cock if I had you at my mercy...”</i>");
+		pc.orgasm();
+		pc.orgasm();
+		pc.orgasm();
 	}
 	//Omni-end
 	output("\n\nYou reluctantly separate yourself from your prize and prepare yourself to resume your journeys. She just lays there a while, breathing heavy with her eyes drifting closed toward a much-needed nap.\n\n");
