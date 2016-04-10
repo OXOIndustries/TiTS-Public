@@ -1950,8 +1950,8 @@ public function viBoobSizeMenu():void
 {
 	clearMenu();
 	//Tooltip.increaseboobs: 
-	if(pc.hasItem(new Silicone(), 2)) addButton(0,"IncreaseBoobs",inflateViBoobs,undefined,"IncreaseBoobs","Inflate Vi’s puppies until they’re heavy and hyper-sized!\n\n<b>Cost: 2 units of Silicone</b>");
-	else if(flags["VI_BIGBOOBS"] == 1) addDisabledButton(0,"IncreaseBoobs","IncreaseBoobs","You’ve already filled Vi’s breasts to capacity!")
+	if(flags["VI_BIGBOOBS"] == 1) addDisabledButton(0,"IncreaseBoobs","IncreaseBoobs","You’ve already filled Vi’s breasts to capacity!")
+	else if(pc.hasItem(new Silicone(), 2)) addButton(0,"IncreaseBoobs",inflateViBoobs,undefined,"IncreaseBoobs","Inflate Vi’s puppies until they’re heavy and hyper-sized!\n\n<b>Cost: 2 units of Silicone</b>");
 	else addDisabledButton(0,"IncreaseBoobs","IncreaseBoobs","Inflate Vi’s puppies until they’re heavy and hyper-sized! You’ll need 2 units of silicone in order to inflate Vi’s breasts");
 	//Tooltip.Shrinkbreasts: 
 	if(flags["VI_BIGBOOBS"] == 1) addButton(1,"ShrinkBreasts",shrinkViBreasts,undefined,"ShrinkBreasts","Bring Vi’s breasts back down to their original size.");
