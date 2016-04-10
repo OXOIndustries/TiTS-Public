@@ -1073,7 +1073,7 @@ public function mimbranesComplainAndShit():void
 							}
 							else
 							{
-								addMimbraneEvent("Muffled squeaks and chirps are coming from your [pc.feet]. Your Mimbranes must be getting hungry");
+								addMimbraneEvent("Muffled squeaks and chirps are coming from your [pc.feet]. Your Mimbranes must be getting hungry.");
 							}
 						}
 						// Only one foot
