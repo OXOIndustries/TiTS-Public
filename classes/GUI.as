@@ -93,7 +93,7 @@
 		//private var miniMap:MiniMap;
 		//private var displayMinimap:Boolean;
 
-		public var titsClassPtr:*;
+		public var titsClassPtr:TiTS;
 		public var stagePtr:*;
 		
 		// REFACTORED SHIT BELOW THIS LINE YO
@@ -546,6 +546,7 @@
 			
 			// Update some button states
 			updateLevelUp();
+			updateRoomTextVisibilityControl();
 		}
 		
 		// LeveUp button
@@ -938,6 +939,9 @@
 			bufferButtonUpdater();
 			menuButtonsOn();
 			deglow();
+			
+			titsClassPtr.gameOptions.tempHideRoomAndSceneNames = false;
+			_leftSideBar.locationBlock.updateRoomTextVisibility();
 		}
 		
 		public function output2():void
@@ -1495,6 +1499,11 @@
 		public function leftBarDefaults():void
 		{
 			_leftSideBar.defaultLayout();
+		}
+		
+		public function updateRoomTextVisibilityControl():void
+		{
+			_leftSideBar.locationBlock.roomControlVisibility = _currentModule.moduleName == "PrimaryOutput";
 		}
 	}
 }

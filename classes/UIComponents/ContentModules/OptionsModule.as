@@ -7,9 +7,12 @@ package classes.UIComponents.ContentModules
 	import classes.UIComponents.ContentModuleComponents.OptionsTextSizeControl;
 	import fl.containers.ScrollPane;
 	import flash.display.MovieClip;
+	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import classes.GLOBAL;
+	import classes.UIComponents.UIStyleSettings;
+	
 	/**
 	 * ...
 	 * @author Gedan
@@ -41,6 +44,13 @@ package classes.UIComponents.ContentModules
 			
 			this.Build();
 			this.BuildControls();
+			
+			var mouseCapture:Sprite = new Sprite();
+			mouseCapture.graphics.beginFill(UIStyleSettings.gBackgroundColour, 1);
+			mouseCapture.graphics.drawRect(0, 0, _controlsContainer.width, _controlsContainer.height);
+			mouseCapture.graphics.endFill();
+			_controlsContainer.addChildAt(mouseCapture, 0);
+			_scrollPane.update();
 		}
 		
 		private function Build():void
@@ -64,20 +74,11 @@ package classes.UIComponents.ContentModules
 		
 		private function BuildControls():void
 		{
-			/*
-			//Turns off debug mode toggle. "fuckyou" cheat to enable.
-			//addToggleControl("Toggle debug mode access to game functions.", "Debug Mode", "debugMode");
-			addToggleControl("Toggle easy mode game difficulty.", "Easy Mode", "easyMode");
-			addToggleControl("Toggle silly mode game content.", "Silly Mode", "sillyMode");
-			addToggleControl("Toggle combined damage output display.", "Combine Damage", "combineDamageValueOutput");
-			addToggleControl("Toggle color in damage output display.", "Color Damage", "colourDamageValueOutput");
-			addToggleControl("Toggle the save note input field.", "Save Notes", "saveNotesToggle");
-			addToggleControl("Toggle save file overwrite prompt.", "Overwrite Prompt", "overwriteToggle");
-			*/
 			addMultiToggleControl("Toggle game difficulty and content.", "Easy Mode", "easyMode", "Silly Mode", "sillyMode");
 			addMultiToggleControl("Toggle damage output display styles.", "Combine Damage", "combineDamageValueOutput", "Color Damage", "colourDamageValueOutput");
 			addMultiToggleControl("Toggle save notes and file overwrite prompt.", "Save Notes", "saveNotesToggle", "Overwrite Prompt", "overwriteToggle");
 			addMultiToggleControl("Toggle author visibility and vendor handling.", "Scene By", "authorToggle", "Buy/Sell Prompt", "vendorToggle");
+			addMultiToggleControl("Toggle names displayed over character portraits.", "Display", "showRoomAndSceneNames", null, null);
 			
 			addMultiToggleControl("Basic character image settings.", "Busts", "bustsEnabled", "Fallback", "bustFallbacks");
 			
@@ -87,8 +88,7 @@ package classes.UIComponents.ContentModules
 			bustControl.y = 5 + _pC.y + _pC.height;
 			_pC = bustControl;
 			
-			bustControl.configure("Advanced character image settings.", "Define who your preferred artists are for character image displays. You can override the displayed bust on a per-character basis by clicking on the image in the top left of the game whenever it is displayed.", "Primary Artist:", "primaryBustArtist", GLOBAL.SELECTABLE_ARTISTS, "Secondary Artist:", "secondaryBustArtist", GLOBAL.SELECTABLE_ARTISTS);
-			
+			bustControl.configure("Advanced character image settings.", "Define who your preferred artists are for character image displays. You can override the displayed bust on a per-character basis by clicking on the cog icon displayed near the character portaits left of the game screen whenever it is displayed.", "Primary Artist:", "primaryBustArtist", GLOBAL.SELECTABLE_ARTISTS, "Secondary Artist:", "secondaryBustArtist", GLOBAL.SELECTABLE_ARTISTS);
 			
 			addFontSizeControl();
 		}
