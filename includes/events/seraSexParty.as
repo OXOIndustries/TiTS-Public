@@ -1478,17 +1478,21 @@ public function seraSexPartyStage4(response:String = "none"):void
 			output("\n\n<i>“I like your mods,”</i> husks your mistress. <i>“Where did you get them?”</i>");
 			output("\n\n<i>“Phyrae’s, on Sar Burer,”</i> replies Vedice, doing something that makes the boy on your back clench his slim thighs into your ribs and whimper. <i>“Very exclusive - as I’m sure you’re aware, darling - and stocks some </i>very<i> naughty things thanks to Sar Burer’s private charter. It can be such a bother getting on and off there, though.”</i>");
 			output("\n\n<i>“You should come to my place,”</i> says Sera. She pauses to slam her palm into your [pc.butt], making you jerk into the slathering heat of Vedice’s pussies and clench up around her dick. The naga murmurs approvingly. <i>“Tavros has the same legal loopholes – as I’m sure you’re aware – and I could show you some things that would interest you.”</i>");
-			output("\n\n<i>“Maybe I will,”</i> hums Vedice. <i>“I do like your eyes. Right there, dear – that’s it. That’s it...”</i> She sighs with deep satisfaction as you surround both her clits with your tender, throbbing lips, tenses up and then rewards you by slathering a gush of lubricant all over your face. The heat coursing through you from whatever sensitizing substance she’s exuding from her pussies combined with the heavy, unrelenting thrusting of your mistress’s fevered prick are too much; you groan woozily into Vedice’s wet as you seize up with orgasm,");
-			if(pc.hasCock()) {
-				if(pc.cumQ() < 200) output(" spurting");
-				else output(" jetting");
-				output(" [pc.cum] onto the floor in front of you.");
-			}
-			else if(pc.hasVagina()) {
-				output(" your pussy clenching up and");
-				if(!pc.isSquirter()) output(" dribbling");
-				else output(" spurting");
-				output(" [pc.girlCum] down your [pc.hips]");
+			output("\n\n<i>“Maybe I will,”</i> hums Vedice. <i>“I do like your eyes. Right there, dear – that’s it. That’s it...”</i> She sighs with deep satisfaction as you surround both her clits with your tender, throbbing lips, tenses up and then rewards you by slathering a gush of lubricant all over your face. The heat coursing through you from whatever sensitizing substance she’s exuding from her pussies combined with the heavy, unrelenting thrusting of your mistress’s fevered prick are too much; you groan woozily into Vedice’s wet womanhoods as you seize up with orgasm");
+			if(pc.hasGenitals())
+			{
+				output(",");
+				if(pc.hasCock()) {
+					if(pc.cumQ() < 200) output(" spurting");
+					else output(" jetting");
+					output(" [pc.cum] onto the floor in front of you");
+				}
+				else {
+					output(" your pussy clenching up and");
+					if(!pc.isSquirter()) output(" dribbling");
+					else output(" spurting");
+					output(" [pc.girlCum] down your [pc.hips]");
+				}
 			}
 			output(".");
 			output("\n\n<i>“Bit undisciplined, isn’t [pc.he]?”</i> says the naga dispassionately.");
@@ -1507,6 +1511,10 @@ public function seraSexPartyStage4(response:String = "none"):void
 			if(pc.hasVagina()) pc.orgasm();
 			pc.girlCumInMouth(ppVedice);
 			pc.girlCumInMouth(ppVedice);
+			pc.girlCumInMouth(ppVedice);
+			pc.girlCumInMouth(ppVedice);
+			pc.loadInAss(sera);
+			pc.loadInAss(sera);
 			pc.loadInAss(sera);
 			pc.loadInAss(sera);
 			sera.orgasm();

@@ -14591,10 +14591,21 @@
 					statusEffects[o].value1 -= amountVented;
 				}
 				//Special notices!
-				if(this is PlayerCharacter && notice == "")
+				if(this is PlayerCharacter)
 				{
-					//If Jacques00 or Geddy wants to write stuff for this, feel free, but I'm fine with it being more laid back.
-					//9999 apply cum-drenched flag as appropriate?
+					if(notice == "")
+					{
+						//If Jacques00 or Geddy wants to write stuff for this, feel free, but I'm fine with it being more laid back.
+						//9999 apply cum-drenched flag as appropriate?
+					}
+					if(hairType == GLOBAL.HAIR_TYPE_GOO) addBiomass(amountVented);
+					if(hasPerk("Honeypot"))
+					{
+						kGAMECLASS.honeyPotBump();
+						if(amountVented >= 500) kGAMECLASS.honeyPotBump();
+						if(amountVented >= 1000) kGAMECLASS.honeyPotBump();
+						if(amountVented >= 2000) kGAMECLASS.honeyPotBump();
+					}
 				}
 				if(statusEffects[o].value1 <= 0) removals.push("Orally-Filled");
 			}
