@@ -664,7 +664,7 @@ public function appearance(forTarget:Creature):void
 		{
 			output2(" Your");
 			if(target.hasArmFlag(GLOBAL.FLAG_GOOEY)) output2(" gooey");
-			else output2(" humanoid");
+			else output2(" human-shaped");
 			output2(" hands appear very demonic, tipped with sharp claws that seem to have replaced your fingernails.");
 			if(target.hasArmFlag(GLOBAL.FLAG_CHITINOUS)) output2(" In addition, your forearms are covered by sleek plates of jet-black chitin along the outside of each arm. Smaller pentagonal plates trail up your upper arms and over your shoulders.");
 			else if(target.hasArmFlag(GLOBAL.FLAG_SPIKED)) output2(" In addition, a set of short jet-black bone spikes grow along the outside of each forearm and out of the back of your elbows, giving you an incredibly imposing look.");
@@ -733,30 +733,13 @@ public function appearance(forTarget:Creature):void
 
 			if (feedVal >= 3)
 			{
-				if (feedVal < 8)
-				{
-					output2(" Your hand");
-					if (bothHands) output2("s");
-					output2(" appear");
-					if (!bothHands) output2("s");
-					output2(" to be slightly distended.");
-				}
-				else if (feedVal < 13)
-				{
-					output2(" Your hand");
-					if (bothHands) output2("s");
-					output2(" appear");
-					if (!bothHands) output2("s");
-					output2(" puffy and inflated.");
-				}
-				else
-				{
-					output2(" Your hand");
-					if (bothHands) output2("s");
-					output2(" appear");
-					if (!bothHands) output2("s");
-					output2(" unusually large, almost engorged.");
-				}
+				output2(" Your hand");
+				if (bothHands) output2("s");
+				output2(" appear");
+				if (!bothHands) output2("s");
+				if (feedVal < 8) output2(" to be slightly distended.");
+				else if (feedVal < 13) output2(" puffy and inflated.");
+				else output2(" unusually large, almost engorged.");
 			}
 		}
 		//Done with head bits. Move on to body stuff
@@ -1334,27 +1317,20 @@ public function appearance(forTarget:Creature):void
 
 				if (feedVal >= 3)
 				{
-					if (feedVal < 8)
+					output2(" Your");
+					if(target.hasLegFlag(GLOBAL.FLAG_HEELS))
 					{
-						output2(" Your");
-						if (bothFeet) output2(" [target.feet] appear");
-						else output2(" [target.foot] appears");
-						output2(" to be slightly distended.");
-					}
-					else if (feedVal < 13)
-					{
-						output2(" Your");
-						if (bothFeet) output2(" [target.feet] appear");
-						else output2(" [target.foot] appears");
-						output2(" puffy and inflated.");
+						if (bothFeet) output2(" feet appear");
+						else output2(" foot appears");
 					}
 					else
 					{
-						output2(" Your");
 						if (bothFeet) output2(" [target.feet] appear");
 						else output2(" [target.foot] appears");
-						output2(" unusually large and somewhat swollen, almost engorged.");
 					}
+					if (feedVal < 8) output2(" to be slightly distended.");
+					else if (feedVal < 13) output2(" puffy and inflated.");
+					else output2(" unusually large and somewhat swollen, almost engorged.");
 				}
 			}
 		}
