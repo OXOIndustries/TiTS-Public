@@ -444,7 +444,7 @@ public function sexUnderDeskWithNehzara(fromMissionTalk:Boolean = false):void
 	ppNehzara.vaginas[0].wetnessRaw = 4;
 	ppNehzara.girlCumType = GLOBAL.FLUID_TYPE_HONEY;
 	//(++Lust, PC can now take the shuttle to Kressia)
-	pc.loadInMouth(ppNehzara);
+	pc.girlCumInMouth(ppNehzara);
 	pc.exhibitionism(1);
 	pc.lust(35);
 	processTime(17);
