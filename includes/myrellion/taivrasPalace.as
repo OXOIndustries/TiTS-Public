@@ -2826,7 +2826,7 @@ public function cowgirlWivTaivra():void
 		if(x < 0) output("bowels");
 		else output("womb");
 		output(", one after the other. You feel incredibly full, hands wrapping around your [pc.belly] as the royal eggs flood inside you.");
-		if(pc.hasCock()) output(" Between the sudden pressure of eggs stretching you out and the queen’s skillful handjob, you can’t help but cum! <i>“That’s it, join me!”</i> Taivra groans, stroking faster as the first jet of [pc.cumNoun] erupts onto Taivra’s belly and breasts, covering her inyour seed. <i>“I want you to feel every bit of pleasure I do...”</i>");
+		if(pc.hasCock()) output(" Between the sudden pressure of eggs stretching you out and the queen’s skillful handjob, you can’t help but cum! <i>“That’s it, join me!”</i> Taivra groans, stroking faster as the first jet of [pc.cumNoun] erupts onto Taivra’s belly and breasts, covering her in your seed. <i>“I want you to feel every bit of pleasure I do...”</i>");
 		output("\n\nWhen the final egg settles inside you, you feel so bloated and worn out by the ordeal that it’s hard not to just fall asleep on the queen’s lap. She chuckles and wraps her arms around your swollen belly, giving you a surprisingly tender hug. <i>“");
 		//if fertile eggs:
 		if(taivraHasFertileEggs()) output("Take care of these for me, won’t you, love? Take them out to the stars, show them a world I’ll never see...");
