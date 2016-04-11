@@ -60,6 +60,8 @@ package classes.UIComponents.ContentModuleComponents
 			_descriptionText.multiline = true;
 			_descriptionText.wordWrap = true;
 			_descriptionText.embedFonts = true;
+			_descriptionText.mouseEnabled = false;
+			_descriptionText.mouseWheelEnabled = false;
 			_descriptionText.antiAliasType = AntiAliasType.ADVANCED;
 			_descriptionText.x = 5;
 			_descriptionText.y = 0;
@@ -76,10 +78,12 @@ package classes.UIComponents.ContentModuleComponents
 			_detailText.multiline = true;
 			_detailText.wordWrap = true;
 			_detailText.embedFonts = true;
+			_detailText.mouseEnabled = false;
+			_detailText.mouseWheelEnabled = false;
 			_detailText.antiAliasType = AntiAliasType.ADVANCED;
 			_detailText.x = 5;
 			_detailText.y = 30;
-			_detailText.width = 310;
+			_detailText.width = 290;
 			_detailText.styleSheet = UIStyleSettings.gSharedStyleSheet;
 			_detailText.name = "text";
 			_detailText.htmlText = "<span class='words'><p>Words</p></style>";
@@ -93,9 +97,11 @@ package classes.UIComponents.ContentModuleComponents
 			_optionBText.multiline = false;
 			_optionBText.wordWrap = false;
 			_optionBText.embedFonts = true;
+			_optionBText.mouseEnabled = false;
+			_optionBText.mouseWheelEnabled = false;
 			_optionBText.antiAliasType = AntiAliasType.ADVANCED;
 			_optionBText.width = 220;
-			_optionBText.x = 780 - (_optionBText.width + 5);
+			_optionBText.x = 750 - (_optionBText.width + 5);
 			_optionBText.y = 0;
 			_optionBText.styleSheet = UIStyleSettings.gSharedStyleSheet;
 			_optionBText.name = "optBLabel";
@@ -122,6 +128,7 @@ package classes.UIComponents.ContentModuleComponents
 			_optionB.dropdown.setStyle("cellRenderer", CustomCellRenderer);
 			_optionB.setStyle("textFormat", UIStyleSettings.gTextInputFormatter);
 			_optionB.setStyle("embedFonts", true);
+			_optionB.setStyle("buttonMode", true);
 			_optionB.setStyle("antiAliasType", AntiAliasType.ADVANCED);
 			_optionB.width = 220;
 			_optionB.x = _optionBText.x;
@@ -135,6 +142,8 @@ package classes.UIComponents.ContentModuleComponents
 			_optionAText.multiline = false;
 			_optionAText.wordWrap = false;
 			_optionAText.embedFonts = true;
+			_optionAText.mouseEnabled = false;
+			_optionAText.mouseWheelEnabled = false;
 			_optionAText.antiAliasType = AntiAliasType.ADVANCED;
 			_optionAText.width = 220;
 			_optionAText.x = _optionBText.x - (_optionAText.width + 5);

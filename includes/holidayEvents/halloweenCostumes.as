@@ -275,6 +275,11 @@ public function gobboPart3():void
 	pc.loadInMouth(pp);
 	pc.loadInAss(pp);
 	pc.loadInMouth(pp);
+	if(pc.cumflationEnabled())
+	{
+		pc.maxOutCumflation("mouth", pp);
+		pc.maxOutCumflation("ass", pp);
+	}
 	clearMenu();
 	addButton(0,"Next",gobboEpilogue);
 }
@@ -447,6 +452,17 @@ public function bountyHuntsPart2():void
 	if(pc.hasLegs()) output(" [pc.legOrLegs]");
 	else output(" [pc.butts]");
 	output(". Practically swimming in your own lust juices, you surrender to the sweet oblivion of your spit-roasted rapture.");
+	
+	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
+	pc.loadInMouth(pp);
+	pc.loadInAss(pp);
+	pc.loadInMouth(pp);
+	pc.loadInAss(pp);
+	if(pc.cumflationEnabled())
+	{
+		pc.maxOutCumflation("mouth", pp);
+		pc.maxOutCumflation("ass", pp);
+	}
 	pc.buttChange(400);
 	pc.intelligence(-1);
 	pc.libido(5);

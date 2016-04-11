@@ -145,7 +145,7 @@ public function gravidEmmyHarnessOverride():void
 	{
 		outputCodex("Grinning");
 		if(pc.isMischievous()) outputCodex(" mischievously");
-		else if(pc.isAss()) outputCodex("evilly");
+		else if(pc.isAss()) outputCodex(" evilly");
 		outputCodex(", you activate Emmy’s herm-harness, fully looking forward to watching the gallons of backed-up spunk escape around the toy’s knot.");
 		outputCodex("\n\n<i>“Naughty [pc.boy], [pc.name].”</i> Emmy coos, waggling one finger while the other continues to play with her tummy. <i>“I disabled your remote access code as soon as I recovered from your last present. You’ll just have to wait for me to work off this load before filling the Emmy-tank up again.”</i> She giggles and bats her eyelashes. <i>“");
 		if(pc.hasCock()) outputCodex("Maybe you could get yourself a dick and see if you can do a better job sometime.");
@@ -332,7 +332,6 @@ public function leaveThisShit():void
 	//move location.
 	currentLocation = "607";
 	generateMapForLocation(currentLocation);
-	showName("SPACER'S\nROW");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }	
@@ -1178,7 +1177,7 @@ public function repeatPreFlowerSexAttempt():void
 public function venusPitcherBonusFlower():void
 {
 	clearOutput();
-	showEmmy();
+	showName("AN EXOTIC\nFLOWER!");
 	output("Ever since Emmy asked you for an exotic flower, you’ve kept your eyes open for a good one, and now there’s one laying on the ground right in front of you! The venus pitcher must have shed this one in her hurry to escape underground, leaving a pink and purple bloom that’s sure the dazzle the eye and delight the nostrils. You even sniff it a few times to make sure it doesn’t have any of that sneezy pollen that clouds the air around the plant-women.");
 	if(venusSubmission() >= 40) output(" Sadly, it doesn’t.");
 	//Acquire bloom
@@ -1454,7 +1453,7 @@ public function giveEmmyAnItem(item:String):void
 			pc.destroyItem(new CrystalShard());
 			currentLocation = "607";
 			generateMapForLocation(currentLocation);
-			showName("SPACER'S\nROW");
+			showLocationName();
 			processTime(4);
 			clearMenu();
 			addButton(0,"Next",mainGameMenu);

@@ -375,7 +375,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.6.45";
+			version = "0.6.46";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -548,6 +548,7 @@
 			}
 			
 			userInterface.updateTooltip((evt.currentTarget as DisplayObject));
+			userInterface.updateRoomTextVisibilityControl();
 			
 			jackJillDetector(btnName, tFunc, tArg);
 		}
@@ -761,6 +762,7 @@
 				updatePCStats();
 			}
 			
+			userInterface.updateRoomTextVisibilityControl();
 			// Then pass it into some code that will detect the failure state. If the state is triggered, use the args to figure out WHERE it happened.
 			jackJillDetector(btnName, tFunc, tArg);
 		}

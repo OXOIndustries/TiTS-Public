@@ -95,6 +95,9 @@ public function tharePlantationManorApproach(response:String = "none"):void
 				output("You press the button on the comms unit. Nobody responds. That probably isn’t a major shock given the time of day, however it does mean you’re going to have to either rest here or brave the jungle night.");
 				
 				processTime(2);
+				
+				clearMenu();
+				addButton(0, "Next", mainGameMenu);
 			}
 			// Time is 07:00-22:30:
 			else
@@ -174,6 +177,9 @@ public function tharePlantationManorApproach(response:String = "none"):void
 				output("You press the button on the comms unit. Nobody responds. That probably isn’t a major shock given the time of day, however it does mean you’re going to have to either rest here or brave the jungle night.");
 				
 				processTime(2);
+				
+				clearMenu();
+				addButton(0, "Next", mainGameMenu);
 			}
 			// Time is 07:00-22:30:
 			else
@@ -453,7 +459,7 @@ public function thareAbleResponse(response:String = "none"):void
 			if(ableSexed() || flags["ABLE_BATHS"] != undefined) output(" - but that is swiftly followed by the thought that he’s seen it all before.");
 			// If else:
 			else output(" - but then the first thought of what zil are like in the wild makes such an attitude laughable.");
-			output(" You sink you bare [pc.skin] into the steaming hot water with a pleased sigh, feeling the little aches and knots of stress picked up from slogging through an alien wilderness slipping off you.");
+			output(" You sink your bare [pc.skin] into the steaming hot water with a pleased sigh, feeling the little aches and knots of stress picked up from slogging through an alien wilderness slipping off you.");
 			output("\n\n<i>“You look like you needed that,”</i> murmurs Able. He sounds genuinely happy <i>you’re</i> happy.");
 			
 			processTime(5 + rand(6));
@@ -473,7 +479,7 @@ public function thareAbleResponse(response:String = "none"):void
 			output("\n\n<i>“Before Mr. Darnock came, I was a zil amongst other zil. Happy but ignorant,”</i> replies Able in his calm, measured voice. <i>“I lived amongst the trees and within the moment, prey to the serpent-lions and evil sirens of the deep forest. Now, I have a name and a profession that I enjoy. I have gained perspective my fellows cannot. My sir is right - the coming of people with great knowledge from the stars means we must cast aside our ignorance and connect with them, learn from them. Otherwise we risk annihilation.”</i> ");
 			output("\n\n<i>“And so far,”</i> he goes on in a harder tone, <i>“only Mr. Darnock’s company has reached out to us. Not the people of the place you call Esbeth, who imprison us or drive us away with their giant white stings; not those who call themselves the Zen jinn, who covet the sirens’ dark secrets and kill any that stand in their way; and not the terrible black wings, who stalk this land now, spiriting our folk away.”</i>");
 			output("\n\n<i>“So why haven’t more zil taken him up on his offer?”</i> you say, looking over the tub’s rim at him.");
-			output("\n\n<i>“Um. I’m not </i>typical<i> of zil. I don’t think Mr. Darnock understands this,”</i> the slim zil says, shuffling his carapace-covered feet. <i>“For most zil, contests of physicality and sexuality are thrilling, and practically demanded when encountering a strangeer. The struggles reveal the strengths and weaknesses of each party. Only after the struggle and resulting sexual relief do they consider trade or diplomacy. For an outsider, it would be even harder. Naleen and Vanae are poor conversationalists; why should your people be any different? That's why the others you see in the vault will lead off with an assault. I never liked that, because I preferred submitting straight away. It just feels so much better, you know? So I was happy to take orders from sir. My brothers and sisters though... for them it was a non-starter, because Mr. Darnock refused to act as expected.”</i>");
+			output("\n\n<i>“Um. I’m not </i>typical<i> of zil. I don’t think Mr. Darnock understands this,”</i> the slim zil says, shuffling his carapace-covered feet. <i>“For most zil, contests of physicality and sexuality are thrilling, and practically demanded when encountering a stranger. The struggles reveal the strengths and weaknesses of each party. Only after the struggle and resulting sexual relief do they consider trade or diplomacy. For an outsider, it would be even harder. Naleen and Vanae are poor conversationalists; why should your people be any different? That's why the others you see in the vault will lead off with an assault. I never liked that, because I preferred submitting straight away. It just feels so much better, you know? So I was happy to take orders from sir. My brothers and sisters though... for them it was a non-starter, because Mr. Darnock refused to act as expected.”</i>");
 			
 			processTime(3);
 			
@@ -814,12 +820,12 @@ public function thareSexResponse(response:String = "none"):void
 			output("\n\nYou gaze down at the black-and-yellow boy panting for breath around your [pc.legOrLegs] half-lidded, letting distant contentment shine on your face. Still relaxing in your glow, it takes you a short while to appreciate he’s still wearing his tight servant outfit, and the smell of honeyed lust is still as strong as it ever was.");
 			output("\n\n<i>“Take it off,”</i> you order softly, sitting up so your [pc.thigh] brushes against his damp face. Not quite sure where to put his eyes, Able does so, providing you with a strip-tease which is all the more enjoyable for the fumbling, blushing embarrassment it’s carried out with. He bares his slim, supple frame, clad in its gleaming black armor. He gasps slightly as the carapace shelling his chest and groin then peels back, as if forced open by his own overwhelming arousal, revealing first his flat, milquetoast chest with its tiny black nipples erect like miniature railing spikes, then his stubby, jet five inch boy dick, with those unbearably tight and needy trap balls all male zil have primly tucked away underneath. He leans his slim black glove-hands back on the sheets with his erection pointing eagerly in the air, gazing at you timidly, the very picture of sexual submissiveness.");
 			output("\n\nYou are feeling lush and sensuous from the oral you just received, and the sight of the tight-bodied zil - combining with the sudden rush of heady lust that ensues when he peels back his groin armor and reveals the source of his pheromone fug - make your next series of actions completely irresistible.");
-			output("\n\nWithin thirty seconds you have him pinned down by the elbows, biting your [pc.lips] as you rut him senseless, [pc.butt] planted firmly on his pelvis, bed creaking briskly beneath you.");
+			output("\n\nWithin thirty seconds you have him pinned down by the elbows, biting your [pc.lips] as you rut him senseless, [pc.butt] planted firmly on his pelvis, bed creaking briskly beneath you. You ride your [pc.vagina " + x + "] up his smooth, chubby erection again and again, jerking him into your slick walls energetically, spurred on by the overwhelming smell of deep, oozing honey.");
 			
 			if(((pc.vaginalCapacity(x) * 0.5) < ppAble.cockVolume(0)) || pc.isVagTight(x)) cuntStretched = true;
 			pc.cuntChange(x, ppAble.cockVolume(0));
 			
-			output(" You ride your [pc.vagina " + x + "] up his smooth, chubby erection again and again, jerking him into your slick walls energetically, spurred on by the overwhelming smell of deep, oozing honey. Able gasps and arches his back to this treatment, cute nipples on his flat under-chest crying out for the occasional pinch, his squirming sending delicious quakes through your wet sex.");
+			output(" Able gasps and arches his back to this treatment, cute nipples on his flat under-chest crying out for the occasional pinch, his squirming sending delicious quakes through your wet sex.");
 			// Big pussy:
 			if(!cuntStretched) output("\n\nTruth be told the little guy is lost in your man-eating cunt, his earnest five inches not at all able to fill you up - but the oral you made him give you first has made you wonderfully sensitized, each touch of his thickness against your walls sending delightful buzzes into your core, and you’re quite happy to tighten your thighs around his thin waist and work him ruthlessly hard.");
 			// Small pussy:

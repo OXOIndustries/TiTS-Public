@@ -289,9 +289,9 @@ public function pcLossToNyrea():void
 			output("\n\nWhen she thrusts in, you can’t help but scream.");
 
 			output("\n\n");
-			pc.cuntChange(tHole, enemy.biggestCockVolume());
+			if(pc.cuntChange(tHole, enemy.biggestCockVolume())) output("\n\n");
 			
-			output("\n\n<i>“Try and relax,”</i> the nyrea urges, her hands gripping your [pc.hips] firmly. Easy for her to say! You take a deep breath to steady yourself, trying to force your pussy to unclench. A mix of pleasure and pain overtakes you as the elephantine pecker pushes through your pussylips, spreading you wide around its flared cockhead. Your eyes go wide, mouth curling open in a scream that trails into shocked silence, leaving your lips agape in a silent <i>“O.”</i> ");
+			output("<i>“Try and relax,”</i> the nyrea urges, her hands gripping your [pc.hips] firmly. Easy for her to say! You take a deep breath to steady yourself, trying to force your pussy to unclench. A mix of pleasure and pain overtakes you as the elephantine pecker pushes through your pussylips, spreading you wide around its flared cockhead. Your eyes go wide, mouth curling open in a scream that trails into shocked silence, leaving your lips agape in a silent <i>“O.”</i> ");
 			
 			output("\n\nMore than the heft of her cock, you feel the soft barbs ringing her flare scraping along the insides of your [pc.cunt "+ tHole +"]. Your back arches like a whore’s, instinctively reacting to the alien sensation. Seeing your body respond, the huntress gives your [pc.butt] a slap, making you clench around the intruding pseudo-cock and driving its spines hard against your spasming walls. She digs into you inside and out, fingers sinking into your backside and spines grinding against your cunt’s walls. The huntress doesn’t thrust or grind, just slides herself ever deeper inside you, her sheer size forcing your guts out of the way and stretching you out like a condom around her shaft.");
 			
@@ -313,7 +313,7 @@ public function pcLossToNyrea():void
 			
 			output("\n\n<i>“Finally free,”</i> the nyrean woman sighs, resting a hand on her own belly. <i>“Goodbye, my young. Live well and flourish.”</i>");
 			
-			output("\n\nYou groan as the huntress drags her barbed cock out of you, dragging those spines of hers back through your rectal passage and leaving you feeling loose and full at the same time. She stands, running a surprisingly affectionate hand across your [pc.belly] and down to your cunt, caressing the swell of your now-visible pregnancy. <i>“Take care of my young, hmm?”</i>");
+			output("\n\nYou groan as the huntress drags her barbed cock out of you, dragging those fiendishly tickling barbs back across every inch of your [pc.cunt " + tHole + "] and leaving you feeling loose and full at the same time. She stands, running a surprisingly affectionate hand across your [pc.belly] and down to your cunt, caressing the swell of your now-visible pregnancy. <i>“Take care of my young, hmm?”</i>");
 			
 			output("\n\nAll you can do is groan weakly, trying to adjust to the added presence of the huntress’s eggs inside you. She winks at you and departs, slipping off into the darkness. ");
 		}
@@ -564,7 +564,7 @@ public function fuckNyreaButts():void
 	output("\n\n");
 	if (enemy is NyreaBeta)
 	{
-	output("The huntress looks down in shame as you strip her, though you can see her breath quicken, her cock hardening as she’s rendered naked. Satisfied with your work, you tilt her head back ever so slightly and press the tip of your [pc.cock] into her lips. She shudders slightly, but doesn’t resist as you start to push in. At a word from you, she leans in and cups her own breasts, pressing them around the spare inches of cockflesh, encasing your manhood between a valley of tits and a hot, wet mouth. Now we’re talking.");
+		output("The huntress looks down in shame as you strip her, though you can see her breath quicken, her cock hardening as she’s rendered naked. Satisfied with your work, you tilt her head back ever so slightly and press the tip of your [pc.cock] into her lips. She shudders slightly, but doesn’t resist as you start to push in. At a word from you, she leans in and cups her own breasts, pressing them around the spare inches of cockflesh, encasing your manhood between a valley of tits and a hot, wet mouth. Now we’re talking.");
 	}
 	else if (enemy is NyreaAlpha)
 	{

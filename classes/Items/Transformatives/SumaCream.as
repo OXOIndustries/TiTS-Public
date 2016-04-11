@@ -60,7 +60,7 @@
 			var pc:Creature = target;
 			
 			// Non-Balled PCs
-			if(pc.balls <= 0 || !pc.hasCock())
+			if(pc.balls <= 0)
 			{
 				kGAMECLASS.output("You look at the cream-filled sphere and contemplate giving it a try despite not having");
 				if(pc.hasCock()) kGAMECLASS.output(" any balls");
@@ -106,19 +106,22 @@
 				addButton(0, "Next", kGAMECLASS.useItemFunction);
 				return;
 			}
-			// Monoball
-			else if(pc.balls <= 1)
+			// Monoball or co cock
+			else if(pc.balls < 2 || !pc.hasCock())
 			{
 				kGAMECLASS.output("Flexing the tiny ball of cream between your fingers, you recall that the cream has to be spread onto your");
 				if(pc.balls == 1) kGAMECLASS.output(" testicle");
 				else kGAMECLASS.output(" sack");
-				kGAMECLASS.output(" in order to work. You squeeze out the balm and try rubbing it onto the [pc.skinFurScales] of your pelvis and are rewarded with a very slight tingling sensation. Oddly enough, you feel a cramped sensation - not from the slow tingle of the minor growth, but from something else growing within your male pouch. Your [pc.sack] tightens, then relaxes and expands as a new testicular orb grows in. It seems this cosmetic cream needs you to have at least a pair to enjoy its full effect!");
+				kGAMECLASS.output(" in order to work. You squeeze out the balm and try rubbing it onto the [pc.skinFurScales] of your pelvis and are rewarded with a very slight tingling sensation.");
+				if(pc.balls < 2) kGAMECLASS.output(" Oddly enough, you feel a cramped sensation - not from the slow tingle of the minor growth, but from something else growing within your male pouch. Your [pc.sack] tightens, then relaxes and expands as a new testicular orb grows in. It seems this cosmetic cream needs you to have at least a pair to enjoy its full effect!");
+				else if(pc.ballSizeRaw < 30) kGAMECLASS.output(" Your testicles swell a small amount, but not much happens afterwards. Another tingle hits the region above your sack and instantly dissipates. Hm, it seems this cosmetic cream needs you to have at least one cock to enjoy its full effect!");
+				else kGAMECLASS.output("... and nothing happens afterwards. Another tingle hits the region above your sack and instantly dissipates. It seems this cosmetic cream needs you to have at least one cock to enjoy its full effect!");
 				
 				kGAMECLASS.processTime(3 + rand(3));
 				
 				pc.lust(20);
 				//pc.removeStatusEffect("Uniball");
-				pc.balls = 2;
+				if(pc.balls < 2) pc.balls = 2;
 				if(pc.ballSizeRaw < 30)
 				{
 					pc.ballSizeRaw++;

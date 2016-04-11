@@ -452,6 +452,7 @@ public function statisticsScreen(showID:String = "All"):void
 				output2("\n<b>* Fertility, Speed Modifier: </b>" + Math.round(pc.pregnancyIncubationBonusMother()*1000)/10 + " %");
 				output2("\n<b>* Fertility, Quantity Bonus: </b>" + Math.round(pc.pregnancyMultiplier()));
 				if(pc.hasStatusEffect("Venus Pitcher Seed Residue")) output2("\n<b>* Fertility, Venus Pitcher Seed Residue, Time Left: </b>" + prettifyMinutes(pc.getStatusMinutes("Venus Pitcher Seed Residue")));
+				if(pc.statusEffectv2("Ovilium") > 0) output2("\n<b>* Fertility, Ovilium:</b> Boosted");
 			}
 			// Vaginas
 			if(pc.vaginas.length >= 1)
@@ -538,7 +539,10 @@ public function statisticsScreen(showID:String = "All"):void
 					else if(pData.pregnancyType == "CockvinePregnancy") output2(" Cockvine");
 					else if(pData.pregnancyType == "DeepQueenPregnancy") output2(" Water Queen");
 					else if(pData.pregnancyType == "OviliumEggPregnancy") output2(" Ovilium, Eggs");
+					else if(pData.pregnancyType == "EggTrainerCarryTraining") output2(" Egg Trainer, Eggs");
+					else if(pData.pregnancyType == "EggTrainerFauxPreg") output2(" Egg Trainer");
 					else if(pData.pregnancyType == "PsychicTentacles") output2(" Psychic Tentacle Beast");
+					else if(pData.pregnancyType == "SydianPregnancy") output2(" Sydian");
 					else output2(" <i>Unknown</i>");
 					if(pData.pregnancyIncubation > -1)
 					{
@@ -804,6 +808,8 @@ public function statisticsScreen(showID:String = "All"):void
 					output2("\n<b>* Births, Psychic Tentacle Beasts: </b>" + StatTracking.getStat("pregnancy/psychic tentacle beast birthed"));
 				if(StatTracking.getStat("pregnancy/renvra kids") > 0)
 					output2("\n<b>* Births, Renvra’s Children: </b>" + StatTracking.getStat("pregnancy/renvra kids"));
+				if(StatTracking.getStat("pregnancy/sydian births") > 0)
+					output2("\n<b>* Births, Sydian Young: </b>" + StatTracking.getStat("pregnancy/sydian births"));
 				if(StatTracking.getStat("pregnancy/venus pitcher seeds") > 0)
 					output2("\n<b>* Births, Venus Pitcher Seeds, Total: </b>" + StatTracking.getStat("pregnancy/venus pitcher seeds"));
 				if(StatTracking.getStat("pregnancy/venus pitcher seeds") > 0)
@@ -1352,7 +1358,7 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["SERA_PARTY_INVITE"] >= 4) output2(", On payroll");
 				if(flags["SERA_PARTY_STAGE1"] != undefined) output2("\n<b>* Selected Costume:</b> " + StringUtil.toDisplayCase(flags["SERA_PARTY_STAGE1"]));
 				if(flags["SERA_PARTY_ATTIRE"] != undefined) output2("\n<b>* Sera, Attire:</b> " + StringUtil.toDisplayCase(flags["SERA_PARTY_ATTIRE"]));
-				output2("\n<b>* Sera, Influence:</b> " + seraInfluence() + " %");
+				output2("\n<b>* Sera, Influence Score:</b> " + seraInfluence());
 				if(flags["SERA_SALARY_PAID"] != undefined && flags["SERA_SALARY_DATE"] != undefined) output2("\n<b>* Time Since Last Salary Payment: </b>" + prettifyMinutes(GetGameTimestamp() - flags["SERA_SALARY_DATE"]));
 				
 				sideCount++;
@@ -3681,9 +3687,11 @@ public function displayEncounterLog(showID:String = "All"):void
 			{
 				output2("\n<b><u>Gildenmere Medical Hospital</u></b>");
 				output2("\n<b>* Vi:</b> Met her");
+				if(flags["VI_BIGBOOBS"] == 1) output2(", Breasts inflated");
 				if(flags["HEALED_BY_VI"] != undefined) output2("\n<b>* Vi, Times Healed By:</b> " + flags["HEALED_BY_VI"]);
 				if(flags["TREATED_BY_VI"] != undefined) output2("\n<b>* Vi, Times Treated By:</b> " + flags["TREATED_BY_VI"]);
 				if(flags["VI_POTENCY_TEST"] != undefined) output2("\n<b>* Vi, Times Administered Potency Test:</b> " + flags["VI_POTENCY_TEST"]);
+				if(flags["INFLATED_VI"] != undefined) output2("\n<b>* Vi, Times Inflated Breasts:</b> " + flags["INFLATED_VI"]);
 				if(flags["VI_SEXED"] != undefined) output2("\n<b>* Vi, Times Sexed:</b> " + flags["VI_SEXED"]);
 				if(flags["VI_TITFUCKED"] != undefined) output2("\n<b>* Vi, Times Titfucked:</b> " + flags["VI_TITFUCKED"]);
 				variousCount++;

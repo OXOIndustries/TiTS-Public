@@ -25,6 +25,8 @@ package classes.GameData
 			overwriteToggle = true;
 			authorToggle = true;
 			vendorToggle = true;
+			showRoomAndSceneNames = true;
+			tempHideRoomAndSceneNames = false;
 		}
 		
 		public var primaryBustArtist:String = "SHOU";
@@ -38,6 +40,12 @@ package classes.GameData
 		
 		// Allow bust fallback images to be displayed
 		public var bustFallbacks:Boolean;
+		
+		// Option to hide the text over the top of the character busts
+		public var showRoomAndSceneNames:Boolean;
+		
+		// A secondary override that will be cleared when the room text next changes
+		public var tempHideRoomAndSceneNames:Boolean;
 		
 		// Game mode settings
 		

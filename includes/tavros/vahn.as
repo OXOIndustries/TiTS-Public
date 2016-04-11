@@ -381,7 +381,7 @@ public function giveVahnAnal():void
 		else output("slippery stream");
 		output(" of [pc.cumColor] gushes out and sensuously runs down his thighs. ");
 	}
-	output("His fluffy blond tail twitches and he lets out a sexy groan. Beneath his furry appendage, his dialated pucker clasps at the empty air.");
+	output("His fluffy blond tail twitches and he lets out a sexy groan. Beneath his furry appendage, his dilated pucker clasps at the empty air.");
 
 	//if pc.doesnothaveknot:
 	if(!pc.hasKnot(x))

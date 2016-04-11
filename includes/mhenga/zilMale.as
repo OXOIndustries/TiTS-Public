@@ -53,7 +53,7 @@ public function winVsZil():void {
 		output("The zil gives one last feeble shudder as he struggles to remain upright, but the damage is simply too much. His wings cease their incessant buzzing and drop him straight onto his ass, causing him to wince in pain and discomfort. Looking up hesitantly, he slouches his shoulders in submission and admits, <i>“I'm yours, </i>");
 		if(pc.hasVagina()) output("<i>to breed</i>");
 		else output("<i>to play with</i>");
-		output("<i>, I guess.”</i> He cannot conceal the way his maleness swells inside its sheath-like skin. What do you do?\n\n");
+		output("<i>, I guess.”</i> He cannot conceal the way his maleness swells inside its sheath-like skin. What do you do?");
 	}
 	//{Lust}
 	else
@@ -690,7 +690,12 @@ public function getABJFromAManzil():void
 	//Bimbo:
 	if(pc.isBimbo()) output(" He’s so cute, but he looks uneasy! You know what always makes you feel better - lots and lots of yummy cum!");
 	else if(pc.isBro()) output(" You’ve shown him who the alpha is. Time to get your reward.");
-	else output(" Calmy, you discard your [pc.gear] and slowly step towards him.");
+	else
+	{
+		output(" Calmy,");
+		if(!pc.isCrotchExposed()) output(" you discard your [pc.gear] and");
+		output(" slowly step towards him.");
+	}
 	output(" His gaze has shifted from your face to your crotch, mesmerised by your rising [pc.cocksNounSimple]. His mouth is hanging open by the time you reach him - your ");
 	if(pc.cockTotal() > 1) output("biggest dick");
 	else output("[pc.cockBiggest]");

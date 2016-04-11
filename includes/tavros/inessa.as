@@ -818,7 +818,7 @@ public function blowjobFromInessa():void
 	output("\n\nThe moment Inessa looks into your eyes, she freezes on the spot, a doe-like look in her glittering eyes. <i>“U-um, can I help you?”</i> She nervously stammers out, clutching her hands together between her petite sized breasts.");
 	output("\n\n<i>“Down. On your knees,”</i> you order her, staring her down. It’s as if you command gravity with your eyes. Slowly, as if pushed down by this great force, Inessa drops down to the ground. Once there, she looks up at you, a lost look in her innocent eyes. <i>“... Now, suck my cock.”</i>");
 	output("\n\nInessa’s eyes widen and her jaw drops. There’s a visible gulp as she chances a look at ");
-	if(pc.isCrotchGarbed()) output("your notable bulge");
+	if(!pc.isCrotchExposed()) output("your notable bulge");
 	else output("your lewdly hanging [pc.cocksNounSimple]");
 	output(". She squirms on the spot, looking like she really wants to get out of this, but is for whatever reason unwilling to defy your command. Instead, she tries to reason with you, looking up with big, bright eyes. <i>“Y-you seriously want me to suck ");
 	if(pc.cockTotal() == 1) output("it");
@@ -832,7 +832,7 @@ public function blowjobFromInessa():void
 	output("... please let me suck your cock");
 	if(pc.cockTotal() > 1) output("s");
 	output("!”</i> she breathily begs. You nod your assent");
-	if(!pc.isCrotchGarbed())
+	if(!pc.isCrotchExposed())
 	{
 		output(", pulling ");
 		if(pc.cockTotal() == 1) output("it");
@@ -884,7 +884,7 @@ public function blowjobFromInessa():void
 	output(" and lovingly scooping up every single drop.");
 	output("\n\n<i>“Good girl,”</i> you " + pc.mf("huskily","breathily") + " praise her, reaching out and stroking the top of her head. Like a kitten, Inessa instinctively leans into the palm of your hand, her soft hair rubbing against your fingers. There’s a blissfully happy look in her bright eyes.");
 	output("\n\n<i>“D-did you want anything else?”</i> The butterfly-winged girl asks, your [pc.cum] dribbling down her chin and dripping on her small blue breasts. You shake your head");
-	if(pc.isCrotchGarbed()) output(" and tuck your [pc.cocksLight] away");
+	if(!pc.isCrotchExposed()) output(" and tuck your [pc.cocksLight] away");
 	output(", thoroughly satisfied.");
 	// Return to shop menu.
 	processTime(15);
@@ -913,7 +913,7 @@ public function cunnilingusInessa():void
 		if(!(pc.lowerUndergarment is EmptySlot)) output("With a saucy grin, you wait until Inessa isn’t looking, and reach under the hem of your [pc.armor]. You slip your [pc.lowerUndergarment] down your [pc.thighs] and tuck them away, leaving your nethers bare beneath your skirt. You then hop onto the counter and call the butterfly-winged shopkeeper, making sure to keep your legs crossed and hem patted down. She bounds up to you none the wiser.");
 	}
 	//Else PC is nood down there:
-	else if(!pc.isCrotchGarbed())
+	else if(!pc.isCrotchExposed())
 	{
 		output("With a saucy grin, you hop onto the counter and cross your [pc.legs], feeling the brushing of skin against your bare nethers. With a low whistle, you call the butterfly-winged shopkeeper over, who bounds up immediately.");
 	}
@@ -1185,7 +1185,7 @@ public function cuffNFuck():void
 		output("\n\n<i>“Got a complaint? You should have thought of that before turning your [enemy.weapon] on me.”</i>");
 	}
 	output("\n\n");
-	if(!pc.isNude()) output("You strip off your gear, then");
+	if(!pc.isCrotchExposed()) output("You strip off your gear, then");
 	else output("Once you’re ready, you");
 	output(" grab [enemy.hisHer] wiggling hips from behind, unceremoniously flopping [pc.oneCock] onto [enemy.hisHer] ass. Teasing [enemy.himHer] for a bit, you grind it back and forth between [enemy.hisHer] buttocks, getting yourself nice and hard before sliding it in [enemy.hisHer] [enemy.vagOrAss].");
 
@@ -1797,7 +1797,7 @@ public function getAHandjobFromInessy():void
 	showInessa();
 	author("JimThermic");
 	output("Feeling a little horny, you decide to do something about it–or rather, get someone <i>else</i> to. ");
-	if(pc.isCrotchGarbed() && !pc.isTaur()) output("You strip off your [pc.lowerGarments] and");
+	if(!pc.isCrotchExposed() && !pc.isTaur()) output("You strip off your [pc.lowerGarments] and");
 	else output("You");
 	output(" whistle loudly like you’re calling a bitch.");
 	if(flags["INESSA_HJ"] == undefined) output(" Funnily enough,");

@@ -1,17 +1,21 @@
 package classes.UIComponents.SideBarComponents 
 {
+	import classes.GameData.GameOptions;
 	import classes.Items.Armor.VoidPlateArmor;
 	import classes.Resources.Busts.CharacterBustOverrideSelector;
 	import classes.Resources.StatusIcons;
+	import fl.transitions.Tween;
 	import flash.display.Bitmap;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.filters.GlowFilter;
 	import flash.geom.ColorTransform;
 	import flash.text.TextField;
 	import classes.UIComponents.UIStyleSettings;
 	import flash.text.AntiAliasType;
 	import classes.Resources.NPCBustImages;
+	import classes.kGAMECLASS;
 	
 	/**
 	 * ...
@@ -32,13 +36,29 @@ package classes.UIComponents.SideBarComponents
 		private var _bustBackground:Sprite;
 		private var _bustOrderSet:Boolean;
 		
+		private var _configureControlBack:Sprite;
 		private var _configureControl:Sprite;
+		
+		private var _tempHideRoomTextControlBack:Sprite;
+		private var _tempHideRoomTextControl:Sprite;
+		
+		private var _minGlow:Number = 0.0;
+		private var _maxGlow:Number = 1.0;
+		private var _glowRate:Number = 0.1;
+		
+		private var _configIsGlowing:Boolean = false;
+		private var _configGlowFilter:GlowFilter;
+		private var _configGlowFilterInner:GlowFilter;
+		
+		private var _hideTextIsGlowing:Boolean = false;
+		private var _roomTextGlowFilter:GlowFilter;
+		private var _roomTextGlowFilterInner:GlowFilter;
 		
 		public function get roomText():String { return _roomText.text; }
 		public function get planetText():String { return _planetText.text; }
 		public function get systemText():String { return _systemText.text; }
 		
-		public function set roomText(v:String):void { _roomText.text = v; }
+		public function set roomText(v:String):void { _roomText.text = v; updateRoomTextVisibility(); }
 		public function set planetText(v:String):void { _planetText.text = v; }
 		public function set systemText(v:String):void { _systemText.text = v; }
 		
@@ -167,6 +187,22 @@ package classes.UIComponents.SideBarComponents
 			
 			this.addChild(_systemText);
 			
+			/* Configure bust icon */
+			_configureControlBack = new StatusIcons.Icon_Gears_Three();
+			addChild(_configureControlBack);
+			var cfgct:ColorTransform = new ColorTransform();
+			cfgct.color = UIStyleSettings.gHighlightColour;
+			_configureControlBack.transform.colorTransform = cfgct;
+			_configureControlBack.alpha = 1;
+			_configureControlBack.width = 20;
+			_configureControlBack.height = 20;
+			_configureControlBack.x = _bustBackground.x + _bustBackground.width - 2 - 20;
+			_configureControlBack.y = _bustBackground.y + 2;
+			_configureControlBack.visible = false;
+			
+			_configGlowFilter = new GlowFilter(UIStyleSettings.gHighlightColour, _minGlow, 6, 6, 5, 1, false, false);
+			_configureControlBack.filters = [_configGlowFilter];	
+			
 			_configureControl = new StatusIcons.Icon_Gears_Three();
 			addChild(_configureControl);
 			var ct:ColorTransform = new ColorTransform();
@@ -178,10 +214,14 @@ package classes.UIComponents.SideBarComponents
 			_configureControl.x = _bustBackground.x + _bustBackground.width - 2 - 20;
 			_configureControl.y = _bustBackground.y + 2;
 			_configureControl.addEventListener(MouseEvent.CLICK, openBustConfig);
+			_configureControl.addEventListener(MouseEvent.MOUSE_OVER, configFadeIn);
+			_configureControl.addEventListener(MouseEvent.MOUSE_OUT, configFadeOut);
 			_configureControl.visible = false;
+			_configureControl.buttonMode = true;
+			
 			var ha:Sprite = new Sprite();
 			ha.graphics.beginFill(0xFFFFFF, 0);
-			ha.graphics.drawRect(0, 0, 20, 20);
+			ha.graphics.drawRect(-10, -10, 30, 40);
 			ha.graphics.endFill();
 			addChild(ha);
 			ha.x = _configureControl.x;
@@ -189,6 +229,96 @@ package classes.UIComponents.SideBarComponents
 			ha.mouseEnabled = false;
 			ha.buttonMode = true;
 			_configureControl.hitArea = ha;
+			
+			/* Temporary toggle for room text */
+			_tempHideRoomTextControlBack = new StatusIcons.Icon_BlindAlt();
+			addChild(_tempHideRoomTextControlBack);
+			_tempHideRoomTextControlBack.transform.colorTransform = cfgct;
+			_tempHideRoomTextControlBack.alpha = 1;
+			_tempHideRoomTextControlBack.width = 20;
+			_tempHideRoomTextControlBack.height = 20;
+			_tempHideRoomTextControlBack.x = _configureControl.x;
+			_tempHideRoomTextControlBack.y = _configureControl.y + 30;
+			_tempHideRoomTextControlBack.visible = false;
+			
+			_roomTextGlowFilter = new GlowFilter(UIStyleSettings.gHighlightColour, _minGlow, 6, 6, 5, 1, false, false);
+			_tempHideRoomTextControlBack.filters = [_roomTextGlowFilter];
+			
+			_tempHideRoomTextControl = new StatusIcons.Icon_BlindAlt();
+			addChild(_tempHideRoomTextControl);
+			_tempHideRoomTextControl.transform.colorTransform = ct;
+			_tempHideRoomTextControl.alpha = 0.6;
+			_tempHideRoomTextControl.width = 20;
+			_tempHideRoomTextControl.height = 20;
+			_tempHideRoomTextControl.x = _configureControl.x;
+			_tempHideRoomTextControl.y = _configureControl.y + 30;
+			_tempHideRoomTextControl.addEventListener(MouseEvent.CLICK, toggleRoomTextDisplay);
+			_tempHideRoomTextControl.addEventListener(MouseEvent.MOUSE_OVER, hideRoomFadeIn);
+			_tempHideRoomTextControl.addEventListener(MouseEvent.MOUSE_OUT, hideRoomFadeOut);
+			_tempHideRoomTextControl.buttonMode = true;
+			_tempHideRoomTextControl.visible = false;
+			
+			ha = new Sprite();
+			ha.graphics.beginFill(0xFFFFFF, 0);
+			ha.graphics.drawRect( -10, -5, 30, 35);
+			ha.graphics.endFill();
+			addChild(ha);
+			ha.x = _tempHideRoomTextControl.x;
+			ha.y = _tempHideRoomTextControl.y;
+			ha.mouseEnabled = false;
+			ha.buttonMode = true;
+			_tempHideRoomTextControl.hitArea = ha;
+			
+			addEventListener(Event.ENTER_FRAME, updateGlows);
+		}
+		
+		private function updateGlows(e:Event):void
+		{
+			if (_configIsGlowing && _configGlowFilter.alpha < _maxGlow)
+			{
+				_configGlowFilter.alpha += _glowRate;
+				if (_configGlowFilter.alpha > _maxGlow) _configGlowFilter.alpha = _maxGlow;
+				_configureControlBack.filters = [_configGlowFilter];
+			}
+			else if (!_configIsGlowing && _configGlowFilter.alpha > _minGlow)
+			{
+				_configGlowFilter.alpha -= _glowRate;
+				if (_configGlowFilter.alpha < _minGlow) _configGlowFilter.alpha = _minGlow;
+				_configureControlBack.filters = [_configGlowFilter];
+			}
+			
+			if (_hideTextIsGlowing && _roomTextGlowFilter.alpha < _maxGlow)
+			{
+				_roomTextGlowFilter.alpha += _glowRate;
+				if (_roomTextGlowFilter.alpha > _maxGlow) _roomTextGlowFilter.alpha = _maxGlow;
+				_tempHideRoomTextControlBack.filters = [_roomTextGlowFilter];
+			}
+			else if (!_hideTextIsGlowing && _roomTextGlowFilter.alpha > _minGlow)
+			{
+				_roomTextGlowFilter.alpha -= _glowRate;
+				if (_roomTextGlowFilter.alpha < _minGlow) _roomTextGlowFilter.alpha = _minGlow;
+				_tempHideRoomTextControlBack.filters = [_roomTextGlowFilter];
+			}
+		}
+		
+		private function configFadeIn(e:Event):void
+		{
+			_configIsGlowing = true;
+		}
+		
+		private function configFadeOut(e:Event):void
+		{
+			_configIsGlowing = false;
+		}
+		
+		private function hideRoomFadeIn(e:Event):void
+		{
+			_hideTextIsGlowing = true;
+		}
+		
+		private function hideRoomFadeOut(e:Event):void
+		{
+			_hideTextIsGlowing = false;
 		}
 		
 		private function openBustConfig(e:Event):void
@@ -199,6 +329,13 @@ package classes.UIComponents.SideBarComponents
 			stage.addChild(o);
 		}
 		
+		private function toggleRoomTextDisplay(e:Event):void
+		{
+			var opts:GameOptions = kGAMECLASS.gameOptions;
+			opts.tempHideRoomAndSceneNames = !opts.tempHideRoomAndSceneNames;
+			updateRoomTextVisibility();
+		}
+		
 		private var _lastSetBust:String;
 		private function set lastSetBust(v:String):void
 		{
@@ -207,10 +344,12 @@ package classes.UIComponents.SideBarComponents
 			if (NPCBustImages.hasBustsForCharacter(v))
 			{
 				_configureControl.visible = true;
+				_configureControlBack.visible = true;
 			}
 			else
 			{
 				_configureControl.visible = false;
+				_configureControlBack.visible = true;
 			}
 		}
 		private function get lastSetBust():String { return _lastSetBust; }
@@ -240,6 +379,8 @@ package classes.UIComponents.SideBarComponents
 			{
 				showMultipleBusts(busts);
 			}
+			
+			updateRoomTextVisibility();
 		}
 		
 		private function showSingleBust(name:String):void
@@ -416,6 +557,32 @@ package classes.UIComponents.SideBarComponents
 			_roomText.visible = true;
 			_planetText.visible = true;
 			_systemText.visible = true;
+		}
+		
+		public function updateRoomTextVisibility():void
+		{
+			if (_tempHideRoomTextControl.visible)
+			{
+				var opts:GameOptions = kGAMECLASS.gameOptions;
+				if (opts.showRoomAndSceneNames == true)
+				{
+					_roomText.visible = !opts.tempHideRoomAndSceneNames;
+				}
+				else
+				{
+					_roomText.visible = opts.tempHideRoomAndSceneNames;
+				}
+			}
+			else
+			{
+				_roomText.visible = true;
+			}
+		}
+		
+		public function set roomControlVisibility(v:Boolean):void
+		{
+			_tempHideRoomTextControl.visible = v;
+			_tempHideRoomTextControlBack.visible = v;
 		}
 	}
 

@@ -10,7 +10,6 @@ public function scrapyardMaintenance():void {
 	if(flags["SCRAPYARD_SEEN"] == undefined) {
 		flags["SCRAPYARD_SEEN"] = 1;
 		userInterface.showBust("ARTIE");
-		userInterface.showName("\nARTIE");
 		output("You go through the open gate of the scrapyard and cautiously stick your head around the stone hut’s door. It is, if anything, even more packed with junk than the outside - the room is gloomy with the amount of stuff piled up against the walls and windows. Stands filled with everything from old shoes to busted hologram projectors jostle for room with silent, antiquated robots and mismatched gun racks slithering with spools of power connectors.");
 		output("\n\n<i>“Ah! Another adventurer into the cosmic unknown,”</i> says a reedy voice. <i>“Please, friend - take three steps forward and one to the right.”</i> You step into the junk shop and, as your eyes adjust to the gloom, take in the curious figure seated in the middle of this empire of crap. He’s a small, middle aged man with walnut skin, completely bald, dressed in sandals and a brown shift which might once have passed for an ancient monk’s cowl, before it got completely covered in oil stains. He is perched cross-legged upon a big shipping crate, surrounded on all sides by meticulously cleaned metal parts and pieces. He looks at you placidly.");
 		output("\n\n<i>“And one to the right.”</i> Baffled, you step to the right and are rewarded with a big, beatific smile spreading across his face.");
@@ -21,7 +20,6 @@ public function scrapyardMaintenance():void {
 	}
 	else {
 		userInterface.showBust("ARTIE");
-		userInterface.showName("\nARTIE");
 		//Sell/Buy/Leave
 		output("Artie nods at you as you enter the scrap yard hut, smiling peacefully as he closes his eyes and goes back to meditating over a large diode. Geoff is busy working on something in the back.");
 	}

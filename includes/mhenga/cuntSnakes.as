@@ -106,24 +106,24 @@ public function getSuckedOffByACuntSnakeAfterLosing():void {
 		if(pc.cockTotal() > 1) output("s that lie");
 		else output("that lies");
 		output(" there.");
-		if(pc.isCrotchGarbed())
+		if(!pc.isCrotchExposed())
 		{
-			if(pc.armor.shortName != "") output(" It noses under your [pc.armor] to locate [pc.oneCock], ");
-			else if(pc.lowerUndergarment.shortName != "") output(" It noses aside your [pc.lowerUndergarment] to locate [pc.oneCock], ");
+			if(pc.armor.shortName != "" && !pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN)) output(" It noses under your [pc.armor] to locate [pc.oneCock], ");
+			else if(pc.lowerUndergarment.shortName != "" && !pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN)) output(" It noses aside your [pc.lowerUndergarment] to locate [pc.oneCock], ");
 			else output(" It closes in on [pc.oneCock], ");
 			output("snuffling noisily at it, the hot exhalations of breath across your maleness inciting you to rise towards erectness unwillingly. You cringe, trying to hold it back, but blood rushes to the offending organ all the same.");
-			if(pc.armor.shortName != "") output(" The beast arches its back to shift your [pc.armor] off, leaving you completely exposed.");
+			if(pc.armor.shortName != "" && !pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN)) output(" The beast arches its back to shift your [pc.armor] off, leaving you completely exposed.");
 			output(" It bites your vulnerable [pc.leg], pumping hot, liquid lust into you to ensure your compliance before resuming its snuffling around.");
 		}
 	}
 	//{Lust}
 	else {
 		output("You simply can't resist the lust thrumming through your veins at this point. The snake can have what it wants! You shift your ");
-		if(pc.armor.shortName != "") {
+		if(pc.armor.shortName != "" && !pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN)) {
 			output("[pc.armor]");
-			if(pc.lowerUndergarment.shortName != "") output(" and [pc.lowerUndergarment]");
+			if(pc.lowerUndergarment.shortName != "" && !pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN)) output(" and [pc.lowerUndergarment]");
 		}
-		else if(pc.lowerUndergarment.shortName != "") output("[pc.lowerUndergarment]");
+		else if(pc.lowerUndergarment.shortName != "" && !pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN)) output("[pc.lowerUndergarment]");
 		else output("what little gear you carry");
 		output(" aside to make room for the aggressive reptilian, exposing [pc.oneCock]. Its fanged mouth nears, turning its sightless eyes inquisitively toward your throbbing boner, and the wide nostrils flare as it drinks deeply of your scent, familiarizing itself with your compliant loins.");
 	}
@@ -379,7 +379,9 @@ public function fuckACuntSnake():void {
 	userInterface.showBust("CUNTSNAKE");
 	userInterface.showName("\nCUNT SNAKE");
 	//It probably bites you part way into it and then Fen gets raged at for reversals.
-	output("You grab hold of the serpent before it can get away, keeping one hand just behind its head and the other securely clamped near the juicy entrance you plan to use. It's quite hard to whip out [pc.oneCock] and keep hold of the squirming alien, but somehow, you manage to keep everything wrangled and the fangs well away from your flesh. The presence of your burgeoning, rapidly-filling tumescence seems to calm the snake, so much so that it relaxes in your grip. It's the perfect picture of docility.");
+	output("You grab hold of the serpent before it can get away, keeping one hand just behind its head and the other securely clamped near the juicy entrance you plan to use. It's quite hard to");
+	if(!pc.isCrotchExposed()) output(" whip out [pc.oneCock] and");
+	output(" keep hold of the squirming alien, but somehow, you manage to keep everything wrangled and the fangs well away from your flesh. The presence of your burgeoning, rapidly-filling tumescence seems to calm the snake, so much so that it relaxes in your grip. It's the perfect picture of docility.");
 	var x:int = pc.cockThatFits(80);
 	if(x < 0) x = pc.smallestCockIndex();
 	output("\n\nYou heft so that the fanged maw is aimed away from you, the pussy presented nicely towards your " + pc.cockHead(x) + ". The fleshy folds squeeze together, forcing out a drizzle of fresh lubricants to bathe your erection. You shudder slightly from the warm, slick moisture that has prepared your " + pc.cockDescript(x) + " and begin to rub the snake's " + enemy.tailVaginaDescript() + " across yourself, testing the waters to ensure a good, snug fit.");

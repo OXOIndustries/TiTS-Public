@@ -222,7 +222,7 @@ public function oviliumPregnancyEnds(pregSlot:int, pregEggs:int, totalEggs:int):
 	pc.energy(-30);
 	processTime(20 + rand(11));
 	
-	oviliumEffectCheck();
+	//oviliumEffectCheck();
 	
 	// Loot egg!
 	output("\n\n");

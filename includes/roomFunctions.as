@@ -831,8 +831,6 @@ public function NTBarbequeBonusFunc():Boolean
 	clearOutput();
 	author("Savin");
 	showBust("HERMAN");
-	showName("\nHERMAN");
-	if(flags["MET_HERMAN"] == undefined) showName("BULL\nCHEF");
 	//Fen: This’d be as good a place as any to stick Dane.
 	output("The restaurant attached to the ranch house is a smoky, meaty-smelling BBQ joint, advertising authentic terran steaks, ribs, and roast beef sandwiches. An open grill dominates the far northern wall of the restaurant, with several tourists and cow-folk lined up to order some delicious barbeque. ");
 	if(flags["MET_HERMAN"] != undefined) output("Herman the chef");
