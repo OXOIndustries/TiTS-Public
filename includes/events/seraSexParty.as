@@ -1055,7 +1055,7 @@ public function seraSexPartyStage3(response:String = "none"):void
 				else if(pc.tailType == GLOBAL.TYPE_DEMONIC)
 					addButton(2, "Tail", seraSexPartyStage3, "tongue tail", "Demonic Tail", "Show him your specially modified tail.");
 			}
-			if(flags["SERA_INCH_STEALING_SEX"] != undefined) {
+			if(flags["SERA_INCH_STEAL"] != undefined || flags["SERA_INCH_STEALING_SEX"] != undefined) {
 				if(pc.hasGenitals())
 					addButton(3, "CockShrink", seraSexPartyStage3, "cock shrink", "Cock Shrink", "Show him what Sera has done to your genitals.");
 			}
