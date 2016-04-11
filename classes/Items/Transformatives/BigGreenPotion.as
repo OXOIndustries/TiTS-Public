@@ -376,7 +376,7 @@
 					}
 				}
 				// Cum Type
-				if (changes < changeLimit && !groinChanged && pc.cockTotal(GLOBAL.TYPE_HRAD) == pc.cockTotal() && pc.cumType != GLOBAL.FLUID_TYPE_HRAD_CUM && rand(2) == 0)
+				if (changes < changeLimit && !groinChanged && pc.hasCock() && pc.cockTotal(GLOBAL.TYPE_HRAD) == pc.cockTotal() && pc.cumType != GLOBAL.FLUID_TYPE_HRAD_CUM && rand(2) == 0)
 				{
 					if (pc.cumTypeUnlocked(GLOBAL.FLUID_TYPE_HRAD_CUM))
 					{

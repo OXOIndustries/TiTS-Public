@@ -2912,9 +2912,9 @@
 		}
 		public function maxOutCumflation(orifice:String, cumFrom:Creature):void
 		{
-			var minMaxFluid:Number = 50000; // mLs
+			var minMaxFluid:Number = 100000; // mLs
 			
-			minMaxFluid -= cumFrom.cumQ()
+			minMaxFluid -= cumFrom.cumQ();
 			if(minMaxFluid < 0) minMaxFluid = 0;
 			
 			if(InCollection(orifice, ["all", "vaginas", "vagina 0"]) && hasVagina(0))
@@ -2935,16 +2935,16 @@
 				addStatusValue("Vaginally-Filled", 1, minMaxFluid);
 				if(statusEffectv1("Vaginally-Filled") > statusEffectv2("Vaginally-Filled")) setStatusValue("Vaginally-Filled", 2, statusEffectv1("Vaginally-Filled"));
 			}
-			if(InCollection(orifice, ["all", "ass"]))
+			if(InCollection(orifice, ["all", "ass", "anus", "butt"]))
 			{
 				cumflationHappens(cumFrom, 3);
 				addStatusValue("Anally-Filled", 1, minMaxFluid);
 				if(statusEffectv1("Anally-Filled") > statusEffectv2("Anally-Filled")) setStatusValue("Anally-Filled", 2, statusEffectv1("Anally-Filled"));
 			}
-			if(InCollection(orifice, ["all", "mouth"]))
+			if(InCollection(orifice, ["all", "mouth", "oral"]))
 			{
 				cumflationHappens(cumFrom, 4);
-				setStatusValue("Orally-Filled", 3, cumFrom.cumType);
+				addStatusValue("Orally-Filled", 1, minMaxFluid);
 				if(statusEffectv1("Orally-Filled") > statusEffectv2("Orally-Filled")) setStatusValue("Orally-Filled", 2, statusEffectv1("Orally-Filled"));
 			}
 		}
@@ -9982,6 +9982,7 @@
 			{
 				if(descripted > 0) descript += ", ";
 				descript += "latex";
+				descripted++;
 			}
 			//Mane special stuff.
 			if (hasPerk("Mane") && hairLength > 3 && rand(2) == 0) {
@@ -9993,7 +9994,8 @@
 						descripted++;
 					}
 				}
-				if (descripted > 0) descript += " mane";
+				if (descripted > 0) descript += " ";
+				descript += "mane";
 				if (hairType == GLOBAL.HAIR_TYPE_FEATHERS) descript += " of feathers";
 				if (hairType == GLOBAL.HAIR_TYPE_QUILLS) descript += " of quills";
 				if (hairType == GLOBAL.HAIR_TYPE_GOO)
@@ -10137,6 +10139,7 @@
 			{
 				if(descripted > 0) descript += ", ";
 				descript += "latex";
+				descripted++;
 			}
 			//Not manes
 			//Oddball shit
@@ -14487,7 +14490,7 @@
 						notice += "\n\n" + upperCase(fluidViscosity(statusEffects[z].value3)) + " " + fluidNoun(statusEffects[z].value3) + " hoses out ";
 						if(legCount > 1) notice += "from between your [pc.legs] ";
 						else notice += "of you ";
-						notice += "in a seemingly endless tide. You can't even move with wet gushes splattering onto the ground, marking a slut-shaming trail wherever you move.";
+						notice += "in a seemingly endless tide. You can't even move without wet gushes splattering onto the ground, marking a slut-shaming trail wherever you move.";
 						if(!isCrotchExposed()) notice += " It wouldn't be so bad if most of it didn't wind up inside your [pc.lowerGarments], leaving you slick and musky with residual love.";
 					}
 					else if(amountVented >= 10000)
@@ -14588,10 +14591,21 @@
 					statusEffects[o].value1 -= amountVented;
 				}
 				//Special notices!
-				if(this is PlayerCharacter && notice == "")
+				if(this is PlayerCharacter)
 				{
-					//If Jacques00 or Geddy wants to write stuff for this, feel free, but I'm fine with it being more laid back.
-					//9999 apply cum-drenched flag as appropriate?
+					if(notice == "")
+					{
+						//If Jacques00 or Geddy wants to write stuff for this, feel free, but I'm fine with it being more laid back.
+						//9999 apply cum-drenched flag as appropriate?
+					}
+					if(hairType == GLOBAL.HAIR_TYPE_GOO) addBiomass(amountVented);
+					if(hasPerk("Honeypot"))
+					{
+						kGAMECLASS.honeyPotBump();
+						if(amountVented >= 500) kGAMECLASS.honeyPotBump();
+						if(amountVented >= 1000) kGAMECLASS.honeyPotBump();
+						if(amountVented >= 2000) kGAMECLASS.honeyPotBump();
+					}
 				}
 				if(statusEffects[o].value1 <= 0) removals.push("Orally-Filled");
 			}
