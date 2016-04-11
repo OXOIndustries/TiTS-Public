@@ -3,10 +3,12 @@ package classes.UIComponents.SideBarComponents
 	import classes.Items.Armor.VoidPlateArmor;
 	import classes.Resources.Busts.CharacterBustOverrideSelector;
 	import classes.Resources.StatusIcons;
+	import fl.transitions.Tween;
 	import flash.display.Bitmap;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.filters.GlowFilter;
 	import flash.geom.ColorTransform;
 	import flash.text.TextField;
 	import classes.UIComponents.UIStyleSettings;
@@ -32,7 +34,15 @@ package classes.UIComponents.SideBarComponents
 		private var _bustBackground:Sprite;
 		private var _bustOrderSet:Boolean;
 		
+		private var _configureControlBack:Sprite;
 		private var _configureControl:Sprite;
+		
+		private var _minGlow:Number = 0.0;
+		private var _maxGlow:Number = 1.0;
+		private var _glowRate:Number = 0.1;
+		
+		private var _configIsGlowing:Boolean = false;
+		private var _configGlowFilter:GlowFilter;
 		
 		public function get roomText():String { return _roomText.text; }
 		public function get planetText():String { return _planetText.text; }
@@ -167,21 +177,41 @@ package classes.UIComponents.SideBarComponents
 			
 			this.addChild(_systemText);
 			
+			_configureControlBack = new StatusIcons.Icon_Gears_Three();
+			addChild(_configureControlBack);
+			var cfgct:ColorTransform = new ColorTransform();
+			cfgct.color = UIStyleSettings.gHighlightColour;
+			_configureControlBack.transform.colorTransform = cfgct;
+			_configureControlBack.alpha = 1;
+			_configureControlBack.width = 20;
+			_configureControlBack.height = 20;
+			_configureControlBack.x = _bustBackground.x + _bustBackground.width - 2 - 20;
+			_configureControlBack.y = _bustBackground.y + 2;
+			_configureControlBack.visible = false;
+			
+			_configGlowFilter = new GlowFilter(UIStyleSettings.gHighlightColour, _minGlow, 4, 4, 5, 1, false, false);
+			_configureControlBack.filters = [_configGlowFilter];	
+			
 			_configureControl = new StatusIcons.Icon_Gears_Three();
 			addChild(_configureControl);
 			var ct:ColorTransform = new ColorTransform();
-			ct.color = 0xFFFFFF;
+			ct.color = 0xAAAAAA;
 			_configureControl.transform.colorTransform = ct;
-			_configureControl.alpha = 0.6;
+			_configureControl.alpha = 1;
 			_configureControl.width = 20;
 			_configureControl.height = 20;
 			_configureControl.x = _bustBackground.x + _bustBackground.width - 2 - 20;
 			_configureControl.y = _bustBackground.y + 2;
 			_configureControl.addEventListener(MouseEvent.CLICK, openBustConfig);
+			_configureControl.addEventListener(MouseEvent.MOUSE_OVER, configFadeIn);
+			_configureControl.addEventListener(MouseEvent.MOUSE_OUT, configFadeOut);
+			_configureControl.addEventListener(Event.ENTER_FRAME, configGlowUpdate);
 			_configureControl.visible = false;
+			_configureControl.buttonMode = true;
+			
 			var ha:Sprite = new Sprite();
 			ha.graphics.beginFill(0xFFFFFF, 0);
-			ha.graphics.drawRect(0, 0, 20, 20);
+			ha.graphics.drawRect(-10, -10, 30, 40);
 			ha.graphics.endFill();
 			addChild(ha);
 			ha.x = _configureControl.x;
@@ -189,6 +219,32 @@ package classes.UIComponents.SideBarComponents
 			ha.mouseEnabled = false;
 			ha.buttonMode = true;
 			_configureControl.hitArea = ha;
+		}
+		
+		private function configFadeIn(e:Event):void
+		{
+			_configIsGlowing = true;
+		}
+		
+		private function configFadeOut(e:Event):void
+		{
+			_configIsGlowing = false;
+		}
+		
+		private function configGlowUpdate(e:Event):void
+		{
+			if (_configIsGlowing && _configGlowFilter.alpha < _maxGlow)
+			{
+				_configGlowFilter.alpha += _glowRate;
+				if (_configGlowFilter.alpha > _maxGlow) _configGlowFilter.alpha = _maxGlow;
+				_configureControlBack.filters = [_configGlowFilter];
+			}
+			else if (!_configIsGlowing && _configGlowFilter.alpha > _minGlow)
+			{
+				_configGlowFilter.alpha -= _glowRate;
+				if (_configGlowFilter.alpha < _minGlow) _configGlowFilter.alpha = _minGlow;
+				_configureControlBack.filters = [_configGlowFilter];
+			}
 		}
 		
 		private function openBustConfig(e:Event):void
@@ -207,10 +263,12 @@ package classes.UIComponents.SideBarComponents
 			if (NPCBustImages.hasBustsForCharacter(v))
 			{
 				_configureControl.visible = true;
+				_configureControlBack.visible = true;
 			}
 			else
 			{
 				_configureControl.visible = false;
+				_configureControlBack.visible = true;
 			}
 		}
 		private function get lastSetBust():String { return _lastSetBust; }
