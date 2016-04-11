@@ -37,7 +37,7 @@
 		{
 			_incButton = new MainMenuButton(true);
 			this.addChild(_incButton);
-			_incButton.x = 780 - (_incButton.width + 10);
+			_incButton.x = 760 - (_incButton.width + 10);
 			_incButton.func = buttonClickHandler;
 			_incButton.arg = "inc";
 			_incButton.buttonName = "Increase\nFont Size";
@@ -63,6 +63,8 @@
 			_descriptionText.multiline = false;
 			_descriptionText.wordWrap = true;
 			_descriptionText.embedFonts = true;
+			_descriptionText.mouseEnabled = false;
+			_descriptionText.mouseWheelEnabled = false;
 			_descriptionText.antiAliasType = AntiAliasType.ADVANCED;
 			_descriptionText.x = 5;
 			_descriptionText.y = 0;
@@ -85,11 +87,13 @@
 			_previewText.background = false;
 			_previewText.multiline = true;
 			_previewText.wordWrap = true;
+			_previewText.mouseEnabled = false;
+			_previewText.mouseWheelEnabled = false;
 			_previewText.embedFonts = true;
 			_previewText.antiAliasType = AntiAliasType.ADVANCED;
 			_previewText.x = 5;
 			_previewText.y = _decButton.y + _decButton.height + 5;
-			_previewText.width = 770;
+			_previewText.width = 760;
 			_previewText.styleSheet = UIStyleSettings.gMainTextCSSStyleSheet;
 			_previewText.name = "preview";
 			_previewText.htmlText = "<span class='words'><p>This is some example text to preview the currently configured font size.</p></span>";
