@@ -768,7 +768,10 @@ public function seraSexPartyStage2(response:String = "none"):void
 		// New shapes 
 		case "new shapes":
 			output("<i>“I’ve been out onto the frontier,”</i> you say. <i>“There’s stuff out there that you wouldn’t believe. Sexy stuff. When the core-ward public see that through the broadcasts and extranet shows, they’re going to want it. They’re going to </i>be<i> it. Gene-mods are going to be massive.”</i>");
-			output("\n\n<i>“How many times have I been fed that line?”</i> scoffs the antelope. He points at you aggressively. <i>“I don’t believe for a second a precious {apple/shoe} and cock polisher like you has been anywhere near the real frontier. What have you personally seen that is so damn impressive?”</i>");
+			output("\n\n<i>“How many times have I been fed that line?”</i> scoffs the antelope. He points at you aggressively. <i>“I don’t believe for a second a precious");
+			if(outfitPC == "schoolgirl") output(" apple");
+			else if(outfitPC == "butler") output(" shoe");
+			output(" and cock polisher like you has been anywhere near the real frontier. What have you personally seen that is so damn impressive?”</i>");
 			if
 			(	(flags["TIMES_MET_NALEEN"] != undefined && flags["TIMES_MET_MALE_NALEEN"] != undefined)
 			||	(flags["MET_SYDIAN_MALE"] != undefined)
