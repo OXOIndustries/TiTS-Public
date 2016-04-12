@@ -7039,7 +7039,7 @@ public function bessEvent7DrinkForgive():void
 
 	output("\n\n<i>“I will never, ever, EVER cook again, "+ bessPCName() +"! It’s simply too dangerous. I’m going to add it to my core directives as something I should never do, that’s how serious I am.”</i> [bess.name] seems to have made up [bess.hisHer] mind never to cook long before you woke up. <i>“I’m just going to have to find some other way to bring people happiness! After all, not everybody is cut out to do certain things right?”</i>");
 	
-	output("\n\nThe "+ bess.mf("male synthetic", "synthetic girl") +"then fidgets a little before looking at you "+ bess.mf("with an intense stare", "through her long, black artificial lashes") +". <i>“... Um... thank you, "+ bessPCName() +", for trying my drink. It meant a lot to me, even if it did almost kill you. Thank you.”</i>");
+	output("\n\nThe "+ bess.mf("male synthetic", "synthetic girl") +" then fidgets a little before looking at you "+ bess.mf("with an intense stare", "through her long, black artificial lashes") +". <i>“... Um... thank you, "+ bessPCName() +", for trying my drink. It meant a lot to me, even if it did almost kill you. Thank you.”</i>");
 
 	processTime(8 * 60);
 	bessAffection(5);

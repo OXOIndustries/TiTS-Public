@@ -2609,7 +2609,7 @@ public function giannasCockSuckingLipsSuckCocks():void
 		else output("increasing firmness");
 		output(".");
 		output("\n\nTrying not to groan, you exhale and ask, <i>“Please, Gianna, suck my dick! I ah-”</i> Her thigh presses down a little more firmly. <i>“-I asked you to make them bigger just so I could feel them on my cock!”</i>");
-		output("\n\nGianna kisses you - not long, but long enough for her to feel you pulsing needily against her leg. <i>“Good [pc.boy]. Now, why don’t I reward you for being so honest by putting these puppies where they belong, or would you rather we have that conversation I offered I instead?”</i> She dabs at the corner of her mouth with a fingertip.");
+		output("\n\nGianna kisses you - not long, but long enough for her to feel you pulsing needily against her leg. <i>“Good [pc.boy]. Now, why don’t I reward you for being so honest by putting these puppies where they belong, or would you rather we have that conversation I offered instead?”</i> She dabs at the corner of her mouth with a fingertip.");
 		output("\n\nThere isn’t a chance in the known universe that you’d stick around for the conversation. <i>“I’ll take the reward.”</i>");
 		output("\n\n<i>“Good [pc.boy],”</i> she repeats, leading you towards a stall. <i>“Come along. Time for your milking.”</i>");
 		output("\n\nWhat choice do you have? You let yourself be led. The anticipation in your [pc.cocks] won’t be sated otherwise. The stall is ");
