@@ -29,6 +29,8 @@ import classes.Items.Miscellaneous.EmptySlot;
 import classes.Items.Miscellaneous.FlashGrenade;
 import classes.Items.Miscellaneous.GrayMicrobots;
 import classes.Items.Miscellaneous.HorseCock;
+import classes.Items.Miscellaneous.LactaidMilkTank;
+import classes.Items.Miscellaneous.LactaidOverdrive;
 import classes.Items.Miscellaneous.PHAccess;
 import classes.Items.Miscellaneous.Pussyblossom;
 import classes.Items.Miscellaneous.Silicone;
@@ -265,16 +267,18 @@ public function debugMenusTwo():void
 		itemCollect(foundLootItems);
 	});
 	
-	addItemButton(1, new Pussyblossom(), function():void {
-		output("\n\Pussyblossom.\n");
-		
-		quickLoot(new Pussyblossom());
+	addItemButton(1, new LactaidMilkTank(), function():void {
+		output("\n\10x Milk Tank.\n");
+		var ieLMT:LactaidMilkTank = new LactaidMilkTank();
+		ieLMT.quantity = 10;
+		quickLoot(ieLMT);
 	});
 	
-	addItemButton(2, new MyrBow(), function():void {
-		output("\n\nMyr Bow.\n");
-		
-		quickLoot(new MyrBow());
+	addItemButton(2, new LactaidOverdrive(), function():void {
+		output("\n\n10x Overdrive.\n");
+		var ieLO:LactaidOverdrive = new LactaidOverdrive();
+		ieLO.quantity = 10;
+		quickLoot(ieLO);
 	});
 	
 	addButton(3, "Goozooka", function(): void {

@@ -25,7 +25,7 @@ package classes.Items.Miscellaneous
 			this.stackSize = 10;
 			this.type = GLOBAL.PILL;
 			//Used on inventory buttons
-			this.shortName = "Lactaid MTank";
+			this.shortName = "LactaidMT";
 			//Regular name
 			this.longName = "lactaid milk tank medipen";
 			
@@ -64,6 +64,8 @@ package classes.Items.Miscellaneous
 				output(target.capitalA + target.short + " injects the Lactaid to no effect.");
 				return false;
 			}
+			
+			output("You apply the medipen just above your breasts, feeling a cool sensation in your skin as the payload makes its way downward and gets to work.\n\n");
 
 			if (!target.canLactate())
 			{
@@ -100,6 +102,7 @@ package classes.Items.Miscellaneous
 				{
 					output("Your breasts feel blessedly airy, as though they could bear an ocean of milk and not show even the slightest hint of strain in doing so. Perhaps if you didn’t milk yourself for weeks on end, but you doubt even that would put a dent in your bottomless capacity. At the same time you don’t feel at all empty; rather, you’re full, and can just keep on getting fuller and fuller. <b>You can hold virtually limitless milk!</b>");
 					target.milkStorageMultiplier = 1000;
+					target.milkRate += 100; // Otherwise it will take LITERALLY FOREVER for this to fill up and trigger various states
 				}
 				else
 				{

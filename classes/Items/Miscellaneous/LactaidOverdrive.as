@@ -25,7 +25,7 @@ package classes.Items.Miscellaneous
 			this.stackSize = 10;
 			this.type = GLOBAL.PILL;
 			//Used on inventory buttons
-			this.shortName = "Lactaid O.";
+			this.shortName = "LactaidO";
 			//Regular name
 			this.longName = "bottle labeled \"Lactaid Overdrive\"";
 			
@@ -89,7 +89,7 @@ package classes.Items.Miscellaneous
 					output("There’s a sense of pressure inside your [pc.breasts] as a small amount of [pc.milkNoun] escapes from the tips of your [pc.nipples]. <b>You’ve started lactating, albeit slowly.</b>");
 				}
 			}
-			else if ((target.milkRate < 15 && target.milkMultiplier < 100 && target.milkStorageMultiplier < 5) || target.statusEffectv1("Lactaid Overdrive Uses") < 5)
+			else if ((target.milkRate < 15 && target.milkMultiplier < 100 && target.milkStorageMultiplier < 5) || (target.statusEffectv1("Lactaid Overdrive Uses") < 5 || target.hasPerk("Hypermilky")))
 			{
 				if (rand(4) == 0)
 				{
