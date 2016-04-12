@@ -58,7 +58,6 @@
 			this.inventory.push(new Condensol());
 			this.inventory.push(new Rainbotox());
 			this.inventory.push(new Chocolac());
-			this.inventory.push(new Lactaid());
 
 			
 			this.typesBought[this.typesBought.length] = GLOBAL.PILL;

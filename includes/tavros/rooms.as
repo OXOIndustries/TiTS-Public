@@ -1,3 +1,4 @@
+import classes.RoomClass;
 public function initTavrosRooms():void
 {
 	rooms["HOTEL ROOM"] = new RoomClass(this);
@@ -221,6 +222,18 @@ public function initTavrosRooms():void
 	rooms["MI AMOUR"].addFlag(GLOBAL.NPC);
 	rooms["MI AMOUR"].addFlag(GLOBAL.PUBLIC);
 	rooms["MI AMOUR"].runOnEnter = miAmoreBonusShit;
+	
+	rooms["TAVROS TAMANICORP SHOP"] = new RoomClass(this);
+	rooms["TAVROS TAMANICORP SHOP"].roomName = "TAMANI\nCORP";
+	rooms["TAVROS TAMANICORP SHOP"].description = "The inside of the TamaniCorp shop is brightly lit and friendly, an inviting pink covering the walls beneath shelf after shelf lined with designer gene mods and cosmetic transformatives. Some of the products on display do catch your eye: fertility treatments, lactation inducers and modifiers, and even some sex toys. Almost everything here is pastel shades of purple, pink, and mixes of the two. The rug is so soft that your [pc.feet] sink in with every step, and a sultry smell is in the air, like a rich cologne.";
+	rooms["TAVROS TAMANICORP SHOP"].planet = "TAVROS STATION";
+	rooms["TAVROS TAMANICORP SHOP"].system = "SYSTEM: KALAS";
+	rooms["TAVROS TAMANICORP SHOP"].southExit = "9007";
+	rooms["TAVROS TAMANICORP SHOP"].moveMinutes = 1;
+	rooms["TAVROS TAMANICORP SHOP"].addFlag(GLOBAL.INDOOR);
+	rooms["TAVROS TAMANICORP SHOP"].addFlag(GLOBAL.NPC);
+	rooms["TAVROS TAMANICORP SHOP"].addFlag(GLOBAL.PUBLIC);
+	rooms["TAVROS TAMANICORP SHOP"].runOnEnter = tavrosTamaniCorpStoreEntry;
 
 	//9003 - 110 MERCHANT'S THOROUGHFARE
 	rooms["110"] = new RoomClass(this);

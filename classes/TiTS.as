@@ -160,6 +160,7 @@
 		include "../includes/tavros/shelly.as";
 		include "../includes/tavros/vahn.as";
 		include "../includes/tavros/rooms.as";
+		include "../includes/tavros/tamaniCorpShop.as";
 		
 		//First planet
 		include "../includes/mhenga/burt.as";
@@ -1168,6 +1169,10 @@
 		public function get liriel():Liriel
 		{
 			return chars["LIRIEL"];
+		}
+		public function get lerris():Lerris
+		{
+			return chars["LERRIS"];
 		}
 		
 		private var _dbgtestvar:int = 0;
