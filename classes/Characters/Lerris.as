@@ -6,7 +6,10 @@
 	import classes.Items.Apparel.UGCUniform;
 	import classes.Items.Melee.Knife;
 	import classes.Items.Miscellaneous.EmptySlot;
+	import classes.Items.Miscellaneous.FertitePlus;
 	import classes.Items.Miscellaneous.Lactaid;
+	import classes.Items.Miscellaneous.LactaidMilkTank;
+	import classes.Items.Miscellaneous.LactaidOverdrive;
 	import classes.Items.Miscellaneous.Sterilex;
 	import classes.Items.Toys.EggTrainer;
 	import classes.Items.Toys.NivasBionaHole;
@@ -41,6 +44,9 @@
 			inventory.push(new Lactaid());
 			inventory.push(new Sterilex());
 			inventory.push(new Bovinium());
+			inventory.push(new FertitePlus());
+			inventory.push(new LactaidMilkTank());
+			inventory.push(new LactaidOverdrive());
 			
 			keeperBuy = "Lerris busies herself with her prodigious tits whilst you browse the shops wares; casting a casual glance in her direction, you catch her squeezing her boobs together with her arms, wiggling this way and that...";
 			
