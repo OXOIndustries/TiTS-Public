@@ -27,6 +27,7 @@
 		public static var JACQUES:Object = new JacquesBusts();
 		public static var JAMESAB:Object = new JamesABBusts();
 		public static var JAYECHO:Object = new JayEchoBusts();
+		public static var LAPINBEAU:Object = new LapinbeauBusts();
 		public static var SHOU:Object = new ShouBusts();
 		public static var WOLFYNAIL:Object = new WolfyNailBusts();
 		

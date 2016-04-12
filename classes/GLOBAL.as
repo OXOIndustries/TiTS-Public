@@ -1084,6 +1084,7 @@
 			"JACQUES",
 			"JAMESAB",
 			"JAYECHO",
+			"LAPINBEAU",
 			"SHOU",
 			"WOLFYNAIL"
 		];
@@ -1101,6 +1102,7 @@
 			"Jacques",
 			"James AB",
 			"Jay Echo",
+			"Lapinbeau",
 			"Shou",
 			"Wolfy-nail"
 		];
