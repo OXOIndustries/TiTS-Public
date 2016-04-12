@@ -422,7 +422,7 @@ public function lerrisBendHerOver():void
 	clearOutput();
 	showLerris(true);
 
-	var holeCap:int = (lerris.hasVagina ? lerris.vaginalCapacity(0) : lerris.analCapacity());
+	var holeCap:int = (lerris.hasVagina() ? lerris.vaginalCapacity(0) : lerris.analCapacity());
 
 	var cockIdx:int = -2;
 	if (pc.hasCock())
