@@ -60,11 +60,11 @@
 					if ((target.hasVagina() || target.hasTailCunt()) && (target.hasCock() || target.hasTailCock())) output(" and");
 					if (target.hasCock() || target.hasTailCock())
 					{
-						output("virile");
+						output(" virile");
 						if (target.cumQualityRaw < 2) target.cumQualityRaw += 0.2;
 						else target.cumQualityRaw += 0.1;
 					}
-					output("now!");
+					output(" now!");
 					
 					// Kill whatever Sterelix stacks are present
 					if (target.hasStatusEffect("Infertile")) target.removeStatusEffect("Infertile");

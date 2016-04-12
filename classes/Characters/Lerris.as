@@ -48,7 +48,7 @@
 			inventory.push(new LactaidMilkTank());
 			inventory.push(new LactaidOverdrive());
 			
-			keeperBuy = "Lerris busies herself with her prodigious tits whilst you browse the shops wares; casting a casual glance in her direction, you catch her squeezing her boobs together with her arms, wiggling this way and that...";
+			keeperBuy = "Lerris busies herself with her prodigious tits whilst you browse the shops wares; casting a casual glance in her direction, you catch her squeezing her boobs together with her arms, wiggling this way and that...\n\n";
 			
 			this.typesBought = [];
 			this.sellMarkup = 1.2;
