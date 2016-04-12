@@ -119,10 +119,10 @@
 			
 			// If there's a configured bust for this ident, use it
 			// TODO: Make this use the same artist for nude/non-nude if one is configured but the other isn't
-			if (opts.configuredBustPreferences[bustName] != undefined)
+			if ((bustName) in opts.configuredBustPreferences[bustName])
 			{
 				bounds = lookupBoundsInClass(bustName, NPCBustImages[opts.configuredBustPreferences[bustName]], doNude);
-				return bounds;
+				if (bounds != null) return bounds;
 			}
 			
 			// If the primary artist has the bust, use it
