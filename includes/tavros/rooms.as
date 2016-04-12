@@ -301,7 +301,7 @@ public function initTavrosRooms():void
 	rooms["9007"].description = "Holographic cow-girls cover the walls of this passage, imploring you to visit scenic New Texas, “The reason they call this galaxy the milky way!” A display with buff-looking bull-boys flanks the bovine lasses, unsubtly appealing to another demographic. Both sections of hall have attentive crowds of curious onlookers.\n\nNeon green and pink light spills across the deck plating from a store to the north, the infamous logo of the Tamani Corporation above the door advising potential patrons of the establishment what lays inside.";
 	rooms["9007"].planet = "TAVROS STATION";
 	rooms["9007"].system = "SYSTEM: KALAS";
-	rooms["9007"].northExit = "TavrosTamaniCorpShop";
+	rooms["9007"].northExit = "TAVROS TAMANICORP SHOP";
 	rooms["9007"].eastExit = "9008";
 	rooms["9007"].westExit = "9006";
 	rooms["9007"].moveMinutes = 1;
