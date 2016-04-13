@@ -8,10 +8,13 @@ package classes.Resources.Busts
 	{
 		public function get PREVIEW():Class { return Bust_NEVRIE; }
 
-		[Embed(source = "../../../assets/images/npcs/nevrie.png", mimeType = "image/png")]
+		[Embed(source = "../../../assets/images/npcs/bng/nevrie.png", mimeType = "image/png")]
 		public var Bust_NEVRIE:Class;
+		
+		/*
 		[Embed(source = "../../../assets/images/npcs/nevrie.png", mimeType = "image/png")]
 		public var Bust_NEVRIE_NUDE:Class;
+		*/
 	}
 
 }
