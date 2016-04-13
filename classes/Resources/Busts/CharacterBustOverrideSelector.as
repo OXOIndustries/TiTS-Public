@@ -22,6 +22,7 @@ package classes.Resources.Busts
 	{
 		private var _bustName:String;
 		private var _bustDisplays:Object;
+		private var _numBustDisplays:int;
 		private var _container:Sprite;
 		private var _background:Sprite;
 		
@@ -34,6 +35,7 @@ package classes.Resources.Busts
 			super();
 			_bustName = bustName;
 			name = "bustSelector";
+			_numBustDisplays = 0;
 			_bustDisplays = { };
 			addEventListener(Event.ADDED_TO_STAGE, init);
 		}
@@ -53,7 +55,30 @@ package classes.Resources.Busts
 			{
 				if (("Bust_" + _bustName) in NPCBustImages[GLOBAL.VALID_ARTISTS[i]])
 				{
-					addSelectableBust(GLOBAL.VALID_ARTISTS[i]);
+					addSelectableBust(GLOBAL.VALID_ARTISTS[i], _bustName);
+				}
+			}
+			
+			// Fallbacks - search for the other inherent variant of a character bust if the primary isn't actually available anywhere
+			if (_bustName.indexOf("_NUDE") == -1 && _numBustDisplays == 0)
+			{
+				for (i = 0; i < GLOBAL.VALID_ARTISTS.length; i++)
+				{
+					if (("Bust_" + _bustName + "_NUDE") in NPCBustImages[GLOBAL.VALID_ARTISTS[i]])
+					{
+						addSelectableBust(GLOBAL.VALID_ARTISTS[i], _bustName + "_NUDE");
+					}
+				}
+			}
+			else if (_bustName.indexOf("_NUDE") != -1 && _numBustDisplays == 0)
+			{
+				var tBustName:String = _bustName.split("_NUDE")[0];
+				for (i = 0; i < GLOBAL.VALID_ARTISTS.length; i++)
+				{
+					if (tBustName in NPCBustImages[GLOBAL.VALID_ARTISTS[i]])
+					{
+						addSelectableBust(GLOBAL.VALID_ARTISTS[i], tBustName);
+					}
 				}
 			}
 			
@@ -158,9 +183,10 @@ package classes.Resources.Busts
 			kGAMECLASS.showBust(_bustName);
 		}
 		
-		private function addSelectableBust(artistName:String):void
+		private function addSelectableBust(artistName:String, targetBustName:String):void
 		{
-			_bustDisplays[artistName] = new SelectableSingleBustDisplay(artistName, _bustName);
+			_bustDisplays[artistName] = new SelectableSingleBustDisplay(artistName, targetBustName);
+			_numBustDisplays++;
 			_container.addChild(_bustDisplays[artistName]);
 			
 			if (_bustName in kGAMECLASS.gameOptions.configuredBustPreferences)
