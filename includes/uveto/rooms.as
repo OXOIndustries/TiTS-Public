@@ -454,7 +454,7 @@ public function initUvetoRooms():void
 	rooms["UVI P38"].description = "Several ausars are standing inside a small, sealed building beside the gates, all dressed in military uniforms and carrying rifles slung over their shoulders. The gate to the town is just a few yards east of you, underneath a pair of intimidating gun turrets on the walls. To the south, you see a large set of sliding glass doors under an awning with the words ‘MAGLEV STATION’ written in bright, cheerful letters.";
 	rooms["UVI P38"].planet = "PLANET: UVETO VII";
 	rooms["UVI P38"].system = "SYSTEM: SIRETTA";
-	rooms["UVI P38"].eastExit = "UVI R38";
+	//rooms["UVI P38"].eastExit = "UVI R38"; // CUT UNTIL READY 9999
 	rooms["UVI P38"].southExit = "UVI P40";
 	rooms["UVI P38"].westExit = "UVI N38";
 	rooms["UVI P38"].moveMinutes = 1;
@@ -471,6 +471,7 @@ public function initUvetoRooms():void
 	rooms["UVI P40"].moveMinutes = 1;
 	rooms["UVI P40"].runOnEnter = null;
 	rooms["UVI P40"].addFlag(GLOBAL.INDOOR);
+	rooms["UVI P40"].addFlag(GLOBAL.TAXI); // 9999 TRAIN?
 
 	/* To Ice Plains */
 	rooms["UVI R38"] = new RoomClass(this);
@@ -489,7 +490,7 @@ public function initUvetoRooms():void
 	rooms["UVI N32"].system = "SYSTEM: SIRETTA";
 	rooms["UVI N32"].northExit = "UVI N30";
 	rooms["UVI N32"].southExit = "UVI N34";
-	rooms["UVI N32"].eastExit = "UVI P32";
+	//rooms["UVI N32"].eastExit = "UVI P32"; // 9999 CUT UNTIL READY
 	rooms["UVI N32"].moveMinutes = 1;
 	rooms["UVI N32"].runOnEnter = null;
 	rooms["UVI N32"].addFlag(GLOBAL.OUTDOOR);
@@ -499,8 +500,8 @@ public function initUvetoRooms():void
 	rooms["UVI N30"].description = "The main street comes to a head here, leading up to a huge wooden building with a pair of blazing fires flickering in metal braziers outside. Wide marble steps lead up to a pair of metal-reinforced doors. A pair of armored human are standing outside, clad in snow-white ceramic plates with dark scarves, capes, and kilts over them. Each has a longspear grasped in his hands, and an energy pistol on his hip.\n\nTo the east, you can see a the nearest house to the temple. It's a small, dark gray building that you imagine must be largely built underground. A small plate beside it gives the street address, and says in flowing letters ‘Shade and Astra Irons’.";
 	rooms["UVI N30"].planet = "PLANET: UVETO VII";
 	rooms["UVI N30"].system = "SYSTEM: SIRETTA";
-	rooms["UVI N30"].northExit = "UVI N28";
-	rooms["UVI N30"].eastExit = "UVI P30";
+	//rooms["UVI N30"].northExit = "UVI N28"; // 9999 CUT UNTIL READY
+	//rooms["UVI N30"].eastExit = "UVI P30"; // 9999 CUT UNTIL READY
 	rooms["UVI N30"].southExit = "UVI N32";
 	rooms["UVI N30"].moveMinutes = 1;
 	rooms["UVI N30"].runOnEnter = null;
