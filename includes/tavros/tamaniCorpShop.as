@@ -202,14 +202,15 @@ public function lerrisGiveItems(itemTypes:Array):void
 	clearOutput();
 	showLerris();
 
-	output("\n\nBefore the two of you get started, you tell Lerris you have a present for her. Her big cat-eyes widen, and she makes a giddy little squeak. <i>“Ooh, what is it?”</i> she purrs, sniffing at your hand as you pull out your gift...");
-
+	output("Before the two of you get started, you tell Lerris you have a present for her. Her big cat-eyes widen, and she makes a giddy little squeak. <i>“Ooh, what is it?”</i> she purrs, sniffing at your hand as you pull out your gift...");
+	
+	clearMenu();
 	for (var i:int = 0; i < itemTypes.length; i++)
 	{
 		var itemInstance:ItemSlotClass = new itemTypes[i]();
-		addButton(i, itemInstance.shortName, lerrisConsumeItem, itemInstance, itemInstance.longName, itemInstance.description);
+		addButton(i, itemInstance.shortName, lerrisConsumeItem, itemInstance, StringUtil.toDisplayCase(itemInstance.longName), itemInstance.tooltip);
 	}
-	addButton(i, "Back", lerrisBackRoom);
+	addButton(14, "Back", lerrisBackRoom);
 }
 
 public function lerrisConsumeItem(itemInstance:ItemSlotClass):void
@@ -233,7 +234,7 @@ public function lerrisConsumeItem(itemInstance:ItemSlotClass):void
 
 		output("\n\nIt doesn’t take more than a moment for you to see her breasts swell up, surging with milk. Her nipples stiffen and begin to bead droplets of [lerris.milk] without so much as a touch. Though she <i>does</i> start toughing them groping her boobs and kneading them like the udders they are, drawing her newly-refreshed cream out and into her milk-catching bra. The material bloats full in an instant, making her shiver as her body smears itself with warm kitty-cream. And, you notice, a distinctive tent has formed in the hem of her panties, even harder than when promised sex moment ago.");
 		
-		output("\n\n<i>“Ah, that’s awesome!”</i> Lerris says between little moans. <i>“My nips feel so sensitive now, I can almost cum just from feeling them squirt! Oh, I hope you’re thirst, [pc.name],”</i> she adds, crawling back into your lap and planting a long train of kisses from your chest up to your neck.");
+		output("\n\n<i>“Ah, that’s awesome!”</i> Lerris says between little moans. <i>“My nips feel so sensitive now, I can almost cum just from feeling them squirt! Oh, I hope you’re thirsty, [pc.name],”</i> she adds, crawling back into your lap and planting a long train of kisses from your chest up to your neck.");
 
 		pc.destroyItem(itemInstance);
 		clearMenu();
@@ -346,7 +347,9 @@ public function lerrisConsumeItem(itemInstance:ItemSlotClass):void
 
 		if (lerris.breastRows[0].breastRatingRaw < 23.5)
 		{
-			output("\n\nNaturally, her tits are the first things to change. Lerris barely has enough time to yank her bra off before her chest starts swelling up, expanding with jiggling cellulose and filling with more and more [lerris.milk] than even before! She groans with mindless pleasure, groping and pinching at herself until an arc of [lerris.milk] spurts from between her fingers and all over your bare chest!");
+			output("\n\nNaturally, her tits are the first things to change. Lerris barely has enough time to yank her bra off before her chest starts swelling up, expanding with jiggling cellulose and filling with more and more [lerris.milk] than even before! She groans with mindless pleasure, groping and pinching at herself until an arc of [lerris.milk] spurts from between her fingers and all over your");
+			if(pc.isChestExposed()) output(" bare");
+			output(" chest!");
 			
 			lerris.breastRows[0].breastRatingRaw += 3;
 			if (lerris.breastRows[0].breastRatingRaw > 23.5) lerris.breastRows[0].breastRatingRaw = 23.5;
@@ -383,11 +386,11 @@ public function lerrisConsumeItem(itemInstance:ItemSlotClass):void
 		output("\n\nYou reach up and restrain her hands, pulling them behind her back before she can actually hurt herself. Instead she squirms weakly in your grasp, still leaking a hefty flow of [lerris.milk] all over herself. The two nubs on her brow start really filling out once she’s finished clawing at them, steadily growing and growing, well past what an actual dairy cow should have! By the time they’re more or less finished, Lerris is sporting a pair of five inch curved handlebars on her head, complete with a slightly felty texture, yet at a touch seem as hard as bone.");
 		if (pc.hasCock()) output(" You can’t wait to pound this kitty-cow’s pussy while holding onto these things!");
 		
-		output("\n\n<i>“Ugg,”</i> your lover manages to groan, blinking heavily. You release her hands, letting her wander up and touch her new bovine accountremonts. <i>“Horns! Wow, they’re <b>huge</b>.”</i>");
+		output("\n\n<i>“Ugg,”</i> your lover manages to groan, blinking heavily. You release her hands, letting her wander up and touch her new bovine accoutrements. <i>“Horns! Wow, they’re <b>huge</b>.”</i>");
 		
 		output("\n\nYou tweak one of Lerris’s leaky nipples, asking if she minds such an obvious change.");
 		
-		output("\n\nShe answers with a soft laugh, pressing herself up against you. <i>“Not when I’m stacked like a leithan and swollen with so much [lerris.milk] that I can barely stand upright! Might as well just tell the whole world I’m just [pc.name]’s pretty little sex cow.");
+		output("\n\nShe answers with a soft laugh, pressing herself up against you. <i>“Not when I’m stacked like a leithan and swollen with so much [lerris.milk] that I can barely stand upright! Might as well just tell the whole world I’m just [pc.name]’s pretty little sex cow.”</i>");
 		
 		output("\n\n<i>“You’ll buy me a nice milker and a cow-bell, won’t you?”</i> she teases, rubbing her still-squirting breasts all along your [pc.chest]. <i>“Maybe a nice, hung stud bull to keep me company when you’re off sailing the galaxy? I.. o-oh!”</i>");
 
@@ -416,7 +419,7 @@ public function lerrisConsumeItem(itemInstance:ItemSlotClass):void
 		pc.destroyItem(itemInstance);
 		clearMenu();
 		addButton(0, "Suckle", lerrisSuckle, undefined, "Suckle", "Lerris is always eager to give you a sweet drink, straight from the taps!" +(pc.hasCock() ? " She might even reward you with a little reciprocal oral action..." : ""));
-		if (pc.hasCock() || pc.hasHardLightEquipped()) addButton(1, "Bend Her Over", lerrisBendHerOver, undefined, "Bend Her Over", "Bend her over and go to town!");
+		if (pc.hasCock() || pc.hasHardLightEquipped()) addButton(1, "BendHerOver", lerrisBendHerOver, undefined, "Bend Her Over", "Bend her over and go to town!");
 		else addDisabledButton(1, "BendHerOver", "Bend Her Over", "You'd need a cock- or cock-like equipment- to give her a proper seeing to...");
 	}
 	else
@@ -579,7 +582,7 @@ public function lerrisSuckle():void
 	if (lerris.milkFullness <= 50) output(" to completely cover her breasts");
 	else if (lerris.milkFullness <= 150) output(", though even together you can’t cover her expansive chest");
 	else output(", though even two pairs of hands can barely cover her broad, plate-like nipples, let alone her enormous bosom");
-	output(". <i>“They so full!”</i>");
+	output(". <i>“They’re so full!”</i>");
 	
 	output("\n\nThe barest touch has her big nipples stiffening under her bra, making a pair of moistened peaks beading with [lerris.milk]. You slip your fingers underneath the transluscent material, taking both big orbs in your hands and squeezing. The cat-girl gasps, cock stiffening against your thigh as your gently milk out a steady stream of kitty-cream into her custom bra. Giggling, she reaches back and unclasps it, letting the soiled garment flop to the floor in a puddle of her bounty.");
 	
@@ -609,13 +612,15 @@ public function lerrisSuckle():void
 	output("\n\n<i>“Yes, "+ pc.mf("sir", "ma’am") +"!”</i> Lerris purrs obediently. <i>“Let me take care of everything!”</i>");
 
 	processTime(15 + rand(6));
+	pc.milkInMouth(lerris);
+	pc.milkInMouth(lerris);
 
 	//PC either has options if cock-wielder, else [Next] into continuation.
 	if (pc.hasCock() || pc.hasHardLightEquipped())
 	{
 		clearMenu();
 		addButton(0, "Get Blown", lerrisSuckleGetBlown, undefined, "Get Blown", "Have Lerris get down and put her mouth to good use...");
-		addButton(1, "Milky 69", lerrisSuckleMilky69, undefined, "Milky 69", "Lie down on the couch and suckle from Lerris while she " +(pc.canLactate()) ? "does the same to you!" : "uses her hands to help get you off!");
+		addButton(1, "Milky 69", lerrisSuckleMilky69, undefined, "Milky 69", "Lie down on the couch and suckle from Lerris while she " + (pc.canLactate() ? "does the same to you!" : "uses her hands to help get you off!"));
 	}
 	else
 	{
@@ -853,7 +858,7 @@ public function lerrisTalkMods():void
 	
 	output("\n\n<i>“Oh, there might be a couple,”</i> Lerris teases. While she speaks, she straightens up and runs one of her clawed hands along the front of her jumpsuit, cupping one of her perky tits. <i>“Trust me, TamaniCorp made my life a whole lot jigglier and, hehe, milkier after I started coming here.”</i>");
 	
-	output("\n\nYou follow her gaze toward the bright, white-lighted rack of products on display labelled <i>“LACTAID.”</i> You glance at the kaithrit’s bust, wondering just how - and what - those perky mounds are full of.");
+	output("\n\nYou follow her gaze toward the bright, white-lighted rack of products on display labeled <i>“LACTAID.”</i> You glance at the kaithrit’s bust, wondering just how - and what - those perky mounds are full of.");
 	
 	output("\n\n<i>“I’ve had so many of those...”</i> Lerris admits with a smile. <i>“Nothing better than feeling your chest swelling up with milk, so ready and desperate to come spraying out. But if that’s not your thing, I can also <b>highly</b> recommend Fertite, or getting some playtime with one of those hot little BionaHoles. Personally, I’d prefer a BionaDick to go with it, but hey. Can’t argue with a juicy pussy to play with, right?”</i>");
 	
@@ -867,7 +872,7 @@ public function lerrisTalkLactaid():void
 	clearOutput();
 	showLerris();
 
-	flags["LERRIS_TALKED_LACTAID"] = 1;
+	if(flags["LERRIS_TALKED_LACTAID"] == undefined || flags["LERRIS_TALKED_LACTAID"] < 1) flags["LERRIS_TALKED_LACTAID"] = 1;
 
 	output("<i>“So, tell me more about Lactaid,”</i> you prompt the milky kitty.");
 	
@@ -911,7 +916,7 @@ public function lerrisDemonstration():void
 	clearOutput();
 	showLerris(true);
 
-	flags["LERRIS_TALKED_LACTAID"] = 2;
+	if(flags["LERRIS_TALKED_LACTAID"] == undefined || flags["LERRIS_TALKED_LACTAID"] < 2) flags["LERRIS_TALKED_LACTAID"] = 2;
 
 	output("<i>“I’d love that,”</i> you say, eyeing the cat-babe’s sultry, milky form. You can’t wait to see what this demonstration entails.");
 	
@@ -1113,10 +1118,11 @@ public function lerrisDrinkDatTittymilks():void
 		
 		output("\n\nSomething tells you that’s code for <i>“so I don’t get hard and start this all over again,”</i> but you relent and show yourself out, leaving Lerris to clean herself up as best she can.");
 	}
-
-	// 9999 drinkin milks???
-
+	
 	processTime(20 + rand(11));
+	// drinkin milks???
+	pc.milkInMouth(lerris);
+	pc.milkInMouth(lerris);
 	pc.orgasm();
 	lerris.orgasm();
 	lerris.milked(50);
