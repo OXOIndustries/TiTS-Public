@@ -884,6 +884,7 @@
 		public static const DESERT:int									= 22;
 		public static const PLANE:int									= 23;
 		public static const PLANT_BULB:int								= 24;
+		public static const ICYTUNRDA:int								= 25;
 		
 		// Temp flag alias whilst the asset gets introduced
 		public static const LIFT:int = OBJECTIVE;

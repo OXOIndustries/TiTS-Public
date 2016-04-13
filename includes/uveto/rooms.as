@@ -1,3 +1,5 @@
+import classes.GLOBAL;
+
 public function initUvetoRooms():void
 {
 	/*
@@ -12,40 +14,44 @@ public function initUvetoRooms():void
 
 	/** UVETO STATION --------------------------------------------------------------- */
 	/** ----------------------------------------------------------------------------- */
-
+	
 	/* Ship Docking */
 	rooms["UVS F15"] = new RoomClass(this);
 	rooms["UVS F15"].roomName = "SHIP\nHANGAR";
-	rooms["UVS F15"].description = "";
+	rooms["UVS F15"].description = "Your ship is docked here, connected by a short umbilical to one of Uveto Station's four large arms. Several readouts beep noisily on the bulkhead just ahead of you. More impressively, though, you're treated to a view of the icy planet below, courtesy of a large, reinforced window nearby. Uveto slowly rolls beneath you, a solid ball of pale blue and frozen whites.";
 	rooms["UVS F15"].planet = "UVETO STATION";
 	rooms["UVS F15"].system = "SYSTEM: SIRETTA";
 	rooms["UVS F15"].westExit = "UVS D15";
 	rooms["UVS F15"].moveMinutes = 1;
 	rooms["UVS F15"].runOnEnter = null;
+	rooms["UVS F15"].addFlag(GLOBAL.INDOOR);
+	rooms["UVS F15"].addFlag(GLOBAL.SHIPHANGAR);
 
 	rooms["UVS D15"] = new RoomClass(this);
-	rooms["UVS D15"].roomName = "";
-	rooms["UVS D15"].description = "";
+	rooms["UVS D15"].roomName = "DOCKING\nACCESS";
+	rooms["UVS D15"].description = "A central hub connects several docking tubes together on the southernmost arm of Uveto Station. A welcoming desk is set up here, with several out-facing screens for visitors to fill out even more paperwork for the Camarilla. A handful of other spacers are milling about, directing the flow of cargo through the corridors or arguing with the short, fuzzy tove running the place -- almost always unsuccessfully.";
 	rooms["UVS D15"].planet = "UVETO STATION";
 	rooms["UVS D15"].system = "SYSTEM: SIRETTA";
 	rooms["UVS D15"].northExit = "UVS D13";
 	rooms["UVS D15"].eastExit = "UVS F15";
 	rooms["UVS D15"].moveMinutes = 1;
 	rooms["UVS D15"].runOnEnter = null;
+	rooms["UVS D15"].addFlag(GLOBAL.INDOOR);
 
 	rooms["UVS D13"] = new RoomClass(this);
-	rooms["UVS D13"].roomName = "";
-	rooms["UVS D13"].description = "";
+	rooms["UVS D13"].roomName = "\nCORRIDOR";
+	rooms["UVS D13"].description = "A bank of moving sidewalks connect the heart of Uveto Station to the distant tips of its arms. Several heavy gun turrets are unsubtly planted at strategic intervals, quietly tracking the movements of the spacers riding to and from the station. Despite the ever-present threat, the largely ausar passers-by seem unfazed, and some even laugh and smile. You suppose this must all be normal here...";
 	rooms["UVS D13"].planet = "UVETO STATION";
 	rooms["UVS D13"].system = "SYSTEM: SIRETTA";
 	rooms["UVS D13"].northExit = "UVS D11";
 	rooms["UVS D13"].southExit = "UVS D15";
 	rooms["UVS D13"].moveMinutes = 1;
 	rooms["UVS D13"].runOnEnter = null;
+	rooms["UVS D13"].addFlag(GLOBAL.INDOOR);
 
 	rooms["UVS D11"] = new RoomClass(this);
-	rooms["UVS D11"].roomName = "";
-	rooms["UVS D11"].description = "";
+	rooms["UVS D11"].roomName = "SHOP\nPASSAGE";
+	rooms["UVS D11"].description = "The corridor south, leading back to the docking port, widens out into a row of shops. Most of them look like your average general stores and supply shops. One of the shops does catch your eye, though, with its neon blue sign advertising it as the “Last Chance”.\n\nTo the north is the heart of the station, a circle of wide corridors surrounding the massive behemoth that is the station's space elevator.";
 	rooms["UVS D11"].planet = "UVETO STATION";
 	rooms["UVS D11"].system = "SYSTEM: SIRETTA";
 	rooms["UVS D11"].northExit = "UVS D9";
@@ -53,10 +59,11 @@ public function initUvetoRooms():void
 	rooms["UVS D11"].westExit = "UVS B11";
 	rooms["UVS D11"].moveMinutes = 1;
 	rooms["UVS D11"].runOnEnter = null;
-
+	rooms["UVS D11"].addFlag(GLOBAL.INDOOR);
+	
 	rooms["UVS D9"] = new RoomClass(this);
-	rooms["UVS D9"].roomName = "";
-	rooms["UVS D9"].description = "";
+	rooms["UVS D9"].roomName = "PROMENADE\nSOUTH";
+	rooms["UVS D9"].description = "You're standing on the southern-most edge of a circular promenade that surrounds Uveto Station's huge space elevator. The elevator access doors are just a few steps north of you, surrounded by a handful of merchants and spacers.\n\nTo the east, you see a sign pointing towards the station manager's office. You docked your ship a ways to the south, down the tether arm.";
 	rooms["UVS D9"].planet = "UVETO STATION";
 	rooms["UVS D9"].system = "SYSTEM: SIRETTA";
 	rooms["UVS D9"].eastExit = "UVS F9";
@@ -64,21 +71,24 @@ public function initUvetoRooms():void
 	rooms["UVS D9"].westExit = "UVS B9";
 	rooms["UVS D9"].moveMinutes = 1;
 	rooms["UVS D9"].runOnEnter = null;
+	rooms["UVS D9"].addFlag(GLOBAL.INDOOR);
 
 	/* Store? */
 	rooms["UVS B11"] = new RoomClass(this);
-	rooms["UVS B11"].roomName = "";
-	rooms["UVS B11"].description = "";
+	rooms["UVS B11"].roomName = "THE LAST\nCHANCE";
+	rooms["UVS B11"].description = "You're inside a small, brightly lit merchant stall. The walls are a warm, inviting off-pink and plastered with posters advertising various survival gear companies. Soft ausar pop music is playing over the speakers, barely audible over the rumble of a heater bolted to the wall. Racks of equipment, ranging from shield belts and personal heaters to ropes and pitons and hunting rifles hang on the shelves.";
 	rooms["UVS B11"].planet = "UVETO STATION";
 	rooms["UVS B11"].system = "SYSTEM: SIRETTA";
 	rooms["UVS B11"].northExit = "UVS B9";
 	rooms["UVS B11"].eastExit = "UVS D11";
 	rooms["UVS B11"].moveMinutes = 1;
 	rooms["UVS B11"].runOnEnter = null;
+	rooms["UVS B11"].addFlag(GLOBAL.INDOOR);
+	rooms["UVS B11"].addFlag(GLOBAL.COMMERCE);
 
 	rooms["UVS B9"] = new RoomClass(this);
-	rooms["UVS B9"].roomName = "";
-	rooms["UVS B9"].description = "";
+	rooms["UVS B9"].roomName = "PROMENADE\nSOUTH-WEST";
+	rooms["UVS B9"].description = "You're standing on the south-western edge of a circular promenade that surrounds Uveto Station's huge space elevator. To the south is a row of shops, one of which has the catchy, if grim, name “Last Chance”. You're just a hop and a skip from the elevator doors, either east or north of you.\n\nTo the north is a small lounge where several spacers are milling about, drinking and watching a holoscreen. It is, appropriately, labeled “Spacer's Lounge”.";
 	rooms["UVS B9"].planet = "UVETO STATION";
 	rooms["UVS B9"].system = "SYSTEM: SIRETTA";
 	rooms["UVS B9"].northExit = "UVS B7";
@@ -87,29 +97,33 @@ public function initUvetoRooms():void
 	rooms["UVS B9"].westExit = "UVS A9";
 	rooms["UVS B9"].moveMinutes = 1;
 	rooms["UVS B9"].runOnEnter = null;
+	rooms["UVS B9"].addFlag(GLOBAL.INDOOR);
 
 	/* CFS */
 	rooms["UVS A9"] = new RoomClass(this);
-	rooms["UVS A9"].roomName = "";
-	rooms["UVS A9"].description = "";
+	rooms["UVS A9"].roomName = "GARDENFORKS";
+	rooms["UVS A9"].description = "SORT THIS SHIT GARDE";
 	rooms["UVS A9"].planet = "UVETO STATION";
 	rooms["UVS A9"].system = "SYSTEM: SIRETTA";
 	rooms["UVS A9"].eastExit = "UVS B9";
 	rooms["UVS A9"].moveMinutes = 1;
 	rooms["UVS A9"].runOnEnter = null;
+	rooms["UVS A9"].addFlag(GLOBAL.INDOOR);
 
 	rooms["UVS B7"] = new RoomClass(this);
-	rooms["UVS B7"].roomName = "";
-	rooms["UVS B7"].description = "";
+	rooms["UVS B7"].roomName = "SPACERS\nLOUNGE";
+	rooms["UVS B7"].description = "A small lounge has been set up here, centered around an Apollo's Coffee shop and several holoscreens lining the walls. There's even a massage parlour set up here. An access door to the station's mighty space elevator is just to the east of you, and the shops are a few steps south. All around, a very convenient place to be.\n\nSeveral security goons are standing to the north, preventing you from accessing the northern portions of the stations without proper clearance. You don't need anything there anyway.";
 	rooms["UVS B7"].planet = "UVETO STATION";
 	rooms["UVS B7"].system = "SYSTEM: SIRETTA";
-	rooms["UVS B7"].northExit = "UVS B5";
+	//rooms["UVS B7"].northExit = "UVS B5";
 	rooms["UVS B7"].eastExit = "UVS D7";
 	rooms["UVS B7"].southExit = "UVS B9";
 	rooms["UVS B7"].moveMinutes = 1;
 	rooms["UVS B7"].runOnEnter = null;
-
+	rooms["UVS B7"].addFlag(GLOBAL.INDOOR);
+	
 	/* Docking 1 */
+	/*
 	rooms["UVS B5"] = new RoomClass(this);
 	rooms["UVS B5"].roomName = "";
 	rooms["UVS B5"].description = "";
@@ -118,31 +132,36 @@ public function initUvetoRooms():void
 	rooms["UVS B5"].southExit = "UVS B7";
 	rooms["UVS B5"].moveMinutes = 1;
 	rooms["UVS B5"].runOnEnter = null;
+	*/
 
 	/* Space Elevator */
 	rooms["UVS D7"] = new RoomClass(this);
-	rooms["UVS D7"].roomName = "";
-	rooms["UVS D7"].description = "";
+	rooms["UVS D7"].roomName = "SPACE ELEVATOR:\nSTATION";
+	rooms["UVS D7"].description = "The Uveto Station space elevator is a huge, flat cargo platform loaded down with crates and other spacers. Everyone on the elevator is bundled up with heavy coats, heat-generator belts, and anything else they can find to stave off the frigid cold of the icy moon below.";
 	rooms["UVS D7"].planet = "UVETO STATION";
 	rooms["UVS D7"].system = "SYSTEM: SIRETTA";
 	rooms["UVS D7"].eastExit = "UVS F7";
 	rooms["UVS D7"].westExit = "UVS B7";
 	rooms["UVS D7"].moveMinutes = 1;
 	rooms["UVS D7"].runOnEnter = null;
+	rooms["UVS D7"].addFlag(GLOBAL.INDOOR);
+	rooms["UVS D7"].addFlag(GLOBAL.LIFTDOWN);
 
 	rooms["UVS F7"] = new RoomClass(this);
-	rooms["UVS F7"].roomName = "";
-	rooms["UVS F7"].description = "";
+	rooms["UVS F7"].roomName = "PROMENADE\nEAST";
+	rooms["UVS F7"].description = "You're standing at the eastern-most edge of a circular promenade surrounding Uveto Station's space elevator. An access door to it is just to the west of you. A corridor to the east directs you to the executive offices. A very threatening pair of gun pods are bolted to the ceiling, silently tracking movement near the reinforced glass doors to the executive wing.\n\nSeveral security goons are standing to the north, preventing you from accessing the northern portions of the stations without proper clearance. You don't need anything there anyway.";
 	rooms["UVS F7"].planet = "UVETO STATION";
 	rooms["UVS F7"].system = "SYSTEM: SIRETTA";
-	rooms["UVS F7"].northExit = "UVS F5";
+	//rooms["UVS F7"].northExit = "UVS F5";
 	rooms["UVS F7"].eastExit = "UVS H7";
 	rooms["UVS F7"].southExit = "UVS F9";
 	rooms["UVS F7"].westExit = "UVS D7";
 	rooms["UVS F7"].moveMinutes = 1;
 	rooms["UVS F7"].runOnEnter = null;
+	rooms["UVS F7"].addFlag(GLOBAL.INDOOR);
 
 	/* Docking 2 */
+	/*
 	rooms["UVS F5"] = new RoomClass(this);
 	rooms["UVS F5"].roomName = "";
 	rooms["UVS F5"].description = "";
@@ -151,27 +170,33 @@ public function initUvetoRooms():void
 	rooms["UVS F5"].southExit = "UVS F7";
 	rooms["UVS F5"].moveMinutes = 1;
 	rooms["UVS F5"].runOnEnter = null;
+	*/
 
 	rooms["UVS F9"] = new RoomClass(this);
-	rooms["UVS F9"].roomName = "";
-	rooms["UVS F9"].description = "";
+	rooms["UVS F9"].roomName = "PROMENADE\nSOUTH-EAST";
+	rooms["UVS F9"].description = "You're standing on the south-eastern edge of a circular promenade that surrounds Uveto Station's huge space elevator. You're just a hop and a skip from the elevator doors, either west or north of you.\n\nA sign to the north indicates a corridor eastward as leading to the station chief and other executives' offices.";
 	rooms["UVS F9"].planet = "UVETO STATION";
 	rooms["UVS F9"].system = "SYSTEM: SIRETTA";
 	rooms["UVS F9"].northExit = "UVS F7";
 	rooms["UVS F9"].westExit = "UVS D9";
 	rooms["UVS F9"].moveMinutes = 1;
 	rooms["UVS F9"].runOnEnter = null;
+	rooms["UVS F9"].addFlag(GLOBAL.INDOOR);
 
 	rooms["UVS H7"] = new RoomClass(this);
-	rooms["UVS H7"].roomName = "";
-	rooms["UVS H7"].description = "";
+	rooms["UVS H7"].roomName = "EXECUTIVE\nLOBBY";
+	rooms["UVS H7"].description = "A very plush, posh lobby is seated at the end of the eastern wing, behind several security doors and a very threatening pair of gun pods bolted to the ceiling. The door east is labeled “Station Manager”; the one to the south indicates its the office of one Anyxine Rhenesunne, a Vice President of RhenWorld Stellar Excavations.\n\nSeveral tove are seated against the far walls, dug in behind computer banks and flickering holo-screens. Their beaked, fuzzy faces barely acknowledge you.";
 	rooms["UVS H7"].planet = "UVETO STATION";
 	rooms["UVS H7"].system = "SYSTEM: SIRETTA";
 	rooms["UVS H7"].eastExit = "UVS J7";
 	rooms["UVS H7"].southExit = "UVS H9";
 	rooms["UVS H7"].westExit = "UVS F7";
 	rooms["UVS H7"].moveMinutes = 1;
-	rooms["UVS H7"].runOnEnter = null;
+	rooms["UVS H7"].runOnEnter = function():Boolean {
+		setNavDisabled(NAV_EAST_DISABLE);
+		return false;
+	};
+	rooms["UVS H7"].addFlag(GLOBAL.INDOOR);
 
 	/* Station C&C */
 	rooms["UVS J7"] = new RoomClass(this);
@@ -182,26 +207,68 @@ public function initUvetoRooms():void
 	rooms["UVS J7"].westExit = "UVS H7";
 	rooms["UVS J7"].moveMinutes = 1;
 	rooms["UVS J7"].runOnEnter = null;
+	rooms["UVS J7"].addFlag(GLOBAL.INDOOR);
 
 	rooms["UVS H9"] = new RoomClass(this);
-	rooms["UVS H9"].roomName = "";
+	rooms["UVS H9"].roomName = "RHENWORLD\nOFFICES";
 	rooms["UVS H9"].description = "";
 	rooms["UVS H9"].planet = "UVETO STATION";
 	rooms["UVS H9"].system = "SYSTEM: SIRETTA";
 	rooms["UVS H9"].northExit = "UVS H7";
 	rooms["UVS H9"].southExit = "UVS H11";
 	rooms["UVS H9"].moveMinutes = 1;
-	rooms["UVS H9"].runOnEnter = null;
+	rooms["UVS H9"].addFlag(GLOBAL.INDOOR);
+	rooms["UVS H9"].addFlag(GLOBAL.NPC);
+	rooms["UVS H9"].runOnEnter = function():Boolean {
+		output("The RhenWorld Stellar Excavations offices are warmer than the rest of the ship, and brightly colored with sandy wallpapers and potted plants surrounded an interior fountain -- very expensive decorations on a space station. A half dozen female");
+		if (CodexManager.hasUnlockedEntry("Leithans")) output(" leithans");
+		else output(" plated, six-legged centaurs with ashen skin");
+		output(" are sitting on their legs behind ‘U’-shaped desks, busily working on holoscreens.");
+		if (!CodexManager.hasUnlockedEntry("Leithans"))
+		{
+			output(" <b>Your codex identifies them as leithans.</b>");
+			CodexManager.unlockEntry("Leithans");
+		}
+
+		if (flags["RHENWORLD_OFFICE_VISITED"] == undefined)
+		{
+			output("\n\nOne of the leithan girls smiles as you wander into the offices. <i>“Hello! Welcome to RhenWorld, " + pc.mf("Mr.", "Ms.") + "... Steele!”</i> she says, eyeing a dataslate to identify you. <i>“Miss Rhenesunne is currently in her office. Please, go ahead.”</i>");
+
+			output("\n\nShe sweeps one of her black, plated arms towards the southern door.");
+		}
+		else
+		{
+			output("\n\n<i>“Welcome back, " + pc.mf("Mr.", "Ms.") + " Steele!”</i> the leithan secretary nearest the south door says, flashing you an adorable smile.");
+		}
+		
+		return false;
+	};
+	
 
 	/* Anyx's Office */
 	rooms["UVS H11"] = new RoomClass(this);
-	rooms["UVS H11"].roomName = "";
-	rooms["UVS H11"].description = "";
+	rooms["UVS H11"].roomName = "MS RHENESUNNES\nOFFICE"; // lol like this is going to fit ever ;_;
+	rooms["UVS H11"].description = "The office of Vice President Anyxine Rhenesunne is relatively spartan, especially compared to the warm and comfortable lobby outside. A large, metal desk curves around the south side, covered with a half dozen different holoscreens. A single painting hangs on the western bulkhead, displaying a large desert landscape with craggy cliffs and mountains in the distance. A single large, cushioned swivel chair sits behind the main desk. Three metal chairs are opposite the desk for visitors like yourself.";
 	rooms["UVS H11"].planet = "UVETO STATION";
 	rooms["UVS H11"].system = "SYSTEM: SIRETTA";
 	rooms["UVS H11"].northExit = "UVS H9";
 	rooms["UVS H11"].moveMinutes = 1;
-	rooms["UVS H11"].runOnEnter = null;
+	rooms["UVS H11"].addFlag(GLOBAL.INDOOR);
+	rooms["UVS H11"].addFlag(GLOBAL.NPC);
+	rooms["UVS H11"].runOnEnter = function():Boolean {
+		if (flags["MET_RHENESUNNE"] == undefined)
+		{
+			output("\n\nYou might have expected a leithan woman after the group of them out in the lobby, but instead you're treated to the sight of a tall, slender bipedal woman with lustrous black hair pulled back into a ponytail. A pair of blue, glittering eyes glance up at you from the screens and the woman leans back in her chair, revealing a svelte, athletic body with curves that strain against a very expensive looking bodysuit.");
+
+			output("\n\n<i>“I wasn’t aware I had an appointment,”</i> she says coolly, eyeing you. <i>“Please, have a seat.”</i>");
+		}
+		else
+		{
+			output("<i>“Ah, Steele,”</i> Anyxine says, leaning back in her chair and steepling her fingers as you approach.");
+		}
+
+		return false;
+	};
 
 	/** IRESTEAD -------------------------------------------------------------------- */
 	/** ----------------------------------------------------------------------------- */

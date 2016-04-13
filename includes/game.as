@@ -82,6 +82,12 @@ public function isNavDisabled(umask:uint):Boolean
 	return false;
 }
 
+public function setNavDisabled(addUmask:uint):void
+{
+	if (flags["NAV_DISABLED"] == undefined) flags["NAV_DISABLED"] = addUmask;
+	flags["NAV_DISABLED"] |= addUmask;
+}
+
 public function showLocationName():void
 {
 	if(currentLocation == "SHIP INTERIOR") setLocation("SHIP\nINTERIOR", rooms[rooms["SHIP INTERIOR"].outExit].planet, rooms[rooms["SHIP INTERIOR"].outExit].system);
@@ -732,6 +738,14 @@ public function flyMenu():void {
 		}
 	}
 	else addDisabledButton(3, "Locked", "Locked", "You need to find one of your father’s probes to access this planet’s coordinates and name.");
+	
+	if (flags["UVETO_UNLOCKED"] != undefined)
+	{
+		if (shipLocation != "UVS F15") addButton(4, "Uveto", flyTo, "Uveto");
+		else addDisabledButton(4, "Uveto", "Uvto", "You’re already here.");
+	}
+	else addDisabledButton(4, "Locked", "Locked", "You need to find one of your father’s probes to access this planet’s coordinates and name.");
+	
 	//NEW TEXAS
 	if(flags["NEW_TEXAS_COORDINATES_GAINED"] != undefined)
 	{
@@ -834,6 +848,13 @@ public function flyTo(arg:String):void {
 		shortTravel = (shipLocation == "600");
 		interruptMenu = true;
 		kq2TravelToKara(shortTravel);
+	}
+	else if (arg == "Uveto")
+	{
+		shipLocation = "UVS F15";
+		currentLocation = "UVS F15";
+		flyToUveto();
+		interruptMenu = true;
 	}
 	
 	var timeFlown:Number = (shortTravel ? 30 + rand(10) : 600 + rand(30));
