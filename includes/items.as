@@ -1,4 +1,5 @@
-﻿import classes.Characters.PlayerCharacter;
+﻿import classes.Characters.Lerris;
+import classes.Characters.PlayerCharacter;
 import classes.Creature;
 import classes.DataManager.Errors.VersionUpgraderError;
 import classes.DataManager.Serialization.ItemSaveable;
@@ -280,6 +281,11 @@ public function shop(keeper:Creature):void {
 	else if(keeper is Liriel)
 	{
 		lirielBackMenu(1);
+		return;
+	}
+	else if (keeper is Lerris)
+	{
+		lerrisMenu();
 		return;
 	}
 	clearOutput();

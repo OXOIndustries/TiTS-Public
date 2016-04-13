@@ -159,6 +159,8 @@
 		include "../includes/tavros/shearBeauty.as";
 		include "../includes/tavros/shelly.as";
 		include "../includes/tavros/vahn.as";
+		include "../includes/tavros/rooms.as";
+		include "../includes/tavros/tamaniCorpShop.as";
 		
 		//First planet
 		include "../includes/mhenga/burt.as";
@@ -183,6 +185,7 @@
 		include "../includes/mhenga/vko.as";
 		include "../includes/mhenga/zilMale.as";
 		include "../includes/mhenga/zilFemale.as";
+		include "../includes/mhenga/rooms.as";
 		
 		//Second planet
 		include "../includes/tarkus/anno.as";
@@ -207,6 +210,7 @@
 		include "../includes/tarkus/taxi.as";
 		include "../includes/tarkus/theMess.as";
 		include "../includes/tarkus/sydianFemale.as";
+		include "../includes/tarkus/rooms.as";
 
 		//Third planet
 		include "../includes/newTexas/newTexas.as";
@@ -222,6 +226,7 @@
 		include "../includes/newTexas/yammi.as";
 		include "../includes/newTexas/yancy.as";
 		include "../includes/newTexas/zephyr.as";
+		include "../includes/newTexas/rooms.as";
 		
 		//Fourth planet
 		include "../includes/myrellion/anzhelaRedMyrMedic.as";
@@ -416,6 +421,10 @@
 			flags = new Dictionary();
 
 			initializeRooms();
+			initTavrosRooms();
+			initMhengaRooms();
+			initTarkusRooms();
+			initNewTexasRooms();
 			initializeMyrellionRooms();
 			kquest2InitRooms();
 			
@@ -1160,6 +1169,10 @@
 		public function get liriel():Liriel
 		{
 			return chars["LIRIEL"];
+		}
+		public function get lerris():Lerris
+		{
+			return chars["LERRIS"];
 		}
 		
 		private var _dbgtestvar:int = 0;

@@ -620,7 +620,7 @@
 			return "Your [pc.antennae] are burning. Someone must be thinking about you.";
 		}
 		
-		public var horns: Number = 0;
+		public var horns:Number = 0;
 		public function hornsUnlocked(newHornsNumber:Number):Boolean
 		{
 			return true;
@@ -12176,7 +12176,7 @@
 			return (lowerUndergarment.hardLightEquipped);
 		}
 		// Always picks the main anatomy--no need to complicate it!
-		public function cockOrStrapon(forceAdjective: int = 0): String {
+		public function cockOrStrapon(forceAdjective: int = 0, idxOverride:int = 0): String {
 			var descript: String = "";
 			var sAdjective:Array = [];
 			var sNoun:Array = [];
@@ -12214,8 +12214,8 @@
 			// Penis?
 			else if(hasCock())
 			{
-				if(forceAdjective == 1 || (forceAdjective == 0 && rand(2) == 0)) descript += cockAdjective(0) + " ";
-				descript += cockNoun2(cocks[0]);
+				if(forceAdjective == 1 || (forceAdjective == 0 && rand(2) == 0)) descript += cockAdjective(idxOverride) + " ";
+				descript += cockNoun2(cocks[idxOverride]);
 				return descript;
 			}
 			// Giant Clits?
