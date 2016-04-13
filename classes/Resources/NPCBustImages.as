@@ -31,6 +31,7 @@
 		public static var JAYECHO:Object = new JayEchoBusts();
 		public static var LAPINBEAU:Object = new LapinbeauBusts();
 		public static var MANIACPAINT:Object = new ManiacPaintBusts();
+		public static var PEEKAY:Object = new PeeKayBusts();
 		public static var RENEZUO:Object = new RenezuoBusts();
 		public static var SHOU:Object = new ShouBusts();
 		public static var UTHSTAR:Object = new UthstarBusts();
