@@ -53,6 +53,38 @@
 			return false;
 		}
 		
+		public static var LastArtistUsed:String = "";
+		
+		CONFIG::IMAGEPACK
+		{
+			// We only care about the specific artist we're currently displaying the bust for, so....
+			public static function hasHighResBustForCharacter(bustName:String):Boolean
+			{
+				if (bustName == "none") return false;
+				if (LastArtistUsed.length <= 0) return false;
+				
+				if ("Full_" + bustName in NPCBustImages[LastArtistUsed])
+				{
+					return true;
+				}
+				
+				return false;
+			}
+			
+			public static function getHighResBustForCharacter(bustName:String):Class
+			{
+				if (bustName == "none") return null;
+				if (LastArtistUsed.length <= 0) return null;
+				
+				if ("Full_" + bustName in NPCBustImages[LastArtistUsed])
+				{
+					return NPCBustImages[LastArtistUsed]["Full_" + bustName];
+				}
+				
+				return null;
+			}
+		}
+		
 		// Return the required bust class definition based on the current game settings.
 		public static function getBust(bustName:String):Class
 		{
@@ -75,6 +107,7 @@
 				if (opts.configuredBustPreferences[bustName] == "NONE") return null;
 				
 				tBust = lookupBustInClass(bustName, NPCBustImages[opts.configuredBustPreferences[bustName]], doNude);
+				LastArtistUsed = opts.configuredBustPreferences[bustName];
 				return tBust;
 			}
 			
@@ -82,14 +115,22 @@
 			if (("Bust_" + bustName) in NPCBustImages[opts.primaryBustArtist])
 			{
 				tBust = lookupBustInClass(bustName, NPCBustImages[opts.primaryBustArtist], doNude);
-				if (tBust != null) return tBust;
+				if (tBust != null)
+				{
+					LastArtistUsed = opts.primaryBustArtist;
+					return tBust;
+				}
 			}
 			
 			// or the secondary
 			if (("Bust_" + bustName) in NPCBustImages[opts.secondaryBustArtist])
 			{
 				tBust = lookupBustInClass(bustName, NPCBustImages[opts.secondaryBustArtist], doNude);
-				if (tBust != null) return tBust;
+				if (tBust != null)
+				{
+					LastArtistUsed = opts.secondaryBustArtist;
+					return tBust;
+				}
 			}
 			
 			// If fallbacks are enabled...
@@ -109,6 +150,7 @@
 					if (tBust != null)
 					{
 						opts.configuredBustPreferences[bustName] = tArtist;
+						LastArtistUsed = tArtist;
 						return tBust;
 					}
 				}

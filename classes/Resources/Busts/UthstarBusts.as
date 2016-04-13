@@ -8,7 +8,7 @@ package classes.Resources.Busts
 	{
 		public function get PREVIEW():Class { return Bust_SEXBOT_FEMALE; }
 		
-		[Embed(source = "../../../assets/images/npcs/sexbot.png", mimeType = "image/png")]
+		[Embed(source = "../../../assets/images/npcs/uthstar/sexbot.png", mimeType = "image/png")]
 		public var Bust_SEXBOT_FEMALE:Class;
 	}
 

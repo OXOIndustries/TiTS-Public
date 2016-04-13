@@ -44,6 +44,14 @@
 		public var Bust_CAMERON:Class;
 		[Embed(source = "../../../assets/images/npcs/gats/cameron_nude.png", mimeType = "image/png")]
 		public var Bust_CAMERON_NUDE:Class;
+		
+		CONFIG::IMAGEPACK
+		{
+			[Embed(source = "../../../assets/images/npcs/gats/hr/cameron.png", mimeType = "image/png")]
+			public var Full_CAMERON:Class;
+			[Embed(source = "../../../assets/images/npcs/gats/hr/cameron_nude.png", mimeType = "image/png")]
+			public var Full_CAMERON_NUDE:Class;
+		}
 
 		[Embed(source = "../../../assets/images/npcs/gats/Captain_Khorgan.png", mimeType = "image/png")]
 		public var Bust_CAPTAIN_KHORGAN:Class;
@@ -128,6 +136,14 @@
 		public var Bust_MILLIE:Class;
 		[Embed(source = "../../../assets/images/npcs/gats/millie_nude.png", mimeType = "image/png")]
 		public var Bust_MILLIE_NUDE:Class;
+		
+		CONFIG::IMAGEPACK
+		{
+			[Embed(source = "../../../assets/images/npcs/gats/hr/millie.png", mimeType = "image/png")]
+			public var Full_MILLIE:Class;
+			[Embed(source = "../../../assets/images/npcs/gats/hr/millie_nude.png", mimeType = "image/png")]
+			public var Full_MILLIE_NUDE:Class;
+		}
 
 		[Embed(source = "../../../assets/images/npcs/gats/Mimbrane.png", mimeType = "image/png")]
 		public var Bust_MIMBRANE:Class;
@@ -219,6 +235,14 @@
 		public var Bust_UNA:Class;
 		[Embed(source = "../../../assets/images/npcs/gats/una_nude.png", mimeType = "image/png")]
 		public var Bust_UNA_NUDE:Class;
+		
+		CONFIG::IMAGEPACK
+		{
+			[Embed(source = "../../../assets/images/npcs/gats/hr/una.png", mimeType = "image/png")]
+			public var Full_UNA:Class;
+			[Embed(source = "../../../assets/images/npcs/gats/hr/una_nude.png", mimeType = "image/png")]
+			public var Full_UNA_NUDE:Class;
+		}
 
 		[Embed(source = "../../../assets/images/npcs/gats/Venus_Pitcher.png", mimeType = "image/png")]
 		public var Bust_VENUSPITCHER:Class;
