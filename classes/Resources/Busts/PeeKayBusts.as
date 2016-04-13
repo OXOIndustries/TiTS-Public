@@ -1,5 +1,6 @@
 package classes.Resources.Busts 
 {
+	import flash.geom.Rectangle;
 	/**
 	 * ...
 	 * @author Gedan
