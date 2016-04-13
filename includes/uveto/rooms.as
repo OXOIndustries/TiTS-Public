@@ -136,12 +136,14 @@ public function initUvetoRooms():void
 
 	/* Space Elevator */
 	rooms["UVS D7"] = new RoomClass(this);
-	rooms["UVS D7"].roomName = "SPACE ELEVATOR:\nSTATION";
+	rooms["UVS D7"].roomName = "SPACE LIFT:\nSTATION";
 	rooms["UVS D7"].description = "The Uveto Station space elevator is a huge, flat cargo platform loaded down with crates and other spacers. Everyone on the elevator is bundled up with heavy coats, heat-generator belts, and anything else they can find to stave off the frigid cold of the icy moon below.";
 	rooms["UVS D7"].planet = "UVETO STATION";
 	rooms["UVS D7"].system = "SYSTEM: SIRETTA";
 	rooms["UVS D7"].eastExit = "UVS F7";
 	rooms["UVS D7"].westExit = "UVS B7";
+	rooms["UVS D7"].inExit = "UVI F34";
+	rooms["UVS D7"].inText = "Down";
 	rooms["UVS D7"].moveMinutes = 1;
 	rooms["UVS D7"].runOnEnter = null;
 	rooms["UVS D7"].addFlag(GLOBAL.INDOOR);
@@ -247,7 +249,7 @@ public function initUvetoRooms():void
 
 	/* Anyx's Office */
 	rooms["UVS H11"] = new RoomClass(this);
-	rooms["UVS H11"].roomName = "MS RHENESUNNES\nOFFICE"; // lol like this is going to fit ever ;_;
+	rooms["UVS H11"].roomName = "RHENESUNNES\nOFFICE"; // lol like this is going to fit ever ;_;
 	rooms["UVS H11"].description = "The office of Vice President Anyxine Rhenesunne is relatively spartan, especially compared to the warm and comfortable lobby outside. A large, metal desk curves around the south side, covered with a half dozen different holoscreens. A single painting hangs on the western bulkhead, displaying a large desert landscape with craggy cliffs and mountains in the distance. A single large, cushioned swivel chair sits behind the main desk. Three metal chairs are opposite the desk for visitors like yourself.";
 	rooms["UVS H11"].planet = "UVETO STATION";
 	rooms["UVS H11"].system = "SYSTEM: SIRETTA";
@@ -275,81 +277,101 @@ public function initUvetoRooms():void
 
 	/* Elevator */
 	rooms["UVI F34"] = new RoomClass(this);
-	rooms["UVI F34"].roomName = "";
-	rooms["UVI F34"].description = "";
+	rooms["UVI F34"].roomName = "SPACE LIFT\nIRESTEAD";
+	rooms["UVI F34"].description = "The Uveto Station space elevator is a huge, flat cargo platform loaded down with crates and other spacers. Everyone on the elevator is bundled up with heavy coats, heat-generator belts, and anything else they can find to stave off the frigid cold of the icy world outside. A sign on the hallway to the east says, in big, friendly neon letters, ‘WELCOME TO UVETO’.\n\nThe door out of the elevator leads you into a large, sealed metal building with frosted glass windows letting in the light. Dozens of ausar are moving around inside, many of whom wander over to help unload the elevator. ";
 	rooms["UVI F34"].planet = "PLANET: UVETO VII";
 	rooms["UVI F34"].system = "SYSTEM: SIRETTA";
 	rooms["UVI F34"].eastExit = "UVI H34";
+	rooms["UVI F34"].outExit = "UVS D7";
+	rooms["UVI F34"].outText = "Up";
 	rooms["UVI F34"].moveMinutes = 1;
 	rooms["UVI F34"].runOnEnter = null;
+	rooms["UVI F34"].addFlag(GLOBAL.INDOOR);
+	rooms["UVI F34"].addFlag(GLOBAL.LIFTUP);
 
 	rooms["UVI H34"] = new RoomClass(this);
-	rooms["UVI H34"].roomName = "";
-	rooms["UVI H34"].description = "";
+	rooms["UVI H34"].roomName = "SHERIFFS OFFICE\EXTERIOR";
+	rooms["UVI H34"].description = "The back of the Uveto VII central hub is a large, metal structure with vaulted ceilings and glass windows covered with frost. A great deal of cargo is stacked up all over, mostly showing Camarilla, Steele Tech, and RhenWorld markings.\n\nThe space elevator's access is just to the west of you. To the north, you see markings indicating a Sheriff's station. ";
 	rooms["UVI H34"].planet = "PLANET: UVETO VII";
 	rooms["UVI H34"].system = "SYSTEM: SIRETTA";
 	rooms["UVI H34"].northExit = "UVI H32";
+	rooms["UVI H34"].eastExit = "UVI J34";
 	rooms["UVI H34"].westExit = "UVI F34";
 	rooms["UVI H34"].moveMinutes = 1;
 	rooms["UVI H34"].runOnEnter = null;
+	rooms["UVI H34"].addFlag(GLOBAL.INDOOR);
 
-	/* Sherrifs Office */
+	/* Sheriffs Office */
 	rooms["UVI H32"] = new RoomClass(this);
-	rooms["UVI H32"].roomName = "";
-	rooms["UVI H32"].description = "";
+	rooms["UVI H32"].roomName = "SHERIFFS\nOFFICE";
+	rooms["UVI H32"].description = "THIRD PLS";
 	rooms["UVI H32"].planet = "PLANET: UVETO VII";
 	rooms["UVI H32"].system = "SYSTEM: SIRETTA";
-	rooms["UVI H32"].eastExit = "UVI J32"; // TEMP 9999
+	//rooms["UVI H32"].eastExit = "UVI J32"; // TEMP 9999
 	rooms["UVI H32"].southExit = "UVI H34";
 	rooms["UVI H32"].moveMinutes = 1;
 	rooms["UVI H32"].runOnEnter = null;
+	rooms["UVI H32"].addFlag(GLOBAL.INDOOR);
+	rooms["UVI H32"].addFlag(GLOBAL.NPC);
 
 	/* Geo Survey */
 	rooms["UVI J32"] = new RoomClass(this);
-	rooms["UVI J32"].roomName = "";
-	rooms["UVI J32"].description = "";
+	rooms["UVI J32"].roomName = "GEO. SURVEY\nINTERIOR";
+	rooms["UVI J32"].description = "REAPER PLS";
 	rooms["UVI J32"].planet = "PLANET: UVETO VII";
 	rooms["UVI J32"].system = "SYSTEM: SIRETTA";
 	rooms["UVI J32"].southExit = "UVI J34";
-	rooms["UVI J32"].westExit = "UVI H32"; // TEMP 9999
+	//rooms["UVI J32"].westExit = "UVI H32"; // TEMP 9999
 	rooms["UVI J32"].moveMinutes = 1;
 	rooms["UVI J32"].runOnEnter = null;
+	rooms["UVI J32"].addFlag(GLOBAL.INDOOR);
+	rooms["UVI J32"].addFlag(GLOBAL.NPC);
 
 	rooms["UVI J34"] = new RoomClass(this);
-	rooms["UVI J34"].roomName = "";
-	rooms["UVI J34"].description = "";
+	rooms["UVI J34"].roomName = "GEO. SURVEY\nEXTERIOR";
+	rooms["UVI J34"].description = "To the north, through a small tunnel, there is a building marked as the Geological Survey Station. It is a three story building with a glass hexagonal observation deck on top, similar to some landing control towers you’ve seen. Each glass pane appears to have armoured shutters mounted to it, presumably to keep out Uveto's extreme storms.\n\nAround the side of the building you can see a set of antennas and a sealed sensor dome.\n\nTo the south, you can see a large elevator shaft that seems to go <i>down</i>. To the east, you see a pair of heavy doors.";
 	rooms["UVI J34"].planet = "PLANET: UVETO VII";
 	rooms["UVI J34"].system = "SYSTEM: SIRETTA";
 	rooms["UVI J34"].northExit = "UVI J32";
 	rooms["UVI J34"].eastExit = "UVI L34";
 	rooms["UVI J34"].southExit = "UVI J36";
+	rooms["UVI J34"].westExit = "UVI H34";
 	rooms["UVI J34"].moveMinutes = 1;
 	rooms["UVI J34"].runOnEnter = null;
+	rooms["UVI J34"].addFlag(GLOBAL.INDOOR);
 
 	/* Research Station Access */
 	rooms["UVI J36"] = new RoomClass(this);
-	rooms["UVI J36"].roomName = "";
-	rooms["UVI J36"].description = "";
+	rooms["UVI J36"].roomName = "RESEARCH\nACCESS";
+	rooms["UVI J36"].description = "GARDE PLS";
 	rooms["UVI J36"].planet = "PLANET: UVETO VII";
 	rooms["UVI J36"].system = "SYSTEM: SIRETTA";
 	rooms["UVI J36"].northExit = "UVI J34";
 	rooms["UVI J36"].moveMinutes = 1;
 	rooms["UVI J36"].runOnEnter = null;
+	rooms["UVI J36"].addFlag(GLOBAL.INDOOR);
 
 	/* Entrance */
 	rooms["UVI L34"] = new RoomClass(this);
-	rooms["UVI L34"].roomName = "";
-	rooms["UVI L34"].description = "";
+	rooms["UVI L34"].roomName = "CENTRAL HUB\ENTRANCE";
+	rooms["UVI L34"].description = "A huge steel door leads out from the central hub of Irestead, Uveto's hub city, out onto the snowy main street. You're buffeted by strong, icy winds that bite at your [pc.skinFurScales], forcing you to wrap your arms around yourself... and this is underneath the protective walls that surrounds the city. ";
 	rooms["UVI L34"].planet = "PLANET: UVETO VII";
 	rooms["UVI L34"].system = "SYSTEM: SIRETTA";
 	rooms["UVI L34"].eastExit = "UVI N34";
 	rooms["UVI L34"].westExit = "UVI J34";
 	rooms["UVI L34"].moveMinutes = 1;
-	rooms["UVI L34"].runOnEnter = null;
+	rooms["UVI L34"].addFlag(GLOBAL.OUTDOOR);
+	rooms["UVI L34"].runOnEnter = function():Boolean {
+		output("\n\nA long, snow-encrusted street runs north to south just ahead. To the west is the warm, protective embrace of Uveto's central hub.");
+		if (pc.willTakeColdDamage()) output(" It's all you can do to force yourself not to run for it... holy SHIT it's cold here! You've got to get inside, or find some way to warm yourself up ASAP.");
+		else if (pc.hasHeatBelt()) output(" Even with the warmth provided by your heat belt, it's still freezing cold out here. Just not lethally so.");
+		
+		return false;
+	};
 
 	rooms["UVI N34"] = new RoomClass(this);
-	rooms["UVI N34"].roomName = "";
-	rooms["UVI N34"].description = "";
+	rooms["UVI N34"].roomName = "IRESTEAD\nCROSSING";
+	rooms["UVI N34"].description = "An intersection branches off from the long, snowy-wracked main road of Irestead, heading west towards the governmental hub. A few treaded vehicles trundle along the road, going from the gates southward to the bigger residential buildings to the north.";
 	rooms["UVI N34"].planet = "PLANET: UVETO VII";
 	rooms["UVI N34"].system = "SYSTEM: SIRETTA";
 	rooms["UVI N34"].northExit = "UVI N32";
@@ -357,20 +379,22 @@ public function initUvetoRooms():void
 	rooms["UVI N34"].westExit = "UVI L34";
 	rooms["UVI N34"].moveMinutes = 1;
 	rooms["UVI N34"].runOnEnter = null;
+	rooms["UVI N34"].addFlag(GLOBAL.OUTDOOR);
 
 	rooms["UVI N36"] = new RoomClass(this);
-	rooms["UVI N36"].roomName = "";
-	rooms["UVI N36"].description = "";
+	rooms["UVI N36"].roomName = "CAR\nPARK";
+	rooms["UVI N36"].description = "Several large vehicles are parked out here, ranging from hover skiffs to huge industrial movers. A small chain fence surrounds the industrial looking ones, displaying signs for RhenWorld and the Confederate Geological Society.";
 	rooms["UVI N36"].planet = "PLANET: UVETO VII";
 	rooms["UVI N36"].system = "SYSTEM: SIRETTA";
 	rooms["UVI N36"].northExit = "UVI N34";
 	rooms["UVI N36"].southExit = "UVI N38";
 	rooms["UVI N36"].moveMinutes = 1;
 	rooms["UVI N36"].runOnEnter = null;
+	rooms["UVI N36"].addFlag(GLOBAL.OUTDOOR);
 
 	rooms["UVI N38"] = new RoomClass(this);
-	rooms["UVI N38"].roomName = "";
-	rooms["UVI N38"].description = "";
+	rooms["UVI N38"].roomName = "\nINTERSECTION";
+	rooms["UVI N38"].description = "An intersection connects an eastward road to the main street. To the east, you can see a huge, black gate in the town's wall, separating you from the hostile wilderness outside. A few large, intimidating gun turrets are pointed out into the wastes.";
 	rooms["UVI N38"].planet = "PLANET: UVETO VII";
 	rooms["UVI N38"].system = "SYSTEM: SIRETTA";
 	rooms["UVI N38"].northExit = "UVI N36";
@@ -378,40 +402,56 @@ public function initUvetoRooms():void
 	rooms["UVI N38"].southExit = "UVI N40";
 	rooms["UVI N38"].moveMinutes = 1;
 	rooms["UVI N38"].runOnEnter = null;
+	rooms["UVI N38"].addFlag(GLOBAL.OUTDOOR);
 
 	rooms["UVI N40"] = new RoomClass(this);
-	rooms["UVI N40"].roomName = "";
-	rooms["UVI N40"].description = "";
+	rooms["UVI N40"].roomName = "SOUTHERN\nRESIDENTAL";
+	rooms["UVI N40"].description = "The main street leads into a large residential burg, sprawling out around the road with dozens of small houses clinging low to the frozen ground. A few huskar are moving about outside, bundled up in heavy clothing and moving quickly towards their destinations.";
 	rooms["UVI N40"].planet = "PLANET: UVETO VII";
 	rooms["UVI N40"].system = "SYSTEM: SIRETTA";
 	rooms["UVI N40"].northExit = "UVI N38";
 	rooms["UVI N40"].southExit = "UVI N42";
 	rooms["UVI N40"].moveMinutes = 1;
 	rooms["UVI N40"].runOnEnter = null;
+	rooms["UVI N40"].addFlag(GLOBAL.OUTDOOR);
 
 	rooms["UVI N42"] = new RoomClass(this);
-	rooms["UVI N42"].roomName = "";
-	rooms["UVI N42"].description = "";
+	rooms["UVI N42"].roomName = "SOUTHERN\nCOMMERCE";
+	rooms["UVI N42"].description = "Several shops are set up around the southern end of the main street, advertising their wares. Most are simple things like grocery stores, a computer shop, and the like. To the west, though, you spot a shop that catches your eye: the Hunter's Dream. ";
 	rooms["UVI N42"].planet = "PLANET: UVETO VII";
 	rooms["UVI N42"].system = "SYSTEM: SIRETTA";
 	rooms["UVI N42"].northExit = "UVI N40";
 	rooms["UVI N42"].westExit = "UVI L42";
 	rooms["UVI N42"].moveMinutes = 1;
 	rooms["UVI N42"].runOnEnter = null;
+	rooms["UVI N42"].addFlag(GLOBAL.OUTDOOR);
 
 	/* Another Store */
 	rooms["UVI L42"] = new RoomClass(this);
-	rooms["UVI L42"].roomName = "";
-	rooms["UVI L42"].description = "";
+	rooms["UVI L42"].roomName = "HUNTERS\nDREAM";
+	rooms["UVI L42"].description = "The inside of the Hunter's Dream looks like a cross between an old-school hunter's lodge, complete with animal trophies and holo-photos of successful hunters standing over their kills, and a modern shop with glass panes protecting expensive weapons and a softly-beeping credit swipe.";
 	rooms["UVI L42"].planet = "PLANET: UVETO VII";
 	rooms["UVI L42"].system = "SYSTEM: SIRETTA";
 	rooms["UVI L42"].eastExit = "UVI N42";
 	rooms["UVI L42"].moveMinutes = 1;
-	rooms["UVI L42"].runOnEnter = null;
+	rooms["UVI L42"].addFlag(GLOBAL.INDOOR);
+	rooms["UVI L42"].addFlag(GLOBAL.COMMERCE);
+	rooms["UVI L42"].runOnEnter = function():Boolean {
+		if (flags["MET_HUNTERS_DREAM_SHOPKEEP"] == undefined)
+		{
+			output("\n\nA young humanoid woman with fox-like ears is standing behind the counter, dressed in snow-white leathers and hides that leave little bare. At first glance you think she's an albino, what with red eyes and snowy hair.");
+		}
+		else
+		{
+			output("\n\nWHO THE FUCK KNOWS, WHY WOULD WE EVER HAVE ONE CONCISE LIST OF FUCKING ROOM DESCRIPTIONS?????");
+		}
+		return false;
+	}
+	
 
 	rooms["UVI P38"] = new RoomClass(this);
-	rooms["UVI P38"].roomName = "";
-	rooms["UVI P38"].description = "";
+	rooms["UVI P38"].roomName = "GUARD\nPOST";
+	rooms["UVI P38"].description = "Several ausars are standing inside a small, sealed building beside the gates, all dressed in military uniforms and carrying rifles slung over their shoulders. The gate to the town is just a few yards east of you, underneath a pair of intimidating gun turrets on the walls. To the south, you see a large set of sliding glass doors under an awning with the words ‘MAGLEV STATION’ written in bright, cheerful letters.";
 	rooms["UVI P38"].planet = "PLANET: UVETO VII";
 	rooms["UVI P38"].system = "SYSTEM: SIRETTA";
 	rooms["UVI P38"].eastExit = "UVI R38";
@@ -419,16 +459,18 @@ public function initUvetoRooms():void
 	rooms["UVI P38"].westExit = "UVI N38";
 	rooms["UVI P38"].moveMinutes = 1;
 	rooms["UVI P38"].runOnEnter = null;
+	rooms["UVI P38"].addFlag(GLOBAL.OUTDOOR);
 
 	/* Maglev Station */
 	rooms["UVI P40"] = new RoomClass(this);
-	rooms["UVI P40"].roomName = "";
-	rooms["UVI P40"].description = "";
+	rooms["UVI P40"].roomName = "MAGLEV\nSTATION";
+	rooms["UVI P40"].description = "You're underneath Irestead now, perhaps fifty feet underground. A large, two-track train station has been constructed here, connected to the town above via a bank of elevators and stairs. Safe and warm beneath the ground, the train station seems to be one of the most populated places in town: several dozen ausar and lethans are milling about, most dressed in heavily padded and furred coats bearing various corporate insignias: RhenWorld and Akkadi the most prevalent of them. You get the impression many of the people here are either coming from or going to the savicite mines outside of town.";
 	rooms["UVI P40"].planet = "PLANET: UVETO VII";
 	rooms["UVI P40"].system = "SYSTEM: SIRETTA";
 	rooms["UVI P40"].northExit = "UVI P38";
 	rooms["UVI P40"].moveMinutes = 1;
 	rooms["UVI P40"].runOnEnter = null;
+	rooms["UVI P40"].addFlag(GLOBAL.INDOOR);
 
 	/* To Ice Plains */
 	rooms["UVI R38"] = new RoomClass(this);
@@ -441,8 +483,8 @@ public function initUvetoRooms():void
 	rooms["UVI R38"].runOnEnter = null;
 
 	rooms["UVI N32"] = new RoomClass(this);
-	rooms["UVI N32"].roomName = "";
-	rooms["UVI N32"].description = "";
+	rooms["UVI N32"].roomName = "MEAD\nSTREET";
+	rooms["UVI N32"].description = "A small alley leads down from the street and to a door on a small brown building with a neon sign out front announcing it as the town's Mead Hall. How quaint.";
 	rooms["UVI N32"].planet = "PLANET: UVETO VII";
 	rooms["UVI N32"].system = "SYSTEM: SIRETTA";
 	rooms["UVI N32"].northExit = "UVI N30";
@@ -450,10 +492,11 @@ public function initUvetoRooms():void
 	rooms["UVI N32"].eastExit = "UVI P32";
 	rooms["UVI N32"].moveMinutes = 1;
 	rooms["UVI N32"].runOnEnter = null;
+	rooms["UVI N32"].addFlag(GLOBAL.OUTDOOR);
 
 	rooms["UVI N30"] = new RoomClass(this);
-	rooms["UVI N30"].roomName = "";
-	rooms["UVI N30"].description = "";
+	rooms["UVI N30"].roomName = "TEMPLE\nSTREET";
+	rooms["UVI N30"].description = "The main street comes to a head here, leading up to a huge wooden building with a pair of blazing fires flickering in metal braziers outside. Wide marble steps lead up to a pair of metal-reinforced doors. A pair of armored human are standing outside, clad in snow-white ceramic plates with dark scarves, capes, and kilts over them. Each has a longspear grasped in his hands, and an energy pistol on his hip.\n\nTo the east, you can see a the nearest house to the temple. It's a small, dark gray building that you imagine must be largely built underground. A small plate beside it gives the street address, and says in flowing letters ‘Shade and Astra Irons’.";
 	rooms["UVI N30"].planet = "PLANET: UVETO VII";
 	rooms["UVI N30"].system = "SYSTEM: SIRETTA";
 	rooms["UVI N30"].northExit = "UVI N28";
@@ -461,6 +504,7 @@ public function initUvetoRooms():void
 	rooms["UVI N30"].southExit = "UVI N32";
 	rooms["UVI N30"].moveMinutes = 1;
 	rooms["UVI N30"].runOnEnter = null;
+	rooms["UVI N30"].addFlag(GLOBAL.OUTDOOR);
 
 	/* Shades Residence */
 	rooms["UVI P30"] = new RoomClass(this);
