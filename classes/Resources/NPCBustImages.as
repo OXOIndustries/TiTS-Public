@@ -41,10 +41,12 @@
 			if (bustName == "none") return false;
 			
 			var _bustName:String = "Bust_" + bustName;
+			var _bustNameNude:String = _bustName + "_NUDE";
 			
 			for (var i:int = 0; i < GLOBAL.VALID_ARTISTS.length; i++)
 			{
 				if (_bustName in NPCBustImages[GLOBAL.VALID_ARTISTS[i]]) return true;
+				if (_bustNameNude in NPCBustImages[GLOBAL.VALID_ARTISTS[i]]) return true;
 			}
 			
 			return false;
