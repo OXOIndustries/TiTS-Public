@@ -11,10 +11,11 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/bng/nevrie.png", mimeType = "image/png")]
 		public var Bust_NEVRIE:Class;
 		
-		/*
-		[Embed(source = "../../../assets/images/npcs/nevrie.png", mimeType = "image/png")]
-		public var Bust_NEVRIE_NUDE:Class;
-		*/
+		CONFIG::IMAGEPACK
+		{
+			[Embed(source = "../../../assets/images/npcs/bng/hr/nevrie.png", mimeType = "image/png")]
+			public var Full_NEVRIE:Class;
+		}
 	}
 
 }
