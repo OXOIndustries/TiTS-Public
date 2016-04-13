@@ -34,6 +34,7 @@ package classes.Resources.Busts
 		public var Bounds_GRAY_GOO_PRIME_2:Rectangle = new Rectangle(30, 6, 60, 55);
 		[Embed(source = "../../../assets/images/npcs/jacques00/gray_goo_giga.png", mimeType = "image/png")]
 		public var Bust_GRAY_GOO_GIGA:Class;
+		public var Bounds_GRAY_GOO_GIGA:Rectangle = new Rectangle(70, 6, 60, 60);
 		
 		[Embed(source = "../../../assets/images/npcs/jacques00/hand_so.png", mimeType = "image/png")]
 		public var Bust_HAND_SO:Class;
@@ -78,6 +79,7 @@ package classes.Resources.Busts
 		
 		[Embed(source = "../../../assets/images/npcs/jacques00/myr_red_guard_mask.png", mimeType = "image/png")]
 		public var Bust_MYR_RED_GUARD_MASK:Class;
+		public var Bounds_MYR_RED_GUARD_MASK:Rectangle = new Rectangle(34, 10, 75, 75);
 		
 		[Embed(source = "../../../assets/images/npcs/jacques00/nehzara.png", mimeType = "image/png")]
 		public var Bust_NEHZARA:Class;		
@@ -95,6 +97,7 @@ package classes.Resources.Busts
 		
 		[Embed(source = "../../../assets/images/npcs/jacques00/varmint.png", mimeType = "image/png")]
 		public var Bust_VARMINT:Class;
+		public var Bounds_VARMINT:Rectangle = new Rectangle(0, 32, 70, 70);
 		
 	}
 

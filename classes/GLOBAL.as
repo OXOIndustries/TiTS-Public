@@ -1075,7 +1075,9 @@
 		public static const VALID_ARTISTS:Array = [
 			"NONE",
 			"ADJATHA",
+			"BNG",
 			"CHESHIRE",
+			"CYANCAPSULE",
 			"DAMNIT",
 			"DOCBADGER",
 			"DOXY",
@@ -1085,26 +1087,34 @@
 			"JAMESAB",
 			"JAYECHO",
 			"LAPINBEAU",
+			"MANIACPAINT",
+			"RENEZUO",
 			"SHOU",
-			"WOLFYNAIL"
+			"UTHSTAR",
+			"WOLFYNAIL",
 		];
 		
 		// Any time we want to show a name, this is where it'll be getting pulled from
 		public static const VALID_ARTISTS_NAMES:Array = [
 			"None",
 			"Adjatha",
+			"Benji",
 			"Cheshire",
+			"CyanCapsule",
 			"Damnit",
 			"Dr. Badger",
 			"Doxy",
 			"Gats",
 			"Old Gats",
-			"Jacques",
+			"Jacques00",
 			"James AB",
 			"Jay Echo",
 			"Lapinbeau",
+			"ManiacPaint",
+			"Renezuo",
 			"Shou",
-			"Wolfy-nail"
+			"Uthstar",
+			"Wolfy-Nail",
 		];
 		
 		// These are what show up in the options menu combo boxes
@@ -1115,7 +1125,7 @@
 			"GATS",
 			"GATSOLD",
 			"JACQUES",
-			"SHOU"
+			"SHOU",
 		];
 		
 		
