@@ -8,7 +8,7 @@ package classes.Resources.Busts
 	{
 		public function get PREVIEW():Class { return Bust_ALISS; }
 		
-		[Embed(source = "../../../assets/images/npcs/aliss.png", mimeType = "image/png")]
+		[Embed(source = "../../../assets/images/npcs/cheshire/aliss.png", mimeType = "image/png")]
 		public var Bust_ALISS:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/cheshire/Carl.png", mimeType = "image/png")]

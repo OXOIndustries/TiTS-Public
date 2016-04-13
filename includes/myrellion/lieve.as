@@ -225,7 +225,7 @@ public function lieveMenu():void
 public function lieveAppearance():void
 {
 	clearOutput();
-	lieveHeader();
+	lieveHeader(false, true);
 
 	output("Lieve Thyrsa is a prime example of a red myr woman. She stands at five feet seven inches, fairly average for her race, and sports a well-toned, athletic frame accented by distinctly feminine curves. You wouldn’t call Lieve muscular, but she carries herself with an unmistakable physicality. Like other myr, she has a pair of insectile antennas growing from her brow that twitch and turn seemingly of their own volition, always angling towards movement in her bunker.");
 	
