@@ -3,6 +3,10 @@ package classes.UIComponents.SideBarComponents
 	import classes.GameData.GameOptions;
 	import classes.Items.Armor.VoidPlateArmor;
 	import classes.Resources.Busts.CharacterBustOverrideSelector;
+	CONFIG::IMAGEPACK
+	{
+		import classes.Resources.ImagePackAssets.BigImageContainer;
+	}
 	import classes.Resources.StatusIcons;
 	import fl.transitions.Tween;
 	import flash.display.Bitmap;
@@ -48,11 +52,17 @@ package classes.UIComponents.SideBarComponents
 		
 		private var _configIsGlowing:Boolean = false;
 		private var _configGlowFilter:GlowFilter;
-		private var _configGlowFilterInner:GlowFilter;
 		
 		private var _hideTextIsGlowing:Boolean = false;
 		private var _roomTextGlowFilter:GlowFilter;
-		private var _roomTextGlowFilterInner:GlowFilter;
+		
+		CONFIG::IMAGEPACK
+		{
+			private var _showHRBustControlBack:Sprite;
+			private var _showHRBustControl:Sprite;
+			private var _hrBustIsGlowing:Boolean = false;
+			private var _hrBustControlGlowFilter:GlowFilter;
+		}
 		
 		public function get roomText():String { return _roomText.text; }
 		public function get planetText():String { return _planetText.text; }
@@ -269,6 +279,48 @@ package classes.UIComponents.SideBarComponents
 			ha.buttonMode = true;
 			_tempHideRoomTextControl.hitArea = ha;
 			
+			/* Imagepack High-Res Bust Display */
+			CONFIG::IMAGEPACK
+			{
+				_showHRBustControlBack = new StatusIcons.Icon_RadioSignal();
+				addChild(_showHRBustControlBack);
+				_showHRBustControlBack.transform.colorTransform = cfgct;
+				_showHRBustControlBack.alpha = 1;
+				_showHRBustControlBack.width = 20;
+				_showHRBustControlBack.height = 20;
+				_showHRBustControlBack.x = _configureControl.x;
+				_showHRBustControlBack.y = _tempHideRoomTextControl.y + 30;
+				_showHRBustControlBack.visible = false;
+				
+				_hrBustControlGlowFilter = new GlowFilter(UIStyleSettings.gHighlightColour, _minGlow, 6, 6, 5, 1, false, false);
+				_showHRBustControlBack.filters = [_hrBustControlGlowFilter];
+				
+				_showHRBustControl = new StatusIcons.Icon_RadioSignal();
+				addChild(_showHRBustControl);
+				_showHRBustControl.transform.colorTransform = ct;
+				_showHRBustControl.alpha = 0.6;
+				_showHRBustControl.width = 20;
+				_showHRBustControl.height = 20;
+				_showHRBustControl.x = _showHRBustControlBack.x;
+				_showHRBustControl.y = _showHRBustControlBack.y;
+				_showHRBustControl.addEventListener(MouseEvent.CLICK, showHRBust);
+				_showHRBustControl.addEventListener(MouseEvent.MOUSE_OVER, showHRBustFadeIn);
+				_showHRBustControl.addEventListener(MouseEvent.MOUSE_OUT, showHRBustFadeOut);
+				_showHRBustControl.buttonMode = true;
+				_showHRBustControl.visible = false;
+				
+				ha = new Sprite();
+				ha.graphics.beginFill(0xFFFFFF, 0);
+				ha.graphics.drawRect( -10, -5, 30, 35);
+				ha.graphics.endFill();
+				addChild(ha);
+				ha.x = _showHRBustControl.x;
+				ha.y = _showHRBustControl.y;
+				ha.mouseEnabled = false;
+				ha.buttonMode = true;
+				_showHRBustControl.hitArea = ha;
+			}
+			
 			addEventListener(Event.ENTER_FRAME, updateGlows);
 		}
 		
@@ -299,6 +351,22 @@ package classes.UIComponents.SideBarComponents
 				if (_roomTextGlowFilter.alpha < _minGlow) _roomTextGlowFilter.alpha = _minGlow;
 				_tempHideRoomTextControlBack.filters = [_roomTextGlowFilter];
 			}
+			
+			CONFIG::IMAGEPACK
+			{
+				if (_hrBustIsGlowing && _hrBustControlGlowFilter.alpha < _maxGlow)
+				{
+					_hrBustControlGlowFilter.alpha += _glowRate;
+					if (_hrBustControlGlowFilter.alpha > _maxGlow) _hrBustControlGlowFilter.alpha = _maxGlow;
+					_showHRBustControlBack.filters = [_hrBustControlGlowFilter];
+				}
+				else if (!_hrBustIsGlowing && _hrBustControlGlowFilter.alpha > _minGlow)
+				{
+					_hrBustControlGlowFilter.alpha -= _glowRate;
+					if (_hrBustControlGlowFilter.alpha < _minGlow) _hrBustControlGlowFilter.alpha = _minGlow;
+					_showHRBustControlBack.filters = [_hrBustControlGlowFilter];
+				}
+			}
 		}
 		
 		private function configFadeIn(e:Event):void
@@ -321,6 +389,33 @@ package classes.UIComponents.SideBarComponents
 			_hideTextIsGlowing = false;
 		}
 		
+		CONFIG::IMAGEPACK
+		{
+			private function showHRBustFadeIn(e:Event):void
+			{
+				_hrBustIsGlowing = true;
+			}
+			
+			private function showHRBustFadeOut(e:Event):void
+			{
+				_hrBustIsGlowing = false;
+			}
+			
+			private function showHRBust(e:Event):void
+			{
+				if (stage.getChildByName("bigImage") == null)
+				{
+					var imageT:Class = NPCBustImages.getHighResBustForCharacter(lastSetBust);
+					
+					if (imageT != null)
+					{
+						var cont:BigImageContainer = new BigImageContainer(imageT);
+						stage.addChild(cont);
+					}
+				}
+			}
+		}
+		
 		private function openBustConfig(e:Event):void
 		{
 			if (stage.getChildByName("bustSelector")) return;
@@ -340,16 +435,32 @@ package classes.UIComponents.SideBarComponents
 		private function set lastSetBust(v:String):void
 		{
 			_lastSetBust = v;
+			if (v == "none") NPCBustImages.LastArtistUsed = "";
 			
 			if (NPCBustImages.hasBustsForCharacter(v))
 			{
-				_configureControl.visible = true;
-				_configureControlBack.visible = true;
+				_configureControlBack.visible = _configureControl.visible = true;
+				
+				CONFIG::IMAGEPACK
+				{
+					if (NPCBustImages.hasHighResBustForCharacter(v))
+					{
+						_showHRBustControl.visible = _showHRBustControlBack.visible = true;
+					}
+					else
+					{
+						_showHRBustControl.visible = _showHRBustControlBack.visible = false;
+					}
+				}
 			}
 			else
 			{
-				_configureControl.visible = false;
-				_configureControlBack.visible = true;
+				_configureControlBack.visible = _configureControl.visible = false;
+				
+				CONFIG::IMAGEPACK
+				{
+					_showHRBustControl.visible = _showHRBustControlBack.visible = false;
+				}
 			}
 		}
 		private function get lastSetBust():String { return _lastSetBust; }

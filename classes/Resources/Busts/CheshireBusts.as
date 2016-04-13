@@ -59,6 +59,12 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/cheshire/liriel.png", mimeType = "image/png")]
 		public var Bust_LIRIEL:Class;
 		
+		CONFIG::IMAGEPACK
+		{
+			[Embed(source = "../../../assets/images/npcs/cheshire/HR/liriel.png", mimeType = "image/png")]
+			public var Full_LIRIEL:Class;
+		}
+		
 		[Embed(source = "../../../assets/images/npcs/cheshire/milodanfem.png", mimeType = "image/png")]
 		public var Bust_MILODANFEM:Class;
 		

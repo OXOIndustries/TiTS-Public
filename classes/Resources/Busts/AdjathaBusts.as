@@ -67,6 +67,9 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/joyco_vending_machine.png", mimeType = "image/png")]
 		public var Bust_JOYCO_VENDING_MACHINE:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/adjatha/kelly.png", mimeType = "image/png")]
+		public var Bust_KELLY:Class;
+		
 		[Embed(source = "../../../assets/images/npcs/adjatha/lys.png", mimeType = "image/png")]
 		public var Bust_LYS:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/lys_nude.png", mimeType = "image/png")]
