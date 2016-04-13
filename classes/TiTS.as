@@ -278,6 +278,10 @@
 		include "../includes/events/karaquest2/rooms.as";
 		include "../includes/events/karaquest2/roomFunctions.as";
 		
+		// Uveto
+		include "../includes/uveto/rooms.as";
+		include "../includes/uveto/roomFunctions.as";
+		
 		include "../includes/chargendata.as";
 		
 		public var chars:Object;
@@ -427,6 +431,7 @@
 			initNewTexasRooms();
 			initializeMyrellionRooms();
 			kquest2InitRooms();
+			initUvetoRooms();
 			
 			mapper = new Mapper(this.rooms)
 
