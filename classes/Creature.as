@@ -13288,7 +13288,7 @@
 					{
 						if (holePointer.hymen && hole >= 0)
 						{
-							msg += capitalA + possessive(short) + " hymen is torn";
+							msg += (capitalA == "" ? short + "’s" : capitalA + possessive(short)) + " hymen is torn";
 							holePointer.hymen = false;
 						}
 						else msg += capitalA + short + " has been penetrated";
@@ -13341,11 +13341,11 @@
 						}
 						else
 						{
-							if(holePointer.looseness() >= 5) output("<b>" + capitalA + possessive(short) + " " + vaginaDescript(hole) + " is stretched painfully wide, gaped in a way that practically invites huge monster-cocks to plow " + mf("him", "her") +".</b>");
-							else if(holePointer.looseness() >= 4) output("<b>" + capitalA + possessive(short) + " " + vaginaDescript(hole) + " painfully stretches, the lips now wide enough to gape slightly.</b>");
-							else if(holePointer.looseness() >= 3) output("<b>" + capitalA + possessive(short) + " " + vaginaDescript(hole) + " is now somewhat loose.</b>");
-							else if(holePointer.looseness() >= 2) output("<b>" + capitalA + possessive(short) + " " + vaginaDescript(hole) + " is a little more used to insertions.</b>");
-							else output("<b>" + capitalA + possessive(short) + " " + vaginaDescript(hole) + " is stretched out a little bit.</b>");
+							if(holePointer.looseness() >= 5) output("<b>" + (capitalA == "" ? short + "’s" : capitalA + possessive(short)) + " " + vaginaDescript(hole) + " is stretched painfully wide, gaped in a way that practically invites huge monster-cocks to plow " + mf("him", "her") +".</b>");
+							else if(holePointer.looseness() >= 4) output("<b>" + (capitalA == "" ? short + "’s" : capitalA + possessive(short)) + " " + vaginaDescript(hole) + " painfully stretches, the lips now wide enough to gape slightly.</b>");
+							else if(holePointer.looseness() >= 3) output("<b>" + (capitalA == "" ? short + "’s" : capitalA + possessive(short)) + " " + vaginaDescript(hole) + " is now somewhat loose.</b>");
+							else if(holePointer.looseness() >= 2) output("<b>" + (capitalA == "" ? short + "’s" : capitalA + possessive(short)) + " " + vaginaDescript(hole) + " is a little more used to insertions.</b>");
+							else output("<b>" + (capitalA == "" ? short + "’s" : capitalA + possessive(short)) + " " + vaginaDescript(hole) + " is stretched out a little bit.</b>");
 						}
 					}
 					else {
@@ -13359,11 +13359,11 @@
 						}
 						else
 						{
-							if(holePointer.looseness() >= 5) output("<b>" + capitalA + possessive(short) + " " + assholeDescript() + " is stretched painfully wide, gaped in a way that practically invites huge monster-cocks to plow " + mf("him", "her") +".</b>");
-							else if(holePointer.looseness() >= 4) output("<b>" + capitalA + possessive(short) + " " + assholeDescript() + " painfully stretches, the lips now wide enough to gape slightly.</b>");
-							else if(holePointer.looseness() >= 3) output("<b>" + capitalA + possessive(short) + " " + assholeDescript() + " is now somewhat loose.</b>");
-							else if(holePointer.looseness() >= 2) output("<b>" + capitalA + possessive(short) + " " + assholeDescript() + " is a little more used to insertions.</b>");
-							else output("<b>" + capitalA + possessive(short) + " " + assholeDescript() + " is stretched out a little bit.</b>");
+							if(holePointer.looseness() >= 5) output("<b>" + (capitalA == "" ? short + "’s" : capitalA + possessive(short)) + " " + assholeDescript() + " is stretched painfully wide, gaped in a way that practically invites huge monster-cocks to plow " + mf("him", "her") +".</b>");
+							else if(holePointer.looseness() >= 4) output("<b>" + (capitalA == "" ? short + "’s" : capitalA + possessive(short)) + " " + assholeDescript() + " painfully stretches, the lips now wide enough to gape slightly.</b>");
+							else if(holePointer.looseness() >= 3) output("<b>" + (capitalA == "" ? short + "’s" : capitalA + possessive(short)) + " " + assholeDescript() + " is now somewhat loose.</b>");
+							else if(holePointer.looseness() >= 2) output("<b>" + (capitalA == "" ? short + "’s" : capitalA + possessive(short)) + " " + assholeDescript() + " is a little more used to insertions.</b>");
+							else output("<b>" + (capitalA == "" ? short + "’s" : capitalA + possessive(short)) + " " + assholeDescript() + " is stretched out a little bit.</b>");
 						}
 					}
 					if(spacingsB) output(" ");

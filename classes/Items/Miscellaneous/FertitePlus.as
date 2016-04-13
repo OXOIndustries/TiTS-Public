@@ -41,7 +41,7 @@
 		{
 			kGAMECLASS.clearOutput();
 			author("Savin");
-			kGAMECLASS.showName("\bFERTITE+");
+			kGAMECLASS.showName("\nFERTITE+");
 			
 			if(target is PlayerCharacter)
 			{

@@ -144,12 +144,16 @@
 			this.cocks = new Array();
 			var c:CockClass = new CockClass();
 			cocks.push(c);
+			c.cType = GLOBAL.TYPE_FELINE;
+			c.addFlag(GLOBAL.FLAG_NUBBY);
 			c.cLengthRaw = 5;
 			c.cThicknessRatioRaw = 1.0;
+			c.flaccidMultiplier = 0.2;
 			
 			//balls
 			this.balls = 2;
 			this.ballSizeRaw = 1.5;
+			createStatusEffect("Uniball");
 			
 			this.cumMultiplierRaw = 1.5;
 			//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
@@ -163,8 +167,8 @@
 			this.refractoryRate = 9999;
 			this.minutesSinceCum = 9000;
 			this.timesCum = 785;
-			this.cockVirgin = true;
-			this.vaginalVirgin = false;
+			this.cockVirgin = false;
+			this.vaginalVirgin = true;
 			this.analVirgin = false;
 			this.vaginas = [];
 			

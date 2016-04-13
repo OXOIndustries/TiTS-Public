@@ -755,6 +755,7 @@ public function statisticsScreen(showID:String = "All"):void
 		if(!chars["EMBRY"].vaginalVirgin) totalVirginitiesTaken++;
 		if(!chars["GEOFF"].analVirgin || flags["GEOFF_TOPPED"] != undefined) totalVirginitiesTaken++;
 		if(!chars["KIRO"].vaginalVirgin) totalVirginitiesTaken++;
+		if(!chars["LERRIS"].vaginalVirgin) totalVirginitiesTaken++;
 		if(!chars["PENNY"].cockVirgin) totalVirginitiesTaken++;
 		if(!chars["SAENDRA"].cockVirgin) totalVirginitiesTaken++;
 		if(flags["TOOK_DELILAHS_BUTTGINITY"] != undefined) totalVirginitiesTaken++;
@@ -2420,6 +2421,61 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(9999 == 1) output2(" Met her");
 					else output2(" Heard of her");
 				}
+				variousCount++;
+			}
+			// Nyaaaaan, TamaniCorp
+			if(flags["MET_LERRIS"] != undefined)
+			{
+				output2("\n<b><u>TamaniCorp Shop</u></b>");
+				output2("\n<b>* Lerris:</b> Met her");
+				if(flags["LERRIS_TALKED_LACTAID"] != undefined)
+				{
+					output2(", Talked about");
+					if(flags["LERRIS_TALKED_LACTAID"] >= 2) output2(" and sampled");
+					output2(" Lactaid");
+				}
+				if(flags["LERRIS_ITEMS_GIVEN"] != undefined)
+				{
+					output2("\n<b>* Lerris, Items Given: </b>" + flags["LERRIS_ITEMS_GIVEN"]);
+					if(flags["LERRIS_BOVINIUMED"] != undefined) output2(", Given Bovinium");
+					output2("\n<b>* Lerris, Breast Size: </b>" + StringUtil.toTitleCase(chars["LERRIS"].breastCup(0)) + "s");
+					//output2("\n<b>* Lerris, Hip Size: </b>" + formatFloat(chars["LERRIS"].hipRating(), 3));
+					//output2("\n<b>* Lerris, Butt Size: </b>" + formatFloat(chars["LERRIS"].buttRating(), 3));
+					if(chars["LERRIS"].isLactating()) output2("\n<b>* Lerris, Milk Type: </b>" + GLOBAL.FLUID_TYPE_NAMES[chars["LERRIS"].milkType]);
+				}
+				if(flags["FUCKED_LERRIS"] != undefined)
+				{
+					output2("\n<b>* Lerris, Sexual Organs: </b>");
+					if(chars["LERRIS"].hasCock())
+					{
+						if(chars["LERRIS"].cockVirgin) output2("Virgin " + GLOBAL.TYPE_NAMES[chars["LERRIS"].cocks[0].cType].toLowerCase() + " cock");
+						else output2(GLOBAL.TYPE_NAMES[chars["LERRIS"].cocks[0].cType] + " cock");
+						if(chars["LERRIS"].hasSheath(0) || chars["LERRIS"].hasKnot(0))
+						{
+							output2(" (");
+							if(chars["LERRIS"].hasSheath(0)) output2("sheathed");
+							if(chars["LERRIS"].hasSheath(0) && chars["LERRIS"].hasKnot(0)) output2(" and ");
+							if(chars["LERRIS"].hasKnot(0)) output2("knotted");
+							output2(")");
+						}
+						if(chars["LERRIS"].hasStatusEffect("Uniball")) output2(" with a uniball");
+						else if(chars["LERRIS"].balls == 1) output2(" with a testicle");
+						else if(chars["LERRIS"].balls > 1) output2(" with " + num2Text(chars["LERRIS"].balls) + " balls");
+					}
+					if(chars["LERRIS"].hasVagina())
+					{
+						if(chars["LERRIS"].hasCock()) output2(", ");
+						if(chars["LERRIS"].vaginalVirgin) output2("Virgin " + GLOBAL.TYPE_NAMES[chars["LERRIS"].vaginas[0].type].toLowerCase() + " vagina");
+						else output2(GLOBAL.TYPE_NAMES[chars["LERRIS"].vaginas[0].type] + " vagina");
+						if(chars["LERRIS"].vaginas[0].clits == 1) output2(" with a clit");
+						else if(chars["LERRIS"].vaginas[0].clits > 1) output2(" with " + num2Text(chars["LERRIS"].vaginas[0].clits) + " clits");
+					}
+					if(chars["LERRIS"].hasCock() || chars["LERRIS"].hasVagina()) output2(", ");
+					if(chars["LERRIS"].analVirgin) output2("Virgin asshole");
+					else output2("Asshole");
+				}
+				if(flags["SUCKLED_LERRIS"] != undefined) output2("\n<b>* Lerris, Times Suckled: </b>" + flags["SUCKLED_LERRIS"]);
+				if(flags["FUCKED_LERRIS"] != undefined) output2("\n<b>* Lerris, Times Sexed: </b>" + flags["FUCKED_LERRIS"]);
 				variousCount++;
 			}
 			// Residential Deck Stuff!
