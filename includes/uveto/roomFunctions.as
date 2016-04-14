@@ -1,3 +1,8 @@
+import classes.Characters.PlayerCharacter;
+import classes.Engine.Combat.DamageTypes.DamageResult;
+import classes.Engine.Combat.DamageTypes.TypeCollection;
+import classes.Engine.Combat.DamageTypes.DamageFlag;
+
 public function flyToUveto():void
 {
 	author("Savin");
@@ -58,4 +63,82 @@ public function actuallyArriveAtUvetoStation():void
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
+}
+
+public function tryApplyUvetoColdDamage():void
+{
+	var tPC:PlayerCharacter = pc as PlayerCharacter;
+	
+	var coldDamage:Number = -1;
+	var resistToMitigate:Number = -1;
+	
+	if (InRoomWithFlag(GLOBAL.OUTDOOR))
+	{
+		coldDamage = 5;
+		resistToMitigate = 25;
+	}
+	else if (InRoomWithFlag(GLOBAL.ICYTUNDRA))
+	{
+		coldDamage = 10;
+		resistToMitigate = 40;
+	}
+	
+	if (coldDamage > 0 && tPC.willTakeColdDamage(resistToMitigate))
+	{
+		if (tPC.skinType == GLOBAL.SKIN_TYPE_FUR)
+		{
+			coldDamage *= 0.5;
+		}
+		else if (InCollection(tPC.skinType, GLOBAL.SKIN_TYPE_CHITIN, GLOBAL.SKIN_TYPE_SCALES))
+		{
+			coldDamage *= 1.25;
+		}
+		else if (InCollection(tPC.skinType, GLOBAL.SKIN_TYPE_GOO, GLOBAL.SKIN_TYPE_LATEX))
+		{
+			coldDamage *= 1.5;
+		}
+		
+		if (tPC.isNude())
+		{
+			coldDamage *= 2.0;
+		}
+		else
+		{
+			var nakednessMulti:int = 1;
+			if (!tPC.hasArmor()) nakednessMulti += 0.333;
+			if (!tPC.hasUpperGarment() || tPC.isChestExposed()) nakednessMulti += 0.333;
+			if (!tPC.hasLowerGarment() || tPC.isCrotchExposed()) nakednessMulti += 0.333;
+			coldDamage *= nakednessMulti;
+		}
+		
+		var actualDamage:TypeCollection = new TypeCollection( { freezing: coldDamage }, DamageFlag.BYPASS_SHIELD);
+		var damageResult:DamageResult = applyDamage(actualDamage, null, tPC, "suppress");
+		
+		if (damageResult.totalDamage > 0)
+		{
+			output("\n\nYou wrap your arms around yourself, desperately trying to fend off the overwhelming cold. The planet's freezing you to your bones");
+			if (!tPC.isNude()) output(", no matter how much clothing you wear");
+			else output(" -- and being naked, you've got next to no defense against the chill");
+			output(". You feel like you might collapse if you don't take shelter soon!");
+			outputDamage(damageResult);
+		}
+	}
+}
+
+public function hookUvetoRoomRemoveCold(direction:String):void
+{
+	if (pc.hasStatusEffect("Bitterly Cold"))
+	{
+		pc.removeStatusEffect("Bitterly Cold");
+	}
+	move(rooms[currentLocation][direction]);
+}
+
+public function hookUvetoRoomAddCold(direction:String):void
+{
+	if (!pc.hasStatusEffect("Bitterly Cold"))
+	{
+		(pc as PlayerCharacter).createStatusEffect("Bitterly Cold", 0, 0, 0, 0, false, "Icon_Snowflake", "The bitter, piercing cold of Uveto's icy tundra threatens to chill you to the bone. Better wrap up nice and tight, maybe even find something to heat you up to better stave off the freezing winds.", false, 0, UIStyleSettings.gColdStatusColour);
+	}
+	move(rooms[currentLocation][direction]);
 }

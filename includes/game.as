@@ -142,6 +142,12 @@ public function mainGameMenu():void {
 	clearOutput();
 	output(rooms[currentLocation].description);
 	showLocationName();
+	
+	if (pc.hasStatusEffect("Bitterly Cold"))
+	{
+		tryApplyUvetoColdDamage();
+	}
+	
 	if(inCombat()) 
 		output("\n\n<b>You’re still in combat, you ninny!</b>");
 	if(pc.hasStatusEffect("Temporary Nudity Cheat"))
@@ -166,14 +172,22 @@ public function mainGameMenu():void {
 		else if(!pc.canMasturbate()) addDisabledButton(8, "Masturbate", "Masturbate", "You can’t seem to masturbate at the moment....");
 		else addButton(8, "Masturbate", masturbateMenu);
 	}
-	if(!rooms[currentLocation].hasFlag(GLOBAL.BED)) 
+	if (!rooms[currentLocation].hasFlag(GLOBAL.BED)) 
+	{
 		addButton(9, "Rest", rest);
+	}
 	else 
+	{
 		addButton(9, "Sleep", sleep);
+	}
+		
+	addButton(14, "Codex", showCodex);
+	
 	//Display movement shits - after clear menu for extra options!
 	if(rooms[currentLocation].runOnEnter != undefined) {
 		if(rooms[currentLocation].runOnEnter()) return;
 	}
+	
 	//Turn off encounters since you're already here. Moving clears this.
 	flags["ENCOUNTERS_DISABLED"] = 1;
 
@@ -231,13 +245,17 @@ public function mainGameMenu():void {
 			addButton(7, rooms[currentLocation].outText, move, rooms[currentLocation].outExit);
 		}
 	}
-	if(currentLocation == shipLocation) 
+	if (currentLocation == shipLocation)
+	{
 		addButton(5, "Enter Ship", move, "SHIP INTERIOR");
+	}
+	
+	if (rooms[currentLocation].runAfterEnter != null) rooms[currentLocation].runAfterEnter();
 
 	flags["NAV_DISABLED"] = undefined; // Clear disabled directions.
 
 	//if (kGAMECLASS.debug) this.addButton(13, "RESET NPCs", initializeNPCs);
-	addButton(14, "Codex", showCodex);
+	
 	// Show the minimap too!
 	userInterface.showMinimap();
 	generateMap();

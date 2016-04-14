@@ -368,6 +368,10 @@ public function initUvetoRooms():void
 		
 		return false;
 	};
+	rooms["UVI L34"].runAfterEnter = function():void {
+		addButton(12, "East", hookUvetoRoomAddCold, "eastExit");
+		addButton(10, "West", hookUvetoRoomRemoveCold, "westExit");
+	}
 
 	rooms["UVI N34"] = new RoomClass(this);
 	rooms["UVI N34"].roomName = "IRESTEAD\nCROSSING";
@@ -505,7 +509,8 @@ public function initUvetoRooms():void
 	rooms["UVI N30"].southExit = "UVI N32";
 	rooms["UVI N30"].moveMinutes = 1;
 	rooms["UVI N30"].runOnEnter = null;
-	rooms["UVI N30"].addFlag(GLOBAL.OUTDOOR);
+	//rooms["UVI N30"].addFlag(GLOBAL.OUTDOOR);
+	rooms["UVI N30"].addFlag(GLOBAL.ICYTUNDRA);
 
 	/* Shades Residence */
 	rooms["UVI P30"] = new RoomClass(this);
