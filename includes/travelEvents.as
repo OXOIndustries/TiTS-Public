@@ -26,7 +26,7 @@ public function tryProcTravelEvent():Function
 	var possibleMessages:Array = new Array();
 	if (flags["FALL OF THE PHOENIX STATUS"] == undefined && pc.level > 3) possibleMessages.push(fallOfThePhoenixMessage);
 	if (flags["RESCUE KIRO FROM BLUEBALLS"] == undefined) possibleMessages.push(rescueKiroMessage);
-	if (flags["ICEQUEEN COMPLETE"] == undefined && pc.level > 5) possibleMessages.push(iceQueenMessage);
+	if (flags["ICEQUEEN COMPLETE"] == undefined && pc.level > 5 && debug) possibleMessages.push(iceQueenMessage); // 9999
 	
 	// If there's an available message, and the player has unlocked the second planet (ie had the fight with Dane):
 	// if debug, proc a random message
