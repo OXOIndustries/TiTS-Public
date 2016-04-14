@@ -87,6 +87,7 @@
 			kGAMECLASS.flags["PLANET_3_UNLOCKED"] = 1;
 			kGAMECLASS.flags["NEW_TEXAS_COORDINATES_GAINED"] = 1;
 			kGAMECLASS.flags["HOLIDAY_OWEEN_ACTIVATED"] = kGAMECLASS.GetGameTimestamp();
+			kGAMECLASS.flags["UVETO_UNLOCKED"] = 1;
 		}
 		public static function toggleDebug():void
 		{

@@ -155,6 +155,9 @@ package classes.Resources
 		[Embed(source = "../../assets/icons/statuseffects/wine.svg", mimeType = "image/svg")]
 		public static var Icon_Wine:Class;
 		
+		[Embed(source = "../../assets/icons/statuseffects/snowflake.svg", mimeType = "image/svg")]
+		public static var Icon_Snowflake:Class;
+		
 		// Alias some of the Icons to "friendly" properties; basically, lets us reinterpret/configure
 		// which icons to use in some cases
 		public static var Blind:Class = StatusIcons.Icon_BlindAlt;

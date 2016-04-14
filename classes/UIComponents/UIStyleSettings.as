@@ -62,6 +62,7 @@ package classes.UIComponents
 			UIStyleSettings._gMapCaveRoomFlagColourTransform = null;
 			UIStyleSettings._gMapFallbackRoomColourTransform = null;
 			UIStyleSettings._gMapPCLocationRoomColourTransform = null;
+			UIStyleSettings._gMapTundraRoomColourTransform = null;
 			UIStyleSettings._gHighlightColourTransform = null;
 			
 			UIStyleSettings._gLevelUpPointsBarNumber = null;
@@ -121,11 +122,14 @@ package classes.UIComponents
 		public static var gDesertRoomFlagColour:uint		= 0xD6BB8D;
 		public static var gForestRoomFlagColour:uint		= 0x3F704C; //Greenish
 		public static var gJungleRoomFlagColour:uint 		= 0x184925; //Darker/Greener!
+		public static var gTundraRoomFlagColour:uint		= 0x5DD5E5;
 		
 		public static var gShieldColour:uint				= 0x00CCFF;
 		public static var gHPColour:uint					= 0x00CC2F;
 		public static var gLustColour:uint					= 0xDD597E;
 		public static var gEnergyColour:uint				= 0x754C24;
+		
+		public static var gColdStatusColour:uint			= 0x5DD5E5;
 		
 		// Font Faces
 		
@@ -1143,6 +1147,17 @@ package classes.UIComponents
 				UIStyleSettings._gMapPCLocationRoomColourTransform.color = UIStyleSettings.gPCLocationRoomColour;
 			}
 			return UIStyleSettings._gMapPCLocationRoomColourTransform;
+		}
+		
+		private static var _gMapTundraRoomColourTransform:ColorTransform;
+		public static function get gMapTundraRoomColourTransform():ColorTransform
+		{
+			if (UIStyleSettings._gMapTundraRoomColourTransform == null)
+			{
+				UIStyleSettings._gMapTundraRoomColourTransform = new ColorTransform();
+				UIStyleSettings._gMapTundraRoomColourTransform.color = UIStyleSettings.gTundraRoomFlagColour;
+			}
+			return UIStyleSettings._gMapTundraRoomColourTransform;
 		}
 		
 		private static var _gMapFallbackRoomColourTransform:ColorTransform;

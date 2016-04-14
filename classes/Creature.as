@@ -14628,5 +14628,22 @@
 		{
 			
 		}
+		
+		// Uveto Specials
+		public function hasHeatBelt():Boolean
+		{
+			return accessory.hasFlag(GLOBAL.ITEM_FLAG_HEATBELT);
+		}
+		
+		public function willTakeColdDamage(resToAvoid:Number = 25.0):Boolean
+		{
+			if (hasHeatBelt()) return false;
+			if (getHPResistances().freezing.resistanceValue >= resToAvoid) return false;
+			if (accessory.hasFlag(GLOBAL.ITEM_FLAG_HEAT_GENERATOR) || armor.hasFlag(GLOBAL.ITEM_FLAG_HEAT_GENERATOR) || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_HEAT_GENERATOR) || upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_HEAT_GENERATOR)) return false;
+			
+			// Perk for some kinda TF or some shit, effect for a temporary/timed effect?
+			if (hasPerk("Icy Veins") || hasStatusEffect("Icy Veins")) return false;
+			return true;
+		}
 	}
 }

@@ -22,6 +22,9 @@
 		public var description:String = "";
 		//runOnEnter holds functions that overlay the normal functioning
 		public var runOnEnter:Function = undefined;
+		
+		// runAfterEnter gets executed *AFTER* all the standard button controls have been placed- handy for hooking shit
+		public var runAfterEnter:Function = undefined;
 				
 		//Information
 		public var moveMinutes:Number = 5;
