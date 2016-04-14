@@ -580,7 +580,7 @@ public function iceQueenLossToZaalt():void
 	
 	output("\n\nZaalt grunts and staggers back, leaving you bent over in a complete mess. He looks around in a panic, suddenly breathing hard again, and turns. Your head falls against the dash, but you hear Zaalt wandering through your ship and, eventually, the airlock cycling. By the time you’ve recovered, your erstwhile passenger is nowhere to be found - long gone.");
 	
-	output("\n\nWhatever happened to him during your journey will remain a mystery...");
+	output("\n\nWhatever happened to him during your journey will remain a mystery...\n\n");
 
 	processTime(15 + rand(6));
 	flags["ICE QUEEN COMPLETE"] = -3;
@@ -811,7 +811,7 @@ public function iceQueenNoKara():void
 	
 	output("\n\n<i>“I know credits can’t make up for what happened, but it’s the best thing I can do to say ‘I’m sorry,’ you know. I’m going to stick around here a while and try and find out what happened with my implant. Can’t have that happening again.”</i>");
 	
-	output("\n\nYou nod, pocketing your Codex. Maybe you’ll see Zaalt around against sometime... if his brain doesn’t explode first.");
+	output("\n\nYou nod, pocketing your Codex. Maybe you’ll see Zaalt around against sometime... if his brain doesn’t explode first.\n\n");
 
 	CombatManager.genericVictory();
 }
@@ -891,7 +891,7 @@ public function iceQueenKaraShowsUpCOOLIT():void
 	
 	output("\n\n<i>“I know credits can’t make up for what happened, but it’s the best thing I can do to say ‘I’m sorry,’ you know. I’m going to stick around here a while and try and find out what happened with my implant. Can’t have that happening again.”</i>");
 	
-	output("\n\nYou nod, pocketing your Codex. Maybe you’ll see Zaalt around against sometime... if his brain doesn’t explode first.");
+	output("\n\nYou nod, pocketing your Codex. Maybe you’ll see Zaalt around against sometime... if his brain doesn’t explode first.\n\n");
 	
 	processTime(10+rand(5));
 
@@ -970,7 +970,7 @@ public function iceQueenKaraShowsUpInterruptSure():void
 	else output(" wave half-heartedly");
 	output(" as he steps away, fading into the crowd of spacers near the elevator.");
 	
-	output("\n\nAt least you made some money off of this clusterfuck.");
+	output("\n\nAt least you made some money off of this clusterfuck.\n\n");
 
 	currentLocation = "UVI R32"; // 9999 uveto cafe
 	addUvetoCold();
