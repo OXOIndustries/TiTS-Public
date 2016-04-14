@@ -572,7 +572,7 @@ public function rahnCodexEntry():void
 public function saeriCodexEntry():void
 {
 	clearOutputCodex();
-	showBust("INESSA");
+	showBust("INESSA_NUDE");
 	outputCodex(header("Saeri"));
 	outputCodex("<i>Butterfly girls. Second form of caterpillar-like siel.</i>\n\n");
 	outputCodex("<b>Name (Singular):</b> Saeri");
