@@ -228,7 +228,7 @@ public function iceQueenQuestionDestination():void
 	
 	output("\n\n<i>“Well,”</i> Zaalt says with a shrug, <i>“It’s in rush ten space, like I said. It’s a corporate controlled world, mostly ausar and human. The big companies we deal with are RhenWorld and their daddy corp, Steele Tech. They’ve got a big presence on the planet, mining for savicite and the like. The only people you’re going to need to talk to are the Camarilla - the little fuzzy bastards have a monopoly on exports from Uveto, and they control the space station we’ll be docking at.”</i>");
 	
-	if (flags["UVETO_UNLOCKED"] == undefined)
+	if (!uvetoUnlocked())
 	{
 		output("\n\n<i>“So... how do we get there, exactly? Never been.”</i>");
 	
@@ -290,7 +290,7 @@ public function iceQueenHelpHimII():void
 	
 	output("\n\nYou nod, and the airlock starts to cycle open.");
 	
-	if (flags["UVETO_UNLOCKED"] == undefined)
+	if (!uvetoUnlocked())
 	{
 		output("\n\n<i>“Here,”</i> Zaalt adds, tapping a holographic button on his wrist device. <i>“Coordinates for Uveto. Warp Gate sequence for the Siretta system, and coordinates for Uveto Seven, our destination.”</i>");
 	

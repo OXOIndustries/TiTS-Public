@@ -3,6 +3,11 @@ import classes.Engine.Combat.DamageTypes.DamageResult;
 import classes.Engine.Combat.DamageTypes.TypeCollection;
 import classes.Engine.Combat.DamageTypes.DamageFlag;
 
+public function uvetoUnlocked():Boolean
+{
+	return flags["UVETO_UNLOCKED"] != undefined || reclaimedProbeMyrellion() || (flags["KQ2_MYRELLION_STATE"] == 1 && MailManager.isEntryUnlocked("danemyrellioncoords"));
+}
+
 public function flyToUveto():void
 {
 	if (flags["DO UVETO ICEQUEEN ENTRY"] != undefined) clearOutput();

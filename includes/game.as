@@ -757,7 +757,7 @@ public function flyMenu():void {
 	}
 	else addDisabledButton(3, "Locked", "Locked", "You need to find one of your father’s probes to access this planet’s coordinates and name.");
 	
-	if (flags["UVETO_UNLOCKED"] != undefined && debug)
+	if (uvetoUnlocked() && debug)
 	{
 		if (shipLocation != "UVS F15") addButton(4, "Uveto", flyTo, "Uveto");
 		else addDisabledButton(4, "Uveto", "Uvto", "You’re already here.");
