@@ -313,7 +313,7 @@ public function getACuntTail():void {
 	{
 		output(" Where did your [pc.tails] go? The snake is connected to you right where your old tail");
 		if(pc.tailCount > 1) output("s");
-		output(" used to be... did it swallow ");
+		output(" used to be.... Did it swallow ");
 		if(pc.tailCount > 1) output("them");
 		else output("it");
 		output(" whole?");
