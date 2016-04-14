@@ -452,7 +452,7 @@ public function iceQueenLetsActuallyGo():void
 	addButton(0, "Next", flyToUveto);
 }
 
-public function iceQueenUvetoEntry(oldUvetoVisitFlagValue:*):void
+public function iceQueenUvetoEntry(oldUvetoVisitFlagValue:* = undefined):void
 {
 	clearOutput();
 	author("Savin");
@@ -531,7 +531,7 @@ public function iceQueenUvetoEntry(oldUvetoVisitFlagValue:*):void
 
 public function iceQueenLossToZaalt():void
 {
-	output("\n\nZaalt slams into you like a Thraggen freighter, throwing you against a bulkhead and tearing into your");
+	output("Zaalt slams into you like a Thraggen freighter, throwing you against a bulkhead and tearing into your");
 	if (pc.hasArmor()) output(" [pc.armor]");
 	else output(" gear");
 	output(". You yelp and struggle against the milodan’s powerful hands, but you’re much too");

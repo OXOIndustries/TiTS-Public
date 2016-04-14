@@ -5,6 +5,7 @@ import classes.Engine.Combat.DamageTypes.DamageFlag;
 
 public function flyToUveto():void
 {
+	if (flags["DO UVETO ICEQUEEN ENTRY"] != undefined) clearOutput();
 	author("Savin");
 
 	if (flags["VISITED_UVETO"] == undefined)

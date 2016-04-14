@@ -45,8 +45,8 @@
 			this.shield = new DecentShield();
 			
 			this.level = 7;
-			this.physiqueRaw = 35;
-			this.reflexesRaw = 35;
+			this.physiqueRaw = 30;
+			this.reflexesRaw = 30;
 			this.aimRaw = 11;
 			this.intelligenceRaw = 11;
 			this.willpowerRaw = 23;
@@ -236,7 +236,7 @@
 			if (energy() >= 15) attacks.push( { v: doLowBlow, w: 10 } );
 			attacks.push( { v: doUnarmedFlurry, w: 10 } );
 			if (target is PlayerCharacter && !target.hasStatusEffect("Staggered") && energy() >= 15) attacks.push( { v: doPsiShockwave, w: 10 } );
-			if (_leechUses < 2 && target is PlayerCharacter) attacks.push( { v: doMindLeech, w: 10 } );
+			if (_leechUses < 2 && target is PlayerCharacter && HPQ() < 50) attacks.push( { v: doMindLeech, w: 10 } );
 			
 			if (!hasStatusEffect("No Weaponry"))
 			{
@@ -272,14 +272,14 @@
 			else
 			{ 
 				output(" hits!");
-				applyDamage(new TypeCollection( { kinetic: 7 } ), this, target, "minimal");
+				applyDamage(new TypeCollection( { kinetic: 5 } ), this, target, "minimal");
 			}
 			output("\nHis second claw-swipe");
 			if (combatMiss(this, target, -1, 1.5)) output(" misses!");
 			else
 			{
 				output(" hits!");
-				applyDamage(new TypeCollection( { kinetic: 7 } ), this, target, "minimal");
+				applyDamage(new TypeCollection( { kinetic: 5 } ), this, target, "minimal");
 			}
 			output("\nHis savage bite");
 			if (combatMiss(this, target, -1, 0.75)) output(" is easily avoided!");
@@ -289,7 +289,7 @@
 				if (target is PlayerCharacter) output(" your");
 				else output(" Anno’s");
 				output(" flesh!");
-				applyDamage(new TypeCollection( { kinetic: 9 }, DamageFlag.PENETRATING), this, target, "minimal");
+				applyDamage(new TypeCollection( { kinetic: 7 }, DamageFlag.PENETRATING), this, target, "minimal");
 			}
 		}
 		
@@ -300,9 +300,9 @@
 			
 			output("Screaming with rage, Zaalt grabs his head and almost doubles over backwards. A second later and the bridge erupts with power, slamming you back against a bulkhead. The real pain comes after, though: your mind sears with a burning, uncontrollable need: for sex, for comfort, for anything that isn't battle.");
 			
-			applyDamage(new TypeCollection( { psionic: 10, kinetic: 5 } ), this, target, "minimal");
+			applyDamage(new TypeCollection( { psionic: 8, kinetic: 3 } ), this, target, "minimal");
 			
-			if (10 + (rand(target.willpower()) / 2) < willpower())
+			if (10 + (rand(target.willpower()) / 2) < (willpower() / 2))
 			{
 				output(" <b>The mental blast has left your momentarily staggered!</b>");
 				target.createStatusEffect("Staggered", 4, 0, 0, 0, false, "Icon_OffDown", "You're staggered, and your Aim and Reflexes have been reduced!", true, 0);
