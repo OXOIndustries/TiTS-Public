@@ -9,8 +9,6 @@ public function flyToUveto():void
 
 	if (flags["VISITED_UVETO"] == undefined)
 	{
-		flags["VISITED_UVETO"] = 1;
-
 		output("The fringe of the Siretta system is quite unlike the heartlands, the frosty resort worlds nearer to the sun where you remember your father would often take his lover of the week to ski. Here, the Black is dominated by a massive belt of asteroids, shielding the furthest planet from the sun from sight. Your destination is not the tremendous, Jovian gas giant standing sentinel at the edge of the system, however, but one of its twelve moons: the frozen ice ball of Uveto VII.");
 		
 		output("\n\nYour screen buzzes to life as you near your destination. <i>“Good day to you, traveler!”</i> announces the odd creature on screen.");
@@ -43,7 +41,18 @@ public function flyToUveto():void
 	}
 
 	clearMenu();
-	addButton(0, "Next", actuallyArriveAtUvetoStation);
+
+	if (flags["DO UVETO ICEQUEEN ENTRY"] == undefined)
+	{
+		addButton(0, "Next", actuallyArriveAtUvetoStation);
+	}
+	else
+	{
+		flags["DO UVETO ICEQUEEN ENTRY"] = undefined;
+		addButton(0, "Next", iceQueenUvetoEntry, flags["VISITED_UVETO"]);
+	}
+
+	flags["VISITED_UVETO"] = 1;
 }
 
 public function actuallyArriveAtUvetoStation():void

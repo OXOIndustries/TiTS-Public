@@ -102,7 +102,7 @@ public function initUvetoRooms():void
 	/* CFS */
 	rooms["UVS A9"] = new RoomClass(this);
 	rooms["UVS A9"].roomName = "GARDENFORKS";
-	rooms["UVS A9"].description = "SORT THIS SHIT GARDE";
+	rooms["UVS A9"].description = "9999 SORT THIS SHIT GARDE";
 	rooms["UVS A9"].planet = "UVETO STATION";
 	rooms["UVS A9"].system = "SYSTEM: SIRETTA";
 	rooms["UVS A9"].eastExit = "UVS B9";
@@ -304,7 +304,7 @@ public function initUvetoRooms():void
 	/* Sheriffs Office */
 	rooms["UVI H32"] = new RoomClass(this);
 	rooms["UVI H32"].roomName = "SHERIFFS\nOFFICE";
-	rooms["UVI H32"].description = "THIRD PLS";
+	rooms["UVI H32"].description = "9999 THIRD PLS";
 	rooms["UVI H32"].planet = "PLANET: UVETO VII";
 	rooms["UVI H32"].system = "SYSTEM: SIRETTA";
 	//rooms["UVI H32"].eastExit = "UVI J32"; // TEMP 9999
@@ -317,7 +317,7 @@ public function initUvetoRooms():void
 	/* Geo Survey */
 	rooms["UVI J32"] = new RoomClass(this);
 	rooms["UVI J32"].roomName = "GEO. SURVEY\nINTERIOR";
-	rooms["UVI J32"].description = "REAPER PLS";
+	rooms["UVI J32"].description = "9999 REAPER PLS";
 	rooms["UVI J32"].planet = "PLANET: UVETO VII";
 	rooms["UVI J32"].system = "SYSTEM: SIRETTA";
 	rooms["UVI J32"].southExit = "UVI J34";
@@ -343,7 +343,7 @@ public function initUvetoRooms():void
 	/* Research Station Access */
 	rooms["UVI J36"] = new RoomClass(this);
 	rooms["UVI J36"].roomName = "RESEARCH\nACCESS";
-	rooms["UVI J36"].description = "GARDE PLS";
+	rooms["UVI J36"].description = "9999 GARDE PLS";
 	rooms["UVI J36"].planet = "PLANET: UVETO VII";
 	rooms["UVI J36"].system = "SYSTEM: SIRETTA";
 	rooms["UVI J36"].northExit = "UVI J34";
@@ -494,7 +494,7 @@ public function initUvetoRooms():void
 	rooms["UVI N32"].system = "SYSTEM: SIRETTA";
 	rooms["UVI N32"].northExit = "UVI N30";
 	rooms["UVI N32"].southExit = "UVI N34";
-	//rooms["UVI N32"].eastExit = "UVI P32"; // 9999 CUT UNTIL READY
+	rooms["UVI N32"].eastExit = "UVI P32";
 	rooms["UVI N32"].moveMinutes = 1;
 	rooms["UVI N32"].runOnEnter = null;
 	rooms["UVI N32"].addFlag(GLOBAL.OUTDOOR);
@@ -523,35 +523,39 @@ public function initUvetoRooms():void
 	rooms["UVI P30"].runOnEnter = null;
 
 	rooms["UVI P32"] = new RoomClass(this);
-	rooms["UVI P32"].roomName = "";
-	rooms["UVI P32"].description = "";
+	rooms["UVI P32"].roomName = "DUNNO";
+	rooms["UVI P32"].description = "9999 BUT I NEED THE LINK";
 	rooms["UVI P32"].planet = "PLANET: UVETO VII";
 	rooms["UVI P32"].system = "SYSTEM: SIRETTA";
 	rooms["UVI P32"].eastExit = "UVI R32"; // 9999 TEMP CHECK THIS
 	rooms["UVI P32"].westExit = "UVI N32";
 	rooms["UVI P32"].moveMinutes = 1;
 	rooms["UVI P32"].runOnEnter = null;
+	rooms["UVI P32"].addFlag(GLOBAL.INDOOR);
 
 	/* Mead Hall */
 	rooms["UVI R32"] = new RoomClass(this);
-	rooms["UVI R32"].roomName = "";
-	rooms["UVI R32"].description = "";
+	rooms["UVI R32"].roomName = "THE\nFREEZER";
+	rooms["UVI R32"].description = "9999 Some random dump bar thing whatevs. (Yes this document totally deserved to be in the fucking ready to code pile amirite).";
 	rooms["UVI R32"].planet = "PLANET: UVETO VII";
 	rooms["UVI R32"].system = "SYSTEM: SIRETTA";
 	rooms["UVI R32"].southExit = "UVI R34";
 	rooms["UVI R32"].westExit = "UVI P32"; // 9999 TEMP CHECK THIS
 	rooms["UVI R32"].moveMinutes = 1;
 	rooms["UVI R32"].runOnEnter = null;
+	rooms["UVI R32"].addFlag(GLOBAL.INDOOR);
+	rooms["UVI R32"].addFlag(GLOBAL.BAR);
 
 	/* Back Room */
 	rooms["UVI R34"] = new RoomClass(this);
-	rooms["UVI R34"].roomName = "";
-	rooms["UVI R34"].description = "";
+	rooms["UVI R34"].roomName = "THE FREEZER:\nBACKROOM";
+	rooms["UVI R34"].description = "9999 Some random dump bar thing whatevs. (Yes this document totally deserved to be in the fucking ready to code pile amirite).";
 	rooms["UVI R34"].planet = "PLANET: UVETO VII";
 	rooms["UVI R34"].system = "SYSTEM: SIRETTA";
 	rooms["UVI R34"].northExit = "UVI R32";
 	rooms["UVI R34"].moveMinutes = 1;
 	rooms["UVI R34"].runOnEnter = null;
+	rooms["UVI R34"].addFlag(GLOBAL.INDOOR);
 
 	/* Entrance */
 	rooms["UVI N28"] = new RoomClass(this);

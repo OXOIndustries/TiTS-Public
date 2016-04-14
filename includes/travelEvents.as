@@ -26,6 +26,7 @@ public function tryProcTravelEvent():Function
 	var possibleMessages:Array = new Array();
 	if (flags["FALL OF THE PHOENIX STATUS"] == undefined && pc.level > 3) possibleMessages.push(fallOfThePhoenixMessage);
 	if (flags["RESCUE KIRO FROM BLUEBALLS"] == undefined) possibleMessages.push(rescueKiroMessage);
+	if (flags["ICEQUEEN COMPLETE"] == undefined && pc.level > 5) possibleMessages.push(iceQueenMessage);
 	
 	// If there's an available message, and the player has unlocked the second planet (ie had the fight with Dane):
 	// if debug, proc a random message
@@ -106,6 +107,44 @@ public function confirmIgnoreKiroRescue(destination:String):void
 
 	flags["RESCUE KIRO FROM BLUEBALLS"] = -1;
 	
+	clearMenu();
+	addButton(0, "Next", flyToWrapper, destination);
+}
+
+public function iceQueenMessage(destination:String):void
+{
+	clearOutput();
+	author("Savin");
+
+	output("Unlike most S.O.S. channel broadcasts you’ve seen, this one isn’t on a loop. According to your comms gear, it’s a live broadcast. Must be nearby - and urgent!");
+	
+	output("\n\nYou accept the incoming distress message, and your forward screen is overwhelmed with a digital image of a smoky ship’s interior, so thick that it’s hard to see anything but vague shapes and dark outlines. A tall, masculine figure is standing over the camera, so shadowed by smoke that it’s impossible to see his race, or any details at all but broad shoulders and disheveled hair falling in disheveled shaggy locks around his shoulders.");
+	
+	output("\n\n<i>“Ah! About time!”</i> the man says, stifling a cough. <i>“Listen, this is Captain Kandar of the </i>Ice Queen<i>. We’ve got a serious situation aboard. Our LightDrive went critical, and it’s venting smoke and gas into the crew deck. We’re pretty much dead in the water out here. Any assistance would be much appreciated.”</i>");
+	
+	output("\n\nHeck of a gamble, saying that sight unseen. You could just have easily been a pirate, after all. You key the comms and ask what you can do to help.");
+	
+	output("\n\nThe man on the screen grunts and runs a hand through his hair. <i>“Uh, at this point, we’re probably going to have to bail out. Unless you’ve got an industrial atmo-scrubber in your hold, anyway. You don’t happen to, eh?”</i>");
+	
+	output("\n\nYou shake your head, though your ship’s got a pretty decent one built in. If you dock with the <i>Ice Queen</i>, you might be able to overclock it and scrub both ships. At least for a little while.");
+	
+	output("\n\n<i>“Hey, that’d be great. Listen,”</i> he pauses to cough, covering his mouth in his arm. <i>“Shit, this is getting thick. I gotta go. We’ll talk when you get here - I’m sending coordinates now. You’re a life saver, pal.”</i>");
+	
+	output("\n\nThe video link cuts out, but your comms beep an alert: transmission received. Coordinates for the <i>Ice Queen</i>. She’s barely 10 minutes away at maximum LightDrive speed... if you want to help.");
+
+	//[Help Him] [Ignore]
+	clearMenu();
+	addButton(0, "Help Him", iceQueenMessageHelp, destination, "Help Him", "Dock with the <i>Ice Queen</i> and see what you can do to help.");
+	addButton(1, "Ignore", iceQueenMessageIgnore, destination, "Ignore Him", "No thanks. Kandar will have to make do on his own.");
+}
+
+public function iceQueenMessageIgnore(destination:String):void
+{
+	clearOutput();
+
+	output("You think about it a few moments, then shake your head. Kandar and his crew will have to manage on their own. You've got more important fish to fry.");
+	flags["ICEQUEEN COMPLETE"] = -1;
+
 	clearMenu();
 	addButton(0, "Next", flyToWrapper, destination);
 }
