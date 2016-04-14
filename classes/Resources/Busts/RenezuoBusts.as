@@ -10,15 +10,22 @@ package classes.Resources.Busts
 		
 		[Embed(source = "../../../assets/images/npcs/renezuo/gianna.png", mimeType = "image/png")]
 		public var Bust_GIANNA_NUDE:Class;
-		[Embed(source = "../../../assets/images/npcs/renezuo/gianna.png", mimeType = "image/png")]
-		public var Bust_GIANNA_MEDIUM_NUDE:Class;
-		[Embed(source = "../../../assets/images/npcs/renezuo/gianna.png", mimeType = "image/png")]
-		public var Bust_GIANNA_LARGE_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/renezuo/sera.png", mimeType = "image/png")]
 		public var Bust_SERA:Class;
-		[Embed(source = "../../../assets/images/npcs/renezuo/sera.png", mimeType = "image/png")]
+		[Embed(source = "../../../assets/images/npcs/renezuo/sera_nude.png", mimeType = "image/png")]
 		public var Bust_SERA_NUDE:Class;
+
+		CONFIG::IMAGEPACK
+		{
+			[Embed(source = "../../../assets/images/npcs/renezuo/hr/gianna.png", mimeType = "image/png")]
+			public var Full_KARA:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/renezuo/hr/sera.png", mimeType = "image/png")]
+			public var Full_SERA:Class;
+			[Embed(source = "../../../assets/images/npcs/renezuo/hr/sera_nude.png", mimeType = "image/png")]
+			public var Full_SERA_NUDE:Class;
+		}
 	}
 
 }
