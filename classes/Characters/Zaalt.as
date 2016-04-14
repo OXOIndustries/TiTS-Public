@@ -265,7 +265,10 @@
 		{
 			//Several light attacks: two slashing claw-strikes, one piercing bite.
 
-			output("Zaalt roars with unfettered fury, lunging at [target.name] with claw and fang!");
+			output("Zaalt roars with unfettered fury, lunging at");
+			if (target is PlayerCharacter) output(" you");
+			else output(" Anno");
+			output(" with claw and fang!");
 			
 			output("\nHis first claw-swipe");
 			if (combatMiss(this, target, -1, 1.5)) output(" misses!");
