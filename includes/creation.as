@@ -256,7 +256,7 @@ public function chooseStartingRace(race:String = "human"):void {
 	}
 	displayInput();
 	userInterface.textInput.text = "";
-	userInterface.textInput.maxChars = 12;
+	userInterface.textInput.maxChars = 33;
 }
 
 public function setStartingSex(sex:int = 1):void {
@@ -267,15 +267,21 @@ public function setStartingSex(sex:int = 1):void {
 		output("\n\n\n<b>You must input a name.</b>");
 		return;
 	}
+	
+	if (userInterface.textInput.text.toLowerCase() == "robert'); drop table students;--")
+	{
+		userInterface.textInput.text = "Lil Bobby Tables";
+	}
+	
 	// Illegal characters check. Just in case...
 	if(hasIllegalInput(userInterface.textInput.text)) {
 		chooseStartingRace(race);
 		output("\n\n\n<b>To prevent complications, please avoid using code in the name.</b>");
 		return;
 	}
-	if(userInterface.textInput.length > 14) {
+	if(userInterface.textInput.length > 16) {
 		chooseStartingRace(race);
-		output("\n\n\n<b>Please select a name no more than fourteen characters long.</b>");
+		output("\n\n\n<b>Please select a name no more than sixteen characters long.</b>");
 		return;
 	}
 	//Male or herm? Dick stuff.
