@@ -68,6 +68,7 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_UVETO, "Uveto", "Enessa", enessaCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_UVETO, "Uveto", "Frostwyrm", frostwyrmCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_UVETO, "Uveto", "Lurelings", lurelingsCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_UVETO, "Uveto", "Milodan", milodanCodexEntry);
 
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_XAMDAM, "Xamdam", "Divrani", divraniCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_XAMDAM, "Xamdam", "Hyraxxi", hyraxxiCodexEntry);
@@ -2268,13 +2269,13 @@ public function frostwyrmCodexEntry():void
 public function lurelingsCodexEntry():void
 {
 	clearOutputCodex();
-	output(header("Lureling"));
-	output("<b>Genders:</b> Male and Female");
-	output("\n<b>Height:</b> 8’0”</i>-8’8”</i> at the shoulders. Roughly 9’ from tip to tail.");
-	output("\n<b>Hair:</b> None.");
-	output("\n<b>Eyes:</b> Large, featureless black orbs.");
-	output("\n<b>Ears:</b> Small ear-holes above their gills.");
-	output("\n<b>Tails:</b> Lurelings have short, thick tails growing from their haunches.");
+	outputCodex(header("Lureling"));
+	outputCodex("<b>Genders:</b> Male and Female");
+	outputCodex("\n<b>Height:</b> 8’0”</i>-8’8”</i> at the shoulders. Roughly 9’ from tip to tail.");
+	outputCodex("\n<b>Hair:</b> None.");
+	outputCodex("\n<b>Eyes:</b> Large, featureless black orbs.");
+	outputCodex("\n<b>Ears:</b> Small ear-holes above their gills.");
+	outputCodex("\n<b>Tails:</b> Lurelings have short, thick tails growing from their haunches.");
 	outputCodex("\n\n");
 
 	outputCodex(blockHeader("Power of the Lurelings:"));
@@ -2434,4 +2435,44 @@ public function divraniCodexEntry():void
 	outputCodex("\n\nDavrani were primitive before the Glass War and remain so now, with little technology of their own. Some learn to use weapons or tech from other native races, especially nukas, but as the divrani have no organized society, and their lusty aroma makes extended contact with others difficult at best, they have little hope of self-advancement. Confederate sources indicate that Uplifting existing members the race will be very difficult, as will integrating them into society, unless they are separated from the radglow plant.");
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Divrani");
+}
+
+public function milodanCodexEntry():void
+{
+	clearOutputCodex();
+
+	outputCodex(blockHeader("Milodan"));
+
+	outputCodex("<b>Name:</b> Milodan");
+	outputCodex("\n<b>Genders:</b> Males and Females, Rare Hermaphrodites");
+	outputCodex("\n<b>Height:</b> 5’10 - 7’5. Males are significantly taller than females.");
+	outputCodex("\n<b>Hair:</b> Milodans have longer patches of fur atop their heads, which can vary in color from their fur patterns. Typical coloration includes black, light or dark blue, orange, or gray.");
+	outputCodex("\n<b>Eyes:</b> Slitted, feline eyes. Coloration is similar to that of humans.");
+	outputCodex("\n<b>Ears:</b> Milodans have large feline ears, which can stand erect or swivel around on top of their heads.");
+	outputCodex("\n<b>Tails:</b> Milodan females have long, bushy tails. They are prehensile and both quite dexterous and emotive, similar in many ways to that of an ausar’s. Males, on the other hand, have short, stubby tails with little range of motion. Males’ tails are fluffy, but neither sensitive nor as expressive as a female’s.");
+	outputCodex("\n<b>Fur:</b> Milodans are covered from head to toe in a layer of thick, insulating fur. Typically, their patterns include much darker fur on the tails, shoulders, hands, and feed, with stripes all across the limbs. Both sexes have a particularly thick tuft in the center of the chest, between the female’s breasts. Native Uvetan milodans typically have white, light blue, or silver fur; uplifted ones often modify their coats to better suit their environment.");
+	outputCodex("\n\n");
+
+	output(blockHeader("Combat:"));
+	outputCodex("\n\nMilodans are capable combatants in their native, icy home of Uveto VII. Both sexes have long, sharp claws on all four limbs, and sharp down-pointed fangs - males’ being considerably longer and more pronounced than the females’. Both sexes have considerable physical strength and dexterity, and among those who remain on Uveto, they are famously adept with spear and bow. Like most humanoids, milodan prefer to use weapons when they can, both for hunting and for combat.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Environs:"));
+	outputCodex("\n\nMilodans are native to the icy core world of Uveto VII, and make up one of the largest population groups on the planet. While the korgonne prefer the mountains and tunnels in the ice, milodan typically inhabit the coastal regions along the craggy Glacial Rifts near the equator. Most live in permanent and walled settlements, living as hunters or fishermen. Their fur acts as both a protection from the harsh elements and as camouflage, making them particularly well-suited to the harsh life their environs offer them.");
+	outputCodex("\n\nUplifted milodan can inhabit any environment, though they typically find themselves most comfortable in cold-weather climates, or on planets with a great deal of opens space for them to stretch their legs. Milodan are rarely satisfied with cramped space-borne life for long.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Reproduction:"));
+	outputCodex("\n\nMilodan reproduction is completely typical for humanoid mammals, with males penetrating females in order to inseminate and impregnate them. Male phalluses are fundamentally feline in shape, ranging from 8 to 12 inches with rings of concentric nodules along the crown, and a thick knot-like bulb around the base that engorges during sexual arousal. Female vaginas are somewhat larger and more receptive than a human’s, with a particularly pronounced clitoris, sometimes growing well over an inch in length. This, combined with the male’s bumpy ridges, makes intercourse quite pleasurable for them.");
+	outputCodex("\n\nMilodan mating sessions can last for hours, in part due to the participants’ tremendous stamina and endurance, and in part because the male and female will continuously try and vie for dominance, typically insisting on repeated bouts of sex in order to take control of the situation from the other. When the participants finally tire out, or one has been completely dominated by the other, the male will force his knot into his partner to bind them together, helping to ensure impregnation.");
+	outputCodex("\n\nFemale milodan are infertile for much of the year, only occasionally entering heat phases - usually once per six months, and lasting about two weeks. During this time, the female usually becomes much more aggressive, especially towards attractive males or hermaphrodites (of her race or any other). On Uveto, this usually results in several mating sessions with several different males until the heat ends. Uplifted milodan usually either take suppression treatments to help control their heat-period’s overactive libido and aggression, or take gene mods to gain a more human-standard reproduction cycle.");
+	outputCodex("\n\nOnce impregnated, the female milodan will undergo a relatively brief pregnancy - about four months - before giving birth to a litter of live kits. Average litters are between three and five, and kits are completely helpless for several weeks after birth, both blind and needing to breastfeed.");
+	outputCodex("\n\nMilodan children grow to adulthood over the course of 16 years, and have a life expectancy of about 50 years on Uveto, or upwards of 70 after upliftment.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Culture & Society:"));
+	outputCodex("\n\nUnlike most of the sapient Uvetan species, the milodan were subject to a semi-successful Confederate uplifting program. Spearheaded by the Akkadi group, an organized program to make peaceful contact with the milodan was launched shortly after initial colonization and a few brief skirmishes between local tribes and colonists. While such efforts largely failed among the other races, some milodan tribes realized that cooperation with the U.G.C. was the way of the future. Several centuries later, these milodan tribes have spread across the stars, integrating with Confederate society.");
+	outputCodex("\n\nToday, they’re well known as mercenaries and solid workers who adapt well to hostile frontier environments. There are few all-milodan colonies, but they have integrated quite well on ausar and kaithrit worlds.");
+	outputCodex("\n\nThe milodan who remain on Uveto are largely unchanged from their primitive origins, living in coastal villages made up of tents, ice structures, and material salvaged from offworlder expeditions. Villages are ruled by an elder, usually a veteran hunter or shaman of some sort who acts as the tribe’s matriarch or patriarch. Milodan are notoriously independent, however, and village leaders act more as advisors and wise-men to their tribesmen.");
+	outputCodex("\n\nMale and female milodans share hunting and salvaging responsibilities. The males are more aggressive towards outsiders, deeming them a threat whereas the females, whilst fierce, are the friendlier face of their tribe. Both male and female milodan will attempt to be dominant in their sexual advances, especially when they couple with offworlders or members of other species. This can easily escalate into outright assault from females in heat or males who believe their territory is threatened, ending only when the target of their aggression has been thoroughly bred.");
+	outputCodex("\n\n");
+
+	CodexManager.viewedEntry("Milodan");
 }
