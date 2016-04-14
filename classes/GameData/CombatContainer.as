@@ -3807,6 +3807,15 @@ package classes.GameData
 			return false;
 		}
 		
+		public function hasFriendlyOfClass(classT:Class):Boolean
+		{
+			for (var i:int = 0; i < _friendlies.length; i++)
+			{
+				if (_friendlies[i] is classT) return true;
+			}
+			return false;
+		}
+		
 		public function isFleeDisabled():Boolean
 		{
 			for (var i:int = 0; i < _friendlies.length; i++)

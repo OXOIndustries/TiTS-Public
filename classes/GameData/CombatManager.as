@@ -214,6 +214,11 @@ package classes.GameData
 			if (combatContainer) return combatContainer.hasEnemyOfClass(t);
 			return false;
 		}
+		public static function hasFriendlyOfClass(t:Class):Boolean
+		{
+			if (combatContainer) return combatContainer.hasFriendlyOfClass(t);
+			return false;
+		}
 		public static function enemiesAlive():int
 		{
 			if (combatContainer) return combatContainer.enemiesAlive();

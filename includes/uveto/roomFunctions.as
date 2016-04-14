@@ -3,14 +3,18 @@ import classes.Engine.Combat.DamageTypes.DamageResult;
 import classes.Engine.Combat.DamageTypes.TypeCollection;
 import classes.Engine.Combat.DamageTypes.DamageFlag;
 
+public function uvetoUnlocked():Boolean
+{
+	return flags["UVETO_UNLOCKED"] != undefined || reclaimedProbeMyrellion() || (flags["KQ2_MYRELLION_STATE"] == 1 && MailManager.isEntryUnlocked("danemyrellioncoords"));
+}
+
 public function flyToUveto():void
 {
+	if (flags["DO UVETO ICEQUEEN ENTRY"] != undefined) clearOutput();
 	author("Savin");
 
 	if (flags["VISITED_UVETO"] == undefined)
 	{
-		flags["VISITED_UVETO"] = 1;
-
 		output("The fringe of the Siretta system is quite unlike the heartlands, the frosty resort worlds nearer to the sun where you remember your father would often take his lover of the week to ski. Here, the Black is dominated by a massive belt of asteroids, shielding the furthest planet from the sun from sight. Your destination is not the tremendous, Jovian gas giant standing sentinel at the edge of the system, however, but one of its twelve moons: the frozen ice ball of Uveto VII.");
 		
 		output("\n\nYour screen buzzes to life as you near your destination. <i>“Good day to you, traveler!”</i> announces the odd creature on screen.");
@@ -43,7 +47,18 @@ public function flyToUveto():void
 	}
 
 	clearMenu();
-	addButton(0, "Next", actuallyArriveAtUvetoStation);
+
+	if (flags["DO UVETO ICEQUEEN ENTRY"] == undefined)
+	{
+		addButton(0, "Next", actuallyArriveAtUvetoStation);
+	}
+	else
+	{
+		flags["DO UVETO ICEQUEEN ENTRY"] = undefined;
+		addButton(0, "Next", iceQueenUvetoEntry, flags["VISITED_UVETO"]);
+	}
+
+	flags["VISITED_UVETO"] = 1;
 }
 
 public function actuallyArriveAtUvetoStation():void
@@ -127,18 +142,28 @@ public function tryApplyUvetoColdDamage():void
 
 public function hookUvetoRoomRemoveCold(direction:String):void
 {
+	removeUvetoCold();
+	move(rooms[currentLocation][direction]);
+}
+
+public function removeUvetoCold():void
+{
 	if (pc.hasStatusEffect("Bitterly Cold"))
 	{
 		pc.removeStatusEffect("Bitterly Cold");
 	}
-	move(rooms[currentLocation][direction]);
 }
 
 public function hookUvetoRoomAddCold(direction:String):void
+{
+	addUvetoCold();
+	move(rooms[currentLocation][direction]);
+}
+
+public function addUvetoCold():void
 {
 	if (!pc.hasStatusEffect("Bitterly Cold"))
 	{
 		(pc as PlayerCharacter).createStatusEffect("Bitterly Cold", 0, 0, 0, 0, false, "Icon_Snowflake", "The bitter, piercing cold of Uveto's icy tundra threatens to chill you to the bone. Better wrap up nice and tight, maybe even find something to heat you up to better stave off the freezing winds.", false, 0, UIStyleSettings.gColdStatusColour);
 	}
-	move(rooms[currentLocation][direction]);
 }

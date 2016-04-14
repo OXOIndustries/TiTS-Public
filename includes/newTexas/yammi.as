@@ -2,6 +2,11 @@
 
 
 //Since Yammi can be removed from the shop later, making this so I only have to change stuff once.
+public function yammiIsCrew():Boolean
+{
+	return false;
+}
+
 public function yammiShopDisplay():void
 {
 	showYammi();

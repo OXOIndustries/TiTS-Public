@@ -2766,6 +2766,10 @@
 		public function isMischievous(): Boolean {
 			return (personality <= 66 && personality > 33);
 		}
+		// BECAUSE NOBODY EVER SPELLS IT CORRECTLY OR COMPLETELY
+		public function isMisch():Boolean { return isMischievous(); }
+		public function isMisc():Boolean { return isMischievous(); }
+		
 		public function isAss(): Boolean {
 			return (personality > 66);
 		}
@@ -14645,5 +14649,13 @@
 			if (hasPerk("Icy Veins") || hasStatusEffect("Icy Veins")) return false;
 			return true;
 		}
+		
+		public function hasCybernetics():Boolean
+		{
+			return false;
+		}
+		
+		// top kek
+		public function myMiddleNameIsJensen():Boolean { return hasCybernetics(); }
 	}
 }
