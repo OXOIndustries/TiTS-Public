@@ -40,7 +40,8 @@ public function iceQueenMessageHelp(destination:String):void
 public function showZaalt():void
 {
 	author("Savin");
-	showBust("Zaalt");
+	//showBust("Zaalt");
+	showBust("MILODANMALE");
 	showName("ICE\nQUEEN");
 }
 
@@ -594,7 +595,7 @@ public function iceQueenLossToZaalt():void
 
 public function iceQueenBeatZaalt():void
 {
-	output("\n\nZaalt staggers back, grabbing the sides of his head and screaming in agony. Your eyes go wide as the bestial cat-man’s eyes roll up in his head, and he falls onto his back. He convulses for a moment, then falls still.");
+	output("Zaalt staggers back, grabbing the sides of his head and screaming in agony. Your eyes go wide as the bestial cat-man’s eyes roll up in his head, and he falls onto his back. He convulses for a moment, then falls still.");
 	
 	output("\n\nWhat the hell was that all about?");
 	
@@ -819,7 +820,8 @@ public function showKaraAndZaalt():void
 {
 	author("Savin");
 	showName("KARA &\nZAALT");
-	showBust("KARA", "ZAALT");
+	//showBust("KARA", "MILODANMALE"); 9999
+	showBust("KARA", "MILODANMALE");
 }
 
 public function iceQueenKaraShowsUp():void

@@ -190,7 +190,8 @@
 		
 		override public function get bustDisplay():String
 		{
-			return "ZAALT";
+			//return "ZAALT"; 9999
+			return "MILODANMALE";
 		}
 		
 		override public function setDefaultSexualPreferences():void
