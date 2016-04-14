@@ -779,6 +779,7 @@ public function iceQueenNoKara():void
 
 	pc.credits += 10000;
 	currentLocation = "UVI R32"; // 9999 Uveto cafe
+	addUvetoCold();
 
 	output("<i>“There’s our guy,”</i> Zaalt says, subtly nodding his head to where a young man is leaning back at a table against the far wall. He’s obviously not human, covered in a thin layer of navy blue fur culminating in a mop of dark red hair and a pair of perky, rabbit-like ears. Your contact’s dressed in a black flight jacket, unzipped to show off a blood red T-shirt with the words [<i>HEAVY METAL BAND</i>] inscribed across it in obviously ironic swirling font.");
 	if (pc.characterClass != GLOBAL.CLASS_ENGINEER) output(" You immediately notice the pair of holsters under the jacket, packed with a pair of holdout pistols, just barely large enough to print to your keen eyes.");
@@ -894,6 +895,7 @@ public function iceQueenKaraShowsUpCOOLIT():void
 
 	pc.credits += 10000;
 	currentLocation = "UVI R32"; // Uveto Cafe
+	addUvetoCold();
 
 	CombatManager.genericVictory();
 }
@@ -969,6 +971,7 @@ public function iceQueenKaraShowsUpInterruptSure():void
 	output("\n\nAt least you made some money off of this clusterfuck.");
 
 	currentLocation = "UVI R32"; // 9999 uveto cafe
+	addUvetoCold();
 
 	CombatManager.genericVictory();
 }
@@ -1021,6 +1024,7 @@ public function iceQueenKaraShowsUpInterruptNo():void
 	processTime(30 + rand(15));
 
 	currentLocation = "UVI R32"; // 9999 Uveto cafe
+	addUvetoCold();
 	CombatManager.genericVictory();
 }
 

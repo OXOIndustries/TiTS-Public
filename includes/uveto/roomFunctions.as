@@ -136,18 +136,28 @@ public function tryApplyUvetoColdDamage():void
 
 public function hookUvetoRoomRemoveCold(direction:String):void
 {
+	removeUvetoCold();
+	move(rooms[currentLocation][direction]);
+}
+
+public function removeUvetoCold():void
+{
 	if (pc.hasStatusEffect("Bitterly Cold"))
 	{
 		pc.removeStatusEffect("Bitterly Cold");
 	}
-	move(rooms[currentLocation][direction]);
 }
 
 public function hookUvetoRoomAddCold(direction:String):void
+{
+	addUvetoCold();
+	move(rooms[currentLocation][direction]);
+}
+
+public function addUvetoCold():void
 {
 	if (!pc.hasStatusEffect("Bitterly Cold"))
 	{
 		(pc as PlayerCharacter).createStatusEffect("Bitterly Cold", 0, 0, 0, 0, false, "Icon_Snowflake", "The bitter, piercing cold of Uveto's icy tundra threatens to chill you to the bone. Better wrap up nice and tight, maybe even find something to heat you up to better stave off the freezing winds.", false, 0, UIStyleSettings.gColdStatusColour);
 	}
-	move(rooms[currentLocation][direction]);
 }
