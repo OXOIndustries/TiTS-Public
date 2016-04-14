@@ -672,7 +672,7 @@ public function iceQueenBeatZaaltHelpHim():void
 	clearOutput();
 	showZaalt();
 
-	flags["ICE QUEEN COMPLETE"] = 3;
+	flags["ICEQUEEN COMPLETE"] = 3;
 
 	output("You kneel over Zaalt’s unconscious body, gently rolling him over. A dark bloodstain is spreading on the deck underneath his neck, and you grimace as you find the cause: a split in the skin on the back of his neck, right near his spine. No way you caused this. You brush your fingers around near the wound, trying to find the cause... and feeling something hot and metallic just beneath the surface. Some kind of implant?");
 	
