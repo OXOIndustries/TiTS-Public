@@ -31,9 +31,13 @@
 
 		[Embed(source = "../../../assets/images/npcs/gats/Beth.png", mimeType = "image/png")]
 		public var Bust_BETH:Class;
+		[Embed(source = "../../../assets/images/npcs/gats/Beth_Nude.png", mimeType = "image/png")]
+		public var Bust_BETH_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/gats/BoringMistress.png", mimeType = "image/png")]
 		public var Bust_BORING_MISTRESS:Class;
+		[Embed(source = "../../../assets/images/npcs/gats/BoringMistress_Nude.png", mimeType = "image/png")]
+		public var Bust_BORING_MISTRESS_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/gats/Burt.png", mimeType = "image/png")]
 		public var Bust_BURT:Class;
@@ -102,9 +106,13 @@
 
 		[Embed(source = "../../../assets/images/npcs/gats/Rival_Jack.png", mimeType = "image/png")]
 		public var Bust_JACK:Class;
+		[Embed(source = "../../../assets/images/npcs/gats/Rival_Jack_Nude.png", mimeType = "image/png")]
+		public var Bust_JACK_NUDE:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/gats/Rival_Jill.png", mimeType = "image/png")]
 		public var Bust_JILL:Class;
+		[Embed(source = "../../../assets/images/npcs/gats/Rival_Jill_Nude.png", mimeType = "image/png")]
+		public var Bust_JILL_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/gats/Jade.png", mimeType = "image/png")]
 		public var Bust_JADE:Class;
@@ -252,6 +260,8 @@
 		
 		[Embed(source = "../../../assets/images/npcs/gats/V-Ko.png", mimeType = "image/png")]
 		public var Bust_VKO:Class;
+		[Embed(source = "../../../assets/images/npcs/gats/V-Ko_Nude.png", mimeType = "image/png")]
+		public var Bust_VKO_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/gats/Zil_Female.png", mimeType = "image/png")]
 		public var Bust_ZILFEMALE:Class;

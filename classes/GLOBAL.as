@@ -1106,7 +1106,7 @@
 			"Cheshire",
 			"CyanCapsule",
 			"Damnit",
-			"Dr. Badger",
+			"DatBadger",
 			"Doxy",
 			"Gats",
 			"Old Gats",

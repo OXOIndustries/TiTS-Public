@@ -9,6 +9,9 @@ package classes.Resources.Busts
 	{
 		public function get PREVIEW():Class { return Bust_AMARA; }
 		
+		[Embed(source = "../../../assets/images/npcs/jay_echo/alex.png", mimeType = "image/png")]
+		public var Bust_ALEX:Class;
+		
 		[Embed(source = "../../../assets/images/npcs/jay_echo/amara.png", mimeType = "image/png")]
 		public var Bust_AMARA:Class;
 		public var Bounds_AMARA:Rectangle = new Rectangle(28, 2, 58, 64);
@@ -35,6 +38,9 @@ package classes.Resources.Busts
 		
 		CONFIG::IMAGEPACK
 		{
+			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/alex.png", mimeType = "image/png")]
+			public var Full_ALEX:Class;
+			
 			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/amara.png", mimeType = "image/png")]
 			public var Full_AMARA:Class;
 			
