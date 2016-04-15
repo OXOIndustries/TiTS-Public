@@ -166,6 +166,7 @@
 		include "../includes/mhenga/burt.as";
 		include "../includes/mhenga/crazyCarl.as";
 		include "../includes/mhenga/cuntSnakes.as";
+		include "../includes/mhenga/dryad.as";
 		include "../includes/mhenga/flahne.as";
 		include "../includes/mhenga/frogGirls.as";
 		include "../includes/mhenga/julianSHaswell.as";
@@ -279,6 +280,7 @@
 		include "../includes/events/karaquest2/roomFunctions.as";
 		
 		// Uveto
+		include "../includes/uveto/nayna.as";
 		include "../includes/uveto/rooms.as";
 		include "../includes/uveto/roomFunctions.as";
 		include "../includes/events/icequeen/icequeen.as"; // Alt. path to unlocking uveto
