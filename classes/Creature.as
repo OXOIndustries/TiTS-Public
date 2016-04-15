@@ -1753,6 +1753,9 @@
 				case "nippleColor":
 					buffer = nippleColor;
 					break;
+				case "nipplePiercings":
+					buffer = "nipple piercings"; // 9999
+					break;
 				case "eachCock":
 					buffer = eachCock();
 					break;
