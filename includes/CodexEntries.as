@@ -67,6 +67,7 @@ public function configureCodex():void
 
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_UVETO, "Uveto", "Enessa", enessaCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_UVETO, "Uveto", "Frostwyrm", frostwyrmCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_UVETO, "Uveto", "Korgonne", korgonneCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_UVETO, "Uveto", "Lurelings", lurelingsCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_UVETO, "Uveto", "Milodan", milodanCodexEntry);
 
@@ -2264,6 +2265,52 @@ public function frostwyrmCodexEntry():void
 	outputCodex("\n\n");
 
 	CodexManager.viewedEntry("Frostwyrm");
+}
+
+public function korgonneCodexEntry():void
+{
+	clearOutputCodex();
+	outputCodex(header("Korgonne"));
+	outputCodex("<i>Honest little furballs as tough as they are short.</i>\n\n");
+	outputCodex("<b>Name (Singular & Plural):</b> Korgonne");
+	outputCodex("\n<b>Sexes:</b> Males and Females");
+	outputCodex("\n<b>Height:</b> Between 4’ and 5’6”</i>.");
+	outputCodex("\n<b>Weight:</b> Between 100 and 170 terran pounds.");
+	outputCodex("\n<b>Eyes:</b> Rectangular, like a goat’s. The irises are typically brown, hazel, or green.");
+	outputCodex("\n<b>Skin:</b> Tan, pale blue, or chocolate brown with black pigmentation common near the genitals.");
+	outputCodex("\n<b>Fur:</b> A mixture of white and tawny with black down the back.");
+	outputCodex("\n<b>Hair:</b> Longer fur growing from the top of the head to the nape of the neck. Typically brown, white, or burnt orange.");
+	outputCodex("\n<b>Ears:</b> Positioned atop the head; triangular in shape and slightly rounded at the tip.");
+	outputCodex("\n<b>Face:</b> Humanoid in appearance with wide, expressive eyes and a short muzzle capped by a black, moist nose.");
+	outputCodex("\n<b>Limbs:</b> Two arms and two digitigrade legs. Both palms and soles contain soft, leathery pads, similar to a cat’s.");
+	outputCodex("\n<b>Tails:</b> Either a foot long and fluffy or short and curled upward, depending on parentage.");
+	outputCodex("\n<b>Lifespan:</b> 156 years on average with exceptional individuals reaching into their second century.");
+
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Appearance Notes"));
+	outputCodex("Korgonne fur is typically short but dense, suitable for protection during brief jaunts to the frozen surface but not so stifling as to cause problems for those that remain in their warmer burrows for long periods of time. They tend toward stockiness thanks to their chill environment. With great effort, it is possible for them to attain the lithe appearance the rest of the galaxy seems to strive for, but few have shown such inclinations.");
+	outputCodex("\n\nA korgonne’s dress varies widely with the situation. Inside their subterranean burrows, garb is next to nonexistent - nudity or simple wraps to obscure the genitals and nipples are the order of the day. Outside, they’ll wear suits woven from mineral fibers found within Uveto’s spires, often bolstered with furs and leathers from the moon’s natural wildlife, particularly those harvested from fallen [REDACTED]s.");
+	outputCodex("\n\nKorgonne favor jewelry of all types, yet have a preference for native crystals set in plain, strong settings - the greater the contrast between gem and housing, the higher their regard. Since coming into contact with huskar and the greater UGC, piercings have come into favor in more outgoing communities, particularly on ears and tails, and it is now possible to easily identify a korgonne’s social status by the amount and quality of his or her jewelry.\n\n");
+	outputCodex(blockHeader("Habitat"));
+	outputCodex("Korgonne settle in and around the mineral spires of Uveto VII, living in caves both natural and hollowed by mining. Their clans vary in size from a few dozen to hundreds, depending on the size of the spire and its suitability for habitation. The preferred type of spire contains insulating minerals that effectively trap the heat of korgonne bodies and fires; particularly nice spires will soon find themselves effectively anchored in the ice to prevent them from sinking deeper into the murky core.");
+	outputCodex("\n\nAquatic animals fished from the internal ocean provide a steady source of food, bolstered by naturally-occurring fungus cultivated in the outermost burrows. Algae too provides a boon to these <i>“fluffy savages”</i>. They cultivate it in sealed chambers, in time harvesting it to brew a distinctive-tasting beer. The spires themselves provide no shortage of useful minerals and crystals, allowing the industrious korgonne to produce works that seem well beyond their primitive capabilities.");
+	outputCodex("\n\nSettlements are isolated, yet often share similar forms of governance and religion. Clan leaders, typically a patriarch, oversee the rule of assembled korgonne, while worship of a figure known as <i>“the Great Forge”</i> is almost universally accepted. Infrequent trade between spires has allowed an exchange of ideas that have survived for centuries thanks to careful record keeping.");
+	outputCodex("\n\nMost korgonne view the huskar, and outsiders in general, with suspicion. Others regard them with outright hostility, considering them interlopers who have only come to plunder the Great Forge’s bones for riches. Some of the latter group have even taken to harassing explorers in the snows, ambushing them from hidden positions in hopes of driving the aliens away from their homeworld.");
+	outputCodex("\n\nCare is advised when traveling, as it is difficult to determine if a korgonne is truly hostile at first meeting.\n\n");
+	outputCodex(blockHeader("Cultural Notes"));
+	outputCodex("Korgonne culture holds industriousness as the highest virtue. The more productive an individual, the greater respect they are afforded by their peers. The quality of work contributes as well; a miner who slaves at his job for fifteen hours straight would not be as well-regarded as one who finds a way to extract three times the minerals in half as many hours.");
+	outputCodex("\n\nIntelligence and wit are valued commodities. They see no greater sin than having a brilliant mind and refusing to use it to its fullest, viewing idle genius as the worst kind of sloth. To this end, they rigorously school their young, affording their teachers luxurious pay. Korgonne have achieved a level of scientific understanding well beyond what many anthropologists thought isolated, tribal cultures capable of. Further diplomatic studies by the U.G.C. are planned, and a number of private corporations have expressed interest in bringing a korgonne scientist up to galactic standards.");
+	outputCodex("\n\nAnother major difference from galactic norms is the korgonne attitude toward loyalty and honesty, going far beyond general approval to a fanatical adherence to code. Dishonesty is considered gauche and a habitual liar absolute scum. The punishment for thievery is banishment, considered to be worse than death; this sentiment also extends to alien explorers, making it difficult for outsiders to befriend and enter even the most peaceful korgonne colony. A korgonne’s word is his bond, and a cultivated friendship often transforms into a lifetime of loyalty. Similarly, one social misstep could make a mortal, implacable enemy.");
+	outputCodex("\n\nLastly, their language has proven difficult for procedural translation software to adapt to. Extensive samples are needed to improve the accuracy; though basic conceptual understanding is still possible, many subtleties are lost. Developing algorithms to properly handle korgonne speech could advance translation technology by decades.\n\n");
+	outputCodex(blockHeader("Sex and Mating"));
+	outputCodex("\n\nReproduction among the korgonne is slow, not because of infrequent mating but because of infrequent ovulation. Females are only fertile in times of plenty, when supplies and space both exist in ample quantities. Further study is needed to determine the exact mechanisms behind this selective behavior. Pregnancies result in a single, helpless offspring that matures over a period of 25 to 30 years. Development is comparable to terran and ausar stages, though at a more gradual pace.");
+	outputCodex("\n\nWhile reproduction is infrequent, intercourse certainly is not. Korgonne females are considered the more libidinous of the two sexes, frequently courting sexual encounters with their peers for enjoyment and bonding. The males are taciturn but aggressive lovers, fiercely passionate once their slow-burning ardor is roused. Sex is considered a common part of life, sometimes even a part of the social contract, and korgonne might employ short spats of violence to reconcile a recalcitrant lover in the same way that a drunken kui-tan might encourage a miserly companion to pick up a bar tab.");
+	outputCodex("\n\nMales are equipped with a retractable phallus, black in color, that expands in size the longer it kept aroused. A single, large gonad provides sperm, pooling it in a canid knot at the base of the shaft during arousal. Because of this, if a male is aroused and subsequently calms without ejaculation, his body will leak semen for anywhere from a few minutes to an hour.");
+	outputCodex("\n\nFemales have a single genital slit positioned between their legs with a vestigial clit at the fore. The nerve density of the external vulva, particularly of the clitoris, is far lower than in other species with the feature, though the lining of the vaginal passage, particularly where a knot would rest, is many times more sensitive than a terran equivalent. Some of these nerves even reach into the rectum, and anal sex does not have the stigma it does in some other cultures. The female genitalia produces a strong sexual pheromone that entices both males and females, and a korgonne female seeking sex often leaves her genitalia exposed to allow it to permeate the air.");
+	outputCodex("\n\nPenetrative sex acts are a favorite of both genders, often featuring extensive foreplay and large insertions that maximize internal stimulation and male erection size.\n\n");
+	outputCodex(blockHeader("Conclusions"));
+	outputCodex("\n\nKorgonne natives are a stubborn lot, unlikely to integrate into the U.G.C. without significant effort, but their productive ethic may offer much advantage when and if they do so. Caution, honesty, and civility are advised when dealing with them. In the event of hostilities, visitors are requested to seek a nonviolent resolution. One violent death may make an entire clan intractable.\n\n");
+	CodexManager.viewedEntry("Korgonne");
 }
 
 public function lurelingsCodexEntry():void

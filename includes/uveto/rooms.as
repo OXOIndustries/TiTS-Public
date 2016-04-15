@@ -142,10 +142,10 @@ public function initUvetoRooms():void
 	rooms["UVS D7"].system = "SYSTEM: SIRETTA";
 	rooms["UVS D7"].eastExit = "UVS F7";
 	rooms["UVS D7"].westExit = "UVS B7";
-	rooms["UVS D7"].outExit = "UVI F34";
-	rooms["UVS D7"].outText = "Down";
+	//rooms["UVS D7"].outExit = "UVI F34";
+	//rooms["UVS D7"].outText = "Down";
 	rooms["UVS D7"].moveMinutes = 1;
-	rooms["UVS D7"].runOnEnter = null;
+	rooms["UVS D7"].runOnEnter = uvetoSpaceElevatorBonus;
 	rooms["UVS D7"].addFlag(GLOBAL.INDOOR);
 	rooms["UVS D7"].addFlag(GLOBAL.LIFTDOWN);
 
@@ -282,10 +282,10 @@ public function initUvetoRooms():void
 	rooms["UVI F34"].planet = "PLANET: UVETO VII";
 	rooms["UVI F34"].system = "SYSTEM: SIRETTA";
 	rooms["UVI F34"].eastExit = "UVI H34";
-	rooms["UVI F34"].inExit = "UVS D7";
-	rooms["UVI F34"].inText = "Up";
+	//rooms["UVI F34"].inExit = "UVS D7";
+	//rooms["UVI F34"].inText = "Up";
 	rooms["UVI F34"].moveMinutes = 1;
-	rooms["UVI F34"].runOnEnter = null;
+	rooms["UVI F34"].runOnEnter = uvetoSpaceElevatorBaseBonus;
 	rooms["UVI F34"].addFlag(GLOBAL.INDOOR);
 	rooms["UVI F34"].addFlag(GLOBAL.LIFTUP);
 

@@ -3,6 +3,37 @@ import classes.Engine.Combat.DamageTypes.DamageResult;
 import classes.Engine.Combat.DamageTypes.TypeCollection;
 import classes.Engine.Combat.DamageTypes.DamageFlag;
 
+public function uvetoSpaceElevatorBaseBonus():Boolean
+{
+	addButton(5,"S.Elevator",rideSpaceElevatorUp,undefined,"Space Elevator","Ride the space elevator up to the station.");
+	return false;
+}
+public function rideSpaceElevatorUp():void
+{
+	clearOutput();
+	showName("SPACE\nELEVATOR");
+	output("Catching a lift on the space elevator, you begin the long ride up into the black.\n\nIt takes a while.\n\nA <i>long</i> while.\n\nGood thing you can browse the 'net on your Codex while you wait.");
+	processTime(75);
+	clearMenu();
+	addButton(7,"Exit",move,"UVS D7");
+}
+
+public function uvetoSpaceElevatorBonus():Boolean
+{
+	addButton(7,"S.Elevator",rideSpaceElevatorDown,undefined,"Space Elevator","Ride the space elevator down to the ice moon's surface.");
+	return false;
+}
+public function rideSpaceElevatorDown():void
+{
+	clearOutput();
+	showName("SPACE\nELEVATOR");
+	output("Catching a lift on the space elevator, you begin the long ride down to Uveto's surface.\n\nIt takes a while - good thing the view is so spectacular. You can only imagine how slow the trip back up will be.\n\n(9999Developer note: perhaps commission art of the view for artpack.)");
+	processTime(45);
+	clearMenu();
+	addButton(7,"Exit",move,"UVI F34");
+}
+
+
 public function uvetoUnlocked():Boolean
 {
 	return flags["UVETO_UNLOCKED"] != undefined || reclaimedProbeMyrellion() || (flags["KQ2_MYRELLION_STATE"] == 1 && MailManager.isEntryUnlocked("danemyrellioncoords"));

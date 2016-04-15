@@ -272,7 +272,7 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/wetraxxel_nude.png", mimeType = "image/png")]
 		public var Bust_WETRAXXEL_NUDE:Class;
 
-		[Embed(source = "../../../assets/images/npcs/shou_puppy/xanthe.png", mimeType = "image/png")]
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/xanthe_new.png", mimeType = "image/png")]
 		public var Bust_XANTHE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/yammi.png", mimeType = "image/png")]
@@ -539,7 +539,7 @@
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/wetraxxel_nude.png", mimeType = "image/png")]
 			public var Full_WETRAXXEL_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/xanthe.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/xanthe_new.png", mimeType = "image/png")]
 			public var Full_XANTHE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/yammi.png", mimeType = "image/png")]
