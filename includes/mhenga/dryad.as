@@ -39,8 +39,9 @@ public function dryadMeeting():void
 		if (pc.hasVagina()) addButton(1, "Get Fucked", dryadPussy, undefined, "Get Fucked", "Let the girl fuck your pussy.");
 		else addDisabledButton(1, "Get Fucked", "Get Fucked", "You don't have a pussy for her to fuck.");
 		addButton(2, "Get Reamed", dryadAss, undefined, "Get Reamed", "Let the girl fuck your ass.");
-		if (pc.biggestCockLength() >= 12) addButton(3, "Fuck Her", dryadDick, undefined, "Fuck Her", "Fuck the girl's pussy to get her off.");
-		else addDisabledButton(3, "Fuck Her", "Fuck Her", "Your dick needs to be at least a foot long before the femtaur will let you fuck her.");
+		if (pc.hasCock() && pc.biggestCockLength() >= 12) addButton(3, "Fuck Her", dryadDick, undefined, "Fuck Her", "Fuck the girl's pussy to get her off.");
+		else if (pc.hasCock()) addDisabledButton(3, "Fuck Her", "Fuck Her", "Your dick needs to be at least a foot long before the femtaur will let you fuck her.");
+		else addDisabledButton(3, "Fuck Her", "Fuck Her", "You don't have a foot-long dick to fuck her with.");
 	}
 	else
 	{
@@ -48,7 +49,9 @@ public function dryadMeeting():void
 		if (pc.hasVagina()) addDisabledButton(1, "Get Fucked", "Get Fucked", "You aren't aroused enough for that.");
 		else addDisabledButton(1, "Get Fucked", "Get Fucked", "Even if you were aroused enough, you don't have a pussy for her to fuck.");
 		addDisabledButton(2,"Get Reamed","Get Reamed","You aren't aroused enough for that.");
-		addDisabledButton(3,"Fuck Her","Fuck Her","You aren't aroused enough for that.");
+		if (pc.hasCock() && pc.biggestCockLength() >= 12) addDisabledButton(3,"Fuck Her","Fuck Her","You aren't aroused enough for that.");
+		else if (pc.hasCock()) addDisabledButton(3, "Fuck Her", "Fuck Her", "Even if you were aroused enough, your dick needs to be at least a foot long to fuck her.");
+		else addDisabledButton(3, "Fuck Her", "Fuck Her", "Even if you were aroused enough, you need a dick at least a foot long to fuck her.");
 	}
 	addButton(14, "Leave", dryadNo, undefined, "Leave", "You don't wanna bang right now.");
 }
@@ -110,8 +113,8 @@ public function dryadPussy():void
 	output("You tell her she can use [pc.oneVagina] to get off and a smile crosses her lust-reddened face.");
 	output("\n\n<i>“Oh, thank you! Thankyouthankyouthankyou!”</i>");
 	output("\n\nYou brace yourself against a nearby tree");
-	if (pc.isTaur()) output("as she hurriedly mounts you, scrabbling across your rear in her urgency to sink her cock between your lips.");
-	else output("as she slams her front hooves into the trunk above your head, the midsection of her cock slapping your [pc.pussy " + x + "] as she eagerly maneuvers into a position to mount you.");
+	if (pc.isTaur()) output(" as she hurriedly mounts you, scrabbling across your rear in her urgency to sink her cock between your lips.");
+	else output(" as she slams her front hooves into the trunk above your head, the midsection of her cock slapping your [pc.pussy " + x + "] as she eagerly maneuvers into a position to mount you.");
 	output("\n\nYou warily glance backwards to check up on her only to feel her flared head immediately split your [pc.pussy " + x + "] apart with no preparation.");
 	if (pc.vaginas[x].looseness() < 3) output ("You scream a little in pain but");
 	else output ("She easily slides into your willing cunt and");
@@ -259,7 +262,6 @@ public function dryadAfterscene():void
 		output("\n\nShe");
 		if (pc.tallness < 70) output (" bends down and");
 		output(" gives you a gentle kiss before gracefully loping away, her tail flitting hypnotically from side to side as she disappears into the foliage. You heft yourself to your feet, the sensation of warmth filling your swollen belly making you feel a bit lethargic and docile as you prepare to leave.");
-		IncrementFlag("DRYAD_FUCKED");
 	}
 	else
 	{
@@ -270,6 +272,7 @@ public function dryadAfterscene():void
 		output(" gives you a gentle kiss before gracefully loping away, her tail flitting hypnotically from side to side as she disappears into the foliage. You heft yourself to your feet, the sensation of warmth filling your swollen belly making you feel a bit lethargic and docile as you prepare to leave.");
 	}
 	if (silly) output("\n\nYou hear a faint “Sproink!” in the distance, then silence.");
+	IncrementFlag("DRYAD_FUCKED");
 	processTime(3);
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
