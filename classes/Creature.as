@@ -3198,7 +3198,7 @@
 			
 			if (hasStatusEffect("Focus Pill")) currInt += 5;
 			// Slave collar multiplier.
-			if(hasStatusEffect("Psy Slave Collar")) currInt = Math.floor(currInt * statusEffectv1("Psy Slave Collar"));
+			if(hasStatusEffect("Psi Slave Collar")) currInt = Math.floor(currInt * statusEffectv1("Psi Slave Collar"));
 
 			if (currInt > intelligenceMax())
 			{
@@ -3241,7 +3241,7 @@
 			//Roshan Blue gives 25% more xp and lowers willpower by 30% until next rest
 			if(hasStatusEffect("Roshan Blue")) currWill -= Math.floor(currWill*0.3);
 			// Slave collar multiplier.
-			if(hasStatusEffect("Psy Slave Collar")) currWill = Math.floor(currWill * statusEffectv2("Psy Slave Collar"));
+			if(hasStatusEffect("Psi Slave Collar")) currWill = Math.floor(currWill * statusEffectv2("Psi Slave Collar"));
 			
 			if (currWill > willpowerMax())
 			{
@@ -3359,7 +3359,7 @@
 			if(hasPerk("Drug Fucked")) bonus += 40;
 			if(hasPerk("Slut Stamp")) bonus += perkv2("Slut Stamp");
 			// Slave collar increases minimum by set level.
-			if(hasStatusEffect("Psy Slave Collar")) bonus += statusEffectv3("Psy Slave Collar");
+			if(hasStatusEffect("Psi Slave Collar")) bonus += statusEffectv3("Psi Slave Collar");
 			return (0 + bonus);
 		}
 		public function slowStatGain(stat:String, arg:Number = 0):Number {

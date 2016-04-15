@@ -1660,7 +1660,7 @@ public function kq2KhanPCDefeat():void
 	output(" and sliding the slim metal ring around your neck.");
 	
 	pc.removeAll();
-	pc.createStatusEffect("Psy Slave Collar", 0.5, 0.05, 50, 0, true, "Radio", "This metal collar limits your intelligence capacity and willpower while worn, making you completely subservient to the will of the one who operates it.", false, 0, 0xFF0000);
+	pc.createStatusEffect("Psi Slave Collar", 0.5, 0.05, 50, 0, true, "Radio", "This metal collar limits your intelligence capacity and willpower while worn, making you completely subservient to the will of the one who operates it.", false, 0, 0xFF0000);
 	
 	output("\n\n<i>“No... get away...”</i> Kara moans as one of the girls rolls her onto her face, just beside you. Before they collar her, the girls spend a few moments undressing the kaithrit, pulling off her skin-tight top and the skimpy skirt she’s wearing, even pulling her up to her knees so they can yank her underwear off. You watch as her E-cups bounce free, immediately in the grasp of another gold myr, who squeezes and kneads the perfect, soft orbs.");
 	
@@ -1994,7 +1994,7 @@ public function kq2CapturedByPiratesBadEndII():void
 	
 	output("\n\n<i>“Looks good on you,”</i> your new owner smirks, giving her subordinate a rough clap on the shoulder to send him on his way. She reaches down after that, grabbing the back on your collar and flicking a button. The moment she does, you feel a thrum of energy pass through your neck, and something warm press against your spine.");
 	
-	pc.createStatusEffect("Psy Slave Collar", 0.75, 0.50, 25, 0, true, "Radio", "This metal collar limits your intelligence capacity and willpower while worn, making you completely subservient to the will of the one who operates it.", false, 0, 0xFF0000);
+	pc.createStatusEffect("Psi Slave Collar", 0.75, 0.50, 25, 0, true, "Radio", "This metal collar limits your intelligence capacity and willpower while worn, making you completely subservient to the will of the one who operates it.", false, 0, 0xFF0000);
 	
 	output("\n\n<i>“This is the lowest setting,”</i> she explains, drawing her hand up from the collar and across your [pc.hair], gently pushing your head down. As she does, you feel a shudder pass through you, followed by a spreading heat from your back, slowly crawling through your body. <i>“Doctor Khan’s work is truly remarkable, in its perverse way. Stand up.”</i>");
 
