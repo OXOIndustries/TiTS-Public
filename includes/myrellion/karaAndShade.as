@@ -81,11 +81,12 @@ Kara rewards PC with credits, bugs out of the bar.
 Adventure 1: A Damsel in Distress, you say?
 */
 
-public function showKara():void
+public function showKara(asNude:Boolean = false):void
 {
 	author("Savin");
 	showName("\nKARA");
-	showBust("KARA");
+	if (!asNude) showBust("KARA");
+	else showBust("KARA_NUDE");
 }
 public function showShade():void
 {

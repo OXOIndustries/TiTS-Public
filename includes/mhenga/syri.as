@@ -1006,7 +1006,8 @@ public function getVagFukkedBySyri():void {
 	output("\n\n<i>“I don't deserve a " + pc.mf("boy","girl") + " like you... you're amazing, [pc.name],”</i> she says, smiling down at you with her puppy dog eyes that make you want nothing more than to kiss her, pulling the alien beauty onto you as you flip off the lights, drawing the blanket over your bare bodies to wait out her knot's deflation in each other's arms.");
 	processTime(40+rand(15));
 	pc.orgasm();
-	pc.loadInCunt(chars["SYRI"], x);
+	pc.loadInMouth(chars["SYRI"]);
+	//pc.loadInCunt(chars["SYRI"], x);
 	chars["SYRI"].orgasm();
 	clearMenu();
 	addButton(0,"Next",syriSexOutro);
@@ -1594,7 +1595,7 @@ public function allVaginalPathsMergeHere():void
 	processTime(15);
 	pc.orgasm();
 	chars["SYRI"].orgasm();
-	pc.loadInCunt(chars["SYRI"],x);
+	//pc.loadInCunt(chars["SYRI"],x);
 	if(flags["FUCKED_SYRI_COUNT"] == undefined) flags["FUCKED_SYRI_COUNT"] = 0;
 	flags["FUCKED_SYRI_COUNT"]++;
 	clearMenu();

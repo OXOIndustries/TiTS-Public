@@ -31,9 +31,13 @@
 
 		[Embed(source = "../../../assets/images/npcs/gats/Beth.png", mimeType = "image/png")]
 		public var Bust_BETH:Class;
+		[Embed(source = "../../../assets/images/npcs/gats/Beth_Nude.png", mimeType = "image/png")]
+		public var Bust_BETH_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/gats/BoringMistress.png", mimeType = "image/png")]
 		public var Bust_BORING_MISTRESS:Class;
+		[Embed(source = "../../../assets/images/npcs/gats/BoringMistress_Nude.png", mimeType = "image/png")]
+		public var Bust_BORING_MISTRESS_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/gats/Burt.png", mimeType = "image/png")]
 		public var Bust_BURT:Class;
@@ -44,6 +48,14 @@
 		public var Bust_CAMERON:Class;
 		[Embed(source = "../../../assets/images/npcs/gats/cameron_nude.png", mimeType = "image/png")]
 		public var Bust_CAMERON_NUDE:Class;
+		
+		CONFIG::IMAGEPACK
+		{
+			[Embed(source = "../../../assets/images/npcs/gats/hr/cameron.png", mimeType = "image/png")]
+			public var Full_CAMERON:Class;
+			[Embed(source = "../../../assets/images/npcs/gats/hr/cameron_nude.png", mimeType = "image/png")]
+			public var Full_CAMERON_NUDE:Class;
+		}
 
 		[Embed(source = "../../../assets/images/npcs/gats/Captain_Khorgan.png", mimeType = "image/png")]
 		public var Bust_CAPTAIN_KHORGAN:Class;
@@ -94,9 +106,13 @@
 
 		[Embed(source = "../../../assets/images/npcs/gats/Rival_Jack.png", mimeType = "image/png")]
 		public var Bust_JACK:Class;
+		[Embed(source = "../../../assets/images/npcs/gats/Rival_Jack_Nude.png", mimeType = "image/png")]
+		public var Bust_JACK_NUDE:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/gats/Rival_Jill.png", mimeType = "image/png")]
 		public var Bust_JILL:Class;
+		[Embed(source = "../../../assets/images/npcs/gats/Rival_Jill_Nude.png", mimeType = "image/png")]
+		public var Bust_JILL_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/gats/Jade.png", mimeType = "image/png")]
 		public var Bust_JADE:Class;
@@ -128,6 +144,14 @@
 		public var Bust_MILLIE:Class;
 		[Embed(source = "../../../assets/images/npcs/gats/millie_nude.png", mimeType = "image/png")]
 		public var Bust_MILLIE_NUDE:Class;
+		
+		CONFIG::IMAGEPACK
+		{
+			[Embed(source = "../../../assets/images/npcs/gats/hr/millie.png", mimeType = "image/png")]
+			public var Full_MILLIE:Class;
+			[Embed(source = "../../../assets/images/npcs/gats/hr/millie_nude.png", mimeType = "image/png")]
+			public var Full_MILLIE_NUDE:Class;
+		}
 
 		[Embed(source = "../../../assets/images/npcs/gats/Mimbrane.png", mimeType = "image/png")]
 		public var Bust_MIMBRANE:Class;
@@ -138,6 +162,9 @@
 		[Embed(source = "../../../assets/images/npcs/gats/Naleen_Male.png", mimeType = "image/png")]
 		public var Bust_NALEEN_MALE:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/gats/nayna_placeholder.png", mimeType = "image/png")]
+		public var Bust_NAYNA:Class;
+
 		[Embed(source = "../../../assets/images/npcs/gats/Penny.png", mimeType = "image/png")]
 		public var Bust_PENNY:Class;
 		[Embed(source = "../../../assets/images/npcs/gats/Penny_Nude.png", mimeType = "image/png")]
@@ -219,6 +246,14 @@
 		public var Bust_UNA:Class;
 		[Embed(source = "../../../assets/images/npcs/gats/una_nude.png", mimeType = "image/png")]
 		public var Bust_UNA_NUDE:Class;
+		
+		CONFIG::IMAGEPACK
+		{
+			[Embed(source = "../../../assets/images/npcs/gats/hr/una.png", mimeType = "image/png")]
+			public var Full_UNA:Class;
+			[Embed(source = "../../../assets/images/npcs/gats/hr/una_nude.png", mimeType = "image/png")]
+			public var Full_UNA_NUDE:Class;
+		}
 
 		[Embed(source = "../../../assets/images/npcs/gats/Venus_Pitcher.png", mimeType = "image/png")]
 		public var Bust_VENUSPITCHER:Class;
@@ -228,6 +263,8 @@
 		
 		[Embed(source = "../../../assets/images/npcs/gats/V-Ko.png", mimeType = "image/png")]
 		public var Bust_VKO:Class;
+		[Embed(source = "../../../assets/images/npcs/gats/V-Ko_Nude.png", mimeType = "image/png")]
+		public var Bust_VKO_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/gats/Zil_Female.png", mimeType = "image/png")]
 		public var Bust_ZILFEMALE:Class;

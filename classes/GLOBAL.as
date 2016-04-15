@@ -884,6 +884,7 @@
 		public static const DESERT:int									= 22;
 		public static const PLANE:int									= 23;
 		public static const PLANT_BULB:int								= 24;
+		public static const ICYTUNDRA:int								= 25;
 		
 		// Temp flag alias whilst the asset gets introduced
 		public static const LIFT:int = OBJECTIVE;
@@ -946,6 +947,8 @@
 		public static const ITEM_FLAG_EXPOSE_CHEST:int					= 9; // Used specifically for clothing/armor that exposes nipples/breasts to the elements.
 		public static const ITEM_FLAG_EXPOSE_GROIN:int					= 10; // Used specifically for clothing/armor that exposes genitals to the elements.
 		public static const ITEM_FLAG_EXPOSE_ASS:int					= 11; // Used specifically for clothing/armor that exposes asshole to the elements.
+		public static const ITEM_FLAG_HEATBELT:int						= 12;
+		public static const ITEM_FLAG_HEAT_GENERATOR:int				= 13; // Some other item that provides total avoidance of damage from cold, but not nessecerily a belt.
 		
 		public static const ITEM_FLAG_NAMES:Array = [
 			"Bow Weapon",
@@ -1075,7 +1078,9 @@
 		public static const VALID_ARTISTS:Array = [
 			"NONE",
 			"ADJATHA",
+			"BNG",
 			"CHESHIRE",
+			"CYANCAPSULE",
 			"DAMNIT",
 			"DOCBADGER",
 			"DOXY",
@@ -1084,25 +1089,37 @@
 			"JACQUES",
 			"JAMESAB",
 			"JAYECHO",
+			"LAPINBEAU",
+			"MANIACPAINT",
+			"PEEKAY",
+			"RENEZUO",
 			"SHOU",
-			"WOLFYNAIL"
+			"UTHSTAR",
+			"WOLFYNAIL",
 		];
 		
 		// Any time we want to show a name, this is where it'll be getting pulled from
 		public static const VALID_ARTISTS_NAMES:Array = [
 			"None",
 			"Adjatha",
+			"Benji",
 			"Cheshire",
+			"CyanCapsule",
 			"Damnit",
-			"Dr. Badger",
+			"DatBadger",
 			"Doxy",
 			"Gats",
 			"Old Gats",
-			"Jacques",
+			"Jacques00",
 			"James AB",
 			"Jay Echo",
+			"Lapinbeau",
+			"ManiacPaint",
+			"Pee-Kay",
+			"Renezuo",
 			"Shou",
-			"Wolfy-nail"
+			"Uthstar",
+			"Wolfy-Nail",
 		];
 		
 		// These are what show up in the options menu combo boxes
@@ -1113,7 +1130,7 @@
 			"GATS",
 			"GATSOLD",
 			"JACQUES",
-			"SHOU"
+			"SHOU",
 		];
 		
 		

@@ -18,7 +18,9 @@
 		public static var NONE:Object = { }; 
 		
 		public static var ADJATHA:Object = new AdjathaBusts();
+		public static var BNG:Object = new BNGBusts();
 		public static var CHESHIRE:Object = new CheshireBusts();
+		public static var CYANCAPSULE:Object = new CyanCapsuleBusts();
 		public static var DAMNIT:Object = new DamnitBusts();
 		public static var DOCBADGER:Object = new DocBadgerBusts();
 		public static var DOXY:Object = new DoxyBusts();
@@ -27,7 +29,12 @@
 		public static var JACQUES:Object = new JacquesBusts();
 		public static var JAMESAB:Object = new JamesABBusts();
 		public static var JAYECHO:Object = new JayEchoBusts();
+		public static var LAPINBEAU:Object = new LapinbeauBusts();
+		public static var MANIACPAINT:Object = new ManiacPaintBusts();
+		public static var PEEKAY:Object = new PeeKayBusts();
+		public static var RENEZUO:Object = new RenezuoBusts();
 		public static var SHOU:Object = new ShouBusts();
+		public static var UTHSTAR:Object = new UthstarBusts();
 		public static var WOLFYNAIL:Object = new WolfyNailBusts();
 		
 		public static function hasBustsForCharacter(bustName:String):Boolean
@@ -35,13 +42,47 @@
 			if (bustName == "none") return false;
 			
 			var _bustName:String = "Bust_" + bustName;
+			var _bustNameNude:String = _bustName + "_NUDE";
 			
 			for (var i:int = 0; i < GLOBAL.VALID_ARTISTS.length; i++)
 			{
 				if (_bustName in NPCBustImages[GLOBAL.VALID_ARTISTS[i]]) return true;
+				if (_bustNameNude in NPCBustImages[GLOBAL.VALID_ARTISTS[i]]) return true;
 			}
 			
 			return false;
+		}
+		
+		public static var LastArtistUsed:String = "";
+		
+		CONFIG::IMAGEPACK
+		{
+			// We only care about the specific artist we're currently displaying the bust for, so....
+			public static function hasHighResBustForCharacter(bustName:String):Boolean
+			{
+				if (bustName == "none") return false;
+				if (LastArtistUsed.length <= 0) return false;
+				
+				if ("Full_" + bustName in NPCBustImages[LastArtistUsed])
+				{
+					return true;
+				}
+				
+				return false;
+			}
+			
+			public static function getHighResBustForCharacter(bustName:String):Class
+			{
+				if (bustName == "none") return null;
+				if (LastArtistUsed.length <= 0) return null;
+				
+				if ("Full_" + bustName in NPCBustImages[LastArtistUsed])
+				{
+					return NPCBustImages[LastArtistUsed]["Full_" + bustName];
+				}
+				
+				return null;
+			}
 		}
 		
 		// Return the required bust class definition based on the current game settings.
@@ -66,6 +107,7 @@
 				if (opts.configuredBustPreferences[bustName] == "NONE") return null;
 				
 				tBust = lookupBustInClass(bustName, NPCBustImages[opts.configuredBustPreferences[bustName]], doNude);
+				LastArtistUsed = opts.configuredBustPreferences[bustName];
 				return tBust;
 			}
 			
@@ -73,14 +115,22 @@
 			if (("Bust_" + bustName) in NPCBustImages[opts.primaryBustArtist])
 			{
 				tBust = lookupBustInClass(bustName, NPCBustImages[opts.primaryBustArtist], doNude);
-				if (tBust != null) return tBust;
+				if (tBust != null)
+				{
+					LastArtistUsed = opts.primaryBustArtist;
+					return tBust;
+				}
 			}
 			
 			// or the secondary
 			if (("Bust_" + bustName) in NPCBustImages[opts.secondaryBustArtist])
 			{
 				tBust = lookupBustInClass(bustName, NPCBustImages[opts.secondaryBustArtist], doNude);
-				if (tBust != null) return tBust;
+				if (tBust != null)
+				{
+					LastArtistUsed = opts.secondaryBustArtist;
+					return tBust;
+				}
 			}
 			
 			// If fallbacks are enabled...
@@ -100,6 +150,7 @@
 					if (tBust != null)
 					{
 						opts.configuredBustPreferences[bustName] = tArtist;
+						LastArtistUsed = tArtist;
 						return tBust;
 					}
 				}
@@ -119,10 +170,10 @@
 			
 			// If there's a configured bust for this ident, use it
 			// TODO: Make this use the same artist for nude/non-nude if one is configured but the other isn't
-			if (opts.configuredBustPreferences[bustName] != undefined)
+			if (bustName in opts.configuredBustPreferences)
 			{
 				bounds = lookupBoundsInClass(bustName, NPCBustImages[opts.configuredBustPreferences[bustName]], doNude);
-				return bounds;
+				if (bounds != null) return bounds;
 			}
 			
 			// If the primary artist has the bust, use it

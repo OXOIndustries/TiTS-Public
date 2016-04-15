@@ -620,7 +620,7 @@
 			return "Your [pc.antennae] are burning. Someone must be thinking about you.";
 		}
 		
-		public var horns: Number = 0;
+		public var horns:Number = 0;
 		public function hornsUnlocked(newHornsNumber:Number):Boolean
 		{
 			return true;
@@ -2766,6 +2766,10 @@
 		public function isMischievous(): Boolean {
 			return (personality <= 66 && personality > 33);
 		}
+		// BECAUSE NOBODY EVER SPELLS IT CORRECTLY OR COMPLETELY
+		public function isMisch():Boolean { return isMischievous(); }
+		public function isMisc():Boolean { return isMischievous(); }
+		
 		public function isAss(): Boolean {
 			return (personality > 66);
 		}
@@ -3194,7 +3198,7 @@
 			
 			if (hasStatusEffect("Focus Pill")) currInt += 5;
 			// Slave collar multiplier.
-			if(hasStatusEffect("Psy Slave Collar")) currInt = Math.floor(currInt * statusEffectv1("Psy Slave Collar"));
+			if(hasStatusEffect("Psi Slave Collar")) currInt = Math.floor(currInt * statusEffectv1("Psi Slave Collar"));
 
 			if (currInt > intelligenceMax())
 			{
@@ -3237,7 +3241,7 @@
 			//Roshan Blue gives 25% more xp and lowers willpower by 30% until next rest
 			if(hasStatusEffect("Roshan Blue")) currWill -= Math.floor(currWill*0.3);
 			// Slave collar multiplier.
-			if(hasStatusEffect("Psy Slave Collar")) currWill = Math.floor(currWill * statusEffectv2("Psy Slave Collar"));
+			if(hasStatusEffect("Psi Slave Collar")) currWill = Math.floor(currWill * statusEffectv2("Psi Slave Collar"));
 			
 			if (currWill > willpowerMax())
 			{
@@ -3355,7 +3359,7 @@
 			if(hasPerk("Drug Fucked")) bonus += 40;
 			if(hasPerk("Slut Stamp")) bonus += perkv2("Slut Stamp");
 			// Slave collar increases minimum by set level.
-			if(hasStatusEffect("Psy Slave Collar")) bonus += statusEffectv3("Psy Slave Collar");
+			if(hasStatusEffect("Psi Slave Collar")) bonus += statusEffectv3("Psi Slave Collar");
 			return (0 + bonus);
 		}
 		public function slowStatGain(stat:String, arg:Number = 0):Number {
@@ -12176,7 +12180,7 @@
 			return (lowerUndergarment.hardLightEquipped);
 		}
 		// Always picks the main anatomy--no need to complicate it!
-		public function cockOrStrapon(forceAdjective: int = 0): String {
+		public function cockOrStrapon(forceAdjective: int = 0, idxOverride:int = 0): String {
 			var descript: String = "";
 			var sAdjective:Array = [];
 			var sNoun:Array = [];
@@ -12214,8 +12218,8 @@
 			// Penis?
 			else if(hasCock())
 			{
-				if(forceAdjective == 1 || (forceAdjective == 0 && rand(2) == 0)) descript += cockAdjective(0) + " ";
-				descript += cockNoun2(cocks[0]);
+				if(forceAdjective == 1 || (forceAdjective == 0 && rand(2) == 0)) descript += cockAdjective(idxOverride) + " ";
+				descript += cockNoun2(cocks[idxOverride]);
 				return descript;
 			}
 			// Giant Clits?
@@ -13288,7 +13292,7 @@
 					{
 						if (holePointer.hymen && hole >= 0)
 						{
-							msg += capitalA + possessive(short) + " hymen is torn";
+							msg += (capitalA == "" ? short + "’s" : capitalA + possessive(short)) + " hymen is torn";
 							holePointer.hymen = false;
 						}
 						else msg += capitalA + short + " has been penetrated";
@@ -13341,11 +13345,11 @@
 						}
 						else
 						{
-							if(holePointer.looseness() >= 5) output("<b>" + capitalA + possessive(short) + " " + vaginaDescript(hole) + " is stretched painfully wide, gaped in a way that practically invites huge monster-cocks to plow " + mf("him", "her") +".</b>");
-							else if(holePointer.looseness() >= 4) output("<b>" + capitalA + possessive(short) + " " + vaginaDescript(hole) + " painfully stretches, the lips now wide enough to gape slightly.</b>");
-							else if(holePointer.looseness() >= 3) output("<b>" + capitalA + possessive(short) + " " + vaginaDescript(hole) + " is now somewhat loose.</b>");
-							else if(holePointer.looseness() >= 2) output("<b>" + capitalA + possessive(short) + " " + vaginaDescript(hole) + " is a little more used to insertions.</b>");
-							else output("<b>" + capitalA + possessive(short) + " " + vaginaDescript(hole) + " is stretched out a little bit.</b>");
+							if(holePointer.looseness() >= 5) output("<b>" + (capitalA == "" ? short + "’s" : capitalA + possessive(short)) + " " + vaginaDescript(hole) + " is stretched painfully wide, gaped in a way that practically invites huge monster-cocks to plow " + mf("him", "her") +".</b>");
+							else if(holePointer.looseness() >= 4) output("<b>" + (capitalA == "" ? short + "’s" : capitalA + possessive(short)) + " " + vaginaDescript(hole) + " painfully stretches, the lips now wide enough to gape slightly.</b>");
+							else if(holePointer.looseness() >= 3) output("<b>" + (capitalA == "" ? short + "’s" : capitalA + possessive(short)) + " " + vaginaDescript(hole) + " is now somewhat loose.</b>");
+							else if(holePointer.looseness() >= 2) output("<b>" + (capitalA == "" ? short + "’s" : capitalA + possessive(short)) + " " + vaginaDescript(hole) + " is a little more used to insertions.</b>");
+							else output("<b>" + (capitalA == "" ? short + "’s" : capitalA + possessive(short)) + " " + vaginaDescript(hole) + " is stretched out a little bit.</b>");
 						}
 					}
 					else {
@@ -13359,11 +13363,11 @@
 						}
 						else
 						{
-							if(holePointer.looseness() >= 5) output("<b>" + capitalA + possessive(short) + " " + assholeDescript() + " is stretched painfully wide, gaped in a way that practically invites huge monster-cocks to plow " + mf("him", "her") +".</b>");
-							else if(holePointer.looseness() >= 4) output("<b>" + capitalA + possessive(short) + " " + assholeDescript() + " painfully stretches, the lips now wide enough to gape slightly.</b>");
-							else if(holePointer.looseness() >= 3) output("<b>" + capitalA + possessive(short) + " " + assholeDescript() + " is now somewhat loose.</b>");
-							else if(holePointer.looseness() >= 2) output("<b>" + capitalA + possessive(short) + " " + assholeDescript() + " is a little more used to insertions.</b>");
-							else output("<b>" + capitalA + possessive(short) + " " + assholeDescript() + " is stretched out a little bit.</b>");
+							if(holePointer.looseness() >= 5) output("<b>" + (capitalA == "" ? short + "’s" : capitalA + possessive(short)) + " " + assholeDescript() + " is stretched painfully wide, gaped in a way that practically invites huge monster-cocks to plow " + mf("him", "her") +".</b>");
+							else if(holePointer.looseness() >= 4) output("<b>" + (capitalA == "" ? short + "’s" : capitalA + possessive(short)) + " " + assholeDescript() + " painfully stretches, the lips now wide enough to gape slightly.</b>");
+							else if(holePointer.looseness() >= 3) output("<b>" + (capitalA == "" ? short + "’s" : capitalA + possessive(short)) + " " + assholeDescript() + " is now somewhat loose.</b>");
+							else if(holePointer.looseness() >= 2) output("<b>" + (capitalA == "" ? short + "’s" : capitalA + possessive(short)) + " " + assholeDescript() + " is a little more used to insertions.</b>");
+							else output("<b>" + (capitalA == "" ? short + "’s" : capitalA + possessive(short)) + " " + assholeDescript() + " is stretched out a little bit.</b>");
 						}
 					}
 					if(spacingsB) output(" ");
@@ -14628,5 +14632,30 @@
 		{
 			
 		}
+		
+		// Uveto Specials
+		public function hasHeatBelt():Boolean
+		{
+			return accessory.hasFlag(GLOBAL.ITEM_FLAG_HEATBELT);
+		}
+		
+		public function willTakeColdDamage(resToAvoid:Number = 25.0):Boolean
+		{
+			if (hasHeatBelt()) return false;
+			if (getHPResistances().freezing.resistanceValue >= resToAvoid) return false;
+			if (accessory.hasFlag(GLOBAL.ITEM_FLAG_HEAT_GENERATOR) || armor.hasFlag(GLOBAL.ITEM_FLAG_HEAT_GENERATOR) || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_HEAT_GENERATOR) || upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_HEAT_GENERATOR)) return false;
+			
+			// Perk for some kinda TF or some shit, effect for a temporary/timed effect?
+			if (hasPerk("Icy Veins") || hasStatusEffect("Icy Veins")) return false;
+			return true;
+		}
+		
+		public function hasCybernetics():Boolean
+		{
+			return false;
+		}
+		
+		// top kek
+		public function myMiddleNameIsJensen():Boolean { return hasCybernetics(); }
 	}
 }

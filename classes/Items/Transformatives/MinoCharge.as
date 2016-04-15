@@ -444,6 +444,24 @@ package classes.Items.Transformatives
 				}
 			}
 			
+			// Mino Charge should now increase or decrease hips and butt towards 20 as part of the second-stage changes.
+			if (target.hipRatingRaw < 20 && rand(2) == 0 && changes < tChanges)
+			{
+				output("\n\nYou feel an urge to widen your stance, your hips spreading to give [pc.eachCock] more room to breathe.");
+				
+				target.hipRatingRaw++;
+				//if(target.hipRatingRaw > 20) target.hipRatingRaw = 20;
+				changes++;
+			}
+			if (target.buttRatingRaw < 20 && rand(2) == 0 && changes < tChanges)
+			{
+				output("\n\nYour ass feels deliciously warm, clenching and unclenching with every breath you take as new thick, heavy muscle piles on.");
+				
+				target.buttRatingRaw++;
+				//if(target.buttRatingRaw > 20) target.buttRatingRaw = 20;
+				changes++;
+			}
+			
 			return changes;
 		}
 		

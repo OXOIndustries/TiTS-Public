@@ -462,6 +462,10 @@
 						{
 							tarSprite.setColour(UIStyleSettings.gMapDesertRoomFlagColourTransform);
 						}
+						else if (roomFlags & Mapper.room_tundra_mask)
+						{
+							tarSprite.setColour(UIStyleSettings.gMapTundraRoomColourTransform);
+						}
 						else // Catch-all for any room that doesn't have a flag set.
 						{
 							tarSprite.setColour(UIStyleSettings.gMapFallbackColourTransform);

@@ -375,7 +375,7 @@ package classes.Items.Transformatives
 				if (target.hipRatingRaw > 10) output(" and straining against your clothes");
 				output(". Your body mass is shifting to grow your flanks to a more suitably bovine size! You spend a few moments adjusting to your new shape, enjoying the jiggle of your body.");
 				
-				target.hipRatingRaw += 1
+				target.hipRatingRaw += 1;
 				changes++;
 			}
 			

@@ -33,7 +33,8 @@
 		public static const room_jungle_mask:int		= 1<<21;
 		public static const room_desert_mask:int		= 1<<22;
 		public static const room_plane_mask:int			= 1<<23;
-		public static const room_plant_bulb_mask:int	= 1<<24;
+		public static const room_plant_bulb_mask:int	= 1 << 24;
+		public static const room_tundra_mask:int		= 1 << 25;
 
 		private var roomsObj:Object;
 
@@ -223,6 +224,10 @@
 			if (roomsObj[targetRoom].hasFlag(GLOBAL.PLANT_BULB))
 			{
 				map[x][y][z] |= room_plant_bulb_mask;
+			}
+			if (roomsObj[targetRoom].hasFlag(GLOBAL.ICYTUNDRA))
+			{
+				map[x][y][z] |= room_tundra_mask;
 			}
 			
 			if (this.mapDebug) trace("Finished room ", targetRoom)

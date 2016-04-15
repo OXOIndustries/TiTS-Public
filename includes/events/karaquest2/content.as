@@ -1660,7 +1660,7 @@ public function kq2KhanPCDefeat():void
 	output(" and sliding the slim metal ring around your neck.");
 	
 	pc.removeAll();
-	pc.createStatusEffect("Psy Slave Collar", 0.5, 0.05, 50, 0, true, "Radio", "This metal collar limits your intelligence capacity and willpower while worn, making you completely subservient to the will of the one who operates it.", false, 0, 0xFF0000);
+	pc.createStatusEffect("Psi Slave Collar", 0.5, 0.05, 50, 0, true, "Radio", "This metal collar limits your intelligence capacity and willpower while worn, making you completely subservient to the will of the one who operates it.", false, 0, 0xFF0000);
 	
 	output("\n\n<i>“No... get away...”</i> Kara moans as one of the girls rolls her onto her face, just beside you. Before they collar her, the girls spend a few moments undressing the kaithrit, pulling off her skin-tight top and the skimpy skirt she’s wearing, even pulling her up to her knees so they can yank her underwear off. You watch as her E-cups bounce free, immediately in the grasp of another gold myr, who squeezes and kneads the perfect, soft orbs.");
 	
@@ -1994,7 +1994,7 @@ public function kq2CapturedByPiratesBadEndII():void
 	
 	output("\n\n<i>“Looks good on you,”</i> your new owner smirks, giving her subordinate a rough clap on the shoulder to send him on his way. She reaches down after that, grabbing the back on your collar and flicking a button. The moment she does, you feel a thrum of energy pass through your neck, and something warm press against your spine.");
 	
-	pc.createStatusEffect("Psy Slave Collar", 0.75, 0.50, 25, 0, true, "Radio", "This metal collar limits your intelligence capacity and willpower while worn, making you completely subservient to the will of the one who operates it.", false, 0, 0xFF0000);
+	pc.createStatusEffect("Psi Slave Collar", 0.75, 0.50, 25, 0, true, "Radio", "This metal collar limits your intelligence capacity and willpower while worn, making you completely subservient to the will of the one who operates it.", false, 0, 0xFF0000);
 	
 	output("\n\n<i>“This is the lowest setting,”</i> she explains, drawing her hand up from the collar and across your [pc.hair], gently pushing your head down. As she does, you feel a shudder pass through you, followed by a spreading heat from your back, slowly crawling through your body. <i>“Doctor Khan’s work is truly remarkable, in its perverse way. Stand up.”</i>");
 
@@ -2720,8 +2720,17 @@ public function kq2PostKaraSexyCombineGo():void
 
 	currentLocation = "SHIP INTERIOR";
 
-	clearMenu();
-	addButton(0, "Next", mainGameMenu);
+	if (!pc.hasStatusEffect("Kara Fuck Alternate Path"))
+	{
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+	}
+	else
+	{
+		currentLocation = "SHIP INTERIOR";
+		genericSleep(480);
+		CombatManager.genericVictory();
+	}
 }
 
 public function kq2PostKaraSexyCombineStay():void
@@ -2742,22 +2751,49 @@ public function kq2PostKaraSexyCombineStay():void
 	
 	output("\n\nYou turn in her embrace and give her a fierce hug, taking comfort in the warmth and softness of your kaithrit lover. The two of you spend a little while together, just enjoying each other’s company, before a heavy heart pulls you towards your ship. You still have an adventure of your own to finish.");
 	
-	output("\n\nKara nods understandingly, and walks you to the airlock. <i>“If you ever need anything, [pc.name],”</i> she starts, lacing her fingers with yours. <i>“I owe you. So, so much.”</i>");
+	output("\n\nKara nods understandingly, and walks you to the airlock. <i>“If you ever need anything, [pc.name],”</i> she starts, lacing her fingers with yours.");
 	
-	output("\n\nYou give her a parting hug as the airlock cycles. As you part, you see the <i>Ghost</i>’s pilot, Logan, rounding a corner with a dataslate tucked under her arm.");
-	
-	output("\n\n<i>“Kara! Chow’s on the Q-Comm for you,”</i> the pilot says, giving you a slight nod as you leave. <i>“Routed it to your quarters.”</i>");
-	
-	output("\n\nYour lover sighs and stuffs her hands into her robe pockets. <i>“Fun never ends. I’ll see you again soon [pc.name].”</i>");
-	
-	output("\n\nThe airlock snaps closed behind you, and you make the journey back to your own ship in silence.");
+	if (!pc.hasStatusEffect("Kara Fuck Alternate Path"))
+	{
+		output(" <i>“I owe you. So, so much.”</i>");
+		
+		output("\n\nYou give her a parting hug as the airlock cycles. As you part, you see the <i>Ghost</i>’s pilot, Logan, rounding a corner with a dataslate tucked under her arm.");
+		
+		output("\n\n<i>“Kara! Chow’s on the Q-Comm for you,”</i> the pilot says, giving you a slight nod as you leave. <i>“Routed it to your quarters.”</i>");
+		
+		output("\n\nYour lover sighs and stuffs her hands into her robe pockets. <i>“Fun never ends. I’ll see you again soon [pc.name].”</i>");
+		
+		output("\n\nThe airlock snaps closed behind you, and you make the journey back to your own ship in silence.");
 
-	currentLocation = "SHIP INTERIOR";
+		currentLocation = "SHIP INTERIOR";
+		genericSleep(480);
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+	}
+	else
+	{
+		output(" <i>“Don’t hesitate to call. Just the chance to spend another night together would be reward enough.”</i>");
+		
+		output("\n\nYou give her a parting hug as the airlock cycles. As you part, you see the <i>Ghost</i>’s pilot, Logan, rounding a corner with a dataslate tucked under her arm.");
+		
+		output("\n\n<i>“Hey again, [pc.name],”</i> she says, giving you a friendly nod. <i>“You two sleep well?”</i>");
+		
+		output("\n\nKara murmurs an affirmation, slipping an arm around Logan’s waist so that she’s hugged between the two of you, resting her head on your shoulder. <i>“Mmm. Maybe next time you’ll even join us, you big shy baby.”</i>");
+		
+		output("\n\nThe reptilian-morphed pilot scowls, crossing her arms under her pert little bust. <i>“Just be happy I don’t mind sharing, you dirty minx. And you,”</i> she adds, reaching across the kaithrit’s jiggling robes, <i>“just keep treating my captain right, you hear?”</i>");
+		
+		output("\n\nYou chuckle and nod, tapping the airlock to cycle it open. That, you can do.");
+		
+		output("\n\nKara giggles and gives you a parting kiss - and a firm squeeze of your [pc.butt]. <i>“See ya, [pc.name]. Don’t be a stranger.”</i>");
+		
+		output("\n\nThe airlock snaps closed behind you, and you make the journey back to your own ship in silence.");
 
-	genericSleep(480);
+		pc.removeStatusEffect("Kara Fuck Alternate Path");
 
-	clearMenu();
-	addButton(0, "Next", mainGameMenu);
+		currentLocation = "SHIP INTERIOR";
+		genericSleep(480);
+		CombatManager.genericVictory();
+	}
 }
 
 public function kq2NukeBadend():void

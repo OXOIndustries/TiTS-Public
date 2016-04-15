@@ -12,7 +12,7 @@ The owner of the store, Inessa, is a Saeri -- a 'butterfly girl' and two-legged 
 public function showInessa():void
 {
 	showName("\nINESSA");
-	showBust("INESSA");
+	showBust("INESSA_NUDE");
 }
 
 //First Visit Event

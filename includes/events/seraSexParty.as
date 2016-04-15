@@ -282,7 +282,7 @@ public function seraSexPartyStage1(response:String = "none"):void
 					output(".");
 					if(pc.isBiped()) output(" Carefully you pull on the knee high socks and plimsolls provided, trying to take your mind off it.");
 					
-					if(pc.isBimbo())
+					if(pc.isBimbo() && !pc.hasPerk("Slut Stamp"))
 					{
 						// Create Tramp Stamp
 						output("\n\n(<b>Perk Gained: Slut Stamp</b> - Wearing any form of clothing that dresses your lower body will increase your libido as long as you have genitals to be aroused by.)");
@@ -299,7 +299,7 @@ public function seraSexPartyStage1(response:String = "none"):void
 				output(", but it won’t come close to fully covering it");
 				if(pc.isTaur() || pc.isDrider()) output("... not that you could help it anyway");
 				output(".");
-				if(pc.hasStatusEffect("Slut Stamp")) output(" Nor the word emblazoned on it.");
+				if(worePanties) output(" Nor the word emblazoned on it.");
 				output(" You sit down, feeling hot, shamefully aroused in this tight, ludicrous uniform. Distracted, you don’t even realize what the little blobs of color still remaining on the rack are until Sera sits down behind you, plucks them off, and takes a handful of your [pc.hair] at the back.");
 				output("\n\n<i>“Aaaand... there we go,”</i> she murmurs as she uses the two scrunchies to give you matching pigtails. She gets up and takes you in from the front. Your cheeks burn as she breaks out into a huge smile at the vision she’s created, that all-consuming simmer of emotions you so often feel around Sera consuming you; deep embarrassment, shameless arousal, submissive bliss at causing your sadistic mistress pleasure.");
 				

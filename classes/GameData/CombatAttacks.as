@@ -816,11 +816,25 @@ package classes.GameData
 		
 		public static function GoovolverAttackImpl(attacker:Creature, target:Creature):void
 		{
+			if (attacker.hasStatusEffect("Disarmed"))
+			{
+				if (attacker is PlayerCharacter) output("You try to attack until you remember that you’ve been disarmed!");
+				else output(attacker.capitalA + attacker.uniqueName + " scrabbles about, trying to find " + attacker.mfn("his", "her", "its") + " missing weapon.");
+				return;
+			}
+			
 			SingleRangedAttackImpl(attacker, target, false, "goovolver");
 		}
 		
 		public static function SlutRayAttackImpl(attacker:Creature, target:Creature):void
 		{
+			if (attacker.hasStatusEffect("Disarmed"))
+			{
+				if (attacker is PlayerCharacter) output("You try to attack until you remember that you’ve been disarmed!");
+				else output(attacker.capitalA + attacker.uniqueName + " scrabbles about, trying to find " + attacker.mfn("his", "her", "its") + " missing weapon.");
+				return;
+			}
+			
 			SingleRangedAttackImpl(attacker, target, false, "slut ray");
 		}
 		//} endregion
