@@ -24,6 +24,16 @@ Other Misc Notes
 * Researching extreme cold weather climates with an emphasis on how their unique quirks could be useful for terraforming hot planets - and how warming terraforming could adapt to better handle their unique weather systems.
 */
 
+public function showNayna(nude:Boolean = false):void
+{
+	if(nude) showBust("NAYNA_NUDE");
+	else if(naynaWarm()) showBust("NAYNA_WARM");
+	else showBust("NAYNA");
+	if(flags["MET_NAYNA"] == undefined) showName("SPACE\nBUNNY-GIRL");
+	else if(flags["NAYNA_LAST_NAME"] == undefined) showName("\nNAYNA");
+	else showName("NAYNA\nTRIVERRE");
+}
+
 public function naynaShutterUpdate():void
 {
 	//Update? UPDATE!
@@ -64,11 +74,17 @@ public function naynaClothes():String
 	else return RandomInCollection("fluffy, pink-furred winter wear","poofy winter coat","cold-weather outfit","fur-lined parka","pink-accented parka","fluffy, furry coat","squishy, warm-looking winter wear","poofy, white and pink parka");
 }
 
-
+public function naynaSexMenu():void
+{
+	clearMenu();
+	addButton(0,"Give BJ",maxLewdGogo,true,"Give BJ","Give her a blowjob.");
+	addDisabledButton(1,"Other Stuff","Other Stuff","It isn't written yet. Be patient!");
+	addButton(4,"Back",repeatNaynaApproach,true);
+}
 //Meeting Nayna
 //Upstairs of the Geological Survey
 //Semirandomly, determined every hour??
-public function upstairsGeoSurveyBonus():void
+public function upstairsGeoSurveyBonus():Boolean
 {
 	naynaShutterUpdate();
 	//CLOSED!
@@ -99,23 +115,33 @@ public function upstairsGeoSurveyBonus():void
 		output(" view and all. She’s a short, chubby little thing with floppy bunny ears and an animalistic nose that quivers with every breath she takes. Presently, she’s pacing back and forth, looking over an incomprehensible projection from her Codex and as completely unaware of your presence as someone could possibly be.");
 		output("\n\nYour Codex seems to indicate that she’s a laquine, though she’s much shorter than any you’ve ever seen.");
 		CodexManager.unlockEntry("Laquine");
+		addButton(0,"Laquine",approachDatLaquineSloot);
 	}
 	//Repeat Bonustext
 	else
 	{
+		//PISSED OFF!
+		if(flags["NAYNA_PISSED"] != undefined)
+		{
+			output("\n\nNayna is still here, though she studiously avoids your gaze. If you take a step toward her, she shifts backward. If you approach her, she moves to another part of the deck, as if she had something important to do elsewhere all the while. She wants nothing to do with you.");
+			addDisabledButton(0,"Nayna","Nayna","You pissed Nayna off, and it seems there's no salvaging the situation.");
+		}
 		//Didn’t take offer
-		if(flags["NAYNA_REJECTED"] == undefined) output("\n\nNayna is still here, tapping away at an unbroken Codex, doubtless absorbed in the minutia of her research. You could approach her again, but she’s probably still grouchy about your refusal to help her out.");
+		else if(flags["NAYNA_REJECTED"] != undefined) output("\n\nNayna is still here, tapping away at an unbroken Codex, doubtless absorbed in the minutia of her research. You could approach her again, but she’s probably still grouchy about your refusal to help her out.");
 		//Took her Offer Bonustexts
 		else
 		{
 			//Warm!
-			if(naynaWarm()) output("\n\nNayna seems to enjoying the limited warmth provided by the sun, lounging around in her " + naynaUpperGarment() + " while she pours over climate data from dozens of sources. What a busy little bunny.");
+			if(naynaWarm()) output("\n\nNayna seems to enjoying the limited warmth provided by the sun, lounging around in her " + naynaClothes() + " while she pours over climate data from dozens of sources. What a busy little bunny.");
 			//Beautiful night
 			else if(naynaViewNice()) output("\n\nNayna is leaning back against one of the computer consoles, looking out at the stars, her Codex forgotten. Looks like even the busy bunny still takes breaks to appreciate the view.");
 			//Cloudy/Shuttered
-			else output("\n\nNayna does not seem to be bothered by the tower’s sullen atmosphere, wrapped up in her " + naynaUpperGarment() + ". She reminds you of a chubby little bunny in a cozy little burrow, only this bunny is plowing through enough information to make your head spin.");
+			else output("\n\nNayna does not seem to be bothered by the tower’s sullen atmosphere, wrapped up in her " + naynaClothes() + ". She reminds you of a chubby little bunny in a cozy little burrow, only this bunny is plowing through enough information to make your head spin.");
 		}
+		//Approach button if not disabled~
+		if(flags["NAYNA_PISSED"] == undefined) addButton(0,"Nayna",repeatNaynaApproach);
 	}
+	return false;
 }
 
 //Approach Dat Sloot
@@ -123,7 +149,7 @@ public function approachDatLaquineSloot():void
 {
 	clearOutput();
 	showNayna();
-	output("You clear your throat and approach, but even that isn’t enough to attract the oblivious bunny-woman’s attentions. She’s just sitting there in her " + naynaUpperGarment() + ", chewing on her lower lip and poking at her tablet.");
+	output("You clear your throat and approach, but even that isn’t enough to attract the oblivious bunny-woman’s attentions. She’s just sitting there in her " + naynaClothes() + ", chewing on her lower lip and poking at her tablet.");
 	output("\n\n<i>“");
 	if(pc.isBimbo()) output("Omigosh! You’re so cuuute!");
 	else if(pc.isNice()) output("Excuse me, miss?");
@@ -154,7 +180,7 @@ public function approachDatLaquineSloot():void
 	clearMenu();
 	addButton(0,"Introduce",introduceYourselfToNayna,undefined,"Introduce","Introduce yourself.");
 	addButton(1,"Offer to Pay",offerToPayForNaynaCodex,undefined,"Offer to Pay","Offer to pay for the broken codex.");
-	addButton(4,"Leave",leaveNaynaFirstMeeting);
+	addButton(14,"Leave",leaveNaynaFirstMeeting);
 }
 //Introduce
 public function introduceYourselfToNayna():void
@@ -290,6 +316,7 @@ public function volunteerToHelp(late:Boolean = false):void
 	else output("You chew on your lip and wonder when she’s going to tell you about the reward. Will it be sex? You hope it’ll be sex.");
 	output("\n\nNayna grabs hold of one of her ears in both hands and nervously kneads the tip. <i>“Do you think you bring me back any you find out there? You’d be doing a service to science... and I’d appreciate it too.”</i>");
 	processTime(3);
+	flags["NAYNA_REJECTED"] = undefined;
 	//[No Reward?]
 	clearMenu();
 	addButton(0,"Sure",sureNaynaIllHelp);
@@ -380,15 +407,19 @@ public function repeatNaynaApproach(backsies:Boolean = false):void
 
 public function naynaMainMenu():void
 {
-	clearOutput();
+	clearMenu();
 	//[Appearance] [Talk] [Give Drone] [Flirt]
 	addButton(0,"Appearance",appearanceOfNayna);
+	addButton(1,"Talk",talkToNayna);
+	addButton(2,"Give Drone",giveHerADrone,undefined,"Give Her A Drone","Give Nayna one of the drones she's missing. Turns out these are the drones she's looking for.");
+	addButton(3,"Flirt",flirtWithNayna,undefined,"Flirt","Flirt with the cuddly bunny.");
+	addButton(14,"Leave",mainGameMenu);
 }
 
 //Appearance
 public function appearanceOfNayna():void
 {
-	clearOuput();
+	clearOutput();
 	showNayna();
 	output("Nayne");
 	if(flags["NAYNA_LAST_NAME"] != undefined) output(" Triverre");
@@ -423,14 +454,14 @@ public function talkToNayna(back:Boolean = false):void
 	//Back
 	if(back) 
 	{
-		output("Nayna’s ears perk up a little higher. <i>“Oh, do you want to talk some more?”</i> Suddenly, she seems terribly, almost violently lonely.	");
-		output("<i>“Actually, I’d like to talk.”</i>");
+		output("Nayna’s ears perk up a little higher. <i>“Oh, do you want to talk some more?”</i> Suddenly, she seems terribly, almost violently lonely - and grateful for the companionship.");
 	}
 	else
 	{
 		//First time
 		if(flags["NAYNA_TALKED"] == undefined)
 		{
+			output("<i>“Actually, I’d like to talk.”</i>");
 			output("\n\nNayna cocks her head to the side, staring at you blankly. <i>“Why... why would you want to talk with me? I’m not permitted to share the finer details of my project until we’ve published, and well, I’m just a dumpy little laquine. Surely you can make better use of your time entertaining beautiful rahn dancers and adorable ausar.”</i>");
 			//Bimbo
 			if(pc.isBimbo()) output("\n\n<i>“Don’t say that! You’re so fucking cute! I mean... look at that bunny bootie! The boys would eat it right up in a heartbeat.”</i> You walk around behind her and bend low, making exaggerated chomping motions with your mouth.");
@@ -452,15 +483,21 @@ public function talkToNayna(back:Boolean = false):void
 	//[Her] [Education] [Uveto]
 	processTime(2);
 	clearMenu();
-	addButton(0,"Her",talkToNayna);
+	addButton(0,"Her",talkToNaynaAboutNayna);
 	addButton(1,"Education",naynaEducationTalk);
 	addButton(2,"Uveto",uvetoTalkWithNayna);
 	addButton(4,"Back",repeatNaynaApproach,true)
 
 }
 
+public function knowNayneIsAHerm():Boolean
+{
+	if(flags["NAYNA_LAST_NAME"] != undefined) return true;
+	return false;
+}
+
 //Talk: Her
-public function talkToNayna():void
+public function talkToNaynaAboutNayna():void
 {
 	clearOutput();
 	showNayna();
@@ -534,7 +571,7 @@ public function naynaEducationTalk2():void
 	processTime(4);
 	flags["NAYNA_EDUCATION"] = 1;
 	//[Next]
-	clearMenu(0);
+	clearMenu();
 	addButton(0,"Talk More",talkToNayna,true);
 	addButton(4,"Back",repeatNaynaApproach,true);
 }
@@ -565,6 +602,7 @@ public function uvetoTalkWithNayna():void
 		output(". <i>“Well, that and the scenery, I guess. A lot of people write snow planets off as being cold, cruel places, but when you’ve got thick fur and a heat-belt, they can be quite pleasant. Nothing feels quite like cool crisp air. No night sky ever seems as clear as one after a fresh snowfall. There’s beauty in the starkness of it all. ...And, lucky me, I’ll be visiting a half-dozen more before this study is done.”</i>");
 	}
 	processTime(3);
+	clearMenu();
 	addButton(0,"Talk More",talkToNayna,true);
 	addButton(4,"Back",repeatNaynaApproach,true);
 }
@@ -577,10 +615,13 @@ public function flirtWithNayna():void
 	if(flags["NAYNA_BLOWN"] != undefined)
 	{
 		//Post-Sex Flirt
-		output("\n\n<i>“Why don’t you take a break and blow off some steam?”</i> You look her up and down, then add, <i>“{There’s more than one way to stay warm on a planet like this./That bodysuit must be so stifling!}”</i>");
+		output("<i>“Why don’t you take a break and blow off some steam?”</i> You look her up and down, then add, <i>“{There’s more than one way to stay warm on a planet like this./That bodysuit must be so stifling!}”</i>");
 		output("\n\nNayna blinks at you, then looks back at her Codex, then back at you. She chews a lip, then slowly, ever so slowly begins to blush pink through her ivory fur. <i>“Are you... are you flirting with me?”</i> She gingerly puts down her Codex, her paw shaking{, then slowly pulls down the zipper to her parka}. <i>“That would be... acceptable.”</i>");
 		output("\n\n<i>“I am,”</i> you admit, stepping closer.");
-		output("\n\nNayna’s violet eyes widen. <i>“Really?”</i>{ She wiggles out of her cold-weather gear, stripping down to her rubbery undersuit.} Nibbling on her lower lip, the nervous bunny asks, <i>“What did you want to do... uhm... cutie?”</i>");
+		output("\n\nNayna’s violet eyes widen. <i>“Really?”</i>");
+		if(!naynaWarm()) output(" She wiggles out of her cold-weather gear, stripping down to her rubbery undersuit.");
+		output(" Nibbling on her lower lip, the nervous bunny asks, <i>“What did you want to do... uhm... cutie?”</i>");
+		naynaSexMenu();
 	}
 	else
 	{
@@ -613,7 +654,7 @@ public function flirtMoreWithNayna():void
 	output("\n\nYou massage her for a little longer, mulling it over. For some reason, you’re not getting through to her. Maybe you’ll have to catch her while she’s not nose-deep in a mountain of work.");
 	processTime(7);
 	clearMenu();
-	addButton(0,"Next",flirtMoreWithNayna,true);
+	addButton(0,"Next",repeatNaynaApproach,true);
 }
 
 //Drone Turn In
@@ -655,8 +696,13 @@ public function giveHerADrone():void
 			output("\n\nNayna marvels at the recovered bit of machinery. When she looks back at you, her eyes are more than a little misty. <i>“You really are the gift that keeps giving.”</i> A sly look spreads across her face. <i>“But what could I give you for a reward? How about one of your trademark hugs?”</i> Her nose wrinkles cutely.");
 		}
 	}
+	IncrementFlag("NAYNA_DRONES_TURNED_IN");
+	//9999 pc.destroyItem(new WeatherDrone());
 	processTime(2);
 	//[Accept Hug] [Nah]
+	clearMenu();
+	addButton(0,"Accept Hug",hugNaynaGogogo);
+	addButton(1,"Nah",noNaynaHug);
 }
 
 //Nah - No Hug
@@ -668,6 +714,8 @@ public function noNaynaHug():void
 	if(flags["NAYNA_BLOWN"] != undefined) output(" She looks a little disappointed.");
 	//+Nice!
 	pc.addNice(1);
+	clearMenu();
+	addButton(0,"Next",repeatNaynaApproach,true);
 }
 
 //Hug
@@ -687,6 +735,8 @@ public function hugNaynaGogogo():void
 		output("\n\nIt sounds like she’s up for anything.");
 		//Sex menu display here!
 		naynaSexMenu();
+		//Overwrite normal flirt intro with hug intro:
+		addButton(0,"Give BJ",maxLewdGogo,false,"Give BJ","Give her a blowjob.");
 		return;
 	}
 	//Normal hug - not groped
@@ -749,9 +799,9 @@ public function hugNaynaGogogo():void
 	IncrementFlag("NAYNA_HUGS");
 	clearMenu();
 	addButton(0,"Finish Hug",breakNaynaHug);
-	if(flags["NAYNA_HUG_LEWDNESS"] == undefined) addButton(0,"Grope Her",gropeNaynaHug);
+	if(flags["NAYNA_HUG_LEWDNESS"] == undefined) addButton(1,"Grope Her",gropeNaynaHug);
 	else if(flags["NAYNA_HUG_LEWDNESS"] == 1) addButton(1,"Lewd It Up",lewderHugForNayna);
-	else if(flags["NAYNA_HUG_LEWDNESS"] == 2) addButton(2,"MAX LEWD",maxLewdGogo);
+	else if(flags["NAYNA_HUG_LEWDNESS"] == 2) addButton(1,"MAX LEWD",maxLewdGogo);
 }
 
 //[Break]
@@ -774,7 +824,7 @@ public function gropeNaynaHug():void
 	if(naynaWarm()) output("half-exposed");
 	else output("heavily insulated");
 	output(" derriere.");
-	output("\n\nNayna stiffens at your touch, then smiles and leans harder against your shoulder. <i>“They do hugs differently on your planet, huh?”</i> She playfully pushes her butt into your hands. <i>“It’s different, but not bad. Here, let me.”</i> Fuzzy fingertips dig into your [pc.butt] kneading your cheeks every bit as forcefully.");
+	output("\n\nNayna stiffens at your touch, then smiles and leans harder against your shoulder. <i>“They do hugs differently on your planet, huh?”</i> She playfully pushes her butt into your hands. <i>“It’s different, but not bad. Here, let me.”</i> Fuzzy fingertips dig into your [pc.butt], kneading your cheeks every bit as forcefully.");
 	output("\n\nThe bizarre bunny breaks away while you’re still dumbstruck by her ignorance. <i>“If you find any more, don’t hesitate to bring them my way! My budget may be limited, by my hugs aren’t!”</i>");
 	output("\n\nYou might have to be more direct next time...");
 	//+lust
@@ -814,7 +864,7 @@ public function maxLewdGogo(flirtIntro:Boolean = false):void
 	clearOutput();
 	showNayna();
 	//FROM FLIRT INTRO
-	if()
+	if(flirtIntro)
 	{
 		output("You suggest a repeat of you first got together. You’ve been feeling a bit peckish after all.");
 		output("\n\nNayna’s eyes widen. <i>“Th-that again? Are you sure?”</i> Her eyes are wide with disbelief. <i>“It looked like it hurt.”</i>");
@@ -842,10 +892,10 @@ public function maxLewdGogo(flirtIntro:Boolean = false):void
 		if(flags["NAYNA_BLOWN"] != undefined) output(" <i>“You really like them? I got implants last year... but nobody seemed to notice.”</i>");
 		output("\n\nRubbing her squishy flanks, you let your hands slide over her one-piece, latex-like undersuit, feathering across her belly. Her stomach has the barest amount of pooch, just enough to make it feel like you’re groping a big, warm pillow. Nayna gasps, but she doesn’t resist your caresses, not even when you probe downward to her crotch.");
 		//Done this before:
-		if(flags["NAYNA_BLOWN"] != undefined) output(" A hard cock, nine inches long and as thick around as a soda can tents her skin-tight garment, backed up by apple-sized testes that you know have to be enhanced somehow. Big as they are, there’s no way they’re that productive naturally.");
+		if(flags["NAYNA_BLOWN"] != undefined) output(" A hard cock, nine inches long and as thick around as a soda can tents her skin-tight garment, backed up by apple-sized testes that you know have to be enhanced somehow. Big as they are, you're still not sure how they can produce such... voluminous semen.");
 		//No new PG:
 		//know she’s a herm: 
-		else if(9999) output(" An equine sheath is there, just as you would expect from a laquine hermaphrodite, backed up by two apple-sized balls that feel almost disproportionately large next to their half-hidden spout, doubtless swollen with a lifetime of unspent seed.");
+		else if(knowNayneIsAHerm()) output(" An equine sheath is there, just as you would expect from a laquine hermaphrodite, backed up by two apple-sized balls that feel almost disproportionately large next to their half-hidden spout, doubtless swollen with a lifetime of unspent seed.");
 		//Go to <i>“react well”</i> automatically.
 		//No new PG: Not aware of herm: 
 		else 
@@ -869,13 +919,13 @@ public function naynaBeejDiscoveryReactBadly():void
 	clearOutput();
 	showNayna();
 	output("<i>“Whoah!”</i> You jerk away, backpedalling into the glass. <i>“I didn’t know you were packing heat!”</i>");
-	output("\n\nBlushing, Nayna toes at the ground. <i>“It wasn’t really a secret. I’m pretty open about it, actually.”</i> She stops, eying you warily. <i>“You... you wanted to have sex! You wanted to... f-fuck my brains out... and you didn’t even bother to learn what sex I am!?");
+	output("\n\nBlushing, Nayna toes at the ground. <i>“It wasn’t really a secret. I’m pretty open about it, actually.”</i> She stops, eying you warily. <i>“You... you wanted to have sex! You wanted to... f-fuck my brains out... and you didn’t even bother to learn what sex I am!?”</i>");
 	output("\n\n");
 	if(pc.isBro()) output("<i>“Yeah.”</i>");
 	else if(pc.isBimbo()) 
 	{
 		output("<i>“Uh-huh! Kinda stupid of me, huh?”</i> You ");
-		if(pc.hairLength() >= 5) output("twirl your hair");
+		if(pc.hairLength >= 5) output("twirl your hair");
 		else output("giggle brainlessly");
 		output(".");
 	}
@@ -884,7 +934,8 @@ public function naynaBeejDiscoveryReactBadly():void
 	output("\n\n<i>“You-! You.... You clod!”</i> Nayna spins around, and stamps her foot. <i>“Get away from me, you jerk! You sex-obsessed... bigot-jerk!”</i> She points back at the stairwell, then pulls out her Codex and flops down, ignoring you.");
 	output("\n\nYou appear to have struck a nerve and blown your chances with her.");
 	processTime(2);
-	//9999 fucked up.
+	//fucked up.
+	flags["NAYNA_PISSED"] = 1;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -966,7 +1017,7 @@ public function reactWellToFutaLaquine():void
 		else output("[pc.skinFurScales]");
 		output(", and it is <i>thick</i>. It never ceases to amaze you how hung laquines can be, even ones this stunted in both body and bulge. She more than makes up for her short stature with the girth of her orifice-gaping horse-pecker - more than three-inches of it.");
 		output(" Walking around with a monster like ");
-		if(pc.longestCockLength() > = 20) output("is");
+		if(pc.longestCockLength() >= 20) output("is");
 		else output("would be");
 		output(" impossible");
 		if(pc.longestCockLength() >= 20) output(" as you know all too well");
@@ -1099,7 +1150,13 @@ public function blowNayna3():void
 	else output("in your hair");
 	output(", all over your back, in the crack of your ass, and even covering the bottoms of your [pc.feetOrFoot].");
 	output("\n\n<i>“Fuck yes! Fuck yes! Fuck yesssss!”</i> Nayna chants as she does, completely lost to the pleasure, jacking her cock like a woman possessed until its seemingly endless virility goes dry, and even then, she slumps down beside you, fitfully grinding it into your sperm-slicked shape. <i>“It’s so good, [pc.name].”</i> She moans nestling her cheek into your side while her still-hard length twitches against your [pc.hip]. <i>“So good... mmm...”</i>");
-	pc.loadInMouth(9999);
+	// Create Nayna
+	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
+	if(!pp.hasCock()) pp.createCock();
+	pp.shiftCock(0, GLOBAL.TYPE_EQUINE);
+	pp.cocks[0].cLengthRaw = 9;
+	pp.createPerk("Fixed CumQ",100000,0,0,0);
+	pc.loadInMouth(pp);
 	processTime(11);
 	pc.lust(100);
 	applyCumSoaked(pc);
@@ -1119,7 +1176,7 @@ public function blowNayna4():void
 	addButton(0,"Next",blowNayna5);
 }
 
-public function blowNayna6():void
+public function blowNayna5():void
 {
 	clearOutput();
 	showNayna();
@@ -1133,7 +1190,7 @@ public function blowNayna6():void
 	else
 	{
 		output("\n\n<i>“Oh! S-sorry. I didn’t mean to wake you.”</i> Nayna yanks herself backward, her sloppy cock jutting in your direction. <i>“I... we... should probably get dressed.”</i> She nods to herself, twiddling her pointer fingers while trying not to look at your cum-coated form. <i>“And we definitely shouldn’t do anything like that again... unless you really wanted to.”</i> She turns away, but her hips wiggle happily. <i>“I’m a scientist after all. I have to be objective and uhm...”</i> She trails off while trying to pull her underthings up over her still-hard dick. It bulges lewdly through the sable surface. <i>“...I can’t just go around having fun. Even if it’s really, really fun.”</i>");
-		output("\n\nYou stand up, and shake off most her cum. <i>“Really?”</i> You raise an eyebrow questioning?");
+		output("\n\nYou stand up, and shake off most her cum. <i>“Really?”</i> You raise an eyebrow questioningly.");
 		output("\n\n<i>“Well, you did save me a lot of time,”</i> Nayna temporizes. <i>“Finding those drones saved me days of work. It’d only be fair to let you...”</i> She inhales, stifling a moan, <i>“...make use of that time. You know, if you wanted to.”</i>");
 	}
 	IncrementFlag("NAYNA_BLOWN");

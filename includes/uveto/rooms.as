@@ -142,8 +142,8 @@ public function initUvetoRooms():void
 	rooms["UVS D7"].system = "SYSTEM: SIRETTA";
 	rooms["UVS D7"].eastExit = "UVS F7";
 	rooms["UVS D7"].westExit = "UVS B7";
-	rooms["UVS D7"].inExit = "UVI F34";
-	rooms["UVS D7"].inText = "Down";
+	rooms["UVS D7"].outExit = "UVI F34";
+	rooms["UVS D7"].outText = "Down";
 	rooms["UVS D7"].moveMinutes = 1;
 	rooms["UVS D7"].runOnEnter = null;
 	rooms["UVS D7"].addFlag(GLOBAL.INDOOR);
@@ -282,8 +282,8 @@ public function initUvetoRooms():void
 	rooms["UVI F34"].planet = "PLANET: UVETO VII";
 	rooms["UVI F34"].system = "SYSTEM: SIRETTA";
 	rooms["UVI F34"].eastExit = "UVI H34";
-	rooms["UVI F34"].outExit = "UVS D7";
-	rooms["UVI F34"].outText = "Up";
+	rooms["UVI F34"].inExit = "UVS D7";
+	rooms["UVI F34"].inText = "Up";
 	rooms["UVI F34"].moveMinutes = 1;
 	rooms["UVI F34"].runOnEnter = null;
 	rooms["UVI F34"].addFlag(GLOBAL.INDOOR);
@@ -321,11 +321,26 @@ public function initUvetoRooms():void
 	rooms["UVI J32"].planet = "PLANET: UVETO VII";
 	rooms["UVI J32"].system = "SYSTEM: SIRETTA";
 	rooms["UVI J32"].southExit = "UVI J34";
+	rooms["UVI J32"].inExit = "BUNNY_FUN_HUT";
+	rooms["UVI J32"].inText = "Up";
 	//rooms["UVI J32"].westExit = "UVI H32"; // TEMP 9999
 	rooms["UVI J32"].moveMinutes = 1;
 	rooms["UVI J32"].runOnEnter = null;
 	rooms["UVI J32"].addFlag(GLOBAL.INDOOR);
 	rooms["UVI J32"].addFlag(GLOBAL.NPC);
+
+	rooms["BUNNY_FUN_HUT"] = new RoomClass(this);
+	rooms["BUNNY_FUN_HUT"].roomName = "OBSERVATION\nDECK";
+	rooms["BUNNY_FUN_HUT"].description = "";
+	rooms["BUNNY_FUN_HUT"].planet = "PLANET: UVETO VII";
+	rooms["BUNNY_FUN_HUT"].system = "SYSTEM: SIRETTA";
+	rooms["BUNNY_FUN_HUT"].outExit = "UVI J32";
+	rooms["BUNNY_FUN_HUT"].outText = "Down";
+	//rooms["BUNNY_FUN_HUT"].westExit = "UVI H32"; // TEMP 9999
+	rooms["BUNNY_FUN_HUT"].moveMinutes = 1;
+	rooms["BUNNY_FUN_HUT"].runOnEnter = upstairsGeoSurveyBonus;
+	rooms["BUNNY_FUN_HUT"].addFlag(GLOBAL.INDOOR);
+	rooms["BUNNY_FUN_HUT"].addFlag(GLOBAL.NPC);
 
 	rooms["UVI J34"] = new RoomClass(this);
 	rooms["UVI J34"].roomName = "GEO. SURVEY\nEXTERIOR";

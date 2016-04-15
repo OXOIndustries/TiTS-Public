@@ -33,16 +33,17 @@ public function jungleEncounterChances():Boolean {
 		choices.push(encounterCuntSnakeOnJungleLand);
 		choices.push(encounterCuntSnakeOnJungleLand);
 		choices.push(frogGirlsEncounter);
-		if(debug)
+		if(rand(3) == 0) choices.push(dryadMeeting);
+		//Fragrant ladies or cum-drenched folks find her more often~
+		if((pc.hasVagina() && pc.wettestVaginalWetness() >= 4) || pc.hasStatusEffect("Cum Soaked"))
 		{
-			frogGirlsEncounter();
-			return true;
+			choices.push(dryadMeeting);
+			choices.push(dryadMeeting);
 		}
 		//Run the event
 		choices[rand(choices.length)]();
 		return true;
 	}
-	
 	if (tryEncounterMango()) return true;
 	
 	return false;
@@ -79,6 +80,13 @@ public function jungleMiddleEncounters():Boolean {
 		choices[choices.length] = encounterRegularTentaclePitcherYouGay;
 		if(flags["ZODEE_GALOQUEST"] == undefined) choices.push(zodeeGivesFirstGalomax);
 		choices.push(frogGirlsEncounter);
+		if(rand(3) == 0) choices.push(dryadMeeting);
+		//Fragrant ladies or cum-drenched folks find her more often~
+		if((pc.hasVagina() && pc.wettestVaginalWetness() >= 4) || pc.hasStatusEffect("Cum Soaked"))
+		{
+			choices.push(dryadMeeting);
+			choices.push(dryadMeeting);
+		}
 		//Run the event
 		choices[rand(choices.length)]();
 		return true;
@@ -160,6 +168,13 @@ public function jungleDeepEncounters():Boolean {
 		}
 		choices[choices.length] = encounterMimbrane;
 		choices[choices.length] = encounterMimbrane;
+		if(rand(3) == 0) choices.push(dryadMeeting);
+		//Fragrant ladies or cum-drenched folks find her more often~
+		if((pc.hasVagina() && pc.wettestVaginalWetness() >= 4) || pc.hasStatusEffect("Cum Soaked"))
+		{
+			choices.push(dryadMeeting);
+			choices.push(dryadMeeting);
+		}
 		//choices[choices.length] = encounterRegularTentaclePitcherYouGay;
 		if(flags["ZODEE_GALOQUEST"] == undefined) choices.push(zodeeGivesFirstGalomax);
 		
@@ -512,7 +527,7 @@ public function tryEncounterMango():Boolean
 {
 	var getChance:int = 100;
 	
-	if (flags["JUNGLE_STEP"] != 0 && rand(getChance) <= 2)
+	if (flags["JUNGLE_STEP"] != 0 && rand(getChance) <= 1)
 	{
 		encounterMango();
 		return true;

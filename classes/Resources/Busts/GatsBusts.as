@@ -162,6 +162,9 @@
 		[Embed(source = "../../../assets/images/npcs/gats/Naleen_Male.png", mimeType = "image/png")]
 		public var Bust_NALEEN_MALE:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/gats/nayna_placeholder.png", mimeType = "image/png")]
+		public var Bust_NAYNA:Class;
+
 		[Embed(source = "../../../assets/images/npcs/gats/Penny.png", mimeType = "image/png")]
 		public var Bust_PENNY:Class;
 		[Embed(source = "../../../assets/images/npcs/gats/Penny_Nude.png", mimeType = "image/png")]
