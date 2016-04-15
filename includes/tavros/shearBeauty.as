@@ -389,30 +389,51 @@ public function standardHairColorMenu():void
 	output("Ceria pulls out a small tablet showing a color wheel and presents it to you. <i>“Alright, pick what looks good.”</i>\n\n(This is a multipage menu - the buttons in the lower right can be used to page through it.)");
 	//[Buttons for Colors] Go to Hair Treatment
 	//[Back] Go to Hairwork
-	addButton(0,"Black",hairColorizing,"black","Black","Dye your hair black.");
-	addButton(1,"Chocolate",hairColorizing,"chocolate","Chocolate","Dye your hair chocolate.");
-	addButton(2,"Brown",hairColorizing,"brown","Brown","Dye your hair brown.");
-	addButton(3,"Dirty Blonde",hairColorizing,"dirty blonde","Dirty Blonde","Dye your hair dirty blonde.");
-	addButton(4,"Blonde",hairColorizing,"blonde","Blonde","Dye your hair blonde.");
-	addButton(5,"P.Blonde",hairColorizing,"platinum blonde","Platinum Blonde","Dye your hair platinum blonde.");
-	addButton(6,"S.B.Blonde",hairColorizing,"strawberry blonde","Strawberry Blonde","Dye your hair strawberry blonde.");
-	addButton(7,"Auburn",hairColorizing,"auburn","Auburn","Dye your hair auburn.");
-	addButton(8,"Red",hairColorizing,"red","Red","Dye your hair red.");
-	addButton(9,"Crimson",hairColorizing,"crimson","Crimson","Dye your hair crimson.");
-	addButton(10,"Orange",hairColorizing,"orange","Orange","Dye your hair orange.");
-	addButton(11,"Purple",hairColorizing,"purple","Purple","Dye your hair purple.");
-	addButton(12,"Violet",hairColorizing,"violet","Violet","Dye your hair violet.");
-	addButton(13,"Blue",hairColorizing,"blue","Blue","Dye your hair blue.");
+	if(pc.hairColor == "black") addDisabledButton(0,"Black","Black","Your hair is already black.");
+	else addButton(0,"Black",hairColorizing,"black","Black","Dye your hair black.");
+	if(pc.hairColor == "chocolate") addDisabledButton(1,"Chocolate","Chocolate","Your hair is already chocolate.");
+	else addButton(1,"Chocolate",hairColorizing,"chocolate","Chocolate","Dye your hair chocolate.");
+	if(pc.hairColor == "brown") addDisabledButton(2,"Brown","Brown","Your hair is already brown.");
+	else addButton(2,"Brown",hairColorizing,"brown","Brown","Dye your hair brown.");
+	if(pc.hairColor == "dirty blonde") addDisabledButton(3,"Dirty Blonde","Dirty Blonde","Your hair is already dirty blonde.");
+	else addButton(3,"Dirty Blonde",hairColorizing,"dirty blonde","Dirty Blonde","Dye your hair dirty blonde.");
+	if(pc.hairColor == "blonde") addDisabledButton(4,"Blonde","Blonde","Your hair is already blonde.");
+	else addButton(4,"Blonde",hairColorizing,"blonde","Blonde","Dye your hair blonde.");
+	if(pc.hairColor == "platinum blonde") addDisabledButton(5,"P.Blonde","Platinum Blonde","Your hair is already platinum blonde.");
+	else addButton(5,"P.Blonde",hairColorizing,"platinum blonde","Platinum Blonde","Dye your hair platinum blonde.");
+	if(pc.hairColor == "strawberry blonde") addDisabledButton(6,"S.B.Blonde","Strawberry Blonde","Your hair is already strawberry blonde.");
+	else addButton(6,"S.B.Blonde",hairColorizing,"strawberry blonde","Strawberry Blonde","Dye your hair strawberry blonde.");
+	if(pc.hairColor == "auburn") addDisabledButton(7,"Auburn","Auburn","Your hair is already auburn.");
+	else addButton(7,"Auburn",hairColorizing,"auburn","Auburn","Dye your hair auburn.");
+	if(pc.hairColor == "red") addDisabledButton(8,"Red","Red","Your hair is already red.");
+	else addButton(8,"Red",hairColorizing,"red","Red","Dye your hair red.");
+	if(pc.hairColor == "crimson") addDisabledButton(9,"Crimson","Crimson","Your hair is already crimson.");
+	else addButton(9,"Crimson",hairColorizing,"crimson","Crimson","Dye your hair crimson.");
+	if(pc.hairColor == "orange") addDisabledButton(10,"Orange","Orange","Your hair is already orange.");
+	else addButton(10,"Orange",hairColorizing,"orange","Orange","Dye your hair orange.");
+	if(pc.hairColor == "purple") addDisabledButton(11,"Purple","Purple","Your hair is already purple.");
+	else addButton(11,"Purple",hairColorizing,"purple","Purple","Dye your hair purple.");
+	if(pc.hairColor == "violet") addDisabledButton(12,"Violet","Violet","Your hair is already violet.");
+	else addButton(12,"Violet",hairColorizing,"violet","Violet","Dye your hair violet.");
+	if(pc.hairColor == "blue") addDisabledButton(13,"Blue","Blue","Your hair is already blue.");
+	else addButton(13,"Blue",hairColorizing,"blue","Blue","Dye your hair blue.");
 	
 	addButton(14,"Back",hairColorMainMenu);
 	
-	addButton(15,"Emerald",hairColorizing,"emerald","Emerald","Dye your hair emerald.");
-	addButton(16,"Green",hairColorizing,"green","Green","Dye your hair green.");
-	addButton(17,"Turquoise",hairColorizing,"turquoise","Turquoise","Dye your hair turquoise.");
-	addButton(18,"White",hairColorizing,"white","White","Dye your hair white.");
-	addButton(19,"Ivory",hairColorizing,"ivory","Ivory","Dye your hair ivory.");
-	addButton(20,"Gray",hairColorizing,"gray","Gray","Dye your hair gray.");
-	addButton(21,"Pink",hairColorizing,"pink","Pink","Dye your hair pink.");
+	if(pc.hairColor == "emerald") addDisabledButton(15,"Emerald","Emerald","Your hair is already emerald.");
+	else addButton(15,"Emerald",hairColorizing,"emerald","Emerald","Dye your hair emerald.");
+	if(pc.hairColor == "green") addDisabledButton(16,"Green","Green","Your hair is already green.");
+	else addButton(16,"Green",hairColorizing,"green","Green","Dye your hair green.");
+	if(pc.hairColor == "turquoise") addDisabledButton(17,"Turquoise","Turquoise","Your hair is already turquoise.");
+	else addButton(17,"Turquoise",hairColorizing,"turquoise","Turquoise","Dye your hair turquoise.");
+	if(pc.hairColor == "white") addDisabledButton(18,"White","White","Your hair is already white.");
+	else addButton(18,"White",hairColorizing,"white","White","Dye your hair white.");
+	if(pc.hairColor == "ivory") addDisabledButton(19,"Ivory","Ivory","Your hair is already ivory.");
+	else addButton(19,"Ivory",hairColorizing,"ivory","Ivory","Dye your hair ivory.");
+	if(pc.hairColor == "gray") addDisabledButton(20,"Gray","Gray","Your hair is already gray.");
+	else addButton(20,"Gray",hairColorizing,"gray","Gray","Dye your hair gray.");
+	if(pc.hairColor == "pink") addDisabledButton(21,"Pink","Pink","Your hair is already pink.");
+	else addButton(21,"Pink",hairColorizing,"pink","Pink","Dye your hair pink.");
 
 	addButton(29, "Back", hairColorMainMenu); // refactor to always keep a back button on every page?
 	
@@ -431,14 +452,25 @@ public function metallicHairColorMenu():void
 	output("Ceria pulls out a small tablet showing a color wheel and presents it to you. <i>“Alright, pick what looks good.”</i>");
 	//[Buttons for Colors] Go to Hair Treatment
 	clearMenu();
-	addButton(0,"Chrome",hairColorizing,"chrome","Chrome","Dye your hair chrome for a retro-futuristic look.");
-	addButton(1,"Bronze",hairColorizing,"bronze","Bronze","Dye your hair bronze.");
-	addButton(2,"Gold",hairColorizing,"gold","Gold","Dye your hair gold. King Midas will have nothing on you!");
-	addButton(3,"Copper",hairColorizing,"copper","Copper","Dye your hair copper.");
-	addButton(4,"Cobalt",hairColorizing,"cobalt","Cobalt","Dye your hair cobalt.");
-	addButton(5,"Silver",hairColorizing,"silver","Silver","Dye your hair silver like some kind of anime character.");
-	addButton(6,"Rusty",hairColorizing,"rusty","Rusty","Dye your hair rusty. The name of the dye is \"Rusty Venture\".");
-	addButton(7,"Steel",hairColorizing,"steel","Steel","Dye your hair steel. Really live up to your namesake.");
+	if(pc.hairColor == "chrome") addDisabledButton(0,"Chrome","Chrome","Your hair is already chrome.");
+	else addButton(0,"Chrome",hairColorizing,"chrome","Chrome","Dye your hair chrome for a retro-futuristic look.");
+	if(pc.hairColor == "bronze") addDisabledButton(1,"Bronze","Bronze","Your hair is already bronze.");
+	else addButton(1,"Bronze",hairColorizing,"bronze","Bronze","Dye your hair bronze.");
+	if(pc.hairColor == "gold") addDisabledButton(2,"Gold","Gold","Your hair is already gold.");
+	else addButton(2,"Gold",hairColorizing,"gold","Gold","Dye your hair gold. King Midas will have nothing on you!");
+	if(pc.hairColor == "copper") addDisabledButton(3,"Copper","Copper","Your hair is already copper.");
+	else addButton(3,"Copper",hairColorizing,"copper","Copper","Dye your hair copper.");
+	if(pc.hairColor == "cobalt") addDisabledButton(4,"Cobalt","Cobalt","Your hair is already cobalt.");
+	else addButton(4,"Cobalt",hairColorizing,"cobalt","Cobalt","Dye your hair cobalt.");
+	if(pc.hairColor == "silver") addDisabledButton(5,"Silver","Silver","Your hair is already silver.");
+	else addButton(5,"Silver",hairColorizing,"silver","Silver","Dye your hair silver like some kind of anime character.");
+	if(pc.hairColor == "rusty") addDisabledButton(6,"Rusty","Rusty","Your hair is already rusty.");
+	else addButton(6,"Rusty",hairColorizing,"rusty","Rusty","Dye your hair rusty. The name of the dye is \"Rusty Venture\".");
+	if(pc.hairColor == "steel") addDisabledButton(7,"Steel","Steel","Your hair is already steel.");
+	else addButton(7,"Steel",hairColorizing,"steel","Steel","Dye your hair steel. Really live up to your namesake.");
+	if(pc.hairColor == "metallic black") addDisabledButton(8,"M.Black","Metallic Black","Your hair is already metallic black.");
+	else addButton(8,"M.Black",hairColorizing,"metallic black","Metallic Black","Dye your hair metallic black" + (silly ? " if you want to twinkle in the night sky":"") + ".");
+	
 	addButton(14,"Back",hairColorMainMenu);
 
 	//[Back] Go to Hairwork
@@ -454,12 +486,21 @@ public function glowingHairColorMenu():void
 	output("Ceria pulls out a small tablet showing a color wheel and presents it to you. <i>“Alright, pick what looks good.”</i>");
 	//[Buttons for Colors] Go to Hair Treatment
 	clearMenu();
-	addButton(0,"G.Gold",hairColorizing,"glowing gold","Glowing Gold","Dye your hair to glow like some kind of golden god.");
-	addButton(1,"G.Orange",hairColorizing,"glowing orange","Glowing Orange","Dye your hair glowing orange. You'll always be the center of attention - and probably the first to get a multipass to boot!");
-	addButton(2,"G.Red",hairColorizing,"glowing red","Glowing Red","Dye your hair to glow like the warning lights on a super-critical reactor.");
-	addButton(3,"G.Purple",hairColorizing,"glowing purple","Glowing Purple","Dye your hair glowing purple.");
-	addButton(4,"G.Blue",hairColorizing,"glowing blue","Glowing Blue","Dye your hair glowing blue for a bit of a cyber-punk look.");
-	addButton(5,"G.Green",hairColorizing,"glowing green","Glowing Green","Dye your hair glowing green. You'll be the envy of comic book monsters everywhere.");
+	if(pc.hairColor == "glowing gold") addDisabledButton(0,"G.Gold","Glowing Gold","Your hair is already glowing gold.");
+	else addButton(0,"G.Gold",hairColorizing,"glowing gold","Glowing Gold","Dye your hair to glow like some kind of golden god.");
+	if(pc.hairColor == "glowing orange") addDisabledButton(1,"G.Orange","Glowing Orange","Your hair is already glowing orange.");
+	else addButton(1,"G.Orange",hairColorizing,"glowing orange","Glowing Orange","Dye your hair glowing orange. You'll always be the center of attention - and probably the first to get a multipass to boot!");
+	if(pc.hairColor == "glowing red") addDisabledButton(2,"G.Red","Glowing Red","Your hair is already glowing red.");
+	else addButton(2,"G.Red",hairColorizing,"glowing red","Glowing Red","Dye your hair to glow like the warning lights on a super-critical reactor.");
+	if(pc.hairColor == "glowing purple") addDisabledButton(3,"G.Purple","Glowing Purple","Your hair is already glowing purple.");
+	else addButton(3,"G.Purple",hairColorizing,"glowing purple","Glowing Purple","Dye your hair glowing purple.");
+	if(pc.hairColor == "glowing blue") addDisabledButton(4,"G.Blue","Glowing Blue","Your hair is already glowing blue.");
+	else addButton(4,"G.Blue",hairColorizing,"glowing blue","Glowing Blue","Dye your hair glowing blue for a bit of a cyber-punk look.");
+	if(pc.hairColor == "glowing green") addDisabledButton(5,"G.Green","Glowing Green","Your hair is already glowing green.");
+	else addButton(5,"G.Green",hairColorizing,"glowing green","Glowing Green","Dye your hair glowing green. You'll be the envy of comic book monsters everywhere.");
+	if(pc.hairColor == "iridescent") addDisabledButton(6,"Iridescent","Iridescent","Your hair is already iridescent.");
+	else addButton(6,"Iridescent",hairColorizing,"iridescent","Iridescent","Can’t decide on one color? Dye your hair iridescent for a more multi-colored look.");
+	
 	addButton(14,"Back",hairColorMainMenu);
 	//[Back] Go to Hairwork
 	processTime(1);
@@ -489,7 +530,7 @@ public function hairColorizing(newColor:String = "black"):void
 	}
 	pc.hairColor = newColor;
 	pc.credits -= 500;
-	if(newColor == "glowing green" || newColor == "glowing blue" || newColor == "glowing red" || newColor == "glowing purple" || newColor == "glowing orange" || newColor == "glowing gold") pc.credits -= 100;
+	if(newColor.indexOf("glowing") != -1 || newColor.indexOf("luminous") != -1 || newColor == "iridescent") pc.credits -= 100;
 	processTime(20);
 	clearMenu();
 	addButton(0,"Next",approachCeria);
@@ -611,19 +652,33 @@ public function furColor():void
 	clearMenu();
 	processTime(1);
 	//[Buttons for Colors] Go to Fur Treatment
-	addButton(0,"Black",furColorApplication,"black","Black","Dye your fur black.");
-	addButton(1,"Brown",furColorApplication,"brown","Brown","Dye your fur brown.");
-	addButton(2,"Tawny",furColorApplication,"tawny","Tawny","Dye your fur tawny.");
-	addButton(3,"Blonde",furColorApplication,"blonde","Blonde","Dye your fur blonde.");
-	addButton(4,"Red",furColorApplication,"red","Red","Dye your fur red.");
-	addButton(5,"Crimson",furColorApplication,"crimson","Crimson","Dye your fur crimson.");
-	addButton(6,"Pink",furColorApplication,"pink","Pink","Dye your fur pink.");
-	addButton(7,"Purple",furColorApplication,"purple","Purple","Dye your fur purple.");
-	addButton(8,"Violet",furColorApplication,"violet","Violet","Dye your fur violet.");
-	addButton(9,"Blue",furColorApplication,"blue","Blue","Dye your fur blue.");
-	addButton(10,"Green",furColorApplication,"green","Green","Dye your fur green.");
-	addButton(11,"Gray",furColorApplication,"gray","Gray","Dye your fur gray.");
-	addButton(12,"White",furColorApplication,"white","White","Dye your fur white.");
+	if(pc.furColor == "black") addDisabledButton(0,"Black","Black","Your fur is already black.");
+	else addButton(0,"Black",furColorApplication,"black","Black","Dye your fur black.");
+	if(pc.furColor == "brown") addDisabledButton(1,"Brown","Brown","Your fur is already brown.");
+	else addButton(1,"Brown",furColorApplication,"brown","Brown","Dye your fur brown.");
+	if(pc.furColor == "tawny") addDisabledButton(2,"Tawny","Tawny","Your fur is already tawny.");
+	else addButton(2,"Tawny",furColorApplication,"tawny","Tawny","Dye your fur tawny.");
+	if(pc.furColor == "blonde") addDisabledButton(3,"Blonde","Blonde","Your fur is already blonde.");
+	else addButton(3,"Blonde",furColorApplication,"blonde","Blonde","Dye your fur blonde.");
+	if(pc.furColor == "red") addDisabledButton(4,"Red","Red","Your fur is already red.");
+	else addButton(4,"Red",furColorApplication,"red","Red","Dye your fur red.");
+	if(pc.furColor == "crimson") addDisabledButton(5,"Crimson","Crimson","Your fur is already crimson.");
+	else addButton(5,"Crimson",furColorApplication,"crimson","Crimson","Dye your fur crimson.");
+	if(pc.furColor == "pink") addDisabledButton(6,"Pink","Pink","Your fur is already pink.");
+	else addButton(6,"Pink",furColorApplication,"pink","Pink","Dye your fur pink.");
+	if(pc.furColor == "purple") addDisabledButton(7,"Purple","Purple","Your fur is already purple.");
+	else addButton(7,"Purple",furColorApplication,"purple","Purple","Dye your fur purple.");
+	if(pc.furColor == "violet") addDisabledButton(8,"Violet","Violet","Your fur is already violet.");
+	else addButton(8,"Violet",furColorApplication,"violet","Violet","Dye your fur violet.");
+	if(pc.furColor == "blue") addDisabledButton(9,"Blue","Blue","Your fur is already blue.");
+	else addButton(9,"Blue",furColorApplication,"blue","Blue","Dye your fur blue.");
+	if(pc.furColor == "green") addDisabledButton(10,"Green","Green","Your fur is already green.");
+	else addButton(10,"Green",furColorApplication,"green","Green","Dye your fur green.");
+	if(pc.furColor == "gray") addDisabledButton(11,"Gray","Gray","Your fur is already gray.");
+	else addButton(11,"Gray",furColorApplication,"gray","Gray","Dye your fur gray.");
+	if(pc.furColor == "white") addDisabledButton(12,"White","White","Your fur is already white.");
+	else addButton(12,"White",furColorApplication,"white","White","Dye your fur white.");
+	
 	addButton(14,"Back",furColorMenu);
 }
 
@@ -639,14 +694,25 @@ public function metalliaColor():void
 	//[Buttons for Colors] Go to Fur Treatment
 	//[Back] Go to Hairwork
 	clearMenu();
-	addButton(0,"Chrome",furColorApplication,"chrome","Chrome","Dye your fur chrome for a retro-futuristic look.");
-	addButton(1,"Bronze",furColorApplication,"bronze","Bronze","Dye your fur bronze.");
-	addButton(2,"Gold",furColorApplication,"gold","Gold","Dye your fur gold. King Midas will have nothing on you!");
-	addButton(3,"Copper",furColorApplication,"copper","Copper","Dye your fur copper.");
-	addButton(4,"Cobalt",furColorApplication,"cobalt","Cobalt","Dye your fur cobalt.");
-	addButton(5,"Silver",furColorApplication,"silver","Silver","Dye your fur silver like some kind of anime character.");
-	addButton(6,"Rusty",furColorApplication,"rusty","Rusty","Dye your fur rusty. The name of the dye is \"Rusty Venture\".");
-	addButton(7,"Steel",furColorApplication,"steel","Steel","Dye your fur steel. Really live up to your namesake.");
+	if(pc.furColor == "chrome") addDisabledButton(0,"Chrome","Chrome","Your fur is already chrome.");
+	else addButton(0,"Chrome",furColorApplication,"chrome","Chrome","Dye your fur chrome for a retro-futuristic look.");
+	if(pc.furColor == "bronze") addDisabledButton(1,"Bronze","Bronze","Your fur is already bronze.");
+	else addButton(1,"Bronze",furColorApplication,"bronze","Bronze","Dye your fur bronze.");
+	if(pc.furColor == "gold") addDisabledButton(2,"Gold","Gold","Your fur is already gold.");
+	else addButton(2,"Gold",furColorApplication,"gold","Gold","Dye your fur gold. King Midas will have nothing on you!");
+	if(pc.furColor == "copper") addDisabledButton(3,"Copper","Copper","Your fur is already copper.");
+	else addButton(3,"Copper",furColorApplication,"copper","Copper","Dye your fur copper.");
+	if(pc.furColor == "cobalt") addDisabledButton(4,"Cobalt","Cobalt","Your fur is already cobalt.");
+	else addButton(4,"Cobalt",furColorApplication,"cobalt","Cobalt","Dye your fur cobalt.");
+	if(pc.furColor == "silver") addDisabledButton(5,"Silver","Silver","Your fur is already silver.");
+	else addButton(5,"Silver",furColorApplication,"silver","Silver","Dye your fur silver like some kind of anime character.");
+	if(pc.furColor == "rusty") addDisabledButton(6,"Rusty","Rusty","Your fur is already rusty.");
+	else addButton(6,"Rusty",furColorApplication,"rusty","Rusty","Dye your fur rusty. The name of the dye is \"Rusty Venture\".");
+	if(pc.furColor == "steel") addDisabledButton(7,"Steel","Steel","Your fur is already steel.");
+	else addButton(7,"Steel",furColorApplication,"steel","Steel","Dye your fur steel. Really live up to your namesake.");
+	if(pc.furColor == "metallic black") addDisabledButton(8,"M.Black","Metallic Black","Your fur is already metallic black.");
+	else addButton(8,"M.Black",furColorApplication,"metallic black","Metallic Black","Dye your fur metallic black" + (silly ? " if you want to twinkle in the night sky":"") + ".");
+	
 	addButton(14,"Back",furColorMenu);
 }
 
@@ -662,12 +728,21 @@ public function glowFurGo():void
 	//[Buttons for Colors] Go to Fur Treatment
 	//[Back] Go to Hairwork
 	clearMenu();
-	addButton(0,"G.Gold",furColorApplication,"glowing gold","Glowing Gold","Dye your fur to glow like some kind of golden god.");
-	addButton(1,"G.Orange",furColorApplication,"glowing orange","Glowing Orange","Dye your fur glowing orange. You'll always be the center of attention - and probably the first to get a multipass to boot!");
-	addButton(2,"G.Red",furColorApplication,"glowing red","Glowing Red","Dye your fur to glow like the warning lights on a super-critical reactor.");
-	addButton(3,"G.Purple",furColorApplication,"glowing purple","Glowing Purple","Dye your fur glowing purple.");
-	addButton(4,"G.Blue",furColorApplication,"glowing blue","Glowing Blue","Dye your fur glowing blue for a bit of a cyber-punk look.");
-	addButton(5,"G.Green",furColorApplication,"glowing green","Glowing Green","Dye your fur glowing green. You'll be the envy of comic book monsters everywhere.");
+	if(pc.furColor == "glowing gold") addDisabledButton(0,"G.Gold","Glowing Gold","Your fur is already glowing gold.");
+	else addButton(0,"G.Gold",furColorApplication,"glowing gold","Glowing Gold","Dye your fur to glow like some kind of golden god.");
+	if(pc.furColor == "glowing orange") addDisabledButton(1,"G.Orange","Glowing Orange","Your fur is already glowing orange.");
+	else addButton(1,"G.Orange",furColorApplication,"glowing orange","Glowing Orange","Dye your fur glowing orange. You'll always be the center of attention - and probably the first to get a multipass to boot!");
+	if(pc.furColor == "glowing red") addDisabledButton(2,"G.Red","Glowing Red","Your fur is already glowing red.");
+	else addButton(2,"G.Red",furColorApplication,"glowing red","Glowing Red","Dye your fur to glow like the warning lights on a super-critical reactor.");
+	if(pc.furColor == "glowing purple") addDisabledButton(3,"G.Purple","Glowing Purple","Your fur is already glowing purple.");
+	else addButton(3,"G.Purple",furColorApplication,"glowing purple","Glowing Purple","Dye your fur glowing purple.");
+	if(pc.furColor == "glowing blue") addDisabledButton(4,"G.Blue","Glowing Blue","Your fur is already glowing blue.");
+	else addButton(4,"G.Blue",furColorApplication,"glowing blue","Glowing Blue","Dye your fur glowing blue for a bit of a cyber-punk look.");
+	if(pc.furColor == "glowing green") addDisabledButton(5,"G.Green","Glowing Green","Your fur is already glowing green.");
+	else addButton(5,"G.Green",furColorApplication,"glowing green","Glowing Green","Dye your fur glowing green. You'll be the envy of comic book monsters everywhere.");
+	if(pc.furColor == "iridescent") addDisabledButton(6,"Iridescent","Iridescent","Your fur is already iridescent.");
+	else addButton(6,"Iridescent",furColorApplication,"iridescent","Iridescent","Can’t decide on one color? Dye your fur iridescent for a more multi-colored look.");
+	
 	addButton(14,"Back",furColorMenu);
 }
 
@@ -714,7 +789,7 @@ public function furColorApplication(newColor:String):void
 		output("\n\nCeria doesn’t stop until she empties out the entire tub, leaving you tingling all over as the payload in the gel gets to work altering your fur all the way down to the roots. By the time she lets you up, you’ve got an all-new palette to your pelt. <b>Your fur is now " + newColor + "!</b>");
 	}
 	pc.credits -= 1500;
-	if(newColor == "glowing green" || newColor == "glowing blue" || newColor == "glowing red" || newColor == "glowing purple" || newColor == "glowing orange" || newColor == "glowing gold") pc.credits -= 300;
+	if(newColor.indexOf("glowing") != -1 || newColor.indexOf("luminous") != -1 || newColor == "iridescent") pc.credits -= 300;
 	pc.furColor = newColor;
 	//[Next] Go to Ceria Main
 	processTime(22);
