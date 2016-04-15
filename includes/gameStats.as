@@ -1128,7 +1128,7 @@ public function questLogMenu(currentFunc:Function):Boolean
 		else addGhostButton(6, "Poe A", currentFunc, "Poe A");
 	}
 	// Uveto
-	if(flags["UVETO_UNLOCKED"] != undefined)
+	if(uvetoUnlocked())
 	{
 		if(showID == "Uveto") { output2(header("<u>Uveto VII</u>", false)); addDisabledGhostButton(7, "Uveto"); }
 		else addGhostButton(7, "Uveto", currentFunc, "Uveto");
@@ -1928,13 +1928,15 @@ public function displayQuestLog(showID:String = "All"):void
 		
 		if(showID == "Uveto" || showID == "All")
 		{
-			// 9999
-			if(9999 == 0)
+			// Drone Hunting
+			if(flags["MET_NAYNA"] != undefined)
 			{
-				output2("\n<b><u>PLACEHOLDER</u></b>");
-				output2("\n<b>* OBJECTIVE:</b>");
-				if(9999 == 0) output2(" Completed");
+				output2("\n<b><u>Drone Hunting</u></b>");
+				output2("\n<b>* Status:</b>");
+				if(flags["NAYNA_REJECTED"] != undefined) output2(" Refused to help Nayna");
+				else if(9999 == 0) output2(" Completed");
 				else output2(" <i>In progress...</i>");
+				if(flags["NAYNA_DRONES_TURNED_IN"] != undefined) output2("<b>* Weather Drones Turned In: </b>" + flags["NAYNA_DRONES_TURNED_IN"]);
 				sideCount++;
 			}
 		}
@@ -2151,6 +2153,34 @@ public function displayQuestLog(showID:String = "All"):void
 			// Rewards or Loot?
 			if(flags["RESCUE KIRO TOOK CUTLASS"] != undefined || flags["RESCUE KIRO TOOK PISTOL"] != undefined) output2(", Looted ship");
 			if(flags["RESCUE KIRO FROM BLUEBALLS"] == 1 && flags["RESCUE KIRO TOOK CUTLASS"] == undefined && flags["RESCUE KIRO TOOK PISTOL"] == undefined) output2(", Rewarded");
+			distressCount++;
+		}
+		// Operation: Snowballs the Cat
+		if(flags["DO UVETO ICEQUEEN ENTRY"] != undefined || flags["ICEQUEEN COMPLETE"] != undefined)
+		{
+			output2("\n<b><u>Ice Queen</u></b>");
+			output2("\n<b>* Status:</b>");
+			if(flags["ICEQUEEN COMPLETE"] > 0) output2(" Defeated Zaalt");
+			if(flags["ICEQUEEN COMPLETE"] == 1) output2(" and killed him");
+			if(flags["ICEQUEEN COMPLETE"] == 2) output2(" and arrested him");
+			if(flags["ICEQUEEN COMPLETE"] == 3)
+			{
+				output2(" and helped him");
+				if(flags["ICEQUEEN KARA STUFF"] == 1) output2(", Rewarded 10000 credits from Kara");
+				if(flags["ICEQUEEN KARA STUFF"] == 2) output2(", Accept deal of 8000 credits from Kara");
+				if(flags["ICEQUEEN KARA STUFF"] == 3) output2(", Rewarded with sex from Kara");
+				if(flags["ICEQUEEN KARA STUFF"] == 4) output2(", Refused deal with Kara");
+			}
+			if(flags["ICEQUEEN COMPLETE"] == -1) output2(" Ignored message");
+			if(flags["ICEQUEEN COMPLETE"] == -2) output2(" Refused to help Zaalt");
+			if(flags["ICEQUEEN COMPLETE"] == -3) output2(" Lost to Zaalt");
+			if(flags["ICEQUEEN COMPLETE"] > 0) output2(", Retrieved implant, Completed");
+			else if(flags["ICEQUEEN COMPLETE"] <= -3) output2(", Failed");
+			else if(flags["ICEQUEEN COMPLETE"] == undefined) output2(" Accepted, <i>In progress...</i>");
+			output2("\n<b>* Captain Zaalt Kandar:</b> Met him");
+			if(flags["ZAALT FLIRTED"] != undefined) output2(", Flirted with");
+			if(flags["ZAALT DISARMED"] != undefined) output2(", Disarmed");
+			if(flags["ZAALT_DISABLED"] != undefined) output2(", <i>Whereabouts unknown</i>");
 			distressCount++;
 		}
 		
@@ -3087,9 +3117,15 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Jungles
-			if(flags["MET_CUNT_SNAKE"] != undefined || flags["ENCOUNTERED_MIMBRANE"] != undefined || flags["TIMES_MET_FEMZIL"] != undefined || flags["ENCOUNTERED_ZIL"] != undefined || flags["TIMES_MET_NALEEN"] != undefined || flags["TIMES_MET_MALE_NALEEN"] != undefined || flags["TIMES_MET_VENUS_PITCHER"] != undefined || flags["TIMES_VENUS_PITCHER_ELDER_ENCOUNTERED"] != undefined || flags["MET_VANAE_MAIDEN"] != undefined || flags["MET_VANAE_HUNTRESS"] != undefined || flags["MET_KEROKORAS"] != undefined)
+			if(flags["MET_CUNT_SNAKE"] != undefined || flags["ENCOUNTERED_MIMBRANE"] != undefined || flags["TIMES_MET_FEMZIL"] != undefined || flags["ENCOUNTERED_ZIL"] != undefined || flags["TIMES_MET_NALEEN"] != undefined || flags["TIMES_MET_MALE_NALEEN"] != undefined || flags["TIMES_MET_VENUS_PITCHER"] != undefined || flags["TIMES_VENUS_PITCHER_ELDER_ENCOUNTERED"] != undefined || flags["MET_VANAE_MAIDEN"] != undefined || flags["MET_VANAE_HUNTRESS"] != undefined || flags["MET_KEROKORAS"] != undefined || flags["DRYAD_MET"] != undefined)
 			{
 				output2("\n<b><u>Mhen’gan Jungles</u></b>");
+				// Dryad
+				if(flags["DRYAD_MET"] != undefined)
+				{
+					output2("\n<b>* Dryad:</b> Met her");
+					if(flags["DRYAD_FUCKED"] != undefined) output2("\n<b>* Dryad, Times Sexed: </b>" + flags["DRYAD_FUCKED"]);
+				}
 				if(flags["MET_CUNT_SNAKE"] != undefined) output2("\n<b>* Cunt Snake, Times Encountered: </b>" + flags["MET_CUNT_SNAKE"]);
 				if(flags["MET_KEROKORAS"] != undefined) output2("\n<b>* Kerokoras, Times Encountered: </b>" + flags["MET_KEROKORAS"]);
 				if(flags["ENCOUNTERED_MIMBRANE"] != undefined) output2("\n<b>* Mimbranes, Times Encountered: </b>" + flags["ENCOUNTERED_MIMBRANE"]);
@@ -4162,6 +4198,19 @@ public function displayEncounterLog(showID:String = "All"):void
 					output2("\n<b>* Crash Site:</b> Found");
 					if(flags["DEEP_CAVES_TAXI_UNLOCKED"] != undefined) output2(", Activated beacon");
 				}
+				variousCount++;
+			}
+		}
+		
+		if(showID == "Uveto" || showID == "All")
+		{
+			if(flags["MET_NAYNA"] != undefined)
+			{
+				output2("\n<b><u>Geological Survey</u></b>");
+				output2("\n<b>* Nayna:</b> Met her");
+				if(flags["NAYNA_PISSED"] != undefined) output2(", Pissed off");
+				if(flags["NAYNA_HUGS"] != undefined) output2("<b>* Nayna, Times Hugged Her: </b>" + flags["NAYNA_HUGS"]);
+				if(flags["NAYNA_BLOWN"] != undefined) output2("<b>* Nayna, Times Given Her Blowjobs: </b>" + flags["NAYNA_BLOWN"]);
 				variousCount++;
 			}
 		}
