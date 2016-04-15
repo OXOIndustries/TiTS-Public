@@ -12,6 +12,17 @@ public function dryadHeader():void
 	author("Wsan");
 }
 
+public function getDryadPregContainer():PregnancyPlaceholder
+{
+	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
+	if(!pp.hasCock()) pp.createCock();
+	pp.shiftCock(0, GLOBAL.TYPE_EQUINE);
+	pp.cocks[0].cLengthRaw = 14;
+	pp.createPerk("Fixed CumQ",6000,0,0,0);
+	
+	return pp;
+}
+
 public function dryadMeeting():void
 {
 	dryadHeader();
@@ -60,11 +71,7 @@ public function dryadBlowjob():void
 {
 	clearOutput();
 	dryadHeader();
-	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
-	if(!pp.hasCock()) pp.createCock();
-	pp.shiftCock(0, GLOBAL.TYPE_EQUINE);
-	pp.cocks[0].cLengthRaw = 14;
-	pp.createPerk("Fixed CumQ",6000,0,0,0);
+	var pp:PregnancyPlaceholder = getDryadPregContainer();
 
 	output("You tell her you’ll suck her dick to get her off, and a smile crosses her lust-reddened face.");
 	output("\n\n<i>“Oh, thank you! Thankyouthankyouthankyou!”</i>");
@@ -102,15 +109,13 @@ public function dryadPussy():void
 	clearOutput();
 	dryadHeader();
 
-	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
-	if(!pp.hasCock()) pp.createCock();
-	pp.shiftCock(0, GLOBAL.TYPE_EQUINE);
-	pp.cocks[0].cLengthRaw = 14;
-	pp.createPerk("Fixed CumQ",6000,0,0,0);
+	var pp:PregnancyPlaceholder = getDryadPregContainer();
 	var x:int = pc.findEmptyPregnancySlot(1);
 	if(x < 0) x = rand(pc.totalVaginas());
 
-	output("You tell her she can use [pc.oneVagina] to get off and a smile crosses her lust-reddened face.");
+	output("You tell her she can use [pc.oneVagina]");
+	if (!target.isCrotchExposed()) output(" as you remove your [pc.lowerGarments]");
+	output(" to get off and a smile crosses her lust-reddened face.");
 	output("\n\n<i>“Oh, thank you! Thankyouthankyouthankyou!”</i>");
 	output("\n\nYou brace yourself against a nearby tree");
 	if (pc.isTaur()) output(" as she hurriedly mounts you, scrabbling across your rear in her urgency to sink her cock between your lips.");
@@ -146,13 +151,11 @@ public function dryadAss():void
 {
 	clearOutput();
 	dryadHeader();
-	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
-	if(!pp.hasCock()) pp.createCock();
-	pp.shiftCock(0, GLOBAL.TYPE_EQUINE);
-	pp.cocks[0].cLengthRaw = 14;
-	pp.createPerk("Fixed CumQ",6000,0,0,0);
+	var pp:PregnancyPlaceholder = getDryadPregContainer();
 
-	output("You tell her she can use your ass to get off, and a smile crosses her lust-reddened face.");
+	output("You tell her she can use your ass to get off");
+	if (!target.isAssExposed()) output(" as you remove your [pc.lowerGarments]");
+	output(", and a smile crosses her lust-reddened face.");
 	output("\n\n<i>“Oh, thank you! Thankyouthankyouthankyou!”</i>");
 	output("\n\nYou brace yourself against a nearby tree");
 	if (pc.isTaur()) output (" as she hurriedly mounts you, scrabbling across your rear in her urgency to sink her cock into your asshole.")
@@ -185,11 +188,7 @@ public function dryadDick():void
 {
 	clearOutput();
 	dryadHeader();
-	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
-	if(!pp.hasCock()) pp.createCock();
-	pp.shiftCock(0, GLOBAL.TYPE_EQUINE);
-	pp.cocks[0].cLengthRaw = 14;
-	pp.createPerk("Fixed CumQ",6000,0,0,0);
+	var pp:PregnancyPlaceholder = getDryadPregContainer();
 	var x:int = pc.cockThatFits(1400);
 	if(x < 0) x = pc.smallestCockIndex();
 	if(pc.cocks[x].cLength() < 12) x = pc.biggestCockIndex();
@@ -200,7 +199,10 @@ public function dryadDick():void
 	output("\n\n<i>“<i>Please</i> don’t keep me waiting.”</i>");
 	if (pc.isTaur())
 	{
-		output("\n\nYour instincts take over at such willing presentation and you rear up to wrap yourself around her midsection, your [pc.oneCock] springing free of your [pc.lowerGarments] while you seek to align it with her wet and ready hole. The tip of your dick slips in and you immediately ram your full length into her with a grunt, making her scream lustily as her cock sprays the ground with seed. Her pussy is wrapped tightly around your dick, overwhelmingly warm and rapidly contracting as she shakes in your grip.");
+		output("\n\nYour instincts take over at such willing presentation and you rear up to wrap yourself around her midsection, your [pc.oneCock] springing");
+		if (!target.isCrotchExposed()) output(" free of your [pc.lowerGarments]");
+		else output(" to full erction");
+		output(" while you seek to align it with her wet and ready hole. The tip of your dick slips in and you immediately ram your full length into her with a grunt, making her scream lustily as her cock sprays the ground with seed. Her pussy is wrapped tightly around your dick, overwhelmingly warm and rapidly contracting as she shakes in your grip.");
 		pc.cockChange();
 		output("\n\n<i>“Did you just cum the moment I put it in?”</i> You ask, knowing the answer but wanting to hear it anyway.");
 		output("\n\n<i>“YES! Don’t stop fucking meee!”</i>");
@@ -215,7 +217,10 @@ public function dryadDick():void
 	}
 	else
 	{
-		output("\n\nYour instincts take over at such willing presentation and seize her flank, your [pc.oneCock] springing free of your [pc.lowerGarments] while you seek to align it with her wet and ready hole. The tip of your dick slips in and you immediately ram your full length into her with a grunt, making her scream lustily as her cock sprays the ground with seed. Her pussy is wrapped tightly around your dick, overwhelmingly warm and rapidly contracting as she shakes in your grip.");
+		output("\n\nYour instincts take over at such willing presentation and seize her flank, your [pc.oneCock] springing");
+		if (!target.isCrotchExposed()) output(" free of your [pc.lowerGarments]");
+		else output(" to full erction");
+		output(" while you seek to align it with her wet and ready hole. The tip of your dick slips in and you immediately ram your full length into her with a grunt, making her scream lustily as her cock sprays the ground with seed. Her pussy is wrapped tightly around your dick, overwhelmingly warm and rapidly contracting as she shakes in your grip.");
 		pc.cockChange();
 		output("\n\n<i>“Did you just cum the moment I put it in?”</i> You ask, knowing the answer but wanting to hear it anyway.");
 		output("\n\n<i>“YES! Don’t stop fucking meee!”</i>");
