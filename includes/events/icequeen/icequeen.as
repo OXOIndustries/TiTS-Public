@@ -583,7 +583,7 @@ public function iceQueenLossToZaalt():void
 	output("\n\nWhatever happened to him during your journey will remain a mystery...\n\n");
 
 	processTime(15 + rand(6));
-	flags["ICE QUEEN COMPLETE"] = -3;
+	flags["ICEQUEEN COMPLETE"] = -3;
 	flags["ZAALT_DISABLED"] = 1;
 
 	pc.loadInCunt(enemy, 0);
@@ -611,7 +611,7 @@ public function iceQueenBeatZaalt():void
 	output("\n\nYou breathe a sigh of relief as the threat passes... for now. When he wakes up, though, who knows what’s going to happen?");
 
 	clearMenu();
-	addButton(0, "Kill Him", iceQueenBeatZaalt, undefined, "Kill Him", "Zaalt went insane, and God only knows what he'd have done if you hadn't fought him down. You'll brook no threat aboard your ship."); // pls go murderfucks
+	addButton(0, "Kill Him", iceQueenBeatZaaltKill, undefined, "Kill Him", "Zaalt went insane, and God only knows what he'd have done if you hadn't fought him down. You'll brook no threat aboard your ship."); // pls go murderfucks
 	addButton(1, "Authorities", iceQueenBeatZaaltWOOPWOOPITSDASOUNDOFDASPACEPOLICE, undefined, "Authorities", "Zaalt went insane, and he can't be trusted anymore. Call the local Peacekeepers and have them arrest your would-be assailant.");
 	addButton(2, "Help Him", iceQueenBeatZaaltHelpHim, undefined, "Help Him", "Whatever just happened, you don't think it was Zaalt's fault. Something made him freak out -- you've got to find out what.");
 }
@@ -634,7 +634,7 @@ public function iceQueenBeatZaaltKill():void
 
 	//Add [A.I. Cores] to Key Items.
 	processTime(60 + rand(10));
-	flags["ICE QUEEN COMPLETE"] = 1;
+	flags["ICEQUEEN COMPLETE"] = 1;
 
 	pc.createKeyItem("Uveto A.I. Cores", 0, 0, 0, 0, "A.I. Cores recovered from Captain Zaalt Kandar, destined to be delivered to Uveto.");
 	output("\n\n<b>New Key Item: Uveto A.I. Cores</b>.\n\n");
@@ -660,7 +660,7 @@ public function iceQueenBeatZaaltWOOPWOOPITSDASOUNDOFDASPACEPOLICE():void
 
 	//Add [A.I. Cores] to Key Items.
 	processTime(360 + rand(40));
-	flags["ICE QUEEN COMPLETE"] = 2;
+	flags["ICEQUEEN COMPLETE"] = 2;
 
 	pc.createKeyItem("Uveto A.I. Cores", 0, 0, 0, 0, "A.I. Cores recovered from Captain Zaalt Kandar, destined to be delivered to Uveto.");
 	output("\n\n<b>New Key Item: Uveto A.I. Cores</b>.\n\n");
