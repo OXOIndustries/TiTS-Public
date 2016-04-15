@@ -443,7 +443,7 @@ public function kq2Herself():void
 		output("”</i>");
 	}
 
-	output("\n\nYour companion sighs and continues: <i>“I was born a slave in a kaithrit colony on Tarilia. The colony was short on males - it’s a problem on a lot of kaithrit worlds - so they kept anything with a dick cooped up as breeding stock. That includes me, if you’re wondering; I was born a hermaphrodite. About ten percent of kaithrit are. Blackstar met me on a run when the planet’s matriarch invited him to tour the ‘pleasure palace’ they kept us chained up in. Long story short: he liked me, and helped bust me out. I’ve been on the run ever since. I served under him on the </i>Silence</i>, learned the tricks of the trade, and when he was captured on Terra, I took command of the ship. Most of the crew bought their farms with him or got pinched by the Peacekeepers... or bailed out after the stunt I pulled with the Void. All that’s left is me");
+	output("\n\nYour companion sighs and continues: <i>“I was born a slave in a kaithrit colony on Tarilia. The colony was short on males - it’s a problem on a lot of kaithrit worlds - so they kept anything with a dick cooped up as breeding stock. That includes me, if you’re wondering; I was born a hermaphrodite. About ten percent of kaithrit are. Blackstar met me on a run when the planet’s matriarch invited him to tour the ‘pleasure palace’ they kept us chained up in. Long story short: he liked me, and helped bust me out. I’ve been on the run ever since. I served under him on the </i>Silence<i>, learned the tricks of the trade, and when he was captured on Terra, I took command of the ship. Most of the crew bought their farms with him or got pinched by the Peacekeepers... or bailed out after the stunt I pulled with the Void. All that’s left is me");
 	if (flags["SILENCE_RESCUED_CONNIE"] == undefined) output(" and my first mate.");
 	else output(", my first mate, and a V.I. in a robot.");
 	output(" Not much of a crew.”</i>");
@@ -451,9 +451,9 @@ public function kq2Herself():void
 	output("\n\nAfter a moment’s consideration, you ask, <i>“I thought you said your ship was the </i>Ghost<i>?”</i>");
 
 	output("\n\n<i>“Heh. About that...");
-	if (kara.isNice()) output(" The </i>Silence</i> got destroyed by the Black Void the last time we tangled.");
-	else if (kara.isMischievous()) output(" I might have sort of rammed a Black Void frigate with the </i>Silence</i>. It seemed like a good idea at the time, honest!");
-	else output(" I rammed a Black Void warship with the </i>Silence</i>. Crippled one of their best ships and killed dozens of pirates, though I lost the ship in the process. I’d do it again in a heartbeat.");
+	if (kara.isNice()) output(" The </i>Silence<i> got destroyed by the Black Void the last time we tangled.");
+	else if (kara.isMischievous()) output(" I might have sort of rammed a Black Void frigate with the </i>Silence<i>. It seemed like a good idea at the time, honest!");
+	else output(" I rammed a Black Void warship with the </i>Silence<i>. Crippled one of their best ships and killed dozens of pirates, though I lost the ship in the process. I’d do it again in a heartbeat.");
 	output(" Lucky me, my backer saw fit to replace her with a new ship: the </i>Ghost<i>. Brand new, sleek as hell, and tougher than </i>Silence<i> ever was.”</i>");
 
 	output("\n\nShe sounds like she’s trying to convince herself on that last point as much as she is you.");
