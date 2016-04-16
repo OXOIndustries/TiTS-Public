@@ -203,7 +203,7 @@
 				}
 				// Bad End
 				// {if players use White Cream while at 90” circumference or larger balls, or if players use Black cream while at 81” circumference or larger balls}
-				else if((pillColor == "white" && pc.ballSizeRaw >= 90) || (pillColor == "black" && pc.ballSizeRaw >= 81))
+				else if(((pillColor == "white" && pc.ballSizeRaw >= 90) || (pillColor == "black" && pc.ballSizeRaw >= 81)) && pc.weightQ("testicle") >= 100 && pc.heightRatio("testicle") >= (40/60))
 				{
 					kGAMECLASS.showName("\nUH-OH!");
 					kGAMECLASS.output("\n\nYour body trembles and vibrates with an unfamiliar pressure. Your heart races and your mouth waters as moist tears brim at the periphery of your [pc.eyes]. Something’s wrong, that much is obvious. A bad reaction or a bad batch of Suma Cream? As panic starts rising in your [pc.chest], an equally intense pressure builds in your [pc.balls], your [pc.cocks] throbbing with what promises to be the most intense orgasm you’ve ever experienced.");
