@@ -198,7 +198,7 @@ public function sexOnAMeteor():void
 		if(pc.getStatusMinutes("Sex On a Meteor") < 700) {
 			pc.addStatusMinutes("Sex On a Meteor",60);
 		}
-		else output("\n\nYou're not going to get  as you're going to get.");
+		else output("\n\nYou're about as drunk on Sex On a Meteor as you're going to get.");
 	}
 	else {
 		pc.createStatusEffect("Sex On a Meteor",0,5,0,0,false,"LustUp","This top-shelf alcohol makes you almost irresistible, but easily aroused as well.",false,180);
