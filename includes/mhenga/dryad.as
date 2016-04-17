@@ -12,6 +12,11 @@ public function dryadHeader():void
 	author("Wsan");
 }
 
+public function dryadCanSmellPC():Boolean
+{
+	return (pc.hasStatusEffect("Mare Musk") || (pc.hasVagina() && pc.wettestVaginalWetness() >= 4) || pc.hasStatusEffect("Cum Soaked"))
+}
+
 public function getDryadPregContainer():PregnancyPlaceholder
 {
 	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
