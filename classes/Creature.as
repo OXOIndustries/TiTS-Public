@@ -14655,6 +14655,7 @@
 		
 		public function hasCybernetics():Boolean
 		{
+			if(isCyborg()) return true;
 			return false;
 		}
 		
