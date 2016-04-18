@@ -2161,15 +2161,15 @@ public function displayQuestLog(showID:String = "All"):void
 			output2("\n<b><u>Ice Queen</u></b>");
 			output2("\n<b>* Status:</b>");
 			if(flags["ICEQUEEN COMPLETE"] > 0) output2(" Defeated Zaalt");
-			if(flags["ICEQUEEN COMPLETE"] == 1) output2(" and killed him, Retrieved implant");
-			if(flags["ICEQUEEN COMPLETE"] == 2) output2(" and arrested him, Retrieved implant");
+			if(flags["ICEQUEEN COMPLETE"] == 1) output2(" and killed him, Retrieved A.I. Cores");
+			if(flags["ICEQUEEN COMPLETE"] == 2) output2(" and arrested him, Retrieved A.I. Cores");
 			if(flags["ICEQUEEN COMPLETE"] == 3)
 			{
 				output2(" and helped him");
 				if(flags["ICEQUEEN KARA STUFF"] == 1) output2(", Met Kara, Rewarded 10000 credits");
 				if(flags["ICEQUEEN KARA STUFF"] == 2) output2(", Interrupted Kara, Rewarded 8000 credits");
 				if(flags["ICEQUEEN KARA STUFF"] == 3) output2(", Rewarded with sex from Kara");
-				if(flags["ICEQUEEN KARA STUFF"] == 4) output2(", Interrupted Kara, Retrieved implant");
+				if(flags["ICEQUEEN KARA STUFF"] == 4) output2(", Interrupted Kara, Retrieved Psi implant");
 			}
 			if(flags["ICEQUEEN COMPLETE"] == -1) output2(" Ignored message");
 			if(flags["ICEQUEEN COMPLETE"] == -2) output2(" Refused to help Zaalt");

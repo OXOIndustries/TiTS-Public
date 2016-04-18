@@ -375,6 +375,9 @@ public function iceQueenLetsGoFlirt():void
 	output("\n\n<i>“But it’s such a long, boring trip,”</i> you whine. It’s going to be <i>hours</i> of nothing to do, when you could be getting to know each other.");
 	
 	output("\n\nZaalt gives you a wink and steps aboard, leaving you with an even hotter fire in your loins as you follow him.");
+	
+	processTime(2);
+	pc.lust(20);
 
 	clearMenu();
 	addButton(0, "Next", iceQueenLetsActuallyGo);
