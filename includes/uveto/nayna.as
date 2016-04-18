@@ -79,7 +79,7 @@ public function naynaSexMenu():void
 	clearMenu();
 	addButton(0,"Give BJ",maxLewdGogo,true,"Give BJ","Give her a blowjob.");
 	addDisabledButton(1,"Other Stuff","Other Stuff","It isn't written yet. Be patient!");
-	addButton(4,"Back",repeatNaynaApproach,true);
+	addButton(14,"Back",repeatNaynaApproach,true);
 }
 //Meeting Nayna
 //Upstairs of the Geological Survey
@@ -88,7 +88,7 @@ public function upstairsGeoSurveyBonus():Boolean
 {
 	naynaShutterUpdate();
 	//CLOSED!
-	if(flags["SHUTTER_STATUS"]  == 1) output("The top of the geological survey is currently a dim, barren place. Shutters cover every inch of the glass observation windows, protecting you from the surging storms outside but blanketing the interior in shadow. A few glow panels struggle to illuminate the spacious deck, bolstered by blinking lights on dozens of consoles, but no matter how hard they try, they cannot dispel the creeping sense of twilight wrapping around your shoulders.");
+	if(flags["SHUTTER_STATUS"] == 1) output("The top of the geological survey is currently a dim, barren place. Shutters cover every inch of the glass observation windows, protecting you from the surging storms outside but blanketing the interior in shadow. A few glow panels struggle to illuminate the spacious deck, bolstered by blinking lights on dozens of consoles, but no matter how hard they try, they cannot dispel the creeping sense of twilight wrapping around your shoulders.");
 	//SUNNY
 	else if(flags["SHUTTER_STATUS"] == 0)
 	{
@@ -427,14 +427,14 @@ public function appearanceOfNayna():void
 	//Warm!
 	if(naynaWarm())
 	{
-		output("\n\nEven when she’s standing up straight, Nayna is barely 5’2”</i>, well below average for her race, and on top of that, she’s chubby to boot. Her entire body is like a big, squishy stuffed animal, covered in a thick layer of insulating fur that only adds to her short, stacked shape. Her hips and ass are especially plush and inviting, shrink-wrapped in her latex-like unitard. She’s got the kind of ass that you could snuggle up next to and fall asleep - or fuck for hours, bouncing off those quivering cheeks like a trampoline, but her chest is no slouch either. Nayna has the kind of big yet perky breasts that frequently result for artificial enhancement. They still sway and wobble, but they never seem to sag, not even with her complete lack of a bra.");
+		output("\n\nEven when she’s standing up straight, Nayna is barely 5’2”, well below average for her race, and on top of that, she’s chubby to boot. Her entire body is like a big, squishy stuffed animal, covered in a thick layer of insulating fur that only adds to her short, stacked shape. Her hips and ass are especially plush and inviting, shrink-wrapped in her latex-like unitard. She’s got the kind of ass that you could snuggle up next to and fall asleep - or fuck for hours, bouncing off those quivering cheeks like a trampoline, but her chest is no slouch either. Nayna has the kind of big yet perky breasts that frequently result for artificial enhancement. They still sway and wobble, but they never seem to sag, not even with her complete lack of a bra.");
 		output("\n\nAn unsubtle bulge marrs the space between her legs, or rather, three unsubtle bulges. She’s definitely a hermaphrodite, judging by the two apple-sized distentions of her balls and slight sheath bulge. Right now she doesn’t seem to be very turned on, either that or she’s obtained a magnificent control over her libido.");
 		if(pc.isBimbo()) output(" Your mouth waters just thinking of suckling at it until her cock slides out onto your tongue.");
 	}
 	//Cold
 	else
 	{
-		output("\n\nEven when she’s standing up straight, Nayna is barely 5’2”</i>, well below average for her race, and on top of that, she’s chubby to boot. Her entire body is like a big, squishy stuffed animal, covered in a thick layer of insulating fur that only adds to her short, stacked shape. Her hips and ass are especially plush and inviting. You wish they weren’t wrapped up in so many layers of insulation. She stretches her insulating pants out far enough to indicate that she’s hiding some serious booty in there, and she’s no slouch up top either. Her pink-lined parka is definitely hiding two decent-sized mounds underneath. You wouldn’t notice them otherwise, swaddled as they are in thick fabric.");
+		output("\n\nEven when she’s standing up straight, Nayna is barely 5’2”, well below average for her race, and on top of that, she’s chubby to boot. Her entire body is like a big, squishy stuffed animal, covered in a thick layer of insulating fur that only adds to her short, stacked shape. Her hips and ass are especially plush and inviting. You wish they weren’t wrapped up in so many layers of insulation. She stretches her insulating pants out far enough to indicate that she’s hiding some serious booty in there, and she’s no slouch up top either. Her pink-lined parka is definitely hiding two decent-sized mounds underneath. You wouldn’t notice them otherwise, swaddled as they are in thick fabric.");
 		output("\n\nYou can’t really make much out between her legs, ");
 		if(knowNayneIsAHerm()) output("but you know damned well she’s a hermaphrodite, even if her cock shares the same short and thick proportions as the rest of her.");
 		else output("but it’s a safe bet that she’s either a female or hermaphrodite, knowing laquines.");
@@ -486,7 +486,7 @@ public function talkToNayna(back:Boolean = false):void
 	addButton(0,"Her",talkToNaynaAboutNayna);
 	addButton(1,"Education",naynaEducationTalk);
 	addButton(2,"Uveto",uvetoTalkWithNayna);
-	addButton(4,"Back",repeatNaynaApproach,true)
+	addButton(14,"Back",repeatNaynaApproach,true)
 
 }
 
@@ -515,7 +515,7 @@ public function talkToNaynaAboutNayna():void
 	flags["NAYNA_LAST_NAME"] = 1;
 	clearMenu();
 	addButton(0,"Talk More",talkToNayna,true);
-	addButton(4,"Back",repeatNaynaApproach,true);
+	addButton(14,"Back",repeatNaynaApproach,true);
 }
 
 //Education
@@ -552,7 +552,7 @@ public function naynaEducationTalk():void
 	output("\n\nNodding, you can’t help but agree.");
 	if(pc.isBimbo()) output(" She sounds way too smart to disagree with!");
 	else output(" More than one war has broken out over colonization disputes.");
-	output("\n\nNayna smiles warmly at you. <i>“I’m glad you agree. Back on topic, I went to ZPA: Zinor Planetary Institute. They have one of the best weather studies programs in the sector, and I got in. There was only one other laquine that made the cut; Zinor is a terran world that doesn’t takea  lot of off-world admission. We may have started out as the resident ‘dumb bunnies’ and ‘furry trash,’ but we also clawed our way to the top of the academic scoreboard.”</i> Smiling wider, she reveals the whole of her lapine buckteeth. <i>“Don’t get me wrong, I was a clumsy mess back then. The first nickname never really went away, but I got my revenge by being better where it mattered - in class.”</i>");
+	output("\n\nNayna smiles warmly at you. <i>“I’m glad you agree. Back on topic, I went to ZPA: Zinor Planetary Institute. They have one of the best weather studies programs in the sector, and I got in. There was only one other laquine that made the cut; Zinor is a terran world that doesn’t take a lot of off-world admission. We may have started out as the resident ‘dumb bunnies’ and ‘furry trash,’ but we also clawed our way to the top of the academic scoreboard.”</i> Smiling wider, she reveals the whole of her lapine buckteeth. <i>“Don’t get me wrong, I was a clumsy mess back then. The first nickname never really went away, but I got my revenge by being better where it mattered - in class.”</i>");
 	processTime(5);
 	//[Next]
 	clearMenu();
@@ -565,7 +565,7 @@ public function naynaEducationTalk2():void
 	showNayna();
 	output("Nayna pauses her story to look you in the eye, her striking pink pupils dilating slightly. <i>“It feels nice to talk about this with someone. I haven’t opened up like this to someone since I met Nikki.”</i>");
 	output("\n\n<i>“Who’s Nikki?”</i>");
-	output("\n\nNayna sighs, pleased smile fading in an instant. <i>“My ex. Cute little fox-girl cop that moved on campus not long before I graduated. It turns out she was a terran originally, but we faced a fair number of identical issues. Just because someone shares a few traits with some small terran creature does not mean that they can be treated one. She liked to listen to me bitch about the weather reports too. I miss her.”</i>");
+	output("\n\nNayna sighs, pleased smile fading in an instant. <i>“My ex. Cute little fox-girl cop that moved on campus not long before I graduated. It turns out she was a terran originally, but we faced a fair number of identical issues. Just because someone shares a few traits with some small terran creature does not mean that they can be treated like one. She liked to listen to me bitch about the weather reports too. I miss her.”</i>");
 	output("\n\nYou gently try to probe for more information, asking what happened to her former lover.");
 	output("\n\n<i>“Lover? I don’t know if... I mean...”</i> Nayna blushes crimson, shading her fur pink from below. <i>“We never really got past kissing. She was probably just tolerating me for companionship, waiting for a cuter laquine to show up, but it was nice all the same.”</i> She straightens, realizing how far off base she’s gotten. <i>“Uhm... back on topic, there wasn’t much more to it. Go to a great school, get good grades, and push the science as far as it will go.”</i> She nods a little too vigorously, ears flapping.");
 	processTime(4);
@@ -573,7 +573,7 @@ public function naynaEducationTalk2():void
 	//[Next]
 	clearMenu();
 	addButton(0,"Talk More",talkToNayna,true);
-	addButton(4,"Back",repeatNaynaApproach,true);
+	addButton(14,"Back",repeatNaynaApproach,true);
 }
 
 //Uveto
@@ -604,7 +604,7 @@ public function uvetoTalkWithNayna():void
 	processTime(3);
 	clearMenu();
 	addButton(0,"Talk More",talkToNayna,true);
-	addButton(4,"Back",repeatNaynaApproach,true);
+	addButton(14,"Back",repeatNaynaApproach,true);
 }
 
 //Flirt
@@ -615,8 +615,13 @@ public function flirtWithNayna():void
 	if(flags["NAYNA_BLOWN"] != undefined)
 	{
 		//Post-Sex Flirt
-		output("<i>“Why don’t you take a break and blow off some steam?”</i> You look her up and down, then add, <i>“{There’s more than one way to stay warm on a planet like this./That bodysuit must be so stifling!}”</i>");
-		output("\n\nNayna blinks at you, then looks back at her Codex, then back at you. She chews a lip, then slowly, ever so slowly begins to blush pink through her ivory fur. <i>“Are you... are you flirting with me?”</i> She gingerly puts down her Codex, her paw shaking{, then slowly pulls down the zipper to her parka}. <i>“That would be... acceptable.”</i>");
+		output("<i>“Why don’t you take a break and blow off some steam?”</i> You look her up and down, then add, <i>“");
+		if(!naynaWarm()) output("There’s more than one way to stay warm on a planet like this.");
+		else output("That bodysuit must be so stifling!");
+		output("”</i>");
+		output("\n\nNayna blinks at you, then looks back at her Codex, then back at you. She chews a lip, then slowly, ever so slowly begins to blush pink through her ivory fur. <i>“Are you... are you flirting with me?”</i> She gingerly puts down her Codex, her paw shaking");
+		if(!naynaWarm()) output(", then slowly pulls down the zipper to her parka");
+		output(". <i>“That would be... acceptable.”</i>");
 		output("\n\n<i>“I am,”</i> you admit, stepping closer.");
 		output("\n\nNayna’s violet eyes widen. <i>“Really?”</i>");
 		if(!naynaWarm()) output(" She wiggles out of her cold-weather gear, stripping down to her rubbery undersuit.");
@@ -636,7 +641,7 @@ public function flirtWithNayna():void
 		processTime(3);
 		clearMenu();
 		//[Flirt More] [Back]
-		addButton(4,"Back",repeatNaynaApproach,true);
+		addButton(14,"Back",repeatNaynaApproach,true);
 		addButton(0,"Flirt More",flirtMoreWithNayna);
 	}
 }
@@ -788,7 +793,7 @@ public function hugNaynaGogogo():void
 			else output("exposed muscles");
 			output(".");
 		}
-		output("  The kisses feel anything but chaste - more like hungry, oral love, but when Nayna pops back up, her panting seems more caused by lack of oxygen than any sort of arousal.");
+		output(" The kisses feel anything but chaste - more like hungry, oral love, but when Nayna pops back up, her panting seems more caused by lack of oxygen than any sort of arousal.");
 		output("\n\nNot one to be outdone, you return the favor, burying your face into the laquine’s hefty heifers. She squeeks, surprised by the force of your friendly motorboating, perhaps even enjoying it a little. You don’t even bother to keep both your hands on her ass this time, cradling her curvy flesh in your left and squeezing whenever your nibble at the ");
 		if(!naynaWarm()) output("latex-ensconced");
 		else output("insulated");
@@ -964,7 +969,7 @@ public function reactWellToFutaLaquine():void
 	//Bimbo
 	if(pc.isBimbo())
 	{
-		output("\n\n<i>“Of course I do, silly! Why else do you think I keep grabbing on ya and stuff?”</i> you idly answer, letting your fingers stroke her lady-bits on pure autopilot, trusting your six sense about all things sexual to handle guide you.");
+		output("\n\n<i>“Of course I do, silly! Why else do you think I keep grabbing on ya and stuff?”</i> you idly answer, letting your fingers stroke her lady-bits on pure autopilot, trusting your sixth sense about all things sexual to guide you.");
 	}
 	//Brute
 	else if(pc.isBro()) output("\n\n<i>“Yeah,”</i> you rumble, crudely fingering the bunny, bluntly pressing on every sensitive place you can reach. <i>“Duh.”</i> Pussies are so easy to please; it’s a wonder that there are people out there who can fuck it up.");
@@ -1000,7 +1005,7 @@ public function reactWellToFutaLaquine():void
 	else output("feel the warm dampness of her tears on your shoulder");
 	output(" but wisely say nothing, continuing to strum the horny bun’s netherlips like a well-tuned guitar. The cute little thrusts she makes against your wrist and [pc.belly] are almost adorable, tiny humps that seem more plaintive begging than demand for stimulation.");
 	output("\n\nSmashing her slight sheath against you, the pent-up laquine scientist starts moaning, no longer constrained to feminine squeaks and whimpers. ");
-	if(flags["NAYNA_BLOWN"] == undefined) output("That self-same bulge is getting bigger too. You can feel her heart beating through it, inflating something within its depths, pumping the rubber-obscured folds of skin further and further apart to make room for what lurks below.");
+	if(flags["NAYNA_BLOWN"] == undefined) output("That self-shame bulge is getting bigger too. You can feel her heart beating through it, inflating something within its depths, pumping the rubber-obscured folds of skin further and further apart to make room for what lurks below.");
 	else output("Her cock is so hard already. It feels like she’s smuggling a pipe in her pants, only this pipe throbs with every beat of Nayna’s heart, making the rubbery encasement visibly stretch and strain.");
 	output(" Nayna bounces on the balls of her feet, dry-humping you faster, grinding with the kind of frenetic energy that only a bunny could muster.");
 	output("\n\nDamn, the nerd’s packing heat! ");
@@ -1195,6 +1200,7 @@ public function blowNayna5():void
 	}
 	IncrementFlag("NAYNA_BLOWN");
 	processTime(140+rand(20));
+	restHeal();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

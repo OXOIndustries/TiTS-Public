@@ -105,7 +105,8 @@ public function actuallyArriveAtUvetoStation():void
 	
 	output("\n\nThe wabeshift guides you to one of the docking arms, and shunts you into one of the many empty berths. Most of the other ships you can see look like heavy freighters, the kind used to haul thousands of tonnes of cargo across Confederate space - usually raw materials or industrial equipment. You allow the station to extend a docking clamp and access tunnel to your airlock, sealing with an audible <i>thump</i> that shudders through your ship.");
 	
-	output("\n\nYou grab your gear and head onto the station.");
+	output("\n\nYou grab your gear");
+	if(leaveShipOK()) output(" and head onto the station.");
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
