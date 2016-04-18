@@ -35,7 +35,7 @@ public function jungleEncounterChances():Boolean {
 		choices.push(frogGirlsEncounter);
 		if(rand(3) == 0) choices.push(dryadMeeting);
 		//Fragrant ladies or cum-drenched folks find her more often~
-		if((pc.hasVagina() && pc.wettestVaginalWetness() >= 4) || pc.hasStatusEffect("Cum Soaked"))
+		if(dryadCanSmellPC())
 		{
 			choices.push(dryadMeeting);
 			choices.push(dryadMeeting);
@@ -82,7 +82,7 @@ public function jungleMiddleEncounters():Boolean {
 		choices.push(frogGirlsEncounter);
 		if(rand(3) == 0) choices.push(dryadMeeting);
 		//Fragrant ladies or cum-drenched folks find her more often~
-		if((pc.hasVagina() && pc.wettestVaginalWetness() >= 4) || pc.hasStatusEffect("Cum Soaked"))
+		if(dryadCanSmellPC())
 		{
 			choices.push(dryadMeeting);
 			choices.push(dryadMeeting);
@@ -170,7 +170,7 @@ public function jungleDeepEncounters():Boolean {
 		choices[choices.length] = encounterMimbrane;
 		if(rand(3) == 0) choices.push(dryadMeeting);
 		//Fragrant ladies or cum-drenched folks find her more often~
-		if((pc.hasVagina() && pc.wettestVaginalWetness() >= 4) || pc.hasStatusEffect("Cum Soaked"))
+		if(dryadCanSmellPC())
 		{
 			choices.push(dryadMeeting);
 			choices.push(dryadMeeting);

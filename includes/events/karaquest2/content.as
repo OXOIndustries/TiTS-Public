@@ -2604,7 +2604,7 @@ public function kq2KaraFuckKittysKitty():void
 	clearOutput();
 	showKara();
 
-	output("You decide to take the initiative, grabbing Kara’s juicy hips and pulling her towards the tumescent shaft of your [pc.cock]. She gives a little gasp as your prick brushes up between her legs, finding a hot, wet gash hidden behind her churning sack. Kara smiles at you, rocking her hips back against your [pc.cockHead]. She gives you a rough push down onto the bed, putting your back on the sheets and her hands firmly planted on your [pc.chest].");
+	output("You decide to take the initiative, grabbing Kara’s juicy hips and pulling her towards the tumescent span of your [pc.cock]. She gives a little gasp as your prick brushes up between her legs, finding a hot, wet gash hidden behind her churning sack. Kara smiles at you, rocking her hips back against your [pc.cockHead]. She gives you a rough push down onto the bed, putting your back on the sheets and her hands firmly planted on your [pc.chest].");
 	
 	output("\n\n<i>“");
 	if (kara.isMischievous()) output("Want a little cat-girl pussy, [pc.name]?”</i>");
@@ -2617,7 +2617,7 @@ public function kq2KaraFuckKittysKitty():void
 	if (pc.biggestTitSize() >= 1) output(" giving your tits a squeeze");
 	else output(" pinching your [pc.nipples]");
 	if (kara.isAss()) output(" - just enough to remind you who’s in charge");
-	output(". She moves a little faster after that, rising on your [pc.cock]’s length and bouncing down again. The bed squeaks loudly underneath you, rebounding with every thrust of your hips or drop of Kara’s.");
+	output(". She moves a little faster after that, rising on your" + possessive(ParseText(" [pc.cock]")) + " length and bouncing down again. The bed squeaks loudly underneath you, rebounding with every thrust of your hips or drop of Kara’s.");
 	
 	output("\n\nAs she moves, you feel the hefty weight of her own masculine endowment bouncing on your [pc.belly], giving you a wet slap with every thrust. Deciding to give Kara a thrill, you reach down and wrap your hand around her nub-ringed kitty-cock. The moment your thumb brushes one of those nubs, Kara’s entire body goes rigid - especially that meaty cock of hers, throbbing so hard in your hand you’re afraid she’s going to nut just from a casual caress.");
 	

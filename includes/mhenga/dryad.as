@@ -12,6 +12,22 @@ public function dryadHeader():void
 	author("Wsan");
 }
 
+public function dryadCanSmellPC():Boolean
+{
+	return (pc.hasStatusEffect("Mare Musk") || (pc.hasVagina() && pc.wettestVaginalWetness() >= 4) || pc.hasStatusEffect("Cum Soaked"))
+}
+
+public function getDryadPregContainer():PregnancyPlaceholder
+{
+	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
+	if(!pp.hasCock()) pp.createCock();
+	pp.shiftCock(0, GLOBAL.TYPE_EQUINE);
+	pp.cocks[0].cLengthRaw = 14;
+	pp.createPerk("Fixed CumQ",6000,0,0,0);
+	
+	return pp;
+}
+
 public function dryadMeeting():void
 {
 	dryadHeader();
@@ -39,8 +55,9 @@ public function dryadMeeting():void
 		if (pc.hasVagina()) addButton(1, "Get Fucked", dryadPussy, undefined, "Get Fucked", "Let the girl fuck your pussy.");
 		else addDisabledButton(1, "Get Fucked", "Get Fucked", "You don't have a pussy for her to fuck.");
 		addButton(2, "Get Reamed", dryadAss, undefined, "Get Reamed", "Let the girl fuck your ass.");
-		if (pc.biggestCockLength() >= 12) addButton(3, "Fuck Her", dryadDick, undefined, "Fuck Her", "Fuck the girl's pussy to get her off.");
-		else addDisabledButton(3, "Fuck Her", "Fuck Her", "Your dick needs to be at least a foot long before the femtaur will let you fuck her.");
+		if (pc.hasCock() && pc.biggestCockLength() >= 12) addButton(3, "Fuck Her", dryadDick, undefined, "Fuck Her", "Fuck the girl's pussy to get her off.");
+		else if (pc.hasCock()) addDisabledButton(3, "Fuck Her", "Fuck Her", "Your dick needs to be at least a foot long before the femtaur will let you fuck her.");
+		else addDisabledButton(3, "Fuck Her", "Fuck Her", "You don't have a foot-long dick to fuck her with.");
 	}
 	else
 	{
@@ -48,7 +65,9 @@ public function dryadMeeting():void
 		if (pc.hasVagina()) addDisabledButton(1, "Get Fucked", "Get Fucked", "You aren't aroused enough for that.");
 		else addDisabledButton(1, "Get Fucked", "Get Fucked", "Even if you were aroused enough, you don't have a pussy for her to fuck.");
 		addDisabledButton(2,"Get Reamed","Get Reamed","You aren't aroused enough for that.");
-		addDisabledButton(3,"Fuck Her","Fuck Her","You aren't aroused enough for that.");
+		if (pc.hasCock() && pc.biggestCockLength() >= 12) addDisabledButton(3,"Fuck Her","Fuck Her","You aren't aroused enough for that.");
+		else if (pc.hasCock()) addDisabledButton(3, "Fuck Her", "Fuck Her", "Even if you were aroused enough, your dick needs to be at least a foot long to fuck her.");
+		else addDisabledButton(3, "Fuck Her", "Fuck Her", "Even if you were aroused enough, you need a dick at least a foot long to fuck her.");
 	}
 	addButton(14, "Leave", dryadNo, undefined, "Leave", "You don't wanna bang right now.");
 }
@@ -57,11 +76,7 @@ public function dryadBlowjob():void
 {
 	clearOutput();
 	dryadHeader();
-	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
-	if(!pp.hasCock()) pp.createCock();
-	pp.shiftCock(0, GLOBAL.TYPE_EQUINE);
-	pp.cocks[0].cLengthRaw = 14;
-	pp.createPerk("Fixed CumQ",6000,0,0,0);
+	var pp:PregnancyPlaceholder = getDryadPregContainer();
 
 	output("You tell her you’ll suck her dick to get her off, and a smile crosses her lust-reddened face.");
 	output("\n\n<i>“Oh, thank you! Thankyouthankyouthankyou!”</i>");
@@ -83,7 +98,7 @@ public function dryadBlowjob():void
 		else output("jerks");
 		output(" every time she slides down your throat, the constant ooze of your precum spraying onto the forest floor beneath you.");
 	}
-	output(" Her hindlegs lower to the ground as she fucks you with fierce thrusts of her hips, the warmth in your stomach growing by the second as the drooling from her cock starts to become more like a jet. She screams her pleasure to the skies while your eyes begin to roll upwards from the combination of lack of air and submissive pleasure.");
+	output(" Her hind legs lower to the ground as she fucks you with fierce thrusts of her hips, the warmth in your stomach growing by the second as the drooling from her cock starts to become more like a jet. She screams her pleasure to the skies while your eyes begin to roll upwards from the combination of lack of air and submissive pleasure.");
 	output("\n\n<i>“Oh! <i>Oh, fuck!</i>”</i>");
 	output("\n\nHer orgasm arrives on the heels of her wild screams, the first real stream of seemingly never-ending spunk swelling your belly directly when she hilts herself balls-deep in your throat. The moment the stream begins to slow she pulls back out, only to ram it back home with a low, wordless groan of pleasure as she drains her plump balls into you, each thrust bringing with it a renewed spray of jism straight down your willing throat, your neck bulging while you submissively suck load after hot load down its length. By the time she’s done you’re a mess, although to your credit the vast majority of her cum is settling safely in your stomach instead of splattered across your visage. She slowly withdraws her length from your well-used fuckhole with a light moan, her flare pulling past your [pc.lips] with a wet pop as she sighs in satisfaction.");
 	
@@ -99,19 +114,17 @@ public function dryadPussy():void
 	clearOutput();
 	dryadHeader();
 
-	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
-	if(!pp.hasCock()) pp.createCock();
-	pp.shiftCock(0, GLOBAL.TYPE_EQUINE);
-	pp.cocks[0].cLengthRaw = 14;
-	pp.createPerk("Fixed CumQ",6000,0,0,0);
+	var pp:PregnancyPlaceholder = getDryadPregContainer();
 	var x:int = pc.findEmptyPregnancySlot(1);
 	if(x < 0) x = rand(pc.totalVaginas());
 
-	output("You tell her she can use [pc.oneVagina] to get off and a smile crosses her lust-reddened face.");
+	output("You tell her she can use [pc.oneVagina]");
+	if (!target.isCrotchExposed()) output(" as you remove your [pc.lowerGarments]");
+	output(" to get off and a smile crosses her lust-reddened face.");
 	output("\n\n<i>“Oh, thank you! Thankyouthankyouthankyou!”</i>");
 	output("\n\nYou brace yourself against a nearby tree");
-	if (pc.isTaur()) output("as she hurriedly mounts you, scrabbling across your rear in her urgency to sink her cock between your lips.");
-	else output("as she slams her front hooves into the trunk above your head, the midsection of her cock slapping your [pc.pussy " + x + "] as she eagerly maneuvers into a position to mount you.");
+	if (pc.isTaur()) output(" as she hurriedly mounts you, scrabbling across your rear in her urgency to sink her cock between your lips.");
+	else output(" as she slams her front hooves into the trunk above your head, the midsection of her cock slapping your [pc.pussy " + x + "] as she eagerly maneuvers into a position to mount you.");
 	output("\n\nYou warily glance backwards to check up on her only to feel her flared head immediately split your [pc.pussy " + x + "] apart with no preparation.");
 	if (pc.vaginas[x].looseness() < 3) output ("You scream a little in pain but");
 	else output ("She easily slides into your willing cunt and");
@@ -126,8 +139,8 @@ public function dryadPussy():void
 	output("\n\n<i>“Oh god! I-I’m gonna cum!”</i>");
 	output("\n\nEven without the warning you can tell she’s finally cumming in you, each push up against your cervix accompanied by a loud groan as she flexes her cock inside you,");
 	//Check how to check this.
-	if (pc.isPregnant()) output ("venting her balls into the crevices of your [pc.pussy " + x + "]. She pulls back and rams herself back home, her next shot spraying explosively back out of you when it has nowhere to go, covering her hindlegs in your and her juices.");
-	else output ("draining her balls into your rapidly-filling womb. She pulls back and rams herself back home, her next shot immediately drowning your fallopian tubes in hot spunk as she fills you to capacity and then some, giving you a paunch to your belly as you swell.");
+	if (pc.isPregnant()) output (" venting her balls into the crevices of your [pc.pussy " + x + "]. She pulls back and rams herself back home, her next shot spraying explosively back out of you when it has nowhere to go, covering her hind legs in your and her juices.");
+	else output (" draining her balls into your rapidly-filling womb. She pulls back and rams herself back home, her next shot immediately drowning your fallopian tubes in hot spunk as she fills you to capacity and then some, giving you a paunch to your belly as you swell.");
 	output("You moan in both pleasure and exertion as her pulsating cock fills you to the brim, her flared head slipping loose when you can finally take no more, spilling her warm jizz down your ");
 	if (pc.isTaur()) output ("hind ");
 	output("legs and onto the ground beneath you.");
@@ -143,13 +156,11 @@ public function dryadAss():void
 {
 	clearOutput();
 	dryadHeader();
-	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
-	if(!pp.hasCock()) pp.createCock();
-	pp.shiftCock(0, GLOBAL.TYPE_EQUINE);
-	pp.cocks[0].cLengthRaw = 14;
-	pp.createPerk("Fixed CumQ",6000,0,0,0);
+	var pp:PregnancyPlaceholder = getDryadPregContainer();
 
-	output("You tell her she can use your ass to get off, and a smile crosses her lust-reddened face.");
+	output("You tell her she can use your ass to get off");
+	if (!target.isAssExposed()) output(" as you remove your [pc.lowerGarments]");
+	output(", and a smile crosses her lust-reddened face.");
 	output("\n\n<i>“Oh, thank you! Thankyouthankyouthankyou!”</i>");
 	output("\n\nYou brace yourself against a nearby tree");
 	if (pc.isTaur()) output (" as she hurriedly mounts you, scrabbling across your rear in her urgency to sink her cock into your asshole.")
@@ -182,11 +193,7 @@ public function dryadDick():void
 {
 	clearOutput();
 	dryadHeader();
-	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
-	if(!pp.hasCock()) pp.createCock();
-	pp.shiftCock(0, GLOBAL.TYPE_EQUINE);
-	pp.cocks[0].cLengthRaw = 14;
-	pp.createPerk("Fixed CumQ",6000,0,0,0);
+	var pp:PregnancyPlaceholder = getDryadPregContainer();
 	var x:int = pc.cockThatFits(1400);
 	if(x < 0) x = pc.smallestCockIndex();
 	if(pc.cocks[x].cLength() < 12) x = pc.biggestCockIndex();
@@ -197,7 +204,10 @@ public function dryadDick():void
 	output("\n\n<i>“<i>Please</i> don’t keep me waiting.”</i>");
 	if (pc.isTaur())
 	{
-		output("\n\nYour instincts take over at such willing presentation and you rear up to wrap yourself around her midsection, your [pc.oneCock] springing free of your [pc.lowerGarments] while you seek to align it with her wet and ready hole. The tip of your dick slips in and you immediately ram your full length into her with a grunt, making her scream lustily as her cock sprays the ground with seed. Her pussy is wrapped tightly around your dick, overwhelmingly warm and rapidly contracting as she shakes in your grip.");
+		output("\n\nYour instincts take over at such willing presentation and you rear up to wrap yourself around her midsection, your [pc.oneCock] springing");
+		if (!target.isCrotchExposed()) output(" free of your [pc.lowerGarments]");
+		else output(" to full erction");
+		output(" while you seek to align it with her wet and ready hole. The tip of your dick slips in and you immediately ram your full length into her with a grunt, making her scream lustily as her cock sprays the ground with seed. Her pussy is wrapped tightly around your dick, overwhelmingly warm and rapidly contracting as she shakes in your grip.");
 		pc.cockChange();
 		output("\n\n<i>“Did you just cum the moment I put it in?”</i> You ask, knowing the answer but wanting to hear it anyway.");
 		output("\n\n<i>“YES! Don’t stop fucking meee!”</i>");
@@ -212,7 +222,10 @@ public function dryadDick():void
 	}
 	else
 	{
-		output("\n\nYour instincts take over at such willing presentation and seize her flank, your [pc.oneCock] springing free of your [pc.lowerGarments] while you seek to align it with her wet and ready hole. The tip of your dick slips in and you immediately ram your full length into her with a grunt, making her scream lustily as her cock sprays the ground with seed. Her pussy is wrapped tightly around your dick, overwhelmingly warm and rapidly contracting as she shakes in your grip.");
+		output("\n\nYour instincts take over at such willing presentation and seize her flank, your [pc.oneCock] springing");
+		if (!target.isCrotchExposed()) output(" free of your [pc.lowerGarments]");
+		else output(" to full erction");
+		output(" while you seek to align it with her wet and ready hole. The tip of your dick slips in and you immediately ram your full length into her with a grunt, making her scream lustily as her cock sprays the ground with seed. Her pussy is wrapped tightly around your dick, overwhelmingly warm and rapidly contracting as she shakes in your grip.");
 		pc.cockChange();
 		output("\n\n<i>“Did you just cum the moment I put it in?”</i> You ask, knowing the answer but wanting to hear it anyway.");
 		output("\n\n<i>“YES! Don’t stop fucking meee!”</i>");
@@ -259,17 +272,17 @@ public function dryadAfterscene():void
 		output("\n\nShe");
 		if (pc.tallness < 70) output (" bends down and");
 		output(" gives you a gentle kiss before gracefully loping away, her tail flitting hypnotically from side to side as she disappears into the foliage. You heft yourself to your feet, the sensation of warmth filling your swollen belly making you feel a bit lethargic and docile as you prepare to leave.");
-		IncrementFlag("DRYAD_FUCKED");
 	}
 	else
 	{
 		output("The dryad sighs deeply in satisfaction and looks at you.");
 		output("\n\n<i>“Thanks again for getting me off! You’re really good at that. I really hope I run into you again babe, being in heat so often is rough and I can always use your help.”</i>");
 		output("\n\nShe");
-		if (pc.tallness < 70) output ("bends down and");
+		if (pc.tallness < 70) output (" bends down and");
 		output(" gives you a gentle kiss before gracefully loping away, her tail flitting hypnotically from side to side as she disappears into the foliage. You heft yourself to your feet, the sensation of warmth filling your swollen belly making you feel a bit lethargic and docile as you prepare to leave.");
 	}
 	if (silly) output("\n\nYou hear a faint “Sproink!” in the distance, then silence.");
+	IncrementFlag("DRYAD_FUCKED");
 	processTime(3);
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);

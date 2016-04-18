@@ -765,7 +765,7 @@ public function thareSexResponse(response:String = "none"):void
 			if(!pc.isNaga()) output(" clamber");
 			else output(" slither");
 			output(" onto the overstuffed bed, enjoying the plush give of it against your hands and [pc.butt] as you turn over and consider the supple bodied zil servant at length. His own smile has been replaced with a slightly vacant expression as his black insect eyes travel up and down your body. The smell of honeyed pheromones is becoming cloying, causing heat to rise up to your [pc.skin], making you feel tender and tensed up with lust.");
-			output("\n\nYou lounge back, flaring your [pc.hips] with apparent carelessness as you gaze at him, exposing the [pc.cuntColor " + x + "] of your [pc.vagina " + x + "] to the open air.");
+			output("\n\nYou lounge back, spreading your [pc.hips] with apparent carelessness as you gaze at him, exposing the [pc.cuntColor " + x + "] of your [pc.vagina " + x + "] to the open air.");
 			output("\n\n<i>“See anything that interests you, boy?”</i> you ask with husky archness.");
 			output("\n\nAble keeps his eyes submissively to the floor, but trips over to the king-sized bed and climbs his lithe, tight form on with barely concealed enthusiasm. He slides his thin, carapace-covered fingers along your thigh, excitement tightening his fresh young features as he takes in the moist, fragrant treat you’ve deigned to present him with. You’re slightly worried that he’s forgotten to breathe - perhaps you have to order him to do that? You stifle a");
 			if(pc.isBimbo()) output(" giggle");

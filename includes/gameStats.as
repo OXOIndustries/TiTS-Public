@@ -2161,20 +2161,20 @@ public function displayQuestLog(showID:String = "All"):void
 			output2("\n<b><u>Ice Queen</u></b>");
 			output2("\n<b>* Status:</b>");
 			if(flags["ICEQUEEN COMPLETE"] > 0) output2(" Defeated Zaalt");
-			if(flags["ICEQUEEN COMPLETE"] == 1) output2(" and killed him");
-			if(flags["ICEQUEEN COMPLETE"] == 2) output2(" and arrested him");
+			if(flags["ICEQUEEN COMPLETE"] == 1) output2(" and killed him, Retrieved A.I. Cores");
+			if(flags["ICEQUEEN COMPLETE"] == 2) output2(" and arrested him, Retrieved A.I. Cores");
 			if(flags["ICEQUEEN COMPLETE"] == 3)
 			{
 				output2(" and helped him");
-				if(flags["ICEQUEEN KARA STUFF"] == 1) output2(", Rewarded 10000 credits from Kara");
-				if(flags["ICEQUEEN KARA STUFF"] == 2) output2(", Accept deal of 8000 credits from Kara");
+				if(flags["ICEQUEEN KARA STUFF"] == 1) output2(", Met Kara, Rewarded 10000 credits");
+				if(flags["ICEQUEEN KARA STUFF"] == 2) output2(", Interrupted Kara, Rewarded 8000 credits");
 				if(flags["ICEQUEEN KARA STUFF"] == 3) output2(", Rewarded with sex from Kara");
-				if(flags["ICEQUEEN KARA STUFF"] == 4) output2(", Refused deal with Kara");
+				if(flags["ICEQUEEN KARA STUFF"] == 4) output2(", Interrupted Kara, Retrieved Psi implant");
 			}
 			if(flags["ICEQUEEN COMPLETE"] == -1) output2(" Ignored message");
 			if(flags["ICEQUEEN COMPLETE"] == -2) output2(" Refused to help Zaalt");
 			if(flags["ICEQUEEN COMPLETE"] == -3) output2(" Lost to Zaalt");
-			if(flags["ICEQUEEN COMPLETE"] > 0) output2(", Retrieved implant, Completed");
+			if(flags["ICEQUEEN COMPLETE"] > 0) output2(", Completed");
 			else if(flags["ICEQUEEN COMPLETE"] <= -3) output2(", Failed");
 			else if(flags["ICEQUEEN COMPLETE"] == undefined) output2(" Accepted, <i>In progress...</i>");
 			output2("\n<b>* Captain Zaalt Kandar:</b> Met him");
