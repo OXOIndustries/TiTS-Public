@@ -3,9 +3,6 @@
 	import classes.CockClass;
 	import classes.Creature;
 	import classes.GLOBAL;
-	import classes.Items.Apparel.UGCUniform;
-	import classes.Items.Melee.Knife;
-	import classes.Items.Miscellaneous.EmptySlot;
 	import classes.Items.Miscellaneous.FertitePlus;
 	import classes.Items.Miscellaneous.Lactaid;
 	import classes.Items.Miscellaneous.LactaidMilkTank;
@@ -33,9 +30,6 @@
 			this.customDodge = "";
 			this.customBlock = "";
 			this.isPlural = false;
-			
-			this.meleeWeapon = new Knife();
-			this.armor = new EmptySlot();
 			
 			this.inventory = [];
 			inventory.push(new EggTrainer());

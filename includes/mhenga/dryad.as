@@ -35,12 +35,12 @@ public function dryadMeeting():void
 	if (flags["DRYAD_MET"] == undefined)
 	{
 		flags["DRYAD_MET"] = 1;
-		output("\n\nYou can hear a high-pitched, frantic voice coming from up ahead. Sounds like someone is in trouble, and as you approach you see there’s a trail of hooved footprints that look to have trampled out an impromptu clearing. Scooping some foliage out of your face, you can see there’s a creature facing away from you off to the side. It looks to be tauric in nature, with four hooved legs, furred, and a bare humanoid upper half at the front of its body. You look down and are unsurprised to see a large, pink and fully erect horsecock swinging from its undercarriage – seems like everything out here wants to fuck. It turns towards you and you’re taken aback – you’re faced with a beautiful woman with flowing red hair down to her chest. She trots in your direction and you can see her hair was partially masking her breasts, which look to be about a C cup and capped with pink nipples. As she gets closer, you note her face is red and that she’s breathing heavily, her hair strewn wildly and breasts rapidly moving up and down with her inhalations. She greets you first.");
+		output("\n\nYou can hear a high-pitched, frantic voice coming from up ahead. Sounds like someone is in trouble, and as you approach you see there’s a trail of hooved footprints that look to have trampled out an impromptu clearing. Scooping some foliage out of your face, you can see there’s a creature facing away from you off to the side. It looks to be tauric in nature, with four hooved legs, furred, and a bare humanoid upper half at the front of its body. You look down and are unsurprised to see a large, pink and fully erect horsecock swinging from its undercarriage – seems like everything out here wants to fuck. It turns towards you and you’re taken aback – you’re faced with a beautiful woman with flowing red hair down to her chest. She trots in your direction and you can see her hair was partially masking her breasts, which look to be about a C-cup and capped with pink nipples. As she gets closer, you note her face is red and that she’s breathing heavily, her hair strewn wildly and breasts rapidly moving up and down with her inhalations. She greets you first.");
 		output("\n\n<i>“Um, hi! Listen, maybe you’ve heard this before but I really, <i>really</i> need to fuck someone before I go mad! These gene mods are great, but the ones I’ve used kinda clashed and now I go into heat multiple times a day and - look, can we just fuck?”</i>");
 	}
 	else
 	{
-		output("\n\nYou can hear a high-pitched, frantic voice coming from up ahead. Sounds like someone is in trouble, and as you approach you see there’s a trail of hooved footprints that look to have trampled out an impromptu clearing. Scooping some foliage out of your face, you can see there’s a creature facing away from you off to the side. It looks to be tauric in nature, with four hooved legs, furred, and a bare humanoid upper half at the front of its body. You look down and are unsurprised to see a large, pink and fully erect horsecock swinging from its undercarriage – seems like everything out here wants to fuck. It turns towards you and you’re taken aback – you’re faced with a beautiful woman with flowing red hair down to her chest. She trots in your direction and you can see her hair was partially masking her breasts, which look to be about a C cup and capped with pink nipples. As she gets closer, you note her face is red and that she’s breathing heavily, her hair strewn wildly and breasts rapidly moving up and down with her inhalations. She greets you first.");
+		output("\n\nYou can hear a high-pitched, frantic voice coming from up ahead. Sounds like someone is in trouble, and as you approach you see there’s a trail of hooved footprints that look to have trampled out an impromptu clearing. Scooping some foliage out of your face, you can see there’s a creature facing away from you off to the side. It looks to be tauric in nature, with four hooved legs, furred, and a bare humanoid upper half at the front of its body. You look down and are unsurprised to see a large, pink and fully erect horsecock swinging from its undercarriage – seems like everything out here wants to fuck. It turns towards you and you’re taken aback – you’re faced with a beautiful woman with flowing red hair down to her chest. She trots in your direction and you can see her hair was partially masking her breasts, which look to be about a C-cup and capped with pink nipples. As she gets closer, you note her face is red and that she’s breathing heavily, her hair strewn wildly and breasts rapidly moving up and down with her inhalations. She greets you first.");
 		output("\n\n<i>“Oh, it's you! I'm in heat again – wanna fuck?”</i>");
 	}
 	
@@ -119,7 +119,7 @@ public function dryadPussy():void
 	if(x < 0) x = rand(pc.totalVaginas());
 
 	output("You tell her she can use [pc.oneVagina]");
-	if (!target.isCrotchExposed()) output(" as you remove your [pc.lowerGarments]");
+	if (!pc.isCrotchExposed()) output(" as you remove your [pc.lowerGarments]");
 	output(" to get off and a smile crosses her lust-reddened face.");
 	output("\n\n<i>“Oh, thank you! Thankyouthankyouthankyou!”</i>");
 	output("\n\nYou brace yourself against a nearby tree");
@@ -159,7 +159,7 @@ public function dryadAss():void
 	var pp:PregnancyPlaceholder = getDryadPregContainer();
 
 	output("You tell her she can use your ass to get off");
-	if (!target.isAssExposed()) output(" as you remove your [pc.lowerGarments]");
+	if (!pc.isAssExposed()) output(" as you remove your [pc.lowerGarments]");
 	output(", and a smile crosses her lust-reddened face.");
 	output("\n\n<i>“Oh, thank you! Thankyouthankyouthankyou!”</i>");
 	output("\n\nYou brace yourself against a nearby tree");
@@ -204,8 +204,8 @@ public function dryadDick():void
 	output("\n\n<i>“<i>Please</i> don’t keep me waiting.”</i>");
 	if (pc.isTaur())
 	{
-		output("\n\nYour instincts take over at such willing presentation and you rear up to wrap yourself around her midsection, your [pc.oneCock] springing");
-		if (!target.isCrotchExposed()) output(" free of your [pc.lowerGarments]");
+		output("\n\nYour instincts take over at such willing presentation and you rear up to wrap yourself around her midsection, [pc.oneCock] springing");
+		if (!pc.isCrotchExposed()) output(" free of your [pc.lowerGarments]");
 		else output(" to full erction");
 		output(" while you seek to align it with her wet and ready hole. The tip of your dick slips in and you immediately ram your full length into her with a grunt, making her scream lustily as her cock sprays the ground with seed. Her pussy is wrapped tightly around your dick, overwhelmingly warm and rapidly contracting as she shakes in your grip.");
 		pc.cockChange();
@@ -222,8 +222,8 @@ public function dryadDick():void
 	}
 	else
 	{
-		output("\n\nYour instincts take over at such willing presentation and seize her flank, your [pc.oneCock] springing");
-		if (!target.isCrotchExposed()) output(" free of your [pc.lowerGarments]");
+		output("\n\nYour instincts take over at such willing presentation and seize her flank, [pc.oneCock] springing");
+		if (!pc.isCrotchExposed()) output(" free of your [pc.lowerGarments]");
 		else output(" to full erction");
 		output(" while you seek to align it with her wet and ready hole. The tip of your dick slips in and you immediately ram your full length into her with a grunt, making her scream lustily as her cock sprays the ground with seed. Her pussy is wrapped tightly around your dick, overwhelmingly warm and rapidly contracting as she shakes in your grip.");
 		pc.cockChange();
