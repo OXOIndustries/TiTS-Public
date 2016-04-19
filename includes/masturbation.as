@@ -622,10 +622,12 @@ public function vaginalFap():void {
 			else if(currentLocation == "SHIP INTERIOR") output("deck");
 			else output("ground");
 			output(".");
+			applyCumSoaked(pc);
 		}
 		else {
 			output(" It never really seems to end, not until you've splattered huge [pc.cumColor] gobs across your [pc.face] a half-dozen times and thoroughly painted the whole of your body with the seed-filled fluid.");
 			if(pc.cumQ() >= 10000) output(" Warm wetness rises up around you as you finish out, blissed out and semi-conscious.");
+			applyCumSoaked(pc);
 		}
 	}
 	output("\n\nYou come to a little later, reeking of sex, your fingers stained with girlish goo, and smile, sated... for now.");
@@ -985,6 +987,7 @@ public function multiCockFap():void {
 		else if(pc.cumQ() <= 750) output("stuffing your cheeks with so much that even with you hurriedly gulping there's still blobs of [pc.cumColor] squrting at leaking out of the corners of your mouth, making a mess of your face and your cock.");
 		else output("flooding your cheeks so effectively with the first pulse that the second pushes your mouth clean off your [pc.cockHead], forcing you to get a head-drenching facial so thick that you're likely unrecognizable.");
 		output(" ");
+		pc.loadInMouth(pc);
 	}
 	//Bits for nipplefucking
 	else if(nippleFucked) {
@@ -994,6 +997,7 @@ public function multiCockFap():void {
 		else if(pc.cumQ() <= 150) output("large");
 		else output("tunnel-flooding");
 		output(" deposit of your liquid love. ");
+		pc.loadInNipples(pc);
 	}
 	//Everybody gets dese
 	if(!titFucked) {
@@ -1028,6 +1032,7 @@ public function multiCockFap():void {
 	else output("\n\nYou get your gear back on without bothering to clean up. You're just going to find something to fuck anyway.");
 	processTime(45 + rand(5));
 	pc.orgasm();
+	applyCumSoaked(pc);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -2061,7 +2066,7 @@ public function goddamnitJimTAndYourExhibitionism():void
 	if(pc.hasVagina())
 	{
 		output(" Clenching your quaking thighs, you utterly cream yourself in front of them. Your [pc.thighs] are utterly drenched in your [pc.girlCum] as you tremble and twitch");
-		if(pc.hasVagina()) output(", even squirting a little");
+		if(pc.isSquirter()) output(", even squirting a little");
 		output(" in delight.");
 	}
 	else 
@@ -2371,6 +2376,7 @@ public function futaPantiesFapInPussy(waifu:String = ""):void
 			output(". There’s so much even the sodden panties can’t plug your gushing quim");
 			if(pc.totalVaginas() > 1) output("s");
 			output(", and torrents of passionate fluid flood down your [pc.thighs]");
+			applyPussyDrenched(pc);
 		}
 	}
 	else output(" your muscles clamping down around them as the " + pantyColor + " underwear darkens with absorbed [pc.girlCum]");
@@ -2388,8 +2394,13 @@ public function futaPantiesFapInPussy(waifu:String = ""):void
 			if(pc.biggestTitSize() < 1) output("is");
 			else output("are");
 			output(" soaked.");
+			applyCumSoaked(pc);
 		}
-		else if(pc.cumQ() >= 500) output(" You’re absolutely soaked.");
+		else if(pc.cumQ() >= 500)
+		{
+			output(" You’re absolutely soaked.");
+			applyCumSoaked(pc);
+		}
 	}
 	output("\n\nYour eyes cross a little when you pull the sodden underwear from your [pc.vagina]");
 	if(pc.hasCock())
