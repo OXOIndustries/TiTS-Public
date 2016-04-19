@@ -290,7 +290,7 @@ public function initUvetoRooms():void
 	rooms["UVI F34"].addFlag(GLOBAL.LIFTUP);
 
 	rooms["UVI H34"] = new RoomClass(this);
-	rooms["UVI H34"].roomName = "SHERIFFS OFFICE\EXTERIOR";
+	rooms["UVI H34"].roomName = "SHERIFFS OFFICE\nEXTERIOR";
 	rooms["UVI H34"].description = "The back of the Uveto VII central hub is a large, metal structure with vaulted ceilings and glass windows covered with frost. A great deal of cargo is stacked up all over, mostly showing Camarilla, Steele Tech, and RhenWorld markings.\n\nThe space elevator's access is just to the west of you. To the north, you see markings indicating a Sheriff's station. ";
 	rooms["UVI H34"].planet = "PLANET: UVETO VII";
 	rooms["UVI H34"].system = "SYSTEM: SIRETTA";
@@ -368,7 +368,7 @@ public function initUvetoRooms():void
 
 	/* Entrance */
 	rooms["UVI L34"] = new RoomClass(this);
-	rooms["UVI L34"].roomName = "CENTRAL HUB\ENTRANCE";
+	rooms["UVI L34"].roomName = "CENTRAL HUB\nENTRANCE";
 	rooms["UVI L34"].description = "A huge steel door leads out from the central hub of Irestead, Uveto's hub city, out onto the snowy main street. You're buffeted by strong, icy winds that bite at your [pc.skinFurScales], forcing you to wrap your arms around yourself... and this is underneath the protective walls that surrounds the city. ";
 	rooms["UVI L34"].planet = "PLANET: UVETO VII";
 	rooms["UVI L34"].system = "SYSTEM: SIRETTA";
