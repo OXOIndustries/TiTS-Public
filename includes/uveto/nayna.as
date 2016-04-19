@@ -1119,7 +1119,10 @@ public function blowNayna2():void
 	else output(" The length is almost too much for you. No matter how much you try, you can’t quite reach her sheath without starting to gag, but you make up for it with enthusiasm, reaching up from her balls to fondle the exposed patch of laquine love-stick.");
 	output("\n\nLooking up at Nayna, you can’t help but want to smile. If only her dick didn’t stretch your [pc.lips] into a tightly-sealed ‘O’. She looks like the definition of bliss with her mouth hanging open in a dazed grin, her tongue dangling. Her eyelids droop low enough to hide all but the whites of her eyes.");
 	output("\n\nNayna mumbles, <i>“So good,”</i> and, <i>“Suck it, slut,”</i> repeatedly, sometimes mixing in other expressions of amazement at how wonderful your mouth feels on her cock.");
-	output("\n\nSwallowing down a mouth-load of bunny-cream, you start sucking her properly, bobbing back and forth gently on her cock while your tongue dances the tango below. You’re still fingering her too, pumping two digits in and out of her soaked twat, relentlessly rubbing her silky folds. Her virginal pussy rhythmically clenches around them, and you realize too late that those clenches perfectly match the orgasmic throbs coursing through the plump rod in your maw.");
+	output("\n\nSwallowing down a mouth-load of bunny-cream, you start sucking her properly, bobbing back and forth gently on her cock while your tongue dances the tango below. You’re still fingering her too, pumping two digits in and out of her soaked twat, relentlessly rubbing her silky folds. Her virgin");
+	if(flags["NAYNA_FUCKED"] == undefined) output("al");
+	else output("-like");
+	output(" pussy rhythmically clenches around them, and you realize too late that those clenches perfectly match the orgasmic throbs coursing through the plump rod in your maw.");
 	output("\n\n<i>“I-I...”</i> Nayna gasps, <i>“");
 	if(flags["NAYNA_BLOWN"] == undefined) output("I think I might be c-cumming!");
 	else output("I’m cumming again! You’re making me cuuuuummm!");
@@ -1214,6 +1217,9 @@ public function fuckNayna():void
 	clearOutput();
 	showNayna();
 	//Dong-wielders activate!
+	var x:int = pc.cockThatFits(300);
+	if(x < 0) x = pc.smallestCockIndex();
+	
 	//Bimbo/Bro
 	if(pc.isBro() || pc.isBimbo())
 	{
@@ -1271,11 +1277,18 @@ public function fuckNayna():void
 		output("\n\n<i>“You aren’t... you can’t...”</i> Nayna stares back at you over her shoulder, blushing and stuttering. <i>“You can’t fuck me through this suit!”</i> She meekly looks down, almost apologetic. <i>“It wouldn’t stretch enough. I just... I didn’t want you to hurt yourself.”</i>");
 	}
 	//repeat
-	output("\n\n<i>“You... uh...”</i> Nayna stares back at you over her shoulder, blushing and stuttering. <i>“D-don’t forget to move the suit out of the way.”</i> She looks like she’s about to have a nervous breakdown, then she blurts out, <i>“I don’t want to feel anything between me and your cock!”</i>");
+	else output("\n\n<i>“You... uh...”</i> Nayna stares back at you over her shoulder, blushing and stuttering. <i>“D-don’t forget to move the suit out of the way.”</i> She looks like she’s about to have a nervous breakdown, then she blurts out, <i>“I don’t want to feel anything between me and your cock!”</i>");
 	//Merge
 	output("\n\nSlipping a finger between the latex-like fabric and the bunny’s simmering quim, you yank it to the side, revealing her glistening, almost purplish folds. A hint of bright pink peeks out from between them, glistening with feminine lubricant, and the rosy cherry of her clit is already exposed, almost begging you to touch and rub it. Her balls hang down and out of the way, ensuring that nothing will ruin your view of Nayna’s oft-hidden treasure.");
 	//Treated/Ausar faced
-	if(pc.isTreated() || pc.hasMuzzle()) output("\n\nYour nose wrinkles, and you find yourself sniffing at the air, savoring the traces of laquine’s musky yet feminine odor, a mild pheromonal soup that seems to reach up into your brain and flick the switch labelled ‘fuck this bitch’. Her scent seems stronger by the second, and your cock{s} grow still harder, more like iron rebar than phallic flesh. Either she’s in heat or her cunt is lying to your nose. Either way, you feel a low growl in the back of your throat and a magnetic force tugging your [pc.hips] toward her soaked gash.");
+	if(pc.isTreated() || pc.hasMuzzle())
+	{
+		output("\n\nYour nose wrinkles, and you find yourself sniffing at the air, savoring the traces of laquine’s musky yet feminine odor, a mild pheromonal soup that seems to reach up into your brain and flick the switch labelled ‘fuck this bitch’. Her scent seems stronger by the second, and your cock");
+		if(pc.cockTotal() != 1) output("s");
+		output(" grow");
+		if(pc.cockTotal() == 1) output("s");
+		output(" still harder, more like iron rebar than phallic flesh. Either she’s in heat or her cunt is lying to your nose. Either way, you feel a low growl in the back of your throat and a magnetic force tugging your [pc.hips] toward her soaked gash.");
+	}
 	//Merge
 	output("\n\nNayna gasps when you touch your [pc.cockHead " + x + "] to her blushing femininity, ");
 	if(!pc.isTreated() && !pc.hasMuzzle()) output("gently spreading");
@@ -1326,6 +1339,7 @@ public function fuckNayna():void
 	output("\n\nShe cranes her neck to kiss you, tasting heavily of her own cum, and you kiss her right back, trying not to grin when you reach up to discover that she’s <i>still</i> cumming. There are worse things than making someone orgasm so hard that they ejaculate for two minutes straight, you suppose. Closing your eyes, you snuggle in your exceedingly productive fuck-bunny, happy to doze against her once she finally stops squirting.");
 	processTime(22);
 	pc.orgasm();
+	applyCumSoaked(pc);
 	clearMenu();
 	addButton(0,"Next",naynaFuckEppiloggie,cum);
 }
@@ -1348,9 +1362,9 @@ public function naynaFuckEppiloggie(cum:Number):void
 	if(cum >= 2500)
 	{
 		output("\n\nYou could get used to making more laquines smuggle ");
-		if(cum >= 10000) output("beach");
-		else output("basketball");
-		output(" ball-sized cum-bulges under the clothing.");
+		if(cum >= 10000) output("beach ");
+		else output("basket");
+		output("ball-sized cum-bulges under their clothing.");
 	}
 	IncrementFlag("NAYNA_FUCKED");
 	pc.shower();

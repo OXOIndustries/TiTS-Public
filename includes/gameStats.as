@@ -761,6 +761,7 @@ public function statisticsScreen(showID:String = "All"):void
 		if(flags["TOOK_DELILAHS_BUTTGINITY"] != undefined) totalVirginitiesTaken++;
 		if(flags["TOOK_PRINCESS_BUTTGINITY"] != undefined) totalVirginitiesTaken++;
 		if(flags["ANZHELA_ANALED"] != undefined) totalVirginitiesTaken++;
+		if(flags["NAYNA_FUCKED"] != undefined) totalVirginitiesTaken++;
 		if(!ainaIsVirgin()) totalVirginitiesTaken++;
 		if(sleepingPartner != "" || totalVirginitiesTaken > 0)
 		{
@@ -1936,7 +1937,7 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["NAYNA_REJECTED"] != undefined) output2(" Refused to help Nayna");
 				else if(9999 == 0) output2(" Completed");
 				else output2(" <i>In progress...</i>");
-				if(flags["NAYNA_DRONES_TURNED_IN"] != undefined) output2("<b>* Weather Drones Turned In: </b>" + flags["NAYNA_DRONES_TURNED_IN"]);
+				if(flags["NAYNA_DRONES_TURNED_IN"] != undefined) output2("\n<b>* Weather Drones Turned In: </b>" + flags["NAYNA_DRONES_TURNED_IN"]);
 				sideCount++;
 			}
 		}
@@ -4209,8 +4210,9 @@ public function displayEncounterLog(showID:String = "All"):void
 				output2("\n<b><u>Geological Survey</u></b>");
 				output2("\n<b>* Nayna:</b> Met her");
 				if(flags["NAYNA_PISSED"] != undefined) output2(", Pissed off");
-				if(flags["NAYNA_HUGS"] != undefined) output2("<b>* Nayna, Times Hugged Her: </b>" + flags["NAYNA_HUGS"]);
-				if(flags["NAYNA_BLOWN"] != undefined) output2("<b>* Nayna, Times Given Her Blowjobs: </b>" + flags["NAYNA_BLOWN"]);
+				if(flags["NAYNA_HUGS"] != undefined) output2("\n<b>* Nayna, Times Hugged Her: </b>" + flags["NAYNA_HUGS"]);
+				if(flags["NAYNA_BLOWN"] != undefined) output2("\n<b>* Nayna, Times Given Her Blowjobs: </b>" + flags["NAYNA_BLOWN"]);
+				if(flags["NAYNA_FUCKED"] != undefined) output2("\n<b>* Nayna, Times Fucked Her Vagina: </b>" + flags["NAYNA_FUCKED"]);
 				variousCount++;
 			}
 		}
