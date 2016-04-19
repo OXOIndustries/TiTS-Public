@@ -14613,6 +14613,20 @@
 						if(amountVented >= 1000) kGAMECLASS.honeyPotBump();
 						if(amountVented >= 2000) kGAMECLASS.honeyPotBump();
 					}
+					if(hasPerk("'Nuki Nuts") && statusEffects[o].value3==GLOBAL.FLUID_TYPE_CUM) //Implementing Kui-Tan Cum Cascade from Codex
+					{
+						//Calculate amount metabolized over time
+						//Metabolize entire load over an hour.
+						var cumTransfer:Number = statusEffects[o].value1 / 60;
+						cumTransfer *= timePassed;
+						trace("Cum Metabolized:" + cumTransfer);
+						if (cumTransfer > statusEffects[o].value1) cumTransfer = statusEffects[o].value1;
+						statusEffects[o].value1 -= cumTransfer;
+						var cumTransferPercent:Number = (cumTransfer / maxCum()) * 200;//Double up com production
+						trace("Percent Increase:" + cumTransferPercent);
+						cumCascade(cumTransferPercent);
+						if (cumTransferPercent > 10) notice += "\n\nYour stomach seems emptier, but your [pc.balls] seem fuller. Perhaps all that cum you drank went straight to your junk.";
+					}
 				}
 				if(statusEffects[o].value1 <= 0) removals.push("Orally-Filled");
 			}
@@ -14625,6 +14639,41 @@
 			kGAMECLASS.eventBuffer += notice;
 		}
 
+		//Implementing Kui-Tan Cum Cascade from Codex
+		public function cumCascade(cumDelta: Number): void { 
+	
+			if(balls > 0 && (ballFullness + cumDelta >= 100 && ballFullness < 100 && this is PlayerCharacter))
+			{
+				trace("BLUE BALLS FOR: " + short);
+				//Hit max cum - standard message
+				kGAMECLASS.eventBuffer += "\n\nYou’re feeling a little... excitable, a little randy even. It won’t take much to excite you so long as your [pc.balls] ";
+				if(balls == 1) kGAMECLASS.eventBuffer += "is";
+				else kGAMECLASS.eventBuffer += "are";
+				kGAMECLASS.eventBuffer += " this full.";
+				if(hasPerk("'Nuki Nuts") && balls > 1) kGAMECLASS.eventBuffer += " Of course, your kui-tan physiology will let your balls balloon with additional seed. They've already started to swell. Just make sure to empty them before they get too big!";
+				createStatusEffect("Blue Balls", 0,0,0,0,false,"Icon_Sperm_Hearts", "Take 25% more lust damage in combat!", false, 0,0xB793C4);
+			}
+	
+			ballFullness += cumDelta;
+			
+			//trace("AFTER FULLNESS: " + ballFullness);
+			if (ballFullness >= 100) 
+			{
+				if(hasPerk("'Nuki Nuts") && balls > 1)
+				{
+					//Figure out a % of normal size to add based on %s.
+					var nutChange:Number = (ballFullness/100) - 1;
+					//Get the actual bonus number to add. Keep it to 2 decimals.
+					var nutBonus:Number = Math.round(ballSizeRaw * nutChange * 100)/100;
+					trace("NUT BONUS: " + nutBonus);
+					//Apply nutbonus and track in v1 of the perk
+					ballSizeMod += nutBonus;
+					addPerkValue("'Nuki Nuts",1,nutBonus);
+				}
+				ballFullness = 100;
+			}
+		}
+			
 		// OnTakeDamage is called as part of applyDamage.
 		// You should generate a message for /deferred/ display in the creature
 		// rather than emitting text immediately. You should then emit it
