@@ -11,9 +11,19 @@ public function uvetoSpaceElevatorBaseBonus():Boolean
 public function rideSpaceElevatorUp():void
 {
 	clearOutput();
+	author("Savin");
+	kGAMECLASS.currentLocation = "GAME OVER";
+	kGAMECLASS.generateMap();
 	showName("SPACE\nELEVATOR");
-	output("Catching a lift on the space elevator, you begin the long ride up into the black.\n\nIt takes a while.\n\nA <i>long</i> while.\n\nGood thing you can browse the 'net on your Codex while you wait.");
-	processTime(75);
+	output("Once again, you board the Irestead space elevator - this time, going up. Unlike your trip down, the elevator’s barely occupied: only a couple of other spacers join you aboard, though the ever-present cargo remains aboard. Raw minerals from the Uvetan mines, you’d guess. A few moments after you embark, the station controller seals the doors, and you feel a sudden heft of gravity under your [pc.feet].");
+
+	output("\n\nIt isn’t long before you’re racing upwards, hurtling through the atmosphere and into the heavens. The swirling colors of the Uvetan gas giant rise over the curves of the moon as you leave, bathing you in radiance for the brief trip back into orbit. The temperature drops rapidly as you ascend, at least in comparison to the control station, settling into a comfortable chill when the elevator locks into place at the space station’s center.");
+
+	output("\n\nThe elevator locks in place with a distinctive ding, flashing its internal lights off and back into the sterile glow of the station interior.");
+
+	output("\n\n<i>“Welcome back to Uveto Station,”</i> an artificial voice intones as you disembark. <i>“Please enjoy your stay.”</i>");
+
+	processTime(45);
 	clearMenu();
 	addButton(7,"Exit",move,"UVS D7");
 }
@@ -26,8 +36,31 @@ public function uvetoSpaceElevatorBonus():Boolean
 public function rideSpaceElevatorDown():void
 {
 	clearOutput();
+	kGAMECLASS.currentLocation = "GAME OVER";
+	kGAMECLASS.generateMap();
 	showName("SPACE\nELEVATOR");
-	output("Catching a lift on the space elevator, you begin the long ride down to Uveto's surface.\n\nIt takes a while - good thing the view is so spectacular. You can only imagine how slow the trip back up will be.\n\n(9999Developer note: perhaps commission art of the view for artpack.)");
+	author("Savin");
+	//First Time
+	if(flags["UVETO_ELEVATORED"] == undefined) 
+	{
+		output("The Uveto Station elevator doesn’t look like much when you first board it: it could easily have passed for a between-decks cargo lift at the Tavros docks, laden with crates of industrial supplies and a scant handful of people. Most of the boxes bear the sunny, curvaceous logo of RhenWorld or the sleek Akkadi symbols; the people are uniformly grizzled and heavily clothed, wearing high tech heat generators over padded jackets and thick gloves.");
+		//if nudist / no heat belt: 
+		if((pc.isNude() || pc.isCrotchExposed() || pc.isChestExposed()) && 9999 == 9999) output("\n\nYou suddenly get the impression you’re woefully underprepared for visiting this unforgiving frozen world.");
+		output("\n\nThe elevator shudders under your [pc.feet], and a metal bulkhead slides down over the entrance, sealing you in with a pneumatic hiss. For a brief moment, you’re surrounded by cold steel on all sides, encased in blackness. Dark red lights kick on a moment later, thankfully, giving some scant illumination as the elevator begins the long descent down.");
+		output("\n\nThe elevator’s speed picks up until it seems like you could fly off the deck at any moment, thundering down the metallic shaft towards the planet’s surface. You feel like a bullet through a gun’s barrel, waiting to erupt into the endless black of space.");
+		output("\n\nThen, suddenly, you’re overwhelmed with light. You’re forced to shield your eyes against the unexpected glare, recoiling for a moment before opening your eyes and taking in the grandeur of space itself. The metallic coating of the elevator has given way to a translucent material, revealing the titanic gas giant Uveto in the distance, cresting the curving surface of the icy moon below. A planet rise, not a sunrise, but still just as radiant as anything you’ve seen before.");
+		output("\n\nThe roiling gasses of the Uvetan giant cast brilliant colors across the surface of the tether’s shaft, not unlike a dark rainbow. Below you, the icy seventh moon rises towards you rapidly, reaching up to embrace you. The elevator begins to slow, machinery whirring underneath you to control the car’s descent as you begin to pass through the moon’s upper atmosphere. A moment later and you’re passing through the clouds, vision becoming obscured by ice and mist.");
+		output("\n\nThe elevator screeches loudly, making your stomach lurch as it slows to a crawl at the top of a large, domed complex in the middle of a sprawling, snow-covered city. When the car finally comes to a halt, the door slide open with a hiss and a rush of air, depositing you in the middle of a metal-walled, heated complex.");
+		output("\n\nA sign nearby simply states, <i>“<b>Welcome to Irestead.</b>”</i>");
+	}
+	//Repeat
+	else
+	{
+		output("Once more you board the Station-Irestead space elevator, joining a handful of other colonists and spacers, and what looks like a ton of industrial cargo heading down. A few moments after you board, the station controller seals the elevator shaft and sends the cart downwards. Speed picks up rapidly, making you feel as though you could go flying off at any moment. The metal shield around the shaft gives way half way down, bathing you once more in stellar light, a rainbow of colors reflecting off the Uvetan gas giant.");
+		output("\n\nIt’s a long ride down, growing colder by the moment as you pass through Uveto VII’s atmosphere and into the stormy world’s embrace. The Irestead control building reaches up to embrace you, though, a nest of warmth and safety. Your ride ends inside it, and the elevator doors open with a hiss and a rush of warm air.");
+		output("\n\nA sign near where you disembark simply states, <i>“<b>Welcome to Irestead.</b>”</i>");
+	}
+	IncrementFlag("UVETO_ELEVATORED");
 	processTime(45);
 	clearMenu();
 	addButton(7,"Exit",move,"UVI F34");
