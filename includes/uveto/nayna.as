@@ -79,6 +79,9 @@ public function naynaSexMenu():void
 	clearMenu();
 	addButton(0,"Give BJ",maxLewdGogo,true,"Give BJ","Give her a blowjob.");
 	addDisabledButton(1,"Other Stuff","Other Stuff","It isn't written yet. Be patient!");
+	if(pc.hasCock()) addButton(1,"Fuck Her",fuckNayna,undefined,"Fuck Her","Fuck Nayna using a penis.");
+	else addDisabledButton(1,"Fuck Her","Fuck Her","You don't have a penis to fuck her with.");
+	
 	addButton(14,"Back",repeatNaynaApproach,true);
 }
 //Meeting Nayna
@@ -1116,7 +1119,10 @@ public function blowNayna2():void
 	else output(" The length is almost too much for you. No matter how much you try, you can’t quite reach her sheath without starting to gag, but you make up for it with enthusiasm, reaching up from her balls to fondle the exposed patch of laquine love-stick.");
 	output("\n\nLooking up at Nayna, you can’t help but want to smile. If only her dick didn’t stretch your [pc.lips] into a tightly-sealed ‘O’. She looks like the definition of bliss with her mouth hanging open in a dazed grin, her tongue dangling. Her eyelids droop low enough to hide all but the whites of her eyes.");
 	output("\n\nNayna mumbles, <i>“So good,”</i> and, <i>“Suck it, slut,”</i> repeatedly, sometimes mixing in other expressions of amazement at how wonderful your mouth feels on her cock.");
-	output("\n\nSwallowing down a mouth-load of bunny-cream, you start sucking her properly, bobbing back and forth gently on her cock while your tongue dances the tango below. You’re still fingering her too, pumping two digits in and out of her soaked twat, relentlessly rubbing her silky folds. Her virginal pussy rhythmically clenches around them, and you realize too late that those clenches perfectly match the orgasmic throbs coursing through the plump rod in your maw.");
+	output("\n\nSwallowing down a mouth-load of bunny-cream, you start sucking her properly, bobbing back and forth gently on her cock while your tongue dances the tango below. You’re still fingering her too, pumping two digits in and out of her soaked twat, relentlessly rubbing her silky folds. Her virgin");
+	if(flags["NAYNA_FUCKED"] == undefined) output("al");
+	else output("-like");
+	output(" pussy rhythmically clenches around them, and you realize too late that those clenches perfectly match the orgasmic throbs coursing through the plump rod in your maw.");
 	output("\n\n<i>“I-I...”</i> Nayna gasps, <i>“");
 	if(flags["NAYNA_BLOWN"] == undefined) output("I think I might be c-cumming!");
 	else output("I’m cumming again! You’re making me cuuuuummm!");
@@ -1201,6 +1207,168 @@ public function blowNayna5():void
 	IncrementFlag("NAYNA_BLOWN");
 	processTime(140+rand(20));
 	restHeal();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Fuck Her
+public function fuckNayna():void
+{
+	clearOutput();
+	showNayna();
+	//Dong-wielders activate!
+	var x:int = pc.cockThatFits(300);
+	if(x < 0) x = pc.smallestCockIndex();
+	
+	//Bimbo/Bro
+	if(pc.isBro() || pc.isBimbo())
+	{
+		output("Instead of telling her what you’re going to do, you put your hand on her ass and lead her to one of the shorter consoles. Then you bend her over, sliding your fingers across her wobbly backside to find her latex-encased cunt. It’s already a little flush, and the adorable little bunny-slut whimpers from the lewd contact. Her tits squish out obscenely, compressed between her chubby torso and the hard metal below, visible as lush half-moons. She would make for a really great bimbo, you decide, if she didn’t dwell on science so damned much.");
+		output("\n\nShe’s already got the boobs for it and the quiet, sexual acceptance. You push in harder, just to make her squeek once more. Looking back at you, Nayna seems equally confused and aroused. What a good girl, you give her a few more rubs, playing her pussy like a fiddle, then get ready for the main event.");
+	}
+	else
+	{
+		output("<i>“I’d like to fuck you,”</i> you announce. No sense screwing around about it.");
+		output("\n\nNayna’s knees cross nervously, but the twin points of her nipples reveal themselves from under the slick confines of her undersuit, proud and erect - much like her dick. <i>“Oh... sure! ");
+		if(flags["NAYNA_FUCKED"] == undefined) output("Uh... how do we-?");
+		else output("Um... how do you want to do it this time?");
+		output("”</i>");
+		output("\n\n<i>“Like this.”</i> You wrap an arm around her, placing your hand square on her ass and squeezing. Your fingers nearly disappear into the fur covering her squishy booty, and the undersized laquine shivers, pressing her butt back into your hand.");
+		output("\n\n<i>“O-okay.”</i>");
+		output("\n\nYou nod and, leading her to ");
+		if(flags["NAYNA_FUCKED"] == undefined) output("a familiar server rack");
+		else output("a perfectly-sized server rack");
+		output(", explain, <i>“Bend over.”</i>");
+		output("\n\nThe fuzzy scientist leans over, looking over her shoulder nervously at you. <i>“Like this?”</i>");
+		output("\n\nStill holding onto her ass, you slide a finger over to prod at her still-covered puss. As expected, Nayna jumps, lifting her well-rounded butt higher into the air, perfectly poised to present. <i>“Just like that,”</i> you coo, giving her a smile and a pat.");
+	}
+	var cum:Number = pc.cumQ();
+	//Merge
+	output("\n\n");
+	if(!pc.isCrotchExposed())
+	{
+		output("Hooking a hand in your [pc.lowerGarments], you fish out [pc.oneCock]");
+		if(pc.lust() < 70) output(", already half-hard");
+		else output(", already rock-hard");
+		if(cum > 1000)
+		{
+			if(cum < 5000) output(" and dripping pre-cum");
+			else output(" and leaking a constant flow of pre-cum");
+		}
+		output(". The feeling of relief is palpable");
+		if(pc.lust() < 70) output(", and you surge to a full, tumescent erection in seconds.");
+		else output(", and you can’t help but give yourself an affectionate little stroke, celebrating your freedom.");
+	}
+	else
+	{
+		output("Grabbing hold of [pc.oneCock], you give it a few strokes, ");
+		if(pc.lust() >= 70) output("reveling in its hardness.");
+		else output("watching it swell from half hard to full tumescence in the span of a few seconds.");
+		if(cum > 1000)
+		{
+			if(cum >= 5000) output(" Pre-cum drools from the tip in a steady stream, ready to turn Nayna’s box into a sloppy-wet nest for your prick.");
+			else output(" Pre-cum drips from the tip regularly, proof of your inhuman virility.");
+		}
+	}
+	output(" You eyeball the cute little bunny’s butt, watching it quiver in excitement, enjoying the way her tail twitches.");
+	//First time
+	if(flags["NAYNA_FUCKED"] == undefined) 
+	{
+		output("\n\n<i>“You aren’t... you can’t...”</i> Nayna stares back at you over her shoulder, blushing and stuttering. <i>“You can’t fuck me through this suit!”</i> She meekly looks down, almost apologetic. <i>“It wouldn’t stretch enough. I just... I didn’t want you to hurt yourself.”</i>");
+	}
+	//repeat
+	else output("\n\n<i>“You... uh...”</i> Nayna stares back at you over her shoulder, blushing and stuttering. <i>“D-don’t forget to move the suit out of the way.”</i> She looks like she’s about to have a nervous breakdown, then she blurts out, <i>“I don’t want to feel anything between me and your cock!”</i>");
+	//Merge
+	output("\n\nSlipping a finger between the latex-like fabric and the bunny’s simmering quim, you yank it to the side, revealing her glistening, almost purplish folds. A hint of bright pink peeks out from between them, glistening with feminine lubricant, and the rosy cherry of her clit is already exposed, almost begging you to touch and rub it. Her balls hang down and out of the way, ensuring that nothing will ruin your view of Nayna’s oft-hidden treasure.");
+	//Treated/Ausar faced
+	if(pc.isTreated() || pc.hasMuzzle())
+	{
+		output("\n\nYour nose wrinkles, and you find yourself sniffing at the air, savoring the traces of laquine’s musky yet feminine odor, a mild pheromonal soup that seems to reach up into your brain and flick the switch labelled ‘fuck this bitch’. Her scent seems stronger by the second, and your cock");
+		if(pc.cockTotal() != 1) output("s");
+		output(" grow");
+		if(pc.cockTotal() == 1) output("s");
+		output(" still harder, more like iron rebar than phallic flesh. Either she’s in heat or her cunt is lying to your nose. Either way, you feel a low growl in the back of your throat and a magnetic force tugging your [pc.hips] toward her soaked gash.");
+	}
+	//Merge
+	output("\n\nNayna gasps when you touch your [pc.cockHead " + x + "] to her blushing femininity, ");
+	if(!pc.isTreated() && !pc.hasMuzzle()) output("gently spreading");
+	else output("savagely forcing");
+	output(" her open. Her ears lift in surprise, then droop in charmed contentment, matched by an unconcerned smile and heavily lidded eyes. The more you push into her, the more receptive her body becomes. She’s so wet that the act of penetrating her creates a half-dozen squishes and squelches, each seemingly lewder than the one before. Fitfully squeezing, her pussy seems every bit as nervous and pleased as its owner, like it doesn’t really know how to please a penis but is too excited not to try.");
+	if(pc.cocks[x].thickness() >= 3) output(" Even with her lips straining to take you, inside she’s still soft and almost roomy, at least when she relaxes.");
+	pc.cockChange();
+	output("\n\n<i>“Ah-ah-ahhhh,”</i> Nayna coos, her fingers clenching and relaxing against the bare metal. Her eyes seem a little glassy, like she had a few glasses of wine before deciding to get down and dirty, but you know better. The meek scientist is so out of touch with her own sex that she has no idea how to cope with the rampant sensations you’ve forced on her. Her pussy is bombarding her with all sorts of feelings and demands: shocks of pleasure, muscular contractions, and the desire for more - more penetration, more pleasure - anything to enhance the moment.");
+	output("\n\nYet she’s incapable of doing anything but moaning and squeezing from her current position. She can’t really thrust back against you when the only contact she has with the ground is the tips of her toes, and even if she could, she doesn’t seem to have much fine control over her limbs. Her thighs twitch, and her shoulders shudder. Her hands slap and scratch at the metal, and her mouth opens and closes, sometimes silently, sometimes in sultry approval. All she can do is lie there and let you fuck her: let you saw in and out of her while her pussy drools, let you slap her ass and watch it jiggle, and let you fuck her to an orgasm whether she wants one or not.");
+	output("\n\nShe very much does.");
+	output("\n\nYou don’t rush yourself, not when you have such a fantastic piece of ass putting on a show down below. Fucking her rhythmically, you watch her callipygean ass wobble with every impact. You watch her breasts slide up and down the glossy metal of the machine below, only able to imagine how her nipples must feel, dragging against it. Nayna’s ears flop everywhere, limp as noodles, sometimes slapping the console a half-second after you slap your crotch into her cunt.");
+	output("\n\nFragrant bunny-cum sticks to your loins, coating you in the proof of her enjoyment, making each successive hump that much louder and lewder than the one before. You plow Nayna until she’s gibbering and moaning, squeezing your [pc.cock " + x + "] like a vice. Slapping her ass, you lean low and ");
+	if(pc.isBimbo()) output("let her know that she can totally cum, like whenever. That’s the perk of getting fucked! You get to cum like, all the time.");
+	else output("ask her if she’s enjoying herself.");
+	output("\n\nA wail of pleasure climbs out of Nayna’s throat. It sounds like it was meant to be ‘yes’ but the last half of the word is far too drawn out and garbled to make sense of it. Regardless, her whole body hitches, and her hips lurch up and down, dragging your [pc.cock " + x + "] around the inside of her slit with orgasmic gyrations. Her pussy doesn’t even try to hold its grip on you, the slick channel gushing and spastically undulating, unable to control itself in the moment of penultimate passion.");
+	output("\n\nAnd that’s when you see her pearly cum running down the sides of the console.");
+	output("\n\nUnwilling to foot the bill for the potentially expensive equipment, you step back, yanking Nayna with you, keeping her impaled on your dick, holding her aloft so that you can continue fucking her. She groans, but she does not stop cumming. You can see the inky rubber inflating around her torso while you piston in and out of her cunt. Excess spunk slops out of the suit just beneath her armpits, creating two pearlescent pools for her to wallow in and creating a dozen white-on-white streams that ooze past her wrists to drip from her fingers. Once perfectly encased, her breasts lose all definition through the intervening layer of black gloss, inflating into a squishing, cum-augmented uniboob.");
+	output("\n\nThen the seal around her neck gives out.");
+	output("\n\nFew words could appropriately describe the tide of spooge that washes over Nayna’s head, but ‘epic’ comes closest. In an instant, she goes from blissful drooling to absolutely spunk-blasted. Every single strand of hair and every single bit of fur, they’re all drenched in semen. Jizz clings to her hair and glues her eyes closed, hanging in webs from her eyelashes. Her ears aren’t safe either. They get basted from base to tip, outside and inside, and hang into the inch-deep puddle like fuzzy teabags.");
+	output("\n\n");
+	if(pc.isTreated() || pc.hasMuzzle()) output("Snarling, ");
+	else output("Panting, from the effort, ");
+	output("you feel your orgasm mounting, triggered by the sight of sheltered laquine whitewashing her face. Your [pc.cock " + x + "] stiffens inside her, and [pc.cum] ");
+	if(cum < 10) output("dribbles out, small in quantity but no less big on pleasure.");
+	else if(cum < 150) output("fires wildly, nowhere near as voluminous as your lapine lover’s but every bit as pleasurable.");
+	else if(cum < 750) 
+	{
+		output("squirts out in thick streams, basting your lapine lover’s eager channel in your liquid pleasure. In no time at all, her netherlips look nicely creampied.");
+	}
+	else if(cum < 5000)
+	{
+		output("hoses out in lurid ejaculations, flooding her tunnel and womb");
+		if(cum >= 1500) output(", even paunching her belly");
+		output(". You’ve no doubt that your lapine lover may be outproducing you, but your considerable virility ensures as a thorough a seeding as any cumslut could hope for.");
+	}
+	else
+	{
+		output("hoses out in geyser-like ejaculations, instantly filling her channel with the first blast, then flooding her womb with each successive pump. Her netherlips are quickly glossed in your liquid pleasure, thoroughly claimed, and her already chubby belly rounds with liquid distention, forcing her nine-inch prick to jut ever more lewdly forward as it wastes its own load in Nayna’s suit.");
+		if(cum >= 7500) output(" Before long, your lapine lover is gratuitously pregnant, a fertile-looking dome that dominates her short frame.");
+	}
+	output(" Seeing stars, you keep fucking the slutty scientist’s spunked-up quim, prolonging your orgasm as long as you are able.");
+
+	output("\n\nLike all good things, even your orgasm has to end, and with the waning of the pleasure, you find yourself suddenly tired from supporting Nayna’s curvaceous-but-weighty frame. You slump backwards, bringing her with you");
+	if(pc.hasKnot(x)) output(", still firmly connected by your [pc.knot " + x + "]");
+	else output(", still connected by your [pc.cock " + x + "]");
+	output(", too contented to care that she’s still pumping out more creamy white goo - or that it starts getting all over you now that she’s on top.");
+
+	output("\n\nShe cranes her neck to kiss you, tasting heavily of her own cum, and you kiss her right back, trying not to grin when you reach up to discover that she’s <i>still</i> cumming. There are worse things than making someone orgasm so hard that they ejaculate for two minutes straight, you suppose. Closing your eyes, you snuggle in your exceedingly productive fuck-bunny, happy to doze against her once she finally stops squirting.");
+	processTime(22);
+	pc.orgasm();
+	applyCumSoaked(pc);
+	clearMenu();
+	addButton(0,"Next",naynaFuckEppiloggie,cum);
+}
+
+public function naynaFuckEppiloggie(cum:Number):void
+{
+	clearOutput();
+	showNayna();
+	output("When you come too, Nayna is stretching next to you in smiling, watching a small robot zip over her body, harmlessly vaporizing the last patches of cum out of her hair.");
+	output("\n\nIt’s then that you realize all signs of your tryst are gone. No puddle remains. The console you fucked over is spotless, and you’re almost as clean as if you took a shower.");
+	if(flags["NAYNA_FUCKED"] != undefined) output(" That little bot is almost as good as a galotian.");
+	else 
+	{
+		output(" Casting a curious look Nayna’s way, you ask her how she got you so clean.");
+		output("\n\nGrinning knowingly, she answers, <i>“Science! Well... more specifically, kui-tan and laquine science. I got it to clean up my... uhm...”</i> Nayna blushes, then squirms, making a wet-sound between her thighs. <i>“You know how sometimes, if you don’t cum very often, you’ll go off at night?”</i>");
+		output("\n\nYou nod.");
+		output("\n\n<i>“Spending two hours cleaning up my room twice a week isn’t very fun, so I got this little guy. It doesn’t do as good a job as a galotian might, but it’s not nearly as high maintenance.”</i>");
+	}
+	output("\n\nGiggling naughtily, Nayna stands and gives you a kiss, whispering, <i>“I k-kept as much inside myself as I could, once I calmed down.”</i> She seems to search your face for approval, and then nods. <i>“I... better catch up on my research... but don’t hesitate i-if you ever w-want more.”</i>");
+	if(cum >= 2500)
+	{
+		output("\n\nYou could get used to making more laquines smuggle ");
+		if(cum >= 10000) output("beach ");
+		else output("basket");
+		output("ball-sized cum-bulges under their clothing.");
+	}
+	IncrementFlag("NAYNA_FUCKED");
+	pc.shower();
+	processTime(75+rand(10));
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
