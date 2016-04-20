@@ -124,9 +124,9 @@ public function lerrisAppearance():void
 
 	output("\n\nUnless you count piercings, anyway. Of those, she has several: a small gold ring runs through a nostril and her lower lip at opposite ends of her face, and she’s got a small silver bar running through one of her eyebrows. Her lips are full and pouty, painted the TamaniCorp pink, and hiding a slightly-coarse feline tongue that’s pierced with a silver ball stud that seems perfectly situated to rub against a glans or clit.");
 
-	output("\n\nOf course, her most eye-catching feature is her [lerris.chest].");
+	output("\n\nOf course, her most eye-catching feature are her [lerris.chest].");
 	if (!lerris.hasVagina() && flags["FUCKED_LERRIS"] != undefined) output(" For a male, she’s got a damn fine rack!");
-	if (lerris.biggestTitSize() < 7) output(" Her chest is high and perky on her chest, bouncing slightly with every step.");
+	if (lerris.biggestTitSize() < 7) output(" Her chest is high and perky on her torso, bouncing slightly with every step.");
 	else if (lerris.biggestTitSize() < 15) output(" Her chest is heavy enough to sag just a touch, but is so soft and jiggly that it just begs for a grope and squeeze.");
 	else if (lerris.biggestTitSize() < 22) output(" Lerris’s chest is absolutely huge, big enough to give a real cow-girl a run for her money. Her bra must be reinforced to keep up with all that weight, but she still jiggles obscenely with even the slightest motion.");
 	else output(" Lerris’s chest is as big as she can possibly support on her small frame, enormous and heavy enough to make her even her breathing an utterly sensual affair, full of slight quakes and quivers of her enormous tit-flesh.");
@@ -137,7 +137,9 @@ public function lerrisAppearance():void
 		output("\n\nLerris isn’t very tall, not quite five-six, but even for what her race would call a smaller frame, her cock seems pitifully small. When soft, it’s almost invisible in her crotch, completely hidden by even her silky panties, much less actual clothing. Hard, she’s probably got a little less than five inches of bitch-clit to play with, though the crown is at least rung with nubs of feline pleasure-bulbs, all sensitive and ready to grind against a pussy’s walls. Lucky for her, she’s got a nice and sensitive prostate, more than able to make sure she cums and cums when she’s bent over and taking it hard from behind. A tiny, tight trap-pouch hugs her balls close to her crotch, making them seem like one small bulb of flesh more than a hanging sack full of virile seed.");
 	}
 
-	output("\n\nShe has a nice, thick rump, perfect for spanking and squeezing - not to mention fucking - concealing a tight asshole, right where it belongs.");
+	output("\n\nShe has a nice, thick rump, perfect for spanking and squeezing");
+	if (flags["FUCKED_LERRIS"] != undefined) output(" - not to mention fucking - concealing a tight asshole, right where it belongs");
+	output(".");
 
 	output("\n\nWhen on duty, Lerris wears a skin-tight TamaniCorp bodysuit, largely purple and pink in color and equipped with a pair of high heels that make sure her plump derriere and [lerris.chest] shake with every step in her sexy gait. Underneath, a pair of lacy-white panties sit high her hips tightly, and she constrains her ample chest in a maternity-style bra meant to help control her heavy lactation.");
 	if (lerris.milkFullness > 100) output(" It succeeds, most of the time, but sometimes you see little splotches of [lerris.milk] staining the front of her uniform.");

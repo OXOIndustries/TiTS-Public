@@ -321,7 +321,7 @@
 			
 			//Psionic attack. Drains some of Zaalt's lust onto the PC, and restores a moderate amount of Health. 2/encounter; only targets PC. 
 
-			output("Zaalt thrusts a hand out at you, as it to grab your head. You manage to duck back, but even as you dodge the swipe, you realize that it wasn't his intention to <i>physically</i> attack you! Leeches of mental force gnaw at your mind, making you stagger back and grab your head, trying desperately to force out the invading force.");
+			output("Zaalt thrusts a hand out at you, as if to grab your head. You manage to duck back, but even as you dodge the swipe, you realize that it wasn't his intention to <i>physically</i> attack you! Leeches of mental force gnaw at your mind, making you stagger back and grab your head, trying desperately to force out the invading force.");
 			
 			if (10 + (rand(target.willpower()) / 2) > willpower())
 			{

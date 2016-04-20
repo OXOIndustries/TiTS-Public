@@ -776,6 +776,234 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.tailGenital = GLOBAL.TAIL_GENITAL_COCK;
 			pc.tailGenitalArg = GLOBAL.TYPE_HUMAN;
 			break;
+		/*Name is Dina. Female, 8 ft 7 in, Four rows of breasts, Top DD, 2nd C, 3rd B, Lower A, 0.5 inch nipples all around, lactating. Blue scales, shark face, shark tail, dragon legs, 1 ft dragon horns, dragon tongue, shoulder length silver hair. dragon ears, large dragon wings, flared thighs, large butt, thin body, good muscle definition. Dragon breath. 2.5 inch clit, constantly wet vagina.*/
+		case "dina":
+			if(!pc.hasVagina()) pc.createVagina();
+			if(pc.femininity < 70) pc.femininity = 70;
+			pc.tallness = 103;
+			pc.createBreastRow();
+			pc.createBreastRow();
+			pc.createBreastRow();
+			pc.breastRows[0].breastRatingRaw = 5;
+			pc.breastRows[0].breastRatingRaw = 3;
+			pc.breastRows[0].breastRatingRaw = 2;
+			pc.breastRows[0].breastRatingRaw = 1;
+			pc.milkFullness = 100;
+			pc.milkStorageMultiplier = 2;
+			pc.milkMultiplier = 100;			
+			pc.scaleColor = "blue";
+			pc.faceType = GLOBAL.TYPE_SHARK;
+			pc.tailCount = 1;
+			pc.tailType = GLOBAL.TYPE_SHARK;
+			pc.legType = GLOBAL.TYPE_DRACONIC;
+			pc.hornType = GLOBAL.TYPE_DRACONIC;
+			pc.horns = 2;
+			pc.hornLength = 12;
+			pc.tongueType = GLOBAL.TYPE_DRACONIC;
+			pc.clearTongueFlags();
+			pc.addTongueFlag(GLOBAL.FLAG_LONG);
+			pc.addTongueFlag(GLOBAL.FLAG_PREHENSILE);
+			pc.hairLength = 10;
+			pc.hairColor = "silver";
+			pc.earType = GLOBAL.TYPE_DRACONIC;
+			pc.wingType = GLOBAL.TYPE_DRACONIC;
+			pc.hipRatingRaw = 9;
+			pc.buttRatingRaw = 9;
+			pc.thickness = 25;
+			pc.tone = 70;
+			pc.clitLength = 2.5;
+			pc.vaginas[0].wetnessRaw = 4;
+			break;
+		/*Ayreo Greywolf 5ft6 silver blue (yeah it is a real fur color) longfurred fox/wolf (kinda scruffy looking) His posture is pretty relaxed but also with the kinda that he has no time for nonsense. All and All he is pretty average, although a bit of a heavy frame, he appears to be in decent shape but not body builder status. Clothed he wears his naval uniform proudly as a commander should, setting the example for his crew to follow. Nude, you can defiantly note his longer fur, it almost hides his sheath completely. again pretty average, if not slightly thicker hung for a fox, his sheath is a bit thicker than what would be comfortable on a fox, must be his wolf heritage. His balls are pretty average for a wolf, neatly hidden mostly by his long fur. his tail is almost fitting for a germansheppard, if not slightly more bushy, making a nice little cross between fox and wolf and at almost 3 ft long behind him. He carries it proudly behind him, it swishes to and fro depending on his mood and there are those stressful times that his fur may bristle out and it looks like a bottle brush. Like a fox he does have that white tip at the end highlighted with a black ring. His paws , hands and feet have those nice dark furred boots that you would find on a fox.*/
+		case "ayreo":
+			pc.tallness = 66;
+			pc.furColor = "silver-blue";
+			pc.thickness = 66;
+			pc.tone = 66;
+			//Naval commander uniform?
+			if(!pc.hasCock()) pc.createCock();
+			pc.shiftCock(0,GLOBAL.TYPE_CANINE);
+			pc.balls = 2;
+			if(pc.ballSizeRaw < 3.4) pc.ballSizeRaw = 3.4;
+			pc.tailCount = 1;
+			pc.tailType = GLOBAL.TYPE_VULPINE;
+			pc.clearTailFlags();
+			pc.addTailFlag(GLOBAL.FLAG_LONG);
+			pc.addTailFlag(GLOBAL.FLAG_FURRED);
+			pc.legType = GLOBAL.TYPE_VULPINE;
+			pc.legCount = 2;
+			pc.armType = GLOBAL.TYPE_CANINE;
+			pc.clearArmFlags();
+			pc.addArmFlag(GLOBAL.FLAG_LONG);
+			pc.addArmFlag(GLOBAL.FLAG_FURRED);
+			pc.clearLegFlags();
+			pc.addLegFlag(GLOBAL.FLAG_LONG);
+			pc.addLegFlag(GLOBAL.FLAG_FURRED);
+			pc.addLegFlag(GLOBAL.FLAG_DIGITIGRADE);
+			break;
+		/*Peppercotton Oviposter, High Fertility, Normal Height (Five Seven), 2 Breasts ( D Cup), 1 Vagina, 1 Butt, */
+		case "peppercotton":
+			pc.fertilityRaw = 4;
+			if(!pc.hasCock()) pc.createCock();
+			if(!pc.cocks[0].hasFlag(GLOBAL.FLAG_OVIPOSITOR)) pc.cocks[0].addFlag(GLOBAL.FLAG_OVIPOSITOR);
+			pc.tallness = 67;
+			pc.breastRows[0].breastRatingRaw = 4;
+			if(!pc.hasVagina()) pc.createVagina();
+			break;
+		/*Name: Gakre
+		Basic attributes: 7'6" tall; slim build; 65% masculine; long blue hair; 3 rows of man-chest with 0.2" nipples; 3" quad-balls.
+		Dragon TFs: Face; 2 4" horns; Large wings; Legs; Silver scales; 12" penis.
+		Fox TFs: Ears; 9 Tails; 8" penis.
+		Demon TF: Tongue.
+		Perks: Messy Orgasms; Scholar (History); Dragonfire; Elven Bounty; Enlightened Nine-tails; Fera's Boon - Alpha; Pilgrim's Bounty.
+		Item: Spellblade or something similar.*/
+		case "gakre":
+			pc.tallness = 88;
+			pc.thickness = 33;
+			pc.femininity = 35;
+			pc.hairLength = 14;
+			pc.hairColor = "blue";
+			pc.createBreastRow();
+			pc.createBreastRow();
+			pc.ballSizeRaw = 10;
+			pc.balls = 4;
+			pc.faceType = GLOBAL.TYPE_DRACONIC;
+			pc.horns = 2;
+			pc.hornType = GLOBAL.TYPE_DRACONIC;
+			pc.hornLength = 4;
+			pc.wingType = GLOBAL.TYPE_DRACONIC;
+			pc.legType = GLOBAL.TYPE_DRACONIC;
+			pc.clearLegFlags();
+			pc.addLegFlag(GLOBAL.FLAG_DIGITIGRADE);
+			pc.addLegFlag(GLOBAL.FLAG_SCALED);
+			pc.scaleColor = "silver";
+			if(!pc.hasCock()) pc.createCock();
+			pc.shiftCock(0,GLOBAL.TYPE_DRACONIC);
+			pc.cocks[0].cLengthRaw = 12;
+			pc.earType = GLOBAL.TYPE_VULPINE;
+			pc.tailType = GLOBAL.TYPE_VULPINE;
+			pc.tailCount = 9;
+			pc.cocks[0].cLengthRaw = 8;
+			pc.shiftCock(1,GLOBAL.TYPE_VULPINE);
+			pc.tongueType = GLOBAL.TYPE_DEMONIC;
+			pc.clearTongueFlags();
+			pc.addTongueFlag(GLOBAL.FLAG_LONG);
+			pc.addTongueFlag(GLOBAL.FLAG_PREHENSILE);
+			break;
+		/*Name: Stephanie
+		Height: 5' 2"
+		Body Type: Curvy Redhead w/Light colored skin
+		Breasts: DD with 1" nipplecunts
+		Genitals: Tight Vagina with 2" clitoris
+		Perks (Closest Equivalent): Wet Pussy, Big Tits, Big Clit, Fertility, Smart, Evade, Regeneration*/
+		case "stephanie":
+			pc.tallness = 62;
+			pc.hairColor = "red";
+			pc.skinTone = "light";
+			pc.thickness = 65;
+			pc.tone = 40;
+			pc.hipRatingRaw = 8;
+			pc.buttRatingRaw = 8;
+			pc.breastRows[0].breastRatingRaw = 5;
+			pc.breastRows[0].nippleType = GLOBAL.NIPPLE_TYPE_FUCKABLE;
+			pc.clitLength = 2;
+			if(!pc.hasVagina()) pc.createVagina();
+			pc.vaginas[0].wetnessRaw = 3;			
+			break;
+		/*Decievedtadpole I suppose I'll go with my preferred character from CoC. Full human around 6ft 5, full masculinity, flat chest, 16 inch package with quad testes. Definitely more smart than strong, so a high intelligence. This is more just for convenience and not wasting my time having to get my character the way I like him.*/
+		case "decievedtadpole":
+			pc.tallness = 77;
+			pc.femininity = 0;
+			pc.breastRows[0].breastRatingRaw = 0;
+			if(!pc.hasCock()) pc.createCock();
+			pc.cocks[0].cLengthRaw = 16;
+			pc.balls = 4;
+			pc.ballSizeRaw = 8;
+			pc.intelligenceRaw = 5;
+			break;
+		/*Name: Junker
+		Physical Description:
+		Dog everything (head, brown fur, tail, ears, etc.), except:
+		medium-long blond hair
+		bipedal hooved legs
+		2x 2"x12" horsedicks
+		4x 2" balls
+		Perkswise, idc, whatever makes sense for a starting character. Nothing OP needed.*/
+		case "junker":
+			if(!pc.hasCock()) pc.createCock();
+			pc.createCock();
+			pc.shiftCock(0,GLOBAL.TYPE_EQUINE);
+			pc.shiftCock(1,GLOBAL.TYPE_EQUINE);
+			pc.cocks[0].cLengthRaw = 12;
+			pc.cocks[1].cLengthRaw = 12;
+			pc.balls = 4;
+			pc.ballSizeRaw = 7;			
+			pc.armType = GLOBAL.TYPE_CANINE;
+			pc.clearArmFlags();
+			pc.addArmFlag(GLOBAL.FLAG_FURRED);
+			pc.legType = GLOBAL.TYPE_EQUINE;
+			pc.clearLegFlags();
+			pc.addLegFlag(GLOBAL.FLAG_DIGITIGRADE);
+			pc.addLegFlag(GLOBAL.FLAG_FURRED);
+			pc.addLegFlag(GLOBAL.FLAG_HOOVES);
+			pc.tailCount = 1;
+			pc.tailType = GLOBAL.TYPE_CANINE;
+			pc.clearTailFlags();
+			pc.addTailFlag(GLOBAL.FLAG_LONG);
+			pc.addTailFlag(GLOBAL.FLAG_FURRED);
+			pc.earType = GLOBAL.TYPE_CANINE;
+			pc.faceType = GLOBAL.TYPE_CANINE;
+			pc.hairLength = 6;
+			pc.hairColor = "blond";
+			pc.skinType = GLOBAL.SKIN_TYPE_FUR;
+			break;
+		/*Calvin Snowden You are a 7 foot 0 inch tall human, with a somewhat lithe body and a fair amount of definition. You are currently wearing comfortable clothes and using your fists as a weapon. Your face is human in shape and structure, with albino skin. A set of razor-sharp, retractable shark-teeth fill your mouth and gives your visage a slightly angular appearance. It has a well-defined jawline and a fairly masculine profile. Your shaggy, midnight black hair looks good on you, accentuating your features well. A slowly undulating tongue occasionally slips from between your lips. It hangs nearly two feet long when you let the whole thing slide out, though you can retract it to appear normal. A quartet of prominent horns has broken through your skin. The back pair are longer, and curve back along your head. The front pair protrude forward demonically.
+
+		You have a humanoid shape with the usual torso, arms, hands, and fingers. You have slightly-flared hips that match your trim, lithe body, and your muscular, toned rump molds closely against your form. Your lithe legs are capped with flexible clawed feet. Sharp black nails grow where once you had toe-nails, giving you fantastic grip.
+
+		You have two flat breasts, each supporting one 0.2-inch chained nipple.
+
+		Your cloth-shrouded, cursed cock is 9 inches long and two inches wide. The crown is ringed with a circle of rubbery protrusions that grow larger as you get more aroused. The entire thing is shiny and covered with tiny, sensitive nodules that leave no doubt about its demonic origins. Every now and again a slimy worm coated in spunk slips partway out of your nubby shaft, tasting the air like a snake's tongue.
+		A scrotum with two baseball-sized balls swings heavily beneath your demonic cock. You estimate each of them to be about two inches across.
+
+		You have one virgin asshole, placed between your tight, toned butt-cheeks where it belongs.
+
+		A solitary gold eyebrow-ring adorns your eyebrow, looking very stylish.
+		Your ears are pierced with onyx ear-stud.
+		Shining on your lip, a gold lip-stud is plainly visible.
+		Though not visible, you can plainly feel your ruby tongue-stud secured in your tongue.
+		Your nipples are pierced with fertite nipple-chain.
+		Looking positively perverse, a fertite jacob's ladder adorns your pierced, infernal prick.*/
+		case "calvin":
+			pc.tallness = 84;
+			pc.thickness = 25;
+			pc.tone = 70;
+			pc.skinTone = "albino";
+			pc.faceType = GLOBAL.TYPE_SHARK;
+			pc.femininity = 30;
+			pc.hairLength = 3;
+			pc.hairColor = "midnight black";
+			pc.tongueType = GLOBAL.TYPE_SNAKE;
+			pc.clearTongueFlags();
+			pc.addTongueFlag(GLOBAL.FLAG_LONG);
+			pc.addTongueFlag(GLOBAL.FLAG_PREHENSILE);
+			pc.horns = 4;
+			pc.hornType = GLOBAL.TYPE_DEMONIC;
+			pc.hornLength = 4;
+			pc.hipRatingRaw = 3;
+			pc.buttRatingRaw = 3;
+			pc.legType = GLOBAL.TYPE_DEMONIC;
+			pc.clearLegFlags();
+			pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
+			pc.breastRows[0].breastRatingRaw = 0;
+			if(!pc.hasCock()) pc.createCock();
+			pc.cocks[0].cLengthRaw = 9;
+			pc.cocks[0].cType = GLOBAL.TYPE_DEMONIC;
+			pc.ballSizeRaw = 6;			
+			break;
+		case "":
+			
+			break;
 		case "":
 			
 			break;
