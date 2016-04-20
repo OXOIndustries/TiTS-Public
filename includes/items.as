@@ -192,102 +192,12 @@ public function shop(keeper:Creature):void {
 		return;
 	}
 	
-	if(keeper is Geoff) {
-		mainGameMenu();
-		return;
-	}
-	else if(keeper is Jade) {
-		approachJade();
-		return;
-	}
-	else if(keeper is Sera) {
-		approachSera();
-		return;
-	}
-	else if(keeper is Kelly) {
-		kellyOfficeApproach();
-		return;
-	}
-	else if(keeper is Anno)
+	if (keeper)
 	{
-		if (!annoIsCrew()) repeatAnnoApproach();
-		else annoFollowerApproach();
+		keeper.onLeaveBuyMenu();
 		return;
 	}
-	else if(keeper is Ellie)
-	{
-		ellieMenu();
-		return;
-	}
-	else if(keeper is Renvra)
-	{
-		approachRenvra();
-		return;
-	}
-	else if(keeper is Xanthe)
-	{
-		enterTheSilkenSerenityWhyDidWashHaveToDie();
-		return;
-	}
-	else if(keeper is MerchantQueen) {
-		introductionToMerchantQueenSloot();
-		return;
-	}
-	else if(keeper is Seifyn)
-	{
-		repeatSeifynMeeting();
-		return;
-	}
-	else if(keeper is Ceria)
-	{
-		ceriaMenu();
-		return;
-	}
-	else if(keeper is Gene)
-	{
-		genesModsGenericScene();
-		return;
-	}
-	else if(keeper is Emmy)
-	{
-		backToEmmyMain();
-		return;
-	}
-	else if(keeper is Inessa)
-	{
-		approachIness();
-		return;
-	}
-	else if(keeper is CrystalShopkeep)
-	{
-		visitCrystalGooShop();
-		return;
-	}
-	else if(keeper is Vi)
-	{
-		approachVi();
-		return;
-	}
-	else if(keeper is DoctorLash)
-	{
-		mainGameMenu();
-		return;
-	}
-	else if(keeper is VKo)
-	{
-		approachVKo();
-		return;
-	}
-	else if(keeper is Liriel)
-	{
-		lirielBackMenu(1);
-		return;
-	}
-	else if (keeper is Lerris)
-	{
-		lerrisMenu();
-		return;
-	}
+	
 	clearOutput();
 	output(keeper.keeperGreeting);
 	shopkeep = keeper;
@@ -371,6 +281,31 @@ public function buyItemGo(arg:ItemSlotClass):void {
 	clearOutput();
 	var price:Number = getBuyPrice(shopkeep,arg.basePrice);
 	
+	//Special Vendor/Item Overrides
+	if(shopkeep is Colenso && arg is TarkusJokeBook)
+	{
+		output("Colenso hands you the card, which you scan into your codex. It beeps.\n\n<b>A new codex entry under Fiction is available!</b>");
+		CodexManager.unlockEntry("Diverting Jokes");
+		//’Next’ button can either return to shop menu or go directly to the codex entry, you choose
+		clearMenu();
+		addButton(0,"Next",colensoBuyMenu);
+		return;
+	}
+	else if(shopkeep is Petr)
+	{
+		arbetzPetrBuyGo(arg);
+		return;
+	}
+	else if(shopkeep is Ellie && arg is SumaCream)
+	{
+		// Buying Suma Cream has a 1 in 20 chance of getting a “Black Cream” pearl instead, due to J’ejune’s lax oversight
+		if(rand(20) == 0) arg = new SumaCreamBlack();
+		else arg = new SumaCreamWhite();
+	}
+	//Emmy magic!
+	else if(shopkeep is Emmy) flags["PURCHASED_FROM_EMS"] = 1;
+	else if(shopkeep is Sera) flags["PURCHASED_FROM_SERA"] = 1;
+	
 	// Apply and destroy coupons!
 	var usedCoupon:Boolean = false;
 	var couponName:String = "Coupon - " + arg.shortName;
@@ -383,28 +318,8 @@ public function buyItemGo(arg:ItemSlotClass):void {
 	if(usedCoupon) output("The coupon saved on your codex is used and instantly changes the final price. ");
 	
 	output("You purchase " + arg.description + " for " + num2Text(price) + " credits.\n\n");
-
 	pc.credits -= price;
 	
-	//Special Vendor/Item Overrides
-	if(shopkeep is Colenso && arg is TarkusJokeBook)
-	{
-		output("Colenso hands you the card, which you scan into your codex. It beeps.\n\n<b>A new codex entry under Fiction is available!</b>");
-		CodexManager.unlockEntry("Diverting Jokes");
-		//’Next’ button can either return to shop menu or go directly to the codex entry, you choose
-		clearMenu();
-		addButton(0,"Next",colensoBuyMenu);
-		return;
-	}
-	else if(shopkeep is Ellie && arg is SumaCream)
-	{
-		// Buying Suma Cream has a 1 in 20 chance of getting a “Black Cream” pearl instead, due to J’ejune’s lax oversight
-		if(rand(20) == 0) arg = new SumaCreamBlack();
-		else arg = new SumaCreamWhite();
-	}
-	//Emmy magic!
-	else if(shopkeep is Emmy) flags["PURCHASED_FROM_EMS"] = 1;
-	else if(shopkeep is Sera) flags["PURCHASED_FROM_SERA"] = 1;
 	// Renamed from lootList so I can distinguish old vs new uses
 	var purchasedItems:Array = new Array();
 	purchasedItems[purchasedItems.length] = arg.makeCopy();

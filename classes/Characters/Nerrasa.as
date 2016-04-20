@@ -3,28 +3,30 @@
 	import classes.CockClass;
 	import classes.Creature;
 	import classes.GLOBAL;
-	import classes.Items.Miscellaneous.FertitePlus;
-	import classes.Items.Miscellaneous.Lactaid;
-	import classes.Items.Miscellaneous.LactaidMilkTank;
-	import classes.Items.Miscellaneous.LactaidOverdrive;
-	import classes.Items.Miscellaneous.Sterilex;
-	import classes.Items.Toys.EggTrainer;
-	import classes.Items.Toys.NivasBionaHole;
-	import classes.Items.Toys.TamaniBionaHole;
-	import classes.Items.Transformatives.Bovinium;
+	import classes.Items.Apparel.UGCUniform;
+	import classes.Items.Melee.Knife;
+	import classes.Items.Miscellaneous.AusarTreats;
+	import classes.Items.Miscellaneous.EmptySlot;
+	import classes.Items.Protection.HeatBelt;
+	import classes.Items.Protection.ArcticWarfareBelt;
+	import classes.Items.Miscellaneous.ClimbingKit;
+	import classes.Items.Miscellaneous.FishingRod;
+	import classes.Items.Apparel.ThermalJacket;
+	import classes.Items.Accessories.LightJetpack;
+	import classes.Items.Accessories.FlashGoggles;
 	import classes.kGAMECLASS;
 	
-	public class Lerris extends Creature
+	public class Nerrasa extends Creature
 	{
 		//constructor
-		public function Lerris()
+		public function Nerrasa()
 		{
 			this._latestVersion = 1;
 			this.version = _latestVersion;
-			this._neverSerialize = false;
+			this._neverSerialize = true;
 			
-			this.short = "Lerris";
-			this.originalRace = "kaithrit";
+			this.short = "Nerrasa";
+			this.originalRace = "huskar";
 			this.a = "";
 			this.capitalA = "";
 			this.long = "";
@@ -32,18 +34,24 @@
 			this.customBlock = "";
 			this.isPlural = false;
 			
-			this.inventory = [];
-			inventory.push(new EggTrainer());
-			inventory.push(new NivasBionaHole());
-			inventory.push(new TamaniBionaHole());
-			inventory.push(new Lactaid());
-			inventory.push(new Sterilex());
-			inventory.push(new Bovinium());
-			inventory.push(new FertitePlus());
-			inventory.push(new LactaidMilkTank());
-			inventory.push(new LactaidOverdrive());
+			this.meleeWeapon = new Knife();
+			this.armor = new EmptySlot();
 			
-			keeperBuy = "Lerris busies herself with her prodigious tits whilst you browse the shops wares; casting a casual glance in her direction, you catch her squeezing her boobs together with her arms, wiggling this way and that...\n";
+			this.inventory = [];
+			inventory.push(new HeatBelt());
+			inventory.push(new ArcticWarfareBelt());
+			//inventory.push(new HuskarTreats()); 9999
+			inventory.push(new AusarTreats());
+			inventory.push(new ClimbingKit());
+			inventory.push(new FishingRod());
+			inventory.push(new ThermalJacket());
+			inventory.push(new LightJetpack());
+			//inventory.push(new HL4Salamander()); 9999
+			//inventory.push(new FuelCanister()); 9999
+			inventory.push(new FlashGoggles());
+
+			
+			keeperBuy = "Nerrasa just keeps up with her reps whilst you browse the stores wares, paying you no mind what so ever.\n\n";
 			
 			this.typesBought = [];
 			this.sellMarkup = 1.2;
@@ -206,7 +214,7 @@
 		
 		override public function onLeaveBuyMenu():void
 		{
-			kGAMECLASS.lerrisMenu();
+			kGAMECLASS.uvetoNerrasaMenu();
 		}
 	}
 }

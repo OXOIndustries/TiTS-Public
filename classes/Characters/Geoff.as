@@ -7,6 +7,7 @@
 	import classes.Items.Melee.*
 	import classes.Items.Apparel.*
 	import classes.Items.Melee.Fists;
+	import classes.kGAMECLASS;
 	
 	public class Geoff extends Creature
 	{
@@ -211,6 +212,11 @@
 			delete dataObject.resistances;
 			delete dataObject.bonusResistances;
 			delete dataObject.bonusLustVuln;
+		}
+		
+		override public function onLeaveBuyMenu():void
+		{
+			kGAMECLASS.mainGameMenu();
 		}
 	}
 }

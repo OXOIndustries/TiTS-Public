@@ -2588,6 +2588,19 @@ public function giveKiroSomeRelief():void
 }
 
 
+// GalLink e-mail stuff
+public function kiroFuckNetBonus():void
+{
+	if(pc.isBimbo() || pc.isBro() || !pc.hasStatusEffect("Focus Pill") || pc.IQ() < 50 || pc.WQ() < 50)
+	{
+		eventBuffer += " The subject line reads <i>“Kiro Tamahime has invited you to the group ‘GalLink Fuckmeet’”</i>. Curiously, you open the letter to see what it could be...";
+		eventBuffer += "\n\nThe message is headed by a big holo-image of Kiro with her massive equine dong shoved to the hilt up some girl’s backside, stretching her sphincter like a rubber band. Kiro’s holding the camera and giving you a big, goofy grin and a thumb’s-up.\n\n<i>Kiro Tamahime wants you to join the GalLink group “GalLink Fuckmeet.”\n\nGalLink Fuckmeet: Bone random citizens of the galaxy with no hassle, no commitment, just fun!\n\nSuggested Members: Kiro Tamahime, Saendra en Illya, BigBooty Flahne, Sera Succubus, GirlBoy Alex</i>";
+		eventBuffer += "\n\nYou shrug and click “Join”...\n\nAnd are instantly flooded with several THOUSAND pictures of the group’s members (mostly Kiro) engaged in lewd acts.\n\nWell, at least you won’t need to look for new porn for a while.";
+		pc.lust(20);
+	}
+}
+
+
 //[DUN] Furry herm groupsex, it should have 5-10 people/furries/aliens participating in it, mostly made up of furry herms, but it does not need to be limited to that, it can have more than just furry herms, but should still be mostly that, if I could go as far as to choose what type of furries, I like foxes(preferably multi-tailed like the Kitsunes from CoC) and/or cats
 //Revenant2012
 
@@ -2631,6 +2644,12 @@ public function denyKiroOrgyFun():void
 //Accept
 public function kiroFuckOrgyFuntimes():void
 {
+	if(getPlanetName() == "Mhen'ga")
+	{
+		rooms["CUSTOMS OFFICE"].removeFlag(GLOBAL.NPC);
+		generateMap();
+	}
+	
 	clearOutput();
 	showKiro();
 	//First time
@@ -2911,7 +2930,7 @@ public function kiroFuckOrgyFuntimes6():void
 	clearOutput();
 	showName("HERM\nORGY");
 	showBust("MIDEE_NUDE","FLAHNE_NUDE","KIRO_NUDE","MAI_NUDE","MIKO_NUDE");
-	output("Mai slides off Kiro’s dick into a puddle cum alongside you, but you barely notice. There’s too much kitty-spunk in your eyes, and besides, you’re too busy feeding Flahne, straining to pump gallon after gallon of wonderful [pc.cumColor] into her squeezing box. Mi’dee groans and shudders, still trickling sperm, struggling to stand up, but Flahne pulls her right back down onto her ovi-dick, pinning the poor pussy and instantly renewing her climax, forcing her to paint your [pc.chest].");
+	output("Mai slides off Kiro’s dick into a puddle cum alongside you, but you barely notice. There’s too much kitty-spunk in your eyes, and besides, you’re too busy feeding Flahne, straining to pump gallon after gallon of wonderful [pc.cumColor] [pc.cumNoun] into her squeezing box. Mi’dee groans and shudders, still trickling sperm, struggling to stand up, but Flahne pulls her right back down onto her ovi-dick, pinning the poor pussy and instantly renewing her climax, forcing her to paint your [pc.chest].");
 	output("\n\nYour eyes roll back, and you loose all connection with reality. Everything feels wet, slick, and good. Your body is a wonderland of blissful trembles and heavenly squeezes. The lust-drunk girls around you are an ever-changing tangle of partners and limbs; hands, cocks, and sinfully stuffed sexes all vie for tactile sensation. Sometimes your mouth is full. Sometimes your ass is full. Sometimes Miko is pinned between you and Kiro while Mai lies below, holding her mouth and cunt open to catch the drippings from both ends.");
 	output("\n\nThe floor disappears at some point, leaving you to splash around in a smutty lake of your own creation. Kiro doesn’t seem to care for it, but that doesn’t stop her from scooping up a handful to drink every now and then, triggering her hyper-active kui-tan reflexes and ensuring she’ll never go dry. You ride the waves of bliss as long as you can, but when all five girls are on their knees, rubbing and sucking on you, competing to see who can get more of your [pc.cum] on their face, you finally lose it, blacking out halfway through turning Kiro into ");
 	if(pc.fluidColorSimple(pc.cumType) == "white") output("an albino.");

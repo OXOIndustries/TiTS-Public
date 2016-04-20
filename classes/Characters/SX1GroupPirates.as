@@ -251,8 +251,8 @@ package classes.Characters
 				if (targets[i] is Saendra) saen = targets[i] as Creature;
 			}
 			
-			var blindedPC:Boolean = rand(10) != 0;
-			var blindedSaen:Boolean = saen != null && rand(10) != 0;
+			var blindedPC:Boolean = rand(10) != 0 && !pc.hasBlindImmunity();
+			var blindedSaen:Boolean = saen != null && rand(10) != 0 && !saen.hasBlindImmunity();
 			
 			if (blindedPC && blindedSaen)
 			{

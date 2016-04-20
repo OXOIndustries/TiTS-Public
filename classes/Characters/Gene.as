@@ -45,5 +45,10 @@
 			this.cumMultiplierRaw = 30;
 			this.ballEfficiency = 90;
 		}
+		
+		override public function onLeaveBuyMenu():void
+		{
+			kGAMECLASS.genesModsGenericScene();
+		}
 	}
 }

@@ -355,8 +355,8 @@
 			
 			if (targets.length > 1)
 			{
-				var blindedPC:Boolean = rand(10) != 0;
-				var blindedAnno:Boolean = rand(10) != 0;
+				var blindedPC:Boolean = rand(10) != 0 && !pc.hasBlindImmunity();
+				var blindedAnno:Boolean = rand(10) != 0 && !anno.hasBlindImmunity();
 				if (blindedPC && blindedAnno)
 				{
 					output(" blinding you and Anno.");

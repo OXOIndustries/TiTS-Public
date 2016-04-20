@@ -23,6 +23,8 @@
 	import classes.GameData.CombatAttacks;
 	import classes.GameData.CombatManager;
 	
+	import classes.kGAMECLASS;
+	
 	public class Anno extends Creature
 	{
 		//constructor
@@ -368,6 +370,12 @@
 				damage.add(bonusDamage);
 				applyDamage(damage, this, target, "minimal");
 			}
+		}
+		
+		override public function onLeaveBuyMenu():void
+		{
+			if (!kGAMECLASS.annoIsCrew()) kGAMECLASS.repeatAnnoApproach();
+			else kGAMECLASS.annoFollowerApproach();
 		}
 	}
 }

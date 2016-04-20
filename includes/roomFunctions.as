@@ -286,9 +286,11 @@ public function debugMenusTwo():void
 		pc.createKeyItem("Goozooka");
 	});
 	
-	addItemButton(4, new Goovolver(), function():void {
-		output("\n\nGoovolver.\n");
-		quickLoot(new Goovolver());
+	addItemButton(4, new Silicone(), function():void {
+		output("\n\nSilicode.\n");
+		var sil:Silicone = new Silicone();
+		sil.quantity = 10;
+		quickLoot(sil);
 	});
 	
 	addButton(5, "OvirTF", function():void {

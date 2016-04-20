@@ -2,6 +2,7 @@ package classes.Engine.Combat
 {
 	import classes.Creature;
 	import classes.Engine.Utility.rand;
+	import classes.GLOBAL;
 	/**
 	 * ...
 	 * @author Gedan
@@ -29,7 +30,7 @@ package classes.Engine.Combat
 		//10% miss chance for lucky breaks!
 		if (target.hasPerk("Lucky Breaks") && rand(100) <= 9) return true;
 		if (target.hasStatusEffect("GooCamo") && rand(3) <= 1) return true;
-		
+		if (attacker.accessory.hasFlag(GLOBAL.ITEM_FLAG_REDUCED_ACCURACY) && rand(10) == 0) return true;
 		return false;
 	}
 }

@@ -3,6 +3,7 @@
 	import classes.CockClass;
 	import classes.Creature;
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
+	import classes.Items.Accessories.FlashGoggles;
 	import classes.Items.Melee.TaivrasSpear;
 	import classes.Items.Protection.ReaperArmamentsMarkIShield;
 	import classes.ItemSlotClass;
@@ -419,8 +420,16 @@
 		
 		private function pocketSandAttack(target:Creature):void
 		{
-			output("Taivra grabs a sack from her belt and hurls it at you, letting the thing tumble open in a cascade of fine grains of powdered rock. You’re smashed right in the face with a hail of sand! <b>You’re blinded!</b>");
-			target.createStatusEffect("Blinded",2+rand(3),0,0,0,false,"Blind","Accuracy is reduced, and ranged attacks are far more likely to miss.",true,0,0xFF0000);
+			output("Taivra grabs a sack from her belt and hurls it at you, letting the thing tumble open in a cascade of fine grains of powdered rock. You’re smashed right in the face with a hail of sand");
+			if (target.accessory is FlashGoggles)
+			{
+				output(", but your goggles protect your eyes.");
+			}
+			else
+			{
+				output("! <b>You’re blinded!</b>");
+				target.createStatusEffect("Blinded", 2 + rand(3), 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0, 0xFF0000);
+			}
 		}
 		
 		private function taivraConstantLustReduction():void

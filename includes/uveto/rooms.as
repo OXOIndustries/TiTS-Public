@@ -76,13 +76,13 @@ public function initUvetoRooms():void
 	/* Store? */
 	rooms["UVS B11"] = new RoomClass(this);
 	rooms["UVS B11"].roomName = "THE LAST\nCHANCE";
-	rooms["UVS B11"].description = "You're inside a small, brightly lit merchant stall. The walls are a warm, inviting off-pink and plastered with posters advertising various survival gear companies. Soft ausar pop music is playing over the speakers, barely audible over the rumble of a heater bolted to the wall. Racks of equipment, ranging from shield belts and personal heaters to ropes and pitons and hunting rifles hang on the shelves.";
+	rooms["UVS B11"].description = "You're inside a small, brightly lit merchant stall. The walls are a warm, inviting off-pink and plastered with posters advertising various survival gear companies. Ausar heavy metal is playing over the speakers, tuned down to be barely audible over the rumble of a heater bolted to the wall. Racks of equipment, ranging from shield belts and personal heaters to ropes and pitons and jetpacks hang on the walls. Several vials are arranged on the counter, advertising various ausar-related gene mods on their labels.";
 	rooms["UVS B11"].planet = "UVETO STATION";
 	rooms["UVS B11"].system = "SYSTEM: SIRETTA";
 	rooms["UVS B11"].northExit = "UVS B9";
 	rooms["UVS B11"].eastExit = "UVS D11";
 	rooms["UVS B11"].moveMinutes = 1;
-	rooms["UVS B11"].runOnEnter = null;
+	rooms["UVS B11"].runOnEnter = uvetoLastChanceStoreEntry;
 	rooms["UVS B11"].addFlag(GLOBAL.INDOOR);
 	rooms["UVS B11"].addFlag(GLOBAL.COMMERCE);
 
@@ -277,7 +277,7 @@ public function initUvetoRooms():void
 
 	/* Elevator */
 	rooms["UVI F34"] = new RoomClass(this);
-	rooms["UVI F34"].roomName = "SPACE LIFT\nIRESTEAD";
+	rooms["UVI F34"].roomName = "SPACE LIFT:\nIRESTEAD";
 	rooms["UVI F34"].description = "The Uveto Station space elevator is a huge, flat cargo platform loaded down with crates and other spacers. Everyone on the elevator is bundled up with heavy coats, heat-generator belts, and anything else they can find to stave off the frigid cold of the icy world outside. A sign on the hallway to the east says, in big, friendly neon letters, ‘WELCOME TO UVETO’.\n\nThe door out of the elevator leads you into a large, sealed metal building with frosted glass windows letting in the light. Dozens of ausar are moving around inside, many of whom wander over to help unload the elevator. ";
 	rooms["UVI F34"].planet = "PLANET: UVETO VII";
 	rooms["UVI F34"].system = "SYSTEM: SIRETTA";
@@ -317,18 +317,33 @@ public function initUvetoRooms():void
 	/* Geo Survey */
 	rooms["UVI J32"] = new RoomClass(this);
 	rooms["UVI J32"].roomName = "GEO. SURVEY\nINTERIOR";
-	rooms["UVI J32"].description = "9999 REAPER PLS";
+	rooms["UVI J32"].description = "Entering the survey station, you look around the inside of the tower. The main room is filled with a vast array of readouts, sensor screens, and monitors, all being constantly checked by a small group of technicians from a variety of races, though they predominantly appear to be huskar.\n\nIn the centre of the room is a holographic map table outlining everything around Irestead, from the weather to the constant ice flows. A pair of techs move constantly to and from terminals to the map table, making sure that the weather reports and map information they’re receiving is checked and up to date.";
 	rooms["UVI J32"].planet = "PLANET: UVETO VII";
 	rooms["UVI J32"].system = "SYSTEM: SIRETTA";
 	rooms["UVI J32"].southExit = "UVI J34";
 	rooms["UVI J32"].inExit = "BUNNY_FUN_HUT";
 	rooms["UVI J32"].inText = "Up";
-	//rooms["UVI J32"].westExit = "UVI H32"; // TEMP 9999
+	//rooms["UVI J32"].inExit = "UVI J32 F2";
+	//rooms["UVI J32"].inExit = "UP";
 	rooms["UVI J32"].moveMinutes = 1;
 	rooms["UVI J32"].runOnEnter = null;
 	rooms["UVI J32"].addFlag(GLOBAL.INDOOR);
 	rooms["UVI J32"].addFlag(GLOBAL.NPC);
 
+	// 9999 Disconnected until we actually use/need it
+	rooms["UVI J32 F2"] = new RoomClass(this);
+	rooms["UVI J32 F2"].roomName = "GEO. SURVEY\n2ND FLOOR";
+	rooms["UVI J32 F2"].description = "The second level of the Control tower there is a short corridor, with a door at the end that leads to the boss office. The other rooms on this level house servers, another couple of offices, and some locked doors that you can’t open.";
+	rooms["UVI J32 F2"].planet = "PLANET: UVETO VII";
+	rooms["UVI J32 F2"].system = "SYSTEM: SIRETTA";
+	rooms["UVI J32 F2"].outExit = "UVI J32";
+	rooms["UVI J32 F2"].outText = "Down";
+	rooms["UVI J32 F2"].inExit = "BUNNY_FUN_HUT";
+	rooms["UVI J32 F2"].inText = "Up";
+	rooms["UVI J32 F2"].moveMinutes = 1;
+	rooms["UVI J32 F2"].runOnEnter = null;
+	rooms["UVI J32 F2"].addFlag(GLOBAL.INDOOR);
+	
 	rooms["BUNNY_FUN_HUT"] = new RoomClass(this);
 	rooms["BUNNY_FUN_HUT"].roomName = "OBSERVATION\nDECK";
 	rooms["BUNNY_FUN_HUT"].description = "";
@@ -336,7 +351,6 @@ public function initUvetoRooms():void
 	rooms["BUNNY_FUN_HUT"].system = "SYSTEM: SIRETTA";
 	rooms["BUNNY_FUN_HUT"].outExit = "UVI J32";
 	rooms["BUNNY_FUN_HUT"].outText = "Down";
-	//rooms["BUNNY_FUN_HUT"].westExit = "UVI H32"; // TEMP 9999
 	rooms["BUNNY_FUN_HUT"].moveMinutes = 1;
 	rooms["BUNNY_FUN_HUT"].runOnEnter = upstairsGeoSurveyBonus;
 	rooms["BUNNY_FUN_HUT"].addFlag(GLOBAL.INDOOR);

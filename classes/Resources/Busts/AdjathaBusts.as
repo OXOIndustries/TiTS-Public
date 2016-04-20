@@ -1,5 +1,6 @@
 package classes.Resources.Busts 
 {
+	import flash.geom.Rectangle;
 	/**
 	 * ...
 	 * @author Gedan
@@ -80,6 +81,10 @@ package classes.Resources.Busts
 		public var Bust_LYS:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/lys_nude.png", mimeType = "image/png")]
 		public var Bust_LYS_NUDE:Class;
+		
+		[Embed(source = "../../../assets/images/npcs/adjatha/mirian.png", mimeType = "image/png")]
+		public var Bust_MIRIAN:Class;
+		public var Bounds_MIRIAN:Rectangle = new Rectangle(92, 0, 70, 70);
 		
 		[Embed(source = "../../../assets/images/npcs/adjatha/ovir_dancer.png", mimeType = "image/png")]
 		public var Bust_OVIR_DANCER:Class;
@@ -181,6 +186,9 @@ package classes.Resources.Busts
 			public var Full_LYS:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/lys_nude.png", mimeType = "image/png")]
 			public var Full_LYS_NUDE:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/mirian.png", mimeType = "image/png")]
+			public var Full_MIRIAN:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/ovir_dancer.png", mimeType = "image/png")]
 			public var Full_OVIR_DANCER:Class;

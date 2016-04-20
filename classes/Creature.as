@@ -6,6 +6,7 @@
 	import classes.DataManager.Errors.VersionUpgraderError;
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.GameData.SingleCombatAttack;
+	import classes.Items.Accessories.FlashGoggles;
 	import classes.Items.Guns.MyrBow;
 	import classes.Items.Melee.Fists;
 	import classes.Items.Melee.Rock;
@@ -1902,6 +1903,7 @@
 					buffer = vagOrAss(arg2);
 					break;
 				case "clit":
+				case "clitoris":
 					buffer = clitDescript();
 					break;
 				case "eachClit":
@@ -12693,7 +12695,7 @@
 			// Only run the knockup shit if the creature actually gets saved
 			if (neverSerialize == false && cumFrom != null)
 			{
-				if(cumflationEnabled() && !isPregnant(vagIndex)) 
+				if(cumflationEnabled()) 
 				{
 					cumflationHappens(cumFrom,vagIndex);
 					if(this is Emmy) 
@@ -12763,41 +12765,58 @@
 			// Exceptions
 			if(cumFrom.hasStatusEffect("Ovilium Effect")) return;
 			
+			var fluidType:int = GLOBAL.FLUID_TYPE_CUM;
+			var fluidVolume:Number = 0;
+			
+			if(cumFrom != null)
+			{
+				fluidType = cumFrom.cumType;
+				fluidVolume = cumFrom.cumQ();
+			}
+			
 			if(hole >= 0 && hole < 3)
 			{
-				if(!hasStatusEffect("Vaginally-Filled")) createStatusEffect("Vaginally-Filled",cumFrom.cumQ(),cumFrom.cumQ(),cumFrom.cumType,0,false,"Icon_Vagina","You've got some fluids inside you, leftovers from a recent lover.",false,0,0xB793C4);
+				// Pregnant vaginas can't get cumflated?
+				if(isPregnant(hole)) fluidVolume = 0;
+				if(fluidVolume <= 0) return;
+				
+				if(!hasStatusEffect("Vaginally-Filled")) createStatusEffect("Vaginally-Filled",fluidVolume,fluidVolume,fluidType,0,false,"Icon_Vagina","You've got some fluids inside you, leftovers from a recent lover.",false,0,0xB793C4);
 				else
 				{
 					//Track the new type.
-					setStatusValue("Vaginally-Filled",3,cumFrom.cumType);
+					setStatusValue("Vaginally-Filled",3,fluidType);
 					//Add the liquid volume.
-					addStatusValue("Vaginally-Filled",1,cumFrom.cumQ());
+					addStatusValue("Vaginally-Filled",1,fluidVolume);
 					//If new high score, set it.
 					if(statusEffectv1("Vaginally-Filled") > statusEffectv2("Vaginally-Filled")) setStatusValue("Vaginally-Filled",2,statusEffectv1("Vaginally-Filled"));
 				}
 			}
 			else if(hole == 3)
 			{
-				if(!hasStatusEffect("Anally-Filled")) createStatusEffect("Anally-Filled",cumFrom.cumQ(),cumFrom.cumQ(),cumFrom.cumType,0,false,"Icon_Donut","You've got some fluids inside you, leftovers from a recent lover.",false,0,0xB793C4);
+				if(fluidVolume <= 0) return;
+				
+				if(!hasStatusEffect("Anally-Filled")) createStatusEffect("Anally-Filled",fluidVolume,fluidVolume,fluidType,0,false,"Icon_Donut","You've got some fluids inside you, leftovers from a recent lover.",false,0,0xB793C4);
 				else
 				{
 					//Track the hole it's in along with the new type.
-					setStatusValue("Anally-Filled",3,cumFrom.cumType);
+					setStatusValue("Anally-Filled",3,fluidType);
 					//Add the liquid volume.
-					addStatusValue("Anally-Filled",1,cumFrom.cumQ());
+					addStatusValue("Anally-Filled",1,fluidVolume);
 					//If new high score, set it.
 					if(statusEffectv1("Anally-Filled") > statusEffectv2("Anally-Filled")) setStatusValue("Anally-Filled",2,statusEffectv1("Anally-Filled"));
 				}
 			}
 			else
 			{
-				if(!hasStatusEffect("Orally-Filled")) createStatusEffect("Orally-Filled",cumFrom.cumQ(),cumFrom.cumQ(),cumFrom.cumType,0,false,"Icon_Lips_Glossed","You've got some fluids inside you, leftovers from a recent lover.",false,0,0xB793C4);
+				if(fluidVolume <= 0) return;
+				
+				if(!hasStatusEffect("Orally-Filled")) createStatusEffect("Orally-Filled",fluidVolume,fluidVolume,fluidType,0,false,"Icon_Lips_Glossed","You've got some fluids inside you, leftovers from a recent lover.",false,0,0xB793C4);
 				else
 				{
 					//Track the hole it's in along with the new type.
-					setStatusValue("Orally-Filled",3,cumFrom.cumType);
+					setStatusValue("Orally-Filled",3,fluidType);
 					//Add the liquid volume.
-					addStatusValue("Orally-Filled",1,cumFrom.cumQ());
+					addStatusValue("Orally-Filled",1,fluidVolume);
 					//If new high score, set it.
 					if(statusEffectv1("Orally-Filled") > statusEffectv2("Orally-Filled")) setStatusValue("Orally-Filled",2,statusEffectv1("Orally-Filled"));
 				}
@@ -14710,5 +14729,15 @@
 		
 		// top kek
 		public function myMiddleNameIsJensen():Boolean { return hasCybernetics(); }
+		
+		public function hasBlindImmunity():Boolean
+		{
+			return (accessory is FlashGoggles);
+		}
+		
+		public function onLeaveBuyMenu():void
+		{
+			throw new Error("Vendor doesn't have a buy-menu leave functor specified.");
+		}
 	}
 }
