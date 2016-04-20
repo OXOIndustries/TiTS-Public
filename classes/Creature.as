@@ -14635,16 +14635,15 @@
 					if(hasPerk("'Nuki Nuts") && statusEffects[o].value3==GLOBAL.FLUID_TYPE_CUM) //Implementing Kui-Tan Cum Cascade from Codex
 					{
 						//Calculate amount metabolized over time
-						//Metabolize entire load over an hour.
-						var cumTransfer:Number = statusEffects[o].value1 / 60;
+						var cumTransfer:Number = statusEffects[o].value1 / 10; //Metabolize entire load over 10 minutes.
 						cumTransfer *= timePassed;
 						trace("Cum Metabolized:" + cumTransfer);
 						if (cumTransfer > statusEffects[o].value1) cumTransfer = statusEffects[o].value1;
 						statusEffects[o].value1 -= cumTransfer;
-						var cumTransferPercent:Number = (cumTransfer / maxCum()) * 200;//Double up com production
+						var cumTransferPercent:Number = (cumTransfer / maxCum()) * 500;//5x cum production spike
 						trace("Percent Increase:" + cumTransferPercent);
+						if (cumTransferPercent > 10) kGAMECLASS.eventBuffer += "\n\nYou hear a faint gurgling from your stomach and [pc.balls] as you feel them swelling fuller and fuller each passing second. With your kui-tan physiology, all that cum you injested must have spiked your own production!";
 						cumCascade(cumTransferPercent);
-						if (cumTransferPercent > 10) notice += "\n\nYour stomach seems emptier, but your [pc.balls] seem fuller. Perhaps all that cum you drank went straight to your junk.";
 					}
 				}
 				if(statusEffects[o].value1 <= 0) removals.push("Orally-Filled");
@@ -14658,7 +14657,7 @@
 			kGAMECLASS.eventBuffer += notice;
 		}
 
-		//Implementing Kui-Tan Cum Cascade from Codex
+		//For directly increasing cum
 		public function cumCascade(cumDelta: Number): void { 
 	
 			if(balls > 0 && (ballFullness + cumDelta >= 100 && ballFullness < 100 && this is PlayerCharacter))
