@@ -285,8 +285,8 @@ package classes.Characters
 			
 			if (kara != null)
 			{
-				var blindedPC:Boolean = rand(10) != 0;
-				var blindedKara:Boolean = rand(10) != 0;
+				var blindedPC:Boolean = rand(10) != 0 && !pc.hasBlindImmunity();
+				var blindedKara:Boolean = rand(10) != 0 && !kara.hasBlindImmunity();
 				if (blindedPC && blindedKara)
 				{
 					output(", blinding you and Kara.");
@@ -306,7 +306,7 @@ package classes.Characters
 			// Can only be the PC then
 			else
 			{
-				blindedPC = rand(10) != 0;
+				blindedPC = rand(10) != 0 && !pc.hasBlindImmunity();
 				
 				if (blindedPC)
 				{

@@ -24,5 +24,10 @@
 
 			this.femininity = 85;
 		}
+		
+		override public function onLeaveBuyMenu():void
+		{
+			kGAMECLASS.ceriaMenu();
+		}
 	}
 }

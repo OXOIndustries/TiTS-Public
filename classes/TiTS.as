@@ -281,6 +281,7 @@
 		
 		// Uveto
 		include "../includes/uveto/nayna.as";
+		include "../includes/uveto/nerrasa.as";
 		include "../includes/uveto/rooms.as";
 		include "../includes/uveto/roomFunctions.as";
 		include "../includes/events/icequeen/icequeen.as"; // Alt. path to unlocking uveto
@@ -1181,6 +1182,10 @@
 		public function get lerris():Lerris
 		{
 			return chars["LERRIS"];
+		}
+		public function get nerrasa():Nerrasa
+		{
+			return chars["NERRASA"];
 		}
 		
 		private var _dbgtestvar:int = 0;

@@ -100,7 +100,7 @@ package classes.Items.Miscellaneous
 			if (targetCreature.isPlural) kGAMECLASS.output("You throw a flashbang at one of " + targetCreature.a + targetCreature.short + "!");
 			else kGAMECLASS.output("You throw a flashbang at " + targetCreature.a + targetCreature.short + "!");
 			
-			if (!targetCreature.hasStatusEffect("Blinded"))
+			if (!targetCreature.hasStatusEffect("Blinded") && !targetCreature.hasBlindImmunity())
 			{
 				if (targetCreature.isPlural) kGAMECLASS.output("\n<b>" + targetCreature.capitalA + targetCreature.short + " are blinded by");
 				else kGAMECLASS.output("\n<b>" + targetCreature.capitalA + targetCreature.short + " is blinded by");
@@ -122,7 +122,7 @@ package classes.Items.Miscellaneous
 			
 			applyDamage(this.baseDamage, usingCreature, targetCreature);
 			
-			if (!targetCreature.hasStatusEffect("Blinded"))
+			if (!targetCreature.hasStatusEffect("Blinded") && !targetCreature.hasBlindImmunity())
 			{
 				kGAMECLASS.output(" <b>The grenade explodes with a vibrant and overwhelming flash, the sheer magnitude of the effect almost knocking you to your [pc.ass]. You're seeing stars!</b>");
 				targetCreature.createStatusEffect("Blinded", 2, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0,0xFF0000);

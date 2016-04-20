@@ -6,6 +6,7 @@
 	import classes.DataManager.Errors.VersionUpgraderError;
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.GameData.SingleCombatAttack;
+	import classes.Items.Accessories.FlashGoggles;
 	import classes.Items.Guns.MyrBow;
 	import classes.Items.Melee.Fists;
 	import classes.Items.Melee.Rock;
@@ -14679,5 +14680,15 @@
 		
 		// top kek
 		public function myMiddleNameIsJensen():Boolean { return hasCybernetics(); }
+		
+		public function hasBlindImmunity():Boolean
+		{
+			return (accessory is FlashGoggles);
+		}
+		
+		public function onLeaveBuyMenu():void
+		{
+			throw new Error("Vendor doesn't have a buy-menu leave functor specified.");
+		}
 	}
 }

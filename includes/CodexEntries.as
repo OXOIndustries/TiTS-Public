@@ -149,6 +149,7 @@ public function codexHomeFunction():void
 	outputCodex("\n\tSteele Industries® Automated Fringe Classifier™ (ScanNow™)");
 	outputCodex("\n\tSteele Industries® Biosign Monitor Alerting™ (MedSign™)");
 	outputCodex("\n\tSteele Industries® LIDAR Positioning System™ (L3P™)");
+	if (flags["CODEX_UVETO_TRACKER"] != undefined) outputCodex("\n\tSteele Industries® Emergency Positional Relay Beacon™ (SOS X5™)");
 
 	outputCodex("\n\nOptional module documentation has been provided and loaded into the CODEX™ documentation databases. For more information, please review the optional module documentation at your earliest convenience.");
 	outputCodex("\n\nCODEX-12b ready for user input.");
