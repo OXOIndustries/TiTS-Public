@@ -4349,6 +4349,11 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["KIRO_DEEPTHROATED_YOU"] != undefined) output2(", She deepthroated you");
 				if(flags["KIRO_BALLJOBBED_YOU"] != undefined) output2(", She gave you a balljob");
 				if(flags["PUMPED_KIRO_PUSSY"] != undefined) output2(", Pumped her pussy");
+				if(flags["KIRO_ORGIED"] != undefined)
+				{
+					output2("\n<b>* Kiro, Times Joined Orgy with Flahne, Miko, Mai and Mi’dee: </b>" + flags["KIRO_ORGIED"]);
+					if(flags["KIRO_ORGY_DATE"] != undefined && ((flags["KIRO_ORGY_DATE"] + 2) < days)) output2(", Last was " + (days - flags["KIRO_ORGY_DATE"]) + " days ago");
+				}
 			}
 			roamCount++;
 		}
