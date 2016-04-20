@@ -69,7 +69,7 @@ public function naynaViewNice():Boolean
 public function naynaClothes():String
 {
 	//Warm
-	if(naynaWarm()) return RandomInCollection("sheer, latex bodysling with ZPA stamped on the bust","tight-fitting, rubbery bodysuit","rubbery unitard","inky undersuit","glistening, black bodysling","curve-hugging unitard","latex bodysuit","slick-looking undersuit","ZPA-stamped bodysling");
+	if(naynaWarm()) return RandomInCollection("sheer, latex bodysling with ZPI stamped on the bust","tight-fitting, rubbery bodysuit","rubbery unitard","inky undersuit","glistening, black bodysling","curve-hugging unitard","latex bodysuit","slick-looking undersuit","ZPI-stamped bodysling");
 	//Cold
 	else return RandomInCollection("fluffy, pink-furred winter wear","poofy winter coat","cold-weather outfit","fur-lined parka","pink-accented parka","fluffy, furry coat","squishy, warm-looking winter wear","poofy, white and pink parka");
 }
@@ -555,7 +555,7 @@ public function naynaEducationTalk():void
 	output("\n\nNodding, you can’t help but agree.");
 	if(pc.isBimbo()) output(" She sounds way too smart to disagree with!");
 	else output(" More than one war has broken out over colonization disputes.");
-	output("\n\nNayna smiles warmly at you. <i>“I’m glad you agree. Back on topic, I went to ZPA: Zinor Planetary Institute. They have one of the best weather studies programs in the sector, and I got in. There was only one other laquine that made the cut; Zinor is a terran world that doesn’t take a lot of off-world admission. We may have started out as the resident ‘dumb bunnies’ and ‘furry trash,’ but we also clawed our way to the top of the academic scoreboard.”</i> Smiling wider, she reveals the whole of her lapine buckteeth. <i>“Don’t get me wrong, I was a clumsy mess back then. The first nickname never really went away, but I got my revenge by being better where it mattered - in class.”</i>");
+	output("\n\nNayna smiles warmly at you. <i>“I’m glad you agree. Back on topic, I went to ZPI: Zinor Planetary Institute. They have one of the best weather studies programs in the sector, and I got in. There was only one other laquine that made the cut; Zinor is a terran world that doesn’t take a lot of off-world admission. We may have started out as the resident ‘dumb bunnies’ and ‘furry trash,’ but we also clawed our way to the top of the academic scoreboard.”</i> Smiling wider, she reveals the whole of her lapine buckteeth. <i>“Don’t get me wrong, I was a clumsy mess back then. The first nickname never really went away, but I got my revenge by being better where it mattered - in class.”</i>");
 	processTime(5);
 	//[Next]
 	clearMenu();
@@ -877,7 +877,7 @@ public function maxLewdGogo(flirtIntro:Boolean = false):void
 		output("You suggest a repeat of you first got together. You’ve been feeling a bit peckish after all.");
 		output("\n\nNayna’s eyes widen. <i>“Th-that again? Are you sure?”</i> Her eyes are wide with disbelief. <i>“It looked like it hurt.”</i>");
 		output("\n\nGrinning, you tell her that you can handle it and advance on her with a knowing smirk.");
-		output("\n\n<i>“Okay. If you’re sure.”</i> Nayna nervously shifts position, crossing her legs and rubbing one paw atop the other. No matter how she squirms, she can’t hide her rapidly engorging horse-prick. It’s may be just a little pony, but it still manages to bulge her ZPA-branded bodysling like some kind of poorly-concealed firearm. The closer you get, the bigger it swells. By the time you’re kneeling in front of her, it’s gotten as thick around as a soda can and at least twice as long.");
+		output("\n\n<i>“Okay. If you’re sure.”</i> Nayna nervously shifts position, crossing her legs and rubbing one paw atop the other. No matter how she squirms, she can’t hide her rapidly engorging horse-prick. It’s may be just a little pony, but it still manages to bulge her ZPI-branded bodysling like some kind of poorly-concealed firearm. The closer you get, the bigger it swells. By the time you’re kneeling in front of her, it’s gotten as thick around as a soda can and at least twice as long.");
 		output("\n\nNayna whimpers, but holds herself still, letting you take the lead.");
 	}
 	//FROM HUG INTRO
