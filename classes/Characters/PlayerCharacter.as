@@ -51,7 +51,7 @@ package classes.Characters
 				{
 					kGAMECLASS.oviliumEggBump(cumFrom, vagIndex);
 				}
-				if(cumflationEnabled() && !isPregnant(vagIndex)) cumflationHappens(cumFrom,vagIndex);
+				if(cumflationEnabled()) cumflationHappens(cumFrom,vagIndex);
 				return this.tryKnockUp(cumFrom, vagIndex);
 			}
 			
