@@ -260,7 +260,8 @@ public function appearance(forTarget:Creature):void
 			}
 			else
 			{
-				output2(" and nestled within the inky blackness of your eyeball proper.");
+				if(rand(3) == 0) output2(" and nestled within the inky blackness of your eyeball proper.");
+				else output2(" and nestled within the blacken depths of your sclera.");
 			}
 		}
 		else if (target.eyeType == GLOBAL.TYPE_LEITHAN)

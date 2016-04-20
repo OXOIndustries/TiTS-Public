@@ -1902,6 +1902,7 @@
 					buffer = vagOrAss(arg2);
 					break;
 				case "clit":
+				case "clitoris":
 					buffer = clitDescript();
 					break;
 				case "eachClit":
