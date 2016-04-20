@@ -193,6 +193,11 @@
 			delete d.bonusResistances;
 			delete d.bonusLustVuln;
 		}
+		
+		override public function onLeaveBuyMenu():void
+		{
+			kGAMECLASS.kellyOfficeApproach();
+		}
 	}
 
 }

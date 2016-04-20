@@ -310,7 +310,7 @@
 					output(" You cry out as the vial shatters, exploding in a pink cloud that blows over you. You gag and cough and suddenly your hands are reaching to your crotch as if on their own. You yank back, but feel a hot haze washing across your exposed body. What the hell is this stuff?");
 					//PC must pass an willpower check, else:
 					target.lust(5);
-					if(target.willpower() + rand(20) + 1 < 20 && !target.hasStatusEffect("Blinded")) {
+					if(target.willpower() + rand(20) + 1 < 20 && !target.hasStatusEffect("Blinded") && !target.hasBlindImmunity()) {
 						output("\n\nSuddenly, you realize that in the wake of the pink cloud, your vision's collapsed to just a few feet in front of you, and the zil girl is nowhere to be seen. You desperately rub at your eyes, but that only serves to make them burn as the lust-cloud sticks to your [pc.skin]. Oh, shit, you're <b>blinded</b>!");
 						target.createStatusEffect("Blinded",rand(3)+1,0,0,0,false,"Blind","You're blinded and cannot see! Accuracy is reduced, and ranged attacks are far more likely to miss.",true,0,0xFF0000);
 					}

@@ -14,7 +14,7 @@
 		{
 			this._latestVersion = 1;
 			this.version = _latestVersion;
-			this._neverSerialize = true;
+			this._neverSerialize = false;
 			
 			this.short = "Sera";
 			this.originalRace = "human";
@@ -185,6 +185,11 @@
 			this.ass.bonusCapacity = 50;
 			
 			this.createStatusEffect("Disarm Immune");
+		}
+		
+		override public function onLeaveBuyMenu():void
+		{
+			kGAMECLASS.approachSera();
 		}
 	}
 

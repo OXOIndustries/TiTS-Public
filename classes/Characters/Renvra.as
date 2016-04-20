@@ -194,6 +194,11 @@
 			
 		}
 		
+		override public function onLeaveBuyMenu():void
+		{
+			kGAMECLASS.approachRenvra();
+		}
+		
 	}
 
 }

@@ -192,102 +192,12 @@ public function shop(keeper:Creature):void {
 		return;
 	}
 	
-	if(keeper is Geoff) {
-		mainGameMenu();
-		return;
-	}
-	else if(keeper is Jade) {
-		approachJade();
-		return;
-	}
-	else if(keeper is Sera) {
-		approachSera();
-		return;
-	}
-	else if(keeper is Kelly) {
-		kellyOfficeApproach();
-		return;
-	}
-	else if(keeper is Anno)
+	if (keeper)
 	{
-		if (!annoIsCrew()) repeatAnnoApproach();
-		else annoFollowerApproach();
+		keeper.onLeaveBuyMenu();
 		return;
 	}
-	else if(keeper is Ellie)
-	{
-		ellieMenu();
-		return;
-	}
-	else if(keeper is Renvra)
-	{
-		approachRenvra();
-		return;
-	}
-	else if(keeper is Xanthe)
-	{
-		enterTheSilkenSerenityWhyDidWashHaveToDie();
-		return;
-	}
-	else if(keeper is MerchantQueen) {
-		introductionToMerchantQueenSloot();
-		return;
-	}
-	else if(keeper is Seifyn)
-	{
-		repeatSeifynMeeting();
-		return;
-	}
-	else if(keeper is Ceria)
-	{
-		ceriaMenu();
-		return;
-	}
-	else if(keeper is Gene)
-	{
-		genesModsGenericScene();
-		return;
-	}
-	else if(keeper is Emmy)
-	{
-		backToEmmyMain();
-		return;
-	}
-	else if(keeper is Inessa)
-	{
-		approachIness();
-		return;
-	}
-	else if(keeper is CrystalShopkeep)
-	{
-		visitCrystalGooShop();
-		return;
-	}
-	else if(keeper is Vi)
-	{
-		approachVi();
-		return;
-	}
-	else if(keeper is DoctorLash)
-	{
-		mainGameMenu();
-		return;
-	}
-	else if(keeper is VKo)
-	{
-		approachVKo();
-		return;
-	}
-	else if(keeper is Liriel)
-	{
-		lirielBackMenu(1);
-		return;
-	}
-	else if (keeper is Lerris)
-	{
-		lerrisMenu();
-		return;
-	}
+	
 	clearOutput();
 	output(keeper.keeperGreeting);
 	shopkeep = keeper;

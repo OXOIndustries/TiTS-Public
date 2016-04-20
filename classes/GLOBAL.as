@@ -949,6 +949,7 @@
 		public static const ITEM_FLAG_EXPOSE_ASS:int					= 11; // Used specifically for clothing/armor that exposes asshole to the elements.
 		public static const ITEM_FLAG_HEATBELT:int						= 12;
 		public static const ITEM_FLAG_HEAT_GENERATOR:int				= 13; // Some other item that provides total avoidance of damage from cold, but not nessecerily a belt.
+		public static const ITEM_FLAG_REDUCED_ACCURACY:int				= 14;
 		
 		public static const ITEM_FLAG_NAMES:Array = [
 			"Bow Weapon",
@@ -963,6 +964,9 @@
 			"Chest Exposed",
 			"Groin Exposed",
 			"Ass Exposed",
+			"Heat Belt",
+			"Heat Generator",
+			"Reduces Accuracy"
 		];
 		
 		/**

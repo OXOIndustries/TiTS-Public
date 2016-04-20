@@ -86,5 +86,10 @@
 
 			createPerk("No Cum Leakage",0,0,0,0);
 		}
+		
+		override public function onLeaveBuyMenu():void
+		{
+			kGAMECLASS.backToEmmyMain();
+		}
 	}
 }

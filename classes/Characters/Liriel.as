@@ -124,5 +124,10 @@
 			
 			createStatusEffect("Force Fem Gender");
 		}
+		
+		override public function onLeaveBuyMenu():void
+		{
+			kGAMECLASS.lirielBackMenu(1);
+		}
 	}
 }
