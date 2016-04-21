@@ -1,9 +1,11 @@
+import classes.Characters.Mimbrane;
 import classes.Characters.PlayerCharacter;
 import classes.Engine.Combat.DamageTypes.DamageResult;
 import classes.Engine.Combat.DamageTypes.TypeCollection;
 import classes.Engine.Combat.DamageTypes.DamageFlag;
 import classes.GameData.Pregnancy.Handlers.VenusPitcherFertilizedSeedCarrierHandler;
 import classes.Items.Accessories.LeithaCharm;
+import classes.RoomClass;
 
 public function uvetoSpaceElevatorBaseBonus():Boolean
 {
@@ -224,42 +226,47 @@ public function actuallyArriveAtUvetoStation():void
 	addButton(0, "Next", mainGameMenu);
 }
 
-public function tryApplyUvetoColdDamage():void
+public function tryApplyUvetoColdDamage(timeExposed:Number):Boolean
 {
 	var tPC:PlayerCharacter = pc as PlayerCharacter;
 	
-	var coldDamage:Number = -1;
+	var baseDamage:Number = -1;
 	var resistToMitigate:Number = -1;
 	
 	if (InRoomWithFlag(GLOBAL.OUTDOOR))
 	{
-		coldDamage = 5;
+		baseDamage = 0.5;
 		resistToMitigate = 25;
 	}
 	else if (InRoomWithFlag(GLOBAL.ICYTUNDRA))
 	{
-		coldDamage = 10;
-		resistToMitigate = 40;
+		baseDamage = 1;
+		resistToMitigate = 35;
+	}
+	else if (InRoomWithFlag(GLOBAL.FROZENTUNDRA))
+	{
+		baseDamage = 1
+		resistToMitigate = 50;
 	}
 	
-	if (coldDamage > 0 && tPC.willTakeColdDamage(resistToMitigate))
+	if (baseDamage > 0 && tPC.willTakeColdDamage(resistToMitigate))
 	{
 		if (tPC.skinType == GLOBAL.SKIN_TYPE_FUR)
 		{
-			coldDamage *= 0.5;
+			baseDamage *= 0.5;
 		}
 		else if (InCollection(tPC.skinType, GLOBAL.SKIN_TYPE_CHITIN, GLOBAL.SKIN_TYPE_SCALES))
 		{
-			coldDamage *= 1.25;
+			baseDamage *= 1.25;
 		}
 		else if (InCollection(tPC.skinType, GLOBAL.SKIN_TYPE_GOO, GLOBAL.SKIN_TYPE_LATEX))
 		{
-			coldDamage *= 1.5;
+			baseDamage *= 1.5;
 		}
 		
 		if (tPC.isNude())
 		{
-			coldDamage *= 2.0;
+			baseDamage *= 2.0;
 		}
 		else
 		{
@@ -267,21 +274,52 @@ public function tryApplyUvetoColdDamage():void
 			if (!tPC.hasArmor()) nakednessMulti += 0.333;
 			if (!tPC.hasUpperGarment() || tPC.isChestExposed()) nakednessMulti += 0.333;
 			if (!tPC.hasLowerGarment() || tPC.isCrotchExposed()) nakednessMulti += 0.333;
-			coldDamage *= nakednessMulti;
+			baseDamage *= nakednessMulti;
 		}
+		
+		var coldDamage:Number = baseDamage * timeExposed;
 		
 		var actualDamage:TypeCollection = new TypeCollection( { freezing: coldDamage }, DamageFlag.BYPASS_SHIELD);
 		var damageResult:DamageResult = applyDamage(actualDamage, null, tPC, "suppress");
 		
 		if (damageResult.totalDamage > 0)
 		{
-			output("\n\nYou wrap your arms around yourself, desperately trying to fend off the overwhelming cold. The planet's freezing you to your bones");
-			if (!tPC.isNude()) output(", no matter how much clothing you wear");
-			else output(" -- and being naked, you've got next to no defense against the chill");
-			output(". You feel like you might collapse if you don't take shelter soon!");
-			outputDamage(damageResult);
+			if (tPC.HP() > 0)
+			{
+				if (InRoomWithFlag(GLOBAL.ICYTUNDRA) || InRoomWithFlag(GLOBAL.OUTDOOR))
+				{
+					output("\n\nYou wrap your arms around yourself, desperately trying to fend off the overwhelming cold. The planet's freezing you to your bones");
+					if (!tPC.isNude()) output(", no matter how much clothing you wear");
+					else output(" -- and being naked, you've got next to no defense against the chill");
+					output(". You feel like you might collapse if you don't take shelter soon!");
+					outputDamage(damageResult);
+				}
+				else
+				{
+					output("\n\nThe cold on Uveto is absolutely piercing out here, with no walls or fluffy ausar to block the howling winds and free-flying shards of ice tearing across the rolling plains of ice and alien obsidian. You clutch your arms around yourself, trying to shield your body from the frigid cold, but to no avail. Shivering madly, you glance around in desperation: <b>you need to find shelter fast, or you're going to freeze!</b>");
+					outputDamage(damageResult);
+				}
+			}
+			else
+			{
+				output("\n\nThe Uvetan cold chills you to your");
+				if (!tPC.isGoo()) output(" bones");
+				else output(" gooey core");
+				output(", making you shiver uncontrollably. No matter where you go, there's no stopping the incessant, numbing cold. It physically <i>hurts</i> to be out here, and the longer you stay, the more your vision blurs and blurs... ");
+
+				output("\n\nSuddenly, your [pc.foot] catches, and before you can realize what's happening you pitch forward, planting your face in the thick snow. You gasp, flailing your arms for a moment, but... you can't seem to find the energy -- the vital strength -- to pick yourself up again. Snow settles onto your back, still blowing over you with heartless, frigid force. Try as you might, you find yourself fading, eyes starting to close. So sleepy...");
+
+				output("\n\nBlackness takes you.");
+				outputDamage(damageResult);
+				
+				clearMenu();
+				addButton(0, "Next", uvetoFallToColdDamage);
+				return true;
+			}
 		}
 	}
+	
+	return false;
 }
 
 public function hookUvetoRoomRemoveCold(direction:String):void
@@ -396,5 +434,121 @@ public function uvetoReactivateProbe():void
 	flags["UVIP_R10_PROBE_ACTIVE"] = 1;
 
 	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function uvetoFallToColdDamage():void
+{
+	clearOutput();
+
+	var rescuer:String = "NOBODY!"
+	
+	if (InRoomWithFlag(GLOBAL.OUTDOOR))
+	{
+		author("Savin");
+		output("You waken with a start, gasping for breath. Though your insides still throb with the vestigial ache of the Uvetan cold, you can feel heat washing over your limbs, bathing you in dry warmth. Never before has a space heater felt so good.");
+		
+		output("\n\nGroggily, you open your eyes, long enough to see that you’re in the back of a vehicle, bumping along the snowy outskirts of the plains. Ice has formed on the windows, but you can just make out Irestead in the distance, growing closer by the moment. Glancing at the front of the vehicle, you see metal bars separating you from the driver’s cabin, and an old slug shotgun bolted to the cage. A pair of cute little chibi ausar tokens hang from the rear view mirror, both dressed in too-tight Peacekeeper blouses and pointing finger guns at you.");
+		
+		output("\n\n<i>“You’re awake!”</i> a woman’s voice says from the driver’s seat, drawing your attention to a head of blue hair and a pair of floppy canid ears peeking out of a Peacekeeper helmet.");
+		if (flags["UVETO_LUNA_RESCUES"] == undefined)
+		{
+			flags["UVETO_LUNA_RESCUES"] = 1;
+			output(" <i>“What were you thinking, wandering around outside town without a heat belt. Lucky you I was around, or you’d have been dead for sure!”</i>");
+		}
+		else
+		{	
+			flags["UVETO_LUNA_RESCUES"]++;
+			output(" You gotta stop wandering around outside town, [pc.name]!”</i> Luna chides.");
+		}
+		
+		output("\n\nYou groan a hazy acknowledgement, but already you can feel your eyes growing heavy once more. It isn’t long before the gentle rocking of the Peacekeeper’s truck and the soothing warmth of the heater put you back to sleep...");
+
+		rescuer = "Luna";
+		processTime(360);
+	}
+	else if (InRoomWithFlag(GLOBAL.ICYTUNDRA) || InRoomWithFlag(GLOBAL.FROZENTUNDRA))
+	{
+		author("Gedan");
+
+		output("A loud crinkling noise draws you back from the brink, a regular rustle akin to a metronome tapping on the side of your near-unconsciousness. You feel yourself shift in time with the noise, something dragging you along as your body resists for a moment before following suit.");
+		
+		output("\n\nIt’s a struggle to peel open your eyes, the endless freezing winds having battered any exposed [pc.skinFurScales] so completely your [pc.face] is covered in outcroppings of icicles hanging from your features. You have to work your face a little, stretching and tugging against the icy buildup, as sensation slowly creeps back in - bringing with it the deep, throbbing pain of penetrating cold having set into the core of your body - before you can open them, finding yourself looking up at");
+		// 9999
+		output(" a crystal clear sky");
+		//an angry, vengeful sky
+		output(".");
+		
+		output("\n\nSomething is moving on the edge of your sight above you - no, in front, you realise. With no small amount of discomfort you look up and make out the shape of a large, nearly formless blob through your fuzzy vision. A person, you reason slowly, given how the shapes moving around; large, lumbering steps, each one taken tugging you forward on what must be some kind of sled through the snow.");
+		
+		output("\n\nYou suck down an icy cold breath of air before trying to attract your rescuers attention, only to be rewarded with a lightning bolt of pain as your lungs complain - as more warmth seeps back into your body, the less numb everything feels... and the more pain seeps through.");
+		
+		output("\n\nYou let your eyes drift closed, falling back into fitful slumber amidst the frozen tundra....");
+
+		rescuer = "Jerome";
+		processTime(840);
+	}
+	else
+	{
+		//author("Gedan");
+		//output("[PH] Jerynn Rescue");
+	}
+
+	//[Next] // Awaken in the medical center
+	clearMenu();
+	addButton(0, "Next", uvetoAwakenInMedCenter, rescuer);
+}
+
+public function uvetoAwakenInMedCenter(rescuer:String):void
+{
+	clearOutput();
+	author("Gedan");
+
+	output("<i>“[pc.name]? [pc.name], c-can you hear me?”</i>");
+	
+	output("\n\nYou scrunch your eyes closed and try to ignore the voice.");
+	
+	output("\n\n<i>“[pc.name]!”</i>");
+	
+	output("\n\nA pair of rubber-coated fingers press against your face with precisely measured force before spreading apart, pulling an eyelid open in the process. Light streams into your eye and you recoil against it, trying to squint it back closed to shut out the painful brightness - a brightness that only grows more intense as your tormenter shines something right at your [pc.eye], flicking it back and forth.");
+	
+	output("\n\n<i>“Welcome back-k-k to the land of the living, [pc.name],”</i> the voice informs you as the digits leave your [pc.skinFurScales] and the owner of the voice moves off somewhere else in the room.");
+	
+	output("\n\nYou blink away the light a few more times as the room starts to come into focus, medical equipment and the usual paraphernalia associated with an emergency care center lining various shelves. Through one of the tiny window slits at the top of the wall, you can just barely make out the top of the survey tower in Irstead.");
+	
+	output("\n\n<i>“You were very lucky that one of Iresteads rescue personnel managed to find you and bring you back here when they did.”</i>");
+	
+	output("\n\nYou try to reply but only manage a savage cough; your throats so <i>dry</i>.");
+	
+	output("\n\n<i>“Careful now; you’ve been out quite a while.”</i>");
+	
+	output("\n\nThe VI closes in on you again, this time with a large, steaming mug in her hands. <i>“It’s dangerous out there, you know; didn’t you get the warning?”</i>");
+	
+	output("\n\nShe hands you the mug and you all but <i>coo</i> as glorious warmths seeps into your fingers through the insulated walls of the container. You clutch the source of heat close, slowly sipping at the almost-too-hot liquid contained within.");
+	
+	output("\n\n<i>“You really must be more careful [pc.name].");
+	output(" If a storm were to have broken out");
+	//If the storm had been any worse}
+	output(" then "+ rescuer +" may not have been lucky enough to find you in time.”</i>");
+	
+	output("\n\nThe V-Ko almost sounds like it’s trying to admonish a child with the way it’s talking to you -");
+	if (pc.isAss()) output(" you’d set it straight for talking to you like that but");
+	output(" you’re too busy enjoying the blissful warmth of the mug to really care all that much.");
+	
+	output("\n\n<i>“Your equipment is in the locker next to the door; I trust you will see yourself out when you’re done, yes?”</i>");
+	
+	output("\n\nYou give the VI a nod and set about finishing the last of the drink doing such an amazing job of perking you up and returning feeling to your limbs.");
+	output("\n\nFinishing the drink off quickly, you clamber out of the bed onto");
+	if ((pc.hasFeet() && pc.legCount == 2) || pc.legCount == 1) output(" an"); 
+	output(" unsteady");
+	if (pc.hasFeet() && pc.legCount == 2) output(" pair of [pc.feet]");
+	else output(" [pc.legOrLegs]");
+	output(" and make for your gear....");
+
+	pc.HP(pc.HPMax());
+	pc.energy(pc.energyMax());
+	currentLocation = "UVI H32";
+
+	processTime(30);
 	addButton(0, "Next", mainGameMenu);
 }

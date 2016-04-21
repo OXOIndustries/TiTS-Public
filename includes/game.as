@@ -94,7 +94,7 @@ public function showLocationName():void
 	else setLocation(rooms[currentLocation].roomName, rooms[currentLocation].planet, rooms[currentLocation].system);
 }
 
-public function mainGameMenu():void {
+public function mainGameMenu(minutesMoved:Number = 0):void {
 	flags["COMBAT MENU SEEN"] = undefined;
 	
 	if (flags["PC_UPBRINGING"] == undefined)
@@ -143,9 +143,9 @@ public function mainGameMenu():void {
 	output(rooms[currentLocation].description);
 	showLocationName();
 	
-	if (pc.hasStatusEffect("Bitterly Cold"))
+	if (pc.hasStatusEffect("Bitterly Cold") && minutesMoved > 0)
 	{
-		tryApplyUvetoColdDamage();
+		if (tryApplyUvetoColdDamage(minutesMoved)) return;
 	}
 	
 	if(inCombat()) 
@@ -1077,7 +1077,7 @@ public function move(arg:String, goToMainMenu:Boolean = true):void {
 	trace("Printing map for " + currentLocation);
 	//mapper.printMap(map);
 	//process time here, then back to mainGameMenu!
-	if(goToMainMenu) mainGameMenu();
+	if(goToMainMenu) mainGameMenu(moveMinutes);
 }
 
 public function variableRoomUpdateCheck():void
