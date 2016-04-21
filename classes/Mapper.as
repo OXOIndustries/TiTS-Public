@@ -35,6 +35,7 @@
 		public static const room_plane_mask:int			= 1<<23;
 		public static const room_plant_bulb_mask:int	= 1 << 24;
 		public static const room_tundra_mask:int		= 1 << 25;
+		public static const room_frozen_mask:int		= 1 << 26;
 
 		private var roomsObj:Object;
 
@@ -228,6 +229,10 @@
 			if (roomsObj[targetRoom].hasFlag(GLOBAL.ICYTUNDRA))
 			{
 				map[x][y][z] |= room_tundra_mask;
+			}
+			if (roomsObj[targetRoom].hasFlag(GLOBAL.FROZENTUNDRA))
+			{
+				map[x][y][z] |= room_frozen_mask;
 			}
 			
 			if (this.mapDebug) trace("Finished room ", targetRoom)

@@ -94,7 +94,7 @@ public function showLocationName():void
 	else setLocation(rooms[currentLocation].roomName, rooms[currentLocation].planet, rooms[currentLocation].system);
 }
 
-public function mainGameMenu():void {
+public function mainGameMenu(minutesMoved:Number = 0):void {
 	flags["COMBAT MENU SEEN"] = undefined;
 	
 	if (flags["PC_UPBRINGING"] == undefined)
@@ -143,9 +143,9 @@ public function mainGameMenu():void {
 	output(rooms[currentLocation].description);
 	showLocationName();
 	
-	if (pc.hasStatusEffect("Bitterly Cold"))
+	if (pc.hasStatusEffect("Bitterly Cold") && minutesMoved > 0)
 	{
-		tryApplyUvetoColdDamage();
+		if (tryApplyUvetoColdDamage(minutesMoved)) return;
 	}
 	
 	if(inCombat()) 
@@ -432,6 +432,7 @@ public function crewRecruited():Number
 	if (bessIsFollower()) counter++;
 	if (hasGooArmor()) counter++;
 	if (varmintIsTame()) counter++;
+	if (yammiIsCrew()) counter++;
 	return counter;
 }
 
@@ -479,6 +480,15 @@ public function crew(counter:Boolean = false):Number {
 			addButton(count - 1, bess.short, approachFollowerBess);
 		}
 	}
+	if (yammiIsCrew())
+	{
+		count++;
+		if (!counter)
+		{
+			crewMessages += "\n\n" + yammiShipBonusText();
+			addButton(count - 1, "Yammi", yammiInTheKitchen);
+		}
+	}
 	if (varmintIsCrew())
 	{
 		count++;
@@ -523,12 +533,14 @@ public function rest(deltaT:int = -1):void {
 }
 public function restHeal():void
 {
+	var bonusMult:Number = 1 + pc.statusEffectv1("Home Cooking")/100;
 	if(pc.HPRaw < pc.HPMax()) {
 		if(pc.characterClass == GLOBAL.CLASS_SMUGGLER) pc.HP(Math.round(pc.HPMax()));
-		else pc.HP(Math.round(pc.HPMax() * .33));
+		else 
+		pc.HP(Math.round(pc.HPMax() * .33 * bonusMult));
 	}
 	if(pc.energy() < pc.energyMax()) {
-		pc.energy(Math.round(pc.energyMax() * .33));
+		pc.energy(Math.round(pc.energyMax() * .33 * bonusMult));
 	}
 }
 
@@ -1065,7 +1077,7 @@ public function move(arg:String, goToMainMenu:Boolean = true):void {
 	trace("Printing map for " + currentLocation);
 	//mapper.printMap(map);
 	//process time here, then back to mainGameMenu!
-	if(goToMainMenu) mainGameMenu();
+	if(goToMainMenu) mainGameMenu(moveMinutes);
 }
 
 public function variableRoomUpdateCheck():void

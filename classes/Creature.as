@@ -1713,13 +1713,13 @@
 					buffer = tailCocksDescript();
 					break;
 				case "cockOrStrapon":
-					buffer = cockOrStrapon();
+					buffer = cockOrStrapon(arg2,0);
 					break;
 				case "cockOrStraponNoun":
-					buffer = cockOrStrapon(-1);
+					buffer = cockOrStrapon(arg2,-1);
 					break;
 				case "cockOrStraponFull":
-					buffer = cockOrStrapon(1);
+					buffer = cockOrStrapon(arg2,1);
 					break;
 				case "nippleNoun":
 					buffer = nippleNoun(arg2);
@@ -12185,13 +12185,33 @@
 			return (lowerUndergarment.hardLightEquipped);
 		}
 		// Always picks the main anatomy--no need to complicate it!
-		public function cockOrStrapon(forceAdjective: int = 0, idxOverride:int = 0): String {
+		//Ids:
+		//-4 = catch-all "strapon"
+		//-3 = autoselect
+		//-2 = giant clitosaurus
+		//-1 = force hardlight strapon
+		//0+ = force specific dick
+		public function cockOrStrapon(idxOverride:int = -3,forceAdjective: int = 0): String {
 			var descript: String = "";
 			var sAdjective:Array = [];
 			var sNoun:Array = [];
-			
-			// Strapons! Always takes precedence, I guess!
-			if(lowerUndergarment.hardLightEquipped)
+
+			//if a idxOverride is set higher than your current dick count, set it to autopick something different
+			if(idxOverride >= cockTotal()) idxOverride = -3;
+			//Autopick? Prefer dick if available.
+			if(idxOverride == -3)
+			{
+				//Have cock? Use it by default
+				if(hasCock()) idxOverride = 0;
+				//No dick? Use the hard light
+				else if(hasHardLightEquipped()) idxOverride = -1;
+				//No hard light, use your clit.
+				else if(clitLength >= 4 && totalClits() > 0) idxOverride = -2;
+				//Nothing appropriate? Must be a strap-on
+				else idxOverride = -4;
+			}
+			//Hardlight wins
+			if(idxOverride == -1)
 			{
 				sAdjective = ["hardlight", "hardlight", "hardlight", "hardlight", "holo-", "holo-", "holo-", "projected", "projected", "holographic"];
 				sNoun = ["strapon", "strapon", "strapon", "dildo", "dildo"];
@@ -12221,14 +12241,14 @@
 				return descript;
 			}
 			// Penis?
-			else if(hasCock())
+			else if(idxOverride >= 0)
 			{
 				if(forceAdjective == 1 || (forceAdjective == 0 && rand(2) == 0)) descript += cockAdjective(idxOverride) + " ";
 				descript += cockNoun2(cocks[idxOverride]);
 				return descript;
 			}
 			// Giant Clits?
-			else if(hasVagina() && vaginas[0].clits >= 1 && clitLength >= 4)
+			else if(idxOverride == -2)
 			{
 				if(kGAMECLASS.silly && clitLength >= 12 && rand(2) == 0)
 				{
