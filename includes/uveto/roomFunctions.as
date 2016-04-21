@@ -93,8 +93,8 @@ public function rideSpaceElevatorUp():void
 {
 	clearOutput();
 	author("Savin");
-	kGAMECLASS.currentLocation = "GAME OVER";
-	kGAMECLASS.generateMap();
+	currentLocation = "GAME OVER";
+	generateMap();
 	showName("SPACE\nELEVATOR");
 	output("Once again, you board the Irestead space elevator - this time, going up. Unlike your trip down, the elevator’s barely occupied: only a couple of other spacers join you aboard, though the ever-present cargo remains aboard. Raw minerals from the Uvetan mines, you’d guess. A few moments after you embark, the station controller seals the doors, and you feel a sudden heft of gravity under your [pc.feet].");
 
@@ -117,8 +117,8 @@ public function uvetoSpaceElevatorBonus():Boolean
 public function rideSpaceElevatorDown():void
 {
 	clearOutput();
-	kGAMECLASS.currentLocation = "GAME OVER";
-	kGAMECLASS.generateMap();
+	currentLocation = "GAME OVER";
+	generateMap();
 	showName("SPACE\nELEVATOR");
 	author("Savin");
 	//First Time
@@ -273,7 +273,7 @@ public function tryApplyUvetoColdDamage(timeExposed:Number):Boolean
 			var nakednessMulti:int = 1;
 			if (!tPC.hasArmor()) nakednessMulti += 0.333;
 			if (!tPC.hasUpperGarment() || tPC.isChestExposed()) nakednessMulti += 0.333;
-			if (!tPC.hasLowerGarment() || tPC.isCrotchExposed()) nakednessMulti += 0.333;
+			if (!tPC.hasLowerGarment() || tPC.isCrotchExposed() || tPC.isAssExposed()) nakednessMulti += 0.333;
 			baseDamage *= nakednessMulti;
 		}
 		
@@ -376,7 +376,7 @@ public function uvetoLastChanceStoreEntry():Boolean
 		
 		output("\n\n<i>“Sup,”</i> she says, barely paying you any mind.");
 
-		addButton(0, "Nerreasa", uvetoApproachNerrasaRepeat);
+		addButton(0, "Nerrasa", uvetoApproachNerrasaRepeat);
 	}
 	return false;
 }
@@ -453,14 +453,13 @@ public function uvetoFallToColdDamage():void
 		output("\n\n<i>“You’re awake!”</i> a woman’s voice says from the driver’s seat, drawing your attention to a head of blue hair and a pair of floppy canid ears peeking out of a Peacekeeper helmet.");
 		if (flags["UVETO_LUNA_RESCUES"] == undefined)
 		{
-			flags["UVETO_LUNA_RESCUES"] = 1;
 			output(" <i>“What were you thinking, wandering around outside town without a heat belt. Lucky you I was around, or you’d have been dead for sure!”</i>");
 		}
 		else
-		{	
-			flags["UVETO_LUNA_RESCUES"]++;
+		{
 			output(" You gotta stop wandering around outside town, [pc.name]!”</i> Luna chides.");
 		}
+		IncrementFlag("UVETO_LUNA_RESCUES");
 		
 		output("\n\nYou groan a hazy acknowledgement, but already you can feel your eyes growing heavy once more. It isn’t long before the gentle rocking of the Peacekeeper’s truck and the soothing warmth of the heater put you back to sleep...");
 
@@ -484,6 +483,8 @@ public function uvetoFallToColdDamage():void
 		output("\n\nYou suck down an icy cold breath of air before trying to attract your rescuers attention, only to be rewarded with a lightning bolt of pain as your lungs complain - as more warmth seeps back into your body, the less numb everything feels... and the more pain seeps through.");
 		
 		output("\n\nYou let your eyes drift closed, falling back into fitful slumber amidst the frozen tundra....");
+		
+		IncrementFlag("UVETO_JEROME_RESCUES");
 
 		rescuer = "Jerome";
 		processTime(840);
@@ -492,6 +493,8 @@ public function uvetoFallToColdDamage():void
 	{
 		//author("Gedan");
 		//output("[PH] Jerynn Rescue");
+		
+		IncrementFlag("UVETO_JERYNN_RESCUES");
 	}
 
 	//[Next] // Awaken in the medical center
@@ -548,6 +551,7 @@ public function uvetoAwakenInMedCenter(rescuer:String):void
 	pc.HP(pc.HPMax());
 	pc.energy(pc.energyMax());
 	currentLocation = "UVI H32";
+	generateMap();
 
 	processTime(30);
 	addButton(0, "Next", mainGameMenu);
