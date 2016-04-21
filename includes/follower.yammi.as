@@ -466,16 +466,16 @@ public function yammisMenu():void
 	yammiFollowerDisplay();
 	output("<i>“Hungry, eh, Boss? Here ya go, this is what’s on the skillet, so to speak!”</i> She hands you a menu and waits expectantly.");
 	output("\n\nYammi’s menu presents the following dishes:");
-	output("\n<b>* Pepper Pie:</b> A special blend of hot and sweet peppers in a ground meat pie with fresh baked crust and rolls. Spicy!");
-	output("\n<b>* Marbled Steak:</b> A side-cut steak from a Fruldian Meat-Animal.");
+	output("\n<b>Pepper Pie</b>\nA special blend of hot and sweet peppers in a ground meat pie with fresh baked crust and rolls. Spicy!");
+	output("\n<b>Marbled Steak</b>\nA side-cut steak from a Fruldian Meat-Animal.");
 	if(reahaIsCrew()) output(" A hastily hand-written note assures your bovine companion that it’s <i>not</i> a cow-girl steak, please stop making that joke.");
-	output("\n<b>* Sweet Soup:</b> A fruit and nut soup made in the milk of a coconut, chilled, and served as a drink.");
-	output("\n<b>* Nobblur:</b> Pastry filled with mixed veggies and cheese, ground meat, spices, and gravy. Served in a bowl with grains to soak up the mess.");
-	output("\n<b>* A Snack Tray:</b> A big tray with finger foods of all sorts to munch on.");
-	output("\n<b>* Fried Tulpe:</b> A fried fish, imported from Yammi’s home world and cooked in citrus fruit pulp. Served with a side of tubers.");
-	if(flags["NALEEN_SNUGGLED"] != undefined) output("\n<b>* Ginder Fish:</b> A flame-cooked fish from the jungle world of Mhen’ga, imported at the captain’s request. Soft and rich; topped with lemons and a native honey-sauce.");
-	output("\n<b>* Yammi’s Sandwich:</b> A four foot long bread roll stuffed with a blend of spiced meat, seafood and cheese until it’s about to explode, then baked.");
-	if(reahaIsCrew()) output("\n<b>* New Texas Milkshake:</b> New Texan Milkshake, made with all-natural New Texan cow-girl milk and refined into a delicious treat. Absolutely does not infringe on any Iced Teats copyrights.");
+	output("\n<b>Sweet Soup</b>\nA fruit and nut soup made in the milk of a coconut, chilled, and served as a drink.");
+	output("\n<b>Nobblur</b>\nPastry filled with mixed veggies and cheese, ground meat, spices, and gravy. Served in a bowl with grains to soak up the mess.");
+	output("\n<b>A Snack Tray</b>\nA big tray with finger foods of all sorts to munch on.");
+	output("\n<b>Fried Tulpe</b>\nA fried fish, imported from Yammi’s home world and cooked in citrus fruit pulp. Served with a side of tubers.");
+	if(flags["NALEEN_SNUGGLED"] != undefined) output("\n<b>Ginder Fish</b>\nA flame-cooked fish from the jungle world of Mhen’ga, imported at the captain’s request. Soft and rich; topped with lemons and a native honey-sauce.");
+	output("\n<b>Yammi’s Sandwich</b>\nA four foot long bread roll stuffed with a blend of spiced meat, seafood and cheese until it’s about to explode, then baked.");
+	if(reahaIsCrew()) output("\n<b>New Texas Milkshake</b>\nNew Texan Milkshake, made with all-natural New Texan cow-girl milk and refined into a delicious treat. Absolutely does not infringe on any Iced Teats copyrights.");
 	clearMenu();
 	//Pepper Pie
 	addButton(0,"Pepper Pie",pepperPieYammi,undefined,"Pepper Pie","A special blend of hot and sweet peppers in a ground meat pie with fresh baked crust and rolls. Spicy!");
