@@ -123,6 +123,7 @@
 		include "../includes/follower.anno.as";
 		include "../includes/follower.celise.as";
 		include "../includes/follower.celiseGiga.as";
+		include "../includes/follower.yammi.as";
 		
 		//Sidequest shit
 		include "../includes/events/seraSexParty.as";

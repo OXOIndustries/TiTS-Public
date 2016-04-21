@@ -44,6 +44,9 @@ package classes.Resources
 		[Embed(source = "../../assets/icons/statuseffects/constricted.svg", mimeType = "image/svg")]
 		public static var Icon_Constricted:Class;
 
+		[Embed(source = "../../assets/icons/statuseffects/cooking.svg", mimeType = "image/svg")]
+		public static var Icon_Cooking:Class;
+
 		[Embed(source = "../../assets/icons/statuseffects/cow.svg", mimeType = "image/svg")]
 		public static var Icon_Cow:Class;
 		

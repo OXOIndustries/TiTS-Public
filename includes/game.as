@@ -432,6 +432,7 @@ public function crewRecruited():Number
 	if (bessIsFollower()) counter++;
 	if (hasGooArmor()) counter++;
 	if (varmintIsTame()) counter++;
+	if (yammiIsCrew()) counter++;
 	return counter;
 }
 
@@ -479,6 +480,15 @@ public function crew(counter:Boolean = false):Number {
 			addButton(count - 1, bess.short, approachFollowerBess);
 		}
 	}
+	if (yammiIsCrew())
+	{
+		count++;
+		if (!counter)
+		{
+			crewMessages += "\n\n" + yammiShipBonusText();
+			addButton(count - 1, "Yammi", yammiInTheKitchen);
+		}
+	}
 	if (varmintIsCrew())
 	{
 		count++;
@@ -523,12 +533,14 @@ public function rest(deltaT:int = -1):void {
 }
 public function restHeal():void
 {
+	var bonusMult:Number = 1 + pc.statusEffectv1("Home Cooking")/100;
 	if(pc.HPRaw < pc.HPMax()) {
 		if(pc.characterClass == GLOBAL.CLASS_SMUGGLER) pc.HP(Math.round(pc.HPMax()));
-		else pc.HP(Math.round(pc.HPMax() * .33));
+		else 
+		pc.HP(Math.round(pc.HPMax() * .33 * bonusMult));
 	}
 	if(pc.energy() < pc.energyMax()) {
-		pc.energy(Math.round(pc.energyMax() * .33));
+		pc.energy(Math.round(pc.energyMax() * .33 * bonusMult));
 	}
 }
 
