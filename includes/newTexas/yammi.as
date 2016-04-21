@@ -16,7 +16,8 @@ public function yammiShopDisplay(nude:Boolean = false):void
 public function showYammi(nude:Boolean = false):void
 {
 	showName("\nYAMMI");
-	showBust("YAMMI");
+	if(!nude) showBust("YAMMI");
+	else showBust("YAMMI_NUDE");
 }
 
 public function icedTeatsExteriorBonusFunc():Boolean
@@ -98,7 +99,7 @@ public function yammiRepeatMenu(outputS:Boolean = true):void
 		if(flags["YAMMI_BAD_DAY"] == 2)
 		{
 			if(pc.credits >= 7000) addButton(4,"Free Her",payForYammisSlutitude,undefined,"Free Her","Pay for Yammi's debt so that she can get out of this hellhole.");
-			else addDisabledButton(4,"Free Her","Free Her","You can't afford to buy Yammi out of her contract.");
+			else addDisabledButton(4,"Free Her","Free Her","You can't afford to buy Yammi out of her contract.\n\n7000 credits");
 		}
 	}
 	addButton(14,"Back",mainGameMenu);
@@ -147,7 +148,7 @@ public function orderAYammiCone():void
 	clearOutput();
 	yammiShopDisplay();
 	pc.credits -= 10;
-	output("<i>“Just a taste today? Certainly! Here you are!”</i> With a flourish, " + icedTeatsAlienName() + "produces a deep cone made of red-brown wafer. <i>“Our cones are 100% natural nutrients healthy for any carbon based life form and easily digestible for silicates!”</i>");
+	output("<i>“Just a taste today? Certainly! Here you are!”</i> With a flourish, " + icedTeatsAlienName() + " produces a deep cone made of red-brown wafer. <i>“Our cones are 100% natural nutrients healthy for any carbon based life form and easily digestible for silicates!”</i>");
 	preparingToGetIceCream("cone");
 }
 
@@ -157,7 +158,7 @@ public function orderAYammiBowl():void
 	clearOutput();
 	yammiShopDisplay();
 	pc.credits -= 20;
-	output("\n\n<i>“A hearty appetite, I see!”</i> " + icedTeatsAlienName() + "smiles and hands you a black bowl and spoon. <i>“Here you are. When you’re done, just toss those out. They automatically break down to simple particles in 48 hours so they don’t pollute!”</i>");
+	output("\n\n<i>“A hearty appetite, I see!”</i> " + icedTeatsAlienName() + " smiles and hands you a black bowl and spoon. <i>“Here you are. When you’re done, just toss those out. They automatically break down to simple particles in 48 hours so they don’t pollute!”</i>");
 	preparingToGetIceCream("bowl");
 }
 
@@ -167,7 +168,7 @@ public function orderAYammiFeast():void
 	clearOutput();
 	yammiShopDisplay();
 	pc.credits -= 50;
-	output("<i>“As you wish! Here you go!”</i> " + icedTeatsAlienName() + "pulls a tray with three bowl-like depressions in it from beneath the counter. <i>“Mix and match to your heart’s content, and you can keep the tray for use at home! Careful you don’t get a headache though!”</i> She giggles.");
+	output("<i>“As you wish! Here you go!”</i> " + icedTeatsAlienName() + " pulls a tray with three bowl-like depressions in it from beneath the counter. <i>“Mix and match to your heart’s content, and you can keep the tray for use at home! Careful you don’t get a headache though!”</i> She giggles.");
 	preparingToGetIceCream("feast");
 }
 

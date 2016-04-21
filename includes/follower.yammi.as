@@ -400,7 +400,7 @@ public function milkSalivaFromPexiga():void
 	output("Remembering Yammi’s lesson, you decide to get some of the pexiga’s sweet saliva for yourself. You slip down to the reptile-girl’s level, brushing some of her spine-hair out of her eyes. She blinks at you and murmurs, wiggling her pierced tongue slightly. Like she knows what’s coming.");
 	output("\n\nYou press on her tongue and massage your way up. It’s very warm despite the low temperature in the room, and soft as silk. The pexiga’s eyes roll upwards and she lets out faint gulping sounds as her reflexes tell her to swallow. Soon, a thick, clear gel starts to trickle down her tongue.");
 	output("\n\nHer bag of dietary supplements is nearby, hooked on the wall just out of her reach. After rubbing her extremely soft, warm tongue for a minute or two until she can’t resist drooling, you put one through her ring gag, rewarding her for letting you milk her.");
-	output("\n\nThe Pexiga greedily gulps down her food, and seems quite content to let you use her as a sweets factory in return. Yammi was right about them being pretty simple creatures in their old age. You find yourself grumbling about how nice it must be to have someone looking after all your needs!");
+	output("\n\nThe pexiga greedily gulps down her food, and seems quite content to let you use her as a sweets factory in return. Yammi was right about them being pretty simple creatures in their old age. You find yourself grumbling about how nice it must be to have someone looking after all your needs!");
 	output("\n\nThe pexiga murmurs wordlessly at you, and you notice its tail-tip is rubbing absently at her sex. Curious, you look around the reptile-girl’s body, and see that her dark blue lips are quite puffy and wet. Does she get off to this? The pexiga’s vacant eyes don’t reveal much, though she occasionally glances up at you and blinks slowly.");
 	output("\n\nThen you remember you have work to do. You bottle up the saliva you gathered and stick it in your pack, leaving the pexiga with a light pat on the head. She gurgles at you, tongue lolling listlessly from her mouth.\n\n");
 	//PC gains <i>“Pexiga Saliva”</i> item.
@@ -696,8 +696,7 @@ public function yammiFollowerSexMenu():void
 		//PC needs a twat
 		if(pc.hasVagina())
 		{
-			if(pc.girlCumType == GLOBAL.FLUID_TYPE_HONEY) addButton(2,"Get Licked",getLickedByYamyams,undefined,"Get Licked","Hop up on the counter and give Yammi a taste of your literal honeypot!");
-			else addButton(2,"Get Licked",getLickedByYamyams,undefined,"Get Licked","Hop up on the counter and give Yammi a taste of your {literal} honeypot!");
+			addButton(2,"Get Licked",getLickedByYamyams,undefined,"Get Licked","Hop up on the counter and give Yammi a taste of your" + (pc.girlCumType == GLOBAL.FLUID_TYPE_HONEY ? " literal" : "") + " honeypot!");
 		}
 		else addDisabledButton(2,"Get Licked","Get Licked","You must have a vagina for this.");
 	}
@@ -904,7 +903,7 @@ public function vaginalWithYammi(x:int = 0):void
 	if(x >= 0) output("can feel your [pc.cock " + x + "] hardening against Yammi’s thigh");
 	else output("manage to get your hand down to the controls for your hardlight, letting it spring to life against Yammi’s hips in a surge of sensation");
 	output(". Your love gasps, feeling your erection pressing against her. She smiles, grasping it and stroking gently. Each soft caress guides your member, drawing it towards her eager sex. Her arms clench around your shoulders, her legs at your hips, letting you carry her weight between you and the bulkhead.");
-	output("\n\nYou slip a hand between Yammi’s legs, deftly pulling aside her panties and sliding two fingers into the waiting hole they hide. Her back arches, a moan escaping her lips as you explore her welcoming depths. The grip of her knees around your [pc.hips] tightens, squeezing to the rhythm of your deep-thrusting digits. Slowly, you spread her pussylips open, letting your hips push forward and guide your [pc.cockOrStrapon " + x  + "] into the waiting kiss of Yammi’s pussy.");
+	output("\n\nYou slip a hand between Yammi’s legs, deftly pulling aside her panties and sliding two fingers into the waiting hole they hide. Her back arches, a moan escaping her lips as you explore her welcoming depths. The grip of her knees around your [pc.hips] tightens, squeezing to the rhythm of your deep-thrusting digits. Slowly, you spread her pussylips open, letting your hips push forward and guide your [pc.cockOrStrapon " + x + "] into the waiting kiss of Yammi’s pussy.");
 	output("\n\nYour lover’s breath catches in your throat, a physical clutch of pleasure in reaction to your entrance. Her quim clenches fiercely around your [pc.cockOrStrapon " + x + "], desperately drawing in inch after inch of your throbbing pride. With a grunt of effort, you heft Yammi up and spin the pair of you around, splaying her out across the countertop with her ass in the air and legs wrapping around your shoulders.");
 	if(x >= 0) pc.cockChange();
 	output("\n\n<i>“Come and get it, [pc.name],”</i> Yammi murmurs, stretching out with languid sexuality, slipping her dress off around her head. You sieze the opportunity, grabbing her breasts in both hands under her bra and squeezing them as hard as you can. Their owner arches her back and moans, biting her lip as your fingers find her nipples and start to play. Her underwear comes off soon enough, giving you free reign to grope and tease before you really start to fuck, just enjoying the little quivers and clenches around your [pc.cockOrStrapon " + x + "].");
