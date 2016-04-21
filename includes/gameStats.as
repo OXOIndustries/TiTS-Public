@@ -762,6 +762,7 @@ public function statisticsScreen(showID:String = "All"):void
 		if(flags["TOOK_PRINCESS_BUTTGINITY"] != undefined) totalVirginitiesTaken++;
 		if(flags["ANZHELA_ANALED"] != undefined) totalVirginitiesTaken++;
 		if(flags["NAYNA_FUCKED"] != undefined) totalVirginitiesTaken++;
+		if(flags["ANALED_YAMMI"] != undefined) totalVirginitiesTaken++;
 		if(!ainaIsVirgin()) totalVirginitiesTaken++;
 		if(sleepingPartner != "" || totalVirginitiesTaken > 0)
 		{
@@ -2650,14 +2651,16 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["HAD_FLAMEBERKS"] != undefined) flavorsTotal++;
 				output2("\n<b>* Number of Flavors Tasted: </b>" + flavorsTotal);
 				if(silly && flavorsTotal >= 8) output2(", <i>Yum!</i>");
-				// Yammi follower?
+				// Yammi
 				output2("\n<b>* Yammi:</b> Met her");
-				if(yammiIsOwned())
+				if(yammiRecruited())
 				{
-					if(9999 == 0) output2(", Crew member");
-					else output2(", Own");
-					if(9999 == 0) output2(" (Onboard Ship)");
+					output2(", Crew member");
+					if(yammiIsCrew()) output2(" (Onboard Ship)");
 				}
+				else if(flags["YAMMI_RECRUITED"] == -1) output2(", <i>Whereabouts unknown</i>");
+				if(flags["SEXED_YAMMI"] != undefined) output2("\n<b>* Yammi, Times Sexed: </b>" + flags["SEXED_YAMMI"]);
+				if(flags["ANALED_YAMMI"] != undefined) output2("\n<b>* Yammi, Times Fucked Her Ass: </b>" + flags["ANALED_YAMMI"]);
 				// Reaha special
 				if(flags["REAHA_ICE_CREAM_DAYS"] != undefined) output2("\n<b>* Reaha, Days Since Last Had Ice Cream With: </b>" + (days - flags["REAHA_ICE_CREAM_DAYS"]));
 				if(flags["REAHA_ICE_CREAM_TIMES"] != undefined) output2("\n<b>* Reaha, Times Had Ice Cream With: </b>" + flags["REAHA_ICE_CREAM_TIMES"]);
@@ -4206,6 +4209,7 @@ public function displayEncounterLog(showID:String = "All"):void
 		
 		if(showID == "Uveto" || showID == "All")
 		{
+			// Nayna
 			if(flags["MET_NAYNA"] != undefined)
 			{
 				output2("\n<b><u>Geological Survey</u></b>");
@@ -4214,6 +4218,53 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["NAYNA_HUGS"] != undefined) output2("\n<b>* Nayna, Times Hugged Her: </b>" + flags["NAYNA_HUGS"]);
 				if(flags["NAYNA_BLOWN"] != undefined) output2("\n<b>* Nayna, Times Given Her Blowjobs: </b>" + flags["NAYNA_BLOWN"]);
 				if(flags["NAYNA_FUCKED"] != undefined) output2("\n<b>* Nayna, Times Fucked Her Vagina: </b>" + flags["NAYNA_FUCKED"]);
+				variousCount++;
+			}
+			// Nerrasa
+			if(flags["MET_NERRASA"] != undefined)
+			{
+				output2("\n<b><u>Last Chance</u></b>");
+				output2("\n<b>* Nerrasa:</b> Met her");
+				if(flags["NERRASAS_PET"] != undefined) output2(", You’re her pet");
+				if(flags["NERRASA_FUCKED"] != undefined) output2("\n<b>* Nerrasa, Times Sexed: </b>" + flags["NERRASA_FUCKED"]);
+				variousCount++;
+			}
+			// Sheriff's Office
+			if(flags["UVETO_LUNA_RESCUES"] != undefined || flags["UVETO_JEROME_RESCUES"] != undefined || flags["UVETO_JERYNN_RESCUES"] != undefined)
+			{
+				output2("\n<b><u>Sheriff’s Office</u></b>");
+				if(flags["UVETO_LUNA_RESCUES"] != undefined) output2("\n<b>* Luna, Times Rescued By: </b>" + flags["UVETO_LUNA_RESCUES"]);
+				if(flags["UVETO_JEROME_RESCUES"] != undefined) output2("\n<b>* Jerome, Times Rescued By: </b>" + flags["UVETO_JEROME_RESCUES"]);
+				if(flags["UVETO_JERYNN_RESCUES"] != undefined) output2("\n<b>* Jerynn, Times Rescued By: </b>" + flags["UVETO_JERYNN_RESCUES"]);
+				variousCount++;
+			}
+			// Ice Plains
+			if(flags["9999"] != undefined || flags["9999"] != undefined || flags["UVIP_J46_SEARCHED"] != undefined)
+			{
+				output2("\n<b><u>Ice Plains</u></b>");
+				if(flags["9999"] != undefined) output2("\n<b>* Korgonne, Times Encountered: </b>" + flags["9999"]);
+				if(flags["9999"] != undefined) output2("\n<b>* Stormguard Lancer, Times Encountered: </b>" + flags["9999"]);
+				// Abandoned Outpost
+				if(flags["UVIP_J46_SEARCHED"] != undefined) output2("\n<b>* Abandoned Outpost:</b> Found, Looted camp");
+				variousCount++;
+			}
+			// Resources
+			if(flags["9999"] != undefined)
+			{
+				output2("\n<b><u>Uvetan Resources</u></b>");
+				if(flags["9999"] != undefined) output2("\n<b>* Oxonium Deposit: </b> Found");
+				
+				variousCount++;
+			}
+			// Travel Points
+			if(flags["UVIP_R10_PROBE_ACTIVE"] != undefined)
+			{
+				output2("\n<b><u>Uvetan Travel Points</u></b>");
+				// Crashed Probe
+				if(flags["UVIP_R10_PROBE_ACTIVE"] != undefined)
+				{
+					output2("\n<b>* Crashed Probe:</b> Found, Reactivated");
+				}
 				variousCount++;
 			}
 		}
@@ -4351,7 +4402,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["PUMPED_KIRO_PUSSY"] != undefined) output2(", Pumped her pussy");
 				if(flags["KIRO_ORGIED"] != undefined)
 				{
-					output2("\n<b>* Kiro, Times Joined Orgy with Flahne, Miko, Mai and Mi’dee: </b>" + flags["KIRO_ORGIED"]);
+					output2("\n<b>* Kiro, Times Had Orgy with You, Flahne, Miko, Mai and Mi’dee: </b>" + flags["KIRO_ORGIED"]);
 					if(flags["KIRO_ORGY_DATE"] != undefined && ((flags["KIRO_ORGY_DATE"] + 2) < days)) output2(", Last was " + (days - flags["KIRO_ORGY_DATE"]) + " days ago");
 				}
 			}
