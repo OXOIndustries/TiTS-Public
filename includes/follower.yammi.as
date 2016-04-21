@@ -52,6 +52,7 @@ public function yammisBadDay():void
 	flags["YAMMI_BAD_DAY"] = 1;
 	processTime(10);
 	//move back north
+	pc.createStatusEffect("Iced Teats Closed", 0, 0, 0, 0, true, "", "", false, 120);
 	clearMenu();
 	addButton(0,"Next",move,"507");
 }
@@ -125,9 +126,12 @@ public function acceptYammiBunsInShip():void
 	output("\n\n<i>“You won’t regret this! I promise! Let’s go, Boss, I have to make sure the kitchen’s all stocked up before we go anywhere!”</i> She locks the front door behind you and then slides the keycard back under the door.");
 	flags["YAMMI_RECRUITED"] = 1;
 	flags["YAMMI_IS_CREW"] = 1;
-	processTime(1);
+	processTime(8);
+	currentLocation = "507";
+	generateMap();
+	pc.createStatusEffect("Iced Teats Closed", 0, 0, 0, 0, true, "", "", false, 1440);
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	addButton(0,"Next",move,"SHIP INTERIOR");
 }
 
 //[Decline]
@@ -140,6 +144,10 @@ public function declineYammiBunsInShip():void
 	output("\n\n<i>“Oh,”</i> she says, more than a little dejectedly. <i>“I just thought... since you payed off my debts. Well! I guess I’ll have to make my own path, then!”</i> she says, flashing you a green-lipped smile.");
 	output("\n\nYou wish her all the best and point her to the spaceport just down the way. She gives you a parting peck on the cheek before spinning on a heel and marching off, to new adventures.");
 	flags["YAMMI_RECRUITED"] = -1;
+	processTime(2);
+	currentLocation = "507";
+	generateMap();
+	pc.createStatusEffect("Iced Teats Closed", 0, 0, 0, 0, true, "", "", false, 1440);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -150,7 +158,13 @@ public function saliresIcedTeats():void
 	clearOutput();
 	yammiShopDisplay();
 	output("You head into the Iced Teats shop, looking to enjoy something cool and delicious. When you enter, a blue skinned woman with black hair smiles at you, her light blue vest barely holding her bulging D-cup breasts in place. She greets you with the familiar <i>“Welcome to Iced Teats! My name is Salire, what can I get for you today?”</i> She has the eager happiness of someone new to their job and looking to make a good impression.");
-	output("\n\n<i>“Cone, Bowl, or Feast?”</i> She inquires pleasantly.");
+	addButton(0,"Salire", salireApproach, undefined, "Salire", "Order a frozen treat from Salire.");
+}
+public function salireApproach():void
+{
+	clearOutput();
+	yammiShopDisplay();
+	output("<i>“Cone, Bowl, or Feast?”</i> She inquires pleasantly.");
 	yammiRepeatMenu(false);
 }
 
@@ -245,7 +259,7 @@ public function yammiTalkScene():void
 		output("\n\nYou breathe out a sigh of relief. The thought had crossed your mind. You both have a quick nervous laugh, then she hands you a small plate with several fresh buns on it.");
 		output("\n\n<i>“Not to tell you your job, but hadn’t you better make sure everything’s good at the helm from time to time? Besides, I’m really going to be cranking up the heat in here in a minute.”</i>");
 		output("\n\nYou thank her for the warning and take your snack to go.");
-		flags["YAMMI_TALK"] = 1;
+		if(flags["YAMMI_TALK"] != 3) flags["YAMMI_TALK"] = 1;
 		//+25 Energy!
 		pc.energy(100);
 		processTime(7);
@@ -264,7 +278,7 @@ public function yammiTalkScene():void
 		output("\n\nYou catch your breath, then with a chuckle you note <i>“If you don’t want me asking about your school days, just say so!”</i>");
 		output("\n\n<i>“Har-Dee-Har-Har, Boss.”</i> She shakes her head and points, sending you from her kitchen.");
 		output("\n\nAt least the milkshake she sends you later settles your stomach nicely!");
-		flags["YAMMI_TALK"] = 2;
+		if(flags["YAMMI_TALK"] != 3) flags["YAMMI_TALK"] = 2;
 		//+15 Energy
 		pc.energy(50);
 		processTime(7);
@@ -284,10 +298,11 @@ public function yammiTalkScene():void
 		output("\n\n<i>“Fine!”</i> She sticks her tongue out like a little kid. <i>“You could at least show up before I finish the dishes next time!”</i>");
 		output("\n\nYou make no promises as something alerts you that you should be on the bridge. Hopefully just some stellar debris, but it’s a good way to duck out of dishpan hands!");
 		//Add [Flirt] option to Yammi’s menu.
-		flags["YAMMI_TALK"] = 3;
+		if(flags["YAMMI_TALK"] != 3) flags["YAMMI_TALK"] = 3;
 		processTime(10);
 	}
-	yammiFollowerMenu();
+	clearMenu();
+	addButton(0,"Next",yammiFollowerMenu);
 }
 
 //Flirt
@@ -297,7 +312,7 @@ public function flirtWithYummiYammiYummiButts():void
 	clearOutput();
 	yammiFollowerDisplay();
 	output("Putting on your best Steele smile, you lean against the counter and tell your lovely cook that she’s just as sweet as ");
-	if(9999) output("her pexiga’s saliva");
+	if(9999 == 0) output("her pexiga’s saliva");
 	else output("any of the treats she makes");
 	output(". Yammi giggles and rolls her eyes. <i>“Uh, thanks? I bet you tell that to all the sparadat chefs.”</i>");
 
@@ -308,7 +323,9 @@ public function flirtWithYummiYammiYummiButts():void
 	if(pc.isTreated()) output(" Somehow telling her she’s cute didn’t make her spread her legs right away. Weird.");
 	flags["YAMMI_FLIRTED"] = 1;
 	processTime(1);
+	clearMenu();
 	yammiFollowerMenu();
+	if((flags["YAMMI_TALK"] == undefined || flags["YAMMI_TALK"] < 3) && (flags["YAMMI_HELPED"] == undefined || flags["YAMMI_HELPED"] < 2)) addDisabledButton(3,"Flirt");
 }
 
 //Help Yammi
@@ -323,11 +340,11 @@ public function offerToHelpYammi():void
 		output("<i>“You want to help out? Oh, you’re such a sweetie!”</i> She kisses you on the cheek. <i>“Okay, you any good with a knife?”</i>");
 		output("\n\nYou proudly note you’re a galaxy-wandering space explorer, and that nothing’s beyond your capacity. She laughs and sets out a row of vegetables you don’t recognize, then hands you a big knife to chop them with. As you set to work, you idly chat about various things... not least of all those topics being ‘Why are you cooking all the time?!’");
 		output("\n\n<i>“Oh, uhm... well, ");
-		if(9999) output("we have to feed the crew well");
+		if(9999 == 0) output("we have to feed the crew well");
 		else output("I’ve got to keep you fed");
 		output(", and I like to cook, so I like to make sure there’s a lot of options ready and waiting.”</i> She quickly turns to wash something in a basin.");
 		output("\n\nYou caught the shifty eyes. You also know for a fact she cooks entirely too much. ");
-		if(9999) output("Even if your ship was stuffed to capacity you wouldn’t have enough people to eat everything she cooks in a day");
+		if(9999 == 0) output("Even if your ship was stuffed to capacity you wouldn’t have enough people to eat everything she cooks in a day");
 		else output("Even with such a large crew, there always seems to be so much left over");
 		output(". So you just wait patiently until she gets tired of the building awkwardness: her natural chatty nature gets the better of her, as you expected.");
 		output("\n\n<i>“Okay, look, I have a few ‘live’ specimens aboard to feed. Like the Tulpa on the menu, they’re absolutely terrible if you store them!”</i> She admits. <i>“I also cook a lot and preserve it for ingredients later, like herbs and things. Some of it I stash to trade every time we land somewhere interesting so I can get new spices and ingredients and recipes without costing you cash.”</i>");
@@ -367,7 +384,8 @@ public function offerToHelpYammi():void
 		flags["YAMMI_HELPED"] = 2;
 		//Replace [Help] with [Pexiga].
 	}
-	yammiFollowerMenu();
+	clearMenu();
+	addButton(0,"Next",yammiFollowerMenu);
 }
 
 //Pexiga
@@ -389,6 +407,7 @@ public function pexigaVisit():void
 	if(pc.hasItem(new PexigaSaliva()) || pc.hasItemInStorage(new PexigaSaliva())) addDisabledButton(1,"Milk Saliva","Milk Saliva","You already have some of that. No need to be greedy!");
 	else addButton(1,"Milk Saliva",milkSalivaFromPexiga,undefined,"Milk Saliva","Get yourself some of that sweet, sweet pexiga saliva.");
 	addButton(0,"Pet",petPexiga,undefined,"Pet","Poor thing. The least you could do is spend a few minutes giving her some love.");
+	addButton(14,"Back",yammiInTheKitchen);
 }
 
 //[Milk Saliva]
@@ -396,7 +415,10 @@ public function pexigaVisit():void
 public function milkSalivaFromPexiga():void
 {
 	clearOutput();
-	yammiFollowerDisplay();
+	showName("\nA PEXIGA");
+	showBust("PEXIGA");
+	author("Lady Jen");
+	
 	output("Remembering Yammi’s lesson, you decide to get some of the pexiga’s sweet saliva for yourself. You slip down to the reptile-girl’s level, brushing some of her spine-hair out of her eyes. She blinks at you and murmurs, wiggling her pierced tongue slightly. Like she knows what’s coming.");
 	output("\n\nYou press on her tongue and massage your way up. It’s very warm despite the low temperature in the room, and soft as silk. The pexiga’s eyes roll upwards and she lets out faint gulping sounds as her reflexes tell her to swallow. Soon, a thick, clear gel starts to trickle down her tongue.");
 	output("\n\nHer bag of dietary supplements is nearby, hooked on the wall just out of her reach. After rubbing her extremely soft, warm tongue for a minute or two until she can’t resist drooling, you put one through her ring gag, rewarding her for letting you milk her.");
@@ -416,12 +438,15 @@ public function milkSalivaFromPexiga():void
 public function petPexiga():void
 {
 	clearOutput();
-	yammiFollowerDisplay();
+	showName("\nA PEXIGA");
+	showBust("PEXIGA");
+	author("Lady Jen");
+	
 	output("Feeling sorry for the lethargic reptilian beauty, you draw close and run your fingers through her spiny hair. The pexiga murmurs around her ring-gag, swishing her tail across the deck as you massage her scaly scalp. The big piercing on her tongue swishes ever so slightly, and her somewhat vacant expression shifts to something like a smile, and her eyes follow you as you move. With no food on offer, and without your hand working to milk her for her sweet saliva, she seems somewhat more attentive than usual. If only just.");
 	output("\n\nYou smile and pat her head, telling her that she’s a very good");
 	if(pc.isMischievous()) output("... milk-lizard-girl");
 	else output(" girl");
-	output(". The pexiga murmurs something wordlessly and caresses youth thigh with her thick tail.");
+	output(". The pexiga murmurs something wordlessly and caresses your thigh with her thick tail.");
 	output("\n\nIf she wasn’t a flesh-eater, she’d be absolutely cute!");
 	output("\n\nWith a parting scratch behind a frilled ear, you slip out of the pantry and back to your business.");
 	processTime(4);
@@ -441,23 +466,22 @@ public function yammisMenu():void
 	yammiFollowerDisplay();
 	output("<i>“Hungry, eh, Boss? Here ya go, this is what’s on the skillet, so to speak!”</i> She hands you a menu and waits expectantly.");
 	output("\n\nYammi’s menu presents the following dishes:");
-	output("\n<b>Pepper Pie</b>\nA special blend of hot and sweet peppers in a ground meat pie with fresh baked crust and rolls. Spicy!");
-	if(!reahaIsCrew()) output("\n<b>Marbled Steak</b>\nA side-cut steak from a Fruldian Meat-Animal.");
-	else output("\n<b>Marbled Steak</b>\nA side-cut steak from a Fruldian Meat-Animal. A hastily hand-written note assures your bovine companion that it’s <i>not</i> a cow-girl steak, please stop making that joke.");
-	output("\n<b>Sweet Soup</b>\nA fruit and nut soup made in the milk of a coconut, chilled, and served as a drink.");
-	output("\n<b>Nobblur</b>\nPastry filled with mixed veggies and cheese, ground meat, spices, and gravy. Served in a bowl with grains to soak up the mess.");
-	output("\n<b>A Snack Tray</b>\nA big tray with finger foods of all sorts to munch on.");
-	output("\n<b>Fried Tulpe</b>\nA fried fish, imported from Yammi’s home world and cooked in citrus fruit pulp. Served with a side of tubers.");
-	if(flags["NALEEN_SNUGGLED"] != undefined) output("\n<b>Ginder Fish</b>\nA flame-cooked fish from the jungle world of Mhen’ga, imported at the captain’s request. Soft and rich; topped with lemons and a native honey-sauce.");
-	output("\n<b>Yammi's Sandwich</b>\nA four foot long bread roll stuffed with a blend of spiced meat, seafood and cheese until it’s about to explode, then baked.");
-	if(reahaIsCrew()) output("\n<b>New Texas Milkshake</b>\nNew Texan Milkshake, made with all-natural New Texan cow-girl milk and refined into a delicious treat. Absolutely does not infringe on any Iced Teats copyrights.");
+	output("\n<b>* Pepper Pie:</b> A special blend of hot and sweet peppers in a ground meat pie with fresh baked crust and rolls. Spicy!");
+	output("\n<b>* Marbled Steak:</b> A side-cut steak from a Fruldian Meat-Animal.");
+	if(reahaIsCrew()) output(" A hastily hand-written note assures your bovine companion that it’s <i>not</i> a cow-girl steak, please stop making that joke.");
+	output("\n<b>* Sweet Soup:</b> A fruit and nut soup made in the milk of a coconut, chilled, and served as a drink.");
+	output("\n<b>* Nobblur:</b> Pastry filled with mixed veggies and cheese, ground meat, spices, and gravy. Served in a bowl with grains to soak up the mess.");
+	output("\n<b>* A Snack Tray:</b> A big tray with finger foods of all sorts to munch on.");
+	output("\n<b>* Fried Tulpe:</b> A fried fish, imported from Yammi’s home world and cooked in citrus fruit pulp. Served with a side of tubers.");
+	if(flags["NALEEN_SNUGGLED"] != undefined) output("\n<b>* Ginder Fish:</b> A flame-cooked fish from the jungle world of Mhen’ga, imported at the captain’s request. Soft and rich; topped with lemons and a native honey-sauce.");
+	output("\n<b>* Yammi’s Sandwich:</b> A four foot long bread roll stuffed with a blend of spiced meat, seafood and cheese until it’s about to explode, then baked.");
+	if(reahaIsCrew()) output("\n<b>* New Texas Milkshake:</b> New Texan Milkshake, made with all-natural New Texan cow-girl milk and refined into a delicious treat. Absolutely does not infringe on any Iced Teats copyrights.");
 	clearMenu();
 	//Pepper Pie
 	addButton(0,"Pepper Pie",pepperPieYammi,undefined,"Pepper Pie","A special blend of hot and sweet peppers in a ground meat pie with fresh baked crust and rolls. Spicy!");
 	//Marbled Steak
 	//A side-cut steak from a Fruldian Meat-Animal.
-	if(reahaIsCrew()) addButton(1,"Marbled Steak",marbledSteakYammi,undefined,"Marbled Steak","A side-cut steak from a Fruldian Meat-Animal. A hastily hand-written note assures your bovine companion that it’s <i>not</i> a cow-girl steak, please stop making that joke.");
-	else addButton(1,"Marbled Steak",marbledSteakYammi,undefined,"Marbled Steak","A side-cut steak from a Fruldian Meat-Animal.");
+	addButton(1,"Marbled Steak",marbledSteakYammi,undefined,"Marbled Steak","A side-cut steak from a Fruldian Meat-Animal." + (reahaIsCrew() ? " A hastily hand-written note assures your bovine companion that it’s <i>not</i> a cow-girl steak, please stop making that joke." : ""));
 	//Sweet Soup
 	addButton(2,"Sweet Soup",sweetSoupYammi,undefined,"Sweet Soup","A fruit and nut soup made in the milk of a coconut, chilled, and served as a drink.");
 	//Nobblur
@@ -490,7 +514,8 @@ public function pepperPieYammi():void
 	output("\n\nOddly, you feel like the meal digests away quickly. It seems Yammi’s got your weight on her mind.");
 	processTime(15);
 	eatHomeCooking();
-	yammiFollowerMenu();
+	clearMenu();
+	addButton(0,"Next",yammiFollowerMenu);
 }
 
 //Marbled Steak
@@ -505,7 +530,8 @@ public function marbledSteakYammi():void
 	processTime(15);
 	clearMenu();
 	eatHomeCooking();
-	yammiFollowerMenu();
+	clearMenu();
+	addButton(0,"Next",yammiFollowerMenu);
 }
 
 //Sweet Soup
@@ -519,7 +545,8 @@ public function sweetSoupYammi():void
 	output("\n\nWell, it’s certainly sweet! A nutty-creamy blend of taste that would be perfect for any dessert. You’re not complaining, until you realize you’ve downed it so fast that you’re getting a headache. Yammi giggles and hugs you, chiding you for being such an overeager little kid with the sugary stuff. On the upside, she informs you that all the sugars are natural and so they won’t make you fat as long as you exercise.");
 	processTime(15);
 	eatHomeCooking();
-	yammiFollowerMenu();
+	clearMenu();
+	addButton(0,"Next",yammiFollowerMenu);
 }
 
 //Nobblur
@@ -536,7 +563,8 @@ public function noblurYammi():void
 	output(" up in your favorite chair.");
 	processTime(15);
 	eatHomeCooking();
-	yammiFollowerMenu();
+	clearMenu();
+	addButton(0,"Next",yammiFollowerMenu);
 }
 
 //Snack Tray
@@ -548,7 +576,8 @@ public function yammiSnackTray():void
 	output("Yammi takes about ten minutes to put together a sampler from all the things she’s got on the go. You are amazed at the tray’s layout, snacks spiraling out from the dip trays in the middle. Cut fruit, fresh veggies, nuts, pastries, pasta, finger sized meat cuts, small fish samples, chips, and more. It’s less a meal than a munch-fest, and you and Yammi both contribute to the demise of the mighty snack tray. Fifteen minutes later you excuse yourself with a smaller tray of leftovers to go do your rounds. There’s just so many things to eat!");
 	processTime(15);
 	eatHomeCooking();
-	yammiFollowerMenu();
+	clearMenu();
+	addButton(0,"Next",yammiFollowerMenu);
 }
 //Fried Tulpe
 //A fried fish, imported from Yammi’s home world and cooked in citrus fruit pulp. Served with a side of tubers.
@@ -560,7 +589,8 @@ public function yammiFriedTulpe():void
 	output("\n\n<i>“Hope you enjoyed it, Boss. It’s one of my favorite, for obvious reasons.”</i> She smiles. <i>“I stock quite a few tulpe. I know, plain, but they’re quite healthy, I assure you!”</i>");
 	processTime(15);
 	eatHomeCooking();
-	yammiFollowerMenu();
+	clearMenu();
+	addButton(0,"Next",yammiFollowerMenu);
 }
 
 //Ginder Fish
@@ -574,7 +604,8 @@ public function ginderFishStuff():void
 	output("\n\n<i>“Thanks, Boss,”</i> she smiles. <i>“I don’t have quite as much experience with rush-world dishes, but if you find any more like this, don’t hesitate to let me know. I think it turned out pretty sweet!”</i>");
 	processTime(15);
 	eatHomeCooking();
-	yammiFollowerMenu();
+	clearMenu();
+	addButton(0,"Next",yammiFollowerMenu);
 }
 
 //Yammi’s Sammich
@@ -589,7 +620,8 @@ public function yammiSammich():void
 	output("\n\n<i>“Now, don’t eat too many of these! They’re a bit heavy for your kind, Boss!”</i> She cautions you, rolling the rest back to its storage space.");
 	processTime(15);
 	eatHomeCooking();
-	yammiFollowerMenu();
+	clearMenu();
+	addButton(0,"Next",yammiFollowerMenu);
 }
 
 //N.T. Milkshake
@@ -608,7 +640,8 @@ public function newTexasMilkshake():void
 	output("\n\nSomething tells you Reaha’d probably enjoy it!");
 	processTime(15);
 	eatHomeCooking();
-	yammiFollowerMenu();
+	clearMenu();
+	addButton(0,"Next",yammiFollowerMenu);
 }
 
 //Getting Yammi Smut
@@ -619,7 +652,7 @@ public function newTexasMilkshake():void
 public function getYammiSmut():void
 {
 	clearOutput();
-	yammiFollowerDisplay(true);
+	yammiFollowerDisplay();
 	author("Savin");
 	output("When Yammi turns her attention momentarily from you to a pot that needs stirring, you lean against the refrigerator beside her and gently clear your throat.");
 	output("\n\n<i>“So I’ve been thinking...”</i> you say, watching the gentle rise and fall of the sparadat’s perky chest beneath her tight red dress with keen interest. When you pause, Yammi stops and glances ");
@@ -658,7 +691,7 @@ public function getYammiSmut():void
 public function flirtWithYammiBruh():void
 {
 	clearOutput();
-	yammiFollowerDisplay(true);
+	yammiFollowerDisplay();
 	author("Savin");
 	output("You slip a little closer to Yammi, running a hand down the back of her dress until your hand settles on her plump behind, giving it a little squeeze. She gasps, but smiles and rubs back against your wandering hand.");
 	output("\n\n<i>“Something on your mind, boss?”</i> she smiles.");
@@ -737,7 +770,7 @@ public function analWithYammiChoiceWrapper():void
 public function analWithYammibalLector(x:int = 0):void
 {
 	clearOutput();
-	yammiFollowerDisplay();
+	yammiFollowerDisplay(true);
 	author("Savin");
 	
 	output("You pull Yammi’s dress up over her head, revealing the pert mounds of her breasts, the smooth curves of her amphibian skin, and the lacy black panties clinging to her ample hips. She sucks in a sharp breath as you uncloth her, but her hands are already working on you as well, pulling your ");
@@ -835,7 +868,7 @@ public function getLickedByYamyams():void
 	if(pc.legCount > 1) output("spreading your [pc.legs]");
 	else output("twisting around to present your naked sex");
 	output(". One inviting pat of your thighs is all the instruction your lover needs to slip between your [pc.legs] and nestle her cheeks between them. With an almost worshipful reverence, Yammi puts her hands on your thighs and uses her thumbs to brush across the lips of [pc.oneVagina].");
-	output("\n\nYou suck in a long, husky breath when Yammi starts to spread you open, gently pulling you lips apart. She stares into the channel of your sex for a moment before gingerly flicking her tongue out, exploring the flesh around [pc.oneClitPerVagina]. An involuntary shiver runs through you as her long tongue teases around your bud, never quite touching it but getting so close that you can feel hot breath billowing over it. Your fingers run through Yammi’s green hair, joining with your encouraging moans and coos of delight to spur her further and further into your sex.");
+	output("\n\nYou suck in a long, husky breath when Yammi starts to spread you open, gently pulling your lips apart. She stares into the channel of your sex for a moment before gingerly flicking her tongue out, exploring the flesh around [pc.oneClitPerVagina]. An involuntary shiver runs through you as her long tongue teases around your bud, never quite touching it but getting so close that you can feel hot breath billowing over it. Your fingers run through Yammi’s green hair, joining with your encouraging moans and coos of delight to spur her further and further into your sex.");
 	output("\n\nIt isn’t long before her probing muscle slips between your lips and slithers into your slit, licking languidly around your slick walls, deeper and deeper until she’s almost kissing your [pc.cunt]. <i>“Right there,”</i> you murmur. Her tip brushes what can only be your g-spot, sending shivers shooting through your body. You gasp, clutching at your [pc.chest] and squeezing Yammi’s head between your thighs, desperately trying to coax her deeper.");
 	output("\n\nYour lover complies as best as she can, thrusting her tongue deep into your drooling snatch. She grabs your [pc.butt], pulling you right to the edge of the counter so that she can lick every last inch of your twat. Between deep licks, Yammi grins up at you, fluttering her eyelashes.");
 	output("\n\nService with a smile, as they say.");

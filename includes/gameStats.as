@@ -2158,10 +2158,13 @@ public function displayQuestLog(showID:String = "All"):void
 			distressCount++;
 		}
 		// Operation: Snowballs the Cat
-		if(flags["DO UVETO ICEQUEEN ENTRY"] != undefined || flags["ICEQUEEN COMPLETE"] != undefined)
+		if(flags["ICEQUEEN COMPLETE"] != undefined || flags["DO UVETO ICEQUEEN ENTRY"] != undefined)
 		{
 			output2("\n<b><u>Ice Queen</u></b>");
 			output2("\n<b>* Status:</b>");
+			if(flags["ICEQUEEN COMPLETE"] == -1) output2(" Ignored message");
+			if(flags["ICEQUEEN COMPLETE"] == -2) output2(" Refused to help Zaalt");
+			if(flags["ICEQUEEN COMPLETE"] == -3) output2(" Lost to Zaalt");
 			if(flags["ICEQUEEN COMPLETE"] > 0) output2(" Defeated Zaalt");
 			if(flags["ICEQUEEN COMPLETE"] == 1) output2(" and killed him, Retrieved A.I. Cores");
 			if(flags["ICEQUEEN COMPLETE"] == 2) output2(" and arrested him, Retrieved A.I. Cores");
@@ -2173,13 +2176,12 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["ICEQUEEN KARA STUFF"] == 3) output2(", Rewarded with sex from Kara");
 				if(flags["ICEQUEEN KARA STUFF"] == 4) output2(", Interrupted Kara, Retrieved Psi implant");
 			}
-			if(flags["ICEQUEEN COMPLETE"] == -1) output2(" Ignored message");
-			if(flags["ICEQUEEN COMPLETE"] == -2) output2(" Refused to help Zaalt");
-			if(flags["ICEQUEEN COMPLETE"] == -3) output2(" Lost to Zaalt");
 			if(flags["ICEQUEEN COMPLETE"] > 0) output2(", Completed");
 			else if(flags["ICEQUEEN COMPLETE"] <= -3) output2(", Failed");
 			else if(flags["ICEQUEEN COMPLETE"] == undefined) output2(" Accepted, <i>In progress...</i>");
-			output2("\n<b>* Captain Zaalt Kandar:</b> Met him");
+			output2("\n<b>* Captain Zaalt Kandar:</b>");
+			if(flags["ICEQUEEN COMPLETE"] == -1) output2(" Seen him");
+			else output2(" Met him");
 			if(flags["ZAALT FLIRTED"] != undefined) output2(", Flirted with");
 			if(flags["ZAALT DISARMED"] != undefined) output2(", Disarmed");
 			if(flags["ZAALT_DISABLED"] != undefined) output2(", <i>Whereabouts unknown</i>");
@@ -2658,7 +2660,12 @@ public function displayEncounterLog(showID:String = "All"):void
 					output2(", Crew member");
 					if(yammiIsCrew()) output2(" (Onboard Ship)");
 				}
-				else if(flags["YAMMI_RECRUITED"] == -1) output2(", <i>Whereabouts unknown</i>");
+				else
+				{
+					if(flags["YAMMI_RECRUITED"] == -1) output2(", Freed her, <i>Whereabouts unknown</i>");
+					else if(flags["YAMMI_BAD_DAY"] == 1) output2(", Had a bad day");
+					else if(flags["YAMMI_BAD_DAY"] == 2) output2(", Owes 7000 credits");
+				}
 				if(flags["SEXED_YAMMI"] != undefined) output2("\n<b>* Yammi, Times Sexed: </b>" + flags["SEXED_YAMMI"]);
 				if(flags["ANALED_YAMMI"] != undefined) output2("\n<b>* Yammi, Times Fucked Her Ass: </b>" + flags["ANALED_YAMMI"]);
 				// Reaha special
@@ -3137,6 +3144,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["TIMES_MET_NALEEN"] != undefined)
 				{
 					output2("\n<b>* Naleen Huntress, Times Encountered: </b>" + flags["TIMES_MET_NALEEN"]);
+					if(flags["NALEEN_SNUGGLED"] != undefined) output2("\n<b>* Naleen Huntress, Times Snuggled With: </b>" + flags["NALEEN_SNUGGLED"]);
 					if(flags["TIMES_WINSEXED_NALEEN"] != undefined || flags["TIMES_LOSS_DOMMED_BY_NALEEN"] != undefined) output2("\n<b>* Naleen Huntress, Times Sexed: </b>" + totalNaleenSexCount());
 				}
 				if(flags["TIMES_MET_MALE_NALEEN"] != undefined) output2("\n<b>* Male Naleen, Times Encountered: </b>" + flags["TIMES_MET_MALE_NALEEN"]);
