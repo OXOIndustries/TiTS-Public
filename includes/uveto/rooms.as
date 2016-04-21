@@ -13,8 +13,6 @@ public function initUvetoRooms():void
 	rooms[""].southExit = ;
 	rooms[""].westExit = ;
 	rooms[""].moveMinutes = 1;
-	rooms[""].runOnEnter = null;
-	rooms[""].runAfterEnter = null;
 	*/
 
 	/** UVETO STATION --------------------------------------------------------------- */
@@ -28,7 +26,6 @@ public function initUvetoRooms():void
 	rooms["UVS F15"].system = "SYSTEM: SIRETTA";
 	rooms["UVS F15"].westExit = "UVS D15";
 	rooms["UVS F15"].moveMinutes = 1;
-	rooms["UVS F15"].runOnEnter = null;
 	rooms["UVS F15"].addFlag(GLOBAL.INDOOR);
 	rooms["UVS F15"].addFlag(GLOBAL.SHIPHANGAR);
 
@@ -40,7 +37,6 @@ public function initUvetoRooms():void
 	rooms["UVS D15"].northExit = "UVS D13";
 	rooms["UVS D15"].eastExit = "UVS F15";
 	rooms["UVS D15"].moveMinutes = 1;
-	rooms["UVS D15"].runOnEnter = null;
 	rooms["UVS D15"].addFlag(GLOBAL.INDOOR);
 
 	rooms["UVS D13"] = new RoomClass(this);
@@ -51,7 +47,6 @@ public function initUvetoRooms():void
 	rooms["UVS D13"].northExit = "UVS D11";
 	rooms["UVS D13"].southExit = "UVS D15";
 	rooms["UVS D13"].moveMinutes = 1;
-	rooms["UVS D13"].runOnEnter = null;
 	rooms["UVS D13"].addFlag(GLOBAL.INDOOR);
 
 	rooms["UVS D11"] = new RoomClass(this);
@@ -63,7 +58,6 @@ public function initUvetoRooms():void
 	rooms["UVS D11"].southExit = "UVS D13";
 	rooms["UVS D11"].westExit = "UVS B11";
 	rooms["UVS D11"].moveMinutes = 1;
-	rooms["UVS D11"].runOnEnter = null;
 	rooms["UVS D11"].addFlag(GLOBAL.INDOOR);
 	
 	rooms["UVS D9"] = new RoomClass(this);
@@ -75,7 +69,6 @@ public function initUvetoRooms():void
 	rooms["UVS D9"].southExit = "UVS D11";
 	rooms["UVS D9"].westExit = "UVS B9";
 	rooms["UVS D9"].moveMinutes = 1;
-	rooms["UVS D9"].runOnEnter = null;
 	rooms["UVS D9"].addFlag(GLOBAL.INDOOR);
 
 	/* Store? */
@@ -101,7 +94,6 @@ public function initUvetoRooms():void
 	rooms["UVS B9"].southExit = "UVS B11";
 	rooms["UVS B9"].westExit = "UVS A9";
 	rooms["UVS B9"].moveMinutes = 1;
-	rooms["UVS B9"].runOnEnter = null;
 	rooms["UVS B9"].addFlag(GLOBAL.INDOOR);
 
 	/* CFS */
@@ -112,7 +104,6 @@ public function initUvetoRooms():void
 	rooms["UVS A9"].system = "SYSTEM: SIRETTA";
 	rooms["UVS A9"].eastExit = "UVS B9";
 	rooms["UVS A9"].moveMinutes = 1;
-	rooms["UVS A9"].runOnEnter = null;
 	rooms["UVS A9"].addFlag(GLOBAL.INDOOR);
 
 	rooms["UVS B7"] = new RoomClass(this);
@@ -124,7 +115,6 @@ public function initUvetoRooms():void
 	rooms["UVS B7"].eastExit = "UVS D7";
 	rooms["UVS B7"].southExit = "UVS B9";
 	rooms["UVS B7"].moveMinutes = 1;
-	rooms["UVS B7"].runOnEnter = null;
 	rooms["UVS B7"].addFlag(GLOBAL.INDOOR);
 	
 	/* Docking 1 */
@@ -136,7 +126,6 @@ public function initUvetoRooms():void
 	rooms["UVS B5"].system = "SYSTEM: SIRETTA";
 	rooms["UVS B5"].southExit = "UVS B7";
 	rooms["UVS B5"].moveMinutes = 1;
-	rooms["UVS B5"].runOnEnter = null;
 	*/
 
 	/* Space Elevator */
@@ -164,7 +153,6 @@ public function initUvetoRooms():void
 	rooms["UVS F7"].southExit = "UVS F9";
 	rooms["UVS F7"].westExit = "UVS D7";
 	rooms["UVS F7"].moveMinutes = 1;
-	rooms["UVS F7"].runOnEnter = null;
 	rooms["UVS F7"].addFlag(GLOBAL.INDOOR);
 
 	/* Docking 2 */
@@ -176,7 +164,6 @@ public function initUvetoRooms():void
 	rooms["UVS F5"].system = "SYSTEM: SIRETTA";
 	rooms["UVS F5"].southExit = "UVS F7";
 	rooms["UVS F5"].moveMinutes = 1;
-	rooms["UVS F5"].runOnEnter = null;
 	*/
 
 	rooms["UVS F9"] = new RoomClass(this);
@@ -187,7 +174,6 @@ public function initUvetoRooms():void
 	rooms["UVS F9"].northExit = "UVS F7";
 	rooms["UVS F9"].westExit = "UVS D9";
 	rooms["UVS F9"].moveMinutes = 1;
-	rooms["UVS F9"].runOnEnter = null;
 	rooms["UVS F9"].addFlag(GLOBAL.INDOOR);
 
 	rooms["UVS H7"] = new RoomClass(this);
@@ -213,7 +199,6 @@ public function initUvetoRooms():void
 	rooms["UVS J7"].system = "SYSTEM: SIRETTA";
 	rooms["UVS J7"].westExit = "UVS H7";
 	rooms["UVS J7"].moveMinutes = 1;
-	rooms["UVS J7"].runOnEnter = null;
 	rooms["UVS J7"].addFlag(GLOBAL.INDOOR);
 
 	rooms["UVS H9"] = new RoomClass(this);
@@ -303,7 +288,6 @@ public function initUvetoRooms():void
 	rooms["UVI H34"].eastExit = "UVI J34";
 	rooms["UVI H34"].westExit = "UVI F34";
 	rooms["UVI H34"].moveMinutes = 1;
-	rooms["UVI H34"].runOnEnter = null;
 	rooms["UVI H34"].addFlag(GLOBAL.INDOOR);
 
 	/* Sheriffs Office */
@@ -315,7 +299,6 @@ public function initUvetoRooms():void
 	//rooms["UVI H32"].eastExit = "UVI J32"; // TEMP 9999
 	rooms["UVI H32"].southExit = "UVI H34";
 	rooms["UVI H32"].moveMinutes = 1;
-	rooms["UVI H32"].runOnEnter = null;
 	rooms["UVI H32"].addFlag(GLOBAL.INDOOR);
 	rooms["UVI H32"].addFlag(GLOBAL.NPC);
 
@@ -331,7 +314,6 @@ public function initUvetoRooms():void
 	//rooms["UVI J32"].inExit = "UVI J32 F2";
 	//rooms["UVI J32"].inExit = "UP";
 	rooms["UVI J32"].moveMinutes = 1;
-	rooms["UVI J32"].runOnEnter = null;
 	rooms["UVI J32"].addFlag(GLOBAL.INDOOR);
 	rooms["UVI J32"].addFlag(GLOBAL.NPC);
 
@@ -346,7 +328,6 @@ public function initUvetoRooms():void
 	rooms["UVI J32 F2"].inExit = "BUNNY_FUN_HUT";
 	rooms["UVI J32 F2"].inText = "Up";
 	rooms["UVI J32 F2"].moveMinutes = 1;
-	rooms["UVI J32 F2"].runOnEnter = null;
 	rooms["UVI J32 F2"].addFlag(GLOBAL.INDOOR);
 	
 	rooms["BUNNY_FUN_HUT"] = new RoomClass(this);
@@ -371,7 +352,6 @@ public function initUvetoRooms():void
 	rooms["UVI J34"].southExit = "UVI J36";
 	rooms["UVI J34"].westExit = "UVI H34";
 	rooms["UVI J34"].moveMinutes = 1;
-	rooms["UVI J34"].runOnEnter = null;
 	rooms["UVI J34"].addFlag(GLOBAL.INDOOR);
 
 	/* Research Station Access */
@@ -382,7 +362,6 @@ public function initUvetoRooms():void
 	rooms["UVI J36"].system = "SYSTEM: SIRETTA";
 	rooms["UVI J36"].northExit = "UVI J34";
 	rooms["UVI J36"].moveMinutes = 1;
-	rooms["UVI J36"].runOnEnter = null;
 	rooms["UVI J36"].addFlag(GLOBAL.INDOOR);
 
 	/* Entrance */
@@ -393,7 +372,7 @@ public function initUvetoRooms():void
 	rooms["UVI L34"].system = "SYSTEM: SIRETTA";
 	rooms["UVI L34"].eastExit = "UVI N34";
 	rooms["UVI L34"].westExit = "UVI J34";
-	rooms["UVI L34"].moveMinutes = 1;
+	rooms["UVI L34"].moveMinutes = 3;
 	rooms["UVI L34"].addFlag(GLOBAL.OUTDOOR);
 	rooms["UVI L34"].runOnEnter = function():Boolean {
 		output("\n\nA long, snow-encrusted street runs north to south just ahead. To the west is the warm, protective embrace of Uveto's central hub.");
@@ -415,8 +394,7 @@ public function initUvetoRooms():void
 	rooms["UVI N34"].northExit = "UVI N32";
 	rooms["UVI N34"].southExit = "UVI N36";
 	rooms["UVI N34"].westExit = "UVI L34";
-	rooms["UVI N34"].moveMinutes = 1;
-	rooms["UVI N34"].runOnEnter = null;
+	rooms["UVI N34"].moveMinutes = 3;
 	rooms["UVI N34"].addFlag(GLOBAL.OUTDOOR);
 
 	rooms["UVI N36"] = new RoomClass(this);
@@ -426,8 +404,7 @@ public function initUvetoRooms():void
 	rooms["UVI N36"].system = "SYSTEM: SIRETTA";
 	rooms["UVI N36"].northExit = "UVI N34";
 	rooms["UVI N36"].southExit = "UVI N38";
-	rooms["UVI N36"].moveMinutes = 1;
-	rooms["UVI N36"].runOnEnter = null;
+	rooms["UVI N36"].moveMinutes = 3;
 	rooms["UVI N36"].addFlag(GLOBAL.OUTDOOR);
 
 	rooms["UVI N38"] = new RoomClass(this);
@@ -438,8 +415,7 @@ public function initUvetoRooms():void
 	rooms["UVI N38"].northExit = "UVI N36";
 	rooms["UVI N38"].eastExit = "UVI P38";
 	rooms["UVI N38"].southExit = "UVI N40";
-	rooms["UVI N38"].moveMinutes = 1;
-	rooms["UVI N38"].runOnEnter = null;
+	rooms["UVI N38"].moveMinutes = 3;
 	rooms["UVI N38"].addFlag(GLOBAL.OUTDOOR);
 
 	rooms["UVI N40"] = new RoomClass(this);
@@ -449,8 +425,7 @@ public function initUvetoRooms():void
 	rooms["UVI N40"].system = "SYSTEM: SIRETTA";
 	rooms["UVI N40"].northExit = "UVI N38";
 	rooms["UVI N40"].southExit = "UVI N42";
-	rooms["UVI N40"].moveMinutes = 1;
-	rooms["UVI N40"].runOnEnter = null;
+	rooms["UVI N40"].moveMinutes = 3;
 	rooms["UVI N40"].addFlag(GLOBAL.OUTDOOR);
 
 	rooms["UVI N42"] = new RoomClass(this);
@@ -460,8 +435,7 @@ public function initUvetoRooms():void
 	rooms["UVI N42"].system = "SYSTEM: SIRETTA";
 	rooms["UVI N42"].northExit = "UVI N40";
 	rooms["UVI N42"].westExit = "UVI L42";
-	rooms["UVI N42"].moveMinutes = 1;
-	rooms["UVI N42"].runOnEnter = null;
+	rooms["UVI N42"].moveMinutes = 3;
 	rooms["UVI N42"].addFlag(GLOBAL.OUTDOOR);
 
 	/* Another Store */
@@ -495,8 +469,7 @@ public function initUvetoRooms():void
 	rooms["UVI P38"].eastExit = "UVIP D38"; /* To Ice Plains */
 	rooms["UVI P38"].southExit = "UVI P40";
 	rooms["UVI P38"].westExit = "UVI N38";
-	rooms["UVI P38"].moveMinutes = 1;
-	rooms["UVI P38"].runOnEnter = null;
+	rooms["UVI P38"].moveMinutes = 3;
 	rooms["UVI P38"].addFlag(GLOBAL.OUTDOOR);
 
 	/* Maglev Station */
@@ -507,7 +480,6 @@ public function initUvetoRooms():void
 	rooms["UVI P40"].system = "SYSTEM: SIRETTA";
 	rooms["UVI P40"].northExit = "UVI P38";
 	rooms["UVI P40"].moveMinutes = 1;
-	rooms["UVI P40"].runOnEnter = null;
 	rooms["UVI P40"].addFlag(GLOBAL.INDOOR);
 	rooms["UVI P40"].addFlag(GLOBAL.TAXI); // 9999 TRAIN?
 
@@ -519,8 +491,7 @@ public function initUvetoRooms():void
 	rooms["UVI N32"].northExit = "UVI N30";
 	rooms["UVI N32"].southExit = "UVI N34";
 	rooms["UVI N32"].eastExit = "UVI P32";
-	rooms["UVI N32"].moveMinutes = 1;
-	rooms["UVI N32"].runOnEnter = null;
+	rooms["UVI N32"].moveMinutes = 3;
 	rooms["UVI N32"].addFlag(GLOBAL.OUTDOOR);
 
 	rooms["UVI N30"] = new RoomClass(this);
@@ -531,8 +502,7 @@ public function initUvetoRooms():void
 	//rooms["UVI N30"].northExit = "UVI N28"; // 9999 CUT UNTIL READY
 	//rooms["UVI N30"].eastExit = "UVI P30"; // 9999 CUT UNTIL READY
 	rooms["UVI N30"].southExit = "UVI N32";
-	rooms["UVI N30"].moveMinutes = 1;
-	rooms["UVI N30"].runOnEnter = null;
+	rooms["UVI N30"].moveMinutes = 3;
 	rooms["UVI N30"].addFlag(GLOBAL.OUTDOOR);
 
 	/* Shades Residence */
@@ -543,7 +513,6 @@ public function initUvetoRooms():void
 	rooms["UVI P30"].system = "SYSTEM: SIRETTA";
 	rooms["UVI P30"].westExit = "UVI N30";
 	rooms["UVI P30"].moveMinutes = 1;
-	rooms["UVI P30"].runOnEnter = null;
 
 	rooms["UVI P32"] = new RoomClass(this);
 	rooms["UVI P32"].roomName = "DUNNO";
@@ -553,7 +522,6 @@ public function initUvetoRooms():void
 	rooms["UVI P32"].eastExit = "UVI R32"; // 9999 TEMP CHECK THIS
 	rooms["UVI P32"].westExit = "UVI N32";
 	rooms["UVI P32"].moveMinutes = 1;
-	rooms["UVI P32"].runOnEnter = null;
 	rooms["UVI P32"].addFlag(GLOBAL.INDOOR);
 
 	/* Mead Hall */
@@ -565,7 +533,6 @@ public function initUvetoRooms():void
 	rooms["UVI R32"].southExit = "UVI R34";
 	rooms["UVI R32"].westExit = "UVI P32"; // 9999 TEMP CHECK THIS
 	rooms["UVI R32"].moveMinutes = 1;
-	rooms["UVI R32"].runOnEnter = null;
 	rooms["UVI R32"].addFlag(GLOBAL.INDOOR);
 	rooms["UVI R32"].addFlag(GLOBAL.BAR);
 
@@ -577,7 +544,6 @@ public function initUvetoRooms():void
 	rooms["UVI R34"].system = "SYSTEM: SIRETTA";
 	rooms["UVI R34"].northExit = "UVI R32";
 	rooms["UVI R34"].moveMinutes = 1;
-	rooms["UVI R34"].runOnEnter = null;
 	rooms["UVI R34"].addFlag(GLOBAL.INDOOR);
 
 	/* Entrance */
@@ -589,7 +555,6 @@ public function initUvetoRooms():void
 	rooms["UVI N28"].northExit = "UVI N26";
 	rooms["UVI N28"].southExit = "UVI N30";
 	rooms["UVI N28"].moveMinutes = 1;
-	rooms["UVI N28"].runOnEnter = null;
 
 	/* Great Hall */
 	rooms["UVI N26"] = new RoomClass(this);
@@ -601,7 +566,6 @@ public function initUvetoRooms():void
 	rooms["UVI N26"].southExit = "UVI N28";
 	rooms["UVI N26"].westExit = "UVI L26";
 	rooms["UVI N26"].moveMinutes = 1;
-	rooms["UVI N26"].runOnEnter = null;
 
 	/* Arena */
 	rooms["UVI N24"] = new RoomClass(this);
@@ -612,7 +576,6 @@ public function initUvetoRooms():void
 	rooms["UVI N24"].eastExit = "UVI P24";
 	rooms["UVI N24"].southExit = "UVI N26";
 	rooms["UVI N24"].moveMinutes = 1;
-	rooms["UVI N24"].runOnEnter = null;
 
 	rooms["UVI L26"] = new RoomClass(this);
 	rooms["UVI L26"].roomName = "";
@@ -621,7 +584,6 @@ public function initUvetoRooms():void
 	rooms["UVI L26"].system = "SYSTEM: SIRETTA";
 	rooms["UVI L26"].eastExit = "UVI N26";
 	rooms["UVI L26"].moveMinutes = 1;
-	rooms["UVI L26"].runOnEnter = null;
 
 	rooms["UVI P24"] = new RoomClass(this);
 	rooms["UVI P24"].roomName = "";
@@ -631,7 +593,6 @@ public function initUvetoRooms():void
 	rooms["UVI P24"].eastExit = "UVI R24";
 	rooms["UVI P24"].westExit = "UVI N24";
 	rooms["UVI P24"].moveMinutes = 1;
-	rooms["UVI P24"].runOnEnter = null;
 
 	/* Astra's Quarters */
 	rooms["UVI R24"] = new RoomClass(this);
@@ -641,7 +602,6 @@ public function initUvetoRooms():void
 	rooms["UVI R24"].system = "SYSTEM: SIRETTA";
 	rooms["UVI R24"].westExit = "UVI P24";
 	rooms["UVI R24"].moveMinutes = 1;
-	rooms["UVI R24"].runOnEnter = null;
 
 	/*
 	rooms[""] = new RoomClass(this);
@@ -654,9 +614,10 @@ public function initUvetoRooms():void
 	rooms[""].southExit = ;
 	rooms[""].westExit = ;
 	rooms[""].moveMinutes = 1;
-	rooms[""].runOnEnter = null;
-	rooms[""].runAfterEnter = null;
 	*/
+
+	/** UVETO ICE PLAINS ------------------------------------------------------------ */
+	/** ----------------------------------------------------------------------------- */
 
 	rooms["UVIP D38"] = new RoomClass(this);
 	rooms["UVIP D38"].roomName = "CLEARED\nICE PATH";
@@ -665,9 +626,7 @@ public function initUvetoRooms():void
 	rooms["UVIP D38"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP D38"].eastExit = "UVIP F38";
 	rooms["UVIP D38"].westExit = "UVI P38";
-	rooms["UVIP D38"].moveMinutes = 1;
-	rooms["UVIP D38"].runOnEnter = null;
-	rooms["UVIP D38"].runAfterEnter = null;
+	rooms["UVIP D38"].moveMinutes = 6;
 	rooms["UVIP D38"].addFlag(GLOBAL.OUTDOOR);
 
 	rooms["UVIP F38"] = new RoomClass(this);
@@ -678,9 +637,7 @@ public function initUvetoRooms():void
 	rooms["UVIP F38"].northExit = "UVIP F36";
 	rooms["UVIP F38"].southExit = "UVIP F40";
 	rooms["UVIP F38"].westExit = "UVIP D38";
-	rooms["UVIP F38"].moveMinutes = 1;
-	rooms["UVIP F38"].runOnEnter = null;
-	rooms["UVIP F38"].runAfterEnter = null;
+	rooms["UVIP F38"].moveMinutes = 6;
 	rooms["UVIP F38"].addFlag(GLOBAL.OUTDOOR);
 
 	/* South End */
@@ -691,9 +648,7 @@ public function initUvetoRooms():void
 	rooms["UVIP F40"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP F40"].northExit = "UVIP F38";
 	rooms["UVIP F40"].eastExit = "UVIP H40";
-	rooms["UVIP F40"].moveMinutes = 1;
-	rooms["UVIP F40"].runOnEnter = null;
-	rooms["UVIP F40"].runAfterEnter = null;
+	rooms["UVIP F40"].moveMinutes = 6;
 	rooms["UVIP F40"].addFlag(GLOBAL.OUTDOOR);
 
 	rooms["UVIP H40"] = new RoomClass(this);
@@ -703,9 +658,7 @@ public function initUvetoRooms():void
 	rooms["UVIP H40"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP H40"].eastExit = "UVIP J40";
 	rooms["UVIP H40"].westExit = "UVIP F40";
-	rooms["UVIP H40"].moveMinutes = 1;
-	rooms["UVIP H40"].runOnEnter = null;
-	rooms["UVIP H40"].runAfterEnter = null;
+	rooms["UVIP H40"].moveMinutes = 6;
 	rooms["UVIP H40"].addFlag(GLOBAL.ICYTUNDRA);	
 
 	rooms["UVIP J40"] = new RoomClass(this);
@@ -715,9 +668,7 @@ public function initUvetoRooms():void
 	rooms["UVIP J40"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP J40"].northExit = "UVIP J38";
 	rooms["UVIP J40"].westExit = "UVIP H40";
-	rooms["UVIP J40"].moveMinutes = 1;
-	rooms["UVIP J40"].runOnEnter = null;
-	rooms["UVIP J40"].runAfterEnter = null;
+	rooms["UVIP J40"].moveMinutes = 6;
 	rooms["UVIP J40"].addFlag(GLOBAL.ICYTUNDRA);
 
 	rooms["UVIP J38"] = new RoomClass(this);
@@ -727,9 +678,7 @@ public function initUvetoRooms():void
 	rooms["UVIP J38"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP J38"].eastExit = "UVIP L38";
 	rooms["UVIP J38"].southExit = "UVIP J40";
-	rooms["UVIP J38"].moveMinutes = 1;
-	rooms["UVIP J38"].runOnEnter = null;
-	rooms["UVIP J38"].runAfterEnter = null;
+	rooms["UVIP J38"].moveMinutes = 6;
 	rooms["UVIP J38"].addFlag(GLOBAL.ICYTUNDRA);
 
 	rooms["UVIP L38"] = new RoomClass(this);
@@ -739,9 +688,7 @@ public function initUvetoRooms():void
 	rooms["UVIP L38"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP L38"].eastExit = "UVIP N38";
 	rooms["UVIP L38"].westExit = "UVIP J38";
-	rooms["UVIP L38"].moveMinutes = 1;
-	rooms["UVIP L38"].runOnEnter = null;
-	rooms["UVIP L38"].runAfterEnter = null;
+	rooms["UVIP L38"].moveMinutes = 6;
 	rooms["UVIP L38"].addFlag(GLOBAL.ICYTUNDRA);
 
 	rooms["UVIP N38"] = new RoomClass(this);
@@ -751,9 +698,7 @@ public function initUvetoRooms():void
 	rooms["UVIP N38"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP N38"].southExit = "UVIP N40";
 	rooms["UVIP N38"].westExit = "UVIP L38";
-	rooms["UVIP N38"].moveMinutes = 1;
-	rooms["UVIP N38"].runOnEnter = null;
-	rooms["UVIP N38"].runAfterEnter = null;
+	rooms["UVIP N38"].moveMinutes = 6;
 	rooms["UVIP N38"].addFlag(GLOBAL.ICYTUNDRA);
 
 	rooms["UVIP N40"] = new RoomClass(this);
@@ -763,9 +708,7 @@ public function initUvetoRooms():void
 	rooms["UVIP N40"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP N40"].northExit = "UVIP N38";
 	rooms["UVIP N40"].southExit = "UVIP N42";
-	rooms["UVIP N40"].moveMinutes = 1;
-	rooms["UVIP N40"].runOnEnter = null;
-	rooms["UVIP N40"].runAfterEnter = null;
+	rooms["UVIP N40"].moveMinutes = 6;
 	rooms["UVIP N40"].addFlag(GLOBAL.ICYTUNDRA);
 
 	rooms["UVIP N42"] = new RoomClass(this);
@@ -775,9 +718,7 @@ public function initUvetoRooms():void
 	rooms["UVIP N42"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP N42"].northExit = "UVIP N40";
 	rooms["UVIP N42"].southExit = "UVIP N44";
-	rooms["UVIP N42"].moveMinutes = 1;
-	rooms["UVIP N42"].runOnEnter = null;
-	rooms["UVIP N42"].runAfterEnter = null;
+	rooms["UVIP N42"].moveMinutes = 6;
 	rooms["UVIP N42"].addFlag(GLOBAL.ICYTUNDRA);
 
 	rooms["UVIP N44"] = new RoomClass(this);
@@ -788,9 +729,7 @@ public function initUvetoRooms():void
 	rooms["UVIP N44"].northExit = "UVIP N42";
 	rooms["UVIP N44"].eastExit = "UVIP P44";
 	rooms["UVIP N44"].southExit = "UVIP N46";
-	rooms["UVIP N44"].moveMinutes = 1;
-	rooms["UVIP N44"].runOnEnter = null;
-	rooms["UVIP N44"].runAfterEnter = null;
+	rooms["UVIP N44"].moveMinutes = 6;
 	rooms["UVIP N44"].addFlag(GLOBAL.ICYTUNDRA);
 
 	rooms["UVIP N46"] = new RoomClass(this);
@@ -800,9 +739,7 @@ public function initUvetoRooms():void
 	rooms["UVIP N46"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP N46"].northExit = "UVIP N44";
 	rooms["UVIP N46"].westExit = "UVIP L46";
-	rooms["UVIP N46"].moveMinutes = 1;
-	rooms["UVIP N46"].runOnEnter = null;
-	rooms["UVIP N46"].runAfterEnter = null;
+	rooms["UVIP N46"].moveMinutes = 6;
 	rooms["UVIP N46"].addFlag(GLOBAL.ICYTUNDRA);
 
 	rooms["UVIP L46"] = new RoomClass(this);
@@ -812,9 +749,7 @@ public function initUvetoRooms():void
 	rooms["UVIP L46"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP L46"].eastExit = "UVIP N46";
 	rooms["UVIP L46"].westExit = "UVIP J46";
-	rooms["UVIP L46"].moveMinutes = 1;
-	rooms["UVIP L46"].runOnEnter = null;
-	rooms["UVIP L46"].runAfterEnter = null;
+	rooms["UVIP L46"].moveMinutes = 6;
 	rooms["UVIP L46"].addFlag(GLOBAL.ICYTUNDRA);
 
 	rooms["UVIP J46"] = new RoomClass(this);
@@ -823,7 +758,7 @@ public function initUvetoRooms():void
 	rooms["UVIP J46"].planet = "PLANET: UVETO VII";
 	rooms["UVIP J46"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP J46"].eastExit = "UVIP L46";
-	rooms["UVIP J46"].moveMinutes = 1;
+	rooms["UVIP J46"].moveMinutes = 6;
 	rooms["UVIP J46"].runOnEnter = function():Boolean {
 		if (flags["UVIP_J46_SEARCHED"] == undefined)
 		{
@@ -840,9 +775,7 @@ public function initUvetoRooms():void
 	rooms["UVIP P44"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP P44"].eastExit = "UVIP R44";
 	rooms["UVIP P44"].westExit = "UVIP N44";
-	rooms["UVIP P44"].moveMinutes = 1;
-	rooms["UVIP P44"].runOnEnter = null;
-	rooms["UVIP P44"].runAfterEnter = null;
+	rooms["UVIP P44"].moveMinutes = 6;
 	rooms["UVIP P44"].addFlag(GLOBAL.ICYTUNDRA);
 
 	rooms["UVIP R44"] = new RoomClass(this);
@@ -852,7 +785,7 @@ public function initUvetoRooms():void
 	rooms["UVIP R44"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP R44"].eastExit = "UVIP T44";
 	rooms["UVIP R44"].westExit = "UVIP P44";
-	rooms["UVIP R44"].moveMinutes = 1;
+	rooms["UVIP R44"].moveMinutes = 6;
 	rooms["UVIP R44"].runOnEnter = function():Boolean {
 		if (silly)
 		{
@@ -860,7 +793,6 @@ public function initUvetoRooms():void
 		}
 		return false;
 	};
-	rooms["UVIP R44"].runAfterEnter = null;
 	rooms["UVIP R44"].addFlag(GLOBAL.ICYTUNDRA);
 
 	rooms["UVIP T44"] = new RoomClass(this);
@@ -870,9 +802,7 @@ public function initUvetoRooms():void
 	rooms["UVIP T44"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP T44"].northExit = "UVIP T42";
 	rooms["UVIP T44"].westExit = "UVIP R44";
-	rooms["UVIP T44"].moveMinutes = 1;
-	rooms["UVIP T44"].runOnEnter = null;
-	rooms["UVIP T44"].runAfterEnter = null;
+	rooms["UVIP T44"].moveMinutes = 6;
 	rooms["UVIP T44"].addFlag(GLOBAL.ICYTUNDRA);
 
 	rooms["UVIP T42"] = new RoomClass(this);
@@ -882,9 +812,7 @@ public function initUvetoRooms():void
 	rooms["UVIP T42"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP T42"].northExit = "UVIP T40";
 	rooms["UVIP T42"].southExit = "UVIP T44";
-	rooms["UVIP T42"].moveMinutes = 1;
-	rooms["UVIP T42"].runOnEnter = null;
-	rooms["UVIP T42"].runAfterEnter = null;
+	rooms["UVIP T42"].moveMinutes = 6;
 	rooms["UVIP T42"].addFlag(GLOBAL.ICYTUNDRA);
 
 	rooms["UVIP T40"] = new RoomClass(this);
@@ -894,9 +822,7 @@ public function initUvetoRooms():void
 	rooms["UVIP T40"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP T40"].northExit = "UVIP T38";
 	rooms["UVIP T40"].southExit = "UVIP T42";
-	rooms["UVIP T40"].moveMinutes = 1;
-	rooms["UVIP T40"].runOnEnter = null;
-	rooms["UVIP T40"].runAfterEnter = null;
+	rooms["UVIP T40"].moveMinutes = 6;
 	rooms["UVIP T40"].addFlag(GLOBAL.ICYTUNDRA);
 
 	rooms["UVIP T38"] = new RoomClass(this);
@@ -906,9 +832,7 @@ public function initUvetoRooms():void
 	rooms["UVIP T38"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP T38"].eastExit = "UVIP V38";
 	rooms["UVIP T38"].southExit = "UVIP T40";
-	rooms["UVIP T38"].moveMinutes = 1;
-	rooms["UVIP T38"].runOnEnter = null;
-	rooms["UVIP T38"].runAfterEnter = null;
+	rooms["UVIP T38"].moveMinutes = 6;
 	rooms["UVIP T38"].addFlag(GLOBAL.ICYTUNDRA);
 
 	rooms["UVIP V38"] = new RoomClass(this);
@@ -918,9 +842,7 @@ public function initUvetoRooms():void
 	rooms["UVIP V38"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP V38"].eastExit = "UVIP X38";
 	rooms["UVIP V38"].westExit = "UVIP T38";
-	rooms["UVIP V38"].moveMinutes = 1;
-	rooms["UVIP V38"].runOnEnter = null;
-	rooms["UVIP V38"].runAfterEnter = null;
+	rooms["UVIP V38"].moveMinutes = 6;
 	rooms["UVIP V38"].addFlag(GLOBAL.ICYTUNDRA);
 
 	rooms["UVIP X38"] = new RoomClass(this);
@@ -930,9 +852,7 @@ public function initUvetoRooms():void
 	rooms["UVIP X38"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP X38"].northExit = "UVIP X36";
 	rooms["UVIP X38"].westExit = "UVIP V38";
-	rooms["UVIP X38"].moveMinutes = 1;
-	rooms["UVIP X38"].runOnEnter = null;
-	rooms["UVIP X38"].runAfterEnter = null;
+	rooms["UVIP X38"].moveMinutes = 6;
 	rooms["UVIP X38"].addFlag(GLOBAL.ICYTUNDRA);
 
 	rooms["UVIP X36"] = new RoomClass(this);
@@ -943,9 +863,7 @@ public function initUvetoRooms():void
 	rooms["UVIP X36"].northExit = "UVIP X34";
 	rooms["UVIP X36"].southExit = "UVIP X38";
 	rooms["UVIP X36"].westExit = "UVIP V36";
-	rooms["UVIP X36"].moveMinutes = 1;
-	rooms["UVIP X36"].runOnEnter = null;
-	rooms["UVIP X36"].runAfterEnter = null;
+	rooms["UVIP X36"].moveMinutes = 6;
 	rooms["UVIP X36"].addFlag(GLOBAL.ICYTUNDRA);
 
 	rooms["UVIP V36"] = new RoomClass(this);
@@ -955,9 +873,7 @@ public function initUvetoRooms():void
 	rooms["UVIP V36"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP V36"].eastExit = "UVIP X36";
 	rooms["UVIP V36"].westExit = "UVIP T36";
-	rooms["UVIP V36"].moveMinutes = 1;
-	rooms["UVIP V36"].runOnEnter = null;
-	rooms["UVIP V36"].runAfterEnter = null;
+	rooms["UVIP V36"].moveMinutes = 6;
 	rooms["UVIP V36"].addFlag(GLOBAL.ICYTUNDRA);
 
 	rooms["UVIP T36"] = new RoomClass(this);
@@ -967,9 +883,7 @@ public function initUvetoRooms():void
 	rooms["UVIP T36"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP T36"].eastExit = "UVIP V36";
 	rooms["UVIP T36"].westExit = "UVIP R36";
-	rooms["UVIP T36"].moveMinutes = 1;
-	rooms["UVIP T36"].runOnEnter = null;
-	rooms["UVIP T36"].runAfterEnter = null;
+	rooms["UVIP T36"].moveMinutes = 6;
 	rooms["UVIP T36"].addFlag(GLOBAL.ICYTUNDRA);
 
 	/* BLU ROOM */
@@ -980,8 +894,6 @@ public function initUvetoRooms():void
 	rooms["UVIP R36"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP R36"].eastExit = "UVIP T36";
 	rooms["UVIP R36"].moveMinutes = 1;
-	rooms["UVIP R36"].runOnEnter = null;
-	rooms["UVIP R36"].runAfterEnter = null;
 	rooms["UVIP R36"].addFlag(GLOBAL.CAVE);
 
 	rooms["UVIP X34"] = new RoomClass(this);
@@ -991,9 +903,7 @@ public function initUvetoRooms():void
 	rooms["UVIP X34"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP X34"].eastExit = "UVIP Z34";
 	rooms["UVIP X34"].southExit = "UVIP X36";
-	rooms["UVIP X34"].moveMinutes = 1;
-	rooms["UVIP X34"].runOnEnter = null;
-	rooms["UVIP X34"].runAfterEnter = null;
+	rooms["UVIP X34"].moveMinutes = 12;
 	rooms["UVIP X34"].addFlag(GLOBAL.FROZENTUNDRA);
 
 	/* SOUTH EXIT TO RIFT */
@@ -1003,9 +913,7 @@ public function initUvetoRooms():void
 	rooms["UVIP Z34"].planet = "PLANET: UVETO VII";
 	rooms["UVIP Z34"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP Z34"].westExit = "UVIP X34";
-	rooms["UVIP Z34"].moveMinutes = 1;
-	rooms["UVIP Z34"].runOnEnter = null;
-	rooms["UVIP Z34"].runAfterEnter = null;
+	rooms["UVIP Z34"].moveMinutes = 12;
 	rooms["UVIP Z34"].addFlag(GLOBAL.FROZENTUNDRA);
 
 	/* NORTH END */
@@ -1016,9 +924,7 @@ public function initUvetoRooms():void
 	rooms["UVIP F36"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP F36"].northExit = "UVIP F34";
 	rooms["UVIP F36"].southExit = "UVIP F38";
-	rooms["UVIP F36"].moveMinutes = 1;
-	rooms["UVIP F36"].runOnEnter = null;
-	rooms["UVIP F36"].runAfterEnter = null;
+	rooms["UVIP F36"].moveMinutes = 6;
 	rooms["UVIP F36"].addFlag(GLOBAL.OUTDOOR);
 
 	rooms["UVIP F34"] = new RoomClass(this);
@@ -1028,9 +934,7 @@ public function initUvetoRooms():void
 	rooms["UVIP F34"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP F34"].northExit = "UVIP F32";
 	rooms["UVIP F34"].southExit = "UVIP F36";
-	rooms["UVIP F34"].moveMinutes = 1;
-	rooms["UVIP F34"].runOnEnter = null;
-	rooms["UVIP F34"].runAfterEnter = null;
+	rooms["UVIP F34"].moveMinutes = 6;
 	rooms["UVIP F34"].addFlag(GLOBAL.OUTDOOR);
 
 	rooms["UVIP F32"] = new RoomClass(this);
@@ -1041,9 +945,7 @@ public function initUvetoRooms():void
 	rooms["UVIP F32"].northExit = "UVIP F30";
 	rooms["UVIP F32"].eastExit = "UVIP H32";
 	rooms["UVIP F32"].southExit = "UVIP F34";
-	rooms["UVIP F32"].moveMinutes = 1;
-	rooms["UVIP F32"].runOnEnter = null;
-	rooms["UVIP F32"].runAfterEnter = null;
+	rooms["UVIP F32"].moveMinutes = 6;
 	rooms["UVIP F32"].addFlag(GLOBAL.OUTDOOR);
 
 	rooms["UVIP F30"] = new RoomClass(this);
@@ -1053,9 +955,7 @@ public function initUvetoRooms():void
 	rooms["UVIP F30"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP F30"].northExit = "UVIP F28";
 	rooms["UVIP F30"].southExit = "UVIP F32";
-	rooms["UVIP F30"].moveMinutes = 1;
-	rooms["UVIP F30"].runOnEnter = null;
-	rooms["UVIP F30"].runAfterEnter = null;
+	rooms["UVIP F30"].moveMinutes = 6;
 	rooms["UVIP F30"].addFlag(GLOBAL.OUTDOOR);
 
 	rooms["UVIP F28"] = new RoomClass(this);
@@ -1066,9 +966,7 @@ public function initUvetoRooms():void
 	rooms["UVIP F28"].northExit = "UVIP F26";
 	rooms["UVIP F28"].eastExit = "UVIP H28";
 	rooms["UVIP F28"].southExit = "UVIP F30";
-	rooms["UVIP F28"].moveMinutes = 1;
-	rooms["UVIP F28"].runOnEnter = null;
-	rooms["UVIP F28"].runAfterEnter = null;
+	rooms["UVIP F28"].moveMinutes = 6;
 	rooms["UVIP F28"].addFlag(GLOBAL.OUTDOOR);
 
 	/* Toward Fishing Hole */
@@ -1080,9 +978,7 @@ public function initUvetoRooms():void
 	rooms["UVIP H28"].eastExit = "UVIP J28";
 	rooms["UVIP H28"].southExit = "UVIP H30";
 	rooms["UVIP H28"].westExit = "UVIP F28";
-	rooms["UVIP H28"].moveMinutes = 1;
-	rooms["UVIP H28"].runOnEnter = null;
-	rooms["UVIP H28"].runAfterEnter = null;
+	rooms["UVIP H28"].moveMinutes = 6;
 	rooms["UVIP H28"].addFlag(GLOBAL.ICYTUNDRA);
 
 	rooms["UVIP H30"] = new RoomClass(this);
@@ -1092,9 +988,7 @@ public function initUvetoRooms():void
 	rooms["UVIP H30"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP H30"].northExit = "UVIP H28";
 	rooms["UVIP H30"].southExit = "UVIP H32";
-	rooms["UVIP H30"].moveMinutes = 1;
-	rooms["UVIP H30"].runOnEnter = null;
-	rooms["UVIP H30"].runAfterEnter = null;
+	rooms["UVIP H30"].moveMinutes = 6;
 	rooms["UVIP H30"].addFlag(GLOBAL.OUTDOOR);
 
 	rooms["UVIP H32"] = new RoomClass(this);
@@ -1104,9 +998,7 @@ public function initUvetoRooms():void
 	rooms["UVIP H32"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP H32"].northExit = "UVIP H30";
 	rooms["UVIP H32"].westExit = "UVIP F32";
-	rooms["UVIP H32"].moveMinutes = 1;
-	rooms["UVIP H32"].runOnEnter = null;
-	rooms["UVIP H32"].runAfterEnter = null;
+	rooms["UVIP H32"].moveMinutes = 6;
 	rooms["UVIP H32"].addFlag(GLOBAL.OUTDOOR);
 
 	rooms["UVIP J28"] = new RoomClass(this);
@@ -1116,9 +1008,7 @@ public function initUvetoRooms():void
 	rooms["UVIP J28"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP J28"].eastExit = "UVIP L28";
 	rooms["UVIP J28"].westExit = "UVIP H28";
-	rooms["UVIP J28"].moveMinutes = 1;
-	rooms["UVIP J28"].runOnEnter = null;
-	rooms["UVIP J28"].runAfterEnter = null;
+	rooms["UVIP J28"].moveMinutes = 6;
 	rooms["UVIP J28"].addFlag(GLOBAL.ICYTUNDRA);
 
 	rooms["UVIP L28"] = new RoomClass(this);
@@ -1128,9 +1018,7 @@ public function initUvetoRooms():void
 	rooms["UVIP L28"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP L28"].southExit = "UVIP L30";
 	rooms["UVIP L28"].westExit = "UVIP J28";
-	rooms["UVIP L28"].moveMinutes = 1;
-	rooms["UVIP L28"].runOnEnter = null;
-	rooms["UVIP L28"].runAfterEnter = null;
+	rooms["UVIP L28"].moveMinutes = 6;
 	rooms["UVIP L28"].addFlag(GLOBAL.ICYTUNDRA);
 
 	rooms["UVIP L30"] = new RoomClass(this);
@@ -1140,9 +1028,7 @@ public function initUvetoRooms():void
 	rooms["UVIP L30"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP L30"].northExit = "UVIP L28";
 	rooms["UVIP L30"].southExit = "UVIP L32";
-	rooms["UVIP L30"].moveMinutes = 1;
-	rooms["UVIP L30"].runOnEnter = null;
-	rooms["UVIP L30"].runAfterEnter = null;
+	rooms["UVIP L30"].moveMinutes = 6;
 	rooms["UVIP L30"].addFlag(GLOBAL.ICYTUNDRA);
 
 	rooms["UVIP L32"] = new RoomClass(this);
@@ -1152,9 +1038,7 @@ public function initUvetoRooms():void
 	rooms["UVIP L32"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP L32"].northExit = "UVIP L30";
 	rooms["UVIP L32"].eastExit = "UVIP N32";
-	rooms["UVIP L32"].moveMinutes = 1;
-	rooms["UVIP L32"].runOnEnter = null;
-	rooms["UVIP L32"].runAfterEnter = null;
+	rooms["UVIP L32"].moveMinutes = 6;
 	rooms["UVIP L32"].addFlag(GLOBAL.ICYTUNDRA);
 
 	/* FISHING HOLE */
@@ -1164,9 +1048,7 @@ public function initUvetoRooms():void
 	rooms["UVIP N32"].planet = "PLANET: UVETO VII";
 	rooms["UVIP N32"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP N32"].westExit = "UVIP L32";
-	rooms["UVIP N32"].moveMinutes = 1;
-	rooms["UVIP N32"].runOnEnter = null;
-	rooms["UVIP N32"].runAfterEnter = null;
+	rooms["UVIP N32"].moveMinutes = 6;
 	rooms["UVIP N32"].addFlag(GLOBAL.ICYTUNDRA);
 
 	/* NORTH END */
@@ -1177,9 +1059,7 @@ public function initUvetoRooms():void
 	rooms["UVIP F26"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP F26"].northExit = "UVIP F24";
 	rooms["UVIP F26"].southExit = "UVIP F28";
-	rooms["UVIP F26"].moveMinutes = 1;
-	rooms["UVIP F26"].runOnEnter = null;
-	rooms["UVIP F26"].runAfterEnter = null;
+	rooms["UVIP F26"].moveMinutes = 6;
 	rooms["UVIP F26"].addFlag(GLOBAL.ICYTUNDRA);
 
 	rooms["UVIP F24"] = new RoomClass(this);
@@ -1190,9 +1070,7 @@ public function initUvetoRooms():void
 	rooms["UVIP F24"].northExit = "UVIP F22";
 	rooms["UVIP F24"].eastExit = "UVIP H24";
 	rooms["UVIP F24"].southExit = "UVIP F26";
-	rooms["UVIP F24"].moveMinutes = 1;
-	rooms["UVIP F24"].runOnEnter = null;
-	rooms["UVIP F24"].runAfterEnter = null;
+	rooms["UVIP F24"].moveMinutes = 6;
 	rooms["UVIP F24"].addFlag(GLOBAL.ICYTUNDRA);
 
 	rooms["UVIP F22"] = new RoomClass(this);
@@ -1203,9 +1081,7 @@ public function initUvetoRooms():void
 	rooms["UVIP F22"].northExit = "UVIP F20";
 	rooms["UVIP F22"].southExit = "UVIP F24";
 	rooms["UVIP F22"].westExit = "UVIP D22"; // ????? BLUE AF
-	rooms["UVIP F22"].moveMinutes = 1;
-	rooms["UVIP F22"].runOnEnter = null;
-	rooms["UVIP F22"].runAfterEnter = null;
+	rooms["UVIP F22"].moveMinutes = 6;
 	rooms["UVIP F22"].addFlag(GLOBAL.ICYTUNDRA);
 
 	/* BLU ROOM */
@@ -1216,8 +1092,6 @@ public function initUvetoRooms():void
 	rooms["UVIP D22"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP D22"].eastExit = "UVIP F22";
 	rooms["UVIP D22"].moveMinutes = 1;
-	rooms["UVIP D22"].runOnEnter = null;
-	rooms["UVIP D22"].runAfterEnter = null;
 	rooms["UVIP D22"].addFlag(GLOBAL.CAVE);
 
 	rooms["UVIP F20"] = new RoomClass(this);
@@ -1227,9 +1101,7 @@ public function initUvetoRooms():void
 	rooms["UVIP F20"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP F20"].eastExit = "UVIP H20";
 	rooms["UVIP F20"].southExit = "UVIP F22";
-	rooms["UVIP F20"].moveMinutes = 1;
-	rooms["UVIP F20"].runOnEnter = null;
-	rooms["UVIP F20"].runAfterEnter = null;
+	rooms["UVIP F20"].moveMinutes = 6;
 	rooms["UVIP F20"].addFlag(GLOBAL.ICYTUNDRA);
 
 	rooms["UVIP H20"] = new RoomClass(this);
@@ -1239,9 +1111,7 @@ public function initUvetoRooms():void
 	rooms["UVIP H20"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP H20"].eastExit = "UVIP J20";
 	rooms["UVIP H20"].westExit = "UVIP F20";
-	rooms["UVIP H20"].moveMinutes = 1;
-	rooms["UVIP H20"].runOnEnter = null;
-	rooms["UVIP H20"].runAfterEnter = null;
+	rooms["UVIP H20"].moveMinutes = 6;
 	rooms["UVIP H20"].addFlag(GLOBAL.ICYTUNDRA);
 
 	/* BLU ROOM */
@@ -1253,8 +1123,6 @@ public function initUvetoRooms():void
 	rooms["UVIP J20"].northExit = "UVIP J18";
 	rooms["UVIP J20"].westExit = "UVIP H20";
 	rooms["UVIP J20"].moveMinutes = 1;
-	rooms["UVIP J20"].runOnEnter = null;
-	rooms["UVIP J20"].runAfterEnter = null;
 	rooms["UVIP J20"].addFlag(GLOBAL.CAVE);
 
 	rooms["UVIP J18"] = new RoomClass(this);
@@ -1264,8 +1132,6 @@ public function initUvetoRooms():void
 	rooms["UVIP J18"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP J18"].southExit = "UVIP J20";
 	rooms["UVIP J18"].moveMinutes = 1;
-	rooms["UVIP J18"].runOnEnter = null;
-	rooms["UVIP J18"].runAfterEnter = null;
 	rooms["UVIP J18"].addFlag(GLOBAL.CAVE);
 
 	rooms["UVIP H24"] = new RoomClass(this);
@@ -1275,9 +1141,7 @@ public function initUvetoRooms():void
 	rooms["UVIP H24"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP H24"].eastExit = "UVIP J24";
 	rooms["UVIP H24"].westExit = "UVIP F24";
-	rooms["UVIP H24"].moveMinutes = 1;
-	rooms["UVIP H24"].runOnEnter = null;
-	rooms["UVIP H24"].runAfterEnter = null;
+	rooms["UVIP H24"].moveMinutes = 6;
 	rooms["UVIP H24"].addFlag(GLOBAL.ICYTUNDRA);
 
 	rooms["UVIP J24"] = new RoomClass(this);
@@ -1287,9 +1151,7 @@ public function initUvetoRooms():void
 	rooms["UVIP J24"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP J24"].northExit = "UVIP J22";
 	rooms["UVIP J24"].westExit = "UVIP H24";
-	rooms["UVIP J24"].moveMinutes = 1;
-	rooms["UVIP J24"].runOnEnter = null;
-	rooms["UVIP J24"].runAfterEnter = null;
+	rooms["UVIP J24"].moveMinutes = 6;
 	rooms["UVIP J24"].addFlag(GLOBAL.ICYTUNDRA);
 
 	rooms["UVIP J22"] = new RoomClass(this);
@@ -1299,9 +1161,7 @@ public function initUvetoRooms():void
 	rooms["UVIP J22"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP J22"].eastExit = "UVIP L22";
 	rooms["UVIP J22"].southExit = "UVIP J24";
-	rooms["UVIP J22"].moveMinutes = 1;
-	rooms["UVIP J22"].runOnEnter = null;
-	rooms["UVIP J22"].runAfterEnter = null;
+	rooms["UVIP J22"].moveMinutes = 6;
 	rooms["UVIP J22"].addFlag(GLOBAL.ICYTUNDRA);
 
 	rooms["UVIP L22"] = new RoomClass(this);
@@ -1311,9 +1171,7 @@ public function initUvetoRooms():void
 	rooms["UVIP L22"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP L22"].northExit = "UVIP L20";
 	rooms["UVIP L22"].westExit = "UVIP J22";
-	rooms["UVIP L22"].moveMinutes = 1;
-	rooms["UVIP L22"].runOnEnter = null;
-	rooms["UVIP L22"].runAfterEnter = null;
+	rooms["UVIP L22"].moveMinutes = 6;
 	rooms["UVIP L22"].addFlag(GLOBAL.ICYTUNDRA);
 
 	rooms["UVIP L20"] = new RoomClass(this);
@@ -1323,9 +1181,7 @@ public function initUvetoRooms():void
 	rooms["UVIP L20"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP L20"].northExit = "UVIP L18";
 	rooms["UVIP L20"].southExit = "UVIP L22";
-	rooms["UVIP L20"].moveMinutes = 1;
-	rooms["UVIP L20"].runOnEnter = null;
-	rooms["UVIP L20"].runAfterEnter = null;
+	rooms["UVIP L20"].moveMinutes = 6;
 	rooms["UVIP L20"].addFlag(GLOBAL.ICYTUNDRA);
 
 	rooms["UVIP L18"] = new RoomClass(this);
@@ -1335,9 +1191,7 @@ public function initUvetoRooms():void
 	rooms["UVIP L18"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP L18"].northExit = "UVIP L16";
 	rooms["UVIP L18"].southExit = "UVIP L20";
-	rooms["UVIP L18"].moveMinutes = 1;
-	rooms["UVIP L18"].runOnEnter = null;
-	rooms["UVIP L18"].runAfterEnter = null;
+	rooms["UVIP L18"].moveMinutes = 6;
 	rooms["UVIP L18"].addFlag(GLOBAL.ICYTUNDRA);
 
 	rooms["UVIP L16"] = new RoomClass(this);
@@ -1347,9 +1201,7 @@ public function initUvetoRooms():void
 	rooms["UVIP L16"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP L16"].eastExit = "UVIP N16";
 	rooms["UVIP L16"].southExit = "UVIP L18";
-	rooms["UVIP L16"].moveMinutes = 1;
-	rooms["UVIP L16"].runOnEnter = null;
-	rooms["UVIP L16"].runAfterEnter = null;
+	rooms["UVIP L16"].moveMinutes = 6;
 	rooms["UVIP L16"].addFlag(GLOBAL.ICYTUNDRA);
 
 	rooms["UVIP N16"] = new RoomClass(this);
@@ -1359,9 +1211,7 @@ public function initUvetoRooms():void
 	rooms["UVIP N16"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP N16"].eastExit = "UVIP P16";
 	rooms["UVIP N16"].westExit = "UVIP L16";
-	rooms["UVIP N16"].moveMinutes = 1;
-	rooms["UVIP N16"].runOnEnter = null;
-	rooms["UVIP N16"].runAfterEnter = null;
+	rooms["UVIP N16"].moveMinutes = 6;
 	rooms["UVIP N16"].addFlag(GLOBAL.ICYTUNDRA);
 
 	rooms["UVIP P16"] = new RoomClass(this);
@@ -1371,9 +1221,7 @@ public function initUvetoRooms():void
 	rooms["UVIP P16"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP P16"].northExit = "UVIP P14";
 	rooms["UVIP P16"].westExit = "UVIP N16";
-	rooms["UVIP P16"].moveMinutes = 1;
-	rooms["UVIP P16"].runOnEnter = null;
-	rooms["UVIP P16"].runAfterEnter = null;
+	rooms["UVIP P16"].moveMinutes = 6;
 	rooms["UVIP P16"].addFlag(GLOBAL.ICYTUNDRA);
 
 	rooms["UVIP P14"] = new RoomClass(this);
@@ -1383,9 +1231,7 @@ public function initUvetoRooms():void
 	rooms["UVIP P14"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP P14"].northExit = "UVIP P12";
 	rooms["UVIP P14"].southExit = "UVIP P16";
-	rooms["UVIP P14"].moveMinutes = 1;
-	rooms["UVIP P14"].runOnEnter = null;
-	rooms["UVIP P14"].runAfterEnter = null;
+	rooms["UVIP P14"].moveMinutes = 6;
 	rooms["UVIP P14"].addFlag(GLOBAL.ICYTUNDRA);
 
 	rooms["UVIP P12"] = new RoomClass(this);
@@ -1396,9 +1242,7 @@ public function initUvetoRooms():void
 	rooms["UVIP P12"].northExit = "UVIP P10";
 	rooms["UVIP P12"].eastExit = "UVIP R12";
 	rooms["UVIP P12"].southExit = "UVIP P14";
-	rooms["UVIP P12"].moveMinutes = 1;
-	rooms["UVIP P12"].runOnEnter = null;
-	rooms["UVIP P12"].runAfterEnter = null;
+	rooms["UVIP P12"].moveMinutes = 6;
 	rooms["UVIP P12"].addFlag(GLOBAL.ICYTUNDRA);
 
 	/* Taxi Branch */
@@ -1411,9 +1255,7 @@ public function initUvetoRooms():void
 	rooms["UVIP P10"].eastExit = "UVIP R10";
 	rooms["UVIP P10"].southExit = "UVIP P12";
 	rooms["UVIP P10"].westExit = "UVIP N10";
-	rooms["UVIP P10"].moveMinutes = 1;
-	rooms["UVIP P10"].runOnEnter = null;
-	rooms["UVIP P10"].runAfterEnter = null;
+	rooms["UVIP P10"].moveMinutes = 6;
 	rooms["UVIP P10"].addFlag(GLOBAL.ICYTUNDRA);
 
 	/* TAXI */
@@ -1423,7 +1265,7 @@ public function initUvetoRooms():void
 	rooms["UVIP R10"].planet = "PLANET: UVETO VII";
 	rooms["UVIP R10"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP R10"].westExit = "UVIP P10";
-	rooms["UVIP R10"].moveMinutes = 1;
+	rooms["UVIP R10"].moveMinutes = 6;
 	rooms["UVIP R10"].runOnEnter = function():Boolean {
 		if (flags["UVIP_R10_PROBE_ACTIVE"] == undefined)
 		{
@@ -1437,7 +1279,6 @@ public function initUvetoRooms():void
 		}
 		return false;
 	};
-	rooms["UVIP R10"].runAfterEnter = null;
 	rooms["UVIP R10"].addFlag(GLOBAL.ICYTUNDRA);
 	rooms["UVIP R10"].addFlag(GLOBAL.TAXI);
 
@@ -1449,9 +1290,7 @@ public function initUvetoRooms():void
 	rooms["UVIP N10"].eastExit = "UVIP P10";
 	rooms["UVIP N10"].southExit = "UVIP N12";
 	rooms["UVIP N10"].westExit = "UVIP L10";
-	rooms["UVIP N10"].moveMinutes = 1;
-	rooms["UVIP N10"].runOnEnter = null;
-	rooms["UVIP N10"].runAfterEnter = null;
+	rooms["UVIP N10"].moveMinutes = 6;
 	rooms["UVIP N10"].addFlag(GLOBAL.ICYTUNDRA);
 
 	rooms["UVIP N12"] = new RoomClass(this);
@@ -1461,8 +1300,6 @@ public function initUvetoRooms():void
 	rooms["UVIP N12"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP N12"].northExit = "UVIP N10";
 	rooms["UVIP N12"].moveMinutes = 1;
-	rooms["UVIP N12"].runOnEnter = null;
-	rooms["UVIP N12"].runAfterEnter = null;
 
 	rooms["UVIP L10"] = new RoomClass(this);
 	rooms["UVIP L10"].roomName = "ICE RIDGE\nWEST";
@@ -1471,9 +1308,7 @@ public function initUvetoRooms():void
 	rooms["UVIP L10"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP L10"].eastExit = "UVIP N10";
 	rooms["UVIP L10"].westExit = "UVIP J10";
-	rooms["UVIP L10"].moveMinutes = 1;
-	rooms["UVIP L10"].runOnEnter = null;
-	rooms["UVIP L10"].runAfterEnter = null;
+	rooms["UVIP L10"].moveMinutes = 6;
 	rooms["UVIP L10"].addFlag(GLOBAL.ICYTUNDRA);
 
 	rooms["UVIP J10"] = new RoomClass(this);
@@ -1482,9 +1317,7 @@ public function initUvetoRooms():void
 	rooms["UVIP J10"].planet = "PLANET: UVETO VII";
 	rooms["UVIP J10"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP J10"].eastExit = "UVIP L10";
-	rooms["UVIP J10"].moveMinutes = 1;
-	rooms["UVIP J10"].runOnEnter = null;
-	rooms["UVIP J10"].runAfterEnter = null;
+	rooms["UVIP J10"].moveMinutes = 6;
 	rooms["UVIP J10"].addFlag(GLOBAL.ICYTUNDRA);
 
 	rooms["UVIP P8"] = new RoomClass(this);
@@ -1494,9 +1327,7 @@ public function initUvetoRooms():void
 	rooms["UVIP P8"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP P8"].eastExit = "UVIP R8";
 	rooms["UVIP P8"].southExit = "UVIP P10";
-	rooms["UVIP P8"].moveMinutes = 1;
-	rooms["UVIP P8"].runOnEnter = null;
-	rooms["UVIP P8"].runAfterEnter = null;
+	rooms["UVIP P8"].moveMinutes = 12;
 	rooms["UVIP P8"].addFlag(GLOBAL.FROZENTUNDRA);
 
 	rooms["UVIP R8"] = new RoomClass(this);
@@ -1506,9 +1337,7 @@ public function initUvetoRooms():void
 	rooms["UVIP R8"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP R8"].eastExit = "UVIP T8";
 	rooms["UVIP R8"].westExit = "UVIP P8";
-	rooms["UVIP R8"].moveMinutes = 1;
-	rooms["UVIP R8"].runOnEnter = null;
-	rooms["UVIP R8"].runAfterEnter = null;
+	rooms["UVIP R8"].moveMinutes = 12;
 	rooms["UVIP R8"].addFlag(GLOBAL.FROZENTUNDRA);
 
 	rooms["UVIP T8"] = new RoomClass(this);
@@ -1518,12 +1347,11 @@ public function initUvetoRooms():void
 	rooms["UVIP T8"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP T8"].northExit = "UVIP T6";
 	rooms["UVIP T8"].westExit = "UVIP R8";
-	rooms["UVIP T8"].moveMinutes = 1;
+	rooms["UVIP T8"].moveMinutes = 12;
 	rooms["UVIP T8"].runOnEnter = function():Boolean {
 		output(" You can barely see Irestead off in the distance back westwards, and to the east: an endless stretch of ice, gleaming blindingly in the "+ (hours > 6 && hours < 19 ? "sun " : "planet-") +"light.");
 		return false;
 	};
-	rooms["UVIP T8"].runAfterEnter = null;
 	rooms["UVIP T8"].addFlag(GLOBAL.FROZENTUNDRA);
 
 	rooms["UVIP T6"] = new RoomClass(this);
@@ -1533,9 +1361,7 @@ public function initUvetoRooms():void
 	rooms["UVIP T6"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP T6"].eastExit = "UVIP V6";
 	rooms["UVIP T6"].southExit = "UVIP T8";
-	rooms["UVIP T6"].moveMinutes = 1;
-	rooms["UVIP T6"].runOnEnter = null;
-	rooms["UVIP T6"].runAfterEnter = null;
+	rooms["UVIP T6"].moveMinutes = 12;
 	rooms["UVIP T6"].addFlag(GLOBAL.FROZENTUNDRA);
 
 	rooms["UVIP V6"] = new RoomClass(this);
@@ -1545,9 +1371,7 @@ public function initUvetoRooms():void
 	rooms["UVIP V6"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP V6"].eastExit = "UVIP X6";
 	rooms["UVIP V6"].westExit = "UVIP T6";
-	rooms["UVIP V6"].moveMinutes = 1;
-	rooms["UVIP V6"].runOnEnter = null;
-	rooms["UVIP V6"].runAfterEnter = null;
+	rooms["UVIP V6"].moveMinutes = 12;
 	rooms["UVIP V6"].addFlag(GLOBAL.FROZENTUNDRA);
 
 	rooms["UVIP X6"] = new RoomClass(this);
@@ -1557,9 +1381,7 @@ public function initUvetoRooms():void
 	rooms["UVIP X6"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP X6"].eastExit = "UVIP Z6";
 	rooms["UVIP X6"].westExit = "UVIP V6";
-	rooms["UVIP X6"].moveMinutes = 1;
-	rooms["UVIP X6"].runOnEnter = null;
-	rooms["UVIP X6"].runAfterEnter = null;
+	rooms["UVIP X6"].moveMinutes = 12;
 	rooms["UVIP X6"].addFlag(GLOBAL.FROZENTUNDRA);
 
 	/* NORTH RIFT EXIT */
@@ -1569,9 +1391,7 @@ public function initUvetoRooms():void
 	rooms["UVIP Z6"].planet = "PLANET: UVETO VII";
 	rooms["UVIP Z6"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP Z6"].westExit = "UVIP X6";
-	rooms["UVIP Z6"].moveMinutes = 1;
-	rooms["UVIP Z6"].runOnEnter = null;
-	rooms["UVIP Z6"].runAfterEnter = null;
+	rooms["UVIP Z6"].moveMinutes = 6;
 	rooms["UVIP Z6"].addFlag(GLOBAL.ICYTUNDRA);
 
 	/* CENTER BRANCH */
@@ -1582,9 +1402,7 @@ public function initUvetoRooms():void
 	rooms["UVIP R12"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP R12"].eastExit = "UVIP T12";
 	rooms["UVIP R12"].westExit = "UVIP P12";
-	rooms["UVIP R12"].moveMinutes = 1;
-	rooms["UVIP R12"].runOnEnter = null;
-	rooms["UVIP R12"].runAfterEnter = null;
+	rooms["UVIP R12"].moveMinutes = 6;
 	rooms["UVIP R12"].addFlag(GLOBAL.ICYTUNDRA);
 
 	rooms["UVIP T12"] = new RoomClass(this);
@@ -1594,9 +1412,7 @@ public function initUvetoRooms():void
 	rooms["UVIP T12"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP T12"].eastExit = "UVIP V12";
 	rooms["UVIP T12"].westExit = "UVIP R12";
-	rooms["UVIP T12"].moveMinutes = 1;
-	rooms["UVIP T12"].runOnEnter = null;
-	rooms["UVIP T12"].runAfterEnter = null;
+	rooms["UVIP T12"].moveMinutes = 6;
 	rooms["UVIP T12"].addFlag(GLOBAL.ICYTUNDRA);
 
 	rooms["UVIP V12"] = new RoomClass(this);
@@ -1606,9 +1422,7 @@ public function initUvetoRooms():void
 	rooms["UVIP V12"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP V12"].southExit = "UVIP V14";
 	rooms["UVIP V12"].westExit = "UVIP T12";
-	rooms["UVIP V12"].moveMinutes = 1;
-	rooms["UVIP V12"].runOnEnter = null;
-	rooms["UVIP V12"].runAfterEnter = null;
+	rooms["UVIP V12"].moveMinutes = 6;
 	rooms["UVIP V12"].addFlag(GLOBAL.ICYTUNDRA);
 
 	rooms["UVIP V14"] = new RoomClass(this);
@@ -1618,9 +1432,7 @@ public function initUvetoRooms():void
 	rooms["UVIP V14"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP V14"].northExit = "UVIP V12";
 	rooms["UVIP V14"].southExit = "UVIP V16";
-	rooms["UVIP V14"].moveMinutes = 1;
-	rooms["UVIP V14"].runOnEnter = null;
-	rooms["UVIP V14"].runAfterEnter = null;
+	rooms["UVIP V14"].moveMinutes = 6;
 	rooms["UVIP V14"].addFlag(GLOBAL.ICYTUNDRA);
 
 	rooms["UVIP V16"] = new RoomClass(this);
@@ -1630,9 +1442,7 @@ public function initUvetoRooms():void
 	rooms["UVIP V16"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP V16"].northExit = "UVIP V14";
 	rooms["UVIP V16"].southExit = "UVIP V18";
-	rooms["UVIP V16"].moveMinutes = 1;
-	rooms["UVIP V16"].runOnEnter = null;
-	rooms["UVIP V16"].runAfterEnter = null;
+	rooms["UVIP V16"].moveMinutes = 6;
 	rooms["UVIP V16"].addFlag(GLOBAL.ICYTUNDRA);
 
 	rooms["UVIP V18"] = new RoomClass(this);
@@ -1643,9 +1453,7 @@ public function initUvetoRooms():void
 	rooms["UVIP V18"].northExit = "UVIP V16";
 	rooms["UVIP V18"].eastExit = "UVIP X18";
 	rooms["UVIP V18"].southExit = "UVIP V20";
-	rooms["UVIP V18"].moveMinutes = 1;
-	rooms["UVIP V18"].runOnEnter = null;
-	rooms["UVIP V18"].runAfterEnter = null;
+	rooms["UVIP V18"].moveMinutes = 6;
 	rooms["UVIP V18"].addFlag(GLOBAL.ICYTUNDRA);
 
 	/* RELAY TOWER */
@@ -1656,8 +1464,6 @@ public function initUvetoRooms():void
 	rooms["UVIP X18"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP X18"].westExit = "UVIP V18";
 	rooms["UVIP X18"].moveMinutes = 1;
-	rooms["UVIP X18"].runOnEnter = null;
-	rooms["UVIP X18"].runAfterEnter = null;
 	rooms["UVIP X18"].addFlag(GLOBAL.INDOOR);
 
 	rooms["UVIP V20"] = new RoomClass(this);
@@ -1667,9 +1473,7 @@ public function initUvetoRooms():void
 	rooms["UVIP V20"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP V20"].northExit = "UVIP V18";
 	rooms["UVIP V20"].southExit = "UVIP V22";
-	rooms["UVIP V20"].moveMinutes = 1;
-	rooms["UVIP V20"].runOnEnter = null;
-	rooms["UVIP V20"].runAfterEnter = null;
+	rooms["UVIP V20"].moveMinutes = 6;
 	rooms["UVIP V20"].addFlag(GLOBAL.ICYTUNDRA);
 
 	rooms["UVIP V22"] = new RoomClass(this);
@@ -1679,9 +1483,7 @@ public function initUvetoRooms():void
 	rooms["UVIP V22"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP V22"].northExit = "UVIP V20";
 	rooms["UVIP V22"].eastExit = "UVIP X22";
-	rooms["UVIP V22"].moveMinutes = 1;
-	rooms["UVIP V22"].runOnEnter = null;
-	rooms["UVIP V22"].runAfterEnter = null;
+	rooms["UVIP V22"].moveMinutes = 12;
 	rooms["UVIP V22"].addFlag(GLOBAL.FROZENTUNDRA);
 
 	rooms["UVIP X22"] = new RoomClass(this);
@@ -1691,9 +1493,7 @@ public function initUvetoRooms():void
 	rooms["UVIP X22"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP X22"].eastExit = "UVIP Z22";
 	rooms["UVIP X22"].westExit = "UVIP V22";
-	rooms["UVIP X22"].moveMinutes = 1;
-	rooms["UVIP X22"].runOnEnter = null;
-	rooms["UVIP X22"].runAfterEnter = null;
+	rooms["UVIP X22"].moveMinutes = 12;
 	rooms["UVIP X22"].addFlag(GLOBAL.FROZENTUNDRA);
 
 	/* CENTER EXIT TO RIFT */
@@ -1703,8 +1503,6 @@ public function initUvetoRooms():void
 	rooms["UVIP Z22"].planet = "PLANET: UVETO VII";
 	rooms["UVIP Z22"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP Z22"].westExit = "UVIP X22";
-	rooms["UVIP Z22"].moveMinutes = 1;
-	rooms["UVIP Z22"].runOnEnter = null;
-	rooms["UVIP Z22"].runAfterEnter = null;
+	rooms["UVIP Z22"].moveMinutes = 12;
 	rooms["UVIP Z22"].addFlag(GLOBAL.FROZENTUNDRA);
 }
