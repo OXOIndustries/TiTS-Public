@@ -1624,40 +1624,20 @@ public function arbetzPetrShop():void
 }
 public function arbetzPetrBuy():void
 {
-	clearOutput();
+	shopkeep = chars["PETR"];
+	chars["PETR"].keeperBuy = "<i>“Here, check out the stash.”</i>\n";
+	
+	itemScreen = mainGameMenu;
+	lootScreen = mainGameMenu;
+	useItemFunction = mainGameMenu;
+	
+	buyItem();
+	
 	showBust("PETR");
 	showName("BUY\nSWIMWEAR");
-	
-	output("<i>“Here, check out the stash.”</i>\n");
-	
-	// Mock up the buy screen since his sold screen is different than normal buy menus...
-	clearMenu();
-	var price:Number = 0;
-	for(var x:int = 0; x < chars["PETR"].inventory.length; x++)
-	{
-		if (chars["PETR"].inventory[x].quantity > 0)
-		{
-			output("\n");
-			price = getBuyPrice(chars["PETR"], chars["PETR"].inventory[x].basePrice);
-			if (price > pc.credits) output("<b>(Too Expensive)</b> ");
-			output(StringUtil.upperCase(chars["PETR"].inventory[x].description, false) + " - " + price + " credits.");
-			if (price <= pc.credits)
-			{
-				if (x <= 13) addItemButton(x, chars["PETR"].inventory[x], arbetzPetrBuyGo, chars["PETR"].inventory[x], null, null, chars["PETR"], pc);
-				if (x > 13) addItemButton(x + 1, chars["PETR"].inventory[x], arbetzPetrBuyGo, chars["PETR"].inventory[x], null, null, chars["PETR"], pc);
-			}
-			else
-			{
-				if (x <= 13) addDisabledButton(x, chars["PETR"].inventory[x].shortName + " x" + chars["PETR"].inventory[x].quantity);
-				if (x > 13) addDisabledButton(x + 1, chars["PETR"].inventory[x].shortName + " x" + chars["PETR"].inventory[x].quantity);
-			}
-		}
-	}
-	addButton(14, "Back", arbetzPetrShop);
 }
 public function arbetzPetrBuyGo(item:ItemSlotClass):void
 {
-	clearOutput();
 	author("Nonesuch");
 	showBust("PETR");
 	showName("ITEM\nPURCHASED!");

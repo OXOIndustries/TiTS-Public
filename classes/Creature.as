@@ -1713,13 +1713,13 @@
 					buffer = tailCocksDescript();
 					break;
 				case "cockOrStrapon":
-					buffer = cockOrStrapon();
+					buffer = cockOrStrapon(arg2,0);
 					break;
 				case "cockOrStraponNoun":
-					buffer = cockOrStrapon(-1);
+					buffer = cockOrStrapon(arg2,-1);
 					break;
 				case "cockOrStraponFull":
-					buffer = cockOrStrapon(1);
+					buffer = cockOrStrapon(arg2,1);
 					break;
 				case "nippleNoun":
 					buffer = nippleNoun(arg2);
@@ -1903,6 +1903,7 @@
 					buffer = vagOrAss(arg2);
 					break;
 				case "clit":
+				case "clitoris":
 					buffer = clitDescript();
 					break;
 				case "eachClit":
@@ -12184,13 +12185,33 @@
 			return (lowerUndergarment.hardLightEquipped);
 		}
 		// Always picks the main anatomy--no need to complicate it!
-		public function cockOrStrapon(forceAdjective: int = 0, idxOverride:int = 0): String {
+		//Ids:
+		//-4 = catch-all "strapon"
+		//-3 = autoselect
+		//-2 = giant clitosaurus
+		//-1 = force hardlight strapon
+		//0+ = force specific dick
+		public function cockOrStrapon(idxOverride:int = -3,forceAdjective: int = 0): String {
 			var descript: String = "";
 			var sAdjective:Array = [];
 			var sNoun:Array = [];
-			
-			// Strapons! Always takes precedence, I guess!
-			if(lowerUndergarment.hardLightEquipped)
+
+			//if a idxOverride is set higher than your current dick count, set it to autopick something different
+			if(idxOverride >= cockTotal()) idxOverride = -3;
+			//Autopick? Prefer dick if available.
+			if(idxOverride == -3)
+			{
+				//Have cock? Use it by default
+				if(hasCock()) idxOverride = 0;
+				//No dick? Use the hard light
+				else if(hasHardLightEquipped()) idxOverride = -1;
+				//No hard light, use your clit.
+				else if(clitLength >= 4 && totalClits() > 0) idxOverride = -2;
+				//Nothing appropriate? Must be a strap-on
+				else idxOverride = -4;
+			}
+			//Hardlight wins
+			if(idxOverride == -1)
 			{
 				sAdjective = ["hardlight", "hardlight", "hardlight", "hardlight", "holo-", "holo-", "holo-", "projected", "projected", "holographic"];
 				sNoun = ["strapon", "strapon", "strapon", "dildo", "dildo"];
@@ -12220,14 +12241,14 @@
 				return descript;
 			}
 			// Penis?
-			else if(hasCock())
+			else if(idxOverride >= 0)
 			{
 				if(forceAdjective == 1 || (forceAdjective == 0 && rand(2) == 0)) descript += cockAdjective(idxOverride) + " ";
 				descript += cockNoun2(cocks[idxOverride]);
 				return descript;
 			}
 			// Giant Clits?
-			else if(hasVagina() && vaginas[0].clits >= 1 && clitLength >= 4)
+			else if(idxOverride == -2)
 			{
 				if(kGAMECLASS.silly && clitLength >= 12 && rand(2) == 0)
 				{
@@ -12694,7 +12715,7 @@
 			// Only run the knockup shit if the creature actually gets saved
 			if (neverSerialize == false && cumFrom != null)
 			{
-				if(cumflationEnabled() && !isPregnant(vagIndex)) 
+				if(cumflationEnabled()) 
 				{
 					cumflationHappens(cumFrom,vagIndex);
 					if(this is Emmy) 
@@ -12764,41 +12785,58 @@
 			// Exceptions
 			if(cumFrom.hasStatusEffect("Ovilium Effect")) return;
 			
+			var fluidType:int = GLOBAL.FLUID_TYPE_CUM;
+			var fluidVolume:Number = 0;
+			
+			if(cumFrom != null)
+			{
+				fluidType = cumFrom.cumType;
+				fluidVolume = cumFrom.cumQ();
+			}
+			
 			if(hole >= 0 && hole < 3)
 			{
-				if(!hasStatusEffect("Vaginally-Filled")) createStatusEffect("Vaginally-Filled",cumFrom.cumQ(),cumFrom.cumQ(),cumFrom.cumType,0,false,"Icon_Vagina","You've got some fluids inside you, leftovers from a recent lover.",false,0,0xB793C4);
+				// Pregnant vaginas can't get cumflated?
+				if(isPregnant(hole)) fluidVolume = 0;
+				if(fluidVolume <= 0) return;
+				
+				if(!hasStatusEffect("Vaginally-Filled")) createStatusEffect("Vaginally-Filled",fluidVolume,fluidVolume,fluidType,0,false,"Icon_Vagina","You've got some fluids inside you, leftovers from a recent lover.",false,0,0xB793C4);
 				else
 				{
 					//Track the new type.
-					setStatusValue("Vaginally-Filled",3,cumFrom.cumType);
+					setStatusValue("Vaginally-Filled",3,fluidType);
 					//Add the liquid volume.
-					addStatusValue("Vaginally-Filled",1,cumFrom.cumQ());
+					addStatusValue("Vaginally-Filled",1,fluidVolume);
 					//If new high score, set it.
 					if(statusEffectv1("Vaginally-Filled") > statusEffectv2("Vaginally-Filled")) setStatusValue("Vaginally-Filled",2,statusEffectv1("Vaginally-Filled"));
 				}
 			}
 			else if(hole == 3)
 			{
-				if(!hasStatusEffect("Anally-Filled")) createStatusEffect("Anally-Filled",cumFrom.cumQ(),cumFrom.cumQ(),cumFrom.cumType,0,false,"Icon_Donut","You've got some fluids inside you, leftovers from a recent lover.",false,0,0xB793C4);
+				if(fluidVolume <= 0) return;
+				
+				if(!hasStatusEffect("Anally-Filled")) createStatusEffect("Anally-Filled",fluidVolume,fluidVolume,fluidType,0,false,"Icon_Donut","You've got some fluids inside you, leftovers from a recent lover.",false,0,0xB793C4);
 				else
 				{
 					//Track the hole it's in along with the new type.
-					setStatusValue("Anally-Filled",3,cumFrom.cumType);
+					setStatusValue("Anally-Filled",3,fluidType);
 					//Add the liquid volume.
-					addStatusValue("Anally-Filled",1,cumFrom.cumQ());
+					addStatusValue("Anally-Filled",1,fluidVolume);
 					//If new high score, set it.
 					if(statusEffectv1("Anally-Filled") > statusEffectv2("Anally-Filled")) setStatusValue("Anally-Filled",2,statusEffectv1("Anally-Filled"));
 				}
 			}
 			else
 			{
-				if(!hasStatusEffect("Orally-Filled")) createStatusEffect("Orally-Filled",cumFrom.cumQ(),cumFrom.cumQ(),cumFrom.cumType,0,false,"Icon_Lips_Glossed","You've got some fluids inside you, leftovers from a recent lover.",false,0,0xB793C4);
+				if(fluidVolume <= 0) return;
+				
+				if(!hasStatusEffect("Orally-Filled")) createStatusEffect("Orally-Filled",fluidVolume,fluidVolume,fluidType,0,false,"Icon_Lips_Glossed","You've got some fluids inside you, leftovers from a recent lover.",false,0,0xB793C4);
 				else
 				{
 					//Track the hole it's in along with the new type.
-					setStatusValue("Orally-Filled",3,cumFrom.cumType);
+					setStatusValue("Orally-Filled",3,fluidType);
 					//Add the liquid volume.
-					addStatusValue("Orally-Filled",1,cumFrom.cumQ());
+					addStatusValue("Orally-Filled",1,fluidVolume);
 					//If new high score, set it.
 					if(statusEffectv1("Orally-Filled") > statusEffectv2("Orally-Filled")) setStatusValue("Orally-Filled",2,statusEffectv1("Orally-Filled"));
 				}
