@@ -123,6 +123,7 @@ package classes.UIComponents
 		public static var gForestRoomFlagColour:uint		= 0x3F704C; //Greenish
 		public static var gJungleRoomFlagColour:uint 		= 0x184925; //Darker/Greener!
 		public static var gTundraRoomFlagColour:uint		= 0x5DD5E5;
+		public static var gFrozenRoomFlagColour:uint 		= 0xE1F0FF; // Todo: invert/change icon colour on room flags that use this colour shade
 		
 		public static var gShieldColour:uint				= 0x00CCFF;
 		public static var gHPColour:uint					= 0x00CC2F;
@@ -1158,6 +1159,17 @@ package classes.UIComponents
 				UIStyleSettings._gMapTundraRoomColourTransform.color = UIStyleSettings.gTundraRoomFlagColour;
 			}
 			return UIStyleSettings._gMapTundraRoomColourTransform;
+		}
+		
+		private static var _gMapFrozenRoomColourTransform:ColorTransform;
+		public static function get gMapFrozenRoomColourTransform():ColorTransform
+		{
+			if (UIStyleSettings._gMapFrozenRoomColourTransform == null)
+			{
+				UIStyleSettings._gMapFrozenRoomColourTransform = new ColorTransform();
+				UIStyleSettings._gMapFrozenRoomColourTransform.color = UIStyleSettings.gFrozenRoomFlagColour;
+			}
+			return UIStyleSettings._gMapFrozenRoomColourTransform;
 		}
 		
 		private static var _gMapFallbackRoomColourTransform:ColorTransform;

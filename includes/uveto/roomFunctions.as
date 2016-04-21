@@ -2,6 +2,8 @@ import classes.Characters.PlayerCharacter;
 import classes.Engine.Combat.DamageTypes.DamageResult;
 import classes.Engine.Combat.DamageTypes.TypeCollection;
 import classes.Engine.Combat.DamageTypes.DamageFlag;
+import classes.GameData.Pregnancy.Handlers.VenusPitcherFertilizedSeedCarrierHandler;
+import classes.Items.Accessories.LeithaCharm;
 
 public function uvetoSpaceElevatorBaseBonus():Boolean
 {
@@ -339,4 +341,60 @@ public function uvetoLastChanceStoreEntry():Boolean
 		addButton(0, "Nerreasa", uvetoApproachNerrasaRepeat);
 	}
 	return false;
+}
+
+public function uvetoSearchAbandonedCamp():void
+{
+	clearOutput();
+	
+	output("This place has been abandoned for some time. Whoever was here before isn't coming back, you decide. You spend a few minutes tossing the tents, looking for anything of value the previous occupants might have left behind. There's nothing inside, save emptied containers and tattered scraps of cloth. Only when you glance into the fire pit do you catch a glimpse of something worth while: you lean over and pull a small, black amulet out of the dusty covering of snow.");
+
+	output("\n\nYou hold it up to the light, eyeing the horse-shaped talisman warily. Wonder who left this... and why? Either way, you're fairly certain the creature it depicts is a leithan, and the amulet looks to be in good shape. With a shrug, you pocket it.");
+	
+	lootScreen = uvetoAbandonedCampLootCheck;
+	flags["UVIP_J46_SEARCHED"] = 1;
+	flags["SUPPRESS_COMBAT"] = 1;
+	itemCollect([new LeithaCharm()]);
+}
+
+public function uvetoAbandonedCampLootCheck():void
+{
+	if (pc.accessory is LeithaCharm || pc.hasItemByType(LeithaCharm))
+	{
+		mainGameMenu();
+		return;
+	}
+	
+	clearOutput();
+	output("You drop the charm back where you found it.");
+	flags["UVIP_J46_SEARCHED"] = undefined;
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function uvetoReactivateProbe():void
+{
+	clearOutput();
+
+	output("You slide down into the blasted-out basin the probe’s sitting in and wrench off the remnants of its protective shell. Most of it was scattered around the snow topside, so there’s not much you have to contend with to get at the meaty contents of the MAXCORP probe.");
+	
+	if (pc.characterClass == GLOBAL.CLASS_ENGINEER)
+	{
+		output("\n\nAh, looks like an easy fix. You flip your laser spanner out of your pack and give the probe a solid <i><b>WHACK</b></i> on the side. A moment passes, and then you hear the tell-tale booting noise of the electronics systems coming online.");
+	}
+	else
+	{
+		output("\n\nYou give the machine a long, thorough once-over, looking up parts and connections in your Codex, trying to deduce what went wrong... other than it explosively crashing, anyway. With a few helpful forum posts, you’re able to dig into the probe’s mechanical guts and and start pulling and rearranging things, trying to reboot it.");
+	
+		output("\n\nEventually, you manage to get it sorted out, and punch the power button inside it again. It takes a moment, but eventually the probe starts whirring and the systems begin coming online.");
+	}
+	
+	output("\n\nThe probe reboots, tooting a cheery digital tune, and starts broadcasting. You easily link your Codex with it, letting you use it like a big relay to send and receive messages in the region.");
+	
+	output("\n\n<b>You can call for transit here now</b>!");
+
+	flags["UVIP_R10_PROBE_ACTIVE"] = 1;
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
