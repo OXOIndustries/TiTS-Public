@@ -2,6 +2,7 @@
 {
 	import classes.Creature;
 	import classes.GLOBAL;
+	import classes.kGAMECLASS;
 	import classes.Items.Drinks.RedMyrVenom;
 	import classes.Items.Accessories.Minesweeper;
 	import classes.Items.Armor.ChitinArmor;
@@ -191,6 +192,11 @@
 		public function UpgradeVersion2(dataObject:Object):void
 		{
 			dataObject.rangedWeapon = new EmptySlot().getSaveObject();
+		}
+		
+		override public function onLeaveBuyMenu():void
+		{
+			kGAMECLASS.mainGameMenu();
 		}
 	}
 }
