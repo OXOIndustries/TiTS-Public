@@ -312,7 +312,7 @@ public function flirtWithYummiYammiYummiButts():void
 	clearOutput();
 	yammiFollowerDisplay();
 	output("Putting on your best Steele smile, you lean against the counter and tell your lovely cook that she’s just as sweet as ");
-	if(9999 == 0) output("her pexiga’s saliva");
+	if(flags["YAMMI_HELPED"] == 2) output("her pexiga’s saliva");
 	else output("any of the treats she makes");
 	output(". Yammi giggles and rolls her eyes. <i>“Uh, thanks? I bet you tell that to all the sparadat chefs.”</i>");
 
@@ -340,11 +340,11 @@ public function offerToHelpYammi():void
 		output("<i>“You want to help out? Oh, you’re such a sweetie!”</i> She kisses you on the cheek. <i>“Okay, you any good with a knife?”</i>");
 		output("\n\nYou proudly note you’re a galaxy-wandering space explorer, and that nothing’s beyond your capacity. She laughs and sets out a row of vegetables you don’t recognize, then hands you a big knife to chop them with. As you set to work, you idly chat about various things... not least of all those topics being ‘Why are you cooking all the time?!’");
 		output("\n\n<i>“Oh, uhm... well, ");
-		if(9999 == 0) output("we have to feed the crew well");
+		if(crew(true) > 0) output("we have to feed the crew well");
 		else output("I’ve got to keep you fed");
 		output(", and I like to cook, so I like to make sure there’s a lot of options ready and waiting.”</i> She quickly turns to wash something in a basin.");
 		output("\n\nYou caught the shifty eyes. You also know for a fact she cooks entirely too much. ");
-		if(9999 == 0) output("Even if your ship was stuffed to capacity you wouldn’t have enough people to eat everything she cooks in a day");
+		if(crew(true) <= 2) output("Even if your ship was stuffed to capacity you wouldn’t have enough people to eat everything she cooks in a day");
 		else output("Even with such a large crew, there always seems to be so much left over");
 		output(". So you just wait patiently until she gets tired of the building awkwardness: her natural chatty nature gets the better of her, as you expected.");
 		output("\n\n<i>“Okay, look, I have a few ‘live’ specimens aboard to feed. Like the Tulpa on the menu, they’re absolutely terrible if you store them!”</i> She admits. <i>“I also cook a lot and preserve it for ingredients later, like herbs and things. Some of it I stash to trade every time we land somewhere interesting so I can get new spices and ingredients and recipes without costing you cash.”</i>");
@@ -815,7 +815,7 @@ public function analWithYammibalLector(x:int = 0):void
 	else output("work your hand down between her dampened thighs, brushing the tips along her dark lips. You push them in gently, spreading her lips open and letting a steady trickle of feminine slime and your added lube guide your way into her.");
 	output(" Now taking it in both holes, Yammi’s voice reaches a crescendo of pleasured cries and feral grunts, trying and failing to contain the pleasure in her voice.");
 	//if other crew:
-	if(crew(true)) output(" The whole ship can probably hear you two going at it now!");
+	if(crew(true) > 0) output(" The whole ship can probably hear you two going at it now!");
 
 	output("\n\nYour [pc.hips] buck against Yammi’s butt, hammering your cock");
 	if(pc.hasCockTail() || (x>=0 && pc.cockTotal() > 1)) output("s");
