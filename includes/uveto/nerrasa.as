@@ -40,9 +40,8 @@ public function uvetoApproachNerrasaRepeat():void
 
 	if (flags["NERRASAS_PET"] == undefined)
 	{
-		output("<i>“Sup, [pc.name],”</i> Nerrasa says as you approach. <i>“");
-		if (flags["NERRASA_FUCKED"] == undefined) output("Wanna buy something?");
-		else output("Or are you ready to get broken in some more, huh?");
+		output("<i>“Sup, [pc.name],”</i> Nerrasa says as you approach. <i>“Wanna buy something?");
+		if (flags["NERRASA_FUCKED"] != undefined) output("Or are you ready to get broken in some more, huh?");
 		output("”</i>");
 	}
 	else

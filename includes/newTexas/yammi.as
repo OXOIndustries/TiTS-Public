@@ -1,32 +1,49 @@
 ﻿//Here’s some basic dialogue and some flavor ideas. Use what you like and edit or discard the rest if any! Also note, I am developing a serious appreciation for the amount of effort you put into this stuff. It ain’t easy! Hehehehehehehe. Anyways, if anything else is needed, just let me know. 
 
-
-//Since Yammi can be removed from the shop later, making this so I only have to change stuff once.
-public function yammiIsCrew():Boolean
+public function yammiShopDisplay(nude:Boolean = false):void
 {
-	return false;
-}
-
-public function yammiShopDisplay():void
-{
-	showYammi();
+	if(flags["YAMMI_RECRUITED"] == undefined)
+	{
+		showYammi(nude);
+	}
+	else
+	{
+		showName("\nSALIRE");
+		showBust("SALIRE");
+	}
 	author("Lady Jenn");
 }
 public function showYammi(nude:Boolean = false):void
 {
 	showName("\nYAMMI");
-	showBust("YAMMI");
+	if(!nude) showBust("YAMMI");
+	else showBust("YAMMI_NUDE");
+}
+
+public function icedTeatIsClosed():Boolean
+{
+	if(pc.hasStatusEffect("Iced Teats Closed")) return true;
+	return false;
 }
 
 public function icedTeatsExteriorBonusFunc():Boolean
 {
 	author("Lady Jenn");
 	output("\n\nTo the south, a colorful building boasts an illuminated signboard proudly displaying the title: Iced Teats Frozen Treats and Confectionery Company. Beneath it is the catch line: The number one supplier in female-based frozen sweets. All flavors harvested fresh from the breast, guaranteed safe for any humanoid or similar entity! Above all this is an image of a fetching pink skinned woman with bright crimson hair, dressed in barely enough clothing to contain her assets. She is reclined comfortably and holding a bowl of what appears to be ice cream, which is cleverly animated to cascade slowly through a number of appetizing colors.");
-	if(flags["MET_YAMMI"] == undefined) output("\n\nWell, maybe it’s worth checking out! After all, if anyone deserves a cool treat it’s a brave space explorer, risking life and limb day after day!");
-	if(flags["KAEDE_FUCKED"] != undefined && flags["KAEDE_FUCKED"] > 0 && flags["KAEDE_NT_ENCOUNTER"] == undefined)
+	if(icedTeatIsClosed())
 	{
-		kaedeThreeSomesOrSpawnOrSomethingCassTits();
-		return true;
+		flags["NAV_DISABLED"] = NAV_SOUTH_DISABLE;
+		output("\n\nUnfortunately, there is a “Momentary Delay” sign posted on the front door, notifying you that the shop is curently closed....");
+	}
+	else
+	{
+		flags["NAV_DISABLED"] = undefined;
+		if(flags["MET_YAMMI"] == undefined) output("\n\nWell, maybe it’s worth checking out! After all, if anyone deserves a cool treat it’s a brave space explorer, risking life and limb day after day!");
+		if(flags["KAEDE_FUCKED"] != undefined && flags["KAEDE_FUCKED"] > 0 && flags["KAEDE_NT_ENCOUNTER"] == undefined)
+		{
+			kaedeThreeSomesOrSpawnOrSomethingCassTits();
+			return true;
+		}
 	}
 	return false;
 }
@@ -50,11 +67,28 @@ public function icedTreatsInterior():Boolean
 		yammiRepeatMenu(false);
 		return true;
 	}
+	else if(flags["YAMMI_SELF_TALK"] == 1 && rand(3) == 0 && flags["YAMMI_BAD_DAY"] == undefined)
+	{
+		yammisBadDay();
+		return true;
+	}
+	else if(flags["YAMMI_BAD_DAY"] == 1)
+	{
+		firstChanceToHireYammi();
+		return true;
+	}
 	else
 	{
-		output("The shop interior is made up of row after row of clear plastic devices with trays in front for bowls, and handles to draw the ice cream treats. Just like last time, you spot women occupying the space inside the machinery. Yammi calls to you almost as soon as you step inside the door.");
-		output("\n\n<i>“Welcome back to Iced Teats! When you'd like to order, just say the word.”</i> The orange-skinned alien is dressed the same as the last time you saw her, sporting a bright red miniskirt and vest combo that would threaten sensibilities on a more modest world. Her cheerful eyes watch you curiously as you make your way around the shop.");
-		addButton(0,"Yammi",yammiRepeatMenu,true,"Yammi","Approach the aquatic alien behind the counter.");
+		if(flags["YAMMI_RECRUITED"] == undefined)
+		{
+			output("The shop interior is made up of row after row of clear plastic devices with trays in front for bowls, and handles to draw the ice cream treats. Just like last time, you spot women occupying the space inside the machinery. Yammi calls to you almost as soon as you step inside the door.");
+			output("\n\n<i>“Welcome back to Iced Teats! When you'd like to order, just say the word.”</i> The orange-skinned alien is dressed the same as the last time you saw her, sporting a bright red miniskirt and vest combo that would threaten sensibilities on a more modest world. Her cheerful eyes watch you curiously as you make your way around the shop.");
+			addButton(0,"Yammi",yammiRepeatMenu,true,"Yammi","Approach the aquatic alien behind the counter.");
+		}
+		else
+		{
+			saliresIcedTeats();
+		}
 		return false;
 	}
 }
@@ -65,7 +99,9 @@ public function yammiRepeatMenu(outputS:Boolean = true):void
 	{
 		clearOutput();
 		yammiShopDisplay();
-		output("You step up to brightly-colored alien. Do you order something or strike up some conversation?");
+		output("You step up to brightly-colored alien. Do you order something");
+		if(flags["YAMMI_RECRUITED"] == undefined) output(" or strike up some conversation");
+		output("?");
 	}
 	clearMenu();
 	if(pc.credits >= 10) addButton(0,"Cone",orderAYammiCone,undefined,"Cone","Order a cone for the low low price of 10 credits.");
@@ -74,7 +110,15 @@ public function yammiRepeatMenu(outputS:Boolean = true):void
 	else addDisabledButton(1,"Bowl","Bowl","You can't afford the 20 credit cost of a bowl of titty-milk icecream. How sad.");
 	if(pc.credits >= 50) addButton(2,"Feast",orderAYammiFeast,undefined,"Feast","Order a veritable feast of icecream. It only costs 50 credits - a huge savings, according to the menu.")
 	else addDisabledButton(2,"Feast","Feast","You can't afford the 50 credits a feast would cost.");
-	addButton(3,"Questions",questionsForYammi,undefined,"Questions","Strike up a conversation and ask her about some stuff.");
+	if(flags["YAMMI_RECRUITED"] == undefined)
+	{
+		addButton(3,"Questions",questionsForYammi,undefined,"Questions","Strike up a conversation and ask her about some stuff.");
+		if(flags["YAMMI_BAD_DAY"] == 2)
+		{
+			if(pc.credits >= 7000) addButton(4,"Free Her",payForYammisSlutitude,undefined,"Free Her","Pay for Yammi's debt so that she can get out of this hellhole.");
+			else addDisabledButton(4,"Free Her","Free Her","You can't afford to buy Yammi out of her contract.\n\n7000 credits");
+		}
+	}
 	addButton(14,"Back",mainGameMenu);
 }
 
@@ -85,7 +129,6 @@ public function questionsForYammi():void
 	yammiShopDisplay();
 	output("<i>“Of course! Anything you care to know!”</i> Yammi nods vigorously.");
 	//(Select from ‘Ice Cream’, ‘Girls’, ‘Company’, ‘Yammi’, ‘Suggestions’, ‘Sex’, or ‘Back’)
-	//9999
 	clearMenu();
 	addButton(0,"Ice Cream",askYammiAbootIceCream);
 	addButton(1,"Girls",askYammiAbootZeGurls)
@@ -111,14 +154,18 @@ public function getIceCreamContainer(iType:int = 0, sSize:String = ""):Pregnancy
 	ppIceCream.milkFullness = 100;
 	return ppIceCream;
 }
-
+public function icedTeatsAlienName():String
+{
+	if(flags["YAMMI_RECRUITED"] != undefined) return "Salire";
+	else return "Yammi";
+}
 //Choose ‘Cone’
 public function orderAYammiCone():void
 {
 	clearOutput();
 	yammiShopDisplay();
 	pc.credits -= 10;
-	output("<i>“Just a taste today? Certainly! Here you are!”</i> With a flourish, Yammi produces a deep cone made of red-brown wafer. <i>“Our cones are 100% natural nutrients healthy for any carbon based life form and easily digestible for silicates!”</i>");
+	output("<i>“Just a taste today? Certainly! Here you are!”</i> With a flourish, " + icedTeatsAlienName() + " produces a deep cone made of red-brown wafer. <i>“Our cones are 100% natural nutrients healthy for any carbon based life form and easily digestible for silicates!”</i>");
 	preparingToGetIceCream("cone");
 }
 
@@ -128,7 +175,7 @@ public function orderAYammiBowl():void
 	clearOutput();
 	yammiShopDisplay();
 	pc.credits -= 20;
-	output("\n\n<i>“A hearty appetite, I see!”</i> Yammi smiles and hands you a black bowl and spoon. <i>“Here you are. When you’re done, just toss those out. They automatically break down to simple particles in 48 hours so they don’t pollute!”</i>");
+	output("<i>“A hearty appetite, I see!”</i> " + icedTeatsAlienName() + " smiles and hands you a black bowl and spoon. <i>“Here you are. When you’re done, just toss those out. They automatically break down to simple particles in 48 hours so they don’t pollute!”</i>");
 	preparingToGetIceCream("bowl");
 }
 
@@ -138,7 +185,7 @@ public function orderAYammiFeast():void
 	clearOutput();
 	yammiShopDisplay();
 	pc.credits -= 50;
-	output("<i>“As you wish! Here you go!”</i> Yammi pulls a tray with three bowl-like depressions in it from beneath the counter. <i>“Mix and match to your heart’s content, and you can keep the tray for use at home! Careful you don’t get a headache though!”</i> She giggles.");
+	output("<i>“As you wish! Here you go!”</i> " + icedTeatsAlienName() + " pulls a tray with three bowl-like depressions in it from beneath the counter. <i>“Mix and match to your heart’s content, and you can keep the tray for use at home! Careful you don’t get a headache though!”</i> She giggles.");
 	preparingToGetIceCream("feast");
 }
 
@@ -676,6 +723,7 @@ public function askHerAboutHerself():void
 	output("\n\n<i>“Well, think first I’d find some warm water-world and take a vacation. I get one day out of ten off around here. It’s terrible. I need a little unwinding time, you know?”</i> She looks off into the middle distance and sighs. <i>“Just somewhere nice and relaxing to spend some time, maybe get a job to pay my way and stay there longer. After that, maybe I’d try my hand at this space traveling stuff. I’m sure I could get on as a cook on some ship! Seems like there’s a lot out there to do and see, and so many meals to prepare. Cooking’s kind of a hobby of mine.”</i>");
 	output("\n\nYou assure her there is a lot out there, and there’s no end to it in sight. She giggles and smiles.");
 	output("\n\n<i>“Thanks! It’s sweet of you to say that. Of course, first I’ve got to finish here.”</i> She shrugs. <i>“One thing at a time, right?”</i>");
+	flags["YAMMI_SELF_TALK"] = 1;
 	//(Select ‘Back’ to return to the Questions menu)
 	processTime(6);
 	clearMenu();
@@ -689,7 +737,7 @@ public function askyammiAboutSex():void
 	yammiShopDisplay();
 	output("You don’t feel shy mentioning that so many beauties around is pretty stimulating, not the least of which is Yammi herself. Her face goes blood-orange in blush.");
 	output("\n\n<i>“Officially the company doesn’t condone unauthorized breeding and/or sexual interaction with our employees,”</i> she says calmly. When you inquire about unofficially, she smiles a little. <i>“Well, some of the girls are stored in back in case we need to switch flavors, and a friendly visit is possible, sometimes. They do enjoy warm flesh after all the cold machines. For a slight tip of course... a girl’s got to pay her way somehow!”</i> She taps the counter nervously. <i>“Not today though. The girls who would be up for that aren't in. But... maybe for a big enough tip, I might be convinced to put up the ‘Momentary Delay’ sign and lock the door for a little personal time. A woman has needs.”</i>");
-	output("\n\n<b>Placeholder till some sex appears. Someone be a dear and write this for me. She doesn't need scenes for everybody.</b>");
+	//output("\n\n<b>Placeholder till some sex appears. Someone be a dear and write this for me. She doesn't need scenes for everybody.</b>");
 	processTime(2);
 	clearMenu();
 	addButton(14,"Back",questionsForYammi);

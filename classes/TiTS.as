@@ -123,6 +123,7 @@
 		include "../includes/follower.anno.as";
 		include "../includes/follower.celise.as";
 		include "../includes/follower.celiseGiga.as";
+		include "../includes/follower.yammi.as";
 		
 		//Sidequest shit
 		include "../includes/events/seraSexParty.as";
@@ -388,7 +389,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.6.48";
+			version = "0.6.49";
 
 			//temporary nonsense variables.
 			temp = 0;
