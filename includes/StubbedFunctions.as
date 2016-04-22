@@ -11,7 +11,3 @@ public function daneIsCrew():Boolean
 	return false;
 }
 
-public function yammiIsOwned():Boolean
-{
-	return false;
-}
