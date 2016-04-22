@@ -14632,7 +14632,7 @@
 						if(amountVented >= 1000) kGAMECLASS.honeyPotBump();
 						if(amountVented >= 2000) kGAMECLASS.honeyPotBump();
 					}
-					if(hasPerk("'Nuki Nuts") && statusEffects[o].value3==GLOBAL.FLUID_TYPE_CUM) //Implementing Kui-Tan Cum Cascade from Codex
+					if(hasPerk("'Nuki Nuts") && VALID_CUM_TYPES.indexOf(statusEffects[o].value3)>=0) //Implementing Kui-Tan Cum Cascade from Codex
 					{
 						//Calculate amount metabolized over time
 						var cumTransfer:Number = statusEffects[o].value1 / 10; //Metabolize entire load over 10 minutes.
@@ -14642,7 +14642,7 @@
 						statusEffects[o].value1 -= cumTransfer;
 						var cumTransferPercent:Number = (cumTransfer / maxCum()) * 500;//5x cum production spike
 						trace("Percent Increase:" + cumTransferPercent);
-						if (cumTransferPercent > 10) kGAMECLASS.eventBuffer += "\n\nYou hear a faint gurgling from your stomach and [pc.balls] as you feel them swelling fuller and fuller each passing second. With your kui-tan physiology, all that cum you injested must have spiked your own production!";
+						if (cumTransferPercent > 10) kGAMECLASS.eventBuffer += ParseText("\n\nYou hear a faint gurgling from your stomach and [pc.balls] as you feel them swelling fuller and fuller each passing second. With your kui-tan physiology, all that cum you injested must have spiked your own production!");
 						cumCascade(cumTransferPercent);
 					}
 				}
