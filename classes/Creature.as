@@ -7525,7 +7525,7 @@
 			{
 				trace("BLUE BALLS FOR: " + short);
 				//Hit max cum - standard message
-				kGAMECLASS.eventBuffer += "\n\nYou’re feeling a little... excitable, a little randy even. It won’t take much to excite you so long as your [pc.balls] ";
+				kGAMECLASS.eventBuffer += ParseText("\n\nYou’re feeling a little... excitable, a little randy even. It won’t take much to excite you so long as your [pc.balls] ");
 				if(balls == 1) kGAMECLASS.eventBuffer += "is";
 				else kGAMECLASS.eventBuffer += "are";
 				kGAMECLASS.eventBuffer += " this full.";
@@ -14384,7 +14384,7 @@
 								//Mighty Tight ends!
 								case "Mighty Tight":
 									kGAMECLASS.eventBuffer += "\n\nPausing for a moment, you feel your backdoor";
-									if(hasVagina()) kGAMECLASS.eventBuffer += " and [pc.vaginas] relaxing";
+									if(hasVagina()) kGAMECLASS.eventBuffer += ParseText(" and [pc.vaginas] relaxing");
 									else kGAMECLASS.eventBuffer += " relax";
 									kGAMECLASS.eventBuffer += " a bit. It is probably safe to say that you are no longer under the effects of Mighty Tight.";
 									break;
@@ -14393,7 +14393,7 @@
 									//Message text, last boob size increase. 7 days later.
 									kGAMECLASS.eventBuffer += "\n\nUnfortunately, as you admire your now-larger bosom, you realize that the gentle, wet rumble of the pads has come to a stop. <b>It looks like you’ve exhausted the BoobSwell Pads";
 									if(bRows() > 1) kGAMECLASS.eventBuffer += "on your " + kGAMECLASS.num2Text2((statusEffects[x] as StorageClass).value1+1) + " row of breasts";
-									kGAMECLASS.eventBuffer += "!</b> You peel them off your [pc.skinFurScales] and toss them away.";
+									kGAMECLASS.eventBuffer += ParseText("!</b> You peel them off your [pc.skinFurScales] and toss them away.");
 									break;
 								//Treatment finishing.
 								case "The Treatment":
@@ -14653,7 +14653,7 @@
 						if(amountVented >= 1000) kGAMECLASS.honeyPotBump();
 						if(amountVented >= 2000) kGAMECLASS.honeyPotBump();
 					}
-					if(hasPerk("'Nuki Nuts") && GLOBAL.VALID_CUM_TYPES.indexOf(statusEffects[o].value3)>=0) //Implementing Kui-Tan Cum Cascade from Codex
+					if(hasPerk("'Nuki Nuts") && InCollection(statusEffects[o].value3, GLOBAL.VALID_CUM_TYPES)) //Implementing Kui-Tan Cum Cascade from Codex
 					{
 						//Calculate amount metabolized over time
 						var cumTransfer:Number = (statusEffects[o].value1) / 10; //Metabolize entire load over 10 minutes.
@@ -14662,7 +14662,8 @@
 						if (cumTransfer > statusEffects[o].value1) cumTransfer = statusEffects[o].value1;
 						statusEffects[o].value1 -= cumTransfer;
 						cumCascade(cumTransfer);
-						trace("Cum Metabolized:" + cumTransfer);
+						trace("Cum Metabolized: " + cumTransfer + " mLs");
+						//cumProduced(timePassed);
 					}
 				}
 				if(statusEffects[o].value1 <= 0) removals.push("Orally-Filled");
@@ -14673,7 +14674,7 @@
 				removeStatusEffect(removals[0]);
 				removals.splice(0,1);
 			}
-			kGAMECLASS.eventBuffer += notice;
+			kGAMECLASS.eventBuffer += ParseText(notice);
 		}
 
 		/**
@@ -14684,50 +14685,12 @@
 		public function cumCascade(amount:Number): void 
 		{
 			var percent:Number = (amount / maxCum()) * 500;//Take percentage of maximum cum, and multiply 5x.
-			trace("Percent Increase:" + percent);
+			trace("Percent Increase: " + percent + " %");
 			if (percent > 10) {
 				if (this is PlayerCharacter) kGAMECLASS.eventBuffer += ParseText("\n\nYou hear a faint gurgling from your stomach and [pc.balls] as you feel them swelling fuller and fuller each passing second. With your kui-tan physiology, all that cum you ingested must have spiked your own production!");
 				lust(20); //increase Lust
 			}
-			increaseCum(percent);
-		}
-		
-		/**
-		 * For directly increasing cum
-		 * @param	cumDelta percent fullness increase
-		 */
-		public function increaseCum(cumDelta: Number):void { 
-	
-			if(balls > 0 && (ballFullness + cumDelta >= 100 && ballFullness < 100 && this is PlayerCharacter))
-			{
-				trace("BLUE BALLS FOR: " + short);
-				//Hit max cum - standard message
-				kGAMECLASS.eventBuffer += "\n\nYou’re feeling a little... excitable, a little randy even. It won’t take much to excite you so long as your [pc.balls] ";
-				if(balls == 1) kGAMECLASS.eventBuffer += "is";
-				else kGAMECLASS.eventBuffer += "are";
-				kGAMECLASS.eventBuffer += " this full.";
-				if(hasPerk("'Nuki Nuts") && balls > 1) kGAMECLASS.eventBuffer += " Of course, your kui-tan physiology will let your balls balloon with additional seed. They've already started to swell. Just make sure to empty them before they get too big!";
-				createStatusEffect("Blue Balls", 0,0,0,0,false,"Icon_Sperm_Hearts", "Take 25% more lust damage in combat!", false, 0,0xB793C4);
-			}
-	
-			ballFullness += cumDelta;
-			
-			//trace("AFTER FULLNESS: " + ballFullness);
-			if (ballFullness >= 100) 
-			{
-				if(hasPerk("'Nuki Nuts") && balls > 1)
-				{
-					//Figure out a % of normal size to add based on %s.
-					var nutChange:Number = (ballFullness/100) - 1;
-					//Get the actual bonus number to add. Keep it to 2 decimals.
-					var nutBonus:Number = Math.round(ballSizeRaw * nutChange * 100)/100;
-					trace("NUT BONUS: " + nutBonus);
-					//Apply nutbonus and track in v1 of the perk
-					ballSizeMod += nutBonus;
-					addPerkValue("'Nuki Nuts",1,nutBonus);
-				}
-				ballFullness = 100;
-			}
+			ballFullness += percent;
 		}
 		
 		// OnTakeDamage is called as part of applyDamage.
