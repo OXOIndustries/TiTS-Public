@@ -800,6 +800,8 @@ public function flyMenu():void {
 
 public function flyTo(arg:String):void {
 	
+	generateMapForLocation("SHIP INTERIOR");
+	
 	if (flags["SUPRESS TRAVEL EVENTS"] == 1)
 	{
 		flags["SUPRESS TRAVEL EVENTS"] = 0;
