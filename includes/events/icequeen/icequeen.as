@@ -562,7 +562,7 @@ public function iceQueenUvetoEntry(oldUvetoVisitFlagValue:* = undefined):void
 	CombatManager.victoryScene(iceQueenBeatZaalt);
 	CombatManager.lossScene(iceQueenLossToZaalt);
 	CombatManager.setHostileCharacters(tEnemy);
-	CombatManager.displayLocation("FIGHT:\nCAPT. KANDAR");
+	CombatManager.displayLocation("CAPT. KANDAR");
 	addButton(0, "Next", CombatManager.beginCombat);
 }
 

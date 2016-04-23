@@ -2,6 +2,7 @@
 {
 	import classes.Creature;
 	import classes.GLOBAL;
+	import classes.kGAMECLASS;
 	import classes.Items.Miscellaneous.Throbb;
 	import classes.Items.Miscellaneous.Dumbfuck;
 	import classes.Items.Transformatives.Gush;
@@ -196,6 +197,11 @@
 		public function UpgradeVersion1(dataObject:Object):void
 		{
 			dataObject.inventory.push(new Gush().getSaveObject());
+		}
+		
+		override public function onLeaveBuyMenu():void
+		{
+			kGAMECLASS.mainGameMenu();
 		}
 	}
 }

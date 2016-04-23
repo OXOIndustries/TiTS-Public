@@ -108,7 +108,7 @@ public function useInstalledDickBox():void
 	}
 	if(!pc.hasCock()) addDisabledButton(0,"No Penis","No Penis","You don’t have any penis to insert into the machine.");
 	if(pc.cockTotal() == 1) addButton(0,"Yes",cockBoxUse,0,"Yes","Yes, you will stick your dick in that box.");
-	if(currentLocation == "SHIP INTERIOR") addButton(14,"Back",shipStorageMenuRoot);
+	if(InShipInterior()) addButton(14,"Back",shipStorageMenuRoot);
 	else addButton(14,"Leave",mainGameMenu);
 }
 

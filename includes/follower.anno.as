@@ -2917,7 +2917,7 @@ public function grayGooSpessSkypeScene():void
 public function hasGooArmor():Boolean
 {
     if(pc.armor is GooArmor || pc.hasItemByName("Goo Armor")) return true;
-    if(currentLocation == "SHIP INTERIOR")
+    if(InShipInterior())
     {
         for (var i:int = 0; i < pc.ShipStorageInventory.length; i++)
         {

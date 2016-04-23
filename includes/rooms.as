@@ -31,8 +31,8 @@ public function initializeRooms():void
 	rooms["SHIP INTERIOR"] = new RoomClass(this);
 	rooms["SHIP INTERIOR"].roomName = "SHIP\nINTERIOR";
 	rooms["SHIP INTERIOR"].description = "The inside of your father's old Casstech Z14 is in remarkably great shape for such an old ship; the mechanics that were working on this really ought to be proud of themselves. Seats for two lie in the cockpit, and there is a servicable but small shower near the back. Three bunks are scattered around the cramped interior, providing barely adequate room for you and your crew.";
-	rooms["SHIP INTERIOR"].planet = "PLANET: MHEN'GA";
-	rooms["SHIP INTERIOR"].system = "SYSTEM: ARA ARA";
+	rooms["SHIP INTERIOR"].planet = "PLANET: NONE";
+	rooms["SHIP INTERIOR"].system = "SYSTEM: UNKNOWN";
 	rooms["SHIP INTERIOR"].outExit = shipLocation;
 	rooms["SHIP INTERIOR"].outText = "Exit";
 	rooms["SHIP INTERIOR"].moveMinutes = 2;
@@ -40,6 +40,7 @@ public function initializeRooms():void
 	rooms["SHIP INTERIOR"].addFlag(GLOBAL.INDOOR);
 	rooms["SHIP INTERIOR"].addFlag(GLOBAL.BED);
 	rooms["SHIP INTERIOR"].addFlag(GLOBAL.PRIVATE);
+	rooms["SHIP INTERIOR"].addFlag(GLOBAL.SHIPINTERIOR);
 
 	rooms["CREATION"] = new RoomClass(this);
 	rooms["CREATION"].roomName = "";

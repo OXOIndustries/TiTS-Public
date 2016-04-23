@@ -1829,10 +1829,10 @@ public function viPussyFapScene():void
 
 	output("\n\nFumbling around in your belongings, you seek that one particular <i>thing</i>... ah! With both hands, you pull out the synthetic nurse from Myrellion’s – Vi’s – pale pussy, stashed away as your own personal belonging. With an excited breath, you tap ");
 	//onship:
-	if(currentLocation == "SHIP INTERIOR") output("a console");
+	if(InShipInterior()) output("a console");
 	else output("your codex");
 	output(". The pussy-lips twitch in response, now connected to her from far away");
-	if(currentLocation == "SHIP INTERIOR") output(", using your ship as a relay");
+	if(InShipInterior()) output(", using your ship as a relay");
 	output(".");
 
 	output("\n\nWith one hand, you hold the sheath her snatch is contained within. With the other, you part her petal-soft folds, peering eagerly within. Under your gaze, her rippled insides clench and relax. A swelling sense of satisfaction fills your chest. Even from so far away, the nurse is definitely feeling it! You dip a [pc.skinColor] finger inside of her slowly slickening insides. They clench around it! You push your digit further inside of her, wiggling it about, relishing in her wettening warmth. At the same time, you brush her clit with your thumb, attacking her from within and outside. Slick lubricant drools out from her folds and dribbles down your fingertips, warming them with her sweet smelling lady-cum. Her snatch is so warm and realistic, that it’s hard to tell between it and a real woman’s!");
@@ -1843,7 +1843,7 @@ public function viPussyFapScene():void
 	if(useGenital == "penis" && rand(2) == 0)
 	{
 		output("\n\nOnce her sloppy pussy stops spasming, you ");
-		if(currentLocation == "SHIP INTERIOR") output("lie down on your bed");
+		if(InShipInterior()) output("lie down on your bed");
 		else output("find somewhere comfortable to lie down");
 		output(". With one hand, you ");
 		if(!pc.isCrotchExposed()) output("whip out");
@@ -1872,7 +1872,7 @@ public function viPussyFapScene():void
 	else
 	{
 		output("\n\nOnce her sloppy pussy stops spasming, you ");
-		if(currentLocation == "SHIP INTERIOR") output("lie down on your bed");
+		if(InShipInterior()) output("lie down on your bed");
 		else output("find somewhere comfortable to lie down");
 		output(". With one hand, you bring her glistening muff to your lips, while your other hand sneaks down ");
 		if(!pc.isCrotchExposed()) output(", beneath your [pc.lowerGarments] ");

@@ -10,11 +10,15 @@ package classes.Resources.Busts
 	
 		[Embed(source = "../../../assets/images/npcs/maniacpaint/lieve.png", mimeType = "image/png")]
 		public var Bust_LIEVE:Class;
+		[Embed(source = "../../../assets/images/npcs/maniacpaint/lieve.png", mimeType = "image/png")]
+		public var Bust_LIEVE_NUDE:Class;
 		
 		CONFIG::IMAGEPACK
 		{
 			[Embed(source = "../../../assets/images/npcs/maniacpaint/hr/lieve.png", mimeType = "image/png")]
 			public var Full_LIEVE:Class;
+			[Embed(source = "../../../assets/images/npcs/maniacpaint/hr/lieve.png", mimeType = "image/png")]
+			public var Full_LIEVE_NUDE:Class;
 		}
 	}
 
