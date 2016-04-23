@@ -42,7 +42,7 @@ public function mhengaMedicalThingerBonusFunc():void {
 
 public function approachVKo(showShit:Boolean = true):void {
 	if(showShit) clearOutput();
-	showVKo();
+	
 	CodexManager.unlockEntry("V-Ko");
 	//First Time
 	if(flags["MET_VKO"] == undefined)
@@ -50,6 +50,7 @@ public function approachVKo(showShit:Boolean = true):void {
 		flags["MET_VKO"] = 1;
 		if(showShit)
 		{
+			showVKo();
 			output("You approach the nursedroid a little hesitantly, but before you can utter a single word, she smoothly bounds up off the bed and onto the balls of her feet, feet that actually appear to wear delicate white boots. Those alabaster garments merge seamlessly into the pink of her artificially smooth, perfect skin. The rest of her is trimmed in equally white clothing, though you can't see a single seam anywhere. It appears to have been sewn or built directly on her.");
 			output("\n\n\"<i>Hello, [pc.race], I have not been assigned a designation, so you may refer to me by my model class, V-Ko. I have been placed here to dispense medical procedures for a reasonable, profit-ensuring price,</i>\" the nursedroid, V-Ko states. She smiles, luxurious, synthetic pigtails bobbing behind her. <i>\"I am certified in the care and treatment of over five thousand races for one million sixty thousand forty-five diseases and counting.\"</i> The white crosses in her eyes blink blue momentarily. <i>\"Database updated. Fifteen thousand new treatments added.\"</i> V-Ko tilts her head to the side robotically. <i>\"I can sell you medical supplies, examine you for diseases, or heal any injuries in a short amount of time. How may I assist you, citizen?\"</i>");
 			processTime(1);
@@ -60,6 +61,7 @@ public function approachVKo(showShit:Boolean = true):void {
 	{
 		if(showShit)
 		{
+			showVKo();
 			output("V-Ko smiles disarmingly at you as you approach. <i>\"Your biosigns identify you as [pc.short] Steele. How may I serve your needs today?\"</i> She seems blissfully unaware of the implications of her statement, beaming with what seems to be a genuine desire to assist you.");
 			//Uninjured
 			if(pc.HP() >= pc.HPMax()) output("\n\n<i>\"You appear in good health, but my other services are available if you need to purchase supplies or require treatment of potential diseases.\"</i>");
