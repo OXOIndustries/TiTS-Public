@@ -51,6 +51,7 @@
 	import classes.UIComponents.ContentModuleComponents.LevelUpStatBar;
 	import classes.UIComponents.ContentModules.LevelUpStatsModule;
 	import classes.Engine.Interfaces.ParseText;
+	import classes.Engine.Map.InShipInterior;
 
 	import classes.UIComponents.SideBarComponents.StatBar;
 
@@ -765,7 +766,7 @@
 		{
 			if (cachePlanet == "CODEX")
 			{
-				if (kGAMECLASS.currentLocation == "SHIP INTERIOR")
+				if (InShipInterior())
 				{
 					roomText = "SHIP\nINTERIOR";
 					planetText = kGAMECLASS.rooms[kGAMECLASS.rooms["SHIP INTERIOR"].outExit].planet;

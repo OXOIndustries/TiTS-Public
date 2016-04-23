@@ -1435,7 +1435,7 @@ public function layFertilizedVenusPitcherEgg():void
 	}
 
 	clearMenu();
-	if (currentLocation == "SHIP INTERIOR")
+	if (InShipInterior())
 	{
 		output("\n\nSince you're on your ship, you might as well send it off to your daycare.")
 		StatTracking.track("pregnancy/fertilized venus pitcher seeds/day care");

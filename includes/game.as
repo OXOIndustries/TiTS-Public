@@ -90,7 +90,7 @@ public function setNavDisabled(addUmask:uint):void
 
 public function showLocationName():void
 {
-	if(currentLocation == "SHIP INTERIOR") setLocation("SHIP\nINTERIOR", rooms[rooms["SHIP INTERIOR"].outExit].planet, rooms[rooms["SHIP INTERIOR"].outExit].system);
+	if(InShipInterior()) setLocation("SHIP\nINTERIOR", rooms[rooms["SHIP INTERIOR"].outExit].planet, rooms[rooms["SHIP INTERIOR"].outExit].system);
 	else setLocation(rooms[currentLocation].roomName, rooms[currentLocation].planet, rooms[currentLocation].system);
 }
 
@@ -552,7 +552,7 @@ public function sleep(outputs:Boolean = true):void {
 	var minutes:int = 420 + rand(80) + 1
 	
 	if(outputs) clearOutput();
-	if(currentLocation == "SHIP INTERIOR")
+	if(InShipInterior(pc))
 	{
 		if(outputs)
 		{			
@@ -586,7 +586,7 @@ public function sleep(outputs:Boolean = true):void {
 			eventBuffer += "\n\n<b>You've already reached the current maximum level. It will be raised in future builds.</b>";
 		}
 	}
-	if(currentLocation == "SHIP INTERIOR")
+	if(InShipInterior(pc))
 	{
 		if(outputs)
 		{
@@ -616,14 +616,14 @@ public function sleep(outputs:Boolean = true):void {
 	if(outputs)
 	{
 		mimbraneSleepEvents();
-		if(currentLocation == "SHIP INTERIOR") grayGooSpessSkype();
+		if(InShipInterior(pc)) grayGooSpessSkype();
 	}
 	
 	//remove status effects
 	pc.removeStatusEffect("Roshan Blue");
 	
 	clearMenu();
-	if(currentLocation == "SHIP INTERIOR")
+	if(InShipInterior(pc))
 	{
 		if (flags["ANNO_SLEEPWITH_DOMORNING"] != undefined)
 		{
@@ -1592,7 +1592,7 @@ public function processTime(arg:int):void {
 				}
 			}
 			// Left
-			else if (currentLocation == "SHIP INTERIOR")
+			else if (InShipInterior(pc))
 			{
 				eventQueue.push(kq2NukeExplodesLater);
 				flags["KQ2_NUKE_EXPLODED"] = 1;
@@ -1965,7 +1965,7 @@ public function processTime(arg:int):void {
 	if (!MailManager.isEntryUnlocked("emmy_harness_here") && flags["EMMY_TOY_TIMER"] <= GetGameTimestamp()) emmyMailGet4();
 
 	//Saendra Mail
-	if (!MailManager.isEntryUnlocked("saendrathanks") && flags["FALL OF THE PHOENIX STATUS"] >= 1 && flags["SAENDRA_DISABLED"] != 1 && rooms[currentLocation].planet != "SHIP: PHOENIX" && currentLocation != "SHIP INTERIOR") saendraPhoenixMailGet();
+	if (!MailManager.isEntryUnlocked("saendrathanks") && flags["FALL OF THE PHOENIX STATUS"] >= 1 && flags["SAENDRA_DISABLED"] != 1 && rooms[currentLocation].planet != "SHIP: PHOENIX" && !InShipInterior(pc)) saendraPhoenixMailGet();
 	//Anno Mail
 	if (!MailManager.isEntryUnlocked("annoweirdshit") && flags["MET_ANNO"] != undefined && flags["ANNO_MISSION_OFFER"] != 2 && flags["FOUGHT_TAM"] == undefined && flags["RUST_STEP"] != undefined && rand(20) == 0) goMailGet("annoweirdshit");
 	//KIRO FUCKMEET

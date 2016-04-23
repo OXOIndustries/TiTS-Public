@@ -3,6 +3,8 @@ package classes.Engine.Map
 	import classes.Characters.PlayerCharacter;
 	import classes.Creature;
 	import classes.kGAMECLASS;
+	import classes.RoomClass;
+	import classes.GLOBAL;
 	/**
 	 * ...
 	 * @author Gedan
@@ -16,7 +18,9 @@ package classes.Engine.Map
 			tLoc = kGAMECLASS.currentLocation;
 		}
 		
-		return tLoc == "SHIP INTERIOR";
+		//return tLoc == "SHIP INTERIOR";
+		var tRoom:RoomClass = kGAMECLASS.rooms[tLoc];
+		return tRoom.hasFlag(GLOBAL.SHIPINTERIOR);
 	}
 
 }

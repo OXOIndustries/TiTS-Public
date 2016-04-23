@@ -1233,7 +1233,7 @@ public function reahaBreastMilkIceCreamShare():void
 public function tryProcDommyReahaTime(tMinutes:Number):Boolean
 {
 	if (!reahaIsCrew()) return false;
-	if (currentLocation != "SHIP INTERIOR") return false; // Only care about processTime calls onboard the ship
+	if (!InShipInterior()) return false; // Only care about processTime calls onboard the ship
 	if (!reahaFree()) return false; // Free only
 	if (!pc.hasCock()) return false; // No cock? Fuck off.
 	

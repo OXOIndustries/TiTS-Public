@@ -107,8 +107,8 @@ public function myrAddiction(arg:Number):Number
 			else if(pc.hasCock()) eventBuffer += "jacking off";
 			else eventBuffer += "fingering your asshole";
 			eventBuffer += "right here and now if you wanted to. Maybe you should";
-			if(currentLocation != "SHIP INTERIOR") eventBuffer += " head back to the ship";
-			eventBuffer += " and have a little self-pleasure... to celebrate.\n\n<b>You’ve overcome your addiction to red myr venom.</b>";
+			if(!InShipInterior()) eventBuffer += " head back to the ship and";
+			eventBuffer += " have a little self-pleasure... to celebrate.\n\n<b>You’ve overcome your addiction to red myr venom.</b>";
 			pc.removeStatusEffect("Myr Venom Withdrawal");
 		}
 
