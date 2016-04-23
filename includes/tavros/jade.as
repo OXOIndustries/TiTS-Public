@@ -52,7 +52,7 @@ public function furEffectBonusFunction():Boolean {
 
 public function showJade(nude:Boolean = false):void 
 {
-	if(!nude)showBust("JADE");
+	if(!nude) showBust("JADE");
 	else showBust("JADE_NUDE");
 	showName("\nJADE");
 }
@@ -409,7 +409,7 @@ public function titfuckJade():void {
 	if(pc.isNice()) output(" with an encouraging smile");
 	else if(pc.isMischievous()) output(" with a mirthful grin");
 	output(".");
-	if(pc.isCrotchGarbed()) output(" A tightness in your [pc.lowerGarments] signals your " + possessive(pc.cocksDescript()) + " willingness to participate in such a plan.");
+	if(!pc.isCrotchExposed()) output(" A tightness in your [pc.lowerGarments] signals your " + possessive(pc.cocksDescript()) + " willingness to participate in such a plan.");
 	else 
 	{
 		output(" A sudden upward surge from your [pc.cocks] signals ");

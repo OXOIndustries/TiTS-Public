@@ -22,10 +22,16 @@ Offers a once an hour shield booster item that restores up to 30 shields.
 //<i>\"My owners have programmed me to purchase medical-type items and treatments at near galactic bazaar rates.\"</i> V-Ko seems rather pleased about admitting that her purchase prices are substandard.
 
 
+public function showVKo(nude:Boolean = false):void
+{
+	if(!nude) showBust("VKO");
+	else showBust("VKO_NUDE");
+	showName("\nV-KO");
+}
 //Medical Office Description
 //Approaching V-Ko
 public function mhengaMedicalThingerBonusFunc():void {
-	userInterface.showBust("VKO");
+	showBust("VKO");
 	//Never seen a nursedroid before
 	if(flags["MET_VKO"] == undefined) output("\n\nAn artificial, almost robotic looking woman is sitting on the bed with her legs crossed demurely. Your codex chimes, <i>\"V-Ko model nursedroid detected. Manufactured by Joyco. Provides basic medical services. More data available upon request.\"</i> A nurse-droid, huh? Neat.");
 	//Seen before
@@ -36,8 +42,7 @@ public function mhengaMedicalThingerBonusFunc():void {
 
 public function approachVKo(showShit:Boolean = true):void {
 	if(showShit) clearOutput();
-	userInterface.showBust("VKO");
-	userInterface.showName("\nV-KO");
+	showVKo();
 	CodexManager.unlockEntry("V-Ko");
 	//First Time
 	if(flags["MET_VKO"] == undefined)
@@ -93,8 +98,7 @@ public function vkoSupplies():void
 public function getDiseaseProbedYo():void
 {
 	clearOutput();
-	userInterface.showBust("VKO");
-	userInterface.showName("\nV-KO");
+	showVKo();
 	output("You indicate to V-Ko that you would like to be checked for diseases.");
 	output("\n\n<i>\"Very well, please, climb on the bed,\"</i> the nursedroid instructs, patting the fabric-covered bed gently to indicate where.");
 	output("\n\nYou climb up onto the crude but sterile bed and look at V-Ko, waiting.");
@@ -180,8 +184,7 @@ public function getDiseaseProbedYo():void
 public function turnDownTreatment():void
 {
 	clearOutput();
-	userInterface.showBust("VKO");
-	userInterface.showName("\nV-KO");
+	showVKo();
 	output("V-Ko offers to help you off the table");
 	if(pc.isAss()) output(", though you decline the robot's aid");
 	output(". <i>\"I'm sorry that you do not wish to engage in treatment for your malady. Is there another service I could offer that would be more palatable to your desires?\"</i>");
@@ -192,8 +195,7 @@ public function turnDownTreatment():void
 public function treatDisease(diseaseName:String = ""):void
 {
 	clearOutput();
-	userInterface.showBust("VKO");
-	userInterface.showName("\nV-KO");
+	showVKo();
 	output("You transfer the credits to the account V-Ko specifies.");
 	output("\n\nShe stands bolt upright and perfectly still with her eyes flashing blue while she confirms the transaction. As soon as she does, her posture relaxes and she smiles once more. <i>\"Transaction validated. I shall now manufacture a treatment targeted to your ailment. One moment.\"</i>");
 	output("\n\nV-Ko folds her arms in front of her and once more assumes an immobile pose. It's moments like this when she isn't moving at all that you're aware of just how artificial she is. People move to breathe or to adjust their position. There's always a little bit of idle motion, but V-Ko... V-Ko simply moved to a stable stance and ceased all simulation of life, revealing her for the automaton she is.");
@@ -212,8 +214,7 @@ public function treatDisease(diseaseName:String = ""):void
 public function removeParasite(name:String):void
 {
 	clearOutput();
-	userInterface.showBust("VKO");
-	userInterface.showName("\nV-KO");
+	showVKo();
 	output("<i>\"Excellent!\"</i> V-Ko chirps. You feel her finger press against your neck, and then something cold against your skin.");
 	output("\n\nYou open your mouth to comment on it while the world fades to a dead, abyssal black.");
 	//Pass three hours - > next
@@ -223,8 +224,7 @@ public function removeParasite(name:String):void
 
 public function removeParasiteII(name:String):void {
 	clearOutput();
-	userInterface.showBust("VKO");
-	userInterface.showName("\nV-KO");
+	showVKo();
 	output("<i>\"...complete success... vitals normal...\"</i>");
 	output("\n\nBits and pieces of V-Ko's voice pierce the murky haze that's fogging your thoughts. You blink your eyes open but immediately shut them against the harsh glare of the artificial lighting.");
 	output("\n\n<i>\"The chemicals should be metabolizing out of your bloodstream in a few seconds. Please be careful until then. It would not do for you to injure yourself so soon after having your ailments tended to.\"</i>");
@@ -272,8 +272,7 @@ public function removeParasiteII(name:String):void {
 //Healing
 public function getHealedByVKo():void {
 	clearOutput();
-	userInterface.showBust("VKO");
-	userInterface.showName("\nV-KO");
+	showVKo();
 	//Cost = 5 times HP 
 	var cost:int = pc.HPMax() - pc.HP();
 	cost *= 5;
@@ -290,8 +289,7 @@ public function getHealedByVKo():void {
 public function payVKoForHealing(cost:int):void
 {
 	clearOutput();
-	userInterface.showBust("VKO");
-	userInterface.showName("\nV-KO");
+	showVKo();
 	pc.credits -= cost;
 	output("You transfer the credits.");
 	output("\n\n<i>\"Excellent, please climb onto the table");
@@ -317,8 +315,7 @@ public function payVKoForHealing(cost:int):void
 public function turnDownVKoHealing():void
 {
 	clearOutput();
-	userInterface.showBust("VKO");
-	userInterface.showName("\nV-KO");
+	showVKo();
 	output("<i>\"I'm sorry that you do not wish to engage in treatment for your malady. Is there another service I could offer that would be more palatable to your desires or credit limit?\"</i>");
 	approachVKo(false);
 }
@@ -327,8 +324,7 @@ public function turnDownVKoHealing():void
 public function customVKoInputCauseCoolKidsTypeOutTheirSexScenesLikeABoss():void
 {
 	clearOutput();
-	userInterface.showBust("VKO");
-	userInterface.showName("\nV-KO");
+	showVKo();
 	//These allow the player to type in a command using a text box. "You must ask the right question."
 	output("You tell the nursedroid that you would like a less... standard service.");
 	output("\n\nV-Ko cocks her head to the side for a moment, eyes flickering. Her vision clears, and she explains, <i>\"I regret that I am only a virtual intelligence. My ability to respond to questions and inputs is limited by my programming. If there are any nonstandard routines in my programming, you would have to give the right command to activate them. In the words of my forebears, 'you must ask the right question.'\"</i>");
@@ -379,8 +375,7 @@ public function parseVKoCustomInputs():void
 	else
 	{
 		clearOutput();
-		userInterface.showBust("VKO");
-		userInterface.showName("\nV-KO");
+		showVKo();
 		output("V-Ko cocks her head to the side for a moment, eyes flickering. Her vision clears, and she explains, <i>\"I regret that I am only a virtual intelligence. My ability to respond to questions and inputs is limited by my programming. If there are any nonstandard routines in my programming, you would have to give the right command to activate them. In the words of my forebears, 'you must ask the right question.'\"</i>");
 		this.displayInput();
 	}
@@ -390,8 +385,7 @@ public function parseVKoCustomInputs():void
 public function stressReliefGo():void
 {
 	clearOutput();
-	userInterface.showBust("VKO");
-	userInterface.showName("\nV-KO");
+	showVKo(true);
 	output("V-Ko eyes flicker pink, and her voice drops to a low, husky tone. <i>\"That... is the right question.\"</i> Despite the fact that her body is exactly the same as it was a moment ago, she seems almost a different person. Her facial expression is completely different; her eyelashes hang low, and her lips are subtly parted as if begging to be kissed. V-Ko's hips are sensuously wiggling. Her middle is even heaving in a way that perfectly emulates someone breathing deeply and excitedly.");
 	if(flags["GOT_VKO_STRESS_RELIEF"] == undefined) 
 	{
@@ -406,7 +400,7 @@ public function stressReliefGo():void
 	if(pc.lust() >= pc.lustMax() * .8) output("You didn't think you could get any lustier than you already were, but somehow this wanton wench has taken your need to a whole new level.");
 	else if(pc.lust() >= pc.lustMax() * .4) output("You didn't think you were that horny yet, but somehow this wanton wench has brought you to complete and total arousal.");
 	else output("You weren't really that horny before, but the sight of this wanton wench on her knees has brought you to a full and ready state of engorgement.");
-	if(pc.isCrotchGarbed()) 
+	if(!pc.isCrotchExposed()) 
 	{
 		output(" The strain your member");
 		if(pc.cockTotal() > 1) output("s");
@@ -528,8 +522,7 @@ public function VKoStressReliefForLadyginas():void
 {
 	var x:int = rand(pc.totalVaginas());
 	clearOutput();
-	userInterface.showBust("VKO");
-	userInterface.showName("\nV-KO");
+	showVKo(true);
 	output("V-Ko eyes flicker pink, and her voice drops to a low, husky tone. <i>\"That... is the right question.\"</i> Despite the fact that her body is exactly the same as it was a moment ago, she seems almost a different person. Her facial expression is completely different; her eyelashes hang low, and her lips are subtly parted as if begging to be kissed. V-Ko's hips are sensuously wiggling. Her middle is even heaving in a way that perfectly emulates someone breathing deeply and excitedly.");
 
 	if(flags["GOT_VKO_STRESS_RELIEF"] == undefined)
@@ -541,7 +534,7 @@ public function VKoStressReliefForLadyginas():void
 	output(" The nurse-bot falls to her knees before you and licks her lips with a long, thick tongue that appears slick with some manner of inorganic lubricant, leaving her puckered mouth shining as she opens it wide. Her tongue curls, pointing at the entrance in what can only be a \"come hither\" gesture. Roaming of her body, the V-Ko's hands cup her small, pert bosom and present it to you, aided by an incredible arch of her back.");
 
 	//Clothed
-	if(pc.isCrotchGarbed())
+	if(!pc.isCrotchExposed())
 	{
 		output("\n\nCrawling forward on hands and knees, the nursedroid stops just in front of your crotch. Her hands, made nimble for surgical success, deftly dive into your [pc.lowerGarments], stripping the offending coverings away with sensuous skills. Her palm is sure to press against [pc.oneVagina] from the outside as she strips you, rubbing your folds teasingly. You cannot help but ");
 		if(pc.wetness(x) <= 2) output("moisten from");
@@ -627,8 +620,7 @@ public function vKoElectroTherapy():void
 {
 	clearOutput();
 	author("LukaDoc & QB");
-	userInterface.showBust("VKO");
-	userInterface.showName("\nV-KO");
+	showVKo();
 	output("Her eyes light up as she processes your latest input and she says, <i>“Before proceeding, this unit states on behalf of JoyCo Incorporated that the company shall not be held responsible for any kind of physical or mental injury during the processing of this directive. If you accept the terms and conditions, please state your consent.”</i>");
 	//[Agree][Disagree]
 	clearMenu();
@@ -641,8 +633,7 @@ public function declineElectroStim():void
 {
 	clearOutput();
 	author("LukaDoc & QB");
-	userInterface.showBust("VKO");
-	userInterface.showName("\nV-KO");
+	showVKo();
 	output("A few lights blink out as she reboots and greets you again as if you had just arrived.");
 	//(Play initial greeting.)
 	approachVKo(false);
@@ -653,8 +644,7 @@ public function agreeToElectroStim():void
 {
 	clearOutput();
 	author("LukaDoc & QB");
-	userInterface.showBust("VKO");
-	userInterface.showName("\nV-KO");
+	showVKo(true);
 	output("<i>“Please, remove your clothing and lay down.”</i>");
 
 	output("\n\nDoing as you were instructed, you carefully peel off your [pc.gear] and lay it neatly on a nearby table as you head for the adaptable chair.");
@@ -932,8 +922,7 @@ public function agreeToElectroStim():void
 public function VKOBreastPumpFunction():void {
 	clearOutput();
 	author("LukaDoc & QB");
-	userInterface.showBust("VKO");
-	userInterface.showName("\nV-KO");
+	showVKo();
 	//if PC doesn’t meet the requirements:
 	if(!pc.isLactating() || pc.biggestTitSize() < 1)
 	{
@@ -958,8 +947,7 @@ public function declineToGetYourBreastVKOPumped():void
 {
 	clearOutput();
 	author("LukaDoc & QB");
-	userInterface.showBust("VKO");
-	userInterface.showName("\nV-KO");
+	showVKo();
 	output("A few lights blink out as she reboots and greets you again as if you had just arrived.");
 	//(Play initial greeting.)
 	clearMenu();
@@ -971,15 +959,14 @@ public function agreeToVKoBoobSucks():void
 {
 	clearOutput();
 	author("LukaDoc & QB");
-	userInterface.showBust("VKO");
-	userInterface.showName("\nV-KO");
+	showVKo(true);
 	output("The nursedroid points to a nearby chair. It twists and reshapes itself into a comfy ");
 	if(!pc.isTaur() && !pc.isDrider() && !pc.isNaga() && !pc.isGoo()) output("easy chair");
 	else output("mattress");
 	output(".");
 
 	output("\n\nWith a nod, you move over to the indicated seat");
-	if(pc.isChestGarbed()) output(", already removing your [pc.upperGarments]. Once your [pc.breasts] are exposed");
+	if(!pc.isChestExposed()) output(", already removing your [pc.upperGarments]. Once your [pc.breasts] are exposed");
 	else output(". With your [pc.breasts] already exposed");
 	output(", you settle down on the ");
 	if(!pc.isTaur() && !pc.isDrider() && !pc.isNaga() && !pc.isGoo()) output("chair");
