@@ -51,7 +51,7 @@
 			inventory.push(new FlashGoggles());
 
 			
-			keeperBuy = "Nerrasa just keeps up with her reps whilst you browse the stores wares, paying you no mind what so ever.\n\n";
+			keeperBuy = "Nerrasa just keeps up with her reps whilst you browse the stores wares, paying you no mind what so ever.\n";
 			
 			this.typesBought = [];
 			this.sellMarkup = 1.2;
