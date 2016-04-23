@@ -42,6 +42,7 @@
 	import classes.Engine.Utility.possessive;
 	import classes.Engine.Combat.DamageTypes.DamageType;
 	import classes.Engine.Utility.weightedRand;
+	import classes.Engine.Interfaces.ParseText;
 
 
 	/**
@@ -1713,13 +1714,13 @@
 					buffer = tailCocksDescript();
 					break;
 				case "cockOrStrapon":
-					buffer = cockOrStrapon(arg2,0);
+					buffer = cockOrStrapon();
 					break;
 				case "cockOrStraponNoun":
-					buffer = cockOrStrapon(arg2,-1);
+					buffer = cockOrStrapon(-1);
 					break;
 				case "cockOrStraponFull":
-					buffer = cockOrStrapon(arg2,1);
+					buffer = cockOrStrapon(1);
 					break;
 				case "nippleNoun":
 					buffer = nippleNoun(arg2);
@@ -12185,33 +12186,13 @@
 			return (lowerUndergarment.hardLightEquipped);
 		}
 		// Always picks the main anatomy--no need to complicate it!
-		//Ids:
-		//-4 = catch-all "strapon"
-		//-3 = autoselect
-		//-2 = giant clitosaurus
-		//-1 = force hardlight strapon
-		//0+ = force specific dick
-		public function cockOrStrapon(idxOverride:int = -3,forceAdjective: int = 0): String {
+		public function cockOrStrapon(forceAdjective: int = 0, idxOverride:int = 0): String {
 			var descript: String = "";
 			var sAdjective:Array = [];
 			var sNoun:Array = [];
-
-			//if a idxOverride is set higher than your current dick count, set it to autopick something different
-			if(idxOverride >= cockTotal()) idxOverride = -3;
-			//Autopick? Prefer dick if available.
-			if(idxOverride == -3)
-			{
-				//Have cock? Use it by default
-				if(hasCock()) idxOverride = 0;
-				//No dick? Use the hard light
-				else if(hasHardLightEquipped()) idxOverride = -1;
-				//No hard light, use your clit.
-				else if(clitLength >= 4 && totalClits() > 0) idxOverride = -2;
-				//Nothing appropriate? Must be a strap-on
-				else idxOverride = -4;
-			}
-			//Hardlight wins
-			if(idxOverride == -1)
+			
+			// Strapons! Always takes precedence, I guess!
+			if(lowerUndergarment.hardLightEquipped)
 			{
 				sAdjective = ["hardlight", "hardlight", "hardlight", "hardlight", "holo-", "holo-", "holo-", "projected", "projected", "holographic"];
 				sNoun = ["strapon", "strapon", "strapon", "dildo", "dildo"];
@@ -12241,14 +12222,14 @@
 				return descript;
 			}
 			// Penis?
-			else if(idxOverride >= 0)
+			else if(hasCock())
 			{
 				if(forceAdjective == 1 || (forceAdjective == 0 && rand(2) == 0)) descript += cockAdjective(idxOverride) + " ";
 				descript += cockNoun2(cocks[idxOverride]);
 				return descript;
 			}
 			// Giant Clits?
-			else if(idxOverride == -2)
+			else if(hasVagina() && vaginas[0].clits >= 1 && clitLength >= 4)
 			{
 				if(kGAMECLASS.silly && clitLength >= 12 && rand(2) == 0)
 				{
@@ -14652,18 +14633,16 @@
 						if(amountVented >= 1000) kGAMECLASS.honeyPotBump();
 						if(amountVented >= 2000) kGAMECLASS.honeyPotBump();
 					}
-					if(hasPerk("'Nuki Nuts") && VALID_CUM_TYPES.indexOf(statusEffects[o].value3)>=0) //Implementing Kui-Tan Cum Cascade from Codex
+					if(hasPerk("'Nuki Nuts") && GLOBAL.VALID_CUM_TYPES.indexOf(statusEffects[o].value3)>=0) //Implementing Kui-Tan Cum Cascade from Codex
 					{
 						//Calculate amount metabolized over time
-						var cumTransfer:Number = statusEffects[o].value1 / 10; //Metabolize entire load over 10 minutes.
+						var cumTransfer:Number = (statusEffects[o].value1) / 10; //Metabolize entire load over 10 minutes.
 						cumTransfer *= timePassed;
-						trace("Cum Metabolized:" + cumTransfer);
+						cumTransfer += amountVented;
 						if (cumTransfer > statusEffects[o].value1) cumTransfer = statusEffects[o].value1;
 						statusEffects[o].value1 -= cumTransfer;
-						var cumTransferPercent:Number = (cumTransfer / maxCum()) * 500;//5x cum production spike
-						trace("Percent Increase:" + cumTransferPercent);
-						if (cumTransferPercent > 10) kGAMECLASS.eventBuffer += ParseText("\n\nYou hear a faint gurgling from your stomach and [pc.balls] as you feel them swelling fuller and fuller each passing second. With your kui-tan physiology, all that cum you injested must have spiked your own production!");
-						cumCascade(cumTransferPercent);
+						cumCascade(cumTransfer);
+						trace("Cum Metabolized:" + cumTransfer);
 					}
 				}
 				if(statusEffects[o].value1 <= 0) removals.push("Orally-Filled");
@@ -14677,8 +14656,27 @@
 			kGAMECLASS.eventBuffer += notice;
 		}
 
-		//For directly increasing cum
-		public function cumCascade(cumDelta: Number): void { 
+		/**
+		 * Kui-tan "Cum Cascade" function.
+		 * Takes ingested cum and adds 5x to balls.
+		 * @param	amount	amount of cum digested in mL
+		 */
+		public function cumCascade(amount:Number): void 
+		{
+			var percent:Number = (amount / maxCum()) * 500;//Take percentage of maximum cum, and multiply 5x.
+			trace("Percent Increase:" + percent);
+			if (percent > 10) {
+				if (this is PlayerCharacter) kGAMECLASS.eventBuffer += ParseText("\n\nYou hear a faint gurgling from your stomach and [pc.balls] as you feel them swelling fuller and fuller each passing second. With your kui-tan physiology, all that cum you ingested must have spiked your own production!");
+				lust(20); //increase Lust
+			}
+			increaseCum(percent);
+		}
+		
+		/**
+		 * For directly increasing cum
+		 * @param	cumDelta percent fullness increase
+		 */
+		public function increaseCum(cumDelta: Number):void { 
 	
 			if(balls > 0 && (ballFullness + cumDelta >= 100 && ballFullness < 100 && this is PlayerCharacter))
 			{
