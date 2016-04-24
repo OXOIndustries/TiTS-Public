@@ -14312,6 +14312,11 @@
 							switch((statusEffects[x] as StorageClass).storageName)
 							{
 								case "Lane's Hypnosis":
+								case "Lane's Hypnosis - Physique":
+								case "Lane's Hypnosis - Reflexes":
+								case "Lane's Hypnosis - Aim":
+								case "Lane's Hypnosis - Intelligence":
+								case "Lane's Hypnosis - Willpower":
 									kGAMECLASS.baseHypnosisWearsOff((statusEffects[x] as StorageClass).storageName);
 									break;
 								case "Crabbst":
