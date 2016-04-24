@@ -383,7 +383,7 @@ public function warnPennyAboutDoctorBadgersNefariousSchemes():void
 		if (!pc.isChestGarbed()) 
 		{
 			output(", letting your bare [pc.nipples] perk before Penny's eyes.");
-			if (pc.isLactating()) output("Beads of [pc.milkNoun] wet your [pc.breasts] as the vixen stares.")
+			if (pc.isLactating()) output(" Beads of [pc.milkNoun] wet your [pc.breasts] as the vixen stares.")
 		}
 		else output(", forcing your [pc.upperGarment] to strain as your sizeable chest swells outwards.");
 		output("\n\n<i>“Uh, yeah,”</i> Penny coughs, reddening rapidly. <i>“Yeah they’re... they’re pretty great...”</i>");
