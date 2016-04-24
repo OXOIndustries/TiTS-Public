@@ -640,7 +640,7 @@ public function newTexasMilkshake():void
 	else output("<i>“You tell Reaha to stop by here more. The rate I go through her milk, I’m going to need her hooked up here twenty-four/seven.”</i>");
 	output("\n\nSomething tells you Reaha’d probably enjoy it!");
 	processTime(15);
-	eatHomeCooking(35);
+	eatHomeCooking(70);
 	clearMenu();
 	addButton(0,"Next",yammiFollowerMenu);
 }
