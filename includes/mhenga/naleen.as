@@ -780,6 +780,7 @@ public function finishNaleenSnuggles():void {
 	
 	output("\n\nSadly, no. You have a fortune to chase. The naleen sighs, picking herself up and slithering away before you can answer. She stops at the edge of the little clearing, though, just long enough to blow you a kiss before vanishing into the brush.");
 	processTime(30+rand(5));
+	eatHomeCooking(50);
 	IncrementFlag("NALEEN_SNUGGLED");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
