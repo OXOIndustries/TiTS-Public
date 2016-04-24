@@ -379,7 +379,14 @@ public function warnPennyAboutDoctorBadgersNefariousSchemes():void
 		output("\n\nPenny looks up at you in confusion. <i>“I was going to ask you the same question [pc.name],”</i> she says slowly. <i>“I know the planet rush is opening up wild new aliens to encounter and... inherit things from, but if it wasn’t for the genetic ID scanning system installed over the door I don’t think I would have recognized you. You seem...”</i> There’s a short pause while Penny looks you up and down");
 		if(penny.hasCock()) output(", and you grin as you hear the quiet sound of Penny’s cock hitting the bottom of the desk");
 		output(". <i>“... different. I have to say - it’s a good look for you.”</i>");
-		output("\n\n <i>“Thanks!”</i> you answer chirpily. <i>“It feels super good too! Do you like my big tits?”</i> You lean forwards, cupping your breasts and pushing them out towards her, forcing your [pc.upperGarment] to strain as your sizeable chest swells outwards.");
+		output("\n\n <i>“Thanks!”</i> you answer chirpily. <i>“It feels super good too! Do you like my big tits?”</i> You lean forwards, cupping your breasts and pushing them out towards her");
+		if (!pc.isChestGarbed()) 
+		{
+			output(", letting your bare [pc.nipples] perk before Penny's eyes.");
+			if (pc.isLactating()) output("Beads of [pc.milkNoun] wet your [pc.breasts] as the vixen stares.")
+		}
+		else output(", forcing your [pc.upperGarment] to strain as your sizeable chest swells outwards.");
+		output("\n\n<i>“Uh, yeah,”</i> Penny coughs, reddening rapidly. <i>“Yeah they’re... they’re pretty great...”</i>");
 		output("\n\n<i>“Uh, yeah,”</i> Penny coughs, reddening rapidly. <i>“Yeah they’re... they’re pretty great...”</i>");
 		output("\n\n<i>“Oh! Also - check this out!”</i> You take Penny by surprise as you spin around, moving to sit on one corner facing towards her, with one leg hanging down on either side. Penny only just manages to move back out of the way of your flailing legs, but before she can say anything about this you interrupt her by pulling down your [pc.underGarmets], letting your thick cock and balls fall freely onto her desk, your slick pussy already starting to make a mess beneath you. <i>“Look at all </i>this<i>!”</i> you say excitedly. <i>“Isn’t it great?”</i>");
 		output("\n\nIt takes you a few moments to realize that Penny isn’t saying anything. Looking up, you see she’s just staring straight forwards at you, her eyes wide and a thin line of drool sliding down from her slightly open mouth.");
