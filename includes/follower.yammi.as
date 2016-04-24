@@ -514,7 +514,7 @@ public function pepperPieYammi():void
 	output("\n\nYou answer her with a grin and immediately begin to chow down again. It’s absolutely fantastic, you just have to indulge in a drink from time to time to control the burn! It takes you about ten minutes to wolf down the whole thing, then you decide you’d better get back to work. Yammi seems pleased you liked it.");
 	output("\n\nOddly, you feel like the meal digests away quickly. It seems Yammi’s got your weight on her mind.");
 	processTime(15);
-	eatHomeCooking(40);
+	eatHomeCooking(80);
 	clearMenu();
 	addButton(0,"Next",yammiFollowerMenu);
 }
@@ -530,7 +530,7 @@ public function marbledSteakYammi():void
 	output("\n\nIt tastes an awful lot like beef. Well, what can you say? It’s about the best steak you’ve had in a long time! You can tell it was grilled on an open flame, and it’s been given just a hint of spice. You consider yourself one lucky explorer to be getting fresh barbecued steaks in the middle of space!");
 	processTime(15);
 	clearMenu();
-	eatHomeCooking(50);
+	eatHomeCooking(100);
 	clearMenu();
 	addButton(0,"Next",yammiFollowerMenu);
 }
@@ -545,7 +545,7 @@ public function sweetSoupYammi():void
 	output("\n\n<i>“Traditional serving glass.”</i> Yammi explains as you sip at it. <i>“The race that made the recipe are really tall but very skinny so they don’t eat much. I had to modify the mix a lot since their foods tend to be deadly to most life, but I think I got the essence of it!”</i>");
 	output("\n\nWell, it’s certainly sweet! A nutty-creamy blend of taste that would be perfect for any dessert. You’re not complaining, until you realize you’ve downed it so fast that you’re getting a headache. Yammi giggles and hugs you, chiding you for being such an overeager little kid with the sugary stuff. On the upside, she informs you that all the sugars are natural and so they won’t make you fat as long as you exercise.");
 	processTime(15);
-	eatHomeCooking(35);
+	eatHomeCooking(70);
 	clearMenu();
 	addButton(0,"Next",yammiFollowerMenu);
 }
@@ -563,7 +563,7 @@ public function noblurYammi():void
 	else output("coil your naga tail");
 	output(" up in your favorite chair.");
 	processTime(15);
-	eatHomeCooking(35);
+	eatHomeCooking(70);
 	clearMenu();
 	addButton(0,"Next",yammiFollowerMenu);
 }
@@ -576,7 +576,7 @@ public function yammiSnackTray():void
 	yammiFollowerDisplay();
 	output("Yammi takes about ten minutes to put together a sampler from all the things she’s got on the go. You are amazed at the tray’s layout, snacks spiraling out from the dip trays in the middle. Cut fruit, fresh veggies, nuts, pastries, pasta, finger sized meat cuts, small fish samples, chips, and more. It’s less a meal than a munch-fest, and you and Yammi both contribute to the demise of the mighty snack tray. Fifteen minutes later you excuse yourself with a smaller tray of leftovers to go do your rounds. There’s just so many things to eat!");
 	processTime(15);
-	eatHomeCooking(40);
+	eatHomeCooking(80);
 	clearMenu();
 	addButton(0,"Next",yammiFollowerMenu);
 }
@@ -589,7 +589,7 @@ public function yammiFriedTulpe():void
 	output("Yammi presents to you a specialty of her species. It’s a golden-brown fried fish fillet. It’s also almost a foot long. The spud-like tubers served with it are an appetizing baked red. You dig in, and find that it’s a little bland but very filling. The tubers are nice and soft. It’s very much a proper home-cooked meal, in space, far from home. You feel pretty good about your mission, as a little twinge of homesickness you were unaware of goes away for a while.");
 	output("\n\n<i>“Hope you enjoyed it, Boss. It’s one of my favorite, for obvious reasons.”</i> She smiles. <i>“I stock quite a few tulpe. I know, plain, but they’re quite healthy, I assure you!”</i>");
 	processTime(15);
-	eatHomeCooking(45);
+	eatHomeCooking(90);
 	clearMenu();
 	addButton(0,"Next",yammiFollowerMenu);
 }
@@ -604,7 +604,7 @@ public function ginderFishStuff():void
 	output("<i>“Per your request, captain,”</i> Yammi says with a hint of a giggle as she delivers a plate of smoking, grilled mhen’gan ginder fish to you. You take one sniff, and are instantly transported back to the lush jungle world, and the embrace of your kitty-snake lover there... your heart beats a little faster as you take a bite, letting the fish practically melt on your [pc.tongue]. Yammi looks on expectantly, until you flash her a sated smile and tell her it’s positively delicious.");
 	output("\n\n<i>“Thanks, Boss,”</i> she smiles. <i>“I don’t have quite as much experience with rush-world dishes, but if you find any more like this, don’t hesitate to let me know. I think it turned out pretty sweet!”</i>");
 	processTime(15);
-	eatHomeCooking(50);
+	eatHomeCooking(100);
 	clearMenu();
 	addButton(0,"Next",yammiFollowerMenu);
 }
@@ -620,7 +620,7 @@ public function yammiSammich():void
 	output("\n\nYou measure out a good chunk to slice off and dig in. The meat and seafood don’t blend as smoothly as you might have thought, but they complement each other well at least, and the cheese she used is different from others you’ve tried. You greedily devour the whole thing in a couple minutes, to Yammi’s delight.");
 	output("\n\n<i>“Now, don’t eat too many of these! They’re a bit heavy for your kind, Boss!”</i> She cautions you, rolling the rest back to its storage space.");
 	processTime(15);
-	eatHomeCooking(45);
+	eatHomeCooking(90);
 	clearMenu();
 	addButton(0,"Next",yammiFollowerMenu);
 }
