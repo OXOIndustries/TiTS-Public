@@ -675,7 +675,7 @@ public function cockvinePregnancyBirthing(pregSlot:int):void
 	{
 		output(" You birthed "+ pData.pregnancyQuantity +" cockvines, however you can’t even see most of them anymore – the ones that remain are swiftly winding their way towards the darkest, moistest place they can sense. The little buggers really hit the ground running! No doubt evolution has taught them their mothers are unlikely to display much maternal affection towards them. If you’re quick though you might be able to catch one and send it to the nursery.");
 	}
-	else if (currentLocation == "SHIP INTERIOR")
+	else if (InShipInterior())
 	{
 		output(" You birthed "+ pData.pregnancyQuantity +" cockvines, however you can’t even see most of them anymore – the ones that remain are swiftly winding their way out of your room, insinuating their way into the darkest holes your ship has to offer. The little buggers really hit the ground running! You suppose most of them will perish on here without food or soil – some might be able to sneak off-board next time you land. If you’re quick though you might be able to catch one and send it to the nursery.");
 	}
@@ -693,7 +693,7 @@ public function cockvinePregnancyLeave():void
 	adultCockvineHeader();
 
 	output("You watch the snake-like plants go. Out of sight, out of mind.");
-	if (currentLocation == "SHIP INTERIOR" && crew(true) > 0) output(" Might give some of your crew a start, though.");
+	if (InShipInterior() && crew(true) > 0) output(" Might give some of your crew a start, though.");
 	output("\n\nYou clean yourself up and then drift off into a pleasant doze.");
 
 	clearMenu();

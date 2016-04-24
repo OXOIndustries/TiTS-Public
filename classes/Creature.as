@@ -6,6 +6,7 @@
 	import classes.DataManager.Errors.VersionUpgraderError;
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.GameData.SingleCombatAttack;
+	import classes.Items.Accessories.FlashGoggles;
 	import classes.Items.Guns.MyrBow;
 	import classes.Items.Melee.Fists;
 	import classes.Items.Melee.Rock;
@@ -41,6 +42,7 @@
 	import classes.Engine.Utility.possessive;
 	import classes.Engine.Combat.DamageTypes.DamageType;
 	import classes.Engine.Utility.weightedRand;
+	import classes.Engine.Interfaces.ParseText;
 
 
 	/**
@@ -1712,13 +1714,13 @@
 					buffer = tailCocksDescript();
 					break;
 				case "cockOrStrapon":
-					buffer = cockOrStrapon();
+					buffer = cockOrStrapon(arg2,0);
 					break;
 				case "cockOrStraponNoun":
-					buffer = cockOrStrapon(-1);
+					buffer = cockOrStrapon(arg2,-1);
 					break;
 				case "cockOrStraponFull":
-					buffer = cockOrStrapon(1);
+					buffer = cockOrStrapon(arg2,1);
 					break;
 				case "nippleNoun":
 					buffer = nippleNoun(arg2);
@@ -1902,6 +1904,7 @@
 					buffer = vagOrAss(arg2);
 					break;
 				case "clit":
+				case "clitoris":
 					buffer = clitDescript();
 					break;
 				case "eachClit":
@@ -7522,7 +7525,7 @@
 			{
 				trace("BLUE BALLS FOR: " + short);
 				//Hit max cum - standard message
-				kGAMECLASS.eventBuffer += "\n\nYou’re feeling a little... excitable, a little randy even. It won’t take much to excite you so long as your [pc.balls] ";
+				kGAMECLASS.eventBuffer += ParseText("\n\nYou’re feeling a little... excitable, a little randy even. It won’t take much to excite you so long as your [pc.balls] ");
 				if(balls == 1) kGAMECLASS.eventBuffer += "is";
 				else kGAMECLASS.eventBuffer += "are";
 				kGAMECLASS.eventBuffer += " this full.";
@@ -12183,13 +12186,33 @@
 			return (lowerUndergarment.hardLightEquipped);
 		}
 		// Always picks the main anatomy--no need to complicate it!
-		public function cockOrStrapon(forceAdjective: int = 0, idxOverride:int = 0): String {
+		//Ids:
+		//-4 = catch-all "strapon"
+		//-3 = autoselect
+		//-2 = giant clitosaurus
+		//-1 = force hardlight strapon
+		//0+ = force specific dick
+		public function cockOrStrapon(idxOverride:int = -3,forceAdjective: int = 0): String {
 			var descript: String = "";
 			var sAdjective:Array = [];
 			var sNoun:Array = [];
-			
-			// Strapons! Always takes precedence, I guess!
-			if(lowerUndergarment.hardLightEquipped)
+
+			//if a idxOverride is set higher than your current dick count, set it to autopick something different
+			if(idxOverride >= cockTotal()) idxOverride = -3;
+			//Autopick? Prefer dick if available.
+			if(idxOverride == -3)
+			{
+				//Have cock? Use it by default
+				if(hasCock()) idxOverride = 0;
+				//No dick? Use the hard light
+				else if(hasHardLightEquipped()) idxOverride = -1;
+				//No hard light, use your clit.
+				else if(clitLength >= 4 && totalClits() > 0) idxOverride = -2;
+				//Nothing appropriate? Must be a strap-on
+				else idxOverride = -4;
+			}
+			//Hardlight wins
+			if(idxOverride == -1)
 			{
 				sAdjective = ["hardlight", "hardlight", "hardlight", "hardlight", "holo-", "holo-", "holo-", "projected", "projected", "holographic"];
 				sNoun = ["strapon", "strapon", "strapon", "dildo", "dildo"];
@@ -12219,14 +12242,14 @@
 				return descript;
 			}
 			// Penis?
-			else if(hasCock())
+			else if(idxOverride >= 0)
 			{
 				if(forceAdjective == 1 || (forceAdjective == 0 && rand(2) == 0)) descript += cockAdjective(idxOverride) + " ";
 				descript += cockNoun2(cocks[idxOverride]);
 				return descript;
 			}
 			// Giant Clits?
-			else if(hasVagina() && vaginas[0].clits >= 1 && clitLength >= 4)
+			else if(idxOverride == -2)
 			{
 				if(kGAMECLASS.silly && clitLength >= 12 && rand(2) == 0)
 				{
@@ -12693,7 +12716,7 @@
 			// Only run the knockup shit if the creature actually gets saved
 			if (neverSerialize == false && cumFrom != null)
 			{
-				if(cumflationEnabled() && !isPregnant(vagIndex)) 
+				if(cumflationEnabled()) 
 				{
 					cumflationHappens(cumFrom,vagIndex);
 					if(this is Emmy) 
@@ -12763,41 +12786,58 @@
 			// Exceptions
 			if(cumFrom.hasStatusEffect("Ovilium Effect")) return;
 			
+			var fluidType:int = GLOBAL.FLUID_TYPE_CUM;
+			var fluidVolume:Number = 0;
+			
+			if(cumFrom != null)
+			{
+				fluidType = cumFrom.cumType;
+				fluidVolume = cumFrom.cumQ();
+			}
+			
 			if(hole >= 0 && hole < 3)
 			{
-				if(!hasStatusEffect("Vaginally-Filled")) createStatusEffect("Vaginally-Filled",cumFrom.cumQ(),cumFrom.cumQ(),cumFrom.cumType,0,false,"Icon_Vagina","You've got some fluids inside you, leftovers from a recent lover.",false,0,0xB793C4);
+				// Pregnant vaginas can't get cumflated?
+				if(isPregnant(hole)) fluidVolume = 0;
+				if(fluidVolume <= 0) return;
+				
+				if(!hasStatusEffect("Vaginally-Filled")) createStatusEffect("Vaginally-Filled",fluidVolume,fluidVolume,fluidType,0,false,"Icon_Vagina","You've got some fluids inside you, leftovers from a recent lover.",false,0,0xB793C4);
 				else
 				{
 					//Track the new type.
-					setStatusValue("Vaginally-Filled",3,cumFrom.cumType);
+					setStatusValue("Vaginally-Filled",3,fluidType);
 					//Add the liquid volume.
-					addStatusValue("Vaginally-Filled",1,cumFrom.cumQ());
+					addStatusValue("Vaginally-Filled",1,fluidVolume);
 					//If new high score, set it.
 					if(statusEffectv1("Vaginally-Filled") > statusEffectv2("Vaginally-Filled")) setStatusValue("Vaginally-Filled",2,statusEffectv1("Vaginally-Filled"));
 				}
 			}
 			else if(hole == 3)
 			{
-				if(!hasStatusEffect("Anally-Filled")) createStatusEffect("Anally-Filled",cumFrom.cumQ(),cumFrom.cumQ(),cumFrom.cumType,0,false,"Icon_Donut","You've got some fluids inside you, leftovers from a recent lover.",false,0,0xB793C4);
+				if(fluidVolume <= 0) return;
+				
+				if(!hasStatusEffect("Anally-Filled")) createStatusEffect("Anally-Filled",fluidVolume,fluidVolume,fluidType,0,false,"Icon_Donut","You've got some fluids inside you, leftovers from a recent lover.",false,0,0xB793C4);
 				else
 				{
 					//Track the hole it's in along with the new type.
-					setStatusValue("Anally-Filled",3,cumFrom.cumType);
+					setStatusValue("Anally-Filled",3,fluidType);
 					//Add the liquid volume.
-					addStatusValue("Anally-Filled",1,cumFrom.cumQ());
+					addStatusValue("Anally-Filled",1,fluidVolume);
 					//If new high score, set it.
 					if(statusEffectv1("Anally-Filled") > statusEffectv2("Anally-Filled")) setStatusValue("Anally-Filled",2,statusEffectv1("Anally-Filled"));
 				}
 			}
 			else
 			{
-				if(!hasStatusEffect("Orally-Filled")) createStatusEffect("Orally-Filled",cumFrom.cumQ(),cumFrom.cumQ(),cumFrom.cumType,0,false,"Icon_Lips_Glossed","You've got some fluids inside you, leftovers from a recent lover.",false,0,0xB793C4);
+				if(fluidVolume <= 0) return;
+				
+				if(!hasStatusEffect("Orally-Filled")) createStatusEffect("Orally-Filled",fluidVolume,fluidVolume,fluidType,0,false,"Icon_Lips_Glossed","You've got some fluids inside you, leftovers from a recent lover.",false,0,0xB793C4);
 				else
 				{
 					//Track the hole it's in along with the new type.
-					setStatusValue("Orally-Filled",3,cumFrom.cumType);
+					setStatusValue("Orally-Filled",3,fluidType);
 					//Add the liquid volume.
-					addStatusValue("Orally-Filled",1,cumFrom.cumQ());
+					addStatusValue("Orally-Filled",1,fluidVolume);
 					//If new high score, set it.
 					if(statusEffectv1("Orally-Filled") > statusEffectv2("Orally-Filled")) setStatusValue("Orally-Filled",2,statusEffectv1("Orally-Filled"));
 				}
@@ -14344,7 +14384,7 @@
 								//Mighty Tight ends!
 								case "Mighty Tight":
 									kGAMECLASS.eventBuffer += "\n\nPausing for a moment, you feel your backdoor";
-									if(hasVagina()) kGAMECLASS.eventBuffer += " and [pc.vaginas] relaxing";
+									if(hasVagina()) kGAMECLASS.eventBuffer += ParseText(" and [pc.vaginas] relaxing");
 									else kGAMECLASS.eventBuffer += " relax";
 									kGAMECLASS.eventBuffer += " a bit. It is probably safe to say that you are no longer under the effects of Mighty Tight.";
 									break;
@@ -14353,7 +14393,7 @@
 									//Message text, last boob size increase. 7 days later.
 									kGAMECLASS.eventBuffer += "\n\nUnfortunately, as you admire your now-larger bosom, you realize that the gentle, wet rumble of the pads has come to a stop. <b>It looks like you’ve exhausted the BoobSwell Pads";
 									if(bRows() > 1) kGAMECLASS.eventBuffer += "on your " + kGAMECLASS.num2Text2((statusEffects[x] as StorageClass).value1+1) + " row of breasts";
-									kGAMECLASS.eventBuffer += "!</b> You peel them off your [pc.skinFurScales] and toss them away.";
+									kGAMECLASS.eventBuffer += ParseText("!</b> You peel them off your [pc.skinFurScales] and toss them away.");
 									break;
 								//Treatment finishing.
 								case "The Treatment":
@@ -14613,6 +14653,18 @@
 						if(amountVented >= 1000) kGAMECLASS.honeyPotBump();
 						if(amountVented >= 2000) kGAMECLASS.honeyPotBump();
 					}
+					if(hasPerk("'Nuki Nuts") && InCollection(statusEffects[o].value3, GLOBAL.VALID_CUM_TYPES)) //Implementing Kui-Tan Cum Cascade from Codex
+					{
+						//Calculate amount metabolized over time
+						var cumTransfer:Number = (statusEffects[o].value1) / 10; //Metabolize entire load over 10 minutes.
+						cumTransfer *= timePassed;
+						cumTransfer += amountVented;
+						if (cumTransfer > statusEffects[o].value1) cumTransfer = statusEffects[o].value1;
+						statusEffects[o].value1 -= cumTransfer;
+						cumCascade(cumTransfer);
+						trace("Cum Metabolized: " + cumTransfer + " mLs");
+						//cumProduced(timePassed);
+					}
 				}
 				if(statusEffects[o].value1 <= 0) removals.push("Orally-Filled");
 			}
@@ -14622,9 +14674,25 @@
 				removeStatusEffect(removals[0]);
 				removals.splice(0,1);
 			}
-			kGAMECLASS.eventBuffer += notice;
+			kGAMECLASS.eventBuffer += ParseText(notice);
 		}
 
+		/**
+		 * Kui-tan "Cum Cascade" function.
+		 * Takes ingested cum and adds 5x to balls.
+		 * @param	amount	amount of cum digested in mL
+		 */
+		public function cumCascade(amount:Number): void 
+		{
+			var percent:Number = (amount / maxCum()) * 500;//Take percentage of maximum cum, and multiply 5x.
+			trace("Percent Increase: " + percent + " %");
+			if (percent > 10) {
+				if (this is PlayerCharacter) kGAMECLASS.eventBuffer += ParseText("\n\nYou hear a faint gurgling from your stomach and [pc.balls] as you feel them swelling fuller and fuller each passing second. With your kui-tan physiology, all that cum you ingested must have spiked your own production!");
+				lust(20); //increase Lust
+			}
+			ballFullness += percent;
+		}
+		
 		// OnTakeDamage is called as part of applyDamage.
 		// You should generate a message for /deferred/ display in the creature
 		// rather than emitting text immediately. You should then emit it
@@ -14661,5 +14729,15 @@
 		
 		// top kek
 		public function myMiddleNameIsJensen():Boolean { return hasCybernetics(); }
+		
+		public function hasBlindImmunity():Boolean
+		{
+			return (accessory is FlashGoggles);
+		}
+		
+		public function onLeaveBuyMenu():void
+		{
+			throw new Error("Vendor doesn't have a buy-menu leave functor specified.");
+		}
 	}
 }

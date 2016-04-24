@@ -83,7 +83,8 @@ public function approachShipBoardReahaWhyDidntSavinCodeThisHeWasntExhaustedYeste
 		addButton(3, "Addiction", reahaAddictionTherapy, undefined, "Addiction Therapy", "Help wean Reaha off of her pleasure patches. Fucking her brains out will help lessen her withdrawal.");
 	}
 	if (shipLocation != "500" || flags["MET_YAMMI"] == undefined) addDisabledButton(5, "Ice Cream", "Ice Cream", "If only you knew of a local ice cream parlor....")
-	else if (pc.credits < 20) addDisabledButton(5, "Ice Cream", "Ice Cream", "If only you could afford a trip to the local ice cream parlor...."); 
+	else if (icedTeatIsClosed()) addDisabledButton(5, "Ice Cream", "Ice Cream", "If only the local ice cream parlor wasn't closed at the moment....");
+	else if (pc.credits < 20) addDisabledButton(5, "Ice Cream", "Ice Cream", "If only you could afford a trip to the local ice cream parlor....");
 	else if (!InCollection(reaha.milkType, GLOBAL.FLUID_TYPE_MILK, GLOBAL.FLUID_TYPE_CHOCOLATE_MILK, GLOBAL.FLUID_TYPE_STRAWBERRY_MILK)) addDisabledButton(5, "Ice Cream", "Ice Cream", "If only your resident " + reaha.fluidNoun(reaha.milkType) + "-dispenser could produce something more amenable to creating icy, creamy treats....");
 	else
 	{

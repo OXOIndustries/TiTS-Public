@@ -9,6 +9,7 @@
 	import classes.StringUtil;
 	import classes.Engine.Interfaces.*;
 	import classes.GameData.CodexManager;
+	import classes.Engine.Map.InShipInterior;
 	
 	public class DongDesigner extends ItemSlotClass
 	{
@@ -65,7 +66,7 @@
 			kGAMECLASS.clearOutput();
 			if(target is PlayerCharacter) {
 				//Not in ship.
-				if(kGAMECLASS.currentLocation != "SHIP INTERIOR") 
+				if(!InShipInterior())
 				{
 					kGAMECLASS.output("You can’t make use of it without any power. Maybe take it back to your ship?");
 				}

@@ -1,19 +1,100 @@
+import classes.Characters.Mimbrane;
 import classes.Characters.PlayerCharacter;
 import classes.Engine.Combat.DamageTypes.DamageResult;
 import classes.Engine.Combat.DamageTypes.TypeCollection;
 import classes.Engine.Combat.DamageTypes.DamageFlag;
+import classes.GameData.Pregnancy.Handlers.VenusPitcherFertilizedSeedCarrierHandler;
+import classes.Items.Accessories.LeithaCharm;
+import classes.RoomClass;
 
 public function uvetoSpaceElevatorBaseBonus():Boolean
 {
+	if (flags["UVETO_GREETING_PARTY"] == undefined)
+	{
+		flags["UVETO_GREETING_PARTY"] = 1;
+		uvetoGreetingParty();
+		return true;
+	}
 	addButton(5,"S.Elevator",rideSpaceElevatorUp,undefined,"Space Elevator","Ride the space elevator up to the station.");
 	return false;
 }
+
+public function uvetoGreetingParty():void
+{
+	clearOutput();
+	
+	flags["CODEX_UVETO_TRACKER"] = 1;
+
+	output("You approach the industrial space elevator, glancing the reinforced cart up and down within the gun barrel tube it’s tracked to. You could see the tube going all the way down on your way in, a measure of some several miles exposed to space with nothing but a thin veneer of super-hardened metal and plasteel between you and the vacuum of space. Comforting thought.");
+	
+	output("\n\nStill, several other spacers are coming and going between trips, man-handling cargo on and off. Seems this is your only way down, after all, so you step towards the door.");
+	
+	output("\n\nBefore you can");
+	if (pc.isNaga()) output(" slither onto");
+	else output(" set foot on");
+	output(" it, though, you feel a hand on your shoulder. Big. Muscular. Pulling just hard enough to make you turn and face its owner.");
+	
+	output("\n\nYou find yourself staring ");
+	if (pc.tallness < 78) output(" up");
+	else if (pc.tallness > 90) output(" down");
+	output(" at a giant of an ausar, nearly seven feet tall, and extraordinarily... well, husky, in every sense of the word. Heavyset and broad-shouldered, muscular underneath a skin-tight suit, with a head of silver hair and a long beard well past his collar. He’s wearing a weather-beaten long blue coat over a corporate jumpsuit, which does little to hide his bear-like physique.");
+	
+	output("\n\n<i>“Hold on a moment, friend,”</i> the man says. His voice is like gravel, deep and grounded. <i>“You’re not going down there just yet.”</i>");
+	
+	output("\n\nFor a moment, your mind races to grim conclusions... right up until a second ausar, a curvy woman in the black-and-gold of a Steele Tech uniform steps out from behind her towering counterpart, followed by a pair of other figures who are all smiles and cheer.");
+	
+	output("\n\nThe black-dressed woman skips up to you and grabs your hand, grinning ear to fluffy ear. <i>“Heyo! You’re [pc.name], right? We heard your ship docked. Just wanted to say ‘hello!’ on behalf of the local Steele Tech branch.”</i>");
+	
+	output("\n\nAs she shakes your hand, you’re treated to a show of her skin-tight uniform perfectly accompanying the free jiggle of her large breasts. Though that’s not the only thing that’s large! Like her male counterpart, she’s distinctly on the heavyset side, and with her sleeves rolled up, you can see the fur on her arms is much thicker than her race’s norm. And the mane of silver-blue fur around her neck... something tells you that’s not just a fluffy scarf!");
+	
+	output("\n\nLooking between the two of them, it’s clear to see the local ausar have adapted to the wintery environment.");
+	
+	output("\n\nA third ausar with the same greyish fur and hair as the first two, catches your wandering eyes and giggles. The ice-blue and silver uniform she’s wearing marks her as an Akkadi employee, you think, though even their jumpsuit’s just as skin-hugging as the one your father designed, showing off the second big beauty’s curves in alluring detail. <i>“Oh, somebody’s never seen a huskar before!”</i> she laughs, wrapping her arms underneath her prodigious bosom.");
+	
+	output("\n\n<i>“[pc.HeShe] would have a hard time finding one anywhere else,”</i> the fourth and final member of the group adds, stepping up and giving you a curt nod. You blink back a hint of surprise as the final voice draws your attention to a tall, sleek feminine form, much less curvaceous than the others - almost athletic, even, though not without a distinctly feminine figure. One that is very, very obviously synthetic. Silver-grey skin is shaped in roughly ausar form, packed into an Akkadi jumpsuit you’re not entirely convince isn’t integrated with her body, the way it seamlessly fits her supple hourglass curves.");
+	
+	output("\n\n<i>“We’re not the </i>only<i> ice colony in the Federation, Senrah,”</i> the male of the group grunts, leaning against the side of the elevator tube. <i>“Anyway, we didn’t stop you to show off. Well, not just,”</i> he chuckles, making a very obvious flexing gesture. His coat finally gives way enough to let you see the dark blue and purple of the Xenogen Biotech uniform underneath.");
+	
+	output("\n\nThe Akkadi-dressed girl sticks her tongue out at him. <i>“Who </i>wouldn’t<i> want to show off for a rich, hot play"+ pc.mf("boy", "girl") +"?”</i>");
+	
+	output("\n\nShe gives you a wink and pushes her shoulders together, making her G-cups seem just that much bigger and bouncier for you.");
+	
+	output("\n\n<i>“Keep it in your pants, please,”</i> the synthetic sighs before returning her attention to you. <i>“My compatriots and I simply wanted to express a warning: <b>the surface of Uveto is extraordinarily hostile. Dangerously so, if you come unprepared.</b> Personal heat generators are available at a subsidized discount here on the station. Buy one if you wish to avoid frostbite, and the annoyance of the rather brusque rescue crew that will be forced to... well, rescue you.”</i>");
+	
+	output("\n\n<i>“Oh, that’s right! I’m supposed to give you this,”</i> the bubbly Steele employee adds, reaching into a pocket and producing a small data chip. <i>“It’s a Codex plugin we made for people going planet... uh, moon-side. Basically an emergency transponder and a GPS all rolled into one. If you get hurt or start to freeze, it’ll automatically send a distress signal to the Scouts. They’ll come help you!”</i>");
+	
+	output("\n\nHandy. You take the chip and plug it into one of your Codex’s dataports. It updates in the blink of an eye, registering new software.");
+	
+	output("\n\n<i>“Still,”</i> the Xenogen man adds, patting the Steele-girl’s head between the ears. <i>“Most of the moon’s surface is feral. Poorly mapped, full of milodan and korgonne raiders who haven’t gotten civilized yet. Worse things, if you go too far out. <b>Stay away from the Rift - that’s way east of the town - unless you’re looking for trouble.</b>”</i>");
+	
+	output("\n\nYou nod your understanding and pocket the Codex again. Anything else?");
+	
+	output("\n\n<i>“Nope!”</i> the black-dressed huskar smiles, wagging her silver tail. <i>“Just wanted to touch base while we’re on break! If you need anything, Dr. Lessau and Director Rhenesuune manage most of Steele’s interest here on the planet. They can give you the hook up!”</i>");
+	
+	output("\n\n<i>“As an unbiased, non-Steele Tech affiliated intelligence,”</i> the robotic woman adds, fixing you with her black-eyed gaze. <i>“Be careful around the Director. She’s a real-”</i>");
+	
+	output("\n\n<i>“Ball-buster,”</i> the man finishes with a guffaw. <i>“That about sum it up?”</i>");
+	
+	output("\n\nThe robot nods sharply. <i>“Yes. A ‘ball-buster.’”</i>");
+	
+	output("\n\nWell, you’ll certainly keep that in mind. You thank the quartet for their advice - and the rescue protocol - and turn back to the elevator.");
+	
+	output("\n\n<i>“See ya, cutie!”</i> the Akkadi ausar giggles, blowing you a kiss.");
+	
+	output("\n\nThe other woman blushes, but still wags her tail as you turn to leave. Over your shoulder, you hear her whispering, <i>“Stop flirting with my maybe-boss! I get first dibs!”</i>");
+	
+	output("\n\n<i>“Ladies. We can all share.”</i>");
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
 public function rideSpaceElevatorUp():void
 {
 	clearOutput();
 	author("Savin");
-	kGAMECLASS.currentLocation = "GAME OVER";
-	kGAMECLASS.generateMap();
+	currentLocation = "GAME OVER";
+	generateMap();
 	showName("SPACE\nELEVATOR");
 	output("Once again, you board the Irestead space elevator - this time, going up. Unlike your trip down, the elevator’s barely occupied: only a couple of other spacers join you aboard, though the ever-present cargo remains aboard. Raw minerals from the Uvetan mines, you’d guess. A few moments after you embark, the station controller seals the doors, and you feel a sudden heft of gravity under your [pc.feet].");
 
@@ -36,8 +117,8 @@ public function uvetoSpaceElevatorBonus():Boolean
 public function rideSpaceElevatorDown():void
 {
 	clearOutput();
-	kGAMECLASS.currentLocation = "GAME OVER";
-	kGAMECLASS.generateMap();
+	currentLocation = "GAME OVER";
+	generateMap();
 	showName("SPACE\nELEVATOR");
 	author("Savin");
 	//First Time
@@ -145,64 +226,100 @@ public function actuallyArriveAtUvetoStation():void
 	addButton(0, "Next", mainGameMenu);
 }
 
-public function tryApplyUvetoColdDamage():void
+public function tryApplyUvetoColdDamage(timeExposed:Number):Boolean
 {
 	var tPC:PlayerCharacter = pc as PlayerCharacter;
 	
-	var coldDamage:Number = -1;
+	var baseDamage:Number = -1;
 	var resistToMitigate:Number = -1;
 	
 	if (InRoomWithFlag(GLOBAL.OUTDOOR))
 	{
-		coldDamage = 5;
+		baseDamage = 0.5;
 		resistToMitigate = 25;
 	}
 	else if (InRoomWithFlag(GLOBAL.ICYTUNDRA))
 	{
-		coldDamage = 10;
-		resistToMitigate = 40;
+		baseDamage = 1;
+		resistToMitigate = 35;
+	}
+	else if (InRoomWithFlag(GLOBAL.FROZENTUNDRA))
+	{
+		baseDamage = 1
+		resistToMitigate = 50;
 	}
 	
-	if (coldDamage > 0 && tPC.willTakeColdDamage(resistToMitigate))
+	if (baseDamage > 0 && tPC.willTakeColdDamage(resistToMitigate))
 	{
 		if (tPC.skinType == GLOBAL.SKIN_TYPE_FUR)
 		{
-			coldDamage *= 0.5;
+			baseDamage *= 0.5;
 		}
 		else if (InCollection(tPC.skinType, GLOBAL.SKIN_TYPE_CHITIN, GLOBAL.SKIN_TYPE_SCALES))
 		{
-			coldDamage *= 1.25;
+			baseDamage *= 1.25;
 		}
 		else if (InCollection(tPC.skinType, GLOBAL.SKIN_TYPE_GOO, GLOBAL.SKIN_TYPE_LATEX))
 		{
-			coldDamage *= 1.5;
+			baseDamage *= 1.5;
 		}
 		
 		if (tPC.isNude())
 		{
-			coldDamage *= 2.0;
+			baseDamage *= 2.0;
 		}
 		else
 		{
 			var nakednessMulti:int = 1;
 			if (!tPC.hasArmor()) nakednessMulti += 0.333;
 			if (!tPC.hasUpperGarment() || tPC.isChestExposed()) nakednessMulti += 0.333;
-			if (!tPC.hasLowerGarment() || tPC.isCrotchExposed()) nakednessMulti += 0.333;
-			coldDamage *= nakednessMulti;
+			if (!tPC.hasLowerGarment() || tPC.isCrotchExposed() || tPC.isAssExposed()) nakednessMulti += 0.333;
+			baseDamage *= nakednessMulti;
 		}
+		
+		var coldDamage:Number = baseDamage * timeExposed;
 		
 		var actualDamage:TypeCollection = new TypeCollection( { freezing: coldDamage }, DamageFlag.BYPASS_SHIELD);
 		var damageResult:DamageResult = applyDamage(actualDamage, null, tPC, "suppress");
 		
 		if (damageResult.totalDamage > 0)
 		{
-			output("\n\nYou wrap your arms around yourself, desperately trying to fend off the overwhelming cold. The planet's freezing you to your bones");
-			if (!tPC.isNude()) output(", no matter how much clothing you wear");
-			else output(" -- and being naked, you've got next to no defense against the chill");
-			output(". You feel like you might collapse if you don't take shelter soon!");
-			outputDamage(damageResult);
+			if (tPC.HP() > 0)
+			{
+				if (InRoomWithFlag(GLOBAL.ICYTUNDRA) || InRoomWithFlag(GLOBAL.OUTDOOR))
+				{
+					output("\n\nYou wrap your arms around yourself, desperately trying to fend off the overwhelming cold. The planet's freezing you to your bones");
+					if (!tPC.isNude()) output(", no matter how much clothing you wear");
+					else output(" -- and being naked, you've got next to no defense against the chill");
+					output(". You feel like you might collapse if you don't take shelter soon!");
+					outputDamage(damageResult);
+				}
+				else
+				{
+					output("\n\nThe cold on Uveto is absolutely piercing out here, with no walls or fluffy ausar to block the howling winds and free-flying shards of ice tearing across the rolling plains of ice and alien obsidian. You clutch your arms around yourself, trying to shield your body from the frigid cold, but to no avail. Shivering madly, you glance around in desperation: <b>you need to find shelter fast, or you're going to freeze!</b>");
+					outputDamage(damageResult);
+				}
+			}
+			else
+			{
+				output("\n\nThe Uvetan cold chills you to your");
+				if (!tPC.isGoo()) output(" bones");
+				else output(" gooey core");
+				output(", making you shiver uncontrollably. No matter where you go, there's no stopping the incessant, numbing cold. It physically <i>hurts</i> to be out here, and the longer you stay, the more your vision blurs and blurs... ");
+
+				output("\n\nSuddenly, your [pc.foot] catches, and before you can realize what's happening you pitch forward, planting your face in the thick snow. You gasp, flailing your arms for a moment, but... you can't seem to find the energy -- the vital strength -- to pick yourself up again. Snow settles onto your back, still blowing over you with heartless, frigid force. Try as you might, you find yourself fading, eyes starting to close. So sleepy...");
+
+				output("\n\nBlackness takes you.");
+				outputDamage(damageResult);
+				
+				clearMenu();
+				addButton(0, "Next", uvetoFallToColdDamage);
+				return true;
+			}
 		}
 	}
+	
+	return false;
 }
 
 public function hookUvetoRoomRemoveCold(direction:String):void
@@ -231,4 +348,211 @@ public function addUvetoCold():void
 	{
 		(pc as PlayerCharacter).createStatusEffect("Bitterly Cold", 0, 0, 0, 0, false, "Icon_Snowflake", "The bitter, piercing cold of Uveto's icy tundra threatens to chill you to the bone. Better wrap up nice and tight, maybe even find something to heat you up to better stave off the freezing winds.", false, 0, UIStyleSettings.gColdStatusColour);
 	}
+}
+
+public function uvetoLastChanceStoreEntry():Boolean
+{
+	if (flags["MET_NERRASA"] == undefined)
+	{
+		output("\n\nA caramel-skinned ausar woman is sitting behind the counter, pumping iron. Unlike most ausar here, she’s <i>ripped</i>, and wearing a white tank top to show off her glistening muscles while she works. A pair of brilliant, almost glowing, orange eyes regard you warily between reps. Their owner gives you a slight nod of recognition when you enter the shop, but she seems otherwise content to keep working out in peace.");
+
+		addButton(0, "Approach", uvetoApproachNerrasaFirstTime);
+	}
+	else
+	{
+		var r:int = rand(3);
+		switch(r)
+		{
+			case 0:
+				output("\n\nNerrasa is sitting behind the counter as usual, pumping iron and bobbing her head to the beat of the thrashy metal playing over the shop’s speakers. The way she’s sitting, leaning forward with her sweat-slicked tank top hugging her half-bared cleavage and exposing her rippling muscle, she’s clearly content to let you watch her work.");
+				break;
+			case 1:
+				output("\n\nThe hellhound owner has bolted a bar to the ceiling over the counter, and is using it to do rapid-fire pull-ups. Her head’s obscured by the heater, but she’s perfectly positioned to show off her big breasts bouncing up and down under her tank top with every motion. No sports bra can keep a rack like that restrained!");
+				break;
+			default:
+				output("\n\nNerrasa’s kicking her feet up for now, crossed on the countertop and supporting a dataslate she’s reading between long gulps of a New Texan-branded protein shake." + (pc.isBimbo() ? " Oooh, that smells like cum! Yummy!" : ""));
+				break;
+		}
+		
+		output("\n\n<i>“Sup,”</i> she says, barely paying you any mind.");
+
+		addButton(0, "Nerrasa", uvetoApproachNerrasaRepeat);
+	}
+	return false;
+}
+
+public function uvetoSearchAbandonedCamp():void
+{
+	clearOutput();
+	
+	output("This place has been abandoned for some time. Whoever was here before isn't coming back, you decide. You spend a few minutes tossing the tents, looking for anything of value the previous occupants might have left behind. There's nothing inside, save emptied containers and tattered scraps of cloth. Only when you glance into the fire pit do you catch a glimpse of something worth while: you lean over and pull a small, black amulet out of the dusty covering of snow.");
+
+	output("\n\nYou hold it up to the light, eyeing the horse-shaped talisman warily. Wonder who left this... and why? Either way, you're fairly certain the creature it depicts is a leithan, and the amulet looks to be in good shape. With a shrug, you pocket it.");
+	
+	lootScreen = uvetoAbandonedCampLootCheck;
+	flags["UVIP_J46_SEARCHED"] = 1;
+	flags["SUPPRESS_COMBAT"] = 1;
+	itemCollect([new LeithaCharm()]);
+}
+
+public function uvetoAbandonedCampLootCheck():void
+{
+	if (pc.accessory is LeithaCharm || pc.hasItemByType(LeithaCharm))
+	{
+		mainGameMenu();
+		return;
+	}
+	
+	clearOutput();
+	output("You drop the charm back where you found it.");
+	flags["UVIP_J46_SEARCHED"] = undefined;
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function uvetoReactivateProbe():void
+{
+	clearOutput();
+
+	output("You slide down into the blasted-out basin the probe’s sitting in and wrench off the remnants of its protective shell. Most of it was scattered around the snow topside, so there’s not much you have to contend with to get at the meaty contents of the MAXCORP probe.");
+	
+	if (pc.characterClass == GLOBAL.CLASS_ENGINEER)
+	{
+		output("\n\nAh, looks like an easy fix. You flip your laser spanner out of your pack and give the probe a solid <i><b>WHACK</b></i> on the side. A moment passes, and then you hear the tell-tale booting noise of the electronics systems coming online.");
+	}
+	else
+	{
+		output("\n\nYou give the machine a long, thorough once-over, looking up parts and connections in your Codex, trying to deduce what went wrong... other than it explosively crashing, anyway. With a few helpful forum posts, you’re able to dig into the probe’s mechanical guts and and start pulling and rearranging things, trying to reboot it.");
+	
+		output("\n\nEventually, you manage to get it sorted out, and punch the power button inside it again. It takes a moment, but eventually the probe starts whirring and the systems begin coming online.");
+	}
+	
+	output("\n\nThe probe reboots, tooting a cheery digital tune, and starts broadcasting. You easily link your Codex with it, letting you use it like a big relay to send and receive messages in the region.");
+	
+	output("\n\n<b>You can call for transit here now</b>!");
+
+	flags["UVIP_R10_PROBE_ACTIVE"] = 1;
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function uvetoFallToColdDamage():void
+{
+	clearOutput();
+
+	var rescuer:String = "NOBODY!"
+	
+	if (InRoomWithFlag(GLOBAL.OUTDOOR))
+	{
+		author("Savin");
+		output("You waken with a start, gasping for breath. Though your insides still throb with the vestigial ache of the Uvetan cold, you can feel heat washing over your limbs, bathing you in dry warmth. Never before has a space heater felt so good.");
+		
+		output("\n\nGroggily, you open your eyes, long enough to see that you’re in the back of a vehicle, bumping along the snowy outskirts of the plains. Ice has formed on the windows, but you can just make out Irestead in the distance, growing closer by the moment. Glancing at the front of the vehicle, you see metal bars separating you from the driver’s cabin, and an old slug shotgun bolted to the cage. A pair of cute little chibi ausar tokens hang from the rear view mirror, both dressed in too-tight Peacekeeper blouses and pointing finger guns at you.");
+		
+		output("\n\n<i>“You’re awake!”</i> a woman’s voice says from the driver’s seat, drawing your attention to a head of blue hair and a pair of floppy canid ears peeking out of a Peacekeeper helmet.");
+		if (flags["UVETO_LUNA_RESCUES"] == undefined)
+		{
+			output(" <i>“What were you thinking, wandering around outside town without a heat belt. Lucky you I was around, or you’d have been dead for sure!”</i>");
+		}
+		else
+		{
+			output(" You gotta stop wandering around outside town, [pc.name]!”</i> Luna chides.");
+		}
+		IncrementFlag("UVETO_LUNA_RESCUES");
+		
+		output("\n\nYou groan a hazy acknowledgement, but already you can feel your eyes growing heavy once more. It isn’t long before the gentle rocking of the Peacekeeper’s truck and the soothing warmth of the heater put you back to sleep...");
+
+		rescuer = "Luna";
+		processTime(360);
+	}
+	else if (InRoomWithFlag(GLOBAL.ICYTUNDRA) || InRoomWithFlag(GLOBAL.FROZENTUNDRA))
+	{
+		author("Gedan");
+
+		output("A loud crinkling noise draws you back from the brink, a regular rustle akin to a metronome tapping on the side of your near-unconsciousness. You feel yourself shift in time with the noise, something dragging you along as your body resists for a moment before following suit.");
+		
+		output("\n\nIt’s a struggle to peel open your eyes, the endless freezing winds having battered any exposed [pc.skinFurScales] so completely your [pc.face] is covered in outcroppings of icicles hanging from your features. You have to work your face a little, stretching and tugging against the icy buildup, as sensation slowly creeps back in - bringing with it the deep, throbbing pain of penetrating cold having set into the core of your body - before you can open them, finding yourself looking up at");
+		// 9999
+		output(" a crystal clear sky");
+		//an angry, vengeful sky
+		output(".");
+		
+		output("\n\nSomething is moving on the edge of your sight above you - no, in front, you realise. With no small amount of discomfort you look up and make out the shape of a large, nearly formless blob through your fuzzy vision. A person, you reason slowly, given how the shapes moving around; large, lumbering steps, each one taken tugging you forward on what must be some kind of sled through the snow.");
+		
+		output("\n\nYou suck down an icy cold breath of air before trying to attract your rescuers attention, only to be rewarded with a lightning bolt of pain as your lungs complain - as more warmth seeps back into your body, the less numb everything feels... and the more pain seeps through.");
+		
+		output("\n\nYou let your eyes drift closed, falling back into fitful slumber amidst the frozen tundra....");
+		
+		IncrementFlag("UVETO_JEROME_RESCUES");
+
+		rescuer = "Jerome";
+		processTime(840);
+	}
+	else
+	{
+		//author("Gedan");
+		//output("[PH] Jerynn Rescue");
+		
+		IncrementFlag("UVETO_JERYNN_RESCUES");
+	}
+
+	//[Next] // Awaken in the medical center
+	clearMenu();
+	addButton(0, "Next", uvetoAwakenInMedCenter, rescuer);
+}
+
+public function uvetoAwakenInMedCenter(rescuer:String):void
+{
+	clearOutput();
+	author("Gedan");
+
+	output("<i>“[pc.name]? [pc.name], c-can you hear me?”</i>");
+	
+	output("\n\nYou scrunch your eyes closed and try to ignore the voice.");
+	
+	output("\n\n<i>“[pc.name]!”</i>");
+	
+	output("\n\nA pair of rubber-coated fingers press against your face with precisely measured force before spreading apart, pulling an eyelid open in the process. Light streams into your eye and you recoil against it, trying to squint it back closed to shut out the painful brightness - a brightness that only grows more intense as your tormenter shines something right at your [pc.eye], flicking it back and forth.");
+	
+	output("\n\n<i>“Welcome back-k-k to the land of the living, [pc.name],”</i> the voice informs you as the digits leave your [pc.skinFurScales] and the owner of the voice moves off somewhere else in the room.");
+	
+	output("\n\nYou blink away the light a few more times as the room starts to come into focus, medical equipment and the usual paraphernalia associated with an emergency care center lining various shelves. Through one of the tiny window slits at the top of the wall, you can just barely make out the top of the survey tower in Irstead.");
+	
+	output("\n\n<i>“You were very lucky that one of Iresteads rescue personnel managed to find you and bring you back here when they did.”</i>");
+	
+	output("\n\nYou try to reply but only manage a savage cough; your throats so <i>dry</i>.");
+	
+	output("\n\n<i>“Careful now; you’ve been out quite a while.”</i>");
+	
+	output("\n\nThe VI closes in on you again, this time with a large, steaming mug in her hands. <i>“It’s dangerous out there, you know; didn’t you get the warning?”</i>");
+	
+	output("\n\nShe hands you the mug and you all but <i>coo</i> as glorious warmths seeps into your fingers through the insulated walls of the container. You clutch the source of heat close, slowly sipping at the almost-too-hot liquid contained within.");
+	
+	output("\n\n<i>“You really must be more careful [pc.name].");
+	output(" If a storm were to have broken out");
+	//If the storm had been any worse}
+	output(" then "+ rescuer +" may not have been lucky enough to find you in time.”</i>");
+	
+	output("\n\nThe V-Ko almost sounds like it’s trying to admonish a child with the way it’s talking to you -");
+	if (pc.isAss()) output(" you’d set it straight for talking to you like that but");
+	output(" you’re too busy enjoying the blissful warmth of the mug to really care all that much.");
+	
+	output("\n\n<i>“Your equipment is in the locker next to the door; I trust you will see yourself out when you’re done, yes?”</i>");
+	
+	output("\n\nYou give the VI a nod and set about finishing the last of the drink doing such an amazing job of perking you up and returning feeling to your limbs.");
+	output("\n\nFinishing the drink off quickly, you clamber out of the bed onto");
+	if ((pc.hasFeet() && pc.legCount == 2) || pc.legCount == 1) output(" an"); 
+	output(" unsteady");
+	if (pc.hasFeet() && pc.legCount == 2) output(" pair of [pc.feet]");
+	else output(" [pc.legOrLegs]");
+	output(" and make for your gear....");
+
+	pc.HP(pc.HPMax());
+	pc.energy(pc.energyMax());
+	currentLocation = "UVI H32";
+	generateMap();
+
+	processTime(30);
+	addButton(0, "Next", mainGameMenu);
 }

@@ -32,5 +32,10 @@ package classes.Characters
 
 			femininity = 10;
 		}
+		
+		override public function onLeaveBuyMenu():void
+		{
+			kGAMECLASS.mainGameMenu();
+		}
 	}
 }

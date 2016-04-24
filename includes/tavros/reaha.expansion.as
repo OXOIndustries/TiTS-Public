@@ -1163,36 +1163,21 @@ public function reahaBreastMilkIceCream():void
 	output("\n\nThe two of you quickly make your way out of the customs office and out into the New Texan main street. From there, it’s a hop and a skip to the Iced Teats shop. You usher Reaha up into the storefront, into the refreshing coolness of the shop.");
 	if (flags["REAHA_ICE_CREAM_TIMES"] == undefined) output(" Reaha’s eyes go wide as she sees the girls trapped in glass cases, their teats strapped to suction devices to draw out their milk.");
 	
-	output("\n\n<i>“Hello, welcome to Iced Teats! My name is");
-	if (!yammiIsOwned()) output(" Yammi");
-	else output(" Salire");
-	output("!  What can I get for you today?”</i> the girl behind the counter chirps happily, indicating the large flavor list behind her.  <i>“We have cones, bowls, or frozen feasts, in any combination of flavors you prefer!”</i>");
+	output("\n\n<i>“Hello, welcome to Iced Teats! My name is " + icedTeatsAlienName() + "!  What can I get for you today?”</i> the girl behind the counter chirps happily, indicating the large flavor list behind her.  <i>“We have cones, bowls, or frozen feasts, in any combination of flavors you prefer!”</i>");
 	
 	output("\n\nThat’s nice and all, but you’d rather get a cone of your own favorite flavor. Reaha flavor.");
 	
-	output("\n\n");
-	if (!yammiIsOwned()) output("Yammi");
-	else output("Salire");
-	output("’s eyes go wide at the suggestion. <i>“That’s... uh, well, I mean...”</i> ");
+	output("\n\n" + icedTeatsAlienName() + "’s eyes go wide at the suggestion. <i>“That’s... uh, well, I mean...”</i> ");
 	
 	output("\n\n<i>“What’s the harm? You’ve got a couple free stalls, and I’m willing to pay,”</i> you say, placing a credit chit on the counter. ");
 	
-	output("\n\n<i>“Well,”</i>");
-	if (!yammiIsOwned()) output(" Yammi");
-	else output(" Salire");
-	output(" says, pursing her lips, <i>“I guess that’ll be alright.”</i> ");
+	output("\n\n<i>“Well,”</i> " + icedTeatsAlienName() + " says, pursing her lips, <i>“I guess that’ll be alright.”</i> ");
 	
 	output("\n\nShe pops one of the glass stalls open and turns to Reaha. <i>“Climb on in, miss. The machines will take care of the rest.”</i>");
 	
-	output("\n\nYour pet bovine gives you a reproachful look as she’s ushered up into the milking machine. Clearly she thought <i>she</i> was going to be getting the treat. Whoops.");
-	if (!yammiIsOwned()) output(" Yammi");
-	else output(" Salire");
-	output(" gives her a little boost up into the stall and closes the door behind her, leaving Reaha to sit herself down inside. A few robotic arms come down from the stall’s ceiling once she’s down, quickly cupping her hefty, [reaha.milkNoun]-laden boobs and affixing a pair of suckers to them.");
+	output("\n\nYour pet bovine gives you a reproachful look as she’s ushered up into the milking machine. Clearly she thought <i>she</i> was going to be getting the treat. Whoops. " + icedTeatsAlienName() + " gives her a little boost up into the stall and closes the door behind her, leaving Reaha to sit herself down inside. A few robotic arms come down from the stall’s ceiling once she’s down, quickly cupping her hefty, [reaha.milkNoun]-laden boobs and affixing a pair of suckers to them.");
 	
-	output("\n\n<i>“C-c-coooooooold!”</i> Reaha shrieks as the ice cream machine activates, rumbling as it sucks a creamy load of [reaha.milkNoun] from the cow-girl’s tits, passing it through a flash-freezer and into the dispenser. You take a cone");
-	if (!yammiIsOwned()) output(" Yammi");
-	output(" Salire");
-	output(" offers you and twist the nozzle on the machine, grinning as you’re rewarded with a nice, tall cone of ice cream. The machine pumps Reaha for a few seconds longer than it needs to, making sure to give the cow a nice, full draining before releasing her. The stall pops open as you take the first lick, and Reaha staggers down, cupping her hands around her nipples and shivering. ");
+	output("\n\n<i>“C-c-coooooooold!”</i> Reaha shrieks as the ice cream machine activates, rumbling as it sucks a creamy load of [reaha.milkNoun] from the cow-girl’s tits, passing it through a flash-freezer and into the dispenser. You take a cone " + icedTeatsAlienName() + " offers you and twist the nozzle on the machine, grinning as you’re rewarded with a nice, tall cone of ice cream. The machine pumps Reaha for a few seconds longer than it needs to, making sure to give the cow a nice, full draining before releasing her. The stall pops open as you take the first lick, and Reaha staggers down, cupping her hands around her nipples and shivering. ");
 	
 	output("\n\nYum. Tastes just like [reaha.milkNoun]!");
 	IncrementFlag("REAHA_ICE_CREAM_TIMES");
@@ -1215,10 +1200,7 @@ public function reahaBreastMilkIceCreamGreedy():void
 	clearOutput();
 	reahaHeader();
 
-	output("You thank");
-	if (!yammiIsOwned()) output(" Yammi");
-	else output(" Salire");
-	output(" for the special treat and take Reaha by the hand, leading her back to the ship while you slurp down your delicious, oh-so-sweet ice cream cone. You quickly return to your ship, whereupon");
+	output("You thank " + icedTeatsAlienName() + " for the special treat and take Reaha by the hand, leading her back to the ship while you slurp down your delicious, oh-so-sweet ice cream cone. You quickly return to your ship, whereupon");
 	if (pc.isNice()) output(" you give Reaha an appreciative pat on the head and thank her for dessert.");
 	else if (pc.isMischievous()) output(" you slurp out the graham cracker cone and hang it on one of Reaha's horns, letting the cow-girl deal with it.");
 	else output(" you poke Reaha in the belly hard enough to make her gasp. While her gob's open, you plant the graham cracker cone between her lips and saunter off.");
@@ -1235,17 +1217,11 @@ public function reahaBreastMilkIceCreamShare():void
 
 	output("<i>“C’mere, Reaha,”</i> you say, waving your shivering cow-girl over. She approaches warily, still rubbing her breasts to warm them back up. You give her a slight smile and extend the cone to her. <i>“Have a taste. It’s good!”</i>");
 	
-	output("\n\nShe looks between you and");
-	if (!yammiIsOwned()) output(" Yammi");
-	else output(" Salire");
-	output(" before taking the cone and giving it a long lick with her big, flat tongue.");
+	output("\n\nShe looks between you and " + icedTeatsAlienName() + " before taking the cone and giving it a long lick with her big, flat tongue.");
 	
 	output("\n\n<i>“Mmm! Hey, that’s not bad!”</i> Reaha giggles, taking another lick. Her previous discontent evaporates as she enjoys her own frozen treat. You have to remind her to share, and after a bit of maneuvering, find yourself licking on one side of the cone as Reaha takes the other, bringing your lips closer and closer together until you’re kissing around the last bites of her sweet [reaha.milkNoun]-flavored ice cream. Reaha makes a little mooing sound as your lips brush hers, and you soon find that she’s more than willing to let you make up for the trick with a little well-timed tongue play, easily melting into your arms as your accidental kiss turns into a full-on makeout session in the ice cream parlor. ");
 	
-	output("\n\n");
-	if (!yammiIsOwned()) output("Yammi");
-	else output("Salire");
-	output(" has to cough to get your attention, saying, <i>“Um, can you, uh, maybe not do that here? Sorry!”</i>");
+	output("\n\n" + icedTeatsAlienName() + " has to cough to get your attention, saying, <i>“Um, can you, uh, maybe not do that here? Sorry!”</i>");
 	
 	output("\n\nYou and Reaha both laugh and quickly excuse yourselves back to your ship.");
 
@@ -1257,7 +1233,7 @@ public function reahaBreastMilkIceCreamShare():void
 public function tryProcDommyReahaTime(tMinutes:Number):Boolean
 {
 	if (!reahaIsCrew()) return false;
-	if (currentLocation != "SHIP INTERIOR") return false; // Only care about processTime calls onboard the ship
+	if (!InShipInterior()) return false; // Only care about processTime calls onboard the ship
 	if (!reahaFree()) return false; // Free only
 	if (!pc.hasCock()) return false; // No cock? Fuck off.
 	

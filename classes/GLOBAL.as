@@ -884,7 +884,9 @@
 		public static const DESERT:int									= 22;
 		public static const PLANE:int									= 23;
 		public static const PLANT_BULB:int								= 24;
-		public static const ICYTUNDRA:int								= 25;
+		public static const ICYTUNDRA:int							    = 25;
+		public static const FROZENTUNDRA:int							= 26;
+		public static const SHIPINTERIOR:int							= 27; // Used to flag all rooms of player-own ships.
 		
 		// Temp flag alias whilst the asset gets introduced
 		public static const LIFT:int = OBJECTIVE;
@@ -949,6 +951,7 @@
 		public static const ITEM_FLAG_EXPOSE_ASS:int					= 11; // Used specifically for clothing/armor that exposes asshole to the elements.
 		public static const ITEM_FLAG_HEATBELT:int						= 12;
 		public static const ITEM_FLAG_HEAT_GENERATOR:int				= 13; // Some other item that provides total avoidance of damage from cold, but not nessecerily a belt.
+		public static const ITEM_FLAG_REDUCED_ACCURACY:int				= 14;
 		
 		public static const ITEM_FLAG_NAMES:Array = [
 			"Bow Weapon",
@@ -963,6 +966,9 @@
 			"Chest Exposed",
 			"Groin Exposed",
 			"Ass Exposed",
+			"Heat Belt",
+			"Heat Generator",
+			"Reduces Accuracy"
 		];
 		
 		/**

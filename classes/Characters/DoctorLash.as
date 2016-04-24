@@ -204,5 +204,10 @@
 			output("<i>“Goodbye,”</i> the doctor bids.\n");
 			CombatAttacks.RangedAttack(this, target);
 		}
+		
+		override public function onLeaveBuyMenu():void
+		{
+			kGAMECLASS.mainGameMenu();
+		}
 	}
 }

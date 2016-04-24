@@ -1505,14 +1505,14 @@ public function sydianPregnancyEnds():void
 	
 	output("Pain in your gut bends you over and fluid spills");
 	if (!pc.isNude()) output(" into your [pc.lowerUndergarment]");
-	else if (currentLocation == "SHIP INTERIOR") output(" onto the deck");
+	else if (InShipInterior()) output(" onto the deck");
 	else output(" onto the ground");
 	output(". Oh god, the baby is coming...");
 
 	//on ship without automatic medbay
-	if (currentLocation == "SHIP INTERIOR")
+	if (InShipInterior() && 9999 == 9999)
 	{
-	output("\n\nYou grab the nearest medkit and head for your bed, determined to deliver the baby safely. After setting aside your gear, you lie down and begin to breathe in preparation for your labors.");
+		output("\n\nYou grab the nearest medkit and head for your bed, determined to deliver the baby safely. After setting aside your gear, you lie down and begin to breathe in preparation for your labors.");
 	}
 	/*
 	//on ship with auto-medbay (commented until one is available)

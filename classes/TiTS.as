@@ -123,6 +123,7 @@
 		include "../includes/follower.anno.as";
 		include "../includes/follower.celise.as";
 		include "../includes/follower.celiseGiga.as";
+		include "../includes/follower.yammi.as";
 		
 		//Sidequest shit
 		include "../includes/events/seraSexParty.as";
@@ -281,6 +282,7 @@
 		
 		// Uveto
 		include "../includes/uveto/nayna.as";
+		include "../includes/uveto/nerrasa.as";
 		include "../includes/uveto/rooms.as";
 		include "../includes/uveto/roomFunctions.as";
 		include "../includes/events/icequeen/icequeen.as"; // Alt. path to unlocking uveto
@@ -387,7 +389,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.6.48";
+			version = "0.6.49";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -1181,6 +1183,10 @@
 		public function get lerris():Lerris
 		{
 			return chars["LERRIS"];
+		}
+		public function get nerrasa():Nerrasa
+		{
+			return chars["NERRASA"];
 		}
 		
 		private var _dbgtestvar:int = 0;

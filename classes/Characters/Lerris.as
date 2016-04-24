@@ -12,6 +12,7 @@
 	import classes.Items.Toys.NivasBionaHole;
 	import classes.Items.Toys.TamaniBionaHole;
 	import classes.Items.Transformatives.Bovinium;
+	import classes.kGAMECLASS;
 	
 	public class Lerris extends Creature
 	{
@@ -201,6 +202,11 @@
 			else str += "2";
 			
 			return str;
+		}
+		
+		override public function onLeaveBuyMenu():void
+		{
+			kGAMECLASS.lerrisMenu();
 		}
 	}
 }

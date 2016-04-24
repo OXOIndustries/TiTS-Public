@@ -205,6 +205,11 @@
 			//Dislikes
 		
 		}
+		
+		override public function onLeaveBuyMenu():void
+		{
+			kGAMECLASS.enterTheSilkenSerenityWhyDidWashHaveToDie();
+		}
 	}
 
 }

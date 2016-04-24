@@ -2105,7 +2105,7 @@ public function postMealEpilogue():void
 public function flirtWithKellyUnknown():void
 {
 	clearOutput();
-	showKelly(true);
+	showKelly();
 	author("Quiet Browser & LD");
 	output("Kelly's lips curl into a faint grin and she closes her eyes, giving her head a small shake. <i>\"Aw, surely you can do better than that, honey? Don't I deserve a little more attention than that?\"</i> she teases you, opening her eyes as she awaits your response.");
 	processTime(1);
@@ -2119,7 +2119,7 @@ public function flirtWithKellyUnknown():void
 public function aggressiveFlirtingWithKelly():void
 {
 	clearOutput();
-	showKelly(true);
+	showKelly();
 	author("Quiet Browser & LD");
 	output("So, she wants more? You’ll give her more....");
 	output("\n\nWithout saying a word, you get up, knocking ");

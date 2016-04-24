@@ -194,7 +194,7 @@
 		{
 			output("Beneath the wall of turrets, the cyberhound Tam-wolf spins around, positioning his back to you and hiking a leg. Oh, for fuck’s...");
 			//Miss:
-			if(rangedCombatMiss(this, target)) output("\n\nYou’re able to get out of the way as a slick streak of machine oils squirts past you, splattering across the floor behind you. The drone-dog whines pitifully as his mistress, the <i>other</i> Tam, snaps, <i>“Bad doggy! You made a mess!”</i>");
+			if(rangedCombatMiss(this, target) || target.hasBlindImmunity()) output("\n\nYou’re able to get out of the way as a slick streak of machine oils squirts past you, splattering across the floor behind you. The drone-dog whines pitifully as his mistress, the <i>other</i> Tam, snaps, <i>“Bad doggy! You made a mess!”</i>");
 			//Hit:
 			else
 			{

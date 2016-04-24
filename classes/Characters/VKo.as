@@ -183,5 +183,10 @@
 			
 			this.createStatusEffect("Disarm Immune");
 		}
+		
+		override public function onLeaveBuyMenu():void
+		{
+			kGAMECLASS.approachVKo();
+		}
 	}
 }

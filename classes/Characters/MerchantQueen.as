@@ -33,5 +33,10 @@
 			this.sellMarkup = 1.3;
 			this.buyMarkdown = .75;
 		}
+		
+		override public function onLeaveBuyMenu():void
+		{
+			kGAMECLASS.introductionToMerchantQueenSloot();
+		}
 	}
 }

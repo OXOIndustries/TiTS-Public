@@ -2,6 +2,7 @@
 {
 	import classes.Creature;
 	import classes.GLOBAL;
+	import classes.kGAMECLASS;
 	import classes.Items.Melee.Fists;
 	import classes.Items.Miscellaneous.ProphylacticSydian;
 	import classes.Items.Miscellaneous.ProphylacticGoblin;
@@ -170,6 +171,11 @@
 			this.ass.wetnessRaw = 0;
 			
 			this._isLoading = false;
+		}
+		
+		override public function onLeaveBuyMenu():void
+		{
+			kGAMECLASS.mainGameMenu();
 		}
 	}
 }

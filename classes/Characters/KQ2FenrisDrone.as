@@ -185,7 +185,7 @@ package classes.Characters
 		{
 			output(StringUtil.upperCase(uniqueName, false) + " spins around, positioning its backside toward you and hiking a leg. Oh for fuck's...");
 			
-			if (rangedCombatMiss(this, target, -1, 2))
+			if (rangedCombatMiss(this, target, -1, 2) || target.hasBlindImmunity())
 			{
 				output(" A spray of black oil arcs out from the drone, smearing across the wall and floor. Yuck!");
 			}
