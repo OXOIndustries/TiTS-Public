@@ -387,7 +387,6 @@ public function warnPennyAboutDoctorBadgersNefariousSchemes():void
 		}
 		else output(", forcing your [pc.upperGarment] to strain as your sizeable chest swells outwards.");
 		output("\n\n<i>“Uh, yeah,”</i> Penny coughs, reddening rapidly. <i>“Yeah they’re... they’re pretty great...”</i>");
-		output("\n\n<i>“Uh, yeah,”</i> Penny coughs, reddening rapidly. <i>“Yeah they’re... they’re pretty great...”</i>");
 		output("\n\n<i>“Oh! Also - check this out!”</i> You take Penny by surprise as you spin around, moving to sit on one corner facing towards her, with one leg hanging down on either side. Penny only just manages to move back out of the way of your flailing legs, but before she can say anything about this you interrupt her by pulling down your [pc.underGarmets], letting your thick cock and balls fall freely onto her desk, your slick pussy already starting to make a mess beneath you. <i>“Look at all </i>this<i>!”</i> you say excitedly. <i>“Isn’t it great?”</i>");
 		output("\n\nIt takes you a few moments to realize that Penny isn’t saying anything. Looking up, you see she’s just staring straight forwards at you, her eyes wide and a thin line of drool sliding down from her slightly open mouth.");
 		output("\n\n<i>“Well, what are you just </i>looking<i> for silly,”</i> you laugh. <i>“You should get in there and see what it’s all like!”</i>");
