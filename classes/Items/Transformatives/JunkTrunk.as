@@ -19,7 +19,7 @@
 			quantity = 1;
 			stackSize = 10;
 			type = GLOBAL.DRUG;
-			shortName = "JunkTrunk";
+			shortName = "J.Trunk";
 			longName = "Junk In The Trunk";
 			
 			TooltipManager.addFullName(shortName, StringUtil.toTitleCase(longName));
