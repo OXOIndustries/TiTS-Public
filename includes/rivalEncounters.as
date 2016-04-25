@@ -246,7 +246,7 @@ public function loseToDane():void {
 	//HP
 	if(pc.HP() <= 0) 
 	{
-		output("You slump down, unable to fight anymore. Dane remarks, <i>\"Well, that wasn't too hard. You crumpled like a house of cards.\"</i> He holsters his weapons so that he can scratch his chin with one hand. <i>\"I guess the boss must not be very tough [rival.himHer]self if [rival.he] didn't feel like dealing with you.\"</i> The ausar thug laughs, a rumbling baritone thing that you can feel in your bones. <i>\"There's no point in wasting time then; [rival.he]'ll be back shortly.\"</i>");
+		output("You slump down, unable to fight anymore. Dane chuckles, <i>\"Well, that wasn't too hard. You crumpled like a house of cards.\"</i> He holsters his weapons so that he can scratch his chin with one hand. <i>\"I guess the boss must not be very tough [rival.himHer]self if [rival.he] didn't feel like dealing with you.\"</i> The ausar thug laughs harder, a rumbling baritone thing that you can feel in your bones. <i>\"There's no point in wasting time then; [rival.he]'ll be back shortly.\"</i>");
 	}
 	//Lust
 	else
