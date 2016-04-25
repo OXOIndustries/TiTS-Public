@@ -33,7 +33,7 @@
 			this.description = "a light jetpack";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "A lightweight civilian jetpack designed by Steele Tech  for more adventurous spirits. Provides quick, agile movements at the expense of long flight time.";
+			this.tooltip = "A lightweight civilian jetpack designed by Steele Tech for more adventurous spirits. Provides quick, agile movements at the expense of long flight time.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
