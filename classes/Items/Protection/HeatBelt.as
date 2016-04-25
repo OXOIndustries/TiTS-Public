@@ -51,6 +51,9 @@
 			resistances.freezing.resistanceValue = 25.0;
 			resistances.burning.resistanceValue = 25.0;
 			
+			itemFlags = [];
+			itemFlags.push(GLOBAL.ITEM_FLAG_HEATBELT);
+			
 			this.version = _latestVersion;
 		}
 	}
