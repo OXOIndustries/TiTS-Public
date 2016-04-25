@@ -253,7 +253,7 @@ public function loseToDane():void {
 	{
 		output("You collapse,");
 		if(!pc.isCrotchExposed()) output(" stuffing both hands in your [pc.lowerGarment] to get at your [pc.crotch] and");
-		output(" squirming in the dirt. Dane remarks, <i>\"Well, aren't you the randy little slut. Just a tiny taste of what I can offer and you're already giving yourself up to me.\"</i> He holsters his weapons to scratch at his chin with one hand while he admires your feverish undulations. <i>\"I'm not sure why the boss didn't handle an easy piece of chattel like you " + chars["RIVAL"].mf("him","her") + "self. All it takes a little show of superiority to put you in the dirt and ready to be taken.\"</i> The ausar thug laughs, the sound deep enough to be felt in your bones.");
+		output(" squirming in the dirt. Dane chuckles, <i>\"Well, aren't you the randy little slut. Just a tiny taste of what I can offer and you're already giving yourself up to me.\"</i> He holsters his weapons to scratch at his chin with one hand while he admires your feverish undulations. <i>\"I'm not sure why the boss didn't handle an easy piece of chattel like you " + chars["RIVAL"].mf("him","her") + "self. All it takes a little show of superiority to put you in the dirt and ready to be taken.\"</i> The ausar thug laughs harder, the sound deep enough to be felt in your bones.");
 	}
 	//Merge
 	output("\n\nStrong hands tear your [pc.gear] from your body a piece at a time. Your codex is tossed over a broad shoulder and into the mud. Dane doesn't seem to care about any of your possessions so long as they don't get in his way. ");
