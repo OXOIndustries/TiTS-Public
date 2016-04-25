@@ -1453,6 +1453,9 @@ public function annoFollowerAnalSexAnnoOnTop(selCock:int):void
 	
 	output("\n\n<i>“That wasn’t so bad after all...”</i> Anno murmurs, snuggling back against you.");
 
+	if (flags["ANNO_ANALSEXED"] == undefined) flags["ANNO_ANALSEXED"] = 0;
+	flags["ANNO_ANALSEXED"]++;
+	
 	processTime(30+rand(20));
 	anno.loadInAss(pc);
 	anno.orgasm();

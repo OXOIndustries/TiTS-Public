@@ -20,7 +20,7 @@ public function tryProcKQ2CombatCourtyards():Boolean
 	if (kq2CombatSuppression()) return false;
 	
 	var encounters:Array = [];
-	encounters.push(kq2FightBlackVoidGrunts);
+	encounters.push(kq2FightBlackVoidGruntsOutside);
 	
 	if (flags["KQ2_FIGHT_STEPS"] == undefined) flags["KQ2_FIGHT_STEPS"] = 0;
 	flags["KQ2_FIGHT_STEPS"]++;
@@ -59,6 +59,37 @@ public function tryProcKQ2CombatSewers():Boolean
 	}
 	
 	return false;
+}
+
+public function kq2FightBlackVoidGruntsOutside():void
+{
+	var num:int = 2 + rand(3);
+	output("\n\nYou hear heavy footfalls pounding towards you, and you quickly sight in on "+ num2Text(num) +" black-clad figures in heavy armor racing towards you, each carrying a machine pistol. They skid to a stop just ahead of you, raising their weapons to their hips and opening fire without warning!")
+
+	var f:Array = [pc];
+	if (flags["KQ2_KARA_WITH_PC"] == 1) f.push(kara);
+	else if (flags["KQ2_KARA_WITH_PC"] == 2)
+	{
+		if (flags["KQ2_KARA_SNIPAH_KILLS"] == undefined) flags["KQ2_KARA_SNIPAH_KILLS"] = 0;
+		flags["KQ2_KARA_SNIPAH_KILLS"]++;
+		
+		output("\n\nA shower of sparks spews from the armored body plating of one of the mercs, his body falling backwards into a limp pile as a resounding <i>CRACK</i> whips through the air.");
+		output("\n\n<i>“Scratch " + num2Text(flags["KQ2_KARA_SNIPAH_KILLS"]) + "!”</i> Kara shouts through your radio.");
+		num--;
+	}
+
+	var h:Array = [];
+	for (var i:int = 0; i < num; i++) h.push(new KQ2BlackVoidGrunt());
+
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(f);
+	CombatManager.setHostileCharacters(h);
+	CombatManager.victoryScene(kq2MooksVictory);
+	CombatManager.lossScene(kq2CapturedByPiratesBadEnd);
+	CombatManager.displayLocation("VOID GRUNTS");
+
+	clearMenu();
+	addButton(0, "Next", CombatManager.beginCombat);
 }
 
 public function kq2FightBlackVoidGrunts():void
