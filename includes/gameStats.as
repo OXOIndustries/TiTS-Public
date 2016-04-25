@@ -1755,6 +1755,8 @@ public function displayQuestLog(showID:String = "All"):void
 						else if(flags["KQ2_KARA_WITH_PC"] == 2) output2(" At the radio tower");
 						else output2(" <i>Unknown</i>");
 					}
+					// Kara headshots
+					if(flags["KQ2_KARA_SNIPAH_KILLS"] != undefined) output2("\n<b>* Kara, Enemies Sniped: </b>" + flags["KQ2_KARA_SNIPAH_KILLS"]);
 					// Nuke 'em, Rico!
 					if(flags["KQ2_NUKE_STARTED"] != undefined)
 					{
