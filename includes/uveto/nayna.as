@@ -953,7 +953,7 @@ public function naynaBeejDiscoveryReactBadly():void
 public function reactWellToFutaLaquine():void
 {
 	clearOutput();
-	showNayna();
+	showNayna(true);
 	output("Smiling at the blushing bunny, you curl a fingertip around the swell of her sack and push the rubber of her college-branded one-piece into her mons, fingering her through her own undergarments. She twists and squirms but does not pull away");
 	if(flags["NAYNA_BLOWN"] != undefined) output(", blushing as if she can’t quite believe how much you like playing with her");
 	output(". ");
@@ -1085,7 +1085,7 @@ public function reactWellToFutaLaquine():void
 public function blowNayna2():void
 {
 	clearOutput();
-	showNayna();
+	showNayna(true);
 	output("If Nayna wants you to suck her cock, you’re happy to oblige, though you doubt she’ll hold out for long. ");
 	if(flags["NAYNA_BLOWN"] == undefined) output("It wouldn’t surprise you if that swollen pony detonated the moment it felt your lips for real.");
 	else output("That tubby pony has zero endurance when it comes to your lips.");
@@ -1140,7 +1140,7 @@ public function blowNayna2():void
 public function blowNayna3():void
 {
 	clearOutput();
-	showNayna();
+	showNayna(true);
 	output("Nayna’s legs give out in the moment of her orgasm, and with her dick presently attached to your mouth, you have no choice but to tip forward with her, collapsing atop her quivering crotch just in time to feel the first bulge of cum pumping through her urethra. It explodes into the confines of your mouth like a plasma grenade in a bunker. Every square millimeter of your mouth is filled with the laquine’s heady goo. Your cheeks bulge, trying to hold it all in.");
 	if(pc.isBimbo()) output(" What kind of stupid skank would waste jizz this good?");
 	output(" There’s no alternative to swallowing - her flare ensures that.");
@@ -1179,7 +1179,7 @@ public function blowNayna3():void
 public function blowNayna4():void
 {
 	clearOutput();
-	showNayna();
+	showNayna(true);
 	output("You don’t rouse her when she finally calms and begins to snore - you’re more than a little tired yourself, and rather than risk waking her, you close your eyes and enjoy the warmth of her body and her spunk, proud of just how lewd you’ve made the once reserved bunny.");
 	processTime(5);
 	//[Next]
@@ -1215,7 +1215,7 @@ public function blowNayna5():void
 public function fuckNayna():void
 {
 	clearOutput();
-	showNayna();
+	showNayna(true);
 	//Dong-wielders activate!
 	var x:int = pc.cockThatFits(300);
 	if(x < 0) x = pc.smallestCockIndex();

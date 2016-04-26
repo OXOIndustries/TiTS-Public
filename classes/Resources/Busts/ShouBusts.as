@@ -199,6 +199,11 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/nevrie_nude.png", mimeType = "image/png")]
 		public var Bust_NEVRIE_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/nayna_nude.png", mimeType = "image/png")]
+		public var Bust_NAYNA_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/nayna_soft_nude.png", mimeType = "image/png")]
+		public var Bust_NAYNA_SOFT_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/nyrea_beta.png", mimeType = "image/png")]
 		public var Bust_NYREA_BETA:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/nyrea_alpha.png", mimeType = "image/png")]
@@ -467,6 +472,11 @@
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/fungal_myr_queen_spores.png", mimeType = "image/png")]
 			public var Full_MYR_INFECTED_QUEEN:Class;
+
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/nayna_nude.png", mimeType = "image/png")]
+			public var Full_NAYNA_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/nayna_soft_nude.png", mimeType = "image/png")]
+			public var Full_NAYNA_SOFT_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/nevrie.png", mimeType = "image/png")]
 			public var Full_NEVRIE:Class;

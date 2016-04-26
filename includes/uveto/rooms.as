@@ -527,12 +527,13 @@ public function initUvetoRooms():void
 	/* Mead Hall */
 	rooms["UVI R32"] = new RoomClass(this);
 	rooms["UVI R32"].roomName = "THE\nFREEZER";
-	rooms["UVI R32"].description = "9999 Some random dump bar thing whatevs. (Yes this document totally deserved to be in the fucking ready to code pile amirite).";
+	rooms["UVI R32"].description = "Despite it's name, the Freezer is actually a cozy little establishment. Heaters in nearly every corner of the room keep the air from dipping into Uveto's usually frigid temperatures, and a scattering of cracked peanut shells on the floor lend the place a homey, if rustic, feel.";
 	rooms["UVI R32"].planet = "PLANET: UVETO VII";
 	rooms["UVI R32"].system = "SYSTEM: SIRETTA";
 	rooms["UVI R32"].southExit = "UVI R34";
 	rooms["UVI R32"].westExit = "UVI P32"; // 9999 TEMP CHECK THIS
 	rooms["UVI R32"].moveMinutes = 1;
+	rooms["UVI R32"].runOnEnter = uvetoBarBonus;
 	rooms["UVI R32"].addFlag(GLOBAL.INDOOR);
 	rooms["UVI R32"].addFlag(GLOBAL.BAR);
 

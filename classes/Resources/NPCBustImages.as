@@ -18,6 +18,7 @@
 		public static var NONE:Object = { }; 
 		
 		public static var ADJATHA:Object = new AdjathaBusts();
+		public static var AKI:Object = new AkiBusts();
 		public static var BNG:Object = new BNGBusts();
 		public static var CHESHIRE:Object = new CheshireBusts();
 		public static var CYANCAPSULE:Object = new CyanCapsuleBusts();
