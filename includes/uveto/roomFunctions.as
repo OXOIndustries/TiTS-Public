@@ -495,6 +495,9 @@ public function uvetoFallToColdDamage():void
 		//output("[PH] Jerynn Rescue");
 		
 		IncrementFlag("UVETO_JERYNN_RESCUES");
+		
+		//rescuer = "Jerynn";
+		processTime(1440);
 	}
 
 	//[Next] // Awaken in the medical center
