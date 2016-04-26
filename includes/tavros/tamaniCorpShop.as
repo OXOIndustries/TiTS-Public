@@ -10,12 +10,13 @@ public function showLerris(asNude:Boolean = false):void
 	// Override bustDisplay to handle titty size, just append _NUDE if we're nude or not. MAGIC!
 	showBust(lerris.bustDisplay + (asNude ? "_NUDE" : ""));
 	author("Savin");
+	output("TEST: " + lerris.bustDisplay + (asNude ? "_NUDE" : ""));
 	showName((flags["MET_LERRIS"] == undefined ? "TAMANICORP\nEMPLOYEE" : "\nLERRIS"));
 }
 
 public function tavrosTamaniCorpStoreEntry():Boolean
 {
-	showBust(lerris.bustDisplay);
+	showBust();
 	author("Savin");
 
 	output("\n\n");

@@ -77,6 +77,23 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/kelly_nude.png", mimeType = "image/png")]
 		public var Bust_KELLY_NUDE:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/adjatha/lerris_0.png", mimeType = "image/png")]
+		public var Bust_LERRIS_0:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/lerris_0_nude.png", mimeType = "image/png")]
+		public var Bust_LERRIS_0_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/lerris_1.png", mimeType = "image/png")]
+		public var Bust_LERRIS_1:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/lerris_1_nude.png", mimeType = "image/png")]
+		public var Bust_LERRIS_1_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/lerris_2.png", mimeType = "image/png")]
+		public var Bust_LERRIS_2:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/lerris_2_nude.png", mimeType = "image/png")]
+		public var Bust_LERRIS_2_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/lerris_cow.png", mimeType = "image/png")]
+		public var Bust_LERRIS_COW:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/lerris_cow_nude.png", mimeType = "image/png")]
+		public var Bust_LERRIS_COW_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/lys.png", mimeType = "image/png")]
 		public var Bust_LYS:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/lys_nude.png", mimeType = "image/png")]
@@ -182,6 +199,23 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kelly_nude.png", mimeType = "image/png")]
 			public var Full_KELLY_NUDE:Class;
 			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/lerris_0.png", mimeType = "image/png")]
+			public var Full_LERRIS_0:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/lerris_0_nude.png", mimeType = "image/png")]
+			public var Full_LERRIS_0_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/lerris_1.png", mimeType = "image/png")]
+			public var Full_LERRIS_1:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/lerris_1_nude.png", mimeType = "image/png")]
+			public var Full_LERRIS_1_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/lerris_2.png", mimeType = "image/png")]
+			public var Full_LERRIS_2:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/lerris_2_nude.png", mimeType = "image/png")]
+			public var Full_LERRIS_2_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/lerris_cow.png", mimeType = "image/png")]
+			public var Full_LERRIS_COW:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/lerris_cow_nude.png", mimeType = "image/png")]
+			public var Full_LERRIS_COW_NUDE:Class;
+
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/lys.png", mimeType = "image/png")]
 			public var Full_LYS:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/lys_nude.png", mimeType = "image/png")]

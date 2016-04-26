@@ -559,3 +559,78 @@ public function uvetoAwakenInMedCenter(rescuer:String):void
 	processTime(30);
 	addButton(0, "Next", mainGameMenu);
 }
+
+public function uvetoBarBonus():Boolean
+{
+	output("\n\nAn old-style videoscreen is on in the corner, displaying a perverted-looking documentary about the infamous male ultraporn-star, Tank Kannon.");
+	addButton(0, "Watch", tankKannonBiopic, undefined, "Watch", "It looks like there's a biopic about the incredibly endowed ultraporn-star, Tank Kannon, on if you want to watch it.");
+	return false;
+}
+
+//CUSTOM OFFBEATR SCENE!
+//An extremely-sized hyperfur male fox/horse hybrid. His cock would be very long and he would have a harem of helpers/handlers who would serve him, yiff him, and help him walk. Walking and yiffing are a team effort. Sexually he's open but prefers females. You can tie it into the story any way you like - Fields on this survey are limited, so ask if you need clarification. The only thing to point out is that when walking, his harem would have a harness system strapped to their hips. A pair of girls every few feet of his length would hoist him and walk with him as if they were all one.
+//Xenofoxx
+public function tankKannonBiopic():void
+{
+	clearOutput();
+	showName("TANK\nKANNON");
+	output("You swivel to watch, your attention caught by the sight of the fox/horse hybrid struggling to drag twelve foot dick behind him. It doesn’t work of course, the poor guy’s erection invariably stiffens, thickening, and in the span of a few seconds, he starts pumping his hips, grinding his dick an inch across the floor at a time in an effort to attain great stimulation.");
+	output("\n\nThe announcer’s voice cuts in, <i>“Tank’s life was at an all time low. After years of struggling with throbb addiction, he had finally hit rock bottom.”</i> The camera cuts to a grainy security feed of Tank’s bedroom. There, the hyper-endowed vulquine appears to be struggling to stay above a flood of white. <i>“Wet dreams were no longer a pleasant treat - they were a life or death struggle, one that soon saw the struggling stud evicted from his residence, destitute and alone.”</i>");
+	output("\n\nTank is shown leaning against a dilapidated structure, a sign balanced atop his semi-erect cock. It reads, <i>“Throbb Victim. Will do anything for food.”</i> Sorrowful music plays in the background.");
+	output("\n\n<i>“But that sign was the turning point for this year’s most popular male porn-star,”</i> the announcer explains, showing an attractive woman sitting on Tank’s ever-pulsating member and giggling. <i>“In public, his deformity could attract the interest of hundreds of women and the personal attentions of dozens, sometimes working together”</i> A tide of cum is shown slowly pouring into a storm drain. <i>“Tank’s uniquely excessive anatomy bought him the companionship of the adventurous... and the rich. After less than two days on the street, a well-to-do fan had him put up in a custom apartment, complete with industrial-class drains.”</i>");
+	output("\n\nA lush bed with hydrophobic-treated sheets is shown, complete with a line of cushions along the floor for Tank’s slumbering cock. <i>“Once again, Mr. Kannon could dream peaceful, no longer fearful of nocturnal emissions. Yes, he prostituted himself to a wealthy client for years, going so far as stubbornly hide her identity from our documentary team, but he refused to settle for modest success.”</i> A quick cut shows tank doing squats, holding much of his dick aloft as added weight.");
+	output("\n\nThe man himself appears onscreen, tastefully cut from the shoulders up. <i>“Well, after those days on the road, I realized just how many women wanted to see what I’ve got. I made more girlfriends in 48 hours of bumming around than I had in a lifetime of ‘honest’ work.”</i> Tank shrugs, muscles rippling under his fur. <i>“So I figured, why not show off my cock for a living?”</i> His chuckles come out as rich baritone rumbles. <i>“Best decision I ever made, and I couldn’t have done it alone. My girlfriends are amazing. They got me decent little holocam, and I recorded my first public holo. I hear it’s still out there on the extranet somewhere. If I remember right, it was titled something like, ‘Hung Stud Cum Flood.’”</i> Tank rubs his forehead. <i>“I’m so glad to have Rachel handle that stuff like that now. Stars, I was bad at titles.”</i>");
+	output("\n\nThe announcer’s voice returns, boasting, <i>“We’ve recovered the original upload of Tank’s infamous first outing. Stay tuned for its first holo-broadcast airing, and please remember that Erotic History is intended for viewers above the age of consent!”</i>");
+	//[Next]
+	processTime(8);
+	pc.lust(10);
+	clearMenu();
+	addButton(0,"Watch",watchTankBlowFirstPornLoad);
+	addButton(14,"Back",mainGameMenu);
+}
+
+public function watchTankBlowFirstPornLoad():void
+{
+	clearOutput();
+	showName("TANK\nKANNON");
+	output("After a brief commercial intermission for Intimints, the mints that get the hint, the show returns, cutting to a feed of a younger, nervous-looking Tank.");
+	output("\n\nStanding a little too close to the camera, the young hybrid scratches the back of his neck nervously. <i>“H-hey ‘net! My name’s... Tank. Yeah. Tank Kannon...”</i> He grins to himself, apparently pleased with his own trite cleverness. <i>“...and I’m got something to show you.”</i> He hops down from his perch, allowing the wide-angle lens to capture every inch of sizable body - and more sizable endowments. His cock, half-hard but rapidly thickening, is laid out across an expanse of slick-looking plastic, ending in a ramp leading up to an expansive bathtub. It’s obvious from the size of the room and the niceties on display that Tank's station has already started to improve at the time of this recording.");
+	output("\n\nThe ever-erect Mr. Kannon is grinning like a cheshire cat and gently patting the top of his insurmountable swell. <i>“Yes, ladies and gents - it’s all real. I haven’t been implanted. I don’t have a disease to my name. This is 100%, naturally grown UGC-approved cock-meat, though I will admit that certain... growth aids were used to help this little pony grow into the bitch-basting stallion he is today.”</i> Groaning in pleasure, Tank struggles to keep his slobbering, canine tongue in his mouth. <i>“S-sorry! I’ve got an assistant just out of frame, one thing they don’t warn you about when your balls get this big is how good it feels to have them licked. I can’t help but throb, and when I throb, my dick drags itself a few inches back and forth along this very, very slick plastic. Hnng!”</i>");
+	output("\n\nTank looks like he’s having trouble keeping it together. A few beads of sweat roll down his brow, and the muscles in his well-defined pectorals and biceps visibly clench. Veins in his cock swell, as thick as pipes, pumping gallons of blood in an effort to maintain the impressively-endowed amateur’s erect state. His eyelids flutter closed, and his hips lurch, compressing his sheath slightly before finally transferring the movement into the dozen feet of dick on display. Plastic crinkles beneath it, threatening to be drowned out by the sloppy sound of lube parting around the indiscrete erection.");
+	output("\n\n<i>“W-w-wow,”</i> Tank gasps, openly stroking his cock. <i>“I’ve never had a setup like this.”</i> He pants, his watermelon-sized nuts clenching and wobbling, undoubtedly in reaction to a salacious tongue-bath from behind. <i>“I’ve never had a setup like this,”</i> he tries to explain midway through a thrust. <i>“I’m n-not sure how long I’ll last! Fuck, babe keep licking like that!”</i>");
+	output("\n\nA little post-production magic has the camera zooming in on Tank’s tip, propped up on the edge of the tub. The head swells, bloating wider and wider, transforming from a blunt tip into an obscenely swollen crown, fully revealing his equine heritage. Bubbles of clear pre-cum appear, easily the size of water balloons, briefly hanging from from the masculine monument before their own mass pulls them down into the rapidly filling tub. Tank’s cock visibly lifts six inches into the air with each jet of anxious pre, carried upward by the hydraulic pressure provided by his rhythmically bloating urethra.");
+	output("\n\n<i>“There’s so much! Ooooh....”</i> Tank’s quavering voice tries to explain how it feels, but he sounds like he’s struggling to string words together into coherent thoughts. <i>“I’m so close to c-cumming,”</i> he announces alongside the sound of pre-spunk splattering off the bathroom wall, <i>“and there’s so m-much! L-like I’ve got a line of cocks all the way to the tub, and each of them is slipping and sliding on that lubed-up plastic. S-stars!”</i> His eyes close, and he completely abandons his narration, grunting and groaning as he vigorously pumps his hips, earning giggles from behind after his nuts slap into the unseen helper.");
+	output("\n\nThe disembodied voice of Tank’s ball-polishing enthusiast urges, <i>“Don’t make the viewers wait, Tank.”</i> Another giggle surfaces at his chosen pseudonym, swiftly forgotten when confronted by her stallion’s needs.");
+	output("\n\n<i>“Cum!”</i>");
+	output("\n\nTank throws his head back and howls, but the focus isn’t on his head. The feed cuts to a second camera, positioned above the tub for a bird’s-eye view of the coming cum-carnage. Pre-cum already fills the tub to half-way, even with the drain open and gurgling. Then tank’s flare flares wider, undoubtedly and obscenely equine. His urethra looks almost alien, protruding slightly from the otherwise smooth surface of his outlandish show-pony. It distends, stretching almost six-inches wide, and releases ");
+	if(flags["MET_KIRO"] != undefined ) output("a single squirt of cum big enough to make Kiro’s look like drops in a bucket");
+	else if(flags["NAYNA_BLOWN"] != undefined) output("a single squirt of cum big enough to make Nayna's look like drops in a bucket");
+	else if(penny.hasCock()) output("a single squirt of cum big enough to make Penny's look like drops in a bucket");
+	else if(flags["SUCKED_BRYNN"] != undefined || flags["DEEPTHROATED_BRYNN"] != undefined) output("a single squirt of cum big enough to make Brynn's look like drops in a bucket");
+	else output("the biggest single squirt of cum you’ve ever seen.");
+	output(". The eggshell-colored wall is suddenly and completely bathed in white, slopping down in sticky-looking waves into the tub. The second shot hits right on top of the first, causing a spunk-cascade big enough to completely overfill the woefully inadequate sperm-receptacle.");
+	output("\n\nWaves of the gooey stuff roll over the edges, pouring across a floor covered in plastic sheeting, but you’re pretty sure it still won’t be enough. Cutting back to the original view, you see tank collapse over his own dick, moaning and licking, hugging himself while his legs futilely scrabble for leverage, determined to him something, anything, while he climaxes. He seems to be completely out of it, a passenger in his own body while pleasure takes control.");
+	output("\n\nSwitching cameras again, you’re treated to the sight of the bathroom beginning to flood. Cum is cresting over the edge of the tub from the outside while flows of spermy satisfaction squeeze past Tank’s cock to disappear into the lush carpet. Toothbrushes are basted. The sink catches a glob big enough to fill the inside and frost the faucets. Mirrors transform from utility items into white versions of a psychiatrist’s inkblots, then finally disappear under the voluminous tide.");
+	output("\n\nAll the while, a mischievous voice coos, <i>“Keep cumming, Tanky-poo.”</i> Manicured hands become visible on the edges of the dog-horse’s violently contracting nutsack, rubbing the big, fuzz-covered orbs lustily. <i>“Cum cum cum. Let it all out.”</i> The fingers sink in, roughly massaging each nut in turn.");
+	output("\n\nTank moans, and does what he does best - ejaculating gallons upon gallons of hyper-virile seed. A coffee table shifts, moved by the force of a wave of Tank’s cum. White glaze flows back the length of the too-hung male’s upward-arcing phallus, clinging to the underside like a lover’s hands, highlighting his hard-pumping, chemically-enhanced dick-veins for all to see. Spooge reaches the lust-lost puppy-pony’s feet just as he’s finally exhausting himself.");
+	output("\n\nGrunting fitfully, he thrusts one last time, shooting a rope of nut-butter thick enough to impregnate a small colony worth of ausar into his lover’s new lake of a bathroom and sags, panting.");
+	output("\n\n<i>“Mmmm,”</i> you hear him and his cohort groan at the same time, just before the feed cuts.");
+	processTime(18);
+	pc.lust(50);
+	clearMenu();
+	addButton(0,"Next",watchTankBlowFirstLoadEpilogue);
+}
+
+public function watchTankBlowFirstLoadEpilogue():void
+{
+	clearOutput();
+	output("<i>“The good part’s over! Change it!”</i> calls a bored-looking customer.");
+	output("\n\nOther voices take up the call. <i>“Yeah, Steph Irson’s better than this shit!”</i>");
+	output("\n\nThe first hollers back, <i>“Hey, Tank’s a national treasure, fuck-face!”</i>");
+	output("\n\n<i>“If you like uselessly huge dicks instead of a fine, female form!”</i>");
+	output("\n\nJust when you think there’s going to be a fight, someone changes the channel and offers the two would-be-combatants new drinks. Crises averted!");
+	processTime(1);
+	IncrementFlag("TANK_EP1_WATCHED");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
