@@ -1086,6 +1086,7 @@
 		public static const VALID_ARTISTS:Array = [
 			"NONE",
 			"ADJATHA",
+			"AKI",
 			"BNG",
 			"CHESHIRE",
 			"CYANCAPSULE",
@@ -1111,6 +1112,7 @@
 		public static const VALID_ARTISTS_NAMES:Array = [
 			"None",
 			"Adjatha",
+			"Aki",
 			"Benji",
 			"Cheshire",
 			"CyanCapsule",
