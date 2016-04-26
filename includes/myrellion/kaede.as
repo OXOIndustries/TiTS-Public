@@ -789,7 +789,7 @@ public function kaedeThreeSomesOrSpawnOrSomethingCassTits():void
 	else output("evening");
 	output(". <i>“Oh, what’s wrong sweetie?”</i> Kaede coos, bouncing the bundle gently in her arms. Is that...");
 
-	output("\n\nKaede confirms you sudden suspicion, pulling the top hood of cloth down to reveal a tiny, pink head with a pair of tiny red wolf-ears perched on top of her thin layer of ginger hair. Kaede fusses at the baby, murmuring nonsense at her until the outburst abates, leaving the kid staring at you with huge, awestruck blue eyes while she sucks on her thumb. You catch sight of a single, slender tail wiggling around at the bottom of the bundle, a poof of red fur pluming from an otherwise feline-looking tail.");
+	output("\n\nKaede confirms your sudden suspicion, pulling the top hood of cloth down to reveal a tiny, pink head with a pair of tiny red wolf-ears perched on top of her thin layer of ginger hair. Kaede fusses at the baby, murmuring nonsense at her until the outburst abates, leaving the kid staring at you with huge, awestruck blue eyes while she sucks on her thumb. You catch sight of a single, slender tail wiggling around at the bottom of the bundle, a poof of red fur pluming from an otherwise feline-looking tail.");
 
 	output("\n\n<i>“Sorry about that!”</i> Kaede chuckles, turning her attention back to you. <i>“Somebody’s being really whiny today. Oh, speaking of which... this is Kayla.”</i>");
 
