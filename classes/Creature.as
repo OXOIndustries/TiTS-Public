@@ -8705,7 +8705,7 @@
 				}
 			}
 			
-			if (!hasCock() || cocks.length == 1)
+			if (cocks.length == 1)
 			{
 				if (cocks[0].cType == GLOBAL.TYPE_GRYVAIN && cocks[0].hasFlag(GLOBAL.FLAG_KNOTTED)) s++;
 				else s--;
@@ -14822,7 +14822,7 @@
 		// Uveto Specials
 		public function hasHeatBelt():Boolean
 		{
-			return accessory.hasFlag(GLOBAL.ITEM_FLAG_HEATBELT);
+			return shield.hasFlag(GLOBAL.ITEM_FLAG_HEATBELT);
 		}
 		
 		public function willTakeColdDamage(resToAvoid:Number = 25.0):Boolean

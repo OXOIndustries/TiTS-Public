@@ -265,6 +265,7 @@ public function chooseStartingRace(race:String = "human"):void {
 	}
 	else if (pc.originalRace == "half-gryvain")
 	{
+		pc.legType = GLOBAL.TYPE_GRYVAIN;
 		pc.addLegFlag(GLOBAL.FLAG_SCALED);
 		pc.tailCount = 1;
 		pc.tailType = GLOBAL.TYPE_GRYVAIN;
@@ -273,6 +274,7 @@ public function chooseStartingRace(race:String = "human"):void {
 		pc.earType = GLOBAL.TYPE_GRYVAIN;
 		pc.earLength = 3;
 		pc.wingType = GLOBAL.TYPE_GRYVAIN;
+		pc.wingCount = 2;
 		pc.eyeType = GLOBAL.TYPE_GRYVAIN;
 		addButton(0, "Female", setStartingSex, 3);
 		addButton(1, "Herm", setStartingSex, 2);
