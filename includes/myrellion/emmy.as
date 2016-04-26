@@ -165,6 +165,7 @@ public function emmyBonusNotes():Boolean
 {
 	if(flags["EMMY_BANNED"] == 1)
 	{
+		showBust("EMMY");
 		output("\n\nThe shopkeeper shoos you toward the door. She won't even look you in the eye, and one of her fingers is poised above a call button should you make trouble. It'd be best to leave.");
 		return false;
 	}
@@ -183,10 +184,12 @@ public function emmyBonusNotes():Boolean
 	//Have not met Emmy with Harness
 	else if(MailManager.isEntryUnlocked("emmy_harness_here") && flags["EMMY_QUEST"] == 5)
 	{
+		showBust("EMMY");
 		output("\n\nEmmy is here, looking surprisingly calm as she stands behind the counter, but as soon as she sees you, her gaze turns smoky and her tongue slithers out to lick her lips. Her usual bulge was down to half its usual size, yet now it’s pushing up between her tits, making the pillowy jugs gently bounce. Someone is happy to see you.");
 	}
 	else if(flags["EMMY_QUEST"] >= 6)
 	{
+		showBust("EMMY");
 		//Being cock massaged appearance
 		if(emmy.hasStatusEffect("Massaging") || emmy.hasStatusEffect("Slow Fucking")) output("\n\nEmmy is slouched in a chair behind the counter with a faraway look in her eyes. Her cock is visibly pulsing, thumping itself against her tits, and while one of her hands is hidden from view, the other is lazily caressing a breast. Sometimes she looks your way, staring at your Codex, wondering when you’ll push the button that’ll take her to orgasm.");
 		//PC set off Emmy’s toy a bunch recently.
@@ -224,6 +227,7 @@ public function emmyBonusNotes():Boolean
 	//Repeat, don't know name
 	else
 	{
+		showBust("EMMY");
 		output("\n\nGrinning from behind the countertop is the store’s KihaCorp representative, Emmy. The jackaless’s curvy form is just as you remembered it, shrink-wrapped into a skin-hugging jumpsuit that leaves nothing to the imagination. Her mixed genders are as obvious as the forearm-sized distention running from her crotch to her chest.");
 	}
 	if(flags["APPROACHED_EMMY"] == undefined) addButton(0,"Jackal",emmyFirstTimeApproach);

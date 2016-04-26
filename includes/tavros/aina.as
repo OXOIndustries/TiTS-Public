@@ -593,7 +593,7 @@ public function ainaTalksAboutACashing():void
 	output("\n\n<i>“Your... swag?”</i>");
 	output("\n\n<i>“Yeah, my swag! It's from Astrocaching. It's a hobby of mine. Do you know it?”</i>");
 	output("\n\nYou shake your head. Aina pulls a small palm-size device and shows it to you. With a click, a three-dimensional representation of the station floats above the screen, with a green dot showing her position. There's also a few smaller dots in blue. It's a CPS - a cosmos positioning system.");
-	output("\n\n<i>“Astrocaching is a real-world, galactic treasure hunting game using CPS devices, dating back to Terra. It's loads of fun. Basically, people leave astrocaches around the galaxy, then drop some coordinates on the extranet. People navigate there and attempt to find the nearby cache nearby. It's just like being a real treasure hunter!”</i>");
+	output("\n\n<i>“Astrocaching is a real-world, galactic treasure hunting game using CPS devices, dating back to Terra. It's loads of fun. Basically, people leave astrocaches around the galaxy, then drop some coordinates on the extranet. People navigate there and attempt to find the cache nearby. It's just like being a real treasure hunter!”</i>");
 	output("\n\n<i>“When you get there, there's always a digital logbook inside, where you sign down your name. There's also swag; things people have left behind in the cache. You can take anything you want, but you've got to leave something in its place of equal value. See, I found that stuff in the caches I opened and took them, but I left something small in trade for the next person to take.”</i>");
 	output("\n\nYou ask her if the blue dots on Tavros are astrocache coordinates. The centauress nods and touches one. Suddenly a small screen pops up, with not only the general area the cache is hidden, but its type, size, and difficulty. This one appears to be three stars.");
 	output("\n\n<i>“Some are harder than others. I've only got as high as two stars. I hear you can find some neat swag in the bigger ones. There's ones as small as a bottle, others large as a shipping container. You don't really do it for the swag, though, but more for the adventure, you know? Sometimes it takes hours to find a cache, and you find someone's hidden it as a fake log. Other times, there's riddles to find caches, or ones that lead to </i>other<i> caches.”</i>");
@@ -969,6 +969,10 @@ public function breedAinaAsATaur():void
 {
 	clearOutput();
 	showAina(true);
+
+	var x:int = pc.cockThatFits(2000);
+	if(x < 0) x = pc.smallestCockIndex();
+
 	//Aina'sNotInHeat:
 	if(!ainaIsInHeat())
 	{
@@ -976,13 +980,12 @@ public function breedAinaAsATaur():void
 		output("\n\n<i>“I-I can smell you. You know, as " + pc.mf("a stallion","another centaur") + ". It’s getting me a little worked up,”</i> Aina confesses. Her equine tail is unconciously flicking and sweeping her fragrant pussy-scent all about, making things even worse! Suddenly her equine rump is looking <i>really</i> attractive and thoroughly mountable...\n\n");
 	}
 	output("You can’t stand it any longer. With a loud primal whinny of your own, you rear up and raise your forelegs, staggering forward and dropping your upper body on the pretty mare’s lower back.");
-	output("\n\n<i>“Wha-what are you doing?!”</i> Aina breathily exclaims. You don’t even hear her; your mind is too consumed with equine instinct to mount and mate with the ");
+	output("\n\n<i>“Wha-what are you doing?!”</i> Aina breathily exclaims. You don’t even hear her; your mind is too consumed with");
+	if(pc.isCentaur() || pc.cocks[x].cType == GLOBAL.TYPE_EQUINE) output(" equine");
+	else output(" carnal");
+	output(" instinct to mount and mate with the ");
 	if(ainaIsVirgin()) output("virgin");
 	else output("slutty");
-
-	var x:int = pc.cockThatFits(2000);
-	if(x < 0) x = pc.smallestCockIndex();
-
 	output(" mare. A single forceful thrust later, and you’re plunging yourself between her silky black cunt-lips, relishing in the silky feel of her sloppy sex swallowing your [pc.cockHead " + x + "]. ");
 	if(ainaIsVirgin()) output("There’s a slight resistance, then a sudden give, and the virgin centauress gives a tiny squeal. As you slide into her unsullied depths, she gives a shivering moan, mounted by a stallion for the very first time!");
 	else 
@@ -994,7 +997,7 @@ public function breedAinaAsATaur():void
 	}
 	pc.cockChange();
 
-	output("\n\nIntoxicated with pleasure and the scent of her musk, you buck and slap your lower body against her madly wiggling backside.  With each squelching thrust, your [pc.cockNoun " + x + "] sends streams of her pussy-juice streaming out of her flaring honeypot, splattering the ground between her trembling taur-thighs. You can feel her swishing horse-tail brushing your animal belly with each carnal thrust.");
+	output("\n\nIntoxicated with pleasure and the scent of her musk, you buck and slap your lower body against her madly wiggling backside.  With each squelching thrust, your [pc.cockNoun " + x + "] sends streams of her pussy-juice flowing out of her flaring honeypot, splattering the ground between her trembling taur-thighs. You can feel her swishing horse-tail brushing your animal belly with each carnal thrust.");
 
 	output("\n\nSoon that massive rump of hers is bucking back needily against you as she meets your mighty thrusts. Both of your bodies are covered in a fine sheen of sweat from your mating rhythm. Flushing with delight, the centauress hastily strips off her sweater and presses her smooth back against your chest, rubbing almost insistently against you. Satisfying her human half, you fiercely seize her breasts in your hands, and she lets out a whinnying gasp of delight. Every time you pinch and roll her pert pink nipples, her sloppy quim hotly gushes and squeezes your stirring rod, coaxing hot pre into her juicy tunnel. Neither of you could stop even if you wanted to, your animal halves grinding and slapping against each other with carnal need.");
 

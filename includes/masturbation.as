@@ -628,6 +628,10 @@ public function vaginalFap():void {
 			output(" It never really seems to end, not until you've splattered huge [pc.cumColor] gobs across your [pc.face] a half-dozen times and thoroughly painted the whole of your body with the seed-filled fluid.");
 			if(pc.cumQ() >= 10000) output(" Warm wetness rises up around you as you finish out, blissed out and semi-conscious.");
 			applyCumSoaked(pc);
+			if(pc.cumQ() > 5000) applyCumSoaked(pc);
+			if(pc.cumQ() > 10000) applyCumSoaked(pc);
+			if(pc.cumQ() > 30000) applyCumSoaked(pc);
+			if(pc.cumQ() > 50000) applyCumSoaked(pc);
 		}
 	}
 	output("\n\nYou come to a little later, reeking of sex, your fingers stained with girlish goo, and smile, sated... for now.");
@@ -751,8 +755,12 @@ public function singleDickFap():void {
 		else if(pc.cumQ() >= 65) addToList("[pc.face]");
 		output(formatList() + ".");
 	}
-	else if(pc.cumQ() <= 250) output(" Thick spurt after thick spurt emerges from your cumslit, painting you from your [pc.belly] to your [pc.hair] in [pc.cumColor] relief.");
-	else if(pc.cumQ() <= 500) output(" Big squirts of [pc.cum] fire out one after another, each easily thicker and larger than an average human's by far. They splatter across nearly every inch of your body, so thick that runnels of your spent goo drip down the sides of your [pc.chest] and [pc.face].");
+	else if(pc.cumQ() <= 250) {
+		output(" Thick spurt after thick spurt emerges from your cumslit, painting you from your [pc.belly] to your [pc.hair] in [pc.cumColor] relief.");
+	}
+	else if(pc.cumQ() <= 500) {
+		output(" Big squirts of [pc.cum] fire out one after another, each easily thicker and larger than an average human's by far. They splatter across nearly every inch of your body, so thick that runnels of your spent goo drip down the sides of your [pc.chest] and [pc.face].");
+	}
 	else {
 		output(" Large torrents of [pc.cum] spray out of your cumslit with such vigor that you're able to watch them arc through the air before they rain down around you, each many times the size of a normal orgasm in its own right. The [pc.cumColor] rain slicks you from [pc.feet] to [pc.face], staining you the proof of your incredible virility");
 		if(pc.cumQ() < 1000) {}
@@ -767,6 +775,11 @@ public function singleDickFap():void {
 		}
 		else output(", never mind the physics-defying amount in the lake below");
 		output(".");
+		applyCumSoaked(pc);
+		if(pc.cumQ() > 5000) applyCumSoaked(pc);
+		if(pc.cumQ() > 10000) applyCumSoaked(pc);
+		if(pc.cumQ() > 30000) applyCumSoaked(pc);
+		if(pc.cumQ() > 50000) applyCumSoaked(pc);
 	}
 	if(pc.libido() <= 33) output("\n\nYou exhale a few long, slow pants as you come down from that glorious, orgasmic high");
 	else if(pc.libido() <= 66) output("\n\nYou let out a dazed, happy smile now that you're sexually sated");
@@ -1033,6 +1046,10 @@ public function multiCockFap():void {
 	processTime(45 + rand(5));
 	pc.orgasm();
 	applyCumSoaked(pc);
+	if(pc.cumQ() > 5000) applyCumSoaked(pc);
+	if(pc.cumQ() > 10000) applyCumSoaked(pc);
+	if(pc.cumQ() > 30000) applyCumSoaked(pc);
+	if(pc.cumQ() > 50000) applyCumSoaked(pc);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1653,6 +1670,11 @@ public function wutwutindabuttbuttFap():void
 		else
 		{
 			output(" covering you in the flood of [pc.cumNoun] that sprays from [pc.eachCockHead] as you laugh in delight at your astounding, inhuman volume");
+			applyCumSoaked(pc);
+			if(pc.cumQ() > 5000) applyCumSoaked(pc);
+			if(pc.cumQ() > 10000) applyCumSoaked(pc);
+			if(pc.cumQ() > 30000) applyCumSoaked(pc);
+			if(pc.cumQ() > 50000) applyCumSoaked(pc);
 		}
 		output(".");
 	}
@@ -2377,6 +2399,10 @@ public function futaPantiesFapInPussy(waifu:String = ""):void
 			if(pc.totalVaginas() > 1) output("s");
 			output(", and torrents of passionate fluid flood down your [pc.thighs]");
 			applyPussyDrenched(pc);
+			if(pc.girlCumQ() > 5000) applyPussyDrenched(pc);
+			if(pc.girlCumQ() > 10000) applyPussyDrenched(pc);
+			if(pc.girlCumQ() > 30000) applyPussyDrenched(pc);
+			if(pc.girlCumQ() > 50000) applyPussyDrenched(pc);
 		}
 	}
 	else output(" your muscles clamping down around them as the " + pantyColor + " underwear darkens with absorbed [pc.girlCum]");
@@ -2400,6 +2426,10 @@ public function futaPantiesFapInPussy(waifu:String = ""):void
 		{
 			output(" You’re absolutely soaked.");
 			applyCumSoaked(pc);
+			if(pc.cumQ() > 5000) applyCumSoaked(pc);
+			if(pc.cumQ() > 10000) applyCumSoaked(pc);
+			if(pc.cumQ() > 30000) applyCumSoaked(pc);
+			if(pc.cumQ() > 50000) applyCumSoaked(pc);
 		}
 	}
 	output("\n\nYour eyes cross a little when you pull the sodden underwear from your [pc.vagina]");
@@ -2456,6 +2486,10 @@ public function jackOffWithLadyPantiesYouSicko(waifu:String):void
 	{
 		output("\n\nWith a joyous cry, you spasm and go over the edge, blasting your spunk into the insides of " + waifu + "’s well-used panties. Your lewd jism utterly coats her unmentionables in no time at all, utterly drenching every inch with your tainting spunk and coating your entire waist at the same time. You wring your dick for every last gushing burst, riding the high all the way to the end. When you finally finish, you’re left panting for breath and thrumming with a glorious afterglow, not to mention being covered with your own cum. Wow!");
 		applyCumSoaked(pc);
+		if(pc.cumQ() > 5000) applyCumSoaked(pc);
+		if(pc.cumQ() > 10000) applyCumSoaked(pc);
+		if(pc.cumQ() > 30000) applyCumSoaked(pc);
+		if(pc.cumQ() > 50000) applyCumSoaked(pc);
 	}
 	output("\n\nOnce you’re finally able to move, you pick up " + waifu + "’s sticky panties and do what you can to clean them of your spunk for future use. It takes you a while, but you’re pretty sure you’ve got them mostly cleaned of your [pc.cumNoun]. <i>Mostly!</i>");
 	processTime(17+rand(4));
@@ -2679,7 +2713,15 @@ public function moderateExhibitionOmniFap():void
 		if(pc.cumQ() < 50) output("lightly splattering it with [pc.cumColor]");
 		else if(pc.cumQ() < 250) output("coating it in glistening [pc.cumColor]");
 		else if(pc.cumQ() < 1000) output("utterly coating it in glistening [pc.cumColor] as well as your [pc.chest] and chin.");
-		else output("utterly dousing it, your [pc.chest] and [pc.face] in gallons of glistening, glorious [pc.cumColor].");
+		else
+		{
+			output("utterly dousing it, your [pc.chest] and [pc.face] in gallons of glistening, glorious [pc.cumColor].");
+			applyCumSoaked(pc);
+			if(pc.cumQ() > 5000) applyCumSoaked(pc);
+			if(pc.cumQ() > 10000) applyCumSoaked(pc);
+			if(pc.cumQ() > 30000) applyCumSoaked(pc);
+			if(pc.cumQ() > 50000) applyCumSoaked(pc);
+		}
 		//pc.lactating:
 		if(pc.canMilkSquirt() && pc.isLactating()) output(" At the same time, [pc.milkVisc], [pc.milkColor] [pc.milkNoun] lewdly shoots from your [pc.nipples] and up in the air as you boob-gasm in front of everyone!");
 		output(" You can hear the ");

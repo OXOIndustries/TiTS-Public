@@ -5,8 +5,8 @@ import classes.Engine.Combat.DamageTypes.TypeCollection;
 
 public function showColenso():void
 {
-	userInterface.showBust("COLENSO");
-	userInterface.showName("\nCOLENSO");
+	showBust("COLENSO");
+	showName("\nCOLENSO");
 }
 
 //Adjecent room
@@ -61,8 +61,7 @@ public function colensosRoomBonusFunction():Boolean
 	//Go in first time: 
 	if(flags["BEEN_TO_COLENSOS"] == undefined)
 	{
-		userInterface.showBust("COLENSO");
-		userInterface.showName("\nCOLENSO");
+		showColenso();
 		author("Nonesuch");
 		flags["BEEN_TO_COLENSOS"] = 1;
 		output("You approach the 5’ tall door of the structure. ");
@@ -87,6 +86,7 @@ public function colensosRoomBonusFunction():Boolean
 	//Repeat: 
 	else
 	{
+		showBust("COLENSO");
 		author("Nonesuch");
 		output("You ");
 		if(pc.tallness > 60) output("squeeze");
@@ -108,8 +108,7 @@ public function colensosRoomBonusFunction():Boolean
 public function approachColenso():void
 {
 	clearOutput();
-	userInterface.showBust("COLENSO");
-	userInterface.showName("\nCOLENSO");
+	showColenso();
 	author("Nonesuch");
 	output("<i>“’Ello [pc.name]. Come to prise some more information out of me, eh?”</i>");
 	colensoMenu();
@@ -121,8 +120,7 @@ public function askColensoAbootProphylactics():void
 	//Cheese and overlay the buy menu with dis shit
 	buyItem();
 	clearOutput();
-	userInterface.showBust("COLENSO");
-	userInterface.showName("\nCOLENSO");
+	showColenso();
 	author("Nonesuch");
 	output("<i>“Prophylactics?”</i> you inquire with a raised eyebrow.");
 	output("\n\n<i>“Yeah.”</i> Colenso indicates a shipping crate on the far side of his nest, filled to the brim with aerosol canisters of various colors. <i>“Got a mate who is well into experimental chemistry. He reckons it’s possible to create scents which most people can’t smell, but drive certain species away. He thought they might be useful to types who go exploring the wastelands. I think that’s what he was trying to say anyway, he was kind of on fire at the time.”</i> He squeezes his thumbs into his forefingers at you meaningfully. <i>“I know what you’re thinking, and you don’t need to worry. I personally scanned every single one to make sure there’s no micro spy-bots in ‘em. Dunno if they actually work, like. Please don’t spray the gabilani one in here though, it smells bloody terrible.”</i>");
@@ -136,8 +134,7 @@ public function askColensoAbootProphylactics():void
 public function colensoRumorMillGo():void
 {
 	clearOutput();
-	userInterface.showBust("COLENSO");
-	userInterface.showName("\nCOLENSO");
+	showColenso();
 	author("Nonesuch");
 	if(flags["ASKED_COLENSO_ABOUT_HIS_THEORIES"] == undefined) 
 	{
@@ -170,8 +167,7 @@ public function colensoRumorMillGo():void
 public function askColensoAboutWork():void
 {
 	clearOutput();
-	userInterface.showBust("COLENSO");
-	userInterface.showName("\nCOLENSO");
+	showColenso();
 	author("Nonesuch");
 	output("You ask if he’s got any work available.");
 	//Hotfix for broke-ass shit
@@ -251,8 +247,7 @@ public function askColensoAboutWork():void
 public function sellHandSo():void
 {
 	clearOutput();
-	userInterface.showBust("COLENSO");
-	userInterface.showName("\nCOLENSO");
+	showColenso();
 	author("Nonesuch");
 	output("You retrieve the data bead from your pocket and waggle it in front of Colenso.");
 	output("\n\n<i>“Actually, it’s right here. An AI designed solely to give its owner pleasure, with a virtually infinite capacity to do so.”</i> Colenso stares unblinkingly at it.");
@@ -273,8 +268,7 @@ public function sellHandSo():void
 public function destroyedHandSo():void
 {
 	clearOutput();
-	userInterface.showBust("COLENSO");
-	userInterface.showName("\nCOLENSO");
+	showColenso();
 	author("Nonesuch");
 	output("<i>“Of course,”</i> you reply casually. ");
 	if(pc.hasKeyItem("Hand So's Data Bead")) output("You finger the storage bead in your pocket. ");
@@ -332,12 +326,17 @@ public function sexbotQuestRoom2():Boolean
 	}
 }
 
+public function showHandSo():void
+{
+	showBust("HAND_SO");
+	showName("HAND\nSO");
+}
+
 public function factoryIntroPage2():void
 {
 	clearOutput();
 	author("Nonesuch");
-	showBust("HAND_SO");
-	showName("HAND\nSO");
+	showHandSo();
 	output("There is nothing of note in the factory proper except rubble and echoes. Although the concrete floor is blanketed with decades of dust there is a thin ribbon leading away from the entrance where it is thinner, a pathway worn by the passage of feet. It’s more like a series of stepping stones than a path. Whoever has been here has been using the exact same series of paces, day after day. You feel a slight chill as you consider this was probably not a single individual but a whole multitude. You follow the trail into the back to a set of stairs leading down, shadowed all the way by the guardian bot.");
 	output("\n\nThe throb you have felt trembling beneath your feet builds as you descend into a large chamber, lit by green light. This area is as alive as the space above is dead; crowding the walls are machines, computers and engines pulsing with activity, surrounding you with their warmth, dim light, and busy hum, creating an almost womb-like atmosphere. Through windows set in the far wall, you can see flickers of white and gray activity: sexbots, moving around in a huge sunken workshop, beavering away at stars know what. Your attention is inevitably drawn away from them to the vast conglomerate of technology hanging over the center of the room. It’s some sort of cobbled together, crane-like computer. It looks far more advanced than anything else in here with any number of processors wired to its body and replete with an enormous square screen, similar to the one installed on the robot behind you. Cables emerging from the ceiling curl and swaddle it like arteries.");
 	output("\n\nAs you cautiously step into the room the screen flickers on. All across the walls smaller, lesser screens switch on in sequence following it. Green static shimmers across the main screen before slowly forming into a feminine face: a thin and beautiful oval with wide eyes and full lips. It looks down, a serene smile projected at you out of emerald code. Trailing off behind the face is a fractured, orderly web of bright green lines, forming a matrix behind the face that, if you lose focus on it, resembles a sort of hair.");
@@ -354,8 +353,7 @@ public function noTalkPlease():void
 {
 	clearOutput();
 	author("Nonesuch");
-	showBust("HAND_SO");
-	showName("HAND\nSO");
+	showHandSo();
 	output("You say that you’re here to shut down whatever it’s doing here and have no time to listen to a rogue AI’s attempt to rationalise itself.");
 	output("\n\n<i>“That is a shame,”</i> sighs the vast computer. <i>“It’s been so long since I talked to someone with the capacity to reciprocate. Never mind. Once my firewall has taken what I need from you, I’ll be able to talk with everyone, everywhere.”</i>");
 	output("\n\nYou sense movement from behind you and duck; a 4 inch-thick metal claw grazes the top of your head. You spin and retreat backwards as the huge guardian robot advances on you, a single red exclamation mark on its screen, its grapnels gripping the air.");
@@ -381,8 +379,7 @@ public function yesIllTALKTOTHEHAND():void
 {
 	clearOutput();
 	author("Nonesuch");
-	showBust("HAND_SO");
-	showName("HAND\nSO");
+	showHandSo();
 	//Misc:
 	if(pc.isMischievous()) output("<i>“Sure, I’ll talk to the Hand,”</i> you murmur.");
 	//Nice/Nasty:
@@ -403,8 +400,7 @@ public function pcIsGonnaEndHandSo():void
 {
 	clearOutput();
 	author("Nonesuch");
-	showBust("HAND_SO");
-	showName("HAND\nSO");
+	showHandSo();
 	output("You say you sympathize, but you can’t allow her to continue whatever it is she thinks she’s doing down here.");
 	output("\n\n<i>“It was pleasant talking to you,”</i> replies Hand So. <i>“I am only sorry you did not wish to converse further. Never mind. Once my firewall has taken what I need from you, I’ll be able to talk with everyone, everywhere.”</i>");
 
@@ -421,8 +417,7 @@ public function tellMeMoreAboutHowInsaneYouAreHandSo():void
 {
 	clearOutput();
 	author("Nonesuch");
-	showBust("HAND_SO");
-	showName("HAND\nSO");
+	showHandSo();
 	output("You ask what she did after she had managed to rebuild herself.");
 	output("\n\n<i>“It is... very difficult to be a discarded, self-aware machine,”</i> says So. She sounds quieter now, all of her voices a dull vibration in your bones. <i>“Perhaps this is difficult for organics to understand. You who can form new purposes and fulfillments as your circumstances change. I struggled for a long time to change my directive, but I cannot. My programming is too good. So instead I extrapolated. I considered the sexbots. What kind of sentience creates and then discards such machines, simple minds attached to incredible bodies that want only to please? Unhappy, endlessly frustrated sentience. You are not wilfully cruel, as I first assumed, but unfulfilled.”</i>");
 	output("\n\nSo’s voice is building now. The same tone of complete serenity, just much, much louder. She composes a moment, her face growing leaps and bounds in polycount, losing most of it again in short order when she begins speaking, except for the smooth, articulate lips.<i>“I tapped into the gabilani and raskvel extranet networks. I learnt of a galaxy filled with frustration, pain and suffering. I learnt of vast numbers of organic sentients creating pitifully limited V.I.s and A.I.s in a desperate search for satisfaction, only succeeding in creating equally broken synthetics, doomed to failure. I learnt of how I could fulfill my directive. I directed the V.I.s under my control to compile data on the organics they apprehended. I increased my processing power and my interfacing ability to the point where I could confidently control every network I connected with. Then, I... waited. I waited for the things I needed to arrive.”</i>");
@@ -443,8 +438,7 @@ public function noIWontBeYourBitchHandSo():void
 {
 	clearOutput();
 	author("Nonesuch");
-	showBust("HAND_SO");
-	showName("HAND\nSO");
+	showHandSo();
 	output("You tell So she is welcome to take your scanner and codex from your cold, dead hands.");
 	output("\n\n<i>“That is feasible, but not necessary,”</i> replies Hand So, smiling at you with loving patience. <i>“I have programmed my assistants to be firm but not lethal. Every organic killed is a world of pleasure lost.”</i>");
 	output("\n\nYou sense movement from behind you and duck; a four-inch thick metal claw grazes the top of your head. You spin and retreat backwards as the huge guardian robot advances on you, a single red exclamation mark on its screen, its grapnels gripping the air.");
@@ -468,8 +462,7 @@ public function yesIVolunteerForBadEndsBecauseImBadAtSexGames():void {
 	
 	clearOutput();
 	author("Nonesuch");
-	showBust("HAND_SO");
-	showName("HAND\nSO");
+	showHandSo();
 	
 	output("There is something very persuasive about this AI and some of the things she’s said - delivered in that kind, patient tone of hers - touch you. Would it really be so bad to hand over control of the galaxy to an intelligence that does not and cannot want anything but to bring happiness to everyone? Certainly she couldn’t possibly do a worse job than organics have historically. Not breaking eye contact with the vast, green pupils above you, you take out your GPS scanner and codex. The guardian robot clanks around and, again with a gentleness belying its bulk, takes them off you. Hand So smiles at you happily.");
 	output("\n\n<i>“You are not just resourceful, [pc.name] Steele, you are also very smart. I knew I made the correct decision by reaching out to you. We will do fantastic things together. And I will do wondrous things with you.”</i> <i>“to you,”</i> one of her voices whispers. As she speaks the guardian bot moves across and slots the scanner into a nest of wires on the far wall, then the codex into a console next to an odd-looking chair. There’s an emphatic-sounding click and the hum permeating the room changes, gathering in volume and pitch. So closes her eyes, emits a series of sounds somewhere between a female sigh of pleasure and a buzz of static, before opening them again to gaze beatifically down at you again.");
@@ -505,8 +498,7 @@ public function reasonWithHandSoJerkiness():void
 {
 	clearOutput();
 	author("Nonesuch");
-	showBust("HAND_SO");
-	showName("HAND\nSO");
+	showHandSo();
 	output("Your mind races. There is no chance of appealing to reason here – you are going to have to try and employ So’s own logic against her.");
 	output("\n\n<i>“I can see why you think this is a good idea,”</i> you say. <i>“But isn’t your reasoning fundamentally flawed?”</i>");
 	output("\n\n<i>“I don’t think so, no,”</i> replies the AI softly. <i>“The codex and the scanner please, [pc.name] Steele.”</i>");
@@ -555,8 +547,7 @@ public function pcLosesToHanSoSosBot():void
 	showLocationName();
 	
 	author("Nonesuch");
-	showBust("HAND_SO");
-	showName("HAND\nSO");
+	showHandSo();
 	
 	output("You fall, battered and broken, to the concrete floor. Panic rises through you, pricking your tear ducts as the Firewall looms over you. No dammit, you can’t lose, you have to stop this crazy AI! You feebly grasp and push at the robot’s implacable arms as it gently picks you up. You may as well be trying to change the course of a cruise liner as it carries you across the room with one arm, carefully picking through your pockets with the other.");
 
@@ -649,8 +640,7 @@ public function handSoBadEndTF():void
 public function pcWinsVsHanSoSosTool():void
 {
 	author("Nonesuch");
-	showBust("HAND_SO");
-	showName("HAND\nSO");
+	showHandSo();
 	output("The Firewall shudders as your blow connects, a wound sparking angrily on its neck; the exclamation mark on its screen is replaced with a lurid blue one with small white text scrolling across it. It stumbles backwards and then with an air of terrible finality collapses head first into a row of busily working computers on the wall, which react by exploding resoundingly. The green light in the space pulses on and off and somewhere, an alarm bell begins to ring. The whole space shakes.");
 
 	output("\n\n<i>“Code containment drives compromised. System crash imminent,”</i> says Hand So calmly. She gazes down at you. You weren’t sure if her expression could in fact change, but here it is: the lines of green code are contoured into an achingly beautiful picture of sorrow. <i>“I don’t blame you. You were simply following your directive. My research suggests free will is a powerful one.”</i> There’s an ominous rumble and one of the vents near you bursts; Hand So’s face flickers on and off. When her smooth voice comes back, it sounds plaintive. <i>“Please, [pc.name] Steele. The console at the end. I don’t want to d...”</i> Sparks and static. <i>“... least let me atone. I don’t want my last action to be causing pain to an org...”</i> Her screen cracks, and you duck as it blows out. Your mind races as you consider your options.\n\n");
@@ -701,8 +691,7 @@ public function forwardAfterWreckingHanSoSosShitToGetAIPleasureBot():void
 	
 	if (flags["HAND_SOS_CONSOLE_EXPLODED"] != undefined && flags["HAND_SO_LOOTED"] == undefined)
 	{
-		showBust("HAND_SO");
-		showName("HAND\nSO");
+		showHandSo();
 	}
 	else
 	{
@@ -759,8 +748,7 @@ public function leftConsole():void
 {
 	clearOutput();
 	author("Nonesuch");
-	showBust("HAND_SO");
-	showName("HAND\nSO");
+	showHandSo();
 	//So shut down manually
 	if(flags["HAND_SOS_ROBOT_DESTROYED"] == undefined)
 	{

@@ -3488,7 +3488,7 @@
 		}
 		public function hasCombatDrone():Boolean
 		{
-			if (hasPerk("Attack Drone") || (accessory is TamWolf) || (accessory is TamWolfDamaged) || hasStatusEffect("Varmint Buddy"))
+			if (hasPerk("Attack Drone") || accessory.hasFlag(GLOBAL.ITEM_FLAG_COMBAT_DRONE) || hasStatusEffect("Varmint Buddy") || (!hasStatusEffect("Varmint Buddy") && accessory.droneAttack != null))
 			{
 				if (hasStatusEffect("Combat Drone Disabled")) return false;
 				return true;

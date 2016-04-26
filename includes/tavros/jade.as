@@ -23,6 +23,12 @@ public function furEffectBonusFunction():Boolean {
 	
 	flags["NAV_DISABLED"] = undefined;
 	
+	if(flags["JADE_NIPPLE_TF_QUEUED"] == 1)
+	{
+		jadeUsesNippleMod();
+		return true;
+	}
+	
 	output("The sign declared this store to be “Fur Effect,” and you can see why. Your");
 	if (pc.isNaga()) output(" snake-like tail sliters through");
 	else if (pc.isGoo()) output(" gooey pseudopods squish into");
@@ -30,11 +36,8 @@ public function furEffectBonusFunction():Boolean {
 	else output(" [pc.feet] sink ankle-deep into");
 	output(" thick, pink shag. The plush, pink rug covers the entire floor of the shop, giving way to a fuzzy-looking maroon wall treatment. Even the light sources appear to be wispy, vase-bound feathers, emitting a steady rainbow glow. There are also dozens of pictures and holos of attractive looking furred beings in various poses. One showcases a slinky ferret-girl bending her entire body backwards into an 'o' in a display of supreme flexibility. Another is a floating, holographic cow-girl modelling a straining set of overalls. Behind it, there is a velvety countertop and hardlight projected register.");
 	
-	if(flags["JADE_NIPPLE_TF_QUEUED"] == 1)
-	{
-		jadeUsesNippleMod();
-		return true;
-	}
+	showJadeBust();
+	
 	//Don't know her name yet.
 	if(flags["KNOW_JADES_NAME"] == undefined) output("\n\nA pudgy-looking panda-girl is standing behind it, wearing nothing other than a snug green skirt and a smile. She waves reflexively, chirping, <i>\"Welcome to Fur Effect! Let me know if I can help you with anything.\"</i>");
 	//Met Jade
@@ -52,9 +55,13 @@ public function furEffectBonusFunction():Boolean {
 
 public function showJade(nude:Boolean = false):void 
 {
+	showJadeBust(nude);
+	showName("\nJADE");
+}
+public function showJadeBust(nude:Boolean = false):void 
+{
 	if(!nude) showBust("JADE");
 	else showBust("JADE_NUDE");
-	showName("\nJADE");
 }
 
 //NORMAL JADE

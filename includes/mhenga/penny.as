@@ -1886,7 +1886,7 @@ public function pennySexMenu(outputT:Boolean = true):void {
 	else addDisabledButton(7,"Bukkake","Bukkake","This requires Penny to be a futanari cum-slut and for you to have a penis.");
 	if (flags["FLAHNE_TALKED_ABOUT_CUMSLUTPENNY"] != undefined && flags["PENNY_IS_A_CUMSLUT"] != undefined) addButton(8, "Invite Flahne", pennyVsFlahneWhoWillOutslutWho,undefined,"Invite Flahne","Invite Flahne over for a threesome with Penny.");
 	else addDisabledButton(8, "Invite Flahne","Invite Flahne","This scene requires Penny to be a cum-slut and Flahne to have been told about it.");
-	if(penny.hasCock()) this.addButton(9,"Catch Anal",getAssFuckedByPenny,undefined,"Catch Anal","Get ass-fucked by Penny.");
+	if(penny.hasCock()) this.addButton(9,"Catch Anal",getAssFuckedByPenny,false,"Catch Anal","Get ass-fucked by Penny.");
 	else addDisabledButton(9,"Catch Anal","Catch Anal","Penny needs a dick to fuck you in the ass.");
 	this.addButton(14,"Back",approachGirlfriendPenny);
 }
@@ -1968,7 +1968,7 @@ public function faceFuckPenny():void {
 	this.clearMenu();
 	if(pc.hasCock()) this.addButton(0,"Fuck Her Butt",fuckPennyButtFromFraceFuckSceneNyahhhh,undefined,"Fuck Her Butt","Fuck Penny's ass.");
 	else addDisabledButton(0,"Fuck Her Butt","Fuck Her Butt","You need a dick to fuck Penny's ass.")
-	if(penny.hasCock()) this.addButton(1,"GetButtFucked",getAssFuckedByPenny,undefined,"Get Butt Fucked","Let Penny drill you in the ass.");
+	if(penny.hasCock()) this.addButton(1,"GetButtFucked",getAssFuckedByPenny,true,"Get Butt Fucked","Let Penny drill you in the ass.");
 	else addDisabledButton(1,"GetButtFucked","Get Butt Fucked","Penny needs to have a dick for this scene.")
 	this.addButton(2,"Nah, girl",nahhhhGurrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrllllllllllllllllllllllllllllllllllll,undefined,"Nah, girl","You're too tired for that right now.");
 }
@@ -1984,11 +1984,11 @@ public function nahhhhGurrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
 }
 
 //Get ass fucked (Penny gotta have the D, yo)
-public function getAssFuckedByPenny():void {
+public function getAssFuckedByPenny(fromFaceFuck:Boolean = false):void {
 	clearOutput();
 	showPenny(true);
 	author("Savin");
-	if(pc.hasCock())
+	if(fromFaceFuck)
 	{
 		output("You grin ");
 		if(pc.tallness <= 55) output("up ");
