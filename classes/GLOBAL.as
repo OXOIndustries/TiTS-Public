@@ -190,6 +190,7 @@
 		public static const TYPE_RHINO:int									= 62;
 		public static const TYPE_NARWHAL:int								= 63;
 		public static const TYPE_HRAD:int									= 64;
+		public static const TYPE_GRYVAIN:int								= 65;
 		
 		public static const TYPE_NAMES:Array = [
 			"Human",
@@ -257,6 +258,7 @@
 			"Rhino",
 			"Narwhal",
 			"Hradian",
+			"Gryvain",
 		];
 		
 		public static const VALID_FACE_TYPES:Array = [
@@ -304,6 +306,7 @@
 			TYPE_DEMONIC,
 			TYPE_FROG,
 			TYPE_NYREA,
+			TYPE_GRYVAIN
 		];
 		
 		public static const VALID_TONGUE_TYPES:Array = [
@@ -358,6 +361,7 @@
 			TYPE_SYLVAN,
 			TYPE_GABILANI,
 			TYPE_FROG,
+			TYPE_GRYVAIN
 		];
 		
 		public static const VALID_ARM_TYPES:Array = [
@@ -420,6 +424,7 @@
 			TYPE_MYR,
 			TYPE_FROG,
 			TYPE_NYREA,
+			TYPE_GRYVAIN
 		];
 		
 		public static const VALID_LEG_FLAGS:Array = [
@@ -458,6 +463,7 @@
 			TYPE_GOAT,
 			TYPE_RHINO,
 			TYPE_NARWHAL,
+			TYPE_GRYVAIN
 		];
 		
 		public static const VALID_WING_TYPES:Array = [
@@ -477,6 +483,7 @@
 			TYPE_DOVETWO,
 			TYPE_DOVEFOUR,
 			TYPE_DOVESIX,
+			TYPE_GRYVAIN,
 		];
 		
 		// None is for specifying no tail, which would normally pull the HUMAN name.
@@ -513,6 +520,7 @@
 			TYPE_OVIR,
 			TYPE_MYR,
 			TYPE_FROG,
+			TYPE_GRYVAIN
 		];
 		
 		public static const VALID_TAIL_FLAGS:Array = [
@@ -559,6 +567,7 @@
 			TYPE_GOOEY,
 			TYPE_SIREN,
 			TYPE_COCKVINE,
+			TYPE_GRYVAIN,
 		];
 		
 		//SKINTYPES
@@ -806,6 +815,7 @@
 			TYPE_INHUMAN,
 			TYPE_GABILANI,
 			TYPE_HRAD,
+			TYPE_GRYVAIN
 		];
 		
 		public static const VALID_COCK_FLAGS:Array = [
@@ -845,6 +855,7 @@
 			TYPE_SIREN,
 			TYPE_GABILANI,
 			TYPE_NYREA,
+			TYPE_GRYVAIN
 		];
 		
 		// As far as I can tell, at time of writing there are no flags currently used/assigned to vaginas
