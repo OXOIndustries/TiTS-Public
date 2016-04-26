@@ -360,7 +360,7 @@ public function knockToEnterSemithsApartment():void
 }
 public function enterSemithsApartment():void
 {
-	showSemith();
+	//showSemith();
 	
 	move("RESIDENTIAL DECK SEMITHS APARTMENT");
 	
@@ -405,7 +405,7 @@ public function playSemithsApartmentScene():Boolean
 }
 
 public function showSemithsApartment():void {
-	showSemith();
+	//showSemith();
 	
 	flags["SEMITH_HAS_PC_IN_APARTMENT"] = true;
 	

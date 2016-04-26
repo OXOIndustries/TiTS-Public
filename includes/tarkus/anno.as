@@ -111,6 +111,8 @@ public function steeleTechBonusFunction():Boolean
 	//Inside Descriptor (Has met Anno)
 	else
 	{
+		showBust("ANNO");
+		
 		output("The inside of the Steele Tech outpost is a cluttered mess of rusty alien technology stacked ten feet high. Pillars of engine parts and disassembled devices you can't identify reach to the ceiling, making the shop seem more like a storage room than a storefront. Anno is sitting behind the counter, working on some paperwork. She smiles slightly at you. <i>\"Hey, boss. What's up?\"</i>");
 		//[Anno]
 		addButton(0,"Anno",repeatAnnoApproach);

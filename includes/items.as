@@ -1053,6 +1053,15 @@ public function replaceItemGo(args:Array):void
 		this.addButton(0,"Next",lootScreen);
 }
 
+public function quickLoot(... args):void
+{
+	itemScreen = mainGameMenu;
+	lootScreen = mainGameMenu;
+	useItemFunction = mainGameMenu;
+	
+	itemCollect(args);
+}
+
 public function hasShipStorage():Boolean
 {
 	if (flags["SHIP_STORAGE_WARDROBE"] == undefined) flags["SHIP_STORAGE_WARDROBE"] = 10;
