@@ -194,11 +194,12 @@
 			// LERRIS_<COW_>_0
 			
 			var str:String = "LERRIS_";
-			
-			if (horns == 2 && hornType == GLOBAL.TYPE_BOVINE) str += "COW_";
+			//FEN NOTE: Replaced with a simple override since we only have 1 bovine lerris bust.
+			//if (horns == 2 && hornType == GLOBAL.TYPE_BOVINE) str += "COW_";
+			if (horns == 2 && hornType == GLOBAL.TYPE_BOVINE) return "LERRIS_COW";
 			
 			if (biggestTitSize() <= 6) str += "0";
-			if (biggestTitSize() <= 15) str += "1";
+			else if (biggestTitSize() <= 15) str += "1";
 			else str += "2";
 			
 			return str;
