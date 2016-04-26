@@ -679,12 +679,14 @@
 		{
 			this.showModule("LevelUpStats");
 			(_currentModule as LevelUpStatsModule).setCreatureData(character);
+			setLocation("", "LEVEL UP", "STATS");
 		}
 		
 		public function showLevelUpPerks(character:PlayerCharacter):void
 		{
 			this.showModule("LevelUpPerks");
 			(_currentModule as LevelUpPerksModule).setCreatureData(character);
+			setLocation("", "LEVEL UP", "PERKS");
 		}
 		
 		// Once this is all working, a lot of this should be refactored so that code external to GUI

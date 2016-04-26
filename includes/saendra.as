@@ -25,6 +25,19 @@ public function saendraPhoenixMailGet():void
 	goMailGet("saendrathanks", timeStamp);
 }
 
+//Drop this shit in every Phoenix room cause Savin is a jerk.
+public function phoenixLocationSetter():Boolean
+{
+	if(flags["FALL OF THE PHOENIX STATUS"] == 1)
+	{
+		rooms[currentLocation].planet = getPlanetName();
+		rooms[currentLocation].system = "SYSTEM: " + getSystemName();
+	}
+	//Reset soz it updates automagically.
+	setLocation(this.rooms[this.currentLocation].roomName,this.rooms[this.currentLocation].planet,this.rooms[this.currentLocation].system);
+	return false;
+}
+
 public function saendraBarAddendum(slot:int = 7):Boolean
 {
 	if (saendraAtBar())

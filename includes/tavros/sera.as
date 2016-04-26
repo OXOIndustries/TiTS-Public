@@ -1,9 +1,10 @@
 ﻿//Greeting
 //Store Description
 
-public function showSera():void
+public function showSera(nude:Boolean = false):void
 {
-	showBust("SERA");
+	if(!nude) showBust("SERA");
+	else showBust("SERA_NUDE");
 	showName("\nSERA");
 }
 
@@ -28,9 +29,14 @@ public function seraBonusFunction():Boolean
 		}
 		else if(flags["SERA_TRIPLE_X_RATED"] != undefined && flags["SERA_TRIPLE_X_RATED"] > 0)
 		{
+			showBust("SERA");
 			output("\n\nLounging over her counter, Sera’s scowl transforms into a wide, gleeful leer when you come in. She casually droops her thick cock across the black surface, brushes a nipple, and waits.");
 		}
-		else output("\n\nSera is slouching at her countertop, looking rather bored. The mess she made when you first met her has since been cleaned up. Her bright eyes flick your way, but she doesn't say a word just yet, waiting for you to approach her.");
+		else
+		{
+			showBust("SERA");
+			output("\n\nSera is slouching at her countertop, looking rather bored. The mess she made when you first met her has since been cleaned up. Her bright eyes flick your way, but she doesn't say a word just yet, waiting for you to approach her.");
+		}
 		addButton(0, "Sera", approachSera);
 		
 		if (saendraAtDarkChrysalis())
