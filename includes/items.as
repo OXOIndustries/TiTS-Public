@@ -669,6 +669,7 @@ public function inventoryDisplay():void
 public function generalInventoryMenu():void
 {
 	clearOutput();
+	showName("\nINVENTORY");
 	var x:int = 0;
 	itemScreen = inventory;
 	useItemFunction = inventory;
@@ -709,6 +710,7 @@ public function generalInventoryMenu():void
 public function combatInventoryMenu():void
 {
 	clearOutput();
+	showName("\nINVENTORY");
 	clearMenu();
 	itemScreen = inventory;
 	useItemFunction = inventory;
