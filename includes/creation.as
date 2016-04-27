@@ -917,11 +917,14 @@ public function applyJunkSize(arg:int = 0):void {
 
 public function chooseGryvainBalls():void
 {
+	pc.balls = 2;
+	pc.ballSizeRaw = 5;
+	
 	clearOutput();
 	creationHeader("SELECT\nTESTES");
 	author("Savin");
 
-	output("\n\n<i>“Speaking of sex characteristics, half-gryvain hermaphrodites have some variance in where they produce their seed. I’ve seen both internal and external testes, so the choice is up to you.”</i>");
+	output("<i>“Speaking of sex characteristics, half-gryvain hermaphrodites have some variance in where they produce their seed. I’ve seen both internal and external testes, so the choice is up to you.”</i>");
 	//Give choice between [Internal Testes] or [Balls]
 
 	clearMenu();
