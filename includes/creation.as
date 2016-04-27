@@ -341,6 +341,7 @@ public function setStartingSex(sex:int = 1):void {
 			pc.shiftCock(0, GLOBAL.TYPE_GRYVAIN);
 			pc.cocks[0].addFlag(GLOBAL.FLAG_KNOTTED);
 			pc.cocks[0].addFlag(GLOBAL.FLAG_RIBBED);
+			pc.ballSizeRaw = 5;
 		}
 		//MALE!
 		if(sex == 1)
@@ -931,6 +932,7 @@ public function chooseGryvainBalls():void
 
 public function applyGryvainBalls(externalBalls:Boolean):void
 {
+	/*
 	if (externalBalls)
 	{
 		pc.balls = 2;
@@ -941,6 +943,8 @@ public function applyGryvainBalls(externalBalls:Boolean):void
 		pc.balls = 0;
 		pc.ballSizeRaw = 0;
 	}
+	*/
+	if (!externalBalls) pc.makeBallsInternal();
 
 	if (pc.hasVagina()) chooseYourVagina();
 	else chooseSexualGift();

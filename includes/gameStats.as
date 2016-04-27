@@ -213,7 +213,12 @@ public function statisticsScreen(showID:String = "All"):void
 			}
 		}
 		output2(" " + GLOBAL.TYPE_NAMES[pc.legType]);
-		if(pc.wingType != 0) output2("\n<b>* Back: </b>" + GLOBAL.TYPE_NAMES[pc.wingType] + " " + StringUtil.toDisplayCase(pc.wingsDescript(true)));
+		if(pc.wingType != 0)
+		{
+			output2("\n<b>* Back:</b>");
+			if(pc.wingCount > 0) output2(" " + pc.wingCount + ",");
+			output2(" " + GLOBAL.TYPE_NAMES[pc.wingType] + " " + StringUtil.toDisplayCase(pc.wingsDescript(true)));
+		}
 		if(pc.tailCount > 0)
 		{
 			if(pc.tailCount == 1) output2("\n<b>* Tail:</b>");

@@ -361,7 +361,7 @@
 						if(pc.wingType == GLOBAL.TYPE_SHARK) kGAMECLASS.output("\n\nYour back feels uncomfortable, like something is stabbing you between your shoulder blades. You look behind you to see your [pc.wing] is being drawn into your back, soon vanishing entirely. <b>You no longer have a [pc.wing]</b>!");
 						else kGAMECLASS.output("\n\nYour back feels uncomfortable, like you’re molting. You look behind you to see your [pc.wings] being drawn into your back, soon vanishing entirely. <b>You no longer have wings</b>!");
 						changes++;
-						pc.wingType = 0;
+						pc.removeWings();
 					}
 					else kGAMECLASS.output("\n\n" + pc.wingTypeLockedMessage());
 				}

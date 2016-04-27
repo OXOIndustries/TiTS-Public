@@ -114,7 +114,7 @@
 						{
 							output("\n\nYour [pc.wings] tingle before falling apart and crumbling into dust. <b>You are back to being wingless.</b>");
 							
-							target.wingType = 0;
+							target.removeWings();
 							changes++;
 						}
 						else output("\n\n" + target.wingTypeLockedMessage());
