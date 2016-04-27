@@ -341,6 +341,7 @@ public function setStartingSex(sex:int = 1):void {
 			pc.shiftCock(0, GLOBAL.TYPE_GRYVAIN);
 			pc.cocks[0].addFlag(GLOBAL.FLAG_KNOTTED);
 			pc.cocks[0].addFlag(GLOBAL.FLAG_RIBBED);
+			pc.ballSizeRaw = 5;
 		}
 		//MALE!
 		if(sex == 1)
@@ -603,8 +604,8 @@ public function chooseGryvainColor():void
 	output("<i>“Next up is coloration,”</i> the doctor says, tapping on a holographic screen. <i>“Gryvain share a single coloration across much of their bodies: the scales on their limbs, their hair color... more intimate areas. What color were you thinking of?”</i>");
 
 	clearMenu();
-	addButton(0, "D. Blue", applyGryvainColor, "dark blue");
-	addButton(1, "D. Green", applyGryvainColor, "dark green");
+	addButton(0, "DarkBlue", applyGryvainColor, "dark blue");
+	addButton(1, "DarkGreen", applyGryvainColor, "dark green");
 	addButton(2, "Black", applyGryvainColor, "black");
 	
 	if (pc.short == "Geddy") addButton(3, "Red", applyGryvainColor, "red"); // ;D
@@ -916,11 +917,14 @@ public function applyJunkSize(arg:int = 0):void {
 
 public function chooseGryvainBalls():void
 {
+	pc.balls = 2;
+	pc.ballSizeRaw = 5;
+	
 	clearOutput();
 	creationHeader("SELECT\nTESTES");
 	author("Savin");
 
-	output("\n\n<i>“Speaking of sex characteristics, half-gryvain hermaphrodites have some variance in where they produce their seed. I’ve seen both internal and external testes, so the choice is up to you.”</i>");
+	output("<i>“Speaking of sex characteristics, half-gryvain hermaphrodites have some variance in where they produce their seed. I’ve seen both internal and external testes, so the choice is up to you.”</i>");
 	//Give choice between [Internal Testes] or [Balls]
 
 	clearMenu();
@@ -931,6 +935,7 @@ public function chooseGryvainBalls():void
 
 public function applyGryvainBalls(externalBalls:Boolean):void
 {
+	/*
 	if (externalBalls)
 	{
 		pc.balls = 2;
@@ -941,6 +946,8 @@ public function applyGryvainBalls(externalBalls:Boolean):void
 		pc.balls = 0;
 		pc.ballSizeRaw = 0;
 	}
+	*/
+	if (!externalBalls) pc.makeBallsInternal();
 
 	if (pc.hasVagina()) chooseYourVagina();
 	else chooseSexualGift();

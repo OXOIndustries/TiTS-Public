@@ -686,7 +686,8 @@
 		public function wingTypeLockedMessage():String
 		{
 			if(wingType == 0) return "There is a tickling sensation around and between your shoulder blades, but nothing changes.";
-			if(wingType == GLOBAL.TYPE_SHARK) return "Your [pc.wing] radiates with warmth but nothing about it changes.";
+			if(wingCount == 1) return "Your [pc.wing] radiates with warmth but nothing about it changes.";
+			if(wingType == GLOBAL.TYPE_SHARK) return "Your [pc.wings] radiate with warmth but nothing about them changes.";
 			return "Your [pc.wings] flutter but do not change.";
 		}
 
@@ -4959,7 +4960,7 @@
 		}
 		public function wingsDescript(nounOnly:Boolean = false):String
 		{
-			if(wingType == GLOBAL.TYPE_SHARK) return wingDescript(nounOnly);
+			if(wingCount == 1) return wingDescript(nounOnly);
 			return plural(wingDescript(nounOnly));
 		}
 		public function armsDescript(forceAdjective: Boolean = false):String {
@@ -8095,6 +8096,16 @@
 				if (wType == 0) return true;
 			}
 			return false;
+		}
+		public function removeWings():void
+		{
+			wingType = 0;
+			wingCount = 0;
+		}
+		public function shiftWings(wingShape:Number = 0, wingNum:Number = 0):void
+		{
+			wingType = wingShape;
+			wingCount = wingNum;
 		}
 		//check for vagoo
 		public function hasVagina(hole: int = 0): Boolean {

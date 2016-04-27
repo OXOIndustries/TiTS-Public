@@ -405,7 +405,7 @@ package classes.Items.Transformatives
 						if(target.armor.shortName != "") kGAMECLASS.output(" and pull back your [pc.armor.longName]");
 						kGAMECLASS.output(" to take a look; <b>there are small, transparent wings pressed against your back</b>. They're too small to allow you to fly, but you're definitely getting more myr-like.");
 						if(kGAMECLASS.silly) kGAMECLASS.output("\n\nAll of a sudden, your codex beeps and a jingle rings out: <i>“Red Pill® Gives You Wings!”</i>")
-						target.wingType = GLOBAL.TYPE_MYR;
+						target.shiftWings(GLOBAL.TYPE_MYR, 2);
 					}
 					//TF other wings!
 					else {

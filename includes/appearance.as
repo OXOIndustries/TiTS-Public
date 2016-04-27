@@ -225,7 +225,7 @@ public function appearance(forTarget:Creature):void
 			else output2(" Strangely enough, your face is also covered with " + target.skin(true,true) + ".");
 		}
 		// Special face additions
-		if(target.hasStatusEffect("Naoki Stripe") && pc.skinTone != "purple") output2(" A distinctive purple stripe runs across the bridge of your nose.");
+		if(target.hasStatusEffect("Naoki Stripe") && target.skinTone != "purple") output2(" A distinctive purple stripe runs across the bridge of your nose.");
 		//M/F stuff!
 		output2(" Overall, your visage has " + target.faceDesc() + ".");
 		//Eyes
@@ -584,26 +584,69 @@ public function appearance(forTarget:Creature):void
 		else if(target.skinType == GLOBAL.SKIN_TYPE_CHITIN) output2(", covered in a layer of " + target.skinFurScales(true, true));
 		else if(target.skinType == GLOBAL.SKIN_TYPE_GOO) output2(", all of them glittering, semi-transparent goo");
 		if(target.wingType != GLOBAL.TYPE_HUMAN) {
-			output2(", and ");
+			output2(", and");
 			//WINGS!
-			if(target.wingType == GLOBAL.TYPE_SMALLBEE || target.wingType == GLOBAL.TYPE_MYR) output2("a pair of insect-like wings sprout from your back, too small to allow you to fly. They shimmer beautifully in the light.");
-			else if(target.wingType == GLOBAL.TYPE_BEE) output2("a pair of large, insectile wings sprout from your back, reflecting the light through their clear membranes beautifully. They’ll bear your weight if you choose to fly.");
-			else if(target.wingType == GLOBAL.TYPE_SMALLDEMONIC) output2("a pair of tiny bat-like demon-wings sprout from your back, flapping cutely, otherwise of little use.");
-			else if(target.wingType == GLOBAL.TYPE_DEMONIC) output2("a pair of large bat-like demon-wings fold behind your shoulders. With a muscle-twitch, you can extend them, and use them to soar gracefully through the air.");
-			else if(target.wingType == GLOBAL.TYPE_SHARK) output2("a large shark-like fin has sprouted between your shoulder blades. With it you have far more control over swimming underwater.");
-			else if(target.wingType == GLOBAL.TYPE_AVIAN) output2("a pair of large, feathery wings sprout from your back. Though you usually keep the " + target.hairColor + "-colored wings folded close, they can unfurl to allow you to soar as gracefully as a bird.");
-			else if(target.wingType == GLOBAL.TYPE_SMALLDRACONIC) output2("small, vestigial wings sprout from your shoulders. They might look like bat’s wings, but the membranes are covered in fine, delicate scales.");
-			else if(target.wingType == GLOBAL.TYPE_DRACONIC) output2("magnificent "+ target.scaleColor + " wings sprout from your shoulders. When unfurled they stretch further than your arm span, and a single beat of them is all you need to set out toward the sky. They look a bit like bat’s wings, but the membranes are covered in fine, delicate scales and a wicked talon juts from the end of each bone.");
-			else if(target.wingType == GLOBAL.TYPE_DRAGONFLY) output2("giant dragonfly wings hang from your shoulders. At a whim, you could twist them into a whirring rhythm fast enough to lift you off the ground and allow you to fly.");
-			else if(target.wingType == GLOBAL.TYPE_SYLVAN) output2("a quartet of blue gossamer wings sprout from your back, displaying a prismatic sheen when they flap. Despite their delicate appearance they have no problem carrying you aloft, and can fold up safely against your back for protection.");
-			else if(target.wingType == GLOBAL.TYPE_DARK_SYLVAN) output2("a quartet of gossamer wings sprout from your back, glittering black with a pattern that makes them look as though they’re coated in wisps of shadow when they flap. Despite their delicate appearance they have no problem carrying you aloft, and can fold up safely against your back for protection.");
-			else if(target.wingType == GLOBAL.TYPE_DOVETWO) output2("a pair of [pc.furColor] wings adorn your back, feathered like a dove’s and big enough to be worn like a cloak when folded over your body. They’re strong enough to glide with, but nice and soft to the touch.");
-			else if(target.wingType == GLOBAL.TYPE_DOVEFOUR) output2("four wings sprout from your back, each covered in wonderfully soft [pc.furColor] feathers and big enough to be worn like a robe when all four are folded over your body. They’re arranged so they don’t get in each other’s way when spread, thus you can still glide with them.");
-			else if (target.wingType == GLOBAL.TYPE_DOVESIX) output2("six wings sprout from your back, each covered in wonderfully soft [pc.furColor] feathers and big enough to be worn like a luxurious ceremonial robe when all six are folded over your body, which you often find yourself doing to help with getting through tight spaces. Despite their sheer bulk, you can still glide with them.");
+			if(target.wingType == GLOBAL.TYPE_SMALLBEE || target.wingType == GLOBAL.TYPE_MYR)
+			{
+				if (target.wingCount == 2) output2(" a pair of");
+				else if (target.wingCount == 4) output2(" a quartet of");
+				else if (target.wingCount > 1) output2(" " + num2Text(int(target.wingCount)));
+				output2(" insect-like wings sprout from your back, too small to allow you to fly. They shimmer beautifully in the light.");
+			}
+			else if(target.wingType == GLOBAL.TYPE_BEE)
+			{
+				if (target.wingCount == 2) output2(" a pair of");
+				else if (target.wingCount == 4) output2(" a quartet of");
+				else if (target.wingCount > 1) output2(" " + num2Text(int(target.wingCount)));
+				output2(" large, insectile wings sprout from your back, reflecting the light through their clear membranes beautifully. They’ll bear your weight if you choose to fly.");
+			}
+			else if(target.wingType == GLOBAL.TYPE_SMALLDEMONIC)
+			{
+				if (target.wingCount == 2) output2(" a pair of");
+				else if (target.wingCount == 4) output2(" a quartet of");
+				else if (target.wingCount > 1) output2(" " + num2Text(int(target.wingCount)));
+				output2(" tiny bat-like demon-wings sprout from your back, flapping cutely, otherwise of little use.");
+			}
+			else if(target.wingType == GLOBAL.TYPE_DEMONIC)
+			{
+				if (target.wingCount == 2) output2(" a pair of");
+				else if (target.wingCount == 4) output2(" a quartet of");
+				else if (target.wingCount > 1) output2(" " + num2Text(int(target.wingCount)));
+				output2(" large bat-like demon-wings fold behind your shoulders. With a muscle-twitch, you can extend them, and use them to soar gracefully through the air.");
+			}
+			else if(target.wingType == GLOBAL.TYPE_SHARK) output2(" a large shark-like fin has sprouted between your shoulder blades. With it you have far more control over swimming underwater.");
+			else if(target.wingType == GLOBAL.TYPE_AVIAN)
+			{
+				if (target.wingCount == 2) output2(" a pair of");
+				else if (target.wingCount == 4) output2(" a quartet of");
+				else if (target.wingCount > 1) output2(" " + num2Text(int(target.wingCount)));
+				output2(" large, feathery wings sprout from your back. Though you usually keep the " + target.furColor + "-colored wings folded close, they can unfurl to allow you to soar as gracefully as a bird.");
+			}
+			else if(target.wingType == GLOBAL.TYPE_SMALLDRACONIC) output2(" small, vestigial wings sprout from your shoulders. They might look like bat’s wings, but the membranes are covered in fine, delicate scales.");
+			else if(target.wingType == GLOBAL.TYPE_DRACONIC) output2(" magnificent "+ target.scaleColor + " wings sprout from your shoulders. When unfurled they stretch further than your arm span, and a single beat of them is all you need to set out toward the sky. They look a bit like bat’s wings, but the membranes are covered in fine, delicate scales and a wicked talon juts from the end of each bone.");
+			else if(target.wingType == GLOBAL.TYPE_DRAGONFLY) output2(" giant dragonfly wings hang from your shoulders. At a whim, you could twist them into a whirring rhythm fast enough to lift you off the ground and allow you to fly.");
+			else if(target.wingType == GLOBAL.TYPE_SYLVAN)
+			{
+				if (target.wingCount == 2) output2(" a pair of");
+				else if (target.wingCount == 4) output2(" a quartet of");
+				else if (target.wingCount > 1) output2(" " + num2Text(int(target.wingCount)));
+				output2(" blue gossamer wings sprout from your back, displaying a prismatic sheen when they flap. Despite their delicate appearance they have no problem carrying you aloft, and can fold up safely against your back for protection.");
+			}
+			else if(target.wingType == GLOBAL.TYPE_DARK_SYLVAN)
+			{
+				if (target.wingCount == 2) output2(" a pair of");
+				else if (target.wingCount == 4) output2(" a quartet of");
+				else if (target.wingCount > 1) output2(" " + num2Text(int(target.wingCount)));
+				output2(" gossamer wings sprout from your back, glittering black with a pattern that makes them look as though they’re coated in wisps of shadow when they flap. Despite their delicate appearance they have no problem carrying you aloft, and can fold up safely against your back for protection.");
+			}
+			else if(target.wingType == GLOBAL.TYPE_DOVETWO) output2(" a pair of " + target.furColor + " wings adorn your back, feathered like a dove’s and big enough to be worn like a cloak when folded over your body. They’re strong enough to glide with, but nice and soft to the touch.");
+			else if(target.wingType == GLOBAL.TYPE_DOVEFOUR) output2(" four wings sprout from your back, each covered in wonderfully soft " + target.furColor + " feathers and big enough to be worn like a robe when all four are folded over your body. They’re arranged so they don’t get in each other’s way when spread, thus you can still glide with them.");
+			else if (target.wingType == GLOBAL.TYPE_DOVESIX) output2(" six wings sprout from your back, each covered in wonderfully soft " + target.furColor + " feathers and big enough to be worn like a luxurious ceremonial robe when all six are folded over your body, which you often find yourself doing to help with getting through tight spaces. Despite their sheer bulk, you can still glide with them.");
 			else if (target.wingType == GLOBAL.TYPE_GRYVAIN)
 			{
-				if (target.wingCount == 2) output2("a pair of");
-				else if (target.wingCount == 4) output2("a quartet of");
+				if (target.wingCount == 2) output2(" a pair of");
+				else if (target.wingCount == 4) output2(" a quartet of");
+				else if (target.wingCount > 1) output2(" " + num2Text(int(target.wingCount)));
 				output2(" magnificent wings sprout from your shoulders. When unfurled they stretch further than your arm span, and a single beat of them is all you need to set out toward the sky. They look a bit like bat’s wings, but the membranes are covered in fine, delicate scales and a wicked talon juts from the end of each bone.");
 			}
 		}

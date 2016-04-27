@@ -225,7 +225,7 @@
 			{
 				output("\n\nYour [pc.wings] feel strange, and you look behind you to see them melting into a new, delicate-looking form. By the time they finish transforming they’ve become a quartet of light blue gossamer wings, together forming a set of radiant butterfly-like wings. <b>You now have fairy wings!</b>");
 			}
-			pc.wingType = GLOBAL.TYPE_SYLVAN;
+			pc.shiftWings(GLOBAL.TYPE_SYLVAN, 4);
 		}
 		public function sylvanolShadowWingGrow(pc:Creature):void
 		{
@@ -238,7 +238,7 @@
 			{
 				output("\n\nYour [pc.wings] feel strange, and you look behind you to see them melting into a new, delicate-looking form. By the time they finish transforming they’ve become a quartet of glittering black gossamer wings, together forming a set of butterfly-like wings coated in what looks like wisps of shadow. <b>You now have shadowy fairy wings!</b>");
 			}
-			pc.wingType = GLOBAL.TYPE_DARK_SYLVAN;
+			pc.shiftWings(GLOBAL.TYPE_DARK_SYLVAN, 4);
 		}
 		public function sylvanolVanaeMarkings(args:Array):void
 		{
