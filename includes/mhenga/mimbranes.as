@@ -803,6 +803,9 @@ public function removeMimbranes():void
 			pc.removeStatusEffect(mimbraneEffects[i]);
 		}
 	}
+	flags["PLAYER_MIMBRANE_SWEAT_ENABLED"] = undefined;
+	flags["PLAYER_MIMBRANE_SPIT_ENABLED"] = undefined;
+	flags["MIMBRANE_FACE_APPEARANCE"] = undefined;
 }
 
 public function mimbranesIncreaseDaysSinceFed():void

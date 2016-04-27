@@ -4224,7 +4224,7 @@
 			var facemim: String = "";
 			
 			//Player character check--not sure if NPCs can get the Mims since the flag is probably global...
-			if (this is PlayerCharacter)
+			if (this is PlayerCharacter && hasStatusEffect("Mimbrane Face"))
 			{
 				//Birthmark
 				if (kGAMECLASS.flags["MIMBRANE_FACE_APPEARANCE"] == 1) facemim = " adorned with beauty marks just above them";
