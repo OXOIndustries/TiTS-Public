@@ -445,7 +445,7 @@ package classes.Items.Transformatives
 					{
 						output("What feels like two sheets of your skin suddenly slough off your upper back, holding on only at two small joinings near your spine. After a few nervous moments of exploration with your hands you discern that what’s actually happened is you’ve grown two small bat wings. You can move them with twitches of your shoulders, but they aren’t anywhere near strong enough to support you.");
 						
-						target.wingType = GLOBAL.TYPE_SMALLDEMONIC;
+						target.shiftWings(GLOBAL.TYPE_SMALLDEMONIC, 2);
 					}
 					else output(target.wingTypeLockedMessage());
 				}

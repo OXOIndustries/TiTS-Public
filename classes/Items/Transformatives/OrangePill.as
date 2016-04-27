@@ -430,7 +430,7 @@ package classes.Items.Transformatives
 					//TF other wings!
 					else {
 						kGAMECLASS.output("\n\nA cramp ruffles your [pc.wings], making them flutter wildly as they contort and twist. You can feel them changing as they flail around, thinning, shrinking, and warping with each gasp of air you drag into your lungs. A few seconds later, your body calms, and you're able to look behind you. <b>You've grown small, transparent, myr-like wings!</b>");
-						target.shiftWings(GLOBAL.TYPE_MYR, 2);
+						target.wingType = GLOBAL.TYPE_MYR;
 					}
 					changes++;
 				}
