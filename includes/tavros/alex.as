@@ -594,6 +594,7 @@ public function catchVaginalFromAlex():void {
 	//if medium:
 	else if(pc.vaginalCapacity(x) <= 50) 
 	{
+		if(!isVirgin && pc.vaginalCapacity(x) >= 25) output("\n\nAlex’s isn’t exactly the biggest dick you’ve taken in your adventures, but he’s big enough to make you feel wonderfully filled, pressing against your walls in all the right ways");
 		else output("\n\nAlex’s isn’t the biggest dick you’ve seen thanks to the extranet, but he’s big enough to make you feel wonderfully filled, pressing against your walls in all the right ways");
 		//if herm:
 		if(pc.hasCock())
@@ -615,6 +616,7 @@ public function catchVaginalFromAlex():void {
 	//if gaped:
 	else 
 	{
+		if(!isVirgin && pc.vaginalCapacity(x) >= 25) output("\n\nYou’ve seen some big cocks in your adventures, and in all honesty, Alex’s run of the mill, unenhanced human penis doesn’t really measure up. That doesn’t stop you from trying.");
 		else output("\n\nYou’re built for bigger cocks than his, and in all honesty, Alex’s run of the mill, unenhanced human penis doesn’t really measure up. That doesn’t stop you from trying.")
 
 		output(" Rolling your hips, you try to find a position where at least the head of his cock rubs against you and Alex, sensing your frustration and probably working through a bit of his own, tries to match you. Eventually the two of you settle on having you lie almost on top of him, supporting yourself on your elbows");
