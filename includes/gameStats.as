@@ -2351,6 +2351,13 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["ASKED_AFTER_THE_GIRLS"] != undefined && (hours == 18 || hours == 19 || hours == 21 || hours == 22 || hours == 24 || hours == 1 || hours == 3 || hours == 4)) output2(", Currently performing");
 					if(flags["OVIR_TEASED"] != undefined) output2("\n<b>* " + bethsOvirGirl + ", Times Teased: </b>" + flags["OVIR_TEASED"]);
 				}
+				// Terensha
+				if(flags["MET_TERENSHA"] != undefined)
+				{
+					output2("\n<b>* Terensha:</b> Met her");
+					if(hours >= 6 && hours < 10) output2(", Currently performing");
+					if(flags["RENSA_FUCKED"] != undefined) output2("\n<b>* Terensha, Times Sexed: </b>" + flags["RENSA_FUCKED"]);
+				}
 				// Vaande
 				if(flags["MET_VAANDE"] != undefined)
 				{
