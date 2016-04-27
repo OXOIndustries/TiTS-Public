@@ -604,11 +604,11 @@ public function chooseGryvainColor():void
 	output("<i>“Next up is coloration,”</i> the doctor says, tapping on a holographic screen. <i>“Gryvain share a single coloration across much of their bodies: the scales on their limbs, their hair color... more intimate areas. What color were you thinking of?”</i>");
 
 	clearMenu();
-	addButton(0, "D. Blue", applyGryvainColor, "dark blue");
-	addButton(1, "D. Green", applyGryvainColor, "dark green");
-	addButton(2, "Black", applyGryvainColor, "black");
+	addButton(0, "D. Blue", applyGryvainColor, "dark blue", "Dark Blue", "Dark blue coloration.");
+	addButton(1, "D. Green", applyGryvainColor, "dark green", "Dark Green", "Dark green coloration.");
+	addButton(2, "Black", applyGryvainColor, "black", "Black", "Black coloration.");
 	
-	if (pc.short == "Geddy") addButton(3, "Red", applyGryvainColor, "red"); // ;D
+	if (pc.short == "Geddy") addButton(3, "Red", applyGryvainColor, "red", "Red", "Red coloration."); // ;D
 	
 	addButton(14, "Back", chooseThickness);
 }
