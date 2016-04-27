@@ -39,11 +39,12 @@ public function iceQueenMessageHelp(destination:String):void
 	addButton(0, "Next", iceQueenMessageHelpII);
 }
 
-public function showZaalt():void
+public function showZaalt(nude:Boolean = false):void
 {
 	author("Savin");
-	//showBust("Zaalt");
-	showBust("MILODANMALE");
+	if(nude) showBust("ZAALT_NUDE");
+	else showBust("ZAALT");
+	//showBust("MILODANMALE");
 	showName("ICE\nQUEEN");
 }
 
@@ -568,6 +569,7 @@ public function iceQueenUvetoEntry(oldUvetoVisitFlagValue:* = undefined):void
 
 public function iceQueenLossToZaalt():void
 {
+	showBust("ZAALT_NUDE");
 	output("Zaalt slams into you like a Thraggen freighter, throwing you against a bulkhead and tearing into your");
 	if (pc.hasArmor()) output(" [pc.armor]");
 	else output(" gear");

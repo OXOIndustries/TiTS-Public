@@ -289,6 +289,13 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/yammi_nude.png", mimeType = "image/png")]
 		public var Bust_YAMMI_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/zaalt.png", mimeType = "image/png")]
+		public var Full_ZAALT:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/zaalt_alt.png", mimeType = "image/png")]
+		public var Full_ZAALT_ALT:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/zaalt_nude.png", mimeType = "image/png")]
+		public var Full_ZAALT_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/zephyr.png", mimeType = "image/png")]
 		public var Bust_ZEPHYR:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/zephyr_nude.png", mimeType = "image/png")]
@@ -569,6 +576,13 @@
 			public var Full_ZEPHYR:Class;
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/zephyr_nude.png", mimeType = "image/png")]
 			public var Full_ZEPHYR_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/zaalt.png", mimeType = "image/png")]
+			public var Full_ZAALT:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/zaalt_alt.png", mimeType = "image/png")]
+			public var Full_ZAALT_ALT:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/zaalt_nude.png", mimeType = "image/png")]
+			public var Full_ZAALT_NUDE:Class;
 		}
 	}
 
