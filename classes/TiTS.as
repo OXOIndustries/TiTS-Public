@@ -162,6 +162,7 @@
 		include "../includes/tavros/shearBeauty.as";
 		include "../includes/tavros/shelly.as";
 		include "../includes/tavros/tamaniCorpShop.as";
+		include "../includes/tavros/terensha.as";
 		include "../includes/tavros/vahn.as";
 		
 		//First planet
