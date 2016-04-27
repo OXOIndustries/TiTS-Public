@@ -26,8 +26,8 @@ Other Misc Notes
 
 public function showNayna(nude:Boolean = false):void
 {
-	if(nude) showBust("NAYNA_NUDE");
-	else if(naynaWarm()) showBust("NAYNA_WARM");
+	if(nude) showBust("NAYNA_SUIT_NUDE");
+	else if(naynaWarm()) showBust("NAYNA_SUIT");
 	else showBust("NAYNA");
 	if(flags["MET_NAYNA"] == undefined) showName("SPACE\nBUNNY-GIRL");
 	else if(flags["NAYNA_LAST_NAME"] == undefined) showName("\nNAYNA");
