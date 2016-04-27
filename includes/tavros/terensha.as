@@ -28,7 +28,7 @@ public function showTerensha():void
 public function terenshaAdditionalBonus():void
 {
 	//Make her dance from 10-15 hours, I guess? Savin didn't give me much to go on.
-	var dances:Boolean = (hours >= 10 && hours <= 14);
+	var dances:Boolean = (hours >= 6 && hours < 10 && flags["MET_TERENSHA"] != undefined);
 	if(flags["MET_TERENSHA"] == undefined)
 	{
 		//Dances are On; not met:
@@ -94,6 +94,25 @@ public function meetingTerensha():void
 		if(silly || pc.isBro()) output(", or more likely, <i>who</i>");
 		output(" will you do?");
 		processTime(3);
+	}
+	//Repeat Meeting: Dancer Hours
+	else if(hours < 6 || hours >= 10)
+	{
+		output("Terensha’s apparently working at the moment. Why not go over and see if you can snag a dragon-girl quicky? You guess you’ll end up 100 credits in the hole for a little fun.");
+		if(pc.exhibitionism() < 33 && !pc.isBimbo() && !pc.isBro()) 
+		{
+			output("... Nah. You're not <b>that</b> much of an exhibitionist.");
+			clearMenu();
+			addButton(14,"Leave",mainGameMenu);
+		}
+		else
+		{
+			clearMenu();
+			if(pc.hasCock()) addButton(0,"Quick Fuck",meetingTerenshaDancing);
+			else addDisabledButton(0,"Quick Fuck","Quick Fuck","You'll probably need a penis for that though...");
+			addButton(14,"Back",mainGameMenu);
+		}
+		return;
 	}
 	//Repeat Meeting (Non-Dancer Hours)
 	else
@@ -787,75 +806,111 @@ public function roomServiceOutroCrap(cumflatedHer:Boolean = false):void
 	addButton(0,"Next",mainGameMenu);
 }
 
+public function meetingTerenshaDancing():void
+{
+	clearOutput();
+	showTerensha();
+	output("You’re certainly enjoying the performance of the ");
+	var raceVar:String = "";
+	if (hours == 10 || hours == 13 || hours == 16) raceVar = "doh’rahn";
+	else if (hours == 11 || hours == 14 || hours == 17) raceVar = "human";
+	else if(hours == 12 || hours == 15) raceVar = "vanae";
+	else if(hours == 18 || hours == 19 || hours == 21 || hours == 22 || hours == 24 || hours == 1 || hours == 3 || hours == 4) raceVar = "ovir";
+	//2000, 2300, 0200, 0500
+	else if(hours == 2 || hours == 5 || hours == 20 || hours == 23) raceVar = "ausar";
 
-//Repeat Meeting: Dancer Hours
-//Terensha’s apparently working at the moment. Why not go over and see if you can snag a dragon-girl quicky? You guess you’ll end up 100 credits in the hole for a little fun.
-//PC needs a dick, and at least a little Exhibitionism.
-/*
-public function 
+	output(raceVar + " shaking her stuff on stage, but what’s really drawing your eye right now is the voluptuous halfbreed sashaying between tables, offering quick release for a few easy credits. Deciding to take advantage of her public service, you head on down towards the stage and snag one of the few empty tables. You end up a few rows back, but you’re facing the dancer full on as she performs. The stage is a ribald display of bared flesh and jiggling curves, bouncing and swinging to the cheers and applause of the crowd. Smiling at the girl on stage, you lean back and enjoy the show... and the way your [pc.cocks] ");
+	if(pc.cockTotal() == 1) output("is ");
+	else output("are ");
+	if(!pc.isCrotchExposed()) output("tenting your [pc.lowerGarment].");
+	else output("stiffening against your thigh.");
 
-output("\n\nYou’re certainly enjoying the performance of the {race} shaking her stuff on stage, but what’s really drawing your eye right now is the voluptuous halfbreed sashaying between tables, offering quick release for a few easy credits. Deciding to take advantage of her public service, you head on down towards the stage and snag one of the few empty tables. You end up a few rows back, but you’re facing the dancer full on as she performs. The stage is a ribald display of bared flesh and jiggling curves, bouncing and swinging to the cheers and applause of the crowd. Smiling at the girl on stage, you lean back and enjoy the show... and the way your [pc.cock] is {tenting your [pc.lowerGarment] // stiffening against your thigh}.");
+	output("\n\nIt doesn’t take long for Ren to notice you, finish off her current client, and saunter over with a smile and a seductive sway in her egg-bearing hips. <i>“Hey there, space cowboy,”</i> she says, hefting herself up onto your table and suppressing a soft moan as the half-hard reptilian rod dangling between her legs rubs her latex-clad thighs. <i>“Hot piece of ass on stage, huh? Even if I wasn’t working, I’d be so hard from watching her... mmm,”</i> she murmurs with a little shudder.");
 
-output("\n\nIt doesn’t take long for Ren to notice you, finish off her current client, and saunter over with a smile and a seductive sway in her egg-bearing hips. <i>“Hey there, space cowboy,”</i> she says, hefting herself up onto your table and suppressing a soft moan as the half-hard reptilian rod dangling between her legs rubs her latex-clad thighs. <i>“Hot piece of ass on stage, huh? Even if I wasn’t working, I’d be so hard from watching her... mmm,”</i> she murmurs with a little shudder.");
+	output("\n\nRen glances under the table, eyeing the shameless boner you’ve got under there with a glint in her eye. <i>“That looks like fun,”</i> the dragoness murmurs, reaching down with a foot to caress your [pc.cockHead]");
+	if(!pc.isCrotchExposed()) output(" through your [pc.underGarment]");
+	output(". <i>“Guess you’ve gotten a little pent up watching - or is this all for me? Either way, how about you trade me a few credits and I help you take care of that? Half goes to the tits on stage, so consider it your tip if you want.”</i>");
 
-output("\n\nRen glances under the table, eyeing the shameless boner you’ve got under there with a glint in her eye. <i>“That looks like fun,”</i> the dragoness murmurs, reaching down with a foot to caress your [pc.cockHead]{ through your [pc.underGarment]}. <i>“Guess you’ve gotten a little pent up watching - or is this all for me? Either way, how about you trade me a few credits and I help you take care of that? Half goes to the tits on stage, so consider it your tip if you want.”</i>");
+	output("\n\nYou nod eagerly, digging your Codex out of your pack. Ren smiles and plucks a tiny data-reader off a belt on her leg and swipes your Codex, docking your your credits. Satisfied, she returns the device and plucks a bottle of translucent lubrication beside it. <i>“Perfect, cow[pc.boyGirl]. Now just relax and enjoy the show!”</i>");
 
-output("\n\nYou nod eagerly, digging your Codex out of your pack. Ren smiles and plucks a tiny data-reader off a belt on her leg and swipes your Codex, docking your your credits. Satisfied, she returns the device and plucks a bottle of translucent lubrication beside it. <i>“Perfect, cow[pc.boyGirl]. Now just relax and enjoy the show!”</i>");
+	output("\n\nThe horny halfbreed gives you a green-lipped smile as she crawls down from the table and into your lap, grabbing your [pc.cock] firmly as she settles in. ");
+	if(!pc.isCrotchExposed()) output("With practiced ease, Ren fishes your cock out of your clothing and gives it an experimental tug - just enough to get you diamond hard. ");
+	output("<i>“There we are!”</i> she purrs, rubbing your length up and down with her latex-wrapped digits. Her suit feels just like one big, slick condom around your girth, massaging you in all the right ways. <i>“Oooh, nice and hard for me already. Now, don’t feel compelled to hold back, lover,”</i> she adds, squirting a healthy helping of lube into her hand between strokes. <i>“I’ve cum so many times already today, you don’t have to worry about me. This is all about <b>you</b>!”</i>");
 
-output("\n\nThe horny halfbreed gives you a green-lipped smile as she crawls down from the table and into your lap, grabbing your [pc.cock] firmly as she settles in. {Clothes: With practiced ease, Ren fishes your cock out of your clothing and gives it an experimental tug - just enough to get you diamond hard.} <i>“There we are!”</i> she purrs, rubbing your length up and down with her latex-wrapped digits. Her suit feels just like one big, slick condom around your girth, massaging you in all the right ways. <i>“Oooh, nice and hard for me already. Now, don’t feel compelled to hold back, lover,”</i> she adds, squirting a healthy helping of lube into her hand between strokes. <i>“I’ve cum so many times already today, you don’t have to worry about me. This is all about <b>you</b>!”</i>");
+	output("\n\nWithout another word, Ren drops her hand down to the base of your [pc.cock] and angles it into the crack of her ass. She shudders, biting her lip as your [pc.cockHead] passes over where you imagine her backdoor must be, and finally ends up aligned perfectly in the gulf between her pussy and the fat sack hanging below her own member. For its part, Ren’s reptilian dick is half-hard and visibly throbbing, lying heavily on your [pc.belly] Smiling up at her, you give it a gentle stroke - and are immediately rewarded by a muffled cry. The working girl only barely gets her hands over her mouth in time to silence herself, and has little choice but to keep them there as you return the favor she’s been giving you.");
 
-output("\n\nWithout another word, Ren drops her hand down to the base of your [pc.cock] and angles it into the crack of her ass. She shudders, biting her lip as your [pc.cockHead] passes over where you imagine her backdoor must be, and finally ends up aligned perfectly in the gulf between her pussy and the fat sack hanging below her own member. For its part, Ren’s reptilian dick is half-hard and visibly throbbing, lying heavily on your [pc.belly] Smiling up at her, you give it a gentle stroke - and are immediately rewarded by a muffled cry. The working girl only barely gets her hands over her mouth in time to silence herself, and has little choice but to keep them there as you return the favor she’s been giving you.");
+	output("\n\nIt takes all of five strokes to get her as stiff as you are. Five more, and the half-dragoness is rolling her head back with a lurid moan. Her cock pulses urgently in your hand, and you’re suddenly overwhelmed by a warm, running heat underneath the latex suit! She just came!");
 
-output("\n\nIt takes all of five strokes to get her as stiff as you are. Five more, and the half-dragoness is rolling her head back with a lurid moan. Her cock pulses urgently in your hand, and you’re suddenly overwhelmed by a warm, running heat underneath the latex suit! She just came!");
+	output("\n\n<i>“S-sorry,”</i> Ren murmurs, blushing furiously. <i>“This suit... it’s five times more sensitive than I ever was. If you wanna really see a gryvain-cock cum though, stop teasing me so I can slip you inside me. It’ll be a fountainhead before I’ve hilted you.”</i>");
 
-output("\n\n<i>“S-sorry,”</i> Ren murmurs, blushing furiously. <i>“This suit... it’s five times more sensitive than I ever was. If you wanna really see a gryvain-cock cum though, stop teasing me so I can slip you inside me. It’ll be a fountainhead before I’ve hilted you.”</i>");
+	output("\n\nYou take that as a promise, and release Ren’s bulbous member. She sighs, G-cup tits heaving under her slick suit as she recovers. Once she’s caught her breath, the halfbreed vixen bites her lip again and shifts her crotch ever so slightly, angling your crown into the folds of her sex. The latex suit stretches out like a balloon, effortlessly deforming to accept your girth. Your hired-on lover moans despite herself, trembling fiercely as she sinks down on the first inch of cockmeat you give her.");
 
-output("\n\nYou take that as a promise, and release Ren’s bulbous member. She sighs, G-cup tits heaving under her slick suit as she recovers. Once she’s caught her breath, the halfbreed vixen bites her lip again and shifts her crotch ever so slightly, angling your crown into the folds of her sex. The latex suit stretches out like a balloon, effortlessly deforming to accept your girth. Your hired-on lover moans despite herself, trembling fiercely as she sinks down on the first inch of cockmeat you give her.");
+	output("\n\nThe first inch is an exquisite agony for the both of you, it turns out. The inside of Ren’s suit - or maybe the actual pussy inside it - is lined with concentric rings of fleshy bulbs, hundreds of small points of pressure that bear down ferociously around your length, especially with their owner clenching so hard. And true to her word, Ren’s draconic rod stiffens right back up mere moments after firing its first load, only to pulse feverishly against your [pc.belly]. You can feel rivers of wet heat through the paper-thin catsuit, bubbling up from the tapered crown and rolling viscously back down her shaft. The way she’s throbbing and moaning, you can’t help yourself from grabbing a handful of her turgid length and helping her out - not that she needs it, obviously!");
+	pc.cockChange();
 
-output("\n\nThe first inch is an exquisite agony for the both of you, it turns out. The inside of Ren’s suit - or maybe the actual pussy inside it - is lined with concentric rings of fleshy bulbs, hundreds of small points of pressure that bear down ferociously around your length, especially with their owner clenching so hard. And true to her word, Ren’s draconic rod stiffens right back up mere moments after firing its first load, only to pulse feverishly against your [pc.belly]. You can feel rivers of wet heat through the paper-thin catsuit, bubbling up from the tapered crown and rolling viscously back down her shaft. The way she’s throbbing and moaning, you can’t help yourself from grabbing a handful of her turgid length and helping her out - not that she needs it, obviously!");
+	output("\n\nStill, your efforts earn a wan smile from the call-girl as she finally ");
+	if(pc.cocks[0].cLength() >= 15) output("takes your massive cock so deep that you can feel the gaping ring of her egg-bearing womb kissing your crown");
+	else output("settles into your lap, your [pc.cock] completely consumed by her tight, nub-ringed cock-sheath");
+	output(". Ren’s thick tail swishes heavily between your [pc.leg], mirroring the rhythm of its owner’s contract cunt around your shaft. She really does feel like a high-end onahole now, so latexy-smooth but full of bumps and ridges that grind wonderfully against your prick even at rest, moving only in response to the nearly overwhelming pleasure their owner is enduring.");
 
-output("\n\nStill, your efforts earn a wan smile from the call-girl as she finally {takes your massive cock so deep that you can feel the gaping ring of her egg-bearing womb kissing your crown // settles into your lap, your [pc.cock] completely consumed by her tight, nub-ringed cock-sheath}. Ren’s thick tail swishes heavily between your [pc.leg], mirroring the rhythm of its owner’s contract cunt around your shaft. She really does feel like a high-end onahole now, so latexy-smooth but full of bumps and ridges that grind wonderfully against your prick even at rest, moving only in response to the nearly overwhelming pleasure their owner is enduring.");
+	output("\n\n<i>“Keep playing with my cock like that and I don’t think I’m going to be able to move,”</i> Ren breathes huskily, wrapping her gloved arms around your neck. <i>“Or... would that be alright? Want me to milk you dry just with my muscles?”</i>");
 
-output("\n\n<i>“Keep playing with my cock like that and I don’t think I’m going to be able to move,”</i> Ren breathes huskily, wrapping her gloved arms around your neck. <i>“Or... would that be alright? Want me to milk you dry just with my muscles?”</i>");
+	output("\n\nYou shiver at the suggestion, feeling Ren’s pussy contract and relax faster and tighter around you already. It wouldn’t be that bad, letting her just massage you to orgasm. You’re already closer than you’d like to admit, excited beyond the pale by the unique sensation around your sex and sight of Ren’s shameless cock throbbing wetly on your [pc.belly]. Its crown is becoming more bulbous by the second, swelling with the halfbreed’s growing cum-balloon. Her suit can’t handle the sheer volume she’s pumping out for you, left with no choice but to distend luridly around the sloshing liter of boiling cream. Grinning at the horny green woman, you wrap your hand around the cum-bubble, working it around in your fingers and squeezing until the liquid gets forced back down her shaft and into her suit. She’s going to be swimming in her own cum before long!");
 
-output("\n\nYou shiver at the suggestion, feeling Ren’s pussy contract and relax faster and tighter around you already. It wouldn’t be that bad, letting her just massage you to orgasm. You’re already closer than you’d like to admit, excited beyond the pale by the unique sensation around your sex and sight of Ren’s shameless cock throbbing wetly on your [pc.belly]. Its crown is becoming more bulbous by the second, swelling with the halfbreed’s growing cum-balloon. Her suit can’t handle the sheer volume she’s pumping out for you, left with no choice but to distend luridly around the sloshing liter of boiling cream. Grinning at the horny green woman, you wrap your hand around the cum-bubble, working it around in your fingers and squeezing until the liquid gets forced back down her shaft and into her suit. She’s going to be swimming in her own cum before long!");
+	output("\n\n<i>“I-I’ll take that as a yes,”</i> she murmurs, arching her back with a soft moan as one set of groping fingers finds her cockhead, and another scoops up her fat balls and starts to play with them as well. <i>“Keep this up and I won’t have any left for my next customer!”</i>");
 
-output("\n\n<i>“I-I’ll take that as a yes,”</i> she murmurs, arching her back with a soft moan as one set of groping fingers finds her cockhead, and another scoops up her fat balls and starts to play with them as well. <i>“Keep this up and I won’t have any left for my next customer!”</i>");
+	output("\n\nYou give her churning sack an encouraging squeeze, urging the dragon-girl to work those muscles. The sooner you cum, the sooner she can save herself from the constant climax you’ve trapped her in. Ren forces a weak smile in your direction and starts to rock her hips ever so slightly, just enough to make all those wonderful alien bumps inside her alien quim rub your [pc.cock] in ways that make you tremble and gasp with pleasure.");
 
-output("\n\nYou give her churning sack an encouraging squeeze, urging the dragon-girl to work those muscles. The sooner you cum, the sooner she can save herself from the constant climax you’ve trapped her in. Ren forces a weak smile in your direction and starts to rock her hips ever so slightly, just enough to make all those wonderful alien bumps inside her alien quim rub your [pc.cock] in ways that make you tremble and gasp with pleasure.");
+	output("\n\nA few moments of that kind of treatment and you can feel the tell-tale pressure thrumming in your loins, threatening to overwhelm your failing restraint. Your breath quickens, chest rising and falling so that Ren’s sheathed shaft is constantly rubbing against your skin and the thick coating of cum it’s basting in. The halfbreed whore smirks, moving her hips just a little bit faster as she senses her client’s orgasm fast approaching. <i>“Gonna cum? Go on, cowboy: pump it all deep inside. Let me feel how much you’ve enjoyed this...”</i>");
 
-output("\n\nA few moments of that kind of treatment and you can feel the tell-tale pressure thrumming in your loins, threatening to overwhelm your failing restraint. Your breath quickens, chest rising and falling so that Ren’s sheathed shaft is constantly rubbing against your skin and the thick coating of cum it’s basting in. The halfbreed whore smirks, moving her hips just a little bit faster as she senses her client’s orgasm fast approaching. <i>“Gonna cum? Go on, cowboy: pump it all deep inside. Let me feel how much you’ve enjoyed this...”</i>");
+	output("\n\nShe’s got no idea how much you have... then again, considering how many times you’ve almost effortlessly made her climax, maybe she does! It’s gotta take a lot of restraint to keep working after cumming over and over in the span of minutes. You grin to yourself and decide to join her in that body-numbing bliss, taking two handfuls of her throbbing sex and humping your hips against hers, driving your [pc.cock] as deep as it can go before your own erection erupts inside her.");
 
-output("\n\nShe’s got no idea how much you have... then again, considering how many times you’ve almost effortlessly made her climax, maybe she does! It’s gotta take a lot of restraint to keep working after cumming over and over in the span of minutes. You grin to yourself and decide to join her in that body-numbing bliss, taking two handfuls of her throbbing sex and humping your hips against hers, driving your [pc.cock] as deep as it can go before your own erection erupts inside her.");
+	processTime(22);
+	clearMenu();
+	addButton(0,"Next",terenshaDancingEpilog);
+}
 
-output("\n\n{Hugecumvol:");
-output("\n\nYour churning [pc.balls] unload{s} deep inside, pulsing and squirting so much in the blink of an eye that a veritable waterfall of wasted seed pours out around your cock, even as tightly gripped as it is by Ren’s pussy. Even better, though, you can feel the latex sheath she’s made of her twat distend and bulge, just like it is around her own cockhead, but angled into the egg-bearing channel of her womb. Her eyes go wide as she feels what’s going on, and her hands leap to her belly. While she was ever-so-slightly thick around the middle before, you can both see that’s rapidly changing - her belly is growing, expanding around the massive load you’re pumping into her.");
+public function terenshaDancingEpilog():void
+{
+	clearOutput();
+	showTerensha();
+	//Hugecumvol:
+	if(pc.cumQ() >= 5000)
+	{
+		output("Your churning [pc.balls] unload");
+		if(pc.balls <= 1) output("s");
+		output(" deep inside, pulsing and squirting so much in the blink of an eye that a veritable waterfall of wasted seed pours out around your cock, even as tightly gripped as it is by Ren’s pussy. Even better, though, you can feel the latex sheath she’s made of her twat distend and bulge, just like it is around her own cockhead, but angled into the egg-bearing channel of her womb. Her eyes go wide as she feels what’s going on, and her hands leap to her belly. While she was ever-so-slightly thick around the middle before, you can both see that’s rapidly changing - her belly is growing, expanding around the massive load you’re pumping into her.");
+		output("\n\nThe halfbreed’s cock leaps to full attention, standing straight up in the air and blowing its own bubble bigger as the pleasure of expansion rocks her body. She’s panting and gasping for breath, barely able to keep from crying out as your ungodly load swells inside her body. By the time you’re finally squirting nothing but thin ribbons of [pc.cumNoun], she looks several months pregnant; Ren’s hands are planted firmly on her stretched-out belly, and her cock is completely pinned between your [pc.belly] and hers, looking like the balloon at its crown is ready to pop.");
+		output("\n\n<i>“O-oh wow,”</i> she breathes, barely able to form the words thanks to the shudders of climactic pleasure still shaking her body. <i>“I know you space jockeys get pent up, but this... ");
+		if(pc.race() == "kui-tan" || pc.race() == "half kui-tan") output("shoulda expected it from a kui-tan!");
+		else output("are you sure you’re not a kui-tan in disguise?");
+		output("”</i>");
 
-output("\n\nThe halfbreed’s cock leaps to full attention, standing straight up in the air and blowing its own bubble bigger as the pleasure of expansion rocks her body. She’s panting and gasping for breath, barely able to keep from crying out as your ungodly load swells inside her body. By the time you’re finally squirting nothing but thin ribbons of [pc.cumNoun], she looks several months pregnant; Ren’s hands are planted firmly on her stretched-out belly, and her cock is completely pinned between your [pc.belly] and hers, looking like the balloon at its crown is ready to pop.");
-
-output("\n\n<i>“O-oh wow,”</i> she breathes, barely able to form the words thanks to the shudders of climactic pleasure still shaking her body. <i>“I know you space jockeys get pent up, but this... {shoulda expected it from a kui-tan! // are you sure you’re not a kui-tan in disguise?}”</i>");
-
-output("\n\nYou give her a smirk and pat her straining belly - just light enough that only a little cum squirts out of her quim. She shivers, taking a deep breath to calm herself. <i>“Okay. I’m going to have to clench down real hard around you now while I get up, or else this massive load of yours is going all over the floor. Gonna have to go flood the ladies’ room after this as it is.”</i>");
-
-output("\n\nNodding, you shift your hands over to her hips and gently guide her up and off your wilting rod. A short squirt of seed splatters down from inside her the moment you pop wetly out, but she’s able to clench her inner lips hard enough to pinch off the cum-balloon inside her womb well enough. She takes a deep breath, then leans over you and plants a quick kiss on your brow - and not incidentally presses your face into the jiggling valley between her huge breasts at the same time.");
-
-output("\n\n<i>“That was a blast, cow[pc.boyGirl],”</i> she whispers into your [pc.ear]. <i>“Even if I’m ninety-percent [pc.cumNoun] by volume right now. See if you can save up an even bigger load for me next time - I kind of want to see just how stretched out I can get!”</i>");
-
-output("\n\nSmiling and flushed red, Ren crawls off your lap and, both hands on her belly, waddles off towards the back rooms. You’re pleased to watch her leave a trail of [pc.cumColor] on the floor and her own thighs with every step. God only knows what she’d look like if you saved up even more...");
-
-output("\n\n{Medcumvol:");
-output("\n\nYou grunt with desire, rolling your head back in your seat and letting your body take control. Your [pc.balls] soon send{s} the first thick globs of spunk through your shaft and splattering against the latex sheath her suit’s formed around you. Ren gasps, putting a hand on her belly as your first potent shots make a little balloon that presses against the entrance to her womb before discharging back in a waterfall of steaming spunk.");
-
-output("\n\n<i>“Whew!”</i> your lover moans, gently squeezing her pussy muscles until your still-steaming orgasm washes down your thighs and splatters onto the floor in a musky, sticky puddle. <i>“The galotian they have cleaning this place is just going to <b>love</b> this!”</i>");
-
-output("\n\nYou and Ren share a laugh while your softening tool slowly slips out of her cum-slick slit, flopping wetly against your thigh. The last vestiges of your orgasm trickle out of Ren’s gaping hole, smearing in sticky streaks all over her legs. <i>“Gonna take forever for the suit to absorb this much cum... you and me make so much more than most of these pervs. Mmm, you should catch me after the shows are done. Do this again somewhere where can really have some fun, huh?”</i>");
-
-output("\n\nOh, you’d like that. Ren takes a deep breath, then leans over you and plants a quick kiss on your brow - and not incidentally presses your face into the jiggling valley between her huge breasts at the same time. When she’s done, she crawls off your lap and jiggles herself for you, letting you see just what a wet mess you’ve made of her before she gives you a wink and saunters off to her next customer.");
-
-output("\n\n{Lowcumvol:");
-output("\n\nWith a final gasp of pleasure, you feel your cock clench and release, shooting your load into the latex sheath her suit’s made inside her. The halfbreed whore makes no effort to hide her enjoyment, but moans luridly as you spill your seen across the bumpy rigdes of her alien twat. When you’re done, she leans in close, wrapping your face into the valley of her huge cleavage and planting a kiss on your forehead.");
-
-output("\n\n<i>“Thanks for that, cow{girl/boy}. I hope that was even half as good for you as it was for me,”</i> she purrs, crawling out of your lap and wiggling her hips. <i>“If so, I’m sure I’ve earned a repeat visit or two!”</i>");
-
-output("\n\nYou smile, giving her jiggly behind an appreciative swat as she turns to leave.");
-*/
+		output("\n\nYou give her a smirk and pat her straining belly - just light enough that only a little cum squirts out of her quim. She shivers, taking a deep breath to calm herself. <i>“Okay. I’m going to have to clench down real hard around you now while I get up, or else this massive load of yours is going all over the floor. Gonna have to go flood the ladies’ room after this as it is.”</i>");
+		output("\n\nNodding, you shift your hands over to her hips and gently guide her up and off your wilting rod. A short squirt of seed splatters down from inside her the moment you pop wetly out, but she’s able to clench her inner lips hard enough to pinch off the cum-balloon inside her womb well enough. She takes a deep breath, then leans over you and plants a quick kiss on your brow - and not incidentally presses your face into the jiggling valley between her huge breasts at the same time.");
+		output("\n\n<i>“That was a blast, cow[pc.boyGirl],”</i> she whispers into your [pc.ear]. <i>“Even if I’m ninety-percent [pc.cumNoun] by volume right now. See if you can save up an even bigger load for me next time - I kind of want to see just how stretched out I can get!”</i>");
+		output("\n\nSmiling and flushed red, Ren crawls off your lap and, both hands on her belly, waddles off towards the back rooms. You’re pleased to watch her leave a trail of [pc.cumColor] on the floor and her own thighs with every step. God only knows what she’d look like if you saved up even more....");
+	}
+	//{Medcumvol:
+	else if(pc.cumQ() > 750)
+	{
+		output("You grunt with desire, rolling your head back in your seat and letting your body take control. Your [pc.balls] soon send");
+		if(pc.balls <= 1) output("s");
+		output("s");
+		output(" the first thick globs of spunk through your shaft and splattering against the latex sheath her suit’s formed around you. Ren gasps, putting a hand on her belly as your first potent shots make a little balloon that presses against the entrance to her womb before discharging back in a waterfall of steaming spunk.");
+		output("\n\n<i>“Whew!”</i> your lover moans, gently squeezing her pussy muscles until your still-steaming orgasm washes down your thighs and splatters onto the floor in a musky, sticky puddle. <i>“The galotian they have cleaning this place is just going to <b>love</b> this!”</i>");
+		output("\n\nYou and Ren share a laugh while your softening tool slowly slips out of her cum-slick slit, flopping wetly against your thigh. The last vestiges of your orgasm trickle out of Ren’s gaping hole, smearing in sticky streaks all over her legs. <i>“Gonna take forever for the suit to absorb this much cum... you and me make so much more than most of these pervs. Mmm, you should catch me after the shows are done. Do this again somewhere where can really have some fun, huh?”</i>");
+		output("\n\nOh, you’d like that. Ren takes a deep breath, then leans over you and plants a quick kiss on your brow - and not incidentally presses your face into the jiggling valley between her huge breasts at the same time. When she’s done, she crawls off your lap and jiggles herself for you, letting you see just what a wet mess you’ve made of her before she gives you a wink and saunters off to her next customer.");
+	}
+	//Lowcumvol:
+	else
+	{
+		output("With a final gasp of pleasure, you feel your cock clench and release, shooting your load into the latex sheath her suit’s made inside her. The halfbreed whore makes no effort to hide her enjoyment, but moans luridly as you spill your seen across the bumpy rigdes of her alien twat. When you’re done, she leans in close, wrapping your face into the valley of her huge cleavage and planting a kiss on your forehead.");
+		output("\n\n<i>“Thanks for that, cow[pc.boyGirl]. I hope that was even half as good for you as it was for me,”</i> she purrs, crawling out of your lap and wiggling her hips. <i>“If so, I’m sure I’ve earned a repeat visit or two!”</i>");
+		output("\n\nYou smile, giving her jiggly behind an appreciative swat as she turns to leave.");
+	}
+	processTime(2);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
