@@ -922,7 +922,7 @@ public function initializeMyrellionRooms():void
 	rooms["743"].addFlag(GLOBAL.CAVE);
 
 	rooms["744"] = new RoomClass(this);
-	rooms["744"].roomName = "PALACE\nENTRANCE";
+	rooms["744"].roomName = "SILKEN\nSERENITY";
 	rooms["744"].description = "";
 	rooms["744"].planet = "PLANET: MYRELLION";
 	rooms["744"].system = "SYSTEM: SINDATHU";
