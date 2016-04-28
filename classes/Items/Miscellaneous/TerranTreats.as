@@ -238,6 +238,7 @@
 				{
 					if(pc.nippleTypeUnlocked(0, GLOBAL.NIPPLE_TYPE_NORMAL))
 					{
+						kGAMECLASS.output("\n\nA sharp shock of sensation stabs through your chest and into your [pc.nipples], fading almost as soon as it arrives. By the time you sneak a peek, you discover that <b>your nipples have become much more mundane.</b>");
 						for(x = 0; x < pc.bRows(); x++)
 						{
 							//Lipples become inverted nips
@@ -251,6 +252,7 @@
 						}
 						changes++;
 					}
+					else kGAMECLASS.output("\n\n" + pc.nippleTypeLockedMessage());
 				}
 				//Girlygoo
 				if(changes < changeLimit && rand(3) == 0 && target.girlCumType != GLOBAL.FLUID_TYPE_GIRLCUM && target.hasVagina())
