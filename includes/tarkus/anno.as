@@ -1193,7 +1193,7 @@ public function faceFuckAnno():void
 	pc.orgasm();
 	
 	clearMenu();
-	if(pc.cockThatFits(chars["ANNO"].vaginalCapacity(0)) >= 0)
+	if(pc.cockThatFits(chars["ANNO"].vaginalCapacity(0) + 900) >= 0)
 	{
 		if(pc.libido() >= 80 || rand(pc.libido()) >= 15) addButton(0,"Fuck Her",fuckAnnoAfterBeeJay,undefined,"Fuck Her","Fuck Anno. You've got another round in you, right?");
 		else addDisabledButton(0,"Fuck Her","Fuck Her","You're not sure if you've got another round in you just yet. (Requires 80 minimum libido to always be available.)");
@@ -1226,14 +1226,14 @@ public function fuckAnnoAfterBeeJay():void
 	output("\n\nSatisfied that your pooch's pussy is nice and ready for you, you rise back up and take hold of your [pc.cock " + x + "], dropping it into the spread hind cleavage of Anno's ass. Her breath catches when she feels your man-meat slap against her slick skin. You can feel her positively shiver with excitement, looking back at you over her shoulder with bated breath, awaiting your next move. You flash her a grin and rock your hips back, sliding your prick lengthwise through the lips of her cunt, barely suppressing a shudder as the slimy, wet slit reaches out to kiss your cock, smearing it with her ample juices. A few thrusts through that channel, and your [pc.cock " + x + "] is coated with a nice sheen of fem-lube, glistening in the dim light of Anno's store as you bring the [pc.cockHead " + x + "] to rest just barely parting the veil of her " + chars["ANNO"].vaginaDescript() + ".");
 
 	output("\n\n<i>\"H-hold on,\"</i> Anno moans, leaning out of your embrace. You give her a questioning look, until she reaches under the counter and pulls out a sealed condom wrapper. With an understanding nod, you take the nanofiber sheath from its packaging and ");
-	if(pc.cockVolume(x) < 400) output("slide it easily over your [pc.cock " + x + "].");
-	else if(pc.cockVolume(x) < 900) output("spend a moment stretching the tight condom out over your oversized dong.");
+	if(pc.cockVolume(x) < (chars["ANNO"].vaginalCapacity() + 100)) output("slide it easily over your [pc.cock " + x + "].");
+	else if(pc.cockVolume(x) < (chars["ANNO"].vaginalCapacity() + 600)) output("spend a moment stretching the tight condom out over your oversized dong.");
 	else output("spend a minute struggling to just encase the head of your massive prick in the human-sized sheath. Good enough!");
 
 	output("\n\nWhen you're finished, Anno smiles appreciatively over her shoulder, wiggling her ass into the underside of your wrapped wang. <i>\"Come on then... I'm ready for you,\"</i> she breathes, her white tail raising invitingly as your sheathed schlong slowly slides forward.");
 
 	output("\n\nAnno bites her lip, muffling a girlish whimper as your [pc.hips] rock forward, inching your [pc.cock " + x + "] into her sodden quim. You nearly join her as you feel your cock submerging into the sultry hole, surrounded by hot, wet, squirming walls as Anno's pussy clenches around your intruding member. You push forward despite her body's resistance, the ausar's incredibly wet sex making it unnaturally easy to spread her walls wide. Anno moans as you plunge deep into her sex, fingers digging into the lip of her desk, tail flicking madly as you bottom out inside her");
-	if(pc.cockVolume(x) >= 500) output(", your tremendous cock stretching her out almost painfully wide, distending her gut against the hardwood of the desk");
+	if(pc.cockVolume(x) >= (chars["ANNO"].vaginalCapacity() + 200)) output(", your tremendous cock stretching her out almost painfully wide, distending her gut against the hardwood of the desk");
 	output(".");
 
 	output("\n\n");
