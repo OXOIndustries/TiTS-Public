@@ -2355,7 +2355,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["MET_TERENSHA"] != undefined)
 				{
 					output2("\n<b>* Terensha:</b> Met her");
-					if(hours >= 6 && hours < 10) output2(", Currently performing");
+					if(terenshaIsDancing()) output2(", Currently performing");
 					if(flags["RENSA_FUCKED"] != undefined) output2("\n<b>* Terensha, Times Sexed: </b>" + flags["RENSA_FUCKED"]);
 				}
 				// Vaande

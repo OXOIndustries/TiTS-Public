@@ -90,7 +90,7 @@
 				// TF Duds
 				else
 				{
-					output("\n\nUnfortunately for you, your [pc.butt] seems to nothing but tingle annoyingly. You sigh and let out muffled curse. So much for that...");
+					output("\n\nUnfortunately for you, your [pc.butt] seems to do nothing but tingle annoyingly. You sigh and let out muffled curse. So much for that...");
 				}
 				
 				return false;
