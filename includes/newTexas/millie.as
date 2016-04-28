@@ -174,7 +174,7 @@ public function soloMilkingFromMillieAttempt():void
 	showName("\nMILLIE");
 	showBust("MILLIE");
 	output("You inform her that you’d like to use the milkers by yourself.");
-	if(!pc.hasPerk("Mega Milk"))
+	if(!pc.hasPerk("Mega Milk") && flags["MEGA_MILKED"] == undefined)
 	{
 		output("\n\nMillie laughs at that. <i>“Why come to the milk barn if you don’t want a pair of warm hands to massage you while you’re letting down? If you wanna pump your boobs by yourself, go get one of those JoyCo milkers.”</i> She rolls her eyes as if she just said something ridiculous. <i>“Now, you wanna have some fun or not?”</i>");
 		processTime(1);
@@ -1252,6 +1252,7 @@ public function millieSoloMilkerMishapEpilogue(lacBoosted:Boolean):void
 	output("\n\n(<b>Perk Gained: Mega Milk</b> - You will always be able to produce milk as if you were at least 40% full, even if your breasts are empty.)");
 	pc.createPerk("Mega Milk",0,0,0,0,"Allows you to instantly produce a good amount of milk, even when empty.");
 	if(lacBoosted) output(" <b>And if you weren't lactating very hard before, you are now.</b>");
+	flags["MEGA_MILKED"] = 1;
 	processTime(5);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
