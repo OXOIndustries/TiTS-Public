@@ -28,7 +28,7 @@ public function showTerensha():void
 public function terenshaAdditionalBonus():void
 {
 	//Make her dance from 10-15 hours, I guess? Savin didn't give me much to go on.
-	var dances:Boolean = (hours >= 6 && hours < 10 && flags["MET_TERENSHA"] != undefined);
+	var dances:Boolean = (hours >= 2 && hours < 16 && flags["MET_TERENSHA"] != undefined);
 	if(flags["MET_TERENSHA"] == undefined)
 	{
 		//Dances are On; not met:

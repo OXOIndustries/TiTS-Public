@@ -203,6 +203,12 @@
 		public var Bust_NAYNA_NUDE:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/nayna_soft_nude.png", mimeType = "image/png")]
 		public var Bust_NAYNA_SOFT_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/nayna_suit.png", mimeType = "image/png")]
+		public var Bust_NAYNA_SUIT:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/nayna_suit_nude.png", mimeType = "image/png")]
+		public var Bust_NAYNA_SUIT_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/nayna_suit_soft_nude.png", mimeType = "image/png")]
+		public var Bust_NAYNA_SUIT_SOFT_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/nyrea_beta.png", mimeType = "image/png")]
 		public var Bust_NYREA_BETA:Class;
@@ -484,6 +490,12 @@
 			public var Full_NAYNA_NUDE:Class;
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/nayna_soft_nude.png", mimeType = "image/png")]
 			public var Full_NAYNA_SOFT_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/nayna_suit.png", mimeType = "image/png")]
+			public var Full_NAYNA_SUIT:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/nayna_suit_nude.png", mimeType = "image/png")]
+			public var Full_NAYNA_SUIT_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/nayna_suit_soft_nude.png", mimeType = "image/png")]
+			public var Full_NAYNA_SUIT_SOFT_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/nevrie.png", mimeType = "image/png")]
 			public var Full_NEVRIE:Class;
