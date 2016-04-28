@@ -6,12 +6,32 @@
 
 
 //Intro Blurb
-public function dallySplash():Boolean
+public function honeyNozzleClub():Boolean
 {
 	output("\n\nA male myr in little more than an oversized loincloth is dancing gracefully around a pole, much to the tittering delight of a feminine audience. His abdomen weighs heavy behind him and ponderously dips along with the more vigorous dance moves. A seat just opened up in front of him, if you want to approach.");
 	if(flags["MET_DALLY"] == undefined) addButton(0,"M.Stripper",dallyApproach);
 	else addButton(0,"Dally",dallyApproach);
 	return false;
+	
+	if ((hours > 15 && hours < 20) || (hours == 15 && minutes >= 30) || (hours == 20 && minutes <= 30))
+	{
+		if (flags("FAZIAN_SHOW"] == undefined)
+		{
+			output("\n\nOn the far side of the dusky room, a gold myr in a black dress is taking money from knots of other ant-women and ushering them through a curtain. A private show of some sort?");
+			addButton(1, "Curtain", nozzleShowFirstTime);
+		}
+		else
+		{
+			output("\n\nOn the far side of the dusky room, you can see Fazian's accompanist Hepane taking admissions for this afternoon's show. You could go find out what the two of them are putting on this time.");
+			addButton(1, "Cabaraet", nozzleShowRepeat);
+		}
+	}
+
+	if (hasSeenNozzleShow() && ((hours > 20 && hours < 2) || (hours == 20 && minutes >= 35) || (hours == 2 && minutes == 0)))
+	{
+		output("\n\nFazian, the anat cabaret performer, is sat at the quieter end of one of the bars, craned over a glass of honey wine. You could go and talk to him if you wished.");
+		addButton(1, "Fazian", fazianApproach);
+	}
 }
 
 public function showDally(nude:Boolean = false):void

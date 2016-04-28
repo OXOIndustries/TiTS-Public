@@ -975,7 +975,7 @@ public function initializeMyrellionRooms():void
 	rooms["748"].system = "SYSTEM: SINDATHU";
 	rooms["748"].eastExit = "727";
 	rooms["748"].moveMinutes = 1;
-	rooms["748"].runOnEnter = dallySplash;
+	rooms["748"].runOnEnter = honeyNozzleClub;
 	rooms["748"].addFlag(GLOBAL.INDOOR);
 	rooms["748"].addFlag(GLOBAL.PUBLIC);
 	rooms["748"].addFlag(GLOBAL.NPC);
