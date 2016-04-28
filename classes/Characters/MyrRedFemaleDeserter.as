@@ -245,7 +245,9 @@
 			//cumflated only: cum-bloated (could even be wildcarded for honeycum or other things, depending on your tracking), cum-inflated, sloshing,
 			if(isPregnant())
 			{
-				if(belly < 10) {}
+				if(belly < 10) {
+					pregDescripts[pregDescripts.length] = "squishy";
+				}
 				else if(belly < 20)
 				{
 					pregDescripts[pregDescripts.length] = "fruitful";

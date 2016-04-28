@@ -233,6 +233,27 @@
 						else if(bonusRowsTFed > 1) kGAMECLASS.output(" Your other breasts shrink a bit as well.");
 					}
 				}
+				//Non nips!
+				if(changes < changeLimit && (pc.hasLipples() || pc.hasFuckableNipples() || pc.hasDickNipples()) && rand(3) == 0)
+				{
+					if(pc.nippleTypeUnlocked(0, GLOBAL.NIPPLE_TYPE_NORMAL))
+					{
+						kGAMECLASS.output("\n\nA sharp shock of sensation stabs through your chest and into your [pc.nipples], fading almost as soon as it arrives. By the time you sneak a peek, you discover that <b>your nipples have become much more mundane.</b>");
+						for(x = 0; x < pc.bRows(); x++)
+						{
+							//Lipples become inverted nips
+							if(pc.breastRows[x].nippleType == GLOBAL.NIPPLE_TYPE_LIPPLES) pc.breastRows[x].nippleType = GLOBAL.NIPPLE_TYPE_INVERTED;
+							//Fucknipples become inverted
+							else if(pc.breastRows[x].nippleType == GLOBAL.NIPPLE_TYPE_FUCKABLE) pc.breastRows[x].nippleType = GLOBAL.NIPPLE_TYPE_INVERTED;
+							//Dicknips become normal
+							else if(pc.breastRows[x].nippleType == GLOBAL.NIPPLE_TYPE_DICK) pc.breastRows[x].nippleType = GLOBAL.NIPPLE_TYPE_NORMAL;
+							//Non normal, non inverted become normal (catch all)
+							else if(pc.breastRows[x].nippleType != GLOBAL.NIPPLE_TYPE_INVERTED && pc.breastRows[x].nippleType == GLOBAL.NIPPLE_TYPE_NORMAL) pc.breastRows[x].nippleType = GLOBAL.NIPPLE_TYPE_NORMAL;
+						}
+						changes++;
+					}
+					else kGAMECLASS.output("\n\n" + pc.nippleTypeLockedMessage());
+				}
 				//Girlygoo
 				if(changes < changeLimit && rand(3) == 0 && target.girlCumType != GLOBAL.FLUID_TYPE_GIRLCUM && target.hasVagina())
 				{
@@ -240,6 +261,7 @@
 					{
 						kGAMECLASS.output("\n\nA twinge of discomfort in your [pc.vaginas] passes in a heartbeat, causing you to reach down in a panic. Fortunately, nothing feels that different down there, though when you bring your fingers back up, you realize that <b>your [pc.girlCum] has been replaced with clear, terran lubricant.</b>");
 						target.girlCumType = GLOBAL.FLUID_TYPE_GIRLCUM;
+						changes++;
 					}
 					else kGAMECLASS.output(target.girlCumTypeLockedMessage());
 				}
@@ -250,6 +272,7 @@
 					{
 						kGAMECLASS.output("\n\nYour feel an unusual tightness in your [pc.chest], and then, without warning, you let down, dribbling [pc.milk] all over yourself. You dab at it in a panic, noticing that the longer it goes on, the more you appear to be lactating traditional terran milk. You sigh with relief when your [pc.nipples] finally stop leaking. <b>You now have normal, terran breast-milk.</b>");
 						target.milkType = GLOBAL.FLUID_TYPE_MILK;
+						changes++;
 					}
 					else kGAMECLASS.output(target.girlCumTypeLockedMessage());
 				}

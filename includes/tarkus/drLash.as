@@ -382,7 +382,7 @@ public function lashTreatment2(treatment:String):void
 		pc.milkMultiplier = 0;
 		//Clear out honeypot bonuses	
 		pc.breastRows[0].breastRatingHoneypotMod = 0;
-
+		
 		if(pc.breastRows[0].nippleType != GLOBAL.NIPPLE_TYPE_FLAT) pc.breastRows[0].nippleType = GLOBAL.NIPPLE_TYPE_NORMAL;
 		pc.nippleLengthRatio = 1;
 		pc.nippleWidthRatio = 1;
@@ -392,6 +392,11 @@ public function lashTreatment2(treatment:String):void
 		{
 			if(pc.breastRows[0].breasts == 1) output(" All that remains is one plain-looking nipple.");
 			else output(" All that remains are " + num2Text(pc.breastRows[0].breasts) + " plain-looking nipples.");
+		}
+		if(pc.hasPerk("Mega Milk"))
+		{
+			output("\n\n</b>(<b>Perk Lost: Mega Milk</b> - You will always be able to produce milk as if you were at least 40% full, even if your breasts are empty.)<b>");
+			pc.removePerk("Mega Milk");
 		}
 	}
 	else if(treatment == "vagina replacement")
