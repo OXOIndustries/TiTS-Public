@@ -1,3 +1,12 @@
+public const FAZIAN_QUEST_NOTSTARTED:* = undefined;
+public const FAZIAN_QUEST_COMPLETE:int = 1;
+public const FAZIAN_QUEST_OFFERING:int = 2;
+public const FAZIAN_QUEST_STARTED:int = 3;
+public const FAZIAN_QUEST_REJECTED:int = 4;
+public const FAZIAN_QUEST_FAILED:int = 5;
+public const FAZIAN_QUEST_INVESTIGATED:int = 6;
+public const FAZIAN_QUEST_RESCUE:int = 7;
+
 public function showHepane():void
 {
 	author("Nonesuch");
@@ -525,6 +534,12 @@ public function fazianMyr():void
 	
 	output("\n\nEven if you were minded to, you doubt you could persuade him otherwise.");
 
+	if (flags["FAZIAN_QUEST_STATE"] == FAZIAN_QUEST_NOTSTARTED)
+	{
+		flags["FAZIAN_QUEST_STATE"] = FAZIAN_QUEST_OFFERING;
+		flags["FAZIAN_QUEST_TIMER"] = GetGameTimestamp();
+	}
+
 	fazianMenu(fazianMyr);
 }
 
@@ -815,6 +830,549 @@ public function fazianDanceFive(isSunwalker:Boolean = false):void
 	processTime(300+rand(50));
 	flags[(isSunwalker ? "DANCE_SKILL_SUNWALKER" : "DANCE_SKILL_EDOTTO")] = 4;
 	fazianDanceSore();
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function fazianQuestOpening():void
+{
+	clearOutput();
+	showHepane();
+
+	output("<i>“The cabaret on?”</i> you ask.");
+	
+	output("\n\n<i>“No,”</i> she replies distractedly, looking past you and wringing all four hands. <i>“I... I don’t suppose you’ve seen Fazian anywhere?”</i>");
+	
+	output("\n\n<i>“He not around?”</i>");
+	
+	output("\n\n<i>“He hasn’t shown up to the club for the last two nights running,”</i> she says, unease etched on her pretty, pointed face. <i>“I thought maybe he was poorly last night... but now, nobody seems to know what’s happened to him. The port authorities won’t tell me anything, except that he’s not on his ship. If he were a myr I could ask the royal guard about it, but... <i>“ She looks helpless.");
+
+	//[Help] [Delay] [Not My Problem]
+	clearOutput();
+	addButton(0, "Help", fazianQuestHelp, undefined, "Help Out", "Your intuition tells you to be careful here. It's possible you could muck this up.");
+	addButton(1, "Delay", fazianQuestDelay, undefined, "Delay", "Perhaps you could help. A bit later, though.");
+	addButton(2, "NotMyProb", fazianQuestNotMyProblem, undefined, "Not My Problem", "If you choose this, it's likely you'll never see Fazian again.");
+}
+
+public function fazianQuestNotMyProblem():void
+{
+	clearOutput();
+	showHepane();
+	
+	output("<i>“Sorry to hear that,”</i> you say. <i>“Hope he turns up eventually.”</i>");
+	
+	output("\n\n<i>“Yes... <i>“ Hepane’s attention has already drifted past you to the entrance of the club again.");
+
+	flags["FAZIAN_QUEST_STATE"] = FAZIAN_QUEST_REJECTED;
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function fazianQuestDelay():void
+{
+	clearOutput();
+	showHepane();
+
+	if (flags["FAZIAN_QUEST_DELAY"] == undefined)
+	{
+		flags["FAZIAN_QUEST_DELAY"] = 1;
+		output("<i>“I might be able to look for him,”</i> you say. <i>“Just give me some time, ok?”</i>");
+		
+		output("\n\n<i>“It would be wonderful if you could,”</i> says Hepane, focusing on you at last. She reaches out to grasp your hand tightly. <i>“Another starwalker might be able to... please hurry.”</i>");
+	}
+	else
+	{
+		output("<i>“He... he still hasn’t shown up,”</i> says Hepane the moment you roll into view. Watching a gold myr wring her hands is mesmerising, in its own way. <i>“Can you help?”</i>");
+	}
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function fazianQuestHelp():void
+{
+	clearOutput();
+	showHepane();
+
+	if (pc.isNice()) output("<i>“I’ll find him,”</i> you say, with all the confidence you can muster. <i>“Don’t worry about a thing. Just tell me where you saw him last.”</i>");
+	else if (pc.isMisch()) output("<i>“I’ll find him, no problem,”</i> you say, trying to lighten her mood. <i>“No matter how well a bone-headed brightly-feathered dude blends into the crowd here. Where did you see him last?”</i>");
+	else if (pc.isAss()) output("<i>“He’ll have got himself involved in some orgy, forgotten all about you,”</i> you say, rolling your eyes. Maybe you believe that, maybe you don’t; the point is to put the lady at ease. <i>“I’ll find him, no problem. Slap some sense into him while I’m at it. Where did you see him last?”</i>");
+
+	output("\n\n<i>“I last saw him a few nights ago,”</i> says Hepane, brow crinkling in thought. <i>“We did our usual performance, and then he went to the bar as usual. I didn’t really see him after that. I didn’t - I can’t remember anything unusual happening. He often goes off with other myr, it’s... we have a professional relationship.”</i> Her tone suggests one half of the pair is happier with this arrangement than the other. <i>“We usually do a rehearsal in the afternoon, and he didn’t turn up then. I haven’t seen him since.”</i>");
+	
+	output("\n\n<i>“Try asking around?”</i> she suggests after a heavy pause. <i>“I already have, around the club at least, but maybe - you’re a starwalker, too. You must know sophisticated questions to ask, get people to open up more. If you find anything out, come back to me. I’ll wait here, in case he does show up in the meantime.”</i>");
+	
+	output("\n\nAs you leave she grabs your hand. <i>“Thank you for doing this,”</i> the accompanist says tremulously. <i>“I’d hate if something bad had happened to him. I think - I don’t think Fazian knows how bad this world can be.”</i>");
+	
+	output("\n\nYou go to the Honeypot’s bar and take stock. Who in the club, Gildenmere and the nearby spaceport might know where the gene-modded anat has gotten to?");
+
+	flags["FAZIAN_QUEST_STATE"] = FAZIAN_QUEST_STARTED;
+
+	//Add [Gold Myr], [Barkeep] to Honeypot's main menu. Add [Fazian] to Dally's menu, Gene's menu and Juro's menu. 
+
+	//Ghost [Hepane] until Fazsuccess count = 3 or Fazfail count = 3.
+}
+
+public function fazianQuestGoldMyr():void
+{
+	clearOutput();
+	showName("GOLD\nMYR");
+	showBust("GOLDMYR", "GOLDMYR", "GOLDMYR");
+	author("Nonesuch");
+
+	output("<i>“Excuse me ladies,”</i> you say, breaking the tipsy chatter of the gold myr grouped near one of the strip poles, <i>“but I wonder if any of you have seen the dancer Fazian? He’s got feathers, about yay high... <i>“");
+	
+	output("\n\n<i>“Ooh yes,”</i> replies one immediately. <i>“He’s a nice piece of honeycomb, isn’t he? Shame you have to pay to go see him.”</i>");
+	
+	output("\n\n<i>“’s up with that, anyway?”</i> slurs another, trying to reach up and pinch the passing legs of a myr stripper. <i>“Starwalker charging us. What - why - how could they need our money? Pointing their stalag-cannons at us all the while. S’isn’t right.”</i>");
+	
+	output("\n\n<i>“It’s to keep cheap, pinching wetra-wives like you away from the prime stock!”</i> shrills another. They all dissolve into laughter.");
+	
+	output("\n\n<i>“The thing is, he’s gone missing,”</i> you try.");
+	
+	output("\n\n<i>“It does raise the question,”</i> says a more bookish one, <i>“about the universal nature of monetary exchange. To think that, for all their sophistication, starwalkers are still using a form of bargaining which is recognisable to us... <i>“");
+	
+	output("\n\n<i>“Oh here we go,”</i> retorts the first. <i>“She gets one study published in the Gildenglobe and suddenly she’s the expert.”</i>");
+	
+	output("\n\n<i>“We’re here to have a good time!”</i> wails another.");
+
+	//[Good Cop] [Bad Cop]
+	clearMenu();
+	addButton(0, "Good Cop", fazianQuestGoldMyrGood, undefined, "Good Cop", "Encourage them to keep talking. Maybe they'll reveal something interesting.");
+	addButton(1, "Bad Cop", fazianQuestGoldMyrBad, undefined, "Bad Cop", "Insist they get back to the point, emphasizing how important this is.");
+}
+
+public function fazianQuestGoldMyrGood():void
+{
+	clearOutput();
+	showName("GOLD\nMYR");
+	showBust("GOLDMYR", "GOLDMYR", "GOLDMYR");
+	author("Nonesuch");
+
+	output("<i>“So where are you ladies from?”</i> you say, pulling up a chair. <i>“You all researchers?”</i>");
+	
+	output("\n\nOver the next hour or so you learn an awful lot about the current state of philosophical and economical debate in Gildenmere.");
+	if (pc.isMasculine()) output(" You also get rather unsubtly groped and hit upon.");
+	output(" The party of gold myr exit the club eventually, blowing kisses at you and tittering into each other’s arms, leaving you with a minor headache and absolutely no further clue as to what happened to Fazian.");
+
+	//Fazfail + 1, remove "Gold Myr" from Honeypot menu
+	flags["FAZIAN_QUEST_GOLDMYR"] = 1;
+	if (flags["FAZIAN_QUEST_FAILURES"] == undefined) flags["FAZIAN_QUEST_FAILURES"] = 1;
+	else flags["FAZIAN_QUEST_FAILURES"]++;
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function fazianQuestGoldMyrBad():void
+{
+	clearOutput();
+	showName("GOLD\nMYR");
+	showBust("GOLDMYR", "GOLDMYR", "GOLDMYR");
+	author("Nonesuch");
+
+	output("<i>“Listen to me, dammit,”</i> you bark, banging your fist on the table. <i>“A young man who performs for you has gone missing. Would you be this careless if it was one of your own brothers? Stop taking the piss for a moment and think. When was the last time any of you saw him?”</i>");
+	
+	output("\n\nThe table goes quiet.");
+	
+	output("\n\n<i>“Sorry, starwalker,”</i> says one in a small voice. They all look at each other uneasily, antennae twitching.");
+	
+	output("\n\n<i>“We don’t know where he is,”</i> goes on another. <i>“But... if some gold myr had kidnapped him, we’d know about it.”</i>");
+	
+	output("\n\n<i>“Wouldn’t be able to keep that quiet around here,”</i> agrees a third. <i>“And everyone would be pissed. He’s the star performer of this place, no-one likes the cabaret being closed. Someone would roach.”</i>");
+	
+	output("\n\nThat’s something, at least. You thank the party stiffly and leave.");
+
+	//Fazsuccess + 1, remove "Gold Myr" from Honeypot menu
+	flags["FAZIAN_QUEST_GOLDMYR"] = 1;
+	if (flags["FAZIAN_QUEST_SUCCESSES"] == undefined) flags["FAZIAN_QUEST_SUCCESSES"] = 1;
+	else flags["FAZIAN_QUEST_SUCCESSES"]++;
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function fazianQuestBarkeep():void
+{
+	clearOutput();
+	showBust("GOLDMYR");
+	showName("\nBARKEEP");
+	author("Nonesuch");
+
+	output("The barkeep eyes you as you sit down near her. For a gold myr, she’s pretty tough-looking; flat-nosed and drawn features. She gazes back at you impassively, cleaning two glasses at once.");
+	
+	output("\n\n<i>“You know the dancer Fazian, right?”</i> you say. <i>“Used to perform here. Have you seen him recently?”</i>");
+	
+	output("\n\n<i>“Yes,”</i> she replies. <i>“No.”</i>");
+	
+	output("\n\n<i>“Do you know anyone who might?”</i> She snorts.");
+	
+	output("\n\n<i>“Sure. Want me to sort you out with some red venom, too? Maybe one or two girls who’ll do </i>anything<i> if you can smuggle them off this world, while you’re waiting.”</i> She examines one of the glasses in her hands critically. <i>“Lot of business flows through here. Why? Because the staff don’t know and they don’t tell. Particularly not to some starwalker who got put up to it by the royal guard.”</i>");
+
+	//[Good Cop] [Bad Cop]
+	clearMenu();
+	addButton(0, "Good Cop", fazianQuestBarkeepGood, undefined "Good Cop", "Appeal to empathy. Encourage her to open up a bit.");
+	addButton(1, "Bad Cop", fazianQuestBarkeepBad, undefined, "Bad Cop", "Force the information out of her.");
+}
+
+public function fazianQuestBarkeepGood():void
+{
+	clearOutput();
+	showBust("GOLDMYR");
+	showName("\nBARKEEP");
+	author("Nonesuch");
+
+	output("<i>“Ok. You got me right,”</i> you say, quietly. <i>“I am an outsider, looking for another outsider. You know what my interest is? Knowing how much it would suck to be lost and alone on an alien planet, without anyone looking for me. I don’t want to incriminate anyone. I just want to know where to look.”</i>");
+	
+	output("\n\nThe barkeep is silent for a time, turning the glass around and around in her hands. Her pupil-less eyes are unreadable");
+	
+	output("\n\n<i>“If I were looking for that friend of yours... <i>“ she says at last. <i>“...I would look in Kressia. I cannot say any more than that, "+ pc.mf("Mr.", "Mrs.") +" Outsider. Not without there being... repercussions.”</i>");
+	
+	output("\n\nYou cannot get anything more from her. Still, it’s something.");
+
+	//Fazsuccess + 1, remove "Barkeep" from Honeypot menu
+	flags["FAZIAN_QUEST_BARKEEP"] = 1;
+	if (flags["FAZIAN_QUEST_SUCCESSES"] == undefined) flags["FAZIAN_QUEST_SUCCESSES"] = 1;
+	else flags["FAZIAN_QUEST_SUCCESSES"]++;
+}
+
+public function fazianQuestBarkeepBad():void
+{
+	clearOutput();
+	showBust("GOLDMYR");
+	showName("\nBARKEEP");
+	author("Nonesuch");
+
+	output("<i>“I know you know something,”</i> you growl menacingly. <i>“I suggest you cough up, or things are going to get real unpleasant in here.”</i>");
+	
+	output("\n\nShe shakes her head disbelievingly.");
+	
+	output("\n\n<i>“Trying to kick off a fight so you can charge me? Really?”</i> she sneers. <i>“You are beyond pathetic. If you have any proof whatsoever I’ve done something wrong, charge me. Because I know you don’t, you can get out of my face.”</i> She strides off to serve someone at the other end of the bar. No amount of cajoling or threatening will get her to talk to you again.");
+
+	//Fazfail + 1, remove “Barkeep” from Honeypot menu
+	flags["FAZIAN_QUEST_BARKEEP"] = 1;
+	if (flags["FAZIAN_QUEST_FAILURES"] == undefined) flags["FAZIAN_QUEST_FAILURES"] = 1;
+	else flags["FAZIAN_QUEST_FAILURES"]++;
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function fazianQuestDally():void
+{
+	clearOutput();
+	showBust("DALLY");
+	showName("\nDALLY");
+	author("Nonesuch");
+
+	output("<i>“Hey,”</i> you say, sidling into a free space next to the myr stripper’s stage. <i>“You must know Fazian, right? Feathered guy, used to do the cabaret. Do you know what’s happened to him?”</i>");
+	
+	output("\n\n<i>“You want to talk?”</i> replies Dally breezily, not slowing down his slow gyration around his pole. <i>“That is fine, I’ll talk with you. But it costs. Just the same as anything or anybody else.”</i>");
+
+	//[Pay 250 credits] [Don't]
+	clearMenu();
+	if (pc.credits >= 250) addButton(0, "Pay 250c", fazianQuestDallyPay, undefined, "Pay 250 credits", "");
+	else addDisabledButton(0, "Pay 250c", "Pay 250 credits", "You don't have enough credits.");
+	addButton(1, "Don't Pay", fazianQuestDallyNoPay);
+}
+
+public function fazianQuestDallyNoPay():void
+{
+	clearOutput();
+	showBust("DALLY");
+	showName("\nDALLY");
+	author("Nonesuch");
+
+	output("You can barely believe this guy’s mercantilism.");
+	
+	output("\n\n<i>“I don’t want - this is an investigation!”</i> you cry, outraged. A few other myr look over. <i>“I’m not paying you for that! Where did you see Fazian last?”</i>");
+	
+	output("\n\nBut Dally walls you completely, continuing on to where two gold myr are eagerly rubbing paper notes at him. Even when he’s finished with them, no amount of cajoling can bring him back to the subject.");
+
+	//Fazfail + 1, remove "Fazian" from Dally menu
+	flags["FAZIAN_QUEST_DALLY"] = 1;
+	if (flags["FAZIAN_QUEST_FAILURES"] == undefined) flags["FAZIAN_QUEST_FAILURES"] = 1;
+	else flags["FAZIAN_QUEST_FAILURES"]++;
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function fazianQuestDallyPay():void
+{
+	clearOutput();
+	showBust("DALLY");
+	showName("\nDALLY");
+	author("Nonesuch");
+
+	output("You roll your eyes, but produce a credit chit.");
+	
+	output("\n\n<i>“Thank you,”</i> says Dally, squirreling it away and sitting down facing you with his legs dangling off the stage and his bulging abdomen on it. <i>“Now come here. Don’t worry... don’t be tense... <i>“ He puts his smooth hands on either side of your head and brings his face close. <i>“Now it looks professional, you see?”</i> he murmurs. <i>“Please don’t think I’m selfish. I don’t know who listens in here, who makes dancers disappear in the middle of the night. But I have some idea, yes.”</i> You realise the male myr is quite scared.");
+	
+	output("\n\n<i>“Your friend Fazian, he didn’t really get it. You’ve got to keep some professional distance if you’re a male performer here. If you don’t... you share yourself with everyone, you go off with just anyone who asks... you attract predators. The myr he was talking to, three nights ago? I would hide behind the curtains sooner than perform for that type. She does business. Lot of people want to get in and out of gold territory discretely - lot of people want </i>other<i> people to get in and out of gold territory discretely - and she can make that happen. I always warned Fazian - just generally, you know - but he just laughed. He didn’t get it... <i>“");
+	
+	output("\n\n<i>“Know anything else?”</i> you murmur. <i>“What they talked about?”</i>");
+	
+	output("\n\n<i>“I’m sorry, starwalker,”</i> he replies softly. <i>“Sounded like she was making him an offer. All I know is that myr hasn’t been around since. Fazian was there the night afterwards, and no-one at the club has seen him since. Good luck finding him - and be careful yourself.”</i> He releases his gentle hold on your head and gets up, returning to his dancing with a final mournful look.");
+	
+	output("\n\nThat sounded significant.");
+
+	pc.credits -= 250;
+
+	//Fazsuccess + 1, remove "Fazian" from Dally menu
+	flags["FAZIAN_QUEST_DALLY"] = 1;
+	if (flags["FAZIAN_QUEST_SUCCESSES"] == undefined) flags["FAZIAN_QUEST_SUCCESSES"] = 1;
+	else flags["FAZIAN_QUEST_SUCCESSES"]++;
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function fazianQuestGene():void
+{
+	clearOutput();
+	showName("\nGENE");
+	showBust("GENE");
+	author("Nonesuch");
+
+	output("<i>“Did you know Fazian?”</i> you ask. <i>“Anat, bright feathers?”</i>");
+	
+	output("\n\n<i>“’Did?’,”</i> repeats Gene, swishing his tails ponderously. <i>“A portentous tense indeed! Has something befallen the kaleidoscopic popinjay?”</i>");
+	
+	output("\n\n<i>“He’s gone missing,”</i> you say. <i>“Wondered if you knew anything about him, what might have happened to him.”</i>");
+	
+	output("\n\n<i>“Yes, I... knew... him,”</i> rumbles Gene. <i>“He came in here a few times to peruse my stock, talk about mods and how exactly we fellow emperors had washed up here. Nice chap but </i>frightfully<i> naive, both on the subject of myr and post-neocapitalist theory. As to what’s happened to him - Huh!”</i>");
+	
+	output("\n\nHe snorts like a halting train.");
+	
+	output("\n\n<i>“That is as obvious to me as it should be to you, dear Steele. Some group of myr, or maybe even nyrea, have had enough of his endless flirting and have snaffled him up to enjoy all for themselves. No doubt he is enjoying the hospitality of the peaceful, loving denizens of this planet even as we speak.”</i> He shrugs.");
+	
+	output("\n\n<i>“As to which flavor of sex-starved arthropod, I’m afraid I have no clue.”</i> He taps his horn lips thoughtfully, though. <i>“Hmm. He did drop by a few days ago. I wasn’t paying much attention to him because I was rather anticipating one of my favourite lady callers. What were we talking about? Fazian gets it into his head to criticize my method of delivering mods to the denizens of this planet. He comes at it so </i>politely<i>, each time from a new angle, the very model of the eager, unwavering proselytizer. So here I am, afire with anticipatory passion, wondering how in the galaxy I am going to swat aside this tiresome socialist in the fastest yet most graceful way possible... <i>“ His rich voice fills the shop’s space like an orchestra playing the opening chords of an extremely long aria.");
+
+	// [Listen] [Leave]
+	clearMenu();
+	addButton(0, "Listen", fazianQuestGeneListen, undefined, "Listen", "Wait to see if he does, in the event, have anything worthwhile to say.");
+	addBUtton(1, "Leave", fazianQuestGeneLeave, undefined, "Leave", "Time is of the essence.");
+}
+
+public function fazianQuestGeneListen():void
+{
+	clearOutput();
+	showName("\nGENE");
+	showBust("GENE");
+	author("Nonesuch");
+
+	output("<i>“ ...which is why burgundy is the true stripe of masculinity, and not a splurge of gaudy rainbow, whatever other examples of avian sentience have to say on the matter,”</i> Gene continues, some time later. He pauses finally, frowning. You stir, coming to your senses slightly.");
+	
+	output("\n\n<i>“Now, what was it that he was wittering on about that day? Ah, yes! He said he had an invitation to do a private performance with some very select myr that night, after he finished at his club. I can’t tell you what kind of myr, or where... but it sounded as if he was preparing for a fair bit of travel.”</i> He sniffs. <i>“That’s all I know I’m afraid, Steele. Best of luck finding the silly little peacock.”</i>");
+
+	//Fazsuccess + 1, remove "Fazian" from Gene's talk menu
+	flags["FAZIAN_QUEST_GENE"] = 1;
+	if (flags["FAZIAN_QUEST_FAILURES"] == undefined) flags["FAZIAN_QUEST_FAILURES"] = 1;
+	else flags["FAZIAN_QUEST_FAILURES"]++;
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function fazianQuestGeneLeave():void
+{
+	clearOutput();
+	showName("\nGENE");
+	showBust("GENE");
+	author("Nonesuch");
+
+	output("<i>“I’m sorry, Gene,”</i> you interrupt. <i>“But I’ve got to go.”</i>");
+	
+	output("\n\n<i>“Oh, of course,”</i> blinks the fanfir, stopped mid-flow. <i>“Best of luck finding the silly little peacock, I suppose.”</i>");
+
+	flags["FAZIAN_QUEST_GENE"] = 1;
+	if (flags["FAZIAN_QUEST_SUCCESSES"] == undefined) flags["FAZIAN_QUEST_SUCCESSES"] = 1;
+	else flags["FAZIAN_QUEST_SUCCESSES"]++;
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function fazianQuestJuro():void
+{
+	clearOutput();
+	juroDisplay();
+
+	output("<i>“Do you know Fazian?”</i> you ask. <i>“About yay tall, bright feathers. He lives on his ship, he must have walked past here most days.”</i>");
+	
+	output("\n\n<i>“The anat? Yes, I know him,”</i> replies the kui-tan. He fiddles with his pile of paperwork distractedly. <i>“I know him to look at, that is to say; difficult to miss. I don’t believe we’ve ever exchanged a word. Why?”</i>");
+	
+	output("\n\n<i>“He’s gone missing,”</i> you say. <i>“Wondered if you had any idea what might have happened to him.”</i>");
+	
+	output("\n\n<i>“Bluntly, no,”</i> says Juro with an exasperated sigh. <i>“I’ve got more than enough on my plate right now than to keep tabs on every adventurer who drifts through here, [pc.name] Steele.”</i> He slides a file out of his teetering in-box. <i>“I wouldn’t presume to pay too much attention to anatae at the best of times. They have this nasty tendency to pay attention back.”</i>");
+	
+	output("\n\n<i>“You must have security footage of this spaceport,”</i> you frown, looking around. <i>“You wouldn’t mind me having a look, if you’re busy?”</i>");
+	
+	output("\n\n<i>“Goodness me. Hand that kind of data over to a non-affiliated with a missing friend story during an extremely precarious ceasefire?”</i> he replies with a dry snort, scribbling away. <i>“I would require a warrant from the empire itself if you wanted that. Do stop pestering me with this, Steele. I have absolutely no idea what happened to this Fazian of yours.”</i>");
+
+	// [Make a scene] [Anatae.] [Leave]
+	clearMenu();
+	addButton(0, "Make Scene", fazianQuestJuroScene, undefined, "Juro", "Try and fluster the kui-tan into giving you what you want.");
+	addButton(1, "Anatae", fazianQuestJuroAnatae, undefined, "Anatae", "Threaten Juro with his own advice.");
+	addButton(2, "Leave", fazianQuestJuroLeave, undefined, "Leave", "He's right, this is pointless. Leave him be.");
+}
+
+public function fazianQuestJuroLeave():void
+{
+	flags["FAZIAN_QUEST_JURO"] = 1;
+	if (flags["FAZIAN_QUEST_FAILURES"] == undefined) flags["FAZIAN_QUEST_FAILURES"] = 1;
+	else flags["FAZIAN_QUEST_FAILURES"]++;
+	mainGameMenu();
+}
+
+public function fazianQuestJuroAnatae():void
+{
+	clearOutput();
+	juroDisplay();
+
+	output("<i>“Alright then, Juro,”</i> you say with a heavy sigh. <i>“I’ll go back to Tavros. I’ll find where the anatae commission is stationed. I’ll explain the situation to them and jump through whatever hoops they want. Then I’ll come back with your warrant. By then Fazian will be gone for good, and you know all that will be left? His people’s empire gaining a sudden interest in one obfuscating kui-tan bureaucrat, and the planet he is hoping to colonize.”</i>");
+	if (flags["JURO_LYRALLA_CLOSET_SEEN"] != undefined) output(" You lean forward on his desk and lower your voice. <i>“A kui-tan who has a hopeless conflict of interests, given he’s fucking one of the local representatives.”</i>");
+
+	output("\n\nYou turn and begin to head eastwards towards your ship.");
+	
+	output("\n\n<i>“Wait!”</i> cries Juro after you’ve gotten ten feet. <i>“Wait. Alright. You can look at the spaceport’s security footage. Just... don’t tell anyone, ok?”</i> He gets up, heads into a back room, and comes back ten minutes later with a small, grey box. <i>“And make it worthwhile, ok Steele?”</i> he parts gruffly.");
+	
+	output("\n\nYou settle yourself down in a quiet corner and fiddle around with the holographic projector, flicking moving images of the spaceport, captured by a flotilla of U.G.C. microbots, into the air around you. As you had guessed, Juro was being an ass; it doesn’t take five minutes to get the AI inside to provide you with the most recent footage of Fazian.");
+	
+	output("\n\nThere he goes, fast-forwarding his technicolor feathers past the front desk every afternoon, usually returning to his ship in the very early hours. On the last night he’s seen, he goes past the front desk, and... simply doesn’t come back. It gives you a bit of a chill watching it, exactly because there’s nothing unusual about the scene at all. If the lean, mask-faced dancer knew what was going to happen to him he’s not showing it, strolling out of the microbot’s view looking as carefree as you can remember him.");
+	
+	output("\n\nYou frown and rewind to the previous night, when he comes back to his ship. Again, there’s nothing unusual. He walks past the ambassadors’ offices, glances at his codex’s screen, and heads towards his ship... he walks past the ambassadors’ offices, glances at his codex’s screen... he glances at his codex’s screen... you freeze the image.");
+
+	output("\n\n<i>“There’s something written on it,”</i> you say aloud. <i>“Do you think you can enlarge it and tell me what it is?”</i>");
+	
+	output("\n\n<i>“Ehm. Jay. Arr. Ehstraffe, 11 sharp,”</i> the AI replies promptly.");
+	
+	output("\n\n<i>“Do you know any Ehstraffes?”</i> you ask gingerly.");
+	
+	output("\n\n<i>“Major Ehstraffe. Red myr officer. Female. Stationed in Kressia,”</i> the tinny voice says.");
+	
+	output("\n\n<i>“What does she do?”</i> you ask after a moment.");
+	
+	output("\n\n<i>“That information is classified,”</i> replies the AI sweetly.");
+	
+	output("\n\nYou turn it off and return it to Juro, your mind buzzing.");
+
+	// Fazsuccess + 1, remove "Fazian" from Juro's menu
+	flags["FAZIAN_QUEST_JURO"] = 1;
+	if (flags["FAZIAN_QUEST_SUCCESSES"] == undefined) flags["FAZIAN_QUEST_SUCCESSES"] = 1;
+	else flags["FAZIAN_QUEST_SUCCESSES"]++;
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function fazianQuestJuroScene():void
+{
+	clearOutput();
+	juroDisplay();
+
+	output("<i>“Bullshit, Juro,”</i> you say loudly, making the kui-tan jerk. <i>“A U.G.C. citizen goes missing and your response is to hide behind a bunch of paper? If you aren’t going to help, at least stop getting in the way of someone who actually gives a fuck!”</i>");
+	
+	output("\n\n<i>“That’s enough, friend,”</i> says a voice behind you. You turn around and find a knot of uniformed gold myr guards has formed around you.");
+	
+	output("\n\n<i>“Just... take [pc.himHer] back to their ship,”</i> says Juro, slightly shakily. <i>“Let [pc.himHer] cool off.”</i>");
+	
+	output("\n\nThere’s no arguing with them, and fighting will only make things a lot worse. You allow the gold myr to march you back to the boarding ramp of your ship.");
+	
+	output("\n\n<i>“This world’s got enough spare aggression flying around right now,”</i> observes their officer, sympathetic but firm. <i>“If you can’t manage yours, I’d suggest taking it elsewhere.”</i>");
+
+	flags["FAZIAN_QUEST_JURO"] = 1;
+	if (flags["FAZIAN_QUEST_FAILURES"] == undefined) flags["FAZIAN_QUEST_FAILURES"] = 1;
+	else flags["FAZIAN_QUEST_FAILURES"]++;
+
+	currentLocation = "SHIP INTERIOR";
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function fazianQuestInvestigationDun():void
+{
+	clearOutput();
+	showHepane();
+
+	var f:int = (flags["FAZIAN_QUEST_FAILURES"] == undefined ? 0 : flags["FAZIAN_QUEST_FAILURES"]);
+	var s:int = (flags["FAZIAN_QUEST_SUCCESSES"] == undefined ? 0 : flags["FAZIAN_QUEST_SUCCESSES"]);
+
+	if (f > s)
+	{
+		output("<i>“How did it go?”</i> asks Hepane anxiously, standing up when she sees you coming. <i>“Any idea where he’s gone?”</i>");
+		
+		output("\n\nYou shrug.");
+		
+		output("\n\n<i>“I’ve got one or two, but... <i>“ You tell her about your interviews and the slivers of information you managed to picked up. Even to your ears, it’s desperately thin stuff. Hepane shakes her head miserably when you finish.");
+		
+		output("\n\n<i>“It’s not enough, I wouldn’t know where to start with that,”</i> she says. She puts a hand on your shoulder. <i>“Thank you for trying, starwalker. Maybe if... just the knowledge that someone is looking for him might cause him to resurface, you know?”</i>");
+		
+		output("\n\nYou privately doubt that, but there’s nothing to be gained from saying otherwise. Nothing at all.");
+		
+		output("\n\nYou squeeze her hand and leave.");
+
+		//Remove "Gold Myr", "Red Myr", "Dally: Fazian", "Gene: Fazian" and "Juro: Fazian" options if they still exist. Remove "Hepane" option from Honeypot menu.
+		flags["FAZIAN_QUEST_STATE"] = FAZIAN_QUEST_FAILED;
+
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+		return;
+	}
+	else if (s != 5)
+	{
+		output("<i>“How did it go?”</i> asks Hepane anxiously, standing up when she sees you coming. <i>“Any idea where he’s gone?”</i>");
+		
+		output("\n\n<i>“He was lured out of Gildenmere and taken to Kressia,”</i> you say. <i>“Probably by some red myr.”</i>");
+		
+		output("\n\n<i>“A-are you sure?”</i> replies Hepane hesitantly. <i>“I think some people around here... if you asked them about someone missing, they might - <i>“");
+		
+		output("\n\nYou lay down your cards one after the other, going through each piece of information you wrangled out of your interviewees, showing her how everything points to your conclusion.");
+	}
+	else
+	{
+		output("<i>“He was led into believing he was going to perform at a red myr function in Kressia,”</i> you say crisply. <i>“Pretty sure he journeyed there himself. The red myr are acting under one Major Ehstraffe, and presumably they’ve still got hold of him in Kressia. Why him? He was a lot easier to ensnare than any gold male, and far fewer people missed him. For what purpose? That I do not know. Kidnapping an alien to use as a sex slave seems extreme, but that’s the only motive that anyone has so far suggested.”</i>");
+		
+		output("\n\nHepane stares at you, mouth slightly ajar.");
+		
+		output("\n\n<i>“You - you worked all that out by yourself?”</i> she says. <i>“How?”</i>");
+		
+		output("\n\nYou lay down your cards one after the other, going through each piece of information you wrangled out of your interviewees, showing her how everything points to your conclusion.");
+	}
+
+	output("\n\n<i>“That - that does seem pretty undeniable,”</i> Hepane agrees sorrowfully when you’re done. <i>“I was hoping maybe he’d wandered off... or some gold myr had taken him. That would have been a lot easier to sort out than this... <i>“ She swallows and raises her chin. <i>“I’m going to try and talk to some people I know in Kressia. See if I can’t find out a few things myself. I’ll be back in a day or so. I hope.”</i>");
+	
+	output("\n\nShe picks up her bag and exits the Honeypot, determination and anxiety quickening the swing of her arms and bounce of her bosom. <b>You should probably come back in a day or two to see if she finds out anything else.</b>");
+
+	flags["FAZIAN_QUEST_STATE"] = FAZIAN_QUEST_INVESTIGATED;
+	flags["FAZIAN_QUEST_TIMER"] = GetGameTimestamp();
+
+	//Remove "Gold Myr", "Red Myr", "Dally: Fazian", "Gene: Fazian" and "Juro: Fazian" options if they still exist. Remove "Hepane" option from Honeypot menu.
+
+	//After 24 hours, re-add "Hepane" option to Honeypot menu.
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function fazianQuestInvestigationFollowup():void
+{
+	clearOutput();
+	showHepane();
+
+	output("<i>“I know where he’s being held,”</i> she says without preamble when you sit down opposite her. There’s a small pile of shredded tissue paper on the table. She’s working on fretfully destroying another napkin even as she starts talking.");
+	
+	output("\n\n<i>“There’s some large warehouses on the southeast side of Kressia. They have been appropriated for use by the Federation. A sister of mine says she saw someone in a mask with bright antenna being led inside on the night he disappeared... and no-one’s seen anyone matching that description since.”</i> Hepane’s pupil-less eyes lock with yours.");
+	
+	output("\n\n<i>“It’s... a bad place, [pc.name] Steele,”</i> she says, with a slight quaver. <i>“It took me a while to find anyone willing to tell me even that. Nobody knows what the Federation are doing there, but... <i>“ she trails off, and puts her hand on top of yours. <i>“Please get him out of there. I don’t know who else to ask. My queen has no power over what happens in Kressia anymore, and your government does not seem to care. I can’t offer you anything except gratitude. Please.”</i> She squeezes your hand. <i>“And be careful if you do, kind starwalker. I think you are much less naive than Fazian, but... both of you going missing would be very hard to take.”</i>");
+
+	output("\n\nShe leaves you with a lot to think about.");
+
+	flags["FAZIAN_QUEST_STATE"] = FAZIAN_QUEST_RESCUE;
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);

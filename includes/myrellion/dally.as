@@ -1,4 +1,4 @@
-﻿public function dallysTips():Number
+public function dallysTips():Number
 {
 	if(flags["DALLY_TIPS"] == undefined) flags["DALLY_TIPS"] = 0;
 	return flags["DALLY_TIPS"];
@@ -13,24 +13,63 @@ public function honeyNozzleClub():Boolean
 	else addButton(0,"Dally",dallyApproach);
 	return false;
 	
-	if ((hours > 15 && hours < 20) || (hours == 15 && minutes >= 30) || (hours == 20 && minutes <= 30))
+	if (flags["FAZIAN_QUEST_STATE"] == FAZIAN_QUEST_STARTED)
 	{
-		if (flags("FAZIAN_SHOW"] == undefined)
+		if (flags["FAZIAN_QUEST_SUCCESSES"] + flags["FAZIAN_QUEST_FAILURES"] < 3)
 		{
-			output("\n\nOn the far side of the dusky room, a gold myr in a black dress is taking money from knots of other ant-women and ushering them through a curtain. A private show of some sort?");
-			addButton(1, "Curtain", nozzleShowFirstTime);
+			addDisabledButton(1, "Hepane", "Collect clues on Fazian's whereabouts before returning to Hepane.");
 		}
 		else
 		{
-			output("\n\nOn the far side of the dusky room, you can see Fazian's accompanist Hepane taking admissions for this afternoon's show. You could go find out what the two of them are putting on this time.");
-			addButton(1, "Cabaraet", nozzleShowRepeat);
+			addButton(1, "Hepane", fazianQuestInvestigationsDun, undefined, "Hepane", "Hepane, the myr musician you're trying to help find Fazian, is sat at a table near the back. She waves at you urgently the moment she catches sight of you.");
+		}
+	}
+	else if (flags["FAZIAN_QUEST_STATE"] == FAZIAN_QUEST_INVESTIGATED && flags["FAZIAN_QUEST_TIMER"] + (24 * 60) > GetGameTimestamp())
+	{
+		addButton(1, "Hepane", fazianQuestInvestigationFollowup);
+	}
+	else if (flags["FAZIAN_QUEST_STATE"] != FAZIAN_QUEST_REJECTED && flags["FAZIAN_QUEST_STATE"] != FAZIAN_QUEST_FAILED)
+	{
+		if (flags["FAZIAN_QUEST_STATE"] != FAZIAN_QUEST_OFFERING || flags["FAZIAN_QUEST_TIMER"] + (24 * 60) < GetGameTimestamp())
+		{
+			if ((hours > 15 && hours < 20) || (hours == 15 && minutes >= 30) || (hours == 20 && minutes <= 30))
+			{
+				if (flags("FAZIAN_SHOW"] == undefined)
+				{
+					output("\n\nOn the far side of the dusky room, a gold myr in a black dress is taking money from knots of other ant-women and ushering them through a curtain. A private show of some sort?");
+					addButton(1, "Curtain", nozzleShowFirstTime);
+				}
+				else
+				{
+					output("\n\nOn the far side of the dusky room, you can see Fazian's accompanist Hepane taking admissions for this afternoon's show. You could go find out what the two of them are putting on this time.");
+					addButton(1, "Cabaraet", nozzleShowRepeat);
+				}
+			}
+
+			if (hasSeenNozzleShow() && ((hours > 20 && hours < 2) || (hours == 20 && minutes >= 35) || (hours == 2 && minutes == 0)))
+			{
+				output("\n\nFazian, the anat cabaret performer, is sat at the quieter end of one of the bars, craned over a glass of honey wine. You could go and talk to him if you wished.");
+				addButton(1, "Fazian", fazianApproach);
+			}
+		}
+		else if (flags["FAZIAN_QUEST_STATE"] == FAZIAN_QUEST_OFFERING && flags["FAZIAN_QUEST_TIMER"] + (48 * 60) > GetGameTimestamp())
+		{
+			output("\n\nHepane the myr musician is stood where she normally is, by the entrance to the cabaret. She doesn't have her clipboard though, and she looks rather worried.");
+			addButton(1, "Hepane", fazianQuestOpening);
 		}
 	}
 
-	if (hasSeenNozzleShow() && ((hours > 20 && hours < 2) || (hours == 20 && minutes >= 35) || (hours == 2 && minutes == 0)))
+	if (flags["FAZIAN_QUEST_STATE"] == FAZIAN_QUEST_STARTED)
 	{
-		output("\n\nFazian, the anat cabaret performer, is sat at the quieter end of one of the bars, craned over a glass of honey wine. You could go and talk to him if you wished.");
-		addButton(1, "Fazian", fazianApproach);
+		if (flags["FAZIAN_QUEST_GOLDMYR"] == undefined)
+		{
+			addButton(5, "Gold Myr", fazianQuestGoldMyr, undefined, "Gold Myr", "Ask a group of gold myr clientele if they have seen Fazian anywhere.");
+		}
+
+		if (flags["FAZIAN_QUEST_BARKEEP"] == undefined)
+		{
+			addButton(6, "Barkeep", fazianQuestBarkeep, undefined, "Barkeep", "Ask the barkeep if she's seen Fazian.");
+		}
 	}
 }
 
@@ -87,6 +126,12 @@ public function dallyMenu():void
 	addButton(2,"Talk",talkToDally,undefined,"Talk","Try to talk to Dally over the din of the blaring music.");
 	if(flags["DALLY_FAVOR_OFFERED"] == 1) addButton(3,"Favor",getAFavorFromDally);
 	else addDisabledButton(3,"Favor","Favor","But Dally doesn't owe you any favors!");
+
+	if (flags["FAZIAN_QUEST_STATE"] == FAZIAN_QUEST_STARTED && flags["FAZIAN_QUEST_DALLY"] == undefined)
+	{
+		addButton(4, "Fazian", fazianQuestDally, undefined, "Fazian", "Ask the male myr if he knows the whereabouts of his fellow dancer.")
+	}
+
 	addButton(14,"Leave",leaveDally,false);
 }
 

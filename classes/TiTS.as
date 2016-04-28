@@ -245,6 +245,7 @@
 		include "../includes/myrellion/embassy.as";
 		include "../includes/myrellion/embry.as";
 		include "../includes/myrellion/emmy.as";
+		include "../includes/myrellion/fazian.as";
 		include "../includes/myrellion/fungus.as";
 		include "../includes/myrellion/genesmods.as";
 		include "../includes/myrellion/irellia.as";
