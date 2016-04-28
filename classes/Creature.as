@@ -4792,6 +4792,7 @@
 					break;
 				case GLOBAL.TYPE_GRYVAIN:
 					adjectives = ["draconic", "gryvain", "dragon-like"];
+					break;
 				case GLOBAL.TYPE_KUITAN:
 					adjectives = ["tanuki", "racoon-like", "kui-tan"];
 					break;
@@ -4896,57 +4897,44 @@
 				default:
 					adjectives.push("non-existent");
 					break;
-					
 				case GLOBAL.TYPE_SMALLBEE:
 				case GLOBAL.TYPE_MYR:
 					adjectives.push("small", mf("tiny", "cute"), "insect-like", "insectile", "shimmering");
 					break;
-					
 				case GLOBAL.TYPE_BEE:
 					adjectives.push("large", "insect-like", "insectile", "bee", "membrane-covered", "transparent");
 					break;
-					
 				case GLOBAL.TYPE_SMALLDEMONIC:
 					adjectives.push("small", mf("tiny", "cute"), "bat-like", "demon-like");
 					break;
-					
 				case GLOBAL.TYPE_DEMONIC:
 					adjectives.push("large", "bat-like", "demon-like", "demonic", "wicked", mf("incubus", "succubus"));
 					break;
-					
 				case GLOBAL.TYPE_SHARK:
 					adjectives.push("large", "shark-like");
 					nouns = ["dorsal fin"];
 					break;
-					
 				case GLOBAL.TYPE_AVIAN:
 					adjectives.push("large", "bird-like", "avian", "feathery");
 					break;
-
 				case GLOBAL.TYPE_SMALLDRACONIC:
 					adjectives.push("small", mf("tiny","cute"), "bat-like", "dragon-like", "scaled");
 					break;
-
 				case GLOBAL.TYPE_DRACONIC:
 					adjectives.push("large", "bat-like", "dragon-like", "draconic", "scaled", "wicked", "magnificent", mf("mighty","majestic"));
 					break;
-					
 				case GLOBAL.TYPE_GRYVAIN:
 					adjectives.push("large", "dragon-like", "gryvain", "scaled");
 					break;
-
 				case GLOBAL.TYPE_DRAGONFLY:
 					adjectives.push("large", "giant", "insectile", "dragonfly", "transparent", "iridescent");
 					break;
-
 				case GLOBAL.TYPE_SYLVAN:
 					adjectives.push("sylvan", "delicate", "blue gossamer", "iridescent");
 					break;
-
 				case GLOBAL.TYPE_DARK_SYLVAN:
 					adjectives.push("dark sylvan", "delicate", "black gossamer", "shadowy");
 					break;
-					
 				case GLOBAL.TYPE_DOVETWO:
 				case GLOBAL.TYPE_DOVEFOUR:
 				case GLOBAL.TYPE_DOVESIX:
@@ -5079,7 +5067,7 @@
 					{
 						case GLOBAL.TYPE_EQUINE: adjectives = ["equine", "equine", "horse-like", "hoof-capped"]; break;
 						case GLOBAL.TYPE_BOVINE: adjectives = ["bovine", "bovine", "cow-like", "hoof-capped"]; break;
-						case GLOBAL.TYPE_CANINE:  adjectives = ["canine", "canine", "dog-like", "paw-footed"]; break;
+						case GLOBAL.TYPE_CANINE: adjectives = ["canine", "canine", "dog-like", "paw-footed"]; break;
 						case GLOBAL.TYPE_FELINE: adjectives = ["feline", "feline", "cat-like", "graceful"]; break;
 						case GLOBAL.TYPE_VULPINE: adjectives = ["vulpine", "vulpine", "fox-like", "foxy"]; break;
 						case GLOBAL.TYPE_BEE: adjectives = ["chitinous", "armored", "insect-like", "carapace-covered"]; break;
@@ -5143,6 +5131,39 @@
 		{
 			var output: String = "";
 			var adjectives:Array = [];
+			//Type! 1/5 times
+			if (rand(5) == 0 || forceType)
+			{
+				if(output != "") output += ", ";
+				switch(legType)
+				{
+					case GLOBAL.TYPE_EQUINE: adjectives = ["equine", "horse-like", "bestial"]; break;
+					case GLOBAL.TYPE_BOVINE: adjectives = ["bovine", "cow-like", "bestial"]; break;
+					case GLOBAL.TYPE_CANINE: adjectives = ["canine", "dog-like"]; break;
+					case GLOBAL.TYPE_FELINE: adjectives = ["feline", "cat-like"]; break;
+					case GLOBAL.TYPE_VULPINE: adjectives = ["vulpine", "fox-like", "foxy"]; break;
+					case GLOBAL.TYPE_BEE: adjectives = ["chitinous", "armored", "insect-like", "carapace-covered"]; break;
+					case GLOBAL.TYPE_ARACHNID: adjectives = ["chitinous", "armored", "insect-like", "carapace-covered"]; break;
+					case GLOBAL.TYPE_DRIDER: adjectives = ["chitinous", "armored", "insect-like", "carapace-covered", "pointed"]; break;
+					case GLOBAL.TYPE_LAPINE: adjectives = ["lapine", "rabbit-like", "bunny"]; break;
+					case GLOBAL.TYPE_AVIAN: adjectives = ["avian", "bird-like", "taloned"]; break;
+					case GLOBAL.TYPE_DRACONIC: adjectives = ["draconic", "clawed", "reptilian"]; break;
+					case GLOBAL.TYPE_GRYVAIN: adjectives = ["draconic", "clawed"]; break;
+					case GLOBAL.TYPE_LIZAN: adjectives = ["lizan", "clawed", "reptilian"]; break;
+					case GLOBAL.TYPE_DEMONIC: adjectives = ["corrupted-looking", "demonic", "clawed"]; break;
+					case GLOBAL.TYPE_SUCCUBUS: adjectives = ["spike-supported", "sexy"]; break;
+					case GLOBAL.TYPE_GOOEY: adjectives = ["gooey", "semi-solid", "gelatinous", "jiggly"]; break;
+					case GLOBAL.TYPE_KANGAROO: adjectives = ["kangaroo-like", "powerful", "‘roo"]; break;
+					case GLOBAL.TYPE_TANUKI: adjectives = ["tanuki-like", "dexterous", "nimble"]; break;
+					case GLOBAL.TYPE_DEER: adjectives = ["deer-like", "nimble"]; break;
+					case GLOBAL.TYPE_PANDA: adjectives = ["panda", "panda", "bear-like", "thick"]; break;
+					case GLOBAL.TYPE_MLP: adjectives = ["pony", "pony-like", "cartoony", "cute"]; break;
+					case GLOBAL.TYPE_RASKVEL: adjectives = ["reptilian", "clawed"]; break;
+					case GLOBAL.TYPE_OVIR: adjectives = ["human-like"]; break;
+					case GLOBAL.TYPE_MYR: adjectives = ["chitinous", "armored", scaleColor + "-chitin"]; break;
+					case GLOBAL.TYPE_NYREA: adjectives = ["chitinous", "armored", "insect-like", "carapace-covered"]; break;
+				}
+			}
 			//ADJECTIVE!
 			if (rand(3) == 0 || forceAdjective)
 			{
@@ -5150,66 +5171,9 @@
 				else if (hasLegFlag(GLOBAL.FLAG_FURRED)) adjectives.push("furry", "fuzzy", "fur-covered");
 				else if (hasLegFlag(GLOBAL.FLAG_TENDRIL)) adjectives.push("wiggling");
 				else if (hasLegFlag(GLOBAL.FLAG_CHITINOUS)) adjectives.push("chitinous", "armored", "carapace-covered");
-				//Random goes here!
-				if (adjectives.length > 0) output += RandomInCollection(adjectives);
 			}
-			//Type! 1/5 times
-			if (rand(5) == 0 || forceType)
-			{
-				if(output != "") output += ", ";
-				if (legType == GLOBAL.TYPE_EQUINE)
-					adjectives = ["equine", "horse-like", "bestial"];
-				else if (legType == GLOBAL.TYPE_BOVINE)
-					adjectives = ["bovine", "cow-like", "bestial"];
-				else if (legType == GLOBAL.TYPE_CANINE)
-					adjectives = ["canine", "dog-like"];
-				else if (legType == GLOBAL.TYPE_FELINE)
-					adjectives = ["feline", "cat-like"];
-				else if (legType == GLOBAL.TYPE_VULPINE)
-					adjectives = ["vulpine", "fox-like", "foxy"];
-				else if (legType == GLOBAL.TYPE_BEE)
-					adjectives = ["chitinous", "armored", "insect-like", "carapace-covered"];
-				else if (legType == GLOBAL.TYPE_ARACHNID)
-					adjectives = ["chitinous", "armored", "insect-like", "carapace-covered"];
-				else if (legType == GLOBAL.TYPE_DRIDER)
-					adjectives = ["chitinous", "armored", "insect-like", "carapace-covered", "pointed"];
-				else if (legType == GLOBAL.TYPE_LAPINE)
-					adjectives = ["lapine", "rabbit-like", "bunny"];
-				else if (legType == GLOBAL.TYPE_AVIAN)
-					adjectives = ["avian", "bird-like", "taloned"];
-				else if (legType == GLOBAL.TYPE_DRACONIC)
-					adjectives = ["draconic", "clawed", "reptilian"];
-				else if (legType == GLOBAL.TYPE_GRYVAIN)
-					adjectives = ["draconic", "clawed"]
-				else if (legType == GLOBAL.TYPE_LIZAN)
-					adjectives = ["lizan", "clawed", "reptilian"];
-				else if (legType == GLOBAL.TYPE_DEMONIC)
-					adjectives = ["corrupted-looking", "demonic", "clawed"];
-				else if (legType == GLOBAL.TYPE_SUCCUBUS)
-					adjectives = ["spike-supported", "sexy"];
-				else if (legType == GLOBAL.TYPE_GOOEY)
-					adjectives = ["gooey", "semi-solid", "gelatinous", "jiggly"];
-				else if (legType == GLOBAL.TYPE_KANGAROO)
-					adjectives = ["kangaroo-like", "powerful", "‘roo"];
-				else if (legType == GLOBAL.TYPE_TANUKI)
-					adjectives = ["tanuki-like", "dexterous", "nimble"];
-				else if (legType == GLOBAL.TYPE_DEER)
-					adjectives = ["deer-like", "nimble"];
-				else if (legType == GLOBAL.TYPE_PANDA)
-					adjectives = ["panda", "panda", "bear-like", "thick"];
-				else if (legType == GLOBAL.TYPE_MLP)
-					adjectives = ["pony", "pony-like", "cartoony", "cute"];
-				else if (legType == GLOBAL.TYPE_RASKVEL)
-					adjectives = ["reptilian", "clawed"];
-				else if (legType == GLOBAL.TYPE_OVIR)
-					adjectives = ["human-like"];
-				else if (legType == GLOBAL.TYPE_MYR)
-					adjectives = ["chitinous", "armored", scaleColor + "-chitin"];
-				else if (legType == GLOBAL.TYPE_NYREA)
-					adjectives = ["chitinous", "armored", "insect-like", "carapace-covered"];
-				//Random goes here!
-				if (adjectives.length > 0) output += RandomInCollection(adjectives);
-			}
+			//Random goes here!
+			if (adjectives.length > 0) output += RandomInCollection(adjectives);
 			return output;
 		}
 		public function height():String
@@ -11178,7 +11142,7 @@
 					collection = ["inhuman", "human-like", "alien"];
 					break;
 				case GLOBAL.TYPE_GRYVAIN:
-					collection = ["draconic", "gryvain"]
+					collection = ["draconic", "gryvain"];
 					break;
 				
 				default:
