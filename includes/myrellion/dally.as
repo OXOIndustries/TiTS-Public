@@ -1,4 +1,4 @@
-public function dallysTips():Number
+﻿public function dallysTips():Number
 {
 	if(flags["DALLY_TIPS"] == undefined) flags["DALLY_TIPS"] = 0;
 	return flags["DALLY_TIPS"];
@@ -34,7 +34,7 @@ public function honeyNozzleClub():Boolean
 		{
 			if ((hours > 15 && hours < 20) || (hours == 15 && minutes >= 30) || (hours == 20 && minutes <= 30))
 			{
-				if (flags("FAZIAN_SHOW"] == undefined)
+				if (flags["FAZIAN_SHOW"] == undefined)
 				{
 					output("\n\nOn the far side of the dusky room, a gold myr in a black dress is taking money from knots of other ant-women and ushering them through a curtain. A private show of some sort?");
 					addButton(1, "Curtain", nozzleShowFirstTime);

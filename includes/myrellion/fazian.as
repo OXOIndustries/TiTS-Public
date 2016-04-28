@@ -6,6 +6,7 @@ public const FAZIAN_QUEST_REJECTED:int = 4;
 public const FAZIAN_QUEST_FAILED:int = 5;
 public const FAZIAN_QUEST_INVESTIGATED:int = 6;
 public const FAZIAN_QUEST_RESCUE:int = 7;
+public const FAZIAN_QUEST_BRIBED:int = 8;
 
 public function showHepane():void
 {
@@ -294,7 +295,7 @@ public function fazianLikedIt():void
 	showFazian();
 
 	if (pc.isBimbo()) output("<i>“It was good!”</i> you say enthusiastically. <i>“I like colors. And men. The two together! I’m a fan.”</i>");
-	else if (pc.isBrute() || pc.isAss()) output("<i>“It was good,”</i> you say assertively. <i>“Makes me wonder why you’re performing it in a strip joint in the middle of nowhere, rather than somewhere people’d really appreciate it.”</i>");
+	else if (pc.isBro() || pc.isAss()) output("<i>“It was good,”</i> you say assertively. <i>“Makes me wonder why you’re performing it in a strip joint in the middle of nowhere, rather than somewhere people’d really appreciate it.”</i>");
 	else output("<i>“It was good!”</i> you smile. <i>“Not something I would have expected to see in a strip joint on the fringes of nowhere.”</i>");
 
 	output("\n\nFazian listens intently, clear blue eyes fixed on you.");
@@ -318,7 +319,7 @@ public function fazianEh():void
 		output("You wrinkle your nose.");
 		output("\n\n<i>“It was alright,”</i> you sigh. You gaze meaningfully over at the gold myr strippers. <i>“Think you should be more, like, up front with the goods, you know?”</i>");
 	}
-	else if (pc.isBrute())
+	else if (pc.isBro())
 	{
 		output("You lean your arm onto the counter and flex.");
 		output("\n\n<i>“That’s what the ladies are paying to see, bro,”</i> you say. <i>“Doing ‘em a disservice with all the jumping and flopping around, if you ask me.”</i>");
@@ -523,7 +524,7 @@ public function fazianMyr():void
 	
 	output("\n\n<i>“They’re wonderful,”</i> says Fazian with happy, level conviction. <i>“Such a welcoming, intelligent and peaceful race. Not just the golds. Oh, the reds armor themselves up with their conventions more, but beneath that - they are women. They are born to be caring, loving beings. Being around them, and performing for them, is a pleasure.”</i> He takes a long pull on his glass of wine, blue eyes slightly misty.");
 
-	if (pc.isBimbo() || pc.isBrute()) output("\n\nEven to your own love-swamped mind, this doesn’t sound quite right.");
+	if (pc.isBimbo() || pc.isBro()) output("\n\nEven to your own love-swamped mind, this doesn’t sound quite right.");
 	else output("\n\nYou don’t think you can let this go by entirely unchallenged.");
 
 	output("\n\n<i>“They, uh, did kill each other in the hundreds of thousands. And are now on the brink of nuclear war,”</i> you point out.");
@@ -574,7 +575,7 @@ public function fazianDance():void
 
 		output("\n\n<i>“Alright,”</i> he says, bringing you to a halt. <i>“There’s one thing above everything else you need to understand about dancing. It doesn’t matter who you’re doing it with, on what stage, for whatever reason. When you dance, you are communicating a universal: what all girls, and guys, find attractive about the masculine. What is that?”</i>");
 
-		if (pc.isBrute()) output("\n\n<i>“Dick,”</i> you say, with absolute certainty.");
+		if (pc.isBro()) output("\n\n<i>“Dick,”</i> you say, with absolute certainty.");
 		else if (pc.isNice()) output("\n\n<i>“Gallantry?”</i> you suggest.");
 		else if (pc.isMisch()) output("\n\n<i>“Obsessive behaviour and emotional ineptitude?”</i> you suggest.");
 		else output("\n\n<i>“Assertiveness,”</i> you say.");
@@ -1013,7 +1014,7 @@ public function fazianQuestBarkeep():void
 
 	//[Good Cop] [Bad Cop]
 	clearMenu();
-	addButton(0, "Good Cop", fazianQuestBarkeepGood, undefined "Good Cop", "Appeal to empathy. Encourage her to open up a bit.");
+	addButton(0, "Good Cop", fazianQuestBarkeepGood, undefined, "Good Cop", "Appeal to empathy. Encourage her to open up a bit.");
 	addButton(1, "Bad Cop", fazianQuestBarkeepBad, undefined, "Bad Cop", "Force the information out of her.");
 }
 
@@ -1154,7 +1155,7 @@ public function fazianQuestGene():void
 	// [Listen] [Leave]
 	clearMenu();
 	addButton(0, "Listen", fazianQuestGeneListen, undefined, "Listen", "Wait to see if he does, in the event, have anything worthwhile to say.");
-	addBUtton(1, "Leave", fazianQuestGeneLeave, undefined, "Leave", "Time is of the essence.");
+	addButton(1, "Leave", fazianQuestGeneLeave, undefined, "Leave", "Time is of the essence.");
 }
 
 public function fazianQuestGeneListen():void
@@ -1373,6 +1374,646 @@ public function fazianQuestInvestigationFollowup():void
 	output("\n\nShe leaves you with a lot to think about.");
 
 	flags["FAZIAN_QUEST_STATE"] = FAZIAN_QUEST_RESCUE;
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function fazianQuestApproachWarehouse():void
+{
+	clearOutput();
+	showBust("REDMYR");
+
+	output("<i>“This is not a place");
+	if (pc.race().indexOf("gold myr") != -1) output(" for a gold myr to be");
+	else if (pc.race().indexOf("red myr") != -1) output(" for you to be, sister");
+	else if (pc.race().indexOf("orange myr") != -1) output(" for a... gold myr to be");
+	else output(" for a starwalker to be");
+	output(",”</i> says the tough-looking soldier when you cautiously approach the warehouse’s entrance, watching you impassively. <i>“Move along.”</i>");
+
+	fazianQuestApproachMenu();
+}
+
+public function fazianQuestApproachMenu():void
+{
+	clearMenu();
+
+	if (flags["FAZIAN_QUEST_DOOR"] == undefined || flags["FAZIAN_QUEST_DOOR"] + (6 * 60) < GetGameTimestamp())
+	{
+		addButton(0, "The Back", fazianQuestApproachBack, undefined, "The Back", "See if you can find some way into the warehouse around the back of it.");
+	}
+	else
+	{
+		addDisabledButton(0, "The Back", "The Back", "The guards are still probably keeping an eye on the back of the building. Best to stay away from there for now.");
+	}
+	
+	if (flags["GUARD_BRIBE"] == undefined)
+	{
+		if (pc.credits >= 500) addButton(1, "Bribe", fazianQuestApproachBribe, undefined, "Bribe", "Try and bribe the woman to let you in.");
+		else addDisabledButton(1, "Bribe", "Bribe", "You probably don't have enough credits to make it worth the guards while.");
+	}
+	else
+	{
+		addDisabledButton(1, "Bribe", "Bribe", "You've already attempted to bribe the guard, and it didn't exactly go your way!");
+	}
+
+	addButton(2, "Fight", fazianQuestApproachFight, undefined, "Fight", "This probably isn't a good idea.");
+
+	addButton(3, "Leave", fazianQuestApproachLeave, undefined, "", "");
+}
+
+public function fazianQuestApproachBack():void
+{
+	clearOutput();
+
+	output("You make a show of apologetically putting your hands in the air and stepping back to the main road, nothing more than a clueless tourist having a nosey around. You walk off and loop back around, carefully approaching the vast warehouse from the side jutting out of the cavern wall.");
+	
+	output("\n\nFor a building apparently repurposed by the Federation, security seems very lax indeed; you can only see the one guard stationed in front of the main doors. Perhaps it doesn’t need any more protection. You can’t see any more entrances here, except for a very sturdy-looking side door and a medium-sized window, twelve feet up. You can hear heavily muffled activity inside: what sounds like a lot of people moving around.");
+
+	fazianQuestApproachBackMenu();
+}
+
+public function fazianQuestApproachBackMenu():void
+{
+	clearMenu();
+
+	if (flags["FAZIAN_QUEST_DOOR"] == undefined)
+	{
+		addButton(0, "Door", fazianQuestApproachBackDoor, undefined, "The Door", "Maybe you can force the door?");
+	}
+	else
+	{
+		addDisabledButton(0, "Door", "The Door", "You don't think you can make it through the door without alerting the guards to your presence... like last time.");
+	}
+
+	if (flags["FAZIAN_BACK_WINDOW"] == undefined)
+	{
+		if (pc.canFly() || (pc.accessory is Hoverboard) || pc.hasItemByType(Hoverboard))addButton(1, "Window", fazianQuestApproachBackWindow, undefined, "The Window", "Perhaps you have something that will enable you to get up there...");
+		else addDisabledButton(1, "Window", "The Window", "You can't possibly reach that.");
+	}
+	else
+	{
+		addDisabledButton(1, "Window", "The Window", "You've already tried that, and it didn't work out for you.");
+	}
+
+	addButton(0, "Wait", fazianQuestApproachBackWait);
+
+	addButton(0, "Leave", fazianQuestApproachBackLeave, undefined, "", "");	
+}
+
+public function fazianQuestApproachBackWait():void
+{
+	clearOutput();
+
+	output("You settle yourself down behind some crates near the door, keeping a close watch. At least, that’s what you set out to do - after about ten minutes have crawled by you take your codex out and begin to extranet surf. Another forty minutes drift by, the pins and needles in your [pc.lowerBody] getting steadily more annoying. You’re about to give up and head back to the street when the door bangs open.");
+	
+	output("\n\n<i>“ - shouldn’t do this, not on duty,”</i> hisses one of the two red myr in uniform who come tip-tapping out. <i>“Ehstraffe will kill us if she finds out.”</i>");
+	
+	output("\n\n<i>“She can sanction me, for all I care,”</i> says the other, clutching the other’s hand. <i>“I need a break from watching </i>that<i>, and I need... this.”</i>");
+	
+	output("\n\nShe embraces the other myr passionately, spreading her hands across her fabric-stretching rump. Their lips meet, and the first slides her leg between the other’s thighs, the vertical lovemaking getting more urgent as the aphrodisiac hits.");
+
+	processTime(35+rand(10));
+
+	// [Head in] [Leave]
+	clearMenu();
+	addButton(0, "Head In", fazianQuestApproachBackHeadIn, undefined, "Head In", "Use this opportunity to sneak inside.");
+	addButton(1, "Leave", fazianQuestApproachBackWaitLeave, undefined, "Leave", "How awkward would it be if they see you now? Very. Beat a retreat while you can.");
+}
+
+public function fazianQuestApproachBackheadIn():void
+{
+	clearOutput();
+
+	output("As unobtrusively as you can, you sneak out from behind the crates and slink through the open door. You think you could have made as much noise as you wanted to, really; those two are miles away.");
+
+	clearMenu();
+	addButton(0, "Next", fazianQuestWarehouseBack);
+}
+
+public function fazianQuestApproachBackWaitLeave():void
+{
+	clearOutput();
+
+	output("You unobtrusively head back to the street, the sound of enthusiastic macking following you all the way.");
+
+	pc.lust(5);
+	processTime(20+rand(5));
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function fazianQuestApproachBackDoor():void
+{
+	clearOutput();
+
+	output("You go up to the door and rattle the handle. Locked. You put your shoulder to it and throw your weight against it with a bang. It doesn’t budge.");
+	
+	output("\n\nWhat now?");
+
+	//[Keep trying] [Get back]
+	clearMenu();
+	addButton(0, "Keep Trying", fazianQuestApproachBackDoorForce, undefined, "Keep Trying", "It's bound to give eventually.");
+	addButton(1, "Get Back", fazianQuestApproachBackDoorBack, undefined, "Get Back", "Maybe forcing the door isn't such a good idea.");
+}
+
+public function fazianQuestApproachBackDoorForce():void
+{
+	clearOutput();
+
+	output("You slam your frame into the door again, and again, and - it opens, throwing you off balance.");
+	
+	output("\n\n<i>“What the hell,”</i> says the red myr guard, glaring at you from behind the barrel of her semi-automatic, <i>“do you think you’re doing?”</i>");
+	
+	output("\n\n<i>“ - looking for the bathroom?”</i> is the best you can come up with.");
+	
+	output("\n\n<i>“You are trying to break into a military installation,”</i> says the red myr slowly, as if speaking to a complete idiot. <i>“If you leave immediately, and I never see you again, maybe you won’t spend the next ten years in prison.”</i>");
+	
+	output("\n\nUnder the sharp gaze of the ant woman, you rather shamefacedly head back out to the road.");
+	
+	output("\n\nYou’re going to have to try something different.");
+
+	flags["FAZIAN_QUEST_DOOR"] = GetGameTimestamp();
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function fazianQuestApproachBackDoorBack():void
+{
+	clearOutput();
+
+	output("You smartly head over to some crates and duck behind them. Moments later the door swings open, and an angry-looking red myr peers out. You keep very still, and eventually, with one last suspicious glare towards the street, she slams the door shut. There’s the click and thunk of several locks being turned.");
+
+	output("\n\nTime to try something else.");
+
+	fazianQuestApproachBackMenu();
+}
+
+public function fazianQuestApproachBackWindow():void
+{
+	clearOutput();
+
+	if (pc.canFly())
+	{
+		output("You easily swoop up to the window, holding yourself in mid-air as you grip the ledge and wrestle with the latch.");
+
+		if (pc.tallness > 63)
+		{
+			flags["FAZIAN_BACK_WINDOW"] = 1
+
+			output("\n\nYour heart leaps when, with a rusty bark, the window opens, coughing decades of age into your face, allowing you to see into a darkened storeroom. Your heart sinks when, after several optimistic attempts, it becomes very obvious that there is no way you are going to fit your considerable frame through it. You almost hurt your wings at the third attempt, and reluctantly you glide your way back down. You are going to have to try something else.");
+
+			fazianQuestApproachBackMenu();
+		}
+		else
+		{
+			output("\n\nYou heart leaps when, with a rusty bark, the window opens, coughing decades of age into your face, allowing you to see into a darkened storeroom. You gingerly work your way through it. It’s dirty and undignified");
+			if (pc.buttRating() > 6) output(" - particularly when your [pc.butt] gets stuck -");
+			output(" but eventually you manage to get through, pooling onto a broad set of shelves you can clamber down. Although to your ears you made a hell of a racket getting in, it doesn’t seem to have alerted anyone. Score one for lateral thinking!");
+
+			clearMenu();
+			addButton(0, "Next", fazianQuestWarehouseBack);
+		}
+	}
+	else
+	{
+		output("You take out your pink hoverboard and, after fiddling around with it a bit, convince it to slowly convey you upwards until you are level with the window. As quietly as you can, you grip the ledge and wrestle with the latch, precariously leaning off an old hoverboard twelve feet off the ground.");
+
+		if (pc.tallness > 63)
+		{
+			flags["FAZIAN_BACK_WINDOW"] = 1;
+
+			output("\n\nYour heart leaps when, with a rusty bark, the window opens, coughing decades of age into your face, allowing you to see into a darkened storeroom. Your heart sinks when, after several optimistic attempts, it becomes very obvious that there is no way you are going to fit your considerable frame through it. You almost fall off at the third attempt, and reluctantly you get the hoverboard to take you back down. You are going to have to try something else.");
+
+			fazianQuestApproachBackMenu();
+		}
+		else
+		{
+			output("\n\nYou heart leaps when, with a rusty bark, the window opens, coughing decades of age into your face, allowing you to see into a darkened storeroom. You bring the hoverboard as close as you can to the sill, and then gingerly work your way through it. It’s dirty and undignified");
+			if (pc.buttRating() > 6) output(" - particularly when your [pc.butt] gets stuck - ");
+			output(" but eventually you manage to get through, pooling onto a broad set of shelves you can clamber down. Although to your ears you made a hell of a racket getting in, it doesn’t seem to have alerted anyone. Score one for lateral thinking!");
+
+			clearMenu();
+			addButton(0, "Next", fazianQuestWarehouseBack);
+		}
+	}
+}
+
+public function fazianQuestApproachBribe():void
+{
+	clearOutput();
+	showBust("REDMYR");
+
+	output("How much?");
+
+	clearMenu();
+	addButton(0, "500c", fazianQuestBribeGo, 500, "500 Credits", "Try and bribe the woman to let you in.");
+	
+	if (pc.credits >= 1000) addButton(1, "1000c", fazianQuestBribeGo, 1000, "1000 Credits", "Try and bribe the woman to let you in.");
+	else addDisabledButton(1, "1000c", "1000 Credits", "You don't have enough credits.");
+
+	if (pc.credits >= 3000) addButton(2, "3000c", fazianQuestBribeGo, 3000, "3000 Credits", "Try and bribe the woman to let you in.");
+	else addDisabledButton(2, "3000c", "3000 Credits", "You don't have enough credits.");
+}
+
+public function fazianQuestApproachBribe(amt:int):void
+{
+	clearOutput();
+	showBust("REDMYR");
+
+	output("<i>“Must be pretty thirsty work, guarding a door,”</i> you suggest. <i>“Unrewarding, too.”</i>");
+	
+	output("\n\n<i>“I don’t see why that would be any of your concern,”</i> the guard deadpans.");
+	
+	output("\n\n<i>“It isn’t,”</i> you agree. You tap up a credit chit and push it into the lapel of her coat. <i>“But maybe you could go address those personal concerns someplace else? Just for a bit.”</i>");
+
+	if (amt == 500)
+	{
+		pc.credits -= 500;
+
+		output("\n\nThe guard retrieves the credit chit, and regards it and then you with silent contempt.");
+		
+		output("\n\n<i>“You have a very low opinion of");
+		if (pc.race().indexOf("red myr") != -1) output(" me, sister");
+		else
+		{
+			output(" my race, ");
+			if (pc.race().indexOf("gold myr") != -1) output(" goldie");
+			else output(" starwalker");
+		}
+		output(",”</i> she says at last. <i>“Also of the kind of prices Kressia merchants charge reds. Now, if you don’t want me to turn this in and convict you of bribery, I suggest you fuck off.”</i>");
+		
+		output("\n\nDamn. You’re going to have to try something else.");
+		flags["GUARD_BRIBE"] = 500;
+
+		fazianQuestApproachMenu();
+	}
+	else if (amt == 1000)
+	{
+		pc.credits -= 1000;
+
+		output("\n\nThe guard retrieves the credit chit, and regards it, then you, then the street behind you impassively for what seems like an age.");
+		
+		output("\n\n<i>“Ten minutes,”</i> she says at last. <i>“I have no idea who you are or how you got in.”</i> She pockets the chit and hurries off.");
+		
+		output("\n\nYou breathe out and then, when you’re sure she hasn’t gone off just to get a patrol, you sidle through the gate.");
+
+		clearMenu();
+		addButton(0, "Next", fazianQuestWarehouseFront);
+	}
+	else if (amt == 3000)
+	{
+		pc.credits -= 3000;
+
+		output("\n\nThe guard retrieves the credit chit and regards it with a slight frown. She looks at you and then at the street behind you, lips moving silently as if working something out.");
+		
+		output("\n\n<i>“Well, to hell with this job, and to hell with this world,”</i> she says at last. <i>“I’m going to go tell the captain what I think of her, and then I’m going to buy my way to the sky. Thanks,");
+		if (pc.race().indexOf("red myr") != -1) output(" sister");
+		else if (pc.race().indexOf("gold myr") != -1) output(" goldie");
+		else output(" starwalker");
+		output("!”</i>");
+		
+		output("\n\nShe pockets the chit and hurries off.");
+		
+		output("\n\nYou suspect you overpaid a bit there. It’s had the effect you were looking for, at least. When you’re sure she really has gone, you sidle through the gate.");
+
+		clearMenu();
+		addButton(0, "Next", fazianQuestWarehouseFront);
+	}
+}
+
+public function fazianQuestApproachFight():void
+{
+	clearOutput();
+	showBust("REDMYR");
+
+	output("The red myr looks completely taken aback when you suddenly draw your weapon and fly at her. <b>Maybe if you finish this quickly...</b>");
+
+	// 9999
+	var tEnemy:RedMyrGuard = new RedMyrGuard();
+	if (flags["GUARD_BRIBE"] != undefined) tEnemy.credits += flags["GUARD_BRIBE"];
+
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.victoryScene(fazianQuestOutdoorGuardVictory);
+	CombatManager.lossScene(fazianQuestOutdoorGuardLoss);
+	CombatManager.setHostileCharacters(tEnemy);
+	CombatManager.displayLocation("WAREHOUSE\nGUARD");
+
+	clearMenu();
+	addButton(0, "Next", CombatManager.beginCombat);
+}
+
+public function fazianQuestOutdoorGuardLoss():void
+{
+	output("\n\nYou can try fighting the entire red myr garrison, in which case your bullet-riddled corpse will fall to the ground in short order. You can try surrendering and arguing your case that another starwalker is being held in the warehouse, and you were just trying to rescue them. This will fall on unfavorable ears, both on the red myr and the U.G.C.'s side, given you assaulted a soldier in occupied territory during a fragile ceasefire. It will be many years before Steele Corp manage to wrangle a release for you from Kressia's military prison. Whichever the case, your adventure is over.");
+
+	badEnd("GAME OVER");
+}
+
+public function fazianQuestOutdoorGuardVictory():void
+{
+	if (enemy.HP() <= 0)
+	{
+		output("\n\nAn iron whistle clatters into the dust as the red myr crumples to the ground, unconscious. You shoot a nervous look over both shoulders. Fortune is still with you; in this quiet corner of Kressia, nobody seems to have seen your assault. Or if they have, they’re gold, and quietly approve. Quickly you grab hold of the guard and drag her, limbs dangling, behind the warehouse and into the cover of some crates.");
+	}
+	else
+	{
+		output("\n\nAn iron whistle clatters into the dust as the red myr’s eyes cloud, her mouth hanging open.");
+		
+		output("\n\n<i>“G-goddess,”</i> she groans, clutching herself between the legs. <i>“Stop! Alright, I’ll let you in if - can we go around the back - ?”</i>");
+		
+		output("\n\n<i>“Nope,”</i> you reply, picking up her rifle and stunning her with a smart blow to the temple. You shoot a nervous look over both shoulders. Fortune is still with you; in this quiet corner of Kressia, nobody seems to have seen your assault. Or if they have, they’re gold, and quietly approve.");
+		
+		output("\n\nQuickly you grab hold of the guard and drag her, limbs dangling, behind the warehouse and into the cover of some crates.");
+	}
+
+	output("\n\nBrushing yourself down, you head back to the front gate and sidle inside.");
+
+	CombatManager.genericVictory();
+
+	clearMenu();
+	addButton(0, "Next", fazianQuestWarehouseFront);
+}
+
+public function fazianQuestApproachLeave():void
+{
+	/*
+	clearOutput();
+	showBust("REDMYR");
+	*/
+
+	mainGameMenu();
+}
+
+public function kressiaWarehouseInterior():Boolean
+{
+
+}
+
+public function fazianQuestWarehouseFront():void
+{
+	clearOutput();
+	output("You are standing in a broad, well-lit entrance hall. There is a hubbub coming from the room opposite; the sound of many people moving around and... clapping? Peering carefully into the ajar door to your left you can see half a dozen red myr in military uniform sat around a table, playing some sort of game involving small crystals and counters. You are easily able to sneak past them, and open the door to the main chamber.");
+	clearMenu();
+	addButton(0, "Next", fazianQuestWarehouseMainChamber);
+
+}
+
+public function fazianQuestWarehouseBack():void
+{
+	clearOutput();
+	output("You are standing in a dim storeroom. Dusty industrial gear crowd the shelves. It’s obvious no-one’s used this room in a while.");
+	
+	output("\n\nYou gingerly open the door opposite the back entrance, and find yourself in a brightly lit corridor. There is a hubbub coming from the room at the far end; the sound of many people moving around and... clapping? You quickly head down the corridor and open the door to the main chamber.");
+
+	clearMenu();
+	addButton(0, "Next", fazianQuestWarehouseMainChamber);
+}
+
+public function fazianQuestWarehouseMainChamber():void
+{
+	clearOutput();
+
+	output("You are standing in a massive, echoing, concrete-floored space. Most of it is taken up by a seven foot deep depression in the middle, around which maybe a dozen red myr are stationed. It is filled, almost shoulder-to-shoulder, with female gold myr. There must be hundreds, maybe thousands, in it. They all look drawn and rather dirty, dressed in thin prison smocks. Some lean on crutches; others are shaven bald. And yet, on virtually every face you can see down there, there is an expression of shared joy. They are all facing towards one end of the warehouse, where a small stage has been erected overlooking the pit. Before you can entirely discern what’s going on at that end, every single gold myr in the room raises her hands and claps in time, making the room shake and your ears ring.");
+	
+	output("\n\n<i>“QUARAMARTA!”</i> they yell. On the stage, the bare-chested Fazian comes to a juddering halt. He looks utterly exhausted, feathers askew, soaked in sweat. Still, he raises his arms in acknowledgement to the thunderous applause which comes his way.");
+	
+	output("\n\n<i>“This way, sweet maidens,”</i> says a smooth voice, close enough to be discernable beneath the clamor. You turn to see thin androgynes with moth-like antennae neck-ruffs, dressed in sleek, modern, purple armor, gracefully picking happily dazed gold myr out of the crowd near you and leading them towards a door behind the stage. <i>“Where you are going, there are plenty more like him. No honeysweet, do not worry about your injuries. The tarratch shall see to them. We shall fix you, and take you somewhere better... <i>“");
+	
+	output("\n\n<i>“Per [pc.name]?”</i> says Fazian hoarsely, catching sight of you. Most of the room turns to you.");
+	
+	output("\n\n<i>“What,”</i> snarls a husky voice, <i>“do you think you’re doing here?”</i> A tall, thin red myr, a crimson eye-patch slung across her face, marches over to you. By the number of medals on her jacket and the look of fury on her face, you’re guessing she’s the one in charge here.");
+
+	// [Rescue.] [Hands up]
+	clearMenu();
+	addButton(0, "Rescue", fazianQuestDoRescue, undefined, "Rescue", "You're here to rescue Fazian. And anyone else that is in need of it.");
+	addButton(1, "Hands Up", fazianQuestHandsUp, undefined, "Hands Up!", "You are the space police! This is a bust!");
+}
+
+public function fazianQuestDoRescue():void
+{
+	clearOutput();
+
+	output("<i>“I intend to leave here with that anat,”</i> you say levelly. <i>“And I want to know what exactly is going on here.”</i> The commander snorts.");
+	
+	output("\n\n<i>“Rescue him? He came here of his own free will, to perform exclusively for the poor PoWs in our care. Isn’t that right, Fazian?”</i>");
+
+	fazianQuestChamberMerge();
+}
+
+public function fazianQuestHandsUp():void
+{
+	clearOutput();
+	output("<i>“I am here on the authority of the U.G.C.,”</i> you say with all the conviction you muster, <i>“to apprehend the kidnappers of a free citizen of the outer galaxy. I suggest you get your hands in the air.”</i> Several of the red myr guards nearby look at each other and lower their weapons uncertainly. The commander, however, just snorts.");
+	
+	output("\n\n<i>“No warrant, no uniform, no squad of fur-things armed with death-torches,”</i> she says to her fellows. <i>“No correct information, either. We didn’t kidnap him. He came of his own free will, to perform exclusively for the poor PoWs in our care. Isn’t that right, Fazian?”</i>");
+
+	fazianQuestChamberMerge();
+}
+
+public function fazianQuestChamberMerge():void
+{
+	clearOutput();
+
+	output("\n\n<i>“Major Ehstraffe, I - <i>“ stammers Fazian. Ehstraffe claps once sternly.");
+	
+	output("\n\n<i>“Dance! You know what happens if you do not.”</i> The anat heaves outwards - and then begins to tap out a steady rhythm on the boards with his hind talons. Slowly the gold myr’s attention turns back to him.");
+	
+	output("\n\n<i>“So... <i>“ you say slowly to the major. <i>“You’re forcing a civilian to perform for the PoWs in your care to keep them sedate? Whilst you’re selling them off to alien slave traders.”</i> The group of purple-armored, pale-skinned androgynes are stood quite still, watching you inscrutably with their black, pupil-less eyes, ruffs fluttering.");
+	
+	output("\n\n<i>“You think this is easy?”</i> replies Ehstraffe slowly, staring at you with her one good eye. <i>“You think looking after tens of thousands of prisoners who despise you, with the lowest amount of food and personnel allotted in the entire Federation because </i>fuck<i> looking after gold soldiers before anyone else, is easy? To a starwalker who decided to edotto in here in order to be a fucking hero, I suppose it would. You didn’t have to preside over a prison riot every week for two months. You didn’t have to start making decisions in order to stop anyone else dying.”</i> She snaps a chitin-gloved hand at the crowded pit.");
+	
+	output("\n\n<i>“Former peasants, factory workers, mostly. Their land belongs to the Federation now. Their queens cannot support them, do not want them. Nothing remains for them here. The tarratch offered to buy them for supplies we can use immediately to keep the rest fed and secure, and more besides. It is the best solution. But no, I would not expect a starwalker like you to understand having to make such decisions.”</i> Her face is as red as her chitin. <i>“Not you, who quarter with the golds and lap up their tragedies, their poisonous tales about us. Not you, who send your artists and your money and your men and your science to their capital and spurn us, us, the conquerors, the barbarians.”</i> She slaps her eye-patch furiously. <i>“Where is MY mechanical eye? What happened to MY Lehnaza in the trenches?”</i>");
+
+	clearMenu();
+	addButton(0, "Next", fazianQuestChamberMergeII);
+}
+
+public function fazianQuestChamberMergeII():void
+{
+	clearOutput();
+
+	output("Ehstraffe takes a deep breath, almost visibly packaging herself back up behind a controlled, authoritative facade, before speaking again.");
+	
+	output("\n\n<i>“The masked dancer stays.”</i>");
+	
+	output("\n\n<i>“Excuse me,”</i> says a voice as smooth as oil on water. The tarratch who has strolled over smiles at you with a stall-owner’s geniality, hand in his (her?) pocket. <i>“I think perhaps there has been a misunderstanding. Which I am sure our friend here, having listened to the good major’s explanation, is perfectly willing to resolve, starwalker to starwalker. I think what [pc.heShe] is looking for is a... let’s call it a finder’s fee. For the anat male. And [pc.hisHer] discretion in this matter, in perpetuity.”</i>");
+	
+	output("\n\nShe (he?) snaps off the credit chit in his (her?) hand and proffers it you. Behind the pale androgyne, you can see Fazian, dancing and whirling away. He stares at you helplessly.");
+
+	// [Take it] [Don't]
+	clearMenu();
+	addButton(0, "Take It", fazianQuestGetBribed, undefined, "Take It", "20,000 credits. Not insubstantial.");
+	addButton(1, "Don't", fazianQuestDontGetBribed, undefined, "Don't", "Refuse his (her?) bribe.");
+}
+
+public function fazianQuestGetBribed():void
+{
+	clearOutput();
+
+	output("<i>“No!”</i> says Fazian hoarsely, as you take the check. You think. It’s lost under the movement of the crowd.");
+	
+	output("\n\n<i>“You’re just going to let [pc.himHer] walk out of here?”</i> queries Ehstraffe reluctantly. <i>“I don’t think - <i>“");
+	
+	output("\n\n<i>“Please, major!”</i> says the tarratch, smiling the cold, bright beam of a neutron star. <i>“By taking this payment {Mr.} / {Ms.} Steele has shown themselves to be a reasonable, rational individual. Rational individuals can be trusted. Business can be done with rational individuals.”</i> She (he?) claps you on the shoulder and leads you to the front door. <i>“And I very much hope to do business with you again in the future, Steele, earn some of those credits back. Our brothers and sisters offer the finest indentured servants in the galaxy, exactly because of rational individuals like yourself. Just don’t go chasing after every lost lamb you hear about on the frontier in future, ok? There’s a good rue collar.”</i>");
+	
+	output("\n\nThe door clicks shut behind you, and two red myr lead you out onto the road.");
+	
+	output("\n\nWell, Hepane did say she couldn’t reward you, didn’t she? So you’re 20,000 credits up. You probably shouldn’t go back to her, though. You suspect a rational argument of your actions might not wash with her.");
+
+	pc.credits += 20000;
+	pc.addAss(6);
+	flags["FAZIAN_QUEST_STATE"] = FAZIAN_QUEST_BRIBED;
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function fazianQuestDontGetBribed():void
+{
+	clearOutput();
+
+	output("You knock the chit out of his (her?) hand and draw your [pc.weapon].");
+	
+	output("\n\n<i>“I’m breaking up this sick little operation,”</i> you growl. <i>“Fazian is coming with me. And then we’ll see exactly what the U.G.C. and your superiors have to say about what’s going on here.”</i>");
+	
+	output("\n\n<i>“You aren’t just going to let this happen, are you?”</i> snaps Ehstraffe.");
+	
+	output("\n\n<i>“WE are not armed,”</i> replies the tarratch pointedly, brushing her (his?) thin hands and stepping back. <i>“We can discuss disposal once you’ve brought this moron to heel.”</i>");
+	
+	output("\n\n<i>“Grab [pc.himHer]!”</i> orders Ehstraffe. Ten armed, stern-faced red myr hurry across.");
+	output("\n\n<b>Looks like you’ve got a hell of a fight on your hands.</b>");
+
+	// 9999
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.victoryScene(fazianQuestEhstraffeVictory);
+	CombatManager.lossScene(fazianQuestEhstraffeLoss);
+	CombatManager.setHostileCharacters([new Ehstraffe(), new RedMyrGuard(), new RedMyrGuard(), new RedMyrGuard()]);
+	CombatManager.displayLocation("EHSTRAFFES\nDETAIL");
+	CombatManager.encounterText("You are fighting <b>Ehstraffe's detail</b>: Fully a dozen trained, chitin-armored red myr soldier women, all dressed in Federation standard trench-coats and berets, armed with semi-automatic slug-launchers and axes. Fortunately, you do not have to fight them all at once; a couple of them are keeping watch on the prisoners, and as long as you keep moving and close to at least one of them, the others cannot simply stand back and riddle you with bullets. Still, against their crude but effective machine guns, their heavy, well-aimed blows and the saliva they keep trying to forcibly introduce you to, you aren't going to last forever against all of them.")
+	CombatManager.victoryCondition(CombatManager.SURVIVE_WAVES, 4);
+
+	clearMenu();
+	addButton(0, "Fight!", CombatManager.beginCombat);
+}
+
+public function fazianQuestEhstraffeLoss():void
+{
+	output("\n\nYou collapse, hands smacking onto the concrete. When you desperately try and rise again the red myr smother you, surrounding you in the brisk smell of their coat fabric as they lock your limbs in their strong grip, latching their lips onto your bare [pc.skin] in a dozen places. You shudder and writhe as the aphrodisiac surges into your veins, heat blossoming under your skin,");
+	if (pc.hasCock()) output(" [pc.eachCock] becoming hopelessly erect");
+	if (pc.hasCock() && pc.hasVagina()) output(" and");
+	if (pc.hasVagina()) output(" [pc.eachVagina] needily dribbling eager arousal");
+	output(", incapacitated with lust.");
+
+	if (pc.isFeminine())
+	{
+		output("\n\n<i>“You eight, get the golds and the dancer under control,”</i> orders someone, somewhere. You try hard to care, but it’s impossible; there’s only the aphrodisiac glow, and the fact nobody is seeing to the heat between your [pc.hips]. You groan woozily, and someone strokes your chin kindly.");
+		
+		output("\n\n<i>“So, we can offload her to you as well... ?”</i> the husky voice goes on.");
+		
+		output("\n\n<i>“A pretty, feisty rue collar like her?”</i> says a smooth voice. <i>“Won’t be a problem. We will be taking, not buying, though. The latest shipment of gold, too. This was your security lapse, and we are cleaning it up. If you want our continued support and discretion... <i>“");
+		
+		output("\n\n<i>“Of course,”</i> Ehstraffe agrees hurriedly. You are hauled to your feet and presented to the thin, pale-faced alien. He (she?) gazes into your eyes touches your chin again thoughtfully, diaphanous ruff trembling. Right now, as much as you want to curse and spit at them, any tender touch at all is sending a thrill into your core, making");
+		if (pc.hasVagina()) output(" your pussy clench up");
+		if (pc.isHerm()) output(" and");
+		if (pc.hasCock()) output(" your erection twitch eagerly");
+		output(".");
+		
+		output("\n\n<i>“Some of that venom of yours would be helpful,”</i> she (he?) says. <i>“And I’d get that dancer of yours hooked up onto it, as well. Far too restive for anyone’s good.”</i>");
+		
+		output("\n\n<i>“I - we didn’t want to. But given what happened... yes. You’re right.”</i>");
+		
+		output("\n\n<i>“Come,”</i> directs the tarratch brusquely. You are led stumbling past the stage and a knocked out Fazian into a dully lit back area, populated by naked gold myr. They all look happily stoned, honey-swollen boobs gently bobbing. Tarratch slavers weave between them, their eerie, hypnotic ruffs fluttering and buzzing, bending over each so that they can fasten... something clicks into place around your neck. You touch the cold circle metal... and then squeal as fresh arousal suddenly buzzes into you,");
+		if (pc.hasVagina()) output(" [pc.eachVagina] seizing up and gushing [pc.femcum] down your [pc.hips].");
+		else if (pc.hasCock()) output(" [pc.eachCock] bulging up, building towards an unstoppable orgasm... and then agonizingly climbing down again, leaving you even more helplessly aroused than before.");
+		
+		output("\n\n<i>“I wonder how much we should sell you for,”</i> the tarratch leader smirks, teasing the collar control in his (her?) hand. <i>“I’m thinking... 20,000 credits.”</i>");
+
+		clearMenu();
+		addButton(0, "Next", function():void {
+			clearOutput();
+			output("Once they have smuggled you off Myrellion, under the effects of various cocktails of brainwashing drugs and electrotherapy, the skilful insectile slavers extract the details of your identity and bank account. They proceed to wipe both clean, liquidate your assets and provide you with a new identity: Cindi Luvscock. This obviously costs money, which Cindi begins the long, slow process of paying back by working a glory hole on one of the frontier’s sleazier space stations.");
+			
+			output("\n\nOnce sufficiently trained at servicing even the biggest, most outlandishly shaped dick, the tarratch sell you to an ausar pirate warlord operating on the fringes of known space. He disdains drugs in favor of using your ever-present collar - as well as his almost limitless libido, creative sadism and three, fourteen inch knotted wolf cocks - to mold you into his perfect slave. Your contract stipulates that you yourself will work off the cost of any modification made to you, so your owner is sure to shift your body around whenever the whim takes him - six extra months of servitude for the cunt nipples, another year for the long, dextrous, extra-sensitive tongue, five more years for the special gastro-implants that allow you to live entirely off sexual fluids... sheer curiosity eventually causes him to work out your former identity, which only increases his appetite for using you. Where you’re concerned though, the name of [pc.name] Steele becomes a strange, unimportant memory in the extremely vigorous, cum-soaked life of Cindi Luvscock.");
+
+			badEnd("GAME OVER");
+		});
+	}
+	else
+	{
+		output("\n\n<i>“You eight, get the golds and the dancer under control,”</i> orders someone, somewhere. You try hard to care, but it’s impossible; there’s only the aphrodisiac glow, and the fact nobody is seeing to the heat between your [pc.hips]. You groan woozily, and someone strokes your chin kindly.");
+		output("\n\n<i>“So, we can offload him to you as well... ?”</i> the husky voice goes on.");
+		
+		output("\n\n<i>“I know this is hard for you to grasp,”</i> says a smooth voice, <i>“but "+ pc.rawmf("men", "manly women") +" are more difficult for us to sell. Much more specialist market, outside this planet.”</i> You are hauled to your feet and presented to the thin, pale-faced alien. He (she?) touches your chin again thoughtfully, diaphanous ruff trembling. Right now, as much as you want to curse and spit at them, any tender touch at all is sending a thrill into your core, making");
+		if (pc.hasVagina()) output(" your pussy clench up");
+		if (pc.isHerm()) output(" and");
+		if (pc.hasCock()) output(" your erection twitch eagerly");
+		output(".");
+		
+		output("\n\n<i>“So you aren’t going to help us with him,”</i> says Ehstraffe coldly.");
+		
+		output("\n\n<i>“What a </i>tragedy<i> for you to endure, major,”</i> smirks the tarratch. <i>“What </i>possible <i> use could you put him to around here, I wonder? This venom of yours, that I am interested in. We’ll talk later. For now, put him somewhere out of the way. Hook the dancer up, too. Far too restive for anyone’s good.”</i>");
+		
+		output("\n\nEhstraffe gestures at the two red myr holding you, and they drag you away, past an unconscious Fazian, to a reasonably sized room with a bed. You struggle to form cogent thoughts through the fog of arousal, the all-conquering need in your [pc.groin]. Do these two have to be holding you as tightly as they are? Do their chitinous hands really have to be drifting across your [pc.chest]?... The door clicks shut, and immediately one of them shoves you onto the bed {and begins briskly tearing your garments off}.");
+		
+		output("\n\n<i>“You fight good, brave starwalker,”</i> she says, yanking her combat trousers down, exposing her full, muscular thighs and pinning you underneath her. She pauses only to kiss you fiercely. You groan as your tongues meet and fresh arousal surges into your bloodstream. <i>“Which means you fuck good, too. I’m not missing this chance - Ehstraffe’s a greedy sow who’ll have you all to herself.”</i> Talking done, she");
+		if (pc.hasCock()) output(" sinks the hot, slick cling of her pussy down on your helplessly erect [pc.cock] and begins to urgently thrust her athletic frame into you, holding you down by the shoulders.");
+		else output(" latches her hip firmly around yours, molds her hot, slick pussy into your [pc.vagina] and begins to urgently thrust her athletic frame into you, holding you down by the shoulders.");
+		
+		output("\n\n<i>“Be quick,”</i> says the other, keeping watch at the door. <i>“I want a turn with that, too.”</i>");
+
+		clearMenu();
+		addButton(0, "Next", function():void {
+			output("Days, weeks pass by in a venom-induced haze. You eventually come to welcome the burn of it entering your veins; the peace, tranquillity and all-conquering arousal it brings. It focuses you wonderfully for your sole occupation - being one of two primary sources of stress relief for a whole base of healthy, overworked, uptight red myr. Sure, Major Ehstraffe does make use of you a lot, bordering on the sadistic - keeping you locked for hours beneath her desk and between her thighs. But she quickly sees the benefits of sharing you around.");
+			
+			output("\n\nOnce as hopelessly addicted to red myr saliva as you are, Fazian comes to accept his new role in life, too. As he points out philosophically, the two of you <i>are</i> making a lot of ordinary people happy with your presence, and it’s not exactly a suffering to");
+			if (pc.hasCock()) output(" plough dripping myr cunt with [pc.eachCock] all day along");
+			else output(" send myr into paroxysms of ecstasy with your fingers and [pc.tongue] all day long");
+			output(". He eventually teaches you to be as good a dancer as he is, and you perform with him most nights to a constantly changing but always delirious gold myr audience. If she’s in a good mood, Ehstraffe sometimes lends you to well-behaved groups of golds as well. In either case, some of the orgies you have after particularly well-received performances are spectacular.");
+			
+			output("\n\nYour mission is over, but hey, if the goal was to slay as much pussy as possible, mission accomplished.");
+			
+			badEnd("GAME OVER");
+			});
+	}
+}
+
+public function fazianQuestEhstraffeVictory():void
+{
+	output("\n\nOne moment you are desperately fending off a clutch of armed guards - the next they are overwhelmed in a tidal wave of furious gold myr prisoners, who kick, bite and trample them to the ground. The red myr desperately fight back, more soldiers hurry in from the front to help, but they are hopelessly outnumbered.");
+	
+	output("\n\nYou bundle your way through the crowd, many of whom are now surging through the exits, battling your way towards the stage. You can hear Ehstraffe screaming out orders from somewhere - there’s no sign of the tarratch... your hands touch wood and you clamber up onto the stage, just in time to see a gold myr pick a groggy Fazian up by the shoulder.");
+	
+	output("\n\n<i>“Through the back,”</i> she says. She’s missing an arm but looks exultant, a Federation beret skewed across her crown.  Together you half carry, half lead the anat dancer out of the main warehouse and through the back entrance. Gold myr are streaming out of the main gateway in all directions, fighting red myr, being tackled to the ground, or simply running into Kressia or towards No Myr’s Land as fast as they possibly can. Keeping in the back alleys and close to the cavern wall, you limp northwards with Fazian and the gold myr. A siren wails over the sounds of the riot, followed by the crackle of open fire. Nobody stops you, though. Presumably to the red myr soldiers you glimpse charging past, your group looks like an alien who has been caught in the crossfire, his friend, and a helpful, Federation-affiliated local.");
+	
+	output("\n\n<i>“They’ll recapture most of us before the night is out,”</i> says the gold myr, as you finally stop in a quiet street some distance north. She trails the fingers of her sole left hand down Fazian’s back and then squeezes your palm with a thin smile. <i>“Most of us. Make it count, starwalker.”</i> The last you see of her is her abdomen, disappearing around another corner. After you’ve rested a little while, you and Fazian continue to head northwards towards the airfield. You both silently listen to the fading sounds of violence behind you.");
+
+	clearMenu();
+	addButton(0, "Next", fazianQuestEhstraffeVictoryII);
+}
+
+public function fazianQuestEhstraffeVictoryII():void
+{
+	clearOutput();
+
+	output("<i>“Do you know what Quaramarta means?”</i> he says, after a bit. <i>“It roughly translates as ‘All Four Hands’. It’s an old tribal song which appears in a great many gold myr traditions. It’s supposed to mean: We are all the same. We can set differences aside in the end, because we are all thinking people with the same hopes and needs. I was performing that... to them.”</i> He brings up his claws and stares at them with his pale blue eyes. You can see them trembling. <i>“To keep them there, I performed that to them.”</i>");
+	
+	output("\n\nYou stop at the intersection leading to the airfield.");
+	
+	output("\n\n<i>“I will not let them bury this, [pc.name],”</i> he says, the same quiet tremble in his voice. <i>“Not just the Federation - it will be better for Xenogen if none of this comes to light. Allowing slavers onto the planet... the threat to the ceasefire... but this is my fight now. I will take it to the U.G.C., the empire itself if they will not listen. Such atrocities cannot be allowed to continue because it’s tidier if some people simply don’t exist.”</i> He takes your hand in his claws. <i>“To you, I owe a life debt. I cannot offer you anything but a promise that if there is anything you need that is in my power to give, you will have it. But you know, I do not worry that I have no money to give you. You have already shown you care about much more valuable things than that.”</i>");
+	
+	output("\n\nHe squeezes your hand, and hurries eastwards towards the planes.");
+
+	CombatManager.genericVictory();
+
+	currentLocation = "805";
+	processTime(120+rand(15));
+	pc.addNice(5);
+	flags["FAZIAN_QUEST_STATE"] = FAZIAN_QUEST_COMPLETE;
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
