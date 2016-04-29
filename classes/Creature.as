@@ -2907,14 +2907,24 @@
 		public static const DEPENDANT_ANY:uint = 0;
 		public static const DEPENDANT_MYRVENOM:uint = 1;
 		public static const DEPENDANT_CUM:uint = 2;
+		public static const DEPENDANT_ANAL:uint = 3;
 		
 		// Is the character dependant on some external drug/chemical/etc
 		public function isDependant(dependantType:uint = DEPENDANT_ANY):Boolean
 		{
-			if(dependantType == DEPENDANT_MYRVENOM)
+			if(dependantType == DEPENDANT_MYRVENOM || dependantType == DEPENDANT_ANY)
 			{
 				if(hasPerk("Venom Slut") || hasStatusEffect("Myr Venom Withdrawal")) return true;
 			}
+			if(dependantType == DEPENDANT_CUM || dependantType == DEPENDANT_ANY)
+			{
+				if(hasPerk("Cum Guzzler") || hasStatusEffect("Oral Fixation")) return true;
+			}
+			if(dependantType == DEPENDANT_ANAL || dependantType == DEPENDANT_ANY)
+			{
+				if(hasPerk("Booty Sloot") || hasStatusEffect("Anal Addiction")) return true;
+			}
+			
 			return false;
 		}
 		
