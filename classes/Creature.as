@@ -14791,8 +14791,8 @@
 				lust(20); //increase Lust
 			}
 			if (ballFullness + percent > 100){
-				if (ballFullness < 100) var delta:Number = Math.round((100 - ballFullness) * maxCum() / 100); //catch transition from filling to swelling
-				else var delta:Number = 0;
+				var delta:Number = 0;
+				if (ballFullness < 100) delta = Math.round((100 - ballFullness) * maxCum() / 100); //catch transition from filling to swelling
 				ballFullness = 100;
 				var finalCum:Number = currentCum() + amount - delta;
 				var deltaBallSize:Number = Math.round(Math.sqrt(finalCum / (2 * ballEfficiency * balls)) * 100) / 100 - ballSize(); //calculate new ball size to hold all that cum
@@ -14802,7 +14802,6 @@
 			}
 			else ballFullness += percent;
 		}
-		
 		
 		// OnTakeDamage is called as part of applyDamage.
 		// You should generate a message for /deferred/ display in the creature
