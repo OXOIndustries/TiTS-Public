@@ -20,6 +20,8 @@ public function showTerensha():void
 {
 	showName("\nTERENSHA");
 	showBust("TERENSHA");
+	if(silly) author("Savinbuns");
+	else author("Savin");
 }
 //Room Descripts & Such
 

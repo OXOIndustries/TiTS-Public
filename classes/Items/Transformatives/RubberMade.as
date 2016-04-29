@@ -90,6 +90,8 @@
 					output("\n\nYou’d almost believe the gum had simply vanished into your skin, but when you rub a finger along your cheek, the rude rubber squeak tells you that the latex is permanent. Surprisingly, your sensitivity hasn’t been impaired by the second skin. Touching your pliant, plastic skin confirms that you can feel with surprisingly improved acuteness. <b>You now have rubber skin.</b>");
 					//{if the player had fur, they lose it. Tail descriptors also gain the latex descriptors}
 					pc.skinType = GLOBAL.SKIN_TYPE_LATEX;
+					pc.clearSkinFlags();
+					pc.addSkinFlag(GLOBAL.FLAG_SMOOTH);
 					//Clear out old latex skin rank counter if PC reset his skin
 					pc.removeStatusEffect("Latex Skin");
 					//Latex skin ranks counter!
@@ -249,6 +251,8 @@
 			target.hairColor = "black";
 			target.skinTone = "black";
 			target.skinType = GLOBAL.SKIN_TYPE_LATEX;
+			target.clearSkinFlags();
+			target.addSkinFlag(GLOBAL.FLAG_SMOOTH);
 			
 			clearMenu();
 			addButton(0,"Next",bubbleYumsBadEnd4, target);
