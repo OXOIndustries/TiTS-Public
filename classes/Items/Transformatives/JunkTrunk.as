@@ -24,7 +24,7 @@
 			
 			TooltipManager.addFullName(shortName, StringUtil.toTitleCase(longName));
 			
-			description = "A plain white pill labeled “Junk In The Trunk”";
+			description = "a plain white pill labeled “Junk In The Trunk”";
 			tooltip = "This small white pill contains all you need to expand your backside. Displayed on its packaging is the phrase: <i>“For those with an affection for callipygean derrieres...”</i> Interesting...";
 			
 			TooltipManager.addTooltip(shortName, tooltip);
