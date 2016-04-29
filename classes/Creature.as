@@ -14756,7 +14756,7 @@
 					if(hasPerk("'Nuki Nuts") && InCollection(statusEffects[o].value3, GLOBAL.VALID_CUM_TYPES)) //Implementing Kui-Tan Cum Cascade from Codex
 					{
 						//Calculate amount metabolized over time
-						var cumTransfer:Number = (statusEffects[o].value1) / 10; //Metabolize entire load over 10 minutes.
+						var cumTransfer:Number = (statusEffects[o].value2) / 10; //Metabolize entire (initial) load over 10 minutes.
 						cumTransfer *= timePassed;
 						cumTransfer += amountVented;
 						if (cumTransfer > statusEffects[o].value1) cumTransfer = statusEffects[o].value1;
@@ -14790,8 +14790,19 @@
 				if (this is PlayerCharacter) kGAMECLASS.eventBuffer += ParseText("\n\nYou hear a faint gurgling from your stomach and [pc.balls] as you feel them swelling fuller and fuller each passing second. With your kui-tan physiology, all that cum you ingested must have spiked your own production!");
 				lust(20); //increase Lust
 			}
-			ballFullness += percent;
+			if (ballFullness + percent > 100){
+				if (ballFullness < 100) var delta:Number = Math.round((100 - ballFullness) * maxCum() / 100); //catch transition from filling to swelling
+				else var delta:Number = 0;
+				ballFullness = 100;
+				var finalCum:Number = currentCum() + amount - delta;
+				var deltaBallSize:Number = Math.round(Math.sqrt(finalCum / (2 * ballEfficiency * balls)) * 100) / 100 - ballSize(); //calculate new ball size to hold all that cum
+				ballSizeMod += deltaBallSize; 
+				addPerkValue("'Nuki Nuts", 1, deltaBallSize);
+				trace("Ball size change: " + deltaBallSize);
+			}
+			else ballFullness += percent;
 		}
+		
 		
 		// OnTakeDamage is called as part of applyDamage.
 		// You should generate a message for /deferred/ display in the creature
