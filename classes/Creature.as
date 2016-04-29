@@ -14781,10 +14781,13 @@
 				lust(20); //increase Lust
 			}
 			if (ballFullness + percent > 100){
+				if (ballFullness < 100) var delta:Number = Math.round((100 - ballFullness) * maxCum() / 100); //catch transition from filling to swelling
+				else var delta:Number = 0;
 				ballFullness = 100;
-				var finalCum:Number = currentCum() + amount;
+				var finalCum:Number = currentCum() + amount - delta;
 				var deltaBallSize:Number = Math.round(Math.sqrt(finalCum / (2 * ballEfficiency * balls)) * 100) / 100 - ballSize(); //calculate new ball size to hold all that cum
 				ballSizeMod += deltaBallSize; 
+				addPerkValue("'Nuki Nuts", 1, deltaBallSize);
 				trace("Ball size change: " + deltaBallSize);
 			}
 			else ballFullness += percent;
