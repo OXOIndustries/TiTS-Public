@@ -583,6 +583,18 @@ public function appearance(forTarget:Creature):void
 		else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2(", covered in a layer of " + target.skinFurScales(true, true));
 		else if(target.skinType == GLOBAL.SKIN_TYPE_CHITIN) output2(", covered in a layer of " + target.skinFurScales(true, true));
 		else if(target.skinType == GLOBAL.SKIN_TYPE_GOO) output2(", all of them glittering, semi-transparent goo");
+		else if(target.skinType == GLOBAL.SKIN_TYPE_FEATHERS) output2(", covered in patches of " + target.skinFurScales(true, true));
+		else if(target.skinType == GLOBAL.SKIN_TYPE_LATEX)
+		{
+			output2(", sensually wrapped in a layer of");
+			if(pc.statusEffectv1("Latex Skin") > 0)
+			{
+				if(pc.statusEffectv1("Latex Skin") < 2) output2(" semi-glossy");
+				else if(pc.statusEffectv1("Latex Skin") < 3) output2(" glossy");
+				else output2(" extra-glossy");
+			}
+			output2(" " + target.skinTone + " latex");
+		}
 		if(target.wingType != GLOBAL.TYPE_HUMAN) {
 			output2(", and");
 			//WINGS!
