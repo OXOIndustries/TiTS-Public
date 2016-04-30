@@ -14784,19 +14784,19 @@
 		 */
 		public function cumCascade(amount:Number): void 
 		{
-			var percent:Number = (amount / maxCum()) * 500;//Take percentage of maximum cum, and multiply 5x.
+			var percent:Number = (amount / maxCum()) * 500; //Take percentage of maximum cum, and multiply 5x.
 			trace("Percent Increase: " + percent + " %");
 			if (percent > 10) {
 				if (this is PlayerCharacter) kGAMECLASS.eventBuffer += ParseText("\n\nYou hear a faint gurgling from your stomach and [pc.balls] as you feel them swelling fuller and fuller each passing second. With your kui-tan physiology, all that cum you ingested must have spiked your own production!");
 				lust(20); //increase Lust
 			}
-			if (ballFullness + percent > 100){
+			if (ballFullness + percent > 100) { //prevent craziness when going over
 				var delta:Number = 0;
 				if (ballFullness < 100) delta = Math.round((100 - ballFullness) * maxCum() / 100); //catch transition from filling to swelling
 				ballFullness = 100;
-				var finalCum:Number = currentCum() + amount - delta;
+				var finalCum:Number = currentCum() + (amount * 5) - delta; //x5 again because we aren't using percent for this
 				var deltaBallSize:Number = Math.round(Math.sqrt(finalCum / (2 * ballEfficiency * balls)) * 100) / 100 - ballSize(); //calculate new ball size to hold all that cum
-				ballSizeMod += deltaBallSize; 
+				ballSizeMod += deltaBallSize;
 				addPerkValue("'Nuki Nuts", 1, deltaBallSize);
 				trace("Ball size change: " + deltaBallSize);
 			}
