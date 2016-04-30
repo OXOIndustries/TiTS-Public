@@ -55,7 +55,7 @@ package classes.Items.Transformatives
 					// 75% chance that the PC grows feathered wings.
 					if(rand(4) != 0)
 					{
-						target.wingType = GLOBAL.TYPE_DOVETWO;
+						target.shiftWings(GLOBAL.TYPE_DOVETWO, 2);
 						output("\n\nThe bulging and the heat intensify until you feel a moment of pain followed by a sweet cool feeling of relief. A few warm tingles run up and down your spine as your body’s rewired to work with its new parts, and you check your codex to discover <b>you’ve gained [pc.furColor]-feathered wings</b>!");
 					}
 					else
@@ -64,13 +64,13 @@ package classes.Items.Transformatives
 						// 15% chance that the PC grows four feathered wings.
 						if(rand(3) != 0)
 						{
-							target.wingType = GLOBAL.TYPE_DOVEFOUR;
+							target.shiftWings(GLOBAL.TYPE_DOVEFOUR, 4);
 							output(" four");
 						}
 						// 10% chance that the PC grows six feathered wings.
 						else
 						{
-							target.wingType = GLOBAL.TYPE_DOVESIX;
+							target.shiftWings(GLOBAL.TYPE_DOVESIX, 6);
 							output(" six");
 						}
 						output(" [pc.furColor]-feathered wings<b>! Well, that’s certainly a rarity!");
@@ -96,7 +96,7 @@ package classes.Items.Transformatives
 							if(target.wingType == GLOBAL.TYPE_DOVEFOUR) output(" four");
 							else output(" six");
 							
-							target.wingType = GLOBAL.TYPE_DOVETWO;
+							target.shiftWings(GLOBAL.TYPE_DOVETWO, 2);
 							
 							output(" wings grow hot and meld together, <b>becoming a standard single pair</b> once they cool off.");
 						}
@@ -106,12 +106,12 @@ package classes.Items.Transformatives
 							output("\n\nYou feel your wings grow hot, then begin to stretch vertically before they suddenly split apart, new flesh and feathers growing in so that when the heat fades, <b>you’re left with");
 							if(rand(2) == 0)
 							{
-								target.wingType = GLOBAL.TYPE_DOVEFOUR;
+								target.shiftWings(GLOBAL.TYPE_DOVEFOUR, 4);
 								output(" four");
 							}
 							else
 							{
-								target.wingType = GLOBAL.TYPE_DOVESIX;
+								target.shiftWings(GLOBAL.TYPE_DOVESIX, 6);
 								output(" six");
 							}
 							output(" wings instead of two.</b>");
@@ -123,19 +123,19 @@ package classes.Items.Transformatives
 							// Four to six.
 							if(target.wingType == GLOBAL.TYPE_DOVEFOUR)
 							{
-								target.wingType = GLOBAL.TYPE_DOVESIX;
+								target.shiftWings(GLOBAL.TYPE_DOVESIX, 6);
 								output(" six");
 							}
 							// Six to four.
 							else if(target.wingType == GLOBAL.TYPE_DOVESIX)
 							{
-								target.wingType = GLOBAL.TYPE_DOVEFOUR;
+								target.shiftWings(GLOBAL.TYPE_DOVEFOUR, 4);
 								output(" four");
 							}
 							// Failsafe.
 							else
 							{
-								target.wingType = GLOBAL.TYPE_DOVETWO;
+								target.shiftWings(GLOBAL.TYPE_DOVETWO, 2);
 								output(" two");
 							}
 							output(" feathered wings</b> by the time the heat fades.");
@@ -146,11 +146,11 @@ package classes.Items.Transformatives
 				else if(target.hasWings())
 				{
 					// 75% chance that PC’s wing type changes to feathered wings.
-					if(rand(4) != 0) target.wingType = GLOBAL.TYPE_DOVETWO;
+					if(rand(4) != 0) target.shiftWings(GLOBAL.TYPE_DOVETWO, 2);
 					// 15% chance that PC’s wing type changes to four feathered wings.
-					else if(rand(3) != 0) target.wingType = GLOBAL.TYPE_DOVEFOUR;
+					else if(rand(3) != 0) target.shiftWings(GLOBAL.TYPE_DOVEFOUR, 4);
 					// 10% chance that PC’s wing type changes to six feathered wings.
-					else target.wingType = GLOBAL.TYPE_DOVESIX;
+					else target.shiftWings(GLOBAL.TYPE_DOVESIX, 6);
 					
 					output("You already have wings, but you’d kind of like to try out feathers. You rub the balm into your wingpoints, feeling a heat well up inside them almost as soon as you pull your hand away. Your wings practically melt into their new form like candle wax");
 					if(target.wingType == GLOBAL.TYPE_DOVEFOUR || target.wingType == GLOBAL.TYPE_DOVESIX)

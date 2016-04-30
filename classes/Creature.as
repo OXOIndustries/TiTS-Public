@@ -677,7 +677,8 @@
 			return "Your [pc.gills] flutter but do not change.";
 		}
 		
-		public var wingType: Number = 0;
+		public var wingCount:Number = 0;
+		public var wingType:Number = 0;
 		public function wingTypeUnlocked(newWingType:Number):Boolean
 		{
 			return true;
@@ -685,7 +686,8 @@
 		public function wingTypeLockedMessage():String
 		{
 			if(wingType == 0) return "There is a tickling sensation around and between your shoulder blades, but nothing changes.";
-			if(wingType == GLOBAL.TYPE_SHARK) return "Your [pc.wing] radiates with warmth but nothing about it changes.";
+			if(wingCount == 1) return "Your [pc.wing] radiates with warmth but nothing about it changes.";
+			if(wingType == GLOBAL.TYPE_SHARK) return "Your [pc.wings] radiate with warmth but nothing about them changes.";
 			return "Your [pc.wings] flutter but do not change.";
 		}
 
@@ -2905,14 +2907,24 @@
 		public static const DEPENDANT_ANY:uint = 0;
 		public static const DEPENDANT_MYRVENOM:uint = 1;
 		public static const DEPENDANT_CUM:uint = 2;
+		public static const DEPENDANT_ANAL:uint = 3;
 		
 		// Is the character dependant on some external drug/chemical/etc
 		public function isDependant(dependantType:uint = DEPENDANT_ANY):Boolean
 		{
-			if(dependantType == DEPENDANT_MYRVENOM)
+			if(dependantType == DEPENDANT_MYRVENOM || dependantType == DEPENDANT_ANY)
 			{
 				if(hasPerk("Venom Slut") || hasStatusEffect("Myr Venom Withdrawal")) return true;
 			}
+			if(dependantType == DEPENDANT_CUM || dependantType == DEPENDANT_ANY)
+			{
+				if(hasPerk("Cum Guzzler") || hasStatusEffect("Oral Fixation")) return true;
+			}
+			if(dependantType == DEPENDANT_ANAL || dependantType == DEPENDANT_ANY)
+			{
+				if(hasPerk("Booty Sloot") || hasStatusEffect("Anal Addiction")) return true;
+			}
+			
 			return false;
 		}
 		
@@ -3487,7 +3499,7 @@
 		}
 		public function hasCombatDrone():Boolean
 		{
-			if (hasPerk("Attack Drone") || (accessory is TamWolf) || (accessory is TamWolfDamaged) || hasStatusEffect("Varmint Buddy"))
+			if (hasPerk("Attack Drone") || accessory.hasFlag(GLOBAL.ITEM_FLAG_COMBAT_DRONE) || hasStatusEffect("Varmint Buddy") || (!hasStatusEffect("Varmint Buddy") && accessory.droneAttack != null))
 			{
 				if (hasStatusEffect("Combat Drone Disabled")) return false;
 				return true;
@@ -3911,7 +3923,7 @@
 		public function hasLongEars(): Boolean
 		{
 			// For ear types that support the earLength value. At least 1 inch long or more to count.
-			if(earLength >= 1 && InCollection(earType, GLOBAL.TYPE_SYLVAN, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_GABILANI, GLOBAL.TYPE_DEMONIC)) return true;
+			if(earLength >= 1 && InCollection(earType, GLOBAL.TYPE_SYLVAN, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_GABILANI, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_GRYVAIN)) return true;
 			return false;
 		}
 		public function earDescript(): String
@@ -3956,6 +3968,7 @@
 					adjectives = ["demonic", "demon-like", "pointy", "inhuman", "pointed"];
 					break;
 				case GLOBAL.TYPE_DRACONIC:
+				case GLOBAL.TYPE_GRYVAIN:
 					adjectives = ["draconic", "dragon-like", "fin-like", "fan-shaped"];
 					if(skinType != GLOBAL.SKIN_TYPE_GOO) adjectives.push("beastial");
 					break;
@@ -4221,7 +4234,7 @@
 			var facemim: String = "";
 			
 			//Player character check--not sure if NPCs can get the Mims since the flag is probably global...
-			if (this is PlayerCharacter)
+			if (this is PlayerCharacter && hasStatusEffect("Mimbrane Face"))
 			{
 				//Birthmark
 				if (kGAMECLASS.flags["MIMBRANE_FACE_APPEARANCE"] == 1) facemim = " adorned with beauty marks just above them";
@@ -4787,6 +4800,9 @@
 				case GLOBAL.TYPE_DRACONIC:
 					adjectives = ["draconic", "dragon-like", "reptilian", "bestial"];
 					break;
+				case GLOBAL.TYPE_GRYVAIN:
+					adjectives = ["draconic", "gryvain", "dragon-like"];
+					break;
 				case GLOBAL.TYPE_KUITAN:
 					adjectives = ["tanuki", "racoon-like", "kui-tan"];
 					break;
@@ -4891,53 +4907,44 @@
 				default:
 					adjectives.push("non-existent");
 					break;
-					
 				case GLOBAL.TYPE_SMALLBEE:
 				case GLOBAL.TYPE_MYR:
 					adjectives.push("small", mf("tiny", "cute"), "insect-like", "insectile", "shimmering");
 					break;
-					
 				case GLOBAL.TYPE_BEE:
 					adjectives.push("large", "insect-like", "insectile", "bee", "membrane-covered", "transparent");
 					break;
-					
 				case GLOBAL.TYPE_SMALLDEMONIC:
 					adjectives.push("small", mf("tiny", "cute"), "bat-like", "demon-like");
 					break;
-					
 				case GLOBAL.TYPE_DEMONIC:
 					adjectives.push("large", "bat-like", "demon-like", "demonic", "wicked", mf("incubus", "succubus"));
 					break;
-					
 				case GLOBAL.TYPE_SHARK:
 					adjectives.push("large", "shark-like");
 					nouns = ["dorsal fin"];
 					break;
-					
 				case GLOBAL.TYPE_AVIAN:
 					adjectives.push("large", "bird-like", "avian", "feathery");
 					break;
-
 				case GLOBAL.TYPE_SMALLDRACONIC:
 					adjectives.push("small", mf("tiny","cute"), "bat-like", "dragon-like", "scaled");
 					break;
-
 				case GLOBAL.TYPE_DRACONIC:
 					adjectives.push("large", "bat-like", "dragon-like", "draconic", "scaled", "wicked", "magnificent", mf("mighty","majestic"));
 					break;
-
+				case GLOBAL.TYPE_GRYVAIN:
+					adjectives.push("large", "dragon-like", "gryvain", "scaled");
+					break;
 				case GLOBAL.TYPE_DRAGONFLY:
 					adjectives.push("large", "giant", "insectile", "dragonfly", "transparent", "iridescent");
 					break;
-
 				case GLOBAL.TYPE_SYLVAN:
 					adjectives.push("sylvan", "delicate", "blue gossamer", "iridescent");
 					break;
-
 				case GLOBAL.TYPE_DARK_SYLVAN:
 					adjectives.push("dark sylvan", "delicate", "black gossamer", "shadowy");
 					break;
-					
 				case GLOBAL.TYPE_DOVETWO:
 				case GLOBAL.TYPE_DOVEFOUR:
 				case GLOBAL.TYPE_DOVESIX:
@@ -4951,7 +4958,7 @@
 		}
 		public function wingsDescript(nounOnly:Boolean = false):String
 		{
-			if(wingType == GLOBAL.TYPE_SHARK) return wingDescript(nounOnly);
+			if(wingCount == 1) return wingDescript(nounOnly);
 			return plural(wingDescript(nounOnly));
 		}
 		public function armsDescript(forceAdjective: Boolean = false):String {
@@ -5035,7 +5042,7 @@
 			return output;
 		}
 		public function hasClawedHands(): Boolean {
-			return InCollection(armType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_BADGER, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_DEMONIC);
+			return InCollection(armType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_BADGER, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_GRYVAIN);
 		}
 		public function hasPaddedHands(): Boolean {
 			return InCollection(armType, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_PANDA);
@@ -5070,7 +5077,7 @@
 					{
 						case GLOBAL.TYPE_EQUINE: adjectives = ["equine", "equine", "horse-like", "hoof-capped"]; break;
 						case GLOBAL.TYPE_BOVINE: adjectives = ["bovine", "bovine", "cow-like", "hoof-capped"]; break;
-						case GLOBAL.TYPE_CANINE:  adjectives = ["canine", "canine", "dog-like", "paw-footed"]; break;
+						case GLOBAL.TYPE_CANINE: adjectives = ["canine", "canine", "dog-like", "paw-footed"]; break;
 						case GLOBAL.TYPE_FELINE: adjectives = ["feline", "feline", "cat-like", "graceful"]; break;
 						case GLOBAL.TYPE_VULPINE: adjectives = ["vulpine", "vulpine", "fox-like", "foxy"]; break;
 						case GLOBAL.TYPE_BEE: adjectives = ["chitinous", "armored", "insect-like", "carapace-covered"]; break;
@@ -5079,6 +5086,7 @@
 						case GLOBAL.TYPE_LAPINE: adjectives = ["lapine", "lapine", "rabbit-like", "bunny"]; break;
 						case GLOBAL.TYPE_AVIAN: adjectives = ["avian", "avian", "bird-like", "raptor"]; break;
 						case GLOBAL.TYPE_DRACONIC: adjectives = ["draconic", "draconic", "dragon-like", "reptilian"]; break;
+						case GLOBAL.TYPE_GRYVAIN: adjectives = ["draconic", "dragon-like", "dragon-like"]; break;
 						case GLOBAL.TYPE_LIZAN: adjectives = ["lizan", "lizan", "reptile-like", "reptilian"]; break;
 						case GLOBAL.TYPE_DEMONIC: adjectives = ["demonic", "demon-like", "demon-like", "claw-footed"]; break;
 						case GLOBAL.TYPE_SUCCUBUS: adjectives = ["sensual", "alluring", "seductive", "sexy"]; break;
@@ -5133,6 +5141,39 @@
 		{
 			var output: String = "";
 			var adjectives:Array = [];
+			//Type! 1/5 times
+			if (rand(5) == 0 || forceType)
+			{
+				if(output != "") output += ", ";
+				switch(legType)
+				{
+					case GLOBAL.TYPE_EQUINE: adjectives = ["equine", "horse-like", "bestial"]; break;
+					case GLOBAL.TYPE_BOVINE: adjectives = ["bovine", "cow-like", "bestial"]; break;
+					case GLOBAL.TYPE_CANINE: adjectives = ["canine", "dog-like"]; break;
+					case GLOBAL.TYPE_FELINE: adjectives = ["feline", "cat-like"]; break;
+					case GLOBAL.TYPE_VULPINE: adjectives = ["vulpine", "fox-like", "foxy"]; break;
+					case GLOBAL.TYPE_BEE: adjectives = ["chitinous", "armored", "insect-like", "carapace-covered"]; break;
+					case GLOBAL.TYPE_ARACHNID: adjectives = ["chitinous", "armored", "insect-like", "carapace-covered"]; break;
+					case GLOBAL.TYPE_DRIDER: adjectives = ["chitinous", "armored", "insect-like", "carapace-covered", "pointed"]; break;
+					case GLOBAL.TYPE_LAPINE: adjectives = ["lapine", "rabbit-like", "bunny"]; break;
+					case GLOBAL.TYPE_AVIAN: adjectives = ["avian", "bird-like", "taloned"]; break;
+					case GLOBAL.TYPE_DRACONIC: adjectives = ["draconic", "clawed", "reptilian"]; break;
+					case GLOBAL.TYPE_GRYVAIN: adjectives = ["draconic", "clawed"]; break;
+					case GLOBAL.TYPE_LIZAN: adjectives = ["lizan", "clawed", "reptilian"]; break;
+					case GLOBAL.TYPE_DEMONIC: adjectives = ["corrupted-looking", "demonic", "clawed"]; break;
+					case GLOBAL.TYPE_SUCCUBUS: adjectives = ["spike-supported", "sexy"]; break;
+					case GLOBAL.TYPE_GOOEY: adjectives = ["gooey", "semi-solid", "gelatinous", "jiggly"]; break;
+					case GLOBAL.TYPE_KANGAROO: adjectives = ["kangaroo-like", "powerful", "‘roo"]; break;
+					case GLOBAL.TYPE_TANUKI: adjectives = ["tanuki-like", "dexterous", "nimble"]; break;
+					case GLOBAL.TYPE_DEER: adjectives = ["deer-like", "nimble"]; break;
+					case GLOBAL.TYPE_PANDA: adjectives = ["panda", "panda", "bear-like", "thick"]; break;
+					case GLOBAL.TYPE_MLP: adjectives = ["pony", "pony-like", "cartoony", "cute"]; break;
+					case GLOBAL.TYPE_RASKVEL: adjectives = ["reptilian", "clawed"]; break;
+					case GLOBAL.TYPE_OVIR: adjectives = ["human-like"]; break;
+					case GLOBAL.TYPE_MYR: adjectives = ["chitinous", "armored", scaleColor + "-chitin"]; break;
+					case GLOBAL.TYPE_NYREA: adjectives = ["chitinous", "armored", "insect-like", "carapace-covered"]; break;
+				}
+			}
 			//ADJECTIVE!
 			if (rand(3) == 0 || forceAdjective)
 			{
@@ -5140,64 +5181,9 @@
 				else if (hasLegFlag(GLOBAL.FLAG_FURRED)) adjectives.push("furry", "fuzzy", "fur-covered");
 				else if (hasLegFlag(GLOBAL.FLAG_TENDRIL)) adjectives.push("wiggling");
 				else if (hasLegFlag(GLOBAL.FLAG_CHITINOUS)) adjectives.push("chitinous", "armored", "carapace-covered");
-				//Random goes here!
-				if (adjectives.length > 0) output += RandomInCollection(adjectives);
 			}
-			//Type! 1/5 times
-			if (rand(5) == 0 || forceType)
-			{
-				if(output != "") output += ", ";
-				if (legType == GLOBAL.TYPE_EQUINE)
-					adjectives = ["equine", "horse-like", "bestial"];
-				else if (legType == GLOBAL.TYPE_BOVINE)
-					adjectives = ["bovine", "cow-like", "bestial"];
-				else if (legType == GLOBAL.TYPE_CANINE)
-					adjectives = ["canine", "dog-like"];
-				else if (legType == GLOBAL.TYPE_FELINE)
-					adjectives = ["feline", "cat-like"];
-				else if (legType == GLOBAL.TYPE_VULPINE)
-					adjectives = ["vulpine", "fox-like", "foxy"];
-				else if (legType == GLOBAL.TYPE_BEE)
-					adjectives = ["chitinous", "armored", "insect-like", "carapace-covered"];
-				else if (legType == GLOBAL.TYPE_ARACHNID)
-					adjectives = ["chitinous", "armored", "insect-like", "carapace-covered"];
-				else if (legType == GLOBAL.TYPE_DRIDER)
-					adjectives = ["chitinous", "armored", "insect-like", "carapace-covered", "pointed"];
-				else if (legType == GLOBAL.TYPE_LAPINE)
-					adjectives = ["lapine", "rabbit-like", "bunny"];
-				else if (legType == GLOBAL.TYPE_AVIAN)
-					adjectives = ["avian", "bird-like", "taloned"];
-				else if (legType == GLOBAL.TYPE_DRACONIC)
-					adjectives = ["draconic", "clawed", "reptilian"];
-				else if (legType == GLOBAL.TYPE_LIZAN)
-					adjectives = ["lizan", "clawed", "reptilian"];
-				else if (legType == GLOBAL.TYPE_DEMONIC)
-					adjectives = ["corrupted-looking", "demonic", "clawed"];
-				else if (legType == GLOBAL.TYPE_SUCCUBUS)
-					adjectives = ["spike-supported", "sexy"];
-				else if (legType == GLOBAL.TYPE_GOOEY)
-					adjectives = ["gooey", "semi-solid", "gelatinous", "jiggly"];
-				else if (legType == GLOBAL.TYPE_KANGAROO)
-					adjectives = ["kangaroo-like", "powerful", "‘roo"];
-				else if (legType == GLOBAL.TYPE_TANUKI)
-					adjectives = ["tanuki-like", "dexterous", "nimble"];
-				else if (legType == GLOBAL.TYPE_DEER)
-					adjectives = ["deer-like", "nimble"];
-				else if (legType == GLOBAL.TYPE_PANDA)
-					adjectives = ["panda", "panda", "bear-like", "thick"];
-				else if (legType == GLOBAL.TYPE_MLP)
-					adjectives = ["pony", "pony-like", "cartoony", "cute"];
-				else if (legType == GLOBAL.TYPE_RASKVEL)
-					adjectives = ["reptilian", "clawed"];
-				else if (legType == GLOBAL.TYPE_OVIR)
-					adjectives = ["human-like"];
-				else if (legType == GLOBAL.TYPE_MYR)
-					adjectives = ["chitinous", "armored", scaleColor + "-chitin"];
-				else if (legType == GLOBAL.TYPE_NYREA)
-					adjectives = ["chitinous", "armored", "insect-like", "carapace-covered"];
-				//Random goes here!
-				if (adjectives.length > 0) output += RandomInCollection(adjectives);
-			}
+			//Random goes here!
+			if (adjectives.length > 0) output += RandomInCollection(adjectives);
 			return output;
 		}
 		public function height():String
@@ -7893,6 +7879,12 @@
 					vaginas[slot].wetnessRaw = 2;
 					vaginas[slot].addFlag(GLOBAL.FLAG_LUBRICATED);
 					break;
+				case GLOBAL.TYPE_GRYVAIN:
+					vaginas[slot].clits = 6;
+					vaginas[slot].vaginaColor = scaleColor;
+					vaginas[slot].wetnessRaw = 2;
+					vaginas[slot].addFlag(GLOBAL.FLAG_NUBBY);
+					break;
 			}
 		}
 		//Change cock type
@@ -8045,13 +8037,20 @@
 					cocks[slot].addFlag(GLOBAL.FLAG_FORESKINNED);
 					cocks[slot].addFlag(GLOBAL.FLAG_FLARED);
 					break;
+				case GLOBAL.TYPE_GRYVAIN:
+					cocks[slot].knotMultiplier = 1;
+					cocks[slot].cockColor = scaleColor;
+					cocks[slot].addFlag(GLOBAL.FLAG_KNOTTED);
+					cocks[slot].addFlag(GLOBAL.FLAG_SCALED);
+					cocks[slot].addFlag(GLOBAL.FLAG_RIBBED);
+					break;
 			}
 		}
 		//PC can fly?
 		public function canFly(): Boolean {
 			//web also makes false!
 			if (hasStatusEffect("Web")) return false;
-			if (InCollection(wingType, GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_BEE, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_DRAGONFLY, GLOBAL.TYPE_SYLVAN, GLOBAL.TYPE_DARK_SYLVAN, GLOBAL.TYPE_DOVETWO, GLOBAL.TYPE_DOVEFOUR, GLOBAL.TYPE_DOVESIX)) return true;
+			if (InCollection(wingType, GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_BEE, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_DRAGONFLY, GLOBAL.TYPE_SYLVAN, GLOBAL.TYPE_DARK_SYLVAN, GLOBAL.TYPE_DOVETWO, GLOBAL.TYPE_DOVEFOUR, GLOBAL.TYPE_DOVESIX, GLOBAL.TYPE_GRYVAIN)) return true;
 			return false;
 		}
 		//PC can swim?
@@ -8071,6 +8070,16 @@
 				if (wType == 0) return true;
 			}
 			return false;
+		}
+		public function removeWings():void
+		{
+			wingType = 0;
+			wingCount = 0;
+		}
+		public function shiftWings(wingShape:Number = 0, wingNum:Number = 0):void
+		{
+			wingType = wingShape;
+			wingCount = wingNum;
 		}
 		//check for vagoo
 		public function hasVagina(hole: int = 0): Boolean {
@@ -8339,12 +8348,26 @@
 			var rando: Number = 0;
 			var race:String = "human";
 			//Determine race type
+			
+			/* 
+			 * Had an idea that might work better-
+			 * Rather than basically taking whatever lands first, execute ALL of these and get the scores of the player regardless.
+			 * Then, SCALE them all based on how many points the largest can give- ie, if 20 points is the highest of any, and you get 5 points from one with a 10 max, then scale it up such that 10 => 20 ie 5 => 10.
+			 * Pick the HIGHEST score.
+			 * In the event of a tie, pick the score with the highest NATURAL max.
+			 * Combine in other potentially interesting race combinations (or boring ones- if human score is high enough, always pre-pend 'half-' etc)
+			 * ie if your generic taur score is high enough, append "taur", so the game would do shit like ausartaur or w/e (taursaur?)
+			 * */		
+			
+			// Gryvin numbers might be too tight- you can walk away with like 7 to 9 score from creation. EVERYTHING just right will get you 12-ish.
+			 
 			if (horseScore() >= 3) race = equineRace(); // Horse-morphs
 			if (ovirScore() >= 3 && race == "human") race = "half-ovir";
 			if (ausarScore() >= 2 && race == "human") race = "half-ausar"; // Fucking Ausar forever overriding other shit. EXTERMINATUS.
 			if (kaithritScore() >= 3 && race == "human") race = "half-kaithrit";
 			if (leithanScore() >= 3 && race == "human") race = "half-leithan";
 			if (nukiScore() >= 2 && race == "human") race = "half kui-tan"
+			if (gryvainScore() >= 4 && race == "human") race = "half-gryvain";
 			if (raskvelScore() >= 2) race = "rask-morph";
 			if (bovineScore() >= 3) race = bovineRace(); // Cow-morphs
 			if (raskvelScore() >= 4) race = "raskvel-morph";
@@ -8362,6 +8385,7 @@
 			if (badgerScore() >= 4) race = "badger";
 			if (ovirScore() >= 5) race = "ovir";
 			if (myrScore() >= 4) race = "myr";
+			if (gryvainScore() >= 8) race = "gryvain";
 			if (race == "myr" && goldMyrScore() >= 8) race = "gold myr";
 			if (race == "myr" && redMyrScore() >= 8) race = "red myr";
 			if (orangeMyrScore() >= 9) race = "orange myr";
@@ -8637,6 +8661,63 @@
 			if (tallness >= 84) counter--;
 			if (tallness >= 96) counter--;
 			return counter;
+		}
+		public function gryvainScore():int
+		{
+			var s:int = 0;
+			// 5 >> 8
+			
+			if (faceType != GLOBAL.TYPE_HUMAN || hasFaceFlag(GLOBAL.FLAG_MUZZLED)) s--;
+			if (armType != GLOBAL.TYPE_HUMAN || hasArmFlag(GLOBAL.FLAG_SCALED) || hasArmFlag(GLOBAL.FLAG_FURRED)) s--;
+			if (skinType == GLOBAL.SKIN_TYPE_SKIN && InCollection(skinTone, "pale", "tanned", "pink", "dark red", "dark green")) s++;
+			if (legType == GLOBAL.TYPE_GRYVAIN && hasLegFlag(GLOBAL.FLAG_PLANTIGRADE) && hasLegFlag(GLOBAL.FLAG_SCALED)) s++;
+			if (tailType == GLOBAL.TYPE_GRYVAIN && hasTailFlag(GLOBAL.FLAG_SCALED)) s++;
+			if (eyeType == GLOBAL.TYPE_GRYVAIN && eyeColor == "dark yellow") s++;
+			if (earType == GLOBAL.TYPE_GRYVAIN && earLength >= 3) s++;
+			if (wingType == GLOBAL.TYPE_GRYVAIN)
+			{
+				s++;
+				if (wingCount == 4) s++;
+			}
+			
+			// All gryvain have vaginas afaik
+			if (!hasVagina()) s--;
+			else
+			{
+				if (vaginas.length == 1)
+				{
+					if (vaginas[0].hasFlag(GLOBAL.FLAG_NUBBY)) s++;
+				}
+			}
+			
+			if (cocks.length == 1)
+			{
+				if (cocks[0].cType == GLOBAL.TYPE_GRYVAIN && cocks[0].hasFlag(GLOBAL.FLAG_KNOTTED)) s++;
+				else s--;
+			}
+			
+			// color uniformity:-
+			var mc:String = scaleColor;
+			var ch:Boolean = mc == hairColor;
+			var cn:Boolean = !hasNipples() || nippleColor == mc;
+			var ck:Boolean = true;
+			var cv:Boolean = true;
+			
+			for (var i:int = 0; i < cocks.length; i++)
+			{
+				if ((cocks[i] as CockClass).cockColor != mc) ck = false;
+			}
+			for (i = 0; i < vaginas.length; i++)
+			{
+				if ((vaginas[i] as VaginaClass).vaginaColor != mc) cv = false;
+			}
+			
+			if (ch && cn && ck && cv) s++;
+			
+			if (horns == 2 && hornType == GLOBAL.TYPE_GRYVAIN && hornLength >= 3 && hornLength <= 6) s++;
+			else s--;
+			
+			return s;
 		}
 		public function horseScore(): int
 		{
@@ -10214,7 +10295,7 @@
 				}
 				//"average".
 				else if (clitLength < 1) {
-					//no size comment
+					
 				}
 				//Biggies!
 				else if (clitLength < 4) {
@@ -10439,6 +10520,13 @@
 						desc += RandomInCollection(["wriggling gash", "stinger-ringed vagina", "cilia-filled cunny", "siren-like honeypot", "aphrodisiac-laced snatch", "tentacle-filled cunt", "alien pussy", "wiggly cunt"]);
 					else
 						desc += RandomInCollection(["siren-pussy", "siren-snatch", "fuck-hole", "venom-twat", "twat", "snatch", "venom-pussy", "siren-pussy", "cunt"]);
+				}
+				else if (type == GLOBAL.TYPE_GRYVAIN)
+				{
+					if (!simple)
+						desc += RandomInCollection(["nub-ringed pussy", "clit-lined cunt", "clit-filled vagina", "clit-ringed vagina", "clit-lined pussy", "scaley pussy", "scaley cunt", "scaley vagina", "gryvain pussy", "dragonic cunt", "dragon-like pussy"]);
+					else
+						desc += RandomInCollection(["gryvain-pussy", "nubby cunt", "dragon cunt", "pussy"]);
 				}
 				else if (type == GLOBAL.TYPE_BEE)
 				{
@@ -11063,6 +11151,9 @@
 				case GLOBAL.TYPE_INHUMAN:
 					collection = ["inhuman", "human-like", "alien"];
 					break;
+				case GLOBAL.TYPE_GRYVAIN:
+					collection = ["draconic", "gryvain"];
+					break;
 				
 				default:
 					trace("Fallback cock shape used in cockShape() for type: " + GLOBAL.TYPE_NAMES[cock.cType]);
@@ -11133,10 +11224,11 @@
 			} else if (type == GLOBAL.TYPE_KANGAROO) {
 				adjectives.push("pointed","marsupial","tapered","curved");
 				nouns.push("kangaroo-cock","kangaroo-dick","kanga-cock");
-			} else if (type == GLOBAL.TYPE_DRACONIC) {
+			} else if (type == GLOBAL.TYPE_DRACONIC || type == GLOBAL.TYPE_GRYVAIN) {
 				adjectives.push("dragon-like","segmented","pointed","knotted","mythic","draconic","tapered");
 				if (!cock.hasFlag(GLOBAL.FLAG_GOOEY) || skinType != GLOBAL.SKIN_TYPE_GOO) adjectives.push("scaly");
-				nouns.push("dragon-cock","dragon-dick","wyrm-cock");
+				nouns.push("dragon-cock", "dragon-dick", "wyrm-cock");
+				if (type == GLOBAL.TYPE_GRYVAIN) nouns.push("gryvain-cock");
 			} else if (type == GLOBAL.TYPE_BEE) {
 				adjectives.push("foreskin-covered","alien","vaguely human-like","smooth");
 				if (!cock.hasFlag(GLOBAL.FLAG_GOOEY) || skinType != GLOBAL.SKIN_TYPE_GOO) adjectives.push("thick-skinned","fleshy","skin-shrouded");
@@ -12624,7 +12716,7 @@
 				else if (temp <= 3) return "tip";
 				else if (temp <= 4) return "mushroom-like tip";
 				else return "wide, plant-like crown";
-			} else if (type == GLOBAL.TYPE_NAGA || type == GLOBAL.TYPE_LIZAN || type == GLOBAL.TYPE_SNAKE) {
+			} else if (type == GLOBAL.TYPE_NAGA || type == GLOBAL.TYPE_LIZAN || type == GLOBAL.TYPE_SNAKE || type == GLOBAL.TYPE_DRACONIC || type == GLOBAL.TYPE_GRYVAIN) {
 				temp = rand(6);
 				if (temp == 0) return "point";
 				else if (temp <= 1) return "narrow tip";
@@ -13703,6 +13795,9 @@
 						case GLOBAL.TYPE_DRACONIC:
 							types.push("draconic");
 							break;
+						case GLOBAL.TYPE_GRYVAIN:
+							types.push("draconic", "ridged");
+							break;
 						case GLOBAL.TYPE_DEMONIC:
 							types.push("demonic", "sinister");
 							break;
@@ -14312,6 +14407,11 @@
 							switch((statusEffects[x] as StorageClass).storageName)
 							{
 								case "Lane's Hypnosis":
+								case "Lane's Hypnosis - Physique":
+								case "Lane's Hypnosis - Reflexes":
+								case "Lane's Hypnosis - Aim":
+								case "Lane's Hypnosis - Intelligence":
+								case "Lane's Hypnosis - Willpower":
 									kGAMECLASS.baseHypnosisWearsOff((statusEffects[x] as StorageClass).storageName);
 									break;
 								case "Crabbst":
@@ -14656,7 +14756,7 @@
 					if(hasPerk("'Nuki Nuts") && InCollection(statusEffects[o].value3, GLOBAL.VALID_CUM_TYPES)) //Implementing Kui-Tan Cum Cascade from Codex
 					{
 						//Calculate amount metabolized over time
-						var cumTransfer:Number = (statusEffects[o].value1) / 10; //Metabolize entire load over 10 minutes.
+						var cumTransfer:Number = (statusEffects[o].value2) / 10; //Metabolize entire (initial) load over 10 minutes.
 						cumTransfer *= timePassed;
 						cumTransfer += amountVented;
 						if (cumTransfer > statusEffects[o].value1) cumTransfer = statusEffects[o].value1;
@@ -14690,8 +14790,19 @@
 				if (this is PlayerCharacter) kGAMECLASS.eventBuffer += ParseText("\n\nYou hear a faint gurgling from your stomach and [pc.balls] as you feel them swelling fuller and fuller each passing second. With your kui-tan physiology, all that cum you ingested must have spiked your own production!");
 				lust(20); //increase Lust
 			}
-			ballFullness += percent;
+			if (ballFullness + percent > 100){
+				if (ballFullness < 100) var delta:Number = Math.round((100 - ballFullness) * maxCum() / 100); //catch transition from filling to swelling
+				else var delta:Number = 0;
+				ballFullness = 100;
+				var finalCum:Number = currentCum() + amount - delta;
+				var deltaBallSize:Number = Math.round(Math.sqrt(finalCum / (2 * ballEfficiency * balls)) * 100) / 100 - ballSize(); //calculate new ball size to hold all that cum
+				ballSizeMod += deltaBallSize; 
+				addPerkValue("'Nuki Nuts", 1, deltaBallSize);
+				trace("Ball size change: " + deltaBallSize);
+			}
+			else ballFullness += percent;
 		}
+		
 		
 		// OnTakeDamage is called as part of applyDamage.
 		// You should generate a message for /deferred/ display in the creature
@@ -14707,7 +14818,7 @@
 		// Uveto Specials
 		public function hasHeatBelt():Boolean
 		{
-			return accessory.hasFlag(GLOBAL.ITEM_FLAG_HEATBELT);
+			return shield.hasFlag(GLOBAL.ITEM_FLAG_HEATBELT);
 		}
 		
 		public function willTakeColdDamage(resToAvoid:Number = 25.0):Boolean

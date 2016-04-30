@@ -1,6 +1,7 @@
 import classes.Characters.WetraHound;
 import classes.Characters.WetraxxelBrawler;
 import classes.Engine.Combat.DamageTypes.TypeCollection;
+import classes.GameData.CombatManager;
 public function wetraxxelCaveEncounters():void
 {
 	if (flags["WETRAXXEL_ENCOUNTER_WEIGHT"] == undefined)
@@ -527,7 +528,8 @@ public function wetraxxelBrawlerPCVictoryFuckHisButt():void
 	if (flags["WETRAXXEL_SUBMISSION"] > 0) flags["WETRAXXEL_SUBMISSION"] -= 1;
 	clearMenu();
 	output("\n\n");
-	CombatManager.genericVictory();
+	if (CombatManager.inCombat)	CombatManager.genericVictory();
+	else addButton(0, "Next", mainGameMenu);
 }
 
 public function wetraxxelBrawlerPCVictoryRideHim(useVag:Boolean = false):void

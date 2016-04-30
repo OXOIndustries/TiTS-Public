@@ -88,7 +88,14 @@ package classes.GameData.Pregnancy.Handlers
 				kGAMECLASS.flags["RENVRA_EGGS_MESSAGE_WEIGHT"] = 0;
 				if (!inPublicSpace || (kGAMECLASS.hours <= 4 && kGAMECLASS.hours >= 22))
 				{
-					kGAMECLASS.eventBuffer += "\n\nYou stop yourself, seemingly at random, and plant a hand soothingly over your [pc.belly]. The eggs inside you shift slightly, making your";
+					if (kGAMECLASS.pc.hasPregnancyOfType("RenvraEggPregnancy"))
+					{
+						kGAMECLASS.eventBuffer += "\n\nYou stop yourself, seemingly at random, and plant a hand soothingly over your [pc.belly]. The eggs inside you shift slightly, making your";
+					}
+					else
+					{
+						kGAMECLASS.eventBuffer += "\n\nYou stop yourself, seemingly at random, and plant a hand soothingly over your [pc.belly]. Your babies shift slightly, making your";
+					}
 					var pSlot:int = kGAMECLASS.pc.findPregnancyOfType("RenvraEggPregnancy");
 					if (pSlot == 4) kGAMECLASS.eventBuffer += " stomach rumble";
 					else kGAMECLASS.eventBuffer += " belly tremble";
@@ -96,7 +103,9 @@ package classes.GameData.Pregnancy.Handlers
 				}
 				else
 				{
-					kGAMECLASS.eventBuffer += "\n\nAs you walk through town, people occasionally walk up to you, asking to feel your belly or how far along you are. You don't have the heart to tell them you're full of alien eggs.";
+					kGAMECLASS.eventBuffer += "\n\nAs you walk through town, people occasionally walk up to you, asking to feel your belly or how far along you are.";
+					if (kGAMECLASS.pc.hasPregnancyOfType("RenvraEggPregnancy")) kGAMECLASS.eventBuffer += " You don't have the heart to tell them you're full of alien eggs.";
+					else kGAMECLASS.eventBuffer += " All the attention stirs your offspring, soft kicks against the inside of your belly whipping your admirers into an adorable frenzy."
 					if (kGAMECLASS.pc.isBimbo() || kGAMECLASS.pc.isTreated() || kGAMECLASS.pc.race().indexOf("ausar") != -1 || kGAMECLASS.pc.race().indexOf("") != -1 ) kGAMECLASS.eventBuffer += " Besides, people rubbing all over you feels super good!";
 				}
 			}

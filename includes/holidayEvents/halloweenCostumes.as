@@ -190,7 +190,7 @@ public function leaveLikeABitch():void
 	}
 	if(pc.eyeColorUnlocked("glowing amber")) pc.eyeColor = "glowing amber";
 	if(pc.eyeTypeUnlocked(GLOBAL.TYPE_DEMONIC)) pc.eyeType = GLOBAL.TYPE_DEMONIC;
-	if(pc.wingTypeUnlocked(GLOBAL.TYPE_SMALLDEMONIC)) pc.wingType = GLOBAL.TYPE_SMALLDEMONIC;
+	if(pc.wingTypeUnlocked(GLOBAL.TYPE_SMALLDEMONIC)) pc.shiftWings(GLOBAL.TYPE_SMALLDEMONIC, 4);
 	flags["HOLIDAY_OWEEN_LEFT"] = 1;
 	halloweenShipMove();
 	clearMenu();

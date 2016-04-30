@@ -81,7 +81,7 @@
 						pc.clearFaceFlags();
 
 					}
-					else target.faceTypeLockedMessage();
+					else kGAMECLASS.output("\n\n" + target.faceTypeLockedMessage());
 				}
 				//The important stuff
 				//Remove fur/scales:
@@ -96,6 +96,26 @@
 					kGAMECLASS.output(" falling in clumps until the new, smooth [pc.skinTone] skin underneath is exposed.");
 					pc.skinType = GLOBAL.SKIN_TYPE_SKIN;
 					changes++;
+				}
+				//Remove latex skin (if not locked by perk):
+				if(pc.skinType == GLOBAL.SKIN_TYPE_LATEX && pc.hasStatusEffect("Latex Skin") && rand(3) == 0 && changes < changeLimit)
+				{
+					if(!pc.hasPerk("Black Latex"))
+					{
+						kGAMECLASS.output("\n\nYour skin heats up and then tingles as you feel goosebumps run across it.");
+						pc.addStatusValue("Latex Skin", 1, -1);
+						if(pc.statusEffectv1("Latex Skin") > 0) kGAMECLASS.output(" Strange... It looks a little less shiny now.");
+						else
+						{
+							kGAMECLASS.output(".. and just like that, the remaining shininess evaporates off its surface, making your skin appear very much normal. <b>Your skin is no longer made of latex!</b>");
+							pc.skinType = GLOBAL.SKIN_TYPE_SKIN;
+							pc.clearSkinFlags();
+							pc.addSkinFlag(GLOBAL.FLAG_SMOOTH);
+							pc.removeStatusEffect("Latex Skin");
+						}
+						changes++;
+					}
+					else kGAMECLASS.output("\n\n" + target.skinTypeLockedMessage());
 				}
 				//Skin color:
 				if(pc.skinType == GLOBAL.SKIN_TYPE_SKIN && (pc.skinTone != "tan" && pc.skinTone != "fair" && pc.skinTone != "pale" && pc.skinTone != "olive" && pc.skinTone != "dark" && pc.skinTone != "ebony") && changes < changeLimit && rand(3) == 0)
@@ -134,7 +154,7 @@
 					}
 					else
 					{
-						kGAMECLASS.output(target.cockTypeLockedMessage());
+						kGAMECLASS.output("\n\n" + target.cockTypeLockedMessage());
 					}
 				}
 				if(changes < changeLimit && rand(3) == 0 && target.cumType != GLOBAL.FLUID_TYPE_CUM && target.hasCock())
@@ -144,7 +164,7 @@
 						kGAMECLASS.output("\n\nYou feel a sudden clenching in your gut and a dampness down south. Investigating, you find your [pc.cocks] dribbling your [pc.cum], though the odd ejaculation is looking more and more like normal terran spunk by the second. After what feels like a minute of bizarre, pleasureless ejaculation, the flow stops. <b>It looks like you've got normal, terran cum now.</b>");
 						pc.cumType = GLOBAL.FLUID_TYPE_CUM;
 					}
-					else kGAMECLASS.output(target.cumTypeLockedMessage());
+					else kGAMECLASS.output("\n\n" + target.cumTypeLockedMessage());
 				}
 				if(pc.hasCock() && pc.hasStatusEffect("Genital Slit") && changes < changeLimit && rand(3) == 0)
 				{
@@ -233,6 +253,27 @@
 						else if(bonusRowsTFed > 1) kGAMECLASS.output(" Your other breasts shrink a bit as well.");
 					}
 				}
+				//Non nips!
+				if(changes < changeLimit && (pc.hasLipples() || pc.hasFuckableNipples() || pc.hasDickNipples()) && rand(3) == 0)
+				{
+					if(pc.nippleTypeUnlocked(0, GLOBAL.NIPPLE_TYPE_NORMAL))
+					{
+						kGAMECLASS.output("\n\nA sharp shock of sensation stabs through your chest and into your [pc.nipples], fading almost as soon as it arrives. By the time you sneak a peek, you discover that <b>your nipples have become much more mundane.</b>");
+						for(x = 0; x < pc.bRows(); x++)
+						{
+							//Lipples become inverted nips
+							if(pc.breastRows[x].nippleType == GLOBAL.NIPPLE_TYPE_LIPPLES) pc.breastRows[x].nippleType = GLOBAL.NIPPLE_TYPE_INVERTED;
+							//Fucknipples become inverted
+							else if(pc.breastRows[x].nippleType == GLOBAL.NIPPLE_TYPE_FUCKABLE) pc.breastRows[x].nippleType = GLOBAL.NIPPLE_TYPE_INVERTED;
+							//Dicknips become normal
+							else if(pc.breastRows[x].nippleType == GLOBAL.NIPPLE_TYPE_DICK) pc.breastRows[x].nippleType = GLOBAL.NIPPLE_TYPE_NORMAL;
+							//Non normal, non inverted become normal (catch all)
+							else if(pc.breastRows[x].nippleType != GLOBAL.NIPPLE_TYPE_INVERTED && pc.breastRows[x].nippleType == GLOBAL.NIPPLE_TYPE_NORMAL) pc.breastRows[x].nippleType = GLOBAL.NIPPLE_TYPE_NORMAL;
+						}
+						changes++;
+					}
+					else kGAMECLASS.output("\n\n" + pc.nippleTypeLockedMessage());
+				}
 				//Girlygoo
 				if(changes < changeLimit && rand(3) == 0 && target.girlCumType != GLOBAL.FLUID_TYPE_GIRLCUM && target.hasVagina())
 				{
@@ -240,8 +281,9 @@
 					{
 						kGAMECLASS.output("\n\nA twinge of discomfort in your [pc.vaginas] passes in a heartbeat, causing you to reach down in a panic. Fortunately, nothing feels that different down there, though when you bring your fingers back up, you realize that <b>your [pc.girlCum] has been replaced with clear, terran lubricant.</b>");
 						target.girlCumType = GLOBAL.FLUID_TYPE_GIRLCUM;
+						changes++;
 					}
-					else kGAMECLASS.output(target.girlCumTypeLockedMessage());
+					else kGAMECLASS.output("\n\n" + target.girlCumTypeLockedMessage());
 				}
 				//Milk!
 				if(changes < changeLimit && rand(3) == 0 && target.milkType != GLOBAL.FLUID_TYPE_MILK && target.canLactate())
@@ -250,8 +292,9 @@
 					{
 						kGAMECLASS.output("\n\nYour feel an unusual tightness in your [pc.chest], and then, without warning, you let down, dribbling [pc.milk] all over yourself. You dab at it in a panic, noticing that the longer it goes on, the more you appear to be lactating traditional terran milk. You sigh with relief when your [pc.nipples] finally stop leaking. <b>You now have normal, terran breast-milk.</b>");
 						target.milkType = GLOBAL.FLUID_TYPE_MILK;
+						changes++;
 					}
-					else kGAMECLASS.output(target.girlCumTypeLockedMessage());
+					else kGAMECLASS.output("\n\n" + target.girlCumTypeLockedMessage());
 				}
 				//Change arm type to human
 				if(pc.armType != GLOBAL.TYPE_HUMAN && changes < changeLimit && rand(3) == 0)
@@ -263,7 +306,7 @@
 						pc.clearArmFlags();
 						changes++;
 					}
-					else kGAMECLASS.output(target.armTypeLockedMessage());
+					else kGAMECLASS.output("\n\n" + target.armTypeLockedMessage());
 				}
 				//Change leg-type to bipedal human
 				if((pc.legType != GLOBAL.TYPE_HUMAN || pc.legCount != 2) && changes < changeLimit &&  rand(3) == 0 && pc.armType == GLOBAL.TYPE_HUMAN)
@@ -278,7 +321,7 @@
 						pc.genitalSpot = 0;
 						changes++;
 					}
-					else kGAMECLASS.output(target.legTypeLockedMessage());
+					else kGAMECLASS.output("\n\n" + target.legTypeLockedMessage());
 				}
 				//Grow doggy tail -- you know what, fuck you, use the CoC Dogtail growth texts. 
 				if(pc.tailCount > 0 && changes < changeLimit && rand(4) == 0)
@@ -295,7 +338,7 @@
 						pc.removeTails();
 						changes++;
 					}
-					else kGAMECLASS.output(target.tailTypeLockedMessage());
+					else kGAMECLASS.output("\n\n" + target.tailTypeLockedMessage());
 				}
 				//Grow wolf ears
 				if(pc.earType != GLOBAL.TYPE_HUMAN && changes < changeLimit && rand(4) == 0)
@@ -307,7 +350,7 @@
 						pc.earLength = 0;
 						changes++;
 					}
-					else kGAMECLASS.output(target.earTypeLockedMessage());
+					else kGAMECLASS.output("\n\n" + target.earTypeLockedMessage());
 				}
 				//Tongue:
 				if(pc.tongueType != GLOBAL.TYPE_HUMAN && changes < changeLimit && rand(4) == 0)
@@ -361,7 +404,7 @@
 						if(pc.wingType == GLOBAL.TYPE_SHARK) kGAMECLASS.output("\n\nYour back feels uncomfortable, like something is stabbing you between your shoulder blades. You look behind you to see your [pc.wing] is being drawn into your back, soon vanishing entirely. <b>You no longer have a [pc.wing]</b>!");
 						else kGAMECLASS.output("\n\nYour back feels uncomfortable, like you’re molting. You look behind you to see your [pc.wings] being drawn into your back, soon vanishing entirely. <b>You no longer have wings</b>!");
 						changes++;
-						pc.wingType = 0;
+						pc.removeWings();
 					}
 					else kGAMECLASS.output("\n\n" + pc.wingTypeLockedMessage());
 				}
@@ -387,7 +430,7 @@
 						changes++;
 						pc.hairType = GLOBAL.HAIR_TYPE_REGULAR;
 					}
-					else kGAMECLASS.output(pc.hairTypeLockedMessage());
+					else kGAMECLASS.output("\n\n" + pc.hairTypeLockedMessage());
 				}
 				
 				//Lose "Mane" Perk:
@@ -396,6 +439,14 @@
 					kGAMECLASS.output("\n\nYou feel the hairline on the back of your neck receding to something more in line with the back of your head. <b>You no longer have a mane.</b>");
 					changes++;
 					pc.removePerk("Mane");
+				}
+				
+				//Lose "Latex Hair" Effect:
+				if(pc.hasHair() && pc.hasStatusEffect("Latex Hair") && changes < changeLimit && rand(3) == 0)
+				{
+					kGAMECLASS.output("\n\nYour head tingles and you run your fingers through your hair. Quickly, the squeaky surface begins to soften and change, turning into something a little more natural. <b>Your hair has lost its latex properties!</b>");
+					changes++;
+					pc.removeStatusEffect("Latex Hair");
 				}
 				
 				if(changes == 0)

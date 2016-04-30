@@ -18,6 +18,7 @@
 		public static var NONE:Object = { }; 
 		
 		public static var ADJATHA:Object = new AdjathaBusts();
+		public static var AKI:Object = new AkiBusts();
 		public static var BNG:Object = new BNGBusts();
 		public static var CHESHIRE:Object = new CheshireBusts();
 		public static var CYANCAPSULE:Object = new CyanCapsuleBusts();
@@ -31,6 +32,7 @@
 		public static var JAYECHO:Object = new JayEchoBusts();
 		public static var LAPINBEAU:Object = new LapinbeauBusts();
 		public static var MANIACPAINT:Object = new ManiacPaintBusts();
+		public static var NUBATTORI:Object = new NuBattoriBusts();
 		public static var PEEKAY:Object = new PeeKayBusts();
 		public static var RENEZUO:Object = new RenezuoBusts();
 		public static var SHOU:Object = new ShouBusts();

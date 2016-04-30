@@ -938,7 +938,7 @@ package classes.GameData
 			}
 			else
 			{
-				addButton(14, "Run", runAway, undefined, "Run", "Attempt to run away from your enemy. Success is greatly dependant on reflexes. Immobilizing your enemy before attempting to run will increase the odds of success.");
+				addButton(14, "Run", runAway, undefined, "Run", "Attempt to run away from your enemy. Success is greatly dependent on reflexes. Immobilizing your enemy before attempting to run will increase the odds of success.");
 			}
 			
 			// Hook in any additional menu entries -- allowing the hooks to override

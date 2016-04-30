@@ -27,6 +27,90 @@ public function landOnTarkus():void
 	}
 }
 
+public function firstTimeOnTarkusBonus():Boolean
+{
+	if(flags["BEEN_ON_TARKUS"] == undefined)
+	{
+		flags["BEEN_ON_TARKUS"] = 1;
+		clearOutput();
+		output("You step down out of your ship and into a crowd of tiny, scaly folk: only a few feet tall, they're all sporting lithe frames and ridiculously long ears that nearly drag around on the ground behind them, most bearing a variety of piercings and tattoos. As you leave your ship behind, you're quickly swarmed by several of these curious creatures, which your Codex helpfully identifies as the raskvel, the planet's native species (or one of them, anyway). They shower you with questions about name, sex, species, et cetera as one or two in very scruffy uniforms try to hand you some paperwork. You hurriedly scribble down your signature before pushing off some of the more outgoing raskvel climbing up your [pc.leg]. Eventually, another starship lands, leaving you in peace for a moment as they scurry off to see the next new and interesting thing.");
+		CodexManager.unlockEntry("Raskvel");
+		output("\n\n<b>You are on the starship Nova, now known as the raskvel's city, Novahome.</b>");
+	}
+	return returnToShipAfterRecruitingAnno();
+}
+
+public function BonusFunction210():Boolean
+{
+	if(flags["TARKUS_DESTROYED"] == undefined) output(" Shafts of outside light cut into the artificial brilliance of the tunnel's lamps to the west, indicating a way outside.");
+	output("\n\nThe cargo elevator seems to be working down here - its doors sit open to the north, awaiting a passenger. Now if only the raskvel could get it to go to the hangar, you could save yourself a lot of walking.");
+	return false;
+}
+
+public function bonusFunction213():Boolean
+{
+	if(flags["TARKUS_DESTROYED"] == undefined) output(" An enclosed bulkhead to the south houses a narrow entryway of some kind. Black marks around the perimeter of the door indicate at least one explosion has gone off on the other side.");
+	else output(" A solid metal plate has been welded over a charred doorway to the south and a bright red \'X\' spraypainted across it.");
+	return false;
+}
+
+/*
+public function novaShipHangarElevator():Boolean
+{
+	if (flags["DECK13_COMPLETE"] == undefined)
+	{
+		output("\n\nYou step up to the elevator and press the call button. Immediately, the doors slide open, but no car comes.");
+	}
+	else
+	{
+		addButton(0, "Elevator", novaElevatorControlPanel);
+	}
+	return false;
+}
+*/
+
+public function novaMainDeckElevator():Boolean
+{
+	if (flags["TARKUS_DESTROYED"] != undefined && flags["DECK13_SHIELDS_ON"] != 1)
+	{
+		output("\n\nYou step up to the elevator and press the call button. The doors don’t respond.");
+		output("\n\nHm. The shaft must have been destroyed when the planet blew up, sealing the doors indefinitely....");
+		
+		return false;
+	}
+	if (flags["DECK13_COMPLETE"] == undefined)
+	{
+		output("\n\nYou step up to the elevator and press the call button. Immediately, the doors slide open, but no car comes.");
+		
+		return false;
+	}
+	
+	addButton(0, "Elevator", novaElevatorControlPanel);
+	
+	return false;
+}
+
+public function novaElevatorControlPanel():void
+{
+	clearOutput();
+	author("Gedan");
+	showName("NOVA\nELEVATOR");
+	
+	output("You step into the cavernous elevator and take a look around. There's a heavily damaged control panel attached to a console beside the elevator's doors. Through the grime and rust you can just barely make out a set buttons, some of which <i>might</i> be in working order.");
+	
+	clearMenu();
+	//if (currentLocation != "NOVA SHIP DECK ELEVATOR") addButton(0, "Hangar Deck", move, "NOVA SHIP DECK ELEVATOR");
+	//else addDisabledButton(0, "Hangar Deck");
+	
+	if (currentLocation != "NOVA MAIN DECK ELEVATOR") addButton(0, "Main Deck", move, "NOVA MAIN DECK ELEVATOR");
+	else addDisabledButton(0, "Main Deck");
+	
+	if (currentLocation != "DECK 13 ELEVATOR SHAFT") addButton(1, "Deck 13", move, "DECK 13 ELEVATOR SHAFT");
+	else addDisabledButton(1, "Deck 13");
+	
+	addButton(14, "Back", mainGameMenu);
+}
+
 public function bonusTubeSteak():Boolean
 {
 	if(flags["SYNTHSHEATH_ACQUIRED"] == undefined)

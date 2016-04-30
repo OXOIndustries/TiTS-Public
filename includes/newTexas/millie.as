@@ -174,7 +174,7 @@ public function soloMilkingFromMillieAttempt():void
 	showName("\nMILLIE");
 	showBust("MILLIE");
 	output("You inform her that you’d like to use the milkers by yourself.");
-	if(!pc.hasPerk("Mega Milk"))
+	if(!pc.hasPerk("Mega Milk") && flags["MEGA_MILKED"] == undefined)
 	{
 		output("\n\nMillie laughs at that. <i>“Why come to the milk barn if you don’t want a pair of warm hands to massage you while you’re letting down? If you wanna pump your boobs by yourself, go get one of those JoyCo milkers.”</i> She rolls her eyes as if she just said something ridiculous. <i>“Now, you wanna have some fun or not?”</i>");
 		processTime(1);
@@ -1235,7 +1235,7 @@ public function millieSoloMilkerMishapEpilogue(lacBoosted:Boolean):void
 	showBust("MILLIE");
 	output("<b>Some time later...</b>");
 	output("\nCold water splashes over your body, jerking you to full wakefulness. You sputter and sit up, but more drenches you, forcing you to hold your arms to block the flow while you blink your bleary eyes.");
-	output("\n\nStopping the stream of water, Millie scowls at you and tosses away the hose. <i>“I knew I should’ve have left you alone with the machine! You used up all the special milk goo!”</i> Shaking her horned head, she trots over, and examines your chest, guilelessly stroking flesh that feels a bit more full than it should. <i>“It looks like it worked pretty well though. You’re lucky I found you instead of one of the bulls, or you’d be getting a hell of a bill.”</i>");
+	output("\n\nStopping the stream of water, Millie scowls at you and tosses away the hose. <i>“I knew I shouldn’t have left you alone with the machine! You used up all the special milk goo!”</i> Shaking her horned head, she trots over, and examines your chest, guilelessly stroking flesh that feels a bit more full than it should. <i>“It looks like it worked pretty well though. You’re lucky I found you instead of one of the bulls, or you’d be getting a hell of a bill.”</i>");
 	output("\n\nYou look down in shock. <b>Your [pc.chest] are bigger, but not so noticeably as your [pc.nipples].</b> All the sucking did a number on you, but <b>you feel like you could go for another milking right now.</b> <i>“Wh-what did that do to me?”</i> you ask");
 	if(!pc.isTreated()) output(", incredulous.");
 	else output(", wondering if the bulls will like you more now that you can milk like a fountain.");
@@ -1252,6 +1252,7 @@ public function millieSoloMilkerMishapEpilogue(lacBoosted:Boolean):void
 	output("\n\n(<b>Perk Gained: Mega Milk</b> - You will always be able to produce milk as if you were at least 40% full, even if your breasts are empty.)");
 	pc.createPerk("Mega Milk",0,0,0,0,"Allows you to instantly produce a good amount of milk, even when empty.");
 	if(lacBoosted) output(" <b>And if you weren't lactating very hard before, you are now.</b>");
+	flags["MEGA_MILKED"] = 1;
 	processTime(5);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

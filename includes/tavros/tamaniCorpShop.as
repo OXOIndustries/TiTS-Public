@@ -15,7 +15,7 @@ public function showLerris(asNude:Boolean = false):void
 
 public function tavrosTamaniCorpStoreEntry():Boolean
 {
-	showBust(lerris.bustDisplay);
+	showBust();
 	author("Savin");
 
 	output("\n\n");

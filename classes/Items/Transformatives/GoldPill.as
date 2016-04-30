@@ -412,7 +412,7 @@ package classes.Items.Transformatives
 						kGAMECLASS.output("\n\nCramps attack your shoulder blades, forcing you to arch your back and cry out. You drop and roll on the ground to try and keep it together, and before you know, the pain is gone. In its place, there's the pleasant ache of growing muscles and something sliding down your back. You crane your head over your shoulder");
 						if(target.armor.shortName != "") kGAMECLASS.output(" and pull back your [pc.armor.longName]");
 						kGAMECLASS.output(" to take a look; <b>there are small, transparent wings pressed against your back</b>. They're too small to allow you to fly, but you're definitely getting more myr-like.");
-						target.wingType = GLOBAL.TYPE_MYR;
+						target.shiftWings(GLOBAL.TYPE_MYR, 2);
 					}
 					//TF other wings!
 					else {

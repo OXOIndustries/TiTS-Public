@@ -402,6 +402,7 @@ public function updateMailStatus():void
 public function showPerksList():void
 {
 	clearOutput2();
+	setLocation("\nPERKS", "CODEX", "DATABASE");
 	clearGhostMenu();
 	addGhostButton(14, "Back", showPerkListHandler);
 	
@@ -421,6 +422,7 @@ public function showPerksList():void
 			output2("<b>" + perk.storageName + "</b> - " + perkDesc + "\n");
 		}
 	}
+	output2("\n");
 }
 
 public function crewRecruited():Number

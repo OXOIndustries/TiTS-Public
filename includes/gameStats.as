@@ -213,7 +213,12 @@ public function statisticsScreen(showID:String = "All"):void
 			}
 		}
 		output2(" " + GLOBAL.TYPE_NAMES[pc.legType]);
-		if(pc.wingType != 0) output2("\n<b>* Back: </b>" + GLOBAL.TYPE_NAMES[pc.wingType] + " " + StringUtil.toDisplayCase(pc.wingsDescript(true)));
+		if(pc.wingType != 0)
+		{
+			output2("\n<b>* Back:</b>");
+			if(pc.wingCount > 0) output2(" " + pc.wingCount + ",");
+			output2(" " + GLOBAL.TYPE_NAMES[pc.wingType] + " " + StringUtil.toDisplayCase(pc.wingsDescript(true)));
+		}
 		if(pc.tailCount > 0)
 		{
 			if(pc.tailCount == 1) output2("\n<b>* Tail:</b>");
@@ -1755,6 +1760,8 @@ public function displayQuestLog(showID:String = "All"):void
 						else if(flags["KQ2_KARA_WITH_PC"] == 2) output2(" At the radio tower");
 						else output2(" <i>Unknown</i>");
 					}
+					// Kara headshots
+					if(flags["KQ2_KARA_SNIPAH_KILLS"] != undefined) output2("\n<b>* Kara, Enemies Sniped: </b>" + flags["KQ2_KARA_SNIPAH_KILLS"]);
 					// Nuke 'em, Rico!
 					if(flags["KQ2_NUKE_STARTED"] != undefined)
 					{
@@ -2343,6 +2350,13 @@ public function displayEncounterLog(showID:String = "All"):void
 					output2("\n<b>* " + bethsOvirGirl + ":</b> Seen her");
 					if(flags["ASKED_AFTER_THE_GIRLS"] != undefined && (hours == 18 || hours == 19 || hours == 21 || hours == 22 || hours == 24 || hours == 1 || hours == 3 || hours == 4)) output2(", Currently performing");
 					if(flags["OVIR_TEASED"] != undefined) output2("\n<b>* " + bethsOvirGirl + ", Times Teased: </b>" + flags["OVIR_TEASED"]);
+				}
+				// Terensha
+				if(flags["MET_TERENSHA"] != undefined)
+				{
+					output2("\n<b>* Terensha:</b> Met her");
+					if(terenshaIsDancing()) output2(", Currently performing");
+					if(flags["RENSA_FUCKED"] != undefined) output2("\n<b>* Terensha, Times Sexed: </b>" + flags["RENSA_FUCKED"]);
 				}
 				// Vaande
 				if(flags["MET_VAANDE"] != undefined)

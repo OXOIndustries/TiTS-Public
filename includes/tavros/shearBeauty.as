@@ -27,12 +27,14 @@ public function shearBeautyBonusFunc():Boolean
 	output("\n\n");
 	if(flags["MET_CERIA"] == undefined)
 	{
+		showBust("CERIA");
 		output("A well-tanned girl with sparkling pink hair accentuated by a pair of long, pointed ears is leaning at the counter, chewing bubblegum. Her ears hang a little low of horizontal, but twitch upward as she notices you.");
 		//[Counter Girl] Go to Ceria Intro, replace this button with Ceria
 		addButton(0,"Counter Girl",approachCeria);
 	}
 	else
 	{
+		showBust("CERIA");
 		output("Ceria is leaning at the counter, idly blowing and popping her bubblegum. Her ears twitch upward as she sees you, the elf girl pausing in her chewing to grin at you.");
 		//[Ceria] Go to Ceria Main
 		addButton(0,"Ceria",approachCeria);

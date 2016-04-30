@@ -19,12 +19,12 @@
 			quantity = 1;
 			stackSize = 10;
 			type = GLOBAL.DRUG;
-			shortName = "JunkTrunk";
+			shortName = "J.Trunk";
 			longName = "Junk In The Trunk";
 			
 			TooltipManager.addFullName(shortName, StringUtil.toTitleCase(longName));
 			
-			description = "A plain white pill labeled “Junk In The Trunk”";
+			description = "a plain white pill labeled “Junk In The Trunk”";
 			tooltip = "This small white pill contains all you need to expand your backside. Displayed on its packaging is the phrase: <i>“For those with an affection for callipygean derrieres...”</i> Interesting...";
 			
 			TooltipManager.addTooltip(shortName, tooltip);
@@ -90,7 +90,7 @@
 				// TF Duds
 				else
 				{
-					output("\n\nUnfortunately for you, your [pc.butt] seems to nothing but tingle annoyingly. You sigh and let out muffled curse. So much for that...");
+					output("\n\nUnfortunately for you, your [pc.butt] seems to do nothing but tingle annoyingly. You sigh and let out muffled curse. So much for that...");
 				}
 				
 				return false;

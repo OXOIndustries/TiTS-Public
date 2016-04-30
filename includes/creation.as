@@ -105,11 +105,11 @@ public function startCharacterCreation(e:Event = null):void
 	addButton(2,"Kaithrit",confirmRaceChoice,"kaithrit","Kaithrit Mother","Victor's child will have a kaithrit mother, famed for their feline resemblance and doubled tails. Half-kaithrit come into the world with two feline tails, cat ears, additional hair color choices, more eye color choices, and cat genitalia (if male).");
 	addButton(3,"Leithan",confirmRaceChoice,"leithan","Leithan Mother","Victor's child would have a leithan mother, though that race's unique biology would mandate some very expensive scientific intervention to ensure a successful pregnancy. Leithans are powerfully built, six-legged reptile-taurs. Half-leithans come into the world with thick, prehensile tails; unique bunny-like ears; and a tauric body configuration. They have limited skin and hair color options compared to other races. Half-leithan males are born with large reptilian genitalia, and both sexes have rear-mounted sexual organs.");
 	addButton(4,"Kui-Tan",confirmRaceChoice,"kui-tan","Kui-Tan Mother","Victor's child would have a kui-tan mother, a race known for its total lack of females and similarities to earth raccoons. Of course, that would make the mother a hermaphrodite - a woman with a vagina and a penis. Half kui-tan usually come into the world as a male or hermaphrodite with one bushy tail, fuzzy ears, and a knotty dick.");
-	//addButton(4,"Cheat",chooseHowPCIsRaised);
+	addButton(5,"Gryvain", confirmRaceChoice, "gryvain", "Gryvain Mother", "Victor's child would have a gryvain mother. The gryvain are a technologically advanced race of winged hermaphrodites: a halfbreed child would have scaled legs and human-style arms, a fleshy upper body, a pair of draconic wings, and a lengthy tail. Gryvain also have monochrome gold eyes and frilled ears which their children inherit, though most children with human fathers lack horns. Halfbreed gryvain can be born female or as hermaphrodites, and both sexes tend to have voluptuous figures and high sexual sensitivity.");
 	
 	if (GENERATED_CHARACTER["disabled"] == undefined)
 	{
-		addButton(5, "Engineered", testCharGenSelection, undefined, "Engineered Race", "A wholly custom genetically engineered child. A designer babby.");
+		addButton(6, "Engineered", testCharGenSelection, undefined, "Engineered Race", "A wholly custom genetically engineered child. A designer babby.");
 	}
 }
 
@@ -127,22 +127,31 @@ public function testCharGenSelection():void
 
 public function confirmRaceChoice(race:String = "human"):void {
 	clearOutput();
-	if(race == "human") {
+	if(race == "human")
+	{
 		output("A purely human heritage would give Victor's child the body one would expect - two legs, two arms, two eyes, a head of hair, etc.... There's really not much more to say about such a choice.");
 	}
-	else if(race == "ausar") {
+	else if(race == "ausar")
+	{
 		output("As a half-ausar, Victor's child would start with dog-like ears, a canine tail, and a red, knotted penis if male. The ausar are known for their close bond with humanity and would be a likely pick for the child's mother.");
 	}
-	else if(race == "kaithrit") {
+	else if(race == "kaithrit")
+	{
 		output("The kaithrit are a cat-like race with two prehensile, feline tails. They are known for their feminine appearances and exotic colorations, so any child of Victor and kaithrit would have more possible hair colors, a prettier face than normal, and two tails. Also, if the child is a male, it'll have a soft-spined, cat-like penis.");
 	}
 	else if(race == "leithan")
 	{
 		output("Leithans are a race visually similar to mythological centaurs, though they trace their origins to reptile-like species and have six clawed legs. They have powerful, prehensile tails as well as a highly acute set of four ears: two tapered ones on the side of their heads, and two large bunny-like ears atop. They are known for their speed and strength, and have a distinct color palette of grays and blacks, with yellow bioluminate areas on their scales. Leithans are also much taller than normal, reaching natural heights up to nine feet tall. If the child is male, it will have a large, bulbous reptilian penis between its rear legs.");
 	}
-	else if(race == "kui-tan") {
+	else if(race == "kui-tan")
+	{
 		output("The kui-tan are a raccoon-like race who invariably have a phallus with multiple knots. They are also known to have fuzzy, rounded ears, fluffy tails bigger than many species' adolescent young, and balls that engorge with seed the longer they go without release.");
 	}
+	else if (race == "gryvain")
+	{
+		output("Gryvain are a highly advanced race of winged hermaphrodites, blending mammalian and reptilian biology. They have darkly scaled limbs, fleshy upper bodies, prehensile tails, curling horns, and frilled ears. Their eyes are dark gold and vertically slitted. All gryvain are feminine in appearance, and most have voluptuous figures: broad egg-laying hips and large breasts. They have bulbous, reptilian phalluses with internal testes, mounted over vaginas that have rings of internal, nub-like secondary clitorises inside, which makes birth and sex extraordinarily pleasurable.");
+	}
+
 	output("\n\nIs this the race Victor chooses?")
 	clearMenu();
 	addButton(0,"Yes",chooseStartingRace,race);
@@ -254,6 +263,23 @@ public function chooseStartingRace(race:String = "human"):void {
 		addDisabledButton(1,"Female","Female","Kui-tan cannot be female.")
 		addButton(2,"Herm",setStartingSex,2);
 	}
+	else if (pc.originalRace == "half-gryvain")
+	{
+		pc.legType = GLOBAL.TYPE_GRYVAIN;
+		pc.addLegFlag(GLOBAL.FLAG_SCALED);
+		pc.tailCount = 1;
+		pc.tailType = GLOBAL.TYPE_GRYVAIN;
+		pc.addTailFlag(GLOBAL.FLAG_SCALED);
+		pc.addTailFlag(GLOBAL.FLAG_LONG);
+		pc.earType = GLOBAL.TYPE_GRYVAIN;
+		pc.earLength = 3;
+		pc.wingType = GLOBAL.TYPE_GRYVAIN;
+		pc.wingCount = 2;
+		pc.eyeType = GLOBAL.TYPE_GRYVAIN;
+		addButton(0, "Female", setStartingSex, 3);
+		addButton(1, "Herm", setStartingSex, 2);
+	}
+
 	displayInput();
 	userInterface.textInput.text = "";
 	userInterface.textInput.maxChars = 33;
@@ -310,27 +336,38 @@ public function setStartingSex(sex:int = 1):void {
 			pc.createPerk("'Nuki Drunk",0,0,0,0,"Get drunk twice as slow and sober up four times slower.");
 			pc.createPerk("'Nuki Nuts",0,0,0,0,"Allows gonads to swell with excess seed.");
 		}
+		if (pc.originalRace == "half-gryvain")
+		{
+			pc.shiftCock(0, GLOBAL.TYPE_GRYVAIN);
+			pc.cocks[0].addFlag(GLOBAL.FLAG_KNOTTED);
+			pc.cocks[0].addFlag(GLOBAL.FLAG_RIBBED);
+			pc.ballSizeRaw = 5;
+		}
 		//MALE!
-		if(sex == 1) {
+		if(sex == 1)
+		{
 			pc.femininity = 30;
 			pc.hipRatingRaw = 1;
 			pc.buttRatingRaw = 2;
 			pc.tone = 65;
 			pc.hairLength = 1;
-			if (pc.originalRace == "half-kaithrit") {
+			if (pc.originalRace == "half-kaithrit")
+			{
 				pc.femininity = 50;
 				pc.hipRatingRaw = 6;
 			}
 		}
 		//HERM!
-		else {
+		else
+		{
 			pc.femininity = 65;
 			pc.hipRatingRaw = 6;
 			pc.buttRatingRaw = 3;
 			pc.tone = 45;
 			pc.breastRows[0].breastRatingRaw = 3;
 			pc.hairLength = 6;
-			if (pc.originalRace == "half-kaithrit") {
+			if (pc.originalRace == "half-kaithrit" || pc.originalRace == "half-gryvain")
+			{
 				pc.femininity = 75;
 				pc.hipRatingRaw = 7;
 				pc.buttRatingRaw = 5;
@@ -357,7 +394,17 @@ public function setStartingSex(sex:int = 1):void {
 			pc.shiftVagina(0,GLOBAL.TYPE_KUITAN);
 			//pc.vaginas[0].wetnessRaw = 1;
 		}
-		if(sex == 3) {
+		if (pc.originalRace == "half-gryvain")
+		{
+			pc.shiftVagina(0, GLOBAL.TYPE_GRYVAIN);
+			pc.vaginas[0].wetnessRaw = 2;
+			pc.elasticity = 1.25;
+			pc.vaginas[0].bonusCapacity += 30;
+			pc.vaginas[0].addFlag(GLOBAL.FLAG_NUBBY);
+			pc.vaginas[0].clits = 6;
+		}
+		if(sex == 3)
+		{
 			pc.femininity = 75;
 			pc.hipRatingRaw = 6;
 			pc.buttRatingRaw = 3;
@@ -484,7 +531,15 @@ public function applyThickness(arg:Number):void {
 	pc.thickness = arg;
 	if(stage.contains(userInterface.textInput)) 
 		removeInput();
-	chooseHairColor();
+
+	if (pc.originalRace != "half-gryvain")
+	{
+		chooseHairColor();
+	}
+	else
+	{
+		chooseGryvainColor();
+	}
 }
 //Hair Color:
 public function chooseHairColor():void {
@@ -540,10 +595,40 @@ public function chooseHairColor():void {
 	addButton(14,"Back",chooseThickness);
 }
 
+public function chooseGryvainColor():void
+{
+	clearOutput();
+	creationHeader("SELECTING\nPIGMENT");
+	author("Savin");
+
+	output("<i>“Next up is coloration,”</i> the doctor says, tapping on a holographic screen. <i>“Gryvain share a single coloration across much of their bodies: the scales on their limbs, their hair color... more intimate areas. What color were you thinking of?”</i>");
+
+	clearMenu();
+	addButton(0, "DarkBlue", applyGryvainColor, "dark blue");
+	addButton(1, "DarkGreen", applyGryvainColor, "dark green");
+	addButton(2, "Black", applyGryvainColor, "black");
+	
+	if (pc.short == "Geddy") addButton(3, "Red", applyGryvainColor, "red"); // ;D
+	
+	addButton(14, "Back", chooseThickness);
+}
+
 public function applyHairColor(arg:String = "black"):void {
 	pc.hairColor = arg;
 	pc.furColor = arg;
 	chooseEyeColor();
+}
+
+public function applyGryvainColor(col:String = "black"):void
+{
+	pc.hairColor = col;
+	pc.scaleColor = col;
+	if (pc.cocks.length > 0) pc.cocks[0].cockColor = col;
+	if (pc.vaginas.length > 0) pc.vaginas[0].vaginaColor = col;
+	pc.nippleColor = col;
+	pc.lipColor = col;
+	pc.eyeColor = "dark yellow";
+	chooseSkinTone();
 }
 
 //Eye Color:
@@ -606,23 +691,35 @@ public function chooseSkinTone():void
 	output("<i>“Great. How about skin pigmentation?”</i>");
 	output("\n\n<b>What color is your character’s skin?</b>");
 	clearMenu();
-	if(pc.originalRace == "half-leithan")
+	if (pc.originalRace == "half-gryvain")
 	{
-		addButton(0,"Pale",applySkinTone,"pale");
-		addButton(1,"Fair",applySkinTone,"fair");
-		addButton(2,"Gray",applySkinTone,"gray");
-		addButton(3,"Black",applySkinTone,"black");
+		addButton(0, "Pale", applySkinTone, "pale");
+		addButton(1, "Tanned", applySkinTone, "tanned");
+		addButton(2, "Pink", applySkinTone, "pink");
+		addButton(3, "DarkRed", applySkinTone, "dark red");
+		addButton(4, "DarkGreen", applySkinTone, "dark green");
+		addButton(14, "Back", chooseGryvainColor)
 	}
 	else
 	{
-		addButton(0,"Pale",applySkinTone,"pale");
-		addButton(1,"Fair",applySkinTone,"fair");
-		addButton(2,"Tan",applySkinTone,"tan");
-		addButton(3,"Olive",applySkinTone,"olive");
-		addButton(4,"Dark",applySkinTone,"dark");
-		addButton(5,"Ebony",applySkinTone,"ebony");
+		if(pc.originalRace == "half-leithan")
+		{
+			addButton(0,"Pale",applySkinTone,"pale");
+			addButton(1,"Fair",applySkinTone,"fair");
+			addButton(2,"Gray",applySkinTone,"gray");
+			addButton(3,"Black",applySkinTone,"black");
+		}
+		else
+		{
+			addButton(0,"Pale",applySkinTone,"pale");
+			addButton(1,"Fair",applySkinTone,"fair");
+			addButton(2,"Tan",applySkinTone,"tan");
+			addButton(3,"Olive",applySkinTone,"olive");
+			addButton(4,"Dark",applySkinTone,"dark");
+			addButton(5,"Ebony",applySkinTone,"ebony");
+		}
+		addButton(14, "Back", chooseEyeColor);
 	}
-	addButton(14,"Back",chooseEyeColor);
 }
 public function applySkinTone(skinTone:String = "pale"):void {
 	pc.skinTone = skinTone;
@@ -671,27 +768,41 @@ public function chooseBreastSize():void {
 	output("\n\n<b>What size would you like your character’s breasts to be?</b>");
 	
 	clearMenu();
-	addButton(0,"Flat",applyBreastSize,0);
-	addButton(1,"A",applyBreastSize,1);
-	addButton(2,"B",applyBreastSize,2);
-	addButton(3,"C",applyBreastSize,3);
-	addButton(13,"Whatever",applyBreastSize,rand(4));
-	if(pc.hasVagina()) {
-		addButton(4,"D",applyBreastSize,4);
-		if(pc.originalRace != "half kui-tan") addButton(5,"DD",applyBreastSize,5);
-		if(pc.originalRace == "half-leithan")
-		{
+	if (pc.originalRace != "half-gryvain")
+	{
+		addButton(0,"Flat",applyBreastSize,0);
+		addButton(1,"A",applyBreastSize,1);
+		addButton(2,"B",applyBreastSize,2);
+		addButton(3,"C",applyBreastSize,3);
+		addButton(13,"Whatever",applyBreastSize,rand(4));
+		if(pc.hasVagina()) {
+			addButton(4,"D",applyBreastSize,4);
+			if(pc.originalRace != "half kui-tan") addButton(5,"DD",applyBreastSize,5);
+			if(pc.originalRace == "half-leithan")
+			{
+				addButton(6,"Big DD",applyBreastSize,6);
+				addButton(7,"E",applyBreastSize,7);
+			}
+			addButton(13,"Whatever",applyBreastSize,rand(6));
+		}
+		if (pc.originalRace == "half-kaithrit" && pc.hasVagina()) {
 			addButton(6,"Big DD",applyBreastSize,6);
 			addButton(7,"E",applyBreastSize,7);
+			addButton(8,"Big E",applyBreastSize,8);
+			addButton(9,"EE",applyBreastSize,9);
+			addButton(13,"Whatever",applyBreastSize,rand(10));
 		}
-		addButton(13,"Whatever",applyBreastSize,rand(6));
 	}
-	if (pc.originalRace == "half-kaithrit" && pc.hasVagina()) {
-		addButton(6,"Big DD",applyBreastSize,6);
-		addButton(7,"E",applyBreastSize,7);
-		addButton(8,"Big E",applyBreastSize,8);
-		addButton(9,"EE",applyBreastSize,9);
-		addButton(13,"Whatever",applyBreastSize,rand(10));
+	else
+	{
+		addButton(0, "C", applyBreastSize, 3);
+		addButton(1, "D", applyBreastSize, 4);
+		addButton(2, "Big DD", applyBreastSize, 6);
+		addButton(3, "E", applyBreastSize, 7);
+		addButton(4, "Big EE", applyBreastSize, 10);
+		addButton(5, "F", applyBreastSize, 11);
+		addButton(6, "Big FF", applyBreastSize, 14);
+		addButton(7, "G", applyBreastSize, 15);
 	}
 
 	addButton(14,"Back",chooseSkinTone);
@@ -756,6 +867,16 @@ public function chooseYourJunkSize():void {
 			addButton(13,"Whatever",applyJunkSize,4+rand(3));
 			break;
 			
+		case "half-gryvain":
+			output("five to twelve ");
+
+			for (i = 0; i <= 7; i++)
+			{
+				addButton(i, String(5 + i) + "”", applyJunkSize, 5 + i);
+			}
+			addButton(13, "Whatever", applyJunkSize, 5 + rand(8));
+			break;
+
 		default:
 			output("four to eight ");
 			
@@ -782,8 +903,53 @@ public function applyJunkSize(arg:int = 0):void {
 		pc.createStatusEffect("Uniball",0,0,0,0);
 		pc.ballSizeRaw = .75;
 	}
-	if(pc.hasVagina()) chooseYourVagina();
+
+	if (pc.originalRace != "half-gryvain")
+	{
+		if(pc.hasVagina()) chooseYourVagina();
+		else chooseSexualGift();
+	}
+	else
+	{
+		chooseGryvainBalls();
+	}
+}
+
+public function chooseGryvainBalls():void
+{
+	pc.balls = 2;
+	pc.ballSizeRaw = 5;
 	
+	clearOutput();
+	creationHeader("SELECT\nTESTES");
+	author("Savin");
+
+	output("<i>“Speaking of sex characteristics, half-gryvain hermaphrodites have some variance in where they produce their seed. I’ve seen both internal and external testes, so the choice is up to you.”</i>");
+	//Give choice between [Internal Testes] or [Balls]
+
+	clearMenu();
+	addButton(0, "Internal", applyGryvainBalls, false);
+	addButton(1, "External", applyGryvainBalls, true);
+	addButton(14, "Back", pc.hasCock() ? chooseYourJunkSize : chooseBreastSize);
+}
+
+public function applyGryvainBalls(externalBalls:Boolean):void
+{
+	/*
+	if (externalBalls)
+	{
+		pc.balls = 2;
+		pc.ballSizeRaw = 5;
+	}
+	else
+	{
+		pc.balls = 0;
+		pc.ballSizeRaw = 0;
+	}
+	*/
+	if (!externalBalls) pc.makeBallsInternal();
+
+	if (pc.hasVagina()) chooseYourVagina();
 	else chooseSexualGift();
 }
 
@@ -809,10 +975,18 @@ public function chooseYourVagina():void {
 	addButton(1,"Lubrication",upgradeLubricants);
 	addButton(2,"Both",fullyUpgradeCunt);
 	addButton(3,"Neither",chooseSexualGift);
-	if(pc.hasCock()) 
-		addButton(14,"Back",chooseYourJunkSize);
-	else 
-		addButton(14,"Back",chooseBreastSize);
+
+	if (pc.originalRace == "half-gryvain")
+	{
+		addButton(14, "Back", pc.hasCock() ? chooseGryvainBalls : chooseBreastSize);
+	}
+	else
+	{
+		if(pc.hasCock()) 
+			addButton(14,"Back",chooseYourJunkSize);
+		else 
+			addButton(14,"Back",chooseBreastSize);
+	}
 }
 
 public function upgradeCapacity():void {

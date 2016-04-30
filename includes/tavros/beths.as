@@ -44,6 +44,7 @@
 	{
 		output("You're inside Beth's Busty Broads, which seems to be doing good business for itself. Several patrons are gathered around the stage in the center of the show floor, watching a particularly well-endowed ausar girl strut her stuff on the pole. A desk has been set up near the door, where a bored-looking human woman is flipping through a data-slate, barely acknowledging your presence.");
 	}
+	terenshaAdditionalBonus();
 	addButton(0,"Desk",talkToBrothelLadyNewOmni);
 	reahaBonusFunction();
 	return false;
