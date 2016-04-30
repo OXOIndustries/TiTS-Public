@@ -421,7 +421,7 @@ public function treatedPCsSuckYancysDickForMilkPartIV():void
 	output("Yancy shuts down the machinery and helps you out of the pumps while you’re busy cleaning your face. Honestly, you’re smearing it around more than actually cleaning it up, making a show of gathering a dollop and then slowly sucking it off your finger. It gives you plenty of time to catch your breath, anyway.");
 	output("\n\nStill wearing a mask of bull-cum, you bounce up and give the big guy a nice, long kiss for taking such good care of you. He seems a little taken aback by it all but stiffens nicely against your [pc.belly] all the same.");
 	output("\n\nYou kiss him on the nose again.");
-	output("\n\n<i>“Uh... thanks.”</i> The big guy blushes, rubbing his neck uncomfortably. <i>“Listen... I know you’re not mine or anything, but...”</i> He trails off, fishing for words while give his cock a few idle strokes.");
+	output("\n\n<i>“Uh... thanks.”</i> The big guy blushes, rubbing his neck uncomfortably. <i>“Listen... I know you’re not mine or anything, but...”</i> He trails off, fishing for words while giving his cock a few idle strokes.");
 	output("\n\nYou twirl away and gather your things, feeling a good bit lighter thanks to the milking. <i>“How could I not come back after you treated me so nice?”</i>");
 	output("\n\nYancy smiles and blushes harder.");
 	milkResultDisplay();
