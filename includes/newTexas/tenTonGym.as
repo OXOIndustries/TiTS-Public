@@ -33,7 +33,7 @@ public function gymEntranceBonus():Boolean
 	}
 	else if(!pc.hasKeyItem("Ten Ton Gym Membership") && !pc.hasStatusEffect("Gym Pass")) output("\n\nUpon seeing you walk in, Quenton’s familiar grin lights up his face. <i>“How do, friend? Good to see you back. Here for a workout?”</i>");
 	//Has gym membership: 
-	else output("\n\nQuenton grins and waves to you as you walk inside. <i>“How do, [pc.name]. Good to see you back. Enjoy your workout.”</i>");
+	else output("\n\nQuenton grins and waves to you as you walk inside. <i>“How do, [pc.name]? Good to see you back. Enjoy your workout.”</i>");
 
 	//[Quenton] Go to Talk to Quenton
 	//[To Hallway]{locked if PC doesn’t have membership}
@@ -568,8 +568,7 @@ public function quentonTrainingPitch():void
 	pp.elasticity = 1.5;
 	
 	var x:int = -1;
-	//if(!pc.lowerUndergarment.hardLightEquipped && pc.hasCock()) x = rand(pc.cocks.length);
-	if(!pc.lowerUndergarment.hardLightEquipped && pc.hasCock()) x = 0; // cockOrStrapon actually uses cock 0
+	if(!pc.lowerUndergarment.hardLightEquipped && pc.hasCock()) x = rand(pc.cocks.length);
 	
 	output("You tell Quenton you want to take him from behind. He puts his hands on his hips and nods");
 	if(!pc.isNude())
@@ -589,7 +588,7 @@ public function quentonTrainingPitch():void
 	output(". <i>“Damn, [pc.name]. You’ve done yourself right, with a build like that.”</i>");
 	output("\n\nQuenton picks up the bottle of lube and drizzles some of it into his palm, then tosses the bottle to you. He rubs the lube all over his chest, making every muscle shine, then flexes again, thrusting his crotch at you.");
 	output("\n\n<i>“Now,”</i> Quenton says, giving you a lewd wink, <i>“let’s see about you doin’ me right.”</i>");
-	output("\n\nYou lube up your [pc.cockOrStrapon] and step up to Quenton. He pulls you close, pressing your [pc.chest] against his muscular pecs, and rubs his dong against your [pc.cockOrStrapon]. His lubed-up hands stroke you and him both,");
+	output("\n\nYou lube up your [pc.cockOrStrapon " + x + "] and step up to Quenton. He pulls you close, pressing your [pc.chest] against his muscular pecs, and rubs his dong against your [pc.cockOrStrapon " + x + "]. His lubed-up hands stroke you and him both,");
 	//if cock:
 	if(x >= 0) output(" his strong grip tugging you to hardness in a handful of strokes");
 	//if strapon:
@@ -600,7 +599,7 @@ public function quentonTrainingPitch():void
 	output("\n\nAs if he needed to ask. You grin right back at Quenton and tell him to turn around. He does so, flexing again and watching himself in the mirror before glancing back over his shoulder to you.");
 	output("\n\nYou run your hands down Quenton’s muscular back and down to his narrow hips, then grip both his hard butt cheeks as tight as you can. He only laughs and flexes them, then widens his stance, rests his hands on his thighs as he bends over.");
 	output("\n\n<i>“Slide on home, Steele,”</i> Quenton says. <i>“I’m ready for you.”</i>");
-	output("\n\nYou slide your [pc.cockOrStrapon] down one of Quenton’s cheeks and aim it at his rear entrance. He lets out a low, lusty groan as your head penetrates him, and you drive in slowly, taking hold of his hips and pressing your lubed-up [pc.cockOrStrapon] in.");
+	output("\n\nYou slide your [pc.cockOrStrapon " + x + "] down one of Quenton’s cheeks and aim it at his rear entrance. He lets out a low, lusty groan as your head penetrates him, and you drive in slowly, taking hold of his hips and pressing your lubed-up [pc.cockOrStrapon " + x + "] in.");
 	// PC has large cock:
 	if(x >= 0 && pc.cockVolume(x) > pp.analCapacity()) output(" It’s a tight squeeze, and he grunts once as you push your [pc.cock " + x + "] into the muscle-lined tunnel.");
 	// PC doesn’t have large cock or uses strapon:
@@ -1059,7 +1058,7 @@ public function lolaPoolApproach():void
 			output("\n\nYou ask if she’s still up for whatever you two can do together. Fingers and lips and tongues can do a lot.");
 			output("\n\n<i>“Oh, but it’s not the same,”</i> Lola says, pouting a little. <i>“And I really like to be, you know–”</i> She thrusts her voluminous hips in your direction, sending a small wave crashing against you. <i>“–penetrated. Sorry, [pc.name].”</i>");
 			output("\n\nLola swims away, flipping onto her back again after a few strokes, leaving you alone.");
-
+			
 			// [Done] Go to Swimming Pool
 			addButton(0, "Next", mainGameMenu);
 			return;
@@ -1095,53 +1094,55 @@ public function lolaPoolSex(response:String = ""):void
 	// FloatFuck
 	if(response == "yep")
 	{
-		var strapon:Boolean = pc.lowerUndergarment.hardLightEquipped;
+		var x:int = -1;
+		if(!pc.lowerUndergarment.hardLightEquipped && pc.hasCock()) x = rand(pc.cocks.length);
 		
 		output("You tell Lola that you would, in fact, like to fuck her while she’s floating.");
-		if(strapon) output(" You hurry out of the pool and don your [pc.lowerUndergarment], then return to Lola and activate the hardlight dildo.");
+		if(x < 0) output(" You hurry out of the pool and don your [pc.lowerUndergarment], then return to Lola and activate the hardlight dildo.");
 		output(" She gives you an eager grin, and rubs her hands together as she giggles. <i>“C’mon”</i>, she says, reaching down toward your [pc.crotch]. <i>“Let’s get to the right water level.”</i>");
-		output("\n\nLola takes hold of your [pc.cockOrStrapon] and leads you across the pool. She strokes you gently as she walks, her fingers easily slipping up and down your tool, the water’s synthetic decontaminant acting like a low-grade lube. When the water is right at your crotch level, Lola stops and backs up against you, leaning her wide, plump ass against your [pc.crotch], sliding your [pc.cockOrStrapon] between her jiggly cheeks.");
+		output("\n\nLola takes hold of your [pc.cockOrStrapon " + x + "] and leads you across the pool. She strokes you gently as she walks, her fingers easily slipping up and down your tool, the water’s synthetic decontaminant acting like a low-grade lube. When the water is right at your crotch level, Lola stops and backs up against you, leaning her wide, plump ass against your [pc.crotch], sliding your [pc.cockOrStrapon " + x + "] between her jiggly cheeks.");
 		output("\n\n<i>“You like that, [pc.name]?”</i> Lola asks, then looks back over her shoulder and gives you a bright smile. Bent over like she is, her boobs are dipping halfway into the water, splashing as she rubs her rear against you.");
 		output("\n\nDamn right you do.");
-		if(strapon) output(" Lola’s got your hardlight caught tight between her cheeks, and the friction makes your [pc.lowerUndergarment] rub against your [pc.vagOrAss], leading to some very pleasurable friction. The slippery water only makes it better, and you let out a low moan as your arousal rises.");
-		else output(" With an ass like hers, Lola can hotdog you like no other. Your [pc.cock] is caught between her warm, wet cheeks, and the water’s just slippery enough to keep both of you moving nicely. She clenches her ass, giving your [pc.cock] a tight squeeze, and you let out a low moan as you become fully erect.");
+		if(x < 0) output(" Lola’s got your hardlight caught tight between her cheeks, and the friction makes your [pc.lowerUndergarment] rub against your [pc.vagOrAss], leading to some very pleasurable friction. The slippery water only makes it better, and you let out a low moan as your arousal rises.");
+		else output(" With an ass like hers, Lola can hotdog you like no other. Your [pc.cock " + x + "] is caught between her warm, wet cheeks, and the water’s just slippery enough to keep both of you moving nicely. She clenches her ass, giving your [pc.cock " + x + "] a tight squeeze, and you let out a low moan as you become fully erect.");
 		output("\n\nYou reach down and wrap your hands around Lola’s hips, fingers sinking into her pale flesh, and grind against her, then reach one hand down to her pussy. She lets out a gasp as your fingers trail against her slippery lips, and presses her ass harder against you. After a few good strokes, she’s breathing hard, and when you slide a finger inside, she’s clearly ready to go.");
-		output("\n\nLola releases your [pc.cockOrStrapon] from her ass’s grip, then turns to face you. She lifts up one leg and hooks it over your [pc.hip], then gives you a look, her face red, her eyes slightly dazed. <i>“You’ve got to hold me up, okay?”</i> she says. <i>“I’ll wrap my legs around you when we get going, but I can’t hold myself up and fuck you at the same time. You good?”</i>");
-		output("\n\nYou assure Lola that you’ll hold her up, and hold still as she gets herself situated. Lola holds onto your sides, lifts her other leg up and crooks it around you, her feet tapping against your [pc.ass]. She spreads her arms as you take hold of her hips, and you align your [pc.cockOrStrapon] with her pale pink twat, ready to slide it in.");
-		output("\n\n<i>“Ooooooohhh....”</i> Lola moans as she wraps her legs around your [pc.hips], pulling your [pc.cockOrStrapon] into her slippery hole. She takes you to the hilt in one pull, clenching her legs around you, waving her arms back and forth to keep herself afloat. Her boobs wobble back and forth as she lies back, her nipples pointing toward the ceiling.");
+		output("\n\nLola releases your [pc.cockOrStrapon " + x + "] from her ass’s grip, then turns to face you. She lifts up one leg and hooks it over your [pc.hip], then gives you a look, her face red, her eyes slightly dazed. <i>“You’ve got to hold me up, okay?”</i> she says. <i>“I’ll wrap my legs around you when we get going, but I can’t hold myself up and fuck you at the same time. You good?”</i>");
+		output("\n\nYou assure Lola that you’ll hold her up, and hold still as she gets herself situated. Lola holds onto your sides, lifts her other leg up and crooks it around you, her feet tapping against your [pc.ass]. She spreads her arms as you take hold of her hips, and you align your [pc.cockOrStrapon " + x + "] with her pale pink twat, ready to slide it in.");
+		output("\n\n<i>“Ooooooohhh....”</i> Lola moans as she wraps her legs around your [pc.hips], pulling your [pc.cockOrStrapon " + x + "] into her slippery hole. She takes you to the hilt in one pull, clenching her legs around you, waving her arms back and forth to keep herself afloat. Her boobs wobble back and forth as she lies back, her nipples pointing toward the ceiling.");
 		output("\n\nYou wrap your hands farther around her plump ass, grunting a little as you make sure you’ve got a good hold on her. It takes a moment, but the two of you find your balance, and you start with a few slow, easy thrusts. Water splashes up between your crotch and hers with every push, and Lola lets out a few quiet gasps as you start to get into a rhythm.");
-		output("\n\nA slow smile spreads across Lola’s face as her legs tighten around you, and she arches her back a little, arms still treading water. <i>“Faster,”</i> she says, and you pick up your pace, bucking your hips harder as your [pc.cockOrStrapon] pounds away at her slippery slit. You feel her heels pressing into the small of your back, just above your [pc.ass], drumming against your [pc.skinFurScales] as she grinds herself against you.");
+		output("\n\nA slow smile spreads across Lola’s face as her legs tighten around you, and she arches her back a little, arms still treading water. <i>“Faster,”</i> she says, and you pick up your pace, bucking your hips harder as your [pc.cockOrStrapon " + x + "] pounds away at her slippery slit. You feel her heels pressing into the small of your back, just above your [pc.ass], drumming against your [pc.skinFurScales] as she grinds herself against you.");
 		output("\n\nThe wide-hipped cowgirl’s pale breasts are shaking faster now, and you thrust harder to match them, sending waves rippling out around you both. Lola’s breath comes in small gasps, her eyes closed, her pink pussy");
-		if(strapon) output(" making your strapon grind hard against your [pc.vagOrAss].");
-		else output(" clenching down hard around your [pc.cock].");
-		output("\n\nYou tilt your [pc.hips] up a little to get a better angle on her, and Lola’s eyes snap open wide as she lets out a cry. Well, that worked. You keep thrusting, and the cowgirl’s gasps turn into high-pitched moans as your [pc.cockOrStrapon] hits exactly the right place. She arches her back harder, dipping her forehead into the water and sending her boobs tumbling toward her chin, and gasps out <i>“Don’t stop!”</i>");
+		if(x < 0) output(" making your strapon grind hard against your [pc.vagOrAss].");
+		else output(" clenching down hard around your [pc.cock " + x + "].");
+		output("\n\nYou tilt your [pc.hips] up a little to get a better angle on her, and Lola’s eyes snap open wide as she lets out a cry. Well, that worked. You keep thrusting, and the cowgirl’s gasps turn into high-pitched moans as your [pc.cockOrStrapon " + x + "] hits exactly the right place. She arches her back harder, dipping her forehead into the water and sending her boobs tumbling toward her chin, and gasps out <i>“Don’t stop!”</i>");
 		output("\n\nNot that you were going to. You tighten your grip on Lola’s magnificent ass and redouble your efforts, the water frothing around her crotch as you pound your [pc.cockOrStrapon] harder and harder into her. After another dozen or so thrusts, Lola lets out a scream that echoes off the high ceiling, and her legs clench hard around you, driving her heels into your back as she comes.");
-		output("\n\nHer pussy’s death-grip on your [pc.cockOrStrapon] loosens a moment later, and she slowly pulls herself off of you, her legs unwinding themselves from around your [pc.hips] as she does. It takes her a moment to find her feet again, but when Lola looks up at you, she seems more than a little dazed. <i>“Oh, that was good,”</i> she says, drawing out the last word as she leans against you. After a moment, she blinks, then shakes her head, sending water flying off her hair and long ears. <i>“But you didn’t come yet.”</i>");
+		output("\n\nHer pussy’s death-grip on your [pc.cockOrStrapon " + x + "] loosens a moment later, and she slowly pulls herself off of you, her legs unwinding themselves from around your [pc.hips] as she does. It takes her a moment to find her feet again, but when Lola looks up at you, she seems more than a little dazed. <i>“Oh, that was good,”</i> she says, drawing out the last word as she leans against you. After a moment, she blinks, then shakes her head, sending water flying off her hair and long ears. <i>“But you didn’t come yet.”</i>");
 		output("\n\nYou shake your head, and give her a rueful smile as you");
-		if(strapon) output(" remind her a strapon doesn’t get soft.");
-		else output(" indicate your still-hard [pc.cock].");
+		if(x < 0) output(" remind her a strapon doesn’t get soft.");
+		else output(" indicate your still-hard [pc.cock " + x + "].");
 		output("\n\nLola giggles, and runs her tongue over her upper lip. <i>“Can I have another one?”</i>");
 		output("\n\nNo way you’d say no to that, especially since you haven’t gotten yours yet. Lola turns around and slides her expansive ass against your [pc.cockOrStrapon] again, but leans farther forward this time, until she can lift one leg up and wrap it back around your hips.");
 		output("\n\n<i>“Hold me up again,”</i> she says, looking back at you, <i>“then slide that thing on in!”</i>");
-		output("\n\nYou take hold of Lola’s hips once more, lifting her up just enough to aim your [pc.cockOrStrapon]’s head at her slick pussy. She lifts her other leg and kicks herself backward, then lets out a low moan as you slide back into her.");
-		output("\n\nYou almost lose your grip as you push your [pc.cockOrStrapon] inside, but Lola’s curvy legs wrap tight again around your [pc.hips], locking her into place with little trouble. Her ass slaps hard against your [pc.belly], sending water flying everywhere.");
-		output("\n\nLola’s arms sweep back and forth as her legs tighten around you, and she lets out a small gasp with every thrust, her boobs waving forward and back under the water. Her pussy starts clenching down on your [pc.cockOrStrapon] once more,");
-		if(strapon) output(" increasing the friction against your [pc.vagOrAss]");
+		output("\n\nYou take hold of Lola’s hips once more, lifting her up just enough to aim your [pc.cockOrStrapon " + x + "]’s head at her slick pussy. She lifts her other leg and kicks herself backward, then lets out a low moan as you slide back into her.");
+		output("\n\nYou almost lose your grip as you push your [pc.cockOrStrapon " + x + "] inside, but Lola’s curvy legs wrap tight again around your [pc.hips], locking her into place with little trouble. Her ass slaps hard against your [pc.belly], sending water flying everywhere.");
+		output("\n\nLola’s arms sweep back and forth as her legs tighten around you, and she lets out a small gasp with every thrust, her boobs waving forward and back under the water. Her pussy starts clenching down on your [pc.cockOrStrapon " + x + "] once more,");
+		if(x < 0) output(" increasing the friction against your [pc.vagOrAss]");
 		else output(" squeezing harder with every thrust");
 		output(", and you get the feeling it won’t take long for her to come again.");
-		output("\n\nAnd you’re not far off either. You feel your orgasm building with every thrust of your [pc.cockOrStrapon] into Lola’s squeezing snatch, and watching her ass slam against you only brings it closer. The pale cowgirl is moaning again now, loud enough to echo off the high ceiling, and you see that quite a few of the swimmers have stopped to watch you two fuck.");
+		output("\n\nAnd you’re not far off either. You feel your orgasm building with every thrust of your [pc.cockOrStrapon " + x + "] into Lola’s squeezing snatch, and watching her ass slam against you only brings it closer. The pale cowgirl is moaning again now, loud enough to echo off the high ceiling, and you see that quite a few of the swimmers have stopped to watch you two fuck.");
 		output("\n\nYou remember what worked on Lola before, and angle your [pc.hips] down this time, driving harder into her. She cries aloud, and her legs tighten around you, her crotch pounding against yours so hard you think your hips might break.");
 		output("\n\n<i>“I – I’m gonna,”</i> Lola gasps, and the rest of her words are lost in one long, loud moan that turns into a <i>“Moooooo––”</i> somewhere along the way.");
 		output("\n\n");
-		if(strapon) output("The friction from your incessant thrusting finally builds up enough to hit home, and you feel your [pc.vagOrAss] twitch as your orgasm hits. You match Lola’s moan with one of your own, your hips moving of their own accord to make it last as long as you can get it.");
+		if(x < 0) output("The friction from your incessant thrusting finally builds up enough to hit home, and you feel your [pc.vagOrAss] twitch as your orgasm hits. You match Lola’s moan with one of your own, your hips moving of their own accord to make it last as long as you can get it.");
 		else
 		{
-			output("You give in to the sensation that’s been building at the base of your [pc.cock], and let out a long groan as your orgasm finally hits. Your [pc.cum] bursts out of you all at once and gushes into Lola’s tight pussy");
+			output("You give in to the sensation that’s been building at the base of your [pc.cock " + x + "], and let out a long groan as your orgasm finally hits. Your [pc.cum] bursts out of you all at once and gushes into Lola’s tight pussy");
 			if(pc.cumQ() >= 500) output(", enough to make her pale belly swell");
 			output(".");
+			pc.cockChange();
 		}
 		output(" Your hands clench hard on Lola’s wide hips as the sensation rips through you, and you struggle to stay standing, your knees suddenly weak.");
-		output("\n\nYou’re not sure who slowed first, but you and Lola both find yourselves out of breath as you come down, and it takes a moment for you to pull yourselves apart. She eases herself off of your [pc.cockOrStrapon] with a giggle, then turns to you and presses her boobs against your [pc.chest], and pulls you close for a quick kiss.");
+		output("\n\nYou’re not sure who slowed first, but you and Lola both find yourselves out of breath as you come down, and it takes a moment for you to pull yourselves apart. She eases herself off of your [pc.cockOrStrapon " + x + "] with a giggle, then turns to you and presses her boobs against your [pc.chest], and pulls you close for a quick kiss.");
 		output("\n\n<i>“That was amazing, [pc.name],”</i> Lola moans, drawing out the words. <i>“Come find me again sometime, okay?”</i>");
 		output("\n\nYou nod, and she gives you a smile and floats away.");
 		
