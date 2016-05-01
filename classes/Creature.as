@@ -3437,6 +3437,7 @@
 				else if (statPercent < 85) change += .25;
 				else if (statPercent < 90) change += .2;
 				else if (statPercent < 95) change += .15;
+				else change += .1;
 				if(arg < 0) arg = 0;
 			}
 			if (stat == "physique") return physique(change);
