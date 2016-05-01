@@ -2243,7 +2243,7 @@ public function vanaeHuntressPCDefeatTentafux():void
 		if (pc.vaginas.length == 1) output(" Your [pc.cunt] is sopping wet");
 		else output(" Your [pc.cunts] are sopping wet");
 	}
-	if (pc.hasCock()) output("as even more [pc.cum] dribbles from your [pc.cocks].");
+	if (pc.hasCock()) output(" as even more [pc.cum] dribbles from your [pc.cocks].");
 	else output(" as she teases and screws you with her assorted tentacles.");
 
 	output("\n\nNever have you felt so complete as being fucked right now by this amazon huntress, pleasure coursing through your body in crashing waves. You positively drown in ecstasy, pressing your [pc.hips] needily against her own.");

@@ -109,6 +109,8 @@
 						{
 							kGAMECLASS.output(".. and just like that, the remaining shininess evaporates off its surface, making your skin appear very much normal. <b>Your skin is no longer made of latex!</b>");
 							pc.skinType = GLOBAL.SKIN_TYPE_SKIN;
+							pc.clearSkinFlags();
+							pc.addSkinFlag(GLOBAL.FLAG_SMOOTH);
 							pc.removeStatusEffect("Latex Skin");
 						}
 						changes++;
