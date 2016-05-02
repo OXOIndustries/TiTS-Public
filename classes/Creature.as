@@ -12686,7 +12686,6 @@
 		}
 		public function cockHeadGetName(type: int = 0): String {
 			var names: Array;
-			var type: int;
 			
 			switch(type)
 			{
