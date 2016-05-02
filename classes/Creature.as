@@ -2551,7 +2551,7 @@
 				if(this is PlayerCharacter || fluidSimulate) ballFullness = cumAmt;
 
 				//'Nuki Ball Reduction
-				if(perkv1("'Nuki Nuts") > 0 && balls > 1 && this is PlayerCharacter)
+				if(perkv1("'Nuki Nuts") > 0 && balls >= 1 && this is PlayerCharacter)
 				{
 					kGAMECLASS.eventBuffer += "\n\nYour balls are back to their normal size once more. What an incredible relief!";
 					ballSizeMod -= perkv1("'Nuki Nuts");
@@ -7526,7 +7526,7 @@
 			//trace("AFTER FULLNESS: " + ballFullness);
 			if (ballFullness >= 100) 
 			{
-				if(hasPerk("'Nuki Nuts") && balls > 1)
+				if(hasPerk("'Nuki Nuts") && balls >= 1)
 				{
 					//Figure out a % of normal size to add based on %s.
 					var nutChange:Number = (ballFullness/100) - 1;
@@ -14709,7 +14709,7 @@
 						cumTransfer += amountVented;
 						if (cumTransfer > statusEffects[o].value1) cumTransfer = statusEffects[o].value1;
 						statusEffects[o].value1 -= cumTransfer;
-						cumCascade(cumTransfer);
+						cumCascade(cumTransfer,statusEffects[o].value3);
 						trace("Cum Metabolized: " + cumTransfer + " mLs");
 						//cumProduced(timePassed);
 					}
@@ -14729,24 +14729,42 @@
 		 * Kui-tan "Cum Cascade" function.
 		 * Takes ingested cum and adds 5x to balls.
 		 * @param	amount	amount of cum digested in mL
+		 * @param   fluid  fluid type of cum digested (defaults to cum)
 		 */
-		public function cumCascade(amount:Number): void 
+		public function cumCascade(amount:Number,fluid:Number = 2): void 
 		{
 			var percent:Number = (amount / maxCum()) * 500; //Take percentage of maximum cum, and multiply 5x.
 			trace("Percent Increase: " + percent + " %");
 			if (percent > 10) {
-				if (this is PlayerCharacter) kGAMECLASS.eventBuffer += ParseText("\n\nYou hear a faint gurgling from your stomach and [pc.balls] as you feel them swelling fuller and fuller each passing second. With your kui-tan physiology, all that cum you ingested must have spiked your own production!");
+				if (this is PlayerCharacter) {
+					var ccnotice:String = "\n\nYou hear a faint gurgling from your stomach and [pc.balls] as you feel ";
+					if (balls == 1) ccnotice += "it";
+					else ccnotice += "them";
+					if (ballFullness + percent > 100) ccnotice += " swelling with more and more [pc.cumNoun]";
+					else ccnotice += " getting fuller and fuller with [pc.cumNoun]";
+					ccnotice += " each passing second. With your kui-tan physiology, all that " + fluidNoun(fluid) + " you ingested must have spiked your own [pc.cumNoun] production!";
+					kGAMECLASS.eventBuffer += ParseText(ccnotice);
+				}
 				lust(20); //increase Lust
 			}
 			if (ballFullness + percent > 100) { //prevent craziness when going over
 				var delta:Number = 0;
-				if (ballFullness < 100) delta = Math.round((100 - ballFullness) * maxCum() / 100); //catch transition from filling to swelling
+				var bbnotice:String = ""; //potential blue balls notification.
+				if (ballFullness < 100) { //catch transition from filling to swelling
+					delta = Math.round((100 - ballFullness) * maxCum() / 100);
+						if (this is PlayerCharacter){ //blue ball notices
+							if (balls == 1) bbnotice += "\n\nYour [pc.ballsNoun] has filled so much from your cum cascade that it's started to swell. It won't take much to excite you so long as your [pc.balls] is this full.";
+							else bbnotice += "\n\nYour [pc.ballsNoun] have filled so much from your cum cascade that they've started to swell. It won't take much to excite you so long as your [pc.balls] are this full.";
+						}
+					createStatusEffect("Blue Balls", 0,0,0,0,false,"Icon_Sperm_Hearts", "Take 25% more lust damage in combat!", false, 0,0xB793C4); //add blue balls status effect
+				}
 				ballFullness = 100;
 				var finalCum:Number = currentCum() + (amount * 5) - delta; //x5 again because we aren't using percent for this
 				var deltaBallSize:Number = Math.round(Math.sqrt(finalCum / (2 * ballEfficiency * balls)) * 100) / 100 - ballSize(); //calculate new ball size to hold all that cum
 				ballSizeMod += deltaBallSize;
 				addPerkValue("'Nuki Nuts", 1, deltaBallSize);
 				trace("Ball size change: " + deltaBallSize);
+				kGAMECLASS.eventBuffer += ParseText(bbnotice); //parse blue balls notice
 			}
 			else ballFullness += percent;
 		}
