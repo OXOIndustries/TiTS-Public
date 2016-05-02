@@ -2068,6 +2068,7 @@
 					buffer = kneesDescript();
 					break;
 				case "footOrFeet":
+				case "feetOrFoot":
 				case "feet":
 					buffer = feet();
 					break;
