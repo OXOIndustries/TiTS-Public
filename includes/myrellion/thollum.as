@@ -470,7 +470,7 @@ public function tourPartTwo():void
 {
 	clearOutput();
 	showName("\nTHE TOUR");
-	output("The myr guard takes you back through the foyer, enroute to the classrooms. As you enter the connecting hallway, you attention is drawn to the central feature of each room: lacking holo- or chalk-boards, the myr apparently do their demonstrations in a pit of fine sand. Cushions surround it, doubtless places for the girls to sit.");
+	output("The myr guard takes you back through the foyer, enroute to the classrooms. As you enter the connecting hallway, your attention is drawn to the central feature of each room: lacking holo- or chalk-boards, the myr apparently do their demonstrations in a pit of fine sand. Cushions surround it, doubtless places for the girls to sit.");
 	if((hours >= 7 && hours < 12) || (hours >= 13 && hours < 18))
 	{
 		output(" The classes are full right now, packed with girls in color-coded vests and skirts trying to learn.");

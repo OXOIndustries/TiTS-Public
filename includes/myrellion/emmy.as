@@ -1156,7 +1156,7 @@ public function sexAttemptStart(mainMenu:Boolean = true):void
 		else
 		{
 			output("Emmy's eyes flutter low once she realizes your intent. <i>\"Does someone need a little relief?\"</i>\n\nThe ");
-			if(rand(2) == 0) output("bulge in her jumpsuits authoritatively declares her to be the one in need of relief.");
+			if(rand(2) == 0) output("bulge in her jumpsuit authoritatively declares her to be the one in need of relief.");
 			else output("way her nipples jut through the thin fabric of her jumpsuit, you wager she's referring to herself.");
 		}
 		emmySexMenu();

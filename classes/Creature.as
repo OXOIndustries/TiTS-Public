@@ -2068,6 +2068,7 @@
 					buffer = kneesDescript();
 					break;
 				case "footOrFeet":
+				case "feetOrFoot":
 				case "feet":
 					buffer = feet();
 					break;
@@ -3437,6 +3438,7 @@
 				else if (statPercent < 85) change += .25;
 				else if (statPercent < 90) change += .2;
 				else if (statPercent < 95) change += .15;
+				else change += .1;
 				if(arg < 0) arg = 0;
 			}
 			if (stat == "physique") return physique(change);
@@ -10537,14 +10539,14 @@
 				else if (type == GLOBAL.TYPE_NAGA)
 				{
 					if (!simple)
-						desc += RandomInCollection(["reptilian gash", "naleen-like slit", "snake-like cunt", "semi-concealed pussy", "supple pussy", "snake-like box", "alien cunt", "half-hidden twat"]);
+						desc += RandomInCollection(["reptilian gash", "naleen-like slit", "snake-like cunt", "semi-concealed pussy", "pussy", "snake-like box", "alien cunt", "half-hidden twat"]);
 					else
 						desc += RandomInCollection(["naleen-cunt", "snake-pussy", "box", "snake-twat", "pussy", "xeno-cunt", "pussy", "slit", "slit"]);
 				}
 				else if (type == GLOBAL.TYPE_VANAE)
 				{
 					if (!simple)
-						desc += RandomInCollection(["tentacle-laden gash", "writhing pussy", "human-like cunt", "vanae pussy", "supple pussy", "xeno-cunt", "alien pussy", "feeler-lined pussy", "caressing cunt", "stroking snatch", "massaging cunny", "licker-lined pussy", "silky twat"]);
+						desc += RandomInCollection(["tentacle-laden gash", "writhing pussy", "human-like cunt", "vanae pussy", "pussy", "xeno-cunt", "alien pussy", "feeler-lined pussy", "caressing cunt", "stroking snatch", "massaging cunny", "licker-lined pussy", "silky twat"]);
 					else
 						desc += RandomInCollection(["vanae-cunt", "tenta-pussy", "box", "vanae-twat", "pussy", "xeno-cunt", "pussy", "twat", "cunt"]);
 				}
@@ -10664,7 +10666,7 @@
 					else if (temp <= 8) vag += "unstretched";
 					else vag += "narrow";
 				} else if (vaginas[vaginaNum].looseness() <= 2) {
-					temp = rand(10);
+					//temp = rand(10);
 					//if (temp <= 5) vag += "average";
 					//else 
 					vag += "supple";
@@ -12683,7 +12685,7 @@
 			return cockHeadGetName(tailGenitalArg);
 		}
 		public function cockHeadGetName(type: int = 0): String {
-			var names: Array = ["crown", "head", "glans", "tip", "cock-head"];
+			var names: Array;
 			var type: int;
 			
 			switch(type)
@@ -12726,6 +12728,9 @@
 					break;
 				case GLOBAL.TYPE_HRAD:
 					names = ["bullet-shaped tip", "angry cock-head", "foreskin-covered crown", "foreskin-covered tip", "bullet-shaped head"];
+					break;
+				default:
+					names = ["crown", "head", "glans", "tip", "cock-head"];
 					break;
 			}
 			

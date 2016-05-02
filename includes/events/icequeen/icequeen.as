@@ -25,7 +25,7 @@ public function iceQueenMessageHelp(destination:String):void
 
 	flags["STORED SHIP DESTINATION"] = destination;
 
-	output("Alright, time to be a good samaritan. You punch in the coordinates, redirecting you ship towards the <i>Ice Queen</i>. One brief LightDrive sprint later and you’re within visual range of the ship - and a hail of tumbling rocks hurtling through space. Considering how many comets are streaking by you, it looks like the <i>Queen</i> must have gotten caught in a storm. Even with modern shields, a hit from something big enough going fast enough can be the end of you - or do enough damage to make your equipment go haywire.");
+	output("Alright, time to be a good samaritan. You punch in the coordinates, redirecting your ship towards the <i>Ice Queen</i>. One brief LightDrive sprint later and you’re within visual range of the ship - and a hail of tumbling rocks hurtling through space. Considering how many comets are streaking by you, it looks like the <i>Queen</i> must have gotten caught in a storm. Even with modern shields, a hit from something big enough going fast enough can be the end of you - or do enough damage to make your equipment go haywire.");
 	
 	output("\n\nSure enough, when you zero in on the vessel, your forward cameras start picking up chunks of metal and plastic gracefully rolling through the endless void around the vessel. The <i>Ice Queen</i> is a big girl in her own right, even with what looks like a nasty scrape along her starboard side. She definitely took a big impact. The <i>Queen</i>’s all orange and red, curvaceously circling an expansive cargo bay with crew quarters, engines, and a single defensive rocket pod that automatically angles your way.");
 	
@@ -853,7 +853,7 @@ public function iceQueenNoKara():void
 	
 	output("\n\n<i>“I know credits can’t make up for what happened, but it’s the best thing I can do to say ‘I’m sorry,’ you know. I’m going to stick around here a while and try and find out what happened with my implant. Can’t have that happening again.”</i>");
 	
-	output("\n\nYou nod, pocketing your Codex. Maybe you’ll see Zaalt around against sometime... if his brain doesn’t explode first.\n\n");
+	output("\n\nYou nod, pocketing your Codex. Maybe you’ll see Zaalt around again sometime... if his brain doesn’t explode first.\n\n");
 	
 	processTime(15);
 
@@ -937,7 +937,7 @@ public function iceQueenKaraShowsUpCOOLIT():void
 	
 	output("\n\n<i>“I know credits can’t make up for what happened, but it’s the best thing I can do to say ‘I’m sorry,’ you know. I’m going to stick around here a while and try and find out what happened with my implant. Can’t have that happening again.”</i>");
 	
-	output("\n\nYou nod, pocketing your Codex. Maybe you’ll see Zaalt around against sometime... if his brain doesn’t explode first.\n\n");
+	output("\n\nYou nod, pocketing your Codex. Maybe you’ll see Zaalt around again sometime... if his brain doesn’t explode first.\n\n");
 	
 	processTime(10+rand(5));
 
