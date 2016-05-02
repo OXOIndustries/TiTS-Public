@@ -133,7 +133,7 @@ public function postPychicTentacleImpreg(args:Array):void
 	var destination:String = args[0];
 	var x:int = args[1];
 	showName("\nTENTACLES!");
-	output("The creature fucks you for hours, but you never seem to tire. Your body never grows sore, just looser, more willing to accept the gift of additional tentacles than ever before. At first, you’re shocked by it pulling the main bulb of its body up against your gaping [pc.vagOrAss], but then <i>you remember your duty</i> and grab the edges, holding yourself wide-open.");
+	output("The creature fucks you for hours, but you never seem to tire. Your body never grows sore, just looser, more willing to accept the gift of additional tentacles than ever before. At first, you’re shocked by it pulling the main bulb of its body up against your gaping [pc.vagOrAss " + x + "], but then <i>you remember your duty</i> and grab the edges, holding yourself wide-open.");
 	output("\n\nCompressing its body, the strange little alien somehow slides right inside your body, gliding across raw nerves, then stroking them again when it pulls in the dozens of tentacles hanging out of you. Your [pc.belly] bulges rounder by the second, heavy with it’s alien cargo.");
 	if(pc.hasCock()) output(" [pc.EachCock] jerks wildly in the air as you cum again, dribbling your last dregs of seed.");
 	if(pc.hasVagina())

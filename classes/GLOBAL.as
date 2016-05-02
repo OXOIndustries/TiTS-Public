@@ -588,7 +588,7 @@
 			"Feathers",
 			"Latex",
 		];
-				
+		
 		//NIPPLETYPES
 		public static const NIPPLE_TYPE_NORMAL:int                                 = 0;
 		public static const NIPPLE_TYPE_FUCKABLE:int                               = 1;
