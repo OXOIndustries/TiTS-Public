@@ -12685,7 +12685,7 @@
 			return cockHeadGetName(tailGenitalArg);
 		}
 		public function cockHeadGetName(type: int = 0): String {
-			var names: Array = ["crown", "head", "glans", "tip", "cock-head"];
+			var names: Array;
 			var type: int;
 			
 			switch(type)
@@ -12728,6 +12728,9 @@
 					break;
 				case GLOBAL.TYPE_HRAD:
 					names = ["bullet-shaped tip", "angry cock-head", "foreskin-covered crown", "foreskin-covered tip", "bullet-shaped head"];
+					break;
+				default:
+					names = ["crown", "head", "glans", "tip", "cock-head"];
 					break;
 			}
 			
