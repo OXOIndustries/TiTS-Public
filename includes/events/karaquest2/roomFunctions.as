@@ -259,7 +259,7 @@ public function kq2GoBaseEntrance():void
 	output("It’s a short climb from the sewers up to the base itself. Kara goes first, using her dagger to hack through a flimsy lock on the manhole cover before popping it open. You blink in the sudden rush of");
 	if (hours >= 6 && hours <= 19) output(" sunlight");
 	else output(" light from the base’s floodlights");
-	output(". You scramble up to the surface after Kara, ducking down with behind a stack of crates shoved up against the base of a tall building bristling with antennas, giving you a modicum of concealment from the wide open entrance to the base.");
+	output(". You scramble up to the surface after Kara, ducking down with her behind a stack of crates shoved up against the base of a tall building bristling with antennas, giving you a modicum of concealment from the wide open entrance to the base.");
 	
 	output("\n\n<i>“We’re in,”</i> Kara says, and you don’t think she’s talking to you. She nods to herself, then looks at you. <i>“Right. Research facility is north-east, across this courtyard. Wouldn’t be surprised if it’s locked up tight, so we might want to go hunting for a keycard, maybe in that barracks there,”</i> she says, pointing straight ahead to the north, towards a squat structure from which several black-clad men with machine pistols are coming. <i>“Or, I could try to override the lock - but you’ll need to cover me for a few minutes if I do. Either way works for me.”</i>");
 	
