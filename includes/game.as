@@ -1989,7 +1989,7 @@ public function racialPerkUpdateCheck():void
 	{
 		if(pc.nukiScore() < 3)
 		{
-			if(pc.balls > 1)
+			if(pc.balls > 0)
 			{
 				//Nuts inflated:
 				if(pc.perkv1("'Nuki Nuts") > 0)
