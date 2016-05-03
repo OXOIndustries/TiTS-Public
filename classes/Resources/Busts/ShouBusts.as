@@ -186,6 +186,9 @@
 		public var Bust_LUSTOMORPH_RASKVEL:Class;
 		public var Bounds_LUSTOMORPH_RASKVEL:Rectangle = new Rectangle(38, 14, 64, 64);
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/midee.png", mimeType = "image/png")]
+		public var Bust_MIDEE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/fungal_myr_spores.png", mimeType = "image/png")]
 		public var Bust_MYR_INFECTED_FEMALE:Class;
 		/*ALT [Embed(source = "../../../assets/images/npcs/shou_puppy/fungal_myr.png", mimeType = "image/png")]
@@ -482,6 +485,9 @@
 			public var Full_MYR_INFECTED_FEMALE:Class;
 			/*ALT [Embed(source = "../../../assets/images/npcs/shou_puppy/hr/fungal_myr.png", mimeType = "image/png")]
 			public var Full_MYR_INFECTED_FEMALE:Class;*/
+
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/midee.png", mimeType = "image/png")]
+			public var Full_MIDEE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/fungal_myr_queen_spores.png", mimeType = "image/png")]
 			public var Full_MYR_INFECTED_QUEEN:Class;
