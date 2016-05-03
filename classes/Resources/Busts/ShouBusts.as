@@ -127,6 +127,11 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/frog_8.png", mimeType = "image/png")]
 		public var Bust_FROG_8:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/galina.png", mimeType = "image/png")]
+		public var Bust_GALINA:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/galina_nude.png", mimeType = "image/png")]
+		public var Bust_GALINA_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/gianna.png", mimeType = "image/png")]
 		public var Bust_GIANNA_NUDE:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/gianna_med.png", mimeType = "image/png")]
@@ -301,11 +306,11 @@
 		public var Bust_YAMMI_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/zaalt.png", mimeType = "image/png")]
-		public var Full_ZAALT:Class;
+		public var Bust_ZAALT:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/zaalt_alt.png", mimeType = "image/png")]
-		public var Full_ZAALT_ALT:Class;
+		public var Bust_ZAALT_ALT:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/zaalt_nude.png", mimeType = "image/png")]
-		public var Full_ZAALT_NUDE:Class;
+		public var Bust_ZAALT_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/zephyr.png", mimeType = "image/png")]
 		public var Bust_ZEPHYR:Class;
@@ -430,6 +435,11 @@
 			public var Full_FROG_7:Class;
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/frog_8.png", mimeType = "image/png")]
 			public var Full_FROG_8:Class;
+
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/galina.png", mimeType = "image/png")]
+			public var Full_GALINA:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/galina_nude.png", mimeType = "image/png")]
+			public var Full_GALINA_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/gianna.png", mimeType = "image/png")]
 			public var Full_GIANNA_NUDE:Class;
