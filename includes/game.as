@@ -1989,12 +1989,15 @@ public function racialPerkUpdateCheck():void
 	{
 		if(pc.nukiScore() < 3)
 		{
-			if(pc.balls > 1)
+			if(pc.balls >= 1)
 			{
 				//Nuts inflated:
 				if(pc.perkv1("'Nuki Nuts") > 0)
 				{
-					msg += ParseText("\n\nThe extra size in your [pc.balls] bleeds off, making it easier to walk. You have a hunch that without all your kui-tan body-mods, you won't be swelling up with excess [pc.cumNoun] any more.");
+					msg += ParseText("\n\nThe extra size in your [pc.balls] bleeds off, making it easier to walk. You have a hunch that without all your");
+					if(pc.originalRace.indexOf("kui-tan") != -1) msg += " natural kui-tan genes";
+					else msg += " kui-tan body-mods";
+					msg += ParseText(", you won't be swelling up with excess [pc.cumNoun] any more.");
 				}
 				//Nuts not inflated:
 				else
