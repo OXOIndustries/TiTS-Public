@@ -12,24 +12,31 @@ public function honeyNozzleClub():Boolean
 	if(flags["MET_DALLY"] == undefined) addButton(0,"M.Stripper",dallyApproach);
 	else addButton(0,"Dally",dallyApproach);
 	
-	if (flags["FAZIAN_QUEST_STATE"] == FAZIAN_QUEST_STARTED)
+	if (flags["FAZIAN_QUEST_STATE"] == undefined) flags["FAZIAN_QUEST_STATE"] = FAZIAN_QUEST_NOTSTARTED;
+	
+	if (flags["FAZIAN_QUEST_STATE"] == FAZIAN_QUEST_OFFERING && flags["FAZIAN_QUEST_TIMER"] + (48 * 60) < GetGameTimestamp())
+	{
+		output("\n\nHepane the myr musician is stood where she normally is, by the entrance to the cabaret. She doesn't have her clipboard though, and she looks rather worried.");
+		addButton(1, "Hepane", fazianQuestOpening);
+	}
+	else if (flags["FAZIAN_QUEST_STATE"] == FAZIAN_QUEST_STARTED)
 	{
 		if (flags["FAZIAN_QUEST_SUCCESSES"] + flags["FAZIAN_QUEST_FAILURES"] < 3)
 		{
-			addDisabledButton(1, "Hepane", "Collect clues on Fazian's whereabouts before returning to Hepane.");
+			addDisabledButton(1, "Hepane", "Hepane", "Collect clues on Fazian's whereabouts before returning to Hepane.");
 		}
 		else
 		{
 			addButton(1, "Hepane", fazianQuestInvestigationFollowup, undefined, "Hepane", "Hepane, the myr musician you're trying to help find Fazian, is sat at a table near the back. She waves at you urgently the moment she catches sight of you.");
 		}
 	}
-	else if (flags["FAZIAN_QUEST_STATE"] == FAZIAN_QUEST_INVESTIGATED && flags["FAZIAN_QUEST_TIMER"] + (24 * 60) > GetGameTimestamp())
+	else if (flags["FAZIAN_QUEST_STATE"] == FAZIAN_QUEST_INVESTIGATED && flags["FAZIAN_QUEST_TIMER"] + (24 * 60) < GetGameTimestamp())
 	{
 		addButton(1, "Hepane", fazianQuestInvestigationFollowup);
 	}
 	else if (flags["FAZIAN_QUEST_STATE"] != FAZIAN_QUEST_REJECTED && flags["FAZIAN_QUEST_STATE"] != FAZIAN_QUEST_FAILED)
 	{
-		if (flags["FAZIAN_QUEST_STATE"] != FAZIAN_QUEST_OFFERING || flags["FAZIAN_QUEST_TIMER"] + (24 * 60) < GetGameTimestamp())
+		if (flags["FAZIAN_QUEST_STATE"] != FAZIAN_QUEST_OFFERING || flags["FAZIAN_QUEST_TIMER"] + (24 * 60) > GetGameTimestamp())
 		{
 			if ((hours > 15 && hours < 20) || (hours == 15 && minutes >= 30) || (hours == 20 && minutes <= 30))
 			{
@@ -45,16 +52,14 @@ public function honeyNozzleClub():Boolean
 				}
 			}
 
-			if (hasSeenNozzleShow() && ((hours > 20 && hours < 2) || (hours == 20 && minutes >= 35) || (hours == 2 && minutes == 0)))
+			var bShow:Boolean = hasSeenNozzleShow();
+			var bT1:Boolean = hours > 20 || hours < 2;
+			var bT2:Boolean = hours == 20 && minutes >= 35;
+			if (bShow && (bT1 || bT2))
 			{
 				output("\n\nFazian, the anat cabaret performer, is sat at the quieter end of one of the bars, craned over a glass of honey wine. You could go and talk to him if you wished.");
 				addButton(1, "Fazian", fazianApproach);
 			}
-		}
-		else if (flags["FAZIAN_QUEST_STATE"] == FAZIAN_QUEST_OFFERING && flags["FAZIAN_QUEST_TIMER"] + (48 * 60) > GetGameTimestamp())
-		{
-			output("\n\nHepane the myr musician is stood where she normally is, by the entrance to the cabaret. She doesn't have her clipboard though, and she looks rather worried.");
-			addButton(1, "Hepane", fazianQuestOpening);
 		}
 	}
 

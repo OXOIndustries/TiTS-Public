@@ -1,4 +1,4 @@
-public const FAZIAN_QUEST_NOTSTARTED:* = undefined;
+public const FAZIAN_QUEST_NOTSTARTED:* = 0;
 public const FAZIAN_QUEST_COMPLETE:int = 1;
 public const FAZIAN_QUEST_OFFERING:int = 2;
 public const FAZIAN_QUEST_STARTED:int = 3;
@@ -40,6 +40,8 @@ public function nozzleShowFirstTime():void
 	{
 		output(" <i>“Of Paradise. Ah, yes. If you’re anything like us, starwalker, you’ll enjoy that. A lot. Just, um, be aware you might leave feeling a bit... frisky.”</i>");
 	}
+	
+	processTime(3);
 
 	clearMenu();
 	if (pc.credits >= 160) addButton(0, "Pay", payForNozzleShow);
@@ -81,6 +83,8 @@ public function nozzleShowRepeat():void
 		else output(" <i>“Of Paradise. Never gets old, does it? The way he makes you feel </i>special<i>... our males don’t have the upbringing to really do that.”</i>");
 	}
 
+	processTime(3);
+	
 	clearMenu();
 	if (pc.credits >= 160) addButton(0, "Pay", payForNozzleShow);
 	else addDisabledButton(0, "Pay", "Pay", "You don't have enough credits.");
@@ -121,6 +125,8 @@ public function payForNozzleShow():void
 		output("\n\nYou duck under the curtain into a small, crimson-decorated, sparsely-lit theatre, furnished with round tables and a wooden stage at one end. It’s thronged with people; mostly gold myr, the air dense with their high, twittering voices and sweet smell, but you spot a smattering of other off-worlders here as well. You find yourself a seat near the front and make yourself comfortable. A few moments later, the lamps and conversation dip, and the stage lights come on.");
 	}
 
+	processTime(3);
+	
 	clearMenu();
 	addButton(0, "Next", nozzleGoPerformance);
 }
@@ -280,14 +286,16 @@ public function fazianApproach():void
 	{
 		flags["APPROACHED_FAZIAN"] = 1;
 
-		output("\n\n<i>“Hey,”</i> you say, sidling up to the lean, brightly-feathered alien at the bar. <i>“You’re the dancer guy, right?”</i>");
+		output("<i>“Hey,”</i> you say, sidling up to the lean, brightly-feathered alien at the bar. <i>“You’re the dancer guy, right?”</i>");
 		
 		output("\n\n<i>“I hope so,”</i> Fazian replies affably in clear, well-enunciated tones, taking a pull on the straw leading behind his mask. <i>“Otherwise there’s some other anat around here making a fool of themselves.”</i> He turns to look at you with increasing interest. You think. It’s really quite difficult to tell with anatae. <i>“Hey, you’ve been to our performances, haven’t you? It’s great to see non-natives there, you know. It’s difficult to get unbiased views about the stuff we do from the myr.”</i> He fiddles with the stem of his glass. <i>“So... what did you think?”</i>");
 
+		processTime(3);
+		
 		//[Liked It] [Eh]
 		clearMenu();
-		addButton(0, "Liked It", fazianLikedIt, "Liked It", "Tell him you liked the performance.");
-		addButton(1, "Eh", fazianEh, "Eh", "Tell him you didn't like ");
+		addButton(0, "Liked It", fazianLikedIt, undefined, "Liked It", "Tell him you liked the performance.");
+		addButton(1, "Eh", fazianEh, undefined, "Eh", "Tell him you didn't like ");
 		return;
 	}
 	else
@@ -314,6 +322,8 @@ public function fazianLikedIt():void
 	
 	output("\n\n<i>“Wow,”</i> he says. <i>“The "+ pc.mf("son", "daughter") +" of a famous human industrialist, you say? That’s fascinating.”</i> He twiddles with his wine glass nervously. <i>“So, "+ pc.mf("Mr.", "Ms.") +" Steele, what would you like to know?”</i>");
 
+	processTime(5);
+	
 	fazianMenu();
 }
 
@@ -349,6 +359,8 @@ public function fazianEh():void
 	
 	output("\n\n<i>“Wow,”</i> he says. <i>“The "+ pc.mf("son", "daughter") +" of a famous human venture capitalist, you say? That’s fascinating.”</i> He twiddles with his wine glass nervously. <i>“So, "+ pc.mf("Mr.", "Ms.") +" Steele, what would you like to know?”</i>");
 
+	processTime(6);
+	
 	//[Him] [Anatae] [Dancing] [Myr] [Appearance]
 	fazianMenu();
 }
@@ -356,7 +368,7 @@ public function fazianEh():void
 public function fazianMenu(ff:Function = null):void
 {
 	clearMenu();
-	if (ff != fazianAppearance) addButton(0, "Him", fazianHim, undefined, "Himself", "Ask Fazian about himself.");
+	if (ff != fazianHim) addButton(0, "Him", fazianHim, undefined, "Himself", "Ask Fazian about himself.");
 	else addDisabledButton(0, "Him");
 
 	if (ff != fazianAnatae) addButton(1, "Anatae", fazianAnatae, undefined, "Anatae", "Ask him about his race.");
@@ -446,16 +458,9 @@ public function fazianAnataePer():void
 
 	output("\n\n<i>“The anatae have an empire, right? The largest number of colonies in the known galaxy. But we don’t have a leader on top of it all. It’s all owned by us, the people. So... Per. We are all emperors. That’s the idea, anyway.”</i>");
 
+	processTime(3);
 	fazianMenu(fazianAnatae);
 }
-
-/*
-public function fazianAnataeTouchFeather():void
-{
-	clearOutput();
-	showFazian();
-}
-*/
 
 public function fazianDancing():void
 {
@@ -470,6 +475,8 @@ public function fazianDancing():void
 	
 	output("\n\n<i>“It all goes to Hepane, the other performers, and the club’s running,”</i> he replies mildly, scratching his mask. <i>“I have a food-facturer on my ship that will continue to function for another century. I mean, what it serves isn’t great,”</i> he admits. <i>“But then... <i>“ he takes a long pull of mead from his straw as way of finishing that sentence. <i>“My people’s goal is to move towards post-scarcity - and why would I charge when I’m self-sufficient and doing what I love, anyway?”</i>");
 
+	processTime(3);
+	
 	//[Teach me?] [Back]
 	clearMenu();
 	addButton(0, "TeachMe", fazianDancingTeachMe, undefined, "Teach Me", "Ask if he's willing to teach you some dance moves.");
@@ -483,6 +490,8 @@ public function fazianDancingTeachMe():void
 
 	output("<i>“Alright, let’s say you’ve convinced me,”</i> you smile. <i>“Think you’ve got time to teach me some of your dance moves?”</i>");
 
+	processTime(3);
+	
 	if (pc.isFeminine())
 	{
 		output("\n\nFazian stares at you. The tenseness in his frame, and then the way he quickly starts fiddling with his wine glass’s stem again, tells you he’s rather shocked by this proposition.");
@@ -517,6 +526,8 @@ public function fazianDanceTeachMeLater():void
 
 	//Add "Dance" to Fazian's main menu
 	flags["FAZIAN_DANCE_UNLOCKED"] = 1;
+	
+	processTime(2);
 
 	fazianMenu(fazianDancing);
 }
@@ -528,7 +539,7 @@ public function fazianMyr():void
 
 	if (flags["FAZIAN_QUEST_STATE"] == FAZIAN_QUEST_COMPLETE) output("You guess you already know the answer to this, but surrounded by their orange softness and their high, twittering voices, it is the obvious question to ask.\n\n");
 
-	output("\n\n<i>“What do you think of the myr?”</i>");
+	output("<i>“What do you think of the myr?”</i>");
 	
 	output("\n\n<i>“They’re wonderful,”</i> says Fazian with happy, level conviction. <i>“Such a welcoming, intelligent and peaceful race. Not just the golds. Oh, the reds armor themselves up with their conventions more, but beneath that - they are women. They are born to be caring, loving beings. Being around them, and performing for them, is a pleasure.”</i> He takes a long pull on his glass of wine, blue eyes slightly misty.");
 
@@ -549,6 +560,8 @@ public function fazianMyr():void
 		flags["FAZIAN_QUEST_TIMER"] = GetGameTimestamp();
 	}
 
+	processTime(6);
+	
 	fazianMenu(fazianMyr);
 }
 
@@ -591,10 +604,14 @@ public function fazianDance():void
 		output("\n\n<i>“Confidence, per,”</i> Fazian corrects. He brings his snapping claws down to a gently swivelling hip. <i>“You’ve got to say with your body that you’re going to get what you want, and you aren’t going to have to grab or act like a thug to do it - you just </i>will<i>, because look at </i>you.</i>”</i> You’re slightly worried that the anat’s forgetting about you. He slaps his hands and does a little shimmy. <i>“Get it wrong and they’ll laugh at you. Get it right and they’ll laugh too - with you. You’ve got to convince your audience you’re worth watching, and you do that by having absolute confidence in what you’re doing.”</i> He whirls once and lands so he’s side-on to you, still considering intently.");
 		
 		output("\n\n<i>“I think there’s two dances that I could easily teach you. One’s a classic and fairly straightforward - the Edotto. The other’s a bit more, um, flamboyant. The Sunwalker. Opens you up to the audience a bit more, so greater risk, greater reward, potentially. Which grabs you?”</i>");
+		
+		processTime(10);
 	}
 	else
 	{
 		output("\n\n<i>“So, which will it be?”</i> asks Fazian. Click, click, go his claws. <i>“Edotto, or Sunwalker?”</i>");
+		
+		processTime(3);
 	}
 
 	//[Edotto] [Sunwalker] 
@@ -855,10 +872,16 @@ public function fazianQuestOpening():void
 	
 	output("\n\n<i>“He not around?”</i>");
 	
-	output("\n\n<i>“He hasn’t shown up to the club for the last two nights running,”</i> she says, unease etched on her pretty, pointed face. <i>“I thought maybe he was poorly last night... but now, nobody seems to know what’s happened to him. The port authorities won’t tell me anything, except that he’s not on his ship. If he were a myr I could ask the royal guard about it, but... <i>“ She looks helpless.");
+	output("\n\n<i>“He hasn’t shown up to the club for the last two nights running,”</i> she says, unease etched on her pretty, pointed face. <i>“I thought maybe he was poorly last night... but now, nobody seems to know what’s happened to him. The port authorities won’t tell me anything, except that he’s not on his ship. If he were a myr I could ask the royal guard about it, but...”</i> She looks helpless.");
 
+	processTime(5);
+	
 	//[Help] [Delay] [Not My Problem]
-	clearOutput();
+	
+	if (flags["FAZIAN_QUEST_SUCCESSES"] == undefined) flags["FAZIAN_QUEST_SUCCESSES"] = 0;
+	if (flags["FAZIAN_QUEST_FAILURES"] == undefined) flags["FAZIAN_QUEST_FAILURES"] = 0;
+		
+	clearMenu();
 	addButton(0, "Help", fazianQuestHelp, undefined, "Help Out", "Your intuition tells you to be careful here. It's possible you could muck this up.");
 	addButton(1, "Delay", fazianQuestDelay, undefined, "Delay", "Perhaps you could help. A bit later, though.");
 	addButton(2, "NotMyProb", fazianQuestNotMyProblem, undefined, "Not My Problem", "If you choose this, it's likely you'll never see Fazian again.");
@@ -874,6 +897,8 @@ public function fazianQuestNotMyProblem():void
 	output("\n\n<i>“Yes... <i>“ Hepane’s attention has already drifted past you to the entrance of the club again.");
 
 	flags["FAZIAN_QUEST_STATE"] = FAZIAN_QUEST_REJECTED;
+	
+	processTime(2);
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -895,6 +920,8 @@ public function fazianQuestDelay():void
 	{
 		output("<i>“He... he still hasn’t shown up,”</i> says Hepane the moment you roll into view. Watching a gold myr wring her hands is mesmerising, in its own way. <i>“Can you help?”</i>");
 	}
+	
+	processTime(5);
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -918,6 +945,11 @@ public function fazianQuestHelp():void
 	output("\n\nYou go to the Honeypot’s bar and take stock. Who in the club, Gildenmere and the nearby spaceport might know where the gene-modded anat has gotten to?");
 
 	flags["FAZIAN_QUEST_STATE"] = FAZIAN_QUEST_STARTED;
+	
+	processTime(8);
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 
 	//Add [Gold Myr], [Barkeep] to Honeypot's main menu. Add [Fazian] to Dally's menu, Gene's menu and Juro's menu. 
 
@@ -947,6 +979,8 @@ public function fazianQuestGoldMyr():void
 	
 	output("\n\n<i>“We’re here to have a good time!”</i> wails another.");
 
+	processTime(8);
+	
 	//[Good Cop] [Bad Cop]
 	clearMenu();
 	addButton(0, "Good Cop", fazianQuestGoldMyrGood, undefined, "Good Cop", "Encourage them to keep talking. Maybe they'll reveal something interesting.");
@@ -968,9 +1002,10 @@ public function fazianQuestGoldMyrGood():void
 
 	//Fazfail + 1, remove "Gold Myr" from Honeypot menu
 	flags["FAZIAN_QUEST_GOLDMYR"] = 1;
-	if (flags["FAZIAN_QUEST_FAILURES"] == undefined) flags["FAZIAN_QUEST_FAILURES"] = 1;
-	else flags["FAZIAN_QUEST_FAILURES"]++;
+	flags["FAZIAN_QUEST_FAILURES"]++;
 
+	processTime(4);
+	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -996,9 +1031,10 @@ public function fazianQuestGoldMyrBad():void
 
 	//Fazsuccess + 1, remove "Gold Myr" from Honeypot menu
 	flags["FAZIAN_QUEST_GOLDMYR"] = 1;
-	if (flags["FAZIAN_QUEST_SUCCESSES"] == undefined) flags["FAZIAN_QUEST_SUCCESSES"] = 1;
-	else flags["FAZIAN_QUEST_SUCCESSES"]++;
+	flags["FAZIAN_QUEST_SUCCESSES"]++;
 
+	processTime(4);
+	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -1020,6 +1056,8 @@ public function fazianQuestBarkeep():void
 	
 	output("\n\n<i>“Sure. Want me to sort you out with some red venom, too? Maybe one or two girls who’ll do </i>anything<i> if you can smuggle them off this world, while you’re waiting.”</i> She examines one of the glasses in her hands critically. <i>“Lot of business flows through here. Why? Because the staff don’t know and they don’t tell. Particularly not to some starwalker who got put up to it by the royal guard.”</i>");
 
+	processTime(8);
+	
 	//[Good Cop] [Bad Cop]
 	clearMenu();
 	addButton(0, "Good Cop", fazianQuestBarkeepGood, undefined, "Good Cop", "Appeal to empathy. Encourage her to open up a bit.");
@@ -1041,10 +1079,11 @@ public function fazianQuestBarkeepGood():void
 	
 	output("\n\nYou cannot get anything more from her. Still, it’s something.");
 
+	processTime(4);
+	
 	//Fazsuccess + 1, remove "Barkeep" from Honeypot menu
 	flags["FAZIAN_QUEST_BARKEEP"] = 1;
-	if (flags["FAZIAN_QUEST_SUCCESSES"] == undefined) flags["FAZIAN_QUEST_SUCCESSES"] = 1;
-	else flags["FAZIAN_QUEST_SUCCESSES"]++;
+	flags["FAZIAN_QUEST_SUCCESSES"]++;
 }
 
 public function fazianQuestBarkeepBad():void
@@ -1060,10 +1099,11 @@ public function fazianQuestBarkeepBad():void
 	
 	output("\n\n<i>“Trying to kick off a fight so you can charge me? Really?”</i> she sneers. <i>“You are beyond pathetic. If you have any proof whatsoever I’ve done something wrong, charge me. Because I know you don’t, you can get out of my face.”</i> She strides off to serve someone at the other end of the bar. No amount of cajoling or threatening will get her to talk to you again.");
 
+	processTime(4);
+	
 	//Fazfail + 1, remove “Barkeep” from Honeypot menu
 	flags["FAZIAN_QUEST_BARKEEP"] = 1;
-	if (flags["FAZIAN_QUEST_FAILURES"] == undefined) flags["FAZIAN_QUEST_FAILURES"] = 1;
-	else flags["FAZIAN_QUEST_FAILURES"]++;
+	flags["FAZIAN_QUEST_FAILURES"]++;
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -1080,6 +1120,8 @@ public function fazianQuestDally():void
 	
 	output("\n\n<i>“You want to talk?”</i> replies Dally breezily, not slowing down his slow gyration around his pole. <i>“That is fine, I’ll talk with you. But it costs. Just the same as anything or anybody else.”</i>");
 
+	processTime(2);
+	
 	//[Pay 250 credits] [Don't]
 	clearMenu();
 	if (pc.credits >= 250) addButton(0, "Pay 250c", fazianQuestDallyPay, undefined, "Pay 250 credits", "");
@@ -1102,9 +1144,10 @@ public function fazianQuestDallyNoPay():void
 
 	//Fazfail + 1, remove "Fazian" from Dally menu
 	flags["FAZIAN_QUEST_DALLY"] = 1;
-	if (flags["FAZIAN_QUEST_FAILURES"] == undefined) flags["FAZIAN_QUEST_FAILURES"] = 1;
-	else flags["FAZIAN_QUEST_FAILURES"]++;
+	flags["FAZIAN_QUEST_FAILURES"]++;
 
+	processTime(3);
+	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -1129,11 +1172,11 @@ public function fazianQuestDallyPay():void
 	output("\n\nThat sounded significant.");
 
 	pc.credits -= 250;
-
+	processTime(8);
+	
 	//Fazsuccess + 1, remove "Fazian" from Dally menu
 	flags["FAZIAN_QUEST_DALLY"] = 1;
-	if (flags["FAZIAN_QUEST_SUCCESSES"] == undefined) flags["FAZIAN_QUEST_SUCCESSES"] = 1;
-	else flags["FAZIAN_QUEST_SUCCESSES"]++;
+	flags["FAZIAN_QUEST_SUCCESSES"]++;
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -1160,6 +1203,8 @@ public function fazianQuestGene():void
 	
 	output("\n\n<i>“As to which flavor of sex-starved arthropod, I’m afraid I have no clue.”</i> He taps his horn lips thoughtfully, though. <i>“Hmm. He did drop by a few days ago. I wasn’t paying much attention to him because I was rather anticipating one of my favourite lady callers. What were we talking about? Fazian gets it into his head to criticize my method of delivering mods to the denizens of this planet. He comes at it so </i>politely<i>, each time from a new angle, the very model of the eager, unwavering proselytizer. So here I am, afire with anticipatory passion, wondering how in the galaxy I am going to swat aside this tiresome socialist in the fastest yet most graceful way possible... <i>“ His rich voice fills the shop’s space like an orchestra playing the opening chords of an extremely long aria.");
 
+	processTime(8);
+	
 	// [Listen] [Leave]
 	clearMenu();
 	addButton(0, "Listen", fazianQuestGeneListen, undefined, "Listen", "Wait to see if he does, in the event, have anything worthwhile to say.");
@@ -1179,9 +1224,10 @@ public function fazianQuestGeneListen():void
 
 	//Fazsuccess + 1, remove "Fazian" from Gene's talk menu
 	flags["FAZIAN_QUEST_GENE"] = 1;
-	if (flags["FAZIAN_QUEST_FAILURES"] == undefined) flags["FAZIAN_QUEST_FAILURES"] = 1;
-	else flags["FAZIAN_QUEST_FAILURES"]++;
+	flags["FAZIAN_QUEST_FAILURES"]++;
 
+	processTime(5);
+	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -1198,9 +1244,10 @@ public function fazianQuestGeneLeave():void
 	output("\n\n<i>“Oh, of course,”</i> blinks the fanfir, stopped mid-flow. <i>“Best of luck finding the silly little peacock, I suppose.”</i>");
 
 	flags["FAZIAN_QUEST_GENE"] = 1;
-	if (flags["FAZIAN_QUEST_SUCCESSES"] == undefined) flags["FAZIAN_QUEST_SUCCESSES"] = 1;
-	else flags["FAZIAN_QUEST_SUCCESSES"]++;
+	flags["FAZIAN_QUEST_SUCCESSES"]++;
 
+	processTime(3);
+	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -1222,6 +1269,8 @@ public function fazianQuestJuro():void
 	
 	output("\n\n<i>“Goodness me. Hand that kind of data over to a non-affiliated with a missing friend story during an extremely precarious ceasefire?”</i> he replies with a dry snort, scribbling away. <i>“I would require a warrant from the empire itself if you wanted that. Do stop pestering me with this, Steele. I have absolutely no idea what happened to this Fazian of yours.”</i>");
 
+	processTime(8);
+	
 	// [Make a scene] [Anatae.] [Leave]
 	clearMenu();
 	addButton(0, "Make Scene", fazianQuestJuroScene, undefined, "Juro", "Try and fluster the kui-tan into giving you what you want.");
@@ -1232,8 +1281,7 @@ public function fazianQuestJuro():void
 public function fazianQuestJuroLeave():void
 {
 	flags["FAZIAN_QUEST_JURO"] = 1;
-	if (flags["FAZIAN_QUEST_FAILURES"] == undefined) flags["FAZIAN_QUEST_FAILURES"] = 1;
-	else flags["FAZIAN_QUEST_FAILURES"]++;
+	flags["FAZIAN_QUEST_FAILURES"]++;
 	mainGameMenu();
 }
 
@@ -1269,10 +1317,11 @@ public function fazianQuestJuroAnatae():void
 	
 	output("\n\nYou turn it off and return it to Juro, your mind buzzing.");
 
+	processTime(10);
+	
 	// Fazsuccess + 1, remove "Fazian" from Juro's menu
 	flags["FAZIAN_QUEST_JURO"] = 1;
-	if (flags["FAZIAN_QUEST_SUCCESSES"] == undefined) flags["FAZIAN_QUEST_SUCCESSES"] = 1;
-	else flags["FAZIAN_QUEST_SUCCESSES"]++;
+	flags["FAZIAN_QUEST_SUCCESSES"]++;
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -1294,11 +1343,12 @@ public function fazianQuestJuroScene():void
 	output("\n\n<i>“This world’s got enough spare aggression flying around right now,”</i> observes their officer, sympathetic but firm. <i>“If you can’t manage yours, I’d suggest taking it elsewhere.”</i>");
 
 	flags["FAZIAN_QUEST_JURO"] = 1;
-	if (flags["FAZIAN_QUEST_FAILURES"] == undefined) flags["FAZIAN_QUEST_FAILURES"] = 1;
-	else flags["FAZIAN_QUEST_FAILURES"]++;
+	flags["FAZIAN_QUEST_FAILURES"]++;
 
 	currentLocation = "SHIP INTERIOR";
 
+	processTime(5);
+	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -1311,7 +1361,7 @@ public function fazianQuestInvestigationDun():void
 	var f:int = (flags["FAZIAN_QUEST_FAILURES"] == undefined ? 0 : flags["FAZIAN_QUEST_FAILURES"]);
 	var s:int = (flags["FAZIAN_QUEST_SUCCESSES"] == undefined ? 0 : flags["FAZIAN_QUEST_SUCCESSES"]);
 
-	if (f > s)
+	if (f >= 3)
 	{
 		output("<i>“How did it go?”</i> asks Hepane anxiously, standing up when she sees you coming. <i>“Any idea where he’s gone?”</i>");
 		
@@ -1327,6 +1377,8 @@ public function fazianQuestInvestigationDun():void
 
 		//Remove "Gold Myr", "Red Myr", "Dally: Fazian", "Gene: Fazian" and "Juro: Fazian" options if they still exist. Remove "Hepane" option from Honeypot menu.
 		flags["FAZIAN_QUEST_STATE"] = FAZIAN_QUEST_FAILED;
+		
+		processTime(5);
 
 		clearMenu();
 		addButton(0, "Next", mainGameMenu);
@@ -1359,6 +1411,8 @@ public function fazianQuestInvestigationDun():void
 
 	flags["FAZIAN_QUEST_STATE"] = FAZIAN_QUEST_INVESTIGATED;
 	flags["FAZIAN_QUEST_TIMER"] = GetGameTimestamp();
+	
+	processTime(8);
 
 	//Remove "Gold Myr", "Red Myr", "Dally: Fazian", "Gene: Fazian" and "Juro: Fazian" options if they still exist. Remove "Hepane" option from Honeypot menu.
 
@@ -1377,11 +1431,13 @@ public function fazianQuestInvestigationFollowup():void
 	
 	output("\n\n<i>“There’s some large warehouses on the southeast side of Kressia. They have been appropriated for use by the Federation. A sister of mine says she saw someone in a mask with bright antenna being led inside on the night he disappeared... and no-one’s seen anyone matching that description since.”</i> Hepane’s pupil-less eyes lock with yours.");
 	
-	output("\n\n<i>“It’s... a bad place, [pc.name] Steele,”</i> she says, with a slight quaver. <i>“It took me a while to find anyone willing to tell me even that. Nobody knows what the Federation are doing there, but... <i>“ she trails off, and puts her hand on top of yours. <i>“Please get him out of there. I don’t know who else to ask. My queen has no power over what happens in Kressia anymore, and your government does not seem to care. I can’t offer you anything except gratitude. Please.”</i> She squeezes your hand. <i>“And be careful if you do, kind starwalker. I think you are much less naive than Fazian, but... both of you going missing would be very hard to take.”</i>");
+	output("\n\n<i>“It’s... a bad place, [pc.name] Steele,”</i> she says, with a slight quaver. <i>“It took me a while to find anyone willing to tell me even that. Nobody knows what the Federation are doing there, but...”</i> she trails off, and puts her hand on top of yours. <i>“Please get him out of there. I don’t know who else to ask. My queen has no power over what happens in Kressia anymore, and your government does not seem to care. I can’t offer you anything except gratitude. Please.”</i> She squeezes your hand. <i>“And be careful if you do, kind starwalker. I think you are much less naive than Fazian, but... both of you going missing would be very hard to take.”</i>");
 
 	output("\n\nShe leaves you with a lot to think about.");
 
 	flags["FAZIAN_QUEST_STATE"] = FAZIAN_QUEST_RESCUE;
+	
+	processTime(5);
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -1398,6 +1454,8 @@ public function fazianQuestApproachWarehouse():void
 	else if (pc.race().indexOf("orange myr") != -1) output(" for a... gold myr to be");
 	else output(" for a starwalker to be");
 	output(",”</i> says the tough-looking soldier when you cautiously approach the warehouse’s entrance, watching you impassively. <i>“Move along.”</i>");
+	
+	processTime(2);
 
 	fazianQuestApproachMenu();
 }
@@ -1424,10 +1482,10 @@ public function fazianQuestApproachMenu():void
 	{
 		addDisabledButton(1, "Bribe", "Bribe", "You've already attempted to bribe the guard, and it didn't exactly go your way!");
 	}
-
+	
 	addButton(2, "Fight", fazianQuestApproachFight, undefined, "Fight", "This probably isn't a good idea.");
 
-	addButton(3, "Leave", fazianQuestApproachLeave, undefined, "", "");
+	addButton(3, "Leave", fazianQuestApproachLeave);
 }
 
 public function fazianQuestApproachBack():void
@@ -1438,6 +1496,8 @@ public function fazianQuestApproachBack():void
 	
 	output("\n\nFor a building apparently repurposed by the Federation, security seems very lax indeed; you can only see the one guard stationed in front of the main doors. Perhaps it doesn’t need any more protection. You can’t see any more entrances here, except for a very sturdy-looking side door and a medium-sized window, twelve feet up. You can hear heavily muffled activity inside: what sounds like a lot of people moving around.");
 
+	processTime(4);
+	
 	fazianQuestApproachBackMenu();
 }
 
@@ -1495,6 +1555,8 @@ public function fazianQuestApproachBackHeadIn():void
 
 	output("As unobtrusively as you can, you sneak out from behind the crates and slink through the open door. You think you could have made as much noise as you wanted to, really; those two are miles away.");
 
+	processTime(2);
+	
 	clearMenu();
 	addButton(0, "Next", fazianQuestWarehouseBack);
 }
@@ -1519,6 +1581,8 @@ public function fazianQuestApproachBackDoor():void
 	output("You go up to the door and rattle the handle. Locked. You put your shoulder to it and throw your weight against it with a bang. It doesn’t budge.");
 	
 	output("\n\nWhat now?");
+	
+	processTime(2);
 
 	//[Keep trying] [Get back]
 	clearMenu();
@@ -1544,6 +1608,8 @@ public function fazianQuestApproachBackDoorForce():void
 
 	flags["FAZIAN_QUEST_DOOR"] = GetGameTimestamp();
 
+	processTime(5);
+	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -1555,6 +1621,8 @@ public function fazianQuestApproachBackDoorBack():void
 	output("You smartly head over to some crates and duck behind them. Moments later the door swings open, and an angry-looking red myr peers out. You keep very still, and eventually, with one last suspicious glare towards the street, she slams the door shut. There’s the click and thunk of several locks being turned.");
 
 	output("\n\nTime to try something else.");
+	
+	processTime(2);
 
 	fazianQuestApproachBackMenu();
 }
@@ -1607,6 +1675,8 @@ public function fazianQuestApproachBackWindow():void
 			addButton(0, "Next", fazianQuestWarehouseBack);
 		}
 	}
+	
+	processTime(5);
 }
 
 public function fazianQuestApproachBribe():void
@@ -1655,6 +1725,8 @@ public function fazianQuestBribeGo(amt:int):void
 		
 		output("\n\nDamn. You’re going to have to try something else.");
 		flags["GUARD_BRIBE"] = 500;
+		
+		processTime(5);
 
 		fazianQuestApproachMenu();
 	}
@@ -1668,6 +1740,8 @@ public function fazianQuestBribeGo(amt:int):void
 		
 		output("\n\nYou breathe out and then, when you’re sure she hasn’t gone off just to get a patrol, you sidle through the gate.");
 
+		processTime(8);
+		
 		clearMenu();
 		addButton(0, "Next", fazianQuestWarehouseFront);
 	}
@@ -1687,6 +1761,8 @@ public function fazianQuestBribeGo(amt:int):void
 		
 		output("\n\nYou suspect you overpaid a bit there. It’s had the effect you were looking for, at least. When you’re sure she really has gone, you sidle through the gate.");
 
+		processTime(8);
+		
 		clearMenu();
 		addButton(0, "Next", fazianQuestWarehouseFront);
 	}
@@ -1699,7 +1775,8 @@ public function fazianQuestApproachFight():void
 
 	output("The red myr looks completely taken aback when you suddenly draw your weapon and fly at her. <b>Maybe if you finish this quickly...</b>");
 
-	// 9999
+	processTime(2);
+	
 	var tEnemy:RedMyrFrontGuard = new RedMyrFrontGuard();
 	if (flags["GUARD_BRIBE"] != undefined) tEnemy.credits += flags["GUARD_BRIBE"];
 
@@ -1717,7 +1794,9 @@ public function fazianQuestApproachFight():void
 
 public function fazianQuestOutdoorGuardLoss():void
 {
-	output("\n\nYou can try fighting the entire red myr garrison, in which case your bullet-riddled corpse will fall to the ground in short order. You can try surrendering and arguing your case that another starwalker is being held in the warehouse, and you were just trying to rescue them. This will fall on unfavorable ears, both on the red myr and the U.G.C.'s side, given you assaulted a soldier in occupied territory during a fragile ceasefire. It will be many years before Steele Corp manage to wrangle a release for you from Kressia's military prison. Whichever the case, your adventure is over.");
+	output("You can try fighting the entire red myr garrison, in which case your bullet-riddled corpse will fall to the ground in short order. You can try surrendering and arguing your case that another starwalker is being held in the warehouse, and you were just trying to rescue them. This will fall on unfavorable ears, both on the red myr and the U.G.C.'s side, given you assaulted a soldier in occupied territory during a fragile ceasefire. It will be many years before Steele Corp manage to wrangle a release for you from Kressia's military prison. Whichever the case, your adventure is over.");
+	
+	processTime(5);
 
 	badEnd("GAME OVER");
 }
@@ -1743,6 +1822,8 @@ public function fazianQuestOutdoorGuardVictory():void
 
 	CombatManager.genericVictory();
 
+	processTime(5);
+	
 	clearMenu();
 	addButton(0, "Next", fazianQuestWarehouseFront);
 }
@@ -1761,6 +1842,9 @@ public function fazianQuestWarehouseFront():void
 {
 	clearOutput();
 	output("You are standing in a broad, well-lit entrance hall. There is a hubbub coming from the room opposite; the sound of many people moving around and... clapping? Peering carefully into the ajar door to your left you can see half a dozen red myr in military uniform sat around a table, playing some sort of game involving small crystals and counters. You are easily able to sneak past them, and open the door to the main chamber.");
+	
+	processTime(3);
+	
 	clearMenu();
 	addButton(0, "Next", fazianQuestWarehouseMainChamber);
 
@@ -1773,6 +1857,8 @@ public function fazianQuestWarehouseBack():void
 	
 	output("\n\nYou gingerly open the door opposite the back entrance, and find yourself in a brightly lit corridor. There is a hubbub coming from the room at the far end; the sound of many people moving around and... clapping? You quickly head down the corridor and open the door to the main chamber.");
 
+	processTime(3);
+	
 	clearMenu();
 	addButton(0, "Next", fazianQuestWarehouseMainChamber);
 }
@@ -1791,6 +1877,8 @@ public function fazianQuestWarehouseMainChamber():void
 	
 	output("\n\n<i>“What,”</i> snarls a husky voice, <i>“do you think you’re doing here?”</i> A tall, thin red myr, a crimson eye-patch slung across her face, marches over to you. By the number of medals on her jacket and the look of fury on her face, you’re guessing she’s the one in charge here.");
 
+	processTime(8);
+	
 	// [Rescue.] [Hands up]
 	clearMenu();
 	addButton(0, "Rescue", fazianQuestDoRescue, undefined, "Rescue", "You're here to rescue Fazian. And anyone else that is in need of it.");
@@ -1805,6 +1893,8 @@ public function fazianQuestDoRescue():void
 	
 	output("\n\n<i>“Rescue him? He came here of his own free will, to perform exclusively for the poor PoWs in our care. Isn’t that right, Fazian?”</i>");
 
+	processTime(2);
+	
 	fazianQuestChamberMerge();
 }
 
@@ -1815,13 +1905,13 @@ public function fazianQuestHandsUp():void
 	
 	output("\n\n<i>“No warrant, no uniform, no squad of fur-things armed with death-torches,”</i> she says to her fellows. <i>“No correct information, either. We didn’t kidnap him. He came of his own free will, to perform exclusively for the poor PoWs in our care. Isn’t that right, Fazian?”</i>");
 
+	processTime(3);
+	
 	fazianQuestChamberMerge();
 }
 
 public function fazianQuestChamberMerge():void
 {
-	clearOutput();
-
 	output("\n\n<i>“Major Ehstraffe, I - <i>“ stammers Fazian. Ehstraffe claps once sternly.");
 	
 	output("\n\n<i>“Dance! You know what happens if you do not.”</i> The anat heaves outwards - and then begins to tap out a steady rhythm on the boards with his hind talons. Slowly the gold myr’s attention turns back to him.");
@@ -1832,6 +1922,8 @@ public function fazianQuestChamberMerge():void
 	
 	output("\n\n<i>“Former peasants, factory workers, mostly. Their land belongs to the Federation now. Their queens cannot support them, do not want them. Nothing remains for them here. The tarratch offered to buy them for supplies we can use immediately to keep the rest fed and secure, and more besides. It is the best solution. But no, I would not expect a starwalker like you to understand having to make such decisions.”</i> Her face is as red as her chitin. <i>“Not you, who quarter with the golds and lap up their tragedies, their poisonous tales about us. Not you, who send your artists and your money and your men and your science to their capital and spurn us, us, the conquerors, the barbarians.”</i> She slaps her eye-patch furiously. <i>“Where is MY mechanical eye? What happened to MY Lehnaza in the trenches?”</i>");
 
+	processTime(5);
+	
 	clearMenu();
 	addButton(0, "Next", fazianQuestChamberMergeII);
 }
@@ -1848,6 +1940,8 @@ public function fazianQuestChamberMergeII():void
 	
 	output("\n\nShe (he?) snaps off the credit chit in his (her?) hand and proffers it you. Behind the pale androgyne, you can see Fazian, dancing and whirling away. He stares at you helplessly.");
 
+	processTime(5);
+	
 	// [Take it] [Don't]
 	clearMenu();
 	addButton(0, "Take It", fazianQuestGetBribed, undefined, "Take It", "20,000 credits. Not insubstantial.");
@@ -1868,6 +1962,8 @@ public function fazianQuestGetBribed():void
 	
 	output("\n\nWell, Hepane did say she couldn’t reward you, didn’t she? So you’re 20,000 credits up. You probably shouldn’t go back to her, though. You suspect a rational argument of your actions might not wash with her.");
 
+	processTime(5);
+	
 	pc.credits += 20000;
 	pc.addHard(6);
 	flags["FAZIAN_QUEST_STATE"] = FAZIAN_QUEST_BRIBED;
@@ -1891,7 +1987,8 @@ public function fazianQuestDontGetBribed():void
 	output("\n\n<i>“Grab [pc.himHer]!”</i> orders Ehstraffe. Ten armed, stern-faced red myr hurry across.");
 	output("\n\n<b>Looks like you’ve got a hell of a fight on your hands.</b>");
 
-	// 9999
+	processTime(5);
+	
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyCharacters(pc);
 	CombatManager.victoryScene(fazianQuestEhstraffeVictory);
@@ -1936,6 +2033,8 @@ public function fazianQuestEhstraffeLoss():void
 		else if (pc.hasCock()) output(" [pc.eachCock] bulging up, building towards an unstoppable orgasm... and then agonizingly climbing down again, leaving you even more helplessly aroused than before.");
 		
 		output("\n\n<i>“I wonder how much we should sell you for,”</i> the tarratch leader smirks, teasing the collar control in his (her?) hand. <i>“I’m thinking... 20,000 credits.”</i>");
+		
+		processTime(15);
 
 		clearMenu();
 		addButton(0, "Next", function():void {
@@ -1970,6 +2069,8 @@ public function fazianQuestEhstraffeLoss():void
 		
 		output("\n\n<i>“Be quick,”</i> says the other, keeping watch at the door. <i>“I want a turn with that, too.”</i>");
 
+		processTime(15);
+		
 		clearMenu();
 		addButton(0, "Next", function():void {
 			output("Days, weeks pass by in a venom-induced haze. You eventually come to welcome the burn of it entering your veins; the peace, tranquillity and all-conquering arousal it brings. It focuses you wonderfully for your sole occupation - being one of two primary sources of stress relief for a whole base of healthy, overworked, uptight red myr. Sure, Major Ehstraffe does make use of you a lot, bordering on the sadistic - keeping you locked for hours beneath her desk and between her thighs. But she quickly sees the benefits of sharing you around.");
@@ -1988,14 +2089,14 @@ public function fazianQuestEhstraffeLoss():void
 
 public function fazianQuestEhstraffeVictory():void
 {
-	output("\n\nOne moment you are desperately fending off a clutch of armed guards - the next they are overwhelmed in a tidal wave of furious gold myr prisoners, who kick, bite and trample them to the ground. The red myr desperately fight back, more soldiers hurry in from the front to help, but they are hopelessly outnumbered.");
+	output("One moment you are desperately fending off a clutch of armed guards - the next they are overwhelmed in a tidal wave of furious gold myr prisoners, who kick, bite and trample them to the ground. The red myr desperately fight back, more soldiers hurry in from the front to help, but they are hopelessly outnumbered.");
 	
 	output("\n\nYou bundle your way through the crowd, many of whom are now surging through the exits, battling your way towards the stage. You can hear Ehstraffe screaming out orders from somewhere - there’s no sign of the tarratch... your hands touch wood and you clamber up onto the stage, just in time to see a gold myr pick a groggy Fazian up by the shoulder.");
 	
 	output("\n\n<i>“Through the back,”</i> she says. She’s missing an arm but looks exultant, a Federation beret skewed across her crown.  Together you half carry, half lead the anat dancer out of the main warehouse and through the back entrance. Gold myr are streaming out of the main gateway in all directions, fighting red myr, being tackled to the ground, or simply running into Kressia or towards No Myr’s Land as fast as they possibly can. Keeping in the back alleys and close to the cavern wall, you limp northwards with Fazian and the gold myr. A siren wails over the sounds of the riot, followed by the crackle of open fire. Nobody stops you, though. Presumably to the red myr soldiers you glimpse charging past, your group looks like an alien who has been caught in the crossfire, his friend, and a helpful, Federation-affiliated local.");
 	
 	output("\n\n<i>“They’ll recapture most of us before the night is out,”</i> says the gold myr, as you finally stop in a quiet street some distance north. She trails the fingers of her sole left hand down Fazian’s back and then squeezes your palm with a thin smile. <i>“Most of us. Make it count, starwalker.”</i> The last you see of her is her abdomen, disappearing around another corner. After you’ve rested a little while, you and Fazian continue to head northwards towards the airfield. You both silently listen to the fading sounds of violence behind you.");
-
+	
 	clearMenu();
 	addButton(0, "Next", fazianQuestEhstraffeVictoryII);
 }
@@ -2010,10 +2111,13 @@ public function fazianQuestEhstraffeVictoryII():void
 	
 	output("\n\n<i>“I will not let them bury this, [pc.name],”</i> he says, the same quiet tremble in his voice. <i>“Not just the Federation - it will be better for Xenogen if none of this comes to light. Allowing slavers onto the planet... the threat to the ceasefire... but this is my fight now. I will take it to the U.G.C., the empire itself if they will not listen. Such atrocities cannot be allowed to continue because it’s tidier if some people simply don’t exist.”</i> He takes your hand in his claws. <i>“To you, I owe a life debt. I cannot offer you anything but a promise that if there is anything you need that is in my power to give, you will have it. But you know, I do not worry that I have no money to give you. You have already shown you care about much more valuable things than that.”</i>");
 	
-	output("\n\nHe squeezes your hand, and hurries eastwards towards the planes.");
+	output("\n\nHe squeezes your hand, and hurries eastwards towards the planes.\n\n");
 
 	CombatManager.genericVictory();
-
+	userInterface.mainButtonsReset();
+	userInterface.hideNPCStats();
+	userInterface.leftBarDefaults();
+			
 	currentLocation = "805";
 	processTime(120+rand(15));
 	pc.addNice(5);
@@ -2039,6 +2143,8 @@ public function fazianQuestCompleteBlurbs():void
 	else if (days % 3 == 1) output(" As You Shrike It");
 	else output(" Paradise");
 	output("?”</i>");
+	
+	processTime(10);
 
 	//No charge from use of [Show] from then on
 	clearMenu();
@@ -2064,6 +2170,8 @@ public function goFreeNozzleShow():void
 		
 		output("\n\nYou duck under the curtain into a small, crimson-decorated, sparsely-lit theatre, furnished with round tables and a wooden stage at one end. It’s thronged with people; mostly gold myr, the air dense with their high, twittering voices and sweet smell, but you spot a smattering of other off-worlders here as well. You find yourself a seat near the front and make yourself comfortable. A few moments later, the lamps and conversation dip, and the stage lights come on.");
 	}
+	
+	processTime(3);
 
 	clearMenu();
 	addButton(0, "Next", nozzleGoPerformance);
@@ -2090,5 +2198,7 @@ public function fazianMyrQuestComplete():void
 	
 	output("\n\n<i>“I have even updated the anatae administrata about my whereabouts, and what is happening here. They are equally unhappy about my having spent so much time here... but ironically if anything ever </i>did<i> happen to me now they’d be delighted, because it would mean they could come down like a ton of prefabs on Xenogen and the kui-tan.”</i> He finishes his wine and gazes at you, merry, mischievous glint in his eye. <i>“I am more cautious now, per.”</i>");
 
+	processTime(6);
+	
 	fazianMenu(fazianMyr);
 }
