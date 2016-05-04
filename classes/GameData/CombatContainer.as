@@ -227,6 +227,13 @@ package classes.GameData
 				}
 			}
 			
+			if (pc.hasStatusEffect("Trigger Game Over"))
+			{
+				clearMenu();
+				kGAMECLASS.badEnd("GAME OVER.");
+				return true;
+			}
+			
 			return false;
 		}
 		
@@ -2870,15 +2877,30 @@ package classes.GameData
 		{
 			var tEnemy:Creature;
 			
-			var lossCondition:Boolean = playerLossCondition();
+			var bLossCond:Boolean = playerLossCondition();
 			
 			// Naleen special loss handling
-			if (!lossCondition)
+			if (!bLossCond)
 			{
-				lossCondition = (hasEnemyOfClass(Naleen) || hasEnemyOfClass(NaleenMale)) && (pc.hasStatusEffect("Naleen Venom") && (pc.physique() == 0 || pc.willpower() == 0));
+				bLossCond = (hasEnemyOfClass(Naleen) || hasEnemyOfClass(NaleenMale)) && (pc.hasStatusEffect("Naleen Venom") && (pc.physique() == 0 || pc.willpower() == 0));
 			}
 			
-			if (lossCondition)
+			if (bLossCond && lossCondition == CombatManager.ESCAPE)
+			{
+				tEnemy = _hostiles[0];
+				
+				CombatManager.showCombatUI();
+				addButton(0, "Defeat", function(t_enemy:Creature, t_lossFunctor:Function):Function {
+					return function():void {
+						clearOutput();
+						kGAMECLASS.setEnemy(t_enemy);
+						CombatManager.showCombatUI();
+						t_lossFunctor();
+					}
+				}(tEnemy, _lossFunction));
+				return true;
+			}
+			else if (bLossCond)
 			{
 				if (victoryCondition == CombatManager.SPECIFIC_TARGET_DEFEATED)
 				{
@@ -3782,6 +3804,12 @@ package classes.GameData
 			{
 				if (lossArgument == null || _friendlies.indexOf(lossArgument) == -1) throw new Error("Unique target for loss as a win condition, with no target defined.");
 				if (lossArgument.isDefeated()) return true;
+				return false;
+			}
+			else if (lossCondition == CombatManager.ESCAPE)
+			{
+				if (lossArgument == null) throw new Error("Loss argument unset for loss condition setting.");
+				if (_roundCounter >= lossArgument) return true;
 				return false;
 			}
 			

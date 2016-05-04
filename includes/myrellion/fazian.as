@@ -26,7 +26,7 @@ public function nozzleShowFirstTime():void
 	
 	output("\n\n<i>“What is it, exactly?”</i> you ask.");
 	
-	output("\n\n<i>“It’s great,”</i> says the myr, her professional smile breaking into an enthusiastic grin. <i>“I mean... I don’t know how it will compare to the things you’ve seen, starwalker,”</i> she amends. <i>“But Fazian is not of this world either, and our shows are very popular here. Tonight is... <i>“ she checks the clipboard in her hands.");
+	output("\n\n<i>“It’s great,”</i> says the myr, her professional smile breaking into an enthusiastic grin. <i>“I mean... I don’t know how it will compare to the things you’ve seen, starwalker,”</i> she amends. <i>“But Fazian is not of this world either, and our shows are very popular here. Tonight is...”</i> she checks the clipboard in her hands.");
 
 	if (days % 3 == 0)
 	{
@@ -51,6 +51,12 @@ public function nozzleShowRepeat():void
 {
 	clearOutput();
 	showHepane();
+
+	if (flags["FAZIAN_QUEST_STATE"] == FAZIAN_QUEST_COMPLETE)
+	{
+		fazianQuestCompleteBlurbs();
+		return;
+	}
 
 	output("<i>“Hello again!”</i> says");
 	if (flags["MET_HEPANE"] == undefined) output(" the smartly-dressed myr");
@@ -90,6 +96,8 @@ public function payForNozzleShow():void
 {
 	clearOutput();
 	showHepane();
+
+	pc.credits -= 160;
 
 	if (flags["NOZZLE_SHOW_PARADISE"] == undefined || flags["NOZZLE_SHOW_SHRIKE"] == undefined || flags["NOZZLE_SHOW_QUARAMARTA"] == undefined)
 	{
@@ -164,7 +172,7 @@ public function nozzlePerformanceParadise():void
 
 	if (!pc.hasStatusEffect("Paradise!"))
 	{
-		pc.createStatusEffect("Paradise!", 0, 0, 0, 0, false, "OffUp", "Fazian's Paradise performance has left a fire in your loins!\nMinimum list increased by 20.", false, 480, 0xFFFFFF);
+		pc.createStatusEffect("Paradise!", 0, 0, 0, 0, false, "LustUp", "Fazian's Paradise performance has left a fire in your loins!\nMinimum list increased by 20.", false, 480, 0xFFFFFF);
 	}
 
 	clearMenu();
@@ -204,7 +212,7 @@ public function nozzlePerformanceShrike():void
 
 	if (!pc.hasStatusEffect("Shrike!"))
 	{
-		pc.createStatusEffect("Shrike!", 0, 0, 0, 0, false, "OffUp", "Fazian's Shrike performance has inspired you!\nExperience gains increased by 20%.", false, 480, 0xFFFFFF);
+		pc.createStatusEffect("Shrike!", 0, 0, 0, 0, false, "Icon_Haste", "Fazian's Shrike performance has inspired you!\nExperience gains increased by 20%.", false, 480, 0xFFFFFF);
 	}
 
 	clearMenu();
@@ -249,7 +257,7 @@ public function nozzlePerformanceQuaramarta():void
 
 	if (!pc.hasStatusEffect("Quaramarta!"))
 	{
-		pc.createStatusEffect("Quaramarta!", 0, 0, 0, 0, false, "OffUp", "Fazian's Quaramarta performance has sharpened your senses!\nCritical chance increased by 15%.", false, 480, 0xFFFFFF);
+		pc.createStatusEffect("Quaramarta!", 0, 0, 0, 0, false, "OffenseUp", "Fazian's Quaramarta performance has sharpened your senses!\nCritical chance increased by 15%.", false, 480, 0xFFFFFF);
 	}
 
 	clearMenu();
@@ -358,7 +366,7 @@ public function fazianMenu(ff:Function = null):void
 	else addDisabledButton(2, "Dancing");
 
 	if (flags["FAZIAN_QUEST_STATE"] != FAZIAN_QUEST_COMPLETE) addButton(3, "Myr", fazianMyr, undefined, "Myr", "Ask him what he thinks about the myr.");
-	else addButton(3, "Myr", fazianMyr, undefined, "Myr", "Ask if his opinion of the myr has changed, after his experience.");
+	else addButton(3, "Myr", fazianMyrQuestComplete, undefined, "Myr", "Ask if his opinion of the myr has changed, after his experience.");
 	if (ff == fazianMyr) addDisabledButton(3, "Myr");
 
 	if (ff != fazianDance && flags["FAZIAN_DANCE_UNLOCKED"] != undefined) addButton(4, "Dance", fazianDance, undefined, "Dance", "Go backstage and do some dance training with the anat.");
@@ -1456,9 +1464,9 @@ public function fazianQuestApproachBackMenu():void
 		addDisabledButton(1, "Window", "The Window", "You've already tried that, and it didn't work out for you.");
 	}
 
-	addButton(0, "Wait", fazianQuestApproachBackWait);
+	addButton(3, "Wait", fazianQuestApproachBackWait);
 
-	addButton(0, "Leave", fazianQuestApproachBackLeave, undefined, "", "");	
+	addButton(14, "Back", fazianQuestApproachMenu);	
 }
 
 public function fazianQuestApproachBackWait():void
@@ -1481,7 +1489,7 @@ public function fazianQuestApproachBackWait():void
 	addButton(1, "Leave", fazianQuestApproachBackWaitLeave, undefined, "Leave", "How awkward would it be if they see you now? Very. Beat a retreat while you can.");
 }
 
-public function fazianQuestApproachBackheadIn():void
+public function fazianQuestApproachBackHeadIn():void
 {
 	clearOutput();
 
@@ -1618,7 +1626,7 @@ public function fazianQuestApproachBribe():void
 	else addDisabledButton(2, "3000c", "3000 Credits", "You don't have enough credits.");
 }
 
-public function fazianQuestApproachBribe(amt:int):void
+public function fazianQuestBribeGo(amt:int):void
 {
 	clearOutput();
 	showBust("REDMYR");
@@ -1692,13 +1700,14 @@ public function fazianQuestApproachFight():void
 	output("The red myr looks completely taken aback when you suddenly draw your weapon and fly at her. <b>Maybe if you finish this quickly...</b>");
 
 	// 9999
-	var tEnemy:RedMyrGuard = new RedMyrGuard();
+	var tEnemy:RedMyrFrontGuard = new RedMyrFrontGuard();
 	if (flags["GUARD_BRIBE"] != undefined) tEnemy.credits += flags["GUARD_BRIBE"];
 
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyCharacters(pc);
 	CombatManager.victoryScene(fazianQuestOutdoorGuardVictory);
 	CombatManager.lossScene(fazianQuestOutdoorGuardLoss);
+	CombatManager.lossCondition(CombatManager.ESCAPE, 2);
 	CombatManager.setHostileCharacters(tEnemy);
 	CombatManager.displayLocation("WAREHOUSE\nGUARD");
 
@@ -1746,11 +1755,6 @@ public function fazianQuestApproachLeave():void
 	*/
 
 	mainGameMenu();
-}
-
-public function kressiaWarehouseInterior():Boolean
-{
-
 }
 
 public function fazianQuestWarehouseFront():void
@@ -1865,7 +1869,7 @@ public function fazianQuestGetBribed():void
 	output("\n\nWell, Hepane did say she couldn’t reward you, didn’t she? So you’re 20,000 credits up. You probably shouldn’t go back to her, though. You suspect a rational argument of your actions might not wash with her.");
 
 	pc.credits += 20000;
-	pc.addAss(6);
+	pc.addHard(6);
 	flags["FAZIAN_QUEST_STATE"] = FAZIAN_QUEST_BRIBED;
 
 	clearMenu();
@@ -2017,4 +2021,74 @@ public function fazianQuestEhstraffeVictoryII():void
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
+}
+
+public function fazianQuestCompleteBlurbs():void
+{
+	clearOutput();
+	showHepane();
+
+	output("When Hepane sees you coming, she immediately puts down her clipboard and hurries across to give you a four-armed embrace.");
+	
+	output("\n\n<i>“Thank you so much for what you did,”</i> she says, her fair-sized bosom pressed into your [pc.chest]. Her high voice is rather choked. <i>“I couldn’t sleep after I sent you to Kressia. I kept thinking that I’d sent one of my guests to face danger I wouldn’t have - for nothing at all. Fazian told me about what was going on in that place, and - you are brave and selfless beyond words, starwalker. I hope one day my people and the reds can join you above the sky, so we too can learn the lessons of nobility your race clearly have.”</i>");
+	
+	output("\n\n<i>“ ...the shows are back on, right?”</i> you say after a moment, slightly embarrassedly. The gold myr smiles toothily.");
+
+	output("\n\n<i>“Yes! Free entry for you, of course. What do you say to relaxing to a performance of");
+	if (days % 3 == 0) output(" Quaramarta");
+	else if (days % 3 == 1) output(" As You Shrike It");
+	else output(" Paradise");
+	output("?”</i>");
+
+	//No charge from use of [Show] from then on
+	clearMenu();
+	addButton(0, "Show", goFreeNozzleShow);
+	addButton(14, "Back", mainGameMenu);
+}
+
+public function goFreeNozzleShow():void
+{
+	clearOutput();
+	showHepane();
+
+	if (flags["NOZZLE_SHOW_PARADISE"] == undefined || flags["NOZZLE_SHOW_SHRIKE"] == undefined || flags["NOZZLE_SHOW_QUARAMARTA"] == undefined)
+	{
+		output("Why not? You came in here to enjoy yourself, after all.");
+		output("\n\n<i>“Go through and take a seat wherever you like.”</i>");
+	}
+	else
+	{
+		output("You never turn down a chance to see the myr and anat perform.");
+		
+		output("\n\n<i>“Our favourite patron,”</i> beams Hepane. <i>“Where you like to sit is still free, if you get in there quick.”</i>");
+		
+		output("\n\nYou duck under the curtain into a small, crimson-decorated, sparsely-lit theatre, furnished with round tables and a wooden stage at one end. It’s thronged with people; mostly gold myr, the air dense with their high, twittering voices and sweet smell, but you spot a smattering of other off-worlders here as well. You find yourself a seat near the front and make yourself comfortable. A few moments later, the lamps and conversation dip, and the stage lights come on.");
+	}
+
+	clearMenu();
+	addButton(0, "Next", nozzleGoPerformance);
+}
+
+public function fazianMyrQuestComplete():void
+{
+	clearOutput();
+	showFazian();
+
+	output("<i>“What do you think about the myr now?”</i> you ask. <i>“Given what happened.”</i>");
+	
+	output("\n\nThe anat is silent for a long time, twirling his wine glass around and around.");
+	
+	output("\n\n<i>“I have learnt that it is wrong to assume whole races cannot be motivated by hatred, based purely on their gender,”</i> he says at last. <i>“By doing that, I was simply practicing a different form of racism against the myr. That was a hard lesson to learn - something positive I had always believed, disproven - and maybe I would never have learned it if Ehstraffe had not lured me into that horrible place.”</i> He closes his eyes and curls his claws when he says the name.");
+	
+	output("\n\n<i>“You still perform for them, though?”</i> you say.");
+	
+	output("\n\n<i>“Yes. The red myr too, if they asked, and the offer was genuine. It is wrong to take away from the masses because of an individual’s crimes. I am just... more cautious now.”</i> He sighs wearily. <i>“It is so difficult to live in a world with shades of grey, y’know? I long to be that poor fool who </i>knew<i> all ant women meant well again.”</i>");
+	
+	output("\n\n<i>“You told the authorities about what was going on there?”</i> Fazian’s blue eyes turn flinty.");
+	
+	output("\n\n<i>“Yes. I have filed a report with the U.G.C. I have told the Nehzara woman at the port everything, and in no uncertain terms told her what I think of inveiglement, slavery and ethnic cleansing. I have attended an audience with the gold queens, and told </i>them<i> in no uncertain terms what I think of their negligence towards their subjects under foreign rule. No, none of them are happy, but I will not have them ignore me. I will not have them ignore </i>them.<i> Part of everything I earn here now goes towards helping the gold myr PoWs - as soon as I can work out a safe way of providing it to them. This is my fight, now.”</i> He shakes his head, feathers rustling and laughs slightly.");
+	
+	output("\n\n<i>“I have even updated the anatae administrata about my whereabouts, and what is happening here. They are equally unhappy about my having spent so much time here... but ironically if anything ever </i>did<i> happen to me now they’d be delighted, because it would mean they could come down like a ton of prefabs on Xenogen and the kui-tan.”</i> He finishes his wine and gazes at you, merry, mischievous glint in his eye. <i>“I am more cautious now, per.”</i>");
+
+	fazianMenu(fazianMyr);
 }

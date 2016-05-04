@@ -1283,7 +1283,7 @@ public function initializeMyrellionRooms():void
 	rooms["FAZIAN_RESCUE_ROOM"].planet = "PLANET: MYRELLION";
 	rooms["FAZIAN_RESCUE_ROOM"].westExit = "817";
 	rooms["FAZIAN_RESCUE_ROOM"].moveMinutes = 2;
-	rooms["FAZIAN_RESCUE_ROOM"].runOnEnter = kressiaWarehouseInterior;
+	rooms["FAZIAN_RESCUE_ROOM"].runOnEnter = null;
 	rooms["FAZIAN_RESCUE_ROOM"].addFlag(GLOBAL.INDOOR);
 	rooms["FAZIAN_RESCUE_ROOM"].addFlag(GLOBAL.PUBLIC);
 	rooms["FAZIAN_RESCUE_ROOM"].addFlag(GLOBAL.CAVE);

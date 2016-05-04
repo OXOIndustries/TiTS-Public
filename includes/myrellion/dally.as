@@ -11,7 +11,6 @@ public function honeyNozzleClub():Boolean
 	output("\n\nA male myr in little more than an oversized loincloth is dancing gracefully around a pole, much to the tittering delight of a feminine audience. His abdomen weighs heavy behind him and ponderously dips along with the more vigorous dance moves. A seat just opened up in front of him, if you want to approach.");
 	if(flags["MET_DALLY"] == undefined) addButton(0,"M.Stripper",dallyApproach);
 	else addButton(0,"Dally",dallyApproach);
-	return false;
 	
 	if (flags["FAZIAN_QUEST_STATE"] == FAZIAN_QUEST_STARTED)
 	{
@@ -21,7 +20,7 @@ public function honeyNozzleClub():Boolean
 		}
 		else
 		{
-			addButton(1, "Hepane", fazianQuestInvestigationsDun, undefined, "Hepane", "Hepane, the myr musician you're trying to help find Fazian, is sat at a table near the back. She waves at you urgently the moment she catches sight of you.");
+			addButton(1, "Hepane", fazianQuestInvestigationFollowup, undefined, "Hepane", "Hepane, the myr musician you're trying to help find Fazian, is sat at a table near the back. She waves at you urgently the moment she catches sight of you.");
 		}
 	}
 	else if (flags["FAZIAN_QUEST_STATE"] == FAZIAN_QUEST_INVESTIGATED && flags["FAZIAN_QUEST_TIMER"] + (24 * 60) > GetGameTimestamp())
@@ -71,6 +70,8 @@ public function honeyNozzleClub():Boolean
 			addButton(6, "Barkeep", fazianQuestBarkeep, undefined, "Barkeep", "Ask the barkeep if she's seen Fazian.");
 		}
 	}
+	
+	return false;
 }
 
 public function showDally(nude:Boolean = false):void

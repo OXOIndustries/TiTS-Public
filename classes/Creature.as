@@ -2974,6 +2974,11 @@
 		//XP!
 		public function XP(arg:int = 0):Number
 		{
+			var bMulti:Number = 1.0;
+			if (hasStatusEffect("Shrike!")) bMulti += 0.2;
+			
+			arg *= bMulti;
+			
 			XPRaw += arg;
 			if (XPRaw >= XPMax()) XPRaw = XPMax();
 			else if (XPRaw <= 0) XPRaw = 0;
@@ -3336,7 +3341,8 @@
 				if (bonus < statusEffectv2("Lane Detoxing Weakness")) bonus = statusEffectv2("Lane Detoxing Weakness");
 			}
 			//Venom brings minimum up to 35.
-			if(bonus < 35 && hasStatusEffect("Red Myr Venom")) bonus = 35;
+			if (bonus < 35 && hasStatusEffect("Red Myr Venom")) bonus = 35;
+			if (bonus < 20 && hasStatusEffect("Paradise!")) bonus = 20;
 			return (0 + bonus);
 		}
 		public function physiqueMax(): Number {
@@ -3669,7 +3675,8 @@
 			var temp: int = 5;
 			if (melee) temp += meleeWeapon.critBonus;
 			else temp += rangedWeapon.critBonus;
-			if(hasPerk("Critical Blows")) temp += 10;
+			if (hasPerk("Critical Blows")) temp += 10;
+			if (hasStatusEffect("Quaramarta!")) temp += 15;
 			temp += armor.critBonus + upperUndergarment.critBonus + lowerUndergarment.critBonus + accessory.critBonus + shield.critBonus;
 			if(temp > 50) temp = 50;
 			return temp;
