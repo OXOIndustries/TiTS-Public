@@ -2537,6 +2537,7 @@
 			// NaN production was down to maxCum
 			// if the player didn't have a cock, maxCum returns 0.
 			// anything / 0 = NaN
+			var msg: String = "";
 			if (hasCock())
 			{
 				// @FENCUMFIX
@@ -2547,7 +2548,6 @@
 				//ballFullness = Math.round(((currentCum() - cumQ()) / maxCum()) * 100);
 				var cumAmt:Number = Math.round(((currentCum() - cumQ()) / maxCum()) * 100);
 				if (cumAmt < 0) cumAmt = 0;
-				var msg: String = "";
 				
 				if(this is PlayerCharacter || fluidSimulate) ballFullness = cumAmt;
 
