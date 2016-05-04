@@ -587,6 +587,14 @@ public function gildenmereStreetBonus():Boolean
 		unificationInvitationEventProcInGildenmere();
 		return true;
 	}
+	if(pc.hasCock())
+	{
+		if((flags["LAST_ANT_ORGY"] == undefined && rand(50) == 0) || (flags["LAST_ANT_ORGY"] != undefined && pc.isCrotchExposed() && rand(20) == 0 && flags["ANT_ORGY_TIME"] + 1440 > GetGameTimestamp()))	
+		{
+			publicUseForDickedPCsInGildenmere();
+			return true;
+		}
+	}
 	return false;
 }
 
@@ -781,7 +789,7 @@ public function ascendFromDeepCaves():void
 public function k13Bonus():Boolean
 {
 	output("You stand in a wide, largely open cavern chamber. In the center of the chamber is a huge stone pillar, stretching up from floor to ceiling, and covered in cave drawings and softly glowing fungus. Somebody's painted a sign on the wall, near the tunnel going westward reading ");
-	if(9999) output("\"Long live Queen Taivra!\"");
+	if(flags["KILLED_TAIVRA"] == undefined) output("\"Long live Queen Taivra!\"");
 	else output("\"Down with Queen Taivra!\"");
 	return DeepCavesBonus();
 }
@@ -878,4 +886,385 @@ public function DeepCavesBonus():Boolean
 		return true;
 	}
 	return false;
+}
+
+//OFFBEATR CUSTOM SCENE
+//[DUN] I want a scene where you get covered in squirt from an army of female aliens. - Possible option to reverse the scene and squirt all over the army of fem-aliens.
+//Markocross12
+
+public function showAntCommander():void
+{
+	showName("MYR\nCOMMANDER");
+	showBust("MYR_GOLD_GUARD");
+}
+public function showAntOrgy():void
+{
+	showName("\nGOLD MYR");
+	showBust("MYR_GOLD_GUARD_NUDE","MYR_GOLD_GUARD_NUDE","MYR_GOLD_GUARD_NUDE");
+}
+
+public function publicUseForDickedPCsInGildenmere():void
+{
+	flags["ANT_ORGY_TIME"] = GetGameTimestamp();
+	showAntCommander();
+	//Repeat Gildenbutts Intro
+	if(flags["LAST_ANT_ORGY"] != undefined)
+	{
+		output("\n\n<i>“You there!”</i> The voice is heavy with authority, but almost casual in how it is handled. You recognize it instantly as the lusty myr commander who mistook you for her troops’ entertainment. <i>“Yes, you!”</i>");
+		output("\n\nYou turn to look back, coming face-to-face with the ");
+		if(flags["LAST_ANT_ORGY"] >= 0) output("smiling");
+		else output("pissed-off");
+		output(" commander. Just like last time, she’s at a column of armored battle-maidens. It looks like they’re out on one exercise or another, but you know from experience what they’re really on the prowl for: entertainment.");
+		output("\n\n<i>“Me?”</i>");
+		output("\n\n<i>“Yes, you.”</i> Her antennae stab accusingly in your direction. <i>“");
+		if(flags["LAST_ANT_ORGY"] > 0) output("The girls won’t stop asking for a star-walker entertainer after the last one. You appear an exhibitionist. Care to make a bit of shine?");
+		else output("You look like the exhibitionist type. Care to make a bit of shine? My girls’ last entertainer skipped out on them, and they are so pent up.");
+		output("”</i> She doesn’t appear to recognize you. Perhaps her eyesight is especially poor? Or, more likely, she thinks all non-myr look the same.");
+		output("\n\nWill you volunteer to entertain a whole unit of gold myr soldiers?");
+		clearMenu();
+		addButton(0,"Yes",goWithTheAntOrgy);
+		addButton(1,"No",turnDownPublicAntUse,undefined,"No","You are much too busy for this.");
+	}
+	//Cocked PC mistaken for stripper in Gildenmere. 1x only unless nude
+	else
+	{
+		output("\n\n<i>“You there!”</i> The voice is heavy with authority, but almost casual in how it is handled. Whoever it is, they’ve grown accustomed to barking orders. <i>“Hey, you!”</i>");
+		output("\n\nYou turn back to look, coming face-to-face with a severe-looking gold myr - one wearing a few too many medals to ignore. Worse still, she’s backed up by a column of twenty grim-faced soldiers. <i>“Me?”</i>");
+		output("\n\n<i>“Yes, you.”</i> Her antennae stab accusingly in your direction. <i>“Your were due at the barracks over twenty minutes ago. I don’t care how big your dick");
+		if(pc.cockTotal() > 1) output("s are");
+		else output(" is");
+		output(". There’s no excuse for failing to keep an appointment.”</i>");
+		output("\n\nYou tilt your head to the side, clearly confused.");
+		output("\n\n<i>“Oh, you poor, simple thing. Get a dick between your legs, and suddenly you can’t be bothered to keep up with your duties.”</i> Facepalming, the commander sighs heavily. <i>“You don’t even have to do anything difficult, just lie down and...”</i> She blushes, waving her hand in the air in frustration. <i>“...you know! You’re coming with us until you’ve finished your job.”</i> Muttering under her breath, she adds, <i>“These brainless entertainment " + pc.mf("boys","sluts") + " have no sense of honor.”</i>");
+		output("\n\nYou could make a break for it, or go along with them. It would seem they have you mistaken for someone else...");
+		//[Run] [Go With]
+		clearMenu();
+		addButton(0,"Go With",goWithTheAntOrgy);
+		addButton(1,"Run",turnDownPublicAntUse,undefined,"Run","Aww hell no!");
+	}
+}
+
+public function turnDownPublicAntUse():void
+{
+	clearOutput();
+	showAntCommander();
+	//Repeat - no
+	if(flags["LAST_ANT_ORGY"] != undefined)
+	{
+		output("<i>“No.”</i>");
+		output("\n\nThe commander looks at you incredulously, flicking her onyx eyes up and down your body. <i>“Truly? Why dress in such a way if not to arouse others?”</i> Shaking her head, she sighs. <i>“Never mind. We’ll find someone suitable, won’t we girls?”</i>");
+		output("\n\n<i>“<b>Yes ma’am!</b>”</i>");
+		output("\n\nThey march off. Weirdos.");
+		flags["LAST_ANT_ORGY"] = 0;
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
+	//Run
+	else
+	{
+		output("You lift a finger, as if to raise an objection, then spin on your heels, running for the nearest alleyway.");
+		output("\n\nA commanding shout cuts the air, followed by the sound of dozens of chitinous feet. They’re chasing after you!");
+		clearMenu();
+		addButton(0,"Next",runningFromAntsmex);
+	}
+}
+
+//Escape
+public function runningFromAntsmex():void
+{
+	clearOutput();
+	showAntCommander();
+	var runScore:Number = pc.reflexes()/2 + rand(20);
+	if(runScore > 20)
+	{
+		output("The slow-footed soldiers are no match for an explorer on the run like yourself. You ");
+		if(runScore > 30) output("easily outpace them");
+		else output("gradually pull away from them");
+		output(", fleeing to the safety of the great lift before you can get pulled into some other libertine ritual.");
+		processTime(3);
+		pc.energy(-15);
+		clearMenu();
+		flags["LAST_ANT_ORGY"] = -1;
+		addButton(0,"Next",mainGameMenu);
+	}
+	//Fail
+	else
+	{
+		output("You run like there’s a nova bomb behind you, about to go off, but it’s all for naught. The militaristic maidens catch you before long, barely out of breath despite the lengthy chase. It would seem that Gildenmere’s finest do not take their physical fitness lightly!");
+		output("\n\nHard, naturally-armored bodies pile onto you, burying you in a near-bruising tackle. Worse still, the aggressive warriors aren’t too proud to take advantage of the situation, roughly groping your crotch even as they bind your arms behind you, teasing you until ");
+		if(!pc.isCrotchExposed()) output("you’re hard enough to jut out of your recently-opened bottoms");
+		else output("you’re hard enough for the whole city to see your shame");
+		output(". Giggling amongst themselves, the four-armed fighters hoist you up on their shoulders and march you back to the barracks, waving your [pc.cocks] in the air like ");
+		if(pc.cockTotal() == 1) output("a flagpole.");
+		else output("flagpoles.");
+		flags["LAST_ANT_ORGY"] = 2;
+		processTime(2);
+		pc.energy(-15);
+		pc.HP(-5);
+		pc.lust(45);
+		clearMenu();
+		addButton(0,"Next",goWithTheAntOrgy, false);
+	}
+}
+
+//Go With
+public function goWithTheAntOrgy(voluntary:Boolean = true):void
+{
+	clearOutput();
+	showAntOrgy();
+	if(voluntary)
+	{
+		flags["LAST_ANT_ORGY"] = 1;
+		output("Putting up your hands, you agree to go with them. ");
+		if(flags["ANT_ORGY_COUNT"] != undefined) output("After your last visit, another trip to the land of honey and pussy sounds more than welcome.");
+		else output("Surely whatever sort of entertainment they have planned for your [pc.cocks] must be enjoyable. It sounds like you’ll have a whole barracks full of honey-squirting all to yourself.");
+		output(" What more could you ask for?");
+		output("\n\n<i>“That’s more like it.”</i> The commander smacks you on the ass with a short, metal rod and bellows, <i>“March!”</i>");
+		output("\n\nJumping from the painful swat, you start marching with them, never straying far from the authoritative alien, lest she decide to lay into you once more. Fortunately, their troop’s barracks isn’t far. A few minutes at a quick pace has you closing in on their barracks - a solid concrete structure designed more for defensibility than aesthetics. The squat doorway is hauled open, and you are lead inside by the golden officer, backed up by the column of grinning soldiers.");
+		output("\n\nA maze-like series of twisting tunnels pass you by, fully ensuring your disorientation by the time you reach the wide-open room that serves as the unit’s quarters. As you step inside, you briefly wonder if you’ll ever see the light of the sun again. ");
+		if(flags["ANT_ORGY_COUNT"] != undefined) output("Sure, they let you go last time, but they really seem to have taken a shine to you. Perhaps they’ll keep you once more? ");
+		output("You ");
+		if(flags["ANT_ORGY_COUNT"] != undefined) output("still ");
+		output("don’t know your way out, and even if you did, there are dozens of lusty women blocking the way back - not to mention the hundreds of potential pursuers just ahead, all of them turning their hungry, inky eyes in your direction. You stop, momentarily paralyzed by the scale of what you’ve walked into.");
+		if(flags["ANT_ORGY_COUNT"] == undefined) output(" Just how many barracks like this do the gold myr have? And if the golds have numbers like this, then the reds....");
+		output("\n\nTwo hands roughly grab you by the crotch, openly fondling your ");
+		if(pc.lust() >= 70) output("completely erect");
+		else output("rapidly engorging");
+		output(" penis");
+		if(pc.totalCocks() > 1) output("es");
+		output(", disarming your mind as effectively as their fellows disarm your body. In the span of seconds, ");
+		if(!pc.isNude()) output("you are stripped naked");
+		else output("you are liberated of your equipment");
+		output(", but the warmth of the room and the hands in your loins keeps the chill from bothering you.");
+		output("\n\n<i>“Do not fret,”</i> coos a myr, wearing her helmet and little else. She joins her sisters in stroking you. <i>“Your equipment will be returned to you, after the entertainment. Come!”</i> Tugging you, the ant-woman drags you toward the center of the room, helped along by her sisters. You let yourself be lead, escorted by chitinous hands and sensuously rubbing fingers. They gradually drag you to the center of the chamber. The journey must take several minutes, but to you, it feels like no more than a few throbbing heartbeats.");
+		output("\n\nAn upraised slab of stone is clearly your destination, judging by the mattress placed in the center, ringed by thick, wooden poles. A hole has been cut in the center, doubtless to make room for a myr’s abdomen");
+		if(pc.tailCount == 0) output(", but a considerate young lass obligingly fills it with her pillow, batting her eyelashes at you all the while.");
+		else output(", and you are thankful to have room for your [pc.tails].");
+		output(" As you lower yourself down, laying out on the flat of your back, you grab hold of the poles to steady your progress. It is then that you ");
+		if(flags["ANT_ORGY_COUNT"] != undefined) output("remember");
+		else output("ascertain");
+		output(" their true, all-too-sexual nature, for they are made with veins and bulges, bulbous tips and nearly-testicular swells. You’re sprawled out, surrounded by a twelve gigantic dildos of various shapes, polished to glass-like smoothness. Beyond the phallic pillars is a wall of panting, horny myr soldiers, dribbling honey from behind as they stare at your nude, eager form.");
+		output("\n\n[pc.EachCock] sticks straight up, ");
+		if(pc.cockTotal() == 1) output("a ");
+		output("fleshy alternative");
+		if(pc.cockTotal() > 1) output("s");
+		output(" to the impassive wooden boners that surround ");
+		if(pc.cockTotal() > 1) output("them");
+		else output("it");
+		output(", all too happy to offer ");
+		if(pc.cockTotal() == 1) output("itself");
+		else output("themselves");
+		output(" for use as another toy. It would seem your body cares less for your dignity than the promise of a golden, honey-laced myr-cunt. You look around you, realizing that the soldiers have formed lines behind each of the twelve posts. They leer down at you, barely restraining themselves from taking you on the spot. You can’t imagine a more vulnerable position to place yourself, nor one so bizarrely arousing.");
+	}	
+	else
+	{
+		output("You are stripped of your equipment");
+		if(!pc.isNude()) output(" and your garb");
+		output(" by the time the army of lusty myr reaches its destination - a solid concrete structure designed entirely for defensibility over aesthetics. You’re lowered, in order to fit through the squat doorframe, then hauled on inside, bodily carried through winding corridors to the sleeping quarters. The wide-open room is broken up by hundreds upon hundreds of beds, many occupied by off-duty myr. Some are reading, writing letters, or maintaining their weapons, but they universally set aside their distractions at the sight of you.");
+		output("\n\nHundreds of inky, inhuman eyes fix on your naked body, regarding you with obvious desire. Cat-calls fill the air.");
+		output("\n\n<i>“Ya find our party-boy, Commander?”</i>");
+		output("\n\n<i>“Check out the ");
+		if(pc.biggestTitSize() >= 10) output("tits");
+		else output("dick");
+		output(" on that one!”</i>");
+		output("\n\n<i>“Oh finally, I haven’t seen a real cock in ages!”</i>");
+		output("\n\n<i>“Woo! Talk about exotic! I didn’t know we were getting a star-walker today!”</i>");
+		output("\n\nFinally, once you’ve reached the center of the chamber, you are set down and released. Ranks upon ranks of marshalled myr close in from all sides, most of them quite young. Military life has obviously been hard on them. You can’t spot a single girl with more than a C-cup among the entire sea of feminine forms.");
+		output("\n\n<i>“Go on then, on the recreation slab,”</i> their leader barks, pushing you toward a cheap-looking mattress on the floor. Bizarrely, there’s an opening in the middle for what you assume must be a male myr’s abdomen, and dozen polished wooden poles roughly arranged in a man-sized outline. Each has a slightly different shape. Some are thickers than others, some have nodules and textured rings. Others still have obviously, testicle-like bulges. They’re all... they’re all dildos? Wrinkling your nose, you realize that the whole mess, dildo and mattress alike, smell vaguely of stale honey...");
+		output("\n\n<i>“Hurry up!”</i> calls an innocent-looking myr maiden, dripping not-so-innocent honey from the back of her abdomen. <i>“You’re going to look so nice covered in honey.”</i> She blushes, but the hooting of her cohorts brings a smile to her face.");
+		output("\n\nFaced with no other recourse, you climb down onto the mattress, careful not to fall onto any of the too-lewd posts.");
+		if(pc.tailCount == 0) output(" A considerate, junior officer hands you a few pillows to stuff the hole in the mattress with, since you lack the body shape of their typical entertainment.");
+		output(" From down here, you can’t help but feel very small, and very, very vulnerable. Ringed by artificial phalli, you feel like just another toy among many, waiting on these statuesque alien women to use you for their pleasure. Your [pc.cocks], still half-hard from the rough treatment on the way in, seem");
+		if(pc.cockTotal() == 1) output("s");
+		output(" to grow an inch longer at the thought, caring more for the promise of lusty maidens than your dwindling dignity.");
+	}
+	//Merge
+	output("\n\n<i>“Oh, [pc.heShe]’s excited,”</i> a high-pitched voice observes.");
+	output("\n\n<i>“May we mount [pc.himHer], mistress?”</i>");
+	output("\n\n<i>“Oh please! How we can not");
+	if(pc.longestCockLength() < 6) output(" play with such a feeble member");
+	output("?”</i>");
+	output("\n\nThe commander nods, her cheeks slowly coloring. <i>“It seems only fitting since [pc.heShe] ");
+	if(flags["ANT_ORGY_COUNT"] == undefined) output("was so late to arrive");
+	else output("has put on such a wanton display");
+	output(". Very well. Ithris, Borea, Mystryn, Haedin, and Phorah.  You set the top scores in this week’s physical evaluation, so you may ride our entertainment directly, if you wish.”</i> She raises an arm when all five of the named girls step forward. <i>“In that order. No fighting over our guest.”</i>");
+	output("\n\n<i>“Yes ma’am!”</i> The five answer, saluting.");
+	processTime(15);
+	pc.lust(20);
+	clearMenu();
+	addButton(0,"Next",antOrgyPartDues,voluntary);
+}
+
+public function antOrgyPartDues(voluntary:Boolean):void
+{
+	clearOutput();
+	showAntOrgy();
+	output("Some unspoken signal goes through the horde of armored ant-girls, and as the first lucky lady steps over you, a dozen of the aroused ant-girls advance. You lover-to-be smiles down at you, then lowers herself down so that her crotch sits on your chest and [pc.oneCock] has no choice but to slide up and into her descending abdomen, filling the air with the sloppy, wet-sounding ‘squish’ of penetration. Another, exponentially more decadent sound fills the air but a second later: all twelve of the eager myr maidens mounting their substitute members. Some do it from behind, facing away from you as they watch you being taken. Others face forward, pressing their breasts against one another, shading you beneath a quartette of sapphic kisses.");
+	pc.cockChange();
+	var x:int = pc.cockThatFits(1000);
+	if(x < 0) x = pc.smallestCockIndex();
+	output("\n\nMoans fill the air, and you feel the first flecks of honey spattering against your skin. At first, it’s mere droplets from your lover’s excessively lubricated slot, but then you feel others on your [pc.legs], your arms, and even your [pc.face]. You knew Gildenmere had a mostly female army, but you had no idea how horny intensive training would leave them - how it would make them so wet and ready that their quivering snatches would be dribbling honey, dumping out little micro-squirts from the mere sight of a penis-packing star-walker. You might care more if their sex juices didn’t resemble a slicker version of honey, or if you weren’t ");
+	if(pc.cockVolume(x) < 1000) output("hilted");
+	else output("firmly embedded");
+	output(" in an inhumanly silky snatch.");
+	output("\n\nLeaning your head back, you give yourself over to the sensations assaulting you, pumping your hips in the air, creating noisy squelches every time you split open the randy ant’s exotic slit. She’s not the tightest, not by a long shot, but ");
+	if(pc.cockVolume(x) >= 700) output("that’s just perfect for someone as hung as you");
+	else output("she makes up for it with power of her internal muscles");
+	output(". Clamping down on you, the gilded slattern transforms her tunnel into a constricting vice, tight enough to bring the friction of flesh to flesh contact back to the fore. No amount of dribbling, girlish honey could make you ignore the texture of her folds, nor the way her muscles contract in different batches, squeezing you from above and below, then from sides.");
+	//2nd Dick
+	if(pc.cockTotal() > 1)
+	{
+		output("\n\nHoney-slicked hands encircle your second member midway through your blissful, fuck, twisting and sliding to gird the entirety of your reserve pole in fragrant fuck-juice, lubed up and ready to go.");
+		output("\n\n<i>“Don’t mind me,”</i> the grinning, orange-haired temptress coos. <i>“I’m just getting ready for my turn...”</i>");
+		//Third dick?
+		if(pc.cockTotal() > 2) output("\n\nA third girl steps up, holding a palmful of honey up to your third penis. <i>“Well if that’s the case, then I suppose I’ll make sure our " + pc.mf("stud","toy") + " hurries up. If [pc.heShe] cums, it’s the next girl’s turn, right?”</i> Rubbing the amber goo along your rod, she begins eagerly pumping it, trying to coax you into nutting into her sister-soldier’s sopping fuckbox.");
+	}
+	//Merge
+	output("\n\nAll around you, girls start creaming themselves, wantonly bouncing up and down, impaling their swollen, insectile abdomens on the rigid rods, imagining that they’re the lucky girl atop you. Honey showers over you, splattering over every part of your supine body. You lick flecks of it from your lips - and, noting looks of approval from the gallery - gather more to drink, making a show of sucking the amber juices from your fingertips. Fluttering your eyes closed, you pull your glistening digits from your mouth and reach out, finding more eager girls all too willing to feel their entertainer’s touch upon the nethers. Arousal-bloated lips part around your questing fingers as you hear the sounds of exhausted girls being pulled from the poles - only to be replaced with fresh troops eager to reduce themselves to simpering tarts.");
+	processTime(13);
+	pc.lust(25);
+	clearMenu();
+	addButton(0,"Next",antOrgyPartThree,voluntary);
+}
+
+public function antOrgyPartThree(voluntary:Boolean):void
+{
+	clearOutput();
+	showAntOrgy();
+	var x:int = pc.cockThatFits(1000);
+	if(x < 0) x = pc.smallestCockIndex();
+	output("Who would have thought that you’d wind up in the middle of an army barracks, surrounded by a dozen masturbating myr, surrounded by hundreds more, also masturbating, while four more line up to fuck you after the first finishes? You let yourself groan. There’s no point in holding it back, not while you’re in the middle of such a debauched gathering. Not while scores of women moan and writhe, juicing and fondling themselves over the thought of a chance at your dick. How could you? It’d be almost... selfish.");
+	output("\n\nLetting your tongue loll out, you thrust your hips upward, slamming home hard, feeling the honeyed honey’s clit grind on against your groin. She screams, thrashing and jiggling, oozing more honey from her bronzed nipples in the moment of her orgasm. Clamping down hard, her walls caress your [pc.cock " + x + "], lavishing it in orgasmic attentions even as her honey drenches your crotch");
+	if(pc.balls > 0) output(", soaking your [pc.balls] in syrupy goodness");
+	else output(", soaking you from [pc.sheath " + x + "] to ass-crack in the syrupy goodness");
+	output(". You answer with another grunt, swallowing the mouthful of honey your tongue had gathered in order to properly vocalize your pleasure. <i>“Yes!”</i>");
+	output("\n\nThe frenzied, potent squeezes on your [pc.cock " + x + "] seem endless, a constant tug and stroke that inexorably drags you toward your own peak. Rather than resist, you let yourself be brought to that heavenly state, marveling at the raw display of glistening, sweat-drenched femininity all around you. Glossy, smooth buttcheeks tremble. Pussy-bearing abdomens bounce and wobble. Pert, orangish-gold breasts gently bounce against suckling onyx lips. Everywhere there is nothing but fucking, nothing but rutting, a symphony of sensuous pleasure enveloping your senses from head to nose to dick to toes.");
+	output("\n\nYou think it might be too much when an adventurous private turns to place her pussy atop your head, utterly enveloping you from chin to the bridge of your nose, but then you find yourself cumming, orgasming to the sight and scent of a hot wet box pressing on your face, needfully demanding your tongue slip inside. You do, of course. What else could you do but lick and cum... slurp and orgasm? Your whole world is amber, a fine coating of it from head to toe, laden with pheromones and sweetness. Your cock is swaddled in it, jerking and spurting, firing [pc.cumNoun] to the tempo set by your gilded mistresses.");
+	//Huge cums
+	if(pc.cumQ() > 5000)
+	{
+		output("\n\nWhen the cum proves too much for the lucky cadet, she ");
+		if(!pc.hasKnot(x)) 
+		{
+			output("pulls free, letting the next-closest girl take you in her mouth, her ebony lips sealing down to try and savor every drop, providing the perfect amount of suction to draw out still more from your aching, spasming ");
+			if(pc.balls > 1) output("balls");
+			else output("form");
+			output(".");
+		}
+		else 
+		{
+			output("tries to pull free, but it’s no use. She’s knotted, sealed to your body by the bulbous, swollen flesh just above your base. Her frantic tugs only serve to excite you further - and ensure another ");
+			if(pc.cumQ() < 5500) output("few squirts are");
+			else if(pc.cumQ() < 6000) output("gallon is");
+			else if(pc.cumQ() < 10000) output("few gallons are");
+			else output("swimming pool worth of spunk is");
+			output(" delivered to her vestigial womb.");
+		}
+	}
+	//Knot, no huge cum
+	else if(pc.hasKnot(x)) output("\n\nWhen she tries to climb off, she catches on your knot, and in a moment of panic, thrashes and tugs, violently trying to climb off. It’s of little use. The swollen bulb of flesh holds her perfectly to your crotch, and her struggles only rekindle your fading passion, ensuring you pump another few squirts of love into her vestigial womb.");
+	//Merge
+	output("\n\nFinally spent, you let your tongue fall limp. You simply don’t have the energy to tame the twat above for the moment. Maybe in a few minutes. Instead, you turn your head to the side and pant, letting the recruit slide herself across your cheek. She doesn’t seem to mind, not even when you gasp from the feeling of your first fuck ");
+	if(pc.hasKnot(x)) output("finally popping off of your still-swollen knot");
+	else output("finally staggering to her feet, backwashing hot [pc.cumNoun] over your [pc.belly].");
+	//bro
+	if(pc.isBro()) 
+	{
+		output("\n\n<i>“Gimme a minute.”</i> You grunt and shake your head, marshalling your impressive internal reserves. If there’s one thing a ");
+		if(pc.isTreated()) output("bull");
+		else output("pro");
+		output(" like you can do, it’s muscle past the limits of refractory periods to please every single one of these ladies.");
+	}
+	//Bimbo
+	else if(pc.isBimbo()) output("\n\nGiggling, you dazedly admit, <i>“Like, I need to catch my breath. I’ll lick and fuck all your pussies in a minutes. They’re fucking yummy!”</i> The last comes out as cheer, said in the sort of tone you’d expect to hear from the girls at a high-school football game instead of someone who just blew a huge load in an alien honeypot.");
+	//Not bizzaro!
+	else output("\n\n<i>“G-girls. I’m spent,”</i> you pant, hoping they’ll give you a few minutes to recuperate before forcing you to copulate once more. <i>“Give me at least a few minutes to recover.”</i>");
+	processTime(18);
+	pc.orgasm();
+	//[Next]
+	clearMenu();
+	addButton(0,"Next",antOrgyPartFour,voluntary);
+}
+
+public function antOrgyPartFour(voluntary:Boolean):void
+{
+	clearOutput();
+	showAntOrgy();
+	output("Light nearly blinds your eyes when the squirming harlot is pulled off your face, revealing the severe-looking visage of this barrack’s commander. <i>“You’re contracted to serve until my soldiers are satisfied, and serve you shall.”</i> She produces a vial of bubbling, pink-hued liquid. <i>“Wartime authorization 647 sanctions the use of enhancement chemicals in times of extreme need, determined by the unit commander.”</i> Looking over soldiers, she bellows out, <i>“I think this qualifies as extreme need. What do my fine soldiers think?”</i>");
+	output("\n\nA chorus of cheers and moans answers her, and nodding to herself, she holds the vial to your [pc.lipsChaste], tipping the frothy liquid in your panting maw. <i>“Drink up.”</i>");
+	//Addict
+	if(pc.hasPerk("Venom Slut") || flags["VENOM_ADDICTION"] != undefined)
+	{
+		output("\n\nOh yes, just what you needed - a touch of venom to make everything feel sharper, harder, and wetter. The taste of it makes your whole body feel juicier and slicker than ever before, like your entire body is one big sexual organ half-way through getting fucked. [pc.EachCock] abruptly returns to full hardness.");
+	 	if(pc.hasLipples()) output(" Your [pc.nipples] part, eager to be stuffed with something, anything.");
+	 	else output(" Your [pc.nipples] crinkle and tingle, anxious for stimulation.");
+	 	output(" Smearing the pink-tinted goo across your lips, you moan like a whore. Then, in a moment of clarity, you realize that you’re actually moaning like a slut. Whores get paid. Sluts fuck for free, and you’ll fuck for free. You’ll fuck so hard for free.");
+	}
+	//Non addict
+	else
+	{
+		output("\n\nEven if you wanted to resist it, you couldn’t. The moment it makes contact with your [pc.lipChaste], the red myr venom’s insidious effects make themselves known, lighting up your nerves like a Christmas tree. Your mouth feels almost like it’s buzzing, like the press of your tongue is a lover’s frantic caress. You open wide to moan, too late realizing that you’ve given the commander ample opportunity to fill your mouth with the drugged sludge. Briefly, you make an effort not to swallow, but it just leaves your mouth feeling like one of those needfully dripping pussies, so hollow and aching for sensation.");
+		output("\n\nYou swallow, feeling [pc.eachCock] instantly leap back to full hardness, feeling warmth course through your body, buzzing in your fingers and [pc.toes]. Running your arms over your cunt-slicked body, you can’t help but feel like you’re melting - like your body is heating up and dissolving into the pooling sex-juices. Everything feels so good too. Is this how a galotian feels all the time? Gooey and good, like any part of your body could become the most sensuous thing in the world in a nanosecond?");
+		output("\n\nYou moan like a slut, not caring at all how it sounds to the assembled myr. You’re just like them, sweet and wet, waiting to be taken and fucked. They’ve gone so long without pleasure, and you can think of nothing but giving it back to them, however long it takes.");
+	}
+	//merge
+	output("\n\n<i>“Next!”</i> bellows the commander, slapping your cunt-glazed cheek for good measure.");
+	output("\n\nIt feels... good. It should hurt, but it’s like she can do no wrong. You bite your lip and leak, squirming while the next myr in line mounts you.");
+	output("\n\nThe girls on poles go into a frenzy at the sight of your excessively eager behavior. At least two of them cum, gushing honey everywhere. It sprays out like water from a firehose, drenching you. Thick blobs of it roll down your side, puddling on the mattress and the slab below. Only now how can you appreciate how this place had such a sweet smell when you arrived, no matter how well-cleaned it had been. There’s simply too much thick, cloying scent soaking into the padding below that no amount of soap will ever wash it out. The stone itself is impregnated with girl-musk, forever attuned to the scent of drizzling myr-puss. Ten centuries from now, you have no doubt that this room will still smell like fucking.");
+	output("\n\nWaggling your tongue at the commander, you all but beg her to mount your face. She pushes the private back on you instead, watching with a sneering expression that does a poor job of hiding her intrigue. That’s fine. One cunt is as delicious as another. Rolling her clit on your [pc.tongue], you wonder how many pussies you’ll be able to lick - and how many cunts you’ll get to bring to climax. Right now, your [pc.cock " + x + "] feels harder than armor plating, but surely your endless desire will fade later. You’re going to try like hell to please all of them.");
+	output("\n\nAnd then pussy is wrapping around you once more, dissolving your perceptions in its soppy-wet darkness, consuming you with the delightful flutters of his hot folds. You’re all wrapped up in it, thrusting and pumping, joyously celebrated the endless pleasure that comes from fucking such a perfectly pleasurable quim.");
+	output("\n\nHoney glistens on your partner’s abdomen, squirted by her sisters. Mouths suckle the chosen girl’s nipples and kiss her shoulders, kissing up to her neck in order to reach each other’s mouths. Her breasts are a touch bigger than your previous user, and they bounce and ripple enticingly with every greedy gyration of her otherwise muscular body. She glistens and twists, revealing herself for the engine of sexual gratification that she is, feeding and giving bliss in equal measure.");
+	output("\n\nThe pleasure crests within you, forcing you to cum, driving you to orgasm, demanding that you paint this ant-girl’s pussy as thoroughly as the last. Your lips seal around a clit, and your tongue thrashes while you cum. It feels like your mouth is cumming just as much as your [pc.cocks], and you do everything you can to prolong that perfect pleasure.");
+	processTime(33);
+	pc.orgasm();
+	pc.lust(100);
+	//Red myr dose
+	imbibeVenomEffects(true);
+	//[Next]
+	clearMenu();
+	addButton(0,"Next",antOrgyPartFive,voluntary);
+}
+
+public function antOrgyPartFive(voluntary:Boolean):void
+{
+	clearOutput();
+	showAntOrgy();
+	output("You’re still tongue-fucking the same greedy girl a half-hour later. Two more vaginas have graced your [pc.cock " + x + "] since, but it shows no sign of flagging. Nor should it. You can’t imagine yourself being any less hard or ready to fuck than these women’s other toys. It’s sweet, not just in the smell and the taste of their gloriously delectible cum, but in the raw experience of it - the wonderfully improbable gestalt of a horde of women on your fingers, mouth, and cock, surrounding you and bathing you in the scintillating scent of their wanton need.");
+	output("\n\nYou’re aware of yourself cumming a few more times, feeling the pleasant contractions at molten eruptions repeatedly, but you never seem to come down from them. Especially not when more venom is drizzled between the gilded cunt on your face and your tongue, forcing you to drink more down. Your fingers feel just as good as your cock, thrusting in and out, pumping and humping and squelching in the beautiful entrances to these pretty privates’ privates.");
+	var x:int = pc.cockThatFits(1000);
+	if(x < 0) x = pc.smallestCockIndex();
+	output("\n\nOver and over, your [pc.cock " + x + "] experiences new vaginas. Far more than five girls mount you, and the poles must have seen at least two hundred different cunts, but there are always more to use you, always more slits, clits, and tits.");
+	output("\n\nYou serve them as best you are able. Even when your muscles ache and your [pc.cocks] ");
+	if(pc.cockTotal() == 1) output("is");
+	else output("are");
+	output(" raw, you serve them, still hard, still fighting to impregnate every one of them, no matter how infertile.");
+	output("\n\nThen two women get the bright idea to press their abdomens together, pussy-to-pussy and both within reach of your tongue. You stop getting chances to see what’s going on, but there’s little reason to care, not when you’re drunk on saccharin cunt.");
+	processTime(60);
+	//Red myr dose
+	imbibeVenomEffects(true);
+	for(var y:int = 0; y < 10; y++) { pc.orgasm(); }
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+public function antOrgyEnding(voluntary:Boolean):void
+{
+	clearOutput();
+	showName("THE\nAFTERMATH");
+	//Take 50% HP damage, reduce energy to 0, then pass 120 minutes
+	processTime(120);
+	pc.HP(-1 * Math.round(pc.HPMax()/2));
+	pc.energy(pc.energyMax());
+	output("When you come to, everything hurts. You can barely move without wincing, but you make yourself look around all the same.");
+	output("\n\nYou’re no longer in the living quarters. Instead, you’re in a small chamber adjacent to the street - but still sitting on the familiar sticky mattress. One door leads out and another deeper into the complex. You note that the one leading in has been locked, leaving you no choice but take the walk of shame. Your equipment is by the door, totally accounted for - along with a few worthless gems and some much more useful credits. It would seem your ");
+	if(!voluntary) output("accidental");
+	else output("group");
+	output(" whoring has earned you a pretty penny.");
+	output("\n\nNow if only you could shower before stepping out into the street. Everyone is going to see how thoroughly you’ve been used");
+	if(pc.exhibitionism() >= 33 && pc.exhibitionism() < 66) output(", a thought that secretly thrills you");
+	else if(pc.exhibitionism() >= 66) output(", a thought that makes you all the more eager to step outside");
+	output(".");
+	IncrementFlag("ANT_ORGY_COUNT");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
