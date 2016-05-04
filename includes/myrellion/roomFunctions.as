@@ -473,6 +473,32 @@ public function kressiaBasicBonusBitches():Boolean
 	}
 	return false;
 }
+
+public function kressiaWarehouseExterior():Boolean
+{
+	if (kressiaBasicBonusBitches()) return true;
+	
+	if (flags["FAZIAN_QUEST_RESCUE_TIMER"] != undefined)
+	{
+		if (flags["FAZIAN_QUEST_RESCUE_TIMER"] + (6 * 60) < GetGameTimestamp())
+		{
+			output("\n\nIt’s still chaos around here. Red myr soldiers are running back and forth around the warehouse and the surrounding buildings, shouting at each other and into blocky communication devices. A line of crestfallen gold myr are being led back inside. The smell of saltpetre and burning is on the air. There does not seem to be any sign of Major Ehstraffe fortunately, and the reds either ignore you or impatiently tell you to get out of the way.");
+		}
+		else
+		{
+			output("\n\nTo the east looms the warehouse. A grim-faced kui-tan is in terse discussion with a group of red myr military brass in front of the main gate. Three other reds are popping the flashbulbs of their primitive recording devices at every inch of the warehouse’s grim facade.");
+		}
+	}
+	else if (flags["FAZIAN_QUEST_STATE"] == FAZIAN_QUEST_RESCUE)
+	{
+		addButton(0, "Approach", fazianQuestApproachWarehouse);
+	}
+	
+	setNavDisabled(NAV_EAST_DISABLE);
+	
+	return false;
+}
+
 public function sledgehammersBonus():Boolean
 {
 	showBust("MYR_GOLD_GUARD_HAMMER","","MYR_GOLD_GUARD_HAMMER");

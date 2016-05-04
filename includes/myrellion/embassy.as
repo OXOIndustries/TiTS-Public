@@ -124,6 +124,11 @@ public function jurosTalkMenu(currentFunc:Function):void
 		if (currentFunc == talkWithJuroAbootOrangeMyr) addDisabledButton(4, "OrangeMyr", "Orange Myr", "You just finished discussing that.");
 		else addButton(4, "OrangeMyr", talkWithJuroAbootOrangeMyr, undefined, "Orange Myr", "Talk to the kui-tan ambassador about the possibility of peace through genetic manipulation. Maybe the U.G.C. could help distribute the stuff for Steele Tech.");
 	}
+
+	if (flags["FAZIAN_QUEST_STATE"] == FAZIAN_QUEST_STARTED && flags["FAZIAN_QUEST_JURO"] == undefined)
+	{
+		addButton(5, "Fazian", fazianQuestJuro);
+	}
 	
 	addButton(14, "Leave", mainGameMenu);
 }
