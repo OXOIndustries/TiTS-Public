@@ -2540,7 +2540,6 @@
 			// NaN production was down to maxCum
 			// if the player didn't have a cock, maxCum returns 0.
 			// anything / 0 = NaN
-			var msg: String = "";
 			if (hasCock())
 			{
 				// @FENCUMFIX
