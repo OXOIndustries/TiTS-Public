@@ -881,7 +881,7 @@ public function brothelTurnTrixLicensedWhore(service:String = "none"):void
 	else if(service == "rooms")
 	{
 		showBrothelLady(true);
-		output("After a frazzling few hours, you finish your shift under the front desk.");
+		output("\n\nAfter a frazzling few hours, you finish your shift under the front desk.");
 		output("\n\n<i>“Ungh! Nice,”</i> Kat grunts, clutching the wood hard and grinding her landing-stripped pussy into your face. A small trickle of femcum makes its way down your chin. <i>“Nothing like a well-trained tongue at the end of a long ");
 		if(hours < 15) output("morning");
 		else output("evening");

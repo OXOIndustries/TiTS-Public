@@ -831,9 +831,9 @@ public function thareSexResponse(response:String = "none"):void
 			// Small pussy:
 			else output("\n\nWith the galaxy so full of assholes with ludicrously sized schlongs, it’s nice to be able to enjoy a nicely sized dick for once. Able’s earnest five inches plugs your petite pussy up quite nicely, and the oral you made him give you first has made you wonderfully sensitized. You exhale hard as his spasmodic thickness sends delightful buzzes rifling into your core, wonderful to tighten your muscles around and work ruthlessly hard.");
 			// {merge}
-			output("\n\nThe overload of pheromones humming through your veins precludes sitting back and luxuriating in the tender bee boy you’ve got trapped beneath you; instead you have to hump him harder and harder in a feedback of furious arousal. Able cries out as you clutch his arms and cock up hard");
-			if(pc.hasBreasts()) output(", [pc.chest] bouncing up and down");
-			output(" and exhale hard, sweat beading on your brow as you rollercoaster into another, even bigger orgasm, pleasure coiling and coruscating through your soaked sex, more and more of it forced out using the hard, chubby obstruction mired in the middle of it.");
+			output("\n\nThe overload of pheromones humming through your veins precludes sitting back and luxuriating in the tender bee boy you’ve got trapped beneath you; instead you have to hump him harder and harder in a feedback of furious arousal. Able cries out as you clutch his arms and cock tightly, your");
+			if(pc.hasBreasts()) output(" [pc.chest] bouncing up and down,");
+			output(" lungs exhaling deeply, sweat beading on your brow as you rollercoaster into another, even bigger orgasm, pleasure coiling and coruscating through your soaked sex, more and more of it forced out using the hard, chubby obstruction mired in the middle of it.");
 			// High femcum output:
 			if(pc.girlCumQ() >= 2000) output(" There really is no end to your juices when you’re this aroused, and you’re happy to soak not just Able’s face but also his waist and flat tummy in [pc.femCum].");
 			output("\n\nYou come down slowly, [pc.skin] prickling. You open your [pc.eyes] to notice that Able is gazing up at you pleadingly. It takes a moment for you to drink in the fact that, despite what must be an intense desire to do so, he hasn’t orgasmed.");

@@ -805,7 +805,7 @@ public function analWithYammibalLector(x:int = 0):void
 		output(".");
 	}
 	else output("filled her to the brim with dickmeat. You’ve got plenty more to spare, but there’s no way the bulging sparadat can take any more!");
-	pc.cockChange();
+	if(x >= 0) pc.cockChange();
 
 	output("\n\nYou stay still for a moment after that, letting her adjust to the girth inside her, slowly relaxing her clenching sphincter. While she does, you gently massage the oil into Yammi’s cheeks, squeezing and kneading her plump rump to help ease her into things. Beneath the action, you can feel Yammi’s twat rubbing wetly against your thighs, letting you feel just how excited she’s gotten. For someone so timid, she seems to be enjoying herself...");
 

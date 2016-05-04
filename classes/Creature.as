@@ -2068,6 +2068,7 @@
 					buffer = kneesDescript();
 					break;
 				case "footOrFeet":
+				case "feetOrFoot":
 				case "feet":
 					buffer = feet();
 					break;
@@ -2546,13 +2547,17 @@
 				//ballFullness = Math.round(((currentCum() - cumQ()) / maxCum()) * 100);
 				var cumAmt:Number = Math.round(((currentCum() - cumQ()) / maxCum()) * 100);
 				if (cumAmt < 0) cumAmt = 0;
+				var msg: String = "";
 				
 				if(this is PlayerCharacter || fluidSimulate) ballFullness = cumAmt;
 
 				//'Nuki Ball Reduction
-				if(perkv1("'Nuki Nuts") > 0 && balls > 1 && this is PlayerCharacter)
+				if(perkv1("'Nuki Nuts") > 0 && balls >= 1 && this is PlayerCharacter)
 				{
-					kGAMECLASS.eventBuffer += "\n\nYour balls are back to their normal size once more. What an incredible relief!";
+					msg += "\n\nYour";
+					if(balls == 1) msg += " testicle is back to its";
+					else msg += " balls are back to their";
+					msg += " normal size once more. What an incredible relief!";
 					ballSizeMod -= perkv1("'Nuki Nuts");
 					setPerkValue("'Nuki Nuts",1,0);
 					kGAMECLASS.nutStatusCleanup();
@@ -2564,7 +2569,13 @@
 				}
 				if(statusEffectv1("Nyrea Eggs") > 0 && hasOvipositor())
 				{
-					addStatusValue("Nyrea Eggs", 1, -1 * (6 + rand (5)));
+					var nyreaEggs:Number = (6 + rand(5));
+					if((statusEffectv1("Nyrea Eggs") - nyreaEggs) < 0) nyreaEggs = statusEffectv1("Nyrea Eggs");
+					msg += "\n\nYou’ve manage to expel";
+					if(nyreaEggs == 1) msg += " one faux nyrea egg";
+					else msg += " " + num2Text(nyreaEggs) + " faux nyrea eggs";
+					msg += " from your orgasm!";
+					addStatusValue("Nyrea Eggs", 1, -1 * (nyreaEggs));
 					if(statusEffectv1("Nyrea Eggs") < 0) setPerkValue("Nyrea Eggs",1,0);
 				}
 			}
@@ -2590,6 +2601,8 @@
 				addStatusValue("Dumbfuck Orgasm Procced",1,1);
 				trace("DUMBFUCK STATUS:" + statusEffectv1("Dumbfuck Orgasm Procced"));
 			}
+			
+			if(msg.length > 0) kGAMECLASS.eventBuffer += ParseText(msg);
 			
 			lustRaw = 0;
 			energy(-5);
@@ -3443,6 +3456,7 @@
 				else if (statPercent < 85) change += .25;
 				else if (statPercent < 90) change += .2;
 				else if (statPercent < 95) change += .15;
+				else change += .1;
 				if(arg < 0) arg = 0;
 			}
 			if (stat == "physique") return physique(change);
@@ -7451,7 +7465,7 @@
 			//You can't cum more than you can possibly have!
 			if(quantity > maxCum()) quantity = maxCum();
 			//Overloaded nuki' nuts will fully drain
-			if(hasPerk("'Nuki Nuts") && balls > 1 && perkv1("'Nuki Nuts") > 0 && quantity < currentCum()) quantity = currentCum();
+			if(hasPerk("'Nuki Nuts") && balls >= 1 && perkv1("'Nuki Nuts") > 0 && quantity < currentCum()) quantity = currentCum();
 			//BIOMASS ADDED LAST!
 			if(statusEffectv1("Goo Vent") == 1) 
 			{
@@ -7522,7 +7536,11 @@
 				if(balls == 1) kGAMECLASS.eventBuffer += "is";
 				else kGAMECLASS.eventBuffer += "are";
 				kGAMECLASS.eventBuffer += " this full.";
-				if(hasPerk("'Nuki Nuts") && balls > 1) kGAMECLASS.eventBuffer += " Of course, your kui-tan physiology will let your balls balloon with additional seed. They've already started to swell. Just make sure to empty them before they get too big!";
+				if(hasPerk("'Nuki Nuts") && balls >= 1)
+				{
+					if(balls == 1) kGAMECLASS.eventBuffer += " Of course, your kui-tan physiology will let your sack swell with additional seed. It’s already started to swell. Just make sure to empty it before it gets too big!";
+					else kGAMECLASS.eventBuffer += " Of course, your kui-tan physiology will let your balls balloon with additional seed. They've already started to swell. Just make sure to empty them before they get too big!";
+				}
 				createStatusEffect("Blue Balls", 0,0,0,0,false,"Icon_Sperm_Hearts", "Take 25% more lust damage in combat!", false, 0,0xB793C4);
 			}
 			
@@ -7531,7 +7549,7 @@
 			//trace("AFTER FULLNESS: " + ballFullness);
 			if (ballFullness >= 100) 
 			{
-				if(hasPerk("'Nuki Nuts") && balls > 1)
+				if(hasPerk("'Nuki Nuts") && balls >= 1)
 				{
 					//Figure out a % of normal size to add based on %s.
 					var nutChange:Number = (ballFullness/100) - 1;
@@ -10544,14 +10562,14 @@
 				else if (type == GLOBAL.TYPE_NAGA)
 				{
 					if (!simple)
-						desc += RandomInCollection(["reptilian gash", "naleen-like slit", "snake-like cunt", "semi-concealed pussy", "supple pussy", "snake-like box", "alien cunt", "half-hidden twat"]);
+						desc += RandomInCollection(["reptilian gash", "naleen-like slit", "snake-like cunt", "semi-concealed pussy", "pussy", "snake-like box", "alien cunt", "half-hidden twat"]);
 					else
 						desc += RandomInCollection(["naleen-cunt", "snake-pussy", "box", "snake-twat", "pussy", "xeno-cunt", "pussy", "slit", "slit"]);
 				}
 				else if (type == GLOBAL.TYPE_VANAE)
 				{
 					if (!simple)
-						desc += RandomInCollection(["tentacle-laden gash", "writhing pussy", "human-like cunt", "vanae pussy", "supple pussy", "xeno-cunt", "alien pussy", "feeler-lined pussy", "caressing cunt", "stroking snatch", "massaging cunny", "licker-lined pussy", "silky twat"]);
+						desc += RandomInCollection(["tentacle-laden gash", "writhing pussy", "human-like cunt", "vanae pussy", "pussy", "xeno-cunt", "alien pussy", "feeler-lined pussy", "caressing cunt", "stroking snatch", "massaging cunny", "licker-lined pussy", "silky twat"]);
 					else
 						desc += RandomInCollection(["vanae-cunt", "tenta-pussy", "box", "vanae-twat", "pussy", "xeno-cunt", "pussy", "twat", "cunt"]);
 				}
@@ -10671,7 +10689,7 @@
 					else if (temp <= 8) vag += "unstretched";
 					else vag += "narrow";
 				} else if (vaginas[vaginaNum].looseness() <= 2) {
-					temp = rand(10);
+					//temp = rand(10);
 					//if (temp <= 5) vag += "average";
 					//else 
 					vag += "supple";
@@ -12690,8 +12708,7 @@
 			return cockHeadGetName(tailGenitalArg);
 		}
 		public function cockHeadGetName(type: int = 0): String {
-			var names: Array = ["crown", "head", "glans", "tip", "cock-head"];
-			var type: int;
+			var names: Array;
 			
 			switch(type)
 			{
@@ -12733,6 +12750,9 @@
 					break;
 				case GLOBAL.TYPE_HRAD:
 					names = ["bullet-shaped tip", "angry cock-head", "foreskin-covered crown", "foreskin-covered tip", "bullet-shaped head"];
+					break;
+				default:
+					names = ["crown", "head", "glans", "tip", "cock-head"];
 					break;
 			}
 			
@@ -14712,7 +14732,7 @@
 						cumTransfer += amountVented;
 						if (cumTransfer > statusEffects[o].value1) cumTransfer = statusEffects[o].value1;
 						statusEffects[o].value1 -= cumTransfer;
-						cumCascade(cumTransfer);
+						cumCascade(cumTransfer, statusEffects[o].value3);
 						trace("Cum Metabolized: " + cumTransfer + " mLs");
 						//cumProduced(timePassed);
 					}
@@ -14732,24 +14752,45 @@
 		 * Kui-tan "Cum Cascade" function.
 		 * Takes ingested cum and adds 5x to balls.
 		 * @param	amount	amount of cum digested in mL
+		 * @param   fluid  fluid type of cum digested (defaults to cum)
 		 */
-		public function cumCascade(amount:Number): void 
+		public function cumCascade(amount:Number, fluid:Number = GLOBAL.FLUID_TYPE_CUM): void 
 		{
 			var percent:Number = (amount / maxCum()) * 500; //Take percentage of maximum cum, and multiply 5x.
 			trace("Percent Increase: " + percent + " %");
 			if (percent > 10) {
-				if (this is PlayerCharacter) kGAMECLASS.eventBuffer += ParseText("\n\nYou hear a faint gurgling from your stomach and [pc.balls] as you feel them swelling fuller and fuller each passing second. With your kui-tan physiology, all that cum you ingested must have spiked your own production!");
+				if (this is PlayerCharacter) {
+					var ccnotice:String = "\n\nYou hear a faint gurgling from your stomach and [pc.balls] as you feel ";
+					if (balls == 1) ccnotice += "it";
+					else ccnotice += "them";
+					if (ballFullness + percent > 100) ccnotice += " swelling with more and more [pc.cumNoun]";
+					else ccnotice += " getting fuller and fuller with [pc.cumNoun]";
+					ccnotice += " each passing second. With your kui-tan physiology, all that " + fluidNoun(fluid) + " you ingested must have spiked your own [pc.cumNoun] production!";
+					kGAMECLASS.eventBuffer += ParseText(ccnotice);
+				}
 				lust(20); //increase Lust
 			}
 			if (ballFullness + percent > 100) { //prevent craziness when going over
 				var delta:Number = 0;
-				if (ballFullness < 100) delta = Math.round((100 - ballFullness) * maxCum() / 100); //catch transition from filling to swelling
+				var bbnotice:String = ""; //potential blue balls notification.
+				if (ballFullness < 100) { //catch transition from filling to swelling
+					delta = Math.round((100 - ballFullness) * maxCum() / 100);
+					
+					if (this is PlayerCharacter) { //blue ball notices
+						if (balls == 1) bbnotice += "\n\nYour [pc.ballsNoun] has filled so much from your cum cascade that it's started to swell. It won't take much to excite you so long as your [pc.balls] is this full.";
+						else bbnotice += "\n\nYour [pc.ballsNoun] have filled so much from your cum cascade that they've started to swell. It won't take much to excite you so long as your [pc.balls] are this full.";
+					}
+					
+					createStatusEffect("Blue Balls", 0,0,0,0,false,"Icon_Sperm_Hearts", "Take 25% more lust damage in combat!", false, 0,0xB793C4); //add blue balls status effect
+				}
 				ballFullness = 100;
 				var finalCum:Number = currentCum() + (amount * 5) - delta; //x5 again because we aren't using percent for this
 				var deltaBallSize:Number = Math.round(Math.sqrt(finalCum / (2 * ballEfficiency * balls)) * 100) / 100 - ballSize(); //calculate new ball size to hold all that cum
 				ballSizeMod += deltaBallSize;
 				addPerkValue("'Nuki Nuts", 1, deltaBallSize);
 				trace("Ball size change: " + deltaBallSize);
+				
+				if(bbnotice.length > 0) kGAMECLASS.eventBuffer += ParseText(bbnotice); //parse blue balls notice
 			}
 			else ballFullness += percent;
 		}
