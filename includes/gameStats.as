@@ -3752,7 +3752,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Streets of Gildenmere
-			if(flags["MET_ORRYX"] != undefined || flags["LIRIEL_MET"] != undefined)
+			if(flags["MET_ORRYX"] != undefined || flags["LIRIEL_MET"] != undefined || flags["LAST_ANT_ORGY"] != undefined)
 			{
 				output2("\n<b><u>Gildenmere</u></b>");
 				// Liriel, Martians
@@ -3776,6 +3776,17 @@ public function displayEncounterLog(showID:String = "All"):void
 						else output2(" Shipped a load today");
 					}
 					if(flags["MET_ORRYX"] >= 2 && flags["ORRYX_REP"] != undefined) output2("\n<b>* Orryx, Reputation Level: </b>" + flags["ORRYX_REP"]);
+				}
+				// Ant Orgy!
+				if (flags["LAST_ANT_ORGY"] != undefined)
+				{
+					output2("\n<b>* Horny Myr Soldiers:</b>");
+					if (flags["LAST_ANT_ORGY"] == -1) output2(" Orgy avoided");
+					if (flags["LAST_ANT_ORGY"] == 0) output2(" Orgy refused");
+					if (flags["LAST_ANT_ORGY"] == 1) output2(" Orgy accepted");
+					if (flags["LAST_ANT_ORGY"] == 2) output2(" Orgy failed to avoid");
+					if (flags["ANT_ORGY_TIME"] != undefined) output2(", " + prettifyMinutes(GetGameTimestamp() - flags["ANT_ORGY_TIME"]) + " ago");
+					if (flags["ANT_ORGY_COUNT"] != undefined) output2("\n<b>* Horny Myr Soldiers, Times Had Orgy With: </b>" + flags["ANT_ORGY_COUNT"]);
 				}
 				variousCount++;
 			}

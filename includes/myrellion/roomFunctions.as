@@ -431,7 +431,7 @@ public function aeroplaneFlightShit(kressia:Boolean = true):void
 		output("\n\nYou mumble a curse for the red myr not having a spaceport of their own and put a hand to your own stomach, trying not to puke too. Miserable things, these old planes. Absolutely miserable...");
 		output("\n\nIt's a blessed relief when the plane lands, even if you're nearly certain the bucket of bolts with rattle itself apart when it skids down the runway. But finally, the ride comes to an end and the plane's crew chief kicks the ramp down, letting you and the other passengers shuffle off.");
 		currentLocation = "800";
-  		generateMapForLocation(currentLocation);
+		generateMapForLocation(currentLocation);
 	}
 	//[Next]
 	//Intro to DMZ via Aeroplane
@@ -440,7 +440,7 @@ public function aeroplaneFlightShit(kressia:Boolean = true):void
 	{
 		output("You hop onto a diplomatically-marked plane idling on the runway, bound for the Demilitarized Zone deep in Republic territory. It's only a few minutes of waiting before the captain arrives and the rest of the seats fill up with red myr troops and other offworlders heading back to their ships. The plane takes off punctually, sending you hurtling through the sky towards your destination.\n\nThe plane rocks and shudders seemingly at random, making you and every ant-girl aboard sway uneasily. Engines roar deafeningly outside, and your [pc.ears] keep popping with the random changes in pressure. A couple of times, other passengers get visibly ill, and go for small paper bags tucked in the seats ahead of them.\n\nYou mumble a curse for the red myr not having a spaceport of their own and put a hand to your own stomach, trying not to puke too. Miserable things, these old planes. Absolutely miserable....\n\nIt's a blessed relief when the plane lands, even if you're nearly certain the bucket of bolts with rattle itself apart when it skids down the runway. But finally, the ride comes to an end and the plane's crew chief kicks the ramp down, letting you and the other passengers shuffle off.");
 		currentLocation = "612";
-  		generateMapForLocation(currentLocation);
+		generateMapForLocation(currentLocation);
 	}
 	processTime(30+rand(10));
 	clearMenu();
@@ -550,7 +550,7 @@ public function gildenmereElevatorBottomBonus():Boolean
 		else output("their diplomat");
 		output(" for one.");
 		currentLocation = "611";
-  		generateMapForLocation(currentLocation);
+		generateMapForLocation(currentLocation);
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 		return true;
@@ -608,14 +608,14 @@ public function noManzLandBonus():Boolean
 public function gildenmereStreetBonus():Boolean
 {
 	if(currentLocation == "717") genesModsExteriorRoomDecorator();
-	if(flags["IRELLIA_QUEST_STATUS"] == 1  && (rand(35) == 0 || debug))
+	if(flags["IRELLIA_QUEST_STATUS"] == 1 && (rand(35) == 0 || debug))
 	{
 		unificationInvitationEventProcInGildenmere();
 		return true;
 	}
 	if(pc.hasCock())
 	{
-		if((flags["LAST_ANT_ORGY"] == undefined && rand(50) == 0) || (flags["LAST_ANT_ORGY"] != undefined && pc.isCrotchExposed() && rand(20) == 0 && flags["ANT_ORGY_TIME"] + 1440 > GetGameTimestamp()))	
+		if((flags["LAST_ANT_ORGY"] == undefined && rand(50) == 0) || (flags["LAST_ANT_ORGY"] != undefined && pc.isCrotchExposed() && rand(20) == 0 && ((flags["ANT_ORGY_TIME"] + 1440) <= GetGameTimestamp())))
 		{
 			publicUseForDickedPCsInGildenmere();
 			return true;
@@ -931,6 +931,18 @@ public function showAntOrgy():void
 
 public function publicUseForDickedPCsInGildenmere():void
 {
+	rooms["GOLD_BUNKER"] = new RoomClass(this);
+	rooms["GOLD_BUNKER"].roomName = "SOUTHWEST\nBUNKER";
+	rooms["GOLD_BUNKER"].description = "";
+	rooms["GOLD_BUNKER"].planet = "PLANET: MYRELLION";
+	rooms["GOLD_BUNKER"].system = "SYSTEM: SINDATHU";
+	rooms["GOLD_BUNKER"].northExit = "734";
+	rooms["GOLD_BUNKER"].addFlag(GLOBAL.INDOOR);
+	rooms["GOLD_BUNKER"].addFlag(GLOBAL.PUBLIC);
+	
+	rooms["734"].southExit = "GOLD_BUNKER";
+	generateMapForLocation(currentLocation);
+	
 	flags["ANT_ORGY_TIME"] = GetGameTimestamp();
 	showAntCommander();
 	//Repeat Gildenbutts Intro
@@ -947,6 +959,7 @@ public function publicUseForDickedPCsInGildenmere():void
 		else output("You look like the exhibitionist type. Care to make a bit of shine? My girls’ last entertainer skipped out on them, and they are so pent up.");
 		output("”</i> She doesn’t appear to recognize you. Perhaps her eyesight is especially poor? Or, more likely, she thinks all non-myr look the same.");
 		output("\n\nWill you volunteer to entertain a whole unit of gold myr soldiers?");
+		processTime(1);
 		clearMenu();
 		addButton(0,"Yes",goWithTheAntOrgy);
 		addButton(1,"No",turnDownPublicAntUse,undefined,"No","You are much too busy for this.");
@@ -963,6 +976,7 @@ public function publicUseForDickedPCsInGildenmere():void
 		output("\n\nYou tilt your head to the side, clearly confused.");
 		output("\n\n<i>“Oh, you poor, simple thing. Get a dick between your legs, and suddenly you can’t be bothered to keep up with your duties.”</i> Facepalming, the commander sighs heavily. <i>“You don’t even have to do anything difficult, just lie down and...”</i> She blushes, waving her hand in the air in frustration. <i>“...you know! You’re coming with us until you’ve finished your job.”</i> Muttering under her breath, she adds, <i>“These brainless entertainment " + pc.mf("boys","sluts") + " have no sense of honor.”</i>");
 		output("\n\nYou could make a break for it, or go along with them. It would seem they have you mistaken for someone else...");
+		processTime(2);
 		//[Run] [Go With]
 		clearMenu();
 		addButton(0,"Go With",goWithTheAntOrgy);
@@ -977,10 +991,13 @@ public function turnDownPublicAntUse():void
 	//Repeat - no
 	if(flags["LAST_ANT_ORGY"] != undefined)
 	{
+		rooms["734"].southExit = "";
+		
 		output("<i>“No.”</i>");
 		output("\n\nThe commander looks at you incredulously, flicking her onyx eyes up and down your body. <i>“Truly? Why dress in such a way if not to arouse others?”</i> Shaking her head, she sighs. <i>“Never mind. We’ll find someone suitable, won’t we girls?”</i>");
 		output("\n\n<i>“<b>Yes ma’am!</b>”</i>");
 		output("\n\nThey march off. Weirdos.");
+		processTime(1);
 		flags["LAST_ANT_ORGY"] = 0;
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
@@ -1003,6 +1020,8 @@ public function runningFromAntsmex():void
 	var runScore:Number = pc.reflexes()/2 + rand(20);
 	if(runScore > 20)
 	{
+		rooms["734"].southExit = "";
+		
 		output("The slow-footed soldiers are no match for an explorer on the run like yourself. You ");
 		if(runScore > 30) output("easily outpace them");
 		else output("gradually pull away from them");
@@ -1036,8 +1055,12 @@ public function runningFromAntsmex():void
 //Go With
 public function goWithTheAntOrgy(voluntary:Boolean = true):void
 {
+	currentLocation = "GOLD_BUNKER";
+	generateMapForLocation(currentLocation);
+	
 	clearOutput();
 	showAntOrgy();
+	
 	if(voluntary)
 	{
 		flags["LAST_ANT_ORGY"] = 1;
@@ -1107,13 +1130,13 @@ public function goWithTheAntOrgy(voluntary:Boolean = true):void
 	//Merge
 	output("\n\n<i>“Oh, [pc.heShe]’s excited,”</i> a high-pitched voice observes.");
 	output("\n\n<i>“May we mount [pc.himHer], mistress?”</i>");
-	output("\n\n<i>“Oh please! How we can not");
+	output("\n\n<i>“Oh please! How can we not");
 	if(pc.longestCockLength() < 6) output(" play with such a feeble member");
 	output("?”</i>");
 	output("\n\nThe commander nods, her cheeks slowly coloring. <i>“It seems only fitting since [pc.heShe] ");
 	if(flags["ANT_ORGY_COUNT"] == undefined) output("was so late to arrive");
 	else output("has put on such a wanton display");
-	output(". Very well. Ithris, Borea, Mystryn, Haedin, and Phorah.  You set the top scores in this week’s physical evaluation, so you may ride our entertainment directly, if you wish.”</i> She raises an arm when all five of the named girls step forward. <i>“In that order. No fighting over our guest.”</i>");
+	output(". Very well. Ithris, Borea, Mystryn, Haedin, and Phorah. You set the top scores in this week’s physical evaluation, so you may ride our entertainment directly, if you wish.”</i> She raises an arm when all five of the named girls step forward. <i>“In that order. No fighting over our guest.”</i>");
 	output("\n\n<i>“Yes ma’am!”</i> The five answer, saluting.");
 	processTime(15);
 	pc.lust(20);
@@ -1125,7 +1148,7 @@ public function antOrgyPartDues(voluntary:Boolean):void
 {
 	clearOutput();
 	showAntOrgy();
-	output("Some unspoken signal goes through the horde of armored ant-girls, and as the first lucky lady steps over you, a dozen of the aroused ant-girls advance. You lover-to-be smiles down at you, then lowers herself down so that her crotch sits on your chest and [pc.oneCock] has no choice but to slide up and into her descending abdomen, filling the air with the sloppy, wet-sounding ‘squish’ of penetration. Another, exponentially more decadent sound fills the air but a second later: all twelve of the eager myr maidens mounting their substitute members. Some do it from behind, facing away from you as they watch you being taken. Others face forward, pressing their breasts against one another, shading you beneath a quartette of sapphic kisses.");
+	output("Some unspoken signal goes through the horde of armored ant-girls, and as the first lucky lady steps over you, a dozen of the aroused ant-girls advance. Your lover-to-be smiles down at you, then lowers herself down so that her crotch sits on your chest and [pc.oneCock] has no choice but to slide up and into her descending abdomen, filling the air with the sloppy, wet-sounding ‘squish’ of penetration. Another, exponentially more decadent sound fills the air but a second later: all twelve of the eager myr maidens mounting their substitute members. Some do it from behind, facing away from you as they watch you being taken. Others face forward, pressing their breasts against one another, shading you beneath a quartette of sapphic kisses.");
 	pc.cockChange();
 	var x:int = pc.cockThatFits(1000);
 	if(x < 0) x = pc.smallestCockIndex();
@@ -1136,7 +1159,7 @@ public function antOrgyPartDues(voluntary:Boolean):void
 	output("\n\nLeaning your head back, you give yourself over to the sensations assaulting you, pumping your hips in the air, creating noisy squelches every time you split open the randy ant’s exotic slit. She’s not the tightest, not by a long shot, but ");
 	if(pc.cockVolume(x) >= 700) output("that’s just perfect for someone as hung as you");
 	else output("she makes up for it with power of her internal muscles");
-	output(". Clamping down on you, the gilded slattern transforms her tunnel into a constricting vice, tight enough to bring the friction of flesh to flesh contact back to the fore. No amount of dribbling, girlish honey could make you ignore the texture of her folds, nor the way her muscles contract in different batches, squeezing you from above and below, then from sides.");
+	output(". Clamping down on you, the gilded slattern transforms her tunnel into a constricting vise, tight enough to bring the friction of flesh-to-flesh contact back to the fore. No amount of dribbling, girlish honey could make you ignore the texture of her folds, nor the way her muscles contract in different batches, squeezing you from above and below, then from the sides.");
 	//2nd Dick
 	if(pc.cockTotal() > 1)
 	{
@@ -1147,8 +1170,16 @@ public function antOrgyPartDues(voluntary:Boolean):void
 	}
 	//Merge
 	output("\n\nAll around you, girls start creaming themselves, wantonly bouncing up and down, impaling their swollen, insectile abdomens on the rigid rods, imagining that they’re the lucky girl atop you. Honey showers over you, splattering over every part of your supine body. You lick flecks of it from your lips - and, noting looks of approval from the gallery - gather more to drink, making a show of sucking the amber juices from your fingertips. Fluttering your eyes closed, you pull your glistening digits from your mouth and reach out, finding more eager girls all too willing to feel their entertainer’s touch upon the nethers. Arousal-bloated lips part around your questing fingers as you hear the sounds of exhausted girls being pulled from the poles - only to be replaced with fresh troops eager to reduce themselves to simpering tarts.");
+	
+	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
+	if (!pp.hasVagina()) pp.createVagina();
+	pp.girlCumType = GLOBAL.FLUID_TYPE_HONEY;
+	
 	processTime(13);
 	pc.lust(25);
+	pc.girlCumInMouth(pp);
+	applyPussyDrenched(pc);
+	applyPussyDrenched(pc);
 	clearMenu();
 	addButton(0,"Next",antOrgyPartThree,voluntary);
 }
@@ -1205,8 +1236,16 @@ public function antOrgyPartThree(voluntary:Boolean):void
 	else if(pc.isBimbo()) output("\n\nGiggling, you dazedly admit, <i>“Like, I need to catch my breath. I’ll lick and fuck all your pussies in a minutes. They’re fucking yummy!”</i> The last comes out as cheer, said in the sort of tone you’d expect to hear from the girls at a high-school football game instead of someone who just blew a huge load in an alien honeypot.");
 	//Not bizzaro!
 	else output("\n\n<i>“G-girls. I’m spent,”</i> you pant, hoping they’ll give you a few minutes to recuperate before forcing you to copulate once more. <i>“Give me at least a few minutes to recover.”</i>");
+	
+	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
+	if (!pp.hasVagina()) pp.createVagina();
+	pp.girlCumType = GLOBAL.FLUID_TYPE_HONEY;
+	
 	processTime(18);
 	pc.orgasm();
+	pc.girlCumInMouth(pp);
+	applyPussyDrenched(pc);
+	applyPussyDrenched(pc);
 	//[Next]
 	clearMenu();
 	addButton(0,"Next",antOrgyPartFour,voluntary);
@@ -1241,11 +1280,19 @@ public function antOrgyPartFour(voluntary:Boolean):void
 	output("\n\nAnd then pussy is wrapping around you once more, dissolving your perceptions in its soppy-wet darkness, consuming you with the delightful flutters of his hot folds. You’re all wrapped up in it, thrusting and pumping, joyously celebrated the endless pleasure that comes from fucking such a perfectly pleasurable quim.");
 	output("\n\nHoney glistens on your partner’s abdomen, squirted by her sisters. Mouths suckle the chosen girl’s nipples and kiss her shoulders, kissing up to her neck in order to reach each other’s mouths. Her breasts are a touch bigger than your previous user, and they bounce and ripple enticingly with every greedy gyration of her otherwise muscular body. She glistens and twists, revealing herself for the engine of sexual gratification that she is, feeding and giving bliss in equal measure.");
 	output("\n\nThe pleasure crests within you, forcing you to cum, driving you to orgasm, demanding that you paint this ant-girl’s pussy as thoroughly as the last. Your lips seal around a clit, and your tongue thrashes while you cum. It feels like your mouth is cumming just as much as your [pc.cocks], and you do everything you can to prolong that perfect pleasure.");
+	
+	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
+	if (!pp.hasVagina()) pp.createVagina();
+	pp.girlCumType = GLOBAL.FLUID_TYPE_HONEY;
+	
 	processTime(33);
 	pc.orgasm();
 	pc.lust(100);
 	//Red myr dose
 	imbibeVenomEffects(true);
+	pc.girlCumInMouth(pp);
+	applyPussyDrenched(pc);
+	applyPussyDrenched(pc);
 	//[Next]
 	clearMenu();
 	addButton(0,"Next",antOrgyPartFive,voluntary);
@@ -1265,18 +1312,32 @@ public function antOrgyPartFive(voluntary:Boolean):void
 	else output("are");
 	output(" raw, you serve them, still hard, still fighting to impregnate every one of them, no matter how infertile.");
 	output("\n\nThen two women get the bright idea to press their abdomens together, pussy-to-pussy and both within reach of your tongue. You stop getting chances to see what’s going on, but there’s little reason to care, not when you’re drunk on saccharin cunt.");
+	
+	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
+	if (!pp.hasVagina()) pp.createVagina();
+	pp.girlCumType = GLOBAL.FLUID_TYPE_HONEY;
+	
 	processTime(60);
 	//Red myr dose
 	imbibeVenomEffects(true);
 	for(var y:int = 0; y < 10; y++) { pc.orgasm(); }
+	pc.girlCumInMouth(pp);
+	pc.girlCumInMouth(pp);
+	pc.girlCumInMouth(pp);
+	applyPussyDrenched(pc);
+	applyPussyDrenched(pc);
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	addButton(0,"Next",antOrgyEnding, voluntary);
 }
 
 public function antOrgyEnding(voluntary:Boolean):void
 {
+	currentLocation = "734";
+	rooms["734"].southExit = "";
+	
 	clearOutput();
 	showName("THE\nAFTERMATH");
+	
 	//Take 50% HP damage, reduce energy to 0, then pass 120 minutes
 	processTime(120);
 	pc.HP(-1 * Math.round(pc.HPMax()/2));
@@ -1290,6 +1351,7 @@ public function antOrgyEnding(voluntary:Boolean):void
 	if(pc.exhibitionism() >= 33 && pc.exhibitionism() < 66) output(", a thought that secretly thrills you");
 	else if(pc.exhibitionism() >= 66) output(", a thought that makes you all the more eager to step outside");
 	output(".");
+	pc.credits += 100 + rand(101);
 	IncrementFlag("ANT_ORGY_COUNT");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
