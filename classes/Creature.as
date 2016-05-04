@@ -2533,7 +2533,10 @@
 			)	return false;
 			return true;
 		}
-		public function orgasm(): void {
+		public function orgasm(): void
+		{
+			var msg: String = "";
+			
 			// NaN production was down to maxCum
 			// if the player didn't have a cock, maxCum returns 0.
 			// anything / 0 = NaN
@@ -2547,36 +2550,38 @@
 				//ballFullness = Math.round(((currentCum() - cumQ()) / maxCum()) * 100);
 				var cumAmt:Number = Math.round(((currentCum() - cumQ()) / maxCum()) * 100);
 				if (cumAmt < 0) cumAmt = 0;
-				var msg: String = "";
 				
 				if(this is PlayerCharacter || fluidSimulate) ballFullness = cumAmt;
 
-				//'Nuki Ball Reduction
-				if(perkv1("'Nuki Nuts") > 0 && balls >= 1 && this is PlayerCharacter)
-				{
-					msg += "\n\nYour";
-					if(balls == 1) msg += " testicle is back to its";
-					else msg += " balls are back to their";
-					msg += " normal size once more. What an incredible relief!";
-					ballSizeMod -= perkv1("'Nuki Nuts");
-					setPerkValue("'Nuki Nuts",1,0);
-					kGAMECLASS.nutStatusCleanup();
-				}
 				//Biomass vent
 				if(statusEffectv1("Goo Vent") == 1)
 				{
 					kGAMECLASS.flags["GOO_BIOMASS"] = 0;
 				}
-				if(statusEffectv1("Nyrea Eggs") > 0 && hasOvipositor())
+				if(this is PlayerCharacter)
 				{
-					var nyreaEggs:Number = (6 + rand(5));
-					if((statusEffectv1("Nyrea Eggs") - nyreaEggs) < 0) nyreaEggs = statusEffectv1("Nyrea Eggs");
-					msg += "\n\nYou’ve manage to expel";
-					if(nyreaEggs == 1) msg += " one faux nyrea egg";
-					else msg += " " + num2Text(nyreaEggs) + " faux nyrea eggs";
-					msg += " from your orgasm!";
-					addStatusValue("Nyrea Eggs", 1, -1 * (nyreaEggs));
-					if(statusEffectv1("Nyrea Eggs") < 0) setPerkValue("Nyrea Eggs",1,0);
+					//'Nuki Ball Reduction
+					if(perkv1("'Nuki Nuts") > 0 && balls >= 1)
+					{
+						msg += "\n\nYour";
+						if(balls == 1) msg += " testicle is back to its";
+						else msg += " balls are back to their";
+						msg += " normal size once more. What an incredible relief!";
+						ballSizeMod -= perkv1("'Nuki Nuts");
+						setPerkValue("'Nuki Nuts",1,0);
+						kGAMECLASS.nutStatusCleanup();
+					}
+					if(statusEffectv1("Nyrea Eggs") > 0 && hasOvipositor())
+					{
+						var nyreaEggs:Number = (6 + rand(5));
+						if((statusEffectv1("Nyrea Eggs") - nyreaEggs) < 0) nyreaEggs = statusEffectv1("Nyrea Eggs");
+						msg += "\n\nYou’ve manage to expel";
+						if(nyreaEggs == 1) msg += " one faux nyrea egg";
+						else msg += " " + num2Text(nyreaEggs) + " faux nyrea eggs";
+						msg += " from your orgasm!";
+						addStatusValue("Nyrea Eggs", 1, -1 * (nyreaEggs));
+						if(statusEffectv1("Nyrea Eggs") < 0) setPerkValue("Nyrea Eggs",1,0);
+					}
 				}
 			}
 			
