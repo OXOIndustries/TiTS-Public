@@ -587,10 +587,13 @@ public function gildenmereStreetBonus():Boolean
 		unificationInvitationEventProcInGildenmere();
 		return true;
 	}
-	if((flags["LAST_ANT_ORGY"] == undefined && rand(50) == 0) || (flags["LAST_ANT_ORGY"] != undefined && pc.isCrotchExposed() && rand(20) == 0 && flags["ANT_ORGY_TIME"] + 1440 > GetGameTimestamp())) 
+	if(pc.hasCock())
 	{
-		publicUseForDickedPCsInGildenmere();
-		return true;
+		if((flags["LAST_ANT_ORGY"] == undefined && rand(50) == 0) || (flags["LAST_ANT_ORGY"] != undefined && pc.isCrotchExposed() && rand(20) == 0 && flags["ANT_ORGY_TIME"] + 1440 > GetGameTimestamp()))	
+		{
+			publicUseForDickedPCsInGildenmere();
+			return true;
+		}
 	}
 	return false;
 }
