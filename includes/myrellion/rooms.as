@@ -510,7 +510,7 @@ public function initializeMyrellionRooms():void
 	//716 Crystamere Road
 	rooms["716"] = new RoomClass(this);
 	rooms["716"].roomName = "CRYSTAMERE\nROAD";
-	rooms["716"].description = "There’s plenty of traffic here thanks to the intersection of two different streets. The crystal-lined Crystamere Road meets with an unlabelled avenue paved in black, volcanic rock. You could follow the sable street toward the mushroom gardens and the mammoth elevator at its heart, or stick on the glittering, north-south thoroughfare. This far away, you can really enjoy what a feat of engineering that elevator is. These primitive insect-people built such a thing without knowledge of lasers, antigravity sleds, or high-quality alloys.";
+	rooms["716"].description = "There’s plenty of traffic here thanks to the intersection of two different streets. The crystal-lined Crystamere Road meets with an unlabeled avenue paved in black, volcanic rock. You could follow the sable street toward the mushroom gardens and the mammoth elevator at its heart, or stick on the glittering, north-south thoroughfare. This far away, you can really enjoy what a feat of engineering that elevator is. These primitive insect-people built such a thing without knowledge of lasers, antigravity sleds, or high-quality alloys.";
 	rooms["716"].planet = "PLANET: MYRELLION";
 	rooms["716"].system = "SYSTEM: SINDATHU";
 	rooms["716"].southExit = "715";
