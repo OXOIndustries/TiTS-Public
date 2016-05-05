@@ -8334,6 +8334,7 @@
 			if(!hasVagina())
 			{
 				removePerk("Sterile");
+				removeStatusEffect("Vaginally-Filled");
 			}
 		}
 		public function removeVaginaUnlocked(arraySpot:int = 0, totalRemoved:int = 1):Boolean
@@ -12866,7 +12867,7 @@
 			if(hole >= 0 && hole < 3)
 			{
 				// Pregnant vaginas can't get cumflated?
-				if(isPregnant(hole)) fluidVolume = 0;
+				if(!hasVagina() || isPregnant(hole)) fluidVolume = 0;
 				if(fluidVolume <= 0) return;
 				
 				if(!hasStatusEffect("Vaginally-Filled")) createStatusEffect("Vaginally-Filled",fluidVolume,fluidVolume,fluidType,0,false,"Icon_Vagina","You've got some fluids inside you, leftovers from a recent lover.",false,0,0xB793C4);

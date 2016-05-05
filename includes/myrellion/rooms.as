@@ -1264,7 +1264,7 @@ public function initializeMyrellionRooms():void
 	//Street P20
 	rooms["817"] = new RoomClass(this);
 	rooms["817"].roomName = "\nSTREET";
-	rooms["817"].description = "A corner store here offers massages, hair treatments, and honey milkings for cheap. It seems to be closed at the moment, though, and most of its windows are covered with recruitment posters for the Republic Defense Force. Grafitti on the walls condemns the Federation occupation, and the war in general.\n\nTo the east is a huge warehouse, built partially into the cave wall, shadow and harsh light thrown across it by sparsely spaced spotlights. A rifle-armed red myr guards the timber entrance.";
+	rooms["817"].description = "A corner store here offers massages, hair treatments, and honey milkings for cheap. It seems to be closed at the moment, though, and most of its windows are covered with recruitment posters for the Republic Defense Force. Graffiti on the walls condemns the Federation occupation, and the war in general.\n\nTo the east is a huge warehouse, built partially into the cave wall, shadow and harsh light thrown across it by sparsely spaced spotlights. A rifle-armed red myr guards the timber entrance.";
 	rooms["817"].system = "SYSTEM: SINDATHU";
 	rooms["817"].planet = "PLANET: MYRELLION";
 	rooms["817"].northExit = "818";
@@ -1283,10 +1283,10 @@ public function initializeMyrellionRooms():void
 	rooms["FAZIAN_RESCUE_ROOM"].planet = "PLANET: MYRELLION";
 	rooms["FAZIAN_RESCUE_ROOM"].westExit = "817";
 	rooms["FAZIAN_RESCUE_ROOM"].moveMinutes = 2;
-	rooms["FAZIAN_RESCUE_ROOM"].runOnEnter = null;
+	//rooms["FAZIAN_RESCUE_ROOM"].runOnEnter = null;
 	rooms["FAZIAN_RESCUE_ROOM"].addFlag(GLOBAL.INDOOR);
 	rooms["FAZIAN_RESCUE_ROOM"].addFlag(GLOBAL.PUBLIC);
-	rooms["FAZIAN_RESCUE_ROOM"].addFlag(GLOBAL.CAVE);
+	//rooms["FAZIAN_RESCUE_ROOM"].addFlag(GLOBAL.CAVE);
  
 	//Street P18
 	rooms["818"] = new RoomClass(this);

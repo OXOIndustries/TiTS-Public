@@ -21,21 +21,22 @@ public function honeyNozzleClub():Boolean
 	}
 	else if (flags["FAZIAN_QUEST_STATE"] == FAZIAN_QUEST_STARTED)
 	{
-		if (flags["FAZIAN_QUEST_SUCCESSES"] + flags["FAZIAN_QUEST_FAILURES"] < 3)
+		output("\n\nHepane, the myr musician you're trying to help find Fazian, is sat at a table near the back. She looks rather worried.");
+		if (flags["FAZIAN_QUEST_SUCCESSES"] + flags["FAZIAN_QUEST_FAILURES"] < 3) addDisabledButton(1, "Hepane", "Hepane", "Collect clues on Fazian's whereabouts before returning to Hepane.");
+		else addButton(1, "Hepane", fazianQuestInvestigationDun, undefined, "Hepane", "Return to Hepane and share the clues you've collected on Fazian's whereabouts.");
+	}
+	else if (flags["FAZIAN_QUEST_STATE"] == FAZIAN_QUEST_INVESTIGATED)
+	{
+		if(flags["FAZIAN_QUEST_TIMER"] + (24 * 60) < GetGameTimestamp())
 		{
-			addDisabledButton(1, "Hepane", "Hepane", "Collect clues on Fazian's whereabouts before returning to Hepane.");
-		}
-		else
-		{
-			addButton(1, "Hepane", fazianQuestInvestigationFollowup, undefined, "Hepane", "Hepane, the myr musician you're trying to help find Fazian, is sat at a table near the back. She waves at you urgently the moment she catches sight of you.");
+			output("\n\nHepane, the myr musician you're trying to help find Fazian, is sat at a table near the back. She waves at you urgently the moment she catches sight of you.");
+			addButton(1, "Hepane", fazianQuestInvestigationFollowup, undefined, "Hepane", "Go over and see what she has to say.");
 		}
 	}
-	else if (flags["FAZIAN_QUEST_STATE"] == FAZIAN_QUEST_INVESTIGATED && flags["FAZIAN_QUEST_TIMER"] + (24 * 60) < GetGameTimestamp())
+	else if (flags["FAZIAN_QUEST_STATE"] != FAZIAN_QUEST_REJECTED && flags["FAZIAN_QUEST_STATE"] != FAZIAN_QUEST_FAILED && flags["FAZIAN_QUEST_STATE"] != FAZIAN_QUEST_RESCUE)
 	{
-		addButton(1, "Hepane", fazianQuestInvestigationFollowup);
-	}
-	else if (flags["FAZIAN_QUEST_STATE"] != FAZIAN_QUEST_REJECTED && flags["FAZIAN_QUEST_STATE"] != FAZIAN_QUEST_FAILED)
-	{
+		if (flags["FAZIAN_QUEST_RESCUE_TIMER"] != undefined && flags["FAZIAN_QUEST_RESCUE_TIMER"] + (24 * 60) > GetGameTimestamp()) return false;
+		
 		if (flags["FAZIAN_QUEST_STATE"] != FAZIAN_QUEST_OFFERING || flags["FAZIAN_QUEST_TIMER"] + (24 * 60) > GetGameTimestamp())
 		{
 			if ((hours > 15 && hours < 20) || (hours == 15 && minutes >= 30) || (hours == 20 && minutes <= 30))
@@ -48,7 +49,7 @@ public function honeyNozzleClub():Boolean
 				else
 				{
 					output("\n\nOn the far side of the dusky room, you can see Fazian's accompanist Hepane taking admissions for this afternoon's show. You could go find out what the two of them are putting on this time.");
-					addButton(1, "Cabaraet", nozzleShowRepeat);
+					addButton(1, "Cabaret", nozzleShowRepeat);
 				}
 			}
 
@@ -72,7 +73,7 @@ public function honeyNozzleClub():Boolean
 
 		if (flags["FAZIAN_QUEST_BARKEEP"] == undefined)
 		{
-			addButton(6, "Barkeep", fazianQuestBarkeep, undefined, "Barkeep", "Ask the barkeep if she's seen Fazian.");
+			addButton(7, "Barkeep", fazianQuestBarkeep, undefined, "Barkeep", "Ask the barkeep if she's seen Fazian.");
 		}
 	}
 	
@@ -456,6 +457,7 @@ public function makeDallyBlowALoadOnYerFaceYeSloot():void
 	pc.exhibitionism(1);
 	//No pc cums, +lotsa horniness
 	pc.lust(33);
+	mimbraneFeed("face");
 	processTime(6);
 	dallyDanceHJEpilogue();
 }
@@ -477,6 +479,10 @@ public function takeSomeDallySploogeInYerMouthYaSloooooot():void
 	output("\n\nWhen you can handle no more, you pull back and gasp for breath, offering his still-spurting rod to an ant-girl who has appeared beside you, mouth open in anticipation. She feeds the spurting shaft into her gullet and sucks with the kind of earnest eagerness that speaks of a sort of wanton hunger for cock. You watch and dab the dripping spooge from your face, offering it to another myr. She sucks the proffered digits clean one after another, relishing it.");
 	output("\n\nDally finishes not longer after - you clearly got the lion’s share of his load. Even now, you can feel it sloshing in your tummy. The dancer extricates himself from his fan’s sucking maw with a bit of difficulty and gives you a grateful nod. His balls actually look a little lighter thanks to your intervention. <i>“Thank you ladies, but I’ve got to walk the rest of stage before the boss gripes at me. I’ll try and return the favor if I ever get the chance.”</i> He winks at you and turns away, launching into a dance as well as his tired legs will allow.");
 	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
+	pp.cumType = GLOBAL.FLUID_TYPE_HONEY;
+	pp.balls = 2;
+	pp.ballSizeRaw = 20;
+	pp.createPerk("Fixed CumQ", 9000, 0, 0, 0);
 	pc.exhibitionism(1);
 	pc.loadInMouth(pp);
 	//Doesnt get the unified epilogue

@@ -51,14 +51,14 @@ public function nozzleShowFirstTime():void
 
 public function nozzleShowRepeat():void
 {
-	clearOutput();
-	showHepane();
-
 	if (flags["FAZIAN_QUEST_STATE"] == FAZIAN_QUEST_COMPLETE)
 	{
 		fazianQuestCompleteBlurbs();
 		return;
 	}
+
+	clearOutput();
+	showHepane();
 
 	output("<i>“Hello again!”</i> says");
 	if (flags["MET_HEPANE"] == undefined) output(" the smartly-dressed myr");
@@ -153,9 +153,9 @@ public function nozzlePerformanceParadise():void
 	output("Hepane is sat next to a vertically arranged instrument that looks like a combination of a hookah and an upturned piano. She picks out a throbbing bass rhythm on the round keys at the bottom; her other set of hands sit on the stem keys above, waiting. Her partner strides on.");
 	
 	output("\n\n");
-	if (flags["NOZZLE_SHOW_PARADISE"] == undefined)
+	if (flags["APPROACHED_FAZIAN"] == undefined)
 	{
-		output("He’s an anat, immediately recognisable by his long, bone-mask face, his double-jointed legs and small, neat claws. His feather plumes are startling, though: rearing way out above his crown and elbows, they’re shades of aquamarine and magenta that continuously glitter and shift under the glare of the spotlights.");
+		output("He’s an anat, immediately recognizable by his long, bone-mask face, his double-jointed legs and small, neat claws. His feather plumes are startling, though: rearing way out above his crown and elbows, they’re shades of aquamarine and magenta that continuously glitter and shift under the glare of the spotlights.");
 	}
 	else
 	{
@@ -165,9 +165,9 @@ public function nozzlePerformanceParadise():void
 	
 	output("\n\nHepane begins to press the upper keys of her instrument, adding piano-like notes to her sultry bass, deep but upbeat. Fazian is still for a moment longer - gazing out over the room, an impassive mask over lively, blue eyes - before beginning to stride across the stage, first with arch casualness and then sudden, dazzling whirls of movement. Because of the way he intersperses them with slinky, slow down-times, his pirouettes and leaps seem uncontrolled bursts of savagery and passion - except during them he wields his long, fluffy fans expertly, keeping most of his tight musculature behind a bright whip of color. Bare hints of dance-toned hips, butt and subtle abs are hurled out and then whipped back behind the festival-like shimmy of feathers.");
 	
-	output("\n\nIn keeping with the rest of the performance, the anat’s focus seems to shift, at times seemingly lost in his own whirling dance and then, suddenly, focused intensely on a single area of the room, feathers shaking furiously. When he does this towards where you’re sitting, it’s as if there’s nobody sitting near you at all - his wintery eyes bore into yours, and they are at a centre of a shaking kaleidoscope of reds and blues, a flower that moves just for you. Then he’s gone, folding it away and striding to another part of the stage, leaving you to wonder if he is actually naked under there, or?...");
+	output("\n\nIn keeping with the rest of the performance, the anat’s focus seems to shift, at times seemingly lost in his own whirling dance and then, suddenly, focused intensely on a single area of the room, feathers shaking furiously. When he does this towards where you’re sitting, it’s as if there’s nobody sitting near you at all - his wintery eyes bore into yours, and they are at a center of a shaking kaleidoscope of reds and blues, a flower that moves just for you. Then he’s gone, folding it away and striding to another part of the stage, leaving you to wonder if he is actually naked under there, or...?");
 	
-	output("\n\nHepane ratchets up the beat to a rave-like climax, and in response Fazian finishes the performance with several minutes of intense action, working in back-flips and full air twists, violent, giddy precision during which you think you can glimpse, just glimpse what he’s packing between his tight hips, purple fronds... and then he’s finished, chest heaving and fans bent across his lower body, bowing with Hepane to rapturous applause.");
+	output("\n\nHepane ratchets up the beat to a rave-like climax, and in response Fazian finishes the performance with several minutes of intense action, working in back-flips and full air twists, violent, giddy precision during which you think you can glimpse - just a glimpse - of what he’s packing between his tight hips, purple fronds... and then he’s finished, chest heaving and fans bent across his lower body, bowing with Hepane to rapturous applause.");
 	
 	output("\n\nAn unusual strip-tease to say the least. However, like Hepane suggested, you leave feeling frenetic and agitated, a desire to move your hips energetically in concert with someone else nagging at you. Going by the number of hands you can see creeping around waists and abdomens amongst the exiting crowd, you aren’t the only one.");
 
@@ -178,8 +178,9 @@ public function nozzlePerformanceParadise():void
 
 	if (!pc.hasStatusEffect("Paradise!"))
 	{
-		pc.createStatusEffect("Paradise!", 0, 0, 0, 0, false, "LustUp", "Fazian's Paradise performance has left a fire in your loins!\nMinimum list increased by 20.", false, 480, 0xFFFFFF);
+		pc.createStatusEffect("Paradise!", 0, 0, 0, 0, false, "LustUp", "Fazian's Paradise performance has left a fire in your loins!\nMinimum lust increased by 20.", false, 480, 0xFFFFFF);
 	}
+	else pc.setStatusMinutes("Paradise!", 480);
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -193,9 +194,9 @@ public function nozzlePerformanceShrike():void
 	output("Hepane is sat next to a vertically arranged instrument that looks like a combination of a hookah and an upturned piano. She picks out a jaunty, chiming rhythm on the oblong keys at the top; her other set of hands sit on the round keys below, waiting. Her partner strides on.");
 	
 	output("\n\n");
-	if (flags["NOZZLE_SHOW_SHRIKE"] == undefined)
+	if (flags["APPROACHED_FAZIAN"] == undefined)
 	{
-		output("He’s an anat, immediately recognisable by his long, bone-mask face, his double-jointed legs and small, neat claws. His feather plumes are startling, though: rearing way out above his crown and elbows, they’re shades of aquamarine and magenta that continuously glitter and shift under the glare of the spotlights.");
+		output("He’s an anat, immediately recognizable by his long, bone-mask face, his double-jointed legs and small, neat claws. His feather plumes are startling, though: rearing way out above his crown and elbows, they’re shades of aquamarine and magenta that continuously glitter and shift under the glare of the spotlights.");
 	}
 	else
 	{
@@ -220,6 +221,7 @@ public function nozzlePerformanceShrike():void
 	{
 		pc.createStatusEffect("Shrike!", 0, 0, 0, 0, false, "Icon_Haste", "Fazian's Shrike performance has inspired you!\nExperience gains increased by 20%.", false, 480, 0xFFFFFF);
 	}
+	else pc.setStatusMinutes("Shrike!", 480);
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -233,9 +235,9 @@ public function nozzlePerformanceQuaramarta():void
 	output("Hepane is sat next to a vertically arranged instrument that looks like a combination of a hookah and an upturned piano. She picks out a snaky bass rhythm on the round keys at the bottom; her other set of hands sit on the stem keys above, waiting. Her partner strides on.");
 	
 	output("\n\n");
-	if (flags["NOZZLE_SHOW_QUARAMARTA"] == undefined)
+	if (flags["APPROACHED_FAZIAN"] == undefined)
 	{
-		output("He’s an anat, immediately recognisable by his long, bone-mask face, his double-jointed legs and small, neat claws. His feather plumes are startling, though: rearing way out above his crown and elbows, they’re shades of aquamarine and magenta that continuously glitter and shift under the glare of the spotlights.");
+		output("He’s an anat, immediately recognizable by his long, bone-mask face, his double-jointed legs and small, neat claws. His feather plumes are startling, though: rearing way out above his crown and elbows, they’re shades of aquamarine and magenta that continuously glitter and shift under the glare of the spotlights.");
 	}
 	else
 	{
@@ -245,7 +247,7 @@ public function nozzlePerformanceQuaramarta():void
 	
 	output("\n\nFazian clicks his finger-claws, gazing out over the crowd, his visage an unreadable mask over two blue, lively eyes. Hepane begins to sing wordlessly as she caresses the top keys of her instrument, introducing echoing piano-like chimes to her propulsive, itchy, upbeat tune. The anat clicks his fingers, swings his hips and stamps his feet with careless grace, affecting casualness but stamping his feet down right in time with Hepane, drum to her double instrument.");
 	
-	output("\n\nYou realise suddenly that it’s not just the anat creating the percussion. The rhythm reverberates around the room, and looking around you see almost every gold myr drumming their tables with four fingers, grinning and entranced, keeping time with the cocky, feathered dancer. The beat ratchets up and up, Hepane’s fingers working furiously, Fazian throws off more and more his nonchalance with each flex of his hips, until -");
+	output("\n\nYou realize suddenly that it’s not just the anat creating the percussion. The rhythm reverberates around the room, and looking around you see almost every gold myr drumming their tables with four fingers, grinning and entranced, keeping time with the cocky, feathered dancer. The beat ratchets up and up, Hepane’s fingers working furiously, Fazian throws off more and more his nonchalance with each flex of his hips, until -");
 	
 	output("\n\n<i>“QUARAMARTA!”</i> cries Hepane. Every gold myr in the room brings all four hands down on the nearest table with a ringing slam. Brilliant red and blue feathers twist furiously on the stage.");
 
@@ -265,6 +267,7 @@ public function nozzlePerformanceQuaramarta():void
 	{
 		pc.createStatusEffect("Quaramarta!", 0, 0, 0, 0, false, "OffenseUp", "Fazian's Quaramarta performance has sharpened your senses!\nCritical chance increased by 15%.", false, 480, 0xFFFFFF);
 	}
+	else pc.setStatusMinutes("Quaramarta!", 480);
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -295,7 +298,7 @@ public function fazianApproach():void
 		//[Liked It] [Eh]
 		clearMenu();
 		addButton(0, "Liked It", fazianLikedIt, undefined, "Liked It", "Tell him you liked the performance.");
-		addButton(1, "Eh", fazianEh, undefined, "Eh", "Tell him you didn't like ");
+		addButton(1, "Eh", fazianEh, undefined, "Eh", "Tell him you didn't like the performance.");
 		return;
 	}
 	else
@@ -381,9 +384,15 @@ public function fazianMenu(ff:Function = null):void
 	else addButton(3, "Myr", fazianMyrQuestComplete, undefined, "Myr", "Ask if his opinion of the myr has changed, after his experience.");
 	if (ff == fazianMyr) addDisabledButton(3, "Myr");
 
-	if (ff != fazianDance && flags["FAZIAN_DANCE_UNLOCKED"] != undefined) addButton(4, "Dance", fazianDance, undefined, "Dance", "Go backstage and do some dance training with the anat.");
-	else addDisabledButton(4, "Dance");
-
+	if (flags["FAZIAN_DANCE_UNLOCKED"] != undefined)
+	{
+		if (ff != fazianDance)
+		{
+			if (pc.hasStatusEffect("Sore")) addDisabledButton(4, "Dance", "Dance", "Your muscles are too sore to do that!");
+			else addButton(4, "Dance", fazianDance, undefined, "Dance", "Go backstage and do some dance training with the anat.");
+		}
+		else addDisabledButton(4, "Dance");
+	}
 	
 	if (ff != fazianAppearance) addButton(5, "Appearance", fazianAppearance);
 	else addDisabledButton(5, "Appearance");
@@ -395,7 +404,7 @@ public function fazianAppearance():void
 {
 	clearOutput();
 	showFazian();
-	output("Fazian is a six foot tall anat, immediately recognisable as such by his digitigrade legs, four-clawed hands and flat, mask-like face. That impassive, ivory, vertical visage starts at his crown and tapers off to a dull point beyond where his chin would be, were he human. His dexterous... (jaws? Mandibles? Beak?) ...mouth-parts are not obvious when he’s facing you. Judging his mood and the impression your words have on him by his facial expression is clearly impossible; however, the anat has animated blue eyes and a restless body language which more than makes up for it.");
+	output("Fazian is a six foot tall anat, immediately recognizable as such by his digitigrade legs, four-clawed hands and flat, mask-like face. That impassive, ivory, vertical visage starts at his crown and tapers off to a dull point beyond where his chin would be, were he human. His dexterous... (Jaws? Mandibles? Beak?)... mouth-parts are not obvious when he’s facing you. Judging his mood and the impression your words have on him by his facial expression is clearly impossible; however, the anat has animated blue eyes and a restless body language which more than makes up for it.");
 	
 	output("\n\nHis rough skin is a dark navy, a dullness that offsets his remarkable feather plumes. Rearing out by at least two feet from where his mask ends on his head, his crown-plume is a bouquet of striking aquamarine and magenta into which unearthly beads of light and undertones of other shades seem to have been worked. The tufts that emerge from his elbows are the same, only in miniature. He seems to have a remarkable amount of control over all of them, able to curl, stiffen and shake them into a mesmerizing display of shifting colors when he chooses. Here though, away from the stage, he keeps them down and carefully still.");
 	
@@ -406,13 +415,13 @@ public function fazianAppearance():void
 public function fazianHim():void
 {
 	clearOutput();
-	fazianMenu();
+	showFazian();
 
 	output("<i>“So how did you come to be strutting your stuff all the way out here, then?”</i> you ask.");
 	
 	output("\n\n<i>“Do you want the official reason, per?”</i> Fazian replies, looking at you sideways. <i>“If you’re an anat, you’ve got to have a very good one to be wasting a first grade artistic license out on a human-corporate-owned frontier world. Well, you’ve got to have a very good reason to get a first grade artistic license in the first place. But I always wanted to be a dancer, and your parents and career officer can only shower you with so many engineering pamphlets before they have to give up. My people aren’t brutes or... autistic, they do know the value of the arts,”</i> he goes on quickly, <i>“But it’s so hard to measure the value of a painting next to a new live-ship or block of apartments on a colony world, y’know?”</i>");
 	
-	output("\n\n<i>“And you’re here because... <i>“ you cajole.");
+	output("\n\n<i>“And you’re here because...”</i> you cajole.");
 	
 	output("\n\n<i>“Inspiration,”</i> he answers, gesturing grandly at the dimly lit club. <i>“It is accepted by the anatae administrata that artists need to travel and absorb experience, view the empire from outside as well as from within, to be able to properly express themselves. To be able to dance and - for it to seize and move and exhilarate people very different from you - that is a noble goal. And useful. Who knows! We could discover a race that only communicates through body language in this very rush.”</i>");
 	
@@ -441,8 +450,9 @@ public function fazianAnatae():void
 
 	processTime(5+rand(3));
 	clearMenu();
-	addButton(0, "“Per”", fazianAnataePer, undefined, "“Per”", "Ask him what he means by that.");
+	addButton(0, "“Per”", fazianAnataePer, undefined, "“Per?”", "Ask him what he means by that.");
 	//addButton(1, "TouchFeather", fazianAnataeTouchFeather, undefined, "Touch Feather", "You've been wanting to do this for a while....");
+	addButton(14, "Back", fazianMenu, fazianAnatae);
 }
 
 public function fazianAnataePer():void
@@ -454,7 +464,7 @@ public function fazianAnataePer():void
 
 	output("\n\nFazian ducks his head and doesn’t immediately respond.");
 
-	output("\n\n<i>“I... guess that isn’t coming through as a direct translation,”</i> he says. You realise he thinks he’s embarrassed himself. He shuffles in his trouser pocket, brings out a miniature codex and flicks through it for a few moments. <i>“Komm-rahd”</i>? It’s telling me that’s a very archaic expression though.”</i> He takes a long pull on his straw before going on, still looking rather uncomfortable.");
+	output("\n\n<i>“I... guess that isn’t coming through as a direct translation,”</i> he says. You realize he thinks he’s embarrassed himself. He shuffles in his trouser pocket, brings out a miniature codex and flicks through it for a few moments. <i>“Komm-rahd”</i>? It’s telling me that’s a very archaic expression though.”</i> He takes a long pull on his straw before going on, still looking rather uncomfortable.");
 
 	output("\n\n<i>“The anatae have an empire, right? The largest number of colonies in the known galaxy. But we don’t have a leader on top of it all. It’s all owned by us, the people. So... Per. We are all emperors. That’s the idea, anyway.”</i>");
 
@@ -473,14 +483,15 @@ public function fazianDancing():void
 	
 	output("\n\n<i>“You charge for your performances,”</i> you point out.");
 	
-	output("\n\n<i>“It all goes to Hepane, the other performers, and the club’s running,”</i> he replies mildly, scratching his mask. <i>“I have a food-facturer on my ship that will continue to function for another century. I mean, what it serves isn’t great,”</i> he admits. <i>“But then... <i>“ he takes a long pull of mead from his straw as way of finishing that sentence. <i>“My people’s goal is to move towards post-scarcity - and why would I charge when I’m self-sufficient and doing what I love, anyway?”</i>");
+	output("\n\n<i>“It all goes to Hepane, the other performers, and the club’s running,”</i> he replies mildly, scratching his mask. <i>“I have a food-facturer on my ship that will continue to function for another century. I mean, what it serves isn’t great,”</i> he admits. <i>“But then...”</i> he takes a long pull of mead from his straw as way of finishing that sentence. <i>“My people’s goal is to move towards post-scarcity - and why would I charge when I’m self-sufficient and doing what I love, anyway?”</i>");
 
 	processTime(3);
 	
 	//[Teach me?] [Back]
 	clearMenu();
-	addButton(0, "TeachMe", fazianDancingTeachMe, undefined, "Teach Me", "Ask if he's willing to teach you some dance moves.");
-	addButton(1, "Back", fazianMenu, fazianDancing);
+	if (pc.hasStatusEffect("Sore")) addDisabledButton(0, "TeachMe", "Teach Me?", "You could ask if he's willing to teach you some dance moves, but you are too sore to do any actual dancing...");
+	else addButton(0, "TeachMe", fazianDancingTeachMe, undefined, "Teach Me?", "Ask if he's willing to teach you some dance moves.");
+	addButton(14, "Back", fazianMenu, fazianDancing);
 }
 
 public function fazianDancingTeachMe():void
@@ -501,11 +512,14 @@ public function fazianDancingTeachMe():void
 		output("\n\nThere will be times when you will be let down harder in your life.");
 
 		clearMenu();
-		addButton(0, "Back", fazianMenu, fazianDancing);
+		addButton(0, "Next", fazianMenu, fazianDancing);
 	}
 	else
 	{
 		output("\n\n<i>“You... ? Sure, I guess,”</i> shrugs Fazian. He nods with increasing enthusiasm for the idea as he mulls it over. <i>“It’ll be fun! Come and see me after the evening performances. I don’t know how good a teacher I am, but I’m sure it wouldn’t take long to show you one or two things.”</i> He finishes his glass of wine with a long pull. <i>“Not doing anything right now, if you want to go backstage.”</i>");
+
+		//Add "Dance" to Fazian's main menu
+		flags["FAZIAN_DANCE_UNLOCKED"] = 1;
 
 		//[Dance] [Later]
 
@@ -523,9 +537,6 @@ public function fazianDanceTeachMeLater():void
 	output("<i>“Later, maybe,”</i> you say. The anat shrugs again and orders another glass of wine.");
 	
 	output("\n\n<i>“As said, I’m free after the evening shows if you change your mind.”</i>");
-
-	//Add "Dance" to Fazian's main menu
-	flags["FAZIAN_DANCE_UNLOCKED"] = 1;
 	
 	processTime(2);
 
@@ -655,7 +666,7 @@ public function fazianDanceEdottoFirst():void
 	clearOutput();
 	showFazian();
 
-	output("<i>“Alright then Steele,”</i> says Fazian. <i>“Position yourself like so, hands on hips. It always starts with your hips... <i>“");
+	output("<i>“Alright then Steele,”</i> says Fazian. <i>“Position yourself like so, hands on hips. It always starts with your hips...”</i>");
 	
 	output("\n\nThe anat drills you relentlessly for the next few hours, practicing the same couple of stances over and over again. It’s tough physical work and pretty tedious, however by the end you think you’ve got the opening moves down pat.");
 	
@@ -676,7 +687,7 @@ public function fazianDanceSunwalkerFirst():void
 	clearOutput();
 	showFazian();
 
-	output("<i>“I thought you’d go for that one,”</i> laughs Fazian. <i>“Don’t say I didn’t warn you! Position yourself like so, hands down at your side. Then bring them up, framing your chest... <i>“");
+	output("<i>“I thought you’d go for that one,”</i> laughs Fazian. <i>“Don’t say I didn’t warn you! Position yourself like so, hands down at your side. Then bring them up, framing your chest...”</i>");
 	
 	output("\n\nThe anat drills you relentlessly for the next few hours, practicing the same couple of stances over and over again. It’s tough physical work and pretty tedious, however by the end you think you’ve got the opening moves down pat.");
 	
@@ -704,7 +715,7 @@ public function fazianDanceOne(isSunwalker:Boolean = false):void
 
 	if (isSunwalker)
 	{
-		output("<i>“Alright Steele,”</i> says Fazian. <i>“Position yourself like so, hands down at your side. Then bring them up, framing your chest... <i>“");
+		output("<i>“Alright Steele,”</i> says Fazian. <i>“Position yourself like so, hands down at your side. Then bring them up, framing your chest...”</i>");
 		
 		output("\n\nThe anat drills you relentlessly for the next few hours, practicing the same couple of stances over and over again. It’s tough physical work and pretty tedious, however by the end you think you’ve got the opening moves down pat.");
 		
@@ -712,7 +723,7 @@ public function fazianDanceOne(isSunwalker:Boolean = false):void
 	}
 	else
 	{
-		output("<i>“Alright then Steele,”</i> says Fazian. <i>“Position yourself like so, hands on hips. It always starts with your hips... <i>“");
+		output("<i>“Alright then Steele,”</i> says Fazian. <i>“Position yourself like so, hands on hips. It always starts with your hips...”</i>");
 		
 		output("\n\nThe anat drills you relentlessly for the next few hours, practicing the same couple of stances over and over again. It’s tough physical work and pretty tedious, however by the end you think you’ve got the opening moves down pat.");
 		
@@ -742,7 +753,7 @@ public function fazianDanceTwo(isSunwalker:Boolean = false):void
 	}
 	else
 	{
-		output("<i>“So,”</i> says Fazian. <i>“Once you’ve got their attention with the hips, you can start bringing in your upper body... <i>“");
+		output("<i>“So,”</i> says Fazian. <i>“Once you’ve got their attention with the hips, you can start bringing in your upper body...”</i>");
 		
 		output("\n\nThe anat drills you relentlessly for the next few hours, practicing the same couple of stances over and over again. It’s tough physical work and pretty tedious, however by the end you’re starting to see how the dance develops.");
 		
@@ -764,7 +775,7 @@ public function fazianDanceThree(isSunwalker:Boolean = false):void
 
 	if (isSunwalker)
 	{
-		output("<i>“Now you’ve got the intro and basics down,”</i> grins Fazian, bringing up the 4/4 rhythm on his codex again, <i>“you’re all set to do some proper sunwalking! It’s a wave-like motion with your hips which, if you do it right, propels you forwards. See here... <i>“");
+		output("<i>“Now you’ve got the intro and basics down,”</i> grins Fazian, bringing up the 4/4 rhythm on his codex again, <i>“you’re all set to do some proper sunwalking! It’s a wave-like motion with your hips which, if you do it right, propels you forwards. See here...”</i>");
 		
 		output("\n\nThe anat drills you relentlessly for the next few hours, practicing hip and [pc.leg] movements over and over again. It’s tough physical work and pretty tedious, however by the end you think you’re able to sunwalk up and down pretty effectively.");
 		
@@ -846,7 +857,9 @@ public function fazianDanceFive(isSunwalker:Boolean = false):void
 		
 		output("\n\n<i>“There’s not much more I can teach you,”</i> laughs Fazian. <i>“You’ve just got to finish it all off with a good, old-fashioned crotch grab. Can’t get away with that unless you’ve already brought the house down! But you have, theoretically. Go on - you’ve earned it.”</i>");
 		
-		output("\n\nYou go back to the drills, and each time you pull the whole sequence off, you learn the fine art of grasping your groin and pumping your hips. {No front genitals: Or as in your case, grasping a featureless expanse of flesh and pumping your hips, but it’s the thought that counts.}");
+		output("\n\nYou go back to the drills, and each time you pull the whole sequence off, you learn the fine art of grasping your groin and pumping your hips.");
+		// No front genitals:
+		if(pc.genitalLocation() >= 2) output(" Or as in your case, grasping a featureless expanse of flesh and pumping your hips, but it’s the thought that counts.");
 		
 		output("\n\n<i>“You’ve got it, per!”</i> Fazian says, eyes twinkling. <i>“Lead with your hips, bring in your chest, shake your backside, back to your hips, and finish it off with your crotch. Do it with confidence and no girl or guy in the galaxy will be able to resist you. Come back any time if you want to practice.”</i>");
 		
@@ -894,7 +907,7 @@ public function fazianQuestNotMyProblem():void
 	
 	output("<i>“Sorry to hear that,”</i> you say. <i>“Hope he turns up eventually.”</i>");
 	
-	output("\n\n<i>“Yes... <i>“ Hepane’s attention has already drifted past you to the entrance of the club again.");
+	output("\n\n<i>“Yes...”</i> Hepane’s attention has already drifted past you to the entrance of the club again.");
 
 	flags["FAZIAN_QUEST_STATE"] = FAZIAN_QUEST_REJECTED;
 	
@@ -918,7 +931,7 @@ public function fazianQuestDelay():void
 	}
 	else
 	{
-		output("<i>“He... he still hasn’t shown up,”</i> says Hepane the moment you roll into view. Watching a gold myr wring her hands is mesmerising, in its own way. <i>“Can you help?”</i>");
+		output("<i>“He... he still hasn’t shown up,”</i> says Hepane the moment you roll into view. Watching a gold myr wring her hands is mesmerizing, in its own way. <i>“Can you help?”</i>");
 	}
 	
 	processTime(5);
@@ -942,7 +955,7 @@ public function fazianQuestHelp():void
 	
 	output("\n\nAs you leave she grabs your hand. <i>“Thank you for doing this,”</i> the accompanist says tremulously. <i>“I’d hate if something bad had happened to him. I think - I don’t think Fazian knows how bad this world can be.”</i>");
 	
-	output("\n\nYou go to the Honeypot’s bar and take stock. Who in the club, Gildenmere and the nearby spaceport might know where the gene-modded anat has gotten to?");
+	output("\n\nYou go to the Honey Nozzle’s bar and take stock. Who in the club, Gildenmere and the nearby spaceport might know where the gene-modded anat has gotten to?");
 
 	flags["FAZIAN_QUEST_STATE"] = FAZIAN_QUEST_STARTED;
 	
@@ -963,17 +976,17 @@ public function fazianQuestGoldMyr():void
 	showBust("GOLDMYR", "GOLDMYR", "GOLDMYR");
 	author("Nonesuch");
 
-	output("<i>“Excuse me ladies,”</i> you say, breaking the tipsy chatter of the gold myr grouped near one of the strip poles, <i>“but I wonder if any of you have seen the dancer Fazian? He’s got feathers, about yay high... <i>“");
+	output("<i>“Excuse me ladies,”</i> you say, breaking the tipsy chatter of the gold myr grouped near one of the strip poles, <i>“but I wonder if any of you have seen the dancer Fazian? He’s got feathers, about yay high...”</i>");
 	
 	output("\n\n<i>“Ooh yes,”</i> replies one immediately. <i>“He’s a nice piece of honeycomb, isn’t he? Shame you have to pay to go see him.”</i>");
 	
-	output("\n\n<i>“’s up with that, anyway?”</i> slurs another, trying to reach up and pinch the passing legs of a myr stripper. <i>“Starwalker charging us. What - why - how could they need our money? Pointing their stalag-cannons at us all the while. S’isn’t right.”</i>");
+	output("\n\n<i>“‘s up with that, anyway?”</i> slurs another, trying to reach up and pinch the passing legs of a myr stripper. <i>“Starwalker charging us. What - why - how could they need our money? Pointing their stalag-cannons at us all the while. S’isn’t right.”</i>");
 	
 	output("\n\n<i>“It’s to keep cheap, pinching wetra-wives like you away from the prime stock!”</i> shrills another. They all dissolve into laughter.");
 	
 	output("\n\n<i>“The thing is, he’s gone missing,”</i> you try.");
 	
-	output("\n\n<i>“It does raise the question,”</i> says a more bookish one, <i>“about the universal nature of monetary exchange. To think that, for all their sophistication, starwalkers are still using a form of bargaining which is recognisable to us... <i>“");
+	output("\n\n<i>“It does raise the question,”</i> says a more bookish one, <i>“about the universal nature of monetary exchange. To think that, for all their sophistication, starwalkers are still using a form of bargaining which is recognisable to us...”</i>");
 	
 	output("\n\n<i>“Oh here we go,”</i> retorts the first. <i>“She gets one study published in the Gildenglobe and suddenly she’s the expert.”</i>");
 	
@@ -1001,7 +1014,7 @@ public function fazianQuestGoldMyrGood():void
 	output(" The party of gold myr exit the club eventually, blowing kisses at you and tittering into each other’s arms, leaving you with a minor headache and absolutely no further clue as to what happened to Fazian.");
 
 	//Fazfail + 1, remove "Gold Myr" from Honeypot menu
-	flags["FAZIAN_QUEST_GOLDMYR"] = 1;
+	flags["FAZIAN_QUEST_GOLDMYR"] = -1;
 	flags["FAZIAN_QUEST_FAILURES"]++;
 
 	processTime(4);
@@ -1073,9 +1086,9 @@ public function fazianQuestBarkeepGood():void
 
 	output("<i>“Ok. You got me right,”</i> you say, quietly. <i>“I am an outsider, looking for another outsider. You know what my interest is? Knowing how much it would suck to be lost and alone on an alien planet, without anyone looking for me. I don’t want to incriminate anyone. I just want to know where to look.”</i>");
 	
-	output("\n\nThe barkeep is silent for a time, turning the glass around and around in her hands. Her pupil-less eyes are unreadable");
+	output("\n\nThe barkeep is silent for a time, turning the glass around and around in her hands. Her pupil-less eyes are unreadable.");
 	
-	output("\n\n<i>“If I were looking for that friend of yours... <i>“ she says at last. <i>“...I would look in Kressia. I cannot say any more than that, "+ pc.mf("Mr.", "Mrs.") +" Outsider. Not without there being... repercussions.”</i>");
+	output("\n\n<i>“If I were looking for that friend of yours...”</i> she says at last. <i>“...I would look in Kressia. I cannot say any more than that, "+ pc.mf("Mr.", "Mrs.") +" Outsider. Not without there being... repercussions.”</i>");
 	
 	output("\n\nYou cannot get anything more from her. Still, it’s something.");
 
@@ -1084,6 +1097,9 @@ public function fazianQuestBarkeepGood():void
 	//Fazsuccess + 1, remove "Barkeep" from Honeypot menu
 	flags["FAZIAN_QUEST_BARKEEP"] = 1;
 	flags["FAZIAN_QUEST_SUCCESSES"]++;
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
 
 public function fazianQuestBarkeepBad():void
@@ -1102,7 +1118,7 @@ public function fazianQuestBarkeepBad():void
 	processTime(4);
 	
 	//Fazfail + 1, remove “Barkeep” from Honeypot menu
-	flags["FAZIAN_QUEST_BARKEEP"] = 1;
+	flags["FAZIAN_QUEST_BARKEEP"] = -1;
 	flags["FAZIAN_QUEST_FAILURES"]++;
 
 	clearMenu();
@@ -1127,6 +1143,7 @@ public function fazianQuestDally():void
 	if (pc.credits >= 250) addButton(0, "Pay 250c", fazianQuestDallyPay, undefined, "Pay 250 credits", "");
 	else addDisabledButton(0, "Pay 250c", "Pay 250 credits", "You don't have enough credits.");
 	addButton(1, "Don't Pay", fazianQuestDallyNoPay);
+	addButton(14,"Back", dallyMenu);
 }
 
 public function fazianQuestDallyNoPay():void
@@ -1143,7 +1160,7 @@ public function fazianQuestDallyNoPay():void
 	output("\n\nBut Dally walls you completely, continuing on to where two gold myr are eagerly rubbing paper notes at him. Even when he’s finished with them, no amount of cajoling can bring him back to the subject.");
 
 	//Fazfail + 1, remove "Fazian" from Dally menu
-	flags["FAZIAN_QUEST_DALLY"] = 1;
+	flags["FAZIAN_QUEST_DALLY"] = -1;
 	flags["FAZIAN_QUEST_FAILURES"]++;
 
 	processTime(3);
@@ -1161,9 +1178,9 @@ public function fazianQuestDallyPay():void
 
 	output("You roll your eyes, but produce a credit chit.");
 	
-	output("\n\n<i>“Thank you,”</i> says Dally, squirreling it away and sitting down facing you with his legs dangling off the stage and his bulging abdomen on it. <i>“Now come here. Don’t worry... don’t be tense... <i>“ He puts his smooth hands on either side of your head and brings his face close. <i>“Now it looks professional, you see?”</i> he murmurs. <i>“Please don’t think I’m selfish. I don’t know who listens in here, who makes dancers disappear in the middle of the night. But I have some idea, yes.”</i> You realise the male myr is quite scared.");
+	output("\n\n<i>“Thank you,”</i> says Dally, squirreling it away and sitting down facing you with his legs dangling off the stage and his bulging abdomen on it. <i>“Now come here. Don’t worry... don’t be tense...”</i> He puts his smooth hands on either side of your head and brings his face close. <i>“Now it looks professional, you see?”</i> he murmurs. <i>“Please don’t think I’m selfish. I don’t know who listens in here, who makes dancers disappear in the middle of the night. But I have some idea, yes.”</i> You realize the male myr is quite scared.");
 	
-	output("\n\n<i>“Your friend Fazian, he didn’t really get it. You’ve got to keep some professional distance if you’re a male performer here. If you don’t... you share yourself with everyone, you go off with just anyone who asks... you attract predators. The myr he was talking to, three nights ago? I would hide behind the curtains sooner than perform for that type. She does business. Lot of people want to get in and out of gold territory discretely - lot of people want </i>other<i> people to get in and out of gold territory discretely - and she can make that happen. I always warned Fazian - just generally, you know - but he just laughed. He didn’t get it... <i>“");
+	output("\n\n<i>“Your friend Fazian, he didn’t really get it. You’ve got to keep some professional distance if you’re a male performer here. If you don’t... you share yourself with everyone, you go off with just anyone who asks... you attract predators. The myr he was talking to, three nights ago? I would hide behind the curtains sooner than perform for that type. She does business. Lot of people want to get in and out of gold territory discretely - lot of people want </i>other<i> people to get in and out of gold territory discretely - and she can make that happen. I always warned Fazian - just generally, you know - but he just laughed. He didn’t get it...”</i>");
 	
 	output("\n\n<i>“Know anything else?”</i> you murmur. <i>“What they talked about?”</i>");
 	
@@ -1191,7 +1208,7 @@ public function fazianQuestGene():void
 
 	output("<i>“Did you know Fazian?”</i> you ask. <i>“Anat, bright feathers?”</i>");
 	
-	output("\n\n<i>“’Did?’,”</i> repeats Gene, swishing his tails ponderously. <i>“A portentous tense indeed! Has something befallen the kaleidoscopic popinjay?”</i>");
+	output("\n\n<i>“‘Did?’,”</i> repeats Gene, swishing his tails ponderously. <i>“A portentous tense indeed! Has something befallen the kaleidoscopic popinjay?”</i>");
 	
 	output("\n\n<i>“He’s gone missing,”</i> you say. <i>“Wondered if you knew anything about him, what might have happened to him.”</i>");
 	
@@ -1201,7 +1218,7 @@ public function fazianQuestGene():void
 	
 	output("\n\n<i>“That is as obvious to me as it should be to you, dear Steele. Some group of myr, or maybe even nyrea, have had enough of his endless flirting and have snaffled him up to enjoy all for themselves. No doubt he is enjoying the hospitality of the peaceful, loving denizens of this planet even as we speak.”</i> He shrugs.");
 	
-	output("\n\n<i>“As to which flavor of sex-starved arthropod, I’m afraid I have no clue.”</i> He taps his horn lips thoughtfully, though. <i>“Hmm. He did drop by a few days ago. I wasn’t paying much attention to him because I was rather anticipating one of my favourite lady callers. What were we talking about? Fazian gets it into his head to criticize my method of delivering mods to the denizens of this planet. He comes at it so </i>politely<i>, each time from a new angle, the very model of the eager, unwavering proselytizer. So here I am, afire with anticipatory passion, wondering how in the galaxy I am going to swat aside this tiresome socialist in the fastest yet most graceful way possible... <i>“ His rich voice fills the shop’s space like an orchestra playing the opening chords of an extremely long aria.");
+	output("\n\n<i>“As to which flavor of sex-starved arthropod, I’m afraid I have no clue.”</i> He taps his horn lips thoughtfully, though. <i>“Hmm. He did drop by a few days ago. I wasn’t paying much attention to him because I was rather anticipating one of my favourite lady callers. What were we talking about? Fazian gets it into his head to criticize my method of delivering mods to the denizens of this planet. He comes at it so </i>politely<i>, each time from a new angle, the very model of the eager, unwavering proselytizer. So here I am, afire with anticipatory passion, wondering how in the galaxy I am going to swat aside this tiresome socialist in the fastest yet most graceful way possible...”</i> His rich voice fills the shop’s space like an orchestra playing the opening chords of an extremely long aria.");
 
 	processTime(8);
 	
@@ -1218,13 +1235,13 @@ public function fazianQuestGeneListen():void
 	showBust("GENE");
 	author("Nonesuch");
 
-	output("<i>“ ...which is why burgundy is the true stripe of masculinity, and not a splurge of gaudy rainbow, whatever other examples of avian sentience have to say on the matter,”</i> Gene continues, some time later. He pauses finally, frowning. You stir, coming to your senses slightly.");
+	output("<i>“... which is why burgundy is the true stripe of masculinity, and not a splurge of gaudy rainbow, whatever other examples of avian sentience have to say on the matter,”</i> Gene continues, some time later. He pauses finally, frowning. You stir, coming to your senses slightly.");
 	
 	output("\n\n<i>“Now, what was it that he was wittering on about that day? Ah, yes! He said he had an invitation to do a private performance with some very select myr that night, after he finished at his club. I can’t tell you what kind of myr, or where... but it sounded as if he was preparing for a fair bit of travel.”</i> He sniffs. <i>“That’s all I know I’m afraid, Steele. Best of luck finding the silly little peacock.”</i>");
 
 	//Fazsuccess + 1, remove "Fazian" from Gene's talk menu
 	flags["FAZIAN_QUEST_GENE"] = 1;
-	flags["FAZIAN_QUEST_FAILURES"]++;
+	flags["FAZIAN_QUEST_SUCCESSES"]++;
 
 	processTime(5);
 	
@@ -1243,19 +1260,21 @@ public function fazianQuestGeneLeave():void
 	
 	output("\n\n<i>“Oh, of course,”</i> blinks the fanfir, stopped mid-flow. <i>“Best of luck finding the silly little peacock, I suppose.”</i>");
 
-	flags["FAZIAN_QUEST_GENE"] = 1;
-	flags["FAZIAN_QUEST_SUCCESSES"]++;
+	flags["FAZIAN_QUEST_GENE"] = -1;
+	flags["FAZIAN_QUEST_FAILURES"]++;
 
 	processTime(3);
 	
 	clearMenu();
-	addButton(0, "Next", mainGameMenu);
+	//addButton(0, "Next", mainGameMenu);
+	addButton(0, "Next", move, rooms[currentLocation].eastExit);
 }
 
 public function fazianQuestJuro():void
 {
 	clearOutput();
 	juroDisplay();
+	author("Nonesuch");
 
 	output("<i>“Do you know Fazian?”</i> you ask. <i>“About yay tall, bright feathers. He lives on his ship, he must have walked past here most days.”</i>");
 	
@@ -1275,27 +1294,36 @@ public function fazianQuestJuro():void
 	clearMenu();
 	addButton(0, "Make Scene", fazianQuestJuroScene, undefined, "Juro", "Try and fluster the kui-tan into giving you what you want.");
 	addButton(1, "Anatae", fazianQuestJuroAnatae, undefined, "Anatae", "Threaten Juro with his own advice.");
-	addButton(2, "Leave", fazianQuestJuroLeave, undefined, "Leave", "He's right, this is pointless. Leave him be.");
+	addButton(14, "Leave", fazianQuestJuroLeave, undefined, "Leave", "He's right, this is pointless. Leave him be.");
 }
 
 public function fazianQuestJuroLeave():void
 {
-	flags["FAZIAN_QUEST_JURO"] = 1;
+	clearOutput();
+	juroDisplay();
+
+	output("Seeing that it is no use, you leave the kui-tan alone.");
+	
+	flags["FAZIAN_QUEST_JURO"] = -1;
 	flags["FAZIAN_QUEST_FAILURES"]++;
-	mainGameMenu();
+	
+	processTime(1);
+	
+	addButton(0, "Next", mainGameMenu);
 }
 
 public function fazianQuestJuroAnatae():void
 {
 	clearOutput();
 	juroDisplay();
+	author("Nonesuch");
 
 	output("<i>“Alright then, Juro,”</i> you say with a heavy sigh. <i>“I’ll go back to Tavros. I’ll find where the anatae commission is stationed. I’ll explain the situation to them and jump through whatever hoops they want. Then I’ll come back with your warrant. By then Fazian will be gone for good, and you know all that will be left? His people’s empire gaining a sudden interest in one obfuscating kui-tan bureaucrat, and the planet he is hoping to colonize.”</i>");
 	if (flags["JURO_LYRALLA_CLOSET_SEEN"] != undefined) output(" You lean forward on his desk and lower your voice. <i>“A kui-tan who has a hopeless conflict of interests, given he’s fucking one of the local representatives.”</i>");
 
 	output("\n\nYou turn and begin to head eastwards towards your ship.");
 	
-	output("\n\n<i>“Wait!”</i> cries Juro after you’ve gotten ten feet. <i>“Wait. Alright. You can look at the spaceport’s security footage. Just... don’t tell anyone, ok?”</i> He gets up, heads into a back room, and comes back ten minutes later with a small, grey box. <i>“And make it worthwhile, ok Steele?”</i> he parts gruffly.");
+	output("\n\n<i>“Wait!”</i> cries Juro after you’ve gotten ten feet. <i>“Wait. Alright. You can look at the spaceport’s security footage. Just... don’t tell anyone, okay?”</i> He gets up, heads into a back room, and comes back ten minutes later with a small, grey box. <i>“And make it worthwhile, okay Steele?”</i> he parts gruffly.");
 	
 	output("\n\nYou settle yourself down in a quiet corner and fiddle around with the holographic projector, flicking moving images of the spaceport, captured by a flotilla of U.G.C. microbots, into the air around you. As you had guessed, Juro was being an ass; it doesn’t take five minutes to get the AI inside to provide you with the most recent footage of Fazian.");
 	
@@ -1342,7 +1370,7 @@ public function fazianQuestJuroScene():void
 	
 	output("\n\n<i>“This world’s got enough spare aggression flying around right now,”</i> observes their officer, sympathetic but firm. <i>“If you can’t manage yours, I’d suggest taking it elsewhere.”</i>");
 
-	flags["FAZIAN_QUEST_JURO"] = 1;
+	flags["FAZIAN_QUEST_JURO"] = -1;
 	flags["FAZIAN_QUEST_FAILURES"]++;
 
 	currentLocation = "SHIP INTERIOR";
@@ -1360,14 +1388,14 @@ public function fazianQuestInvestigationDun():void
 
 	var f:int = (flags["FAZIAN_QUEST_FAILURES"] == undefined ? 0 : flags["FAZIAN_QUEST_FAILURES"]);
 	var s:int = (flags["FAZIAN_QUEST_SUCCESSES"] == undefined ? 0 : flags["FAZIAN_QUEST_SUCCESSES"]);
-
+	
+	output("<i>“How did it go?”</i> asks Hepane anxiously, standing up when she sees you coming. <i>“Any idea where he’s gone?”</i>");
+	
 	if (f >= 3)
 	{
-		output("<i>“How did it go?”</i> asks Hepane anxiously, standing up when she sees you coming. <i>“Any idea where he’s gone?”</i>");
-		
 		output("\n\nYou shrug.");
 		
-		output("\n\n<i>“I’ve got one or two, but... <i>“ You tell her about your interviews and the slivers of information you managed to picked up. Even to your ears, it’s desperately thin stuff. Hepane shakes her head miserably when you finish.");
+		output("\n\n<i>“I’ve got one or two, but...”</i> You tell her about your interviews and the slivers of information you managed to picked up. Even to your ears, it’s desperately thin stuff. Hepane shakes her head miserably when you finish.");
 		
 		output("\n\n<i>“It’s not enough, I wouldn’t know where to start with that,”</i> she says. She puts a hand on your shoulder. <i>“Thank you for trying, starwalker. Maybe if... just the knowledge that someone is looking for him might cause him to resurface, you know?”</i>");
 		
@@ -1384,19 +1412,18 @@ public function fazianQuestInvestigationDun():void
 		addButton(0, "Next", mainGameMenu);
 		return;
 	}
-	else if (s != 5)
+	else if (s < 5)
 	{
-		output("<i>“How did it go?”</i> asks Hepane anxiously, standing up when she sees you coming. <i>“Any idea where he’s gone?”</i>");
 		
 		output("\n\n<i>“He was lured out of Gildenmere and taken to Kressia,”</i> you say. <i>“Probably by some red myr.”</i>");
 		
-		output("\n\n<i>“A-are you sure?”</i> replies Hepane hesitantly. <i>“I think some people around here... if you asked them about someone missing, they might - <i>“");
+		output("\n\n<i>“A-are you sure?”</i> replies Hepane hesitantly. <i>“I think some people around here... if you asked them about someone missing, they might--”</i>");
 		
 		output("\n\nYou lay down your cards one after the other, going through each piece of information you wrangled out of your interviewees, showing her how everything points to your conclusion.");
 	}
 	else
 	{
-		output("<i>“He was led into believing he was going to perform at a red myr function in Kressia,”</i> you say crisply. <i>“Pretty sure he journeyed there himself. The red myr are acting under one Major Ehstraffe, and presumably they’ve still got hold of him in Kressia. Why him? He was a lot easier to ensnare than any gold male, and far fewer people missed him. For what purpose? That I do not know. Kidnapping an alien to use as a sex slave seems extreme, but that’s the only motive that anyone has so far suggested.”</i>");
+		output("\n\n<i>“He was led into believing he was going to perform at a red myr function in Kressia,”</i> you say crisply. <i>“Pretty sure he journeyed there himself. The red myr are acting under one Major Ehstraffe, and presumably they’ve still got hold of him in Kressia. Why him? He was a lot easier to ensnare than any gold male, and far fewer people missed him. For what purpose? That I do not know. Kidnapping an alien to use as a sex slave seems extreme, but that’s the only motive that anyone has so far suggested.”</i>");
 		
 		output("\n\nHepane stares at you, mouth slightly ajar.");
 		
@@ -1405,9 +1432,9 @@ public function fazianQuestInvestigationDun():void
 		output("\n\nYou lay down your cards one after the other, going through each piece of information you wrangled out of your interviewees, showing her how everything points to your conclusion.");
 	}
 
-	output("\n\n<i>“That - that does seem pretty undeniable,”</i> Hepane agrees sorrowfully when you’re done. <i>“I was hoping maybe he’d wandered off... or some gold myr had taken him. That would have been a lot easier to sort out than this... <i>“ She swallows and raises her chin. <i>“I’m going to try and talk to some people I know in Kressia. See if I can’t find out a few things myself. I’ll be back in a day or so. I hope.”</i>");
+	output("\n\n<i>“That - that does seem pretty undeniable,”</i> Hepane agrees sorrowfully when you’re done. <i>“I was hoping maybe he’d wandered off... or some gold myr had taken him. That would have been a lot easier to sort out than this...”</i> She swallows and raises her chin. <i>“I’m going to try and talk to some people I know in Kressia. See if I can’t find out a few things myself. I’ll be back in a day or so. I hope.”</i>");
 	
-	output("\n\nShe picks up her bag and exits the Honeypot, determination and anxiety quickening the swing of her arms and bounce of her bosom. <b>You should probably come back in a day or two to see if she finds out anything else.</b>");
+	output("\n\nShe picks up her bag and exits the Honey Nozzle, determination and anxiety quickening the swing of her arms and bounce of her bosom. <b>You should probably come back in a day or two to see if she finds out anything else.</b>");
 
 	flags["FAZIAN_QUEST_STATE"] = FAZIAN_QUEST_INVESTIGATED;
 	flags["FAZIAN_QUEST_TIMER"] = GetGameTimestamp();
@@ -1447,6 +1474,8 @@ public function fazianQuestApproachWarehouse():void
 {
 	clearOutput();
 	showBust("REDMYR");
+	showName("RED\nMYR");
+	author("Nonesuch");
 
 	output("<i>“This is not a place");
 	if (pc.race().indexOf("gold myr") != -1) output(" for a gold myr to be");
@@ -1470,7 +1499,7 @@ public function fazianQuestApproachMenu():void
 	}
 	else
 	{
-		addDisabledButton(0, "The Back", "The Back", "The guards are still probably keeping an eye on the back of the building. Best to stay away from there for now.");
+		addDisabledButton(0, "The Back", "The Back", "The guards are still keeping an eye on the back of the building. Best to stay away from there for now.");
 	}
 	
 	if (flags["GUARD_BRIBE"] == undefined)
@@ -1485,12 +1514,17 @@ public function fazianQuestApproachMenu():void
 	
 	addButton(2, "Fight", fazianQuestApproachFight, undefined, "Fight", "This probably isn't a good idea.");
 
-	addButton(3, "Leave", fazianQuestApproachLeave);
+	addButton(14, "Leave", mainGameMenu);
 }
 
 public function fazianQuestApproachBack():void
 {
 	clearOutput();
+	author("Nonesuch");
+	
+	currentLocation = "FAZIAN_RESCUE_ROOM";
+	generateMap();
+	showName("WAREHOUSE:\nBACK");
 
 	output("You make a show of apologetically putting your hands in the air and stepping back to the main road, nothing more than a clueless tourist having a nosey around. You walk off and loop back around, carefully approaching the vast warehouse from the side jutting out of the cavern wall.");
 	
@@ -1516,7 +1550,7 @@ public function fazianQuestApproachBackMenu():void
 
 	if (flags["FAZIAN_BACK_WINDOW"] == undefined)
 	{
-		if (pc.canFly() || (pc.accessory is Hoverboard) || pc.hasItemByType(Hoverboard))addButton(1, "Window", fazianQuestApproachBackWindow, undefined, "The Window", "Perhaps you have something that will enable you to get up there...");
+		if (pc.canFly() || (pc.accessory is Hoverboard) || pc.hasItemByType(Hoverboard)) addButton(1, "Window", fazianQuestApproachBackWindow, undefined, "The Window", "Perhaps you have something that will enable you to get up there...");
 		else addDisabledButton(1, "Window", "The Window", "You can't possibly reach that.");
 	}
 	else
@@ -1526,12 +1560,15 @@ public function fazianQuestApproachBackMenu():void
 
 	addButton(3, "Wait", fazianQuestApproachBackWait);
 
-	addButton(14, "Back", fazianQuestApproachMenu);	
+	addButton(14, "Back", fazianQuestApproachLeave);	
 }
 
 public function fazianQuestApproachBackWait():void
 {
 	clearOutput();
+	showBust("REDMYR","REDMYR");
+	showName("WAREHOUSE:\nBACK");
+	author("Nonesuch");
 
 	output("You settle yourself down behind some crates near the door, keeping a close watch. At least, that’s what you set out to do - after about ten minutes have crawled by you take your codex out and begin to extranet surf. Another forty minutes drift by, the pins and needles in your [pc.lowerBody] getting steadily more annoying. You’re about to give up and head back to the street when the door bangs open.");
 	
@@ -1552,6 +1589,8 @@ public function fazianQuestApproachBackWait():void
 public function fazianQuestApproachBackHeadIn():void
 {
 	clearOutput();
+	showName("WAREHOUSE:\nBACK");
+	author("Nonesuch");
 
 	output("As unobtrusively as you can, you sneak out from behind the crates and slink through the open door. You think you could have made as much noise as you wanted to, really; those two are miles away.");
 
@@ -1564,6 +1603,11 @@ public function fazianQuestApproachBackHeadIn():void
 public function fazianQuestApproachBackWaitLeave():void
 {
 	clearOutput();
+	author("Nonesuch");
+	
+	currentLocation = "817";
+	generateMap();
+	showLocationName();
 
 	output("You unobtrusively head back to the street, the sound of enthusiastic macking following you all the way.");
 
@@ -1577,6 +1621,8 @@ public function fazianQuestApproachBackWaitLeave():void
 public function fazianQuestApproachBackDoor():void
 {
 	clearOutput();
+	showName("WAREHOUSE:\nDOOR");
+	author("Nonesuch");
 
 	output("You go up to the door and rattle the handle. Locked. You put your shoulder to it and throw your weight against it with a bang. It doesn’t budge.");
 	
@@ -1587,12 +1633,15 @@ public function fazianQuestApproachBackDoor():void
 	//[Keep trying] [Get back]
 	clearMenu();
 	addButton(0, "Keep Trying", fazianQuestApproachBackDoorForce, undefined, "Keep Trying", "It's bound to give eventually.");
-	addButton(1, "Get Back", fazianQuestApproachBackDoorBack, undefined, "Get Back", "Maybe forcing the door isn't such a good idea.");
+	addButton(14, "Get Back", fazianQuestApproachBackDoorBack, undefined, "Get Back", "Maybe forcing the door isn't such a good idea.");
 }
 
 public function fazianQuestApproachBackDoorForce():void
 {
 	clearOutput();
+	showBust("MYR_RED_GUARD");
+	showName("WAREHOUSE:\nDOOR");
+	author("Nonesuch");
 
 	output("You slam your frame into the door again, and again, and - it opens, throwing you off balance.");
 	
@@ -1611,12 +1660,15 @@ public function fazianQuestApproachBackDoorForce():void
 	processTime(5);
 	
 	clearMenu();
-	addButton(0, "Next", mainGameMenu);
+	addButton(0, "Next", fazianQuestApproachLeave);
 }
 
 public function fazianQuestApproachBackDoorBack():void
 {
 	clearOutput();
+	showBust("MYR_RED_GUARD");
+	showName("WAREHOUSE:\nDOOR");
+	author("Nonesuch");
 
 	output("You smartly head over to some crates and duck behind them. Moments later the door swings open, and an angry-looking red myr peers out. You keep very still, and eventually, with one last suspicious glare towards the street, she slams the door shut. There’s the click and thunk of several locks being turned.");
 
@@ -1630,6 +1682,8 @@ public function fazianQuestApproachBackDoorBack():void
 public function fazianQuestApproachBackWindow():void
 {
 	clearOutput();
+	showName("WAREHOUSE:\nWINDOW");
+	author("Nonesuch");
 
 	if (pc.canFly())
 	{
@@ -1639,7 +1693,10 @@ public function fazianQuestApproachBackWindow():void
 		{
 			flags["FAZIAN_BACK_WINDOW"] = 1
 
-			output("\n\nYour heart leaps when, with a rusty bark, the window opens, coughing decades of age into your face, allowing you to see into a darkened storeroom. Your heart sinks when, after several optimistic attempts, it becomes very obvious that there is no way you are going to fit your considerable frame through it. You almost hurt your wings at the third attempt, and reluctantly you glide your way back down. You are going to have to try something else.");
+			output("\n\nYour heart leaps when, with a rusty bark, the window opens, coughing decades of age into your face, allowing you to see into a darkened storeroom. Your heart sinks when, after several optimistic attempts, it becomes very obvious that there is no way you are going to fit your considerable frame through it. You almost hurt your");
+			if(pc.hasWings()) output(" [pc.wingsNoun]");
+			else output("self");
+			output(" at the third attempt, and reluctantly you glide your way back down. You are going to have to try something else.");
 
 			fazianQuestApproachBackMenu();
 		}
@@ -1683,6 +1740,8 @@ public function fazianQuestApproachBribe():void
 {
 	clearOutput();
 	showBust("REDMYR");
+	showName("RED\nMYR");
+	author("Nonesuch");
 
 	output("How much?");
 
@@ -1700,6 +1759,8 @@ public function fazianQuestBribeGo(amt:int):void
 {
 	clearOutput();
 	showBust("REDMYR");
+	showName("RED\nMYR");
+	author("Nonesuch");
 
 	output("<i>“Must be pretty thirsty work, guarding a door,”</i> you suggest. <i>“Unrewarding, too.”</i>");
 	
@@ -1772,6 +1833,8 @@ public function fazianQuestApproachFight():void
 {
 	clearOutput();
 	showBust("REDMYR");
+	showName("RED\nMYR");
+	author("Nonesuch");
 
 	output("The red myr looks completely taken aback when you suddenly draw your weapon and fly at her. <b>Maybe if you finish this quickly...</b>");
 
@@ -1794,7 +1857,11 @@ public function fazianQuestApproachFight():void
 
 public function fazianQuestOutdoorGuardLoss():void
 {
+	author("Nonesuch");
+	
 	output("You can try fighting the entire red myr garrison, in which case your bullet-riddled corpse will fall to the ground in short order. You can try surrendering and arguing your case that another starwalker is being held in the warehouse, and you were just trying to rescue them. This will fall on unfavorable ears, both on the red myr and the U.G.C.'s side, given you assaulted a soldier in occupied territory during a fragile ceasefire. It will be many years before Steele Corp manage to wrangle a release for you from Kressia's military prison. Whichever the case, your adventure is over.");
+	
+	CombatManager.genericLoss();
 	
 	processTime(5);
 
@@ -1803,13 +1870,15 @@ public function fazianQuestOutdoorGuardLoss():void
 
 public function fazianQuestOutdoorGuardVictory():void
 {
+	author("Nonesuch");
+	
 	if (enemy.HP() <= 0)
 	{
-		output("\n\nAn iron whistle clatters into the dust as the red myr crumples to the ground, unconscious. You shoot a nervous look over both shoulders. Fortune is still with you; in this quiet corner of Kressia, nobody seems to have seen your assault. Or if they have, they’re gold, and quietly approve. Quickly you grab hold of the guard and drag her, limbs dangling, behind the warehouse and into the cover of some crates.");
+		output("An iron whistle clatters into the dust as the red myr crumples to the ground, unconscious. You shoot a nervous look over both shoulders. Fortune is still with you; in this quiet corner of Kressia, nobody seems to have seen your assault. Or if they have, they’re gold, and quietly approve. Quickly you grab hold of the guard and drag her, limbs dangling, behind the warehouse and into the cover of some crates.");
 	}
 	else
 	{
-		output("\n\nAn iron whistle clatters into the dust as the red myr’s eyes cloud, her mouth hanging open.");
+		output("An iron whistle clatters into the dust as the red myr’s eyes cloud, her mouth hanging open.");
 		
 		output("\n\n<i>“G-goddess,”</i> she groans, clutching herself between the legs. <i>“Stop! Alright, I’ll let you in if - can we go around the back - ?”</i>");
 		
@@ -1830,17 +1899,28 @@ public function fazianQuestOutdoorGuardVictory():void
 
 public function fazianQuestApproachLeave():void
 {
+	currentLocation = "817";
+	generateMap();
+	showLocationName();
+	
 	/*
 	clearOutput();
 	showBust("REDMYR");
 	*/
 
-	mainGameMenu();
+	//mainGameMenu();
+	fazianQuestApproachMenu();
 }
 
 public function fazianQuestWarehouseFront():void
 {
 	clearOutput();
+	author("Nonesuch");
+	
+	currentLocation = "FAZIAN_RESCUE_ROOM";
+	generateMap();
+	showName("WAREHOUSE:\nENTRANCE HALL");
+	
 	output("You are standing in a broad, well-lit entrance hall. There is a hubbub coming from the room opposite; the sound of many people moving around and... clapping? Peering carefully into the ajar door to your left you can see half a dozen red myr in military uniform sat around a table, playing some sort of game involving small crystals and counters. You are easily able to sneak past them, and open the door to the main chamber.");
 	
 	processTime(3);
@@ -1853,6 +1933,12 @@ public function fazianQuestWarehouseFront():void
 public function fazianQuestWarehouseBack():void
 {
 	clearOutput();
+	author("Nonesuch");
+	
+	currentLocation = "FAZIAN_RESCUE_ROOM";
+	generateMap();
+	showName("WAREHOUSE:\nSTOREROOM");
+	
 	output("You are standing in a dim storeroom. Dusty industrial gear crowd the shelves. It’s obvious no-one’s used this room in a while.");
 	
 	output("\n\nYou gingerly open the door opposite the back entrance, and find yourself in a brightly lit corridor. There is a hubbub coming from the room at the far end; the sound of many people moving around and... clapping? You quickly head down the corridor and open the door to the main chamber.");
@@ -1866,12 +1952,17 @@ public function fazianQuestWarehouseBack():void
 public function fazianQuestWarehouseMainChamber():void
 {
 	clearOutput();
+	author("Nonesuch");
+	
+	currentLocation = "FAZIAN_RESCUE_ROOM";
+	generateMap();
+	showLocationName();
 
 	output("You are standing in a massive, echoing, concrete-floored space. Most of it is taken up by a seven foot deep depression in the middle, around which maybe a dozen red myr are stationed. It is filled, almost shoulder-to-shoulder, with female gold myr. There must be hundreds, maybe thousands, in it. They all look drawn and rather dirty, dressed in thin prison smocks. Some lean on crutches; others are shaven bald. And yet, on virtually every face you can see down there, there is an expression of shared joy. They are all facing towards one end of the warehouse, where a small stage has been erected overlooking the pit. Before you can entirely discern what’s going on at that end, every single gold myr in the room raises her hands and claps in time, making the room shake and your ears ring.");
 	
 	output("\n\n<i>“QUARAMARTA!”</i> they yell. On the stage, the bare-chested Fazian comes to a juddering halt. He looks utterly exhausted, feathers askew, soaked in sweat. Still, he raises his arms in acknowledgement to the thunderous applause which comes his way.");
 	
-	output("\n\n<i>“This way, sweet maidens,”</i> says a smooth voice, close enough to be discernable beneath the clamor. You turn to see thin androgynes with moth-like antennae neck-ruffs, dressed in sleek, modern, purple armor, gracefully picking happily dazed gold myr out of the crowd near you and leading them towards a door behind the stage. <i>“Where you are going, there are plenty more like him. No honeysweet, do not worry about your injuries. The tarratch shall see to them. We shall fix you, and take you somewhere better... <i>“");
+	output("\n\n<i>“This way, sweet maidens,”</i> says a smooth voice, close enough to be discernable beneath the clamor. You turn to see thin androgynes with moth-like antennae neck-ruffs, dressed in sleek, modern, purple armor, gracefully picking happily dazed gold myr out of the crowd near you and leading them towards a door behind the stage. <i>“Where you are going, there are plenty more like him. No honeysweet, do not worry about your injuries. The tarratch shall see to them. We shall fix you, and take you somewhere better...”</i>");
 	
 	output("\n\n<i>“Per [pc.name]?”</i> says Fazian hoarsely, catching sight of you. Most of the room turns to you.");
 	
@@ -1901,6 +1992,7 @@ public function fazianQuestDoRescue():void
 public function fazianQuestHandsUp():void
 {
 	clearOutput();
+	
 	output("<i>“I am here on the authority of the U.G.C.,”</i> you say with all the conviction you muster, <i>“to apprehend the kidnappers of a free citizen of the outer galaxy. I suggest you get your hands in the air.”</i> Several of the red myr guards nearby look at each other and lower their weapons uncertainly. The commander, however, just snorts.");
 	
 	output("\n\n<i>“No warrant, no uniform, no squad of fur-things armed with death-torches,”</i> she says to her fellows. <i>“No correct information, either. We didn’t kidnap him. He came of his own free will, to perform exclusively for the poor PoWs in our care. Isn’t that right, Fazian?”</i>");
@@ -1912,11 +2004,14 @@ public function fazianQuestHandsUp():void
 
 public function fazianQuestChamberMerge():void
 {
-	output("\n\n<i>“Major Ehstraffe, I - <i>“ stammers Fazian. Ehstraffe claps once sternly.");
+	author("Nonesuch");
+	showBust("EHSTRAFFE");
+	
+	output("\n\n<i>“Major Ehstraffe, I--”</i> stammers Fazian. Ehstraffe claps once sternly.");
 	
 	output("\n\n<i>“Dance! You know what happens if you do not.”</i> The anat heaves outwards - and then begins to tap out a steady rhythm on the boards with his hind talons. Slowly the gold myr’s attention turns back to him.");
 	
-	output("\n\n<i>“So... <i>“ you say slowly to the major. <i>“You’re forcing a civilian to perform for the PoWs in your care to keep them sedate? Whilst you’re selling them off to alien slave traders.”</i> The group of purple-armored, pale-skinned androgynes are stood quite still, watching you inscrutably with their black, pupil-less eyes, ruffs fluttering.");
+	output("\n\n<i>“So...”</i> you say slowly to the major. <i>“You’re forcing a civilian to perform for the PoWs in your care to keep them sedate? Whilst you’re selling them off to alien slave traders.”</i> The group of purple-armored, pale-skinned androgynes are stood quite still, watching you inscrutably with their black, pupil-less eyes, ruffs fluttering.");
 	
 	output("\n\n<i>“You think this is easy?”</i> replies Ehstraffe slowly, staring at you with her one good eye. <i>“You think looking after tens of thousands of prisoners who despise you, with the lowest amount of food and personnel allotted in the entire Federation because </i>fuck<i> looking after gold soldiers before anyone else, is easy? To a starwalker who decided to edotto in here in order to be a fucking hero, I suppose it would. You didn’t have to preside over a prison riot every week for two months. You didn’t have to start making decisions in order to stop anyone else dying.”</i> She snaps a chitin-gloved hand at the crowded pit.");
 	
@@ -1931,6 +2026,8 @@ public function fazianQuestChamberMerge():void
 public function fazianQuestChamberMergeII():void
 {
 	clearOutput();
+	showBust("EHSTRAFFE","TARRATCH");
+	author("Nonesuch");
 
 	output("Ehstraffe takes a deep breath, almost visibly packaging herself back up behind a controlled, authoritative facade, before speaking again.");
 	
@@ -1951,12 +2048,14 @@ public function fazianQuestChamberMergeII():void
 public function fazianQuestGetBribed():void
 {
 	clearOutput();
+	showBust("TARRATCH","EHSTRAFFE");
+	author("Nonesuch");
 
 	output("<i>“No!”</i> says Fazian hoarsely, as you take the check. You think. It’s lost under the movement of the crowd.");
 	
-	output("\n\n<i>“You’re just going to let [pc.himHer] walk out of here?”</i> queries Ehstraffe reluctantly. <i>“I don’t think - <i>“");
+	output("\n\n<i>“You’re just going to let [pc.himHer] walk out of here?”</i> queries Ehstraffe reluctantly. <i>“I don’t think--”</i>");
 	
-	output("\n\n<i>“Please, major!”</i> says the tarratch, smiling the cold, bright beam of a neutron star. <i>“By taking this payment {Mr.} / {Ms.} Steele has shown themselves to be a reasonable, rational individual. Rational individuals can be trusted. Business can be done with rational individuals.”</i> She (he?) claps you on the shoulder and leads you to the front door. <i>“And I very much hope to do business with you again in the future, Steele, earn some of those credits back. Our brothers and sisters offer the finest indentured servants in the galaxy, exactly because of rational individuals like yourself. Just don’t go chasing after every lost lamb you hear about on the frontier in future, ok? There’s a good rue collar.”</i>");
+	output("\n\n<i>“Please, major!”</i> says the tarratch, smiling the cold, bright beam of a neutron star. <i>“By taking this payment " + pc.mf("Mr.","Ms.") + " Steele has shown themselves to be a reasonable, rational individual. Rational individuals can be trusted. Business can be done with rational individuals.”</i> She (he?) claps you on the shoulder and leads you to the front door. <i>“And I very much hope to do business with you again in the future, Steele, earn some of those credits back. Our brothers and sisters offer the finest indentured servants in the galaxy, exactly because of rational individuals like yourself. Just don’t go chasing after every lost lamb you hear about on the frontier in future, ok? There’s a good rue collar.”</i>");
 	
 	output("\n\nThe door clicks shut behind you, and two red myr lead you out onto the road.");
 	
@@ -1967,16 +2066,18 @@ public function fazianQuestGetBribed():void
 	pc.credits += 20000;
 	pc.addHard(6);
 	flags["FAZIAN_QUEST_STATE"] = FAZIAN_QUEST_BRIBED;
-
+	
 	clearMenu();
-	addButton(0, "Next", mainGameMenu);
+	addButton(0, "Next", move, "817");
 }
 
 public function fazianQuestDontGetBribed():void
 {
 	clearOutput();
+	showBust("TARRATCH","EHSTRAFFE");
+	author("Nonesuch");
 
-	output("You knock the chit out of his (her?) hand and draw your [pc.weapon].");
+	output("You knock the chit out of his (her?) hand and [pc.readyWeapon].");
 	
 	output("\n\n<i>“I’m breaking up this sick little operation,”</i> you growl. <i>“Fazian is coming with me. And then we’ll see exactly what the U.G.C. and your superiors have to say about what’s going on here.”</i>");
 	
@@ -1995,7 +2096,7 @@ public function fazianQuestDontGetBribed():void
 	CombatManager.lossScene(fazianQuestEhstraffeLoss);
 	CombatManager.setHostileCharacters([new Ehstraffe(), new RedMyrGuard(), new RedMyrGuard(), new RedMyrGuard()]);
 	CombatManager.displayLocation("EHSTRAFFES\nDETAIL");
-	CombatManager.encounterText("You are fighting <b>Ehstraffe's detail</b>: Fully a dozen trained, chitin-armored red myr soldier women, all dressed in Federation standard trench-coats and berets, armed with semi-automatic slug-launchers and axes. Fortunately, you do not have to fight them all at once; a couple of them are keeping watch on the prisoners, and as long as you keep moving and close to at least one of them, the others cannot simply stand back and riddle you with bullets. Still, against their crude but effective machine guns, their heavy, well-aimed blows and the saliva they keep trying to forcibly introduce you to, you aren't going to last forever against all of them.")
+	CombatManager.encounterText("You are fighting <b>Ehstraffe's detail</b>: Fully a dozen trained, chitin-armored red myr soldier women, all dressed in Federation standard trench-coats and berets, armed with semi-automatic slug-launchers and axes. Fortunately, you do not have to fight them all at once; a couple of them are keeping watch on the prisoners, and as long as you keep moving in close to at least one of them, the others cannot simply stand back and riddle you with bullets. Still, against their crude but effective machine guns, their heavy, well-aimed blows and the saliva they keep trying to forcibly introduce you to, you aren't going to last forever against all of them.")
 	CombatManager.victoryCondition(CombatManager.SURVIVE_WAVES, 4);
 
 	clearMenu();
@@ -2004,21 +2105,32 @@ public function fazianQuestDontGetBribed():void
 
 public function fazianQuestEhstraffeLoss():void
 {
-	output("\n\nYou collapse, hands smacking onto the concrete. When you desperately try and rise again the red myr smother you, surrounding you in the brisk smell of their coat fabric as they lock your limbs in their strong grip, latching their lips onto your bare [pc.skin] in a dozen places. You shudder and writhe as the aphrodisiac surges into your veins, heat blossoming under your skin,");
+	userInterface.hideNPCStats();
+	userInterface.leftBarDefaults();
+	
+	showBust("EHSTRAFFE","MYR_RED_GUARD_MASK","MYR_RED_GUARD_MASK","MYR_RED_GUARD_MASK");
+	author("Nonesuch");
+	
+	output("You collapse, hands smacking onto the concrete. When you desperately try and rise again the red myr smother you, surrounding you in the brisk smell of their coat fabric as they lock your limbs in their strong grip, latching their lips onto your bare [pc.skin] in a dozen places. You shudder and writhe as the aphrodisiac surges into your veins, heat blossoming under your skin,");
 	if (pc.hasCock()) output(" [pc.eachCock] becoming hopelessly erect");
-	if (pc.hasCock() && pc.hasVagina()) output(" and");
+	if (pc.isHerm()) output(" and");
 	if (pc.hasVagina()) output(" [pc.eachVagina] needily dribbling eager arousal");
-	output(", incapacitated with lust.");
-
+	if (pc.hasGenitals()) output(",");
+	output(" incapacitated with lust.");
+	
+	var i:int = 0;
+	for(i = 0; i < 8 ; i++) { imbibeVenomEffects(); }
+	
 	if (pc.isFeminine())
 	{
 		output("\n\n<i>“You eight, get the golds and the dancer under control,”</i> orders someone, somewhere. You try hard to care, but it’s impossible; there’s only the aphrodisiac glow, and the fact nobody is seeing to the heat between your [pc.hips]. You groan woozily, and someone strokes your chin kindly.");
 		
 		output("\n\n<i>“So, we can offload her to you as well... ?”</i> the husky voice goes on.");
 		
-		output("\n\n<i>“A pretty, feisty rue collar like her?”</i> says a smooth voice. <i>“Won’t be a problem. We will be taking, not buying, though. The latest shipment of gold, too. This was your security lapse, and we are cleaning it up. If you want our continued support and discretion... <i>“");
+		output("\n\n<i>“A pretty, feisty rue collar like her?”</i> says a smooth voice. <i>“Won’t be a problem. We will be taking, not buying, though. The latest shipment of gold, too. This was your security lapse, and we are cleaning it up. If you want our continued support and discretion...”</i>");
 		
-		output("\n\n<i>“Of course,”</i> Ehstraffe agrees hurriedly. You are hauled to your feet and presented to the thin, pale-faced alien. He (she?) gazes into your eyes touches your chin again thoughtfully, diaphanous ruff trembling. Right now, as much as you want to curse and spit at them, any tender touch at all is sending a thrill into your core, making");
+		output("\n\n<i>“Of course,”</i> Ehstraffe agrees hurriedly. You are hauled to your feet and presented to the thin, pale-faced alien. He (she?) gazes into your eyes touches your chin again thoughtfully, diaphanous ruff trembling. Right now, as much as you want to curse and spit at them, any tender touch at all is sending a thrill into your core");
+		if (pc.hasGenitals()) output(", making");
 		if (pc.hasVagina()) output(" your pussy clench up");
 		if (pc.isHerm()) output(" and");
 		if (pc.hasCock()) output(" your erection twitch eagerly");
@@ -2028,21 +2140,63 @@ public function fazianQuestEhstraffeLoss():void
 		
 		output("\n\n<i>“I - we didn’t want to. But given what happened... yes. You’re right.”</i>");
 		
-		output("\n\n<i>“Come,”</i> directs the tarratch brusquely. You are led stumbling past the stage and a knocked out Fazian into a dully lit back area, populated by naked gold myr. They all look happily stoned, honey-swollen boobs gently bobbing. Tarratch slavers weave between them, their eerie, hypnotic ruffs fluttering and buzzing, bending over each so that they can fasten... something clicks into place around your neck. You touch the cold circle metal... and then squeal as fresh arousal suddenly buzzes into you,");
-		if (pc.hasVagina()) output(" [pc.eachVagina] seizing up and gushing [pc.femcum] down your [pc.hips].");
-		else if (pc.hasCock()) output(" [pc.eachCock] bulging up, building towards an unstoppable orgasm... and then agonizingly climbing down again, leaving you even more helplessly aroused than before.");
+		output("\n\n<i>“Come,”</i> directs the tarratch brusquely. You are led stumbling past the stage and a knocked out Fazian into a dully lit back area, populated by naked gold myr. They all look happily stoned, honey-swollen boobs gently bobbing. Tarratch slavers weave between them, their eerie, hypnotic ruffs fluttering and buzzing, bending over each so that they can fasten... something clicks into place around your neck. You touch the cold circle metal... and then squeal as fresh arousal suddenly buzzes into you");
+		if (pc.hasVagina()) output(", [pc.eachVagina] seizing up and gushing [pc.femcum] down your [pc.hips]");
+		else if (pc.hasCock()) output(", [pc.eachCock] bulging up, building towards an unstoppable orgasm... and then agonizingly climbing down again, leaving you even more helplessly aroused than before");
+		output(".");
 		
 		output("\n\n<i>“I wonder how much we should sell you for,”</i> the tarratch leader smirks, teasing the collar control in his (her?) hand. <i>“I’m thinking... 20,000 credits.”</i>");
 		
 		processTime(15);
-
+		
+		pc.removeAll();
+		pc.createStatusEffect("Psi Slave Collar", 0.5, 0.5, 200, 0, false, "Radio", "This metal collar limits your intelligence capacity and willpower while worn, making you completely subservient to the will of the one who operates it.", false, 0, 0xFF0000);
+		pc.lust(75);
+		
 		clearMenu();
 		addButton(0, "Next", function():void {
 			clearOutput();
+			author("Nonesuch");
+			
+			currentLocation = "GAME OVER";
+			generateMap();
+			showLocationName();
+			
 			output("Once they have smuggled you off Myrellion, under the effects of various cocktails of brainwashing drugs and electrotherapy, the skilful insectile slavers extract the details of your identity and bank account. They proceed to wipe both clean, liquidate your assets and provide you with a new identity: Cindi Luvscock. This obviously costs money, which Cindi begins the long, slow process of paying back by working a glory hole on one of the frontier’s sleazier space stations.");
 			
-			output("\n\nOnce sufficiently trained at servicing even the biggest, most outlandishly shaped dick, the tarratch sell you to an ausar pirate warlord operating on the fringes of known space. He disdains drugs in favor of using your ever-present collar - as well as his almost limitless libido, creative sadism and three, fourteen inch knotted wolf cocks - to mold you into his perfect slave. Your contract stipulates that you yourself will work off the cost of any modification made to you, so your owner is sure to shift your body around whenever the whim takes him - six extra months of servitude for the cunt nipples, another year for the long, dextrous, extra-sensitive tongue, five more years for the special gastro-implants that allow you to live entirely off sexual fluids... sheer curiosity eventually causes him to work out your former identity, which only increases his appetite for using you. Where you’re concerned though, the name of [pc.name] Steele becomes a strange, unimportant memory in the extremely vigorous, cum-soaked life of Cindi Luvscock.");
-
+			output("\n\nOnce sufficiently trained at servicing even the biggest, most outlandishly shaped dick, the tarratch sell you to an ausar pirate warlord operating on the fringes of known space. He disdains drugs in favor of using your ever-present collar - as well as his almost limitless libido, creative sadism and three, fourteen-inch, knotted wolf cocks - to mold you into his perfect slave. Your contract stipulates that you yourself will work off the cost of any modification made to you, so your owner is sure to shift your body around whenever the whim takes him - six extra months of servitude for the cunt nipples, another year for the long, dextrous, extra-sensitive tongue, five more years for the special gastro-implants that allow you to live entirely off sexual fluids... sheer curiosity eventually causes him to work out your former identity, which only increases his appetite for using you. Where you’re concerned though, the name of [pc.name] Steele becomes a strange, unimportant memory in the extremely vigorous, cum-soaked life of Cindi Luvscock.");
+			
+			days += 50 + rand (21);
+			hours += rand (24);
+			processTime(rand(60));
+			
+			var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
+			if (pp.cocks.length < 1) pp.createCock();
+			if (pp.cocks.length < 2) pp.createCock();
+			if (pp.cocks.length < 3) pp.createCock();
+			for(i = 0; i < pp.cocks.length ; i++)
+			{
+				pp.shiftCock(i, GLOBAL.TYPE_CANINE);
+				pp.cocks[i].cLengthRaw = 14;
+			}
+			
+			pc.credits = -1 * (856000 + rand(985));
+			pc.short = "Cindi";
+			pc.tongueType = GLOBAL.TYPE_DRACONIC;
+			pc.tongueFlags = [GLOBAL.FLAG_LONG, GLOBAL.FLAG_SMOOTH, GLOBAL.FLAG_PREHENSILE];
+			for(i = 0; i < pc.breastRows.length ; i++) { pc.breastRows[i].nippleType == GLOBAL.NIPPLE_TYPE_FUCKABLE; }
+			if(pc.hasVagina())
+			{
+				for(i = 0; i < pc.vaginas.length ; i++) { pc.cuntChange(i, pp.cockVolume(0), false); }
+				for(i = 0; i < pc.vaginas.length ; i++) { pc.cuntChange(i, pp.cockVolume(1), false); }
+				for(i = 0; i < pc.vaginas.length ; i++) { pc.cuntChange(i, pp.cockVolume(2), false); }
+			}
+			pc.buttChange(pp.cockVolume(0), false);
+			pc.buttChange(pp.cockVolume(1), false);
+			pc.buttChange(pp.cockVolume(2), false);
+			
+			CombatManager.genericLoss();
+			
 			badEnd("GAME OVER");
 		});
 	}
@@ -2051,21 +2205,28 @@ public function fazianQuestEhstraffeLoss():void
 		output("\n\n<i>“You eight, get the golds and the dancer under control,”</i> orders someone, somewhere. You try hard to care, but it’s impossible; there’s only the aphrodisiac glow, and the fact nobody is seeing to the heat between your [pc.hips]. You groan woozily, and someone strokes your chin kindly.");
 		output("\n\n<i>“So, we can offload him to you as well... ?”</i> the husky voice goes on.");
 		
-		output("\n\n<i>“I know this is hard for you to grasp,”</i> says a smooth voice, <i>“but "+ pc.rawmf("men", "manly women") +" are more difficult for us to sell. Much more specialist market, outside this planet.”</i> You are hauled to your feet and presented to the thin, pale-faced alien. He (she?) touches your chin again thoughtfully, diaphanous ruff trembling. Right now, as much as you want to curse and spit at them, any tender touch at all is sending a thrill into your core, making");
-		if (pc.hasVagina()) output(" your pussy clench up");
+		output("\n\n<i>“I know this is hard for you to grasp,”</i> says a smooth voice, <i>“but "+ pc.rawmf("men", "manly women") +" are more difficult for us to sell. Much more specialist market, outside this planet.”</i> You are hauled to your feet and presented to the thin, pale-faced alien. He (she?) touches your chin again thoughtfully, diaphanous ruff trembling. Right now, as much as you want to curse and spit at them, any tender touch at all is sending a thrill into your core");
+		if (pc.hasGenitals()) output(", making");
+		if (pc.hasVagina()) output(" your [pc.pussies] clench up");
 		if (pc.isHerm()) output(" and");
-		if (pc.hasCock()) output(" your erection twitch eagerly");
+		if (pc.hasCock()) output(" your erection" + (pc.cockTotal() != 1 ? "s" : "") + " twitch eagerly");
 		output(".");
 		
 		output("\n\n<i>“So you aren’t going to help us with him,”</i> says Ehstraffe coldly.");
 		
 		output("\n\n<i>“What a </i>tragedy<i> for you to endure, major,”</i> smirks the tarratch. <i>“What </i>possible <i> use could you put him to around here, I wonder? This venom of yours, that I am interested in. We’ll talk later. For now, put him somewhere out of the way. Hook the dancer up, too. Far too restive for anyone’s good.”</i>");
 		
-		output("\n\nEhstraffe gestures at the two red myr holding you, and they drag you away, past an unconscious Fazian, to a reasonably sized room with a bed. You struggle to form cogent thoughts through the fog of arousal, the all-conquering need in your [pc.groin]. Do these two have to be holding you as tightly as they are? Do their chitinous hands really have to be drifting across your [pc.chest]?... The door clicks shut, and immediately one of them shoves you onto the bed {and begins briskly tearing your garments off}.");
+		output("\n\nEhstraffe gestures at the two red myr holding you, and they drag you away, past an unconscious Fazian, to a reasonably sized room with a bed. You struggle to form cogent thoughts through the fog of arousal, the all-conquering need in your [pc.groin]. Do these two have to be holding you as tightly as they are? Do their chitinous hands really have to be drifting across your [pc.chest]...? The door clicks shut, and immediately one of them shoves you onto the bed");
+		if (!pc.isNude()) output(" and begins briskly tearing your garments off");
+		output(".");
 		
 		output("\n\n<i>“You fight good, brave starwalker,”</i> she says, yanking her combat trousers down, exposing her full, muscular thighs and pinning you underneath her. She pauses only to kiss you fiercely. You groan as your tongues meet and fresh arousal surges into your bloodstream. <i>“Which means you fuck good, too. I’m not missing this chance - Ehstraffe’s a greedy sow who’ll have you all to herself.”</i> Talking done, she");
-		if (pc.hasCock()) output(" sinks the hot, slick cling of her pussy down on your helplessly erect [pc.cock] and begins to urgently thrust her athletic frame into you, holding you down by the shoulders.");
-		else output(" latches her hip firmly around yours, molds her hot, slick pussy into your [pc.vagina] and begins to urgently thrust her athletic frame into you, holding you down by the shoulders.");
+		if (pc.hasCock())
+		{
+			output(" sinks the hot, slick cling of her pussy down on your helplessly erect [pc.cockNoun] and begins to urgently thrust her athletic frame into you, holding you down by the shoulders.");
+			pc.cockChange();
+		}
+		else output(" latches her hip firmly around yours, molds her hot, slick pussy into your " + (pc.hasVagina() ? "[pc.vagina]" : "[pc.crotch]") + " and begins to urgently thrust her athletic frame into you, holding you down by the shoulders.");
 		
 		output("\n\n<i>“Be quick,”</i> says the other, keeping watch at the door. <i>“I want a turn with that, too.”</i>");
 
@@ -2073,6 +2234,14 @@ public function fazianQuestEhstraffeLoss():void
 		
 		clearMenu();
 		addButton(0, "Next", function():void {
+			clearOutput();
+			showBust("EHSTRAFFE","FAZIAN");
+			author("Nonesuch");
+			
+			currentLocation = "GAME OVER";
+			generateMap();
+			showLocationName();
+			
 			output("Days, weeks pass by in a venom-induced haze. You eventually come to welcome the burn of it entering your veins; the peace, tranquillity and all-conquering arousal it brings. It focuses you wonderfully for your sole occupation - being one of two primary sources of stress relief for a whole base of healthy, overworked, uptight red myr. Sure, Major Ehstraffe does make use of you a lot, bordering on the sadistic - keeping you locked for hours beneath her desk and between her thighs. But she quickly sees the benefits of sharing you around.");
 			
 			output("\n\nOnce as hopelessly addicted to red myr saliva as you are, Fazian comes to accept his new role in life, too. As he points out philosophically, the two of you <i>are</i> making a lot of ordinary people happy with your presence, and it’s not exactly a suffering to");
@@ -2082,18 +2251,33 @@ public function fazianQuestEhstraffeLoss():void
 			
 			output("\n\nYour mission is over, but hey, if the goal was to slay as much pussy as possible, mission accomplished.");
 			
+			days += 32 + rand (8);
+			hours += rand (24);
+			processTime(rand(60));
+			
+			for(i = 0; i < 8 ; i++) { imbibeVenomEffects(); }
+			myrAddiction(100);
+			
+			CombatManager.genericLoss();
+			
 			badEnd("GAME OVER");
-			});
+		});
 	}
 }
 
 public function fazianQuestEhstraffeVictory():void
 {
+	userInterface.hideNPCStats();
+	userInterface.leftBarDefaults();
+	
+	showBust("GOLDMYR","GOLDMYR","GOLDMYR");
+	author("Nonesuch");
+	
 	output("One moment you are desperately fending off a clutch of armed guards - the next they are overwhelmed in a tidal wave of furious gold myr prisoners, who kick, bite and trample them to the ground. The red myr desperately fight back, more soldiers hurry in from the front to help, but they are hopelessly outnumbered.");
 	
 	output("\n\nYou bundle your way through the crowd, many of whom are now surging through the exits, battling your way towards the stage. You can hear Ehstraffe screaming out orders from somewhere - there’s no sign of the tarratch... your hands touch wood and you clamber up onto the stage, just in time to see a gold myr pick a groggy Fazian up by the shoulder.");
 	
-	output("\n\n<i>“Through the back,”</i> she says. She’s missing an arm but looks exultant, a Federation beret skewed across her crown.  Together you half carry, half lead the anat dancer out of the main warehouse and through the back entrance. Gold myr are streaming out of the main gateway in all directions, fighting red myr, being tackled to the ground, or simply running into Kressia or towards No Myr’s Land as fast as they possibly can. Keeping in the back alleys and close to the cavern wall, you limp northwards with Fazian and the gold myr. A siren wails over the sounds of the riot, followed by the crackle of open fire. Nobody stops you, though. Presumably to the red myr soldiers you glimpse charging past, your group looks like an alien who has been caught in the crossfire, his friend, and a helpful, Federation-affiliated local.");
+	output("\n\n<i>“Through the back,”</i> she says. She’s missing an arm but looks exultant, a Federation beret skewed across her crown. Together you half carry, half lead the anat dancer out of the main warehouse and through the back entrance. Gold myr are streaming out of the main gateway in all directions, fighting red myr, being tackled to the ground, or simply running into Kressia or towards No Myr’s Land as fast as they possibly can. Keeping in the back alleys and close to the cavern wall, you limp northwards with Fazian and the gold myr. A siren wails over the sounds of the riot, followed by the crackle of open fire. Nobody stops you, though. Presumably to the red myr soldiers you glimpse charging past, your group looks like an alien who has been caught in the crossfire, his friend, and a helpful, Federation-affiliated local.");
 	
 	output("\n\n<i>“They’ll recapture most of us before the night is out,”</i> says the gold myr, as you finally stop in a quiet street some distance north. She trails the fingers of her sole left hand down Fazian’s back and then squeezes your palm with a thin smile. <i>“Most of us. Make it count, starwalker.”</i> The last you see of her is her abdomen, disappearing around another corner. After you’ve rested a little while, you and Fazian continue to head northwards towards the airfield. You both silently listen to the fading sounds of violence behind you.");
 	
@@ -2104,6 +2288,7 @@ public function fazianQuestEhstraffeVictory():void
 public function fazianQuestEhstraffeVictoryII():void
 {
 	clearOutput();
+	showFazian();
 
 	output("<i>“Do you know what Quaramarta means?”</i> he says, after a bit. <i>“It roughly translates as ‘All Four Hands’. It’s an old tribal song which appears in a great many gold myr traditions. It’s supposed to mean: We are all the same. We can set differences aside in the end, because we are all thinking people with the same hopes and needs. I was performing that... to them.”</i> He brings up his claws and stares at them with his pale blue eyes. You can see them trembling. <i>“To keep them there, I performed that to them.”</i>");
 	
@@ -2117,11 +2302,13 @@ public function fazianQuestEhstraffeVictoryII():void
 	userInterface.mainButtonsReset();
 	userInterface.hideNPCStats();
 	userInterface.leftBarDefaults();
-			
+	
 	currentLocation = "805";
+	generateMap();
 	processTime(120+rand(15));
 	pc.addNice(5);
 	flags["FAZIAN_QUEST_STATE"] = FAZIAN_QUEST_COMPLETE;
+	flags["FAZIAN_QUEST_RESCUE_TIMER"] = GetGameTimestamp();
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -2134,17 +2321,30 @@ public function fazianQuestCompleteBlurbs():void
 
 	output("When Hepane sees you coming, she immediately puts down her clipboard and hurries across to give you a four-armed embrace.");
 	
-	output("\n\n<i>“Thank you so much for what you did,”</i> she says, her fair-sized bosom pressed into your [pc.chest]. Her high voice is rather choked. <i>“I couldn’t sleep after I sent you to Kressia. I kept thinking that I’d sent one of my guests to face danger I wouldn’t have - for nothing at all. Fazian told me about what was going on in that place, and - you are brave and selfless beyond words, starwalker. I hope one day my people and the reds can join you above the sky, so we too can learn the lessons of nobility your race clearly have.”</i>");
-	
-	output("\n\n<i>“ ...the shows are back on, right?”</i> you say after a moment, slightly embarrassedly. The gold myr smiles toothily.");
+	if(flags["MET_HEPANE"] <= 1)
+	{
+		output("\n\n<i>“Thank you so much for what you did,”</i> she says, her fair-sized bosom pressed into your [pc.chest]. Her high voice is rather choked. <i>“I couldn’t sleep after I sent you to Kressia. I kept thinking that I’d sent one of my guests to face danger I wouldn’t have - for nothing at all. Fazian told me about what was going on in that place, and - you are brave and selfless beyond words, starwalker. I hope one day my people and the reds can join you above the sky, so we too can learn the lessons of nobility your race clearly have.”</i>");
+		
+		output("\n\n<i>“... the shows are back on, right?”</i> you say after a moment, slightly embarrassedly. The gold myr smiles toothily.");
+		
+		flags["MET_HEPANE"] = 2;
+		
+		processTime(10);
+	}
+	else
+	{
+		output("\n\n<i>“Hello again! I’m so happy you've come,”</i> she says, her fair-sized bosom pressed into your [pc.chest].");
+		
+		output("\n\nAfter a moment, you ask her if there is a show playing soon. The gold myr smiles toothily.");
+		
+		processTime(3);
+	}
 
 	output("\n\n<i>“Yes! Free entry for you, of course. What do you say to relaxing to a performance of");
 	if (days % 3 == 0) output(" Quaramarta");
 	else if (days % 3 == 1) output(" As You Shrike It");
 	else output(" Paradise");
 	output("?”</i>");
-	
-	processTime(10);
 
 	//No charge from use of [Show] from then on
 	clearMenu();

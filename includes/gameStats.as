@@ -514,6 +514,9 @@ public function statisticsScreen(showID:String = "All"):void
 		output2(" " + formatFloat(pc.bellyRating(), 3));
 		output2("\n<b>* Belly, Weight: </b>" + prettifyWeight(pc.bodyPartWeight("belly")));
 		if(pc.weightQ("belly") > 0) output2(" (" + pc.weightQ("belly") + " %)");
+		if(pc.statusEffectv1("Orally-Filled") > 0) output2("\n<b>* Cumflation, Oral: </b>" + GLOBAL.FLUID_TYPE_NAMES[pc.statusEffectv3("Orally-Filled")] + ", " + Math.round(pc.statusEffectv1("Orally-Filled")) + " mLs");
+		if(pc.statusEffectv1("Anally-Filled") > 0) output2("\n<b>* Cumflation, Anal: </b>" + GLOBAL.FLUID_TYPE_NAMES[pc.statusEffectv3("Anally-Filled")] + ", " + Math.round(pc.statusEffectv1("Anally-Filled")) + " mLs");
+		if(pc.statusEffectv1("Vaginally-Filled") > 0) output2("\n<b>* Cumflation, Vaginal: </b>" + GLOBAL.FLUID_TYPE_NAMES[pc.statusEffectv3("Vaginally-Filled")] + ", " + Math.round(pc.statusEffectv1("Vaginally-Filled")) + " mLs");
 		if(pc.isPregnant())
 		{
 			output2("\n<b>* Active Pregnancies, Total: </b>" + pc.totalPregnancies());
@@ -1690,6 +1693,70 @@ public function displayQuestLog(showID:String = "All"):void
 				}
 				sideCount++;
 			}
+			// FazianQuest
+			if(flags["FAZIAN_QUEST_STATE"] != undefined && flags["FAZIAN_QUEST_STATE"] != FAZIAN_QUEST_NOTSTARTED && (flags["FAZIAN_QUEST_STATE"] != FAZIAN_QUEST_OFFERING || flags["FAZIAN_QUEST_DELAY"] != undefined))
+			{
+				output2("\n<b><u>Faz Quest</u></b>");
+				output2("\n<b>* Status:</b>");
+				switch(flags["FAZIAN_QUEST_STATE"])
+				{
+					case FAZIAN_QUEST_OFFERING: output2(" <i>Might be able to help...</i>"); break;
+					case FAZIAN_QUEST_COMPLETE:
+						output2(" Helped Hepane, Saved Fazian from Major Ehstraffe and tarratch slavers");
+						if(flags["FAZIAN_QUEST_RESCUE_TIMER"] != undefined) output2(", Completed");
+						break;
+					case FAZIAN_QUEST_STARTED:
+						output2(" Offered to help Hepane");
+						if(flags["FAZIAN_QUEST_SUCCESSES"] + flags["FAZIAN_QUEST_FAILURES"] < 3) output2(", <i>Find clues of Fazian’s whereabouts...</i>");
+						else
+						{
+							output2(", Clues found");
+							if(flags["FAZIAN_QUEST_SUCCESSES"] + flags["FAZIAN_QUEST_FAILURES"] < 5) output2(", <i>Keep investigating or return to Hepane...</i>");
+							else output2(", <i>Return to Hepane!</i>");
+						}
+						break
+					case FAZIAN_QUEST_REJECTED: output2(" Refused to help Hepane find Fazian"); break;
+					case FAZIAN_QUEST_FAILED: output2(" Offered to help Hepane, Did not find enough useful clues, Failed"); break;
+					case FAZIAN_QUEST_INVESTIGATED:
+						output2(" Offered to help Hepane, Investigated clues, <i>Return to Hepane");
+						if((flags["FAZIAN_QUEST_TIMER"] + (24 * 60)) > GetGameTimestamp()) output2(" in " + prettifyMinutes((flags["FAZIAN_QUEST_TIMER"] + (24 * 60)) - GetGameTimestamp()));
+						else output2("!");
+						output2("</i>");
+						break;
+					case FAZIAN_QUEST_RESCUE: output2(" Helped Hepane, <i>Locate the warehouse in Kressia and rescue Fazian!</i>"); break;
+					case FAZIAN_QUEST_BRIBED: output2(" Betrayed Hepane, Sold Fazian to tarratch slavers for 20000 credits, Completed"); break;
+				}
+				if
+				(	(flags["FAZIAN_QUEST_STATE"] != FAZIAN_QUEST_OFFERING && flags["FAZIAN_QUEST_STATE"] != FAZIAN_QUEST_REJECTED)
+				&&	(flags["FAZIAN_QUEST_SUCCESSES"] != undefined && flags["FAZIAN_QUEST_FAILURES"] != undefined)
+				)
+					output2("\n<b>* Clues, Lead/Dead-End Ratio: </b>" + flags["FAZIAN_QUEST_SUCCESSES"] + "/" + flags["FAZIAN_QUEST_FAILURES"] + ", of " + (flags["FAZIAN_QUEST_SUCCESSES"] + flags["FAZIAN_QUEST_FAILURES"]) + " clues");
+				if(flags["FAZIAN_QUEST_STATE"] == FAZIAN_QUEST_STARTED)
+				{
+					if(flags["FAZIAN_QUEST_GOLDMYR"] != undefined) output2("\n<b>* Clues, Gold Myr Group:</b> <i>" + (flags["FAZIAN_QUEST_GOLDMYR"] > 0 ? "Possibly not a kidnapping" : "Nothing") + "...</i>");
+					if(flags["FAZIAN_QUEST_BARKEEP"] != undefined) output2("\n<b>* Clues, Gold Myr Barkeep:</b> <i>" + (flags["FAZIAN_QUEST_BARKEEP"] > 0 ? "Look in Kressia" : "Nothing") + "...</i>");
+					if(flags["FAZIAN_QUEST_DALLY"] != undefined) output2("\n<b>* Clues, Dally:</b> <i>" + (flags["FAZIAN_QUEST_DALLY"] > 0 ? "Suspect is possibly myr" : "Nothing") + "...</i>");
+					if(flags["FAZIAN_QUEST_GENE"] != undefined) output2("\n<b>* Clues, Gene:</b> <i>" + (flags["FAZIAN_QUEST_GENE"] > 0 ? "Fazian was invited to do a private performance" : "Nothing") + "...</i>");
+					if(flags["FAZIAN_QUEST_JURO"] != undefined) output2("\n<b>* Clues, Juro:</b> <i>" + (flags["FAZIAN_QUEST_JURO"] > 0 ? "Major Ehstraffe, a female red myr officer" : "Nothing") + "...</i>");
+				}
+				if(flags["GUARD_BRIBE"] != undefined || flags["FAZIAN_QUEST_DOOR"] != undefined || flags["FAZIAN_BACK_WINDOW"] != undefined)
+				{
+					output2("\n<b>* Warehouse:</b>");
+					if(flags["FAZIAN_QUEST_DOOR"] + (6 * 60) >= GetGameTimestamp()) output2(" Actively guarded,");
+					output2(" Tried to");
+					if(flags["GUARD_BRIBE"] != undefined) output2(" bribe guard");
+					if(flags["FAZIAN_QUEST_DOOR"] != undefined || flags["FAZIAN_BACK_WINDOW"] != undefined)
+					{
+						if(flags["GUARD_BRIBE"] != undefined) output2(" and");
+						output2(" sneak through the");
+						if(flags["FAZIAN_QUEST_DOOR"] != undefined) output2(" door");
+						if(flags["FAZIAN_QUEST_DOOR"] != undefined && flags["FAZIAN_BACK_WINDOW"] != undefined) output2(" and");
+						if(flags["FAZIAN_BACK_WINDOW"] != undefined) output2(" window");
+					}
+					output2(" but failed");
+				}
+				sideCount++;
+			}
 			// IrelliaQuest
 			if(flags["IRELLIA_QUEST_STATUS"] != undefined)
 			{
@@ -1697,7 +1764,7 @@ public function displayQuestLog(showID:String = "All"):void
 				output2("\n<b>* Status:</b>");
 				if(flags["IRELLIA_QUEST_STATUS"] == 0) output2(" Refused");
 				else if(flags["IRELLIA_QUEST_STATUS"] == -1) output2(" Bomb exploded, Failed");
-				else if(flags["IRELLIA_QUEST_STATUS"] == 2) output2(" Investigating, Attend unification rally");
+				else if(flags["IRELLIA_QUEST_STATUS"] == 2) output2(" Investigating, <i>Attend unification rally</i>");
 				else if(flags["IRELLIA_QUEST_STATUS"] >= 3)
 				{
 					output2(" Investigated");
@@ -1886,7 +1953,7 @@ public function displayQuestLog(showID:String = "All"):void
 					if(flags["LIEVE_BLOOD_SAMPLE"] != undefined) output2(" Lieve");
 					if(flags["LIEVE_BLOOD_SAMPLE"] != undefined && flags["NEHZARA_BLOOD_SAMPLE"] != undefined) output2(" and");
 					if(flags["NEHZARA_BLOOD_SAMPLE"] != undefined) output2(" Nehzara");
-					if(flags["NEVRIE_QUEST"] < 2) output2(", Return to Nevrie");
+					if(flags["NEVRIE_QUEST"] < 2) output2(", <i>Return to Nevrie</i>");
 				}
 				else output2(" <i>Not yet obtained</i>");
 				sideCount++;
@@ -1927,8 +1994,8 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["SIERVA_LATEGOODBYE_RESPONSE"] == LIEVE_LATEGOODBYE_NO) output2(" Refused");
 				else if(flags["SIERVA_LATEGOODBYE_RESPONSE"] == LIEVE_LATEGOODBYE_YES)
 				{
-					if(flags["LEARNED_IAYAS_FATE"] == undefined) output2(" Accepted, Find Iaya");
-					else output2(" Accepted, Learned Iaya’s Fate, Tell Sierva");
+					if(flags["LEARNED_IAYAS_FATE"] == undefined) output2(" Accepted, <i>Find Iaya</i>");
+					else output2(" Accepted, Learned Iaya’s Fate, <i>Tell Sierva</i>");
 				}
 				else if(flags["SIERVA_LATEGOODBYE_RESPONSE"] == LIEVE_LATEGOODBYE_COMPLETE) output2(" Accepted, Learned Iaya’s Fate, Told Sierva, Completed");
 				sideCount++;
@@ -3756,12 +3823,12 @@ public function displayEncounterLog(showID:String = "All"):void
 			{
 				output2("\n<b><u>Gildenmere</u></b>");
 				// Liriel, Martians
-				if (flags["LIRIEL_MET"] != undefined)
+				if(flags["LIRIEL_MET"] != undefined)
 				{
 					output2("\n<b>* Liriel:</b> Met her");
-					if (flags["LIRIEL_TALK_STAND"] != undefined) output2(", Talked about The Little Green Man stand");
-					if (flags["LIRIEL_BUTTSEXED"] != undefined) output2("\n<b>* Liriel, Times She Fucked Your Ass: </b>" + flags["LIRIEL_BUTTSEXED"]);
-					if (flags["LIRIEL_TITFUCKED"] != undefined) output2("\n<b>* Liriel, Times Titfucked: </b>" + flags["LIRIEL_TITFUCKED"]);
+					if(flags["LIRIEL_TALK_STAND"] != undefined) output2(", Talked about The Little Green Man stand");
+					if(flags["LIRIEL_BUTTSEXED"] != undefined) output2("\n<b>* Liriel, Times She Fucked Your Ass: </b>" + flags["LIRIEL_BUTTSEXED"]);
+					if(flags["LIRIEL_TITFUCKED"] != undefined) output2("\n<b>* Liriel, Times Titfucked: </b>" + flags["LIRIEL_TITFUCKED"]);
 				}
 				// Orryx, step right up ladies and gents!
 				if(flags["MET_ORRYX"] != undefined)
@@ -3778,15 +3845,15 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["MET_ORRYX"] >= 2 && flags["ORRYX_REP"] != undefined) output2("\n<b>* Orryx, Reputation Level: </b>" + flags["ORRYX_REP"]);
 				}
 				// Ant Orgy!
-				if (flags["LAST_ANT_ORGY"] != undefined)
+				if(flags["LAST_ANT_ORGY"] != undefined)
 				{
 					output2("\n<b>* Horny Myr Soldiers:</b>");
-					if (flags["LAST_ANT_ORGY"] == -1) output2(" Orgy avoided");
-					if (flags["LAST_ANT_ORGY"] == 0) output2(" Orgy refused");
-					if (flags["LAST_ANT_ORGY"] == 1) output2(" Orgy accepted");
-					if (flags["LAST_ANT_ORGY"] == 2) output2(" Orgy failed to avoid");
-					if (flags["ANT_ORGY_TIME"] != undefined) output2(", " + prettifyMinutes(GetGameTimestamp() - flags["ANT_ORGY_TIME"]) + " ago");
-					if (flags["ANT_ORGY_COUNT"] != undefined) output2("\n<b>* Horny Myr Soldiers, Times Had Orgy With: </b>" + flags["ANT_ORGY_COUNT"]);
+					if(flags["LAST_ANT_ORGY"] == -1) output2(" Orgy avoided");
+					if(flags["LAST_ANT_ORGY"] == 0) output2(" Orgy refused");
+					if(flags["LAST_ANT_ORGY"] == 1) output2(" Orgy accepted");
+					if(flags["LAST_ANT_ORGY"] == 2) output2(" Orgy failed to avoid");
+					if(flags["ANT_ORGY_TIME"] != undefined) output2(", " + prettifyMinutes(GetGameTimestamp() - flags["ANT_ORGY_TIME"]) + " ago");
+					if(flags["ANT_ORGY_COUNT"] != undefined) output2("\n<b>* Horny Myr Soldiers, Times Had Orgy With: </b>" + flags["ANT_ORGY_COUNT"]);
 				}
 				variousCount++;
 			}
@@ -3827,15 +3894,36 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// The Honey Nozzle
-			if(flags["MET_DALLY"] != undefined)
+			if(hasSeenNozzleShow() || flags["MET_DALLY"] != undefined || flags["MET_HEPANE"] != undefined)
 			{
 				output2("\n<b><u>The Honey Nozzle</u></b>");
+				// Cabaret Shows
+				if(flags["NOZZLE_SHOW_PARADISE"] != undefined) output2("\n<b>* Cabaret, “Of Paradise”, Times Watched: </b>" + flags["NOZZLE_SHOW_PARADISE"]);
+				if(flags["NOZZLE_SHOW_SHRIKE"] != undefined) output2("\n<b>* Cabaret, “As You Shrike It”, Times Watched: </b>" + flags["NOZZLE_SHOW_SHRIKE"]);
+				if(flags["NOZZLE_SHOW_QUARAMARTA"] != undefined) output2("\n<b>* Cabaret, “The Quaramarta”, Times Watched: </b>" + flags["NOZZLE_SHOW_QUARAMARTA"]);
 				// Dallyyy
-				output2("\n<b>* Dally:</b> Met him");
-				if(flags["DALLY_TIPS"] != undefined) output2("\n<b>* Dally, Tip Balance: </b>" + flags["DALLY_TIPS"] + " credits");
-				if(flags["DALLY_FAVORS"] != undefined) output2("\n<b>* Dally, Times Performed On Stage With Him: </b>" + flags["DALLY_FAVORS"]);
-				if(flags["DALLY_NECTAR_DRANK"] != undefined) output2("\n<b>* Dally, Times Drank His Nectar: </b>" + flags["DALLY_NECTAR_DRANK"]);
-				if(flags["CUNTTAILED_DALLY"] != undefined) output2("\n<b>* Dally, Times He Fucked Your Tail Cunt: </b>" + flags["CUNTTAILED_DALLY"]);
+				if(flags["MET_DALLY"] != undefined)
+				{
+					output2("\n<b>* Dally:</b> Met him");
+					if(flags["DALLY_TIPS"] != undefined) output2("\n<b>* Dally, Tip Balance: </b>" + flags["DALLY_TIPS"] + " credits");
+					if(flags["DALLY_FAVORS"] != undefined) output2("\n<b>* Dally, Times Performed On Stage With Him: </b>" + flags["DALLY_FAVORS"]);
+					if(flags["DALLY_NECTAR_DRANK"] != undefined) output2("\n<b>* Dally, Times Drank His Nectar: </b>" + flags["DALLY_NECTAR_DRANK"]);
+					if(flags["CUNTTAILED_DALLY"] != undefined) output2("\n<b>* Dally, Times He Fucked Your Tail Cunt: </b>" + flags["CUNTTAILED_DALLY"]);
+				}
+				// Fazian
+				if(hasSeenNozzleShow())
+				{
+					output2("\n<b>* Fazian:</b>");
+					if(flags["APPROACHED_FAZIAN"] != undefined) output2(" Met him");
+					else output2(" Seen him");
+					if(flags["FAZIAN_QUEST_STATE"] == FAZIAN_QUEST_RESCUE) output2(", <i>At Kressia warehouse...</i>");
+					else if(flags["FAZIAN_QUEST_STATE"] != FAZIAN_QUEST_COMPLETE && (flags["FAZIAN_QUEST_STATE"] != FAZIAN_QUEST_OFFERING || flags["FAZIAN_QUEST_DELAY"] != undefined) && flags["FAZIAN_QUEST_STATE"] != undefined) output2(", <i>Whereabouts unknown</i>");
+					else if((hours > 15 && hours < 20) || (hours == 15 && minutes >= 30) || (hours == 20 && minutes <= 30)) output2(", Currently performing");
+					if(flags["DANCE_SKILL_EDOTTO"] != undefined) output2("\n<b>* Fazian, Dance Lesson, Edotto Skill Level: </b>" + flags["DANCE_SKILL_EDOTTO"]);
+					if(flags["DANCE_SKILL_SUNWALKER"] != undefined) output2("\n<b>* Fazian, Dance Lesson, Sunwalker Skill Level: </b>" + flags["DANCE_SKILL_SUNWALKER"]);
+				}
+				// Hepane
+				if(flags["MET_HEPANE"] != undefined) output2("\n<b>* Hepane:</b> Met her");
 				variousCount++;
 			}
 			// The Honeypot Stall
