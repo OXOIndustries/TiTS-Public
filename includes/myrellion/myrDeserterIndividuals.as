@@ -87,6 +87,24 @@ public function showDeserter(gold:Boolean = false,nude:Boolean = false):void
 	}
 }
 
+//Utility functions for Z's new shit
+public function hasGoldDildo():Boolean
+{
+	return false;
+}
+public function hasRedDildo():Boolean
+{
+	return false;
+}
+public function removeRedDildo():void
+{
+
+}
+public function removeGoldDildo():void
+{
+	
+}
+
 //Myr Approaches
 public function approachMyrDeserters():void
 {
@@ -179,6 +197,8 @@ public function combatBlurb(gold:Boolean = false):void
 		if(!gold) output("semi-auto pistol");
 		else output("trench shotgun");
 		output(".");
+		if((gold && hasGoldDildo()) || (!gold && hasRedDildo())) output(" She smiles wickedly. <i>“I believe you have something of mine... I’d like it back.”</i>");
+
 	}
 	output("\n\n<b>It’s a fight!</b>");
 	clearMenu();
@@ -251,18 +271,26 @@ public function approachMyrDesertersNonCombatShit(gold:Boolean = false):void
 		//First Pregnancy && First Time Ever Seeing Her Pregnant
 		if(flags["SEEN_RED_DESERTER_PREGGERS"] == undefined && flags["RED_MYR_BIRTHS"] == undefined)
 		{
-			output("\n\n <i>“Hi there, soldier. Probably a good as time as any to tell you you’re a father,”</i> she grins, petting the obvious bump. <i>“And before you ask, it’s definitely yours. I don’t get laid enough to mix </i>that<i> up.”</i>");
+			output("\n\n <i>“Hi there, soldier. Probably a good as time as any to tell you you’re a father,”</i> she grins, petting the obvious bump. <i>“And before you ask, it’s definitely yours. I don’t get laid enough to mix </i>that<i> up.");
+			if(hasRedDildo()) output(" By the way... could I get the Private back? Being pregnant has got me all horny. Think of it as a congratulatory gift.");
+			output("”</i>");
 			flags["SEEN_RED_DESERTER_PREGGERS"] = 1;
 		}
 		//{Second Pregnancy && First Time Seeing Her Pregnant (this time)
 		else if(flags["SEEN_RED_DESERTER_PREGGERS"] == undefined && flags["RED_MYR_BIRTHS"] == 1)
 		{
-			output("\n\n<i>“Hi there, soldier. You’ve gone and knocked me up again,”</i> she grins, rubbing her bump. <i>“You’re a regular stud, aren’t you? Making a girl waddle around the battlefield.”</i>");
+			output("\n\n<i>“Hi there, soldier. You’ve gone and knocked me up again,”</i> she grins, rubbing her bump. <i>“You’re a regular stud, aren’t you? Making a girl waddle around the battlefield");
+			if(hasRedDildo()) output(", pregnant and horny as a cockvine with no way to relieve it but to seek you out. Speaking of... could I have the Private back?");
+			else output(".");
+			output("”</i>");
 			flags["SEEN_RED_DESERTER_PREGGERS"] = 1;
 		}
 		else
 		{
-			output("\n\n<i>“Hi there, soldier. I’m just sitting down for a rest,”</i> she smiles and stretches out. <i>“... So, what brings you out to these forsaken parts?”</i>");
+			output("\n\n<i>“Hi there, soldier. I’m just sitting down for a rest,”</i> she smiles and stretches out. <i>“... So, what brings you out to ");
+			if(hasRedDildo()) output("my forsaken parts? Hopefully a vibrator delivery to relieve my horniness.");
+			else output("these forsaken parts?");
+			output("”</i>");
 		}
 		//Don’t Know Her Name:
 		if(flags["KNOW_RED_MYR_NAME"] == undefined)
@@ -278,8 +306,8 @@ public function approachMyrDesertersNonCombatShit(gold:Boolean = false):void
 		if(!gold) output("red");
 		else output("gold");
 		output(" deserter");
-		if(!gold && flags["KNOW_RED_MYR_NAME"] == 1) output("- It’s Briha");
-		else if(gold && flags["KNOW_GOLD_MYR_NAME"] == 1) output("- It's Lys");
+		if(!gold && flags["KNOW_RED_MYR_NAME"] == 1) output("- it’s Briha");
+		else if(gold && flags["KNOW_GOLD_MYR_NAME"] == 1) output("- it's Lys");
 		output(". She’s holding her ");
 		if(!gold) output("semi-auto pistol and hatchet");
 		else output("trench shotgun and pistols");
@@ -291,17 +319,34 @@ public function approachMyrDesertersNonCombatShit(gold:Boolean = false):void
 			//{Post-pregnancy:
 			if(flags["RED_MYR_BIRTHS"] != undefined) 
 			{
-				output("\n\n<i>“Hi, soldier. It’s good to see you again,”</i> she warmly smiles. Her weapons are immediately lowered.");
-				output("\n\n<i>“... Got time to spend with me? I’d appreciate the company.”</i>");
+				output("\n\n<i>“Hi, soldier. ");
+				//(PC has her vibro)
+				if(hasRedDildo()) output("May I have the Private back? I’ve lost enough fights to you to know how trying to take it will go down... so why don’t we play nice?”</i>");
+				else output("It’s good to see you again,”</i> she warmly smiles. Her weapons are immediately lowered.");
+				if(hasRedDildo())
+				{
+					output(" <i>“Are you going to hand over the Private, or do I have to knock you around a bit?”</i> the myr jokes");
+					//(5+ losses to PC)
+					if(flags["GOLD_MYR_DESERTER_BEATEN"] != undefined && flags["GOLD_MYR_DESERTER_BEATEN"] >= 5) output(", winking to tell you she’s not up for a fight");
+					output(". <i>“Either way, I’ll try not to be too hard on you.”</i>");
+				}
+				else output("\n\n<i>“... Got time to spend with me? I’d appreciate the company.”</i>");
 			}
 			else
 			{
-				output("\n\n<i>“Hi, soldier. How about we skip the usual scuffles and just play nice? I’ve got into enough fights with you to know who’s going to end up on top,”</i> she wryly smiles.");
+				output("\n\n<i>“Hi, soldier. ");
+				if(hasRedDildo()) output("May I have the Private back? I've lost enough fights to you to know how trying to take it will go down... so why don't we play nice?");
+				else output("How about we skip the usual scuffles and just play nice? I’ve got into enough fights with you to know who’s going to end up on top,");
+				output("”</i> she wryly smiles.");
 			}
 		}
 		else
 		{
-			output("\n\n<i>“Fancy meeting you here. How about we don’t fight this time? I’m sick of getting spanked by you - well, at least getting spanked in the non-fun way,”</i> she grins.");
+			output("\n\n<i>“Fancy meeting you here. ");
+			//(PC has her strapon)
+			if(hasGoldDildo()) output("How about you generously let me have my strap-on and I skip the whole 'tough soldier' bit?");
+			else output("How about we don’t fight this time? I’m sick of getting spanked by you - well, at least getting spanked in the non-fun way,");
+			output("”</i> she grins.");
 		}
 		//Don’t Know Her Name:
 		if((!gold && flags["KNOW_RED_MYR_NAME"] == undefined) || (gold && flags["KNOW_GOLD_MYR_NAME"] == undefined))
@@ -335,6 +380,7 @@ public function approachMyrDesertersNonCombatShit(gold:Boolean = false):void
 		if(flags["BRIHA_INCUBATION_TIMER"] != undefined) addDisabledButton(2,"Fight","Fight","You're not going to smack around a pregnant girl!");
 		else addButton(2,"Fight",fightADumbShitAntWaifu,gold);
 	}
+	if(hasRedDildo() || hasGoldDildo()) addButton(3,"Give Dildo",giveDildoToAntSloot,gold,"Give Dildo","Return your looted prize.");
 	addButton(14,"Run",runFromDatAntSloot,gold);
 }
 
@@ -670,7 +716,13 @@ public function specialRedAntPreggosShitEvent():void
 		else output("her");
 		output(" a little more.”</i>");
 	}
-	output("\n\nWith a heavy heart, you take your infant child and kiss Briha goodbye. It’s not hard to call a pick-up pod to carry ");
+	output("\n\nWith a heavy heart, you take your infant child and kiss Briha goodbye");
+	if(hasRedDildo())
+	{
+		output(" - the sly veteran snags her vibrator out of your pack while your hands are full, with a tired smile that tells you she's hormonal enough to need it");
+		removeRedDildo();
+	}
+	output(". It’s not hard to call a pick-up pod to carry ");
 	if(son) output("him");
 	else output("her");
 	output(" to Tavros station, where a flurry of nursemaids will no doubt make a huge fuss over the new addition to the Steele family. You take your time strapping your child into the cushy, overprotected capsule and making sure the readings are set so <i>nothing</i> happens to ");
@@ -711,15 +763,26 @@ public function loseToAntGrillDeserts():void
 		if(!pc.hasStatusEffect("Tripped")) output(" Suddenly you’re falling backward. You hit the ground and the air leaves your chest in a giant <i>“oof”</i>. All you’re able to do now is stare at the cavern roof, your limbs heavy and useless.");
 		else output(" You’re unable to lift your limbs to get off the ground - they’re heavy and useless.");
 
-		output("\n\nRather than leave you battered and bruised, the [enemy.skinColor] skinned soldieress pulls out a first aid kit. She dutifully patches you up, bandaging and dressing your wounds. The salve she puts on it instantly numbs your ails.");
+		output("\n\nRather than leave you battered and bruised, the [enemy.skinColor] skinned soldieress pulls out a first aid kit. She ");
+		if((hasRedDildo() && !gold) || (hasGoldDildo() && gold))
+		{
+			output("pauses, though. Instead of opening it, the myr rifles through your own pack and reclaims her ");
+			if(hasRedDildo()) output("vibrator");
+			else output("strap-on");
+			output(", grinning triumphantly.");
+			//(corresponding vibrator used flag at 1).. until a thought occurs to her. <i>“Did you use this?”</i> /(vibro used flag at 2).. until she smells it, and her grin turns to a puzzled frown. <i>“Smells like [pc.cumNoun]... just what did you do with my Private?”</i> }");
+			//output("\n\n{(nice)"Exactly as you think. Sorry!”</i> you admit. /(else)You answer with a coy smile. }
+			output(" She stows it, then ");
+		}
+		output("dutifully patches you up, bandaging and dressing your wounds. The salve she applies instantly numbs your ails.");
 		//First time Fighting Her:
 		if(flags["LOST_TO_MYR_DESERTS"] == undefined)
 		{
 			flags["LOST_TO_MYR_DESERTS"] = 1;
-			output("\n\n<i>“There you go, hon,”</i> the scrappy deserter smiles, patting your patched up cheek. <i>“... I told you it’s just your turn to be on the receiving end. I may be a turncoat, but I’m not a </i>total<i> bitch - just a little bit of one.”</i>");
+			output("\n\n<i>“There you go, hon,”</i> the scrappy deserter smiles, patting your patched-up cheek. <i>“... I told you it’s just your turn to be on the receiving end. I may be a turncoat, but I’m not a </i>total<i> bitch - just a little bit of one.”</i>");
 		}
 		//else (not first time):
-		else output("\n\n<i>“We just keep on running into each other, and you keep drawing the short end of the stick. It’s nothing personal, hon,”</i> the scrappy deserter reassures you, patting your patched up cheek. <i>“How about I find a way to make it up to you? I’ve got a few ways in mind.”</i>");
+		else output("\n\n<i>“We just keep on running into each other, and you keep drawing the short end of the stick. It’s nothing personal, hon,”</i> the scrappy deserter reassures you, patting your patched-up cheek. <i>“How about I find a way to make it up to you? I’ve got a few ways in mind.”</i>");
 	}
 	//Lust Loss:
 	else
@@ -731,6 +794,18 @@ public function loseToAntGrillDeserts():void
 
 		//PcNotTripped:
 		if(!pc.hasStatusEffect("Tripped")) output("\n\nStriding up to you, the seasoned soldieress presses a palm against your [pc.chest]. With a simple push, she knocks on your back. Instead of getting up, you gulp with delight. What does she have planned for you? A delighted shiver of anticipation scampers up your back.");
+		//if PC has dildo, append this paragraph to lust loss
+		if((hasRedDildo() && !gold) || (hasGoldDildo() && gold))
+		{
+			output("\n\nWith nimble fingers, she rifles through your possessions until she turns up her ");
+			if(!gold) output("vibrator");
+			else output("strap-on");
+			output(". <i>“Might want to use this,”</i> she says, wearing an evil smile.");
+			//{(Briha and used flag at 2).. until a smell hits her nose. She looks more closely at the toy. <i>“Ehh... did you cum on the Private?”</i>");
+			//output("\n\n{(nice)"Totally did. Sorry!”</i> you admit. /(else)You produce a giddy giggle(PC masc) barely befitting your appearance}. }/(used flag at 1).. until a thought occurs to her. <i>“You didn’t stick this anywhere dangerous, did you? Like, into a cockvine or a fungal myr or something?”</i>");
+			//output("\n\n{(nice)"Er, no,”</i> you answer carefully. <i>“Not dangerous </i>per se<i>.”</i> /(else)You grin instead of answering{(mean) - though you note her suggestions for another day}. }");
+			//DO NOT remove dildo item from PC until after the loss scene starts - triggers alt. text in sex scene opening
+		}
 	}
 	// If Red, Dildo Screw Sex Scene
 	// If Gold, Sit and Screw Sex Scene
@@ -1447,10 +1522,19 @@ public function redDildoScrew():void
 		clearOutput();
 		author("JimThermic");
 		showDeserter(false,true);
-		output("From her kitpack, ");
-		if(DontKnowName) output("the ");
-		output("[enemy.name]");
-		output(" pulls out an imposing dildo, a full eight inches of veiny goodness. ");
+		if(hasRedDildo())
+		{
+			if(DontKnowName) output("The ");
+			output("[enemy.name] waggles the vibrator at you, filling your imagination with eight semi-solid and pleasure-ready inches. ");
+			removeRedDildo();
+		}
+		else
+		{
+			output("From her kitpack, ");
+			if(DontKnowName) output("the ");
+			output("[enemy.name]");
+			output(" pulls out an imposing dildo, a full eight inches of veiny goodness. ");
+		}
 		if(enemy.isPregnant()) output("Your pregnant lover");
 		else output("She");
 		output(" straddles your waist, sitting on top of you, and touches it against the tip of your nose.");
@@ -1460,7 +1544,7 @@ public function redDildoScrew():void
 		{
 			output("\n\nYour eyes cross as you stare at the camo-colored cock. It’s shaped just like a myr cock, but instead of being scarlet, it’s a mottled green from tip to base with the occasional splotch of chocolate brown.");
 			output("\n\n<i>“Like it?”</i> She purrs, <i>“It’s standard issue for us girls in the trenches. I’ve spent many a happy night with the Private inside of me, both of us quivering away.”</i>");
-			output("\n\nThere’s a clicking noise. The synthetic wang begins to wizz against your sensitive nose. It’s shaped like a dildo, but it’s actually a vibrator? Two separate motors - one in the tip and another in the base - wildly whir.");
+			output("\n\nThere’s a clicking noise. The synthetic wang begins to buzz against your sensitive nose. It’s shaped like a dildo, but it’s actually a vibrator? Two separate motors - one in the tip and another in the base - wildly whir.");
 			output("\n\nDoes it look so thick because it’s right in front of your eyes, or is it <i>really</i> that big? A matching shiver courses through you, starting at your nose and ending at your [pc.toes].");
 			flags["RED_MYR_DESERT_DILDO_DONE"] = 1;
 		}
@@ -1468,7 +1552,7 @@ public function redDildoScrew():void
 		else
 		{
 			output("\n\n<i>“You remember the Private, don’t you? That delicious feeling of him quivering about inside of you-I bet you missed it,”</i> she purrs.");
-			output("\n\nThere’s a clicking noise. The synthetic wang begins to wizz against your sensitive nose. The two separate motors - one in the tip and another in the base - wildly whir. A matching shiver courses through you, starting at your nose and ending at your [pc.toes].");
+			output("\n\nThere’s a clicking noise. The synthetic wang begins to buzz against your sensitive nose. The two separate motors - one in the tip and another in the base - wildly whir. A matching shiver courses through you, starting at your nose and ending at your [pc.toes].");
 		}
 	}
 	//ELSE PC WIN/CONSENT:
@@ -1744,6 +1828,10 @@ public function sitAndScrewGoldMyr():void
 		}
 		if(pc.hasVagina() || !pc.hasCock()) output("you feel a delicious tingling sensation deep in your loins");
 		output(".");
+		if(hasGoldDildo())
+		{
+			output("\n\nExulting in her power, the myr searches through your stuff, though ultimately, she’s only interested in her fat strap-on. She reclaims it with a flourish.");
+		}
 
 		output("\n\nStriding up to you, ");
 		if(DontKnowName) output("the ");
@@ -1770,8 +1858,16 @@ public function sitAndScrewGoldMyr():void
 		//Else PC GotNoCock:
 		else
 		{
-			output("\n\n<i>“Mmm, you’re lacking a little something-something here,”</i> the naked deserter sultrily purrs, <i>“... Thankfully, I’ve got just the thing to fix that.”</i>");
-			output("\n\nFirst, the busty battle-maiden strips off your [pc.gear]. After this, she reaches into her kitpack. Out comes a rather impressive looking strap on - ten inches of golden veiny goodness. There’s another, smaller protrusion on the other side, designed to stimulate the wearer. It’s double-ended!");
+			output("\n\n<i>“Mmm, you’re lacking a little something-something here,”</i> the naked deserter sultrily purrs, <i>“... Thankfully, ");
+			if(hasGoldDildo()) output("you've brought back");
+			else output("I’ve got just");
+			output(" the thing to fix that.”</i>");
+			output("\n\nFirst, the busty battle-maiden strips off your [pc.gear]. After this, she ");
+			if(hasGoldDildo()) {
+				output("waggles the strap-on she just reclaimed - ten-plus inches of low-hanging fruit with an extra berry on the back for the wearer's pleasure.");
+				removeGoldDildo();
+			}
+			else output("reaches into her kitpack. Out comes a rather impressive looking strap on - ten inches of golden veiny goodness. There’s another, smaller protrusion on the other side, designed to stimulate the wearer. It’s double-ended!");
 			output("\n\n<i>“We trench girls have got to help each other out. This little beauty is no fun on your own, you know? That’s where you come in,”</i> the raven-haired soldier explains, <i>“... ");
 			if(pc.hasVagina()) output("How about both of us have a good time?");
 			else output("I’ll have to remove the other end though. Sorry hon!”</i>");
@@ -2100,4 +2196,9 @@ public function dontTakeLysPanties():void
 	output("You leave Lys’s panties alone, deciding not to take them.");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
+}
+
+public function giveDildoToAntSloot(gold:Boolean):void
+{
+	
 }
