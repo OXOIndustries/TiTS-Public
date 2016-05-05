@@ -770,6 +770,7 @@ public function loseToAntGrillDeserts():void
 			if(hasRedDildo()) output("vibrator");
 			else output("strap-on");
 			output(", grinning triumphantly.");
+			//THE BELOW CONTENT WAS CUT. I DON'T CARE FOR IT. -F
 			//(corresponding vibrator used flag at 1).. until a thought occurs to her. <i>“Did you use this?”</i> /(vibro used flag at 2).. until she smells it, and her grin turns to a puzzled frown. <i>“Smells like [pc.cumNoun]... just what did you do with my Private?”</i> }");
 			//output("\n\n{(nice)"Exactly as you think. Sorry!”</i> you admit. /(else)You answer with a coy smile. }
 			output(" She stows it, then ");
@@ -801,6 +802,7 @@ public function loseToAntGrillDeserts():void
 			if(!gold) output("vibrator");
 			else output("strap-on");
 			output(". <i>“Might want to use this,”</i> she says, wearing an evil smile.");
+			//THE BELOW CONTENT WAS CUT. I DON'T CARE FOR IT. -F
 			//{(Briha and used flag at 2).. until a smell hits her nose. She looks more closely at the toy. <i>“Ehh... did you cum on the Private?”</i>");
 			//output("\n\n{(nice)"Totally did. Sorry!”</i> you admit. /(else)You produce a giddy giggle(PC masc) barely befitting your appearance}. }/(used flag at 1).. until a thought occurs to her. <i>“You didn’t stick this anywhere dangerous, did you? Like, into a cockvine or a fungal myr or something?”</i>");
 			//output("\n\n{(nice)"Er, no,”</i> you answer carefully. <i>“Not dangerous </i>per se<i>.”</i> /(else)You grin instead of answering{(mean) - though you note her suggestions for another day}. }");
