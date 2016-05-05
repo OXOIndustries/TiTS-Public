@@ -3917,7 +3917,10 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["APPROACHED_FAZIAN"] != undefined) output2(" Met him");
 					else output2(" Seen him");
 					if(flags["FAZIAN_QUEST_STATE"] == FAZIAN_QUEST_RESCUE) output2(", <i>At Kressia warehouse...</i>");
-					else if(flags["FAZIAN_QUEST_STATE"] != FAZIAN_QUEST_COMPLETE && (flags["FAZIAN_QUEST_STATE"] != FAZIAN_QUEST_OFFERING || flags["FAZIAN_QUEST_DELAY"] != undefined) && flags["FAZIAN_QUEST_STATE"] != undefined) output2(", <i>Whereabouts unknown</i>");
+					else if
+					(	(flags["FAZIAN_QUEST_STATE"] == FAZIAN_QUEST_OFFERING && flags["FAZIAN_QUEST_DELAY"] != undefined)
+					||	InCollection(flags["FAZIAN_QUEST_STATE"], [FAZIAN_QUEST_STARTED, FAZIAN_QUEST_REJECTED, FAZIAN_QUEST_FAILED, FAZIAN_QUEST_INVESTIGATED, FAZIAN_QUEST_BRIBED])
+					)	output2(", <i>Whereabouts unknown</i>");
 					else if((hours > 15 && hours < 20) || (hours == 15 && minutes >= 30) || (hours == 20 && minutes <= 30)) output2(", Currently performing");
 					if(flags["DANCE_SKILL_EDOTTO"] != undefined) output2("\n<b>* Fazian, Dance Lesson, Edotto Skill Level: </b>" + flags["DANCE_SKILL_EDOTTO"]);
 					if(flags["DANCE_SKILL_SUNWALKER"] != undefined) output2("\n<b>* Fazian, Dance Lesson, Sunwalker Skill Level: </b>" + flags["DANCE_SKILL_SUNWALKER"]);

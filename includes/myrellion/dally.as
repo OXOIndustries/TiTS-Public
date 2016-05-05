@@ -32,16 +32,26 @@ public function honeyNozzleClub():Boolean
 			output("\n\nHepane, the myr musician you're trying to help find Fazian, is sat at a table near the back. She waves at you urgently the moment she catches sight of you.");
 			addButton(1, "Hepane", fazianQuestInvestigationFollowup, undefined, "Hepane", "Go over and see what she has to say.");
 		}
+		else if ((hours > 15 && hours < 20) || (hours == 15 && minutes >= 30) || (hours == 20 && minutes <= 30))
+		{
+			output("\n\nThe entrance to the cabaret displays a sign that mentions a temporary delay in the evening's showings.");
+		}
 	}
-	else if (flags["FAZIAN_QUEST_STATE"] != FAZIAN_QUEST_REJECTED && flags["FAZIAN_QUEST_STATE"] != FAZIAN_QUEST_FAILED && flags["FAZIAN_QUEST_STATE"] != FAZIAN_QUEST_RESCUE)
+	else if (!InCollection(flags["FAZIAN_QUEST_STATE"], [FAZIAN_QUEST_REJECTED, FAZIAN_QUEST_FAILED, FAZIAN_QUEST_RESCUE, FAZIAN_QUEST_BRIBED]))
 	{
-		if (flags["FAZIAN_QUEST_RESCUE_TIMER"] != undefined && flags["FAZIAN_QUEST_RESCUE_TIMER"] + (24 * 60) > GetGameTimestamp()) return false;
-		
-		if (flags["FAZIAN_QUEST_STATE"] != FAZIAN_QUEST_OFFERING || flags["FAZIAN_QUEST_TIMER"] + (24 * 60) > GetGameTimestamp())
+		if (flags["FAZIAN_QUEST_RESCUE_TIMER"] != undefined && flags["FAZIAN_QUEST_RESCUE_TIMER"] + (24 * 60) > GetGameTimestamp())
+		{
+			/* Give Fazian a 24-hour break before performing a new show after rescue. */
+		}
+		else
 		{
 			if ((hours > 15 && hours < 20) || (hours == 15 && minutes >= 30) || (hours == 20 && minutes <= 30))
 			{
-				if (flags["FAZIAN_SHOW"] == undefined)
+				if(flags["FAZIAN_QUEST_STATE"] == FAZIAN_QUEST_OFFERING)
+				{
+					output("\n\nThe entrance to the cabaret has a hastily-made sign posted that mentions a temporary delay in the afternoon's showings. Technical difficulties perhaps?");
+				}
+				else if (flags["FAZIAN_SHOW"] == undefined)
 				{
 					output("\n\nOn the far side of the dusky room, a gold myr in a black dress is taking money from knots of other ant-women and ushering them through a curtain. A private show of some sort?");
 					addButton(1, "Curtain", nozzleShowFirstTime);
@@ -58,8 +68,11 @@ public function honeyNozzleClub():Boolean
 			var bT2:Boolean = hours == 20 && minutes >= 35;
 			if (bShow && (bT1 || bT2))
 			{
-				output("\n\nFazian, the anat cabaret performer, is sat at the quieter end of one of the bars, craned over a glass of honey wine. You could go and talk to him if you wished.");
-				addButton(1, "Fazian", fazianApproach);
+				if(flags["FAZIAN_QUEST_STATE"] != FAZIAN_QUEST_OFFERING || flags["FAZIAN_QUEST_TIMER"] + (12 * 60) >= GetGameTimestamp())
+				{
+					output("\n\nFazian, the anat cabaret performer, is sat at the quieter end of one of the bars, craned over a glass of honey wine. You could go and talk to him if you wished.");
+					addButton(1, "Fazian", fazianApproach);
+				}
 			}
 		}
 	}

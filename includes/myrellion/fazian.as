@@ -1304,11 +1304,12 @@ public function fazianQuestJuroLeave():void
 
 	output("Seeing that it is no use, you leave the kui-tan alone.");
 	
+	processTime(1);
+	
 	flags["FAZIAN_QUEST_JURO"] = -1;
 	flags["FAZIAN_QUEST_FAILURES"]++;
 	
-	processTime(1);
-	
+	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
 
