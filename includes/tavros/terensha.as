@@ -258,7 +258,7 @@ public function rideTerenshaBunbunbunbuuuuuuuuuuuuuuuuuuuuuuasdasdadajsdlajdklaj
 	{
 		output("\n\nConsidering you’re about to spear yourself on a busty babe’s cock in the middle of the space-brothel, there aren’t nearly enough eyes on you and your hired lover. Your heart hammers excitedly in your chest as you grab Ren’s tits in both hands and moan loudly and lewdly, shamelessly drawing every eye in the bar your way. You rock your hips and show off the throbbing hard cock");
 		if(pc.cockTotal() > 1) output("s");
-		output(" trapped between your bodies. A few catcalls later and you’re pushing Red down ever so slightly, trapping the first inches of her prick between her breasts and starting to work them up and down her length. She grunts and spurts into the growing cum-bubble, but the way she flushes and stays hard as a rock, something tells you Ren here’s as much of a perverted exhibitionist as you are!");
+		output(" trapped between your bodies. A few catcalls later and you’re pushing Ren down ever so slightly, trapping the first inches of her prick between her breasts and starting to work them up and down her length. She grunts and spurts into the growing cum-bubble, but the way she flushes and stays hard as a rock, something tells you Ren here’s as much of a perverted exhibitionist as you are!");
 	}
 	output("\n\nNow that your partner’s lubed up and you’re both ");
 	if(pc.hasCock()) output("rock hard");
@@ -280,7 +280,7 @@ public function rideTerenshaBunbunbunbuuuuuuuuuuuuuuuuuuuuuuasdasdadajsdlajdklaj
 	if(!pc.hasVagina()) output("bowels");
 	else output("womb");
 	output(" feels like it’s fist-thick, and so hot that you’re forced to suck in a sharp breath as the straining latex caresses your sensitive inner flesh. The halfbreed’s chest heaves heavily as your muscles clench and squeeze her member, making those lustrous latexy breasts quiver and shake in ways so alluring that you can’t help but ");
-	if(pc.hasCock()) output("grab the bottle of lube against, smear some into the voluminous valley of her cleavage, and thrust your [pc.cock] up between them.");
+	if(pc.hasCock()) output("grab the bottle of lube again, smear some into the voluminous valley of her cleavage, and thrust your [pc.cock] up between them.");
 	else output("grab them both and squeeze until the dragoness squeals in delight, her broad nipples forming mountains that press into your palms.");
 	output(" Ren laughs sweetly and brushes your cheek, encouraging you as much with her body as her alluring smile.");
 
@@ -316,7 +316,7 @@ public function rideTerenshaBunbunbunbuuuuuuuuuuuuuuuuuuuuuuasdasdadajsdlajdklaj
 	output("\n\nShe wants it so bad! Then again, you can’t hold back much longer either.");
 	output("\n\nWith a ");
 	if(pc.exhibitionism() < 33) output("muted ");
-	output("cry of pleasure, you let your restrain fade away in a rush of pleasure. Your [pc.vagOrAss] comes down hard around Ren’s deeply buried prick, milking the poor halfbreed even more");
+	output("cry of pleasure, you let your restraint fade away in a rush of pleasure. Your [pc.vagOrAss] comes down hard around Ren’s deeply buried prick, milking the poor halfbreed even more");
 	if(pc.hasCock()) output(", and your cock swells with a flood of [pc.cumNoun]. One more thrust and you erupt deep into her cleavage, smearing the purple latex [pc.cumColor]");
 	output(". You both moan, letting your bodies join each other in primal ecstasy for that brief moment before all the tension slowly bleeds out, and you slump forward in Ren’s embrace.");
 	output("\n\n<i>“Mmm, that was nice,”</i> the halfbreed murmurs, stroking your [pc.hair].");

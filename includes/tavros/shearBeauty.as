@@ -518,7 +518,7 @@ public function hairColorizing(newColor:String = "black"):void
 	if(!fuckedCeria()) output("\n\n<i>“Alright, sit down and hold still while I work this in.”</i> After getting you into the salon chair, Ceria takes out a thick glob of the gel and starts rubbing it into your scalp. As she does, you can see your former hair color being overtaken by a new shade. Ceria doesn’t stop until she’s used up all of the gel, by which time your hair color has been completely replaced and your roots are left tingling, altered by the gel to make " + newColor + " your new natural hair color. <b>Your hair is now " + newColor + "!</b>");
 	else
 	{
-		output("Ceria escorts you to one of the salon chairs, only to sit down in your lap facing you.");
+		output(" Ceria escorts you to one of the salon chairs, only to sit down in your lap facing you.");
 		output("\n\n<i>“Alright, [pc.name], let’s get you ready. Make sure to hold still, and no ear play. I don’t want to spill any of this.”</i> The stylist takes out some of the gel and begins rubbing it into your scalp one dollop at a time, watching the new color start to flow up from your roots as she does. She starts in the front and gradually works her way backward, leaning forward further until her breasts squish firmly against ");
 		if(pc.biggestTitSize() >= 1) output("your own");
 		else output("your chest");
