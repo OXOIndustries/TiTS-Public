@@ -756,7 +756,7 @@ public function askCumStreamerIfSheTravels(cName:String):void
 	output("\n\t<b>YourPalBadger:</b> Do it!");
 	output("\n\t<b>ZeroMinus:</b> You should!");
 	output("\n\t<b>TinyBee73:</b> It’s not so bad out here!");
-	output("\n\n\t<b>MsCupcakes:</b> I think you’d do great, dear.");
+	output("\n\n\t<b>MsCupcake:</b> I think you’d do great, dear.");
 
 	output("\n\n<i>“Alrighty, alright, settle down guys!”</i> she laughs. <i>“I’ll look into it, but it’s definitely not happening any time soon. I’m just a simple terran girl with but a camera and a fuckload of sextoys to my name. A starship is a bit much for the time being!”</i>");
 	output("\n\n\t<b>RavenWulf:</b> Could do a donation drive.");
@@ -1172,7 +1172,7 @@ public function ausarCumStreaming():void
 These are unlocked for players to view at their leisure after becoming a <i>“Geyser Tier’ Champeon.
 Terran (hyper) (Dong Designer by TamaniCorp, overclocked and broken)
 Equine (SynthSheath Mk1 by Xenogen bought with Champeon muns)
-Living Strap-on (SynthSheath knock-off by Tamani Corp sent by YouPalBadger)
+Living Strap-on (SynthSheath knock-off by Tamani Corp sent by YourPalBadger)
 Kaithrit (Nepeta by Xenogen sent by ZeroMinus)
 Zil (Zil ration from Mhen’ga sent by TinyBee73)*/
 
