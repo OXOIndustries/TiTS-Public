@@ -993,8 +993,8 @@ public function iceQueenKaraShowsUpInterrupt():void
 	//[Sure] [Sex?] [No]
 	clearMenu();
 	addButton(0, "Sure", iceQueenKaraShowsUpInterruptSure, undefined, "Sure", "Sounds fair.");
-	addButton(0, "Sex?", iceQueenKaraShowsUpInterruptSex, undefined, "Sex?", "Credits and " + (flags["SEXED_KARA"] == undefined ? "letting Kara make good on her previous offers for a little post-danger recreation" : "another roll in the hay with Kara") + ", and you'll call it even.");
-	addButton(0, "No", iceQueenKaraShowsUpInterruptNo, undefined, "No", "No way. Fuck this. You're not letting this go easy!");
+	addButton(1, "Sex?", iceQueenKaraShowsUpInterruptSex, undefined, "Sex?", "Credits and " + (flags["SEXED_KARA"] == undefined ? "letting Kara make good on her previous offers for a little post-danger recreation" : "another roll in the hay with Kara") + ", and you'll call it even.");
+	addButton(2, "No", iceQueenKaraShowsUpInterruptNo, undefined, "No", "No way. Fuck this. You're not letting this go easy!");
 }
 
 public function iceQueenKaraShowsUpInterruptSure():void
