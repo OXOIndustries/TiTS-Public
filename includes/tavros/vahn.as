@@ -432,12 +432,15 @@ public function catchVahnCowgirl():void
 	output("\n\nBetween your naked thighs and up against your mound, you can feel something hot and hard. It’s barely constricted beneath his jumpsuit, swelling up and towards his belly with every passing second. You moan and rub yourself against it, feeling his throbbing heat even through his jumpsuit. Knowing that you’re getting him this hard – him just playing with your ");
 	if(pc.biggestTitSize() >= 2) output("breasts and ");
 	output("nipples – is getting you all kinds of hot!");
-	if(pc.hasCock()) output("Your own [pc.cocks] slap");
-	if(pc.cockTotal() >= 2) output("s");
-	output(" excitedly against your belly and swell with arousal.");
+	if(pc.hasCock())
+	{
+		output(" Your own [pc.cocks] slap");
+		if(pc.cockTotal() == 1) output("s");
+		output(" excitedly against your belly and swell with arousal.");
+	}
 	
 	output("\n\nUnwilling to wait a second longer, you reach down and undo the lower half of Vahn’s jumpsuit. The second you do, his ")
-	if(pc.hasCock()) output("own "); 
+	if(pc.hasCock(GLOBAL.TYPE_CANINE) && String(pc.race()).indexOf("ausar") != -1) output("own "); 
 	output("half-ausar cock springs out. Preparing him first, you ");
 	if(pc.hasCock()) output("lift your own [pc.cocks] out of the way and ");
 	output("rub your slick slit against his undershaft, coating his veiny length in your lube-like juices. Your lover moans and rubs up and back against you in carnal rhythm, twitching against your womanhood.");

@@ -50,7 +50,7 @@ public function fuckingEggHatchOhFuck(destination:String):void
 		output(", teasing your [pc.clits] until you’re bucking back against them, forcing the alien phall");
 		if(pc.totalVaginas() > 1) output("i");
 		else output("us");
-		output(" to deep inside. <i>It’s everything you wanted and more.</i> ");
+		output(" deep inside. <i>It’s everything you wanted and more.</i> ");
 		if(pc.totalVaginas() == 1) output("It rubs");
 		else output("They rub");
 		output(" you just right, pumping in and out of your [pc.vaginas], making you moan. You could get addicted to sex like this. Hell, <i>you’d love to do this every day</i> If you could go back in time, you’d tell your past self to <i>get a whole bunch of these eggs and fall asleep in the middle of them.</i>");
@@ -112,7 +112,7 @@ public function fuckingEggHatchOhFuck(destination:String):void
 	}
 	else output(" Best of all is the wickedly sensuous experience of having an anal orgasm. Your whole body shakes with the force of it, spellbound by the pulsing length inside it.");
 	output(" <i>It feels so good to cum for the tentacles,</i> so powerful and liberating.");
-	output("\n\nYou relax more and more each time your body is brought to the precipice, allowing ever greater numbers of the beast’s tentacles to plunge inside your eager form. They stretch you, but it doesn’t hurt. The squirt on you, but you aren’t disgusted. After all, <i>your body was made for this.</i> Every orgasm is an affirmation of your role, and new tentacle you can take is a pat on the head for a job well done. The deck below is sloppy with cum and slime, <i>just the way you like it.</i>");
+	output("\n\nYou relax more and more each time your body is brought to the precipice, allowing ever greater numbers of the beast’s tentacles to plunge inside your eager form. They stretch you, but it doesn’t hurt. The squirt on you, but you aren’t disgusted. After all, <i>your body was made for this.</i> Every orgasm is an affirmation of your role, and every new tentacle you can take is a pat on the head for a job well done. The deck below is sloppy with cum and slime, <i>just the way you like it.</i>");
 	processTime(35);
 	pc.orgasm();
 	pc.orgasm();
@@ -143,7 +143,7 @@ public function postPychicTentacleImpreg(args:Array):void
 		else output(", gushing a fresh torrent of [pc.girlCum] into the puddle below");
 		output(".");
 	}
-	output(" <i>You feel content</i>, riding high on a wave of accomplishment that seems to intense to be entirely real.");
+	output(" <i>You feel content</i>, riding high on a wave of accomplishment that seems too intense to be entirely real.");
 	output("\n\nThen you pass out, slapping down in the muck like a light was switched off.");
 	processTime(360+rand(40));
 	clearMenu();

@@ -480,7 +480,7 @@ public function kressiaWarehouseExterior():Boolean
 	
 	if (flags["FAZIAN_QUEST_RESCUE_TIMER"] != undefined)
 	{
-		if (flags["FAZIAN_QUEST_RESCUE_TIMER"] + (6 * 60) < GetGameTimestamp())
+		if (flags["FAZIAN_QUEST_RESCUE_TIMER"] + (6 * 60) >= GetGameTimestamp())
 		{
 			output("\n\nIt’s still chaos around here. Red myr soldiers are running back and forth around the warehouse and the surrounding buildings, shouting at each other and into blocky communication devices. A line of crestfallen gold myr are being led back inside. The smell of saltpetre and burning is on the air. There does not seem to be any sign of Major Ehstraffe fortunately, and the reds either ignore you or impatiently tell you to get out of the way.");
 		}
@@ -1334,6 +1334,7 @@ public function antOrgyEnding(voluntary:Boolean):void
 {
 	currentLocation = "734";
 	rooms["734"].southExit = "";
+	rooms["GOLD_BUNKER"].northExit = "";
 	
 	clearOutput();
 	showName("THE\nAFTERMATH");
