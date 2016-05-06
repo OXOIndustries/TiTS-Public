@@ -1145,7 +1145,7 @@ public function ausarCumStreaming():void
 
 	output("\n\n\t<b>PumpKing:</b> First class performance.");
 	output("\n\t<b>Yyyyu2:</b> Not bad for a doggy dick.");
-	output("\n\t<b>YourPalBadger: We’ll make a breeder of you yet.");
+	output("\n\t<b>YourPalBadger:</b> We’ll make a breeder of you yet.");
 	output("\n\t<b>RavenWulf:</b> Yeah!");
 	output("\n\t<b>RavenWulf:</b> I knew you could knot it if you tried.");
 	output("\n\t<b>MsCupcake:</b> We always believed in you, dear.");
