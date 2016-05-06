@@ -10869,7 +10869,7 @@
 							if(!vaginas[x-1].hasFlag(vaginas[x].vagooFlags[i])) return false;
 						}
 					}
-					return false;
+					else return false;
 				}
 			}
 			return true;
