@@ -190,10 +190,12 @@
 			this.createPerk("Can Crit", 0, 0, 0, 0);
 			
 			isUniqueInFight = false;
-			btnTargetText = "Red Guard";
-					
+			btnTargetText = "Red Myr";
+			
 			sexualPreferences.setRandomPrefs(2 + rand(3),1);
-						
+			
+			_isMasked = rand(2) == 0;
+			
 			this._isLoading = false;
 		}
 		

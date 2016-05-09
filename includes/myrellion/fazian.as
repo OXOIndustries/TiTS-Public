@@ -1474,7 +1474,7 @@ public function fazianQuestInvestigationFollowup():void
 public function fazianQuestApproachWarehouse():void
 {
 	clearOutput();
-	showBust("REDMYR");
+	showBust("MYR_RED_GUARD");
 	showName("RED\nMYR");
 	author("Nonesuch");
 
@@ -1567,7 +1567,7 @@ public function fazianQuestApproachBackMenu():void
 public function fazianQuestApproachBackWait():void
 {
 	clearOutput();
-	showBust("REDMYR","REDMYR");
+	showBust("MYR_RED_GUARD","REDMYR");
 	showName("WAREHOUSE:\nBACK");
 	author("Nonesuch");
 
@@ -1740,7 +1740,7 @@ public function fazianQuestApproachBackWindow():void
 public function fazianQuestApproachBribe():void
 {
 	clearOutput();
-	showBust("REDMYR");
+	showBust("MYR_RED_GUARD");
 	showName("RED\nMYR");
 	author("Nonesuch");
 
@@ -1759,7 +1759,7 @@ public function fazianQuestApproachBribe():void
 public function fazianQuestBribeGo(amt:int):void
 {
 	clearOutput();
-	showBust("REDMYR");
+	showBust("MYR_RED_GUARD");
 	showName("RED\nMYR");
 	author("Nonesuch");
 
@@ -1833,7 +1833,7 @@ public function fazianQuestBribeGo(amt:int):void
 public function fazianQuestApproachFight():void
 {
 	clearOutput();
-	showBust("REDMYR");
+	showBust("MYR_RED_GUARD");
 	showName("RED\nMYR");
 	author("Nonesuch");
 
@@ -2157,11 +2157,12 @@ public function fazianQuestEhstraffeLoss():void
 		clearMenu();
 		addButton(0, "Next", function():void {
 			clearOutput();
+			showBust("");
+			showName("CINDI\nLUVSCOCK");
 			author("Nonesuch");
 			
 			currentLocation = "GAME OVER";
 			generateMap();
-			showLocationName();
 			
 			output("Once they have smuggled you off Myrellion, under the effects of various cocktails of brainwashing drugs and electrotherapy, the skilful insectile slavers extract the details of your identity and bank account. They proceed to wipe both clean, liquidate your assets and provide you with a new identity: Cindi Luvscock. This obviously costs money, which Cindi begins the long, slow process of paying back by working a glory hole on one of the frontier’s sleazier space stations.");
 			
@@ -2236,12 +2237,12 @@ public function fazianQuestEhstraffeLoss():void
 		clearMenu();
 		addButton(0, "Next", function():void {
 			clearOutput();
+			showName("VENOM\nSLUT");
 			showBust("EHSTRAFFE","FAZIAN");
 			author("Nonesuch");
 			
 			currentLocation = "GAME OVER";
 			generateMap();
-			showLocationName();
 			
 			output("Days, weeks pass by in a venom-induced haze. You eventually come to welcome the burn of it entering your veins; the peace, tranquillity and all-conquering arousal it brings. It focuses you wonderfully for your sole occupation - being one of two primary sources of stress relief for a whole base of healthy, overworked, uptight red myr. Sure, Major Ehstraffe does make use of you a lot, bordering on the sadistic - keeping you locked for hours beneath her desk and between her thighs. But she quickly sees the benefits of sharing you around.");
 			

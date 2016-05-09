@@ -271,6 +271,8 @@ public function chooseStartingRace(race:String = "human"):void {
 		pc.tailType = GLOBAL.TYPE_GRYVAIN;
 		pc.addTailFlag(GLOBAL.FLAG_SCALED);
 		pc.addTailFlag(GLOBAL.FLAG_LONG);
+		pc.addTailFlag(GLOBAL.FLAG_TAPERED);
+		pc.addTailFlag(GLOBAL.FLAG_PREHENSILE);
 		pc.earType = GLOBAL.TYPE_GRYVAIN;
 		pc.earLength = 3;
 		pc.wingType = GLOBAL.TYPE_GRYVAIN;

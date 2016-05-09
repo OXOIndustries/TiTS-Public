@@ -1227,7 +1227,7 @@ public function talkToGiannaAboutBigT():void
 	output("\n\nGianna nods, her expression set in firm agreement with you. <i>“He is. Didn’t leave until I was fit to go. He paid the bill without a second glance, and on the way back, we finally got the chance to talk.”</i>");
 	output("\n\n<i>“");
 	if(!pc.isBimbo() && !pc.isBro()) output("Was he as simple-minded as the rest of the treated citizens?");
-	else output("Did he let you suck his cock afterward to think him? It’d be the only fair recompense.");
+	else output("Did he let you suck his cock afterward to thank him? It’d be the only fair recompense.");
 	output("”</i>");
 	output("\n\nThe thoughtful android shakes her head slowly. <i>“No... not quite. We talked a lot. I apologized for getting in front of his truck, and he apologized for hitting me. We must have gone through that three or four times. But then... then he just put his arm around me, and he promised to take care of me if my Master didn’t return. He was happy just to do that. Just to take care of me.”</i>");
 	output("\n\nReally?");

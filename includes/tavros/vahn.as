@@ -612,8 +612,8 @@ public function vahnFucksYourButt():void
 	if(pc.hasCock())
 	{
 		if(pc.cockTotal() == 1) output(" [pc.cocksNoun] jerks and shoot [pc.cum] all over the crate and your belly, jerking and jumping around with nothing to hold it down");
-		if(pc.cockTotal() > 1) output("[pc.cocksNoun] jerk and shoot [pc.cum] all over the crate and your belly, jerking and jumping around with nothing to hold them down");
-		if(pc.isHerm()) output("At the same time, your");
+		if(pc.cockTotal() > 1) output(" [pc.cocksNoun] jerk and shoot [pc.cum] all over the crate and your belly, jerking and jumping around with nothing to hold them down");
+		if(pc.isHerm()) output(". At the same time, your");
 	}
 	if(pc.hasVagina()) output(" [pc.cunt] splatters with excitement, the coiled pleasure in your lower belly releasing all at once");
 	if(!pc.hasGenitals()) output(" [pc.legOrLegs] quake and you feel a molten release from your quivering rump");

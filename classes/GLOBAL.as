@@ -542,6 +542,7 @@
 			FLAG_RIBBED,
 			FLAG_GOOEY,
 			FLAG_STICKY,
+			FLAG_TAPERED,
 		];
 		
 		public static const TAIL_GENITAL_NONE:int 	= 0;
