@@ -234,7 +234,7 @@ public function lerrisConsumeItem(itemInstance:ItemSlotClass):void
 		if (lerris.milkType != GLOBAL.FLUID_TYPE_MILK) lerris.milkType = GLOBAL.FLUID_TYPE_MILK;
 		lerris.milkFullness += 100;
 
-		output("\n\nIt doesn’t take more than a moment for you to see her breasts swell up, surging with milk. Her nipples stiffen and begin to bead droplets of [lerris.milk] without so much as a touch. Though she <i>does</i> start toughing them groping her boobs and kneading them like the udders they are, drawing her newly-refreshed cream out and into her milk-catching bra. The material bloats full in an instant, making her shiver as her body smears itself with warm kitty-cream. And, you notice, a distinctive tent has formed in the hem of her panties, even harder than when promised sex moment ago.");
+		output("\n\nIt doesn’t take more than a moment for you to see her breasts swell up, surging with milk. Her nipples stiffen and begin to bead droplets of [lerris.milk] without so much as a touch. Though she <i>does</i> start touching them, groping her boobs and kneading them like the udders they are, drawing her newly-refreshed cream out and into her milk-catching bra. The material bloats full in an instant, making her shiver as her body smears itself with warm kitty-cream. And, you notice, a distinctive tent has formed in the hem of her panties, even harder than when promised sex moment ago.");
 		
 		output("\n\n<i>“Ah, that’s awesome!”</i> Lerris says between little moans. <i>“My nips feel so sensitive now, I can almost cum just from feeling them squirt! Oh, I hope you’re thirsty, [pc.name],”</i> she adds, crawling back into your lap and planting a long train of kisses from your chest up to your neck.");
 
@@ -519,7 +519,7 @@ public function lerrisBendHerOver():void
 	
 	output("\n\n<i>“F-f-f-”</i> she tries to answer, biting her lip hard as your [pc.hips] rock against her butt. <i>“Fuck me! Oh stars, [pc.name], fuck me!”</i>");
 	
-	output("\n\nYou’re more than happy to state <i>that</i> desire, punctuating your acceptance with a long draw back that takes you out of Lerris’s [lerris.vagOrAss] until only your cockhead remains, spreading her hole open until you thrust back in.");
+	output("\n\nYou’re more than happy to sate <i>that</i> desire, punctuating your acceptance with a long draw back that takes you out of Lerris’s [lerris.vagOrAss] until only your cockhead remains, spreading her hole open until you thrust back in.");
 	
 	output("\n\nLerris’s cock flops limply under her, bouncing with the impact of your hips battering against her ass. Your [pc.cockOrStrapon " + cockIdx + "] hammers her, pounding away at her slutty little hole. Before long her tongue lolls out of her mouth amid gasps and cries, showing her utter surrender to pleasure as you mercilessly ");
 	if (!lerris.hasVagina()) output("ass-");
@@ -538,7 +538,7 @@ public function lerrisBendHerOver():void
 	if (pc.hasCock()) output(" The cat-girl’s back arches as the first wet squirts of your [pc.cumNoun] fill her, mixing with her own cum.");
 	else output(" The false nerves in your faux-cock send electric shockwaves up your spine, crawling through your [pc.skinFurScales] like lightning.");
 
-	output("\n\nLerris feels you cumming and manages to buck her hips against you, thrusting back to get as much cock in her as possible before your climax passes. The way her muscles contract around yours, instinctively milking your throbbing");
+	output("\n\nLerris feels you cumming and manages to buck her hips against you, thrusting back to get as much cock in her as possible before your climax passes. The way her muscles contract around you, instinctively milking your throbbing");
 	if (!pc.hasCock()) output(" holographic");
 	output(" erection, you don’t need to see the lances of white cream shooting across the bottom of the couch to know that she’s joining you in orgasm.");
 
@@ -692,7 +692,7 @@ public function lerrisSuckleMilky69():void
 	clearOutput();
 	showLerris();
 
-	output("You gently roll Lerris off of you, setting the eager kitten aside for the moment while you sprawl out on your back half way up, letting your [pc.legs] dangle off the armrest. So situation, you tell Lerris to get on and start feeding you - and");
+	output("You gently roll Lerris off of you, setting the eager kitten aside for the moment while you sprawl out on your back half way up, letting your [pc.legs] dangle off the armrest. So situated, you tell Lerris to get on and start feeding you - and");
 	if (pc.canLactate()) output(" get a drink for herself while she’s at it");
 	else output(" put those hands to work!");
 	
@@ -733,7 +733,7 @@ public function lerrisSuckleMilky69():void
 	output("\n\nThen you feel a wet heat shooting across your palm, and your resolve breaks. You throw your head back and roar with the pent-up ecstasy, cumming");
 	if (!pc.hasCock()) output(" around");
 	else output(" all over");
-	output(" Lerris’s hard-working hand. She gasps, more in glee at your delayed orgasm than for her own pleasure, even as she’s thrusting her spasming boy-clit against your hand. Her own seed puddles in your palm, drooling onto the couch in thick, [pc.cumColor] strands.");
+	output(" Lerris’s hard-working hand. She gasps, more in glee at your delayed orgasm than for her own pleasure, even as she’s thrusting her spasming boy-clit against your hand. Her own seed puddles in your palm, drooling onto the couch in thick, [lerris.cumColor] strands.");
 	
 	output("\n\n<i>“Messy... very messy!”</i> Lerris purrs, curling up on herself and lapping at the pool in your hand. In a few moments she has you spotless, though there’s little enough she can do to mask the scent of sex heavy on your [pc.skinFurScales]. You pull her down for a kiss once she’s finished, tasting");
 	if (pc.hasCock()) output(" your seed and hers");

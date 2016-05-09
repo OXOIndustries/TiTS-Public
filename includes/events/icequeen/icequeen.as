@@ -275,7 +275,7 @@ public function iceQueenHelpHim():void
 	
 	output("\n\nHe runs off down the corridor, leaving you and the ausar woman alone in the steadily-more-oppressive clutch of engine smoke. She huffs as Zaalt brushes by her and cuts off the spray of chemicals from her device. A flick of the wrist cleans the last bits of foam off, and she turns to you.");
 	
-	output("\n\nPulling off her canid-shaped mask reveals a dark-skinned humanoid face with eyes bearing both the shape and color of almonds. Her bright pink hair is mussed and dirty after being exposed to whatever fuming blaze she’s been dealing with and her black jacket has been torn in several places, but that only accentuates that statuesque beauty on display. She seems like she’d be just at home in a pantheon as an engine room, even as she scowls.");
+	output("\n\nPulling off her canid-shaped mask reveals a dark-skinned humanoid face with eyes bearing both the shape and color of almonds. Her bright pink hair is mussed and dirty after being exposed to whatever fuming blaze she’s been dealing with and her black jacket has been torn in several places, but that only accentuates that statuesque beauty on display. She seems like she’d be just as at home in a pantheon as an engine room, even as she scowls.");
 	
 	output("\n\n<i>“I thought captains were supposed to go down with the ship and all that,”</i> she growls, ripping the spray-gun off her arm and tossing it angrily at the bulkhead at her feet. She glowers at you, dark eyes hardened. <i>“I hope you bring Zaalt back in one piece - I’m gonna be damn lucky if I can keep this frigid bitch together while he’s gone.”</i>");
 	
@@ -1040,7 +1040,7 @@ public function iceQueenKaraShowsUpInterruptNo():void
 
 	output("<i>“No fucking way,”</i> you snarl, scowling as much at Kara now as Zaalt. After all you’ve done for her, and this is how she and her friends treat you!?");
 	
-	output("\n\nThe cat-girl squirms under your ireful gaze, rubbing at the small golden bell on her collar. <i>“I’m sorry, [pc.name]. Would that I’d known you’d get wrapped up in this, I’d have arranged to be on your leg the trip. But this is all just an accident - a big misunderstanding. Nobody’s </i>trying<i> to screw you. We-”</i>");
+	output("\n\nThe cat-girl squirms under your ireful gaze, rubbing at the small golden bell on her collar. <i>“I’m sorry, [pc.name]. Would that I’d known you’d get wrapped up in this, I’d have arranged to be on your leg of the trip. But this is all just an accident - a big misunderstanding. Nobody’s </i>trying<i> to screw you. We-”</i>");
 	
 	output("\n\nEnough! Whatever the two of them are doing, it’s too dangerous to just let slip. Not after what happened on your ship.");
 	

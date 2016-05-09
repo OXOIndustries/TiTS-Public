@@ -960,9 +960,9 @@ public function femSydianGiveThrob():void
 
 	output("\n\n<i>“Ugh,”</i> she grunts, swatting the syringe away. It shatters into a starburst of glass. <i>“What was that?”</i>");
 	
+	output("\n\n");
 	if (pc.isBimbo() || (pc.isBro() && !pc.hasCock()))
 	{
-		output("\n\n");
 		output("<i>“Just");
 		if (pc.isBimbo()) output(", like,");
 		output(" adding the best bit,”</i> you");
@@ -1018,7 +1018,7 @@ public function femSydianGiveThrob():void
 			output("“<i>Nice, isn’t it? It’s even better if you put it in");
 			if (pc.isFeminine()) output(" a woman");
 			else output(" someone");
-			output(",”</i> you rejoin,");
+			output(",”</i> you respond,");
 		}
 
 		output(" dragging her cum-slicked hand to the tip and thumbing the crown. She sits up, and her flagging prick surges.");

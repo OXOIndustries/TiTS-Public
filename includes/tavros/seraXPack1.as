@@ -2157,32 +2157,40 @@ public function seraSexXXXTitfuckLuckyDip(arg:Array):void
 	}
 	else if(response == "second")
 	{
-		output("She takes a few steps back to lean against the counter with a raspy sigh, her distended cock leaving a dribbled trail of cum on the floor as she goes. You lean back to gather yourself, the alabaster mess oozing down you, and raise a hand to wipe your face.");
-		output("\n\n<i>“No.”</i> You freeze. You were expecting Sera to be lost in a warm, self-centered fuzz of her own but her eyes are open, gazing down at you: golden, playful and cruel. Cat’s eyes. <i>“I’m not done with you yet pet, and you look so much more... appropriate when you’re covered in my jizz. Come here, and prepare your mistress for the good, hard fucking she’s going to give you now.”</i> A warm shudder passes through you as, after a pause, you shift yourself over so you’re between her long legs and wrap one hand around her long, fluid-slicked shaft. Claw-tipped fingers urge you to rise, staying where they are to convex down your back and grip your [pc.ass] as you do whilst continuing to steadily jerk her.");
-		output("\n\nShe leans back with a wide, lazy smile, enjoying the luxuriant refractory period you’re providing her with, drinking in your cum-creamed face whilst your grip gently shifts up and down her girth. Blushing, you look down from that gloating, infernally alluring visage, try to ignore the sensation of musky cream steadily oozing down your [pc.chest] and quickly hit on something to busy yourself with. You send your other hand burying beneath her warm, pliant thighs and touch the lips of her pussy. She hums with deep approval, pushing her thighs outwards so you can enter her, curling your fingers into her hot, moist depths as you continue to wring her male sex. In response she gets to work with her own hands, clutching your [pc.ass] tightly before moving inwards, penetrating your");
-		if(vagIndex >= 0) output(" [pc.vagina " + vagIndex + "]");
-		else output(" [pc.anus]");
-		output(", testing and loosening you.");
-		output("\n\nSera may have been human once but her present physiology scorns the limitations her birthright would have given her. It takes little more than a minute for her cock to be bulging and erect again, pointing at you demandingly. She pushes herself into you, her big, pert breasts flattening against your [pc.chest], hissing quietly into your ear as she urgently turns you, bends you over the counter, grips your hands behind your back and finally slides her fully recovered erection between your butt-cheeks.");
-		if(vagIndex >= 0)
+		if(pc.biggestTitSize() > 2)
 		{
-			output(" Your [pc.vagina " + vagIndex + "] has been anticipating this for some time now, her flavor rich in your mouth and nose, and it eagerly");
-			if(pc.isSquirter(vagIndex)) output(" dribbles");
-			else output(" beads");
-			output(" moisture to the hot thickness sliding over your labia and [pc.clit].");
-			
+			output("She takes a few steps back to lean against the counter with a raspy sigh, her distended cock leaving a dribbled trail of cum on the floor as she goes. You lean back to gather yourself, the alabaster mess oozing down you, and raise a hand to wipe your face.");
+			output("\n\n<i>“No.”</i> You freeze. You were expecting Sera to be lost in a warm, self-centered fuzz of her own but her eyes are open, gazing down at you: golden, playful and cruel. Cat’s eyes. <i>“I’m not done with you yet pet, and you look so much more... appropriate when you’re covered in my jizz. Come here, and prepare your mistress for the good, hard fucking she’s going to give you now.”</i> A warm shudder passes through you as, after a pause, you shift yourself over so you’re between her long legs and wrap one hand around her long, fluid-slicked shaft. Claw-tipped fingers urge you to rise, staying where they are to convex down your back and grip your [pc.ass] as you do whilst continuing to steadily jerk her.");
+			output("\n\nShe leans back with a wide, lazy smile, enjoying the luxuriant refractory period you’re providing her with, drinking in your cum-creamed face whilst your grip gently shifts up and down her girth. Blushing, you look down from that gloating, infernally alluring visage, try to ignore the sensation of musky cream steadily oozing down your [pc.chest] and quickly hit on something to busy yourself with. You send your other hand burying beneath her warm, pliant thighs and touch the lips of her pussy. She hums with deep approval, pushing her thighs outwards so you can enter her, curling your fingers into her hot, moist depths as you continue to wring her male sex. In response she gets to work with her own hands, clutching your [pc.ass] tightly before moving inwards, penetrating your");
+			if(vagIndex >= 0) output(" [pc.vagina " + vagIndex + "]");
+			else output(" [pc.anus]");
+			output(", testing and loosening you.");
+			output("\n\nSera may have been human once but her present physiology scorns the limitations her birthright would have given her. It takes little more than a minute for her cock to be bulging and erect again, pointing at you demandingly. She pushes herself into you, her big, pert breasts flattening against your [pc.chest], hissing quietly into your ear as she urgently turns you, bends you over the counter, grips your hands behind your back and finally slides her fully recovered erection between your butt-cheeks.");
+			if(vagIndex >= 0)
+			{
+				output(" Your [pc.vagina " + vagIndex + "] has been anticipating this for some time now, her flavor rich in your mouth and nose, and it eagerly");
+				if(pc.isSquirter(vagIndex)) output(" dribbles");
+				else output(" beads");
+				output(" moisture to the hot thickness sliding over your labia and [pc.clit].");
+				
+			}
+			output(" Her bulging head presses against your entrance.");
+			output("\n\n");
 		}
-		output(" Her bulging head presses against your entrance.");
-		if(vagIndex >= 0) pc.cuntChange(vagIndex, chars["SERA"].cockVolume(0));
-		else pc.buttChange(chars["SERA"].cockVolume(0));
 		
-		output("\n\n<i>“So, uh,”</i> trying to keep your voice steady. <i>“What was the big sell? Mistress?”</i> you add, for good measure. Sera pauses, as if slightly surprised by your question. Then she thrusts forwards, burying most of her huge cock into your");
+		output("<i>“So, uh,”</i> trying to keep your voice steady. <i>“What was the big sell? Mistress?”</i> you add, for good measure. Sera pauses, as if slightly surprised by your question. Then she thrusts forwards, burying most of her huge cock into your");
 		if(vagIndex >= 0) output(" [pc.vagina " + vagIndex + "]");
 		else output(" [pc.anus]");
 		output(" with a single action. You arch your back and open your mouth, globs of cum flying off you, every cell in your nether regions attempting to grow accustomed to the massive intrusion.");
 		
+		if(vagIndex >= 0) pc.cuntChange(vagIndex, chars["SERA"].cockVolume(0));
+		else pc.buttChange(chars["SERA"].cockVolume(0));
+		
 		//Randomised
 		var TFItem:String = RandomInCollection(["Clippex", "Semen’s Friend", "Lucifier"]);
+		if(flags["SERA_UNLOCK_CLIPPEX"] == undefined) TFItem = "Clippex";
+		else if(flags["SERA_UNLOCK_SEMENS"] == undefined) TFItem = "Semen’s Friend";
+		else if(flags["SERA_UNLOCK_LUCIFIER"] == undefined) TFItem = "Lucifier";
 		
 		output("\n\n");
 		// Clippex:

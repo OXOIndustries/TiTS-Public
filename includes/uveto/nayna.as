@@ -983,7 +983,7 @@ public function reactWellToFutaLaquine():void
 		if(flags["NAYNA_BLOWN"] != undefined) output("won’t force you if you don’t want me to.");
 		else output("don’t want to rush you into anything.");
 		output("”</i> You work your fingers in slow circles, grinding her lips and clit through her latex-like undersuit, feeling them puff up under your touch, forming the inky fabric into a luscious-looking camel toe. <i>“");
-		if(flags["NAYNA_BLOWN"] != undefined) output("But we both know you want to do it again, to fill me up with cum and make empty those poor, pent-up balls.");
+		if(flags["NAYNA_BLOWN"] != undefined) output("But we both know you want to do it again, to fill me up with cum and make me empty those poor, pent-up balls.");
 		else output("I’ll just get you off this once, then if you still want to, we can talk about fucking.");
 		output("”</i>");
 	}
@@ -1145,7 +1145,7 @@ public function blowNayna3():void
 	if(pc.isBimbo()) output(" What kind of stupid skank would waste jizz this good?");
 	output(" There’s no alternative to swallowing - her flare ensures that.");
 	output("\n\nYou gulp down the heavy load just in time for the next mouth-filling deposit to flood in, drowning your tongue her salty sperm, utterly inundating your taste-buds in the perverse flavor. Your nostrils flare, sucking in a quick breath, and you swallow once more, gurgling noisily around the laquine scientist’s tremendously turgid cock.");
-	output("\n\n<i>“Ooooh, yes!”</i> Nayna cheers, lurching her hips upward, lifting you off the ground and squirting straight into your mouth again. You don’t try to fight it. Your attention is squarely fixed on swallowing every ounce before it can flood back out through your nose. Gulping rapidly, you drink it all down. Her balls seem inexhaustible, the testicular equivalent of the miniaturized suns that power the largest ships in the U.G.C. fleet. When you’re well past the point of feeling full, she’s still cumming, till spurting her alien DNA into your belly. The few breaths you sneak through your nose all smell like laquine musk and cum, and all your eyes can see are balls, quaking thighs, and her silky belly-fluff.");
+	output("\n\n<i>“Ooooh, yes!”</i> Nayna cheers, lurching her hips upward, lifting you off the ground and squirting straight into your mouth again. You don’t try to fight it. Your attention is squarely fixed on swallowing every ounce before it can flood back out through your nose. Gulping rapidly, you drink it all down. Her balls seem inexhaustible, the testicular equivalent of the miniaturized suns that power the largest ships in the U.G.C. fleet. When you’re well past the point of feeling full, she’s still cumming, still spurting her alien DNA into your belly. The few breaths you sneak through your nose all smell like laquine musk and cum, and all your eyes can see are balls, quaking thighs, and her silky belly-fluff.");
 	output("\n\nYou’re dizzy on bunny spunk, barely able to breathe and yet stuffed beyond capacity with the sloshing sperm, chugging down more like a " + pc.mf("frat boy","sorority girl") + " attempting a keg stand.");
 	if(pc.isBimbo()) output(" You’re not sure if you’ve ever been happier. There’s so much cum, and it’s all yours, filling you, flooding you, a liquid declaration of your value. Just the thrill of getting to taste it all has you shiver and shuddering, on the edge of a breathless climax of your own.");
 	output(" Climbing up onto your hands and knees, you try to ease the pressure on your inflating belly as it balloons, but it seems a doomed effort. Every swallow adds a little more bulge and wobble to your bloated middle. You feel like you’re going to burst if you swallow any more, but what choice do you have?");
@@ -1311,7 +1311,7 @@ public function fuckNayna():void
 	output("\n\n");
 	if(pc.isTreated() || pc.hasMuzzle()) output("Snarling, ");
 	else output("Panting, from the effort, ");
-	output("you feel your orgasm mounting, triggered by the sight of sheltered laquine whitewashing her face. Your [pc.cock " + x + "] stiffens inside her, and [pc.cum] ");
+	output("you feel your orgasm mounting, triggered by the sight of the sheltered laquine whitewashing her face. Your [pc.cock " + x + "] stiffens inside her, and [pc.cum] ");
 	if(cum < 10) output("dribbles out, small in quantity but no less big on pleasure.");
 	else if(cum < 150) output("fires wildly, nowhere near as voluminous as your lapine lover’s but every bit as pleasurable.");
 	else if(cum < 750) 

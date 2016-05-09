@@ -1736,7 +1736,7 @@ public function gettingSyrisPanties():void
 
 	output("\n\nYou reach up and caress your lover’s cheek, turning her canid smell-session into a long, drawn-out kiss. She moans into your mouth, and you feel her arms falling away from her coat, wrapping around your shoulders. Your head buries into her bust instinctively, nestling into the big, soft mounds of ausar titflesh girded by a mesh of silky fishnets.");
 
-	output("\n\nSyri breaks the kiss a moment later, stepping forward and shrugging off her coat. The heavy, faded military blues flop to the deck, revealing a body of smooth flesh, dark hair, and sexy blue lingerie covering her legs, arms, tits... and even the half-hard rod of throbbing dogflesh, its tapered tip peeking out of her Syri’s baby-blue panties.");
+	output("\n\nSyri breaks the kiss a moment later, stepping forward and shrugging off her coat. The heavy, faded military blues flop to the deck, revealing a body of smooth flesh, dark hair, and sexy blue lingerie covering her legs, arms, tits... and even the half-hard rod of throbbing dogflesh, its tapered tip peeking out of her baby-blue panties.");
 	output("\n\n<i>“Like what you see, Steele?”</i> she asks, not needing an answer as she slips a hand down her thigh, drawing the tip of a pointed claw around her crotch. You nod eagerly, leaning back in the couch and letting Syri approach you. She takes one long-legged stride forward and grabs the back of the sofa, pushing you against the cushion and kissing you fiercely, both hands grabbing at your cheeks... then your chest, and your [pc.crotch].");
 	output("\n\n<i>“I missed you,”</i> she breathes between kisses. <i>“It’s so fuckin’ lonely here without my best friend.”</i>");
 	//if Silly & Anno Companion:

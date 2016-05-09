@@ -1654,6 +1654,7 @@
 				case "cocksLight":
 					buffer = cocksDescriptLight();
 					break;
+				case "cocksNoun":
 				case "cocksNounSimple":
 					buffer = simpleCocksNoun();
 					break;
@@ -11243,7 +11244,7 @@
 				adjectives.push("feline","spine-covered","spined","kitty","animalistic","soft-barbed","nubby","feline");
 				nouns.push("cat-cock","kitty-cock","kitty-prick","cat-penis","kitten-prick");
 			} else if (type == GLOBAL.TYPE_NAGA || type == GLOBAL.TYPE_SNAKE) {
-				adjectives.push("reptilian","ophidian","inhuman","reptilian","herpetological","serpentine","bulbous","bulging");
+				adjectives.push("reptilian","ophidian","inhuman","reptilian",/*"herpetological",*/"serpentine","bulbous","bulging");
 				nouns.push("snake-cock","snake-shaft","snake-dick");
 			} else if (type == GLOBAL.TYPE_RASKVEL) {
 				adjectives.push("reptilian","alien","raskvel","reptilian","smooth","sleek","exotic");
