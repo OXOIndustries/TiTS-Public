@@ -19,7 +19,7 @@ public function fuckingEggHatchOhFuck(destination:String):void
 	if(!pc.isBald()) output(", squirming slowly through your [pc.hair]");
 	output(", leaving a trail of viscous slime in its wake. You jerk away, rolling out of your chair, and come up on your [pc.footOrFeet], ready for a fight.");
 	output("\n\nDirectly opposite of you is the creature - a mass of tentacles as thick as steel cables surrounded a squishy-looking central bulb roughly the size of a coconut. You recoil in horror <i>and arousal</i>. Every single one of the tendrils is tipped with something different. Most have phallic-looking protrusions, but some are hollow cups. Still more bear a shapely split that looks eerily reminiscent of a vagina. And every single one of them is closing in you. <i>It’ll feel so good.</i>");
-	output("\n\nShaking the errant <i>but sexy</i> thoughts away, you reach for a weapon and come up empty. Your [pc.rangedWeapon] and [pc.meleeWeapon] are gone! Even more shockingly, you’re completely naked. <i>God, that’s so much more convenient!</i> Trails of slime wind their way across much of your torso. Just how long did this thing spend violating you before you woke up? <i>It’s tentacles could have even been inside you, stroking and squeezing and turning you into the perfect mother for its young.</i> Where do these thoughts keep coming from?");
+	output("\n\nShaking the errant <i>but sexy</i> thoughts away, you reach for a weapon and come up empty. Your [pc.rangedWeapon] and [pc.meleeWeapon] are gone! Even more shockingly, you’re completely naked. <i>God, that’s so much more convenient!</i> Trails of slime wind their way across much of your torso. Just how long did this thing spend violating you before you woke up? <i>Its tentacles could have even been inside you, stroking and squeezing and turning you into the perfect mother for its young.</i> Where do these thoughts keep coming from?");
 	output("\n\nThere’s nowhere to run, <i>not that you want to</i>. You can’t defend yourself either. <i>You’re so vulnerable.</i> Wildly searching for a solution, you try to pull free of the tentacles wrapping around your [pc.feet] and <i>submit</i>. No, that wasn’t it. You were going to break free <i>and get on all fours</i>. Definitely the first part.");
 	output("\n\nYour eyes alight not on a solution, but on evidence of just how royally fucked you are. The large green egg you brought with you is sitting not far from the creature, split in half and trailing green ichor. You brought this <i><b>sexy</b></i> thing onboard yourself! There’s no one else to blame. <i>You might as well enjoy it.</i> You moan");
 	if(pc.hasVagina()) output(" and <i>rub your hungry pussy</i>. When did you get so wet?");
@@ -27,7 +27,7 @@ public function fuckingEggHatchOhFuck(destination:String):void
 	else output(" and wonder <i>which tentacle it will put in your ass</i>.");
 
 	output("\n\nTerrible, agonizing cramps run through your [pc.legOrLegs], dropping you to the floor. They vanish the moment you hit you the deck, but the damage is done. <i>This is so exciting!</i> ");
-	if(pc.hasNippleCunts()) output("Your nipples engorge, lubricating and ready to be fucked by this monster.");
+	if(pc.hasNippleCunts()) output("Your nipples engorge, lubricating; ready to be fucked by this monster.");
 	else if(pc.hasInvertedNipples()) output("Your nipples pop right out, eager to be molested by the creature.");
 	else if(pc.hasLipples()) output("Your lipples purse, ready to be violated by the creature.");
 	else output("Your [pc.nipples] perk up, eager for sensation, even if it does come from this creature.");
@@ -45,7 +45,7 @@ public function fuckingEggHatchOhFuck(destination:String):void
 		output(" on ");
 		if(pc.totalVaginas() == 1) output("either");
 		else output("all");
-		output(" sides, making you drip. <i>These tentacles are the perfect lovers!</i> Then, " + num2Text(pc.totalVaginas()) + " protrusions, rounded and fatter than the rest, rub directly on your slit");
+		output(" sides, making you drip. <i>These tentacles are the perfect lovers!</i> Then, " + num2Text(pc.totalVaginas()) + " protrusion, rounded and fatter than the rest, rubs directly on your slit");
 		if(pc.totalVaginas() > 1) output("s");
 		output(", teasing your [pc.clits] until you’re bucking back against them, forcing the alien phall");
 		if(pc.totalVaginas() > 1) output("i");
@@ -53,7 +53,7 @@ public function fuckingEggHatchOhFuck(destination:String):void
 		output(" deep inside. <i>It’s everything you wanted and more.</i> ");
 		if(pc.totalVaginas() == 1) output("It rubs");
 		else output("They rub");
-		output(" you just right, pumping in and out of your [pc.vaginas], making you moan. You could get addicted to sex like this. Hell, <i>you’d love to do this every day</i> If you could go back in time, you’d tell your past self to <i>get a whole bunch of these eggs and fall asleep in the middle of them.</i>");
+		output(" you just right, pumping in and out of your [pc.vaginas], making you moan. You could get addicted to sex like this. Hell, <i>you’d love to do this every day!</i> If you could go back in time, you’d tell your past self to <i>get a whole bunch of these eggs and fall asleep in the middle of them.</i>");
 		//Cuntchanges!
 		for(var y:int = 0; y < pc.totalVaginas(); y++)
 		{
