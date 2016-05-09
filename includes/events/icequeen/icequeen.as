@@ -624,7 +624,8 @@ public function iceQueenLossToZaalt():void
 	flags["ICEQUEEN COMPLETE"] = -3;
 	flags["ZAALT_DISABLED"] = 1;
 
-	pc.loadInCunt(enemy, 0);
+	if (pc.hasVagina()) pc.loadInCunt(enemy, 0);
+	else pc.loadInAss(enemy);
 	pc.orgasm();
 	enemy.orgasm();
 
