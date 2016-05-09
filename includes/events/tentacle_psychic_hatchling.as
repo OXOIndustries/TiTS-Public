@@ -27,7 +27,7 @@ public function fuckingEggHatchOhFuck(destination:String):void
 	else output(" and wonder <i>which tentacle it will put in your ass</i>.");
 
 	output("\n\nTerrible, agonizing cramps run through your [pc.legOrLegs], dropping you to the floor. They vanish the moment you hit you the deck, but the damage is done. <i>This is so exciting!</i> ");
-	if(pc.hasNippleCunts()) output("Your nipples engorge, lubricating and ready to be fucked by this monster.");
+	if(pc.hasNippleCunts()) output("Your nipples engorge, lubricating; ready to be fucked by this monster.");
 	else if(pc.hasInvertedNipples()) output("Your nipples pop right out, eager to be molested by the creature.");
 	else if(pc.hasLipples()) output("Your lipples purse, ready to be violated by the creature.");
 	else output("Your [pc.nipples] perk up, eager for sensation, even if it does come from this creature.");
@@ -45,7 +45,7 @@ public function fuckingEggHatchOhFuck(destination:String):void
 		output(" on ");
 		if(pc.totalVaginas() == 1) output("either");
 		else output("all");
-		output(" sides, making you drip. <i>These tentacles are the perfect lovers!</i> Then, " + num2Text(pc.totalVaginas()) + " protrusions, rounded and fatter than the rest, rub directly on your slit");
+		output(" sides, making you drip. <i>These tentacles are the perfect lovers!</i> Then, " + num2Text(pc.totalVaginas()) + " protrusion, rounded and fatter than the rest, rubs directly on your slit");
 		if(pc.totalVaginas() > 1) output("s");
 		output(", teasing your [pc.clits] until you’re bucking back against them, forcing the alien phall");
 		if(pc.totalVaginas() > 1) output("i");
@@ -53,7 +53,7 @@ public function fuckingEggHatchOhFuck(destination:String):void
 		output(" deep inside. <i>It’s everything you wanted and more.</i> ");
 		if(pc.totalVaginas() == 1) output("It rubs");
 		else output("They rub");
-		output(" you just right, pumping in and out of your [pc.vaginas], making you moan. You could get addicted to sex like this. Hell, <i>you’d love to do this every day</i> If you could go back in time, you’d tell your past self to <i>get a whole bunch of these eggs and fall asleep in the middle of them.</i>");
+		output(" you just right, pumping in and out of your [pc.vaginas], making you moan. You could get addicted to sex like this. Hell, <i>you’d love to do this every day!</i> If you could go back in time, you’d tell your past self to <i>get a whole bunch of these eggs and fall asleep in the middle of them.</i>");
 		//Cuntchanges!
 		for(var y:int = 0; y < pc.totalVaginas(); y++)
 		{
