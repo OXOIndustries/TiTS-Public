@@ -1281,13 +1281,11 @@ public function displayQuestLog(showID:String = "All"):void
 		{
 			output2("\n<b><u>Myrellion</u></b>");
 			output2("\n<b>* Status:</b>");
-			if(reclaimedProbeMyrellion() || (flags["KQ2_MYRELLION_STATE"] == 1 && MailManager.isEntryUnlocked("danemyrellioncoords"))) output2(" Coordinates received");
-			else
+			if(nyreaDungeonFinished() || (flags["KQ2_MYRELLION_STATE"] == 1 && MailManager.isEntryUnlocked("danemyrellioncoords"))) output2(" Coordinates received");
+			else output2(" <i>In progress...</i>");
+			if(!reclaimedProbeMyrellion() && flags["KQ2_MYRELLION_STATE"] != 1)
 			{
-				output2(" <i>In progress...</i>");
-				output2("\n<b>* Probe Location:</b>");
-				if(nyreaDungeonFinished()) output2(" <i>Probe has been located.</i>");
-				else output2(" <i>Probe appears to be in some kind of royal throne room.</i>");
+				output2("\n<b>* Probe Location:</b> <i>Probe" + (metTaivra() ? " located in Taivra’s" : " appears to be in some kind of royal") + " throne room.</i>");
 			}
 			// Scout
 			if(flags["MYRELLION_EMBASSY_VISITED"] != undefined && flags["KQ2_MYRELLION_STATE"] == undefined)
