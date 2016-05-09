@@ -1005,7 +1005,7 @@ public function annoFollowerSexMenu():void
 	{
 		addButton(0, "Tailjob", annoFollowerTailjobSex, undefined, "Tailjob", "Have Anno use her fluffy tail to get you off. Warning: May cause fur matting.");
 		
-		if (pc.cockThatFits(anno.vaginalCapacity()) != -1) addButton(1, "Suck&Fuck", annoFollowerSuckAndFuckSex, undefined, "Suck & Fuck", "Have Anno blow you, then give her a rough fucking to top it off.");
+		if (pc.cockThatFits(anno.vaginalCapacity() + 2000) != -1) addButton(1, "Suck&Fuck", annoFollowerSuckAndFuckSex, undefined, "Suck & Fuck", "Have Anno blow you, then give her a rough fucking to top it off.");
 		else addDisabledButton(1, "Suck&Fuck", "Suck & Fuck", "Requires an appropriately sized penis.");
 		
 		if (pc.cockThatFits(anno.analCapacity()) != -1) addButton(2, "Anal", annoFollowerAnalSex, undefined, "Anal", "Take Anno on a backdoor adventure.");
@@ -1243,7 +1243,7 @@ public function annoFollowerSuckAndFuckSexPartII():void
 	output("\n\nWhen you’re finished, Anno smiles appreciatively over her shoulder, wiggling her ass into the underside of your wrapped wang. <i>“Come on then... I’m ready for you,”</i> she breathes, her white tail raising invitingly as your sheathed schlong slowly slides forward. ");
 	
 	output("\n\nAnno bites her lip, muffling a girlish whimper as your [pc.hips] rock forward, inching your [pc.cock " + selCock + "] into her sodden quim. You nearly join her as you feel your cock submerging into the sultry hole, surrounded by hot, wet, squirming walls as Anno’s pussy clenches around your intruding member. You push forward despite her body’s resistance, the ausar’s incredibly wet sex making it unnaturally easy to spread her walls wide. Anno moans as you plunge deep into her sex, fingers digging into the lip of her desk, tail flicking madly as you bottom out inside her");
-	if (pc.cockVolume(selCock) >= 500) output(", your tremendous cock stretching her out almost painfully wide, distending her gut against the bed");
+	if (pc.cockVolume(selCock) >= (chars["ANNO"].vaginalCapacity() + 200)) output(", your tremendous cock stretching her out almost painfully wide, distending her gut against the bed");
 	output(".");
 	pc.cockChange(true, false);
 	

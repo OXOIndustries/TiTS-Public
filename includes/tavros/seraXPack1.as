@@ -1695,7 +1695,7 @@ public function seraSexXXXJardiThreesome(response:String = "jardis"):void
 			output("”</i> You slide off Jardi’s blouse, undo her bra slowly, and when her pretty, petite breasts are exposed engulf a nipple with your mouth.");
 			if(!pc.isNude()) output(" Her hands slide beneath your [pc.gear], exploring and touching you with her pleasantly moist digits as she unclasps and unwraps you as you do the same for her, unbuttoning her blouse, exposing her pretty, petite breasts, engulfing a nipple as you do. She coos as you continue to work, slowly divesting her of her slacks and pink panties.");
 			else output(" With your clothes already long gone the goo-girl has nothing to do but coo and slide her pleasantly moist hands down your frame, exploring you as you slowly divest her of her slacks and pink panties.");
-			output("\n\nJardi’s naked, gooey flesh is delightful to touch, cusp and sink your fingers and tongue into, a hot, human-shaped blancmange which sighs and gasps when you touch her erogenous areas, and by the way she eagerly reciprocates she finds your body equally enjoyable. She straddles your waist with her slim thighs, rotating them gently as you sink your fingers into her sweltering pussy, passionately snogging you, her long tongue reaching deeper into your mouth the deeper you probe into her wet.");
+			output("\n\nJardi’s naked, gooey flesh is delightful to touch, cusp and sink your fingers and tongue into, a hot, human-shaped blancmange which sighs and gasps when you touch her erogenous areas, and by the way she eagerly reciprocates she finds your body equally enjoyable. She straddles your waist with her slim thighs, rotating them gently as you sink your fingers into her sweltering pussy, passionately snogging you, her long tongue reaching deeper into your mouth the deeper you probe into her wet pussy.");
 			output("\n\nPanting slightly, she pulls out and descends to your [pc.chest]. You place your hands behind you and exhale long and low as she slathers her tongue over first one [pc.nipple] then the next,");
 			if(pc.hasCuntNipples() || pc.hasLipples()) output(" making them bead before penetrating them with her delightfully long, drooling muscle, humming happily as she laps at the pink insides of your pussy breasts");
 			else output(" the gentle, insistence of her mouth making them stand out, keenly erect");
@@ -1719,7 +1719,7 @@ public function seraSexXXXJardiThreesome(response:String = "jardis"):void
 		}
 		else if(response == "hookah")
 		{
-			output("Your sighs, kisses and licks are overlain by the heavy sound of Sera’s breathing and the shifting, wet sound of her masturbation as she watches you. <i>“And some people pay for porn,”</i> you think you hear her groan at one point. Making out with this slim, tender rahn under the sensitising effects of the room and smoke would be wonderfully pleasant whatever the case, but the fact it’s done for your mistress for her own viewing pleasure makes it overwhelmingly erotic.");
+			output("Your sighs, kisses and licks are overlain by the heavy sound of Sera’s breathing and the shifting, wet sound of her masturbation as she watches you. <i>“And some people pay for porn,”</i> you think you hear her groan at one point. Making out with this slim, tender rahn under the sensitizing effects of the room and smoke would be wonderfully pleasant whatever the case, but the fact it’s done for your mistress, for her own viewing pleasure makes it overwhelmingly erotic.");
 			output("\n\nWhen you clasp Jardi’s hands and kiss her deeply again, crouched opposite you, Sera makes her move. She shifts over and lays her hand behind each of your heads, kneeling over you. You continue to curl your tongue around Jardi’s, confused for a moment – until a musky, foot long prick slides in front of your lips from the side.");
 			output("\n\n<i>“Keep going dears,”</i> sighs the demon, clasping your heads firmly and moving her hips slowly, gliding you and Jardi’s lip-lock up and down her thick cock. You open your mouth wide and feel the goo-girl’s soft, red mouth on the other side of the veiny hardness shifting between you. With a bit of effort it’s possible for the two of you to continue mingling your tongues and lips whilst Sera runs all twelve inches of her sex through your joining, it just requires you to open your mouths quite wide, make sloppier and needier noises than you were before. Jardi’s hands tighten around yours when Sera ends by sliding all the way back so her pre-cum beading bulb is between you; your body throbbing with arousal and acquiescent bliss, you join the goo girl in lavishing it with your tongue.");
 			output("\n\nSera’s breath is ragged as she withdraws and singles out Jardi, her hand brushing her breasts as she turns her around and firmly presses her head into the duvet, exposing her tight round ass and oozing goo pussy, rose with arousal. She slides her bulging cock down the crack of her behind and teases her entrance with it; the goo girl’s muffled whimper travels to you through the sheets. Sera looks over your shoulder at you, her yellow eyes livid in the gloom.");
@@ -2157,32 +2157,40 @@ public function seraSexXXXTitfuckLuckyDip(arg:Array):void
 	}
 	else if(response == "second")
 	{
-		output("She takes a few steps back to lean against the counter with a raspy sigh, her distended cock leaving a dribbled trail of cum on the floor as she goes. You lean back to gather yourself, the alabaster mess oozing down you, and raise a hand to wipe your face.");
-		output("\n\n<i>“No.”</i> You freeze. You were expecting Sera to be lost in a warm, self-centered fuzz of her own but her eyes are open, gazing down at you: golden, playful and cruel. Cat’s eyes. <i>“I’m not done with you yet pet, and you look so much more... appropriate when you’re covered in my jizz. Come here, and prepare your mistress for the good, hard fucking she’s going to give you now.”</i> A warm shudder passes through you as, after a pause, you shift yourself over so you’re between her long legs and wrap one hand around her long, fluid-slicked shaft. Claw-tipped fingers urge you to rise, staying where they are to convex down your back and grip your [pc.ass] as you do whilst continuing to steadily jerk her.");
-		output("\n\nShe leans back with a wide, lazy smile, enjoying the luxuriant refractory period you’re providing her with, drinking in your cum-creamed face whilst your grip gently shifts up and down her girth. Blushing, you look down from that gloating, infernally alluring visage, try to ignore the sensation of musky cream steadily oozing down your [pc.chest] and quickly hit on something to busy yourself with. You send your other hand burying beneath her warm, pliant thighs and touch the lips of her pussy. She hums with deep approval, pushing her thighs outwards so you can enter her, curling your fingers into her hot, moist depths as you continue to wring her male sex. In response she gets to work with her own hands, clutching your [pc.ass] tightly before moving inwards, penetrating your");
-		if(vagIndex >= 0) output(" [pc.vagina " + vagIndex + "]");
-		else output(" [pc.anus]");
-		output(", testing and loosening you.");
-		output("\n\nSera may have been human once but her present physiology scorns the limitations her birthright would have given her. It takes little more than a minute for her cock to be bulging and erect again, pointing at you demandingly. She pushes herself into you, her big, pert breasts flattening against your [pc.chest], hissing quietly into your ear as she urgently turns you, bends you over the counter, grips your hands behind your back and finally slides her fully recovered erection between your butt-cheeks.");
-		if(vagIndex >= 0)
+		if(pc.biggestTitSize() > 2)
 		{
-			output(" Your [pc.vagina " + vagIndex + "] has been anticipating this for some time now, her flavor rich in your mouth and nose, and it eagerly");
-			if(pc.isSquirter(vagIndex)) output(" dribbles");
-			else output(" beads");
-			output(" moisture to the hot thickness sliding over your labia and [pc.clit].");
-			
+			output("She takes a few steps back to lean against the counter with a raspy sigh, her distended cock leaving a dribbled trail of cum on the floor as she goes. You lean back to gather yourself, the alabaster mess oozing down you, and raise a hand to wipe your face.");
+			output("\n\n<i>“No.”</i> You freeze. You were expecting Sera to be lost in a warm, self-centered fuzz of her own but her eyes are open, gazing down at you: golden, playful and cruel. Cat’s eyes. <i>“I’m not done with you yet pet, and you look so much more... appropriate when you’re covered in my jizz. Come here, and prepare your mistress for the good, hard fucking she’s going to give you now.”</i> A warm shudder passes through you as, after a pause, you shift yourself over so you’re between her long legs and wrap one hand around her long, fluid-slicked shaft. Claw-tipped fingers urge you to rise, staying where they are to convex down your back and grip your [pc.ass] as you do whilst continuing to steadily jerk her.");
+			output("\n\nShe leans back with a wide, lazy smile, enjoying the luxuriant refractory period you’re providing her with, drinking in your cum-creamed face whilst your grip gently shifts up and down her girth. Blushing, you look down from that gloating, infernally alluring visage, try to ignore the sensation of musky cream steadily oozing down your [pc.chest] and quickly hit on something to busy yourself with. You send your other hand burying beneath her warm, pliant thighs and touch the lips of her pussy. She hums with deep approval, pushing her thighs outwards so you can enter her, curling your fingers into her hot, moist depths as you continue to wring her male sex. In response she gets to work with her own hands, clutching your [pc.ass] tightly before moving inwards, penetrating your");
+			if(vagIndex >= 0) output(" [pc.vagina " + vagIndex + "]");
+			else output(" [pc.anus]");
+			output(", testing and loosening you.");
+			output("\n\nSera may have been human once but her present physiology scorns the limitations her birthright would have given her. It takes little more than a minute for her cock to be bulging and erect again, pointing at you demandingly. She pushes herself into you, her big, pert breasts flattening against your [pc.chest], hissing quietly into your ear as she urgently turns you, bends you over the counter, grips your hands behind your back and finally slides her fully recovered erection between your butt-cheeks.");
+			if(vagIndex >= 0)
+			{
+				output(" Your [pc.vagina " + vagIndex + "] has been anticipating this for some time now, her flavor rich in your mouth and nose, and it eagerly");
+				if(pc.isSquirter(vagIndex)) output(" dribbles");
+				else output(" beads");
+				output(" moisture to the hot thickness sliding over your labia and [pc.clit].");
+				
+			}
+			output(" Her bulging head presses against your entrance.");
+			output("\n\n");
 		}
-		output(" Her bulging head presses against your entrance.");
-		if(vagIndex >= 0) pc.cuntChange(vagIndex, chars["SERA"].cockVolume(0));
-		else pc.buttChange(chars["SERA"].cockVolume(0));
 		
-		output("\n\n<i>“So, uh,”</i> trying to keep your voice steady. <i>“What was the big sell? Mistress?”</i> you add, for good measure. Sera pauses, as if slightly surprised by your question. Then she thrusts forwards, burying most of her huge cock into your");
+		output("<i>“So, uh,”</i> trying to keep your voice steady. <i>“What was the big sell? Mistress?”</i> you add, for good measure. Sera pauses, as if slightly surprised by your question. Then she thrusts forwards, burying most of her huge cock into your");
 		if(vagIndex >= 0) output(" [pc.vagina " + vagIndex + "]");
 		else output(" [pc.anus]");
 		output(" with a single action. You arch your back and open your mouth, globs of cum flying off you, every cell in your nether regions attempting to grow accustomed to the massive intrusion.");
 		
+		if(vagIndex >= 0) pc.cuntChange(vagIndex, chars["SERA"].cockVolume(0));
+		else pc.buttChange(chars["SERA"].cockVolume(0));
+		
 		//Randomised
 		var TFItem:String = RandomInCollection(["Clippex", "Semen’s Friend", "Lucifier"]);
+		if(flags["SERA_UNLOCK_CLIPPEX"] == undefined) TFItem = "Clippex";
+		else if(flags["SERA_UNLOCK_SEMENS"] == undefined) TFItem = "Semen’s Friend";
+		else if(flags["SERA_UNLOCK_LUCIFIER"] == undefined) TFItem = "Lucifier";
 		
 		output("\n\n");
 		// Clippex:

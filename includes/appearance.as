@@ -2119,7 +2119,7 @@ public function crotchStuff(forTarget:Creature = null):void
 		//MULTICOOCH!
 		else if(target.vaginaTotal() > 1) 
 		{
-			output2("You have " + num2Text(target.vaginas.length) + " " + target.vaginasDescript() + ", ");
+			output2("You have " + num2Text(target.vaginas.length) + " " + target.vaginasDescript() + ",");
 			if(target.matchedVaginas()) 
 			{
 				if(target.totalVaginas() == 2) output2(" both similar in appearance.");
