@@ -515,32 +515,36 @@ public function initUvetoRooms():void
 	rooms["UVI P30"].moveMinutes = 1;
 
 	rooms["UVI P32"] = new RoomClass(this);
-	rooms["UVI P32"].roomName = "DUNNO";
-	rooms["UVI P32"].description = "9999 BUT I NEED THE LINK";
+	rooms["UVI P32"].roomName = "THE\nFREEZER";
+	rooms["UVI P32"].description = "There is only a brief landing to kick the snow off your feet before the floor immediately plunges downwards in the form of a staircase, though the steps are mercifully wide and drunkard friendly. Each step downwards brings you further away from the biting chill and, instead, to the warm, cozy atmosphere of what is a tavern. Emphasis on warm, thankfully.\n\nDespite it's name, the Freezer is actually a decidedly homely establishment. Heaters in nearly every corner of the room keep the air from dipping into Uveto's usually frigid temperatures, and a scattering of cracked peanut shells on the floor lend the place a homey, if rustic, feel.\n\nThere's plenty of space between the various tables, varying from long bench seats to more intimate two seat square tables and everything in between - it feels a bit like a collection of various ways to <i>do</i> tables.\n\nThere's a subfloor to the west; slightly lower than the main tavern floor, but only by a few steps.";
 	rooms["UVI P32"].planet = "PLANET: UVETO VII";
 	rooms["UVI P32"].system = "SYSTEM: SIRETTA";
 	rooms["UVI P32"].eastExit = "UVI R32"; // 9999 TEMP CHECK THIS
 	rooms["UVI P32"].westExit = "UVI N32";
 	rooms["UVI P32"].moveMinutes = 1;
+	rooms["UVI P32"].runOnEnter = uvetoBarBonus;
 	rooms["UVI P32"].addFlag(GLOBAL.INDOOR);
+	rooms["UVI P32"].addFlag(GLOBAL.BAR);
 
 	/* Mead Hall */
 	rooms["UVI R32"] = new RoomClass(this);
 	rooms["UVI R32"].roomName = "THE\nFREEZER";
-	rooms["UVI R32"].description = "Despite it's name, the Freezer is actually a cozy little establishment. Heaters in nearly every corner of the room keep the air from dipping into Uveto's usually frigid temperatures, and a scattering of cracked peanut shells on the floor lend the place a homey, if rustic, feel.";
+	rooms["UVI R32"].description = "A subfloor to the tavern-proper, this part of the room serves to house a giant, circular firepit with hardy seating set all around a roaring fire.\n\nThe heat of marvelous, massive flames constantly licks at your [pc.face] as the barely-controlled fire keeps the interior of the tavern pleasantly warm at a distance, but the pit itself offers those fresh from a trek across the ice plains a place to really get some warmth back into their limbs.\n\nThere's a small, unassuming door with a subtle ‘Staff Only’ notice on it tucked into the south corner of the room.";
 	rooms["UVI R32"].planet = "PLANET: UVETO VII";
 	rooms["UVI R32"].system = "SYSTEM: SIRETTA";
 	rooms["UVI R32"].southExit = "UVI R34";
 	rooms["UVI R32"].westExit = "UVI P32"; // 9999 TEMP CHECK THIS
 	rooms["UVI R32"].moveMinutes = 1;
-	rooms["UVI R32"].runOnEnter = uvetoBarBonus;
 	rooms["UVI R32"].addFlag(GLOBAL.INDOOR);
-	rooms["UVI R32"].addFlag(GLOBAL.BAR);
+	rooms["UVI R32"].runOnEnter = function():Boolean {
+		setNavDisabled(NAV_SOUTH_DISABLE);
+		return false;
+	}
 
 	/* Back Room */
 	rooms["UVI R34"] = new RoomClass(this);
 	rooms["UVI R34"].roomName = "THE FREEZER:\nBACKROOM";
-	rooms["UVI R34"].description = "9999 Some random dump bar thing whatevs. (Yes this document totally deserved to be in the fucking ready to code pile amirite).";
+	rooms["UVI R34"].description = "The freezers back room. Shouldn't be able to see this atm! 9999";
 	rooms["UVI R34"].planet = "PLANET: UVETO VII";
 	rooms["UVI R34"].system = "SYSTEM: SIRETTA";
 	rooms["UVI R34"].northExit = "UVI R32";
