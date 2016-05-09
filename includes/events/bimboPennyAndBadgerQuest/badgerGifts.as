@@ -456,7 +456,7 @@ public function warnPennyAboutDoctorBadgersNefariousSchemes():void
 	clearMenu();
 	//Add Text/Buttons
 	//[Report Dr. Badger][Turn the tables on Dr. Badger][Zap Penny after talking to her]
-	if(flags["NO_REPORTING_DOC_BADGER"] == 1) addDisabledButton(0,"TurnInBadger","Turn In Doctor Badger","It’s probably better to play it safe, given how dangerous Dr. Badger seems to be. Get Penny to report her, and have the professionals sort it out.");
+	if(flags["NO_REPORTING_DOC_BADGER"] != undefined) addDisabledButton(0,"TurnInBadger","Turn In Doctor Badger","You've decided not to turn in Doctor Badger.");
 	else addButton(0,"TurnInBadger",turnDoctorBadgerIntoSpacePolice2,undefined,"Turn In Doctor Badger","It’s probably better to play it safe, given how dangerous Dr. Badger seems to be. Get Penny to report her, and have the professionals sort it out.");
 
 	addButton(1,"Turn Tables",turnTheTablesOnBadgertwat,undefined,"Turn the Tables on Dr. Badger","That DOES sound like it could be a fun plan. Show Dr. Badger just how much of a hero you can be...");

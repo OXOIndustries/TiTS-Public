@@ -602,10 +602,11 @@ public function approachFriendPenny(outputT:Boolean = true):void {
 	//Tooltip: That Doctor Badger thought she could get the best of you... time to turn the tables the right way: by bringing the hammer of the LAW down on her.
 	if(flags["DR_BADGER_TURNED_IN"] == undefined)
 	{
-		if(flags["MET_DR_BADGER"] != undefined) addButton(5,"ReportBadger",whineToPennyCauseYerABitch,undefined,"Report Dr. Badger","That Doctor Badger thought she could get the best of you... time to turn the tables the right way: by bringing the hammer of the LAW down on her.");
+		if(flags["NO_REPORTING_DOC_BADGER"] != undefined) addDisabledButton(5,"ReportBadger","Report Dr. Badger","You've decided not to turn in Doctor Badger.");
+		else if(flags["MET_DR_BADGER"] != undefined) addButton(5,"ReportBadger",whineToPennyCauseYerABitch,undefined,"Report Dr. Badger","That Doctor Badger thought she could get the best of you... time to turn the tables the right way: by bringing the hammer of the LAW down on her.");
 		else addDisabledButton(5,"Locked","Locked","Someone would have to do something illegal to you to unlock this button...");
 	}
-	else addDisabledButton(5,"ReportBadger","ReportBadger","You already turned in Doctor Badger.");
+	else addDisabledButton(5,"ReportBadger","Report Dr. Badger","You already turned in Doctor Badger.");
 }
 
 //[Sex]
@@ -1303,7 +1304,8 @@ public function pennyGirlfriendMenu():void
 	//Tooltip: That Doctor Badger thought she could get the best of you... time to turn the tables the right way: by bringing the hammer of the LAW down on her.
 	if(flags["DR_BADGER_TURNED_IN"] == undefined)
 	{
-		if(flags["MET_DR_BADGER"] != undefined) addButton(2,"ReportBadger",whineToPennyCauseYerABitch,undefined,"Report Dr. Badger","That Doctor Badger thought she could get the best of you... time to turn the tables the right way: by bringing the hammer of the LAW down on her.");
+		if(flags["NO_REPORTING_DOC_BADGER"] != undefined) addDisabledButton(2,"ReportBadger","Report Dr. Badger","You've decided not to turn in Doctor Badger.");
+		else if(flags["MET_DR_BADGER"] != undefined) addButton(2,"ReportBadger",whineToPennyCauseYerABitch,undefined,"Report Dr. Badger","That Doctor Badger thought she could get the best of you... time to turn the tables the right way: by bringing the hammer of the LAW down on her.");
 		else addDisabledButton(2,"Locked","Locked","Someone would have to do something illegal to you to unlock this button...");
 		
 		if(flags["BADGER_QUEST"] == 1)
@@ -1317,14 +1319,14 @@ public function pennyGirlfriendMenu():void
 			else addDisabledButton(2,"Zap Penny","Zap Penny","Now that you've tipped her off, it'll be impossible to catch her with her guard down.");
 		}
 	}
-	else addDisabledButton(2,"ReportBadger","ReportBadger","You already turned in Doctor Badger.");
+	else addDisabledButton(2,"ReportBadger","Report Dr. Badger","You already turned in Doctor Badger.");
 	//Penny has the doc's raygun
 	if(flags["BADGER_QUEST"] == -1 || flags["BADGER_QUEST"] == -2)
 	{
-		addDisabledButton(2,"ReportBadger","Report Badger","Why would you report Dr. Badger when you and Penny are planning to give her a taste of her own medicine?");
+		addDisabledButton(2,"ReportBadger","Report Dr. Badger","Why would you report Dr. Badger when you and Penny are planning to give her a taste of her own medicine?");
 	}
 	//Mission complete
-	if(flags["BADGER_QUEST"] == -3) addDisabledButton(2,"ReportBadger","Report Badger","Why would you report Dr. Badger when you've turned her into your big-breasted, bimbo badger fucktoy?");
+	if(flags["BADGER_QUEST"] == -3) addDisabledButton(2,"ReportBadger","Report Dr. Badger","Why would you report Dr. Badger when you've turned her into your big-breasted, bimbo badger fucktoy?");
 	this.addButton(14,"Back",mainGameMenu);
 }
 
