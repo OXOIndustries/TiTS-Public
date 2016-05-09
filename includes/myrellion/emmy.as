@@ -1156,7 +1156,7 @@ public function sexAttemptStart(mainMenu:Boolean = true):void
 		else
 		{
 			output("Emmy's eyes flutter low once she realizes your intent. <i>\"Does someone need a little relief?\"</i>\n\nThe ");
-			if(rand(2) == 0) output("bulge in her jumpsuits authoritatively declares her to be the one in need of relief.");
+			if(rand(2) == 0) output("bulge in her jumpsuit authoritatively declares her to be the one in need of relief.");
 			else output("way her nipples jut through the thin fabric of her jumpsuit, you wager she's referring to herself.");
 		}
 		emmySexMenu();
@@ -2218,7 +2218,7 @@ public function getBlownByEmmy():void
 	if(flags["EMMY_QUEST"] >= 6 && flags["EMMY_QUEST"] != undefined) output("You can even do it on my face if you want... or straight down my throat. Anywhere.");
 	else output("I don’t mind the mess.");
 	output("”</i>");
-	output("\n\nEmmy gobbles you right back up again as soon as she finishes talking, swallowing inch after inch in one smooth traversal of your length. Her eyes as she focuses her attention. She pumps back and forth fast enough that foaming spittle drips from her lower lip, and the fluid gulping of her self-induced face-fucking momentarily overwhelm the audio from the automated displays. Your [pc.cockBiggest] is buffeted by a vortex of ecstasy, held captive by sensuous warmth, yoked to elemental pleasure incapable of yielding until you’re dragged to the very peak.");
+	output("\n\nEmmy gobbles you right back up again as soon as she finishes talking, swallowing inch after inch in one smooth traversal of your length. Her eyes glaze as she focuses her attention. She pumps back and forth fast enough that foaming spittle drips from her lower lip, and the fluid gulping of her self-induced face-fucking momentarily overwhelm the audio from the automated displays. Your [pc.cockBiggest] is buffeted by a vortex of ecstasy, held captive by sensuous warmth, yoked to elemental pleasure incapable of yielding until you’re dragged to the very peak.");
 	output("\n\nYou do the only thing you can; you cum. Emmy’s ready for it, of course. She pulls back just far enough to let you spill onto her waiting tongue, all before you fired the first drop, and her hands... her hands never stop moving, never stop entreating you to have the hardest climax of your life.");
 
 	//Smallcum, no new PG
@@ -2455,7 +2455,7 @@ public function emmy69MiddleOfScene(youSuck:int):void
 	//Eat her out
 	if(youSuck == 2)
 	{
-		output("\n\nWrapping your hands around Emmy’s butt, you push your face harder against her quivering cunt, thrilled to feel her balls pulse against the underside of your chin. You wrap your lips around her pudgy clit and rhythmically suck, lashing your tongue over its surface and around its hood, savagely strumming her sex-raw nerves. The jackaless cries out at that, and a small squirt of her girlish love splatters your lower lip. She’s trembling like mad and properly stimulated, and her mouth is going wild on you ");
+		output("\n\nWrapping your hands around Emmy’s butt, you push your face harder against her quivering cunt, thrilled to feel her balls pulse against the underside of your chin. You wrap your lips around her pudgy clit and rhythmically suck, lashing your tongue over its surface and around its hood, savagely strumming her sex-raw nerves. The jackaless cries out at that, and a small squirt of her girlish love splatters your lower lip. She’s trembling like mad and properly stimulated, and her mouth is going wild on your ");
 		if(emmySucks == 1) output("dick.");
 		else output("cunt.");
 	}
@@ -2500,13 +2500,13 @@ public function emmy69OrgasmTime(args:Array):void
 	//Emmygirlcum
 	if(youSuck == 2)
 	{
-		output("\n\nA spray of girlcum fills your mouth, drawing you back to the real world with the tangy taste of Emmy’s cunt. You swallow noisily, letting her paint you nose and cheeks with more of her gushing goo. Her balls pull tight below your chin, and you hear the sound of her masculine spunk splattering off the bottom of her tits. Flecks of it hit your [pc.belly], warm and wet, a salty compliment to the feminine love you’re currently struggling to swallow.");
+		output("\n\nA spray of girlcum fills your mouth, drawing you back to the real world with the tangy taste of Emmy’s cunt. You swallow noisily, letting her paint your nose and cheeks with more of her gushing goo. Her balls pull tight below your chin, and you hear the sound of her masculine spunk splattering off the bottom of her tits. Flecks of it hit your [pc.belly], warm and wet, a salty compliment to the feminine love you’re currently struggling to swallow.");
 		applyPussyDrenched(pc);
 	}
 	//Emmy boycum
 	else 
 	{
-		output("\n\nThick, salty-tasting spunk fills your mouth, drawing you back to the real world before you choke on it. You swallow noisily, but it’s not fast enough for Emmy’s super-sized ejaculations. Spunk rolls over your bottom lip in a wave while small streams dribble from the corners of your mouth. Still, you preservere, gulping down as much of as you can. Her poor balls are being blasted from behind by girlcum too, making her whole sack gleam brighter than a brand new starfighter.");
+		output("\n\nThick, salty-tasting spunk fills your mouth, drawing you back to the real world before you choke on it. You swallow noisily, but it’s not fast enough for Emmy’s super-sized ejaculations. Spunk rolls over your bottom lip in a wave while small streams dribble from the corners of your mouth. Still, you persevere, gulping down as much of as you can. Her poor balls are being blasted from behind by girlcum too, making her whole sack gleam brighter than a brand new starfighter.");
 		applyCumSoaked(pc);
 	}
 	//Merge
@@ -2547,7 +2547,7 @@ public function emmy69Epilogue(args:Array):void
 	//Merge
 	output("\n\nYou help Emmy heft the fluid-weighted fabric off of the salesfloor and into the ‘Employees Only’ area, earning a kiss with a hint of your own slimy residue. You’re sure to share plenty of hers back.");
 	output("\n\nShe tosses you a towel to wipe up with and laughs, <i>“Did I really cum that much? Wow.”</i>");
-	output("\n\nThere’s so much that the towel is soon soaked, but at least you’re clean... sort of. You can still smell sort of like ");
+	output("\n\nThere’s so much that the towel is soon soaked, but at least you’re clean... sort of. You still smell sort of like ");
 	if(youSuck == 2) output("her cunt");
 	else output("her spunk");
 	output(". Hopefully no one will notice.");
@@ -2583,7 +2583,7 @@ public function emmyCockSlobber():void
 	else output(", stroking your [pc.skinFurScales]");
 	output(". At first her touches are uncertain and shaky, but when you lay your cheek against her achingly erect jackal-cock, those hesitant caresses become firm and commanding, betraying a surprising strength. You look to her for final confirmation, her eyes meeting yours in a look of hungry approval.");
 
-	output("\n\nEmmy’s gaze is almost a physical force, full of desire and an almost astounding amount of need half-concealed behind her pride. Her smile sends a thrill of delight down your spine, and you run your palms up her thighs, feeling her heat against your hands, the subtle buck of of hips against you. The catch of her form-fitting suit practically releases itself, but you keep it from sliding down too quickly once it reaches crotch level, freeing the soaked slab of girlmeat with deliberate slowness.");
+	output("\n\nEmmy’s gaze is almost a physical force, full of desire and an almost astounding amount of need half-concealed behind her pride. Her smile sends a thrill of delight down your spine, and you run your palms up her thighs, feeling her heat against your hands, the subtle buck of hips against you. The catch of her form-fitting suit practically releases itself, but you keep it from sliding down too quickly once it reaches crotch level, freeing the soaked slab of girlmeat with deliberate slowness.");
 
 	output("\n\nThe jackaless’s thickness throbs under your fingertips, its veins pulsing and flexing in appreciation. ");
 	if(flags["EMMY_QUEST"] >= 6 && flags["EMMY_QUEST"] != undefined) output(" Having to remove the Herm Harness spoils a bit of the fun, but then it's gone, and you have her cock right there, in your hands.");

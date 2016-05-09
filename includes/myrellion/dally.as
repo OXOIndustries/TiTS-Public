@@ -6,11 +6,90 @@
 
 
 //Intro Blurb
-public function dallySplash():Boolean
+public function honeyNozzleClub():Boolean
 {
 	output("\n\nA male myr in little more than an oversized loincloth is dancing gracefully around a pole, much to the tittering delight of a feminine audience. His abdomen weighs heavy behind him and ponderously dips along with the more vigorous dance moves. A seat just opened up in front of him, if you want to approach.");
 	if(flags["MET_DALLY"] == undefined) addButton(0,"M.Stripper",dallyApproach);
 	else addButton(0,"Dally",dallyApproach);
+	
+	if (flags["FAZIAN_QUEST_STATE"] == undefined) flags["FAZIAN_QUEST_STATE"] = FAZIAN_QUEST_NOTSTARTED;
+	
+	if (flags["FAZIAN_QUEST_STATE"] == FAZIAN_QUEST_OFFERING && flags["FAZIAN_QUEST_TIMER"] + (48 * 60) < GetGameTimestamp())
+	{
+		output("\n\nHepane the myr musician is stood where she normally is, by the entrance to the cabaret. She doesn't have her clipboard though, and she looks rather worried.");
+		addButton(1, "Hepane", fazianQuestOpening);
+	}
+	else if (flags["FAZIAN_QUEST_STATE"] == FAZIAN_QUEST_STARTED)
+	{
+		output("\n\nHepane, the myr musician you're trying to help find Fazian, is sat at a table near the back. She looks rather worried.");
+		if (flags["FAZIAN_QUEST_SUCCESSES"] + flags["FAZIAN_QUEST_FAILURES"] < 3) addDisabledButton(1, "Hepane", "Hepane", "Collect clues on Fazian's whereabouts before returning to Hepane.");
+		else addButton(1, "Hepane", fazianQuestInvestigationDun, undefined, "Hepane", "Return to Hepane and share the clues you've collected on Fazian's whereabouts.");
+	}
+	else if (flags["FAZIAN_QUEST_STATE"] == FAZIAN_QUEST_INVESTIGATED)
+	{
+		if(flags["FAZIAN_QUEST_TIMER"] + (24 * 60) < GetGameTimestamp())
+		{
+			output("\n\nHepane, the myr musician you're trying to help find Fazian, is sat at a table near the back. She waves at you urgently the moment she catches sight of you.");
+			addButton(1, "Hepane", fazianQuestInvestigationFollowup, undefined, "Hepane", "Go over and see what she has to say.");
+		}
+		else if ((hours > 15 && hours < 20) || (hours == 15 && minutes >= 30) || (hours == 20 && minutes <= 30))
+		{
+			output("\n\nThe entrance to the cabaret displays a sign that mentions a temporary delay in the evening's showings.");
+		}
+	}
+	else if (!InCollection(flags["FAZIAN_QUEST_STATE"], [FAZIAN_QUEST_REJECTED, FAZIAN_QUEST_FAILED, FAZIAN_QUEST_RESCUE, FAZIAN_QUEST_BRIBED]))
+	{
+		if (flags["FAZIAN_QUEST_RESCUE_TIMER"] != undefined && flags["FAZIAN_QUEST_RESCUE_TIMER"] + (24 * 60) > GetGameTimestamp())
+		{
+			/* Give Fazian a 24-hour break before performing a new show after rescue. */
+		}
+		else
+		{
+			if ((hours > 15 && hours < 20) || (hours == 15 && minutes >= 30) || (hours == 20 && minutes <= 30))
+			{
+				if(flags["FAZIAN_QUEST_STATE"] == FAZIAN_QUEST_OFFERING)
+				{
+					output("\n\nThe entrance to the cabaret has a hastily-made sign posted that mentions a temporary delay in the afternoon's showings. Technical difficulties perhaps?");
+				}
+				else if (flags["FAZIAN_SHOW"] == undefined)
+				{
+					output("\n\nOn the far side of the dusky room, a gold myr in a black dress is taking money from knots of other ant-women and ushering them through a curtain. A private show of some sort?");
+					addButton(1, "Curtain", nozzleShowFirstTime);
+				}
+				else
+				{
+					output("\n\nOn the far side of the dusky room, you can see Fazian's accompanist Hepane taking admissions for this afternoon's show. You could go find out what the two of them are putting on this time.");
+					addButton(1, "Cabaret", nozzleShowRepeat);
+				}
+			}
+
+			var bShow:Boolean = hasSeenNozzleShow();
+			var bT1:Boolean = hours > 20 || hours < 2;
+			var bT2:Boolean = hours == 20 && minutes >= 35;
+			if (bShow && (bT1 || bT2))
+			{
+				if(flags["FAZIAN_QUEST_STATE"] != FAZIAN_QUEST_OFFERING || flags["FAZIAN_QUEST_TIMER"] + (12 * 60) >= GetGameTimestamp())
+				{
+					output("\n\nFazian, the anat cabaret performer, is sat at the quieter end of one of the bars, craned over a glass of honey wine. You could go and talk to him if you wished.");
+					addButton(1, "Fazian", fazianApproach);
+				}
+			}
+		}
+	}
+
+	if (flags["FAZIAN_QUEST_STATE"] == FAZIAN_QUEST_STARTED)
+	{
+		if (flags["FAZIAN_QUEST_GOLDMYR"] == undefined)
+		{
+			addButton(5, "Gold Myr", fazianQuestGoldMyr, undefined, "Gold Myr", "Ask a group of gold myr clientele if they have seen Fazian anywhere.");
+		}
+
+		if (flags["FAZIAN_QUEST_BARKEEP"] == undefined)
+		{
+			addButton(7, "Barkeep", fazianQuestBarkeep, undefined, "Barkeep", "Ask the barkeep if she's seen Fazian.");
+		}
+	}
+	
 	return false;
 }
 
@@ -67,6 +146,12 @@ public function dallyMenu():void
 	addButton(2,"Talk",talkToDally,undefined,"Talk","Try to talk to Dally over the din of the blaring music.");
 	if(flags["DALLY_FAVOR_OFFERED"] == 1) addButton(3,"Favor",getAFavorFromDally);
 	else addDisabledButton(3,"Favor","Favor","But Dally doesn't owe you any favors!");
+
+	if (flags["FAZIAN_QUEST_STATE"] == FAZIAN_QUEST_STARTED && flags["FAZIAN_QUEST_DALLY"] == undefined)
+	{
+		addButton(4, "Fazian", fazianQuestDally, undefined, "Fazian", "Ask the male myr if he knows the whereabouts of his fellow dancer.")
+	}
+
 	addButton(14,"Leave",leaveDally,false);
 }
 
@@ -385,6 +470,7 @@ public function makeDallyBlowALoadOnYerFaceYeSloot():void
 	pc.exhibitionism(1);
 	//No pc cums, +lotsa horniness
 	pc.lust(33);
+	mimbraneFeed("face");
 	processTime(6);
 	dallyDanceHJEpilogue();
 }
@@ -406,6 +492,10 @@ public function takeSomeDallySploogeInYerMouthYaSloooooot():void
 	output("\n\nWhen you can handle no more, you pull back and gasp for breath, offering his still-spurting rod to an ant-girl who has appeared beside you, mouth open in anticipation. She feeds the spurting shaft into her gullet and sucks with the kind of earnest eagerness that speaks of a sort of wanton hunger for cock. You watch and dab the dripping spooge from your face, offering it to another myr. She sucks the proffered digits clean one after another, relishing it.");
 	output("\n\nDally finishes not longer after - you clearly got the lion’s share of his load. Even now, you can feel it sloshing in your tummy. The dancer extricates himself from his fan’s sucking maw with a bit of difficulty and gives you a grateful nod. His balls actually look a little lighter thanks to your intervention. <i>“Thank you ladies, but I’ve got to walk the rest of stage before the boss gripes at me. I’ll try and return the favor if I ever get the chance.”</i> He winks at you and turns away, launching into a dance as well as his tired legs will allow.");
 	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
+	pp.cumType = GLOBAL.FLUID_TYPE_HONEY;
+	pp.balls = 2;
+	pp.ballSizeRaw = 20;
+	pp.createPerk("Fixed CumQ", 9000, 0, 0, 0);
 	pc.exhibitionism(1);
 	pc.loadInMouth(pp);
 	//Doesnt get the unified epilogue

@@ -1293,7 +1293,7 @@ public function femSydianEatsButtholes():void
 		output("\n\nShe removes her hand from her crotch, exposing a fully-bloomed pussy that twitches from sudden neglect. You glare at her, and she realizes she needs to say something. <i>“Yes... my superior,”</i> she mumbles.");
 	}
 
-	output("Her other hand continues to caress, leaving greasy-feeling strokes of heat all around your hole.");
+	output(" Her other hand continues to caress, leaving greasy-feeling strokes of heat all around your hole.");
 	if (pc.hasVagina())
 	{
 		output(" [pc.EachVagina]");
@@ -1409,7 +1409,7 @@ public function femSydianFuck():void
 		else output(" [pc.tail]");
 		output(" up, you nudge the woman’s vulva.");
 	}
-	output("She looks away coyly, and the bloom of warmth you feel when her pussy opens wider suggests that she’s enjoying your touch while she awaits your next move.");
+	output(" She looks away coyly, and the bloom of warmth you feel when her pussy opens wider suggests that she’s enjoying your touch while she awaits your next move.");
 	
 	output("\n\n");
 	if (!enemy.hasStatusEffect("Unarmored")) output("<i>“Well... hurry up!”</i> she barks.");

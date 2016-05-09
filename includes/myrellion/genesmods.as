@@ -202,6 +202,11 @@ public function genesModsMenu(cFunc:Function = null):void
 		if (!pc.hasVagina() && !pc.hasCock()) addDisabledButton(2, "Sex", "Sex", "You think you're going to need something for Gene to be interested in you. Something cock or pussy shaped, for instance.");
 	}
 
+	if (flags["FAZIAN_QUEST_STATE"] == FAZIAN_QUEST_STARTED && flags["FAZIAN_QUEST_GENE"] == undefined)
+	{
+		addButton(3, "Fazian", fazianQuestGene, undefined, "Fazian", "Perhaps the fanfir knows something about the missing anat.");
+	}
+
 	if (cFunc != geneAppearance) addButton(10, "Appearance", geneAppearance);
 	else addDisabledButton(10, "Appearance");
 

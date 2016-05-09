@@ -375,7 +375,7 @@ public function repeatNaynaApproach(backsies:Boolean = false):void
 	//Didn’t Take Quest
 	if(flags["NAYNA_REJECTED"] != undefined)
 	{
-		output("Nayna’s ear lifts higher and higher as you close the distance with her, swivelling to face you long before her head does the same. <i>“You’re not going to trick me into breaking another Codex, if that’s what you’re here for.”</i>");
+		output("Nayna’s ear lifts higher and higher as you close the distance with her, swiveling to face you long before her head does the same. <i>“You’re not going to trick me into breaking another Codex, if that’s what you’re here for.”</i>");
 		output("\n\n<i>“I-”</i> You start to talk, but she cuts you off before you can get more than a single syllable out.");
 		output("\n\n<i>“I don’t mean to be rude. I don’t, but I’ve got my ass to the wall. I’m over budget and overworked. I’ve got secure twice the results from half the data, and even if I do, the project’s funding may be cut before I can survey the other six planets on my list. If I could find someone to recover my missing drones, I’d have a lot more time to talk.”</i> Nayna’s ears flop down like limp spaghetti noodles.");
 		processTime(1);
@@ -391,7 +391,7 @@ public function repeatNaynaApproach(backsies:Boolean = false):void
 	{
 		if(!backsies)
 		{
-			output("Nayna’s ear lifts higher and higher, pivoting to follow your progress through the room. When you’re a few steps away, the other joins it, swivelling to regard you a half-second before the rest of the laquine. <i>“[pc.name]! How goes your adventures? Have you come across any of my drones yet?”</i>");
+			output("Nayna’s ear lifts higher and higher, pivoting to follow your progress through the room. When you’re a few steps away, the other joins it, swiveling to regard you a half-second before the rest of the laquine. <i>“[pc.name]! How goes your adventures? Have you come across any of my drones yet?”</i>");
 			//No drones
 			if(9999 == 9999) 
 			{
@@ -424,9 +424,9 @@ public function appearanceOfNayna():void
 {
 	clearOutput();
 	showNayna();
-	output("Nayne");
+	output("Nayna");
 	if(flags["NAYNA_LAST_NAME"] != undefined) output(" Triverre");
-	output(" is..... Well, she’s a rabbit-woman, like most laquine. She’s got big bunny ears that seem content to droop down the back of head and fur that covers every visible part of her body. Her black and white hair is tied back in a sensible ponytail, which when combined with her ears, could easily be mistaken for trio of ponytails. A triangular black nose tips her short, rabbit-like muzzle, matched by inky little lips that seem ready to smile a moment’s notice.");
+	output(" is..... Well, she’s a rabbit-woman, like most laquine. She’s got big bunny ears that seem content to droop down the back of head and fur that covers every visible part of her body. Her black and white hair is tied back in a sensible ponytail, which when combined with her ears, could easily be mistaken for a trio of ponytails. A triangular black nose tips her short, rabbit-like muzzle, matched by inky little lips that seem ready to smile at a moment’s notice.");
 	//Warm!
 	if(naynaWarm())
 	{
@@ -543,13 +543,13 @@ public function naynaEducationTalk():void
 	output("\n\n<i>“Wow, okay. It isn’t easy, really. You can’t just go to a technical school or learn by doing. You’ve got to go to an academy - one of the big, planetary institutions if you can help it. The more impressive the school, the better. Then you have to select a field of study and master it. Me? I pursued climatology, though I also studied a bit of biology on the side. Mom and Dad would’ve crucified me if I didn’t.”</i> Nayna shakes her head, then stares ");
 	if(flags["SHUTTER_STATUS"] != 1) output("out the window");
 	else output("at the closed shutters");
-	output(". <i>“I think, deep down, that still think this is just a phase - that I’ll come to my senses and finally pursue a real career.”</i> Laughing, the long-eared lapine wipes a tear from her eyes.");
+	output(". <i>“I think, deep down, they still think this is just a phase - that I’ll come to my senses and finally pursue a real career.”</i> Laughing, the long-eared lapine wipes a tear from her eyes.");
 	output("\n\n");
 	if(flags["NAYNA_EDUCATION"] == undefined) output("You push her, asking why her parents would do such a thing.");
 	else output("You ask her if she could recount why they would do that.");
 	output("\n\n<i>“The genetic plague!”</i> Nayna honestly seems surprised that you didn’t figure it out on your own. <i>“About thirty years back, laquine fertility starting nose diving, and it’s only gotten worse with time. I’m basically sterile, for example. Most of our top minds are tackling the issue. Every laquine with more than a few brain cells to rub together thinks she’s going to be the one to cure, the one to save our people. Well, every laquine aside from me.”</i>");
 	output("\n\n<i>“Why not you?”</i>");
-	output("\n\nNayna shrugs. <i>“It just didn’t appeal to me. Why would I want to pick apart cells when I could learn about the fabulous little crystals that make up snow? Who wants to dissect a dead animal when you could loading up a simulated blizzard on your holo and see how the clouds spin around each other? It may not make much scientific sense, but I was born with white fur. It’s like I was made to play in the snow. For a short, dumpy bunny, I wrecked at snowball fights, and I wreck at reading weather data just as hard.”</i>");
+	output("\n\nNayna shrugs. <i>“It just didn’t appeal to me. Why would I want to pick apart cells when I could learn about the fabulous little crystals that make up snow? Who wants to dissect a dead animal when you could load up a simulated blizzard on your holo and see how the clouds spin around each other? It may not make much scientific sense, but I was born with white fur. It’s like I was made to play in the snow. For a short, dumpy bunny, I wrecked at snowball fights, and I wreck at reading weather data just as hard.”</i>");
 	output("\n\nYou press the issue. <i>“But didn’t you feel some kind of obligation to help your people?”</i>");
 	output("\n\n<i>“What help would I be? There are thousands of laquine scientists putting their all into solving that problem. At best, I might make a useful lab assistant. At worst, I’d just be in everyone’s way. No, it’s better that they can focus without my distractions, and I can pursue my passion. Besides, laquines aren’t the only sapients in the galaxy. Even with the rush, habitable planets fill up fast. If I can make it possible to terraform a few dozen more, billions of lives could be saved - or improved. Imagine how many conflicts could have been avoided if everyone just had a little more room?”</i>");
 	output("\n\nNodding, you can’t help but agree.");
@@ -585,11 +585,11 @@ public function uvetoTalkWithNayna():void
 	clearOutput();
 	showNayna();
 	output("<i>“What brought you to Uveto?”</i>");
-	output("\n\nNayna wrinkles her nose at you. <i>“My study, silly. I can’t go into the specifics until after I get it published, but suffice to say that it is going to revolution cold weather modelling as well as terraforming. I’m connecting data points that everyone else ignores as inconsequential, stitching them together into a gestalt that most climatologists have waved off as random variation.”</i>");
+	output("\n\nNayna wrinkles her nose at you. <i>“My study, silly. I can’t go into the specifics until after I get it published, but suffice to say that it is going to revolutionize cold weather modeling as well as terraforming. I’m connecting data points that everyone else ignores as inconsequential, stitching them together into a gestalt that most climatologists have waved off as random variation.”</i>");
 	//Not saved enough drones
 	if(9999 == 9999)
 	{
-		output("\n\nPausing, show looks at her toes, sighing heavily. <i>“That’s assuming I don’t get my funding cut and have to wallow in obscurity. Why couldn’t these drones be as cold tolerant as me?”</i> She kicks a loose panel, and looks over at you. <i>“I hope you can find ");
+		output("\n\nPausing, she looks at her toes, sighing heavily. <i>“That’s assuming I don’t get my funding cut and have to wallow in obscurity. Why couldn’t these drones be as cold tolerant as me?”</i> She kicks a loose panel, and looks over at you. <i>“I hope you can find ");
 		if(9999) output("them");
 		else if(9999) output("a few more of them");
 		else output("another one");
@@ -775,7 +775,7 @@ public function hugNaynaGogogo():void
 	else if(flags["NAYNA_HUG_LEWDNESS"] == 1)
 	{
 		output("You open your arms wide, but Nayna barrels in well before you’re ready for her, wrapping her arms around your back and planting her hands firmly on your [pc.butt]. Once there, she starts vigorously squeezing and kneading, just like you did to her, oblivious to how hot under the collar it’s making you. Giggling, she asks, <i>“I’m getting pretty good at this, huh?”</i>");
-		output("\n\nYou nod. What else can you do, besides grope-hug her right back. You sink your fingers deep into her rump, massaging her pillowy donk with rapacious delight, revelling in the cuddle-bunny’s oh-so squeezable ass.");
+		output("\n\nYou nod. What else can you do, besides grope-hug her right back. You sink your fingers deep into her rump, massaging her pillowy donk with rapacious delight, reveling in the cuddle-bunny’s oh-so squeezable ass.");
 		if(!naynaWarm()) output(" There may be layers of fur and insulation between your palms and the happy hare, but the her shapeliness is impressive all the same.");
 	}
 	//Lewder Hug
@@ -1348,7 +1348,7 @@ public function naynaFuckEppiloggie(cum:Number):void
 {
 	clearOutput();
 	showNayna();
-	output("When you come too, Nayna is stretching next to you in smiling, watching a small robot zip over her body, harmlessly vaporizing the last patches of cum out of her hair.");
+	output("When you come too, Nayna is stretching next to you and smiling, watching a small robot zip over her body, harmlessly vaporizing the last patches of cum out of her hair.");
 	output("\n\nIt’s then that you realize all signs of your tryst are gone. No puddle remains. The console you fucked over is spotless, and you’re almost as clean as if you took a shower.");
 	if(flags["NAYNA_FUCKED"] != undefined) output(" That little bot is almost as good as a galotian.");
 	else 

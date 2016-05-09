@@ -671,13 +671,13 @@ public function kq2QUESTTIMEII():void
 
 	showName("THE\nGHOST");
 
-	output("The trip goes by quickly and peacefully, until you hit the arid atmosphere of Myrellion. The ship shudders with turbulence, and you watch as Logan hammers several controls on a console above her. Part of the forward screen flickers off, replaced by a bird-eye view of the desert - some kind of probe’s camera, maybe? The second screen focuses in on some kind of walled compound sitting the bottom of a deep caldera, surrounded by nothing for miles and miles around. You squint, and think you make out all of three, maybe four buildings on the surface.");
+	output("The trip goes by quickly and peacefully, until you hit the arid atmosphere of Myrellion. The ship shudders with turbulence, and you watch as Logan hammers several controls on a console above her. Part of the forward screen flickers off, replaced by a bird-eye view of the desert - some kind of probe’s camera, maybe? The second screen focuses in on some kind of walled compound sitting at the bottom of a deep caldera, surrounded by nothing for miles and miles around. You squint, and think you make out all of three, maybe four buildings on the surface.");
 	
 	output("\n\nNot much of a base.");
 	
 	output("\n\n<i>“Bring us in low, Logan. Nice and easy,”</i> Kara says casually, leaning back in her captain’s chair with legs crossed. <i>“Any sign of Void ships?”</i>");
 	
-	output("\n\n<i>“None,”</i> your pilot calls back, flipped a button that replaces your view of the base with a radar image of the surrounding airspace: totally blank.");
+	output("\n\n<i>“None,”</i> your pilot calls back, flipping a button that replaces your view of the base with a radar image of the surrounding airspace: totally blank.");
 	
 	output("\n\nKara nods slowly. <i>“Alright, drop the rear hatch and bring us in. We’ll drop on that plateau, just ahead. [pc.name], you’re with me. We’re gonna fast rope onto the surface. Stealth system keeps us off their LIDAR, but doesn’t help much if we’re kicking up dust right on their front porch.”</i>");
 	
@@ -1513,7 +1513,7 @@ public function kq2KhanPCDickFuck():void
 	
 	output("\n\nKhan whines an affirmation, and you shiver as his oral attention shifts fully towards pleasing you, desperately licking and slurping your [pc.cock]. Kara winks. Her buried hand ever so slightly shifts, making the tanuki cry out with pleasure. While Khan’s prick is now out of sight, hidden by his legs, your eyes are drawn to another thick slab of cockmeat, growing stiff at the sight of Khan’s mouth acting as a receptive sheathe to your thrusts.");
 	
-	output("\n\nYou allow your pleasure to guide you, spurring your movements faster, pounding Khan’s face until he’s gagging on your dick, spittle drooling down from the corners of his mouth. You’re merciless in your face-fucking, knowing full well he’d have treated you no better were your places reversed. The kui-tan’s mouth is nothing but an onahole for you to abuse, the fuck as hard as you can until you spill your seed down his throat.");
+	output("\n\nYou allow your pleasure to guide you, spurring your movements faster, pounding Khan’s face until he’s gagging on your dick, spittle drooling down from the corners of his mouth. You’re merciless in your face-fucking, knowing full well he’d have treated you no better were your places reversed. The kui-tan’s mouth is nothing but an onahole for you to abuse, to fuck as hard as you can until you spill your seed down his throat.");
 	
 	output("\n\n<i>“That’s better,”</i> Kara coos, shifting her hand behind Khan. She shifts her hips back, dragging her spiny feline shaft down through the furry cleavage of Khan’s backside, out of sight into the kui-tan’s crack. She lifts her hand out of the way, and thrusts her hips in hard against Khan’s upraised ass. He cries out, squealing almost girlishly as Kara hammers home into his boypussy. The tongue that was slavishly servicing your cock falls still, stunned by the sudden penetration. Khan’s caged prick erupts in a geyser of white cream, cum spewing out of his otherwise average prick like a firehose.");
 	
@@ -1660,7 +1660,7 @@ public function kq2KhanPCDefeat():void
 	output(" and sliding the slim metal ring around your neck.");
 	
 	pc.removeAll();
-	pc.createStatusEffect("Psi Slave Collar", 0.5, 0.05, 50, 0, true, "Radio", "This metal collar limits your intelligence capacity and willpower while worn, making you completely subservient to the will of the one who operates it.", false, 0, 0xFF0000);
+	pc.createStatusEffect("Psi Slave Collar", 0.5, 0.05, 50, 0, false, "Radio", "This metal collar limits your intelligence capacity and willpower while worn, making you completely subservient to the will of the one who operates it.", false, 0, 0xFF0000);
 	
 	output("\n\n<i>“No... get away...”</i> Kara moans as one of the girls rolls her onto her face, just beside you. Before they collar her, the girls spend a few moments undressing the kaithrit, pulling off her skin-tight top and the skimpy skirt she’s wearing, even pulling her up to her knees so they can yank her underwear off. You watch as her E-cups bounce free, immediately in the grasp of another gold myr, who squeezes and kneads the perfect, soft orbs.");
 	
@@ -1717,6 +1717,9 @@ public function kq2KhanPCDefeat():void
 	processTime(45 + rand(6));
 	
 	flags["KQ2_KARA_WITH_PC"] = undefined;
+	
+	CombatManager.genericLoss();
+	
 	badEnd();
 }
 
@@ -1912,6 +1915,8 @@ public function kq2CapturedByPiratesBadEnd():void
 
 	output("You stumble to the ground, too "+ (pc.HP() <= 0 ? "battered" : "aroused") +" to fight on. Your vision swims as your enemy advances, victorious. You can’t summon up the will to resist anymore, even as a solid weight slams into your face. The world goes black as your head snaps back, and you lose yourself to the darkness...");
 	
+	CombatManager.genericLoss();
+	
 	clearMenu();
 	addButton(0, "Next", kq2CapturedByPiratesBadEndII);
 }
@@ -1994,7 +1999,7 @@ public function kq2CapturedByPiratesBadEndII():void
 	
 	output("\n\n<i>“Looks good on you,”</i> your new owner smirks, giving her subordinate a rough clap on the shoulder to send him on his way. She reaches down after that, grabbing the back on your collar and flicking a button. The moment she does, you feel a thrum of energy pass through your neck, and something warm press against your spine.");
 	
-	pc.createStatusEffect("Psi Slave Collar", 0.75, 0.50, 25, 0, true, "Radio", "This metal collar limits your intelligence capacity and willpower while worn, making you completely subservient to the will of the one who operates it.", false, 0, 0xFF0000);
+	pc.createStatusEffect("Psi Slave Collar", 0.75, 0.50, 25, 0, false, "Radio", "This metal collar limits your intelligence capacity and willpower while worn, making you completely subservient to the will of the one who operates it.", false, 0, 0xFF0000);
 	
 	output("\n\n<i>“This is the lowest setting,”</i> she explains, drawing her hand up from the collar and across your [pc.hair], gently pushing your head down. As she does, you feel a shudder pass through you, followed by a spreading heat from your back, slowly crawling through your body. <i>“Doctor Khan’s work is truly remarkable, in its perverse way. Stand up.”</i>");
 
@@ -2475,7 +2480,7 @@ public function kq2KaraSexytimes():void
 
 	output("\n\nYou can’t wait until the cat-girl finishes her show, and lean up to grab the zipper’s tab between your teeth, pulling down down in one rough yank that frees her breasts from the suit’s tight embrace. They’re even more gorgeous than you’d hope, two perfectly sculpted mounds of feline flesh, each tipped with a pale pink teat that’s been pierced by a little silver bar. From where you are already, it’s impossible not to dig your face in between them, nuzzling into Kara’s supple cleavage. She giggles and moans, wrapping her arms around you and letting her eyes sink closed.");
 
-	output("\n\nWhile you’re busy enjoying her rack, Kara peels her suit off her shoulders, down around her waist. Your hands are already firmly planted on the kitty’s tush, and after one last moan-inducing squeeze, you reach up to grab the latex scrunched up around her flared hips. You peel it down, freeing her pert behind... and letting a hot, heavy rod of meat flop onto your belly, followed by a pear a meaty weights that brush against your");
+	output("\n\nWhile you’re busy enjoying her rack, Kara peels her suit off her shoulders, down around her waist. Your hands are already firmly planted on the kitty’s tush, and after one last moan-inducing squeeze, you reach up to grab the latex scrunched up around her flared hips. You peel it down, freeing her pert behind... and letting a hot, heavy rod of meat flop onto your belly, followed by a pair of meaty weights that brush against your");
 	if (pc.hasCock()) output(" own cock");
 	else output(" groin");
 	output(".");
@@ -2633,7 +2638,7 @@ public function kq2KaraFuckKittysKitty():void
 	else output(" I need you to fuck me hard. Think you’re up for it?");
 	output("”</i>");
 	
-	output("\n\nYou answer with your body, flipping the kaithrit babe onto her back and rolling onto her, pinning her arms to the bed. She gasps, arching her back when you dive in to lick and such at her breasts. Gently, you pinch her pierced teats between your teeth, nibbling until she’s gasping with pleasure. Her cock leaps to attention, smacking your thigh with impotent need. No more playing with that - you’ve got this pussy’s needy pussy to deal with!");
+	output("\n\nYou answer with your body, flipping the kaithrit babe onto her back and rolling onto her, pinning her arms to the bed. She gasps, arching her back when you dive in to lick and suck at her breasts. Gently, you pinch her pierced teats between your teeth, nibbling until she’s gasping with pleasure. Her cock leaps to attention, smacking your thigh with impotent need. No more playing with that - you’ve got this pussy’s needy pussy to deal with!");
 	
 	output("\n\nKara twists under you, sending a shock up your back of the strangest wringing sensation around your womb-deep [pc.cock]. Getting herself up on her knees, your lover braces her hands on the headboard and slaps her ass with a tail, inviting you to have your way with her - to fuck her like an animal! An offer you take eagerly...");
 	
@@ -3093,7 +3098,7 @@ public function kq2ShadeFollowUpAmends():void
 	// if Probe Dungeon Not Done:
 	if(!reclaimedProbeMyrellion())
 	{
-		output("\n\nShade gives you a faint smile, motioning towards the door -- a dismissal, though not entirely unkind. You give her hand a squeeze in kind before standing, and leaving the huntress to decide on the future of your relationship. If there <i>is</i> a future.");
+		output("\n\nShade gives you a faint smile, motioning towards the door -- a dismissal, though not entirely unkind. You give her hand a squeeze in kind before standing, giving the huntress a pause to decide on the future of your relationship. If there <i>is</i> a future.");
 		
 		flags["SHADE_DISABLED"] = -1;
 	}
@@ -3109,7 +3114,7 @@ public function kq2ShadeFollowUpAmends():void
 		flags["SHADE_ON_UVETO"] = 1;
 	}
 	output("\n\nShe releases your hand and stands, turning towards the door. <i>“Like I said, I’ll call you when I’m ready to talk again. I just need some time to deal with... this.”</i>");
-	output("\n\nYou nod say your farewells, left to watch the huntress leave... hopefully not for the last time. ");
+	output("\n\nYou nod and say your farewells, left to watch the huntress leave... hopefully not for the last time. ");
 	
 	processTime(5);
 	

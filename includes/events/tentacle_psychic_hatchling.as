@@ -50,7 +50,7 @@ public function fuckingEggHatchOhFuck(destination:String):void
 		output(", teasing your [pc.clits] until you’re bucking back against them, forcing the alien phall");
 		if(pc.totalVaginas() > 1) output("i");
 		else output("us");
-		output(" to deep inside. <i>It’s everything you wanted and more.</i> ");
+		output(" deep inside. <i>It’s everything you wanted and more.</i> ");
 		if(pc.totalVaginas() == 1) output("It rubs");
 		else output("They rub");
 		output(" you just right, pumping in and out of your [pc.vaginas], making you moan. You could get addicted to sex like this. Hell, <i>you’d love to do this every day</i> If you could go back in time, you’d tell your past self to <i>get a whole bunch of these eggs and fall asleep in the middle of them.</i>");
@@ -112,7 +112,7 @@ public function fuckingEggHatchOhFuck(destination:String):void
 	}
 	else output(" Best of all is the wickedly sensuous experience of having an anal orgasm. Your whole body shakes with the force of it, spellbound by the pulsing length inside it.");
 	output(" <i>It feels so good to cum for the tentacles,</i> so powerful and liberating.");
-	output("\n\nYou relax more and more each time your body is brought to the precipice, allowing ever greater numbers of the beast’s tentacles to plunge inside your eager form. They stretch you, but it doesn’t hurt. The squirt on you, but you aren’t disgusted. After all, <i>your body was made for this.</i> Every orgasm is an affirmation of your role, and new tentacle you can take is a pat on the head for a job well done. The deck below is sloppy with cum and slime, <i>just the way you like it.</i>");
+	output("\n\nYou relax more and more each time your body is brought to the precipice, allowing ever greater numbers of the beast’s tentacles to plunge inside your eager form. They stretch you, but it doesn’t hurt. The squirt on you, but you aren’t disgusted. After all, <i>your body was made for this.</i> Every orgasm is an affirmation of your role, and every new tentacle you can take is a pat on the head for a job well done. The deck below is sloppy with cum and slime, <i>just the way you like it.</i>");
 	processTime(35);
 	pc.orgasm();
 	pc.orgasm();
@@ -133,7 +133,7 @@ public function postPychicTentacleImpreg(args:Array):void
 	var destination:String = args[0];
 	var x:int = args[1];
 	showName("\nTENTACLES!");
-	output("The creature fucks you for hours, but you never seem to tire. Your body never grows sore, just looser, more willing to accept the gift of additional tentacles than ever before. At first, you’re shocked by it pulling the main bulb of its body up against your gaping [pc.vagOrAss], but then <i>you remember your duty</i> and grab the edges, holding yourself wide-open.");
+	output("The creature fucks you for hours, but you never seem to tire. Your body never grows sore, just looser, more willing to accept the gift of additional tentacles than ever before. At first, you’re shocked by it pulling the main bulb of its body up against your gaping [pc.vagOrAss " + x + "], but then <i>you remember your duty</i> and grab the edges, holding yourself wide-open.");
 	output("\n\nCompressing its body, the strange little alien somehow slides right inside your body, gliding across raw nerves, then stroking them again when it pulls in the dozens of tentacles hanging out of you. Your [pc.belly] bulges rounder by the second, heavy with it’s alien cargo.");
 	if(pc.hasCock()) output(" [pc.EachCock] jerks wildly in the air as you cum again, dribbling your last dregs of seed.");
 	if(pc.hasVagina())
@@ -143,7 +143,7 @@ public function postPychicTentacleImpreg(args:Array):void
 		else output(", gushing a fresh torrent of [pc.girlCum] into the puddle below");
 		output(".");
 	}
-	output(" <i>You feel content</i>, riding high on a wave of accomplishment that seems to intense to be entirely real.");
+	output(" <i>You feel content</i>, riding high on a wave of accomplishment that seems too intense to be entirely real.");
 	output("\n\nThen you pass out, slapping down in the muck like a light was switched off.");
 	processTime(360+rand(40));
 	clearMenu();
@@ -182,7 +182,7 @@ public function PsychicTentacleBirthing(pregSlot:int):void
 	if(pc.legCount > 1) output(" and spread your [pc.legOrLegs]");
 	output(", gushing the alien creature’s bizarre birthing fluids");
 	if(pc.hasVagina()) output(" and [pc.girlCum]");
-	output(" everywhere. It’s pulling you open from inside, and it feels amazing. <i>You’re basically just a bundle of nerves and flash for your master to grow inside.</i> Just like the rest of the galaxy.");
+	output(" everywhere. It’s pulling you open from inside, and it feels amazing. <i>You’re basically just a bundle of nerves and flesh for your master to grow inside.</i> Just like the rest of the galaxy.");
 	output("\n\nYou moan, feeling every bit like a puppet dancing on strings. Strings of pleasure and ecstasy. Strings that tug you open, letting a foot of burly tentacle splash out into the puddle. Arching your back, you shake your hips lewdly, encouraging the <i>superior being</i> to extend a second tendril from your body. You pet it, then throw back your head and pant, shuddering in inexplicable bliss.");
 	output("\n\nYou never want this to end. You want the tentacles to continue to slide from your body forever. It’s better than any orgasm ever could be, one unending wave of clenching, tremendous pleasure, washing away concerns and filling you placid contentment. You’re so awash in the sensory tsunami that you barely feel the main bulb of its body popping out of you. <i>Master</i> grew so large inside you, and so many of his tentacles are still inside you - the biggest, fattest, most fuckable ones.");
 	if(x == -1) pc.buttChange(2000);

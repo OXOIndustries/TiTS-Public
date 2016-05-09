@@ -521,7 +521,7 @@ public function hungryhungryTailginasThirst():void
 	output("\n\n<i>\"I didn-\"</i> the sydian starts in quiet protest.");
 	output("\n\nHis words die when [pc.oneTailgina] whips over to his cilia-covered cock, brushing its lips against its head as if to taste it.");
 	if(pc.tailCount == 2) output(" The second one comes in a second later, kissing and slurping against his side, sometimes bumping at the one on his head as if to push it aside.");
-	else if(pc.tailCount > 2) output(" The others come in a second later, kissing and slurping alla long his sides, sometimes bumping at the one on his crown as if to bump it aside.");
+	else if(pc.tailCount > 2) output(" The others come in a second later, kissing and slurping all along his sides, sometimes bumping at the one on his crown as if to bump it aside.");
 	output(" Any reply you might have summoned up is stifled by roiling waves of magma-hot pleasure that travel up your spine before breaking across the shoals of your consciousness. You moan like a wanton whore. You couldn't suppress it if you tried. All you can do is try to keep yourself from shaking too much and try to enjoy it.");
 	output("\n\nThe distracting bliss makes it difficult to focus on anything but the automatic motions of your posterior limb");
 	if(pc.tailCount > 1) output("s as they worship");

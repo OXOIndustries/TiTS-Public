@@ -263,7 +263,7 @@ package classes.Items.Transformatives
 					{
 						var newTailColor:String = RandomInCollection(["red", "dark purple"]);
 						
-						output("[target.EachTail] twists and flexes widly, reacting to some sort of change. Quickly grabbing [pc.oneTail], you find its shape slowly change and warp into a more sinister form.");
+						output("[pc.EachTail] twists and flexes widly, reacting to some sort of change. Quickly grabbing [pc.oneTail], you find its shape slowly change and warp into a more sinister form.");
 						if(!target.hasTailFlag(GLOBAL.FLAG_KNOTTED)) output(" A large knot grows at its base, making sure the phallus stays right where it belongs during mating.");
 						output(" Sensitive nodules appear on its surface");
 						if(target.hasTailFlag(GLOBAL.FLAG_RIBBED)) output(", replacing the ribs that lined it before");

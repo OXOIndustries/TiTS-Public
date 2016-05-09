@@ -2676,7 +2676,7 @@ public function kiroFuckOrgyFuntimes2():void
 {
 	clearOutput();
 	showName("HERM\nORGY");
-	showBust("FLAHNE_NUDE","MIDEE_NUDE","MAI_NUDE","MIKO_NUDE","KIRO_NUDE");
+	showBust("FLAHNE_NUDE","MIDEE","MIKO_AND_MAI","KIRO_NUDE");
 	output("Kiro wasn’t exaggerating. The other four are already warming up, groping and kissing one-another in hedonistic abandon.");
 	//No new PG, first time
 	if(flags["KIRO_ORGIED"] == undefined) output(" Most of them look to be furry hermaphrodites, like Kiro, but one breaks the mold: Flahne. The squishy rahn has a black-furred, modded kaithrit in her lap, straddling a massively erect ovipositor while she eagerly gropes at her partner’s latex-encased tits.");
@@ -2708,7 +2708,7 @@ public function ignoreMaiHandshake():void
 {
 	clearOutput();
 	showName("HERM\nORGY");
-	showBust("MAI_NUDE","MIKO_NUDE","FLAHNE_NUDE","KIRO_NUDE","MIDEE_NUDE");
+	showBust("MIKO_AND_MAI","FLAHNE_NUDE","KIRO_NUDE","MIDEE");
 	output("You give her a slight nod but nothing more. She might start out trying to get you to kiss her hand, but before long you’d likely wind up like her sister, meekly waiting for permission to cum");
 	if(flags["KIRO_ORGIED"] != undefined) output(", or getting ass-fucked.");
 	output("\n\nFrowning, Mai pulls her hand back. <i>“");
@@ -2725,7 +2725,7 @@ public function kissMaisHand():void
 {
 	clearOutput();
 	showName("HERM\nORGY");
-	showBust("MAI_NUDE","MIKO_NUDE","FLAHNE_NUDE","KIRO_NUDE","MIDEE_NUDE");
+	showBust("MIKO_AND_MAI","FLAHNE_NUDE","KIRO_NUDE","MIDEE");
 	//First Time
 	if(flags["KIRO_ORGIED"] == undefined) 
 	{
@@ -2757,7 +2757,7 @@ public function kiroFuckOrgyFuntimes3():void
 {
 	clearOutput();
 	showName("HERM\nORGY");
-	showBust("MAI_NUDE","MIKO_NUDE");
+	showBust("MIKO_AND_MAI");
 	output("Kiro bounds over to Flahne before you respond, leaving you facing Miko and Mai by your lonesome. Mai’s vulpine muzzle curls into a cheshire grin, and with a wave of her arm, she signals Miko to approach you. The orange vixen smiles nervously at you, standing as close as she can without brushing her large phallus into you");
 	if(!pc.isNude()) 
 	{
@@ -2784,7 +2784,7 @@ public function kiroFuckOrgyFuntimes3():void
 		output(" She struggles to take it at all, her mouth stretching to the absolute limit in order to handle your obscene girth.");
 		if(pc.biggestCockThickness() >= 4.5) output(" In a way, she reminds you of a snake with its jaw unhinged, willing to do anything to slide more meat into its gullet.");
 	}
-	output("\n\nKiro set you up to fail, or at the very least to get fucked in the ass mid-blowjob. You have a hard time getting upset about it, though. You know what you were getting into, and now that your mouth is wrapped up in a silky sheath, being polished by a cum-dump of a fox, you have a hard time getting upset about it. The submissive wench’s cheeks hollow as she sucks, noisily slurping, clearly wishing she could coax your cum free by raw suction alone. You can almost ignore the feeling of Mai hot-dogging your asscheeks.");
+	output("\n\nKiro set you up to fail, or at the very least to get fucked in the ass mid-blowjob. You have a hard time getting upset about it, though. You knew what you were getting into, and now that your [pc.cockHeadBiggest] is wrapped up in a silky sheath, being polished by a cum-dump of a fox, you have a hard time getting upset about it. The submissive wench’s cheeks hollow as she sucks, noisily slurping, clearly wishing she could coax your cum free by raw suction alone. You can almost ignore the feeling of Mai hot-dogging your asscheeks.");
 	output("\n\nAlmost.");
 	output("\n\nMai’s hands wind their way around you, securing themselves to your [pc.chest]");
 	output(", digging her fingertips into your [pc.nipples]");
@@ -2814,7 +2814,7 @@ public function kiroFuckOrgyFuntimes3():void
 	pc.buttChange(5);
 	output("\n\nCasting a glance over your shoulder, you look to Kiro for help, but the big-balled pirate doesn’t look like she’ll be helping anyone but herself, not with her cock buried to the hilt inside Flahne’s semi-transparent body, squeezing egg after egg into the mewling cat atop the fuck-pile. Lances of white spew from the kitty’s nubby pink dick, splattering across Kiro’s tits. The spherical distention of flahne’s eggs are obvious in her belly, and as you watch, more pile in, bloating her belly and driving her to squirt once more.");
 	output("\n\n<i>“Be a dear and cum for my sister,”</i> Mai grunts, roughly abusing your [pc.nipples]. <i>“Can’t you see how hard she’s working?”</i>");
-	output("\n\nSure enough, Miko going hard on your [pc.cockBiggest], bouncing back and forth on it, jacking the spit-slicked surface when she needs a breather, and then coming right back in for more. Her tongue flicks along the bottom while she sucks, easily extending a solid six inches past the end of her mouth, determined to taste every inch of your sweaty spunk-dispensor. Her eyes are wide and dilated, focused on you with an addict’s intensity, begging you to give her the one thing she wants more than anything else in the universe: your jizz.");
+	output("\n\nSure enough, Miko’s going hard on your [pc.cockBiggest], bouncing back and forth on it, jacking the spit-slicked surface when she needs a breather, and then coming right back in for more. Her tongue flicks along the bottom while she sucks, easily extending a solid six inches past the end of her mouth, determined to taste every inch of your sweaty spunk-dispensor. Her eyes are wide and dilated, focused on you with an addict’s intensity, begging you to give her the one thing she wants more than anything else in the universe: your jizz.");
 	output("\n\nYou orgasm right on cue,");
 	//Voluminous-much
 	if(pc.cumQ() >= 5000)
@@ -2829,7 +2829,7 @@ public function kiroFuckOrgyFuntimes3():void
 		output("”</i> she purrs, <i>“");
 		if(flags["KIRO_ORGIED"] != undefined) output("I made sure to restock for you.");
 		else output("those little pills made sure you’d cum nice and hard for my sister.");
-		output("”</i> She sticks her fingers in your [pc.asshole] and massages her drag-laced cum deeper into your passage. <i>“It’s a big sister’s job to make sure her little sister’s mates give her every drop, after all.”</i> Pulling her stained digits free, she stuffs them into Mai’s mouth, watching her sister-pet lick them clean. <i>“It’s a shame the effects aren’t more permanent. The complete elimination of your refractory period, however temporary, isn’t cheap, but at least we can enjoy you for the rest of this little session...”</i>");
+		output("”</i> She sticks her fingers in your [pc.asshole] and massages her drug-laced cum deeper into your passage. <i>“It’s a big sister’s job to make sure her little sister’s mates give her every drop, after all.”</i> Pulling her stained digits free, she stuffs them into Mai’s mouth, watching her sister-pet lick them clean. <i>“It’s a shame the effects aren’t more permanent. The complete elimination of your refractory period, however temporary, isn’t cheap, but at least we can enjoy you for the rest of this little session...”</i>");
 		pc.createStatusEffect("RefractBoost");
 	}
 	//Less than 5k naturally:
@@ -2860,7 +2860,7 @@ public function kiroFuckOrgyFuntimes4():void
 {
 	clearOutput();
 	showName("HERM\nORGY");
-	showBust("MIDEE_NUDE","FLAHNE_NUDE","KIRO_NUDE","MAI_NUDE","MIKO_NUDE");
+	showBust("MIDEE","FLAHNE_NUDE","KIRO_NUDE","MIKO_AND_MAI");
 	if(pc.isBimbo()) output("This is awesome! You should really thank Kiro for bringing you hear with a nice, long blow-job later. Or maybe she could fuck you. Or you could blow her, then get fucked, fuck her tits, then fuck her pussy, then pass out and let her fuck you however she wants. Whichever works.");
 	else 
 	{
@@ -2893,7 +2893,7 @@ public function kiroFuckOrgyFuntimes5():void
 {
 	clearOutput();
 	showName("HERM\nORGY");
-	showBust("MIDEE_NUDE","FLAHNE_NUDE","KIRO_NUDE","MAI_NUDE","MIKO_NUDE");
+	showBust("MIDEE","FLAHNE_NUDE","KIRO_NUDE","MIKO_AND_MAI");
 	output("You’d love to watch Kiro ravage the woman who so recently ravaged you, but there’s at least eight inches of needy kitty-prick in your mouth demanding attention, to say nothing of the slow-rousing rahn embedded on your dick, even now beginning to gyrate her hips");
 	if(pc.cockTotal() == 2) output(" and stroke your other penis");
 	else if(pc.cockTotal() > 2) output(" and stroke your other penises, using them as handholds");
@@ -2908,11 +2908,11 @@ public function kiroFuckOrgyFuntimes5():void
 	output("\n\nMi’dee’s screeches and digs her claws into your shoulder, not hard enough to break your [pc.skin] but certainly hard enough to hurt. She looks outraged for a split-second, then blissful. Her dick surges in your mouth, jumping up off your tongue to smack against the roof of your mouth. It plumps, filling with cum, and then fires a thick, sticky jet into the back of your throat.");
 	if(pc.isBimbo()) output(" Yum!");
 	output(" You swallow, but the next is bigger and thicker, almost like yogurt in consistency. You gulp it down just in time for the third ejaculation to bulge your cheeks and squirt from your your [pc.lips]. What started off as a meager orgasm is rapidly becoming titanic climax - Mai’s mystery chemicals must be acting fast! You twist your head to the side before she makes you choke on her goo geyser, inadvertently ensuring that you’re going to get a facial messy enough to make Kiro proud.");
-	output("\n\nYou close your eyes, and feeling generous, wrangle Mi’dee’s dick in your hands, squeezing and stroking it, giving her just as much pleasure as Flahne is giving you, letting her watch you paint your own face with her cum, the spunk piling up atop itself until it cascades over your ears. You have to continue lick your lips and nose to breathe");
+	output("\n\nYou close your eyes, and feeling generous, wrangle Mi’dee’s dick in your hands, squeezing and stroking it, giving her just as much pleasure as Flahne is giving you, letting her watch you paint your own face with her cum, the spunk piling up atop itself until it cascades over your ears. You have to continuously lick your lips and nose to breathe");
 	if(pc.isBimbo()) output(", but that’s like, super yummy and fun!");
 	else output(".");
 	output(" When it comes down to it, you’re not that far behind her.");
-	output("\n\nFlahne’s slow-grinding fuck may not be designed to bring you off, but you’re <i>hard</i>. Hard enough to fuck a woman carved from solid rock. Hard enough that between the rahn’s jelly-like folds and the sensation of getting bathed in cum, you find your [pc.hips] lifting your orgasm mounting. The ovipositor-packing secretary pats your [pc.belly] knowingly and coos from behind the still-spurting cat. <i>“Cum all you like. You’re not going soft any time soon.”</i>");
+	output("\n\nFlahne’s slow-grinding fuck may not be designed to bring you off, but you’re <i>hard</i>. Hard enough to fuck a woman carved from solid rock. Hard enough that between the rahn’s jelly-like folds and the sensation of getting bathed in cum, you find your [pc.hips] lifting and your orgasm mounting. The ovipositor-packing secretary pats your [pc.belly] knowingly and coos from behind the still-spurting cat. <i>“Cum all you like. You’re not going soft any time soon.”</i>");
 	output("\n\nYou couldn’t stop your orgasm if you tried.");
 	processTime(30);
 	pc.lust(20);
@@ -2929,8 +2929,8 @@ public function kiroFuckOrgyFuntimes6():void
 {
 	clearOutput();
 	showName("HERM\nORGY");
-	showBust("MIDEE_NUDE","FLAHNE_NUDE","KIRO_NUDE","MAI_NUDE","MIKO_NUDE");
-	output("Mai slides off Kiro’s dick into a puddle cum alongside you, but you barely notice. There’s too much kitty-spunk in your eyes, and besides, you’re too busy feeding Flahne, straining to pump gallon after gallon of wonderful [pc.cumColor] [pc.cumNoun] into her squeezing box. Mi’dee groans and shudders, still trickling sperm, struggling to stand up, but Flahne pulls her right back down onto her ovi-dick, pinning the poor pussy and instantly renewing her climax, forcing her to paint your [pc.chest].");
+	showBust("MIDEE","FLAHNE_NUDE","KIRO_NUDE","MIKO_AND_MAI");
+	output("Mai slides off Kiro’s dick into a puddle of cum alongside you, but you barely notice. There’s too much kitty-spunk in your eyes, and besides, you’re too busy feeding Flahne, straining to pump gallon after gallon of wonderful [pc.cumColor] [pc.cumNoun] into her squeezing box. Mi’dee groans and shudders, still trickling sperm, struggling to stand up, but Flahne pulls her right back down onto her ovi-dick, pinning the poor pussy and instantly renewing her climax, forcing her to paint your [pc.chest].");
 	output("\n\nYour eyes roll back, and you loose all connection with reality. Everything feels wet, slick, and good. Your body is a wonderland of blissful trembles and heavenly squeezes. The lust-drunk girls around you are an ever-changing tangle of partners and limbs; hands, cocks, and sinfully stuffed sexes all vie for tactile sensation. Sometimes your mouth is full. Sometimes your ass is full. Sometimes Miko is pinned between you and Kiro while Mai lies below, holding her mouth and cunt open to catch the drippings from both ends.");
 	output("\n\nThe floor disappears at some point, leaving you to splash around in a smutty lake of your own creation. Kiro doesn’t seem to care for it, but that doesn’t stop her from scooping up a handful to drink every now and then, triggering her hyper-active kui-tan reflexes and ensuring she’ll never go dry. You ride the waves of bliss as long as you can, but when all five girls are on their knees, rubbing and sucking on you, competing to see who can get more of your [pc.cum] on their face, you finally lose it, blacking out halfway through turning Kiro into ");
 	if(pc.fluidColorSimple(pc.cumType) == "white") output("an albino.");
@@ -2962,7 +2962,7 @@ public function kiroFuckOrgyFuntimes7():void
 {
 	clearOutput();
 	showName("THE\nAFTERMATH...");
-	showBust("MIDEE_NUDE");
+	showBust("MIDEE");
 	output("When you come to, the room is empty save for a snoring cat-girl, and the cum-lake is gone. There isn’t even any residue in your [pc.skinFurScales]. It’s then that you notice the unplugged drain on the floor and the shower heads above. Part of you wonders who lasted long enough to start the cleanup, and if they took advantage of you while they cleaned you off.");
 	output("\n\nYou glance at your Codex to check the time, shocked to discover over ten hours have passed. How long were you sleeping? For that matter, just how long did you fuck for? Your crotch is sore, your belly looks absolutely gravid, and if you relax between your legs, cum starts leaking out.");
 	if(!pc.hasStatusEffect("RefractBoost"))
