@@ -9,7 +9,7 @@ package classes.Engine.Combat
 	 */
 	public function rangedCombatMiss(attacker:Creature, target:Creature, overrideAttack:Number = -1, missModifier:Number = 1):Boolean 
 	{
-		if (overrideAttack == -1) overrideAttack = attacker.rangedWeapon.attack;
+		if (overrideAttack == -1) overrideAttack = attacker.attack(false);
 		
 		//Immune!
 		if (target.hasPerk("Ranged Immune")) return true;
