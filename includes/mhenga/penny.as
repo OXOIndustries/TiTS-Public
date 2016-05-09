@@ -1305,18 +1305,19 @@ public function pennyGirlfriendMenu():void
 	{
 		if(flags["MET_DR_BADGER"] != undefined) addButton(2,"ReportBadger",whineToPennyCauseYerABitch,undefined,"Report Dr. Badger","That Doctor Badger thought she could get the best of you... time to turn the tables the right way: by bringing the hammer of the LAW down on her.");
 		else addDisabledButton(2,"Locked","Locked","Someone would have to do something illegal to you to unlock this button...");
+		
+		if(flags["BADGER_QUEST"] == 1)
+		{
+			addButton(3,"BadgerWarn",warnPennyAboutDoctorBadgersNefariousSchemes,undefined,"Warn Her About Dr. Badger","Penny would probably have some opinions about Dr. Badger's plan. Who knows, maybe she’d be into it, or maybe she’ll have some ideas about how to turn the tables on Dr. Badger instead.");
+			if(flags["NO_ZAP_PENNY"] == undefined) 
+			{
+				if(flags["PENNY_BADGER_WARNED"] == undefined) addButton(2,"Zap Penny",surpriseZapPennyWithBimboRay,undefined,"Zap Penny","This seems like a jerk move, but if nothing else you can be pretty sure she’ll probably enjoy the end result, as will you.");
+				else addButton(2,"Zap Penny",zapPennyAfterWarningHer,undefined,"Zap Penny","Go ahead and zap Penny with the Bimbo Raygun, now that it seems like she approves.");
+			}
+			else addDisabledButton(2,"Zap Penny","Zap Penny","Now that you've tipped her off, it'll be impossible to catch her with her guard down.");
+		}
 	}
 	else addDisabledButton(2,"ReportBadger","ReportBadger","You already turned in Doctor Badger.");
-	if(flags["BADGER_QUEST"] == 1)
-	{
-		addButton(3,"BadgerWarn",warnPennyAboutDoctorBadgersNefariousSchemes,undefined,"Warn Her About Dr. Badger","Penny would probably have some opinions about Dr. Badger's plan. Who knows, maybe she’d be into it, or maybe she’ll have some ideas about how to turn the tables on Dr. Badger instead.");
-		if(flags["NO_ZAP_PENNY"] == undefined) 
-		{
-			if(flags["PENNY_BADGER_WARNED"] == undefined) addButton(2,"Zap Penny",surpriseZapPennyWithBimboRay,undefined,"Zap Penny","This seems like a jerk move, but if nothing else you can be pretty sure she’ll probably enjoy the end result, as will you.");
-			else addButton(2,"Zap Penny",zapPennyAfterWarningHer,undefined,"Zap Penny","Go ahead and zap Penny with the Bimbo Raygun, now that it seems like she approves.");
-		}
-		else addDisabledButton(2,"Zap Penny","Zap Penny","Now that you've tipped her off, it'll be impossible to catch her with her guard down.");
-	}
 	//Penny has the doc's raygun
 	if(flags["BADGER_QUEST"] == -1 || flags["BADGER_QUEST"] == -2)
 	{

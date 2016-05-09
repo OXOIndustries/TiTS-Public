@@ -1485,7 +1485,8 @@ public function displayQuestLog(showID:String = "All"):void
 				else output2("\n<b><u>Doctor Badger’s Big Mistake</u></b>");
 				// Bimbo Raygun
 				output2("\n<b>* Status:</b>");
-				if(flags["BADGER_QUEST"] == 1) output2(" <i>Find Penny!</i>");
+				if(flags["DR_BADGER_TURNED_IN"] != undefined) output2(" Reported Dr. Badger, Completed");
+				else if(flags["BADGER_QUEST"] == 1) output2(" <i>Find Penny!</i>");
 				else if(flags["PENNY_BADGER_WARNED"] != undefined)
 				{
 					output2(" Warned Penny");
@@ -1503,6 +1504,7 @@ public function displayQuestLog(showID:String = "All"):void
 				}
 				if(flags["BADGER_QUEST"] == 2) output2(" Zapped Penny, <i>Mission accomplished! Report to Dr. Badger!</i>");
 				else if(flags["BADGER_QUEST"] >= 3) output2(" Zapped Penny, Rewarded, Completed");
+				sideCount++;
 			}
 			// Deck 13
 			if(flags["ANNO_MISSION_OFFER"] != undefined)
