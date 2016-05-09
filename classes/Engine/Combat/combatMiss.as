@@ -11,7 +11,7 @@ package classes.Engine.Combat
 	 */
 	public function combatMiss(attacker:Creature, target:Creature, overrideAttack:Number = -1, missModifier:Number = 1):Boolean 
 	{
-		if (overrideAttack == -1) overrideAttack = attacker.meleeWeapon.attack;
+		if (overrideAttack == -1) overrideAttack = attacker.attack(true);
 		
 		if(rand(100) + attacker.physique()/5 + overrideAttack - target.reflexes()/5 < 10 * missModifier && !target.isImmobilized()) 
 		{

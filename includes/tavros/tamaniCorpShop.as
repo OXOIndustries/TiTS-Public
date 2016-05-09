@@ -1020,7 +1020,7 @@ public function lerrisDrinkDatTittymilks():void
 
 		output("\n\nEven as her own prick is still drooling watery aftershots onto her silky underthings, Lerris reaches down and wraps her fingers around your own throbbing erection, using a little of the excess milk as lube to start stroking you off. Slowly, she manages to recover enough to ask, <i>“I-is this okay? You don’t mind, do you?”</i>");
 		
-		output("\n\nYou stifle a grunt of your own, drowning out your pleasured noises in pliant, milky boob. Seeing Lerris cream herself from your suckling as only spurred on the boner you’ve been sporting since your got back here, and feeling her dainty little fingers lovingly caress it feels better than anything. A curt nod reassures the kaithrit that she’s more than welcome to jack you off, which elicits a happy squeal from her in return.");
+		output("\n\nYou stifle a grunt of your own, drowning out your pleasured noises in pliant, milky boob. Seeing Lerris cream herself from your suckling has only spurred on the boner you’ve been sporting since your got back here, and feeling her dainty little fingers lovingly caress it feels better than anything. A curt nod reassures the kaithrit that she’s more than welcome to jack you off, which elicits a happy squeal from her in return.");
 		
 		output("\n\n<i>“Just keep drinking,”</i> she says, more begging than commanding. <i>“Please!”</i>");
 		
