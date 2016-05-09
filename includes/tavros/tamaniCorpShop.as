@@ -440,7 +440,7 @@ public function lerrisBendHerOver():void
 
 	var holeCap:int = (lerris.hasVagina() ? lerris.vaginalCapacity(0) : lerris.analCapacity());
 
-	var cockIdx:int = -2;
+	var cockIdx:int = -1;
 	if (pc.hasCock())
 	{
 		cockIdx = pc.cockThatFits(holeCap);
@@ -448,23 +448,23 @@ public function lerrisBendHerOver():void
 	}
 
 	output("There’s only one thing you want, and sinking both your hands into Lerris’s cute little ass");
-	if (pc.hasCock()) output(" while your [pc.cock "+cockIdx+"] rubs against her thigh");
+	if (pc.hasCock()) output(" while your [pc.cock " + cockIdx + "] rubs against her thigh");
 	else output(" after flicking on your hardlight attachment");
 	output(" is all you need do to get it. Lerris moans, teasing at her lip-ring as her back arches, booty shaking in your grasp.");
 	
-	output("\n\n<i>“Well, I did say </i>anything<i>,”</i> she mewls, reaching down and wrapping her hands around your "+ pc.cockOrStrapon(0, cockIdx) +". An electric surge of pleasure cascades up your spine as the milky kitty starts to caress your turgid length. <i>“You just happened to choose my second-favorite thing!”</i>");
+	output("\n\n<i>“Well, I did say </i>anything<i>,”</i> she mewls, reaching down and wrapping her hands around your [pc.cockOrStrapon " + cockIdx + "]. An electric surge of pleasure cascades up your spine as the milky kitty starts to caress your turgid length. <i>“You just happened to choose my second-favorite thing!”</i>");
 	
 	output("\n\nYou chuckle, kneading her plump behind with your fingers as encouragingly as you can. Every little moan and gasp you draw from Lerris translates into her wrist moving a little faster, until she’s pumping away with wild abandon. You roll your head back, relaxing against the cushions as the cat-girl goes to town, jacking you off and grinding in your lap. Her [lerris.breasts] bounce enticingly, puffy nipples all but rubbing in your face. You lean in and grab one with your lips, the slightest suckle drawing a flow of sweet [lerris.milk] into your mouth. A delicious treat for you that just makes the kitty-slut that much hornier, locked in an endless cycles of little gasps and moans.");
 
 	output("\n\n<i>“G-gentle,”</i> Lerris moans, voice breaking. Every syllable is heavy and husky with desire. <i>“I... I...”</i>");
 
-	output("\n\nYou peel off her breast to shush her, then transition to the other. One of your hands migrates from Lerris’s bouncing bubble-butt to the rock-hard bitch-clit peeking out of her panties, gently massaging the short little shaft. Her bucking hips thrust greedily into your grasp, almost as fast as what she’s doing to your own "+ pc.cockOrStrapon(0, cockIdx) +". The way she’s mewling, you don’t need much more head’s up before you cap your thumb over the kitten’s petite cum-slit, pinning in the saltier cream she’s starting to leak.");
+	output("\n\nYou peel off her breast to shush her, then transition to the other. One of your hands migrates from Lerris’s bouncing bubble-butt to the rock-hard bitch-clit peeking out of her panties, gently massaging the short little shaft. Her bucking hips thrust greedily into your grasp, almost as fast as what she’s doing to your own [pc.cockOrStrapon " + cockIdx + "]. The way she’s mewling, you don’t need much more head’s up before you cap your thumb over the kitten’s petite cum-slit, pinning in the saltier cream she’s starting to leak.");
 	
 	output("\n\nLerris gasps, your last warning before a rush of warmth splatters over your hand, smearing across your palm and the cat-girl’s own thighs. You chuckle as she rolls her head back, crying out her pleasure and squirting milk and seed all over herself. What a mess! A nasty, sexy mess!");
 	
 	output("\n\n<i>“O-one of these days,”</i> she gasps, <i>“You’ll cum first!”</i>");
 
-	output("\n\nNot when she makes you the sweetest lube on the station, free for the taking. You smear the salty stuff all over your hand, then brush hers aside to grab your [pc.cock "+cockIdx+"], evenly coating your tingling length with the kitty’s leakage as she herself goes soft, retracting into her messed panties. Grinning up at her between deep draughts of her milk, you start moving on to the main course: that delicious");
+	output("\n\nNot when she makes you the sweetest lube on the station, free for the taking. You smear the salty stuff all over your hand, then brush hers aside to grab your [pc.cockOrStrapon " + cockIdx + "], evenly coating your tingling length with the kitty’s leakage as she herself goes soft, retracting into her messed panties. Grinning up at her between deep draughts of her milk, you start moving on to the main course: that delicious");
 	if (flags["FUCKED_LERRIS"] == undefined || lerris.hasVagina()) output(" pussy");
 	else output(" ass");
 	output(" of hers!");
@@ -492,7 +492,7 @@ public function lerrisBendHerOver():void
 		if (silly || pc.IQ() <= 15) output(" Wonder if she can get knocked up by herself...");
 	}
 
-	output("\n\nOnce she’s nice and ready, you grab Lerris by the hips and roll her over, planting her on her knees beside you on the couch, hands braced on the back and ass in the air, presented for your inspection. You swing around behind her, grabbing your "+ pc.cockOrStrapon(0, cockIdx) +" and flopping it into the cleft of her meaty derriere. Lerris’s [lerris.tails] raise invitingly, tickling your");
+	output("\n\nOnce she’s nice and ready, you grab Lerris by the hips and roll her over, planting her on her knees beside you on the couch, hands braced on the back and ass in the air, presented for your inspection. You swing around behind her, grabbing your [pc.cockOrStrapon " + cockIdx + "] and flopping it into the cleft of her meaty derriere. Lerris’s [lerris.tails] raise invitingly, tickling your");
 	if (pc.isGoo()) output(" gooey facade.");
 	else if (pc.hasMuzzle()) output(" muzzle.");
 	else output(" chin.");
@@ -521,7 +521,7 @@ public function lerrisBendHerOver():void
 	
 	output("\n\nYou’re more than happy to state <i>that</i> desire, punctuating your acceptance with a long draw back that takes you out of Lerris’s [lerris.vagOrAss] until only your cockhead remains, spreading her hole open until you thrust back in.");
 	
-	output("\n\nLerris’s cock flops limply under her, bouncing with the impact of your hips battering against her ass. Your "+ pc.cockOrStrapon(0, cockIdx) +" hammers her, pounding away at her slutty little hole. Before long her tongue lolls out of her mouth amid gasps and cries, showing her utter surrender to pleasure as you mercilessly ");
+	output("\n\nLerris’s cock flops limply under her, bouncing with the impact of your hips battering against her ass. Your [pc.cockOrStrapon " + cockIdx + "] hammers her, pounding away at her slutty little hole. Before long her tongue lolls out of her mouth amid gasps and cries, showing her utter surrender to pleasure as you mercilessly ");
 	if (!lerris.hasVagina()) output("ass-");
 	output("fuck her.");
 
@@ -529,10 +529,10 @@ public function lerrisBendHerOver():void
 
 	if (lerris.hasHorns()) output("\n\nYour hands wander up and grab Lerris's bovine horns, using them like the handlebars they are to keep her right where you want her while you pound her slutty hole.");
 	else output("\n\nYour hands keep Lerris steady, pinning her against the sofa while she serves as your perfect cock-holster time and time again.");
-	output(" Even with all the lube she made for you, she's crushingly tight, perfectly moulding her inner flesh to every inch of your "+ pc.cockOrStrapon(0, cockIdx) +", squeezing you from crown to base.");
+	output(" Even with all the lube she made for you, she's crushingly tight, perfectly moulding her inner flesh to every inch of your [pc.cockOrStrapon " + cockIdx + "], squeezing you from crown to base.");
 
 	output("\n\nWith Lerris still basting in her own cum and moaning like a whore, you don’t feel any obligation to hold back now. You start to feel a pressure building up, a tension in your loins roiling with your rising desire. Feeling the");
-	if (pc.hasCock()) output(" heavy weight of seed rushing up your [pc.cock "+cockIdx+"]");
+	if (pc.hasCock()) output(" heavy weight of seed rushing up your [pc.cock " + cockIdx + "]");
 	else output(" mounting pleasure in your faux-cock, almost ready to overload your nerves with pleasure,");
 	output(" makes you fuck her that much harder, pounding at her bouncy butt until your orgasm crashes into you like a tidal wave. You roar with pleasure, giving voice to your orgasm and slam yourself to the hilt into Lerris’s [lerris.vagOrAss].");
 	if (pc.hasCock()) output(" The cat-girl’s back arches as the first wet squirts of your [pc.cumNoun] fill her, mixing with her own cum.");
