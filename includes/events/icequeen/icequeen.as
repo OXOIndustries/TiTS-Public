@@ -605,6 +605,10 @@ public function iceQueenLossToZaalt():void
 		output(" you’re so stretched out already that he’s able to easily grind his knot into your [pc.vagOrAss], straining your hole open and making you spasm around the thick tie.");
 	}
 	else output(" he isn’t quite able to force himself inside you all the way, thanks to the way you’re clenching and squeezing down around his shaft. Zaalt growls in frustration, fucking you harder to try and force it in, to no avail.");
+
+	if (pc.hasVagina()) pc.cuntChange(0, enemy.cockVolume(0));
+	else pc.buttChange(enemy.cockVolume(0));
+	
 	output(" You moan as the knotty cat-man ruts you, claws raking your bare flesh and breath coming heavily against the nape of your neck.");
 	
 	output("\n\nSlowly, you realize that Zaalt’s reaching his climax.");
