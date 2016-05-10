@@ -3818,6 +3818,7 @@ public function setBessAccessory(opts:Array):void
 	else if (acsType == BESS_ACS_WINGS)
 	{
 		bess.wingType = newType;
+		bess.wingCount = 2;
 		// removing
 		if (newType == GLOBAL.TYPE_HUMAN)
 		{

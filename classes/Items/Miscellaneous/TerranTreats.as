@@ -408,6 +408,13 @@
 					}
 					else kGAMECLASS.output("\n\n" + pc.wingTypeLockedMessage());
 				}
+				
+				// Clean up possible left over wing counts
+				if (pc.wingType == 0 && pc.wingCount != 0)
+				{
+					pc.wingCount = 0;
+				}
+				
 				//Eyes:
 				if(pc.eyeType != GLOBAL.TYPE_HUMAN && changes < changeLimit && rand(4) == 0)
 				{

@@ -21,7 +21,7 @@ package classes.DataManager
 		
 		public function upgrade(data:Object):Boolean
 		{
-			var c:Object = data.characters["pc"];
+			var c:Object = data.characters["PC"];
 			
 			// Move the old DOVEFOUR & DOVESIX types to the new DOVE type and set the wing count appropriately
 			if (c.wingType == 29 || c.wingType == 30)
