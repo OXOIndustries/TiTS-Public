@@ -4269,19 +4269,21 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["MET_COCKVINE_SEEDLING"] != undefined) output2("\n<b>* Cockvine Seedling, Times Encountered: </b>" + flags["MET_COCKVINE_SEEDLING"]);
 				if(flags["MET_GOLD_DESERTER"] != undefined)
 				{
-					output2("\n<b>*</b>");
-					if(flags["KNOW_GOLD_MYR_NAME"] == undefined) output2("<b> Gold Myr Deserter</b>");
-					else output2(" <b>Lys</b>");
+					var goldMyrDeserterName:String = "Gold Myr Deserter";
+					if(flags["KNOW_GOLD_MYR_NAME"] != undefined) goldMyrDeserterName = "Lys";
+					output2("\n<b>* " + goldMyrDeserterName + "</b>");
 					if(flags["GOLD_MYR_DESERTER_BEATEN"] != undefined && flags["GOLD_MYR_DESERTER_BEATEN"] >= 5) output2(" <b>(Non-hostile)</b>");
 					output2("<b>, Times Encountered: </b>" + flags["MET_GOLD_DESERTER"]);
+					if(flags["GOLD_DILDOED"] != undefined) output2("\n<b>* " + goldMyrDeserterName + ", Times Used Dildo: </b>" + flags["GOLD_DILDOED"]);
 				}
 				if(flags["MET_RED_DESERTER"] != undefined)
 				{
-					output2("\n<b>*</b>");
-					if(flags["KNOW_RED_MYR_NAME"] == undefined) output2("<b> Red Myr Deserter</b>");
-					else output2("<b> Briha</b>");
+					var redMyrDeserterName:String = "Red Myr Deserter";
+					if(flags["KNOW_GOLD_MYR_NAME"] != undefined) redMyrDeserterName = "Briha";
+					output2("\n<b>* " + redMyrDeserterName + "</b>");
 					if(flags["RED_MYR_DESERTER_BEATEN"] != undefined && flags["RED_MYR_DESERTER_BEATEN"] >= 5) output2(" <b>(Non-hostile)</b>");
 					output2("<b>, Times Encountered: </b>" + flags["MET_RED_DESERTER"]);
+					if(flags["RED_DILDOED"] != undefined) output2("\n<b>* " + redMyrDeserterName + ", Times Used Dildo: </b>" + flags["RED_DILDOED"]);
 				}
 				variousCount++;
 			}
