@@ -11,7 +11,7 @@ public function tryProcKaedeUvetoEncounter():Boolean
 
 public function encounterKaedeOnUveto():void
 {
-	showKaede();
+	kaedeHeader();
 
 	output("\n\nYou step out of your ship and into the cold, sterile air of Uveto Station. The long arm of the docking limb stretches far ahead of you, somewhat cluttered with crates of mining equipment and food supplies. A handful of other spacers are milling around, trying to ignore the ever-present eye of security cameras and assault drones peering down from on-high.");
 	
@@ -40,7 +40,7 @@ public function encounterKaedeOnUveto():void
 public function uvetoKaedeRainCheck():void
 {
 	clearOutput();
-	showKaede();
+	kaedeHeader();
 
 	flags["KAEDE_MET_ON_UVETO"] = -1;
 	flags["KAEDE_UVETO_RAINCHECK"] = GetGameTimestamp();
@@ -63,7 +63,7 @@ public function uvetoKaedeRainCheck():void
 public function uvetoKaedeSure():void
 {
 	clearOutput();
-	showKaede();
+	kaedeHeader();
 
 	output("<i>“Sure,”</i> you say, releasing the half-ausar from your end of the hug. <i>“Lead the way.”</i>");
 	
@@ -110,6 +110,7 @@ public function uvetoKaedeSure():void
 
 public function uvetoKaedeRootMenu():void
 {
+	kaedeHeader();
 	clearMenu();
 	addButton(0, "Talk", uvetoKaedeTalkMenu, undefined, "Talk", "Chat a bit with Kaede.");
 
@@ -121,20 +122,21 @@ public function uvetoKaedeRootMenu():void
 
 public function uvetoKaedeTalkMenu(ff:Function = null):void
 {
+	kaedeHeader();
 	clearMenu();
-	if (ff == uvetoKaedeHerBody) addButton(0, "Her Body", uvetoKaedeHerBody, undefined, "Her Body", "After getting a handful of Kaede's crotch, you're reminded of a burning question: how come she doesn't have anything else between her legs?");
+	if (ff != uvetoKaedeHerBody) addButton(0, "Her Body", uvetoKaedeHerBody, undefined, "Her Body", "After getting a handful of Kaede's crotch, you're reminded of a burning question: how come she doesn't have anything else between her legs?");
 	else addDisabledButton(0, "Her Body");
 
-	if (ff == uvetoKaedeAnno) addButton(1, "Anno", uvetoKaedeAnno, undefined, "Anno", "How are Kaede and Anno doing? Everything okay between them?");
+	if (ff != uvetoKaedeAnno) addButton(1, "Anno", uvetoKaedeAnno, undefined, "Anno", "How are Kaede and Anno doing? Everything okay between them?");
 	else addDisabledButton(1, "Anno");
 
-	if (ff == uvetoKaedeCass && flags["KAEDE_NT_ENCOUNTER"] != undefined) addButton(2, "Cass", uvetoKaedeCass, undefined, "Cass", "Ask about how Cass and Kayla are doing.");
+	if (ff != uvetoKaedeCass && flags["KAEDE_NT_ENCOUNTER"] != undefined) addButton(2, "Cass", uvetoKaedeCass, undefined, "Cass", "Ask about how Cass and Kayla are doing.");
 	else addDisabledButton(2, "Cass");
 
-	if (ff == uvetoKaedeRhenworld) addButton(3, "RhenWorld", uvetoKaedeRhenworld, undefined, "RhenWorld", "Ask Kaede for some more juicy details about the RhenWorld contract she's been working. How'd she get a sweet setup like that?");
+	if (ff != uvetoKaedeRhenworld) addButton(3, "RhenWorld", uvetoKaedeRhenworld, undefined, "RhenWorld", "Ask Kaede for some more juicy details about the RhenWorld contract she's been working. How'd she get a sweet setup like that?");
 	else addDisabledButton(3, "RhenWorld");
 
-	if (ff == uvetoKaedeUveto) addButton(4, "Uveto", uvetoKaedeUveto, undefined, "Uveto", "Kaede seems to have a real fondness for this backwater snowball. What's up with that?");
+	if (ff != uvetoKaedeUveto) addButton(4, "Uveto", uvetoKaedeUveto, undefined, "Uveto", "Kaede seems to have a real fondness for this backwater snowball. What's up with that?");
 	else addDisabledButton(4, "Uveto");
 
 	addButton(14, "Back", uvetoKaedeRootMenu);
@@ -143,7 +145,7 @@ public function uvetoKaedeTalkMenu(ff:Function = null):void
 public function uvetoKaedeHerBody():void
 {
 	clearOutput();
-	showKaede();
+	kaedeHeader();
 
 	output("You’ve been thinking since last time you and Kaede met. She clearly modded her body to be the way she is now, but why not go all the way? Why does she lack a female sex?");
 	
@@ -174,7 +176,7 @@ public function uvetoKaedeHerBody():void
 public function uvetoKaedeAnno():void
 {
 	clearOutput();
-	showKaede();
+	kaedeHeader();
 
 	output("<i>“So, you and Anno...”</i> you prompt.");
 
@@ -233,7 +235,7 @@ public function uvetoKaedeAnno():void
 public function uvetoKaedeCass():void
 {
 	clearOutput();
-	showKaede();
+	kaedeHeader();
 
 	output("<i>“How’s your little girl doing? And Cass, too?”</i>");
 
@@ -278,7 +280,7 @@ public function uvetoKaedeCass():void
 public function uvetoKaedeRhenworld():void
 {
 	clearOutput();
-	showKaede();
+	kaedeHeader();
 
 	flags["HEARD_ASHINARI"] = 1;
 
@@ -316,7 +318,7 @@ public function uvetoKaedeRhenworld():void
 public function uvetoKaedeUveto():void
 {
 	clearOutput();
-	showKaede();
+	kaedeHeader();
 
 	output("<i>“You really like this place, huh?”</i> you ask, inclining your head back towards the space elevator. Kaede looked like she was in awe of the wintry moon on your way in, after all.");
 	
@@ -345,7 +347,7 @@ public function uvetoKaedeUveto():void
 public function uvetoKaedeTease():void
 {
 	clearOutput();
-	showKaede();
+	kaedeHeader();
 
 	//+Exhibitionism. If you track NPC stats like that, give +KaedeExhibitionism, too! She probably starts off really low.
 	//+Mischievous
@@ -380,7 +382,7 @@ public function uvetoKaedeTease():void
 public function uvetoKaedeDone():void
 {
 	clearOutput();
-	showKaede();
+	kaedeHeader();
 
 	output("You lean back in your chair as the little server droid zooms back to your table, balancing a steaming tray of food on its cylindrical head. Kaede slides the tray over from it and deposits a credit chit before sending it on its way. The droid beeps a polite <i>“Thank you!”</i> as it wheels off to tend to another table.");
 	
@@ -406,7 +408,7 @@ public function uvetoKaedeDone():void
 public function uvetoKaedeNotToday():void
 {
 	clearOutput();
-	showKaede();
+	kaedeHeader();
 
 	output("<i>“Actually,”</i> you say, <i>“I do have somewhere I need to be.”</i>");
 	
@@ -437,7 +439,7 @@ public function uvetoKaedeNotToday():void
 public function uvetoKaedeSEXYTIMESENSUE():void
 {
 	clearOutput();
-	showKaede();
+	kaedeHeader();
 
 	output("<i>“I think I can spare a few minutes,”</i> you grin, standing up and dumping the food tray off in its bin.");
 
