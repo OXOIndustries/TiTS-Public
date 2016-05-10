@@ -458,7 +458,7 @@ public function lerrisBendHerOver():void
 
 	output("\n\n<i>“G-gentle,”</i> Lerris moans, voice breaking. Every syllable is heavy and husky with desire. <i>“I... I...”</i>");
 
-	output("\n\nYou peel off her breast to shush her, then transition to the other. One of your hands migrates from Lerris’s bouncing bubble-butt to the rock-hard bitch-clit peeking out of her panties, gently massaging the short little shaft. Her bucking hips thrust greedily into your grasp, almost as fast as what she’s doing to your own [pc.cockOrStrapon " + cockIdx + "]. The way she’s mewling, you don’t need much more head’s up before you cap your thumb over the kitten’s petite cum-slit, pinning in the saltier cream she’s starting to leak.");
+	output("\n\nYou peel yourself off from her breast to shush her, then transition to the other. One of your hands migrates from Lerris’s bouncing bubble-butt to the rock-hard bitch-clit peeking out of her panties, gently massaging the short little shaft. Her bucking hips thrust greedily into your grasp, almost as fast as what she’s doing to your own [pc.cockOrStrapon " + cockIdx + "]. The way she’s mewling, you don’t need much more heads up before you cap your thumb over the kitten’s petite cum-slit, pinning in the saltier cream she’s starting to leak.");
 	
 	output("\n\nLerris gasps, your last warning before a rush of warmth splatters over your hand, smearing across your palm and the cat-girl’s own thighs. You chuckle as she rolls her head back, crying out her pleasure and squirting milk and seed all over herself. What a mess! A nasty, sexy mess!");
 	
