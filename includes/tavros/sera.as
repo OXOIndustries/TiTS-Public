@@ -210,7 +210,9 @@ public function seraAppearance():void
 	output("\n\nA choker of black-lined, blue-glowing conduits rings her neck, matched on her torso by a sable corset dotted by hard metal and glowing, technological baubles. Pentagonal plates have grown out of her shoulders, though you cannot tell if they exist as armor or ornamentation. Matching, blue-glowing bracers and armbands complete her ensemble, but your eyes spend little time looking at her outfit when it frames her other assets so beautifully.");
 	output("\n\nBig breasts that would easily fill an EE-cup bra and then some sit high and proud on her chest, obviously the result of some kind of artificial or biological enhancement. They're nicely rounded and capped with a pair of cerulean nipples that are ever so slightly pebbled in the air-conditioned station air. They're the kind of boobs that just beg to be fondled, and Sera's open display of them shows just how much she knows it.");
 	output("\n\nA foot-long cock, maybe a bit longer, dangles down between her toned thighs, backed up by a pair of balls that sit on the upper end of the terran norm when it comes to size. Sera's ass is nothing to sneeze at either; it's large, nicely rounded, and crowned with a prehensile, spaded tail. She spanks a cheek with it when she catches you looking, sending a kinetic ripple across her crack. At the same time, the spade at the end seems a little bigger and bulgier, perhaps engorged by the contact.");
-	output("\n\nStrappy thigh-highs and garters join her technological-looking corset to her shapely legs. Her feet are perched upon toe-covering, six-inch platform heels, but she walks in them as if it were the most natural thing in the world, perhaps counterbalanced by the tail you noticed earlier.");
+	output("\n\nStrappy thigh-highs and garters join her technological-looking corset to her shapely legs. Her feet are perched upon toe-covering, six-inch platform heels, but she walks in them as if it were the most natural thing in the world, perhaps counterbalanced by the tail you noticed earlier");
+	if(flags["SERA_STUCK_IT_ALL_IN_BUTT"] > 0 || flags["SERA_TIT_FUCK_LUCKY_DIP"] > 0) output("--or because of the jag of gleaming, navy horn you know she’s got growing down from each heel, natural and rather alarming demonic stilettos");
+	output(".");
 	output("\n\nAll in all, Sera appears to be the kind of woman who enjoys everything sexuality has to offer and pursues it aggressively.");
 	
 	processTime(1);
@@ -816,22 +818,22 @@ public function catchEverythingInYoButtBySavinForSeraDogcock():void {
 		output(" <i>\"Then prove it. Bark, little ");
 		if(pc.race().indexOf("ausar") != -1 || pc.canineScore() >= 4) output("bitch");
 		else output("doggy");
-		output(".\"</i>  You hesitate a moment, not sure if she's being serious, and her slim smile fades into a sneer. <i>\"I said BARK, slut.\"</i>");
+		output(".\"</i> You hesitate a moment, not sure if she's being serious, and her slim smile fades into a sneer. <i>\"I said BARK, slut.\"</i>");
 		
 		//if first-time:
 		if(flags["SERA_STUCK_IT_ALL_IN_BUTT"] == 0)
 		{
-			output("\n\nNo way you're going to ACTUALLY bark like a little doggy for her. Sera merely crosses her arms under her pronounced, purple promontories, <i>tsk</i>ing her tongue. <i>\"I guess you weren't serious about wanting some of this,\"</i>  she says, her thick prick twitching between her supple thighs. <i>\"Too bad.\"</i>");
-			output("\n\n<i>\"Wait,\"</i>  you answer, putting out a hand to stop her from turning away from you. <i>\"I didn't... I mean, I do, but...\"</i>");
+			output("\n\nNo way you're going to ACTUALLY bark like a little doggy for her. Sera merely crosses her arms under her pronounced, purple promontories, <i>tsk</i>ing her tongue. <i>\"I guess you weren't serious about wanting some of this,\"</i> she says, her thick prick twitching between her supple thighs. <i>\"Too bad.\"</i>");
+			output("\n\n<i>\"Wait,\"</i> you answer, putting out a hand to stop her from turning away from you. <i>\"I didn't... I mean, I do, but...\"</i>");
 			output("\n\nShe cocks an eyebrow at you, but her sneer slowly fades. <i>\"Alright, meat, I'll go easy on you this time. But next time...\"</i>");
 			//End first-time variant
 		}
 		//{Start here If PC is a cockslut OR PC is an Ausar-type:}
-		output("\n\n<i>\"Woof!\"</i>  you answer, wagging ");
+		output("\n\n<i>\"Woof!\"</i> you answer, wagging ");
 		if(pc.tailCount > 0) output("your [pc.tails]");
 		else output("your [pc.butt] like a tail");
 		output(" while approaching your mistress.");
-		output("\n\n<i>\"Now there's a good puppy,\"</i>  she teases, long fingers running ");
+		output("\n\n<i>\"Now there's a good puppy,\"</i> she teases, long fingers running ");
 		if(pc.hasHair()) output("through your hair");
 		else output("across your bald pate");
 		output(" before hooking firmly behind your head, guiding you down until you're kneeling before her, arms raised like a begging bitch. Seeing you debase yourself certainly seems to send a thrill through the demon-babe: her cock jumps to attention as you settle between her legs, rising up like a flagpole to loom over you, firm and throbbing in its immensity. <i>\"Does pup want a taste?\"</i>");
@@ -851,14 +853,14 @@ public function catchEverythingInYoButtBySavinForSeraDogcock():void {
 	if(!pc.hasBeard()) output("your smooth cheek");
 	else output("your [pc.beard]");
 	output(" against the soft flank of her prick, earning yourself a little twitch and hop from her dick as you make your way down towards her meaty crown. You try to take it slow, easing your way toward sucking the demon-girl off, but she angles her spaded tail at your behind, giving it an impatient poke to remind you that you're on the clock, here.");
-	output("\n\nYou hasten your journey towards her demonic crown, finally coming to rest your lips against her turgid cum-shaft, parted just enough so that your tongue can snake out, caressing her slit from stem to stern, eliciting a tiny gasp from her, which she quickly twists into a moan of raw, animal sexuality. <i>\"That's more like it, bitch,\"</i>  she teases, unceremoniously sliding her hips forward between your pursed lips, filling your mouth with her thick, hot schlong. But from where you're sitting, that's all that she's getting in there: just the first few inches to fill your slavering gob. With a cruel smirk, the demoness grabs your [pc.hair] and rams you face-first down her rod, slamming all twelve inches down your gullet and into the cunt-tight confines of your throat. You gag and sputter around the sudden, violent intrusion, desperately trying to master your churning gag-reflex as your purple mistress face-fucks you, thrusting your head down her throbbing meatpole like a living onahole.");
+	output("\n\nYou hasten your journey towards her demonic crown, finally coming to rest your lips against her turgid cum-shaft, parted just enough so that your tongue can snake out, caressing her slit from stem to stern, eliciting a tiny gasp from her, which she quickly twists into a moan of raw, animal sexuality. <i>\"That's more like it, bitch,\"</i> she teases, unceremoniously sliding her hips forward between your pursed lips, filling your mouth with her thick, hot schlong. But from where you're sitting, that's all that she's getting in there: just the first few inches to fill your slavering gob. With a cruel smirk, the demoness grabs your [pc.hair] and rams you face-first down her rod, slamming all twelve inches down your gullet and into the cunt-tight confines of your throat. You gag and sputter around the sudden, violent intrusion, desperately trying to master your churning gag-reflex as your purple mistress face-fucks you, thrusting your head down her throbbing meatpole like a living onahole.");
 
 	output("\n\nSera's utterly merciless, fucking your throat so hard you can barely breathe, and it's all you can do to try not to choke on her cock as it stretches your throat, so thick and big that you can feel the huge bulge it's making in your neck as she pushes it in to the hilt, her hefty balls slapping wetly against your drool-slick chin. Her fingers cup your cheeks, nails digging into your tender [pc.skin] until it's almost painful, holding you <i>just right</i> as she sighs with pleasure, feeling your throat convulse wildly around her massive member, trying to expunge it, desperate for cock-free air. You can see stars before she finally relents, letting you slide off her cock into a wet, horny mess on the floor, your chin and her prick utterly drenched with your saliva.");
 
 	//if PC has a cock:
 	if(pc.hasCock())
 	{
-		output("\n\n<i>\"Oh, what's this?\"</i>  Sera quips, looking down at you, hands on her hips and glistening cock dangling, looming over you, still slick and shining from the abuse it levied on your throat. <i>\"Did my meat get a little hard from sucking cock?\"</i>");
+		output("\n\n<i>\"Oh, what's this?\"</i> Sera quips, looking down at you, hands on her hips and glistening cock dangling, looming over you, still slick and shining from the abuse it levied on your throat. <i>\"Did my meat get a little hard from sucking cock?\"</i>");
 		output("\n\nYou look shamefaced");
 		if(pc.legCount > 1) output(" between");
 		else output(" at");
@@ -874,12 +876,13 @@ public function catchEverythingInYoButtBySavinForSeraDogcock():void {
 		else if(pc.longestCockLength() <= 12) output("utterly unremarkable cock, so... boring, so average for its kind");
 		else output("massive girth, barely able to get half-hard at this angle thanks to its mammoth size, utterly dwarfing her own");
 		output(". <i>\"Aww, you did. See, meat, I had you pegged the moment you walked in here: you're an utter cock-whore. I bet you slink home after this and blow ten dudes on the way. Or do you only like girly-cocks, is that it? Does seeing a big, swinging dick under a nice pair of tits turn you on? Can you even jack it to normal porn? I bet you can't. Hmm, maybe I'll be nice and show this slutty thing a little love, huh? What do you think about that?\"</i>");
-		output("\n\nYou nod enthusiastically, only to regret your decision a moment later as one of Sera's tall platform shoes clatters to the floor beside you, revealing her cloven hoof of a foot. You gulp as the bestial appendage looms over your hardening members, its rounded tip just barely grazing the top of your shaft, sending a shuddering wave of pleasure through your body. Her foot reaches up, pressing into the base of your cock before pushing down and down, pinning your [pc.cock] to the floor, heel rubbing it into the deck until it's almost painful. You wince as she half-crushes, half-jacks your dick, rolling her heel across your length. Pre-cum bubbles at your tip, your cock twitching under her powerful hoof as she relentlessly \"massages\" your length, letting whole minutes go by until your mind is little more than a haze of lust, your hips humping back against her foot, trying desperately to cum but stymied by the pinning weight of her hoof on your shaft.");
-		output("\n\n<i>\"What, are you gonna cum just from getting your cock stepped on,\"</i>  she sneers, moving her foot faster, <i>\"Or are you still just turned on from sucking me off? If that gets you so hard, you're gonna love what comes next...\"</i>");
-		output("\n\nYou whimper as she foot-fucks your [pc.cock], harder and harder until it's agony not to cum, your prick swelling with pent-up need beneath her pumping hoof, drooling and sputtering out of your tip in a lake of wasted ejaculate. <i>\"Tsk, slutty ");
+		output("\n\nYou nod enthusiastically, only to regret your decision a moment later as one of Sera's tall platform shoes clatters to the floor beside you. That heel of hers is hollow - from out of it she has withdrawn a bona fide horn stiletto, growing out of the base of her foot.");
+		output("You gulp as the bestial appendage looms over your hardening members, its rounded tip just barely grazing the top of your shaft, sending a shuddering wave of pleasure through your body. Her foot reaches up, sole pressing into the base of your cock before pushing down and down, pinning your [pc.cock] to the floor, her vicious heel just barely grazing the [pc.cockHead]; a terrible, incredibly arousing threat. You wince as she half-crushes, half-jacks your dick, rolling her fore-foot and toes across your length. Pre-cum bubbles at your tip, cock twitching as she relentlessly \"massages\" your length, letting whole minutes go by until your mind is little more than a haze of lust, your hips humping back against her foot, trying desperately to cum but stymied by the agonizing, drifting point of her natural stiletto.");
+		output("\n\n<i>\"What, are you gonna cum just from getting your cock stepped on,\"</i> she sneers, moving her foot faster, <i>\"Or are you still just turned on from sucking me off? If that gets you so hard, you're gonna love what comes next...\"</i>");
+		output("\n\nYou whimper as she foot-fucks your [pc.cock], harder and harder until it's agony not to cum, your prick swelling with pent-up need beneath her pumping sole, drooling and sputtering out of your tip in a lake of wasted ejaculate. <i>\"Tsk, slutty ");
 		if(pc.longestCockLength() < 12) output("little ");
-		output("cock,\"</i>  Sera teases, working her hoof down to the tip, pressing it nearly flat on the desk, letting your surging cum build up for a long moment before letting go.");
-		output("\n\nWith a shriek of pleasure, you let it all go, your cock erupting in a wave of seed to splatter across Sera's foot and the deck below. She grimaces as you cum onto her, but says nothing, letting you ride out your longed-for orgasm until you're nothing more than a quivering pile of lust on her deck, shuddering full-body into the powerful throes of pleasure. <i>\"And now you got me dirty. Great job, meat.\"</i>  Sera crosses her dirtied leg over the other, letting her spunk-drenched hoof hang in the air. <i>\"You better clean that up, if you want me to even THINK about being gentle with that [pc.asshole] of yours. If you were smart, and that's a big if, you might even slather me up with it. My cock's gotten a little dry without that pretty mouth of yours to keep it warm.\"</i>");
+		output("cock,\"</i> Sera teases, working her instep down to the tip, pressing it nearly flat on the desk, letting your surging cum build up for a long moment before letting go.");
+		output("\n\nWith a shriek of pleasure, you let it all go, your cock erupting in a wave of seed to splatter across Sera's foot and the deck below. She grimaces as you cum onto her, but says nothing, letting you ride out your longed-for orgasm until you're nothing more than a quivering pile of lust on her deck, shuddering full-body into the powerful throes of pleasure. <i>\"And now you got me dirty. Great job, meat.\"</i> Sera crosses her dirtied leg over the other, letting her spunk-drenched high-heel hang in the air. <i>\"You better clean that up, if you want me to even THINK about being gentle with that [pc.asshole] of yours. If you were smart, and that's a big if, you might even slather me up with it. My cock's gotten a little dry without that pretty mouth of yours to keep it warm.\"</i>");
 		pc.orgasm();
 		//If PC isn't Sera's bitch yet: 
 		if(flags["SERA_STUCK_IT_ALL_IN_BUTT"] == 0)
@@ -887,20 +890,21 @@ public function catchEverythingInYoButtBySavinForSeraDogcock():void {
 			output("\n\nYou hesitate at the thought of slurping up your own cum, but... the prospect of her going in dry isn't exactly appealing, either");
 		}
 		else output("\n\nYou eagerly crawl onto your hands and [pc.knees] before your demonic mistress, wiggling your hips in anticipation of what she's about to do to you");
-		output(". You lean down and cup her spunk-slathered hoof, bringing it up to your tongue and licking across its sheer, hard surface. You shudder at the taste of your own cum, utterly ");
+		output(". You lean down and cup her spunk-slathered foot, bringing it up to your tongue and licking across its soft, purple surface. You shudder at the taste of your own cum, utterly ");
 		if(flags["SERA_STUCK_IT_ALL_IN_BUTT"] == 0) output("revolted");
 		else output("turned on");
-		output(" by the syrupy texture of your spunk. You spend a few long seconds slurping up every drop that you shot across her hoof, making sure not to swallow, before rising up to your [pc.knees] and wrapping your lips around her rock-hard demon wang, sucking her cock right back up and slathering it with your spunky lube. She gives a little moan of satisfaction as you fellate her, doubly so when your tongue starts spreading your thick cream across her length, but after a few moments, points an accusing finger to the tiny lake of sperm still splattered across the deck.");
-		output("\n\n<i>\"Don't think I was letting you off THAT easy, meat. Drink up,\"</i>  she says, pushing you off her cock and down to the floor. With an obedient whimper, you all but put your nose in it, lapping up your hot, sticky seed and delivering it back to your mistress's cock, coating her from tip to base in a sheen of semen. She gives you an approving smile as you go down for seconds, spending a good minute cleaning her deck with your tongue until it sparkles.");
+		output(" by the syrupy texture of your spunk. You spend a few long seconds polishing the horn of her stiletto to a fine shine, making sure not to swallow, before rising up to your [pc.knees] and wrapping your lips around her rock-hard demon wang, sucking her cock right back up and slathering it with your spunky lube. She gives a little moan of satisfaction as you fellate her, doubly so when your tongue starts spreading your thick cream across her length, but after a few moments, points an accusing finger to the tiny lake of sperm still splattered across the deck.");
+		output("\n\n<i>\"Don't think I was letting you off THAT easy, meat. Drink up,\"</i> she says, pushing you off her cock and down to the floor. With an obedient whimper, you all but put your nose in it, lapping up your hot, sticky seed and delivering it back to your mistress's cock, coating her from tip to base in a sheen of semen. She gives you an approving smile as you go down for seconds, spending a good minute cleaning her deck with your tongue until it sparkles.");
 		output("\n\n<i>\"Gooood doggy,\"</i> she coos as you take her dick to the hilt, coating it with as much spunky, salivating lube as you can muster, trying to make things easier on yourself later.");
 		//End PC cock Variant
+		pc.loadInMouth(chars["PC"]);
 	}
-	output("\n\n<i>\"Now it's time for the main course,\"</i>  she grins, grabbing you by the hair and throwing you up against the counter. You gasp as the wind's knocked out of you, doubling over the counter as the demon babe steps up behind you, flopping the shaft of her big, wet cock between the crack of your ass. You squirm as she locks her fingers into your [pc.hips], holding your ass dead steady, all but bending you over the counter as she gets ready to take her pleasure from your body. You can feel her sloppy, wet schlong trail down your cleft, a hefty foot-long slab of demon meat ready to pound you into the ground. At least she gave you the chance to lube it up!");
+	output("\n\n<i>\"Now it's time for the main course,\"</i> she grins, grabbing you by the hair and throwing you up against the counter. You gasp as the wind's knocked out of you, doubling over the counter as the demon babe steps up behind you, flopping the shaft of her big, wet cock between the crack of your ass. You squirm as she locks her fingers into your [pc.hips], holding your ass dead steady, all but bending you over the counter as she gets ready to take her pleasure from your body. You can feel her sloppy, wet schlong trail down your cleft, a hefty foot-long slab of demon meat ready to pound you into the ground. At least she gave you the chance to lube it up!");
 	output("\n\nInstinct kicks in, and you wince back as the head of her cock brushes against the tight-clenched ring of your [pc.asshole], sending a little shock through your body. You try your best to relax, letting yourself go in Sera's strong, unyielding grasp; slowly, your sphincter relaxes, just enough to admit the thick, wet head of Sera's crown. A low, desperate moan escapes your lips as your body reacts, ass spasming against the sudden, girthy intrusion but unable to push it back thanks to all the lube you've slathered it with. Sera's hands dig into your flanks, relentless in her advance. All you can do is dig your fingers into the counter and grit your teeth, trying to relax and failing utterly as Sera batters her way into your ass.");
 	pc.buttChange(chars["SERA"].cockVolume(0),true,true,false);
 
 	//if PC is tight:
-	if(pc.ass.looseness() <= 2) output("\n\n<i>\"Ooooh, nice and tight back here,\"</i>  Sera comments, giving one of your cheeks a hard smack. <i>\"Don't tell me this is your first time, meat. Or do you only let the special dick-girls in back here?\"</i>");
+	if(pc.ass.looseness() <= 2) output("\n\n<i>\"Ooooh, nice and tight back here,\"</i> Sera comments, giving one of your cheeks a hard smack. <i>\"Don't tell me this is your first time, meat. Or do you only let the special dick-girls in back here?\"</i>");
 	//if PC is moderately loose:
 	else if(pc.ass.looseness() <= 4) output("\n\n<i>\"Aww yeah, now that's what I'm talkin' about. You had some Naughty Wyvern toys back here before, or are you just THAT much of a buttslut?\"</i>");
 	//if PC is MEGALOOSE: 
@@ -914,7 +918,7 @@ public function catchEverythingInYoButtBySavinForSeraDogcock():void {
 	output("\n\nYou try to nod, but her hand gripping your head refuses to budge, holding you still.");
 	output("\n\n<i>\"I can't hear you, slut. And neither can my cock. Let us hear you say it, and maybe I'll actually </i>fuck<i> you like you deserve.\"</i>");
 	output("\n\nYou hesitate for only a moment, only able to hold yourself back for that split second it takes her cock to twitch inside you before you cry out, <i>\"F-fuck me! Fuck me, please!\"</i>");
-	output("\n\n<i>\"Fuck you like what?\"</i>  Sera says, a hand caressing your cheek, turning your head to rest against her bountiful bosom.");
+	output("\n\n<i>\"Fuck you like what?\"</i> Sera says, a hand caressing your cheek, turning your head to rest against her bountiful bosom.");
 	output("\n\n<i>\"Fuck me like a </i>whore,\" you cry, bracing yourself against the counter again as the demoness smirks and lets you go.");
 	output("\n\nHer hands return to your [pc.hips], and you feel the slow, laborious removal of her cock from your [pc.asshole], leaving you with the familiar feeling of cold emptiness as she pulls half way out of you -- only to ram back in at full force. You give a startled cry, back arching as Sera fucks you hard and fast, relentlessly pounding away at your hole like the dirty whore you are. She hooks an arm around your neck, pulling you up into a deep arch, holding your back against her heaving chest as her hips slap against your [pc.butt] again and again. You cry and moan, your [pc.hips] thrusting back to meet that glorious cock of their own volition, begging for more and more.");
 	//If PC has a cooch:
@@ -931,8 +935,8 @@ public function catchEverythingInYoButtBySavinForSeraDogcock():void {
 	//If PC has a tail-cock:
 	if(pc.hasCockTail())
 	{
-		output("\n\n<i>\"Oh, and you've got a little hard-on back here, don't ya?\"</i>  Sera coos, grabbing your animalistic tail, fingers wrapping around your extra cock. You wince as her fingers brush your tender, exposed flesh, gripping the tail-cock tight for a few moments before wrapping it around her hip and leading it out of sight. You groan, back arching as you feel your cock being swallowed by something tight and hot, gobbling up your wriggling tail-prick to the hilt.");
-		output("\n\n<i>\"Mmm, I'll let you in on a secret, meat: the trick to a dick-girl's heart is riiiiight there,\"</i>  she moans, slapping your ass as your cock brushes up against something bulbous inside her.");
+		output("\n\n<i>\"Oh, and you've got a little hard-on back here, don't ya?\"</i> Sera coos, grabbing your animalistic tail, fingers wrapping around your extra cock. You wince as her fingers brush your tender, exposed flesh, gripping the tail-cock tight for a few moments before wrapping it around her hip and leading it out of sight. You groan, back arching as you feel your cock being swallowed by something tight and hot, gobbling up your wriggling tail-prick to the hilt.");
+		output("\n\n<i>\"Mmm, I'll let you in on a secret, meat: the trick to a dick-girl's heart is riiiiight there,\"</i> she moans, slapping your ass as your cock brushes up against something bulbous inside her.");
 	}
 	output("\n\nSuddenly, you feel a flood of warm wetness inside you. You cry out in pleasure as your ass");
 	if(pc.hasVagina()) output(" and cooch are");
@@ -943,9 +947,9 @@ public function catchEverythingInYoButtBySavinForSeraDogcock():void {
 	if(pc.hasVagina()) output("s");
 	output(" onto her floor.");
 
-	output("\n\n<i>\"Fucking nice, meat,\"</i>  she growls, giving you a harsh spank as her crown finally pops free from your behind with an echoing wet squelch. A heavy sigh escapes her lips as she leans back against the counter and pulls out a cigarette.");
+	output("\n\n<i>\"Fucking nice, meat,\"</i> she growls, giving you a harsh spank as her crown finally pops free from your behind with an echoing wet squelch. A heavy sigh escapes her lips as she leans back against the counter and pulls out a cigarette.");
 	if(pc.hasCockTail()) output(" It takes her a moment longer to finally yank your tail-cock from her ass, though; and when she does, a nice little waterfall of cum drizzles down with it.");
-	output("\n\n<i>\"What're you still doing here?\"</i>  she adds a moment later, interrupting your after-glow. <i>\"Go on, get outta here before people start talking. Unless you want me to bend you over this counter again and open you up to my favorite customers? That'd draw in business.\"</i>");
+	output("\n\n<i>\"What're you still doing here?\"</i> she adds a moment later, interrupting your after-glow. <i>\"Go on, get outta here before people start talking. Unless you want me to bend you over this counter again and open you up to my favorite customers? That'd draw in business.\"</i>");
 	//If PC isn't a bitch:
 	if(flags["SERA_STUCK_IT_ALL_IN_BUTT"] == 0) output("\n\nYou shudder at the thought");
 	else output("\n\nBefore you annoy the mistress, you hurriedly gather your things");

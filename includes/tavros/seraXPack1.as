@@ -2187,10 +2187,16 @@ public function seraSexXXXTitfuckLuckyDip(arg:Array):void
 		else pc.buttChange(chars["SERA"].cockVolume(0));
 		
 		//Randomised
-		var TFItem:String = RandomInCollection(["Clippex", "Semen’s Friend", "Lucifier"]);
-		if(flags["SERA_UNLOCK_CLIPPEX"] == undefined) TFItem = "Clippex";
-		else if(flags["SERA_UNLOCK_SEMENS"] == undefined) TFItem = "Semen’s Friend";
-		else if(flags["SERA_UNLOCK_LUCIFIER"] == undefined) TFItem = "Lucifier";
+		var TFList:Array = [];
+		if(flags["SERA_UNLOCK_CLIPPEX"] == undefined || flags["SERA_UNLOCK_SEMENS"] == undefined || flags["SERA_UNLOCK_LUCIFIER"] == undefined)
+		{
+			if(flags["SERA_UNLOCK_CLIPPEX"] == undefined) TFList.push("Clippex");
+			if(flags["SERA_UNLOCK_SEMENS"] == undefined) TFList.push("Semen’s Friend");
+			if(flags["SERA_UNLOCK_LUCIFIER"] == undefined) TFList.push("Lucifier");
+		}
+		else TFList = ["Clippex", "Semen’s Friend", "Lucifier"];
+		
+		var TFItem:String = RandomInCollection(TFList);
 		
 		output("\n\n");
 		// Clippex:
@@ -2275,7 +2281,7 @@ public function seraSexXXXTitfuckLuckyDip(arg:Array):void
 	else if(response == "Clippex" || response == "Semen’s Friend" || response == "Lucifier")
 	{
 		output("<i>“So, um... " + response + ",”</i> you say hesitantly. Sera gazes at you impassively. <i>“Do you think I could have some?”</i>");
-		output("\n\n<i>“Interested in doing some bodywork, are we?”</i> she murmurs. Idle with post-coitus, she slides her chair back to consider your recumbent, ooze-covered form further. Her stilettos came loose during the vigorous sex; she slides a dainty, clipped foot out proper and circles her big toe at you teasingly. <i>“Your mistress thinks you look just fine as you are, candy-cheeks, and that’s all that matters. She wonders just how interested </i>you<i> really are.”</i>");
+		output("\n\n<i>“Interested in doing some bodywork, are we?”</i> she murmurs. Idle with post-coitus, she slides her chair back to consider your recumbent, ooze-covered form further. Her platform shoes came loose during the vigorous sex; she slides a dainty, clipped foot out, replete with its natural four-inch horn stiletto, and circles her big toe at you teasingly. <i>“Your mistress thinks you look just fine as you are, candy-cheeks, and that’s all that matters. She wonders just how interested </i>you<i> really are.”</i>");
 		
 		processTime(1);
 		// [Not interested] [Interested] [Perform]
@@ -2365,8 +2371,8 @@ public function seraSexXXXTitfuckLuckyDipPerform(TFItem:String = ""):void
 	var discount:Boolean = false;
 	
 	output("You can see what she’s asking for here and, with a familiar, unabashed thrill wriggling through you, you acquiesce. Slowly, you climb off the table and sit yourself down in front of her chair. Your eyes are on hers as you bend forward and touch her outstretched toe with your tongue. Her mouth is open, reveling in the sight of you as you gently suck her slim, bulbous digit before lapping at the rough skin of the balls of her feet.");
-	output("\n\n<i>“Oh, that’s good,”</i> she sighs. <i>“Every girl who spends all day on high heels needs one of you... Be sure to get between the toes.”</i> You do so, tasting her sweat as you curve up and down each valley before rasping at the harshness of her heel. You finish off with a long, worshipful wash of the soft instep, flexing beneath your mouth as she coos to your treatment of the most sensitive part of her feet. You allow yourself a swallow when she finally withdraws it, knowing exactly what’s coming next.");
-	output("\n\n<i>“You didn’t spend enough time on the balls, bitch,”</i> Sera says imperiously, wiggling her other bare foot in front of your face. <i>“Make sure you do that with this one.”</i>");
+	output("\n\n<i>“Oh, that’s good,”</i> she sighs. <i>“Every girl who spends all day on high heels needs one of you... Be sure to get between the toes.”</i> You do so, tasting her sweat as you curve up and down each valley before taking the thin, hard pole of her stiletto in your mouth and sucking on it as if it were a miniature cock. You finish off with a long, worshipful wash of the soft instep, flexing beneath your mouth as she coos to your treatment of the most sensitive part of her feet. You allow yourself a swallow when she finally withdraws it, knowing exactly what’s coming next.");
+	output("\n\n<i>“You didn’t spend enough time on the balls, bitch,”</i> Sera says imperiously, wiggling her other bare set of toes and horn point in front of your face. <i>“Make sure you do that with this one.”</i>");
 	output("\n\nYour tongue aches and your mouth is dry by the time you are done. Sharp teeth, piercings and yellow eyes gleam down as purple, saliva-dampened toes are curled and stretched in front of you admiringly. Her cock is in its normal semi-erect state... but from where you are you can see her pussy is glistening richly.");
 	output("\n\n<i>“Oh, I shouldn’t. But you’re such a precious slut! I want to keep you and watch you lick my feet every single... just this once, then.”</i> A ");
 	
