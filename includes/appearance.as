@@ -345,63 +345,140 @@ public function appearance(forTarget:Creature):void
 		if(target.hairLength == 0) {
 			if(target.skinType == GLOBAL.SKIN_TYPE_FUR) output2(" You have no hair, only a thin layer of fur atop of your head. ");
 			else output2(" You have no hair, showing only shiny " + target.skinFurScales() + " where your hair should be.");
-			if(target.earType == GLOBAL.TYPE_EQUINE) output2(" A pair of horse-like ears rise up from the top of your skull.");
-			else if(target.earType == GLOBAL.TYPE_CANINE) output2(" A pair of pointed ausar-like ears protrude from your skull, pointed and alert.");
-			else if(target.earType == GLOBAL.TYPE_BOVINE) output2(" A pair of round, floppy cow ears protrude from the sides of your skull.");
-			else if(target.earType == GLOBAL.TYPE_DRIDER) output2(" A pair of large pointy ears stick out from your skull.");
+			if (target.earType == GLOBAL.TYPE_EQUINE)
+			{
+				if (target.skinType == GLOBAL.SKIN_TYPE_FUR) output2(" The " + target.skinFurScales() + " on your head parts around a pair of very horse-like ears that grow up from your head.");
+				else output2(" A pair of horse-like ears rise up from the top of your skull.");
+			}
+			else if (target.earType == GLOBAL.TYPE_CANINE)
+			{
+				if (target.skinType == GLOBAL.SKIN_TYPE_FUR) output2(" The " + target.skinFurScales() + " on your head is overlapped by a pair of pointed dog ears.");
+				else output2(" A pair of pointed ausar-like ears protrude from your skull, pointed and alert.");
+			}
+			else if (target.earType == GLOBAL.TYPE_BOVINE)
+			{
+				if (target.skinType == GLOBAL.SKIN_TYPE_FUR) output2(" The " + target.skinFurScales() + " on your head is parted by a pair of rounded cow ears that stick out sideways.");
+				else output2(" A pair of round, floppy cow ears protrude from the sides of your skull.");
+			}
+			else if (target.earType == GLOBAL.TYPE_DRIDER)
+			{
+				if (target.skinType == GLOBAL.SKIN_TYPE_FUR) output2(" The " + target.skinFurScales() + " on your head is parted by a pair of cute pointed ears, bigger than your old human ones.");
+				else output2(" A pair of large pointy ears stick out from your skull.");
+			}
 			else if(target.earType == GLOBAL.TYPE_FELINE)
 			{
-				output2(" A pair of cute");
-				if(target.skinType != GLOBAL.SKIN_TYPE_GOO) output2(", fuzzy");
-				output2(" cat-like ears have sprouted from the top of your skull.");
+				if (target.skinType == GLOBAL.SKIN_TYPE_FUR) output2(" The " + target.skinFurScales() + " on your head is parted by a pair of cute");
+				else output2(" A pair of cute")
+				if (target.skinType != GLOBAL.SKIN_TYPE_GOO) output2(", fuzzy");
+				output2(" feline ears, sprouting from atop your head and pivoting towards any sudden noises.");
 			}
-			else if(target.earType == GLOBAL.TYPE_LIZAN) output2(" A pair of rounded protrusions with small holes on the sides of your skull serve as your ears.");
-			else if(target.earType == GLOBAL.TYPE_LAPINE || target.earType == GLOBAL.TYPE_LEITHAN) output2(" A pair of floppy rabbit ears stick up from the top of your skull, flopping around as you [target.walk].");
+			else if (target.earType == GLOBAL.TYPE_LIZAN)
+			{
+				if (target.skinType == GLOBAL.SKIN_TYPE_FUR) output2(" The " + target.skinFurScales() + " atop your head almost covers the two small rounded openings that are your ears.");
+				else output2(" A pair of rounded protrusions with small holes on the sides of your skull serve as your ears.");
+			}
+			else if (target.earType == GLOBAL.TYPE_LAPINE || target.earType == GLOBAL.TYPE_LEITHAN)
+			{
+				if (target.skinType == GLOBAL.SKIN_TYPE_FUR) output2(" A pair of floppy rabbit ears stick up out of your " + target.skinFurScales() + ", bouncing around as you walk.");
+				else output2(" A pair of floppy rabbit ears stick up from the top of your skull, flopping around as you [target.walk].");
+			}
 			else if(target.earType == GLOBAL.TYPE_KANGAROO)
 			{
-				output2(" A pair of long");
+				if (target.skinType == GLOBAL.SKIN_TYPE_FUR) output2(" The " + target.skinFurScales() + " atop your head is parted by a pair of long");
+				else output2(" A pair of long");
 				if(target.skinType != GLOBAL.SKIN_TYPE_GOO) output2(", furred");
-				output2(" kangaroo ears stick out from your skull at an angle.");
+				output2(" kangaroo ears stick out ");
+				if (target.skinType != GLOBAL.SKIN_TYPE_FUR) output2("from your skull ");
+				output2("at an angle.");
 			}
-			else if(target.earType == GLOBAL.TYPE_VULPINE) output2(" A pair of large, adept fox ears sit high on your skull, always listening.");
-			else if(target.earType == GLOBAL.TYPE_DEER) output2(" A pair of pointed, oval-shaped ears poke out from the sides of your skull, flicking and flopping about, making you look very much like a deer.");
-			else if(target.earType == GLOBAL.TYPE_DRACONIC || target.earType == GLOBAL.TYPE_GRYVAIN) output2(" A pair of rounded protrusions with small holes on the sides of your skull serve as your ears. Bony fins sprout behind them.");
+			else if (target.earType == GLOBAL.TYPE_VULPINE)
+			{
+				if (target.skinType == GLOBAL.SKIN_TYPE_FUR) output2(" The " + target.skinFurScales() + " atop your head is parted by a pair of large, adept fox ears that always seem to be listening.");
+				else output2(" A pair of large, adept fox ears sit high on your skull, always listening.");
+			}
+			else if (target.earType == GLOBAL.TYPE_DEER)
+			{
+				if (target.skinType == GLOBAL.SKIN_TYPE_FUR) output2(" The " + target.skinFurScales() + " on your head is parted by a pair of rounded ears that point out sideways, flicking and flopping about, making you look very much like a deer.");
+				else output2(" A pair of pointed, oval-shaped ears poke out from the sides of your skull, flicking and flopping about, making you look very much like a deer.");
+			}
+			else if (target.earType == GLOBAL.TYPE_DRACONIC || target.earType == GLOBAL.TYPE_GRYVAIN)
+			{
+				if (target.skinType == GLOBAL.SKIN_TYPE_FUR) output2(" The " + target.skinFurScales() + " atop your head is parted by a pair of rounded protrusions with small holes on the sides of your head serve as your ears. Bony fins sprout behind them.");
+				else output2(" A pair of rounded protrusions with small holes on the sides of your skull serve as your ears. Bony fins sprout behind them.");
+			}
 			else if(target.earType == GLOBAL.TYPE_KUITAN)
 			{
-				output2(" A pair of vaguely egg-shaped");
+				if (target.skinType == GLOBAL.SKIN_TYPE_FUR) output2(" The " + target.skinFurScales() + " on your head parts around a pair of egg-shaped");
+				else output2(" A pair of vaguely egg-shaped");
 				if(target.skinType != GLOBAL.SKIN_TYPE_GOO) output2(", furry");
-				output2(" raccoon ears adorns your skull.");
+				if (target.skinType == GLOBAL.SKIN_TYPE_FUR) output2(" raccoon ears adorns your skull.");
+				else output2(" raccoon ears.");
 			}
-			else if(target.earType == GLOBAL.TYPE_MOUSE) output2(" A pair of large, dish-shaped mouse ears tops your skull.");
-			else if(target.earType == GLOBAL.TYPE_VANAE) output2(" A pair of pointed, finned ears tops your skull.");
-			else if(target.earType == GLOBAL.TYPE_PANDA) output2(" A pair of rounded, panda-like ears protrude from your skull, " + target.mf("standing tall and proud","looking absolutely adorable") + ".");
+			else if (target.earType == GLOBAL.TYPE_MOUSE) 
+			{
+				if (target.skinType == GLOBAL.SKIN_TYPE_FUR) output2(" The " + target.skinFurScales() + " atop your head is parted around a pair of large, dish-shaped mouse ears that stick up prominently.");
+				else output2(" A pair of large, dish-shaped mouse ears tops your skull.");
+			}
+			else if (target.earType == GLOBAL.TYPE_VANAE)
+			{
+				if (target.skinType == GLOBAL.SKIN_TYPE_FUR) output2(" The " + target.skinFurScales() + " atop your head is parted by a pair of pointed, fin-like ears, sensitive to the slightest sound.");
+				else output2(" A pair of pointed, finned ears tops your skull.");
+			}
+			else if (target.earType == GLOBAL.TYPE_PANDA)
+			{
+				if (target.skinType == GLOBAL.SKIN_TYPE_FUR) output2(" The " + target.skinFurScales() + " on your head is parted by a pair of round panda ears.");
+				else output2(" A pair of rounded, panda-like ears protrude from your skull, " + target.mf("standing tall and proud", "looking absolutely adorable") + ".");
+			}
 			else if(target.earType == GLOBAL.TYPE_RASKVEL)
 			{
-				output2(" A pair of");
-				if(target.earLength >= (target.tallness * 0.6)) output2(" " + num2Text(target.earLength) + "-inch");
-				output2(" long raskvel ears dangle from your skull down past your waist.");
+				if (target.skinType == GLOBAL.SKIN_TYPE_FUR) output2(" The " + target.skinFurScales() + " atop your head is parted by a pair of");
+				else output2(" A pair of");
+				if (target.earLength >= (target.tallness * 0.6)) output2(" " + num2Text(target.earLength) + "-inch");
+				if (target.skinType == GLOBAL.SKIN_TYPE_FUR) output2(" long raskvel ears that dangle down past your waist.");
+				else output2(" long raskvel ears dangle from your skull down past your waist.");
 			}
 			else if(target.earType == GLOBAL.TYPE_SYLVAN) 
 			{
-				if(target.earLength <= 1) output2(" A pair of mostly-human ears with slightly pointed tips protrude from the sides of your skull, just like a fantasy elf’s.");
+				if (target.earLength <= 1)
+				{
+					if (target.skinType == GLOBAL.SKIN_TYPE_FUR) output2(" The " + target.skinFurScales() + " on your head is parted by a pair of mostly-human ears with slightly pointed tips, just like a fantasy elf’s.");
+					else output2(" A pair of mostly-human ears with slightly pointed tips protrude from the sides of your skull, just like a fantasy elf’s.");
+				}
 				//2-4 inches: 
-				else if(target.earLength <= 4) output2(" A pair of triangular, elven ears protrude from the sides of your skull, sticking out a full " + num2Text(target.earLength) + " inches from the sides of your head. Small extra muscles let them twitch or droop expressively.");
+				else if (target.earLength <= 4)
+				{
+					if (target.skinType == GLOBAL.SKIN_TYPE_FUR) output2(" The " + target.skinFurScales() + " on your head can’t possibly hide a pair of triangular, elven ears. They stick out a full " + num2Text(target.earLength) + " inches from the sides of your head. Small extra muscles let them twitch or droop expressively.");
+					else output2(" A pair of triangular, elven ears protrude from the sides of your skull, sticking out a full " + num2Text(target.earLength) + " inches from the sides of your head. Small extra muscles let them twitch or droop expressively.");
+				}
 				//5+ inches:
-				else output2(" A pair of exquisitely long, elf-like ears extend a full " + num2Text(target.earLength) + " inches from the sides of your head, triangular in shape with a bit of downward curve along their length. A thought is all it takes for them to change their angle to suit your expression, letting even the most rugged face pull off a cutesy pout with ease.");
+				else
+				{
+					if (target.skinType == GLOBAL.SKIN_TYPE_FUR) output2(" The " + target.skinFurScales() + " atop your head can’t possibly hide a pair of exquisitely long, elf-like ears. They ")
+					else output2(" A pair of exquisitely long, elf-like ears ")
+					output2("extend a full " + num2Text(target.earLength) + " inches from the sides of your head, triangular in shape with a bit of downward curve along their length. A thought is all it takes for them to change their angle to suit your expression, letting even the most rugged face pull off a cutesy pout with ease.");
+				}
 			}
 			else if(target.earType == GLOBAL.TYPE_GABILANI)
 			{
-				output2(" A pair of long, triangular goblin ears point outwards");
+				if (target.skinType == GLOBAL.SKIN_TYPE_FUR) output2(" The " + target.skinFurScales() + " on your head is parted by a pair of");
+				else output2(" A pair of long, triangular goblin ears point outwards");
 				if(target.earLength > 1) output2(" " + num2Text(target.earLength) + " inches from your");
-				output2(" from your skull.");
+				if (target.skinType == GLOBAL.SKIN_TYPE_FUR)  output2(" long, triangular goblin ears.");
+				else output2(" from your skull.");
 			}
 			else if(target.earType == GLOBAL.TYPE_DEMONIC)
 			{
-				output2(" A pair of wicked-looking ears point outwards");
-				if(target.earLength > 1) output2(" " + num2Text(target.earLength) + " inches from your");
-				output2(" from your skull.");
+				if (target.skinType == GLOBAL.SKIN_TYPE_FUR) output2(" The " + target.skinFurScales() + " on your head is parted by a pair of");
+				else output2(" A pair of wicked-looking ears point outwards");
+				if (target.earLength > 1) output2(" " + num2Text(target.earLength) + " inches from your");
+				if (target.skinType == GLOBAL.SKIN_TYPE_FUR) output2(" wicked-looking demonic ears.");
+				else output2(" from your skull.");
 			}
-			else if(target.earType == GLOBAL.TYPE_FROG) output2(" A pair of small indented holes on the sides of your skull make up your ears.");
+			else if (target.earType == GLOBAL.TYPE_FROG)
+			{
+				if (target.skinType == GLOBAL.SKIN_TYPE_FUR) output2(" The " + target.skinFurScales() + " atop your head covers the two small openings that make up your ears.");
+				else output2(" A pair of small indented holes on the sides of your skull make up your ears.");
+			}
 			if(target.hasAntennae())
 			{
 				if(target.antennae == 1) output2(" A floppy [target.antenna] also appears");
@@ -2500,6 +2577,13 @@ public function vaginaBonusForAppearance(forTarget:Creature = null, x:int = 0, e
 	else if(target.vaginas[x].type == GLOBAL.TYPE_CANINE) {
 		if(!eachOne) output2(" The exterior lips are that of a bitch and have a tendency to swell when in heat, giving it a very animalistic bent.");
 		else output2("\nEach vagina’s exterior lips are that of a bitch and have a tendency to swell when in heat, giving them a very animalistic bent.");
+	}
+	//Kitty flavor
+	else if(target.vaginas[x].type == GLOBAL.TYPE_FELINE) {
+		if(!eachOne) output2(" The exterior lips are vestigial and featureless, making your entrace quite modest");
+		else output2("\nEach vagina’s exterior lips are vestigial and featureless, making your entraces quite modest");
+		if (target.hasFur()) output2(" and barely visible under your " + target.skinFurScales(true));
+		output2(".");
 	}
 	//Siren flavor
 	else if(target.vaginas[x].type == GLOBAL.TYPE_SIREN) {
