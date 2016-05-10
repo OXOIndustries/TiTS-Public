@@ -8393,7 +8393,11 @@
 			 
 			if (horseScore() >= 3) race = equineRace(); // Horse-morphs
 			if (ovirScore() >= 3 && race == "human") race = "half-ovir";
-			if (ausarScore() >= 2 && race == "human") race = "half-ausar"; // Fucking Ausar forever overriding other shit. EXTERMINATUS.
+			if (ausarScore() >= 2 && race == "human")
+			{
+				if (huskarScore() < 3) race = "half-ausar"; // Fucking Ausar forever overriding other shit. EXTERMINATUS.
+				else race = "half-huskar";
+			}
 			if (kaithritScore() >= 3 && race == "human") race = "half-kaithrit";
 			if (leithanScore() >= 3 && race == "human") race = "half-leithan";
 			if (nukiScore() >= 2 && race == "human") race = "half kui-tan"
@@ -8402,7 +8406,11 @@
 			if (bovineScore() >= 3) race = bovineRace(); // Cow-morphs
 			if (raskvelScore() >= 4) race = "raskvel-morph";
 			if (pandaScore() >= 4) race = "panda-morph";
-			if (ausarScore() >= 4) race = "ausar"
+			if (ausarScore() >= 4)
+			{
+				if (huskarScore() < 3) race = "ausar";
+				else race = "huskar";
+			}
 			if (demonScore() >= 5) race = "demon-morph";
 			if (gabilaniScore() >= 5) race = "gabilani";
 			if (frogScore() >= 5) race = "kerokoras";
@@ -8529,6 +8537,15 @@
 			if (legType == GLOBAL.TYPE_CANINE && legCount == 2 && hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) counter++;
 			if (counter > 0 && faceType == GLOBAL.TYPE_HUMAN) counter++;
 			return counter;
+		}
+		public function huskarScore():int
+		{
+			var s:int = 0;
+			if (hasArmFlag(GLOBAL.FLAG_FLUFFY)) s++;
+			if (hasLegFlag(GLOBAL.FLAG_FLUFFY)) s++;
+			if (hasSkinFlag(GLOBAL.FLAG_FLUFFY)) s++; // This is what I'm using for the chestfluff
+			if (thickness >= 75) s++;
+			return s;
 		}
 		public function kaithritScore(): int {
 			var counter: int = 0;
