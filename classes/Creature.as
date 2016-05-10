@@ -4972,9 +4972,7 @@
 				case GLOBAL.TYPE_DARK_SYLVAN:
 					adjectives.push("dark sylvan", "delicate", "black gossamer", "shadowy");
 					break;
-				case GLOBAL.TYPE_DOVETWO:
-				case GLOBAL.TYPE_DOVEFOUR:
-				case GLOBAL.TYPE_DOVESIX:
+				case GLOBAL.TYPE_DOVE:
 					adjectives.push("large", "bird-like", "dove-like", "soft", "feathery");
 					break;
 			}
@@ -8081,7 +8079,7 @@
 		public function canFly(): Boolean {
 			//web also makes false!
 			if (hasStatusEffect("Web")) return false;
-			if (InCollection(wingType, GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_BEE, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_DRAGONFLY, GLOBAL.TYPE_SYLVAN, GLOBAL.TYPE_DARK_SYLVAN, GLOBAL.TYPE_DOVETWO, GLOBAL.TYPE_DOVEFOUR, GLOBAL.TYPE_DOVESIX, GLOBAL.TYPE_GRYVAIN)) return true;
+			if (InCollection(wingType, GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_BEE, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_DRAGONFLY, GLOBAL.TYPE_SYLVAN, GLOBAL.TYPE_DARK_SYLVAN, GLOBAL.TYPE_DOVE, GLOBAL.TYPE_GRYVAIN)) return true;
 			return false;
 		}
 		//PC can swim?

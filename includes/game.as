@@ -1049,7 +1049,7 @@ public function move(arg:String, goToMainMenu:Boolean = true):void {
 		if((!pc.isChestGarbed() || pc.isChestExposed()) && pc.biggestTitSize() > 1) nudistPrevention = true;
 		if(!pc.isCrotchGarbed() || pc.isCrotchExposed() || pc.isAssExposed()) nudistPrevention = true;
 		// Cover yourself with your fuckton of wings
-		if(InCollection(pc.wingType, GLOBAL.TYPE_DOVEFOUR, GLOBAL.TYPE_DOVESIX) && pc.genitalLocation() <= 1) nudistPrevention = false;
+		if (pc.wingType == GLOBAL.TYPE_DOVE && pc.wingCount >= 4 && pc.genitalLocation() <= 1) nudistPrevention = false;
 		if(nudistPrevention)
 		{
 			clearOutput();
