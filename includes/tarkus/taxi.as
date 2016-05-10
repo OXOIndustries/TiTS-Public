@@ -179,7 +179,7 @@ public function inviteNessaToBed():void
 		rejected = true;
 	}
 	//Parasite
-	else if(pc.hasCockTail() || pc.hasCuntTail()) 
+	else if(pc.hasParasiteTail()) 
 	{
 		output("\n\nHer expression sours as she reviews her console, and her eyes keep flicking back toward your [pc.butt]. She must see something on her display she doesn’t like. Maybe your [pc.tails]?");
 		rejected = true;
@@ -209,7 +209,7 @@ public function inviteNessaToBed():void
 	{
 		output("\n\n<i>“What is it?”</i> you ask, looking for some kind of answer. It seems clear she intends to reject you.");
 		//Mimbutt & //Tail Parasites
-		if(attachedMimbranes() > 0 || pc.hasCockTail() || pc.hasCuntTail()) output("\n\nNervously curling her finger in her hair, the kaithrit, glances around to make sure that the two of you are alone in her room. <i>“Parasites. The kind that aren’t exactly legal to be transporting around. Look, I’m not so well off that I could do without your business, but I’m not getting any closer to you until you get those things taken care of. Find a medical droid, quick.”</i>");
+		if(attachedMimbranes() > 0 || pc.hasParasiteTail()) output("\n\nNervously curling her finger in her hair, the kaithrit, glances around to make sure that the two of you are alone in her room. <i>“Parasites. The kind that aren’t exactly legal to be transporting around. Look, I’m not so well off that I could do without your business, but I’m not getting any closer to you until you get those things taken care of. Find a medical droid, quick.”</i>");
 		//Dick too big and no suitable dick
 		//Gigantor dick
 		else if(pc.shortestCockLength() > 30) output("\n\nFanning her neck, the kaithrit glances down at your bulging crotch and smiles. <i>“It’s not that there’s anything wrong with you...”</i> She bites her lip and sighs. <i>“I’m the problem. You’ve got all that awesome dick, and there’s no way I can take it without splitting in half. If it ever gets a little more manageable, look me up.”</i>");
