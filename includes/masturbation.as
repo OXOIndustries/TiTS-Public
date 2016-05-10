@@ -284,6 +284,15 @@ public function availableFaps(roundTwo:Boolean = false):Array
 		fap.func = smutFapMenu;
 		faps.push(fap);
 	}
+	if(hasRedDildo() || hasGoldDildo())
+	{
+		fap = new FapCommandContainer();
+		fap.text = "StolenDildo";
+		fap.ttHeader = "Stolen Dildo"
+		fap.ttBody = "Make use of the dildo you stole from the smutty myr deserter.";
+		fap.func = stolenDildoFap;
+		faps.push(fap);
+	}
 	return faps;
 }
 
