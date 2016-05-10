@@ -26,6 +26,7 @@ public function initUvetoRooms():void
 	rooms["UVS F15"].system = "SYSTEM: SIRETTA";
 	rooms["UVS F15"].westExit = "UVS D15";
 	rooms["UVS F15"].moveMinutes = 1;
+	rooms["UVS F15"].runOnEnter = uvetoShipDock;
 	rooms["UVS F15"].addFlag(GLOBAL.INDOOR);
 	rooms["UVS F15"].addFlag(GLOBAL.SHIPHANGAR);
 

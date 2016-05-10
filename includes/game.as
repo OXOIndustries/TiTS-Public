@@ -1075,6 +1075,7 @@ public function move(arg:String, goToMainMenu:Boolean = true):void {
 	}
 	StatTracking.track("movement/time travelled", moveMinutes);
 	processTime(moveMinutes);
+	flags["PREV_LOCATION"] = currentLocation;
 	currentLocation = arg;
 	generateMap();
 	

@@ -3475,7 +3475,7 @@ public function annoxKaedeNotRecruitedMeeting():void
 		output("\n\n<i>“Kaede and I were just catching up... though I wouldn’t mind closing up shop for a little reunion. if you know what I mean.”</i> Kaede blushes as Anno leans over the counter, nibbling on one of her big, red ears. <i>“Especially if you’d like to join us, [pc.name].”</i>");
 	}
 		
-		IncrementFlag("ANNOxKAEDE_INTRODUCED");
+	IncrementFlag("ANNOxKAEDE_INTRODUCED");
 	
 	pc.createStatusEffect("ST Tarkus Closed", 0, 0, 0, 0, true, "", "", false, 60);
 	// [Fuck Them (req: cock)] [Service Kaede] [Watch Them] [Leave] (ST outpost locked for an hour)

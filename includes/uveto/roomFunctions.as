@@ -7,6 +7,12 @@ import classes.GameData.Pregnancy.Handlers.VenusPitcherFertilizedSeedCarrierHand
 import classes.Items.Accessories.LeithaCharm;
 import classes.RoomClass;
 
+public function uvetoShipDock():Boolean
+{
+	if (tryProcKaedeUvetoEncounter()) return true;
+	return false;
+}
+
 public function uvetoSpaceElevatorBaseBonus():Boolean
 {
 	if (flags["UVETO_GREETING_PARTY"] == undefined)
