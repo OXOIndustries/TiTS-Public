@@ -1177,16 +1177,31 @@ public function repeatPreFlowerSexAttempt():void
 	emmyMainMenu();
 }
 
+public function venusFlowerDrops():Boolean
+{
+	return (flags["EMMY_QUEST"] == 0 || flags["ENABLE_LYS_FLOWER"] != undefined);
+}
+
 //Venus Pitcher Post Sex or Avoidance
 public function venusPitcherBonusFlower():void
 {
 	clearOutput();
 	showName("AN EXOTIC\nFLOWER!");
-	output("Ever since Emmy asked you for an exotic flower, you’ve kept your eyes open for a good one, and now there’s one laying on the ground right in front of you! The venus pitcher must have shed this one in her hurry to escape underground, leaving a pink and purple bloom that’s sure the dazzle the eye and delight the nostrils. You even sniff it a few times to make sure it doesn’t have any of that sneezy pollen that clouds the air around the plant-women.");
-	if(venusSubmission() >= 40) output(" Sadly, it doesn’t.");
-	//Acquire bloom
-	output("\n\n");
-	quickLoot(new VenusBloom());
+	if(flags["EMMY_QUEST"] == 0)
+	{
+		output("Ever since Emmy asked you for an exotic flower, you’ve kept your eyes open for a good one, and now there’s one laying on the ground right in front of you! The venus pitcher must have shed this one in her hurry to escape underground, leaving a pink and purple bloom that’s sure the dazzle the eye and delight the nostrils. You even sniff it a few times to make sure it doesn’t have any of that sneezy pollen that clouds the air around the plant-women.");
+		if(venusSubmission() >= 40) output(" Sadly, it doesn’t.");
+		//Acquire bloom
+		output("\n\n");
+		quickLoot(new VenusBloom());
+	}
+	else
+	{
+		output("Oh hey, there's a particularly pretty bloom left on the ground, dazzlingly purple and pink. Better yet, it smells delightful. Maybe Lys will appreciate it.");
+		//Acquire bloom
+		output("\n\n");
+		quickLoot(new VenusBloom());
+	}
 }
 
 //Bring Her Venus Bloom

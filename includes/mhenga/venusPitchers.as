@@ -60,7 +60,7 @@ public function venusRepeatRefuse():void {
 	output("You shake your head and say, <i>“Nope.”</i>");
 	output("\n\nThe plant, seeing the firmness of your stare, pouts but doesn't move, immobile as she is. You look around for any other trouble, and when you glance back, she's gone, vanished into the ground below.");
 	clearMenu();
-	if(flags["EMMY_QUEST"] == 0) addButton(0,"Next",venusPitcherBonusFlower);
+	if(venusFlowerDrops()) addButton(0,"Next",venusPitcherBonusFlower);
 	else addButton(0,"Next",mainGameMenu);
 }
 
@@ -152,7 +152,7 @@ public function noVenusPitcherPlz():void {
 	userInterface.showName("VENUS\nPITCHER");
 	output("You decline again. The venus pitcher woman petulantly blows a frond of her hair up and folds her arms, no longer bothering to attempt to seduce you.\n\nYou regard your other surroundings, and when you look back, she's gone, almost as if by magic.");
 	clearMenu();
-	if(flags["EMMY_QUEST"] == 0) addButton(0,"Next",venusPitcherBonusFlower);
+	if(venusFlowerDrops()) addButton(0,"Next",venusPitcherBonusFlower);
 	else addButton(0,"Next",mainGameMenu);
 }
 
@@ -524,7 +524,7 @@ public function tentacleJamAftermath(knockUpPass:Number = 0):void {
 	pc.orgasm();
 	processTime(200+rand(60));
 	clearMenu();
-	if(flags["EMMY_QUEST"] == 0) addButton(0,"Next",venusPitcherBonusFlower);
+	if(venusFlowerDrops()) addButton(0,"Next",venusPitcherBonusFlower);
 	else addButton(0,"Next",mainGameMenu);
 }
 	
@@ -613,7 +613,7 @@ public function noRepeatElderVenusPitcher():void {
 	userInterface.showName("VENUS\nPITCHER");
 	output("You turn away before she snares you with her looks, stepping a few extra feet away for good measure. There’s a muffled thump, and when you glance back, you realize she’s disappeared into the ground, unlikely to be seen again.");
 	clearMenu();
-	if(flags["EMMY_QUEST"] == 0) addButton(0,"Next",venusPitcherBonusFlower);
+	if(venusFlowerDrops()) addButton(0,"Next",venusPitcherBonusFlower);
 	else addButton(0,"Next",mainGameMenu);
 }
 //[Yes]
@@ -700,7 +700,7 @@ public function lookAwayFromElderVenusPitcher():void {
 	output("You turn away, much to the indignity of the leafy succubus behind you. After a few pleading statements fail to entice your attention, she curses loudly then goes silent. There is a rather final sounding “sklultch” from behind you. Perhaps she went back into her pod?");
 	//To room desc, no venus proc.
 	clearMenu();
-	if(flags["EMMY_QUEST"] == 0) addButton(0,"Next",venusPitcherBonusFlower);
+	if(venusFlowerDrops()) addButton(0,"Next",venusPitcherBonusFlower);
 	else addButton(0,"Next",mainGameMenu);
 }
 
@@ -1242,7 +1242,7 @@ public function elderVenusPitcherEpilogue():void {
 	if(rand(3) == 0) pc.orgasm();
 	processTime(20+rand(20));
 	clearMenu();
-	if(flags["EMMY_QUEST"] == 0) addButton(0,"Next",venusPitcherBonusFlower);
+	if(venusFlowerDrops()) addButton(0,"Next",venusPitcherBonusFlower);
 	else addButton(0,"Next",mainGameMenu);
 }
 
