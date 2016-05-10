@@ -281,6 +281,7 @@ package classes.TITSSaveEdit.Data
 			armType = 0;
 			armFlags = [];
 			wingType = 0;
+			wingCount = 0;
 			legType = 0;
 			legFlags = [];
 			legCount = 2;

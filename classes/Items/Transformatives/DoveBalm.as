@@ -55,7 +55,7 @@ package classes.Items.Transformatives
 					// 75% chance that the PC grows feathered wings.
 					if(rand(4) != 0)
 					{
-						target.shiftWings(GLOBAL.TYPE_DOVETWO, 2);
+						target.shiftWings(GLOBAL.TYPE_DOVE, 2);
 						output("\n\nThe bulging and the heat intensify until you feel a moment of pain followed by a sweet cool feeling of relief. A few warm tingles run up and down your spine as your body’s rewired to work with its new parts, and you check your codex to discover <b>you’ve gained [pc.furColor]-feathered wings</b>!");
 					}
 					else
@@ -64,13 +64,13 @@ package classes.Items.Transformatives
 						// 15% chance that the PC grows four feathered wings.
 						if(rand(3) != 0)
 						{
-							target.shiftWings(GLOBAL.TYPE_DOVEFOUR, 4);
+							target.shiftWings(GLOBAL.TYPE_DOVE, 4);
 							output(" four");
 						}
 						// 10% chance that the PC grows six feathered wings.
 						else
 						{
-							target.shiftWings(GLOBAL.TYPE_DOVESIX, 6);
+							target.shiftWings(GLOBAL.TYPE_DOVE, 6);
 							output(" six");
 						}
 						output(" [pc.furColor]-feathered wings<b>! Well, that’s certainly a rarity!");
@@ -78,40 +78,61 @@ package classes.Items.Transformatives
 					output("\n\nUpon rubbing your new feathers, you find them to be blissfully soft to the touch.");
 				}
 				// PC has any wing type granted by this item:
-				else if(target.wingType == GLOBAL.TYPE_DOVETWO || target.wingType == GLOBAL.TYPE_DOVEFOUR || target.wingType == GLOBAL.TYPE_DOVESIX)
+				else if(target.wingType == GLOBAL.TYPE_DOVE)
 				{
 					output("Even though you already have feathered wings, you opt to apply some of the balm to your wingpoints anyway.");
 					// 80% chance of dud result.
-					if(rand(5) != 0)
+					if(rand(5) != 0 || target.wingCount == 6)
 					{
 						output("\n\nA heat builds in your wings, then fades. You’re not really sure what you expected to happen...");
 					}
 					// 20% chance of wing type changing to one of the other two types that can be granted by this item.
 					else
 					{
-						// Change to two wings:
-						if(target.wingType != GLOBAL.TYPE_DOVETWO)
+						if(target.wingCount != 2)
 						{
-							output("\n\nYou feel your");
-							if(target.wingType == GLOBAL.TYPE_DOVEFOUR) output(" four");
-							else output(" six");
-							
-							target.shiftWings(GLOBAL.TYPE_DOVETWO, 2);
-							
-							output(" wings grow hot and meld together, <b>becoming a standard single pair</b> once they cool off.");
+							// 4/6 wings => 2 wings
+							if (rand(2) == 0)
+							{
+								output("\n\nYou feel your");
+								if(target.wingCount == 4) output(" four");
+								else output(" six");
+								
+								target.shiftWings(GLOBAL.TYPE_DOVE, 2);
+								
+								output(" wings grow hot and meld together, <b>becoming a standard single pair</b> once they cool off.");
+							}
+							// 4/6 wings => 6/4 wings
+							else
+							{
+								output("\n\nYou feel your wings grow hot, melding together and then splitting again so that <b>you’re left with");
+								// Four to six.
+								if(target.wingCount == 4)
+								{
+									target.shiftWings(GLOBAL.TYPE_DOVE, 6);
+									output(" six");
+								}
+								// Six to four.
+								else
+								{
+									target.shiftWings(GLOBAL.TYPE_DOVE, 4);
+									output(" four");
+								}
+								output(" feathered wings</b> by the time the heat fades.");
+							}
 						}
 						// Change to four or six wings from two:
-						else if(target.wingType == GLOBAL.TYPE_DOVETWO)
+						else if(target.wingCount == 2)
 						{
 							output("\n\nYou feel your wings grow hot, then begin to stretch vertically before they suddenly split apart, new flesh and feathers growing in so that when the heat fades, <b>you’re left with");
 							if(rand(2) == 0)
 							{
-								target.shiftWings(GLOBAL.TYPE_DOVEFOUR, 4);
+								target.shiftWings(GLOBAL.TYPE_DOVE, 4);
 								output(" four");
 							}
 							else
 							{
-								target.shiftWings(GLOBAL.TYPE_DOVESIX, 6);
+								target.shiftWings(GLOBAL.TYPE_DOVE, 6);
 								output(" six");
 							}
 							output(" wings instead of two.</b>");
@@ -119,26 +140,7 @@ package classes.Items.Transformatives
 						// Change to four or six wings from four or six wings:
 						else
 						{
-							output("\n\nYou feel your wings grow hot, melding together and then splitting again so that <b>you’re left with");
-							// Four to six.
-							if(target.wingType == GLOBAL.TYPE_DOVEFOUR)
-							{
-								target.shiftWings(GLOBAL.TYPE_DOVESIX, 6);
-								output(" six");
-							}
-							// Six to four.
-							else if(target.wingType == GLOBAL.TYPE_DOVESIX)
-							{
-								target.shiftWings(GLOBAL.TYPE_DOVEFOUR, 4);
-								output(" four");
-							}
-							// Failsafe.
-							else
-							{
-								target.shiftWings(GLOBAL.TYPE_DOVETWO, 2);
-								output(" two");
-							}
-							output(" feathered wings</b> by the time the heat fades.");
+							
 						}
 					}
 				}
@@ -146,28 +148,28 @@ package classes.Items.Transformatives
 				else if(target.hasWings())
 				{
 					// 75% chance that PC’s wing type changes to feathered wings.
-					if(rand(4) != 0) target.shiftWings(GLOBAL.TYPE_DOVETWO, 2);
+					if(rand(4) != 0) target.shiftWings(GLOBAL.TYPE_DOVE, 2);
 					// 15% chance that PC’s wing type changes to four feathered wings.
-					else if(rand(3) != 0) target.shiftWings(GLOBAL.TYPE_DOVEFOUR, 4);
+					else if(rand(3) != 0) target.shiftWings(GLOBAL.TYPE_DOVE, 4);
 					// 10% chance that PC’s wing type changes to six feathered wings.
-					else target.shiftWings(GLOBAL.TYPE_DOVESIX, 6);
+					else target.shiftWings(GLOBAL.TYPE_DOVE, 6);
 					
 					output("You already have wings, but you’d kind of like to try out feathers. You rub the balm into your wingpoints, feeling a heat well up inside them almost as soon as you pull your hand away. Your wings practically melt into their new form like candle wax");
-					if(target.wingType == GLOBAL.TYPE_DOVEFOUR || target.wingType == GLOBAL.TYPE_DOVESIX)
+					if(target.wingCount > 2)
 					{
 						output(", though it comes with an odd splitting sensation you’re pretty sure isn’t supposed to happen");
 					}
 					output(".");
 					output("\n\nBy the time your wings cool off, <b>they’ve become");
-					if(target.wingType == GLOBAL.TYPE_DOVETWO) output(" two");
-					else if(target.wingType == GLOBAL.TYPE_DOVEFOUR) output(" four");
+					if(target.wingCount == 2) output(" two");
+					else if(target.wingCount == 4) output(" four");
 					else output(" six");
 					output(" majestic [pc.furColor]-feathered wings<b>!");
 					output("\n\n");
-					if(target.wingType == GLOBAL.TYPE_DOVEFOUR || target.wingType == GLOBAL.TYPE_DOVESIX)
+					if(target.wingCount > 2)
 					{
 						output("Wait,");
-						if(target.wingType == GLOBAL.TYPE_DOVEFOUR) output(" four");
+						if(target.wingCount == 4) output(" four");
 						else output(" six");
 						output("? Well that’s certainly unusual, though the label did warn you it could happen. ");
 					}

@@ -285,6 +285,7 @@
 		include "../includes/events/karaquest2/roomFunctions.as";
 		
 		// Uveto
+		include "../includes/uveto/kaede.as";
 		include "../includes/uveto/nayna.as";
 		include "../includes/uveto/nerrasa.as";
 		include "../includes/uveto/rooms.as";

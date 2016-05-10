@@ -1,4 +1,4 @@
-﻿import classes.Characters.GardeBot;
+import classes.Characters.GardeBot;
 import classes.Characters.MyrGoldFemaleDeserter;
 import classes.Characters.MyrRedFemaleDeserter;
 import classes.Creature;
@@ -90,19 +90,19 @@ public function showDeserter(gold:Boolean = false,nude:Boolean = false):void
 //Utility functions for Z's new shit
 public function hasGoldDildo():Boolean
 {
-	return false;
+	return pc.hasKeyItem("Republic Dildo");
 }
 public function hasRedDildo():Boolean
 {
-	return false;
+	return pc.hasKeyItem("Federation Vibrator");
 }
 public function removeRedDildo():void
 {
-
+	pc.removeKeyItem("Federation Vibrator");
 }
 public function removeGoldDildo():void
 {
-	
+	pc.removeKeyItem("Republic Dildo");
 }
 
 //Myr Approaches
@@ -368,6 +368,11 @@ public function approachMyrDesertersNonCombatShit(gold:Boolean = false):void
 		}
 	}
 	processTime(5);
+	myrDeserterNonCombatMenu(gold);
+}
+
+public function myrDeserterNonCombatMenu(gold:Boolean = false):void
+{
 	clearMenu();
 	//[Sex] [Talk] [Fight] [Flee]
 	if(pc.lust() >= 33) addButton(0,"Sex",sexWithAntGrills,gold);
@@ -383,6 +388,7 @@ public function approachMyrDesertersNonCombatShit(gold:Boolean = false):void
 	if(hasRedDildo() || hasGoldDildo()) addButton(3,"Give Dildo",giveDildoToAntSloot,gold,"Give Dildo","Return your looted prize.");
 	addButton(14,"Run",runFromDatAntSloot,gold);
 }
+
 
 //Fight
 public function fightADumbShitAntWaifu(gold:Boolean = false):void
@@ -485,6 +491,20 @@ public function sexWithAntGrills(gold:Boolean = false):void
 		else addDisabledButton(4,"Hand-Play","Hand-Play","Tauric creatures cannot enjoy this scene.");
 	}
 	else addDisabledButton(4,"Hand-Play","Hand-Play","Only a gold myr deserter has enough hands for this scene...");
+
+	//Steal Dildo - new scene for either myr
+	//steal the dildo (or use the stolen one on her), with or without orgasm denial
+	//avail. in both myr's sex menus, combat-agnostic, but requires PC having seen 'Dildo Screw' (if with Briha) or 'Sit & Screw' (if with Lys), else button is hidden (not disabled)
+	//adds PC lust at the end so PC can possibly masturbate with dildo right away
+	//should add misch points
+	//tooltip: Distract the myr with orgasm and then abscond with her sex toy{(repeat) again}. Or you could stop just before orgasm....
+	gold = (enemy is MyrGoldFemaleDeserter);
+	var dildoToolTip:String = "Distract the myr with orgasm and then abscond with her sex toy";
+	if((gold && flags["GOLD_DILDOED"] != undefined) || ((!gold) && flags["RED_DILDOED"] != undefined)) dildoToolTip += " again";
+	dildoToolTip += ". Or you could stop just before orgasm....";
+	if((gold && flags["DILDO_SCREW_SCENE_SEEN"] != undefined) || (!gold && flags["RED_MYR_DESERT_DILDO_DONE"] != undefined)) addButton(5,"Steal Dildo",stealDildoScene,gold,"Steal Dildo",dildoToolTip);
+	else addDisabledButton(5,"Steal Dildo","Steal Dildo","You don't even know if they have one!");
+
 	addButton(14,"Leave",leaveAntShits,gold);
 }
 
@@ -901,6 +921,18 @@ public function winVsAntGrillDeserts():void
 		else addDisabledButton(4,"Hand-Play","Hand-Play","Only a gold myr deserter has enough hands for this scene...");
 		//Cuff&Fuck
 		cuffNFuckButton(5, enemy);
+		//Steal Dildo - new scene for either myr
+		//steal the dildo (or use the stolen one on her), with or without orgasm denial
+		//avail. in both myr's sex menus, combat-agnostic, but requires PC having seen 'Dildo Screw' (if with Briha) or 'Sit & Screw' (if with Lys), else button is hidden (not disabled)
+		//adds PC lust at the end so PC can possibly masturbate with dildo right away
+		//should add misch points
+		//tooltip: Distract the myr with orgasm and then abscond with her sex toy{(repeat) again}. Or you could stop just before orgasm....
+		gold = (enemy is MyrGoldFemaleDeserter);
+		var dildoToolTip:String = "Distract the myr with orgasm and then abscond with her sex toy";
+		if((gold && flags["GOLD_DILDOED"] != undefined) || ((!gold) && flags["RED_DILDOED"] != undefined)) dildoToolTip += " again";
+		dildoToolTip += ". Or you could stop just before orgasm....";
+		if((gold && flags["DILDO_SCREW_SCENE_SEEN"] != undefined) || (!gold && flags["RED_MYR_DESERT_DILDO_DONE"] != undefined)) addButton(6,"Steal Dildo",stealDildoScene,gold,"Steal Dildo",dildoToolTip);
+		else addDisabledButton(6,"Steal Dildo","Steal Dildo","You don't even know if they have one!");
 	}
 	else
 	{
@@ -910,6 +942,8 @@ public function winVsAntGrillDeserts():void
 		addDisabledButton(2,"Anal Sex","Anal Sex","You aren't aroused enough for this.");
 		addDisabledButton(3,"Cum Splurge","Cum Splurge","You aren't aroused enough for this.");
 		addDisabledButton(4,"Hand-Play","Hand-Play","You aren't aroused enough for this.");
+
+		addDisabledButton(6,"Steal Dildo","Steal Dildo","You aren't aroused enough for this.");
 	}
 	addButton(14,"Leave",genericVictoryLeaveMyr);
 }
@@ -1563,7 +1597,7 @@ public function redDildoScrew():void
 		//First Time Seeing Dildo Screw Scene:
 		if(flags["RED_MYR_DESERT_DILDO_DONE"] == undefined)
 		{
-			output("\n\nYou notice there’s a sizable lump in her kitpack. Curious, you ask her what’s inside of it.");
+			output("You notice there’s a sizable lump in her kitpack. Curious, you ask her what’s inside of it.");
 			output("\n\nSurprised by your interest, the amber-haired ant-girl pulls out an imposing dildo, a full eight inches of veiny goodness. It’s shaped just like a myr cock, but instead of being scarlet, it’s a mottled green from tip to base with the occasional splotch of chocolate brown.");
 			output("\n\n<i>“... This? It’s standard issue for us girls in the trenches. I’ve spent many a happy night with the Private inside of me, both of us quivering away.”</i>");
 			output("\n\nYou ask ");
@@ -1577,7 +1611,7 @@ public function redDildoScrew():void
 		//Else / Not First Time:
 		else
 		{
-			output("\n\nYou ask ");
+			output("You ask ");
 			if(DontKnowName) output("her ");
 			output("[enemy.name] if she could use the Private on you. She shoots you a saucy grin, clearly happy with your request.");
 			output("\n\n<i>“... Of course. Lie back and I’ll whip him out,”</i> she smiles. The beautiful deserter gestures for you to lie back on the ground and you do so. She straddles your waist, sitting on top of you, and touches it against the tip of your nose.");
@@ -2202,5 +2236,926 @@ public function dontTakeLysPanties():void
 
 public function giveDildoToAntSloot(gold:Boolean):void
 {
+	clearOutput();
+	showDeserter(gold,false);
+	//Give Dildo - all new sub-scene to return dildo voluntarily
+	//found in the non-hostile, non-pregnant approaches; PC returns the dildo as requested
+	//tooltip: Give the {dirty }sex toy back to the myr{ and let her know that you used it}.
 	
+	//CUT ORIGINAL Z DIALOGUE AND REPLACED WITH OPTIONS THAT AREN'T JUST THE PC BEING A GIGANTIC CUNT
+	//{(nice)Smiling/(misch)With a stare rife with implications/(mean)Grunting}, you pull out the dildo and drop it at her feet. {PC used it)"By the way, I got some use out of it," you say, as she picks it up.}
+	output("You pass the dildo back to its proper owner.");
+	if(pc.isBimbo()) output(" <i>“It’s a super nice toy!”</i>");
+	else if(pc.isNice()) output(" <i>“It seems only fitting I return your property.”</i>");
+	else if(pc.isMischievous()) output(" <i>“I was getting tired of lugging this thing around everywhere.”</i>");
+	else output(" <i>“I kept it warm for you.”</i>");
+
+	//(PC didn't use it)
+	if(!gold) output("\n\nThe myr smiles. <i>“Want to spend some time with me, then?”</i>");
+	else output("\n\nLys smiles shyly. <i>“Well, okay then... want to talk?”</i>");
+	//present usual non-hostile menu, minus the 'Fight' button
+	//menu shit here
+	if(gold) pc.removeKeyItem("Republic Dildo");
+	else pc.removeKeyItem("Federation Vibrator");
+	myrDeserterNonCombatMenu(gold);
 }
+
+//Steal Dildo - new scene for either myr
+//steal the dildo (or use the stolen one on her), with or without orgasm denial
+//avail. in both myr's sex menus, combat-agnostic, but requires PC having seen 'Dildo Screw' (if with Briha) or 'Sit & Screw' (if with Lys), else button is hidden (not disabled)
+//adds PC lust at the end so PC can possibly masturbate with dildo right away
+//should add misch points
+//tooltip: Distract the myr with orgasm and then abscond with her sex toy{(repeat) again}. Or you could stop just before orgasm....
+
+public function stealDildoScene(gold:Boolean):void
+{
+	clearOutput();
+	showDeserter(gold,true);
+	var combatLoss:Boolean = (inCombat() && (pc.HP() <= 0 || pc.lust() >= pc.lustMax()));
+	var knows:Boolean = false;
+	if(gold && flags["KNOW_GOLD_MYR_NAME"] != undefined) knows = true;
+	if(!gold && flags["KNOW_RED_MYR_NAME"] != undefined) knows = true;
+
+	//if first time for the given myr
+	if((flags["GOLD_DILDOED"] == undefined && gold) || (flags["RED_DILDOED"] == undefined && !gold))
+	{
+		if(pc.isBimbo()) 
+		{
+			output("<i>“Let me play with your weenie,”</i> you say plainly.");
+			output("\n\n<i>“My... weenie? You mean, this?”</i> The myr pulls the ");
+			if(!gold) output("eight-inch vibrating dildo");
+			else output("ten-plus-inch strap-on");
+			output(" from her kit.");
+		}
+		else if(pc.isBro())
+		{
+			output("<i>“Hey. Lemme see your dildo,”</i> you grunt.");
+			output("\n\nThe myr pulls it out - ");
+			if(!gold) output("eight");
+			else output("ten-plus");
+			output(" inches of well-used plastic love.");
+		}
+		else if(pc.isNice())
+		{
+			output("<i>“I have an idea,”</i> you begin. <i>“But I want to use your sex toy, please.”</i>");
+			if(!gold) output("\n\n<i>“The Private? ");
+			else output("\n\n<i>“My strap-on? ");
+			output("Sure,”</i> the myr says, pulling it from her kit bag.");
+		}
+		else if(pc.isMischievous()) 
+		{
+			output("<i>“Get your dick out,”</i> you order, staring at the myr and smiling.");
+			output("\n\nShe takes a moment to understand, but blushes and reveals the ");
+			if(!gold) output("vibrator");
+			else output("strap-on");
+			output(" concealed badly within her kit.");
+		}
+		else
+		{
+			output("<i>“Get out your dildo,”</i> you bark. <i>“Give it to me.”</i>");
+			output("\n\nThe myr obeys, producing the ");
+			if(!gold) output("vibrator");
+			else output("strap-on");
+			output(" and holding it out to you.");
+		}
+	}
+	//repeat, PC does not have this myr’s dildo
+	else if((gold && !hasGoldDildo()) || (!gold && hasRedDildo()))
+	{
+		output("You smile and point right at the myr’s kit bag. She follows the line of your finger, slumps her shoulders, and then produces the ");
+		if(!gold) output("camo-patterned");
+		else output("golden");
+		output(" marital aid.");
+		output("\n\n<i>“You’re going to steal it again, aren’t you?”</i> she asks, when you motion her to hand it over.");
+
+		if(pc.isBimbo() || pc.isNice())
+		{
+			output("\n\n<i>“Yup,”</i> you chirp.");
+		}
+		else output("\n\n<i>“Damn right,”</i> you assure her.");
+		//(post-combat only)
+		if(combatLoss) output(" <i>“Them’s the rules around here.”</i>");
+		else output("\n\n<i>“... Fine. Only because I kinda like you.”</i>}");
+	}
+	//repeat, PC already has this myr’s dildo
+	else
+	{
+		output("The myr’s ");
+		if(!gold) output("vibrator");
+		else output("strap-on");
+		output(" appears from your own stowage.");
+
+		if(!gold)
+		{
+			output("\n\n<i>“The Private!”</i> ");
+			if(knows) output("Briha");
+			else output("she");
+			output(" says, affectionately.");
+		}
+		else 
+		{
+			output("\n\n<i>“My dildo!”</i> ");
+			if(knows) output("Lys");
+			else output("she");
+			output(" blurts. <i>“You brought it back!”</i>");
+		}
+		if(pc.isBimbo()) output("\n\n<i>“I thought I’d stick this in your cute little kitty again,”</i> you purr.");
+		else if(pc.isBro()) output("\n\n<i>“Can’t get enough of watchin’ you squirm,”</i> you grunt.");
+		else output("\n\n<i>“I enjoyed this last time,”</i> you note. <i>“So we’re going again.”</i>");
+		output("\n\n<i>“Are you going to give it back afterward?”</i> the alien woman asks. You grin and don’t answer.");
+	}
+	//red myr branch if Briha
+	if(!gold)
+	{
+		//(PC doesn’t have red dildo)
+		if(!hasRedDildo()) output("\n\nBefore she can pull back, you take the proffered vibrator and ");
+		else output("\n\nCurtly, you ");
+		output("order her to undress. ");
+		if(knows) output("Briha");
+		else output("The myr");
+		output(" unbuttons her tattered uniform, teasing you with a glimpse of her modest bust");
+		if(!pc.isAss()) output(", but you gesture for her to get on with it}. Her breasts spill from her top and she moves on to her pants and panties, sliding them down with a shimmy.");
+
+		output("\n\nMeanwhile, you examine the vibrator. The power switch is easily found - it even has adjustable settings. ");
+		if(!knows) output("Briha");
+		else output("the red myr");
+		output(" flinches when you crank it so high that it sounds like a tiny jackhammer, looking like she wishes you hadn’t. Either she’s a sexual lightweight, or she keeps it on low for another reason. Perhaps batteries are hard to come by out here? You readjust the setting and look up. Your lover-slash-victim is standing naked at attention, with proud little upright nipples.");
+		output("\n\n<i>“Sit and spread,”</i> you instruct.");
+		output("\n\n");
+		if(knows) output("Briha");
+		else output("The myr");
+		output(" flushes, but complies. Planting her rosy tush in the dirt, she creeps her thighs apart, teasing you with a slim red slit that blooms as they open. ");
+		//(post-combat and lust win)
+		if(combatLoss) output("It’s already glistening with lubrication from your infernal teasing. ");
+		output("You crank the vibrator up and down again, causing it to wobble each time she exposes more of herself, like it’s excited. ");
+		if(knows) output("Briha");
+		else output("The woman");
+		output(" tries to suppress her laughter, but ultimately fails.");
+
+		output("\n\nWhen you’ve disarmed the girl, you turn the toy back to low one last time and advance. <i>“");
+		if(pc.isNice())
+		{
+			output("Play with your ");
+			if(pc.isBimbo()) output("titties");
+			else output("breasts");
+			if(!pc.isBro()) output(", but nothing else please");
+			output(",”</i> you instruct her.");
+		}
+		else
+		{
+			output("You may only touch yourself above the waist,”</i> you say, voice rich and dark as black satin.");
+		}
+		output(" Your partner blinks once, then smiles and raises her hands to her breasts. You slip the vibrator through her labia, sending a quake, and then another, up the poor girl’s frame. The tip coaxes her little red clitoris from its hood; it emerges within seconds of the faux-shaft’s petition, but you hold off.");
+		output("\n\nInstead, you lower the whirring head to the urethra and the nerve-laden pussy entrance. ");
+		if(knows) output("Briha");
+		else output("Your lover");
+		output(" squirms when you nestle the toy in her vagina; her hips start to pump, trying to get the toy inside so she can feel the wonderful sensation of being filled, but you don’t allow it. You ring her opening indolently, watching her pinch and tweak her nipples with eyes shut tight, the very picture of female arousal. The pornographic display stirs your blood");
+		if(!pc.isNude() && pc.hasGenitals())
+		{
+			output(", causing your [pc.lowerUndergarment] to grow ");
+			if(pc.hasCock()) output("tight");
+			if(pc.isHerm()) output(" and ");
+			if(pc.hasVagina()) output("wet");
+			output(".");
+		}
+		else if(pc.hasGenitals())
+		{
+			output(", bringing your ");
+			if(pc.hasCock()) output("[pc.cocksLight] to erectness");
+			if(pc.isHerm()) output(" and ");
+			if(pc.hasVagina()) 
+			{
+				output("your vagina");
+				if(pc.totalVaginas() > 1) output("s");
+				output(" a blush of darker color");
+			}
+			output(".");
+		}
+		else output(".");
+
+		output("\n\n<i>“C-come on,”</i> she shivers, <i>“put it in...”</i>");
+		
+		output("\n\nYou withdraw instead and move the vibrating tip under her clitoris, pressing up to expose it as much as possible. ");
+		if(knows) output("Briha’s");
+		else output("Her");
+		output(" legs thump the ground, and her breasts bear deep, ruddy marks where she’s been squeezing. So does one side of her face - she’s popped a finger into her mouth and is simultaneously sucking on it and pulling at her lip. You turn the vibrator up a notch, sending stronger shocks through her.");
+		output("\n\n<i>“No-!”</i> ");
+		if(knows) output("Briha");
+		else output("She");
+		output(" cries. Her body locks up under your bedeviling care, with legs splayed and thighs jiggling juicily. Her hands stop massaging altogether, as though one more iota of arousal might drive her insane.");
+		output("\n\nShe’s totally at your mercy. You could finish her with such an orgasm that she can’t lift a finger while you abscond with her toy, or you could tease her without release until she’s too <i>horny </i> to stop you. Which one do you do?");
+		//buttons ‘Give Orgasm’, ‘Tease’ (Briha versions)
+		clearMenu();
+		//Give Orgasm - Briha version
+		addButton(0,"Give Orgasm",giveOrgasmToBriha,undefined,"Shove it in and watch her cum.");
+		//Tease - Briha version
+		addButton(1,"Tease",teaseBrihaWithDildoStealAsshole,undefined,"Continue teasing her until she can’t see straight. It shouldn’t take long on a myr.");
+	}
+	//merge into yellow myr branch if Lys
+	else
+	{
+		if(!hasGoldDildo()) output("\n\nYou snag the toy before she can withdraw it, and ");
+		else output("Leering, you }tell her to undress. ");
+		if(knows) output("Lys");
+		else output("The gold");
+		output(" hesitates, focusing all four hands on each button, one at a time. You elect to put her at ease by enjoying her slow strip as much as you can - it’s not like her gorgeous globes are hard to look at. The more you stare, the more confident she becomes, until she’s holding her shirt wide open and jiggling like an erotic dancer for you.");
+		output("\n\nHer first surprise comes when you find and unlatch the dildo’s fastener, pulling the ends apart, but she slows only a little. Eager to see a shiver in her huge tits, you raise the toy to your mouth and coat it with your saliva, ");
+		if(!pc.hasTongueFlag(GLOBAL.FLAG_LONG)) output("passing it between your [pc.lips] until it’s slick.");
+		else output("wrapping it in your [pc.tongue] like a perverted present.");
+		//(PC is red myr with venom (no oranges))
+		if(pc.race() == "red myr" && pc.hasPerk("Myr Venom")) output(" The myr’s eyes widen a bit as you dose her only companion with your venomous saliva - in her face, mixed with arousal, there’s even a bit of... fear? Maybe your red-like appearance is triggering something deep in her propaganda-filled past?");
+		output("\n\n<i>“You do it too,”</i> you insist, holding the tip out to her.");
+
+		if(knows) output("\n\nLys");
+		else output("\n\nThe woman");
+		output(" blushes at the indirect kiss, but throws herself wholeheartedly into lubricating the toy while she peels off her panties. Once the last scrap of uniform is discarded, you pop the toy from her mouth with a wet ‘ffup’.");
+		output("\n\n<i>“Turn around,”</i> you order.");
+		output("\n\nWith excited eyes, she rotates and drops down on all sixes, holding her big ant-abdomen in the air above her jiggly ass. The pussy on the underside would be visible from any angle - thick ropes of female lube hang from it, falling to wet the ground. Laughing, you post her little soldier right under it, standing at attention. Then you place a hand atop the abdomen and guide it down until the dildo sinks in. ");
+		if(knows) output("Lys");
+		else output("The alien");
+		output(" is eager for the contact, using what leverage she has to drive her abdomen down harder.");
+		output("\n\n<i>“Yesss,”</i> she lets out, in a low hiss. <i>“Ooh, fuck me.”</i>");
+		output("\n\nYou say nothing, and your hand remains still. ");
+		if(knows) output("Lys");
+		else output("The myr");
+		output(" continues to pump weakly at the rod, waiting for you to start working... after fifteen seconds, she strings two thoughts together and realizes you’re not going to. She looks back.");
+		output("\n\nYour smile widens as the poor girl makes eye contact, and you hold out your hand palm-up - it’s all up to her. She frowns, but begins trying to pleasure herself in the awkward doggy-cowgirl-style mount, laboriously raising her abdomen high with her legs and letting it slide back down the dildo. Eventually she’ll no doubt get off, and the orgasm will be so weak that she’ll have plenty of energy to fuck with you. For now, though, her slow screw gives you plenty of time to think about how you want to play.");
+		output("\n\nYou could pick up the other dildo and give her the huge orgasm she wants, draining her too far to stop you from purloining her dildo, or you could prevent her release and tease her until she’s too aroused to stand. Which one do you do?");
+		//buttons ‘Give Orgasm’, ‘Tease’ (Lys versions)
+		clearMenu();
+		//Tease - Lys version
+		addButton(0,"Tease",teaseLysVersion,undefined,"Tease","Fuck her just enough to blank out her thoughts with arousal.");
+		//Give Orgasm - Lys version
+		addButton(1,"Give Orgasm",giveLysAnOrgasm,undefined,"Give Orgasm","Give her an orgasm with one dildo in her pussy... and one in her butt.");
+	}
+	processTime(13);
+	pc.lust(10);
+}
+
+//Give Orgasm - Briha version
+//tooltip: Shove it in and watch her cum.
+public function giveOrgasmToBriha():void
+{
+	clearOutput();
+	showDeserter(false,true);
+	var combatLoss:Boolean = (inCombat() && (pc.HP() <= 0 || pc.lust() >= pc.lustMax()));
+	var knows:Boolean = (flags["KNOW_RED_MYR_NAME"] != undefined);
+	if(knows) output("Briha");
+	else output("The myr");
+	output(" stares at you with eyes ablaze - the desire in them would be frightening if she weren’t completely at your discretion.");
+
+	if(pc.isBimbo()) output("\n\n<i>“Wanna cum now?”</i> you coo.");
+	else output("\n\n<i>“Ready for the big finish?”</i> you ask.");
+
+	if(knows) output("\n\nBriha");
+	else output("\n\nThe ant");
+	output(" nods violently. You slide the tip of her toy down one last time, and press it into her with a firmness that says her thrusts will no longer go unrequited. She receives the message like a letter from a lost love, devouring the shaft with her pussy inches at a time. Once it’s finally home and pleasuring her with its whole surface, she sighs.");
+	output("\n\nYou suspect she’s getting too comfortable... so you crank the knob. ");
+	if(knows) output("Briha");
+	else output("The poor girl");
+	output(" yelps as the vibrator goes on a frenzy, and her satisfied stillness is replaced by lusty spasms that batter the faux-cock deep into her. Her back seizes and her breath stops. The ground under her ass darkens as her ruddy-red vagina orgasms and squirts fem-cum around the stuck dildo. For at least ninety seconds, her athletic frame is bent double in a parade of climaxes that covers your hand in sticky myr lube.");
+
+	//first time robbing Briha
+	if(flags["RED_DILDOED"] == undefined)
+	{
+		output("\n\nYou pull the dildo free, and ");
+		if(knows) output("Briha");
+		else output("the poor girl");
+		output(" topples backwards. Wiping your hands on her discarded clothes, you stand to leave when a sound like a wheeze stops you. Briha is perched on shaky elbows, staring at her vibrator and trying to speak. <i>“...Give... give it back....”</i>");
+		if(pc.isBro() || pc.isBimbo()) output("\n\n<i>“Haha, but, like, you’re helpless. That means I’m supposed to rob you, right?”</i> you laugh. <i>“Don’t worry... I’ll be back later. Uh, maybe.”</i>");
+		else 
+		{
+			output("\n\n<i>“It wouldn’t be right if I took nothing from our little encounter,”</i> you taunt. <i>“After all, you’re at my mercy.");
+			if(!pc.isAss()) output(" Don’t fret... I’ll probably bring it back.");
+			output("”</i>");
+		}
+		output(" You waggle the toy at her");
+		if(!pc.isAss()) output(" with a wink");
+		output(".");
+		if(knows) output("\n\nBriha");
+		else output("\n\nYour victim");
+		output(" looks at you with a mixture of confusion and worry, and then her elbows fail, dropping her flat on the ground again.");
+	}
+	//repeat theft
+	else
+	{
+		output("\n\nThe myr slumps forward as you pull the toy free and wipe it on her soft thigh. Her eyes harden a bit when you tuck her toy into your kit, but knowing your response and being unable to speak anyway, she says nothing. With a cheerful finger wave, you leave her soaking in her juices and breathing like a furnace.");
+	}
+	//end, increase lust, time, add key item ‘Fed. Vibrator’ (you can name the dildoes whatever you like) if not present
+	processTime(6);
+	pc.lust(5);
+	//Dildo go!
+	if(!pc.hasKeyItem("Republic Dildo")) pc.createKeyItem("Republic Dildo",0,0,0,0);
+	IncrementFlag("RED_DILDOED");
+	if (inCombat())
+	{
+		output("\n\n");
+		CombatManager.genericVictory();
+	}
+	else
+	{
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
+}
+
+//Tease - Briha version
+//tooltip: Continue teasing her until she can’t see straight. It shouldn’t take long on a myr.
+public function teaseBrihaWithDildoStealAsshole():void
+{
+	clearOutput();
+	showDeserter(false,true);
+	var combatLoss:Boolean = (inCombat() && (pc.HP() <= 0 || pc.lust() >= pc.lustMax()));
+	var knows:Boolean = (flags["KNOW_RED_MYR_NAME"] != undefined);
+	if(knows) output("Briha’s");
+	else output("Your partner’s");
+	output(" eyes implore you to finish her - certainly her mouth would too, if it weren’t locked in a puling whine of intense lust. You elect not to.");
+
+	output("\n\nStooping, you bring your [pc.lips] to her clit, cozying it in your mouth. The myr’s head finally falls as the siege on her pleasure buzzer stops, and her breasts heave. But as your tongue takes over where the vibrator left off, her respiration only becomes frantic again.");
+	if(!pc.hasTongueFlag(GLOBAL.FLAG_LONG)) output(" Brushing and suckling, your tongue laps at her clit like a thirsty dog drinking.");
+	else output(" Burnishing her pussy in long strokes like a chamois of flesh, the oral muscle glides up and over her clit, traces along the sensitive skin of her mound, and returns to ripple around the dildo on its loop back to the top.");
+	output(" She tries to sink onto the vibrator again and again, and whenever her hips jerk, you pull the toy away completely.");
+
+	output("\n\nAfter a few rounds of torture, ");
+	if(knows) output("Briha");
+	else output("the myr");
+	output(" falls over, writhing and squeezing your face in her thighs. <i>“Just let me cum already!”</i> she moans.");
+
+	output("\n\n");
+	if(pc.hasTongueFlag(GLOBAL.FLAG_LONG)) output("Your tongue reels into your mouth like a measuring tape. ");
+	if(pc.isBimbo() || pc.isBimbo()) output("<i>“Sure, babe, whatever.”</i>");
+	else output("<i>“Sorry, am I keeping you?”</i>");
+	output(" You stop teasing and push yourself upright, then gather your things. She watches you for a moment, unable to comprehend what’s happening, and then her hand creeps toward the pussy you left unattended. Waiting for it, you whirl around.");
+
+	if(pc.isBimbo() || pc.isBro() || pc.isNice())
+	{
+		output("\n\n<i>“Hold it, missy! I said touch your tits. Not");
+		if(pc.isBimbo()) output(", like,");
+		output(" wherever you want.”</i>");
+	}
+	else 
+	{
+		output("\n\n<i>“Stop right there");
+		if(silly) output(", criminal scum");
+		output("! Remember... no touching below the waist until I’m gone.”</i>");
+	}
+	output(" The startled ");
+	if(knows) output("Briha");
+	else output("woman");
+	output(" is of two minds; half of her wants to laugh at you and half wants to ignore you. Just to emphasize, you level the sticky dildo at her like an obscene sword.");
+
+	//first time
+	if(flags["RED_DILDOED"] == undefined)
+	{
+		output("\n\n<i>“Hey,”</i> the myr calls, speech staggered with heavy breaths. <i>“At least... gimme my... vibrator.”</i>");
+		if(pc.isBimbo() || pc.isBro()) output("\n\n<i>“Nah,”</i> you answer. <i>“I’m gonna keep it. There’s no laws or whatever out here, right?”</i>");
+		else if(pc.isNice()) output("\n\n<i>“But I’ve incapacitated you... that means I get to take your stuff, right?”</i> you reason.");
+		else 
+		{
+			output("\n\n<i>“Why don’t you come and take it? That’s the rule here,”</i> you cajole.");
+		}
+		output(" You hold the toy out to her and pull it back when she grabs for it.");
+		if(pc.isBro()) output("<i>“Just keeping it for a li’l while. Prob’ly.”</i>");
+		else output("<i>“I’ll give it back next time... probably.”</i>");
+		if(!pc.isAss()) output(" You wink.");
+
+		if(knows) output("\n\nBriha");
+		else output("\n\nThe woman");
+		output(" looks unhappy, but her pussy throbs with more important problems to solve. You leave.");
+	}
+	//repeat theft
+	else
+	{
+		output("\n\nThe myr stares at you, knowing the rules of the engagement. You back away slowly with the fake cock wibbling in your hand, taunting her until you turn a corner - at which point you could swear you hear a sound like two very wet fish being rubbed together.");
+	}
+	//end, increase lust, time, add key item ‘Fed. Vibrator’ if not present, add extra misch point or half-point for denying? (may be too many)
+	pc.lust(10);
+	processTime(5);
+	pc.addHard(1);
+	//red dildo get
+	if(!pc.hasKeyItem("Federation Vibrator")) pc.createKeyItem("Federation Vibrator",0,0,0,0);
+	IncrementFlag("RED_DILDOED");
+	if (inCombat())
+	{
+		output("\n\n");
+		CombatManager.genericVictory();
+	}
+	else
+	{
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
+}
+
+//Give Orgasm - Lys version
+//tooltip: Give her an orgasm with one dildo in her pussy... and one in her butt.
+public function giveLysAnOrgasm():void
+{
+	clearOutput();
+	showDeserter(true,true);
+	var combatLoss:Boolean = (inCombat() && (pc.HP() <= 0 || pc.lust() >= pc.lustMax()));
+	var knows:Boolean = (flags["KNOW_GOLD_MYR_NAME"] != undefined);
+
+	output("You elect to be merciful - after all, she can barely bend to hook a finger in her pussy with those massive knockers in the way. ");
+	if(knows) output("Lys");
+	else output("Your partner");
+	output(" hums when your hand springs into action, jamming the toy into her puss on one of her downstrokes.");
+
+	output("\n\n<i>“Finally,”</i> she says.");
+
+	output("\n\nYou plunge it in over and over, giving up your vertical mount and angling it to hilt and drag along her sensitive entrance on the way in. Lys seems to appreciate this; her sass-mouth devolves into animalistic grunts of pleasure while you ram her soaked snatch better than she ever could on her own. Her pleasure is your study - you want her to be close to orgasm, but not slip over until you spring your little trick.");
+
+	output("\n\nFortunately, she’s so wanton that she doesn’t notice. She kneels like a dog, lowering her chest further and further as your strokes push her ant-butt into the air, until her udders are mashed against the cave floor. Her abdomen is so high now that you can see everything, including your final target. You moisten the smaller dildo one last time.");
+
+	output("\n\n<i>“So close...”</i> groans ");
+	if(knows) output("Lys");
+	else output("the myr");
+	output(". Her gushing pussy quivers and sucks at the larger toy.");
+
+	output("\n\nWith a deft shove, you aim the smaller knob beneath her bug-butt, right at her shadowy pucker. It sinks in just as a mighty yank frees the larger one from her vagina, and ");
+	if(knows) output("Lys");
+	else output("the poor myr");
+	output(" gasps.");
+
+	output("\n\n<i>“Nooo!”</i> she moans, as you penetrate her ass instead. Her abdomen remains airborne, barred from the action by your arm as you work the spit-slicked dick into her asshole, teasing the ring. <i>“Ugh... I want it in my pussy, but... it feels good in my butt too!”</i>");
+
+	output("\n\nA spray of nectar-like fem-cum on your fending arm announces the girl’s orgasm. Her arms give out, but her face still doesn’t hit the dirt thanks to those ridiculous breasts. Ripples knead her flesh as she spasms and spooges, and jiggles break on the chitin sections like waves. Even her violated asshole suckles at the little knob, radiating heat over your hand. Within a minute, her surprise anal orgasm is over, and you pop the nodule-turned-buttplug out and wipe it on her skin.");
+
+	//first time stealing
+	if(flags["GOLD_DILDOED"] == undefined)
+	{
+		output("\n\n");
+		//(unsexed and high libido)
+		if(pc.libido() >= 66) output("<i>“You should thank me and return the favor someday,”</i> you say, licking your lips and imagining the pleasure.");
+		else
+		{
+			if(pc.isBimbo() || pc.isBro() || pc.isNice() || pc.isMischievous()) output("<i>“Was that fun? It looked fun,”</i> you muse.");
+			else output("<i>“Ugh, you got my arm wet,”</i> you gripe, smearing it on her plush backside.");
+			if(knows) output("Lys");
+			else output("The girl");
+			output(" watches you clean up silently. Only when you pack her dildoes in your own kit does she speak.");
+		}
+		output("\n\n<i>“Hey... that’s my... mine,”</i> the myr says.");
+
+		if(pc.isBimbo() || pc.isBro()) output("\n\n<i>“Well, like, stop me,”</i> you laugh. <i>“I’ll prob’ly bring it back later.”</i>");
+		else if(pc.isNice()) output("<i>“You can’t stop me, though,”</i> you say simply. <i>“And your wasteland code says I get to take what I want if so. If it makes you feel better, I’ll probably have it the next time you see me.”</i>");
+		else output("<i>“Yeah? Stop me,”</i> you retort. <i>“Oh, you can’t. That means I get to take a prize, right? Maybe I’ll bring it back after I have my fun.”</i>");
+		output("\n\nThe myr’s shoulders jerk like she wants to grab you, but her arms are wet noodles - you easily escape, grinning.");
+	}
+	//repeat
+	else
+	{
+		output("\n\nThe myr frowns when you clean her dildoes on her uniform and tuck them in your kit, but unable to move and at least somewhat confident that she’ll see you again, she doesn’t try to stop you.");
+	}
+	//end, increase lust, time, add key item ‘G. Republic Dildo’ if not present
+	processTime(7);
+	pc.lust(10);
+	//add gold dildo
+	if(!pc.hasKeyItem("Republic Dildo")) pc.createKeyItem("Republic Dildo",0,0,0,0);
+	IncrementFlag("GOLD_DILDOED");
+	if (inCombat())
+	{
+		output("\n\n");
+		CombatManager.genericVictory();
+	}
+	else
+	{
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
+}
+
+//Tease - Lys version
+//tooltip: Fuck her just enough to blank out her thoughts with arousal.
+public function teaseLysVersion():void
+{
+	clearOutput();
+	showDeserter(true,true);
+	var combatLoss:Boolean = (inCombat() && (pc.HP() <= 0 || pc.lust() >= pc.lustMax()));
+	var knows:Boolean = (flags["KNOW_GOLD_MYR_NAME"] != undefined);
+	output("You work out how to tease ");
+	if(knows) output("Lys");
+	else output("the poor girl");
+	output(", and shift your grip on the dildo’s base to a more sturdy one. Then you begin to work it counter to her desperate, greedy plunges, jamming it upward on her downstroke. By giving it a slight angle you can drive it in deep, tickling her pussy and making her feel deliciously full, judging by the way she moans. She’s ready to blow after just two minutes of your improved stimulation.");
+	output("\n\n<i>“Gonna cum...”</i> moans ");
+	if(knows) output("Lys");
+	else output("the poor girl");
+	output(", oblivious to your plan.");
+
+	output("\n\n<i>“How helpful,”</i> you think. You stop pumping and reset the dildo, permitting only shallow penetration again.");
+
+	output("\n\nThe myr swears when her next ass-thumping abdomen slap comes up so much shorter. She resumes lifting awkwardly, trying to get the best unaided stroke. After another minute of unsatisfying sex, you guess that she’s cooled enough to be teased some more, and start thrusting again. ");
+	if(knows) output("Lys");
+	else output("The woman");
+	output(" says nothing this time, wise to your trick... but you remember how her body trembled when she was about to finish. You stop pumping and reset the dildo just before her climax again.");
+	output("\n\n<i>“Stop fucking with me!”</i> demands ");
+	if(knows) output("Lys");
+	else output("the desperate woman");
+	output(".");
+
+	output("\n\nYou shrug and angle the dildo with sweet promise, but when her abdomen raises up one final time, pull it out completely. Her pussy hits the dirt floor with a ‘splut’. <i>“Okay,”</i> you grin. <i>“I’ll leave you alone.”</i>");
+
+	//first time stealing
+	if(flags["GOLD_DILDOED"] == undefined)
+	{
+		output("\n\n");
+		if(knows) output("Lys’s");
+		else output("The myr’s");
+		output(" head whips around in a panic. <i>“What... you’re leaving? I didn’t mean... hey, don’t take my dildo!”</i> Despite her dangerous tone, her hips continue to pump automatically, trying to slap her cunt onto a missing lover.");
+
+		if(pc.isBimbo() || pc.isBro())
+		{
+			output("\n\n<i>“Yeah, I’m gonna get out of here,”</i> you say absently. <i>“I’ll bring your stuff back later.");
+			if(pc.isBimbo()) output(".. if, like, I remember.");
+			output("”</i>");
+		}
+		else if(pc.isNice()) output("<i>“Sorry, got to be somewhere,”</i> you lie politely. <i>“I’ll come by later, if I remember.”</i>");
+		else output("<i>“Come after me, miss shaky-hips,”</i> you laugh. <i>“It’ll be funny to see you run pumping your ass like that.”</i>");
+
+		output("\n\nLys tries to get up but the ground is so slick with pussy-juice and her hips so loose that she slips twice. Eventually she gives up and rolls onto her side, trying to reach her pussy with her fingers to relieve the lust. By the time she hooks into it, pinching her massive bust between her chest and her arms until it looks like a bun wrapped around two black hot dogs, you’re long gone.");
+	}
+	//repeat
+	else
+	{
+		if(knows) output("\n\nLys");
+		else output("\n\nThe myr");
+		output(" looks back, more disappointed than angry this time. Without another word, she rolls over onto her side and assumes the only position that allows her to reach her pussy without the dildo you just stole. After a bit of supervising at a distance");
+		if(pc.isMischievous()) output(" and shouting encouragement at her like a personal cheerleader");
+		output(", you leave.");
+	}
+	//end, increase lust, time, add key item ‘G. Republic Dildo’ if not present, add extra misch point/half-point?
+	processTime(10);
+	pc.lust(10);
+	//dildoget!
+	if(!pc.hasKeyItem("Republic Dildo")) pc.createKeyItem("Republic Dildo",0,0,0,0);
+	IncrementFlag("GOLD_DILDOED");
+	if (inCombat())
+	{
+		output("\n\n");
+		CombatManager.genericVictory();
+	}
+	else
+	{
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
+}
+
+//Use Stolen Dildo - new masturbation menu scenes for PCs who stole a dildo
+//short scenes to dirty Briha’s/Lys’s stolen dildo with your naughty fluids (or implied doodoo if unsexed)
+//button hidden instead of disabled if PC has no relevant key item (so it can be a surprise)
+//also adds misch point, but only once per theft (no point added if ‘dildo used’ flag already at 1 or 2)
+//tooltip: Get your smutty sexual fluids all over the dildo you stole from the myr deserter.
+//tooltip disabled, has dildo but masturbation not allowed: You can’t masturbate here!
+
+public function stolenDildoFap():void
+{
+	clearOutput();
+	showName("\nDILDO");
+	if(hasGoldDildo() && hasRedDildo()) showName("\nDILDOS");
+	var plural:Boolean = (hasGoldDildo() && hasRedDildo());
+	output("You pull out the sexual aid");
+	if(plural) output("s");
+	output(" that you stole and examine ");
+	if(!plural) output("it");
+	else output("them");
+	output(".");
+
+	if(hasGoldDildo())
+	{
+		output("\n\n");
+		if(flags["KNOW_GOLD_MYR_NAME"] != undefined) output("Lys’s");
+		else output("The gold myr’s");
+		output(" golden dick-alike is a double-ended model. The part meant for jabbing in your partner is a hefty ten inches, while the other is shorter, but detachable just in case you don’t have anywhere to stick it. What kind of perverted engineer would have thought of that, do you suppose?");
+	}
+	if(hasGoldDildo())
+	{
+		output("\n\n");
+		if(flags["KNOW_RED_MYR_NAME"] != undefined) output("Briha’s");
+		else output("The red myr’s");
+		output(" toy is an eight-inch, twin-motor vibrator with one wiggly engine in the tip and the other in the base. It’s camouflage-patterned, befitting the myr’s martial theme.");
+	}
+	output("\n\nHow do you want to get ");
+	if(plural) output("them");
+	else output("it");
+	output(" dirty?");
+	//gives ‘Back’ button and the sub-buttons below, sub-buttons are also hidden if the requisite key item is not present
+	//stolen dildo menu.
+	clearMenu();
+	
+	//Vibrator Anal
+	//requires Briha’s vibrator
+	//taur PC must have equipped shield and at least 1 point of shield health to qualify
+	//tooltip: Stick the red myr’s vibrator in your booty{(cock) for a prostate massage{(no taur), then cum all over it}}.
+	//tooltip disabled, is taur and shield is at 0 or unequipped: You’d need some kind of force-field to push this thing back out once it’s up you. Goodness gracious.
+	if(hasRedDildo())
+	{
+		if((pc.isTaur() && !(pc.shield is EmptySlot)) || !pc.isTaur()) addButton(0,"Anal Vibe",useBrihasVibeAnal,undefined,"Anal Vibe","Stick the red myr’s vibrator in your booty" + (pc.hasCock()) ? " for a prostate massage" : "" + (!pc.isTaur() && pc.hasCock()) ? " then cum all over it" : "" + ".");
+		else addDisabledButton(0,"Anal Vibe","Anal Vibe","You’d need some kind of force-field to push this thing back out once it’s up you. Goodness gracious.");
+	}
+	//requiring Lys’s dildo
+	if(hasGoldDildo())
+	{
+		if(!pc.isTaur()) addButton(1,"DP Ass",didloDPWivStolenDildo,"ass","DP Ass","Unlatch the dildo and stuff both ends inside your asshole. May end in accidental stretching.");
+		else addDisabledButton(1,"DP Ass","DP Ass","Your backside’s too far away to fuck.");
+		if(pc.hasVagina())
+		{
+			if(!pc.isTaur()) addButton(2,"DP Vag",didloDPWivStolenDildo,"vag","DP Vag","Unlatch the dildo and stuff both ends inside your vagina. May end in accidental stretching.");
+			else addDisabledButton(2,"DP Vag","DP Vag","Your backside’s too far away to fuck.");
+		}
+		addDisabledButton(2,"DP Vag","DP Vag","You don't have a vagina.");
+
+		if(pc.hasCuntTail()) addButton(3,"DP Tail",didloDPWivStolenDildo,"tail","DP Tail","Unlatch the dildo and stuff both ends inside your cunt tail. May end in accidental stretching.");
+		else addDisabledButton(3,"DP Tail","DP Tail","There's nowhere in your tail to put them!");
+
+		if(pc.hasFuckableNipples()) addButton(4,"DP Nipple",didloDPWivStolenDildo,"tail","DP Nipple","Unlatch the dildo and stuff both ends inside your nipple.");
+		else addDisabledButton(4,"DP Nipple","DP Nipple","There's nowhere in your nipples to put them!");
+	}
+	addButton(14,"Back",masturbateMenu);
+}
+//Vibrator Anal
+//requires Briha’s vibrator
+//taur PC must have equipped shield and at least 1 point of shield health to qualify
+//tooltip: Stick the red myr’s vibrator in your booty{(cock) for a prostate massage{(no taur), then cum all over it}}.
+//tooltip disabled, is taur and shield is at 0 or unequipped: You’d need some kind of force-field to push this thing back out once it’s up you. Goodness gracious.
+public function useBrihasVibeAnal():void
+{
+	clearOutput();
+	showName("\nANAL!");
+	//non-taur version
+	if(!pc.isTaur())
+	{
+		output("Eyeing the red myr’s vibrator, you decide on the dirtiest place you can think of. For several minutes, you smear it with your saliva, coating it to ease insertion.");
+		if(pc.ass.looseness() >= 3) output(" You needn’t have bothered - the eight-inch toy slides into your [pc.asshole] like a one-man cargo shuttle slipping through an inter-system gate.");
+		else output(" The preparation is worth it - your [pc.asshole] yields grudgingly to the wet toy, accepting it into your depths with a sticky welcome.");
+		//{butt stretch/butt hymen check}
+		pc.buttChange(20);
+		if(pc.libido() >= 66) output("\n\nIt’s a natural next step to ");
+		else output("\n\nIt takes a few moments to nerve yourself up to ");
+		output("crank the switch and cut on the motors. The toy springs to life like it’s perfectly at home inside your [pc.asshole]. The wiggling base batters and stretches your sensitive anal ring, while the tip reaches a much deeper and more intimate spot");
+		if(pc.hasCock()) output(" - your prostate");
+		output(".");
+
+		//no cock
+		if(!pc.hasCock())
+		{
+			output("\n\nAs the vibrator caresses your colon with spastic jerks, your hands run over your [pc.chestFull], coming to rest on your [pc.nipples 0]. You tweak and pinch them, returning over and over between bouts of stroking your neck and resting a hand on your hip, pretending it’s a strong lover’s. When the mood suits you, you reach back and crank up the power on the stolen toy, and then take up a submissive position on your hands, with your [pc.ass] sticking up in the air, fantasizing about being fucked by a powerful, muscular man.");
+			if(pc.isNice()) output(" You orgasm arrives, amid daydreams of being at his discretion, a slave-boy to be stuffed with his cock whenever he pleases.");
+			else output(" Despite the thrilling fantasy, you don’t actually manage to climax until your mind wanders to guessing the red myr’s face... her reaction when she finds out just where you stuck her beloved ‘Private’.");
+			output(" With a guttural grunt, you cum hard. Your asshole takes a long pull of the toy, drawing it inside you like a greedy mouth and ensuring it’s buried deep by the time you slump over.");
+			output("\n\nFifteen minutes later, you wake up aroused, with the toy still buzzing busily in your ass. You pull it out and turn it off before it can stoke your lust too much.");
+		}
+		//cock
+		else
+		{
+			output("\n\nStreams of [pc.cum] leak from your [pc.cocks] as the spastic head pushes against your sensitive gland. Heedless of orgasm, you fountain jizz from the prostate stimulation alone. The toy does its best to bring you off anyway - especially when you decide that you want to ejaculate badly enough to crank the knob. The vibrator rattles inside you, kneading your prostate and rendering you achingly stiff.");
+			output("\n\nA suitable conclusion flashes through your thoughts. You yank out the toy, set it down deactivated, and start to masturbate your [pc.cumNoun]-smeared dick. ");
+			if(pc.cumQ() < 25) output("A few droplets more of spunk escape your exhausted body, sprinkling onto the stolen dildo. It remains standing upright.");
+			else if(pc.cumQ() < 300) output("Several ropes of jism lance toward the toy, only partly aimed. Nonetheless, you score a hit, and the dildo topples from the impact of your seed.");
+			else output("You couldn’t possibly miss the toy - even a myr could score hits with your spread. Spooge floods the dildo, carrying it away in such a current of [pc.cumColor] that you worry about finding it again, somewhere deep in the last lucid part of your mind.");
+			output("\n\nAfter blowing your load, you retrieve the toy and rest for a while to recover.");
+			//end, pass 20 mins, resolve lust
+			//mark ‘deserter sextoy used’ flag to 1 if no cock, or 2 if cock
+		}
+		processTime(20);
+		pc.orgasm();
+	}
+	//taur version
+	else
+	{
+		output("You really want to pleasure yourself with ");
+		if(flags["KNOW_RED_MYR_NAME"] != undefined) output("Briha’s");
+		else output("the red myr’s");
+		output(" vibrator");
+		if(!pc.isNice()) output(" and dirty it with your smutty hole");
+		output(", but the sheer unwieldiness of your body creates some serious problems. You puzzle over it for a while until you come up with an... interesting solution. To start with, you strip off <i>all</i> of your gear.");
+
+		output("\n\nCranking the vibrator to maximum, you set it flat end-down, nestled in the pile of your stuff for extra stability. You shuffle it between your [pc.feet], front to side to back, always pinning it between at least two. So doing, you manage to keep it both on and upright until it’s under your [pc.ass] with a very clever display of ");
+		if(pc.legType == GLOBAL.TYPE_EQUINE) output("horse-man-ship");
+		else output("prowess");
+		output(". Greedily but carefully, you lower your [pc.asshole] onto the toy. It batters its way into you");
+		if(pc.ass.looseness() >= 3) output("r loose hole easily");
+		else output(" with a struggle");
+		output(", aided by the weight of your back half.");
+		pc.buttChange(20);
+
+		output("\n\nThe sensation is nice");
+		if(pc.hasCock())
+		{
+			output(" - nice enough that your [pc.cocksLight] start");
+			if(pc.cockTotal() == 1) output("s");
+			output(" to spurt [pc.cum] from the prostate stimulation");
+		}
+		output(". But you’re not going to be able to relax into the pleasure without securing its exit. This part is much harder, not least because the vibrator is battering your asshole like it’s possessed by angry ghosts. With quivering hands, you tie your " + pc.shield.longName + " to one of the straps of your pouch, turn it on... and then sit on it.");
+		output("\n\nThe device slides partway into your distended anal ring, and the shield shifts to cover the new contours it finds. Abruptly, the blows of the vibrator head become soft - soft and electrically tingly. You laugh ");
+		if(pc.hasCock()) output("and puddle more jizz ");
+		output("as the toy’s buzzy assault bounces off of the shield, pushing it further and further out with each tiny wiggle. The tingling sensation spreads through your [pc.ass], and though the vibrator has already slid halfway out, you’re not close to done, so you plop your butt down again. It thrusts back inside and you let its tingly tantrum eject it, again and again.");
+		output("\n\nBy the fourth pass, you can’t take any more of the muted caresses, and you come.");
+		if(pc.hasCock())
+		{
+			if(pc.cumQ() < 8) output(" [pc.Cum] beads atop your [pc.cocksLight]; already half-spent by prostate stimulation, you dribble out an orgasm that wouldn’t impress an ant.");
+			else if(pc.cumQ() < 400) output(" A few squirts of [pc.cum] spurt from you, decorating the underside of your torso and the ground.");
+			else output(" Your fore-[pc.legs] and chest get a [pc.cum]-bath as your seed bubbles up; so many waves erupt from your prostate-pounding orgasm that you must focus on keeping your footing, wary of falling and jamming your toys too deeply to retrieve.");
+		}
+		//no cock
+		else output(" Your asshole clenches and ripples around the toy, trying to hold onto it in defiance of physics, but ultimately your orgasm ends and the vibrator slides out.");
+		output(" With the vibrator safely ejected by your shields, you can tug on the strap to retrieve your device and then clean up.");
+		//end, lust, time
+		//flag Briha’s vibro as used 1
+		//if taur, reduce shields by 1 point
+	}
+	processTime(20);
+	pc.orgasm();
+	if(pc.isTaur()) pc.shields(-1);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//requiring Lys’s dildo
+//Dildo DP - for vagOrAss (tail/nipcunt req’d if taur)
+//works for vagOrAss unless PC is taur; taur requires nipple/tail cunt
+//tooltip: Unlatch the dildo and stuff both ends inside your {(normies){vagina/asshole}/(taurs){tail-cunt/fuckable nipple}}. May end in accidental stretching.
+//tooltip disabled, taur and no tail/nipcock: Your backside’s too far away to fuck.
+public function didloDPWivStolenDildo(target:String = "vag"):void
+{
+	clearOutput();
+	showName("\nDP!");
+	output("You detach the smaller end from the strap-on and tickle your ");
+	if(target == "vag") output("labia");
+	else if(target == "ass") output("anal ring");
+	else if(target == "tail") output("parasitic tail’s opening");
+	else output("mutated, fuckable nipple");
+	output(" with the tip of the ten-inch monster. Slowly, you work it inside; its edges stir and scrape at your nerves, sparking pleasure up your spine. ");
+	if(target == "vag") pc.cuntChange(0,75);
+	else if(target == "ass") pc.buttChange(75);
+	
+	output("\n\nYou masturbate to a froth with the first dildo, working yourself into such a fugue that your lust-addled mind craves more penetration. Extended plunges with the first toy dredge up lubrication from deep in your core, until you’re satisfied that you’re wet enough to take the smaller one as well. With care but very little ceremony, you slip it in alongside its larger sibling.");
+	//{second vaginal/anal/whatever stretch check (for double pen; both heads together are probably ~5in wide)}");
+	if(target == "vag") pc.cuntChange(0,375);
+	else if(target == "ass") pc.buttChange(375);
+
+	output("\n\nThe two toys press against one another, each driving the other deeper into your furrows as you thrust in and out. It’s hard to keep the image of being man-handled by two strong lovers from your fertile imagination - once it’s in there, all you can see is the spectacle of them fighting over access to your ");
+	if(target == "vag") output("[pc.vagOrAss]");
+	else if(target == "ass") output("[pc.asshole]");
+	else if(target == "tail") output("[pc.tailCunt]");
+	else output("[pc.nipple]");
+	output(". The smaller, more energetic one tries his best to shove the larger one aside, but his competition’s sheer bulk forces him to accept a subordinate position, unable to cum as deeply inside you.");
+
+	output("\n\nUsing both of the shafts to pump at your hole, you come in minutes. ");
+	
+	if(target == "ass") output("Your anus clenches and tries to hold both invaders, but only succeeds in squeezing out the smaller head by pressing it against the other. The sensation of it sliding out sends aftershocks through you and you imagine a small, exhausted lover slipping his spent cock from your ass.");
+	else
+	{
+		var squirt:Boolean = false;
+		if(target == "nip" && pc.canMilkSquirt()) squirt = true;
+		else if(target == "vag" && pc.isSquirter()) squirt = true;
+		if(!squirt)
+		{
+			output("Your ");
+			if(target == "vag") output("pussy");
+			else if(target == "tail") output("tail-cunt");
+			else output("nipple-hole");
+			output(" quivers around them, dribbling a little bit of ");
+			if(target != "nip") output("[pc.girlCum]");
+			else output("[pc.milk]");
+			output(" through the space between them.");
+		}
+		else
+		{
+			output("Your ");
+			if(target == "vag") output("pussy");
+			else if(target == "tail") output("tail-cunt");
+			else output("nipple-hole");
+			output(" gushes with climax, flooding the two toys with so much lubrication that the smaller one slips out on a tight squeeze.");
+		}
+		output("\n\nSpent, you lay down for a brief rest. The sex toys stuffing your hole are a problem for the awake you.");
+	}
+	//end, lust, time, set ‘used’ flag for Lys’s toy
+	processTime(30);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+/*
+output("\n\nGive Flower - new scene for Lys");
+output("\n\n//alternate use for the venus pitcher flower from Emmyquest");
+output("\n\n//hidden until PC has seen ‘About Her’ in Lys’s talk menu (think you’ll need a new flag for this)");
+output("\n\n//avail. thru ‘About Her’ topic, consensual sex menu or victory-sex menu if Lys is friendly");
+output("\n\n//adds nice point(s)");
+output("\n\n//tooltip: Present Lys with the exotic flower you found on Mhen’ga and see if {(nice)it’ll cheer the poor girl up. /(else)she’ll ‘appreciate’ you for it. }");
+output("\n\n//tooltip disabled, no flower in inventory: Lys would appreciate any flowers you find. You wonder where you could get one....");
+
+output("\n\n{(bimbro)"Um, I found a thing,”</i> you announce. /(nice)"You might like this,”</i> you remark. /(misch)"Battlefield flower delivery service,”</i> you jibe. /(mean)"This is for you,”</i> you say abruptly. <i>“Try not to get all emotional.”</i> }");
+
+output("\n\nWhen you produce the explosively pink-and-purple blossom, the myr leans in so fast that she almost falls over. <i>“Where {(first time)did you get that? It’s /(else)do you keep finding these? They’re }gorgeous!”</i> You hold it out for her appraisal, and her face disappears into the bloom for the next few seconds as she takes a long, deep sniff. When it reappears, it’s plastered with a giddy smile. {(first time)"Aww... did you see this and think of me because I used to be a florist?”</i>");
+
+output("\n\n{(bimbro)"Used to... what?”</i> you ask, dimly. <i>“Oh! Yeah, like, totally.”</i> /(nice)"You seemed very sad, and I thought it might cheer you up.”</i>(else)You nod. }}");
+
+output("\n\n<i>“So...”</i> Lys says, playing with her hair like a shy date. It’s funny when you remember that she’s a hardened soldier who’s probably killed more myr than you’ve met. <i>“... are you going to give that pretty flower to me?”</i>");
+
+output("\n\n//first time");
+output("\n\n{(nice or bimbro)"Sure,”</i> you answer. <i>“That’s{, like,} why I got it out.”</i>");
+
+output("\n\nLys smiles and holds out her hand - she also squeezes her breasts between her folded arms as she does, making sure you see a window of button-bursting, golden cleavage under her uniform.");
+output("\n\n/");
+output("\n\n(misch)"That depends,”</i> you grin. <i>“A flower this rare is bound to be worth a lot. I could take it into town and get four, maybe five kisses for it.”</i>");
+
+output("\n\nLys’s expression starts crestfallen but recovers when she hears the end of the joke. <i>“I can do you a better offer than that,”</i> she says, leaning forward on her hands and showing off her bust. Her seductive lids lower.");
+output("\n\n/");
+output("\n\n(mean)"Could do that,”</i> you muse. <i>“It’s bound to be worth money, though. I’d want something valuable in exchange.”</i> You look at her, staring holes into her shirt to make sure she understands.");
+
+output("\n\nLys undoes a few buttons and leans forward on her hands, displaying her heavy cleavage. <i>“If you’ll accept services in lieu of goods and currency, I believe I have an offer.”</i> }");
+
+output("\n\nYou pass the blossom to Lys and she places it atop her kit bag with care.");
+
+output("\n\n//repeat");
+output("\n\nYou pass over the flower. Lys places it atop her equipment, far behind her and out of the way.");
+
+output("\n\n//merge");
+output("\n\nYou {(mean)demand she strip. /ask if she’s in the mood for some intimacy. }{Lys/The gold myr} agrees in a second, disrobing like skin is the only uniform she’s comfortable in. She takes special relish in exposing her huge tits, undoing buttons bottom-to-top so the jiggly jugs strain at the fasteners and nearly fall out of her shirt.");
+
+output("\n\n<i>“You like?”</i> she teases, watching you goggle at her breasts. A shimmy sets them swaying back and forth, highlighted in gold against the muted earth background.");
+
+output("\n\n{(bro or high lib (75+) or PC name = Duke Nukem)"Shake it, baby!”</i> you hoot. /(nice or bim and not mean)"Yes, very sexy,”</i> you say. /(bim and mean)"I’m sure your dates are happy with them,”</i> you snipe{(cupsize > 0), thinking how inferior they are to yours}. /(misch non-bimbro)"They’re a bit on the small side,”</i> you lie, with a smile. <i>“Are you sure you’re eating right out here?”</i> /(else)You ignore her and gesture for her to finish. }");
+
+output("\n\nLys winks and moves to her bottoms, sliding them over her thick golden booty. Her ant-abdomen bobs when she tugs the last piece of fabric away, starkly black-on-yellow{(combat fuck and lust win) and already oozing translucent, slippery fluid from the aroused opening}.");
+
+output("\n\nYou remove your [pc.gear]. <i>“Show me your {(bro)cute pussy/(bim)va-jay-jay/(else)vagina,”</i> you instruct, pointing at the ground.");
+
+output("\n\nYour partner seats herself, leaning far back and spreading her legs so her bug-butt dangles like ripe fruit, beading with pussy-nectar. When you place a {(taur)[pc.foot]/finger} against her entrance, she shivers, and a ripple travels with it. Starting from her cushy ass, the shiver climbs her torso and vibrates the breasts lying indolently on her chest. The alien doesn’t try to restrain it; she watches to measure how hot you’re getting. {(not unsexed)Your exposed {[pc.cocksLight]/vagina{s}} do a poor job hiding it, {swelling with blood/flushing with lust}. }");
+
+output("\n\n<i>“What will you do with me?”</i> asks your vulnerable lover.");
+
+output("\n\n//if tailcock hasn’t been satisfied recently (commented for now because TC do not require sating)");
+output("\n\n//Before you can begin to choose, your [pc.tails] lash{es} and twist{s} into your view. [pc.OneTailCock] has emerged at the sight and scent of pussy, drooling precum and slapping your [pc.ass] to punish you for neglecting it so long.");
+
+output("\n\n//"I suppose we’d better take care of that, first,”</i> says Lys, innocently.");
+output("\n\n//automatically skip choice (give ‘Next’ button or whatev) and start cock branch below, using tailcock tags");
+
+output("\n\n//else present a choice: buttons ‘Use Cock’, ‘Cunnilingus/Analingus’");
+
+output("\n\nUse Cock");
+output("\n\n//gold myr are played out if missionary is all that’s left");
+output("\n\n//tooltip: Stick your {dick/cock-tail} in Lys’s pussy{(no taur), and your face in her {(PC < 4ft)thighs/tits}}.");
+output("\n\n//tooltip disabled, no cock/tailcock: You don’t have any suitable cocks secreted about your person.");
+output("\n\n//tooltip disabled, cocks too big and no tailcock: No number of presents would get her wet enough to take your enormous [pc.cocksLight]! Have you considered moving to the seaside?");
+
+output("\n\nLys swallows hard at the {[pc.cockNounComplex] you select/[pc.tailCock] that self-selects and juts forward}, equal parts nerve and notion. One hand absently travels the valley between her hilly breasts, marking her blood-rich yellow skin with lines that show and fade a second later.");
+
+output("\n\n<i>“I’m ready... whenever you are,”</i> she invites, with husky breath.");
+
+output("\n\n’Ready’ isn’t a strong enough word. You {walk/slither/slide} to her and straddle her ant-half. It curls up with her lust, dabbing at your {[pc.scrotum]/[pc.skinFurScales]} and so eager for penetration that it’s actually hard to angle your shaft. Lys flushes and squeezes it into position by closing her thighs.");
+
+output("\n\nWith her restraints and her pussy kissing the tip of your prick, you can sink in, hilting in her deep, wet insides with one smooth stroke. The alien woman grunts as your overzealous thrust slaps your {[pc.knot]/[pc.sheath]} into her labia.");
+
+output("\n\n<i>“You’re enthusiastic,”</i> Lys says.");
+
+output("\n\n{(mean)"Naw, just looser than I expected,”</i> you quip.");
+
+output("\n\n}");
+output("\n\n//no horses");
+output("\n\nHer hands caress your collar, pulling you down. Her fingers, hardened by rough living, guide your face to her {(shortarse)jiggly thighs/bountiful cleavage}. The flesh accepts you willingly, holding you and softly buffeting whenever you thrust in deep.");
+
+output("\n\n<i>“Ah!”</i> squeaks Lys, every time you hump her ant-sex. With her flesh wrapped around your [pc.ears] and the scent of sugar in the air, the pleasure-grunts have a baffled, faraway quality, like you’re listening to her get fucked on the other side of an orchard. {(not short)Her erect nipples drool nectar as she presses her rich gold breasts into you, smearing your [pc.hair]. /(short)Her sweaty thighs squeeze your head, making the orchard smell slightly past ripe with a cloying, musky sweetness. }Wanton pussy clamps down on your {[pc.tailCock]/[pc.cock]}, oblivious to any <i>mise en scène</i> except the hot, wet sex, threatening you with your looming orgasm.");
+
+output("\n\n//horses here");
+output("\n\nHer hands caress your chest. The touches on your [pc.legFurScales] stir idled lust again, spurring desire to hear the arousal of the woman under you, even if you can’t see. A mighty pump elicits a cute little grunt - the first of many.");
+
+output("\n\nUsing her noises as cues, you rut mercilessly from your position of superior power. Whenever you hear a gratifying moan, you repeat the angle over and over, tagging the found spot until her cries weaken. The rampant pursuit of pleasure isn’t destabilizing Lys alone... you edge closer to blowing a load of [pc.race]-spunk with every stroke through her soaked furrows and folds.");
+
+output("\n\n//if PC has an unused too-big (60 inches+ length) cock, append to either fork");
+output("\n\nOn one thrust, your [pc.cockBiggest] slaps against her golden, sticky nipple, delivering a shiver to your hips. Greedy for pleasure, you {(horse)ask Lys to wrangle and route it between her big, cushiony breasts, which she does. /(non-horse){(tall)pull your head free and wrangle your cock into its place, running/(short)run} it between her big, cushiony breasts. }Lys is so eager that she fellates it immediately, slurping precum with two burning, wet lips. On every stroke, your [pc.cockHeadBiggest] now forges through a valley of quivering breast to end in the eager mouth of a cum-hungry slut, compounding the ecstasy of her pussy. It takes little time before your urethras swell to deploy your sperm - and she reacts by shutting her eyes and opening her mouth to brace for the strokes aimed right at her.");
+
+output("\n\n//merge all");
+output("\n\nWith a groan, you pop. {(li’l cum)Dribbles of [pc.cum] creep from your cock{s}, oozing their way into the myr’s vagina. {(using 2nd cock)Her tongue intercepts the load from your second shaft, lapping it up on its way down your cock. }/(med cum)Your spunk shoots wildly inside the myr, dosing her with [pc.cum] to give a rare taste of a queen’s happiness. {(2nd cock)The second load drops on her face, falling into her mouth and across her eyes. }/(big cum)Cataracts of [pc.cum] rush against your crotch from the myr’s overflowing pussy, which is packed after only a few squirts from your hyper-fertile tool. {(2nd cock)Her open-mouthed naiveté gives way to a tight-shut face as she tries to weather the storm of sperm you unleash. }}Lys’s pussy ripples with her own climax, juicing you for all the seed you can deliver{(big cum) regardless of ability to contain it}.");
+
+output("\n\n<i>“Well, that was enjoyable,”</i> says Lys when you finish{(tall non-taur), wiping a bit of drool from between her breasts}. <i>“If you find any more flowers, bring them by - you’re fun to trade with.”</i>");
+
+output("\n\nYou {(nice)laugh/(else)roll your eyes}, then collect your gear. Lys re-equips as well, holding the flower away to prevent crushing it, and then you bid one another goodbye.");
+output("\n\n//end, reduce lust, time, remove 1x venus flower");
+
+
+output("\n\nCunnilingus/Analingus");
+output("\n\n//only displays as ‘Analingus’ if PC has no standard cunni");
+output("\n\n//tooltip: Get Lys to {lick your vagina/rim your asshole} while you amuse yourself with her sex.");
+
+output("\n\n{(bim or non-nice)"Eat my {pussy/ass},”</i> you enjoin. /(else bro or nice)"Could you use your mouth on, ah, my {pussy/butt}?”</i> you request. }");
+
+output("\n\nLys looks startled, but rolls with it. <i>“Bring it over here, then,”</i> she tries to coo.");
+
+output("\n\n{(misch and ass near max size)"Beeeep beeeep,”</i> you say, reversing your [pc.ass] into her. /(else)You turn around and back your [pc.ass] up. }Four palms intercept it, spreading your cheeks and searching out your [pc.vagOrAss]. No sooner do you feel the warm cave air than the flow is blocked. Hot breath fills you in its place, only to be pushed out in turn by a questing tongue. Ah, she gets right down to business.");
+
+output("\n\nAs her flexible oral muscle teases your ridges{, dipping to slurp at your [pc.clit] and coax it from your hood}, you reach for her pink-gold pussy. You busy your hands with the myr’s smutty sex, trying to get her off in hopes that the moans into your [pc.vagOrAss] will produce good vibrations. The myr can’t bear it; after a minute she’s wet enough that you can slip your whole hand in.");
+
+output("\n\n<i>“Hnnnnnnnnn,”</i> Lys groans, breathing on your blood-engorged {labia/sphincter}. It becomes a game of who can get whom off first; Lys begins to suspect the rules after your next finger-pruning dive into her honeypot.");
+
+output("\n\n<i>“Trying to make me cum?”</i> she hums, lips pressed close to transmit the quivers. You reply with another plunge, and buck your [pc.ass] to rattle her off of her chat break and back to work. The myr licks at your [pc.vagOrAss] with talent that could only bloom in an all-female combat wing, lingering when you jerk with pleasure and diddling your sweetest spots with the tip of her tongue. Her pussy, as wet as her mouth, pulls at your hand to draw it in for a load of semen that will never come.");
+
+output("\n\nWith an almost synchronized groan, you both climax. You’re pretty sure that you came first, but Lys is quaking and candying your hand with so much sweet fem-cum that you doubt she’ll note it. Your {pussy/asshole} squeezes her poor tongue, circling it with a vise of muscle designed for a much longer intruder but happy to rub against its bumpy surface. {(squirter)A burst of your [pc.girlCum] hits her as you squirt with ecstasy, but her eyes are closed in a rapturous smile of her own. }Panting heavily and sticky with sex, you fall apart.");
+
+output("\n\n<i>“Well, that was enjoyable,”</i> says Lys when you finish{(tall non-taur), wiping a bit of drool from between her breasts}. <i>“If you find any more flowers, bring them by - you’re fun to trade with.”</i>");
+
+output("\n\nYou {(nice)laugh/(else)roll your eyes}, then collect your gear. Lys re-equips as well, holding the flower away to prevent crushing it, and then you bid one another goodbye.");
+output("\n\n//end, reduce lust, time, remove 1x venus flower");
+*/

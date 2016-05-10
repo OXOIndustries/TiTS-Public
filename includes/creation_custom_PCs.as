@@ -484,6 +484,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.hornType = GLOBAL.TYPE_DRACONIC;
 			pc.eyeColor = "red";
 			pc.wingType = GLOBAL.TYPE_DRACONIC;
+			pc.wingCount = 2;
 			pc.buttRatingRaw = 7;
 			pc.hipRatingRaw = 6;
 			pc.tailType = GLOBAL.TYPE_DRACONIC;
@@ -687,6 +688,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.addTailFlag(GLOBAL.FLAG_LONG);
 			if(pc.femininity < 80) pc.femininity = 80;
 			pc.wingType = GLOBAL.TYPE_DEMONIC;
+			pc.wingCount = 2;
 			pc.tongueType = GLOBAL.TYPE_NAGA;
 			pc.clearTongueFlags();
 			pc.addTongueFlag(GLOBAL.FLAG_LONG);
@@ -807,6 +809,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.hairColor = "silver";
 			pc.earType = GLOBAL.TYPE_DRACONIC;
 			pc.wingType = GLOBAL.TYPE_DRACONIC;
+			pc.wingCount = 2;
 			pc.hipRatingRaw = 9;
 			pc.buttRatingRaw = 9;
 			pc.thickness = 25;
@@ -872,6 +875,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.hornType = GLOBAL.TYPE_DRACONIC;
 			pc.hornLength = 4;
 			pc.wingType = GLOBAL.TYPE_DRACONIC;
+			pc.wingCount = 2;
 			pc.legType = GLOBAL.TYPE_DRACONIC;
 			pc.clearLegFlags();
 			pc.addLegFlag(GLOBAL.FLAG_DIGITIGRADE);

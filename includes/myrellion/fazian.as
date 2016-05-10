@@ -980,7 +980,7 @@ public function fazianQuestGoldMyr():void
 	
 	output("\n\n<i>“Ooh yes,”</i> replies one immediately. <i>“He’s a nice piece of honeycomb, isn’t he? Shame you have to pay to go see him.”</i>");
 	
-	output("\n\n<i>“‘s up with that, anyway?”</i> slurs another, trying to reach up and pinch the passing legs of a myr stripper. <i>“Starwalker charging us. What - why - how could they need our money? Pointing their stalag-cannons at us all the while. S’isn’t right.”</i>");
+	output("\n\n<i>“W's up with that, anyway?”</i> slurs another, trying to reach up and pinch the passing legs of a myr stripper. <i>“Starwalker charging us. What - why - how could they need our money? Pointing their stalag-cannons at us all the while. S’isn’t right.”</i>");
 	
 	output("\n\n<i>“It’s to keep cheap, pinching wetra-wives like you away from the prime stock!”</i> shrills another. They all dissolve into laughter.");
 	

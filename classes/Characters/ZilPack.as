@@ -80,6 +80,7 @@
 			this.armType = GLOBAL.TYPE_BEE;
 			this.gills = false;
 			this.wingType = GLOBAL.TYPE_BEE;
+			wingCount = 2;
 			this.legType = GLOBAL.TYPE_BEE;
 			this.legCount = 2;
 			this.legFlags = [GLOBAL.FLAG_PLANTIGRADE];
