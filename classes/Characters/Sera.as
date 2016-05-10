@@ -96,9 +96,9 @@
 			this.armType = GLOBAL.TYPE_DEMONIC;
 			this.gills = false;
 			this.wingType = 0;
-			this.legType = GLOBAL.TYPE_HUMAN;
+			this.legType = GLOBAL.TYPE_SUCCUBUS;
 			this.legCount = 2;
-			this.legFlags = new Array();
+			this.legFlags = [GLOBAL.FLAG_DIGITIGRADE,GLOBAL.FLAG_SMOOTH,GLOBAL.FLAG_HEELS];
 			//0 - Waist
 			//1 - Middle of a long tail. Defaults to waist on bipeds.
 			//2 - Between last legs or at end of long tail.
