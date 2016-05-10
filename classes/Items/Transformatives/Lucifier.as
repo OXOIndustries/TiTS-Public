@@ -459,7 +459,7 @@ package classes.Items.Transformatives
 						output(" When the transformation has finally finished the skeletal leather appendages cloak and almost dwarf you. A single twitch of your shoulders confirms what you can sense; you could easily use these babies to fly short distances.");
 						
 						target.wingType = GLOBAL.TYPE_DEMONIC;
-						target.wingCount = 2;
+						if(target.wingCount < 2) target.wingCount = 2;
 					}
 					else output(target.wingTypeLockedMessage());
 				}
