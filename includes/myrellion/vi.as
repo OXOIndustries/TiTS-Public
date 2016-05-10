@@ -435,7 +435,7 @@ public function getExamanitedByVi():void
 		else addDisabledButton(0,"Treat Mimb","Mimbrane Treatment","You don't have any mimbranes to remove.");
 		if(pc.hasParasiteTail() && pc.hasCuntTail()) addButton(1,"Treat C.Snake",removeAParasiteWithVi,"Cuntsnake","Cuntsnake Treatment","Get any parasitic tails removed.");
 		else addDisabledButton(1,"Treat C.Snake","Cuntsnake Treatment","You have no parasitic snakes to remove.");
-		if(pc.hasCockTail()) addButton(2,"Treat C.Vine",removeAParasiteWithVi,"Cockvine","Cockvine Treatment","Get any parasitic tails removed.");
+		if(pc.hasParasiteTail() && pc.hasCockTail()) addButton(2,"Treat C.Vine",removeAParasiteWithVi,"Cockvine","Cockvine Treatment","Get any parasitic tails removed.");
 		else addDisabledButton(2,"Treat C.Vine","Cockvine Treatment","You have no cockvines to remove.");
 		addButton(4,"None",declineParasiteTreatmentFromVi,undefined,"No","Decline to get any parasites removed.");
 	}
