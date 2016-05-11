@@ -64,6 +64,8 @@ public function uvetoKaedeSure():void
 {
 	clearOutput();
 	kaedeHeader();
+	
+	flags["KAEDE_MET_ON_UVETO"] = 1;
 
 	output("<i>“Sure,”</i> you say, releasing the half-ausar from your end of the hug. <i>“Lead the way.”</i>");
 	
