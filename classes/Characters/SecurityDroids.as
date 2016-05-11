@@ -32,7 +32,7 @@ package classes.Characters
 			
 			// Originally a clone of the zilpack
 			// Needs a few things checked.
-			this.short = "security droids";
+			this.short = "security droid";
 			this.originalRace = "Automaton";
 			this.a = "the ";
 			this.capitalA = "The ";

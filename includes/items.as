@@ -109,11 +109,21 @@ public function combatUseItem(item:ItemSlotClass, targetCreature:Creature = null
 		// This is kinda bullshit. To save cheesing args for the function when called via a button,
 		// we're gonna rebuild sensible defaults if the args are absent. No args = assume the player
 		// pressed a button to invoke the call
+		
+		if (usingCreature == null)
+		{
+			usingCreature = pc;
+		}
+		
 		if (targetCreature == null)
 		{
 			if (item.targetsSelf == true)
 			{
 				targetCreature = pc;
+			}
+			else if (item.requiresTarget == false)
+			{
+				item.useFunction(null, usingCreature);
 			}
 			else
 			{
@@ -157,11 +167,6 @@ public function combatUseItem(item:ItemSlotClass, targetCreature:Creature = null
 			}
 		}
 		
-		if (usingCreature == null)
-		{
-			usingCreature = pc;
-		}
-		
 		item.useFunction(targetCreature, usingCreature);
 		
 		if (!infiniteItems() && !item.hasFlag(GLOBAL.NOT_CONSUMED_BY_DEFAULT))
@@ -173,12 +178,16 @@ public function combatUseItem(item:ItemSlotClass, targetCreature:Creature = null
 			}
 		}
 	}
-	if(pc.hasPerk("Quickdraw") && (item.type == GLOBAL.RANGED_WEAPON || item.type == GLOBAL.MELEE_WEAPON))
+	
+	if(usingCreature is PlayerCharacter && pc.hasPerk("Quickdraw") && (item.type == GLOBAL.RANGED_WEAPON || item.type == GLOBAL.MELEE_WEAPON))
 	{
 		clearMenu();
 		addButton(0,"Next",combatInventoryMenu);
 	}
-	else CombatManager.processCombat();
+	else if (usingCreature is PlayerCharacter)
+	{
+		CombatManager.processCombat();
+	}
 }
 
 public var shopkeepBackFunctor:Function = null;
