@@ -321,7 +321,7 @@ public function hashtagShareTheLoad():void
 	//{player’s lust resets to zero and they gain 1x Huge Cum Bubble}
 	processTime(8);
 	pc.orgasm();
-	quickLoot(new MediumCumBubble());
+	quickLoot(new HugeCumBubble());
 }
 
 //[Keep Filling It]

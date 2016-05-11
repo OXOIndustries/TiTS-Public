@@ -9,6 +9,7 @@ package classes.UIComponents.SideBarComponents
 	import classes.UIComponents.UIStyleSettings;
 	import fl.motion.Color;
 	import flash.accessibility.Accessibility;
+	import classes.Engine.Utility.MathUtil;
 	
 	/**
 	 * ...
@@ -37,6 +38,10 @@ package classes.UIComponents.SideBarComponents
 		private var _tCurrent:Number = 0;
 		private var _tGoal:Number = 0;
 		private var _strMode:Boolean = false;
+		private var _directValue:Boolean = false;
+		
+		private var _valueMaxChangeDisplay:Number = Number.NaN;
+		private var _valueChangePerTick:Number = Number.NaN;
 		
 		private var _barFrames:Number = 1.0 / (2.0 * 24);
 		private var _glowFrames:Number = 1.0 / (4.0 * 24);
@@ -124,24 +129,52 @@ package classes.UIComponents.SideBarComponents
 			{
 				cScale -= _barFrames;
 				
-				if (cScale < tScale) cScale = tScale;
+				if (cScale < tScale)
+				{
+					cScale = tScale;
+					_valueMaxChangeDisplay = Number.NaN;
+				}
 			}
 			else if (cScale < tScale)
 			{
 				cScale += _barFrames;
 				
-				if (cScale > tScale) cScale = tScale;
+				if (cScale > tScale)
+				{
+					cScale = tScale;
+					_valueMaxChangeDisplay = Number.NaN;
+				}
 			}
-			
-			//trace("Goal:", _tGoal, "Max:", _tMax, "Scale:", cScale);
 
 			if (_desiredMode != "NOBAR")
 			{
-				_progressBar.scaleX = cScale;
-				_maskingBar.scaleX = cScale;
+				_maskingBar.scaleX = _progressBar.scaleX = MathUtil.Clamp(0, 1, cScale);
 			}
 			
-			value = String(Math.round(cScale * _tMax));
+			if (isNaN(_valueMaxChangeDisplay))
+			{
+				value = String(Math.round(cScale * _tMax));
+			}
+			else
+			{
+				if (isNaN(_valueChangePerTick))
+				{
+					_valueChangePerTick = Math.abs(_valueMaxChangeDisplay - _tGoal) * _barFrames;
+				}
+				
+				if (_tGoal > _valueMaxChangeDisplay)
+				{
+					_valueMaxChangeDisplay += _valueChangePerTick;
+					if (_valueMaxChangeDisplay > _tGoal) _valueMaxChangeDisplay = _tGoal;
+				}
+				else
+				{
+					_valueMaxChangeDisplay -= _valueChangePerTick;
+					if (_valueMaxChangeDisplay < _tGoal) _valueMaxChangeDisplay = _tGoal;
+				}
+				
+				value = String(Math.round(_valueMaxChangeDisplay));
+			}
 			
 			if (_desiredMode == "BIG")
 			{
@@ -348,6 +381,12 @@ package classes.UIComponents.SideBarComponents
 		
 		public function setMax(arg:Number):void
 		{
+			if (_tMax != arg)
+			{
+				_valueMaxChangeDisplay = Number(value);
+				_valueChangePerTick = Number.NaN;
+			}
+			
 			_tMax = arg;
 			
 			if (isNaN(_tMax))
