@@ -21,7 +21,7 @@ public function uvetoSpaceElevatorBaseBonus():Boolean
 		uvetoGreetingParty();
 		return true;
 	}
-	addButton(5,"S.Elevator",rideSpaceElevatorUp,undefined,"Space Elevator","Ride the space elevator up to the station.");
+	addButton(7,"S.Elevator",rideSpaceElevatorDown,undefined,"Space Elevator","Ride the space elevator down to the ice moon's surface.");
 	return false;
 }
 
@@ -117,7 +117,7 @@ public function rideSpaceElevatorUp():void
 
 public function uvetoSpaceElevatorBonus():Boolean
 {
-	addButton(7,"S.Elevator",rideSpaceElevatorDown,undefined,"Space Elevator","Ride the space elevator down to the ice moon's surface.");
+	addButton(5,"S.Elevator",rideSpaceElevatorUp,undefined,"Space Elevator","Ride the space elevator up to the station.");
 	return false;
 }
 public function rideSpaceElevatorDown():void
