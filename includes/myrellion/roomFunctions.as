@@ -865,7 +865,7 @@ public function DeepCavesBonus():Boolean
 	}
 	if(rand(200) == 0) 
 	{
-		quickLoot(new StrangeEgg());
+		findStrangeEgg();
 		return true;
 	}
 	var choices:Array = new Array();

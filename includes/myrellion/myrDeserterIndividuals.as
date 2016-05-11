@@ -104,6 +104,18 @@ public function removeGoldDildo():void
 {
 	pc.removeKeyItem("Republic Dildo");
 }
+public function giveMyrDildo(color:String = ""):void
+{
+	switch(color)
+	{
+		case "gold":
+			if(!pc.hasKeyItem("Republic Dildo")) pc.createKeyItem("Republic Dildo",0,0,0,0);
+			break;
+		case "red":
+			if(!pc.hasKeyItem("Federation Vibrator")) pc.createKeyItem("Federation Vibrator",0,0,0,0);
+			break;
+	}
+}
 
 //Myr Approaches
 public function approachMyrDeserters():void
@@ -2282,8 +2294,8 @@ public function giveDildoToAntSloot(gold:Boolean):void
 	else output("\n\nLys smiles shyly. <i>“Well, okay then... want to talk?”</i>");
 	//present usual non-hostile menu, minus the 'Fight' button
 	//menu shit here
-	if(gold) pc.removeKeyItem("Republic Dildo");
-	else pc.removeKeyItem("Federation Vibrator");
+	if(gold) removeGoldDildo();
+	else removeRedDildo();
 	myrDeserterNonCombatMenu(gold);
 }
 
@@ -2574,7 +2586,7 @@ public function giveOrgasmToBriha():void
 	processTime(6);
 	pc.lust(5);
 	//Dildo go!
-	if(!pc.hasKeyItem("Republic Dildo")) pc.createKeyItem("Republic Dildo",0,0,0,0);
+	giveMyrDildo("red");
 	IncrementFlag("RED_DILDOED");
 	if (inCombat())
 	{
@@ -2663,7 +2675,7 @@ public function teaseBrihaWithDildoStealAsshole():void
 	processTime(5);
 	pc.addHard(1);
 	//red dildo get
-	if(!pc.hasKeyItem("Federation Vibrator")) pc.createKeyItem("Federation Vibrator",0,0,0,0);
+	giveMyrDildo("red");
 	IncrementFlag("RED_DILDOED");
 	if (inCombat())
 	{
@@ -2742,7 +2754,7 @@ public function giveLysAnOrgasm():void
 	processTime(7);
 	pc.lust(10);
 	//add gold dildo
-	if(!pc.hasKeyItem("Republic Dildo")) pc.createKeyItem("Republic Dildo",0,0,0,0);
+	giveMyrDildo("gold");
 	IncrementFlag("GOLD_DILDOED");
 	if (inCombat())
 	{
@@ -2820,7 +2832,7 @@ public function teaseLysVersion():void
 	processTime(10);
 	pc.lust(10);
 	//dildoget!
-	if(!pc.hasKeyItem("Republic Dildo")) pc.createKeyItem("Republic Dildo",0,0,0,0);
+	giveMyrDildo("gold");
 	IncrementFlag("GOLD_DILDOED");
 	if (inCombat())
 	{

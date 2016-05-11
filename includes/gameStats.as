@@ -4274,6 +4274,12 @@ public function displayEncounterLog(showID:String = "All"):void
 					output2("\n<b>* " + goldMyrDeserterName + "</b>");
 					if(flags["GOLD_MYR_DESERTER_BEATEN"] != undefined && flags["GOLD_MYR_DESERTER_BEATEN"] >= 5) output2(" <b>(Non-hostile)</b>");
 					output2("<b>, Times Encountered: </b>" + flags["MET_GOLD_DESERTER"]);
+					if(flags["GAVE_LYS_FLOWER"] != undefined)
+					{
+						output2(", Gave her a flower");
+						if(flags["GAVE_LYS_FLOWER"] != 1) output2(" " + flags["GAVE_LYS_FLOWER"] + " times");
+					}
+					else if(pc.hasItem(new VenusBloom()) && flags["ENABLE_LYS_FLOWER"] != undefined) output2(", <i>Give her a flower!</i>");
 					if(flags["GOLD_DILDOED"] != undefined) output2("\n<b>* " + goldMyrDeserterName + ", Times Used Dildo: </b>" + flags["GOLD_DILDOED"]);
 				}
 				if(flags["MET_RED_DESERTER"] != undefined)
