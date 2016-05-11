@@ -9,6 +9,7 @@ package classes.UIComponents.SideBarComponents
 	import classes.UIComponents.UIStyleSettings;
 	import fl.motion.Color;
 	import flash.accessibility.Accessibility;
+	import classes.Engine.Utility.MathUtil;
 	
 	/**
 	 * ...
@@ -37,6 +38,7 @@ package classes.UIComponents.SideBarComponents
 		private var _tCurrent:Number = 0;
 		private var _tGoal:Number = 0;
 		private var _strMode:Boolean = false;
+		private var _directValue:Boolean = false;
 		
 		private var _barFrames:Number = 1.0 / (2.0 * 24);
 		private var _glowFrames:Number = 1.0 / (4.0 * 24);
@@ -124,24 +126,31 @@ package classes.UIComponents.SideBarComponents
 			{
 				cScale -= _barFrames;
 				
-				if (cScale < tScale) cScale = tScale;
+				if (cScale < tScale)
+				{
+					cScale = tScale;
+					_directValue = false;
+				}
 			}
 			else if (cScale < tScale)
 			{
 				cScale += _barFrames;
 				
-				if (cScale > tScale) cScale = tScale;
+				if (cScale > tScale)
+				{
+					cScale = tScale;
+					_directValue = false;
+				}
 			}
-			
-			//trace("Goal:", _tGoal, "Max:", _tMax, "Scale:", cScale);
 
 			if (_desiredMode != "NOBAR")
 			{
-				_progressBar.scaleX = cScale;
-				_maskingBar.scaleX = cScale;
+				_maskingBar.scaleX = _progressBar.scaleX = MathUtil.Clamp(0, 1, cScale);
 			}
 			
-			value = String(Math.round(cScale * _tMax));
+			if (!_directValue) value = String(Math.round(cScale * _tMax));
+			else value = String(_tGoal);
+			
 			
 			if (_desiredMode == "BIG")
 			{
@@ -348,6 +357,8 @@ package classes.UIComponents.SideBarComponents
 		
 		public function setMax(arg:Number):void
 		{
+			if (_tMax != arg) _directValue = true;
+			
 			_tMax = arg;
 			
 			if (isNaN(_tMax))
