@@ -292,6 +292,7 @@
 					pc.legType = GLOBAL.TYPE_CANINE;
 					pc.clearLegFlags();
 					pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
+					pc.addLegFlag(GLOBAL.FLAG_FURRED);
 					pc.addLegFlag(GLOBAL.FLAG_PAWS);
 					changes++;
 				}
@@ -316,6 +317,7 @@
 					pc.legType = GLOBAL.TYPE_CANINE;
 					pc.clearLegFlags();
 					pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
+					pc.addLegFlag(GLOBAL.FLAG_FURRED);
 					pc.addLegFlag(GLOBAL.FLAG_PAWS);
 					changes++;
 				}
@@ -366,15 +368,15 @@
 		{
 			var changes:int = 0;
 			
-			if (!target.hasArmFlag(GLOBAL.FLAG_FLUFFY) && changes < changeLimit && rand(2) == 0)
+			if (target.hasArmFlag(GLOBAL.FLAG_FURRED) && !target.hasArmFlag(GLOBAL.FLAG_FLUFFY) && changes < changeLimit && rand(2) == 0)
 			{
-				output("\n\nYou feel a powerful itch spread across your arms. You clutch at them, scratching violently as the fur covering your arms lengthens dramatically, . Within a few minutes, your arms are utterly covered in a thick, fluffy layer of " + target.furColor + " fur! At least you'll keep even warmer, now....");
+				output("\n\nYou feel a powerful itch spread across your arms. You clutch at them, scratching violently as the fur covering your arms lengthens dramatically. Within a few minutes, your arms are utterly covered in a thick, fluffy layer of " + target.furColor + " fur! At least you'll keep even warmer, now....");
 				
 				target.addArmFlag(GLOBAL.FLAG_FLUFFY);
 				changes++;
 			}
 			
-			if (!target.hasLegFlag(GLOBAL.FLAG_FLUFFY) && changes < changeLimit && rand(2) == 0)
+			if (target.hasLegFlag(GLOBAL.FLAG_FURRED) && !target.hasLegFlag(GLOBAL.FLAG_FLUFFY) && changes < changeLimit && rand(2) == 0)
 			{
 				output("\n\nYour [pc.legs] throb something fierce, an annoying wave of pressure underneath your skin just pushing and pushing. You rub them firmly, trying to push the feeling away - it works too; a firm hand down the front of your [pc.leg] seems to pull a thicker, fluffier coat of fur along with it!");
 				
