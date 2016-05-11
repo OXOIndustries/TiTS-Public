@@ -51,7 +51,7 @@ package classes.GameData
 		// doesn't require a target to be selected.
 		// Basically, this is for AoE attacks that don't require an explicit target, but still make reference to an action taking place
 		// against one specific enemy to start the chain of events.
-		private static function GetBestPotentialTarget(hGroup:Array):Creature
+		public static function GetBestPotentialTarget(hGroup:Array):Creature
 		{
 			if (hGroup.length == 1) return hGroup[0];
 			

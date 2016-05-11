@@ -12,6 +12,12 @@ package classes.Items.Miscellaneous
 	import classes.Engine.Combat.inCombat;
 	import classes.Engine.Interfaces.output;
 	import classes.Engine.Interfaces.clearOutput;
+	import classes.GameData.CombatAttacks;
+	import classes.GameData.CombatManager;
+	import classes.Engine.Combat.damageRand;
+	import classes.Engine.Combat.outputDamage;
+	import classes.Engine.Combat.DamageTypes.DamageResult;
+	import classes.Characters.PlayerCharacter;
 	
 	/**
 	 * ...
@@ -57,6 +63,7 @@ package classes.Items.Miscellaneous
 			
 			this.combatUsable = true;
 			this.targetsSelf = false;
+			this.requiresTarget = false;
 			
 			this.version = this._latestVersion;
 		}
@@ -66,16 +73,14 @@ package classes.Items.Miscellaneous
 			if (!inCombat())
 			{
 				if(!kGAMECLASS.infiniteItems()) quantity++;
-				if (targetCreature == kGAMECLASS.pc)
+				if (targetCreature is PlayerCharacter)
 				{
 					clearOutput();
 					output("Pulling the pin on a grenade without a target to throw it at would be pretty dumb now, wouldn't it?\n");
 				}
 				else
 				{
-					if(inCombat()) output("\n");
-					else clearOutput();
-					output(targetCreature.capitalA + targetCreature.short + " considers it unwise to use a grenade outside of combat.\n");
+					output(usingCreature.capitalA + usingCreature.short + " considers it unwise to use a grenade outside of combat.\n");
 					output("\n");
 				}
 				return false;
@@ -83,52 +88,42 @@ package classes.Items.Miscellaneous
 			else
 			{
 				// Player used an item
-				if (usingCreature == kGAMECLASS.pc)
+				if (usingCreature is PlayerCharacter)
 				{
 					kGAMECLASS.clearOutput();
-					playerUsed(targetCreature, usingCreature);
 				}
-				// Enemy used an item on the PC
-				else if (targetCreature == kGAMECLASS.pc && usingCreature != kGAMECLASS.pc)
-				{
-					if(inCombat()) kGAMECLASS.output("\n\n");
-					else kGAMECLASS.clearOutput();
-					npcUsed(targetCreature, usingCreature);
-				}
-				else
-				{
-					throw new Error("Don't know how we got here. Exception for debugging.");
-				}
+				
+				throwGrenade(null, usingCreature);
 				
 				return false;
 			}
 		}
 		
-		public function playerUsed(targetCreature:Creature, usingCreature:Creature):void
+		public function throwGrenade(targetCreature:Creature, attacker:Creature):void 
 		{
-			kGAMECLASS.output("You throw the grenade at the " + targetCreature.short + "!");
+			var hGroup:Array = CombatManager.getHostileCharacters();
+			var aTarget:Creature = CombatAttacks.GetBestPotentialTarget(hGroup);
 			
-			// Ideally, should probably rebuild this function on a per-item basis to weave item-specific text
-			// into the combat, and lean on the shield/hp damage functions
-			// Or possibly open up genericDamageApply to also accept override text for its output
-			applyDamage(baseDamage, usingCreature, targetCreature);
+			if (attacker is PlayerCharacter) output("You pull out an EMP grenade and huck it in the direction of " + aTarget.a + aTarget.uniqueName + ".");
+			else if (aTarget is PlayerCharacter) output(attacker.capitalA + attacker.uniqueName + " produces an EMP grenade and hucks it in your direction!");
+			else output(attacker.capitalA + attacker.uniqueName + " produces an EMP grenade and hucks it in the direction of " + aTarget.a + aTarget.uniqueName + "!");
 			
-			// Apply stun to types that are electronic in nature
-			if (!targetCreature.hasStatusEffect("Blinded") && (targetCreature.originalRace == "robot" || targetCreature.originalRace == "Automaton") && targetCreature.shieldDisplayName != "ARMOR")
-			{
-				targetCreature.createStatusEffect("Stunned", 2, 0, 0, 0, false, "Stun", "An electrical burst has temporarily stunned your target!", true, 0,0xFF0000);
-				kGAMECLASS.output("\n\nThe electronic burst from the grenade as temporarily disrupted " + targetCreature.a + targetCreature.short + "’s systems!");
+			for (var i:int = 0; i < hGroup.length; i++)
+			{	
+				if (hGroup[i].isDefeated()) continue;
+				var cTarget:Creature = hGroup[i];
+				
+				var d:DamageResult = applyDamage(damageRand(baseDamage, 15), attacker, cTarget, "suppress");
+				
+				output("\n\n" + cTarget.capitalA + cTarget.uniqueName + " is caught in the explosion!");
+				outputDamage(d);
+				
+				if (!cTarget.hasStatusEffect("Blinded") && (cTarget.originalRace == "robot" || cTarget.originalRace == "Automaton") && cTarget.shieldDisplayName != "ARMOR" && !cTarget.getHPResistances().hasFlag(DamageFlag.GROUNDED))
+				{
+					cTarget.createStatusEffect("Stunned", 2, 0, 0, 0, false, "Stun", "An electrical burst has temporarily stunned your target!", true, 0,0xFF0000);
+					output("\n\nThe electronic burst from the grenade as temporarily disrupted " + targetCreature.a + targetCreature.short + "’s systems!");
+				}
 			}
-		}
-		
-		public function npcUsed(targetCreature:Creature, usingCreature:Creature):void
-		{
-			kGAMECLASS.output(usingCreature + " threw a grenade at");
-			if (targetCreature == kGAMECLASS.pc) kGAMECLASS.output(" you!");
-			else kGAMECLASS.output(" " + targetCreature.short);
-			
-			//kGAMECLASS.genericDamageApply(this.damage, usingCreature, targetCreature, this.damageType);
-			applyDamage(baseDamage, usingCreature, targetCreature);
 		}
 	}
 

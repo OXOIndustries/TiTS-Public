@@ -51,6 +51,7 @@
 		public var isUsable:Boolean;
 		public var combatUsable:Boolean;
 		public var targetsSelf:Boolean;
+		public var requiresTarget:Boolean;
 		
 		public var droneAttack:Function;
 		
@@ -107,6 +108,7 @@
 			this.isUsable = true;
 			this.combatUsable = false;
 			this.targetsSelf = true;
+			this.requiresTarget = false;
 			
 			this.attackImplementor = null;
 			

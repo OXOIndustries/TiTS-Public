@@ -8,6 +8,11 @@ package classes.Items.Miscellaneous
 	import classes.kGAMECLASS;
 	import classes.Engine.Combat.applyDamage;
 	import classes.Engine.Combat.inCombat;
+	import classes.Engine.Interfaces.*;
+	import classes.GameData.CombatManager;
+	import classes.GameData.CombatAttacks;
+	import classes.Engine.Utility.rand;
+	import classes.Characters.PlayerCharacter;
 	
 	/**
 	 * ...
@@ -49,6 +54,7 @@ package classes.Items.Miscellaneous
 			
 			this.combatUsable = true;
 			this.targetsSelf = false;
+			this.requiresTarget = false;
 			
 			this.version = this._latestVersion;
 		}
@@ -58,78 +64,58 @@ package classes.Items.Miscellaneous
 			if (!inCombat())
 			{
 				if(!kGAMECLASS.infiniteItems()) quantity++;
-				if (targetCreature == kGAMECLASS.pc)
+				if (targetCreature is PlayerCharacter)
 				{
 					kGAMECLASS.clearOutput();
 					kGAMECLASS.output("Pulling the pin on a grenade without a target to throw it at would be pretty dumb now, wouldn't it?");
 				}
 				else
 				{
-					if(inCombat()) kGAMECLASS.output("\n\n");
-					else kGAMECLASS.clearOutput();
-					kGAMECLASS.output(targetCreature.capitalA + targetCreature.short + " considers it unwise to use a grenade outside of combat.");
+					kGAMECLASS.output(usingCreature.capitalA + usingCreature.short + " considers it unwise to use a grenade outside of combat.");
 				}
 				return false;
 			}
 			else
 			{
 				// Player used an item
-				if (usingCreature == kGAMECLASS.pc)
+				if (usingCreature is PlayerCharacter)
 				{
 					kGAMECLASS.clearOutput();
-					playerUsed(targetCreature, usingCreature);
 				}
-				// Enemy used an item on the PC
-				else if (targetCreature == kGAMECLASS.pc && usingCreature != kGAMECLASS.pc)
-				{
-					if(inCombat()) kGAMECLASS.output("\n\n");
-					else kGAMECLASS.clearOutput();
-					npcUsed(targetCreature, usingCreature);
-				}
-				else
-				{
-					throw new Error("Don't know how we got here. Exception for debugging.");
-				}
+				
+				throwGrenade(null, usingCreature);
 				
 				return false;
 			}
 		}
 		
-		public function playerUsed(targetCreature:Creature, usingCreature:Creature):void
+		public function throwGrenade(targetCreature:Creature, attacker:Creature):void
 		{
-			if (targetCreature.isPlural) kGAMECLASS.output("You throw a flashbang at one of " + targetCreature.a + targetCreature.short + "!");
-			else kGAMECLASS.output("You throw a flashbang at " + targetCreature.a + targetCreature.short + "!");
+			var hGroup:Array = CombatManager.getHostileCharacters();
+			var aTarget:Creature = CombatAttacks.GetBestPotentialTarget(hGroup);
 			
-			if (!targetCreature.hasStatusEffect("Blinded") && !targetCreature.hasBlindImmunity())
-			{
-				if (targetCreature.isPlural) kGAMECLASS.output("\n<b>" + targetCreature.capitalA + targetCreature.short + " are blinded by");
-				else kGAMECLASS.output("\n<b>" + targetCreature.capitalA + targetCreature.short + " is blinded by");
-				kGAMECLASS.output(" the luminous flashes.</b>");
+			if (attacker is PlayerCharacter) output("You pull out a flash grenade and huck it in the direction of " + aTarget.a + aTarget.uniqueName + ".");
+			else if (aTarget is PlayerCharacter) output(attacker.capitalA + attacker.uniqueName + " produces a flash grenade and hucks it in your direction!");
+			else output(attacker.capitalA + attacker.uniqueName + " produces a flash grenade and hucks it in the direction of " + aTarget.a + aTarget.uniqueName + "!");
+			
+			for (var i:int = 0; i < hGroup.length; i++)
+			{	
+				if (hGroup[i].isDefeated()) continue;
 				
-				targetCreature.createStatusEffect("Blinded", 2, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0,0xFF0000);
-			}
-			else
-			{
-				kGAMECLASS.output("\nThe flashbang has no effect on " + targetCreature.a + targetCreature.short + ".");
-			}
-		}
-		
-		public function npcUsed(targetCreature:Creature, usingCreature:Creature):void
-		{
-			kGAMECLASS.output(usingCreature + " threw a grenade at");
-			if (targetCreature == kGAMECLASS.pc) kGAMECLASS.output(" you!");
-			else kGAMECLASS.output(" " + targetCreature.short);
-			
-			applyDamage(this.baseDamage, usingCreature, targetCreature);
-			
-			if (!targetCreature.hasStatusEffect("Blinded") && !targetCreature.hasBlindImmunity())
-			{
-				kGAMECLASS.output(" <b>The grenade explodes with a vibrant and overwhelming flash, the sheer magnitude of the effect almost knocking you to your [pc.ass]. You're seeing stars!</b>");
-				targetCreature.createStatusEffect("Blinded", 2, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0,0xFF0000);
-			}
-			else
-			{
-				kGAMECLASS.output(" You manage to turn away just in time to avoid the brunt of the explosions disorienting effects.");
+				var cTarget:Creature = hGroup[i];
+				
+				if (attacker.aim() / 2 + rand(20) + 6 >= cTarget.reflexes() / 2 + 10 && !cTarget.hasStatusEffect("Blinded") && !cTarget.hasBlindImmunity())
+				{
+					cTarget.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0,0xFF0000);
+					
+					if (cTarget is PlayerCharacter) output("\n<b>You're blinded by the luminous flashes.</b>");
+					else output("\n<b>" + cTarget.capitalA + cTarget.uniqueName + " is blinded by the luminous flashes.</b>");
+				}
+				else
+				{
+					if (cTarget is PlayerCharacter) output("\nYou manage to avoid the blinding projectile.");
+					else output("\n" + cTarget.capitalA + cTarget.uniqueName + " manages to avoid the blinding projectile.");
+				}
 			}
 		}
 	}

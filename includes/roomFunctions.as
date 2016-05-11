@@ -25,6 +25,7 @@ import classes.Items.Guns.ScopedPistol;
 import classes.Items.Guns.TachyonBeamLaser;
 import classes.Items.Guns.ZKRifle;
 import classes.Items.Melee.ShockBlade;
+import classes.Items.Miscellaneous.EMPGrenade;
 import classes.Items.Miscellaneous.EmptySlot;
 import classes.Items.Miscellaneous.FlashGrenade;
 import classes.Items.Miscellaneous.GrayMicrobots;
@@ -132,19 +133,16 @@ public function debugMenusTwo():void
 		pc.createKeyItem("Goozooka");
 	});
 	
-	addItemButton(4, new Silicone(), function():void {
-		output("\n\nSilicode.\n");
-		var sil:Silicone = new Silicone();
-		sil.quantity = 10;
+	addItemButton(4, new FlashGrenade(), function():void {
+		output("\n\nFlashgrenade.\n");
+		var sil:FlashGrenade = new FlashGrenade();
+		sil.quantity = 5;
 		quickLoot(sil);
 	});
 	
-	addButton(5, "OvirTF", function():void {
-		var oa:OvirAce = new OvirAce();
-		oa.quantity = 10;
-		
-		var op:OvirPositive = new OvirPositive();
-		op.quantity = 5;
+	addItemButton(5, new EMPGrenade, function():void {
+		var oa:EMPGrenade = new EMPGrenade();
+		oa.quantity = 5;
 		
 		quickLoot(oa);
 	});
