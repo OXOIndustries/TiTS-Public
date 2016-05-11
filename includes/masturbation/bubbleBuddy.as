@@ -215,9 +215,8 @@ public function jackIntoDaBubbleBooty():void
 	clearOutput();
 	showName("BUBBLE\nBUDDY");
 	CodexManager.unlockEntry("Bubble Buddy");
-	if(flags["BUBBLE_BUDDIED"] == undefined) output("Taking out the light purple toy, you turn it around in your hands for a moment to inspect the thing. It's roughly six inches long and two inches wide, with a hole at one of the ends. The interior drips with an oily lubrication that the wobbly gel of the toy seems to perpetually produce. The sheath has a thin membrane at the top that seems to serve as a cap, resembling nothing so much as a circle of stretched latex. It's not shooting out any lasers or floating in mid air, so you assume you'll have to do this the old fashioned way.");
+	if(flags["BUBBLE_BUDDIED"] == undefined) output("Taking out the light purple toy, you turn it around in your hands for a moment to inspect the thing. It's roughly six inches long and two inches wide, with a hole at one of the ends. The interior drips with an oily lubrication that the wobbly gel of the toy seems to perpetually produce. The sheath has a thin membrane at the top that seems to serve as a cap, resembling nothing so much as a circle of stretched latex. It's not shooting out any lasers or floating in mid air, so you assume you'll have to do this the old fashioned way.\n\n");
 	
-	output("\n\n");
 	if(!pc.isNude()) output("Stripping out of your [pc.gear], you tentatively grip the squishy toy in one hand. ");
 	output("The Bubble Buddy is warm to the touch, its supple surface jiggling in your grip. Your [pc.cocks] ");
 	if(pc.cockTotal() == 1) output("is");
@@ -283,7 +282,7 @@ public function jackIntoDaBubbleBooty():void
 	//{massive volume (10,001-70,000mL) }
 	else if(pc.cumQ() < 70000)
 	{
-		output("\n\nWhen your geysering cream surges past the narrow vent of your urethral slit, the squishy toy is nearly blasted out of your grip. It’s all you can do to clamp down with tingling fingers as your orgasmic release floods into the the Bubble Buddy’s condom-like reservoir. Your shoulders clench together as the spunk orb fills, gaining inches with alarming rapidity. Cheeks flushed and breath coming in ragged gasps, you hold on as best you can while gallon upon gallon of hot, seething seed gushes from your trembling form. The [pc.cumColor] bounty pours from your spasming [pc.cockBiggest] like a mythological deluge. Sinking to your [pc.ass], the thinning latex toy bloats and distends under the inflating swell, losing its spherical elasticity with squeaking groans of protest. The heavy contents sag against your [pc.hips] and [pc.legOrLegs], nearly ready to bury you beneath the warm, fluid pressure of your rubber-sealed largess.");
+		output("\n\nWhen your geysering cream surges past the narrow vent of your urethral slit, the squishy toy is nearly blasted out of your grip. It’s all you can do to clamp down with tingling fingers as your orgasmic release floods into the the Bubble Buddy’s condom-like reservoir. Your shoulders clench together as the spunk orb fills, gaining inches with alarming rapidity. Cheeks flushed and breath coming in ragged gasps, you hold on as best you can while gallon upon gallon of hot, seething seed gushes from your trembling form. The [pc.cumColor] bounty pours from your spasming [pc.cock " + x + "] like a mythological deluge. Sinking to your [pc.ass], the thinning latex toy bloats and distends under the inflating swell, losing its spherical elasticity with squeaking groans of protest. The heavy contents sag against your [pc.hips] and [pc.legOrLegs], nearly ready to bury you beneath the warm, fluid pressure of your rubber-sealed largess.");
 		output("\n\nWhen the suddering orgasm fades, the cylindrical sex toy is utterly buried under the massive, cum-filled globe at its peak. The heavy, sloshing pouch is ");
 		if(pc.cumQ() < 30000) output("bigger than an overfilled beach ball!");
 		//cum 30,001-50,000mL:
@@ -298,7 +297,7 @@ public function jackIntoDaBubbleBooty():void
 	//{OhShitNukiWhatDidYou Do?!? volume (over 70,000mL) }
 	else
 	{
-		output("\n\nWhen your geysering cream surges past the narrow vent of your urethral slit, the squishy toy is nearly blasted out of your grip. It’s all you can do to clamp down with tingling fingers as your orgasmic release floods into the condom-like reservoir of the purple pocket pussy. Your shoulders clench together as the spunk orb fills, gaining inches with alarming rapidity. Cheeks flushed and breath coming in ragged gasps, you hold on as best you can while gallon upon gallon of hot, seething seed gushes from your trembling form. The [pc.cumColor] bounty pours from your spasming [pc.cockBiggest] like a mythological deluge. Sinking to your [pc.ass], the thinning latex bloats and distends under the inflating swell, losing its spherical elasticity with squeaking groans of protest. The heavy contents sag against your [pc.hips] and your [pc.legOrLegs], nearly ready to bury you beneath the warm, fluid pressure of your rubber-sealed passion.");
+		output("\n\nWhen your geysering cream surges past the narrow vent of your urethral slit, the squishy toy is nearly blasted out of your grip. It’s all you can do to clamp down with tingling fingers as your orgasmic release floods into the condom-like reservoir of the purple pocket pussy. Your shoulders clench together as the spunk orb fills, gaining inches with alarming rapidity. Cheeks flushed and breath coming in ragged gasps, you hold on as best you can while gallon upon gallon of hot, seething seed gushes from your trembling form. The [pc.cumColor] bounty pours from your spasming [pc.cock " + x + "] like a mythological deluge. Sinking to your [pc.ass], the thinning latex bloats and distends under the inflating swell, losing its spherical elasticity with squeaking groans of protest. The heavy contents sag against your [pc.hips] and your [pc.legOrLegs], nearly ready to bury you beneath the warm, fluid pressure of your rubber-sealed passion.");
 		output("\n\nThe toy’s tip seems to be reaching its limit! You could probably pinch it off, or you could just ride it out and hope for the best!");
 		//[Seal the Load] [Keep Filling It]
 		processTime(13);
@@ -307,6 +306,7 @@ public function jackIntoDaBubbleBooty():void
 		addButton(0,"Seal It",hashtagShareTheLoad);
 		addButton(1,"Keep Filling",battenTheHatches);
 	}
+	IncrementFlag("BUBBLE_BUDDIED");
 }
 
 //[Seal the Load]
@@ -346,206 +346,345 @@ public function battenTheHatches():void
 output("\n\nGift Options");
 output("\n\n{Give the bubbles to galotians and rahn for special scenes and potentially increase your <i>“relationship points”</i> with relevant NPCs.");
 output("\n\n{Possibly add scenes for: Jardi, Sera’s private slut; Zo’dee, Adventurer in various places; Vaande, stripper on Tavros}");
-
-output("\n\nGive to Celise");
-output("\n\n{Add [Cum Bubble] option to Celise’s [Feed] menu.}");
-output("\n\n// <i>“Give the galotian a gift of sealed cum.”</i>");
-
-output("\n\nTooltip Mouseover:");
-output("\n\nCelise loves cum right from the tap, but she’d probably enjoy a stored sample too.");
-
-output("\n\n{First Time}");
-output("\n\nBeckoning the burbling galotian girl over, you pull out a lilac-hued latex bubble filled with your cum. <i>“Know what this is?”</i> you ask with a teasing lilt to your voice.");
-
-output("\n\nCelise cocks her head, eyes transfixed on the slightly yielding weight of the orb in your palm. She purses her emerald lips as you gently bounce the fluid sphere tantalizingly in front of the goo girl’s face. <i>“Is it a snack?”</i> she asks hopefully, a concerned expression of doubt passing across her bubbly face. <i>“It looks a bit like a condom, but where’s the knot?”</i>");
-
-output("\n\n<i>“The goods news is: you’re right! It is a snack,”</i> you assure her. <i>“The bad news is: it’s fully sealed. You’ll have to get the goods out yourself.”</i> You’re actually a little curious to see what kind of approach the {normal: bimbo-proportioned} {tentacles: wiggling and impatient} slimegal will take.");
-
-output("\n\n{Repeat}");
-output("\n\nProducing another cum bubble brings a sweetly dopey grin to your galotian gal’s face. <i>“Oooo... more treats?”</i> Sloshing up to you, she tenderly takes the potent package with a solemn reverence. Holding it with both hands, she licks her lips hungrily.");
-
-output("\n\n{Small Bubble}");
-output("\n\nRolling the plum-sized sack between sticky, slimy fingers, Celise seems to be enjoying the ambient heat from the preserved sample. Despite the semi-opacity of the girl’s body, the rich purple of the bubble is easily visible through her goo, even she she cups it with both hands to squish the elastic surface in her palms. She seems to be getting nearly as much fun out of playing with the gooey ball as she would actually eating it. You should probably get the girl some toys or something one of these days.");
-
-output("\n\nHer eyes meet yours and a sly look crosses her face. Placing a finger across the plump swell of her wanton pucker, Celise shakes her head, oozing tresses drooping across one eye seductively. <i>“Why, I just can’t figure out how to get into this yummy little eggy! I guess I’d better keep it somewhere safe, until it hatches,”</i> she purrs. Leaning backwards onto her bubble butt, she seems to lift out of the sloshing puddle of slime at her waist. The pool shrinks as she settles backward, hips and thighs forming where before there was just amorphous goo.");
-
-output("\n\nBefore long, the galotian has used up nearly all of her mass, producing a pair of legs that link together at the ankles. Apparently she didn’t have enough mass for feet, or maybe she just forgot about them. She turns slightly to show off her newly sculpted curves, lounging against the floor like an eye-popping model posing for a photoshoot. Spreading her knees, the slimey vixen holds your cum bubble between her fore and middle finger, arching an eye at you as she runs the latex load over her pursed lips and down the moist, dripping valley of her [normal: titanic cleavage] [tentacles: modest cleavage].");
-
-output("\n\nCelise draws your gift further down her body, the girl’s lush skin even more pliant than the rubber droplet she loosely clutches. The orb is lowered across her taut tummy and pauses atop the plump pussy she’s created between her wobbling legs. <i>“Mammals keep their eggs here, don’t they?”</i> she asks with a seductive murmur. She’s technically right, but... well you could correct her, but it probably doesn’t matter, so you give a noncommittal shrug. <i>“Well, I don’t have a lot of other pockets,”</i> she teases, her fingers pushing the little bubble into her puffy slit.");
-
-output("\n\n<i>“Ooooh,”</i> she moans, sliding her fingers in after the cum bubble. Through the galotian’s semi-transparent mass, you can easily make out the shadow of her wiggling fingers and the wobbling sphere of your latex package. Fingertips playing across her lips, Celise gasps and pushes your egg-sized gift deeper and deeper, her breasts shrinking slightly as her pussy thickens and her abdomen bulges. Caressing herself, the girl’s legs tremble with delight, ripples of bliss sending her jiggling like a gelatinous sculpture in an earthquake.");
-
-output("\n\n<i>“Ah! Ah! Aaaaaaah!”</i> she gasps as she pushes the bubble into where her womb would be, belly swelling as if undergoing an exceedingly rapid pregnancy. The dark shadow of the bubble is momentarily lost amid a murky, [pc.cumColor] mist. You guess that her digestive system must’ve melted a small hole in the orb, to get the cream out. Your cum spreads within Celise’s gooey frame as she reaches her climax. Her legs vibrate with her wordless bliss before losing their consistency, collapsing into her more normal puddle. With a heaving motion, her massive belly shrinks as the latex bubble slides back out of the goo girl and wobbles onto the deck of your ship.");
-
-output("\n\nIt seems Celise has managed to get the cum out of the bubble and filled it up with a bit of her own goo before the latex resealed itself. Pantomiming the panting gasps of a new mother, she tenderly picks up the goo-filled violet blob and cradles it atop her breasts. <i>“A sweet little baby doh’rahn,”</i> she sighs. <i>“Betcha didn’t know we could cross-breed, huh? I sure hope you’ll take responsibility,”</i> she giggles. Leave it to Celise to turn a little snack into a whole production!");
-output("\n\n{Lust increases 2-5}");
-output("\n\n[End]");
-
-output("\n\n{Medium Bubble}");
-output("\n\n<i>“Nothing like some protein to start the day right,”</i> Celise remarks, though somehow you doubt the slime has ever so much as looked at a clock. Holding her mouth open, she lifts the grapefruit-sized sphere above her head. She carelessly drops the condom which and - predictably - it’s too large for her mouth. The orb smacks her across the face and sits there while her fluid frame ripples from the impact. The galotian adjusts her head vaguely in your direction, her eyes peeking out over the purple, latex blob stuck to her head. She points at her too-large meal and mumbles something from under the orb, seemingly asking for a little help.");
-
-output("\n\nReaching a hand out, you apply a little pressure to the back of the pliant package. With a little effort, the bubble slides past her lips and floats inside her head for a moment. With a focused effort, Celise takes a hard swallow and forces the bubble down, her throat distending from the size of the cum-ball. When it finally passes through, the orb sinks past her chest and settles where her stomach would be, giving her a slight paunch, which the goo girl pats happily.");
-
-output("\n\n<i>“Delicious! But, you know, they say you should get some exercise after eating, so all those calories don’t settle into your hips.”</i> By way of demonstration, she rises up slightly, creating hips as she does so, and then fattens them considerably despite the fact that your bubble is still safely bound in its rubber sheath. <i>“I bet I can think of a fun little exercise,”</i> Celise coos, your orb sinking from her belly to her abdomen and then to her pelvis. It’s pushed against the junction of her thighs and with a gooey deformation, finally settles in a tight envelope of lime green that hangs heavily from the front of her pelvis. You can pretty much see where this is going.");
-output("\n\n[Don’t Play] [Futa Goo] / [Tentacle Goo]");
-
-output("\n\n[Don’t Play]");
-output("\n\nRolling your eyes, you push the makeshift teste back into the goo girl’s body. <i>“Celise, stop playing with your food,”</i> you scold. The galotian pouts, and seems about ready to try something else until the two of you hear the audible sound of her tummy grumbling. She flushes slightly and shrugs.");
-
-output("\n\n<i>“Okay {MOM/DAD}, if I have to,”</i> she sulks. The shadow of your bubble disrupts as her digestive system makes quick work of the latex and begins ravenously devouring the [pc.cumVisc] [pc.cumNoun] within. As the [pc.cumColor] jizz spreads within her, your slime’s body widens, growing appreciably fatter with each passing second. <i>“I told you we should’ve had a little exercise,”</i> she remarks, mildly.");
-
-output("\n\nThe idea of a goo girl trying to get into shape is just too ridiculous for you to press. You leave the sassy slime to her meal with an exasperated sigh.");
-output("\n\n[End]");
-
-output("\n\n[Futa Goo] (normal Celise)");
-output("\n\nThe green galotian taps the glistening slime of her pelvis, just above her makeshift sack and, with a wince of concentration, a slight bulge rises up from the smooth surface. The bump grows and expands into a roughly cylindrical shape. She seems a bit lost on what to do with the featureless pole, until a thought strikes her. Wordlessly, she slides over to you and pulls off your [pc.gear], taking a focused, critical look at your [pc.groin]. It’s almost surreal - being viewed as an art subject instead of as a food dispenser by the ever-hungry slime.");
-
-output("\n\nWith a grunt of effort, inch by inch she sculpts the wobbly shaft into a near replica of your [pc.cockBiggest], all in emerald green. From your [pc.baseBiggest] all the way to your [pc.cockHeadBiggest], the galotian gal has done a remarkable job replicating the full length of your member. She wiggles her hips slightly, letting the unstead organ waver back and forth. It seems she can’t quite get the trick of making the pole hard, though given her squishy body that comes as no surprise.");
-
-output("\n\n<i>“Yay! Now I can be Captain Steele too,”</i> she giggles. <i>“Travelling the galaxy and bedding all the crazy aliens I run across! Look over there,”</i> she insists, holding a hand over her eyes and squinting into the distance. <i>“I think I see one of those slime monsters.”</i> The base of her puddle bubbles and a second head rises, identical to her own. The second Celise face lifts herself up to the waist, but she lacks the first’s thick curves, with barely an A-cup chest. <i>“Don’t worry, [pc.name], I’ll subdue this creature,”</i> she assures you.");
-
-output("\n\nThe second Celise pushes against the first hungrily and it’s all she can do to keep herself back with wet, rippling slaps. The pantomime goes back and forth, with each side gaining the upperhand only to lose it when the other exploits an opening. The clone grabs hold of the original’s breasts and begins suckling at her teats, forcing her to the ground with moist moans. It seems as if Celise has been defeated... by herself. The doppelganger looms above the would-be adventurer with lustful need, focusing wholly upon the swollen shaft protruding from her pelvis and the thick cream inside the monoball directly beneath it.");
-
-output("\n\nRavenously, the girl descends on her own shaft, the clone’s mouth suckling wetly as she forces the other’s inches into her maw with reckless abandon. The original clutches her breasts with both hands, squirming under the oral assault with helpless delight, her hips pumping in time with the other’s thirsty throat. Frothing bubbles of jade slime drool from the slime’s second throat even as the bubble inside her sack is internally tapped. A small line of your cum is drawn from the imitation gonad, visibly traveling up her shaft and into the false slime’s mouth.");
-
-output("\n\nAs the ‘pre-cum’ spurts from Celise’s borrowed cock, the clone seems to gain mass while Celise loses it. Their chests begin changing, as if playing a tug of war with her biomass. The second goo girl redoubles her efforts, drawing more and more spunk from the gradually shrinking latex orb. <i>“I don’t think I can hold out much longer,”</i> Celise moans, her face contorted in the blissful agony of holding back a massive orgasm. <i>“I’m... I’m... I’m cumming!”</i> she cries, grabbing her attacker’s head and thrusting it against her pelvis, bottoming out in her clone’s throat.");
-
-output("\n\nThe condom in her sack pops, the fullness of her gooey contents rushing up the slime’s shaft and into her clone’s head, showering the other girl’s belly with jetting spurts of [pc.cumColor]. The more she jizzes, the larger her clone gets and the more the original sinks into her goo puddle. As the last of the cum travels from one slime to the other, the original Celise is barely more than a cock and a head, her expression one of helpless release. She sinks entirely into the slime, leaving only the clone, with her belly full of the borrowed spunk.");
-
-output("\n\nShe turns her attention to you and you nearly jump when she lunges as if to get a second helping. Just before she reaches you, hands shoot up out of the goo and stop her short. The monster Celise struggles and lets out tiny roars of displeasure, but the arms grip her firmly and, with a brutal yank, drag her down into the slime pool. The goo bubbles and churns, like the surface of a troubled sea, before a single Celise rises, looking exhausted. <i>“I did it,”</i> she pants. <i>“I’ve subdued the beast. But, [pc.name], look at what she’s done to me!”</i>");
-
-output("\n\nYou look over your goo girl, unable to spot any differences. <i>“She’s turned me into a galotian!”</i> the goo girl wails. <i>“I’m a monster!”</i> Giving her a {nice: sighing laugh} {mischievous: sympathetic word} {mean: groan}, you pat the silly slime and assure her that you’ll take care of her, even if she is a terrifying alien beast now. She looks up at you with big, puppydog eyes and a simpering smile of innocent trust, your cum still floating around inside her.");
-output("\n\n{Lust increases 3-7}");
-output("\n\n[End]");
-
-output("\n\n[Tentacle Goo] (giga Celise)");
-output("\n\nCelise eagerly claps her hands, sloshing over to you to help strip off your [pc.gear] and pull you into the bubbling puddle of emerald slime that seems to be spreading across the interior of your ship. With a wink, she pulls the makeshift testicle off of her pelvis and plops it in the center of her slimy sea. With the cum-filled nucleus in place, the gurgling pool begins to manifest growing protrusions. Pole-like appendages rise from the gunk around you, wavering and wobbling at first, but slowly tightening into firm - though still dripping - shafts.");
-
-output("\n\n<i>“Oh no, Captain Steele,”</i> Celise cries in an breathy falsetto, <i>“I accidentally lead us into a pit of slimy tentacles! Whatever will we do?”</i> Your goo girl plumps her lips to bimbo thickness and stares at you with her palms pressed helplessly against her cheeks. Apparently she doesn’t have a very high opinion of your other adventuring companions, if she assumes this is how they act.");
-
-output("\n\n{Nice: <i>“Don’t worry, Celise,”</i> you assure her, adopting a gravelly, whispering tone. <i>“I’d never leave you to the lusts of such a beast. We’ll endure it together!”</i> She lets out a gleeful little squeak and practically throws herself at you as the tentacles advance menacingly.}");
-
-output("\n\n{Mischievous: <i>“Why, don’t be afraid of a little tentacle pit,”</i> you respond in an equally bubbly, airheaded tone. <i>“What’s the worst they could do to us?”</i> Celise raises an eyebrow, but rolls with it. She clings to you, grinding her squishy curves against your [pc.chest] as the tentacles advance menacingly.}");
-
-output("\n\n{Mean: <i>“Ha ha ha!”</i> you laugh with wicked relish. <i>“Foolish girl! We did not stumble into this tentacle pit by accident. I’ve trained this beast to break innocent waifs like you. Soon enough, you’ll join the others who came before you to slave in my slut mines!”</i> Celise lets out a high-pitched scream of delight and faux terror, clutching at you and weakly slapping her palms against the [pc.chest] of her cruel captor. The tentacles advance, menacingly.}");
-
-output("\n\n One limb wraps around the small of your back, circling around to nab Celise as well, pinning the two of you together. A pair of squishy olive wigglers loop around your [pc.legOrLegs] while two more give Celise equal treatment. More tentacles than you would’ve believed the goo could manifest rise up around the two of you, sliding along your exposed [pc.skinFurScales] like writhing snakes. Tendrils dripping with jade moisture prod the cheeks of your [pc.ass] and graze across the heat of your [pc.groin]. The galotian wiggles against you, moaning lewdly as her plump, viridian pussy is teased by a pair of too-thick tentacles that seem to be wordlessly arguing over which one will take her.");
-
-output("\n\n<i>“Oh!”</i> your slime cries out. Pointing at the cum bubble a little distance away, she slips back into her bimbo voice. <i>“That must be the slime’s core! I’ve heard if you pop that, the whole monster bye bye!”</i>");
-
-output("\n\n{Nice: <i>“Then we must make for the heart,”</i> you confirm, grimly. <i>“No matter how many tentacles rape us, we’re going to survive this. Nothing can keep me down when you’re by my side, Celise.”</i> The goo girl gives you a pleased smootch.}");
-
-output("\n\n{Mischievous: <i>“Maybe! But, like, what are we supposed to do? Fuck it?”</i> Celise nods encouragingly.}");
-
-output("\n\n{Mean: <i>“Pathetic! You’ll never reach the heart in time. It is too late to save yourself, slime! Submit!”</i> The galotian puts on an expression of defiance and wiggles valiantly against you.}");
-
-output("\n\nUnwilling to give the slime a chance to attack the ‘core,’ the tentacles around the two of you set to work. The two at Celise’s slit apparently come to a compromise and both go in at once, stretching out the moaning slime. A slippery limb by your posterior forces itself past your pucker with ease, the pliant surface of the tendril contracting and expanding within you like the throbbing of a heartbeat. {if cock: More tentacles curl and coil around your [pc.groin], caressing your cockflesh between emerald loops as thick as rope.} {if pussy: A pair of feelers as large as the ones probing your slime girl brace themselves at the lips of your [pc.pussy], oozing in anticipation before jamming their collective girth into your defenseless depths.}");
-
-output("\n\n<i>“If I stretch,”</i> Celise pants, between the torso-expanding thrusts of the weighty jade pillars inside her womb, <i>“I might just be able to reach the core...”</i> The biggest, thickest tentacle among the swarm surrounding the two of you seems to take notice of her plan and lashes about with whip-like speed, driving itself into her mouth and down her throat in a moment. Her eyes go wide and her body trembles against yours with a spit-roasted climax, but she swings an arm out all the same. Her arm stretches and stretches until her hand reaches the cum bubble at the center of the pool.");
-
-output("\n\n{Nice: <i>“You’ve... you’ve got it!”</i> you moan through the milking goo doing its best to smother you in pleasure. <i>“That’s my girl! Now... give it a squeeze!”</i>}");
-
-output("\n\n{Mischievous: <i>“Aw, I wanted to fondle the core! And how come you get a throat-fucking? Like, SO not fair!”</i>}");
-
-output("\n\n{Mean: <i>“What? How did you reach that? Impossible! Beast, I command you: redouble your efforts! Do not defy me!”</i>}");
-
-output("\n\nThe tentacles inside both you and Celise being vibrating, the sticky, sloppy surface of the green ooze heating with the intensity of their motion. The galotian’s semi-translucent skin shows the tentacles in her gut pushing up even as the one in her throat sinks deeper until all three meet in her belly. The limbs inside and surrounding your body practically buzz with the organic engine driving them on, squelching with lascivious fixation. The temple of your resistance begins to crumble before the tentacle siege. Your throat catches with the overheated gasps that draw the strength from your seemingly boneless limbs bit by bit.");
-
-output("\n\nWith her last bit of defiance, your googirl squeezes the cum bubble as hard as she can. Its pliant surface stretches, bulges and deforms before at last popping in a [pc.cumColor] blowout! The liquid mass splits in a dozen streams, as if being vacuumed by an invisible pressure and siphoned in different directions. Each [pc.cumVisc] stream rushes through the slime pool and is channelled up the quivering lengths of the gooey tentacles, their loads rushing with accelerating haste until - in gushing spree - the tentacles discharge their creamy burdens.");
-
-output("\n\nCelise distends with the gooey [pc.cumNoun] of your breached cum bubble, her belly filling from above and below as the transfixing tentacles swell her curvaceous frame with gut-bloating seed. The limbs inside your body release similar streams next, your hot cum flooding back into your body with a spine tingling, slimy texture that leaves your shoulders shivering and your hips quaking. {if cock: The milking coils around your [pc.cocks] are too skilled at their trade and fresh seed rushes from your tender loins, filling the thin gap between you and your galotian with [pc.cumVisc] [pc.cumNoun].} {The tentacles inside your clenching cavity spray the thick salve of your hot jism deep into your body, the potent issue painting your vagina folds [pc.cumColor].}");
-
-output("\n\nA few weak spurts of jizz rain down on the two of you from the encircling tentacles as they slowly lose their firmness, gradually sinking into the puddle until you and Celise are left to yourselves once more. The slimy girl licks a stray glob of cum from your cheek and plants a gooey kiss on your forehead. <i>“Never underestimate us galotians,”</i> she murmurs, cuddling you in a big, wet hug that incidentally cleans the rest of the cum from you hungrily. You give the girl a peck in return and gradually pry yourself from her clinging mass. You kind of wonder how many of these little pantomimes she’s been acting out when you’re off the ship.");
-output("\n\n{reset lust to 0, remove all ‘fluid filled’ statuses, clean character as per shower}");
-output("\n\n[End]");
-
-
-output("\n\n{Large Bubble}");
-output("\n\n{First time giving her a large bubble: Squeezing and squishing the massive, melon-sized orb, Celise lets her fingers lose some of their firmness to slide over the oddly organic latex covering. <i>“Oh! Interesting,”</i> she murmurs, her brow furrowing with a focused attention you rarely see on the bubbly galotian bimbo. Her hands flatten and spread over the lilac surface of the rubbery sack, forming a lime sheath that seems to poke and prod the condom’s surface in dozens of places at once.");
-
-output("\n\n<i>“Oh neat! It’s self-sealing! As long as you don’t pop it, it’ll seal up any little cuts.”</i> She seems really excited about this detail and looks up at you with a big grin. <i>“Check this out,”</i> she giggles. Reforming the slimy sheath into a pair of hands, she grabs the pliant surface of the hefty bubble on the right and left side.}");
-
-output("\n\nWith a slow twist in opposite directions, Celise starts to pinch the orb at its center, flattening it to a cylinder and then into an hourglass shape as the stretchy covering swivels in the galotian’s grip. Eventually, the center pinches tightly, your cum squeezed equally into two balloons connected by a narrow cinch of dark purple.");
-
-output("\n\nCelise gives another twist and the two halfs pop free! Where once she had a single cum sphere, your goo girl now has a matching pair. There’s no trace of where the bubbles were once joined; their surfaces intact and perfectly featureless. <i>“So cool! Now... what to do with these?”</i> She tilts her head and glances upward, full cheeks flushed a dark emerald.");
-
-output("\n\n<i>“Oh, I know,”</i> she titters. <i>“How about a boob job?”</i> Holding the two 4”</i> orbs in front of her [normal: FF-cup breasts] [tentacle: B-cup breasts], she raises her eyebrows to make sure you’re paying attention. Then, with a gurgling coo, she pushes the bubbles into her breasts, the permeable surface of her mammaries offering only token resistance as the cum-laden implants sink into her chest. Moaning with the pleasure of the penetration, your slutty slime rolls her hips in the squishy sludge of her goo puddle, her skin beading with slick moisture that gives the girl a well-oiled appearance.");
-
-output("\n\nPanting, she juts out her chest to inspect the operation. Her normal chest has grown considerably with the additions, all the way up to [normal: H-cups!] [tentacle: D-cups!] <i>“What do you think? Will people be able to tell they’re fake?”</i> she asks with a demonstrative jiggle. Her milkshake’s just as hypnotically undulating as ever, but the dark shadows of the cum bubbles in her chest are plainly visible through the galotian’s semi-transparent body.");
-
-output("\n\n[Too Obvious] [Perfect]");
-output("\n\n{Perfect option is grayed out if the player doesn’t have a penis. Mouse over text: You’ll need sex organs for this. How did you fill up the Bubble Buddy without them?}");
-
-output("\n\n[Too Obvious]");
-output("\n\nYou let the inflated girl know that her additions aren’t going to fool anybody. Folding her arms under her bolstered udders, Celise leans backwards, a pout on her cute face. <i>“Well goo on you,”</i> she clucks. <i>“Captain Killjoy, you’re needed on the bridge,”</i> she sniffs as she turns away. The latex bubbles in her chest dissolve, releasing their [pc.cumGem] contents into the galotian’s chest, coloring her tits [pc.cumColor]. Tilting her head over her shoulder she flashes a mercurial grin. It seems as long as she gets a meal, there’s just about nothing you can do to discourage that girl!");
-output("\n\n[End]");
-
-output("\n\n[Perfect]");
-output("\n\nForming your forefinger and thumb into an <i>“O”</i> of approval, you give her an encouraging nod. <i>“Ha hah, you’re terrible,”</i> she laughs with a dismissive wave. <i>“Don’t go encouraging me or I’ll just turn into a big ole titty monster!”</i> Holding her hands, palms-out she curls her squishy digits into a rough approximation of claws and leans forward. <i>“Grr! Rar! Scary boob-beast wants cum!”</i> [tentacles: The gelatinous pseudopods wiggling from her viscous base loosely encircle the two of you, forming a loose trellis of phallic affection.] Eyeing her rubber-amplified chest, you shrug out of your [pc.gear] and prepare to subdue this terrible threat before the galaxy succumbs to her gooey hunger.");
-
-output("\n\n<i>“Yay!”</i> she cheers, momentarily breaking character. Wiggling her pert nipples with a [normal: tidal heave,] [tentacles: swelling sashay,] Celise looms once more, the moist warmth of her sticky slime mere inches from your [pc.skinFurScales]. <i>“How will you ever defeat the titty monster,”</i> she gloats, arching an eyebrow and smiling with suggestive suspense.");
-
-output("\n\n<i>“Well,”</i> you respond slowly, <i>“I have an idea where I might be able to find a weak point or two.”</i> You grab her expanded breasts with both hands, their pliant surface firmer than usual thanks to the cum-implants. She moans and you rotate your grip, fondling the galotian’s augmented breasts with wickedly relentless caresses. You pinch, squeeze, tug, and rub her substantial rack, the goo girl shrinking bit by bit into her puddle, diminished by your massaging assault.");
-
-output("\n\n<i>“Oh no, what a galaxy...”</i> she wails, bliss adding a heated gurgle to her moans. <i>“To think a simple {boy/girl} like you could destroy my beautiful horniness!”</i> She leans into you, her curvaceous frame suckling at your [pc.chest], her head resting against your shoulder. {tentacles: the slimy pseudopods close in, amorous wigglers coiling around your [pc.legOrLegs] and [pc.hips].} Celise slides a hand across your shoulder and down your back as she shifts her hips against your pelvis.");
-
-output("\n\n{if pussy but no dick: <i>“Oh my, you seem to have left your weapon at home. No fear, you’ll conquer that goo girl menace yet,”</i> Celise teases, her hand cupping the swell of your mons. A slight firmness presses into your [pc.vagina], as your galotian feeds a thick rod of semi-firm slime into your depths. A shuddering sigh escapes your lips and your fingers tighten against the pliant peaks of her augmented chest. Celise pulls her hand away and where it had been, a gooey shaft now remains. Celise has left a double-sided dildo halfway inside you, made of her own green goo! No telling how long its integrity will hold, so you’d best make use of it while you can.}");
-
-output("\n\nThe emerald girl pressing against you glances down at your [pc.groin] with a delighted eagerness. <i>“Oh no! It’s the neutronic lance! My one weakness! I can feel its gravity pulling me in,”</i> she wails, squishing herself against you so tightly that your hands sink into her breasts and end up grabbing the cum bubble implants floating within them. Experimentally, you give the rubbery orbs a squeeze. Celise lets out a high pitched shriek of delight, her body clenching down against you with an unfamiliar tightness.");
-
-output("\n\n<i>“O-ooh! Sweet syrup, that was awesome!”</i> She reports back, her eyes wide and her mouth not quite able to choose between a huge smile and an O of shock. Her dark jade irises twinkle as she wraps her arms around the back of your neck, her abdomen slurping up the girth of your ‘star lance’ or whatever she was calling it. The heat of her body transmits all the way through your length and right into your spine, sending sharp strokes of tingling impatience through your nerves. <i>“Do it again,”</i> she begs with a little head bob that pokes her little green nose against yours.");
-
-output("\n\nYou give the girl’s orbs another squeeze and her body squeezes in sympathy. {pussy, no dick: The gooey dildo inside her is squished, making the end inside you inflate with a vibrating thickness that hugs every inner fold.} {if dick: The normally gelatinous interior of the goo girl manages a taut density that you didn’t think she was capable of.} {if tentacle Celise: Wriggling helplessly against your [pc.skinFurScales], Celise’s tentacles are rendered just as defenseless as the galotian herself. They feebly slap against your back with moist pats, but it seems you truly have found the titty monster’s weak point!} Caressing your own cum bubbles harder and harder, your slimy partner is obliged to hug herself to you for fear of sinking into her puddle in shapeless ecstasy. With her body transmitting every fondling grope directly to your [pc.groin], it’s almost like you’re masturbating by proxy - albeit far more pleasurably than any hand could manage!");
-
-output("\n\nClutching the latex balloons with tightening force, you give the slime such an embrace that the puddle at her feet momentarily reshapes itself into a perfect sphere. Her interior is so tight and her skin so firm that you’d almost swear the galotian just orgasmed herself into a rahn. Her body vibrates with the intensity of your grip and your own climax follows hers swiftly, [pc.cumNoun] filling her lower body with [pc.cumColor]. You shudder and pump into her with short, rapid strokes. The pleasure is so great that you end up squeezing the girl’s bubbles too hard, their rubber sheaths rupturing under the pressure. Fresh, [pc.cumGem] jizz floods her chest, a delicious feast of [pc.cumNoun] filling her top to bottom.");
-
-output("\n\nCelise sags, her normal, squishiness returning. <i>“Ha ha woah! I think I just understood what ‘getting a hard-on’ means! If you beat up all the monsters like that, no wonder everything tries to jump your bones!”</i> Celise plants a gooey kiss on your cheek and lets herself sink down into a [pc.cumColor] puddle as she digests her rich meal. The top of her head peaks out from the amorphous blob and she winks at you with burbling glee.");
-
-output("\n\nNormally, you’d want to wash yourself up after such a sticky encounter, but Celise has left you cleaner than when you came aboard the ship! {if pussy but no dick: Sadly, she seems to have taken the gooey double-sided dildo with her. You should mention that idea to R&D one of these days.} You climb back into your [pc.gear] and try to remember what you were doing before defeating the galotian invasion.");
-output("\n\n{reset lust to 0, remove all ‘fluid filled’ statuses, clean character as per shower}");
-output("\n\n[End]");
-
-output("\n\n{Huge Bubble}");
-output("\n\nA mischievous look passes across the galotian’s face and she sets the massive orb down with a beaming smile. <i>“You know, you’re really too kind,”</i> Celise remarks as she pats the wobbling load affectionately. <i>“A hearty meal and a uniform all in one?”</i> She’s clearly baiting you, so rather than asking what she means, you simply take a seat, cross your arms under your [pc.chest], and watch the feisty slime.");
-
-output("\n\nLeaning down, she fondles and caresses the taut surface of the pressurized spunk bubble. Licking the latex sheath with eager delight, she presses her face against the bubble and wiggles her shoulders back and forth. Almost imperceptibly, a tiny hole opens in the rubber covering; you wouldn’t even notice the breech if it weren’t for the jet of [pc.cumColor] that appears in your goo girl’s head, thick spunk gushing down her neck and filling her belly. Strangely, even as she siphons the [pc.cumNoun] out of the bubble, it begins to fill with her green goo. Celise seems to be pouring herself into the condom!");
-
-output("\n\nShe squeezes her face against the sphere and it sinks against her shoulders, the goo inside it resolving into her head. Wearing the condom like a huge, sloshing helmet, she snaps off a smart salute, her head wobbling and bobbing inside the jizz-stuffed sack. She burbles something, realizes you can’t make out her words through the cum-immersed helmet, and reforms her mouth at her belly. <i>“Officer Celise, reporting for duty!”</i>");
-
-output("\n\nYou shake your head, holding a palm over your eyes. <i>“Celise, hasn’t anybody ever told you not to play with your food?”</i>");
-
-output("\n\n<i>“But Captain, I haven’t even begun to play with you yet,”</i> she returns with a giggle. Wiggling and squirming, she swallows gallon after gallon of your spunk, forcing more of herself into the violet latex as she does so. The deep emerald hue of her body softens to a pale lime green before becoming as [pc.cumColor] as if she’d come right out of your body in an orgasmic, [pc.cumVisc] spree. The galotian pours more and more of herself into the resilient rubber until, with a final, wet slurping, the last of her goo slides into the condom.");
-
-output("\n\nThe Bubble Buddy’s surface reseals the microscopic breach and you’re left with a lilac-colored sphere, roughly two feet across and sagging slightly under its gooey contents. The sheath tries to contract, but its galotian occupant pushes back, forcing it to expand instead. The orb distorts and deforms, hand-prints pushing from within. The hands are followed by forearms and shoulders as the bottom gains another pair of bumps that resolve into shapely legs. The squeaking, groaning latex gradually gains shape as Celise forms her body within the glossy sheath, her torso expanding and her breasts bulging outward. Finally, her head emerges from between her shoulders with a squeaking shake.");
-
-output("\n\nPerfectly sealed inside a latex body-condom, Celise looks more like a rahn than a galotian. The girl’s normally sloshing exterior actually has tone and definition, her sleek, rubber shell magnifying the absurdly disproportionate dimensions of her sexpot form. Unsteadily rising to her unfamiliar feet, she barely manages to stand, snapping off another salute.");
-output("\n\n[Pop Her] [Fuck Her]");
-output("\n\n(Fuck Her mouseover: If you had a dick, you could use the Bubble Buddy suit as a real condom.)");
-
-output("\n\n[Pop Her]");
-output("\n\nThe silly slime has had her fun. Reaching forward, you grab the slight rise of her gel-like teats pinching and twisting each. The galotian lets out a muffled moan from inside her glistening suit, sinking to her knees. Without letting up, you continue your assault, the taut latex letting out a dangerous squeak as it contorts around your swirling grasp. Celise bucks her hips, thrusting her globular breasts against your hands as she wiggles inside her purple casing.");
-
-output("\n\nYou twist relentlessly, the material growing thinner and thinner until, with a loud pop, the condom breaks, spilling galotian goo all over the floor. The blob of slime gurgles and burbles amorphously for a moment before Celise regains her composure and reforms her upper body with wincing tenderness. <i>“If that’s how you treat all your officers,”</i> she remarks, massaging her flushed nipples, <i>“no wonder you’ve got such a small crew!”</i>");
-
-output("\n\nYour slime girl sticks out her tongue before lunging forward to grab you in a gooey hug.");
-output("\n\n[End]");
-
-output("\n\n[Fuck Her]");
-output("\n\nGrabbing the rahn-shaped galotian by her slim wrists, you step forward, holding your body tight against hers. The warm latex of her suit distorts a bit under your firm pressure, but retains the bulk of its shape. Celise seems a bit lost, unable to simply engulf your body with hers, so she tentatively wraps her arms around your shoulders. The normally over-affectionate slime seems almost shy in her uncertain movements, trying to adjust to her unfamiliar surface tension.");
-
-output("\n\n[If not nude: With one arm around the slime’s impossibly narrow waist, you pull down your [pc.lowerGarments] to expose your [pc.groin] to the slick surface of the rubber-bound goo girl.] Appreciatively grinding her hips against your girth, Celise widens her eyes with excited delight - as if you hadn’t just fed her the ponderous contents of the very condom she’s now wearing! Some goos just never get enough, you suppose with an idle sigh as her mitten-like hands wrap around your [pc.cockBiggest] and begin to stroke gingerly.");
-
-output("\n\nDespite her enthusiasm, she only gives a few pumps before guiding your length to the puffy lips between her thick thighs. Pushing your [pc.cockHeadBiggest] against the thin rubber film, you find that this cleft, at least, is still quite soft. Inch by inch, you push into her, the latex sheath wrapping around your member as her clenching depths swallow your shaft. She trembles against you, the rippling contractions of her slimy form only slightly muted by her rubber wrapping. With both hands on her literal bubble-butt, you begin thrusting back and forth, careful not to pop her covering with a too-sudden impact.");
-
-output("\n\nCelise runs her glossy, squeaking palms across your [pc.chest], thumbs teasing your [pc.nipples] as her body bounces against yours. Massive, jiggling breasts plop ponderously against you with latex creaks of protest, but she lets out only muffled moans of insulated glee. Your [pc.cockBiggest] throbs within her, visible as a shadow through the lilac covering and the galotian’s trembling volume. The girl’s tightness resolves into squeezing, suckling bands of pressure that milk your cock even through the stretchy covering of her sealed attire.");
-
-output("\n\nThe goo girl seems to be getting off from the pressure of her wrapping as much as from the thick strokes of your [pc.cockBiggest], and her rapid, clenching orgasms send a rippling cascade across your tender flesh. With groaning thrusts, you try to hold back a bit longer, but the bimbo-proportioned cum-addict clinging desperately to you is too good at getting what she wants. With wincing relief, you release the sweet heat of your [pc.cumVisc] seed inside the latex-clad galotian. The shadow of your cock bulges as the tip bloats with the pressure of your load. The bubble grows as each spine-tingling jet surges from your shaft [if multi-dick: while your other cock{s} spray{s} {its/their} spunk across the exterior of the girl’s glossy latex sheath].");
-
-output("\n\nBetween the form-fitting suit and the bulging intrusion of your [pc.cockBiggest], however, you’ve pushed the absurdly elastic rubber to its limits. With the added weight of your [pc.cumNoun], the latex can take no more. With an echoing snap, the girl-shaped bubble pops! The force of the rupture knocks you onto your [pc.ass], Celise following you down with a laugh and sloshing all over you in a gooey spree. The suckling pressure on your cock spreads to her whole body as she loses cohesion and becomes little more than an amorphous, cum-thirsty blob.");
-
-output("\n\nWhen she’s finally sated and you’re completely emptied, she resculpts herself into a gooey approximation of her normal shape. <i>“I don’t know how the rahn do it,”</i> she marvels with dreamy sighs. <i>“I was only in that thing for a little while, but I couldn’t stop climaxing! Sorry captain, I don’t think I’ll be able to wear your uniform for very long, or you’ll have a sex-crazed goo girl on your hands!”</i> You contemplate rising to this bait, but decide to just let it pass, running your hands over the sex-crazed goo girl all the same.");
-output("\n\n[End]");
-
+*/
+
+//Give to Celise
+//{Add [Cum Bubble] option to Celise’s [Feed] menu.}
+// <i>“Give the galotian a gift of sealed cum.”</i>
+public function hasACumBubble():Boolean
+{
+	return (pc.hasItem(new SmallCumBubble()) || pc.hasItem(new MediumCumBubble()) || pc.hasItem(new LargeCumBubble()) || pc.hasItem(new HugeCumBubble()));
+}
+
+
+//Tooltip Mouseover:
+//Celise loves cum right from the tap, but she’d probably enjoy a stored sample too.
+public function giveCeliseATreatSetup():void
+{
+	var choices:Array = [];
+	for(var x:int = 0; x < pc.inventory.length; x++)
+	{
+		if(pc.inventory[x] is SmallCumBubble) choices.push(x);
+		else if(pc.inventory[x] is MediumCumBubble) choices.push(x);
+		else if(pc.inventory[x] is LargeCumBubble) choices.push(x);
+		else if(pc.inventory[x] is HugeCumBubble) choices.push(x);
+	}
+	if(choices.length == 1) giveCeliseATreat(pc.inventory[choices[0]]);
+	else
+	{
+		clearOutput();
+		showCelise();
+		showName("WHICH\nONE?");
+		output("Which cum bubble will you give her?");
+		clearMenu();
+		for(x = 0; x < choices.length; x++)
+		{
+			if (pc.inventory[choices[x]].quantity > 0) {
+				addItemButton(x, pc.inventory[choices[x]], giveCeliseATreat, pc.inventory[choices[x]]);
+			}
+		}
+		if(flags["GIGACELISE"] != 1) addButton(14,"Back",celiseFeedBack);
+		else addButton(14,"Back",gigaCeliseFeedRouter);
+	}
+}
+public function celiseFeedBack():void
+{
+	clearOutput();
+	showCelise();
+	output("How would you like to feed her?");
+	celiseFeedingRouter();
+}
+
+
+public function giveCeliseATreat(item:ItemSlotClass):void
+{
+	clearOutput();
+	showCelise();
+	//{First Time}
+	if(flags["BUBBLED_CELISE"] == undefined)
+	{
+		output("Beckoning the burbling galotian girl over, you pull out a lilac-hued latex bubble filled with your cum. <i>“Know what this is?”</i> you ask with a teasing lilt to your voice.");
+		output("\n\nCelise cocks her head, eyes transfixed on the slightly yielding weight of the orb in your palm. She purses her emerald lips as you gently bounce the fluid sphere tantalizingly in front of the goo girl’s face. <i>“Is it a snack?”</i> she asks hopefully, a concerned expression of doubt passing across her bubbly face. <i>“It looks a bit like a condom, but where’s the knot?”</i>");
+		output("\n\n<i>“The goods news is: you’re right! It is a snack,”</i> you assure her. <i>“The bad news is: it’s fully sealed. You’ll have to get the goods out yourself.”</i> You’re actually a little curious to see what kind of approach the ");
+		if(flags["GIGACELISE"] != 1) output("bimbo-proportioned");
+		else output("wiggling and impatient");
+		output(" slimegal will take.");
+	}
+	//{Repeat}
+	else
+	{
+		output("Producing another cum bubble brings a sweetly dopey grin to your galotian gal’s face. <i>“Oooo... more treats?”</i> Sloshing up to you, she tenderly takes the potent package with a solemn reverence. Holding it with both hands, she licks her lips hungrily.");
+	}
+	//{Small Bubble}
+	if(item is SmallCumBubble)
+	{
+		output("\n\nRolling the plum-sized sack between sticky, slimy fingers, Celise seems to be enjoying the ambient heat from the preserved sample. Despite the semi-opacity of the girl’s body, the rich purple of the bubble is easily visible through her goo, even she she cups it with both hands to squish the elastic surface in her palms. She seems to be getting nearly as much fun out of playing with the gooey ball as she would actually eating it. You should probably get the girl some toys or something one of these days.");
+		output("\n\nHer eyes meet yours and a sly look crosses her face. Placing a finger across the plump swell of her wanton pucker, Celise shakes her head, oozing tresses drooping across one eye seductively. <i>“Why, I just can’t figure out how to get into this yummy little eggy! I guess I’d better keep it somewhere safe, until it hatches,”</i> she purrs. Leaning backwards onto her bubble butt, she seems to lift out of the sloshing puddle of slime at her waist. The pool shrinks as she settles backward, hips and thighs forming where before there was just amorphous goo.");
+		output("\n\nBefore long, the galotian has used up nearly all of her mass, producing a pair of legs that link together at the ankles. Apparently she didn’t have enough mass for feet, or maybe she just forgot about them. She turns slightly to show off her newly sculpted curves, lounging against the floor like an eye-popping model posing for a photoshoot. Spreading her knees, the slimey vixen holds your cum bubble between her fore and middle finger, arching an eye at you as she runs the latex load over her pursed lips and down the moist, dripping valley of her ");
+		if(flags["GIGACELISE"] != 1) output("titanic cleavage");
+		else output("modest cleavage");
+		output(".");
+		output("\n\nCelise draws your gift further down her body, the girl’s lush skin even more pliant than the rubber droplet she loosely clutches. The orb is lowered across her taut tummy and pauses atop the plump pussy she’s created between her wobbling legs. <i>“Mammals keep their eggs here, don’t they?”</i> she asks with a seductive murmur. She’s technically right, but... well you could correct her, but it probably doesn’t matter, so you give a noncommittal shrug. <i>“Well, I don’t have a lot of other pockets,”</i> she teases, her fingers pushing the little bubble into her puffy slit.");
+		output("\n\n<i>“Ooooh,”</i> she moans, sliding her fingers in after the cum bubble. Through the galotian’s semi-transparent mass, you can easily make out the shadow of her wiggling fingers and the wobbling sphere of your latex package. Fingertips playing across her lips, Celise gasps and pushes your egg-sized gift deeper and deeper, her breasts shrinking slightly as her pussy thickens and her abdomen bulges. Caressing herself, the girl’s legs tremble with delight, ripples of bliss sending her jiggling like a gelatinous sculpture in an earthquake.");
+		output("\n\n<i>“Ah! Ah! Aaaaaaah!”</i> she gasps as she pushes the bubble into where her womb would be, belly swelling as if undergoing an exceedingly rapid pregnancy. The dark shadow of the bubble is momentarily lost amid a murky, [pc.cumColor] mist. You guess that her digestive system must’ve melted a small hole in the orb, to get the cream out. Your cum spreads within Celise’s gooey frame as she reaches her climax. Her legs vibrate with her wordless bliss before losing their consistency, collapsing into her more normal puddle. With a heaving motion, her massive belly shrinks as the latex bubble slides back out of the goo girl and wobbles onto the deck of your ship.");
+		output("\n\nIt seems Celise has managed to get the cum out of the bubble and filled it up with a bit of her own goo before the latex resealed itself. Pantomiming the panting gasps of a new mother, she tenderly picks up the goo-filled violet blob and cradles it atop her breasts. <i>“A sweet little baby doh’rahn,”</i> she sighs. <i>“Betcha didn’t know we could cross-breed, huh? I sure hope you’ll take responsibility,”</i> she giggles. Leave it to Celise to turn a little snack into a whole production!");
+		pc.lust(2+rand(4));
+		processTime(5);
+		//[End]
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
+	//{Medium Bubble}
+	else if(item is MediumCumBubble)
+	{
+		output("\n\n<i>“Nothing like some protein to start the day right,”</i> Celise remarks, though somehow you doubt the slime has ever so much as looked at a clock. Holding her mouth open, she lifts the grapefruit-sized sphere above her head. She carelessly drops the condom which and - predictably - it’s too large for her mouth. The orb smacks her across the face and sits there while her fluid frame ripples from the impact. The galotian adjusts her head vaguely in your direction, her eyes peeking out over the purple, latex blob stuck to her head. She points at her too-large meal and mumbles something from under the orb, seemingly asking for a little help.");
+		output("\n\nReaching a hand out, you apply a little pressure to the back of the pliant package. With a little effort, the bubble slides past her lips and floats inside her head for a moment. With a focused effort, Celise takes a hard swallow and forces the bubble down, her throat distending from the size of the cum-ball. When it finally passes through, the orb sinks past her chest and settles where her stomach would be, giving her a slight paunch, which the goo girl pats happily.");
+		output("\n\n<i>“Delicious! But, you know, they say you should get some exercise after eating, so all those calories don’t settle into your hips.”</i> By way of demonstration, she rises up slightly, creating hips as she does so, and then fattens them considerably despite the fact that your bubble is still safely bound in its rubber sheath. <i>“I bet I can think of a fun little exercise,”</i> Celise coos, your orb sinking from her belly to her abdomen and then to her pelvis. It’s pushed against the junction of her thighs and with a gooey deformation, finally settles in a tight envelope of lime green that hangs heavily from the front of her pelvis. You can pretty much see where this is going.");
+		processTime(3);
+		//[Don’t Play] [Futa Goo] / [Tentacle Goo]
+		clearMenu();
+		addButton(0,"Don't Play",dontPlayWithYourFood,undefined);
+		if(flags["GIGACELISE"] != 1)
+		{
+			if(pc.hasCock()) addButton(1,"Futa Goo",celiseFutaGooForYou2,undefined);
+			else addDisabledButton(1,"Futa Goo","Futa Goo","You need a penis for this. Where did you get all this cum without a penis?");
+		}
+		else addButton(1,"Tentacle Goo",tentacleGooCeliseFeeding,undefined);
+		addButton(0,"Don't Play",dontPlayWithYourFood,undefined);
+	}
+	//{Large Bubble}
+	else if(item is LargeCumBubble)
+	{
+		if(flags["CELISE_LARGE_BUBBED"] == undefined) 
+		{
+			output("\n\nSqueezing and squishing the massive, melon-sized orb, Celise lets her fingers lose some of their firmness to slide over the oddly organic latex covering. <i>“Oh! Interesting,”</i> she murmurs, her brow furrowing with a focused attention you rarely see on the bubbly galotian bimbo. Her hands flatten and spread over the lilac surface of the rubbery sack, forming a lime sheath that seems to poke and prod the condom’s surface in dozens of places at once.");
+			output("\n\n<i>“Oh neat! It’s self-sealing! As long as you don’t pop it, it’ll seal up any little cuts.”</i> She seems really excited about this detail and looks up at you with a big grin. <i>“Check this out,”</i> she giggles. Reforming the slimy sheath into a pair of hands, she grabs the pliant surface of the hefty bubble on the right and left side.");
+			IncrementFlag("CELISE_LARGE_BUBBED");
+		}
+		output("\n\nWith a slow twist in opposite directions, Celise starts to pinch the orb at its center, flattening it to a cylinder and then into an hourglass shape as the stretchy covering swivels in the galotian’s grip. Eventually, the center pinches tightly, your cum squeezed equally into two balloons connected by a narrow cinch of dark purple.");
+		output("\n\nCelise gives another twist and the two halfs pop free! Where once she had a single cum sphere, your goo girl now has a matching pair. There’s no trace of where the bubbles were once joined; their surfaces intact and perfectly featureless. <i>“So cool! Now... what to do with these?”</i> She tilts her head and glances upward, full cheeks flushed a dark emerald.");
+		output("\n\n<i>“Oh, I know,”</i> she titters. <i>“How about a boob job?”</i> Holding the two 4”</i> orbs in front of her ");
+		if(flags["GIGACELISE"] != 1) output("FF-cup breasts");
+		else output("B-cup breasts");
+		output(", she raises her eyebrows to make sure you’re paying attention. Then, with a gurgling coo, she pushes the bubbles into her breasts, the permeable surface of her mammaries offering only token resistance as the cum-laden implants sink into her chest. Moaning with the pleasure of the penetration, your slutty slime rolls her hips in the squishy sludge of her goo puddle, her skin beading with slick moisture that gives the girl a well-oiled appearance.");
+		output("\n\nPanting, she juts out her chest to inspect the operation. Her normal chest has grown considerably with the additions, all the way up to ");
+		if(flags["GIGACELISE"] != 1) output("H-cups!");
+		else output("D-cups!");
+		output(" <i>“What do you think? Will people be able to tell they’re fake?”</i> she asks with a demonstrative jiggle. Her milkshake’s just as hypnotically undulating as ever, but the dark shadows of the cum bubbles in her chest are plainly visible through the galotian’s semi-transparent body.");
+		processTime(4);
+		pc.lust(5);
+		//[Too Obvious] [Perfect]
+		//{Perfect option is grayed out if the player doesn’t have a penis. Mouse over text: You’ll need sex organs for this. How did you fill up the Bubble Buddy without them?}
+		clearMenu();
+		addButton(0,"Too Obvious",tooObviousTittyCelise,undefined,"Too Obvious","That's way too obvious. You've got better things to do.")
+		if(pc.hasCock()) addButton(1,"Perfect",tittyFuckCelise);
+		else addDisabledButton(1,"Perfect","Perfect","You’ll need sex organs for this. How did you fill up the Bubble Buddy without them?");
+	}
+	//{Huge Bubble}
+	else
+	{
+		output("A mischievous look passes across the galotian’s face and she sets the massive orb down with a beaming smile. <i>“You know, you’re really too kind,”</i> Celise remarks as she pats the wobbling load affectionately. <i>“A hearty meal and a uniform all in one?”</i> She’s clearly baiting you, so rather than asking what she means, you simply take a seat, cross your arms under your [pc.chest], and watch the feisty slime.");
+		output("\n\nLeaning down, she fondles and caresses the taut surface of the pressurized spunk bubble. Licking the latex sheath with eager delight, she presses her face against the bubble and wiggles her shoulders back and forth. Almost imperceptibly, a tiny hole opens in the rubber covering; you wouldn’t even notice the breech if it weren’t for the jet of [pc.cumColor] that appears in your goo girl’s head, thick spunk gushing down her neck and filling her belly. Strangely, even as she siphons the [pc.cumNoun] out of the bubble, it begins to fill with her green goo. Celise seems to be pouring herself into the condom!");
+		output("\n\nShe squeezes her face against the sphere and it sinks against her shoulders, the goo inside it resolving into her head. Wearing the condom like a huge, sloshing helmet, she snaps off a smart salute, her head wobbling and bobbing inside the jizz-stuffed sack. She burbles something, realizes you can’t make out her words through the cum-immersed helmet, and reforms her mouth at her belly. <i>“Officer Celise, reporting for duty!”</i>");
+		output("\n\nYou shake your head, holding a palm over your eyes. <i>“Celise, hasn’t anybody ever told you not to play with your food?”</i>");
+		output("\n\n<i>“But Captain, I haven’t even begun to play with you yet,”</i> she returns with a giggle. Wiggling and squirming, she swallows gallon after gallon of your spunk, forcing more of herself into the violet latex as she does so. The deep emerald hue of her body softens to a pale lime green before becoming as [pc.cumColor] as if she’d come right out of your body in an orgasmic, [pc.cumVisc] spree. The galotian pours more and more of herself into the resilient rubber until, with a final, wet slurping, the last of her goo slides into the condom.");
+		output("\n\nThe Bubble Buddy’s surface reseals the microscopic breach and you’re left with a lilac-colored sphere, roughly two feet across and sagging slightly under its gooey contents. The sheath tries to contract, but its galotian occupant pushes back, forcing it to expand instead. The orb distorts and deforms, hand-prints pushing from within. The hands are followed by forearms and shoulders as the bottom gains another pair of bumps that resolve into shapely legs. The squeaking, groaning latex gradually gains shape as Celise forms her body within the glossy sheath, her torso expanding and her breasts bulging outward. Finally, her head emerges from between her shoulders with a squeaking shake.");
+		output("\n\nPerfectly sealed inside a latex body-condom, Celise looks more like a rahn than a galotian. The girl’s normally sloshing exterior actually has tone and definition, her sleek, rubber shell magnifying the absurdly disproportionate dimensions of her sexpot form. Unsteadily rising to her unfamiliar feet, she barely manages to stand, snapping off another salute.");
+		processTime(4);
+		pc.lust(5);
+		//[Pop Her] [Fuck Her]
+		clearMenu();
+		addButton(1,"Fuck Her",fuckCeliseAfterTooMuchStuff,undefined,"Fuck Her","If you had a dick, you could use the Bubble Buddy suit as a real condom.");
+		addButton(0,"Pop Her",popCeliseAfterTooStuff,undefined,"Pop Her","Enough of this. Pop her!");
+	}
+	itemConsume(item);
+}
+
+//[Don’t Play]
+public function dontPlayWithYourFood():void
+{
+	clearOutput();
+	showCelise();
+	output("Rolling your eyes, you push the makeshift teste back into the goo girl’s body. <i>“Celise, stop playing with your food,”</i> you scold. The galotian pouts, and seems about ready to try something else until the two of you hear the audible sound of her tummy grumbling. She flushes slightly and shrugs.");
+	output("\n\n<i>“Okay " + pc.mf("</i>Dad<i>","</i>Mom<i>") + ", if I have to,”</i> she sulks. The shadow of your bubble disrupts as her digestive system makes quick work of the latex and begins ravenously devouring the [pc.cumVisc] [pc.cumNoun] within. As the [pc.cumColor] jizz spreads within her, your slime’s body widens, growing appreciably fatter with each passing second. <i>“I told you we should’ve had a little exercise,”</i> she remarks, mildly.");
+	output("\n\nThe idea of a goo girl trying to get into shape is just too ridiculous for you to press. You leave the sassy slime to her meal with an exasperated sigh.");
+	processTime(1);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//[Futa Goo] (normal Celise)
+//Req's dick
+public function celiseFutaGooForYou2():void
+{
+	clearOutput();
+	showCelise();
+	var x:int = pc.biggestCockIndex();
+	output("The green galotian taps the glistening slime of her pelvis, just above her makeshift sack and, with a wince of concentration, a slight bulge rises up from the smooth surface. The bump grows and expands into a roughly cylindrical shape. She seems a bit lost on what to do with the featureless pole, until a thought strikes her. Wordlessly, she slides over to you and pulls off your [pc.gear], taking a focused, critical look at your [pc.groin]. It’s almost surreal - being viewed as an art subject instead of as a food dispenser by the ever-hungry slime.");
+	output("\n\nWith a grunt of effort, inch by inch she sculpts the wobbly shaft into a near replica of your [pc.cock " + x + "], all in emerald green. From your [pc.sheath " + x + "] all the way to your [pc.cockHead " + x + "], the galotian gal has done a remarkable job replicating the full length of your member. She wiggles her hips slightly, letting the unstead organ waver back and forth. It seems she can’t quite get the trick of making the pole hard, though given her squishy body that comes as no surprise.");
+	output("\n\n<i>“Yay! Now I can be Captain Steele too,”</i> she giggles. <i>“Travelling the galaxy and bedding all the crazy aliens I run across! Look over there,”</i> she insists, holding a hand over her eyes and squinting into the distance. <i>“I think I see one of those slime monsters.”</i> The base of her puddle bubbles and a second head rises, identical to her own. The second Celise face lifts herself up to the waist, but she lacks the first’s thick curves, with barely an A-cup chest. <i>“Don’t worry, [pc.name], I’ll subdue this creature,”</i> she assures you.");
+	output("\n\nThe second Celise pushes against the first hungrily and it’s all she can do to keep herself back with wet, rippling slaps. The pantomime goes back and forth, with each side gaining the upperhand only to lose it when the other exploits an opening. The clone grabs hold of the original’s breasts and begins suckling at her teats, forcing her to the ground with moist moans. It seems as if Celise has been defeated... by herself. The doppelganger looms above the would-be adventurer with lustful need, focusing wholly upon the swollen shaft protruding from her pelvis and the thick cream inside the monoball directly beneath it.");
+	output("\n\nRavenously, the girl descends on her own shaft, the clone’s mouth suckling wetly as she forces the other’s inches into her maw with reckless abandon. The original clutches her breasts with both hands, squirming under the oral assault with helpless delight, her hips pumping in time with the other’s thirsty throat. Frothing bubbles of jade slime drool from the slime’s second throat even as the bubble inside her sack is internally tapped. A small line of your cum is drawn from the imitation gonad, visibly traveling up her shaft and into the false slime’s mouth.");
+	output("\n\nAs the ‘pre-cum’ spurts from Celise’s borrowed cock, the clone seems to gain mass while Celise loses it. Their chests begin changing, as if playing a tug of war with her biomass. The second goo girl redoubles her efforts, drawing more and more spunk from the gradually shrinking latex orb. <i>“I don’t think I can hold out much longer,”</i> Celise moans, her face contorted in the blissful agony of holding back a massive orgasm. <i>“I’m... I’m... I’m cumming!”</i> she cries, grabbing her attacker’s head and thrusting it against her pelvis, bottoming out in her clone’s throat.");
+	output("\n\nThe condom in her sack pops, the fullness of her gooey contents rushing up the slime’s shaft and into her clone’s head, showering the other girl’s belly with jetting spurts of [pc.cumColor]. The more she jizzes, the larger her clone gets and the more the original sinks into her goo puddle. As the last of the cum travels from one slime to the other, the original Celise is barely more than a cock and a head, her expression one of helpless release. She sinks entirely into the slime, leaving only the clone, with her belly full of the borrowed spunk.");
+	output("\n\nShe turns her attention to you and you nearly jump when she lunges as if to get a second helping. Just before she reaches you, hands shoot up out of the goo and stop her short. The monster Celise struggles and lets out tiny roars of displeasure, but the arms grip her firmly and, with a brutal yank, drag her down into the slime pool. The goo bubbles and churns, like the surface of a troubled sea, before a single Celise rises, looking exhausted. <i>“I did it,”</i> she pants. <i>“I’ve subdued the beast. But, [pc.name], look at what she’s done to me!”</i>");
+	output("\n\nYou look over your goo girl, unable to spot any differences. <i>“She’s turned me into a galotian!”</i> the goo girl wails. <i>“I’m a monster!”</i> Giving her a ");
+	if(pc.isNice()) output("sighing laugh");
+	else if(pc.isMischievous()) output("sympathetic word");
+	else output("groan");
+	output(", you pat the silly slime and assure her that you’ll take care of her, even if she is a terrifying alien beast now. She looks up at you with big, puppydog eyes and a simpering smile of innocent trust, your cum still floating around inside her.");
+	//{Lust increases 3-7}
+	processTime(10);
+	pc.lust(3 + rand(5));
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//[Tentacle Goo] (giga Celise)
+public function tentacleGooCeliseFeeding():void
+{
+	clearOutput();
+	showCelise();
+	output("Celise eagerly claps her hands, sloshing over to you to help strip off your [pc.gear] and pull you into the bubbling puddle of emerald slime that seems to be spreading across the interior of your ship. With a wink, she pulls the makeshift testicle off of her pelvis and plops it in the center of her slimy sea. With the cum-filled nucleus in place, the gurgling pool begins to manifest growing protrusions. Pole-like appendages rise from the gunk around you, wavering and wobbling at first, but slowly tightening into firm - though still dripping - shafts.");
+	output("\n\n<i>“Oh no, Captain Steele,”</i> Celise cries in an breathy falsetto, <i>“I accidentally lead us into a pit of slimy tentacles! Whatever will we do?”</i> Your goo girl plumps her lips to bimbo thickness and stares at you with her palms pressed helplessly against her cheeks. Apparently she doesn’t have a very high opinion of your other adventuring companions, if she assumes this is how they act.");
+	if(pc.isNice()) output("\n\n<i>“Don’t worry, Celise,”</i> you assure her, adopting a gravelly, whispering tone. <i>“I’d never leave you to the lusts of such a beast. We’ll endure it together!”</i> She lets out a gleeful little squeak and practically throws herself at you as the tentacles advance menacingly.");
+	else if(pc.isMischievous()) output("\n\n<i>“Why, don’t be afraid of a little tentacle pit,”</i> you respond in an equally bubbly, airheaded tone. <i>“What’s the worst they could do to us?”</i> Celise raises an eyebrow, but rolls with it. She clings to you, grinding her squishy curves against your [pc.chest] as the tentacles advance menacingly.");
+	else output("\n\n<i>“Ha ha ha!”</i> you laugh with wicked relish. <i>“Foolish girl! We did not stumble into this tentacle pit by accident. I’ve trained this beast to break innocent waifs like you. Soon enough, you’ll join the others who came before you to slave in my slut mines!”</i> Celise lets out a high-pitched scream of delight and faux terror, clutching at you and weakly slapping her palms against the [pc.chest] of her cruel captor. The tentacles advance, menacingly.");
+
+	output("\n\n One limb wraps around the small of your back, circling around to nab Celise as well, pinning the two of you together. A pair of squishy olive wigglers loop around your [pc.legOrLegs] while two more give Celise equal treatment. More tentacles than you would’ve believed the goo could manifest rise up around the two of you, sliding along your exposed [pc.skinFurScales] like writhing snakes. Tendrils dripping with jade moisture prod the cheeks of your [pc.ass] and graze across the heat of your [pc.groin]. The galotian wiggles against you, moaning lewdly as her plump, viridian pussy is teased by a pair of too-thick tentacles that seem to be wordlessly arguing over which one will take her.");
+	output("\n\n<i>“Oh!”</i> your slime cries out. Pointing at the cum bubble a little distance away, she slips back into her bimbo voice. <i>“That must be the slime’s core! I’ve heard if you pop that, the whole monster bye bye!”</i>");
+	if(pc.isNice()) output("\n\n<i>“Then we must make for the heart,”</i> you confirm, grimly. <i>“No matter how many tentacles rape us, we’re going to survive this. Nothing can keep me down when you’re by my side, Celise.”</i> The goo girl gives you a pleased smootch.");
+	else if(pc.isMischievous()) output("\n\n<i>“Maybe! But, like, what are we supposed to do? Fuck it?”</i> Celise nods encouragingly.");
+	else output("\n\n<i>“Pathetic! You’ll never reach the heart in time. It is too late to save yourself, slime! Submit!”</i> The galotian puts on an expression of defiance and wiggles valiantly against you.");
+
+	output("\n\nUnwilling to give the slime a chance to attack the ‘core,’ the tentacles around the two of you set to work. The two at Celise’s slit apparently come to a compromise and both go in at once, stretching out the moaning slime. A slippery limb by your posterior forces itself past your pucker with ease, the pliant surface of the tendril contracting and expanding within you like the throbbing of a heartbeat.");
+	if(pc.hasCock()) output(" More tentacles curl and coil around your [pc.cocks], caressing your cockflesh between emerald loops as thick as rope.");
+	if(pc.hasVagina()) output(" A pair of feelers as large as the ones probing your slime girl brace themselves at the lips of [pc.oneVagina], oozing in anticipation before jamming their collective girth into your defenseless depths.");
+	output("\n\n<i>“If I stretch,”</i> Celise pants, between the torso-expanding thrusts of the weighty jade pillars inside her womb, <i>“I might just be able to reach the core...”</i> The biggest, thickest tentacle among the swarm surrounding the two of you seems to take notice of her plan and lashes about with whip-like speed, driving itself into her mouth and down her throat in a moment. Her eyes go wide and her body trembles against yours with a spit-roasted climax, but she swings an arm out all the same. Her arm stretches and stretches until her hand reaches the cum bubble at the center of the pool.");
+	if(pc.isNice()) output("\n\n<i>“You’ve... you’ve got it!”</i> you moan through the milking goo doing its best to smother you in pleasure. <i>“That’s my girl! Now... give it a squeeze!”</i>");
+	else if(pc.isMischievous()) output("\n\n<i>“Aw, I wanted to fondle the core! And how come you get a throat-fucking? Like, SO not fair!”</i>");
+	else output("\n\n<i>“What? How did you reach that? Impossible! Beast, I command you: redouble your efforts! Do not defy me!”</i>");
+	output("\n\nThe tentacles inside both you and Celise being vibrating, the sticky, sloppy surface of the green ooze heating with the intensity of their motion. The galotian’s semi-translucent skin shows the tentacles in her gut pushing up even as the one in her throat sinks deeper until all three meet in her belly. The limbs inside and surrounding your body practically buzz with the organic engine driving them on, squelching with lascivious fixation. The temple of your resistance begins to crumble before the tentacle siege. Your throat catches with the overheated gasps that draw the strength from your seemingly boneless limbs bit by bit.");
+	output("\n\nWith her last bit of defiance, your googirl squeezes the cum bubble as hard as she can. Its pliant surface stretches, bulges and deforms before at last popping in a [pc.cumColor] blowout! The liquid mass splits in a dozen streams, as if being vacuumed by an invisible pressure and siphoned in different directions. Each [pc.cumVisc] stream rushes through the slime pool and is channelled up the quivering lengths of the gooey tentacles, their loads rushing with accelerating haste until - in gushing spree - the tentacles discharge their creamy burdens.");
+	output("\n\nCelise distends with the gooey [pc.cumNoun] of your breached cum bubble, her belly filling from above and below as the transfixing tentacles swell her curvaceous frame with gut-bloating seed. The limbs inside your body release similar streams next, your hot cum flooding back into your body with a spine tingling, slimy texture that leaves your shoulders shivering and your hips quaking.");
+	if(pc.hasCock()) output(" The milking coils around your [pc.cocks] are too skilled at their trade and fresh seed rushes from your tender loins, filling the thin gap between you and your galotian with [pc.cumVisc] [pc.cumNoun].");
+	if(pc.hasVagina()) output(" The tentacles inside your clenching cavity spray the thick salve of your hot jism deep into your body, the potent issue painting your vagina folds [pc.cumColor].");
+
+	output("\n\nA few weak spurts of jizz rain down on the two of you from the encircling tentacles as they slowly lose their firmness, gradually sinking into the puddle until you and Celise are left to yourselves once more. The slimy girl licks a stray glob of cum from your cheek and plants a gooey kiss on your forehead. <i>“Never underestimate us galotians,”</i> she murmurs, cuddling you in a big, wet hug that incidentally cleans the rest of the cum from you hungrily. You give the girl a peck in return and gradually pry yourself from her clinging mass. You kind of wonder how many of these little pantomimes she’s been acting out when you’re off the ship.");
+	//{reset lust to 0, remove all ‘fluid filled’ statuses, clean character as per shower}
+	processTime(15);
+	pc.orgasm();
+	pc.shower();
+	pc.removeStatusEffect("Anally-Filled");
+	pc.removeStatusEffect("Vaginally-Filled");
+	pc.removeStatusEffect("Orally-Filled");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//[Too Obvious]
+public function tooObviousTittyCelise():void
+{
+	clearOutput();
+	showCelise();
+	output("You let the inflated girl know that her additions aren’t going to fool anybody. Folding her arms under her bolstered udders, Celise leans backwards, a pout on her cute face. <i>“Well goo on you,”</i> she clucks. <i>“Captain Killjoy, you’re needed on the bridge,”</i> she sniffs as she turns away. The latex bubbles in her chest dissolve, releasing their [pc.cumGem] contents into the galotian’s chest, coloring her tits [pc.cumColor]. Tilting her head over her shoulder she flashes a mercurial grin. It seems as long as she gets a meal, there’s just about nothing you can do to discourage that girl!");
+	processTime(1);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//[Perfect]
+public function tittyFuckCelise():void
+{
+	clearOutput();
+	showCelise();
+	output("Forming your forefinger and thumb into an <i>“O”</i> of approval, you give her an encouraging nod. <i>“Ha hah, you’re terrible,”</i> she laughs with a dismissive wave. <i>“Don’t go encouraging me or I’ll just turn into a big ole titty monster!”</i> Holding her hands, palms-out she curls her squishy digits into a rough approximation of claws and leans forward. <i>“Grr! Rar! Scary boob-beast wants cum!”</i>");
+	//tentacles:
+	if(flags["GIGACELISE"] == 1) output(" The gelatinous pseudopods wiggling from her viscous base loosely encircle the two of you, forming a loose trellis of phallic affection.");
+	output(" Eyeing her rubber-amplified chest, you shrug out of your [pc.gear] and prepare to subdue this terrible threat before the galaxy succumbs to her gooey hunger.");
+
+	output("\n\n<i>“Yay!”</i> she cheers, momentarily breaking character. Wiggling her pert nipples with a ");
+	if(flags["GIGACELISE"] != 1) output("tidal heave,");
+	else output("swelling sashay,");
+	output(" Celise looms once more, the moist warmth of her sticky slime mere inches from your [pc.skinFurScales]. <i>“How will you ever defeat the titty monster,”</i> she gloats, arching an eyebrow and smiling with suggestive suspense.");
+
+	output("\n\n<i>“Well,”</i> you respond slowly, <i>“I have an idea where I might be able to find a weak point or two.”</i> You grab her expanded breasts with both hands, their pliant surface firmer than usual thanks to the cum-implants. She moans and you rotate your grip, fondling the galotian’s augmented breasts with wickedly relentless caresses. You pinch, squeeze, tug, and rub her substantial rack, the goo girl shrinking bit by bit into her puddle, diminished by your massaging assault.");
+	output("\n\n<i>“Oh no, what a galaxy...”</i> she wails, bliss adding a heated gurgle to her moans. <i>“To think a simple " + pc.mf("boy","girl") + " like you could destroy my beautiful horniness!”</i> She leans into you, her curvaceous frame suckling at your [pc.chest], her head resting against your shoulder.");
+	if(flags["GIGACELISE"] == 1) output(" The slimy pseudopods close in, amorous wigglers coiling around your [pc.legOrLegs] and [pc.hips].");
+	output(" Celise slides a hand across your shoulder and down your back as she shifts her hips against your pelvis.");
+
+	if(pc.hasVagina() && !pc.hasCock()) output("\n\n<i>“Oh my, you seem to have left your weapon at home. No fear, you’ll conquer that goo girl menace yet,”</i> Celise teases, her hand cupping the swell of your mons. A slight firmness presses into your [pc.vagina], as your galotian feeds a thick rod of semi-firm slime into your depths. A shuddering sigh escapes your lips and your fingers tighten against the pliant peaks of her augmented chest. Celise pulls her hand away and where it had been, a gooey shaft now remains. Celise has left a double-sided dildo halfway inside you, made of her own green goo! No telling how long its integrity will hold, so you’d best make use of it while you can.");
+	output("\n\nThe emerald girl pressing against you glances down at your [pc.groin] with a delighted eagerness. <i>“Oh no! It’s the neutronic lance! My one weakness! I can feel its gravity pulling me in,”</i> she wails, squishing herself against you so tightly that your hands sink into her breasts and end up grabbing the cum bubble implants floating within them. Experimentally, you give the rubbery orbs a squeeze. Celise lets out a high pitched shriek of delight, her body clenching down against you with an unfamiliar tightness.");
+	output("\n\n<i>“O-ooh! Sweet syrup, that was awesome!”</i> She reports back, her eyes wide and her mouth not quite able to choose between a huge smile and an O of shock. Her dark jade irises twinkle as she wraps her arms around the back of your neck, her abdomen slurping up the girth of your ‘star lance’ or whatever she was calling it. The heat of her body transmits all the way through your length and right into your spine, sending sharp strokes of tingling impatience through your nerves. <i>“Do it again,”</i> she begs with a little head bob that pokes her little green nose against yours.");
+	output("\n\nYou give the girl’s orbs another squeeze and her body squeezes in sympathy. ");
+	if(pc.hasVagina() && !pc.hasCock()) output("The gooey dildo inside her is squished, making the end inside you inflate with a vibrating thickness that hugs every inner fold. ");
+	else output("The normally gelatinous interior of the goo girl manages a taut density that you didn’t think she was capable of. ");
+	//if tentacle Celise:
+	if(flags["GIGACELISE"] == 1) output("Wriggling helplessly against your [pc.skinFurScales], Celise’s tentacles are rendered just as defenseless as the galotian herself. They feebly slap against your back with moist pats, but it seems you truly have found the titty monster’s weak point!");
+	output(" Caressing your own cum bubbles harder and harder, your slimy partner is obliged to hug herself to you for fear of sinking into her puddle in shapeless ecstasy. With her body transmitting every fondling grope directly to your crotch, it’s almost like you’re masturbating by proxy - albeit far more pleasurably than any hand could manage!");
+
+	output("\n\nClutching the latex balloons with tightening force, you give the slime such an embrace that the puddle at her feet momentarily reshapes itself into a perfect sphere. Her interior is so tight and her skin so firm that you’d almost swear the galotian just orgasmed herself into a rahn. Her body vibrates with the intensity of your grip and your own climax follows hers swiftly, [pc.cumNoun] filling her lower body with [pc.cumColor]. You shudder and pump into her with short, rapid strokes. The pleasure is so great that you end up squeezing the girl’s bubbles too hard, their rubber sheaths rupturing under the pressure. Fresh, [pc.cumGem] jizz floods her chest, a delicious feast of [pc.cumNoun] filling her top to bottom.");
+	output("\n\nCelise sags, her normal, squishiness returning. <i>“Ha ha woah! I think I just understood what ‘getting a hard-on’ means! If you beat up all the monsters like that, no wonder everything tries to jump your bones!”</i> Celise plants a gooey kiss on your cheek and lets herself sink down into a [pc.cumColor] puddle as she digests her rich meal. The top of her head peaks out from the amorphous blob and she winks at you with burbling glee.");
+	output("\n\nNormally, you’d want to wash yourself up after such a sticky encounter, but Celise has left you cleaner than when you came aboard the ship!");
+	if(pc.hasVagina() && !pc.hasCock()) output(" Sadly, she seems to have taken the gooey double-sided dildo with her. You should mention that idea to R&D one of these days.");
+	output(" You climb back into your [pc.gear] and try to remember what you were doing before defeating the galotian invasion.");
+	//{reset lust to 0, remove all ‘fluid filled’ statuses, clean character as per shower}
+	processTime(15);
+	pc.orgasm();
+	pc.shower();
+	pc.removeStatusEffect("Anally-Filled");
+	pc.removeStatusEffect("Vaginally-Filled");
+	pc.removeStatusEffect("Orally-Filled");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//[Pop Her]
+public function popCeliseAfterTooStuff():void
+{
+	clearOutput();
+	showCelise();
+	output("The silly slime has had her fun. Reaching forward, you grab the slight rise of her gel-like teats pinching and twisting each. The galotian lets out a muffled moan from inside her glistening suit, sinking to her knees. Without letting up, you continue your assault, the taut latex letting out a dangerous squeak as it contorts around your swirling grasp. Celise bucks her hips, thrusting her globular breasts against your hands as she wiggles inside her purple casing.");
+	output("\n\nYou twist relentlessly, the material growing thinner and thinner until, with a loud pop, the condom breaks, spilling galotian goo all over the floor. The blob of slime gurgles and burbles amorphously for a moment before Celise regains her composure and reforms her upper body with wincing tenderness. <i>“If that’s how you treat all your officers,”</i> she remarks, massaging her flushed nipples, <i>“no wonder you’ve got such a small crew!”</i>");
+	output("\n\nYour slime girl sticks out her tongue before lunging forward to grab you in a gooey hug.");
+	processTime(3);
+	applyCumSoaked(pc);
+	//[End]
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//[Fuck Her]
+//Dick req
+public function fuckCeliseAfterTooMuchStuff():void
+{
+	clearOutput();
+	showCelise();
+	var x:int = pc.biggestCockIndex();
+	output("Grabbing the rahn-shaped galotian by her slim wrists, you step forward, holding your body tight against hers. The warm latex of her suit distorts a bit under your firm pressure, but retains the bulk of its shape. Celise seems a bit lost, unable to simply engulf your body with hers, so she tentatively wraps her arms around your shoulders. The normally over-affectionate slime seems almost shy in her uncertain movements, trying to adjust to her unfamiliar surface tension.\n\n");
+	if(!pc.isNude()) output("With one arm around the slime’s impossibly narrow waist, you pull down your [pc.lowerGarments] to expose your [pc.groin] to the slick surface of the rubber-bound goo girl. ");
+	output("Appreciatively grinding her hips against your girth, Celise widens her eyes with excited delight - as if you hadn’t just fed her the ponderous contents of the very condom she’s now wearing! Some goos just never get enough, you suppose with an idle sigh as her mitten-like hands wrap around your [pc.cock " + x + "] and begin to stroke gingerly.");
+	output("\n\nDespite her enthusiasm, she only gives a few pumps before guiding your length to the puffy lips between her thick thighs. Pushing your [pc.cockHead " + x + "] against the thin rubber film, you find that this cleft, at least, is still quite soft. Inch by inch, you push into her, the latex sheath wrapping around your member as her clenching depths swallow your shaft. She trembles against you, the rippling contractions of her slimy form only slightly muted by her rubber wrapping. With both hands on her literal bubble-butt, you begin thrusting back and forth, careful not to pop her covering with a too-sudden impact.");
+	output("\n\nCelise runs her glossy, squeaking palms across your [pc.chest], thumbs teasing your [pc.nipples] as her body bounces against yours. Massive, jiggling breasts plop ponderously against you with latex creaks of protest, but she lets out only muffled moans of insulated glee. Your [pc.cock " + x + "] throbs within her, visible as a shadow through the lilac covering and the galotian’s trembling volume. The girl’s tightness resolves into squeezing, suckling bands of pressure that milk your cock even through the stretchy covering of her sealed attire.");
+	output("\n\nThe goo girl seems to be getting off from the pressure of her wrapping as much as from the thick strokes of your [pc.cock " + x + "], and her rapid, clenching orgasms send a rippling cascade across your tender flesh. With groaning thrusts, you try to hold back a bit longer, but the bimbo-proportioned cum-addict clinging desperately to you is too good at getting what she wants. With wincing relief, you release the sweet heat of your [pc.cumVisc] seed inside the latex-clad galotian. The shadow of your cock bulges as the tip bloats with the pressure of your load. The bubble grows as each spine-tingling jet surges from your shaft");
+	if(pc.cockTotal() > 1)
+	{
+		//if multi-dick: 
+		output("while your other cock");
+		if(pc.cockTotal() > 2) output("s spray their");
+		else output(" sprays its");
+		output(" spunk across the exterior of the girl’s glossy latex sheath");
+	}
+	output(".");
+	output("\n\nBetween the form-fitting suit and the bulging intrusion of your [pc.cock " + x + "], however, you’ve pushed the absurdly elastic rubber to its limits. With the added weight of your [pc.cumNoun], the latex can take no more. With an echoing snap, the girl-shaped bubble pops! The force of the rupture knocks you onto your [pc.ass], Celise following you down with a laugh and sloshing all over you in a gooey spree. The suckling pressure on your cock spreads to her whole body as she loses cohesion and becomes little more than an amorphous, cum-thirsty blob.");
+	output("\n\nWhen she’s finally sated and you’re completely emptied, she resculpts herself into a gooey approximation of her normal shape. <i>“I don’t know how the rahn do it,”</i> she marvels with dreamy sighs. <i>“I was only in that thing for a little while, but I couldn’t stop climaxing! Sorry captain, I don’t think I’ll be able to wear your uniform for very long, or you’ll have a sex-crazed goo girl on your hands!”</i> You contemplate rising to this bait, but decide to just let it pass, running your hands over the sex-crazed goo girl all the same.");
+	processTime(15);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+/*
 output("\n\nGive to Flahne");
 output("\n\n{Add <i>“Cum Bubble”</i> option to Flahne’s dialog menu once you’re on friendly terms with her.}");
 output("\n\n// <i>“Give the rahn a gift of sealed cum.”</i>");
@@ -871,13 +1010,13 @@ output("\n\nTurning slowly so your spinning head doesn’t start doing loops aro
 
 output("\n\n<i>“Normally, I would put on a show for you, but I’m ever so tired today. You wouldn’t mind putting on a show for me, would you?”</i> Shaking your head enthusiastically, you feel like you’ve got the perfect show for a rahn. Lifting the Bubble Buddy by way of explanation, you’re rewarded with the scent of falling rain. Your sight flexes a bit and when the walls stop panting, you find yourself as hard as you’ve ever been. Your [pc.cocks] {is/are} at full attention and already dribbling with pre-cum. <i>“Oh, do go on,”</i> Vaande encourages you. <i>“By all means, show me just how much you can produce.”</i>");
 
-output("\n\nHappy to comply, you fit your [pc.cockBiggest] with the rubbery, lilac sheath. Feeding inches into the pliant plastic seems different somehow. It’s as if you’re sliding into a living thing - the interior tensing and gradually acclimating to your girth. The purple cock sheath practically drools with silky lubrication, as hungry for your cum as you are for release. Wrapping both hands around the latex cylinder, you slowly rock in and out of it, turning sideways so Vaande has a clear view through the semi-translucent toy. She seems to be enjoying the show, a sharp intake of breath sending ripples through her lavender form.");
+output("\n\nHappy to comply, you fit your [pc.cock " + x + "] with the rubbery, lilac sheath. Feeding inches into the pliant plastic seems different somehow. It’s as if you’re sliding into a living thing - the interior tensing and gradually acclimating to your girth. The purple cock sheath practically drools with silky lubrication, as hungry for your cum as you are for release. Wrapping both hands around the latex cylinder, you slowly rock in and out of it, turning sideways so Vaande has a clear view through the semi-translucent toy. She seems to be enjoying the show, a sharp intake of breath sending ripples through her lavender form.");
 
 output("\n\nYou pull the toy to your [pc.biggestSheath], savoring the clenching, squeezing voracity of the pussy nearly as much as the tightening of your lower body. The muscles in your [pc.thigh] and back work in concert with your arms to milk your building orgasm for all it’s worth. Pumping your swollen member with strident strokes, you wince at the numbing cold building in your gut as gurgling cum production goes into overdrive. The smell of rain weaves in and out of your awareness and in the uncertain illumination of Vaande’s room, you could almost swear that the lube-gushing pocket pussy and the drooling rahn woman seem one and the same.");
 
-output("\n\nYou shake the distracting fantasy away and focus on the gelatinous sheath suckling at your thumping spout. With long, agitated caresses, you sweep the toy along your [pc.cockBiggest] until you can hold back no longer. A warm, sweet tightness of release seizes your body one second and the next, you find yourself pumping away again, orgasm so close you can nearly taste it. You blink, trying to remember what happened, but it’s difficult to think with the frantic, desperate heat in your chest. You take a deep breath, sucking in as much cool air as you can but it only serves to throw fuel onto your inner fire.");
+output("\n\nYou shake the distracting fantasy away and focus on the gelatinous sheath suckling at your thumping spout. With long, agitated caresses, you sweep the toy along your [pc.cock " + x + "] until you can hold back no longer. A warm, sweet tightness of release seizes your body one second and the next, you find yourself pumping away again, orgasm so close you can nearly taste it. You blink, trying to remember what happened, but it’s difficult to think with the frantic, desperate heat in your chest. You take a deep breath, sucking in as much cool air as you can but it only serves to throw fuel onto your inner fire.");
 
-output("\n\nA buzzer set into the wall goes off and a voice chimes in: <i>“This is the front desk. Are you alright?”</i> You growl at the distraction and reply in a tight voice that you’re just dandy before returning to the task at hand. <i>“Alright,”</i> the voice replies, a little annoyed, <i>“but this is the third check in, so I’m going to have to charge you for the overtime.”</i> You don’t have time to think on this as the agonizing sweetness of your climax approaches once more and - again - you find your body denying you release. You blink hard, trying to shake off the dizzying compulsion for liquid bliss, but your limbs are not your own. Arms aching from the rapid pace, hips aching from their slapping assault, and [pc.cockBiggest] aching with a strangely numb stiffness, it’s all you can do to remain standing.");
+output("\n\nA buzzer set into the wall goes off and a voice chimes in: <i>“This is the front desk. Are you alright?”</i> You growl at the distraction and reply in a tight voice that you’re just dandy before returning to the task at hand. <i>“Alright,”</i> the voice replies, a little annoyed, <i>“but this is the third check in, so I’m going to have to charge you for the overtime.”</i> You don’t have time to think on this as the agonizing sweetness of your climax approaches once more and - again - you find your body denying you release. You blink hard, trying to shake off the dizzying compulsion for liquid bliss, but your limbs are not your own. Arms aching from the rapid pace, hips aching from their slapping assault, and [pc.cock " + x + "] aching with a strangely numb stiffness, it’s all you can do to remain standing.");
 
 output("\n\n{if vagina:");
 output("\n\nStrangely, your [pc.vaginas] {is/are} nearly as sore as the rest of your body. Your inner walls spasm with the aftershocks of a phantom climax. With a high, moaning whine, you ache to give some attention to your sensitive folds and [pc.clits], but just can’t afford to stop now. You’re so close to your climax, if you tried to pause without finishing it might drive you mad. You arch your back, [pc.chest] jutting in the throes of your nearness and press on, heedless of the cascade of [pc.girlCum] leaking down your inner thigh.");
