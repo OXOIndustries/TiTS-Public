@@ -14,6 +14,7 @@
 	import classes.Items.Apparel.ThermalJacket;
 	import classes.Items.Accessories.LightJetpack;
 	import classes.Items.Accessories.FlashGoggles;
+	import classes.Items.Transformatives.HuskarTreats;
 	import classes.kGAMECLASS;
 	
 	public class Nerrasa extends Creature
@@ -40,7 +41,7 @@
 			this.inventory = [];
 			inventory.push(new HeatBelt());
 			inventory.push(new ArcticWarfareBelt());
-			//inventory.push(new HuskarTreats()); 9999
+			inventory.push(new HuskarTreats());
 			inventory.push(new AusarTreats());
 			inventory.push(new ClimbingKit());
 			inventory.push(new FishingRod());
@@ -67,8 +68,8 @@
 			this.energyRaw = 100;
 			this.lustRaw = 85;
 			
-			this.XPRaw = 50;
 			this.level = 1;
+			this.XPRaw = normalXP();
 			this.credits = 0;
 			this.HPMod = 0;
 			this.HPRaw = this.HPMax();

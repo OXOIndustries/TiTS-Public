@@ -495,6 +495,7 @@
 		public var beardStyle: Number = 0;
 		public function beardStyleUnlocked(newBeardStyle:Number):Boolean
 		{
+			if (beardStyle == 11 && faceType == GLOBAL.TYPE_FELINE) return false; // lynx sideburns are not exactly beard
 			return true;
 		}
 		public function beardStyleLockedMessage():String
@@ -2999,12 +3000,27 @@
 			arg *= bMulti;
 			
 			XPRaw += arg;
-			if (XPRaw >= XPMax()) XPRaw = XPMax();
-			else if (XPRaw <= 0) XPRaw = 0;
+			//if (XPRaw >= XPMax()) XPRaw = XPMax();
+			if (XPRaw <= 0) XPRaw = 0;
 			return XPRaw;
 		}
 		public function XPMax(): Number {
-			return level * level * 100;
+			return level * level * level * level * 100;
+		}
+		//Automatic, consistant XP generator based on level.
+		public function normalXP():Number
+		{
+			return autoXPRando(XPMax() / (2 + level*2));
+		}
+		//Double normal XP.
+		public function bossXP():Number
+		{
+			return autoXPRando(normalXP() * 2);
+		}
+		public function autoXPRando(arg:Number):Number
+		{
+			var multi:Number = (85 + rand(31))/100;
+			return Math.round(arg * multi);
 		}
 		//HP
 		public function HP(arg: Number = 0): Number {			
@@ -4210,8 +4226,16 @@
 		public function faceDesc(): String {
 			var faceo: String = "";
 			var hasSmallNose: Boolean = InCollection(faceType, GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_NALEEN_FACE, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_HUMANMASKED, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_MOUSEMAN, GLOBAL.TYPE_MOUSE);
+			if (hasPerk("Androgyny")) {
+				faceo = "an androgynous " + face();
+				if (mfn("m", "f", "n") == "n")
+					faceo += " that would work on either a male or a female"
+				else
+					faceo += " which leaves a subtle " + mf("boyish", "girly") + " impression";
+				if(lipRating() > 1) faceo += " and " + plural(lipDescript(true)) + faceLipMimbraneDescript();
+			}
 			//0-10
-			if (femininity < 10) {
+			else if (femininity < 10) {
 				faceo = "a square chin";
 				if(!hasBeard() && lipRating() > 2) faceo += ", " + plural(lipDescript(true)) + faceLipMimbraneDescript() + ", and chiseled jawline";
 				else if (!hasBeard()) faceo += " and chiseled jawline";
@@ -4304,12 +4328,14 @@
 			return output;
 		}
 		public function femininityMax(): Number {
+			if (hasPerk("Androgyny")) return 100; // perk overrides other conditions
 			//Herms + genderless
 			if ((!hasVagina() && !hasCock()) || (hasCock() && hasVagina())) return 85;
 			else if (hasCock() && !hasVagina()) return 70;
 			return 100;
 		}
 		public function femininityMin(): Number {
+			if (hasPerk("Androgyny")) return 0; // perk overrides other conditions
 			//Herms + genderless
 			if ((!hasVagina() && !hasCock()) || (hasCock() && hasVagina())) return 20;
 			else if (!hasCock() && hasVagina()) return 30;
@@ -4415,6 +4441,9 @@
 					break;
 				case 10:
 					bStyle = "goatee";
+					break;
+				case 11:
+					bStyle = "sideburns";
 					break;
 			}
 			return bStyle;
@@ -5032,7 +5061,8 @@
 				if (hasClawedHands()) adjective.push("clawed");
 				if (hasPaddedHands()) adjective.push("padded");
 				if (armType == GLOBAL.TYPE_FROG) adjective.push("webbed", "sticky");
-				if (InCollection(armType, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_BADGER, GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_PANDA)) adjective.push("bestial");
+				if (InCollection(armType, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_BADGER, GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_PANDA) || hasArmFlag(GLOBAL.FLAG_PAWS)) adjective.push("bestial");
+				if (hasArmFlag(GLOBAL.FLAG_PAWS)) adjective.push("paw-like");
 				if (hasArmFlag(GLOBAL.FLAG_GOOEY)) adjective.push("slimy", "slick", "gooey");
 				else if (InCollection(armType, GLOBAL.TYPE_ARACHNID, GLOBAL.TYPE_DRIDER, GLOBAL.TYPE_BEE, GLOBAL.TYPE_LEITHAN)) adjective.push("chitinous");
 			}
@@ -5070,6 +5100,7 @@
 			return InCollection(armType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_BADGER, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_GRYVAIN);
 		}
 		public function hasPaddedHands(): Boolean {
+			if (hasArmFlag(GLOBAL.FLAG_PAWS)) return true;
 			return InCollection(armType, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_PANDA);
 		}
 		public function lowerBody():String {
@@ -7890,6 +7921,12 @@
 					vaginas[slot].wetnessRaw = 3;
 					vaginas[slot].minLooseness = 3;
 					break;
+				case GLOBAL.TYPE_FELINE:
+					vaginas[slot].clits = 1;
+					vaginas[slot].vaginaColor = "pink";
+					vaginas[slot].wetnessRaw = 1;
+					vaginas[slot].minLooseness = 1;
+					break;
 				case GLOBAL.TYPE_SIREN:
 					vaginas[slot].vaginaColor = RandomInCollection(["blue", "aquamarine"]);
 					vaginas[slot].addFlag(GLOBAL.FLAG_NUBBY);
@@ -8154,7 +8191,7 @@
 			if (tone > 70) weighting -= 10;
 			if (tone < 30) weighting += 10;
 			if (lipRating() > 1) weighting += lipRating() * 3;
-			if (hasBeard()) weighting -= 100;
+			if (hasBeard() && !(beardStyle == 11 && faceType == GLOBAL.TYPE_FELINE)) weighting -= 100; // lynx sideburns are not exactly a beard and have no m/f weight
 			//trace("Femininity Rating = " + weighting);
 			//Neuters first!
 			if (neuter != "") {
@@ -8393,7 +8430,11 @@
 			 
 			if (horseScore() >= 3) race = equineRace(); // Horse-morphs
 			if (ovirScore() >= 3 && race == "human") race = "half-ovir";
-			if (ausarScore() >= 2 && race == "human") race = "half-ausar"; // Fucking Ausar forever overriding other shit. EXTERMINATUS.
+			if (ausarScore() >= 2 && race == "human")
+			{
+				if (huskarScore() < 3) race = "half-ausar"; // Fucking Ausar forever overriding other shit. EXTERMINATUS.
+				else race = "half-huskar";
+			}
 			if (kaithritScore() >= 3 && race == "human") race = "half-kaithrit";
 			if (leithanScore() >= 3 && race == "human") race = "half-leithan";
 			if (nukiScore() >= 2 && race == "human") race = "half kui-tan"
@@ -8402,11 +8443,20 @@
 			if (bovineScore() >= 3) race = bovineRace(); // Cow-morphs
 			if (raskvelScore() >= 4) race = "raskvel-morph";
 			if (pandaScore() >= 4) race = "panda-morph";
-			if (ausarScore() >= 4) race = "ausar"
+			if (ausarScore() >= 4)
+			{
+				if (huskarScore() < 3) race = "ausar";
+				else race = "huskar";
+			}
 			if (demonScore() >= 5) race = "demon-morph";
 			if (gabilaniScore() >= 5) race = "gabilani";
 			if (frogScore() >= 5) race = "kerokoras";
 			if (kaithritScore() >= 6) race = "kaithrit"
+			if (felineScore() >= 5 && race != "kaithrit") {
+				if (hasTail(GLOBAL.TYPE_FELINE) && tailCount > 1) race = "nekomata";
+				else if (dragonScore() >= 4 && hasScales())  race = "dragonne";
+				else race = "feline-morph";
+			}
 			if (leithanScore() >= 6) race = "leithan";
 			if (nukiScore() >= 6) race = "kui-tan";
 			if (vanaeScore() >= 6) race = "vanae-morph";
@@ -8427,6 +8477,7 @@
 			if (horseScore() >= 3 && isCentaur()) race = taurRace(equineRace());
 			else if (bovineScore() >= 3 && isTaur()) race = rawmfn("bull", "cow", "bovine") + "-taur";
 			else if (race == "human" && isCentaur()) race = "centaur";
+			else if (InCollection(race, "feline-morph", "nekomata") && isTaur() && isHerm()) race = "chakat";
 			else if (isTaur()) race = taurRace(race); // Other taurs
 			// Naga-morphs
 			if (naleenScore() >= 5 && isNaga()) race = "naleen";
@@ -8507,6 +8558,31 @@
 			if (race().indexOf("half ") != -1) return true;
 			return false;
 		}
+		public function dragonScore():Number
+		{
+			var dragonCounter:Number = 0;
+			if (faceType == GLOBAL.TYPE_DRACONIC)
+				dragonCounter++;
+			if (earType == GLOBAL.TYPE_DRACONIC)
+				dragonCounter++;
+			if (hasTail(GLOBAL.TYPE_DRACONIC))
+				dragonCounter++;
+			if (tongueType == GLOBAL.TYPE_DRACONIC)
+				dragonCounter++;
+			if (cockTotal(GLOBAL.TYPE_DRACONIC) > 0)
+				dragonCounter++;
+			if (hasWings(GLOBAL.TYPE_DRACONIC) || hasWings(GLOBAL.TYPE_SMALLDRACONIC))
+				dragonCounter++;
+			if (legType == GLOBAL.TYPE_DRACONIC)
+				dragonCounter++;
+			if (hasHorns(GLOBAL.TYPE_DRACONIC) || hasHorns(GLOBAL.TYPE_LIZAN))
+				dragonCounter++;
+			if (skinType == GLOBAL.SKIN_TYPE_SCALES && dragonCounter > 0)
+				dragonCounter++;
+			if (hasPerk("Dragonfire"))
+				dragonCounter++;
+			return dragonCounter;
+		}
 		public function humanScore(): int {
 			var counter: int = 0;
 			if (skinType == GLOBAL.SKIN_TYPE_SKIN) counter++;
@@ -8529,6 +8605,15 @@
 			if (legType == GLOBAL.TYPE_CANINE && legCount == 2 && hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) counter++;
 			if (counter > 0 && faceType == GLOBAL.TYPE_HUMAN) counter++;
 			return counter;
+		}
+		public function huskarScore():int
+		{
+			var s:int = 0;
+			if (hasArmFlag(GLOBAL.FLAG_FLUFFY)) s++;
+			if (hasLegFlag(GLOBAL.FLAG_FLUFFY)) s++;
+			if (hasSkinFlag(GLOBAL.FLAG_FLUFFY)) s++; // This is what I'm using for the chestfluff
+			if (thickness >= 75) s++;
+			return s;
 		}
 		public function kaithritScore(): int {
 			var counter: int = 0;
@@ -10046,7 +10131,17 @@
 			var descripted: Number = 0;
 			//Bald folks get one-off quick description
 			if (hairLength == 0) {
-				if (rand(2) == 0) descript += "shaved ";
+				if (hasFur()) {
+					if (rand(2) == 0) descript += "furry ";
+					else {
+						if (forceColor || rand(2) == 0) descript += furColor;
+						return descript + "head-fur";
+					}
+				}
+				else if (hasScales()) {
+					if (rand(2) == 0) descript += "scaly ";
+				}
+				else if (rand(2) == 0) descript += "shaved ";
 				else descript += "bald ";
 				descript += "head";
 				return descript;
@@ -10208,7 +10303,17 @@
 			var descripted: Number = 0;
 			//Bald folks get one-off quick description
 			if (hairLength == 0) {
-				if (rand(2) == 0) descript += "shaved ";
+				if (hasFur()) {
+					if (rand(2) == 0) descript += "furry ";
+					else {
+						if (forceColor || rand(2) == 0) descript += furColor;
+						return descript + "head-fur";
+					}
+				}
+				else if (hasScales()) {
+					if (rand(2) == 0) descript += "scaly ";
+				}
+				else if (rand(2) == 0) descript += "shaved ";
 				else descript += "bald ";
 				descript += "head";
 				return descript;
@@ -10542,6 +10647,13 @@
 						desc += RandomInCollection(["canine gash", "small-lipped vagina", "animalistic cunny", "canine honeypot", "canine snatch", "canine cunt", "animalistic pussy", "fragrant dog-cunt"]);
 					else
 						desc += RandomInCollection(["dog-pussy", "bitch-cunt", "fuck-hole", "dog-twat", "animal-twat", "animal-pussy", "dog-pussy", "dog-cunt"]);
+				}
+				else if (type == GLOBAL.TYPE_FELINE)
+				{
+					if (!simple)
+						desc += RandomInCollection(["feline gash", "small-lipped vagina", "animalistic cunny", "feline honeypot", "feline snatch", "feline cunt", "animalistic pussy", "subtle pussy", "discreet cat-cunt"]);
+					else
+						desc += RandomInCollection(["cat-pussy", "cat-cunt", "fuck-hole", "cat-twat", "animal-twat", "animal-pussy", "cat-pussy", "cat-cunt", "pussy", "box"]);
 				}
 				else if (type == GLOBAL.TYPE_SIREN || type == GLOBAL.TYPE_ANEMONE)
 				{

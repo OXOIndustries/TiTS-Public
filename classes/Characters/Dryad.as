@@ -41,8 +41,8 @@ package classes.Characters
 			this.HPRaw = this.HPMax();
 			this.energyRaw = 100;
 			this.lustRaw = 100;
-			this.xpRaw = 100;
 			this.level = 4;
+			this.XPRaw = normalXP();
 			this.credits = 100;
 			
 			this.sellMarkup = 1.3;

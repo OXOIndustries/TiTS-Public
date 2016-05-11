@@ -65,8 +65,8 @@
 			baseHPResistances.kinetic.damageValue = 50.0;
 			baseHPResistances.burning.damageValue = -50.0;
 			
-			this.XPRaw = 250;
 			this.level = 6;
+			this.XPRaw = normalXP();
 			this.credits = 0;
 			this.HPMod = 0;
 			this.HPRaw = this.HPMax();

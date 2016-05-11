@@ -76,8 +76,8 @@ package classes.Characters
 			this.energyRaw = 100;
 			this.lustRaw = 20;
 			
-			this.XPRaw = 450;
 			this.level = 7;
+			this.XPRaw = normalXP();
 			this.credits = 0;
 			this.HPMod = 100;
 			this.shieldsRaw = this.shieldsMax();

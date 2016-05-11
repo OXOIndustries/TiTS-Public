@@ -345,11 +345,11 @@ public function lashTreatment2(treatment:String):void
 
 	var parasites:Boolean = false;
 
-	if(pc.hasCuntTail() || pc.hasCockTail() || attachedMimbranes() > 0)
+	if(pc.hasParasiteTail() || attachedMimbranes() > 0)
 	{
 		parasites = true;
 		// Do the removal shit
-		if (pc.hasCuntTail() || pc.hasCockTail())
+		if (pc.hasParasiteTail())
 		{
 			pc.tailType = GLOBAL.TYPE_HUMAN;
 			pc.tailCount = 0;

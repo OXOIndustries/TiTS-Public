@@ -70,8 +70,8 @@ package classes.Characters
 			baseHPResistances = new TypeCollection();
 			baseHPResistances.electric.damageValue = -40.0;
 			
-			this.XPRaw = 100;
 			this.level = 4;
+			this.XPRaw = normalXP();
 			this.credits = 0;
 			this.HPMod = 0;
 			this.shieldsRaw = this.shieldsMax();

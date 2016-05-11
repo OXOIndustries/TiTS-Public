@@ -574,8 +574,8 @@ public function sleep(outputs:Boolean = true):void {
 			(pc as PlayerCharacter).unclaimedClassPerks += 1;
 			(pc as PlayerCharacter).unclaimedGenericPerks += 1;
 			
+			pc.XPRaw -= pc.XPMax();
 			pc.level++;
-			pc.XPRaw = 0;
 			pc.maxOutHP();
 			
 			// Enable the button

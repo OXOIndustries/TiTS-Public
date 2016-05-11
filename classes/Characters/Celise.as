@@ -54,8 +54,8 @@
 			baseHPResistances.drug.damageValue = 100.0;
 			baseHPResistances.pheromone.damageValue = 100.0;
 			
-			this.XPRaw = 50;
 			this.level = 1;
+			this.XPRaw = normalXP();
 			this.credits = 0;
 			
 			this.femininity = 90;

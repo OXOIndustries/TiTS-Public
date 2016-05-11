@@ -385,7 +385,16 @@ public function myrDeserterNonCombatMenu(gold:Boolean = false):void
 		if(flags["BRIHA_INCUBATION_TIMER"] != undefined) addDisabledButton(2,"Fight","Fight","You're not going to smack around a pregnant girl!");
 		else addButton(2,"Fight",fightADumbShitAntWaifu,gold);
 	}
-	if(hasRedDildo() || hasGoldDildo()) addButton(3,"Give Dildo",giveDildoToAntSloot,gold,"Give Dildo","Return your looted prize.");
+	if((hasRedDildo() && !gold) || (gold && hasGoldDildo())) addButton(3,"Give Dildo",giveDildoToAntSloot,gold,"Give Dildo","Return your looted prize.");
+	else addDisabledButton(3,"Give Dildo","You don't have a dildo to give back.");
+	//Give Flower - new scene for Lys
+	//avail. thru ‘About Her’ topic, consensual sex menu or victory-sex menu if Lys is friendly
+	if(gold)
+	{
+		if(pc.hasItem(new VenusBloom()) && flags["ENABLE_LYS_FLOWER"] != undefined) addButton(4,"Give Flower",giveFlowerToLys,undefined,"Give Flower","Present Lys with the exotic flower you found on Mhen’ga and see if it’ll cheer the poor girl up.");
+		else if(flags["ENABLE_LYS_FLOWER"] != undefined) addDisabledButton(4,"Give Flower","Give Flower","Lys would appreciate any flowers you find. You wonder where you could get one....");
+		else addDisabledButton(4,"Locked","Locked","You don't know her well enough for this.");
+	}
 	addButton(14,"Run",runFromDatAntSloot,gold);
 }
 
@@ -536,6 +545,7 @@ public function aboutAnAntSlootDeserter(gold:Boolean = false):void
 	//Gold/Lys:
 	else
 	{
+		flags["ENABLE_LYS_FLOWER"] = 1;
 		output("You ask Lys a little bit about herself. She curls a finger around her wild locks, her other arms hugging under her voluptuous breasts.");
 		output("\n\n<i>“I guess I can tell you a little bit about myself. After all, it’s not exactly like I have a lot better to do,”</i> Lys chuckles. <i>“Maybe I should start with my measurements, or are you after something a little bit more personal?”</i>");
 		output("\n\n<i>“Let’s see... I’m twenty six years old and an ex-florist. I used to have a lovely garden and my own cosy home not far from where we are now. My wife and I sold the loveliest blue-green sydranas... at least until we were both conscripted.”</i>");
@@ -546,6 +556,14 @@ public function aboutAnAntSlootDeserter(gold:Boolean = false):void
 	processTime(4);
 	clearMenu();
 	addButton(0,"Next",talkToAntSloots,gold);
+	//Give Flower - new scene for Lys
+	//avail. thru ‘About Her’ topic, consensual sex menu or victory-sex menu if Lys is friendly
+	if(gold)
+	{
+		if(pc.hasItem(new VenusBloom()) && flags["ENABLE_LYS_FLOWER"] != undefined) addButton(1,"Give Flower",giveFlowerToLys,undefined,"Give Flower","Present Lys with the exotic flower you found on Mhen’ga and see if it’ll cheer the poor girl up.");
+		else if(flags["ENABLE_LYS_FLOWER"] != undefined) addDisabledButton(1,"Give Flower","Give Flower","Lys would appreciate any flowers you find. You wonder where you could get one....");
+		else addDisabledButton(1,"Locked","Locked","You don't know her well enough for this.");
+	}
 }
 
 //Desertion
@@ -944,6 +962,14 @@ public function winVsAntGrillDeserts():void
 		addDisabledButton(4,"Hand-Play","Hand-Play","You aren't aroused enough for this.");
 
 		addDisabledButton(6,"Steal Dildo","Steal Dildo","You aren't aroused enough for this.");
+	}
+	//Give Flower - new scene for Lys
+	//avail. thru ‘About Her’ topic, consensual sex menu or victory-sex menu if Lys is friendly
+	if(enemy is MyrGoldFemaleDeserter)
+	{
+		if(pc.hasItem(new VenusBloom()) && flags["ENABLE_LYS_FLOWER"] != undefined) addButton(7,"Give Flower",giveFlowerToLys,undefined,"Give Flower","Present Lys with the exotic flower you found on Mhen’ga and see if it’ll cheer the poor girl up.");
+		else if(flags["ENABLE_LYS_FLOWER"] != undefined) addDisabledButton(7,"Give Flower","Give Flower","Lys would appreciate any flowers you find. You wonder where you could get one....");
+		else addDisabledButton(7,"Locked","Locked","You don't know her well enough for this.");
 	}
 	addButton(14,"Leave",genericVictoryLeaveMyr);
 }
@@ -2238,6 +2264,7 @@ public function giveDildoToAntSloot(gold:Boolean):void
 {
 	clearOutput();
 	showDeserter(gold,false);
+	author("Zeikfried");
 	//Give Dildo - all new sub-scene to return dildo voluntarily
 	//found in the non-hostile, non-pregnant approaches; PC returns the dildo as requested
 	//tooltip: Give the {dirty }sex toy back to the myr{ and let her know that you used it}.
@@ -2271,7 +2298,8 @@ public function stealDildoScene(gold:Boolean):void
 {
 	clearOutput();
 	showDeserter(gold,true);
-	var combatLoss:Boolean = (inCombat() && (pc.HP() <= 0 || pc.lust() >= pc.lustMax()));
+	author("Zeikfried");
+	var combatWin:Boolean = (inCombat() && (pc.HP() > 0 && pc.lust() < pc.lustMax()));
 	var knows:Boolean = false;
 	if(gold && flags["KNOW_GOLD_MYR_NAME"] != undefined) knows = true;
 	if(!gold && flags["KNOW_RED_MYR_NAME"] != undefined) knows = true;
@@ -2334,7 +2362,7 @@ public function stealDildoScene(gold:Boolean):void
 		}
 		else output("\n\n<i>“Damn right,”</i> you assure her.");
 		//(post-combat only)
-		if(combatLoss) output(" <i>“Them’s the rules around here.”</i>");
+		if(combatWin) output(" <i>“Them’s the rules around here.”</i>");
 		else output("\n\n<i>“... Fine. Only because I kinda like you.”</i>}");
 	}
 	//repeat, PC already has this myr’s dildo
@@ -2386,7 +2414,7 @@ public function stealDildoScene(gold:Boolean):void
 		else output("The myr");
 		output(" flushes, but complies. Planting her rosy tush in the dirt, she creeps her thighs apart, teasing you with a slim red slit that blooms as they open. ");
 		//(post-combat and lust win)
-		if(combatLoss) output("It’s already glistening with lubrication from your infernal teasing. ");
+		if(combatWin) output("It’s already glistening with lubrication from your infernal teasing. ");
 		output("You crank the vibrator up and down again, causing it to wobble each time she exposes more of herself, like it’s excited. ");
 		if(knows) output("Briha");
 		else output("The woman");
@@ -2498,7 +2526,8 @@ public function giveOrgasmToBriha():void
 {
 	clearOutput();
 	showDeserter(false,true);
-	var combatLoss:Boolean = (inCombat() && (pc.HP() <= 0 || pc.lust() >= pc.lustMax()));
+	author("Zeikfried");
+	var combatWin:Boolean = (inCombat() && (pc.HP() > 0 && pc.lust() < pc.lustMax()));
 	var knows:Boolean = (flags["KNOW_RED_MYR_NAME"] != undefined);
 	if(knows) output("Briha");
 	else output("The myr");
@@ -2565,7 +2594,8 @@ public function teaseBrihaWithDildoStealAsshole():void
 {
 	clearOutput();
 	showDeserter(false,true);
-	var combatLoss:Boolean = (inCombat() && (pc.HP() <= 0 || pc.lust() >= pc.lustMax()));
+	author("Zeikfried");
+	var combatWin:Boolean = (inCombat() && (pc.HP() > 0 && pc.lust() < pc.lustMax()));
 	var knows:Boolean = (flags["KNOW_RED_MYR_NAME"] != undefined);
 	if(knows) output("Briha’s");
 	else output("Your partner’s");
@@ -2653,7 +2683,8 @@ public function giveLysAnOrgasm():void
 {
 	clearOutput();
 	showDeserter(true,true);
-	var combatLoss:Boolean = (inCombat() && (pc.HP() <= 0 || pc.lust() >= pc.lustMax()));
+	author("Zeikfried");
+	var combatWin:Boolean = (inCombat() && (pc.HP() > 0 && pc.lust() < pc.lustMax()));
 	var knows:Boolean = (flags["KNOW_GOLD_MYR_NAME"] != undefined);
 
 	output("You elect to be merciful - after all, she can barely bend to hook a finger in her pussy with those massive knockers in the way. ");
@@ -2731,7 +2762,9 @@ public function teaseLysVersion():void
 {
 	clearOutput();
 	showDeserter(true,true);
-	var combatLoss:Boolean = (inCombat() && (pc.HP() <= 0 || pc.lust() >= pc.lustMax()));
+	author("Zeikfried");
+
+	var combatWin:Boolean = (inCombat() && (pc.HP() > 0 && pc.lust() < pc.lustMax()));
 	var knows:Boolean = (flags["KNOW_GOLD_MYR_NAME"] != undefined);
 	output("You work out how to tease ");
 	if(knows) output("Lys");
@@ -2807,12 +2840,12 @@ public function teaseLysVersion():void
 //also adds misch point, but only once per theft (no point added if ‘dildo used’ flag already at 1 or 2)
 //tooltip: Get your smutty sexual fluids all over the dildo you stole from the myr deserter.
 //tooltip disabled, has dildo but masturbation not allowed: You can’t masturbate here!
-
 public function stolenDildoFap():void
 {
 	clearOutput();
 	showName("\nDILDO");
 	if(hasGoldDildo() && hasRedDildo()) showName("\nDILDOS");
+	author("Zeikfried");
 	var plural:Boolean = (hasGoldDildo() && hasRedDildo());
 	output("You pull out the sexual aid");
 	if(plural) output("s");
@@ -2882,6 +2915,7 @@ public function useBrihasVibeAnal():void
 {
 	clearOutput();
 	showName("\nANAL!");
+	author("Zeikfried");
 	//non-taur version
 	if(!pc.isTaur())
 	{
@@ -2980,6 +3014,7 @@ public function didloDPWivStolenDildo(target:String = "vag"):void
 {
 	clearOutput();
 	showName("\nDP!");
+	author("Zeikfried");
 	output("You detach the smaller end from the strap-on and tickle your ");
 	if(target == "vag") output("labia");
 	else if(target == "ass") output("anal ring");
@@ -3037,125 +3072,313 @@ public function didloDPWivStolenDildo(target:String = "vag"):void
 	addButton(0,"Next",mainGameMenu);
 }
 
-/*
-output("\n\nGive Flower - new scene for Lys");
-output("\n\n//alternate use for the venus pitcher flower from Emmyquest");
-output("\n\n//hidden until PC has seen ‘About Her’ in Lys’s talk menu (think you’ll need a new flag for this)");
-output("\n\n//avail. thru ‘About Her’ topic, consensual sex menu or victory-sex menu if Lys is friendly");
-output("\n\n//adds nice point(s)");
-output("\n\n//tooltip: Present Lys with the exotic flower you found on Mhen’ga and see if {(nice)it’ll cheer the poor girl up. /(else)she’ll ‘appreciate’ you for it. }");
-output("\n\n//tooltip disabled, no flower in inventory: Lys would appreciate any flowers you find. You wonder where you could get one....");
+//Give Flower - new scene for Lys
+//alternate use for the venus pitcher flower from Emmyquest
+//hidden until PC has seen ‘About Her’ in Lys’s talk menu (think you’ll need a new flag for this)
+//avail. thru ‘About Her’ topic, consensual sex menu or victory-sex menu if Lys is friendly
+//adds nice point(s)
+//tooltip: Present Lys with the exotic flower you found on Mhen’ga and see if {(nice)it’ll cheer the poor girl up. /(else)she’ll ‘appreciate’ you for it. }
+//tooltip disabled, no flower in inventory: Lys would appreciate any flowers you find. You wonder where you could get one....
+public function giveFlowerToLys():void
+{
+	clearOutput();
+	showDeserter(true);
+	author("Zeikfried");
+	pc.addNice(2);
+	pc.destroyItem(new VenusBloom());
+	var combatWin:Boolean = (inCombat() && (pc.HP() > 0 && pc.lust() < pc.lustMax()));
 
-output("\n\n{(bimbro)"Um, I found a thing,”</i> you announce. /(nice)"You might like this,”</i> you remark. /(misch)"Battlefield flower delivery service,”</i> you jibe. /(mean)"This is for you,”</i> you say abruptly. <i>“Try not to get all emotional.”</i> }");
+	if(pc.isBro() || pc.isBimbo()) output("<i>“Um, I found a thing,”</i> you announce.");
+	else if(pc.isNice()) output("<i>“You might like this,”</i> you remark.");
+	else if(pc.isMischievous()) output("<i>“Battlefield flower delivery service,”</i> you jibe.");
+	else output("<i>“This is for you,”</i> you say abruptly. <i>“Try not to get all emotional.”</i>");
 
-output("\n\nWhen you produce the explosively pink-and-purple blossom, the myr leans in so fast that she almost falls over. <i>“Where {(first time)did you get that? It’s /(else)do you keep finding these? They’re }gorgeous!”</i> You hold it out for her appraisal, and her face disappears into the bloom for the next few seconds as she takes a long, deep sniff. When it reappears, it’s plastered with a giddy smile. {(first time)"Aww... did you see this and think of me because I used to be a florist?”</i>");
+	output("\n\nWhen you produce the explosively pink-and-purple blossom, the myr leans in so fast that she almost falls over. <i>“Where ");
+	//(first time)
+	if(flags["GAVE_LYS_FLOWER"] == undefined) output("did you get that? It’s");
+	else output("do you keep finding these? They’re ");
+	output("gorgeous!”</i> You hold it out for her appraisal, and her face disappears into the bloom for the next few seconds as she takes a long, deep sniff. When it reappears, it’s plastered with a giddy smile.");
+	if(flags["GAVE_LYS_FLOWER"] == undefined) 
+	{
+		output(" <i>“Aww... did you see this and think of me because I used to be a florist?”</i>");
+		if(pc.isBimbo() || pc.isBro()) output("\n\n<i>“Used to... what?”</i> you ask, dimly. <i>“Oh! Yeah, like, totally.”</i>");
+		else if(pc.isNice()) output("\n\n<i>“You seemed very sad, and I thought it might cheer you up.”</i>");
+		else output("\n\nYou nod.");
+	}
+	output("\n\n<i>“So...”</i> Lys says, playing with her hair like a shy date. It’s funny when you remember that she’s a hardened soldier who’s probably killed more myr than you’ve met. <i>“... are you going to give that pretty flower to me?”</i>");
 
-output("\n\n{(bimbro)"Used to... what?”</i> you ask, dimly. <i>“Oh! Yeah, like, totally.”</i> /(nice)"You seemed very sad, and I thought it might cheer you up.”</i>(else)You nod. }}");
+	//first time
+	if(flags["GAVE_LYS_FLOWER"] == undefined)
+	{
+		if(pc.isNice() || pc.isBro() || pc.isBimbo())
+		{
+			output("\n\n<i>“Sure,”</i> you answer. <i>“That’s");
+			if(pc.isBimbo()) output(", like,");
+			output(" why I got it out.”</i>");
+			output("\n\nLys smiles and holds out her hand - she also squeezes her breasts between her folded arms as she does, making sure you see a window of button-bursting, golden cleavage under her uniform.");
+		}
+		else if(pc.isMischievous()) 
+		{
+			output("\n\n<i>“That depends,”</i> you grin. <i>“A flower this rare is bound to be worth a lot. I could take it into town and get four, maybe five kisses for it.”</i>");
+			output("\n\nLys’s expression starts crestfallen but recovers when she hears the end of the joke. <i>“I can do you a better offer than that,”</i> she says, leaning forward on her hands and showing off her bust. Her seductive lids lower.");
+		}
+		else
+		{
+			output("\n\n<i>“Could do that,”</i> you muse. <i>“It’s bound to be worth money, though. I’d want something valuable in exchange.”</i> You look at her, staring holes into her shirt to make sure she understands.");
+			output("\n\nLys undoes a few buttons and leans forward on her hands, displaying her heavy cleavage. <i>“If you’ll accept services in lieu of goods and currency, I believe I have an offer.”</i>");
+		}
+		output("\n\nYou pass the blossom to Lys and she places it atop her kit bag with care.");
+	}
+	//repeat
+	else output("\n\nYou pass over the flower. Lys places it atop her equipment, far behind her and out of the way.");
 
-output("\n\n<i>“So...”</i> Lys says, playing with her hair like a shy date. It’s funny when you remember that she’s a hardened soldier who’s probably killed more myr than you’ve met. <i>“... are you going to give that pretty flower to me?”</i>");
+	//merge
+	output("\n\nYou ");
+	if(pc.isAss()) output("demand she strip.");
+	else output("ask if she’s in the mood for some intimacy.");
+	if(flags["KNOW_GOLD_MYR_NAME"] != undefined) output("\n\nLys");
+	else output("\n\nThe gold myr");
+	output(" agrees in a second, disrobing like skin is the only uniform she’s comfortable in. She takes special relish in exposing her huge tits, undoing buttons bottom-to-top so the jiggly jugs strain at the fasteners and nearly fall out of her shirt.");
+	output("\n\n<i>“You like?”</i> she teases, watching you goggle at her breasts. A shimmy sets them swaying back and forth, highlighted in gold against the muted earth background.");
+	if(pc.isBro() || pc.libido() >= 75)
+	{
+		output("\n\n<i>“Shake it, baby!”</i> you hoot.");
+	}
+	else if(pc.isNice() || pc.isBimbo()) output("\n\n<i>“Yes, very sexy,”</i> you say.");
+	//(misch non-bimbro)
+	else if(pc.isMischievous()) output("\n\n<i>“They’re a bit on the small side,”</i> you lie, with a smile. <i>“Are you sure you’re eating right out here?”</i>");
+	else output("\n\nYou ignore her and gesture for her to finish.");
 
-output("\n\n//first time");
-output("\n\n{(nice or bimbro)"Sure,”</i> you answer. <i>“That’s{, like,} why I got it out.”</i>");
+	output("\n\nLys winks and moves to her bottoms, sliding them over her thick golden booty. Her ant-abdomen bobs when she tugs the last piece of fabric away, starkly black-on-yellow");
+	if(combatWin) output(" and already oozing translucent, slippery fluid from the aroused opening");
+	output(".");
 
-output("\n\nLys smiles and holds out her hand - she also squeezes her breasts between her folded arms as she does, making sure you see a window of button-bursting, golden cleavage under her uniform.");
-output("\n\n/");
-output("\n\n(misch)"That depends,”</i> you grin. <i>“A flower this rare is bound to be worth a lot. I could take it into town and get four, maybe five kisses for it.”</i>");
+	output("\n\nYou remove your [pc.gear]. <i>“Show me your ");
+	if(pc.isBro()) output("cute little pussy");
+	else if(pc.isBimbo()) output("va-jay-jay");
+	else output("vagina");
+	output(",”</i> you instruct, pointing at the ground.");
 
-output("\n\nLys’s expression starts crestfallen but recovers when she hears the end of the joke. <i>“I can do you a better offer than that,”</i> she says, leaning forward on her hands and showing off her bust. Her seductive lids lower.");
-output("\n\n/");
-output("\n\n(mean)"Could do that,”</i> you muse. <i>“It’s bound to be worth money, though. I’d want something valuable in exchange.”</i> You look at her, staring holes into her shirt to make sure she understands.");
+	output("\n\nYour partner seats herself, leaning far back and spreading her legs so her bug-butt dangles like ripe fruit, beading with pussy-nectar. When you place a ");
+	if(pc.isTaur()) output("[pc.foot]");
+	else output("finger");
+	output(" against her entrance, she shivers, and a ripple travels with it. Starting from her cushy ass, the shiver climbs her torso and vibrates the breasts lying indolently on her chest. The alien doesn’t try to restrain it; she watches to measure how hot you’re getting.");
+	if(pc.hasGenitals()) 
+	{
+		output(" Your exposed ");
+		if(pc.hasCock()) output("[pc.cocksLight]");
+		else
+		{
+			output("vagina");
+			if(pc.totalVaginas() > 1) output("s");
+		}
+		output(" do a poor job hiding it, ");
+		if(pc.hasCock()) output("swelling with blood");
+		else output("flushing with lust");
+		output(".");
+	}
+	output("\n\n<i>“What will you do with me?”</i> asks your vulnerable lover.");
+	processTime(7);
+	IncrementFlag("GAVE_LYS_FLOWER");
+	pc.lust(10);
+	//if tailcock hasn’t been satisfied recently (commented for now because TC do not require sating)
+	if(9999 == 0 && pc.hasTailCock())
+	{
+		output("\n\nBefore you can begin to choose, your [pc.tails] lash");
+		if(pc.tailCount == 1) output("es and twists");
+		else output(" and twist");
+		output(" into your view. [pc.OneTailCock] has emerged at the sight and scent of pussy, drooling precum and slapping your [pc.ass] to punish you for neglecting it so long.");
+		output("\n\n<i>“I suppose we’d better take care of that, first,”</i> says Lys, innocently.");
+		//automatically skip choice (give ‘Next’ button or whatev) and start cock branch below, using tailcock tags
+		//9999
+	}
+	//else present a choice: buttons ‘Use Cock’, ‘Cunnilingus/Analingus’
+	else
+	{
+		clearMenu();
+		if(pc.hasCock() && pc.cockThatFits(chars["GOLD_DESERTER"].vaginalCapacity(0)) >= 0) addButton(0,"Use Cock",useCockOnLysPostFlower,false,"Use Cock","Stick your dick in Lys’s pussy" + (!pc.isTaur()) ? ", and your face in her thighs or tits, whichever you can reach" : "" + ".");
+		else addDisabledButton(0,"Use Cock","Use Cock","You don’t have any suitable cocks secreted about your person.");
+		if(pc.hasTailCock()) addButton(1,"Tailcock",useCockOnLysPostFlower,true,"Tailcock","Stick your cock-tail in Lys’s pussy" + (!pc.isTaur()) ? ", and your face in her thighs or tits, whichever you can reach" : "" + ".");
+		else addDisabledButton(1,"Tailcock","Tailcock","You don’t have any suitable cocks secreted about your person.");
 
-output("\n\nLys undoes a few buttons and leans forward on her hands, displaying her heavy cleavage. <i>“If you’ll accept services in lieu of goods and currency, I believe I have an offer.”</i> }");
+		//http://www.nbc.com/saturday-night-live/video/colonel-angus-comes-home/n11685
+		if(pc.hasVagina()) addButton(2,"Cunnilingus",enolAngusAkaColonelAngus,true,"Cunnilingus","Get Lys to lick your vagina while you amuse yourself with her sex.");
+		else addDisabledButton(2,"Cunnilingus","Cunnilingus","You do not have a vagina to get licked.");
+		addButton(3,"Analingus",enolAngusAkaColonelAngus,false,"Analingus","Get Lys to lick your anus while you amuse yourself with her sex.");
+	}
+}
 
-output("\n\nYou pass the blossom to Lys and she places it atop her kit bag with care.");
+//Use Cock
+//gold myr are played out if missionary is all that’s left
+//tooltip: Stick your {dick/cock-tail} in Lys’s pussy{(no taur), and your face in her {(PC < 4ft)thighs/tits}}.
+//tooltip disabled, no cock/tailcock: You don’t have any suitable cocks secreted about your person.
+//tooltip disabled, cocks too big and no tailcock: No number of presents would get her wet enough to take your enormous [pc.cocksLight]! Have you considered moving to the seaside?
+public function useCockOnLysPostFlower(tailCawk:Boolean = false):void
+{
+	clearOutput();
+	showDeserter(true,true);
+	author("Zeikfried");
+	output("Lys swallows hard at the ");
+	var x:int = -1;
+	if(!tailCawk) x = pc.cockThatFits(chars["GOLD_DESERTER"].vaginalCapacity(0));
 
-output("\n\n//repeat");
-output("\n\nYou pass over the flower. Lys places it atop her equipment, far behind her and out of the way.");
+	if(x >= 0) output("[pc.cockNounComplex " + x + "] you select");
+	else output("[pc.tailCock] that self-selects and juts forward");
+	output(", equal parts nerve and notion. One hand absently travels the valley between her hilly breasts, marking her blood-rich yellow skin with lines that show and fade a second later.");
 
-output("\n\n//merge");
-output("\n\nYou {(mean)demand she strip. /ask if she’s in the mood for some intimacy. }{Lys/The gold myr} agrees in a second, disrobing like skin is the only uniform she’s comfortable in. She takes special relish in exposing her huge tits, undoing buttons bottom-to-top so the jiggly jugs strain at the fasteners and nearly fall out of her shirt.");
+	output("\n\n<i>“I’m ready... whenever you are,”</i> she invites, with husky breath.");
 
-output("\n\n<i>“You like?”</i> she teases, watching you goggle at her breasts. A shimmy sets them swaying back and forth, highlighted in gold against the muted earth background.");
+	output("\n\n’Ready’ isn’t a strong enough word. You ");
+	if(pc.isNaga()) output("slither");
+	else if(pc.isGoo()) output("slide");
+	else output("walk");
+	output(" to her and straddle her ant-half. It curls up with her lust, dabbing at your ");
+	if(x >= 0 && pc.balls > 0) output("[pc.sack]");
+	else output("[pc.skinFurScales]");
+	output(" and so eager for penetration that it’s actually hard to angle your shaft. Lys flushes and squeezes it into position by closing her thighs.");
 
-output("\n\n{(bro or high lib (75+) or PC name = Duke Nukem)"Shake it, baby!”</i> you hoot. /(nice or bim and not mean)"Yes, very sexy,”</i> you say. /(bim and mean)"I’m sure your dates are happy with them,”</i> you snipe{(cupsize > 0), thinking how inferior they are to yours}. /(misch non-bimbro)"They’re a bit on the small side,”</i> you lie, with a smile. <i>“Are you sure you’re eating right out here?”</i> /(else)You ignore her and gesture for her to finish. }");
+	output("\n\nWith her restraints and her pussy kissing the tip of your prick, you can sink in, hilting in her deep, wet insides with one smooth stroke. The alien woman grunts as your overzealous thrust slaps your ");
+	if(x >= 0) 
+	{
+		if(pc.hasKnot(x)) output("[pc.knot " + x + "]");
+		else output("[pc.sheath " + x + "]");
+	}
+	else output("entire length");
+	output(" into her labia.");
 
-output("\n\nLys winks and moves to her bottoms, sliding them over her thick golden booty. Her ant-abdomen bobs when she tugs the last piece of fabric away, starkly black-on-yellow{(combat fuck and lust win) and already oozing translucent, slippery fluid from the aroused opening}.");
+	output("\n\n<i>“You’re enthusiastic,”</i> Lys says.");
 
-output("\n\nYou remove your [pc.gear]. <i>“Show me your {(bro)cute pussy/(bim)va-jay-jay/(else)vagina,”</i> you instruct, pointing at the ground.");
+	if(pc.isAss()) output("\n\n<i>“Naw, just looser than I expected,”</i> you quip.");
 
-output("\n\nYour partner seats herself, leaning far back and spreading her legs so her bug-butt dangles like ripe fruit, beading with pussy-nectar. When you place a {(taur)[pc.foot]/finger} against her entrance, she shivers, and a ripple travels with it. Starting from her cushy ass, the shiver climbs her torso and vibrates the breasts lying indolently on her chest. The alien doesn’t try to restrain it; she watches to measure how hot you’re getting. {(not unsexed)Your exposed {[pc.cocksLight]/vagina{s}} do a poor job hiding it, {swelling with blood/flushing with lust}. }");
+	//no horses
+	if(!pc.isTaur())
+	{
+		output("\n\nHer hands caress your collar, pulling you down. Her fingers, hardened with chitin, guide your face to her ");
+		if(pc.tallness < 60) output("jiggly thighs");
+		else output("bountiful cleavage");
+		output(". The flesh accepts you willingly, holding you and softly buffeting whenever you thrust in deep.");
 
-output("\n\n<i>“What will you do with me?”</i> asks your vulnerable lover.");
+		output("\n\n<i>“Ah!”</i> squeaks Lys, every time you hump her ant-sex. With her flesh wrapped around your [pc.ears] and the scent of sugar in the air, the pleasure-grunts have a baffled, faraway quality, like you’re listening to her get fucked on the other side of an orchard. ");
+		if(pc.tallness >= 60) output("Her erect nipples drool nectar as she presses her rich gold breasts into you, smearing your [pc.hair].");
+		else output("Her sweaty thighs squeeze your head, making the orchard smell slightly past ripe with a cloying, musky sweetness.");
+		output(" Wanton pussy clamps down on your ");
+		if(x < 0) output("[pc.tailCock]");
+		else output("[pc.cock " + x + "]");
+		output(", oblivious to any <i>mise en scène</i> except the hot, wet sex, threatening you with your looming orgasm.");
+	}
+	//horses here
+	else
+	{
+		output("\n\nHer hands caress your chest. The touches on your [pc.legFurScales] stir idled lust again, spurring desire to hear the arousal of the woman under you, even if you can’t see. A mighty pump elicits a cute little grunt - the first of many.");
+		output("\n\nUsing her noises as cues, you rut mercilessly from your position of superior power. Whenever you hear a gratifying moan, you repeat the angle over and over, tagging the found spot until her cries weaken. The rampant pursuit of pleasure isn’t destabilizing Lys alone... you edge closer to blowing a load of [pc.race]-spunk with every stroke through her soaked furrows and folds.");
+	}
+	//if PC has an unused too-big (60 inches+ length) cock, append to either fork
+	if(pc.biggestCockLength() >= 60 && x != pc.biggestCockIndex())
+	{
+		output("\n\nOn one thrust, your [pc.cockBiggest] slaps against her golden, sticky nipple, delivering a shiver to your hips. Greedy for pleasure, you ");
+		if(pc.isTaur()) output("ask Lys to wrangle and route it between her big, cushiony breasts, which she does.");
+		else 
+		{
+			if(pc.tallness >= 60) output("pull your head free and wrangle your cock into its place, running");
+			else output("run");
+			output(" it between her big, cushiony breasts.");
+		}
+		output(" Lys is so eager that she fellates it immediately, slurping precum with two burning, wet lips. On every stroke, your [pc.cockHeadBiggest] now forges through a valley of quivering breast to end in the eager mouth of a cum-hungry slut, compounding the ecstasy of her pussy. It takes little time before your urethras swell to deploy your sperm - and she reacts by shutting her eyes and opening her mouth to brace for the strokes aimed right at her.");
+	}
+	//merge all
+	output("\n\nWith a groan, you pop. ");
+	if(pc.cumQ() < 9) 
+	{
+		output("Dribbles of [pc.cum] creep from your [pc.cocks], oozing their way into the myr’s vagina.");
+		if(pc.biggestCockLength() >= 60 && x != pc.biggestCockIndex()) output(" Her tongue intercepts the load from your second shaft, lapping it up on its way down your cock.");
+	}
+	//(med cum)
+	else if(pc.cumQ() < 250)
+	{
+		output("Your spunk shoots wildly inside the myr, dosing her with [pc.cum] to give a rare taste of a queen’s happiness.");
+		if(pc.biggestCockLength() >= 60 && x != pc.biggestCockIndex()) output(" The second load drops on her face, falling into her mouth and across her eyes.");
+	}
+	else
+	{
+		output("Cataracts of [pc.cum] rush against your crotch from the myr’s overflowing pussy, which is packed after only a few squirts from your hyper-fertile tool.");
+		if(pc.biggestCockLength() >= 60 && x != pc.biggestCockIndex()) output(" Her open-mouthed naiveté gives way to a tight-shut face as she tries to weather the storm of sperm you unleash.");
+	}
+	output(" Lys’s pussy ripples with her own climax, juicing you for all the seed you can deliver");
+	if(pc.cumQ() >= 1000) output(" regardless of ability to contain it");
+	output(".");
 
-output("\n\n//if tailcock hasn’t been satisfied recently (commented for now because TC do not require sating)");
-output("\n\n//Before you can begin to choose, your [pc.tails] lash{es} and twist{s} into your view. [pc.OneTailCock] has emerged at the sight and scent of pussy, drooling precum and slapping your [pc.ass] to punish you for neglecting it so long.");
+	output("\n\n<i>“Well, that was enjoyable,”</i> says Lys when you finish");
+	if(pc.tallness >= 60 && !pc.isTaur()) output(", wiping a bit of drool from between her breasts");
+	output(". <i>“If you find any more flowers, bring them by - you’re fun to trade with.”</i>");
 
-output("\n\n//"I suppose we’d better take care of that, first,”</i> says Lys, innocently.");
-output("\n\n//automatically skip choice (give ‘Next’ button or whatev) and start cock branch below, using tailcock tags");
+	output("\n\nYou ");
+	if(pc.isNice()) output("laugh");
+	else output("roll your eyes");
+	output(", then collect your gear. Lys re-equips as well, holding the flower away to prevent crushing it, and then you bid one another goodbye.");
+	//end, reduce lust, time, remove 1x venus flower
+	processTime(21);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
 
-output("\n\n//else present a choice: buttons ‘Use Cock’, ‘Cunnilingus/Analingus’");
+//Cunnilingus/Analingus
+//only displays as ‘Analingus’ if PC has no standard cunni
+//tooltip: Get Lys to {lick your vagina/rim your asshole} while you amuse yourself with her sex.
+public function enolAngusAkaColonelAngus(puss:Boolean = true):void
+{
+	clearOutput();
+	showDeserter(true,true);
+	author("Zeikfried");
+	//I changed around the conditions for these. Z's grasp on the bimbo/bro personality types could use some work.
+	if((pc.isBro() || !pc.isNice()) && !pc.isBimbo())
+	{
+		output("<i>“Eat my ");
+		if(puss) output("pussy");
+		else output("ass");
+		output(",”</i> you enjoin.");
+	}
+	else
+	{
+		output("<i>“Could you use your mouth on, ah, my ");
+		if(puss) output("pussy");
+		else output("butt");
+		output("?”</i> you request.");
+	}
+	output("\n\nLys looks startled, but rolls with it. <i>“Bring it over here, then,”</i> she tries to coo.");
+	if(pc.isMischievous() && pc.buttRating() >= 15) output("\n\n<i>“Beeeep beeeep,”</i> you say, reversing your [pc.ass] into her.");
+	else output("\n\nYou turn around and back your [pc.ass] up.");
+	output(" Four palms intercept it, spreading your cheeks and searching out your [pc.vagOrAss]. No sooner do you feel the warm cave air than the flow is blocked. Hot breath fills you in its place, only to be pushed out in turn by a questing tongue. Ah, she gets right down to business.");
+	output("\n\nAs her flexible oral muscle teases your ridges");
+	if(puss) output(", dipping to slurp at [pc.oneClitPerVagina] and coax it from your hood");
+	var x:int = -1;
+	if(puss) x = rand(pc.totalVaginas());
+	output(", you reach for her pink-gold pussy. You busy your hands with the myr’s smutty sex, trying to get her off in hopes that the moans into your [pc.vagOrAss " + x + "] will produce good vibrations. The myr can’t bear it; after a minute she’s wet enough that you can slip your whole hand in.");
+	output("\n\n<i>“Hnnnnnnnnn,”</i> Lys groans, breathing on your blood-engorged ");
+	if(puss) output("labia");
+	else output("sphincter");
+	output(". It becomes a game of who can get whom off first; Lys begins to suspect the rules after your next finger-pruning dive into her honeypot.");
 
-output("\n\nUse Cock");
-output("\n\n//gold myr are played out if missionary is all that’s left");
-output("\n\n//tooltip: Stick your {dick/cock-tail} in Lys’s pussy{(no taur), and your face in her {(PC < 4ft)thighs/tits}}.");
-output("\n\n//tooltip disabled, no cock/tailcock: You don’t have any suitable cocks secreted about your person.");
-output("\n\n//tooltip disabled, cocks too big and no tailcock: No number of presents would get her wet enough to take your enormous [pc.cocksLight]! Have you considered moving to the seaside?");
+	output("\n\n<i>“Trying to make me cum?”</i> she hums, lips pressed close to transmit the quivers. You reply with another plunge, and buck your [pc.ass] to rattle her off of her chat break and back to work. The myr licks at your [pc.vagOrAss " + x + "] with talent that could only bloom in an all-female combat wing, lingering when you jerk with pleasure and diddling your sweetest spots with the tip of her tongue. Her pussy, as wet as her mouth, pulls at your hand to draw it in for a load of semen that will never come.");
 
-output("\n\nLys swallows hard at the {[pc.cockNounComplex] you select/[pc.tailCock] that self-selects and juts forward}, equal parts nerve and notion. One hand absently travels the valley between her hilly breasts, marking her blood-rich yellow skin with lines that show and fade a second later.");
+	output("\n\nWith an almost synchronized groan, you both climax. You’re pretty sure that you came first, but Lys is quaking and candying your hand with so much sweet fem-cum that you doubt she’ll note it. Your ");
+	if(puss) output("pussy");
+	else output("asshole");
+	output(" squeezes her poor tongue, circling it with a vise of muscle designed for a much longer intruder but happy to rub against its bumpy surface.");
+	if(puss && pc.isSquirter()) output(" A burst of your [pc.girlCum] hits her as you squirt with ecstasy, but her eyes are closed in a rapturous smile of her own.");
+	output(" Panting heavily and sticky with sex, you fall apart.");
 
-output("\n\n<i>“I’m ready... whenever you are,”</i> she invites, with husky breath.");
+	output("\n\n<i>“Well, that was enjoyable,”</i> says Lys when you finish");
+	if(pc.tallness >= 60 && !pc.isTaur()) output(", wiping a bit of drool from between her breasts");
+	output(". <i>“If you find any more flowers, bring them by - you’re fun to trade with.”</i>");
 
-output("\n\n’Ready’ isn’t a strong enough word. You {walk/slither/slide} to her and straddle her ant-half. It curls up with her lust, dabbing at your {[pc.scrotum]/[pc.skinFurScales]} and so eager for penetration that it’s actually hard to angle your shaft. Lys flushes and squeezes it into position by closing her thighs.");
-
-output("\n\nWith her restraints and her pussy kissing the tip of your prick, you can sink in, hilting in her deep, wet insides with one smooth stroke. The alien woman grunts as your overzealous thrust slaps your {[pc.knot]/[pc.sheath]} into her labia.");
-
-output("\n\n<i>“You’re enthusiastic,”</i> Lys says.");
-
-output("\n\n{(mean)"Naw, just looser than I expected,”</i> you quip.");
-
-output("\n\n}");
-output("\n\n//no horses");
-output("\n\nHer hands caress your collar, pulling you down. Her fingers, hardened by rough living, guide your face to her {(shortarse)jiggly thighs/bountiful cleavage}. The flesh accepts you willingly, holding you and softly buffeting whenever you thrust in deep.");
-
-output("\n\n<i>“Ah!”</i> squeaks Lys, every time you hump her ant-sex. With her flesh wrapped around your [pc.ears] and the scent of sugar in the air, the pleasure-grunts have a baffled, faraway quality, like you’re listening to her get fucked on the other side of an orchard. {(not short)Her erect nipples drool nectar as she presses her rich gold breasts into you, smearing your [pc.hair]. /(short)Her sweaty thighs squeeze your head, making the orchard smell slightly past ripe with a cloying, musky sweetness. }Wanton pussy clamps down on your {[pc.tailCock]/[pc.cock]}, oblivious to any <i>mise en scène</i> except the hot, wet sex, threatening you with your looming orgasm.");
-
-output("\n\n//horses here");
-output("\n\nHer hands caress your chest. The touches on your [pc.legFurScales] stir idled lust again, spurring desire to hear the arousal of the woman under you, even if you can’t see. A mighty pump elicits a cute little grunt - the first of many.");
-
-output("\n\nUsing her noises as cues, you rut mercilessly from your position of superior power. Whenever you hear a gratifying moan, you repeat the angle over and over, tagging the found spot until her cries weaken. The rampant pursuit of pleasure isn’t destabilizing Lys alone... you edge closer to blowing a load of [pc.race]-spunk with every stroke through her soaked furrows and folds.");
-
-output("\n\n//if PC has an unused too-big (60 inches+ length) cock, append to either fork");
-output("\n\nOn one thrust, your [pc.cockBiggest] slaps against her golden, sticky nipple, delivering a shiver to your hips. Greedy for pleasure, you {(horse)ask Lys to wrangle and route it between her big, cushiony breasts, which she does. /(non-horse){(tall)pull your head free and wrangle your cock into its place, running/(short)run} it between her big, cushiony breasts. }Lys is so eager that she fellates it immediately, slurping precum with two burning, wet lips. On every stroke, your [pc.cockHeadBiggest] now forges through a valley of quivering breast to end in the eager mouth of a cum-hungry slut, compounding the ecstasy of her pussy. It takes little time before your urethras swell to deploy your sperm - and she reacts by shutting her eyes and opening her mouth to brace for the strokes aimed right at her.");
-
-output("\n\n//merge all");
-output("\n\nWith a groan, you pop. {(li’l cum)Dribbles of [pc.cum] creep from your cock{s}, oozing their way into the myr’s vagina. {(using 2nd cock)Her tongue intercepts the load from your second shaft, lapping it up on its way down your cock. }/(med cum)Your spunk shoots wildly inside the myr, dosing her with [pc.cum] to give a rare taste of a queen’s happiness. {(2nd cock)The second load drops on her face, falling into her mouth and across her eyes. }/(big cum)Cataracts of [pc.cum] rush against your crotch from the myr’s overflowing pussy, which is packed after only a few squirts from your hyper-fertile tool. {(2nd cock)Her open-mouthed naiveté gives way to a tight-shut face as she tries to weather the storm of sperm you unleash. }}Lys’s pussy ripples with her own climax, juicing you for all the seed you can deliver{(big cum) regardless of ability to contain it}.");
-
-output("\n\n<i>“Well, that was enjoyable,”</i> says Lys when you finish{(tall non-taur), wiping a bit of drool from between her breasts}. <i>“If you find any more flowers, bring them by - you’re fun to trade with.”</i>");
-
-output("\n\nYou {(nice)laugh/(else)roll your eyes}, then collect your gear. Lys re-equips as well, holding the flower away to prevent crushing it, and then you bid one another goodbye.");
-output("\n\n//end, reduce lust, time, remove 1x venus flower");
-
-
-output("\n\nCunnilingus/Analingus");
-output("\n\n//only displays as ‘Analingus’ if PC has no standard cunni");
-output("\n\n//tooltip: Get Lys to {lick your vagina/rim your asshole} while you amuse yourself with her sex.");
-
-output("\n\n{(bim or non-nice)"Eat my {pussy/ass},”</i> you enjoin. /(else bro or nice)"Could you use your mouth on, ah, my {pussy/butt}?”</i> you request. }");
-
-output("\n\nLys looks startled, but rolls with it. <i>“Bring it over here, then,”</i> she tries to coo.");
-
-output("\n\n{(misch and ass near max size)"Beeeep beeeep,”</i> you say, reversing your [pc.ass] into her. /(else)You turn around and back your [pc.ass] up. }Four palms intercept it, spreading your cheeks and searching out your [pc.vagOrAss]. No sooner do you feel the warm cave air than the flow is blocked. Hot breath fills you in its place, only to be pushed out in turn by a questing tongue. Ah, she gets right down to business.");
-
-output("\n\nAs her flexible oral muscle teases your ridges{, dipping to slurp at your [pc.clit] and coax it from your hood}, you reach for her pink-gold pussy. You busy your hands with the myr’s smutty sex, trying to get her off in hopes that the moans into your [pc.vagOrAss] will produce good vibrations. The myr can’t bear it; after a minute she’s wet enough that you can slip your whole hand in.");
-
-output("\n\n<i>“Hnnnnnnnnn,”</i> Lys groans, breathing on your blood-engorged {labia/sphincter}. It becomes a game of who can get whom off first; Lys begins to suspect the rules after your next finger-pruning dive into her honeypot.");
-
-output("\n\n<i>“Trying to make me cum?”</i> she hums, lips pressed close to transmit the quivers. You reply with another plunge, and buck your [pc.ass] to rattle her off of her chat break and back to work. The myr licks at your [pc.vagOrAss] with talent that could only bloom in an all-female combat wing, lingering when you jerk with pleasure and diddling your sweetest spots with the tip of her tongue. Her pussy, as wet as her mouth, pulls at your hand to draw it in for a load of semen that will never come.");
-
-output("\n\nWith an almost synchronized groan, you both climax. You’re pretty sure that you came first, but Lys is quaking and candying your hand with so much sweet fem-cum that you doubt she’ll note it. Your {pussy/asshole} squeezes her poor tongue, circling it with a vise of muscle designed for a much longer intruder but happy to rub against its bumpy surface. {(squirter)A burst of your [pc.girlCum] hits her as you squirt with ecstasy, but her eyes are closed in a rapturous smile of her own. }Panting heavily and sticky with sex, you fall apart.");
-
-output("\n\n<i>“Well, that was enjoyable,”</i> says Lys when you finish{(tall non-taur), wiping a bit of drool from between her breasts}. <i>“If you find any more flowers, bring them by - you’re fun to trade with.”</i>");
-
-output("\n\nYou {(nice)laugh/(else)roll your eyes}, then collect your gear. Lys re-equips as well, holding the flower away to prevent crushing it, and then you bid one another goodbye.");
-output("\n\n//end, reduce lust, time, remove 1x venus flower");
-*/
+	output("\n\nYou ");
+	if(pc.isNice()) output("laugh");
+	else output("roll your eyes");
+	output(", then collect your gear. Lys re-equips as well, holding the flower away to prevent crushing it, and then you bid one another goodbye.");
+	//end, reduce lust, time, remove 1x venus flower
+	processTime(20);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}

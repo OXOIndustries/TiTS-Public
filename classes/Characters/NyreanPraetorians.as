@@ -71,8 +71,8 @@
 			baseHPResistances.drug.damageValue = 50.0;
 			baseHPResistances.tease.damageValue = 50.0;
 			
-			this.XPRaw = 500;
 			this.level = 7;
+			this.XPRaw = normalXP();
 			this.credits = 0;
 			this.HPMod = 225;
 			this.HPRaw = this.HPMax();

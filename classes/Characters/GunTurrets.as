@@ -64,8 +64,8 @@
 			baseHPResistances = new TypeCollection();
 			baseHPResistances.electric.damageValue = -40.0;
 			
-			this.XPRaw = 250;
 			this.level = 4;
+			this.XPRaw = normalXP();
 			this.credits = 0;
 			this.HPMod = 75;
 			this.HPRaw = this.HPMax();

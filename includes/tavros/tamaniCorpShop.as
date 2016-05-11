@@ -101,6 +101,7 @@ public function lerrisMenu():void
 
 public function lerrisProducts():void
 {
+	CodexManager.unlockEntry("Bubble Buddy");
 	shopkeep = lerris;
 	buyItem();
 }

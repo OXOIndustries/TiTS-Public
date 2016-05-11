@@ -8,6 +8,7 @@
 	import classes.Items.Miscellaneous.LactaidMilkTank;
 	import classes.Items.Miscellaneous.LactaidOverdrive;
 	import classes.Items.Miscellaneous.Sterilex;
+	import classes.Items.Toys.BubbleBuddy;
 	import classes.Items.Toys.EggTrainer;
 	import classes.Items.Toys.NivasBionaHole;
 	import classes.Items.Toys.TamaniBionaHole;
@@ -19,7 +20,7 @@
 		//constructor
 		public function Lerris()
 		{
-			this._latestVersion = 1;
+			this._latestVersion = 2;
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			
@@ -33,6 +34,7 @@
 			this.isPlural = false;
 			
 			this.inventory = [];
+			inventory.push(new BubbleBuddy());
 			inventory.push(new EggTrainer());
 			inventory.push(new NivasBionaHole());
 			inventory.push(new TamaniBionaHole());
@@ -59,8 +61,8 @@
 			this.energyRaw = 100;
 			this.lustRaw = 85;
 			
-			this.XPRaw = 50;
 			this.level = 1;
+			this.XPRaw = normalXP();
 			this.credits = 0;
 			this.HPMod = 0;
 			this.HPRaw = this.HPMax();
@@ -188,7 +190,10 @@
 			this.ass.loosenessRaw = 4;
 			this.ass.bonusCapacity = 250;
 		}
-		
+		public function UpgradeVersion1(dataObject:Object):void
+		{
+			dataObject.inventory.push(new BubbleBuddy().getSaveObject());
+		}
 		override public function get bustDisplay():String
 		{
 			// LERRIS_<COW_>_0

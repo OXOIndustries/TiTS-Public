@@ -113,6 +113,7 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Suma Cream", sumaCreamCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "ClearYu", clearYuCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Rubber-Made", rubberMadeCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Bubble Buddy", bubbBuddyCodex);
 	
 	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Ships", "9999", shipNameCodex);
 	
@@ -1334,7 +1335,7 @@ public function lapinaraCodexEntry():void
 	outputCodex("Parasitic females are nothing short of pests. They are sex machines, completely obsessed with implanting their eggs into an unfortunate host. While appearing to have typical male genitalia, they are actually anything but. Their “penis” is actually an ovipositor, and their “testicles” instead hold their ovaries. These faux testicles swell up considerably when they have eggs ready. The presence of eggs causes the parasitic Lapinara to enter a rut-like state that doesn’t end until they are rid of them. The pre-cum of the parasitic Lapinara works as an anesthetic, preventing egg implantation from hurting the host.\n\nThe eggs are soft-shelled, and can only continue development if they’re implanted via a host organism’s anus or vagina, where they absorb the second half of the required genetic material. Labor is initiated when the soft outer shell dissolves. This produces non-parasitic offspring that are always born in pairs, and always the same gender as the host parent. Hair, eye, and skin color is also determined by the host parent. Males and herms tend to inherit penis type from their host parent, and females and herms tend to inherit vagina type from their host parent.\n\nMore parasitic females are produced when one parasitic female implants her eggs in another parasitic female. The non-parasitic genders reproduce just like any human, albeit with significantly shorter pregnancies, never longer than three months, but never shorter than two.");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("History"));
-	outputCodex("The epidemic of parasitic Lapinara breeding has led to the foundation of the Lapinara Sanctuary, a charity organization that cares for orphan Lapinara, offers adoption, and provides oophorectomies (ovary removal) for any consenting parasitic Lapinara, essentially neutering them. The removed ovaries are sold to Tamani Corp for research for the advancement of fertility-enhancing products.\n\nIt is currently under fierce debate whether or not unconsenting parasitic oophorectomies are ethical and should be allowed.");
+	outputCodex("The epidemic of parasitic Lapinara breeding has led to the foundation of the Lapinara Sanctuary, a charity organization that cares for orphan Lapinara, offers adoption, and provides oophorectomies (ovary removal) for any consenting parasitic Lapinara, essentially neutering them. The removed ovaries are sold to TamaniCorp for research for the advancement of fertility-enhancing products.\n\nIt is currently under fierce debate whether or not unconsenting parasitic oophorectomies are ethical and should be allowed.");
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Lapinara");
 }
@@ -1740,6 +1741,20 @@ public function clearYuCodex():void
 	CodexManager.viewedEntry("ClearYu");
 }
 
+//CODEX Description
+public function bubbBuddyCodex():void
+{
+	clearOutputCodex();
+	showBust("9999");
+	outputCodex(header("Bubble Buddy"))
+	outputCodex("<b>Manufactured By:</b> TamaniCorp");
+	outputCodex("\n<i>“Hi. I’m Tamani, founder and CEO of Tamani Corp. I spend all day thinking about YOUR cum. Let me assure you, the Bubble Buddy will keep that baby batter fresh and potent until the heat death of the universe!”</i>");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("About:"));
+	outputCodex("TamaniCorp stands by the saying <i>“There’s no testing like public testing!”</i> Their wide variety of fertility and virility enhancing products undergo extensive trials and it’s not always easy to get a diverse array of subjects into their corporate offices. For that matter, it’s not easy to get their employees out to the testing facilities, considering how many tend to be pregnant at any given time. The Bubble Buddy was an invention of necessity. They chiefly needed a device that could store semen samples safely, maintaining their heat and potency in a sustained, self-sealing container.");
+	outputCodex("\n\nThe sheath proved so popular among testers that TamaniCorp decided to market it publicly as a masturbation aide and inexpensive, reusable semen storage tool. Since then, it has become a popular alternative to traditional cryogenic sperm banks. Among Rahn and Galotian citizenry, the distinctive purple cum bubbles are considered a trendy snack. TamaniCorp officially encourages its amorphous consumers to post pictures of themselves enjoying the cum pouches on extranet photo-sharing sites.\n");
+	CodexManager.viewedEntry("Bubble Buddy");
+}
 public function rubberMadeCodex():void
 {
 	clearOutputCodex();

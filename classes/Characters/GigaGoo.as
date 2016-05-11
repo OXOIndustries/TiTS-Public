@@ -77,8 +77,8 @@ package classes.Characters
 			baseHPResistances.corrosive.damageValue = 20.0;
 			baseHPResistances.poison.damageValue = 20.0;
 			
-			this.XPRaw = 250;
 			this.level = 5;
+			this.XPRaw = bossXP();
 			this.credits = 0;
 			this.HPMod = 150;
 			this.shieldsRaw = this.shieldsMax();

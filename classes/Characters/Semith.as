@@ -39,8 +39,8 @@ package classes.Characters
 			this.energyRaw = 100;
 			this.lustRaw = 30;
 			
-			this.XPRaw = 50;
 			this.level = 1;
+			this.XPRaw = normalXP();
 			this.credits = 5000;
 			
 			this.inventory.push(new ComfortableClothes());
