@@ -53,8 +53,8 @@
 			baseHPResistances.burning.damageValue = 100.0;
 			baseHPResistances.freezing.damageValue = 100.0;
 			
-			this.XPRaw = 500;
 			this.level = 7;
+			this.XPRaw = normalXP();
 			this.HPRaw = this.HPMax();
 			this.credits = 0;
 			

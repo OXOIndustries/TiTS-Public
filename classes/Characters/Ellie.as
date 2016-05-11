@@ -80,8 +80,8 @@
 			this.energyRaw = 100;
 			this.lustRaw = 40;
 			
-			this.XPRaw = 9999;
 			this.level = 6;
+			this.XPRaw = normalXP();
 			this.credits = 4000;
 			this.HPMod = 0;
 			this.HPRaw = this.HPMax();

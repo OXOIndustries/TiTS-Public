@@ -57,8 +57,8 @@
 			baseHPResistances = new TypeCollection();
 			baseHPResistances.kinetic.damageValue = 25.0;
 			
-			this.XPRaw = 225;
 			this.level = 4;
+			this.XPRaw = normalXP();
 			this.credits = 50;
 			this.HPMod = 10;
 			this.HPRaw = this.HPMax();

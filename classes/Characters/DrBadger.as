@@ -59,8 +59,8 @@
 			this.energyRaw = 100;
 			this.lustRaw = 45;
 			
-			this.XPRaw = 450;
 			this.level = 5;
+			this.XPRaw = bossXP();
 			this.credits = 1000;
 			
 			this.femininity = 80;

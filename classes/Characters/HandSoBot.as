@@ -63,8 +63,8 @@
 			baseHPResistances = new TypeCollection();
 			baseHPResistances.electric.damageValue = -40.0;
 			
-			this.XPRaw = 750;
 			this.level = 5;
+			this.XPRaw = bossXP();
 			this.credits = 0;
 			this.HPMod = 20;
 			this.shieldsRaw = this.shieldsMax();

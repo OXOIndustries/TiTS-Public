@@ -76,8 +76,8 @@ package classes.Characters
 			baseHPResistances.kinetic.resistanceValue = 40.0;
 			baseHPResistances.poison.resistanceValue = 40.0;
 			
-			this.XPRaw = 100;
 			this.level = 6;
+			this.XPRaw = normalXP();
 			this.credits = 0;
 			this.HPMod = 75;
 			this.shieldsRaw = this.shieldsMax();

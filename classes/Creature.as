@@ -3000,12 +3000,27 @@
 			arg *= bMulti;
 			
 			XPRaw += arg;
-			if (XPRaw >= XPMax()) XPRaw = XPMax();
-			else if (XPRaw <= 0) XPRaw = 0;
+			//if (XPRaw >= XPMax()) XPRaw = XPMax();
+			if (XPRaw <= 0) XPRaw = 0;
 			return XPRaw;
 		}
 		public function XPMax(): Number {
-			return level * level * 100;
+			return level * level * level  * 100;
+		}
+		//Automatic, consistant XP generator based on level.
+		public function normalXP():Number
+		{
+			return autoXPRando(XPMax() / (2 + level*2));
+		}
+		//Double normal XP.
+		public function bossXP():Number
+		{
+			return autoXPRando(normalXP() * 2);
+		}
+		public function autoXPRando(arg:Number):Number
+		{
+			var multi:Number = (85 + rand(31))/100;
+			return Math.round(arg * multi);
 		}
 		//HP
 		public function HP(arg: Number = 0): Number {			
