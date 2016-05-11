@@ -40,6 +40,9 @@ package classes.UIComponents.SideBarComponents
 		private var _strMode:Boolean = false;
 		private var _directValue:Boolean = false;
 		
+		private var _valueMaxChangeDisplay:Number = Number.NaN;
+		private var _valueChangePerTick:Number = Number.NaN;
+		
 		private var _barFrames:Number = 1.0 / (2.0 * 24);
 		private var _glowFrames:Number = 1.0 / (4.0 * 24);
 		private var _valueGlow:GlowFilter;
@@ -129,7 +132,7 @@ package classes.UIComponents.SideBarComponents
 				if (cScale < tScale)
 				{
 					cScale = tScale;
-					_directValue = false;
+					_valueMaxChangeDisplay = Number.NaN;
 				}
 			}
 			else if (cScale < tScale)
@@ -139,7 +142,7 @@ package classes.UIComponents.SideBarComponents
 				if (cScale > tScale)
 				{
 					cScale = tScale;
-					_directValue = false;
+					_valueMaxChangeDisplay = Number.NaN;
 				}
 			}
 
@@ -148,9 +151,30 @@ package classes.UIComponents.SideBarComponents
 				_maskingBar.scaleX = _progressBar.scaleX = MathUtil.Clamp(0, 1, cScale);
 			}
 			
-			if (!_directValue) value = String(Math.round(cScale * _tMax));
-			else value = String(_tGoal);
-			
+			if (isNaN(_valueMaxChangeDisplay))
+			{
+				value = String(Math.round(cScale * _tMax));
+			}
+			else
+			{
+				if (isNaN(_valueChangePerTick))
+				{
+					_valueChangePerTick = Math.abs(_valueMaxChangeDisplay - _tGoal) * _barFrames;
+				}
+				
+				if (_tGoal > _valueMaxChangeDisplay)
+				{
+					_valueMaxChangeDisplay += _valueChangePerTick;
+					if (_valueMaxChangeDisplay > _tGoal) _valueMaxChangeDisplay = _tGoal;
+				}
+				else
+				{
+					_valueMaxChangeDisplay -= _valueChangePerTick;
+					if (_valueMaxChangeDisplay < _tGoal) _valueMaxChangeDisplay = _tGoal;
+				}
+				
+				value = String(Math.round(_valueMaxChangeDisplay));
+			}
 			
 			if (_desiredMode == "BIG")
 			{
@@ -357,7 +381,11 @@ package classes.UIComponents.SideBarComponents
 		
 		public function setMax(arg:Number):void
 		{
-			if (_tMax != arg) _directValue = true;
+			if (_tMax != arg)
+			{
+				_valueMaxChangeDisplay = Number(value);
+				_valueChangePerTick = Number.NaN;
+			}
 			
 			_tMax = arg;
 			
