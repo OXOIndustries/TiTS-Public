@@ -67,6 +67,9 @@ public function configureMails():void
 	
 	MailManager.addMailEntry("megaschlong", "<i>This message is a garbled mess of hyperlinks and what looks like Russian. What English there is is clearly trying to get you to click on said links and purchase a coursebook of penile exercises. Delightful.</i>", "One quick trick about how my cock grew 15 inches -- nanomachine free!", "MegaSchlong", "MegaSchlong@GalFuckMeet.org", quickPCTo, quickPCToAddress);
 	SpamEmailKeys.push("megaschlong");
+
+	MailManager.addMailEntry("bubbleBuddyMail",bubbleBuddyEmail(),"There's Got To Be A Better Way!","TamaniCorp","Marketing@TamaniCorp.corp",quickPCTo,quickPCToAddress);
+	SpamEmailKeys.push("bubbleBuddyMail");
 	
 	MailManager.addMailEntry("xenoPrincess", "Hello, fellow star-traveler! My name is Amy, and I represent the interests of a small but growing group of activists who oppose the growing power of mega-corporations across the galaxy, especially in recently colonized worlds. It has recently come to our attention that a naleen princess has been taken as a test subject by Xenogen Biotech, doomed to slavery and sick experiments. We need your help to free her! 90% of every donation we receive will go directly to supporting our streaking campaign outside the Xenogen offices in support of our captured naleen brothers and sisters.", "Xeno Princess Needs Your Help!", "Amy Lovelace", "NaleenLover13@GalLink.net", quickPCTo, quickPCToAddress);
 	SpamEmailKeys.push("xenoPrincess");

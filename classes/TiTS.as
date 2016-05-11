@@ -129,6 +129,7 @@
 		include "../includes/events/seraSexParty.as";
 
 		//Misc content
+		include "../includes/masturbation/bubbleBuddy.as";
 		include "../includes/rivalEncounters.as";
 		include "../includes/saendra.as";
 		include "../includes/travelEvents.as";
@@ -394,7 +395,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.6.52";
+			version = "0.6.53";
 
 			//temporary nonsense variables.
 			temp = 0;

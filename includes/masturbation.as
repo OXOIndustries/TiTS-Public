@@ -4,6 +4,7 @@ import classes.Items.Miscellaneous.MagicMilker;
 import classes.Items.Toys.HoverHole;
 import classes.Items.Toys.NivasBionaHole;
 import classes.Items.Toys.TamaniBionaHole;
+import classes.Items.Toys.BubbleBuddy;
 
 public function availableFaps(roundTwo:Boolean = false):Array
 {
@@ -291,6 +292,15 @@ public function availableFaps(roundTwo:Boolean = false):Array
 		fap.ttHeader = "Stolen Dildo"
 		fap.ttBody = "Make use of the dildo you stole from the smutty myr deserter.";
 		fap.func = stolenDildoFap;
+		faps.push(fap);
+	}
+	if(pc.hasItem(new BubbleBuddy()))
+	{
+		fap = new FapCommandContainer();
+		fap.text = "BubbleBuddy";
+		fap.ttHeader = "Bubble Buddy"
+		fap.ttBody = "Smaller and thinner than a  normal onahole but larger than a prophylactic, the lilac-colored Bubble Buddy is a self-lubricating pocket pussy that will \"contain and sustain\" the semen of its user. Though only six inches long, the gelatinous surface seems VERY stretchy.";
+		fap.func = jackIntoDaBubbleBooty;
 		faps.push(fap);
 	}
 	return faps;
