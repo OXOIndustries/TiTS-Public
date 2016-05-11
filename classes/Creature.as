@@ -3005,7 +3005,7 @@
 			return XPRaw;
 		}
 		public function XPMax(): Number {
-			return level * level * level  * 100;
+			return level * level * level * level * 100;
 		}
 		//Automatic, consistant XP generator based on level.
 		public function normalXP():Number
