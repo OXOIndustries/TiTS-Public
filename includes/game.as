@@ -771,13 +771,6 @@ public function flyMenu():void {
 	}
 	else addDisabledButton(3, "Locked", "Locked", "You need to find one of your father’s probes to access this planet’s coordinates and name.");
 	
-	if (uvetoUnlocked())
-	{
-		if (shipLocation != "UVS F15") addButton(4, "Uveto", flyTo, "Uveto");
-		else addDisabledButton(4, "Uveto", "Uvto", "You’re already here.");
-	}
-	else addDisabledButton(4, "Locked", "Locked", "You need to find one of your father’s probes to access this planet’s coordinates and name.");
-	
 	//NEW TEXAS
 	if(flags["NEW_TEXAS_COORDINATES_GAINED"] != undefined)
 	{
@@ -792,11 +785,21 @@ public function flyMenu():void {
 		else if(shipLocation != "POESPACE") addButton(6, "Poe A", flyTo, "Poe A");
 		else addDisabledButton(6, "Poe A", "Poe A", "You’re already here.");
 	}
-	else addDisabledButton(6, "Locked", "Locked", "You have not yet learned of this planet.");
+	else addDisabledButton(6, "Locked", "Locked", "You have not yet learned of this planet’s coordinates.");
+	//UVETO
+	if (uvetoUnlocked())
+	{
+		if (shipLocation != "UVS F15") addButton(7, "Uveto", flyTo, "Uveto");
+		else addDisabledButton(7, "Uveto", "Uvto", "You’re already here.");
+	}
+	else addDisabledButton(7, "Locked", "Locked", "You have not yet learned of this planet’s coordinates.");
+	
+	//KQ2
 	if (flags["KQ2_QUEST_OFFER"] != undefined && flags["KQ2_QUEST_DETAILED"] == undefined)
 	{
-		addButton(7, "Kara", flyTo, "karaQuest2", "Kara", "Go see what Kara has up her sleeve.");
+		addButton(10, "Kara", flyTo, "karaQuest2", "Kara", "Go see what Kara has up her sleeve.");
 	}
+	
 	addButton(14, "Back", mainGameMenu);
 }
 
