@@ -266,6 +266,7 @@ public function chooseStartingRace(race:String = "human"):void {
 	else if (pc.originalRace == "half-gryvain")
 	{
 		pc.legType = GLOBAL.TYPE_GRYVAIN;
+		pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
 		pc.addLegFlag(GLOBAL.FLAG_SCALED);
 		pc.tailCount = 1;
 		pc.tailType = GLOBAL.TYPE_GRYVAIN;
