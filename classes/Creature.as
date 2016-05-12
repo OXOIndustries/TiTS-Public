@@ -4108,6 +4108,8 @@
 				adjectives.push("slimy", "slick", "gooey");
 			if(hasTongueFlag(GLOBAL.FLAG_STICKY))
 				adjectives.push("sticky", "glutinous", "viscous");
+			if(hasTongueFlag(GLOBAL.FLAG_NUBBY))
+				adjectives.push("textured", "rough", "abrasive", "raspy");
 			
 			//Show adjective 50% of the time
 			if(rand(2) == 0 && adjectives.length > 0) 
