@@ -299,6 +299,7 @@ public function healFromVi():void
 
 	output("\n\n<i>“Good,”</i> Vi visibly sighs with relief, pressing a hand to her chest. <i>“Judging by your injuries, your treatment should cost " + num2Text(cost) + " credits in total. Are you okay with that, " + pc.mf("sir","ma’am") + "?”</i>");
 
+	clearMenu();
 	//[Yes] [No]
 	// Yes goes to ‘Get Healed’.
 	// No goes to ‘Turn Down Healing’.
