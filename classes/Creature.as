@@ -1463,8 +1463,16 @@
 					buffer = weaponActionRelax(true, "ranged");
 					break;
 				case "move":
-				case "walk":
 					buffer = moveAction();
+					break;
+				case "walk":
+					buffer = moveAction(false, true);
+					break;
+				case "moving":
+					buffer = moveAction(true);
+					break;
+				case "walking":
+					buffer = moveAction(true, true);
 					break;
 				case "lowerUndergarment":
 					buffer = lowerUndergarment.longName;
@@ -2501,18 +2509,83 @@
 			}
 			return desc;
 		}
-		public function moveAction():String
+		public function moveAction(present:Boolean = false, travel:Boolean = false):String
 		{
 			var desc:String = "";
-			var actions:Array = ["move"];
+			var actions:Array = [];
+			if(present) {
+				actions = ["going"];
+				if(!travel) actions.push("moving");
+			}
+			else {
+				actions = ["go"];
+				if(!travel) actions.push("move");
+			}
 			
-			if(hasLegs()) actions.push("walk", "walk", "step");
-			if(isGoo()) actions.push("slide", "crawl");
-			if(isNaga()) actions.push("slither", "slink", "wriggle");
-			if(isCentaur()) actions.push("gallop", "canter");
-			if(isTaur()) actions.push("trot", "lope");
-			if(isDrider()) actions.push("skitter", "flit");
-			if(legType == GLOBAL.TYPE_MLP) actions.push("gallop", "canter", "trot", "lope", "hoof it");
+			if(hasLegs()) {
+				if(present) {
+					actions.push("walking", "walking");
+					if(!travel) actions.push("stepping");
+				}
+				else {
+					actions.push("walk", "walk");
+					if(!travel) actions.push("step");
+				}
+			}
+			if(isGoo()) {
+				if(present) {
+					actions.push("crawling");
+					if(!travel) actions.push("sliding");
+				}
+				else {
+					actions.push("crawl");
+					if(!travel) actions.push("slide");
+				}
+			}
+			if(isNaga()) {
+				if(present) {
+					actions.push("slithering", "slinking");
+					if(!travel) actions.push("wriggling");
+				}
+				else {
+					actions.push("slither", "slink");
+					if(!travel) actions.push("wriggle");
+				}
+			}
+			if(isCentaur()) {
+				if(present) actions.push("galloping", "cantering");
+				else actions.push("gallop", "canter");
+			}
+			if(isTaur()) {
+				if(present) {
+					actions.push("trotting");
+					if(!travel) actions.push("loping");
+				}
+				else {
+					actions.push("trot");
+					if(!travel) actions.push("lope");
+				}
+			}
+			if(isDrider()) {
+				if(present) {
+					actions.push("skittering");
+					if(!travel) actions.push("flitting");
+				}
+				else {
+					actions.push("skitter");
+					if(!travel) actions.push("flit");
+				}
+			}
+			if(legType == GLOBAL.TYPE_MLP) {
+				if(present) {
+					actions.push("galloping", "cantering", "trotting");
+					if(!travel) actions.push("loping", "hoofing it");
+				}
+				else {
+					actions.push("gallop", "canter", "trot");
+					if(!travel) actions.push("lope", "hoof it");
+				}
+			}
 			
 			desc += RandomInCollection(actions);
 			return desc;

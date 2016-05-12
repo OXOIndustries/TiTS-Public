@@ -149,7 +149,7 @@ public function popDatBubbleButtBubb(item:ItemSlotClass):void
 		}
 		else
 		{
-			output("You’re completely soaked! If you just walk around like this, people might start getting ideas.");
+			output("You’re completely soaked! If you just [pc.walk] around like this, people might start getting ideas.");
 			applyCumSoaked(pc);
 		}
 		//{increase libido by 1, lust by 2-5, and non-goos gain the <i>“Cum Soaked”</i> status}
@@ -951,7 +951,7 @@ public function galLinkConsequence():void
 	if(pc.isNice()) 
 	{
 		output("\n\nYou offer an apologetic shrug, smiling sheepishly. <i>“I just thought you wouldn’t mind sharing with your friends, you know? You’re too cute to keep all to myself.”</i>");
-		output("\n\nFlahne flushes and can’t keep up the angry facade. <i>“I think that was sweeter than my lollipops, you goof. I’m still gonna make you pay, though!”</i> She drags you off to a janitorial closet and ravages you as only a gel girl can. By the time she’s done, you’re having trouble walking straight. All told, not a bad punishment at all!");
+		output("\n\nFlahne flushes and can’t keep up the angry facade. <i>“I think that was sweeter than my lollipops, you goof. I’m still gonna make you pay, though!”</i> She drags you off to a janitorial closet and ravages you as only a gel girl can. By the time she’s done, you’re having trouble [pc.walking] straight. All told, not a bad punishment at all!");
 		//{player’s lust and energy set to 0}
 		processTime(45);
 		for(var x:int = 0; x < 5; x++) { pc.orgasm(); }
