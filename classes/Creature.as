@@ -14626,6 +14626,9 @@
 								case "GaloMax":
 									kGAMECLASS.eventQueue.push(kGAMECLASS.galoMaxTFProc);
 									break;
+								case "Flahne_Extra_Pissed":
+									kGAMECLASS.flags["FLAHNE_MAKEUP"] = 1;
+									break;
 							}
 						}
 						else if(this is Emmy)

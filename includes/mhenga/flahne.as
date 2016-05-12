@@ -43,7 +43,7 @@ public function flahneDickOut():Boolean {
 }
 
 //Meeting Her:
-public function meetingFlahne(outputT:Boolean = true):void {
+public function meetingFlahne(outputT:Boolean = true):Boolean {
 	CodexManager.unlockEntry("Rahn");
 	trace("FLAHNE OVI STATUS: " + flags["FLAHNE_LIKE_OVIPOSITOR"]);
 	if(flags["FLAHNE_LIKE_OVIPOSITOR"] < 1) trace("NO DICK OUT");
@@ -90,13 +90,28 @@ public function meetingFlahne(outputT:Boolean = true):void {
 				output("\n\nThere’s another sign on the desk that says simple ‘Out - Be Back At 0800.’ Standing next to the desk is what appears to be a very simple droid, doing its best to handle the customs process in Flahne’s absence. Thankfully you don’t have to deal with it yourself as you’ve already come through officially, so you walk right past the small crowd of annoyed-looking travelers.");
 				//[Remove ‘TALK’ and ‘SEX OPTIONS’ buttons when Flahne is not present]}
 				addDisabledButton(0,"Robot");
-				return;
+				return false;
 			}
 		}
-		else if(flags["FLAHNE_PISSED"] > 0) {
+		else if(flags["FLAHNE_PISSED"] > 0 || pc.hasStatusEffect("Flahne_Extra_Pissed")) {
 			showBust("FLAHNE");
 			output("\n\nFlahne doesn't look like she wants anything to do with you right now.");
-			return;
+			return false;
+		}
+		else if(flags["FLAHNE_MAKEUP"] == 1) 
+		{
+			extranetFlahneConsequencesMakeup();
+			return true;
+		}
+		else if(flags["FLAHNE_EXTRANETTED"] == 1)
+		{
+			extranetFlahneConsequences();
+			return true;
+		}
+		else if(flags["FLAHNE_GALLINKED"] == 1) 
+		{
+			galLinkConsequence();
+			return true;
 		}
 		else if (flags["FLAHNE_TALKED_ABOUT_CUMSLUTPENNY"] == undefined && flags["PENNY_IS_A_CUMSLUT"] != undefined)
 		{
@@ -128,6 +143,9 @@ public function meetingFlahne(outputT:Boolean = true):void {
 		output("  You aren't aroused enough for sex with her right now.");
 		this.addDisabledButton(1,"Sex Options");
 	}
+	if(hasACumBubble()) addButton(2,"Cum Bubble",giveFlahneATreatSetup,undefined,"Cum Bubble","Give the rahn a gift of sealed cum.");
+	else addDisabledButton(2, "Locked", "Locked", "You do not have the item required for this scene.");
+	return false;
 }
 
 //Talk to Flahne
