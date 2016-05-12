@@ -15,37 +15,65 @@ public function playerUsedInCombat(targetCreature:Creature, usingCreature:Creatu
 	if(item is SmallCumBubble)
 	{
 		output("Shrugging, you suppose your cum bubble may be worth a try. Gripping it firmly, you lean back and pitch the elastic ball with all the force you can muster.");
-		output("\n\nThe golfball-sized orb hits its mark and connects with a latex twack. Its casing is too dense to burst, however, and the rubbery ball bounces off and rolls away!");
-		//{Uses accuracy to hit and deals small kinetic damage}
-		applyDamage(item.baseDamage, usingCreature, targetCreature);
+		if(rangedCombatMiss(usingCreature, targetCreature))
+		{
+			output("\nYou whiff, and the ball rolls away!");
+		}
+		else
+		{
+			output("\n\nThe golfball-sized orb hits its mark and connects with a latex twack. Its casing is too dense to burst, however, and the rubbery ball bounces off and rolls away!");
+			//{Uses accuracy to hit and deals small kinetic damage}
+			applyDamage(item.baseDamage, usingCreature, targetCreature);
+		}
 	}
 	//[Medium cum Bubble]
 	else if(item is MediumCumBubble)
 	{
 		output("You loosely hold the squishy sphere in one hand while adjusting to a side-facing stance. Shifting your weight backwards, you swing the bubble backwards, eyes focused on your opponent. In one, smooth motion, you extend your arm past your [pc.hips] and shift your weight forward, pivoting to add force to your throw. You snap your wrist just as you release the balloon, its warm, sticky contents pitched at some force.");
-		output("\n\nThe fist-sized orb hits its mark, the taut latex bloating outward from the impact for a moment before popping with a sharp snap! The [pc.cumVisc] contents of the balloon splatter against your target like a spilled glass of [pc.cumColor] cream.");
-		//{Uses accuracy to hit and deals small lust damage}
-		applyDamage(item.baseDamage, usingCreature, targetCreature);
+		if(rangedCombatMiss(usingCreature, targetCreature))
+		{
+			output("\nYou whiff, and the ball splatters harmlessly on the ground!");
+		}
+		else
+		{
+			output("\n\nThe fist-sized orb hits its mark, the taut latex bloating outward from the impact for a moment before popping with a sharp snap! The [pc.cumVisc] contents of the balloon splatter against your target like a spilled glass of [pc.cumColor] cream.");
+			//{Uses accuracy to hit and deals small lust damage}
+			applyDamage(item.baseDamage, usingCreature, targetCreature);
+		}
 	}
 	//[Large Cum Bubble]
 	else if(item is LargeCumBubble)
 	{
 		output("Gripping the semi-taut ball of spunk with both hands, you take a few steps forward, fingers sinking into the yielding surface slightly. Pulling the orb back with your arm completely straight, you bend slightly at the waist and pitch it forward. Releasing your grip just as the sphere starts its upswing, you follow through in an outward motion to add a spin to the projectile, which arcs heavily toward your target.");
-		output("\n\nThe head-sized orb hits its mark, the straining latex covering snapping almost immediately upon contact. The showering spunk released from the popped balloon erupts like an upturned pitcher, warm jizz drenching your target as thoroughly as a 20-man bukkake session.");
-		//{Uses accuracy to hit and deals moderate lust damage}
-		applyDamage(item.baseDamage, usingCreature, targetCreature);
+		if(rangedCombatMiss(usingCreature, targetCreature))
+		{
+			output("\nYou whiff, and the ball splatters harmlessly on the ground!");
+		}
+		else
+		{
+			output("\n\nThe head-sized orb hits its mark, the straining latex covering snapping almost immediately upon contact. The showering spunk released from the popped balloon erupts like an upturned pitcher, warm jizz drenching your target as thoroughly as a 20-man bukkake session.");
+			//{Uses accuracy to hit and deals moderate lust damage}
+			applyDamage(item.baseDamage, usingCreature, targetCreature);
+		}
 	}
 	//[Huge Cum Bubble]
 	else
 	{
 		output("Hefting the massive cum tank with both hands, you begin swinging it back and forth, using your [pc.hips] to add weight to your sweeps. As you prepare to toss the pressurized sphere, you twist toward your target, stepping forward as you release the orb. The enormous jizz bubble soars with hypnotic grace, its elastic sheath blobbing and deforming from the force of your pitch.");
-		output("\n\nWhen the torso-sized orb hits its mark, the over-pressurized latex covering disintegrates with an echoing pop. The full weight of your mammoth load detonates all over the place in one, [pc.cumColor] instant. Your target is bathed in the [pc.cumVisc] cream, the force of impact enough to knock a man clear off his feet. The deluge of seed is so excessive, it’s almost as if someone had just upturned a bathtub full of spunk.");
-		//{Uses accuracy to hit, deals moderate lust damage, and may cause knock-down}
-		applyDamage(item.baseDamage, usingCreature, targetCreature);
-		if(!targetCreature.hasStatusEffect("Tripped") && usingCreature.aim()/2 + rand(20) + 1 > targetCreature.reflexes()/4 + targetCreature.physique()/4 + 10)
+		if(rangedCombatMiss(usingCreature, targetCreature))
 		{
-			targetCreature.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0,0xFF0000);
-			kGAMECLASS.output("\n\n<b>There's so much that " + targetCreature.a + targetCreature.short + " is tripped!</b>");
+			output("\nYou whiff, and the ball splatters harmlessly on the ground!");
+		}
+		else
+		{
+			output("\n\nWhen the torso-sized orb hits its mark, the over-pressurized latex covering disintegrates with an echoing pop. The full weight of your mammoth load detonates all over the place in one, [pc.cumColor] instant. Your target is bathed in the [pc.cumVisc] cream, the force of impact enough to knock a man clear off his feet. The deluge of seed is so excessive, it’s almost as if someone had just upturned a bathtub full of spunk.");
+			//{Uses accuracy to hit, deals moderate lust damage, and may cause knock-down}
+			applyDamage(item.baseDamage, usingCreature, targetCreature);
+			if(!targetCreature.hasStatusEffect("Tripped") && usingCreature.aim()/2 + rand(20) + 1 > targetCreature.reflexes()/4 + targetCreature.physique()/4 + 10)
+			{
+				targetCreature.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0,0xFF0000);
+				kGAMECLASS.output("\n\n<b>There's so much that " + targetCreature.a + targetCreature.short + " is tripped!</b>");
+			}
 		}
 	}
 	itemConsume(item);
