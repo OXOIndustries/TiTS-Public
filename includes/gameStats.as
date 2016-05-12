@@ -614,6 +614,27 @@ public function statisticsScreen(showID:String = "All"):void
 	// Other
 	if(showID == "Other" || showID == "All")
 	{
+		//======CORE STATISTICS=====//
+		output2("\n\n" + blockHeader("Core Statistics", false));
+		output2("\n<b><u>Active Stats</u></b>");
+		output2("\n<b>* " + StringUtil.capitalize(pc.shieldDisplayName) + ": </b>" + "0/" + pc.shieldsRaw + "/" + pc.shieldsMax());
+		output2("\n<b>* HP: </b>" + "0/" + pc.HP() + "/" + pc.HPMax());
+		output2("\n<b>* Lust: </b>" + pc.lustMin() + "/" + pc.lust() + "/" + pc.lustMax());
+		output2("\n<b>* Energy: </b>" + pc.energyMin() + "/" + pc.energy() + "/" + pc.energyMax());
+		output2("\n<b><u>Passive Stats</u></b>");
+		output2("\n<b>* Physique: </b>" + "0/" + pc.physique() + "/" + pc.physiqueMax());
+		if(pc.physiqueMod != 0) output2(" (" + StringUtil.printPlusMinus(formatFloat(pc.physiqueMod, 3)) + ")");
+		output2("\n<b>* Reflexes: </b>" + "0/" + pc.reflexes() + "/" + pc.reflexesMax());
+		if(pc.reflexesMod != 0) output2(" (" + StringUtil.printPlusMinus(formatFloat(pc.reflexesMod, 3)) + ")");
+		output2("\n<b>* Aim: </b>" + "0/" + pc.aim() + "/" + pc.aimMax());
+		if(pc.aimMod != 0) output2(" (" + StringUtil.printPlusMinus(formatFloat(pc.aimMod, 3)) + ")");
+		output2("\n<b>* Intelligence: </b>" + "0/" + pc.intelligence() + "/" + pc.intelligenceMax());
+		if(pc.intelligenceMod != 0) output2(" (" + StringUtil.printPlusMinus(formatFloat(pc.intelligenceMod, 3)) + ")");
+		output2("\n<b>* Willpower: </b>" + "0/" + pc.willpower() + "/" + pc.willpowerMax());
+		if(pc.willpowerMod != 0) output2(" (" + StringUtil.printPlusMinus(formatFloat(pc.willpowerMod, 3)) + ")");
+		output2("\n<b>* Libido: </b>" + pc.libidoMin() + "/" + pc.libido() + "/" + pc.libidoMax());
+		if(pc.libidoMod != 0) output2(" (" + StringUtil.printPlusMinus(formatFloat(pc.libidoMod, 3)) + ")");
+		
 		//======COMBAT STATISTICS=====//
 		output2("\n\n" + blockHeader("Combat Statistics", false));
 		// Physical Combat
