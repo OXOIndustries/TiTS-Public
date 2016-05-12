@@ -339,6 +339,7 @@
 			FLAG_APHRODISIAC_LACED,
 			FLAG_GOOEY,
 			FLAG_STICKY,
+			FLAG_NUBBY,
 		];
 		
 		public static const VALID_EAR_TYPES:Array = [
