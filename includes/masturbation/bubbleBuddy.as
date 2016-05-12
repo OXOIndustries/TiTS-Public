@@ -271,7 +271,7 @@ public function jackIntoDaBubbleBooty():void
 	output("\n\nFingers tightening around the pliant Bubble Buddy, you ease into a slow, steady pace. The toy fits you perfectly - its slurping, gooey interior suckling at your [pc.cock " + x + "] with an almost organic heat. Squeezing its gelatinous base does wonderful things to the interior, the complex gel structure spreading small amounts of tension around its length like the trembling tightness of a pussy at the verge of climax. As you pump the sheath along your member, you unconsciously gnaw at your lower lip, [pc.chest] rising and falling with exhilarated quickness. Before long, you have both hands firmly around the lilac toy, pumping the semi-transparent jelly with uninhibited delight.");
 	output("\n\nThe Bubble Buddy slaps wetly against your [pc.skinFurScales] as you jerk the slimy sheath along your length, the fat cumvein of your member tensing with the final, exquisite strokes of your imminent orgasm. Squeezing the lavender-hued tightness around your tingling tool provokes a trembling jiggle that starts at your root and whips upward like a jet of liquid distress through the sensitive surface of your [pc.cock " + x + "]. Clutching the onahole at the peak of your cockhead, you moan in a satisfied stupor as the toy hugs and suckles at your meat. [pc.cumColor] spurts of bubbling pre-cum splatter against the taut tip of the sheath for a desperate, tense moment before you release your [pc.cumVisc] seed.");
 	//{small volume (1-300mL) }
-	if(pc.cumQ() < 300) 
+	if(pc.cumQ() <= 300) 
 	{
 		output("\n\nRather than maintaining its elastic resistance, however, the rubber cap on the translucent amethyst toy bulges slightly, creating a reservoir for your seed. Drawn upwards, as if by vacuum pressure, your [pc.cumVisc] goo spurts into the small bubble eagerly. The toy reacts to the warm splatter by lightly vibrating, coaxing out your [pc.cumColor] spunk to the very last drop. With each spasm, the bump expands a bit more until a small, plum-colored orb tops your toy.");
 		output("\n\nBreathing more calmly as the after-shudders of your orgasm fade, you admire the little purple blob on top of your pocket pussy. ");
@@ -286,7 +286,7 @@ public function jackIntoDaBubbleBooty():void
 		quickLoot(new SmallCumBubble());
 	}
 	//{medium volume (301-4,000 mL) }
-	else if(pc.cumQ() < 4000)
+	else if(pc.cumQ() <= 4000)
 	{
 		output("\n\nRather than maintaining its elastic resistance, however, the rubber cap on the translucent amethyst toy bulges and expands, filling with the fat globs of your orgasm. Drawn upwards, as if by vacuum pressure, your [pc.cumVisc] goo fills the expanding bubble eagerly. The toy reacts to the plumping bounty by lightly vibrating, coaxing out your seeping spunk to the very last drop. With each spasm, the orb expands, your cream filling the condom’s reservoir with the rush of your [pc.cumColor] [pc.cumNoun].");
 		output("\n\nWhen the suddering orgasm fades, the cylindrical sex toy now has ");
@@ -300,7 +300,7 @@ public function jackIntoDaBubbleBooty():void
 		quickLoot(new MediumCumBubble());
 	}
 	//{large volume (4,001-10,000 mL) }
-	else if(pc.cumQ() < 10000)
+	else if(pc.cumQ() <= 10000)
 	{
 		output("\n\nThe gushing volume of your ejaculate hits the taut tip of the gel pussy like an iron ball on a rubber sheet. The liquid mass pouring from your [pc.cockHead " + x + "] floods the resevoir so quickly that in a matter of moments it has expanded into a blobby balloon thicker than the toy itself. With every spasmodic thrust of your [pc.cock " + x + "], the cum-thirsty sheath ripples and vibrates across your tender shaft. A shiver of heat passes from one shoulder to the other, your fingers tensed around the squishy, plum-colored pocket pussy so tightly that its rubbery surface bulges between your fingers. Your [pc.ass] clenches with the gushing release of your [pc.cumGem] seed.");
 		output("\n\nWhen the suddering orgasm fades, the cylindrical sex toy has gained a hefty, cum-filled orb at its peak. The bubble is ");
@@ -314,7 +314,7 @@ public function jackIntoDaBubbleBooty():void
 		quickLoot(new LargeCumBubble());
 	}
 	//{massive volume (10,001-70,000mL) }
-	else if(pc.cumQ() < 70000)
+	else if(pc.cumQ() <= 70000)
 	{
 		output("\n\nWhen your geysering cream surges past the narrow vent of your urethral slit, the squishy toy is nearly blasted out of your grip. It’s all you can do to clamp down with tingling fingers as your orgasmic release floods into the the Bubble Buddy’s condom-like reservoir. Your shoulders clench together as the spunk orb fills, gaining inches with alarming rapidity. Cheeks flushed and breath coming in ragged gasps, you hold on as best you can while gallon upon gallon of hot, seething seed gushes from your trembling form. The [pc.cumColor] bounty pours from your spasming [pc.cock " + x + "] like a mythological deluge. Sinking to your [pc.ass], the thinning latex toy bloats and distends under the inflating swell, losing its spherical elasticity with squeaking groans of protest. The heavy contents sag against your [pc.hips] and [pc.legOrLegs], nearly ready to bury you beneath the warm, fluid pressure of your rubber-sealed largess.");
 		output("\n\nWhen the suddering orgasm fades, the cylindrical sex toy is utterly buried under the massive, cum-filled globe at its peak. The heavy, sloshing pouch is ");

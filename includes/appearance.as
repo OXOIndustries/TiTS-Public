@@ -745,6 +745,13 @@ public function appearance(forTarget:Creature):void
 			}
 		}
 		else output2(".");
+		// Fluff stuff
+		if (target.hasSkinFlag(GLOBAL.FLAG_FLUFFY))
+		{
+			if (target.biggestTitSize() > 2) output(" Nestled between your breasts");
+			else output(" Poofing out your chest");
+			output2(" is a fluffy ball of " + target.furColor + " fur.");
+		}
 		// Cum Splattered!
 		if(target.hasStatusEffect("Cum Soaked") || target.hasStatusEffect("Pussy Drenched"))
 		{

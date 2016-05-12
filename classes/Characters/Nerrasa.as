@@ -42,7 +42,7 @@
 			inventory.push(new HeatBelt());
 			inventory.push(new ArcticWarfareBelt());
 			inventory.push(new HuskarTreats());
-			inventory.push(new AusarTreats());
+			//inventory.push(new AusarTreats());
 			inventory.push(new ClimbingKit());
 			inventory.push(new FishingRod());
 			inventory.push(new ThermalJacket());

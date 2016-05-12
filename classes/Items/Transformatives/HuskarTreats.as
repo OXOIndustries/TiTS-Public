@@ -81,7 +81,7 @@
 				if(target.cockTypeUnlocked(x,GLOBAL.TYPE_CANINE))
 				{
 					kGAMECLASS.output("\n\nYour [pc.cock " + x + "] throbs suddenly ");
-					if(pc.isCrotchGarbed()) kGAMECLASS.output("beneath your [pc.lowerGarments]");
+					if(!pc.isCrotchExposed()) kGAMECLASS.output("beneath your [pc.lowerGarments]");
 					else if(pc.legCount == 1) kGAMECLASS.output("on your [pc.leg]");
 					else kGAMECLASS.output("between your [pc.legs]");
 					kGAMECLASS.output(", swelling to its full size as a strange heat radiates through your body. You grab your simmering penis as the alien concoction takes effect, rewriting your most sensitive places. You double over in a sick twist of pain and pleasure");
@@ -147,7 +147,7 @@
 			if(changes < changeLimit && x >= 0 && rand(3) == 0)
 			{
 				kGAMECLASS.output("\n\nYou feel something swelling on your [pc.cock " + x + "]'s base, straining against your sensitive flesh. Alarmed, you ");
-				if(!pc.isCrotchGarbed()) kGAMECLASS.output("strip");
+				if(!pc.isCrotchExposed()) kGAMECLASS.output("strip");
 				else kGAMECLASS.output("spread your [pc.legOrLegs]");
 				kGAMECLASS.output(" and grab your knotty cock. Your bitch-breaking knot is swelling even larger, engorging with cum and blood as your own arousal peaks. You feverishly grab your wang, stroking it as quick as you can as your knot grows larger than it ever has before!");
 				changes++;
@@ -210,7 +210,7 @@
 					if(pc.breastRows[0].breastRatingRaw < 1)
 					{
 						//Covered
-						if(pc.isChestGarbed()) kGAMECLASS.output("\n\nOut of nowhere, you can feel your [pc.nipples] pressing against your [pc.upperGarment]. You squirm uncomfortably in a self-imposed prison as your chest expands, swelling new, soft flesh into a pair of budding breasts where once you had nothing but pectorals. <b>You have A-cup breasts.</b>");
+						if(!pc.isChestExposed()) kGAMECLASS.output("\n\nOut of nowhere, you can feel your [pc.nipples] pressing against your [pc.upperGarment]. You squirm uncomfortably in a self-imposed prison as your chest expands, swelling new, soft flesh into a pair of budding breasts where once you had nothing but pectorals. <b>You have A-cup breasts.</b>");
 						//Unclothed
 						else kGAMECLASS.output("\n\nYou involuntarily gasp when your chest warms out of nowhere. One second, you're normal. The next, it's like you've been sunbathing with only your pecs exposed for a few hours. Your [pc.skin] tingles as its pulled tight by something expanding underneath it, and you're treated to the sight of <b>your new A-cup breasts.</b>");
 					}
@@ -292,6 +292,7 @@
 					pc.legType = GLOBAL.TYPE_CANINE;
 					pc.clearLegFlags();
 					pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
+					pc.addLegFlag(GLOBAL.FLAG_FURRED);
 					pc.addLegFlag(GLOBAL.FLAG_PAWS);
 					changes++;
 				}
@@ -316,6 +317,7 @@
 					pc.legType = GLOBAL.TYPE_CANINE;
 					pc.clearLegFlags();
 					pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
+					pc.addLegFlag(GLOBAL.FLAG_FURRED);
 					pc.addLegFlag(GLOBAL.FLAG_PAWS);
 					changes++;
 				}
@@ -334,7 +336,7 @@
 					else
 					{
 						kGAMECLASS.output("\n\nOuch! A knot of discomfort forms just above your [pc.butt] as if it had suffered a nasty sting or bite, but no such injury occured. You twist for a look at it");
-						if(pc.isCrotchGarbed()) kGAMECLASS.output(", peeling back your [pc.underGarments]");
+						if(!pc.isCrotchExposed()) kGAMECLASS.output(", peeling back your [pc.underGarments]");
 						kGAMECLASS.output(". There's a raised, irritated lump there, and it's getting bigger. Wiggling slightly, it extends as new bones form within it, gently wagging as it lengthens. You're growing a tail! Fine hairs sprout on its [pc.skin], giving it a distinctly canine cast. When it finishes growing, it's long enough to lazily swish back and forth; <b>you've obviously gained an ausar's tail.</b>");
 					}
 					pc.tailCount = 1;
@@ -366,15 +368,15 @@
 		{
 			var changes:int = 0;
 			
-			if (!target.hasArmFlag(GLOBAL.FLAG_FLUFFY) && changes < changeLimit && rand(2) == 0)
+			if (target.hasArmFlag(GLOBAL.FLAG_FURRED) && !target.hasArmFlag(GLOBAL.FLAG_FLUFFY) && changes < changeLimit && rand(2) == 0)
 			{
-				output("\n\nYou feel a powerful itch spread across your arms. You clutch at them, scratching violently as the fur covering your arms lengthens dramatically, . Within a few minutes, your arms are utterly covered in a thick, fluffy layer of " + target.furColor + " fur! At least you'll keep even warmer, now....");
+				output("\n\nYou feel a powerful itch spread across your arms. You clutch at them, scratching violently as the fur covering your arms lengthens dramatically. Within a few minutes, your arms are utterly covered in a thick, fluffy layer of " + target.furColor + " fur! At least you'll keep even warmer, now....");
 				
 				target.addArmFlag(GLOBAL.FLAG_FLUFFY);
 				changes++;
 			}
 			
-			if (!target.hasLegFlag(GLOBAL.FLAG_FLUFFY) && changes < changeLimit && rand(2) == 0)
+			if (target.hasLegFlag(GLOBAL.FLAG_FURRED) && !target.hasLegFlag(GLOBAL.FLAG_FLUFFY) && changes < changeLimit && rand(2) == 0)
 			{
 				output("\n\nYour [pc.legs] throb something fierce, an annoying wave of pressure underneath your skin just pushing and pushing. You rub them firmly, trying to push the feeling away - it works too; a firm hand down the front of your [pc.leg] seems to pull a thicker, fluffier coat of fur along with it!");
 				

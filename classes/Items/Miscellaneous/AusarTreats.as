@@ -298,6 +298,7 @@
 						pc.legType = GLOBAL.TYPE_CANINE;
 						pc.clearLegFlags();
 						pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
+						pc.addLegFlag(GLOBAL.FLAG_FURRED);
 						pc.addLegFlag(GLOBAL.FLAG_PAWS);
 						changes++;
 					}
@@ -322,6 +323,7 @@
 						pc.legType = GLOBAL.TYPE_CANINE;
 						pc.clearLegFlags();
 						pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
+						pc.addLegFlag(GLOBAL.FLAG_FURRED);
 						pc.addLegFlag(GLOBAL.FLAG_PAWS);
 						changes++;
 					}

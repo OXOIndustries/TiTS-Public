@@ -140,7 +140,7 @@ public function initUvetoRooms():void
 	//rooms["UVS D7"].outExit = "UVI F34";
 	//rooms["UVS D7"].outText = "Down";
 	rooms["UVS D7"].moveMinutes = 1;
-	rooms["UVS D7"].runOnEnter = uvetoSpaceElevatorBonus;
+	rooms["UVS D7"].runOnEnter = uvetoSpaceElevatorBaseBonus;
 	rooms["UVS D7"].addFlag(GLOBAL.INDOOR);
 	rooms["UVS D7"].addFlag(GLOBAL.LIFTDOWN);
 
@@ -276,7 +276,7 @@ public function initUvetoRooms():void
 	//rooms["UVI F34"].inExit = "UVS D7";
 	//rooms["UVI F34"].inText = "Up";
 	rooms["UVI F34"].moveMinutes = 1;
-	rooms["UVI F34"].runOnEnter = uvetoSpaceElevatorBaseBonus;
+	rooms["UVI F34"].runOnEnter = uvetoSpaceElevatorBonus;
 	rooms["UVI F34"].addFlag(GLOBAL.INDOOR);
 	rooms["UVI F34"].addFlag(GLOBAL.LIFTUP);
 
