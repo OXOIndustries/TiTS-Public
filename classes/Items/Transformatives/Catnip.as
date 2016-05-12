@@ -414,6 +414,7 @@ package classes.Items.Transformatives
 			if (!target.hasStatusEffect("Uniball") && target.balls > 0 && target.ballSizeRaw <= limit) changes++;
 			
 			maxSize = target.hasVagina() ? 2 : 0;
+			if (target.canLactate() && maxSize < 1) maxSize = 1; // for milky pervs leave at least A-cups
 			
 			for (x = 0; x < target.breastRows.length; x++) {
 				if (target.breastRows[x].breastRatingRaw > maxSize && target.breastRatingUnlocked(x, maxSize))  changes++;
@@ -493,6 +494,7 @@ package classes.Items.Transformatives
 			}
 			
 			var maxSize:int = target.hasVagina() ? 2 : 0;
+			if (target.canLactate() && maxSize < 1) maxSize = 1; // for milky pervs leave at least A-cups
 			//if (target.isTaur() && target.isHerm()) maxSize += 2; // chakat legacy, disabled, since not actually lore friendly - my version is quite flat
 			
 			//Breasts down to B-cup/flats, and, unlike Nepeta, you won't get any - this is animalistic TF, and animals, unlike that freaky homos, normally are flat unless lactating
