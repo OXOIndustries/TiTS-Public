@@ -237,6 +237,10 @@ public function buyItem():void {
 			{
 				temp = Math.round(temp * pc.keyItemv1(couponName));
 			}
+			else if(shopkeep is Lerris && pc.hasKeyItem("Coupon - TamaniCorp"))
+			{
+				temp = Math.round(temp * pc.keyItemv1("Coupon - TamaniCorp"));
+			}
 			
 			if(temp > pc.credits) output("<b>(Too Expensive)</b> ");
 			output(StringUtil.upperCase(shopkeep.inventory[x].description, false) + " - " + temp + " credits.");
@@ -275,6 +279,11 @@ public function buyItemOK(arg:ItemSlotClass):void
 	if(pc.hasKeyItem(couponName))
 	{
 		price = Math.round(price * pc.keyItemv1(couponName));
+		hasCoupon = true;
+	}
+	else if(shopkeep is Lerris && pc.hasKeyItem("Coupon - TamaniCorp"))
+	{
+		price = Math.round(price * pc.keyItemv1("Coupon - TamaniCorp"));
 		hasCoupon = true;
 	}
 	
@@ -325,6 +334,14 @@ public function buyItemGo(arg:ItemSlotClass):void {
 		usedCoupon = true;
 	}
 	if(usedCoupon) output("The coupon saved on your codex is used and instantly changes the final price. ");
+	else if(shopkeep is Lerris && pc.hasKeyItem("Coupon - TamaniCorp"))
+	{
+		price = Math.round(price * pc.keyItemv1("Coupon - TamaniCorp"));
+		pc.removeKeyItem(couponName);
+		usedCoupon = true;
+		output("The coupon saved on your codex is used and instantly changes the final price. ");
+		pc.removeKeyItem("Coupon - TamaniCorp");
+	}
 	
 	output("You purchase " + arg.description + " for " + num2Text(price) + " credits.\n\n");
 	pc.credits -= price;

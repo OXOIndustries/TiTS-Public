@@ -9,42 +9,71 @@ import classes.Items.Toys.Bubbles.SmallCumBubble;
 public function playerUsedInCombat(targetCreature:Creature, usingCreature:Creature, item:ItemSlotClass):void
 {
 	kGAMECLASS.clearOutput();
+	author("Adjatha");
 	//{throw it like a water balloon while in combat}
 	//[Small cum Bubble]
 	if(item is SmallCumBubble)
 	{
 		output("Shrugging, you suppose your cum bubble may be worth a try. Gripping it firmly, you lean back and pitch the elastic ball with all the force you can muster.");
-		output("\n\nThe golfball-sized orb hits its mark and connects with a latex twack. Its casing is too dense to burst, however, and the rubbery ball bounces off and rolls away!");
-		//{Uses accuracy to hit and deals small kinetic damage}
-		applyDamage(item.baseDamage, usingCreature, targetCreature);
+		if(rangedCombatMiss(usingCreature, targetCreature))
+		{
+			output("\nYou whiff, and the ball rolls away!");
+		}
+		else
+		{
+			output("\n\nThe golfball-sized orb hits its mark and connects with a latex twack. Its casing is too dense to burst, however, and the rubbery ball bounces off and rolls away!");
+			//{Uses accuracy to hit and deals small kinetic damage}
+			applyDamage(item.baseDamage, usingCreature, targetCreature);
+		}
 	}
 	//[Medium cum Bubble]
 	else if(item is MediumCumBubble)
 	{
 		output("You loosely hold the squishy sphere in one hand while adjusting to a side-facing stance. Shifting your weight backwards, you swing the bubble backwards, eyes focused on your opponent. In one, smooth motion, you extend your arm past your [pc.hips] and shift your weight forward, pivoting to add force to your throw. You snap your wrist just as you release the balloon, its warm, sticky contents pitched at some force.");
-		output("\n\nThe fist-sized orb hits its mark, the taut latex bloating outward from the impact for a moment before popping with a sharp snap! The [pc.cumVisc] contents of the balloon splatter against your target like a spilled glass of [pc.cumColor] cream.");
-		//{Uses accuracy to hit and deals small lust damage}
-		applyDamage(item.baseDamage, usingCreature, targetCreature);
+		if(rangedCombatMiss(usingCreature, targetCreature))
+		{
+			output("\nYou whiff, and the ball splatters harmlessly on the ground!");
+		}
+		else
+		{
+			output("\n\nThe fist-sized orb hits its mark, the taut latex bloating outward from the impact for a moment before popping with a sharp snap! The [pc.cumVisc] contents of the balloon splatter against your target like a spilled glass of [pc.cumColor] cream.");
+			//{Uses accuracy to hit and deals small lust damage}
+			applyDamage(item.baseDamage, usingCreature, targetCreature);
+		}
 	}
 	//[Large Cum Bubble]
 	else if(item is LargeCumBubble)
 	{
 		output("Gripping the semi-taut ball of spunk with both hands, you take a few steps forward, fingers sinking into the yielding surface slightly. Pulling the orb back with your arm completely straight, you bend slightly at the waist and pitch it forward. Releasing your grip just as the sphere starts its upswing, you follow through in an outward motion to add a spin to the projectile, which arcs heavily toward your target.");
-		output("\n\nThe head-sized orb hits its mark, the straining latex covering snapping almost immediately upon contact. The showering spunk released from the popped balloon erupts like an upturned pitcher, warm jizz drenching your target as thoroughly as a 20-man bukkake session.");
-		//{Uses accuracy to hit and deals moderate lust damage}
-		applyDamage(item.baseDamage, usingCreature, targetCreature);
+		if(rangedCombatMiss(usingCreature, targetCreature))
+		{
+			output("\nYou whiff, and the ball splatters harmlessly on the ground!");
+		}
+		else
+		{
+			output("\n\nThe head-sized orb hits its mark, the straining latex covering snapping almost immediately upon contact. The showering spunk released from the popped balloon erupts like an upturned pitcher, warm jizz drenching your target as thoroughly as a 20-man bukkake session.");
+			//{Uses accuracy to hit and deals moderate lust damage}
+			applyDamage(item.baseDamage, usingCreature, targetCreature);
+		}
 	}
 	//[Huge Cum Bubble]
 	else
 	{
 		output("Hefting the massive cum tank with both hands, you begin swinging it back and forth, using your [pc.hips] to add weight to your sweeps. As you prepare to toss the pressurized sphere, you twist toward your target, stepping forward as you release the orb. The enormous jizz bubble soars with hypnotic grace, its elastic sheath blobbing and deforming from the force of your pitch.");
-		output("\n\nWhen the torso-sized orb hits its mark, the over-pressurized latex covering disintegrates with an echoing pop. The full weight of your mammoth load detonates all over the place in one, [pc.cumColor] instant. Your target is bathed in the [pc.cumVisc] cream, the force of impact enough to knock a man clear off his feet. The deluge of seed is so excessive, it’s almost as if someone had just upturned a bathtub full of spunk.");
-		//{Uses accuracy to hit, deals moderate lust damage, and may cause knock-down}
-		applyDamage(item.baseDamage, usingCreature, targetCreature);
-		if(!targetCreature.hasStatusEffect("Tripped") && usingCreature.aim()/2 + rand(20) + 1 > targetCreature.reflexes()/4 + targetCreature.physique()/4 + 10)
+		if(rangedCombatMiss(usingCreature, targetCreature))
 		{
-			targetCreature.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0,0xFF0000);
-			kGAMECLASS.output("\n\n<b>There's so much that " + targetCreature.a + targetCreature.short + " is tripped!</b>");
+			output("\nYou whiff, and the ball splatters harmlessly on the ground!");
+		}
+		else
+		{
+			output("\n\nWhen the torso-sized orb hits its mark, the over-pressurized latex covering disintegrates with an echoing pop. The full weight of your mammoth load detonates all over the place in one, [pc.cumColor] instant. Your target is bathed in the [pc.cumVisc] cream, the force of impact enough to knock a man clear off his feet. The deluge of seed is so excessive, it’s almost as if someone had just upturned a bathtub full of spunk.");
+			//{Uses accuracy to hit, deals moderate lust damage, and may cause knock-down}
+			applyDamage(item.baseDamage, usingCreature, targetCreature);
+			if(!targetCreature.hasStatusEffect("Tripped") && usingCreature.aim()/2 + rand(20) + 1 > targetCreature.reflexes()/4 + targetCreature.physique()/4 + 10)
+			{
+				targetCreature.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0,0xFF0000);
+				kGAMECLASS.output("\n\n<b>There's so much that " + targetCreature.a + targetCreature.short + " is tripped!</b>");
+			}
 		}
 	}
 	itemConsume(item);
@@ -54,6 +83,7 @@ public function playerUsedInCombat(targetCreature:Creature, usingCreature:Creatu
 public function outOfCombatBubbleBuddyUse(item:ItemSlotClass):Boolean
 {
 	clearOutput();
+	author("Adjatha");
 	output("You hoist the sloshing spunk sack with mild interest. It’s still warm and no matter how long you play with it, it retains your heat perfectly.");
 	//bimbo brains: 
 	if(pc.isBimbo()) output(" Isn’t that funny- a condom that keeps your cummies swimming forever! You wonder how they do it, but forget your train of thought and go back to playing with the squishy ball.");
@@ -71,6 +101,7 @@ public function outOfCombatBubbleBuddyUse(item:ItemSlotClass):Boolean
 public function ditchDatCumBall(item:ItemSlotClass):void
 {
 	clearOutput();
+	author("Adjatha");
 	showName("\nDITCH IT");
 	output("You’re forced to admit that you can’t really think of a good use for a ball of spunk, no matter how fresh it might stay. You drop the latex sphere and watch it bounce slightly as it rolls along the ground. Maybe somebody (or something) will have a use for this. If so, they’re welcome to it.");
 	itemConsume(item);
@@ -82,6 +113,7 @@ public function ditchDatCumBall(item:ItemSlotClass):void
 public function popDatBubbleButtBubb(item:ItemSlotClass):void
 {
 	clearOutput();
+	author("Adjatha");
 	showName("\nPOP IT");
 	//{Small Bubble}
 	if(item is SmallCumBubble) output("Despite your best efforts, the latex sheath on your small orb is far too dense to pop with your bare hands. You squeeze, squish, crush, and even smash the sphere, but it bounces back from every impact, its contents securely sealed away. You’d need to puncture or melt the casing, and frankly neither seems all that appealing at the moment. You tuck the durable little guy away, a little impressed by the sheath’s over engineered design. The guys and gals at TamaniCorp don’t kid around when it comes to keeping sperm safe!");
@@ -167,6 +199,7 @@ public function itemConsume(item:ItemSlotClass):void
 public function putItAway(item:ItemSlotClass):void
 {
 	clearOutput();
+	author("Adjatha");
 	showName("\nNEVERMIND...");
 	output("You tuck the cum bubble back into your belongings for now. Surely there’s somebody out there who would love a fresh spunk delivery.");
 	clearMenu();
@@ -213,6 +246,7 @@ public function bubbleBuddyEmail():String {
 public function jackIntoDaBubbleBooty():void
 {
 	clearOutput();
+	author("Adjatha");
 	showName("BUBBLE\nBUDDY");
 	CodexManager.unlockEntry("Bubble Buddy");
 	if(flags["BUBBLE_BUDDIED"] == undefined) output("Taking out the light purple toy, you turn it around in your hands for a moment to inspect the thing. It's roughly six inches long and two inches wide, with a hole at one of the ends. The interior drips with an oily lubrication that the wobbly gel of the toy seems to perpetually produce. The sheath has a thin membrane at the top that seems to serve as a cap, resembling nothing so much as a circle of stretched latex. It's not shooting out any lasers or floating in mid air, so you assume you'll have to do this the old fashioned way.\n\n");
@@ -313,6 +347,7 @@ public function jackIntoDaBubbleBooty():void
 public function hashtagShareTheLoad():void
 {
 	clearOutput();
+	author("Adjatha");
 	showName("CONTAINMENT\nBREACH");
 	output("Figuring that the toy is likely to give out before your orgasm does, you clench your teeth and hold the bubble with one hand while the other rotates your base of the Bubble Buddy around your gushing spout. The neck of the reservoir twists, tightens, and seals, falling from the toy with a heavy, wet impact. A fresh gout of [pc.cumGem] [pc.cumNoun] catches your pocket pussy before you can get both hands on it again, and tears it from your grip, sending the rubbery device bouncing along the ground. No time to worry about that, however, as the warm waves of your spouting climax come hard and fast. Arcs of [pc.cumColor] spurt into the air as your [pc.cocks] leap");
 	if(pc.cockTotal() == 1) output("s");
@@ -328,6 +363,7 @@ public function hashtagShareTheLoad():void
 public function battenTheHatches():void
 {
 	clearOutput();
+	author("Adjatha");
 	showName("GIVING 'ER\nALL YOU'VE GOT!");
 	output("Clinging to the sex toy like it’s a life raft, you toss back your head and lean backward until you’re lying on the ground. ");
 	if(pc.tailCount > 0) output("Your [pc.tail] thrashes under you, frenzied by the raw, blinding organ-pleasure that leaves the rest of your body trembling and diminished. ");
@@ -400,6 +436,7 @@ public function giveCeliseATreat(item:ItemSlotClass):void
 {
 	clearOutput();
 	showCelise();
+	author("Adjatha");
 	//{First Time}
 	if(flags["BUBBLED_CELISE"] == undefined)
 	{
@@ -505,6 +542,7 @@ public function dontPlayWithYourFood():void
 {
 	clearOutput();
 	showCelise();
+	author("Adjatha");
 	output("Rolling your eyes, you push the makeshift teste back into the goo girl’s body. <i>“Celise, stop playing with your food,”</i> you scold. The galotian pouts, and seems about ready to try something else until the two of you hear the audible sound of her tummy grumbling. She flushes slightly and shrugs.");
 	output("\n\n<i>“Okay " + pc.mf("</i>Dad<i>","</i>Mom<i>") + ", if I have to,”</i> she sulks. The shadow of your bubble disrupts as her digestive system makes quick work of the latex and begins ravenously devouring the [pc.cumVisc] [pc.cumNoun] within. As the [pc.cumColor] jizz spreads within her, your slime’s body widens, growing appreciably fatter with each passing second. <i>“I told you we should’ve had a little exercise,”</i> she remarks, mildly.");
 	output("\n\nThe idea of a goo girl trying to get into shape is just too ridiculous for you to press. You leave the sassy slime to her meal with an exasperated sigh.");
@@ -519,6 +557,7 @@ public function celiseFutaGooForYou2():void
 {
 	clearOutput();
 	showCelise();
+	author("Adjatha");
 	var x:int = pc.biggestCockIndex();
 	output("The green galotian taps the glistening slime of her pelvis, just above her makeshift sack and, with a wince of concentration, a slight bulge rises up from the smooth surface. The bump grows and expands into a roughly cylindrical shape. She seems a bit lost on what to do with the featureless pole, until a thought strikes her. Wordlessly, she slides over to you and pulls off your [pc.gear], taking a focused, critical look at your [pc.groin]. It’s almost surreal - being viewed as an art subject instead of as a food dispenser by the ever-hungry slime.");
 	output("\n\nWith a grunt of effort, inch by inch she sculpts the wobbly shaft into a near replica of your [pc.cock " + x + "], all in emerald green. From your [pc.sheath " + x + "] all the way to your [pc.cockHead " + x + "], the galotian gal has done a remarkable job replicating the full length of your member. She wiggles her hips slightly, letting the unstead organ waver back and forth. It seems she can’t quite get the trick of making the pole hard, though given her squishy body that comes as no surprise.");
@@ -545,6 +584,7 @@ public function tentacleGooCeliseFeeding():void
 {
 	clearOutput();
 	showCelise();
+	author("Adjatha");
 	output("Celise eagerly claps her hands, sloshing over to you to help strip off your [pc.gear] and pull you into the bubbling puddle of emerald slime that seems to be spreading across the interior of your ship. With a wink, she pulls the makeshift testicle off of her pelvis and plops it in the center of her slimy sea. With the cum-filled nucleus in place, the gurgling pool begins to manifest growing protrusions. Pole-like appendages rise from the gunk around you, wavering and wobbling at first, but slowly tightening into firm - though still dripping - shafts.");
 	output("\n\n<i>“Oh no, Captain Steele,”</i> Celise cries in an breathy falsetto, <i>“I accidentally lead us into a pit of slimy tentacles! Whatever will we do?”</i> Your goo girl plumps her lips to bimbo thickness and stares at you with her palms pressed helplessly against her cheeks. Apparently she doesn’t have a very high opinion of your other adventuring companions, if she assumes this is how they act.");
 	if(pc.isNice()) output("\n\n<i>“Don’t worry, Celise,”</i> you assure her, adopting a gravelly, whispering tone. <i>“I’d never leave you to the lusts of such a beast. We’ll endure it together!”</i> She lets out a gleeful little squeak and practically throws herself at you as the tentacles advance menacingly.");
@@ -587,6 +627,7 @@ public function tooObviousTittyCelise():void
 {
 	clearOutput();
 	showCelise();
+	author("Adjatha");
 	output("You let the inflated girl know that her additions aren’t going to fool anybody. Folding her arms under her bolstered udders, Celise leans backwards, a pout on her cute face. <i>“Well goo on you,”</i> she clucks. <i>“Captain Killjoy, you’re needed on the bridge,”</i> she sniffs as she turns away. The latex bubbles in her chest dissolve, releasing their [pc.cumGem] contents into the galotian’s chest, coloring her tits [pc.cumColor]. Tilting her head over her shoulder she flashes a mercurial grin. It seems as long as she gets a meal, there’s just about nothing you can do to discourage that girl!");
 	processTime(1);
 	clearMenu();
@@ -598,6 +639,7 @@ public function tittyFuckCelise():void
 {
 	clearOutput();
 	showCelise();
+	author("Adjatha");
 	output("Forming your forefinger and thumb into an <i>“O”</i> of approval, you give her an encouraging nod. <i>“Ha hah, you’re terrible,”</i> she laughs with a dismissive wave. <i>“Don’t go encouraging me or I’ll just turn into a big ole titty monster!”</i> Holding her hands, palms-out she curls her squishy digits into a rough approximation of claws and leans forward. <i>“Grr! Rar! Scary boob-beast wants cum!”</i>");
 	//tentacles:
 	if(flags["GIGACELISE"] == 1) output(" The gelatinous pseudopods wiggling from her viscous base loosely encircle the two of you, forming a loose trellis of phallic affection.");
@@ -644,6 +686,7 @@ public function popCeliseAfterTooStuff():void
 {
 	clearOutput();
 	showCelise();
+	author("Adjatha");
 	output("The silly slime has had her fun. Reaching forward, you grab the slight rise of her gel-like teats pinching and twisting each. The galotian lets out a muffled moan from inside her glistening suit, sinking to her knees. Without letting up, you continue your assault, the taut latex letting out a dangerous squeak as it contorts around your swirling grasp. Celise bucks her hips, thrusting her globular breasts against your hands as she wiggles inside her purple casing.");
 	output("\n\nYou twist relentlessly, the material growing thinner and thinner until, with a loud pop, the condom breaks, spilling galotian goo all over the floor. The blob of slime gurgles and burbles amorphously for a moment before Celise regains her composure and reforms her upper body with wincing tenderness. <i>“If that’s how you treat all your officers,”</i> she remarks, massaging her flushed nipples, <i>“no wonder you’ve got such a small crew!”</i>");
 	output("\n\nYour slime girl sticks out her tongue before lunging forward to grab you in a gooey hug.");
@@ -660,6 +703,7 @@ public function fuckCeliseAfterTooMuchStuff():void
 {
 	clearOutput();
 	showCelise();
+	author("Adjatha");
 	var x:int = pc.biggestCockIndex();
 	output("Grabbing the rahn-shaped galotian by her slim wrists, you step forward, holding your body tight against hers. The warm latex of her suit distorts a bit under your firm pressure, but retains the bulk of its shape. Celise seems a bit lost, unable to simply engulf your body with hers, so she tentatively wraps her arms around your shoulders. The normally over-affectionate slime seems almost shy in her uncertain movements, trying to adjust to her unfamiliar surface tension.\n\n");
 	if(!pc.isNude()) output("With one arm around the slime’s impossibly narrow waist, you pull down your [pc.lowerGarments] to expose your [pc.groin] to the slick surface of the rubber-bound goo girl. ");
@@ -684,359 +728,532 @@ public function fuckCeliseAfterTooMuchStuff():void
 	addButton(0,"Next",mainGameMenu);
 }
 
-/*
-output("\n\nGive to Flahne");
-output("\n\n{Add <i>“Cum Bubble”</i> option to Flahne’s dialog menu once you’re on friendly terms with her.}");
-output("\n\n// <i>“Give the rahn a gift of sealed cum.”</i>");
-
-output("\n\n{First Time}");
-output("\n\nStepping up to the secretary’s well-organized desk, you take a quick glance around the lobby before pulling out a cum bubble. <i>“Oh!”</i> Flahne cries out in delight, absent-mindedly dropping the lollipop she was sucking on. <i>“[pc.name], did you get a Bubble Buddy? That’s awesome! Don’t get me wrong, I love sweets, but nothing beats a mid-day pick-me-up.”</i>");
-
-output("\n\nThe amber-hued gel girl gratefully takes the bubble from you and hoists it next to her head. Rooting through her purse, she produces a small black disk, about the size of her palm. She lifts it up in front of her, squeezes the circular device, and flashes a saucy grin. Noticing your confusion, Flahne shrugs with mild embarrassment. <i>“Oh, that was a CaptchaLens. Takes photos and uploads them to the extranet. Normally, I’m not one of those girls who takes photos of every little thing she eats, but it’s kinda fun to take a picture with these cum bubbles.”</i>");
-
-output("\n\n<i>“Plus,”</i> she adds with a little laugh, <i>“Tamani Corp hosts the pictures on their corporate site as a promotional incentive. I could be the next face of the Bubble Buddy!”</i> You try to picture the sweet little customs agent as an extranet starlet, but just can’t make the role fit that cute expression.");
-
-output("\n\n{Repeat}");
-output("\n\n<i>“Ooooh,”</i> Flahne coos as you present her with another cum bubble. <i>“You’d make a good go-for, [pc.name]. Ever thought of giving up the jet-setting life of a corporate adventurer and settle down for some public service?”</i> she teases. Producing her CaptchaLens, she beckons you to come around to her side of the desk. The two of you pose next to the jizz-filled orb as the honey-hued rahn girl snaps a photo for the extranet.");
-
-output("\n\n{Small Bubble}");
-output("\n\nFlahne drops the grape-sized condom discretely in the breast pocket of her stretched blouse. <i>“Do you mind keeping an eye out for visitors, [pc.name]? I just have to grab something from the break room.”</i> Rising to her high-heeled feet, the gel gal sashays to a small, inconspicuous door and steps inside. When she returns, the buxom beauty is carefully balancing a yellow and black striped mug filled with a dark amber liquid, several ice cubes, and a tiny slice of Mhen’gan Mango at the top. She places the sweet tea on a metal coaster and you can practically see all the dissolved sugar making granular eddies in the candied concoction.");
-
-output("\n\nSettling at her desk once more, the loo’rahn retrieves the squishy package and drops it into her drink with a soft ‘plunk!’ Arching an eyebrow at you, she cradles the mug between both hands and gently rocks it in circles, the ice cubes clinking softly. She’s about to speak, when the landing port door opens and a rather dour, travel-worn woman walks in. Flahne motions for you to take a seat to the side while she helps the newcomer, her bubble tea momentarily forgotten.");
-
-output("\n\nFlahne is the very model of positive, helpful efficiency as she reviews the visitor’s documents while making polite small talk. Every so often, she grabs her mug and dips her long, thin tongue into it, slurping up sweet tea through the straw-like appendage. Just as she’s putting the finishing touches on the last few papers, she takes a deep pull from her tea and her tongue bulges outward, as a grape-sized shadow is sucked up and into her mouth. She flushes and swallows, but the guest apparently hasn’t noticed. A small, spherical balloon bobs inside the girl’s semi-translucent gel, floating gradually down her neck. She squirms, trying not to digest the spunk in front of her guest.");
-
-output("\n\n<i>“Excuse me, but are you alright?,”</i> the woman asks, her tone rather annoyed.");
-
-output("\n\n<i>“Hrm?”</i> Flahne asks, suddenly panicking. She hiccups and the cum sphere jumps up from her neck to the very center of her head, like the nucleus of a honey-colored amoeba. <i>“Oh, um, yes. Everything’s quite well thank you.”</i>");
-
-output("\n\n<i>“It’s just that you’ve asked me the same question three times now,”</i> she prompts, a little aggrieved.");
-
-output("\n\n<i>“Oh, ha ha hah,”</i> she nervously titters. <i>“Just something on my mind, I guess. I’m sorry about that. Let’s get you all finished up- oh.”</i> She stops mid-sentence as the bubble in her body ruptures, her expression coloring slightly as your [pc.cumColor] spunk diffuses behind her plump cheeks. You can practically see her legs rubbing together under the desk as your cum fills her head and floods the gel girl’s senses. With gasping, lustful starts and stops, Flahne manages to finish processing the other woman’s paperwork and sends her on her way.");
-
-output("\n\nYou rise and wave at the panting girl as you step away. Even from this distance, the smell of her honeyed nectar is unmistakable. The saucy rahn girl seems to have orgasmed just from eating your jizz bubble. You make a mental note to bring her more later.");
-output("\n\n[End]");
-
-output("\n\n{Medium Bubble}");
-output("\n\nFlahne sets the grapefruit-sized condom on her desk carefully as she rises from her seat. <i>“Do you mind keeping an eye out for visitors, [pc.name]? I just have to grab something from the break room.”</i> Her high-heeled pumps clicking against the floor, the gel gal sashays to a small, inconspicuous door and steps inside. When she returns, the buxom beauty is carefully balancing a yellow and black striped mug filled with a dark amber liquid, several ice cubes, and a tiny slice of Mhen’gan Mango at the top. She places the sweet tea on a metal coaster and you can practically see all the dissolved sugar making granular eddies in the candied concoction.");
-
-output("\n\nSettling at her desk once more, the loo’rahn turns her attention to the squishy package. Humming to herself, she grabs and twists bits of the rubbery sheath. After a few turns, the latex thins and snaps, resealing itself on both ends. She sets the small bubble down and repeats the process again and again, turning the fist-sized balloon into a small pile of grape-sized mini-condom balls. One by one, she drop them into her drink while arching an eyebrow at you. <i>“Surely you didn’t think I was just going to shove the whole thing into my mouth,”</i> she teases.");
-
-output("\n\nCradling the mug between both hands and gently rocking it in circles, she glances around her desk. <i>“Now where did I put that straw,”</i> she ponders. <i>“Oh, that’s right!”</i> Sticking her tongue out at you, the long, flexible member shrinks and stiffens, turning to a cylindrical tube just wide enough to allow the spunk sacks through. Lifting her drink, she winds her gelatinous tongue down into the bubble-filled tea with relish. Flahne slurps up the sweet drink slowly, making sure you can see each and every cum balloon tumbling up her straw-tongue and plop into her cheeks.");
-
-output("\n\nJust as she’s finished half the seed-spiked libation, the landing port door opens and a couple of travellers step in. Flahne gulps reflexively, her tongue spooling back into her sweet-stuffed mouth as she subtly motions for you to take a seat while she helps the newcomers. Setting the tea down, she smooths her blouse and folds her hands in the perfect picture of professionalism. She seems to have forgotten the cum bubbles floating in the gel of her mouth and throat, still visible as darkened shadows through her semi-translucent, honey-yellow skin.");
-
-output("\n\nThe visitors appear to be a mixed pair of trouble makers. A dusky skinned dzaan alpha pushes her way to the front, her battle-scarred suit etched with any number of scorch marks. Curiously, caramel-skinned woman has removed the crotch plate of her armor, allowing her heavy, 11”</i> cock to droop against her low-hanging, cum-fattened balls. Doesn’t seem like she’s had much in the way of relief recently. She catches you staring and meets your gaze with an imposing glare as if to invite you to say something about it. Flahne distracts the amazonian traveller with a perky greeting. <i>“Hello! Welcome to Mhen’ga! How may I help you?”</i>");
-
-output("\n\nThe dzaan flashes a tablet with some pre-filled documentation. Apparently this isn’t her first time to the planet. She leans forward on the desk, speaking in a low, throaty voice to the rahn girl, her hips swaying just enough to let her thick member dangle against the edge of the desk. You can smell Flahne’s nectar-sweet scent all the way over here as the full force of the alpha’s commanding temperament buffets the gel girl’s easily tempted resolve.");
-
-output("\n\nShe swallows hard and a handful of the bubbles floating inside her head pop, releasing their creamy contents. Your semen seems to have an almost calming effect, taking the edge off her ever-sharp hunger. With a politely regretful smile, Flahne explains that she can’t possibly take a break just now, so there’s no time to pop off to the back to <i>“check for invasive biological matter”</i> as the dzaan suggested. The alpha’s cock begins drooling scented pre-cum and Flahn blushes slightly, more of your cum bubbles bursting to help keep her steady in the face of such temptation.");
-
-output("\n\nApparently offended by the rebuff and trying to save face with a suitably intrusive gesture, the imposing woman snatches the secretary’s iced tea from the desk. Scowling she takes a deep swig from it, her eyes trained on the gooey receptionist. You can see the tiny purple bubbles rolling into the hermaphrodite’s mouth, one by one. She’s so focused on the golden girl sitting behind the desk that the dzaan takes no notice of the squishy balls, ice cubes, or melon slice, her throat bobbing as she swallows each in turn. Flahne darts an eye over to you, her lips tightly pressed together so she doesn’t accidentally laugh. Once the drink has been fully drained, the rude visitor slams the bee-striped mug in front of nervously smiling rahn. Turning on her heel, she heads for the door to Esbeth, her stomach gurgling ominously.");
-
-output("\n\nThe other traveller is nearly as rude as the first. A crimson-skinned man with curling horns and a bulbous, scorpion-like tail makes loud, lewd insinuations about what kind of place a goo girl should have, his stinger dancing dangerously around the secretary while she pushes a stack of paperwork towards him. You’re about ready to step up and deal with the brute when Flahne’s hand shoots up and snatches the barbed tail tip in one amorphous hand, dragging it - and its owner - closer to her with surprising strength.");
-
-output("\n\n<i>“Sir,”</i> she calmly explains with a saccharine smile, <i>“I am a loo’rahn, not a ‘goo girl.’ And, frankly, I eat stronger stuff than your venomous little prick for breakfast. If you’d be so kind as to fill out those papers, we can get you on your way in no time.”</i> Just to prove her point, the hand clutching his stinger milks a few drops of poison from the barb only to have it dissolve in her hand harmlessly. She releases the cowed man and sends him back to the landing bay with a back-breaking stack of paperwork.");
-
-output("\n\nWhen the lobby is clear once more, you step over to Flahne, the two of you wearing a matching pair of grins. The gel girl shivers, ripples running through her body as the last of your bubbles dissolves inside her. <i>“Whew,”</i> she pants. <i>“I don’t usually have to put my foot down, but every so often, we get jerks who just want to throw their weight around. Thanks again for the snack, [pc.name]! Dealing with those rascals is a lot easier with something more nourishing than lollipops in me.”</i>");
-
-output("\n\nYou set your hand on her shoulder and give the sweet girl an encouraging squeeze.");
-output("\n\n[End]");
-
-output("\n\n{Large Bubble}");
-output("\n\nAs Flahne is about to put away the camera, you stop her with a sly smile. <i>“Hey, why don’t you let me use that CaptchaLens and take a few... private pictures with the bubble?”</i>");
-
-output("\n\nThe honey-hued rahn raises an eyebrow and purses her lips as she considers your proposal. <i>“Well, I could take a lunch break,”</i> she offers. <i>“But, if they’re going to be private, just send them to yourself, okay?”</i> She tweaks the little disk and hands it off to you. <i>“Squeeze for a picture, or press and hold for video,”</i> she explains, rising to lock the lobby doors for a little privacy.");
-
-output("\n\nYou look over the coin-sized device. It’s a simple squeeze-and-shoot interface, set to automatically upload the pictures right to your Extranet Messenger. It seems you could adjust the destination, easily enough. It’s got an option to send the pictures to a GalLink Fuckmeet group, as well as to the Tamani Corp marketing division. If you sent it to the GalLink, some of Flahne’s other friends could enjoy the show, but if you sent it to Tamani Corp, the whole extranet could get an eyeful.");
-output("\n\n[Private] [GalLink] [Extranet]");
-
-output("\n\n[All options]");
-output("\n\nWhen the busty, amber secretary returns, you note that she’s undone a few more buttons than usual, giving you an exceedingly deep view into the sweet valley of her massive breasts. Her long, elfin ears twitch as she slides behind her desk, hands flat and tense as she leans forward to flash a candied smile. <i>“You know, it’s not everybody who’d make a big, yummy meal like this and deliver it to a girl at work. If you’re not careful, somebody’s gonna snatch you up, one of these days.”</i>");
-
-output("\n\nYou flash a grin and snap a picture of the dizzying depths of the rahn’s cleavage. Her glossy, perpetually moist skin glistens as she toys with the middle button of her blouse- the only thing keeping her jiggling bosom from complete exposure. She runs her fingers across the 7”</i>, slightly sagging latex of your filled condom and you note a slight flush of reddish orange bloom on her cheeks. Your camera clicks as you capture the burgeoning thirst overtaking the receptionist, her yielding skin drink in the heat of your sealed seed.");
-
-output("\n\nCarefully, delicately, she lifts the purple package in both hands. It is easily as large as her head, even with the squishy bun of her mousy hair-style. Turning it this way and that, Flahne’s long, sinuous tongue slowly licks the swell of her lips. With sweetened saliva dripping from her tendril-like organ, she drags her greedy tongue across the rubbery surface of the bubble, as if seeking some breach to exploit. You record a small clip of her amorous, tasting touches, noting that her building hunger has inflated her lips from a plump pucker to a whorish, pillowy portal. A trickle of drool leaks down the side of her mouth and dribbles from her chin onto the sleek, shiny gloss of her gelatinous curves.");
-
-output("\n\nFlahne presses the pliant orb against her face, moaning at the squish of its liquid cream. She lightly nibbles the semi-firm surface, sucking in small portions of the violet blob only to let them slide back out, covered in her saccharine slaver. She wiggles and squirms, dropping a hand down between her legs. Slouching in her chair, she and lets the squishy balloon drop on top of her breasts, lightly gripping it between her lips as both hands writhe under the elastic of her short, black skirt.");
-
-output("\n\nA few more clicks capture the girl’s cum-hungry frantic fingering. You step forward to help pose her without interrupting her gasping masturbation. You try to pull the cum bubble away, but she’s reluctant to let it go. The latex stretches between your hand and her mouth until the rubber sheath is so thin that the [pc.cumColor] of your [pc.cumNoun] is visible through the purple covering. You wiggle it back and forth, but Flahne just moans and suckles at the warm bubble with such bliss that you snap another picture of the spunk-starved woman.");
-
-output("\n\nYou finally wrest it away from her and reposition the cum bubble on top of her head. The latex seems a bit stretched, however, because it immediately begins to flatten and droop over the perky girl’s face, covering one violet eye. Under the desk, her hands speed up, the fragrance of her nectar filling the room with each passing second. Her tongue loops out from between her wanton lips and begins bathing the spunk-heavy package once more.");
-
-output("\n\nHer head half covered by the jizz-filled balloon, you click another picture and reach out for the sole, straining button of her overfilled top. Squeezing for a video capture, you free the fabric of her blouse with a twist and let it fly aside as the entirety of Flahne’s magnificent G-cups bounce into view. Huge, wobbling orbs with caramel peaks glisten with the dripping moisture of her dextrous tongue and watering mouth. Panting, she snakes her tongue down to encircle one of her breasts, teasing and pinching the nipple with her oral appendage.");
-
-output("\n\nSlowly, gradually, the hefty condom slides down her face and settles in the vale of her colossal chest. Flahne pulls a hand up, fingers sticky with the dripping web of her honey-thick femme-cum, and strokes the violet sack with her oozing lubrication before pushing it deep in the nestling depths of her cleavage. Using her tongue on one breast and a hand on the other, she begins pumping her curves around the liquid excess of your spunk balloon. You grab a few pictures of the gel girl’s tit-fucking show but switch to a video when she grows more forceful. The pressure on your bubble is so intense that it bulges up with every pump, the rubber growing thinner and thinner with each squelching squeeze.");
-
-output("\n\nA fresh wave of sweet nectar splashes from between her legs, the oozing goo dripping down her chair as Flahne bounces your condom between her tits with complete disregard for its structural integrity. You click a few more pictures and she seems to notice at last that you’re still photographing her. She winks and holds up her hand to wave at the camera just as the pressure of her breasts draws a high-tension whine from the rubber pillar pinched within her curves.");
-
-output("\n\nYou quickly switch to video and are rewarded for your quick reactions as the Bubble Buddy bursts! Gallons of your [pc.cumVisc] [pc.cumNoun] geyser from the breached condom up into Flahne’s face like a gooey shotgun blast. In a second, her visage is painted [pc.cumColor] with the thickness of your seed. She jerks back, surprised by the release and sputtering as her mouth and eyes are filled with spunk. Reeling back, her chair wheels away from the slimy puddle left by the frantic fingering of her drooling puss, so you pan down to capture her own fluid mess.");
-
-output("\n\nThe rahn secretary recovers quickly, her tongue lapping up the globular curtains of spunk that cascade from her face and wash over her breasts. She cups both hands together, shoveling bowls of jizz into her ravenous mouth, puckered lips slurping at the sagging ropes of your glossy spoo. You snap pictures of the cream-covered civil servant from a variety of angles, getting in close to capture the draining seed that slowly drips down her cute mouth and into her taut throat.");
-
-output("\n\nWhen, at last, she’s gathered up the last of your spilt spunk, she turns to cleaning out the burst bubble between her curves. Flahne vigorously laps at the interior of the latex, finishing her meal to the last, succulent drop. Gripping the burst condom between her lips, she proudly smiles up at the camera like a cat showing off its latest kill and you obligingly click a picture of the contented rahn.");
-
-output("\n\n<i>“Thanks again for the meal, [pc.name]”</i> Flahne gurgles with delight, taking back her CaptchaLens and dropping it into her purse. <i>“Remind me to return the favor one of these days.”</i> She buttons up her blouse and rises to unlock the lobby doors and take care of the traffic her little lunch break built up. On your way out, you check your Codex to see where those pictures and videos went.");
-output("\n\n{Player’s lust increases by 5-10}");
-output("\n\n[End]");
-
-output("\n\n[Private]");
-output("\n\n{After the player finishes the scene for the first time, they get an email notification}");
-
-output("\n\nSubject: [No Subject]");
-output("\n\nFrom: Flahne (Flahne_Rahn@UGC.gov)");
-output("\n\nTo: [pc.Email]@SteeleTech.corp");
-
-output("\n\nThis message has all of the private pictures and video clips of Flahne you took during her <i>“lunch break.”</i> They’re actually not half bad, and flipping through the progress from hungry receptionist to spunk-slurping cum slut sends a fresh wave of heat through your body.");
-
-output("\n\n{First time reading the email, player’s lust increases by 5-10}");
-
-output("\n\n{First time readling the email: [i] You save the pictures for later, sending them to your ship’s memory banks.[/i]}");
-
-output("\n\n{Maybe add viewable picture of Flahne covered in spunk or playing with a filled condom, etc. when the in-game image pack comes out}");
-output("\n\n[END]");
-
-output("\n\n[GalLink]");
-output("\n\n[GalLink - Email]");
-
-output("\n\n{After the player finishes the scene for the first time, if they accepted Kiro’s Fuckmeet request, they get an email notification after an hour}");
-
-output("\n\nSubject: New comment on your picture(s)");
-output("\n\nFrom: GalLink Fuckmeet (support@GalLink.org) (4)");
-output("\n\nTo: [pc.Email]@SteeleTech.corp");
-
-output("\n\n[i] All of the pictures and video clips you took of Flahne seem to have been automatically grouped into one album. You take a moment to flip through the sequence, depicting an innocent but hungry secretary toying with your filled condom. She seems so enamored by it that she begins stripping and drooling until, no longer able to suppress her need, she pops it and licks all the creamy goo from herself with wanton desire. Not a half-bad sequence, if you have to admit. [/i]");
-
-output("\n\n{First time reading the email, player’s lust increases by 5-10}");
-
-output("\n\nSeveral comments have been posted to the album.");
-
-output("\n\n{If Saendra hasn’t been Bad Ended:");
-output("\n\nSaendra en Ilya: Love it, Flahne! But you left out your best feature- dat booty! Next time use those honey buns to squeeze out a juicy load!}");
-
-output("\n\nKiro Tamahime: Psh, you call that a cum bubble? I jizz more than that before most people have had breakfast.");
-
-output("\n\nGirlBoy Alex: Flahne, did you do that at WORK?! Ha ha ha, you’re crazy, girl. I love ya, but you’re crazy.");
-
-output("\n\nSera Succubus: I feel like I’m watching a nature documentary on a territorial dispute between a loo’rahn and a doh’rahn. Damn nature, you’re scary! >:D");
-
-output("\n\nBigBooty Flahne: [pc.name]! What the goo! I said those were supposed to be private! Oooo, you are in for it next time I see you!");
-
-output("\n\nSera Succubus: Re: BigBooty Flahne: Oh my god, that’s hilarious.");
-
-output("\n\n[Gal Link - Consequence]");
-
-output("\n\n{After completing the medium bubble scene for the first time, the next time they enter the Customs Office on Mhen’ga, the following scene plays}");
-
-output("\n\nAs you step into the Customs Office, you practically smack into Flahne. The honey-hued rahn has her arms crossed under her breasts, thrusting the massive G-cups ever higher. The cute receptionist’s face is pinched in an expression of annoyance.");
-
-output("\n\nShe takes a step forward and presses her pliant peaks against your [pc.chest] in what would normally be quite a seductive fashion. Now, however, you’re forced to imagine yourself just like the filled condom she popped between those gelatinous mountains. <i>“Somebody had a little fun changing around the settings on my CaptchaLens, did they?”</i> she sweetly inquires with an arched eyebrow.");
-
-output("\n\n{Nice: You offer an apologetic shrug, smiling sheepishly. <i>“I just thought you wouldn’t mind sharing with your friends, you know? You’re too cute to keep all to myself.”</i>");
-
-output("\n\nFlahne flushes and can’t keep up the angry facade. <i>“I think that was sweeter than my lollipops, you goof. I’m still gonna make you pay, though!”</i> She drags you off to a janitorial closet and ravages you as only a gel girl can. By the time she’s done, you’re having trouble walking straight. All told, not a bad punishment at all!}");
-output("\n\n{player’s lust and energy set to 0}");
-output("\n\n[END]");
-
-output("\n\n{Mischievous: You place a finger on the rahn’s face where a nose would be on any other race. <i>“Boop,”</i> you announce with a grin, offering no further explanation.");
-
-output("\n\nFlahne’s bubbling ire slowly trickles away into exasperated mirth. <i>“You dummy. I don’t care that you posted those on GalLink. Those sluts are always posting smutty pictures of themselves. I just wanted you to keep the pictures for yourself as something special. Guess we’ll have to try it again some time,”</i> She finishes, walking back to her desk with a booty-shaking gait that looks ready to tear open her skirt’s seams with every step.}");
-output("\n\n{player’s lust increases by 5-10}");
-output("\n\n[END]");
-
-output("\n\n{Mean: Wrapping an arm around the receptionist’s backside, you give her a squeeze. <i>“Ah, come on. You know you love putting on a show. I bet if I brought out another cum bubble right now, you wouldn’t even think twice before popping it all over yourself again.”</i>");
-
-output("\n\nFlahne furrows her little brow and meets your dismissive gaze with narrowed, violet eyes. She slides a hand down and grabs your crotch possessively. <i>“You’re just lucky you’re so tasty,”</i> she says with a squeeze. Pushing you away and marching back to her desk, the rahn glances back and sticks out her tongue. It’s good to keep ‘em riled up, you muse with an appreciative leer at the gel girl’s ample curves.}");
-output("\n\n{Player’s lust increases by 5-10}");
-output("\n\n[END]");
-
-output("\n\n[Extranet]");
-output("\n\n[Extranet - Email]");
-
-output("\n\n{After the player finishes the scene for the first time, they get an email notification after an hour}");
-
-output("\n\nSubject: Thank You For Your Submission");
-output("\n\nFrom: Marketing@TamaniCorp.corp");
-output("\n\nTo: [pc.Email]@SteeleTech.corp");
-
-output("\n\nThank you for the numerous pictures and videos you submitted detailing your enjoyment of Tamani Corp’s fine Bubble Buddy product. We encourage all customers to distribute pictures of themselves utilizing our fantastic semen storage solution, and we appreciate the <i>“Liquid Lunch”</i> social media movement among our rahn users.");
-
-output("\n\nUnfortunately, we will not be able to utilize the majority of your pictures for our public advertising campaign. The rather explicit nature of your pictures and video clips exceed what our Marketing department has determined to be <i>“good taste.”</i> However, we at Tamani Corp would like to personally thank you for your dedication and brand loyalty.");
-
-output("\n\nPlease accept this coupon on our behalf. We look forward to seeing more from you in the future.");
-
-output("\n\n<i>Included at the bottom of the form letter is a 10% off coupon for Tamani Corp products. Most shops would probably take this.</i>");
-
-output("\n\n{Add key item: <i>“Coupon - Tamani Corp - Save 10% on your next Tamani Corp purchase!”</i>}");
-
-
-output("\n\n[Extranet - Consequences]");
-
-output("\n\n{After completing the medium bubble scene for the first time, the next time they enter the Customs Office on Mhen’ga, the following scene plays}");
-
-output("\n\nAs you step into the Customs Office, you practically smack into Flahne. The honey-hued rahn has her arms crossed under her breasts, thrusting the massive G-cups ever higher. The cute receptionist’s face is pinched in an expression of outrage.");
-
-output("\n\nShe takes a step forward and presses her pliant peaks against your [pc.chest] in what would normally be quite a seductive fashion. Now, however, you’re forced to imagine yourself just like the filled condom she popped between those gelatinous mountains. <i>“Somebody had a little fun changing around the settings on my CaptchaLens, did they?”</i> she demands, poking your chest with a translucent finger.");
-
-output("\n\nYou’re about to open your mouth to explain, but she waves a hand in front of you. <i>“Ugh. Don’t even. I don’t know WHAT you were thinking, but that was a real jerk thing for you to do!”</i> She delivers an open-palmed slap to your face that leaves a surprisingly sharp sting. Turning on her heels, she clicks back to her desk angrily. Without turning around she calls back, <i>“Get lost. I’m too angry to even talk to you right now.”</i>");
-
-output("\n\nMaybe she’ll cool off if you give her some time?");
-output("\n\n[END]");
-
-output("\n\n{Player is unable to interact with Flahne for 24 hours. After 24 hours, the next time they enter the Customs Office, the following scene players}");
-
-output("\n\nStepping back into the Customs Office, you brace yourself for another tongue lashing from Flahne, but are pleasantly surprised to see the rahn girl looking quite pleased. She waves you over to her desk and you cautiously approach.");
-
-output("\n\nNoticing your reluctance, Flahne gives you a dismissive wave. <i>“Oh, don’t act like that, [pc.name]. You were a big scumbag for posting all that stuff publicly, but I’m over it. Actually, I got a rather nice letter from the folks at Tamani Corp! They’re working on a spin-off of the Bubble Buddy intended specifically for Rahn meals and they said they’d like me to be the spokeswoman when it comes out! I’m sure it’ll be quite a while till they’re ready to market it, but just think: I’ll be an extranet starlet,”</i> she sighs with a delighted smile.");
-
-output("\n\nYou pat the gel girl on the shoulder. {nice: <i>“That’s awesome! I’m so happy for you, Flahne!”</i>} {mischievous: <i>“Putting on saucy shows for the whole galaxy? I always knew you had it in you.”</i>} {mean: <i>“What are they going to call it? The Bimbo Buddy?”</i>} She doesn’t really seem to be listening to you, however, her mind still swimming with the possibilities.");
-
-output("\n\n<i>“Anyway, even if you were being a real goo-head with those pictures, I wouldn’t have gotten the offer otherwise. So I guess I forgive you, ya jerk.”</i> She looks up at you with a small, amused smile. <i>“Just, next time warn me before you post my boobies all over the extranet, okay?”</i> She reaches up and tweaks your nose before sending you on your way. That turned out a lot better than you would’ve expected!");
-output("\n\n[END]");
-
-
-output("\n\n{Huge Bubble}");
-output("\n\n(unavailable for huge players who can’t fit under a desk)");
-output("\n\n<i>“Gosh, did you kidnap a galotian in this thing or what?”</i> Flahne laughs, practically drooling at the sight of your back-breaking load. She affectionately caresses the wobbling, purple blob with both hands, but conscientiously stows it under her desk and out of public sight. <i>“Sorry, [pc.name]. I’d love to give you a show, but I’m not sure how I’m supposed to eat this without making a huge mess!”</i>");
-
-output("\n\nWith a mild shrug, you let the honey-colored secretary know that you’ve got the perfect method for her to enjoy the treat and still attend to her job at the same time. With a reassuring squeeze on her shoulder, you pull out her chair and slip under her desk yourself, next to the 15”</i> beachball of latex-sealed jizz. With a little giggle, the rahn girl seems keen to find out what you’ve got planned. She takes her seat, wiggling her plump booty comfortably in the rolling task chair. You grab her ankles and pull the gel girl’s lap flush with the desk {if ovi-flahne: her wobbling ovipositor bouncing under her skirt in anticipation}.");
-
-output("\n\n<i>“Whatever you’ve got planned,”</i> she whispers, <i>“try to keep it subtle! I haven’t locked the doors, so we’ll be getting lobby traffic.”</i> You silently loop a hand around her ankle, drawing your palm up and down the receptionist’s smooth, pliant leg. Her knees tremble and she clears her throat as footsteps approach the desk. <i>“Hello, how can I help you today,”</i> she asks, her voice muffled by the constraining desk around you.");
-
-output("\n\nNow that she’s distracted, you set to work. Pinching the torso-sized cum balloon, you pull a palm-sized protrusion from the rubbery surface, twisting it in your palm until it is connected to the main mass by only a thin, taut string of wound latex. With a gentle tug, you pull the waterballoon sized sphere free, the Bubble Buddy’s almost organic sheath sealing both sides shut without spilling so much as a drop. You grab and twist off another and another until you’ve reduced the massive blob into a hefty cache of variously sized cum balls.");
-
-output("\n\nCarefully, you place your hands on her knees and spread her legs apart. Flahne’s voice raises an octave, but she maintains her cover. <i>“Yes, of course we allow imports, sir. Within reason, of course. Please consult the list on the third page there,”</i> she indicates in a saccharine-sweet tone. She starts backing her chair up to see what you’re doing under there, but you wrap an arm around the back of her knees and keep her firmly in place. The curvaceous girl’s open skirt shadows her loins slightly, but the light streaming down her semi-translucent body gives her puffy pussy a golden glow {Ovi: even with her sixteen inch ovi-cock bobbing above it}.");
-
-output("\n\nGrabbing one of the smallest bubbles, you spread her legs as widely as the interior of the desk’s walls allow and slowly, teasingly push the squishy orb against her nectar-drooling slit. <i>“I’m afraid I can’t speak for Xen-OH!”</i> she cries out a bit as you push the plum-sized balloon into her pussy, a pair of fingers sliding in after it to make sure the sphere’s really up in there. <i>“...Gen,”</i> she finishes, pushing forward. <i>“You will have to, um, speak with a... a... representative at their, uh, local office. Sir.”</i>");
-
-output("\n\nFootsteps walk away from the desk and the door opens, giving Flahne a moment to recover. <i>“What are you doing down there? What did you put in me? Where’d you even get that?”</i> She whispers breathlessly, squirming in her seat and adjusting to the addition of a warm, rubbery bubble inside her pussy. Rather than explain, you keep her lap hidden under her workspace, and stuff another bubble into her. The secretary moans softly, reaching a hand down to stroke {her amber clit/her girthy rahn-shaft} through the sheer fabric of her skirt. You lightly slap the hand away and stuff another two spheres into her quivering quim.");
-
-output("\n\n<i>“H- how many of those things do you have done there?”</i> she gasps as a door opens and she straightens up again. <i>“H- hello, how may I help you today?”</i> Between her legs, you’ve just about run out of the smaller bubbles, leaving only the big boys. Moreover, you’ve already got a good dozen little ones in her and the rahn’s pussy is looking pretty packed. For most other races, this would be a problem, but the rahn are about the second stretchiest species in the galaxy. Time to see just how big you can make that womb.");
-
-output("\n\n[Next]");
-
-output("\n\nGrabbing a fist-sized balloon, you squish the pliant lilac orb against Flahne’s well-stretched vulva, encountering the resistance of the other cum balls. You can hear Flahne’s fingers clicking away at her station, vigorously sucking on a lollipop to take her mind off of what’s happening between her knees. The rubbery surfaces squeak in protest as you force the larger orb into her with a sudden thrust that sends ripples through her gelatinous body and cuts her typing short.");
-
-output("\n\n<i>“Are you alright?”</i> a female voice asks. <i>“It’s just, you seem to have swallowed your sucker, stick and all.”</i>");
-
-output("\n\n<i>“Oh, I’m just working through my break,”</i> Flahne replies in a high, tight voice, practically gurgling as she tries to dislodge the swallowed sweet. <i>“Guess I got a little hungry,”</i> she laughs, too loudly, a manic edge creeping into her voice as you keep up your relentless pace, jamming another squeaking bubble into her packed pussy. Despite the skirt, you can actually see the shadow of all the bubbles inside her abdomen slowly grow with each addition, your cum bundle rising up to waist level. By now she’s freely leaking sticky strings of femme-cum into her skirt, the honey-like goo pooling between her legs and slowly oozing down the sloped seat of her chair. You squeak another few bubbles into her, rolling them in her fluids for added lubrication.");
-
-output("\n\n<i>“Working through your break and they force you to use a squeaking chair? And, I think I can hear a drip! You should really talk to somebody about these simply terrible working conditions, dear!”</i>");
-
-output("\n\n<i>“Ah, the job has some perks,”</i> Flahne giggles, between her panting gasps.");
-
-output("\n\n{ovi: Flahne’s hefty goo-cock begins leaking its honey-hued pre-cum, the intoxicating scent of the flavorful treat flooding your nostrils. No sense in wasting the added lube, you reason, and wrap a hand around her wobbling length, squeezing the honied spoo on each bubble before squashing it into receptionist’s jam-packed puss.} Flahne’s belly has begun to expand under the weight of your bulky, rubber-bound seed. The buttons of her blouse strain mightily against the swelling inflation of your insertions, so you discreetly reach up and uncinch a few of the lower buttons to make room for her bloated stomach. No sense in ruining a perfectly good shirt, you reason and you push another couple of cum capsules into her crammed cunt. Her right leg starts vibrating slightly, rocking rapidly on the tip of her high heeled pumps. <i>“Is... is there anything else I can h-h-help you with, Miss?”</i> Flahne politely asks, obviously trying to get rid of the visitor.");
-
-output("\n\nThe sound of a door opening elicits a slight moan from Celise. The woman tuts and responds sympathetically: <i>“Oh, well I see you’re going to be busy with all these folks, so I’ll let you get back to work. You keep what I said in mind though, honey. If you don’t stand up for yourself, they’ll walk all over you!”</i> She steps away as a practical swarm of stomping, scraping feet pound up to Flahne’s desk.");
-
-output("\n\nBusy day, you suppose, stuffing another cum-egg into the rahn. Trying to keep her voice level, the secretary tries to bring the crowd of visitors to some sort of order. A particularly troublesome bubble keeps slipping out of Flahne’s spongy slit, so you grip it firmly and jam the huge orb deep into her, the cache of latex shifting and groaning under the added weight as her womb expands higher and higher into her torso. She lets out an orgasmic shriek that brings the noisy lobby to absolute silence in an instant. <i>“Um... ah... now that I have your... your attention. Um. Please form an orderly line and we’ll process each of you in turn,”</i> she meeps, her embarrassment flushing her whole body a rich, ruddy orange.");
-
-output("\n\nFor the next half hour, Flahne tends to the crowd while you fill her with rubbery balls, the heat of your sealed cum bringing beads of sugary sweat to her smooth surface. You teasingly lick her inner thighs and sink your fingers into the tender, bulging lips of her well-breached vulva. {ovi: Her throbbing ovi-cock drools a constant stream of oozing nectar, its sixteen inch length nearly entirely filled by the egg-like shadows of her pent-up rahn seed.} Her body gurgles with the liquid weight of your latex bounty, while her voice has become the tight, pinched murmuring moan of someone doing their best to hide a slow-burning orgasm. She’s slouched in her seat and meekly coos in lust-drunk bliss at your every touch.");
-
-output("\n\nHer bubble-filled womb has stretched out of your limited sight, by the time you’re down to a single remaining sphere and you idly wonder if the people in the lobby can see the balloon shadows through her cleavage yet. Well, it’s been fun, but time to finish off the last of your load. You hoist the final, 5”</i> sphere and slide it between her thighs, bracing the latex orb against her packed pussy. <i>“No no no no,”</i> she whispers, feeling the hot weight of your fluid present pressing against her loins. <i>“Not that. It’s too big!”</i> she moans quietly.");
-
-output("\n\n{Ovi: You shrug, pulling the huge condom back. Afterall, she might want a snack later. Still, it’d be a shame to leave that fat, honey-hued ovi-cock just drooping helplessly. Gripping the yielding surface of the gelatinous member in both hands, you begin stroking the semi-firm shaft eagerly. Fingers running across the bulging, egg-distended gel, fat blobs of sticky pre ooze from the dimpled tip as her body tenses. The pussy-stuffing has apparently left her with a hair-trigger!");
-
-output("\n\nYou’re about to put your lips to the massive organ when a thought strikes you. Giving her a few more rough pumps to make sure she’s right at the edge of climax, you grab the gooey shaft and bend it around in a U-shape. The jelly member wobbles in your hands as you thrust the tip into her own pussy, holding it firmly in place as her orgasm hits. Above you, Flahne’s fist pounds the desk, a small cache of wrapped lollipops scattering off the edge and clattering on the floor.");
-
-output("\n\nEgg after egg spurts from her ovipositor back into her pussy, the squishy globules adding their mass to the rubbery trove of cum bubbles you’ve filler her up with. Openly moaning now, her feet tense as she kicks the underside of her desk with her heels. The mutters of the visitors turn to shocked gasps as, load after load, Flahne fills herself with a positively body-deforming volume of eggs and honey.}");
-
-output("\n\n{non-ovi: Down to the last one and she wants to quit? Now that would really be a shame. Squeezing the warm condom with both hands, you help flatten its spherical shape into a more manageable cylinder. Pressing firmly, you feed inch after inch into the secretary’s depths. The mass of bubbles inside her shift and squeak, pushed upward by the volume of their big brother. Flahne lets out a <i>“glurk!”</i> of over-burdened fullness, her fist slamming down on the desk as she kicks one of her heels off a smooth, toe-less amber foot.");
-
-output("\n\nThe mutters of the visitors turn to shocked gasps as, bit by bit, you squeeze the final bubble into her. <i>“What’s wrong with her head?”</i> someone asks. <i>“Is it full of eggs or something?”</i> another presses. <i>“Look at how thick her neck is! Is she choking?”</i> The visitors crowd around the secretary’s desk, trying to help the girl but unsure of her biology or what to do. With a final push, you stuff the last of the bubbles into her, the girl’s absurdly elastic pussy stretching so far as to allow both of your hands to slide in after it.}");
-
-output("\n\nFlahne is just too full. She lets out a choking gurgle, her body clenching down in a vibrating orgasm that floods the room with the scent of gushing honey. She weakly manages to provide a breathy <i>“I’m fine,”</i> before the pressure in her body is too much. A series of wet plops rain down on her desk as the cum bubbles you stuffed into her are forced out through her mouth. She slaps her hand over her lips, but a hiccuping tremble of her ongoing orgasm lets another cascade of gooey latex condoms spill from her flushed face.");
-
-output("\n\n<i>“Is she pregnant?”</i> one of the less informed visitors asks quietly. <i>“If so, this has to be the weirdest birth I’ve ever seen.”</i>");
-
-output("\n\nPanting and gasping, Flahne tries to explain the bubbles away but keeps interrupting herself with more hiccups and more loose lilac bubbles. She apologizes and asks the travellers to fill out their paperwork on their ships. <i>“Just a little rahn emergency,”</i> she assures them weakly. <i>“Nothing to worry about.”</i> When the last of the guests clears out, she pulls her chair away from her desk and rushes over to the door to lock it. Unfortunately, the added weight of her bubble-filled interior throws her off balance and the secretary face-plants onto the floor instead.");
-
-output("\n\nYou come out of the desk and help Flahne off the ground and into a seat. Locking the doors for her, you take stock of the gel girl’s state. Sure enough, your cum bubbles {ovi: and her own rahn eggs} seem to have stretched her womb all the way from pussy to mouth. Clumps of dark shadows inside her honey-hued body are plainly visible along the exposed flesh of her distended belly, her plump cleavage, her bloated neck, and her hiccuping head. She’d probably be mad at you, if she weren’t so out of it. Rounding up the dozen or so stray bubbles that escaped her, you leave a small pile on her desk. A treat for after she finishes the buffet you left inside her.");
-
-output("\n\nYou exit into Esbeth with a little smile as Flahne gurgles with blissed-out gratitude.");
-output("\n\n[End]");
-output("\n\nGive to Vaande");
-output("\n\n[Give Bubble w/o Bubble Buddy toy in inventory]");
-output("\n\n{Add [Cum Bubble] option to Celise’s [Feed] menu.}");
-output("\n\n// <i>“Give the rahn a gift of sealed cum.”</i>");
-
-output("\n\nYou present a lilac bubble to the lavender girl and a look of hunger crosses her normally serene face for just a second before her cat-like calm returns. <i>“Oh, you’ve brought me a gift? What a good {boy/girl} you are,”</i> she purrs, the faint scent of cold rain filling your nostrils. Vaande places a finger to her plump, glistening lips and folds an arm under her E-cups in thought. <i>“Now, I wonder if you happen to have brought the toy that made this?”</i> she muses aloud, her voice echoing between your ears as the distant perfume makes its way into your head.");
-
-output("\n\nA warm blur settles over you and you shake your head slowly. Your hands pat down your [pc.gear] and you vaguely wonder where you left the Bubble Buddy. A thought strikes you that you’ll have to bring it with you next time, though you’re not sure if you arrived at that conclusion on your own. Your eyelids seem heavy and when you blink to clear the wooziness, you find that {if clothed: you are now naked} {if naked: your equipment has been stacked in one corner of the room}. Of course, you rationalize, you won’t need any of that. No use worrying about it.");
-
-output("\n\nTurning slowly so your spinning head doesn’t start doing loops around the room, you notice that Vaande is also naked. The violet woman is lounging on her cheap cot like the empress of an ancient world. <i>“{Boy/Girl}, would you kindly attend me,”</i> she beckons, bending a forefinger ever so slightly. The almost undetectable essence of the rahn’s bouquet plays across your tensing senses with greater effect than the most fragrant incense. The stirring scent of water burbling at a natural spring seems to awaken a spring within you, liquid heat filling your [pc.groin] as you are drawn to her side. You are still holding out the cum bubble in both hands and she looks up with favor at your offering.");
-
-output("\n\n<i>“Hrmmm,”</i> she murmurs with an rippling tremble that sends shivers all the way through her body and up into yours. <i>“So little. And yet you surely did your best?”</i> The lilting question and the chilly tang in the air sends a wave of panic through you! What if your mistress doesn’t like your offering? She notices your fear and offers a magnanimous smile that puts you at ease. The cloying scent of the room strengthens and you lower yourself before her, eagerly awaiting instructions.");
-
-output("\n\nVaande rolls the white, plastic ball of a pin between her forefinger and thumb, its small metal spur flickering in the electric light of her room. <i>“You wouldn’t mind taking this pin and bathing me with that bubble, would you?”</i> You gulp and take the pin from her, unsteadily pressing it into the blobby purple sphere. You almost expect it to pop, but the sheath holds fast and a small droplet of cum oozes from the breach. Pressing the tiny metal spike all the way to the firm orb of its tip, you grip the sphere with both hands and reverently set it against the smooth, pliant surface of her succulent breasts. The rahn moans softly at the pressure of your leaking condom, her back arching with delight.");
-
-output("\n\nYou squeeze the bubble slightly and trickles of hot cum dribble out from the puncture, oozing across the lavender skin of your gelatinous goddess. Dragging the squeaking, leaking orb up and down the gel girl’s curving peaks, your [pc.cumColor] [pc.cumNoun] washes over her like the glossy coat of a fresh lacquer. Her already slick skin becomes ever glossier, and her moans grow in pitch and frequency, the tip of her pinkie pressed against the pillowy plumpness of her plum lips. The moist heat of the room thickens into a nearly tangible thing - the urgency of her arousal giving the rainy scent an electricity more suited to a thunderstorm.");
-
-output("\n\n{Cum bubbles: medium and higher:");
-output("\n\nWith her breasts bathed in the slick heat of your spunk, you pull the seeping sack down to Vaande’s impossibly slim torso. The taut surface of her faintly flushed skin rises and falls with appreciative shivers as your [pc.cumVisc] cream drips down her abdomen and pools in the recess of her navel. She raises one leg and you obediently slide the salivating sphere up her thick thigh and across her yielding gel. Delicately, you cradle the heel of her small, lilac foot and sweep her arch with a fondling slaver from your punctured bubble. Her toeless foot wiggles with ticklish pleasure and she drapes one freshly bathed limb against your [pc.chest] while you lift her other leg for equal treatment. The sopping junction of her hips practically drools with the ecstasy of your attentive ministrations.");
-
-output("\n\n{Cum bubbles: large and higher:");
-output("\n\nWhen her legs and feet are dripping with [pc.cumGem] droplets, she turns over, allowing you to bathe her back as well. You lower the shrinking bubble at the base of her neck and squeeze it enough to send a cascade of drizzling cum across her shoulders. With tender strokes, you sweep the weeping cum ball over her surface, feeling the quivering tremors of her back run up your fingers with each motion. Raising the ball to the ponderous peak of her perfectly sculpted posterior, you tighten your grip on the bubble so that thick spurts of spunk splatter over her amethyst orbs. Your [pc.cumColor] [pc.cumNoun] oozes down between her cheeks and you follow the flow with the orb, parting those magnificent bubbles with your own diminished orb. The added attention earns you a delighted squeal from the enraptured rahn and you can feel your [pc.groin] throbbing with the nearness of your own release.");
-
-output("\n\n{Cum bubbles: huge:");
-output("\n\nSuitably slicked by your seeping spunk, Vaande rolls to her side and motions for you to rise with the oozing remnants of your cum bubble. <i>“Be a dear, and finish me off, won’t you?”</i> She gestures to the cascade of gooey ‘hair’ that hangs around one half of her elfin face. There’s a tension to her voice that seems to carry an urgency with it, so you set to work, holding the cum sack over her head and squeezing fresh spouts of [pc.cumNoun] from the condom to shower the lavender woman in your warmth. She draws a sharp breath as the [pc.cumNoun] pools on her hair and forms sticky cataracts that fall across her face in a [pc.cumVisc] deluge. She can’t help herself from letting the long, sinuous length of her tongue gather up precious beads of thick cream.");
-
-output("\n\n[Next]");
-
-output("\n\n{All:");
-output("\n\nWhen, at last, your bubble is empty, Vaande lightly touches your [pc.hips] and draws you to the bed with her, the two of you lying side by side in a sticky, creamy embrace. She holds her face inches from yours in a kiss that can’t quite reach you, her hot breath filling your mouth with a dizzying flavor of rain-slick blossoms. The rahn draws the pin from the emptied sheath of your bubble and lightly touches the tip to a point on your forehead between your eyes. The tiny prick of pain clears your mind for a split second, just in time for her to whisper <i>“cum with me,”</i> to you.");
-
-output("\n\nThe trembling rahn girl embracing you shudders with cum-drunk bliss and the built-up pressure inside your body blooms into a full fledged eruption of passion. Your throat leaps in your mouth and your tongue feels dry as the liquid heat of your climax surges to your pelvis. Your chest burns as air refuses to reach your lungs, but such trivial concerns are meaningless next to the ecstasy of the woman beside you.");
-
-output("\n\n{if vagina: The shuddering, clenching depths of your [pc.pussies] send{s} bands of tightening convulsions through your frame as dripping rivulets of [pc.girlCum] gush between clenched lower lips. Fingers robbed of all volition by the mind-blanking orgasm, you tremble feebly against the lilac rahn. Eyes rolling up and mouth hanging open, you are spun in a swirling vortex of pheromone-drunk euphoria. Depleted and exhausted, your body continues its squeezing, trembling release long after you lose the ability to tell one orgasm from the next.}");
-
-output("\n\n{if penis: Your body feels almost like the cum bubble you had been squeezing a minute ago. The pin’s touch seems to rid you of all self control and the rush of your orgasm is sped along your [pc.cocks] by the hungry scent of the gelatinous woman pressing her supple curves against you. You cum and it is as if every muscle in your body is working in unison to release a greater load than you’ve ever experienced. Time compresses into a single, wet, rain-scented instant and the sensation of your exultant peak stretches out into an eternity.}");
-
-output("\n\nWhen, finally, your senses return, your whole body aches with the intensity of your climax. One that the doh’rahn was able to achieve with a single touch, you recall vaguely. You rise unsteadily and are a bit surprised to see Vaande standing and slipping on her panties and bra once more. The cloying, suffocating scent is gone, replaced by a rather satisfied perfume of pollinated flowers. There’s no sign of all the cum you smeared across her body, though the gel girl’s lavender skin does appear glossier than before.");
-
-output("\n\nYou retrieve your belongings and just before she shepherds you to the door, Vaande presses her lips against your cheek in a kiss that leaves tingles radiating through your [pc.skinFurScales]. <i>“Don’t forget to bring your toy next time,”</i> she whispers before closing her door.");
-output("\n\n[End]");
-
-
-output("\n\n[Give Bubble w/ Bubble Buddy toy in inventory]");
-output("\n\n{centaurs and dickless PCs need not apply}");
-output("\n\n// <i>“Show Vaande how your gelatinous masturbation toy works.”</i>");
-
-output("\n\nYou present a lilac bubble to the lavender girl and a look of hunger crosses her normally serene face for just a second before her cat-like calm returns. <i>“Oh, you’ve brought me a gift? What a good {boy/girl} you are,”</i> she purrs, the faint scent of cold rain filling your nostrils. Vaande places a finger to her plump, glistening lips and folds an arm under her E-cups in thought. <i>“Now, I wonder if you happen to have brought the toy that made this?”</i> she muses aloud, her voice echoing between your ears as the distant perfume makes its way into your head.");
-
-output("\n\nA warm blur settles over you and you nod your head slowly. Your hands pat down your [pc.gear] and you produce the purple pocket pussy. Vaande offers you a slight smile and holds you in her gaze with her slitted, crimson eyes. <i>“My, aren’t you eager to please,”</i> she murmurs and indeed you are. A little too eager, if the throbbing stiffness between your legs is any indication. She places a hand on your cheek and a faintly sweet odor, not quite like paint thinner fills your nostrils. Your eyelids seem heavy and when you blink to clear the wooziness, you find that {if clothed: you are now naked} {if naked: your equipment has been stacked in one corner of the room}. Of course, you rationalize, you won’t need any of that. No use worrying about it.");
-
-output("\n\nTurning slowly so your spinning head doesn’t start doing loops around the room, you notice that Vaande is also naked. The violet woman is lounging on her cheap cot like the empress of an ancient world. <i>“{Boy/Girl}, would you kindly attend me,”</i> she beckons, bending a forefinger ever so slightly. The almost undetectable essence of the rahn’s bouquet plays across your tensing senses with greater effect than the most fragrant incense. The stirring scent of water burbling at a natural spring seems to awaken a spring within you, liquid heat filling your [pc.groin] as you are drawn to her side. You are still holding out the Bubble Buddy, though the cum bubble you initially offered her seems to have vanished.");
-
-output("\n\n<i>“Normally, I would put on a show for you, but I’m ever so tired today. You wouldn’t mind putting on a show for me, would you?”</i> Shaking your head enthusiastically, you feel like you’ve got the perfect show for a rahn. Lifting the Bubble Buddy by way of explanation, you’re rewarded with the scent of falling rain. Your sight flexes a bit and when the walls stop panting, you find yourself as hard as you’ve ever been. Your [pc.cocks] {is/are} at full attention and already dribbling with pre-cum. <i>“Oh, do go on,”</i> Vaande encourages you. <i>“By all means, show me just how much you can produce.”</i>");
-
-output("\n\nHappy to comply, you fit your [pc.cock " + x + "] with the rubbery, lilac sheath. Feeding inches into the pliant plastic seems different somehow. It’s as if you’re sliding into a living thing - the interior tensing and gradually acclimating to your girth. The purple cock sheath practically drools with silky lubrication, as hungry for your cum as you are for release. Wrapping both hands around the latex cylinder, you slowly rock in and out of it, turning sideways so Vaande has a clear view through the semi-translucent toy. She seems to be enjoying the show, a sharp intake of breath sending ripples through her lavender form.");
-
-output("\n\nYou pull the toy to your [pc.biggestSheath], savoring the clenching, squeezing voracity of the pussy nearly as much as the tightening of your lower body. The muscles in your [pc.thigh] and back work in concert with your arms to milk your building orgasm for all it’s worth. Pumping your swollen member with strident strokes, you wince at the numbing cold building in your gut as gurgling cum production goes into overdrive. The smell of rain weaves in and out of your awareness and in the uncertain illumination of Vaande’s room, you could almost swear that the lube-gushing pocket pussy and the drooling rahn woman seem one and the same.");
-
-output("\n\nYou shake the distracting fantasy away and focus on the gelatinous sheath suckling at your thumping spout. With long, agitated caresses, you sweep the toy along your [pc.cock " + x + "] until you can hold back no longer. A warm, sweet tightness of release seizes your body one second and the next, you find yourself pumping away again, orgasm so close you can nearly taste it. You blink, trying to remember what happened, but it’s difficult to think with the frantic, desperate heat in your chest. You take a deep breath, sucking in as much cool air as you can but it only serves to throw fuel onto your inner fire.");
-
-output("\n\nA buzzer set into the wall goes off and a voice chimes in: <i>“This is the front desk. Are you alright?”</i> You growl at the distraction and reply in a tight voice that you’re just dandy before returning to the task at hand. <i>“Alright,”</i> the voice replies, a little annoyed, <i>“but this is the third check in, so I’m going to have to charge you for the overtime.”</i> You don’t have time to think on this as the agonizing sweetness of your climax approaches once more and - again - you find your body denying you release. You blink hard, trying to shake off the dizzying compulsion for liquid bliss, but your limbs are not your own. Arms aching from the rapid pace, hips aching from their slapping assault, and [pc.cock " + x + "] aching with a strangely numb stiffness, it’s all you can do to remain standing.");
-
-output("\n\n{if vagina:");
-output("\n\nStrangely, your [pc.vaginas] {is/are} nearly as sore as the rest of your body. Your inner walls spasm with the aftershocks of a phantom climax. With a high, moaning whine, you ache to give some attention to your sensitive folds and [pc.clits], but just can’t afford to stop now. You’re so close to your climax, if you tried to pause without finishing it might drive you mad. You arch your back, [pc.chest] jutting in the throes of your nearness and press on, heedless of the cascade of [pc.girlCum] leaking down your inner thigh.");
-
-output("\n\n{if multiple cocks:");
-output("\n\nYour eyes happen to glance down and you can make out the [pc.cumColor] pools of spunk leaking from your unoccupied cock{s}. You’re a little surprised as how much pre-cum has leaked out in such a short time! {low volume: Splatters of [pc.cumNoun] are everywhere} {large volume: Pools of [pc.cumNoun] are sloshing against your [pc.feet]} {absurd volume: The floor is flooded with an inch of the [pc.cumVisc] stuff}, and your mind tries to make sense of the sight. The scent of running water interrupts your connections and you simply try moving the Bubble Buddy to {an/the} unused member, pumping at the oddly tender flesh with redoubled effort.");
-
-output("\n\n{All:");
-output("\n\nYou climb the mountain of your climax again and again, never quite reaching the peak. Your body aches and your muscles scream at you, but a comforting numbness takes the sharpness from the warnings. You settle to your [pc.ass], sitting to better focus on the task at hand. The lavender pussy bounces in your lap and, as darkness closes in, the last thing you see is the tip of the gel-like toy bloating with the long-sought cream of your shuddering, gasping orgasm.");
-
-output("\n\n[Next]");
-
-output("\n\n{Player’s lust and energy are reduced to 0 and they take 50% hp damage)");
-
-output("\n\nWhen you wake, you feel oddly moist. You appear to be clean, practically glistening from head to toe, with no sign of spilt fluids or even sweat on you. You try to stand and almost immediately collapse in an agonized pile of sore muscles and deferred exhaustion. Closing your eyes and gathering yourself once more, you take stock of your surroundings.");
-
-output("\n\nVaande’s normally quite spartan room is filled with cum bubbles of assorted sizes. Piles of melon-sized orbs sit in one corner, while apple-sized spunk balloons line the top of her dresser like trophies. All over the floor, fourty or more plum-sized bubbles are scattered in wild disarray. A single, massive jizz sack is on her cot and the rahn herself is curled up on top of it like the cat who got the cream. There must be dozens of cum bubbles around the room- a treasure trove of [pc.cumVisc] seed.");
-
-output("\n\nFragments of memories come back to you and you start putting together the tricky, mesmeric feat the pheromone-flooded rahn must’ve accomplished. You even recall someone from the front desk calling to check in on you mid-way through the gluttonous girl’s harvest. How long have you been here? You grab your [pc.gear] and check your Codex quickly. TWELVE HOURS?! No wonder Vaande seems to have suddenly inherited her own sperm bank!");
-
-output("\n\nGroaning, you pick up the sorely abused Bubble Buddy off of the floor and stow it with your other belongings. Poor girl had nearly as tough a time as you did yourself! You notice a credit chit on the nightstand and grab it in consideration of your unexpected generosity. At the very least, it should cover the added expenses the brothel mistress was so keen to hit you with. You leave with a mental note to avoid putting yourself on the wrong end of a hungry doh’rahn again.");
-output("\n\n[End]");
-
+//Give to Flahne
+//{Add <i>“Cum Bubble”</i> option to Flahne’s dialog menu once you’re on friendly terms with her.}
+// <i>“Give the rahn a gift of sealed cum.”</i>
+
+public function giveFlahneATreatSetup():void
+{
+	var choices:Array = [];
+	for(var x:int = 0; x < pc.inventory.length; x++)
+	{
+		if(pc.inventory[x] is SmallCumBubble) choices.push(x);
+		else if(pc.inventory[x] is MediumCumBubble) choices.push(x);
+		else if(pc.inventory[x] is LargeCumBubble) choices.push(x);
+		else if(pc.inventory[x] is HugeCumBubble) choices.push(x);
+	}
+	if(choices.length == 1) rahnCumBubbleGift(pc.inventory[choices[0]]);
+	else
+	{
+		clearOutput();
+		showFlahne();
+		showName("WHICH\nONE?");
+		output("Which cum bubble will you give her?");
+		clearMenu();
+		for(x = 0; x < choices.length; x++)
+		{
+			if (pc.inventory[choices[x]].quantity > 0) {
+				addItemButton(x, pc.inventory[choices[x]], rahnCumBubbleGift, pc.inventory[choices[x]]);
+			}
+		}
+		addButton(14,"Back",meetingFlahne);
+	}
+}
+
+public function rahnCumBubbleGift(item:ItemSlotClass):void
+{
+	clearOutput();
+	showFlahne();
+	author("Adjatha");
+	//{First Time}
+	if(flags["FLAHNE_BUBBLED"] == undefined)
+	{
+		output("Stepping up to the secretary’s well-organized desk, you take a quick glance around the lobby before pulling out a cum bubble. <i>“Oh!”</i> Flahne cries out in delight, absent-mindedly dropping the lollipop she was sucking on. <i>“[pc.name], did you get a Bubble Buddy? That’s awesome! Don’t get me wrong, I love sweets, but nothing beats a mid-day pick-me-up.”</i>");
+		output("\n\nThe amber-hued gel girl gratefully takes the bubble from you and hoists it next to her head. Rooting through her purse, she produces a small black disk, about the size of her palm. She lifts it up in front of her, squeezes the circular device, and flashes a saucy grin. Noticing your confusion, Flahne shrugs with mild embarrassment. <i>“Oh, that was a CaptchaLens. Takes photos and uploads them to the extranet. Normally, I’m not one of those girls who takes photos of every little thing she eats, but it’s kinda fun to take a picture with these cum bubbles.”</i>");
+		output("\n\n<i>“Plus,”</i> she adds with a little laugh, <i>“Tamani Corp hosts the pictures on their corporate site as a promotional incentive. I could be the next face of the Bubble Buddy!”</i> You try to picture the sweet little customs agent as an extranet starlet, but just can’t make the role fit that cute expression.");
+	}
+	//{Repeat}
+	else
+	{
+		output("<i>“Ooooh,”</i> Flahne coos as you present her with another cum bubble. <i>“You’d make a good go-for, [pc.name]. Ever thought of giving up the jet-setting life of a corporate adventurer and settle down for some public service?”</i> she teases. Producing her CaptchaLens, she beckons you to come around to her side of the desk. The two of you pose next to the jizz-filled orb as the honey-hued rahn girl snaps a photo for the extranet.");
+	}
+	//{Small Bubble}
+	if(item is SmallCumBubble)
+	{
+		output("\n\nFlahne drops the grape-sized condom discretely in the breast pocket of her stretched blouse. <i>“Do you mind keeping an eye out for visitors, [pc.name]? I just have to grab something from the break room.”</i> Rising to her high-heeled feet, the gel gal sashays to a small, inconspicuous door and steps inside. When she returns, the buxom beauty is carefully balancing a yellow and black striped mug filled with a dark amber liquid, several ice cubes, and a tiny slice of Mhen’gan Mango at the top. She places the sweet tea on a metal coaster and you can practically see all the dissolved sugar making granular eddies in the candied concoction.");
+		output("\n\nSettling at her desk once more, the loo’rahn retrieves the squishy package and drops it into her drink with a soft ‘plunk!’ Arching an eyebrow at you, she cradles the mug between both hands and gently rocks it in circles, the ice cubes clinking softly. She’s about to speak, when the landing port door opens and a rather dour, travel-worn woman walks in. Flahne motions for you to take a seat to the side while she helps the newcomer, her bubble tea momentarily forgotten.");
+		output("\n\nFlahne is the very model of positive, helpful efficiency as she reviews the visitor’s documents while making polite small talk. Every so often, she grabs her mug and dips her long, thin tongue into it, slurping up sweet tea through the straw-like appendage. Just as she’s putting the finishing touches on the last few papers, she takes a deep pull from her tea and her tongue bulges outward, as a grape-sized shadow is sucked up and into her mouth. She flushes and swallows, but the guest apparently hasn’t noticed. A small, spherical balloon bobs inside the girl’s semi-translucent gel, floating gradually down her neck. She squirms, trying not to digest the spunk in front of her guest.");
+		output("\n\n<i>“Excuse me, but are you alright?,”</i> the woman asks, her tone rather annoyed.");
+		output("\n\n<i>“Hrm?”</i> Flahne asks, suddenly panicking. She hiccups and the cum sphere jumps up from her neck to the very center of her head, like the nucleus of a honey-colored amoeba. <i>“Oh, um, yes. Everything’s quite well thank you.”</i>");
+		output("\n\n<i>“It’s just that you’ve asked me the same question three times now,”</i> she prompts, a little aggrieved.");
+		output("\n\n<i>“Oh, ha ha hah,”</i> she nervously titters. <i>“Just something on my mind, I guess. I’m sorry about that. Let’s get you all finished up- oh.”</i> She stops mid-sentence as the bubble in her body ruptures, her expression coloring slightly as your [pc.cumColor] spunk diffuses behind her plump cheeks. You can practically see her legs rubbing together under the desk as your cum fills her head and floods the gel girl’s senses. With gasping, lustful starts and stops, Flahne manages to finish processing the other woman’s paperwork and sends her on her way.");
+		output("\n\nYou rise and wave at the panting girl as you step away. Even from this distance, the smell of her honeyed nectar is unmistakable. The saucy rahn girl seems to have orgasmed just from eating your jizz bubble. You make a mental note to bring her more later.");
+		pc.lust(5+rand(3));
+		processTime(12);
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
+	//{Medium Bubble}
+	else if(item is MediumCumBubble)
+	{
+		output("\n\nFlahne sets the grapefruit-sized condom on her desk carefully as she rises from her seat. <i>“Do you mind keeping an eye out for visitors, [pc.name]? I just have to grab something from the break room.”</i> Her high-heeled pumps clicking against the floor, the gel gal sashays to a small, inconspicuous door and steps inside. When she returns, the buxom beauty is carefully balancing a yellow and black striped mug filled with a dark amber liquid, several ice cubes, and a tiny slice of Mhen’gan Mango at the top. She places the sweet tea on a metal coaster and you can practically see all the dissolved sugar making granular eddies in the candied concoction.");
+		output("\n\nSettling at her desk once more, the loo’rahn turns her attention to the squishy package. Humming to herself, she grabs and twists bits of the rubbery sheath. After a few turns, the latex thins and snaps, resealing itself on both ends. She sets the small bubble down and repeats the process again and again, turning the fist-sized balloon into a small pile of grape-sized mini-condom balls. One by one, she drop them into her drink while arching an eyebrow at you. <i>“Surely you didn’t think I was just going to shove the whole thing into my mouth,”</i> she teases.");
+		output("\n\nCradling the mug between both hands and gently rocking it in circles, she glances around her desk. <i>“Now where did I put that straw,”</i> she ponders. <i>“Oh, that’s right!”</i> Sticking her tongue out at you, the long, flexible member shrinks and stiffens, turning to a cylindrical tube just wide enough to allow the spunk sacks through. Lifting her drink, she winds her gelatinous tongue down into the bubble-filled tea with relish. Flahne slurps up the sweet drink slowly, making sure you can see each and every cum balloon tumbling up her straw-tongue and plop into her cheeks.");
+		output("\n\nJust as she’s finished half the seed-spiked libation, the landing port door opens and a couple of travellers step in. Flahne gulps reflexively, her tongue spooling back into her sweet-stuffed mouth as she subtly motions for you to take a seat while she helps the newcomers. Setting the tea down, she smooths her blouse and folds her hands in the perfect picture of professionalism. She seems to have forgotten the cum bubbles floating in the gel of her mouth and throat, still visible as darkened shadows through her semi-translucent, honey-yellow skin.");
+		output("\n\nThe visitors appear to be a mixed pair of trouble makers. A dusky skinned dzaan alpha pushes her way to the front, her battle-scarred suit etched with any number of scorch marks. Curiously, caramel-skinned woman has removed the crotch plate of her armor, allowing her heavy, 11” cock to droop against her low-hanging, cum-fattened balls. Doesn’t seem like she’s had much in the way of relief recently. She catches you staring and meets your gaze with an imposing glare as if to invite you to say something about it. Flahne distracts the amazonian traveller with a perky greeting. <i>“Hello! Welcome to Mhen’ga! How may I help you?”</i>");
+		output("\n\nThe dzaan flashes a tablet with some pre-filled documentation. Apparently this isn’t her first time to the planet. She leans forward on the desk, speaking in a low, throaty voice to the rahn girl, her hips swaying just enough to let her thick member dangle against the edge of the desk. You can smell Flahne’s nectar-sweet scent all the way over here as the full force of the alpha’s commanding temperament buffets the gel girl’s easily tempted resolve.");
+		output("\n\nShe swallows hard and a handful of the bubbles floating inside her head pop, releasing their creamy contents. Your semen seems to have an almost calming effect, taking the edge off her ever-sharp hunger. With a politely regretful smile, Flahne explains that she can’t possibly take a break just now, so there’s no time to pop off to the back to <i>“check for invasive biological matter”</i> as the dzaan suggested. The alpha’s cock begins drooling scented pre-cum and Flahn blushes slightly, more of your cum bubbles bursting to help keep her steady in the face of such temptation.");
+		output("\n\nApparently offended by the rebuff and trying to save face with a suitably intrusive gesture, the imposing woman snatches the secretary’s iced tea from the desk. Scowling she takes a deep swig from it, her eyes trained on the gooey receptionist. You can see the tiny purple bubbles rolling into the hermaphrodite’s mouth, one by one. She’s so focused on the golden girl sitting behind the desk that the dzaan takes no notice of the squishy balls, ice cubes, or melon slice, her throat bobbing as she swallows each in turn. Flahne darts an eye over to you, her lips tightly pressed together so she doesn’t accidentally laugh. Once the drink has been fully drained, the rude visitor slams the bee-striped mug in front of nervously smiling rahn. Turning on her heel, she heads for the door to Esbeth, her stomach gurgling ominously.");
+		output("\n\nThe other traveller is nearly as rude as the first. A crimson-skinned man with curling horns and a bulbous, scorpion-like tail makes loud, lewd insinuations about what kind of place a goo girl should have, his stinger dancing dangerously around the secretary while she pushes a stack of paperwork towards him. You’re about ready to step up and deal with the brute when Flahne’s hand shoots up and snatches the barbed tail tip in one amorphous hand, dragging it - and its owner - closer to her with surprising strength.");
+		output("\n\n<i>“Sir,”</i> she calmly explains with a saccharine smile, <i>“I am a loo’rahn, not a ‘goo girl.’ And, frankly, I eat stronger stuff than your venomous little prick for breakfast. If you’d be so kind as to fill out those papers, we can get you on your way in no time.”</i> Just to prove her point, the hand clutching his stinger milks a few drops of poison from the barb only to have it dissolve in her hand harmlessly. She releases the cowed man and sends him back to the landing bay with a back-breaking stack of paperwork.");
+		output("\n\nWhen the lobby is clear once more, you step over to Flahne, the two of you wearing a matching pair of grins. The gel girl shivers, ripples running through her body as the last of your bubbles dissolves inside her. <i>“Whew,”</i> she pants. <i>“I don’t usually have to put my foot down, but every so often, we get jerks who just want to throw their weight around. Thanks again for the snack, [pc.name]! Dealing with those rascals is a lot easier with something more nourishing than lollipops in me.”</i>");
+		output("\n\nYou set your hand on her shoulder and give the sweet girl an encouraging squeeze.");
+		processTime(20);
+		pc.lust(3);
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
+	//{Large Bubble}
+	else if(item is LargeCumBubble)
+	{
+		output("\n\nAs Flahne is about to put away the camera, you stop her with a sly smile. <i>“Hey, why don’t you let me use that CaptchaLens and take a few... private pictures with the bubble?”</i>");
+		output("\n\nThe honey-hued rahn raises an eyebrow and purses her lips as she considers your proposal. <i>“Well, I could take a lunch break,”</i> she offers. <i>“But, if they’re going to be private, just send them to yourself, okay?”</i> She tweaks the little disk and hands it off to you. <i>“Squeeze for a picture, or press and hold for video,”</i> she explains, rising to lock the lobby doors for a little privacy.");
+		output("\n\nYou look over the coin-sized device. It’s a simple squeeze-and-shoot interface, set to automatically upload the pictures right to your Extranet Messenger. It seems you could adjust the destination, easily enough. It’s got an option to send the pictures to a GalLink Fuckmeet group, as well as to the Tamani Corp marketing division. If you sent it to the GalLink, some of Flahne’s other friends could enjoy the show, but if you sent it to Tamani Corp, the whole extranet could get an eyeful.");
+		//[Private] [GalLink] [Extranet]
+		processTime(3);
+		pc.lust(3);
+		clearMenu();
+		addButton(0,"Private",flahneCumPhotoshoot,0);
+		addButton(1,"GalLink",flahneCumPhotoshoot,1);
+		addButton(2,"Extranet",flahneCumPhotoshoot,2);
+	}
+	//{Huge Bubble}
+	//(unavailable for huge players who can’t fit under a desk)
+	else
+	{
+		output("\n\n<i>“Gosh, did you kidnap a galotian in this thing or what?”</i> Flahne laughs, practically drooling at the sight of your back-breaking load. She affectionately caresses the wobbling, purple blob with both hands, but conscientiously stows it under her desk and out of public sight. <i>“Sorry, [pc.name]. I’d love to give you a show, but I’m not sure how I’m supposed to eat this without making a huge mess!”</i>");
+		output("\n\nWith a mild shrug, you let the honey-colored secretary know that you’ve got the perfect method for her to enjoy the treat and still attend to her job at the same time. With a reassuring squeeze on her shoulder, you pull out her chair and slip under her desk yourself, next to the 15” beachball of latex-sealed jizz. With a little giggle, the rahn girl seems keen to find out what you’ve got planned. She takes her seat, wiggling her plump booty comfortably in the rolling task chair. You grab her ankles and pull the gel girl’s lap flush with the desk");
+		if(flags["FLAHNE_LIKE_OVIPOSITOR"] > 0) output(" her wobbling ovipositor bouncing under her skirt in anticipation");
+		output(".");
+		output("\n\n<i>“Whatever you’ve got planned,”</i> she whispers, <i>“try to keep it subtle! I haven’t locked the doors, so we’ll be getting lobby traffic.”</i> You silently loop a hand around her ankle, drawing your palm up and down the receptionist’s smooth, pliant leg. Her knees tremble and she clears her throat as footsteps approach the desk. <i>“Hello, how can I help you today,”</i> she asks, her voice muffled by the constraining desk around you.");
+		output("\n\nNow that she’s distracted, you set to work. Pinching the torso-sized cum balloon, you pull a palm-sized protrusion from the rubbery surface, twisting it in your palm until it is connected to the main mass by only a thin, taut string of wound latex. With a gentle tug, you pull the waterballoon sized sphere free, the Bubble Buddy’s almost organic sheath sealing both sides shut without spilling so much as a drop. You grab and twist off another and another until you’ve reduced the massive blob into a hefty cache of variously sized cum balls.");
+		output("\n\nCarefully, you place your hands on her knees and spread her legs apart. Flahne’s voice raises an octave, but she maintains her cover. <i>“Yes, of course we allow imports, sir. Within reason, of course. Please consult the list on the third page there,”</i> she indicates in a saccharine-sweet tone. She starts backing her chair up to see what you’re doing under there, but you wrap an arm around the back of her knees and keep her firmly in place. The curvaceous girl’s open skirt shadows her loins slightly, but the light streaming down her semi-translucent body gives her puffy pussy a golden glow");
+		if(flags["FLAHNE_LIKE_OVIPOSITOR"] > 0) output(" even with her sixteen inch ovi-cock bobbing above it");
+		output(".");
+		output("\n\nGrabbing one of the smallest bubbles, you spread her legs as widely as the interior of the desk’s walls allow and slowly, teasingly push the squishy orb against her nectar-drooling slit. <i>“I’m afraid I can’t speak for Xen-OH!”</i> she cries out a bit as you push the plum-sized balloon into her pussy, a pair of fingers sliding in after it to make sure the sphere’s really up in there. <i>“...Gen,”</i> she finishes, pushing forward. <i>“You will have to, um, speak with a... a... representative at their, uh, local office. Sir.”</i>");
+		output("\n\nFootsteps walk away from the desk and the door opens, giving Flahne a moment to recover. <i>“What are you doing down there? What did you put in me? Where’d you even get that?”</i> She whispers breathlessly, squirming in her seat and adjusting to the addition of a warm, rubbery bubble inside her pussy. Rather than explain, you keep her lap hidden under her workspace, and stuff another bubble into her. The secretary moans softly, reaching a hand down to stroke ");
+		if(flags["FLAHNE_LIKE_OVIPOSITOR"] > 0) output("her girthy rahn-shaft");
+		else output("her amber clit");
+		output(" through the sheer fabric of her skirt. You lightly slap the hand away and stuff another two spheres into her quivering quim.");
+		output("\n\n<i>“H-how many of those things do you have done there?”</i> she gasps as a door opens and she straightens up again. <i>“H- hello, how may I help you today?”</i> Between her legs, you’ve just about run out of the smaller bubbles, leaving only the big boys. Moreover, you’ve already got a good dozen little ones in her and the rahn’s pussy is looking pretty packed. For most other races, this would be a problem, but the rahn are about the second stretchiest species in the galaxy. Time to see just how big you can make that womb.");
+		processTime(15);
+		pc.lust(10+rand(10));
+		clearMenu();
+		addButton(0,"Next",flahneHugeBubbleStuffing2);
+	}
+	itemConsume(item);
+}
+
+//[All options]
+public function flahneCumPhotoshoot(arg:int):void
+{
+	clearOutput();
+	showFlahne();
+	author("Adjatha");
+	output("When the busty, amber secretary returns, you note that she’s undone a few more buttons than usual, giving you an exceedingly deep view into the sweet valley of her massive breasts. Her long, elfin ears twitch as she slides behind her desk, hands flat and tense as she leans forward to flash a candied smile. <i>“You know, it’s not everybody who’d make a big, yummy meal like this and deliver it to a girl at work. If you’re not careful, somebody’s gonna snatch you up, one of these days.”</i>");
+	output("\n\nYou flash a grin and snap a picture of the dizzying depths of the rahn’s cleavage. Her glossy, perpetually moist skin glistens as she toys with the middle button of her blouse- the only thing keeping her jiggling bosom from complete exposure. She runs her fingers across the 7”</i>, slightly sagging latex of your filled condom and you note a slight flush of reddish orange bloom on her cheeks. Your camera clicks as you capture the burgeoning thirst overtaking the receptionist, her yielding skin drink in the heat of your sealed seed.");
+	output("\n\nCarefully, delicately, she lifts the purple package in both hands. It is easily as large as her head, even with the squishy bun of her mousy hair-style. Turning it this way and that, Flahne’s long, sinuous tongue slowly licks the swell of her lips. With sweetened saliva dripping from her tendril-like organ, she drags her greedy tongue across the rubbery surface of the bubble, as if seeking some breach to exploit. You record a small clip of her amorous, tasting touches, noting that her building hunger has inflated her lips from a plump pucker to a whorish, pillowy portal. A trickle of drool leaks down the side of her mouth and dribbles from her chin onto the sleek, shiny gloss of her gelatinous curves.");
+	output("\n\nFlahne presses the pliant orb against her face, moaning at the squish of its liquid cream. She lightly nibbles the semi-firm surface, sucking in small portions of the violet blob only to let them slide back out, covered in her saccharine slaver. She wiggles and squirms, dropping a hand down between her legs. Slouching in her chair, she and lets the squishy balloon drop on top of her breasts, lightly gripping it between her lips as both hands writhe under the elastic of her short, black skirt.");
+	output("\n\nA few more clicks capture the girl’s cum-hungry frantic fingering. You step forward to help pose her without interrupting her gasping masturbation. You try to pull the cum bubble away, but she’s reluctant to let it go. The latex stretches between your hand and her mouth until the rubber sheath is so thin that the [pc.cumColor] of your [pc.cumNoun] is visible through the purple covering. You wiggle it back and forth, but Flahne just moans and suckles at the warm bubble with such bliss that you snap another picture of the spunk-starved woman.");
+	output("\n\nYou finally wrest it away from her and reposition the cum bubble on top of her head. The latex seems a bit stretched, however, because it immediately begins to flatten and droop over the perky girl’s face, covering one violet eye. Under the desk, her hands speed up, the fragrance of her nectar filling the room with each passing second. Her tongue loops out from between her wanton lips and begins bathing the spunk-heavy package once more.");
+	output("\n\nHer head half covered by the jizz-filled balloon, you click another picture and reach out for the sole, straining button of her overfilled top. Squeezing for a video capture, you free the fabric of her blouse with a twist and let it fly aside as the entirety of Flahne’s magnificent G-cups bounce into view. Huge, wobbling orbs with caramel peaks glisten with the dripping moisture of her dextrous tongue and watering mouth. Panting, she snakes her tongue down to encircle one of her breasts, teasing and pinching the nipple with her oral appendage.");
+	output("\n\nSlowly, gradually, the hefty condom slides down her face and settles in the vale of her colossal chest. Flahne pulls a hand up, fingers sticky with the dripping web of her honey-thick femme-cum, and strokes the violet sack with her oozing lubrication before pushing it deep in the nestling depths of her cleavage. Using her tongue on one breast and a hand on the other, she begins pumping her curves around the liquid excess of your spunk balloon. You grab a few pictures of the gel girl’s tit-fucking show but switch to a video when she grows more forceful. The pressure on your bubble is so intense that it bulges up with every pump, the rubber growing thinner and thinner with each squelching squeeze.");
+	output("\n\nA fresh wave of sweet nectar splashes from between her legs, the oozing goo dripping down her chair as Flahne bounces your condom between her tits with complete disregard for its structural integrity. You click a few more pictures and she seems to notice at last that you’re still photographing her. She winks and holds up her hand to wave at the camera just as the pressure of her breasts draws a high-tension whine from the rubber pillar pinched within her curves.");
+	output("\n\nYou quickly switch to video and are rewarded for your quick reactions as the Bubble Buddy bursts! Gallons of your [pc.cumVisc] [pc.cumNoun] geyser from the breached condom up into Flahne’s face like a gooey shotgun blast. In a second, her visage is painted [pc.cumColor] with the thickness of your seed. She jerks back, surprised by the release and sputtering as her mouth and eyes are filled with spunk. Reeling back, her chair wheels away from the slimy puddle left by the frantic fingering of her drooling puss, so you pan down to capture her own fluid mess.");
+	output("\n\nThe rahn secretary recovers quickly, her tongue lapping up the globular curtains of spunk that cascade from her face and wash over her breasts. She cups both hands together, shoveling bowls of jizz into her ravenous mouth, puckered lips slurping at the sagging ropes of your glossy spoo. You snap pictures of the cream-covered civil servant from a variety of angles, getting in close to capture the draining seed that slowly drips down her cute mouth and into her taut throat.");
+	output("\n\nWhen, at last, she’s gathered up the last of your spilt spunk, she turns to cleaning out the burst bubble between her curves. Flahne vigorously laps at the interior of the latex, finishing her meal to the last, succulent drop. Gripping the burst condom between her lips, she proudly smiles up at the camera like a cat showing off its latest kill and you obligingly click a picture of the contented rahn.");
+	output("\n\n<i>“Thanks again for the meal, [pc.name]”</i> Flahne gurgles with delight, taking back her CaptchaLens and dropping it into her purse. <i>“Remind me to return the favor one of these days.”</i> She buttons up her blouse and rises to unlock the lobby doors and take care of the traffic her little lunch break built up. On your way out, you check your Codex to see where those pictures and videos went.");
+	pc.lust(5+rand(6));
+	processTime(25);
+	if(arg == 2) 
+	{
+		if(flags["FLAHNE_EXTRANETTED"] == undefined) flags["FLAHNE_EXTRANETTED"] = 1;
+		if(!MailManager.isEntryUnlocked("extranetFlahnePics"))
+		{
+			MailManager.unlockEntry("extranetFlahnePics", GetGameTimestamp());
+			eventBuffer += "\n\n<b>New Email from TamaniCorp (Marketing@TamaniCorp.corp)!</b>";
+			pc.createKeyItem("Coupon - TamaniCorp", 0.9, 0, 0, 0, "Save 10% on your next purchase from your local TamaniCorp retailer!");
+		}
+	}
+	if(arg == 1)
+	{
+		if(flags["FLAHNE_GALLINKED"] == undefined) flags["FLAHNE_GALLINKED"] = 1;
+		if(!MailManager.isEntryUnlocked("galLinkFlahnePics"))
+		{
+			MailManager.unlockEntry("galLinkFlahnePics", GetGameTimestamp());
+			eventBuffer += "\n\n<b>New Email from GalLink Fuckmeet (support@GalLink.org)!</b>";
+		}
+	}
+	if(arg == 0) 
+	{
+		if(!MailManager.isEntryUnlocked("privateFlahnePics"))
+		{
+			MailManager.unlockEntry("privateFlahnePics", GetGameTimestamp());
+			eventBuffer += "\n\n<b>New Email from Flahne (Flahne_Rahn@UGC.gov)!</b>";
+		}
+	}
+	clearMenu();
+	addButton(0,"Next", move, rooms[currentLocation].southExit);
+}
+
+//[Private]
+//{After the player finishes the scene for the first time, they get an email notification}
+
+//Subject: [No Subject]
+//From: Flahne (Flahne_Rahn@UGC.gov)
+//To: [pc.Email]@SteeleTech.corp
+
+public function privateFlahneSceneMessage():String
+{
+	var ret:String = "This message has all of the private pictures and video clips of Flahne you took during her <i>“lunch break.”</i> They’re actually not half bad, and flipping through the progress from hungry receptionist to spunk-slurping cum slut sends a fresh wave of heat through your body.";
+	//{First time reading the email, player’s lust increases by 5-10}
+	ret += "\n\n<i>You save the pictures for later, sending them to your ship’s memory banks.</i>";
+	//output("\n\n{Maybe add viewable picture of Flahne covered in spunk or playing with a filled condom, etc. when the in-game image pack comes out}");
+	return ret;
+}
+
+//[GalLink]
+//[GalLink - Email]
+//Subject: New comment on your picture(s)
+//From: GalLink Fuckmeet (support@GalLink.org) (4)
+//To: [pc.Email]@SteeleTech.corp
+public function gallinkFlahneBubbleEmail():String
+{
+	//{After the player finishes the scene for the first time, if they accepted Kiro’s Fuckmeet request, they get an email notification after an hour}
+	var ret:String = "All of the pictures and video clips you took of Flahne seem to have been automatically grouped into one album. You take a moment to flip through the sequence, depicting an innocent but hungry secretary toying with your filled condom. She seems so enamored by it that she begins stripping and drooling until, no longer able to suppress her need, she pops it and licks all the creamy goo from herself with wanton desire. Not a half-bad sequence, if you have to admit.";
+	//{First time reading the email, player’s lust increases by 5-10}
+	ret += "\n\nSeveral comments have been posted to the album:";
+	//If Saendra hasn’t been Bad Ended:
+	if(flags["SAENDRA_DISABLED"] != undefined) ret += "\nSaendra en Ilya: Love it, Flahne! But you left out your best feature- dat booty! Next time use those honey buns to squeeze out a juicy load!";
+	ret += "\nKiro Tamahime: Psh, you call that a cum bubble? I jizz more than that before most people have had breakfast.";
+	ret += "\nGirlBoy Alex: Flahne, did you do that at WORK?! Ha ha ha, you’re crazy, girl. I love ya, but you’re crazy.";
+	ret += "\nSera Succubus: I feel like I’m watching a nature documentary on a territorial dispute between a loo’rahn and a doh’rahn. Damn nature, you’re scary! >:D";
+	ret += "\nBigBooty Flahne: [pc.name]! What the goo! I said those were supposed to be private! Oooo, you are in for it next time I see you!";
+	ret += "\nSera Succubus: Re: BigBooty Flahne: Oh my god, that’s hilarious.";
+	return ret;
+}
+
+//[Gal Link - Consequence]
+//{After completing the medium bubble scene for the first time, the next time they enter the Customs Office on Mhen’ga, the following scene plays}
+public function galLinkConsequence():void
+{
+	clearOutput();
+	showFlahne();
+	author("Adjatha");
+	flags["FLAHNE_GALLINKED"] = 2;
+	output("As you step into the Customs Office, you practically smack into Flahne. The honey-hued rahn has her arms crossed under her breasts, thrusting the massive G-cups ever higher. The cute receptionist’s face is pinched in an expression of annoyance.");
+	output("\n\nShe takes a step forward and presses her pliant peaks against your [pc.chest] in what would normally be quite a seductive fashion. Now, however, you’re forced to imagine yourself just like the filled condom she popped between those gelatinous mountains. <i>“Somebody had a little fun changing around the settings on my CaptchaLens, did they?”</i> she sweetly inquires with an arched eyebrow.");
+	if(pc.isNice()) 
+	{
+		output("\n\nYou offer an apologetic shrug, smiling sheepishly. <i>“I just thought you wouldn’t mind sharing with your friends, you know? You’re too cute to keep all to myself.”</i>");
+		output("\n\nFlahne flushes and can’t keep up the angry facade. <i>“I think that was sweeter than my lollipops, you goof. I’m still gonna make you pay, though!”</i> She drags you off to a janitorial closet and ravages you as only a gel girl can. By the time she’s done, you’re having trouble walking straight. All told, not a bad punishment at all!");
+		//{player’s lust and energy set to 0}
+		processTime(45);
+		for(var x:int = 0; x < 5; x++) { pc.orgasm(); }
+		pc.energy(-100);
+	}
+	else if(pc.isMischievous())
+	{
+		output("\n\nYou place a finger on the rahn’s face where a nose would be on any other race. <i>“Boop,”</i> you announce with a grin, offering no further explanation.");
+		output("\n\nFlahne’s bubbling ire slowly trickles away into exasperated mirth. <i>“You dummy. I don’t care that you posted those on GalLink. Those sluts are always posting smutty pictures of themselves. I just wanted you to keep the pictures for yourself as something special. Guess we’ll have to try it again some time,”</i> She finishes, walking back to her desk with a booty-shaking gait that looks ready to tear open her skirt’s seams with every step.");
+		//{player’s lust increases by 5-10}
+		pc.lust(5+rand(6));
+	}
+	else
+	{
+		output("\n\nWrapping an arm around the receptionist’s backside, you give her a squeeze. <i>“Ah, come on. You know you love putting on a show. I bet if I brought out another cum bubble right now, you wouldn’t even think twice before popping it all over yourself again.”</i>");
+		output("\n\nFlahne furrows her little brow and meets your dismissive gaze with narrowed, violet eyes. She slides a hand down and grabs your crotch possessively. <i>“You’re just lucky you’re so tasty,”</i> she says with a squeeze. Pushing you away and marching back to her desk, the rahn glances back and sticks out her tongue. It’s good to keep ‘em riled up, you muse with an appreciative leer at the gel girl’s ample curves.");
+		pc.lust(5+rand(6));
+	}
+	processTime(4);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//[Extranet]
+//[Extranet - Email]
+//{After the player finishes the scene for the first time, they get an email notification after an hour}
+//Subject: Thank You For Your Submission
+//From: Marketing@TamaniCorp.corp
+//To: [pc.Email]@SteeleTech.corp
+public function extranetShareEmail():String
+{
+	var ret:String = "Thank you for the numerous pictures and videos you submitted detailing your enjoyment of Tamani Corp’s fine Bubble Buddy product. We encourage all customers to distribute pictures of themselves utilizing our fantastic semen storage solution, and we appreciate the <i>“Liquid Lunch”</i> social media movement among our rahn users.";
+	ret += "\n\nUnfortunately, we will not be able to utilize the majority of your pictures for our public advertising campaign. The rather explicit nature of your pictures and video clips exceed what our Marketing department has determined to be <i>“good taste.”</i> However, we at Tamani Corp would like to personally thank you for your dedication and brand loyalty.";
+	ret += "\n\nPlease accept this coupon on our behalf. We look forward to seeing more from you in the future.";
+	ret += "\n<i>Included at the bottom of the form letter is a 10% off coupon for Tamani Corp products. Most shops would probably take this.</i>";
+	//{Add key item: <i>“Coupon - Tamani Corp - Save 10% on your next Tamani Corp purchase!”</i>}
+	//9999 haldo
+	return ret;
+}
+
+
+
+//[Extranet - Consequences]
+//{After completing the medium bubble scene for the first time, the next time they enter the Customs Office on Mhen’ga, the following scene plays}
+public function extranetFlahneConsequences():void
+{
+	clearOutput();
+	showFlahne();
+	author("Adjatha");
+	flags["FLAHNE_EXTRANETTED"] = 2;
+	output("As you step into the Customs Office, you practically smack into Flahne. The honey-hued rahn has her arms crossed under her breasts, thrusting the massive G-cups ever higher. The cute receptionist’s face is pinched in an expression of outrage.");
+	output("\n\nShe takes a step forward and presses her pliant peaks against your [pc.chest] in what would normally be quite a seductive fashion. Now, however, you’re forced to imagine yourself just like the filled condom she popped between those gelatinous mountains. <i>“Somebody had a little fun changing around the settings on my CaptchaLens, did they?”</i> she demands, poking your chest with a translucent finger.");
+	output("\n\nYou’re about to open your mouth to explain, but she waves a hand in front of you. <i>“Ugh. Don’t even. I don’t know WHAT you were thinking, but that was a real jerk thing for you to do!”</i> She delivers an open-palmed slap to your face that leaves a surprisingly sharp sting. Turning on her heels, she clicks back to her desk angrily. Without turning around she calls back, <i>“Get lost. I’m too angry to even talk to you right now.”</i>");
+	output("\n\nMaybe she’ll cool off if you give her some time?");
+	processTime(1);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+	//{Player is unable to interact with Flahne for 24 hours. After 24 hours, the next time they enter the Customs Office, the following scene players}
+	pc.createStatusEffect("Flahne_Extra_Pissed");
+	pc.setStatusMinutes("Flahne_Extra_Pissed", 1440);
+}
+
+public function extranetFlahneConsequencesMakeup():void
+{
+	clearOutput();
+	showFlahne();
+	author("Adjatha");
+	//Clear after proccing:
+	flags["FLAHNE_MAKEUP"] = undefined;
+	output("Stepping back into the Customs Office, you brace yourself for another tongue lashing from Flahne, but are pleasantly surprised to see the rahn girl looking quite pleased. She waves you over to her desk and you cautiously approach.");
+	output("\n\nNoticing your reluctance, Flahne gives you a dismissive wave. <i>“Oh, don’t act like that, [pc.name]. You were a big scumbag for posting all that stuff publicly, but I’m over it. Actually, I got a rather nice letter from the folks at Tamani Corp! They’re working on a spin-off of the Bubble Buddy intended specifically for Rahn meals and they said they’d like me to be the spokeswoman when it comes out! I’m sure it’ll be quite a while till they’re ready to market it, but just think: I’ll be an extranet starlet,”</i> she sighs with a delighted smile.");
+	output("\n\nYou pat the gel girl on the shoulder. ");
+	if(pc.isNice()) output("<i>“That’s awesome! I’m so happy for you, Flahne!”</i>");
+	else if(pc.isMischievous()) output("<i>“Putting on saucy shows for the whole galaxy? I always knew you had it in you.”</i>");
+	else output("<i>“What are they going to call it? The Bimbo Buddy?”</i>");
+	output(" She doesn’t really seem to be listening to you, however, her mind still swimming with the possibilities.");
+
+	output("\n\n<i>“Anyway, even if you were being a real goo-head with those pictures, I wouldn’t have gotten the offer otherwise. So I guess I forgive you, ya jerk.”</i> She looks up at you with a small, amused smile. <i>“Just, next time warn me before you post my boobies all over the extranet, okay?”</i> She reaches up and tweaks your nose before sending you on your way. That turned out a lot better than you would’ve expected!");
+	processTime(2);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+
+public function flahneHugeBubbleStuffing2():void
+{
+	clearOutput();
+	showFlahne();
+	author("Adjatha");
+	output("Grabbing a fist-sized balloon, you squish the pliant lilac orb against Flahne’s well-stretched vulva, encountering the resistance of the other cum balls. You can hear Flahne’s fingers clicking away at her station, vigorously sucking on a lollipop to take her mind off of what’s happening between her knees. The rubbery surfaces squeak in protest as you force the larger orb into her with a sudden thrust that sends ripples through her gelatinous body and cuts her typing short.");
+	output("\n\n<i>“Are you alright?”</i> a female voice asks. <i>“It’s just, you seem to have swallowed your sucker, stick and all.”</i>");
+	output("\n\n<i>“Oh, I’m just working through my break,”</i> Flahne replies in a high, tight voice, practically gurgling as she tries to dislodge the swallowed sweet. <i>“Guess I got a little hungry,”</i> she laughs, too loudly, a manic edge creeping into her voice as you keep up your relentless pace, jamming another squeaking bubble into her packed pussy. Despite the skirt, you can actually see the shadow of all the bubbles inside her abdomen slowly grow with each addition, your cum bundle rising up to waist level. By now she’s freely leaking sticky strings of femme-cum into her skirt, the honey-like goo pooling between her legs and slowly oozing down the sloped seat of her chair. You squeak another few bubbles into her, rolling them in her fluids for added lubrication.");
+	output("\n\n<i>“Working through your break and they force you to use a squeaking chair? And, I think I can hear a drip! You should really talk to somebody about these simply terrible working conditions, dear!”</i>");
+	output("\n\n<i>“Ah, the job has some perks,”</i> Flahne giggles, between her panting gasps.");
+	if(flags["FLAHNE_LIKE_OVIPOSITOR"] > 0) output(" Flahne’s hefty goo-cock begins leaking its honey-hued pre-cum, the intoxicating scent of the flavorful treat flooding your nostrils. No sense in wasting the added lube, you reason, and wrap a hand around her wobbling length, squeezing the honied spoo on each bubble before squashing it into receptionist’s jam-packed puss.");
+	output(" Flahne’s belly has begun to expand under the weight of your bulky, rubber-bound seed. The buttons of her blouse strain mightily against the swelling inflation of your insertions, so you discreetly reach up and uncinch a few of the lower buttons to make room for her bloated stomach. No sense in ruining a perfectly good shirt, you reason and you push another couple of cum capsules into her crammed cunt. Her right leg starts vibrating slightly, rocking rapidly on the tip of her high heeled pumps. <i>“Is... is there anything else I can h-h-help you with, Miss?”</i> Flahne politely asks, obviously trying to get rid of the visitor.");
+	output("\n\nThe sound of a door opening elicits a slight moan from Flahne. The woman tuts and responds sympathetically: <i>“Oh, well I see you’re going to be busy with all these folks, so I’ll let you get back to work. You keep what I said in mind though, honey. If you don’t stand up for yourself, they’ll walk all over you!”</i> She steps away as a practical swarm of stomping, scraping feet pound up to Flahne’s desk.");
+	output("\n\nBusy day, you suppose, stuffing another cum-egg into the rahn. Trying to keep her voice level, the secretary tries to bring the crowd of visitors to some sort of order. A particularly troublesome bubble keeps slipping out of Flahne’s spongy slit, so you grip it firmly and jam the huge orb deep into her, the cache of latex shifting and groaning under the added weight as her womb expands higher and higher into her torso. She lets out an orgasmic shriek that brings the noisy lobby to absolute silence in an instant. <i>“Um... ah... now that I have your... your attention. Um. Please form an orderly line and we’ll process each of you in turn,”</i> she meeps, her embarrassment flushing her whole body a rich, ruddy orange.");
+	output("\n\nFor the next half hour, Flahne tends to the crowd while you fill her with rubbery balls, the heat of your sealed cum bringing beads of sugary sweat to her smooth surface. You teasingly lick her inner thighs and sink your fingers into the tender, bulging lips of her well-breached vulva.");
+	if(flags["FLAHNE_LIKE_OVIPOSITOR"] > 0) output(" Her throbbing ovi-cock drools a constant stream of oozing nectar, its sixteen inch length nearly entirely filled by the egg-like shadows of her pent-up rahn seed.");
+	output(" Her body gurgles with the liquid weight of your latex bounty, while her voice has become the tight, pinched murmuring moan of someone doing their best to hide a slow-burning orgasm. She’s slouched in her seat and meekly coos in lust-drunk bliss at your every touch.");
+
+	output("\n\nHer bubble-filled womb has stretched out of your limited sight, by the time you’re down to a single remaining sphere and you idly wonder if the people in the lobby can see the balloon shadows through her cleavage yet. Well, it’s been fun, but time to finish off the last of your load. You hoist the final, 5”</i> sphere and slide it between her thighs, bracing the latex orb against her packed pussy. <i>“No no no no,”</i> she whispers, feeling the hot weight of your fluid present pressing against her loins. <i>“Not that. It’s too big!”</i> she moans quietly.");
+
+	if(flags["FLAHNE_LIKE_OVIPOSITOR"] > 0) 
+	{
+		output("\n\nYou shrug, pulling the huge condom back. Afterall, she might want a snack later. Still, it’d be a shame to leave that fat, honey-hued ovi-cock just drooping helplessly. Gripping the yielding surface of the gelatinous member in both hands, you begin stroking the semi-firm shaft eagerly. Fingers running across the bulging, egg-distended gel, fat blobs of sticky pre ooze from the dimpled tip as her body tenses. The pussy-stuffing has apparently left her with a hair-trigger!");
+		output("\n\nYou’re about to put your lips to the massive organ when a thought strikes you. Giving her a few more rough pumps to make sure she’s right at the edge of climax, you grab the gooey shaft and bend it around in a U-shape. The jelly member wobbles in your hands as you thrust the tip into her own pussy, holding it firmly in place as her orgasm hits. Above you, Flahne’s fist pounds the desk, a small cache of wrapped lollipops scattering off the edge and clattering on the floor.");
+		output("\n\nEgg after egg spurts from her ovipositor back into her pussy, the squishy globules adding their mass to the rubbery trove of cum bubbles you’ve filler her up with. Openly moaning now, her feet tense as she kicks the underside of her desk with her heels. The mutters of the visitors turn to shocked gasps as, load after load, Flahne fills herself with a positively body-deforming volume of eggs and honey.");
+	}
+	else
+	{
+		output("\n\nDown to the last one and she wants to quit? Now that would really be a shame. Squeezing the warm condom with both hands, you help flatten its spherical shape into a more manageable cylinder. Pressing firmly, you feed inch after inch into the secretary’s depths. The mass of bubbles inside her shift and squeak, pushed upward by the volume of their big brother. Flahne lets out a <i>“glurk!”</i> of over-burdened fullness, her fist slamming down on the desk as she kicks one of her heels off a smooth, toe-less amber foot.");
+		output("\n\nThe mutters of the visitors turn to shocked gasps as, bit by bit, you squeeze the final bubble into her. <i>“What’s wrong with her head?”</i> someone asks. <i>“Is it full of eggs or something?”</i> another presses. <i>“Look at how thick her neck is! Is she choking?”</i> The visitors crowd around the secretary’s desk, trying to help the girl but unsure of her biology or what to do. With a final push, you stuff the last of the bubbles into her, the girl’s absurdly elastic pussy stretching so far as to allow both of your hands to slide in after it.");
+	}
+	output("\n\nFlahne is just too full. She lets out a choking gurgle, her body clenching down in a vibrating orgasm that floods the room with the scent of gushing honey. She weakly manages to provide a breathy <i>“I’m fine,”</i> before the pressure in her body is too much. A series of wet plops rain down on her desk as the cum bubbles you stuffed into her are forced out through her mouth. She slaps her hand over her lips, but a hiccuping tremble of her ongoing orgasm lets another cascade of gooey latex condoms spill from her flushed face.");
+	output("\n\n<i>“Is she pregnant?”</i> one of the less informed visitors asks quietly. <i>“If so, this has to be the weirdest birth I’ve ever seen.”</i>");
+	output("\n\nPanting and gasping, Flahne tries to explain the bubbles away but keeps interrupting herself with more hiccups and more loose lilac bubbles. She apologizes and asks the travellers to fill out their paperwork on their ships. <i>“Just a little rahn emergency,”</i> she assures them weakly. <i>“Nothing to worry about.”</i> When the last of the guests clears out, she pulls her chair away from her desk and rushes over to the door to lock it. Unfortunately, the added weight of her bubble-filled interior throws her off balance and the secretary face-plants onto the floor instead.");
+	output("\n\nYou come out of the desk and help Flahne off the ground and into a seat. Locking the doors for her, you take stock of the gel girl’s state. Sure enough, your cum bubbles");
+	if(flags["FLAHNE_LIKE_OVIPOSITOR"] > 0) output(" and her own rahn eggs");
+	output(" seem to have stretched her womb all the way from pussy to mouth. Clumps of dark shadows inside her honey-hued body are plainly visible along the exposed flesh of her distended belly, her plump cleavage, her bloated neck, and her hiccuping head. She’d probably be mad at you, if she weren’t so out of it. Rounding up the dozen or so stray bubbles that escaped her, you leave a small pile on her desk. A treat for after she finishes the buffet you left inside her.");
+	output("\n\nYou exit into Esbeth with a little smile as Flahne gurgles with blissed-out gratitude.");
+	clearMenu();
+	addButton(0,"Next", move, rooms[currentLocation].southExit);
+}
+
+public function giveVaandeATreatSetup():void
+{
+	var choices:Array = [];
+	for(var x:int = 0; x < pc.inventory.length; x++)
+	{
+		if(pc.inventory[x] is SmallCumBubble) choices.push(x);
+		else if(pc.inventory[x] is MediumCumBubble) choices.push(x);
+		else if(pc.inventory[x] is LargeCumBubble) choices.push(x);
+		else if(pc.inventory[x] is HugeCumBubble) choices.push(x);
+	}
+	var func:Function = giveVaandeTheGiftOfCum;
+	if(pc.hasItem(new BubbleBuddy())) func = giveVaandeBubbleBuddyFun;
+
+
+	if(choices.length == 1) func(pc.inventory[choices[0]]);
+	else
+	{
+		clearOutput();
+		showVaande();
+		showName("WHICH\nONE?");
+		output("Which cum bubble will you give her?");
+		clearMenu();
+		for(x = 0; x < choices.length; x++)
+		{
+			if (pc.inventory[choices[x]].quantity > 0) {
+				addItemButton(x, pc.inventory[choices[x]], func, pc.inventory[choices[x]]);
+			}
+		}
+		addButton(14,"Back",meetingFlahne);
+	}
+}
+
+//Give to Vaande
+//[Give Bubble w/o Bubble Buddy toy in inventory]
+//{Add [Cum Bubble] option to Celise’s [Feed] menu.}
+// <i>“Give the rahn a gift of sealed cum.”</i>
+public function giveVaandeTheGiftOfCum(item:ItemSlotClass):void
+{
+	clearOutput();
+	showVaande();
+	author("Adjatha");
+	output("You present a lilac bubble to the lavender girl and a look of hunger crosses her normally serene face for just a second before her cat-like calm returns. <i>“Oh, you’ve brought me a gift? What a good " + pc.mf("boy","girl") + " you are,”</i> she purrs, the faint scent of cold rain filling your nostrils. Vaande places a finger to her plump, glistening lips and folds an arm under her E-cups in thought. <i>“Now, I wonder if you happen to have brought the toy that made this?”</i> she muses aloud, her voice echoing between your ears as the distant perfume makes its way into your head.");
+	output("\n\nA warm blur settles over you and you shake your head slowly. Your hands pat down your [pc.gear] and you vaguely wonder where you left the Bubble Buddy. A thought strikes you that you’ll have to bring it with you next time, though you’re not sure if you arrived at that conclusion on your own. Your eyelids seem heavy and when you blink to clear the wooziness, you find that ");
+	if(!pc.isNude()) output("you are now naked");
+	else output("your equipment has been stacked in one corner of the room");
+	output(". Of course, you rationalize, you won’t need any of that. No use worrying about it.");
+
+	output("\n\nTurning slowly so your spinning head doesn’t start doing loops around the room, you notice that Vaande is also naked. The violet woman is lounging on her cheap cot like the empress of an ancient world. <i>“[pc.BoyGirl], would you kindly attend me,”</i> she beckons, bending a forefinger ever so slightly. The almost undetectable essence of the rahn’s bouquet plays across your tensing senses with greater effect than the most fragrant incense. The stirring scent of water burbling at a natural spring seems to awaken a spring within you, liquid heat filling your [pc.groin] as you are drawn to her side. You are still holding out the cum bubble in both hands and she looks up with favor at your offering.");
+	output("\n\n<i>“Hrmmm,”</i> she murmurs with an rippling tremble that sends shivers all the way through her body and up into yours. <i>“So little. And yet you surely did your best?”</i> The lilting question and the chilly tang in the air sends a wave of panic through you! What if your mistress doesn’t like your offering? She notices your fear and offers a magnanimous smile that puts you at ease. The cloying scent of the room strengthens and you lower yourself before her, eagerly awaiting instructions.");
+	output("\n\nVaande rolls the white, plastic ball of a pin between her forefinger and thumb, its small metal spur flickering in the electric light of her room. <i>“You wouldn’t mind taking this pin and bathing me with that bubble, would you?”</i> You gulp and take the pin from her, unsteadily pressing it into the blobby purple sphere. You almost expect it to pop, but the sheath holds fast and a small droplet of cum oozes from the breach. Pressing the tiny metal spike all the way to the firm orb of its tip, you grip the sphere with both hands and reverently set it against the smooth, pliant surface of her succulent breasts. The rahn moans softly at the pressure of your leaking condom, her back arching with delight.");
+	output("\n\nYou squeeze the bubble slightly and trickles of hot cum dribble out from the puncture, oozing across the lavender skin of your gelatinous goddess. Dragging the squeaking, leaking orb up and down the gel girl’s curving peaks, your [pc.cumColor] [pc.cumNoun] washes over her like the glossy coat of a fresh lacquer. Her already slick skin becomes ever glossier, and her moans grow in pitch and frequency, the tip of her pinkie pressed against the pillowy plumpness of her plum lips. The moist heat of the room thickens into a nearly tangible thing - the urgency of her arousal giving the rainy scent an electricity more suited to a thunderstorm.");
+
+	//Cum bubbles: medium and higher:
+	if(item is MediumCumBubble)
+	{
+		output("\n\nWith her breasts bathed in the slick heat of your spunk, you pull the seeping sack down to Vaande’s impossibly slim torso. The taut surface of her faintly flushed skin rises and falls with appreciative shivers as your [pc.cumVisc] cream drips down her abdomen and pools in the recess of her navel. She raises one leg and you obediently slide the salivating sphere up her thick thigh and across her yielding gel. Delicately, you cradle the heel of her small, lilac foot and sweep her arch with a fondling slaver from your punctured bubble. Her toeless foot wiggles with ticklish pleasure and she drapes one freshly bathed limb against your [pc.chest] while you lift her other leg for equal treatment. The sopping junction of her hips practically drools with the ecstasy of your attentive ministrations.");
+	}
+	//Cum bubbles: large and higher:
+	if(item is LargeCumBubble)
+	{
+		output("\n\nWhen her legs and feet are dripping with [pc.cumGem] droplets, she turns over, allowing you to bathe her back as well. You lower the shrinking bubble at the base of her neck and squeeze it enough to send a cascade of drizzling cum across her shoulders. With tender strokes, you sweep the weeping cum ball over her surface, feeling the quivering tremors of her back run up your fingers with each motion. Raising the ball to the ponderous peak of her perfectly sculpted posterior, you tighten your grip on the bubble so that thick spurts of spunk splatter over her amethyst orbs. Your [pc.cumColor] [pc.cumNoun] oozes down between her cheeks and you follow the flow with the orb, parting those magnificent bubbles with your own diminished orb. The added attention earns you a delighted squeal from the enraptured rahn and you can feel your [pc.groin] throbbing with the nearness of your own release.");
+	}
+	//{Cum bubbles: huge:
+	if(item is HugeCumBubble) output("\n\nSuitably slicked by your seeping spunk, Vaande rolls to her side and motions for you to rise with the oozing remnants of your cum bubble. <i>“Be a dear, and finish me off, won’t you?”</i> She gestures to the cascade of gooey ‘hair’ that hangs around one half of her elfin face. There’s a tension to her voice that seems to carry an urgency with it, so you set to work, holding the cum sack over her head and squeezing fresh spouts of [pc.cumNoun] from the condom to shower the lavender woman in your warmth. She draws a sharp breath as the [pc.cumNoun] pools on her hair and forms sticky cataracts that fall across her face in a [pc.cumVisc] deluge. She can’t help herself from letting the long, sinuous length of her tongue gather up precious beads of thick cream.");
+	processTime(20);
+	pc.lust(50);
+	itemConsume(item);
+	clearMenu();
+	addButton(0,"Next",vaandeGiftPartTwo);
+}
+
+public function vaandeGiftPartTwo():void
+{
+	clearOutput();
+	showVaande();
+	author("Adjatha");
+
+	output("When, at last, your bubble is empty, Vaande lightly touches your [pc.hips] and draws you to the bed with her, the two of you lying side by side in a sticky, creamy embrace. She holds her face inches from yours in a kiss that can’t quite reach you, her hot breath filling your mouth with a dizzying flavor of rain-slick blossoms. The rahn draws the pin from the emptied sheath of your bubble and lightly touches the tip to a point on your forehead between your eyes. The tiny prick of pain clears your mind for a split second, just in time for her to whisper <i>“cum with me,”</i> to you.");
+	output("\n\nThe trembling rahn girl embracing you shudders with cum-drunk bliss and the built-up pressure inside your body blooms into a full fledged eruption of passion. Your throat leaps in your mouth and your tongue feels dry as the liquid heat of your climax surges to your pelvis. Your chest burns as air refuses to reach your lungs, but such trivial concerns are meaningless next to the ecstasy of the woman beside you.");
+	if(pc.hasVagina())
+	{
+		output("\n\nThe shuddering, clenching depths of your [pc.pussies] send");
+		if(pc.totalVaginas() == 1) output("s");
+		output(" bands of tightening convulsions through your frame as dripping rivulets of [pc.girlCum] gush between clenched lower lips. Fingers robbed of all volition by the mind-blanking orgasm, you tremble feebly against the lilac rahn. Eyes rolling up and mouth hanging open, you are spun in a swirling vortex of pheromone-drunk euphoria. Depleted and exhausted, your body continues its squeezing, trembling release long after you lose the ability to tell one orgasm from the next.");
+	}
+	if(pc.hasCock())
+	{
+		output("\n\nYour body feels almost like the cum bubble you had been squeezing a minute ago. The pin’s touch seems to rid you of all self control and the rush of your orgasm is sped along your [pc.cocks] by the hungry scent of the gelatinous woman pressing her supple curves against you. You cum and it is as if every muscle in your body is working in unison to release a greater load than you’ve ever experienced. Time compresses into a single, wet, rain-scented instant and the sensation of your exultant peak stretches out into an eternity.");
+	}
+	output("\n\nWhen, finally, your senses return, your whole body aches with the intensity of your climax. One that the doh’rahn was able to achieve with a single touch, you recall vaguely. You rise unsteadily and are a bit surprised to see Vaande standing and slipping on her panties and bra once more. The cloying, suffocating scent is gone, replaced by a rather satisfied perfume of pollinated flowers. There’s no sign of all the cum you smeared across her body, though the gel girl’s lavender skin does appear glossier than before.");
+	output("\n\nYou retrieve your belongings and just before she shepherds you to the door, Vaande presses her lips against your cheek in a kiss that leaves tingles radiating through your [pc.skinFurScales]. <i>“Don’t forget to bring your toy next time,”</i> she whispers before closing her door.");
+	processTime(15);
+	pc.orgasm();
+	pc.ballFullness = 0;
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//[Give Bubble w/ Bubble Buddy toy in inventory]
+//{centaurs and dickless PCs need not apply}
+// <i>“Show Vaande how your gelatinous masturbation toy works.”</i>
+public function giveVaandeBubbleBuddyFun(item:ItemSlotClass):void
+{
+	clearOutput();
+	showVaande();
+	author("Adjatha");
+	output("You present a lilac bubble to the lavender girl and a look of hunger crosses her normally serene face for just a second before her cat-like calm returns. <i>“Oh, you’ve brought me a gift? What a good [pc.boyGirl] you are,”</i> she purrs, the faint scent of cold rain filling your nostrils. Vaande places a finger to her plump, glistening lips and folds an arm under her E-cups in thought. <i>“Now, I wonder if you happen to have brought the toy that made this?”</i> she muses aloud, her voice echoing between your ears as the distant perfume makes its way into your head.");
+	output("\n\nA warm blur settles over you and you nod your head slowly. Your hands pat down your gear, and you produce the purple pocket pussy. Vaande offers you a slight smile and holds you in her gaze with her slitted, crimson eyes. <i>“My, aren’t you eager to please,”</i> she murmurs and indeed you are. A little too eager, if the throbbing stiffness between your legs is any indication. She places a hand on your cheek and a faintly sweet odor, not quite like paint thinner fills your nostrils. Your eyelids seem heavy and when you blink to clear the wooziness, you find that ");
+	if(!pc.isNude()) output("you are now naked");
+	else output("your equipment has been stacked in one corner of the room");
+	output(". Of course, you rationalize, you won’t need any of that. No use worrying about it.");
+
+	output("\n\nTurning slowly so your spinning head doesn’t start doing loops around the room, you notice that Vaande is also naked. The violet woman is lounging on her cheap cot like the empress of an ancient world. <i>“[pc.BoyGirl], would you kindly attend me,”</i> she beckons, bending a forefinger ever so slightly. The almost undetectable essence of the rahn’s bouquet plays across your tensing senses with greater effect than the most fragrant incense. The stirring scent of water burbling at a natural spring seems to awaken a spring within you, liquid heat filling your [pc.groin] as you are drawn to her side. You are still holding out the Bubble Buddy, though the cum bubble you initially offered her seems to have vanished.");
+	output("\n\n<i>“Normally, I would put on a show for you, but I’m ever so tired today. You wouldn’t mind putting on a show for me, would you?”</i> Shaking your head enthusiastically, you feel like you’ve got the perfect show for a rahn. Lifting the Bubble Buddy by way of explanation, you’re rewarded with the scent of falling rain. Your sight flexes a bit and when the walls stop panting, you find yourself as hard as you’ve ever been. Your [pc.cocks] ");
+	if(pc.cockTotal() == 1) output("is");
+	else output("are");
+	output(" at full attention and already dribbling with pre-cum. <i>“Oh, do go on,”</i> Vaande encourages you. <i>“By all means, show me just how much you can produce.”</i>");
+
+	output("\n\nHappy to comply, you fit your [pc.cock " + x + "] with the rubbery, lilac sheath. Feeding inches into the pliant plastic seems different somehow. It’s as if you’re sliding into a living thing - the interior tensing and gradually acclimating to your girth. The purple cock sheath practically drools with silky lubrication, as hungry for your cum as you are for release. Wrapping both hands around the latex cylinder, you slowly rock in and out of it, turning sideways so Vaande has a clear view through the semi-translucent toy. She seems to be enjoying the show, a sharp intake of breath sending ripples through her lavender form.");
+
+	output("\n\nYou pull the toy to your [pc.biggestSheath], savoring the clenching, squeezing voracity of the pussy nearly as much as the tightening of your lower body. The muscles in your [pc.thigh] and back work in concert with your arms to milk your building orgasm for all it’s worth. Pumping your swollen member with strident strokes, you wince at the numbing cold building in your gut as gurgling cum production goes into overdrive. The smell of rain weaves in and out of your awareness and in the uncertain illumination of Vaande’s room, you could almost swear that the lube-gushing pocket pussy and the drooling rahn woman seem one and the same.");
+
+	output("\n\nYou shake the distracting fantasy away and focus on the gelatinous sheath suckling at your thumping spout. With long, agitated caresses, you sweep the toy along your [pc.cock " + x + "] until you can hold back no longer. A warm, sweet tightness of release seizes your body one second and the next, you find yourself pumping away again, orgasm so close you can nearly taste it. You blink, trying to remember what happened, but it’s difficult to think with the frantic, desperate heat in your chest. You take a deep breath, sucking in as much cool air as you can but it only serves to throw fuel onto your inner fire.");
+
+	output("\n\nA buzzer set into the wall goes off and a voice chimes in: <i>“This is the front desk. Are you all right?”</i> You growl at the distraction and reply in a tight voice that you’re just dandy before returning to the task at hand. <i>“All right,”</i> the voice replies, a little annoyed, <i>“but this is the third check in, so I’m going to have to charge you for the overtime.”</i> You don’t have time to think on this as the agonizing sweetness of your climax approaches once more and - again - you find your body denying you release. You blink hard, trying to shake off the dizzying compulsion for liquid bliss, but your limbs are not your own. Arms aching from the rapid pace, hips aching from their slapping assault, and [pc.cock " + x + "] aching with a strangely numb stiffness, it’s all you can do to remain standing.");
+
+	//if vagina:
+	if(pc.hasVagina())
+	{
+		output("\n\nStrangely, your [pc.vaginas] ");
+		if(pc.totalVaginas() == 1) output("is");
+		else output("are");
+		output(" nearly as sore as the rest of your body. Your inner walls spasm with the aftershocks of a phantom climax. With a high, moaning whine, you ache to give some attention to your sensitive folds and [pc.clits], but just can’t afford to stop now. You’re so close to your climax, if you tried to pause without finishing it might drive you mad. You arch your back, [pc.chest] jutting in the throes of your nearness and press on, heedless of the cascade of [pc.girlCum] leaking down your inner thigh.");
+	}
+	//if multiple cocks:
+	if(pc.cockTotal() > 1)
+	{
+		output("\n\nYour eyes happen to glance down and you can make out the [pc.cumColor] pools of spunk leaking from your unoccupied cock");
+		if(pc.cockTotal() > 2) output("s");
+		output(". You’re a little surprised as how much pre-cum has leaked out in such a short time! ");
+		if(pc.cumQ() < 200) output("Spatters of [pc.cumNoun] are everywhere");
+		else if(pc.cumQ() < 7000) output("Pools of [pc.cumNoun] are sloshing against your [pc.feet]");
+		else output("The floor is flooded with an inch of the [pc.cumVisc] stuff");
+		output(", and your mind tries to make sense of the sight. The scent of running water interrupts your connections and you simply try moving the Bubble Buddy to ");
+		if(pc.cockTotal() > 2) output("an");
+		else output("the");
+		output(" unused member, pumping at the oddly tender flesh with redoubled effort.");
+	}
+	output("\n\nYou climb the mountain of your climax again and again, never quite reaching the peak. Your body aches and your muscles scream at you, but a comforting numbness takes the sharpness from the warnings. You settle to your [pc.ass], sitting to better focus on the task at hand. The lavender pussy bounces in your lap and, as darkness closes in, the last thing you see is the tip of the gel-like toy bloating with the long-sought cream of your shuddering, gasping orgasm.");
+
+	itemConsume(item);
+	processTime(60);
+	pc.orgasm();
+	//Player’s lust and energy are reduced to 0 and they take 50% hp damage
+	clearMenu();
+	addButton(0,"Next",bubbleBuddyVaandeEpilogue);
+}
+
+public function bubbleBuddyVaandeEpilogue():void
+{
+	clearOutput();
+	showVaande();
+	author("Adjatha");
+	output("When you wake, you feel oddly moist. You appear to be clean, practically glistening from head to toe, with no sign of spilt fluids or even sweat on you. You try to stand and almost immediately collapse in an agonized pile of sore muscles and deferred exhaustion. Closing your eyes and gathering yourself once more, you take stock of your surroundings.");
+	output("\n\nVaande’s normally quite spartan room is filled with cum bubbles of assorted sizes. Piles of melon-sized orbs sit in one corner, while apple-sized spunk balloons line the top of her dresser like trophies. All over the floor, fourty or more plum-sized bubbles are scattered in wild disarray. A single, massive jizz sack is on her cot and the rahn herself is curled up on top of it like the cat who got the cream. There must be dozens of cum bubbles around the room- a treasure trove of [pc.cumVisc] seed.");
+	output("\n\nFragments of memories come back to you and you start putting together the tricky, mesmeric feat the pheromone-flooded rahn must’ve accomplished. You even recall someone from the front desk calling to check in on you mid-way through the gluttonous girl’s harvest. How long have you been here? You grab your [pc.gear] and check your Codex quickly. TWELVE HOURS?! No wonder Vaande seems to have suddenly inherited her own sperm bank!");
+	output("\n\nGroaning, you pick up the sorely abused Bubble Buddy off of the floor and stow it with your other belongings. Poor girl had nearly as tough a time as you did yourself! You notice a credit chit on the nightstand and grab it in consideration of your unexpected generosity. At the very least, it should cover the added expenses the brothel mistress was so keen to hit you with. You leave with a mental note to avoid putting yourself on the wrong end of a hungry doh’rahn again.");
+	processTime(660);
+	pc.energy(-9999);
+	pc.HP(-Math.round(pc.HPMax()/2));
+	for(var x:int = 0; x < 15; x++) { pc.orgasm(); }
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}

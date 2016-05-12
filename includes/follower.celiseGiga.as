@@ -91,7 +91,7 @@ public function gigaCeliseFeedRouter():void
 	else if(pc.hasGenitals()) addDisabledButton(2,"Goo Fun","Goo Fun","You have to be some kind of goo creature, like Celise, for this scene.");
 	else addDisabledButton(2,"Goo Fun","Goo Fun","You have to have genitals for this scene.");
 	if(hasACumBubble()) addButton(5,"Cum Bubble",giveCeliseATreatSetup,undefined,"Cum Bubble","Celise loves cum right from the tap, but she’d probably enjoy a stored sample too.");
-	else addDisabledButton(5,"Locked","Locked","You do not have the item required for this scene.");
+	else addDisabledButton(5,"Locked","Locked","You do not have the item required for this scene. Purchasing a Bubble Buddy may be a good place to start...");
 	addButton(14,"Back",gigaCeliseRepeatApproach);
 }
 

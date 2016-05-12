@@ -278,6 +278,8 @@ public function vaandeGo():void
 	//for vagOrAss
 	//tooltip: Use her cock on you.
 	addButton(1,"Ride Ovi",rideDatRahnBitchsOvi,undefined,"Ride Ovi","Use her cock on you.");
+	if(hasACumBubble()) addButton(2,"Give Bubble",giveVaandeATreatSetup,undefined,"Give Bubble","Give Vaande some shrink-wrapped cum - the perfect treat!");
+	else addDisabledButton(2,"Locked","Locked","You don't have the requisite items for this scene. Purchasing a Bubble Buddy may be the way to go...");
 }
 
 //Fuck Pussy
