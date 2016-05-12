@@ -144,7 +144,7 @@ public function meetingFlahne(outputT:Boolean = true):Boolean {
 		this.addDisabledButton(1,"Sex Options");
 	}
 	if(hasACumBubble()) addButton(2,"Cum Bubble",giveFlahneATreatSetup,undefined,"Cum Bubble","Give the rahn a gift of sealed cum.");
-	else addDisabledButton(2, "Locked", "Locked", "You do not have the item required for this scene.");
+	else addDisabledButton(2, "Locked", "Locked", "You do not have the item required for this scene. Purchasing a Bubble Buddy may be a good place to start...");
 	return false;
 }
 
