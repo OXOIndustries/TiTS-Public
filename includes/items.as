@@ -18,6 +18,13 @@ public function isEquippableItem(item:ItemSlotClass):Boolean
 		);
 }
 
+public function itemConsume(item:ItemSlotClass):void
+{
+	item.quantity--;
+	//Remove from inventory array!
+	if(item.quantity <= 0) pc.inventory.splice(pc.inventory.indexOf(item), 1);
+}
+
 public function useItem(item:ItemSlotClass):Boolean {
 	if (item.isUsable == false)
 	{

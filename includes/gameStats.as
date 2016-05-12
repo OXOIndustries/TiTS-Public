@@ -2329,6 +2329,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					output2(", Crew member");
 					if(celiseIsCrew()) output2(" (Onboard Ship)");
 					else if(flags["CELISE_ONBOARD"] == undefined) output2(" (At Tavros Station)");
+					if(flags["BUBBLED_CELISE"] != undefined) output2("\n<b>* Celise, Times Given Cum Bubble: </b>" + flags["BUBBLED_CELISE"]);
 					if(flags["TIMES_CELISE_IN_BALLS"] != undefined)
 					{
 						output2("\n<b>* Celise, Times She’s Stimulated</b>");
@@ -2451,6 +2452,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				{
 					output2("\n<b>* Vaande:</b> Met her");
 					if(flags["ASKED_AFTER_THE_GIRLS"] != undefined && (hours == 10 || hours == 13 || hours == 16)) output2(", Currently performing");
+					if(flags["VAANDE_BUBBLED"] != undefined) output2("\n<b>* Vaande, Times Given Cum Bubble: </b>" + flags["VAANDE_BUBBLED"]);
 					if(flags["SEXED_VAANDE"] != undefined) output2("\n<b>* Vaande, Times Sexed: </b>" + flags["SEXED_VAANDE"]);
 				}
 				variousCount++;
@@ -3002,7 +3004,8 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["FLAHNE_EXHIBITIONISM_UNLOCKED"] != undefined) output2(", Into exhibitionism");
 				if(flags["HUGGED_FLAHNE"] != undefined) output2(", Hugged her");
 				if(flags["FLAHNE_TALKED_ABOUT_CUMSLUTPENNY"] != undefined) output2(", Talked about cum-slut Penny");
-				if(flags["FLAHNE_PISSED"] > 0) output2("\n<b>* Flahne, Interaction:</b> Pissed off for " + flags["FLAHNE_PISSED"] + " hours");
+				if(pc.hasStatusEffect("Flahne_Extra_Pissed")) output2("\n<b>* Flahne, Interaction:</b> Extra pissed off for " + prettifyMinutes(pc.getStatusMinutes("Flahne_Extra_Pissed")));
+				else if(flags["FLAHNE_PISSED"] > 0) output2("\n<b>* Flahne, Interaction:</b> Pissed off for " + flags["FLAHNE_PISSED"] + " hours");
 				if(flags["FLAHNE_LIKE_OVIPOSITOR"] != undefined)
 				{
 					output2("\n<b>* Flahne, Ovipositor:</b>");
@@ -3010,6 +3013,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					else if(flags["FLAHNE_LIKE_OVIPOSITOR"] > 0) output2(" Exposed");
 					else output2(" <i>Unknown</i>");
 				}
+				if(flags["FLAHNE_BUBBLED"] != undefined) output2("\n<b>* Flahne, Times Given Cum Bubble: </b>" + flags["FLAHNE_BUBBLED"]);
 				if(flags["FLAHNE_SEXED"] != undefined) output2("\n<b>* Flahne, Times Sexed: </b>" + flags["FLAHNE_SEXED"]);
 				variousCount++;
 			}
