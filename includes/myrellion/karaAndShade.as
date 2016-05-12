@@ -1647,7 +1647,7 @@ public function shadeBoobWorship():void
 	clearOutput();
 	showShade();
 
-	output("You can’t take your eyes off of the two perfect orbs of unblemished flesh looming over you, resting low on your lover’s chest and punctuated with a pair of broad, pink teats. The way your lover’s breasts rise and fall with her heavy, husky breaths fills you with lust; Shade coos and chews her lower lips as");
+	output("You can’t take your eyes off of the two perfect orbs of unblemished flesh looming over you, resting low on your lover’s chest and punctuated with a pair of broad, pink teats. The way your lover’s breasts rise and fall with her heavy, husky breaths fills you with lust; Shade coos and chews her lower lip as");
 	if (pc.hasCock())
 	{
 		output(" your [pc.cocks] stiffen");

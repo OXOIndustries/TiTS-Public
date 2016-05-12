@@ -211,7 +211,9 @@ public function resolveFynConfusion(type:String):void {
 		output(" on purpose?");
 		
 		output("\n\n<i>“What, right here, in the living room?”</i>");
-		output("\n\n<i>“Of course. No need to make a big song and dance about it. After all, it's not your first time, so the living room should be fine...”</i> He grabs your hand in his, firmly grasping it, bringing his symmetrical face closer to yours. His body smell is masculine and fresh. <i>“... Are you ready?”</i>");
+		output("\n\n<i>“Of course. No need to make a big song and dance about it.");
+		if(type != "none") output(" After all, it's not your first time, so the living room should be fine...");
+		output("”</i> He grabs your hand in his, firmly grasping it, bringing his symmetrical face closer to yours. His body smell is masculine and fresh. <i>“... Are you ready?”</i>");
 		output("\n\nYou nod, a hand reaching up to tentatively run through his dark, long hair. It's so soft and shiny, almost criminally so, the sort that you could run your hands through for hours. <i>“... Yes. Let's do it.”</i>");
 		output("\n\nAt that moment, he pauses, looking deep into your eyes. His powerful brows then raise in sudden comprehension, his whole expression following suit. <i>“... Ah. You... have no idea what I'm talking about, do you?”</i>");
 		output("\n\nYou shake your head, and he pulls back a little. Rather than bothered, he looks distinctly amused. <i>“You just walked up and knocked on my door, didn't you? And then I assumed...”</i>");
