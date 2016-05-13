@@ -17,7 +17,7 @@ public function dryadIsActive():Boolean
 	if(pc.hasStatusEffect("Dryad Cooldown")) return false;
 	if(pc.statusEffectv1("Dryad Encounters") < 8)
 	{
-		if(pc.statusEffectv1("Dryad Encounters") > 2 && rand(Math.floor(pc.statusEffectv1("Dryad Encounters") / 2)) != 0) return false;
+		if(pc.statusEffectv1("Dryad Encounters") > 2 && rand(pc.statusEffectv1("Dryad Encounters")) != 0) return false;
 		return true;
 	}
 	return false;
@@ -298,7 +298,7 @@ public function dryadAfterscene():void
 	}
 	if (silly) output("\n\nYou hear a faint “Sproink!” in the distance, then silence.");
 	
-	pc.createStatusEffect("Dryad Cooldown", 0, 0, 0, 0, true, "", "", false, 60);
+	pc.createStatusEffect("Dryad Cooldown", 0, 0, 0, 0, true, "", "", false, (60 + rand(61)));
 	IncrementFlag("DRYAD_FUCKED");
 	processTime(3);
 	clearMenu();
