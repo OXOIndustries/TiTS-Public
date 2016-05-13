@@ -748,8 +748,8 @@ public function appearance(forTarget:Creature):void
 		// Fluff stuff
 		if (target.hasSkinFlag(GLOBAL.FLAG_FLUFFY))
 		{
-			if (target.biggestTitSize() > 2) output(" Nestled between your breasts");
-			else output(" Poofing out your chest");
+			if (target.biggestTitSize() > 2) output2(" Nestled between your breasts");
+			else output2(" Poofing out your chest");
 			output2(" is a fluffy ball of " + target.furColor + " fur.");
 		}
 		// Cum Splattered!
