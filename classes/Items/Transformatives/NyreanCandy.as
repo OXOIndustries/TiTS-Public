@@ -123,7 +123,7 @@
 				// Femininity Increase
 				if(changes < changeLimit && rand(3) == 0)
 				{
-					var newFem:Number = target.femininity++;
+					var newFem:Number = (target.femininity + 1);
 					
 					if(target.femininity < 100 && target.femininityUnlocked(newFem))
 					{

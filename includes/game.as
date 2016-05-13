@@ -1806,7 +1806,9 @@ public function processTime(arg:int):void {
 					flags["BADGER_QUEST_TIMER"] = -1;
 				}
 			}
-
+			// Hourly femininity check
+			//eventBuffer += pc.fixFemininity();
+			
 			//Days ticks here!
 			if(hours >= 24) {
 				hours = 0;

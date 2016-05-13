@@ -62,7 +62,7 @@ public function statisticsScreen(showID:String = "All"):void
 		if(pc.hasStatusEffect("Force Fem Gender")) output2("\n<b>* Gender Preference:</b> Female");
 		else if(pc.hasStatusEffect("Force Male Gender")) output2("\n<b>* Gender Preference:</b> Male");
 		else output2("\n<b>* Gender Alignment: </b>" + pc.mfn("Male","Female",pc.mf("Androgynous, Male Pronouns","Androgynous, Female Pronouns")));
-		output2("\n<b>* Femininity</b> <i>(Negative is Masculine)</i><b>: </b>" + Math.round((pc.femininity - 50) * 2) + " %");
+		output2("\n<b>* " + (pc.femininity >= 50 ? "Femininity" : "Masculinity") + ": </b>" + Math.abs(Math.round((pc.femininity - 50) * 2)) + " %");
 		output2("\n<b>* Personality Score: </b>" + Math.round(pc.personality));
 		if(pc.isNice()) output2(", Kind");
 		if(pc.isMischievous()) output2(", Mischievous");
