@@ -12,6 +12,13 @@ public function dryadHeader():void
 	author("Wsan");
 }
 
+public function dryadIsActive():Boolean
+{
+	if(pc.hasStatusEffect("Dryad Cooldown")) return false;
+	if(pc.statusEffectv1("Dryad Encounters") < 8) return true;
+	return false;
+}
+
 public function dryadCanSmellPC():Boolean
 {
 	return (pc.hasStatusEffect("Mare Musk") || (pc.hasVagina() && pc.wettestVaginalWetness() >= 4) || pc.hasStatusEffect("Cum Soaked"))
@@ -48,6 +55,10 @@ public function dryadMeeting():void
 	output("\n\nAre you going to have sex with the taur-girl, and if so what are you going to use?");
 	processTime(3);
 	pc.lust(5);
+	
+	if(!pc.hasStatusEffect("Dryad Encounters")) pc.createStatusEffect("Dryad Encounters", 0, 0, 0, 0, true, "", "", false, 1400);
+	pc.addStatusValue("Dryad Encounters", 1, 1);
+	
 	clearMenu();
 	if(pc.lust() >= 33)
 	{
@@ -282,6 +293,8 @@ public function dryadAfterscene():void
 		output(" gives you a gentle kiss before gracefully loping away, her tail flitting hypnotically from side to side as she disappears into the foliage. You heft yourself to your feet, the sensation of warmth filling your swollen belly making you feel a bit lethargic and docile as you prepare to leave.");
 	}
 	if (silly) output("\n\nYou hear a faint “Sproink!” in the distance, then silence.");
+	
+	pc.createStatusEffect("Dryad Cooldown", 0, 0, 0, 0, true, "", "", false, 60);
 	IncrementFlag("DRYAD_FUCKED");
 	processTime(3);
 	clearMenu();
