@@ -1749,11 +1749,12 @@ package classes.GameData
 			//75+
 			if(select == 0)
 			{
-				output("Turning away at an opportune moment, you slip down your clothes and reach back, slapping your [pc.butt] into a bounce before shaking it for " + target.a + target.uniqueName + ". Your technique has grown impeccable, and you bounce your [pc.butt] masterfully, even reaching back and spreading your cheeks, giving " + target.a + target.uniqueName + " an excellent view of your [pc.asshole]");
-				if(pc.hasVagina() && pc.balls > 0) output(" and [pc.vaginas] and [pc.balls]");
-				else if(pc.hasVagina()) output(" and [pc.vaginas]");
-				else if(pc.balls > 0) output(" and [pc.balls]");
-				output(".");
+				output("Turning away at an opportune moment, you slip down your clothes and reach back, slapping your [pc.butt] into a bounce before shaking it for " + target.a + target.uniqueName + ". Your technique has grown impeccable, and you bounce your [pc.butt] masterfully, even reaching back and spreading your cheeks, giving " + target.a + target.uniqueName + " an excellent view of your ");
+				kGAMECLASS.clearList();
+				kGAMECLASS.addToList("[pc.asshole]");
+				if(pc.hasVagina()) kGAMECLASS.addToList("[pc.vaginas]");
+				if(pc.balls > 0) kGAMECLASS.addToList("[pc.balls]");
+				output(kGAMECLASS.formatList() + ".");
 			}
 			//50+
 			else if(select == 1)
@@ -2012,7 +2013,7 @@ package classes.GameData
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_WIDE_HIPS);
 			if(pc.hipRating() < 4 && target.sexualPreferences.getPref(GLOBAL.SEXPREF_NARROW_HIPS) > 0)
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_NARROW_HIPS);
-			if((pc.isTaur() || pc.isNaga()) && target.sexualPreferences.getPref(GLOBAL.SEXPREF_EXOTIC_BODYSHAPE) > 0) 
+			if((pc.isTaur() || pc.isNaga() || pc.isGoo()) && target.sexualPreferences.getPref(GLOBAL.SEXPREF_EXOTIC_BODYSHAPE) > 0) 
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_EXOTIC_BODYSHAPE);
 		
 			clearOutput();
@@ -2131,7 +2132,7 @@ package classes.GameData
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_SMALL_MALEBITS);
 			if((pc.cockTotal() > 1 || pc.vaginaTotal() > 1) && target.sexualPreferences.getPref(GLOBAL.SEXPREF_MULTIPLES) > 0) 
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_MULTIPLES);
-			if((pc.hasCock() || pc.longestCockLength() >= 18) && target.sexualPreferences.getPref(GLOBAL.SEXPREF_HYPER) > 0) 
+			if((pc.hasCock() && pc.longestCockLength() >= 18) && target.sexualPreferences.getPref(GLOBAL.SEXPREF_HYPER) > 0) 
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_HYPER);
 			if(pc.hasVagina() && pc.gapestVaginaLooseness() >= 4 && target.sexualPreferences.getPref(GLOBAL.SEXPREF_GAPE) > 0) 
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_GAPE);
@@ -2225,7 +2226,7 @@ package classes.GameData
 				}		
 			}
 			if(pc.hasVagina()) {
-				if(pc.isTaur()) choices[choices.length] = 5;
+				if(pc.isTaur() && (pc.hasVaginaType(GLOBAL.TYPE_EQUINE) || pc.hasVaginaType(GLOBAL.TYPE_LEITHAN))) choices[choices.length] = 5;
 				else choices[choices.length] = 3;
 			}
 			//Reqs: PC has a vagina with maximum wetness
@@ -2289,7 +2290,7 @@ package classes.GameData
 			}
 			//4 Horsecock centaur tease
 			else if(select == 4) {
-				output("You let out a bestial whinny and stomp your hooves at your enemy. They prepare for an attack, but instead you kick your front hooves off the ground, revealing the hefty horsecock hanging beneath your belly. You let it flop around, quickly getting rigid and to its full erect length. You buck your hips as if you were fucking a mare in heat, letting your opponent know just what’s in store for them if they surrender to pleasure...");
+				output("You let out a bestial whinny and stomp your [pc.feet] at your enemy. They prepare for an attack, but instead you kick your front [pc.feet] off the ground, revealing the hefty horsecock hanging beneath your belly. You let it flop around, quickly getting rigid and to its full erect length. You buck your hips as if you were fucking a mare in heat, letting your opponent know just what’s in store for them if they surrender to pleasure...");
 			}
 			//5 Cunt grind tease
 			else if(select == 5) {
@@ -2500,7 +2501,7 @@ package classes.GameData
 				{
 					msg += "Mmm, can’t get enough of that all-natural [pc.girlCumFlavor] taste. Come get some";
 					if(pc.wettestVaginalWetness() >= 3) msg += ". I’ve got plenty to go around";
-					output(".");
+					msg += ".";
 				}
 				msg += "”</i>";
 				output(msg);
@@ -2516,9 +2517,11 @@ package classes.GameData
 					}
 				}
 				output(", but they can still see vestiges of ");
-				if(pc.hasCock()) output("[pc.cumColor]");
-				if(pc.hasVagina() && pc.hasCock()) output(" and ");
-				if(pc.hasVagina()) output("[pc.girlCumColor]");
+				if (pc.hasCock()) output("[pc.cumColor]");
+				if (pc.cumType != pc.girlCumType || !pc.hasCock()) {
+					if (pc.hasVagina() && pc.hasCock()) output(" and ");
+					if (pc.hasVagina()) output("[pc.girlCumColor]");
+				}
 				output(" on your lips.");
 			}
 			//Reqs: PC is in combat with a zil male, zil female, or the dual zil when meeting Penny, PC has a zil vagina
