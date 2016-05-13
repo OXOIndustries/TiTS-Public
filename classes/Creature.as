@@ -8638,19 +8638,19 @@
 			var dragonCounter:Number = 0;
 			if (faceType == GLOBAL.TYPE_DRACONIC)
 				dragonCounter++;
-			if (earType == GLOBAL.TYPE_DRACONIC)
+			if (earType == GLOBAL.TYPE_DRACONIC || earType == GLOBAL.TYPE_GRYVAIN)
 				dragonCounter++;
-			if (hasTail(GLOBAL.TYPE_DRACONIC))
+			if (hasTail(GLOBAL.TYPE_DRACONIC) || hasTail(GLOBAL.TYPE_GRYVAIN))
 				dragonCounter++;
 			if (tongueType == GLOBAL.TYPE_DRACONIC)
 				dragonCounter++;
-			if (cockTotal(GLOBAL.TYPE_DRACONIC) > 0)
+			if (cockTotal(GLOBAL.TYPE_DRACONIC) > 0 || cockTotal(GLOBAL.TYPE_GRYVAIN) > 0)
 				dragonCounter++;
-			if (hasWings(GLOBAL.TYPE_DRACONIC) || hasWings(GLOBAL.TYPE_SMALLDRACONIC))
+			if (hasWings(GLOBAL.TYPE_DRACONIC) || hasWings(GLOBAL.TYPE_SMALLDRACONIC) || hasWings(GLOBAL.TYPE_GRYVAIN))
 				dragonCounter++;
-			if (legType == GLOBAL.TYPE_DRACONIC)
+			if (legType == GLOBAL.TYPE_DRACONIC || legType == GLOBAL.TYPE_GRYVAIN)
 				dragonCounter++;
-			if (hasHorns(GLOBAL.TYPE_DRACONIC) || hasHorns(GLOBAL.TYPE_LIZAN))
+			if (hasHorns(GLOBAL.TYPE_DRACONIC) || hasHorns(GLOBAL.TYPE_LIZAN) || hasHorns(GLOBAL.TYPE_GRYVAIN))
 				dragonCounter++;
 			if (skinType == GLOBAL.SKIN_TYPE_SCALES && dragonCounter > 0)
 				dragonCounter++;

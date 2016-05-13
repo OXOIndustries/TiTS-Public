@@ -367,7 +367,7 @@ public function iceQueenLetsGoFlirt():void
 	output("\n\n<i>“That right?”</i> Zaalt says with a cocky half-smile, putting one of his big paws on your hip. <i>“Awful forward, aren’t ya?”</i>");
 	
 	if (pc.isBimbo()) output("\n\nYou just giggle and press your [pc.chest] against him, emphasizing your softness and curves ripe for his taking.");
-	else output("\n\nYou step closer, suddenly extra aware of the captain’s musky scent, the bristle of his fun as your fingers brush across it.");
+	else output("\n\nYou step closer, suddenly extra aware of the captain’s musky scent, the bristle of his fur as your fingers brush across it.");
 	
 	output("\n\nZaalt chuckles, but you can feel a stiffness growing, brushing against your thigh. You didn’t exactly expect a lot of opposition to your offer, after all...");
 	
@@ -582,7 +582,7 @@ public function iceQueenLossToZaalt():void
 	
 	output("\n\nHis claws dispose of your [pc.gear], baring your flesh... and his, a moment later, leaving a throbbing shaft of black masculinity hanging down from his pelt of orange-black fur, tumescent in his animalistic need. Snarling, the feral milodan grabs you by the waist and throws you over your pilot’s console, leaving your ass bare and vulnerable. He grabs your cheeks, squeezing hard enough to make you squeal as he spreads them open and thrusts unceremoniously into your [pc.vagOrAss].");
 	
-	output("\n\nYour eyes go wide as the thick black spear of cock brute forces its way into your unprepared hole. Zaalt grunts, clutching at your hips and leaning over you, breathing hot and heavy against your back and neck as he shoves himself inside. Your hole clenches desperately around his thick shaft, trying instinctively to repulse the invading appendage. Zaalt breathes hard, letting you feel his pounding, strong heartbeat through his chest and cock.");
+	output("\n\nYour eyes go wide as the thick, black spear of cock brute-forces its way into your unprepared hole. Zaalt grunts, clutching at your hips and leaning over you, breathing hot and heavy against your back and neck as he shoves himself inside. Your hole clenches desperately around his thick shaft, trying instinctively to repulse the invading appendage. Zaalt breathes hard, letting you feel his pounding, strong heartbeat through his chest and cock.");
 	
 	output("\n\nYou whine, giving one last, desperate struggle against the domineering beast, but he plants a strong hand on your back and forces you down, leaving you no choice but to submit as he");
 	if (pc.hasVagina()) output(" breeds");
@@ -829,13 +829,13 @@ public function iceQueenNoKara():void
 	currentLocation = "UVI R32"; // 9999 Uveto cafe
 	addUvetoCold();
 
-	output("<i>“There’s our guy,”</i> Zaalt says, subtly nodding his head to where a young man is leaning back at a table against the far wall. He’s obviously not human, covered in a thin layer of navy blue fur culminating in a mop of dark red hair and a pair of perky, rabbit-like ears. Your contact’s dressed in a black flight jacket, unzipped to show off a blood red T-shirt with the words [<i>HEAVY METAL BAND</i>] inscribed across it in obviously ironic swirling font.");
-	if (pc.characterClass != GLOBAL.CLASS_ENGINEER) output(" You immediately notice the pair of holsters under the jacket, packed with a pair of holdout pistols, just barely large enough to print to your keen eyes.");
+	output("<i>“There’s our guy,”</i> Zaalt says, subtly nodding his head to where a young man is leaning back at a table against the far wall. He’s obviously not human, covered in a thin layer of navy blue fur culminating in a mop of dark red hair and a pair of perky, rabbit-like ears. Your contact’s dressed in a black flight jacket, unzipped to show off a blood red T-shirt with the words <i>HEAVY METAL BAND</i> inscribed across it in obviously ironic swirling font.");
+	if (pc.characterClass != GLOBAL.CLASS_ENGINEER) output(" You immediately notice the pair of holsters under the jacket, packed with a pair of holdout pistols, just barely large enough to print to your keen eyes."); // Is 'print' intentional?
 	output(" <i>“C’mon. Let’s get this done.”</i>");
 	
 	output("\n\nYou nod, letting Zaalt lead the way over to the lounging");
 	if (!CodexManager.entryUnlocked("Laquines")) output(" alien");
-	output(" laquine");
+	else output(" laquine");
 	output("’s table, and you both take a casual seat across from him, like old friends meeting for lunch. Zaalt puts his case down beside you both, as casual as can be. The figure’s eyes languidly roll open, glancing at you for a moment before a little smile breaks out on the man’s faintly-angular face.");
 	
 	output("\n\n<i>“" +pc.mf("Gentlemen", "‘Sup") +".”</i> He says by way of greeting. <i>“You two need something?”</i>");

@@ -284,27 +284,31 @@ public function getHairCut():void
 	//[Ass-Length]
 	//[Ankle-Length]
 	//[Back] Go to Ceria Hairwork
-	if(pc.credits >= 200 && pc.hairLength > 2) addButton(0,"Short",cutHair,2);
-	else if(pc.hairLength > 2) addDisabledButton(0,"Short","Short","You can't afford that!");
-	else addDisabledButton(0,"Short","Short","Your hair is already shorter than that!");
-	if(pc.credits >= 200 && pc.hairLength > 8) addButton(1,"Shoulders",cutHair,8);
-	else if(pc.hairLength > 8) addDisabledButton(1,"Shoulders","Shoulders","You can't afford that!");
-	else addDisabledButton(1,"Shoulders","Shoulders","Your hair is already shorter than that!");
-	if(pc.credits >= 200 && pc.hairLength > 13) addButton(2,"Long",cutHair,13);
-	else if(pc.hairLength > 13) addDisabledButton(2,"Long","Long","You can't afford that!");
-	else addDisabledButton(2,"Long","Long","Your hair is already shorter than that!");
-	if(pc.credits >= 200 && pc.hairLength > pc.tallness/2.6) addButton(3,"Back Length",cutHair,pc.tallness/2.6);
-	else if(pc.hairLength > pc.tallness/2.6) addDisabledButton(3,"Back Length","Back Length","You can't afford that!");
-	else addDisabledButton(3,"Back Length","Back Length","Your hair is already shorter than that!");
-	if(pc.credits >= 200 && pc.hairLength > pc.tallness/2) addButton(4,"Ass Length",cutHair,pc.tallness/2);
-	else if(pc.hairLength > pc.tallness/2) addDisabledButton(4,"Ass Length","Ass Length","You can't afford that!");
-	else addDisabledButton(4,"Ass Length","Ass Length","Your hair is already shorter than that!");
-	if(pc.credits >= 200 && pc.hairLength > pc.tallness/1.4) addButton(5,"Knee Length",cutHair,pc.tallness/1.4);
-	else if(pc.hairLength > pc.tallness/1.4) addDisabledButton(5,"Knee Length","Knee Length","You can't afford that!");
-	else addDisabledButton(5,"Knee Length","Knee Length","Your hair is already shorter than that!");
-	if(pc.credits >= 200 && pc.hairLength > pc.tallness - 1) addButton(6,"Ankle Length",cutHair,(pc.tallness - 1));
-	else if(pc.hairLength > pc.tallness - 1) addDisabledButton(6,"Ankle Length","Ankle Length","You can't afford that!");
-	else addDisabledButton(6,"Ankle Length","Ankle Length","Your hair is already shorter than that!");
+	var btn:int = 0;
+	if (pc.credits >= 200 && pc.hairLength > 0) addButton(btn++, "Shave", cutHair, 0);
+	else if(pc.hairLength > 0) addDisabledButton(btn++, "Shave", "Shave", "You can't afford that!");
+	else addDisabledButton(btn++, "Shave", "Shave", "You need hair in order to get it cut!");
+	if(pc.credits >= 200 && pc.hairLength > 2) addButton(btn++,"Short",cutHair,2);
+	else if(pc.hairLength > 2) addDisabledButton(btn++,"Short","Short","You can't afford that!");
+	else addDisabledButton(btn++,"Short","Short","Your hair is already shorter than that!");
+	if(pc.credits >= 200 && pc.hairLength > 8) addButton(btn++,"Shoulders",cutHair,8);
+	else if(pc.hairLength > 8) addDisabledButton(btn++,"Shoulders","Shoulders","You can't afford that!");
+	else addDisabledButton(btn++,"Shoulders","Shoulders","Your hair is already shorter than that!");
+	if(pc.credits >= 200 && pc.hairLength > 13) addButton(btn++,"Long",cutHair,13);
+	else if(pc.hairLength > 13) addDisabledButton(btn++,"Long","Long","You can't afford that!");
+	else addDisabledButton(btn++,"Long","Long","Your hair is already shorter than that!");
+	if(pc.credits >= 200 && pc.hairLength > pc.tallness/2.6) addButton(btn++,"Back Length",cutHair,pc.tallness/2.6);
+	else if(pc.hairLength > pc.tallness/2.6) addDisabledButton(btn++,"Back Length","Back Length","You can't afford that!");
+	else addDisabledButton(btn++,"Back Length","Back Length","Your hair is already shorter than that!");
+	if(pc.credits >= 200 && pc.hairLength > pc.tallness/2) addButton(btn++,"Ass Length",cutHair,pc.tallness/2);
+	else if(pc.hairLength > pc.tallness/2) addDisabledButton(btn++,"Ass Length","Ass Length","You can't afford that!");
+	else addDisabledButton(btn++,"Ass Length","Ass Length","Your hair is already shorter than that!");
+	if(pc.credits >= 200 && pc.hairLength > pc.tallness/1.4) addButton(btn++,"Knee Length",cutHair,pc.tallness/1.4);
+	else if(pc.hairLength > pc.tallness/1.4) addDisabledButton(btn++,"Knee Length","Knee Length","You can't afford that!");
+	else addDisabledButton(btn++,"Knee Length","Knee Length","Your hair is already shorter than that!");
+	if(pc.credits >= 200 && pc.hairLength > pc.tallness - 1) addButton(btn++,"Ankle Length",cutHair,(pc.tallness - 1));
+	else if(pc.hairLength > pc.tallness - 1) addDisabledButton(btn++,"Ankle Length","Ankle Length","You can't afford that!");
+	else addDisabledButton(btn++,"Ankle Length","Ankle Length","Your hair is already shorter than that!");
 	addButton(14,"Back",hairworkFromCeria);
 
 }
@@ -327,7 +331,10 @@ public function cutHair(hairInches:Number):void
 		{
 			output("Ceria sits you down in one of the salon chairs, pulling out a simple razor and pair of scissors before setting to work cutting, shearing and trimming away at your hair. Her work is impeccable");
 		}
-		output(", and by the time she’s finished you’re left with a fresh, clean look. <b>Your hair is now " + num2Text(Math.round(hairInches)) + " inches long!</b>");
+		output(", and by the time she’s finished you’re left with a fresh, clean look.");
+		if (hairInches > 0) output(" <b>Your hair is now " + num2Text(Math.round(hairInches)) + " inches long!</b>");
+		else if(pc.hasFur()) output(" <b>You have nothing but fur on your head!</b>");
+		else output(" <b>You are totally bald!</b>");
 	}
 	else
 	{
@@ -346,7 +353,10 @@ public function cutHair(hairInches:Number):void
 			output("\n\n<i>“The simplest tools are the best ones. You really need to be able to feel the customer’s hair... get close.”</i> Ceria leans forward a bit as she says this, in the midst of trimming the front of your hair and making sure you get a good, deep look down the front of her cleavage. You’re tempted to reach out and touch if not for the delicacy with which she’s working the scissors, making sure no strand is left out of place. When she’s done Ceria gives you a kiss on the cheek before stepping behind you and drawing your attention to the mirror.");
 		}
 		output("\n\n<i>“There you go, [pc.name], nice and neat. You look " + pc.mf("a lot more rugged","pretty cute") + " with shorter hair if you ask me.”</i>");
-		output("\n\nCeria pulls away to deposit her tools, giving you some time to admire your new look. <b>Your hair is now " + num2Text(Math.round(hairInches)) + " inches long!</b>");
+		output("\n\nCeria pulls away to deposit her tools, giving you some time to admire your new look.");
+		if (hairInches > 0) output(" <b>Your hair is now " + num2Text(Math.round(hairInches)) + " inches long!</b>");
+		else if(pc.hasFur()) output(" <b>You have nothing but fur on your head!</b>");
+		else output(" <b>You are totally bald!</b>");
 		pc.lust(5);
 	}
 	//[Next] Set [pc.hairstyle] to null and go to Ceria Main
