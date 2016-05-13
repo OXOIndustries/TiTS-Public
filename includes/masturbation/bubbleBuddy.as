@@ -11,9 +11,6 @@ public function playerUsedBubbleBuddyInCombat(targetCreature:Creature, usingCrea
 	kGAMECLASS.clearOutput();
 	author("Adjatha");
 	
-	var hGroup:Array = CombatManager.getHostileCharacters();
-	targetCreature = CombatAttacks.GetBestPotentialTarget(hGroup);
-	
 	//{throw it like a water balloon while in combat}
 	//[Small cum Bubble]
 	if(item is SmallCumBubble)
@@ -33,25 +30,29 @@ public function playerUsedBubbleBuddyInCombat(targetCreature:Creature, usingCrea
 	//[Medium cum Bubble]
 	else if(item is MediumCumBubble)
 	{
-		output("You loosely hold the squishy sphere in one hand while adjusting to a side-facing stance. Shifting your weight backwards, you swing the bubble backwards, eyes focused on your opponent. In one, smooth motion, you extend your arm past your [pc.hips] and shift your weight forward, pivoting to add force to your throw. You snap your wrist just as you release the balloon, its warm, sticky contents pitched at some force.");
+		output("You loosely hold the squishy sphere in one hand while adjusting to a side-facing stance. Shifting your weight backwards, you swing the bubble backwards, eyes focused on your opponent");
+		if(targetCreature.isPlural) output("s");
+		output(". In one, smooth motion, you extend your arm past your [pc.hips] and shift your weight forward, pivoting to add force to your throw. You snap your wrist just as you release the balloon, its warm, sticky contents pitched at some force.");
 		if(rangedCombatMiss(usingCreature, targetCreature))
 		{
 			output("\nYou whiff, and the ball splatters harmlessly on the ground!");
 		}
 		else
 		{
-			output("\n\nThe fist-sized orb hits its mark, the taut latex bloating outward from the impact for a moment before popping with a sharp snap! The [pc.cumVisc] contents of the balloon splatter against your target like a spilled glass of [pc.cumColor] cream.");
+			output("\n\nThe fist-sized orb hits its mark, the taut latex bloating outward from the impact for a moment before popping with a sharp snap! The [pc.cumVisc] contents of the balloon splatter against your target");
+			if(targetCreature.isPlural) output("s");
+			output(" like a spilled glass of [pc.cumColor] cream.");
 			if(targetCreature.hasArmor() && targetCreature.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
 			{
 				output("\nUnfortunately,");
-				if(CombatManager.multipleEnemies()) output(" their outfits are");
+				if(targetCreature.isPlural) output(" their outfits are");
 				else output(" " + targetCreature.mfn("his", "her", "its") + " outfit is");
 				output(" airtight, making the attack ineffective!");
 			}
 			else if(targetCreature.isLustImmune)
 			{
 				output("\nHowever, your opponent");
-				if(CombatManager.multipleEnemies()) output("s seem");
+				if(targetCreature.isPlural) output("s seem");
 				else output(" seems");
 				output(" to be unaffected by the attack!");
 			}
@@ -65,25 +66,29 @@ public function playerUsedBubbleBuddyInCombat(targetCreature:Creature, usingCrea
 	//[Large Cum Bubble]
 	else if(item is LargeCumBubble)
 	{
-		output("Gripping the semi-taut ball of spunk with both hands, you take a few steps forward, fingers sinking into the yielding surface slightly. Pulling the orb back with your arm completely straight, you bend slightly at the waist and pitch it forward. Releasing your grip just as the sphere starts its upswing, you follow through in an outward motion to add a spin to the projectile, which arcs heavily toward your target.");
+		output("Gripping the semi-taut ball of spunk with both hands, you take a few steps forward, fingers sinking into the yielding surface slightly. Pulling the orb back with your arm completely straight, you bend slightly at the waist and pitch it forward. Releasing your grip just as the sphere starts its upswing, you follow through in an outward motion to add a spin to the projectile, which arcs heavily toward your target");
+		if(targetCreature.isPlural) output("s");
+		output(".");
 		if(rangedCombatMiss(usingCreature, targetCreature))
 		{
 			output("\nYou whiff, and the ball splatters harmlessly on the ground!");
 		}
 		else
 		{
-			output("\n\nThe head-sized orb hits its mark, the straining latex covering snapping almost immediately upon contact. The showering spunk released from the popped balloon erupts like an upturned pitcher, warm jizz drenching your target as thoroughly as a 20-man bukkake session.");
+			output("\n\nThe head-sized orb hits its mark, the straining latex covering snapping almost immediately upon contact. The showering spunk released from the popped balloon erupts like an upturned pitcher, warm jizz drenching your target");
+			if(targetCreature.isPlural) output("s");
+			output(" as thoroughly as a 20-man bukkake session.");
 			if(targetCreature.hasArmor() && targetCreature.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
 			{
 				output("\nUnfortunately,");
-				if(CombatManager.multipleEnemies()) output(" their outfits are");
+				if(targetCreature.isPlural) output(" their outfits are");
 				else output(" " + targetCreature.mfn("his", "her", "its") + " outfit is");
 				output(" airtight, making the attack ineffective!");
 			}
 			else if(targetCreature.isLustImmune)
 			{
 				output("\nNevertheless, your opponent");
-				if(CombatManager.multipleEnemies()) output("s seem");
+				if(targetCreature.isPlural) output("s seem");
 				else output(" seems");
 				output(" to be unaffected by the attack!");
 			}
@@ -104,18 +109,21 @@ public function playerUsedBubbleBuddyInCombat(targetCreature:Creature, usingCrea
 		}
 		else
 		{
-			output("\n\nWhen the torso-sized orb hits its mark, the over-pressurized latex covering disintegrates with an echoing pop. The full weight of your mammoth load detonates all over the place in one, [pc.cumColor] instant. Your target is bathed in the [pc.cumVisc] cream, the force of impact enough to knock a man clear off his feet. The deluge of seed is so excessive, it’s almost as if someone had just upturned a bathtub full of spunk.");
+			output("\n\nWhen the torso-sized orb hits its mark, the over-pressurized latex covering disintegrates with an echoing pop. The full weight of your mammoth load detonates all over the place in one, [pc.cumColor] instant. Your target");
+			if(targetCreature.isPlural) output("s are");
+			else output(" is");
+			output(" bathed in the [pc.cumVisc] cream, the force of impact enough to knock a man clear off his feet. The deluge of seed is so excessive, it’s almost as if someone had just upturned a bathtub full of spunk.");
 			if(targetCreature.hasArmor() && targetCreature.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
 			{
 				output("\nUnfortunately,");
-				if(CombatManager.multipleEnemies()) output(" their outfits are");
+				if(targetCreature.isPlural) output(" their outfits are");
 				else output(" " + targetCreature.mfn("his", "her", "its") + " outfit is");
 				output(" airtight, making the attack ineffective!");
 			}
 			else if(targetCreature.isLustImmune)
 			{
 				output("\nEven after all that, your opponent");
-				if(CombatManager.multipleEnemies()) output("s seem");
+				if(targetCreature.isPlural) output("s seem");
 				else output(" seems");
 				output(" to be unaffected by the attack!");
 			}
@@ -126,7 +134,7 @@ public function playerUsedBubbleBuddyInCombat(targetCreature:Creature, usingCrea
 			}
 			if(!targetCreature.hasStatusEffect("Tripped") && usingCreature.aim()/2 + rand(20) + 1 > targetCreature.reflexes()/4 + targetCreature.physique()/4 + 10)
 			{
-				targetCreature.createStatusEffect("Tripped", 1, 0, 0, 0, false, "DefenseDown", "Cannot act for a turn.", true, 0,0xFF0000);
+				targetCreature.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "Cannot act for a turn.", true, 0,0xFF0000);
 				output("\n\n<b>There’s so much that " + targetCreature.a + targetCreature.uniqueName + " is tripped!</b>");
 			}
 		}
