@@ -112,9 +112,10 @@ package classes.Characters
 			this.hairType = GLOBAL.TYPE_HUMAN;
 			this.beardLength = 0;
 			this.beardStyle = 0;
-			this.skinType = GLOBAL.TYPE_HUMAN;
+			this.skinType = GLOBAL.SKIN_TYPE_GOO;
 			this.skinTone = "green";
 			this.skinFlags = new Array();
+			addSkinFlag(GLOBAL.FLAG_ABSORBENT);
 			this.faceType = GLOBAL.TYPE_HUMAN;
 			this.faceFlags = new Array();
 			this.tongueType = GLOBAL.TYPE_HUMAN;
@@ -127,9 +128,9 @@ package classes.Characters
 			this.armType = GLOBAL.TYPE_HUMAN;
 			this.gills = false;
 			this.wingType = GLOBAL.TYPE_HUMAN;
-			this.legType = GLOBAL.TYPE_HUMAN;
-			this.legCount = 3;
-			this.legFlags = [GLOBAL.FLAG_PLANTIGRADE];
+			this.legType = GLOBAL.TYPE_GOOEY;
+			this.legCount = 1;
+			this.legFlags = [GLOBAL.FLAG_AMORPHOUS];
 			this.genitalSpot = 0;
 			this.tailType = GLOBAL.TYPE_HUMAN;
 			this.tailCount = 1;

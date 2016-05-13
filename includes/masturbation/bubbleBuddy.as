@@ -8,8 +8,18 @@ import classes.Items.Toys.Bubbles.SmallCumBubble;
 //While In Combat
 public function playerUsedBubbleBuddyInCombat(targetCreature:Creature, usingCreature:Creature, item:ItemSlotClass):void
 {
-	kGAMECLASS.clearOutput();
+	clearOutput();
+	
+	// Grapple check
+	if(pc.isGrappled())
+	{
+		output("You struggle to throw the cum bubble, but you can’t while in the grips of the opponent!");
+		return;
+	}
+	
 	author("Adjatha");
+	
+	var healed:Boolean = (targetCreature.HP() < targetCreature.HPMax() || targetCreature.energy() < targetCreature.energyMax());
 	
 	//{throw it like a water balloon while in combat}
 	//[Small cum Bubble]
@@ -49,6 +59,16 @@ public function playerUsedBubbleBuddyInCombat(targetCreature:Creature, usingCrea
 				else output(" " + targetCreature.mfn("his", "her", "its") + " outfit is");
 				output(" airtight, making the attack ineffective!");
 			}
+			else if(targetCreature.hasSkinFlag(GLOBAL.FLAG_ABSORBENT))
+			{
+				output("\nOops, it looks like you have misjudged your opponent");
+				if(targetCreature.isPlural) output("s--their " + (targetCreature.skinType == GLOBAL.SKIN_TYPE_GOO ? "gooey" : "") + " skin absorbs the semen" + (healed ? ", revitalzing their health and energy" : "") + "!");
+				else output("--" + targetCreature.mfn("his", "her", "its") + " " + (targetCreature.skinType == GLOBAL.SKIN_TYPE_GOO ? "gooey" : "") + " skin absorbs the semen" + (healed ? ", revitalzing " + targetCreature.mfn("his", "her", "its") + " health and energy" : "") + "!");
+				if(healed) {
+					targetCreature.HP(Math.round(targetCreature.HPMax() * 0.25));
+					targetCreature.energy(Math.round(targetCreature.energyMax() * 0.25));
+				}
+			}
 			else if(targetCreature.isLustImmune)
 			{
 				output("\nHowever, your opponent");
@@ -85,6 +105,16 @@ public function playerUsedBubbleBuddyInCombat(targetCreature:Creature, usingCrea
 				else output(" " + targetCreature.mfn("his", "her", "its") + " outfit is");
 				output(" airtight, making the attack ineffective!");
 			}
+			else if(targetCreature.hasSkinFlag(GLOBAL.FLAG_ABSORBENT))
+			{
+				output("\nOops, it looks like you have misjudged your opponent");
+				if(targetCreature.isPlural) output("s--their " + (targetCreature.skinType == GLOBAL.SKIN_TYPE_GOO ? "gooey" : "") + " skin absorbs the semen" + (healed ? ", revitalzing their health and energy" : "") + "!");
+				else output("--" + targetCreature.mfn("his", "her", "its") + " " + (targetCreature.skinType == GLOBAL.SKIN_TYPE_GOO ? "gooey" : "") + " skin absorbs the semen" + (healed ? ", revitalzing " + targetCreature.mfn("his", "her", "its") + " health and energy" : "") + "!");
+				if(healed) {
+					targetCreature.HP(Math.round(targetCreature.HPMax() * 0.50));
+					targetCreature.energy(Math.round(targetCreature.energyMax() * 0.50));
+				}
+			}
 			else if(targetCreature.isLustImmune)
 			{
 				output("\nNevertheless, your opponent");
@@ -120,6 +150,16 @@ public function playerUsedBubbleBuddyInCombat(targetCreature:Creature, usingCrea
 				else output(" " + targetCreature.mfn("his", "her", "its") + " outfit is");
 				output(" airtight, making the attack ineffective!");
 			}
+			else if(targetCreature.hasSkinFlag(GLOBAL.FLAG_ABSORBENT))
+			{
+				output("\nOops, it looks like you have misjudged your opponent");
+				if(targetCreature.isPlural) output("s--their " + (targetCreature.skinType == GLOBAL.SKIN_TYPE_GOO ? "gooey" : "") + " skin absorbs the semen" + (healed ? ", revitalzing their health and energy" : "") + "!");
+				else output("--" + targetCreature.mfn("his", "her", "its") + " " + (targetCreature.skinType == GLOBAL.SKIN_TYPE_GOO ? "gooey" : "") + " skin absorbs the semen" + (healed ? ", revitalzing " + targetCreature.mfn("his", "her", "its") + " health and energy" : "") + "!");
+				if(healed) {
+					targetCreature.HP(Math.round(targetCreature.HPMax() * 0.85));
+					targetCreature.energy(Math.round(targetCreature.energyMax() * 0.85));
+				}
+			}
 			else if(targetCreature.isLustImmune)
 			{
 				output("\nEven after all that, your opponent");
@@ -132,7 +172,7 @@ public function playerUsedBubbleBuddyInCombat(targetCreature:Creature, usingCrea
 				//{Uses accuracy to hit, deals moderate lust damage, and may cause knock-down}
 				applyDamage(item.baseDamage, usingCreature, targetCreature);
 			}
-			if(!targetCreature.hasStatusEffect("Tripped") && usingCreature.aim()/2 + rand(20) + 1 > targetCreature.reflexes()/4 + targetCreature.physique()/4 + 10)
+			if(!targetCreature.isGoo() && !targetCreature.hasStatusEffect("Tripped") && usingCreature.aim()/2 + rand(20) + 1 > targetCreature.reflexes()/4 + targetCreature.physique()/4 + 10)
 			{
 				targetCreature.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "Cannot act for a turn.", true, 0,0xFF0000);
 				output("\n\n<b>There’s so much that " + targetCreature.a + targetCreature.uniqueName + " is tripped!</b>");

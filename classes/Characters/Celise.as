@@ -74,6 +74,7 @@
 			this.skinType = GLOBAL.SKIN_TYPE_GOO;
 			this.skinTone = "green";
 			this.skinFlags = [GLOBAL.FLAG_SQUISHY, GLOBAL.FLAG_LUBRICATED, GLOBAL.FLAG_AMORPHOUS];
+			addSkinFlag(GLOBAL.FLAG_ABSORBENT);
 			this.faceType = 0;
 			this.faceFlags = new Array();
 			this.tongueType = 0;

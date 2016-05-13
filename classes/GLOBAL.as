@@ -69,6 +69,7 @@
 		public static const FLAG_DOUBLE_HEADED:int							= 36;
 		public static const FLAG_GOOEY:int									= 37;
 		public static const FLAG_SPIKED:int									= 38;
+		public static const FLAG_ABSORBENT:int									= 39;
 		
 		public static const FLAG_NAMES:Array = [
 			"OFFSET -- INVALID",
@@ -110,6 +111,7 @@
 			"Double Headed",
 			"Gooey",
 			"Spiked",
+			"Absorbent",
 		];
 		
 		public static const VALID_SKIN_FLAGS:Array = [
@@ -119,6 +121,7 @@
 			FLAG_FLUFFY,
 			FLAG_SQUISHY,
 			FLAG_LUBRICATED,
+			FLAG_ABSORBENT,
 		];
 		
 		//TYPES
@@ -728,6 +731,8 @@
 			FLUID_TYPE_SPECIAL_GOO,
 			FLUID_TYPE_CHOCOLATE_CUM,
 			FLUID_TYPE_HRAD_CUM,
+			FLUID_TYPE_VANAE_CUM,
+			FLUID_TYPE_SPECIAL_CUMGOO,
 		];
 		
 		public static const VALID_GIRLCUM_TYPES:Array = [

@@ -76,7 +76,7 @@ package classes.Items.Transformatives
 			this.attackVerb = "";
 			
 			//Information
-			this.basePrice = 800;
+			this.basePrice = 4000;
 			this.attack = 0;
 			this.defense = 0;
 			this.shieldDefense = 0;
@@ -100,7 +100,7 @@ package classes.Items.Transformatives
 				if (kGAMECLASS.flags["CATNIP_USED"] == undefined) {
 					output(" A quiet-sounding 'snick' hits your ears, but nothing else. Did it even work? You look where pen touched your skin. There's a tiny red mark and nothing else. The pen's label displays the word ‘inactive’ in bold red text. It must have a built in painkiller. Suddenly, your codex beeps responding to connection request from injected nanobots.");
 					
-					output("\n\nDetected feedback-compatible Biosign Monitor device. Aborting automated route. Debug mode activated. System is awaiting input. Please select specific route or confirm default settings. Please note: targeted route is less effective than automated, since it forces override of optimization algorithm.");
+					output("\n\n<i>“Detected feedback-compatible Biosign Monitor device. Aborting automated route. Debug mode activated. System is awaiting input. Please select specific route or confirm default settings. Please note: targeted route is less effective than automated, since it forces override of optimization algorithm.”</i>");
 					
 					kGAMECLASS.flags["CATNIP_USED"] = 1;
 				}
@@ -129,7 +129,7 @@ package classes.Items.Transformatives
 			counter = 0;
 			options = [];
 			
-			output("Status report:");
+			output("<u><b>Status report:</b></u>");
 			
 			if (!force) addButton(13, "Override", function():* { clearOutput(); routeMenu(target, true); }, null, "Override", "Enable override mode. System would attempt to execute route without checking it's availability.\nWarning: this menu is for authorized personnel only.\nWarning: bypassing of safety protocols is not advised, those functions are called unsafe for a reason.");
 			else {
@@ -141,66 +141,66 @@ package classes.Items.Transformatives
 			
 			buffer += "\nMinor body functions: ";
 			if (routeGeneralAvailable(target) || force) {
-				buffer += "<b>route available</b>.";
+				buffer += "<b>Route available</b>.";
 				addButton(buttons++, "Minor", routeGeneral, target, "Minor", "Set of minor changes in body complexion.");
 				options.push(routeGeneral);
 			}
-			else buffer += "route blocked.";
+			else buffer += "Route blocked.";
 			
 			buffer += "\nEars: ";
 			if (routeEarsAvailable(target) || force) {
-				buffer += "<b>route available</b>.";
+				buffer += "<b>Route available</b>.";
 				addButton(buttons++, "Ears", routeEars, target, "Ears", "Concentrate on ears.");
 				options.push(routeEars);
 			}
-			else buffer += "route blocked.";
+			else buffer += "Route blocked.";
 			
 			buffer += "\nTail: ";
 			if (routeTailAvailable(target) || force) {
-				buffer += ("<b>route available</b>.");
+				buffer += ("<b>Route available</b>.");
 				addButton(buttons++, "Tail", routeTail, target, "Tail", "Concentrate on tail.");
 				options.push(routeTail);
 			}
-			else buffer += ("route blocked.");
+			else buffer += ("Route blocked.");
 			
 			buffer += ("\nGenitals: ");
 			if (routeGenitalsAvailable(target) || force) {
-				buffer += ("<b>route available</b>.");
+				buffer += ("<b>Route available</b>.");
 				addButton(buttons++, "Genitals", routeGenitals, target, "Genitals", "Concentrate on breasts and genitals.");
 				options.push(routeGenitals);
 			}
-			else buffer += ("route blocked.");
+			else buffer += ("Route blocked.");
 			
 			buffer += ("\nEyes: ");
 			if (routeEyesAvailable(target) || force) {
-				buffer += ("<b>route available</b>.");
+				buffer += ("<b>Route available</b>.");
 				addButton(buttons++, "Eyes", routeEyes, target, "Eyes", "Concentrate on eyes.");
 				if(target.hasTail(GLOBAL.TYPE_FELINE))
 					options.push(routeEyes);
 			}
-			else buffer += ("route blocked.");
+			else buffer += ("Route blocked.");
 			
 			buffer += ("\nArms: ");
 			if (routeArmsAvailable(target) || force) {
-				buffer += ("<b>route available</b>.");
+				buffer += ("<b>Route available</b>.");
 				addButton(buttons++, "Arms", routeArms, target, "Arms", "Concentrate on arms.");
 				if(target.hasTail(GLOBAL.TYPE_FELINE) && target.earType == GLOBAL.TYPE_FELINE)
 					options.push(routeArms);
 			}
-			else buffer += ("route blocked.");
+			else buffer += ("Route blocked.");
 			
 			buffer += ("\nSkin: ");
 			if (routeSkinAvailable(target) || force) {
-				buffer += ("<b>route available</b>.");
+				buffer += ("<b>Route available</b>.");
 				addButton(buttons++, "Skin", routeSkin, target, "Skin", "Concentrate on skin.");
 				if(target.hasTail(GLOBAL.TYPE_FELINE) && target.earType == GLOBAL.TYPE_FELINE)
 					options.push(routeSkin);
 			}
-			else buffer += ("route blocked.");
+			else buffer += ("Route blocked.");
 			
 			buffer += ("\nLegs: ");
 			if (routeLegsAvailable(target) && (target.legCount <= 2 && target.legCountUnlocked(2) || target.legCount >= 3 && target.legCountUnlocked(4) || target.legCount >= 5 && target.legCountUnlocked(6)) || force) {
-				buffer += ("<b>route available</b>.");
+				buffer += ("<b>Route available</b>.");
 				if (target.legCount <= 2 && (target.legCount == 2 || target.legCountUnlocked(2)) || force)
 				{
 					addButton(buttons++, "Legs", routeLegs, target, "Legs", "Concentrate on legs.");
@@ -222,16 +222,16 @@ package classes.Items.Transformatives
 						addButton(buttons++, "6 Legs", routeLegs6, target, "Six Legs", "Concentrate on legs. Hexapedal version of legacy tauric stance route.");
 				}
 			}
-			else buffer += ("route blocked.");
+			else buffer += ("Route blocked.");
 			
 			buffer += ("\nFace: ");
 			if (routeFaceAvailable(target) || force) {
-				buffer += ("<b>route available</b>.");
+				buffer += ("<b>Route available</b>.");
 				addButton(buttons++, "Face", routeFace, target, "Face", "Concentrate on face.");
 				if(target.skinType == GLOBAL.SKIN_TYPE_FUR && target.earType == GLOBAL.TYPE_FELINE && target.eyeType == GLOBAL.TYPE_FELINE)
 					options.push(routeFace);
 			}
-			else buffer += ("route blocked.");
+			else buffer += ("Route blocked.");
 			
 			if (options.length > 0)
 				addButton(0, "Default", routeDefault, target, "Default Route", "Let it detect and execute most effective route.");
@@ -417,7 +417,7 @@ package classes.Items.Transformatives
 			if (target.canLactate() && maxSize < 1) maxSize = 1; // for milky pervs leave at least A-cups
 			
 			for (x = 0; x < target.breastRows.length; x++) {
-				if (target.breastRows[x].breastRatingRaw > maxSize && target.breastRatingUnlocked(x, maxSize))  changes++;
+				if (target.breastRows[x].breastRatingRaw > maxSize && target.breastRatingUnlocked(x, maxSize)) changes++;
 				if (target.breastRows[x].nippleType != GLOBAL.NIPPLE_TYPE_INVERTED && target.nippleTypeUnlocked(x, GLOBAL.NIPPLE_TYPE_INVERTED)) changes++
 			}
 			
@@ -505,7 +505,7 @@ package classes.Items.Transformatives
 				
 				if (target.breastRatingUnlocked(0, target.breastRows[0].breastRatingRaw - tittyDrop))
 				{
-					output("\n\nTipping backwards, you flail your arms frantically to keep your balance. Once you right, you realize what happened;  <b>your [pc.chest] have lost a bit of weight, dropping you down to " );
+					output("\n\nTipping backwards, you flail your arms frantically to keep your balance. Once you right, you realize what happened; <b>your [pc.chest] have lost a bit of weight, dropping you down to " );
 					target.breastRows[0].breastRatingRaw -= tittyDrop;
 					output((target.breastRows[0].breastRating(0) > 0 ? target.breastCup(0) : "flats") + ". </b>");
 					changes++;
@@ -775,7 +775,7 @@ package classes.Items.Transformatives
 			return !target.hasTail(GLOBAL.TYPE_FELINE) && (target.tailTypeUnlocked(GLOBAL.TYPE_FELINE) || target.hasTail(GLOBAL.TYPE_COCKVINE));
 		}
 		
-		private function routeTail(target:Creature, usingCreature:Creature = null):void  
+		private function routeTail(target:Creature, usingCreature:Creature = null):void
 		{
 			if(counter <= 1) clearOutput();
 			output("Executing route: tail.");
@@ -1001,12 +1001,12 @@ package classes.Items.Transformatives
 			{
 				output(" Exception: Route have no targets available. Requesting instructions from monitor... Exception: protocol not supported. Fallback route found, executing...");
 				
-				output("\n\nTerror overtakes you as you feel your backbone snap.  It doesn't stop, as you feel your spine lengthens, growing with new flesh from your backside as the bones of your legs flex and twist.  Muscle groups shift and rearrange themselves as the change completes. <b>You now have tauric lower half!</b>");
+				output("\n\nTerror overtakes you as you feel your backbone snap. It doesn't stop, as you feel your spine lengthens, growing with new flesh from your backside as the bones of your legs flex and twist. Muscle groups shift and rearrange themselves as the change completes. <b>You now have tauric lower half!</b>");
 				
 				target.legCount = 4;
 				
 				if (target.genitalSpot != 2) {
-					if(target.hasGenitals()) output("  After taking a moment to get used to your new body, you notice that your genitals now reside between the hind legs of your [pc.lowerBody].");
+					if(target.hasGenitals()) output(" After taking a moment to get used to your new body, you notice that your genitals now reside between the hind legs of your [pc.lowerBody].");
 					target.genitalSpot = 2;
 				}
 				
@@ -1188,7 +1188,7 @@ package classes.Items.Transformatives
 			{
 				output(" Exception: Route have no targets available. Requesting instructions from monitor... Exception: protocol not supported. Fallback route found, executing...");
 				
-				output("\n\nYour [pc.tongue] suddenly falls out of your mouth and begins undulating as it grows longer.  For a moment it swings wildly, completely out of control; but then settles down and you find you can control it at will, almost like a limb.  You're able to stretch it to nearly 4 feet and retract it back into your mouth to the point it looks like a normal tongue.  <b>You now have long, prehensile tongue.</b>");
+				output("\n\nYour [pc.tongue] suddenly falls out of your mouth and begins undulating as it grows longer. For a moment it swings wildly, completely out of control; but then settles down and you find you can control it at will, almost like a limb. You're able to stretch it to nearly 4 feet and retract it back into your mouth to the point it looks like a normal tongue. <b>You now have long, prehensile tongue.</b>");
 				
 				target.addTongueFlag(GLOBAL.FLAG_LONG);
 				target.addTongueFlag(GLOBAL.FLAG_PREHENSILE);
