@@ -15,7 +15,11 @@ public function dryadHeader():void
 public function dryadIsActive():Boolean
 {
 	if(pc.hasStatusEffect("Dryad Cooldown")) return false;
-	if(pc.statusEffectv1("Dryad Encounters") < 8) return true;
+	if(pc.statusEffectv1("Dryad Encounters") < 8)
+	{
+		if(pc.statusEffectv1("Dryad Encounters") > 2 && rand(Math.floor(pc.statusEffectv1("Dryad Encounters") / 2)) != 0) return false;
+		return true;
+	}
 	return false;
 }
 
