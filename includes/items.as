@@ -22,7 +22,10 @@ public function itemConsume(item:ItemSlotClass):void
 {
 	item.quantity--;
 	//Remove from inventory array!
-	if(item.quantity <= 0) pc.inventory.splice(pc.inventory.indexOf(item), 1);
+	if (item.quantity <= 0 && pc.inventory.indexOf(item) != -1)
+	{
+		pc.inventory.splice(pc.inventory.indexOf(item), 1);
+	}
 }
 
 public function useItem(item:ItemSlotClass):Boolean {
@@ -179,7 +182,7 @@ public function combatUseItem(item:ItemSlotClass, targetCreature:Creature = null
 		if (!infiniteItems() && !item.hasFlag(GLOBAL.NOT_CONSUMED_BY_DEFAULT))
 		{
 			item.quantity--;
-			if (item.quantity <= 0)
+			if (item.quantity <= 0 && usingCreature.inventory.indexOf(item) != -1)
 			{
 				usingCreature.inventory.splice(usingCreature.inventory.indexOf(item), 1);
 			}
@@ -532,9 +535,12 @@ public function sellItemGo(arg:ItemSlotClass):void {
 	pc.credits += price;
 	output("You sell " + arg.description + " for " + num2Text(price) + " credits.");
 	arg.quantity--;
-	if (arg.quantity == 0) pc.inventory.splice(pc.inventory.indexOf(arg), 1);
-	this.clearMenu();
-	this.addButton(0,"Next",sellItem);
+	if (arg.quantity <= 0 && pc.inventory.indexOf(arg) != -1)
+	{
+		pc.inventory.splice(pc.inventory.indexOf(arg), 1);
+	}
+	clearMenu();
+	addButton(0,"Next",sellItem);
 }
 
 // Special seller/item handling
