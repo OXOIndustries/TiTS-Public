@@ -576,7 +576,7 @@ public function wetraxxelBrawlerPCVictoryRideHim(useVag:Boolean = false):void
 	if (useVag) pc.cuntChange(pc.biggestVaginaIndex(), enemy.biggestCockVolume(), true, true, false);
 	else pc.buttChange(enemy.biggestCockVolume(), true, true, false);
 	
-	output("\n\nYou chew on your lip, trying to stifle a cry of pleasure as you sink down on the pillar of wetraxxel cockflesh. It’s an effort not to scream out, letting your voice echo through the corridors and announcing your ecstasy to the world. The wetraxxel makes that decision for you, grabbing your [pc.hips] and yanking you down on his rod: you can’t help but scream as he tries to ram feet of cockflesh into the straining");
+	output("\n\nYou chew on your lip, trying to stifle a cry of pleasure as you sink down on the pillar of wetraxxel cockflesh. It’s an effort not to scream out, letting your voice echo through the corridors and announcing your ecstasy to the world. The wetraxxel makes that decision for you, grabbing your [pc.hips] and yanking you down on his rod: you can’t help but scream as he tries to ram a foot of cockflesh into the straining");
 	if (useVag) output(" lips");
 	else output(" ring");
 	output(" of your "+holeTag+".");
