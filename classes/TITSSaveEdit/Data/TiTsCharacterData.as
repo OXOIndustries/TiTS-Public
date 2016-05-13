@@ -379,7 +379,7 @@ package classes.TITSSaveEdit.Data
 			{
 				newObj = {
 					classInstance: "classes.Characters::PlayerCharacter",
-					version: DataManager.LATEST_SAVE_VERSION;
+					version: DataManager.LATEST_SAVE_VERSION
 				};
 			}
 			else
