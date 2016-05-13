@@ -73,7 +73,7 @@ package classes.Items.Toys.Bubbles
 			if(inCombat())
 			{
 				// Player used an item
-				if (usingCreature == kGAMECLASS.pc) kGAMECLASS.playerUsedInCombat(target, usingCreature,this);
+				if (usingCreature == kGAMECLASS.pc) kGAMECLASS.playerUsedBubbleBuddyInCombat(target, usingCreature,this);
 				// Enemy used an item on the PC
 				else if (target == kGAMECLASS.pc && usingCreature != kGAMECLASS.pc)
 				{

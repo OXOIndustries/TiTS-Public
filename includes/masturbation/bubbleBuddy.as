@@ -6,10 +6,14 @@ import classes.Items.Toys.Bubbles.SmallCumBubble;
 /* Item utility functions. Put here since fuck figuring out how to inheritance*/
 //Use Options
 //While In Combat
-public function playerUsedInCombat(targetCreature:Creature, usingCreature:Creature, item:ItemSlotClass):void
+public function playerUsedBubbleBuddyInCombat(targetCreature:Creature, usingCreature:Creature, item:ItemSlotClass):void
 {
 	kGAMECLASS.clearOutput();
 	author("Adjatha");
+	
+	var hGroup:Array = CombatManager.getHostileCharacters();
+	targetCreature = CombatAttacks.GetBestPotentialTarget(hGroup);
+	
 	//{throw it like a water balloon while in combat}
 	//[Small cum Bubble]
 	if(item is SmallCumBubble)
@@ -37,8 +41,25 @@ public function playerUsedInCombat(targetCreature:Creature, usingCreature:Creatu
 		else
 		{
 			output("\n\nThe fist-sized orb hits its mark, the taut latex bloating outward from the impact for a moment before popping with a sharp snap! The [pc.cumVisc] contents of the balloon splatter against your target like a spilled glass of [pc.cumColor] cream.");
-			//{Uses accuracy to hit and deals small lust damage}
-			applyDamage(item.baseDamage, usingCreature, targetCreature);
+			if(targetCreature.hasArmor() && targetCreature.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+			{
+				output("\nUnfortunately,");
+				if(CombatManager.multipleEnemies()) output(" their outfits are");
+				else output(" " + targetCreature.mfn("his", "her", "its") + " outfit is");
+				output(" airtight, making the attack ineffective!");
+			}
+			else if(targetCreature.isLustImmune)
+			{
+				output("\nHowever, your opponent");
+				if(CombatManager.multipleEnemies()) output("s seem");
+				else output(" seems");
+				output(" to be unaffected by the attack!");
+			}
+			else
+			{
+				//{Uses accuracy to hit and deals small lust damage}
+				applyDamage(item.baseDamage, usingCreature, targetCreature);
+			}
 		}
 	}
 	//[Large Cum Bubble]
@@ -52,8 +73,25 @@ public function playerUsedInCombat(targetCreature:Creature, usingCreature:Creatu
 		else
 		{
 			output("\n\nThe head-sized orb hits its mark, the straining latex covering snapping almost immediately upon contact. The showering spunk released from the popped balloon erupts like an upturned pitcher, warm jizz drenching your target as thoroughly as a 20-man bukkake session.");
-			//{Uses accuracy to hit and deals moderate lust damage}
-			applyDamage(item.baseDamage, usingCreature, targetCreature);
+			if(targetCreature.hasArmor() && targetCreature.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+			{
+				output("\nUnfortunately,");
+				if(CombatManager.multipleEnemies()) output(" their outfits are");
+				else output(" " + targetCreature.mfn("his", "her", "its") + " outfit is");
+				output(" airtight, making the attack ineffective!");
+			}
+			else if(targetCreature.isLustImmune)
+			{
+				output("\nNevertheless, your opponent");
+				if(CombatManager.multipleEnemies()) output("s seem");
+				else output(" seems");
+				output(" to be unaffected by the attack!");
+			}
+			else
+			{
+				//{Uses accuracy to hit and deals moderate lust damage}
+				applyDamage(item.baseDamage, usingCreature, targetCreature);
+			}
 		}
 	}
 	//[Huge Cum Bubble]
@@ -67,12 +105,29 @@ public function playerUsedInCombat(targetCreature:Creature, usingCreature:Creatu
 		else
 		{
 			output("\n\nWhen the torso-sized orb hits its mark, the over-pressurized latex covering disintegrates with an echoing pop. The full weight of your mammoth load detonates all over the place in one, [pc.cumColor] instant. Your target is bathed in the [pc.cumVisc] cream, the force of impact enough to knock a man clear off his feet. The deluge of seed is so excessive, it’s almost as if someone had just upturned a bathtub full of spunk.");
-			//{Uses accuracy to hit, deals moderate lust damage, and may cause knock-down}
-			applyDamage(item.baseDamage, usingCreature, targetCreature);
+			if(targetCreature.hasArmor() && targetCreature.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+			{
+				output("\nUnfortunately,");
+				if(CombatManager.multipleEnemies()) output(" their outfits are");
+				else output(" " + targetCreature.mfn("his", "her", "its") + " outfit is");
+				output(" airtight, making the attack ineffective!");
+			}
+			else if(targetCreature.isLustImmune)
+			{
+				output("\nEven after all that, your opponent");
+				if(CombatManager.multipleEnemies()) output("s seem");
+				else output(" seems");
+				output(" to be unaffected by the attack!");
+			}
+			else
+			{
+				//{Uses accuracy to hit, deals moderate lust damage, and may cause knock-down}
+				applyDamage(item.baseDamage, usingCreature, targetCreature);
+			}
 			if(!targetCreature.hasStatusEffect("Tripped") && usingCreature.aim()/2 + rand(20) + 1 > targetCreature.reflexes()/4 + targetCreature.physique()/4 + 10)
 			{
-				targetCreature.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0,0xFF0000);
-				kGAMECLASS.output("\n\n<b>There's so much that " + targetCreature.a + targetCreature.short + " is tripped!</b>");
+				targetCreature.createStatusEffect("Tripped", 1, 0, 0, 0, false, "DefenseDown", "Cannot act for a turn.", true, 0,0xFF0000);
+				output("\n\n<b>There’s so much that " + targetCreature.a + targetCreature.uniqueName + " is tripped!</b>");
 			}
 		}
 	}

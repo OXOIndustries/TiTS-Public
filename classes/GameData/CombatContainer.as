@@ -1036,7 +1036,8 @@ package classes.GameData
 			//GENERIC
 			else
 			{
-				output("You climb up onto your [pc.feet].");
+				if(pc.canFly() && pc.hasWings()) output("Moving your powerful [pc.wingsNoun], you manage to lift yourself up and get back onto your [pc.feet].");
+				else output("You climb up onto your [pc.feet].");
 				pc.removeStatusEffect("Tripped");
 			}
 			processCombat();
@@ -1046,8 +1047,17 @@ package classes.GameData
 		{
 			if (target.hasStatusEffect("Tripped"))
 			{
-				output(target.capitalA + target.uniqueName + " lifts themselves from the floor and gets their feet back under " + target.mfn("him", "her", "it") + "self.");
-				target.removeStatusEffect("Tripped");
+				if(target.statusEffectv1("Tripped") > 0 && !target.canFly())
+				{
+					output(target.capitalA + target.uniqueName + " struggles to get themselves up, but can’t.");
+					target.addStatusValue("Tripped", 1, -1);
+				}
+				else
+				{
+					if(target.canFly() && target.hasWings()) output("With " + target.mfn("his", "her", "its") + " " + target.wingsDescript(true) + " quickly flapping, ");
+					output(target.capitalA + target.uniqueName + " lifts themselves from the floor and gets their " + target.feet() + " back under " + target.mfn("him", "her", "it") + "self.");
+					target.removeStatusEffect("Tripped");
+				}
 			}
 		}
 		
