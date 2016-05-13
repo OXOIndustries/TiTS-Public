@@ -64,6 +64,7 @@ package classes.Items.Toys.Bubbles
 
 			this.combatUsable = true;
 			this.targetsSelf = false;
+			requiresTarget = true;
 			
 			this.version = _latestVersion;
 		}	

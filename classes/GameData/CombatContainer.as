@@ -1049,13 +1049,21 @@ package classes.GameData
 			{
 				if(target.statusEffectv1("Tripped") > 0 && !target.canFly())
 				{
-					output(target.capitalA + target.uniqueName + " struggles to get themselves up, but can’t.");
+					output(target.capitalA + target.uniqueName + " struggles to get");
+					if(target.isPlural) output(" themselves");
+					else output(" " + target.mfn("him", "her", "it") + "self");
+					output(" up, but can’t.");
 					target.addStatusValue("Tripped", 1, -1);
 				}
 				else
 				{
-					if(target.canFly() && target.hasWings()) output("With " + target.mfn("his", "her", "its") + " " + target.wingsDescript(true) + " quickly flapping, ");
-					output(target.capitalA + target.uniqueName + " lifts themselves from the floor and gets their " + target.feet() + " back under " + target.mfn("him", "her", "it") + "self.");
+					if(target.canFly() && target.hasWings())
+					{
+						output("With " + target.mfn("his", "her", "its") + " " + target.wingsDescript(true) + " quickly flapping, ");
+					}
+					output(target.capitalA + target.uniqueName + " lifts");
+					if(target.isPlural) output(" themselves from the floor and gets their " + target.feet() + " back under themselves.");
+					else output(" " + target.mfn("him", "her", "it") + "self from the floor and gets " + target.mfn("him", "her", "its") + " " + target.feet() + " back under " + target.mfn("him", "her", "it") + "self.");
 					target.removeStatusEffect("Tripped");
 				}
 			}
