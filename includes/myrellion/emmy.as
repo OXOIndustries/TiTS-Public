@@ -1855,7 +1855,10 @@ public function emmyGotHarnessReaction():void
 	//Not yet read email
 	if(!MailManager.isEntryViewed("emmy_harness_here"))
 	{
-		output("You step up to Emmy a bit confused, but then it sinks in. <i>“You got your new toy, didn’t you?”</i>");
+		output("You");
+		if(pc.hasLegs()) output(" step up to");
+		else output(" approach");
+		output(" Emmy a bit confused, but then it sinks in. <i>“You got your new toy, didn’t you?”</i>");
 		output("\n\nEmmy folds her arms across her bust, unimpressed. <i>“You didn’t read my email, did you?”</i>");
 		output("\n\nYou sheepishly rub the back of your neck and shake your head in the negative.");
 		output("\n\n<i>“I swear, a girl goes through the trouble of letting you know just how hard she’s going to fuck you, and you don’t even notice.”</i> Circling around the counter, Emmy presses herself against you, her enormous breasts compressing down and bulging out over her forearms. <i>“Give it a read sometime. You’ll like it.”</i> She bares her teeth in an almost too-wide smile and slips a data-chip into your Codex’s access port. <i>“But not as much as I’ll like this. That’s the access key for my harness. You can use it to load up a control app and set me off from anywhere in the galaxy.”</i>");
@@ -1863,7 +1866,10 @@ public function emmyGotHarnessReaction():void
 	//Have read email
 	else
 	{
-		output("\n\nYou step up to Emmy whilst grinning like an idiot. <i>“So you like the new toy?”</i>");
+		output("You");
+		if(pc.hasLegs()) output(" step up to");
+		else output(" approach");
+		output(" Emmy whilst grinning like an idiot. <i>“So you like the new toy?”</i>");
 		output("\n\n<i>“You betcha!”</i> The excited herm is grinning wide enough to show off her considerable number of teeth. <i>“Guess how many times I’ve cum today?”</i>");
 		output("\n\n<i>“");
 		if(pc.isBro()) output("You’re such a fucking slut, Ems.");
@@ -1872,7 +1878,7 @@ public function emmyGotHarnessReaction():void
 		else if(pc.isMischievous()) output("You give an ausar girl a halfway decent excuse to slut it up, and all she wants to do is play with her bone.");
 		else output("You really are my eager slut. Good.");
 		output("”</i> You scratch your chin, musing, <i>“I don’t know, four?”</i>");
-		output("\n\nIdly stroking her cock through the veneer of her skin-hugging suit, Emmy chuckles throatily. <i>“Try ten. I had to take off the harness to let my womb vent twice already. I never seem to go dry! I guess the implant must have thrown my hormones out of wack or something, because as long as I keep myself hydrated, my fuzzy little puppy-nuts just keep filling up.”</i> She sighs and closes in on you, grabbing hold of your hand and guiding it to your balls even as her other arm slips a data chip into your Codex’s access port. <i>“That’s my access key, for my harness. You can download the remote app and play with me whenever you want, even if you’re in another system.”</i>");
+		output("\n\nIdly stroking her cock through the veneer of her skin-hugging suit, Emmy chuckles throatily. <i>“Try ten. I had to take off the harness to let my womb vent twice already. I never seem to go dry! I guess the implant must have thrown my hormones out of wack or something, because as long as I keep myself hydrated, my fuzzy little puppy-nuts just keep filling up.”</i> She sighs and closes in on you, grabbing hold of your hand and guiding it to her balls even as her other arm slips a data chip into your Codex’s access port. <i>“That’s my access key, for my harness. You can download the remote app and play with me whenever you want, even if you’re in another system.”</i>");
 	}
 	//Merge
 	output("\n\n<i>“");
@@ -2884,7 +2890,7 @@ public function emmySlowFuckHermHarness():void
 			if(pc.isBimbo()) outputCodex(", licking your lips");
 			outputCodex(".");
 			outputCodex("\n\nEmmy glances your way, then shudders. A ribbon of drool dangles from the tip of her flopping tongue down to her breasts, drawing shining lines across fabric that seems too tight against her jutting nipples, each seemingly as engorged as the thick shaft that juts between. That fat jackal-cock jerks wildly, sending ripples quaking through her burdensome breasts, and Emmy doubles over, her suit-sheathed claw-tips scrabbling wildly on the countertop, her hips quivering and jerking, yoked to the invisible passions ravaging her mismatched maleness.");
-			outputCodex("\n\n<i>“S-stars,”</i> the lust-lost hermaphrodite stammers, nearly choking on the word. She pushes herself up only to start aggressively humping the counter, squeezing it between her body and the only surface in the shop liable to be harder than herself. Her cock bulges, fat and happy. Surges and fluid distend the length of it on their way to her crest, bulging her suit like a condom before her herm harness pumps the glorious goo back around and into her black-lipped cunt.");
+			outputCodex("\n\n<i>“S-stars,”</i> the lust-lost hermaphrodite stammers, nearly choking on the word. She pushes herself up only to start aggressively humping the counter, squeezing it between her body and the only surface in the shop liable to be harder than herself. Her cock bulges, fat and happy. Surges of fluid distend the length of it on their way to her crest, bulging her suit like a condom before her herm harness pumps the glorious goo back around and into her black-lipped cunt.");
 			outputCodex("\n\n<i>“So much!”</i> Emmy gasps and groans, collapsing to her knees. <i>“So m-much cum!”</i> She cradles her cock and her belly, squeezing and rubbing one as eagerly as the other. The jackaless’s eyes roll back, and her bulging balls shrink ever so slightly. She shudders twice more in the throes of her artificially-induced ecstasy, then slumps back, practically boneless, against the wall.");
 			outputCodex("\n\nKneeling nearby, you ask her if she’s all right.");
 			outputCodex("\n\nHalf purring, half groaning, Emmy slurs, <i>“Totally allrrright... mmm...”</i> She blinks pleasure-bleary eyes and looks up at you. <i>“You fucking tease, you. I’m gonna have a hard time keeping it together if you do that when I’m with a customer, you know.”</i> She staggers up to her feet, planting a kiss on your lips. <i>“But I’ll manage. Now give me a second to straighten up this mess and recover, then we’ll see about getting you some other new toys, if need be.”</i>");
@@ -2929,7 +2935,6 @@ public function emmySlowFuckHermHarness():void
 			emmy.loadInCunt(emmy,0);
 			emmy.loadInCunt(emmy,0);
 			came = true;
-			
 		}
 	}
 	clearHermHarnessStatii();
@@ -2963,7 +2968,7 @@ public function emmyHermHarnessHardFuck():void
 	else if(rand(9) == 0) outputCodex("wanton kaithrit in heat");
 	else if(rand(8) == 0) outputCodex("lusty kaithrit virgin");
 	else if(rand(7) == 0) outputCodex("New Texan cow-girl");
-	if(rand(6) == 0) outputCodex("Nivas Oxonef");
+	else if(rand(6) == 0) outputCodex("Nivas Oxonef");
 	else if(rand(5) == 0) outputCodex("galotian");
 	else if(rand(4) == 0) outputCodex("KihaCorp class 6 companion droid");
 	else if(rand(3) == 0) outputCodex("a parade of ausar in heat");
@@ -3013,15 +3018,15 @@ public function emmyHermHarnessHardFuck():void
 		{
 			outputCodex("\n\n<i>“O-oooh!”</i> Emmy gasps, rocking back on her heels, then doubling over the countertop, her hips wiggling. <i>“You didn’t have to s-set it on... mmm... on high right away!”</i> Shaking her hips, the well-hung herm moans throatily, her tail flapping wildly back and forth like a flag caught in a hurricane, knocking over knicknacks and display models alike. <i>“F-f-fuck, I can’t... I can’t. [pc.name]... please!”</i> She drops to her knees behind the counter and briefly looks up at you, big puppy-dog eyes unsure if they should glare accusingly or roll back and forget their irritation. The rigid surface of her sales counter entirely eclipses her form when she slides down onto her back.");
 			outputCodex("\n\n<i>“You doing okay there, Ems?”</i> you ask with a grin.");
-			outputCodex("\n\nLicking her chops, the jackaless doesn’t bother to reply. Her whole body is writhing, her hands roaming across her taut, shrink-wrapped body, in total abandon, squeezing and stroking every millimeter of panting flesh. Her cock strains, a monument to her own inhuman lust. It strains her jumpsuit, unwilling to be contained by such a feeble enclosure, delirious with desire to strike out from Emmy’s own body and into the hard-fucking partner assailing its senses. A big, fat bubble of contained pre-cum has formed at the tip of her cock, bulging white and red suit into sheer obscenity, waiting to be wicked away into her womb by her herm harness.");
+			outputCodex("\n\nLicking her chops, the jackaless doesn’t bother to reply. Her whole body is writhing, her hands roaming across her taut, shrink-wrapped body, in total abandon, squeezing and stroking every millimeter of panting flesh. Her cock strains, a monument to her own inhuman lust. It strains her jumpsuit, unwilling to be contained by such a feeble enclosure, delirious with desire to strike out from Emmy’s own body and into the hard-fucking partner assailing its senses. A big, fat bubble of contained pre-cum has formed at the tip of her cock, bulging the white and red suit into sheer obscenity, waiting to be wicked away into her womb by her herm harness.");
 			outputCodex("\n\nYou kneel beside Emmy and teasingly run your fingertip along the jutting length, watching it rhythmically quiver and shake to a tempo you’ll never truly understand. The distended pre-bubble abruptly doubles in size, then begins to shrink as the herm harness kicks into action, wicking Emmy’s sinful deposit away into a soon-to-be creamed cunt.");
 			outputCodex("\n\n<i>“Yesss!”</i> Emmy finally answers, biting her lower lip hard enough to draw a trickle of blood. <i>“Yes! Yesyesyesyes!”</i>");
-			outputCodex("\n\nIt’s tough to say whether she’s answering your question or simply vocalizing her pleasure. Whichever it is, the slutted-up jackal-girl is clearly rising to her peak, driven from flirty shopgirl into quivering puddle of fuck in the span of a minute or two the expensive little toy between her legs. You poke and prod at her swelling knot, marvelling at the distended veins, feeling them pulse under your fingertips. Emmy’s moans transition into feverish pants, and her hips levitate from the ground like a luxury ship about to depart from port.");
-			outputCodex("\n\nBy the void, this girl can cum. The first blast creates a jizz-balloon the size of a grapefruit, and before it finishes draining away, Emmy is packing a second load in on top of the first. Her fuzzy balls are twitching and jumping, wringing every drop of spooge out of their seemingly infinite interior and into the hermaphrodite’s incredible ejaculation. The herm harness can barely keep up. You wonder what it must feel like - to both feel like you’re cumming into a slutty minx’s cunt and being flooded frothing spunk. If Emmy’s expression is anything to go by, it feels like heaven.");
+			outputCodex("\n\nIt’s tough to say whether she’s answering your question or simply vocalizing her pleasure. Whichever it is, the slutted-up jackal-girl is clearly rising to her peak, driven from flirty shopgirl into quivering puddle of fuck in the span of a minute or two by the expensive little toy between her legs. You poke and prod at her swelling knot, marvelling at the distended veins, feeling them pulse under your fingertips. Emmy’s moans transition into feverish pants, and her hips levitate from the ground like a luxury ship about to depart from port.");
+			outputCodex("\n\nBy the void, this girl can cum. The first blast creates a jizz-balloon the size of a grapefruit, and before it finishes draining away, Emmy is packing a second load in on top of the first. Her fuzzy balls are twitching and jumping, wringing every drop of spooge out of their seemingly infinite interior and into the hermaphrodite’s incredible ejaculation. The herm harness can barely keep up. You wonder what it must feel like - to both feel like you’re cumming into a slutty minx’s cunt and being flooded with frothing spunk. If Emmy’s expression is anything to go by, it feels like heaven.");
 			outputCodex("\n\nYou refuse to be a passive observer and stroke her length, pumping up and down, watching her knot swelling beyond all reasonable measure. Her cock seems to approve, if the size of her ejaculations are anything to measure by. The herm harness’s internal pumps can barely keep up. No sooner does one spunky balloon disappear than Emmy refills it, her inexhaustible nuts showing no sign of slowing.");
 			outputCodex("\n\nCradling her paunched middle, Emmy gradually comes back down to earth, making smaller and smaller bubbles at the apex of her erection to chart her progress back towards normalcy.");
 			outputCodex("\n\nThe screen of your Codex reads, <i>“Ejaculation complete. Wind down cycle in progress.”</i>");
-			outputCodex("\n\nWondering just what that entails, you caress her knot and watch Emmy smile and gasp. Her tongue hangs out the side of her mouth, drooling down her cheek, but it’s her pupils that her watching. They climb back down from behind her eyelids and fix on your face, shining happily.");
+			outputCodex("\n\nWondering just what that entails, you caress her knot and watch Emmy smile and gasp. Her tongue hangs out the side of her mouth, drooling down her cheek, but it’s her pupils that you’re watching. They climb back down from behind her eyelids and fix on your face, shining happily.");
 			outputCodex("\n\n<i>“You fucker,”</i> Emmy half-growls, half-moans. <i>“I’m going to have to get good at excusing myself to the not-so-little girls’ room, aren’t I?”</i> She wraps her arms around your neck and kisses you on the nose. <i>“Maybe give me a little warm-up next time, huh?”</i> Snuggling in, she kisses you on the lips. <i>“I bet you could make me cum twice as hard if you got my motor going first.”</i>");
 			outputCodex("\n\nYou prod her cum-flooded middle and ask, <i>“Sure you can handle that?”</i>");
 			outputCodex("\n\n<i>“I’m a big girl, [pc.name]. I can handle myself just fine.”</i> Emmy dreamily caresses her middle and sighs before kissing you again. <i>“Now let me up. I’ve got to pick up the shop before someone walks in on us!”</i>");
@@ -3037,8 +3042,8 @@ public function emmyHermHarnessHardFuck():void
 		{
 			outputCodex("\n\nThat should give your infinitely fuckable, furry girlfriend the finish she’s no doubt been waiting for since you turned on the massage function. You wonder how she’s handling the present you’ve delivered her. Has the pleasure knocked her to the floor, set her legs akimbo, and left her hips to fruitlessly thrust into a phantom lover’s luridly imagined attributes?");
 			if(pc.isBimbo()) outputCodex(" You kind of wish you could watch, or unzip her suit and let her thrust into you.");
-			else if(!pc.isAss()) outputCodex("Hopefully she doesn’t get in trouble.");
-			else outputCodex("Hopefully her boss is there to see the show.");
+			else if(!pc.isAss()) outputCodex(" Hopefully she doesn’t get in trouble.");
+			else outputCodex(" Hopefully her boss is there to see the show.");
 			outputCodex("\n\nOnce the herm harness detects her orgasm, it should shut down on its own, leaving your toy-tied slut to pant and stroke the taut fur of her belly until her senses return.");
 		}
 		//Emmy not there, slow fuck in progress
@@ -3182,7 +3187,7 @@ public function fuckEmmyProper():void
 		if(emmy.bellyRating() >= 25) output("pre-filled ");
 		output("womb.");
 	}
-	else output("Each time  you bottom out, abdominal muscles clench uncontrollably, working up a nice, thick load for your paramour’s puffy pussy, loading your [pc.cocks] full of what exactly what your slutty girlfriend craves.");
+	else output("Each time you bottom out, abdominal muscles clench uncontrollably, working up a nice, thick load for your paramour’s puffy pussy, loading your [pc.cocks] full of what exactly what your slutty girlfriend craves.");
 
 	output("\n\nEmmy cums first. She doesn’t scream or moan any differently. Her eyes don’t roll back any farther than they already have. She’s even still fluttering around your length like a high-class whore - just as before, but you can <i>hear</i> her orgasm in the sudden, splattering sound of her prick firing its load. Thick cum hits the floor in waves. It sounds like someone is dumping out a dozen milkshakes between Emmy’s legs, one after the other.");
 

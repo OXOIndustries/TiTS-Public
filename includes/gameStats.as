@@ -3814,6 +3814,8 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["MET_EMMY"] != undefined) output2("\n<b>* Emmy:</b> Met her");
 				else if(flags["APPROACHED_EMMY"] != undefined) output2("\n<b>* Jackal Woman:</b> Met her");
 				else output2("\n<b>* Jackal Woman:</b> Seen her");
+				if(chars["EMMY"].hasStatusEffect("Massaging")) output2(", Being massaged");
+				if(chars["EMMY"].hasStatusEffect("Slow Fucking")) output2(", Being slow fucked");
 				if(flags["EMMY_BANNED"] != undefined || flags["EMMY_POLY"] != undefined || flags["EMMY_BF"] != undefined)
 				{
 					output2("\n<b>* Emmy, Relationship:</b>");
@@ -3821,7 +3823,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					else if(flags["EMMY_POLY"] != undefined) output2(" You’ve both agreed to be polyamorous");
 					else if(flags["EMMY_BF"] != undefined) output2(" You’re her [pc.boy]friend");
 					else output2(" <i>Unknown</i>");
-					if(9999 == 9999 && flags["EMMY_CREW_REQUESTED"] != undefined) output2(", Asked her to join your crew");
+					if(flags["EMMY_CREW_REQUESTED"] != undefined) output2(", Asked her to join your crew");
 				}
 				if(flags["EMMY_ORALED"] != undefined) output2("\n<b>* Emmy, Times She Oral Sexed You: </b>" + flags["EMMY_ORALED"]);
 			}

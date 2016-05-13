@@ -174,7 +174,7 @@ public function combatBlurb(gold:Boolean = false):void
 	{
 		if(gold) flags["MET_GOLD_DESERTER"] = 1;
 		else flags["MET_RED_DESERTER"] = 1;
-		output("\n\nAs you walk through the desolate and war torn wasteland, the wind howls around you. It rages against its underground confines. Instinctively, you ");
+		output("\n\nAs you [pc.walk] through the desolate and war torn wasteland, the wind howls around you. It rages against its underground confines. Instinctively, you ");
 		if(pc.meleeWeapon is EmptySlot && pc.rangedWeapon is EmptySlot) output("grab a nearby rock.");
 		else output("tighten your grip on your [pc.weapon].");
 
@@ -202,7 +202,7 @@ public function combatBlurb(gold:Boolean = false):void
 		if (gold) IncrementFlag("MET_GOLD_DESERTER");
 		else IncrementFlag("MET_RED_DESERTER");
 		
-		output("You’re walking through the desolate and war-torn wasteland. Suddenly, there’s a bee-like whizzing past your ear. A ragged-looking ");
+		output("You’re [pc.walking] through the desolate and war-torn wasteland. Suddenly, there’s a bee-like whizzing past your ear. A ragged-looking ");
 		if(gold) output("gold");
 		else output("red");
 		output(" deserter is standing nearby, a thin, coiled line of smoke rising from her ");
@@ -269,7 +269,7 @@ public function approachMyrDesertersNonCombatShit(gold:Boolean = false):void
 	//Encounter is pregnant red myr deserter:
 	if(flags["BRIHA_INCUBATION_TIMER"] != undefined && !gold)
 	{
-		output("\n\nYou’re walking through the desolate and war-torn wasteland. Nearby, you spot a ragged looking red deserter.");
+		output("\n\nYou’re [pc.walking] through the desolate and war-torn wasteland. Nearby, you spot a ragged looking red deserter.");
 		if(enemy.bellyRating() >= 10)
 		{
 			output(" Under her partially torn uniform, she has " + indefiniteArticle(enemy.bellyDescript(true)) + ".");
@@ -314,7 +314,7 @@ public function approachMyrDesertersNonCombatShit(gold:Boolean = false):void
 	}
 	else
 	{
-		output("\n\nYou’re walking through the desolate and war-torn wasteland. Nearby, you spot a ragged looking ");
+		output("\n\nYou’re [pc.walking] through the desolate and war-torn wasteland. Nearby, you spot a ragged looking ");
 		if(!gold) output("red");
 		else output("gold");
 		output(" deserter");
@@ -1236,7 +1236,7 @@ public function cumSplurgeForRedAntSloots():void
 	//FirstTimeGivingYouHead:
 	if(flags["GOTTEN_RED_DESERT_HEAD"] == undefined)
 	{
-		output("\n\n<i>“Are you sure? Asking my people for a blowjob... well, let’s just say you won’t be walking anywhere for a few hours,”</i> she playfully cautions, then adds, <i>“...Or so I hear. I’ve never had the chance to give one, you know?”</i>");
+		output("\n\n<i>“Are you sure? Asking my people for a blowjob... well, let’s just say you won’t be [pc.walking] anywhere for a few hours,”</i> she playfully cautions, then adds, <i>“...Or so I hear. I’ve never had the chance to give one, you know?”</i>");
 		output("\n\n<i>“You’ll also have to put up with me being terrible. I mean, I’m confident in my venom, but not so much my technique, you know?”</i>");
 		flags["GOTTEN_RED_DESERT_HEAD"] = 1;
 	}
@@ -3240,11 +3240,7 @@ public function useCockOnLysPostFlower(tailCawk:Boolean = false):void
 
 	output("\n\n<i>“I’m ready... whenever you are,”</i> she invites, with husky breath.");
 
-	output("\n\n’Ready’ isn’t a strong enough word. You ");
-	if(pc.isNaga()) output("slither");
-	else if(pc.isGoo()) output("slide");
-	else output("walk");
-	output(" to her and straddle her ant-half. It curls up with her lust, dabbing at your ");
+	output("\n\n’Ready’ isn’t a strong enough word. You [pc.walk] to her and straddle her ant-half. It curls up with her lust, dabbing at your ");
 	if(x >= 0 && pc.balls > 0) output("[pc.sack]");
 	else output("[pc.skinFurScales]");
 	output(" and so eager for penetration that it’s actually hard to angle your shaft. Lys flushes and squeezes it into position by closing her thighs.");

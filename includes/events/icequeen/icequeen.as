@@ -1114,6 +1114,7 @@ public function iceQueenKaraShowsUpInterruptSex():void
 	output("\n\nShe leans in and plants a kiss on your lips while Zaalt walks off, leaving you two to be oggled by the cafe’s other patrons until Kara takes you by the hand and leads you back down the docking arm...");
 
 	processTime(10 + rand(5));
+	pc.credits += 8000;
 
 	clearMenu();
 	addButton(0, "Next", iceQueenKaraSexytimes);
