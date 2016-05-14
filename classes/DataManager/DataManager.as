@@ -505,8 +505,10 @@
 			//returnString += " - <b>Location:</b> " + StringUtil.toTitleCase(dataFile.data.saveLocation);
 			
 			// Prettify Location string!
-			var pName:String = dataFile.data.saveLocation.split("PLANET: ")[1];
-			var sName:String = dataFile.data.saveLocation.split("SYSTEM: ")[1];
+			var pName:String = dataFile.data.saveLocation
+			if(pName.indexOf("PLANET: ") != -1) pName = pName.split("PLANET: ")[1];
+			var sName:String = dataFile.data.saveLocation
+			if(sName.indexOf("SYSTEM: ") != -1) sName = sName.split("SYSTEM: ")[1];
 			pName = pName.slice(0, (pName.indexOf(",") - pName.length));
 			returnString += " - <b>Location:</b> " + StringUtil.toTitleCase(pName.toLowerCase()) + ", " + (sName == "REDACTED" ? "\\\[" + sName + "\\\]" : StringUtil.toTitleCase(sName.toLowerCase()));
 			

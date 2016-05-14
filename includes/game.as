@@ -90,7 +90,7 @@ public function setNavDisabled(addUmask:uint):void
 
 public function showLocationName():void
 {
-	if(InShipInterior()) setLocation("SHIP\nINTERIOR", rooms[rooms["SHIP INTERIOR"].outExit].planet, rooms[rooms["SHIP INTERIOR"].outExit].system);
+	if(InShipInterior()) setLocation("SHIP\nINTERIOR", rooms[shipLocation].planet, rooms[shipLocation].system);
 	else setLocation(rooms[currentLocation].roomName, rooms[currentLocation].planet, rooms[currentLocation].system);
 }
 
@@ -897,6 +897,7 @@ public function flyTo(arg:String):void {
 	var timeFlown:Number = (shortTravel ? 30 + rand(10) : 600 + rand(30));
 	StatTracking.track("movement/time flown", timeFlown);
 	processTime(timeFlown);
+	setLocation("SHIP\nINTERIOR", rooms[shipLocation].planet, rooms[shipLocation].system);
 	
 	if (!interruptMenu)
 	{
@@ -914,6 +915,21 @@ public function leaveShipOK():Boolean
 	{
 		output(" and attempt to head towards the airlock... but you can barely budge an inch from where you are sitting. You’re immobilized. It looks like your endowments have swollen far too large, making it impossible for you to exit your ship! <b>You’ll have to take care of that if you want to leave...</b>");
 		currentLocation = "SHIP INTERIOR";
+		return false;
+	}
+	if(shipLocation == "600" && flags["KQ2_NUKE_EXPLODED"] != undefined)
+	{
+		output(" and head towards the airlock--but suddenly, your ship’s radioactivity alarms start blaring, causing you to freeze instantaneously. The planet has been glassed and is surrounded by several levels of radiation. How you even ended up here is anyone’s guess, but you probably shouldn’t leave your ship to venture off into a nuclear wasteland if you know what’s good for you...");
+		
+		if(flags["KQ2_MYRELLION_STATE"] == undefined)
+		{
+			if (!reclaimedProbeMyrellion())
+			{
+				flags["KQ2_MYRELLION_STATE"] = 1;
+				if(flags["KQ2_DANE_COORDS_TIMER"] == undefined) flags["KQ2_DANE_COORDS_TIMER"] = GetGameTimestamp();
+			}
+			else if(flags["KING_NYREA"] != undefined) flags["KQ2_MYRELLION_STATE"] = 2;
+		}
 		return false;
 	}
 	return true;
@@ -1603,14 +1619,14 @@ public function processTime(arg:int):void {
 				eventQueue.push(kq2NukeExplodesLater);
 				flags["KQ2_NUKE_EXPLODED"] = 1;
 			}
-			
-			// Followup for Dane to send coordinates to the player, should the need arise
-			if (flags["KQ2_MYRELLION_STATE"] == 1)
+		}
+		
+		// Followup for Dane to send coordinates to the player, should the need arise
+		if (flags["KQ2_MYRELLION_STATE"] == 1)
+		{
+			if (flags["KQ2_DANE_COORDS_TIMER"] != undefined && flags["KQ2_DANE_COORDS_TIMER"] + 2880 < GetGameTimestamp())
 			{
-				if (flags["KQ2_DANE_COORDS_TIMER"] != undefined && flags["KQ2_DANE_COORDS_TIMER"] + 2880 < GetGameTimestamp())
-				{
-					eventQueue.push(kq2DaneCoordEmail);
-				}
+				eventQueue.push(kq2DaneCoordEmail);
 			}
 		}
 		
