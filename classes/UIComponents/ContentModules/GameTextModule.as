@@ -90,7 +90,7 @@ package classes.UIComponents.ContentModules
 			_mainText.x = 5;
 			_mainText.y = 5;
 			_mainText.height = 630;
-			_mainText.width = 774;
+			_mainText.width = 769;
 			_mainText.styleSheet = UIStyleSettings.gMainTextCSSStyleSheet;
 			_mainText.name = this._moduleName + "text";
 			this.addChild(_mainText);
@@ -118,7 +118,7 @@ package classes.UIComponents.ContentModules
 			_scrollBar = new UIScrollBar();
 			_scrollBar.direction = "vertical";
 			_scrollBar.setSize(_mainText.width, _mainText.height);
-			_scrollBar.move(_mainText.x + _mainText.width, _mainText.y);
+			_scrollBar.move(_mainText.x + _mainText.width + 5, _mainText.y);
 			this.addChild(_scrollBar);
 			_scrollBar.scrollTarget = _mainText;
 		}

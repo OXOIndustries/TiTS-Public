@@ -864,7 +864,7 @@ public function nyreaTailcockDocking():void
 	clearOutput();
 	nyreaHeaderFromCreature(enemy, "VICTORY:");
 	
-	output("\n\nYou lick your lips, eyes wandering over the defeated huntress, taking in the lovely curves and taut muscles of her athletic body. The nyrea");
+	output("You lick your lips, eyes wandering over the defeated huntress, taking in the lovely curves and taut muscles of her athletic body. The nyrea");
 	if (enemy is NyreaAlpha) output(" stares defiantly into your eyes, visage full of fire");
 	else if (enemy is NyreaBeta) output(" whimpers slightly, refusing to meet your gaze as you drink in her body");
 	output(". One of your hands wanders from her wrist, slipping into the cup of her fur-lined chain bikini to cup one of her ample breasts. Her breath catches when your fingers dig into her surprisingly soft tit, squeezing her nipple until a little trickle of moisture beads out onto your fingertips. Yum.");

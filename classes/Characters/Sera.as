@@ -14,7 +14,7 @@
 		{
 			this._latestVersion = 1;
 			this.version = _latestVersion;
-			this._neverSerialize = true;
+			this._neverSerialize = false;
 			
 			this.short = "Sera";
 			this.originalRace = "human";
@@ -42,8 +42,8 @@
 			this.energyRaw = 100;
 			this.lustRaw = 35;
 			
-			this.XPRaw = 50;
 			this.level = 2;
+			this.XPRaw = normalXP();
 			this.credits = 0;
 			this.HPMod = 0;
 			this.HPRaw = this.HPMax();
@@ -96,9 +96,9 @@
 			this.armType = GLOBAL.TYPE_DEMONIC;
 			this.gills = false;
 			this.wingType = 0;
-			this.legType = GLOBAL.TYPE_HUMAN;
+			this.legType = GLOBAL.TYPE_SUCCUBUS;
 			this.legCount = 2;
-			this.legFlags = new Array();
+			this.legFlags = [GLOBAL.FLAG_DIGITIGRADE,GLOBAL.FLAG_SMOOTH,GLOBAL.FLAG_HEELS];
 			//0 - Waist
 			//1 - Middle of a long tail. Defaults to waist on bipeds.
 			//2 - Between last legs or at end of long tail.
@@ -185,6 +185,11 @@
 			this.ass.bonusCapacity = 50;
 			
 			this.createStatusEffect("Disarm Immune");
+		}
+		
+		override public function onLeaveBuyMenu():void
+		{
+			kGAMECLASS.approachSera();
 		}
 	}
 

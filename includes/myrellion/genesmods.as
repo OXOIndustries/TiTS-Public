@@ -1,7 +1,9 @@
-public function geneHeader():void
+public function geneHeader(nude:Boolean = false):void
 {
-	showName("GENE'S\nMODS");
-	showBust("GENE");
+	//showName("GENE'S\nMODS");
+	showName("\nGENE");
+	if(!nude) showBust("GENE");
+	else showBust("GENE_NUDE");
 	author("Nonesuch");
 }
 
@@ -61,7 +63,7 @@ public function genesModsInteriorBonus():Boolean
 {
 	if(flags["GENES_MODS_ENTERED"] != undefined) output("You find yourself back in Gene's airy, sandy-colored room, decorated with stands showing off various types of gene-mods, both modern and antique. The walls are covered with old poster and shifting-image advertisements for mods; to your eyes they look quaint, but you'd guess to myr eyes they would be the exact opposite. Other, more esoteric trinkets and objects hang from the ceiling and crowd the corners. Despite the clutter the place is hangar-sized, and everything is very widely spaced.");
 	genesModsInterior();
-	return false;
+	return true;
 }
 
 public function geneCockVolume():Number
@@ -71,7 +73,8 @@ public function geneCockVolume():Number
 
 public function genesModsInterior():void
 {
-	geneHeader();
+	showBust("GENE_NUDE");
+	author("Nonesuch");
 
 	if (flags["GENES_MODS_ENTERED"] == undefined)
 	{
@@ -172,6 +175,7 @@ public function genesModsInterior():void
 		{
 			output("\n\n<i>“But trifling talk and business can wait, can’t they.”</i> The massive creature strides out from behind his counter, and you do not resist him as, smile widening, he envelopes you in his cool, granite smell and powerful, looming frame.");
 			// Goto sex
+			clearMenu();
 			addButton(0,"Next",genesModsGoSex,true);
 			return;
 		}
@@ -196,6 +200,11 @@ public function genesModsMenu(cFunc:Function = null):void
 	else
 	{
 		if (!pc.hasVagina() && !pc.hasCock()) addDisabledButton(2, "Sex", "Sex", "You think you're going to need something for Gene to be interested in you. Something cock or pussy shaped, for instance.");
+	}
+
+	if (flags["FAZIAN_QUEST_STATE"] == FAZIAN_QUEST_STARTED && flags["FAZIAN_QUEST_GENE"] == undefined)
+	{
+		addButton(3, "Fazian", fazianQuestGene, undefined, "Fazian", "Perhaps the fanfir knows something about the missing anat.");
 	}
 
 	if (cFunc != geneAppearance) addButton(10, "Appearance", geneAppearance);
@@ -794,7 +803,7 @@ public function genesModsGoSex(isAuto:Boolean = false):void
 public function genesModsBlowjob():void
 {
 	clearOutput();
-	geneHeader();
+	geneHeader(true);
 
 	output("You’ve only got eyes for one thing, and by looking at it and licking your [pc.lips] suggestively, you tell Gene exactly what it is.");
 	if (!pc.isTaur()) output(" Carefully he carries you back behind the counter and sits you down on the floor.");
@@ -813,7 +822,7 @@ public function genesModsBlowjob():void
 			output(" All of your instincts tell you that this is where you most belong -");
 			if (pc.isBiped()) output(" on your knees");
 			else output(" down");
-			output(") in front of a big, dominant male polishing his cock, and that fact combined with the sensations bathing your lips, nose and tongue envelopes you in a deep, golden bliss, your [pc.vagina] becoming wetter and wetter.");
+			output(" in front of a big, dominant male polishing his cock, and that fact combined with the sensations bathing your lips, nose and tongue envelopes you in a deep, golden bliss, your [pc.vagina] becoming wetter and wetter.");
 		}
 		
 		output("\n\n<i>“That is exceptional,”</i> he murmurs, the tremors of his rich voice traveling down his cock and then your spine. <i>“The myr aren’t anywhere near as good as you at this, Steele. Too much teeth... no practice, you see...”</i> You make him trail off into a heartfelt rumble with a well-timed squeeze of the testicle.");
@@ -822,7 +831,7 @@ public function genesModsBlowjob():void
 		
 		output("\n\nThe fanfir hisses as you go back to sliding your lips and hand up and down him, the sound of a kettle nearing boiling point, his wing claws clutching the counter hard and his robot hands trailing through your [pc.hair]. With your mouth forced open wide it’s sloppier now, and the wet sounds of your devoted cocksucking, mixed with Gene’s pleased, rumbling groans fill the shop.");
 		
-		output("\n\n<i>“It’s coming,”</i> he grunts breathlessly. <i>“Would be foolish of you to try... swallow every last drop. However...know you’re a perfectionist.”</i> You look up at him coyly and begin to rub his bulge rapidly with your tongue, kneading the trunk briskly with your hand as you do. In response synthetic hands grip your head, Gene’s hackles rise, and suddenly he is fucking your mouth as hard as he can, holding your head with his synthetic hands and working his hips to use you like an ona-hole, balls swinging as the bulge slides up to your entrance and then savagely surges in deep again.");
+		output("\n\n<i>“It’s coming,”</i> he grunts breathlessly. <i>“Would be foolish of you to try... swallow every last drop. However... know you’re a perfectionist.”</i> You look up at him coyly and begin to rub his bulge rapidly with your tongue, kneading the trunk briskly with your hand as you do. In response synthetic hands grip your head, Gene’s hackles rise, and suddenly he is fucking your mouth as hard as he can, holding your head with his synthetic hands and working his hips to use you like an ona-hole, balls swinging as the bulge slides up to your entrance and then savagely surges in deep again.");
 		
 		output("\n\nYou feel light-headed under this oral battering, but still manage to hollow your cheeks and suck hard one final time when he deliberately sinks into you as far as he can, his dilating cone head penetrating your throat. The first stream of cum goes directly into your stomach; it feels like someone turned a hose of hot soup on inside you. You quell your gag reflex by floating above it, enjoying the sensation of being filled with cum and the dizzying oxygen depletion, eventually becoming slightly disconcerted at just how much of it there is.");
 		
@@ -832,7 +841,8 @@ public function genesModsBlowjob():void
 
 		geneSubmissionLevel(2);
 		pc.loadInMouth(chars["GENE"]);
-		// 9999 - Cumflation
+		// Cumflation
+		if (pc.cumflationEnabled()) pc.maxOutCumflation("mouth", chars["GENE"]);
 		pc.lust(33);
 	}
 	else
@@ -881,7 +891,7 @@ public function genesModsBlowjob():void
 		if (pc.hasCock()) output(" [pc.eachCock] spattering [pc.cum] over the floor in slutty abandon");
 		output(", fingers stroking and pinching your [pc.nipples] mercilessly all the while.");
 		
-		output("\n\n<i>“Did you really just... cum?”</i> gasps the winged monster currently almost balls-deep in your gullet. <i>“Honestly, how much of a... <i>“ he forgets it and concentrates on jetting liters of spicy, tingling seed into your belly. Still holding your head firmly, the vibrations of his contented groans traveling straight through you, he fills your gut until you feel absolutely stuffed with it, your [pc.belly] steadily more protuberant. At last he pulls out of your throat, allowing you a single ragged breath before blissfully ejaculating again, immediately filling your mouth and causing you to splutter and drool the orange goo down your chin and [pc.chest]. At least you can taste it, now... and the sweet spiciness of it, heavily interwoven with his musk, is heavenly. You swallow three more hot, cheek-swelling loads that come out of the fanfir’s pumping cock like a champ, but that isn’t enough, when he finally pulls out, to stop him giving your face and [pc.chest] a final, heavy spraying. At least his ribbed bulge has noticeably decreased in size, meaning that though your jaw aches from your Herculean efforts, his drooling, bulbous dick does part from your lips with reasonable ease.");
+		output("\n\n<i>“Did you really just... cum?”</i> gasps the winged monster currently almost balls-deep in your gullet. <i>“Honestly, how much of a...”</i> he forgets it and concentrates on jetting liters of spicy, tingling seed into your belly. Still holding your head firmly, the vibrations of his contented groans traveling straight through you, he fills your gut until you feel absolutely stuffed with it, your [pc.belly] steadily more protuberant. At last he pulls out of your throat, allowing you a single ragged breath before blissfully ejaculating again, immediately filling your mouth and causing you to splutter and drool the orange goo down your chin and [pc.chest]. At least you can taste it, now... and the sweet spiciness of it, heavily interwoven with his musk, is heavenly. You swallow three more hot, cheek-swelling loads that come out of the fanfir’s pumping cock like a champ, but that isn’t enough, when he finally pulls out, to stop him giving your face and [pc.chest] a final, heavy spraying. At least his ribbed bulge has noticeably decreased in size, meaning that though your jaw aches from your Herculean efforts, his drooling, bulbous dick does part from your lips with reasonable ease.");
 		
 		output("\n\nThe conical tip is reared up to your face, and you lick and suck it quite clean, happily accepting your reward. The massive load you just swallowed glows within your belly, your mouth tingles with the cinnamon-like musk of your Master, and your [pc.groin] gently throbs. You cannot imagine being more content. You practically purr when an android hand drops onto your [pc.hair] and rubs affectionately.");
 		
@@ -890,7 +900,8 @@ public function genesModsBlowjob():void
 		pc.loadInMouth(chars["GENE"]);
 		// Belly = moderately pregnant for next 3 hours
 
-		// 9999 - cumflate
+		// cumflate
+		if (pc.cumflationEnabled()) pc.maxOutCumflation("mouth", chars["GENE"]);
 		pc.lust(33);
 	}
 	processTime(29);
@@ -903,7 +914,7 @@ public function genesModsBlowjob():void
 public function genesModsFrot():void
 {
 	clearOutput();
-	geneHeader();
+	geneHeader(true);
 
 	output("Holding Gene’s gaze, you apply saliva to your hand with long, slow drags of your [pc.tongue]. Once it is nice and coated, you encircle your [pc.cockBiggest] with and begin to pull and stroke, quickly drawing warmth and hardness into it. The fanfir watches, looking academically interested more than anything.");
 
@@ -1226,7 +1237,7 @@ public function genesModsBellyrubNo():void
 public function genesModsLickedOut():void
 {
 	clearOutput();
-	geneHeader();
+	geneHeader(true);
 
 	output("Once again, ivory claws clasp you firmly around the shoulders, and you find yourself being lifted off the floor. You try to keep your breathing level as Gene easily raises you above his head, dangling you naked and helpless in the air. Your fight-or-flight response rabbits that if the worst comes to worst, you could probably give him a good");
 	if (pc.isGoo()) output(" goo smack");
@@ -1305,7 +1316,7 @@ public function genesModsLickedOut():void
 public function genesModsOverCounter():void
 {
 	clearOutput();
-	geneHeader();
+	geneHeader(true);
 	var x:int = rand(pc.totalVaginas());
 	// Requires: Vagina.
 	// Tooltip: Get bent over the counter.

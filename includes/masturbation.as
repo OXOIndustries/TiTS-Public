@@ -4,6 +4,7 @@ import classes.Items.Miscellaneous.MagicMilker;
 import classes.Items.Toys.HoverHole;
 import classes.Items.Toys.NivasBionaHole;
 import classes.Items.Toys.TamaniBionaHole;
+import classes.Items.Toys.BubbleBuddy;
 
 public function availableFaps(roundTwo:Boolean = false):Array
 {
@@ -48,7 +49,7 @@ public function availableFaps(roundTwo:Boolean = false):Array
 	// This enables us to check if the LAST_FAP targetted command is available (it'll be in the array), otherwise hide repeat.
 	
 	// List all the faps!
-	if (currentLocation == "SHIP INTERIOR" && celiseIsCrew() && pc.hasTailCock())
+	if (InShipInterior() && celiseIsCrew() && pc.hasTailCock())
 	{
 		fap = new FapCommandContainer();
 		fap.text = "Porn&Celise";
@@ -150,7 +151,7 @@ public function availableFaps(roundTwo:Boolean = false):Array
 
 	//tentacle massage fun
 	//Accessed from masturbate menu on ship. Req's genitals.
-	if(celiseIsCrew() && flags["GIGACELISE"] == 1&& (pc.hasCock() || pc.hasVagina()) && currentLocation == "SHIP INTERIOR")
+	if(celiseIsCrew() && flags["GIGACELISE"] == 1&& (pc.hasCock() || pc.hasVagina()) && InShipInterior())
 	{
 		fap = new FapCommandContainer();
 		fap.text = "GooMassage";
@@ -275,13 +276,31 @@ public function availableFaps(roundTwo:Boolean = false):Array
 		fap.func = cuffSelfRouter;
 		faps.push(fap);
 	}
-	if(MailManager.isEntryViewed("lets_fap_unlock") && currentLocation == "SHIP INTERIOR")
+	if(MailManager.isEntryViewed("lets_fap_unlock") && InShipInterior())
 	{
 		fap = new FapCommandContainer();
 		fap.text = "Smut";
 		fap.ttHeader = "Smut"
 		fap.ttBody = "You could go check out some smutty videos on the extranet.";
 		fap.func = smutFapMenu;
+		faps.push(fap);
+	}
+	if(hasRedDildo() || hasGoldDildo())
+	{
+		fap = new FapCommandContainer();
+		fap.text = "StolenDildo";
+		fap.ttHeader = "Stolen Dildo"
+		fap.ttBody = "Make use of the dildo you stole from the smutty myr deserter.";
+		fap.func = stolenDildoFap;
+		faps.push(fap);
+	}
+	if(pc.hasItem(new BubbleBuddy()))
+	{
+		fap = new FapCommandContainer();
+		fap.text = "BubbleBuddy";
+		fap.ttHeader = "Bubble Buddy"
+		fap.ttBody = "Smaller and thinner than a  normal onahole but larger than a prophylactic, the lilac-colored Bubble Buddy is a self-lubricating pocket pussy that will \"contain and sustain\" the semen of its user. Though only six inches long, the gelatinous surface seems VERY stretchy.";
+		fap.func = jackIntoDaBubbleBooty;
 		faps.push(fap);
 	}
 	return faps;
@@ -575,7 +594,7 @@ public function vaginalFap():void {
 	if(pc.hasTail()) output(", your [pc.tail] flicking wildly behind you");
 	output(".");
 	if(rooms[currentLocation].hasFlag(GLOBAL.BED)) output(" You're thankful to have a bed, and you lean back against the headboard, letting your [pc.legOrLegs] splay wide and twitch in a visible display of your enjoyment.");
-	else if(currentLocation == "SHIP INTERIOR") output(" You're thankful to be in the comfort of your ship and splay your [pc.legOrLegs] out as much as the ship will allow, flexing your muscles in rapacious enjoyment.");
+	else if(InShipInterior()) output(" You're thankful to be in the comfort of your ship and splay your [pc.legOrLegs] out as much as the ship will allow, flexing your muscles in rapacious enjoyment.");
 	else
 	{
 		output(" You slump down against the nearest upright surface since your [pc.legOrLegs] seem");
@@ -619,13 +638,19 @@ public function vaginalFap():void {
 		else if(pc.cumQ() <= 300) {
 			output(" By the time you finish, you've soaked yourself in [pc.cumColor] from the waist to the neck in your lovegoo, and huge streamers of the stuff are running off you to puddle on the ");
 			if(rooms[currentLocation].hasFlag(GLOBAL.BED)) output("bed");
-			else if(currentLocation == "SHIP INTERIOR") output("deck");
+			else if(InShipInterior()) output("deck");
 			else output("ground");
 			output(".");
+			applyCumSoaked(pc);
 		}
 		else {
 			output(" It never really seems to end, not until you've splattered huge [pc.cumColor] gobs across your [pc.face] a half-dozen times and thoroughly painted the whole of your body with the seed-filled fluid.");
 			if(pc.cumQ() >= 10000) output(" Warm wetness rises up around you as you finish out, blissed out and semi-conscious.");
+			applyCumSoaked(pc);
+			if(pc.cumQ() > 5000) applyCumSoaked(pc);
+			if(pc.cumQ() > 10000) applyCumSoaked(pc);
+			if(pc.cumQ() > 30000) applyCumSoaked(pc);
+			if(pc.cumQ() > 50000) applyCumSoaked(pc);
 		}
 	}
 	output("\n\nYou come to a little later, reeking of sex, your fingers stained with girlish goo, and smile, sated... for now.");
@@ -655,7 +680,7 @@ public function singleDickFap():void {
 	if(pc.hasCockFlag(GLOBAL.FLAG_FLARED)) output(", the flare dangerously expanding already");
 	output(", hot, lusty, and ready for action.");
 	//In ship? Pull up porno!
-	if(currentLocation == "SHIP INTERIOR") {
+	if(InShipInterior()) {
 		output("\n\nWith your other hand, you manipulate the ship's computer to pull up some pornography from the extranet. At first, all you get are a bunch of pop-up holos about getting a space-order bride, pirating music, and cleaning malware off your computer systems, but eventually, you hit the jackpot");
 		if(silly) output(": XMiniatureGiantSpaceHamster.com");
 		output(". There's four breasted whores from Omikron Perseus VI, three-cocked trannies masturbating, and even missionary sex in the missionary position for the sole purpose of procreation. You scroll through, picking video after video, watching increasingly debauched activities until [pc.eachCock] feels so full that it could burst.");
@@ -749,8 +774,12 @@ public function singleDickFap():void {
 		else if(pc.cumQ() >= 65) addToList("[pc.face]");
 		output(formatList() + ".");
 	}
-	else if(pc.cumQ() <= 250) output(" Thick spurt after thick spurt emerges from your cumslit, painting you from your [pc.belly] to your [pc.hair] in [pc.cumColor] relief.");
-	else if(pc.cumQ() <= 500) output(" Big squirts of [pc.cum] fire out one after another, each easily thicker and larger than an average human's by far. They splatter across nearly every inch of your body, so thick that runnels of your spent goo drip down the sides of your [pc.chest] and [pc.face].");
+	else if(pc.cumQ() <= 250) {
+		output(" Thick spurt after thick spurt emerges from your cumslit, painting you from your [pc.belly] to your [pc.hair] in [pc.cumColor] relief.");
+	}
+	else if(pc.cumQ() <= 500) {
+		output(" Big squirts of [pc.cum] fire out one after another, each easily thicker and larger than an average human's by far. They splatter across nearly every inch of your body, so thick that runnels of your spent goo drip down the sides of your [pc.chest] and [pc.face].");
+	}
 	else {
 		output(" Large torrents of [pc.cum] spray out of your cumslit with such vigor that you're able to watch them arc through the air before they rain down around you, each many times the size of a normal orgasm in its own right. The [pc.cumColor] rain slicks you from [pc.feet] to [pc.face], staining you the proof of your incredible virility");
 		if(pc.cumQ() < 1000) {}
@@ -765,6 +794,11 @@ public function singleDickFap():void {
 		}
 		else output(", never mind the physics-defying amount in the lake below");
 		output(".");
+		applyCumSoaked(pc);
+		if(pc.cumQ() > 5000) applyCumSoaked(pc);
+		if(pc.cumQ() > 10000) applyCumSoaked(pc);
+		if(pc.cumQ() > 30000) applyCumSoaked(pc);
+		if(pc.cumQ() > 50000) applyCumSoaked(pc);
 	}
 	if(pc.libido() <= 33) output("\n\nYou exhale a few long, slow pants as you come down from that glorious, orgasmic high");
 	else if(pc.libido() <= 66) output("\n\nYou let out a dazed, happy smile now that you're sexually sated");
@@ -985,6 +1019,7 @@ public function multiCockFap():void {
 		else if(pc.cumQ() <= 750) output("stuffing your cheeks with so much that even with you hurriedly gulping there's still blobs of [pc.cumColor] squrting at leaking out of the corners of your mouth, making a mess of your face and your cock.");
 		else output("flooding your cheeks so effectively with the first pulse that the second pushes your mouth clean off your [pc.cockHead], forcing you to get a head-drenching facial so thick that you're likely unrecognizable.");
 		output(" ");
+		pc.loadInMouth(pc);
 	}
 	//Bits for nipplefucking
 	else if(nippleFucked) {
@@ -994,6 +1029,7 @@ public function multiCockFap():void {
 		else if(pc.cumQ() <= 150) output("large");
 		else output("tunnel-flooding");
 		output(" deposit of your liquid love. ");
+		pc.loadInNipples(pc);
 	}
 	//Everybody gets dese
 	if(!titFucked) {
@@ -1028,6 +1064,11 @@ public function multiCockFap():void {
 	else output("\n\nYou get your gear back on without bothering to clean up. You're just going to find something to fuck anyway.");
 	processTime(45 + rand(5));
 	pc.orgasm();
+	applyCumSoaked(pc);
+	if(pc.cumQ() > 5000) applyCumSoaked(pc);
+	if(pc.cumQ() > 10000) applyCumSoaked(pc);
+	if(pc.cumQ() > 30000) applyCumSoaked(pc);
+	if(pc.cumQ() > 50000) applyCumSoaked(pc);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1163,7 +1204,7 @@ public function milkturbation():void
 		output(".");
 	}
 	//Merge
-	if(currentLocation != "SHIP INTERIOR")
+	if(!InShipInterior())
 	{
 		output(" Looking around to ");
 		if(pc.libido() >= 75) output("make sure you've got an audience");
@@ -1648,6 +1689,11 @@ public function wutwutindabuttbuttFap():void
 		else
 		{
 			output(" covering you in the flood of [pc.cumNoun] that sprays from [pc.eachCockHead] as you laugh in delight at your astounding, inhuman volume");
+			applyCumSoaked(pc);
+			if(pc.cumQ() > 5000) applyCumSoaked(pc);
+			if(pc.cumQ() > 10000) applyCumSoaked(pc);
+			if(pc.cumQ() > 30000) applyCumSoaked(pc);
+			if(pc.cumQ() > 50000) applyCumSoaked(pc);
 		}
 		output(".");
 	}
@@ -2061,7 +2107,7 @@ public function goddamnitJimTAndYourExhibitionism():void
 	if(pc.hasVagina())
 	{
 		output(" Clenching your quaking thighs, you utterly cream yourself in front of them. Your [pc.thighs] are utterly drenched in your [pc.girlCum] as you tremble and twitch");
-		if(pc.hasVagina()) output(", even squirting a little");
+		if(pc.isSquirter()) output(", even squirting a little");
 		output(" in delight.");
 	}
 	else 
@@ -2293,7 +2339,7 @@ public function futaBabePantyfaps(waifu:String = ""):void
 	output("Overcome by your mounting lusts and the yearning desire for the warm touch of your lover, you pull out the underthings you got from " + waifu + ", eyes wandering over the " + pantyColor + " fabric. Memories of your prior entanglements, the tender embraces and lusty encounters you’ve shared in the past. Your [pc.cocks] start");
 	if(pc.cockTotal() == 1) output("s");
 	output(" to stiffen with excitement at the fond memories, and your hand slowly works its way down to your crotch. Smiling to yourself, you gently stroke yourself and slink down ");
-	if(currentLocation != "SHIP INTERIOR") output("onto the ground");
+	if(!InShipInterior()) output("onto the ground");
 	else output("onto the edge of your bed");
 	output(".");
 
@@ -2316,7 +2362,7 @@ public function futaBabePantyfaps(waifu:String = ""):void
 	else output("unleash an ungodly torrent of [pc.cumNoun] into the poor, abused panties, soaking them in what looks like buckets of [pc.cum]. They definitely are carrying <i>your</i> smell more than " + waifu + "’s now.");
 
 	output("\n\nYou flop back and take a deep, satiated breath, mind flooded with fantasies of a pleasant afterglow in " + waifu + "’s arms. Slowly, [pc.eachCock] deflates from inside her bunched-up panties, and you eventually pick yourself up and ");
-	if(currentLocation != "SHIP INTERIOR") output("do what you can to clean your lover’s underwear off");
+	if(!InShipInterior()) output("do what you can to clean your lover’s underwear off");
 	else output("dump the panties into your clothes washer");
 	output(" before you leave.");
 	processTime(17+rand(4));
@@ -2371,6 +2417,11 @@ public function futaPantiesFapInPussy(waifu:String = ""):void
 			output(". There’s so much even the sodden panties can’t plug your gushing quim");
 			if(pc.totalVaginas() > 1) output("s");
 			output(", and torrents of passionate fluid flood down your [pc.thighs]");
+			applyPussyDrenched(pc);
+			if(pc.girlCumQ() > 5000) applyPussyDrenched(pc);
+			if(pc.girlCumQ() > 10000) applyPussyDrenched(pc);
+			if(pc.girlCumQ() > 30000) applyPussyDrenched(pc);
+			if(pc.girlCumQ() > 50000) applyPussyDrenched(pc);
 		}
 	}
 	else output(" your muscles clamping down around them as the " + pantyColor + " underwear darkens with absorbed [pc.girlCum]");
@@ -2388,8 +2439,17 @@ public function futaPantiesFapInPussy(waifu:String = ""):void
 			if(pc.biggestTitSize() < 1) output("is");
 			else output("are");
 			output(" soaked.");
+			applyCumSoaked(pc);
 		}
-		else if(pc.cumQ() >= 500) output(" You’re absolutely soaked.");
+		else if(pc.cumQ() >= 500)
+		{
+			output(" You’re absolutely soaked.");
+			applyCumSoaked(pc);
+			if(pc.cumQ() > 5000) applyCumSoaked(pc);
+			if(pc.cumQ() > 10000) applyCumSoaked(pc);
+			if(pc.cumQ() > 30000) applyCumSoaked(pc);
+			if(pc.cumQ() > 50000) applyCumSoaked(pc);
+		}
 	}
 	output("\n\nYour eyes cross a little when you pull the sodden underwear from your [pc.vagina]");
 	if(pc.hasCock())
@@ -2398,9 +2458,9 @@ public function futaPantiesFapInPussy(waifu:String = ""):void
 		if(pc.cockTotal() == 1) output(" a little more, lurching visibly");
 	}
 	output(". The panties smell more like you than " + waifu + " for the moment, but a quick wash ought to help solve that");
-	if(currentLocation != "SHIP INTERIOR") output(", once you get back to the ship");
+	if(!InShipInterior()) output(", once you get back to the ship");
 	output(".");
-	if(currentLocation == "SHIP INTERIOR") 
+	if(InShipInterior()) 
 	{
 		output(" You guiltily glance around, then sneak one last sniff before tossing them in the wash.");
 		if(crew(true) > 0) output(" Wouldn’t want your crew to walk in on you in a compromising position... at least not <i>that</i> compromising position.");
@@ -2425,7 +2485,7 @@ public function jackOffWithLadyPantiesYouSicko(waifu:String):void
 
 	output("\n\nDizzy with arousal, you ");
 	if(!pc.isCrotchExposed()) output("tear off your clothes and ");
-	if(currentLocation == "SHIP INTERIOR") output("fall back into your cabin bed");
+	if(InShipInterior()) output("fall back into your cabin bed");
 	else output("drop to the ground");
 	output(", ");
 	if(pc.legCount > 1) output("spreading your [pc.legs] as wide as you can");
@@ -2445,6 +2505,10 @@ public function jackOffWithLadyPantiesYouSicko(waifu:String):void
 	{
 		output("\n\nWith a joyous cry, you spasm and go over the edge, blasting your spunk into the insides of " + waifu + "’s well-used panties. Your lewd jism utterly coats her unmentionables in no time at all, utterly drenching every inch with your tainting spunk and coating your entire waist at the same time. You wring your dick for every last gushing burst, riding the high all the way to the end. When you finally finish, you’re left panting for breath and thrumming with a glorious afterglow, not to mention being covered with your own cum. Wow!");
 		applyCumSoaked(pc);
+		if(pc.cumQ() > 5000) applyCumSoaked(pc);
+		if(pc.cumQ() > 10000) applyCumSoaked(pc);
+		if(pc.cumQ() > 30000) applyCumSoaked(pc);
+		if(pc.cumQ() > 50000) applyCumSoaked(pc);
 	}
 	output("\n\nOnce you’re finally able to move, you pick up " + waifu + "’s sticky panties and do what you can to clean them of your spunk for future use. It takes you a while, but you’re pretty sure you’ve got them mostly cleaned of your [pc.cumNoun]. <i>Mostly!</i>");
 	processTime(17+rand(4));
@@ -2463,7 +2527,7 @@ public function pureLadyWaifuPussyRubFap(waifu:String):void
 	output("Whipping out " + waifu + "’s panties, you hold the bunched up fabric in your hand. You flush as you look at the naughty prize, knowing that these have been resting intimately close to her pussy all day long, and now belong to you. With bated breath, you bring them up to your nose and deeply inhale. You can still smell her delicious sweat and sex on the " + getPantyTexture(waifu) + ", rubbed up against and marked by her pussy, and now yours to enjoy. Your own nethers begin to tingle thinking about <i>hers</i>, and you feel a heightening urge to rub your pussy up against something like a cat!");
 	output("\n\nThrumming with arousal, you ");
 	if(!pc.isCrotchExposed()) output("pull off your clothes and ");
-	if(currentLocation == "SHIP INTERIOR") output("flumph back into your cabin bed");
+	if(InShipInterior()) output("flumph back into your cabin bed");
 	else output("drop to the ground");
 	output(", ");
 	if(pc.legCount > 1) output("spreading your [pc.legs] as wide as you can");
@@ -2668,7 +2732,15 @@ public function moderateExhibitionOmniFap():void
 		if(pc.cumQ() < 50) output("lightly splattering it with [pc.cumColor]");
 		else if(pc.cumQ() < 250) output("coating it in glistening [pc.cumColor]");
 		else if(pc.cumQ() < 1000) output("utterly coating it in glistening [pc.cumColor] as well as your [pc.chest] and chin.");
-		else output("utterly dousing it, your [pc.chest] and [pc.face] in gallons of glistening, glorious [pc.cumColor].");
+		else
+		{
+			output("utterly dousing it, your [pc.chest] and [pc.face] in gallons of glistening, glorious [pc.cumColor].");
+			applyCumSoaked(pc);
+			if(pc.cumQ() > 5000) applyCumSoaked(pc);
+			if(pc.cumQ() > 10000) applyCumSoaked(pc);
+			if(pc.cumQ() > 30000) applyCumSoaked(pc);
+			if(pc.cumQ() > 50000) applyCumSoaked(pc);
+		}
 		//pc.lactating:
 		if(pc.canMilkSquirt() && pc.isLactating()) output(" At the same time, [pc.milkVisc], [pc.milkColor] [pc.milkNoun] lewdly shoots from your [pc.nipples] and up in the air as you boob-gasm in front of everyone!");
 		output(" You can hear the ");
@@ -2778,14 +2850,14 @@ public function bionaholeUse(arg:String = "Nivas"):void
 	showName("BIONAHOLE\nUSAGE");
 	author("Savin");
 	output("Deciding to have a little fun with your living sextoy, you ");
-	if(currentLocation == "SHIP INTERIOR") output("pop the BionaHole off its charger");
+	if(InShipInterior()) output("pop the BionaHole off its charger");
 	else output("fish the BionaHole out of your pack");
 	output(" and twist off the vented cap, revealing the " + bionaColor(arg) + " flesh beneath. The visible part of the toy looks exactly like a perfectly shaved woman’s vulva, complete with mons and lips that glisten with just a hint of moisture. The cloned cunt looks positively delicious - enough so that you bring it up to your [pc.lips] and give it an experimental lick. The taste is lush and <i>alive</i>, warm and sweet in the same way any other pussy ought to be. And like a real cunt, the lips flush with arousal when you touch them, gently clenching around your [pc.tongue] as it passes between them.");
 	output("\n\nGrinning to yourself, you ");
 	if(!pc.isNude()) output("slip out of your clothes");
 	else output("toss your gear aside");
 	output(" and slip down ");
-	if(currentLocation != "SHIP INTERIOR") output("onto the ground");
+	if(!InShipInterior()) output("onto the ground");
 	else output("onto your cabin’s chair");
 	output(", wrapping a hand around your [pc.cock " + x + "]. There’s no sense in foreplay with a sextoy, even a living one like this, so you give yourself a few quick strokes to hardness before aligning the " + bionaSheathColor(arg) + " sheath with your [pc.cockHead " + x + "], brushing the dark lips of the cloned pussy. Beads of moisture reach out to caress your crown, radiating a musky heat onto your [pc.cock " + x + "] that all but draws you in. The lips part effortlessly");
 	//if bigcock:
@@ -2843,7 +2915,7 @@ public function tamaniBionaholeInstruction():void
 	output("\n\nThere’s no need to rush into this, however. The high-tech sex-toy came with a holovid featuring the corporate tart herself, titled <i>“Fucking My Pussy,”</i> and ");
 	if(flags["TAMANI_HOLED"] == undefined) output("you can think of no better time to watch it than now.");
 	else output("it should be just as fun to watch as it was the first time.");
-	if(currentLocation != "SHIP INTERIOR") output(" You load it up on your Codex and prop it up so that you can get a good look at it while your hands are busy.");
+	if(!InShipInterior()) output(" You load it up on your Codex and prop it up so that you can get a good look at it while your hands are busy.");
 	else output(" You load it up on your ship’s console. It beats the hell out of trying to use the tiny projectors in your Codex.");
 	output(" A crack of static splits the air a moment before the hologram resolves into the unmistakable owner of the cloned cunt in your palm.");
 	output("\n\nA vision of fushia curves gift-wrapped in lace gazes down somewhere to the left of you, a knowing smile across her purple-veneered lips. <i>“Hey there, " + pc.mf("stud","cutie") + ". If you’re watching me, then you’ve got the hottest, wettest, best-feeling pussy on this side of the core in your hands, but before you get started, please calibrate your projectors so that I’m appropriately positioned. I want you to get the complete experience, and it just wouldn’t be the same if it sounded like I was moaning for some");
@@ -2863,7 +2935,7 @@ public function tamaniBionaholeInstruction():void
 	output(". Just give the ‘enter’ key a smack when you’re all done, and pretend it’s my ass.”</i>");
 
 	output("\n\nYou tap a few buttons to rotate her to face you, then align her to be just above your crotch.");
-	if(currentLocation != "SHIP INTERIOR")
+	if(!InShipInterior())
 	{
 		output(" Sure, the miniature holo-projectors make her look a little small, ");
 		if(CodexManager.entryUnlocked("Raskvel")) output("like a raskvel");
@@ -2896,7 +2968,7 @@ public function tamaniBionaholeInstruction():void
 		output(" needy slit, strumming your own feminine folds and wishing you could somehow fuck them as well.");
 	}
 	output(" A rhythmic tightening ache wells up inside you, burning hot with the need for release. Tamani was right. You really do want to creampie her pussy. UGC peacekeepers could ");
-	if(currentLocation == "SHIP INTERIOR") output("break down your cabin door");
+	if(InShipInterior()) output("break down your cabin door");
 	else output("catch you in the act right now");
 	output(", and you wouldn’t care. They’d have to pry the lewdly slurping sex-toy out of your hands with a crowbar.");
 
@@ -2946,7 +3018,7 @@ public function bionaHoleInstructionalBullshit():void
 	else output("trusty");
 	output(" BionaHole and pull off its cap, revealing the perfectly smooth, creamy ausar mons mounted in the dark blue sheath. You immediately feel the warmth radiating off of Nivas Oxonef’s puffy pink pussylips; they seem to wink at you as you drink in its lush smell and heat, gently glistening with feminine moisture.");
 	output("\n\nBut you don’t want to just sit down and jam your dick into the toy’s lips... at least, not without a little extra stimulation. As you get rid of your [pc.gear], you grab your Codex and prop it up where you can see the screen from ");
-	if(currentLocation != "SHIP INTERIOR") output("somewhere comfortable on the ground");
+	if(!InShipInterior()) output("somewhere comfortable on the ground");
 	else output("your bed");
 	output(". Satisfied, you scroll through your stored media until you alight on the <i>“instructional”</i> holovid that came with the toy and punch it on.");
 

@@ -60,7 +60,7 @@ public function venusRepeatRefuse():void {
 	output("You shake your head and say, <i>“Nope.”</i>");
 	output("\n\nThe plant, seeing the firmness of your stare, pouts but doesn't move, immobile as she is. You look around for any other trouble, and when you glance back, she's gone, vanished into the ground below.");
 	clearMenu();
-	if(flags["EMMY_QUEST"] == 0) addButton(0,"Next",venusPitcherBonusFlower);
+	if(venusFlowerDrops()) addButton(0,"Next",venusPitcherBonusFlower);
 	else addButton(0,"Next",mainGameMenu);
 }
 
@@ -152,7 +152,7 @@ public function noVenusPitcherPlz():void {
 	userInterface.showName("VENUS\nPITCHER");
 	output("You decline again. The venus pitcher woman petulantly blows a frond of her hair up and folds her arms, no longer bothering to attempt to seduce you.\n\nYou regard your other surroundings, and when you look back, she's gone, almost as if by magic.");
 	clearMenu();
-	if(flags["EMMY_QUEST"] == 0) addButton(0,"Next",venusPitcherBonusFlower);
+	if(venusFlowerDrops()) addButton(0,"Next",venusPitcherBonusFlower);
 	else addButton(0,"Next",mainGameMenu);
 }
 
@@ -380,7 +380,7 @@ public function tentacleJamTime(stamen:Boolean = true):void {
 		}
 	}
 	//{Cunt Tail}
-	if(pc.hasCuntTail()) output("\n\nAlmost of its own volition, your [pc.tail] whips around in search of a mate, striking out towards the closest phallus while dilating as wide as it can. After a moment of exquisite friction, the swollen dick-tip is pushing through your [pc.tailVagina], the two prehensile mating tubes writhing almost as beautifully as ballet dancers as one slides into the other, married perfectly to your hungry tail twat, filling it with such vigor that the ecstasy threatens to overwhelm you. Once your depths have been fully plumbed, your tail disgorges the bulk of the tentacle, now coated in your soaking wetness, dripping in the pale in green light. They close together again, and again, and again....");
+	if(pc.hasCuntTail()) output("\n\nAlmost of its own volition, your [pc.tail] whips around in search of a mate, striking out towards the closest phallus while dilating as wide as it can. After a moment of exquisite friction, the swollen dick-tip is pushing through your [pc.tailVagina], the two prehensile mating tubes writhing almost as beautifully as ballet dancers as one slides into the other, married perfectly to your hungry tail twat, filling it with such vigor that the ecstasy threatens to overwhelm you. Once your depths have been fully plumbed, your tail disgorges the bulk of the tentacle, now coated in your soaking wetness, dripping in the pale green light. They close together again, and again, and again....");
 	//{butthole}
 	output("\n\nYou are so awash in pleasure by this point that it's hard to fully comprehend the situation you've found yourself in, but you do become aware of another feeling in your hindquarters - pressure on your [pc.asshole]. One of the vine-cocks has taken it upon itself to explore your unmolested behind, rubbing and squishing noisily amongst your cheeks, smearing its hot juices across your [pc.butt] as it tries to pry apart your tender, still-sealed entrance. Your body is being touched and rubbed all over, caressed in every crevice and erogenous zone; you can't muster the focus to shut it out.");
 	output("\n\nThe blunted tip slips one side of itself into your vulnerable behind, starting to stretch you open, dribbling its slippery pre-spooge over your stretching pucker. It pushes more and more of itself forward until the rest of its flare compresses and pops inside, practically slurping deeper into your anus once it gets past the meager barrier that was your sphincter. You whimper as it snakes through your rectum, gushing juices everywhere until it decides to settle in and start rocking back and forth, pumping your [pc.asshole] incessantly.");
@@ -524,7 +524,7 @@ public function tentacleJamAftermath(knockUpPass:Number = 0):void {
 	pc.orgasm();
 	processTime(200+rand(60));
 	clearMenu();
-	if(flags["EMMY_QUEST"] == 0) addButton(0,"Next",venusPitcherBonusFlower);
+	if(venusFlowerDrops()) addButton(0,"Next",venusPitcherBonusFlower);
 	else addButton(0,"Next",mainGameMenu);
 }
 	
@@ -613,7 +613,7 @@ public function noRepeatElderVenusPitcher():void {
 	userInterface.showName("VENUS\nPITCHER");
 	output("You turn away before she snares you with her looks, stepping a few extra feet away for good measure. There’s a muffled thump, and when you glance back, you realize she’s disappeared into the ground, unlikely to be seen again.");
 	clearMenu();
-	if(flags["EMMY_QUEST"] == 0) addButton(0,"Next",venusPitcherBonusFlower);
+	if(venusFlowerDrops()) addButton(0,"Next",venusPitcherBonusFlower);
 	else addButton(0,"Next",mainGameMenu);
 }
 //[Yes]
@@ -700,7 +700,7 @@ public function lookAwayFromElderVenusPitcher():void {
 	output("You turn away, much to the indignity of the leafy succubus behind you. After a few pleading statements fail to entice your attention, she curses loudly then goes silent. There is a rather final sounding “sklultch” from behind you. Perhaps she went back into her pod?");
 	//To room desc, no venus proc.
 	clearMenu();
-	if(flags["EMMY_QUEST"] == 0) addButton(0,"Next",venusPitcherBonusFlower);
+	if(venusFlowerDrops()) addButton(0,"Next",venusPitcherBonusFlower);
 	else addButton(0,"Next",mainGameMenu);
 }
 
@@ -1242,7 +1242,7 @@ public function elderVenusPitcherEpilogue():void {
 	if(rand(3) == 0) pc.orgasm();
 	processTime(20+rand(20));
 	clearMenu();
-	if(flags["EMMY_QUEST"] == 0) addButton(0,"Next",venusPitcherBonusFlower);
+	if(venusFlowerDrops()) addButton(0,"Next",venusPitcherBonusFlower);
 	else addButton(0,"Next",mainGameMenu);
 }
 
@@ -1402,7 +1402,7 @@ public function layFertilizedVenusPitcherEgg():void
 	output(". You swoon and gasp, your [pc.hips] gently twisting and thrusting, reacting to an entirely different, more libidinous set of instincts.");
 
 	output("\n\nIt feels good to play mother for the pitchers, and every passing second reinforces that belief a hundred-fold. The pleasant, pliable expansion of your womb's entrance, the wriggling tentacles slipping and sliding across the surface and interior of your [pc.vagina " + pSlot + "], it's all too much. Grunting and on the verge of cumming already, you feel the pod slide through your tightly-stretched cervix to stretch your tunnel wide, pulled that far by the verdant, squirming vines reaching for the outside.");
-	output("\n\nEach time the egg-like pod moves another inch, you grunt louder than the last time. Sometimes a feverish moan escapes your [pc.lips], but the bulk of your vocalizations carry the force of your body's birthing effort rather than the pleasure it gives you, not that the pleasure is any less overwhelming. Indeed, your [pc.girlCum] mixes with the copious slime as you the egg parts your netherlips. There is a sexual component to your enjoyment, yet it mixes with a certain sublime satisfaction.");
+	output("\n\nEach time the egg-like pod moves another inch, you grunt louder than the last time. Sometimes a feverish moan escapes your [pc.lips], but the bulk of your vocalizations carry the force of your body's birthing effort rather than the pleasure it gives you, not that the pleasure is any less overwhelming. Indeed, your [pc.girlCum] mixes with the copious slime as the egg parts your netherlips. There is a sexual component to your enjoyment, yet it mixes with a certain sublime satisfaction.");
 	output("\n\nYour lips are gaped wide by the seed now, enough for you to see where it has sprouted the tendrils, and they push down on your thighs to drag the slimy ovoid mass free. It pops out with a web of green-hued juices behind it, plopping noisily into the puddle below, triggering an immediate, powerful orgasm as your flushed lips snap back closed. The mix of birthing endorphins and climactic stimulation send you reeling, flopping bonelessly on the ground");
 	if (pc.isBiped()) output(", your toes curled");
 	output(".");
@@ -1435,7 +1435,7 @@ public function layFertilizedVenusPitcherEgg():void
 	}
 
 	clearMenu();
-	if (currentLocation == "SHIP INTERIOR")
+	if (InShipInterior())
 	{
 		output("\n\nSince you're on your ship, you might as well send it off to your daycare.")
 		StatTracking.track("pregnancy/fertilized venus pitcher seeds/day care");

@@ -63,8 +63,8 @@ package classes.Characters
 			this.energyRaw = 100;
 			this.lustRaw = 10;
 			
-			this.XPRaw = 500;
 			this.level = 5;
+			this.XPRaw = normalXP();
 			this.credits = 400 + rand(37);
 			this.HPMod = -35;
 			this.HPRaw = this.HPMax();

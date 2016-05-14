@@ -51,7 +51,7 @@ package classes.GameData
 		// doesn't require a target to be selected.
 		// Basically, this is for AoE attacks that don't require an explicit target, but still make reference to an action taking place
 		// against one specific enemy to start the chain of events.
-		private static function GetBestPotentialTarget(hGroup:Array):Creature
+		public static function GetBestPotentialTarget(hGroup:Array):Creature
 		{
 			if (hGroup.length == 1) return hGroup[0];
 			
@@ -1036,7 +1036,7 @@ package classes.GameData
 			RangedAttack(attacker, target);
 			SingleRangedAttackImpl(attacker, target, true);
 			
-			if (attacker.aim() / 2 + rand(20) + 1 >= target.reflexes() / 2 + 10 && !target.hasStatusEffect("Blinded") && attacker.hasRangedEnergyWeapon())
+			if (attacker.aim() / 2 + rand(20) + 1 >= target.reflexes() / 2 + 10 && !target.hasStatusEffect("Blinded") && attacker.hasRangedEnergyWeapon() && !target.hasBlindImmunity())
 			{
 				if (target is PlayerCharacter) output("\n<b>You are blinded by flashes from " + attacker.a + possessive(attacker.uniqueName) + " " + attacker.rangedWeapon.longName + ".</b>");
 				else if (attacker is PlayerCharacter) output("<b>" + target.capitalA + target.uniqueName + " is blinded by your " + possessive(attacker.rangedWeapon.longName) + " flashes.</b>\n");
@@ -1286,7 +1286,7 @@ package classes.GameData
 				
 				var cTarget:Creature = hGroup[i] as Creature;
 				
-				if (attacker.aim() / 2 + rand(20) + 6 >= cTarget.reflexes() / 2 + 10 && !cTarget.hasStatusEffect("Blinded"))
+				if (attacker.aim() / 2 + rand(20) + 6 >= cTarget.reflexes() / 2 + 10 && !cTarget.hasStatusEffect("Blinded") && !cTarget.hasBlindImmunity())
 				{
 					cTarget.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0,0xFF0000);
 					
@@ -1314,7 +1314,7 @@ package classes.GameData
 				
 				var cTarget:Creature = hGroup[i];
 				
-				if (attacker.aim() / 2 + rand(20) + 6 >= cTarget.reflexes() / 2 + 10 && !cTarget.hasStatusEffect("Blinded"))
+				if (attacker.aim() / 2 + rand(20) + 6 >= cTarget.reflexes() / 2 + 10 && !cTarget.hasStatusEffect("Blinded") && !cTarget.hasBlindImmunity())
 				{
 					cTarget.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0,0xFF0000);
 					

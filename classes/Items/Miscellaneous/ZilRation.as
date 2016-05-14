@@ -704,7 +704,7 @@
 					kGAMECLASS.output("\n\nCramps attack your shoulder blades, forcing you to arch your back and cry out. You drop and roll on the ground to try and keep it together, and before you know, the pain is gone. In its place, there's the pleasant ache of growing muscles and something sliding down your back. You crane your head over your shoulder");
 					if(target.armor.shortName != "") kGAMECLASS.output(" and pull back your [pc.armor.longName]");
 					kGAMECLASS.output(" to take a look; <b>there are small, transparent wings pressed against your back</b>. They're too small to allow you to fly, but you're definitely getting more zil-like.");
-					target.wingType = GLOBAL.TYPE_SMALLBEE;
+					target.shiftWings(GLOBAL.TYPE_SMALLBEE, 2);
 				}
 				//Grow small zil wings to full size!
 				else if(target.wingType == GLOBAL.TYPE_SMALLBEE) {
@@ -712,11 +712,13 @@
 					if(target.armor.shortName != "") kGAMECLASS.output(" You pull off the top of your [pc.armor.longName] to get a look, just in case.");
 					kGAMECLASS.output(" Those muscles feel like they're getting bigger, bulkier, and your wings are growing bigger to match. A quick flex sends them flapping, kicking up a gust of wind, nearly lifting you off the ground. <b>You have wings just like a male zil, big enough to fly!</b>");
 					target.wingType = GLOBAL.TYPE_BEE;
+					if(target.wingCount < 2) target.wingCount = 2;
 				}
 				//TF other wings!
 				else {
 					kGAMECLASS.output("\n\nA cramp ruffles your [pc.wings], making them flutter wildly as they contort and twist. You can feel them changing as they flail around, and with each gasp of air you drag into your lungs, you feel them thinning. They never stop kicking up a hell of a breeze, though. A few seconds later, your body calms, and you're able to look behind you. <b>You've grown transparent, zil-like wings, big enough to fly with!</b>");
 					target.wingType = GLOBAL.TYPE_BEE;
+					if(target.wingCount < 2) target.wingCount = 2;
 				}
 				changes++;
 			}

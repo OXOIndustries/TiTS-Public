@@ -45,7 +45,7 @@ public function eggTrainerInstallation():void
 	clearOutput();
 	author("Savin");
 
-	if(currentLocation == "SHIP INTERIOR")
+	if(InShipInterior())
 	{
 		showName("\nINSTALLING...");
 		output("You heft the giant pink box down onto the deck of your cargo hold and take a deep breath, happy to have the extra weight off you. Though something tells you that if you end up actually using this thing, you’ll just end up with a whole new chunk of extra weight... For the moment, though, you distract yourself from wandering thoughts by hooking the Egg Trainer up to a power outlet nearby. The moment you do, it thrums to life with a mechanical shudder and a cheery digital tune played from a small speaker under a flickering holographic display.");

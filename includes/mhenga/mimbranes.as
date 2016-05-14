@@ -803,6 +803,9 @@ public function removeMimbranes():void
 			pc.removeStatusEffect(mimbraneEffects[i]);
 		}
 	}
+	flags["PLAYER_MIMBRANE_SWEAT_ENABLED"] = undefined;
+	flags["PLAYER_MIMBRANE_SPIT_ENABLED"] = undefined;
+	flags["MIMBRANE_FACE_APPEARANCE"] = undefined;
 }
 
 public function mimbranesIncreaseDaysSinceFed():void
@@ -4117,9 +4120,9 @@ public function mimbraneStatusString(effectName:String):String
 //Accessible on the ship. Options only appear if available
 public function mimbranePrivateLocation():Boolean
 {
-	if(currentLocation == "SHIP INTERIOR") return true;
-	if(rooms[currentLocation].hasFlag(GLOBAL.PRIVATE)) return true;
-	if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC)) return false;
+	if(InShipInterior()) return true;
+	if(InRoomWithFlag(GLOBAL.PRIVATE)) return true;
+	if(InPublicSpace()) return false;
 	/*
 	if(pc.exhibitionism() >= 66) return true;
 	return false;
@@ -4577,7 +4580,7 @@ public function feedMimbranesWithCock():void
 	userInterface.showBust("MIMBRANE");
 
 	output("Feeding time’s come early");
-	if (currentLocation == "SHIP INTERIOR") output(" to the ship");
+	if (InShipInterior()) output(" to the ship");
 	output(". Your [pc.cock] is ready for some manual milking, dribbling a little [pc.cumColor] pre to help things along. You talk a little to your parasite");
 	if (attachedMimbranes() > 1) output("s");
 	output(", cluing them in to your actions working for");

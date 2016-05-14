@@ -63,8 +63,8 @@
 			baseHPResistances.electric.damageValue = 15.0;
 			baseHPResistances.burning.damageValue = 15.0;
 			
-			this.XPRaw = 250;
 			this.level = 6;
+			this.XPRaw = normalXP();
 			this.credits = 0;
 			this.HPMod = 25;
 			this.HPRaw = this.HPMax();

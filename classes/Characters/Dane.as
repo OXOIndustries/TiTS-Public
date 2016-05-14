@@ -25,7 +25,7 @@
 			this.originalRace = "ausar";
 			this.a = "";
 			this.capitalA = "";
-			this.long = "Dane stands tall; he's nearly eight feet of powerful, corded muscle. His most obvious feature is his quartet of arms. Evidently, the ausar has turned to genetic modifications for his enhanced stature. His fur is so white it practically glows, and his ivory hair is tied back in short ponytail. His eyes are red too, marking him as an albino. In his upper arms, Dane wields a pair of electrified cutlasses, and in his lower ones, he's gripping a matched set of powder pistols. A lightweight set of high tech armor guards his chest and thighs.";
+			this.long = "Dane stands tall; he's nearly eight feet of powerful, corded muscle. His most obvious feature is his quartet of arms. Evidently, the ausar has turned to genetic modifications for his enhanced stature. His fur is so white it practically glows, and his ivory hair is tied back in a short ponytail. His eyes are red too, marking him as an albino. In his upper arms, Dane wields a pair of electrified cutlasses, and in his lower ones, he's gripping a matched set of powder pistols. A lightweight set of high-tech armor guards his chest and thighs.";
 			this.customDodge = "Dane casually sidesteps out of the way.";
 			this.customBlock = "Obvious placeholder is obvious.";
 			this.isPlural = false;
@@ -59,7 +59,7 @@
 			this.HPRaw = this.HPMax();
 			this.energyRaw = 100;
 			this.lustRaw = 15;
-			this.XPRaw = 500;
+			this.XPRaw = bossXP();
 			
 			this.credits = 1200;
 			

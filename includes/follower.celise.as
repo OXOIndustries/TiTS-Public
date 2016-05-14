@@ -77,6 +77,8 @@ public function celiseFeedingRouter():void {
 	addButton(3,"Sink In",zeiksCeliseSubmersionTechnique,undefined,"Sink In",sinkInTooltip);
 	if(pc.hasCock() || pc.hasVagina() || pc.hasTailCock()) addButton(4,"Use Her",zDomCeliseGo,undefined,"Use Her","Use Celise to get off. She might try to take charge, but you'll show her who's boss.");
 	else addDisabledButton(4,"Use Her","Use Her","You need genitals for this act.");
+	if(hasACumBubble()) addButton(5,"Cum Bubble",giveCeliseATreatSetup,undefined,"Cum Bubble","Celise loves cum right from the tap, but she’d probably enjoy a stored sample too.");
+	else addDisabledButton(5,"Locked","Locked","You do not have the item required for this scene. Purchasing a Bubble Buddy may be a good place to start...");
 	addButton(14,"Back",celiseFollowerInteractions);
 }
 

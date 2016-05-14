@@ -51,8 +51,8 @@
 			this.energyRaw = 100;
 			this.lustRaw = 85;
 			
-			this.XPRaw = 50;
 			this.level = 3;
+			this.XPRaw = normalXP();
 			this.credits = 0;
 			this.HPMod = 0;
 			this.HPRaw = this.HPMax();
@@ -192,6 +192,11 @@
 			delete d.resistances;
 			delete d.bonusResistances;
 			delete d.bonusLustVuln;
+		}
+		
+		override public function onLeaveBuyMenu():void
+		{
+			kGAMECLASS.kellyOfficeApproach();
 		}
 	}
 

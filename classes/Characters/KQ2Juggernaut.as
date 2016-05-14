@@ -62,8 +62,8 @@ package classes.Characters
 			this.energyRaw = 100;
 			this.lustRaw = 10;
 			
-			this.XPRaw = 500;
 			this.level = 7;
+			this.XPRaw = normalXP();
 			this.credits = 80 + rand(80);
 			this.HPMod = 180;
 			this.HPRaw = this.HPMax();
@@ -285,8 +285,8 @@ package classes.Characters
 			
 			if (kara != null)
 			{
-				var blindedPC:Boolean = rand(10) != 0;
-				var blindedKara:Boolean = rand(10) != 0;
+				var blindedPC:Boolean = rand(10) != 0 && !pc.hasBlindImmunity();
+				var blindedKara:Boolean = rand(10) != 0 && !kara.hasBlindImmunity();
 				if (blindedPC && blindedKara)
 				{
 					output(", blinding you and Kara.");
@@ -306,7 +306,7 @@ package classes.Characters
 			// Can only be the PC then
 			else
 			{
-				blindedPC = rand(10) != 0;
+				blindedPC = rand(10) != 0 && !pc.hasBlindImmunity();
 				
 				if (blindedPC)
 				{

@@ -42,7 +42,7 @@
 			this.energyRaw = 100;
 			this.lustRaw = 70;
 			
-			this.XPRaw = 500;
+			this.XPRaw = normalXP();
 			
 			this.credits = 1200;
 			
@@ -192,6 +192,11 @@
 			super.orgasm();
 			this.cumQualityRaw = 1;
 			
+		}
+		
+		override public function onLeaveBuyMenu():void
+		{
+			kGAMECLASS.approachRenvra();
 		}
 		
 	}

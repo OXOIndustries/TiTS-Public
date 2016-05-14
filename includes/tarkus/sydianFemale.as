@@ -960,9 +960,9 @@ public function femSydianGiveThrob():void
 
 	output("\n\n<i>“Ugh,”</i> she grunts, swatting the syringe away. It shatters into a starburst of glass. <i>“What was that?”</i>");
 	
+	output("\n\n");
 	if (pc.isBimbo() || (pc.isBro() && !pc.hasCock()))
 	{
-		output("\n\n");
 		output("<i>“Just");
 		if (pc.isBimbo()) output(", like,");
 		output(" adding the best bit,”</i> you");
@@ -1018,7 +1018,7 @@ public function femSydianGiveThrob():void
 			output("“<i>Nice, isn’t it? It’s even better if you put it in");
 			if (pc.isFeminine()) output(" a woman");
 			else output(" someone");
-			output(",”</i> you rejoin,");
+			output(",”</i> you respond,");
 		}
 
 		output(" dragging her cum-slicked hand to the tip and thumbing the crown. She sits up, and her flagging prick surges.");
@@ -1293,7 +1293,7 @@ public function femSydianEatsButtholes():void
 		output("\n\nShe removes her hand from her crotch, exposing a fully-bloomed pussy that twitches from sudden neglect. You glare at her, and she realizes she needs to say something. <i>“Yes... my superior,”</i> she mumbles.");
 	}
 
-	output("Her other hand continues to caress, leaving greasy-feeling strokes of heat all around your hole.");
+	output(" Her other hand continues to caress, leaving greasy-feeling strokes of heat all around your hole.");
 	if (pc.hasVagina())
 	{
 		output(" [pc.EachVagina]");
@@ -1409,7 +1409,7 @@ public function femSydianFuck():void
 		else output(" [pc.tail]");
 		output(" up, you nudge the woman’s vulva.");
 	}
-	output("She looks away coyly, and the bloom of warmth you feel when her pussy opens wider suggests that she’s enjoying your touch while she awaits your next move.");
+	output(" She looks away coyly, and the bloom of warmth you feel when her pussy opens wider suggests that she’s enjoying your touch while she awaits your next move.");
 	
 	output("\n\n");
 	if (!enemy.hasStatusEffect("Unarmored")) output("<i>“Well... hurry up!”</i> she barks.");
@@ -1505,14 +1505,14 @@ public function sydianPregnancyEnds():void
 	
 	output("Pain in your gut bends you over and fluid spills");
 	if (!pc.isNude()) output(" into your [pc.lowerUndergarment]");
-	else if (currentLocation == "SHIP INTERIOR") output(" onto the deck");
+	else if (InShipInterior()) output(" onto the deck");
 	else output(" onto the ground");
 	output(". Oh god, the baby is coming...");
 
 	//on ship without automatic medbay
-	if (currentLocation == "SHIP INTERIOR")
+	if (InShipInterior() && 9999 == 9999)
 	{
-	output("\n\nYou grab the nearest medkit and head for your bed, determined to deliver the baby safely. After setting aside your gear, you lie down and begin to breathe in preparation for your labors.");
+		output("\n\nYou grab the nearest medkit and head for your bed, determined to deliver the baby safely. After setting aside your gear, you lie down and begin to breathe in preparation for your labors.");
 	}
 	/*
 	//on ship with auto-medbay (commented until one is available)

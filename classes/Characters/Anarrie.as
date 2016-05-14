@@ -2,6 +2,7 @@
 {
 	import classes.Creature;
 	import classes.GLOBAL;
+	import classes.kGAMECLASS;
 	import classes.Items.Drinks.RedMyrVenom;
 	import classes.Items.Accessories.Minesweeper;
 	import classes.Items.Armor.ChitinArmor;
@@ -67,8 +68,8 @@
 			this.HPRaw = this.HPMax();
 			this.energyRaw = 100;
 			this.lustRaw = 15;
-			this.XPRaw = 350;
 			this.level = 4;
+			this.XPRaw = normalXP();
 			this.credits = 0;
 			
 			this.femininity = 80;
@@ -191,6 +192,11 @@
 		public function UpgradeVersion2(dataObject:Object):void
 		{
 			dataObject.rangedWeapon = new EmptySlot().getSaveObject();
+		}
+		
+		override public function onLeaveBuyMenu():void
+		{
+			kGAMECLASS.mainGameMenu();
 		}
 	}
 }

@@ -227,6 +227,13 @@ package classes.GameData
 				}
 			}
 			
+			if (pc.hasStatusEffect("Trigger Game Over"))
+			{
+				clearMenu();
+				kGAMECLASS.badEnd("GAME OVER.");
+				return true;
+			}
+			
 			return false;
 		}
 		
@@ -938,7 +945,7 @@ package classes.GameData
 			}
 			else
 			{
-				addButton(14, "Run", runAway, undefined, "Run", "Attempt to run away from your enemy. Success is greatly dependant on reflexes. Immobilizing your enemy before attempting to run will increase the odds of success.");
+				addButton(14, "Run", runAway, undefined, "Run", "Attempt to run away from your enemy. Success is greatly dependent on reflexes. Immobilizing your enemy before attempting to run will increase the odds of success.");
 			}
 			
 			// Hook in any additional menu entries -- allowing the hooks to override
@@ -1029,7 +1036,8 @@ package classes.GameData
 			//GENERIC
 			else
 			{
-				output("You climb up onto your [pc.feet].");
+				if(pc.canFly() && pc.hasWings()) output("Moving your powerful [pc.wingsNoun], you manage to lift yourself up and get back onto your [pc.feet].");
+				else output("You climb up onto your [pc.feet].");
 				pc.removeStatusEffect("Tripped");
 			}
 			processCombat();
@@ -1039,8 +1047,25 @@ package classes.GameData
 		{
 			if (target.hasStatusEffect("Tripped"))
 			{
-				output(target.capitalA + target.uniqueName + " lifts themselves from the floor and gets their feet back under " + target.mfn("him", "her", "it") + "self.");
-				target.removeStatusEffect("Tripped");
+				if(target.statusEffectv1("Tripped") > 0 && !target.canFly())
+				{
+					output(target.capitalA + target.uniqueName + " struggles to get");
+					if(target.isPlural) output(" themselves");
+					else output(" " + target.mfn("him", "her", "it") + "self");
+					output(" up, but can’t.");
+					target.addStatusValue("Tripped", 1, -1);
+				}
+				else
+				{
+					if(target.canFly() && target.hasWings())
+					{
+						output("With " + target.mfn("his", "her", "its") + " " + target.wingsDescript(true) + " quickly flapping, ");
+					}
+					output(target.capitalA + target.uniqueName + " lifts");
+					if(target.isPlural) output(" themselves from the floor and gets their " + target.feet() + " back under themselves.");
+					else output(" " + target.mfn("him", "her", "it") + "self from the floor and gets " + target.mfn("him", "her", "its") + " " + target.feet() + " back under " + target.mfn("him", "her", "it") + "self.");
+					target.removeStatusEffect("Tripped");
+				}
 			}
 		}
 		
@@ -1724,11 +1749,12 @@ package classes.GameData
 			//75+
 			if(select == 0)
 			{
-				output("Turning away at an opportune moment, you slip down your clothes and reach back, slapping your [pc.butt] into a bounce before shaking it for " + target.a + target.uniqueName + ". Your technique has grown impeccable, and you bounce your [pc.butt] masterfully, even reaching back and spreading your cheeks, giving " + target.a + target.uniqueName + " an excellent view of your [pc.asshole]");
-				if(pc.hasVagina() && pc.balls > 0) output(" and [pc.vaginas] and [pc.balls]");
-				else if(pc.hasVagina()) output(" and [pc.vaginas]");
-				else if(pc.balls > 0) output(" and [pc.balls]");
-				output(".");
+				output("Turning away at an opportune moment, you slip down your clothes and reach back, slapping your [pc.butt] into a bounce before shaking it for " + target.a + target.uniqueName + ". Your technique has grown impeccable, and you bounce your [pc.butt] masterfully, even reaching back and spreading your cheeks, giving " + target.a + target.uniqueName + " an excellent view of your ");
+				kGAMECLASS.clearList();
+				kGAMECLASS.addToList("[pc.asshole]");
+				if(pc.hasVagina()) kGAMECLASS.addToList("[pc.vaginas]");
+				if(pc.balls > 0) kGAMECLASS.addToList("[pc.balls]");
+				output(kGAMECLASS.formatList() + ".");
 			}
 			//50+
 			else if(select == 1)
@@ -1987,7 +2013,7 @@ package classes.GameData
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_WIDE_HIPS);
 			if(pc.hipRating() < 4 && target.sexualPreferences.getPref(GLOBAL.SEXPREF_NARROW_HIPS) > 0)
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_NARROW_HIPS);
-			if((pc.isTaur() || pc.isNaga()) && target.sexualPreferences.getPref(GLOBAL.SEXPREF_EXOTIC_BODYSHAPE) > 0) 
+			if((pc.isTaur() || pc.isNaga() || pc.isGoo()) && target.sexualPreferences.getPref(GLOBAL.SEXPREF_EXOTIC_BODYSHAPE) > 0) 
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_EXOTIC_BODYSHAPE);
 		
 			clearOutput();
@@ -2106,7 +2132,7 @@ package classes.GameData
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_SMALL_MALEBITS);
 			if((pc.cockTotal() > 1 || pc.vaginaTotal() > 1) && target.sexualPreferences.getPref(GLOBAL.SEXPREF_MULTIPLES) > 0) 
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_MULTIPLES);
-			if((pc.hasCock() || pc.longestCockLength() >= 18) && target.sexualPreferences.getPref(GLOBAL.SEXPREF_HYPER) > 0) 
+			if((pc.hasCock() && pc.longestCockLength() >= 18) && target.sexualPreferences.getPref(GLOBAL.SEXPREF_HYPER) > 0) 
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_HYPER);
 			if(pc.hasVagina() && pc.gapestVaginaLooseness() >= 4 && target.sexualPreferences.getPref(GLOBAL.SEXPREF_GAPE) > 0) 
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_GAPE);
@@ -2200,7 +2226,7 @@ package classes.GameData
 				}		
 			}
 			if(pc.hasVagina()) {
-				if(pc.isTaur()) choices[choices.length] = 5;
+				if(pc.isTaur() && (pc.hasVaginaType(GLOBAL.TYPE_EQUINE) || pc.hasVaginaType(GLOBAL.TYPE_LEITHAN))) choices[choices.length] = 5;
 				else choices[choices.length] = 3;
 			}
 			//Reqs: PC has a vagina with maximum wetness
@@ -2264,7 +2290,7 @@ package classes.GameData
 			}
 			//4 Horsecock centaur tease
 			else if(select == 4) {
-				output("You let out a bestial whinny and stomp your hooves at your enemy. They prepare for an attack, but instead you kick your front hooves off the ground, revealing the hefty horsecock hanging beneath your belly. You let it flop around, quickly getting rigid and to its full erect length. You buck your hips as if you were fucking a mare in heat, letting your opponent know just what’s in store for them if they surrender to pleasure...");
+				output("You let out a bestial whinny and stomp your [pc.feet] at your enemy. They prepare for an attack, but instead you kick your front [pc.feet] off the ground, revealing the hefty horsecock hanging beneath your belly. You let it flop around, quickly getting rigid and to its full erect length. You buck your hips as if you were fucking a mare in heat, letting your opponent know just what’s in store for them if they surrender to pleasure...");
 			}
 			//5 Cunt grind tease
 			else if(select == 5) {
@@ -2475,7 +2501,7 @@ package classes.GameData
 				{
 					msg += "Mmm, can’t get enough of that all-natural [pc.girlCumFlavor] taste. Come get some";
 					if(pc.wettestVaginalWetness() >= 3) msg += ". I’ve got plenty to go around";
-					output(".");
+					msg += ".";
 				}
 				msg += "”</i>";
 				output(msg);
@@ -2491,9 +2517,11 @@ package classes.GameData
 					}
 				}
 				output(", but they can still see vestiges of ");
-				if(pc.hasCock()) output("[pc.cumColor]");
-				if(pc.hasVagina() && pc.hasCock()) output(" and ");
-				if(pc.hasVagina()) output("[pc.girlCumColor]");
+				if (pc.hasCock()) output("[pc.cumColor]");
+				if (pc.cumType != pc.girlCumType || !pc.hasCock()) {
+					if (pc.hasVagina() && pc.hasCock()) output(" and ");
+					if (pc.hasVagina()) output("[pc.girlCumColor]");
+				}
 				output(" on your lips.");
 			}
 			//Reqs: PC is in combat with a zil male, zil female, or the dual zil when meeting Penny, PC has a zil vagina
@@ -2866,19 +2894,36 @@ package classes.GameData
 			if(target is HandSoBot) output("\n\nWhilst your teases have some effect on synthetics designed for sex, you sense there is no point whatsoever trying it on with what amounts to a bipedal forklift truck.");
 		}
 		
-		private function checkForLoss():Boolean
+		private function checkForLoss(atEndOfRound:Boolean = false):Boolean
 		{
 			var tEnemy:Creature;
 			
-			var lossCondition:Boolean = playerLossCondition();
+			var bLossCond:Boolean = playerLossCondition(atEndOfRound);
 			
 			// Naleen special loss handling
-			if (!lossCondition)
+			if (!bLossCond)
 			{
-				lossCondition = (hasEnemyOfClass(Naleen) || hasEnemyOfClass(NaleenMale)) && (pc.hasStatusEffect("Naleen Venom") && (pc.physique() == 0 || pc.willpower() == 0));
+				bLossCond = (hasEnemyOfClass(Naleen) || hasEnemyOfClass(NaleenMale)) && (pc.hasStatusEffect("Naleen Venom") && (pc.physique() == 0 || pc.willpower() == 0));
 			}
 			
-			if (lossCondition)
+			if (bLossCond && lossCondition == CombatManager.ESCAPE && atEndOfRound)
+			{
+				tEnemy = _hostiles[0];
+				
+				CombatManager.showCombatUI();
+				clearMenu();
+				
+				addButton(0, "Defeat", function(t_enemy:Creature, t_lossFunctor:Function):Function {
+					return function():void {
+						clearOutput();
+						kGAMECLASS.setEnemy(t_enemy);
+						CombatManager.showCombatUI();
+						t_lossFunctor();
+					}
+				}(tEnemy, _lossFunction));
+				return true;
+			}
+			else if (bLossCond)
 			{
 				if (victoryCondition == CombatManager.SPECIFIC_TARGET_DEFEATED)
 				{
@@ -2920,9 +2965,9 @@ package classes.GameData
 			return false;
 		}
 		
-		private function checkForVictory():Boolean
+		private function checkForVictory(atEndOfRound:Boolean = false):Boolean
 		{
-			if (playerVictoryCondition())
+			if (playerVictoryCondition(atEndOfRound))
 			{
 				// TODO Here is where we could potentially need some indirection, depending
 				// on author intenent.
@@ -3653,8 +3698,8 @@ package classes.GameData
 		public function endCombatRound():void
 		{
 			// Early-out if the players group lost
-			if (checkForVictory()) return;
-			if (checkForLoss()) return;
+			if (checkForVictory(true)) return;
+			if (checkForLoss(true)) return;
 			
 			_roundCounter++;
 			
@@ -3736,7 +3781,7 @@ package classes.GameData
 			}
 		}
 		
-		private function playerVictoryCondition():Boolean
+		private function playerVictoryCondition(atEndOfRound:Boolean = false):Boolean
 		{
 			if (victoryCondition == CombatManager.ENTIRE_PARTY_DEFEATED)
 			{
@@ -3746,7 +3791,7 @@ package classes.GameData
 				}
 				return true;
 			}
-			else if (victoryCondition == CombatManager.SURVIVE_WAVES)
+			else if (victoryCondition == CombatManager.SURVIVE_WAVES && atEndOfRound)
 			{
 				if (isNaN(victoryArgument) || victoryArgument <= 0) throw new Error("Wave survival declared as a win condition, with no target waves defined.");
 				if (_roundCounter >= victoryArgument) return true;
@@ -3762,7 +3807,7 @@ package classes.GameData
 			return false;
 		}
 		
-		private function playerLossCondition():Boolean
+		private function playerLossCondition(atEndOfRound:Boolean = false):Boolean
 		{
 			if (lossCondition == CombatManager.ENTIRE_PARTY_DEFEATED)
 			{
@@ -3772,7 +3817,7 @@ package classes.GameData
 				}
 				return true;
 			}
-			else if (lossCondition == CombatManager.SURVIVE_WAVES)
+			else if (lossCondition == CombatManager.SURVIVE_WAVES && atEndOfRound)
 			{
 				if (isNaN(lossArgument) || lossArgument <= 0) throw new Error("Wave limit declared as a loss condition, with no target defined.");
 				if (_roundCounter >= lossArgument) return true;
@@ -3782,6 +3827,12 @@ package classes.GameData
 			{
 				if (lossArgument == null || _friendlies.indexOf(lossArgument) == -1) throw new Error("Unique target for loss as a win condition, with no target defined.");
 				if (lossArgument.isDefeated()) return true;
+				return false;
+			}
+			else if (lossCondition == CombatManager.ESCAPE && atEndOfRound)
+			{
+				if (lossArgument == null) throw new Error("Loss argument unset for loss condition setting.");
+				if (_roundCounter >= lossArgument) return true;
 				return false;
 			}
 			
@@ -3889,11 +3940,14 @@ package classes.GameData
 			//Roshan Blue gives 25% more xp and lowers willpower by 30% until next rest
 			if(pc.hasStatusEffect("Roshan Blue")) sumXP += Math.floor(sumXP*0.25);
 			
+			/* DISABLED WITH NEW XP UPDATE
+			=======================================
 			// Add up XP, but don't permit the players current XP to overcap
 			if (sumXP + pc.XP() > pc.XPMax())
 			{
 				sumXP = pc.XPMax() - pc.XP();
 			}
+			=======================================*/
 			
 			pc.XP(sumXP);
 			

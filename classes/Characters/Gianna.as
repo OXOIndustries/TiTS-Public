@@ -66,8 +66,8 @@
 			baseHPResistances = new TypeCollection();
 			baseHPResistances.electric.damageValue = -40.0;
 			
-			this.XPRaw = 250;
 			this.level = 4;
+			this.XPRaw = normalXP();
 			this.credits = 100;
 			this.HPMod = -10;
 			this.HPRaw = this.HPMax();
@@ -185,6 +185,13 @@
 			delete d.meleeWeapon;
 			delete d.rangedWeapon;
 			delete d.armor;
+		}
+		public function UpgradeVersion3(d:Object):void
+		{
+			if (d.cocks && d.cocks.length > 0 && d.cocks[0].cType == GLOBAL.TYPE_SNAKE)
+			{
+				d.cocks[0].cType == GLOBAL.TYPE_DRACONIC;
+			}
 		}
 	}
 }

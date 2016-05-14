@@ -32,7 +32,7 @@
 			this.description = "an ACE cannon";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "The ACE Cannon is a prototype, shoulder-mounted weapon system, compatible with most commonly available power armors available on the market today.";
+			this.tooltip = "The ACE Cannon is a prototype, shoulder-mounted weapon system, compatible with most commonly manufactured power armors available on the market today.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

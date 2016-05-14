@@ -1005,7 +1005,7 @@ public function annoFollowerSexMenu():void
 	{
 		addButton(0, "Tailjob", annoFollowerTailjobSex, undefined, "Tailjob", "Have Anno use her fluffy tail to get you off. Warning: May cause fur matting.");
 		
-		if (pc.cockThatFits(anno.vaginalCapacity()) != -1) addButton(1, "Suck&Fuck", annoFollowerSuckAndFuckSex, undefined, "Suck & Fuck", "Have Anno blow you, then give her a rough fucking to top it off.");
+		if (pc.cockThatFits(anno.vaginalCapacity() + 2000) != -1) addButton(1, "Suck&Fuck", annoFollowerSuckAndFuckSex, undefined, "Suck & Fuck", "Have Anno blow you, then give her a rough fucking to top it off.");
 		else addDisabledButton(1, "Suck&Fuck", "Suck & Fuck", "Requires an appropriately sized penis.");
 		
 		if (pc.cockThatFits(anno.analCapacity()) != -1) addButton(2, "Anal", annoFollowerAnalSex, undefined, "Anal", "Take Anno on a backdoor adventure.");
@@ -1079,7 +1079,7 @@ public function annoFollowerTailjobSex():void
 	
 	output("\n\nYou brace for more stimulation, but to your surprise, Anno frees herself from your embrace and, giving an inviting wink over her shoulder, crawls onto her bed, arms and knees braced and spread on the mattress. Her tail curls up, beckoning you closer like a crooked finger. You slip up behind the inviting slut, letting your cock flop onto her upturned backside as you grab her wagging tail. Anno gasps at your boldness, but her hips wiggle happily when your fingers brush through her fluffy tail, and she easily relaxes, leaving you to do as you wish with her willing body. ");
 	
-	output("\n\nYou gently stroke her tail one last time before clenching around the tip and locking it in your fist. Anno coos, a little moan escaping her lips as you start to curl the slender bit of flesh at the fluff-ball’s center around the diamond-hard shaft of your [pc.cock]. Once, twice, almost three times you loop her tail around your prick, pulling it tight at the end until you both gasp with pleasure and pain at the tightness. ");
+	output("\n\nYou gently stroke her tail one last time before clenching around the tip and locking it in your fist. Anno coos, a little moan escaping her lips as you start to curl the slender bit of flesh at the fluff-ball’s center around the diamond-hard length of your [pc.cock]. Once, twice, almost three times you loop her tail around your prick, pulling it tight at the end until you both gasp with pleasure and pain at the tightness. ");
 	
 	output("\n\n<i>“Think you can hold it there?”</i> you ask, tentatively releasing the fluffy appendage. Anno actually grunts with effort, and you can see her struggling to keep her tail-muscles locked... and failing miserably. ");
 	
@@ -1243,7 +1243,7 @@ public function annoFollowerSuckAndFuckSexPartII():void
 	output("\n\nWhen you’re finished, Anno smiles appreciatively over her shoulder, wiggling her ass into the underside of your wrapped wang. <i>“Come on then... I’m ready for you,”</i> she breathes, her white tail raising invitingly as your sheathed schlong slowly slides forward. ");
 	
 	output("\n\nAnno bites her lip, muffling a girlish whimper as your [pc.hips] rock forward, inching your [pc.cock " + selCock + "] into her sodden quim. You nearly join her as you feel your cock submerging into the sultry hole, surrounded by hot, wet, squirming walls as Anno’s pussy clenches around your intruding member. You push forward despite her body’s resistance, the ausar’s incredibly wet sex making it unnaturally easy to spread her walls wide. Anno moans as you plunge deep into her sex, fingers digging into the lip of her desk, tail flicking madly as you bottom out inside her");
-	if (pc.cockVolume(selCock) >= 500) output(", your tremendous cock stretching her out almost painfully wide, distending her gut against the bed");
+	if (pc.cockVolume(selCock) >= (chars["ANNO"].vaginalCapacity() + 200)) output(", your tremendous cock stretching her out almost painfully wide, distending her gut against the bed");
 	output(".");
 	pc.cockChange(true, false);
 	
@@ -1453,6 +1453,9 @@ public function annoFollowerAnalSexAnnoOnTop(selCock:int):void
 	
 	output("\n\n<i>“That wasn’t so bad after all...”</i> Anno murmurs, snuggling back against you.");
 
+	if (flags["ANNO_ANALSEXED"] == undefined) flags["ANNO_ANALSEXED"] = 0;
+	flags["ANNO_ANALSEXED"]++;
+	
 	processTime(30+rand(20));
 	anno.loadInAss(pc);
 	anno.orgasm();
@@ -2917,7 +2920,7 @@ public function grayGooSpessSkypeScene():void
 public function hasGooArmor():Boolean
 {
     if(pc.armor is GooArmor || pc.hasItemByName("Goo Armor")) return true;
-    if(currentLocation == "SHIP INTERIOR")
+    if(InShipInterior())
     {
         for (var i:int = 0; i < pc.ShipStorageInventory.length; i++)
         {

@@ -731,7 +731,7 @@ public function cuntTailShadeFux():void
 	else if(pc.cockTotal() == 2) output("choosing it over its brother and ");
 	output("rubbing its wet, slitted head up along your shaft. You try and suppress a groan as her tail takes hold of your prick, working its way up towards your crown.");
 
-	output("\n\nShade’s hips shift back ever so slightly, letting her wiggle out of her panties and toss them aside, keeping her tailcunt planted firmly around your [pc.cockHead " + x + "] until she’s done. As her black undergarments fall to the floor, Shade leans back and down, bringing her tight asscheeks to rest against the stiffening shaft of your [pc.cock " + x + "], trapping you between two eager cunts.");
+	output("\n\nShade’s hips shift back ever so slightly, letting her wiggle out of her panties and toss them aside, keeping her tailcunt planted firmly around your [pc.cockHead " + x + "] until she’s done. As her black undergarments fall to the floor, Shade leans back and down, bringing her tight asscheeks to rest against the stiffening span of your [pc.cock " + x + "], trapping you between two eager cunts.");
 	output("\n\n<i>“Which of this pussy’s pussies do you want first?”</i> the cat-girl teases, grinding her hips and tail up and down your shaft, slathering you in warm wetness. One of her hands slips down between her spread legs, rubbing at the prominent mound of her clit. She doesn’t give you the chance to formulate a response to her question, moving faster until your mouth twists open in a groan of pleasure. Grinning at her obvious effect on you, Shade leans down, pressing her big, soft tits into your [pc.chest] and wrapping her lips around yours, letting her tongue slip into you, playing across your own [pc.tongue].");
 	output("\n\nHer tail coils up behind her, angling it’s cunt-like slit with your [pc.cockHead " + x + "] and delving down. You moan around Shade’s mouth as her tail swallows up your [pc.cock " + x + "], ");
 	if(pc.cocks[x].thickness() >= 3) output("stretching its bulbous head to take your girth, straining to wrap around your massive shaft");
@@ -900,7 +900,7 @@ public function rimAndWankOrLickAndWankWhoKnowsSloot():void
 
 	output("\n\nShade chuckles softly, her voice melting into a long, low purr that vibrates through your [pc.vagOrAss " + y + "], teasing your passing as she slowly licks in and around your opening. Her movements become regular, rhythmic, almost relaxing in their little bursts of pleasure. You find yourself gasping and moaning under Shade’s tender ministrations, pushing your hips back against her, burying her face in your [pc.butt]. Her hands rub and caress you in turn, squeezing your cheeks and plying them open, letting her dig deeper into you.");
 
-	output("\n\nYou gasp as her hands move, shifting down from your [pc.butt] to the dangling shaft of your [pc.cock " + x + "]. With a gasp, you arch your back and squirm under the sensation of Shade’s warm, strong fingers wrapping around your member, gently stroking your to full hardness to the beat of her tongue’s lashing. Her hand moves with surety, gliding from tip to stem, using her thumb to caress your [pc.cockHead " + x + "] until the digit comes away with a nice [pc.cumColor] glaze.");
+	output("\n\nYou gasp as her hands move, shifting down from your [pc.butt] to the dangling breadth of your [pc.cock " + x + "]. With a gasp, you arch your back and squirm under the sensation of Shade’s warm, strong fingers wrapping around your member, gently stroking your to full hardness to the beat of her tongue’s lashing. Her hand moves with surety, gliding from tip to stem, using her thumb to caress your [pc.cockHead " + x + "] until the digit comes away with a nice [pc.cumColor] glaze.");
 	output("\n\n<i>“Right there,”</i> you moan softly, trembling as Shade’s hand works you. <i>“Faster...”</i>");
 	output("\n\nHer oral ministrations stop, just long enough to say <i>“If you wanted it fast...”</i> a lick across your [pc.vagOrAss " + y + "] makes you gasp. <i>“Just relax, kid. Let it all go.”</i>");
 	output("\n\nYou did that a while ago, but for her sake, you make a show of burying your face in her pillow and swaying your hips invitingly. She takes the implicit offer, moving back between the cheeks of your [pc.butt] and driving her tongue deep into you. Under that kind of treatment, you soon feel your rising lusts burning under your [pc.skin]. Your cock throbs in Shade’s hand");
@@ -1647,7 +1647,7 @@ public function shadeBoobWorship():void
 	clearOutput();
 	showShade();
 
-	output("You can’t take your eyes off of the two perfect orbs of unblemished flesh looming over you, resting low on your lover’s chest and punctuated with a pair of broad, pink teats. The way your lover’s breasts rise and fall with her heavy, husky breaths fills you with lust; Shade coos and chews her lower lips as");
+	output("You can’t take your eyes off of the two perfect orbs of unblemished flesh looming over you, resting low on your lover’s chest and punctuated with a pair of broad, pink teats. The way your lover’s breasts rise and fall with her heavy, husky breaths fills you with lust; Shade coos and chews her lower lip as");
 	if (pc.hasCock())
 	{
 		output(" your [pc.cocks] stiffen");

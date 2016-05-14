@@ -1588,7 +1588,7 @@ public function useKellysHoneyForCooking():void
 		output("\n\nYou waste no time and eagerly start humping her, being especially attentive to her prostate.");
 		output("\n\nShe groans, grunts and gasps with each thrust, humping herself back against you in counterpoint. Her pussy drips ceaselessly, but it is her cocks that are drooling like open faucets, each brush against the swollen bulge of her prostate causing her to spurt a glob of semen-syrup onto the floor.");
 	}
-	output("\n\nYour hands massage her pair of pricks; her slick honey makes the process smoother by the second. In no time at all your hands become a blur, alternatively milking her shafts.");
+	output("\n\nYour hands massage her pair of pricks; her slick honey makes the process smoother by the second. In no time at all your hands become a blur, alternately milking her shafts.");
 
 	output("\n\nMoaning and whimpering, she hisses and shudders in your grip, syrup coating your hands and drooling steadily down over her balls to puddle on the floor. The stuff is flowing thick and fast now, the laquine writhing in the throes of her pleasure, totally lost to the sensation of your hands on her cocks");
 	if(x >= 0 || pc.hasCockTail()) output(" and your cock in her ass");
@@ -1607,7 +1607,7 @@ public function useKellysHoneyForCooking():void
 
 	output("\n\nReleasing ");
 	if(x >= 0) output("and pulling out of ");
-	output("her, you watch as she crumbles to her knees, barely supporting herself on the counter. With a smile you kneel down, grabbing hold of her sensitive shaft and milking a few more dollops. A deep, throaty moan is all that she can muster in response to this. You manage to catch it all within the glass, despite it already being close to overflowing.");
+	output("her, you watch as she crumbles to her knees, barely supporting herself on the counter. With a smile you kneel down, grabbing hold of her sensitive shaft and milking a few more dollops. A deep, throaty moan is all that she can muster in response to this. You manage to catch her honey-cum all within the glass, despite the container already being close to overflowing.");
 
 	output("\n\nKelly puffs and pants, head hanging low in her post-orgasm exhaustion, almost collapsing bonelessly upon the floor, but managing to hold herself upright, even if she wobbles a little before she catches her breath and finds her footing.");
 
@@ -2105,7 +2105,7 @@ public function postMealEpilogue():void
 public function flirtWithKellyUnknown():void
 {
 	clearOutput();
-	showKelly(true);
+	showKelly();
 	author("Quiet Browser & LD");
 	output("Kelly's lips curl into a faint grin and she closes her eyes, giving her head a small shake. <i>\"Aw, surely you can do better than that, honey? Don't I deserve a little more attention than that?\"</i> she teases you, opening her eyes as she awaits your response.");
 	processTime(1);
@@ -2119,7 +2119,7 @@ public function flirtWithKellyUnknown():void
 public function aggressiveFlirtingWithKelly():void
 {
 	clearOutput();
-	showKelly(true);
+	showKelly();
 	author("Quiet Browser & LD");
 	output("So, she wants more? You’ll give her more....");
 	output("\n\nWithout saying a word, you get up, knocking ");
@@ -4186,7 +4186,7 @@ public function getDPedByKelly():void
 		else output("equally wet");
 		output(" hole.");
 
-		output("\n\n<i>\"Mmm, yeah, this is what I was made for,\"</i> Kelly purrs, caressing your ass. <i>\"Ass is nice, pussy is nice, but both at once? That's what I call paradise,\"</i> she notes, then giggles at her own cheap rhyme. Shaking her head, her expression turns back towards the lecherous as she returns to the matter at hand.");
+		output("\n\n<i>\"Mmm, yeah, this is what I was made for,\"</i> Kelly purrs, caressing your ass. <i>\"Ass is nice, pussy is nice, but both at once? That's what I call paradise,\"</i> she notes, then giggles at her own cheap rhyme. Shaking her head, her expression turns lecherous as she comes back to the matter at hand.");
 
 		output("\n\nHer hands reach down to your hips, holding onto you for balance as she pushes back, digging her heels in to slide herself as far out of you as your [pc.legs] will let her, and then suddenly thrusting back home again with a meaty slap. An appreciative moan bubbles from her throat at the feel of herself being welcomed back inside of your holes, but she frowns in frustration. Bending down at the waist, she wraps you in a powerful hug and lifts you up from the bed so that you are upright, cuddled against her breast to ");
 		if(pc.biggestTitSize() >= 1) output("breast");
@@ -4216,7 +4216,7 @@ public function getDPedByKelly():void
 		}
 		output(" Your eager grinding proves too much for Kelly's sense of balance, and the laquine topples over onto her bed, smooshed under your growing belly - something that seems to make her cum even harder, from the size of the shots she fires into you in response. Moaning in pleasure, you grind your belly against her face, her arms shifting to encompass the honey-crammed globe obscuring her face, even as your twin holes continue to wring every last delicious drop out of her - you want it all!");
 
-		output("\n\nTime fades away, lost as you are in the feeling of being stuffed ever fuller, of feeling every vein, twitch and shaft-stretching bulge of cum flooding up your ass and your cunt, honey starting to seep and flow down your holes to lube up the fucksticks impaling you so deliciously... but, even Kelly's four cum-factories have their limits, and eventually the haze leaves you panting for breath, groaning as your stomach complains to the twin monster loads of jism currently crammed into it. You can't even see your laquine lover's upper half anymore; she's being smothered completely under your beachball of a belly. The arms wrapping themselves vainly around your gut, and the way it rises and falls in accordance with her own pants, makes it clear she's still alive, at least.");
+		output("\n\nTime fades away, lost as you are in the feeling of being stuffed ever fuller, of feeling every vein, twitch and shaft-stretching bulge of cum flooding up your ass and your cunt, honey starting to seep and flow down your holes to lube up the fucksticks impaling you so deliciously... but, even Kelly's four cum-factories have their limits, and eventually the haze leaves you panting for breath, groaning as your stomach complains of the twin monster loads of jism currently crammed into it. You can't even see your laquine lover's upper half anymore; she's being smothered completely under your beachball of a belly. The arms wrapping themselves vainly around your gut, and the way it rises and falls in accordance with her own pants, makes it clear she's still alive, at least.");
 
 		output("\n\nYou roll, falling on your side. A groan escaping you as the strain of your escapade with the honey-bunny takes its toll on you.");
 
@@ -4396,7 +4396,7 @@ public function getDoubleStuffedByKellyCancelled():void
 
 	output("\n\nAwkward as it is, she manages to keep absently thrusting into you, slowly worming her fingers into the seal. The sensation is indescribable, but the lube seems to be doing its job, your ring slowly pulling itself wider and wider. You moan at the feelings, and Kelly's lush, bountiful breasts come to rest full and heavy against the small of your back, the laquine rubbing them in soft circles across your [pc.skin]. <i>\"Sshh, it's alright, lover, you'll be all stretched out, I promise,\"</i> she assures you, her tone soft and gentle, a giggle of anticipation following her words.");
 
-	output("\n\nYou can feel a second set of fingers, thick and slimy with lube, pressing against your ass on the opposite side. Gently whispering encouragement, she begins to stroke your inner walls in half-circle orbits, alternatively sliding up and down on either side, slow and careful strokes, curled fingertips gently pulling you wider and wider....");
+	output("\n\nYou can feel a second set of fingers, thick and slimy with lube, pressing against your ass on the opposite side. Gently whispering encouragement, she begins to stroke your inner walls in half-circle orbits, alternately sliding up and down on either side, slow and careful strokes, curled fingertips gently pulling you wider and wider....");
 
 	output("\n\nIt’s hard to believe how far Kelly is stretching you. And it feels so good too. You fight your instinct to buck against her as you wait for her to continue.");
 

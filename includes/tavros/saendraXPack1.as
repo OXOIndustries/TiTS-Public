@@ -629,7 +629,7 @@ public function sx1CallgirlOkay():void
 	output(" over her mouth.");
 	
 	output("\n\nShe giggles and brushes her chitinous fingers along");
-	if (pc.hasCock()) output(" the shaft of [pc.oneCock]");
+	if (pc.hasCock()) output(" the length of [pc.oneCock]");
 	if (pc.hasCock() && pc.hasVagina()) output(" and up to");
 	if (pc.hasVagina()) output(" the lips of [pc.oneCunt]");
 	output(". A shiver of pleasure meanders through your spine as the lusty alien teases you, her long tongue reaching out to caress your sex. Her hands grab your [pc.butt], squeezing you and drawing you in until her");
@@ -1475,7 +1475,7 @@ public function zilCallGirlGetOral():void
 	output(" over her mouth.");
 	
 	output("\n\nShe giggles and brushes her chitinous fingers along");
-	if (pc.hasCock()) output(" the shaft of your [pc.cock]");
+	if (pc.hasCock()) output(" the length of your [pc.cock]");
 	if (pc.hasCock() && pc.hasVagina()) output(" and down to");
 	if (pc.hasVagina()) output(" the lips of your [pc.cunt]");
 	output(". A shiver of pleasure meanders through your spine as the lusty alien teases you, her long tongue reaching out to caress your sex. Her hands grab your [pc.butt], squeezing you and drawing you in until her");

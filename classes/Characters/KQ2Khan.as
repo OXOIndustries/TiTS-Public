@@ -67,8 +67,8 @@ package classes.Characters
 			this.energyRaw = 100;
 			this.lustRaw = 11;
 			
-			this.XPRaw = 500;
 			this.level = 8;
+			this.XPRaw = normalXP();
 			this.credits = 80 + rand(80);
 			this.HPMod = 140;
 			this.HPRaw = this.HPMax();
@@ -225,7 +225,18 @@ package classes.Characters
 				if (rand(5) > 0)
 				{					
 					output("\nThe bolt arcs from " + (target is PlayerCharacter ? "you" : "Kara") +" to " + (target is PlayerCharacter ? "Kara" : "you") +", blasting " + (target is PlayerCharacter ? "her" : "you") +" as well!");
-					applyDamage(damageRand(rangedDamage(), 15), this, target, "minimal");
+					var other:Creature = null;
+					
+					for (var i:int = 0; i < hostiles.length; i++)
+					{
+						if (hostiles[i] != target)
+						{
+							other = hostiles[i];
+							break;
+						}
+					}
+					
+					applyDamage(damageRand(rangedDamage(), 15), this, other, "minimal");
 				}
 			}
 		}

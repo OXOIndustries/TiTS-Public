@@ -18,6 +18,16 @@ public function isEquippableItem(item:ItemSlotClass):Boolean
 		);
 }
 
+public function itemConsume(item:ItemSlotClass):void
+{
+	item.quantity--;
+	//Remove from inventory array!
+	if (item.quantity <= 0 && pc.inventory.indexOf(item) != -1)
+	{
+		pc.inventory.splice(pc.inventory.indexOf(item), 1);
+	}
+}
+
 public function useItem(item:ItemSlotClass):Boolean {
 	if (item.isUsable == false)
 	{
@@ -109,11 +119,21 @@ public function combatUseItem(item:ItemSlotClass, targetCreature:Creature = null
 		// This is kinda bullshit. To save cheesing args for the function when called via a button,
 		// we're gonna rebuild sensible defaults if the args are absent. No args = assume the player
 		// pressed a button to invoke the call
+		
+		if (usingCreature == null)
+		{
+			usingCreature = pc;
+		}
+		
 		if (targetCreature == null)
 		{
 			if (item.targetsSelf == true)
 			{
 				targetCreature = pc;
+			}
+			else if (item.requiresTarget == false)
+			{
+				item.useFunction(null, usingCreature);
 			}
 			else
 			{
@@ -157,28 +177,27 @@ public function combatUseItem(item:ItemSlotClass, targetCreature:Creature = null
 			}
 		}
 		
-		if (usingCreature == null)
-		{
-			usingCreature = pc;
-		}
-		
 		item.useFunction(targetCreature, usingCreature);
 		
 		if (!infiniteItems() && !item.hasFlag(GLOBAL.NOT_CONSUMED_BY_DEFAULT))
 		{
 			item.quantity--;
-			if (item.quantity <= 0)
+			if (item.quantity <= 0 && usingCreature.inventory.indexOf(item) != -1)
 			{
 				usingCreature.inventory.splice(usingCreature.inventory.indexOf(item), 1);
 			}
 		}
 	}
-	if(pc.hasPerk("Quickdraw") && (item.type == GLOBAL.RANGED_WEAPON || item.type == GLOBAL.MELEE_WEAPON))
+	
+	if(usingCreature is PlayerCharacter && pc.hasPerk("Quickdraw") && (item.type == GLOBAL.RANGED_WEAPON || item.type == GLOBAL.MELEE_WEAPON))
 	{
 		clearMenu();
 		addButton(0,"Next",combatInventoryMenu);
 	}
-	else CombatManager.processCombat();
+	else if (usingCreature is PlayerCharacter)
+	{
+		CombatManager.processCombat();
+	}
 }
 
 public var shopkeepBackFunctor:Function = null;
@@ -192,102 +211,12 @@ public function shop(keeper:Creature):void {
 		return;
 	}
 	
-	if(keeper is Geoff) {
-		mainGameMenu();
-		return;
-	}
-	else if(keeper is Jade) {
-		approachJade();
-		return;
-	}
-	else if(keeper is Sera) {
-		approachSera();
-		return;
-	}
-	else if(keeper is Kelly) {
-		kellyOfficeApproach();
-		return;
-	}
-	else if(keeper is Anno)
+	if (keeper)
 	{
-		if (!annoIsCrew()) repeatAnnoApproach();
-		else annoFollowerApproach();
+		keeper.onLeaveBuyMenu();
 		return;
 	}
-	else if(keeper is Ellie)
-	{
-		ellieMenu();
-		return;
-	}
-	else if(keeper is Renvra)
-	{
-		approachRenvra();
-		return;
-	}
-	else if(keeper is Xanthe)
-	{
-		enterTheSilkenSerenityWhyDidWashHaveToDie();
-		return;
-	}
-	else if(keeper is MerchantQueen) {
-		introductionToMerchantQueenSloot();
-		return;
-	}
-	else if(keeper is Seifyn)
-	{
-		repeatSeifynMeeting();
-		return;
-	}
-	else if(keeper is Ceria)
-	{
-		ceriaMenu();
-		return;
-	}
-	else if(keeper is Gene)
-	{
-		genesModsGenericScene();
-		return;
-	}
-	else if(keeper is Emmy)
-	{
-		backToEmmyMain();
-		return;
-	}
-	else if(keeper is Inessa)
-	{
-		approachIness();
-		return;
-	}
-	else if(keeper is CrystalShopkeep)
-	{
-		visitCrystalGooShop();
-		return;
-	}
-	else if(keeper is Vi)
-	{
-		approachVi();
-		return;
-	}
-	else if(keeper is DoctorLash)
-	{
-		mainGameMenu();
-		return;
-	}
-	else if(keeper is VKo)
-	{
-		approachVKo();
-		return;
-	}
-	else if(keeper is Liriel)
-	{
-		lirielBackMenu(1);
-		return;
-	}
-	else if (keeper is Lerris)
-	{
-		lerrisMenu();
-		return;
-	}
+	
 	clearOutput();
 	output(keeper.keeperGreeting);
 	shopkeep = keeper;
@@ -317,6 +246,10 @@ public function buyItem():void {
 			if(pc.hasKeyItem(couponName))
 			{
 				temp = Math.round(temp * pc.keyItemv1(couponName));
+			}
+			else if(shopkeep is Lerris && pc.hasKeyItem("Coupon - TamaniCorp"))
+			{
+				temp = Math.round(temp * pc.keyItemv1("Coupon - TamaniCorp"));
 			}
 			
 			if(temp > pc.credits) output("<b>(Too Expensive)</b> ");
@@ -358,6 +291,11 @@ public function buyItemOK(arg:ItemSlotClass):void
 		price = Math.round(price * pc.keyItemv1(couponName));
 		hasCoupon = true;
 	}
+	else if(shopkeep is Lerris && pc.hasKeyItem("Coupon - TamaniCorp"))
+	{
+		price = Math.round(price * pc.keyItemv1("Coupon - TamaniCorp"));
+		hasCoupon = true;
+	}
 	
 	output("Are you sure you want to buy " + arg.description + " for");
 	if(hasCoupon) output(" a discounted price of");
@@ -371,21 +309,6 @@ public function buyItemGo(arg:ItemSlotClass):void {
 	clearOutput();
 	var price:Number = getBuyPrice(shopkeep,arg.basePrice);
 	
-	// Apply and destroy coupons!
-	var usedCoupon:Boolean = false;
-	var couponName:String = "Coupon - " + arg.shortName;
-	if(pc.hasKeyItem(couponName))
-	{
-		price = Math.round(price * pc.keyItemv1(couponName));
-		pc.removeKeyItem(couponName);
-		usedCoupon = true;
-	}
-	if(usedCoupon) output("The coupon saved on your codex is used and instantly changes the final price. ");
-	
-	output("You purchase " + arg.description + " for " + num2Text(price) + " credits.\n\n");
-
-	pc.credits -= price;
-	
 	//Special Vendor/Item Overrides
 	if(shopkeep is Colenso && arg is TarkusJokeBook)
 	{
@@ -394,6 +317,11 @@ public function buyItemGo(arg:ItemSlotClass):void {
 		//’Next’ button can either return to shop menu or go directly to the codex entry, you choose
 		clearMenu();
 		addButton(0,"Next",colensoBuyMenu);
+		return;
+	}
+	else if(shopkeep is Petr)
+	{
+		arbetzPetrBuyGo(arg);
 		return;
 	}
 	else if(shopkeep is Ellie && arg is SumaCream)
@@ -405,6 +333,29 @@ public function buyItemGo(arg:ItemSlotClass):void {
 	//Emmy magic!
 	else if(shopkeep is Emmy) flags["PURCHASED_FROM_EMS"] = 1;
 	else if(shopkeep is Sera) flags["PURCHASED_FROM_SERA"] = 1;
+	
+	// Apply and destroy coupons!
+	var usedCoupon:Boolean = false;
+	var couponName:String = "Coupon - " + arg.shortName;
+	if(pc.hasKeyItem(couponName))
+	{
+		price = Math.round(price * pc.keyItemv1(couponName));
+		pc.removeKeyItem(couponName);
+		usedCoupon = true;
+	}
+	if(usedCoupon) output("The coupon saved on your codex is used and instantly changes the final price. ");
+	else if(shopkeep is Lerris && pc.hasKeyItem("Coupon - TamaniCorp"))
+	{
+		price = Math.round(price * pc.keyItemv1("Coupon - TamaniCorp"));
+		pc.removeKeyItem(couponName);
+		usedCoupon = true;
+		output("The coupon saved on your codex is used and instantly changes the final price. ");
+		pc.removeKeyItem("Coupon - TamaniCorp");
+	}
+	
+	output("You purchase " + arg.description + " for " + num2Text(price) + " credits.\n\n");
+	pc.credits -= price;
+	
 	// Renamed from lootList so I can distinguish old vs new uses
 	var purchasedItems:Array = new Array();
 	purchasedItems[purchasedItems.length] = arg.makeCopy();
@@ -584,9 +535,12 @@ public function sellItemGo(arg:ItemSlotClass):void {
 	pc.credits += price;
 	output("You sell " + arg.description + " for " + num2Text(price) + " credits.");
 	arg.quantity--;
-	if (arg.quantity == 0) pc.inventory.splice(pc.inventory.indexOf(arg), 1);
-	this.clearMenu();
-	this.addButton(0,"Next",sellItem);
+	if (arg.quantity <= 0 && pc.inventory.indexOf(arg) != -1)
+	{
+		pc.inventory.splice(pc.inventory.indexOf(arg), 1);
+	}
+	clearMenu();
+	addButton(0,"Next",sellItem);
 }
 
 // Special seller/item handling
@@ -754,6 +708,7 @@ public function inventoryDisplay():void
 public function generalInventoryMenu():void
 {
 	clearOutput();
+	showName("\nINVENTORY");
 	var x:int = 0;
 	itemScreen = inventory;
 	useItemFunction = inventory;
@@ -794,6 +749,7 @@ public function generalInventoryMenu():void
 public function combatInventoryMenu():void
 {
 	clearOutput();
+	showName("\nINVENTORY");
 	clearMenu();
 	itemScreen = inventory;
 	useItemFunction = inventory;
@@ -1134,6 +1090,15 @@ public function replaceItemGo(args:Array):void
 	}
 	else 
 		this.addButton(0,"Next",lootScreen);
+}
+
+public function quickLoot(... args):void
+{
+	itemScreen = mainGameMenu;
+	lootScreen = mainGameMenu;
+	useItemFunction = mainGameMenu;
+	
+	itemCollect(args);
 }
 
 public function hasShipStorage():Boolean

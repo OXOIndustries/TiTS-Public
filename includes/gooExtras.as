@@ -594,6 +594,7 @@ public function revertGooBody(part:String = "all", consumeBiomass:Boolean = fals
 		// Skin actually changes?
 		pc.skinType = GLOBAL.SKIN_TYPE_GOO;
 		pc.clearSkinFlags();
+		pc.addSkinFlag(GLOBAL.FLAG_ABSORBENT);
 		pc.addSkinFlag(GLOBAL.FLAG_SQUISHY);
 		if(pc.statusEffectv1("Gel Body") >= 1) pc.addSkinFlag(GLOBAL.FLAG_LUBRICATED);
 		if(consumeBiomass) gooBiomass(-20);

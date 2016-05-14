@@ -3,6 +3,7 @@
 	import classes.Creature;
 	import classes.GLOBAL;
 	import classes.Items.Miscellaneous.*;
+	import classes.Items.Transformatives.Catnip;
 	import classes.Items.Transformatives.OvirAce;
 	import classes.Items.Transformatives.OvirPositive;
 	import classes.kGAMECLASS;
@@ -13,7 +14,7 @@
 		//constructor
 		public function Jade()
 		{
-			this._latestVersion = 7;
+			this._latestVersion = 8;
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			
@@ -44,8 +45,8 @@
 			this.energyRaw = 100;
 			this.lustRaw = 35;
 			
-			this.XPRaw = 50;
 			this.level = 4;
+			this.XPRaw = normalXP();
 			this.credits = 0;
 			this.HPMod = 15;
 			this.HPRaw = this.HPMax();
@@ -58,6 +59,7 @@
 			this.inventory.push(new AusarTreats());
 			inventory.push(new OvirAce());
 			inventory.push(new OvirPositive());
+			this.inventory.push(new Catnip());
 			this.typesBought[this.typesBought.length] = GLOBAL.PILL;
 			this.typesBought[this.typesBought.length] = GLOBAL.POTION;
 			this.typesBought[this.typesBought.length] = GLOBAL.DRUG;
@@ -211,6 +213,16 @@
 		{
 			d.inventory.push(new OvirAce().getSaveObject());
 			d.inventory.push(new OvirPositive().getSaveObject());
+		}
+		
+		public function UpgradeVersion7(d:Object):void
+		{
+			d.inventory.push(new Catnip().getSaveObject());
+		}
+		
+		override public function onLeaveBuyMenu():void
+		{
+			kGAMECLASS.approachJade();
 		}
 	}
 }

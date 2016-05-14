@@ -114,34 +114,35 @@ public function scotlandYardIMeanThollumYardBonus():Boolean
 	var mushRoom:Number = flags["MUSHROOM_TRACKER"];
 	//(Mushroom Tracker < 10000mL)
 	if(mushRoom < 10000) output(".");
-	else if(mushRoom < 20000 && (flags["MUSH_SEEN"] == undefined || flags["MUSH_SEEN"] == 1))
+	else if(mushRoom >= 10000 && (flags["MUSH_SEEN"] == undefined || flags["MUSH_SEEN"] == 1))
 	{
 		output("; the stalks in one section near the door are even several inches higher than the rest for some reason.");
 		flags["MUSH_SEEN"] = 1;
 	}
-	else if(mushRoom < 40000 && (flags["MUSH_SEEN"] == 1 || flags["MUSH_SEEN"] == 2))
+	else if(mushRoom >= 20000 && (flags["MUSH_SEEN"] == 1 || flags["MUSH_SEEN"] == 2))
 	{
 		output("; one familiar section near the door has stalks almost a foot higher than the rest, suggesting it gets much more nutrition somehow.");
 		flags["MUSH_SEEN"] = 2;
 	}
 	//(Tracker >= 40000mL and has seen 20000 milestone)
-	else if(mushRoom < 80000 && (flags["MUSH_SEEN"] == 2 || flags["MUSH_SEEN"] == 3))
+	else if(mushRoom >= 40000 && (flags["MUSH_SEEN"] == 2 || flags["MUSH_SEEN"] == 3))
 	{
 		output("; one overgrown, familiar section near the door is practically rank with two- and three-foot variants, and you think you know what ‘fertilizer’ they’ve been getting.");
 		flags["MUSH_SEEN"] = 3;
 	}
 	//(Tracker >= 80000mL and has seen 40000 milestone)
-	else if(mushRoom < 160000 && (flags["MUSH_SEEN"] == 3 || flags["MUSH_SEEN"] == 4))
+	else if(mushRoom >= 80000 && (flags["MUSH_SEEN"] == 3 || flags["MUSH_SEEN"] == 4))
 	{
 		output("; the ridiculously jungly section where Yarasta usually sits is practically a thicket of mushroom caps thanks to your spilled cum.");
 		flags["MUSH_SEEN"] = 4;
 	}
 	//(Tracker >= 160000mL and has seen 80000 milestone)
-	else if(flags["MUSH_SEEN"] == 4 || flags["MUSH_SEEN"] == 5)
+	else if(mushRoom >= 160000 && (flags["MUSH_SEEN"] == 4 || flags["MUSH_SEEN"] == 5))
 	{
 		output("; the mushrooms at the cum-flooded rendezvous shared by you and Yarasta have grown into an umbrageously dense, fungus-redwood forest whose caps bend against the cavern ceiling - the staff have even started hanging lights on the foot-wide trunks to keep girls from getting lost in them.");
 		flags["MUSH_SEEN"] = 5;
 	}
+	else output(".");
 	output("\n\nThe garden mushrooms don’t glow, but they are spongy and tough enough to endure ");
 	if(hours >= 19 && hours < 21) output("the hundred or so uniformed myr children currently playing. Some of them are engaged in a game involving a spherical rock and white, wood-like shields. It’s very physical and reminiscent of a more medieval form of rugby.");
 	else if((hours >= 7 && hours < 12) || (hours >= 13 && hours < 18)) output("the plodding feet of students moving to and fro, working on their gardens under the supervision of a few adult myr.");
@@ -470,7 +471,7 @@ public function tourPartTwo():void
 {
 	clearOutput();
 	showName("\nTHE TOUR");
-	output("The myr guard takes you back through the foyer, enroute to the classrooms. As you enter the connecting hallway, you attention is drawn to the central feature of each room: lacking holo- or chalk-boards, the myr apparently do their demonstrations in a pit of fine sand. Cushions surround it, doubtless places for the girls to sit.");
+	output("The myr guard takes you back through the foyer, enroute to the classrooms. As you enter the connecting hallway, your attention is drawn to the central feature of each room: lacking holo- or chalk-boards, the myr apparently do their demonstrations in a pit of fine sand. Cushions surround it, doubtless places for the girls to sit.");
 	if((hours >= 7 && hours < 12) || (hours >= 13 && hours < 18))
 	{
 		output(" The classes are full right now, packed with girls in color-coded vests and skirts trying to learn.");

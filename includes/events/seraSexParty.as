@@ -440,7 +440,7 @@ public function seraSexPartyStage1(response:String = "none"):void
 			
 			showBust("SERA");
 			
-			output("<i>“Isn’t this nice?”</i> opines the succubus pleasantly. A blunt tail spade cracks into your butt, making you jerk. She’s in her element. <i>“Two special friends enjoying an evening walk together. We should do it more often. I’ll bring the lead next time... ah, here we go.”</i>");
+			output("<i>“Isn’t this nice?”</i> opines the succubus pleasantly. A blunt tail spade cracks into your butt, making you jerk. She’s in her element. <i>“Two special friends enjoying an evening walk together. We should do it more often. I’ll bring the leash next time... ah, here we go.”</i>");
 			output("\n\nYou are on the residential deck of Tavros. Unlike the rows of apartments and squashed-together shops found elsewhere, the dwellings here are large, separate buildings, mansions almost. Above it all a vast, transparent ceiling hangs, through which the glittering void of space gazes back. The price of places like these on a vessel like Tavros must be huge.");
 			
 			processTime(3);

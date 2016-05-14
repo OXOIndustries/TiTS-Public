@@ -53,8 +53,8 @@
 			baseHPResistances.burning.damageValue = 100.0;
 			baseHPResistances.freezing.damageValue = 100.0;
 			
-			this.XPRaw = 500;
 			this.level = 7;
+			this.XPRaw = normalXP();
 			this.HPRaw = this.HPMax();
 			this.credits = 0;
 			
@@ -74,6 +74,7 @@
 			this.skinType = GLOBAL.SKIN_TYPE_GOO;
 			this.skinTone = "green";
 			this.skinFlags = [GLOBAL.FLAG_SQUISHY, GLOBAL.FLAG_LUBRICATED, GLOBAL.FLAG_AMORPHOUS];
+			addSkinFlag(GLOBAL.FLAG_ABSORBENT);
 			this.faceType = 0;
 			this.faceFlags = new Array();
 			this.tongueType = 0;
@@ -309,7 +310,7 @@
 		{
 			output("The gooey incubator swings one of her arms at you, as fast as her heavily laden body will let her. Rather than strike at you directly, though, a clump of goop flings off of her body and hurtles towards you!");
 			if(target.shields() > 0) output("\nThe goo splatters on your shields, drooling down to the ground like a bug caught on a windshield.");
-			else if(rangedCombatMiss(this, target)) output("\nThe goo splatters harmlessly on your chest. What was the point of that!?");
+			else if(rangedCombatMiss(this, target) || target.hasBlindImmunity()) output("\nThe goo splatters harmlessly on your chest. What was the point of that!?");
 			else
 			{
 				output("\nThe gooey blob beans you right in the face! You yelp in surprise as the warm slime splatters across your face, bathing everything in a weird green light - <b>you’re blinded by the goo</b>!");

@@ -602,7 +602,7 @@ public function giannaAppearance():void
 		//HORSE FUTA!?
 		if(gianna.hasCock(GLOBAL.TYPE_EQUINE)) output("\n\nA bulging sheath of synthflesh protrudes in place of her clitoral hood, darkening from the pale white of the rest of her body to a shining black. The rubbery-looking flesh is capped with a black flare that can only be the tip of the proverbial iceberg, an innocent-looking crown for a thick, bestial shaft. When engorged, that animalistic behemoth can jut a full fourteen inches from her crotch, a pillar of silicone-inflated girlmeat just waiting for a hole to stretch. She can go from soft to fully erect in less than ten second and does so on the spot, giving you a demonstration that ends with beads of lubricant rolling out of her blunt head. With a wink, she goes soft just as quickly.");
 		//DARGON FUTA?
-		else if(gianna.hasCock(GLOBAL.TYPE_SNAKE)) output("\n\nA bestial rod of synthflesh emerges from Gianna's crotch, right where her clitoral hood normally would be. A sultry swirl of blues and purples meshes well with your gynoid companion's creamy skin, looking like its perfectly in its place... despite being a footlong shaft of vaguely reptilian cock, clearly based on somebody's fantasy of what a dragon's dick ought to look like. The crown is surrounded by a squirming ring of anemone-like tendrils that draw your eye every time you look her way. Even when not inflated to tumescence by Gianna's fluids, the mythically-patterned synth-dick hangs solidly between her legs - clearly a shower, not a grower.");
+		else if(gianna.hasCock(GLOBAL.TYPE_DRACONIC)) output("\n\nA bestial rod of synthflesh emerges from Gianna's crotch, right where her clitoral hood normally would be. A sultry swirl of blues and purples meshes well with your gynoid companion's creamy skin, looking like its perfectly in its place... despite being a footlong shaft of vaguely reptilian cock, clearly based on somebody's fantasy of what a dragon's dick ought to look like. The crown is surrounded by a squirming ring of anemone-like tendrils that draw your eye every time you look her way. Even when not inflated to tumescence by Gianna's fluids, the mythically-patterned synth-dick hangs solidly between her legs - clearly a shower, not a grower.");
 		else output("\n\nA half-hard length of pink-hued synthflesh dangles from her clitoral hood, modelled in the shape of a girthy penis. While soft, it’s a floppy four inches. When it gets hard, she can sport up to ten inches of silicone-inflated girlmeat. The android is more than happy to give you a demonstration, going from soft to raging tumescence in the span of ten seconds, ending her demonstration by allowing bubbles of warm lubricant to roll out of its head unimpeded, drawn from her inner reservoirs. She goes soft just as quickly.");
 	}
 	//Merge
@@ -1227,7 +1227,7 @@ public function talkToGiannaAboutBigT():void
 	output("\n\nGianna nods, her expression set in firm agreement with you. <i>“He is. Didn’t leave until I was fit to go. He paid the bill without a second glance, and on the way back, we finally got the chance to talk.”</i>");
 	output("\n\n<i>“");
 	if(!pc.isBimbo() && !pc.isBro()) output("Was he as simple-minded as the rest of the treated citizens?");
-	else output("Did he let you suck his cock afterward to think him? It’d be the only fair recompense.");
+	else output("Did he let you suck his cock afterward to thank him? It’d be the only fair recompense.");
 	output("”</i>");
 	output("\n\nThe thoughtful android shakes her head slowly. <i>“No... not quite. We talked a lot. I apologized for getting in front of his truck, and he apologized for hitting me. We must have gone through that three or four times. But then... then he just put his arm around me, and he promised to take care of me if my Master didn’t return. He was happy just to do that. Just to take care of me.”</i>");
 	output("\n\nReally?");
@@ -4092,7 +4092,7 @@ public function giannaCrotchTF(arg:String = "clit"):void
 			pc.destroyItem(new ADCock());
 		}
 		gianna.createCock(10,1.1);
-		gianna.shiftCock(0,GLOBAL.TYPE_SNAKE);
+		gianna.shiftCock(0,GLOBAL.TYPE_DRACONIC);
 		gianna.cocks[0].cockColor = "bluish purple";
 	}
 	if(arg == "clit")
@@ -4127,7 +4127,7 @@ public function hotswapGiannaButts():void
 	
 	if(flags["GIANNA_HAS_DRAGON_COCK"] != undefined)
 	{
-		if(gianna.hasCock(GLOBAL.TYPE_SNAKE)) addDisabledButton(3,"Drgn.Cock","Dragon Cock","Gianna already has that type of penis equipped.");
+		if(gianna.hasCock(GLOBAL.TYPE_DRACONIC)) addDisabledButton(3,"Drgn.Cock","Dragon Cock","Gianna already has that type of penis equipped.");
 		else addButton(3,"Drgn.Cock",hotSwapSomethingWithGianna,"dragon","Dragon Cock","Have Gianna equip her dragon cock.");
 	}
 	else addDisabledButton(3, "Locked", "Locked", "Gianna does not have this item yet.");
@@ -4207,7 +4207,7 @@ public function getButtReamedByFutaGigi():void
 	else output("\n\n\"<i>D-do you like my cock that much?</i>\" Gianna swoons, eyes wide as you slide down her tumescent artificial erection. Her creamy cheeks darken a bit, and you're only half-certain that she murmurs after that, \"<i>I'm glad...</i>\"");
 	
 	output("\n\nHer hand strokes your [pc.hair], gently urging you down the length of her prick until your ");
-	if(gianna.cocks[0].cType == GLOBAL.TYPE_EQUINE || gianna.cocks[0].cType == GLOBAL.TYPE_SNAKE) output("throat is bulging around her animalistic shaft");
+	if(gianna.cocks[0].cType == GLOBAL.TYPE_EQUINE || gianna.cocks[0].cType == GLOBAL.TYPE_DRACONIC) output("throat is bulging around her animalistic shaft");
 	else output("[pc.lips] are pressing against her crotch, and your [pc.tongue] is able to flick out to lap at the slit of her twat hidden under the throbbing shaft of synth-flesh that's stretching your mouth out");
 	output(". Every throb and twitch of her cock makes you more and more eager to feel its synthetic girth ramming into your [pc.asshole]. You're sure to cover every inch you can with a nice, thick coat of spittle. The more you lavish attention on Gianna's cock, though, the more of her thick, gooey lube she squirts into your mouth, filling you with its entirely inhuman taste.");
 	output("\n\nYou pull your mouth back, popping her wet shaft out and letting the steady stream of pre-like lube drool down her length and around your fingers, using your pumping hand to massage it in all over her. Gianna groans and shivers, looking like she's halfway to orgasm already. For now, though, you're satisfied with your lube-job - enough that you're willing to get up and present your [pc.butt] to your gynoid lover.");

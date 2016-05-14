@@ -33,6 +33,7 @@ public function getVahnPregContainer():PregnancyPlaceholder
 	ppVahn.cocks[0].flaccidMultiplier = 0.5;
 	ppVahn.balls = 2;
 	ppVahn.ballSizeRaw = 8;
+	ppVahn.createPerk("Fixed CumQ", 1000, 0, 0, 0);
 	return ppVahn;
 }
 
@@ -315,7 +316,7 @@ public function giveVahnAnal():void
 	output("\n\nYou step forward and whisper in his fluffy canine ear exactly what you’re thinking about doing to him in intimate detail. The moment you utter your sensuous intentions, his breathing becomes hot and heavy.");
 	output("\n\nSlipping your arms around his waist, you kiss and suckle on his neck, pressing your hips against his. Vahn lets out a breathy sigh and you feel a stiffening against your [pc.cockNounSimple " + x + "].");
 	output("\n\n<i>“I’d... yes, I think I’d like that,”</i> he huskily murmurs. You lead him by the hand up the ramp and into your ship’s cargo bay. There, you tell him to strip for you. Blushing, the blond haired ausar unzips his jumpsuit and begins to slide it down his muscled yet slender body, exposing his broad chest, well-toned abs, and slender waist.");
-	if(!fuckedVahn()) output(" His veiny, knotted manhood is already proudly pointing upwards and achingly erect.");
+	if(fuckedVahn()) output(" His veiny, knotted manhood is already proudly pointing upwards and achingly erect.");
 
 	else output("\n\nYour mouth wettens at the sight of his wonderful manhood. His dick is long and thick - ten inches of deliciously rigidity - and completely terran except for the knot at his base. His low-hanging balls look full and ripe.");
 
@@ -371,7 +372,8 @@ public function giveVahnAnal():void
 	if(pc.hasKnot(x))
 	{
 		output("\n\nYour knot swells as his does, locking inside of Vahn’s ass. With an animalistic cry, the half-ausar whines and rubs his butt against your hips. Some primal calling takes over his mind as you knot with his ass; his furry ears pull back, his tail lifts up, and he begins to lustily pant. His insides ripple around your [pc.cock " + x + "], coaxing each [pc.cumVisc] spurt up to make way for another. Before long his ass is packed full of your [pc.cumNoun], the barest dribble seeping out of his well-stretched star.");
-		output("\n\n...Half an hour later...");
+		output("\n\n... Half an hour later...");
+		processTime(20 + rand (10));
 	}
 	output("\n\nWhen you pull out of Vahn’s sexy bottom, you leave his back door gaping. ");
 	if(pc.cumQ() >= 10)
@@ -432,12 +434,15 @@ public function catchVahnCowgirl():void
 	output("\n\nBetween your naked thighs and up against your mound, you can feel something hot and hard. It’s barely constricted beneath his jumpsuit, swelling up and towards his belly with every passing second. You moan and rub yourself against it, feeling his throbbing heat even through his jumpsuit. Knowing that you’re getting him this hard – him just playing with your ");
 	if(pc.biggestTitSize() >= 2) output("breasts and ");
 	output("nipples – is getting you all kinds of hot!");
-	if(pc.hasCock()) output("Your own [pc.cocks] slap");
-	if(pc.cockTotal() >= 2) output("s");
-	output(" excitedly against your belly and swell with arousal.");
+	if(pc.hasCock())
+	{
+		output(" Your own [pc.cocks] slap");
+		if(pc.cockTotal() == 1) output("s");
+		output(" excitedly against your belly and swell with arousal.");
+	}
 	
 	output("\n\nUnwilling to wait a second longer, you reach down and undo the lower half of Vahn’s jumpsuit. The second you do, his ")
-	if(pc.hasCock()) output("own "); 
+	if(pc.hasCock(GLOBAL.TYPE_CANINE) && String(pc.race()).indexOf("ausar") != -1) output("own "); 
 	output("half-ausar cock springs out. Preparing him first, you ");
 	if(pc.hasCock()) output("lift your own [pc.cocks] out of the way and ");
 	output("rub your slick slit against his undershaft, coating his veiny length in your lube-like juices. Your lover moans and rubs up and back against you in carnal rhythm, twitching against your womanhood.");
@@ -568,8 +573,8 @@ public function vahnFucksYourButt():void
 	output(". The male tech’s eyes go wide, and there’s a pointed stiffness pitching in his lower overalls – he definitely appreciates the sight!");
 	
 	output("\n\n<i>“Oh wow...”</i> He murmurs, openly ogling your sexy body. Peeling off his jumpsuit, you’re greeted with the ");
-	if (flags["SEXED_VAHN"] != undefined) output("sight of his long, thick cock. Ten inches of delicious rigidity is poking up and pressing against his taut belly – it’s completely terran except for the knot at his base.");
-	else output("familiar sight of his ten inch cock!")
+	if (flags["SEXED_VAHN"] == undefined) output("sight of his long, thick cock. Ten inches of delicious rigidity is poking up and pressing against his taut belly – it’s completely terran except for the knot at his base.");
+	else output("familiar sight of his ten-inch cock!")
 	
 	output("\n\nWith a little grin, you bend over a crate and invitingly raise your rump to him. Glancing over your shoulder, you watch with barely concealed delight as he firmly grabs your hips and plants his pecker right between your cheeks!");
 	
@@ -597,7 +602,7 @@ public function vahnFucksYourButt():void
 		else output("pussies are untouched but are as warm and as slick as they");
 		output(" can be, thoroughly aroused by his entry!");
 	}
-	else output("With no sex organs to speak of, you’re loving him using your ass-pussy!");
+	if(!pc.hasGenitals()) output(" With no sex organs to speak of, you’re loving him using your ass-pussy!");
 
 	output("\n\nJust as you think you can take no more, his already engorged knot begins to swell ");
 	if(pc.hasCock())
@@ -609,8 +614,8 @@ public function vahnFucksYourButt():void
 	if(pc.hasCock())
 	{
 		if(pc.cockTotal() == 1) output(" [pc.cocksNoun] jerks and shoot [pc.cum] all over the crate and your belly, jerking and jumping around with nothing to hold it down");
-		if(pc.cockTotal() > 1) output("[pc.cocksNoun] jerk and shoot [pc.cum] all over the crate and your belly, jerking and jumping around with nothing to hold them down");
-		if(pc.isHerm()) output("At the same time, your");
+		if(pc.cockTotal() > 1) output(" [pc.cocksNoun] jerk and shoot [pc.cum] all over the crate and your belly, jerking and jumping around with nothing to hold them down");
+		if(pc.isHerm()) output(". At the same time, your");
 	}
 	if(pc.hasVagina()) output(" [pc.cunt] splatters with excitement, the coiled pleasure in your lower belly releasing all at once");
 	if(!pc.hasGenitals()) output(" [pc.legOrLegs] quake and you feel a molten release from your quivering rump");

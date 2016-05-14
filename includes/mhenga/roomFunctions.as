@@ -9,6 +9,182 @@ Naleen, Cuntsnake, Venus Pitchers
 Deep Jungle Biome:
 Naleen, Venus Pitchers, Elder Venus Pitchers, Zil
 */
+
+public function flyToMhenga():void
+{
+	output("You fly to Mhen'ga");
+	if(leaveShipOK()) output(" and step out of your ship.");
+}
+
+public function mhengaShipHangarFunc():Boolean
+{
+	if (annoIsCrew() && !syriIsCrew() && flags["ANNOxSYRI_EVENT"] == undefined)
+	{
+		annoFollowerFirstTimeOnMhenga();
+		return true;
+	}
+	
+	return false;
+}
+public function xenogenOutsideBlurb():Boolean
+{
+	variableRoomUpdateCheck();
+	if(hours < 6 || hours >= 17)
+	{
+		output("\n\n<b>The doorway to the north is currently marked \"Closed.\"</b> A notice declares that it will be open again at 6:00 standard terran time.");		
+	}
+	else
+	{
+		output("\n\n<b>Xenogen Biotech is currently open!</b> Office hours are 6:00 to 17:00 standard terran time.");
+	}
+	return false;
+}
+
+public function synthSapNoticeUnlock():Boolean
+{
+	return (flags["MET_VANAE_MAIDEN"] != undefined && flags["MET_VANAE_HUNTRESS"] != undefined && CodexManager.entryViewed("Vanae: History"));
+}
+
+public function mhengaActiveBounty():Boolean
+{
+	var openQuests:int = 0;
+	
+	if(flags["SEEN_JULIANS_AD"] == undefined) openQuests++;
+	if(synthSapNoticeUnlock() && flags["SEEN_SYNTHSAP_AD"] == undefined) openQuests++;
+	
+	if(openQuests > 0) return true;
+	return false;
+}
+public function bountyBoardExtra():Boolean
+{
+	output("\n\nA large bulletin board has been erected against the wall of the building to the north.");
+	if(mhengaActiveBounty()) output(" <b>There are new notices there.</b>");
+	addButton(0,"Bulletins",checkOutBountyBoard);
+	return false;
+}
+public function checkOutBountyBoard():void
+{
+	clearOutput();
+	output("The bounty board is covered in simple leaflets, papers, and all manner of other detritus. Most appear to be for mundane tasks like trading construction equipment, advertising repair services, or business advertisements. Still, there's at least one that stands out.");
+	
+	// Zil Capture
+	output("\n\n");
+	if(flags["SEEN_JULIANS_AD"] == undefined) {
+		output("<b>New:</b>");
+		flags["SEEN_JULIANS_AD"] = 1;
+	}
+	else {
+		if(flags["SECOND_CAPTURED_ZIL_REPORTED_ON"] == 1) output("<b>Completed:</b>");
+		else if(flags["ACCEPTED_JULIANS_ZIL_CAPTURE_MISSION"] == 1) output("<b>Accepted:</b>");
+		else output("<b>Seen Before:</b>");
+	}
+	output(" Dr. Julian of the Xenogen Biotech labs on the south end of town is looking for 'a strapping, adventurous type' to brave the jungles in search of something he can use for his research.");
+	if(flags["SECOND_CAPTURED_ZIL_REPORTED_ON"] == 1) output(" You know from experience that it's quite lucrative.");
+	else output(" It seems like it could be quite lucrative.");
+	// SynthSap
+	if(synthSapNoticeUnlock())
+	{
+		output("\n\n");
+		if(flags["SEEN_SYNTHSAP_AD"] == undefined)
+		{
+			output("<b>New:</b>");
+			flags["SEEN_SYNTHSAP_AD"] = 1;
+		}
+		else
+		{
+			if(flags["SYNTHSAP_UNLOCKED"] != undefined) output("<b>Completed:</b>");
+			else output("<b>Seen Before:</b>");
+		}
+		output(" Xenogen Biotech Labs is seeking samples of ‘Sky Sap’ from the vanae natives. They are offering a monetary reward to anyone who can provide a steady supply of this substance.");
+	}
+	
+	processTime(2);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+	
+public function barBackRoomBonus():Boolean
+{
+	if((hours >= 17 || hours < 6))
+	{
+		if(flags["KELLY_MET"] == 1) kellyAtTheBar();
+		else output("\n\nA bunny-girl is back here with another patron, too busy to pay any attention to you.")
+	}
+	return false;
+}
+
+public function esbethFastTravelOfficeBonus():Boolean
+{
+	//Codex locked:
+	if(!CodexManager.entryUnlocked("Leithans")) 
+	{
+		output(", and your codex beeps to inform you it's identified the leithan race");
+		CodexManager.unlockEntry("Leithans");
+	}
+	output(".");
+
+	addButton(0, (hasMetTanis() ? "Tanis" : "Scout"), mhengaScoutAuthority);
+	return false ;
+}
+
+public function mhengaScoutAuthority():void
+{
+	clearOutput();
+	showBust("TANIS");
+	//if (hasMetTanis()) showName("\nTANIS");
+	author("Savin");
+	
+	if (flags["TANIS_APPROACHED"] != undefined && flags["TANIS_BOW_INTRO"] == undefined && pc.hasBowWeaponAvailable())
+	{
+		tanisBowIntro();
+		return;
+	}
+	
+	if(flags["SALVAGED VANAE CAMP"] != 2) 
+	{
+		output("When you step up to " + (hasMetTanis() ? "Tanis" : "the leithan man") + ", he looks up from his work on a holoscreen and gives you an apologetic grin. <i>\"Sorry, friend, we're just getting set up here on Mhen'ga. Jungle's a little too dense for the scout drones to map and plan landing zones, so there's no transports going out yet.\"</i>");
+		output("\n\n<i>\"Ah. Sorry to bother you,”</i> you say, turning to leave.");
+		output("\n\n<i>“No worries. <b>If you come across any inactive ones out there, get them going, and we’ll be able to get you anywhere they cover.</b>”</i>");
+		processTime(1);
+		clearMenu();
+
+		addButton(0, "Next", mainGameMenu);
+		if (hasMetTanis() && pc.hasBowWeaponAvailable()) addButton(1, "Bow Training", tanisBowTraining);
+		
+		flags["TANIS_APPROACHED"] = 1;
+	}
+	//[Scout] (PC has fixed a comm array)
+	else
+	{
+		output("When you step up to " + (hasMetTanis() ? "Tanis" : "the leithan man") + ", he looks up from his work on a holoscreen and gives you a big grin. <i>\"Hey there! Welcome to the Scout Authority base. We're running light transports out into the jungle now that comm arrays are coming online. So, where can we take you, " + pc.mf("sir","ma'am") + "?\"</i>");
+		processTime(1);
+		clearMenu();
+		if(pc.credits >= 40) addButton(0,"XenogenCamp",mhengaTaxiToXenogen,undefined,"Xenogen Camp","This taxi will take you to the abandoned camp you found in the jungle. It costs 40 credits.");
+		else addDisabledButton(0,"XenogenCamp","Xenogen Camp","You don't have enough credits to ride there.");
+
+		if (hasMetTanis() && pc.hasBowWeaponAvailable()) addButton(1, "Bow Training", tanisBowTraining);
+
+		addButton(14, "Back", mainGameMenu);
+		
+		flags["TANIS_APPROACHED"] = 1;
+	}
+}
+
+public function mhengaTaxiToXenogen():void
+{
+	clearOutput();
+	showBust("TANIS");
+	pc.credits -= 40;
+	output("<i>“Alright. I’ll upload the coordinates to one of the transports. Just swipe your credit stick here and head out back.”</i>");
+	output("\n\nYou do so, transferring your payment to the Scout Authority and walking out into the back lot behind the structure. Several small hover-cars are arrayed there, all jungle-patterned and manned by simplistic drone pilots. One of them hails you with a wave of its mechanical arm. You slip into the car, and a moment later you’re on your way, zipping across the jungle of Mhen’ga.");
+	output("\n\nNot long after, you arrive at the camp, and disembark into the jungle. The hover-car zips away a minute later, leaving you behind.");
+	currentLocation = "ABANDONED CAMP";
+	generateMapForLocation(currentLocation);
+	processTime(15);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
 public function jungleEncounterChances():Boolean {
 	if(flags["ENCOUNTERS_DISABLED"] != undefined) return false;
 	if(flags["JUNGLE_STEP"] == undefined) flags["JUNGLE_STEP"] = 1;
@@ -33,12 +209,15 @@ public function jungleEncounterChances():Boolean {
 		choices.push(encounterCuntSnakeOnJungleLand);
 		choices.push(encounterCuntSnakeOnJungleLand);
 		choices.push(frogGirlsEncounter);
-		if(rand(3) == 0) choices.push(dryadMeeting);
-		//Fragrant ladies or cum-drenched folks find her more often~
-		if((pc.hasVagina() && pc.wettestVaginalWetness() >= 4) || pc.hasStatusEffect("Cum Soaked"))
+		if(dryadIsActive())
 		{
-			choices.push(dryadMeeting);
-			choices.push(dryadMeeting);
+			if(rand(3) == 0) choices.push(dryadMeeting);
+			//Fragrant ladies or cum-drenched folks find her more often~
+			if(dryadCanSmellPC())
+			{
+				choices.push(dryadMeeting);
+				choices.push(dryadMeeting);
+			}
 		}
 		//Run the event
 		choices[rand(choices.length)]();
@@ -80,12 +259,15 @@ public function jungleMiddleEncounters():Boolean {
 		choices[choices.length] = encounterRegularTentaclePitcherYouGay;
 		if(flags["ZODEE_GALOQUEST"] == undefined) choices.push(zodeeGivesFirstGalomax);
 		choices.push(frogGirlsEncounter);
-		if(rand(3) == 0) choices.push(dryadMeeting);
-		//Fragrant ladies or cum-drenched folks find her more often~
-		if((pc.hasVagina() && pc.wettestVaginalWetness() >= 4) || pc.hasStatusEffect("Cum Soaked"))
+		if(dryadIsActive())
 		{
-			choices.push(dryadMeeting);
-			choices.push(dryadMeeting);
+			if(rand(3) == 0) choices.push(dryadMeeting);
+			//Fragrant ladies or cum-drenched folks find her more often~
+			if(dryadCanSmellPC())
+			{
+				choices.push(dryadMeeting);
+				choices.push(dryadMeeting);
+			}
 		}
 		//Run the event
 		choices[rand(choices.length)]();
@@ -138,12 +320,9 @@ public function jungleDeepEncounters():Boolean {
 			}
 		}
 	}
-	if(rand(100) == 0 && !pc.hasItem(new StrangeEgg())) 
+	if(rand(100) == 0 && !pc.hasItem(new StrangeEgg()))
 	{
-		output("\n\nOh hey, there's a strange looking egg on the ground! Do you take it?\n");
-		clearMenu();
-		addButton(0,"Take It",quickLoot,new StrangeEgg());
-		addButton(1, "Don't", mainGameMenu);
+		findStrangeEgg();
 		return true;
 	}
 	var choices:Array = new Array();
@@ -168,12 +347,15 @@ public function jungleDeepEncounters():Boolean {
 		}
 		choices[choices.length] = encounterMimbrane;
 		choices[choices.length] = encounterMimbrane;
-		if(rand(3) == 0) choices.push(dryadMeeting);
-		//Fragrant ladies or cum-drenched folks find her more often~
-		if((pc.hasVagina() && pc.wettestVaginalWetness() >= 4) || pc.hasStatusEffect("Cum Soaked"))
+		if(dryadIsActive())
 		{
-			choices.push(dryadMeeting);
-			choices.push(dryadMeeting);
+			if(rand(3) == 0) choices.push(dryadMeeting);
+			//Fragrant ladies or cum-drenched folks find her more often~
+			if(dryadCanSmellPC())
+			{
+				choices.push(dryadMeeting);
+				choices.push(dryadMeeting);
+			}
 		}
 		//choices[choices.length] = encounterRegularTentaclePitcherYouGay;
 		if(flags["ZODEE_GALOQUEST"] == undefined) choices.push(zodeeGivesFirstGalomax);
@@ -214,6 +396,27 @@ public function claimMhengaOxonium():void {
 	flags["OXONIUM_FOUND"]++;
 	pc.credits += 5000;
 	processTime(6);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+public function vanaeWarningBot():Boolean
+{
+	output("\n\n<b>A small, sleek drone bearing the U.G.C. Peacekeeper emblem is hovering here, puttering around in a small circle.</b> When you approach, the drone intones in a clearly mechanical voice: <i>“Peacekeeper Inoue has posted the following safety advisory: beyond this point, the southern area of jungle is classified as a level four threat and is to be avoided if at all possible.”</i>");
+	addButton(0,"Drone",talkToWarningDrone);
+	return false;
+}
+
+public function talkToWarningDrone():void
+{
+	clearOutput();
+	author("Savin");
+	showName("\nDRONE");
+	showBust("DRONE");
+	output("You step up to the drone and ask it for more information.");
+	output("\n\n<i>“Peacekeeper Inoue has classified the local species ‘Vanae’ as a level four threat. This species is highly aggressive. Only well-equipped explorers with significant off-world experience should proceed beyond this point.”</i>");
+	if(flags["SEXED_PENNY"] != undefined) output("\n\nAs you step back from the drone, it chirps and suddenly displays a holographic image of Penny. <i>“Hi, mate. I thought you might find this! Be safe out there, alright?”</i>\n\nYou smile and nod as the bonus message flickers off.");
+	processTime(1);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

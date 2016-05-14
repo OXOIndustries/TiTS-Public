@@ -64,8 +64,8 @@ package classes.Characters
 			this.energyRaw = 100;
 			this.lustRaw = 10;
 			
-			this.XPRaw = 125;
 			this.level = 5;
+			this.XPRaw = normalXP();
 			this.credits = 80 + rand(80);
 			this.HPMod = 0;
 			this.HPRaw = this.HPMax();
@@ -251,8 +251,8 @@ package classes.Characters
 				if (targets[i] is Saendra) saen = targets[i] as Creature;
 			}
 			
-			var blindedPC:Boolean = rand(10) != 0;
-			var blindedSaen:Boolean = saen != null && rand(10) != 0;
+			var blindedPC:Boolean = rand(10) != 0 && !pc.hasBlindImmunity();
+			var blindedSaen:Boolean = saen != null && rand(10) != 0 && !saen.hasBlindImmunity();
 			
 			if (blindedPC && blindedSaen)
 			{

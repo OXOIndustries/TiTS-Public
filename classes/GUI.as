@@ -51,6 +51,7 @@
 	import classes.UIComponents.ContentModuleComponents.LevelUpStatBar;
 	import classes.UIComponents.ContentModules.LevelUpStatsModule;
 	import classes.Engine.Interfaces.ParseText;
+	import classes.Engine.Map.InShipInterior;
 
 	import classes.UIComponents.SideBarComponents.StatBar;
 
@@ -678,12 +679,14 @@
 		{
 			this.showModule("LevelUpStats");
 			(_currentModule as LevelUpStatsModule).setCreatureData(character);
+			setLocation("", "LEVEL UP", "STATS");
 		}
 		
 		public function showLevelUpPerks(character:PlayerCharacter):void
 		{
 			this.showModule("LevelUpPerks");
 			(_currentModule as LevelUpPerksModule).setCreatureData(character);
+			setLocation("", "LEVEL UP", "PERKS");
 		}
 		
 		// Once this is all working, a lot of this should be refactored so that code external to GUI
@@ -765,7 +768,7 @@
 		{
 			if (cachePlanet == "CODEX")
 			{
-				if (kGAMECLASS.currentLocation == "SHIP INTERIOR")
+				if (InShipInterior())
 				{
 					roomText = "SHIP\nINTERIOR";
 					planetText = kGAMECLASS.rooms[kGAMECLASS.rooms["SHIP INTERIOR"].outExit].planet;

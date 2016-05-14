@@ -64,7 +64,7 @@
 			this.HPRaw = this.HPMax();
 			this.energyRaw = 100;
 			this.lustRaw = 1;
-			this.XPRaw = 5000;
+			this.XPRaw = bossXP();
 
 			baseHPResistances = new TypeCollection();
 			baseHPResistances.drug.resistanceValue = 80.0;
@@ -203,6 +203,11 @@
 			
 			output("<i>“Goodbye,”</i> the doctor bids.\n");
 			CombatAttacks.RangedAttack(this, target);
+		}
+		
+		override public function onLeaveBuyMenu():void
+		{
+			kGAMECLASS.mainGameMenu();
 		}
 	}
 }

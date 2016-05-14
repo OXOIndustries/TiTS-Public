@@ -12,7 +12,7 @@
 		//constructor
 		public function gooArmor()
 		{
-			this._latestVersion = 1;
+			this._latestVersion = 2;
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			
@@ -25,12 +25,12 @@
 			this.customBlock = "PLACE HOLDER!";
 			this.isPlural = false;
 			
-			this.meleeWeapon.attackVerb = "claw";
-			meleeWeapon.attackNoun = "claws";
-			this.meleeWeapon.longName = "claws";
+			this.meleeWeapon.attackVerb = "slap";
+			meleeWeapon.attackNoun = "slap";
+			this.meleeWeapon.longName = "gooey psuedopod";
 			this.meleeWeapon.hasRandomProperties = true;
 			
-			this.armor.longName = "shield-corset";
+			this.armor.longName = "gooey coverings";
 			this.armor.defense = 2;
 			this.armor.hasRandomProperties = true;
 			
@@ -43,44 +43,48 @@
 			this.energyRaw = 100;
 			this.lustRaw = 35;
 			
-			this.XPRaw = 50;
 			this.level = 2;
+			this.XPRaw = normalXP();
 			this.credits = 0;
 			this.HPMod = 0;
 			this.HPRaw = this.HPMax();
 			this.shieldsRaw = this.shieldsMax();
 
 			this.femininity = 85;
-			this.eyeType = GLOBAL.TYPE_DEMONIC;
-			this.eyeColor = "glowing amber";
+			this.eyeType = GLOBAL.TYPE_HUMAN;
+			this.eyeColor = "silver";
 			this.tallness = 73;
 			this.thickness = 21;
 			this.tone = 40;
-			this.hairColor = "pale blue";
-			this.scaleColor = "blue";
-			this.furColor = "blue";
+			this.hairColor = "steel gray";
+			this.scaleColor = "steel gray";
+			this.furColor = "steel gray";
 			this.hairLength = 22;
-			this.hairType = 0;
+			this.hairType = GLOBAL.HAIR_TYPE_GOO;
 			this.beardLength = 0;
 			this.beardStyle = 0;
-			this.skinType = GLOBAL.SKIN_TYPE_SKIN;
-			this.skinTone = "light purple";
+			this.skinType = GLOBAL.SKIN_TYPE_GOO;
+			this.skinTone = "steel gray";
 			this.skinFlags = new Array();
+			addSkinFlag(GLOBAL.FLAG_SQUISHY);
+			addSkinFlag(GLOBAL.FLAG_LUBRICATED);
+			addSkinFlag(GLOBAL.FLAG_AMORPHOUS);
+			addSkinFlag(GLOBAL.FLAG_ABSORBENT);
 			
 			this.faceType = GLOBAL.TYPE_HUMAN;
 			this.faceFlags = new Array();
 			this.tongueType = GLOBAL.TYPE_HUMAN;
 			this.lipMod = 1;
-			this.earType = GLOBAL.TYPE_DEMONIC;
+			this.earType = GLOBAL.TYPE_HUMAN;
 			this.antennae = 0;
 			this.antennaeType = 0;
-			this.horns = 2;
-			this.hornType = GLOBAL.TYPE_DEMONIC;
-			this.hornLength = 13;
-			this.armType = GLOBAL.TYPE_DEMONIC;
+			this.horns = 0;
+			this.hornType = GLOBAL.TYPE_HUMAN;
+			this.hornLength = 0;
+			this.armType = GLOBAL.TYPE_HUMAN;
 			this.gills = false;
 			this.wingType = 0;
-			this.legType = GLOBAL.TYPE_HUMAN;
+			this.legType = GLOBAL.TYPE_GOOEY;
 			this.legCount = 2;
 			this.legFlags = new Array();
 			//0 - Waist
@@ -88,9 +92,9 @@
 			//2 - Between last legs or at end of long tail.
 			//3 - On underside of a tail, used for driders and the like, maybe?
 			this.genitalSpot = 0;
-			this.tailType = GLOBAL.TYPE_DEMONIC;
-			this.tailCount = 1;
-			this.tailFlags = [GLOBAL.FLAG_TAILCOCK,GLOBAL.FLAG_SMOOTH,GLOBAL.FLAG_PREHENSILE,GLOBAL.FLAG_LONG];
+			this.tailType = GLOBAL.TYPE_HUMAN;
+			this.tailCount = 0;
+			this.tailFlags = new Array();
 			//Used to set cunt or dick type for cunt/dick tails!
 			this.tailGenitalArg = 0;
 			//tailGenital:
@@ -110,7 +114,7 @@
 			//10 - curvy//flaring
 			//15 - child-bearing/fertile
 			//20 - inhumanly wide
-			this.hipRatingRaw = 6;
+			this.hipRatingRaw = 10;
 			//buttRating
 			//0 - buttless
 			//2 - tight
@@ -121,7 +125,7 @@
 			//13 - expansive
 			//16 - huge
 			//20 - inconceivably large/big/huge etc
-			this.buttRatingRaw = 6;
+			this.buttRatingRaw = 10;
 			//No dicks here!
 			this.cocks = new Array();
 			this.createCock();
@@ -159,7 +163,7 @@
 			this.pregnancyMultiplierRaw = 1;
 			
 			this.breastRows[0].breastRatingRaw = 10;
-			this.nippleColor = "cerulean";
+			this.nippleColor = "silver";
 			this.milkMultiplier = 0;
 			this.milkType = GLOBAL.FLUID_TYPE_MILK;
 			//The rate at which you produce milk. Scales from 0 to INFINITY.
@@ -169,6 +173,35 @@
 			this.ass.bonusCapacity = 50;
 			
 			this.createStatusEffect("Disarm Immune");
+		}
+		
+		public function UpgradeVersion1(dataObject:Object):void
+		{
+			dataObject.meleeWeapon.attackVerb = "slap";
+			dataObject.meleeWeapon.attackNoun = "slap";
+			dataObject.meleeWeapon.longName = "gooey psuedopod";
+			dataObject.armor.longName = "gooey coverings";
+			dataObject.eyeType = GLOBAL.TYPE_HUMAN;
+			dataObject.eyeColor = "silver";
+			dataObject.hairColor = "steel gray";
+			dataObject.scaleColor = "steel gray";
+			dataObject.furColor = "steel gray";
+			dataObject.hairType = GLOBAL.HAIR_TYPE_GOO;
+			dataObject.skinType = GLOBAL.SKIN_TYPE_GOO;
+			dataObject.skinTone = "steel gray";
+			dataObject.skinFlags = [GLOBAL.FLAG_SQUISHY, GLOBAL.FLAG_LUBRICATED, GLOBAL.FLAG_AMORPHOUS, GLOBAL.FLAG_ABSORBENT];
+			dataObject.earType = GLOBAL.TYPE_HUMAN;
+			dataObject.horns = 0;
+			dataObject.hornType = GLOBAL.TYPE_HUMAN;
+			dataObject.hornLength = 0;
+			dataObject.armType = GLOBAL.TYPE_HUMAN;
+			dataObject.legType = GLOBAL.TYPE_GOOEY;
+			dataObject.tailType = GLOBAL.TYPE_HUMAN;
+			dataObject.tailCount = 0;
+			dataObject.tailFlags = [];
+			dataObject.hipRatingRaw = 10;
+			dataObject.buttRatingRaw = 10;
+			dataObject.nippleColor = "silver";
 		}
 	}
 

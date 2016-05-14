@@ -57,8 +57,8 @@
 			baseHPResistances = new TypeCollection();
 			baseHPResistances.kinetic.damageValue = 25.0;
 			
-			this.XPRaw = 225;
 			this.level = 4;
+			this.XPRaw = normalXP();
 			this.credits = 50;
 			this.HPMod = 10;
 			this.HPRaw = this.HPMax();
@@ -77,9 +77,13 @@
 			this.hairType = GLOBAL.TYPE_HUMAN;
 			this.beardLength = 0;
 			this.beardStyle = 0;
-			this.skinType = GLOBAL.SKIN_TYPE_SKIN;
-			this.skinTone = "skin";
+			this.skinType = GLOBAL.SKIN_TYPE_GOO;
+			this.skinTone = "gray";
 			this.skinFlags = new Array();
+			addSkinFlag(GLOBAL.FLAG_SQUISHY);
+			addSkinFlag(GLOBAL.FLAG_LUBRICATED);
+			addSkinFlag(GLOBAL.FLAG_AMORPHOUS);
+			addSkinFlag(GLOBAL.FLAG_ABSORBENT);
 			this.faceType = GLOBAL.TYPE_HUMAN;
 			this.faceFlags = new Array();
 			this.tongueType = GLOBAL.TYPE_HUMAN;
@@ -92,9 +96,9 @@
 			this.armType = GLOBAL.TYPE_HUMAN;
 			this.gills = false;
 			this.wingType = GLOBAL.TYPE_HUMAN;
-			this.legType = GLOBAL.TYPE_HUMAN;
-			this.legCount = 2;
-			this.legFlags = [GLOBAL.FLAG_PLANTIGRADE];
+			this.legType = GLOBAL.TYPE_GOOEY;
+			this.legCount = 1;
+			this.legFlags = [GLOBAL.FLAG_AMORPHOUS];
 			//0 - Waist
 			//1 - Middle of a long tail. Defaults to waist on bipeds.
 			//2 - Between last legs or at end of long tail.

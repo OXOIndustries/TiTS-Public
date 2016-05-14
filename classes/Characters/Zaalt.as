@@ -56,7 +56,7 @@
 			this.HPRaw = this.HPMax();
 			this.energyRaw = 100;
 			this.lustRaw = 15;
-			this.XPRaw = 500;
+			this.XPRaw = normalXP();
 			
 			this.credits = 1200;
 			
@@ -190,8 +190,8 @@
 		
 		override public function get bustDisplay():String
 		{
-			//return "ZAALT"; 9999
-			return "MILODANMALE";
+			return "ZAALT";
+			//return "MILODANMALE";
 		}
 		
 		override public function setDefaultSexualPreferences():void
@@ -321,7 +321,7 @@
 			
 			//Psionic attack. Drains some of Zaalt's lust onto the PC, and restores a moderate amount of Health. 2/encounter; only targets PC. 
 
-			output("Zaalt thrusts a hand out at you, as it to grab your head. You manage to duck back, but even as you dodge the swipe, you realize that it wasn't his intention to <i>physically</i> attack you! Leeches of mental force gnaw at your mind, making you stagger back and grab your head, trying desperately to force out the invading force.");
+			output("Zaalt thrusts a hand out at you, as if to grab your head. You manage to duck back, but even as you dodge the swipe, you realize that it wasn't his intention to <i>physically</i> attack you! Leeches of mental force gnaw at your mind, making you stagger back and grab your head, trying desperately to force out the invading force.");
 			
 			if (10 + (rand(target.willpower()) / 2) > willpower())
 			{
@@ -355,8 +355,8 @@
 			
 			if (targets.length > 1)
 			{
-				var blindedPC:Boolean = rand(10) != 0;
-				var blindedAnno:Boolean = rand(10) != 0;
+				var blindedPC:Boolean = rand(10) != 0 && !pc.hasBlindImmunity();
+				var blindedAnno:Boolean = rand(10) != 0 && !anno.hasBlindImmunity();
 				if (blindedPC && blindedAnno)
 				{
 					output(" blinding you and Anno.");
@@ -429,7 +429,7 @@
 				output(" with bone-ratting force... and more, a psychic scream that burrows into the mind and makes");
 				if (target is PlayerCharacter) output(" you");
 				else output(" Anno");
-				output(" stumble back with mental agony as well as physical");
+				output(" stumble back with mental agony as well as physical.");
 				
 				var damMulti:Number = willpower() / target.willpower();
 				if (damMulti > 2) damMulti = 2;
@@ -448,15 +448,17 @@
 		
 		private function annoJoinsFight():void
 		{
-			//Play if the PC has Anno follower. Chance for any time after Turn 2. 
+			//Play if the PC has Anno follower. Chance for any time after Turn 2.
 
 			output("\n\n<i>“[pc.name]!?”</i> You hear Anno shouting from back in the crew quarters. She comes running towards the sound of your scuffle, and thankfully she arrives with her gun in hand. <i>“What's going... what's wrong with him?”</i>");
 
-			output("\n\n<i>“No idea !”</i> you answer back, pushing back the feral cat-man as best you can. Anno just shrugs and takes her place at your side to defend you -- and her home!");
+			output("\n\n<i>“No idea!”</i> you answer back, pushing back the feral cat-man as best you can. Anno just shrugs and takes her place at your side to defend you -- and her home!");
 			
 			kGAMECLASS.anno.HP(kGAMECLASS.anno.HPMax());
 			kGAMECLASS.anno.shields(kGAMECLASS.anno.shieldsMax());
 			kGAMECLASS.anno.lustRaw = 10;
+			kGAMECLASS.anno.long = "Anno is next to you, her compact holdout held out in front of her as she waits for an opportunity to fire. Her bushy tail is tucked in tight, ears lowered against her head, and body poised and ready to avoid incoming attacks.";
+			kGAMECLASS.anno.customDodge = "Anno quickly jumps to the side and evades the attack.";
 			CombatManager.addFriendlyCreature(kGAMECLASS.anno);
 
 		}

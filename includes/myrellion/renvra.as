@@ -888,7 +888,7 @@ public function renvraFullPregnancyEnds(pregSlot:int):void
 	clearOutput();
 	author("Savin");
 	
-	if (InPublicSpace() || currentLocation == "SHIP INTERIOR")
+	if (InPublicSpace() || InShipInterior())
 	{
 		output("You feel a rumble in your gut, strong enough to make you nearly double over. Oh, God.... ");
 
@@ -897,7 +897,7 @@ public function renvraFullPregnancyEnds(pregSlot:int):void
 		output("\n\nShit!");
 
 		output("\n\nYou");
-		if (currentLocation != "SHIP INTERIOR") output(" grab your Codex and dial an emergency medical alert, summoning an ambulance from the nearest hospital");
+		if (!InShipInterior()) output(" grab your Codex and dial an emergency medical alert, summoning an ambulance from the nearest hospital");
 		else 
 		{
 			if (shipLocation == "TAVROS HANGAR") output(" grab your Codex and dial Tavros station's emergency medical alert, summoning an ambulance from the nearest hospital.");

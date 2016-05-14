@@ -3,25 +3,24 @@
 	import classes.CockClass;
 	import classes.Creature;
 	import classes.GLOBAL;
-	import classes.Items.Apparel.UGCUniform;
-	import classes.Items.Melee.Knife;
-	import classes.Items.Miscellaneous.EmptySlot;
 	import classes.Items.Miscellaneous.FertitePlus;
 	import classes.Items.Miscellaneous.Lactaid;
 	import classes.Items.Miscellaneous.LactaidMilkTank;
 	import classes.Items.Miscellaneous.LactaidOverdrive;
 	import classes.Items.Miscellaneous.Sterilex;
+	import classes.Items.Toys.BubbleBuddy;
 	import classes.Items.Toys.EggTrainer;
 	import classes.Items.Toys.NivasBionaHole;
 	import classes.Items.Toys.TamaniBionaHole;
 	import classes.Items.Transformatives.Bovinium;
+	import classes.kGAMECLASS;
 	
 	public class Lerris extends Creature
 	{
 		//constructor
 		public function Lerris()
 		{
-			this._latestVersion = 1;
+			this._latestVersion = 2;
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			
@@ -34,10 +33,8 @@
 			this.customBlock = "";
 			this.isPlural = false;
 			
-			this.meleeWeapon = new Knife();
-			this.armor = new EmptySlot();
-			
 			this.inventory = [];
+			inventory.push(new BubbleBuddy());
 			inventory.push(new EggTrainer());
 			inventory.push(new NivasBionaHole());
 			inventory.push(new TamaniBionaHole());
@@ -48,7 +45,7 @@
 			inventory.push(new LactaidMilkTank());
 			inventory.push(new LactaidOverdrive());
 			
-			keeperBuy = "Lerris busies herself with her prodigious tits whilst you browse the shops wares; casting a casual glance in her direction, you catch her squeezing her boobs together with her arms, wiggling this way and that...\n\n";
+			keeperBuy = "Lerris busies herself with her prodigious tits whilst you browse the shops wares; casting a casual glance in her direction, you catch her squeezing her boobs together with her arms, wiggling this way and that...\n";
 			
 			this.typesBought = [];
 			this.sellMarkup = 1.2;
@@ -64,8 +61,8 @@
 			this.energyRaw = 100;
 			this.lustRaw = 85;
 			
-			this.XPRaw = 50;
 			this.level = 1;
+			this.XPRaw = normalXP();
 			this.credits = 0;
 			this.HPMod = 0;
 			this.HPRaw = this.HPMax();
@@ -193,20 +190,29 @@
 			this.ass.loosenessRaw = 4;
 			this.ass.bonusCapacity = 250;
 		}
-		
+		public function UpgradeVersion1(dataObject:Object):void
+		{
+			dataObject.inventory.push(new BubbleBuddy().getSaveObject());
+		}
 		override public function get bustDisplay():String
 		{
 			// LERRIS_<COW_>_0
 			
 			var str:String = "LERRIS_";
-			
-			if (horns == 2 && hornType == GLOBAL.TYPE_BOVINE) str += "COW_";
+			//FEN NOTE: Replaced with a simple override since we only have 1 bovine lerris bust.
+			//if (horns == 2 && hornType == GLOBAL.TYPE_BOVINE) str += "COW_";
+			if (horns == 2 && hornType == GLOBAL.TYPE_BOVINE) return "LERRIS_COW";
 			
 			if (biggestTitSize() <= 6) str += "0";
-			if (biggestTitSize() <= 15) str += "1";
+			else if (biggestTitSize() <= 15) str += "1";
 			else str += "2";
 			
 			return str;
+		}
+		
+		override public function onLeaveBuyMenu():void
+		{
+			kGAMECLASS.lerrisMenu();
 		}
 	}
 }

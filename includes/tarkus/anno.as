@@ -111,6 +111,8 @@ public function steeleTechBonusFunction():Boolean
 	//Inside Descriptor (Has met Anno)
 	else
 	{
+		showBust("ANNO");
+		
 		output("The inside of the Steele Tech outpost is a cluttered mess of rusty alien technology stacked ten feet high. Pillars of engine parts and disassembled devices you can't identify reach to the ceiling, making the shop seem more like a storage room than a storefront. Anno is sitting behind the counter, working on some paperwork. She smiles slightly at you. <i>\"Hey, boss. What's up?\"</i>");
 		//[Anno]
 		addButton(0,"Anno",repeatAnnoApproach);
@@ -263,7 +265,7 @@ public function buyFromDatDogslut():void
 	if(flags["SEEN_ANNO_BUY_MENU"] == undefined)
 	{
 		flags["SEEN_ANNO_BUY_MENU"] = 1;
-		chars["ANNO"].keeperBuy = "<i>\"Wanna take a look through the catalogue?\"</i> Anno says hopefully. <i>\"We mostly do business with rushers and pioneers coming through, so I've got some pretty decent weapons and armor in stock. Even some military grade stuff, which I'm pretty sure you're allowed to buy. Plus, plenty of junk I've managed to repair or repurpose from the wasteland. Here, let me pull up the inventory for you.\"</i>\n\nA holographic display pops to life between you, listing the Steele Tech shop's goods.";
+		chars["ANNO"].keeperBuy = "<i>\"Wanna take a look through the catalogue?\"</i> Anno says hopefully. <i>\"We mostly do business with rushers and pioneers coming through, so I've got some pretty decent weapons and armor in stock. Even some military grade stuff, which I'm pretty sure you're allowed to buy. Plus, plenty of junk I've managed to repair or repurpose from the wasteland. Here, let me pull up the inventory for you.\"</i>\n\nA holographic display pops to life between you, listing the Steele Tech shop's goods.\n";
 	}
 	else annoShopSetup();
 	buyItem();
@@ -276,7 +278,7 @@ public function annoShopSetup():void
 	if(flags["TARKUS_DESTROYED"] != undefined)
 	{
 		//{First Time}
-		chars["ANNO"].keeperBuy = "<i>\"Wanna take a look through the catalogue?\"</i> Anno says hopefully. <i>\"Not a lot of business to work with after the planet blew, so I've got some pretty decent weapons and armor in stock. Even some military-grade stuff, which I'm pretty sure you're allowed to buy. Plus, plenty of junk I've managed to repair or repurpose from the wasteland. Here, let me pull up the inventory for you.\"</i>\n\nA holographic display pops to life between you, listing the Steele Tech shop's goods.";
+		chars["ANNO"].keeperBuy = "<i>\"Wanna take a look through the catalogue?\"</i> Anno says hopefully. <i>\"Not a lot of business to work with after the planet blew, so I've got some pretty decent weapons and armor in stock. Even some military-grade stuff, which I'm pretty sure you're allowed to buy. Plus, plenty of junk I've managed to repair or repurpose from the wasteland. Here, let me pull up the inventory for you.\"</i>\n\nA holographic display pops to life between you, listing the Steele Tech shop's goods.\n";
 	}
 	else chars["ANNO"].keeperBuy = "<i>\"Wanna take a look through the catalogue? Victor said I could give you a pretty nice discount.\"</i>\n";
 	//List prices and whatnot. Back should go back to Jade's main menu.
@@ -1191,7 +1193,7 @@ public function faceFuckAnno():void
 	pc.orgasm();
 	
 	clearMenu();
-	if(pc.cockThatFits(chars["ANNO"].vaginalCapacity(0)) >= 0)
+	if(pc.cockThatFits(chars["ANNO"].vaginalCapacity(0) + 900) >= 0)
 	{
 		if(pc.libido() >= 80 || rand(pc.libido()) >= 15) addButton(0,"Fuck Her",fuckAnnoAfterBeeJay,undefined,"Fuck Her","Fuck Anno. You've got another round in you, right?");
 		else addDisabledButton(0,"Fuck Her","Fuck Her","You're not sure if you've got another round in you just yet. (Requires 80 minimum libido to always be available.)");
@@ -1224,14 +1226,14 @@ public function fuckAnnoAfterBeeJay():void
 	output("\n\nSatisfied that your pooch's pussy is nice and ready for you, you rise back up and take hold of your [pc.cock " + x + "], dropping it into the spread hind cleavage of Anno's ass. Her breath catches when she feels your man-meat slap against her slick skin. You can feel her positively shiver with excitement, looking back at you over her shoulder with bated breath, awaiting your next move. You flash her a grin and rock your hips back, sliding your prick lengthwise through the lips of her cunt, barely suppressing a shudder as the slimy, wet slit reaches out to kiss your cock, smearing it with her ample juices. A few thrusts through that channel, and your [pc.cock " + x + "] is coated with a nice sheen of fem-lube, glistening in the dim light of Anno's store as you bring the [pc.cockHead " + x + "] to rest just barely parting the veil of her " + chars["ANNO"].vaginaDescript() + ".");
 
 	output("\n\n<i>\"H-hold on,\"</i> Anno moans, leaning out of your embrace. You give her a questioning look, until she reaches under the counter and pulls out a sealed condom wrapper. With an understanding nod, you take the nanofiber sheath from its packaging and ");
-	if(pc.cockVolume(x) < 400) output("slide it easily over your [pc.cock " + x + "].");
-	else if(pc.cockVolume(x) < 900) output("spend a moment stretching the tight condom out over your oversized dong.");
+	if(pc.cockVolume(x) < (chars["ANNO"].vaginalCapacity() + 100)) output("slide it easily over your [pc.cock " + x + "].");
+	else if(pc.cockVolume(x) < (chars["ANNO"].vaginalCapacity() + 600)) output("spend a moment stretching the tight condom out over your oversized dong.");
 	else output("spend a minute struggling to just encase the head of your massive prick in the human-sized sheath. Good enough!");
 
 	output("\n\nWhen you're finished, Anno smiles appreciatively over her shoulder, wiggling her ass into the underside of your wrapped wang. <i>\"Come on then... I'm ready for you,\"</i> she breathes, her white tail raising invitingly as your sheathed schlong slowly slides forward.");
 
 	output("\n\nAnno bites her lip, muffling a girlish whimper as your [pc.hips] rock forward, inching your [pc.cock " + x + "] into her sodden quim. You nearly join her as you feel your cock submerging into the sultry hole, surrounded by hot, wet, squirming walls as Anno's pussy clenches around your intruding member. You push forward despite her body's resistance, the ausar's incredibly wet sex making it unnaturally easy to spread her walls wide. Anno moans as you plunge deep into her sex, fingers digging into the lip of her desk, tail flicking madly as you bottom out inside her");
-	if(pc.cockVolume(x) >= 500) output(", your tremendous cock stretching her out almost painfully wide, distending her gut against the hardwood of the desk");
+	if(pc.cockVolume(x) >= (chars["ANNO"].vaginalCapacity() + 200)) output(", your tremendous cock stretching her out almost painfully wide, distending her gut against the hardwood of the desk");
 	output(".");
 
 	output("\n\n");
@@ -3473,7 +3475,7 @@ public function annoxKaedeNotRecruitedMeeting():void
 		output("\n\n<i>“Kaede and I were just catching up... though I wouldn’t mind closing up shop for a little reunion. if you know what I mean.”</i> Kaede blushes as Anno leans over the counter, nibbling on one of her big, red ears. <i>“Especially if you’d like to join us, [pc.name].”</i>");
 	}
 		
-		IncrementFlag("ANNOxKAEDE_INTRODUCED");
+	IncrementFlag("ANNOxKAEDE_INTRODUCED");
 	
 	pc.createStatusEffect("ST Tarkus Closed", 0, 0, 0, 0, true, "", "", false, 60);
 	// [Fuck Them (req: cock)] [Service Kaede] [Watch Them] [Leave] (ST outpost locked for an hour)

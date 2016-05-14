@@ -20,7 +20,7 @@ public function tryProcKQ2CombatCourtyards():Boolean
 	if (kq2CombatSuppression()) return false;
 	
 	var encounters:Array = [];
-	encounters.push(kq2FightBlackVoidGrunts);
+	encounters.push(kq2FightBlackVoidGruntsOutside);
 	
 	if (flags["KQ2_FIGHT_STEPS"] == undefined) flags["KQ2_FIGHT_STEPS"] = 0;
 	flags["KQ2_FIGHT_STEPS"]++;
@@ -59,6 +59,37 @@ public function tryProcKQ2CombatSewers():Boolean
 	}
 	
 	return false;
+}
+
+public function kq2FightBlackVoidGruntsOutside():void
+{
+	var num:int = 2 + rand(3);
+	output("\n\nYou hear heavy footfalls pounding towards you, and you quickly sight in on "+ num2Text(num) +" black-clad figures in heavy armor racing towards you, each carrying a machine pistol. They skid to a stop just ahead of you, raising their weapons to their hips and opening fire without warning!")
+
+	var f:Array = [pc];
+	if (flags["KQ2_KARA_WITH_PC"] == 1) f.push(kara);
+	else if (flags["KQ2_KARA_WITH_PC"] == 2)
+	{
+		if (flags["KQ2_KARA_SNIPAH_KILLS"] == undefined) flags["KQ2_KARA_SNIPAH_KILLS"] = 0;
+		flags["KQ2_KARA_SNIPAH_KILLS"]++;
+		
+		output("\n\nA shower of sparks spews from the armored body plating of one of the mercs, his body falling backwards into a limp pile as a resounding <i>CRACK</i> whips through the air.");
+		output("\n\n<i>“Scratch " + num2Text(flags["KQ2_KARA_SNIPAH_KILLS"]) + "!”</i> Kara shouts through your radio.");
+		num--;
+	}
+
+	var h:Array = [];
+	for (var i:int = 0; i < num; i++) h.push(new KQ2BlackVoidGrunt());
+
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(f);
+	CombatManager.setHostileCharacters(h);
+	CombatManager.victoryScene(kq2MooksVictory);
+	CombatManager.lossScene(kq2CapturedByPiratesBadEnd);
+	CombatManager.displayLocation("VOID GRUNTS");
+
+	clearMenu();
+	addButton(0, "Next", CombatManager.beginCombat);
 }
 
 public function kq2FightBlackVoidGrunts():void
@@ -228,7 +259,7 @@ public function kq2GoBaseEntrance():void
 	output("It’s a short climb from the sewers up to the base itself. Kara goes first, using her dagger to hack through a flimsy lock on the manhole cover before popping it open. You blink in the sudden rush of");
 	if (hours >= 6 && hours <= 19) output(" sunlight");
 	else output(" light from the base’s floodlights");
-	output(". You scramble up to the surface after Kara, ducking down with behind a stack of crates shoved up against the base of a tall building bristling with antennas, giving you a modicum of concealment from the wide open entrance to the base.");
+	output(". You scramble up to the surface after Kara, ducking down with her behind a stack of crates shoved up against the base of a tall building bristling with antennas, giving you a modicum of concealment from the wide open entrance to the base.");
 	
 	output("\n\n<i>“We’re in,”</i> Kara says, and you don’t think she’s talking to you. She nods to herself, then looks at you. <i>“Right. Research facility is north-east, across this courtyard. Wouldn’t be surprised if it’s locked up tight, so we might want to go hunting for a keycard, maybe in that barracks there,”</i> she says, pointing straight ahead to the north, towards a squat structure from which several black-clad men with machine pistols are coming. <i>“Or, I could try to override the lock - but you’ll need to cover me for a few minutes if I do. Either way works for me.”</i>");
 	

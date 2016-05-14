@@ -2,13 +2,14 @@ package classes.Engine.Combat
 {
 	import classes.Creature;
 	import classes.Engine.Utility.rand;
+	import classes.GLOBAL;
 	/**
 	 * ...
 	 * @author Gedan
 	 */
 	public function rangedCombatMiss(attacker:Creature, target:Creature, overrideAttack:Number = -1, missModifier:Number = 1):Boolean 
 	{
-		if (overrideAttack == -1) overrideAttack = attacker.rangedWeapon.attack;
+		if (overrideAttack == -1) overrideAttack = attacker.attack(false);
 		
 		//Immune!
 		if (target.hasPerk("Ranged Immune")) return true;
@@ -29,7 +30,7 @@ package classes.Engine.Combat
 		//10% miss chance for lucky breaks!
 		if (target.hasPerk("Lucky Breaks") && rand(100) <= 9) return true;
 		if (target.hasStatusEffect("GooCamo") && rand(3) <= 1) return true;
-		
+		if (attacker.accessory.hasFlag(GLOBAL.ITEM_FLAG_REDUCED_ACCURACY) && rand(10) == 0) return true;
 		return false;
 	}
 }

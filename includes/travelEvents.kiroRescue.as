@@ -320,6 +320,7 @@ public function kirosShipChubnookiUpDaButt():void
 	kiro.loadInAss(pc);
 	kiro.loadInAss(pc);
 	kiro.loadInMouth(pc);
+	applyCumSoaked(pc);
 
 	processTime(60+rand(15));
 
@@ -508,6 +509,7 @@ public function kirosShipChubnookiUpDaCooter():void
 
 	pc.orgasm();
 	pc.orgasm();
+	applyCumSoaked(pc);
 	
 	for (var i:int = 0; i < 20; i++)
 	{
@@ -744,13 +746,22 @@ public function kirosShipChubnookiFucksYouGud(anal:Boolean = false):void
 	// Lotta fuckyfucky
 	for (var i:int = 0; i < 20; i++)
 	{
-		if (!anal) pc.loadInCunt(kiro, selVag);
-		else pc.loadInAss(kiro);
+		if (!anal)
+		{
+			pc.loadInCunt(kiro, selVag);
+			if (pc.cumflationEnabled()) pc.maxOutCumflation(String("vagina " + selVag), kiro);
+		}
+		else
+		{
+			pc.loadInAss(kiro);
+			if (pc.cumflationEnabled()) pc.maxOutCumflation("ass", kiro);
+		}
 		kiro.orgasm();
 	}
 	
 	pc.orgasm();
 	pc.orgasm();
+	applyCumSoaked(pc);
 
 	processTime(60+rand(15));
 
@@ -805,6 +816,7 @@ public function kirosShipNopeFuckThisShit():void
 	
 	//Resume previous travels.
 	currentLocation = "SHIP INTERIOR";
+	generateMap();
 	flags["RESCUE KIRO FROM BLUEBALLS"] = -1;
 
 	clearMenu();
@@ -847,6 +859,7 @@ public function kirosShipPostFirstFuck():void
 	output("\n\nThe tanuki-woman turns away, big tail waving, and waves, giving a sly smile over her shoulder as she bids you farewell. \"<i>If we cross paths again, I'd love to spend some time with you. Don't be a stranger.</i>\" A doorway hisses closed behind her, and one after another, the other doors in the ship slam shut, all except the ones leading back toward your ship. Well, you earned some points with a pirate and turned a tidy little profit. Not a bad payout for a good samaritan.");
 
 	flags["RESCUE KIRO FROM BLUEBALLS"] = 1;
+	generateMapForLocation("KIROS SHIP AIRLOCK");
 	currentLocation = "SHIP INTERIOR";
 
 	clearMenu();

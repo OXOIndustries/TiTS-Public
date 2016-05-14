@@ -2,6 +2,7 @@
 {
 	import classes.Creature;
 	import classes.GLOBAL;
+	import classes.kGAMECLASS;
 	import classes.Items.Miscellaneous.Throbb;
 	import classes.Items.Miscellaneous.Dumbfuck;
 	import classes.Items.Transformatives.Gush;
@@ -58,8 +59,8 @@
 			this.energyRaw = 100;
 			this.lustRaw = 45;
 			
-			this.XPRaw = 450;
 			this.level = 5;
+			this.XPRaw = bossXP();
 			this.credits = 1000;
 			
 			this.femininity = 80;
@@ -196,6 +197,11 @@
 		public function UpgradeVersion1(dataObject:Object):void
 		{
 			dataObject.inventory.push(new Gush().getSaveObject());
+		}
+		
+		override public function onLeaveBuyMenu():void
+		{
+			kGAMECLASS.mainGameMenu();
 		}
 	}
 }

@@ -23,6 +23,8 @@
 	import classes.GameData.CombatAttacks;
 	import classes.GameData.CombatManager;
 	
+	import classes.kGAMECLASS;
+	
 	public class Anno extends Creature
 	{
 		//constructor
@@ -79,8 +81,8 @@
 			this.HPRaw = this.HPMax();
 			this.energyRaw = 100;
 			this.lustRaw = 15;
-			this.XPRaw = 350;
 			this.level = 4;
+			this.XPRaw = normalXP();
 			this.credits = 0;
 			
 			this.femininity = 80;
@@ -368,6 +370,12 @@
 				damage.add(bonusDamage);
 				applyDamage(damage, this, target, "minimal");
 			}
+		}
+		
+		override public function onLeaveBuyMenu():void
+		{
+			if (!kGAMECLASS.annoIsCrew()) kGAMECLASS.repeatAnnoApproach();
+			else kGAMECLASS.annoFollowerApproach();
 		}
 	}
 }

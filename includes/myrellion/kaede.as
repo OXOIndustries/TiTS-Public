@@ -201,6 +201,7 @@ public function kaedeMyrellionTalkRenWorld():void
 	else output(" even with the war over with");
 	output(".”</i>");
 	
+	flags["HEARD_ASHINARI"] = 1;
 	output("\n\n<i>“Must be worth it. They’ve made a pretty big deal with the, uh, something or other Federation here. The ones that control pretty much the whole planet, anyway. From what Ashinari told me, the ant-folk here are working hard to get off-worlders invested here. They’re giving away mining rights away like candy. They’ve got no use for Oxonium, Thorolium, a bunch of other rare elements. Not to mention there’s gold and silver and all that to be had. It’s a rich planet, and a lot of the hard work’s already done. After all, the myr live underground to begin with. Plenty of caverns and tunnels to get RhenWorld and the other mega-corps started.”</i>");
 	
 	output("\n\nInteresting. <i>“I knew XenoGen was interested in the golds,”</i> you say, thinking back to your initial meeting with Juro, and the hordes of XenoGen employees you’ve seen wandering around. <i>“So the Federation’s courting mining companies, now?”</i>");
@@ -590,25 +591,44 @@ public function kaedeMyrellionFuckAssCombine(cumInside:Boolean = false):void
 	
 	output("\n\nYou clink your glasses together, both laughing <i>“Cheers,”</i> before you drink.");
 	
-	output("\n\nBy the time you finish your glass, Kaede’s making eyes towards her cabin, and the pile of clothes she’s doubtless left behind. <i>“So, uh, I should probably get going,”</i> she says, hopping off the table and clinking her glass onto the projector’s top. <i>“Still got that delivery to make... I’m sure that Fed guard’s thinking I fell off a cliff or something.”</i>");
-	
-	output("\n\n<i>“Yeah,”</i> you say, grabbing your [pc.gear]. <i>“This was fun, Kaede.”</i>");
-	
-	output("\n\nShe winks at you. <i>“Definitely. Maybe we can do it again sometime.”</i>");
-	
-	output("\n\nYou tell her you’re looking forward to it as she strides off into her cabin. She leaves the door open, letting you watch as she divests herself of the kinky lingerie and slips back into her boxers, jeans, and tanktop. You manage to get dressed quickly enough, and join Kaede on the way towards the airlock. As it’s opening up, she stops to grab your hands and plant a kiss on your cheek.");
-	
-	output("\n\n<i>“See you later, [pc.name],”</i> she says with a smile, heading off onto the tarmac. You disembark, heading back toward the transport hub. Hopefully you’ll get another chance at that cute piece of ass again sometime soon!");
+	if (flags["KAEDE_ENCOUNTERSEX_UVETO_OVERRIDE"] == undefined)
+	{
+		output("\n\nBy the time you finish your glass, Kaede’s making eyes towards her cabin, and the pile of clothes she’s doubtless left behind. <i>“So, uh, I should probably get going,”</i> she says, hopping off the table and clinking her glass onto the projector’s top. <i>“Still got that delivery to make... I’m sure that Fed guard’s thinking I fell off a cliff or something.”</i>");
+		
+		output("\n\n<i>“Yeah,”</i> you say, grabbing your [pc.gear]. <i>“This was fun, Kaede.”</i>");
+		
+		output("\n\nShe winks at you. <i>“Definitely. Maybe we can do it again sometime.”</i>");
+		
+		output("\n\nYou tell her you’re looking forward to it as she strides off into her cabin. She leaves the door open, letting you watch as she divests herself of the kinky lingerie and slips back into her boxers, jeans, and tanktop. You manage to get dressed quickly enough, and join Kaede on the way towards the airlock. As it’s opening up, she stops to grab your hands and plant a kiss on your cheek.");
+		
+		output("\n\n<i>“See you later, [pc.name],”</i> she says with a smile, heading off onto the tarmac. You disembark, heading back toward the transport hub. Hopefully you’ll get another chance at that cute piece of ass again sometime soon!");
 
-	currentLocation = "600";
-	generateMapForLocation(currentLocation);
-	showName("AIRFIELD\nSOUTH");
+		currentLocation = "600";
+		generateMapForLocation(currentLocation);
+		showName("AIRFIELD\nSOUTH");
 
-	processTime(20+rand(10));
-	pc.orgasm();
-	
-	clearMenu();
-	addButton(0, "Next", mainGameMenu);
+		processTime(20+rand(10));
+		pc.orgasm();
+		
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+	}
+	else
+	{
+		flags["KAEDE_ENCOUNTERSEX_UVETO_OVERRIDE"] = undefined;
+		
+		output("\n\nBy the time you finish your glass, Kaede's cheeks are flushed, and you can see one of her hands has made its way to the [pc.cumNoun]-stains on her alabaster flesh, idly playing with the mess you made. <i>“Something tells me I can't go to my meeting like this,”</i> she chuckles, licking a strand of spunk off one of her claw-like nails. You both laugh again, and Kaede rolls her head back with a sigh.");
+
+		output("\n\n<i>“I better go get cleaned up. I don't think Ashi's sister would appreciate me swaggering in smelling like my lover's cum. Then again... nah! Need a shower.”</i>");
+
+		processTime(20+rand(10));
+		pc.orgasm();
+		
+		//[Shower With] [Say Goodbye]
+		clearMenu();
+		addButton(0, "ShowerWith", uvetoKaedeShowerWith, true, "Shower With Her", "You've gotten sweaty and sticky after that close encounter, too. Suggest that you and Kaede shower up together.");
+		addButton(1, "SayGoodbye", uvetoKaedeGoodbye, undefined, "Say Goodbye", "That's enough of that. Say goobye to Kaede, and get back to business.");
+	}
 }
 
 public function kaedeMyrellionSucknRide():void
@@ -711,25 +731,44 @@ public function kaedeMyrellionSucknRide():void
 	
 	output("\n\nYou clink your glasses together, both laughing <i>“Cheers,”</i> before you drink.");
 	
-	output("\n\nBy the time you finish your glass, Kaede’s making eyes towards her cabin, and the pile of clothes she’s doubtless left behind. <i>“So, uh, I should probably get going,”</i> she says, hopping off the table and clinking her glass onto the projector’s top. <i>“Still got that delivery to make... I’m sure that Fed guard’s thinking I fell off a cliff or something.”</i>");
-	
-	output("\n\n<i>“Yeah,”</i> you say, grabbing your [pc.gear]. <i>“This was fun, Kaede.”</i>");
-	
-	output("\n\nShe winks at you. <i>“Definitely. Maybe we can do it again sometime.”</i>");
-	
-	output("\n\nYou tell her you’re looking forward to it as she strides off into her cabin. She leaves the door open, letting you watch as she divests herself of the kinky lingerie and slips back into her boxers, jeans, and tanktop. You manage to get dressed quickly enough, and join Kaede on the way towards the airlock. As it’s opening up, she stops to grab your hands and plant a kiss on your cheek.");
-	
-	output("\n\n<i>“See you later, [pc.name],”</i> she says with a smile, heading off onto the tarmac. You disembark, heading back toward the transport hub. Hopefully you’ll get another chance at that cute piece of ass again sometime soon!");
+	if (flags["KAEDE_ENCOUNTERSEX_UVETO_OVERRIDE"] == undefined)
+	{	
+		output("\n\nBy the time you finish your glass, Kaede’s making eyes towards her cabin, and the pile of clothes she’s doubtless left behind. <i>“So, uh, I should probably get going,”</i> she says, hopping off the table and clinking her glass onto the projector’s top. <i>“Still got that delivery to make... I’m sure that Fed guard’s thinking I fell off a cliff or something.”</i>");
+		
+		output("\n\n<i>“Yeah,”</i> you say, grabbing your [pc.gear]. <i>“This was fun, Kaede.”</i>");
+		
+		output("\n\nShe winks at you. <i>“Definitely. Maybe we can do it again sometime.”</i>");
+		
+		output("\n\nYou tell her you’re looking forward to it as she strides off into her cabin. She leaves the door open, letting you watch as she divests herself of the kinky lingerie and slips back into her boxers, jeans, and tanktop. You manage to get dressed quickly enough, and join Kaede on the way towards the airlock. As it’s opening up, she stops to grab your hands and plant a kiss on your cheek.");
+		
+		output("\n\n<i>“See you later, [pc.name],”</i> she says with a smile, heading off onto the tarmac. You disembark, heading back toward the transport hub. Hopefully you’ll get another chance at that cute piece of ass again sometime soon!");
 
-	processTime(45+rand(15));
-	pc.orgasm();
+		processTime(45+rand(15));
+		pc.orgasm();
 
-	currentLocation = "600";
-	generateMapForLocation(currentLocation);
-	showName("AIRFIELD\nSOUTH");
+		currentLocation = "600";
+		generateMapForLocation(currentLocation);
+		showName("AIRFIELD\nSOUTH");
 
-	clearMenu();
-	addButton(0, "Next", mainGameMenu);
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+	}
+	else
+	{
+		flags["KAEDE_ENCOUNTERSEX_UVETO_OVERRIDE"] = undefined;
+		
+		output("\n\nBy the time you finish your glass, Kaede's cheeks are flushed, and you can see one of her hands has made its way to the [pc.cumNoun]-stains on her alabaster flesh, idly playing with the mess you made. <i>“Something tells me I can't go to my meeting like this,”</i> she chuckles, licking a strand of spunk off one of her claw-like nails. You both laugh again, and Kaede rolls her head back with a sigh.");
+
+		output("\n\n<i>“I better go get cleaned up. I don't think Ashi's sister would appreciate me swaggering in smelling like my lover's cum. Then again... nah! Need a shower.”</i>");
+
+		processTime(45+rand(15));
+		pc.orgasm();
+		
+		//[Shower With] [Say Goodbye]
+		clearMenu();
+		addButton(0, "ShowerWith", uvetoKaedeShowerWith, false, "Shower With Her", "You've gotten sweaty and sticky after that close encounter, too. Suggest that you and Kaede shower up together.");
+		addButton(1, "SayGoodbye", uvetoKaedeGoodbye, undefined, "Say Goodbye", "That's enough of that. Say goobye to Kaede, and get back to business.");
+	}
 }
 
 
@@ -789,7 +828,7 @@ public function kaedeThreeSomesOrSpawnOrSomethingCassTits():void
 	else output("evening");
 	output(". <i>“Oh, what’s wrong sweetie?”</i> Kaede coos, bouncing the bundle gently in her arms. Is that...");
 
-	output("\n\nKaede confirms you sudden suspicion, pulling the top hood of cloth down to reveal a tiny, pink head with a pair of tiny red wolf-ears perched on top of her thin layer of ginger hair. Kaede fusses at the baby, murmuring nonsense at her until the outburst abates, leaving the kid staring at you with huge, awestruck blue eyes while she sucks on her thumb. You catch sight of a single, slender tail wiggling around at the bottom of the bundle, a poof of red fur pluming from an otherwise feline-looking tail.");
+	output("\n\nKaede confirms your sudden suspicion, pulling the top hood of cloth down to reveal a tiny, pink head with a pair of tiny red wolf-ears perched on top of her thin layer of ginger hair. Kaede fusses at the baby, murmuring nonsense at her until the outburst abates, leaving the kid staring at you with huge, awestruck blue eyes while she sucks on her thumb. You catch sight of a single, slender tail wiggling around at the bottom of the bundle, a poof of red fur pluming from an otherwise feline-looking tail.");
 
 	output("\n\n<i>“Sorry about that!”</i> Kaede chuckles, turning her attention back to you. <i>“Somebody’s being really whiny today. Oh, speaking of which... this is Kayla.”</i>");
 

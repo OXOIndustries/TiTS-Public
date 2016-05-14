@@ -64,8 +64,8 @@ package classes.Characters
 			this.energyRaw = 100;
 			this.lustRaw = 15;
 			
-			this.XPRaw = 20;
 			this.level = 1;
+			this.XPRaw = normalXP();
 			this.credits = 0;
 			this.HPMod = 15;
 			this.HPRaw = this.HPMax();
@@ -86,6 +86,7 @@ package classes.Characters
 			this.skinType = 0;
 			this.skinTone = "red";
 			this.skinFlags = new Array();
+			addSkinFlag(GLOBAL.FLAG_ABSORBENT);
 			this.faceType = GLOBAL.TYPE_MIMBRANE;
 			this.faceFlags = new Array();
 			this.tongueType = GLOBAL.TYPE_MIMBRANE;
@@ -180,6 +181,9 @@ package classes.Characters
 			//The rate at which you produce milk. Scales from 0 to INFINITY.
 			this.milkRate = 0;
 			this.ass.wetnessRaw = 0;
+			
+			createStatusEffect("Disarm Immune");
+			createStatusEffect("Force It Gender");
 			
 			isUniqueInFight = true;
 			btnTargetText = "Mimbrane";

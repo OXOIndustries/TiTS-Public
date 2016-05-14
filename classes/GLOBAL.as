@@ -69,6 +69,7 @@
 		public static const FLAG_DOUBLE_HEADED:int							= 36;
 		public static const FLAG_GOOEY:int									= 37;
 		public static const FLAG_SPIKED:int									= 38;
+		public static const FLAG_ABSORBENT:int									= 39;
 		
 		public static const FLAG_NAMES:Array = [
 			"OFFSET -- INVALID",
@@ -110,6 +111,7 @@
 			"Double Headed",
 			"Gooey",
 			"Spiked",
+			"Absorbent",
 		];
 		
 		public static const VALID_SKIN_FLAGS:Array = [
@@ -119,6 +121,7 @@
 			FLAG_FLUFFY,
 			FLAG_SQUISHY,
 			FLAG_LUBRICATED,
+			FLAG_ABSORBENT,
 		];
 		
 		//TYPES
@@ -153,9 +156,12 @@
 		public static const TYPE_HUMANMASKED:int                            = 25;
 		public static const TYPE_MOUSE:int                                  = 26;
 		public static const TYPE_MOUSEMAN:int                               = 27;
+		/*
 		public static const TYPE_DOVETWO:int                                = 28;
 		public static const TYPE_DOVEFOUR:int                               = 29;
 		public static const TYPE_DOVESIX:int                                = 30;
+		*/
+		public static const TYPE_DOVE:int									= 28;
 		public static const TYPE_DRAGONFLY:int                              = 31;
 		public static const TYPE_MLP:int                                    = 32;
 		public static const TYPE_CUNTSNAKE:int                              = 33;
@@ -190,6 +196,7 @@
 		public static const TYPE_RHINO:int									= 62;
 		public static const TYPE_NARWHAL:int								= 63;
 		public static const TYPE_HRAD:int									= 64;
+		public static const TYPE_GRYVAIN:int								= 65;
 		
 		public static const TYPE_NAMES:Array = [
 			"Human",
@@ -221,8 +228,8 @@
 			"Mouse",
 			"Mouseman",
 			"Dove",
-			"Quad-Dove",
-			"Hexa-Dove",
+			"UNUSED",
+			"UNUSED",
 			"Dragonfly",
 			"MLP",
 			"Cuntsnake",
@@ -257,6 +264,7 @@
 			"Rhino",
 			"Narwhal",
 			"Hradian",
+			"Gryvain",
 		];
 		
 		public static const VALID_FACE_TYPES:Array = [
@@ -304,6 +312,7 @@
 			TYPE_DEMONIC,
 			TYPE_FROG,
 			TYPE_NYREA,
+			TYPE_GRYVAIN
 		];
 		
 		public static const VALID_TONGUE_TYPES:Array = [
@@ -333,6 +342,7 @@
 			FLAG_APHRODISIAC_LACED,
 			FLAG_GOOEY,
 			FLAG_STICKY,
+			FLAG_NUBBY,
 		];
 		
 		public static const VALID_EAR_TYPES:Array = [
@@ -358,6 +368,7 @@
 			TYPE_SYLVAN,
 			TYPE_GABILANI,
 			TYPE_FROG,
+			TYPE_GRYVAIN
 		];
 		
 		public static const VALID_ARM_TYPES:Array = [
@@ -389,6 +400,7 @@
 			FLAG_GOOEY,
 			FLAG_SPIKED,
 			FLAG_STICKY,
+			FLAG_PAWS,
 		];
 		
 		public static const VALID_LEG_TYPES:Array = [
@@ -420,6 +432,7 @@
 			TYPE_MYR,
 			TYPE_FROG,
 			TYPE_NYREA,
+			TYPE_GRYVAIN
 		];
 		
 		public static const VALID_LEG_FLAGS:Array = [
@@ -458,6 +471,7 @@
 			TYPE_GOAT,
 			TYPE_RHINO,
 			TYPE_NARWHAL,
+			TYPE_GRYVAIN
 		];
 		
 		public static const VALID_WING_TYPES:Array = [
@@ -474,9 +488,8 @@
 			TYPE_SYLVAN,
 			TYPE_DARK_SYLVAN,
 			TYPE_MYR,
-			TYPE_DOVETWO,
-			TYPE_DOVEFOUR,
-			TYPE_DOVESIX,
+			TYPE_DOVE,
+			TYPE_GRYVAIN,
 		];
 		
 		// None is for specifying no tail, which would normally pull the HUMAN name.
@@ -513,6 +526,7 @@
 			TYPE_OVIR,
 			TYPE_MYR,
 			TYPE_FROG,
+			TYPE_GRYVAIN
 		];
 		
 		public static const VALID_TAIL_FLAGS:Array = [
@@ -532,8 +546,10 @@
 			FLAG_SHEATHED,
 			FLAG_KNOTTED,
 			FLAG_RIBBED,
+			FLAG_NUBBY,
 			FLAG_GOOEY,
 			FLAG_STICKY,
+			FLAG_TAPERED,
 		];
 		
 		public static const TAIL_GENITAL_NONE:int 	= 0;
@@ -559,6 +575,7 @@
 			TYPE_GOOEY,
 			TYPE_SIREN,
 			TYPE_COCKVINE,
+			TYPE_GRYVAIN,
 		];
 		
 		//SKINTYPES
@@ -579,7 +596,7 @@
 			"Feathers",
 			"Latex",
 		];
-				
+		
 		//NIPPLETYPES
 		public static const NIPPLE_TYPE_NORMAL:int                                 = 0;
 		public static const NIPPLE_TYPE_FUCKABLE:int                               = 1;
@@ -714,6 +731,8 @@
 			FLUID_TYPE_SPECIAL_GOO,
 			FLUID_TYPE_CHOCOLATE_CUM,
 			FLUID_TYPE_HRAD_CUM,
+			FLUID_TYPE_VANAE_CUM,
+			FLUID_TYPE_SPECIAL_CUMGOO,
 		];
 		
 		public static const VALID_GIRLCUM_TYPES:Array = [
@@ -806,6 +825,7 @@
 			TYPE_INHUMAN,
 			TYPE_GABILANI,
 			TYPE_HRAD,
+			TYPE_GRYVAIN
 		];
 		
 		public static const VALID_COCK_FLAGS:Array = [
@@ -845,6 +865,7 @@
 			TYPE_SIREN,
 			TYPE_GABILANI,
 			TYPE_NYREA,
+			TYPE_GRYVAIN
 		];
 		
 		// As far as I can tell, at time of writing there are no flags currently used/assigned to vaginas
@@ -884,7 +905,9 @@
 		public static const DESERT:int									= 22;
 		public static const PLANE:int									= 23;
 		public static const PLANT_BULB:int								= 24;
-		public static const ICYTUNDRA:int								= 25;
+		public static const ICYTUNDRA:int							    = 25;
+		public static const FROZENTUNDRA:int							= 26;
+		public static const SHIPINTERIOR:int							= 27; // Used to flag all rooms of player-own ships.
 		
 		// Temp flag alias whilst the asset gets introduced
 		public static const LIFT:int = OBJECTIVE;
@@ -949,6 +972,8 @@
 		public static const ITEM_FLAG_EXPOSE_ASS:int					= 11; // Used specifically for clothing/armor that exposes asshole to the elements.
 		public static const ITEM_FLAG_HEATBELT:int						= 12;
 		public static const ITEM_FLAG_HEAT_GENERATOR:int				= 13; // Some other item that provides total avoidance of damage from cold, but not nessecerily a belt.
+		public static const ITEM_FLAG_REDUCED_ACCURACY:int				= 14;
+		public static const ITEM_FLAG_COMBAT_DRONE:int					= 15; // For combat drones
 		
 		public static const ITEM_FLAG_NAMES:Array = [
 			"Bow Weapon",
@@ -963,6 +988,10 @@
 			"Chest Exposed",
 			"Groin Exposed",
 			"Ass Exposed",
+			"Heat Belt",
+			"Heat Generator",
+			"Reduces Accuracy",
+			"Combat Drone"
 		];
 		
 		/**
@@ -1078,6 +1107,7 @@
 		public static const VALID_ARTISTS:Array = [
 			"NONE",
 			"ADJATHA",
+			"AKI",
 			"BNG",
 			"CHESHIRE",
 			"CYANCAPSULE",
@@ -1091,6 +1121,7 @@
 			"JAYECHO",
 			"LAPINBEAU",
 			"MANIACPAINT",
+			"NUBATTORI",
 			"PEEKAY",
 			"RENEZUO",
 			"SHOU",
@@ -1102,6 +1133,7 @@
 		public static const VALID_ARTISTS_NAMES:Array = [
 			"None",
 			"Adjatha",
+			"Aki",
 			"Benji",
 			"Cheshire",
 			"CyanCapsule",
@@ -1115,6 +1147,7 @@
 			"Jay Echo",
 			"Lapinbeau",
 			"ManiacPaint",
+			"Nu Battori",
 			"Pee-Kay",
 			"Renezuo",
 			"Shou",

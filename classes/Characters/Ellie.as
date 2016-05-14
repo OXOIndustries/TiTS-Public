@@ -6,6 +6,7 @@
 	import classes.Items.Protection.ImprovisedShield;
 	import classes.Items.Melee.RaskvelWrench;
 	
+	import classes.Items.Accessories.LightningDuster;
 	import classes.Items.Apparel.BountyBra;
 	import classes.Items.Apparel.CowPrintLeotard;
 	import classes.Items.Apparel.CowPrintBra;
@@ -17,7 +18,7 @@
 	import classes.Items.Miscellaneous.Treatment;
 	import classes.Items.Transformatives.ClearYu;
 	import classes.Items.Transformatives.RubberMade;
-	import classes.Items.Accessories.LightningDuster;
+	import classes.Items.Transformatives.JunkTrunk;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
 	import classes.GameData.CodexManager;
@@ -46,6 +47,7 @@
 			this.inventory.push(new Lactaid());
 			this.inventory.push(new ClearYu());
 			this.inventory.push(new RubberMade());
+			this.inventory.push(new JunkTrunk());
 			
 			this.short = "Ellie";
 			this.originalRace = "leithan";
@@ -78,8 +80,8 @@
 			this.energyRaw = 100;
 			this.lustRaw = 40;
 			
-			this.XPRaw = 9999;
 			this.level = 6;
+			this.XPRaw = normalXP();
 			this.credits = 4000;
 			this.HPMod = 0;
 			this.HPRaw = this.HPMax();
@@ -199,6 +201,11 @@
 			this.ass.bonusCapacity += 75;
 			this.ass.loosenessRaw = 2;
 			this._isLoading = false;
+		}
+		
+		override public function onLeaveBuyMenu():void
+		{
+			kGAMECLASS.ellieMenu();
 		}
 	}
 }

@@ -3,6 +3,7 @@
 	import classes.Creature;
 	import classes.GameData.SingleCombatAttack;
 	import classes.GLOBAL;
+	import classes.Items.Accessories.FlashGoggles;
 	import classes.Items.Melee.Fists;
 	import classes.Items.Miscellaneous.*
 	import classes.Items.Protection.BasicShield;
@@ -66,8 +67,8 @@
 			this.energyRaw = 100;
 			this.lustRaw = 33;
 			
-			this.XPRaw = 250;
 			this.level = 4;
+			this.XPRaw = normalXP();
 			this.credits = 0;
 			this.HPMod = 0;
 			this.HPRaw = this.HPMax();
@@ -372,6 +373,10 @@
 			else if (target.hasArmor() && target.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
 			{
 				output(" Your faceguard protects your eyes.");
+			}
+			else if (target.accessory is FlashGoggles)
+			{
+				output(" Your goggles protect your eyes.");
 			}
 			else
 			{

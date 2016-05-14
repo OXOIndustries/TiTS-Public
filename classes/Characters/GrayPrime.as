@@ -65,8 +65,8 @@ package classes.Characters
 			this.shieldsRaw = 0;
 			this.energyRaw = 100;
 			this.lustRaw = 15;
-			this.XPRaw = 250;
 			this.level = 5;
+			this.XPRaw = normalXP();
 			this.credits = 0;
 			this.HPMod = 20;
 			this.shieldsRaw = this.shieldsMax();
@@ -86,9 +86,13 @@ package classes.Characters
 			this.hairType = GLOBAL.TYPE_HUMAN;
 			this.beardLength = 0;
 			this.beardStyle = 0;
-			this.skinType = GLOBAL.TYPE_HUMAN;
+			this.skinType = GLOBAL.SKIN_TYPE_GOO;
 			this.skinTone = "steel gray";
 			this.skinFlags = new Array();
+			addSkinFlag(GLOBAL.FLAG_SQUISHY);
+			addSkinFlag(GLOBAL.FLAG_LUBRICATED);
+			addSkinFlag(GLOBAL.FLAG_AMORPHOUS);
+			addSkinFlag(GLOBAL.FLAG_ABSORBENT);
 			this.faceType = GLOBAL.TYPE_HUMAN;
 			this.faceFlags = new Array();
 			this.tongueType = GLOBAL.TYPE_HUMAN;
@@ -101,9 +105,9 @@ package classes.Characters
 			this.armType = GLOBAL.TYPE_HUMAN;
 			this.gills = false;
 			this.wingType = GLOBAL.TYPE_HUMAN;
-			this.legType = GLOBAL.TYPE_HUMAN;
-			this.legCount = 3;
-			this.legFlags = [GLOBAL.FLAG_PLANTIGRADE];
+			this.legType = GLOBAL.TYPE_GOOEY;
+			this.legCount = 1;
+			this.legFlags = [GLOBAL.FLAG_AMORPHOUS];
 			//0 - Waist
 			//1 - Middle of a long tail. Defaults to waist on bipeds.
 			//2 - Between last legs or at end of long tail.

@@ -211,7 +211,7 @@
 						if(!isPresistentTF)
 						{
 							msg += ParseText("You flinch as your [pc.nipples] engorge, becoming incredibly tender as they absorb fluid and bulk from your breasts proper. The sensation eventually passes - however");
-							if(!removedTop && !target.isChestExposed()) msg += ParseText(" the feeling in your [pc.lowerGarment]");
+							if(!removedTop && !target.isChestExposed()) msg += ParseText(" the feeling in your [pc.upperGarment]");
 							else msg += " a glance down";
 							msg += " tells you that your nipples have definitely gotten larger.";
 						}
@@ -241,7 +241,7 @@
 					{
 						if(!removedTop && !target.isChestExposed())
 						{
-							msg += ParseText("Your [pc.nipples] tingle powerfully and you are forced to remove your [pc.lowerGarments]. ");
+							msg += ParseText("Your [pc.nipples] tingle powerfully and you are forced to remove your [pc.upperGarments]. ");
 							removedTop = true;
 						}
 						msg += ParseText("You gasp as your nipples suddenly suck themselves inwards, like mouths pulling their lips in. Something wet and warm is happening within your [pc.chest]... when your breasts feel like they’ve finally relaxed you gingerly touch them. Your nipples have become “innies” – all that remains is a [pc.vaginaColor], horizontal slit in place of each. Experimentally, you sink a finger into one and sigh as a delicious sensation shimmers through your boob. They feel every bit as slick and sensitive inside as a vagina.");
@@ -270,7 +270,7 @@
 					{
 						if(!removedTop && !target.isChestExposed())
 						{
-							msg += ParseText("Your [pc.nipples] convulse powerfully and you are forced to remove your [pc.lowerGarments]. ");
+							msg += ParseText("Your [pc.nipples] convulse powerfully and you are forced to remove your [pc.upperGarments]. ");
 							removedTop = true;
 						}
 						msg += ParseText("You moan as the erotic sensation seizes your nipples, making them dribble fluid in excitement. It’s stronger than it was before, and you twitch and seize up as the entrances to your breasts seem to plump up, become wetter and even more sensitive. When the intensity of it has passed slightly you dare a look down. Each of your nipple cunts have transformed into two pairs of miniature lips: [pc.nippleColor], wet, bee-stung lips. You delicately touch them, and immediately they grasp your fingers, pulling them inwards to suckle them in – you moan again – the velvety insides of your breasts, which are every bit as sensitive and arousing as they were in their previous form. You pull away with some difficulty. They seem to have minds of their own!");

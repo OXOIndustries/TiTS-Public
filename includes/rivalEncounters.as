@@ -246,14 +246,14 @@ public function loseToDane():void {
 	//HP
 	if(pc.HP() <= 0) 
 	{
-		output("You slump down, unable to fight anymore. Dane laughs, <i>\"Well, that wasn't too hard. You crumpled like a house of cards.\"</i> He holsters his weapons so that he can scratch his chin with one hand. <i>\"I guess the boss must not be very tough [rival.himHer]self if [rival.he] didn't feel like dealing with you.\"</i> The ausar thug laughs, a rumbling baritone thing that you can feel in your bones. <i>\"There's no point in wasting time then; [rival.he]'ll be back shortly.\"</i>");
+		output("You slump down, unable to fight anymore. Dane chuckles, <i>\"Well, that wasn't too hard. You crumpled like a house of cards.\"</i> He holsters his weapons so that he can scratch his chin with one hand. <i>\"I guess the boss must not be very tough [rival.himHer]self if [rival.he] didn't feel like dealing with you.\"</i> The ausar thug laughs harder, a rumbling baritone thing that you can feel in your bones. <i>\"There's no point in wasting time then; [rival.he]'ll be back shortly.\"</i>");
 	}
 	//Lust
 	else
 	{
 		output("You collapse,");
 		if(!pc.isCrotchExposed()) output(" stuffing both hands in your [pc.lowerGarment] to get at your [pc.crotch] and");
-		output(" squirming in the dirt. Dane laughs, <i>\"Well, aren't you the randy little slut. Just a tiny taste of what I can offer and you're already giving yourself up to me.\"</i> He holsters his weapons to scratch at his chin with one hand while he admires your feverish undulations. <i>\"I'm not sure why the boss didn't handle an easy piece of chattel like you " + chars["RIVAL"].mf("him","her") + "self. All it takes a little show of superiority to put you in the dirt and ready to be taken.\"</i> The ausar thug laughs, the sound deep enough to be felt in your bones.");
+		output(" squirming in the dirt. Dane chuckles, <i>\"Well, aren't you the randy little slut. Just a tiny taste of what I can offer and you're already giving yourself up to me.\"</i> He holsters his weapons to scratch at his chin with one hand while he admires your feverish undulations. <i>\"I'm not sure why the boss didn't handle an easy piece of chattel like you " + chars["RIVAL"].mf("him","her") + "self. All it takes a little show of superiority to put you in the dirt and ready to be taken.\"</i> The ausar thug laughs harder, the sound deep enough to be felt in your bones.");
 	}
 	//Merge
 	output("\n\nStrong hands tear your [pc.gear] from your body a piece at a time. Your codex is tossed over a broad shoulder and into the mud. Dane doesn't seem to care about any of your possessions so long as they don't get in his way. ");
@@ -275,7 +275,7 @@ public function loseToDane():void {
 	if(pc.balls > 0) output("r own");
 	output(".");
 	if(pc.hasCock()) output(" Meanwhile, your prostate shoots tingles of bliss into your [pc.cocks], forcing you to drool out thick strands of pre-cum.");
-	output(" The alien grunts and slaps your ass. Even taking a hand to do that, he's still holding you vice-tight. It's like his arms all over your body, everywhere at once, forcing you to submit to his anus-ravaging whims.");
+	output(" The alien grunts and slaps your ass. Even taking a hand to do that, he's still holding you vise-tight. It's like his arms all over your body, everywhere at once, forcing you to submit to his anus-ravaging whims.");
 	if(pc.hasVagina()) output(" [pc.EachVagina] trickles lubricant at the thought. You manage to reach down to try and plug the leak with your fingers. It doesn't work. You just get wetter.");
 	//Buttchange
 	pc.buttChange(enemy.cockVolume(0),true,true,false);
@@ -300,7 +300,7 @@ public function loseToDane():void {
 	output(" quivering in insensate fulfillment. You whimper pleadingly.");
 	output("\n\nDane barks in between gasps and growls of his own, turning your head to the side so he can meet your eye. <i>\"What's that bitch? Got a liking for my cock all' a sudden?\"</i> He slaps your ass for emphasis, still fucking you as hard and fast as ever.");
 	output("\n\nYour mind says no, but your body and mouth say yes, quite loudly.");
-	output("\n\n<i>\"That's what I'm talking about. Tell ya what...\"</i> Dane pounds so fast and hard that you lose track of the bulges sliding in and out of your abused, rectal star, <i>\"whether you manage to beat my boss or not, you can come be my live-in cock-sleeve if you want. I'd be sure to introduce you to the rest of my harem.\"</i> The word harem is punctuated by what feels like dozen of the bloating knobs forcing their way inside. Pleasure overwhelms you, and you start to shake, impaled on the throbbing, red length.");
+	output("\n\n<i>\"That's what I'm talking about. Tell ya what...\"</i> Dane pounds so fast and hard that you lose track of the bulges sliding in and out of your abused rectal star, <i>\"whether you manage to beat my boss or not, you can come be my live-in cock-sleeve if you want. I'd be sure to introduce you to the rest of my harem.\"</i> The word harem is punctuated by what feels like dozen of the bloating knobs forcing their way inside. Pleasure overwhelms you, and you start to shake, impaled on the throbbing, red length.");
 	//Cunts
 	if(pc.hasVagina()) 
 	{

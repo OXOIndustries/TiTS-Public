@@ -181,7 +181,7 @@ public function treatmentHourProcs():void
 			pc.libido(1);
 		}
 		//14
-		else if(treatedHours == 28)
+		else if(treatedHours == 28 && !pc.hasPerk("Sexy Thinking"))
 		{
 			eventBuffer += "\n\nYou're definitely being changed by the Treatment - you're sure of it. Your surroundings are no longer simple objects and materials. They're a whole new set of sexual backdrops and tools. A chair could be used for oral, or a creative place to mount a hung stud. A spanner could be used as part of a slutty mechanic's costume, matched by crotchless coveralls. You put your hands on your waist and smile, arching your back and cocking your hip out to the side at the same time. The motion is automatic. What some might view as getting dumber, you're discovering is getting sexier.";
 			eventBuffer += "\n\nWhy didn't you take the Treatment before? This is awesome!";
@@ -210,7 +210,7 @@ public function treatmentHourProcs():void
 			eventBuffer += "\n\nYou're definitely not getting dumber. You're sure of it now. It's just that there's so many things to pay attention to, and focusing on one thing for longer than a few moments is sooo boring. You can still do things like math. Eleven times eleven is still 121, but what's the point? You could probably get a boy to do it for you, if you rubbed him the right way.";
 		}
 		//17
-		else if(treatedHours == 34)
+		else if(treatedHours == 34 && !pc.hasPerk("Fuck Sense"))
 		{
 			eventBuffer += "\n\nAside from feeling like a million bucks, you're sure that the Treatment is feeding you information. Not boring stuff like formulae, but sexy, useful stuff - like your head is filling up with technical specifications for every kind of reproductive organ and how best to make it pulse with pleasure. You're pretty confident that you could figure out the right way to wiggle to tease anyone or anything. There's this way you can wiggle your butt... well, ausar are cute, right?";
 			//Gain Fuck Sense - libido for tease eval
@@ -273,7 +273,7 @@ public function treatmentHourProcs():void
 			pc.libido(4);
 		}
 		//22
-		else if(treatedHours == 44)
+		else if(treatedHours == 44 && !pc.hasPerk("Ditz Speech") && !pc.hasPerk("Brute Speech"))
 		{
 			eventBuffer += "\n\nTalking isn't quite as easy as it used to be. There's so many different words and concepts and ways to arrange them that by the time you get halfway through a sentence you've forgotten what you were trying to talk about. It's way easier to just start talking with whatever words come to mind. Yeah, that'll work!";
 			//Ditz Speech
@@ -281,7 +281,7 @@ public function treatmentHourProcs():void
 			pc.createPerk("Ditz Speech",0,0,0,0,"Alters dialogue in certain scenes.");
 		}
 		//23
-		else if(treatedHours == 46)
+		else if(treatedHours == 46 && pc.hasPerk("Inhuman Desire"))
 		{
 			eventBuffer += "\n\nA welcome flush rolls across your [pc.skin] as you consider your body. Your nerve endings seem alight with potential pleasure, just waiting to be touched and set off. Every part of your body begs for your attention and hands to tend to it. You idly rub your arms, [pc.hips], and [pc.legOrLegs] before letting go, tingling hotly. It's all you can do to keep from touching yourself, but at the same time, you feel so good! Your overheated body can handle so much pleasure; it's amazing! You've got to take your enhanced form for a spin and try some sex, just to see how incredible your orgasms will be. Maybe a few times in a row...";
 			//+5 lust
@@ -294,7 +294,7 @@ public function treatmentHourProcs():void
 			pc.libido(4);
 		}
 		//24
-		else if(treatedHours == 48)
+		else if(treatedHours == 48 && !pc.hasPerk("Weak Mind"))
 		{
 			eventBuffer += "\n\nIs the Treatment done messing with your head yet? It's gotta be, you figure. You're having way more fun and thinking about cocks and stuff. Willpower is way down though. And book smarts? They're kinda gross. All the stuff you read is still there, but it's way easier not to think about. Besides, if you ever need to learn something you can just get a guy to explain it to you while you suck his cock!";
 			//Weak Mind - Intelligence and Will losses doubled.
@@ -1268,7 +1268,7 @@ public function treatmentHourProcs():void
 			eventBuffer += "\n\nHell, even squirting orgasms look way more exciting that before. Your tongue feels chapped and dry, and you have the distinct desire to ram it into the gushing onscreen hole.";
 			pc.lust(13);
 		}
-		else if(treatedHours == 44)
+		else if(treatedHours == 44 && pc.hasPerk("Inhuman Desire"))
 		{
 			//Cocks
 			if(pc.hasCock())
@@ -1315,7 +1315,7 @@ public function treatmentHourProcs():void
 			pc.lust(13);
 
 		}
-		else if(treatedHours == 46)
+		else if(treatedHours == 46 && !pc.hasPerk("Brute Speech") && !pc.hasPerk("Ditz Speech"))
 		{
 			eventBuffer += "\n\nYou catch yourself using fewer and fewer words to communicate as the days go by, not because using them is hard or anything, but because they seem pointless. Can’t they see how you feel from the set of your jaw or the tenseness of your shoulders? Can’t they read arousal in the flush of your [pc.skin] or the smell of your pheromones? There’s no point getting fancy with it when you can just state what you mean plainly and simply.";
 			eventBuffer += "\n\nAll the big words are just a distraction.";

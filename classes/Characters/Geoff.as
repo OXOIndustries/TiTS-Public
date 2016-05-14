@@ -7,6 +7,7 @@
 	import classes.Items.Melee.*
 	import classes.Items.Apparel.*
 	import classes.Items.Melee.Fists;
+	import classes.kGAMECLASS;
 	
 	public class Geoff extends Creature
 	{
@@ -44,8 +45,8 @@
 			this.energyRaw = 100;
 			this.lustRaw = 25;
 			
-			this.XPRaw = 50;
 			this.level = 1;
+			this.XPRaw = normalXP();
 			this.credits = 1000;
 			
 			this.inventory.push(new LeatherArmor());
@@ -211,6 +212,11 @@
 			delete dataObject.resistances;
 			delete dataObject.bonusResistances;
 			delete dataObject.bonusLustVuln;
+		}
+		
+		override public function onLeaveBuyMenu():void
+		{
+			kGAMECLASS.mainGameMenu();
 		}
 	}
 }

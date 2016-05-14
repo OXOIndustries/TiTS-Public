@@ -198,7 +198,7 @@ public function sexOnAMeteor():void
 		if(pc.getStatusMinutes("Sex On a Meteor") < 700) {
 			pc.addStatusMinutes("Sex On a Meteor",60);
 		}
-		else output("\n\nYou're not going to get  as you're going to get.");
+		else output("\n\nYou're about as drunk on Sex On a Meteor as you're going to get.");
 	}
 	else {
 		pc.createStatusEffect("Sex On a Meteor",0,5,0,0,false,"LustUp","This top-shelf alcohol makes you almost irresistible, but easily aroused as well.",false,180);
@@ -256,7 +256,7 @@ public function buttStretchDelsAnus():void
 	else output("She obediently drops to her knees, one hand slipping back to spread her cheeks wide, already oh so eager for a taste of your cock back there as she opens wide, ready to receive your package");
 	output(". You step forward, tossing your [pc.gear] onto the bar and grabbing your [pc.cock " + x + "]. A few fast strokes have you at the ready, the turgid shaft of your prick looming over the trappy whore's face, your crown practically pushing against her lips. She only manages to hold herself back for a few seconds before her tongue stretches out, caressing the crown of your cock. ");
 	if(timesDelilahSexed() < 5) output("<i>\"Ugh... you... you really want me to... to...\"</i> she sputters indignantly, trying to hide the little tentpole between her slender legs.");
-	else output("<i>\"I love the taste of your cock...\"</i> she purrs, nuzzling the shaft of your [pc.cock " + x + "] affectionately as her tongue lavishes it with affection. <i>\"The first... and the best...\"</i> she adds happily, planting a kiss on the tip.");
+	else output("<i>\"I love the taste of your cock...\"</i> she purrs, nuzzling the length of your [pc.cock " + x + "] affectionately as her tongue lavishes it with affection. <i>\"The first... and the best...\"</i> she adds happily, planting a kiss on the tip.");
 	output(" You shudder as the sensation of her tongue on your most sensitive flesh snakes through your body, and you're forced to grip the bar to support yourself, [pc.legOrLegs] shaky under the startlingly skilled ministrations of the trappy slut.");
 	output("\n\n<i>\"Juuust like that,\"</i> you moan through clenched teeth, trying to control yourself. Your fingers snake through Deliliah's blonde-dyed hair, coaxing her on as she slicks and kisses at the underside of your member, slowly but surely working herself up to taking it wholesale.");
 	if(pc.balls > 0 && timesDelilahSexed() >= 5) 
@@ -568,7 +568,7 @@ public function delilahSlutTraining():void
 	output("\n\n<i>\"Yeah, yeah,\"</i> the ausar says, already sliding his hips forwards into you. You bite your lip, stifling a groan as that hollowness in you, that need, is suddenly and wonderfully filled. Your back arches as the ausar stretches you wide on thick canid cock, thrusting deep in until you can feel the bulb of his knot against your hole. For a moment, you're afraid he'll ruin your fun; but he's a good sport and pulls right back out until there's just his tapered tip inside you.");
 	pc.buttChange(130,true,false);
 	output("\n\nYou squeeze down on the intruding member, giving the ausar a nice, tight, wet hole to thrust into - and he does so with gusto. A few slow, even strokes to start you off, and then he's pounding away at you, hammering his crotch into your ass, forcing you into the bar with every smack of flesh-on-flesh. You moan, crying out as his meaty prick stretches you wide, putting just enough pressure on that wonderful bud inside your clenching hole to make your [pc.cock] jump back to attention, bobbing as your hips are rocked by the impact of his cock slamming home.");
-	output("\n\nIt doesn't take long before the man's grunting with effort, thrusts becoming quick and erratic as your well-trained hole milks him. With a roar, the ausar buries himself deep, grabbing your ass until his nails score you flesh; you clamp your muscles down as hard as you can to give him as pleasurable a release as possible. You both heave a sigh as you feel the familiar flood of spooge into your ass, and it takes everything you have not to give in and start masturbating just at the wonderfully full, wet, hot sensation of seed spilling into your");
+	output("\n\nIt doesn't take long before the man's grunting with effort, thrusts becoming quick and erratic as your well-trained hole milks him. With a roar, the ausar buries himself deep, grabbing your ass until his nails score your flesh; you clamp your muscles down as hard as you can to give him as pleasurable a release as possible. You both heave a sigh as you feel the familiar flood of spooge into your ass, and it takes everything you have not to give in and start masturbating just at the wonderfully full, wet, hot sensation of seed spilling into your");
 	if (!pc.hasVagina()) output(" boypussy.");
 	else output(" ass.");
 	output("\n\nPanting, the ausar man stumbles back, red cock slathered with his own cum as it flops out of you. You push back a little as he withdraws, and shudder as you feel a little trickle of his hot, creamy spunk drool out of your hole");

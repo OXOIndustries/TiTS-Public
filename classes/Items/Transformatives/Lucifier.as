@@ -263,7 +263,7 @@ package classes.Items.Transformatives
 					{
 						var newTailColor:String = RandomInCollection(["red", "dark purple"]);
 						
-						output("[target.EachTail] twists and flexes widly, reacting to some sort of change. Quickly grabbing [pc.oneTail], you find its shape slowly change and warp into a more sinister form.");
+						output("[pc.EachTail] twists and flexes widly, reacting to some sort of change. Quickly grabbing [pc.oneTail], you find its shape slowly change and warp into a more sinister form.");
 						if(!target.hasTailFlag(GLOBAL.FLAG_KNOTTED)) output(" A large knot grows at its base, making sure the phallus stays right where it belongs during mating.");
 						output(" Sensitive nodules appear on its surface");
 						if(target.hasTailFlag(GLOBAL.FLAG_RIBBED)) output(", replacing the ribs that lined it before");
@@ -445,7 +445,7 @@ package classes.Items.Transformatives
 					{
 						output("What feels like two sheets of your skin suddenly slough off your upper back, holding on only at two small joinings near your spine. After a few nervous moments of exploration with your hands you discern that what’s actually happened is you’ve grown two small bat wings. You can move them with twitches of your shoulders, but they aren’t anywhere near strong enough to support you.");
 						
-						target.wingType = GLOBAL.TYPE_SMALLDEMONIC;
+						target.shiftWings(GLOBAL.TYPE_SMALLDEMONIC, 2);
 					}
 					else output(target.wingTypeLockedMessage());
 				}
@@ -459,6 +459,7 @@ package classes.Items.Transformatives
 						output(" When the transformation has finally finished the skeletal leather appendages cloak and almost dwarf you. A single twitch of your shoulders confirms what you can sense; you could easily use these babies to fly short distances.");
 						
 						target.wingType = GLOBAL.TYPE_DEMONIC;
+						if(target.wingCount < 2) target.wingCount = 2;
 					}
 					else output(target.wingTypeLockedMessage());
 				}

@@ -50,8 +50,8 @@
 			this.shieldsRaw = 0;
 			this.energyRaw = 100;
 			this.lustRaw = 45;
-			this.XPRaw = 20;
 			this.level = 1;
+			this.XPRaw = normalXP();
 			this.credits = 0;
 			this.HPMod = 7;
 			this.HPRaw = this.HPMax();
@@ -84,6 +84,7 @@
 			this.armType = GLOBAL.TYPE_BEE;
 			this.gills = false;
 			this.wingType = GLOBAL.TYPE_BEE;
+			wingCount = 2;
 			this.legType = GLOBAL.TYPE_BEE;
 			this.legCount = 2;
 			this.legFlags = [GLOBAL.FLAG_PLANTIGRADE];

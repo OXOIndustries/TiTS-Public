@@ -43,8 +43,8 @@
 			this.energyRaw = 100;
 			this.lustRaw = 15;
 			
-			this.XPRaw = 50;
 			this.level = 1;
+			this.XPRaw = normalXP();
 			this.credits = 0;
 			
 			this.femininity = 90;
@@ -63,6 +63,7 @@
 			this.skinType = GLOBAL.SKIN_TYPE_GOO;
 			this.skinTone = "yellow";
 			this.skinFlags = [GLOBAL.FLAG_SQUISHY, GLOBAL.FLAG_LUBRICATED];
+			addSkinFlag(GLOBAL.FLAG_ABSORBENT);
 			this.faceType = 0;
 			this.faceFlags = new Array();
 			this.tongueType = 0;

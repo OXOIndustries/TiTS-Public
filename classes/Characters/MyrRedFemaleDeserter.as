@@ -75,8 +75,8 @@
 			baseHPResistances = new TypeCollection();
 			baseHPResistances.kinetic.damageValue = 10.0;			
 			
-			this.XPRaw = 200;
 			this.level = 5;
+			this.XPRaw = normalXP();
 			this.credits = 0;
 			this.HPMod = 50;
 			this.HPRaw = this.HPMax();
@@ -245,7 +245,9 @@
 			//cumflated only: cum-bloated (could even be wildcarded for honeycum or other things, depending on your tracking), cum-inflated, sloshing,
 			if(isPregnant())
 			{
-				if(belly < 10) {}
+				if(belly < 10) {
+					pregDescripts[pregDescripts.length] = "squishy";
+				}
 				else if(belly < 20)
 				{
 					pregDescripts[pregDescripts.length] = "fruitful";

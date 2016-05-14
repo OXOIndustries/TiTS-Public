@@ -462,7 +462,7 @@ public function giveBirthThroughCuntTail():void {
 	output("\n\nWaves of juice roll out of your [pc.tailCunt] throughout the experience, even after your orgasm winds down and you nervelessly sink down next to your egg, curling your arms around it in motherly affection. That felt so good... surely you have to share this pleasure, don’t you?");
 	
 	//{If in ship}
-	if(currentLocation == "SHIP INTERIOR") {
+	if(InShipInterior()) {
 		output("\n\nDo you leave it outside the ship to fend for itself (and likely acquire a host) or send it off to the on-station daycare that Dad left you?");
 	}
 	//{Else}

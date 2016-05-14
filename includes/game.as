@@ -90,11 +90,11 @@ public function setNavDisabled(addUmask:uint):void
 
 public function showLocationName():void
 {
-	if(currentLocation == "SHIP INTERIOR") setLocation("SHIP\nINTERIOR", rooms[rooms["SHIP INTERIOR"].outExit].planet, rooms[rooms["SHIP INTERIOR"].outExit].system);
+	if(InShipInterior()) setLocation("SHIP\nINTERIOR", rooms[rooms["SHIP INTERIOR"].outExit].planet, rooms[rooms["SHIP INTERIOR"].outExit].system);
 	else setLocation(rooms[currentLocation].roomName, rooms[currentLocation].planet, rooms[currentLocation].system);
 }
 
-public function mainGameMenu():void {
+public function mainGameMenu(minutesMoved:Number = 0):void {
 	flags["COMBAT MENU SEEN"] = undefined;
 	
 	if (flags["PC_UPBRINGING"] == undefined)
@@ -143,9 +143,9 @@ public function mainGameMenu():void {
 	output(rooms[currentLocation].description);
 	showLocationName();
 	
-	if (pc.hasStatusEffect("Bitterly Cold"))
+	if (pc.hasStatusEffect("Bitterly Cold") && minutesMoved > 0)
 	{
-		tryApplyUvetoColdDamage();
+		if (tryApplyUvetoColdDamage(minutesMoved)) return;
 	}
 	
 	if(inCombat()) 
@@ -402,6 +402,7 @@ public function updateMailStatus():void
 public function showPerksList():void
 {
 	clearOutput2();
+	setLocation("\nPERKS", "CODEX", "DATABASE");
 	clearGhostMenu();
 	addGhostButton(14, "Back", showPerkListHandler);
 	
@@ -421,6 +422,7 @@ public function showPerksList():void
 			output2("<b>" + perk.storageName + "</b> - " + perkDesc + "\n");
 		}
 	}
+	output2("\n");
 }
 
 public function crewRecruited():Number
@@ -432,6 +434,7 @@ public function crewRecruited():Number
 	if (bessIsFollower()) counter++;
 	if (hasGooArmor()) counter++;
 	if (varmintIsTame()) counter++;
+	if (yammiIsCrew()) counter++;
 	return counter;
 }
 
@@ -479,6 +482,15 @@ public function crew(counter:Boolean = false):Number {
 			addButton(count - 1, bess.short, approachFollowerBess);
 		}
 	}
+	if (yammiIsCrew())
+	{
+		count++;
+		if (!counter)
+		{
+			crewMessages += "\n\n" + yammiShipBonusText();
+			addButton(count - 1, "Yammi", yammiInTheKitchen);
+		}
+	}
 	if (varmintIsCrew())
 	{
 		count++;
@@ -523,12 +535,14 @@ public function rest(deltaT:int = -1):void {
 }
 public function restHeal():void
 {
+	var bonusMult:Number = 1 + pc.statusEffectv1("Home Cooking")/100;
 	if(pc.HPRaw < pc.HPMax()) {
 		if(pc.characterClass == GLOBAL.CLASS_SMUGGLER) pc.HP(Math.round(pc.HPMax()));
-		else pc.HP(Math.round(pc.HPMax() * .33));
+		else 
+		pc.HP(Math.round(pc.HPMax() * .33 * bonusMult));
 	}
 	if(pc.energy() < pc.energyMax()) {
-		pc.energy(Math.round(pc.energyMax() * .33));
+		pc.energy(Math.round(pc.energyMax() * .33 * bonusMult));
 	}
 }
 
@@ -540,7 +554,7 @@ public function sleep(outputs:Boolean = true):void {
 	var minutes:int = 420 + rand(80) + 1
 	
 	if(outputs) clearOutput();
-	if(currentLocation == "SHIP INTERIOR")
+	if(InShipInterior(pc))
 	{
 		if(outputs)
 		{			
@@ -560,8 +574,8 @@ public function sleep(outputs:Boolean = true):void {
 			(pc as PlayerCharacter).unclaimedClassPerks += 1;
 			(pc as PlayerCharacter).unclaimedGenericPerks += 1;
 			
+			pc.XPRaw -= pc.XPMax();
 			pc.level++;
-			pc.XPRaw = 0;
 			pc.maxOutHP();
 			
 			// Enable the button
@@ -574,7 +588,7 @@ public function sleep(outputs:Boolean = true):void {
 			eventBuffer += "\n\n<b>You've already reached the current maximum level. It will be raised in future builds.</b>";
 		}
 	}
-	if(currentLocation == "SHIP INTERIOR")
+	if(InShipInterior(pc))
 	{
 		if(outputs)
 		{
@@ -604,14 +618,14 @@ public function sleep(outputs:Boolean = true):void {
 	if(outputs)
 	{
 		mimbraneSleepEvents();
-		if(currentLocation == "SHIP INTERIOR") grayGooSpessSkype();
+		if(InShipInterior(pc)) grayGooSpessSkype();
 	}
 	
 	//remove status effects
 	pc.removeStatusEffect("Roshan Blue");
 	
 	clearMenu();
-	if(currentLocation == "SHIP INTERIOR")
+	if(InShipInterior(pc))
 	{
 		if (flags["ANNO_SLEEPWITH_DOMORNING"] != undefined)
 		{
@@ -757,13 +771,6 @@ public function flyMenu():void {
 	}
 	else addDisabledButton(3, "Locked", "Locked", "You need to find one of your father’s probes to access this planet’s coordinates and name.");
 	
-	if (uvetoUnlocked())
-	{
-		if (shipLocation != "UVS F15") addButton(4, "Uveto", flyTo, "Uveto");
-		else addDisabledButton(4, "Uveto", "Uvto", "You’re already here.");
-	}
-	else addDisabledButton(4, "Locked", "Locked", "You need to find one of your father’s probes to access this planet’s coordinates and name.");
-	
 	//NEW TEXAS
 	if(flags["NEW_TEXAS_COORDINATES_GAINED"] != undefined)
 	{
@@ -778,15 +785,27 @@ public function flyMenu():void {
 		else if(shipLocation != "POESPACE") addButton(6, "Poe A", flyTo, "Poe A");
 		else addDisabledButton(6, "Poe A", "Poe A", "You’re already here.");
 	}
-	else addDisabledButton(6, "Locked", "Locked", "You have not yet learned of this planet.");
+	else addDisabledButton(6, "Locked", "Locked", "You have not yet learned of this planet’s coordinates.");
+	//UVETO
+	if (uvetoUnlocked())
+	{
+		if (shipLocation != "UVS F15") addButton(7, "Uveto", flyTo, "Uveto");
+		else addDisabledButton(7, "Uveto", "Uvto", "You’re already here.");
+	}
+	else addDisabledButton(7, "Locked", "Locked", "You have not yet learned of this planet’s coordinates.");
+	
+	//KQ2
 	if (flags["KQ2_QUEST_OFFER"] != undefined && flags["KQ2_QUEST_DETAILED"] == undefined)
 	{
-		addButton(7, "Kara", flyTo, "karaQuest2", "Kara", "Go see what Kara has up her sleeve.");
+		addButton(10, "Kara", flyTo, "karaQuest2", "Kara", "Go see what Kara has up her sleeve.");
 	}
+	
 	addButton(14, "Back", mainGameMenu);
 }
 
 public function flyTo(arg:String):void {
+	
+	generateMapForLocation("SHIP INTERIOR");
 	
 	if (flags["SUPRESS TRAVEL EVENTS"] == 1)
 	{
@@ -1033,7 +1052,7 @@ public function move(arg:String, goToMainMenu:Boolean = true):void {
 		if((!pc.isChestGarbed() || pc.isChestExposed()) && pc.biggestTitSize() > 1) nudistPrevention = true;
 		if(!pc.isCrotchGarbed() || pc.isCrotchExposed() || pc.isAssExposed()) nudistPrevention = true;
 		// Cover yourself with your fuckton of wings
-		if(InCollection(pc.wingType, GLOBAL.TYPE_DOVEFOUR, GLOBAL.TYPE_DOVESIX) && pc.genitalLocation() <= 1) nudistPrevention = false;
+		if (pc.wingType == GLOBAL.TYPE_DOVE && pc.wingCount >= 4 && pc.genitalLocation() <= 1) nudistPrevention = false;
 		if(nudistPrevention)
 		{
 			clearOutput();
@@ -1059,13 +1078,14 @@ public function move(arg:String, goToMainMenu:Boolean = true):void {
 	}
 	StatTracking.track("movement/time travelled", moveMinutes);
 	processTime(moveMinutes);
+	flags["PREV_LOCATION"] = currentLocation;
 	currentLocation = arg;
 	generateMap();
 	
 	trace("Printing map for " + currentLocation);
 	//mapper.printMap(map);
 	//process time here, then back to mainGameMenu!
-	if(goToMainMenu) mainGameMenu();
+	if(goToMainMenu) mainGameMenu(moveMinutes);
 }
 
 public function variableRoomUpdateCheck():void
@@ -1578,7 +1598,7 @@ public function processTime(arg:int):void {
 				}
 			}
 			// Left
-			else if (currentLocation == "SHIP INTERIOR")
+			else if (InShipInterior(pc))
 			{
 				eventQueue.push(kq2NukeExplodesLater);
 				flags["KQ2_NUKE_EXPLODED"] = 1;
@@ -1796,7 +1816,11 @@ public function processTime(arg:int):void {
 				if(flags["HOLIDAY_OWEEN_ACTIVATED"] == undefined && (isHalloweenish() || rand(100) == 0)) eventQueue.push(hollidayOweenAlert);
 				if(pc.hasPerk("Honeypot") && days % 3 == 0) honeyPotBump();
 				//Exhibitionism reduction!
-				if(!(pc.armor is EmptySlot) && !(pc.lowerUndergarment is EmptySlot) && !(pc.upperUndergarment is EmptySlot))
+				if
+				(	!(pc.armor is EmptySlot)
+				&&	!(pc.lowerUndergarment is EmptySlot || pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN) || pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS))
+				&&	!(pc.upperUndergarment is EmptySlot || pc.upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || pc.upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST))
+				)
 				{
 					if(pc.isChestExposed() && pc.isCrotchExposed() && pc.isAssExposed())
 						{ /* No reduction for a full set of exposed clothing! */ }
@@ -1947,9 +1971,11 @@ public function processTime(arg:int):void {
 	if (!MailManager.isEntryUnlocked("emmy_harness_here") && flags["EMMY_TOY_TIMER"] <= GetGameTimestamp()) emmyMailGet4();
 
 	//Saendra Mail
-	if (!MailManager.isEntryUnlocked("saendrathanks") && flags["FALL OF THE PHOENIX STATUS"] >= 1 && flags["SAENDRA_DISABLED"] != 1 && rooms[currentLocation].planet != "SHIP: PHOENIX" && currentLocation != "SHIP INTERIOR") saendraPhoenixMailGet();
+	if (!MailManager.isEntryUnlocked("saendrathanks") && flags["FALL OF THE PHOENIX STATUS"] >= 1 && flags["SAENDRA_DISABLED"] != 1 && rooms[currentLocation].planet != "SHIP: PHOENIX" && !InShipInterior(pc)) saendraPhoenixMailGet();
 	//Anno Mail
 	if (!MailManager.isEntryUnlocked("annoweirdshit") && flags["MET_ANNO"] != undefined && flags["ANNO_MISSION_OFFER"] != 2 && flags["FOUGHT_TAM"] == undefined && flags["RUST_STEP"] != undefined && rand(20) == 0) goMailGet("annoweirdshit");
+	//KIRO FUCKMEET
+	if(!MailManager.isEntryUnlocked("kirofucknet") && flags["RESCUE KIRO FROM BLUEBALLS"] == 1 && kiroTrust() >= 50 && flags["MET_FLAHNE"] != undefined) { goMailGet("kirofucknet"); kiroFuckNetBonus(); }
 	//Shade KQ2 Mail
 	//9999 - if (!MailManager.isEntryUnlocked("kq2_shade_makeup") && flags["KQ2_SHADE_AWAY_TIME"] != undefined && flags["KQ2_SHADE_AWAY_TIME"] <= (GetGameTimestamp() - (9999 * 24 * 60))) goMailGet("kq2_shade_makeup");
 	//Other Email Checks!
@@ -1967,12 +1993,15 @@ public function racialPerkUpdateCheck():void
 	{
 		if(pc.nukiScore() < 3)
 		{
-			if(pc.balls > 1)
+			if(pc.balls >= 1)
 			{
 				//Nuts inflated:
 				if(pc.perkv1("'Nuki Nuts") > 0)
 				{
-					msg += ParseText("\n\nThe extra size in your [pc.balls] bleeds off, making it easier to walk. You have a hunch that without all your kui-tan body-mods, you won't be swelling up with excess [pc.cumNoun] any more.");
+					msg += ParseText("\n\nThe extra size in your [pc.balls] bleeds off, making it easier to walk. You have a hunch that without all your");
+					if(pc.originalRace.indexOf("kui-tan") != -1) msg += " natural kui-tan genes";
+					else msg += " kui-tan body-mods";
+					msg += ParseText(", you won't be swelling up with excess [pc.cumNoun] any more.");
 				}
 				//Nuts not inflated:
 				else
@@ -2146,8 +2175,9 @@ public function emailRoulette():void
 		mailList.push("fuckinggoosloots");
 	if(!MailManager.isEntryUnlocked("fuckinggooslootsII") && MailManager.isEntryUnlocked("fuckinggoosloots") && celiseIsCrew() && pc.level >= 5)
 		mailList.push("fuckinggooslootsII");
-	if(!MailManager.isEntryUnlocked("kirofucknet") && flags["RESCUE KIRO FROM BLUEBALLS"] == 1 && kiroTrust() >= 50)
-		mailList.push("kirofucknet");
+	//CUT AND MOVED UP FOR EASY OF UNLOCKING KIROSMEX
+	//if(!MailManager.isEntryUnlocked("kirofucknet") && flags["RESCUE KIRO FROM BLUEBALLS"] == 1 && kiroTrust() >= 50)
+	//	mailList.push("kirofucknet");
 	if(!MailManager.isEntryUnlocked("cuzfuckball") && flags["TIMES_MET_FEMZIL"] != undefined && flags["BEEN_ON_TARKUS"] != undefined && pc.level >= 2)
 		mailList.push("cuzfuckball");
 	
@@ -2178,13 +2208,8 @@ public function emailRoulette():void
 		if(mailEmail.Content != null) mailContent = mailEmail.Content();
 		
 		// Regular:
-		if(mailKey == "kirofucknet" && (pc.isBimbo() || pc.isBro() || !pc.hasStatusEffect("Focus Pill") || pc.IQ() < 50 || pc.WQ() < 50))
-		{
-			eventBuffer += " The subject line reads <i>“" + mailSubject + "”</i>. Curiously, you open the letter to see what it could be...";
-			eventBuffer += "\n\nThe message is headed by a big holo-image of Kiro with her massive equine dong shoved to the hilt up some girl’s backside, stretching her sphincter like a rubber band. Kiro’s holding the camera and giving you a big, goofy grin and a thumb’s-up.\n\n<i>Kiro Tamahime wants you to join the GalLink group “GalLink Fuckmeet.”\n\nGalLink Fuckmeet: Bone random citizens of the galaxy with no hassle, no commitment, just fun!\n\nSuggested Members: Kiro Tamahime, Saendra en Illya, BigBooty Flahne, Sera Succubus, GirlBoy Alex</i>";
-			eventBuffer += "\n\nYou shrug and click “Join”...\n\nAnd are instantly flooded with several THOUSAND pictures of the group’s members (mostly Kiro) engaged in lewd acts.\n\nWell, at least you won’t need to look for new porn for a while.";
-			pc.lust(20);
-		}
+		if(mailKey == "kirofucknet")
+			kiroFuckNetBonus();
 		// Spam:
 		if(mailKey == "cov8" && flags["SPAM_MSG_COV8"] == undefined)
 			flags["SPAM_MSG_COV8"] = 1;

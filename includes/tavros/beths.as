@@ -44,6 +44,7 @@
 	{
 		output("You're inside Beth's Busty Broads, which seems to be doing good business for itself. Several patrons are gathered around the stage in the center of the show floor, watching a particularly well-endowed ausar girl strut her stuff on the pole. A desk has been set up near the door, where a bored-looking human woman is flipping through a data-slate, barely acknowledging your presence.");
 	}
+	terenshaAdditionalBonus();
 	addButton(0,"Desk",talkToBrothelLadyNewOmni);
 	reahaBonusFunction();
 	return false;
@@ -277,6 +278,8 @@ public function vaandeGo():void
 	//for vagOrAss
 	//tooltip: Use her cock on you.
 	addButton(1,"Ride Ovi",rideDatRahnBitchsOvi,undefined,"Ride Ovi","Use her cock on you.");
+	if(hasACumBubble()) addButton(2,"Give Bubble",giveVaandeATreatSetup,undefined,"Give Bubble","Give Vaande some shrink-wrapped cum - the perfect treat!");
+	else addDisabledButton(2,"Locked","Locked","You don't have the requisite items for this scene. Purchasing a Bubble Buddy may be the way to go...");
 }
 
 //Fuck Pussy
@@ -880,7 +883,7 @@ public function brothelTurnTrixLicensedWhore(service:String = "none"):void
 	else if(service == "rooms")
 	{
 		showBrothelLady(true);
-		output("After a frazzling few hours, you finish your shift under the front desk.");
+		output("\n\nAfter a frazzling few hours, you finish your shift under the front desk.");
 		output("\n\n<i>“Ungh! Nice,”</i> Kat grunts, clutching the wood hard and grinding her landing-stripped pussy into your face. A small trickle of femcum makes its way down your chin. <i>“Nothing like a well-trained tongue at the end of a long ");
 		if(hours < 15) output("morning");
 		else output("evening");

@@ -602,10 +602,11 @@ public function approachFriendPenny(outputT:Boolean = true):void {
 	//Tooltip: That Doctor Badger thought she could get the best of you... time to turn the tables the right way: by bringing the hammer of the LAW down on her.
 	if(flags["DR_BADGER_TURNED_IN"] == undefined)
 	{
-		if(flags["MET_DR_BADGER"] != undefined) addButton(5,"ReportBadger",whineToPennyCauseYerABitch,undefined,"Report Dr. Badger","That Doctor Badger thought she could get the best of you... time to turn the tables the right way: by bringing the hammer of the LAW down on her.");
+		if(flags["NO_REPORTING_DOC_BADGER"] != undefined) addDisabledButton(5,"ReportBadger","Report Dr. Badger","You've decided not to turn in Doctor Badger.");
+		else if(flags["MET_DR_BADGER"] != undefined) addButton(5,"ReportBadger",whineToPennyCauseYerABitch,undefined,"Report Dr. Badger","That Doctor Badger thought she could get the best of you... time to turn the tables the right way: by bringing the hammer of the LAW down on her.");
 		else addDisabledButton(5,"Locked","Locked","Someone would have to do something illegal to you to unlock this button...");
 	}
-	else addDisabledButton(5,"ReportBadger","ReportBadger","You already turned in Doctor Badger.");
+	else addDisabledButton(5,"ReportBadger","Report Dr. Badger","You already turned in Doctor Badger.");
 }
 
 //[Sex]
@@ -1303,27 +1304,29 @@ public function pennyGirlfriendMenu():void
 	//Tooltip: That Doctor Badger thought she could get the best of you... time to turn the tables the right way: by bringing the hammer of the LAW down on her.
 	if(flags["DR_BADGER_TURNED_IN"] == undefined)
 	{
-		if(flags["MET_DR_BADGER"] != undefined) addButton(2,"ReportBadger",whineToPennyCauseYerABitch,undefined,"Report Dr. Badger","That Doctor Badger thought she could get the best of you... time to turn the tables the right way: by bringing the hammer of the LAW down on her.");
+		if(flags["NO_REPORTING_DOC_BADGER"] != undefined) addDisabledButton(2,"ReportBadger","Report Dr. Badger","You've decided not to turn in Doctor Badger.");
+		else if(flags["MET_DR_BADGER"] != undefined) addButton(2,"ReportBadger",whineToPennyCauseYerABitch,undefined,"Report Dr. Badger","That Doctor Badger thought she could get the best of you... time to turn the tables the right way: by bringing the hammer of the LAW down on her.");
 		else addDisabledButton(2,"Locked","Locked","Someone would have to do something illegal to you to unlock this button...");
-	}
-	else addDisabledButton(2,"ReportBadger","ReportBadger","You already turned in Doctor Badger.");
-	if(flags["BADGER_QUEST"] == 1)
-	{
-		addButton(3,"BadgerWarn",warnPennyAboutDoctorBadgersNefariousSchemes,undefined,"Warn Her About Dr. Badger","Penny would probably have some opinions about Dr. Badger's plan. Who knows, maybe she’d be into it, or maybe she’ll have some ideas about how to turn the tables on Dr. Badger instead.");
-		if(flags["NO_ZAP_PENNY"] == undefined) 
+		
+		if(flags["BADGER_QUEST"] == 1)
 		{
-			if(flags["PENNY_BADGER_WARNED"] == undefined) addButton(2,"Zap Penny",surpriseZapPennyWithBimboRay,undefined,"Zap Penny","This seems like a jerk move, but if nothing else you can be pretty sure she’ll probably enjoy the end result, as will you.");
-			else addButton(2,"Zap Penny",zapPennyAfterWarningHer,undefined,"Zap Penny","Go ahead and zap Penny with the Bimbo Raygun, now that it seems like she approves.");
+			addButton(3,"BadgerWarn",warnPennyAboutDoctorBadgersNefariousSchemes,undefined,"Warn Her About Dr. Badger","Penny would probably have some opinions about Dr. Badger's plan. Who knows, maybe she’d be into it, or maybe she’ll have some ideas about how to turn the tables on Dr. Badger instead.");
+			if(flags["NO_ZAP_PENNY"] == undefined) 
+			{
+				if(flags["PENNY_BADGER_WARNED"] == undefined) addButton(2,"Zap Penny",surpriseZapPennyWithBimboRay,undefined,"Zap Penny","This seems like a jerk move, but if nothing else you can be pretty sure she’ll probably enjoy the end result, as will you.");
+				else addButton(2,"Zap Penny",zapPennyAfterWarningHer,undefined,"Zap Penny","Go ahead and zap Penny with the Bimbo Raygun, now that it seems like she approves.");
+			}
+			else addDisabledButton(2,"Zap Penny","Zap Penny","Now that you've tipped her off, it'll be impossible to catch her with her guard down.");
 		}
-		else addDisabledButton(2,"Zap Penny","Zap Penny","Now that you've tipped her off, it'll be impossible to catch her with her guard down.");
 	}
+	else addDisabledButton(2,"ReportBadger","Report Dr. Badger","You already turned in Doctor Badger.");
 	//Penny has the doc's raygun
 	if(flags["BADGER_QUEST"] == -1 || flags["BADGER_QUEST"] == -2)
 	{
-		addDisabledButton(2,"ReportBadger","Report Badger","Why would you report Dr. Badger when you and Penny are planning to give her a taste of her own medicine?");
+		addDisabledButton(2,"ReportBadger","Report Dr. Badger","Why would you report Dr. Badger when you and Penny are planning to give her a taste of her own medicine?");
 	}
 	//Mission complete
-	if(flags["BADGER_QUEST"] == -3) addDisabledButton(2,"ReportBadger","Report Badger","Why would you report Dr. Badger when you've turned her into your big-breasted, bimbo badger fucktoy?");
+	if(flags["BADGER_QUEST"] == -3) addDisabledButton(2,"ReportBadger","Report Dr. Badger","Why would you report Dr. Badger when you've turned her into your big-breasted, bimbo badger fucktoy?");
 	this.addButton(14,"Back",mainGameMenu);
 }
 
@@ -1886,7 +1889,7 @@ public function pennySexMenu(outputT:Boolean = true):void {
 	else addDisabledButton(7,"Bukkake","Bukkake","This requires Penny to be a futanari cum-slut and for you to have a penis.");
 	if (flags["FLAHNE_TALKED_ABOUT_CUMSLUTPENNY"] != undefined && flags["PENNY_IS_A_CUMSLUT"] != undefined) addButton(8, "Invite Flahne", pennyVsFlahneWhoWillOutslutWho,undefined,"Invite Flahne","Invite Flahne over for a threesome with Penny.");
 	else addDisabledButton(8, "Invite Flahne","Invite Flahne","This scene requires Penny to be a cum-slut and Flahne to have been told about it.");
-	if(penny.hasCock()) this.addButton(9,"Catch Anal",getAssFuckedByPenny,undefined,"Catch Anal","Get ass-fucked by Penny.");
+	if(penny.hasCock()) this.addButton(9,"Catch Anal",getAssFuckedByPenny,false,"Catch Anal","Get ass-fucked by Penny.");
 	else addDisabledButton(9,"Catch Anal","Catch Anal","Penny needs a dick to fuck you in the ass.");
 	this.addButton(14,"Back",approachGirlfriendPenny);
 }
@@ -1968,7 +1971,7 @@ public function faceFuckPenny():void {
 	this.clearMenu();
 	if(pc.hasCock()) this.addButton(0,"Fuck Her Butt",fuckPennyButtFromFraceFuckSceneNyahhhh,undefined,"Fuck Her Butt","Fuck Penny's ass.");
 	else addDisabledButton(0,"Fuck Her Butt","Fuck Her Butt","You need a dick to fuck Penny's ass.")
-	if(penny.hasCock()) this.addButton(1,"GetButtFucked",getAssFuckedByPenny,undefined,"Get Butt Fucked","Let Penny drill you in the ass.");
+	if(penny.hasCock()) this.addButton(1,"GetButtFucked",getAssFuckedByPenny,true,"Get Butt Fucked","Let Penny drill you in the ass.");
 	else addDisabledButton(1,"GetButtFucked","Get Butt Fucked","Penny needs to have a dick for this scene.")
 	this.addButton(2,"Nah, girl",nahhhhGurrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrllllllllllllllllllllllllllllllllllll,undefined,"Nah, girl","You're too tired for that right now.");
 }
@@ -1984,11 +1987,11 @@ public function nahhhhGurrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
 }
 
 //Get ass fucked (Penny gotta have the D, yo)
-public function getAssFuckedByPenny():void {
+public function getAssFuckedByPenny(fromFaceFuck:Boolean = false):void {
 	clearOutput();
 	showPenny(true);
 	author("Savin");
-	if(pc.hasCock())
+	if(fromFaceFuck)
 	{
 		output("You grin ");
 		if(pc.tallness <= 55) output("up ");

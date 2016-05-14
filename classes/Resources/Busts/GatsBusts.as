@@ -135,7 +135,7 @@
 		[Embed(source = "../../../assets/images/npcs/gats/Kiro.png", mimeType = "image/png")]
 		public var Bust_KIRO:Class;
 		[Embed(source = "../../../assets/images/npcs/gats/Kiro_Nude.png", mimeType = "image/png")]
-		public var Bust_KIRONUDE:Class;
+		public var Bust_KIRO_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/gats/Machina.png", mimeType = "image/png")]
 		public var Bust_MACHINA:Class;
