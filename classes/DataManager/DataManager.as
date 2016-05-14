@@ -500,8 +500,15 @@
 			returnString += ": <b>" + dataFile.data.saveName + "</b>";
 			returnString += " - <i>" + dataFile.data.saveNotes + "</i>\n";
 			returnString += "\t<b>Days:</b> " + dataFile.data.daysPassed;
+			returnString += " - <b>Time:</b> " + (dataFile.data.currentHours < 10 ? "0" + dataFile.data.currentHours : dataFile.data.currentHours) + ":" + (dataFile.data.currentMinutes < 10 ? "0" + dataFile.data.currentMinutes : dataFile.data.currentMinutes);
 			returnString += " - <b>Gender:</b> " + dataFile.data.playerGender;
-			returnString += " - <b>Location:</b> " + StringUtil.toTitleCase(dataFile.data.saveLocation);
+			//returnString += " - <b>Location:</b> " + StringUtil.toTitleCase(dataFile.data.saveLocation);
+			
+			// Prettify Location string!
+			var pName:String = dataFile.data.saveLocation.split("PLANET: ")[1];
+			var sName:String = dataFile.data.saveLocation.split("SYSTEM: ")[1];
+			pName = pName.slice(0, (pName.indexOf(",") - pName.length));
+			returnString += " - <b>Location:</b> " + StringUtil.toTitleCase(pName.toLowerCase()) + ", " + (sName == "REDACTED" ? "\\\[" + sName + "\\\]" : StringUtil.toTitleCase(sName.toLowerCase()));
 			
 			returnString += "\n";
 			return returnString;
@@ -1051,6 +1058,7 @@
 			var gender:String = "N";
 			if(kGAMECLASS.chars["PC"].hasCock() && kGAMECLASS.chars["PC"].hasVagina()) gender = "H";
 			else if(kGAMECLASS.chars["PC"].hasCock() && kGAMECLASS.chars["PC"].femininity >= 50) gender = "T";
+			else if(kGAMECLASS.chars["PC"].hasVagina() && kGAMECLASS.chars["PC"].femininity < 50) gender = "C";
 			else if(kGAMECLASS.chars["PC"].hasCock()) gender = "M";
 			else if(kGAMECLASS.chars["PC"].hasVagina()) gender = "F";
 			//OLD AND BUSTED: dataFile.playerGender 	= kGAMECLASS.chars["PC"].mfn("M", "F", "A");
