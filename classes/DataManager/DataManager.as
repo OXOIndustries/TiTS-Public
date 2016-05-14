@@ -506,9 +506,10 @@
 			// Prettify Location string!
 			var pName:String = dataFile.data.saveLocation
 			if(pName.indexOf("PLANET: ") != -1) pName = pName.split("PLANET: ")[1];
+			if(pName.indexOf(",") != -1) pName = pName.slice(0, (pName.indexOf(",") - pName.length));
 			var sName:String = dataFile.data.saveLocation
+			if(sName.indexOf(",") != -1) sName = sName.split(", ")[1];
 			if(sName.indexOf("SYSTEM: ") != -1) sName = sName.split("SYSTEM: ")[1];
-			pName = pName.slice(0, (pName.indexOf(",") - pName.length));
 			returnString += " - <b>Location:</b> " + pName + ", " + (sName == "REDACTED" ? "\\\[REDACTED\\\]" : sName);
 			
 			returnString += "\n";
