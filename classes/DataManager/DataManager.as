@@ -510,6 +510,8 @@
 			var sName:String = dataFile.data.saveLocation
 			if(sName.indexOf("SYSTEM: ") != -1) sName = sName.split("SYSTEM: ")[1];
 			pName = pName.slice(0, (pName.indexOf(",") - pName.length));
+			//returnString += " - <b>Location:</b> " + (pName == "POE A" ? "Poe A" : StringUtil.toTitleCase(pName.toLowerCase())) + ", " + (sName == "REDACTED" ? "\\\[" + sName + "\\\]" : StringUtil.toTitleCase(sName.toLowerCase()));
+			returnString += " - <b>Location:</b> " + pName + ", " + (sName == "REDACTED" ? "\\\[REDACTED\\\]" : sName);
 			
 			returnString += "\n";
 			return returnString;
