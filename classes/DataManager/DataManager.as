@@ -502,7 +502,6 @@
 			returnString += "\t<b>Days:</b> " + dataFile.data.daysPassed;
 			returnString += " - <b>Time:</b> " + (dataFile.data.currentHours < 10 ? "0" + dataFile.data.currentHours : dataFile.data.currentHours) + ":" + (dataFile.data.currentMinutes < 10 ? "0" + dataFile.data.currentMinutes : dataFile.data.currentMinutes);
 			returnString += " - <b>Gender:</b> " + dataFile.data.playerGender;
-			//returnString += " - <b>Location:</b> " + StringUtil.toTitleCase(dataFile.data.saveLocation);
 			
 			// Prettify Location string!
 			var pName:String = dataFile.data.saveLocation
@@ -510,7 +509,6 @@
 			var sName:String = dataFile.data.saveLocation
 			if(sName.indexOf("SYSTEM: ") != -1) sName = sName.split("SYSTEM: ")[1];
 			pName = pName.slice(0, (pName.indexOf(",") - pName.length));
-			//returnString += " - <b>Location:</b> " + (pName == "POE A" ? "Poe A" : StringUtil.toTitleCase(pName.toLowerCase())) + ", " + (sName == "REDACTED" ? "\\\[" + sName + "\\\]" : StringUtil.toTitleCase(sName.toLowerCase()));
 			returnString += " - <b>Location:</b> " + pName + ", " + (sName == "REDACTED" ? "\\\[REDACTED\\\]" : sName);
 			
 			returnString += "\n";
@@ -1046,7 +1044,7 @@
 			
 			// We're going to extract some things from the player object and dump it in here for "preview" views into the file
 			dataFile.saveName 		= kGAMECLASS.chars["PC"].short;
-			dataFile.saveLocation 	= StringUtil.toTitleCase(kGAMECLASS.userInterface.planetText + ", " + kGAMECLASS.userInterface.systemText);
+			dataFile.saveLocation 	= kGAMECLASS.userInterface.planetText + ", " + kGAMECLASS.userInterface.systemText;
 			
 			// Blank entries get cleared notes!
 			if (kGAMECLASS.userInterface.currentPCNotes == null || kGAMECLASS.userInterface.currentPCNotes.length == 0 || kGAMECLASS.userInterface.currentPCNotes == "")
