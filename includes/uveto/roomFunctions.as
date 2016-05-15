@@ -223,7 +223,7 @@ public function actuallyArriveAtUvetoStation():void
 
 	output("<b>An hour passes...</b>");
 	
-	processTime(60);
+	processTime(50 + rand(16));
 	
 	output("\n\nJust as you’re getting through with the mountain of legal gobbledygook the tove sent you, your proximity sensors alert you to the approach of a large ship bearing the trade IDs of the Camarilla. You respond to a message blip ordering you to power down weapons and shields and follow the <i>“wabeshift”</i> to Uveto Station’s docking terminal. You do as you’re ordered and switch the autopilot on, letting it dog the Camarilla ship in towards the station.");
 	
