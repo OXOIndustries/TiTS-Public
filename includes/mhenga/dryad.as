@@ -15,6 +15,7 @@ public function dryadHeader():void
 public function dryadIsActive():Boolean
 {
 	if(pc.hasStatusEffect("Dryad Cooldown")) return false;
+	if(pc.lust() < 33 && rand(3) == 0) return false;
 	if(pc.statusEffectv1("Dryad Encounters") < 8)
 	{
 		if(pc.statusEffectv1("Dryad Encounters") > 2 && rand(pc.statusEffectv1("Dryad Encounters")) != 0) return false;
@@ -64,9 +65,10 @@ public function dryadMeeting():void
 	pc.addStatusValue("Dryad Encounters", 1, 1);
 	
 	clearMenu();
+	addButton(0,"Give BJ", dryadBlowjob,undefined,"Give BJ","Use your mouth to get the girl off.");
 	if(pc.lust() >= 33)
 	{
-		addButton(0,"Give BJ", dryadBlowjob,undefined,"Give BJ","Use your mouth to get the girl off.");
+		//addButton(0,"Give BJ", dryadBlowjob,undefined,"Give BJ","Use your mouth to get the girl off.");
 		if (pc.hasVagina()) addButton(1, "Get Fucked", dryadPussy, undefined, "Get Fucked", "Let the girl fuck your pussy.");
 		else addDisabledButton(1, "Get Fucked", "Get Fucked", "You don't have a pussy for her to fuck.");
 		addButton(2, "Get Reamed", dryadAss, undefined, "Get Reamed", "Let the girl fuck your ass.");
@@ -76,7 +78,7 @@ public function dryadMeeting():void
 	}
 	else
 	{
-		addDisabledButton(0,"Give BJ","Give BJ","You aren't aroused enough for that.");
+		//addDisabledButton(0,"Give BJ","Give BJ","You aren't aroused enough for that.");
 		if (pc.hasVagina()) addDisabledButton(1, "Get Fucked", "Get Fucked", "You aren't aroused enough for that.");
 		else addDisabledButton(1, "Get Fucked", "Get Fucked", "Even if you were aroused enough, you don't have a pussy for her to fuck.");
 		addDisabledButton(2,"Get Reamed","Get Reamed","You aren't aroused enough for that.");
