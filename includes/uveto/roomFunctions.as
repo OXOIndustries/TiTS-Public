@@ -9,6 +9,7 @@ import classes.RoomClass;
 
 public function uvetoShipDock():Boolean
 {
+	removeUvetoCold();
 	if (tryProcKaedeUvetoEncounter()) return true;
 	return false;
 }
@@ -563,6 +564,7 @@ public function uvetoAwakenInMedCenter(rescuer:String):void
 	else output(" [pc.legOrLegs]");
 	output(" and make for your gear....");
 
+	removeUvetoCold();
 	pc.HP(pc.HPMax());
 	pc.energy(pc.energyMax());
 	currentLocation = "UVI H32";
