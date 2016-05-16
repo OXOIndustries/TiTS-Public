@@ -141,7 +141,7 @@ public function malePartsTentacruelFun():void
 	//(cockbiggest=other)
 	else
 	{
-		output("\n\n<i>“I’m not going to lie, [pc.name]... this cock is your best feature.”</i> she says, eyeing [pc.cockbiggest] with ravenous lust. Her gooey fingers prod and rub the entirety of your length, hands combining into a single ring that bathes your [pc.cockBiggest] in wondrous pressure. After a moment her lips join her hands, and her warm tongue laps at the [pc.cockHeadbiggest] as it slides in and out of her mouth. The twin forces move in tandem, lips pulling back while hands sink to the shaft.");
+		output("\n\n<i>“I’m not going to lie, [pc.name]... this cock is your best feature.”</i> she says, eyeing [pc.cockBiggest] with ravenous lust. Her gooey fingers prod and rub the entirety of your length, hands combining into a single ring that bathes your [pc.cockBiggest] in wondrous pressure. After a moment her lips join her hands, and her warm tongue laps at the [pc.cockHeadbiggest] as it slides in and out of her mouth. The twin forces move in tandem, lips pulling back while hands sink to the shaft.");
 		output("\n\nIn a flash, the double-threat of pleasuring efforts has you struggling to resist her onslaught. Despite your best efforts to make the feeling last, you can’t contain the need bubbling up within you. Your [pc.cockBiggest] explodes with pent up lust, showering Celise’s throat with [pc.cumColor] jizz. The emerald goo-girl draws her head and hands away, sucking the last of your cum as she goes. <i>”So delicious, but we aren’t even close to being done,”</i> she says with an alluring gaze.");
 	}
 	//(merge)
