@@ -258,9 +258,10 @@
 					pc.shiftCock(arg,GLOBAL.TYPE_CANINE);
 					if(pcRace.indexOf("ausar") != -1) pc.cocks[arg].delFlag(GLOBAL.FLAG_SHEATHED);
 				}
-				else if(InCollection(pcRace, "kaithrit", "half-kaithrit", "feline-morph")) pc.shiftCock(arg,GLOBAL.TYPE_FELINE);
+				else if(InCollection(pcRace, "kaithrit", "half-kaithrit", "feline-morph", "nekomata", "chakat")) pc.shiftCock(arg,GLOBAL.TYPE_FELINE);
 				else if(InCollection(pcRace, "leithan", "half-leithan")) pc.shiftCock(arg,GLOBAL.TYPE_SNAKE);
 				else if(InCollection(pcRace, "kui-tan", "half kui-tan")) pc.shiftCock(arg, GLOBAL.TYPE_KUITAN);
+				else if(InCollection(pcRace, "gryvain", "half-gryvain")) pc.shiftCock(arg, GLOBAL.TYPE_GRYVAIN);
 				else if(InCollection(pcRace, "horse-morph", "part horse-morph", "laquine", "ovir", "half-ovir", "minotaur", "centaur", "horse-taur", pc.mlpRace())) pc.shiftCock(arg, GLOBAL.TYPE_EQUINE);
 				else if(pcRace == "vulpine-morph") pc.shiftCock(arg,GLOBAL.TYPE_VULPINE);
 				else if(pcRace == "zil") pc.shiftCock(arg,GLOBAL.TYPE_BEE);

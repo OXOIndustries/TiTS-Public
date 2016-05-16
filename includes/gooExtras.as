@@ -2178,7 +2178,7 @@ public function reshapeAGooCawkForReaaaaal(arg:int = 0):void
 	addGhostButton(10,"Tentacle",seriouslyThoReshapeDatGooCock,[arg,GLOBAL.TYPE_TENTACLE]);
 	*/
 	
-	var cTypes:Array = [GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_SNAKE, GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_VULPINE];
+	var cTypes:Array = [GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_SNAKE, GLOBAL.TYPE_GRYVAIN, GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_VULPINE];
 	// Unlockables
 	if(flags["MET_SERA"] != undefined)
 		cTypes.push(GLOBAL.TYPE_DEMONIC);
@@ -2190,18 +2190,38 @@ public function reshapeAGooCawkForReaaaaal(arg:int = 0):void
 		cTypes.push(GLOBAL.TYPE_DRACONIC);
 	if(CodexManager.entryViewed("Gabilani"))
 		cTypes.push(GLOBAL.TYPE_GABILANI);
+	if(CodexManager.entryViewed("Nyrea"))
+		cTypes.push(GLOBAL.TYPE_NYREA);
+	if(flags["LIRIEL_MET"] != undefined)
+		cTypes.push(GLOBAL.TYPE_HRAD);
 	
 	var newType:Number = 0;
 	var btnName:String = "";
+	var btnSlot:int = 0;
 	for(var x:int = 0; x < cTypes.length; x++)
 	{
+		if(btnSlot >= 14 && (btnSlot + 1) % 15 == 0)
+		{
+			if(pc.cockTotal() == 1) addGhostButton(btnSlot,"Back",gooCockRootMenu);
+			else addGhostButton(btnSlot,"Back",reshapeACaaaawk);
+			btnSlot++;
+		}
+		
 		newType = cTypes[x];
 		if(newType == GLOBAL.TYPE_HUMAN) btnName = "Terran";
 		else if(newType == GLOBAL.TYPE_SNAKE) btnName = "Snake-like";
 		else if(newType == GLOBAL.TYPE_BEE) btnName = "Zil";
 		else btnName = GLOBAL.TYPE_NAMES[newType];
-		if(pc.cocks[arg].cType != newType) addGhostButton(x,btnName,seriouslyThoReshapeDatGooCock,[arg,newType]);
-		else addDisabledGhostButton(x,btnName,btnName,"The penis is already this shape.");
+		if(pc.cocks[arg].cType != newType) addGhostButton(btnSlot,btnName,seriouslyThoReshapeDatGooCock,[arg,newType]);
+		else addDisabledGhostButton(btnSlot,btnName,btnName,"The penis is already this shape.");
+		btnSlot++;
+		
+		if(cTypes.length > 15 && (x + 1) == cTypes.length)
+		{
+			while((btnSlot + 1) % 15 != 0) { btnSlot++; }
+			if(pc.cockTotal() == 1) addGhostButton(btnSlot,"Back",gooCockRootMenu);
+			else addGhostButton(btnSlot,"Back",reshapeACaaaawk);
+		}
 	}
 	
 	if(pc.cockTotal() == 1) addGhostButton(14,"Back",gooCockRootMenu);
@@ -2777,7 +2797,7 @@ public function pickNewCuntType(arg:int = 0):void
 	addGhostButton(4,"Vanae",actuallyTFToNewCuntType,[arg,GLOBAL.TYPE_VANAE]);
 	*/
 	
-	var vTypes:Array = [GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_EQUINE];
+	var vTypes:Array = [GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_GRYVAIN, GLOBAL.TYPE_EQUINE];
 	// Unlockables
 	if(CodexManager.entryViewed("Naleen"))
 		vTypes.push(GLOBAL.TYPE_SNAKE);
@@ -2787,17 +2807,35 @@ public function pickNewCuntType(arg:int = 0):void
 		vTypes.push(GLOBAL.TYPE_LAPINARA);
 	if(CodexManager.entryViewed("Gabilani"))
 		vTypes.push(GLOBAL.TYPE_GABILANI);
+	if(CodexManager.entryViewed("Nyrea"))
+		vTypes.push(GLOBAL.TYPE_NYREA);
 	
 	var newType:Number = 0;
 	var btnName:String = "";
+	var btnSlot:int = 0;
 	for(var x:int = 0; x < vTypes.length; x++)
 	{
+		if(btnSlot >= 14 && (btnSlot + 1) % 15 == 0)
+		{
+			if(pc.totalVaginas() == 1) addGhostButton(btnSlot,"Back",vaginaGooRootMenu);
+			else addGhostButton(btnSlot,"Back",shiftACuntYaCunt);
+			btnSlot++;
+		}
+		
 		newType = vTypes[x];
 		if(newType == GLOBAL.TYPE_HUMAN) btnName = "Terran";
 		else if(newType == GLOBAL.TYPE_SNAKE) btnName = "Snake-like";
 		else btnName = GLOBAL.TYPE_NAMES[newType];
-		if(pc.vaginas[arg].type != newType) addGhostButton(x,btnName,actuallyTFToNewCuntType,[arg,newType]);
-		else addDisabledGhostButton(x,btnName,btnName,"The vagina is already this shape.");
+		if(pc.vaginas[arg].type != newType) addGhostButton(btnSlot,btnName,actuallyTFToNewCuntType,[arg,newType]);
+		else addDisabledGhostButton(btnSlot,btnName,btnName,"The vagina is already this shape.");
+		btnSlot++;
+		
+		if(vTypes.length > 15 && (x + 1) == vTypes.length)
+		{
+			while((btnSlot + 1) % 15 != 0) { btnSlot++; }
+			if(pc.totalVaginas() == 1) addGhostButton(btnSlot,"Back",vaginaGooRootMenu);
+			else addGhostButton(btnSlot,"Back",shiftACuntYaCunt);
+		}
 	}
 	
 	if(pc.totalVaginas() == 1) addGhostButton(14,"Back",vaginaGooRootMenu);

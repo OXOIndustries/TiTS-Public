@@ -10739,7 +10739,7 @@
 				else if (type == GLOBAL.TYPE_GRYVAIN)
 				{
 					if (!simple)
-						desc += RandomInCollection(["nub-ringed pussy", "clit-lined cunt", "clit-filled vagina", "clit-ringed vagina", "clit-lined pussy", "scaley pussy", "scaley cunt", "scaley vagina", "gryvain pussy", "dragonic cunt", "dragon-like pussy"]);
+						desc += RandomInCollection(["nub-ringed pussy", "clit-lined cunt", "clit-filled vagina", "clit-ringed vagina", "clit-lined pussy", "scaly pussy", "scaly cunt", "scaly vagina", "gryvain pussy", "dragonic cunt", "dragon-like pussy"]);
 					else
 						desc += RandomInCollection(["gryvain-pussy", "nubby cunt", "dragon cunt", "pussy"]);
 				}
