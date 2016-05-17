@@ -203,6 +203,7 @@
 		include "../includes/tarkus/dumbfuckBonus.as";
 		include "../includes/tarkus/goblinPool.as";
 		include "../includes/tarkus/grayGoo.as";
+		include "../includes/tarkus/grayGooArmor.as";
 		include "../includes/tarkus/lane.as";
 		include "../includes/tarkus/lapinara.as";
 		include "../includes/tarkus/raskvelFemaleFight.as";

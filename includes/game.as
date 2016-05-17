@@ -425,31 +425,40 @@ public function showPerksList():void
 	output2("\n");
 }
 
-public function crewRecruited():Number
+public function crewRecruited(allcrew:Boolean = false):Number
 {
 	var counter:Number = 0;
+	
+	// Actual crew members
 	if (flags["RECRUITED_CELISE"] > 0) counter++;
 	if (reahaRecruited()) counter++;
 	if (!annoNotRecruited()) counter++;
 	if (bessIsFollower()) counter++;
-	if (hasGooArmor()) counter++;
-	if (varmintIsTame()) counter++;
 	if (yammiIsCrew()) counter++;
+	
+	// Pets or other non-speaking crew members
+	if (allcrew)
+	{
+		if (hasGooArmor()) counter++;
+		if (varmintIsTame()) counter++;
+	}
+	
 	return counter;
 }
 
-public function crew(counter:Boolean = false):Number {
+public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 	if(!counter) {
 		clearOutput();
 		clearMenu();
 	}
 	
 	var crewMessages:String = "";
-	var count:int = 0;
+	var count:int = 0; // For actual crew members
+	var other:int = 0; // For pets or other non-speaking crew members
 	if(celiseIsCrew()) {
 		count++;
 		if(!counter) {
-			addButton(count - 1, "Celise", celiseFollowerInteractions);
+			addButton((count + other) - 1, "Celise", celiseFollowerInteractions);
 			crewMessages += "\n\nCelise is onboard, if you want to go see her. The ship does seem to stay clean of spills and debris with her around.";
 		}
 	}
@@ -458,7 +467,7 @@ public function crew(counter:Boolean = false):Number {
 		count++;
 		if(!counter)
 		{
-			addButton(count-1, "Reaha", approachShipBoardReahaWhyDidntSavinCodeThisHeWasntExhaustedYesterday);
+			addButton((count + other) - 1, "Reaha", approachShipBoardReahaWhyDidntSavinCodeThisHeWasntExhaustedYesterday);
 			crewMessages += "\n\nReaha is currently meandering around the ship, arms clutched under her hefty bosom, her nipples hooked up to a small portable milker.";
 		}
 	}
@@ -467,7 +476,7 @@ public function crew(counter:Boolean = false):Number {
 		count++;
 		if (!counter)
 		{
-			addButton(count - 1, "Anno", annoFollowerApproach);
+			addButton((count + other) - 1, "Anno", annoFollowerApproach);
 			if (hours >= 6 && hours <= 7 || hours >= 19 && hours <= 20) crewMessages += "\n\nAnno is walking about in her quarters, sorting through her inventory and organizing some of her equipment.";
 			else if (hours >= 12 || hours <= 13) crewMessages += "\n\nAnno's busy doing a quick workout in her quarters to the beat of some fast-paced ausar heavy metal. <i>“Gotta keep in shape!”</i> she says.";
 			else crewMessages += "\n\nAnno is sitting in the common area with her nose buried in half a dozen different data slates. It looks like she's splitting her attention between the latest Warp Gate research and several different field tests of experimental shield generators.";
@@ -479,7 +488,7 @@ public function crew(counter:Boolean = false):Number {
 		if (!counter)
 		{
 			crewMessages += "\n\n[bess.name] is wandering around the ship and keeping [bess.himHer]self busy. It shouldn't be that hard to find [bess.himHer].";
-			addButton(count - 1, bess.short, approachFollowerBess);
+			addButton((count + other) - 1, bess.short, approachFollowerBess);
 		}
 	}
 	if (yammiIsCrew())
@@ -488,24 +497,33 @@ public function crew(counter:Boolean = false):Number {
 		if (!counter)
 		{
 			crewMessages += "\n\n" + yammiShipBonusText();
-			addButton(count - 1, "Yammi", yammiInTheKitchen);
+			addButton((count + other) - 1, "Yammi", yammiInTheKitchen);
+		}
+	}
+	if (hasGooArmor())
+	{
+		other++;
+		if (!counter)
+		{
+			crewMessages += gooArmorOnShipBonus((count + other) - 1);
 		}
 	}
 	if (varmintIsCrew())
 	{
-		count++;
+		other++;
 		if (!counter)
 		{
-			crewMessages += varmintOnShipBonus(count - 1);
+			crewMessages += varmintOnShipBonus((count + other) - 1);
 		}
 	}
 	if(!counter) {
-		if(count > 0) {
+		if((count + other) > 0) {
 			showName("\nCREW");
 			output("Who of your crew do you wish to interact with?" + crewMessages);
 		}
 		addButton(14, "Back", mainGameMenu);
 	}
+	if(allcrew) return (count + other);
 	return count;
 }
 public function rest(deltaT:int = -1):void {
@@ -708,7 +726,7 @@ public function shipMenu():Boolean {
 	// Main ship interior buttons
 	if(currentLocation == "SHIP INTERIOR")
 	{
-		if (crew(true) > 0) addButton(2, "Crew", crew);
+		if (crew(true, true) > 0) addButton(2, "Crew", crew);
 		if (hasShipStorage()) addButton(3, "Storage", shipStorageMenuRoot);
 		else addDisabledButton(3, "Storage");
 		addButton(4, "Shower", showerMenu);

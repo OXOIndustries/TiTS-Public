@@ -5658,8 +5658,8 @@
 			}
 			if (hasStatusEffect("Reduced Goo"))
 			{
+				armor.defense += statusEffectv1("Reduced Goo");
 				removeStatusEffect("Reduced Goo");
-				armor.defense += 5;
 			}
 			for (var x: int = statusEffects.length-1; x >= 0; x--) {
 				if (statusEffects[x].combatOnly)

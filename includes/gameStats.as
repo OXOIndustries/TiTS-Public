@@ -764,8 +764,8 @@ public function statisticsScreen(showID:String = "All"):void
 		output2("\n\n" + blockHeader("General Statistics", false));
 		// Crew
 		output2("\n<b><u>Crew</u></b>");
-		output2("\n<b>* Total Recruited: </b>" + crewRecruited());
-		output2("\n<b>* Total Onboard: </b>" + crew(true));
+		output2("\n<b>* Total Recruited: </b>" + crewRecruited(true));
+		output2("\n<b>* Total Onboard: </b>" + crew(true, true));
 		// Traveling
 		output2("\n<b><u>Travel</u></b>");
 		output2("\n<b>* Time Spent Moving From Room to Room: </b>" + prettifyMinutes(StatTracking.getStat("movement/time travelled")));
