@@ -6,6 +6,15 @@ public static const NYREA_UNKNOWN:uint = 0;
 public static const NYREA_ALPHA:uint = 1;
 public static const NYREA_BETA:uint = 2;
 
+/**
+ * WSAN NOTES
+ * Created pcLossToNyreaAdditionalOne, pcLossToNyreaAdditionalTwo, pcLossToNyreaBadEnd starting on line 961. Should later support the Beta bad end too
+ * Added function lostToAlpha so loss count can be kept track of for bad end. Winning decrements the counter, losing increases it
+ * Added an increment to the LOST_TO_ALPHA flag at the end of pcLossToNyrea
+ * Added a loss scene option selector in nyreaFight (line 156)
+ * Added an option to force eggs if the PC has lost more than twice to the Alpha in encounterNyreaHuntress (line 81)
+ * */
+
 public function nyreaHeader(nyreaType:uint = NYREA_UNKNOWN, prefix:String = null):void
 {
 	author("Savin");
@@ -35,6 +44,13 @@ public function nyreaHeader(nyreaType:uint = NYREA_UNKNOWN, prefix:String = null
 	}
 }
 
+public function lostToAlpha(addVal:int = 0):int
+{
+	if (flags["LOST_TO_ALPHA"] == undefined) flags["LOST_TO_ALPHA"] = 0;
+	flags["LOST_TO_ALPHA"] += addVal;
+	return flags["LOST_TO_ALPHA"];
+}
+
 public function nyreaHeaderFromCreature(target:Creature, prefix:String = null):void
 {
 	if (target is NyreaAlpha) nyreaHeader(NYREA_ALPHA, prefix);
@@ -62,7 +78,7 @@ public function encounterNyreaHuntress(forceType:uint = NYREA_UNKNOWN):void
 	if ((rand(10) < 4 && forceType == NYREA_UNKNOWN) || forceType == NYREA_ALPHA)
 	{
 		nyreaType = NYREA_ALPHA;
-		if (rand(10) < 6)
+		if ((rand(10) < 6) || (lostToAlpha() > 2))
 		{
 			nyreaEggs = true;
 			trace("Nyrea has eggs!");
@@ -137,7 +153,26 @@ public function nyreaFight(settings:Array):void
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyCharacters(pc);
 	CombatManager.victoryScene(pcVictoryOverNyrea);
-	CombatManager.lossScene(pcLossToNyrea);
+	if ((nyreaType == NYREA_ALPHA) && (lostToAlpha() == 3)) //not exactly elegant
+	{
+		CombatManager.lossScene(pcLossToNyreaAdditionalOne);
+	}
+	else if ((nyreaType == NYREA_ALPHA) && (lostToAlpha() == 4))
+	{
+		CombatManager.lossScene(pcLossToNyreaAdditionalOne);
+	}
+	else if ((nyreaType == NYREA_ALPHA) && (lostToAlpha() == 5))
+	{
+		CombatManager.lossScene(pcLossToNyreaAdditionalTwo);
+	}
+	else if ((nyreaType == NYREA_ALPHA) && (lostToAlpha() == 6))
+	{
+		CombatManager.lossScene(pcLossToNyreaBadEndPartOne);
+	}
+	else
+	{
+		CombatManager.lossScene(pcLossToNyrea);
+	}
 	
 	if (nyreaType == NYREA_ALPHA)
 	{
@@ -509,6 +544,7 @@ public function pcLossToNyrea():void
 			output("\n\nShe huffs, crossing her arms under her breasts. <i>“What use is there for a creature with no genitals!? You offworlders are strange!”</i> Without another word, the nyrea turns on a heel and stalks off into the cavern.");
 		}
 	}
+	lostToAlpha(1);
 	output("\n\n");
 	processTime(30);
 	CombatManager.genericLoss();
@@ -550,6 +586,7 @@ public function pcVictoryOverNyrea():void
 		nyreaHeaderFromCreature(enemy, "VICTORY:");
 		processTime(10);
 		clearMenu();
+		lostToAlpha(-1);
 		CombatManager.genericVictory();
 	});
 }
@@ -625,6 +662,7 @@ public function fuckNyreaButtsGetHerOff():void
 
 	processTime(45+rand(15));
 	pc.orgasm();
+	lostToAlpha(-1);
 	CombatManager.genericVictory();
 }
 
@@ -661,6 +699,7 @@ public function fuckNyreaButtsFuckHer():void
 
 	processTime(45+rand(15));
 	pc.orgasm();
+	lostToAlpha(-1);
 	CombatManager.genericVictory();
 }
 
@@ -855,6 +894,7 @@ public function rideNyreaDick():void
 	processTime(45 + rand(15));
 	output("\n\n");
 	pc.orgasm();
+	lostToAlpha(-1);
 	clearMenu();
 	CombatManager.genericVictory();
 }
@@ -931,5 +971,268 @@ public function nyreaTailcockDocking():void
 	processTime(45 + rand(15));
 	
 	pc.orgasm();
+	lostToAlpha(-1);
 	CombatManager.genericVictory();
+}
+
+//Start of additional scenes leading to bad end
+
+public function pcLossToNyreaAdditionalOne():void
+{
+	showName("ALPHA\nNYREA");
+	showBust("NYREA_ALPHA");
+	author("Wsan");
+	
+	var pData:PregnancyData;
+	
+	clearOutput();
+	
+	output("The Alpha nimbly pirouettes behind you, slapping your [pc.weapon] to the ground with the haft of her spear as she does so. A moment later and her voluptuous breasts are pushed up against your back, her spear discarded in favor of seizing your [pc.ass]. She breathes hotly on your neck before sweeping your feet out from under you, sending you tumbling to your hands and knees. You hear a gentle laugh from behind you.");
+	output("\n\n<i>“A fitting position for you, offworlder. Crawling on your hands and knees before me.”</i>");
+	output("\n\nYou turn to be greeted by the sight of her disrobing, her chainmail bikini slinking down her buxom form as her pseudo-cock engorges to its full length. You watch transfixed, the gentle side to side swaying hypnotizing you until she rests her hardness right on your face. Your mouth hangs open slightly in awed subservience before you remember you’re not here to be this alien’s slave... right? You look up at her and she grins viciously as you meet her gaze.");
+	output("\n\n<i>“Oh, offworlder. So naive. After making such a show of being my slut, you’re going to offer resistance now? After I - </i>” she leans in, taking your face in her hands and lowering her voice to a sultry whisper, <i>“</i>dominated<i> you so thoroughly and left you needing more?”</i>");
+	output("\n\nShe stands back up, taking no notice of the precum now smeared across your [pc.face] or");
+	if (pc.hasCock()) output(" your [pc.cock] rapidly stiffening in your [pc.lowerGarment]}");
+	if ((!pc.hasCock()) && (pc.hasVagina())) output(" your [pc.pussy] tightening up and wetting your [pc.lowerGarment]}");
+	output("at her sensual words and the memories you share of her fucking you over and over.");
+	output("\n\n<i>“Is that not why you’re here, offworlder? To bequeath your body to me as a fertile breeding ground? I can’t imagine what <i>other</i> business you have down here that makes you so persistent.”</i> She says innocently before fixing you with a smile.");
+	output("\n\nShe’s mocking you. She’s mocking you but to your shame you’re only getting hornier, your face red and your breathing heavy as she puts her cock back on your face and waits. You can’t take it.");
+	output("\n\n<i>“Just... do it.”</i> You mutter, defeated.");
+	output("\n\n<i>“Do what?”</i> She beams at you, clearly enjoying your emotional conflict.");
+	output("\n\n<i>“Just f-fuck me.”</i>");
+	output("\n\n<i>“Oh,”</i> she says, her smile growing wider, <i>“but I’m not waiting for your permission. I’m waiting for you to be honest with yourself.”</i>");
+	output("\n\nWhatever. You tell yourself she’s clearly not going to make the first move and you don’t want to sit here forever, so it’s okay if you open your mouth and slurp up the precum that’s been dribbling down the underside of her thick cock. Motivated by her approving moan, you raise your hands to hold her length");
+	if (pc.tallness < 72) output(", marveling at how you can’t even wrap them all the way around her breeding organ");
+	output(". You reverently rub up and down her pseudo-cock, taking care not to catch your fingers on the barbs you’re so intimately familiar with. Now that you have her gigantic tool in front of you again, it’s hard to believe it ever fit in you.");
+	output("\n\n<i>“Gooood "+pc.mf("boy", "girl")+". Now open up, you need to get me ready.”</i> She chides you gently.");
+	output("\n\nYou automatically spread your [pc.lips] as far as they’ll go at her instruction and the Alpha eagerly thrusts into you, not hesitating to plunge her cock right down your throat and make use of her willing slut. Gagging isn’t even a possibility with your neck so thoroughly filled with her, but you unconsciously shift your head anyway to ease her passage into your depths. She makes a low, satisfied groan as she slips further into you and holds your head close, standing still as she revels in the warmth of your throat. You can scarcely breathe, but stay still holding her cock in you secure in the knowledge she won’t let serious harm come to you. A few moments pass before she releases you with a dainty sigh, the barbed head of her cock softly scratching the inside of your throat as it comes back up. You let her out with a wet ‘<i>ogh</i>’ and let your head hang for a bit, panting tiredly as you get your breath back.");
+	output("\n\nShe circles around you in predatory fashion, leaving little doubt as to what her intentions are once she’s behind you. She doesn’t give you long to savor your anticipation, slapping your [pc.ass] and eliciting a gasping moan from your [pc.lips] when her hand stays there, squeezing possessively.");
+	output("\n\n<i>“Down, starwalker. Present yourself.”</i>");
+	//Scene option select
+	
+	//if pc has room in butt
+	if (!pc.isPregnant(3))
+	{
+		output("\n\nResistance is the furthest thought from your mind in the face of her eagerness to breed you. Laying your face against the cold rock of the caverns, you arch your back and lift your butt, stripping your [pc.gear] off to present your [pc.asshole] to her. She pushes your [pc.chest] into the ground and positions her gigantic pseudo-cock at your entrance and then stops, suddenly remembering something. She slips a hand down to your belly and strokes you, an oddly comforting gesture in a moment of heated lust.");
+		output("\n\n<i>“Not carrying anyone else’s young, offworlder?”</i> She croons, squeezing your buttcheeks roughly and spreading you apart as she leans in close to whisper, <i>“Don’t worry. You’ll be full of mine soon enough.”</i>");
+		output("\n\nShe plunges her arm-length barbed cock right into your bowels with a bestial grunt, your scream of half-agony and half-pleasure echoing off the walls of the cavern when her sheer domineering size overcomes any resistance your insides might have put up. She laughs at your reaction and smacks your ass, your flesh jiggling in the wake of her touch. Thankfully she’s filling you with so much warm pre that in combination with your ass having taken her behemoth cock before, there’s relatively little discomfort past the initial shock. You soon find yourself panting, moaning and grunting like an animal as you writhe under her, captive to her anal ministrations and barbed caresses.");
+		pc.buttChange(enemy.biggestCockVolume());
+		output("\n\n<i>“I knew you loved this, starwalker.”</i> She hisses while pumping you, pulling you upwards until you’re in a sitting position atop her massive knot. You don’t have it in you to deny her, the rhythmic rolling of her hips driving thoughts of anything else from your mind. She fucks you slow, enjoying your submissive gasps and moans as a cock as thick as your arm rearranges your insides.");
+		output("\n\n<i>“I think I’m going to take my time with you, offworlder. I have a feeling we’re going to be seeing a lot of each other in the near future, after all.”</i>");
+		output("\n\nShe turns you over without even taking herself out, the barbs on the crown of her cock impossible to ignore as you’re rotated to face her beautiful visage. She smiles at your honest expression, your reddened and sweaty face lost in the throes of passion and ecstasy, shuddering with pleasure every time she bounces you up with a powerful thrust from below. The alpha huntress takes full advantage of your intimate closeness, gently biting a [pc.nipple] and drawing a long groan of tortured lust from your [pc.lips].");
+		if (pc.hasCock()) output(" Your semi-stiff cock rests against her stomach, ignored in her fervor to fuck you silly.");
+		output("\n\nShe pulls you in, your own [pc.breasts] tightly drawn against her rock-hard nipples as she vigorously spreads your asshole wide.");
+		output("\n\n<i>“You’d better be ready, offworlder.”</i> She moans in between thrusts. <i>“I’ve been saving up just for my newest breeder.”</i>");
+		output("\n\nShe redoubles her efforts, making you cry out every time she roughly thrusts into you, both with delight and the realization she’s forcing her knot into you. She fiercely pulls your hips down, stretching you out over the massive base of her cock as it begins to shift, hard lumps pressing into your [pc.ass]. Your first notice that she’s cumming is a spray of sexual fluid into your asshole, readying you for carrying her clutch. The next thing you feel is a mixture of intense pleasure and pressure, her eggs bulging out her already-huge length as they travel down it to be deposited into your fecund intestines.");
+		pc.loadInAss(enemy); //errors here
+		pData = pc.getPregnancyOfType("NyreaEggPregnancy");
+		output("\n\nShe holds you as tightly as she can on her gigantic cock, focused only on filling you with her eggs as deeply as possible. You shudder and shake on the end of her at each insertion, your ass kept sealed for her breeding efforts by the knot. You can feel yourself swelling with each deposit, your insides stretched tightly with their newfound purpose. By the time she’s finished with you, the huntress has gifted you "+ pData.pregnancyQuantity +" eggs to carry for her as her beta.");
+		output("\n\nShe releases you with a satisfied groan and you go limp, draped across the cavern floor like a puppet with its’ strings cut as her cock slides out of your abused [pc.asshole]. She stands and collects her chainmail bikini, talking as she dresses herself.");
+		output("\n\n<i>“It was worth saving up for you, outsider. I’ve half a mind to take you back to the palace with me, such is your talent for being bred. There’s really only one reason I’m not.”</i>");
+		output("\n\n She pauses to meet your eyes and gives you a predatory smile.");
+		output("\n\n<i>“I think <i>you’re</i> going to come to <i>me</i>.”</i>");
+		output("\n\nThe words stick in your mind as her smile fades into the darkness, your consciousness quickly following suit.");
+		
+		processTime(90);
+		pc.orgasm();
+		lostToAlpha(1);
+	}
+	else if (pc.isPregnant(3))
+	{
+		//if pc has no room in butt, but room in vag
+		var tHole:int = pc.findEmptyPregnancySlot(Creature.PREGSLOT_VAG);
+		var isFull:Boolean = true;
+		
+		if (tHole >= 0) isFull = false;
+		
+		if (!isFull)
+		{
+			output("\n\nResistance is the furthest thought from your mind in the face of her eagerness to breed you. Laying your face against the cold rock of the caverns, you arch your back and lift your butt, stripping your [pc.gear] off to present your [pc.asshole] to her. She pushes your [pc.chest] into the ground and positions her gigantic pseudo-cock at your entrance, then stops as you stick out an arm.");
+			output("\n\n<i>“Wait,”</i> you say shamefacedly, <i>“I’m already-”</i>");
+			output("\n\n<i>“Aaah. You mean you’ve already been fucked full in this hole. No matter, you offworlders are a versatile lot.”</i>");
+			//if PC has an empty womb, proceed
+			//if PC doesn’t, proceed to rejection scene
+			if (!pc.isPregnant(tHole))
+			{
+				output("\n\nShe slips two fingers into your [pc.pussy], a sighing exhalation slipping unbidden from your lips her signal that you’re okay to go. Not waiting any further, she parts your folds with her arm-length cock and plunges herself right up against your cervix in one stroke. You manage not to scream, but you can’t help groaning as you shudder around her barbed ovipositor, suffering a miniature quaking orgasm from her overwhelming size. The sense of fullness is unlike any other, your walls desperately contracting to grip and rub against her length, earning a spurt of her hot sexual fluids into your waiting womb. She moans appreciatively and draws back, lubricating your cunt with each spurt from her tip.");
+				pc.cuntChange(tHole, enemy.biggestCockVolume())
+				output("\n\nBefore long she’s fucking bestial groans and grunts out of you with every thrust, riding you to the cave floor until you’re prostrate beneath her, heavy breasts and hard nipples pressed into your back as she pumps you. The sound of slapping flesh on flesh resounds through the cave while she pushes her hips hard into your [pc.butt], possessively wrapping her legs around your own and pulling them further apart.");
+				output("\n\n<i>“Amazing, outsider. Every hole of yours – is perfectly suited to being fucked. You’re the perfect – <i>nnnnf</i> – breeder.”</i>");
+				output("\n\nYou cry out in pleasure as she takes hold of your shoulders and starts thrusting particularly deep, her knot impossible to ignore as it begins to spread you wide in preparation. She continues to fuck you long and deep, the barbed tip of her cock probing the slick and slippery entrance to your womb. She slowly works her knot into your overstuffed [pc.pussy] with long, drawn-out gyrations of her amazonian hips, each pump causing you to groan both in lustful exertion and agonizing ecstasy. Your hands ball into fists as your body works to deal with the sensation of being conquered, only finally relaxing when she manages to fuck all of it into your abused pussy.");
+				output("\n\n<i>“You’re a delight to the senses, you know.”</i> The alpha breathily moans, her heavy breasts on your back as she lies atop you panting. <i>“None of my harem sigh and scream as beautifully as you do when I breed them.”</i>");
+				output("\n\nYou can do nothing but moan weakly in response to her subtle arrogance as you feel her eggs beginning to shift, ready to be planted into the huntress’ chosen beta. The tip of her cock breaches your womb, and amidst the sense of utter submission you can feel her eggs slowly working their way up her pseudo-cock, her orgasmic panting in your ear as she shudders on top of you. The first one enters your womb accompanied by a hot spurt of sexual fluids from the tip of the alpha’s pseudo-cock, its smooth curvature making a slight imprint on your [pc.belly].");
+				output("\n\nThe sensation of being stretched and used by the alpha has you teetering on the brink of orgasm, and at the feeling of another egg making its way into your receptive womb you can’t help but cum, shaking wordlessly under the huntress.");
+				output("\n\n<i>“See? Isn’t it – wonderful – offworlder? To be fucked – full of my eggs?”</i> The huntress inquires between grunts of effort and pleasure, clearly not expecting a coherent answer out of your gritted teeth. <i>“You’ll never – go empty again – if you submit.”</i>");
+				pc.loadInCunt(enemy, tHole);
+				pData = pc.getPregnancyOfType("NyreaEggPregnancy");
+				output("\n\nAt last all " + pData.pregnancyQuantity +" of her eggs lie where they should and she slowly pulls out of you, savoring your reactions as you’re stretched around the knot again. She gets to her feet, rolling you onto your back to get a good look at your tummy. The alpha smiles triumphantly at your massively swollen form, limbs still trembling in the wake of your intense climax during breeding. She pads away silently, slipping into the darkness. It’s going to be a while before your numb lower half will even allow for getting up...");
+				processTime(60);
+				pc.orgasm();
+				lostToAlpha(1);
+			}
+			else //rejection scene
+			{
+				output("\n\n<i>“No, I’m...”</i>");
+				output("\n\nYou struggle to adequately describe your predicament.");
+				output("\n\n<i>“I’m full?”</i>");
+				output("\n\nShe gazes at you evenly for a few seconds before sighing, disappointed.");
+				output("\n\n<i>“You mean to say you happily sucked my cock with no intention of granting my young a womb? Oh well. I have other willing betas waiting for me in the palace. I expect I’ll be seeing you again soon, offworlder.”</i>");
+				output("\n\nShe stalks off into the darkness, your eyes stuck to her perfect behind as she sashays away. Well, at least you know how to make it up to her if you see her again...");
+				processTime(15);
+			}
+		}
+	}
+	//if PC has no genitals, somehow
+	else if ((!pc.hasCock()) && (!pc.hasVagina()))
+	{
+		output("\n\n<i>“I- I don’t-”</i> you stammer out in trepidation before she cuts you off.");
+		output("\n\n<i>“Silence, offworlder. To the victor go the spoils, and I will claim what’s rightfully mine.”</i>");
+		output("\n\nShe upends you and exasperatedly drags down your [pc.gear], angered by your resistance, to find... nothing. She stays silent, and for a moment you think you’ve confounded her. You turn your head to look, only to find her face is completely devoid of emotion. Uh oh. You stay like that for a few seconds before she finally breaks the silence.");
+		output("\n\n<i>“You have made a horrible mistake.”</i>");
+		output("\n\nShe’s on her feet in an instant, walking back to your front when she pulls your [pc.hair] to force you into a sitting position. You look up to see her literally quaking with anger, her normally beautiful visage transformed into a scowl at your actions.");
+		output("\n\n<i>“You dare to make a mockery of me, offworlder? Of <i>me</i>? I have a harem of willing bitches in the palace to fuck whenever I want, and you disrespect me after seeking me out?”</i>");
+		output("\n\nYou open your mouth to say something but it never comes out, the pissed off huntress immediately shoving her cock into your gaping maw and straddling you.");
+		output("\n\n<i>“There’s only one way you’re going to make this up to me, offworlder. And you’re not going to like it.”</i>");
+		output("\n\nShe turns with her cock still inside you, forcing you to crane your neck all the way upwards just to be able to breathe. Her shapely ass comes to rest on top of your head while she slowly crouches, feeding more of her behemoth pseudo-cock into your subservient [pc.lips] until she’s hilted to the knot. She stands, and you’re allowed a measure of breath before she plunges back into your depths with a grunt, the barbed crown of her cock scraping the entrance to your stomach.");
+		output("\n\n<i>“Consider yourself lucky offworlder,”</i> she says as she puts her hands against the wall and begins to rapidly thrust her hips, <i>“if you didn’t have such a good throat for fucking you’d be much worse off.”</i>");
+		output("\n\nShe fucks you hard and deep, your face red with exertion as your esophagus is brutally assaulted by a cock far too big to fit. Her dick feels like it’s boring you out each thrust, wearing you down for when she... With dawning terror, you realize why she’s so angry.");
+		output("\n\n<i>“You’re going to be sucking my eggs down soon, starwalker.”</i> She sneers as her knot begins to shift and swell.");
+		output("\n\nEggs. She’s carrying eggs. And she clearly has no intention of putting them anywhere other than your stomach, through your mouth. As you’re contemplating how to get out of the situation, you realize it’s too late. She reaches down and grabs you by your chin, pulling you upwards and onto her knot. Your jaw pops almost immediately and she manages the seemingly impossible task of shoving her knot between your [pc.lips], the first egg already traveling slowly down your bulging throat.");
+		output("\n\n<i>“You’re good for one thing, offworlder,”</i> she hisses between gritted teeth, <i>“taking my eggs. Your holes have a gift for breeding.”</i>");
+		output("\n\nMore eggs follow the first, and somewhere between the sixth and seventh you pass out due to lack of air. When you awaken, your throat is incredibly sore and still slick with sexual fluid, your stomach swollen and lumpy with her eggs. Luckily they won’t hatch in there, but it’s a pretty clear message as to what she thinks of you. You groan and struggle back to your feet, intent on heading onwards.");
+		
+		pc.loadInMouth(enemy);
+		pc.lust(50);
+		processTime(30);
+	}
+	
+	CombatManager.genericLoss();
+}
+
+public function pcLossToNyreaAdditionalTwo():void
+{
+	showName("ALPHA\nNYREA");
+	showBust("NYREA_ALPHA");
+	author("Wsan");
+	
+	clearOutput();
+	output("The Alpha slowly walks towards you, her chainmail bikini falling to the ground to reveal her voluptuous form. Her perfect breasts sway slightly from side to side as she approaches you, but your eyes are fixated solely on her beautiful cock. Her swollen, throbbing, rapidly-stiffening cock.");
+	if (enemy.lust() > 60) output("You stare at her hardened length with pure lust, your mouth hanging slightly open in dumb adoration.");
+	else output("You stare at her rapidly hardening dick with pure lust, your mouth hanging slightly open in dumb adoration as it rises to its full length.");
+	output("\n\nShe gently pries the [pc.weapon] from your unresistant hand");
+	if (pc.isNude()) output(" and wordlessly runs her hands over the contours and curves of your body.");
+	else output(" and wordlessly begins to strip you out of your [pc.gear], running her hands over the contours and curves of your body.");
+	output("She pulls off your [pc.underGarment] and");
+	if ((pc.hasCock()) && (!pc.hasVagina()))
+	{
+		output(" gently grasps your [pc.cock] with one hand, sensuously rubbing you up and down until you can’t help but be fully erect in her palm. She leans in and breathes hotly in your ear, her intimate whispers like music to your lust-addled brain.");
+		output("\n\n<i>“This is nice. You’ll never get to fuck <i>me</i> with it, though. Maybe I’ll let you have one of my beta bitches, offworlder.”</i>");
+		output("\n\nShe pulls back with a smile on her face and you somehow know that although her words were seductive, they were lies. She isn’t ever going to let you use your cock if you become one of her bitches. You’ll be one of many, sucking her heavenly cum straight into your stomach and taking her eggs wherever she wants to put them. You’ll never be equal or elevated above the level of fuckhole and pleasure slave. She takes her hand off your painfully stiff cock, and you don’t expect her to pay it any more attention.");
+	}
+	if ((!pc.hasCock()) && (pc.hasVagina()))
+	{
+		output(" gently slides her fingers into your [pc.pussy], coaxing a moan from your lips that she silences by sealing your mouth with her own. She kisses you deeply, her tongue coiling around yours, and you can’t help but suffer a small, submissive orgasm as she bites your lip and pumps your needy pussy with her hand. She withdraws her fingers and puts them between your [pc.lips], your compliant tongue cleaning them of your own juices.");
+	}
+	if ((pc.hasCock()) && (pc.hasVagina()))
+	{
+		output(" grasps your [pc.cock] with one hand, sensuously rubbing you to erectness while she gently slips her fingers into your [pc.pussy]. You moan, and she smirks before leaning against you to whisper intimately in your ear.");
+		output("\n\n<i>“A nice cock, but you’ll never get to fuck <i>me</i> with it. Maybe I’ll let you have one of my beta bitches, offworlder.”</i>");
+		output("\n\nYou somehow know that although her words were seductive, they were lies. She isn’t ever going to let you use your cock if you become one of her bitches. You’ll be one of many, sucking her heavenly cum straight into your stomach and taking her eggs wherever she wants to put them. You’ll never be equal or elevated above the level of fuckhole and pleasure slave. She takes her hand off your painfully stiff cock, and you don’t expect her to pay it any more attention.");
+		output("\n\n<i>“This, though... This is going to get a lot of use.”</i>");
+		output("\n\nShe pulls you in for a deep kiss, biting your lip as she fingerfucks your needy pussy, your submissive impulses driving you to a miniature orgasm as though your Alpha controlled your release. She withdraws her fingers and puts them between your [pc.lips], your compliant tongue cleaning them of your own juices.");
+	}
+	output("\n\nYou stand in front of the beautiful huntress naked, red-faced and breathing heavily in the clouds of lust surrounding the two of you. She smiles knowingly and");
+	if (pc.tallness > 80) output(" gestures that you should kneel. You don’t even need the instruction, ");
+	else output(" puts her hands on your shoulders and gently pushes downwards. You don’t even need the hint, ");
+	output("having already started sinking to your knees out of pure desire to be closer to your Alpha’s beautiful cock. You wrap your lips around the tip, fully intent on worshipfully bathing her length until she deigns to fuck you full of eggs. The huntress cares not for your well-meaning intentions, and");
+	if (pc.hasHorns())
+	{
+		output(" grabs your horns and cruelly pulls you towards her, impaling your receptive throat with her gigantic cock.");
+		output("\n\n<i>“A wonderful adaption, starwalker.”</i> She says smugly, slowly tugging you along her iron-hard rod until you’re nestled against her abs and looking up at her. <i>“You seem so well-suited to your task.”</i>");
+	}
+	else 
+	{
+		output(" places her hands on the sides of your head to cruelly pull you towards her, impaling your receptive throat with her gigantic cock.");
+		output("\n\n<i>“Excellent, starwalker.”</i> She sighs in satisfaction, slowly tugging you along her iron-hard rod until you’re nestled against her abs and looking up at her. <i>“You’ll be my best breeding bitch yet.”</i>");
+	}
+	output("\n\nYou struggle to hold yourself in place as she wantonly fucks your gullet, her dick roughly plumbing the depths of your throat until she feels like stopping. Your neck bulges outwardly every time she hilts herself, her animalistic groans of pleasure growing in intensity to match the wet slap of your sodden face off her taut stomach. You watch her face twist in pleasure above the sight of her jiggling breasts, inwardly thrilled that you’re making her feel so good.");
+	if ((pc.hasCock()) && (!pc.hasVagina())) output(" Your [pc.cock] stands at its full length, so hard you’d be feeling pain were it not for the fact your entire mind is focused on the submissive pleasure of feeling your Alpha’s pseudocock pummel your throat.");
+	if ((!pc.hasCock()) && (pc.hasVagina())) output(" Your [pc.pussy] is a sopping mess, lips inflamed with sympathetic pleasure despite being empty, the submissive acceptance of her pseudocock in your throat all you need.");
+	if ((pc.hasCock()) && (pc.hasVagina())) output(" Your [pc.cock] stands at its full length, engorged and iron-hard owing to the submissive pleasure of your Alpha’s pseudocock pummeling your throat. Your [pc.pussy] is a sopping mess, lips inflamed with sympathetic pleasure.");
+	output(" Never have you been so close to orgasm without being touched, and right as you’re on the brink of cumming she slows to a halt, the hint of a smile fleeting across her visage.");
+	output("\n\n<i>“It’s a pity you offworlders can’t be bred through your throat.”</i> She says as she slowly pulls herself from your confines, each bump and barb scraping your sensitive flesh on the way out. <i>“Still, it feels good to fuck. Now turn over.”</i>");
+	if (pc.tallness > 80) output(" Realizing you’re too big for her to just flip over, you hasten to comply with her instruction.");
+	else output(" She wastes no time in aiding you, her hands roaming over your body as you’re helped into position.");
+	if (pc.isPregnant(3)) output("You stammer something about already carrying eggs, but she just gives you a knowing smile. It doesn’t look like she cares, so you’d better be ready for carrying extra...");
+	output("\nOn all fours with the huntress on her knees behind you, the orgasm you were chasing rears its head in anticipation as she lines her cock up with your [pc.asshole]. A whine escapes your mouth, and the huntress giggles.");
+	output("\n\n<i>“Relax.”</i>");
+	output("\n\nOne word, a second later, and you see what she means. The warmth of your first of many orgasms lights up your body, your muscles seizing and shuddering as her cock slides all the way to the hilt.");
+	if ((pc.hasCock()) && (!pc.hasVagina())) output(" Your dick jerks and paints the rock below you [pc.cumColor], staining your [pc.stomach] as your back arches like a whore. Each savage thrust from behind rubs along your prostate and elicits another spurt until you’re groaning stuck somewhere between agony and ecstasy, a nonstop stream of cum threading from your overtaxed cock.");
+	if ((!pc.hasCock()) && (pc.hasVagina())) output(" Your neglected pussy spasms and contracts impossibly tight as your back arches like a whore, spraying girlcum on the rock beneath you as you shake and ball up your hands. You open the eyes you didn’t know you had closed and take a halting, gasping breath as you ride out the aftershocks of being taken so utterly.");
+	if ((pc.hasCock()) && (pc.hasVagina())) output(" You squeeze your eyes shut and groan through gritted teeth as the dual orgasms overwhelm you, your dick jerking and painting your stomach and the rock below you [pc.cumColour] as your neglected pussy spasms and contracts. You arch your back like a whore, shaking with your white-knuckled hands balled into fists as you ride out the intense sensations. When you resurface from your orgiastic pleasure, you take a halting, gasping breath and ride out the aftershocks of being taken so utterly.”</i>");
+	output(" You hear a coo of approval from behind you.");
+	output("\n\n<i>“Wasn’t that easy? I can be generous to my betas.”</i>");
+	output("\n\nShe’s right. That was the best orgasm you’ve ever had, and you owe it all to following the natural order. The fact you’re here to service her comes first, but if she’s always this generous with her rewards you could see yourself spreading your legs for her day in and day out for the rest of your life. All you had to do was let her ravish you, and suddenly you feel a burst of intense jealousy towards her harem. Is this what they get all the time? You never... <i>knew</i>. Carrying this beautiful woman’s eggs isn’t something to suffer through in her service – it’s her doing you a favor. You don’t want to think about a life without her breeding you. A particularly deep thrust rips a hoarse cry of pleasure from your abused throat, bringing you back from your reverie.");
+	output("\n\n<i>“Focus, offworlder. Remember you’re here to serve me, not the other way around.”</i>");
+	output("\n\nHer statement nestles into your psyche like it’s the most obvious thing in the world, and soon enough you’re thrusting back at her moaning like a bitch in heat. You’re desperate to repay her for fucking you so well, desperate to earn the right to carry her eggs. It’s not long before you can feel her sizable knot thickening and moving around every time she bounces it off your [pc.butt], and you brace yourself with your arms in anticipation of her working it into you.");
+	output("\n\n<i>“G-good "+pc.mf("boy", "girl")+". You’ll get wh-what you want in a moment.”</i> She pants through gritted teeth, her upper body flexing as she lifts her head in pleasure. Her knot pops into you, drawing you to the precipice of orgasm once more. You lie on the ground eyes wide and panting, just waiting for her to fill you with her clutch. It’s not long before you feel a hard object pushing through your [pc.asshole], making you cry out and shudder as your body submits to her overwhelming will. When her first egg enters your intestines you can’t help it and join her grunts with a lusty scream of your own as you cum explosively, your ragged voice bouncing off the walls of the cavern. Your entire lower half goes numb with throbs of pulsating pleasure, each egg she deposits in you drawing forth another low scream of utter ecstasy from your [pc.lips].");
+	output("\n\nBy the time she finishes you’re a fucking wreck, shivering and moaning under your Alpha as her knot very slowly deflates, stretching you out all over again. Your eyes are glazed over and your mouth hangs open, the only signs of life in your body your ragged breathing and imperceptibly quiet moans as you relive the experience in your subconscious. When she pops free from your ass, barely a trickle follows her – the vast majority of her fluids are deep inside you, warming the eggs bulging your belly outwards. She leans down to whisper to you something about you giving up on your old life the next time you see her. You’re not really in the state to hear or respond, but your ears pick out the sound of her warrior chainmail clinking as she clothes herself and leaves. You sink into darkness, your only companion a mixture of memories and fantasies of the nyrean huntress forcing you to become her slave for the rest of your life.");
+	output("\n\nWhen you awaken she’s long gone, but the large clutch in your belly is a nice reminder you won’t be forgetting any time soon. You groggily get to your feet and try to shake off your clothes, looking around the cavern. Which way did she walk..?");
+
+	processTime(120);
+	pc.orgasm();
+	lostToAlpha(1);
+	CombatManager.genericLoss();
+}
+
+public function pcLossToNyreaBadEndPartOne():void
+{
+	showName("ALPHA\nNYREA");
+	showBust("PRINCESS");
+	author("Wsan");
+	
+	clearOutput();
+	
+	output("You collapse to your knees, your [pc.weapon] falling from your hands as you stare unabashedly at the huntress’ beautiful cock, already stiffening under her chainmail in anticipation. Her sexy swaying walk over to you is agonizingly slow, and when she finally reaches your panting frame you immediately lunge forward and spread your [pc.lips] around her penis, paying her worship the only way you know how. You grab her soft buttocks and pull yourself forward in your desperation, trying to satisfy your need to be full of her cock. If she disapproves of your forwardness she doesn’t show it, electing instead to gently run her fingers through your [pc.hair] and smile down at you. The sensation of her cock painting your insides with spurts warm pre is nothing compared to the sexual thrill of looking deep into her eyes with her hilted in your throat, knowing you’re bringing pleasure to your Alpha. No words are necessary between the two of you, reveling in the intimacy of each other’s bodies. You squeeze her buttcheeks tightly as her hips roll back, then pull her back in as she slams into your gullet. Your gag reflex is nonexistent owing to her drilling you so often and it makes for a slick fuck while she busts down your throat, practically purring with pleasure.");
+	output("\n\n<i>“Ohhh, you’re going to be just <i>perfect</i>.”</i>");
+	output("\n\nShe pulls out, leaving a trail of spunk between your lips that you greedily lap up. A quick removal of your [pc.gear] later and you’re on your hands and knees with your [pc.butt] in the air, playing your role of beta bitch perfectly. She immediately shoves herself deep into your [pc.asshole],");
+	if ((pc.hasCock()) && (!pc.hasVagina())) output(" her hands deftly finding your [pc.cock] and stroking it each time she slides into you. She sighs contentedly as her cock sinks into the warmth of your bowels, laying her heavy breasts atop your back and titillating you with gentle rolls of her hips. You unconsciously punctuate every barbed thrust with a moaning gasp, unable to do anything but cry out in pleasure under the Alpha’s ministrations. She takes great amusement in your jerks and shudders when her thick length rolls over your prostate, stopping only when she brings you to a bucking orgasm below her, your cock painting the rock [pc.cumColor].");
+	if ((!pc.hasCock()) && (pc.hasVagina())) output(" her fingers nimbly pushing into your [pc.pussy] each time she slides into you. She sighs contentedly as her cock sinks into the warmth of your bowels, laying her heavy breasts atop your back and titillating you with gentle rolls of her hips. You unconsciously punctuate every barbed thrust with a moaning gasp, unable to do anything but cry out in pleasure under the Alpha’s ministrations. She takes great amusement in your shuddering cries while she slips her fingers in and out of your needy pussy, stopping only when she brings you to a bucking orgasm below her, spraying femcum all over her fingers and the rocks below you.");
+	if ((pc.hasCock()) && (pc.hasVagina())) output(" wrapping the fingers of one hand around your [pc.cock] and pushing the others into your [pc.pussy]. She sighs contentedly as her cock sinks into the warmth of your bowels, laying her heavy breasts atop your back and titillating you with gentle rolls of her hips. You unconsciously punctuate every barbed thrust with a moaning gasp, unable to do anything but cry out in pleasure under the Alpha’s ministrations. She takes great amusement in your shuddering cries when her thick length rolls over your prostate, and combined with the sensation of her frigging your cunt you can’t help but buck wildly under her, your orgasm painting the rock [pc.cumColor].");
+	output("\n\n<i>“See how easy your life will be under me, offworlder? There’s no shame in serving your superiors.”</i>");
+	output("\n\nShe whispers seductively in your ear, pumping your ass all the while. Your hazy mind is all too receptive to her offers and you find yourself nodding dumbly while she rides you into the floor, her hips slapping off your [pc.butt]. It’s impossible to think, impossible to do anything but submit to this warrior woman atop you. Her presence envelops you and you’re so full of her cock that you feel like she already owns you, just a bitch to carry her eggs and get pumped full of cum. You know you’ll be losing all agency in your life, but the idea of getting fucked regularly by this beautiful nyrean is too tantalizing to pass up. You’d thrust back at her to show how much you enjoy the idea, but she’s holding you down so tightly the only thing you can do is lie still and blissfully accept the penetration, the slap of flesh on flesh ringing loudly in your ears.");
+	output("\n\nShe roughly fucks a few more juddering orgasms out of your shaking and sweating body until her knot begins to swell, and you notice she lets it inflate against your [pc.butt] until it’s almost twice the diameter of the barbed pseudopenis already impaling you. You know better than to question your Alpha’s course of action, so the only noises issuing from between your lips continue to be lusty moans and yelps of pleasure in her taking you. It’s not until it’s swollen to nearly its full size that she holds you down and begins battering it against your asshole, the giant knot slowly but surely spreading you wide around it. Your eyes roll back slightly at the feeling of being spread so wide, and you can’t help but cum as more of it slips into your body. You bite your lip hard and groan in exertion as you feel yourself accepting her, your ring stretching tightly around the widest part of the knot and then quickly swallowing the rest in relief. Panting, you lie underneath her and revel in the feeling of knowing you’ll soon be full of her eggs. You feel them shifting, but she grunts and shivers above you.");
+	output("\n\n<i>“Nnn... not yet.”</i> She gasps, her knot flexing and clenching in your ass as she seeks to hold herself back from the brink. You can’t hide your disappointment, and a low moan of discontent escapes you. She slaps your [pc.butt] and giggles uncharacteristically. <i>“You’ll get your reward later.”</i>");
+	output("\n\nWith her knot having receded somewhat she starts fucking you slowly and deeply, making sure to hit all of your sensitive spots when she rubs you up and down. You feel like her masturbation toy, but in fairness that feels <i>really</i> fucking good. It’s not long before you’re quivering on her cumming cock, jets of warm jizz marking your insides as hers.");
+	output("\n\nShe sighs in satisfaction as she slowly withdraws from your abused ass, a cascade of spunk sliding down your shaky thighs while you remain on the ground. She wipes herself off on your lower back, leaving you feeling like you’ve been branded by your Alpha and bringing a small smile of tired joy to your face. You turn your head to watch her from the ground, only to see she’s taken a seat on a rock and is regarding you idly. She sees your stare and not-so-subtly spreads her legs, her cock hanging from beneath her chainmail and reigniting your lust once more. Of your own accord, you somehow make it to a half-standing position before collapsing and resigning yourself to finding your way over to her on your hands and knees.");
+	output("\n\n<i>“Crawl.”</i>");
+	output("\n\nHer instruction is cool, measured, and impossible to disobey. You scrabble over the ground and find yourself between her legs, your tongue slipping from your mouth to lick up any remaining spunk on her rapidly-stiffening pseudocock. You wouldn’t believe her virility if you hadn’t been on the receiving end of it so many times before, but even so this is impressive. She could fuck you all day if she wanted, a quiet voice whispers in the back of your mind. She’ll reward you for being good. You look up at the Nyrean woman and see faint impatience written across her countenance, that being all you need to take her cock between your lips once more and begin swallowing her length. She leans back and relaxes with her arms holding her up, your servile slurps and wet smacks the only sound in the cavern. You’re ragged and worn from the exertion of being fucked so thoroughly, but you tirelessly bob your head in her lap to bring your conqueror pleasure. A scant few minutes of your worship and you hear her moan from above you, enticing you to fuck your own face with her dick as hard as you possibly can in search of driving her to greater heights of ecstasy. You feel her throbbing cock reapply the glaze you earned from her earlier, hilting yourself right up against her taut stomach as it flexes with each thick rope of jizz shot straight down your willing throat. You remain there until the stream stops, slowly pulling yourself back and making sure you’ve spitshined her completely clean. When her head pops out from between your [pc.lips], she stands and steps over you before turning back.");
+	output("\n\n<i>“Come with me.”</i>");
+	output("\n\nIt’s not a request. Her eyes signal that there is no room for being coy. You’re torn between being embarrassed that the heir apparent of Steele Tech is going to spend the rest of "+pc.mf("his", "her")+" life as a Nyrean’s fuckhole and breeder, and being intensely proud of getting to spend the rest of your life bringing ecstatic pleasure as best you can to your owner and Alpha. Your dream of being a starfaring CEO comes to an end on the tip of a barbed cock, but you’re sure to enjoy whatever form your life takes on from here. You stand and take her proffered hand, her still-warm jizz sliding down your inner thigh. Allowing her to take you wherever she wants, you walk away, leaving your [pc.gear] discarded on the ground for – perhaps – some other adventurer with big dreams.");
+	
+	pc.lust(200);
+	processTime(60);
+	addButton(0, "Next", pcLossToNyreaBadEndPartTwo);
+}
+
+public function pcLossToNyreaBadEndPartTwo():void
+{
+	showName("ALPHA\nNYREA");
+	showBust("PRINCESS");
+	author("Wsan");
+	
+	clearOutput();
+	
+	output("Your trip is punctuated by brief sessions of being claimed and fucked, each hole of yours offered in service to your Alpha until you’re dripping her cum from every orifice and stumbling along behind her in a fuck-dazed stupor. She doesn’t treat you cruelly or yank you around, but she doesn’t slow her pace either. You understand the implication. She expects you to tend to her every desire and service her whenever she wants it, but you need to be worthy of her and earn it.");
+	output("\n\nYou don’t question it when you pass through a community of myr, nyrea, and wetraxxel to stand in front of a large stone gate guarded by what looks to be nyrean elites. You don’t question it when she fucks you to a screaming orgasm in front of them, either. You are, after all, hers. It’s not your place to do anything except happily submit to her will. She takes you past a well lit cavern with a guard post, traveling through a tunnel network until you arrive at a set of heavy stone doors flanked by brilliantly glowing blue lanterns. Pushing it open, she steps inside and the sight that greets your eyes is one of debauchery and lust. Several dozen nyrean males are within, all in various states of bondage. Some are cuffed to each other, others are chained to the bed or to chairs, and still others are locked in stocks. All of them have dildos or plugs shoved deep into their cunts and pools of wetness below them. You realize with an inward spike of happiness that your mistress must have left them here while looking for you. She must have really wanted you to be her breeder! While you’re taking stock of the situation, your Alpha lets go of your hand and fetches something from the near-empty racks of bondage gear. When she brings it back, you see it’s a golden collar. You can’t read the writing on it, though. She sees you looking and smirks knowingly.");
+	output("\n\n<i>“It says you’re my property, offworlder.”</i>");
+	output("\n\nShe snaps it closed around your neck and immediately pushes you to the ground, your shaky legs sending you tumbling across some cushions. She sits on top of your prone form and pushes her cock roughly into your [pc.asshole], provoking a hoarse scream of lust in front of an audience of dozens. She pushes your face into a pillow and leans down, whispering in your ear while she pumps you.");
+	output("\n\n<i>“That’s right, scream for me.");
+	if (pc.vaginas.length > 0) output(" After this, I’m going to fill all of your holes with eggs too. You’ll never go without clutches of my eggs again.”</i>}");
+	else output(" After this, I’m going to fill your pussy with eggs too. You’ll never go without a clutch of my eggs again.”</i>}");
+	if (!pc.hasVagina()) output(" You’ll never go without a clutch of my eggs again.”</i>");
+	output("\n\nAt her declaration, you submissively whimper and cum underneath her as the realization is driven home. The rest of your life is going to be spent swollen with your mistress’ eggs or being fucked full of them. You cry out in ecstasy as she fiercely grinds her knot into you, an egg landing comfortably in your bowels, the first of what no doubt will be many. It’s all you could have asked for.");
+	badEnd("GAME OVER!");
+	
+	pc.lust(200);
 }
