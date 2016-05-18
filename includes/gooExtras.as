@@ -535,6 +535,8 @@ public function galoMaxTFProc():void
 			}
 		}
 	}
+	// Make sure max is not surpassed after tranformation.
+	gooBiomass();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
