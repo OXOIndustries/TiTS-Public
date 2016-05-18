@@ -1321,6 +1321,7 @@ public function gooArmorChangeDesign(arg:Array):void
 	var toggle:String = arg[0];
 	var fromCrew:Boolean = arg[1];
 	var txt:String = "";
+	var btn:Number = 0;
 	
 	gooArmorClearOutput(fromCrew);
 	showGrayGooArmor();
@@ -1331,36 +1332,36 @@ public function gooArmorChangeDesign(arg:Array):void
 		case "style":
 			txt += "<i>“" + (pc.statusEffectv1("Goo Armor Design") == 0 ? "Ah, looking for a specific style" : "So, what style would you like your suit to have") + "?”</i>";
 			
-			if(pc.statusEffectv1("Goo Armor Design") != 0) gooArmorAddButton(fromCrew, 0, "None", gooArmorChangeStyle, [0, fromCrew], "No Style", "Remove the suit’s current appearance.");
-			else gooArmorAddDisabledButton(fromCrew, 0, "None");
-			if(pc.statusEffectv1("Goo Armor Design") != 1) gooArmorAddButton(fromCrew, 1, "L.Armor", gooArmorChangeStyle, [1, fromCrew], "Light Armor", "Change the suit’s appearance to look like light armor.");
-			else gooArmorAddDisabledButton(fromCrew, 1, "L.Armor");
-			if(pc.statusEffectv1("Goo Armor Design") != 2) gooArmorAddButton(fromCrew, 2, "H.Armor", gooArmorChangeStyle, [2, fromCrew], "Heavy Armor", "Change the suit’s appearance to look like heavy armor.");
-			else gooArmorAddDisabledButton(fromCrew, 2, "H.Armor");
-			if(pc.statusEffectv1("Goo Armor Design") != 3) gooArmorAddButton(fromCrew, 3, "Clothes", gooArmorChangeStyle, [3, fromCrew], "Clothing", "Change the suit’s appearance to look like normal clothing.");
-			else gooArmorAddDisabledButton(fromCrew, 3, "Clothes");
-			if(pc.statusEffectv1("Goo Armor Design") != 4) gooArmorAddButton(fromCrew, 4, "Latex", gooArmorChangeStyle, [4, fromCrew], "Latex", "Change the suit’s appearance to look like tight latex.");
-			else gooArmorAddDisabledButton(fromCrew, 4, "Latex");
-			if(flags["GOO_ARMOR_CUSTOMIZE"] < 2) gooArmorAddDisabledButton(fromCrew, 5, "Locked", "Locked", "[goo.name] hasn’t learned how to do this yet...");
-			else if(pc.statusEffectv1("Goo Armor Design") != 5) gooArmorAddButton(fromCrew, 5, "Swimwear", gooArmorChangeStyle, [5, fromCrew], "Swimwear", "Change the suit’s appearance to look like something you can swim in.");
-			else gooArmorAddDisabledButton(fromCrew, 5, "Swimwear");
+			if(pc.statusEffectv1("Goo Armor Design") != 0) gooArmorAddButton(fromCrew, btn++, "None", gooArmorChangeStyle, [0, fromCrew], "No Style", "Remove the suit’s current appearance.");
+			else gooArmorAddDisabledButton(fromCrew, btn++, "None");
+			if(pc.statusEffectv1("Goo Armor Design") != 1) gooArmorAddButton(fromCrew, btn++, "L.Armor", gooArmorChangeStyle, [1, fromCrew], "Light Armor", "Change the suit’s appearance to look like light armor.");
+			else gooArmorAddDisabledButton(fromCrew, btn++, "L.Armor");
+			if(pc.statusEffectv1("Goo Armor Design") != 2) gooArmorAddButton(fromCrew, btn++, "H.Armor", gooArmorChangeStyle, [2, fromCrew], "Heavy Armor", "Change the suit’s appearance to look like heavy armor.");
+			else gooArmorAddDisabledButton(fromCrew, btn++, "H.Armor");
+			if(pc.statusEffectv1("Goo Armor Design") != 3) gooArmorAddButton(fromCrew, btn++, "Clothes", gooArmorChangeStyle, [3, fromCrew], "Clothing", "Change the suit’s appearance to look like normal clothing.");
+			else gooArmorAddDisabledButton(fromCrew, btn++, "Clothes");
+			if(pc.statusEffectv1("Goo Armor Design") != 4) gooArmorAddButton(fromCrew, btn++, "Latex", gooArmorChangeStyle, [4, fromCrew], "Latex", "Change the suit’s appearance to look like tight latex.");
+			else gooArmorAddDisabledButton(fromCrew, btn++, "Latex");
+			if(flags["GOO_ARMOR_CUSTOMIZE"] < 2) gooArmorAddDisabledButton(fromCrew, btn++, "Locked", "Locked", "[goo.name] hasn’t learned how to do this yet...");
+			else if(pc.statusEffectv1("Goo Armor Design") != 5) gooArmorAddButton(fromCrew, btn++, "Swimwear", gooArmorChangeStyle, [5, fromCrew], "Swimwear", "Change the suit’s appearance to look like something you can swim in.");
+			else gooArmorAddDisabledButton(fromCrew, btn++, "Swimwear");
 			break;
 		case "pattern":
 			txt += "<i>“" + (pc.statusEffectv2("Goo Armor Design") == 0 ? "Ooh, I love patterns!" : "Wanna make your suit look pretty?") + "”</i>";
 			
-			if(pc.statusEffectv2("Goo Armor Design") != 0) gooArmorAddButton(fromCrew, 0, "None", gooArmorChangePattern, [0, fromCrew], "No Pattern", "Remove the suit’s current pattern.");
-			else gooArmorAddDisabledButton(fromCrew, 0, "None");
-			if(pc.statusEffectv2("Goo Armor Design") != 1) gooArmorAddButton(fromCrew, 1, "Hexagon", gooArmorChangePattern, [1, fromCrew], "Hexagonal Tiles", "Change the suit’s pattern to look like hexagonal tiles.");
-			else gooArmorAddDisabledButton(fromCrew, 1, "Hexagon");
-			if(pc.statusEffectv2("Goo Armor Design") != 2) gooArmorAddButton(fromCrew, 2, "Trim", gooArmorChangePattern, [2, fromCrew], "Silver Trim", "Change the suit’s pattern to have a silvery trim on the edges.");
-			else gooArmorAddDisabledButton(fromCrew, 2, "Trim");
-			if(pc.statusEffectv2("Goo Armor Design") != 3) gooArmorAddButton(fromCrew, 3, "Circuits", gooArmorChangePattern, [3, fromCrew], "Circuits", "Change the suit’s pattern to look like a printed circuit board.");
-			else gooArmorAddDisabledButton(fromCrew, 3, "Circuits");
-			if(pc.statusEffectv2("Goo Armor Design") != 4) gooArmorAddButton(fromCrew, 4, "Lines", gooArmorChangePattern, [4, fromCrew], "Linear Markings", "Change the suit’s pattern to look like linear markings.");
-			else gooArmorAddDisabledButton(fromCrew, 4, "Lines");
+			if(pc.statusEffectv2("Goo Armor Design") != 0) gooArmorAddButton(fromCrew, btn++, "None", gooArmorChangePattern, [0, fromCrew], "No Pattern", "Remove the suit’s current pattern.");
+			else gooArmorAddDisabledButton(fromCrew, btn++, "None");
+			if(pc.statusEffectv2("Goo Armor Design") != 1) gooArmorAddButton(fromCrew, btn++, "Hexagon", gooArmorChangePattern, [1, fromCrew], "Hexagonal Tiles", "Change the suit’s pattern to look like hexagonal tiles.");
+			else gooArmorAddDisabledButton(fromCrew, btn++, "Hexagon");
+			if(pc.statusEffectv2("Goo Armor Design") != 2) gooArmorAddButton(fromCrew, btn++, "Trim", gooArmorChangePattern, [2, fromCrew], "Silver Trim", "Change the suit’s pattern to have a silvery trim on the edges.");
+			else gooArmorAddDisabledButton(fromCrew, btn++, "Trim");
+			if(pc.statusEffectv2("Goo Armor Design") != 3) gooArmorAddButton(fromCrew, btn++, "Circuits", gooArmorChangePattern, [3, fromCrew], "Circuits", "Change the suit’s pattern to look like a printed circuit board.");
+			else gooArmorAddDisabledButton(fromCrew, btn++, "Circuits");
+			if(pc.statusEffectv2("Goo Armor Design") != 4) gooArmorAddButton(fromCrew, btn++, "Lines", gooArmorChangePattern, [4, fromCrew], "Linear Markings", "Change the suit’s pattern to look like linear markings.");
+			else gooArmorAddDisabledButton(fromCrew, btn++, "Lines");
 			break;
 		case "emblem":
-			if(pc.getStatusTooltip("Goo Armor Design") == "" || pc.getStatusTooltip("Goo Armor Design") == "none") txt += "<i>“You want an emblem, huh. Is that like a tattoo?”</i>";
+			if(pc.getStatusTooltip("Goo Armor Design") == "" || pc.getStatusTooltip("Goo Armor Design") == "none") txt += "<i>“You want an emblem, huh? Is that like a tattoo?”</i>";
 			else txt += "<i>“Represent!”</i>";
 			
 			var i:int = 0;
@@ -1394,16 +1395,16 @@ public function gooArmorChangeDesign(arg:Array):void
 		case "helmet":
 			txt += "<i>“" + (pc.statusEffectv3("Goo Armor Design") == 0 ? "Would you like a helmet" : "Wanna change your helmet") + "?”</i>";
 			
-			if(pc.statusEffectv3("Goo Armor Design") != 0) gooArmorAddButton(fromCrew, 0, "None", gooArmorChangeHelmet, [0, fromCrew], "No Helmet", "Remove the suit’s helmet.");
-			else gooArmorAddDisabledButton(fromCrew, 0, "None");
-			if(pc.statusEffectv3("Goo Armor Design") != 1) gooArmorAddButton(fromCrew, 1, "Stylish", gooArmorChangeHelmet, [1, fromCrew], "Stylish Helmet", "Change the suit’s helmet to look like head gear worn by a snazzy spacer.");
-			else gooArmorAddDisabledButton(fromCrew, 1, "Stylish");
-			if(pc.statusEffectv3("Goo Armor Design") != 2) gooArmorAddButton(fromCrew, 2, "Fierce", gooArmorChangeHelmet, [2, fromCrew], "Intimidating Helmet", "Change the suit’s helmet to look menacing to your opponents.");
-			else gooArmorAddDisabledButton(fromCrew, 2, "Fierce");
-			if(pc.statusEffectv3("Goo Armor Design") != 3) gooArmorAddButton(fromCrew, 3, "Retro", gooArmorChangeHelmet, [3, fromCrew], "Bubble Helmet", "Change the suit’s helmet to look like something that came from the ancient terran gray-toned films.");
-			else gooArmorAddDisabledButton(fromCrew, 3, "Retro");
-			if(pc.statusEffectv3("Goo Armor Design") != 4) gooArmorAddButton(fromCrew, 4, "Mystery", gooArmorChangeHelmet, [4, fromCrew], "Mysterious Mask", "Change the suit’s helmet to look like a mirrored mask and keep your face anonymous.");
-			else gooArmorAddDisabledButton(fromCrew, 4, "Mystery");
+			if(pc.statusEffectv3("Goo Armor Design") != 0) gooArmorAddButton(fromCrew, btn++, "None", gooArmorChangeHelmet, [0, fromCrew], "No Helmet", "Remove the suit’s helmet.");
+			else gooArmorAddDisabledButton(fromCrew, btn++, "None");
+			if(pc.statusEffectv3("Goo Armor Design") != 1) gooArmorAddButton(fromCrew, btn++, "Stylish", gooArmorChangeHelmet, [1, fromCrew], "Stylish Helmet", "Change the suit’s helmet to look like head gear worn by a snazzy spacer.");
+			else gooArmorAddDisabledButton(fromCrew, btn++, "Stylish");
+			if(pc.statusEffectv3("Goo Armor Design") != 2) gooArmorAddButton(fromCrew, btn++, "Fierce", gooArmorChangeHelmet, [2, fromCrew], "Intimidating Helmet", "Change the suit’s helmet to look menacing to your opponents.");
+			else gooArmorAddDisabledButton(fromCrew, btn++, "Fierce");
+			if(pc.statusEffectv3("Goo Armor Design") != 3) gooArmorAddButton(fromCrew, btn++, "Retro", gooArmorChangeHelmet, [3, fromCrew], "Bubble Helmet", "Change the suit’s helmet to look like something that came from the ancient terran gray-toned films.");
+			else gooArmorAddDisabledButton(fromCrew, btn++, "Retro");
+			if(pc.statusEffectv3("Goo Armor Design") != 4) gooArmorAddButton(fromCrew, btn++, "Mystery", gooArmorChangeHelmet, [4, fromCrew], "Mysterious Mask", "Change the suit’s helmet to look like a mirrored mask and keep your face anonymous.");
+			else gooArmorAddDisabledButton(fromCrew, btn++, "Mystery");
 			break;
 	}
 	
@@ -1646,7 +1647,7 @@ public function gooArmorChangeHelmet(arg:Array):void
 			txt += "\n\n<i>“Is this how ancient spacers looked? I like it!”</i>";
 			break;
 		case 4:
-			txt += "\n\nThe helmet’s surface smoothes out and warps to match the dimensions of your head, then the transparency re-shades itself in a silver, reflexive film - painting the entire front to form a smooth, featureless mask. No one can see your face even though you can see through it just fine. This definitely gives you a very anonymous aura.";
+			txt += "\n\nThe helmet’s surface smoothes out and warps to match the dimensions of your head, then the transparency re-shades itself in a silver, reflexive film - painting the entire front to form a smooth, featureless mask. No one can see your face even though you can see through it just fine. This definitely gives you a very anonymous appearance.";
 			txt += "\n\n<i>“Ooo, mysterious!”</i>";
 			break;
 		default:
