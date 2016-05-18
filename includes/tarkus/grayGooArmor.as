@@ -491,10 +491,17 @@ public function gooArmorCrewOption(response:String = "none"):void
 				
 				addButton(0, "Next", gooArmorCrewTalk, "morph 0");
 			}
-			else if(9999 == 0 && flags["GOO_ARMOR_CUSTOMIZE"] == 0 && !(pc.armor is GooArmor) && InShipInterior() && pc.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+			else if(flags["GOO_ARMOR_CUSTOMIZE"] == 0 && !(pc.armor is GooArmor) && InShipInterior() && pc.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
 			{
-				output("9999 - Text.");
-				output("\n\n9999 - Text.");
+				output("Spotting you with head gear, [goo.name] gets incredibly curious. <i>“Ooo, neat. What’s this do?”</i> she asks, poking it with a gooey finger.");
+				output("\n\nYou tell her it’s a helmet that protects you from inhaling dangerous gasses and protects against other fluids as well. You also add that it may also help in breathing underwater if the rest of the suit is fully sealed, pressurized, and hooked up to a rebreather.");
+				output("\n\n<i>“Awesome! You think I can make something like that?”</i> She presses her face against the front, obscuring your view with her flattened face.");
+				output("\n\n<i>“" + (pc.isBimbo() ? "Yeah, you should, like, totally go for it!" : "Hm... Sure, why not?") + "”</i> you say, finding this as an ideal opportunity for her to learn.");
+				output("\n\n<i>“Yay!”</i> The gray goo girl leaps up at you to rest herself on your shoulders. The majority of her mass is wrapped around your dome, making you wobble a bit as your vision is masked in complete darkness. After a minute or two, there is a muffled <i>“Okay, I think I’ve got it!”</i> and then she launches herself off you, making you stagger back.");
+				output("\n\nWhen your vision returns, you find [goo.name] in a half-kneeling pose on the floor, her arms bent and hands balled in a determined fashion, her face in deep concentration. As you [pc.move] towards her, her head is suddenly engulfed in a shapeless silvery blob. The blob then inflates into a more orb-like shape. [goo.name] then stands up to face you.");
+				output("\n\n<i>“H-How can you see through this thing?”</i> But just as she says that, her microbots get to work in adjusting their composition to make the surface of the new ‘helmet’ optically transparent in the visible light spectrum. The silver-gray color then gradually dissolves, leaving behind a very solid but clear window. <i>“Oh, there we go--I mean, I meant to do that!”</i> She says in response, her bubbly face now completely visible behind the simulated glass.");
+				
+				processTime(3);
 				
 				addButton(0, "Next", gooArmorCrewTalk, "helmet 0");
 			}
@@ -698,7 +705,6 @@ public function gooArmorCrewTalk(response:String = "none"):void
 			output("\n\nMorrow’s silvery face begins to break character and she is convinced so much by you that she really believes what you’re saying. Suddenly, she springs onto you with a gooey hug, practically squeezing the life out of you, her legs melting and pooling around your body to add to the embrace.");
 			output("\n\n<i>“Here I am! Look! See?”</i> Easing her glomp attack, she lifts her head and looks honestly into your eyes. Her face quickly contorts and smoothly shifts back to her [goo.name]-face. <i>“It’s me!”</i>");
 			
-			flags["GOO_ARMOR_CUSTOMIZE"] = 0;
 			processTime(32);
 			addButton(0, "Next", gooArmorCrewTalk, "morph 1");
 			break;
@@ -713,12 +719,31 @@ public function gooArmorCrewTalk(response:String = "none"):void
 			output("\n\n<b>You can now Customize [goo.name]’s appearance!</b>");
 			
 			flags["GOO_ARMOR_CUSTOMIZE"] = 0;
-			processTime(32);
+			processTime(3);
 			addButton(0, "Next", approachGooArmorCrew);
 			break;
 		case "helmet 0":
-			output("9999 - Text.");
-			output("\n\n9999 - Text.");
+			output("<i>“So, does it" + (pc.isBimbo() ? ", like," : "") + " work?”</i> you ask surveying her new headwear.");
+			output("\n\n<i>“Of course it does!”</i> she says, overconfidently and slightly dampened. <i>“Why wouldn’t--...”</i> Her voice cuts off.");
+			output("\n\n" + (pc.isBimbo() ? "Uh-oh" : "Oh no") + ". What’s happening?");
+			output("\n\n[goo.name]’s face shows signs of panic as she struggles to loosen her gooey collar, but to no effect. Like a fish gasping for air, her mouth gapes and closes over and over, yet no sound comes from her helmet.");
+			output("\n\nGoodness, she needs air, quick! This was a stupid idea. But you have no clue how help the poor girl besides shouting, <i>“[goo.name]! Take it off! Take it off!”</i>");
+			output("\n\nShe can’t hear you. She falls to her [goo.knees] and uselessly smacks the floor a few times before finally looking up at you. Her eyes are wide with desperation. She crawls towards you, climbs your torso, and deperately clings to your shoulders. You hold onto her for support.");
+			output("\n\nHer gaze softens as she seems to take in her last breaths of air.");
+			output("\n\nHer eyelids slowly fall... then close.");
+			output("\n\n.....");
+			output("\n\nWith her still body in your arms, you look away.");
+			output("\n\n");
+			
+			processTime(5);
+			addButton(0, "Next", gooArmorCrewTalk, "helmet 1");
+			break;
+		case "helmet 1":
+			output("A sudden woosh of air hits your face and you reflexively turn back to meet an unhelmeted [goo.name]... Whose silver-gray face is staring back at you, wearing an incredibly wide smile.");
+			output("\n\n<i>“Just kidding!”</i> she squeaks.");
+			output("\n\nWhat. She was totally miming the whole time. She had you worried!");
+			output("\n\n<i>“I don’t need to breathe, silly!”</i> she giggles, sliding off you. She stands and experimentally reforms and pops her new bubble helmet a few times, toggling it on and off like testing a freshly-installed light switch.");
+			output("\n\nWell it looks like she’s picked up an extra ability now, though you hope she’ll take <i>your</i> ability to breathe into consideration when she combines it with the suit....");
 			output("\n\n<b>[goo.name] has learned how to create a helmet!</b>");
 			
 			flags["GOO_ARMOR_CUSTOMIZE"] = 1;
@@ -921,15 +946,24 @@ public function gooArmorChangeArmorMenu():void
 		if(pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST) || pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL))
 			addButton(5, "Chest", gooArmorChangeArmor, "chest", "Cover Chest", "Ask to modify the suit to cover your chest.");
 		else
-			addButton(5, "Chest", gooArmorChangeArmor, "chest", "Expose Chest", "Ask to modify the suit to expose your chest.");
+		{
+			if(pc.armor.defense < 2) addDisabledButton(5, "Chest", "Expose Chest", "[goo.name] does not have enough armor to do this!");
+			else addButton(5, "Chest", gooArmorChangeArmor, "chest", "Expose Chest", "Ask to modify the suit to expose your chest.");
+		}
 		if(pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN) || pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL))
 			addButton(6, "Crotch", gooArmorChangeArmor, "crotch", "Cover Crotch", "Ask to modify the suit to cover your crotch.");
 		else
-			addButton(6, "Crotch", gooArmorChangeArmor, "crotch", "Expose Crotch", "Ask to modify the suit to expose your crotch.");
+		{
+			if(pc.armor.defense < 2) addDisabledButton(6, "Crotch", "Expose Crotch", "[goo.name] does not have enough armor to do this!");
+			else addButton(6, "Crotch", gooArmorChangeArmor, "crotch", "Expose Crotch", "Ask to modify the suit to expose your crotch.");
+		}
 		if(pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS) || pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL))
 			addButton(7, "Ass", gooArmorChangeArmor, "ass", "Cover Ass", "Ask to modify the suit to cover your ass.");
 		else
-			addButton(7, "Ass", gooArmorChangeArmor, "ass", "Expose Ass", "Ask to modify the suit to expose your ass.");
+		{
+			if(pc.armor.defense < 2) addDisabledButton(7, "Ass", "Expose Ass", "[goo.name] does not have enough armor to do this!");
+			else addButton(7, "Ass", gooArmorChangeArmor, "ass", "Expose Ass", "Ask to modify the suit to expose your ass.");
+		}
 	}
 	
 	addButton(14, "Finish", gooArmorChangeArmor, "finish");
@@ -1359,7 +1393,7 @@ public function gooArmorChangePattern(style:int = 0):void
 	switch(style)
 	{
 		case 0:
-			output(" [goo.name] doesn't even wriggle and the pattern you had decorating your suit quickly vanishes.");
+			output(" [goo.name] doesn’t even wriggle and the pattern you had decorating your suit quickly vanishes.");
 			break;
 		case 1:
 			output(" One by one, lines draw hexagonal tiles on certain parts of your suit, giving it a very modern flavor.");
