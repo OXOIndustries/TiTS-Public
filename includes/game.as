@@ -505,7 +505,7 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		other++;
 		if (!counter)
 		{
-			crewMessages += gooArmorOnShipBonus((count + other) - 1);
+			crewMessages += gooArmorOnSelfBonus((count + other) - 1);
 		}
 	}
 	if (varmintIsCrew())
