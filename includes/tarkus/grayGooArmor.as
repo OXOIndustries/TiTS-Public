@@ -4,12 +4,16 @@
 
 public function showGrayGooArmor():void
 {
-	if(chars["GOO"].hairStyle == "ponytail") showBust("GRAY_GOO_PRIME");
-	else if(chars["GOO"].hairStyle == "loose") showBust("GRAY_GOO");
-	else showBust("GRAY_GOO_ARMOR");
+	showGrayGooArmorBust();
 	if(flags["ANNO_NOVA_UPDATE"] >= 3) showName("\n" + goo.short.toUpperCase());
 	else if(hasGooArmorOnSelf()) showName("GOO\nARMOR");
 	else showName("\nGRAY GOO");
+}
+public function showGrayGooArmorBust():void
+{
+	if(chars["GOO"].hairStyle == "ponytail") showBust("GRAY_GOO_PRIME");
+	else if(chars["GOO"].hairStyle == "loose") showBust("GRAY_GOO");
+	else showBust("GRAY_GOO_ARMOR");;
 }
 
 public function grayGooArrivesAtShip():void
@@ -412,6 +416,29 @@ public function hasGooArmorOnSelf():Boolean
     if(pc.armor is GooArmor || pc.hasItemByName("Goo Armor")) return true;
     return false;
 }
+public function gooArmorInStorageBlurb(store:Boolean = true):String
+{
+	showGrayGooArmorBust();
+	
+	var halp:Array = [];
+	
+	if(store)
+	{
+		halp.push("<i>“Heey! Who turned out the lights?”</i>");
+		halp.push("<i>“Oof! What happened?”</i>");
+		halp.push("<i>“Hey, it’s dark all of a sudden!”</i>");
+		halp.push("<i>“Um... Hello...?”</i>");
+	}
+	else
+	{
+		halp.push("<i>“Phew, it was getting stuffy in there!”</i>");
+		halp.push("<i>“[pc.name], it’s you!”</i>");
+		halp.push("<i>“Ohmygosh--You came back!”</i>");
+		halp.push("<i>“Surprise, it’s me again!”</i>");
+	}
+	
+	return RandomInCollection(halp);
+}
 
 // Menu Function Replacers
 public function gooArmorClearOutput(fromCrew:Boolean = true):void
@@ -455,7 +482,11 @@ public function gooArmorOnSelfBonus(btnSlot:int = 0, fromCrew:Boolean = true):St
 	}
 	else if(InShipInterior() && pc.hasItemInStorage(new GooArmor()))
 	{
-		bonusText += "\n\nYou can try to fish [goo.name] from your storage if you want to do anything with her...";
+		bonusText += RandomInCollection([
+			"\n\nYou can try to fish [goo.name] from your storage if you want to do anything with her...",
+			"\n\nYou can hear some mumbling coming from the storage room... is [goo.name] still in there?",
+			"\n\nSome muffled chatter can be heard in the storage room nearby. Is [goo.name] talking to herself?"
+		]);
 		
 		gooArmorAddDisabledButton(fromCrew, btnSlot, chars["GOO"].short, chars["GOO"].short, "You can’t do anything with her while she is stored away.");
 	}
