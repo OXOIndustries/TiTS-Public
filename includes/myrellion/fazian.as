@@ -423,7 +423,7 @@ public function fazianHim():void
 	
 	output("\n\n<i>“And you’re here because...”</i> you cajole.");
 	
-	output("\n\n<i>“Inspiration,”</i> he answers, gesturing grandly at the dimly lit club. <i>“It is accepted by the anatae administrata that artists need to travel and absorb experience, view the empire from outside as well as from within, to be able to properly express themselves. To be able to dance and - for it to seize and move and exhilarate people very different from you - that is a noble goal. And useful. Who knows! We could discover a race that only communicates through body language in this very rush.”</i>");
+	output("\n\n<i>“Inspiration,”</i> he answers, gesturing grandly at the dimly lit club. <i>“It is accepted by the anatae administrata that artists need to travel and absorb experience, view the empire from outside as well as from within, to be able to properly express themselves. To be able to dance - for it to seize and move and exhilarate people very different from you - that is a noble goal. And useful. Who knows! We could discover a race that only communicates through body language in this very rush.”</i>");
 	
 	output("\n\n<i>“What’s the unofficial reason?”</i> you ask. Fazian laughs, and looks at you shyly.");
 	

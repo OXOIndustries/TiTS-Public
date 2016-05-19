@@ -1691,6 +1691,7 @@
 					buffer = cockHead(arg2);
 					break;
 				case "cockHeads":
+				case "cockheads":
 					buffer = cockHeads(arg2);
 					break;
 				case "cockDescript":
