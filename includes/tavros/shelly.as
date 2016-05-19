@@ -12,6 +12,7 @@ public function shellyDisplay(nude:Boolean = false):void
 //First encounter
 public function ShellyBlurb(slot:int = 5):void
 {
+	if(pc.hasStatusEffect("Shelly Assist Cooldown")) return;
 	if(flags["KNOW_SHELLYS_NAME"] == undefined) {
 		output("\n\nYou notice a new addition to the bar’s normal clientele; a lone woman stands near the back wall, trying to get the attention of passersby. A closer look reveals her to have tall bunny ears atop her head and a slightly distended belly.");
 		addButton(slot,"BunnyWoman",investigateSlashShelly);
@@ -97,7 +98,6 @@ public function talkToShelly():void
 //Assist
 public function assistShellyLaying():void
 {
-	IncrementFlag("ASSISTED_SHELLY_WITH_LAYING");
 	clearOutput();
 	shellyDisplay();
 	output("You tell Shelly if she wants some assistance with her egg laying, you’re available now. She nods, grinning and gripping your hand tightly as she pulls you to one of the back rooms. The room is well lit and surprisingly comfortable-looking for what you would expect from a bar like this.");
@@ -111,22 +111,20 @@ public function assistShellyLaying():void
 	output("\n\nThe slow penetration is apparently too much for her to handle, and you feel her tense up and howl with pleasure as she cums, covering your face in sweet juices. You continue licking through it, determined to have her spouting eggs by the end of this.");
 	output("\n\n<i>“Eggs, coming, here they c-cumm,”</i> she says weakly, tensing and contracting as you kiss around her legs. You hold out a hand as a pink and purple egg suddenly pops out of her snatch. It is followed quickly by a single colored egg and one with polkadots. At first you think they're all you'll get for now, but she tenses one more time as an egg roughly the size of the other three combined slowly pushes through her. By this time, her stomach has noticeably shrunk, and you can see her eyes unfocus as the giant egg leaves her body.");
 	output("\n\nYou leave the eggs in a pile on the bed beside her and hoist yourself up to give her a kiss on the lips. Your chocolate-coated, candy treat kisses you back and grins happily. Her entire body glistens with sweet liquids that soak the bedsheets around her and smell like a syrupy perfume.");
-	output("\n\n<i>“Thanks for the help, I’d love to do it again some time. You can have one of the eggs if you want. I dont know if the colors are special, but they all taste really good as far as I’ve tested them,”</i> she says, her amber eyes beaming up at you.");
-	output("\n\nYou tell her you’d be happy to take one and give her another kiss for good measure. She laughs warmly and tells you she’ll lie here for a half hour or so to recover before she goes back to her job.");
-	output("\n\nYou tell her you’ll be sure to come back to help again some time, and leave with one of the smaller eggs in your hand.\n\n");
+	output("\n\n<i>“Thanks for the help, I’d love to do it again some time. You can have one of the eggs if you want. I don’t know if the colors are special, but they all taste really good as far as I’ve tested them,”</i> she says, her amber eyes beaming up at you.");
+	if(flags["ASSISTED_SHELLY_WITH_LAYING"] == undefined) output("\n\nYou tell her you’d be happy to take one and give her another kiss for good measure. She laughs warmly and tells you she’ll lie here for a half hour or so to recover before she goes back to her job.");
+	else output("\n\nYou tell her you’ll be sure to come back to help again some time, and leave with one of the smaller eggs in your hand.");
+	output("\n\n");
 	processTime(40+rand(10));
+	IncrementFlag("ASSISTED_SHELLY_WITH_LAYING");
 	pc.lust(15+rand(3));
 	pc.milkInMouth(getShellyPregContainer());
 	pc.girlCumInMouth(getShellyPregContainer());
+	pc.createStatusEffect("Shelly Assist Cooldown", 0, 0, 0, 0, true, "", "", false, (30 + rand(16)));
 	//[gain small egg](just restores small hp amount unless you wanna make it like coc eggs)
-	var foundLootItems:Array = new Array();
-	foundLootItems[foundLootItems.length] = new SmallEgg();
 	//Set quantity!
-	itemScreen = mainGameMenu;
-	lootScreen = mainGameMenu;
-	useItemFunction = mainGameMenu;
 	//Start loot
-	itemCollect(foundLootItems);
+	oviliumEggReward();
 }
 
 public function getShellyPregContainer():PregnancyPlaceholder
@@ -366,6 +364,8 @@ public function shellyIntenseEggLaying(pageNum:int = 1):void
 		pc.girlCumInMouth(getShellyPregContainer());
 		pc.lust(5 + rand(21));
 		pc.shower();
+		pc.createStatusEffect("Shelly Assist Cooldown", 0, 0, 0, 0, true, "", "", false, (30 + rand(16)));
+		restHeal();
 	}
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);	

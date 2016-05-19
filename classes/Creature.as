@@ -1691,6 +1691,7 @@
 					buffer = cockHead(arg2);
 					break;
 				case "cockHeads":
+				case "cockheads":
 					buffer = cockHeads(arg2);
 					break;
 				case "cockDescript":
@@ -4303,16 +4304,15 @@
 			var hasSmallNose: Boolean = InCollection(faceType, GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_NALEEN_FACE, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_HUMANMASKED, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_MOUSEMAN, GLOBAL.TYPE_MOUSE);
 			if (hasPerk("Androgyny")) {
 				faceo = "an androgynous " + face();
-				if (mfn("m", "f", "n") == "n")
-					faceo += " that would work on either a male or a female"
-				else
-					faceo += " which leaves a subtle " + mf("boyish", "girly") + " impression";
-				if(lipRating() > 1) faceo += " and " + plural(lipDescript(true)) + faceLipMimbraneDescript();
+				if (mfn("m", "f", "n") == "n") faceo += " that would work on either a male or a female"
+				else faceo += " which leaves a subtle " + mf("boyish", "girly") + " impression";
+				if (lipRating() > 1) faceo += " with " + plural(lipDescript(true)) + faceLipMimbraneDescript();
+				if (hasBeard()) faceo += " in addition to your " + beard();
 			}
 			//0-10
 			else if (femininity < 10) {
 				faceo = "a square chin";
-				if(!hasBeard() && lipRating() > 2) faceo += ", " + plural(lipDescript(true)) + faceLipMimbraneDescript() + ", and chiseled jawline";
+				if (!hasBeard() && lipRating() > 2) faceo += ", " + plural(lipDescript(true)) + faceLipMimbraneDescript() + ", and chiseled jawline";
 				else if (!hasBeard()) faceo += " and chiseled jawline";
 				else faceo += ", chiseled jawline, and " + beard();
 			}
@@ -4320,7 +4320,7 @@
 			else if (femininity < 20) {
 				faceo = "a rugged looking " + face() + " ";
 				if (hasBeard()) faceo += "and " + beard() + " that are";
-				else if(lipRating() > 2) faceo += "and " + plural(lipDescript(true)) + faceLipMimbraneDescript() + " that are";
+				else if (lipRating() > 2) faceo += "and " + plural(lipDescript(true)) + faceLipMimbraneDescript() + " that are";
 				else faceo += "that's";
 				faceo += " surely handsome";
 			}
@@ -4435,7 +4435,7 @@
 				femininity = femininityMax();
 			}
 			//LOSE DICK OR HAVE VAGINA? NO BEARD 4 U!
-			if ((!hasCock() || hasVagina()) && hasBeard()) {
+			if (!hasPerk("Androgyny") && (!hasCock() || hasVagina()) && hasBeard()) {
 				output += "\n\n<b>Your beard falls out, leaving you with " + faceDesc() + ".</b>";
 				removeBeard();
 			}
@@ -5659,8 +5659,8 @@
 			}
 			if (hasStatusEffect("Reduced Goo"))
 			{
+				armor.defense += statusEffectv1("Reduced Goo");
 				removeStatusEffect("Reduced Goo");
-				armor.defense += 5;
 			}
 			for (var x: int = statusEffects.length-1; x >= 0; x--) {
 				if (statusEffects[x].combatOnly)
@@ -10740,7 +10740,7 @@
 				else if (type == GLOBAL.TYPE_GRYVAIN)
 				{
 					if (!simple)
-						desc += RandomInCollection(["nub-ringed pussy", "clit-lined cunt", "clit-filled vagina", "clit-ringed vagina", "clit-lined pussy", "scaley pussy", "scaley cunt", "scaley vagina", "gryvain pussy", "dragonic cunt", "dragon-like pussy"]);
+						desc += RandomInCollection(["nub-ringed pussy", "clit-lined cunt", "clit-filled vagina", "clit-ringed vagina", "clit-lined pussy", "scaly pussy", "scaly cunt", "scaly vagina", "gryvain pussy", "dragonic cunt", "dragon-like pussy"]);
 					else
 						desc += RandomInCollection(["gryvain-pussy", "nubby cunt", "dragon cunt", "pussy"]);
 				}
@@ -13033,8 +13033,9 @@
 		}
 		public function addBiomass(arg:Number):void
 		{
-			if(kGAMECLASS.flags["GOO_BIOMASS"] == undefined) kGAMECLASS.flags["GOO_BIOMASS"] = 0;
-			kGAMECLASS.flags["GOO_BIOMASS"] += arg;
+			//if(kGAMECLASS.flags["GOO_BIOMASS"] == undefined) kGAMECLASS.flags["GOO_BIOMASS"] = 0;
+			//kGAMECLASS.flags["GOO_BIOMASS"] += arg;
+			kGAMECLASS.gooBiomass(arg);
 		}
 		public function cumflationHappens(cumFrom:Creature, hole:Number):void
 		{

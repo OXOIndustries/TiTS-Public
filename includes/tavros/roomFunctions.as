@@ -15,8 +15,8 @@ public function puntToShip():Boolean
 	}
 	output("You really don't want to step out into the cold void of space. Maybe you should land somewhere?");
 	currentLocation = "SHIP INTERIOR";
-	generateMapForLocation(currentLocation);
-	showName("SHIP\nINTERIOR");
+	generateMap();
+	showLocationName();
 	processTime(1);
 	clearMenu();
 	addButton(14,"Back",mainGameMenu);

@@ -500,8 +500,17 @@
 			returnString += ": <b>" + dataFile.data.saveName + "</b>";
 			returnString += " - <i>" + dataFile.data.saveNotes + "</i>\n";
 			returnString += "\t<b>Days:</b> " + dataFile.data.daysPassed;
+			returnString += " - <b>Time:</b> " + (dataFile.data.currentHours < 10 ? "0" + dataFile.data.currentHours : dataFile.data.currentHours) + ":" + (dataFile.data.currentMinutes < 10 ? "0" + dataFile.data.currentMinutes : dataFile.data.currentMinutes);
 			returnString += " - <b>Gender:</b> " + dataFile.data.playerGender;
-			returnString += " - <b>Location:</b> " + StringUtil.toTitleCase(dataFile.data.saveLocation);
+			
+			// Prettify Location string!
+			var pName:String = dataFile.data.saveLocation
+			if(pName.indexOf("PLANET: ") != -1) pName = pName.split("PLANET: ")[1];
+			if(pName.indexOf(",") != -1) pName = pName.slice(0, (pName.indexOf(",") - pName.length));
+			var sName:String = dataFile.data.saveLocation
+			if(sName.indexOf(",") != -1) sName = sName.split(", ")[1];
+			if(sName.indexOf("SYSTEM: ") != -1) sName = sName.split("SYSTEM: ")[1];
+			returnString += " - <b>Location:</b> " + pName + ", " + (sName == "REDACTED" ? "\\\[REDACTED\\\]" : sName);
 			
 			returnString += "\n";
 			return returnString;
@@ -1036,7 +1045,7 @@
 			
 			// We're going to extract some things from the player object and dump it in here for "preview" views into the file
 			dataFile.saveName 		= kGAMECLASS.chars["PC"].short;
-			dataFile.saveLocation 	= StringUtil.toTitleCase(kGAMECLASS.userInterface.planetText + ", " + kGAMECLASS.userInterface.systemText);
+			dataFile.saveLocation 	= kGAMECLASS.userInterface.planetText + ", " + kGAMECLASS.userInterface.systemText;
 			
 			// Blank entries get cleared notes!
 			if (kGAMECLASS.userInterface.currentPCNotes == null || kGAMECLASS.userInterface.currentPCNotes.length == 0 || kGAMECLASS.userInterface.currentPCNotes == "")
@@ -1051,6 +1060,7 @@
 			var gender:String = "N";
 			if(kGAMECLASS.chars["PC"].hasCock() && kGAMECLASS.chars["PC"].hasVagina()) gender = "H";
 			else if(kGAMECLASS.chars["PC"].hasCock() && kGAMECLASS.chars["PC"].femininity >= 50) gender = "T";
+			else if(kGAMECLASS.chars["PC"].hasVagina() && kGAMECLASS.chars["PC"].femininity < 50) gender = "C";
 			else if(kGAMECLASS.chars["PC"].hasCock()) gender = "M";
 			else if(kGAMECLASS.chars["PC"].hasVagina()) gender = "F";
 			//OLD AND BUSTED: dataFile.playerGender 	= kGAMECLASS.chars["PC"].mfn("M", "F", "A");

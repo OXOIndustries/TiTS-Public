@@ -2312,6 +2312,7 @@ public function kq2AmaraPCVictory():void
 	{
 		output(" And just in time: you cover your eyes as a nuke goes off in the caldera, a flash of light followed by a shockwave that makes your teeth ache. Luckily, the re-activated shields protect you from harm.");
 		flags["KQ2_NUKE_EXPLODED"] = 1;
+		if(shipLocation == "600") shipLocation = "SPACE";
 	}
 
 	// This should work, because we know we're not gonna be looting anything...
@@ -2439,6 +2440,7 @@ public function kq2AmaraSpecialEnd():void
 	{
 		output(" Especially after the nuke goes off, flashing in the distance in your rear mirror.");
 		flags["KQ2_NUKE_EXPLODED"] = 1;
+		if(shipLocation == "600") shipLocation = "SPACE";
 	}
 	
 	output("\n\nThe trip back to the DMZ is quiet. You try not to think, just letting your body go on autopilot as you cruise back to the familiar strip of tarmac in the desert wastes. It’s not hard to find a spacer to hitch-hike with back to the smuggler’s base, though in your state, you get more than few odd glances until you do.");
@@ -2869,7 +2871,8 @@ public function kq2NukeExplodesLater():void
 		clearMenu();
 		addButton(0, "Next", mainGameMenu);
 	}
-
+	
+	if(shipLocation == "600") shipLocation = "SPACE";
 	processTime(360);
 }
 
@@ -2893,7 +2896,6 @@ public function flyToMyrellionDeepCaves():void
 	{
 		output("You fly to the nuked planet of Myrellion, carefully guiding your vessel down towards the ground fissure that leads to the area just above Taivra’s palace. You finally park at the bottom of a nearby cavern");
 		if(leaveShipOK()) output(" and step out of your ship.");
-
 	}
 }
 

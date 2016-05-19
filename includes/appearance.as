@@ -85,6 +85,9 @@ public function appearance(forTarget:Creature):void
 			else if(target.exhibitionism() >= 10) output2(" If anyone sees you now, they’re sure to think you’re a nudist...");
 			else output2(" If anyone sees you now, they’re sure to think you’re a nudist!");
 		}
+		
+		// Goo Armor Bonus text
+		if(target.armor is GooArmor) output2("\n\n" + gooArmorDetails());
 
 		//Face
 		output2("\n\n");
@@ -1657,6 +1660,16 @@ public function appearance(forTarget:Creature):void
 				output2(" seem");
 			}
 			output2(" intelligent enough for some rudimentary communication....");
+		}
+		// Goo Armor Customization!
+		if (hasGooArmorOnSelf())
+		{
+			var gooArmorBonus:String = gooArmorOnSelfBonus(btnIndex, false);
+			if(gooArmorBonus.length > 0)
+			{
+				output2(gooArmorBonus);
+				btnIndex++;
+			}
 		}
 	}
 	

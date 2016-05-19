@@ -115,13 +115,18 @@
 						pc.shiftVagina(0, GLOBAL.TYPE_VANAE);
 						kGAMECLASS.output("You’ve got a virginal, " + pc.vaginaColor(0) + " vanae pussy.");
 					}
-					else if(InCollection(pcRace, "kui-tan", "half kui-tan"))
+					else if (InCollection(pcRace, "kui-tan", "half kui-tan"))
 					{
 						pc.shiftVagina(0, GLOBAL.TYPE_KUITAN);
 						kGAMECLASS.output("You’ve got ");
 						if(pc.vaginaColor(0) == "black") kGAMECLASS.output("a dusky, black");
 						else kGAMECLASS.output(indefiniteArticle(pc.vaginaColor(0)));
 						kGAMECLASS.output(" ‘nuki-pussy.");
+					}
+					else if (InCollection(pcRace, "gryvain", "half-gryvain"))
+					{
+						pc.shiftVagina(0, GLOBAL.TYPE_GRYVAIN);
+						kGAMECLASS.output("You’ve got " + indefiniteArticle(pc.vaginaColor(0)) + ", multi-clitted gryvain pussy.");
 					}
 					else if (pcRace == "lapinara")
 					{

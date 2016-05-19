@@ -901,7 +901,7 @@ public function pcBeatsGoo():void
 		addDisabledButton(0,"Fuck Her","Fuck Her","You aren't aroused enough to even consider this.");
 		addDisabledButton(1,"Get Egged","Get Egged","You aren't aroused enough to even consider this.");
 	}
-	if(pc.armor is GooArmor || pc.hasItemByName("Goo Armor",1)) addButton(14,"Leave",armorGooVictoryShits);
+	if(hasGooArmorOnSelf()) addButton(14,"Leave",armorGooVictoryShits);
 	else addButton(14,"Leave",CombatManager.genericVictory);
 }
 
@@ -1083,7 +1083,7 @@ public function getEggedByCrystalGoo():void
 public function gooVictoryPostGooCheck():void
 {
 	clearMenu();
-	if(pc.armor is GooArmor || pc.hasItemByName("Goo Armor",1)) addButton(0,"Next",armorGooVictoryShits);
+	if(hasGooArmorOnSelf()) addButton(0,"Next",armorGooVictoryShits);
 	else CombatManager.genericVictory();
 }
 
@@ -1095,8 +1095,9 @@ public function armorGooVictoryShits():void
 	clearOutput();
 	author("Savin");
 	//show armorbutt?
-	showName("GOO\nARMOR");
-	showBust("GRAYGOO");
+	//showName("GOO\nARMOR");
+	//showBust("GRAYGOO");
+	showGrayGooArmor();
 	output("<i>“Oh, hey,”</i> [goo.name] says, poking her head out, <i>“that crystal stuff she made was really cool, huh?”</i>");
 	output("\n\nYou pause, taken aback by your normally-passive suit of goo’s sudden outburst. Still, you nod: the crystal on that ganrael broodmare was certainly useful to her.");
 	output("\n\n<i>“Could I, um... get a sample, maybe?”</i> [goo.name] asks sweetly, reaching her head around on a stalk of gray goop to give you a puppy-dog look. <i>“I bet I could replicate it! Make myself an even better bodysuit for you!”</i>");

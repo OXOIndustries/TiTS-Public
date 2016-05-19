@@ -231,6 +231,18 @@ public function dudesButtFuckInATotallyNonGayWay():void
 public function chicksRideASydian():void
 {
 	var x:int = pc.cuntThatFits(enemy.cockVolume(0));
+	// Preg check
+	if(pc.isPregnant(x))
+	{
+		var i:int = 0;
+		var wombs:Array = [];
+		x = -1;
+		for(i = 0; i < pc.totalVaginas(); i++)
+		{
+			if(!pc.isPregnant(x)) wombs.push(i);
+		}
+		if(wombs.length > 0) x = wombs[rand(wombs.length)];
+	}
 	if(x < 0) x = rand(pc.totalVaginas());
 	clearOutput();
 	userInterface.showName("DEFEATED:\nSYDIAN MALE");

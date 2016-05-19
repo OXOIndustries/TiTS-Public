@@ -42,7 +42,7 @@ public function approachAnzhela():void
 	{
 		output("Asking around about who is in charge, you’re pointed to a tall, svelte myr woman who is examining a patient’s charts. It’s not hard to spot her from a distance. Her curly hair - tied up in a messy bun - is so red it’s positively rebellious.");
 		output("\n\nYou walk up just in time to hear the end of a conversation between the radically red-haired woman and the patient’s attending doctor.");
-		output("\n\n<i>“... She looks good. Discharge her with some ephacin for the nausea,”</i> the hospital administrator hands the attending the charts, then shoots the patient a brilliant smile, <i>“Congratulations! Looks like you’re going to be getting out of here by the end of the day.”</i>");
+		output("\n\n<i>“... She looks good. Discharge her with some ephacin for the nausea,”</i> the hospital administrator hands the attending doctor the charts then shoots the patient a brilliant smile, <i>“Congratulations! Looks like you’re going to be getting out of here by the end of the day.”</i>");
 		output("\n\nAfter patting the patient’s hand, the head doctor strides in your direction. When she spots you, she stops in her tracks. She then pointedly tilts her half-frame glasses and shoots you a curious look.");
 		//if PC is red myr morph:
 		if(pc.race() == "red myr")
@@ -837,7 +837,7 @@ public function cowgirlWithAnzhela():void
 	output("\n\nWith each excited wiggle, her petal-like folds brush against your underside, drenching them in her ever-increasing slickness.");
 	output("\n\nDriven by your insatiable carnal need, you slide your hands around and grab her perfectly round ass, pushing her ");
 	if(pc.cocks[x].cLength() < 12) output("just a few inches ");
-	output("forward until your [pc.cockHead " + x + "] brushing against her warm wetness. Before you can thrust, the trembling doctor pushes her hips backwards and sinks back onto your [pc.cockNounSimple " + x + "]! Both of you moan as your dick slides up into her petal-smooth center.");
+	output("forward until your [pc.cockHead " + x + "] is brushing against her warm wetness. Before you can thrust, the trembling doctor pushes her hips backwards and sinks back onto your [pc.cockNounSimple " + x + "]! Both of you moan as your dick slides up into her petal-smooth center.");
 	pc.cockChange();
 	//PcCockBelow12 inches:
 	if(pc.cocks[x].cLength() < 12) output(" You bottom out inside of her, your tip rubbing");

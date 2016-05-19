@@ -30,11 +30,11 @@ public function phoenixLocationSetter():Boolean
 {
 	if(flags["FALL OF THE PHOENIX STATUS"] == 1)
 	{
-		rooms[currentLocation].planet = getPlanetName();
-		rooms[currentLocation].system = "SYSTEM: " + getSystemName();
+		rooms[currentLocation].planet = rooms[shipLocation].planet;
+		rooms[currentLocation].system = rooms[shipLocation].system;
 	}
 	//Reset soz it updates automagically.
-	setLocation(this.rooms[this.currentLocation].roomName,this.rooms[this.currentLocation].planet,this.rooms[this.currentLocation].system);
+	showLocationName();
 	return false;
 }
 

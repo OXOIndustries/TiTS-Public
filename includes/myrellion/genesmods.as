@@ -1147,7 +1147,8 @@ public function genesModsBellyrubFirstNotTheSpot():void
 
 		clearMenu();
 		addButton(0, "Blowjob", genesModsBlowjob);
-		addButton(1, "Frot", genesModsFrot);
+		if (pc.hasCock() && !pc.isTaur())addButton(1, "Frot", genesModsFrot);
+		else addDisabledButton(1, "Frot");
 		if (pc.hasVagina()) addButton(2, "OverCounter", genesModsOverCounter);
 		else addDisabledButton(2, "OverCounter");
 	}

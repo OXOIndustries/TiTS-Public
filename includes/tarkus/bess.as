@@ -4867,7 +4867,8 @@ public function bessSpendTime24():void
 	output(
 		RandomInCollection(
 			"movies [bess.heShe]’s watched",
-			"holos [bess.heShe]’s read",
+			"holos [bess.heShe]’s seen",
+			"novels [bess.heShe]’s read",
 			"shows [bess.heShe]’s watched",
 			"music [bess.heShe]’s listened to"
 		)
@@ -4879,7 +4880,7 @@ public function bessSpendTime24():void
 			"really, really liked it",
 			"thought it was pretty average",
 			"found it really bad",
-			"positively awful and wants [bess.hisHer] time back"
+			"thought it positively awful and wants [bess.hisHer] time back"
 		)
 	);
 	output(". You spend some time talking with [bess.himHer] about it.");

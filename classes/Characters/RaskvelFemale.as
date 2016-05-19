@@ -266,7 +266,7 @@
 			else if(rand(2) == 0) 
 			{
 				output("The raskvel playfully scampers up and pivots, resting her butt against your crotch. She squeezes her surprisingly powerfully thighs to make her cushy little asscheeks wobble back and forth against");
-				if (!target.isCrotchGarbed()) output(" [pc.oneCock]");
+				if (target.isCrotchExposed()) output(" [pc.oneCock]");
 				else output(" [pc.oneCock] through your [pc.lowerGarments]");
 				output(". \"<i>Come play, we can forget about the money.</i>\"");
 				applyDamage(new TypeCollection( { tease: 10 + rand(4) } ), this, target, "minimal");
