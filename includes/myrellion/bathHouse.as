@@ -421,7 +421,7 @@ public function batheAloneEpilogue():void
 public function bathHouseGoldMyrGroup():void
 {
 	clearOutput();
-	showBust("9999");
+	showBust("MYR_GOLD_BATHERS");
 	showName("GOLD\nMYR GROUP");
 	author("Zeikfried");
 	output("<i>“Pardon.”</i>");
@@ -461,6 +461,7 @@ public function cleanMuhPenisYo():void
 {
 	clearOutput();
 	showName("GOLD\nMYR GROUP");
+	showBust("MYR_GOLD_BATHERS");
 	var x:int = pc.cockThatFits(200);
 	if(x < 0) x = pc.smallestCockIndex();
 	author("Zeikfried");
@@ -476,6 +477,7 @@ public function cleanPenisPartDues(x:int):void
 {
 	clearOutput();
 	showName("GOLD\nMYR GROUP");
+	showBust("MYR_GOLD_BATHERS");
 	author("Zeikfried");
 
 	//norml cocks fuck the leggy myr (plus shy myr if tailcocked)
@@ -559,6 +561,7 @@ public function cleanMuhVaginaYo():void
 	clearOutput();
 	author("Zeikfried");
 	showName("GOLD\nMYR GROUP");
+	showBust("MYR_GOLD_BATHERS");
 	var x:int = rand(pc.totalVaginas());
 
 	output("<i>“I could use some help with those hard-to-reach places,”</i> you say, pointing clandestinely at [pc.oneVagina]. The tall myr releases your arm petulantly and the matronly leader laughs. She gestures toward a short-but-well-proportioned woman with a pixie haircut.");

@@ -145,6 +145,9 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/herman.png", mimeType = "image/png")]
 		public var Bust_HERMAN:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/honeypot.png", mimeType = "image/png")]
+		public var Bust_HONEYPOT:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/black_void_juggernaut.png", mimeType = "image/png")]
 		public var Bust_JUGGERNAUT:Class;
 		public var Bounds_JUGGERNAUT:Rectangle = new Rectangle(16, 0, 64, 64);
@@ -198,6 +201,9 @@
 		public var Bust_MYR_INFECTED_FEMALE:Class;
 		/*ALT [Embed(source = "../../../assets/images/npcs/shou_puppy/fungal_myr.png", mimeType = "image/png")]
 		public var Bust_MYR_INFECTED_FEMALE:Class;*/
+
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/myr_gold_bathers.png", mimeType = "image/png")]
+		public var Bust_MYR_GOLD_BATHERS:Class;
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/fungal_myr_queen_spores.png", mimeType = "image/png")]
 		public var Bust_MYR_INFECTED_QUEEN:Class;
@@ -454,6 +460,9 @@
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/herman.png", mimeType = "image/png")]
 			public var Full_HERMAN:Class;
 
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/honeypot.png", mimeType = "image/png")]
+			public var Full_HONEYPOT:Class;
+
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/black_void_juggernaut.png", mimeType = "image/png")]
 			public var Full_JUGGERNAUT:Class;
 
@@ -500,6 +509,9 @@
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/midee.png", mimeType = "image/png")]
 			public var Full_MIDEE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/myr_gold_bathers.png", mimeType = "image/png")]
+			public var Full_MYR_GOLD_BATHERS:Class;			
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/fungal_myr_queen_spores.png", mimeType = "image/png")]
 			public var Full_MYR_INFECTED_QUEEN:Class;
