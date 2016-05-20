@@ -31,7 +31,7 @@ public function slutPCButt():void
 	//Perk assignment
 	if(!pc.hasPerk("Buttslut") && flags["BUTTSLUTINATOR"] == 1)
 	{
-		pc.createPerk("Buttslut",0,0,0,0,"Ensures your almost remains bubbly and that fluids shot inside will heal you injuries.");
+		pc.createPerk("Buttslut",0,0,0,0,"Ensures your ass always remains bubbly and that fluids shot inside will heal your injuries.");
 	}
 }
 
@@ -42,7 +42,14 @@ public function useTheButtslutinator():void
 	//First Use
 	if(flags["BUTTSLUTINATOR"] == undefined)
 	{
-		output("Leaning over the exotic machine, you feel your [pc.legOrLegs] press against the perfectly-molded padding{, but it pushes you away. Thinking that perhaps your choice in outerwear could be interfering with the device, you strip down and try again. It’s a perfect fit}. Your crotch sits above the hole{, and you’re instantly glad for it. You shudder to think of how uncomfortable it would be to crush your own bulge against the futuristic plastics that line this device/, perfectly placed to take care of any boners, imaginary or not. Good thing you don’t have any such concerns}. Grabbing hold of the joysticks on the far side, you wiggle on into place, " + pc.mf("chuckling","giggling") + " to yourself over how silly it is to bend yourself over such a goofy piece of tech.");
+		output("Leaning over the exotic machine, you feel your [pc.legOrLegs] press");
+		if(pc.legCount == 1) output("es");
+		output(" against the perfectly-molded padding");
+		if(!pc.isAssExposed()) output(", but it pushes you away. Thinking that perhaps your choice in outerwear could be interfering with the device, you strip down and try again. It’s a perfect fit");
+		output(". Your crotch sits above the hole");
+		if(pc.hasCock() || (pc.balls > 0 && pc.ballDiameter() >= 1)) output(", and you’re instantly glad for it. You shudder to think of how uncomfortable it would be to crush your own bulge against the futuristic plastics that line this device");
+		else output(", perfectly placed to take care of any boners, imaginary or not. Good thing you don’t have any such concerns");
+		output(". Grabbing hold of the joysticks on the far side, you wiggle on into place, " + pc.mf("chuckling","giggling") + " to yourself over how silly it is to bend yourself over such a goofy piece of tech.");
 		output("\n\nYou don’t have a chance to change your mind. Metal restrains snap down across your wrists and ");
 		if(pc.hasKnees())
 		{
@@ -201,7 +208,7 @@ public function useTheButtslutinator():void
 		output("\nProgramming: 60%");
 		output("\nCommencing final programming...</i>");
 		output("\n\nFinal programming has a certainly ominous ring to it, but instead of blanching, you find yourself looking forward to it. You’ve enjoyed butt-expanding, ass-fucking step of this path so far. Surely taking it all the way to completion will be utter, absolute nirvana. You look back over your shoulder as far as you can, watching the familiar mechanical tentacles rise up into position, tipped with their glinting needles, and instead of panic or apprehension, all you can summon up is anticipation.");
-		output("\n\nThey snap down, burying their special cocktail of booty-boosting chemicals into your more-than-supple derriere, jiggling the cheeks with the impact. You {giggle/laugh} madly and turn back to the screen, pleased as a fucked-out slut on a frat-room floor to see that the familiar porn has returned. It’s just as hot as you remembered and yet somehow the clips are all brand new. You’re pretty sure at least one of the segments is Steph Irson getting taken by a few dozen tentacles as well.");
+		output("\n\nThey snap down, burying their special cocktail of booty-boosting chemicals into your more-than-supple derriere, jiggling the cheeks with the impact. You " + (pc.isBimbo() ? "giggle" : "laugh") + " madly and turn back to the screen, pleased as a fucked-out slut on a frat-room floor to see that the familiar porn has returned. It’s just as hot as you remembered and yet somehow the clips are all brand new. You’re pretty sure at least one of the segments is Steph Irson getting taken by a few dozen tentacles as well.");
 		output("\n\nA quick, staticky cut replaces the star of Galactic Huntress with a more familiar backside - your own. It’s from the last time you strapped in, and stars above, you have a fantastic butt. It’s so big, and growing bigger by the minute, feeding off the bubbling hoses sticking into each cheek and twitching from the dildo’s orgasmic strokes.");
 		output("\n\nDrool oozes down your chin before you shake yourself out of your trance. The reaction was immediate and powerful - you wanted to tongue out your own ass. You wanted to slip your tongue inside that butt and make it nice and slippery with lust. Just imagining the muscle clenching down, driven to spasms of pleasure by your attention has you feeling hazy and lightheaded.");
 		output("\n\nOr is that the drugs? You realize that you can feel small pinpricks of pain and pressure. The hoses are pressing <i>hard</i> against your body. You can hear them bubbling with all the fluid passing through them, but where is it going? Certainly not into your asshole! You’d feel it if something big, hard, and cylindrical was filling you up back there. Feel it and probably cum as a matter of fact! You [pc.asshole] flexes powerfully, demandingly. It’s hungry, you realize - hungry for that big, fat silicone fuck-stick that you know this device is hiding somewhere.");
