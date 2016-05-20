@@ -56,6 +56,10 @@ public function startCharacterCreation(e:Event = null):void
 	days = 0;
 	userInterface.hideTime();
 	flags = new Dictionary();
+	
+	// Purge event buffer
+	eventQueue = new Array();
+	eventBuffer = "";
 	gameOverEvent = false;
 
 	// Codex entries
