@@ -1032,7 +1032,7 @@ public function savinAbusesYerButtBecauseThatsHowHeLikesIt():void
 	var cumEstimate:Number = 0;
 	if(pc.cumQ() * 3 >= pc.currentCum()) cumEstimate = pc.cumQ() * 3;
 	else cumEstimate = pc.currentCum();
-	if ((cumCreditValue(cumTotal + cumEstimate) > iPriceThreshold) && rand(2) == 0)
+	if (cumCreditValue(cumTotal + cumEstimate) > iPriceThreshold)
 	{
 		output("\n\nAll you can do is tightly grip the vaulting horse supporting you, groaning and crying in pleasure as the machine milks your prostate minute after minute.");
 
@@ -1043,7 +1043,8 @@ public function savinAbusesYerButtBecauseThatsHowHeLikesIt():void
 		// Break it, you goof.
 		addButton(0,"Yes",yesGoMilkarGo,cumTotal);
 		// Nah, just stop milking, please.
-		addButton(1,"No",noStahpMilkarStahp,cumTotal);
+		if(cumEstimate > 900000000) addDisabledButton(1,"No","Too Much Cum to Stop!","Unfortunately, you cannot get off this wild ride...");
+		else addButton(1,"No",noStahpMilkarStahp,cumTotal);
 	}
 	// Default response:
 	else
