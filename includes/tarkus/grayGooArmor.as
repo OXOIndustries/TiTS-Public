@@ -111,7 +111,11 @@ public function gooDickFap():void
 	author("Savin");
 	showGrayGooArmor();
 	
-	output("You pat your own goo-coated backside and ask [goo.name] if she’s up for a little fun. Wordlessly, the goo surrounding you squirms and writhes across your [pc.skinFurScales], caressing your [pc.nipples] and [pc.crotch] in ways that make your [pc.knees] tremble.");
+	output("You");
+	if(pc.armor is GooArmor) output(" pat your own goo-coated backside and");
+	else if(pc.hasItemByName("Goo Armor")) output(" open your inventory and");
+	else if(InShipInterior() && pc.hasItemInStorage(new GooArmor())) output(" open your storage and");
+	output(" ask [goo.name] if she’s up for a little fun. Wordlessly, the goo surrounding you squirms and writhes across your [pc.skinFurScales], caressing your [pc.nipples] and [pc.crotch] in ways that make your [pc.knees] tremble.");
 	if (!(pc.lowerUndergarment is EmptySlot) || !(pc.upperUndergarment is EmptySlot))
 	{
 		output(" Tendrils of goo peel off your");
@@ -256,7 +260,11 @@ public function grayGooCockSleeve():void
 	author("Savin");
 	showGrayGooArmor();
 
-	output("You reach down to your pent-up [pc.cock] and give yourself a stroke through the gooey coating hugging your body. Grinning, you ask [goo.name] if she’s up for a little fun.");
+	output("You reach down to your pent-up [pc.cock] and give yourself a stroke through the gooey coating hugging your body. Grinning, you");
+	if(pc.armor is GooArmor) { /* Fine here! */ }
+	else if(pc.hasItemByName("Goo Armor")) output(" open your inventory and");
+	else if(InShipInterior() && pc.hasItemInStorage(new GooArmor())) output(" open your storage and");
+	output(" ask [goo.name] if she’s up for a little fun.");
 	
 	output("\n\nThe answer comes as a squirming, writhing sensation of cool, wet goo around your [pc.cock]. You suck in a sharp breath, almost collapsing as your gooey bodysuit gives her response. When you hobble a little nearer to the ground, some of the goo starts to drain off of your upper body, splattering to the ground and congealing into a humanoid shape. [goo.name]’s face forms, overtop a pair of gigantic tits that would make a New Texan porn-star jealous, and wraps her hands around them with a couple of inviting pats.");
 	
@@ -477,7 +485,8 @@ public function gooArmorOnSelfBonus(btnSlot:int = 0, fromCrew:Boolean = true):St
 		if(pc.armor is GooArmor) bonusText += "\n\n[goo.name] wiggles around your body, making you aware of her presence.";
 		else bonusText += "\n\nMuffled giggles can be heard near you. Glancing at your inventory, you find [goo.name] happily jiggling inside.";
 		
-		if(9999 == 9999) gooArmorAddButton(fromCrew, btnSlot, chars["GOO"].short, approachGooArmorCrew, [true, fromCrew], chars["GOO"].short, "Interact with your silvery shape-shifting armor.");
+		if(inCombat()) gooArmorAddDisabledButton(fromCrew, btnSlot, chars["GOO"].short, chars["GOO"].short, "You can’t right now--you’re in combat!");
+		else if(9999 == 9999) gooArmorAddButton(fromCrew, btnSlot, chars["GOO"].short, approachGooArmorCrew, [true, fromCrew], chars["GOO"].short, "Interact with your silvery shape-shifting armor.");
 		else gooArmorAddDisabledButton(fromCrew, btnSlot, chars["GOO"].short, chars["GOO"].short, "You can’t seem to do anything with her at the moment.");
 	}
 	else if(InShipInterior() && pc.hasItemInStorage(new GooArmor()))
@@ -534,6 +543,12 @@ public function approachGooArmorCrewMenu(fromCrew:Boolean = true):void
 	else gooArmorAddButton(fromCrew, 1, "Customize", gooArmorCrewOption, ["customize", fromCrew], "Customize " + ((pc.armor is GooArmor) ? "Suit" : "Appearance"), ((pc.armor is GooArmor) ? "See if [goo.name] can change how she looks on you." : "See if [goo.name] can change her form for you."));
 	if(pc.lust() >= 33) gooArmorAddButton(fromCrew, 2, "Sex", gooArmorCrewOption, ["sex", fromCrew], "Sex", "Have some sexy fun-time with [goo.name].");
 	else gooArmorAddDisabledButton(fromCrew, 2, "Sex", "Sex", "You are not aroused enough for this.");
+	
+	if(flags["GOO_ARMOR_HEAL_LEVEL"] == undefined) gooArmorAddDisabledButton(fromCrew, 5, "Locked", "Locked", "[goo.name] hasn’t learned how to do this yet...");
+	else if(pc.HP() >= pc.HPMax()) gooArmorAddDisabledButton(fromCrew, 5, "Heal", "Restore Health", "You are already at full health!");
+	else if(pc.hasStatusEffect("Goo Armor Healed")) gooArmorAddDisabledButton(fromCrew, 5, "Heal", "Restore Health", "[goo.name] has already healed you in the past hour. She may need some time to recover before trying it again.");
+	else gooArmorAddButton(fromCrew, 5, "Heal", gooArmorCrewOption, ["heal", fromCrew], "Restore Health", "Ask [goo.name] to help mend your wounds.");
+	
 	gooArmorAddButton(fromCrew, 14, (fromCrew ? "Leave" : "Back"), gooArmorCrewOption, ["leave", fromCrew]);
 }
 
@@ -586,6 +601,25 @@ public function gooArmorCrewOption(arg:Array):void
 				txt += "\n\n9999 - Text.";
 				
 				gooArmorAddButton(fromCrew, 0, "Next", gooArmorCrewTalk, ["expose 0", fromCrew]);
+			}
+			else if(flags["GOO_ARMOR_HEAL_LEVEL"] == undefined && !(pc.armor is GooArmor) && InShipInterior() && pc.hasItem(new GrayMicrobots(), 10))
+			{
+				txt += "You approach [goo.name] for a chat, but find her face suddenly blanche (that is, if she wasn’t already a full coat of solid silver-gray).";
+				txt += "\n\n<i>“" + (pc.isBimbo() ? "Hey girl" : "Oh, [goo.name]") + ", something wrong?”</i> You ask, noticing her ill expression.";
+				txt += "\n\nShe responds, with an unnatural heaving noise. Then the sound of bubbling and gurgling rumbles through her tummy. <i>“Umm... I don’t feel so good...”</i> She finally exhales, clutching her midsection.";
+				txt += "\n\n<i>“Wh-what happened?”</i>";
+				txt += "\n\n<i>“Please don’t get mad at me, [pc.name]...”</i> She begs a caveat.";
+				txt += "\n\n" + (pc.isAss() ? "You swing your arms in the air. <i>C’mon out with it already! What happened?”</i>" : "You nod and assure her you won’t, whatever it is.") + " You just want to know what’s wrong with her.";
+				txt += "\n\nGurgle. <i>“W-well... like...”</i> Bubble. <i>“... you know those energy drinks you keep in your pack?”</i>";
+				txt += "\n\nEnergy drinks? What energy drinks?";
+				txt += "\n\n<i>“I-I wanted to taste them... and they were </i>too<i> yummy... and... and I drank a whole, whole bunch! I couldn’t help myself! I’m SOOOO sorry!”</i> She blurts, hands now covering her mouth. The gurgling seems to have instantly stopped after the climax of her confession. <i>“Hm?”</i>";
+				txt += "\n\nYou double-check your inventory and notice it being a bit lighter than you remember. Open and mostly-empty canisters roll out, one by one, and fall to the hard floor. You squat down to investigate. Hm. It seems [goo.name] has been drinking - or in her case, assimilating - the gray microbots you’ve been holding in your inventory... You stand up to let [goo.name] know exactly what she drank, but as you turn to her, an unnoticed puddle of gray microbots forces you to slip and lose your balance. You go head first toward a nearby wall and your vision goes black.";
+				txt += "\n\n<i>“[pc.name]!”</i>";
+				
+				processTime(2);
+				pc.HP(-10);
+				
+				gooArmorAddButton(fromCrew, 0, "Next", gooArmorCrewTalk, ["healing 0", fromCrew]);
 			}
 			else
 			{
@@ -743,6 +777,44 @@ public function gooArmorCrewOption(arg:Array):void
 			else gooArmorAddDisabledButton(fromCrew, 1, "GooSleeve", "Goo Cocksleeve", "You don’t have the proper anatomy for that...");
 			gooArmorAddButton(fromCrew, 14, "Back", approachGooArmorCrew, [false, fromCrew]);
 			break;
+		case "heal":
+			var hpQ:Number = pc.HPQ();
+			
+			txt += "Looking at your";
+			if(hpQ > 75) txt += " light wounds";
+			else if(hpQ > 50) txt += " wounds";
+			else if(hpQ > 25) txt += " semi-serious wounds";
+			else if(hpQ > 10) txt += " heavy wounds";
+			else txt += " life-threatening wounds";
+			txt += ", you ask if [goo.name] can give you some medical attention.";
+			txt += "\n\nShe swirls herself around you to take a look. <i>“";
+			if(hpQ > 75) txt += "Ah, silly, that’s just a scratch!";
+			else if(hpQ > 50) txt += "Okay, [pc.name], show me where it hurts...";
+			else if(hpQ > 25) txt += "Ouch, that must hurt! I hope you’re okay, [pc.name]!";
+			else if(hpQ > 10) txt += "Oh, [pc.name], you should really go into urgent care for that...";
+			else txt += "Ohmygosh, [pc.name]! You should really go to an emergency med center, quick!";
+			txt += "”</i> she says as she quickly assesses the damage. <i>“";
+			if(hpQ > 75) txt += "You’re just a " + (pc.tallness < 48 ? "little" : "big") + " baby, aren’t you?";
+			else if(hpQ > 50) txt += "... and I’ll kiss it to make it feel better!";
+			else if(hpQ > 25) txt += "Here, let me see if I can help!";
+			else if(hpQ > 10) txt += "I’ll do my best to help anyway!";
+			else txt += "I’m not sure how much I can help, but I’ll try my best!";
+			txt += "”</i> And with that, her index finger morphs into a tendril and heads past your [pc.lips] and into your mouth.";
+			txt += "\n\nYou feel several drops of microbots flow underneath your [pc.tongue] and travel down your throat. In no time, your body shudders as the tiny machines get to work and your cuts and bruises quickly mend and heal over.";
+			txt += "\n\nWhen she does all she can for you, [goo.name] retracts her tendril and returns to meet you face to face, then gives you a light peck on the forehead. <i>“";
+			txt += RandomInCollection([
+				"Remember to be more careful out there, okay?",
+				"Don’t get yourself hurt again!",
+				"I hope that helps!"
+			]);
+			txt += "”</i>";
+			
+			processTime(3 + rand (2));
+			pc.HP(50 * flags["GOO_ARMOR_HEAL_LEVEL"]);
+			pc.createStatusEffect("Goo Armor Healed", 0, 0, 0, 0, true, "", "", false, 60, 0xFFFFFF);
+			
+			gooArmorAddButton(fromCrew, 0, "Next", approachGooArmorCrew, [false, fromCrew]);
+			break;
 		case "leave":
 			txt += "<i>“Aww, okay!”</i> [goo.name] says as she";
 			if(pc.armor is GooArmor)
@@ -862,6 +934,32 @@ public function gooArmorCrewTalk(arg:Array):void
 			processTime(2);
 			gooArmorAddButton(fromCrew, 0, "Next", approachGooArmorCrew, [false, fromCrew]);
 			break;
+		case "healing 0":
+			txt += "Your vision quickly returns and you find yourself clutched in [goo.name]’s silvery mass.";
+			txt += "\n\n<i>“[pc.name]... are you okay?”</i>";
+			txt += "\n\nYou hope so. You don’t feel any pain, so the fall must have not been major. You run your hand across your [pc.face] just to make sure. No odd bumps on your forehead. Eyes, still intact. Nose, not dislocated. And--! You suck in a long string of air through your teeth. The pain, it stings. Your lower lip, you must have busted it falling down.";
+			txt += "\n\n<i>“Oh no, you’re bleeding!”</i> [goo.name] lightly panics.";
+			txt += "\n\nMaking sure not to cause another potential accident, you ask her to calm down a bit and tell her where the first-aid kit is on your ship.";
+			txt += "\n\n<i>“Oooh, poor thing...”</i> She ignores you, too invested in examining your wound.";
+			txt += "\n\nAs she rubs your [pc.lips], you feel a distinct tingle - not of pain, but a cooling sensation... Wait a minute...";
+			txt += "\n\nAs the feeling evaporates, you gently remove [goo.name]’s hand and (carefully) run to the restroom, leaving your silver-gray companion to tilt her head in confusion. You splash your face in water and view yourself in the mirror. No cut, no scars. Your lower lip has fully healed and that was a fresh wound only a minute ago! You towel off and return to [goo.name].";
+			txt += "\n\nLooking up at you, she scans your bloodless face and happily gasps. <i>“You’re okay!”</i> She lauches herself into you with a big gooey hug.";
+			txt += "\n\nYou tell her of what she drank and how it possibly granted her microbots a new ability. Seeing this as good news, and knowing that you are fine, makes her hug even tighter.";
+			txt += "\n\n<i>“S-so I’m not in trouble, am I?”</i> she asks, concerned, while loosening her squeeze.";
+			txt += "\n\nYou ruffle her slimey silver hair.";
+			txt += "\n\n<b>[goo.name] has learned how to heal minor injuries!</b>";
+			
+			processTime(15);
+			flags["GOO_ARMOR_HEAL_LEVEL"] = 1;
+			
+			for(var i:int = 0; i < 10; i++)
+			{
+				pc.destroyItem(new GrayMicrobots());
+			}
+			pc.HP(10);
+			
+			gooArmorAddButton(fromCrew, 0, "Next", approachGooArmorCrew, [false, fromCrew]);
+			break;
 	}
 	
 	gooArmorOutput(fromCrew, txt);
@@ -978,7 +1076,7 @@ public function gooArmorDetails():String
 					case 1: msg += " and is topped with a fashionable helmet that fits snugly around your head"; break;
 					case 2: msg += " and is topped with an intimidating-looking pressure helmet that protects your head from harm"; break;
 					case 3: msg += " and is topped with a bubble-shaped space helmet that covers the entirety of your head"; break;
-					case 4: msg += " and is topped with a smoothly-mirrored faceless helmet that shrouds your visage in mystery"; break;
+					case 4: msg += " and is topped with a smoothly-mirrored, featureless helmet that shrouds your visage in mystery"; break;
 				}
 			}
 			msg += ".";
