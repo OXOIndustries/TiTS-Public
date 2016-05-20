@@ -112,7 +112,13 @@ public function gooDickFap():void
 	showGrayGooArmor();
 	
 	output("You");
-	if(pc.armor is GooArmor) output(" pat your own goo-coated backside and");
+	if(pc.armor is GooArmor)
+	{
+		output(" pat your");
+		if(!pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS)) output(" own goo-coated");
+		else output(" naked and exposed");
+		output(" backside and");
+	}
 	else if(pc.hasItemByName("Goo Armor")) output(" open your inventory and");
 	else if(InShipInterior() && pc.hasItemInStorage(new GooArmor())) output(" open your storage and");
 	output(" ask [goo.name] if she’s up for a little fun. Wordlessly, the goo surrounding you squirms and writhes across your [pc.skinFurScales], caressing your [pc.nipples] and [pc.crotch] in ways that make your [pc.knees] tremble.");
