@@ -174,6 +174,11 @@
 		public var Bust_KQ2ENGINEER:Class;
 		public var Bounds_KQ2ENGINEER:Rectangle = new Rectangle(33, 11, 54, 64);
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/lane_f.png", mimeType = "image/png")]
+		public var Bust_LANE_F:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/lane_f_nude.png", mimeType = "image/png")]
+		public var Bust_LANE_F_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/lieve.png", mimeType = "image/png")]
 		public var Bust_LIEVE:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/lieve_nude.png", mimeType = "image/png")]
@@ -484,6 +489,11 @@
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/black_void_engineer.png", mimeType = "image/png")]
 			public var Full_KQ2ENGINEER:Class;
+
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/lane_f.png", mimeType = "image/png")]
+			public var Full_LANE_F:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/lane_f_nude.png", mimeType = "image/png")]
+			public var Full_LANE_F_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/lieve.png", mimeType = "image/png")]
 			public var Full_LIEVE:Class;
