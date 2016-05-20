@@ -116,6 +116,11 @@ package classes.Resources.Busts
 		
 		[Embed(source = "../../../assets/images/npcs/adjatha/penny_bimbo_horse.png", mimeType = "image/png")]
 		public var Bust_PENNY_BIMBO_HORSE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/adjatha/pexiga.png", mimeType = "image/png")]
+		public var Bust_PEXIGA:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/pexiga_bimbo.png", mimeType = "image/png")]
+		public var Bust_PEXIGA_BIMBO:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/adjatha/semith.png", mimeType = "image/png")]
 		public var Bust_SEMITH:Class;
@@ -255,6 +260,11 @@ package classes.Resources.Busts
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/penny_bimbo_horse.png", mimeType = "image/png")]
 			public var Full_PENNY_BIMBO_HORSE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/pexiga.png", mimeType = "image/png")]
+			public var Full_PEXIGA:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/pexiga_bimbo.png", mimeType = "image/png")]
+			public var Full_PEXIGA_BIMBO:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/semith.png", mimeType = "image/png")]
 			public var Full_SEMITH:Class;
