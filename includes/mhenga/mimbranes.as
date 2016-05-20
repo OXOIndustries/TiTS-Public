@@ -3742,7 +3742,7 @@ public function attachAMimbrane():void
 	addButton(0, "Next", mainGameMenu);
 
 	if (pc.hasCock() && pc.totalCocks() >= 1 && !pc.hasStatusEffect("Mimbrane Cock")) attachCockMimbrane();
-	else if (pc.hasVagina() && pc.totalVaginas() == 1 && !pc.hasStatusEffect("Mimbrane Pussy")) attachVagMimbrane();
+	else if (pc.hasVagina() && pc.totalVaginas() >= 1 && !pc.hasStatusEffect("Mimbrane Pussy")) attachVagMimbrane();
 	else if (!pc.hasStatusEffect("Mimbrane Ass")) attachAssMimbrane();
 	else if (pc.balls > 0 && pc.ballSize() > 0 && !pc.hasStatusEffect("Mimbrane Balls") && pc.hasStatusEffect("Mimbrane Cock")) attachBallsMimbrane();
 	else if (pc.biggestTitSize() >= 1 && !pc.hasStatusEffect("Mimbrane Boobs")) attachBoobMimbrane();
