@@ -49,8 +49,8 @@ public function useTheButtslutinator():void
 		output(". Your crotch sits above the hole");
 		if(pc.hasCock() || (pc.balls > 0 && pc.ballDiameter() >= 1)) output(", and you’re instantly glad for it. You shudder to think of how uncomfortable it would be to crush your own bulge against the futuristic plastics that line this device");
 		else output(", perfectly placed to take care of any boners, imaginary or not. Good thing you don’t have any such concerns");
-		output(". Grabbing hold of the joysticks on the far side, you wiggle on into place, " + pc.mf("chuckling","giggling") + " to yourself over how silly it is to bend yourself over such a goofy piece of tech.");
-		output("\n\nYou don’t have a chance to change your mind. Metal restrains snap down across your wrists and ");
+		output(". Grabbing hold of the joysticks on the far side, you wiggle into place, " + pc.mf("chuckling","giggling") + " to yourself about how silly it is to bend over on such a goofy piece of tech.");
+		output("\n\nYou don’t have a chance to change your mind. Metal restraints snap down across your wrists and ");
 		if(pc.hasKnees())
 		{
 			output("ankle");
@@ -65,7 +65,7 @@ public function useTheButtslutinator():void
 
 		output("\n\nA pinprick on your buttcheek is the first warning you get that something untoward is going on... besides the restraints, anyway. Any hope that was a sophisticated bondage toy is quickly dispelled.");
 		output("\n\nYou look back, concerned by the sight of robotic arms poised above your [pc.butt]. There are two of them, each tipped with a narrow needle, each lodged deep in the meat of your hindquarters. They shouldn’t be there. They definitely weren’t there when you climbed in, and you certainly didn’t sign up to get injections directly into your butt. Still, it doesn’t hurt <i>that</i> bad. The painful pricks have already faded into a dull, forgettable ache, almost mild enough for you to put the bodily invasion out of your mind while they withdraw from your ass.");
-		output("\n\nYet you can’t quite ignore the needles poised behind you, connected to sinister, metallic umbilicals. Whatever nefarious payload they were once loaded with is long gone, seemingly harmlessly deposited directly into veins, but you can’t help but feel that there is more to all this.");
+		output("\n\nYet you can’t quite ignore the needles poised behind you, connected to sinister, metallic umbilicals. Whatever nefarious payload they were once loaded with is seemingly long gone, harmlessly deposited directly into your veins, but you can’t help but feel that there is more to all this.");
 		output("\n\nOne last time, you futilely struggle against the metallic restraints. Something isn’t right here. You might not be feeling anything just yet, but you’re pretty sure that you shouldn’t be restrained and injected by strange furniture, no matter how high-tech it seems (or how hot the porn on its viewscreen might be).");
 		processTime(5);
 		pc.lust(40);
@@ -116,7 +116,7 @@ public function useTheButtslutinator():void
 			}
 			else 
 			{
-				output("as your dick");
+				output("your dick");
 				if(pc.cockTotal() > 1) output("s");
 			}
 			output(".");
@@ -211,8 +211,8 @@ public function useTheButtslutinator():void
 		output("\n\nThey snap down, burying their special cocktail of booty-boosting chemicals into your more-than-supple derriere, jiggling the cheeks with the impact. You " + (pc.isBimbo() ? "giggle" : "laugh") + " madly and turn back to the screen, pleased as a fucked-out slut on a frat-room floor to see that the familiar porn has returned. It’s just as hot as you remembered and yet somehow the clips are all brand new. You’re pretty sure at least one of the segments is Steph Irson getting taken by a few dozen tentacles as well.");
 		output("\n\nA quick, staticky cut replaces the star of Galactic Huntress with a more familiar backside - your own. It’s from the last time you strapped in, and stars above, you have a fantastic butt. It’s so big, and growing bigger by the minute, feeding off the bubbling hoses sticking into each cheek and twitching from the dildo’s orgasmic strokes.");
 		output("\n\nDrool oozes down your chin before you shake yourself out of your trance. The reaction was immediate and powerful - you wanted to tongue out your own ass. You wanted to slip your tongue inside that butt and make it nice and slippery with lust. Just imagining the muscle clenching down, driven to spasms of pleasure by your attention has you feeling hazy and lightheaded.");
-		output("\n\nOr is that the drugs? You realize that you can feel small pinpricks of pain and pressure. The hoses are pressing <i>hard</i> against your body. You can hear them bubbling with all the fluid passing through them, but where is it going? Certainly not into your asshole! You’d feel it if something big, hard, and cylindrical was filling you up back there. Feel it and probably cum as a matter of fact! You [pc.asshole] flexes powerfully, demandingly. It’s hungry, you realize - hungry for that big, fat silicone fuck-stick that you know this device is hiding somewhere.");
-		output("\n\nYou shake your head and swoon, concerned for the half-second it takes your blurring vision to catch up to your motions. Then it catches back up to the perfectly capture porn on the screen, and you giggle dizzily, awestruck by just how much ass has filled your vision. The current frame is layered over the half-dozen frames behind it, presenting you with the same ass through an array of different times and places, framed by bright pink words that fizz and pop against your cerebellum, making you moan and drool all over again.");
+		output("\n\nOr is that the drugs? You realize that you can feel small pinpricks of pain and pressure. The hoses are pressing <i>hard</i> against your body. You can hear them bubbling with all the fluid passing through them, but where is it going? Certainly not into your asshole! You’d feel it if something big, hard, and cylindrical was filling you up back there. Feel it and probably cum as a matter of fact! Your [pc.asshole] flexes powerfully, demandingly. It’s hungry, you realize - hungry for that big, fat silicone fuck-stick that you know this device is hiding somewhere.");
+		output("\n\nYou shake your head and swoon, concerned for the half-second it takes your blurring vision to catch up to your motions. Then it catches back up to the perfectly captured porn on the screen, and you giggle dizzily, awestruck by just how much ass has filled your vision. The current frame is layered over the half-dozen frames behind it, presenting you with the same ass through an array of different times and places, framed by bright pink words that fizz and pop against your cerebellum, making you moan and drool all over again.");
 		output("\n\n<i>“Big butt slut,”</i> you mouth, then giggle, idly twerking, feeling your too-juicy hindquarters quiver and shake. You wish it was on the yummy screen, framed by the words that seem increasingly prevalent in the pornographic montage. Phrases like <i>“good sluts get fucked”</i> and <i>“eager pets get to play”</i> seem particularly important, but you can’t seem to shake the more boring words either. <i>“Obey.”</i> It’s so singular next to the others that it rattles around in your dizzy little head, bouncing with all the kinetic energy of your oh-so-fuckable ass.");
 		output("\n\n<i>“Obey.”</i> It spills from your lips without conscious thought. Your asshole relaxes at the thought, and your eyes dilate.  A dozen images of girls and boys alike, all cumming from getting fucked, flashes by in an instant, underscoring a none-too-subtle point: <i>Obedience is pleasure.</i> It makes sense. Why else would the word be so large and accompanied by such delightful imagery. Once the word fades, it still lingers there whenever you see someone climax. <i>She must be obeying.</i> The thought arrives unbidden.");
 		processTime(15);
@@ -227,7 +227,7 @@ public function buttSlutBadEnd():void
 	clearOutput();
 	showName("BUTTSLUT-\nINATOR");
 	output("Though the Word has faded from your sight, no longer displayed all capitals on the screen, it remains seared in all capitals on the surface of your vulnerable brain. It makes so much sense. You marvel in awe at the genius of this wonderful new discovery. Of course obedience brings pleasure. Nobody wants to fuck a disagreeable Debbie. If you put your forehead on the floor or lick a dick-wielder’s sweaty balls, of course they’ll be more likely to fuck you.");
-	output("\n\nThere’s hundreds of words blurring together on the screen, words that seem like detailed instructions, yet they drift right past your conscious mind. You’re too busy congratulating yourself on a well-thought out piece of philosophy to examine the thoughts taking root in your hazy little head. And if you’re obedient, you really don’t have to do think all that hard, really. You can focus on your [pc.butt] - and the best ways to present it. You can look and act sexy instead of worrying about sounding smart, though you bet a smart tongue might get the right boy or girl to fuck you twice as hard.");
+	output("\n\nThere’s hundreds of words blurring together on the screen, words that seem like detailed instructions, yet they drift right past your conscious mind. You’re too busy congratulating yourself on a well-thought out piece of philosophy to examine the thoughts taking root in your hazy little head. And if you’re obedient, you don’t have to think all that hard, really. You can focus on your [pc.butt] - and the best ways to present it. You can look and act sexy instead of worrying about sounding smart, though you bet a smart tongue might get the right boy or girl to fuck you twice as hard.");
 	output("\n\nCock appears against your [pc.asshole], sliding smoothly inside your ultra-tender hole, making it strain deliciously with its girth. This is the biggest, best dildo yet. The head is fat and flared, stretching you wide to make room for the veiny length behind, and a series of three swollen knots line the shaft, delighting you with their texture and shape, allowing your sphincter to alternate between stretched wide and pleasantly slack.");
 	pc.buttChange(500);
 	output("\n\nThat’s just perfect. Really, any sized dick would feel like heaven, but there’s something special about feeling your cheeks being pushed wide by the member itself and discovering the exact shape of its tip in the distention it makes in your belly. It slides in and out with perfect precision, delighting your nerves and robbing your muscles of strength. It’s the perfect complement to the dazzling porn collection ahead, letting you feel just as fucked as each of those girls.");
@@ -245,8 +245,13 @@ public function buttSlutBadEnd2():void
 	output("You bounce in your restraints each time the machine brings you to orgasm, flexing muscles that make your oversized ass-cheeks bounce and clap, your pleasure audible for anyone to hear. Your tongue lolls and your head swims, filled by sights and words that seem as obvious as a second-grader’s homework. Of course there’s no shame in kneeling and holding your ass open with both hands. How else should one offer oneself to their master?");
 	output("\n\nThe fucking never seems to end. After what you assume is an hour, the dildo is replaced with bigger, meatier one, this one more human in shape. It feels every bit as great as the last. Sizzles of ecstasy electricity arc through your dopey, drugged-up brain, and the closest thing you can offer to resistance is a lurid moan. It’s too good not to.");
 	pc.buttChange(1000);
-	output("\n\nYour body is a plaything, a toy, a possession for the closest, most virile cock-packing person. They could be short and chubby, you wouldn’t care. They could be lanky and submissive, but you’d tease them into your using your ass, that you’re sure of. You’d teach them how to give commands, just so that you could get the thrill of obeying them. And if you found a confident, hung herm with a cock the size of a baseball bat? Fuck, you’re drooling again.");
+	output("\n\nYour body is a plaything, a toy, a possession for the closest, most virile cock-packing person. They could be short and chubby, you wouldn’t care. They could be lanky and submissive, but you’d tease them into using your ass - that, you’re sure of. You’d teach them how to give commands, just so that you could get the thrill of obeying them. And if you found a confident, hung herm with a cock the size of a baseball bat? Fuck, you’re drooling again.");
 	processTime(120);
+	for(var x:int = 0; x < 15; x++)
+	{
+		pc.orgasm();
+	}
+	pc.lust(100);
 	clearMenu();
 	addButton(0,"Next",buttSlutBadEnd3);
 }
