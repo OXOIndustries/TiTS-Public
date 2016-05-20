@@ -1,6 +1,5 @@
 ﻿public function isHalloweenish():Boolean
 {
-	return true;
 	//checkDate(day:int, month:int, dayRange:int)
 	return checkDate(29, 10, 3);
 }

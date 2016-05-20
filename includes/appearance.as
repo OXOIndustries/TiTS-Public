@@ -986,7 +986,7 @@ public function appearance(forTarget:Creature):void
 		//Horse version
 		if(target.isTaur()) {
 			//FATBUTT
-			if(target.tone < 65) {
+			if(target.tone < 65 || target.hasPerk("Buttslut")) {
 				output2(" Your " + target.buttDescript());
 				if(target.buttRating() < 4) output2(" is lean, from what you can see of it.");
 				if(target.buttRating() >= 4 && target.buttRating() < 6) output2(" looks fairly average.");
@@ -1009,7 +1009,7 @@ public function appearance(forTarget:Creature):void
 		//Non-horse PCs
 		else {
 			//TUBBY ASS
-			if(target.tone < 60) {
+			if(target.tone < 60 || target.hasPerk("Buttslut")) {
 				output2(" your " + target.buttDescript());
 				if(target.buttRating() < 4) output2(" looks great under your gear.");
 				if(target.buttRating() >= 4 && target.buttRating() < 6) output2(" has the barest amount of sexy jiggle.");
