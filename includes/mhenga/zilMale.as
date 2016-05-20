@@ -89,10 +89,14 @@ public function winVsZil():void {
 	if(pc.hasTailCock()) addButton(4,"Tail Peg",tailCockPegTheZil);
 	else addDisabledButton(4,"Tail Peg","Tail Peg","You'll need a tailcock to peg the zil with it.");
 
-	if(pc.hasCock()) addButton(5,"Get BJ",getABJFromAManzil,undefined,"Get BJ","Get a BJ from the waspy male.");
-	else addDisabledButton(5,"Get BJ","Get BJ","Get a blowjob from the zil before you.");
+	if(pc.hasCuntTail()) addButton(5,"Tail Milk",useTailOnZilWhenUWin,undefined,"Tail Milk","Milk his sugary dick with your parasitic tail.");
+	else addDisabledButton(5,"Tail Milk","Tail Milk","You need a tail-mounted vagina to do this.");
+
+	if(pc.hasCock()) addButton(6,"Get BJ",getABJFromAManzil,undefined,"Get BJ","Get a BJ from the waspy male.");
+	else addDisabledButton(6,"Get BJ","Get BJ","Get a blowjob from the zil before you.");
+
 	//Cuff&Fuck
-	cuffNFuckButton(6, enemy);
+	cuffNFuckButton(7, enemy);
 	//Femzil prompt
 	if(pc.hasKeyItem("Capture Harness") && flags["CAPTURED_A_MALE_ZIL_FOR_DR_HASWELL"] == undefined) {
 		addButton(9,"Capture",useTheCaptureHarness);
@@ -1256,4 +1260,107 @@ public function theZilPretendToBeHelia():void {
 	pc.loadInMouth(chars["ZILFEMALE"]);
 	processTime(59);
 	CombatManager.genericLoss();
+}
+
+//Cunt tail sex with Male Zil - Frogapus
+public function useTailOnZilWhenUWin():void
+{
+	clearOutput();
+	userInterface.showBust("ZIL");
+	userInterface.showName("MALE\nZIL");
+	author("Frogapus");
+	output("You grin as you flex your supernumerary tail muscles, flexing your tail up to your side. It curls up just under your hand as you look down hungrily at your anthophile opponent. He pushes himself up weakly to his hands, looking up at you with glossy black eyes, and you trace a finger along the finely scaled top of your symbiotic tail.");
+	output("\n\nThe shiver of pleasure runs up through your shared nervous systems, making the [pc.tailCunt] drip viscid ropes of arousal down to the forest floor. You grin broadly, and the zil at your feet buzzes in alarm.");
+	output("\n\n<i>“That’s-that’s a cunt znake!”</i> he exclaims, trying to push himself up to a sitting position. <i>“You’re infected!”</i>");
+	output("\n\n<i>“That’s right,”</i> you " + pc.mf("chuckle","purr") + ". <i>“And it feels so good.”</i>");
+	output("\n\nThe nubile zil manages to scramble to a sitting position, but before he can say any more, you feel the folds of your tail-mounted pussy part, exposing your slobbering interior. The slight breeze in the forest, warm and humid normally, feels cool against your shared lips. You initially wonder what your tail is doing, but then catch sight of the zil.");
+	output("\n\nHis blank eyes appear locked on your cunt tail’s dewey opening. As you watch, his expression softens slowly, turning from horror to hunger as your tail sways slowly back and forth. The zil makes a soft, buzzing noise as he slides his hand down to his groin, his chitin retracting, his onyx cock swelling up between his amber fingers.");
+	output("\n\n<i>“You want it, don’t you?”</i> you ask, watching in amusement as the zil begins to stroke himself to the sight of your swaying tail cunt.");
+	output("\n\n<i>“Yes...”</i> he buzzes, licking his lips.");
+	output("\n\n<i>“Good.”</i> You smile and ");
+	if(pc.isNaga()) output("surge forward, looping a heavy coil of your tail atop his chest, weighing him down to the ground.");
+	else output("step forward, placing a [pc.foot] on the Zil’s chest, pushing him down to the ground.");
+	
+	output(" Flat on his back, he looks up at you, first in confusion, then hungry anticipation as he feels the heat from your symbiont over his engorged cock.");
+	output("\n\nYou feel another surge of pleasure from your tail. You’re not sure how much it’s aware of, exactly, but it does seem to approve of a helpless, erect cock for its use. The surge ripples outward, and you ");
+	if(!pc.hasCock()) output("feel your nipples stiffen under your [pc.clothes]");
+	else output("and shudder with an answering stiffening from your [pc.cocks], already erect at the thought of using this helpless Zil to get you off");
+	output(". ");
+	if(pc.hasVagina()) 
+	{
+		output("A heartbeat later, you feel your cunt");
+		if(pc.totalVaginas() > 1) output("s");
+		output(" throb in appreciation at the endorphins your tail is feeding you. ");
+	}
+	output(" The zil moans softly, biting his lip as your tail cunt drips strings of arousal atop his cock, slathering it with your shared stimulation.");
+
+	output("\n\nYour insectile victim squirms under you, and you push down harder. He stills obediently, and you reward him with the first, sweltering touch of your cunt. It swings over his throbbing cock, brushing his tip across its folds. You groan softly, feeling the sensations radiating out to your fingertips. The zil’s breath quickens as your tail begins to push down against his cock.");
+
+	output("\n\nYou feel him enter the oozing folds of your tail cunt, hearing the squelch as your tail engulfs him, effluxing wetness around his length, squeezing tight. Your breath catches in your throat and you hold still, momentarily frozen in enjoyment of the delicious sensations running throughout your shared nervous system. Your tail, however, is ravenously mobile, already sliding down the bee’s length, burying the zil inside it. It pushes deep, hungry for his length, engulfing not just the zil’s shaft, but its balls, held tight against the base of his shaft.");
+
+	output("\n\nYou nearly double over as your tail slides back up with a squelch, leaving a feeling of insatiate emptiness in you. The zil leans his head back, mouth agape as your tail slides down again, its tight inner walls rippling against the zil’s cock. His hips buck upward, desperate for more your symbiotic love, and your cunt tail obliges. It surges down again, drawing a loud moan from the zil-one almost drowned out by your own. When you clench your muscles and draw your tail back up again, the two of you harmonize in debauched groans of pleasure.");
+
+	output("\n\nYou look down at the zil, meeting his blissed-out expression with your own, practically drooling down on his face as your tail pumps against him. ");
+	if(!pc.isNaga()) output("The leg you’re keeping on his chest starts to tremble with ");
+	else output("Your snake-like coils on his chest shift as you squirm in delight at ");
+	output(" the shudders of pure joy running through your body. Your tail is moving faster now; you can feel it flexing inside, massaging and milking the zil’s dick.");
+
+	output("\n\nFaster and faster your cunt tail pumps. ");
+	if(pc.hasCock())
+	{
+		output("Your cock");
+		if(pc.cockTotal() > 1) output("s");
+		output(" are trobbing now, fit to burst, already oozing pre from ");
+		if(pc.cockTotal() == 1) output("its");
+		else output("their");
+		output(" lengths, down to the face of the zil. He seems only vaguely aware of it, adrift in a sexual haze, his tongue slipping out to lap softly at it. ");
+	}
+	if(pc.hasVagina())
+	{
+		output("Your puss");
+		if(pc.cockTotal() == 1) output("y leaks");
+		else output("ies leak");
+		output(" your arousal down your quaking thighs, running down hot and slick. ");
+	}
+	output("Your whole body is trembling, and you’re on the verge of collapsing on top of your “victim.”");
+	output("\n\nWith a strangled groan, the zil finally cums, his cock flooding your ravenous tail with thick, sweet honey. Your mouth waters as your cunt tail shares the sensation of the heady, sacchrine zil cum running down its endless gullet. Your tail clamps down hard on the zil’s package, sealing tight and rippling as it noisily slurps every drop of his syrupy seed.");
+
+	output("\n\nIn thick jets cum oozes into your tail, and and you swear you feel your tail pulse, pumping endorphins into your system, flooding you with bliss. You gasp, hips thrusting forward as you, yourself cum.");
+	if(pc.hasCock()) 
+	{
+		output(" You fumble at your cock");
+		if(pc.cockTotal() > 1) output("s");
+		output(" managing only to point ");
+		if(pc.cockTotal() == 1) output("it");
+		else output("them");
+		output(" down in time to unload a ");
+		if(pc.cumQ() < 15) output("spatter");
+		else if(pc.cumQ() < 250) output("load");
+		else output("torrent");
+		output(" of cum over the Zil’s face. He gapes up at you, too lost in bliss to care, his mouth open to take in your seed as he pumps his into your tail.");
+	}
+	if(pc.hasVagina())
+	{
+		output(" You reach down to your needy cunt");
+		if(pc.totalVaginas() > 1) output("s");
+		output(" as you drive a finger into ");
+		if(pc.totalVaginas() == 1) output("it");
+		else output("one");
+		output(", moaning as you ");
+		if(!pc.isSquirter()) output("dribble");
+		else if(pc.girlCumQ() < 1000) output("squirt");
+		else output("spray");
+		output(" your juices across the zil’s smooth chest.");
+	}
+
+	if(!pc.isNaga()) output("\n\nYour legs actually do give out, then, and you fall atop the zil, ");
+	else if(pc.isTaur()) output("All four of your legs give out, and you fold atop the zil, your body pressed against him, ");
+	else output("\n\nYour trembling body finally does give out and you collapse atop the zil, ");
+	output("forcing another spasm from the svelte creature, pumping another round of honey-thick loads into your tail. You shudder against the zil’s cum-drenched body, drooling softly in bliss as your tail milks him for the next hour or so. It looks like your cunt tail particularly enjoys the taste of honey.");
+	output("\n\nYou wake up later in an empty clearing. Your tail lies fat and sated, and a small package sits on the bracken in front of you. You lick your lips, tasting honey on them, then reach for the package. It seems that after all of your coaxing, the zil learned to appreciate you and your tail.\n\n");
+	pc.orgasm();
+	processTime(85);
+	pc.orgasm();
+	pc.loadInCuntTail(chars["ZIL"]);
+	CombatManager.genericVictory();
 }

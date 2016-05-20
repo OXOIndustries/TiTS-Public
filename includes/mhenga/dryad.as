@@ -75,6 +75,8 @@ public function dryadMeeting():void
 		if (pc.hasCock() && pc.biggestCockLength() >= 12) addButton(3, "Fuck Her", dryadDick, undefined, "Fuck Her", "Fuck the girl's pussy to get her off.");
 		else if (pc.hasCock()) addDisabledButton(3, "Fuck Her", "Fuck Her", "Your dick needs to be at least a foot long before the femtaur will let you fuck her.");
 		else addDisabledButton(3, "Fuck Her", "Fuck Her", "You don't have a foot-long dick to fuck her with.");
+		if(pc.hasCuntTail()) addButton(4,"Tail Milk",tailCuntDryadFun,undefined,"Tail Milk","Use your tail to milk her needy member.");
+		else addDisabledButton(4,"Tail Milk","Tail Milk","You need a tail-mounted vagina to do this.");
 	}
 	else
 	{
@@ -85,6 +87,8 @@ public function dryadMeeting():void
 		if (pc.hasCock() && pc.biggestCockLength() >= 12) addDisabledButton(3,"Fuck Her","Fuck Her","You aren't aroused enough for that.");
 		else if (pc.hasCock()) addDisabledButton(3, "Fuck Her", "Fuck Her", "Even if you were aroused enough, your dick needs to be at least a foot long to fuck her.");
 		else addDisabledButton(3, "Fuck Her", "Fuck Her", "Even if you were aroused enough, you need a dick at least a foot long to fuck her.");
+		if(pc.hasCuntTail()) addDisabledButton(4,"Tail Milk","Tail Milk","You aren't aroused enough for this.");
+		else addDisabledButton(4,"Tail Milk","Tail Milk","You need a tail-mounted vagina to do this.");
 	}
 	addButton(14, "Leave", dryadNo, undefined, "Leave", "You don't wanna bang right now.");
 }
@@ -319,4 +323,117 @@ public function dryadNo():void
 	processTime(2);
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
+}
+
+//Tail cunt vs. Dryad
+public function tailCuntDryadFun():void
+{
+	clearOutput();
+	dryadHeader();
+	author("Frogapus");
+	output("You grin at the fem’s offer and decide that this would be the perfect time to sate your symbiotic appendage.");
+	output("\n\n<i>“How about a tail job?”</i> you ask her. You raise your tail up over your shoulder, running your fingers along its underside, thrilling at the shiver of pleasure that runs down its length and up your spine. At your touch, it trembles open, displaying its inviting, [pc.tailCuntColor] folds to the frantic taur.");
+	output("\n\nShe pauses hesitantly at first, but a visible twitch from her bright, pink cock shakes her into action. <i>“Oh... okay, sure! I mean... as long as you’re sure it can handle me.”</i>");
+	output("\n\nYou assure her it can and she claps her hands with glee, her rump shaking from side to side. Her massive dick swings with it, trailing pre across the forest floor. <i>“Oh goody! Thank you so much! You wouldn’t believe how hard it’s been!”</i>");
+	output("\n\nYou smirk at the statement and ");
+	if(pc.isTaur()) output("sidle up against her, your warm flank pressed to hers, as she turns to face you.");
+	else if(pc.tallness > 72) output("approach her front, looking into her eyes.");
+	else output("approach her from the front, looking up at her. She kneels down curiously, bringing her head level to yours.");
+
+	if(pc.isTaur()) 
+	{
+		output("\n\nYour tail slides beneath your legs, ");
+		if(pc.balls > 0) output("brushing sinuously against your balls, ");
+		output("curling under her belly, and running up the length of her cock, smearing your tail cunt’s lubrication along it.");
+	}
+	else
+	{
+		output("\n\nYou curl your tail around your [pc.hips], slipping it between the taur’s legs.");
+	}
+	output(" Its slippery slit brushes up against her erect horsecock. You feel the flared front of it pressing against your prehensile tail, and she bucks against you impatiently.");
+	output("\n\nYou slide your [pc.arms] up to her breasts, fingers splaying over their soft curves. You lift her nubile breasts to your mouth, running your [pc.tongue] around her pink areolas, tracing the smoothness and subtle bumps. She gasps in pleasure, arching her neck, her red hair cascading down her back. <i>“Oh fuck yesssss!”</i> she hisses through clenched teeth.");
+	output("\n\nYour tail cunt surges forward, driven by a warm splash of the ");
+	if(pc.isTaur()) output("other ");
+	output("taur’s pre against it. With a wet squelch, it engulfs the taur’s massive cock. Through shared senses, you feel the wide rim of her equine dick fill your tail, stretching tight around its hot, wet walls. You moan through a mouthful of the dryad’s breast, her own squeal of pleasure answering you. Your fingers sink deep into her pillowy mounds as your tail pushes further and further down her shaft. The head of her cock sinks further and further into you, feeling impossibly wide, driving deep into your symbiont.");
+	output("\n\nShe wraps her arms around your back, her fingers digging deep into your [pc.skinFurScales] and raking lines down your back. She pants in pleasure, her full lips against your [pc.ear], breathing hot, and heavy against you. <i>“Oh yes... Oh fuck... oh, it’s so tight...”</i>");
+	output("\n\nYou bury your face into her breasts, moving your mouth from one to the other. Your teeth graze over her nipples as your tongue teases and flicks each one in turn. ");
+	if(pc.hasCock())
+	{
+		output("Your own cock");
+		if(pc.cockTotal() > 1) output("s");
+		output(" are rigid, twitching in the sensory feedback from your cunt tail, pre already starting to bead at your tip");
+		if(pc.cockTotal() > 1) output("s");
+		output(". ");
+	}
+	if(pc.hasVagina())
+	{
+		output("Your ");
+		if(pc.totalVaginas() == 1) output("pussy");
+		else output("pussies");
+		output(" throbs, aching to be filled, already sympathetically wet with the pumping one at the end of your tail. ");
+	}
+	output("You can feel the taur inside your tail, already twitching, despite not even being halfway engulfed.");
+
+	output("\n\nOut of pride or lust you spur your tail forward, and it slowly courses down the dryad’s length, rippling, sending wave after wave of pleasure up your spine, flooding your nervous system with bliss. You open your mouth, releasing the dryad’s breast, to tilt back your head and let out a mindless moan of pleasure. Your eyes flutter as you feel something warm against your lips. You struggle to focus, finding the dryad’s lips locked against yours. Her own expression-what you can see of it at any rate-seems similarly lost in a haze of joy.");
+	output("\n\nYou and the dryad share a carnal kiss, her tongue wrestling with yours as your tail pushes further and further down her dick. She pushes back, too, anxious to fill the depths of your tail. You can feel your cunt tail convulse as she oozes out a trickle of pre inside it, and it begins contracting in waves, swallowing the trickle of fluid. With every inch you take, she squeaks softly into your mouth, and your whole body trembles.");
+	output("\n\nFinally, your slavering cunt brushes against the curve of her heavy balls. She groans, and your tail cunt slides back, oozing wetness across her shaft, exposing it to the air, before undulating back down, hot and wet around the dryad’s dick. She groans, breaking the kiss, to arch her back as your tail begins pumping slowly up and down her length.");
+	output("\n\nYou slide up and down her length, tight around her massive dick, almost as if your tail were an onahole for the dryad’s pleasure. As you build speed, she wraps her arms tight around you and pulls you against her chest.");
+	if(pc.isTaur()) output(" She pulls you against her, right, her face buried against your neck. He sucks and bites against your shoulder and neck as she gasps hungrily.");
+	else output(" She pulls your face into her chest, her breasts pressing against your cheeks as she gasps in pleasure. You can do little more than pant against her cleavage, drawing further squeals from the frantic taur.");
+	output("\n\n<i>“More! More!”</i> she pleads, her hips bucking against your tail cunt. <i>“I need to... to...”</i>");
+	output("\n\nYou redouble your efforts, your tail cunt pumping like a piston around her cock, pussy juice splattering against the forest floor. She squeals in overwhelming bliss as her cock twitches sharply in your tail cunt.");
+	output("\n\n<i>“CUM!”</i> she shrieks.");
+	output("\n\nWith a primal scream of joy she shoves HARD against your tail cunt, and lets loose a flood of cum into it. Instinctively, your tail shoves down against her cock, wrapping tight around her base, its walls rippling as it milks her.");
+	output("\n\nYou actually feel your tail bulge outwards, ballooning out around her tip as she fires out an initial bucket’s-worth of cum into your tail cunt. Your breath catches in your throat, as her arms wrap tight around you, pulling you sharply against her. She howls again, firing another massive load of cum inside you, just as your tail tries to process the first gout of thick, hot seed.");
+	output("\n\nThe sensations begin to overwhelm you, and you feel your body respond in kind.");
+	if(pc.hasCock()) 
+	{
+		output(" Your [pc.cocks] spurt");
+		if(pc.cockTotal() == 1) output("s");
+		output(" in a hands-free orgasm, ");
+		if(pc.isTaur()) output("dumping your load onto the forest floor.");
+		else output("spurting your load against the dryad’s smooth belly.");
+	}
+	if(pc.hasVagina())
+	{
+		output(" Your [pc.vaginas] tremble");
+		if(pc.totalVaginas() == 1) output("s");
+		output(", ");
+		if(!pc.isSquirter()) output("trickling");
+		else if(pc.girlCumQ() < 1000) output("spurting");
+		else output("gushing");
+		output(" your juices down your thighs.");
+	}
+	if(!pc.hasGenitals()) output(" You groan in frustration, pinned to the dryad, unable to find release.");
+
+	output("\n\nYou tremble against her, your body feeling weak. The cum keeps coming, filling your tail cunt until it stretches out along its whole length. To your symbiont’s credit, it stays mostly sealed around her shaft, save for a small spurt of white, milky cum running down her equine balls.");
+	output("\n\nYou’re not sure how much more of this your tail-or you-can take. When she finally finishes, she lets out a satisfied sigh, her hips giving a final buck. You pull back away from her chest with a gasp, definitely feeling worse for the wear. Your tail aches, stuffed to the brim, barely able to wriggle weakly against her shaft, looking like an overfilled condom, full to sloshing with the dryad’s near-endless load.");
+	output("\n\nThe dryad sighs deeply in satisfaction and looks down at you.");
+	output("\n\n<i>“You have no idea how much I needed that. Thanks, babe, And come back any time! It’s always rough when I’m in heat, I can really use the help.”</i>");
+	output("\n\nBefore you can burble a response, she lets go of you and you stumble back, your tail cunt coming loose from her dick, and falling limply to the forest floor. Full and heavy, it sloshes with impact, a spatter of dryad cum spurting out from it.");
+	output("\n\nShe bends down and gives you a gentle kiss before gracefully loping away, her tail flitting hypnotically from side to side as she disappears into the foliage.");
+	output("\n\nYou take a single, dizzy step forward, your swollen tail dragging on the ground behind you, then decide that you need to rest a bit before continuing. You rest on a fallen trunk, gathering your thoughts as the world spins around you. You feel bloated, stuffed, and sleepy, and think that a nap might not be so bad.");
+	processTime(25);
+	pc.orgasm();
+	//Use a suitably voluminous stand-in :D
+	pc.loadInCuntTail(chars["NAYNA"]);
+	clearMenu();
+	addButton(0,"Next",postCuntTailDryad);
+}
+
+public function postCuntTailDryad():void
+{
+	clearOutput();
+	dryadHeader();
+	author("Frogapus");
+	output("You wake up with a start, glancing around at the clearing. You must have drifted off. You reach behind you, feeling for your tail, and encounter only a mild soreness. It looks like your cunt tail forced you to sleep so that it could digest such a huge meal. It’s slimmed back down, and gives a happy tremor as you inspect it.");
+	output("\n\nYou’re not really sure how comfortable you are with your tail hijacking your body like that, but you admit that you feel a lot better. Energized, in fact");
+	if(pc.hasCock() || pc.hasVagina()) output(" and extremely sated");
+	output(".");
+	//[PC gains benefit of rest, orgasm if not genderless, and +10 energy].
+	processTime(120+rand(60));
+	restHeal();
+	IncrementFlag("DRYAD_FUCKED");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
