@@ -2,6 +2,7 @@
 {
 	import classes.Creature;
 	import classes.GLOBAL;
+	import classes.Items.Miscellaneous.ImmunoBooster;
 	import classes.Items.Protection.DecentShield;
 	import classes.Items.Accessories.JungleLure;
 	import classes.Items.Accessories.JungleRepel;
@@ -16,7 +17,7 @@
 		//constructor
 		public function VKo()
 		{
-			this._latestVersion = 1;
+			this._latestVersion = 2;
 			this.version = _latestVersion;
 			this._neverSerialize = true;
 			
@@ -57,6 +58,7 @@
 			this.inventory.push(new JungleLure());
 			this.inventory.push(new JungleRepel());
 			this.inventory.push(new MagicMilker());
+			this.inventory.push(new ImmunoBooster());
 			this.typesBought[this.typesBought.length] = GLOBAL.PILL;
 			this.typesBought[this.typesBought.length] = GLOBAL.POTION;
 			this.typesBought[this.typesBought.length] = GLOBAL.DRUG;
@@ -182,6 +184,11 @@
 			this.ass.bonusCapacity = 100;
 			
 			this.createStatusEffect("Disarm Immune");
+		}
+		
+		public function UpgradeVersion1(dataObject:Object):void
+		{
+			dataObject.inventory.push(new ImmunoBooster().getSaveObject());
 		}
 		
 		override public function onLeaveBuyMenu():void

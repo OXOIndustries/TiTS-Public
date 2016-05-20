@@ -2,6 +2,7 @@
 {
 	import classes.Creature;
 	import classes.GLOBAL;
+	import classes.Items.Miscellaneous.ImmunoBooster;
 	import classes.Items.Protection.JoyCoEliteShield;
 	import classes.Items.Recovery.ShieldBoosterMkII;
 	import classes.Items.Accessories.MuskRepel;
@@ -23,7 +24,7 @@
 		//constructor
 		public function Vi()
 		{
-			this._latestVersion = 1;
+			this._latestVersion = 2;
 			this.version = _latestVersion;
 			this._neverSerialize = true;
 			
@@ -36,6 +37,7 @@
 			this.inventory.push(new MuskLure());
 			this.inventory.push(new MaleDoctorOutfit());
 			this.inventory.push(new FemaleDoctorOutfit());
+			this.inventory.push(new ImmunoBooster());
 
 			this.typesBought[this.typesBought.length] = GLOBAL.PILL;
 			this.typesBought[this.typesBought.length] = GLOBAL.POTION;
@@ -51,6 +53,11 @@
 			this.vaginas[0].wetnessRaw = 4;
 			this.vaginas[0].loosenessRaw = 1;
 			this.vaginas[0].bonusCapacity = 20;
+		}
+		
+		public function UpgradeVersion1(dataObject:Object):void
+		{
+			dataObject.inventory.push(new ImmunoBooster().getSaveObject());
 		}
 		
 		override public function onLeaveBuyMenu():void

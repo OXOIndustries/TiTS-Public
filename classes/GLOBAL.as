@@ -72,6 +72,7 @@
 		public static const FLAG_ABSORBENT:int								= 39;
 		public static const FLAG_SLIGHTLY_PUMPED:int 						= 40;
 		public static const FLAG_PUMPED:int 								= 41;
+		public static const FLAG_TAILGINA:int								= 42;
 		
 		public static const FLAG_NAMES:Array = [
 			"OFFSET -- INVALID",
@@ -116,6 +117,7 @@
 			"Absorbent",
 			"Slightly Pumped",
 			"Fully Pumped",
+			"Tailcunt",
 		];
 		
 		public static const VALID_SKIN_FLAGS:Array = [
@@ -554,6 +556,7 @@
 			FLAG_GOOEY,
 			FLAG_STICKY,
 			FLAG_TAPERED,
+			FLAG_TAILGINA,
 		];
 		
 		public static const TAIL_GENITAL_NONE:int 	= 0;
@@ -580,6 +583,8 @@
 			TYPE_SIREN,
 			TYPE_COCKVINE,
 			TYPE_GRYVAIN,
+			TYPE_FELINE,
+			TYPE_VULPINE,
 		];
 		
 		//SKINTYPES

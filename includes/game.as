@@ -10,6 +10,7 @@ import classes.Items.Accessories.LeithaCharm;
 import classes.Items.Miscellaneous.EmptySlot;
 import classes.Items.Miscellaneous.HorsePill;
 import classes.Items.Transformatives.Clippex;
+import classes.Items.Transformatives.Foxfire;
 import classes.Items.Transformatives.Goblinola;
 import classes.RoomClass;
 import classes.StorageClass;
@@ -1107,6 +1108,7 @@ public function move(arg:String, goToMainMenu:Boolean = true):void {
 		if(!pc.isCrotchGarbed() || pc.isCrotchExposed() || pc.isAssExposed()) nudistPrevention = true;
 		// Cover yourself with your fuckton of wings
 		if (pc.wingType == GLOBAL.TYPE_DOVE && pc.wingCount >= 4 && pc.genitalLocation() <= 1) nudistPrevention = false;
+		if (Foxfire.canUseTailsOrFurAsClothes(pc)) nudistPrevention = false; // function is pretty much self-descriptive - see if your body can cover itself
 		if(nudistPrevention)
 		{
 			clearOutput();
@@ -2144,6 +2146,18 @@ public function racialPerkUpdateCheck():void
 			msg += "\n\n(<b>Perk Lost: Slut Stamp</b>)";
 			pc.removePerk("Slut Stamp");
 		}
+	}
+	if (pc.hasPerk("Androgyny") && pc.perkv1("Androgyny") > 0 && !pc.hasFaceFlag(GLOBAL.FLAG_MUZZLED))
+	{ // racialPerkUpdateCheck: removal of Androgyny perk with the loss of muzzle.
+		msg += "\n\nWith your face becoming more human, your appearance is now no longer androgynous.";
+		msg += "\n\n(<b>Perk Lost: Androgyny</b> - You've lost your muzzle.)";
+		pc.removePerk("Androgyny");
+	}
+	if (pc.hasPerk("Icy Veins") && pc.perkv1("Icy Veins") > 0 && (!pc.hasSkinFlag(GLOBAL.FLAG_FLUFFY) || pc.skinType != GLOBAL.SKIN_TYPE_FUR))
+	{ // racialPerkUpdateCheck: removal of Icy Veins perk with he loss of fluffy fur (fork on still having fur but not fluffy flag?).
+		msg += "\n\nWithout all that thick, fluffy coat of fur you suddenly feel rather cold...";
+		msg += "\n\n(<b>Perk Lost: Icy Veins</b> - You've lost your insulating coat of fur, and as a result you are now weaker against cold.)";
+		pc.removePerk("Icy Veins");
 	}
 	
 	if(msg.length > 0) eventBuffer += msg;

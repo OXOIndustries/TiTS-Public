@@ -69,7 +69,7 @@ package classes.Items.Transformatives
 			//Longass shit, not sure what used for yet.
 			this.description = "a medipen loaded with 'Catnip'";
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "A new-gen designer transformative, featuring new level of efficiency and consistency. Based on old frontier colonization species project, it causes the user to gain sleek, flexible and very animalistic feline form without any known side effects. No actual catnip included.";
+			this.tooltip = "A new-gen designer transformative, featuring the new level of efficiency and consistency. Based on old frontier colonization species project, it causes the user to gain sleek, flexible and very animalistic feline form without any known side effects. No actual catnip included.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -98,9 +98,9 @@ package classes.Items.Transformatives
 			if(target is PlayerCharacter) {
 				output("Pressing the activation stud is all it will take. You hold the tip against your arm and brace yourself, pushing the button.");
 				if (kGAMECLASS.flags["CATNIP_USED"] == undefined) {
-					output(" A quiet-sounding 'snick' hits your ears, but nothing else. Did it even work? You look where pen touched your skin. There's a tiny red mark and nothing else. The pen's label displays the word ‘inactive’ in bold red text. It must have a built in painkiller. Suddenly, your codex beeps responding to connection request from injected nanobots.");
+					output(" A quiet-sounding 'snick' hits your ears, but nothing else. Did it even work? You look where pen touched your skin. There's a tiny red mark and nothing else. The pen's label displays the word ‘inactive’ in bold red text. It must have a built-in painkiller. Suddenly, your codex beeps responding to the connection request from injected nanobots.");
 					
-					output("\n\n<i>“Detected feedback-compatible Biosign Monitor device. Aborting automated route. Debug mode activated. System is awaiting input. Please select specific route or confirm default settings. Please note: targeted route is less effective than automated, since it forces override of optimization algorithm.”</i>");
+					output("\n\n<i>“Detected feedback-compatible Biosign Monitor device. Aborting automated route. Debug mode activated. The system is awaiting input. Please select a specific route or confirm default settings. Please note: targeted route is less effective than automated since it forces an override of the optimization algorithm.”</i>");
 					
 					kGAMECLASS.flags["CATNIP_USED"] = 1;
 				}
@@ -131,9 +131,9 @@ package classes.Items.Transformatives
 			
 			output("<u><b>Status report:</b></u>");
 			
-			if (!force) addButton(13, "Override", function():* { clearOutput(); routeMenu(target, true); }, null, "Override", "Enable override mode. System would attempt to execute route without checking it's availability.\nWarning: this menu is for authorized personnel only.\nWarning: bypassing of safety protocols is not advised, those functions are called unsafe for a reason.");
+			if (!force) addButton(13, "Override", function():* { clearOutput(); routeMenu(target, true); }, null, "Override", "Enable override mode. The system would attempt to execute route without checking its availability.\nWarning: this menu is for authorized personnel only.\nWarning: bypassing of safety protocols is not advised, those functions are called unsafe for a reason.");
 			else {
-				addButton(13, "Safe", function():* { clearOutput(); routeMenu(target, false); }, null, "Safe", "Enable safe mode. System would check route availability before executing it.");
+				addButton(13, "Safe", function():* { clearOutput(); routeMenu(target, false); }, null, "Safe", "Enable safe mode. The system would check route availability before executing it.");
 				output(" status scan is bypassed.");
 			}
 			
@@ -234,7 +234,7 @@ package classes.Items.Transformatives
 			else buffer += ("Route blocked.");
 			
 			if (options.length > 0)
-				addButton(0, "Default", routeDefault, target, "Default Route", "Let it detect and execute most effective route.");
+				addButton(0, "Default", routeDefault, target, "Default Route", "Let it detect and execute most efficient route.");
 				
 			if (!force) output(buffer);
 		}
@@ -272,7 +272,7 @@ package classes.Items.Transformatives
 			// decrease thicknes
 			if (target.thickness >= 20 && modThickness(target, 20, 10, false))
 			{
-				output("\n\nSomething is shifting inside you, and you suddenly feel you can move with less effort. <b>Looks like you lose some weight!</b> ");
+				output("\n\nSomething is shifting inside you, and you suddenly feel you can move with less effort. <b>It looks like you lose some weight!</b> ");
 				changes++;
 				
 				// increase definition as side effect only
@@ -298,7 +298,7 @@ package classes.Items.Transformatives
 			if (target.hasVagina()) buttLimit = 3;
 			if (target.buttRating() > buttLimit && target.buttRatingUnlocked(target.buttRating() - 1))
 			{
-				output("\n\nYour butt all of a sudden feels tight, as though you were wearing a pair of pants two sizes too small. You wince and grip your buttocks, and feel it losing mass under your hand. After a moment you're left with a much <b>smaller, less curvy butt.</b>");
+				output("\n\nYour butt all of a sudden feels tight, as though you were wearing a pair of pants two sizes too small. You wince and grip your buttocks, and feel it losing mass under your hand. After a moment, you're left with a much <b>smaller, less curvy butt.</b>");
 				if (target.buttRating() >= buttLimit + 9 && target.buttRatingUnlocked(target.buttRating() - 1)) target.buttRating( -1);
 				if (target.buttRating() >= buttLimit + 6 && target.buttRatingUnlocked(target.buttRating() - 1)) target.buttRating( -1);
 				if (target.buttRating() >= buttLimit + 4 && target.buttRatingUnlocked(target.buttRating() - 1)) target.buttRating( -1);
@@ -322,7 +322,7 @@ package classes.Items.Transformatives
 			
 			// hit cap and still going up! changed this one to work differently from CoC, it unties face description from femininity stat, so you can use femininity to change gender aligment without having feminine face - you can't really recognize gender from animalistic muzzle!
 			if (target.femininity >= target.femininityMax() && target.lipRating() <= 0 && !target.hasPerk("Androgyny")) {
-				output("\n\nYour [pc.face] is now very confusing - it have imponderable tint of feminity, while lacking distinct feminine features. You suspect you could make your apparent gender even more ambiguous.");
+				output("\n\nYour [pc.face] is now very confusing - it has imponderable tint of feminity, while lacking distinct feminine features. You suspect you could make your apparent gender even more ambiguous.");
 				target.createPerk("Androgyny", 0, 0, 0, 0, "Your face is always androgynous.");
 				output("\n\n(<b>Perk Gained: Androgyny</b>)");
 			}
@@ -341,17 +341,17 @@ package classes.Items.Transformatives
 			// ass looseness-
 			else if(target.ass.minLooseness > 1 || target.ass.wetnessRaw > 1) // no function for ass lock?
 			{
-				output("\n\nYou feel a rumbling in your gut and a strange half-pleasure sensation spreading up from your [pc.asshole]. <b>Giving your backdoor an experimental poke, your find it ");
+				output("\n\nYou feel a rumbling in your gut and a strange half-pleasure sensation spreading up from your [pc.asshole]. <b>After giving your backdoor an experimental poke, your find it ");
 				
 				kGAMECLASS.clearList();
 				if (target.ass.minLooseness > 1) {
-					kGAMECLASS.addToList("notably more tight")
+					kGAMECLASS.addToList("notably tighter")
 					target.ass.minLooseness--;
 					if (target.ass.minLooseness < 1) target.ass.minLooseness = 1;
 					if (target.ass.looseness() > target.ass.minLooseness) target.ass.looseness(target.ass.minLooseness, true);
 				}
 				if (target.ass.wetnessRaw > 1) {
-					kGAMECLASS.addToList("notably less lubricated")
+					kGAMECLASS.addToList("significantly less lubricated")
 					target.ass.wetnessRaw--;
 					if (target.ass.wetnessRaw < 1) target.ass.wetnessRaw = 1;
 				}
@@ -364,7 +364,7 @@ package classes.Items.Transformatives
 			// perks! not actually implemented...
 			if(9999 == 0 && target.hasTail(GLOBAL.TYPE_FELINE) && target.legType == GLOBAL.TYPE_FELINE && target.armType == GLOBAL.TYPE_FELINE && target.earType == GLOBAL.TYPE_FELINE && !target.hasPerk("Flexibility"))
 			{
-				output("\n\nYou feel something odd in your joints. After some experimental stretching you've found yourself able to fold in absolutely unnatural ways - you can easily touch base of your tail with your nose, folding both forward and backward alike! You already have kinky ideas of putting this into some use.");
+				output("\n\nYou feel something odd in your joints. After some experimental stretching you've found yourself able to fold in entirely unnatural ways - you can effortlessly touch the base of your tail with your nose, folding both forward and backward alike! You already have kinky ideas of putting this into some use.");
 				output("\n\n(<b>Perk Gained: Flexibility</b> - You can bend and stretch more than most other creatures.)");
 				target.createPerk("Flexibility", 0, 0, 0, 0, "You can bend and stretch more than most other creatures.");
 				target.lust(20+rand(10));
@@ -442,7 +442,7 @@ package classes.Items.Transformatives
 						if(target.totalVaginas() == 2) output("both sets");
 						else output("every single set of them");
 					}
-					output(", leaving you intensely aware of your own movements.");
+					output(", leaving you intensely aware of your movements.");
 					if (target.genitalSpot == 2) {
 						output(" You use your Codex to check what's happening");
 					}
@@ -470,17 +470,17 @@ package classes.Items.Transformatives
 				// tighten to 1 and dry up to 2
 				if (target.vaginas[x].minLooseness > 1 && target.loosenessUnlocked(x, target.vaginas[x].minLooseness - 1) || target.vaginas[x].wetnessRaw > 2 && target.wetnessUnlocked(x, target.vaginas[x].wetnessRaw - 1))
 				{
-					output("\n\nYou feel a strange pleasure sensation spreading up from your [pc.vagina " + x + "]. <b>Giving your muff an experimental poke, your find it ");
+					output("\n\nYou feel a strange pleasure sensation spreading up from your [pc.vagina " + x + "]. <b>After giving your muff an experimental poke, you find it ");
 					
 					kGAMECLASS.clearList();
 					if (target.vaginas[x].minLooseness > 1 && target.loosenessUnlocked(x, target.vaginas[x].minLooseness - 1)) {
-						kGAMECLASS.addToList("much more tight")
+						kGAMECLASS.addToList("much tighter")
 						target.vaginas[x].minLooseness--;
 						if (target.vaginas[x].minLooseness < 1) target.vaginas[x].minLooseness = 1;
 						if (target.looseness(x) > target.vaginas[x].minLooseness) target.vaginas[x].looseness(target.vaginas[x].minLooseness, true);
 					}
 					if (target.vaginas[x].wetnessRaw > 1 && target.wetnessUnlocked(x, target.vaginas[x].wetnessRaw - 1)) {
-						kGAMECLASS.addToList("much less wet")
+						kGAMECLASS.addToList("significantly less wet")
 						target.vaginas[x].wetnessRaw--;
 						if (target.vaginas[x].wetnessRaw < 1) target.vaginas[x].wetnessRaw = 1;
 					}
@@ -505,7 +505,7 @@ package classes.Items.Transformatives
 				
 				if (target.breastRatingUnlocked(0, target.breastRows[0].breastRatingRaw - tittyDrop))
 				{
-					output("\n\nTipping backwards, you flail your arms frantically to keep your balance. Once you right, you realize what happened; <b>your [pc.chest] have lost a bit of weight, dropping you down to " );
+					output("\n\nTipping backward, you flail your arms frantically to keep your balance. Once you right, you realize what happened; <b>your [pc.chest] have lost a bit of weight, dropping you down to " );
 					target.breastRows[0].breastRatingRaw -= tittyDrop;
 					output((target.breastRows[0].breastRating(0) > 0 ? target.breastCup(0) : "flats") + ". </b>");
 					changes++;
@@ -528,7 +528,7 @@ package classes.Items.Transformatives
 							}
 						}
 					}
-					if(bonusRowsTFed == 1) output(" Your other row of breasts shrink a bit as well.");
+					if(bonusRowsTFed == 1) output(" Your other row of breasts shrinks a bit as well.");
 					else if(bonusRowsTFed > 1) output(" Your other breasts shrink a bit as well.");
 				}
 			}
@@ -546,10 +546,10 @@ package classes.Items.Transformatives
 				}
 			}
 			if(nipChanged) {
-				output("\n\nAn unpleasent twinge of nerves brings your attention to your nipples.");
+				output("\n\nAn unpleasant twinge of nerves brings your attention to your nipples.");
 				if(!target.isChestExposed())
 					output(" You quickly undress to investigate...");
-				output(" They go numb as a slick goo engulfs them. A few tingles replace the feeling and you reflexively wipe the gunk away to reveal that your nipples are gone, but you find what looks pinched holes in their place. Momentary panic subsides when a bit of rubbing has them poking out. <b>Your nipples are now inverted!</b>");
+				output(" They go numb as a slick goo engulfs them. A few tingles replace the feeling, and you reflexively wipe the gunk away to reveal that your nipples are gone, but you find what looks pinched holes in their place. Momentary panic subsides when a bit of rubbing has them poking out. <b>Your nipples are now inverted!</b>");
 				if(nipLocked) output(" At least, part of them are.");
 				changes++;
 			}
@@ -629,7 +629,7 @@ package classes.Items.Transformatives
 					else if(target.cocks[x].cLengthRaw < maxSize) {
 						output(" Your prick <b>grows longer</b>, extending to its new size of <b>");
 						target.cocks[x].cLengthRaw = Math.round(target.cocks[x].cLengthRaw + Math.min(maxSize - target.cocks[x].cLength(), target.cocks[x].cLengthRaw / 5 + 1 + rand(target.cocks[x].cLengthRaw / 5 + 2)));
-						output(num2Text(int(target.cocks[x].cLength())) + "</b> inches. Looks like it was small even for a cat...");
+						output(num2Text(int(target.cocks[x].cLength())) + "</b> inches. It looks like it was small even for a cat...");
 					}
 					changes++;
 					target.lust(10 + rand(5));
@@ -679,7 +679,7 @@ package classes.Items.Transformatives
 			}
 			else if(!target.hasStatusEffect("Uniball") && target.balls > 0)
 			{
-				output("\n\nYou gasp and bunch your fists as what feels like a soft vice clamps down on your balls, pushing them upwards and inwards. It’s not painful exactly but whatever is happening to them is intense enough for sweat to stand out on your brow. When the sensation dissipates somewhat you slide a hand downstairs uncertainly. <b>You’ve grown a tight-fitting pouch</b> which holds your [pc.balls] up to the back of your thighs.");
+				output("\n\nYou gasp and bunch your fists as what feels like a soft vice clamps down on your balls, pushing them upwards and inwards. It’s not painful exactly but whatever is happening to them is intense enough for sweat to stand out on your brow. When the sensation dissipates somewhat, you slide a hand downstairs uncertainly. <b>You’ve grown a tight-fitting pouch</b> which holds your [pc.balls] up to the back of your thighs.");
 				target.lust(10);
 				target.createStatusEffect("Uniball", 0, 0, 0, 0, true, "", "", false, 0);
 				changes++;
@@ -688,7 +688,7 @@ package classes.Items.Transformatives
 			// Chakat surprise, can only happen when you overdose with safety off.
 			if (changes == 0)
 			{
-				output(" Exception: Route have no targets available. Requesting instructions from monitor... Exception: protocol not supported. Fallback route found, executing...");
+				output(" Exception: Route has no targets available. Requesting instructions from the monitor... Exception: protocol not supported. Fallback route found, executing...");
 				
 				var surprise:Boolean = false;
 				if (!target.hasCock() && target.createCockUnlocked())
@@ -697,7 +697,7 @@ package classes.Items.Transformatives
 					if(target.balls > 0) output("right above your [pc.sack]");
 					else if(target.hasVagina()) output("right above your [pc.vaginas]");
 					else output("in the center of your crotch");
-					output(". It feels achy and a little painful but very, very sensitive, and it's getting bigger with alarming rapidity. The little knot is sticking an inch out past your [pc.skinFurScales], turning glossy and red as it does. You touch its tip and moan, assaulted by pleasure you barely understand, watching the bulge stretch out another inch in eager response. In seconds, you're rubbing and fondling it, coaxing more and more length from your crotch until ");
+					output(". It feels achy and a little painful but very, very sensitive, and it's getting bigger with alarming rapidity. The little knot is sticking an inch out past your [pc.skinFurScales], turning glossy and red as it does. You touch its tip and moan, assaulted by a pleasure you barely understand, watching the bulge stretch out another inch in eager response. In seconds, you're rubbing and fondling it, coaxing more and more length from your crotch until ");
 					target.createCock();
 					target.shiftCock(0, GLOBAL.TYPE_FELINE);
 					target.cocks[0].cLengthRaw = 12;
@@ -755,16 +755,16 @@ package classes.Items.Transformatives
 				// since it is "legacy code" of species designed for frontier, gotta get good protection for vulnerable organs!
 				if (target.balls == 0 && target.hasGenitals() && !target.hasStatusEffect("Genital Slit"))
 				{
-					output("\n\nAn odd sensation overtakes you. Your entire body shivers as flesh is rippling around your [pc.crotch], forming a new... slit? After some experiments with internal muscles, you've found that you can pull your genitals in and push them out at will.");
-					if(target.hasCock() && target.hasFullSheaths()) output(" Strangely enough, you still have animalistic sheath, unlike reptiles.");
-					output(" Skin of your new folds are surprisingly taut when your genitals are retracted - looks like you have some good protection against low blows from now on!");
-					output(" <b>Your genitals are now hidden inside protective slit.</b>");
+					output("\n\nAn odd sensation overtakes you. Your entire body shivers, as flesh is rippling around your [pc.crotch], forming a new... slit? After some experiments with internal muscles, you've found that you can pull your genitals in and push them out at will.");
+					if(target.hasCock() && target.hasFullSheaths()) output(" Strangely enough, you still have an animalistic sheath, that of a reptile.");
+					output(" Skin of your new folds are surprisingly taut when your genitals are retracted - looks like you have some decent protection against low blows from now on!");
+					output(" <b>Your genitals are now hidden inside a protective slit.</b>");
 					target.createStatusEffect("Genital Slit");
 					changes++;
 					surprise = true;
 				}
 				
-				if(surprise) output("\n\nWhat the hell? Looks like bypassing safety is not always good idea... Well, this isn't worst thing which can happen. At least this surprise is not really unpleasant.");
+				if(surprise) output("\n\nWhat the hell? Looks like bypassing safety is not always a good idea... Well, this isn't the worst thing which can happen. At least this surprise is not really unpleasant.");
 			}
 			
 			afterTF(target);
@@ -784,12 +784,12 @@ package classes.Items.Transformatives
 			//Grow feline tail. One tail, since this is not exactly Kaithrit TF. But will keep second Kaithrit tail, if you already have it.
 			if(!target.hasTail(GLOBAL.TYPE_FELINE))
 			{
-				if (target.tailTypeUnlocked(GLOBAL.TYPE_FELINE) || target.hasTail(GLOBAL.TYPE_COCKVINE))
+				if (target.tailTypeUnlocked(GLOBAL.TYPE_FELINE) || target.hasParasiteTail())
 				{
 					//{If PC had a tail before: }
 					if(target.tailCount == 1) output("\n\nYou feel something itching on your [pc.tail]. Twisting around, you watch in a mix of horror and excitement as [pc.furColor] bristles, the beginnings of a thin coat of fur, sprout up across the length of your reforming posterior appendage. It starts curling and twisting as the change completes, leaving you with a <b>feline tail.</b>");
 					//Multitails
-					else if(target.tailCount > 1) output("\n\nYour [pc.tails] knot together, torturing you with brief convulsions. A kind of numb heat spreads through them, forcing you to twist about for a visual inspection. They're merging together into a single, narrow entity. The flesh crawls eerily as it assume its new shape. Hairs sprout out of it while you watch, thickening into a coat of [pc.furColor] fur. <b>Your [pc.tails] have combined into a single feline tail.</b>");
+					else if(target.tailCount > 1) output("\n\nYour [pc.tails] knot together, torturing you with brief convulsions. A kind of numb heat spreads through them, forcing you to twist about for a visual inspection. They're merging together into a single, narrow entity. The flesh crawls eerily, as it assumes its new shape. Hairs sprout out of it while you watch, thickening into a coat of [pc.furColor] fur. <b>Your [pc.tails] have combined into a single feline tail.</b>");
 					//{If PC is tailless peasant: }
 					else
 					{
@@ -798,26 +798,43 @@ package classes.Items.Transformatives
 						output(". There's a raised, irritated lump there, and it's getting bigger. Wiggling slightly, it extends as new bones form within it, gently wagging as it lengthens. You're growing a tail! Fine hairs sprout on its [pc.skin], giving it a distinctly feline cast. When it finishes growing, it's long enough to begin curling and twisting vigorously; <b>you've obviously gained a feline tail.</b>");
 					}
 					
-					if (target.hasTailCock())
+					var hasTailCock:Boolean = target.hasTailCock();
+					var hasTailCunt:Boolean = target.hasTailCunt();
+					
+					target.clearTailFlags();
+					if (hasTailCock)
 					{
-						target.clearTailFlags();
 						target.tailGenitalColor = "pink";
 						target.tailGenitalArg = GLOBAL.TYPE_FELINE;
 						target.tailGenital = GLOBAL.TAIL_GENITAL_COCK;
 						target.addTailFlag(GLOBAL.FLAG_TAILCOCK); // that's a hell load of flags...
+						if (hasTailCunt) target.addTailFlag(GLOBAL.FLAG_TAILGINA); // Since I have no real idea how combo version should work, I also don't know how to fork it properly, so let's silently apply flag
 						target.addTailFlag(GLOBAL.FLAG_PREHENSILE);
 						target.addTailFlag(GLOBAL.FLAG_NUBBY); // not really sure how it should be actually handled
 						target.addTailFlag(GLOBAL.FLAG_TAPERED);
 						target.addTailFlag(GLOBAL.FLAG_SHEATHED);
-						output(" The tip of your tail feels strange. After some probing you've found your tail genitalia still present, but totally unnoticeable under a furry sheath when not aroused");
-						if(target.tailType == GLOBAL.TYPE_COCKVINE) output(" and much less prone to act by itself");
+						output(" The tip of your tail feels strange. After some probing, you've found your tail genitalia still present, but totally unnoticeable under a furry sheath when not aroused.");
+						if(target.hasParasiteTail()) output(" And much less prone to act by itself as well.");
 						output(".");
-					} else target.clearTailFlags();
+					}
+					else if (hasTailCunt)
+					{
+						target.tailGenitalColor = "pink";
+						target.tailGenitalArg = GLOBAL.TYPE_FELINE;
+						target.tailGenital = GLOBAL.TAIL_GENITAL_VAGINA;
+						target.addTailFlag(GLOBAL.FLAG_TAILGINA);
+						target.addTailFlag(GLOBAL.FLAG_PREHENSILE);
+						target.addTailFlag(GLOBAL.FLAG_SHEATHED);
+						output(" The tip of your tail feels strange. After some probing, you've found your tail genitalia still present, but totally unnoticeable when not aroused.");
+						if(target.hasParasiteTail()) output(" And much less prone to act by itself as well.");
+						output(".");
+					}
 					
 					target.tailCount = 1;
 					target.tailType = GLOBAL.TYPE_FELINE;
 					target.addTailFlag(GLOBAL.FLAG_LONG);
 					target.addTailFlag(GLOBAL.FLAG_FURRED);
+					if (target.hasSkinFlag(GLOBAL.FLAG_FLUFFY)) target.addTailFlag(GLOBAL.FLAG_FLUFFY);
 					changes++;
 				}
 				else output(target.tailTypeLockedMessage());
@@ -825,15 +842,16 @@ package classes.Items.Transformatives
 			
 			if (changes == 0 && target.hasTail(GLOBAL.TYPE_FELINE) && !target.hasTailFlag(GLOBAL.FLAG_PREHENSILE))
 			{
-				output(" Exception: Route have no targets available. Requesting instructions from monitor... Exception: protocol not supported. Fallback route found, executing...");
+				output(" Exception: Route has no targets available. Requesting instructions from the monitor... Exception: protocol not supported. Fallback route found, executing...");
 				
-				output("\n\nYour [pc.tails] suddenly starts curling and twisting, growing even longer and notably thicker. <b>You [pc.tails] " + (target.tailCount > 1 ? "are" : "is") + " now prehensile.</b>");
+				output("\n\nYour [pc.tails] suddenly start" + (target.tailCount > 1 ? "" : "s") + " curling and twisting, growing even longer and notably thicker. <b>Your [pc.tails] " + (target.tailCount > 1 ? "are" : "is") + " now prehensile.</b>");
 				
 				target.addTailFlag(GLOBAL.FLAG_LONG); // just in case
 				target.addTailFlag(GLOBAL.FLAG_PREHENSILE);
+				if (target.hasSkinFlag(GLOBAL.FLAG_FLUFFY)) target.addTailFlag(GLOBAL.FLAG_FLUFFY);
 				changes++;
 				
-				output("\n\nLooks like bypassing safety can be a good idea sometimes! Your appendage" + (target.tailCount > 1 ? "s are" : " is") + " definitely better now.");
+				output("\n\nIt looks like bypassing safety can be a good idea sometimes! Your appendage" + (target.tailCount > 1 ? "s are" : " is") + " definitely better now.");
 			}
 			
 			afterTF(target);
@@ -944,13 +962,13 @@ package classes.Items.Transformatives
 					
 					if(target.legCount < 2) // naga can be only changed to biped
 					{
-						output("\n\nYour [pc.leg] wobbles then folds, dropping you onto your [pc.butt]. It thrashes wildly around, uncontrolled and spasmatic. Something inside is changing, and you're helpless to do anything but clench your fists and hold on for the ride. A seam appears in your [pc.leg] a moment before it divides into <b>two leg-like shapes.</b>");
+						output("\n\nYour [pc.leg] wobbles then fold, dropping you onto your [pc.butt]. It thrashes wildly around, uncontrolled and spasmatic. Something inside is changing, and you're helpless to do anything but clench your fists and hold on for the ride. A seam appears in your [pc.leg] a moment before it divides into <b>two leg-like shapes.</b>");
 						target.legCount = 2;
 					}
 					// More than biped? change to cat-taur/chakat, fix non-even leg count.
 					else if (target.legCount > 2)
 					{
-						output("\n\nTwitching wildly, your [pc.legs] give out, dumping you to the floor in a heap of uncoordinated, splayed limbs. They twitch wildly as they reform, starting at your waist and spreading down. Their bones melt like butter as they flow into new shapes.");
+						output("\n\nTwitching wildly, your [pc.legs] give out, dumping you to the floor in a heap of uncoordinated, splayed limbs. They shudder wildly as they reform, starting at your waist and spreading down. Their bones melt like butter as they flow into new shapes.");
 						
 						if (target.legCount > 4 && count == 4) // shorten to "normal" taur body option
 						{
@@ -970,12 +988,12 @@ package classes.Items.Transformatives
 						else if(target.legCount != count)
 						{
 							target.legCount = 2;
-							output(" You feel your bones and organs changing place, steadily mutating until it no longer resembles the body of a beast, but a human. Your additional legs are absorbed, drawing into your vanishing lower body until <b>you have a bipedal humanoid figure</b>.");
+							output(" You feel your bones and organs changing place, steadily mutating until it no longer resembles the body of a beast, but a human. Your extra legs are absorbed, drawing into your vanishing lower body until <b>you have a bipedal humanoid figure</b>.");
 						}
 					}
 					else output("\n\nYou drop to the ground as your [pc.legs] go boneless. The jarring impact is enough to make you wince, but of far more concern is what's happening below your bruised bottom. Your [pc.legs] are changing!");
 					
-					output("\n\n Your joints feel very odd, and your soles reform into padded paws with toes tipped by sharp-looking claws. It'll take a little bit of practice to get used to walking with these. After few steps you've found pads of your new paws incredibly sensitive, almost like your tongue - even just feeling ground texture under you is exquisite. <b>You’ve got digitigrade feline legs, complete with soft paw pads and retractable claws!</b>");
+					output("\n\nYour joints feel very odd, and your soles reform into padded paws with toes tipped by sharp-looking claws. It'll take a little bit of practice to get used to walking with these. After few steps you've found pads of your new paws incredibly sensitive, almost like your tongue - even just feeling ground texture under you is exquisite. <b>You’ve got digitigrade feline legs, complete with soft paw pads and retractable claws!</b>");
 					
 					target.legType = GLOBAL.TYPE_FELINE;
 					target.clearLegFlags();
@@ -999,7 +1017,7 @@ package classes.Items.Transformatives
 			// override and overuse - change bipedal body to quadripedal tauric
 			if (changes == 0 && target.legType == GLOBAL.TYPE_FELINE && target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE) && target.legCount == 2 && target.legCountUnlocked(4))
 			{
-				output(" Exception: Route have no targets available. Requesting instructions from monitor... Exception: protocol not supported. Fallback route found, executing...");
+				output(" Exception: Route has no targets available. Requesting instructions from the monitor... Exception: protocol not supported. Fallback route found, executing...");
 				
 				output("\n\nTerror overtakes you as you feel your backbone snap. It doesn't stop, as you feel your spine lengthens, growing with new flesh from your backside as the bones of your legs flex and twist. Muscle groups shift and rearrange themselves as the change completes. <b>You now have tauric lower half!</b>");
 				
@@ -1014,13 +1032,13 @@ package classes.Items.Transformatives
 				for(var x:int = 0; x < target.totalVaginas(); x++)
 					if(target.vaginas[x].bonusCapacity < 200) target.vaginas[x].bonusCapacity = 200;
 				
-				output("\n\nYour forelegs aren't just legs - while not exactly prehensile, your toes are quite long and nimple, providing you with some portion of manual-like dexterity.");
+				output("\n\nYour forelegs aren't just legs - while not exactly prehensile, your toes are quite long and nimble, providing you with some portion of manual-like dexterity.");
 				output("\n\nThat part of your body between pairs of your legs is not overly long, so you can sit on your butt comfortably while ‘standing’ on your forelegs.");
 				if (target.hasTail() && target.hasTailFlag(GLOBAL.FLAG_LONG)) output("You can't help but smile seeing your [pc.tails] instinctively wrapping your forelegs in adorably animalistic fashion while in such position.");
-				output("\n\nJoint point where your back bends is very flexible, as well as your spine generally - you can effortlessly reach any part of your body... And not just with your hands, by the way.");
+				output("\n\nThe joint point of your humanoid and tauric parts is very flexible, as well as your spine generally - you can effortlessly reach any part of your body... And not just with your hands, by the way.");
 				changes++;
 				
-				output("\n\nLooks like bypassing safety is not always good idea... Well, at least you are not reduced to a puddle of goo, right?");
+				output("\n\nLooks like bypassing safety is not always a good idea... Well, at least you are not reduced to a puddle of goo, right?");
 			}
 			
 			afterTF(target);
@@ -1049,7 +1067,7 @@ package classes.Items.Transformatives
 						if (target.eyeColorUnlocked(color)) target.eyeColor = color;
 					}
 					
-					output("\n\nYour [pc.eyes] start to water, and no matter how much you blink, your vision just grows fuzzier and fuzzier for several moments before seeming to become incredibly clear and bright all of a sudden. You pull your Codex out and check your reflection: <b>a pair of [pc.eyeColor] cat-eyes stare back at you, slitted and brilliantly-bright!</b>");
+					output("\n\nYour [pc.eyes] start to water, and no matter how much you blink, your vision just grows fuzzier and fuzzier for several moments before seeming to become incredibly clear and bright all of a sudden. You pull your Codex out and check your reflection: <b>a pair of [pc.eyeColor] cat-eyes stare back at you, slitted and brilliantly bright!</b>");
 					target.eyeType = GLOBAL.TYPE_FELINE;
 					changes++;
 				}
@@ -1092,7 +1110,7 @@ package classes.Items.Transformatives
 				//From skin
 				else
 				{
-					output("\n\nYou idly scratch at your arm, but find yourself catching on something. Looking closer, you see a single hair growing from a normally hairless part of your body. A second later, another pops out alongside it... then another, and another... and another. They’re everywhere! Tiny hairs are surfacing all across your body, thickening into a layer of fur before your eyes.");
+					output("\n\nYou idly scratch at your arm but find yourself catching on something. Looking closer, you see a single hair growing from a normally hairless part of your body. A second later, another pops out alongside it... then another, and another... and another. They’re everywhere! Tiny hairs are surfacing all across your body, thickening into a layer of fur before your eyes.");
 				}
 				target.skinType = GLOBAL.SKIN_TYPE_FUR;
 				target.clearSkinFlags();
@@ -1137,12 +1155,12 @@ package classes.Items.Transformatives
 			
 			// short facial hair blends into fur
 			if (target.beardLength > 0 && (target.beardLength < 1 || !target.hasFur()) && target.beardLengthUnlocked(0)) {
-				kGAMECLASS.output("\n\nAn irritating sensation centers on your chin and you can't help but to scratch the itch with your [pc.fingers]. You notice that pieces of what was once your [pc.beard] are now littering your hands and falling to your [pc.feet]. <b>You no longer have a beard!</b>");
+				kGAMECLASS.output("\n\nAn irritating sensation centers on your chin, and you can't help but scratch the itch with your [pc.fingers]. You notice that pieces of what was once your [pc.beard] are now littering your hands and falling to your [pc.feet]. <b>You no longer have a beard!</b>");
 				target.removeBeard();
 			}
 			// or, if you have enough beard, something more original?
 			else if (target.hasFur() && target.beardLength >= 1 && target.beardStyleUnlocked(11)) {
-				kGAMECLASS.output("\n\nAn irritating sensation centers on your chin and cheeks and you can't help but to scratch the itch with your [pc.fingers]. Looks like <b>you have lynx-like sideburns instead of your [pc.beard]!</b>");
+				kGAMECLASS.output("\n\nAn irritating sensation centers on your chin, and you can't help but scratch the itch with your [pc.fingers]. It looks like <b>you have lynx-like sideburns instead of your [pc.beard]!</b>");
 				target.beardStyle = 11;
 				if (target.beardLength < 2) target.beardLength = 2;
 				if (target.beardLength > target.tallness / 12) target.beardLength = target.tallness / 12;
@@ -1154,7 +1172,7 @@ package classes.Items.Transformatives
 				output("\n\nYour tongue feels strange. ");
 				if (target.hasTongueFlag(GLOBAL.FLAG_TAPERED))
 					output("It definitely changes towards a humanoid shape. ");
-				output("You gave your [pc.hand] an experimental lick and found it's texture quite rough. It is also more sensitive than before. You feel compulsion to try it... ");
+				output("You gave your [pc.hand] an experimental lick and found it's texture quite rough. It is also more sensitive than before. You feel the compulsion to try it... ");
 				if (target.hasPerk("Flexibility")) output("On yourself, maybe? ");
 				output("<b>You've got a bristly feline tongue!</b>");
 				
@@ -1167,7 +1185,7 @@ package classes.Items.Transformatives
 				
 				if (wasLong || wasPrehensile)
 				{
-					output(" Strangely enough, it preserved it's former ");
+					output(" Strangely enough, it preserved its former ");
 					
 					kGAMECLASS.clearList();
 					if (wasLong) {
@@ -1186,7 +1204,7 @@ package classes.Items.Transformatives
 			
 			if (changes == 0 && target.faceType == GLOBAL.TYPE_FELINE && target.tongueType == GLOBAL.TYPE_FELINE && !(target.hasTongueFlag(GLOBAL.FLAG_LONG) && target.hasTongueFlag(GLOBAL.FLAG_PREHENSILE)))
 			{
-				output(" Exception: Route have no targets available. Requesting instructions from monitor... Exception: protocol not supported. Fallback route found, executing...");
+				output(" Exception: Route has no targets available. Requesting instructions from the monitor... Exception: protocol not supported. Fallback route found, executing...");
 				
 				output("\n\nYour [pc.tongue] suddenly falls out of your mouth and begins undulating as it grows longer. For a moment it swings wildly, completely out of control; but then settles down and you find you can control it at will, almost like a limb. You're able to stretch it to nearly 4 feet and retract it back into your mouth to the point it looks like a normal tongue. <b>You now have long, prehensile tongue.</b>");
 				
@@ -1194,7 +1212,7 @@ package classes.Items.Transformatives
 				target.addTongueFlag(GLOBAL.FLAG_PREHENSILE);
 				changes++;
 				
-				output("\n\nWell, this isn't worst thing which can happen - you already have some kinky ideas how to make use of this new ‘limb’...");
+				output("\n\nWell, this isn't the worst thing which can happen - you already have some kinky ideas how to make use of this new ‘limb’...");
 			}
 			
 			afterTF(target);

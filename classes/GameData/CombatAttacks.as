@@ -1034,6 +1034,7 @@ package classes.GameData
 		private static function VolleyImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
 			RangedAttack(attacker, target);
+			output("\n");
 			SingleRangedAttackImpl(attacker, target, true);
 			
 			if (attacker.aim() / 2 + rand(20) + 1 >= target.reflexes() / 2 + 10 && !target.hasStatusEffect("Blinded") && attacker.hasRangedEnergyWeapon() && !target.hasBlindImmunity())
