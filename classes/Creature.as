@@ -695,7 +695,6 @@
 		public var legType: Number = 0;
 		public function legTypeUnlocked(newLegType:Number):Boolean
 		{
-			if (hasStatusEffect("Mimbrane Foot Left") || hasStatusEffect("Mimbrane Foot Right")) return false;
 			if (isGoo() && statusEffectv1("Gel Body") >= 1) return false;
 			return true;
 		}
