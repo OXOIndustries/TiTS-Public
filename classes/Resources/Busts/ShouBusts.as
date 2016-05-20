@@ -148,6 +148,9 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/honeypot.png", mimeType = "image/png")]
 		public var Bust_HONEYPOT:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/horace_decker.png", mimeType = "image/png")]
+		public var Bust_HORACE_DECKER:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/black_void_juggernaut.png", mimeType = "image/png")]
 		public var Bust_JUGGERNAUT:Class;
 		public var Bounds_JUGGERNAUT:Rectangle = new Rectangle(16, 0, 64, 64);
@@ -467,6 +470,9 @@
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/honeypot.png", mimeType = "image/png")]
 			public var Full_HONEYPOT:Class;
+
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/horace_decker.png", mimeType = "image/png")]
+			public var Full_HORACE_DECKER:Class;
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/black_void_juggernaut.png", mimeType = "image/png")]
 			public var Full_JUGGERNAUT:Class;

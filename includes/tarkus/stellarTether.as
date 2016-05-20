@@ -49,6 +49,7 @@ public function approachUGCTroopers():void
 {
 	clearOutput();
 	showName("U.G.C.\nTROOPERS");
+	showBust("HORACE_DECKER");
 	author("Savin");
 	if(flags["MET_UGC_TROOPER_AT_CHASMFALL"] == undefined)
 	{
@@ -81,6 +82,7 @@ public function canIHelpWithShittyJamesBondIntroductions():void
 {
 	clearOutput();
 	showName("U.G.C.\nTROOPERS");
+	showBust("HORACE_DECKER");
 	author("Savin");
 	output("<i>\"Anything I can do to help?\"</i> you venture. <i>\"The name's Steele. [pc.name] Steele.\"</i>");
 	output("\n\n<i>\"Steele?\"</i> the vet asks, clearly surprised. <i>\"Oh, don't tell me you're one of Vic's little snots, are you?\"</i>");
@@ -96,6 +98,7 @@ public function canIHelpWithShittyJamesBondIntroductions():void
 public function askAUGCTroopAboutStellarTetherMission():void {
 	clearOutput();
 	showName("HORACE\nDECKER");
+	showBust("HORACE_DECKER");
 	author("Savin");
 	output("<i>\"Good to have you onboard, kid,\"</i> the old man says, walking you into the heart of the encampment. <i>\"The name's Horace, by the way. Sergeant Horace Decker.\"</i>");
 	output("\n\nSgt. Decker gives you a firm handshake, his grip just about crushing your hand. Strong in his old age! Several of the troops standing around give you respectful nods as you step into one of the APCs. At a touch from the sergeant, a holo-map of the facility and the Chasm appear between you.");
@@ -2396,6 +2399,7 @@ public function victoryCelebrationPCIsAwesomeGuyFuntimes():void
 	clearOutput();
 	author("Savin");
 	showName("HORACE\nDECKER");
+	showBust("HORACE_DECKER");
 	output("You're greeted by a sudden chorus of cheers. You recoil, until you see that you're surrounded by Sgt. Decker's S.W.A.T. team, all clustering around you. The sergeant himself steps forward, chomping on his cigar over a great big grin. <i>\"We just got the word from Command: they saw everything. Great work, kid!\"</i>");
 	output("\n\nSeveral officers shake your hand or clap you on the back as you try and make your way out of the lift. As they do, several of them peel off from the main group, heading into the personnel lift to go and make the official arrests on the pirates you defeated. Speaking of which: just ahead, you can see the crazed cat-girl, Tam, being led out of the ground-side station in cuffs, struggling against a pair of burly officers and crying out for her wolf drone.");
 	if(flags["TAKEN_TAMWOLF"] != undefined) output("\n\nShe screams bloody murder at you, calling out for Tam-wolf to come to her, to no avail.");
@@ -2417,6 +2421,7 @@ public function fuckOffWithoutDisarmingTheBomb():void
 	clearOutput();
 	author("Savin");
 	showName("U.G.C.\nOFFICERS");
+	showBust("HORACE_DECKER");
 	output("You rush past the S.W.A.T. officers, hurtling down the road. <i>\"You've got less than ");
 	if(flags["TARKUS_BOMB_TIMER"] > 180) output("four hours");
 	else if(flags["TARKUS_BOMB_TIMER"] > 120) output("three hours");
