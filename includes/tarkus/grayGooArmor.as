@@ -571,7 +571,8 @@ public function gooArmorCrewOption(arg:Array):void
 	switch(response)
 	{
 		case "talk":
-			if(flags["GOO_ARMOR_CUSTOMIZE"] == undefined && !(pc.armor is GooArmor) && InShipInterior() && rand(4) == 0)
+			// Level 3
+			if(pc.level >= 3 && flags["GOO_ARMOR_CUSTOMIZE"] == undefined && InShipInterior() && !(pc.armor is GooArmor) && rand(4) == 0)
 			{
 				txt += "Sensing your approach, [goo.name] quickly morphs into a shapeless blob and scoots a couple steps away from you. She suddenly reforms with her back turned to you, appearing in a slightly different guise than her normal self. Her hair is not in the loose, wavy fashion it normally is, but instead, it is tied in a low ponytail. The silvery companion doesn’t turn around, so you can’t tell if something is wrong.";
 				txt += "\n\nAfter a brief moment, you call to her. <i>“" + (pc.isBimbo() ? "Umm... [goo.name]?" : "Is something wrong, [goo.name]?") + "”</i> She doesn’t respond, but only wriggles a little... and you ears maybe catch a slight giggle? In any case, it seems like she wants you to approach her instead... So you do.";
@@ -580,7 +581,29 @@ public function gooArmorCrewOption(arg:Array):void
 				
 				gooArmorAddButton(fromCrew, 0, "Next", gooArmorCrewTalk, ["morph 0", fromCrew]);
 			}
-			else if(flags["GOO_ARMOR_CUSTOMIZE"] == 0 && !(pc.armor is GooArmor) && InShipInterior() && pc.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+			// Level 4
+			else if(pc.level >= 4 && flags["GOO_ARMOR_CUSTOMIZE"] == 0 && rooms[currentLocation].hasFlag(GLOBAL.POOL) && !(pc.armor is GooArmor) && pc.inSwimwear(true))
+			{
+				txt += "You tap [goo.name] for a chat but she is too busy looking around the pool area, wide-eyed.";
+				txt += "\n\n<i>“Wooow. Look at this place!”</i> She is enamored by the water and turns to you, noticing your swimwear. <i>“You’re gonna go swimming?”</i>";
+				txt += "\n\nYou nod and tell her you are.";
+				txt += "\n\n<i>“Like, can I join, too?”</i>";
+				txt += "\n\nShe’s waterproof, you think to yourself. <i>“Sure, why not?”</i>";
+				txt += "\n\n<i>“Yay!”</i> With that, she jumps with excitement. <i>“Ooh, let me get dress first!”</i> She shuffles in place, peeling off her pretend goo clothing. <i>“And no peeking...”</i> she winks, <i>“... unless you want to!”</i>";
+				txt += "\n\nWith some concentration, [goo.name]’s form rearranges itself and a new shape appears around the surface of her body. Two string-like blobs appear on each of her jiggly breasts, barely covering her silvery nipples, creating a kind of loose bikini top.";
+				if(chars["GOO"].legCount <= 1) txt += " Her lower body splits into two, forming shapely legs that";
+				else if(chars["GOO"].legCount == 2) txt += " Her shapely legs spread apart slightly to";
+				else txt += " Her legs merge into one central blob, then the mass quickly splits into two, forming shapely legs that";
+				txt += " make room for the bottom half of her bikini to squeeze into. Her bikini bottom then divides and extends to merge with the strings of her top, converting her swimsuit into an extra-lewd slingkini.";
+				txt += "\n\n<i>“So, how do you like it?”</i> She twirls. <i>“I think it’s quite sexy!”</i> ";
+				txt += "\n\nYou take a moment to test the water from the pool’s edge and proceed to walk right in until you are submerged up to the top of your chest. You turn around and invite [goo.name] in.";
+				
+				processTime(2);
+				
+				gooArmorAddButton(fromCrew, 0, "Next", gooArmorCrewTalk, ["swimsuit 0", fromCrew]);
+			}
+			// Level 5
+			else if(pc.level >= 5 && flags["GOO_ARMOR_CUSTOMIZE"] == 1 && InShipInterior() && !(pc.armor is GooArmor) && pc.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
 			{
 				txt += "Spotting you with head gear, [goo.name] gets incredibly curious. <i>“Ooo, neat. What’s this do?”</i> she asks, poking it with a gooey finger.";
 				txt += "\n\nYou tell her it’s a helmet that protects you from inhaling dangerous gasses and protects against other fluids as well. You also add that it may also help in breathing underwater if the rest of the suit is fully sealed, pressurized, and hooked up to a rebreather.";
@@ -594,21 +617,8 @@ public function gooArmorCrewOption(arg:Array):void
 				
 				gooArmorAddButton(fromCrew, 0, "Next", gooArmorCrewTalk, ["helmet 0", fromCrew]);
 			}
-			else if(9999 == 0 && flags["GOO_ARMOR_CUSTOMIZE"] == 1 && !(pc.armor is GooArmor) && InShipInterior() && (pc.armor.hasFlag(GLOBAL.ITEM_FLAG_SWIMWEAR)))
-			{
-				txt += "9999 - Text.";
-				txt += "\n\n9999 - Text.";
-				
-				gooArmorAddButton(fromCrew, 0, "Next", gooArmorCrewTalk, ["swimsuit 0", fromCrew]);
-			}
-			else if(9999 == 0 && flags["GOO_ARMOR_CUSTOMIZE"] == 2 && !(pc.armor is GooArmor) && InShipInterior() && (pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST) || pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN) || pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS)))
-			{
-				txt += "9999 - Text.";
-				txt += "\n\n9999 - Text.";
-				
-				gooArmorAddButton(fromCrew, 0, "Next", gooArmorCrewTalk, ["expose 0", fromCrew]);
-			}
-			else if(flags["GOO_ARMOR_HEAL_LEVEL"] == undefined && !(pc.armor is GooArmor) && InShipInterior() && pc.hasItem(new GrayMicrobots(), 10))
+			// Level 7
+			else if(pc.level >= 7 && flags["GOO_ARMOR_HEAL_LEVEL"] == undefined && InShipInterior() && !(pc.armor is GooArmor) && pc.hasItem(new GrayMicrobots(), 10))
 			{
 				txt += "You approach [goo.name] for a chat, but find her face suddenly blanche (that is, if she wasn’t already a full coat of solid silver-gray).";
 				txt += "\n\n<i>“" + (pc.isBimbo() ? "Hey girl" : "Oh, [goo.name]") + ", something wrong?”</i> You ask, noticing her ill expression.";
@@ -627,6 +637,15 @@ public function gooArmorCrewOption(arg:Array):void
 				
 				gooArmorAddButton(fromCrew, 0, "Next", gooArmorCrewTalk, ["healing 0", fromCrew]);
 			}
+			// Level 9
+			else if(9999 == 0 && pc.level >= 9 && flags["GOO_ARMOR_CUSTOMIZE"] == 2 && InShipInterior() && !(pc.armor is GooArmor) && (pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST) || pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN) || pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS)))
+			{
+				txt += "9999 - Text.";
+				txt += "\n\n9999 - Text.";
+				
+				gooArmorAddButton(fromCrew, 0, "Next", gooArmorCrewTalk, ["expose 0", fromCrew]);
+			}
+			// Generic Talks
 			else
 			{
 				txt += "You spend a little time making small talk with the cute goo girl. While her conversation might not be the most in-depth, it is fulfilling enough not to be completely vapid. The subject shifts between";
@@ -894,6 +913,24 @@ public function gooArmorCrewTalk(arg:Array):void
 			processTime(3);
 			gooArmorAddButton(fromCrew, 0, "Next", approachGooArmorCrew, [false, fromCrew]);
 			break;
+		case "swimsuit 0":
+			txt += "The goo-girl dips the tip of her toe into the water and quickly retracts back. <i>“Oooh, cold!”</i> The sensitivity in her temperature sensors must be turned up, you note. When she sees you enjoying the water, she huffs her worries away. Not wanting to be left out, she takes a few steps back... then makes a dash towards the pool and jumps straight into the air. <i>“CANNONBALL!”</i>";
+			txt += "\n\nShe morphs herself into an actual ball shape and shifts her mass to crash right down into the water. Though she safely lands a few feet away from you, the magnitude of the splash is so great, it lifts you up off your [pc.feet]. When you";
+			if(pc.hasFeet()) txt += " find your footing and";
+			txt += " touch the pool bottom again, your silver friend surfaces next to you, remorphed back into her bikini-clad self.";
+			txt += "\n\n<i>“Ahhh... This really is nice, isn’t it, [pc.name]?”</i> she coos. When she turns to you she finds you completely soaked... and you haven’t even started swimming yet! <i>“Oops! I totally over-did it, didn’t I?”</i>";
+			txt += "\n\nYou answer her question by sweeping your arms from behind you and letting loose a handful pool water right at her face, payback for the drenching she gave you.";
+			txt += "\n\n<i>“Ack!”</i> she squeaks, then lets out a joyful giggle and splashes back.";
+			txt += "\n\nThe two of you splash-fight for a bit, which eventually leads to some friendly, competitive swimming. When you are all swimmed out, you take some time to relax with [goo.name] and chat a little. She talks about all the different swimsuits she’s seen so far and the ones she likes the most. She also offers <i>be</i> your swimsuit if you ever need one. That definitetly would come in handy, you think.";
+			txt += "\n\nStepping out of the pool, you approach the shower to rinse yourself off. However, all [goo.name] does is shake like a wet ausar and she is instantly dry, also having reshaped back to her previous form. Before you can get to your gear and dry yourself, you feel two big smacks, one on each of your [pc.cheeks]. Arching your back in surprise, you turn around to find [goo.name], her hands behind her, looking at you and smiling innocently. She’s so naughty!";
+			txt += "\n\n<b>[goo.name] has learned how to change into swimwear!</b>";
+			
+			flags["GOO_ARMOR_CUSTOMIZE"] = 1;
+			processTime(45);
+			pc.energy(30);
+			pc.shower();
+			gooArmorAddButton(fromCrew, 0, "Next", approachGooArmorCrew, [false, fromCrew]);
+			break;
 		case "helmet 0":
 			txt += "<i>“So, does it" + (pc.isBimbo() ? ", like," : "") + " work?”</i> you ask surveying her new headwear.";
 			txt += "\n\n<i>“Of course it does!”</i> she says, overconfidently and slightly dampened. <i>“Why wouldn’t--...”</i> Her voice cuts off.";
@@ -917,15 +954,6 @@ public function gooArmorCrewTalk(arg:Array):void
 			txt += "\n\n<i>“I don’t need to breathe, silly!”</i> she giggles, sliding off you. She stands and experimentally reforms and pops her new bubble helmet a few times, toggling it on and off like testing a freshly-installed light switch.";
 			txt += "\n\nWell it looks like she’s picked up an extra ability now, though you hope she’ll take <i>your</i> ability to breathe into consideration when she combines it with the suit....";
 			txt += "\n\n<b>[goo.name] has learned how to create a helmet!</b>";
-			
-			flags["GOO_ARMOR_CUSTOMIZE"] = 1;
-			processTime(2);
-			gooArmorAddButton(fromCrew, 0, "Next", approachGooArmorCrew, [false, fromCrew]);
-			break;
-		case "swimsuit 0":
-			txt += "9999 - Text.";
-			txt += "\n\n9999 - Text.";
-			txt += "\n\n<b>[goo.name] has learned how to change into swimwear!</b>";
 			
 			flags["GOO_ARMOR_CUSTOMIZE"] = 2;
 			processTime(2);
@@ -1145,7 +1173,7 @@ public function gooArmorChangeArmorMenu(fromCrew:Boolean = true):void
 		gooArmorAddButton(fromCrew, 2, "Emblem", gooArmorChangeDesign, ["emblem", fromCrew], "Create Emblem", "Ask to display an emblem on the suit.");
 	else
 		gooArmorAddButton(fromCrew, 2, "Emblem", gooArmorChangeDesign, ["emblem", fromCrew], "Change Emblem", "Ask to change the emblem on the suit.");
-	if(flags["GOO_ARMOR_CUSTOMIZE"] >= 1)
+	if(flags["GOO_ARMOR_CUSTOMIZE"] >= 2)
 	{
 		if(pc.armor.hasFlag(GLOBAL.ITEM_FLAG_SWIMWEAR))
 			gooArmorAddDisabledButton(fromCrew, 3, "Helmet", "Helmet", "Your suit cannot acquire a helmet while being a swimsuit" + (silly ? "--that’s unfashionable!" : "."));
@@ -1477,7 +1505,7 @@ public function gooArmorChangeDesign(arg:Array):void
 			else gooArmorAddDisabledButton(fromCrew, btn++, "Clothes");
 			if(pc.statusEffectv1("Goo Armor Design") != 4) gooArmorAddButton(fromCrew, btn++, "Latex", gooArmorChangeStyle, [4, fromCrew], "Latex", "Change the suit’s appearance to look like tight latex.");
 			else gooArmorAddDisabledButton(fromCrew, btn++, "Latex");
-			if(flags["GOO_ARMOR_CUSTOMIZE"] < 2) gooArmorAddDisabledButton(fromCrew, btn++, "Locked", "Locked", "[goo.name] hasn’t learned how to do this yet...");
+			if(flags["GOO_ARMOR_CUSTOMIZE"] < 1) gooArmorAddDisabledButton(fromCrew, btn++, "Locked", "Locked", "[goo.name] hasn’t learned how to do this yet...");
 			else if(pc.statusEffectv1("Goo Armor Design") != 5) gooArmorAddButton(fromCrew, btn++, "Swimwear", gooArmorChangeStyle, [5, fromCrew], "Swimwear", "Change the suit’s appearance to look like something you can swim in.");
 			else gooArmorAddDisabledButton(fromCrew, btn++, "Swimwear");
 			break;

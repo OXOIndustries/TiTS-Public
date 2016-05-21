@@ -885,4 +885,5 @@ public function initNewTexasRooms():void
 	rooms["574"].system = "SYSTEM: NYE";
 	rooms["574"].addFlag(GLOBAL.INDOOR);
 	rooms["574"].addFlag(GLOBAL.PUBLIC);
+	rooms["574"].addFlag(GLOBAL.POOL);
 }
