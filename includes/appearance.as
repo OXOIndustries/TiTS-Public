@@ -801,6 +801,15 @@ public function appearance(forTarget:Creature):void
 			else output2(" a constant layer of lubrication");
 			output2(", giving it a slick oiled shine.");
 		}
+		else if(flags["PLAYER_MIMBRANE_SWEAT_ENABLED"] != undefined)
+		{
+			output2(" In addition, your body is soaked in");
+			if(target.statusEffectv1("Sweaty") <= 1) output2(" a light layer");
+			else if(target.statusEffectv1("Sweaty") <= 2) output2(" visible layers");
+			else if(target.statusEffectv1("Sweaty") <= 4) output2(" multiple layers");
+			else output2(" thick layers");
+			output2(" of oily, strawberry-scented perspiration, giving it a slick, sensual shine.");
+		}
 		// Muscles - Sweaty ( Shazam Remix )
 		else if(target.hasStatusEffect("Sweaty"))
 		{
