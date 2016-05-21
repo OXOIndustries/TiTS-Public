@@ -2937,11 +2937,11 @@ public function emmySlowFuckHermHarness():void
 			came = true;
 		}
 	}
-	clearHermHarnessStatii();
 	userInterface.outputCodex();
 	emmyCumtrolMenu();
 	if(came)
 	{
+		clearHermHarnessStatii();
 		clearGhostMenu();
 		if(currentLocation == "KIHASHOP") addGhostButton(0, "Next", emmyMainMenuPostHermHarnessgasm);
 		else addGhostButton(0, "Next", showCodex);
@@ -3038,7 +3038,7 @@ public function emmyHermHarnessHardFuck():void
 	//Emmy not there, massage in progress
 	else
 	{
-		if(emmy.hasStatusEffect("Massaging"))
+		if(emmy.hasStatusEffect("Massaging") && !emmy.hasStatusEffect("Slow Fucking"))
 		{
 			outputCodex("\n\nThat should give your infinitely fuckable, furry girlfriend the finish she’s no doubt been waiting for since you turned on the massage function. You wonder how she’s handling the present you’ve delivered her. Has the pleasure knocked her to the floor, set her legs akimbo, and left her hips to fruitlessly thrust into a phantom lover’s luridly imagined attributes?");
 			if(pc.isBimbo()) outputCodex(" You kind of wish you could watch, or unzip her suit and let her thrust into you.");

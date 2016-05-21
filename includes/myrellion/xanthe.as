@@ -1597,8 +1597,8 @@ public function leftTeasedForEver(x:int = 0):void
 	output("\n\nThe first sensation that returns to you is that of your Mistress’s arms tightly wrapped around you and your [pc.hair] being gently stroked. You nuzzle into the warmth and smell of fresh rain that is obviously her. Soon you can feel your body shiver and tremble spasmodically from the following emotional and physical crash.");
 	output("\n\n<i>“There there, pet, it’s okay. You’re safe and in my arms.”</i> Her husky, reassuring words fill your heart with an indescribably intense and heart wrenching sense of love. It’s not long before you fall into the most incredibly deep sleep in her arms.");
 	
-	days += 3;
-	processTime(30);
+	//days += 3;
+	processTime(30 + (60 * 24 * 3));
 	clearMenu();
 	addButton(0,"Next",goodGodJimTLetItEndXantheStrappedUp);
 }

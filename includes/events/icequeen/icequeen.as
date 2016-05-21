@@ -45,11 +45,16 @@ public function showZaalt(nude:Boolean = false):void
 	if(nude) showBust("ZAALT_NUDE");
 	else showBust("ZAALT");
 	//showBust("MILODANMALE");
-	showName("ICE\nQUEEN");
+	if(inCombat()) showName("CAPT.\nKANDAR");
+	else showName("ICE\nQUEEN");
 }
 
 public function iceQueenMessageHelpII():void
 {
+	shipLocation = "SPACE";
+	currentLocation = "SPACE";
+	showLocationName();
+	
 	clearOutput();
 	showZaalt();
 
@@ -467,6 +472,8 @@ public function iceQueenLetsActuallyGo():void
 {
 	clearOutput();
 	showZaalt();
+	currentLocation = "SHIP INTERIOR";
+	showLocationName();
 
 	output("You finally board your ship once more, now with Captain Kandar in tow. The bridge is a short walk away, and you quickly have the coordinates for Uveto plugged in and set the auto-pilot to task.");
 	
@@ -499,6 +506,7 @@ public function iceQueenUvetoEntry(oldUvetoVisitFlagValue:* = undefined):void
 
 	shipLocation = "UVS F15";
 	currentLocation = "UVS F15";
+	showLocationName();
 
 	if (oldUvetoVisitFlagValue == undefined)
 	{
@@ -638,6 +646,8 @@ public function iceQueenLossToZaalt():void
 
 public function iceQueenBeatZaalt():void
 {
+	showZaalt();
+	
 	output("Zaalt staggers back, grabbing the sides of his head and screaming in agony. Your eyes go wide as the bestial cat-man’s eyes roll up in his head, and he falls onto his back. He convulses for a moment, then falls still.");
 	
 	output("\n\nWhat the hell was that all about?");
@@ -714,6 +724,9 @@ public function iceQueenBeatZaaltHelpHim():void
 {
 	clearOutput();
 	showZaalt();
+	userInterface.hideNPCStats();
+	userInterface.leftBarDefaults();
+	generateMap();
 
 	flags["ICEQUEEN COMPLETE"] = 3;
 
@@ -750,6 +763,7 @@ public function iceQueenBeatZaaltHelpHim():void
 	
 	output("\n\nHe grimaces beneath his tusks, avoiding your gaze. <i>“I’m... what most people would call a psyker. A lot of Uvetan races have latent psionics. Emphasis on latent! My implant, it’s supposed to help focus mental energy, let us actually use our abilities. But - agh, damn that stings!”</i>");
 
+	output("\n\n");
 	// 9999
 	if (!pc.myMiddleNameIsJensen()) output("Do implants just rupture like that all the time? If so, that's fucking horrifying... and t");
 	else output("T");
@@ -827,6 +841,7 @@ public function iceQueenNoKara():void
 
 	pc.credits += 10000;
 	currentLocation = "UVI R32"; // 9999 Uveto cafe
+	generateMap();
 	addUvetoCold();
 
 	output("<i>“There’s our guy,”</i> Zaalt says, subtly nodding his head to where a young man is leaning back at a table against the far wall. He’s obviously not human, covered in a thin layer of navy blue fur culminating in a mop of dark red hair and a pair of perky, rabbit-like ears. Your contact’s dressed in a black flight jacket, unzipped to show off a blood red T-shirt with the words <i>HEAVY METAL BAND</i> inscribed across it in obviously ironic swirling font.");

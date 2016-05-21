@@ -928,6 +928,7 @@
 		
 		public function buttRatingUnlocked(newButtRating:Number):Boolean
 		{
+			if(hasPerk("Buttslut") && newButtRating < buttRatingRaw) return false;
 			return true;
 		}
 		public function buttRatingLockedMessage():String
@@ -1691,6 +1692,7 @@
 					buffer = cockHead(arg2);
 					break;
 				case "cockHeads":
+				case "cockheads":
 					buffer = cockHeads(arg2);
 					break;
 				case "cockDescript":
@@ -4303,16 +4305,15 @@
 			var hasSmallNose: Boolean = InCollection(faceType, GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_NALEEN_FACE, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_HUMANMASKED, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_MOUSEMAN, GLOBAL.TYPE_MOUSE);
 			if (hasPerk("Androgyny")) {
 				faceo = "an androgynous " + face();
-				if (mfn("m", "f", "n") == "n")
-					faceo += " that would work on either a male or a female"
-				else
-					faceo += " which leaves a subtle " + mf("boyish", "girly") + " impression";
-				if(lipRating() > 1) faceo += " and " + plural(lipDescript(true)) + faceLipMimbraneDescript();
+				if (mfn("m", "f", "n") == "n") faceo += " that would work on either a male or a female"
+				else faceo += " which leaves a subtle " + mf("boyish", "girly") + " impression";
+				if (lipRating() > 1) faceo += " with " + plural(lipDescript(true)) + faceLipMimbraneDescript();
+				if (hasBeard()) faceo += " in addition to your " + beard();
 			}
 			//0-10
 			else if (femininity < 10) {
 				faceo = "a square chin";
-				if(!hasBeard() && lipRating() > 2) faceo += ", " + plural(lipDescript(true)) + faceLipMimbraneDescript() + ", and chiseled jawline";
+				if (!hasBeard() && lipRating() > 2) faceo += ", " + plural(lipDescript(true)) + faceLipMimbraneDescript() + ", and chiseled jawline";
 				else if (!hasBeard()) faceo += " and chiseled jawline";
 				else faceo += ", chiseled jawline, and " + beard();
 			}
@@ -4320,7 +4321,7 @@
 			else if (femininity < 20) {
 				faceo = "a rugged looking " + face() + " ";
 				if (hasBeard()) faceo += "and " + beard() + " that are";
-				else if(lipRating() > 2) faceo += "and " + plural(lipDescript(true)) + faceLipMimbraneDescript() + " that are";
+				else if (lipRating() > 2) faceo += "and " + plural(lipDescript(true)) + faceLipMimbraneDescript() + " that are";
 				else faceo += "that's";
 				faceo += " surely handsome";
 			}
@@ -4435,7 +4436,7 @@
 				femininity = femininityMax();
 			}
 			//LOSE DICK OR HAVE VAGINA? NO BEARD 4 U!
-			if ((!hasCock() || hasVagina()) && hasBeard()) {
+			if (!hasPerk("Androgyny") && (!hasCock() || hasVagina()) && hasBeard()) {
 				output += "\n\n<b>Your beard falls out, leaving you with " + faceDesc() + ".</b>";
 				removeBeard();
 			}
@@ -5659,8 +5660,8 @@
 			}
 			if (hasStatusEffect("Reduced Goo"))
 			{
+				armor.defense += statusEffectv1("Reduced Goo");
 				removeStatusEffect("Reduced Goo");
-				armor.defense += 5;
 			}
 			for (var x: int = statusEffects.length-1; x >= 0; x--) {
 				if (statusEffects[x].combatOnly)
@@ -9570,8 +9571,9 @@
 		{
 			var desc: String = "";
 			var rando: Number = 0;
+			var buttslut: Boolean = hasPerk("Buttslut");
 			if (buttRating() <= 1) {
-				if (tone >= 60) desc += "incredibly tight, perky ";
+				if (tone >= 60 && !buttslut) desc += "incredibly tight, perky ";
 				else {
 					if (rand(2) == 0) desc = "tiny";
 					else if (rand(2) == 0) desc = "very small";
@@ -9581,7 +9583,7 @@
 					desc += " ";
 				}
 			} else if (buttRating() < 4) {
-				if (tone >= 65) {
+				if (tone >= 65 && !buttslut) {
 					rando = rand(6);
 					if (rando == 0) desc = "perky, muscular ";
 					else if (rando == 1) desc = "tight, toned ";
@@ -9591,7 +9593,7 @@
 					else if (rando == 5) desc = "muscular, toned ";
 				}
 				//Nondescript
-				else if (tone >= 30) {
+				else if (tone >= 30 && !buttslut) {
 					rando = rand(4);
 					if (rando == 0) desc = "tight ";
 					else if (rando == 1) desc = "firm ";
@@ -9611,7 +9613,7 @@
 				}
 			} else if (buttRating() < 6) {
 				//TOIGHT LIKE A TIGER
-				if (tone >= 65) {
+				if (tone >= 65 && !buttslut) {
 					rando = rand(6);
 					if (rando == 0) desc = "nicely muscled ";
 					else if (rando == 1) desc = "nice, toned ";
@@ -9621,7 +9623,7 @@
 					else if (rando == 5) desc = "fair ";
 				}
 				//Nondescript
-				else if (tone >= 30) {
+				else if (tone >= 30 && !buttslut) {
 					rando = rand(2);
 					if (rando == 0) desc = "nice ";
 					else if (rando == 1) desc = "fair ";
@@ -9637,7 +9639,7 @@
 				}
 			} else if (buttRating() < 8) {
 				//TOIGHT LIKE A TIGER
-				if (tone >= 65) {
+				if (tone >= 65 && !buttslut) {
 					rando = rand(7);
 					if (rando == 0) desc = "full, toned ";
 					else if (rando == 1) {
@@ -9650,7 +9652,7 @@
 					else if (rando == 6) desc = "chiseled ";
 				}
 				//Nondescript
-				else if (tone >= 30) {
+				else if (tone >= 30 && !buttslut) {
 					rando = rand(4);
 					if (rando == 0) {
 						if (asPlural) return "hand-filling ass cheeks";
@@ -9675,7 +9677,7 @@
 				}
 			} else if (buttRating() < 10) {
 				//TOIGHT LIKE A TIGER
-				if (tone >= 65) {
+				if (tone >= 65 && !buttslut) {
 					rando = rand(9);
 					if (rando == 0) desc = "large, muscular ";
 					else if (rando == 1) desc = "substantial, toned ";
@@ -9688,7 +9690,7 @@
 					else if (rando == 8) desc = "callipygean ";
 				}
 				//Nondescript
-				else if (tone >= 30) {
+				else if (tone >= 30 && !buttslut) {
 					rando = rand(10);
 					if (rando <= 2) desc = "squeezable ";
 					else if (rando <= 6) desc = "large ";
@@ -9711,7 +9713,7 @@
 				}
 			} else if (buttRating() < 13) {
 				//TOIGHT LIKE A TIGER
-				if (tone >= 65) {
+				if (tone >= 65 && !buttslut) {
 					rando = rand(7);
 					if (rando == 0) desc = "thick, muscular ";
 					else if (rando == 1) desc = "big, burly ";
@@ -9722,7 +9724,7 @@
 					else if (rando == 6) desc = "thick, strong ";
 				}
 				//Nondescript
-				else if (tone >= 30) {
+				else if (tone >= 30 && !buttslut) {
 					rando = rand(4);
 					if (rando == 0) desc = "jiggling ";
 					else if (rando == 1) desc = "spacious ";
@@ -9745,7 +9747,7 @@
 				}
 			} else if (buttRating() < 16) {
 				//TOIGHT LIKE A TIGER
-				if (tone >= 65) {
+				if (tone >= 65 && !buttslut) {
 					rando = rand(8);
 					if (rando == 0) desc = "expansive, muscled ";
 					else if (rando == 1) desc = "voluminous, rippling ";
@@ -9757,7 +9759,7 @@
 					else if (rando == 7) desc = "powerful, expansive ";
 				}
 				//Nondescript
-				else if (tone >= 30) {
+				else if (tone >= 30 && !buttslut) {
 					rando = rand(4);
 					if (rando == 0) desc = "expansive ";
 					else if (rando == 1) desc = "generous ";
@@ -9780,7 +9782,7 @@
 					else if (rando == 10) desc = "soft, padded ";
 				}
 			} else if (buttRating() < 20) {
-				if (tone >= 65) {
+				if (tone >= 65 && !buttslut) {
 					rando = rand(6);
 					if (rando == 0) desc = "huge, toned ";
 					else if (rando == 1) desc = "vast, muscular ";
@@ -9790,7 +9792,7 @@
 					else if (rando == 5) desc = "muscle-bound ";
 				}
 				//Nondescript
-				else if (tone >= 30) {
+				else if (tone >= 30 && !buttslut) {
 					rando = rand(5);
 					if (rando == 0) desc = "huge ";
 					else if (rando == 1) desc = "vast ";
@@ -9819,7 +9821,7 @@
 					else if (rando == 10) desc = "swollen, pillow-like ";
 				}
 			} else {
-				if (tone >= 65) {
+				if (tone >= 65 && !buttslut) {
 					rando = rand(7);
 					if (rando == 0) desc = "ginormous, muscle-bound ";
 					else if (rando == 1) desc = "colossal yet toned ";
@@ -9833,7 +9835,7 @@
 					else if (rando == 6) desc = "colossal, well-defined ";
 				}
 				//Nondescript
-				else if (tone >= 30) {
+				else if (tone >= 30 && !buttslut) {
 					rando = rand(4);
 					if (rando == 0) desc = "ginormous ";
 					else if (rando == 1) desc = "colossal ";
@@ -10740,7 +10742,7 @@
 				else if (type == GLOBAL.TYPE_GRYVAIN)
 				{
 					if (!simple)
-						desc += RandomInCollection(["nub-ringed pussy", "clit-lined cunt", "clit-filled vagina", "clit-ringed vagina", "clit-lined pussy", "scaley pussy", "scaley cunt", "scaley vagina", "gryvain pussy", "dragonic cunt", "dragon-like pussy"]);
+						desc += RandomInCollection(["nub-ringed pussy", "clit-lined cunt", "clit-filled vagina", "clit-ringed vagina", "clit-lined pussy", "scaly pussy", "scaly cunt", "scaly vagina", "gryvain pussy", "dragonic cunt", "dragon-like pussy"]);
 					else
 						desc += RandomInCollection(["gryvain-pussy", "nubby cunt", "dragon cunt", "pussy"]);
 				}
@@ -13033,8 +13035,9 @@
 		}
 		public function addBiomass(arg:Number):void
 		{
-			if(kGAMECLASS.flags["GOO_BIOMASS"] == undefined) kGAMECLASS.flags["GOO_BIOMASS"] = 0;
-			kGAMECLASS.flags["GOO_BIOMASS"] += arg;
+			//if(kGAMECLASS.flags["GOO_BIOMASS"] == undefined) kGAMECLASS.flags["GOO_BIOMASS"] = 0;
+			//kGAMECLASS.flags["GOO_BIOMASS"] += arg;
+			kGAMECLASS.gooBiomass(arg);
 		}
 		public function cumflationHappens(cumFrom:Creature, hole:Number):void
 		{

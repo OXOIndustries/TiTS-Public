@@ -146,18 +146,19 @@ public function cockBoxMenu(x:int):void
 {
 	clearMenu();
 	
-	addButton(0,"Ausar",dickBoxTFColorSelect,[x,GLOBAL.TYPE_CANINE],"Ausar","Get a knotted, ausar penis.");
-	addButton(1,"Equine",dickBoxTFColorSelect,[x,GLOBAL.TYPE_EQUINE],"Equine","Get a penis like that of a terran horse.");
+	addButton(0,"Terran",dickBoxTFColorSelect,[x,GLOBAL.TYPE_HUMAN],"Human","Get a fleshy, pink penis, like a terran.");
+	addButton(1,"Ausar",dickBoxTFColorSelect,[x,GLOBAL.TYPE_CANINE],"Ausar","Get a knotted, ausar penis.");
 	addButton(2,"Kaithrit",dickBoxTFColorSelect,[x,GLOBAL.TYPE_FELINE],"Kaithrit","Get a penis with textured nubs like a kaithrit.");
 	addButton(3,"Kui-Tan",dickBoxTFColorSelect,[x,GLOBAL.TYPE_KUITAN],"Kui-Tan","Get a bulbous penis, like the kui-tan.");
 	addButton(4,"Leithan",dickBoxTFColorSelect,[x,GLOBAL.TYPE_NAGA],"Leithan","Get a smooth, tapered penis like that of a leithan.");
-	addButton(5,"Terran",dickBoxTFColorSelect,[x,GLOBAL.TYPE_HUMAN],"Human","Get a fleshy, pink penis, like a terran.");
+	addButton(5,"Gryvain",dickBoxTFColorSelect,[x,GLOBAL.TYPE_GRYVAIN],"Gryvain","Get a scaly knotted, ribbed penis, like that of a gryvain.");
+	addButton(6,"Equine",dickBoxTFColorSelect,[x,GLOBAL.TYPE_EQUINE],"Equine","Get a penis like that of a terran horse.");
 	// Unlockables
 	if(flags["COCKBOX_UPGRADE"] != undefined)
 	{
-		addButton(6,"Demonic",dickBoxTFColorSelect,[x,GLOBAL.TYPE_DEMONIC],"Demonic","Get a knotted, nubby and sinister-looking penis.");
-		addButton(7,"Tentacle",dickBoxTFColorSelect,[x,GLOBAL.TYPE_TENTACLE],"Tentacle","Get a prehensile tentacle penis.");
-		addButton(8,"Draconic",dickBoxTFColorSelect,[x,GLOBAL.TYPE_DRACONIC],"Draconic","Get a tapered and knotted dragon penis.");
+		addButton(7,"Demonic",dickBoxTFColorSelect,[x,GLOBAL.TYPE_DEMONIC],"Demonic","Get a knotted, nubby and sinister-looking penis.");
+		addButton(8,"Tentacle",dickBoxTFColorSelect,[x,GLOBAL.TYPE_TENTACLE],"Tentacle","Get a prehensile tentacle penis.");
+		addButton(9,"Draconic",dickBoxTFColorSelect,[x,GLOBAL.TYPE_DRACONIC],"Draconic","Get a tapered and knotted dragon penis.");
 	}
 	
 	addButton(14,"Back",useInstalledDickBox);

@@ -1,6 +1,5 @@
 ﻿public function isHalloweenish():Boolean
 {
-	return true;
 	//checkDate(day:int, month:int, dayRange:int)
 	return checkDate(29, 10, 3);
 }
@@ -17,8 +16,8 @@ public function showHoliday(arg:String = "normal"):void
 public function halloweenShipMove():void
 {
 	currentLocation = "SHIP INTERIOR";
-	generateMapForLocation(currentLocation);
-	showName("SHIP\nINTERIOR");
+	generateMap();
+	showLocationName();
 }
 
 public function hollidayOweenAlert():void
@@ -59,6 +58,8 @@ public function flyToPoeA():void
 ////Plays when the player selects Poe A from their navigation list.
 public function landingOnPoeA():void
 {
+	generateMap();
+	
 	clearOutput();
 	showName("\nLANDING...");
 	author("Adjatha");
@@ -780,6 +781,7 @@ public function partyHardWivSavin():void
 public function annoPartyEpiloooogue():void
 {
 	clearOutput();
+	halloweenShipMove();
 	showName("THE\nSHIP");
 	author("Savin");
 
@@ -1387,7 +1389,6 @@ public function femTaurCostumeEpilogue():void
 public function finalLadyTaurCostumeEpilogue():void
 {
 	clearOutput();
-	showName("SHIP\nINTERIOR");
 	output("No matter how hard you search, you can’t find a single catch or release. Worse still, attempts to peel away the border between your top and bottom half hurts. You can’t even feel your old lower half anymore - just the four, hoof-capped limbs below. It’s as if that equine shape has become a part of you for good. Is that what the peacekeepers meant by symbiosis tech? Are you a centaur forever?");
 	output("\n\nWell, at least you’ll be well-equipped for riding now. You doubt any sapient this side of the spiral arm would be too big for you, and better still, ");
 	if(flags["RESCUE KIRO FROM BLUEBALLS"] == 1) output("your cunt can probably keep up with Kiro now. Just the thought of taking her bitch-breaker of a dick has your pussy on a slow boil.");
