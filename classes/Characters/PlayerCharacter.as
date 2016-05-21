@@ -67,6 +67,11 @@ package classes.Characters
 				if(cumFrom != null) addBiomass(cumFrom.cumQ());
 				else addBiomass(10);
 			}
+			if(hasPerk("Buttslut"))
+			{
+				HP(level);
+				if(cumFrom != null) HP(Math.round(cumFrom.cumQ()/1000));
+			}
 			if (cumFrom != null)
 			{
 				if(cumflationEnabled()) cumflationHappens(cumFrom,3);

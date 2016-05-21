@@ -22,6 +22,13 @@ package  classes
 			if (value == null) return "Null String? :(";
 			if (value.length == 0) return "Length 0 String? :(";
 			
+			var conjunctions:Array = ["the", "of", "a", "an", "and", "or", "nor", "but", "yet", "so", "to", "for", "from", "with", "at", "by"];
+			var romanNum:Array = [
+				"C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM",
+				"X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC",
+				"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX",
+				];
+			
 			var w:Array = value.split(" ");
 			var q:String = "";
 			var r:String = "";
@@ -33,9 +40,10 @@ package  classes
 					r = q;
 					w[i] = w[i].substr(1);
 				}
-				if (i == 0 || (w[i] != "the" && w[i] != "of"))
+				if (i == 0 || (conjunctions.indexOf(w[i]) == -1 && romanNum.indexOf(w[i]) == -1))
 				{
-					if(r.length > 0) w[i] = r + capitalize(w[i], false);
+					if(w[i] == w[i].toLowerCase() && romanNum.indexOf(w[i].toUpperCase()) != -1) w[i] = w[i].toUpperCase();
+					else if(r.length > 0) w[i] = r + capitalize(w[i], false);
 					else w[i] = capitalize(w[i], false);
 				}
 				r = "";
@@ -54,6 +62,13 @@ package  classes
 			if (value == null) return "Null String? :(";
 			if (value.length == 0) return "Length 0 String? :(";
 			
+			var conjunctions:Array = ["the", "of", "a", "an", "and", "or", "nor", "but", "yet", "so", "to", "for", "from", "with", "at", "by"];
+			var romanNum:Array = [
+				"C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM",
+				"X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC",
+				"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX",
+				];
+			
 			var w:Array = value.split(" ");
 			var q:String = "";
 			var r:String = "";
@@ -65,9 +80,10 @@ package  classes
 					r = q;
 					w[i] = w[i].substr(1);
 				}
-				if (i == 0 || (w[i] != "the" && w[i] != "of" && w[i] != "a" && w[i] != "an" && w[i] != "and" && w[i] != "or" && w[i] != "nor" && w[i] != "but" && w[i] != "yet" && w[i] != "so" && w[i] != "to" && w[i] != "for" && w[i] != "from" && w[i] != "with" && w[i] != "at" && w[i] != "by"))
+				if (i == 0 || (conjunctions.indexOf(w[i]) == -1 && romanNum.indexOf(w[i]) == -1))
 				{
-					if(r.length > 0) w[i] = r + capitalize(w[i], false);
+					if(w[i] == w[i].toLowerCase() && romanNum.indexOf(w[i].toUpperCase()) != -1) w[i] = w[i].toUpperCase();
+					else if(r.length > 0) w[i] = r + capitalize(w[i], false);
 					else w[i] = capitalize(w[i], false);
 				}
 				r = "";

@@ -85,6 +85,9 @@ public function appearance(forTarget:Creature):void
 			else if(target.exhibitionism() >= 10) output2(" If anyone sees you now, they’re sure to think you’re a nudist...");
 			else output2(" If anyone sees you now, they’re sure to think you’re a nudist!");
 		}
+		
+		// Goo Armor Bonus text
+		if(target.armor is GooArmor) output2("\n\n" + gooArmorDetails());
 
 		//Face
 		output2("\n\n");
@@ -983,7 +986,7 @@ public function appearance(forTarget:Creature):void
 		//Horse version
 		if(target.isTaur()) {
 			//FATBUTT
-			if(target.tone < 65) {
+			if(target.tone < 65 || target.hasPerk("Buttslut")) {
 				output2(" Your " + target.buttDescript());
 				if(target.buttRating() < 4) output2(" is lean, from what you can see of it.");
 				if(target.buttRating() >= 4 && target.buttRating() < 6) output2(" looks fairly average.");
@@ -1006,7 +1009,7 @@ public function appearance(forTarget:Creature):void
 		//Non-horse PCs
 		else {
 			//TUBBY ASS
-			if(target.tone < 60) {
+			if(target.tone < 60 || target.hasPerk("Buttslut")) {
 				output2(" your " + target.buttDescript());
 				if(target.buttRating() < 4) output2(" looks great under your gear.");
 				if(target.buttRating() >= 4 && target.buttRating() < 6) output2(" has the barest amount of sexy jiggle.");
@@ -1657,6 +1660,16 @@ public function appearance(forTarget:Creature):void
 				output2(" seem");
 			}
 			output2(" intelligent enough for some rudimentary communication....");
+		}
+		// Goo Armor Customization!
+		if (hasGooArmorOnSelf())
+		{
+			var gooArmorBonus:String = gooArmorOnSelfBonus(btnIndex, false);
+			if(gooArmorBonus.length > 0)
+			{
+				output2(gooArmorBonus);
+				btnIndex++;
+			}
 		}
 	}
 	

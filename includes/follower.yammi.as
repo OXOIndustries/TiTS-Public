@@ -13,7 +13,7 @@ Good jokes go right by: Fenoxo*/
 public function yammiFollowerDisplay(nude:Boolean = false):void
 {
 	showYammi(nude);
-	author("Lady Jen");
+	author("Lady Jenn");
 }
 
 public function yammiRecruited():Boolean
@@ -364,7 +364,7 @@ public function offerToHelpYammi():void
 		output("<i>“Oh, you want to lend me a hand again? No knives this time, I promise!”</i> She chuckles. <i>“Actually, here! You wanted to know what live specimens I have aboard? You can help with one!”</i>");
 		output("\n\nYou shrug and follow her into a back room, where a faint blue light holds back the cold. Inside you are somewhat surprised to see a woman! She has light blue scales that turn into lighter, armor-looking bands across the chest. She has a mostly-serpentine face, and dark blue eyes that have no pupil. She’s sitting on her knees on the floor and thrusting her meaty rump into the air, leaving her long spaded tail to flick back and forth. Her arms are supporting her front, locked around what looks like a doggy dish. Her fingers display the stumps of filed-down claws. A ring-gag holds her mouth open, and a very heavy-looking metal piercing onto the tip of her very, very long tongue forces her to leave it hanging out. She has frilled ears, strands of wispy spines where hair should be, and has some small breast-like lumps in the chest plating tipped with big, dark blue nipples.");
 		output("\n\n<i>“This is a pexiga. Most are eaten by their own kind on their native planet... seriously, something like 90-something percent of them. They’re born in <b>huge</b> clusters of eggs. This one has lived over three hundred times as long as your average pexiga female by becoming a harvest girl.”</i> Yammi explains, indicating the tongue. <i>“Pexiga generate a really super-sweet gel in their mouths that serves sort of as saliva. It’s way sweeter than honey. You can’t find a really good kitchen or restaurant around that doesn’t have one of these.”</i>");
-		output("\n\nYou turn to Yammi with a concerned expression. How did she get a... pexiga... aboard your ship without you know. Is this creature dangerous? And why is Yammi, someone who was in indentured servitude herself, keeping a gagged woman in your pantry.");
+		output("\n\nYou turn to Yammi with a concerned expression. How did she get a... pexiga... aboard your ship without " + (rand(2) == 0 ? "you knowing" : "your knowledge") + "? Is this creature dangerous? And why is Yammi, someone who was in indentured servitude herself, keeping a gagged woman in your pantry?");
 		output("\n\nYammi looks at you with a huff. <i>“You know how they catch a pexiga? They find one that’s lived more than eight years and then wait. Pexigas are deadly predators, but they have a sort of biological clock inside them. After eight years they’ve spawned all their young, so they’re infertile, and their brains just sort of... stop working. A pexiga that’s used up all her eggs just stops doing things. She stands there like an idiot, not hurting anybody, just waiting there to get eaten. They barely even feed themselves. You can walk right up and pose them like dummies and they’ll just stand there. By eight years, no exceptions. And their years are just over half a standard one.”</i> Yammi tells you, fetching a bowl.");
 		output("\n\n<i>“Trust me, I’m not above indentured service... what was good enough for me is fine for others for a little while! But this one’s different, it’s literally lived its entire life and would otherwise be waiting to die. But as long as I feed her, and keep her muzzled so she doesn’t eat anybody, she’s fine!”</i>");
 		output("\n\nEat anybody?");
@@ -395,7 +395,7 @@ public function pexigaVisit():void
 	clearOutput();
 	showName("\nA PEXIGA");
 	showBust("PEXIGA");
-	author("Lady Jen");
+	author("Lady Jenn");
 
 	output("You tell Yammi to keep on cooking; you’re just going to wander around the kitchen. She flashes you a bright smile and goes back to the dish she’s working on at the moment, and once she’s nice and distracted, you make your way into the pantry she keeps the pexiga in.");
 	output("\n\nThe reptilian alien is still sitting on her knees in the pantry, leaning over her doggy dish with her mouth around a ring gag. Her spaded tail swishes gently behind her raised, meaty rump; spiny hair falls down around her shoulders in messy lockes. The creature glances up at you with disinterest, slowly returning her attention to the deck.");
@@ -417,7 +417,7 @@ public function milkSalivaFromPexiga():void
 	clearOutput();
 	showName("\nA PEXIGA");
 	showBust("PEXIGA");
-	author("Lady Jen");
+	author("Lady Jenn");
 	
 	output("Remembering Yammi’s lesson, you decide to get some of the pexiga’s sweet saliva for yourself. You slip down to the reptile-girl’s level, brushing some of her spine-hair out of her eyes. She blinks at you and murmurs, wiggling her pierced tongue slightly. Like she knows what’s coming.");
 	output("\n\nYou press on her tongue and massage your way up. It’s very warm despite the low temperature in the room, and soft as silk. The pexiga’s eyes roll upwards and she lets out faint gulping sounds as her reflexes tell her to swallow. Soon, a thick, clear gel starts to trickle down her tongue.");
@@ -440,7 +440,7 @@ public function petPexiga():void
 	clearOutput();
 	showName("\nA PEXIGA");
 	showBust("PEXIGA");
-	author("Lady Jen");
+	author("Lady Jenn");
 	
 	output("Feeling sorry for the lethargic reptilian beauty, you draw close and run your fingers through her spiny hair. The pexiga murmurs around her ring-gag, swishing her tail across the deck as you massage her scaly scalp. The big piercing on her tongue swishes ever so slightly, and her somewhat vacant expression shifts to something like a smile, and her eyes follow you as you move. With no food on offer, and without your hand working to milk her for her sweet saliva, she seems somewhat more attentive than usual. If only just.");
 	output("\n\nYou smile and pat her head, telling her that she’s a very good");
@@ -775,7 +775,7 @@ public function analWithYammibalLector(x:int = 0):void
 	yammiFollowerDisplay(true);
 	author("Savin");
 	
-	output("You pull Yammi’s dress up over her head, revealing the pert mounds of her breasts, the smooth curves of her amphibian skin, and the lacy black panties clinging to her ample hips. She sucks in a sharp breath as you uncloth her, but her hands are already working on you as well, pulling your ");
+	output("You pull Yammi’s dress up over her head, revealing the pert mounds of her breasts, the smooth curves of her amphibian skin, and the lacy black panties clinging to her ample hips. She sucks in a sharp breath as you unclothe her, but her hands are already working on you as well, pulling your ");
 	if(pc.isCrotchGarbed()) output("clothes");
 	else output("gear");
 	output(" aside and ");
@@ -849,7 +849,7 @@ public function analWithYammibalLector(x:int = 0):void
 	output(" She shudders and sighs when you pull out of her. After a while of silence, Yammi struggles up onto her elbows and gives you a look over her shoulder.");
 	output("\n\n<i>“That wasn’t exactly gentle!”</i> she huffs, though the dampness on her thighs tells a different story.");
 	output("\n\nYou ask her if it was <i>bad</i> though, between a firm grope of a buttcheek. Yammi blushes and rolls her eyes. <i>“Well, I guess I came too...”</i>");
-	output("\n\nThat’s more like it. You toss Yammi a towl to clean herself up with and go to find your gear. Maybe you’ll come back for a second course when she can walk straight again...");
+	output("\n\nThat’s more like it. You toss Yammi a towel to clean herself up with and go to find your gear. Maybe you’ll come back for a second course when she can walk straight again...");
 	processTime(32);
 	IncrementFlag("SEXED_YAMMI");
 	IncrementFlag("ANALED_YAMMI");
@@ -934,7 +934,7 @@ public function vaginalWithYammi(x:int = 0):void
 	clearOutput();
 	yammiFollowerDisplay(true);
 	author("Savin");
-	output("Between your stay kisses and wandering gropes, you ");
+	output("Between your stray kisses and wandering gropes, you ");
 	if(x >= 0) output("can feel your [pc.cock " + x + "] hardening against Yammi’s thigh");
 	else output("manage to get your hand down to the controls for your hardlight, letting it spring to life against Yammi’s hips in a surge of sensation");
 	output(". Your love gasps, feeling your erection pressing against her. She smiles, grasping it and stroking gently. Each soft caress guides your member, drawing it towards her eager sex. Her arms clench around your shoulders, her legs at your hips, letting you carry her weight between you and the bulkhead.");
@@ -945,7 +945,7 @@ public function vaginalWithYammi(x:int = 0):void
 	output("\n\nEventually, your hands make their way back down to Yammi’s hips. You lean forward, pressing yourself tight to your lover’s supple form and finding her lips with yours, kissing her fiercely. Your [pc.hips] move in turn, sawing your prick in and out of her greedy hole. Yammi takes as much as you can give, groaning breathily with every thrust. Her womanhood squeezes you with wanton lust, trying to at once draw you in and milk you. She’s so wet and ready, though, that you can’t help but thrust faster, working up to a fevered pace.");
 	output("\n\nYammi’s head rolls back, moaning your name. Her ass jiggles and quakes every time your hips slap against it and her pussy drools excitement around your [pc.cockOrStrapon " + x + "]. The two of you fill the galley with a constant bevy of wet, lurid noises. Yammi’s fingers dig into your [pc.butt], pulling you ever deeper into her sensual embrace.");
 	output("\n\nYou find yourself breaking off your kisses, bending back to explore her body with your mouth. Your lips quickly find their way to her breasts, catching a dark nipple between your teeth and pinching it just hard enough to make your lover’s quim squeeze you just that much more passionately. You can feel every pang of pleasure reciprocated through Yammi’s muscles, rewarding every grope and bite with a little squeeze around your shaft. And she’s only getting wetter, spreading her cool lubrication across your thighs");
-	if(pc.balls > 1) output(" and balls");
+	if(pc.balls > 0) output(" and [pc.balls]");
 	output(".");
 	output("\n\n<i>“Harder,”</i> she breathes into your [pc.ear]. <i>“Harder, [pc.name]!”</i>");
 	output("\n\nCan’t argue with that!");

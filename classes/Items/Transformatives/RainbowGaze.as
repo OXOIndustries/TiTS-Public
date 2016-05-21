@@ -105,7 +105,7 @@
 			kGAMECLASS.clearMenu();
 			for(i = 0; i < colorList[0].length; i++)
 			{
-				if(btnSlot > 14 && (btnSlot + 1) % 15 == 0)
+				if(btnSlot >= 14 && (btnSlot + 1) % 15 == 0)
 				{
 					addButton(btnSlot, "Back", rbgMenu, target);
 					btnSlot++;

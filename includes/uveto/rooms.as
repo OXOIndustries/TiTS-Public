@@ -300,6 +300,7 @@ public function initUvetoRooms():void
 	//rooms["UVI H32"].eastExit = "UVI J32"; // TEMP 9999
 	rooms["UVI H32"].southExit = "UVI H34";
 	rooms["UVI H32"].moveMinutes = 1;
+	rooms["UVI H32"].runOnEnter = buttslutinatorBonus;
 	rooms["UVI H32"].addFlag(GLOBAL.INDOOR);
 	rooms["UVI H32"].addFlag(GLOBAL.NPC);
 

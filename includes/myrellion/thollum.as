@@ -1448,12 +1448,12 @@ public function lesboThreeWayYarastaAndGiala():void
 	else output("along your ass until she finds your [pc.asshole].");
 
 	output("\n\n<i>“Hey, don’t start without me,”</i> cries Yarasta, flinging her blue blouse aside haphazardly and shimmying out of her skirt. Giala winks at you, and grins as she works ");
-	if(x >= 0) output("[pc.oneClitPerVagina" + x + "] from its hood.");
+	if(x >= 0) output("[pc.oneClitPerVagina " + x + "] from its hood.");
 	else output("her fingers into your smutty anal ring.");
 
 	output("\n\n<i>“She does hate to be excluded,”</i> the sumin laughs, as Yarasta practically crashes onto a cushion next to you. The skinny myr spreads her legs and her abdomen bobs up between them, cunt slightly wet and beckoning to be touched. She slides her fingers into it, and you watch it bloom with arousal.");
 	output("\n\n<i>“Give me your hand,”</i> Yarasta demands, grabbing at your arm until you acquiesce. She raises your fingers to her lips and waits for you to look up, then slides them into her mouth, working her tongue between your digits and coating them with her hot saliva. You relax as her tongue tickles your fingerpads, lulled into passivity by the efforts of the two horny myr. Without complaint, you allow Yarasta to lower your hand to her vagina; you can literally feel the heat coming from it on your palm moments before she slides your fingers into the drooling, slick hole. Giala is also watching, and relinquishes her grip on your own ");
-	if(x >= 0) output("[pc.vagina" + x + "]");
+	if(x >= 0) output("[pc.vagina " + x + "]");
 	else if(x == -1) output("[pc.tailgina]");
 	else output("[pc.asshole]");
 	output(" as the prefect’s fingers, slimy with her sweet-smelling lube, glide over ");
@@ -2126,7 +2126,7 @@ public function getABlowie():void
 	else if(x == -1) output("tail");
 	else output("[pc.breast]");
 	output(". She squeezes, massaging the sensitive flesh");
-	output(" with steady fingers that make your neck muscles weak. You arousal spikes again as she stops kissing your cock, parts her lips, and passes your crown through them. Your eyes even close in bliss as your cockhead throbs with the attention, and when you reopen them, her visible lip has colored with the blood that rushed to her face. You feel your pelvic muscles twitch and a new drop of precum slides out of your slit; she quickly finds it with the tip of her tongue and spreads it around your ");
+	output(" with steady fingers that make your neck muscles weak. Your arousal spikes again as she stops kissing your cock, parts her lips, and passes your crown through them. Your eyes even close in bliss as your cockhead throbs with the attention, and when you reopen them, her visible lip has colored with the blood that rushed to her face. You feel your pelvic muscles twitch and a new drop of precum slides out of your slit; she quickly finds it with the tip of her tongue and spreads it around your ");
 	if(x >= 0) output("[pc.cockHead " + x + "]");
 	else if(x == -1) output("[pc.tailCockHead]");
 	else output("[pc.nippleCockHead]");
@@ -2138,7 +2138,7 @@ public function getABlowie():void
 	else output("[pc.nippleCockSimple]");
 	output(" slides past her wisdom teeth, smearing [pc.cumFlavor] slime on the back of her tongue that makes her hum with happiness.");
 	if(!pc.isTaur()) output(" She raises her eyebrows and looks over her glasses at you, and though it’s probably unintentional, the perspective makes her look condescending enough that you begin to fuck her mouth, instinctively trying to punish her just a bit for her bitch face.");
-	else output(" Frustrated at being without even a hit of what comes next, your hips automatically begin to thrust lightly, fucking the myr’s mouth.");
+	else output(" Frustrated at being without even a hint of what comes next, your hips automatically begin to thrust lightly, fucking the myr’s mouth.");
 
 	output("\n\nYarasta seems to like this; her hand slides up to grasp your shaft and give you more wet flesh to thrust through. Two of the others pull at the chitin on her abdomen, spreading herself wide so the last can dance in and out of her vagina. She jills herself vigorously as your ");
 	if(x >= 0) output("[pc.cockHead " + x + "]");

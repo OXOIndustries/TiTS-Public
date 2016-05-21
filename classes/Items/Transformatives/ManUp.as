@@ -261,7 +261,7 @@
 						if(pcRace.indexOf("ausar") != -1) kGAMECLASS.output(" like an ausar");
 						else kGAMECLASS.output(" like a canine");
 					}
-					else if(InCollection(pcRace, "kaithrit", "half-kaithrit", "feline-morph"))
+					else if(InCollection(pcRace, "kaithrit", "half-kaithrit", "feline-morph", "nekomata", "chakat"))
 					{
 						target.shiftCock(0, GLOBAL.TYPE_FELINE);
 						kGAMECLASS.output("Your [pc.cockColor] cock is very much like a spike and is covered in soft barbs");
@@ -280,6 +280,11 @@
 					{
 						target.shiftCock(0, GLOBAL.TYPE_KUITAN);
 						kGAMECLASS.output("Your [pc.cockColor] dick has one large knot at the base followed by two smaller ones");
+					}
+					else if(InCollection(pcRace, "gryvain", "half-gryvain"))
+					{
+						target.shiftCock(0, GLOBAL.TYPE_GRYVAIN);
+						kGAMECLASS.output("Your dick is knoted at the base, ribbed along the shaft, and covered in [pc.cockColor] scales");
 					}
 					else if(pcRace == "vulpine-morph") 
 					{
