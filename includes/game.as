@@ -1447,6 +1447,16 @@ public function variableRoomUpdateCheck():void
 	
 	// KQuest
 	kquest2RoomStateUpdater();
+	if (flags["KQ2_MYRELLION_STATE"] == 2)
+	{
+		rooms["2I7"].removeFlag(GLOBAL.TAXI);
+		rooms["2I7"].addFlag(GLOBAL.SHIPHANGAR);
+	}
+	else
+	{
+		rooms["2I7"].removeFlag(GLOBAL.SHIPHANGAR);
+		rooms["2I7"].addFlag(GLOBAL.TAXI);
+	}
 }
 
 public function processTime(arg:int):void {

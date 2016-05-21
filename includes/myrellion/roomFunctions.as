@@ -328,6 +328,9 @@ public function myrellionUndergroundCrashSiteBonus():Boolean
 {
 	if (flags["KQ2_MYRELLION_STATE"] == 2)
 	{
+		// Ship Location Hotfix
+		if(shipLocation != currentLocation && currentLocation == "2I7" && rooms["2I7"].hasFlag(GLOBAL.SHIPHANGAR)) shipLocation = "2I7";
+		
 		output(" The beacon sits silent, an ominious red glow flashing across its top like a metronome.");
 		return false;
 	}
