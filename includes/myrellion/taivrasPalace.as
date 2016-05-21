@@ -901,7 +901,7 @@ public function pcBeatsGoo():void
 		addDisabledButton(0,"Fuck Her","Fuck Her","You aren't aroused enough to even consider this.");
 		addDisabledButton(1,"Get Egged","Get Egged","You aren't aroused enough to even consider this.");
 	}
-	if(hasGooArmorOnSelf()) addButton(14,"Leave",armorGooVictoryShits);
+	if(hasGooArmorOnSelf() && !hasGooArmorUpgrade("ganrael")) addButton(14,"Leave",armorGooVictoryShits);
 	else addButton(14,"Leave",CombatManager.genericVictory);
 }
 
@@ -1083,7 +1083,7 @@ public function getEggedByCrystalGoo():void
 public function gooVictoryPostGooCheck():void
 {
 	clearMenu();
-	if(hasGooArmorOnSelf()) addButton(0,"Next",armorGooVictoryShits);
+	if(hasGooArmorOnSelf() && !hasGooArmorUpgrade("ganrael")) addButton(0,"Next",armorGooVictoryShits);
 	else CombatManager.genericVictory();
 }
 
@@ -1092,6 +1092,8 @@ public function gooVictoryPostGooCheck():void
 //Play after PC is done with guu post-fite. Armor Goo gets a permanant +2 Defense bonus, and counts as Mirrored.
 public function armorGooVictoryShits():void
 {
+	var isRoyal:Boolean = (enemy == goocubator);
+	
 	clearOutput();
 	author("Savin");
 	//show armorbutt?
@@ -1099,13 +1101,23 @@ public function armorGooVictoryShits():void
 	//showBust("GRAYGOO");
 	showGrayGooArmor();
 	output("<i>“Oh, hey,”</i> [goo.name] says, poking her head out, <i>“that crystal stuff she made was really cool, huh?”</i>");
-	output("\n\nYou pause, taken aback by your normally-passive suit of goo’s sudden outburst. Still, you nod: the crystal on that ganrael broodmare was certainly useful to her.");
+	output("\n\nYou pause, taken aback by your normally-passive suit of goo’s sudden outburst. Still, you nod: the crystal on that ganrael");
+	if(isRoyal) output(" broodmare");
+	output(" was certainly useful to her.");
 	output("\n\n<i>“Could I, um... get a sample, maybe?”</i> [goo.name] asks sweetly, reaching her head around on a stalk of gray goop to give you a puppy-dog look. <i>“I bet I could replicate it! Make myself an even better bodysuit for you!”</i>");
-	output("\n\nWell, if she can give you an edge in combat, you can hardly pass that up. You turn back to the moaning pile of defeated goo-broodmare and crouch down beside her, letting [goo.name] go to work. The bubbly gray goo hops ");
+	output("\n\nWell, if she can give you an edge in combat, you can hardly pass that up. You turn back to the moaning pile of defeated");
+	if(isRoyal) output(" goo-broodmare");
+	else output(" crystal goo");
+	output(" and crouch down beside her, letting [goo.name] go to work. The bubbly gray goo hops ");
 	if(pc.armor is GooArmor) output("off of you");
 	else output("out of your pack");
-	output(" and burbles over to the egg-laden slut, reaching a silvery hand down to run a few fingers along her crystal-armored belly. <i>“Oooh, it’s pretty!”</i> [goo.name] giggles, <i>“And hard, too! Hmm, bio-crystal like this... just really hardened body cells. Interesting! Hmm, analysis shows a complex biological process going on all through her body, turning old cells crystal, pushing them together to form shards... I can totally do that!”</i>");
-	output("\n\nSometimes it’s easy to forget [goo.name] was <i>supposed</i> to be a medical program, before whatever went wrong with the gray goo turned her into a flighty bimbo. Makes you wonder what happened to the ganrael girl to make her into such a mindlessly loyal egg-slut. This nyrean queen must really be something...");
+	output(" and burbles over to the");
+	if(isRoyal) output(" egg-laden slut");
+	else output(" downed foe");
+	output(", reaching a silvery hand down to run a few fingers along her crystal-armored belly. <i>“Oooh, it’s pretty!”</i> [goo.name] giggles, <i>“And hard, too! Hmm, bio-crystal like this... just really hardened body cells. Interesting! Hmm, analysis shows a complex biological process going on all through her body, turning old cells crystal, pushing them together to form shards... I can totally do that!”</i>");
+	output("\n\nSometimes it’s easy to forget [goo.name] was <i>supposed</i> to be a medical program, before whatever went wrong with the gray goo turned her into a flighty bimbo.");
+	if(isRoyal) output(" Makes you wonder what happened to the ganrael girl to make her into such a mindlessly loyal egg-slut. This nyrean queen must really be something.");
+	output("..");
 	output("\n\nAs you’re musing to yourself, you see [goo.name] hop off of the defeated ganrael and scoot back over to you. As she moves, bit of her shoulders and legs begin to bubble and morph, changing into gray facsimiles of crystal armor plates. They seem sturdy, too - enough so that your bubbly bodysuit invites you to punch them as hard as you can. You give them a few good smacks, and [goo.name] just giggles and quivers from the impacts. The gooey crystal shifts back in her body when you hit them, but pop back a moment later. You’re not sure just how effective they’d be at stopping a bullet, but they’d certainly give a fist-fighter something to think about.");
 	output("\n\n<i>“Like my new look?”</i> [goo.name] grins, twirling around to show off a growing number of spikey gray crystal plates forming on her chest and back, forming pauldrons and a solid breastplate. You’re sure that, when it comes time to have a little fun, the plates could easily be absorbed back into her. But here in a place rife with danger, well, she almost looks like a sexified version of a proper knight now!");
 	output("\n\nShe giggles at the praise and bounds back to you. <i>“Ready to go, [pc.name]!”</i>\n\n");
