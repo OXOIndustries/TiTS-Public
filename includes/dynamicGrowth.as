@@ -357,6 +357,10 @@ public function bigBallBadEnd():void
 
 public function maneHairGrow():void
 {
+	var lengthMin:Number = 3;
+	
+	if(pc.hairLength >= lengthMin) return;
+	
 	eventBuffer += "\n\nYour scalp tingles and you";
 	if (pc.hairLength <= 0)
 	{
@@ -745,5 +749,39 @@ public function milkMultiplierGainNotificationCheck():void
 		pc.removeStatusEffect("Pending Gain MilkMultiplier Note: 125");
 	}
 	if(msg.length > 0) eventBuffer += ParseText(msg);
+}
+
+
+/* Butt stuff! */
+
+public function buttslutBootyGrow():void
+{
+	var bootyMin:Number = 20;
+	
+	if(pc.buttRatingRaw >= bootyMin) return;
+	
+	var oldBooty:Number = pc.buttRatingRaw;
+	
+	eventBuffer += "\n\nYou notice some extra weight and jiggle when you go to move or stand. Looking behind you, you find that your ass has gained";
+	if ((oldBooty + 5) <= bootyMin) eventBuffer += " an huge amount of cheek";
+	else if ((oldBooty + 4) <= bootyMin) eventBuffer += " a massive surge in size";
+	else if ((oldBooty + 3) <= bootyMin) eventBuffer += " a much larger circumference";
+	else if ((oldBooty + 2) <= bootyMin) eventBuffer += " a few sizes";
+	else if ((oldBooty + 1) <= bootyMin) eventBuffer += " a another size or two";
+	else eventBuffer += " some mass";
+	eventBuffer += ParseText("... It seems your bubbly booty refuses to be any smaller" + (pc.buttRatingRaw < 10 ? " than that." : "--not that you’d complain!") + " <b>Your [pc.butts] have grown bigger!</b>");
+	
+	pc.buttRatingRaw += 5;
+	if(pc.buttRatingRaw > bootyMin) pc.buttRatingRaw = bootyMin;
+	
+	if(pc.hairType == GLOBAL.HAIR_TYPE_GOO && oldBooty < pc.buttRatingRaw)
+	{
+		var gooCost:Number = (20 * Math.round(pc.buttRatingRaw - oldBooty));
+		if(gooCost > 0 && gooBiomass() >= gooCost)
+		{
+			eventBuffer += " Although, the growth took up some of your gooey biomass in the process...";
+			gooBiomass(-1 * gooCost);
+		}
+	}
 }
 

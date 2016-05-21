@@ -1926,7 +1926,9 @@ public function processTime(arg:int):void {
 				tryProcSaendraXPackEmail();
 				
 				// Manes grow out!
-				if(pc.hasPerk("Mane") && pc.hairLength <= 3) maneHairGrow();
+				if(pc.hasPerk("Mane")) maneHairGrow();
+				// Bodonkadonk-donks donkin'!
+				if(pc.hasPerk("Buttslut")) buttslutBootyGrow();
 				// Fecund Figure shape gain (Gains only while pregnant)
 				if(pc.hasPerk("Fecund Figure"))
 				{

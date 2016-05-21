@@ -13035,8 +13035,6 @@
 		}
 		public function addBiomass(arg:Number):void
 		{
-			//if(kGAMECLASS.flags["GOO_BIOMASS"] == undefined) kGAMECLASS.flags["GOO_BIOMASS"] = 0;
-			//kGAMECLASS.flags["GOO_BIOMASS"] += arg;
 			kGAMECLASS.gooBiomass(arg);
 		}
 		public function cumflationHappens(cumFrom:Creature, hole:Number):void
