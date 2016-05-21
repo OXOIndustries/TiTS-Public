@@ -7634,7 +7634,7 @@
 				subDelta = 60 - ballFullness;
 				//Set fullness to 60 and remove a portion of minutes equivalent to the change
 				ballFullness = 60;
-				minutes = minutes * subDelta/(minutes*cumDelta);
+				minutes -= subDelta/cumDelta;
 				//Half cumDelta for the remaining minutes
 				cumDelta /= 2;
 			}
