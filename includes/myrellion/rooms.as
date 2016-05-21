@@ -2548,7 +2548,7 @@ public function initializeMyrellionRooms():void
 	
 	//Y19 -- Ascension Point
 	rooms["2Y19"] = new RoomClass(this);
-	rooms["2Y19"].roomName = "ASCENTION\nPOINT";
+	rooms["2Y19"].roomName = "ASCENSION\nPOINT";
 	rooms["2Y19"].description = "You stand at the foot of a towering cliff face. Above you, you can vaguely make out the shelf of rock you came down from against the black backdrop of the dark caves. A wide, stony passage leads westward from here, flanked by columns of stone that look almost like Greek pillars, leading you deeper into the planet's heart.\n\nStrange, blurred colors smear the walls of the cavern. On closer inspection, it looks as if centuries of pictographs and writing have been written and rewritten on the black stone. The result is a formless, but aesthetically pleasing fresco on all sides.";
 	rooms["2Y19"].planet = "PLANET: MYRELLION";
 	rooms["2Y19"].system = "SYSTEM: SINDATHU";
