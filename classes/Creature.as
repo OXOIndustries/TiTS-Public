@@ -14706,6 +14706,8 @@
 									kGAMECLASS.flags["FLAHNE_MAKEUP"] = 1;
 									break;
 								case "Goo Armor Defense Drain":
+									if(armor is GooArmor) kGAMECLASS.eventBuffer += ParseText("\n\n[goo.name] wriggles around you and tightens, testing her strength. <i>“Ahh, I feel better now!”</i> She seems to have fully recovered!");
+									if(hasItemByName("Goo Armor")) kGAMECLASS.eventBuffer += ParseText("\n\n[goo.name] happily mumbles something to herself, but you don’t quite catch it. Feeling her energetic movements, you can only assume that she has finally recovered!");
 									kGAMECLASS.gooArmorDefense((statusEffects[x] as StorageClass).value1);
 									break;
 							}
