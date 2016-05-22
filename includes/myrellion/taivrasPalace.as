@@ -2221,7 +2221,7 @@ public function soloTaivraBadEndPart2():void
 	pc.armor.description = "a set of royal nyrea harem clothes";
 	
 	pc.libido(25);
-	pc.(100);
+	pc.lust(100);
 	for (var i:int = 0; i < 28; i++)
 	{
 		if (pc.hasVagina())
