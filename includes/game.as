@@ -1656,14 +1656,14 @@ public function processTime(arg:int):void {
 			{
 				if (flags["KQ2_NUKE_STARTED"] + KQ2_NUKE_DURATION < GetGameTimestamp())
 				{
-					eventQueue.push(kq2NukeBadend);
+					if(eventQueue.indexOf(kq2NukeBadend) == -1) eventQueue.push(kq2NukeBadend);
 				}
 			}
 			// Left
 			else if (InShipInterior(pc))
 			{
-				eventQueue.push(kq2NukeExplodesLater);
 				flags["KQ2_NUKE_EXPLODED"] = 1;
+				if(eventQueue.indexOf(kq2NukeExplodesLater) == -1) eventQueue.push(kq2NukeExplodesLater);
 			}
 		}
 		
@@ -1672,7 +1672,7 @@ public function processTime(arg:int):void {
 		{
 			if (flags["KQ2_DANE_COORDS_TIMER"] != undefined && flags["KQ2_DANE_COORDS_TIMER"] + 2880 < GetGameTimestamp())
 			{
-				eventQueue.push(kq2DaneCoordEmail);
+				if(eventQueue.indexOf(kq2DaneCoordEmail) == -1) eventQueue.push(kq2DaneCoordEmail);
 			}
 		}
 		
