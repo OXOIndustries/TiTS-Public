@@ -1671,7 +1671,7 @@ public function gooArmorChangeDesign(arg:Array):void
 				else gooArmorAddDisabledButton(fromCrew, btnSlot, emblemList[i][0]);
 				btnSlot++;
 				
-				if(emblemList.length > 15 && (i + 1) == emblemList.length)
+				if(emblemList.length > 14 && (i + 1) == emblemList.length)
 				{
 					while((btnSlot + 1) % 15 != 0) { btnSlot++; }
 					gooArmorAddButton(fromCrew, btnSlot, "Back", gooArmorChangeArmorMenu, fromCrew);

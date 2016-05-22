@@ -2219,7 +2219,7 @@ public function reshapeAGooCawkForReaaaaal(arg:int = 0):void
 		else addDisabledGhostButton(btnSlot,btnName,btnName,"The penis is already this shape.");
 		btnSlot++;
 		
-		if(cTypes.length > 15 && (x + 1) == cTypes.length)
+		if(cTypes.length > 14 && (x + 1) == cTypes.length)
 		{
 			while((btnSlot + 1) % 15 != 0) { btnSlot++; }
 			if(pc.cockTotal() == 1) addGhostButton(btnSlot,"Back",gooCockRootMenu);
@@ -2833,7 +2833,7 @@ public function pickNewCuntType(arg:int = 0):void
 		else addDisabledGhostButton(btnSlot,btnName,btnName,"The vagina is already this shape.");
 		btnSlot++;
 		
-		if(vTypes.length > 15 && (x + 1) == vTypes.length)
+		if(vTypes.length > 14 && (x + 1) == vTypes.length)
 		{
 			while((btnSlot + 1) % 15 != 0) { btnSlot++; }
 			if(pc.totalVaginas() == 1) addGhostButton(btnSlot,"Back",vaginaGooRootMenu);
