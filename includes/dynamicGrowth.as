@@ -758,25 +758,28 @@ public function buttslutBootyGrow():void
 {
 	var bootyMin:Number = 20;
 	
-	if(pc.buttRatingRaw >= bootyMin) return;
+	// If butt is max size or is currently filled, no need to grow.
+	if(pc.buttRatingRaw >= bootyMin || pc.statusEffectv1("Anally-Filled") > 0) return;
 	
 	var oldBooty:Number = pc.buttRatingRaw;
+	var addBooty:Number = 1 + rand(9);
+	if(pc.buttRatingRaw + addBooty > bootyMin) addBooty = bootyMin - pc.buttRatingRaw;
+	if(addBooty < 0) return;
 	
 	eventBuffer += "\n\nYou notice some extra weight and jiggle when you go to move or stand. Looking behind you, you find that your ass has gained";
-	if ((oldBooty + 5) <= bootyMin) eventBuffer += " an huge amount of cheek";
-	else if ((oldBooty + 4) <= bootyMin) eventBuffer += " a massive surge in size";
-	else if ((oldBooty + 3) <= bootyMin) eventBuffer += " a much larger circumference";
-	else if ((oldBooty + 2) <= bootyMin) eventBuffer += " a few sizes";
-	else if ((oldBooty + 1) <= bootyMin) eventBuffer += " a another size or two";
+	if (addBooty > 5) eventBuffer += " an epic amount of cheek";
+	else if (addBooty > 4) eventBuffer += " a massive surge in size";
+	else if (addBooty > 3) eventBuffer += " a much larger circumference";
+	else if (addBooty > 2) eventBuffer += " a few sizes";
+	else if (addBooty > 1) eventBuffer += " a another size or two";
 	else eventBuffer += " some mass";
 	eventBuffer += ParseText("... It seems your bubbly booty refuses to be any smaller" + (pc.buttRatingRaw < 10 ? " than that." : "--not that you’d complain!") + " <b>Your [pc.butts] have grown bigger!</b>");
 	
-	pc.buttRatingRaw += 5;
-	if(pc.buttRatingRaw > bootyMin) pc.buttRatingRaw = bootyMin;
+	pc.buttRatingRaw += addBooty;
 	
-	if(pc.hairType == GLOBAL.HAIR_TYPE_GOO && oldBooty < pc.buttRatingRaw)
+	if(pc.hairType == GLOBAL.HAIR_TYPE_GOO && addBooty > 0)
 	{
-		var gooCost:Number = (20 * Math.round(pc.buttRatingRaw - oldBooty));
+		var gooCost:Number = (20 * addBooty);
 		if(gooCost > 0 && gooBiomass() >= gooCost)
 		{
 			eventBuffer += " Although, the growth took up some of your gooey biomass in the process...";
