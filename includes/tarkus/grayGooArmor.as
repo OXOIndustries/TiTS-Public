@@ -606,7 +606,7 @@ public function approachGooArmorCrewMenu(fromCrew:Boolean = true):void
 	
 	if(flags["GOO_ARMOR_HEAL_LEVEL"] == undefined) gooArmorAddDisabledButton(fromCrew, 5, "Locked", "Locked", "[goo.name] hasn’t learned how to do this yet..." + (pc.level < 7 ? " She may be more confident if you are a higher level." : " Maybe try" + (pc.hasItem(new GrayMicrobots(), 10) ? "" : " stocking up and") + " carrying some drinkable health items," + ((pc.armor is GooArmor) ? " taking her off," : " and") + " then talking to her" + (InShipInterior() ? "" : " while in your ship") + "?"));
 	else if(pc.HP() >= pc.HPMax()) gooArmorAddDisabledButton(fromCrew, 5, "Heal", "Restore Health", "You are already at full health!");
-	else if(gooArmorDefense() < 1) gooArmorAddDisabledButton(fromCrew, 5, "Heal", "Restore Health", "[goo.name]’s defense is too low to use her healing ability.");
+	else if(gooArmorDefense() < 2) gooArmorAddDisabledButton(fromCrew, 5, "Heal", "Restore Health", "[goo.name]’s defense is too low to use her healing ability.");
 	else if(pc.hasStatusEffect("Goo Armor Healed")) gooArmorAddDisabledButton(fromCrew, 5, "Heal", "Restore Health", "[goo.name] has already healed you in the past hour. She may need some time to recover before trying it again.");
 	else gooArmorAddButton(fromCrew, 5, "Heal", gooArmorCrewOption, ["heal", fromCrew], "Restore Health", "Ask [goo.name] to help mend your wounds.");
 	
@@ -896,15 +896,15 @@ public function gooArmorCrewOption(arg:Array):void
 			// Defense Debuff
 			if(!pc.hasStatusEffect("Goo Armor Defense Drain"))
 			{
-				pc.createStatusEffect("Goo Armor Defense Drain", 1, 0, 0, 0, false, "DefenseDown", "Using " + chars["GOO"].short + "’s healing ability has left her in a weaker state than normal.", false, 1440, 0xFFFFFF);
-				gooArmorDefense(-1);
+				pc.createStatusEffect("Goo Armor Defense Drain", 2, 0, 0, 0, false, "DefenseDown", "Using " + chars["GOO"].short + "’s healing ability has left her in a weaker state than normal.", false, 1440, 0xFFFFFF);
+				gooArmorDefense(-2);
 				txt += "\n\nYou notice that asking [goo.name] to heal you takes its toll on her strength, temporarily weakening her just a bit.";
 			}
 			else
 			{
 				pc.setStatusMinutes("Goo Armor Defense Drain", 1440);
-				pc.addStatusValue("Goo Armor Defense Drain", 1, 1);
-				gooArmorDefense(-1);
+				pc.addStatusValue("Goo Armor Defense Drain", 1, 2);
+				gooArmorDefense(-2);
 				txt += "\n\nYou feel [goo.name]’s strength being sapped again. You should be careful not to over-do it...";
 			}
 			
