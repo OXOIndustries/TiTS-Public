@@ -452,6 +452,38 @@ public function hasGooArmorUpgrade(upgrade:String = "none"):Boolean
 	}
     return hasUpgrade;
 }
+public function gooArmorDefense(def:Number = 0):Number
+{
+	var gooDef:int = 0;
+	var i:int = 0;
+	
+	// Armor
+	if(pc.armor is GooArmor)
+	{
+		if(def != 0) pc.armor.defense += def;
+		gooDef = pc.armor.defense;
+	}
+	// Inventory
+	for(i = 0; i < pc.inventory.length; i++)
+	{
+		if(pc.inventory[i].shortName == "Goo Armor")
+		{
+			if(def != 0) pc.inventory[i].defense += def;
+			gooDef = pc.inventory[i].defense;
+		}
+	}
+	// Ship Storage
+	for(i = 0; i < pc.ShipStorageInventory.length; i++)
+	{
+		if(pc.ShipStorageInventory[i].shortName == "Goo Armor")
+		{
+			if(def != 0) pc.ShipStorageInventory[i].defense += def;
+			gooDef = pc.ShipStorageInventory[i].defense;
+		}
+	}
+	
+	return gooDef;
+}
 public function gooArmorInStorageBlurb(store:Boolean = true):String
 {
 	showGrayGooArmorBust();
@@ -574,6 +606,7 @@ public function approachGooArmorCrewMenu(fromCrew:Boolean = true):void
 	
 	if(flags["GOO_ARMOR_HEAL_LEVEL"] == undefined) gooArmorAddDisabledButton(fromCrew, 5, "Locked", "Locked", "[goo.name] hasn’t learned how to do this yet..." + (pc.level < 7 ? " She may be more confident if you are a higher level." : " Maybe try" + (pc.hasItem(new GrayMicrobots(), 10) ? "" : " stocking up and") + " carrying some drinkable health items," + ((pc.armor is GooArmor) ? " taking her off," : " and") + " then talking to her" + (InShipInterior() ? "" : " while in your ship") + "?"));
 	else if(pc.HP() >= pc.HPMax()) gooArmorAddDisabledButton(fromCrew, 5, "Heal", "Restore Health", "You are already at full health!");
+	else if(gooArmorDefense() < 1) gooArmorAddDisabledButton(fromCrew, 5, "Heal", "Restore Health", "[goo.name]’s defense is too low to use her healing ability.");
 	else if(pc.hasStatusEffect("Goo Armor Healed")) gooArmorAddDisabledButton(fromCrew, 5, "Heal", "Restore Health", "[goo.name] has already healed you in the past hour. She may need some time to recover before trying it again.");
 	else gooArmorAddButton(fromCrew, 5, "Heal", gooArmorCrewOption, ["heal", fromCrew], "Restore Health", "Ask [goo.name] to help mend your wounds.");
 	
@@ -859,6 +892,21 @@ public function gooArmorCrewOption(arg:Array):void
 			processTime(3 + rand (2));
 			pc.HP(50 * flags["GOO_ARMOR_HEAL_LEVEL"]);
 			pc.createStatusEffect("Goo Armor Healed", 0, 0, 0, 0, true, "", "", false, 60, 0xFFFFFF);
+			
+			// Defense Debuff
+			if(!pc.hasStatusEffect("Goo Armor Defense Drain"))
+			{
+				pc.createStatusEffect("Goo Armor Defense Drain", 1, 0, 0, 0, false, "DefenseDown", "Using " + chars["GOO"].short + "’s healing ability has left her in a weaker state than normal.", false, 1440, 0xFFFFFF);
+				gooArmorDefense(-1);
+				txt += "\n\nYou notice that asking [goo.name] to heal you takes its toll on her strength, temporarily weakening her just a bit.";
+			}
+			else
+			{
+				pc.setStatusMinutes("Goo Armor Defense Drain", 1440);
+				pc.addStatusValue("Goo Armor Defense Drain", 1, 1);
+				gooArmorDefense(-1);
+				txt += "\n\nYou feel [goo.name]’s strength being sapped again. You should be careful not to over-do it...";
+			}
 			
 			gooArmorAddButton(fromCrew, 0, "Next", approachGooArmorCrew, [false, fromCrew]);
 			break;
@@ -1320,20 +1368,50 @@ public function gooArmorChangePart(part:String = "null", expose:Boolean = false)
 	}
 	gooArmorCheckAirtight();
 }
-public function gooArmorCheckSwimwear():void
+public function gooArmorCheckSwimwear():String
 {
+	var msg:String = "";
+	var swimwear:Boolean = pc.armor.hasFlag(GLOBAL.ITEM_FLAG_SWIMWEAR);
+	var defToggle:Boolean = true;
+	
 	if(pc.statusEffectv1("Goo Armor Design") == 5)
 	{
 		pc.setStatusValue("Goo Armor Design", 3, 0);
 		pc.setStatusTooltip("Goo Armor Design", "none");
 		pc.armor.addFlag(GLOBAL.ITEM_FLAG_SWIMWEAR);
 	}
-	else pc.armor.deleteFlag(GLOBAL.ITEM_FLAG_SWIMWEAR);
+	else
+	{
+		pc.armor.deleteFlag(GLOBAL.ITEM_FLAG_SWIMWEAR);
+	}
+	
+	if(swimwear != pc.armor.hasFlag(GLOBAL.ITEM_FLAG_SWIMWEAR))
+	{
+		if(pc.armor.hasFlag(GLOBAL.ITEM_FLAG_SWIMWEAR))
+		{
+			if(defToggle)
+			{
+				msg += "Having less coverage on your body lowers your suit’s armor rating a bit, but at least you can swim in it!";
+				pc.armor.defense -= 2;
+			}
+		}
+		else
+		{
+			if(defToggle)
+			{
+				msg += "No longer exposing your limbs to danger, your suit’s armor rating returns to normal.";
+				pc.armor.defense += 2;
+			}
+		}
+	}
+	
+	return msg;
 }
 public function gooArmorCheckAirtight():String
 {
 	var msg:String = "";
 	var airtight:Boolean = pc.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT);
+	var defToggle:Boolean = true;
 	
 	// Airtight check
 	if
@@ -1347,12 +1425,31 @@ public function gooArmorCheckAirtight():String
 	{
 		pc.armor.addFlag(GLOBAL.ITEM_FLAG_AIRTIGHT);
 	}
-	else pc.armor.deleteFlag(GLOBAL.ITEM_FLAG_AIRTIGHT);
+	else
+	{
+		pc.armor.deleteFlag(GLOBAL.ITEM_FLAG_AIRTIGHT);
+	}
 	
 	if(airtight != pc.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
 	{
-		if(pc.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT)) msg += "<b>Your suit is now airtight!</b>";
-		else msg += "<b>Your suit is no longer airtight!</b>";
+		if(pc.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+		{
+			msg += "<b>Your suit is now airtight!</b>";
+			if(defToggle)
+			{
+				msg += " However, the armor displaced to form a helmet will make your suit a little weaker in combat.";
+				pc.armor.defense -= 2;
+			}
+		}
+		else
+		{
+			msg += "<b>Your suit is no longer airtight!</b>";
+			if(defToggle)
+			{
+				msg += " The exclusion of a helmet will make your suit more armored in combat now.";
+				pc.armor.defense += 2;
+			}
+		}
 	}
 	
 	return msg;
@@ -1527,8 +1624,12 @@ public function gooArmorChangeDesign(arg:Array):void
 			else gooArmorAddDisabledButton(fromCrew, btn++, "Clothes");
 			if(pc.statusEffectv1("Goo Armor Design") != 4) gooArmorAddButton(fromCrew, btn++, "Latex", gooArmorChangeStyle, [4, fromCrew], "Latex", "Change the suit’s appearance to look like tight latex.");
 			else gooArmorAddDisabledButton(fromCrew, btn++, "Latex");
-			if(flags["GOO_ARMOR_SWIMSUIT"] == undefined) gooArmorAddDisabledButton(fromCrew, btn++, "Locked", "Locked", "[goo.name] hasn’t learned how to do this yet..." + (pc.level < 4 ? " She may be more confident if you are a higher level." : " Maybe try talking to her while" + (rooms[currentLocation].hasFlag(GLOBAL.POOL) ? "" : " at a pool and") + " wearing something made for swimming?"));
-			else if(pc.statusEffectv1("Goo Armor Design") != 5) gooArmorAddButton(fromCrew, btn++, "Swimwear", gooArmorChangeStyle, [5, fromCrew], "Swimwear", "Change the suit’s appearance to look like something you can swim in.");
+			if(flags["GOO_ARMOR_SWIMSUIT"] == undefined) gooArmorAddDisabledButton(fromCrew, btn++, "Locked", "Locked", "[goo.name] hasn’t learned how to do this yet..." + (pc.level < 4 ? " She may be more confident if you are a higher level." : " Maybe try talking to her while" + (rooms[currentLocation].hasFlag(GLOBAL.POOL) ? "" : " at a pool and") + " wearing an outfit made for swimming?"));
+			else if(pc.statusEffectv1("Goo Armor Design") != 5)
+			{
+				if(pc.armor.defense < 2) gooArmorAddDisabledButton(fromCrew, btn++, "Swimwear", "Swimwear", "[goo.name]’s defense is too low to change into swimwear.");
+				else gooArmorAddButton(fromCrew, btn++, "Swimwear", gooArmorChangeStyle, [5, fromCrew], "Swimwear", "Change the suit’s appearance to look like something you can swim in.");
+			}
 			else gooArmorAddDisabledButton(fromCrew, btn++, "Swimwear");
 			break;
 		case "pattern":
@@ -1582,13 +1683,29 @@ public function gooArmorChangeDesign(arg:Array):void
 			
 			if(pc.statusEffectv3("Goo Armor Design") != 0) gooArmorAddButton(fromCrew, btn++, "None", gooArmorChangeHelmet, [0, fromCrew], "No Helmet", "Remove the suit’s helmet.");
 			else gooArmorAddDisabledButton(fromCrew, btn++, "None");
-			if(pc.statusEffectv3("Goo Armor Design") != 1) gooArmorAddButton(fromCrew, btn++, "Stylish", gooArmorChangeHelmet, [1, fromCrew], "Stylish Helmet", "Change the suit’s helmet to look like head gear worn by a snazzy spacer.");
+			if(pc.statusEffectv3("Goo Armor Design") != 1)
+			{
+				if(pc.armor.defense < 2) gooArmorAddDisabledButton(fromCrew, btn++, "Stylish", "Stylish", "[goo.name]’s defense is too low to apply a helmet.");
+				else gooArmorAddButton(fromCrew, btn++, "Stylish", gooArmorChangeHelmet, [1, fromCrew], "Stylish Helmet", "Change the suit’s helmet to look like head gear worn by a snazzy spacer.");
+			}
 			else gooArmorAddDisabledButton(fromCrew, btn++, "Stylish");
-			if(pc.statusEffectv3("Goo Armor Design") != 2) gooArmorAddButton(fromCrew, btn++, "Fierce", gooArmorChangeHelmet, [2, fromCrew], "Intimidating Helmet", "Change the suit’s helmet to look menacing to your opponents.");
+			if(pc.statusEffectv3("Goo Armor Design") != 2)
+			{
+				if(pc.armor.defense < 2) gooArmorAddDisabledButton(fromCrew, btn++, "Fierce", "Fierce", "[goo.name]’s defense is too low to apply a helmet.");
+				else gooArmorAddButton(fromCrew, btn++, "Fierce", gooArmorChangeHelmet, [2, fromCrew], "Intimidating Helmet", "Change the suit’s helmet to look menacing to your opponents.");
+			}
 			else gooArmorAddDisabledButton(fromCrew, btn++, "Fierce");
-			if(pc.statusEffectv3("Goo Armor Design") != 3) gooArmorAddButton(fromCrew, btn++, "Retro", gooArmorChangeHelmet, [3, fromCrew], "Bubble Helmet", "Change the suit’s helmet to look like something that came from the ancient terran gray-toned films.");
+			if(pc.statusEffectv3("Goo Armor Design") != 3)
+			{
+				if(pc.armor.defense < 2) gooArmorAddDisabledButton(fromCrew, btn++, "Retro", "Retro", "[goo.name]’s defense is too low to apply a helmet.");
+				else gooArmorAddButton(fromCrew, btn++, "Retro", gooArmorChangeHelmet, [3, fromCrew], "Bubble Helmet", "Change the suit’s helmet to look like something that came from the ancient terran gray-toned films.");
+			}
 			else gooArmorAddDisabledButton(fromCrew, btn++, "Retro");
-			if(pc.statusEffectv3("Goo Armor Design") != 4) gooArmorAddButton(fromCrew, btn++, "Mystery", gooArmorChangeHelmet, [4, fromCrew], "Mysterious Mask", "Change the suit’s helmet to look like a mirrored mask and keep your face anonymous.");
+			if(pc.statusEffectv3("Goo Armor Design") != 4)
+			{
+				if(pc.armor.defense < 2) gooArmorAddDisabledButton(fromCrew, btn++, "Mystery", "Mystery", "[goo.name]’s defense is too low to apply a helmet.");
+				else gooArmorAddButton(fromCrew, btn++, "Mystery", gooArmorChangeHelmet, [4, fromCrew], "Mysterious Mask", "Change the suit’s helmet to look like a mirrored mask and keep your face anonymous.");
+			}
 			else gooArmorAddDisabledButton(fromCrew, btn++, "Mystery");
 			break;
 	}
@@ -1603,6 +1720,7 @@ public function gooArmorChangeStyle(arg:Array):void
 	var fromCrew:Boolean = arg[1];
 	var txt:String = "";
 	var airtight:String = "";
+	var swimwear:String = "";
 	
 	gooArmorClearOutput(fromCrew);
 	showGrayGooArmor();
@@ -1701,9 +1819,10 @@ public function gooArmorChangeStyle(arg:Array):void
 	}
 	
 	pc.setStatusValue("Goo Armor Design", 1, style);
-	gooArmorCheckSwimwear();
+	swimwear = gooArmorCheckSwimwear();
 	airtight = gooArmorCheckAirtight();
 	
+	if(swimwear.length > 0) txt += "\n\n" + swimwear;
 	if(airtight.length > 0) txt += "\n\n" + airtight;
 	
 	txt += "\n\n" + gooArmorDetails();

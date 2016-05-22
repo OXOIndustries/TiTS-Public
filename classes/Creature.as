@@ -14705,6 +14705,9 @@
 								case "Flahne_Extra_Pissed":
 									kGAMECLASS.flags["FLAHNE_MAKEUP"] = 1;
 									break;
+								case "Goo Armor Defense Drain":
+									kGAMECLASS.gooArmorDefense((statusEffects[x] as StorageClass).value1);
+									break;
 							}
 						}
 						else if(this is Emmy)
