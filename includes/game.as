@@ -267,15 +267,23 @@ public function generateMap():void
 {
 	generateMapForLocation(currentLocation);
 }
-
 public function generateMapForLocation(location:String):void
 {
 	userInterface.setMapData(mapper.generateMap(location));
 }
+public function generateLocationName(location:String):void
+{
+	setLocation(rooms[location].roomName, rooms[location].planet, rooms[location].system);
+}
+public function generateLocation(location:String):void
+{
+	generateMapForLocation(location);
+	generateLocationName(location);
+}
 
 public function backToPrimaryOutput():void
 {
-	//clearBust();
+	clearBust();
 	userInterface.backToPrimaryOutput();
 }
 public function clearBust(forceNone:Boolean = false):void

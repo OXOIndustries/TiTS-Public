@@ -4376,7 +4376,7 @@ public function mimbraneMenu():void
 		addGhostButton(4, "RstFeed", resetAllMimbraneFeedings, undefined, "Reset Feed Effects", "Reset all current mimbrane feed values to zero, and revert all applicable part-modification values to match. This is a 'recovery' features to attempt to 'fix' broken saves that have built up huge negative modification values. BE CAREFUL!");
 	}
 	
-	addGhostButton(14, "Back", appearance, pc);
+	addGhostButton(14, "Back", backToAppearance, pc);
 }
 
 //{Mimbrane body parts}, if possible, is a list of all applicable Mimbrane body parts. So, it could be

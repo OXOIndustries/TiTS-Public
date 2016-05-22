@@ -22,6 +22,12 @@ public function pcAppearance(e:MouseEvent = null):void
 	}
 }
 
+public function backToAppearance(forTarget:Creature):void
+{
+	showLocationName();
+	appearance(forTarget);
+}
+
 public function appearance(forTarget:Creature):void
 {
 	setTarget(forTarget);
@@ -1618,13 +1624,15 @@ public function appearance(forTarget:Creature):void
 		// [MIMBRANECODE]
 		if (attachedMimbranes() > 0)
 		{
-			if (kGAMECLASS.canSaveAtCurrentLocation) addGhostButton(btnIndex++, "Mimbranes", mimbraneMenu);
-			else addDisabledGhostButton(btnIndex++,"Mimbranes","Mimbranes","You cannot access your mimbrane menu at this time.");
+			var mimNum:int = attachedMimbranes();
+			
+			if (kGAMECLASS.canSaveAtCurrentLocation) addGhostButton(btnIndex++, "Mimbrane" + (mimNum == 1 ? "" : "s"), mimbraneMenu, undefined, "Mimbrane" + (mimNum == 1 ? "" : "s"), "Interact with your parasitic mimbrane" + (mimNum == 1 ? "" : "s") + ".");
+			else addDisabledGhostButton(btnIndex++, "Mimbrane" + (mimNum == 1 ? "" : "s"), "Mimbrane" + (mimNum == 1 ? "" : "s"), "You cannot access your mimbrane menu at this time.");
 			
 			// Detailed Mimbrane sentence that includes specific body regions.
 			output2("\n\nFrom time to time, small chirps remind you that your body is not owned by just you alone. The");
 			// Just one.
-			if(attachedMimbranes() == 1) 
+			if(mimNum == 1) 
 			{
 				output2(" parasite attached to");
 				if(target.hasStatusEffect("Mimbrane Cock")) output2(" [target.eachCock]");
@@ -1644,7 +1652,7 @@ public function appearance(forTarget:Creature):void
 			else
 			{
 				output2(" parasites attached to");
-				if(attachedMimbranes() == 2)
+				if(mimNum == 2)
 				{
 					if(target.hasStatusEffect("Mimbrane Cock") && target.hasStatusEffect("Mimbrane Balls")) output2(" your cock and balls");
 					else if(target.hasStatusEffect("Mimbrane Boobs") && target.hasStatusEffect("Mimbrane Ass")) output2(" your tits and ass");
@@ -1654,13 +1662,13 @@ public function appearance(forTarget:Creature):void
 					else if(target.hasStatusEffect("Mimbrane Foot Left") && target.hasStatusEffect("Mimbrane Foot Right")) output2(" your [target.feet]");
 					else output2(" a couple of your appendages");
 				}
-				else if(attachedMimbranes() == 3)
+				else if(mimNum == 3)
 				{
 					if(target.hasStatusEffect("Mimbrane Cock") && target.hasStatusEffect("Mimbrane Balls") && target.hasStatusEffect("Mimbrane Ass")) output2(" your masculine bits");
 					else if(target.hasStatusEffect("Mimbrane Boobs") && target.hasStatusEffect("Mimbrane Pussy") && target.hasStatusEffect("Mimbrane Ass")) output2(" your lady-like bits");
 					else output2(" a few of your appendages");
 				}
-				else if(attachedMimbranes() == 4)
+				else if(mimNum == 4)
 				{
 					if(target.hasStatusEffect("Mimbrane Cock") && target.hasStatusEffect("Mimbrane Balls") && target.hasStatusEffect("Mimbrane Pussy") && target.hasStatusEffect("Mimbrane Ass")) output2(" your sensitive genitals");
 					else if(target.hasStatusEffect("Mimbrane Hand Left") && target.hasStatusEffect("Mimbrane Hand Right") && target.hasStatusEffect("Mimbrane Foot Left") && target.hasStatusEffect("Mimbrane Foot Right")) output2(" your major limbs");
@@ -2380,7 +2388,7 @@ public function selectGenderPref():void
 		addDisabledGhostButton(2, "Auto");
 	}
 	
-	addGhostButton(14, "Back", appearance, pc);
+	addGhostButton(14, "Back", backToAppearance, pc);
 }
 
 public function setGenderPref(pref:String):void

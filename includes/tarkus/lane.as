@@ -715,8 +715,9 @@ public function laneGonnaFuckYourDetoxinAssUp():void
 public function laneTakesOverTheSteeleFortune():void
 {
 	currentLocation = "GAME OVER";
-	generateMap();
-	setLocation("", "PLANET: VENAR", "SYSTEM: REDACTED");
+	rooms[currentLocation].planet = "PLANET: VENAR";
+	rooms[currentLocation].system = "SYSTEM: REDACTED";
+	generateLocation(currentLocation);
 	
 	clearOutput();
 
