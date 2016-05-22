@@ -15,7 +15,6 @@ public function showLerris(asNude:Boolean = false):void
 
 public function tavrosTamaniCorpStoreEntry():Boolean
 {
-	showBust();
 	author("Savin");
 
 	output("\n\n");
@@ -28,7 +27,7 @@ public function tavrosTamaniCorpStoreEntry():Boolean
 	}
 	else
 	{
-		output("Leriss is prancing about the place, wiggling her hips and tail to the soft pop tunes playing over the shop speakers. She gives you a flirtatious grin whenever you wander by");
+		output("Lerris is prancing about the place, wiggling her hips and tail to the soft pop tunes playing over the shop speakers. She gives you a flirtatious grin whenever you wander by");
 		if (flags["FUCKED_LERRIS"] != undefined)
 		{
 			output(" before reaching down to a product on the floor to clean it off, putting her lush behind on full display beneath her skin-tight suit. Your eyes are drawn inexorably to her [lerris.chest], though, hanging down in front of her.");
@@ -76,7 +75,7 @@ public function lerrisRepeatApproach():void
 	}
 	else
 	{
-		output("You saunter up to the shop counter, and as always, you’re greeted by the familiar, bouncing form of Leriss. She gives you a pink-lipped smile and wiggles her hips, her [lerris.tails] lifting in the air behind her. The way she languidly leans over the counter and presses up her [lerris.breasts], she looks more like she’s ready  to bend over for you than to sell you cosmetics.");
+		output("You saunter up to the shop counter, and as always, you’re greeted by the familiar, bouncing form of Lerris. She gives you a pink-lipped smile and wiggles her hips, her [lerris.tails] lifting in the air behind her. The way she languidly leans over the counter and presses up her [lerris.breasts], she looks more like she’s ready  to bend over for you than to sell you cosmetics.");
 		
 		output("\n\n<i>“Hey, cutie,”</i> she purrs, stretching out like a kitten in heat. <i>“Anything I can get for you? Or were you hoping to get hands on with the merchandise again? I know which I want...”</i>");
 	}
