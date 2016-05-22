@@ -10,7 +10,7 @@ public function pcAppearance(e:MouseEvent = null):void
 	}
 	else if (userInterface.showingPCAppearance)
 	{
-		userInterface.showPrimaryOutput();
+		backToPrimaryOutput();
 		userInterface.showingPCAppearance = false;
 	}
 	else
@@ -27,6 +27,7 @@ public function appearance(forTarget:Creature):void
 	setTarget(forTarget);
 
 	clearOutput2();
+	showPCBust();
 	showLocationName();
 	showName("\nAPPEARANCE");
 	clearGhostMenu();

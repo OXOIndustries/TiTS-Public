@@ -32,6 +32,11 @@ public function creationRouter(e:Event = null):void {
 	}
 }
 
+public function showPCBust():void
+{
+	if(pc.isNude()) showBust("PC_NUDE");
+	else showBust("PC");
+}
 public function creationHeader(sName:String = ""):void
 {
 	showLocationName();

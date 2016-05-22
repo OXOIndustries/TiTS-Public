@@ -58,6 +58,7 @@ public function processEventBuffer():Boolean
 	if (eventBuffer.length > 0)
 	{
 		clearOutput();
+		clearBust();
 		output("<b>" + possessive(pc.short) + " log:</b>" + eventBuffer);
 		showLocationName();
 		eventBuffer = "";
@@ -154,7 +155,7 @@ public function mainGameMenu(minutesMoved:Number = 0):void {
 		output("\n\n<b>BUG REPORT: TEMP NUDITY STUCK ON.</b>");
 	//Standard buttons:
 	clearMenu(false);
-	userInterface.showBust("none");
+	clearBust();
 	inSceneBlockSaving = false;
 	updatePCStats();
 	//Inventory shit
@@ -272,6 +273,15 @@ public function generateMapForLocation(location:String):void
 	userInterface.setMapData(mapper.generateMap(location));
 }
 
+public function backToPrimaryOutput():void
+{
+	//clearBust();
+	userInterface.backToPrimaryOutput();
+}
+public function clearBust(forceNone:Boolean = false):void
+{
+	if(forceNone || !inCombat()) showBust("none");
+}
 public function showCodex():void
 {
 	userInterface.showCodex();
@@ -290,7 +300,7 @@ public function showCodex():void
 	//addGhostButton(3, "CHEEVOS", function():void { } );
 	addGhostButton(1, "Log", displayQuestLog, flags["TOGGLE_MENU_LOG"]);
 	if(flags["EMMY_QUEST"] >= 6 && flags["EMMY_QUEST"] != undefined) addGhostButton(3,"EmmyRemote",pushEmmysButtonsMenu);
-	addGhostButton(4, "Back", userInterface.showPrimaryOutput);
+	addGhostButton(4, "Back", backToPrimaryOutput);
 }
 
 // Temp display stuff for perks
@@ -308,8 +318,7 @@ public function showPerkListHandler(e:Event = null):void
 	}
 	else if (pButton.isActive && pButton.isHighlighted)
 	{
-		userInterface.showPrimaryOutput();
-		userInterface.DeGlowButtons();
+		backToPrimaryOutput();
 	}
 }
 
@@ -338,8 +347,7 @@ public function showMailsHandler(e:Event = null):void
 	}
 	else if (pButton.isActive && pButton.isHighlighted)
 	{
-		userInterface.showPrimaryOutput();
-		userInterface.DeGlowButtons();
+		backToPrimaryOutput();
 	}
 }
 
@@ -402,6 +410,7 @@ public function updateMailStatus():void
 public function showPerksList():void
 {
 	clearOutput2();
+	showPCBust();
 	setLocation("\nPERKS", "CODEX", "DATABASE");
 	clearGhostMenu();
 	addGhostButton(14, "Back", showPerkListHandler);
@@ -518,6 +527,7 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 	}
 	if(!counter) {
 		if((count + other) > 0) {
+			clearBust();
 			showName("\nCREW");
 			output("Who of your crew do you wish to interact with?" + crewMessages);
 		}

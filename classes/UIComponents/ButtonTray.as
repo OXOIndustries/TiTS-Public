@@ -145,8 +145,8 @@
 		private function BuildPageButtons():void
 		{
 			// Button page controls
-			_buttonPageNext = new SquareButton(90, 40, 1100, -50, 15, ButtonIcons.Icon_ButtonsNext, 30, false, false, false);
-			_buttonPagePrev = new SquareButton(90, 40, 1000, -50, 15, ButtonIcons.Icon_ButtonsPrev, 30, false, false, false);
+			_buttonPageNext = new SquareButton(90, 40, 1100, -50, 15, ButtonIcons.Icon_ButtonsNext, 30, false, false, true);
+			_buttonPagePrev = new SquareButton(90, 40, 1000, -50, 15, ButtonIcons.Icon_ButtonsPrev, 30, false, false, true);
 			
 			_buttonPageNext.name = "buttonPageNext";
 			_buttonPagePrev.name = "buttonPagePrev";
