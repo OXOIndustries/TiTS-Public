@@ -5,7 +5,7 @@
 public function showGrayGooArmor():void
 {
 	showGrayGooArmorBust();
-	if(flags["ANNO_NOVA_UPDATE"] >= 3) showName("\n" + goo.short.toUpperCase());
+	if(flags["ANNO_NOVA_UPDATE"] >= 2) showName("\n" + goo.short.toUpperCase());
 	else if(hasGooArmorOnSelf()) showName("GOO\nARMOR");
 	else showName("\nGRAY GOO");
 }
@@ -14,6 +14,211 @@ public function showGrayGooArmorBust():void
 	if(chars["GOO"].hairStyle == "ponytail") showBust("GRAY_GOO_PRIME");
 	else if(chars["GOO"].hairStyle == "loose") showBust("GRAY_GOO");
 	else showBust("GRAY_GOO_ARMOR");;
+}
+
+public function deck13MakeGoo():void
+{
+	clearOutput();
+	author("Savin");
+	showName("GOO\nCONTAINER");
+
+	output("You step up to the one vat of gray goo remaining on the deck. Its humming slightly, churning as it produces and maintains a little sea of goop. There’s a spigot about six feet off the deck, controlled by a dark computer monitor that looks like it belongs in a museum. You walk over and push the screen. Nothing happens.");
+	
+	output("\n\nPoke. Nothing again.");
+	
+	output("\n\nYou grumble and pull your Codex out, hoping your device can sync with the goo cannister. You flip the Codex on and search for nearby networks. Again, nothing close enough to be the goo. Shit. You drop down");
+	if (pc.hasKnees()) output(" to a [pc.knee]");
+	output(" and start looking for an old-school data port. Sure enough, there’s one hidden underneath the console. You pull a universal cable from your Codex, and thankfully manage to slot it into the port. The Codex takes over from there, booting up the ancient computer and interfacing for you. The Bell-Isle/Grunmann logo appears, followed by a button-press command prompt, which the Codex translates onto its touch screen. That’s better. You tap through a few commands, instructing the machine to print you out a great big pile of gray goo.");
+	
+	output("\n\nThe device hums to life and starts working, squirting out goo like ice cream from its spigot. You watch as it squirts and thrums, depositing gallons of murky silvery goop onto the deck, looking more like a puddle than a person for now. A few seconds later, though, the vat shuts off, and the goo starts squirming and re-shaping itself. It only takes a moment for the big gray blob to turn into a big, bouncy gray girl. She looks just like the creatures");
+	if (flags["TARKUS_DESTROYED"] != undefined) output(" once");
+	output(" found outside of Novahome, with inhumanly exaggerated hips and ass and a pair of tits that look like silver-sheened watermelons standing impossibly perky on her chest. Her ample assets jiggle and bounce as she looks around, surveying her surroundings with wide eyes full of wonder.");
+	
+	output("\n\n<i>“Hi!”</i> the newly-made goo says, adopting a huge grin as you take a step toward her. <i>“Wow! You’re super");
+	if (pc.isFeminine()) output(" pretty");
+	else output(" handsome");
+	output("! Are we going to be friends?”</i>");
+	
+	output("\n\nWell, that’s not exactly what you were expecting from the fuck-happy creatures that escaped the <i>Nova</i>. Still, you nod and say that you are. The gray goo swells up, making a high-pitch squealing sound and hugging herself. <i>“Yaaaaaay! Best friends forever and ever and ever!”</i> she giggles, beaming at you. <i>“Oh! I’m... uh... um... I need a name!”</i>");
+	
+	CodexManager.unlockEntry("BI/G");
+	
+	clearMenu();
+	addButton(0, "Next", deck13MakeGooII);
+}
+public function deck13MakeGooII():void
+{
+	clearOutput();
+	author("Savin");
+	showGrayGooArmorBust();
+	showName("GOO\nCONTAINER");
+	
+	output("<b>Enter the Gray Goo’s name:</b>");
+	this.displayInput();
+
+	clearMenu();
+	addButton(0, "Next", nameThaGoo);
+}
+
+public function nameThaGoo():void
+{
+	if (userInterface.textInput.text.length == 0)
+	{
+		deck13MakeGooII();
+		output("\n\n\n<b>You must enter a name.</b>");
+		return;
+	}
+	// Illegal characters check. Just in case...
+	if (hasIllegalInput(userInterface.textInput.text))
+	{
+		deck13MakeGooII();
+		output("\n\n\n<b>To prevent complications, please avoid using code in the name.</b>");
+		return;
+	}
+	if (userInterface.textInput.text.length > 14)
+	{
+		deck13MakeGooII();
+		output("\n\n\n<b>You must enter a name no more than fourteen characters long.</b>");
+		return;
+	}
+
+	goo.short = userInterface.textInput.text;
+	this.removeInput();
+
+	processTime(5+rand(3));
+	flags["ANNO_NOVA_UPDATE"] = 2;
+
+	nameThaGooII();
+}
+public function nameThaGooII():void
+{
+	clearOutput();
+	author("Savin");
+	showGrayGooArmorBust();
+	showName("GOO\nCONTAINER");
+
+	output("<i>“[goo.name]?”</i> you suggest.");
+	
+	output("\n\n<i>“Wow! That’s awesome. I’m soooo " + indefiniteArticle(chars["GOO"].short) + ",”</i> [goo.name] announces, bouncing giddily. <i>“You’re the bestest friend in the whoooole wide universe. It’s the best name EVER!”</i>");
+	
+	output("\n\nShe lunges at you! For a moment, you’re afraid for your life (or at least, your sexual integrity)... but thankfully her arms settle around your shoulders, and [goo.name] pulls herself");
+	if (pc.tallness > goo.tallness + 6) output(" up");
+	else if (pc.tallness < goo.tallness - 6) output(" down");
+	output(" into a tight hug, squeezing her massive tits against you. You chuckle nervously and pat the goo on the head, your fingers coming away slightly wet and sticky.");
+	
+	output("\n\nAfter a moment, she peels herself off of you and grins. <i>“So, um, what’s </i>your<i> name?”</i>");
+	
+	output("\n\n<i>“[pc.name]. [pc.name] Steele,”</i> you answer, extending a hand.");
+	
+	output("\n\nShe stares at your hand quizzically. Slowly, [goo.name] leans in and wraps her big cock-pillow lips around one of your fingers and sucks on it. The sensation is cool, wet, with just enough suckling pressure to send a shiver of pleasure through your arm. You gently push her off you, and instead offer her Anno’s thumb drive to suckle on.");
+	
+	output("\n\n<i>“What’s that?”</i> she coos, cocking her head to the side. You tell her it’s loaded with extra programming for her. <i>“No waaaay, is it going to make me super smart and stuff?”</i>");
+	
+	output("\n\nYou nod. <i>“It sure is.”</i>");
+	
+	output("\n\n<i>“Yaaaaaaaaaaaay!”</i> she cheers, plucking the drive out of your hand and swallowing it.");
+	
+	output("\n\nWell shit. [goo.name] beams at you, giggling to herself as you stare and her. Looks like that plan just went out the window.");
+	
+	output("\n\n<i>“I don’t feel any different,”</i> she pouts, absently cupping one of her huge breasts. <i>“Oh well! Hey, wanna... I dunno, wanna fuck?”</i>");
+	
+	output("\n\nTime to put this new gray goo to the test.");
+	if (pc.libido() >= 66) output(" As much as you would like to see what she’s capable of, you need to make sure she’s not as forcefully amorous as her sisters.");
+	output(" <i>“Not right now,”</i> you tell her.");
+	
+	output("\n\n[goo.name] shrugs. <i>“Kay! Um... what do you wanna do?”</i>");
+	
+	output("\n\nYou smile, relieved, and ask if [goo.name] would like to come with you back to your ship.");
+	
+	output("\n\n<i>“Oh wow! A SPACE SHIP!? That’s awesome. I wanna see. I wanna see!”</i>");
+	
+	output("\n\nLaughing, you take [goo.name]’s hand and lead her up toward the hangar.");
+
+	currentLocation = shipLocation;
+	
+	processTime(45+rand(15));
+
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function grayGooAtBarSetup(slot:int = 8):void
+{
+	output("\n\nOf all the things, there's a gray goo-girl bouncing around the bar, her eyes saucer-like and full of wonder as she stares at the myr and other aliens.");
+	addButton(slot, "Gray Goo", grayGooAtBar);
+}
+public function grayGooAtBar():void
+{
+	clearOutput();
+	author("Savin");
+	showGrayGooArmor();
+
+	output("<i>“Oh, hi!”</i> she says, perking up as you approach. <i>“Holy wow, it’s really you!”</i>");
+	
+	output("\n\nYou cock an eyebrow. <i>“Do I know you?”</i>");
+	
+	output("\n\n<i>“Sure you do! Um, well, maybe? You’ve totally </i>seen<i> me, anyway. I’m Nova!”</i> she grins, shifting her form momentarily to that of the tall, slender, handsome woman you met on Deck 13 of the <i>Nova</i>, dressed in a facsimile of an officer’s uniform. The goo squirms and shifts back to her normally buxom form and giggles playfully. <i>“Recognize me now?”</i>");
+	
+	output("\n\nWait, wasn’t she going to be getting a new cyber body?");
+	
+	output("\n\n<i>“</i>She<i> sure did,”</i> the goo-girl laughs, <i>“Captain what’s-her-butt and her crew are all off getting their fancy new bodies. Which means I got to wake up after she left! The nice people in lab coats said I should go find somebody to take care of me, sooooo I’m looking for someone really nice to be my friend! Oh! Do you want to be my friend? Pretty please? You were so nice to all my friends already...”</i>");
+
+	processTime(5+rand(3));
+
+	// [Sure] [Not now]
+	clearMenu();
+	addButton(0, "Sure", grayGooAtBarSure, undefined, "Sure", "Tell the goo-girl you'll take her with you. Considering what she was able to do when you fought her, maybe you can get some use out of her in battle...");
+	addButton(1, "Not Now", grayGooAtBarNotNow);
+}
+public function grayGooAtBarSure():void
+{
+	clearOutput();
+	author("Savin");
+	showGrayGooArmor();
+
+	goo.short = "Nova";
+
+	output("<i>“Sure. I’m [pc.name],”</i> you say, extending a hand to the goo.");
+	
+	output("\n\n<i>“Yaaaaaaaaay!”</i> she cheers, leaping onto you and giving you a huge, wet hug, pressing her massive tits against your chest. <i>“Bestest friends forever and ever and ever!”</i> ");
+	
+	output("\n\nYou chuckle and pat the goo on the head, your fingers coming away slightly wet and sticky. She slips back out of your grasp, going straight through your arm. <i>“You can call me Nova! I guess. I dunno, that’s what all the people that used to live in my head called me. Oh well! Hey, since we’re super best friends, wanna... I dunno, wanna fuck?”</i>");
+	
+	output("\n\n");
+	if (pc.lust() >= pc.lustMax() * 0.75) output("As much as you really could use a little relief.... ");
+	output("<i>“Not right now,”</i> you say. Might as well make sure she isn’t going to force herself on you.");
+	
+	output("\n\n[goo.name] shrugs. <i>“Kay! Um... what do best friends do other than fuck all the time?”</i>");
+	
+	output("\n\nYou smile, relieved, and ask if [goo.name] would like to come with you back to your ship.");
+	
+	output("\n\n<i>“Oh wow! A SPACE SHIP!? That’s awesome. I wanna see. I wanna see!”</i>");
+	
+	output("\n\nLaughing, you take [goo.name]’s hand and lead her up toward the hangar.");
+
+	currentLocation = shipLocation;
+	
+	flags["ANNO_NOVA_UPDATE"] = 2;
+
+	processTime(45+rand(15));
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+public function grayGooAtBarNotNow():void
+{
+	clearOutput();
+	author("Savin");
+	showGrayGooArmor();
+	
+	output("<i>“Sorry,”</i> you say, taking a step back from the over-eager pile of goo.");
+	
+	output("\n\nShe visibly deflates. <i>“Aww. Nobody around here wants to be friends with me,”</i> the goo groans.");
+
+	processTime(1);
+
+	// {Back to bar menu}
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
 
 public function grayGooArrivesAtShip():void
@@ -104,7 +309,6 @@ public function gooFapNope():void
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
-
 public function gooDickFap():void
 {
 	clearOutput();
@@ -259,7 +463,6 @@ public function gooDickFap():void
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
-
 public function grayGooCockSleeve():void
 {
 	clearOutput();
@@ -288,7 +491,6 @@ public function grayGooCockSleeve():void
 	addButton(0, "Allow It", grayGooCockSleeveII, true);
 	addButton(1, "Deny Her", grayGooCockSleeveII, false);
 }
-
 public function grayGooCockSleeveII(allowIt:Boolean = false):void
 {
 	clearOutput();
@@ -340,7 +542,6 @@ public function grayGooSpessSkype():void
 		eventQueue.push(grayGooSpessSkypeScene);
 	}
 }
-
 public function grayGooSpessSkypeScene():void
 {
 	clearOutput();
@@ -397,7 +598,6 @@ public function pcGooClone(attacker:Creature, target:Creature):void
 		target.createStatusEffect("Gray Goo Clone", 0, 0, 0, 0, false, "Icon_LustUp", chars["GOO"].short + " is busy distracting your foes!", true, 0);
 	}
 }
-
 public function pcRecallGoo():void
 {
 	clearOutput();
