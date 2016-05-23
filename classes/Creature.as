@@ -4049,38 +4049,40 @@
 			var adjectives:Array = new Array();
 			var nouns:Array = ["ear"];
 			var description:String = "";
+			var nonFurrySkin:Boolean = InCollection(skinType, GLOBAL.SKIN_TYPE_GOO, GLOBAL.SKIN_TYPE_SCALES, GLOBAL.SKIN_TYPE_LATEX);
+			
 			switch (earType)
 			{
 				case GLOBAL.TYPE_CANINE:
 					adjectives = ["pointed", "ausar", "upraised", "anubis-like"];
-					if(skinType != GLOBAL.SKIN_TYPE_GOO) adjectives.push("furry");
+					if(!nonFurrySkin) adjectives.push("furry");
 					break;
 				case GLOBAL.TYPE_EQUINE:
 					adjectives = ["equine", "horse-like", "inhuman"];
-					if(skinType != GLOBAL.SKIN_TYPE_GOO) adjectives.push("furry", "bestial");
+					if(!nonFurrySkin) adjectives.push("furry", "bestial");
 					break;
 				case GLOBAL.TYPE_BOVINE:
 					adjectives = ["bovine", "cow-like", "floppy"];
-					if(skinType != GLOBAL.SKIN_TYPE_GOO) adjectives.push("softly furred");
+					if(!nonFurrySkin) adjectives.push("softly furred");
 					break;
 				case GLOBAL.TYPE_FELINE:
 					adjectives = ["pointed", "feline", "cat-like", "cat-like"];
-					if(skinType != GLOBAL.SKIN_TYPE_GOO) adjectives.push("furry");
+					if(!nonFurrySkin) adjectives.push("furry");
 					break;
 				case GLOBAL.TYPE_LIZAN:
 					adjectives = ["reptilian", "small", "circular"];
 					break;
 				case GLOBAL.TYPE_LAPINE:
 					adjectives = ["bunny", "rabbit-like", "lapine", "floppy"];
-					if(skinType != GLOBAL.SKIN_TYPE_GOO) adjectives.push("furry");
+					if(!nonFurrySkin) adjectives.push("furry");
 					break;
 				case GLOBAL.TYPE_KANGAROO:
 					adjectives = ["kangaroo", "oval-shaped", "elliptical", "pointed"];
-					if(skinType != GLOBAL.SKIN_TYPE_GOO) adjectives.push("furry");
+					if(!nonFurrySkin) adjectives.push("furry");
 					break;
 				case GLOBAL.TYPE_VULPINE:
 					adjectives = ["vulpine", "fox-like", "pointed", "triangular"];
-					if(skinType != GLOBAL.SKIN_TYPE_GOO) adjectives.push("furry");
+					if(!nonFurrySkin) adjectives.push("furry");
 					break;
 				case GLOBAL.TYPE_DEMONIC:
 					adjectives = ["demonic", "demon-like", "pointy", "inhuman", "pointed"];
@@ -4092,15 +4094,15 @@
 					break;
 				case GLOBAL.TYPE_KUITAN:
 					adjectives = ["tanuki", "egg-shaped", "rounded"];
-					if(skinType != GLOBAL.SKIN_TYPE_GOO) adjectives.push("furry", "beastial");
+					if(!nonFurrySkin) adjectives.push("furry", "beastial");
 					break;
 				case GLOBAL.TYPE_MOUSE:
 					adjectives = ["mousey", "mouse-like", "rounded", "circular"];
-					if(skinType != GLOBAL.SKIN_TYPE_GOO) adjectives.push("furry");
+					if(!nonFurrySkin) adjectives.push("furry");
 					break;
 				case GLOBAL.TYPE_PANDA:
 					adjectives = ["panda", "bear-like", "rounded"];
-					if(skinType != GLOBAL.SKIN_TYPE_GOO) adjectives.push("furry", "softly furred");
+					if(!nonFurrySkin) adjectives.push("furry", "softly furred");
 					break;
 				case GLOBAL.TYPE_LEITHAN:
 					adjectives = ["leithan", "elven", "pointy", "inhuman", "pointed"];
@@ -4117,7 +4119,7 @@
 					break;
 				case GLOBAL.TYPE_DEER:
 					adjectives = ["deer", "pointed", "oval-shaped", "pointy"];
-					if(skinType != GLOBAL.SKIN_TYPE_GOO) adjectives.push("softly furred");
+					if(!nonFurrySkin) adjectives.push("softly furred");
 					break;
 				case GLOBAL.TYPE_GABILANI:
 					adjectives = ["gabilani", "pointy goblin", "long triangular", "sharp alien", "elven"];
@@ -10207,7 +10209,7 @@
 			var descript: String = "";
 			var descripted: Number = 0;
 			//Bald folks get one-off quick description
-			if (hairLength == 0) {
+			if (hairLength <= 0) {
 				if (hasFur()) {
 					if (rand(2) == 0) descript += "furry ";
 					else {
@@ -10379,7 +10381,7 @@
 			var descript: String = "";
 			var descripted: Number = 0;
 			//Bald folks get one-off quick description
-			if (hairLength == 0) {
+			if (hairLength <= 0) {
 				if (hasFur()) {
 					if (rand(2) == 0) descript += "furry ";
 					else {
@@ -11635,7 +11637,11 @@
 						else if (rando == 1) descript = "ridiculously massive";
 						else if (rando == 2) descript = "extremely prodigious";
 						else if (rando == 3) descript = "overly imposing";
-						else if (rando == 4) descript = "floor-dragging";
+						else if (rando == 4)
+						{
+							if(cocks[cockNum].cLength() > (tallness * 2/3)) descript = "floor-dragging";
+							else descript = "incredibly immense";
+						}
 						else if (rando == 5) descript = "colossal";
 						else if (rando == 6) descript = "very hyper";
 						else descript = "monumental";
@@ -11824,7 +11830,11 @@
 						else if (rando == 1) descript = "ridiculously massive";
 						else if (rando == 2) descript = "extremely prodigious";
 						else if (rando == 3) descript = "overly imposing";
-						else if (rando == 4) descript = "floor-dragging";
+						else if (rando == 4)
+						{
+							if(l > (tallness * 2/3)) descript = "floor-dragging";
+							else descript = "incredibly immense";
+						}
 						else if (rando == 5) descript = "colossal";
 						else if (rando == 6) descript = "very hyper";
 						else descript = "monumental";
@@ -12037,7 +12047,11 @@
 						else if (rando == 1) descript = "ridiculously massive";
 						else if (rando == 2) descript = "extremely prodigious";
 						else if (rando == 3) descript = "overly imposing";
-						else if (rando == 4) descript = "floor-dragging";
+						else if (rando == 4)
+						{
+							if(l > (tallness * 4/5)) descript = "floor-dragging";
+							else descript = "incredibly immense";
+						}
 						else if (rando == 5) descript = "colossal";
 						else if (rando == 6) descript = "very hyper";
 						else descript = "monumental";

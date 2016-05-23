@@ -144,6 +144,9 @@ package classes.Items.Transformatives
 				// *Grow long demon tongue
 				if(target.tongueType != GLOBAL.TYPE_DEMONIC)
 					TFList.push(17);
+				// *Change ears to demonic ears
+				if(target.earType != GLOBAL.TYPE_DEMONIC)
+					TFList.push(18);
 			}
 			
 			// TF texts
@@ -376,13 +379,11 @@ package classes.Items.Transformatives
 				{
 					if(target.faceTypeUnlocked(GLOBAL.TYPE_HUMAN))
 					{
-						output("Heat seizes your [pc.face]; it is intense enough to force you to sit on the ground until it passes. Your sight and face shift uncomfortably as the heat fades. You pull out your codex and look at yourself with the reflector implemented. <b>You now have a mostly human face with demonic ears!</b>");
+						output("Heat seizes your [pc.face]; it is intense enough to force you to sit on the ground until it passes. Your sight and face shift uncomfortably as the heat fades. You pull out your codex and look at yourself with the reflector implemented. <b>You now have a mostly human face!</b>");
 						
 						target.faceType = GLOBAL.TYPE_HUMAN;
 						target.clearFaceFlags();
 						if(target.mfn("m", "f", "n") != "m") target.addFaceFlag(GLOBAL.FLAG_SMOOTH);
-						target.earLength = 2 + rand(4);
-						target.earType = GLOBAL.TYPE_DEMONIC;
 					}
 					else output(target.faceTypeLockedMessage());
 				}
@@ -477,6 +478,18 @@ package classes.Items.Transformatives
 						target.addTongueFlag(GLOBAL.FLAG_TAPERED);
 					}
 					else output(target.tongueTypeLockedMessage());
+				}
+				// *Change ears to demonic ears
+				else if(select == 18)
+				{
+					if(target.earTypeUnlocked(GLOBAL.TYPE_DEMONIC))
+					{
+						output("There is a burning in your ears as they warp and change, reshaping into a newer shape: distinct, pointed, and very sinister-looking. <b>You now have demonic ears!</b>");
+						
+						target.earLength = 2 + rand(4);
+						target.earType = GLOBAL.TYPE_DEMONIC;
+					}
+					else output(target.earTypeLockedMessage());
 				}
 				
 				totalTFs--;

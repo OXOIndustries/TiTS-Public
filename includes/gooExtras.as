@@ -731,7 +731,8 @@ public function gooHairAdjustmenu():void
 	addGhostButton(0,"Lengthen",lengthenHairGoo,undefined,"Lengthen","Put 100 mLs of biomass into adding an inch to your hair.");
 	if(pc.hasHair()) addGhostButton(1,"Shorten",shortenHairGoo,undefined,"Shorten","Shorten your gooey hair, regaining a portion of its biomass.");
 	else addDisabledGhostButton(1,"Shorten","Shorten","You've got to have hair in order to shorten it!");
-	addGhostButton(2,"Style",newGooStyle,undefined,"Style","Style your hair into a more pleasing shape.");
+	if(pc.hairLength <= 0) addDisabledGhostButton(2,"Style","Style","You need some hair in order to style it!");
+	else addGhostButton(2,"Style",newGooStyle,undefined,"Style","Style your hair into a more pleasing shape.");
 	addGhostButton(14,"Back",gooShiftMenu);
 	
 }
