@@ -242,7 +242,8 @@ public function beatUpCrystalGoo():void
 		addDisabledButton(1,"Vag Fuck","Vagina Fuck","You aren’t turned on enough for that.");
 		addDisabledButton(2,"Centaur Ride","Centaur Ride","You aren’t turned on enough for that.");
 	}
-	addButton(14,"Leave",CombatManager.genericVictory);
+	if(hasGooArmorOnSelf() && !hasGooArmorUpgrade("ganrael")) addButton(14,"Leave",armorGooVictoryShits);
+	else addButton(14,"Leave",CombatManager.genericVictory);
 }
 
 //Male win

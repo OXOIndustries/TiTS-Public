@@ -547,7 +547,7 @@ public function chocolateIcedCream(servingType:String = "cone"):void
 		if(flags["HAD_CHOCOLATE"] == undefined)
 		{
 			output("You stroll past several machines, then you spot one with a banner you like: Chocolate! It seems some things never fall out of favor! You are pleased there’s at least something you know for certain you like in here.");
-			output("\n\nThe woman in the machine is chocolate skinned herself, and despite her tits being almost half again the size of any other one you’ve seen in here, she looks tired and well used. Of course, she would be a popular flavor, wouldn’t she? You also note she’s blindfolded, probably to prevent people from getting a big dose of pleading eyes. You shrug and silently apologize as you draw your cone from her, which takes quite a while since she’s so tapped it only comes out at a drizzle.");
+			output("\n\nThe woman in the machine is chocolate skinned herself, and despite her tits being almost half-again the size of any other one you’ve seen in here, she looks tired and well used. Of course, she would be a popular flavor, wouldn’t she? You also note she’s blindfolded, probably to prevent people from getting a big dose of pleading eyes. You shrug and silently apologize as you draw your cone from her, which takes quite a while since she’s so tapped it only comes out at a drizzle.");
 			output("\n\nOh, sweet chocolate! You hadn’t really expected to find this one here, but you’re very glad you did, and a little disappointed you only bought a cone.");
 		}
 		//Repeat Cone

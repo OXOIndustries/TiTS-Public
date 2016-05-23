@@ -259,7 +259,7 @@
 			if (_availableModules["MainMenu"].visible == true)
 			{
 				//showPrimaryOutput();
-				backToPrimaryOutput();
+				kGAMECLASS.backToPrimaryOutput();
 			}
 			else
 			{
@@ -360,6 +360,8 @@
 		 */
 		private function creditsHandler():void
 		{
+			if (systemText != "BY FENOXO") showName("\nCREDITS");
+			
 			clearOutput2();
 			
 			// Had to do this- our output mechanics choked to fucking DEATH on the size of the output otherwise.
@@ -577,7 +579,9 @@
 		 */
 		public function showMainMenu():void
 		{
+			if (systemText != "BY FENOXO") showName("MAIN\nMENU");
 			this.showModule("MainMenu");
+			hideBust();
 			
 			var buttons:Array = (_availableModules["MainMenu"] as MainMenuModule).mainMenuButtons;
 			
@@ -595,8 +599,10 @@
 		
 		public function showOptionsModule():void
 		{
+			if (systemText != "BY FENOXO") showName("\nOPTIONS");
 			this.showModule("Options");
 			(_currentModule as OptionsModule).updateDisplay();
+			hideBust();
 			mainButtonsOnly();
 			clearGhostMenu();
 			
@@ -607,8 +613,8 @@
 		
 		public function backToPrimaryOutput():void
 		{
-			mainButtonsReset();
 			showPrimaryOutput();
+			mainButtonsReset();
 		}
 		
 		// Interaction bullshit for the main menu
@@ -660,9 +666,10 @@
 		// Codex trigger
 		public function showCodex():void
 		{
-			this.showModule("CodexDisplay");
+			showModule("CodexDisplay");
 			(_currentModule as CodexModule).cullHeaders();
-			this.setLocation("", "CODEX", "DATABASE");
+			hideBust();
+			setLocation("", "CODEX", "DATABASE");
 			
 			// Trigger an update of the visual data state whenever we begin displaying the Codex
 			(_currentModule as CodexModule).update();
@@ -671,21 +678,24 @@
 		public function showMails():void
 		{
 			showModule("MailDisplay");
-			setLocation("", "CODEX", "MESSENGER");
 			(_currentModule as MailModule).update();
+			hideBust();
+			setLocation("", "CODEX", "MESSENGER");
 		}
 		
 		public function showLevelUpStats(character:PlayerCharacter):void
 		{
-			this.showModule("LevelUpStats");
+			showModule("LevelUpStats");
 			(_currentModule as LevelUpStatsModule).setCreatureData(character);
+			kGAMECLASS.showPCBust();
 			setLocation("", "LEVEL UP", "STATS");
 		}
 		
 		public function showLevelUpPerks(character:PlayerCharacter):void
 		{
-			this.showModule("LevelUpPerks");
+			showModule("LevelUpPerks");
 			(_currentModule as LevelUpPerksModule).setCreatureData(character);
+			kGAMECLASS.showPCBust();
 			setLocation("", "LEVEL UP", "PERKS");
 		}
 		
@@ -843,8 +853,6 @@
 			
 			if (tarButton.func == null) return false;
 			
-			if (!inCombat) showBust("none");
-			
 			if (tarButton.arg == undefined) 
 			{
 				tarButton.func();
@@ -852,6 +860,7 @@
 			else
 			{
 				tarButton.func(tarButton.arg);
+				kGAMECLASS.clearBust();
 			}
 			
 			return true;
@@ -1380,7 +1389,8 @@
 				argS += args[i];
 			}
 			//trace("showBust called with args: [" + argS + "]");
-			_leftSideBar.locationBlock.showBust(args);			
+			if(args.length > 0) _leftSideBar.locationBlock.showBust(args);
+			else _leftSideBar.locationBlock.showBust(args);
 		}
 		
 		public function bringLastBustToTop():void

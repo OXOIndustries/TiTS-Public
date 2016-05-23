@@ -6,18 +6,19 @@
 	import classes.DataManager.Errors.VersionUpgraderError;
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.GameData.SingleCombatAttack;
+	import classes.Items.Accessories.Allure;
 	import classes.Items.Accessories.FlashGoggles;
+	import classes.Items.Accessories.TamWolf;
+	import classes.Items.Accessories.TamWolfDamaged;
+	import classes.Items.Armor.GooArmor;
 	import classes.Items.Guns.MyrBow;
 	import classes.Items.Melee.Fists;
 	import classes.Items.Melee.Rock;
 	import classes.Items.Miscellaneous.EmptySlot;
 	import classes.Items.Miscellaneous.HorsePill;
-	import classes.Items.Transformatives.Goblinola;
 	import classes.Items.Transformatives.Clippex;
+	import classes.Items.Transformatives.Goblinola;
 	import classes.Items.Transformatives.SemensFriend;
-	import classes.Items.Accessories.TamWolf;
-	import classes.Items.Accessories.TamWolfDamaged;
-	import classes.Items.Accessories.Allure;
 	import classes.VaginaClass;
 	import classes.BreastRowClass;
 	import classes.StorageClass;
@@ -34,7 +35,6 @@
 	import flash.utils.ByteArray;
 	import classes.GLOBAL;
 	import classes.GameData.Pregnancy.PregnancyManager;
-	import classes.Items.Miscellaneous.EmptySlot;
 	import classes.Util.RandomInCollection;
 	import classes.Util.InCollection;
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
@@ -695,7 +695,7 @@
 		public var legType: Number = 0;
 		public function legTypeUnlocked(newLegType:Number):Boolean
 		{
-			if (newLegType != GLOBAL.TYPE_HUMAN && (hasStatusEffect("Mimbrane Foot Left") || hasStatusEffect("Mimbrane Foot Right"))) return false;
+			if (!InCollection(newLegType, [GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_SUCCUBUS]) && (hasStatusEffect("Mimbrane Foot Left") || hasStatusEffect("Mimbrane Foot Right"))) return false;
 			if (isGoo() && statusEffectv1("Gel Body") >= 1) return false;
 			return true;
 		}
@@ -4049,38 +4049,40 @@
 			var adjectives:Array = new Array();
 			var nouns:Array = ["ear"];
 			var description:String = "";
+			var nonFurrySkin:Boolean = InCollection(skinType, GLOBAL.SKIN_TYPE_GOO, GLOBAL.SKIN_TYPE_SCALES, GLOBAL.SKIN_TYPE_LATEX);
+			
 			switch (earType)
 			{
 				case GLOBAL.TYPE_CANINE:
 					adjectives = ["pointed", "ausar", "upraised", "anubis-like"];
-					if(skinType != GLOBAL.SKIN_TYPE_GOO) adjectives.push("furry");
+					if(!nonFurrySkin) adjectives.push("furry");
 					break;
 				case GLOBAL.TYPE_EQUINE:
 					adjectives = ["equine", "horse-like", "inhuman"];
-					if(skinType != GLOBAL.SKIN_TYPE_GOO) adjectives.push("furry", "bestial");
+					if(!nonFurrySkin) adjectives.push("furry", "bestial");
 					break;
 				case GLOBAL.TYPE_BOVINE:
 					adjectives = ["bovine", "cow-like", "floppy"];
-					if(skinType != GLOBAL.SKIN_TYPE_GOO) adjectives.push("softly furred");
+					if(!nonFurrySkin) adjectives.push("softly furred");
 					break;
 				case GLOBAL.TYPE_FELINE:
 					adjectives = ["pointed", "feline", "cat-like", "cat-like"];
-					if(skinType != GLOBAL.SKIN_TYPE_GOO) adjectives.push("furry");
+					if(!nonFurrySkin) adjectives.push("furry");
 					break;
 				case GLOBAL.TYPE_LIZAN:
 					adjectives = ["reptilian", "small", "circular"];
 					break;
 				case GLOBAL.TYPE_LAPINE:
 					adjectives = ["bunny", "rabbit-like", "lapine", "floppy"];
-					if(skinType != GLOBAL.SKIN_TYPE_GOO) adjectives.push("furry");
+					if(!nonFurrySkin) adjectives.push("furry");
 					break;
 				case GLOBAL.TYPE_KANGAROO:
 					adjectives = ["kangaroo", "oval-shaped", "elliptical", "pointed"];
-					if(skinType != GLOBAL.SKIN_TYPE_GOO) adjectives.push("furry");
+					if(!nonFurrySkin) adjectives.push("furry");
 					break;
 				case GLOBAL.TYPE_VULPINE:
 					adjectives = ["vulpine", "fox-like", "pointed", "triangular"];
-					if(skinType != GLOBAL.SKIN_TYPE_GOO) adjectives.push("furry");
+					if(!nonFurrySkin) adjectives.push("furry");
 					break;
 				case GLOBAL.TYPE_DEMONIC:
 					adjectives = ["demonic", "demon-like", "pointy", "inhuman", "pointed"];
@@ -4092,15 +4094,15 @@
 					break;
 				case GLOBAL.TYPE_KUITAN:
 					adjectives = ["tanuki", "egg-shaped", "rounded"];
-					if(skinType != GLOBAL.SKIN_TYPE_GOO) adjectives.push("furry", "beastial");
+					if(!nonFurrySkin) adjectives.push("furry", "beastial");
 					break;
 				case GLOBAL.TYPE_MOUSE:
 					adjectives = ["mousey", "mouse-like", "rounded", "circular"];
-					if(skinType != GLOBAL.SKIN_TYPE_GOO) adjectives.push("furry");
+					if(!nonFurrySkin) adjectives.push("furry");
 					break;
 				case GLOBAL.TYPE_PANDA:
 					adjectives = ["panda", "bear-like", "rounded"];
-					if(skinType != GLOBAL.SKIN_TYPE_GOO) adjectives.push("furry", "softly furred");
+					if(!nonFurrySkin) adjectives.push("furry", "softly furred");
 					break;
 				case GLOBAL.TYPE_LEITHAN:
 					adjectives = ["leithan", "elven", "pointy", "inhuman", "pointed"];
@@ -4117,7 +4119,7 @@
 					break;
 				case GLOBAL.TYPE_DEER:
 					adjectives = ["deer", "pointed", "oval-shaped", "pointy"];
-					if(skinType != GLOBAL.SKIN_TYPE_GOO) adjectives.push("softly furred");
+					if(!nonFurrySkin) adjectives.push("softly furred");
 					break;
 				case GLOBAL.TYPE_GABILANI:
 					adjectives = ["gabilani", "pointy goblin", "long triangular", "sharp alien", "elven"];
@@ -10207,7 +10209,7 @@
 			var descript: String = "";
 			var descripted: Number = 0;
 			//Bald folks get one-off quick description
-			if (hairLength == 0) {
+			if (hairLength <= 0) {
 				if (hasFur()) {
 					if (rand(2) == 0) descript += "furry ";
 					else {
@@ -10379,7 +10381,7 @@
 			var descript: String = "";
 			var descripted: Number = 0;
 			//Bald folks get one-off quick description
-			if (hairLength == 0) {
+			if (hairLength <= 0) {
 				if (hasFur()) {
 					if (rand(2) == 0) descript += "furry ";
 					else {
@@ -11635,7 +11637,11 @@
 						else if (rando == 1) descript = "ridiculously massive";
 						else if (rando == 2) descript = "extremely prodigious";
 						else if (rando == 3) descript = "overly imposing";
-						else if (rando == 4) descript = "floor-dragging";
+						else if (rando == 4)
+						{
+							if(cocks[cockNum].cLength() > (tallness * 2/3)) descript = "floor-dragging";
+							else descript = "incredibly immense";
+						}
 						else if (rando == 5) descript = "colossal";
 						else if (rando == 6) descript = "very hyper";
 						else descript = "monumental";
@@ -11824,7 +11830,11 @@
 						else if (rando == 1) descript = "ridiculously massive";
 						else if (rando == 2) descript = "extremely prodigious";
 						else if (rando == 3) descript = "overly imposing";
-						else if (rando == 4) descript = "floor-dragging";
+						else if (rando == 4)
+						{
+							if(l > (tallness * 2/3)) descript = "floor-dragging";
+							else descript = "incredibly immense";
+						}
 						else if (rando == 5) descript = "colossal";
 						else if (rando == 6) descript = "very hyper";
 						else descript = "monumental";
@@ -12037,7 +12047,11 @@
 						else if (rando == 1) descript = "ridiculously massive";
 						else if (rando == 2) descript = "extremely prodigious";
 						else if (rando == 3) descript = "overly imposing";
-						else if (rando == 4) descript = "floor-dragging";
+						else if (rando == 4)
+						{
+							if(l > (tallness * 4/5)) descript = "floor-dragging";
+							else descript = "incredibly immense";
+						}
 						else if (rando == 5) descript = "colossal";
 						else if (rando == 6) descript = "very hyper";
 						else descript = "monumental";
@@ -13035,8 +13049,6 @@
 		}
 		public function addBiomass(arg:Number):void
 		{
-			//if(kGAMECLASS.flags["GOO_BIOMASS"] == undefined) kGAMECLASS.flags["GOO_BIOMASS"] = 0;
-			//kGAMECLASS.flags["GOO_BIOMASS"] += arg;
 			kGAMECLASS.gooBiomass(arg);
 		}
 		public function cumflationHappens(cumFrom:Creature, hole:Number):void
@@ -14706,6 +14718,11 @@
 									break;
 								case "Flahne_Extra_Pissed":
 									kGAMECLASS.flags["FLAHNE_MAKEUP"] = 1;
+									break;
+								case "Goo Armor Defense Drain":
+									if(armor is GooArmor) kGAMECLASS.eventBuffer += ParseText("\n\n[goo.name] wriggles around you and tightens, testing her strength. <i>“Ahh, I feel better now!”</i> She seems to have fully recovered!");
+									if(hasItemByName("Goo Armor")) kGAMECLASS.eventBuffer += ParseText("\n\n[goo.name] happily mumbles something to herself, but you don’t quite catch it. Feeling her energetic movements, you can only assume that she has finally recovered!");
+									kGAMECLASS.gooArmorDefense((statusEffects[x] as StorageClass).value1);
 									break;
 							}
 						}

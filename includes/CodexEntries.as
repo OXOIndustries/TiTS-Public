@@ -419,7 +419,8 @@ public function anataeCodexEntry():void
 public function daynarCodexEntry():void
 {
 	clearOutputCodex();
-	showBust("LANE_M", "LANE_F", "LANE_M_NUDE", "LANE_F_NUDE");
+	var randBust:Array = ["LANE_M", "LANE_F", "LANE_M_NUDE", "LANE_F_NUDE"];
+	showBust(randBust[rand(randBust.length)]);
 	outputCodex(header("Daynar"));
 	outputCodex("<i>Not all lizards are untrustworthy: Just most.</i>\n\n");
 	outputCodex("<b>Name (Singular & Plural):</b> Daynar");
@@ -721,7 +722,7 @@ public function thraggenCodexEntry():void
 public function vildariiCodexEntry():void 
 {
 	clearOutputCodex();
-	showBust("9999");
+	showBust("FYN");
 	outputCodex(header("Vildarii"));
 	outputCodex("<b>Name (Singular & Plural):</b> Vildarii");
 	outputCodex("\n<b>Pronunciation:</b> 'Vil-dahr-ee'");
@@ -754,7 +755,7 @@ public function vildariiCodexEntry():void
 public function vulkrimiCodexEntry():void 
 {
 	clearOutputCodex();
-	showBust("9999");
+	showBust("SEMITH");
 	outputCodex(header("Vulkrimi"));
 	outputCodex("<b>Name (Singular):</b> Vulkrim");
 	outputCodex("\n<b>Sexes:</b> Male");

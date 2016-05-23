@@ -642,7 +642,7 @@ public function watchTankBlowFirstLoadEpilogue():void
 	output("\n\nOther voices take up the call. <i>“Yeah, Steph Irson’s better than this shit!”</i>");
 	output("\n\nThe first hollers back, <i>“Hey, Tank’s a national treasure, fuck-face!”</i>");
 	output("\n\n<i>“If you like uselessly huge dicks instead of a fine, female form!”</i>");
-	output("\n\nJust when you think there’s going to be a fight, someone changes the channel and offers the two would-be-combatants new drinks. Crises averted!");
+	output("\n\nJust when you think there’s going to be a fight, someone changes the channel and offers the two would-be-combatants new drinks. Crisis averted!");
 	processTime(1);
 	IncrementFlag("TANK_EP1_WATCHED");
 	clearMenu();

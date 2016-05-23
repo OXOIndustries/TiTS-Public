@@ -1,5 +1,6 @@
 package classes.Resources.Busts 
 {
+	import flash.geom.Rectangle;
 	/**
 	 * ...
 	 * @author Gedan
@@ -17,6 +18,7 @@ package classes.Resources.Busts
 
 		[Embed(source = "../../../assets/images/npcs/cheshire/anno.png", mimeType = "image/png")]
 		public var Bust_ANNO:Class;
+		public var Bounds_ANNO:Rectangle = new Rectangle(25, 15, 70, 70);
 		[Embed(source = "../../../assets/images/npcs/cheshire/anno_nude.png", mimeType = "image/png")]
 		public var Bust_ANNO_NUDE:Class;
 		

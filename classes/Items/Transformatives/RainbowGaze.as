@@ -115,7 +115,7 @@
 				else addDisabledButton(btnSlot, colorList[1][i], StringUtil.toDisplayCase(colorList[0][i]), String("Your eyes are already " + colorList[0][i] + "."));
 				btnSlot++;
 				
-				if(colorList[0].length > 15 && (i + 1) == colorList[0].length)
+				if(colorList[0].length > 14 && (i + 1) == colorList[0].length)
 				{
 					while((btnSlot + 1) % 15 != 0) { btnSlot++; }
 					addButton(btnSlot, "Back", rbgMenu, target);

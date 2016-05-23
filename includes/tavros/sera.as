@@ -103,8 +103,10 @@ public function seraMenu():void
 	shopkeep = chars["SERA"];
 	if(flags["ZODEE_GALOQUEST"] != undefined)
 	{
-		if(!chars["SERA"].hasItem(new GaloMax()) && flags["PURCHASED_SERAS_GALO"] == undefined) chars["SERA"].inventory.push(new GaloMax());
-		//Else no whip
+		if(flags["PURCHASED_SERAS_GALO"] == undefined)
+		{
+			if(!chars["SERA"].hasItem(new GaloMax())) chars["SERA"].inventory.push(new GaloMax());
+		}
 		else chars["SERA"].destroyItem(new GaloMax());
 	}
 	chars["SERA"].keeperBuy = "While you're accessing the shopping terminal, Sera produces a file and goes to work on her nails to keep them honed to a razor-like sharpness. You suppose there's not much for her to do while she waits on you to make a purchase.\n";

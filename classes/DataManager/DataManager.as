@@ -120,12 +120,12 @@
 			{
 				kGAMECLASS.userInterface.dataButton.DeGlow();
 				//kGAMECLASS.userInterface.showPrimaryOutput();
-				kGAMECLASS.userInterface.backToPrimaryOutput();
+				kGAMECLASS.backToPrimaryOutput();
 				
 				if (kGAMECLASS.pc.short == "uncreated")
 				{
 					//kGAMECLASS.userInterface.showPrimaryOutput();
-					kGAMECLASS.userInterface.backToPrimaryOutput();
+					kGAMECLASS.backToPrimaryOutput();
 				}
 				
 				if (kGAMECLASS.pc.short.length == 0)
@@ -190,6 +190,8 @@
 		{
 			var displayMessage:String = "";
 			
+			kGAMECLASS.userInterface.hideBust();
+			if (kGAMECLASS.userInterface.systemText != "BY FENOXO") kGAMECLASS.showName("DATA\nMENU");
 			kGAMECLASS.removeInput();
 			
 			kGAMECLASS.clearOutput2();
@@ -229,6 +231,7 @@
 		
 		private function deleteSaveMenu():void
 		{
+			if (kGAMECLASS.userInterface.systemText != "BY FENOXO") kGAMECLASS.showName("DELETE\nSAVE");
 			clearOutput2();
 			kGAMECLASS.userInterface.dataButton.Glow();
 			
@@ -291,6 +294,8 @@
 		{
 			private function deleteFileMenu():void
 			{
+				if (kGAMECLASS.userInterface.systemText != "BY FENOXO") kGAMECLASS.showName("DELETE\nFILE");
+				
 				clearOutput2();
 				kGAMECLASS.userInterface.dataButton.Glow();
 				
@@ -355,6 +360,7 @@
 		 */
 		private function loadGameMenu():void
 		{
+			if (kGAMECLASS.userInterface.systemText != "BY FENOXO") kGAMECLASS.showName("LOAD\nGAME");
 			kGAMECLASS.clearOutput2();
 			kGAMECLASS.userInterface.dataButton.Glow();
 			
@@ -388,6 +394,7 @@
 		 */
 		private function saveGameMenu():void
 		{
+			if (kGAMECLASS.userInterface.systemText != "BY FENOXO") kGAMECLASS.showName("SAVE\nGAME");
 			kGAMECLASS.clearOutput2();
 			kGAMECLASS.userInterface.dataButton.Glow();
 			
@@ -665,6 +672,8 @@
 		{
 			private function saveToFile():void
 			{
+				if (kGAMECLASS.userInterface.systemText != "BY FENOXO") kGAMECLASS.showName("SAVE\nFILE");
+				
 				var dataBlob:Object = { };
 				this.saveBaseData(dataBlob);
 				
@@ -721,6 +730,8 @@
 		{
 			private function saveToFile():void
 			{
+				if (kGAMECLASS.userInterface.systemText != "BY FENOXO") kGAMECLASS.showName("SAVE\nFILE");
+				
 				var dataBlob:Object = { };
 				this.saveBaseData(dataBlob);
 				
@@ -823,6 +834,8 @@
 		{
 			private function loadFromFile():void
 			{
+				if (kGAMECLASS.userInterface.systemText != "BY FENOXO") kGAMECLASS.showName("LOAD\nFILE");
+				
 				kGAMECLASS.clearOutput2();
 				kGAMECLASS.userInterface.dataButton.Glow();
 				kGAMECLASS.output2("Selected a file to load.");
@@ -839,6 +852,8 @@
 		{
 			private function loadFromFile():void
 			{
+				if (kGAMECLASS.userInterface.systemText != "BY FENOXO") kGAMECLASS.showName("LOAD\nFILE");
+				
 				kGAMECLASS.clearOutput2();
 				kGAMECLASS.userInterface.dataButton.Glow();
 				kGAMECLASS.output2("Select a file to load:\n");

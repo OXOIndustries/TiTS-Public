@@ -982,6 +982,7 @@ public function savinAbusesYerButtBecauseThatsHowHeLikesIt():void
 	if(pc.cockTotal() > 1) output("s as they discharge");
 	else output(" as it discharges");
 	output(", draining your spooge out of the bodyrest and down through a single thick tube connecting it to another machine on the wall.");
+	processTime(15);
 	var firstCum:Number = pc.cumQ();
 	var cumTotal:Number = pc.cumQ();
 	//if PC has a huge cum volume:
@@ -1020,8 +1021,11 @@ public function savinAbusesYerButtBecauseThatsHowHeLikesIt():void
 	}
 	else output("a third thick, creamy load of virile spunk");
 	output(".");
+	processTime(25);
 	cumTotal += pc.cumQ();
 	pc.orgasm();
+	
+	processTime(5);
 
 	// Breaking the machine starts here!
 
@@ -1032,7 +1036,7 @@ public function savinAbusesYerButtBecauseThatsHowHeLikesIt():void
 	var cumEstimate:Number = 0;
 	if(pc.cumQ() * 3 >= pc.currentCum()) cumEstimate = pc.cumQ() * 3;
 	else cumEstimate = pc.currentCum();
-	if ((cumCreditValue(cumTotal + cumEstimate) > iPriceThreshold) && rand(2) == 0)
+	if (cumCreditValue(cumTotal + cumEstimate) > iPriceThreshold)
 	{
 		output("\n\nAll you can do is tightly grip the vaulting horse supporting you, groaning and crying in pleasure as the machine milks your prostate minute after minute.");
 
@@ -1042,8 +1046,10 @@ public function savinAbusesYerButtBecauseThatsHowHeLikesIt():void
 		output("\n\nDo you let the machine continue pumping you until you are dry?");
 		// Break it, you goof.
 		addButton(0,"Yes",yesGoMilkarGo,cumTotal);
+		// I'm sorry Dave, I'm afraid I can't do that.
+		if(cumTotal > 320000000) addDisabledButton(1,"No","Too Much Cum to Stop!","Unfortunately, you cannot get off this wild ride...");
 		// Nah, just stop milking, please.
-		addButton(1,"No",noStahpMilkarStahp,cumTotal);
+		else addButton(1,"No",noStahpMilkarStahp,cumTotal);
 	}
 	// Default response:
 	else
@@ -1057,7 +1063,6 @@ public function savinAbusesYerButtBecauseThatsHowHeLikesIt():void
 
 		output("\n\n<i>“All done!”</i> Carrie announces, hopping off her stool and pressing the red button again. With a satisfied whir, the milker shudders and withdraws back up into the ceiling. Carrie walks over to you and puts a reassuring hand on your battered, bare butt. <i>“Poor thing. I hope Mister Floppycock wasn’t too rough on you. C’mon, let’s get you out of those straps...”</i>");
 		//Doing this stuff early so display will have the full total:
-		processTime(45);
 		cumTotal += pc.cumQ();
 		pc.orgasm();
 		cumTotal += pc.cumQ();

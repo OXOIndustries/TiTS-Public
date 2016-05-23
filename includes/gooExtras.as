@@ -699,7 +699,7 @@ public function gooShiftMenu():void
 	else addDisabledGhostButton(3,"Locked","Locked","It takes four doses of GaloMax to unlock this option.");
 	if(pc.hasStatusEffect("Goo Vent")) addGhostButton(4,"ToggleVent",ventToggle,undefined,"Toggle Vent","Toggle on or off whether you would like to add excess biomass to your own orgasmic releases.");
 	else addDisabledGhostButton(4,"Locked","Locked","It takes two doses of GaloMax to unlock this option.");
-	addGhostButton(14, "Back", appearance, pc);
+	addGhostButton(14, "Back", backToAppearance, pc);
 }
 
 public function showBiomass():void
@@ -731,7 +731,8 @@ public function gooHairAdjustmenu():void
 	addGhostButton(0,"Lengthen",lengthenHairGoo,undefined,"Lengthen","Put 100 mLs of biomass into adding an inch to your hair.");
 	if(pc.hasHair()) addGhostButton(1,"Shorten",shortenHairGoo,undefined,"Shorten","Shorten your gooey hair, regaining a portion of its biomass.");
 	else addDisabledGhostButton(1,"Shorten","Shorten","You've got to have hair in order to shorten it!");
-	addGhostButton(2,"Style",newGooStyle,undefined,"Style","Style your hair into a more pleasing shape.");
+	if(pc.hairLength <= 0) addDisabledGhostButton(2,"Style","Style","You need some hair in order to style it!");
+	else addGhostButton(2,"Style",newGooStyle,undefined,"Style","Style your hair into a more pleasing shape.");
 	addGhostButton(14,"Back",gooShiftMenu);
 	
 }
@@ -1126,6 +1127,7 @@ public function adjustGooBody(arg:Array):void
 		cost = 20;
 		limitMax = 100;
 		limitMin = 0;
+		if(pc.hasPerk("Buttslut")) limitMin = 20;
 		if(desc == "increase" || desc == "decrease")
 		{
 			clearOutput2();
@@ -2218,7 +2220,7 @@ public function reshapeAGooCawkForReaaaaal(arg:int = 0):void
 		else addDisabledGhostButton(btnSlot,btnName,btnName,"The penis is already this shape.");
 		btnSlot++;
 		
-		if(cTypes.length > 15 && (x + 1) == cTypes.length)
+		if(cTypes.length > 14 && (x + 1) == cTypes.length)
 		{
 			while((btnSlot + 1) % 15 != 0) { btnSlot++; }
 			if(pc.cockTotal() == 1) addGhostButton(btnSlot,"Back",gooCockRootMenu);
@@ -2832,7 +2834,7 @@ public function pickNewCuntType(arg:int = 0):void
 		else addDisabledGhostButton(btnSlot,btnName,btnName,"The vagina is already this shape.");
 		btnSlot++;
 		
-		if(vTypes.length > 15 && (x + 1) == vTypes.length)
+		if(vTypes.length > 14 && (x + 1) == vTypes.length)
 		{
 			while((btnSlot + 1) % 15 != 0) { btnSlot++; }
 			if(pc.totalVaginas() == 1) addGhostButton(btnSlot,"Back",vaginaGooRootMenu);
