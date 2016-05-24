@@ -9450,6 +9450,10 @@
 				}
 				descripted++;
 			}
+			if(descripted == 0 && hasPerk("Buttslut") && rand(2) == 0)
+			{
+				desc += RandomInCollection("slutty","fuck-hungry","cock-hungry","fuckable","puckered","eager","greedy","ravenous","insatiable");
+			}
 			
 			if (descripted > 0) desc += " ";
 			//Butt descriptor
@@ -10972,6 +10976,19 @@
 				if (descripted > 0) vag += ", ";
 				if (rand(2) == 0) vag += "gooey";
 				else vag += "slimy";
+				descripted++;
+			}
+			//Slutty pussy chance!
+			if(descripted < 2 && rand(2) == 0 && (vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_PUMPED) || vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)))
+			{
+				if (descripted > 0) vag += ", ";
+				if (!vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_PUMPED)) vag += RandomInCollection(["cushy", "chubby", "slightly swollen", "puffy", "slightly pumped"]);
+				else vag += RandomInCollection(["bulgy", "swollen", "plump", "pudgy", "permanently pumped", "jiggly", "wobbly", "pump-enhanced", "prodigious", "slutty"]);
+				descripted++;
+			}
+			if(isBimbo() && rand(2) == 0 && descripted == 0)
+			{
+				vag += RandomInCollection(["slutty", "cock-hungry", "bimbo", "yummy-looking", "fuckable"]);
 				descripted++;
 			}
 			//50% of time, simple cunt.

@@ -2628,6 +2628,18 @@ public function vaginaBonusForAppearance(forTarget:Creature = null, x:int = 0, e
 		if(!eachOne) output2(" The lips and insides are covered in numerous nub-like protrusions.");
 		else output2(" Their lips and insides are covered in numerous nub-like protrusions.");
 	}
+	//Pumped
+	if(target.vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED))
+	{
+		if(!eachOne) output2(" The whole thing is ridiculously puffy and lush, a result of repeated use of a pussy pump. Even under clothing, it generates a considerable camel-toe.");
+		else output2(" They're ridiculously puffy and lush, a result of repeated use of a pussy pump.");
+	}
+	//Slightly pumped
+	else if(target.vaginas[x].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED))
+	{
+		if(!eachOne) output2(" The whole thing puffs out slightly, seemingly constantly engorged ever since your play with a pussy pump.");
+		else output2(" They're puffed out slightly, seemingly constantly engorged ever since your play with a pussy pump.");
+	}
 	//Ovipositor
 	if(target.vaginas[x].hasFlag(GLOBAL.FLAG_OVIPOSITOR))
 	{
