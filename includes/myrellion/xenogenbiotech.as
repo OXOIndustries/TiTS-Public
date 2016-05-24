@@ -206,9 +206,20 @@ public function myrellionNevrieShop(isDiscount:Boolean = false):void
 	{
 		if(!nevrie.hasItem(new RedPill())) nevrie.inventory.push(new RedPill());
 		if(!nevrie.hasItem(new GoldPill())) nevrie.inventory.push(new GoldPill());
-		
 	}
-	if(!nevrie.hasItem(new OrangePill()) && (flags["MCALLISTER_MYR_HYBRIDITY"] == 3 || flags["MCALLISTER_MYR_HYBRIDITY"] == 4)) nevrie.inventory.push(new OrangePill());
+	else
+	{
+		nevrie.destroyItem(new RedPill());
+		nevrie.destroyItem(new GoldPill());
+	}
+	if(flags["MCALLISTER_MYR_HYBRIDITY"] == 3 || flags["MCALLISTER_MYR_HYBRIDITY"] == 4)
+	{
+		if(!nevrie.hasItem(new OrangePill())) nevrie.inventory.push(new OrangePill());
+	}
+	else
+	{
+		nevrie.destroyItem(new OrangePill());
+	}
 	processTime(8 + rand(2));
 
 	itemScreen = mainGameMenu;

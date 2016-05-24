@@ -243,8 +243,10 @@ public function genesModsBuyStuff():void
 	shopkeep = chars["GENE"];
 	if(flags["ZODEE_GALOQUEST"] != undefined)
 	{
-		if(!chars["GENE"].hasItem(new GaloMax()) && flags["PURCHASED_GENES_GALO"] == undefined) chars["GENE"].inventory.push(new GaloMax());
-		//Else no whip
+		if(flags["PURCHASED_GENES_GALO"] == undefined)
+		{
+			if(!chars["GENE"].hasItem(new GaloMax())) chars["GENE"].inventory.push(new GaloMax());
+		}
 		else chars["GENE"].destroyItem(new GaloMax());
 	}
 	gene.keeperGreeting = "RUH ROH! SOMETHING WENT WRONG.";

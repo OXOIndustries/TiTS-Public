@@ -543,8 +543,6 @@
 			
 			toggleWTF();
 			
-			if (!inCombat()) userInterface.showBust("none");
-			
 			if (evt.currentTarget is MainButton)
 			{
 				trace("Button " + (evt.currentTarget as MainButton).buttonName + " clicked");
@@ -564,6 +562,7 @@
 			else
 			{
 				if (evt.currentTarget.func != null) evt.currentTarget.func(evt.currentTarget.arg);
+				else kGAMECLASS.clearBust();
 			}
 			
 			if (!inCombat()) 

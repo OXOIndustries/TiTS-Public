@@ -401,6 +401,7 @@ public function initTarkusRooms():void
 	rooms["ARBETZ POOL"].system = "SYSTEM: REDACTED";
 	rooms["ARBETZ POOL"].addFlag(GLOBAL.OUTDOOR);
 	rooms["ARBETZ POOL"].addFlag(GLOBAL.PUBLIC);
+	rooms["ARBETZ POOL"].addFlag(GLOBAL.POOL);
 	rooms["ARBETZ POOL"].addFlag(GLOBAL.DESERT);
 	
 	//#25 POLLUTED\nBEACH

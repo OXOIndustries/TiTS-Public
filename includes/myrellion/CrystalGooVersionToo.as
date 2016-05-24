@@ -344,11 +344,13 @@ public function crystalGooLeaveAfterWin():void
 	showCrystalGooToo();
 	
 	output("You give the ganrael's offer a momentary thought, but ultimately opt to leave.");
+	output("\n\n");
 	
 	addCrystalGooBallLoot();
 	
 	clearMenu();
-	CombatManager.genericVictory();
+	if(!enemy.hasStatusEffect("Unarmored") && hasGooArmorOnSelf() && !hasGooArmorUpgrade("ganrael")) addButton(0,"Next",armorGooVictoryShits);
+	else CombatManager.genericVictory();
 }
 
 public function crystalGooSculptingMale():void
@@ -472,6 +474,7 @@ public function crystalGooSculptingMale():void
 		if (!pc.isAss()) output(" pretend to");
 		output(" punish him for something you secretly enjoyed. He holds you until you decide to get up; when you leave, he continues to recline, enjoying your genetic material.");
 	}
+	output("\n\n");
 	//end, time, lust, rewards
 
 	processTime(20+rand(10));
@@ -659,6 +662,7 @@ public function crystalGooSculptingFem():void
 		else output(" stranger");
 		output(",”</i> says the ganrael, leaning down and finally kissing you back. <i>“Bye now.”</i>");
 	}
+	output("\n\n");
 
 	processTime(30+rand(10));
 	pc.orgasm();
@@ -943,6 +947,7 @@ public function crystalGooFreeformFucks():void
 			else output("The stoned ganrael’s proposal makes you nervous, and you separate from it. "+ cgender("Her", "Its") +" sudden devotion must be from "+ cgender("her", "its") +" drug-like reaction, but you still collect your gear and move on.");
 		}
 	}
+	output("\n\n");
 
 	processTime(30+rand(10));
 	pc.orgasm();
@@ -1129,6 +1134,7 @@ public function crystalGooCuddlebug(pcVictory:Boolean = false):void
 		output(" as it slides from your stretched anus, <i>“I told you I’d do all the work.”</i> It rolls over with you clasped in its legs, then opens the");
 		if (pc.hasCock()) output(" semen-stained");
 		output(" cage, placing you on the ground with care. Your head lolls back from the all-over tenderizing you just took. <i>“Bye bye,”</i> it says, leaving you alone to collect your muscle tension and rein in your still-twitching asshole.");
+		output("\n\n");
 		addCrystalGooBallLoot();
 		
 		clearMenu();
@@ -1141,6 +1147,7 @@ public function crystalGooCuddlebug(pcVictory:Boolean = false):void
 		output(" body onto the ground. It retracts the gooey prong it used to ravage you");
 		if (pc.hasCock()) output(", folds its hands and legs together to cup as much jizz as possible against its chest,");
 		output(" and skitters away. Left alone, you doze, dreaming dreams of fantastic context for the throbbing of your abused asshole.");
+		output("\n\n");
 		clearMenu();
 		CombatManager.genericLoss();
 	}
@@ -1368,6 +1375,7 @@ public function crystalGooSounding(pcVictory:Boolean = false):void
 		if (!pc.isNude()) output(" get dressed");
 		else output(" walk");
 		output(", you collect your things.");
+		output("\n\n");
 
 		processTime(30+rand(10));
 		pc.orgasm();
@@ -1526,6 +1534,7 @@ public function crystalGooUnsexedLoss():void
 	output("\n\n<i>“I got enough of your seed,”</i> your egregious lover explains, chipper as a stonecutter’s apprentice. <i>“Bye now!”</i>");
 	
 	output("\n\nYou try to hold "+ cgender("her", "it") +", but the ganrael’s "+ carmor("slimy skin", "smooth plating") +" slips your grasp and "+ cgender("she", "it") +" disentangles "+ cgender("her", "it") +"self. Humming a happy burble, the alien leaves you smoldering with need and wondering if there has ever been a greater gulf between two lovers.");
+	output("\n\n");
 
 	//end, no extra time penalty, set lust to 100, no orgasm, maybe lib up to fuck with the player
 	processTime(10+rand(10));
@@ -1703,6 +1712,7 @@ public function crystalGooDongerLoss():void
 	if (!enemy.hasStatusEffect("Unarmored")) output(" bloodflow");
 	else output(" air");
 	output(" until you start to pass out. Only when you stop resisting does "+ cgender("she", "it") +" realize something’s amiss and let you go, but by then it’s too late - you slip into a fitful faint with the alien calling at you through a fogbank. When you wake up much later, you’re alone except for a barely translatable scrawl written on your chest in your own semen: <i>“u’re the best”</i>.");
+	output("\n\n");
 
 	processTime(220+rand(10));
 	
@@ -1842,6 +1852,7 @@ public function crystalGooVagooLoss():void
 	if (!enemy.hasStatusEffect("Unarmored")) output(" cock slides");
 	else output(" cocks slide");
 	output(" out of you with one last wet lick, giving your visions a randy sexual note.");
+	output("\n\n");
 
 	//pass time, penalties, orgasm, etc.
 	processTime(30+rand(10));

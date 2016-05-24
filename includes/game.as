@@ -58,6 +58,7 @@ public function processEventBuffer():Boolean
 	if (eventBuffer.length > 0)
 	{
 		clearOutput();
+		clearBust();
 		output("<b>" + possessive(pc.short) + " log:</b>" + eventBuffer);
 		showLocationName();
 		eventBuffer = "";
@@ -154,7 +155,7 @@ public function mainGameMenu(minutesMoved:Number = 0):void {
 		output("\n\n<b>BUG REPORT: TEMP NUDITY STUCK ON.</b>");
 	//Standard buttons:
 	clearMenu(false);
-	userInterface.showBust("none");
+	clearBust();
 	inSceneBlockSaving = false;
 	updatePCStats();
 	//Inventory shit
@@ -266,12 +267,29 @@ public function generateMap():void
 {
 	generateMapForLocation(currentLocation);
 }
-
 public function generateMapForLocation(location:String):void
 {
 	userInterface.setMapData(mapper.generateMap(location));
 }
+public function generateLocationName(location:String):void
+{
+	setLocation(rooms[location].roomName, rooms[location].planet, rooms[location].system);
+}
+public function generateLocation(location:String):void
+{
+	generateMapForLocation(location);
+	generateLocationName(location);
+}
 
+public function backToPrimaryOutput():void
+{
+	clearBust();
+	userInterface.backToPrimaryOutput();
+}
+public function clearBust(forceNone:Boolean = false):void
+{
+	if(forceNone || !inCombat()) showBust("none");
+}
 public function showCodex():void
 {
 	userInterface.showCodex();
@@ -290,7 +308,7 @@ public function showCodex():void
 	//addGhostButton(3, "CHEEVOS", function():void { } );
 	addGhostButton(1, "Log", displayQuestLog, flags["TOGGLE_MENU_LOG"]);
 	if(flags["EMMY_QUEST"] >= 6 && flags["EMMY_QUEST"] != undefined) addGhostButton(3,"EmmyRemote",pushEmmysButtonsMenu);
-	addGhostButton(4, "Back", userInterface.showPrimaryOutput);
+	addGhostButton(4, "Back", backToPrimaryOutput);
 }
 
 // Temp display stuff for perks
@@ -308,8 +326,7 @@ public function showPerkListHandler(e:Event = null):void
 	}
 	else if (pButton.isActive && pButton.isHighlighted)
 	{
-		userInterface.showPrimaryOutput();
-		userInterface.DeGlowButtons();
+		backToPrimaryOutput();
 	}
 }
 
@@ -338,8 +355,7 @@ public function showMailsHandler(e:Event = null):void
 	}
 	else if (pButton.isActive && pButton.isHighlighted)
 	{
-		userInterface.showPrimaryOutput();
-		userInterface.DeGlowButtons();
+		backToPrimaryOutput();
 	}
 }
 
@@ -402,6 +418,7 @@ public function updateMailStatus():void
 public function showPerksList():void
 {
 	clearOutput2();
+	showPCBust();
 	setLocation("\nPERKS", "CODEX", "DATABASE");
 	clearGhostMenu();
 	addGhostButton(14, "Back", showPerkListHandler);
@@ -518,6 +535,7 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 	}
 	if(!counter) {
 		if((count + other) > 0) {
+			clearBust();
 			showName("\nCREW");
 			output("Who of your crew do you wish to interact with?" + crewMessages);
 		}
@@ -1447,6 +1465,16 @@ public function variableRoomUpdateCheck():void
 	
 	// KQuest
 	kquest2RoomStateUpdater();
+	if (flags["KQ2_MYRELLION_STATE"] == 2)
+	{
+		rooms["2I7"].removeFlag(GLOBAL.TAXI);
+		rooms["2I7"].addFlag(GLOBAL.SHIPHANGAR);
+	}
+	else
+	{
+		rooms["2I7"].removeFlag(GLOBAL.SHIPHANGAR);
+		rooms["2I7"].addFlag(GLOBAL.TAXI);
+	}
 }
 
 public function processTime(arg:int):void {
@@ -1628,14 +1656,14 @@ public function processTime(arg:int):void {
 			{
 				if (flags["KQ2_NUKE_STARTED"] + KQ2_NUKE_DURATION < GetGameTimestamp())
 				{
-					eventQueue.push(kq2NukeBadend);
+					if(eventQueue.indexOf(kq2NukeBadend) == -1) eventQueue.push(kq2NukeBadend);
 				}
 			}
 			// Left
 			else if (InShipInterior(pc))
 			{
-				eventQueue.push(kq2NukeExplodesLater);
 				flags["KQ2_NUKE_EXPLODED"] = 1;
+				if(eventQueue.indexOf(kq2NukeExplodesLater) == -1) eventQueue.push(kq2NukeExplodesLater);
 			}
 		}
 		
@@ -1644,7 +1672,7 @@ public function processTime(arg:int):void {
 		{
 			if (flags["KQ2_DANE_COORDS_TIMER"] != undefined && flags["KQ2_DANE_COORDS_TIMER"] + 2880 < GetGameTimestamp())
 			{
-				eventQueue.push(kq2DaneCoordEmail);
+				if(eventQueue.indexOf(kq2DaneCoordEmail) == -1) eventQueue.push(kq2DaneCoordEmail);
 			}
 		}
 		
@@ -1916,7 +1944,9 @@ public function processTime(arg:int):void {
 				tryProcSaendraXPackEmail();
 				
 				// Manes grow out!
-				if(pc.hasPerk("Mane") && pc.hairLength <= 3) maneHairGrow();
+				if(pc.hasPerk("Mane")) maneHairGrow();
+				// Bodonkadonk-donks donkin'!
+				if(pc.hasPerk("Buttslut")) buttslutBootyGrow();
 				// Fecund Figure shape gain (Gains only while pregnant)
 				if(pc.hasPerk("Fecund Figure"))
 				{

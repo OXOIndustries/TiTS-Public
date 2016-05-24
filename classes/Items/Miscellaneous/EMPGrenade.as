@@ -121,7 +121,7 @@ package classes.Items.Miscellaneous
 				if (!cTarget.hasStatusEffect("Blinded") && (cTarget.originalRace == "robot" || cTarget.originalRace == "Automaton") && cTarget.shieldDisplayName != "ARMOR" && !cTarget.getHPResistances().hasFlag(DamageFlag.GROUNDED))
 				{
 					cTarget.createStatusEffect("Stunned", 2, 0, 0, 0, false, "Stun", "An electrical burst has temporarily stunned your target!", true, 0,0xFF0000);
-					output("\n\nThe electronic burst from the grenade as temporarily disrupted " + targetCreature.a + targetCreature.short + "’s systems!");
+					output("\n\nThe electronic burst from the grenade as temporarily disrupted " + cTarget.a + cTarget.short + "’s systems!");
 				}
 			}
 		}

@@ -1450,7 +1450,7 @@ public function cumWithAnnoOnTop():void
 
 	output("\n\nAnno gives you a quizzical look before a small grin plays across her lips. <i>\"I can try,\"</i> she says, her voice trailing off into a little moan as you pull yourself out of her and saunter back, sliding down to sit against the other crate. Slowly, Anno stands up, taking her time to look over her shoulders at her backside, even reaching back to spread her cheeks - clearly for your benefit.");
 
-	output("\n\n<i>\"God, I feel </i>loose<i> now...\"</i> she teases, turning on a heel and stepping out of her bunched-up uniform, long legs carrying her to you in a single stride. Another turn and a little bending gives you an faceful of ass, her big cheeks practically enveloping your [pc.face]. She gives her hips a wiggle, and you're immediately drawn into a reverse-motorboat as her cheeks rumble around you, blacking out your world in a haze of jiggling ass-flesh. You grab the ausar's big hips, trying to stop her, but only earn yourself a faceful of fem-lube from her overeager pussy as it grinds back against your face.");
+	output("\n\n<i>\"God, I feel </i>loose<i> now...\"</i> she teases, turning on a heel and stepping out of her bunched-up uniform, long legs carrying her to you in a single stride. Another turn and a little bending gives you a faceful of ass, her big cheeks practically enveloping your [pc.face]. She gives her hips a wiggle, and you're immediately drawn into a reverse-motorboat as her cheeks rumble around you, blacking out your world in a haze of jiggling ass-flesh. You grab the ausar's big hips, trying to stop her, but only earn yourself a faceful of fem-lube from her overeager pussy as it grinds back against your face.");
 
 	output("\n\nAnno only stops when she's good and ready - and you're good and filthy. Casting a wink over her shoulder, the snowy-haired babe shimmies down to her knees, planting herself just over your diamond-hard member, trapping the [pc.cockHead " + x + "] of your [pc.cock " + x + "] between the cheeks of her ass, kissing the rim of her still-open hole.");
 
@@ -2433,131 +2433,6 @@ public function deck13ShieldControlFunc():Boolean
 
 		return false;
 	}
-}
-
-public function deck13MakeGoo():void
-{
-	clearOutput();
-	author("Savin");
-	showName("GOO\nCONTAINER");
-
-	output("You step up to the one vat of gray goo remaining on the deck. Its humming slightly, churning as it produces and maintains a little sea of goop. There’s a spigot about six feet off the deck, controlled by a dark computer monitor that looks like it belongs in a museum. You walk over and push the screen. Nothing happens.");
-	
-	output("\n\nPoke. Nothing again.");
-	
-	output("\n\nYou grumble and pull your Codex out, hoping your device can sync with the goo cannister. You flip the Codex on and search for nearby networks. Again, nothing close enough to be the goo. Shit. You drop down");
-	if (pc.hasKnees()) output(" to a [pc.knee]");
-	output(" and start looking for an old-school data port. Sure enough, there’s one hidden underneath the console. You pull a universal cable from your Codex, and thankfully manage to slot it into the port. The Codex takes over from there, booting up the ancient computer and interfacing for you. The Bell-Isle/Grunmann logo appears, followed by a button-press command prompt, which the Codex translates onto its touch screen. That’s better. You tap through a few commands, instructing the machine to print you out a great big pile of gray goo.");
-	
-	output("\n\nThe device hums to life and starts working, squirting out goo like ice cream from its spigot. You watch as it squirts and thrums, depositing gallons of murky silvery goop onto the deck, looking more like a puddle than a person for now. A few seconds later, though, the vat shuts off, and the goo starts squirming and re-shaping itself. It only takes a moment for the big gray blob to turn into a big, bouncy gray girl. She looks just like the creatures");
-	if (flags["TARKUS_DESTROYED"] != undefined) output(" once");
-	output(" found outside of Novahome, with inhumanly exaggerated hips and ass and a pair of tits that look like silver-sheened watermelons standing impossibly perky on her chest. Her ample assets jiggle and bounce as she looks around, surveying her surroundings with wide eyes full of wonder.");
-	
-	output("\n\n<i>“Hi!”</i> the newly-made goo says, adopting a huge grin as you take a step toward her. <i>“Wow! You’re super");
-	if (pc.isFeminine()) output(" pretty");
-	else output(" handsome");
-	output("! Are we going to be friends?”</i>");
-	
-	output("\n\nWell, that’s not exactly what you were expecting from the fuck-happy creatures that escaped the <i>Nova</i>. Still, you nod and say that you are. The gray goo swells up, making a high-pitch squealing sound and hugging herself. <i>“Yaaaaaay! Best friends forever and ever and ever!”</i> she giggles, beaming at you. <i>“Oh! I’m... uh... um... I need a name!”</i>");
-	
-	CodexManager.unlockEntry("BI/G");
-	
-	clearMenu();
-	addButton(0, "Next", deck13MakeGooII);
-}
-
-public function deck13MakeGooII():void
-{
-	clearOutput();
-	author("Savin");
-	showName("GOO\nCONTAINER");
-	
-	output("<b>Enter the Gray Goo’s name:</b>");
-	this.displayInput();
-
-	clearMenu();
-	addButton(0, "Next", nameThaGoo);
-}
-
-public function nameThaGoo():void
-{
-	if (userInterface.textInput.text.length == 0)
-	{
-		deck13MakeGoo();
-		output("\n\n\n<b>You must enter a name.</b>");
-		return;
-	}
-	// Illegal characters check. Just in case...
-	if (hasIllegalInput(userInterface.textInput.text))
-	{
-		deck13MakeGoo();
-		output("\n\n\n<b>To prevent complications, please avoid using code in the name.</b>");
-		return;
-	}
-	if (userInterface.textInput.text.length > 14)
-	{
-		deck13MakeGoo();
-		output("\n\n\n<b>You must enter a name no more than fourteen characters long.</b>");
-		return;
-	}
-
-	goo.short = userInterface.textInput.text;
-	this.removeInput();
-
-	processTime(5+rand(3));
-	flags["ANNO_NOVA_UPDATE"] = 2;
-
-	nameThaGooII();
-}
-
-public function nameThaGooII():void
-{
-	clearOutput();
-	author("Savin");
-	showName("GOO\nCONTAINER");
-
-	output("<i>“[goo.name]?”</i> you suggest.");
-	
-	output("\n\n<i>“Wow! That’s awesome. I’m soooo " + indefiniteArticle(chars["GOO"].short) + ",”</i> [goo.name] announces, bouncing giddily. <i>“You’re the bestest friend in the whoooole wide universe. It’s the best name EVER!”</i>");
-	
-	output("\n\nShe lunges at you! For a moment, you’re afraid for your life (or at least, your sexual integrity)... but thankfully her arms settle around your shoulders, and [goo.name] pulls herself");
-	if (pc.tallness > goo.tallness + 6) output(" up");
-	else if (pc.tallness < goo.tallness - 6) output(" down");
-	output(" into a tight hug, squeezing her massive tits against you. You chuckle nervously and pat the goo on the head, your fingers coming away slightly wet and sticky.");
-	
-	output("\n\nAfter a moment, she peels herself off of you and grins. <i>“So, um, what’s </i>your<i> name?”</i>");
-	
-	output("\n\n<i>“[pc.name]. [pc.name] Steele,”</i> you answer, extending a hand.");
-	
-	output("\n\nShe stares at your hand quizzically. Slowly, [goo.name] leans in and wraps her big cock-pillow lips around one of your fingers and sucks on it. The sensation is cool, wet, with just enough suckling pressure to send a shiver of pleasure through your arm. You gently push her off you, and instead offer her Anno’s thumb drive to suckle on.");
-	
-	output("\n\n<i>“What’s that?”</i> she coos, cocking her head to the side. You tell her it’s loaded with extra programming for her. <i>“No waaaay, is it going to make me super smart and stuff?”</i>");
-	
-	output("\n\nYou nod. <i>“It sure is.”</i>");
-	
-	output("\n\n<i>“Yaaaaaaaaaaaay!”</i> she cheers, plucking the drive out of your hand and swallowing it.");
-	
-	output("\n\nWell shit. [goo.name] beams at you, giggling to herself as you stare and her. Looks like that plan just went out the window.");
-	
-	output("\n\n<i>“I don’t feel any different,”</i> she pouts, absently cupping one of her huge breasts. <i>“Oh well! Hey, wanna... I dunno, wanna fuck?”</i>");
-	
-	output("\n\nTime to put this new gray goo to the test.");
-	if (pc.libido() >= 66) output(" As much as you would like to see what she’s capable of, you need to make sure she’s not as forcefully amorous as her sisters.");
-	output(" <i>“Not right now,”</i> you tell her.");
-	
-	output("\n\n[goo.name] shrugs. <i>“Kay! Um... what do you wanna do?”</i>");
-	
-	output("\n\nYou smile, relieved, and ask if [goo.name] would like to come with you back to your ship.");
-	
-	output("\n\n<i>“Oh wow! A SPACE SHIP!? That’s awesome. I wanna see. I wanna see!”</i>");
-	
-	output("\n\nLaughing, you take [goo.name]’s hand and lead her up toward the hangar.");
-
-	currentLocation = shipLocation;
-	
-	processTime(45+rand(15));
-
-	addButton(0, "Next", mainGameMenu);
 }
 
 public function grayPrimeEscapeGrapple():void

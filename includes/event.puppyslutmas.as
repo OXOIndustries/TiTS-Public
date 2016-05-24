@@ -79,12 +79,15 @@ public function annoPuppyslutmasYe():void
 public function annoPuppyslutmasArrive():void
 {
 	clearOutput();
+	
+	currentLocation = "SPACE";
+	showLocationName();
+	hideMinimap();
+	
 	// Anno all dressed up!
 	showBust("ANNO");
 	showName("\nANNO");
 	author("Savin");
-	
-	hideMinimap();
 
 	processTime(360);
 
@@ -211,6 +214,8 @@ public function syriPuppyslutmasUnderway():void
 {
 	clearOutput();
 	
+	currentLocation = "SPACE";
+	showLocationName();
 	hideMinimap();
 
 	showSyri();
@@ -372,10 +377,14 @@ public function pSyriClothes():String
 
 public function pPartyLocation():void
 {
-	if (silly)
-		setLocation("OFFICE\nCOMPLEX", "PLANET: AUSARIL", "SYSTEM: SNOUP DU'OGG");
-	else
-		setLocation("OFFICE\nCOMPLEX", "PLANET: AUSARIL", "SYSTEM: EKYRA");
+	rooms["PUPPYSLUTMAS"] = new RoomClass(this);
+	rooms["PUPPYSLUTMAS"].roomName = "OFFICE\nCOMPLEX";
+	rooms["PUPPYSLUTMAS"].description = "";
+	rooms["PUPPYSLUTMAS"].planet = "PLANET: AUSARIL";
+	rooms["PUPPYSLUTMAS"].system = "SYSTEM: " + (silly ? "SNOUP DU'OGG" : "EKYRA");
+	rooms["PUPPYSLUTMAS"].moveMinutes = 1;
+	rooms["PUPPYSLUTMAS"].runOnEnter = puntToShip;
+	rooms["PUPPYSLUTMAS"].addFlag(GLOBAL.OUTDOOR);
 }
 
 public function puppyslutmasArrive():void
@@ -384,6 +393,8 @@ public function puppyslutmasArrive():void
 
 	showBust(pPartner().toUpperCase());
 	pPartyLocation();
+	currentLocation = "PUPPYSLUTMAS";
+	showLocationName();
 	author("Savin");
 
 	output("Settling back into the captain’s seat, you plug in the address your companion gave you, which sets the autopilot towards a large office complex in one of the the metropolitan northern cities. The descent to Ausaril is easy, gliding through thick and bustling lines of stellar traffic down through the atmosphere. Rolling blue clouds give way to a vast desert vista, golden sand stretching out as far as the eye can see, dotted by outcroppings of mountains and cityscapes interconnected by coiling hover-tracks.");
@@ -444,7 +455,6 @@ public function puppyslutmasMeetAnno():void
 	clearOutput();
 
 	showBust("SYRI", "ANNO");
-	pPartyLocation();
 	author("Savin");
 
 	output("You put an arm around Syri’s shoulders and guide the reluctant ausar over to her sister and her date.");
@@ -525,7 +535,6 @@ public function puppyslutmasMeetSyri():void
 	clearOutput();
 
 	showBust("SYRI", "ANNO");
-	pPartyLocation();
 	author("Savin");
 
 	output("Giving Anno an affirmative hand-squeeze, you start heading over towards her sister.");
@@ -594,7 +603,6 @@ public function puppyslutmasPostGreets():void
 	clearOutput();
 
 	showBust("ANNO", "SYRI", "KAEDE");
-	pPartyLocation();
 	author("Savin");
 
 	output("The Dorna family christmas party is about what you'd expect from a wealthy black-tie event. A few dozen older ausar are mingling around the terrace, voices muffled by the cheery music wafting out from the main floor inside. A large fountain dominates the center of the terrace, tipped with a strange winged creature you can't identify. A big, stuffed Santa sits next to the door with an electronic device in its hand, allowing the guests to anonymously donate to the charities the Dorna family is supporting. A big punch bowl is set out near the railing, which has attracted the attention of many other guests.");
@@ -625,7 +633,6 @@ public function puppyslutmasDrinks():void
 	clearOutput();
 
 	showBust("ANNO", "SYRI", "KAEDE");
-	pPartyLocation();
 	author("Savin");
 
 	output("You motion your train of ausar babes over towards the punch bowl. They follow you eagerly, and you quickly find yourself pouring glasses of a dark red punch that smells much more boozy than what you're used to from your father's functions. Even if that's not your scene, there's champagne and wine in easy access from a few tux-wearing attendants manning a portable bar. ");
@@ -669,7 +676,6 @@ public function puppyslutmasCharity():void
 	clearOutput();
 
 	showBust("ANNO", "SYRI", "KAEDE");
-	pPartyLocation();
 	author("Savin");
 
 	output("You wander up to the over-sized Santa mock-up next to the ballroom door, eyes drawn to the holo-terminal in the jolly man’s hands. Sensing your approach, the computer flashes with a welcome message before giving you a small spiel:");
@@ -698,7 +704,6 @@ public function puppyslutmasDonate():void
 	clearOutput();
 
 	showBust("ANNO", "SYRI", "KAEDE");
-	pPartyLocation();
 	author("Savin");
 
 	output("You pull your Codex out and swipe it across the holo-terminal, bringing up a transaction window. How much would you like to donate?");
@@ -761,7 +766,6 @@ public function puppyslutmasChatSyri():void
 	clearOutput();
 
 	showBust("SYRI");
-	pPartyLocation();
 	author("Savin");
 
 	output("<i>“Enjoying the party so far?”</i> you ask your raven-haired companion.");
@@ -811,7 +815,6 @@ public function puppyslutmasChatAnno():void
 	clearOutput();
 
 	showBust("ANNO");
-	pPartyLocation();
 	author("Savin");
 
 	output("<i>“Everything alright, Anno?”</i> you ask, putting an arm around the snowy ausar girl’s shoulders.");
@@ -838,7 +841,6 @@ public function puppyslutmasChatKaede():void
 	clearOutput();
 
 	showBust("KAEDE");
-	pPartyLocation();
 	author("Savin");
 
 	output("<i>“You doing alright, Kaede?”</i> you ask, turning your attention to the slender half-ausar at your side.");
@@ -862,7 +864,6 @@ public function puppyslutmasDance():void
 	clearOutput();
 
 	showBust("ANNO", "SYRI", "KAEDE");
-	pPartyLocation();
 	author("Savin");
 
 	output("<i>“What do you say we go inside, girls?”</i> you ask, slipping your arm around " + pPartner() + "’s waist.");
@@ -920,7 +921,6 @@ public function puppyslutmasDanceWithAnno():void
 	clearOutput();
 
 	showBust("ANNO");
-	pPartyLocation();
 	author("Savin");
 
 	output("<i>“Shall we?”</i> you ask, extending an arm to");
@@ -1009,7 +1009,6 @@ public function puppyslutmasDanceWithKaede():void
 	clearOutput();
 
 	showBust("KAEDE");
-	pPartyLocation();
 	author("Savin");
 
 	output("<i>“Alright then. Shall we?”</i> you say, extending an arm to the slender red-head, straight between the bickering sisters.");
@@ -1085,7 +1084,6 @@ public function puppyslutmasDanceWithSyri():void
 	clearOutput();
 
 	showBust("SYRI");
-	pPartyLocation();
 	author("Savin");
 
 	output("<i>“How about it, Syri?”</i> you ask, extending your arm to the raven-haired ausar.");
@@ -1179,7 +1177,6 @@ public function puppyslutmasDornasArrive():void
 	clearOutput();
 
 	showBust("ANNO", "SYRI", "KAEDE");
-	pPartyLocation();
 	author("Savin");
 
 	output("As the band packs up and the throngs on the dance floor start to disperse, the girls rejoin you in a laughing, smiling pack of fluffy tails and perky ears. The lights dim a bit, bathing the hall in a sultry darkness - light streams in from the doors, but not much else.");
@@ -1295,7 +1292,6 @@ public function puppyslutmasMeetTheDornasHue():void
 	clearOutput();
 
 	showBust("ANNO", "SYRI", "KAEDE");
-	pPartyLocation();
 	author("Savin");
 
 	output("You follow the Dornas out to their car. As promised, it’s parked on a small ledge on the far side of the floor, down a flight of stairs to put it on level with the common garage. Of course, by car they clearly meant <i>“hover limo,”</i> a long dark stretch with a driver - the older ausar from before - standing at its side. He opens the door with a bow, allowing you and your ever-increasing ausar following to pile in.");
@@ -1416,12 +1412,11 @@ public function puppyslutmasMeetTheDornasHueSyri():void
 	clearOutput();
 
 	showBust("SYRI");
-	pPartyLocation();
 	author("Savin");
 	
 	output("<b>Hours pass...</b>");
 	
-	output("\n\nYour auto-pilot beeps that you’ve landed at Esbeth. Syri sits up and yawns, rubbing the sleep from her eyes. You roll over in your bed, nestling your head in your lover’s lap.");
+	output("\n\nYour auto-pilot beeps that you’ve landed " + (getPlanetName() == "Mhen'ga" ? "at Esbeth" : "on " + getPlanetName()) + ". Syri sits up and yawns, rubbing the sleep from her eyes. You roll over in your bed, nestling your head in your lover’s lap.");
 	
 	output("\n\n<i>“That wasn’t so bad,”</i> you say as she slips out of bed, hiking her jeans up. Syri flashes you a little smile over her shoulder, flicking her tail your way before stuffing it through the loop in her pants.");
 	
@@ -1436,6 +1431,8 @@ public function puppyslutmasMeetTheDornasHueSyri():void
 	output("\n\nWhen you’re done, you send Syri off to her job, and roll out of bed. Time to decide what’s next on your adventure!");
 
 	currentLocation = "SHIP INTERIOR";
+	generateMap();
+	showLocationName();
 
 	processTime(360);
 
@@ -1448,7 +1445,6 @@ public function puppyslutmasMeetTheDornasHueAnno():void
 	clearOutput();
 
 	showBust("ANNO");
-	pPartyLocation();
 	author("Savin");
 	
 	output("<b>Hours pass...</b>");
@@ -1464,6 +1460,8 @@ public function puppyslutmasMeetTheDornasHueAnno():void
 	output("\n\nYou give her a wink, and a spank on the behind to get her moving. The pair of you scramble out of bed and get your gear together. Time to decide what’s next on your adventure!");
 
 	currentLocation = "SHIP INTERIOR";
+	generateMap();
+	showLocationName();
 	
 	processTime(360);
 	sleepHeal();
