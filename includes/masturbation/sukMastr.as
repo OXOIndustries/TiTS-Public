@@ -65,7 +65,6 @@ public function properlyUseTheSukmastr(x:int = 0):void
 	else if(flags["PUMPED_KIRO_PUSSY"] != undefined) 
 	{
 		output(", delighted to discover that the cunt-moulded cup in your hand still smells vaguely of Kiro’s luscious pussy. It’s a heady aroma that instantly ");
-		
 	}
 	//Used before
 	else if(flags["SUKMASTRED"] != undefined) output(", delighted to discover a hint of lingering, salacious scent, the evidence of your previous play. It's a heady aroma that instantly ");
@@ -127,8 +126,8 @@ public function properlyUseTheSukmastr(x:int = 0):void
 	else if(pc.hasCock())
 	{
 		output(" Your [pc.cocks] ");
-		if(pc.totalCocks() > 1) output("don’t");
-		else output("aren’t");
+		if(pc.totalCocks() > 1) output("aren’t");
+		else output("isn’t");
 		output(" helping either, getting all hot and hard and pressing needfully against your [pc.belly], distracting you with ");
 		if(pc.totalCocks() == 1) output("its");
 		else output("their");
@@ -143,7 +142,7 @@ public function properlyUseTheSukmastr(x:int = 0):void
 	output("\n\nWhirring softly, the SukMastr 2000 does what it was designed to do - suck on cunt. It tugs gently on your pussylips, making them swell and tingle");
 	if(pc.vaginas[x].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) output(" even more");
 	output(". It’s a strange feeling, being tugged at by nothing, but it’s also pervasive, reaching into every nook and cranny to draw more and more blood to your most sensitive tissues. You squirm quietly, wishing you could reach through the plastic to stroke your puffed-up pussy directly. Juices leak everywhere, fogging the inside of the cup with their lurid warmth, but confined to the interior, they can do nothing but continue to accumulate, transforming your mons into a ");
-	if(pc.vaginas[x].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) output("rapidly-inflating fuck-reservoir. It would seem your creaming cunt is ready and prepared to balloon in size once more. It's alright flushed and obscene, the skin tight and shiny. You wonder how fast it can fill the cup.");
+	if(pc.vaginas[x].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) output("rapidly-inflating fuck-reservoir. It would seem your creaming cunt is ready and prepared to balloon in size once more. It’s already flushed and obscene, the skin tight and shiny. You wonder how fast it can fill the cup.");
 	else output("slowly-inflating fuck-reservoir.");
 
 	output("\n\nOnce your [pc.girlCum] reaches the level of the pump’s hose, it loudly burbles, devouring your lady-jizz with enthusiasm, seemingly doubling the suction in an instant. Your pussy puffs up, and the pleasure comes back twice as strong. Your [pc.hips] shake, and your body quivers, delighted to be so forcefully sucked. Nerves sizzle and misfire. Your crotch is a constant barrage of pleasure and desire, delirious tingles and masochistic pain mixing together into an ecstatic stew.");
@@ -176,7 +175,7 @@ public function properlyUseTheSukmastr(x:int = 0):void
 	output("ou grab the cup once more, placing it squarely over the ");
 	if(pc.vaginas[x].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) output("partially-inflated");
 	else output("blissfully-expanding");
-	output(" slit. It fits so much better now that your mound has risen to the occasion, and you crank the pump back up to a much higher setting, throwing back your head and moaning out load. Your chubby cunt-lips gradually balloon, rising up the sides of the clear plastic, pressing so tight that you can hear the sloppy skin squelch. Higher and higher, your taut cunny climbs. It’s so wet and so engorged that it looks almost cartoonish.");
+	output(" slit. It fits so much better now that your mound has risen to the occasion, and you crank the pump back up to a much higher setting, throwing back your head and moaning out loud. Your chubby cunt-lips gradually balloon, rising up the sides of the clear plastic, pressing so tight that you can hear the sloppy skin squelch. Higher and higher, your taut cunny climbs. It’s so wet and so engorged that it looks almost cartoonish.");
 	output("\n\nThe machine dings and shuts off before your fattened nethers can be pinched by the vacuum tube, but the pressure does not fade. The seal is perfect, allowing your [pc.vagina " + x + "] to swell for a few moments more before it becomes completely, totally plumped. It is molded to the shape of the oblong cup and practically frothing with lust.");
 	if(pc.vaginas[x].wetness() >= 4) output(" Your drizzling, omnipresent lube fills the last few gaps, then breaks the seal, pouring out in a waterfall. You let the discarded cup splash down in your flooding cuntsauce, too fascinated by the sight of your wobbling mound to care.");
 	else output(" You pry it off, gasping at the sight of runnels of cuntsauce rolling down your [pc.thighs]. You let the sticky cup fall to the floor and marvel at the sight of your wobbling mound.");
@@ -189,7 +188,7 @@ public function properlyUseTheSukmastr(x:int = 0):void
 
 	if(rand(4) == 0 && !pc.vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED) && pc.vaginas[x].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED))
 	{
-		output("\n\nYour rubber, inflated cunt aches, but it isn't receding much at all. You sit there, watching it, occassionally reaching down to give it a little love-pat, amazed at how plush it seems. <b>Your [pc.vagina " + x + "] appears to to be permanently irrecovably expanded.</b> Pumping it any more would be pointless - it fills the cup as is.");
+		output("\n\nYour rubbery, inflated cunt aches, but it isn't receding much at all. You sit there, watching it, occassionally reaching down to give it a little love-pat, amazed at how plush it seems. <b>Your [pc.vagina " + x + "] appears to to be permanently irrecovably expanded.</b> Pumping it any more would be pointless - it fills the cup as is.");
 		pc.vaginas[x].addFlag(GLOBAL.FLAG_PUMPED);
 	}
 	else if(rand(3) == 0 && !pc.vaginas[x].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && !pc.vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED))
