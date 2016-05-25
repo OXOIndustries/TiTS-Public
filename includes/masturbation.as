@@ -304,7 +304,7 @@ public function availableFaps(roundTwo:Boolean = false):Array
 		fap.func = jackIntoDaBubbleBooty;
 		faps.push(fap);
 	}
-	if(pc.hasItem(new SukMastr()) && pc.hasVagina() && pumpedCunts() < pc.totalVaginas())
+	if(pc.hasItem(new SukMastr()) && pc.hasVagina())
 	{
 		fap = new FapCommandContainer();
 		fap.text = "SukMastr";
