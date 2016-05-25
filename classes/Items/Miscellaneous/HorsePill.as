@@ -745,7 +745,7 @@
 						//Ovir or other horsecockalikes
 						if(target.hasCockFlag(GLOBAL.FLAG_BLUNT)) msg += "subtly. The head is still blunt, but its slightly more flared, and the shaft looks so meaty and full of veins that it would only look at home on a beast of burden, note a sapient creature.";
 						else msg += "obviously. The head is flat, blunted, and just slightly wider than the rest of the shaft. Behind it, the shaft is smooth except for veins and a bulgy medial ring about halfway down its length. A cock like this would look more at home on a beast of burden than a sapient being.";
-						msg += " More and more of it slides out of your sheath until it's well beyond your previous length. It pulses hotly, drizzling pre-cum from the pleasure of the change, and you struggle not to masturbate on the spot.";
+						msg += " More and more of it slides out of your sheath until it's well beyond your previous length. It pulses hotly, drizzling pre-cum from the pleasure of the change, and you struggle not to masturbate on the spot. <b>You have a horse's cock!</b>";
 						target.shiftCock(cockToBe,GLOBAL.TYPE_EQUINE);
 						target.cocks[cockToBe].cLength(3+rand(4));
 						//Re-add the sheath if shiftCock clears it

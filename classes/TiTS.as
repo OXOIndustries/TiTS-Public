@@ -130,6 +130,7 @@
 
 		//Misc content
 		include "../includes/masturbation/bubbleBuddy.as";
+		include "../includes/masturbation/sukMastr.as";
 		include "../includes/rivalEncounters.as";
 		include "../includes/saendra.as";
 		include "../includes/travelEvents.as";

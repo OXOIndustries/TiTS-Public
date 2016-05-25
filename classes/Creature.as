@@ -9452,6 +9452,10 @@
 				}
 				descripted++;
 			}
+			if(descripted == 0 && hasPerk("Buttslut") && rand(2) == 0)
+			{
+				desc += RandomInCollection("slutty","fuck-hungry","cock-hungry","fuckable","puckered","eager","greedy","ravenous","insatiable");
+			}
 			
 			if (descripted > 0) desc += " ";
 			//Butt descriptor
@@ -10730,7 +10734,7 @@
 				else if (type == GLOBAL.TYPE_FELINE)
 				{
 					if (!simple)
-						desc += RandomInCollection(["feline gash", "small-lipped vagina", "animalistic cunny", "feline honeypot", "feline snatch", "feline cunt", "animalistic pussy", "subtle pussy", "discreet cat-cunt"]);
+						desc += RandomInCollection(["feline gash", "small-lipped vagina", "animalistic cunny", "feline honeypot", "feline snatch", "feline cunt", "animalistic pussy"]);
 					else
 						desc += RandomInCollection(["cat-pussy", "cat-cunt", "fuck-hole", "cat-twat", "animal-twat", "animal-pussy", "cat-pussy", "cat-cunt", "pussy", "box"]);
 				}
@@ -10746,7 +10750,7 @@
 					if (!simple)
 						desc += RandomInCollection(["nub-ringed pussy", "clit-lined cunt", "clit-filled vagina", "clit-ringed vagina", "clit-lined pussy", "scaly pussy", "scaly cunt", "scaly vagina", "gryvain pussy", "dragonic cunt", "dragon-like pussy"]);
 					else
-						desc += RandomInCollection(["gryvain-pussy", "nubby cunt", "dragon cunt", "pussy"]);
+						desc += RandomInCollection(["gryvain-pussy", "cunt", "dragon-cunt", "pussy"]);
 				}
 				else if (type == GLOBAL.TYPE_BEE)
 				{
@@ -10758,7 +10762,7 @@
 				else if (type == GLOBAL.TYPE_NAGA)
 				{
 					if (!simple)
-						desc += RandomInCollection(["reptilian gash", "naleen-like slit", "snake-like cunt", "semi-concealed pussy", "pussy", "snake-like box", "alien cunt", "half-hidden twat"]);
+						desc += RandomInCollection(["reptilian gash", "snake-like cunt", "semi-concealed pussy", "pussy", "snake-like slit", "alien cunt", "half-hidden twat", "reptilian vagina", "reptilian pussy"]);
 					else
 						desc += RandomInCollection(["naleen-cunt", "snake-pussy", "box", "snake-twat", "pussy", "xeno-cunt", "pussy", "slit", "slit"]);
 				}
@@ -10804,7 +10808,7 @@
 						if (type == GLOBAL.TYPE_HUMAN)
 							desc += RandomInCollection(["human ", "human ", "terran ", "terran ", "terran "]);
 						else
-							desc += RandomInCollection(["human-like ", "human-like ", "exotic ", "exotic ", "inhuman "]);
+							desc += RandomInCollection(["alien ", "human-like ", "exotic ", "exotic ", "inhuman "]);
 					}
 					desc += RandomInCollection(["vagina", "pussy", "pussy","pussy","pussy", "cunt", "cunt", "slit", "slit","twat", "gash", "cunny", "honeypot", "snatch"]);
 				}
@@ -10824,6 +10828,169 @@
 		}
 		
 		//Vaginas + Descript
+		public function vaginaDescript(vaginaNum: Number = 0, forceAdjectives: Boolean = false, adjectives: Boolean = true, forceType: Boolean = false): String {
+			//ERROR CHECKING:
+			if (vaginaNum > (vaginas.length - 1)) return "<B>Error: Invalid vagina number (" + vaginaNum + ") passed to vaginaDescript()</b>";
+			if (vaginaNum < 0) return "<B>Error: Invalid vaginaNum (" + vaginaNum + ") passed to vaginaDescript()</b>";
+			if (vaginas.length < 0) return "VAGINA ERROR";
+
+			//Variables
+			var adjectiveLimit:Number = 2;
+			var adjectiveCount:Number = 0;
+			var ultraSimple:Boolean = false;
+			var simple:Boolean = false;
+			var complex:Boolean = false;
+			var vag:VaginaClass = vaginas[vaginaNum];
+			var bonus:Number = 0;
+			var loosenessDisplayed:Boolean = false;
+			var wetnessDisplayed:Boolean = false;
+			var desc:String = "";
+
+			//Determine type of vaginal description. This varies based on type of vagina
+			switch(vag.type)
+			{
+				//human cunts tend to get over-simplistic ones.
+				case GLOBAL.TYPE_HUMAN:
+					ultraSimple = true;
+					break;
+				//These all get 70% complex, 10% ultraSimple, 20% simple
+				case GLOBAL.TYPE_EQUINE:
+				case GLOBAL.TYPE_CANINE:
+				case GLOBAL.TYPE_FELINE:
+				case GLOBAL.TYPE_NAGA:
+				case GLOBAL.TYPE_LEITHAN:
+				case GLOBAL.TYPE_SYNTHETIC:
+					if(rand(10) <= 6) 
+					{
+						complex = true;
+						adjectiveLimit = 1;
+					}
+					else if(rand(3) == 0) ultraSimple = true;
+					else simple = true;
+					break;
+				//Everything else gets 33% splits
+				default:
+					if(rand(3) == 0) 
+					{
+						complex = true;
+						adjectiveLimit = 1;
+					}
+					else if(rand(2) == 0) ultraSimple = true;
+					else simple = true;
+					break;
+			}
+
+			//BUILD DESCRIPTIONS
+			//TIGHTNESS/LOOSENESS FIRST
+			//Figure out chance of tightness desc
+			var currLooseness:Number = vag.looseness();
+			if(currLooseness != 2) bonus = 16;
+			if(currLooseness >= 4) bonus = 10;
+			if(currLooseness == 5) bonus = 5;
+			if(currLooseness == 1) bonus = 5;
+			//Roll the dice on looseness descs
+			if (forceAdjectives || (adjectives && rand(100) < bonus))
+			{
+				if (adjectiveCount > 0) desc+= ", ";
+				//Bimbos get some 'special' tightness variants
+				if (isBimbo() && rand(3) == 0 && currLooseness != 3 && currLooseness != 2)
+				{
+					if(currLooseness == 5) desc += RandomInCollection(["awesomely gaped","gapey","loosey-goosey","size-queen-sized"]);
+					else if(currLooseness == 4) desc += RandomInCollection(["perfect","super loosey","totally awesome"]);
+					else if(currLooseness == 1) desc += RandomInCollection(["perky little","overly-tight","too-tight"]);
+					loosenessDisplayed = true;
+					adjectiveCount++;
+				}
+				if(!loosenessDisplayed)
+				{
+					if (currLooseness <= 2) desc += RandomInCollection(["tight","tight","tight","tight","narrow","narrow","pert little","pert","vice-like"]);
+					else if (currLooseness <= 3) desc += RandomInCollection(["loose","loose","well-practiced","lightly stretched","slightly stretched"]);
+					else if (currLooseness <= 4) desc += RandomInCollection(["well-loosened","slightly gaped","slightly gaped","well-used","widened"]);
+					else desc += RandomInCollection(["gaped","gaped","gaped","wide","exceedingly well-used","ruined","over-used","stretched","dilated","voluminous","spacious","gaped","fistable","vast"]);
+					adjectiveCount++;
+					loosenessDisplayed = true;
+				}
+			}
+			//WETNESS NEXT!
+			//Determine "wetness" value to be displayed based on wetness score and lust
+			//Lust <= 33 == one rank lower.
+			//Lust <= 66 == normal
+			//Lust <= 100 == one rank higher
+			//Lust > 100 == two ranks higher
+			var currWetness:Number = vaginas[vaginaNum].wetness();
+			if(lust() <= 33) currWetness--;
+			if(lust() > 66) currWetness++;
+			if(lust() > 100) currWetness++;
+			if(currWetness < 0) currWetness = 0;
+			//Figure out chances for display of wetness adjectives if appropriate
+			bonus = 0;
+			if(currWetness >= 1) bonus = 10;
+			else if(currWetness >= 2) bonus += currWetness * 5;
+			if((forceAdjectives || (adjectives && rand(100) < bonus)) && adjectiveCount < adjectiveLimit)
+			{
+				if (adjectiveCount > 0) desc += ", ";
+				if (currWetness <= 1) desc += RandomInCollection(["moist","dewy","damp","sticky"]);
+				else if (currWetness <= 2) desc += RandomInCollection(["wet","sweltering","slippery","juicy","slick","slippery"]);
+				else if (currWetness <= 3) desc += RandomInCollection(["sopping","soaked","drippy","dripping","succulent","oozy","soggy","drenched"]);
+				else if (currWetness <= 4) desc += RandomInCollection(["drooling","lube-leaking","crotch-soaking","leaky","panty-drenchingly wet","obscenely moist","fluid-oozing","slickness-leaking"]);
+				else desc += RandomInCollection(["slavering","slobbering","puddling","juice-drooling","thigh-soaking","panty-flooding","leg-soaking","slobbering","fluid-drooling"]);				
+				adjectiveCount++;
+				wetnessDisplayed = true;
+			}
+			//Pussy pump - 50% addition of no other descs - doesn't stack well with loose/wet.
+			if(rand(2) == 0 && (vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_PUMPED) || vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) && adjectiveCount == 0)
+			{
+				if (!vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_PUMPED)) desc += RandomInCollection(["cushy", "cushy", "cushy", "chubby", "lightly swollen", "puffy", "slightly pumped"]);
+				else desc += RandomInCollection(["bulgy", "swollen", "plump", "pudgy", "permanently pumped", "jiggly", "wobbly", "pump-enhanced", "prodigious", "obscenely swollen", "lewdly bulging","bulging","pump-fattened"]);
+				adjectiveCount++;
+			}
+			//BIMBO SPECIALS NEXT
+			//More common the more aroused the PC is.
+			//Note that I explicitly mean the PC - this way if the PC sees a part description for say, a customizable Anno's pussy, she'll add fun bimbo speak to the desc.
+			bonus = 8 + kGAMECLASS.pc.lust()/5;
+			if(kGAMECLASS.pc.isBimbo() && adjectives && rand(100) <= bonus && adjectiveCount < adjectiveLimit)
+			{
+				if (adjectiveCount > 0) desc+= ", ";
+				desc += RandomInCollection(["fuckable","cock-ready","cock-hungry","sex-hungry","yummy-looking","yummy","fuckable","slutty","sexy","adorable"]);
+				adjectiveCount++;
+			}
+			//COLOR STUFF!
+			//Set up chances
+			bonus = 13;
+			//Because I think these are exotic and hot and fun to mention moreso than other colors. >.> Fenpreferences!
+			if(vag.vaginaColor == "purple") bonus += 7;
+			if(vag.vaginaColor == "black") bonus += 7;
+			if (adjectives && !forceAdjectives && adjectiveCount < adjectiveLimit && rand(100) <= bonus)
+			{
+				if (adjectiveCount > 0) desc += ", ";
+				//Fix any improperly initialized vag-eye-nas
+				if (vag.vaginaColor.length == 0 || vag.vaginaColor == " ") vag.vaginaColor = "pink";
+				desc += vaginas[vaginaNum].vaginaColor;
+				adjectiveCount++;
+			}
+			if((vaginalVirgin || vag.hymen) && rand(3) == 0 && adjectives && adjectiveCount < adjectiveLimit)
+			{
+				if (adjectiveCount > 0) desc+= ", ";
+				if(vaginalVirgin) 
+				{
+					if(adjectiveCount == 0 && rand(2) == 0 && adjectiveLimit >= 2) desc += "pure and unspoiled";
+					else desc += RandomInCollection(["virgin","virgin","virgin","virgin","unused","celibate","virgin","unspoiled"]);
+				}
+				else desc += RandomInCollection(["virginal","virginal","near-virgin"]);
+				adjectiveCount++;
+			}
+			//NOUN TIME
+			if(adjectiveCount > 0)
+			{
+				if(complex) desc += ", ";
+				else desc += " ";
+			}
+			if(ultraSimple) desc += vaginaNoun2(vag, true, "default");
+			else if(simple) desc += vaginaNoun2(vag, true);
+			else desc += vaginaNoun2(vag);
+			return desc;
+		}
+		/* OLD VAGINA DESC - LEFT FOR REFERENCE
 		public function vaginaDescript(vaginaNum: Number = 0, forceAdjectives: Boolean = false, adjectives: Boolean = true): String {
 			if (vaginaNum > (vaginas.length - 1)) return "<B>Error: Invalid vagina number (" + vaginaNum + ") passed to vaginaDescript()</b>";
 			if (vaginaNum < 0) return "<B>Error: Invalid vaginaNum (" + vaginaNum + ") passed to vaginaDescript()</b>";
@@ -10844,21 +11011,21 @@
 				if (vaginas[vaginaNum].vaginaColor.length > 0)
 				{
 					descripted++;
-					/* 9999 CoC's black cunts. Might still use!
-					if(InCollection(vaginas[vaginaNum].vaginaColor, "black", "ebony", "obsidian", "onyx", "sable") && rand(2) == 0) {
-						if(descripted) vag += ", ";
-						rand = Math.floor(Math.random() * 8);
-						if(rand == 0) vag += "black";
-						else if(rand == 1) vag += "onyx";
-						else if(rand == 2) vag += "ebony";
-						else if(rand == 3) vag += "dusky";
-						else if(rand == 4) vag += "sable";
-						else if(rand == 5) vag += "obsidian";
-						else if(rand == 6) vag += "midnight-hued";
-						else vag += "jet black";
-						descripted = true;
-					}
-					else */
+					// 9999 CoC's black cunts. Might still use!
+					//if(InCollection(vaginas[vaginaNum].vaginaColor, "black", "ebony", "obsidian", "onyx", "sable") && rand(2) == 0) {
+					//	if(descripted) vag += ", ";
+					//	rand = Math.floor(Math.random() * 8);
+					//	if(rand == 0) vag += "black";
+					//	else if(rand == 1) vag += "onyx";
+					//	else if(rand == 2) vag += "ebony";
+					//	else if(rand == 3) vag += "dusky";
+					//	else if(rand == 4) vag += "sable";
+					//	else if(rand == 5) vag += "obsidian";
+					//	else if(rand == 6) vag += "midnight-hued";
+					//	else vag += "jet black";
+					//	descripted = true;
+					//}
+					//else 
 					vag += vaginas[vaginaNum].vaginaColor;
 				}
 				else
@@ -10976,6 +11143,19 @@
 				else vag += "slimy";
 				descripted++;
 			}
+			//Slutty pussy chance!
+			if(descripted < 2 && rand(2) == 0 && (vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_PUMPED) || vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)))
+			{
+				if (descripted > 0) vag += ", ";
+				if (!vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_PUMPED)) vag += RandomInCollection(["cushy", "chubby", "slightly swollen", "puffy", "slightly pumped"]);
+				else vag += RandomInCollection(["bulgy", "swollen", "plump", "pudgy", "permanently pumped", "jiggly", "wobbly", "pump-enhanced", "prodigious", "slutty"]);
+				descripted++;
+			}
+			if(isBimbo() && rand(2) == 0 && descripted == 0)
+			{
+				vag += RandomInCollection(["slutty", "cock-hungry", "bimbo", "yummy-looking", "fuckable"]);
+				descripted++;
+			}
 			//50% of time, simple cunt.
 			if (rand(2) == 0) {
 				if (descripted > 0) vag += " ";
@@ -10987,7 +11167,7 @@
 				vag += vaginaNoun2(vaginas[vaginaNum]);
 			}
 			return vag;
-		}
+		}*/
 		//eachVagina
 		public function eachVagina(): String {
 			var desc: String = "";

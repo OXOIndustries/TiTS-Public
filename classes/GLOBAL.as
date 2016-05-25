@@ -69,7 +69,9 @@
 		public static const FLAG_DOUBLE_HEADED:int							= 36;
 		public static const FLAG_GOOEY:int									= 37;
 		public static const FLAG_SPIKED:int									= 38;
-		public static const FLAG_ABSORBENT:int									= 39;
+		public static const FLAG_ABSORBENT:int								= 39;
+		public static const FLAG_SLIGHTLY_PUMPED:int 						= 40;
+		public static const FLAG_PUMPED:int 								= 41;
 		
 		public static const FLAG_NAMES:Array = [
 			"OFFSET -- INVALID",
