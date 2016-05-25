@@ -4800,7 +4800,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			miscCount++;
 		}
 		// Sexploration: The Sex Toys
-		if(flags["NIVAS_BIONAHOLE_USES"] != undefined || flags["SYRI_BIONAHOLE_USES"] != undefined || flags["TAMANI_HOLED"] != undefined || flags["GRAVCUFFS_USES"] != undefined || flags["HOVERHOLE_USES"] != undefined || flags["BUBBLE_BUDDIED"] != undefined || flags["EGG_TRAINER_INSTALLED"] != undefined || pc.hasItem(new EggTrainer()))
+		if(flags["NIVAS_BIONAHOLE_USES"] != undefined || flags["SYRI_BIONAHOLE_USES"] != undefined || flags["TAMANI_HOLED"] != undefined || flags["GRAVCUFFS_USES"] != undefined || flags["HOVERHOLE_USES"] != undefined || flags["SUKMASTRED"] != undefined || flags["BUBBLE_BUDDIED"] != undefined || flags["EGG_TRAINER_INSTALLED"] != undefined || pc.hasItem(new EggTrainer()))
 		{
 			output2("\n<b><u>Sex Toys</u></b>");
 			// BionaHoles

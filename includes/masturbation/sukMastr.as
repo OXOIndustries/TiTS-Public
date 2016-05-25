@@ -1,4 +1,4 @@
-﻿public function useTheSuckMasta():void
+﻿public function useTheSuckMasta(fromInv:Boolean = false):void
 {
 	//Too pumped!
 	if(pumpedCunts() >= pc.totalVaginas())
@@ -22,9 +22,20 @@
 		for(var x:int = 0; x < pc.totalVaginas(); x++)
 		{
 			output("\n" + (x + 1) + ": " + StringUtil.upperCase(pc.vaginaNoun2(pc.vaginas[0], false)));
-			addButton(x,"#" + (x+1),properlyUseTheSukmastr,x,"#" + (x+1),"Use it on your [pc.vagina " + x + "].");
+			if(pc.vaginas[x].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) output(", <i>Slightly Pumped</i>");
+			if(pc.vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED))
+			{
+				output(", <i>Fully Pumped</i>");
+				addDisabledButton(x,"#" + (x+1),"#" + (x+1),"Your [pc.vagina " + x + "] is already as pumped as it is going to get!");
+			}
+			else
+			{
+				addButton(x,"#" + (x+1),properlyUseTheSukmastr,x,"#" + (x+1),"Use it on your [pc.vagina " + x + "].");
+			}
 		}
-		addButton(14,"Back",masturbateMenu);
+		if(fromInv) addButton(14,"Back",useItemFunction);
+		else addButton(14,"Back",masturbateMenu);
+		return;
 	}
 	
 	properlyUseTheSukmastr(0);
@@ -189,6 +200,7 @@ public function properlyUseTheSukmastr(x:int = 0):void
 	if(rand(4) == 0 && !pc.vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED) && pc.vaginas[x].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED))
 	{
 		output("\n\nYour rubbery, inflated cunt aches, but it isn't receding much at all. You sit there, watching it, occassionally reaching down to give it a little love-pat, amazed at how plush it seems. <b>Your [pc.vagina " + x + "] appears to to be permanently irrecovably expanded.</b> Pumping it any more would be pointless - it fills the cup as is.");
+		pc.vaginas[x].delFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED);
 		pc.vaginas[x].addFlag(GLOBAL.FLAG_PUMPED);
 	}
 	else if(rand(3) == 0 && !pc.vaginas[x].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && !pc.vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED))

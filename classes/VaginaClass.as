@@ -114,6 +114,13 @@
 			if(!hasFlag(arg)) vagooFlags[vagooFlags.length] = arg;
 			else trace("Attempted to add flag " + arg + " to vagina of type " + type + ".");
 		}
+		public function delFlag(arg:int):void
+		{
+			//Find and destroy it.
+			for(var x:int = 0; x < vagooFlags.length; x++) {
+				if(arg == vagooFlags[x]) vagooFlags.splice(x,1);
+			}
+		}
 		public function clearFlags():void {
 			vagooFlags = new Array();
 		}

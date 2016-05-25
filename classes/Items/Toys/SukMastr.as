@@ -66,7 +66,7 @@ package classes.Items.Toys
 				{
 					kGAMECLASS.output("You don’t have the proper genitals to use this!");
 				}
-				else if(target.totalVaginas() >= kGAMECLASS.pumpedCunts())
+				else if(kGAMECLASS.pumpedCunts() >= target.totalVaginas())
 				{
 					kGAMECLASS.output("You've already gotten as pumped as possible.");
 				}
@@ -84,13 +84,13 @@ package classes.Items.Toys
 				}
 				else
 				{
-					kGAMECLASS.jackIntoDaBubbleBooty();
+					kGAMECLASS.useTheSuckMasta(true);
 				}
 			}
 			else
 			{
 				kGAMECLASS.clearOutput();
-				kGAMECLASS.output(target.capitalA + target.short + " cannot use the bubble buddy.");
+				kGAMECLASS.output(target.capitalA + target.short + " cannot use the SukMastr 2000.");
 			}
 			return true;
 		}
