@@ -10940,6 +10940,7 @@
 			//Pussy pump - 50% addition of no other descs - doesn't stack well with loose/wet.
 			if(rand(2) == 0 && (vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_PUMPED) || vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) && adjectiveCount == 0)
 			{
+				if (adjectiveCount > 0) desc += ", ";
 				if (!vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_PUMPED)) desc += RandomInCollection(["cushy", "cushy", "cushy", "chubby", "lightly swollen", "puffy", "slightly pumped"]);
 				else desc += RandomInCollection(["bulgy", "swollen", "plump", "pudgy", "permanently pumped", "jiggly", "wobbly", "pump-enhanced", "prodigious", "obscenely swollen", "lewdly bulging","bulging","pump-fattened"]);
 				adjectiveCount++;

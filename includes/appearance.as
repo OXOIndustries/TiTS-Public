@@ -619,7 +619,7 @@ public function appearance(forTarget:Creature):void
 			else if (target.hornType == GLOBAL.TYPE_GRYVAIN)
 			{
 				output2(" A pair of " + num2Text(int(target.hornLength)) + "-inch horns grow from just above your forhead, sweeping backwards to follow the contour of your skull.");
-				if (target.isBimbo()) output2(" They'd make the most <i>adorable</i> handlebars for anybody looking to bust a nut down your throat!");
+				if (target.isBimbo()) output2(" They’d make the most <i>adorable</i> handlebars for anybody looking to bust a nut down your throat!");
 			}
 			//Antlers!
 			else if(target.hornType == GLOBAL.TYPE_DEER) {
@@ -2634,14 +2634,14 @@ public function vaginaBonusForAppearance(forTarget:Creature = null, x:int = 0, e
 	//Pumped
 	if(target.vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED))
 	{
-		if(!eachOne) output2(" The whole thing is ridiculously puffy and lush, a result of repeated use of a pussy pump. Even under clothing, it generates a considerable camel-toe.");
-		else output2(" They're ridiculously puffy and lush, a result of repeated use of a pussy pump.");
+		if(!eachOne) output2(" The whole thing is ridiculously puffy and lush, a result of repeated use of a pussy pump. Even" + (target.isCrotchExposed() ? " if you tried, there is just no hiding its" : " under clothing, it generates a") + " considerable camel-toe.");
+		else output2(" They’re ridiculously puffy and lush, a result of repeated use of a pussy pump. Even" + (target.isCrotchExposed() ? " if you tried, there is just no hiding their" : " under clothing, they fully display their") + " monumental moose-knuckles.");
 	}
 	//Slightly pumped
 	else if(target.vaginas[x].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED))
 	{
 		if(!eachOne) output2(" The whole thing puffs out slightly, seemingly constantly engorged ever since your play with a pussy pump.");
-		else output2(" They're puffed out slightly, seemingly constantly engorged ever since your play with a pussy pump.");
+		else output2(" They’re puffed out slightly, seemingly constantly engorged ever since your play with a pussy pump.");
 	}
 	//Ovipositor
 	if(target.vaginas[x].hasFlag(GLOBAL.FLAG_OVIPOSITOR))

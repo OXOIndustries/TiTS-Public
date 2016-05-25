@@ -114,6 +114,8 @@
 			"Gooey",
 			"Spiked",
 			"Absorbent",
+			"Slightly Pumped",
+			"Fully Pumped",
 		];
 		
 		public static const VALID_SKIN_FLAGS:Array = [
@@ -879,6 +881,8 @@
 			FLAG_NUBBY,
 			FLAG_OVIPOSITOR,
 			FLAG_GOOEY,
+			FLAG_SLIGHTLY_PUMPED,
+			FLAG_PUMPED,
 		];
 		
 		//ROOM FLAGS
