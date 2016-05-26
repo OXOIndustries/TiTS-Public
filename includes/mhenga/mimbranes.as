@@ -4878,6 +4878,90 @@ public function zeikTailPlusMimbMadness():void
 	output(". A trickle of greenish sperm falls from her ruby-red pussy and she looks up at you with an adoring, possessive gaze. You’d like nothing more than to bask in her afterglow, but the massive orgasm has stirred and cleared your mind. You feel the ethereal lover’s garden begin to slip away....\n\n");
 	processTime(29);
 	pc.orgasm();
-	processTime(200);
-	CombatManager.genericLoss();
+	processTime(10);
+	clearMenu();
+	addButton(0,"Next",cockVineVictoryPostParasitePals);
+}
+
+
+public function cockVineVictoryPostParasitePals():void
+{
+	clearOutput();
+	showName("PARASITE\nPALS");
+	author("Zeikfried");
+	showBust("MIMBRANE","COCKVINESEEDLING");
+
+	//cockvine wins fork
+	//chosen either randomly or  by considering mimbrane's post-combat stats (e.g. how much damage/lust the PC dealt it)
+	//a cockvine victory should be low probability
+	if(rand(3) == 0)
+	{
+		output("You emerge from the venereous, alien dream with the taste of your lover on your lips, to find ");
+		if(pc.hasCock())
+		{
+			output("your crotch covered with jism. The ");
+		}
+		else if(pc.hasVagina()) 
+		{
+			output("your [pc.vaginasLight] swollen and stinging in the jungle air");
+			if(pc.wettestVaginalWetness() > 0)
+			{
+				if(pc.wettestVaginalWetness() <= 2) output(", trickling");
+				else if(pc.wettestVaginalWetness() <= 3) output(", trickling");
+				else if(!pc.isSquirter()) output(", drooling");
+				else output(", gushing");
+				output(" with [pc.girlCumColor] fem-cum");
+			}
+			output(". The ");
+		}
+		else output("the ");
+		output("mimbrane, finally exhausted of chemicals, has been pinned by your cockvine. Your sticky, cum-drooling plant-prick shakes and jabs with its head - finally starting to feel the mimbrane drug or just motivated by your own bone-shaking climax, you don’t know - and is preparing to fuck the symbiote despite the latter’s lack of a pussy.");
+		output("\n\nThe vine shifts to pin the mimbrane with its lower length and rears up to dominate its prey. The mimbrane struggles on a bit longer... until a droplet of pre from the viny glans falls onto it. Perhaps figuring that one free meal is better than nothing, it stops fidgeting and rumples up, turning its velvety body into a perfect pocket pussy.");
+		output("\n\nYour cockvine identifies the mimbrane’s intent as soon as you lay eyes on its new shape.  It curls down and lines up with the hole, peeling back its foreskin-like covering completely to expose as much to the tender strokes as possible. Two eyes glow dimly at you from the mimbrane’s depths, smiling with anticipation, and then the crown of your tail-cock slides into the sticky, soft valley. The velvet creature ripples, almost like a sigh.");
+		output("\n\nYour parasite is in no mood for foreplay and fucks the mimbrane relentlessly, iron-hard and bursting to cum already from your shared fantasy. As the cockvine’s lust builds to climax, its haze spills over again... a vision flashes before you of an adoring, red woman, seated against your [pc.legOrLegs] and rubbing her swollen, pregnant belly with love. The image intensifies until you can see the dark, greedy desire for you in her small eyes, and then fades away again as the vine cums, hard.");
+		output("\n\nIt fires stroke upon stroke, some with such force that they push past the mimbrane’s curled flaps to shoot through the creature, landing in the grass beyond. The mimbrane tries its best to catch as much cum as possible, even assuming a parachute shape to catch the sperm when its initial shape proves too porous. After almost fifteen seconds of cumming, your tail collapses, sluggish and drooping. Its [pc.tailCock] slowly recedes into the concealing slits as the mimbrane devours its offering. Your own energy matches that of your parasite, and you doze fitfully, haunted by dreams of a red-skinned wife and children.");
+		output("\n\nWhen you awake, your tail is sprightly and once again as horny as ever, and the mimbrane is nowhere to be found.\n\n");
+		processTime(10);
+		pc.orgasm();
+		processTime(100);
+		//do pc.orgasm times 2 (or pc orgasm x1 and tail orgasm x1, if set up), do other loss consequences
+		CombatManager.genericLoss();
+	}
+	//else mimbrane wins fork
+	else
+	{
+		output("You come out of the mad, lecherous hallucination toward the end of your massive orgasm to find ");
+		if(pc.hasCock())
+		{
+			output("a ");
+			if(pc.cumQ() < 10) output("sprinkle");
+			else if(pc.cumQ() < 5000) output("puddle");
+			else output("lake");
+			output(" of [pc.cumNoun] covering your [pc.cocksLight]");
+			if(pc.balls > 0) output(" and [pc.sack]");
+			output(". The ");
+		}
+		else if(pc.hasVagina())
+		{
+			output("your [pc.vaginasLight] inflamed and grasping for penetration, desperate to be filled before the climax fades - unfortunately with no luck. Your ");
+		}
+		else output("that your ");
+		output("cockvine has fared poorly against the more agile mimbrane. The ropy green dick is pinned by the slippery symbiote, which is already trying to bond to its most phallic parts; the mimbrane probes around the crown of your [pc.tailCock], trying to attach itself, but seems to run into a problem. Because the vine is only minimally sensitive to the mimbrane’s chemical weapon, it squirms wildly, confounding any attempt to stick to and mimic its glossy, green surface. After several unsuccessful captures that only cause the vine glans to slip through the velvety layers one moist flesh-fold at a time, sending chills through your hypersensitized nerves, the mimbrane thankfully gives up.");
+		output("\n\nUnfortunately, the next potential host it turns its attention to is <i>you</i>");
+		//(if PC has mimbs already)
+		if(attachedMimbranes() > 0) 
+		{
+			output(" - or fortunately, if you remember to stay positive about your sometimes-helpful symbiote");
+			if(attachedMimbranes() > 1) output("s");
+		}
+		output(". The mimbrane abandons the unruly tail and begins to search out a suitable place on your own skin, smearing you with more of it's arousing chemicals, forcing you to pant and gasp your way right back to a needy, whining state.");
+		//(if PC is full on mimbs)
+		//[tbd any additional lines needed to bridge the scene to existing mimbrane attach]");
+		//do pc.orgasm times 1, other loss consequences
+		//do mimbrane attach if eligible and end
+		processTime(10);
+		pc.lust(150);
+		clearMenu();
+		addButton(0,"Next",attachAMimbrane);
+	}
 }
