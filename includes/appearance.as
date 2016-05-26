@@ -2598,6 +2598,10 @@ public function vaginaBonusForAppearance(forTarget:Creature = null, x:int = 0, e
 		if(!eachOne) output2(" The exterior folds are dusky black, looking almost animalistic on your body.");
 		else output2("\nEach vagina’s exterior folds are dusky black, looking almost animalistic on your body.");
 	}
+	else if(target.vaginas[x].type == GLOBAL.TYPE_KUITAN) {
+		if(!eachOne) output2(" The exterior mound is almost heart-shaped, full and thick near the top and narrower further down.");
+		else output2("\nEach vagina’s exterior mound is almost heart-shaped, full and thick near the top and narrow at the bottom.");
+	}	
 	//Doggie flavor
 	else if(target.vaginas[x].type == GLOBAL.TYPE_CANINE) {
 		if(!eachOne) output2(" The exterior lips are that of a bitch and have a tendency to swell when in heat, giving it a very animalistic bent.");
