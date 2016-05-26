@@ -853,13 +853,14 @@
 			
 			if (tarButton.func == null) return false;
 			
+			kGAMECLASS.clearBust();
+			
 			if (tarButton.arg == undefined) 
 			{
 				tarButton.func();
 			}
 			else
 			{
-				kGAMECLASS.clearBust();
 				tarButton.func(tarButton.arg);
 			}
 			

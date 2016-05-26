@@ -20,98 +20,98 @@
 		"Button 2",
 		"Activate button 2",
 		function(inThis:*):Function {
-			return function():void { inThis.pressButton(1);; };
+			return function():void { inThis.pressButton(1); };
 		}(this));
 		
 	inputManager.AddBindableControl(
 		"Button 3",
 		"Activate button 3",
 		function(inThis:*):Function {
-			return function():void { inThis.pressButton(2);; };
+			return function():void { inThis.pressButton(2); };
 		}(this));
 		
 	inputManager.AddBindableControl(
 		"Button 4",
 		"Activate button 4",
 		function(inThis:*):Function {
-			return function():void { inThis.pressButton(3);; };
+			return function():void { inThis.pressButton(3); };
 		}(this));
 		
 	inputManager.AddBindableControl(
 		"Button 5",
 		"Activate button 5",
 		function(inThis:*):Function {
-			return function():void { inThis.pressButton(4);; };
+			return function():void { inThis.pressButton(4); };
 		}(this));
 		
 	inputManager.AddBindableControl(
 		"Button 6",
 		"Activate button 6",
 		function(inThis:*):Function {
-			return function():void { inThis.pressButton(5);; };
+			return function():void { inThis.pressButton(5); };
 		}(this));
 		
 	inputManager.AddBindableControl(
 		"Button 7",
 		"Activate button 7",
 		function(inThis:*):Function {
-			return function():void { inThis.pressButton(6);; };
+			return function():void { inThis.pressButton(6); };
 		}(this));
 		
 	inputManager.AddBindableControl(
 		"Button 8",
 		"Activate button 8",
 		function(inThis:*):Function {
-			return function():void { inThis.pressButton(7);; };
+			return function():void { inThis.pressButton(7); };
 		}(this));
 		
 	inputManager.AddBindableControl(
 		"Button 9",
 		"Activate button 9",
 		function(inThis:*):Function {
-			return function():void { inThis.pressButton(8);; };
+			return function():void { inThis.pressButton(8); };
 		}(this));
 		
 	inputManager.AddBindableControl(
 		"Button 10",
 		"Activate button 10",
 		function(inThis:*):Function {
-			return function():void { inThis.pressButton(9);; };
+			return function():void { inThis.pressButton(9); };
 		}(this));
 		
 	inputManager.AddBindableControl(
 		"Button 11",
 		"Activate button 11",
 		function(inThis:*):Function {
-			return function():void { inThis.pressButton(10);; };
+			return function():void { inThis.pressButton(10); };
 		}(this));
 		
 	inputManager.AddBindableControl(
 		"Button 12",
 		"Activate button 12",
 		function(inThis:*):Function {
-			return function():void { inThis.pressButton(11);; };
+			return function():void { inThis.pressButton(11); };
 		}(this));
 		
 	inputManager.AddBindableControl(
 		"Button 13",
 		"Activate button 13",
 		function(inThis:*):Function {
-			return function():void { inThis.pressButton(12);; };
+			return function():void { inThis.pressButton(12); };
 		}(this));
 		
 	inputManager.AddBindableControl(
 		"Button 14",
 		"Activate button 14",
 		function(inThis:*):Function {
-			return function():void { inThis.pressButton(13);; };
+			return function():void { inThis.pressButton(13); };
 		}(this));
 
 	inputManager.AddBindableControl(
 		"Button 15",
 		"Activate button 15",
 		function(inThis:*):Function {
-			return function():void { inThis.pressButton(14);; };
+			return function():void { inThis.pressButton(14); };
 		}(this));
 		
 
