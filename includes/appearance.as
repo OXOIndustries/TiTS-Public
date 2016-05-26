@@ -976,7 +976,7 @@ public function appearance(forTarget:Creature):void
 						output2(" that give your ");
 						if(target.balls > 0) output2("balls plenty of room to breathe");
 						else if(target.hasCock()) output2(target.multiCockDescript() + " plenty of room to swing");
-						else if(target.hasVagina()) output2(target.vaginaDescript() + " a nice, wide berth");
+						else if(target.hasVagina()) output2(target.vaginasDescript() + " a nice, wide berth");
 						else output2("vacant groin plenty of room");
 						output2(", and");
 					}
@@ -2158,7 +2158,7 @@ public function crotchStuff(forTarget:Creature = null):void
 		if(!target.hasCock() && target.isTaur()) output2("As a tauric creature, your womanly parts lie between your rear legs in a rather equine fashion. ");
 		//Vaginal Numbers
 		if(target.vaginaTotal() == 1) {
-			output2("You have " + indefiniteArticle(target.vaginaDescript(0)) + ", with " + num2Text(target.vaginas[0].clits) + " " + Math.round(target.clitLength*10)/10 + "-inch clit");
+			output2("You have " + indefiniteArticle(target.vaginaDescript(0,false,false,true)) + ", with " + num2Text(target.vaginas[0].clits) + " " + Math.round(target.clitLength*10)/10 + "-inch clit");
 			if(target.vaginas[0].clits > 1) output2("s");
 			if(target.vaginas[0].hymen) output2(" and an intact hymen");
 			output2(". ");
@@ -2239,7 +2239,7 @@ public function crotchStuff(forTarget:Creature = null):void
 				if(temp == 0) output2("\nYour first entrance");
 				else if(temp == 1) output2("\nThe second slit");
 				else output2("\nThe third and final vagina");
-				output2(" is " + indefiniteArticle(target.vaginaNounDescript(temp)) + " with " + num2Text(target.vaginas[temp].clits) + " " + int(target.clitLength*10)/10 + "-inch clit");
+				output2(" is " + indefiniteArticle(target.vaginaDescript(0,false,false,true)) + " with " + num2Text(target.vaginas[temp].clits) + " " + int(target.clitLength*10)/10 + "-inch clit");
 				if(target.vaginas[temp].clits > 1) output2("s");
 				//Virginal trumps all else
 				if(target.vaginas[temp].hymen) output2(", still virginal in appearance.");
@@ -2598,6 +2598,10 @@ public function vaginaBonusForAppearance(forTarget:Creature = null, x:int = 0, e
 		if(!eachOne) output2(" The exterior folds are dusky black, looking almost animalistic on your body.");
 		else output2("\nEach vagina’s exterior folds are dusky black, looking almost animalistic on your body.");
 	}
+	else if(target.vaginas[x].type == GLOBAL.TYPE_KUITAN) {
+		if(!eachOne) output2(" The exterior mound is almost heart-shaped, full and thick near the top and narrower further down.");
+		else output2("\nEach vagina’s exterior mound is almost heart-shaped, full and thick near the top and narrow at the bottom.");
+	}	
 	//Doggie flavor
 	else if(target.vaginas[x].type == GLOBAL.TYPE_CANINE) {
 		if(!eachOne) output2(" The exterior lips are that of a bitch and have a tendency to swell when in heat, giving it a very animalistic bent.");

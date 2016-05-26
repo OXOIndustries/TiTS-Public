@@ -289,7 +289,7 @@ public function vanaeHeader(preName:String):void
 public function vanaePCVictory():void
 {
 	vanaeHeader("VICTORY:\nVANAE");
-
+	
 	// HP WIN
 	if (enemy.HP() <= 1)
 	{
@@ -420,8 +420,18 @@ public function vanaePCVictory():void
 			// [Vaginal Sex] [Tit Fuck] [Nipple Fuck] [Squirt & Jerk] [Cunnilingus] 
 			// [Sixty Nine - BJ] [Sixty Nine - Cunni] [Tenta Sex - Vag] [Tenta Sex - Anal] [Milk Bath]
 			
+			if(pc.hasCockTail())
+			{
+				//scene is currently cockvine only; can be tweaked for future suitable (i.e. with own gonads) types
+				addButton(9,"UseTailCock",cockvineTailPlusVanaeVictory,undefined,"Use Tailcock", "Let the busty, blind cumslut impregnate herself with your parasitic, vine-spawning tail-cock.");
+			}
+			else
+			{
+				if(!pc.hasCock()) addDisabledButton(9,"UseTailCock","Use Tailcock","You don't have any cocks, let alone parasitic ones.");
+				else addDisabledButton(9,"UseTailCock","Use Tailcock","You don't have a cock able to parasitize the vanae.");
+			}
 			//Cuff&Fuck
-			cuffNFuckButton(9, enemy);
+			cuffNFuckButton(10, enemy);
 		}
 		else
 		{
@@ -440,8 +450,18 @@ public function vanaePCVictory():void
 
 			// No requirements
 			addButton(1, "Cunnilingus", vanaeVictorySexIntro, "maiden_cunni", "Cunnilingus", "Claim her alien pussy with your mouth and eat her out.");
+			
+			if(pc.hasCockTail())
+			{
+				addButton(2,"UseTailCock",cockvineTailPlusVanaeVictory,undefined,"Use Tailcock", "Trick the poor, sweet, blind girl into giving her maidenhead to your parasitic tail-cock.");
+			}
+			else
+			{
+				if(!pc.hasCock()) addDisabledButton(2,"UseTailCock","Use Tailcock","You don't have any cocks, let alone parasitic ones.");
+				else addDisabledButton(2,"UseTailCock","Use Tailcock","You don't have a cock able to parasitize the vanae.");
+			}
 			//Cuff&Fuck
-			cuffNFuckButton(2, enemy);
+			cuffNFuckButton(3, enemy);
 		}
 	}
 	else
@@ -458,11 +478,13 @@ public function vanaePCVictory():void
 			addDisabledButton(6, "TentaSex - Vag");
 			addDisabledButton(7, "TentaSex - Ass");
 			addDisabledButton(8, "Milk Bath");
+			addDisabledButton(9, "UseTailCock");
 		}
 		else
 		{
 			addDisabledButton(0, "Cowgirl");
 			addDisabledButton(1, "Cunnilingus");
+			addDisabledButton(2, "UseTailCock");
 		}
 	}
 	
@@ -2397,3 +2419,280 @@ public function vanaeMaidenPCDefeatCunnilingus():void
 
 	vanaeMaidenCunnilingus();
 }
+
+//cockvine tail versus vanae (first draft)
+//misch/mean scene (gives ~0.5-1 points toward personality)
+//impregnates the vanae with cockvines instead of daughters; also adds a <times selected>/100 chance of adding a cockvine blurb to vanae combat descript(s)
+//scene is currently cockvine only; can be tweaked for future suitable (i.e. with own gonads) types
+//tooltip, vanae maiden: Trick the poor, sweet, blind girl into giving her maidenhead to your parasitic tail-cock.
+//tooltip, vanae huntress: Let the busty, blind cumslut impregnate herself with your parasitic, vine-spawning tail-cock.
+//disabled tooltip, no cockvine tail: You don't have {(no cocks)any cocks, let alone parasitic ones. /(else)a cock able to parasitize the vanae... unless you're cynical enough to consider your own children parasites. Victor Steele, is that you?}
+//disabled tooltip, balls too big to get around (12"+): Your monster balls are too big to sneak your tail around!
+
+//new victory intro fork - should work for both HP and lust wins
+//replaces the shared victory sex intro (i.e. everything after the scene selection menu)
+//if a hunger/need to fuck score is introduced for the cock-tail, scene should still work as an automatic trigger with minimal adjustment
+public function cockvineTailPlusVanaeVictory():void
+{
+	clearOutput();
+	pc.addHard(1);
+	author("Zeikfried");
+	vanaeHeader("VICTORY: VANAE\n");
+	//if (enemy is HuntressVanae)
+	output("You open your mouth to answer her, but something stops you. The ");
+	//(maid)
+	if(enemy is MaidenVanae) output("girl’s slender");
+	else output("woman’s juicy thighs");
+	output(" tremble");
+	if(enemy.lust() >= enemy.lustMax()) output(" from the force of her frigging");
+	output(", and her pussy shines wetly under her slithering skirt. A foreign urge takes shape in you");
+	if(!pc.hasCock()) output(", rendered all the more stark by your ");
+	if(pc.hasVagina()) output("female sex");
+	else output("lack of a sex");
+	output(": desire to impregnate her with your seed. Images slideshow through your mind, showing the ");
+	if(enemy is MaidenVanae) output("virginal girl");
+	else output("shapely amazon");
+	output(" trembling under your primal love, growing gravid with your spawn, swelling until she’s immobile and finally, birthing a healthy, baby... vine? And just like that, you understand where this sudden compulsion is coming from and why you have to answer it.");
+
+	output("\n\nYour [pc.tailCock] snakes ");
+	if(pc.legCount == 1) output("around your waist");
+	else output("through your legs");
+	output(" to a position at the front of your crotch");
+	if(pc.hasCock()) output(", and you feel your [pc.cockNounSimple] drool a bit of pre as it frots its way along the underside.");
+	else if(pc.hasVagina()) output(", and you shiver as the glans, then the shaft, slides through the track of [pc.oneVagina].");
+	else output(".");
+	output(" The dark desire to spread your parasite grows in intensity, drowning out everything, forcing you to answer it.  Swaying your hips to get her attention, you prepare to dissimulate.");
+
+	if(pc.isNice()) 
+	{
+		output("\n\n<i>“Hey, er... ");
+		if(enemy.HP() < 1) output("I’m not going to hurt you, so ");
+		output("do you");
+		if(pc.isBimbo()) output(", like,");
+		else output(" maybe");
+		output(" want to... have s-sex?”</i> you stammer, unaccustomed to malicious half-truths.");
+	}
+	//(misch)
+	else if(pc.isMischievous())
+	{
+		output("\n\n<i>“What I have in mind won’t hurt you");
+		if(pc.isBimbo()) output(", cutie");
+		output(",”</i> you flirt, thrusting at her. <i>“Unless you’re super tight.”</i>");
+	}
+	//(mean)
+	else
+	{
+		output("\n\n<i>“Spare the ");
+		if(pc.isBimbo()) output("talk");
+		else output("histrionics");
+		output("... just get on my dick,”</i> you grunt, jabbing your crotch-vine at her crudely.");
+	}
+	output("\n\nThe vanae’s ears twitch as she takes in your new, ‘erect’ profile. ");
+	if(enemy is MaidenVanae) 
+	{
+		output("<i>“R-really? Even after I tried to hurt you, you want to give me your seed?”</i> Her demeanor lifts");
+		if(enemy.HP() < 1) output(" as she sits up and sniffles");
+		output(". <i>“I’m so happy...”</i>");
+	}
+	else
+	{
+		output("<i>“You’re very kind,”</i> the seasoned huntress flatters. <i>“Then... if you’re offering me your seed, I </i>eagerly<i> accept.”</i>");
+	}
+	output("\n\nThe vanae scoots closer, ");
+	if(enemy.lust() >= enemy.lustMax()) output("pussy-wettened ");
+	output("hand outstretched as you bring your groin to her face. ");
+	if(pc.hasCock())
+	{
+		output("The eager alien first ");
+		if(pc.isTaur()) output("touches");
+		else output("reaches for");
+		output(" [pc.oneCock], but you clear your throat to distract her. Though she doesn’t turn her head, her finned ears pivot to indicate attention and you slip your viny, phallic parasite into her hand instead without a hitch.");
+	}
+	else
+	{
+		output("The alien’s fingers wrap around your [pc.tailCock], pulling it toward a pair of ");
+		if(enemy is MaidenVanae) output("prim");
+		else output("plump");
+		output(" lips.");
+	}
+	if(enemy is MaidenVanae)
+	{
+		output("\n\n<i>“So this is a male penis...”</i> your callow lover muses, breathing right on the glans. <i>“It’s so stiff and thick... kinda sticky too.”</i>");
+	}
+	else output("\n\n<i>“Such a strange organ,”</i> the amazon remarks, drawing it close to her mouth. <i>“It’s so flexible and eager.”</i>");
+	output(" She reclines and spreads her thighs, dragging you in by your ‘cock’ and trying to line it up for insertion,  but you pull back.");
+
+	output("\n\n<i>“Not like that,”</i> you interject, conscious of your tail dipping away from your crotch as she tugs. You nudge the vanae’s shoulder");
+	if(pc.tallness >= 80)
+	{
+		output(" with your ");
+		if(pc.isTaur()) output("fore-");
+		output("[pc.foot]");
+	}
+	output(", and she takes the hint. Giggling girlishly, she rolls over onto her hands and knees, lifting her tail and exposing her double-nubbed pussy.");
+	output("\n\n<i>“Like this, then?”</i> she asks, waggling her [enemy.butt] in the air. Her ");
+	if(enemy is MaidenVanae) output("pearly skin blushes and her ");
+	output("sensitive ears flatten to pick up sound from the rear, but from her newfound passivity, you conclude that they’re no longer enough to give her a perfect picture. Your dark desire flares again as you take her, safe from scrutiny.");
+
+	if(!pc.isAss())
+	{
+		output("\n\n");
+		if(pc.isBimbo()) output("<i>“Cute butt, honey,”</i> you coo, grasping ");
+		else if(pc.isBro()) output("<i>“Yeah,”</i> you grunt, grasping ");
+		else output("<i>“Very nice,”</i> you admire, grasping ");
+		if(pc.isTaur()) output("her between your fore-legs.");
+	}
+	else output("her [enemy.hips].");
+
+	if(enemy is MaidenVanae) 
+	{
+		output("\n\nThe slender girl tenses as your parasite forces her open, clawing up handfuls of dirt in her delicate fingers. <i>“Nnnnn... keep going,”</i> she moans, through clenched teeth. You steady her ");
+		if(pc.isTaur()) output("by resting one foreleg on her shoulder");
+		else output("with a hand on her shoulder");
+		output(", and her tentacled hair wraps around your ");
+		if(pc.isTaur()) output("ankle");
+		else output("wrist");
+		output(", wringing out the pain of her first lovemaking as your verdant vine bottoms in her virgin pussy.");
+	}
+	else
+	{
+		output("\n\nThe huntress hums through pinched lips in appreciation as your parasite parts her well-loved labia, even lowering her chest until her breasts drag in the dirt and her engorged clits are angled to rub on your shaft. This is clearly not the first time she’s made love from this position.");
+	}
+	output("\n\nSilken cilia inside the vanae corral and caress your [pc.tailCock], dumping impulses of pleasure right into your spinal nerves as the ");
+	if(enemy is MaidenVanae) output("newly-minted ");
+	output("woman acclimates to the penetration. Her ");
+	if(pc.isTaur()) output("shoulder");
+	else output("ass");
+	output(" trembles under your fingers, and she grunts out permission, ");
+	if(enemy is MaidenVanae) output("<i>“Ok... I’m ready... go ahead.”</i>");
+	else output("<i>“Ohh, yes! Fuck me!”</i>");
+
+	output("\n\nYou obey, drawing back to the [pc.tailCockHead] ");
+	if(enemy is MaidenVanae) output("and feeling the vanae’s cilia yield reluctantly, almost grudgingly, ");
+	output("before pushing in again.");
+	if(enemy is MaidenVanae) output(" The girl’s sharp intake of breath puts the lie to her claim; she continues to shiver, trying to accustom her lean body to the woman’s role. Her progress seems to be slow; every thrust is amazingly tight as her muscular pussy clamps down not from pain, but the anticipation thereof.");
+	else
+	{
+		output(" The alien woman is more promiscuous than any two minds sharing one [pc.race] body could be, greedily leaning so far that she threatens to pull your cock free and then, as soon as the in-stroke begins, slamming her incorrigible pussy on your crotch hard enough to ");
+		if(pc.balls > 0) output("knock your [pc.balls] into your taint.");
+		else output("bruise.");
+	}
+
+	//if PC is taur
+	//forkception
+	if(pc.isTaur())
+	{
+		if(enemy is MaidenVanae) output("\n\nThe fear in this woman is making her clench tight enough to sharpen a pencil. With most of the force coming from your tail instead of your pelvis, you need more leverage to even move it inside.");
+		else output("\n\nHer rampant ass is moving so wildly that it threatens to pull your ‘cock’ so far from your pelvis that even a blind woman could spot the hoax.");
+		output(" You drop your fore half to its ");
+		if(pc.hasKnees()) output("knees ");
+		output("in desperation, pushing the vanae’s down with your bulk until her chest and cheek alike are pressed to the dirt. She protests at first, until your [pc.stomach] presses against her ass, pinning her tail between the two of you. It shivers, and a drop of warm liquid drools from it");
+		if(!pc.hasScales() && !pc.hasChitin()) output(", spreading heat on your skin");
+		output(". ");
+		if(enemy is MaidenVanae) output("<i>“That feels kinda good...”</i> the girl mumbles, though a mouthful of grass. <i>“Do it harder...”</i>");
+		else output("<i>“Oooh,”</i> the wild woman moans, <i>“yeahh. Squeeze me... milk my fucking tail!”</i>");
+		output(" You oblige, modifying your stroke to press her tail from base to tip as your own spears her pussy.");
+		if(enemy is MaidenVanae) output(" Distracted by it, the nervous virgin forgets to pinch the blood from your cockvine and, before too many more thrusts, has realized that she’s enjoying herself. A soft hum or moan wafts up from beneath your body.");
+	}
+	//if is taur and has cock, also add tailjob
+	if(pc.isTaur() && pc.hasCock())
+	{
+		output("\n\nYour lover is enjoying herself so much that she seeks out even more milking pleasure. She gives up on raising her head and moves her hands to her breasts instead, squeezing and grunting as ");
+		if(enemy is HuntressVanae) output("sweet-smelling ");
+		output("liquid sprays through her fingers. The tentacles of her skirt hunt your belly for anything to rub against, and find [pc.oneCock]. On the next out-stroke, her sticky tail pulls away from your ");
+		if(pc.hasFur()) output("matted stomach");
+		else output("stomach");
+		output(" and loops over your shaft. With each subsequent pump it makes another turn, until your hard cock and her tail both are squeezing and drooling on one another. The liquid builds until it becomes slippery enough that you can thrust in her coiled tail just like a pussy.");
+	}
+	//else if not taur
+	if(!pc.isTaur())
+	{
+		if(enemy is MaidenVanae) 
+		{
+			output("\n\nYou decide to do a kindness by drawing her mind away from the penetration");
+			if(pc.isAss()) output(", if only so you can actually enjoy it");
+			output(", and take her twitching tail in hand.");
+		}
+		else output("\n\nThe vanae’s eager slaps threaten to disconnect your ‘cock’ from your pelvis, and you grab wildly, hoping for a handful of tentacle that will enable you to wrangle the feisty pussy. Instead, you come up with her twitching tail.");
+		output(" It dribbles a runner of slippery, ");
+		if(enemy is MaidenVanae) output("pink");
+		else output("purple");
+		output(" fluid as you squeeze, and the woman under you dips her back and hums as it tingles your skin. ");
+		if(enemy is MaidenVanae) output("<i>“That feels nice... do it again?”</i> she asks, marshalling her bravery for the first sexual request of her life.");
+		else output("<i>“Oh, yes!”</i> the slutty spearwoman shouts. <i>“Milk me! Milk my tail!”</i> She lifts one supporting hand to her breast, risking a mouthful of dirt to squeeze free even more sweet secretions, and moans as the goo sprays through her fingers.");
+		output(" You oblige, starting at the base of her tail and forcing out another dollop of the alien ‘milk’ that drops onto her tight, ");
+		if(enemy is MaidenVanae) output("pink");
+		else output("purple");
+		output(" ass. Her cunt finally calms from the distraction, allowing you to achieve a normal stroke");
+		if(enemy is MaidenVanae) output(" and, as soon as she realizes it doesn’t hurt, the maiden reveals herself as the closet slut she is with cute little grunts");
+		output(".");
+
+		//if not taur and has cock, add jerkoff
+		if(pc.hasCock())
+		{
+			output("\n\nYour [pc.cock] rubs against the vanae’s tentacle-salad skirt as you thrust your cockvine; with each push, it gets harder and harder to ignore. ");
+			if(pc.cumQ() < 500) output("Drops");
+			else output("Streams");
+			output(" of precum flow from its slit, joining the mess of milk on the girl’s back and occasionally your [pc.cockHead] slides through it on a high-angle thrust, which only makes you harder and dribblier. It’s no longer just about satisfying the cock-vine’s desire anymore; your own lust is burning brightly in you. You take a short break from milking your lover and stroke your needy prick, but the vanae’s greedy tail demands attention again, brushing against your side and curling overtop your hard [pc.cockNounSimple].");
+			//(girth > 4”</i>)
+			if(pc.cocks[0].thickness() < 4) output(" Unable to ignore either, you push her tail under your cock and wrap your hand around both, jerking yourself off with a trembling, wet milk-tentacle licking the underside.");
+			else output(" Unable to service both, you pin her tail under your girthy prick and resume masturbating, pressing it into her back with your knuckles.");
+		}
+	}
+	//if maiden vanae
+	if(enemy is MaidenVanae)
+	{
+		output("\n\n<i>“This... is... amazing,”</i> the girl pants, between the pounding blows of your [pc.tailCock] on her slight, ");
+		if(enemy is MaidenVanae) output("pink");
+		else output("purple");
+		output("-white frame. <i>“Caught... my first male. Gonna get... my first load... gonna have... strong, healthy daughters...”</i>");
+		if(pc.isAss()) output(" The naiveté strikes you as so pitiably funny that you don’t even stifle your response; deep, belly laughs transfer through your hips to the poor girl, jiggling her petite ass and breasts.");
+		else output(" The girl’s naiveté is both sweet and funny, and you find it hard to control your laughter as she daydreams aloud about the family and social status your spunk will confer. Eventually you can stand it no longer and a single guffaw escapes.");
+
+		output("\n\n<i>“What’s so funny?”</i> she asks, turning her head and trying to look stern despite the rogering that’s rocking her on her slender limbs like a canopy roof in a windstorm. When her pinched frown only provokes another laugh, her cilia clamp down in ‘retribution’, speaking to your cockvine in tongues as her expression shifts to silvery smugness. <i>“If you can give me strong daughters, I’ll remember you with a favor when I become matriarch. Go on... you want to, right?”</i> You make a show of agreement, eager for her to turn back around.");
+	}
+	//end maiden-only interlude
+
+	output("\n\nYour tail-thrusts intensify against the nubby walls of the vanae’s pussy");
+	if(enemy is HuntressVanae) output(" as her cries devolve into guttural nonsense and her tongue spills from her mouth");
+	output(", grinding the glans into her so hard that you wouldn’t be surprised if a bump began moving along her fit little stomach in time with your stroke.");
+	if(!pc.isTaur()) output(" You slip your hand underneath, just from curiosity, and begin feeling around the woman’s delta. The vanae laughs ticklishly. <i>“You’re so passionate,”</i> she murmurs, covering your hand with hers and interlacing your fingers.");
+	output(" Orgasm builds in your parasite as you pump, translating through the major nerve and into you as its gonads prepare to release, and your tail strokes become faster while your other muscles weaken. Your lover-soon-to-be-victim feels your vinestalk trembling with imminent release, and braces herself....");
+	output("\n\nYour tail spasms, filling your mind with the culmination of your dark impulse and filling the vanae’s cunt with a load of self-fertile, parasitic cockvine seed. The oblivious vanae moans and orgasms as the sticky spores splatter, curving her back to push her ass higher and your ‘cock’ deeper inside. Her hips lock in position as climaxing cilia wring the spunk from your [pc.tailCock] and wick it to the mouth of the womb, trying to give your invasive load some much-unneeded help in impregnating her. Her tail thrashes ");
+	if(!pc.isTaur()) output("in your grip");
+	else output("against you");
+	output(", squeezing the last of its milk as her muscles lock and release independently");
+	if(pc.hasCock())
+	{
+		output(", and your [pc.cocksLight] add");
+		if(pc.cockTotal() == 1) output("s");
+		output(" a load of [pc.cumVisc], [pc.cumColor] jism to the puddle of goo on the girl’s back.");
+		if(pc.cumQ() >= 500) output(" So much spurts from you that it begins to escape the little valley of her back muscles, oozing down her abdomen in rivulets. Beneath you, the vanae senses the liquid bounty creeping along her sides, and laughs weakly.");
+	}
+	output("\n\nShe rests her tight dancer’s body against you for a moment while she recovers from the seeding. <i>“That was nice,”</i> the vanae says dreamily, swaying her hips with your parasitic vine still inside.");
+	if(!pc.isTaur()) output(" Her hand squeezes yours one last time before brushing a stray tentacle from in front of her ear.");
+	output(" Slowly, she separates from your tail and turns around to sit facing you in the jungle grass. A trickle of cockvine semen, green-tinged on her pale skin, drips from between her puffy, inflamed labia.");
+
+	if(enemy is MaidenVanae) output("\n\n<i>“Um, thanks...”</i> she says. <i>“The older huntresses say you always remember your first catch. Now I understand why.”</i>");
+	else output("\n\n<i>“That was great,”</i> the busty huntress grins. <i>“I’ll definitely try to catch you again if I see you.”</i>");
+	output(" As she stands and collects her things, you ");
+	if(pc.isNice()) output("twinge with guilt");
+	else output("laugh quietly");
+	output(". She probably will - but not for the reason that she thinks.\n\n");
+	//end, do pc tail orgasm, do pc normal orgasm (if separate function), do appropriate loot and time as needed
+	processTime(35);
+	pc.orgasm();
+	if(enemy is MaidenVanae) IncrementFlag("VINED_V_MAIDEN");
+	else IncrementFlag("VINED_V_HUNTRESS");
+	CombatManager.genericVictory();
+}
+
+//the combat descript easter egg
+//random 0-99 and add the blurb when result < num of times scene was selected
+/* Fukkit. Can't be arsed after all those variations. If Zeik or someone wants to fuck around with it lemme know.
+output("\n\n//maiden descrip (new addition in Saints’ purple)");
+output("\n\nYour opponent - a young vanae maiden - almost appears as if she’s dancing as she fights you. Her [enemy.hair] and short skirt, not to mention her tiny breasts, make her look almost girlish. The amazon’s tentacles and body markings are [enemy.hairColor] colored and bioluminescent{, apart from a single dull-green, phallic one in back that seems to have a mind of its own}. \n\nAs she swings her pointed spear around in her webbed hands, you can’t help but notice her tiny boobs bouncing about. Her inverted nipples are lactating a transparent, [enemy.milkColor] goo. Meanwhile her [enemy.tail] whips around as she ‘dances’, another weapon in the alien girl’s natural arsenal.\n\nHer eyes are closed. It’s always a little weird fighting someone who doesn’t even look at you.");
+
+output("\n\n//huntress descrip");
+output("\n\nYour opponent - a busty vanae huntress - almost appears as if she’s dancing as she fights you. Her [enemy.hair] and skirt, not to mention her sizable breasts, make her look incredibly feminine. The amazon’s tentacles and body markings are [enemy.hairColor] colored and bioluminescent{, apart from a single dull-green, phallic one in back that seems to have a mind of its own}.\n\nAs she swings her pointed spear around in her webbed hands, you can’t help but notice her bare boobs bouncing about. Her inverted nipples are lactating a transparent, [enemy.milkColor] goo. Meanwhile her [enemy.tail] whips around as she ‘dances’, another weapon in the alien girl’s natural arsenal.\n\nHer eyes are closed. It’s always a little weird fighting someone who doesn’t even look at you.");
+*/
