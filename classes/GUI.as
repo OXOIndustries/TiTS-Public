@@ -859,8 +859,8 @@
 			}
 			else
 			{
-				tarButton.func(tarButton.arg);
 				kGAMECLASS.clearBust();
+				tarButton.func(tarButton.arg);
 			}
 			
 			return true;
