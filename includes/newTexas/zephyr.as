@@ -136,7 +136,7 @@ public function zephyrSexMenu(display:Boolean = true):void
 	if(pc.hasCock()) addButton(1,"MutualHJs",mutualHandJobsWithZephyr,undefined,"Mutual Handjobs","Jerk each other off why not.");
 	else addDisabledButton(1,"MutualHJs","MutualHJs","You need a dick for mutual handjobs.");
 	addButton(0,"Get Fucked",overDeskButtCatch,undefined,"Get Fucked","Get bent over her desk and fucked.");
-	if(pc.hasTailCock()) addButton(2,"Use Tailcunt",cuntTailPlusZephyrIntro,undefined,"Use Tailcunt","Let Zephyr use your tailcunt. It could use a snack.");
+	if(pc.hasTailCunt()) addButton(2,"Use Tailcunt",cuntTailPlusZephyrIntro,undefined,"Use Tailcunt","Let Zephyr use your tailcunt. It could use a snack.");
 	else addDisabledButton(2,"Use Tailcunt","Use Tailcunt","You don't have a tailcunt to play with.");
 }
 
