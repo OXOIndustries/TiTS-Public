@@ -136,7 +136,7 @@ public function approachMyrDeserters():void
 		//Combat!
 		else 
 		{
-			combatBlurb(true);
+			approachMyrDesertersCombatBlurb(true);
 		}
 	}
 	//RED MYR
@@ -155,13 +155,13 @@ public function approachMyrDeserters():void
 		//COMBAT!
 		else
 		{
-			combatBlurb(false);
+			approachMyrDesertersCombatBlurb(false);
 		}
 	}
 	// If either of the above are true, use the non-combative approach instead.
 }
 
-public function combatBlurb(gold:Boolean = false):void
+public function approachMyrDesertersCombatBlurb(gold:Boolean = false):void
 {
 	author("Jim Thermic");
 	var tEnemy:Creature;
