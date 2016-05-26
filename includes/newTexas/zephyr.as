@@ -14,6 +14,12 @@ public function zephyrRoomBonus():Boolean
 		output("\n\nSeated at the imposing desk is an equally imposing woman. Even seated, she fills the room, looming above and beyond the average cow-girl. She looks your way with a firm, unwavering gaze, waiting for you to step forward and explain why you’ve barged into her office.");
 		addButton(0,"Secretary",approachZephyr,true);
 	}
+	//Annoyed
+	else if(pc.hasStatusEffect("Zephyr Annoyed"))
+	{
+		output("\n\nZephyr, the secretary, looks up at you and snorts, waving dismissively at you. If you want anything from it her, it might be best to wait till she cools off.");
+		addDisabledButton(0,"Zephyr","Zephyr","Zephyr annoyed. You should probably wait to approach her until she's in a better mood.");	
+	}
 	//Fuckin’ Mad
 	else if(flags["ZEPHYR_PISSED"] != undefined)
 	{
@@ -130,6 +136,8 @@ public function zephyrSexMenu(display:Boolean = true):void
 	if(pc.hasCock()) addButton(1,"MutualHJs",mutualHandJobsWithZephyr,undefined,"Mutual Handjobs","Jerk each other off why not.");
 	else addDisabledButton(1,"MutualHJs","MutualHJs","You need a dick for mutual handjobs.");
 	addButton(0,"Get Fucked",overDeskButtCatch,undefined,"Get Fucked","Get bent over her desk and fucked.");
+	if(pc.hasTailCock()) addButton(2,"Use Tailcunt",cuntTailPlusZephyrIntro,undefined,"Use Tailcunt","Let Zephyr use your tailcunt. It could use a snack.");
+	else addDisabledButton(2,"Use Tailcunt","Use Tailcunt","You don't have a tailcunt to play with.");
 }
 
 //Mutual HJs
@@ -748,4 +756,184 @@ public function zephyrsShittasticJobstory():void
 	processTime(9);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
+}
+
+
+//Zephyr (New Texas) on Cunt tail
+//Zephyr (New Texas) on Cunt tail
+//Chicken Out
+//Obey
+public function cuntTailPlusZephyrIntro():void
+{
+	clearOutput();
+	showZephyrDeets();
+	author("Frogapus");
+	output("You suggest that she might enjoy fucking your tail.");
+	output("\n\n<i>“Your tail?”</i> she asks, incredulously, cocking an eyebrow up. She crosses her arms under her breasts, and folds one leg over the other, obscuring her cock from view. <i>“Are you really not going offer me some tight pussy, or even hot ass?”</i>");
+	output("\n\nYou hesitate, ready to retract your offer.");
+	output("\n\n<i>“Well shit, I guess I could fuck it, but I’m not getting out of my chair for a ‘tail fuck,’ of all things,”</i> she sighs.");
+	output("\n\nBefore you can ask how she’d want to do it, she unfolds her legs, planting her feet on the ground. She’s wearing red heels, but she plants them down on the furry rug like they were working boots. She grips the sides of the desk in front of her, the muscles in her arms and shoulders flexing, and with a grunt, she slides gigantic piece of furniture to the side. The wood groans, but shifts away, clearing a wide spot on the floor in front of her.");
+	output("\n\nZephyr doesn’t even seem to have exerted herself much. She dusts her hands and smirks up at you. With her feet still planted wide, you glimpse her cock rising up from her skirt, bouncing slightly with each pat down of her hands.");
+	output("\n\n<i>“Just clearing some space for you,”</i> she says simply, tugging her skirt up. Her shiny red cock throbs, just begging to have something hot and wet wrapped tight around it.");
+	output("\n\n<i>“Space?”</i> you ask, curious about the cow-girl’s show of strength.");
+	output("\n\n<i>“For you to get on your knees,”</i> she says, rolling her eyes. <i>“If you want me to fuck your tail, we’re doing it my way.”</i>");
+	output("\n\nYou blink, taking a moment to process that statement. This may not have been what you were expecting. Do you back out, or follow her orders?");
+	pc.lust(5);
+	processTime(2);
+	clearMenu();
+	addButton(0,"Chicken Out",chickenOutOnZephyrTailfuck);
+	addButton(1,"Obey",obeyAndLetZephyrFuckYerTail);
+}
+
+//Chicken Out
+public function chickenOutOnZephyrTailfuck():void
+{
+	clearOutput();
+	showZephyrDeets();
+	author("Frogapus");
+	output("This wasn’t what you signed on for!");
+	output("\n\nYou tell Zephyr that you have no intention of kneeling in front of her.");
+	output("\n\nShe snorts and turns in her chair to grab the sides of her desk. With a grunt, she hefts her desk up and slams in on the floor in front of her. The whole room shakes as the massive oaken edifice crashes into place.");
+	output("\n\nBig T’s voice rumbles outward from the closed doors, <i>“Is everything okay out there, Zephyr?”</i>");
+	output("\n\n<i>“Just fine, sir!”</i> says Zephyr, locking her eyes on you with a look of absolute disdain. <i>“Just a minor annoyance.”</i>");
+	output("\n\nYou feel it might be a good idea to give the cow girl some time to cool off. You politely excuse yourself from the room as Zephyr stares at you in silence.");
+	if(!pc.hasStatusEffect("Zephyr Annoyed")) pc.createStatusEffect("Zephyr Annoyed",0,0,0,0,true,"","",false,120);
+	processTime(2);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Obey
+public function obeyAndLetZephyrFuckYerTail():void
+{
+	clearOutput();
+	showZephyrDeets();
+	author("Frogapus");
+	output("You decide to follow Zephyr’s orders like the obedient [pc.boyGirl] you are.");
+	output("\n\n<i>“Kneel on the floor if you want me fucking your tail, tourist,”</i> she rumbles, licking her lips.");
+	output("\n\nA shiver runs up your spine and down to the tip of your tail as you process the hungry look in her eyes. Zephyr’s still seated in her chair, arms rest on her knees as you slowly sink down to the plush carpet directly in front of her. You look up at her, feeling a thrill of submission as she grasps her cock, idly toying with it in front of you.");
+	output("\n\n<i>“Get on all fours, and face that ass towards me,”</i> she says, looking on with obvious enjoyment at how well you’re taking orders.");
+	output("\n\nYou feel a soft fluttering in your stomach at her gaze on your body, and turn, half-crawling, to face your [pc.butt] towards the dominant femme, then lean forward, placing your hands on the carpet, feeling them sink down into the plush fur. Your tail rises up above your posterior, curving up into a perfect question mark.");
+	output("\n\n<i>“Good [pc.boyGirl],”</i> hums Zephyr.");
+	output("\n\nIn this position, you can’t see what she’s doing, or even guess what’s she’s planning. You feel your excitement growing, wondering what she’ll do with you on your hands and knees like this.");
+	output("\n\nHer chair creaks, and you squeak in surprise as you feel a strong grip on your tail. Zephyr’s fingers wrap firmly around it, then, just as your heart stops pounding so hard, she begins to run the tip of her thumb against its underside. You moan softly as the sensations radiate out from your [pc.tailCunt], up your spine, to your quaking arms, and down to your tail cunt’s tip, coaxing a warm wetness from your parasitic folds.");
+	output("\n\nYou shudder for a few moments, bathing in the simple sensation of her finger toying with your tail. You’re not entirely sure why it feels so good-it might be the submission, or your inability to see her actions, or some combination of both. Whatever it is, you can feel your pleasure building faster than you expect it.");
+	if(pc.hasCock())
+	{
+		output(" Your [pc.cocks]");
+		if(pc.cockTotal() == 1) output(" is");
+		else output(" are");
+		output(" already fully stiff and at the ready.");
+	}
+	if(pc.hasVagina()) output(" [pc.EachVagina] throbs softly, wetness already building in your depths.");
+
+	output("\n\nAs you process this, you feel something hot and pointed against your tail cunt. The sensation ripples up through you drawing a breathy moan from your [pc.lips]. You feel it trace, the pointed tip of her canine dick, up and down your ready slit. Your arms are shaking so much that they can barely hold you up. You feel something hot and wet spatter slowly run down your tail, creeping along its length until it pools in the cleft of your ass. You’re so wet that your oozing your pussy juices down on yourself.");
+	output("\n\n<i>“F-f-fuck me,”</i> you murmur, your eyes fluttering in pleasure. <i>“P-please?”</i>");
+	output("\n\n<i>“I think I need to be a bit more comfortable first,”</i> chuckles Zephyr.");
+	output("\n\nBefore you can ask what she means, she gives your tail a sharp tug. With a yelp, your ass rises up, and your face slams into the soft carpet. With your ");
+	if(pc.hasKnees()) output("knees");
+	else output("[pc.legOrLegs]");
+	output(" tucked under you and your face against the floor, your ass is raised almost embarassingly high into the air.");
+	output("\n\n<i>“There we go,”</i> says Zephyr. <i>“I like having somewhere to put my feet up if I’m gonna to have a nice fap.”</i>");
+	output("\n\nYou work that one out just as you feel the cold stiffness of her heels rest atop your ass.  She can’t actually be serious! Does she really expect you to sit there, curled up like a-");
+	output("\n\nThe tip of her dick pushes against the folds of your tail cunt, and your thoughts dissolve into fireworks.");
+	output("\n\nYou can feel her hand-no, her hands-wrapped tight around your tail, slipping it down over her cock, like a fleshtoy. You can feel her thick red cock, canine and throbbing, pushing into your tail. You can feel the exquisite pressure of her girthy cock meeting her tight grip, with you between them.");
+	output("\n\nYou try to say something, but you can do little more than drool in pleasure, curled up on the floor as her living footstool as she feeds herself into you.");
+	output("\n\nHer chair creaks, and her weight shifts above you, lessening a bit, feeling as it she were leaning back in her chair. She lets out a satisfied sigh as she slips you further and further down, your [pc.tailCunt] squelching as her thick cock fills it further and further. You can feel the curve of her tip, the veined thickness of her shaft, and her girthy base, and you pant, thinking about it swollen into a knot inside you.");
+	output("\n\n<i>“Mmmm, that’s nice,”</i> she murmurs. Through the fog of pleasure, your brain registers her approval, your tail trembling");
+	if(pc.hasCock()) output(", your [pc.cocks] twitching");
+	else if(pc.hasVagina()) output(", your [pc.vaginas] throbbing");
+	output(".");
+
+	output("\n\nWhen she begins to slide you up her cock, you reflexively mewl in protest, feeling distantly foolish when she slides you back down.");
+	output("\n\n<i>“Someone’s eager,”</i> she says in an amused tone. <i>“But a good fucktoy isn’t concerned with getting off, it’s priority is getting me off. Are you a good fucktoy or not?”</i>");
+	output("\n\nYou shudder, curled on the floor, ass raised high for her resting feet as she gives your tailcunt an extra squeeze around her cock.");
+	output("\n\n<i>“I’m a g-good fuh-fuck toy,”</i> you babble.");
+	output("\n\n<i>“Good [pc.boyGirl],”</i> she coos. You moan in pleasure at her words, just as she begins pumping again, jacking herself slowly, lazily, with your tail. You can feel your tail pushing back against her hands slightly, eager to clamp down and drain her dry, but the bovine amazon’s grip is far too strong for it. Instead, she let out another happy sigh, adjusting her heels on your backside as she uses your body to get herself off.");
+	output("\n\nYou tremble beneath her, your brain adrift in the pleasure of her dick plunging in and out of your tail cunt, the serpentine symbiont radiating that pleasure out through the rest of your body. You want her cum with an aching hunger that grows with every stroke of her hands. The thought overwhelms you, and you can feel it echoed in the soft twitches of your asshole");
+	if(pc.hasCock()) output(" and the beading pre dripping from your [pc.cocks]");
+	else if(pc.hasVagina()) output(" and the desperate throb of your [pc.vaginas], hungry to be filled");
+	output(".");
+
+	output("\n\nYou need her buried deep inside you, filling you up with her hot seed, you want it more than anything in the universe. But you’re not in control. Pinned voluntarily to the floor, all you can do is whimper as she jacks off with your body.");
+	output("\n\n<i>“Toys don’t get a say in how they’re used,”</i> says Zephyr from above you. It almost as if she can understand your plaintive noises. She slows down her fapping, and you feel a surge of despair tinge the pleasure of her fucking. You almost wail in protest, but choke it off at the last moment, remembering her words.");
+	output("\n\nWhen she finally does start to pick up the pace, all you can do is shudder. Yes! This is it! This is what you’ve been wanting for what seems like an eternity. You can feel the heavy throb of her dick in your tail cunt, radiating out through you like a second heartbeat. Her knot is starting to swell, too, growing larger inside you with every stroke of her dick. You lick your lips, drooling at the thought of that soon filling up your cunt, knotting it tight.");
+	output("\n\n<i>“Oh fuck, oh yeah, such a good fucktoy!”</i> she pants, digging her heels down against your ass. You squeak, eyes rolling back in your head as the pain of her heels heightens the pleasure crashing through you. Your whole tail is slick with your own juices, and Zephyr’s all but thrashing in her chair, her muscular hips bucking up and down as she pumps your tail like a piston around her dick. Her dick-that’s the only thought filling your mind right now. You need it. You need it exploding cum inside you. You need to satisfy Zephyr.");
+	processTime(20);
+	pc.lust(40);
+	clearMenu();
+	addButton(0,"Next",getTailFuckedByZephyrSauce);
+}
+public function getTailFuckedByZephyrSauce():void
+{
+	clearOutput();
+	showZephyrDeets();
+	author("Frogapus");
+	output("With a howl of pleasure, she jams your tail down against her dick, shoving her massive knot inside it. You answer with a squeal of your own, ignore the pain of her grapefruit-sized knot stretching out your tail cunt, eyes wide in pleasure as she pumps a hot jet of cum deep into your tail. Her grip around your tail doesn’t let go, and she keeps it locked around your base, her hand sliding up and down its length, jacking herself off through your tail cunt. When she shoot another small load of cum inside you, you quiver, seeing fireworks as pleasure erupts throughout your body.");
+	pc.lust(30);
+	output("\n\nShe leans back in her chair, breathing heavily, the thickness of her knot a dull ache at the end of your tail. It takes a few minutes for her breathing to steady, and for you to start registering anything but the pleasure of your tail feeding on her expended cum.");
+	output("\n\n<i>“Phew! I needed that,”</i> she says, still somewhat breathlessly.");
+	output("\n\n<i>“I... I...</i>“ you breathe, trying to form a sentence. Thoughts slowly surface in your brain, bobbing up out of the depths of bliss. <i>“I wanna...”</i> you say slowly, reaching your hand down your front, towards your thighs.");
+	output("\n\n<i>“None of that,”</i> says Zephyr, giving your tail a sharp tug. You squeak in protest as the pain cuts through your dumbfucked thoughts. <i>“You’re not making a mess on the carpet in here, " + pc.mf("mister","miss") + ". You can take that elsewhere.”</i>");
+	output("\n\n<i>“But-but-”</i> you stammer, trying to push yourself up from the floor. After being curled up for so long, your arms are shaky and a bit numb. You look over your shoulder at Zephyr. She’s still leaning back in her chair, her cheeks flushed, her breasts spilling out of her top, her legs spread wide, and her dick out, your tail still wrapped around it. One at a time, she lifts her feet from your back, planting her heels on the floor, and gives you a hard look.");
+	output("\n\n<i>“You asked for a tail fuck, and you got it. I didn’t agree to having to clean tourist cum out of the fur carpets,”</i> she says. <i>“Stand up and get dressed.”</i>");
+	output("\n\nYou look meaningfully at your tail cunt, still anchored tightly to her knot.");
+	output("\n\n<i>“Oh, it’ll go down in a few minutes,”</i> she says, rolling her eyes. <i>“It’s not like I’ve got your leg in there. You can still get dressed while you wait for it.”</i>");
+	output("\n\n<i>“But how am going to get off?”</i> you ask a little plaintively.");
+	output("\n\n<i>“Well, if getting off is what you’re looking for, maybe ask me to fuck you instead of your tail, next time,”</i> she says with a mischievous grin.");
+	output("\n\nIt seems incredibly unfair, but you’re a bit at her mercy. Your body is still twitching and aching to cum as you pick up your clothes, slowly dressing with your tail stuffed full of her throbbing cock. Every other motion brings an accidental tug from it, sending a shuddering wave through your body, bringing you that much closer to cumming. Zephyr smiles as she watches you, looking as if she’s enjoying your predicament.");
+	output("\n\nBy the time you’re done dressing , her knot has gone down, and with a wet slurp, your tail slides free from it, slapping limply against the floor. You stiffen with a sharp intake of air, your back arching as you stand straight up, feeling yourself at the verge of climaxing.");
+	output("\n\nZephyr is on you in a flash, striding forward and clamping her hand down on ");
+	if(pc.hasCock()) output("[pc.oneCock] , her grip so tight that cumming would be an impossibility.");
+	else output("your [pc.tailCunt], clapping her palm soundly against it, sending a sharp sting of impact up your body, interrupting your breathless spasm.");
+	output(" <i>“Out!”</i> she orders.");
+
+	//[PC.Willpower X 3 - Libido < 0:
+	if(pc.willpower()/2 + rand(20) + 1 >= 15)
+	{
+		output("\n\nUnfortunately, her harsh ministrations have the opposite effect on your sensitive body. As soon as she lets go to shove you out the door, you fall to your knees, moaning in the throes of a desperate orgasm.");
+		if(pc.hasCock() && !pc.isCrotchExposed())
+		{
+			output(" [pc.EachCock] ");
+			if(pc.cumQ() < 10) output("spurts a small load");
+			else if(pc.cumQ() < 500) output("fires a heavy load");
+			else output("unleashes a torrent of cum");
+			output(" beneath your garments as you shudder in ashamed delight, it dribbles out of your [pc.lowerGarments] and onto the thick, fur rug.");
+		}
+		else if(pc.hasCock())
+		{
+			output(" [pc.EachCock] ");
+			if(pc.cumQ() < 10) output("spurts a small load");
+			else if(pc.cumQ() < 500) output("fires a heavy load");
+			else output("unleashes a torrent of cum");
+			output(" up through the air as you shudder in ashamed delight. It spatters down onto the thick, fur rug.");
+		}
+		if(pc.hasVagina() && !pc.isCrotchExposed()) 
+		{
+			output(" As you stumble to the floor, you come to a shuddering climax, your [pc.vaginas] squirting a ");
+			if(!pc.isSquirter()) output("dribble of wetness");
+			else output("heavy load of [pc.girlCum]");
+			output(" into your [pc.underGarment]");
+		}
+		else if(pc.hasVagina())
+		{
+			output(" As you stumble to the floor, you come to a shuddering climax, your pussy squirting a ");
+			if(!pc.isSquirter()) output("dribble of wetness");
+			else output("heavy load of [pc.girlCum]");
+			output(" onto the shaggy floor.");
+		}
+		output("\n\nYou gasp in pleasure, sitting in a puddle of your own cum, feeling more than a little ashamed of yourself, and embarrassed that Zephyr watched you cum so easily.");
+		output("\n\nZephyr looks down furiously  at the pooling mess beneath you, her lips pressed so tightly against each other that they disappear into a single, straight line. She grabs you by the arm, lifting you as easily as if you were a pillow, and with a mighty heave, flings you out of the room.");
+		//[PC takes damage, Lust=0, Triggers the Pissed-off option noted on Zephyr’s wiki page: http://wiki.smutosaur.us/Zephyr
+		pc.orgasm();
+		//Next 24 hours: Pissed off text: <i>“You approach the amazon cowgirl at her desk, but her death glare warns you to stay away. Fighting off a shiver of barely-missed doom, you decide to go elsewhere.”</i>]
+		if(!pc.hasStatusEffect("Zephyr Annoyed")) pc.createStatusEffect("Zephyr Annoyed",0,0,0,0,true,"","",false,1440);
+	}
+	//PC.Willpower X 3 - Libido > 0 
+	else output("\n\nYou gulp and swallow a few breaths until you calm down a little, barely clinging to her command, then shuffle awkwardly out of the room.");
+	processTime(7);
+	var ppZephyr:PregnancyPlaceholder = getZephyrPregContainer();
+	pc.loadInCuntTail(ppZephyr);
+	clearMenu();
+	addButton(0,"Next",move,rooms[currentLocation].southExit);
 }

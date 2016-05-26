@@ -420,18 +420,18 @@ public function vanaePCVictory():void
 			// [Vaginal Sex] [Tit Fuck] [Nipple Fuck] [Squirt & Jerk] [Cunnilingus] 
 			// [Sixty Nine - BJ] [Sixty Nine - Cunni] [Tenta Sex - Vag] [Tenta Sex - Anal] [Milk Bath]
 			
-			//Cuff&Fuck
-			cuffNFuckButton(9, enemy);
 			if(pc.hasCockTail())
 			{
 				//scene is currently cockvine only; can be tweaked for future suitable (i.e. with own gonads) types
-				addButton(10,"UseTailCock",cockvineTailPlusVanaeVictory,undefined,"Use Tailcock", "Let the busty, blind cumslut impregnate herself with your parasitic, vine-spawning tail-cock.");
+				addButton(9,"UseTailCock",cockvineTailPlusVanaeVictory,undefined,"Use Tailcock", "Let the busty, blind cumslut impregnate herself with your parasitic, vine-spawning tail-cock.");
 			}
 			else
 			{
-				if(!pc.hasCock()) addDisabledButton(10,"UseTailCock","Use Tailcock","You don't have any cocks, let alone parasitic ones.");
-				else addDisabledButton(10,"UseTailCock","Use Tailcock","You don't have a cock able to parasitize the vanae.");
+				if(!pc.hasCock()) addDisabledButton(9,"UseTailCock","Use Tailcock","You don't have any cocks, let alone parasitic ones.");
+				else addDisabledButton(9,"UseTailCock","Use Tailcock","You don't have a cock able to parasitize the vanae.");
 			}
+			//Cuff&Fuck
+			cuffNFuckButton(10, enemy);
 		}
 		else
 		{
@@ -450,17 +450,18 @@ public function vanaePCVictory():void
 
 			// No requirements
 			addButton(1, "Cunnilingus", vanaeVictorySexIntro, "maiden_cunni", "Cunnilingus", "Claim her alien pussy with your mouth and eat her out.");
-			//Cuff&Fuck
-			cuffNFuckButton(2, enemy);
+			
 			if(pc.hasCockTail())
 			{
-				addButton(3,"UseTailCock",cockvineTailPlusVanaeVictory,undefined,"Use Tailcock", "Trick the poor, sweet, blind girl into giving her maidenhead to your parasitic tail-cock.");
+				addButton(2,"UseTailCock",cockvineTailPlusVanaeVictory,undefined,"Use Tailcock", "Trick the poor, sweet, blind girl into giving her maidenhead to your parasitic tail-cock.");
 			}
 			else
 			{
-				if(!pc.hasCock()) addDisabledButton(3,"UseTailCock","Use Tailcock","You don't have any cocks, let alone parasitic ones.");
-				else addDisabledButton(3,"UseTailCock","Use Tailcock","You don't have a cock able to parasitize the vanae.");
+				if(!pc.hasCock()) addDisabledButton(2,"UseTailCock","Use Tailcock","You don't have any cocks, let alone parasitic ones.");
+				else addDisabledButton(2,"UseTailCock","Use Tailcock","You don't have a cock able to parasitize the vanae.");
 			}
+			//Cuff&Fuck
+			cuffNFuckButton(3, enemy);
 		}
 	}
 	else
@@ -477,11 +478,13 @@ public function vanaePCVictory():void
 			addDisabledButton(6, "TentaSex - Vag");
 			addDisabledButton(7, "TentaSex - Ass");
 			addDisabledButton(8, "Milk Bath");
+			addDisabledButton(9, "UseTailCock");
 		}
 		else
 		{
 			addDisabledButton(0, "Cowgirl");
 			addDisabledButton(1, "Cunnilingus");
+			addDisabledButton(2, "UseTailCock");
 		}
 	}
 	
