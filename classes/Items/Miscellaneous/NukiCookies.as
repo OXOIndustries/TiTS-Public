@@ -520,6 +520,39 @@
 						kGAMECLASS.output("\n\n" + pc.cockTypeLockedMessage());
 					}
 				}
+				//Find black non-kui vags for TF!
+				choices = new Array();
+				for(x = 0; x < pc.totalVaginas(); x++)
+				{
+					if(pc.vaginas[x].vaginaColor == "black" && pc.vaginas[x].type != GLOBAL.TYPE_KUITAN) choices[choices.length] = x;
+				}
+				//Set x to a random pussy from choices
+				if(choices.length > 0) x = choices[rand(choices.length)];
+				//Else set to -1, code for NOVAG NOGO
+				else x = -1;
+				//Pussy TF
+				if(changes < changeLimit && x >= 0 && rand(3) == 0)
+				{
+					kGAMECLASS.output("\n\nYour [pc.legOrLegs] go weak, suddenly warm and nerveless. At the same time, the space");
+					if(pc.legCount > 1) kGAMECLASS.output(" between them");
+					else kGAMECLASS.output(" above");
+					kGAMECLASS.output(" flushes hot and gooey. Your inky netherlips blush purple and seem to plump up in your mind, overloading you with tactile sensation, telling you that they're ready for huge loads of kui-tan cum and your fingers all at the same. Whimpering, you reach down to feel the sodden furnace");
+					if(pc.totalVaginas() > 1) kGAMECLASS.output("s");
+					kGAMECLASS.output(", marveling at the reshaping contours of your flower");
+					if(pc.totalVaginas() > 1) kGAMECLASS.output("s");
+					kGAMECLASS.output(" even as your fingers plunge inside.");
+					kGAMECLASS.output("\n\nBliss blasts away any concerns about your rising libido or the sudden, vivid hallucinations of cum. Even when you imagine bathing in it, scooping thick handfuls into your gash, smearing coats of the thick stuff across your heart-shaped mons, your only reaction is to smile beatifically and idly finger yourself. You do eventually stop, and once you finally free your fingers from their ink-black prison, you can truly appreciate the shape you've been given. <b>You think you can enjoy having such ");
+					if(pc.totalVaginas() == 1) kGAMECLASS.output("a cute, kui-tan pussy.</b>");
+					else kGAMECLASS.output("cute kui-tan pussies");
+					pc.libido(4);
+					pc.orgasm();
+					while(choices.length > 0)
+					{
+						if(pc.vaginas[choices[0]].vaginaColor == "black") pc.vaginas[choices[0]].type = GLOBAL.TYPE_KUITAN;
+						choices.splice(0,1);
+					}
+					changes++;
+				}
 				//Find nonblack vags for TF!
 				choices = new Array();
 				for(x = 0; x < pc.totalVaginas(); x++)
