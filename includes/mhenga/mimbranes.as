@@ -3701,7 +3701,7 @@ public function beatUpByAFuckinDishcloth():void
 	{
 		if(pc.lust() >= pc.lustMax()) output("Being too turned on to fight anymore, you fall down in a heap of horniness that only a good masturbation session would cure.");
 		else output("The physical effort to fight such a small parasitic creature is just too much for you to handle and you collapse under the fatigue, falling to your [pc.knees].");
-		output("\n\nProdding you with great effort, the victorious Mimbrane attempts to break into your [pc.armor] several times but to no avail... Giving up, it leaves your defeated body in search of a more penetrable victim.");
+		output("\n\nProdding you with great effort, the victorious Mimbrane attempts to break into your [pc.armor] several times but to no avail... Giving up, it leaves your defeated body in search of a more penetrable victim.\n\n");
 		
 		processTime(10 + rand(10));
 		CombatManager.genericLoss();
@@ -3710,18 +3710,26 @@ public function beatUpByAFuckinDishcloth():void
 	output("The air around you feels so dense, so thick. Humidity chokes you. It’s become so hard to breathe. You can’t stop panting. Deep, healing breaths elude you, leaving you to your hyperventilation.");
 	if (!pc.isNude()) output(" Maybe if you strip off your [pc.armor] it’ll be easier to settle down. So you do.");
 	else output(" You feel compelled to fan yourself, hoping that the brisk forest air will help to cool your burning need.");
-	output(" But it doesn’t help, it’s only gotten worse. Your naked [pc.skinfurscales] only more exposed.");
+	output(" But it doesn’t help, it’s only gotten worse, your naked [pc.skinfurscales] only more exposed.");
 	output("\n\n[pc.LegOrLegs]");
 	if(pc.legCount == 1) output(" is");
 	else output(" are");
 	output(" getting weak. You lie down. The dirt isn’t helping. The grass doesn’t comfort. The shade may as well not exist. Any stray breeze is powerless. Your hands hopelessly grope around your body, uselessly caress you. All you can smell is that parasite. Its sweet, musty lust overpowers your senses, surrounding you in a heavy cloud. You’re confused, stuck between an agonizing rut and oppressive environment.");
+	pc.lust(100);
+	if(pc.hasTailCock() && rand(2) == 0)
+	{
+		processTime(2);
+		clearMenu();
+		addButton(0,"Next",zeikTailPlusMimbMadness);
+		return;
+	}
 	output("\n\nThe Mimbrane waits for the aftermath of its deluge to paralyze you further.");
 	if (attachedMimbranes() == 1) output(" The Mimbrane already on you is unrelenting in its emissions.");
 	else if (attachedMimbranes() > 1) output(" The Mimbranes already on you are unrelenting in their emissions.");
 	output(" You eventually do calm down to some degree, crushed under the artificial passion and salacious smog. The sentient sheet silently revels in its victory by approaching you, scoping out its spoils.");
 	if (attachedMimbranes() == 1) output(" Your Mimbrane begins squeaking and chirping yet again, probably helping aim your conqueror on where on your body it could set up shop.");
 	else if (attachedMimbranes() > 1) output(" Your Mimbranes squeak and chirp at your conqueror. No doubt they’re helping it quickly decide where on your body it can set up shop.");
-
+	processTime(2);
 	clearMenu();
 	addButton(0, "Next", attachAMimbrane);
 }
@@ -4777,4 +4785,99 @@ public function feedMimbranesWithPussy():void
 	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
+}
+
+public function zeikTailPlusMimbMadness():void
+{
+	clearOutput();
+	showName("PARASITE\nPALS");
+	author("Zeikfried");
+	showBust("MIMBRANE","COCKVINESEEDLING");
+	output("The mimbrane, strangely, vacillates as well. It lurches at you, halts, and starts again, distracted by something still moving in the periphery. That... ‘something’ lunges at the mimbrane, hitting the flexible creature center mass and battering a dent. The silken symbiote deforms around the blow, rubbing folds of warm, oily skin against the intruder while it twists away, and a sudden electric pleasure shoots up your back. As your [pc.thighs] begin to fidget uncontrollably in sexual excitement, you realize which other creature is here with you: your cockvine.");
+	output("\n\nYour blushing-red mimbrane assailant quickly identifies your semi-autonomous parasite as an unsubdued threat and regains its aggressive posture. Beads of perspiration form on its surface, thickening the fog of lusty aphrodisiacs until you can taste the pungent chemical on your tongue. It twists like a banner and wraps around your [pc.tail], smothering the vine in drug and teasing its [pc.tailCock] free from concealment. The mimbrane caresses the sensitive glans, gliding along the slit like spreading oil, wicking up droplets of lubrication and causing the parasite to shiver.");
+	if(pc.hasCock())
+	{
+		output(" Your own [pc.cocksLight] shudder");
+		if(pc.cockTotal() == 1) output("s");
+		output(" with reflected pleasure as if ");
+		if(pc.cockTotal() == 1) output("it was the one");
+		else output("they were the ones");
+		output(" touched, and dabs of your pre ");
+		if(!pc.isCrotchExposed()) output("wet your [pc.lowerGarment].");
+		else 
+		{
+			output("bead and run down your shaft");
+			if(pc.cockTotal() > 1) output("s");
+			if(pc.balls > 0) output(" to pool on your [pc.sack]");
+			else if(pc.hasVagina()) output(" to tickle your [pc.vaginas]");
+			output(".");
+		}
+	}
+	output("\n\nThe struggle doesn’t go the mimbrane’s way. The arousing fog that reduced your defenses to a ");
+	if(pc.hasCock()) output("warm, sticky paste");
+	else output("soft, gibbering pile");
+	output(" has much less effect on the cockvine’s alien, vegetable mind. If anything, the trickle of drug pumping through your blood and into the parasite is only enough to make it <i>extremely</i> randy and aggressive. It squirms in the mimbrane’s loose grip, battering folds and creases into the velvety scarf, trying to fuck the mimbrane like an oily, soft pussy. Mistaking the affection for hostility, the scarlet parasite secretes more fluid from its surface, pooling it and spitting it at the cockvine - which, at this moment,  is directly over your exposed crotch.");
+
+	if(pc.hasGenitals()) output("\n\n");
+	if(pc.hasCock())
+	{
+		output("The aphrodisiac hits like a tropical storm, deluging your crotch in contact arousal until [pc.eachCock] sways like a palm tree from your hip shakes. ");
+		if(pc.cockTotal() > 1) 
+		{
+			output("Pre-cum slops everywhere, filling the gap");
+			if(pc.cockTotal() > 2) output("s");
+			output(" between your shafts and making each feel like a half-pussy licking at its neighbor");
+			if(pc.cockTotal() > 2) output("s");
+			output(". ");
+		}
+		output("Your ");
+		if(pc.balls > 1) output("[pc.balls] tense");
+		else output("body tenses");
+		output(" to release - you feel as if already in the final, irrevocable strokes of great sex, despite not even being inside.");
+		if(pc.hasVagina()) output(" ");
+	}
+	//(if pussy, including herms)
+	if(pc.hasVagina()) 
+	{
+		output("[pc.EachVagina] takes the splash of liquid lust like the first lick of an eagerly-awaited cunnilingus, tingling and swelling with blood");
+		if(pc.gapestVaginaLooseness() < 4) output(", spreading slightly");
+		output(", ");
+		if(pc.wettestVaginalWetness() <= 2) output("dripping");
+		else if(pc.wettestVaginalWetness() <= 4) output("drooling");
+		else output("splattering");
+		output(" juices to outdo the slippery mimbrane for sex-readiness.");
+		if(pc.balls > 1 && !pc.hasStatusEffect("Uniball")) output(" So much hot girl-lube coats your labia that your balls are quickly coated in it, pinching and rolling your [pc.clit] in sticky, soft spheres every time your pelvis twitches.");
+	}
+	output("\n\nThe perverted visions in your head demand your every iota of attention, so much so that your prone body is given over to the cockvine’s control. It becomes as tense as a violin string");
+	if(!pc.isTaur()) output(", bent awkwardly backwards with your crotch poking up in the air and plenty of room for the virile vine to maneuver.");
+
+	output("\n\nThe oblivious mimbrane continues to spit, spooge, and slime drugs onto your overtuned nerves as it pursues the vine over your [pc.skin], trying its best to stun, but the plant parasite gains <i>more</i> control, if anything. The inhuman need to fuck brought on by the fog overdose is concentrating every neuron you own on your throbbing ");
+	if(!pc.hasGenitals()) output("pulse");
+	else output("sex");
+	output(". With no thought to spare for resisting the cockvine’s breeding impulse, it infiltrates your mind, plunging you into a feverish dream of impossible coitus....");
+	
+	output("\n\nA slender, red-skinned woman with hair like a veil stands at the entrance to your garden. Two of your mates look up from their lounging; the third continues to stroke your sticky, sap-oozing penis, hoping you won’t notice the newcomer’s come-hither eyes. But you do, and pull your cock away. She huffs, but she knows that you value seeding a new womb over sex for pleasure’s sake, and entertains herself rubbing her heavy, gravid belly instead.");
+	output("\n\nThe red woman smiles at you, a greedy, desirous smile that you’ve seen somewhere before. Her small eyes move down your [pc.chest], to your [pc.belly] and then to your green, fertile cock. The leaves adorning your genitals rustle with excitement. She chirps in a language you don’t understand, and takes your penis in her hand; her palm is like a warm, silken handkerchief. It yields to your turgid prick, bending just slightly when you push into it.");
+	output("\n\nYou reach for the woman’s breast and squeeze it; it ripples like cloth and her small eyes smile at your sexual aggression. She steps closer, pressing her soft body to yours; your florid penis is pinned between your stomachs. Your new lover mouths a word again and you lift her up. She’s so light that you can easily line her up with your seed-cock, and she wraps her arms around your neck, clearly anticipating the moment you lower her.");
+	output("\n\nYour flexible breeding stalk noses at the red woman’s labia, depositing a line of precum prepared by your mate’s unfinished handjob. Her teeth pinch her lower lip in excitement; a sweet, fragrant sweat beads on her neck and her beautiful breasts. The scent of it drives up your urge to fuck and drives up your cock as well, right into her pussy. She gasps.");
+	output("\n\nHer sex conforms to you, glove-like, wrapping velvet around your crown and shaft as your stroke fills her. You hit the back of her pussy before you can hilt your entire cock, but your disappointment is short-lived when her womb ripples and parts to allow you even deeper. Gratefully, you slide in all the way, feeling the ring of her womb constrict around you.");
+	output("\n\nThe woman giggles a high, chittering giggle and presses her chest close, to smear you in her fragrant sweat. It climbs into your nose, forcing blood into your cock until you’re painfully hard; her scent demands you to fuck her, makes you <i>need</i> it. You draw your shaft out, and then slam it home again, and again. Each stroke weakens the woman’s muscles, causing her to lean away with a little moan of pleasure, until by the tenth she’s hanging over your arms like a rag doll with her petite breasts bouncing on her chest and her tongue dangling from her open mouth.");
+	output("\n\nHer pussy ripples around you like a flag, undulating and drawing you in with tongues of oily, warm skin. Every fold yields to your thrust only to rush up behind to lick at your verdant, tingling prick; the reverse stroke is no less loving as the tongues pull in the other direction, dragging along the crown and collecting tolls of incessantly-streaming precum. You feel a tightening in your back as your body prepares to release its load, and you fuck furiously, trying to enjoy a few more strokes before the end. Your lover senses your tension, and her soft thighs wrap around you like a shawl.");
+	output("\n\nYou grunt and cum, pushing down on your lover’s hips to pin your prick deep inside her ready womb. When the first stroke touches her, her small eyes open wide, and her mouth spreads in a smile. ");
+	if(pc.cumQ() < 8) output("Your tiny squirts don’t seem to impinge upon her joy in the least; you finish in seconds but she merely wraps her arms around you and nibbles on your ear as you slump to the ground with her in your arms.");
+	else if(pc.cumQ() < 3000) output("Each stroke widens her smile, until it nearly splits her face. Her pussy roils around you, bathing your glans in your warm, gooey deposit as you spend your last and slump to the ground.");
+	else
+	{
+		output("Her joy quickly becomes astonishment, as your incredible [pc.balls] produce");
+		if(pc.balls <= 1) output("s");
+		output(" an endless stroke of cum that pushes aside everything - her shifting, loving pussy, her welcoming womb, and finally, even her petite shape. Your orgasm continues for minutes, producing cum to make a whore sweat, until you can stand no longer and slump to the ground, still squirting small aftershocks into her.");
+	}
+	output("\n\nYour newest mate sighs, relaxes and lets herself down from your cock, cradling her ");
+	if(pc.cumQ() < 3000) output("stomach");
+	else output("swollen, rounded belly, which looks almost as pregnant with your spawn as she’ll soon become");
+	output(". A trickle of greenish sperm falls from her ruby-red pussy and she looks up at you with an adoring, possessive gaze. You’d like nothing more than to bask in her afterglow, but the massive orgasm has stirred and cleared your mind. You feel the ethereal lover’s garden begin to slip away....\n\n");
+	processTime(29);
+	pc.orgasm();
+	processTime(200);
+	CombatManager.genericLoss();
 }
