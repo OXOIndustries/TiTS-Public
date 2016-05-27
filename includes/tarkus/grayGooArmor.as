@@ -788,19 +788,19 @@ public function approachGooArmorCrew(arg:Array):void
 			txt += " springs out from her compartment and forms herself right next to you.";
 			if(InShipInterior())
 			{
-				txt += " She gives you an excited wave, then proceeds to wonder about the ship";
+				txt += " She gives you an excited wave, then proceeds to wander about the ship";
 				if((crew(true, true) - 1) > 0) txt += ", admiring the rest of your crew";
 				txt += ".";
 			}
 		}
-		if((pc.armor is GooArmor) || !InShipInterior()) txt += "<i>“Heya, [pc.name]! Like, what’s up?”</i> she responds.";
+		if((pc.armor is GooArmor) || !InShipInterior()) txt += " <i>“Heya, [pc.name]! Like, what’s up?”</i> she responds.";
 		
 		processTime(1);
 	}
 	else
 	{
 		if((pc.armor is GooArmor) || !InShipInterior()) txt += "[goo.name] tilts her head and gives you a bright smile, anticipating what you’ll do next.";
-		else txt += "[goo.name] flashes you a bright smile and continues to wonder around the ship with great interest.";
+		else txt += "[goo.name] flashes you a bright smile and continues to wander around the ship with great interest.";
 	}
 	
 	gooArmorOutput(fromCrew, txt);
