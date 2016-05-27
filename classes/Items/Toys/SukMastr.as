@@ -18,7 +18,7 @@ package classes.Items.Toys
 			
 			this.quantity = 1;
 			this.stackSize = 1;
-			this.type = GLOBAL.GADGET;
+			this.type = GLOBAL.SEXTOY;
 			
 			//Used on inventory buttons
 			this.shortName = "SukMastr";
