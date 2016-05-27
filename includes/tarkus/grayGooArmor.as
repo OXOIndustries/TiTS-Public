@@ -771,6 +771,7 @@ public function approachGooArmorCrew(arg:Array):void
 	var txt:String = "";
 	
 	gooArmorClearOutput(fromCrew);
+	author("Jacques00");
 	showGrayGooArmor();
 	
 	if(introText)
@@ -782,12 +783,25 @@ public function approachGooArmorCrew(arg:Array):void
 		else txt += ", rustling through your inventory.";
 		txt += "\n\nLike a natural reflex, your gooey companion";
 		if(pc.armor is GooArmor) txt += " lifts herself from your torso just barely while staying firmly attached.";
-		else txt += " springs out from her compartment and forms herself right next to you.";
-		txt += "<i>“Heya, [pc.name]! Like, what’s up?”</i> she responds.";
+		else
+		{
+			txt += " springs out from her compartment and forms herself right next to you.";
+			if(InShipInterior())
+			{
+				txt += " She gives you an excited wave, then proceeds to wonder about the ship";
+				if((crew(true, true) - 1) > 0) txt += ", admiring the rest of your crew";
+				txt += ".";
+			}
+		}
+		if((pc.armor is GooArmor) || !InShipInterior()) txt += "<i>“Heya, [pc.name]! Like, what’s up?”</i> she responds.";
 		
 		processTime(1);
 	}
-	else txt += "[goo.name] tilts her head and gives you a bright smile, anticipating what you’ll do next.";
+	else
+	{
+		if((pc.armor is GooArmor) || !InShipInterior()) txt += "[goo.name] tilts her head and gives you a bright smile, anticipating what you’ll do next.";
+		else txt += "[goo.name] flashes you a bright smile and continues to wonder around the ship with great interest.";
+	}
 	
 	gooArmorOutput(fromCrew, txt);
 	
@@ -820,6 +834,7 @@ public function gooArmorCrewOption(arg:Array):void
 	var txt:String = "";
 	
 	gooArmorClearOutput(fromCrew);
+	author("Jacques00");
 	showGrayGooArmor();
 	gooArmorClearMenu(fromCrew);
 	
@@ -1055,7 +1070,7 @@ public function gooArmorCrewOption(arg:Array):void
 				else if(pc.isNice()) txt += " goo friend";
 				else txt += " silver companion";
 				txt += " up and down, thinking.";
-				txt += "\n\n[goo.name] looks back and reaponds, <i>“Looking for a change?”</i>";
+				txt += "\n\n[goo.name] looks back and responds, <i>“Looking for a change?”</i>";
 				txt += "\n\nYou nod, pondering some more.";
 				txt += "\n\n<i>“Totally [pc.name], just name it! What do you think I should change into?”</i>";
 				
@@ -1146,7 +1161,7 @@ public function gooArmorCrewOption(arg:Array):void
 			
 			processTime(1);
 			
-			if(!fromCrew) gooArmorAddButton(fromCrew, 0, "Next", appearance, pc);
+			if(!fromCrew) gooArmorAddButton(fromCrew, 0, "Next", backToAppearance, pc);
 			else gooArmorAddButton(fromCrew, 0, "Next", crew);
 			break;
 		default:
@@ -1164,6 +1179,7 @@ public function gooArmorCrewTalk(arg:Array):void
 	var txt:String = "";
 	
 	gooArmorClearOutput(fromCrew);
+	author("Jacques00");
 	showGrayGooArmor();
 	gooArmorClearMenu(fromCrew);
 	
@@ -1300,6 +1316,7 @@ public function gooArmorChangeBody(arg:Array):void
 	var txt:String = "";
 	
 	gooArmorClearOutput(fromCrew);
+	author("Jacques00");
 	
 	if(newStyle == "back")
 	{
@@ -1339,7 +1356,7 @@ public function gooArmorChangeBody(arg:Array):void
 				txt += "\n\n<i>“Like, you want me to look more like Nova?”</i> The goo girl attempts her best imitation by covering her mouth with one hand and giving a soft, modest giggle. Her shapeshifting begins at her head, reforming the look of her eyes, lips, cheeks and hair until she appears like a mirror reflection of Captain Morrow herself. The changing wave of goo slides down the rest of her body like a thick condom ring down the longitudinal plane of a penis shaft. Her mass makes her limbs a bit more defined, yet smooth and lean.";
 				if(chars["GOO"].legCount != 2) txt += " By the time the wave reaches to the floor below her, her lower body has shifted into a pair of smooth, shapely legs, capped off with comfy-looking shoes. Looking back up, h";
 				else txt += " H";
-				txt += "er body seems to have formed an kind of tight spacer uniform, each shoulder bearing a Bell-Isle/Grunmann patch. The outfit is wide open, letting her still bouncy tits and crotch display openly in the air.";
+				txt += "er body seems to have formed a kind of tight spacer uniform, each shoulder bearing a Bell-Isle/Grunmann patch. The outfit is wide open, letting her still bouncy tits and crotch display openly in the air.";
 				txt += "\n\n<i>“Oops!”</i> [goo.name] squeaks as she notices her lewd exposure and tries to adopt a more conservative look. A tiny “zipper handle” appears below her pussy and proceeds to close up her silver gray-colored uniform, covering the naked areas in its path--traveling from the bulge of her camel toe, sliding across her navel, and stops just below her now half-covered tits. It struggles a bit, making the tightly-compressed muffin-top of breast flesh quake in response. With a cute huff, the goo exhales and the zipper wins the battle, shooting up her cleavage and sealing the round chest globes in a taut encasing, slowing its journey at the base of the neck collar. With that, she looks at you and smiles, trying hard to get into character. <i>“So who’s the " + (crew(true) > 0 ? "crew" : "ship") + "’s captain now?”</i>";
 				txt += "\n\nYou take a moment to admire her new look.";
 				chars["GOO"].legCount = 2;
@@ -1686,6 +1703,7 @@ public function gooArmorChangeArmor(arg:Array):void
 	var txt:String = "";
 	
 	gooArmorClearOutput(fromCrew);
+	author("Jacques00");
 	showGrayGooArmor();
 	
 	if(toggle == "back")
@@ -1831,6 +1849,7 @@ public function gooArmorChangeDesign(arg:Array):void
 	var btn:Number = 0;
 	
 	gooArmorClearOutput(fromCrew);
+	author("Jacques00");
 	showGrayGooArmor();
 	gooArmorClearMenu(fromCrew);
 	
@@ -1948,6 +1967,7 @@ public function gooArmorChangeStyle(arg:Array):void
 	var swimwear:String = "";
 	
 	gooArmorClearOutput(fromCrew);
+	author("Jacques00");
 	showGrayGooArmor();
 	
 	txt += "<i>“" + (rand(2) == 0 ? "No problem!" : "Okay, I’ll try my best!") + "”</i>";
@@ -2062,6 +2082,7 @@ public function gooArmorChangePattern(arg:Array):void
 	var txt:String = "";
 	
 	gooArmorClearOutput(fromCrew);
+	author("Jacques00");
 	showGrayGooArmor();
 	
 	txt += "<i>“" + (rand(2) == 0 ? "Alrighty!" : "Gotcha. Here goes!") + "”</i>";
@@ -2110,6 +2131,7 @@ public function gooArmorChangeEmblem(arg:Array):void
 	var txt:String = "";
 	
 	gooArmorClearOutput(fromCrew);
+	author("Jacques00");
 	showGrayGooArmor();
 	
 	if(style == "Bell-Isle/Grunmann patch")
@@ -2148,6 +2170,7 @@ public function gooArmorChangeHelmet(arg:Array):void
 	var airtight:String = "";
 	
 	gooArmorClearOutput(fromCrew);
+	author("Jacques00");
 	showGrayGooArmor();
 	
 	txt += "<i>“" + (rand(2) == 0 ? "Okay, I’m on it!" : "Let’s see here...") + "”</i>";

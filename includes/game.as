@@ -431,6 +431,7 @@ public function showPerksList():void
 	clearOutput2();
 	showPCBust();
 	setLocation("\nPERKS", "CODEX", "DATABASE");
+	author("");
 	clearGhostMenu();
 	addGhostButton(14, "Back", showPerkListHandler);
 	

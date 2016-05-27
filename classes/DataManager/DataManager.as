@@ -191,6 +191,7 @@
 			var displayMessage:String = "";
 			
 			kGAMECLASS.userInterface.hideBust();
+			kGAMECLASS.userInterface.author("");
 			if (kGAMECLASS.userInterface.systemText != "BY FENOXO") kGAMECLASS.showName("DATA\nMENU");
 			kGAMECLASS.removeInput();
 			
