@@ -246,9 +246,20 @@ public function mainGameMenu(minutesMoved:Number = 0):void {
 			addButton(7, rooms[currentLocation].outText, move, rooms[currentLocation].outExit);
 		}
 	}
+	if (currentLocation == "SHIP INTERIOR")
+	{
+		if (rooms[currentLocation].outExit && isNavDisabled(NAV_OUT_DISABLE)) 
+		{
+			addDisabledButton(7,rooms[currentLocation].outText,rooms[currentLocation].outText,"You can’t exit your ship here!");
+		}
+	}
 	if (currentLocation == shipLocation)
 	{
-		addButton(5, "Enter Ship", move, "SHIP INTERIOR");
+		if (isNavDisabled(NAV_IN_DISABLE))
+		{
+			addDisabledButton(5, rooms[currentLocation].inText, rooms[currentLocation].inText, "You can’t enter your ship here!");
+		}
+		else addButton(5, "Enter Ship", move, "SHIP INTERIOR");
 	}
 	
 	if (rooms[currentLocation].runAfterEnter != null) rooms[currentLocation].runAfterEnter();
@@ -741,6 +752,9 @@ public function shipMenu():Boolean {
 		return true;
 	}
 	
+	// Location Exceptions
+	if(shipLocation == "600") myrellionLeaveShip();
+	
 	// Main ship interior buttons
 	if(currentLocation == "SHIP INTERIOR")
 	{
@@ -951,21 +965,6 @@ public function leaveShipOK():Boolean
 	{
 		output(" and attempt to head towards the airlock... but you can barely budge an inch from where you are sitting. You’re immobilized. It looks like your endowments have swollen far too large, making it impossible for you to exit your ship! <b>You’ll have to take care of that if you want to leave...</b>");
 		currentLocation = "SHIP INTERIOR";
-		return false;
-	}
-	if(shipLocation == "600" && flags["KQ2_NUKE_EXPLODED"] != undefined)
-	{
-		output(" and head towards the airlock--but suddenly, your ship’s radioactivity alarms start blaring, causing you to freeze instantaneously. The planet has been glassed and is surrounded by several levels of radiation. How you even ended up here is anyone’s guess, but you probably shouldn’t leave your ship to venture off into a nuclear wasteland if you know what’s good for you...");
-		
-		if(flags["KQ2_MYRELLION_STATE"] == undefined)
-		{
-			if (!reclaimedProbeMyrellion())
-			{
-				flags["KQ2_MYRELLION_STATE"] = 1;
-				if(flags["KQ2_DANE_COORDS_TIMER"] == undefined) flags["KQ2_DANE_COORDS_TIMER"] = GetGameTimestamp();
-			}
-			else if(flags["KING_NYREA"] != undefined) flags["KQ2_MYRELLION_STATE"] = 2;
-		}
 		return false;
 	}
 	return true;
