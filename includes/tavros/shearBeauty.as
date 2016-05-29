@@ -157,7 +157,7 @@ public function hairworkFromCeria():void
 	output("As soon as you tell her that you want your hair done, Ceria takes the bubblegum out of her mouth and tosses it out, putting on a professional air. Even her ears tilt backwards to emphasize themselves less.");
 	output("\n\n<i>“Lengthening, cutting, coloring or styling?");
 	if(!pc.hasHair()) output(" I mean, not that you have anything to work with, but I can fix that easy enough if you want.");
-	if(pc.hasFur()) output(" I can also do a color job on that fur of yours.");
+	if(pc.hasPartFur()) output(" I can also do a color job on that fur of yours.");
 	output("”</i>");
 
 	processTime(1);
@@ -177,7 +177,7 @@ public function hairworkFromCeria():void
 	if(pc.hairLength <= 0) addDisabledButton(3,"Style","Style","You need some hair in order to style it!");
 	if(InCollection(pc.hairType, GLOBAL.HAIR_TYPE_REGULAR, GLOBAL.HAIR_TYPE_QUILLS)) addButton(3,"Style",ceriaHairStyleChoices,undefined,"Style","Get your hair styled into something fashionable.");
 	else addDisabledButton(3,"Style","Style","You can only get traditional hair styled here.");
-	if(pc.hasFur() || pc.hasLegFlag(GLOBAL.FLAG_FURRED) || pc.hasTailFlag(GLOBAL.FLAG_FURRED) || pc.hasArmFlag(GLOBAL.FLAG_FURRED)) addButton(4,"Fur Color",furColorMenu,undefined,"Fur Color","Get your fur dyed too!");
+	if(pc.hasPartFur()) addButton(4,"Fur Color",furColorMenu,undefined,"Fur Color","Get your fur dyed too!");
 	else addDisabledButton(4,"Fur Color","Fur Color","You don't have fur to dye!");
 	addButton(14,"Back",approachCeria);
 }

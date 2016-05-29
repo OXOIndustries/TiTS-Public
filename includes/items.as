@@ -730,6 +730,7 @@ public function inventoryDisplay():void
 public function generalInventoryMenu():void
 {
 	clearOutput();
+	showBust("");
 	showName("\nINVENTORY");
 	var x:int = 0;
 	itemScreen = inventory;
