@@ -800,10 +800,10 @@ public function approachGooArmorCrew(arg:Array):void
 		if(gooArmorIsCrew())
 		{
 			txt += "You approach [goo.name] and attempt to get her attention.";
-			if(pc.isBimbo()) txt += " <i>“How’s my favorite girlfriend, doing?”</i> you ask, giving her a big hug.";
+			if(pc.isBimbo()) txt += " <i>“How’s my totes-fave B.F.F. doing?”</i> you ask, giving her a big hug.";
 			else if(pc.isNice()) txt += " <i>“Everything okay there, [goo.name]?”</i> you ask, waving.";
-			else txt += " <i>“Hey, goo-face! Anything new?”</i> you say, giving the girl a nudge.";
-			txt += "\n\nShe turns to you. <i>“Oh hey, [pc.name]! Like, how are you?”</i> she responds.";
+			else txt += " <i>“Hey, goo-face! How goes?”</i> you say, giving the girl a nudge.";
+			txt += "\n\nShe turns to you. <i>“Oh hey, [pc.name]! Just super! And, like, how are you?”</i> she responds.";
 		}
 		else
 		{
