@@ -1813,13 +1813,15 @@ public function processTime(arg:int):void {
 					else pc.vaginas[x].shrinkCounter = 0;
 					//Reset for this cunt.
 					tightnessChanged = false;
-					if(pc.vaginas[x].loosenessRaw < 2) {}
-					else if(pc.vaginas[x].loosenessRaw >= 5 && pc.vaginas[x].shrinkCounter >= 60) tightnessChanged = true;
+					if(pc.vaginas[x].loosenessRaw >= 5 && pc.vaginas[x].shrinkCounter >= 60) tightnessChanged = true;
 					else if(pc.vaginas[x].loosenessRaw >= 4 && pc.vaginas[x].shrinkCounter >= 96) tightnessChanged = true;
 					else if(pc.vaginas[x].loosenessRaw >= 3 && pc.vaginas[x].shrinkCounter >= 132) tightnessChanged = true;
 					else if(pc.vaginas[x].loosenessRaw >= 2 && pc.vaginas[x].shrinkCounter >= 168) tightnessChanged = true;
+					else if(pc.vaginas[x].loosenessRaw >= pc.vaginas[x].minLooseness && pc.vaginas[x].shrinkCounter >= 204) tightnessChanged = true;
 					if(tightnessChanged) {
 						pc.vaginas[x].loosenessRaw--;
+						if (pc.vaginas[x].loosenessRaw < pc.vaginas[x].minLooseness)
+							pc.vaginas[x].loosenessRaw = pc.vaginas[x].minLooseness;
 						msg += "\n\n<b>Your";
 						if(pc.totalVaginas() > 1) msg += " " + num2Text2(x+1);
 						msg += " " + pc.vaginaDescript(x) + " has recovered from its ordeals, tightening up a bit.</b>";
@@ -1833,13 +1835,15 @@ public function processTime(arg:int):void {
 			else pc.ass.shrinkCounter = 0;
 			//Reset for this cunt.
 			tightnessChanged = false;
-			if(pc.ass.loosenessRaw < 2) {}
-			else if(pc.ass.loosenessRaw >= 5 && pc.ass.shrinkCounter >= 12) tightnessChanged = true;
+			if(pc.ass.loosenessRaw >= 5 && pc.ass.shrinkCounter >= 12) tightnessChanged = true;
 			else if(pc.ass.loosenessRaw >= 4 && pc.ass.shrinkCounter >= 24) tightnessChanged = true;
 			else if(pc.ass.loosenessRaw >= 3 && pc.ass.shrinkCounter >= 48) tightnessChanged = true;
 			else if(pc.ass.loosenessRaw >= 2 && pc.ass.shrinkCounter >= 72) tightnessChanged = true;
+			else if(pc.ass.loosenessRaw >= pc.ass.minLooseness && pc.ass.shrinkCounter >= 96) tightnessChanged = true;
 			if(tightnessChanged) {
 				pc.ass.loosenessRaw--;
+				if (pc.ass.loosenessRaw < pc.ass.minLooseness)
+					pc.ass.loosenessRaw = pc.ass.minLooseness;
 				if(pc.ass.loosenessRaw <= 4) eventBuffer += "\n\n<b>Your " + pc.assholeDescript() + " has recovered from its ordeals and is now a bit tighter.</b>";
 				else eventBuffer += "\n\n<b>Your " + pc.assholeDescript() + " recovers from the brutal stretching it has received and tightens up.</b>";
 			}
@@ -1881,17 +1885,9 @@ public function processTime(arg:int):void {
 				//Unlock dat shiiit
 				if(flags["HOLIDAY_OWEEN_ACTIVATED"] == undefined && (isHalloweenish() || rand(100) == 0)) eventQueue.push(hollidayOweenAlert);
 				if(pc.hasPerk("Honeypot") && days % 3 == 0) honeyPotBump();
-				//Exhibitionism reduction!
-				if
-				(	!(pc.armor is EmptySlot)
-				&&	!(pc.lowerUndergarment is EmptySlot || pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN) || pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS))
-				&&	!(pc.upperUndergarment is EmptySlot || pc.upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || pc.upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST))
-				)
-				{
-					if(pc.isChestExposed() && pc.isCrotchExposed() && pc.isAssExposed())
-						{ /* No reduction for a full set of exposed clothing! */ }
-					else pc.exhibitionism(-0.5);
-				}
+				//Exhibitionism reduction! Reduces exhibition if chest, crotch and ass are not all exposed
+				if(!(pc.isCrotchExposed() && pc.isAssExposed() && pc.isChestExposed()))
+					pc.exhibitionism(-0.5);
 				// New Texas cockmilker repair cooldown.
 				if (flags["MILK_BARN_COCKMILKER_BROKEN"] == undefined && flags["MILK_BARN_COCKMILKER_REPAIR_DAYS"] != undefined)
 				{
