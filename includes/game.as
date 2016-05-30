@@ -464,11 +464,12 @@ public function crewRecruited(allcrew:Boolean = false):Number
 	if (!annoNotRecruited()) counter++;
 	if (bessIsFollower()) counter++;
 	if (yammiIsCrew()) counter++;
+	if (gooArmorIsCrew()) counter++;
 	
 	// Pets or other non-speaking crew members
 	if (allcrew)
 	{
-		if (hasGooArmor()) counter++;
+		if (hasGooArmor() && !gooArmorIsCrew()) counter++;
 		if (varmintIsTame()) counter++;
 	}
 	
@@ -529,9 +530,10 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 			addButton((count + other) - 1, "Yammi", yammiInTheKitchen);
 		}
 	}
-	if (hasGooArmor())
+	if (hasGooArmor() || gooArmorIsCrew())
 	{
-		other++;
+		if(gooArmorIsCrew()) count++; // Speaking crew member on ship.
+		else other++; // Mostly quiet member on person or in storage.
 		if (!counter)
 		{
 			crewMessages += gooArmorOnSelfBonus((count + other) - 1);

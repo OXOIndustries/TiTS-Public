@@ -124,6 +124,7 @@ public function acceptYammiBunsInShip():void
 	yammiFollowerDisplay();
 	output("You shrug. If she wants to come with, you can’t imagine it will hurt. And it might be nice to have an actual meal prepared for you once in a while. You agree.");
 	output("\n\n<i>“You won’t regret this! I promise! Let’s go, Boss, I have to make sure the kitchen’s all stocked up before we go anywhere!”</i> She locks the front door behind you and then slides the keycard back under the door.");
+	output("\n\n(<b>Yammi has joined your crew!</b>)");
 	flags["YAMMI_RECRUITED"] = 1;
 	flags["YAMMI_IS_CREW"] = 1;
 	processTime(8);
