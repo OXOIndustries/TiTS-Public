@@ -13498,6 +13498,14 @@
 			return false;
 		}
 		public function hasPregnancy():Boolean { return isPregnant(); }
+		public function hasWombPregnancy():Boolean
+		{
+			return (totalWombPregnancies() > 0);
+		}
+		public function hasAnalPregnancy():Boolean
+		{
+			return (isPregnant(3));
+		}
 		
 		//Argument is the same string as defined in the handler.
 		//Example: VenusPitcherSeedCarrier
@@ -13541,6 +13549,15 @@
 		{
 			var count:int = 0;
 			for (var i:int = 0; i < pregnancyData.length; i++)
+			{
+				if ((pregnancyData[i] as PregnancyData).pregnancyType != "") count++;
+			}
+			return count;
+		}
+		public function totalWombPregnancies():int
+		{
+			var count:int = 0;
+			for (var i:int = 0; i < vaginas.length; i++)
 			{
 				if ((pregnancyData[i] as PregnancyData).pregnancyType != "") count++;
 			}

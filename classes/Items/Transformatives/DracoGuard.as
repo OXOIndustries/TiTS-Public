@@ -713,6 +713,18 @@
 						changes++;
 					}
 				}
+				if (changes < changeLimit && pc.race() == "gryvain" && pc.hasWombPregnancy() && pc.isLactating() && !pc.hasPerk("Hypermilky"))
+				{
+					output("\n\nYou pause a moment as you feel a sudden burning itch in your [pc.chest]. There is a tingling sensation that radiates from your pregnant womb" + (pc.totalWombPregnancies() == 1 ? "" : "s") + ", suddenly bursting outward and spreading to your irritated [pc.nipples]. Like an extinguisher to a fire, your nipples are hit with a breezy coolness and you let out a relieved sigh. But just before you think it is over, your chest gradually fills with another pressure... Your lactation is picking up in production and filling your " + pc.breastCup(pc.biggestTitRow()) + " tits! Your hand travels over your [pc.nipples " + pc.biggestTitRow() + "], and you " + (pc.isChestExposed() ? "notice the [pc.milkGem] [pc.milkNoun] trickling off them and plotting on the floor" : "feel the [pc.milkVisc] [pc.milkNoun] coat your top, rapidly wetting the surface with ease") + ".");
+					
+					pc.milkFullness += 200;
+					
+					output("\n\nYour tits continue to get fuller and fuller and you get a feeling that they won’t stop for anything! When it finally settles, the pressure is almost overwhelming--you’ve got to milk yourself right away! Due to the vast amount of gryvain genes you have in your system, you suspect this permanent change is a result of the drug’s reaction to your preganancy and [pc.milkNoun] production...");
+					
+					output("\n\n<b>Gained perk: Hypermilky!</b> (Lactation will not decrease from disuse or overfilling.)");
+					pc.createPerk("Hypermilky", 0, 0, 0, 0, "Lactation will not decrease from disuse or overfilling.");
+					changes++;
+				}
 				
 				if(changes == 0)
 				{
