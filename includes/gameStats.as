@@ -186,9 +186,9 @@ public function statisticsScreen(showID:String = "All"):void
 		output2(" " + GLOBAL.SKIN_TYPE_NAMES[pc.skinType]);
 		output2("\n<b>* Skin Tone: </b>" + StringUtil.toDisplayCase(pc.skinTone));
 		if(pc.hasStatusEffect("Vanae Markings")) output2(", " + StringUtil.toDisplayCase(pc.skinAccent) + " Markings");
-		if(pc.hasFur() || pc.hasLegFur() || pc.hasArmFlag(GLOBAL.FLAG_FURRED) || pc.hasTailFlag(GLOBAL.FLAG_FURRED)) output2("\n<b>* Fur Color: </b>" + StringUtil.toDisplayCase(pc.furColor));
-		if(pc.hasScales() || pc.hasLegFlag(GLOBAL.FLAG_SCALED) || pc.hasArmFlag(GLOBAL.FLAG_SCALED) || pc.hasTailFlag(GLOBAL.FLAG_SCALED)) output2("\n<b>* Scale Color: </b>" + StringUtil.toDisplayCase(pc.scaleColor));
-		if(pc.chitinColor() != "null") output2("\n<b>* Chitin Color: </b>" + StringUtil.toDisplayCase(pc.chitinColor()));
+		if(pc.hasPartFur() || pc.hasPartFeathers()) output2("\n<b>* Fur Color: </b>" + StringUtil.toDisplayCase(pc.furColor));
+		if(pc.hasPartScales()) output2("\n<b>* Scale Color: </b>" + StringUtil.toDisplayCase(pc.scaleColor));
+		if(pc.hasPartChitin()) output2("\n<b>* Chitin Color: </b>" + StringUtil.toDisplayCase(pc.chitinColor()));
 		output2("\n<b>* Arms:</b> 2,");
 		if(pc.armFlags.length > 0)
 		{

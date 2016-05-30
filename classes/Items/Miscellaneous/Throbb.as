@@ -161,7 +161,7 @@
 				//Make a hyper dick bigger!
 				else if (pc.cockLengthUnlocked(arg, 30))
 				{
-					kGAMECLASS.output("\n\nDespite its immensity, your [pc.cock " + arg + "] has become painfully hard. You idly wonder how you have enough blood to make a dong this size this rigid before another wave of excitement washes that away. Pre-cum is practically pissing out of your slit as you start pumping your expanding length, rolling down the [pc.cockHead " + arg + "] in waves of cream that are sure to be outshone by your inevitable, massive orgasm. You're throbbing so hard, thickening with each beat of your heart. It feels so good that you can't fathom how why you haven't cum yet. It's like you're drowning in an ocean of burning, oozing lust, and the only thing exposed is the steadily growing tip of your length. <b>Your [pc.cock " + arg + "] has gotten even bigger!</b>");
+					kGAMECLASS.output("\n\nDespite its immensity, your [pc.cock " + arg + "] has become painfully hard. You idly wonder how you have enough blood to make a dong this size this rigid before another wave of excitement washes that away. Pre-cum is practically pissing out of your slit as you start pumping your expanding length, rolling down the [pc.cockHead " + arg + "] in waves of cream that are sure to be outshone by your inevitable, massive orgasm. You're throbbing so hard, thickening with each beat of your heart. It feels so good that you can't fathom why you haven't cum yet. It's like you're drowning in an ocean of burning, oozing lust, and the only thing exposed is the steadily growing tip of your length. <b>Your [pc.cock " + arg + "] has gotten even bigger!</b>");
 					temp = Math.round(10 + rand(30))/10;
 					if(pc.hasPerk("Hung")) temp *= 2;
 					pc.cocks[arg].cLengthRaw += temp;

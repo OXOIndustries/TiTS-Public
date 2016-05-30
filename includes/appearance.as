@@ -36,6 +36,7 @@ public function appearance(forTarget:Creature):void
 	showPCBust();
 	showLocationName();
 	showName("\nAPPEARANCE");
+	author("");
 	clearGhostMenu();
 	addGhostButton(14, "Back", pcAppearance);
 	

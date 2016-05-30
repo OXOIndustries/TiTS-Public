@@ -1444,6 +1444,7 @@ public function arbetzPoolBonus():Boolean
 		}
 		else addButton(0, "Swim", arbetzSwimOptions, 0, "Swim", "Go for a swim.");
 		addButton(1, "Vending Machine", arbetzVendingMachine);
+		gooArmorTalkButton(2);
 	}
 	else
 	{

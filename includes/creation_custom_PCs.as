@@ -28,6 +28,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 	switch (short)
 	{
 		case "archie":
+			if(!TF) break;
 			pc.breastRows[0].breastRatingRaw = 4;
 			if(!pc.hasCock()) pc.createCock();
 			pc.shiftCock(0,GLOBAL.TYPE_CANINE);
@@ -42,6 +43,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			break;
 		//Naoki, dickgirl(shemale), human dong, balls, boobs, Not sure if this is relevant at all, but it'd be a manufactured person/synthetic, but otherwise humanoid, Distinctive, but simple facial stripe
 		case "naoki":
+			if(!TF) break;
 			if(!pc.hasCock()) pc.createCock();
 			pc.shiftCock(0,GLOBAL.TYPE_HUMAN);
 			pc.cocks[0].cockColor = "black";
@@ -60,6 +62,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			break;
 		//Fetysh - Female, max fertility, the perks that increase pregnancy speed (I believe Marae's, Fera's and the brood mother one). Other perks I'll enjoy getting during leveling. As for character specifics, short, about 4'11", 95lbs, tentacle hair, blue-black skin, spaded tail, normal hands/feet. Virginal cunt/ass to start with and C-cup breasts. (Can those resist most normal forms of shrinking? Not all if you could, sort of like the bimbo body that keeps them at a minimum size)
 		case "fetysh":
+			if(!TF) break;
 			if(!pc.hasVagina()) pc.createVagina();
 			pc.vaginas[0].wetnessRaw = 2;
 			pc.fertilityRaw = 10;
@@ -111,6 +114,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 		- Precision
 		- Tactician*/
 		case "yui":
+			if(!TF) break;
 			pc.tallness = 96;
 			pc.hipRatingRaw = 7;
 			pc.buttRatingRaw = 8;
@@ -141,6 +145,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 		//Perks: Nanoparticle Body: Damage reduction.
 		//X-Buster: Special attack. (Opens abdomen to release beam lances at enemy.)
 		case "kosmos":
+			if(!TF) break;
 			pc.skinTone = "light";
 			pc.eyeColor = "red";
 			pc.hairLength = pc.tallness / 2 + 1;
@@ -163,6 +168,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 		Profession: Alchemist / Scientist*/
 		case "sennil":
 		case "sennil kharnish":
+			if(!TF) break;
 			pc.thickness = 25;
 			pc.skinTone = "light";
 			pc.hairColor = "white";
@@ -176,6 +182,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 		/*Danime91 I'd like the concept behind my character to be a kind of genetically enhanced super-soldier/first-wave colonist. So she would be taller than average, like 6.5 ft, with high strength and toughness stats and pretty buff (about middle of the way between average and max muscles). Breasts at C-cup. Have her be a futa with balls as well as a vag, because if there's one thing colonists on an unsettled hostile world need, it's redundancy. Increased fertility and virility perks, if they are still going to be around in this game. Other than that, if TiTS is going to be anything like CoC, I'm pretty sure I can make my character however I want her to be through the course of the game.*/
 		case "danime":
 		case "danime91":
+			if(!TF) break;
 			pc.tallness = 78;
 			pc.physique(pc.physiqueMax());
 			pc.reflexes(pc.reflexesMax());
@@ -213,6 +220,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 		he has a rather well-endowed human-like cock (10 inches in lengh, 2 inches wild) and larger than average balls
 		He has two flat breasts with one nipple each */
 		case "kaeln":
+			if(!TF) break;
 			//Would set legs/tail/feet, but Simii parts are not presently set up for PC.
 			pc.tallness = 66;
 			if(pc.femininity > 40) pc.femininity = 40;
@@ -235,6 +243,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 		6'2" tall, max femininity.
 		All else same as a standard starting character.*/
 		case "anon":
+			if(!TF) break;
 			pc.faceType = GLOBAL.TYPE_SHARK;
 			pc.tailCount = 1;
 			pc.tailType = GLOBAL.TYPE_SHARK;
@@ -268,6 +277,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 
 		Background Perks: Big Breasts, Whoring.*/
 		case "tia":
+			if(!TF) break;
 			pc.thickness = 65;
 			pc.tone = 30;
 			if(pc.buttRatingRaw < 6) pc.buttRatingRaw = 6;
@@ -328,6 +338,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 		
 		case "skeith":
 		case "skeith straud":
+			if(!TF) break;
 			pc.tallness = 69;
 			pc.legType = GLOBAL.TYPE_DRACONIC;
 			pc.faceType = GLOBAL.TYPE_DRACONIC;
@@ -366,6 +377,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 
 		I hope this is not to much for a single character and also sorry for my bad english. It´s not my native language.*/
 		case "nivâ":
+			if(!TF) break;
 			pc.hairColor = "red";
 			pc.hairLength = 10;
 			pc.skinTone = "olive";
@@ -382,6 +394,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			break;
 		//Skyhusky I would like a tall husky girl to play, Haha. Vague! <3
 		case "skyhusky":
+			if(!TF) break;
 			if(pc.hasVagina()) pc.vaginas[0].type = GLOBAL.TYPE_CANINE;
 			if(pc.hasCock()) 
 			{
@@ -418,6 +431,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 		Don' t hesitate to contact me if you have questions.*/
 		case "kad'rick":
 		case "kad":
+			if(!TF) break;
 			pc.tone = 100;
 			pc.thickness = 50;
 			pc.tallness = 77;
@@ -446,6 +460,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 
 		You have a virgin anus, placed between your soft yet firm ass-cheeks where it belongs.*/
 		case "glavior":
+			if(!TF) break;
 			pc.createBreastRow();
 			pc.createBreastRow();
 			pc.breastRows[0].breastRatingRaw = 18;
@@ -508,6 +523,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 		Eye colour: Purple
 		Cum + Milk multiplier: Just put a big number please xD*/
 		case "daisy":
+			if(!TF) break;
 			if(!pc.hasCock()) pc.createCock();
 			if(!pc.hasVagina()) pc.createVagina();
 			pc.tallness = 75;
@@ -527,6 +543,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 		Breasts: DD
 		Height: 5'4"*/
 		case "dawn":
+			if(!TF) break;
 			pc.eyeColor = "blue";
 			pc.hairColor = "blonde";
 			pc.hairLength = 13;
@@ -541,6 +558,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 		//50-50 masculine-feminine.
 		//Everything else as normal
 		case "rope":
+			if(!TF) break;
 			pc.femininity = 50;
 			pc.removeCocks();
 			pc.removeVaginas();
@@ -560,6 +578,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 
 		And I suppose That'll do, though it would be lovely if you would write it down more as "Wolfish features" ;D*/
 		case "dacraun":
+			if(!TF) break;
 			pc.tallness = 79;
 			pc.hairLength = 20;
 			pc.hairColor = "black";
@@ -589,6 +608,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 
 		According To Offbeatr, I pledged the amount just a few days shy of 2 months ago. If that is within the time frame, then I have included the character information below. Not sure if you wanted a name as well or just the detailed "mini-overview" but I have included everything, short of her background, below.*/
 		case "taki":
+			if(!TF) break;
 			pc.tallness = 77;
 			pc.scaleColor = "blue";
 			if(!pc.hasCock()) pc.createCock();
@@ -617,6 +637,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			break;
 		/*Alexia, Female, normal genitals, Futa Optional, D cup breast, Kind, Pansexual, piercings and Tattooes, Not a total slut. (Space Pirate with a strict moral code, if possible) =), jelvegaa@hotmail.com*/
 		case "alexia":
+			if(!TF) break;
 			if(pc.hasVagina()) pc.createVagina();
 			pc.breastRows[0].breastRatingRaw = 4;
 			break;
@@ -635,6 +656,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 		If I have left anything you needed for the custom character out, please let me know (assuming I even made the cut to get one)!*/
 		//9999 needs pig parts!
 		case "brenda":
+			if(!TF) break;
 			pc.tallness = 77;
 			pc.thickness = 100;
 			pc.breastRows[0].breastRatingRaw = 5;
@@ -663,6 +685,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 		Succubus Tail
 		Snake Tongue*/
 		case "warkonst":
+			if(!TF) break;
 			pc.hairColor = "black";
 			pc.hairLength = 1;
 			if(!pc.hasCock()) pc.createCock();
@@ -696,6 +719,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			break;
 		/*Sablecaballero Human futanari with curvy body, red long hair, DD breasts, human dick, and all pregnancy/cum production perks.*/
 		case "sablecaballero":
+			if(!TF) break;
 			if(!pc.hasCock()) pc.createCock();
 			if(!pc.hasVagina()) pc.createVagina();
 			pc.hairLength = 12;
@@ -715,6 +739,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 		Pale skin, elfin ears, otherwise human appearance
 		If we're allowed to request things that don't exist (with no guarantee, of course,) maybe some perk or tf that sends her into heat periodically? Otherwise, maybe just starting with some coal (or TiTS equivalent heat-inducing item.)*/
 		case "hikari":
+			if(!TF) break;
 			if(pc.hasCock()) pc.removeCock(0);
 			if(!pc.hasVagina()) pc.createVagina();
 			if(pc.femininity < 70) pc.femininity = 70;
@@ -734,6 +759,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 		Uncountable number of red, semi-translucent tentacles extendible from anywhere.
 		Perks: Equivalent of sadist and masochist; openings instantly tighten back up to virginal after sex; equivalent of whispered; equivalent of double attack.*/
 		case "thanyl":
+			if(!TF) break;
 			pc.earType = GLOBAL.TYPE_FELINE;
 			pc.faceType = GLOBAL.TYPE_FELINE;
 			pc.armType = GLOBAL.TYPE_FELINE;
@@ -765,6 +791,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			break;
 		/*Trypticon2008 6 foot 2 inches. medium long red hair. slender but not skinny. Her skin and face are like from Neytiri in Avatar. Flexible enough to self felate her. 2 hidden retractable tentacle on her back (stomach height) that can extend to 2 meters and are 5cm thick. Both have a penis like phallus and the end and are dripping with a slimy lubricant. (can be used for self insertion/pleasure). She has a tail just above her butt that is 1 meter in lenght and is 5 cm at the base and 3cm at the tip what has a phallus shape. Tentacles/tail can impregnate others but not her self.*/
 		case "trypticon":
+			if(!TF) break;
 			pc.tallness = 74;
 			pc.hairLength = 6;
 			pc.hairColor = "red";
@@ -780,6 +807,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			break;
 		/*Name is Dina. Female, 8 ft 7 in, Four rows of breasts, Top DD, 2nd C, 3rd B, Lower A, 0.5 inch nipples all around, lactating. Blue scales, shark face, shark tail, dragon legs, 1 ft dragon horns, dragon tongue, shoulder length silver hair. dragon ears, large dragon wings, flared thighs, large butt, thin body, good muscle definition. Dragon breath. 2.5 inch clit, constantly wet vagina.*/
 		case "dina":
+			if(!TF) break;
 			if(!pc.hasVagina()) pc.createVagina();
 			if(pc.femininity < 70) pc.femininity = 70;
 			pc.tallness = 103;
@@ -819,6 +847,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			break;
 		/*Ayreo Greywolf 5ft6 silver blue (yeah it is a real fur color) longfurred fox/wolf (kinda scruffy looking) His posture is pretty relaxed but also with the kinda that he has no time for nonsense. All and All he is pretty average, although a bit of a heavy frame, he appears to be in decent shape but not body builder status. Clothed he wears his naval uniform proudly as a commander should, setting the example for his crew to follow. Nude, you can defiantly note his longer fur, it almost hides his sheath completely. again pretty average, if not slightly thicker hung for a fox, his sheath is a bit thicker than what would be comfortable on a fox, must be his wolf heritage. His balls are pretty average for a wolf, neatly hidden mostly by his long fur. his tail is almost fitting for a germansheppard, if not slightly more bushy, making a nice little cross between fox and wolf and at almost 3 ft long behind him. He carries it proudly behind him, it swishes to and fro depending on his mood and there are those stressful times that his fur may bristle out and it looks like a bottle brush. Like a fox he does have that white tip at the end highlighted with a black ring. His paws , hands and feet have those nice dark furred boots that you would find on a fox.*/
 		case "ayreo":
+			if(!TF) break;
 			pc.tallness = 66;
 			pc.furColor = "silver-blue";
 			pc.thickness = 66;
@@ -846,6 +875,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			break;
 		/*Peppercotton Oviposter, High Fertility, Normal Height (Five Seven), 2 Breasts ( D Cup), 1 Vagina, 1 Butt, */
 		case "peppercotton":
+			if(!TF) break;
 			pc.fertilityRaw = 4;
 			if(!pc.hasCock()) pc.createCock();
 			if(!pc.cocks[0].hasFlag(GLOBAL.FLAG_OVIPOSITOR)) pc.cocks[0].addFlag(GLOBAL.FLAG_OVIPOSITOR);
@@ -861,6 +891,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 		Perks: Messy Orgasms; Scholar (History); Dragonfire; Elven Bounty; Enlightened Nine-tails; Fera's Boon - Alpha; Pilgrim's Bounty.
 		Item: Spellblade or something similar.*/
 		case "gakre":
+			if(!TF) break;
 			pc.tallness = 88;
 			pc.thickness = 33;
 			pc.femininity = 35;
@@ -901,6 +932,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 		Genitals: Tight Vagina with 2" clitoris
 		Perks (Closest Equivalent): Wet Pussy, Big Tits, Big Clit, Fertility, Smart, Evade, Regeneration*/
 		case "stephanie":
+			if(!TF) break;
 			pc.tallness = 62;
 			pc.hairColor = "red";
 			pc.skinTone = "light";
@@ -916,6 +948,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			break;
 		/*Decievedtadpole I suppose I'll go with my preferred character from CoC. Full human around 6ft 5, full masculinity, flat chest, 16 inch package with quad testes. Definitely more smart than strong, so a high intelligence. This is more just for convenience and not wasting my time having to get my character the way I like him.*/
 		case "decievedtadpole":
+			if(!TF) break;
 			pc.tallness = 77;
 			pc.femininity = 0;
 			pc.breastRows[0].breastRatingRaw = 0;
@@ -934,6 +967,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 		4x 2" balls
 		Perkswise, idc, whatever makes sense for a starting character. Nothing OP needed.*/
 		case "junker":
+			if(!TF) break;
 			if(!pc.hasCock()) pc.createCock();
 			pc.createCock();
 			pc.shiftCock(0,GLOBAL.TYPE_EQUINE);
@@ -979,6 +1013,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 		Your nipples are pierced with fertite nipple-chain.
 		Looking positively perverse, a fertite jacob's ladder adorns your pierced, infernal prick.*/
 		case "calvin":
+			if(!TF) break;
 			pc.tallness = 84;
 			pc.thickness = 25;
 			pc.tone = 70;
@@ -1006,15 +1041,19 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.ballSizeRaw = 6;			
 			break;
 		case "":
+			if(!TF) break;
 			
 			break;
 		case "":
+			if(!TF) break;
 			
 			break;
 		case "":
+			if(!TF) break;
 			
 			break;
 		case "":
+			if(!TF) break;
 			
 			break;
 		default:

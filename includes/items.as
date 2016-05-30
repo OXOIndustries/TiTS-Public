@@ -730,6 +730,7 @@ public function inventoryDisplay():void
 public function generalInventoryMenu():void
 {
 	clearOutput();
+	showBust("");
 	showName("\nINVENTORY");
 	var x:int = 0;
 	itemScreen = inventory;
@@ -1143,6 +1144,7 @@ public function hasShipStorage():Boolean
 	if (flags["SHIP_STORAGE_EQUIPMENT"] == undefined) flags["SHIP_STORAGE_EQUIPMENT"] = 10;
 	if (flags["SHIP_STORAGE_CONSUMABLES"] == undefined) flags["SHIP_STORAGE_CONSUMABLES"] = 10;
 	if (flags["SHIP_STORAGE_VALUABLES"] == undefined) flags["SHIP_STORAGE_VALUABLES"] = 10;
+	if (flags["SHIP_STORAGE_TOYS"] == undefined) flags["SHIP_STORAGE_TOYS"] = 10;
 	
 	return true;
 }
@@ -1181,6 +1183,13 @@ public function shipStorageMenuRoot():void
 		addButton(3, "Valuables", shipStorageMenuType, "VALUABLES");
 	}
 	else addDisabledButton(3, "Valuables");
+	
+	if (flags["SHIP_STORAGE_TOYS"] != undefined)
+	{
+		output(" Against one wall, an inconspicuous box with a slide-out compartment is used for storing any lewd toys you may have.");
+		addButton(4, "Toys", shipStorageMenuType, "TOYS");
+	}
+	else addDisabledButton(4, "Toys");
 	
 	if (kGAMECLASS.flags["DONG_DESIGNER_INSTALLED"] == 1)
 	{
@@ -1299,6 +1308,13 @@ public function getListOfType(from:Array, type:String):Array
 				
 			case "VALUABLES":
 				if (InCollection(item.type, GLOBAL.GEM, GLOBAL.QUESTITEM))
+				{
+					items.push(item);
+				}
+				break;
+				
+			case "TOYS":
+				if (InCollection(item.type, GLOBAL.SEXTOY))
 				{
 					items.push(item);
 				}

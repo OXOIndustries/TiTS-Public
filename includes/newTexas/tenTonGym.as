@@ -243,6 +243,7 @@ public function swimmingPoolBonus():Boolean
 		}
 		addButton(5,"GetReady",poolGetReady,1,"Get Ready","Get yourself swim-ready.");
 	}
+	gooArmorTalkButton(2);
 	return false;
 }
 //Outfit Change/Reclaim
