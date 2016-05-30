@@ -1389,19 +1389,19 @@ public function milkturbation():void
 		}
 		//End: Mooing cow-gasm all up in
 		//This one is for cow-girls. Requires boobs.
-		else if(pc.race() == "cow" || pc.race() == "cow-morph")
+		else if(pc.hasBreasts() && pc.cowScore() >= 4)
 		{
 			output("\n\nMooing at the ecstatic release that only milking can provide, your body responds to the sensation of emptying its [pc.milk] reservoirs in the only way it knows: bombarding you with blissful tremors of bovine pleasure. You moo again, louder and firmer than the first time. The first time was an instinctual vocalization. This time, it's a intentional declaration of your very purpose. Your [pc.chest] and the pleasure are gifts given to you so that you can make as much [pc.milk] to share with the galaxy as possible. Your eyes roll back, ");
 			if(pc.hasVagina())
 			{
 				output("your [pc.vaginas] gush");
-				if(pc.totalVaginas() > 1) output("es");
+				if(pc.totalVaginas() == 1) output("es");
 				output(", ");
 			}
 			if(pc.hasCock())
 			{
 				output("your [pc.cocks] squirt");
-				if(pc.cockTotal() > 1) output("s");
+				if(pc.cockTotal() == 1) output("s");
 				output(", ");
 			}
 			output("your [pc.legOrLegs] quiver");
