@@ -1240,7 +1240,7 @@ public function gooArmorCrewOption(arg:Array):void
 				else
 				{
 					txt += "You ask [goo.name] if she would be interested in joining you.";
-					txt += "\n\nHer eyes light up. <i>“Like, of course, bestest buddy!”</i> She leaps up on the spot and spreads herself out wide, only to engulf your body with her mass, giving you a big squishy, gooey hug. She even takes some extra motions to rub and grope you in more sensitive areas. She quickly reforms herself into the suit you normally wear her as, then she pops her upper body from you and you can see the overjoyed look on her face. <i>“So, where are we off to next? I’m, like, totally ready for the next adventure!”</i>";
+					txt += "\n\nHer eyes light up. <i>“Like, of course, bestest buddy!”</i> She leaps up on the spot and spreads herself out wide, only to engulf your body with her mass, giving you a big squishy, gooey hug - even taking some extra motions to rub and grope you in more sensitive areas. She quickly reforms herself into the suit you normally wear her as, then she pops her upper body from you and you can see the overjoyed look on her face. <i>“So, where are we off to next? I’m, like, totally ready for the next adventure!”</i>";
 				}
 				pc.lust(5);
 			}
@@ -1269,7 +1269,7 @@ public function gooArmorCrewOption(arg:Array):void
 				else txt += "<i>“Aww, okay!”</i> [goo.name] says as she";
 				if(pc.armor is GooArmor)
 				{
-					txt += " wraps herself around your body and adopting her armor-like appearance, shuffling bit in your sensitive areas to make sure she’s got you covered where it matters.";
+					txt += " wraps herself around your body and adopting her armor-like appearance, shuffling a bit in your sensitive areas to make sure she’s got you covered where it matters.";
 					pc.lust(2 + rand(4));
 				}
 				else txt += " gives you a quick hug before reforming herself back into your inventory head-first, struggling a bit before finally squeezing in her wide rump with a slick <i>plop!</i>";
