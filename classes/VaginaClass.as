@@ -68,9 +68,9 @@
 			
 			var currLoose:Number = loosenessRaw + loosenessMod;
 			
-			if (currLoose < 1)
+			if (currLoose < 0.5)
 			{
-				return 1;
+				return 0.5;
 			}
 			else if (currLoose > 5) // or so :V
 			{

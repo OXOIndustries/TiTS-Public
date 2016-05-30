@@ -469,7 +469,7 @@ public function adultCockvinePCLoses():void
 	}
 
 	output("\n\nOther tentacles are");
-	if (pc.isGroinCovered()) output(" burrowing busily through your [pc.lowerGarment],");
+	if (pc.isCrotchGarbed()) output(" burrowing busily through your [pc.lowerGarment],");
 	else if (pc.isBiped()) output(" coiling themselves up around your [pc.thighs],");
 	output(" blindly seeking out the fresh, fertile holes they know are there.");
 	if (pc.hasVagina())

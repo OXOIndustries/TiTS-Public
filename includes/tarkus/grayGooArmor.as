@@ -2166,7 +2166,7 @@ public function gooArmorChangeStyle(arg:Array):void
 			break;
 		case 2:
 			txt += " Large pieces of armor flare out from your suit, giving you a bulkier look. Huge pauldrons and arm guards form at your sides";
-			if(!pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST) && !pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)) txt += ", " + (pc.bRows() == 1 ? "s" : num2Text(pc.bRows())) + " breastplate" + (pc.bRows() == 1 ? "" : "s") + " at your front";
+			if(!pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST) && !pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)) txt += ", " + (pc.bRows() == 1 ? "a" : num2Text(pc.bRows())) + " breastplate" + (pc.bRows() == 1 ? "" : "s") + " at your front";
 			txt += ", adding to the size. Although you know it doesn’t change the armor rating at all, from afar, it makes you appear to be some kind of knight or tank" + (silly ? "... or a tank-knight" : "") + ".";
 			txt += "\n\n<i>“Space marines, eat your heart out!”</i> exclaims your tummy.";
 			break;
