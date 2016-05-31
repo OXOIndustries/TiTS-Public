@@ -107,6 +107,8 @@ package classes.Items.Miscellaneous
 			{
 				if (attacker is PlayerCharacter) output("It seems you have no target to use your EMP grenade on.");
 				else output(attacker.capitalA + attacker.uniqueName + " produces an EMP grenade--but with no target to use it on, " + attacker.mfn("he", "she", "it") + " puts it away.");
+				
+				if(!kGAMECLASS.infiniteItems()) quantity++;
 				return;
 			}
 			

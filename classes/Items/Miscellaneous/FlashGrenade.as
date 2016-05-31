@@ -97,6 +97,8 @@ package classes.Items.Miscellaneous
 			{
 				if (attacker is PlayerCharacter) output("It seems you have no target to use your flash grenade on.");
 				else output(attacker.capitalA + attacker.uniqueName + " produces a flash grenade--but with no target to use it on, " + attacker.mfn("he", "she", "it") + " puts it away.");
+				
+				if(!kGAMECLASS.infiniteItems()) quantity++;
 				return;
 			}
 			

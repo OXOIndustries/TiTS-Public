@@ -133,7 +133,7 @@ public function combatUseItem(item:ItemSlotClass, targetCreature:Creature = null
 			}
 			else if (item.requiresTarget == false)
 			{
-				item.useFunction(null, usingCreature);
+				//item.useFunction(null, usingCreature);
 			}
 			else
 			{
