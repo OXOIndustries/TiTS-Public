@@ -660,7 +660,7 @@ public function getYammiSmut():void
 	output("When Yammi turns her attention momentarily from you to a pot that needs stirring, you lean against the refrigerator beside her and gently clear your throat.");
 	output("\n\n<i>“So I’ve been thinking...”</i> you say, watching the gentle rise and fall of the sparadat’s perky chest beneath her tight red dress with keen interest. When you pause, Yammi stops and glances ");
 	if(pc.tallness >= 72) output("up ");
-	else output("down ");
+	else if(pc.tallness < 66) output("down ");
 	output("at you. She smiles and swings her spoon over to you, cutting the second half of your sentence off and planting the edge of the spoon on your lip.");
 	output("\n\n<i>“What do you think?”</i> she asks, urging you to take a sip. You do so - what else do you do in that situation? - and find yourself moaning and closing your eyes as a sultry, heady, thick broth rolls across your [pc.tongue]. It tastes like home and heaven at once. <i>“Needs more salt, right? I knew it.”</i> Yammi sighs, dumping the other half of the spoonful back into the pot.");
 	output("\n\nYou stop her, putting a hand on her wrist. <i>“It’s perfect,”</i> you smile. <i>“Just like you.”</i>");

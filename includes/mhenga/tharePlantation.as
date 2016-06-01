@@ -288,7 +288,7 @@ public function thareManorResponse(response:String = "none"):void
 			output("\n\nThe slim wasp-boy blushes almost orange and looks anywhere but the table. The background scent of sweet pheromones steps up a little.");
 			// Intelligence > 50%:
 			if(pc.IQ() > 50) output(" You debate asking after Kane, but decide that might not be a good idea.");
-			output("\n\n<i>“I would like to chase more rigorous tactics with them, but alas, the current planetary administration has chosen to shackle us with suffocating rule and regulation. Make no mistake though, my young friend,”</i> the professor growls, determination steeling his pale blue eyes, <i>“it is a situation that will change. The zil and their fellows will be brought into the third millennium. Whether it be mercifully through the kind light of the One God, or brutally by uncaring market forces, that is their own choice to make.”</i>");
+			output("\n\n<i>“I would like to chase more rigorous tactics with them, but alas, the current planetary administration has chosen to shackle us with suffocating rule and regulation. Make no mistake though, my young friend,”</i> the professor growls, determination steeling his pale blue eyes, <i>“it is a situation that will change. The zil and their fellows will be brought into the present millennium. Whether it be mercifully through the kind light of the One God, or brutally by uncaring market forces, that is their own choice to make.”</i>");
 			
 			processTime(4);
 			

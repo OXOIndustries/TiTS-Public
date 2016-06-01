@@ -142,7 +142,7 @@ public function lilianaAppearance():void
 	output(". You ");
 	if(flags["LILIANA_SEEN_NAKKERS"] == undefined) output("estimate");
 	else output("know");
-	output(" her to be about 5’5”</i> when standing. Her body doesn’t look strong by any means");
+	output(" her to be about 4’8”</i> when standing. Her body doesn’t look strong by any means");
 	if(flags["LILIANA_SEEN_NAKKERS"] != undefined) output(", but you know that most of her thin frame is made up of lean muscle");
 	output(".");
 	output("\n\nHer sandy blonde hair barely reaches the dark pools of her eyes, always looking slightly disheveled even as she smoothes it over. Despite its shape and length her hair is thick and silky, looking");
@@ -322,7 +322,15 @@ public function cuddleDatAntBiyooootchToSleepizzles():void
 	//if pre/post encourage:
 	if(!lilianaEncouraged()) output("S-s");
 	else output("S");
-	output("ure, if you want to. We can go now if you want, I don’t have any big plans,”</i> she says, getting up from her seat and leading you out of the bar. The two of you walk to the medical bay area, maneuvering its hallways until you reach the sleeping area. The room consists of a number of soft looking bedding areas with curtains for privacy and a shelf for the storage of personal belongings. Liliana takes you to one of the beds by the wall and throws her blanket onto a pile of them that already adorn its surface. She remove her top and pants, leaving her totally exposed barring the single strip of cloth that holds her A-cup breasts and her plain looking underwear. She places the removed clothing in one of the cubby-holes on her shelf and turns to you.");
+	output("ure, if you want to. We can go now if you want, I don’t have any big plans,”</i> she says, getting up from her seat and leading you out of the bar. ");
+	
+	if(pc.isNude() || pc.isChestExposed() || pc.isCrotchExposed() || pc.isAssExposed()) 
+	{
+		output("<i>“Um, here, wear this, ”</i> she softly requests, handing you a spare blanket. <i>“The receptionist won’t allow visitors who are, um... naked. I-it’s protocol. For sanitary reasons!”</i> Not wanting to spoil the mood, you " + (pc.isNice() ? "kindly" : "reluctantly") + " take the cloth and wrap around as much of your body as you can.");
+		output("\n\n");
+	}
+	
+	output("The two of you walk to the medical bay area, maneuvering its hallways until you reach the sleeping area. The room consists of a number of soft looking bedding areas with curtains for privacy and a shelf for the storage of personal belongings. Liliana takes you to one of the beds by the wall and throws her blanket onto a pile of them that already adorn its surface. She remove her top and pants, leaving her totally exposed barring the single strip of cloth that holds her A-cup breasts and her plain looking underwear. She places the removed clothing in one of the cubby-holes on her shelf and turns to you.");
 	output("\n\n<i>“They wash your clothes overnight,");
 	if(pc.isNude()) output(" not that it matters for you,");
 	output("”</i> she says, ");
@@ -340,7 +348,7 @@ public function cuddleDatAntBiyooootchToSleepizzles():void
 	output(" She moves to the bed, fluffing the oversized pillow and moving the blankets to make space. When you think she’s finished you plop down on the queen sized cushion, opening your arms and motioning for her to join you.");
 
 	output("\n\n<i>“Come on, I can’t help you sleep if I’m the only one in bed,”</i> you tease, pulling the blankets so that they leave your front visible. The exhausted ant girl doesn’t hesitate as she crawls into the bed next to you.");
-	if(pc.tallness < 63) output(" Despite your shorter stature, s");
+	if(pc.tallness < 56) output(" Despite your shorter stature, s");
 	else output(" S");
 	output("he positions herself with her head directly on level with your collarbone, her sandy blonde hair just under your chin. She ");
 	if(pc.biggestTitSize() < 5) output("presses herself into your [pc.chest], hugging you tightly as if to anchor herself there");
@@ -368,9 +376,9 @@ public function sexUpDatAntBitch():void
 	clearOutput();
 	showLiliana(true);
 	//ifnaked:
-	if(pc.isNude()) 
+	if(pc.isNude() || pc.isChestExposed() || pc.isCrotchExposed() || pc.isAssExposed()) 
 	{
-		output("You tell Liliana that you’ll take her up on that offer of sex. She blushes, nodding and standing from her chair. She tells you to follow her as she walks out of the bar and toward the medical facility. You tag along, staying close as you maneuver the DMZ. As you walk into the reception area a nurse stops you. She informs you that you’ll need to put some clothes on if you plan to stay in the hospital due to the risk of spreading infection. The nurse mentions that you can wait outside or leave.\n\nIronically, you'll need some clothing to get busy with the ant-girl. The two of you walk away sheepishly.");
+		output("You tell Liliana that you’ll take her up on that offer of sex. She blushes, nodding and standing from her chair. She tells you to follow her as she walks out of the bar and toward the medical facility. You tag along, staying close as you maneuver the DMZ. As you walk into the reception area a nurse stops you. She informs you that you’ll need to put some" + (!pc.isNude() ? " decent" : "") + " clothes on if you plan to stay in the hospital due to the risk of spreading infection. The nurse mentions that you can wait outside or leave.\n\nIronically, you'll need some clothing to get busy with the ant-girl. The two of you walk away sheepishly.");
 		processTime(8);
 		//[choice to leave or stay])
 		clearMenu();
@@ -474,7 +482,12 @@ public function girlsGetZeAntGurlSexWithLilianaNotLyrallaNoTheyreTotallyDifferen
 	output("You lean in close, pressing your ");
 	if(pc.biggestTitSize() >= 3) output("larger");
 	else output("similarily sized");
-	output(" chest against her pert A-cups. Her nipples brush enticingly against your [pc.skinFurScales], just begging to be bitten and teased. Your own [pc.nipples] stiffen in anticipation as you lean down, taking one of her nubs gently between your teeth. She gasps as you bite down and begin to suck, brushing a hand ");
+	output(" chest against her pert A-cups. Her nipples brush enticingly against your [pc.skinFurScales], just begging to be bitten and teased. Your own [pc.nipples]");
+	if(pc.hasInvertedNipples()) output(" pop out and harden");
+	else if(pc.hasFlatNipples()) output(" swell");
+	else if(pc.hasFuckableNipples()) output(" moisten");
+	else output(" stiffen");
+	output(" in anticipation as you lean down, taking one of her nubs gently between your teeth. She gasps as you bite down and begin to suck, brushing a hand ");
 	if(pc.hasHair()) output("through your [pc.hair]");
 	else output("across your bare head");
 	output(".");
@@ -491,7 +504,15 @@ public function girlsGetZeAntGurlSexWithLilianaNotLyrallaNoTheyreTotallyDifferen
 	output("\n\n<i>“I’m kinda glad ");
 	if(!pc.hasCock()) output("you’re a girl");
 	else output("you have one of these as well");
-	output(" to be honest, I don’t really have any experience with the other thing,”</i> she says shyly. You smile and shift upward, plugging her mouth with a [pc.nipple]. Liliana hums softly and begins to suck, her tongue warm and wet on your stiffened nub. She stops to take a breath every few seconds, her exhaled heat spreading over your chest.");
+	output(" to be honest, I don’t really have any experience with the other thing,”</i> she says shyly. You smile and shift upward,");
+	if(pc.hasFlatNipples()) output(" bumping then covering");
+	else if(pc.hasFuckableNipples()) output(" kissing then sealing");
+	else output(" plugging");
+	output(" her mouth with a [pc.nipple]. Liliana hums softly and begins to suck, her tongue warm and wet");
+	if(pc.hasFlatNipples()) output(" across the surface of your nipples");
+	else if(pc.hasFuckableNipples()) output(" in your fuckable nipples");
+	else output(" on your stiffened nub");
+	output(". She stops to take a breath every few seconds, her exhaled heat spreading over your chest.");
 
 	output("\n\nYou kiss the top of her head as she suckles, brushing your face through her short and silky hair. Her upper pair of hands move to assist her, squeezing your [pc.breasts] and pinching the unattended nipple.");
 	if(pc.isLactating()) output(" She lets out a pleased noise as your breasts begin to lactate, happily drinking your [pc.milk].");
