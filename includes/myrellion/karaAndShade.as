@@ -391,8 +391,8 @@ public function sureIWantSomeShadePussayTailFuckYes():void
 	output("\n\nHer tail’s motions are ceaseless, completely independent of its owner’s confident stride forward. The scaled length of cunt-tail coils around your waist and [pc.leg], playful and alluring, actually managing to pull some of your gear away. Its dexterity is incredible");
 	if(pc.hasCuntTail()) output(" - something your own tail-pussy could learn from -");
 	output(" as it starts to peel away your [pc.gear]");
-	if(!pc.isNude()) output(", working to strip you bare as you walk");
-	output(".");
+	if(!pc.isNude()) output(", working to strip you bare");
+	output(" while you walk.");
 
 	output("\n\nIt’s a short trip to Shade’s bunk, but you’re buck naked by the time you reach it. The kaithrit huntress gives you a lascivious wink over her shoulder as she pops the door open and guides you through. Her quarters are cluttered, a random assortment of clothes, gun parts, and chunks of armor scattered across the floor beneath punk rock posters and kaithrit grav-balls. In one fluid motion, she faces you, slips her arms out of her jacket sleeves, and pulls her shirt off over her head, giving you an eyeful of big, E-cup tits barely restrained by a black sports bra. Shade takes a single step towards you, pressing herself tight against you, letting you feel those lush mounds compress against your [pc.chest]... before she gives you a rough shove onto the bed, sending you tumbling onto your back. Her pants hit the deck with an audible <i>thump</i> of a gunbelt clattering on steel before she hops in after you, straddling your [pc.hips] and slipping a hand under her bra to cup her breast, slipping the garment off to reveal the sun-kissed mounds beneath it.");
 	output("\n\n<i>“Now then... what to do with you...?”</i>");
