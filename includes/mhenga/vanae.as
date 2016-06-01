@@ -2446,9 +2446,12 @@ public function cockvineTailPlusVanaeVictory():void
 	output(" tremble");
 	if(enemy.lust() >= enemy.lustMax()) output(" from the force of her frigging");
 	output(", and her pussy shines wetly under her slithering skirt. A foreign urge takes shape in you");
-	if(!pc.hasCock()) output(", rendered all the more stark by your ");
-	if(pc.hasVagina()) output("female sex");
-	else output("lack of a sex");
+	if(!pc.hasCock())
+	{
+		output(", rendered all the more stark by your ");
+		if(pc.hasVagina()) output("female sex");
+		else output("lack of a sex");
+	}
 	output(": desire to impregnate her with your seed. Images slideshow through your mind, showing the ");
 	if(enemy is MaidenVanae) output("virginal girl");
 	else output("shapely amazon");
@@ -2541,8 +2544,8 @@ public function cockvineTailPlusVanaeVictory():void
 		else if(pc.isBro()) output("<i>“Yeah,”</i> you grunt, grasping ");
 		else output("<i>“Very nice,”</i> you admire, grasping ");
 		if(pc.isTaur()) output("her between your fore-legs.");
+		else output("her [enemy.hips].");
 	}
-	else output("her [enemy.hips].");
 
 	if(enemy is MaidenVanae) 
 	{
