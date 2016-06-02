@@ -11662,115 +11662,241 @@
 		//Special - "nipple" - NipplecockDesc
 		public function cockNoun2(cock:CockClass, simple:Boolean = true, special:String = ""): String
 		{
-			var descript: String = "";
+			var desc: String = "";
 			var nouns:Array = new Array();
 			var adjectives:Array = new Array();
 			var type:int = cock.cType;
-			if (type == GLOBAL.TYPE_HUMAN) {
-				if (!simple) adjectives.push("human","terran");
-			} 
-			else if (type == GLOBAL.TYPE_CANINE) {
-				adjectives.push("pointed","knotty","bestial","animalistic","knotted","canine","canine");
-				nouns.push("doggie-dong","dog-cock","puppy-pecker","dog-dick");
-			} else if (type == GLOBAL.TYPE_VULPINE) {
-				adjectives.push("pointed","knotty","bestial","animalistic","knotted","vulpine","vulpine");
-				nouns.push("fox-dick","fox-cock","fox-prick","fox-tool","vixen-pricker");
-			} else if (type == GLOBAL.TYPE_EQUINE) {
-				adjectives.push("flared","equine","bestial","flat-tipped","animalistic","blunted","musky");
-				nouns.push("horse-cock","horse-shaft","horse-member","stallion-prick","beast-cock","stallion-cock");
-			} else if (type == GLOBAL.TYPE_DEMONIC) {
-				adjectives.push("nub-covered","nubby","perverse","bumpy","demonic","cursed","infernal","unholy","blighted","fiendish");
-				nouns.push("demon-dick","demon-cock","demon-prick","monster-member");
-			} else if (type == GLOBAL.TYPE_TENTACLE || type == GLOBAL.TYPE_COCKVINE) {
-				adjectives.push("twisting","wriggling","sinuous","squirming","writhing","smooth","undulating","slithering","vine-like");
-				nouns.push("tentacle-prick","plant-shaft","tentacle-cock","cock-tendril","tentacle-pecker","plant-prick","tentacle-dick");
-			} else if (type == GLOBAL.TYPE_FELINE) {
-				adjectives.push("feline","spine-covered","spined","kitty","animalistic","soft-barbed","nubby","feline");
-				nouns.push("cat-cock","kitty-cock","kitty-prick","cat-penis","kitten-prick");
-			} else if (type == GLOBAL.TYPE_NAGA || type == GLOBAL.TYPE_SNAKE) {
-				adjectives.push("reptilian","ophidian","inhuman","reptilian",/*"herpetological",*/"serpentine","bulbous","bulging");
-				nouns.push("snake-cock","snake-shaft","snake-dick");
-			} else if (type == GLOBAL.TYPE_RASKVEL) {
-				adjectives.push("reptilian","alien","raskvel","reptilian","smooth","sleek","exotic");
-				nouns.push("rask-cock");
-			} else if (type == GLOBAL.TYPE_ANEMONE || type == GLOBAL.TYPE_SIREN) {
-				adjectives.push("tentacle-ringed","stinger-laden","pulsating","stinger-coated","near-transparent","tentacle-ringed","squirming");
-				nouns.push("anemone-dick","anemone-prick");
-			} else if (type == GLOBAL.TYPE_KANGAROO) {
-				adjectives.push("pointed","marsupial","tapered","curved");
-				nouns.push("kangaroo-cock","kangaroo-dick","kanga-cock");
-			} else if (type == GLOBAL.TYPE_DRACONIC || type == GLOBAL.TYPE_GRYVAIN) {
-				adjectives.push("dragon-like","segmented","pointed","knotted","mythic","draconic","tapered");
-				if (!cock.hasFlag(GLOBAL.FLAG_GOOEY) || skinType != GLOBAL.SKIN_TYPE_GOO) adjectives.push("scaly");
-				nouns.push("dragon-cock", "dragon-dick", "wyrm-cock");
-				if (type == GLOBAL.TYPE_GRYVAIN) nouns.push("gryvain-cock");
-			} else if (type == GLOBAL.TYPE_BEE) {
-				adjectives.push("foreskin-covered","alien","vaguely human-like","smooth");
-				if (!cock.hasFlag(GLOBAL.FLAG_GOOEY) || skinType != GLOBAL.SKIN_TYPE_GOO) adjectives.push("thick-skinned","fleshy","skin-shrouded");
-				nouns.push("zil-dick","zil-prick","zil-cock","wasp-cock");
-			} else if (type == GLOBAL.TYPE_KUITAN) {
-				adjectives.push("alien","bulgy","knot-lined","extra knotty","bestial","kui-tan","inhuman","exotic","knotted");
-				nouns.push("'nuki-dick","kui-cock","spunk-dispensor","xeno-cock");
-			} else if (type == GLOBAL.TYPE_SIMII) {
-				adjectives.push("simian");
-				nouns.push("simii-dick","simii-cock");
-			} else if (type == GLOBAL.TYPE_RASKVEL) {
-				adjectives.push("raskvel");
-				nouns.push("rask-dick","rask-cock","egg-fertilizer");
-			} else if (type == GLOBAL.TYPE_VENUSPITCHER) {
-				adjectives.push("floral");
-				nouns.push("plant-dick","plant-cock","vine-dick","vine-cock");
-			} else if (type == GLOBAL.TYPE_SAURIAN) {
-				adjectives.push("dinosaur", "saurian");
-				nouns.push("dino-dick","dino-cock","penisaurus","schlongosaur");
-			} else if (type == GLOBAL.TYPE_SYNTHETIC) {
-				adjectives.push("metallic", "synthetic", "mechanical", "robotic", "sleek");
-				nouns.push("robo-dick","robo-cock","mecha-dick","mecha-cock");
-			} else if (type == GLOBAL.TYPE_NYREA) {
-				adjectives.push("nyrean", "insectile", "egg-laying", "nyrean", "insectile");
-				nouns.push("ovipositor", "organ", "tool", "member", "tube");
-			} else if (type == GLOBAL.TYPE_DAYNAR) {
-				adjectives.push("daynarian", "reptilian", "inhuman", "reptilian");
-				nouns.push("daynar-cock", "daynar-shaft", "daynar-dick");
-			} else if (type == GLOBAL.TYPE_SYDIAN) {
-				adjectives.push("sydian", "insectile", "inhuman", "bristly", "brush-like");
-				nouns.push("bug-cock", "bug-shaft", "bug-dick");
-			} else if (type == GLOBAL.TYPE_GABILANI) {
-				adjectives.push("alien", "bulbous", "double-crowned", "gabilani", "goblin", "inhuman", "exotic", "two-headed");
-				nouns.push("goblin-dick", "goblin-cock", "goblin-prick", "gabilani-dick", "gabilani-cock", "gabilani-prick");
-			} else if (type == GLOBAL.TYPE_VANAE) {
-				adjectives.push("vanae", "alien", "suckler-tipped", "vanae", "cephalopod-like", "inhuman", "exotic");
-				nouns.push("vanae-dick", "vanae-cock", "vanae-prick");
-			} else if (type == GLOBAL.TYPE_HRAD) {
-				adjectives.push("human", "terran", "bullet-shaped", "bullet-headed");
-			} else if (type == GLOBAL.TYPE_INHUMAN) {
-				adjectives.push("inhuman", "human-like", "almost-human", "alien");
-			} else {
-				nouns.push("Error. Cock type does not have a cock noun configuration.");
-			}
-			
-			if (cock.hasFlag(GLOBAL.FLAG_GOOEY)) {
-				adjectives.push("gooey","self-lubricating","slick");
-				nouns.push("goo-dick","goo-cock");
-			}
-			nouns.push("cock","cock","dick","prick","shaft","member","dong","tool","phallus");
-			
-			if(!simple && adjectives.length > 0) 
+			//Simple = hyphenated shit
+			if(simple)
 			{
-				descript = RandomInCollection(adjectives);
-				//Prevent duplicate "canine dog-cock" type deals.
-				if(InCollection(descript,"gabilani","goblin","insectile","robotic","mechanical","dinosaur","saurian","floral","gooey","raskvel","simian","kui-tan","draconic","dragon-like","marsupial","reptilian","serpentine","kitty","feline","demonic","equine","vulpine","canine","gooey"))
-				{
-					descript += " " + RandomInCollection("cock","cock","dick","prick","shaft","member","dong","tool","phallus");
-					return descript;
+				//Gooey has chance to override normal shit
+				if (cock.hasFlag(GLOBAL.FLAG_GOOEY) && rand(3) == 0) {
+					desc += RandomInCollection(["goo-cock","slime-cock","goo-dick","slime-dick","goo-cock","goo-prick","slime-prick","slime-shaft","goo-tool"]);
 				}
-				descript += " ";
+				//Tail-cock specials
+				else if(special == "tail" && rand(2) == 0) desc += "tail-" + RandomInCollection(["cock","cock","dick","prick","cock","dick"]);
+				//Nipple-dick specials
+				else if(special == "dick" && rand(2) == 0) desc += RandomInCollection(["dick","cock","prick"] + "-nipple");
+				else
+				{
+					switch(type)
+					{
+						case GLOBAL.TYPE_CANINE:
+							//adjectives.push("pointed","knotty","bestial","animalistic","knotted","vulpine","vulpine");
+							desc += RandomInCollection(["doggie-dong","dog-cock","dog-cock","puppy-prick","puppy-pecker","dog-dick","cock","prick","animal-endowment",mf("bitch-breeder","bitch-boner"),"beast-cock","beast-dick"]);
+							break;
+						case GLOBAL.TYPE_VULPINE:
+							//adjectives.push("pointed","knotty","bestial","animalistic","knotted","vulpine","vulpine");
+							desc += RandomInCollection(["fox-cock",mf("vixen-breeder","vixen-prick"),"fox-dick","animal-phallus","fox-phallus","fox-shaft","fox-cock",mf("vixen-inseminator","vixen-dick"),"beast-cock"]);
+							break;
+						case GLOBAL.TYPE_EQUINE:
+							//adjectives.push("flared","equine","bestial","flat-tipped","animalistic","blunted","musky");
+							desc += RandomInCollection(["horse-cock","beast-cock","stallion-cock","horse-cock","beast-cock","horse-shaft",mf("stallion-shaft","mare-member"),mf("mare-mounter","mare-member"),"horse-member","stallion-prick","horse-phallus","horse-phallus","phallus","tool"]);
+							break;
+						case GLOBAL.TYPE_DEMONIC:
+							//adjectives.push("nub-covered","nubby","perverse","bumpy","demonic","cursed","infernal","unholy","blighted","fiendish");
+							desc += RandomInCollection(["demon-dick","demon-cock","demon-prick","monster-member","monster-dick","corrupted-cock","dick","perverted-prick","nub-shaft","designer-dick"]);
+							break
+						case GLOBAL.TYPE_TENTACLE:
+						case GLOBAL.TYPE_COCKVINE:
+						case GLOBAL.TYPE_VENUSPITCHER:
+							//adjectives.push("twisting","wriggling","sinuous","squirming","writhing","smooth","undulating","slithering","vine-like");
+							desc += RandomInCollection(["tentacle-cock","plant-cock","cock-tendril","plant-prick","tentacle-prick","plant-phallus","tentacle-phallus","dick-tentacle","dick-tendril","tentacle-tool","plant-shaft","vine-cock","vine-dick"]);
+							break;
+						case GLOBAL.TYPE_FELINE:
+							//adjectives.push("feline","spine-covered","spined","kitty","animalistic","soft-barbed","nubby","feline");
+							desc += RandomInCollection(["cat-cock","kitty-cock","kaithrit-cock","animal-prick","cat-prick","cat-dick","kitty-dick","cat-phallus","cat-cock","cat-penis"]);
+							break;
+						case GLOBAL.TYPE_NAGA:
+							//adjectives.push("reptilian","ophidian","inhuman","reptilian",/*"herpetological",*/"serpentine","bulbous","bulging");
+							desc += RandomInCollection(["snake-cock","reptile-cock","snake-shaft","reptile-dick","snake-dick","snake-phallus","reptile-phallus","snake-prick","reptile-tool","snake-cock","snake-cock"]);
+							break;
+						case GLOBAL.TYPE_RASKVEL:
+							//adjectives.push("reptilian","alien","raskvel","reptilian","smooth","sleek","exotic");
+							desc += RandomInCollection(["rask-cock","reptile-cock","rask-cock","alien-endowment","rask-dick","reptile-dick","egg-inseminator","rask-prick","rask-dick","reptile-tool","raskvel-member"]);
+							break;
+						case GLOBAL.TYPE_ANEMONE:
+							//adjectives.push("tentacle-ringed","stinger-laden","pulsating","stinger-coated","near-transparent","tentacle-ringed","squirming");
+							desc += RandomInCollection(["anemone-cock","wiggle-cock","anemone-dick","anemone-prick","anemone-phallus","stinger","shaft","anemone-prong","anemone-tool","anemone-cock","anemone-dick"]);
+							break;
+						case GLOBAL.TYPE_KANGAROO:
+							//adjectives.push("pointed","marsupial","tapered","curved");
+							desc += RandomInCollection(["kangaroo-cock","kangaroo-dick","kanga-cock"]);
+							break;
+						case GLOBAL.TYPE_DRACONIC:
+						case GLOBAL.TYPE_GRYVAIN:
+							//adjectives.push("dragon-like","segmented","pointed","knotted","mythic","draconic","tapered");
+							desc += RandomInCollection(["dragon-cock", "wyrm-cock", "dragon-cock", "reptile-cock", "dragon-dick","reptile-dick","wyrm-dick","dragon-phallus","dragon-prick","wyrm-prick","wyrm-phallus"]);
+							break;
+						case GLOBAL.TYPE_BEE:
+							//adjectives.push("foreskin-covered","alien","vaguely human-like","smooth");
+							desc += RandomInCollection(["zil-cock","wasp-cock","zil-cock","zil-dick","wasp-dick","prick","prong","zil-member","insect-cock","insect-dick","zil-prick"]);
+							break;
+						case GLOBAL.TYPE_KUITAN:
+							//adjectives.push("alien","bulgy","knot-lined","extra knotty","bestial","kui-tan","inhuman","exotic","knotted");
+							desc += RandomInCollection(["'nuki-cock","kui-cock","'nuki-cock","xeno-dick","'nuki-dick","knotty-cock","prick","phallus","member","'nuki-member","shaft","tool"]);
+							break;
+						case GLOBAL.TYPE_SIMII:
+							//adjectives.push("simian");
+							desc += RandomInCollection(["simii-dick","simii-cock","member","member","phallus","prick","tool","shaft"]);
+							break;
+						case GLOBAL.TYPE_SAURIAN:
+							//adjectives.push("dinosaur", "saurian");
+							desc += RandomInCollection(["dino-cock","reptile-cock","dinosaur-cock","dino-dick","reptile-dick","dinosaur-prick","dinosaur-tool","member","cock"]);
+							break;
+						case GLOBAL.TYPE_SYNTHETIC:
+							//adjectives.push("metallic", "synthetic", "mechanical", "robotic", "sleek");
+							desc += RandomInCollection(["synth-cock","robo-cock","mecha-cock","robo-dick","mecha-dick","synth-shaft","synth-cock","robot-prong","robo-tool","synth-phallus","mecha-prick","robo-prick"]);
+							break;
+						case GLOBAL.TYPE_NYREA:
+							//adjectives.push("nyrean", "insectile", "egg-laying", "nyrean", "insectile");
+							desc += RandomInCollection(["ovipositor","ovi-cock","egg-layer","nyrea-cock","ovi-dong","ovi-dick","egg-dick","nyrea-dick","egg-organ","nyrea-prick","nyrea-dick","ovi-member","egg-shaft","ovi-shaft"]);
+							break;
+						case GLOBAL.TYPE_DAYNAR:
+							//adjectives.push("daynarian", "reptilian", "inhuman", "reptilian");
+							desc += RandomInCollection(["daynar-cock", "reptile-cock", "cock", "daynar-dick", "reptile-dick","lizard-cock","lizard-prick","reptile-phallus","lizard-member","daynar-prick"]);
+							break;
+						case GLOBAL.TYPE_SYDIAN:
+							//adjectives.push("sydian", "insectile", "inhuman", "bristly", "brush-like");
+							desc += RandomInCollection(["sydian-cock","bug-cock","xeno-cock","sydian-dick","bug-dick","sydian-prick","sydian-shaft","dong","bug-prick"]);
+							break;
+						case GLOBAL.TYPE_GABILANI:
+							//adjectives.push("alien", "bulbous", "double-crowned", "gabilani", "goblin", "inhuman", "exotic", "two-headed");
+							desc += RandomInCollection(["goblin-cock","gabilani-cock","goblin-cock","gabilani-dick","goblin-dick","xeno-dick","goblin-prick","gabilani-phallus","goblin-tool","xeno-tool","goblin-member"]);
+							break;
+						case GLOBAL.TYPE_VANAE:
+							//adjectives.push("vanae", "alien", "suckler-tipped", "vanae", "cephalopod-like", "inhuman", "exotic");
+							desc += RandomInCollection(["vanae-cock","vanae-dick","vanae-prick","cock","cock","member","xeno-dick","phallus"]);
+							break;
+						//Basic dicks names:  "cock",
+						case GLOBAL.TYPE_HUMAN:
+						//Nothing special for these two.
+						case GLOBAL.TYPE_HRAD:
+						case GLOBAL.TYPE_INHUMAN:
+						//Catch-all
+						default:
+							desc += RandomInCollection(["cock","cock","dick","dick","member","member","phallus","prick","tool","shaft"]);
+							break;
+					}
+				}
 			}
-			if(special == "tail" && rand(2) == 0) descript += "tail-" + RandomInCollection(["cock","cock","dick","prick","phallus"]);
-			else if(special == "dick" && rand(2) == 0) descript += RandomInCollection(["dick","cock","prick"] + "-nipple");
-			else descript += RandomInCollection(nouns);
-			
-			return descript;
+			//Long type descriptions
+			else
+			{
+				//Gooey has chance to override normal shit
+				if (cock.hasFlag(GLOBAL.FLAG_GOOEY) && rand(2) == 0) {
+					desc += RandomInCollection(["gooey cock","gooey cock","gooey dick","gooey prick","gooey tool","gooey shaft","self-lubricating goo-cock","self-lubricating shaft","self-lubricating member","self-lubricating slime-cock","slick shaft","slick cock","slick dick","slick goo-cock","slick goo-dick","slippery slime-cock","slippery slime-dick","slippery prick"]);
+				}
+				//9999 TO BE COMPLETED LATER - TAIL AND NIPPLE STUFF
+				else if(special == "tail" && rand(2) == 0) desc += "placeholder9999 tail-" + RandomInCollection(["cock","cock","dick","prick","cock","dick"]);
+				else if(special == "dick" && rand(2) == 0) desc += "placeholder9999 " + RandomInCollection(["dick","cock","prick"] + "-nipple");
+				else
+				{
+					switch(type)
+					{
+						case GLOBAL.TYPE_CANINE:
+							//adjectives.push("pointed","knotty","bestial","animalistic","knotted","vulpine","vulpine");
+							desc += RandomInCollection(["canine cock","bestial cock","knotty dog-cock","canine cock","animalistic dick","pointed prick","bestial member","animalistic shaft","bestial shaft","canine shaft","knotted tool","feral prick"]);
+							break;
+						case GLOBAL.TYPE_VULPINE:
+							//adjectives.push("pointed","knotty","bestial","animalistic","knotted","vulpine","vulpine");
+							desc += RandomInCollection(["vulpine cock","bestial fox-cock","bestial cock","knotty cock","vulpine cock","animalistic dick","pointed prick","bestial member","animalistic shaft","bestial shaft","vulpine shaft","knotted tool","feral prick"]);
+							break;
+						case GLOBAL.TYPE_EQUINE:
+							//adjectives.push("flared","equine","bestial","flat-tipped","animalistic","blunted","musky");
+							desc += RandomInCollection(["flared horse-cock","blunted horse-cock","bestial cock","equine cock","musky cock","flared cock","musky horse-dick","animalistic dick","blunt-tipped dick","flared horse-dick","bestial member","musky member","equine shaft","animalistic shaft","equine horse-prick","flat-tipped horse-boner","bestial tool","equine phallus","equine tool"]);
+							break;
+						case GLOBAL.TYPE_DEMONIC:
+							//adjectives.push("nub-covered","nubby","perverse","bumpy","demonic","cursed","infernal","unholy","blighted","fiendish");
+							desc += RandomInCollection(["nub-covered cock","nub-covered demon-cock","demonic cock","nubby cock","fiendish cock","nub-covered dick","nubby dick","perverse dick","bumpy dick","demonic dick","fiendish dick","demonic shaft","blighted tool","fiendish prick"]);
+							break
+						case GLOBAL.TYPE_TENTACLE:
+						case GLOBAL.TYPE_COCKVINE:
+						case GLOBAL.TYPE_VENUSPITCHER:
+							//adjectives.push("twisting","wriggling","sinuous","squirming","writhing","smooth","undulating","slithering","vine-like");
+							desc += RandomInCollection(["twisting cock","twisting tentacle-cock","sinuous plant-cock","sinuous cock","vine-like cock","squirming vine-cock","slithering dick-tentacle","squirming tentacle-dick","plant-like dick","smooth vine-dick","sinuous plant-member","undulating member","wiggly tentacle-phallus","twisting plant-prick"]);
+							break;
+						case GLOBAL.TYPE_FELINE:
+							//adjectives.push("feline","spine-covered","spined","kitty","animalistic","soft-barbed","nubby","feline");
+							desc += RandomInCollection(["feline cock","spine-covered cock","animalistic cat-cock","soft-barbed cock","nubby cock","spined kitty-dick","soft-barbed cat-dick","animalistic dick","feline dick","kitty dick","feline tool","feline prick","animalistic shaft","barbed animal-prick"]);
+							break;
+						case GLOBAL.TYPE_NAGA:
+							//adjectives.push("reptilian","ophidian","inhuman","reptilian",/*"herpetological",*/"serpentine","bulbous","bulging");
+							desc += RandomInCollection(["reptilian cock","inhuman cock","serpentine cock","bulbous snake-cock","ophidian cock","reptilian dick","serpentine dick","bulbous dick","ophidian dick","bulbous snake-dick","reptilian phallus","inhuman phallus","bulbous phallus","serpentine member","inhuman member","reptilian member","bulgy member","reptilian prick","bulbous snake-prick"]);
+							break;
+						case GLOBAL.TYPE_RASKVEL:
+							//adjectives.push("reptilian","alien","raskvel","reptilian","smooth","sleek","exotic");
+							desc += RandomInCollection(["reptilian cock","alien cock","raskvel cock","sleek cock","exotic rask-cock","exotic cock","reptilian dick","alien dick","smooth rask-dick","reptilian prick","alien phallus","exotic phallus","sleep prick","reptilian tool","alien tool"]);
+							break;
+						case GLOBAL.TYPE_ANEMONE:
+							//adjectives.push("tentacle-ringed","stinger-laden","pulsating","stinger-coated","near-transparent","tentacle-ringed","squirming");
+							desc += RandomInCollection(["tentacle-ringed cock","pulsating cock","stinger-lined cock","squirming anemone-cock","exotic cock","stinger-laden dick","stinger-covered dick","tentacle-ringed dick","pulsating prick","tentacle-ringed prick","squirming prick","near-transparent phallus","stinger-laden phallus","tentacle-ringed tool","tentacle-lined tool"]);
+							break;
+						case GLOBAL.TYPE_KANGAROO:
+							//adjectives.push("pointed","marsupial","tapered","curved");
+							desc += RandomInCollection(["pointed kangaroo-cock","marsupial cock","tapered kanga-cock","curved cock","pointed kangaroo-dick","marsupial dick","curved kanga-dick","curved dick","marsupial prick","tapered prick","marsupial member","pointed prick","curved member","marsupial tool","tapered kangaroo-tool"]);
+							break;
+						case GLOBAL.TYPE_DRACONIC:
+						case GLOBAL.TYPE_GRYVAIN:
+							//adjectives.push("dragon-like","segmented","pointed","knotted","mythic","draconic","tapered");
+							desc += RandomInCollection(["dragon-like cock","segmented dragon-cock","segmented wyrm-cock","draconic cock","tapered dragon-cock","segmented dick","segmented dragon-dick","draconic dick","segmented phallus","dragon-like phallus","tapered phallus","pointed prick","draconic prick","tapered wyrm-tool","segmented tool","tapered dragon-tool","draconic tool"]);
+							break;
+						case GLOBAL.TYPE_BEE:
+							//adjectives.push("foreskin-covered","alien","vaguely human-like","smooth");
+							desc += RandomInCollection(["thick-skinned zil-cock","smooth wasp-cock","foreskin-covered cock","alien cock","human-like cock","foreskin-covered zil-dick","alien dick","smooth wasp-dick","alien prick","smooth insect-dick","foreskin-sheathed zil-prick","alien prong","smooth wasp-tool"]);
+							break;
+						case GLOBAL.TYPE_KUITAN:
+							//adjectives.push("alien","bulgy","knot-lined","extra knotty","bestial","kui-tan","inhuman","exotic","knotted");
+							desc += RandomInCollection(["bulgy 'nuki-cock", "knot-lined kui-cock", "bestial cock", "exotic kui-cock", "exotic cock", "knotted 'nuki-cock", "knot-lined dick","knot-covered dick","bulgy 'nuki-dick","kui-tan cock","kui-tan dick","extra-knotty dick","bulgy dick","knot-lined prick","bulgy prick","knot-lined tool","bulgy shaft","knotted member","kui-tan member","bulgy shaft","alien shaft"]);
+
+							break;
+						case GLOBAL.TYPE_SIMII:
+							//adjectives.push("simian");
+							desc += RandomInCollection(["simian cock","simian cock","inhuman cock","bestial monkey-cock","alien cock","simian dick","simian shaft","simian member","simian tool","inhuman monkey-dick","alien dick","simian phallus"]);
+							break;
+						case GLOBAL.TYPE_SAURIAN:
+							//adjectives.push("dinosaur", "saurian");
+							desc += RandomInCollection(["dinosaur cock","saurian cock","reptilian cock","prehistoric dino-cock","dinosaur dick","saurian shaft","dinosaur dick","reptilian member","saurian member","saurian tool","saurian prick","dinosaur prick","prehistoric dino-dick"]);
+							break;
+						case GLOBAL.TYPE_SYNTHETIC:
+							//adjectives.push("metallic", "synthetic", "mechanical", "robotic", "sleek");
+							desc += RandomInCollection(["metallic member","metallic cock","metallic cock","metallic shaft","metallic dick","synthetic cock","synthetic dick","synthetic cock","synthetic tool","synthetic prick","robotic cock","robotic cock","robotic dick","robotic prick","robotic tool","sleek synth-cock","sleek robo-cock","sleek synth-dick","mechanical dick","mechanical cock","mechanical member"]);
+							break;
+						case GLOBAL.TYPE_NYREA:
+							//adjectives.push("nyrean", "insectile", "egg-laying", "nyrean", "insectile");
+							desc += RandomInCollection(["nyrean ovipositor","nyrean ovi-cock","nyrean cock","nyrean egg-organ","nyrean egg-shaft","nyrean shaft","nyrean tool","nyrean cock","nyrean egg-layer","nyrean lady-cock","insectile ovi-cock","insectile cock","insectile ovi-dick","insectile ovipositor","insectile prick","insectile shaft","insectile member"]);
+							break;
+						case GLOBAL.TYPE_DAYNAR:
+							//adjectives.push("daynarian", "reptilian", "inhuman", "reptilian");
+							desc += RandomInCollection(["daynarian dick","daynarian cock","daynarian tool","daynarian member","daynarian prick","daynarian cock","reptilian cock","reptilian cock","reptilian dick","reptilian member","reptilian phallus","daynarian phallus","alian cock","alien dick","inhuman reptile-dick","daynarian lizard-cock"]);
+							break;
+						case GLOBAL.TYPE_SYDIAN:
+							//adjectives.push("sydian", "insectile", "inhuman", "bristly", "brush-like");
+							desc += RandomInCollection(["bristle-covered cock","bristle-covered prick","brush-coated cock","brush-coated dick","brush-coated prick","brush-coated cock","brush-coated phallus","sydian dick","sydian cock","insectile prong","insectile cock","insectile dick","insectile member","insectile tool","sydian shaft","sydian member","sydian cock"]);
+							break;
+						case GLOBAL.TYPE_GABILANI:
+							//adjectives.push("alien", "bulbous", "double-crowned", "gabilani", "goblin", "inhuman", "exotic", "two-headed");
+							desc += RandomInCollection(["two-headed goblin-cock","two-headed cock","bulbous cock","bulbous goblin-cock","bulbous goblin-dick","bulbous prick","double-crowned dick","double-crowned dong","gabilanian phallus","gabilanian member","gabilanian cock","exotic goblin-cock","double-crowned cock"]);
+							break;
+						case GLOBAL.TYPE_VANAE:
+							//adjectives.push("vanae", "alien", "suckler-tipped", "vanae", "cephalopod-like", "inhuman", "exotic");
+							desc += RandomInCollection(["alien cock","sucker-tipped cock","sucker-tipped dick","sucker-tipped prick","sucker-tipped cock","sucker-crowned cock","sucker-crowned dick","sucker-capped member","sucker-capped pahllus","alien dick","exotic vanae-cock","exotic vanae-dick","sucker-topped prick"]);
+							break;
+						//Basic dicks names:  "cock",
+						case GLOBAL.TYPE_HUMAN:
+							desc += RandomInCollection(["terran cock","human cock","human dick","terran dick","human member","terran member","terran phallus","human prick","terran tool","human shaft"]);
+							break;
+						//Nothing special for these two.
+						case GLOBAL.TYPE_HRAD:
+						case GLOBAL.TYPE_INHUMAN:
+						//Dafault catch-all
+						default:
+							desc += RandomInCollection(["exotic cock","inhuman cock","alien dick","inhuman dick","alien member","exotic member","inhuman phallus","exotic prick","alien tool","alien shaft"]);
+							break;
+					}
+				}
+			}
+			return desc;
 		}
 		//New cock adjectives. The old one sucked dicks
 		public function cockAdjective(cockNum: Number = -1, dynamicLength:Boolean = false):String {
