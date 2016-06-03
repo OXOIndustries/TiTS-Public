@@ -4105,6 +4105,9 @@
 				case GLOBAL.TYPE_LEITHAN:
 					adjectives = ["leithan", "elven", "pointy", "inhuman", "pointed"];
 					break;
+				case GLOBAL.TYPE_OVIR:
+					adjectives = ["ovir", "reptilian", "dot", "hidden"];
+					break;
 				case GLOBAL.TYPE_RASKVEL:
 					adjectives = ["raskvel", "obscenely long", "oh-so sensitive", "lengthy"];
 					if(skinType != GLOBAL.SKIN_TYPE_GOO) adjectives.push("smooth-scaled");

@@ -469,7 +469,7 @@ public function appearance(forTarget:Creature):void
 				if (target.earLength > 1) output2(" " + num2Text(target.earLength) + " inches from your");
 				output2(" from your " + headNoun + ".");
 			}
-			else if (target.earType == GLOBAL.TYPE_FROG)
+			else if (target.earType == GLOBAL.TYPE_FROG || target.earType == GLOBAL.TYPE_OVIR)
 			{
 				output2(" A pair of small indented holes");
 				if(target.skinType == GLOBAL.SKIN_TYPE_FUR) output2(" hidden");
@@ -543,7 +543,7 @@ public function appearance(forTarget:Creature):void
 				if(target.earLength > 1) output2(" " + num2Text(target.earLength) + "-inch long,");
 				output2(" wicked-looking demonic ears.");
 			}
-			else if(target.earType == GLOBAL.TYPE_FROG) output2(" The " + target.hairDescript(true,true) + " atop your head covers the two small openings that make up your ears.");
+			else if(target.earType == GLOBAL.TYPE_FROG || target.earType == GLOBAL.TYPE_OVIR) output2(" The " + target.hairDescript(true,true) + " atop your head covers the two small openings that make up your ears.");
 			if(target.hasAntennae())
 			{
 				if(target.earType == GLOBAL.TYPE_LAPINE)
