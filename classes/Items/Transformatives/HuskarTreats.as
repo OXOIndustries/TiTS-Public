@@ -457,13 +457,13 @@
 				//Usage text:
 				kGAMECLASS.output("You pop the bone-shaped cookie into your mouth. It's pleasantly chewy and chocolatey, though as you swallow it, you find yourself panting and scratching at your ears. Weird.");
 				
-				if ((target.race() == "half-ausar" || target.race().indexOf("ausar") == -1) && target.race().indexOf("huskar") == -1)
+				if (target.race().indexOf("ausar") == -1 && target.race().indexOf("huskar") == -1)
 				{
 					if(rand(2) == 0) changeLimit++;
 					if(rand(3) == 0) changeLimit++;
 					if(rand(4) == 0) changeLimit++;
 					if (rand(5) == 0) changeLimit++;
-					
+			
 					changes = ausarStageTFs(target, changeLimit);
 				}
 				else if (target.race().indexOf("ausar") != -1)
