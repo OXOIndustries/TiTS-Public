@@ -11370,16 +11370,35 @@
 				if (rando == 2) descript += "cluster of ";
 				if (rando == 3) descript += "wriggling bunch of ";
 			}
+			var adjectiveArray:Array = cockAdjectivesRedux(cocks[biggestCockIndex()], 1, true);
+			descript += adjectiveArray[0];
 			//Append Nounse
-			if (hasSamecType()) descript += cockAdjective(-1, dynamicLength) + ", " + plural(cockNoun2(cocks[0], false, ""));
-			else {
-				rando = rand(4);
-				if (rando == 0) descript += cockAdjective(-1, dynamicLength) + ", mutated cocks";
-				if (rando == 1) descript += cockAdjective(-1, dynamicLength) + ", mutated dicks";
-				if (rando == 2) descript += cockAdjective(-1, dynamicLength) + ", mixed cocks";
-				if (rando == 3) descript += cockAdjective(-1, dynamicLength) + ", mismatched dicks";
+			if (hasSamecType()) 
+			{
+				//Not human? Special descripts goooo
+				if(cocks[0].cType != GLOBAL.TYPE_HUMAN && rand(3) == 0)
+				{
+					if(adjectiveArray[1] > 0) descript += ", ";
+					descript += cockNoun2(cocks[biggestCockIndex()], false);
+				}
+				//Mediocre descripts go!
+				else if(rand(2) == 0)
+				{
+					if(adjectiveArray[1] > 0) descript += " ";
+					descript += cockNoun2(cocks[biggestCockIndex()], true);
+				}
+				//Ultrasimple
+				else
+				{
+					if(adjectiveArray[1] > 0) descript += " ";
+					descript += cockNoun2(cocks[biggestCockIndex()], true, "ultraSimple");
+				}
 			}
-			return descript;
+			else {
+				if(adjectiveArray[1] > 0) descript += ", ";
+				descript += RandomInCollection("mutated cock","mutated dicks","mixed cocks","mismatched dicks");
+			}
+			return plural(descript);
 		}
 		public function hasSamecType(): Boolean {
 			if (cocks.length == 0) return false;
@@ -11494,9 +11513,11 @@
 			//Single dicks are normal.
 			else if (cocks.length == 1) return cockDescript(0, dynamicLength);
 			//Matched dicks get full cocknoun.
-			if (hasSamecType()) return plural(cockAdjective(-1, dynamicLength) + ", " + cockNoun2(cocks[0], false));
+			if (hasSamecType()) return plural(cockDescript(0,dynamicLength,true));
 			//Unmatched get default types
-			return plural(cockAdjective(-1, dynamicLength) + " " + randomSimpleCockNoun());
+			var adjectivesArray:Array = cockAdjectivesRedux(cocks[0],2,true);
+			if(adjectivesArray[1] > 0) return plural(adjectivesArray[0] + " " + randomSimpleCockNoun());
+			else return plural(randomSimpleCockNoun());
 		}
 		//Ultra-basic multiple cock description
 		public function cocksDescriptLight(): String {
@@ -11540,16 +11561,18 @@
 		// Spit back a singular word related to the shape of the target cock, with the minimum
 		// of ambiguity. Basically describe a very clear feature of the cock, either its type or a flag.
 		// I didn't want to potentially fuck up an existing descriptor in the process, so I've opted to keep it separate.
-		public function cockShape(cockIndex:int):String
+		public function cockShape(cockIndex:int,forceType:int = -1):String
 		{
 			var cock:CockClass = cocks[cockIndex];
 			var collection:Array = [];
-			
+
+			//If forceType is not set, grab it from the index.
+			if(forceType == -1) forceType = cock.cType;
 			// main shapes
-			switch (cock.cType)
+			switch (forceType)
 			{
 				case GLOBAL.TYPE_HUMAN:
-					collection = ["terran"];
+					collection = ["terran","human"];
 					break;
 				case GLOBAL.TYPE_CANINE:
 					collection = ["canine"];
@@ -11572,19 +11595,19 @@
 					break;
 				case GLOBAL.TYPE_NAGA:
 				case GLOBAL.TYPE_SNAKE:
-					collection = ["snake", "reptilian"];
+					collection = ["snake-like", "reptilian"];
 					break;
 				case GLOBAL.TYPE_DRACONIC:
 					collection = ["draconic"];
 					break;
 				case GLOBAL.TYPE_BEE:
-					collection = ["zil"];
+					collection = ["wasp-like"];
 					break;
 				case GLOBAL.TYPE_KANGAROO:
 					collection = ["kangaroo"];
 					break;
 				case GLOBAL.TYPE_ANEMONE:
-					case GLOBAL.TYPE_SIREN:
+				case GLOBAL.TYPE_SIREN:
 					collection = ["tentacled"];
 					break;
 				case GLOBAL.TYPE_SIMII:
@@ -11594,10 +11617,10 @@
 					collection = ["raskvel"];
 					break;
 				case GLOBAL.TYPE_VENUSPITCHER:
-					collection = ["plant", "vine-like"];
+					collection = ["plant-like", "vine-like"];
 					break;
 				case GLOBAL.TYPE_SAURIAN:
-					collection = ["saurian", "dinosaur"];
+					collection = ["saurian", "dinosaur-like"];
 					break;
 				case GLOBAL.TYPE_SYNTHETIC:
 					collection = ["synthetic", "robotic"];
@@ -11612,24 +11635,24 @@
 					collection = ["sydian", "insectile"];
 					break;
 				case GLOBAL.TYPE_COCKVINE:
-					collection = ["plant", "vine-like"];
+					collection = ["plant-like", "vine-like"];
 					break;
 				case GLOBAL.TYPE_GABILANI:
-					collection = ["gabilani", "goblin"];
+					collection = ["gabilani", "goblin-like"];
 					break;
 				case GLOBAL.TYPE_VANAE:
-					collection = ["vanae", "cephalopod-like"];
+					collection = ["vanae", "sucker-tipped"];
 					break;
 				case GLOBAL.TYPE_HRAD:
 					collection = ["human", "terran", "bullet-shaped", "bullet-headed"];
 					break;
-				case GLOBAL.TYPE_INHUMAN:
-					collection = ["inhuman", "human-like", "alien"];
-					break;
 				case GLOBAL.TYPE_GRYVAIN:
 					collection = ["draconic", "gryvain"];
 					break;
-				
+				case GLOBAL.TYPE_INHUMAN:
+					collection = ["inhuman", "human-like", "alien"];
+					break;
+			
 				default:
 					trace("Fallback cock shape used in cockShape() for type: " + GLOBAL.TYPE_NAMES[cock.cType]);
 					collection = ["bestial"];
@@ -11666,8 +11689,9 @@
 			var nouns:Array = new Array();
 			var adjectives:Array = new Array();
 			var type:int = cock.cType;
+			if(special == "ultraSimple") desc += RandomInCollection(["cock","cock","dick","dick","member","member","phallus","prick","tool","shaft"]);
 			//Simple = hyphenated shit
-			if(simple)
+			else if(simple)
 			{
 				//Gooey has chance to override normal shit
 				if (cock.hasFlag(GLOBAL.FLAG_GOOEY) && rand(3) == 0) {
@@ -11787,9 +11811,9 @@
 				if (cock.hasFlag(GLOBAL.FLAG_GOOEY) && rand(2) == 0) {
 					desc += RandomInCollection(["gooey cock","gooey cock","gooey dick","gooey prick","gooey tool","gooey shaft","self-lubricating goo-cock","self-lubricating shaft","self-lubricating member","self-lubricating slime-cock","slick shaft","slick cock","slick dick","slick goo-cock","slick goo-dick","slippery slime-cock","slippery slime-dick","slippery prick"]);
 				}
-				//9999 TO BE COMPLETED LATER - TAIL AND NIPPLE STUFF
-				else if(special == "tail" && rand(2) == 0) desc += "placeholder9999 tail-" + RandomInCollection(["cock","cock","dick","prick","cock","dick"]);
-				else if(special == "dick" && rand(2) == 0) desc += "placeholder9999 " + RandomInCollection(["dick","cock","prick"] + "-nipple");
+				//TO BE COMPLETED LATER - TAIL AND NIPPLE STUFF
+				else if(special == "tail" && rand(2) == 0) desc += cockShape(0,type) + " tail-" + RandomInCollection(["cock","cock","dick","prick","cock","dick"]);
+				else if(special == "dick" && rand(2) == 0) desc += cockShape(0,type) + " " + RandomInCollection(["dick","cock","prick"] + "-nipple");
 				else
 				{
 					switch(type)
@@ -11898,7 +11922,216 @@
 			}
 			return desc;
 		}
-		//New cock adjectives. The old one sucked dicks
+		//New new cock adjectives. For cool kids that aren't afraid of anything.
+		public function cockAdjectivesRedux(cock:CockClass, adjectiveLimit:int = 2, multi:Boolean = false):Array
+		{
+			var descript: String = "";
+			var multi: Boolean = false;
+			var adjectives: int = 0;
+			var bonus:int = 0;
+			var x:int = 0;
+			//If we're doing multidicks, let's use the biggest one
+			if(multi) cock = cocks[biggestCockIndex()];
+			//Get length
+			var cLength: Number = cock.cLength();
+			//Get width
+			var cWidth:Number = cock.thickness();
+			//We want to avoid doing both as it can lead to some awkward results: "gargantuan, meaty cock"
+			var lengthDescribed:Boolean = false;
+			var girthDescribed:Boolean = false;
+			var multiOkay:Boolean = false;
+			//Determine length chances! - nothing for "normal" length. Bonus for super small or progressively larger!
+			bonus = 0;
+			if(cLength <= 5) bonus = 25;
+			else if(cLength >= 7) bonus = 25;
+			if(cLength <= 4) bonus += 10;
+			if(cLength >= 14) bonus += 3;
+			if(cLength >= 18) bonus += 3;
+			if(cLength >= 30) bonus += 3;
+			if(cLength >= 50) bonus += 3;
+			if(cLength >= 100) bonus += 3;
+			if(multi)
+			{
+				multiOkay = true;
+				for(x = 0; x < cockTotal(); x++)
+				{
+					if(x > 0)
+					{
+						if(Math.abs(cocks[x].cLength() - cocks[x-1].cLength()) > 5) multiOkay = false;
+					}
+				}
+			}
+			if (rand(100) < bonus && (!multi || multiOkay)) {
+				if (cLength <= 4) descript += RandomInCollection(["little","toy-sized","mini","tiny","diminutive",]);
+				else if (cLength <= 5) descript += RandomInCollection(["short","small","petite"]);
+				//This one should pretty much never proc
+				else if (cLength < 7) descript += RandomInCollection(["fair-sized","nice"]);
+				else if (cLength < 11) descript += RandomInCollection([(cock.cType == GLOBAL.TYPE_EQUINE) ? "pony-sized" : "long","lengthy","cucumber-sized"]);
+				else if (cLength < 14) descript += RandomInCollection(["huge","foot-long",(cock.cType == GLOBAL.TYPE_CANINE) ? "mastiff-sized" : "pornstar-sized","impressive"]);
+				else if (cLength < 18) descript += RandomInCollection(["massive","knee-length","forearm-length","imposing","seam-straining","pant-bulging"]);
+				else if (cLength < 30) descript += RandomInCollection(["enormous","enormous","giant","giant",(cock.cType == GLOBAL.TYPE_EQUINE) ? "clydesdale-sized" : "arm-sized","seam-shredding","pant-ripping"])
+				else if (cLength < 50) descript += RandomInCollection(["towering","monstrous","prodigious","ultrapornstar-sized","hyper-sized","unnaturally large",""])
+				else if (cLength < 100) descript += RandomInCollection(["person-sized","ridiculously massive","extremely prodigious","overly imposing","room-dominating","body-dominating","colossal","monumental","immense"]);
+				else if (cLength < 150) descript += RandomInCollection(["car-sized","vehicle-length","movement-impairing","monumentally long","couch-length","impossibly long"]);
+				else if (cLength < 270) descript += RandomInCollection(["room-sized","hall-length","exquisitely over-sized","bus-length","ship-length","impossibly lengthy","tremendously long"]);
+				else descript += RandomInCollection(["bus-sized","ship-sized","universe-shaming","house-crushing","mansion-filling","distractingly distended","gorgeously gigantic"]);
+				adjectives++;
+				lengthDescribed = true;
+			}
+			if(multi)
+			{
+				multiOkay = true;
+				for(x = 0; x < cockTotal(); x++)
+				{
+					if(x > 0)
+					{
+						if(cLength <= tallness * 2/3) multiOkay = false;
+					}
+				}
+			}
+			//Chance of special relative descriptions
+			else if(cLength > tallness * 2/3 && rand(9) == 0 && (!multi || multiOkay))
+			{
+				if(adjectives > 0) descript += ", ";
+				descript += RandomInCollection("floor-dragging","ground-dragging","floor-polishing");
+				adjectives++;
+				lengthDescribed = true;
+			}
+			//TIME FOR GIRTH!
+			bonus = 10;
+			//"average" aint never gonna show up
+			if(cWidth >= 1 && cWidth <= 1.2) bonus = 0;
+			//Super fatties show up more
+			if(cWidth > 2) bonus + 10;
+			if(multi)
+			{
+				multiOkay = true;
+				for(x = 0; x < cockTotal(); x++)
+				{
+					if(x > 0)
+					{
+						if(Math.abs(cocks[x].thickness() - cocks[x-1].thickness()) > .5) multiOkay = false;
+					}
+				}
+			}
+			if(adjectives < adjectiveLimit && rand(100) < bonus && (!multi || multiOkay))
+			{
+				if(adjectives > 0) descript += ", ";
+				if (cWidth < 1) descript += RandomInCollection(["thin","slender","narrow","girlish"]);
+				//This should NEVER proc, but leaving here in case I change my mind down the road
+				else if (cWidth <= 1.2) descript += RandomInCollection(["modest","substantial","fleshy"]);
+				else if (cWidth <= 1.6) descript += RandomInCollection(["ample","meaty","generously-proportioned"]);
+				else if (cWidth <= 2) descript += RandomInCollection(["broad","girthy","expansive","thick"]);
+				else if (cWidth <= 3.5) descript += RandomInCollection(["fat","wide","voluminous","distended"]);
+				else descript += RandomInCollection(["incredibly thick","bloated","mammoth","monstrously thick","swollen","tremendously wide"]);
+				girthDescribed = true;
+				adjectives++;
+			}
+			//Bimbo flavor - 1/6 chance
+			if(adjectives < adjectiveLimit && rand(6) == 0 && isBimbo())
+			{
+				if(adjectives > 0) descript += ", ";
+				if(rand(7) == 8 && cLength < 6) descript += "cute";
+				else if(rand(7) == 0) descript += "mouth-watering";
+				else if(rand(6) == 0) descript += "totally sexy";
+				else if(rand(5) == 0) descript += "super hot";
+				else if(rand(4) == 0) descript += "delicious-looking";
+				else if(rand(3) == 0 && cLength >= 10) descript += "awe-inspiring";
+				else descript += "yummy";
+				adjectives++;
+			}
+			//Hornyness 25%
+			if (adjectives < adjectiveLimit && lust() >= 75 && rand(4) == 0) 
+			{
+				if(adjectives > 0) descript += ", ";
+				var cum:Number = cumQ();
+				//Uber horny like a baws!
+				if (lust() > 90)
+				{
+					//Weak as shit cum
+					if (cum < 150) descript += RandomInCollection(["throbbing","pulsating"]);
+					//lots of cum? drippy.
+					else if (cum < 1000) descript += RandomInCollection(["throbbing","pulsating","pre-leaking","pre-drooling","pre-oozing","pre-dribbling"]);
+					//Tons of cum
+					else descript += RandomInCollection(["throbbing","pulsating","pre-gushing","cum-bubbling","pre-soaked","pre-slicked","cum-dribbling"]);
+				}
+				//A little less lusty, but still lusty.
+				else {
+					if (cum < 50) descript += RandomInCollection(["turgid","rock-hard","tumescent","stiff","eager"]);
+					//A little drippy
+					else if (cum < 200) descript += RandomInCollection(["turgid","rock-hard","stiff","tumescent","eager","pre-beading","pre-leaking"]);
+					//uber drippy
+					else descript += RandomInCollection(["pre-dribbling","pre-drooling","precum-oozing","turgid","hard","rock-hard","tumescent","fully engorged"]);
+				}
+				adjectives++;
+			}
+			//Knot - 1/5 chance. Only specifically called out if dick isn't dog, since knot shows up with the
+			//canine nouns.
+			if(multi)
+			{
+				multiOkay = true;
+				for(x = 0; x < cockTotal(); x++)
+				{
+					if(!cocks[x].hasFlag(GLOBAL.FLAG_KNOTTED)) multiOkay = false;
+				}
+			}
+			if(adjectives < adjectiveLimit && rand(5) == 0 && cock.hasFlag(GLOBAL.FLAG_KNOTTED) && cock.cType != GLOBAL.TYPE_CANINE && cock.cType != GLOBAL.TYPE_SNAKE && cock.cType != GLOBAL.TYPE_NAGA && cock.cType != GLOBAL.TYPE_KUITAN && (!multi || multiOkay))
+			{
+				if(adjectives > 0) descript += ", ";
+				descript += RandomInCollection(["knotted","bulbous","knotty"]);
+				adjectives++;
+			}
+			//Pierced - 1/5 chance
+			if(multi)
+			{
+				multiOkay = true;
+				for(x = 0; x < cockTotal(); x++)
+				{
+					if(cocks[x].pierced <= 0) multiOkay = false;
+				}
+			}
+			if (adjectives < adjectiveLimit && rand(5) == 0 && cock.pierced > 0 && (!multi || multiOkay)) 
+			{
+				if(adjectives > 0) descript += ", ";
+				descript += "pierced";
+				adjectives++;
+			}
+			//Color: 1/15 chance
+			if(multi)
+			{
+				multiOkay = true;
+				for(x = 0; x < cockTotal(); x++)
+				{
+					if(x > 0)
+					{
+						if(cocks[x].cockColor != cocks[x-1].cockColor) multiOkay = false;
+					}
+				}
+			}
+			if (adjectives < adjectiveLimit && rand(10) == 0 && (!multi || multiOkay)) 
+			{
+				if(adjectives > 0) descript += ", ";
+				descript += cock.cockColor;
+				adjectives++;
+			}
+			//Cocksocks!
+			//Pierced - 1/5 chance
+			if(multi)
+			{
+				multiOkay = true;
+				for(x = 0; x < cockTotal(); x++)
+				{
+					if(cocks[x].sock == "") multiOkay = false;
+				}
+			}
+			if (adjectives < adjectiveLimit && !multi && rand(5) == 0 && cock.sock != "" && (!multi || multiOkay)) {
+				if(adjectives > 0) descript += ", ";descript += "pierced";
+				descript += RandomInCollection(["sock-sheathed","garment-wrapped","wrapped","smartly dressed","cloth-shrouded","sock-shrouded","fabric swaddled","covered"]);
+				adjectives++;
+			}
+			return [descript,adjectives];
+		}
+		/*Old cockAdjective left for reference - not that this WAS the "new hotness". So many generations of parsers.
 		public function cockAdjective(cockNum: Number = -1, dynamicLength:Boolean = false):String {
 			var descript: String = "";
 			var rando: Number = 0;
@@ -12135,7 +12368,7 @@
 				}
 			}
 			return descript;
-		}
+		}*/
 		//New cock adjectives. The old one sucked dicks
 		public function statCockAdjective(l: int, w: int, type: int = 0):String {
 			var descript: String = "";
@@ -12949,9 +13182,7 @@
 			// Penis?
 			else if(idxOverride >= 0)
 			{
-				if(forceAdjective == 1 || (forceAdjective == 0 && rand(2) == 0)) descript += cockAdjective(idxOverride) + " ";
-				descript += cockNoun2(cocks[idxOverride]);
-				return descript;
+				return cockDescript(idxOverride);
 			}
 			// Giant Clits?
 			else if(idxOverride == -2)
@@ -12970,34 +13201,71 @@
 			// Error, return something though!
 			return "strapon";
 		}
-		public function cockDescript(cockNum: Number = 0, dynamicLength:Boolean = false): String {
+		public function cockDescript(cockNum: Number = 0, dynamicLength:Boolean = false, multi:Boolean = false): String {
 			if (totalCocks() == 0) return "<b>ERROR: CockDescript Called But No Cock Present</b>";
 			if (cockTotal() <= cockNum && cockNum != 99) return "<b>ERROR: CockDescript called with index of " + cockNum + " - out of BOUNDS</b>";
 
-			var descript: String = "";
-			//Non boring descriptions!
-			if (cockNum != 99) {
-				//70% of the time add a descriptor
-				if (rand(10) <= 6) {
-					descript += cockAdjective(cockNum, dynamicLength);
-					//50% of the time add supplimental cock adjective with the noun.
-					if (rand(2) == 0) {
-						descript += ", " + cockNoun2(cocks[cockNum], false);
+			//Variables
+			var adjectiveLimit:Number = 2;
+			var adjectiveCount:Number = 0;
+			var ultraSimple:Boolean = false;
+			var simple:Boolean = false;
+			var complex:Boolean = false;
+			var cock:CockClass = cocks[cockNum];
+			var bonus:Number = 0;
+			var descript:String = "";
+
+			//Determine type of cock description. This varies based on type
+			switch(cock.cType)
+			{
+				//human cunts tend to get over-simplistic ones.
+				case GLOBAL.TYPE_HUMAN:
+					ultraSimple = true;
+					break;
+				//These all get 70% complex, 10% ultraSimple, 20% simple
+				case GLOBAL.TYPE_EQUINE:
+				case GLOBAL.TYPE_CANINE:
+				case GLOBAL.TYPE_FELINE:
+				case GLOBAL.TYPE_NAGA:
+				case GLOBAL.TYPE_LEITHAN:
+				case GLOBAL.TYPE_SYNTHETIC:
+					if(rand(10) <= 6) 
+					{
+						complex = true;
+						adjectiveLimit = 1;
 					}
-					//Otherwise normal
-					else descript += " " + cockNoun2(cocks[cockNum], true);
-				}
-				//These guys get a bonus adjective 70% of the time.
-				else {
-					if (rand(10) <= 6) descript += cockNoun2(cocks[cockNum], false);
-					else descript += cockNoun2(cocks[cockNum]);
-				}
+					else if(rand(3) == 0) ultraSimple = true;
+					else simple = true;
+					break;
+				//Everything else gets 33% splits
+				default:
+					if(rand(3) == 0) 
+					{
+						complex = true;
+						adjectiveLimit = 1;
+					}
+					else if(rand(2) == 0) ultraSimple = true;
+					else simple = true;
+					break;
 			}
-			//Boring descriptions. Mostly the same but kinda lame, actually.
-			else {
-				//70% of the time add a descriptor
-				if (rand(10) <= 6) descript += cockAdjective(-1, dynamicLength) + " " + randomSimpleCockNoun();
-				else descript += randomSimpleCockNoun();
+			//Get adjectives!
+			var adjectivesReturn:Array = cockAdjectivesRedux(cock, adjectiveLimit, multi);
+			descript = adjectivesReturn[0];
+			if(ultraSimple)
+			{
+				if(adjectivesReturn[1] > 0) descript += " ";
+				descript += cockNoun2(cock, true, "ultraSimple");
+			}
+			else if(simple)
+			{
+				if(adjectivesReturn[1] > 0) descript += " ";
+				descript += cockNoun2(cock, true);
+			}
+			//Complexico!
+			else 
+			{
+				if(adjectivesReturn[1] > 0) descript += ", ";
+				descript += cockNoun2(cock, false);
 			}
 			return descript;
 		}
