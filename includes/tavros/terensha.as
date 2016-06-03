@@ -861,7 +861,7 @@ public function meetingTerenshaDancing():void
 	output("\n\nStill, your efforts earn a wan smile from the call-girl as she finally ");
 	if(pc.cocks[0].cLength() >= 15) output("takes your massive cock so deep that you can feel the gaping ring of her egg-bearing womb kissing your crown");
 	else output("settles into your lap, your [pc.cock] completely consumed by her tight, nub-ringed cock-sheath");
-	output(". Ren’s thick tail swishes heavily between your [pc.leg], mirroring the rhythm of its owner’s contract cunt around your shaft. She really does feel like a high-end onahole now, so latexy-smooth but full of bumps and ridges that grind wonderfully against your prick even at rest, moving only in response to the nearly overwhelming pleasure their owner is enduring.");
+	output(". Ren’s thick tail swishes heavily between your [pc.leg], mirroring the rhythm of its owner’s contracting cunt around your shaft. She really does feel like a high-end onahole now, so latexy-smooth but full of bumps and ridges that grind wonderfully against your prick even at rest, moving only in response to the nearly overwhelming pleasure their owner is enduring.");
 
 	output("\n\n<i>“Keep playing with my cock like that and I don’t think I’m going to be able to move,”</i> Ren breathes huskily, wrapping her gloved arms around your neck. <i>“Or... would that be alright? Want me to milk you dry just with my muscles?”</i>");
 
