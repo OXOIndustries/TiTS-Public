@@ -11325,6 +11325,7 @@
 			var descript: String = "";
 			var rando: Number = 0;
 			var descripted: Boolean = false;
+			var adjectives:Number = 0;
 
 			//Single dick gets normal output
 			if (cocks.length == 1) return cockDescript(0, dynamicLength);
@@ -11334,49 +11335,77 @@
 				//For cocks that are the same
 				if (hasSamecType()) {
 					rando = rand(5);
-					if (rando == 0) descript += "pair of ";
-					if (rando == 1) descript += "two, ";
-					if (rando == 2) descript += "brace of ";
-					if (rando == 3) descript += "matching, ";
-					if (rando == 4) descript += "twin, ";
+					if (rando == 0) descript += "pair of";
+					if (rando == 1) 
+					{
+						descript += "two";
+						adjectives = 1;
+					}
+					if (rando == 2) descript += "brace of";
+					if (rando == 3) 
+					{
+						descript += "matching";
+						adjectives = 1;
+					}
+					if (rando == 4) 
+					{
+						descript += "twin";
+						adjectives = 1;
+					}
 				}
 				//Nonidentical
 				else {
 					rando = rand(3);
-					if (rando == 0) descript += "pair of ";
-					if (rando == 1) descript += "two, ";
-					if (rando == 2) descript += "brace of ";
+					if (rando == 0) descript += "pair of";
+					if (rando == 1) 
+					{
+						descript += "two";
+						adjectives = 1;
+					}
+					if (rando == 2) descript += "brace of";
 				}
 			} else if (cocks.length <= 3) {
 				//For samecocks
 				if (hasSamecType()) {
 					rando = rand(5);
-					if (rando == 0) descript += "three, ";
-					if (rando == 1) descript += "group of ";
-					if (rando == 2) descript += "menage a trois of ";
-					if (rando == 3) descript += "triad of ";
-					if (rando == 4) descript += "triumvirate of ";
+					if (rando == 0) 
+					{
+						descript += "three";
+						adjectives = 1;
+					}
+					if (rando == 1) descript += "group of";
+					if (rando == 2) descript += "menage a trois of";
+					if (rando == 3) descript += "triad of";
+					if (rando == 4) descript += "triumvirate of";
 				} else {
 					rando = rand(2);
-					if (rando == 0) descript += "three, ";
-					if (rando == 1) descript += "group of ";
+					if (rando == 0) 
+					{
+						descript += "three";
+						adjectives = 1;
+					}
+					if (rando == 1) descript += "group of";
 				}
 			}
 			//Large numbers of cocks!
 			else {
 				rando = rand(4);
-				if (rando == 0) descript += "bundle of ";
-				if (rando == 1) descript += "obscene group of ";
-				if (rando == 2) descript += "cluster of ";
-				if (rando == 3) descript += "wriggling bunch of ";
+				if (rando == 0) descript += "bundle of";
+				if (rando == 1) descript += "obscene group of";
+				if (rando == 2) descript += "cluster of";
+				if (rando == 3) descript += "wriggling bunch of";
 			}
 			var adjectiveArray:Array = cockAdjectivesRedux(cocks[biggestCockIndex()], 1, true);
+			//Punctuation is important.
+			if(adjectives > 0 && adjectiveArray[1] > 0) descript += ", ";
+			else descript += " ";
+			//Actually add adjectives, if any.
 			descript += adjectiveArray[0];
 			//Append Nounse
 			if (hasSamecType()) 
 			{
 				//Not human? Special descripts goooo
-				if(cocks[0].cType != GLOBAL.TYPE_HUMAN && rand(3) == 0)
+				if(cocks[0].cType != GLOBAL.TYPE_HUMAN && rand(3) == 0 && adjectiveArray[1] + adjectives < 2)
 				{
 					if(adjectiveArray[1] > 0) descript += ", ";
 					descript += cockNoun2(cocks[biggestCockIndex()], false);
@@ -11926,7 +11955,6 @@
 		public function cockAdjectivesRedux(cock:CockClass, adjectiveLimit:int = 2, multi:Boolean = false):Array
 		{
 			var descript: String = "";
-			var multi: Boolean = false;
 			var adjectives: int = 0;
 			var bonus:int = 0;
 			var x:int = 0;
