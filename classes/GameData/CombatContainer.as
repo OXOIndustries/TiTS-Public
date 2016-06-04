@@ -1083,7 +1083,7 @@ package classes.GameData
 			output("! ")
 			//Autofail conditions first!
 			if(pc.isImmobilized()) {
-				output("You cannot run while you are immobilized!");
+				output("You cannot run while you are " + (pc.isGrappled() ? "in the enemy’s grip" : "immobilized") + "!");
 				processCombat();
 			}
 			else if (isFleeDisabled()) {
