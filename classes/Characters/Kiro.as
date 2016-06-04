@@ -219,6 +219,22 @@
 			super.orgasm();
 			ballSizeRaw = 10;
 		}
+		
+		override public function get bustDisplay():String
+		{
+			var str:String = "KIRO";
+			
+			if(ballDiameter() <= 7) str += "_SM";
+			else if(ballDiameter() <= 14) str += "";
+			else if(ballDiameter() <= 24) str += "_LG";
+			else str += "_XL";
+			
+			if(biggestTitSize() >= 32) str += "_2";
+			else if(biggestTitSize() >= 12) str += "_1";
+			else str += "";
+			
+			return str;
+		}
 	}
 
 }

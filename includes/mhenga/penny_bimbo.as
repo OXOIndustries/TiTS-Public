@@ -10,7 +10,7 @@ public function approachBimboPenny():void
 	{
 		var pennyBust:String = "PENNY_BIMBO";
 		if(penny.hasCock(GLOBAL.TYPE_EQUINE)) pennyBust = "PENNY_BIMBO_HORSE";
-		showBust("FLAHNE_NUDE", pennyBust);
+		showBust(flahneBustDisplay(true), pennyBust);
 		showName("PENNY &\nFLAHNE");
 		rooms["CUSTOMS OFFICE"].removeFlag(GLOBAL.NPC);
 		generateMap();

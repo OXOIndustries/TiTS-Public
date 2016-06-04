@@ -990,7 +990,7 @@ public function thareSexResponse(response:String = "none"):void
 			addButton(1, "Deny", thareSexResponse, "deny");
 			break;
 		case "let him":
-			showAble();
+			showAble(true);
 			
 			x = pc.statusEffectv1("Thare Manor Temp Value");
 			if(x == -1) x = pc.biggestVaginaIndex();
@@ -1028,7 +1028,7 @@ public function thareSexResponse(response:String = "none"):void
 			thareAbleMenu("sleep");
 			break;
 		case "deny":
-			showAble();
+			showAble(true);
 			
 			output("You");
 			if(!fromBoth) output(" stroke your cheek as you examine");

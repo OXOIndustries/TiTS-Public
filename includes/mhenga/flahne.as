@@ -27,8 +27,18 @@ public function flahneNameDisplay():void
 public function showFlahne(nude:Boolean = false):void
 {
 	flahneNameDisplay();
-	if(nude) showBust("FLAHNE_NUDE");
-	else showBust("FLAHNE");
+	showBust(flahneBustDisplay(nude));
+}
+public function flahneBustDisplay(nude:Boolean = false):String
+{
+	var str:String = "FLAHNE";
+	
+	if(nude)
+	{
+		if(flags["FLAHNE_LIKE_OVIPOSITOR"] > 0) str += "_OVI";
+		str += "_NUDE";
+	}
+	return str;
 }
 
 public function flahneFuckCounter(arg:int = 0):Number {
@@ -74,7 +84,7 @@ public function meetingFlahne(outputT:Boolean = true):Boolean {
 			//Flahne busy with Penny IF TIME IS BETWEEN 0800 AND 1700
 			if(hours >= 8 && hours < 17)
 			{
-				showBust("FLAHNE");
+				showBust(flahneBustDisplay(false));
 				output("\n\nFlahne is at her desk, but although her figure looks a little curvier and her flesh a little lighter than normal, she looks surprisingly normal given her activities with Penny. She must be putting all that mass somewhere,");
 				//IF PC HAS TALKED TO FLAHNE ABOUT HER OVIPOSITOR
 				if(flags["FLAHNE_LIKE_OVIPOSITOR"] != undefined) output(" so you have to assume there’s some massive pile of eggs hidden somewhere nearby.");
@@ -94,7 +104,7 @@ public function meetingFlahne(outputT:Boolean = true):Boolean {
 			}
 		}
 		else if(flags["FLAHNE_PISSED"] > 0 || pc.hasStatusEffect("Flahne_Extra_Pissed")) {
-			showBust("FLAHNE");
+			showBust(flahneBustDisplay(false));
 			output("\n\nFlahne doesn't look like she wants anything to do with you right now.");
 			return false;
 		}
@@ -120,19 +130,19 @@ public function meetingFlahne(outputT:Boolean = true):Boolean {
 		//Repeat Flahn Approaches
 		//Haven’t fucked her
 		else if(flags["FLAHNE_SEXED"] == undefined) {
-			showBust("FLAHNE");
+			showBust(flahneBustDisplay(false));
 			output("\n\nFlahne looks up at you with a smile on her juicy, amber lips. <i>“Well, what can I do for you today, " + pc.mf("Mister","Miss") + " Steele?”</i>  Her big, bouncy breasts are straining her top as hard as ever, though the way she has almost half the buttons undone isn’t helping.");
 			output("\n\nWhat do you do with the curvy rahn secretary?");
 		}
 		//Fucked her
 		else if(flags["FLAHNE_LIKE_OVIPOSITOR"] != 1) {
-			showBust("FLAHNE");
+			showBust(flahneBustDisplay(false));
 			output("\n\nFlahne’s honey-colored skin blushes orange at your approach, and she asks, <i>“Hey there cutie, come back for a little more sugar? I could use a snack.”</i>  Her tongue snakes out to lick her lips before curling around her sucker and slowly pumping it in and out of her mouth. She leans down over her desk, pressing her big, soft breasts against the table so that they strain at the side seams of her shirt. <i>“Or did you just want a peep?”</i>");
 			output("\n\nThe curvy rahn seems happy with either option, though you could probably just talk too. What did you want to do with Flahne?");
 		}
 		//Fucked her and like the ovipositor
 		else {
-			showBust("FLAHNE");
+			showBust(flahneBustDisplay(false));
 			output("\n\nFlahne’s honey-colored skin blushes orange at your approach, though a big smile spreads across her plump lips. She gives a little shiver and sighs with slow relief as an oblong distention lifts her skirt higher and higher. Flahne coos, <i>“Guess who’s happy to see you?”</i>  She unbuttons part of her top while licking a lollipop rather lewdly. <i>“So, wanna have some more fun?”</i>  Pouting, she offers a little less excitedly, <i>“Or did you just want to talk?”</i>");
 			output("\n\nWhat did you want with Flahne?");
 		}
