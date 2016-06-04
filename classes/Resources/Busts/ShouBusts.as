@@ -181,6 +181,10 @@
 		public var Bust_LANE_F:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/lane_f_nude.png", mimeType = "image/png")]
 		public var Bust_LANE_F_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/lane_m.png", mimeType = "image/png")]
+		public var Bust_LANE_M:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/lane_m_nude.png", mimeType = "image/png")]
+		public var Bust_LANE_M_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/lieve.png", mimeType = "image/png")]
 		public var Bust_LIEVE:Class;
@@ -269,6 +273,16 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/shade.png", mimeType = "image/png")]
 		public var Bust_SHADE:Class;
 		public var Bounds_SHADE:Rectangle = new Rectangle(26, 3, 64, 64);
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/shade_nude.png", mimeType = "image/png")]
+		public var Bust_SHADE_NUDE:Class;
+		/*
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/shade_sweater.png", mimeType = "image/png")]
+		public var Bust_SHADE_SWEATER:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/shade_shirt.png", mimeType = "image/png")]
+		public var Bust_SHADE_SHIRT:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/shade_jeans.png", mimeType = "image/png")]
+		public var Bust_SHADE_JEANS:Class;
+		*/
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/shiare.png", mimeType = "image/png")]
 		public var Bust_SHIARE:Class;
@@ -500,6 +514,10 @@
 			public var Full_LANE_F:Class;
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/lane_f_nude.png", mimeType = "image/png")]
 			public var Full_LANE_F_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/lane_m.png", mimeType = "image/png")]
+			public var Full_LANE_M:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/lane_m_nude.png", mimeType = "image/png")]
+			public var Full_LANE_M_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/lieve.png", mimeType = "image/png")]
 			public var Full_LIEVE:Class;
@@ -583,6 +601,16 @@
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/shade.png", mimeType = "image/png")]
 			public var Full_SHADE:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/shade_nude.png", mimeType = "image/png")]
+			public var Full_SHADE_NUDE:Class;
+			/*
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/shade_sweater.png", mimeType = "image/png")]
+			public var Full_SHADE_SWEATER:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/shade_shirt.png", mimeType = "image/png")]
+			public var Full_SHADE_SHIRT:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/shade_jeans.png", mimeType = "image/png")]
+			public var Full_SHADE_JEANS:Class;
+			*/
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/shiare.png", mimeType = "image/png")]
 			public var Full_SHIARE:Class;

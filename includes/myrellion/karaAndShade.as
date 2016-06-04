@@ -88,11 +88,11 @@ public function showKara(asNude:Boolean = false):void
 	if (!asNude) showBust("KARA");
 	else showBust("KARA_NUDE");
 }
-public function showShade():void
+public function showShade(asNude:Boolean = false):void
 {
 	author("Savin");
 	showName("\nSHADE");
-	showBust("SHADE");
+	showShadeBust(asNude);
 }
 
 //Play on entering the bar. Possibly first time entering the bar. 
@@ -380,7 +380,7 @@ public function sorryNoIDontWantToGetLaidShade():void
 public function sureIWantSomeShadePussayTailFuckYes():void
 {
 	clearOutput();
-	showShade();
+	showShade(true);
 	output("<i>“Sounds good,”</i> you say, grinning. <i>“Lead the way.”</i>");
 	output("\n\nShe laughs. <i>“I always do.”</i>");
 	output("\n\nYou follow Shade out of the bar and back through the airfield, north towards one of the bigger hangars. She leads you over to a big, sleek MSXI with a pair of massive engines looming over the hull. The gangplank lowers automatically as you approach, and Shade flashes you a smile. Her long, reptilian tail flicks up, the wet tip caressing your arm as you follow her up. Its wandering crown slides down slowly, tickling your [pc.belly] before delving down to your [pc.crotch], ");
@@ -725,7 +725,7 @@ public function pcAndShadeDefeated():void
 public function cuntTailShadeFux():void
 {
 	clearOutput();
-	showShade();
+	showShade(true);
 	var x:int = pc.cockThatFits(chars["SHADE"].vaginalCapacity());
 	if(x < 0) x = pc.smallestCockIndex();
 	output("As Shade looms over you, you feel her scaled tail coiling around your [pc.leg], the wet slit at its tip leaving a drooling trail up your bare thigh. Its owner casts a quick glance over her shoulder, watching her tail caress you. She leans back, planting her hands on her hips, and gives you a smirking grin. <i>“Looks like somebody likes you, Steele,”</i> she chuckles as her parasitic tail traces up your [pc.leg], slowly meandering towards your [pc.crotch]. Shade shifts up on her knees, giving her cunt-tail room to work its way up to your [pc.cock " + x + "], ");
@@ -787,7 +787,7 @@ public function cuntTailShadeFux():void
 public function takeShadesHardlightPenisInYerBoot():void
 {
 	clearOutput();
-	showShade();
+	showShade(true);
 	var x:int = -1;
 	if(pc.hasVagina()) x = rand(pc.totalVaginas());
 	output("Shade looms over you for a moment, her big slitted eyes playing over your bare body as she decides what to do with you. After a moment of thought, she leans back on her knees and plants a hand on her hip. Rather than taking her panties off, though, the kaithrit huntress instead presses a tiny button hidden in the waistband. In a flash of light, a thick, turgid holographic cock sprouts from her crotch, flopping onto your [pc.belly] with a perceptible weight.");
@@ -842,7 +842,7 @@ public function takeShadesHardlightPenisInYerBoot():void
 public function rimAndWankOrLickAndWankWhoKnowsSloot():void
 {
 	clearOutput();
-	showShade();
+	showShade(true);
 	var x:int = pc.biggestCockIndex();
 	var y:int = -1;
 	if(pc.hasVagina()) y = rand(pc.totalVaginas());
@@ -929,7 +929,7 @@ public function rimAndWankOrLickAndWankWhoKnowsSloot():void
 public function shadeTailSex():void
 {
 	clearOutput();
-	showShade();
+	showShade(true);
 	author("Savin");
 	
 	output("<i>“I’ve got a few ideas,”</i> you answer the buxom kaithrit overtop you, playing your hands up her ample thighs and over her smooth, flared hips. She smiles down at you, gently rocking in your embrace and letting you watch those huge, perfect tits of hers sway hypnotically over your face. You shiver in anticipation at the thought of burying your face between those titans of titflesh, just losing yourself in them... worshipping them with your mouth. Gently, you start to urge Shade down, bringing the smoking hot kitty lower until you can lick your tongue along one of her hefty orbs, teasing the tip across what must be a very sensitive teat. She gasps and arches her back into you, laying her taut belly flat against your [pc.belly] and easing her cleavage down around your face.");
@@ -1026,7 +1026,7 @@ public function shadeTailSex():void
 public function shadeDoubleTitfuck():void
 {
 	clearOutput();
-	showShade();
+	showShade(true);
 	author("Savin");
 	output("Shade casts a glance down, running a pair of her long-clawed fingers along the tender underside of your [pc.cock]. You’re already rock-hard under the amazonian kaithrit, and her gentle touch only serves to make you moan, and to cause your over-sized prick to throb needily in her grasp.");
 
@@ -1064,7 +1064,7 @@ public function shadeDoubleTitfuck():void
 public function shadePostCoitusHangouts():void
 {
 	clearOutput();
-	showShade();
+	showShade(true);
 	//Daytime Version
 	if(hours > 6 && hours < 19)
 	{
@@ -1096,7 +1096,7 @@ public function shadePostCoitusHangouts():void
 public function shouldIShadeOrShouldIGo():void
 {
 	clearOutput();
-	showShade();
+	showShade(true);
 	output("You hop out of Shade’s bed and start gathering your [pc.gear]. The kaithrit shrugs and lies back, watching you until you’re ready to go.");
 	output("\n\n<i>“Show yourself out, hmm?”</i> she purrs, giving you a parting smile before shutting off her light. You slip on out of the ship, and head out into the airfield.");
 	currentLocation = "602";
@@ -1109,7 +1109,7 @@ public function shouldIShadeOrShouldIGo():void
 public function stayWithShade():void
 {
 	clearOutput();
-	showShade();
+	showShade(true);
 	output("You tell Shade that you’ve got nowhere to be, which earns you a playful smile from the buxom kaithrit as she flips the lights off.");
 	if(pc.biggestTitSize() < 1) output(" You feel a long, strong arm lock around your waist, and Shade’s cheek nuzzle against your [pc.chest].");
 	output(" One of Shade’s arms slips under you, and you feel yourself being pulled over onto your side, planting your face squarely into the valley of her ample cleavage. You nuzzle in, getting comfortable on your makeshift pillows, and letting yourself slowly drift off to sleep in Shade’s arms, enjoying the embrace of her soft breasts and her overly affectionate tail.");
@@ -1121,7 +1121,7 @@ public function stayWithShade():void
 public function recoverWithShade():void
 {
 	clearOutput();
-	showShade();
+	showShade(true);
 	//Pass 8 hours
 	processTime(474);
 	sleepHeal();
@@ -1229,7 +1229,7 @@ public function shadeAppearance():void
 public function askShade4Sex():void
 {
 	clearOutput();
-	showShade();
+	showShade(true);
 	output("You ask Shade if she’d be up for a little fun.");
 	output("\n\nShe eyes you up and down, a slight smile spreading on her lips. <i>“I might be. What do you say we get out of here - my ship’s parked just down the tarmac.”</i>");
 	output("\n\n<i>“Lead the way,”</i> you say, standing.");
@@ -1583,10 +1583,10 @@ public function helpShadeLayHerEgg2():void
 public function helpShadeLayHerEgg3():void
 {
 	clearOutput();
-	showShade();
 	//Daytime Version
 	if(hours >= 6 && hours < 20)
 	{
+		showShade();
 		output("<i>“Was that everything you were hoping it would be?”</i> she asks after a while, sitting up and grabbing her duster. <i>“I’m going back to the bar, I think. Coming?”</i>");
 		output("\n\nYou nod and follow Shade back to the bar, hand in hand. As you walk, her tail curls around your waist, more affectionate than normal.");
 		processTime(1);
@@ -1598,6 +1598,7 @@ public function helpShadeLayHerEgg3():void
 	//Night Version
 	else
 	{
+		showShade(true);
 		output("Shade gives a big yawn and stretches. <i>“I think that’s about taken everything out of me,”</i> Shade purrs, turning toward you with a slight smile. <i>“Thanks for the company, kid. That was... not bad.”</i>");
 		output("\n\nShade shifts in bed, pulling her boots and pants off and making for the covers. <i>“You’re welcome to stay, as always,”</i> she offers, pulling her shirt off to give you a view of her big, soft love pillows. The thought of resting your head against them tonight is almost too much to resist. ");
 		//[Stay] [Go]
@@ -1611,6 +1612,7 @@ public function helpShadeLayHerEgg3():void
 public function skipTownAfterHelpingThisSlootLayEggs():void
 {
 	clearOutput();
+	showShade(true);
 	output("You hop out of Shade’s bed and start gathering your [pc.gear]. The kaithrit shrugs and lies back, watching you until you’re ready to go.");
 	output("\n\n<i>“Show yourself out, hmm?”</i> she purrs, giving you a parting smile before shutting off her light. You slip on out of the ship, and head out into the airfield.");
 	processTime(1);
@@ -1622,7 +1624,7 @@ public function skipTownAfterHelpingThisSlootLayEggs():void
 public function stayWithShadeAfterLayingAnEgg():void
 {
 	clearOutput();
-	showShade();
+	showShade(true);
 	output("You tell Shade that you’ve got nowhere to be, which earns you a playful smile from the buxom kaithrit as she flips the lights off. ");
 	if(pc.biggestTitSize() < 1) output("You feel a long, strong arm lock around your waist, and Shade’s cheek nuzzle against your [pc.chest].");
 	else output("One of Shade’s arms slips under you, and you feel yourself being pulled over onto your side, planting your face squarely into the valley of her ample cleavage. You nuzzle in, getting comfortable on your makeshift pillows, and letting yourself slowly drift off to sleep in Shade’s arms, enjoying the embrace of her soft breasts and her overly affectionate tail.");
@@ -1632,7 +1634,7 @@ public function stayWithShadeAfterLayingAnEgg():void
 public function stayWithShadeAfterLayingAnEgg2():void
 {
 	clearOutput();
-	showShade();
+	showShade(true);
 	//Pass 8 hours
 	processTime(477);
 	sleepHeal();
@@ -1649,7 +1651,7 @@ public function stayWithShadeAfterLayingAnEgg2():void
 public function shadeBoobWorship():void
 {
 	clearOutput();
-	showShade();
+	showShade(true);
 
 	output("You can’t take your eyes off of the two perfect orbs of unblemished flesh looming over you, resting low on your lover’s chest and punctuated with a pair of broad, pink teats. The way your lover’s breasts rise and fall with her heavy, husky breaths fills you with lust; Shade coos and chews her lower lip as");
 	if (pc.hasCock())

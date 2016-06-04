@@ -4636,7 +4636,8 @@ public function displayEncounterLog(showID:String = "All"):void
 		if(flags["MET_KARA"] != undefined)
 		{
 			output2("\n<b>* Shade:</b> Met her");
-			if(flags["TOLD_SHADE_SHES_YER_SIS"] != undefined) output2(", Told her she’s your sister");
+			if(flags["SHADE_IS_YER_SIS"] != undefined) output2(", She is your sister");
+			else if(flags["TOLD_SHADE_SHES_YER_SIS"] != undefined) output2(", " + (flags["TOLD_SHADE_SHES_YER_SIS"] < 0 ? "She’s secretly" : "Told her she’s") + " your sister");
 			if(flags["KQ2_SHADE_DEAD"] != undefined || flags["SHADE_DISABLED"] == 1) output2(", Inactive");
 			else if(shadeAtTheBar()) output2(", Active (On Myrellion)");
 			else if(flags["SHADE_ON_UVETO"] != undefined) output2(", Active (On Uveto)");
