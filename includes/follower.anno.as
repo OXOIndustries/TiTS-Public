@@ -1124,6 +1124,7 @@ public function annoFollowerSuckAndFuckSex():void
 	annoFollowerHeader(true);
 
 	var selCock:int = pc.cockThatFits(anno.vaginalCapacity());
+	if(selCock < 0) selCock = pc.smallestCockIndex();
 	
 	output("You");
 	if (!(pc.armor is EmptySlot)) output(" start pulling yourself out of your [pc.armor] and");
@@ -1250,7 +1251,7 @@ public function annoFollowerSuckAndFuckSexPartII():void
 	if (pc.balls > 0) output("Balls");
 	else output("Hilt");
 	output(" deep inside your bent-over lover, you give her a two-pronged slap on the butt, both hands digging into the pert assflesh on display. Anno yelps playfully, and her vaginal muscles contract hard around your member, wringing tight enough that you can feel her quickening heartbeat through the grinding walls of her pussy. With a firm grip on Anno’s hind-end, you drag yourself out of her slick slit");
-	if(pc.hasSheath(x)) output(", pleased to see your sheath slathered with her juices, so covered that it starts to drip onto the floor, pooling " + (pc.isBiped() ? "between" : "at") + " your [pc.knees] - and with your cock withdrawn to the crown, even more of");
+	if(pc.hasSheath(selCock)) output(", pleased to see your sheath slathered with her juices, so covered that it starts to drip onto the floor, pooling " + (pc.isBiped() ? "between" : "at") + " your [pc.knees] - and with your cock withdrawn to the crown, even more of");
 	else output(" and watch as");
 	output(" her fem-slime drools out of her pussy, a constant trickle down her thighs onto the bed.");
 	if (pc.isAss()) output(" Maybe you’ll have to make her clean up after herself after you’re done with her...");
@@ -1259,9 +1260,9 @@ public function annoFollowerSuckAndFuckSexPartII():void
 	
 	output("\n\nThanks to your recent orgasm and the minutes of pussy-eating that preceded your penetration, you’re soon greeted by the howling cries of Anno’s impending climax. You grin, slapping her cheeks and burying yourself deep inside your lover as she screams her pleasure, echoing in through the room; her pussy clenches down hard, milking your [pc.cock " + selCock + "] for all it's worth as she cums and cums, going crazy around your thrusting cock. ");
 	
-	if (pc.hasKnot(pc.biggestCockIndex()))
+	if (pc.hasKnot(selCock))
 	{
-		output("\n\nWhile she’s at the peak of her pleasure, you decide it's time for the main course. With one last, mighty thrust of your hips, you slam the turgid ball of your [pc.knot " + selCock + "] into the sodden delta of Anno’s drooling, orgasming sex. Her cries of pleasure crescendo into a high-pitched scream of shock and mind-wracking ecstasy as her cooch is forced open by your thick " + (pc.cocks[x].cType == GLOBAL.TYPE_CANINE ? "canid" : "knotted") + " member. Your thrust pins Anno to the bed, spreading her legs and sex apart as you sink yourself into her, tying the two of you together.");
+		output("\n\nWhile she’s at the peak of her pleasure, you decide it's time for the main course. With one last, mighty thrust of your hips, you slam the turgid ball of your [pc.knot " + selCock + "] into the sodden delta of Anno’s drooling, orgasming sex. Her cries of pleasure crescendo into a high-pitched scream of shock and mind-wracking ecstasy as her cooch is forced open by your thick " + (pc.cocks[selCock].cType == GLOBAL.TYPE_CANINE ? "canid" : "knotted") + " member. Your thrust pins Anno to the bed, spreading her legs and sex apart as you sink yourself into her, tying the two of you together.");
 	}
 	
 	output("\n\nThanks to the wild, milking motions of Anno’s cunt, you can feel your own orgasm rushing up to follow hers. You push your prick as deep inside your lover as you can, letting her still-spasming muscles do the work for you, squeezing and caressing your cock, slathering it with hot juices trapped inside her wanton hole by the thick cock spearing her, unable to escape. Your orgasm hits you like a hammer, giving you just enough time to let loose a feral roar of pleasure as a thick wad of cum surges up your [pc.cock " + selCock + "], blasting into the trap of the tightly bound sheath around it. You grunt and groan with the spasms, hips bucking against Anno’s red-flushed ass as your load works itself out, eased along by Anno’s own squirming walls. ");
