@@ -3854,7 +3854,7 @@
 		{
 			if (hasFaceFlag(arg))
 			{
-				faceFlags = faceFlags.splice(faceFlags.indexOf(arg), 1);
+				faceFlags.splice(faceFlags.indexOf(arg), 1);
 			}
 		}
 		public function addFaceFlag(arg:int): void {
