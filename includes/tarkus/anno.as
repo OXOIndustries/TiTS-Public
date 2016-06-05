@@ -2979,7 +2979,7 @@ public function deck13DecisionGoo():void
 	
 	output("\n\n<i>“Fucking hypocrite,”</i> you answer. <i>“You’d kill two living, breathing people just to keep your secret, but you’re afraid to press the ‘delete’ button on some soulless fucking robots?”</i>");
 	
-	if (pc.accessory is TamWolf || pc.accessory is TamWolfDamaged)
+	if (pc.hasTamWolf())
 	{
 		output("\n\n<i>“" + pc.mf("Master","Mistress") + "?”</i> Tam-wolf whines.");
 	
