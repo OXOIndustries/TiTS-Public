@@ -10,6 +10,7 @@
 	import classes.Items.Accessories.FlashGoggles;
 	import classes.Items.Accessories.TamWolf;
 	import classes.Items.Accessories.TamWolfDamaged;
+	import classes.Items.Accessories.TamWolfII;
 	import classes.Items.Armor.GooArmor;
 	import classes.Items.Guns.MyrBow;
 	import classes.Items.Melee.Fists;
@@ -3746,7 +3747,7 @@
 			temp += armor.shields + upperUndergarment.shields + lowerUndergarment.shields + accessory.shields + shield.shields;
 			if (hasPerk("Shield Tweaks")) temp += level * 2;
 			if (hasPerk("Shield Booster")) temp += level * 8;
-			if (hasPerk("Attack Drone") && !(accessory is TamWolf || accessory is TamWolfDamaged)) temp += level;
+			if (hasPerk("Attack Drone") && !hasTamWolf()) temp += level;
 
 			//Debuffs!
 			if(hasStatusEffect("Rusted Emitters")) temp = Math.round(temp * 0.75);
@@ -15214,6 +15215,10 @@
 				return varmintDamage;
 			}
 			return new TypeCollection( { electric: d } );
+		}
+		public function hasTamWolf():Boolean
+		{
+			return (accessory is TamWolf || accessory is TamWolfDamaged || accessory is TamWolfII);
 		}
 		
 		public var droneTarget:Creature = null; // Transient
