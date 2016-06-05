@@ -2734,8 +2734,6 @@ public function kq2PostKaraSexyCombineGo():void
 	}
 	else
 	{
-		currentLocation = "SHIP INTERIOR";
-		genericSleep(480);
 		CombatManager.genericVictory();
 	}
 }
@@ -2760,6 +2758,9 @@ public function kq2PostKaraSexyCombineStay():void
 	
 	output("\n\nKara nods understandingly, and walks you to the airlock. <i>“If you ever need anything, [pc.name],”</i> she starts, lacing her fingers with yours.");
 	
+	currentLocation = "SHIP INTERIOR";
+	genericSleep(480);
+	
 	if (!pc.hasStatusEffect("Kara Fuck Alternate Path"))
 	{
 		output(" <i>“I owe you. So, so much.”</i>");
@@ -2772,8 +2773,6 @@ public function kq2PostKaraSexyCombineStay():void
 		
 		output("\n\nThe airlock snaps closed behind you, and you make the journey back to your own ship in silence.");
 
-		currentLocation = "SHIP INTERIOR";
-		genericSleep(480);
 		clearMenu();
 		addButton(0, "Next", mainGameMenu);
 	}
@@ -2797,8 +2796,6 @@ public function kq2PostKaraSexyCombineStay():void
 
 		pc.removeStatusEffect("Kara Fuck Alternate Path");
 
-		currentLocation = "SHIP INTERIOR";
-		genericSleep(480);
 		CombatManager.genericVictory();
 	}
 }
