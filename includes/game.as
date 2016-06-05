@@ -1678,6 +1678,17 @@ public function processTime(arg:int):void {
 			}
 		}
 		
+		// Moving Shade to Uveto
+		if(flags["KQ2_SHADE_AWAY_TIME"] != undefined)
+		{
+			if(GetGameTimestamp() > (flags["KQ2_SHADE_AWAY_TIME"] + (24 * 60)))
+			{
+				if(flags["SHADE_ON_UVETO"] == undefined || flags["SHADE_ON_UVETO"] < 1) flags["SHADE_ON_UVETO"] = 1;
+				if(flags["SHADE_DISABLED"] == -1) flags["SHADE_DISABLED"] = undefined;
+				flags["KQ2_SHADE_AWAY_TIME"] = undefined;
+			}
+		}
+		
 		//Ovilium tracker removal
 		if(pc.hasStatusEffect("Ovilium")) oviliumEffectCheck();
 		//Clippex procs!

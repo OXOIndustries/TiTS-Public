@@ -1800,7 +1800,7 @@ public function displayQuestLog(showID:String = "All"):void
 			// Kara's Big Adventure! - Pt.1
 			if(flags["BEEN_TO_MYRELLION_BAR"] != undefined && flags["MET_KARA"] != undefined)
 			{
-				output2("\n<b><u>KaraQuest</u></b>");
+				output2("\n<b><u>KaraQuest: A Damsel in Distress</u></b>");
 				output2("\n<b>* Status:</b>");
 				if(flags["LET_SHADE_AND_KARA_DUKE_IT_OUT"] != undefined) output2(" Ignored Kara and Shade");
 				else if(flags["DISTRACTED_SHADE"] != undefined) output2(" Distracted Shade");
@@ -3412,7 +3412,7 @@ public function displayEncounterLog(showID:String = "All"):void
 						else if(flags["ANNO_CREWMEMBER"] == 2) output2(" (At Tavros Station)");
 					}
 					if(!chars["ANNO"].isNude()) output2("\n<b>* Anno, Attire:</b> [anno.Gear]");
-					if(flags["ANNOxKAEDE_INTRODUCED"] != undefined) output2("\n<b>* Anno, Times Met with Kaede: </b>" + flags["ANNOxKAEDE_INTRODUCED"]);
+					if(flags["ANNOxKAEDE_INTRODUCED"] > 0) output2("\n<b>* Anno, Times Met with Kaede: </b>" + flags["ANNOxKAEDE_INTRODUCED"]);
 					if(flags["ANNO_TRIBERATOR_USED"] != undefined || flags["ANNO_OWNS_LIGHT_STRAPON"] != undefined)
 					{
 						output2("\n<b>* Anno, Sex Toys:</b>");
@@ -4368,6 +4368,17 @@ public function displayEncounterLog(showID:String = "All"):void
 		
 		if(showID == "Uveto" || showID == "All")
 		{
+			// Irestead
+			if(flags["MET_ASTRA"] != undefined)
+			{
+				output2("\n<b><u>Irestead</u></b>");
+				if(flags["MET_ASTRA"] != undefined)
+				{
+					output2("\n<b>* Astra:</b> Met her");
+					if(flags["SHADE_OVI_ASTRA_RUN_IN"] != undefined) output2("\n<b>* Astra, Times Seen Shade Laying Eggs: </b>" + flags["SHADE_OVI_ASTRA_RUN_IN"]);
+				}
+				variousCount++;
+			}
 			// Nayna
 			if(flags["MET_NAYNA"] != undefined)
 			{
@@ -4483,8 +4494,23 @@ public function displayEncounterLog(showID:String = "All"):void
 		{
 			output2("\n<b>* Kaede:</b> Met her");
 			if(flags["ANNOxKAEDE_INTRODUCED"] != undefined) output2(", Seen with Anno");
-			if(flags["PUPPYSLUTMAS_2014"] != undefined) output2(", Seen on Ausaril");
-			if(flags["KAEDE_MYRELLION_ENCOUNTER"] != undefined) output2(", Seen on Myrellion");
+			var kaedePlanets:Array = [];
+			if(flags["PUPPYSLUTMAS_2014"] != undefined) kaedePlanets.push("Ausaril");
+			if(flags["KAEDE_MYRELLION_ENCOUNTER"] != undefined) kaedePlanets.push("Myrellion");
+			if(flags["KAEDE_MET_ON_UVETO"] != undefined) kaedePlanets.push("Uveto");
+			if(kaedePlanets.length > 0)
+			{
+				output2(", Seen on");
+				for(var kp:int = 0; kp < kaedePlanets.length; kp++)
+				{
+					if(kaedePlanets.length > 1 && kp > 0)
+					{
+						if(kp == kaedePlanets.length - 1) output2(" and");
+						else output2(",");
+					}
+					output2(" " + kaedePlanets[kp]);
+				}
+			}
 			if(flags["KAEDE_NT_ENCOUNTER"] != undefined)
 			{
 				output2("\n<b>* Kaede, New Texas Encounter:</b>");
@@ -4496,7 +4522,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				else output2(" Met with her and Cass");
 			}
-			if(flags["KAEDE_FUCKED"] != undefined) output2("\n<b>* Kaede, Times Sexed: </b>" + flags["KAEDE_FUCKED"]);
+			if(flags["KAEDE_FUCKED"] > 0) output2("\n<b>* Kaede, Times Sexed: </b>" + flags["KAEDE_FUCKED"]);
 			roamCount++;
 		}
 		// Kara
@@ -4639,6 +4665,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			if(flags["SHADE_IS_YER_SIS"] != undefined) output2(", She is your sister");
 			else if(flags["TOLD_SHADE_SHES_YER_SIS"] != undefined) output2(", " + (flags["TOLD_SHADE_SHES_YER_SIS"] < 0 ? "She’s secretly" : "Told her she’s") + " your sister");
 			if(flags["KQ2_SHADE_DEAD"] != undefined || flags["SHADE_DISABLED"] == 1) output2(", Inactive");
+			else if(flags["SHADE_IS_HOSTILE"] != undefined) output2(", She is hostile, <i>Whereabouts unknown</i>");
 			else if(shadeAtTheBar()) output2(", Active (On Myrellion)");
 			else if(flags["SHADE_ON_UVETO"] != undefined) output2(", Active (On Uveto)");
 			if(flags["SHADE_GOT_HELP_WITH_LAYING"] != undefined)

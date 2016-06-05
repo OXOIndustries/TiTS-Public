@@ -502,19 +502,21 @@ public function initUvetoRooms():void
 	rooms["UVI N30"].planet = "PLANET: UVETO VII";
 	rooms["UVI N30"].system = "SYSTEM: SIRETTA";
 	//rooms["UVI N30"].northExit = "UVI N28"; // 9999 CUT UNTIL READY
-	//rooms["UVI N30"].eastExit = "UVI P30"; // 9999 CUT UNTIL READY
+	rooms["UVI N30"].eastExit = "UVI P30";
 	rooms["UVI N30"].southExit = "UVI N32";
 	rooms["UVI N30"].moveMinutes = 3;
+	rooms["UVI N30"].runOnEnter = templeStreetBonus;
 	rooms["UVI N30"].addFlag(GLOBAL.OUTDOOR);
 
 	/* Shades Residence */
 	rooms["UVI P30"] = new RoomClass(this);
-	rooms["UVI P30"].roomName = "";
+	rooms["UVI P30"].roomName = "IRONS\nRESIDENCE";
 	rooms["UVI P30"].description = "";
 	rooms["UVI P30"].planet = "PLANET: UVETO VII";
 	rooms["UVI P30"].system = "SYSTEM: SIRETTA";
 	rooms["UVI P30"].westExit = "UVI N30";
 	rooms["UVI P30"].moveMinutes = 1;
+	rooms["UVI P30"].addFlag(GLOBAL.INDOOR);
 
 	rooms["UVI P32"] = new RoomClass(this);
 	rooms["UVI P32"].roomName = "THE\nFREEZER";

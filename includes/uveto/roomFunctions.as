@@ -10,6 +10,10 @@ import classes.RoomClass;
 public function uvetoShipDock():Boolean
 {
 	removeUvetoCold();
+	
+	//Shade Uveto welcome message.
+	getLetterFromShade();
+	
 	if (tryProcKaedeUvetoEncounter()) return true;
 	return false;
 }
@@ -574,10 +578,19 @@ public function uvetoAwakenInMedCenter(rescuer:String):void
 	addButton(0, "Next", mainGameMenu);
 }
 
+public function templeStreetBonus():Boolean
+{
+	// Buzzer for Shade's house.
+	meetingShadeAtHouse(0);
+	return false;
+}
+
 public function uvetoBarBonus():Boolean
 {
 	output("\n\nAn old-style videoscreen is on in the corner, displaying a perverted-looking documentary about the infamous male ultraporn-star, Tank Kannon.");
 	addButton(0, "Watch", tankKannonBiopic, undefined, "Watch", "It looks like there's a biopic about the incredibly endowed ultraporn-star, Tank Kannon, on if you want to watch it.");
+	// Shade events.
+	meetingShadeAtUvetoBar(1);
 	return false;
 }
 
