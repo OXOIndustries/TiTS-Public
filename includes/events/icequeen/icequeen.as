@@ -885,7 +885,7 @@ public function showKaraAndZaalt():void
 	author("Savin");
 	showName("KARA &\nZAALT");
 	//showBust("KARA", "MILODANMALE"); 9999
-	showBust("KARA", "MILODANMALE");
+	showBust("KARA", "ZAALT");
 }
 
 public function iceQueenKaraShowsUp():void
