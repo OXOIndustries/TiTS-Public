@@ -288,7 +288,7 @@ public function uvetoKaedeRhenworld():void
 
 	output("<i>“Tell me more about this RhenWorld job,”</i> you prompt. <i>“How’d you swing that?”</i>");
 	
-	output("\n\nKaede giggles, chewing one of her blue-painted lips. <i>“Well, uh, being in the wrong place at the wrong time, I guess. While I was on Tavros, I got in a long, long elevator ride with a smoking hot leithan girl. Had her bugpony-butt right in my face. And she was, uh, <b>really</b> in heat. Turns out I’m a little... a lot... more sensitive to pheromones than your average half-ausar. At least as much as a full ausar, I guess. She didn’t realize I was packing a dick in my pants until I almost fainted on her from all the blood rushing to my crotch.");
+	output("\n\nKaede giggles, chewing one of her blue-painted lips. <i>“Well, uh, being in the wrong place at the wrong time, I guess. While I was on Tavros, I got in a long, long elevator ride with a smoking hot leithan girl. Had her bugpony-butt right in my face. And she was, uh, <b>really</b> in heat. Turns out I’m a little... a lot... more sensitive to pheromones than your average half-ausar. At least as much as a full ausar, I guess. She didn’t realize I was packing a dick in my pants until I almost fainted on her from all the blood rushing to my crotch.”</i>");
 	
 	output("\n\n<i>“Lucky me, she was more than happy to take responsibility,”</i> Kaede adds with a lusty smile. <i>“Afterwards it turned out that she was Ashinari Rhenesunne, the daughter of RhenWorld’s C.E.O. Heir-apparent to the company. I guess she enjoyed our meeting as much as I did, because she wanted to see me again. And again... and again. When she found out I was a freighter pilot, she offered me a job out of her office. I turned her down - I like being my own boss - but she still got me the hook up with RhenWorld’s contractor department. Whenever I want some easy, if not terribly profitable, work, I can just give Ashi a call and haul some RhenWorld mining crap around.”</i>");
 	
@@ -328,7 +328,7 @@ public function uvetoKaedeUveto():void
 	
 	if (pc.isMisch())
 	{
-		output("\n\nConsidering how she’s all modded up and wearing makeup, and her girlfriend prides herself so much on keeping up her appearance , you’re kind of surprised Kaede’s such a stickler for <i>“natural beauty.”</i>");
+		output("\n\nConsidering how she’s all modded up and wearing makeup, and her girlfriend prides herself so much on keeping up her appearance , you’re kind of surprised Kaede’s such a stickler for “natural beauty.”");
 	
 		output("\n\nShe scoffs, <i>“Don’t change the subject. People and planets are totally different things. Besides, even all-natural me was pretty damn handsome!”</i>");
 	}
