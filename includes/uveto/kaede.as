@@ -151,7 +151,7 @@ public function uvetoKaedeHerBody():void
 
 	output("You’ve been thinking since last time you and Kaede met. She clearly modded her body to be the way she is now, but why not go all the way? Why does she lack a female sex?");
 	
-	output("\n\n<i>“Oh, that,”</i> Kaede says with a hint of a blush, leaning on her laced fingers. <i>“You know, I don’t think anybody’s ever actually asked me that before. N-not that I mind, [pc.name]. I guess it comes down to... well, what’s a woman, really, nowadays? My mother is a hermaphrodite and proud of it. From what I’ve found out, she’s fathered bastards across half the galaxy. I might be the only one she actually carried herself. Too busy being a big, tough ship’s captain to be a mom! But she’s a woman. Like, obviously so. She’s got bigger boobs than I do, wears makeup, loves going to spas and salons more than anyone I know.");
+	output("\n\n<i>“Oh, that,”</i> Kaede says with a hint of a blush, leaning on her laced fingers. <i>“You know, I don’t think anybody’s ever actually asked me that before. N-not that I mind, [pc.name]. I guess it comes down to... well, what’s a woman, really, nowadays? My mother is a hermaphrodite and proud of it. From what I’ve found out, she’s fathered bastards across half the galaxy. I might be the only one she actually carried herself. Too busy being a big, tough ship’s captain to be a mom! But she’s a woman. Like, obviously so. She’s got bigger boobs than I do, wears makeup, loves going to spas and salons more than anyone I know.”</i>");
 	
 	output("\n\n<i>“So I guess... when I decided to mod up, I didn’t think too much about my actual </i>sex<i>. I wanted to look and talk and feel like a woman, but what’s between my legs didn’t matter to me so much. Besides, a dick’s way more convenient, and if I’ve got one of those and a butt, well, who needs a twat anyway? Would have had to shell out more for different drugs to get one, too.”</i>");
 	
@@ -610,6 +610,7 @@ public function uvetoKaedeDildoPlay(fuckedHer:Boolean = false):void
 	output("\n\n<i>“Soon,”</i> you echo, giving her a parting pat on the ass as she leaves. Kaede flashes a wink over her shoulder, and walks off with a spring in her step and a sway in her hips.");
 
 	processTime(20+rand(10));
+	IncrementFlag("KAEDE_FUCKED");
 	pc.orgasm();
 
 	clearMenu();
@@ -721,6 +722,7 @@ public function uvetoKaedeFuckHerAss(fuckedHer:Boolean = false):void
 	output("\n\n<i>“Soon,”</i> you echo, giving her a parting pat on the ass as she leaves. Kaede flashes a wink over her shoulder, and walks off with a spring in her step and a sway in her hips.");
 
 	processTime(20+rand(10));
+	IncrementFlag("KAEDE_FUCKED");
 	pc.orgasm();
 
 	clearMenu();
