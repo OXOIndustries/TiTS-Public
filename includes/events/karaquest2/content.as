@@ -2465,7 +2465,7 @@ public function kq2AmaraSpecialEnd():void
 public function kq2KaraSexytimes():void
 {
 	clearOutput();
-	showKara();
+	showKara(true);
 
 	output("Kara’s offering, and you’ve had your eyes on this pretty kitty since the moment you laid eyes on her. There’s no more fitting reward for all your selfless help than to take her up on her offer, and see what this sly cat’s got under that sleek suit of hers. You can’t wait.");
 	
@@ -2508,7 +2508,7 @@ public function kq2KaraSexytimes():void
 public function kq2KaraTakeKittydick():void
 {
 	clearOutput();
-	showKara();
+	showKara(true);
 
 	output("Every little motion of your love causes her lengthy cat-cock to rub against your [pc.belly], letting you feel the ring of feline nubs circling her slender cockhead. The thought of them inside you, stirring up your insides, is enough to make");
 	if (!pc.hasVagina()) output(" your ass yearn for her touch");
@@ -2609,7 +2609,7 @@ public function kq2KaraTakeKittydick():void
 public function kq2KaraFuckKittysKitty():void
 {
 	clearOutput();
-	showKara();
+	showKara(true);
 
 	output("You decide to take the initiative, grabbing Kara’s juicy hips and pulling her towards the tumescent span of your [pc.cock]. She gives a little gasp as your prick brushes up between her legs, finding a hot, wet gash hidden behind her churning sack. Kara smiles at you, rocking her hips back against your [pc.cockHead]. She gives you a rough push down onto the bed, putting your back on the sheets and her hands firmly planted on your [pc.chest].");
 	
@@ -2713,7 +2713,7 @@ public function kq2PostKaraSexyCombine(gotFucked:Boolean = false):void
 public function kq2PostKaraSexyCombineGo():void
 {
 	clearOutput();
-	showKara();
+	showKara(true);
 
 	output("You tell Kara you do need to leave - but you enjoyed the time you spent together. She smiles at that, propping herself up on an elbow to watch you as you swing out of bed and gather your discarded [pc.gear].");
 	
@@ -2743,7 +2743,7 @@ public function kq2PostKaraSexyCombineGo():void
 public function kq2PostKaraSexyCombineStay():void
 {
 	clearOutput();
-	showKara();
+	showKara(true);
 
 	output("You answer Kara with another kiss, holding the cat-girl close and closing your eyes. The last thing you see is her smile, cobalt tails brushing against your [pc.legOrLegs].");
 

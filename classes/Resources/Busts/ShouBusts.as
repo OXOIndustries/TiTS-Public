@@ -270,19 +270,20 @@
 		public var Bust_SAENDRA:Class;
 		public var Bounds_SAENDRA:Rectangle = new Rectangle(12, 4, 55, 63);
 
+		//[Embed(source = "../../../assets/images/npcs/shou_puppy/shade_old.png", mimeType = "image/png")]
+		//public var Bust_SHADE_OLD:Class;
+		//public var Bounds_SHADE_OLD:Rectangle = new Rectangle(26, 3, 64, 64);
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/shade.png", mimeType = "image/png")]
 		public var Bust_SHADE:Class;
-		public var Bounds_SHADE:Rectangle = new Rectangle(26, 3, 64, 64);
+		public var Bounds_SHADE:Rectangle = new Rectangle(6, 6, 64, 64);
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/shade_nude.png", mimeType = "image/png")]
 		public var Bust_SHADE_NUDE:Class;
-		/*
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/shade_sweater.png", mimeType = "image/png")]
 		public var Bust_SHADE_SWEATER:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/shade_shirt.png", mimeType = "image/png")]
 		public var Bust_SHADE_SHIRT:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/shade_jeans.png", mimeType = "image/png")]
 		public var Bust_SHADE_JEANS:Class;
-		*/
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/shiare.png", mimeType = "image/png")]
 		public var Bust_SHIARE:Class;
@@ -599,18 +600,18 @@
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/saendra.png", mimeType = "image/png")]
 			public var Full_SAENDRA:Class;
 
+			//[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/shade_old.png", mimeType = "image/png")]
+			//public var Full_SHADE_OLD:Class;
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/shade.png", mimeType = "image/png")]
 			public var Full_SHADE:Class;
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/shade_nude.png", mimeType = "image/png")]
 			public var Full_SHADE_NUDE:Class;
-			/*
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/shade_sweater.png", mimeType = "image/png")]
 			public var Full_SHADE_SWEATER:Class;
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/shade_shirt.png", mimeType = "image/png")]
 			public var Full_SHADE_SHIRT:Class;
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/shade_jeans.png", mimeType = "image/png")]
 			public var Full_SHADE_JEANS:Class;
-			*/
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/shiare.png", mimeType = "image/png")]
 			public var Full_SHIARE:Class;
