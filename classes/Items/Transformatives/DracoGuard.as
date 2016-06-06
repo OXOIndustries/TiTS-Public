@@ -9,6 +9,7 @@
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
 	import classes.Util.InCollection;
+	import classes.Engine.Utility.indefiniteArticle;
 	import classes.Engine.Utility.num2Text;
 	
 	public class DracoGuard extends ItemSlotClass
@@ -311,7 +312,7 @@
 				}
 				//Increase hipsize.
 				//Higher proc chance up to very large; lower proc chance up to huge, broodmother hips
-				if(changes < changeLimit && ((pc.hipRatingRaw < 10 && rand(2) == 0) || (pc.hipRatingRaw > 20 && rand(4) == 0)))
+				if(changes < changeLimit && ((pc.hipRatingRaw < 10 && rand(2) == 0) || (pc.hipRatingRaw < 20 && rand(4) == 0)))
 				{
 					var newHipSize:Number = pc.hipRatingRaw + 1 + rand(2);
 					if(newHipSize > 20) newHipSize = 20;
@@ -428,7 +429,29 @@
 					var vagList:Array = [];
 					var v:int = 0;
 					
+					//Change non-gryvain vagina to a gryvain vagina.
+					for(v = 0; v < pc.totalVaginas(); v++)
+					{
+						if(pc.vaginas[v].type != GLOBAL.TYPE_GRYVAIN) vagList.push(v);
+					}
+					if(changes < changeLimit && vagList.length > 0 && rand(2) == 0)
+					{
+						v = vagList[rand(vagList.length)];
+						
+						if(pc.vaginaTypeUnlocked(v, GLOBAL.TYPE_GRYVAIN))
+						{
+							output("\n\nA pleasant feeling starts radiating through your [pc.vagina " + v + "]. At first, it feels like you’re clenching onto a particularly thick dildo, but the more it persists, the more you realize something is actually changing down there. You shiver with unbidden, but nonetheless sexual, bliss. Fuck, that feels good!");
+							output("\n\nAfter a moment, your enjoyment of the sensation is interrupted by a wetness on your thighs! A moment of panic makes you shove aside your gear and reach a hand down to your crotch, slipping a finger into your changing slit! Incredible wetness greets your touch, following by a shock of pleasure so intense you nearly collapse.");
+							output("\n\nOnce you’ve got yourself calmed down a bit, you resume exploring your newly-shaped cavern. <b>You definitely have a different vagina now, and not just " + indefiniteArticle(GLOBAL.TYPE_NAMES[pc.vaginas[v].type].toLowerCase()) + " one!</b> You quickly find a ring of six incredibly sensitive nubs just inside the lips -- and more behind them, forming ring after ring of clitorises all the way into your twat, as deep as you can go. If one finger sliding inside nearly makes you cum on the spot, you can only imagine what it would feel like to get fucked in this ultra-sensitive gryvain cunt.");
+							output("\n\nAnd you can’t wait to find out!");
+							
+							pc.shiftVagina(v, GLOBAL.TYPE_GRYVAIN);
+							changes++;
+						}
+						else output("\n\n" + pc.vaginaTypeLockedMessage());
+					}
 					//Gain (2-4) extra clits, up to 12, if less than 12.
+					vagList = [];
 					for(v = 0; v < pc.totalVaginas(); v++)
 					{
 						if(pc.vaginas[v].type == GLOBAL.TYPE_GRYVAIN && pc.vaginas[v].clits < 12) vagList.push(v);
@@ -512,7 +535,7 @@
 					if(changes < changeLimit && cockList.length > 0 && rand(2) == 0)
 					{
 						c = cockList[rand(cockList.length)];
-						if(pc.cocks[c].knotMultiplier > newKnot) newKnot = pc.cocks[c].knotMultiplier;
+						if(pc.hasKnot(c) && pc.cocks[c].knotMultiplier > newKnot) newKnot = pc.cocks[c].knotMultiplier;
 						
 						if(pc.cockTypeUnlocked(c, GLOBAL.TYPE_GRYVAIN))
 						{
@@ -521,7 +544,7 @@
 							if(pc.hasPartScales() && pc.cocks[c].cockColor != pc.scaleColor) output(" Even the color changes, matching your [pc.scaleColor] scales.");
 							output(" <b>Your cock has mutated to mimic that of a gryvain in shape!</b>");
 							
-							pc.cocks[c].cType = GLOBAL.TYPE_GRYVAIN;
+							pc.shiftCock(c, GLOBAL.TYPE_GRYVAIN);
 							pc.cocks[c].knotMultiplier = newKnot;
 							changes++;
 						}
@@ -569,7 +592,7 @@
 					{
 						c = cockList[rand(cockList.length)];
 						
-						output("\n\nBlood rushes to your [pc.cock " + c + "], giving you a sudden and rock-hard erection. You blink and awkwardly adjust your stance, trying to figure out why you’re so stiff all of a sudden. The answer comes a moment later, when your fingers brush across the base of your schlong. The flesh there has become thick and bulbous, much moreso than before, like its inflating into a tennis-ball-sized orb of flesh, ready to stretch any a cunny open and lock your manhood inside while you deposit your load. <b>You’ve got a knot now,</b> making your [pc.cockNoun " + c + "] look just that much more like a proper gryvain’s.");
+						output("\n\nBlood rushes to your [pc.cock " + c + "], giving you a sudden and rock-hard erection. You blink and awkwardly adjust your stance, trying to figure out why you’re so stiff all of a sudden. The answer comes a moment later, when your fingers brush across the base of your schlong. The flesh there has become thick and bulbous, much more so than before, like its inflating into a tennis-ball-sized orb of flesh, ready to stretch any a cunny open and lock your manhood inside while you deposit your load. <b>You’ve got a knot now,</b> making your [pc.cockNoun " + c + "] look just that much more like a proper gryvain’s.");
 						
 						pc.cocks[c].addFlag(GLOBAL.FLAG_KNOTTED);
 						pc.cocks[c].knotMultiplier = newKnot;
@@ -619,7 +642,7 @@
 					else output("\n\n" + pc.thicknessLockedMessage());
 				}
 				//Change scale/hair/cock coloration, if outside the gryvain range, to a random gryvain color (blue, green, black, dark red). Must already have at least partial scales.
-				var gravainColors:Array = ["blue", "green", "black", "dark red"];
+				var gravainColors:Array = ["dark blue", "blue", "dark green", "green", "black", "dark red"];
 				if(pc.short == "Geddy") gravainColors.push("red", "red", "red");
 				var g:int = 0;
 				var cCockList:Array = [];
@@ -712,6 +735,18 @@
 						pc.addLegFlag(GLOBAL.FLAG_SCALED);
 						changes++;
 					}
+				}
+				if (changes < changeLimit && pc.race() == "gryvain" && pc.hasWombPregnancy() && pc.isLactating() && !pc.hasPerk("Hypermilky"))
+				{
+					output("\n\nYou pause a moment as you feel a sudden burning itch in your [pc.chest]. There is a tingling sensation that radiates from your pregnant womb" + (pc.totalWombPregnancies() == 1 ? "" : "s") + ", suddenly bursting outward and spreading to your irritated [pc.nipples]. Like an extinguisher to a fire, your nipples are hit with a breezy coolness and you let out a relieved sigh. But just before you think it is over, your chest gradually fills with another pressure... Your lactation is picking up in production and filling your " + pc.breastCup(pc.biggestTitRow()) + " tits! Your hand travels over your [pc.nipples " + pc.biggestTitRow() + "], and you " + (pc.isChestExposed() ? "notice the [pc.milkGem] [pc.milkNoun] trickling off them and plotting on the floor" : "feel the [pc.milkVisc] [pc.milkNoun] coat your top, rapidly wetting the surface with ease") + ".");
+					
+					pc.milkFullness += 200;
+					
+					output("\n\nYour tits continue to get fuller and fuller and you get a feeling that they won’t stop for anything! When it finally settles, the pressure is almost overwhelming--you’ve got to milk yourself right away! Due to the vast amount of gryvain genes you have in your system, you suspect this permanent change is a result of the drug’s reaction to your preganancy and [pc.milkNoun] production...");
+					
+					output("\n\n<b>Gained perk: Hypermilky!</b> (Lactation will not decrease from disuse or overfilling.)");
+					pc.createPerk("Hypermilky", 0, 0, 0, 0, "Lactation will not decrease from disuse or overfilling.");
+					changes++;
 				}
 				
 				if(changes == 0)

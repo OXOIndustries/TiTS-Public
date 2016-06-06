@@ -259,7 +259,7 @@
 			}
 	
 			// Trigger various effects based on grip-level
-			if (target.statusEffectv1("Cockvine Grip") == 0)
+			if (target.statusEffectv1("Cockvine Grip") <= 0)
 			{
 				if (target.hasStatusEffect("Evasion Reduction")) target.removeStatusEffect("Evasion Reduction");
 				if (target.hasStatusEffect("Grappled")) target.removeStatusEffect("Grappled");

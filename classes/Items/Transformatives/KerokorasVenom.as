@@ -608,7 +608,7 @@ package classes.Items.Transformatives
 						// 9999 Not sure battles can/should support this...
 						//output(", but in the heat of battle you think it’ll have some effect. <b>You have lust venom sweat!</b>");
 						// Alternate
-						output(", though you doubt tha will be an issue. <b>You’re skin is now coated in lubricant!</b>");
+						output(", though you doubt that will be an issue. <b>Your skin is now coated in lubricant!</b>");
 						target.addSkinFlag(GLOBAL.FLAG_LUBRICATED);
 						target.addSkinFlag(GLOBAL.FLAG_APHRODISIAC_LACED);
 						changes++;

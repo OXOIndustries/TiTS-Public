@@ -2485,6 +2485,7 @@ public function hideShadesRelation():void
 	output("\n\nShe waves over her shoulder, and her cunt-like tail winks its pink slit alluringly as she walks.");
 	output("\n\nYou watch her go, until she’s lost in the crowd of myr on the tarmac. After that, you let go of a long-held breath and wipe your brow. You’re not sure if Shade believed you, but for now, you’ve got other things to worry about: there’s a new leg of your journey ahead of you!");
 	flags["UVETO_UNLOCKED"] = 1;
+	flags["TOLD_SHADE_SHES_YER_SIS"] = -1;
 	flags["SHADE_ON_UVETO"] = 1;
 	pc.addMischievous(2);
 	processTime(7);

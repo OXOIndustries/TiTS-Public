@@ -295,7 +295,7 @@ public function availableFaps(roundTwo:Boolean = false):Array
 		fap.func = stolenDildoFap;
 		faps.push(fap);
 	}
-	if(pc.hasItem(new BubbleBuddy()))
+	if(pc.hasItem(new BubbleBuddy()) && pc.hasCock())
 	{
 		fap = new FapCommandContainer();
 		fap.text = "BubbleBuddy";

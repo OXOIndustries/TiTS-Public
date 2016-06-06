@@ -10,6 +10,7 @@
 	import classes.Items.Accessories.FlashGoggles;
 	import classes.Items.Accessories.TamWolf;
 	import classes.Items.Accessories.TamWolfDamaged;
+	import classes.Items.Accessories.TamWolfII;
 	import classes.Items.Armor.GooArmor;
 	import classes.Items.Guns.MyrBow;
 	import classes.Items.Melee.Fists;
@@ -3746,7 +3747,7 @@
 			temp += armor.shields + upperUndergarment.shields + lowerUndergarment.shields + accessory.shields + shield.shields;
 			if (hasPerk("Shield Tweaks")) temp += level * 2;
 			if (hasPerk("Shield Booster")) temp += level * 8;
-			if (hasPerk("Attack Drone") && !(accessory is TamWolf || accessory is TamWolfDamaged)) temp += level;
+			if (hasPerk("Attack Drone") && !hasTamWolf()) temp += level;
 
 			//Debuffs!
 			if(hasStatusEffect("Rusted Emitters")) temp = Math.round(temp * 0.75);
@@ -3854,7 +3855,7 @@
 		{
 			if (hasFaceFlag(arg))
 			{
-				faceFlags = faceFlags.splice(faceFlags.indexOf(arg), 1);
+				faceFlags.splice(faceFlags.indexOf(arg), 1);
 			}
 		}
 		public function addFaceFlag(arg:int): void {
@@ -4104,6 +4105,9 @@
 					break;
 				case GLOBAL.TYPE_LEITHAN:
 					adjectives = ["leithan", "elven", "pointy", "inhuman", "pointed"];
+					break;
+				case GLOBAL.TYPE_OVIR:
+					adjectives = ["ovir", "reptilian", "dot", "hidden"];
 					break;
 				case GLOBAL.TYPE_RASKVEL:
 					adjectives = ["raskvel", "obscenely long", "oh-so sensitive", "lengthy"];
@@ -4900,7 +4904,7 @@
 			return (hasStatusEffect("Stunned") || hasStatusEffect("Paralyzed") || isGrappled() || hasStatusEffect("Endowment Immobilized"));
 		}
 		public function isGrappled(): Boolean {
-			return (hasStatusEffect("Grappled") || hasStatusEffect("Naleen Coiled") || hasStatusEffect("Cockvine Grip"));
+			return (hasStatusEffect("Grappled") || hasStatusEffect("Naleen Coiled"));
 		}
 		public function legs(forceType: Boolean = false, forceAdjective: Boolean = false): String 
 		{
@@ -13920,6 +13924,14 @@
 			return false;
 		}
 		public function hasPregnancy():Boolean { return isPregnant(); }
+		public function hasWombPregnancy():Boolean
+		{
+			return (totalWombPregnancies() > 0);
+		}
+		public function hasAnalPregnancy():Boolean
+		{
+			return (isPregnant(3));
+		}
 		
 		//Argument is the same string as defined in the handler.
 		//Example: VenusPitcherSeedCarrier
@@ -13963,6 +13975,15 @@
 		{
 			var count:int = 0;
 			for (var i:int = 0; i < pregnancyData.length; i++)
+			{
+				if ((pregnancyData[i] as PregnancyData).pregnancyType != "") count++;
+			}
+			return count;
+		}
+		public function totalWombPregnancies():int
+		{
+			var count:int = 0;
+			for (var i:int = 0; i < vaginas.length; i++)
 			{
 				if ((pregnancyData[i] as PregnancyData).pregnancyType != "") count++;
 			}
@@ -15194,6 +15215,10 @@
 				return varmintDamage;
 			}
 			return new TypeCollection( { electric: d } );
+		}
+		public function hasTamWolf():Boolean
+		{
+			return (accessory is TamWolf || accessory is TamWolfDamaged || accessory is TamWolfII);
 		}
 		
 		public var droneTarget:Creature = null; // Transient

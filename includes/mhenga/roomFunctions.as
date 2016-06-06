@@ -626,7 +626,7 @@ public function sleepInRuinedCamp():void
 	if (CodexManager.entryUnlocked("Vanae") && rand(4) == 0)
 	{
 		//PC doesn't have TamWolf, has encountered a vanae before. Vanae gets the first turn!
-		if(!(pc.accessory is TamWolf) && !(pc.accessory is TamWolfDamaged)) output("\n\nYou're awoken by a high, shrill warcry. Your eyes snap open, just as a throwing spear slams into the dirt beside your bedroll, tearing through the tent. You scramble to your [pc.feet], grabbing your equipment as your assailer leaps into view. <b>You've been ambushed by a vanae</b>!");
+		if(!pc.hasTamWolf()) output("\n\nYou're awoken by a high, shrill warcry. Your eyes snap open, just as a throwing spear slams into the dirt beside your bedroll, tearing through the tent. You scramble to your [pc.feet], grabbing your equipment as your assailer leaps into view. <b>You've been ambushed by a vanae</b>!");
 		//PC has Tam-wolf (broke or not)
 		else
 		{

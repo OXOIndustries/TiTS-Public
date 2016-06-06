@@ -3,8 +3,6 @@
 	import classes.Creature;
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.GLOBAL;
-	import classes.Items.Accessories.TamWolf;
-	import classes.Items.Accessories.TamWolfDamaged;
 	import classes.Items.Guns.*
 	import classes.Items.Melee.Rock;
 	import classes.Items.Protection.ImprovisedShield;
@@ -282,7 +280,7 @@
 			if(shields() <= 0) choices[choices.length] = shieldRegeneration;
 			//Hack drone
 			//(Procs if PC has a drone)
-			if(target.hasPerk("Attack Drone") && target.shields() > 0 && !target.hasStatusEffect("Porno Hacked Drone") && !target.accessory is TamWolf && !target.accessory is TamWolfDamaged) choices[choices.length] = getDroneHacked;
+			if(target.hasPerk("Attack Drone") && target.shields() > 0 && !target.hasStatusEffect("Porno Hacked Drone") && !target.hasTamWolf()) choices[choices.length] = getDroneHacked;
 			//Standard attack
 			choices[choices.length] = standardRobosexualAttack;
 			choices[choices.length] = standardRobosexualAttack;

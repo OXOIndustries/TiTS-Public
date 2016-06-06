@@ -271,7 +271,7 @@
 				}
 			}
 			//Change arm type to furred
-			if(pc.armType != GLOBAL.TYPE_CANINE && changes < changeLimit && rand(3) == 0)
+			if((pc.armType != GLOBAL.TYPE_CANINE || !target.hasArmFlag(GLOBAL.FLAG_FURRED)) && changes < changeLimit && rand(3) == 0)
 			{
 				if (target.armTypeUnlocked(GLOBAL.TYPE_CANINE))
 				{
@@ -284,7 +284,7 @@
 				else kGAMECLASS.output(target.armTypeLockedMessage());
 			}
 			//Change leg-type to furred (Needs Bipedal legs)
-			if(pc.legType != GLOBAL.TYPE_CANINE && changes < changeLimit && pc.legCount >= 2 && rand(3) == 0 && pc.armType == GLOBAL.TYPE_CANINE)
+			if((pc.legType != GLOBAL.TYPE_CANINE || !target.hasLegFlag(GLOBAL.FLAG_FURRED)) && changes < changeLimit && pc.legCount >= 2 && rand(3) == 0 && pc.armType == GLOBAL.TYPE_CANINE)
 			{
 				if (target.legTypeUnlocked(GLOBAL.TYPE_CANINE))
 				{
@@ -457,7 +457,7 @@
 				//Usage text:
 				kGAMECLASS.output("You pop the bone-shaped cookie into your mouth. It's pleasantly chewy and chocolatey, though as you swallow it, you find yourself panting and scratching at your ears. Weird.");
 				
-				if (target.race().indexOf("ausar") == -1 && target.race().indexOf("huskar") == -1)
+				if (((target.race() == "half-ausar" && !target.hasLegFlag(GLOBAL.FLAG_FURRED) && !target.hasArmFlag(GLOBAL.FLAG_FURRED)) || target.race().indexOf("ausar") == -1) && target.race().indexOf("huskar") == -1)
 				{
 					if(rand(2) == 0) changeLimit++;
 					if(rand(3) == 0) changeLimit++;

@@ -294,6 +294,7 @@
 		include "../includes/uveto/nerrasa.as";
 		include "../includes/uveto/rooms.as";
 		include "../includes/uveto/roomFunctions.as";
+		include "../includes/uveto/shade.as";
 		include "../includes/events/icequeen/icequeen.as"; // Alt. path to unlocking uveto
 		
 		include "../includes/chargendata.as";

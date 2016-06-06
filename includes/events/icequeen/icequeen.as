@@ -885,7 +885,7 @@ public function showKaraAndZaalt():void
 	author("Savin");
 	showName("KARA &\nZAALT");
 	//showBust("KARA", "MILODANMALE"); 9999
-	showBust("KARA", "MILODANMALE");
+	showBust("KARA", "ZAALT");
 }
 
 public function iceQueenKaraShowsUp():void
@@ -977,8 +977,8 @@ public function iceQueenKaraShowsUpInterrupt():void
 	
 	output("\n\nZaalt’s response is a bewildered <i>“Uhhh,”</i> followed by yanking his hand out of your grasp, plying his great strength and stature to free himself. <i>“Hey, uh, look, this isn’t-”</i>");
 	
-	output("\n\n<i>“");
-	if (kara.isAss()) output("Oh my <b>God</b>, is this fucking amateur hour?”</i> Kara snarls, reaching across the table and snatching the implant out of Zaalt’s hand before anyone can see it. <i>“Tell me you didn’t try to pull one over [pc.name] <b></i>Steele<i></b>.”</i>");
+	output("\n\n");
+	if (kara.isAss()) output("<i>“Oh my <b>God</b>, is this fucking amateur hour?”</i> Kara snarls, reaching across the table and snatching the implant out of Zaalt’s hand before anyone can see it. <i>“Tell me you didn’t try to pull one over [pc.name] <b></i>Steele<i></b>.”</i>");
 	else output("<i>“Knock it off!”</i> Kara whispers, grabbing the implant and stuffing it, bandages and all, into her catsuit and zipping herself up to the neck. <i>“Now what’s going on here? Zaalt, what gives?”</i>");
 	
 	output("\n\nYou fix Kara with a stare and say that Zaalt here has been playing you from the start. Not only did he lead you into this under false pretenses - which seems to be a recurring theme for her and her compatriots now - but he lost his damn mind when you arrived in orbit and attacked you. Apparently that implant, the one he’s trying to pawn off on her, was responsible in some way. Everything about this situation is bullshit, and you’re fucking sick of it!");

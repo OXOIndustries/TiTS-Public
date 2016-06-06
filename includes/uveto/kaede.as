@@ -151,7 +151,7 @@ public function uvetoKaedeHerBody():void
 
 	output("You’ve been thinking since last time you and Kaede met. She clearly modded her body to be the way she is now, but why not go all the way? Why does she lack a female sex?");
 	
-	output("\n\n<i>“Oh, that,”</i> Kaede says with a hint of a blush, leaning on her laced fingers. <i>“You know, I don’t think anybody’s ever actually asked me that before. N-not that I mind, [pc.name]. I guess it comes down to... well, what’s a woman, really, nowadays? My mother is a hermaphrodite and proud of it. From what I’ve found out, she’s fathered bastards across half the galaxy. I might be the only one she actually carried herself. Too busy being a big, tough ship’s captain to be a mom! But she’s a woman. Like, obviously so. She’s got bigger boobs than I do, wears makeup, loves going to spas and salons more than anyone I know.");
+	output("\n\n<i>“Oh, that,”</i> Kaede says with a hint of a blush, leaning on her laced fingers. <i>“You know, I don’t think anybody’s ever actually asked me that before. N-not that I mind, [pc.name]. I guess it comes down to... well, what’s a woman, really, nowadays? My mother is a hermaphrodite and proud of it. From what I’ve found out, she’s fathered bastards across half the galaxy. I might be the only one she actually carried herself. Too busy being a big, tough ship’s captain to be a mom! But she’s a woman. Like, obviously so. She’s got bigger boobs than I do, wears makeup, loves going to spas and salons more than anyone I know.”</i>");
 	
 	output("\n\n<i>“So I guess... when I decided to mod up, I didn’t think too much about my actual </i>sex<i>. I wanted to look and talk and feel like a woman, but what’s between my legs didn’t matter to me so much. Besides, a dick’s way more convenient, and if I’ve got one of those and a butt, well, who needs a twat anyway? Would have had to shell out more for different drugs to get one, too.”</i>");
 	
@@ -288,7 +288,7 @@ public function uvetoKaedeRhenworld():void
 
 	output("<i>“Tell me more about this RhenWorld job,”</i> you prompt. <i>“How’d you swing that?”</i>");
 	
-	output("\n\nKaede giggles, chewing one of her blue-painted lips. <i>“Well, uh, being in the wrong place at the wrong time, I guess. While I was on Tavros, I got in a long, long elevator ride with a smoking hot leithan girl. Had her bugpony-butt right in my face. And she was, uh, <b>really</b> in heat. Turns out I’m a little... a lot... more sensitive to pheromones than your average half-ausar. At least as much as a full ausar, I guess. She didn’t realize I was packing a dick in my pants until I almost fainted on her from all the blood rushing to my crotch.");
+	output("\n\nKaede giggles, chewing one of her blue-painted lips. <i>“Well, uh, being in the wrong place at the wrong time, I guess. While I was on Tavros, I got in a long, long elevator ride with a smoking hot leithan girl. Had her bugpony-butt right in my face. And she was, uh, <b>really</b> in heat. Turns out I’m a little... a lot... more sensitive to pheromones than your average half-ausar. At least as much as a full ausar, I guess. She didn’t realize I was packing a dick in my pants until I almost fainted on her from all the blood rushing to my crotch.”</i>");
 	
 	output("\n\n<i>“Lucky me, she was more than happy to take responsibility,”</i> Kaede adds with a lusty smile. <i>“Afterwards it turned out that she was Ashinari Rhenesunne, the daughter of RhenWorld’s C.E.O. Heir-apparent to the company. I guess she enjoyed our meeting as much as I did, because she wanted to see me again. And again... and again. When she found out I was a freighter pilot, she offered me a job out of her office. I turned her down - I like being my own boss - but she still got me the hook up with RhenWorld’s contractor department. Whenever I want some easy, if not terribly profitable, work, I can just give Ashi a call and haul some RhenWorld mining crap around.”</i>");
 	
@@ -328,7 +328,7 @@ public function uvetoKaedeUveto():void
 	
 	if (pc.isMisch())
 	{
-		output("\n\nConsidering how she’s all modded up and wearing makeup, and her girlfriend prides herself so much on keeping up her appearance , you’re kind of surprised Kaede’s such a stickler for <i>“natural beauty.”</i>");
+		output("\n\nConsidering how she’s all modded up and wearing makeup, and her girlfriend prides herself so much on keeping up her appearance , you’re kind of surprised Kaede’s such a stickler for “natural beauty.”");
 	
 		output("\n\nShe scoffs, <i>“Don’t change the subject. People and planets are totally different things. Besides, even all-natural me was pretty damn handsome!”</i>");
 	}
@@ -610,6 +610,7 @@ public function uvetoKaedeDildoPlay(fuckedHer:Boolean = false):void
 	output("\n\n<i>“Soon,”</i> you echo, giving her a parting pat on the ass as she leaves. Kaede flashes a wink over her shoulder, and walks off with a spring in her step and a sway in her hips.");
 
 	processTime(20+rand(10));
+	IncrementFlag("KAEDE_FUCKED");
 	pc.orgasm();
 
 	clearMenu();
@@ -721,6 +722,7 @@ public function uvetoKaedeFuckHerAss(fuckedHer:Boolean = false):void
 	output("\n\n<i>“Soon,”</i> you echo, giving her a parting pat on the ass as she leaves. Kaede flashes a wink over her shoulder, and walks off with a spring in her step and a sway in her hips.");
 
 	processTime(20+rand(10));
+	IncrementFlag("KAEDE_FUCKED");
 	pc.orgasm();
 
 	clearMenu();

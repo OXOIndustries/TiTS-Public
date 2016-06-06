@@ -1067,7 +1067,7 @@ public function queenBellyMovementEvent():void
 {
 	clearOutput();
 	
-	output("You find your hands idly drifting down to your [pc.belly], caressing the taut bulge of pregnant flesh. As if responding to your touch, you feel the queen's spawn inside you moving inside you, squirming around just beneath the surface. One seems to find its way directly to your hand, brushing against your palm through the thin barrier of your [pc.skinFurScales].");
+	output("You find your hands idly drifting down to your [pc.belly], caressing the taut bulge of pregnant flesh. As if responding to your touch, you feel the queen's spawn inside you moving, squirming around just beneath the surface. One seems to find its way directly to your hand, brushing against your palm through the thin barrier of your [pc.skinFurScales].");
 
 	output("\n\nYou smile to yourself and rub back, assuring the spawn inside you that you're here, and that they're safe and loved. A feeling of happiness floods through you at that, and you find yourself smiling dumbly as you proceed.");
 	

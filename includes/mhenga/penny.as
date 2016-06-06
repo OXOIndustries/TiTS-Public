@@ -72,7 +72,7 @@ public function showPennyBust(nude:Boolean = false):void
 	{
 		var pennyBust:String = "PENNY_BIMBO";
 		if(penny.hasCock(GLOBAL.TYPE_EQUINE)) pennyBust = "PENNY_BIMBO_HORSE";
-		if(flags["SEEN_BIMBO_PENNY"] != undefined && (hours < 8 || hours >= 17)) showBust("FLAHNE_NUDE",pennyBust);
+		if(flags["SEEN_BIMBO_PENNY"] != undefined && (hours < 8 || hours >= 17)) showBust(flahneBustDisplay(true),pennyBust);
 		else showBust(pennyBust);
 	}
 	else
@@ -3200,7 +3200,7 @@ public function pennyVsFlahneWhoWillOutslutWho():void
 		pennyBust = "PENNY_BIMBO";
 		if(penny.hasCock(GLOBAL.TYPE_EQUINE)) pennyBust = "PENNY_BIMBO_HORSE";
 	}
-	userInterface.showBust(pennyBust, "FLAHNE_NUDE");
+	userInterface.showBust(pennyBust, flahneBustDisplay(true));
 	var x:int = pc.biggestCockIndex(); // Fenstyle yo
 
 	output("You mention to Penny that you had a very interesting talk about her with Flahne recently. At the mention of Flahne’s name Penny’s ears prick up with almost comical enthusiasm, betraying her interest as they literally swivel slightly towards you.");
