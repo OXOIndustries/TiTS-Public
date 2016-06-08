@@ -11323,7 +11323,7 @@
 			}
 			return true;
 		}
-		public function multiCockDescript(dynamicLength:Boolean = false): String {
+		public function multiCockDescript(dynamicLength:Boolean = false,includeIndefiniteArticle:Boolean = false): String {
 			if (cocks.length < 1) return "<b>Error: multiCockDescript() called with no penises present.</b>";
 			//Get cock counts
 			var descript: String = "";
@@ -11337,68 +11337,22 @@
 			//Numbers!
 			else if (cocks.length <= 2) {
 				//For cocks that are the same
-				if (hasSamecType()) {
-					rando = rand(5);
-					if (rando == 0) descript += "pair of";
-					if (rando == 1) 
-					{
-						descript += "two";
-						adjectives = 1;
-					}
-					if (rando == 2) descript += "brace of";
-					if (rando == 3) 
-					{
-						descript += "matching";
-						adjectives = 1;
-					}
-					if (rando == 4) 
-					{
-						descript += "twin";
-						adjectives = 1;
-					}
-				}
-				//Nonidentical
-				else {
-					rando = rand(3);
-					if (rando == 0) descript += "pair of";
-					if (rando == 1) 
-					{
-						descript += "two";
-						adjectives = 1;
-					}
-					if (rando == 2) descript += "brace of";
-				}
-			} else if (cocks.length <= 3) {
-				//For samecocks
-				if (hasSamecType()) {
-					rando = rand(5);
-					if (rando == 0) 
-					{
-						descript += "three";
-						adjectives = 1;
-					}
-					if (rando == 1) descript += "group of";
-					if (rando == 2) descript += "menage a trois of";
-					if (rando == 3) descript += "triad of";
-					if (rando == 4) descript += "triumvirate of";
-				} else {
-					rando = rand(2);
-					if (rando == 0) 
-					{
-						descript += "three";
-						adjectives = 1;
-					}
-					if (rando == 1) descript += "group of";
-				}
+				if(includeIndefiniteArticle) descript += RandomInCollection(["a pair of","two"]);
+				else descript += RandomInCollection(["pair of","two"]);
+				//Cut: brace of, matching, twin
+			} 
+			else if (cocks.length <= 3) {
+				if(includeIndefiniteArticle) descript += RandomInCollection(["three","a trio of","three"]);
+				else descript += RandomInCollection(["three","trio of","three"]);
+				//Cut: group of, menage a trois of, triad of, triumvirate of
 			}
 			//Large numbers of cocks!
-			else {
-				rando = rand(4);
-				if (rando == 0) descript += "bundle of";
-				if (rando == 1) descript += "obscene group of";
-				if (rando == 2) descript += "cluster of";
-				if (rando == 3) descript += "wriggling bunch of";
+			else 
+			{
+				if(includeIndefiniteArticle) descript += RandomInCollection(["a bundle of","an obscene group of","a cluster of",num2Text(cocks.length)]);
+				else descript += RandomInCollection(["bundle of","obscene group of","cluster of",num2Text(cocks.length)]);
 			}
+			//cut: "wriggling bunch of"
 			var adjectiveArray:Array = cockAdjectivesRedux(cocks[biggestCockIndex()], 1, true);
 			//Punctuation is important.
 			if(adjectives > 0 && adjectiveArray[1] > 0) descript += ", ";
@@ -11429,7 +11383,7 @@
 			}
 			else {
 				if(adjectiveArray[1] > 0) descript += ", ";
-				descript += RandomInCollection("mutated cock","mutated dicks","mixed cocks","mismatched dicks");
+				descript += RandomInCollection("mutated cock","mixed dicks","mixed cocks","mismatched dicks","mixed pricks","mismatched members");
 			}
 			return plural(descript);
 		}
