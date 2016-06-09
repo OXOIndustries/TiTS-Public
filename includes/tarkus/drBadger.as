@@ -49,6 +49,7 @@ public function drBadgerMenu():void
 		else if(flags["BADGER_QUEST"] == 3) addDisabledButton(6,"Job","Job","You already did her job.");
 		else addDisabledButton(6,"Job","Job","You've already accepted her “job offer”");
 	}
+	addButton(2,"Clinic",drBadgerCuntTailGo,undefined,"Clinic","Ask the doctor for medical treatment.");
 	addButton(14,"Leave",mainGameMenu);
 }
 public function drBadgerBuyMenu():void
@@ -538,3 +539,391 @@ public function omgBreakFreeFromDat():void
 	else addButton(0,"Next",drBadgerMenu);
 }
 */
+
+//dr. badger experiments on a cunt-tail (first draft)
+//new 'Clinic' button
+//to be added to dr. bad's shop menu
+//tooltip: Ask the doctor for medical treatment.
+
+//if PC has a cunt-snake tail (req. a cunt-snake type specifically; other anatomies of interest can be added later if written)
+public function drBadgerCuntTailGo():void
+{
+	clearOutput();
+	showDrBadger();
+	author("Zeikfried");
+	if(pc.hasCuntTail())
+	{
+		output("Dr. Badger grunts petulantly and looks like she’s about to refuse your request until something catches her eye.");
+		output("\n\n<i>“");
+		if(pc.tailCount == 1) output("That tail");
+		else output("Those tails");
+		output("... let me see it.”</i> She points at your [pc.tails] and, when you don’t move right away, holds out her gloved hand and waves her fingers impatiently. You curl ");
+		if(pc.tailCount > 1) output("them");
+		else output("it");
+		output(" around and place the tip in her palm.");
+		output("\n\nThe badger pulls it closer, then uses both thumbs to locate and pry open the lips. Rubbing at the silken insides, she asks, <i>“This is a cunt-snake, isn’t it? Parasitic lifeform capable of merging with another creature while retaining its own breeding instinct and genitals... usually regarded as a pest.”</i>");
+		output("\n\nYou shudder and begin to flush when the thumbs trace the ring of your slobbery tail-hole, and nod.");
+		output("\n\nShe continues to rub. <i>“I can remove it from you, if you like. I have a drug with an effect that should alter the snake’s mouth to allow separation. It’s something I’ve been working on for a while.”</i>");
+		output("\n\nYou pause, considering her choice of words. ‘An effect’? Not ‘the effect’? The strange badger-herm pulls your tail-labia a bit wider and pushes her thumbs inward, creeping along your nerves and snapping you back to the moment. Just as they hint of penetration, she withdraws and your tail-cunt slaps shut with a wet, soft smack that makes you inhale sharply.");
+		output("\n\n<i>“One more thing... I’ll need to restrain both of you,”</i> the doctor says, flashing an unctuous, ominous smile. <i>“For safety.”</i>");
+		//raise lust by 1-2 points; offer buttons ‘Remove It’, ‘Don’t’
+		pc.lust(1+rand(2));
+		processTime(4);
+		clearMenu();
+		addButton(0,"Remove It",removeDatCuntTail,undefined,"Remove It","Agree to be restrained for an ‘experimental treatment’ from Dr. Badger.");
+		addButton(1,"Don't",repeatBadgerApproach);
+	}
+	else
+	{
+		//else, dr. bad refuses to treat you (default output)
+		output("Dr. Badger snorts when you raise the topic of a medical examination.");
+		output("\n\n<i>“You want me look you over, but I’m only allowed to touch the grossest, most-diseased parts? I’m not that kind of doctor.”</i> The badger pauses for a moment, thoughtfully. <i>“Actually, according to my degree I </i>am<i> that kind of doctor, but I’m not interested.”</i>");
+		if(flags["BIMBOIFIED"] != undefined) 
+		{
+			output("\n\nYou know first-hand just what she <i>is</i> interested in, and decide not to push the herm to deliver treatment that bores her, lest she find a way to spice it up.");
+			//(if badgered previously, end output here)
+		}
+		else if(pc.isNice()) 
+		{
+			output("\n\n<i>“What about the oaths you took?");
+			if(pc.isBimbo() || pc.isBro()) output(" Like, the doctor oaths or whatever... helping people and stuff?");
+			else output(" Don’t you feel even a little bit of an obligation to help those in need?");
+			output("”</i> you prod.");
+		}
+		else if(pc.isMischievous()) 
+		{
+			output("\n\n<i>“What about");
+			if(pc.isBimbo()) output(", like,");
+			output(" the ‘clinic’ bit on your sign?");
+			if(!pc.isBimbo()) output(" Don’t you have any professional pride?");
+			output("”</i> you wheedle.");
+		}
+		else
+		{
+			if(pc.isBimbo()) output("\n\n<i>“Like, you can’t");
+			else output("\n\n<i>“Not sure you can");
+			output(" call it a clinic, then... what happens if the cops find out?”</i> you hector. <i>“Like, say a disgruntled patient phoned them on the vid.”</i>");
+		}
+		processTime(4);
+		if(flags["BIMBOIFIED"] == undefined)
+		{
+			output("\n\nThe mad doctor grinds her teeth, then places her hand on the wall by your head, leaning right into your personal space. <i>“What are you... some kind of do-gooding hero of justice? If that’s the case, I’d be </i>pleased<i> to treat you.”</i>");
+		}
+		clearMenu();
+		drBadgerMenu();
+		//if has been badgered prev., display only a ‘Next’ or ‘Back’ button and return to main dr. bad menu
+		//else, display the hero/not hero buttons from dr. bad’s hero choice, even if PC is ditz
+	}
+}
+
+//’Remove It’ button (the cunt-tail removal scene)
+//dr. bad injects the cunt-tail with a simplified, powered-up version of her badger serum
+//button name can be changed if other valid selections are added to ‘Clinic’
+//tooltip: Agree to be restrained for an ‘experimental treatment’ from Dr. Badger.
+public function removeDatCuntTail():void
+{
+	clearOutput();
+	showDrBadger();
+	author("Zeikfried");
+	output("Dr. Badger’s eyebrows rise when you agree. <i>“Great,”</i> she says, quickly pushing you toward a table before you change your mind. <i>“I’m quite pleased, really.”</i> She ");
+	if(pc.isTaur()) output("lowers and slides the table under your bottom half, ");
+	else output("seats you, ");
+	output("then straps you down. Your [pc.tail] gets its own set of straps, mounted on a thick plastic wing that folds out from the side.");
+
+	output("\n\n<i>“Failing to prepare is preparing to fail,”</i> the doctor says cheerfully when she sees you staring. <i>“Can’t use the machine for everything. I used to have a sturdier, metal table, but my first sydian guest made quick work of it. He was a spirited one... very interesting reaction to the usual medication.”</i> You don’t ask, but she gives you the context anyway: <i>“And his new cunt felt just fantastic...”</i>");
+	output("\n\nShe finishes binding your tail and retrieves a loose rubber tube and a syringe of black liquid with an unholy glow. <i>“I should thank you, actually. I’ve been wanting to resume trials on cunt snakes, but they’re so hard to get - banned from import to new worlds and etcetera - that I had to shelve the project.”</i> The alarm must be growing in your face, because the mad doctor smirks at you as she wraps the tube around your tail. <i>“Don’t worry. We’ll use a little tourniquet to stop the bloodflow and make the snake rely on its own vascular system.”</i>");
+	output("\n\nWith those words, she yanks the tube tight, right below your ass. Your tail squirms autonomously as the blood is sealed in, but there’s little pain or numbness... yet. The badger turns her attention to a slate on a nearby counter and punches up a holo-diagram of a cunt snake’s circulatory system. She studies it, then smiles at you and picks up the umbral syringe. In the dim lab, the deep indigo light emanating from the drug darkens one side of her white grin, giving the doctor a lopsided, maniacal look.");
+	output("\n\n<i>“Here we go!”</i> she says, pinning your tail with a strong hand to stop its squirming. You can feel the pressure as she plunges in the needle and forces the contents into the snake’s vein - its nerves are still working and linked to your own spine. A dull heat spreads as chemicals diffuse, warming your parasite several degrees.");
+	output("\n\nYour tail begins to writhe in the straps, flexing and arching, trying to break free. Pressure grows at the bindings, becoming painful; it’s swelling badly, bulging along its length when you look. ");
+	//(leg/tail area is  scales)
+	if(pc.hasScales()) output("Scales slough away as it chafes, revealing ");
+	else if(pc.hasChitin()) output("Chitin begins to disconnect from it, allowing the snake to squirm right out of its shell and expose ");
+	//(fur/feathers){Fur/Feathers}
+	else if(pc.hasFur() || pc.hasFeathers()) output("[pc.skinFurScales] fall out in clumps, exposing ");
+	else if(pc.isGoo()) output("The gel begins to cloud and harden, losing translucence as it hardens to ");
+	else output("Your tail frenziedly sheds a layer of covering, exposing ");
+	output("moist pink skin that’s rich with blood flow. The doctor moves between the bindings and loosens them as your parasite grows, studying and ‘hmm’ing intently. The swell doesn’t stop until your tail is twice as fat as it was when you entered, an enormous tube of doughy flesh under loose patches of shed skin.");
+	output("\n\nIts writhing continues but an itchiness takes the place of the pressure, like bristly caterpillars are crawling all over your tail. The fat snake tries to coil over itself and scratch, but cannot. Starting at the injection site and radiating outward, tufts of black fur begin to ");
+	if(pc.hasFur()) output("regrow");
+	else output("grow in");
+	output(" - patchy at first, and thickening as the change spreads. The last patches of old covering fall away as the hair emerges under them, and two lines of white begin to show in the black coat, stretching from the tip to your ass. Dr. Badger’s smile deepens when she sees them.");
+	output("\n\nThe unnatural heat in your tail begins to concentrate in the end, under the concealing cunt-lips; it grows until it feels like fire licking at doors, building in fury and waiting for enough air to spread. The flesh inside your [pc.tailCunt] inflames with blood, unintentionally carrying all the nutrients and building blocks necessary for the perverted badger’s changes. Just before the heat builds to a point where you fear you might pass out, the cunt-lips pop open and cool air rushes in to touch your vagina; a glob of built-up lubrication hits the floor with an audible splat.");
+	pc.lust(75);
+	output("\n\nInstead of releasing heat like a valve and re-closing, the parasite’s pussy continues to spread. You can sense the change happening; your tail’s hole expands wide as if some huge organ were thrusting inside it, working on one rim at a time while your nerves report the change as strokes of a phantom cock. The lubrication increases, whether from the imagined sex or the drugs or both, drooling rivers that run over the edge of the table and fall with a soft ‘plit-plit-plit’.");
+	output("\n\nYour tail-pussy is not the only thing in the room swelling. Dr. Badger’s eyes are riveted to the cunt-snake’s genitalia - whatever is happening inside the spread-open pussy, concealed from you by its fat ridges, is apparently very exciting to the herm. Her sleeved cock begins to arch and bob and, by the time the transformative drug has spent most of its charge, your altered pussy is gaping wide and clenching at empty air and the doctor is at full mast.");
+	output("\n\n<i>“Aha-ha,”</i> she laughs triumphantly, watching your mutated tail-cunt fidget. She places the empty syringe on the counter behind her and leans back; her free hand slips around the base of her shaft, between her cock and her fat badger balls. The perverted herm hums and hefts her girthy prick, weighing her need both physically and mentally as she watches the snake, and then decides. She slides the hand up quickly, peeling off her cock-sleeve like an elegant ballroom glove and flinging a string of wet precum from her black slit; it lands in the opening of your gaping, grasping tail, hot-liquid-on-hot-liquid.");
+	output("\n\nYour parasite freaks out from its brush with masculine lube, gyrating like a hand crank in the restraints. Dr. Badger advances on it, prick swollen with purpose, and slams her hand down on the end. Even pinned, the cunt spread wide continues to reach for her cock, kissing the air like a baby’s suckling reflex. The harebrained herm lines her crown up with the slavering opening and, without a single warm-up stroke, penetrates it down to her balls.");
+	output("\n\n<i>“Ohh, that’s good,”</i> she groans, swiveling her hips to move her fat pussy-tickler. She pulls out and slams back in again, rolling her neck in ecstasy. <i>“Couldn’t have imagined a better fuck-hole... the size and shape are perfect.”</i> Her pelvis picks up speed, filling your mutated tail-cunt with hot meat and stroking every nerve - from the way it stretches and molds around her, you can only imagine the plastic changes her serum is forcing on the parasite.");
+	output("\n\nAnother bolt shoots up your spine as she leans over the sloppy snatch, both hands braced on ");
+	if(pc.isTaur()) output("your flank");
+	else output("the table");
+	output(", and begins to fuck <i>downward</i>, putting pressure on your symbiotic clitty with her pudgy, furred stomach. <i>“A shame it didn’t grow a cock,”</i> she says. <i>“Nothing completes a pussy like a big, cum-squirting fuck-handle to wrap your fist around.”</i>");
+	if(pc.hasVagina())
+	{
+		output(" Your own [pc.vaginas] enflame");
+		if(pc.totalVaginas() == 1) output("s");
+		if(pc.wettestVaginalWetness() < 2) output(", burning for penetration of its own.");
+		else
+		{
+			output(" and a gush of lubrication escapes, staining ");
+			if(!pc.isCrotchExposed()) output("your [pc.lowerGarment]");
+			else output("the table and trickling to the floor");
+			output(".");
+		}
+	}
+	if(pc.hasCock())
+	{
+		output(" Blood rushes to [pc.eachCock] and ");
+		if(pc.totalCocks() == 1) output("it");
+		else output("every one");
+		if(pc.isCrotchExposed()) output(" stands proudly, announcing that it’s available for ‘leverage’ if needed.");
+		else output(" tents in your [pc.lowerGarment], pushing dots of desperate precum into the lining.");
+	}
+	output("\n\nYour heart pounds in your chest as the raunchy badger works your tail-hole; the parasite’s circulation must also be going overtime, because you can feel the dwindling heat of the mad doctor’s medicine begin to creep past her sloppy tourniquet. A surge of panic, and perhaps a tiny thrill, shakes you as minute amounts of the used-up drug leak into your body");
+	//(if valid changes are possible)
+	output(", warming your [pc.skin].");
+
+	//insert 1-3 qualified changes from the existing Dr. Badger TF here; qualifiers follow
+	//always exclude mental/perk changes (Easy, Breed Hungry, Inhuman Desire)
+	//always exclude tail changes until tail array is expanded to support multiple cunt-tails or cunts among other types, then it can affect other tails if desired (will require rewrite of the badger TF text)
+	//preferably exclude or rarify any multi-to-one effects (e.g. merging multiple cocks or breast rows)
+	//if PC has goo skin/legs, also exclude skin/leg changes until the goo TF is unrestricted (plz Fen)
+	//any changes with a magnitude are reduced to 10-33% of usual effect (e.g. cock creation/growth adds 3-4”</i> instead of 11”</i> and breast growth adds only a single cup size)
+
+	var changes:Number = 0
+	//IF PC BODYTYPE IS THIN/NOT PLUMP
+	if(pc.thickness < 75 && changes < 3 && rand(3) == 0) 
+	{
+		output("\n\nYou feel your body begin to swell dramatically, rounding out until you look like the Doctor herself, all the to better to show off your sexually-charged figure to all onlookers. <b>Your body is now plump and curvy</b>.");
+		pc.thickness = 75;
+		//IF PC DOES NOT HAVE TWO LEGS
+		if(pc.legCount != 2 && pc.legCountUnlocked(2)) 
+		{
+			output("\n\nThis change seems to come at the expense of your lower body, your rounding figure reconstituting your mass with startling speed. <b>You are now standing on two legs</b>.");
+			pc.legCount = 2;
+			pc.genitalSpot = 0;
+			pc.clearLegFlags();
+			pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
+			pc.legType = GLOBAL.TYPE_HUMAN;
+		}
+		changes++;
+	}
+	else
+	{
+		if(pc.legCountUnlocked(2) && pc.legCount != 2 && changes < 3 && rand(3) == 0) 
+		{
+			output("\n\nYour lower body is the first to change, your changing figure reconstituting your mass with startling speed. <b>You are now standing on two legs</b>.");
+			pc.legCount = 2;
+			pc.genitalSpot = 0;
+			pc.clearLegFlags();
+			pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
+			pc.legType = GLOBAL.TYPE_HUMAN;
+			changes++;
+		}
+	}
+	//IF PC HAS GOO-SKIN
+	if(pc.skinTypeUnlocked(GLOBAL.SKIN_TYPE_SKIN) && pc.skinType == GLOBAL.SKIN_TYPE_GOO && changes < 3 && rand(3) == 0) 
+	{
+		output("\n\nYou feel yourself solidify at the same time, your body turning to normal flesh. <b>You have lost your goo form</b>.");
+		pc.skinType = GLOBAL.SKIN_TYPE_SKIN;
+		changes++;
+	}
+	//IF PC DOES NOT HAVE BREASTS
+	if(pc.breastRatingUnlocked(0, 8) && pc.biggestTitSize() < 1 && changes < 3 && rand(3) == 0)
+	{
+		output("\n\nYour chest strains alarmingly, and even from your current position you manage to look down and watch your body reshape; the fluid being pumped into you somehow congregating in very specific spots until with a shuddering gasp two breasts push themselves out of your [pc.skin]. You can’t help but keep moaning as they swell further and further, until eventually they are left dangling almost all the way to the floor, pulling your bent over body downwards even more just by the sheer weight of fluid that sloshes inside of them. Strainingly stiff nipples cap them off, making you look like you’re perpetually on the verge of actively leaking. <b>You now have very large breasts</b>!");
+		pc.breastRows[0].breastRatingRaw = 8 + rand(4);
+		changes++;
+	}
+	//IF PC HAS SMALLER THAN VERY LARGE BREASTS
+	if(pc.breastRatingUnlocked(0, 8) && pc.biggestTitSize() < 8 && changes < 3 && rand(3) == 0)
+	{
+		output("\n\nYour breasts seem to get the most attention, pushing out emphatically as the fluid somehow seems to concentrate itself in filling them as much as possible. You can’t help but moan as they grow to become achingly large, leaving them almost touching the floor as you’re bent double over this podium. They slosh noisily too, seeming to be filled with a vast reservoir of loose fluid that your strainingly stiff nipples struggle to contain without leaking eagerly. <b>You breasts are now very large</b>!");
+		pc.breastRows[0].breastRatingRaw = 8 + rand(4);
+		changes++;
+	}
+	//IF PC HAS MORE THAN ONE SET OF BREASTS
+	if(pc.removeBreastRowUnlocked(1, 1) && pc.bRows() > 1 && changes < 3 && rand(3) == 0)
+	{
+		output("\n\nWhile your main set of breasts twitch and slosh with the fluid that fills them, your extra breasts slide smoothly upwards, merging soundlessly into just your one emphatic rack.<b>You now have only one set of breasts</b>!");
+		while(pc.bRows() > 1)
+		{
+			pc.removeBreastRow(1,1);
+		}
+		changes++;
+	}
+	//IF PC DOES NOT HAVE A COCK
+	if(pc.createCockUnlocked(1) && !pc.hasCock() && changes < 3 && rand(3) == 0)
+	{
+		output("\n\nYou grimace as the feeling of fullness moves to concentrate on your crotch, the sensation so overpowering for a moment that your [pc.knees] almost buckle");
+		if(pc.legCount == 1) output("s");
+		output(" beneath it. You find yourself gasping for breath, hurriedly taking in air in short, desperate bursts as you grasp at the top of the podium feverishly, until finally the unstoppable pressure within you releases in one great orgasmic rush. You feel an intense surge, and somehow you become aware that your body is responding along with it, a great thick shaft pressing out of your crotch. You pant as you feel the fluid work its way through it, molding it and filling it out all at the same time, until finally you feel your new, massive cock hanging heavily from your body, twitching and pulsing with the fluid that fills it so desperately. God, it feels so <i>good</i>, but you <i>need</i> to cum, and despite how good it felt you still somehow haven’t. <b>You now have a very large cock</b>!");
+		pc.createCock();
+		pc.cocks[0].cLengthRaw = 11;
+		pc.cocks[0].cockColor = "black";
+		changes++;
+	}
+	//IF PC HAS A SMALLER THAN VERY LARGE COCK
+	if(pc.cockLengthUnlocked(0, 11) && pc.biggestCockLength() < 11 && changes < 3 && rand(3) == 0)
+	{
+		output("\n\nYou grimace as the feeling of fullness moves to concentrate on your crotch, the sensation so overpowering for a moment that your [pc.knees] almost buckle");
+		if(pc.legCount == 1) output("s");
+		output(" beneath it. You can feel the fluid pumping into you, surge after surge flowing through your body and aiming directly for your cock, which soon shudders and responds to the massive increase in pressure. It presses out from you slowly, building outwards with every pulse and almost knocking your [pc.legOrLegs] out from under you at the sheer intensity of it, leaving you struggling to keep breathing as your cock fills absolutely with this new, surging fluid. You want to cum, you <i>need</i> to cum, but you can’t - all you can do is clutch desperately at the top of the podium while your shaft slowly grows to become large enough to almost match Dr. Badger herself. <b>Your cock is now very large</b>!");
+		pc.cocks[0].cLengthRaw = 11;
+		changes++;
+	}
+	//IF PC HAS MORE THAN ONE NON-TAIL COCK
+	if(pc.removeCockUnlocked(1, 1) && pc.cockTotal() > 1 && changes < 3 && rand(3) == 0)
+	{
+		output("\n\nYour extra cock");
+		if(pc.cockTotal() > 2) output("s flow ");
+		else output(" flows ");
+		output("together like they were liquid themselves, feeding their mass into your main cock, ensuring you’re more focused on receiving breeding than being able to breed others. <b>You now have only one very large cock on your groin</b>!");
+		
+		while(pc.cockTotal() > 1)
+		{
+			pc.removeCock(1,1);
+		}
+		changes++;
+	}
+	//IF PC DOES NOT HAVE BALLS
+	if(pc.ballsUnlocked(0) && pc.balls == 0 && changes < 3 && rand(3) == 0)
+	{
+		output("\n\nThe flow of fluid shifts within you, moving to pool at the very base of your crotch. Here it simply builds unstoppably, dragging a groan from you as you feel your body swell in response, a growing set of balls descending slowly. The fluid focuses on these mercilessly; pumping them so achingly full that they feel like they’re overflowing - a constant, endless, churning torturing you as your seed demands to be spent, and even then you’re not sure how much release you would get from any one single orgasm. <b>You now have very large balls</b>!");
+		pc.balls = 2;
+		pc.ballSizeRaw = 4;
+		if(pc.cumMultiplierRaw < 60) pc.cumMultiplierRaw = 60;
+		if(pc.ballEfficiency < 120) pc.ballEfficiency = 120;
+		changes++;
+	}
+	//IF PC HAS SMALLER THAN LARGE BALLS, OR HAS LESS THAN LARGE CUM PRODUCTION
+	if(pc.ballSizeUnlocked(4) && pc.maxCum() < 500 && pc.balls > 0 && changes < 3 && rand(3) == 0)
+	{
+		if(pc.balls > 1) output("\n\nThe flow of fluid shifts within you, moving to pool heavily in your balls. Here it simply builds unstoppably, dragging a groan from you as you feel them swell in response. The fluid focuses on them mercilessly, pumping them so achingly full that they grow dramatically. They feel like they’re overflowing - a constant, endless churning torturing you as your seed demands to be spent, and even then you’re not sure how much release you would get from any one single orgasm. <b>Your balls are now very productive</b>!");
+		else output("\n\nThe flow of fluid shifts within you, moving to pool heavily in your ball. Here it simply builds unstoppably, dragging a groan from you as you feel it swell in response. The fluid focuses on it mercilessly, pumping it so achingly full that it grows dramatically. It feels like it's overflowing - a constant, endless churning torturing you as your seed demands to be spent, and even then you’re not sure how much release you would get from any one single orgasm. <b>Your ball is extra productive</b>!");
+
+		if(pc.ballSizeRaw < 4) pc.ballSizeRaw = 4;
+		if(pc.cumMultiplierRaw < 60) pc.cumMultiplierRaw = 60;
+		if(pc.ballEfficiency < 120) pc.ballEfficiency = 120;
+		changes++;
+	}
+	//IF PC HAS MORE THAN ONE SET OF BALLS
+	if(pc.ballsUnlocked(2) && pc.balls > 2 && changes < 3 && rand(3) == 0)
+	{
+		output("\n\nWith a sensation that makes your eyes roll back in your head you feel your extra sets of balls drain themselves into your main pair, sliding seamlessly into your flesh while your remaining balls slosh as they fill to overflowing with extra seed. <b>You now have only one set of balls</b>!");
+		pc.balls = 2;
+		pc.ballSizeRaw += pc.ballSizeRaw/2;
+		changes++;
+	}
+	//IF PC DOES NOT HAVE A VAGINA
+	if(pc.createVaginaUnlocked(1) && !pc.hasVagina() && changes < 3 && rand(3) == 0)
+	{
+		output("\n\nThere’s a sudden shift inside you, and suddenly you feel a distinct pleasure sinking into the very base of your crotch, below even your balls. The sensation is almost blissful; after all the straining fullness from the fluid earlier this response is enough to make your head sink happily down to one side, your tongue lolling out of your mouth in pleasure. With a shudder you feel a slit opening");
+		if(pc.legCount > 1) output(" between your [pc.legs]");
+		else output(" at your crotch");
+		output(", and you can’t help but smile dopily as you feel it become wonderfully slick and deep; literally dripping with enough ready-made lubrication to leave you always available for use by almost any size of client. <b>You now have a capacious vagina</b>!");
+		pc.createVagina();
+		pc.vaginas[0].wetnessRaw = 3;
+		pc.vaginas[0].loosenessRaw = 2;
+		pc.vaginas[0].bonusCapacity = 20;
+		pc.vaginas[0].vaginaColor = "black";
+		changes++;
+	}
+	//IF PC HAS A LESS THAN DEEP VAGINA, OR LESS THAN CONSTANTLY DRIPPING FEMCUM PRODUCTION
+	if(pc.hasVagina() && changes < 3 && rand(3) == 0)
+	{
+		if(pc.vaginas[0].bonusCapacity < 20 || pc.vaginas[0].wetnessRaw < 3)
+		{
+			output("\n\nThere’s a sudden shift inside you, and suddenly you feel a distinct pleasure in your vagina. The sensation is almost blissful; after all the straining fullness from the fluid earlier this response is enough to make your head sink happily down to one side, your tongue lolling out of your mouth in pleasure. With a shudder you feel your slit changing, and you can’t help but smile dopily as you feel it become wonderfully slick and deep; literally dripping with enough ready-made lubrication to leave you always available for use by almost any size of client. <b>Your vagina is now capacious</b>!");
+			pc.vaginas[0].bonusCapacity = 20;
+			pc.vaginas[0].wetnessRaw = 3;
+			changes++;
+		}
+	}
+	//IF PC HAS MORE THAN ONE NON-TAIL VAGINA
+	if(pc.removeVaginaUnlocked(1,1) && pc.totalVaginas() > 1 && !pc.isPregnant() && changes < 3 && rand(3) == 0)
+	{
+		output("\n\nYour fingers clench involuntarily as you undergo the indescribable sensation of your superfluous vagina");
+		if(pc.totalVaginas() > 2) output("s sealing themselves");
+		else output(" sealing itself");
+		output(" closed; leaving you with only one slick slit, ensuring that any groups of potential partners would have to pass you around one after the other to breed you successfully. <b>You now have only one vagina on your groin</b>!");
+		while(pc.totalVaginas() > 1)
+		{
+			pc.removeVagina(1,1);
+		}
+		changes++;
+	}
+	//IF PC DOES NOT HAVE FUR
+	if(pc.skinTypeUnlocked(GLOBAL.SKIN_TYPE_FUR) && pc.skinType != GLOBAL.SKIN_TYPE_FUR && changes < 3 && rand(3) == 0)
+	{
+		output("\n\nA shiver runs through your entire body, and with a feeling like sinking into a warm bath you feel fur slide blissfully out over your [pc.skin], sweeping over your body in moments to leave you wrapped entirely in thick black fur. <b>You now have black fur</b>!");
+		pc.skinType = GLOBAL.SKIN_TYPE_FUR;
+		pc.clearSkinFlags();
+		pc.addSkinFlag(GLOBAL.FLAG_THICK);
+		pc.addSkinFlag(GLOBAL.FLAG_FLUFFY);
+		pc.furColor = "black";
+		changes++;
+	}
+	//IF PC HAS NON-BLACK FUR
+	if(pc.furColorUnlocked("black") && pc.skinType == GLOBAL.SKIN_TYPE_FUR && pc.furColor != "black" && changes < 3 && rand(3) == 0)
+	{
+		output("\n\nA shiver runs through your entire body, and with a feeling like sinking into a warm bath you feel your fur changing, a wave of color sweeping over your body in moments to leave you wrapped entirely in thick black fur. <b>You now have black fur</b>!");
+		pc.furColor = "black";
+		changes++;
+	}
+	if(pc.legTypeUnlocked(GLOBAL.TYPE_SUCCUBUS) && pc.legType != GLOBAL.TYPE_SUCCUBUS && pc.isBiped() && changes < 3 && rand(3) == 0)
+	{
+		output("\n\nYour feet tense abruptly, and you grit your teeth against a brief flash of pain as you feel your bones altering dramatically. The soles of your feet are shifted upwards, pushing you onto your tiptoes as the heels of your feet extend downwards in a thin spike. The changes finish in only a few moments, leaving you with feet that are somehow natural high heels; forcing you to totter about with your gait altered permanently. <b>Your feet are now permanent high heels</b>!");
+		pc.legType = GLOBAL.TYPE_SUCCUBUS;
+		pc.clearLegFlags();
+		pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
+		pc.addLegFlag(GLOBAL.FLAG_HEELS);
+		changes++;
+	}
+	if(pc.armTypeUnlocked(GLOBAL.TYPE_BADGER) && pc.armType != GLOBAL.TYPE_BADGER && changes < 3 && rand(3) == 0)
+	{
+		output("\n\nYour hands change too, albeit not so dramatically; finishing up almost normal looking - so long as your definition of “normal” includes black fur and small but significant claws. <b>Your hands are now clawed badger hands</b>!");
+		pc.armType = GLOBAL.TYPE_BADGER;
+		pc.clearArmFlags();
+		pc.addArmFlag(GLOBAL.FLAG_FURRED);
+		changes++;
+	}
+	if(pc.faceTypeUnlocked(GLOBAL.TYPE_BADGER) && pc.faceType != GLOBAL.TYPE_BADGER && changes < 3 && rand(3) == 0)
+	{
+		output("\n\nYou drool helplessly, your dripping tongue hanging from your lips");
+		output(" as you only just manage to notice the feeling of your mouth shifting, changing into a black and white muzzle just like the smiling face of the Doctor before you. You can barely even manage to look up at her; you feel at once both so utterly drained and so completely in need of release. <b>Your head is now shaped into a badger muzzle</b>!");
+		pc.faceType = GLOBAL.TYPE_BADGER;
+		pc.clearFaceFlags();
+		pc.addFaceFlag(GLOBAL.FLAG_MUZZLED);
+		changes++;
+	}
+	//resume scene
+	output("\n\nYour perverted physician doesn’t even notice the slackening tourniquet as she abandons herself to the vinegar strokes, too hard and horny to stop fucking your tailpussy and do her job. Her pumps come faster and harder, smearing the lusty snake against the table with each dick-bending thrust; your vision clouds and your temples pound from your thundering pulse, drug-fucked and fuck-drugged. Dr. Badger’s strokes become so shallow that you can feel her balls tightening up to deliver a fertile batch of bimbo, and the next new sensation is a flood of hot viscous liquid hitting your tail-cunt’s cervix, splatting against the snake womb and puddling at the bottom of the gaped pussy. Your orgasm pulls closer as the bimbo badger dumps stripe after stripe of cum in you, but each wet impact seems to get softer and softer... as if the badger’s cock were shrinking away somehow, but when you look at her, she’s still slamming her hips into the abused cunt, pinching out jizz.");
+	output("\n\n<i>“No... no...”</i> you pant, trying to hold onto orgasm as the link to your parasite fades. Dr. Badger doesn’t seem to care; she finishes impregnating, hunched over your tail with badger balls slapping the table, but the nerve connection degrades - within seconds, you feel your tail shift and separate from your body with sharp pinches on your ass, like teeth. You’re left in a void of sensation, hyperventilating and a whisker away from climax but unable to break your restraints. You twist and strain until your vision goes pink, seeing the bitch badger lengthen her stroke again but not comprehending the second round she’s working up to.");
+	pc.lust(100);
+	output("\n\nWithin moments, your brain checks out and you slip into a merciful blackout, or perhaps a fugue...");
+	//do ‘Next’
+	processTime(47);
+	pc.libido(1);
+	clearMenu();
+	addButton(0,"Next",badgerTailRemovalGo);
+}
+
+public function badgerTailRemovalGo():void
+{
+	clearOutput();
+	showDrBadger();
+	author("Zeikfried");
+	output("You regain consciousness some time later, still on Dr. Badger’s table but unstrapped and, thankfully, without any new injection sites or surgical scars. Your parasitic tail, however, is completely gone - apart from a fresh bite-mark, the spot where it formerly attached to your ass is unblemished. The unsound internist is dithering over a cage in the back of the room, making quite a racket. You stand and approach.");
+	output("\n\n<i>“Welcome back,”</i> says Dr. Badger, regarding you over her shoulder. <i>“Come to say goodbye to your companion?”</i>");
+	output("\n\nInside the cage is the ‘companion’ she mentioned: a bizarre mutant that you identify as your once-attached once-snake. Its hugely-fattened body is covered in a coat of black fur with white stripes matching the devilish doctor’s musteline pattern, and a snubby muzzle pokes out from its face, filled with omnivore’s teeth instead of the fangs of a serpent or the melded whatever of a spinal parasite. It slithers on its belly like a grub, always keeping both head and tail pointed toward the two of you; inside its gaping-wide genital slit is a sex as dark as the doctor’s skin, glistening with clear lubricants and badger sperm that drip through the wire cage floor and puddle at your feet. Your host toes the slick, sticky mess amusedly.");
+	output("\n\nThe badger-snake presses its drooling, black cunt to the cage bars like a photo of its children, begging Dr. Badger’s crotch for more cum despite sure impregnation by the first two batches. <i>“A beautiful makeover, wouldn’t you say?”</i> she asks, enthralled with her creation. Something more than professional pride lingers in her voice; you look down. The herm’s black cock is still unsleeved and dripping; a vein pulses in its half-erect curve and it rises another inch as the greedy snake flattens its labia against the bars, displaying a pussyhole like wet twilight. Dr. Badger’s hand absently slides under her dick again, and you back up from the impending frenzy, stunned, head still swimming with drugs and alien lust from the snake coitus stolen away. You make for the exit and fresher air, staggering through just as the ‘click’ of a wire cage latch reaches you.");
+	//apply any queued badger-fying TFs if not done mid-scene
+	//remove 1x cunt-tail, pass ~30 mins time, boost lust by very large amount, possibly boost libido by 0-1 (Fen’s discretion), add cortex bomb to PC’s brain if playing Shadowrun on SNES
+	pc.removeTails();
+	//place PC at entrance to bimbotorium
+	processTime(35);
+	pc.libido(1);
+	clearMenu();
+	addButton(0,"Next",move,rooms[currentLocation].southExit);
+}

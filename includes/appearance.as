@@ -2049,7 +2049,7 @@ public function crotchStuff(forTarget:Creature = null):void
 		{
 			temp = 0;
 			rando = rand(4);
-			output2("Where a penis would normally be located, you have instead grown your " + target.multiCockDescript() + ":");
+			output2("Where a penis would normally be located, you have instead grown " + target.multiCockDescript(false,true) + ":");
 			while(temp < target.cocks.length) 
 			{
 				//middle cock description
