@@ -20,7 +20,16 @@ Uses two high caliber pistols and a two electrified blades.
 public function showRival(nude:Boolean = false):void
 {
 	showName("\n" + chars["RIVAL"].short.toUpperCase());
-	showBust(chars["RIVAL"].short.toUpperCase());
+	showBust(rivalBustDisplay(nude));
+}
+public function rivalBustDisplay(nude:Boolean = false):String
+{
+	// 9999 - Special artist exceptions!
+	if(kGAMECLASS.gameOptions.configuredBustPreferences[chars["RIVAL"].short.toUpperCase()] != "GATS") return chars["RIVAL"].short.toUpperCase();
+	
+	var sBust:String = chars["RIVAL"].short.toUpperCase();
+	if(nude) sBust += "_NUDE";
+	return sBust;
 }
 public function showDane(nude:Boolean = false):void
 {
@@ -223,8 +232,8 @@ public function letRivalGoOnMhenga():void {
 public function defeatDane():void
 {
 	clearOutput();
-	userInterface.showBust(chars["RIVAL"].short.toUpperCase());
-	userInterface.showName("DANE AND\n" + chars["RIVAL"].short.toUpperCase());
+	showBust(rivalBustDisplay());
+	showName("DANE &\n" + chars["RIVAL"].short.toUpperCase());
 	output("Slumping, the hulking ausar thug looks like he's close to giving in. Before you can finish this, explosions stitch up the ground in front of you, forcing you to dive for cover. The bass hum of thrusters in atmosphere greets you before the gusting backwash does, giving you enough time to put your arm up to block the worst of it. Dane stumbles into the ship, one blade falling from a numb grip to the ground behind him.");
 	output("\n\nThe hatch closes, but you're able to see [rival.short]'s pearly teeth behind [rival.eir] smile as it does. You ");
 	if(pc.rangedWeapon is Rock) output("chuck a few rocks");

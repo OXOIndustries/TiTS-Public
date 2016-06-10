@@ -19,7 +19,7 @@ package classes.Resources.Busts
 		CONFIG::IMAGEPACK
 		{
 			[Embed(source = "../../../assets/images/npcs/renezuo/hr/gianna.png", mimeType = "image/png")]
-			public var Full_KARA:Class;
+			public var Full_GIANNA_NUDE:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/renezuo/hr/sera.png", mimeType = "image/png")]
 			public var Full_SERA:Class;

@@ -27,10 +27,18 @@ Aside: BUT WHAT DO DICK SIZES MEAN TO ALEX?
 [Bail Once More]*/
 
 public function alexNameBustDiplay(nude:Boolean = false):void {
-	if(!nude) showBust("ALEX");
-	else showBust("ALEX_NUDE");
+	showBust(alexBustDisplay(nude));
 	if(flags["FUCKED_ALEX"] != undefined || flags["LAST_MINUTE_ALEX_BACK_OUT"] != undefined) showName("\nALEX");
 	else showName("PRETTY\nBOY");
+}
+public function alexBustDisplay(nude:Boolean = false):String
+{
+	// 9999 - Special artist exceptions!
+	if(kGAMECLASS.gameOptions.configuredBustPreferences["ALEX"] != "GATS") return "ALEX";
+	
+	var sBust:String = "ALEX";
+	if(nude) sBust += "_NUDE";
+	return sBust;
 }
 
 public function getAlexPregContainer():PregnancyPlaceholder

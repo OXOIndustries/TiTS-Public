@@ -640,6 +640,15 @@ public function badEndToTamWulfAndTamAndMaybeAlsoTamPartII():void
 	badEnd("GAME OVER!");
 }
 
+public function kaskaBustDisplay(nude:Boolean = false):String
+{
+	// 9999 - Special artist exceptions!
+	if(kGAMECLASS.gameOptions.configuredBustPreferences["KASKA"] != "GATS") return "KASKA";
+	
+	var sBust:String = "KASKA";
+	if(nude) sBust += "_NUDE";
+	return sBust;
+}
 //Shit Gets Real, Here
 //{First time PC tries to leave the engineering room}
 //Fen note: Actually play overtop of the normal room descriptions in the next room. Horray, cheezing! ...also the other room
@@ -649,7 +658,7 @@ public function bombAlertBonusFunction():Boolean
 	{
 		clearOutput();
 		author("Savin");
-		showBust("KASKA");
+		showBust(kaskaBustDisplay());
 		showName("MYSTERY\nWOMAN");
 		output("As you leave the KO'd cat-girl behind, you hear a faint beeping back in the control room. Looking over your shoulder, you see a tiny red \"INCOMING\" displaying on Tam-wolf's readout. A moment later, a holo-projector displays the face of a dark-skinned woman with a punked-out do, scowling at her transmitter.");
 		output("\n\n<i>\"Tam, where the fuck are you, you lazy slut? Pick up!\"</i>");
@@ -1419,7 +1428,7 @@ Bomb Room Description*/
 public function bombRoomBonusFunc():Boolean
 {
 	author("Fenoxo");
-	showBust("KASKA");
+	showBust(kaskaBustDisplay());
 	showName("\nKASKA");
 	output("Keeping your bearings down here, surrounded by on all sides by endless rock, is a challenge. Doing it while your belly does backflips from the lack of gravity is a trial. Luckily you're anchored to the metal platform by electromagnetic forces, at least as long as the batteries in the kit you picked up from the elevator last.");
 	if(flags["TARKUS_BOMB_TIMER"] != 0)
@@ -1458,7 +1467,7 @@ public function bombRoomBonusFunc():Boolean
 public function meetUpWithKaskaZeBossSloot():void
 {
 	author("Fenoxo");
-	showBust("KASKA");
+	showBust(kaskaBustDisplay());
 	showName("\nKASKA");
 	output("\n\nThe sharp report of a slug-thrower being fired stops you cold in your tracks. A flurry of sparks erupts from the deckplates a scant few inches ahead of you. Whoever took that shot could've hit you if they wanted to");
 	if(pc.shields() > 0) output(". Not that it would matter with your shields operational. It'll take more than a primitive powder-blaster to drop you");
@@ -1536,7 +1545,7 @@ public function pinchKaskaNipple():void
 public function defeatedByKaska():void
 {
 	author("Fenoxo");
-	showBust("KASKA");
+	showBust(kaskaBustDisplay());
 	showName("\nKASKA");
 	if(enemy.lust() < 50)
 	{
@@ -1666,7 +1675,7 @@ public function kaskaBadEndPartDues():void
 {
 	clearOutput();
 	author("Fenoxo");
-	showBust("KASKA");
+	showBust(kaskaBustDisplay());
 	showName("\nKASKA");
 	var choices:Array = new Array();
 	if(pc.hasCuntTail()) choices[choices.length] = 0;
@@ -1863,7 +1872,7 @@ public function kaskaBadEndPartIII():void
 	
 	clearOutput();
 	author("Fenoxo");
-	showBust("KASKA");
+	showBust(kaskaBustDisplay());
 	showName("\nKASKA");
 	output("<b>Some time later....</b>");
 	output("\nYou wouldn't have expected to wake up embedded on Kaska's dick somewhere on the edge of civilized space, but you did. You wouldn't have expected to moan so shamelessly at the realization either, but you did. You certainly wouldn't have expected to sit quietly in the corner, rubbing your [pc.belly], while Kaska got permission to take you as her part of the score. And feeling excited at the Captain's confirmation? That was out of the question, but you did. Secretly, you thrilled at it.");
@@ -1897,7 +1906,7 @@ public function defeatKaska():void
 {
 	clearOutput();
 	author("Fenoxo");
-	showBust("KASKA");
+	showBust(kaskaBustDisplay(true));
 	showName("\nKASKA");
 	//Lust
 	if(enemy.lust() >= enemy.lustMax())
@@ -1938,7 +1947,7 @@ public function leaveKaskaPostCombat():void
 {
 	clearOutput();
 	author("Fenoxo");
-	showBust("KASKA");
+	showBust(kaskaBustDisplay(true));
 	showName("\nKASKA");
 	output("An overheated dickgirl isn't any problem of yours. You leave her panting on the deckplates, still stroking herself.\n\n");
 	CombatManager.genericVictory();
@@ -1954,7 +1963,7 @@ public function approachUnfuckedKaska():void
 {
 	clearOutput();
 	author("Fenoxo");
-	showBust("KASKA");
+	showBust(kaskaBustDisplay(true));
 	showName("\nKASKA");
 	output("Kaska, still tugging her length, smiles at your approach. <i>\"I should hate you right now, but everything is awesome, and you're awesome, and I'm so fucking hard, and you can fuck me however you want, just fuck me!\"</i> Well... you suppose you could do just that.");
 	clearMenu();
@@ -1978,7 +1987,7 @@ public function victoryKaskaDicksex():void
 {
 	clearOutput();
 	author("Fenoxo");
-	showBust("KASKA");
+	showBust(kaskaBustDisplay(true));
 	showName("\nKASKA");
 	var x:int = pc.cockThatFits(chars["KASKA"].vaginalCapacity(0));
 	if(x < 0) x = pc.smallestCockIndex();
@@ -2074,7 +2083,7 @@ public function makeKaskaSuchYerCoochLikeABaws():void
 {
 	clearOutput();
 	author("Fenoxo");
-	showBust("KASKA");
+	showBust(kaskaBustDisplay(true));
 	showName("\nKASKA");
 	if(!pc.isCrotchExposed()) output("You lazily open your [pc.lowerGarments],");
 	else output("You lazily step forward,");
@@ -2292,7 +2301,7 @@ public function bombExplodes():void
 	//[FAILURE] Escape Deck 13!
 	else if(currentLocation.indexOf("DECK 13") != -1)
 	{
-		if(flags["ANNO_MISSION_OFFER"] == 2) showBust("ANNO");
+		if(flags["ANNO_MISSION_OFFER"] == 2) showBust(annoBustDisplay());
 		output("A sudden shock courses through the entire room followed by a loud roar. Quickly realizing that the situation does not bode well for you if you stay here, you decide head straight to the main deck.");
 		output("\n\nCareful not to");
 		if(pc.canFly()) output(" lunge into any obstacles, you fly");
@@ -2318,7 +2327,7 @@ public function bombExplodes():void
 	//[FAILURE] Bomb goes off while in Nova
 	else
 	{
-		showBust("ANNO","SHEKKA");
+		showBust(annoBustDisplay(),"SHEKKA");
 		output("Novahome groans like a wounded animal and shifts at least a foot to the left, dumping you to the deck. Alarms sound while you're climbing back to your [pc.feet]. When did the raskvel get those working? Screams of alarm fill the corridors, and you're nearly swept along on a tide of scaley panic. The ship lurches a few more times. You're lucky enough to grab hold of a hand hold this time, and you make your way to the ship's exit ramp.");
 		output("\n\nThe ramp itself is gone. There's an open air gap in its place and no sign of those who might have been walking on it. The Nova bucks like a nautical vessel of old trapped in the gale-force winds of a hurricane. Your belly turns, and you watch the ground fall away a second before tarkus' surface shatters like a piece of glass. Chunks of ore go hurtling by. Raskvel, gabilani, and rushers alike are sucked out of the hull, screaming in terror. You barely manage to keep your grip as you watch the bomb tear apart the planet you could've saved.");
 		output("\n\nDry winds scream like banshees, propelled by geological forces beyond comprehension. ");
@@ -2466,8 +2475,8 @@ public function roomOutsideShekkasBonus():Boolean
 public function shekkaMidDeal():void
 {
 	author("Fenoxo");
-	showName(chars["RIVAL"].mf("JACK","JILL") + "\n& SHEKKA");
-	showBust("RIVAL","SHEKKA");
+	showName(chars["RIVAL"].short.toUpperCase() + "\n& SHEKKA");
+	showBust(rivalBustDisplay(),"SHEKKA");
 	output("\n\n<i>\"-gonna need at least 15,000 creds for it,\"</i> ");
 	if(flags["MET_SHEKKA"] == undefined) output("the raskvel running the shop");
 	else output("Shekka");
@@ -2509,8 +2518,8 @@ public function tooPoorToBuyTheProbe():void
 {
 	clearOutput();
 	author("Fenoxo");
-	showName(chars["RIVAL"].mf("JACK","JILL") + "\n& SHEKKA");
-	showBust("RIVAL","SHEKKA");
+	showName(chars["RIVAL"].short.toUpperCase() + "\n& SHEKKA");
+	showBust(rivalBustDisplay(),"SHEKKA");
 	output("You shake your head. The money isn't there.");
 	if(flags["TIMES_SEXED_SHEKKA"] == undefined) output("\n\nShekka shrugs and turns to [rival.name].");
 	else output("\n\nShekka looks a little disappointed to turn to [rival.name]. It's clear she would've loved to sell it to you.");
@@ -2529,8 +2538,8 @@ public function bid16k():void
 {
 	clearOutput();
 	author("Fenoxo");
-	showName(chars["RIVAL"].mf("JACK","JILL") + "\n& SHEKKA");
-	showBust("RIVAL","SHEKKA");
+	showName(chars["RIVAL"].short.toUpperCase() + "\n& SHEKKA");
+	showBust(rivalBustDisplay(),"SHEKKA");
 	output("<i>\"16,000,\"</i> you announce.");
 	//Fucked Shekka
 	if(flags["TIMES_SEXED_SHEKKA"] != undefined)
@@ -2565,8 +2574,8 @@ public function bidVariable(arg:Number = 20000):void
 {
 	clearOutput();
 	author("Fenoxo");
-	showName(chars["RIVAL"].mf("JACK","JILL") + "\n& SHEKKA");
-	showBust("RIVAL","SHEKKA");
+	showName(chars["RIVAL"].short.toUpperCase() + "\n& SHEKKA");
+	showBust(rivalBustDisplay(),"SHEKKA");
 	output("<i>“" + arg + "”</i> you announce.");
 	output("\n\nShekka peeps, mouse-like, and claps her hands across her mouth. The pressure of her excitement instead chooses to vent by making her tail wag, and it clangs noisily against the metal of the probe. <i>\"Really!?\"</i> she gasps. <i>\"You win. I can fix so many things on Novahome with all that cash!\"</i>");
 	//Sexed:
@@ -2590,8 +2599,8 @@ public function payWithYourPlatinumPremiumCard():void
 {
 	clearOutput();
 	author("Fenoxo");
-	showName(chars["RIVAL"].mf("JACK","JILL") + "\n& SHEKKA");
-	showBust("RIVAL","SHEKKA");
+	showName(chars["RIVAL"].short.toUpperCase() + "\n& SHEKKA");
+	showBust(rivalBustDisplay(),"SHEKKA");
 	output("<i>\"How about this?\"</i> you ask while pulling out the chunk of platinum 190 you recovered. <i>\"Does that cover it?\"</i>");
 	output("\n\nShekka is a blur of activity, picking up the rock, peering at it, and grabbing various sensors from her workbench to point at it. It's difficult to keep up with her, but after a minute of such activity, she slows and stares at the shining lump in her palm. <i>\"This is platinum 190. This stuff is rarer than a busty raskvel.\"</i> Her tail quivers behind her. <i>\"I could probably buy two of these things with this. Sold!\"</i>");
 	output("\n\nSniffing disdainfully, your cousin gives you a sly look. <i>\"You're less of a penniless " + pc.mf("bum","tramp") + " than I thought. Very well, I'll see you at your next destination. It shouldn't be hard for a " + chars["RIVAL"].mf("man","woman") + " of my resources to keep track of a gnat like you, after all.\"</i> [rival.He] pauses at the doorway. <i>\"Next time, the prize will be mine. Come on, Dane.\"</i>");

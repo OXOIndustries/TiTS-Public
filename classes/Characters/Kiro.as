@@ -222,6 +222,9 @@
 		
 		override public function get bustDisplay():String
 		{
+			// 9999 - Special artist exceptions!
+			if(kGAMECLASS.gameOptions.configuredBustPreferences["KIRO"] != "ADJATHA") return "KIRO";
+			
 			var str:String = "KIRO";
 			
 			if(ballDiameter() <= 7) str += "_SM";

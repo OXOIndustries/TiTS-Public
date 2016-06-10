@@ -8,9 +8,18 @@ public function showKiro(nude:Boolean = false):void
 	showKiroBust(nude);
 	showName("\nKIRO");
 }
+public function kiroBustDisplay(nude:Boolean = false):String
+{
+	var sBust:String = chars["KIRO"].bustDisplay + (nude ? "_NUDE" : "");
+	// Hide ball sizes if clothed
+	if(!nude) sBust = sBust.replace(/_SM|_LG|_XL/g, "");
+	
+	return sBust;
+}
 public function showKiroBust(nude:Boolean = false):void
 {
-	showBust(chars["KIRO"].bustDisplay + (nude ? "_NUDE" : ""));
+	// Show bust
+	showBust(kiroBustDisplay(nude));
 }
 
 public function answerKiroDistressCall(destination:String):void

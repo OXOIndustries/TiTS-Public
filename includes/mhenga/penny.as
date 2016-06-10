@@ -66,20 +66,30 @@ public function showPennyName():void
 	if(flags["MET_PENNY"] == undefined) userInterface.showName("POLICE\nWOMAN");
 	else userInterface.showName("\nPENNY");
 }
+public function pennyBustDisplay(nude:Boolean = false):String
+{
+	// 9999 - Special artist exceptions!
+	// Umm... leaving this as-is for now... Art for Penny is kinda all over the place.
+	
+	var sBust:String = "PENNY";
+	if(nude) sBust += "_NUDE";
+	
+	if(flags["PENNY_BADGER_BIMBO"] != undefined || pennyIsCumSlut())
+	{
+		sBust = "PENNY_BIMBO";
+		if(penny.hasCock(GLOBAL.TYPE_EQUINE)) sBust += "_HORSE";
+	}
+	
+	return sBust;
+}
 public function showPennyBust(nude:Boolean = false):void
 {
 	if(flags["PENNY_BADGER_BIMBO"] != undefined || pennyIsCumSlut())
 	{
-		var pennyBust:String = "PENNY_BIMBO";
-		if(penny.hasCock(GLOBAL.TYPE_EQUINE)) pennyBust = "PENNY_BIMBO_HORSE";
-		if(flags["SEEN_BIMBO_PENNY"] != undefined && (hours < 8 || hours >= 17)) showBust(flahneBustDisplay(true),pennyBust);
-		else showBust(pennyBust);
+		if(flags["SEEN_BIMBO_PENNY"] != undefined && (hours < 8 || hours >= 17)) showBust(flahneBustDisplay(true),pennyBustDisplay(true));
+		else showBust(pennyBustDisplay(true));
 	}
-	else
-	{
-		if(!nude) showBust("PENNY");
-		else showBust("PENNY_NUDE");
-	}
+	else showBust(pennyBustDisplay(nude));
 }
 public function showPenny(nude:Boolean = false):void
 {
@@ -3194,13 +3204,7 @@ public function pennyVsFlahneWhoWillOutslutWho():void
 {
 	clearOutput();
 	author("Abe E. Seedy");
-	var pennyBust:String = "PENNY_NUDE";
-	if(flags["PENNY_BADGER_BIMBO"] != undefined || pennyIsCumSlut())
-	{
-		pennyBust = "PENNY_BIMBO";
-		if(penny.hasCock(GLOBAL.TYPE_EQUINE)) pennyBust = "PENNY_BIMBO_HORSE";
-	}
-	userInterface.showBust(pennyBust, flahneBustDisplay(true));
+	showBust(pennyBustDisplay(true), flahneBustDisplay(true));
 	var x:int = pc.biggestCockIndex(); // Fenstyle yo
 
 	output("You mention to Penny that you had a very interesting talk about her with Flahne recently. At the mention of Flahne’s name Penny’s ears prick up with almost comical enthusiasm, betraying her interest as they literally swivel slightly towards you.");

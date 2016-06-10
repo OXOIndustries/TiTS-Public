@@ -8,10 +8,8 @@ public function approachBimboPenny():void
 	//First Time
 	if(flags["SEEN_BIMBO_PENNY"] == undefined)
 	{
-		var pennyBust:String = "PENNY_BIMBO";
-		if(penny.hasCock(GLOBAL.TYPE_EQUINE)) pennyBust = "PENNY_BIMBO_HORSE";
-		showBust(flahneBustDisplay(true), pennyBust);
-		showName("PENNY &\nFLAHNE");
+		showBust(flahneBustDisplay(true), pennyBustDisplay(true));
+		showName("FLAHNE\n& PENNY");
 		rooms["CUSTOMS OFFICE"].removeFlag(GLOBAL.NPC);
 		generateMap();
 		
