@@ -1974,7 +1974,7 @@ public function annoFollowerFirstTimeOnMhenga():void
 	clearOutput();
 	//annoFollowerHeader();
 	showName("\nANNO");
-	showBust("ANNO", "SYRI");
+	showBust(annoBustDisplay(), syriBustDisplay());
 
 	output("As you dock at Mhen’ga, you feel a pair of familiar, fluffy arms wrap around your neck and shoulders as a big pair of");
 	if (anno.armor is AnnosCatsuit) output(" latex");
@@ -2036,7 +2036,7 @@ public function annoFollowerFirstTimeOnMhengaPartII():void
 	clearOutput();
 	//annoFollowerHeader();
 	showName("ANNO &\nSYRI");
-	showBust("ANNO", "SYRI");
+	showBust(annoBustDisplay(), syriBustDisplay());
 
 	output("<i>“Hey! Over here!”</i> you hear, just as soon as you and Anno walk into <i>“Burt’s Badass Meadhall.”</i> Syri’s sitting at the bar next to two empty stools and three beers, a great big grin on her face. ");
 	
@@ -2134,7 +2134,7 @@ public function annoxKaedeFollowerMeeting():void
 	clearOutput();
 	author("Savin");
 	showName("ANNO &\nKAEDE");
-	showBust("ANNO", "KAEDE");
+	showBust(annoBustDisplay(), "KAEDE");
 
 	// {First Time}
 	if (!hasMetKaede())
@@ -2268,7 +2268,7 @@ public function fuckAnnoWithScienceYoFukkinLadyBoi():void
 public function takeOverAlisssShopForPuppySlootPeanutButterStrapons():void
 {
 	author("Savin");
-	showBust("ANNO","ALISS");
+	showBust(annoBustDisplay(), alissBustDisplay());
 	showName("ANNO &\nALISS");
 	output("\n\nAs you make your way into the busy clothing shop, you notice a familiar white-maned ausar girl sitting inside. ");
 	if(flags["MET_ALICE"] != undefined) output("Aliss");

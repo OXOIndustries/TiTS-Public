@@ -32,13 +32,23 @@ public function haveFuckedAnno():Boolean
 
 public function showAnno(nude:Boolean = false):void
 {
-	// Naked Anno
-	if(nude) showBust("ANNO_NUDE");
-	// Blouse Anno
-	//else if (anno.armor is AnnosBlouse) showBust("ANNO");
-	// Catsuit Anno
-	else showBust("ANNO");
 	showName("\nANNO");
+	showBust(annoBustDisplay(nude));
+}
+public function annoBustDisplay(nude:Boolean = false):String
+{
+	// 9999 - Special artist exceptions!
+	if(!InCollection(kGAMECLASS.gameOptions.configuredBustPreferences["ANNO"], ["CHESHIRE", "GATS"])) return "ANNO";
+	
+	// Catsuit Anno
+	var sBust:String = "ANNO";
+	
+	// Naked Anno
+	if(nude) sBust += "_NUDE";
+	// Blouse Anno
+	//else if (anno.armor is AnnosBlouse) sBust += "_BLOUSE";
+	
+	return sBust;
 }
 
 public function steeleTechTarkusShopAvailable():Boolean
@@ -111,7 +121,7 @@ public function steeleTechBonusFunction():Boolean
 	//Inside Descriptor (Has met Anno)
 	else
 	{
-		showBust("ANNO");
+		showBust(annoBustDisplay());
 		
 		output("The inside of the Steele Tech outpost is a cluttered mess of rusty alien technology stacked ten feet high. Pillars of engine parts and disassembled devices you can't identify reach to the ceiling, making the shop seem more like a storage room than a storefront. Anno is sitting behind the counter, working on some paperwork. She smiles slightly at you. <i>\"Hey, boss. What's up?\"</i>");
 		//[Anno]
@@ -436,7 +446,7 @@ public function annoShootsResults(easy:Boolean = false):void
 	//PC Fails
 	else
 	{
-		showBust("ANNO_NUDE");
+		showBust(annoBustDisplay(true));
 		output("<i>\"Let's see what we have here,\"</i> Anno says, squinting down range. You adjust your sights, looking back down to your target. Unfortunately, it looks like Anno's tender ministrations paid off for her: the shot went wide, blowing off the dummy's arm.");
 		output("\n\n<i>\"Poor Bobbest,\"</i> Anno grins, pressing up against you. You gulp, feeling her ample chest tight against your back, stiff nipples poking through her sheer uniform to rub against you. Stroking a hand over your [pc.hair], Anno slips around you and onto the crate, deftly positioning her legs around your kneeling head. With one hand, she takes the traitorous rifle from you; her other makes a sensually slow trip up her body as she leans back, stifling a moan as her fingers brush along the curves of her breast, and up to the zipper holding her outfit together. Your eyes are locked on with laser precision as she grips the zipper and slowly pulls it down, taking her time to reveal the heavy mounds of her bust. With a shake of her shoulders, her perky tits bounce free of their confines, already flushed red with lust.");
 
@@ -1611,7 +1621,7 @@ public function insideSteeleTechPostPlanetCrack():Boolean
 {
 	clearOutput();
 	author("Savin");
-	showBust("ANNO");
+	showBust(annoBustDisplay());
 	//Inside Descriptor (First Time)
 	if(flags["MET_ANNO"] == undefined)
 	{
@@ -3123,7 +3133,7 @@ public function deck13BackAtTheShop():void
 	clearOutput();
 	author("Savin");
 	showName("DECK 13\nEPILOGUE");
-	showBust("ANNO");
+	showBust(annoBustDisplay());
 
 	output("<b>Some time later, you return to the Steele Tech outpost</b>... ");
 	
@@ -3163,7 +3173,7 @@ public function annoPostQuestSexytimes():void
 	clearOutput();
 	author("Savin");
 	showName("DECK 13\nEPILOGUE");
-	showBust("ANNO");
+	showBust(annoBustDisplay());
 
 	output("<i>“Wouldn’t miss it,”</i> you grin,");
 	if (pc.tallness > 5 * 12) output(" sweeping Anno up off her feet and carrying the giggling, tail-wagging bundle of horny ausar down the stairs.");
@@ -3282,7 +3292,7 @@ public function annoPostQuestSexytimesRefusedWhatAreYouGayOrSomethin():void
 	clearOutput();
 	author("Savin");
 	showName("DECK 13\nEPILOGUE");
-	showBust("ANNO");
+	showBust(annoBustDisplay());
 
 	output("<i>“Alright, suit yourself,”</i> Anno shrugs. <i>“I’ll be back in a few... hopefully with an approved transfer notice.”</i>");
 	
@@ -3306,7 +3316,7 @@ public function annoxKaedeNotRecruitedMeeting():void
 	clearOutput();
 	author("Savin");
 	showName("ANNO &\nKAEDE");
-	showBust("ANNO", "KAEDE");
+	showBust(annoBustDisplay(), "KAEDE");
 
 	flags["ANNOxKAEDE_LAST_DAY"] = days;
 
@@ -3370,7 +3380,7 @@ public function annoxKaedeFuckThem(inShop:Boolean = true):void
 	clearOutput();
 	author("Savin");
 	showName("ANNO &\nKAEDE");
-	showBust("ANNO_NUDE", "KAEDE_NUDE");
+	showBust(annoBustDisplay(true), "KAEDE_NUDE");
 	
 	var selCock:int;
 	
@@ -3535,7 +3545,7 @@ public function annoxKaedeFuckThemAnnoFacial(selCock:int):void
 	clearOutput();
 	author("Savin");
 	showName("ANNO &\nKAEDE");
-	showBust("ANNO_NUDE", "KAEDE_NUDE");
+	showBust(annoBustDisplay(true), "KAEDE_NUDE");
 
 	output("A few more thrusts into Kaede’s spasming ass, and you’re on the brink of orgasm. At that last, crucial second, you pull out of her and level your [pc.cock] at Anno’s face, just inches above her lover’s now-agape hole. Anno goes wide-eyed as she realizes what’s about to happen, but doesn’t have time to do much else before your shoot your first wad of [pc.cumNoun] across her face. She recoils and gasps as a hot, sticky load splatters over her cheeks and lips, followed by more and more as you jack yourself off onto her.");
 	
@@ -3549,7 +3559,7 @@ public function annoxKaedeFuckThemCreampie(selCock:int):void
 	clearOutput();
 	author("Savin");
 	showName("ANNO &\nKAEDE");
-	showBust("ANNO_NUDE", "KAEDE_NUDE");
+	showBust(annoBustDisplay(true), "KAEDE_NUDE");
 
 	output("A few more thrusts into Kaede’s spasming ass, and you’re on the brink of orgasm. You let it come on eagerly, working the surging load out through fervent strokes into Kaede’s spasming, orgasmically-writhing ass. With a final roar of pleasure, you slam yourself as deep into the halfbreed’s hole as you can go and let loose, pumping your first shot deep into her quivering hole. She cries out as she feels the first thick ropes of hot [pc.cumNoun] blasting into her, her voice joining with yours as you slowly withdraw your cock, still cumming all the while. You fill her utterly, pumping shot after shot of orgasmic juice into her bowels.");
 	
@@ -3580,7 +3590,7 @@ public function annoxKaedeService(inShop:Boolean = true):void
 	clearOutput();
 	author("Savin");
 	showName("ANNO &\nKAEDE");
-	showBust("ANNO_NUDE", "KAEDE_NUDE");
+	showBust(annoBustDisplay(true), "KAEDE_NUDE");
 
 	output("<i>“What do you say, boss?”</i> Anno grins, leaning in behind Kaede and wrapping her arms around her lover’s shoulders. <i>“Want a taste of this big girl’s thick, knotted puppy-cock?”</i>");
 	
@@ -3661,7 +3671,7 @@ public function annoxKaedeWatch(inShop:Boolean = true):void
 	clearOutput();
 	author("Savin");
 	showName("ANNO &\nKAEDE");
-	showBust("ANNO_NUDE", "KAEDE_NUDE");
+	showBust(annoBustDisplay(true), "KAEDE_NUDE");
 
 	output("<i>“How about I just watch?”</i> you ask, almost sheepish. There’s no good way to ask a pair of smoking hot babes if you can watch them lez out, is there? ");
 	
@@ -3731,7 +3741,7 @@ public function annoxKaedeWatchHandsFree():void
 	clearOutput();
 	author("Savin");
 	showName("ANNO &\nKAEDE");
-	showBust("ANNO_NUDE", "KAEDE_NUDE");
+	showBust(annoBustDisplay(true), "KAEDE_NUDE");
 
 	output("<i>“Wouldn’t miss it,”</i> you answer, leaning back and enjoying the show. Anno winks at you, gently shifting Kaede’s hips until her cock’s facing the bulkhead beside you. It already looks swollen with cum, as if she’s ready to bust her nut at the drop of a hat. Anno keeps Kaede’s wrists pinned tight behind her back with one hand, the other thrusting faster and harder into Kaede’s behind and taking itself to the knuckle with every advance. ");
 	
@@ -3747,7 +3757,7 @@ public function annoxKaedeWatchFacial():void
 	clearOutput();
 	author("Savin");
 	showName("ANNO &\nKAEDE");
-	showBust("ANNO_NUDE", "KAEDE_NUDE");
+	showBust(annoBustDisplay(true), "KAEDE_NUDE");
 
 	output("<i>“I’d rather see her shoot all over you,”</i> you say with a wink, crooking your finger at Anno and beckoning her out from around her lover.");
 	
@@ -3840,7 +3850,7 @@ public function annoxKaedeLeave(inShop:Boolean = true):void
 	clearOutput();
 	author("Savin");
 	showName("ANNO &\nKAEDE");
-	showBust("ANNO", "KAEDE");
+	showBust(annoBustDisplay(), "KAEDE");
 
 	output("Not one to get in the way of two lovers, you excuse yourself and");
 	if (inShop) output(" head back out of the shop.");
