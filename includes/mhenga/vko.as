@@ -24,14 +24,22 @@ Offers a once an hour shield booster item that restores up to 30 shields.
 
 public function showVKo(nude:Boolean = false):void
 {
-	if(!nude) showBust("VKO");
-	else showBust("VKO_NUDE");
+	showBust(vKoBustDisplay(nude));
 	showName("\nV-KO");
+}
+public function vKoBustDisplay(nude:Boolean = false):String
+{
+	// 9999 - Special artist exceptions!
+	if(kGAMECLASS.gameOptions.configuredBustPreferences["VKO"] != "GATS") return "VKO";
+	
+	var sBust:String = "VKO";
+	if(nude) sBust += "_NUDE";
+	return sBust;
 }
 //Medical Office Description
 //Approaching V-Ko
 public function mhengaMedicalThingerBonusFunc():void {
-	showBust("VKO");
+	vKoBustDisplay();
 	//Never seen a nursedroid before
 	if(flags["MET_VKO"] == undefined) output("\n\nAn artificial, almost robotic looking woman is sitting on the bed with her legs crossed demurely. Your codex chimes, <i>\"V-Ko model nursedroid detected. Manufactured by Joyco. Provides basic medical services. More data available upon request.\"</i> A nurse-droid, huh? Neat.");
 	//Seen before

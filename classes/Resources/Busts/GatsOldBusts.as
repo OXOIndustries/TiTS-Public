@@ -37,7 +37,7 @@ package classes.Resources.Busts
 		public var Bust_PENNY:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/gats_old/raskvel.png", mimeType = "image/png")]
-		public var Bust_RASKVEL:Class;
+		public var Bust_RASKVEL_FEMALE:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/gats_old/syri.png", mimeType = "image/png")]
 		public var Bust_SYRI:Class;

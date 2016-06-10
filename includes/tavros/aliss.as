@@ -2,15 +2,23 @@
 //By Third
 public function showAliss(nude:Boolean = false):void
 {
-	if(!nude) showBust("ALISS");
-	else showBust("ALISS_NUDE");
+	showBust(alissBustDisplay(nude));
 	showName("\nALISS");
+}
+public function alissBustDisplay(nude:Boolean = false):String
+{
+	// 9999 - Special artist exceptions!
+	if(kGAMECLASS.gameOptions.configuredBustPreferences["ALISS"] != "GATS") return "ALISS";
+	
+	var sBust:String = "ALISS";
+	if(nude) sBust += "_NUDE";
+	return sBust;
 }
 //First time enter
 public function miAmoreBonusShit():Boolean
 {
 	author("Third");
-	showBust("ALISS");
+	showBust(alissBustDisplay());
 	if(flags["MET_ALICE"] == undefined)
 	{
 		flags["MET_ALICE"] = 1;
@@ -50,7 +58,7 @@ public function upperBodyAlice():void
 {
 	clearOutput();
 	author("Third");
-	showBust("ALISS");
+	showBust(alissBustDisplay());
 	output("You take a look at what <i>Mi Amour</i> has to offer in terms of upper body lingerie.");
 	/*Plain Bra
 	/Lacy Bra
@@ -87,7 +95,7 @@ public function purchaseSomethingFromAliss(purchaseItem:*):void
 {
 	clearOutput();
 	author("Third");
-	showBust("ALISS");
+	showBust(alissBustDisplay());
 	output("You transfer the credits. ");
 	//Credits
 	pc.credits -= getAlissPrice(purchaseItem);
@@ -475,7 +483,7 @@ public function lowerBodyAlice():void
 {
 	clearOutput();
 	author("Third");
-	showBust("ALISS");
+	showBust(alissBustDisplay());
 	output("You take a look at what <i>Mi Amour</i> has to offer in terms of lower body lingerie.");
 	/*Plain Panties
 	/Thong
@@ -763,7 +771,7 @@ public function purchaseSomethingHardlightFromAliss(purchaseItem:*):void
 {
 	clearOutput();
 	author("Third");
-	showBust("ALISS");
+	showBust(alissBustDisplay());
 	output("You transfer the credits for a hardlight-equipped version of your chosen undergarment. ");
 	//Credits
 	pc.credits -= (getAlissPrice(purchaseItem) + 3000);
@@ -786,7 +794,7 @@ public function cocksocksAlice():void
 {
 	clearOutput();
 	author("Third");
-	showBust("ALISS");
+	showBust(alissBustDisplay());
 	// 9999
 	output("Nothing to see here!");
 	

@@ -85,8 +85,16 @@ public function showKara(asNude:Boolean = false):void
 {
 	author("Savin");
 	showName("\nKARA");
-	if (!asNude) showBust("KARA");
-	else showBust("KARA_NUDE");
+	showBust(karaBustDisplay(asNude));
+}
+public function karaBustDisplay(nude:Boolean = false):String
+{
+	// 9999 - Special artist exceptions!
+	if(kGAMECLASS.gameOptions.configuredBustPreferences["KARA"] != "SHOU") return "KARA";
+	
+	var sBust:String = "KARA";
+	if(nude) sBust += "_NUDE";
+	return sBust;
 }
 public function showShade(asNude:Boolean = false):void
 {

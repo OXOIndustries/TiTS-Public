@@ -74,7 +74,12 @@ public function showDeserter(gold:Boolean = false,nude:Boolean = false):void
 	{
 		if(flags["KNOW_RED_MYR_NAME"] == undefined) showName("RED MYR\nDESERTER");
 		else showName("\nBRIHA");
-		if(flags["BRIHA_INCUBATION_TIMER"] != undefined)
+		// 9999 - Special artist exceptions!
+		if(kGAMECLASS.gameOptions.configuredBustPreferences["BRIHA"] != "ADJATHA")
+		{
+			showBust("BRIHA");
+		}
+		else if(flags["BRIHA_INCUBATION_TIMER"] != undefined)
 		{
 			if(nude) showBust("BRIHA_PREGNANT_NUDE");
 			else showBust("BRIHA_PREGNANT");

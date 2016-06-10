@@ -8,11 +8,20 @@ import classes.Engine.Combat.DamageTypes.TypeCollection;
 //Wants paid off for safety!
 
 
+public function raskvelFemaleBustDisplay(nude:Boolean = false):String
+{
+	// 9999 - Special artist exceptions!
+	if(kGAMECLASS.gameOptions.configuredBustPreferences["RASKVEL_FEMALE"] != "GATS") return "RASKVEL_FEMALE";
+	
+	var sBust:String = "RASKVEL_FEMALE";
+	if(nude) sBust += "_NUDE";
+	return sBust;
+}
 public function encounterHostileRaskvelFemale():void
 {
 	CodexManager.unlockEntry("Raskvel");
-	userInterface.showBust("RASKVEL_FEMALE");
-	userInterface.showName("RASKVEL\nFEMALE");
+	showBust(raskvelFemaleBustDisplay());
+	showName("RASKVEL\nFEMALE");
 	
 	var tEnemy:RaskvelFemale = new RaskvelFemale();
 	
@@ -62,8 +71,8 @@ public function fightFemRask(tEnemy:Creature):void
 public function payDatRaskCunt():void
 {
 	clearOutput();
-	userInterface.showBust("RASKVEL_FEMALE");
-	userInterface.showName("RASKVEL\nFEMALE");
+	showBust(raskvelFemaleBustDisplay());
+	showName("RASKVEL\nFEMALE");
 	output("Not wanting to waste time with her, you transfer the hundred credits to a chit and toss it at her.\n\nThe little junkyard rat catches hold of your chit before making a dramatic bow. <i>“Pleasure doing business with ya!”</i> She vanishes into surrounding wreckage before you can reply.");
 	payRaskvel();
 	processTime(1);
@@ -74,8 +83,8 @@ public function payDatRaskCunt():void
 //Victory vs Raskvel
 public function victoryVsRaskvel():void
 {
-	userInterface.showBust("RASKVEL_FEMALE");
-	userInterface.showName("DEFEATED: F.\nRASKVEL");
+	showBust(raskvelFemaleBustDisplay());
+	showName("DEFEATED: F.\nRASKVEL");
 	output("The extortive mechanic ");
 	if(enemy.HP() < 1) output("tumbles head over heels, her wrench falling by the wayside. She hits the ground hard, panting and beaten before gasping, <i>“You win. Jerk.”</i> Her sex seems a bit puffier than before, and she's fallen in a pose that seems almost needlessly provocative. It's like she's still trying to tempt you with sex.");
 	else output("drops to her knees, the wrench falling by the wayside. She whimpers as her fingers disappear into her sodden box. You can see the moisture glistening on the scales of her legs as she desperately frigs herself, not even caring as she slumps down onto her back.");
@@ -142,8 +151,8 @@ public function raskVelBabeGetsDoggieStyled():void
 {
 	//Put her on all fours, left her ass up to be supported by your cock, grab hold of those ears for good measure, and play with them.
 	clearOutput();
-	userInterface.showBust("RASKVEL_FEMALE_NUDE");
-	userInterface.showName("DEFEATED: F.\nRASKVEL");
+	showBust(raskvelFemaleBustDisplay(true));
+	showName("DEFEATED: F.\nRASKVEL");
 	var x:int = pc.cockThatFits(enemy.vaginalCapacity());
 	if(x < 0) x = pc.smallestCockIndex();
 	output("As you eye your ");
@@ -268,8 +277,8 @@ public function raskVelBabeGetsDoggieStyled():void
 public function hugeDickEarJackoff():void
 {
 	clearOutput();
-	userInterface.showBust("RASKVEL_FEMALE_NUDE");
-	userInterface.showName("DEFEATED: F.\nRASKVEL");
+	showBust(raskvelFemaleBustDisplay(true));
+	showName("DEFEATED: F.\nRASKVEL");
 	output("The little mechanic is way too small to take you, even with hips as stacked as hers, so you decide on another way to quench the fiery heat she's stoked within you. She looks up at you ");
 	if(enemy.HP() < 1) output("with an anxious expression that shifts into a lusty grin");
 	else output("with whore-shaming quantities of lust pooling in her slitted eyes");
@@ -307,8 +316,8 @@ public function hugeDickEarJackoff():void
 public function faceRidingRaskvelLadies():void
 {
 	clearOutput();
-	userInterface.showBust("RASKVEL_FEMALE_NUDE");
-	userInterface.showName("DEFEATED: F.\nRASKVEL");
+	showBust(raskvelFemaleBustDisplay(true));
+	showName("DEFEATED: F.\nRASKVEL");
 	output("Tossing your equipment aside, you loom over the defeated raskvel, unashamedly letting your eyes play over her perky breasts, wide hips, lengthy tail, and cute, feather-topped head. ");
 	if(enemy.HP() < 1) output("She looks on in trepidation, but at the site of your [pc.vaginas] looming overhead, the beginnings of a smile appears on her mouth. ");
 	output("Her tongue slips out of her mouth to play across her lips, giving you ");
@@ -380,8 +389,8 @@ public function faceRidingRaskvelLadies():void
 public function quotePayUnquoteFemRasks(tEnemy:Creature):void
 {
 	clearOutput();
-	userInterface.showBust("RASKVEL_FEMALE_NUDE");
-	userInterface.showName("RASKVEL\nFEMALE");
+	showBust(raskvelFemaleBustDisplay(true));
+	showName("RASKVEL\nFEMALE");
 	output("Well, you can always pay another way and hope she goes easy on your wallet....");
 	
 	setEnemy(tEnemy);
@@ -445,7 +454,7 @@ public function defeatRoutingForFemRasks():void
 
 public function raskyNotInterestedInYerWeirdShit():void
 {
-	showBust("RASKVEL");
+	showBust(raskvelFemaleBustDisplay());
 	showName("LOST VS: F.\nRASKVEL");
 	author("Gedan");
 	
@@ -479,7 +488,7 @@ public function raskyNotInterestedInYerWeirdShit():void
 //Face-Sitting Footjobs
 public function raskvelGirlsSitsIfTheyFits(combat:Boolean = false):void
 {
-	showBust("RASKVEL_FEMALE_NUDE");
+	showBust(raskvelFemaleBustDisplay(true));
 	if(combat) showName("LOST VS: F.\nRASKVEL");
 	else showName("RASKVEL\nFEMALE");
 	//By Savin
@@ -556,7 +565,7 @@ public function getRaskVelTailPegged(combat:Boolean = false):void
 {
 	//By Savin
 	author("Savin");
-	showBust("RASKVEL_FEMALE_NUDE");
+	showBust(raskvelFemaleBustDisplay(true));
 	if(combat) showName("LOST VS: F.\nRASKVEL");
 	else showName("RASKVEL\nFEMALE");
 	//{Combat Loss: Don't Have a Dick}
@@ -630,7 +639,7 @@ public function getRaskVelTailPegged(combat:Boolean = false):void
 //Huge Dicks Get Dosed With Aphrodisiac While Being Forcefully Worshipped
 public function hugeDicksGetForceWorshippedByFemRaskvel(fromCombat:Boolean = false):void
 {
-	showBust("RASKVEL_FEMALE_NUDE");
+	showBust(raskvelFemaleBustDisplay(true));
 	if(fromCombat) showName("LOST VS: F.\nRASKVEL");
 	else showName("RASKVEL\nFEMALE");
 	//HP loss
@@ -766,8 +775,8 @@ public function hugeDicksGetForceWorshippedByFemRaskvel(fromCombat:Boolean = fal
 //Double peg raskvel!
 public function getPeggedWhileDoublePenetrate():void
 {	
-	userInterface.showBust("RASKVEL_FEMALE_NUDE");
-	userInterface.showName("LOST VS: F.\nRASKVEL");
+	showBust(raskvelFemaleBustDisplay(true));
+	showName("LOST VS: F.\nRASKVEL");
 	var x:int = pc.cockThatFits(enemy.vaginalCapacity());
 	if(x < 0) x = pc.smallestCockIndex();
 	var y:int = pc.cockThatFits2(enemy.vaginalCapacity());
@@ -883,7 +892,7 @@ public function payRaskvel():void
 public function catchPostBirthRaskvel():void
 {
 	showName("PREGNANT\nRASKVEL");
-	userInterface.showBust("RASKVEL_FEMALE_NUDE");
+	showBust(raskvelFemaleBustDisplay(true));
 	output("\n\nQuiet moans catch your ear, emanating from somewhere close by. Your attention piqued, you quietly look around for the source of the sounds. The source of the mewling sounds of pleasure obviously wants to remain hidden, but you find her all the same. There’s no hiding your surprise as you see a familiar-looking raskvel there, her legs spread akimbo, mouth open and panting. Her tail is twitching feebly next to her, and her eyes are half-closed. She’s not even cognizant of your arrival.");
 	output("\n\nThe feminine alien is clearly riding some kind of orgasmic high, but incredibly, neither of her hands are at the sodden junction of her thighs. Instead, they’re both perched upon the gravid dome of her belly, rubbing at it with slavish devotion, worshipfully stroking her own smooth-scaled skin on automatic impulse. Her greedy, purple slit isn’t like you remember it either. It’s bigger, puffier, so swollen and engorged that you can’t help but wonder if it would feel any different than the last time you were inside it.");
 	output("\n\n<i>“Ohhh, yes! Gonna have such big, strong eggs!\”</i> Her outburst catches you off guard, and you nearly stumble onto her, but catch yourself at the last minute. <i>“Mmmm... big... swollen... offworlder eggs!\”</i> The raskvel’s hips shudder violently, twisting back and forth.");
@@ -903,7 +912,7 @@ public function giveRaskvelSomeDongToSuckle():void
 {
 	clearOutput();
 	showName("PREGNANT\nRASKVEL");
-	userInterface.showBust("RASKVEL_FEMALE_NUDE");
+	showBust(raskvelFemaleBustDisplay(true));
 	output("You make sure to make plenty of noise as you walk up to her");
 	if(pc.isCrotchGarbed()) 
 	{
@@ -962,7 +971,7 @@ public function giveHerSumthinToLickSloot():void
 	clearOutput();
 	var x:int = rand(pc.totalVaginas());
 	showName("PREGNANT\nRASKVEL");
-	userInterface.showBust("RASKVEL_FEMALE_NUDE");
+	showBust(raskvelFemaleBustDisplay(true));
 	output("Making sure to make plenty of noise as you approach, ");
 	if(!pc.isCrotchGarbed()) 
 	{
@@ -1031,7 +1040,7 @@ public function takeOneEggSloot():void
 {
 	clearOutput();
 	showName("PREGNANT\nRASKVEL");
-	userInterface.showBust("RASKVEL_FEMALE_NUDE");
+	showBust(raskvelFemaleBustDisplay(true));
 	output("Nodding, you put a call in for a drone to come pick up the egg. That nursery your father set up must have a transport ship set to follow you around, because a speedy little robot shows up in minutes. After a quick scan, it confirms that it’s your offspring. You place the egg in its padded chamber and send it off, back to Tavros station.");
 	output("\n\nThe mother is already passed out, and you note with a grin that her legs are still spread wide-open. At least her elastic cunt seems no worse for the wear - it’s closed as if she’d never been pregnant.");
 	processTime(2);
@@ -1050,7 +1059,7 @@ public function dontTakeARaskEgg():void
 {
 	clearOutput();
 	showName("PREGNANT\nRASKVEL");
-	userInterface.showBust("RASKVEL_FEMALE_NUDE");
+	showBust(raskvelFemaleBustDisplay(true));
 	output("You shake your head and turn to go on your way. The mother doesn’t protest any further, in fact, she’s already snoring as you leave - and still spread-eagled in the sands.");
 	processTime(1);
 	clearMenu();
@@ -1066,7 +1075,7 @@ public function watchDatRaskvelEggLayyyy():void
 {
 	clearOutput();
 	showName("PREGNANT\nRASKVEL");
-	userInterface.showBust("RASKVEL_FEMALE_NUDE");
+	showBust(raskvelFemaleBustDisplay(true));
 	output("The evolutionary reason for the raskvels’ exceedingly large hips makes itself known when an immense, one foot wide egg is halfway out. No normal woman could pass such a mass so easily or enjoyably, but the diminutive tart is doing so with gusto. She’s screaming out her moans now, her eyes rolled back until only the whites are visible, a long tongue drooling down the side of her face. She’s rutting out the egg an inch at a time, squirting juices every which way. Then, the ovoid mass falls out, still connected to its mother by strings of thick lubricant.");
 	output("\n\n<i>“Fffffffuck yesssss!\”</i> the raskvel hisses before losing her voice to less cogent utterances of bliss. She cradles her ");
 	if(flags["RASKVEL_EGG_COUNT"] >= 8) output("slightly ");

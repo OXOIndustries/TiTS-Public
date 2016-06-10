@@ -155,6 +155,8 @@ public function createLetterFromShade():String
 			msg += "\n\nI guess... any way you spin it, now I can sign off:";
 			msg += "\n\nWith Love,";
 			msg += "\nShade";
+			
+			if(flags["SHADE_ON_UVETO"] == undefined || flags["SHADE_ON_UVETO"] < 2) flags["SHADE_ON_UVETO"] = 2;
 		}
 		// Not Lover
 		else
@@ -189,6 +191,8 @@ public function createLetterFromShade():String
 			msg += "\n\nGive me a re: before you stop by some evening, and I’ll have dinner cooking. Something to warm your bones up before I jump ’em. ;) Looking forward to seeing you!";
 			msg += "\n\nLove,";
 			msg += "\nShade";
+			
+			if(flags["SHADE_ON_UVETO"] == undefined || flags["SHADE_ON_UVETO"] < 2) flags["SHADE_ON_UVETO"] = 2;
 		}
 	}
 	// PC is Friend
@@ -617,7 +621,7 @@ public function meetingShadeAtHouse(btnSlot:int = 1):void
 	// Have to be invited to her house from the bar first!
 	if(!shadeIsActive() || flags["SHADE_ON_UVETO"] == undefined || flags["SHADE_ON_UVETO"] < 2) return;
 	// Add [Buzzer] to the outside of Shade's house, starting at 16:00 each night.
-	if(flags["SHADE_ON_UVETO"] == 2 && shadeIsLover() && hours >= 16) { /* Exception, only for lovers! */ }
+	if(flags["SHADE_ON_UVETO"] == 2 && shadeIsLover() && (shadeIsSiblings() || hours >= 16)) { /* Exception, only for lovers! */ }
 	else if(!shadeIsHome()) return;
 	
 	var response:String = "";

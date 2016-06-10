@@ -13,8 +13,16 @@ public function showSyri(nude:Boolean = false):void
 {
 	if(flags["MET_SYRI"] == undefined) userInterface.showName("AUSAR\nGIRL");
 	else userInterface.showName("\nSYRI");
-	if(!nude) userInterface.showBust("SYRI");
-	else userInterface.showBust("SYRI_NUDE");
+	showBust(syriBustDisplay(nude));
+}
+public function syriBustDisplay(nude:Boolean = false):String
+{
+	// 9999 - Special artist exceptions!
+	if(kGAMECLASS.gameOptions.configuredBustPreferences["SYRI"] != "GATS") return "SYRI";
+	
+	var sBust:String = "SYRI";
+	if(nude) sBust += "_NUDE";
+	return sBust;
 }
 
 public function syriIsCrew():Boolean {

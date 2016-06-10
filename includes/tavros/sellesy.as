@@ -58,9 +58,17 @@ public function anonsBarWaitressAddendum(slot:int = 0):void {
 
 public function showSellesy(nude:Boolean = false):void
 {
-	if(!nude) showBust("SELLESY");
-	else showBust("SELLESY_NUDE");
+	showBust(sellesyBustDisplay(nude));
 	showName("\nSELLESY");
+}
+public function sellesyBustDisplay(nude:Boolean = false):String
+{
+	// 9999 - Special artist exceptions!
+	if(kGAMECLASS.gameOptions.configuredBustPreferences["SELLESY"] != "GATS") return "SELLESY";
+	
+	var sBust:String = "SELLESY";
+	if(nude) sBust += "_NUDE";
+	return sBust;
 }
 
 public function anonsBarWaitressApproach():void {
