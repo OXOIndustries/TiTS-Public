@@ -95,7 +95,7 @@ public function weightRoomBonusFunction():Boolean
 	//[Cowgirl] Go to Simone
 	/* 9999
 	if(flags["MET_SIMONE"] == undefined) addButton(3,"Cowgirl",simoneWorkoutApproach,undefined,"Cowgirl","A cowgirl can be seen lifting weights here.");
-	else addButton(3,"Simone",simoneWorkoutApproach,undefined,"Lola","Pump some iron with the competitive cowgirl.");
+	else addButton(3,"Simone",simoneWorkoutApproach,undefined,"Simone","Pump some iron with the competitive cowgirl.");
 	*/
 	//[To Entrance]
 	return false;
