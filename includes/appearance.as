@@ -460,13 +460,13 @@ public function appearance(forTarget:Creature):void
 			else if(target.earType == GLOBAL.TYPE_GABILANI)
 			{
 				output2(" A pair of long, triangular goblin ears point outwards");
-				if(target.earLength > 1) output2(" " + num2Text(target.earLength) + " inches from your");
+				if(target.earLength > 1) output2(" " + num2Text(target.earLength) + " inches");
 				output2(" from your " + headNoun + ".");
 			}
 			else if(target.earType == GLOBAL.TYPE_DEMONIC)
 			{
 				output2(" A pair of wicked-looking ears point outwards");
-				if (target.earLength > 1) output2(" " + num2Text(target.earLength) + " inches from your");
+				if (target.earLength > 1) output2(" " + num2Text(target.earLength) + " inches");
 				output2(" from your " + headNoun + ".");
 			}
 			else if (target.earType == GLOBAL.TYPE_FROG || target.earType == GLOBAL.TYPE_OVIR)
@@ -474,6 +474,16 @@ public function appearance(forTarget:Creature):void
 				output2(" A pair of small indented holes");
 				if(target.skinType == GLOBAL.SKIN_TYPE_FUR) output2(" hidden");
 				output2(" on the sides of your " + headNoun + " make up your ears.");
+			}
+			else if(target.earType == GLOBAL.TYPE_DOGGIE)
+			{
+				output2(" A pair of");
+				if(target.earLength >= 6) output2(" droopy");
+				else if(target.earLength >= 3) output2(" floppy");
+				else output2(" rounded");
+				output2(" dog ears protrude");
+				if(target.earLength >= 3) output2(" " + num2Text(target.earLength) + " inches");
+				output2(" from your " + headNoun + ", each capable of being highly expressive.");
 			}
 			if(target.hasAntennae())
 			{
@@ -544,6 +554,15 @@ public function appearance(forTarget:Creature):void
 				output2(" wicked-looking demonic ears.");
 			}
 			else if(target.earType == GLOBAL.TYPE_FROG || target.earType == GLOBAL.TYPE_OVIR) output2(" The " + target.hairDescript(true,true) + " atop your head covers the two small openings that make up your ears.");
+			else if(target.earType == GLOBAL.TYPE_DOGGIE)
+			{
+				output2(" The " + target.hairDescript(true,true) + " on your head is overlapped by a pair of");
+				if(target.earLength >= 6) output2(" droopy");
+				else if(target.earLength >= 3) output2(" floppy");
+				else output2(" rounded");
+				if(target.earLength >= 3) output2(", " + num2Text(target.earLength) + "-inch long");
+				output2(" dog ears, each capable of being highly expressive.");
+			}
 			if(target.hasAntennae())
 			{
 				if(target.earType == GLOBAL.TYPE_LAPINE)

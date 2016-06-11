@@ -4040,7 +4040,7 @@
 		public function hasLongEars(): Boolean
 		{
 			// For ear types that support the earLength value. At least 1 inch long or more to count.
-			if(earLength >= 1 && InCollection(earType, GLOBAL.TYPE_SYLVAN, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_GABILANI, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_GRYVAIN)) return true;
+			if(earLength >= 1 && InCollection(earType, GLOBAL.TYPE_SYLVAN, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_GABILANI, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_GRYVAIN, GLOBAL.TYPE_DOGGIE)) return true;
 			return false;
 		}
 		public function earDescript(): String
@@ -4054,6 +4054,15 @@
 			{
 				case GLOBAL.TYPE_CANINE:
 					adjectives = ["pointed", "ausar", "upraised", "anubis-like"];
+					if(!nonFurrySkin) adjectives.push("furry");
+					break;
+				case GLOBAL.TYPE_DOGGIE:
+					adjectives = ["expressive", "dog-like"];
+					if(earLength >= 6) adjectives.push("droopy");
+					if(earLength >= 3) adjectives.push("floppy");
+					else adjectives.push("rounded");
+					if(isBimbo()) adjectives.push("doggie", "puppy");
+					if(kGAMECLASS.silly) adjectives.push("doge");
 					if(!nonFurrySkin) adjectives.push("furry");
 					break;
 				case GLOBAL.TYPE_EQUINE:
@@ -8827,7 +8836,7 @@
 		}
 		public function canineScore(): int {
 			var counter: int = 0;
-			if (earType == GLOBAL.TYPE_CANINE) counter++;
+			if (InCollection(earType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_DOGGIE)) counter++;
 			if (hasTail(GLOBAL.TYPE_CANINE) && hasTailFlag(GLOBAL.FLAG_FURRED)) counter++;
 			if (armType == GLOBAL.TYPE_CANINE && hasArmFlag(GLOBAL.FLAG_FURRED)) counter++;
 			if (legType == GLOBAL.TYPE_CANINE && hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) counter++;
