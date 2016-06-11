@@ -1896,9 +1896,17 @@ public function processTime(arg:int):void {
 				//Unlock dat shiiit
 				if(flags["HOLIDAY_OWEEN_ACTIVATED"] == undefined && (isHalloweenish() || rand(100) == 0)) eventQueue.push(hollidayOweenAlert);
 				if(pc.hasPerk("Honeypot") && days % 3 == 0) honeyPotBump();
-				//Exhibitionism reduction! Reduces exhibition if chest, crotch and ass are not all exposed
-				if(!(pc.isCrotchExposed() && pc.isAssExposed() && pc.isChestExposed()))
-					pc.exhibitionism(-0.5);
+				//Exhibitionism reduction!
+				if
+				(	!(pc.armor is EmptySlot)
+				&&	!(pc.lowerUndergarment is EmptySlot || pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN) || pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS))
+				&&	!(pc.upperUndergarment is EmptySlot || pc.upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || pc.upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST))
+				)
+				{
+					if(pc.isChestExposed() && pc.isCrotchExposed() && pc.isAssExposed())
+						{ /* No reduction for a full set of exposed clothing! */ }
+					else pc.exhibitionism(-0.5);
+				}
 				// New Texas cockmilker repair cooldown.
 				if (flags["MILK_BARN_COCKMILKER_BROKEN"] == undefined && flags["MILK_BARN_COCKMILKER_REPAIR_DAYS"] != undefined)
 				{
