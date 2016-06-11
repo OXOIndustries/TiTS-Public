@@ -2311,7 +2311,7 @@ public function carrieSoothingShowerGo(response:String = "intro"):void
 		// Repeat
 		case "shower repeat":
 			showName("SHOWER\nROOM");
-			showBust("HORISHA", "PECK");
+			showBust("HORISHA_AND_PECK");
 			
 			output("You don’t have to say anything; all you have to do is go across, curl each arm around a warm, giggly cow-girl, breathe in their sweet, milky scent and give their plump butts a good, healthy squeeze. Once again, they lead you to the showers detached from the main barn.");
 			output("\n\n");
@@ -2336,7 +2336,7 @@ public function carrieSoothingShowerGo(response:String = "intro"):void
 		// Join Us
 		case "shower fivesome intro":
 			showName("SHOWER\nROOM");
-			showBust("HORISHA", "PECK");
+			showBust("HORISHA_AND_PECK");
 			
 			output("<i>“Why don’t you join us?”</i> you offer with a rakish grin. <i>“You know it’ll be fun.”</i>");
 			output("\n\nThe cow-mazon leans back on her chair for a long moment, drinking the three of you in with the same, leisured grin.");
@@ -2352,7 +2352,7 @@ public function carrieSoothingShowerGo(response:String = "intro"):void
 			break;
 		case "shower fivesome p1":
 			showName("SHOWER\nROOM");
-			showBust("PECK_NUDE", "HORISHA_NUDE", "CARRIE_NUDE", "CORA_NUDE");
+			showBust("HORISHA_AND_PECK", "CARRIE_NUDE", "CORA_NUDE");
 			
 			output("Your bullish impulses seethe in the presence of so many plush, willing cows, and once within the enclosed, steamy space of the communal shower, their sweet, fruity smell heavy in your nostrils, they make demands of you that you cannot resist. The presence of another male - even such a male as Peck, half the size of his owner, girly shoulders, hairless on his body and lips every bit as glossy and perfect for cock-sucking as Carrie’s - demands you step up and make it clear who the alpha here is.");
 			output("\n\nThe moment he takes his tight clothes off, displaying an ass as pert, cute and provoking as his features, you’re on top of him, sliding your [pc.cock] between his pale cheeks, letting one hand trail down his flat front and the other firmly clutch his thick, eight-inch horse dick. He whimpers but doesn’t pull away, simply shifts his soft buttocks up your water-slicked shaft and looks over his shoulder at you with a butter-wouldn’t-melt expression. Pulse thudding in your temple, you push him against the enamel wall of the shower and use it as stanchion to inexorably open his pink fuck-hole with your [pc.cockHead] and push your dripping cock into the tight, hot tunnel of his ass, intent on reshaping it in your own throbbing, dominant dick’s image. His breathy little gasps, little tenses of the muscles and his slim fingers grasping at your [pc.hips] spur you on.");
@@ -2388,7 +2388,7 @@ public function carrieSoothingShowerGo(response:String = "intro"):void
 			break;
 		case "shower fivesome p2":
 			showName("SHOWER\nROOM");
-			showBust("HORISHA_NUDE", "CORA_NUDE", "CARRIE_NUDE", "PECK_NUDE");
+			showBust("HORISHA_AND_PECK", "CORA_NUDE", "CARRIE_NUDE");
 			
 			output("You relax back on a wooden bench, [pc.eachCock] throbbing satisfyingly, reveling in the soundtrack of gently panting cowgirls and bois. With your immediate lust and bestial imperatives seen to, you’re happy to let somebody else take the lead. It’s no surprise who that is.");
 			output("\n\n<i>“Nice dick,”</i> Horisha observes, her ebony muscle, palpitating F-cups and white teeth looming over you. <i>“Mind if I use it?”</i> You signal your sentiments to this idea by shifting your grip along your [pc.cock], instantly becoming erect again, [pc.eyes] fixed upon her luscious body.");
@@ -2420,7 +2420,7 @@ public function carrieSoothingShowerGo(response:String = "intro"):void
 			break;
 		case "shower fivesome p3":
 			showName("SHOWER\nROOM");
-			showBust("HORISHA_NUDE", "CORA_NUDE", "CARRIE_NUDE", "PECK_NUDE");
+			showBust("HORISHA_AND_PECK", "CORA_NUDE", "CARRIE_NUDE");
 			
 			output("It’s a little while later. You sit back and bask in a well-earned glow next to Horisha, water drizzling down your [pc.chest]. Your hand lazily curls between her muscular thighs. In front of you Carrie and Peck are putting on a little show for you two, hands running over each other’s bare, heat-blushed bodies, constantly stealing lusty, snickering looks at their alphas. Cora’s being put to good use.");
 			output("\n\n<i>“Should bring some stuff in here next time,”</i> you murmur. The fauxcow’s fingers stroke hard in Carrie’s twat and the two french wetly. <i>“Couple of dildos, bullet vibes, maybe a paddle... really go to town.”</i>");
