@@ -1353,6 +1353,9 @@ public function variableRoomUpdateCheck():void
 		rooms["573"].removeFlag(GLOBAL.OBJECTIVE);
 		rooms["574"].removeFlag(GLOBAL.OBJECTIVE);
 	}
+	// Gianna
+	if (giannaAWOL()) rooms["512"].removeFlag(GLOBAL.NPC);
+	else rooms["512"].addFlag(GLOBAL.NPC);
 	
 	
 	/* MYRELLION */
