@@ -31,8 +31,8 @@ public function tavrosTamaniCorpStoreEntry():Boolean
 		if (flags["FUCKED_LERRIS"] != undefined)
 		{
 			output(" before reaching down to a product on the floor to clean it off, putting her lush behind on full display beneath her skin-tight suit. Your eyes are drawn inexorably to her [lerris.chest], though, hanging down in front of her.");
-			if (lerris.milkFullness <= 50) output(" The two perky, firm orbs look positively delicious");
-			else if (lerris.milkFullness <= 150) output(" The two big, weighty melons look like they’re just about full of sweet [lerris.milk]");
+			if (lerris.milkFullness <= 50) output(" The two perky, firm orbs look positively delicious.");
+			else if (lerris.milkFullness <= 150) output(" The two big, weighty melons look like they’re just about full of sweet [lerris.milk].");
 			else output(" Her massive, milky tits swing heavily under her, threatening to weigh her down to the ground. You can’t wait to see just how much she’s stored up for you now...");
 		}
 		else output(" before dancing off to clean another display or help another customer, making sure she doesn’t get in your way... even if the sway of her hips and her plush butt under the skin-tight suit is more than a little distracting.");
