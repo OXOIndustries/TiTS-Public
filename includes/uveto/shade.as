@@ -661,6 +661,9 @@ public function approachShadeAtHouse(response:String = "intro"):void
 			showBust(shadeBustDisplay());
 			showName("\nSHADE");
 			
+			currentLocation = "UVI P30";
+			generateMap();
+			
 			output("You step up to the front door of the tiny little hut bearing your lover’s name and tap the doorbell. An electronic chime echoes from inside, just barely audible over the howl of the frozen winds over the high walls of Irestead. A moment passes in the cold before a small holoscreen next to the door shudders to life, showing you the familiar, smiling face of a certain kaithrit huntress.");
 			output("\n\n<i>“Hey!”</i> she grins, angling the camera on her end up towards herself. Unlike the last time you met, Shade’s ditched her heavy blue duster and simply wrapped herself up in a dark tan sweater that hugs her ample curves loosely and a woolen sock stretched around her reptilian tail, sheathing its lurid sex from sight and its jade scales from the chill. For once she almost looks her age: more hot school mom than deadly space huntress, but the way she smiles invitingly at you, the appeal of your feline lover isn’t lost for a moment.");
 			output("\n\n<i>“Well, look who it is!”</i> Shade chuckles, reaching up out of the camera’s view to unlock the door. <i>“I was wondering when you were going to show up. Come on in out of the cold -- I was just cranking the oven on.”</i>");
@@ -751,6 +754,9 @@ public function approachShadeAtHouse(response:String = "intro"):void
 		case "lover sibling intro":
 			showBust(shadeBustDisplay());
 			showName("\nSHADE");
+			
+			currentLocation = "UVI P30";
+			generateMap();
 			
 			output("You approach the Irons residence with a nervous twitch in your step. Somehow you know this isn’t going to be easy -- Shade was positively freaking out the last time you met, and God knows how the time apart has changed her mind. But you steel yourself: you can’t leave things the way they are now. Your lover... and your sister... is waiting for you.");
 			output("\n\nTaking a deep breath, you tap the buzzer beside the door. An electronic chime echoes from inside, just barely audible over the howl of the frozen winds over the high walls of Irestead. A moment passes in the cold before a small holoscreen next to the door shudders to life, showing you the familiar face of the kaithrit huntress. Her natural, cool confidence is gone, replaced by a weary, sad look. Still, Shade forces a smile when she sees you on the holo.");
@@ -969,10 +975,6 @@ public function approachShadeAtHouse(response:String = "intro"):void
 			output("\n\nHer fingers brush your chin, turning it up to look her in the eye. <i>“Let’s just pretend we never found that probe, huh? Just you and me, strangers that met in a bar and hit it off... right?”</i>");
 			output("\n\nIf that’s what it takes for Shade to live with herself and keep banging you, so be it. You meet her gaze with a kiss, and soon find yourself being pulled towards the bedroom. A naughty shiver of pleasure runs through you as your sister-cum-lover pushes you into the room, throwing you back on her bed and straddling you, tearing away your gear until her hands rest on your bare [pc.chest], and her panties are grinding against your crotch.");
 			output("\n\n<i>“Just like old times,”</i> she purrs, pinching a nipple. <i>“Let’s burn out those memories, huh?”</i>");
-			output("\n\n");
-			output("\n\n");
-			output("\n\n");
-			output("\n\n");
 			
 			processTime(5);
 			pc.lust(15);
