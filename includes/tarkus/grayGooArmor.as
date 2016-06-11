@@ -1584,7 +1584,7 @@ public function gooArmorDetails():String
 	}
 	if(pc.armor.resistances.hasFlag(DamageFlag.MIRRORED))
 	{
-		if(pc.statusEffectv1("Goo Armor Design") + pc.statusEffectv2("Goo Armor Design") != 0) msg += " Overall, it";
+		if(pc.statusEffectv1("Goo Armor Design") != 0 || pc.statusEffectv2("Goo Armor Design") != 0) msg += " Overall, it";
 		else msg += " It";
 		msg += " has a crystalline shine to it, adopted from an encounter with a ganrael";
 	}
