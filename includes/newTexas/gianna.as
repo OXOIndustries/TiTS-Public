@@ -128,6 +128,8 @@ public function giannaAvailableSilicone(arg:int = 0):Number
 
 public function giannaBonusShit():Boolean
 {
+	if(giannaAWOL()) return false;
+	
 	//Unmet blurb
 	if(flags["MET_GIANNA"] == undefined)
 	{
@@ -531,6 +533,8 @@ public function leaveWhileGiannaGetsRidOfCum():void
 	output("You don’t have time to wait around for this. She might be disappointed to see you go, but she’ll get over it.");
 	giannaPersonality(-10);
 	giannaAWOL(13);
+	variableRoomUpdateCheck();
+	generateMap();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

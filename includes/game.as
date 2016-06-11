@@ -1692,6 +1692,9 @@ public function processTime(arg:int):void {
 			}
 		}
 		
+		// Gianna AWOL timer
+		if(flags["GIANNA_AWAY_TIMER"] != undefined && flags["GIANNA_AWAY_TIMER"] > 0) giannaAWOL(-1);
+		
 		//Ovilium tracker removal
 		if(pc.hasStatusEffect("Ovilium")) oviliumEffectCheck();
 		//Clippex procs!
