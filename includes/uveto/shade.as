@@ -792,7 +792,7 @@ public function approachShadeAtHouse(response:String = "intro"):void
 			processTime(2);
 			
 			//Keep previous options. Replace [Don’t Know] with [Leave]
-			addButton(3, "Leave", approachShadeAtHouse, "lover sibling leave", "You need some time to think.");
+			addButton(3, "Leave", approachShadeAtHouse, "lover sibling leave", "Leave", "You need some time to think.");
 			break;
 		case "lover sibling leave":
 			showBust(shadeBustDisplay());
@@ -858,7 +858,7 @@ public function approachShadeAtHouse(response:String = "intro"):void
 			
 			// [Next]
 			clearMenu();
-			addButton(0, "Next", approachShadeAtHouse, "sibling sister next", "You need some time to think.");
+			addButton(0, "Next", approachShadeAtHouse, "sibling sister next");
 			break;
 		case "sibling sister next":
 			showBust(shadeBustDisplay());
@@ -905,7 +905,7 @@ public function approachShadeAtHouse(response:String = "intro"):void
 			
 			// [Next]
 			clearMenu();
-			addButton(0, "Next", approachShadeAtHouse, "sibling sister finish", "You need some time to think.");
+			addButton(0, "Next", approachShadeAtHouse, "sibling sister finish");
 			break;
 		case "sibling sister finish":
 			showBust(shadeBustDisplay());
@@ -953,7 +953,7 @@ public function approachShadeAtHouse(response:String = "intro"):void
 			
 			// [Next]
 			clearMenu();
-			addButton(0, "Next", approachShadeAtHouse, "sibling sister next", "You need some time to think.");
+			addButton(0, "Next", move, rooms[currentLocation].westExit);
 			break;
 		case "lover sibling shade":
 			showBust(shadeBustDisplay(true));
