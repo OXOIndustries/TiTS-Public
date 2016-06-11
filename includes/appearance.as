@@ -586,7 +586,7 @@ public function appearance(forTarget:Creature):void
 			else output2(" Your mouth contains a stretchy frog-like tongue.");
 		}
 		else if(target.hasTongueFlag(GLOBAL.FLAG_LONG)) output2(" Your mouth contains a lengthy tongue.");
-		else output2(" Your mouth contains a [target.tongue].");
+		else output2(" Your mouth contains " + indefiniteArticle(target.tongueDescript()) + ".");
 
 		//Horns
 		if(target.horns > 0)
@@ -619,7 +619,7 @@ public function appearance(forTarget:Creature):void
 			}
 			else if (target.hornType == GLOBAL.TYPE_GRYVAIN)
 			{
-				output2(" A pair of " + num2Text(int(target.hornLength)) + "-inch horns grow from just above your forhead, sweeping backwards to follow the contour of your skull.");
+				output2(" A pair of " + num2Text(int(target.hornLength)) + "-inch horns grow from just above your forehead, sweeping backwards to follow the contour of your skull.");
 				if (target.isBimbo()) output2(" They’d make the most <i>adorable</i> handlebars for anybody looking to bust a nut down your throat!");
 			}
 			//Antlers!
