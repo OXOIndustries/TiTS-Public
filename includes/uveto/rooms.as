@@ -71,6 +71,14 @@ public function initUvetoRooms():void
 	rooms["UVS D9"].westExit = "UVS B9";
 	rooms["UVS D9"].moveMinutes = 1;
 	rooms["UVS D9"].addFlag(GLOBAL.INDOOR);
+	
+	/* Space Elevator */
+	rooms["UVS LIFT"] = new RoomClass(this);
+	rooms["UVS LIFT"].roomName = "SPACE\nELEVATOR";
+	rooms["UVS LIFT"].description = "";
+	rooms["UVS LIFT"].planet = "UVETO STATION";
+	rooms["UVS LIFT"].system = "SYSTEM: SIRETTA";
+	rooms["UVS LIFT"].addFlag(GLOBAL.INDOOR);
 
 	/* Store? */
 	rooms["UVS B11"] = new RoomClass(this);

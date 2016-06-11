@@ -104,9 +104,13 @@ public function rideSpaceElevatorUp():void
 {
 	clearOutput();
 	author("Savin");
-	currentLocation = "GAME OVER";
+	
+	rooms["UVS LIFT"].outExit = null;
+	currentLocation = "UVS LIFT";
 	generateMap();
-	showName("SPACE\nELEVATOR");
+	showLocationName();
+	rooms[currentLocation].outExit = "UVS D7";
+	
 	output("Once again, you board the Irestead space elevator - this time, going up. Unlike your trip down, the elevator’s barely occupied: only a couple of other spacers join you aboard, though the ever-present cargo remains aboard. Raw minerals from the Uvetan mines, you’d guess. A few moments after you embark, the station controller seals the doors, and you feel a sudden heft of gravity under your [pc.feet].");
 
 	output("\n\nIt isn’t long before you’re racing upwards, hurtling through the atmosphere and into the heavens. The swirling colors of the Uvetan gas giant rise over the curves of the moon as you leave, bathing you in radiance for the brief trip back into orbit. The temperature drops rapidly as you ascend, at least in comparison to the control station, settling into a comfortable chill when the elevator locks into place at the space station’s center.");
@@ -117,7 +121,7 @@ public function rideSpaceElevatorUp():void
 
 	processTime(45);
 	clearMenu();
-	addButton(7,"Exit",move,"UVS D7");
+	addButton(7,"Exit",move,rooms[currentLocation].outExit);
 }
 
 public function uvetoSpaceElevatorBonus():Boolean
@@ -128,10 +132,14 @@ public function uvetoSpaceElevatorBonus():Boolean
 public function rideSpaceElevatorDown():void
 {
 	clearOutput();
-	currentLocation = "GAME OVER";
-	generateMap();
-	showName("SPACE\nELEVATOR");
 	author("Savin");
+	
+	rooms["UVS LIFT"].outExit = null;
+	currentLocation = "UVS LIFT";
+	generateMap();
+	showLocationName();
+	rooms[currentLocation].outExit = "UVI F34";
+	
 	//First Time
 	if(flags["UVETO_ELEVATORED"] == undefined) 
 	{
@@ -155,7 +163,7 @@ public function rideSpaceElevatorDown():void
 	IncrementFlag("UVETO_ELEVATORED");
 	processTime(45);
 	clearMenu();
-	addButton(7,"Exit",move,"UVI F34");
+	addButton(7,"Exit",move,rooms[currentLocation].outExit);
 }
 
 
