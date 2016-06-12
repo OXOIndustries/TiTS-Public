@@ -265,7 +265,7 @@
 		{
 			output("The agile lady skirts up to you, attempting to give you a lick from waist to neck.");
 			if(combatMiss(target, target)) output(" You leap backwards, escaping her attack before she can pull it off.");
-			else if(target.hasArmor() && target.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+			else if(target.hasAirtightSuit())
 			{
 				output(" Her tongue caresses you, but your are left unaffected thanks to the impermeability of your [pc.armor].");
 			}
@@ -324,7 +324,7 @@
 					
 					outputDamage(damageResult);
 				}
-				else if (target.hasArmor() && target.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+				else if (target.hasAirtightSuit())
 				{
 					output("and you are slimed by her toxic saliva. Luckily your [pc.armor] is airtight enough to prevent any of the fluid from seeping into your [pc.skin], but you definitely feel the impact of the hit.");
 					damage = meleeDamage();

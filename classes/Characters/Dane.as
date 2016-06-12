@@ -257,7 +257,7 @@
 		
 		private function daneLickitongue(target:Creature):void
 		{
-			if(target.hasArmor() && target.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+			if(target.hasAirtightSuit())
 			{
 				output("You feel something warm and wet rub and press against your [pc.crotch]. Dane's tongue tries to get at your nethers but your airtight [pc.armor] prevents that from happening.");
 			}

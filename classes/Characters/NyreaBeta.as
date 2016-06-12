@@ -242,7 +242,7 @@
 			var damage:TypeCollection = new TypeCollection( { tease: 15 } );
 			;
 
-			if (rand(10) <= 3 && !(target.hasArmor() && target.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT)))
+			if (rand(10) <= 3 && !target.hasAirtightSuit())
 			{
 				output("\nGod, that smells delicious...");
 			}

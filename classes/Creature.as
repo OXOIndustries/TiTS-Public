@@ -15716,6 +15716,10 @@
 		{
 			return (accessory is FlashGoggles);
 		}
+		public function hasAirtightSuit():Boolean
+		{
+			return (hasArmor() && armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT));
+		}
 		
 		public function onLeaveBuyMenu():void
 		{

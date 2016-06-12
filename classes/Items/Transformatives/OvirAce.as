@@ -582,7 +582,7 @@ package classes.Items.Transformatives
 			if(target.earType != GLOBAL.TYPE_OVIR && target.earTypeUnlocked(GLOBAL.TYPE_OVIR) && (forceChanges || (changes < changeLimit && rand(3) == 0)))
 			{
 				output("\n\nYour [pc.ears] begin to itch and burn, and you");
-				if(target.hasArmor() && target.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT)) output(" check your codex to view the change");
+				if(target.hasAirtightSuit()) output(" check your codex to view the change");
 				else output(" reach up to rub them");
 				output(". You’re surprised to find, however, that your ears have sunk into the sides of your head, leaving shallow divots for your hearing holes. <b>You now have ovir ears!</b>");
 				

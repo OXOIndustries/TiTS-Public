@@ -2869,7 +2869,7 @@ public function playerMimbraneSpitAttack():void
 		if (rand(5) <= 1) // 2 in 5 [(0-4)]
 		{
 			// 100% chance of misfire while inside an airtight suit!
-			if(pc.hasArmor() && pc.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+			if(pc.hasAirtightSuit())
 			{
 				output("\n\nYou’re surprised when you feel an odd buildup");
 				if (eligibleMimbranes[ii] == "Mimbrane Cock") output(" along the length of your [pc.cock]");
@@ -3082,7 +3082,7 @@ public function playerMimbraneCloudAttack():void
 			feedCost(eligibleMimbranes[ii], 3);
 
 			// 100% chance of misfire while inside an airtight suit!
-			if(pc.hasArmor() && pc.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+			if(pc.hasAirtightSuit())
 			{
 				output("\n\nThings are getting unusually hot and heavy in your [pc.armor]. The Mimbrane covering your");
 				if (eligibleMimbranes[ii] == "Mimbrane Cock") output(" [pc.cock]");
@@ -3697,7 +3697,7 @@ public function beatUpByAFuckinDishcloth():void
 {
 	showMimbrane();
 	
-	if(pc.hasArmor() && pc.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT) && !pc.hasStatusEffect("Mimbrane Lust Cloud"))
+	if(pc.hasAirtightSuit() && !pc.hasStatusEffect("Mimbrane Lust Cloud"))
 	{
 		if(pc.lust() >= pc.lustMax()) output("Being too turned on to fight anymore, you fall down in a heap of horniness that only a good masturbation session would cure.");
 		else output("The physical effort to fight such a small parasitic creature is just too much for you to handle and you collapse under the fatigue, falling to your [pc.knees].");

@@ -442,7 +442,7 @@
 			
 			output("The towering beast slips down onto its knees, almost toppling over onto its side as it exposes its back to you. At first, you think she’s tiring, finally showing a weak point. Instead, as you close the distance, you’re suddenly accosted by her mass of writhing tentacles. The venom-tipped appendages slap and jab at you, trying to cover you with their chemical payload!");
 			
-			if (target.hasArmor() && target.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+			if (target.hasAirtightSuit())
 			{
 				output(" The tentacles wetly slick across your [pc.armor], slathering you with copious amounts of liquid venom. Your watertight outfit prevents the stuff from affecting you, but you are sure that will be the least of your problems.");
 			}
