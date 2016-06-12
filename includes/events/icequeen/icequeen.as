@@ -513,7 +513,8 @@ public function iceQueenUvetoEntry(oldUvetoVisitFlagValue:* = undefined):void
 	output("\n\nJust as you’re getting through with the mountain of legal gobbledygook the Tove sent you, your proximity sensors alert you to the approach of a large ship bearing the trade IDs of the Camarilla. You respond to a message blip ordering you to power down weapons and shields and follow the <i>“wabeshift”</i> to Uveto Station’s docking terminal. You do as you’re ordered and switch the autopilot on, letting it dog the Camarilla ship in towards the station.");
 
 	shipLocation = "UVS F15";
-	currentLocation = "UVS F15";
+	//currentLocation = "UVS F15";
+	currentLocation = "SHIP INTERIOR";
 	showLocationName();
 
 	if (oldUvetoVisitFlagValue == undefined)
@@ -970,7 +971,7 @@ public function iceQueenKaraShowsUpCOOLIT():void
 	processTime(10+rand(5));
 
 	pc.credits += 10000;
-	currentLocation = "UVI R32"; // Uveto Cafe
+	currentLocation = "UVI R32"; // 9999 Uveto Cafe
 	addUvetoCold();
 
 	CombatManager.genericVictory();
