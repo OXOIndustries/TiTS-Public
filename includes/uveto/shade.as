@@ -37,7 +37,6 @@ public function shadeBustDisplay(nude:Boolean = false):String
 public function shadeIsDead():Boolean
 {
 	if(flags["KQ2_SHADE_DEAD"] != undefined) return true;
-	//if(flags["KQ2_SHADE_ENCOUNTERED"] == 1 && flags["KQ2_NUKE_EXPLODED"] != undefined) return true;
 	return false;
 }
 public function shadeIsActive():Boolean
@@ -100,7 +99,15 @@ public function shadeIsNotSiblings():Boolean
 // Get when moving around on Uveto Station, post Shade leaving Myrellion.
 public function getLetterFromShade():void
 {
-	if(flags["SHADE_ON_UVETO"] == undefined) return;
+	if(flags["SHADE_ON_UVETO"] == undefined)
+	{
+		// Limbo failsafe (Nuked Myrellion, Shade is friendly, Shade still in bar, Shade mysteriously survives and arrives on Uveto a day later...)
+		if(flags["KQ2_NUKE_EXPLODED"] != undefined && shadeIsFriend() && shadeAtTheBar() && flags["KQ2_SHADE_AWAY_TIME"] == undefined)
+		{
+			flags["KQ2_SHADE_AWAY_TIME"] = GetGameTimestamp();
+		}
+		return;
+	}
 	if(MailManager.hasEntry("letter_from_shade") && MailManager.isEntryUnlocked("letter_from_shade")) return;
 	if(shadeAtTheBar() || !shadeIsActive() || flags["KQ2_SHADE_ENCOUNTERED"] == 1) return;
 	

@@ -2921,7 +2921,7 @@ public function kq2DaneCoordEmail():void
 	//{if fucked:
 	if (flags["FOUGHT_DANE_ON_MHENGA"] == 1 && flags["WHUPPED_DANES_ASS_ON_MHENGA"] == undefined)
 	{
-		output("\n\nSoooo if you want a repeat of Mhen'ga, maybe we can hook up sometime? C'mon, I know you liked it ;)");; 
+		output("\n\nSoooo if you want a repeat of Mhen'ga, maybe we can hook up sometime? C'mon, I know you liked it ;)");
 		if (silly) output(" Woulda save-scummed out of it otherwise!");
 		
 		output("\n\n<b>Below the message is attached a picture of Dane's rock-hard tentacle wang, multiple knots fully engorged between his snowy fingers. Looks like somebody's been thinking of you...</b>");
