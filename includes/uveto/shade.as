@@ -100,7 +100,7 @@ public function shadeIsNotSiblings():Boolean
 // Get when moving around on Uveto Station, post Shade leaving Myrellion.
 public function getLetterFromShade():void
 {
-	if(flags["SHADE_ON_UVETO"] >= 2) return;
+	if(flags["SHADE_ON_UVETO"] == undefined) return;
 	if(MailManager.hasEntry("letter_from_shade") && MailManager.isEntryUnlocked("letter_from_shade")) return;
 	if(shadeAtTheBar() || !shadeIsActive() || flags["KQ2_SHADE_ENCOUNTERED"] == 1) return;
 	
@@ -212,7 +212,8 @@ public function createLetterFromShade():String
 public function meetingShadeAtUvetoBar(btnSlot:int = 1):void
 {
 	if(flags["SHADE_ON_UVETO"] == undefined) return;
-	if(!shadeIsActive() || !MailManager.hasEntry("letter_from_shade") || !MailManager.isEntryViewed("letter_from_shade")) return;
+	if(!(MailManager.hasEntry("letter_from_shade") && MailManager.isEntryViewed("letter_from_shade"))) return;
+	if(!shadeIsActive()) return;
 	// Exception, only for lovers!
 	if(flags["SHADE_ON_UVETO"] == 2 && shadeIsLover()) return;
 	// Add Shade to the bar after her planetary introduction, assuming she's still cool with the PC. She's here between 10:00 and 20:00 every day.
@@ -618,8 +619,10 @@ public function meetingShadeAtHouse(btnSlot:int = 1):void
 {
 	flags["NAV_DISABLED"] = NAV_EAST_DISABLE;
 	
-	// Have to be invited to her house from the bar first!
-	if(!shadeIsActive() || flags["SHADE_ON_UVETO"] == undefined || flags["SHADE_ON_UVETO"] < 2) return;
+	if(flags["SHADE_ON_UVETO"] == undefined) return;
+	if(!(MailManager.hasEntry("letter_from_shade") && MailManager.isEntryViewed("letter_from_shade"))) return;
+	// Have to be invited to her house first!
+	if(!shadeIsActive() || flags["SHADE_ON_UVETO"] < 2) return;
 	// Add [Buzzer] to the outside of Shade's house, starting at 16:00 each night.
 	if(flags["SHADE_ON_UVETO"] == 2 && shadeIsLover() && (shadeIsSiblings() || hours >= 16)) { /* Exception, only for lovers! */ }
 	else if(!shadeIsHome()) return;
