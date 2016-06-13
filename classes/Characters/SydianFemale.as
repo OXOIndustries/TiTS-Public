@@ -287,7 +287,7 @@
 				
 				var dd:Number = 0;
 				
-				if (!target.hasArmor() || !target.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+				if (!target.hasAirtightSuit())
 				{
 					dd = 6;
 					if (hasStatusEffect("Enzyme")) dd *= 1.33;
@@ -315,7 +315,7 @@
 					
 					
 					
-					if (!target.hasArmor() || !target.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+					if (!target.hasAirtightSuit())
 					{
 						dd = 4;
 						if (hasStatusEffect("Enzyme")) dd *= 1.33;
@@ -329,7 +329,7 @@
 				{
 					output(" It lashes your [pc.leg], leaving a swipe of enzyme, but you manage to stay upright.");
 					
-					if (!target.hasArmor() || !target.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+					if (!target.hasAirtightSuit())
 					{
 						dd = 4;
 						if (hasStatusEffect("Enzyme")) dd *= 1.33;
@@ -370,7 +370,7 @@
 			{
 				output(" You cover your eyes, blocking the shower of dirt she threw.");
 			}
-			else if (target.hasArmor() && target.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+			else if (target.hasAirtightSuit())
 			{
 				output(" Your faceguard protects your eyes.");
 			}
@@ -441,7 +441,7 @@
 			energy( -50);
 			output("The sydian grabs each antenna and tail in turn, stimulating the bristles to release a large quantity of enzyme. She collects so much that her fingers and palms faintly glisten -");
 			
-			if (target.hasArmor() && target.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+			if (target.hasAirtightSuit())
 			{
 				output(" good thing your [pc.armor] is air tight!");
 			}

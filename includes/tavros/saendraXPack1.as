@@ -1685,7 +1685,7 @@ public function zilCallGirlPregScene(isBirthing:Boolean = false):void
 	{
 		output("...And boy is she expecting!");
 		output("\n\nAs soon as you’re inside the room,");
-		if (pc.hasArmor() && pc.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT)) output(" you hear");
+		if (pc.hasAirtightSuit()) output(" you hear");
 		else
 		{
 			output(" you are hit with a thick fog of pheromones, clouding your ability to smell, blurring your vision, and tingling your [pc.groin]. However, this only lasts for a brief moment when your sense of hearing picks up on");

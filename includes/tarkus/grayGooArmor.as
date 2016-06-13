@@ -1562,7 +1562,6 @@ public function gooArmorDetails():String
 	pc.createStatusEffect("Goo Armor Design", 0, 0, 0, 0, true, "", "none", false, 0, 0xFFFFFF);
 	
 	msg += "Your suit of armor is silvery-gray";
-	if(pc.armor.resistances.hasFlag(DamageFlag.MIRRORED)) msg += " and has a crystalline shine to it, adopted from an encounter with a ganrael";
 	switch(pc.statusEffectv1("Goo Armor Design"))
 	{
 		case 1: msg += ", with hints of armor-like protrusions"; break;
@@ -1573,16 +1572,21 @@ public function gooArmorDetails():String
 	}
 	if(pc.getStatusTooltip("Goo Armor Design") != "" && pc.getStatusTooltip("Goo Armor Design") != "none")
 	{
-		if(pc.armor.resistances.hasFlag(DamageFlag.MIRRORED) && pc.statusEffectv1("Goo Armor Design") == 0) msg += ",";
 		msg += " and has " + indefiniteArticle(pc.getStatusTooltip("Goo Armor Design")) + " emblazoned on each shoulder";
 	}
 	msg += ".";
 	switch(pc.statusEffectv2("Goo Armor Design"))
 	{
-		case 1: msg += " Across the surface, it is patterned with a grid of hexagonal tiles."; break;
+		case 1: msg += " Across the surface, the suit is patterned with a grid of hexagonal tiles."; break;
 		case 2: msg += " There is a distinct glistening silver trim bordering the edges."; break;
 		case 3: msg += " Lines of shining silver trace the surface in a design very similar to a printed circuit board."; break;
 		case 4: msg += " Portions of the suit are accentuated in linear markings, traveling " + (pc.armor.hasFlag(GLOBAL.ITEM_FLAG_SWIMWEAR) ? "across different anatomical seams" : "from the arms and neck downward") + "."; break;
+	}
+	if(pc.armor.resistances.hasFlag(DamageFlag.MIRRORED))
+	{
+		if(pc.statusEffectv1("Goo Armor Design") != 0 || pc.statusEffectv2("Goo Armor Design") != 0) msg += " Overall, it";
+		else msg += " It";
+		msg += " has a crystalline shine to it, adopted from an encounter with a ganrael.";
 	}
 	if(!pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST) && !pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN) && !pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS))
 	{

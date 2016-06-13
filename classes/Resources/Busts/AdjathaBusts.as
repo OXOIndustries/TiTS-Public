@@ -94,6 +94,9 @@ package classes.Resources.Busts
 		public var Bust_FROSTWYRM:Class;
 		public var Bounds_FROSTWYRM:Rectangle = new Rectangle(115, 32, 70, 70);
 		
+		[Embed(source = "../../../assets/images/npcs/adjatha/horisha_peck.png", mimeType = "image/png")]
+		public var Bust_HORISHA_AND_PECK:Class;
+		
 		[Embed(source = "../../../assets/images/npcs/adjatha/joyco_vending_machine.png", mimeType = "image/png")]
 		public var Bust_JOYCO_VENDING_MACHINE:Class;
 		
@@ -304,6 +307,9 @@ package classes.Resources.Busts
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/frostwyrm.png", mimeType = "image/png")]
 			public var Full_FROSTWYRM:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/horisha_peck.png", mimeType = "image/png")]
+			public var Full_HORISHA_AND_PECK:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/joyco_vending_machine.png", mimeType = "image/png")]
 			public var Full_JOYCO_VENDING_MACHINE:Class;

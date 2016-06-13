@@ -3127,6 +3127,8 @@
 		}
 		//ENERGY
 		public function energy(arg: Number = 0): Number {
+			if(arg > 0 && hasStatusEffect("Worn Out")) return 0;
+			if(arg > 0 && hasStatusEffect("Very Sore")) arg /= 4;
 			if(arg > 0 && hasStatusEffect("Sore")) arg /= 2;
 			energyRaw += arg;
 			if (energyRaw > energyMax()) energyRaw = energyMax();
@@ -4040,7 +4042,7 @@
 		public function hasLongEars(): Boolean
 		{
 			// For ear types that support the earLength value. At least 1 inch long or more to count.
-			if(earLength >= 1 && InCollection(earType, GLOBAL.TYPE_SYLVAN, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_GABILANI, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_GRYVAIN)) return true;
+			if(earLength >= 1 && InCollection(earType, GLOBAL.TYPE_SYLVAN, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_GABILANI, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_GRYVAIN, GLOBAL.TYPE_DOGGIE)) return true;
 			return false;
 		}
 		public function earDescript(): String
@@ -4054,6 +4056,15 @@
 			{
 				case GLOBAL.TYPE_CANINE:
 					adjectives = ["pointed", "ausar", "upraised", "anubis-like"];
+					if(!nonFurrySkin) adjectives.push("furry");
+					break;
+				case GLOBAL.TYPE_DOGGIE:
+					adjectives = ["expressive", "dog-like"];
+					if(earLength >= 6) adjectives.push("droopy");
+					if(earLength >= 3) adjectives.push("floppy");
+					else adjectives.push("rounded");
+					if(isBimbo()) adjectives.push("doggie", "puppy");
+					if(kGAMECLASS.silly) adjectives.push("doge");
 					if(!nonFurrySkin) adjectives.push("furry");
 					break;
 				case GLOBAL.TYPE_EQUINE:
@@ -7719,9 +7730,14 @@
 			}
 			//if(this is PlayerCharacter) trace("Post Fullness: " + ballFullness)
 		}
-		public function isSquirter(arg: int = 0): Boolean {
+		public function isSquirter(arg: int = -1): Boolean {
 			if (!hasVagina()) return false;
-			if (arg < 0 || arg >= totalVaginas()) return false;
+			if (arg >= (totalVaginas() - 1)) return false;
+			if (arg < 0)
+			{
+				if(wettestVaginalWetness() >= 4) return true;
+				return false;
+			}
 			if (vaginas[arg].wetness() >= 4) return true;
 			return false;
 		}
@@ -8719,7 +8735,7 @@
 		}
 		public function ausarScore(): int {
 			var counter: int = 0;
-			if (earType == GLOBAL.TYPE_CANINE) counter++;
+			if (InCollection(earType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_DOGGIE)) counter++;
 			if (hasTail(GLOBAL.TYPE_CANINE) && hasTailFlag(GLOBAL.FLAG_LONG) && hasTailFlag(GLOBAL.FLAG_FLUFFY) && hasTailFlag(GLOBAL.FLAG_FURRED)) counter++;
 			if (armType == GLOBAL.TYPE_CANINE) counter++;
 			if (legType == GLOBAL.TYPE_CANINE && legCount == 2 && hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) counter++;
@@ -8827,7 +8843,7 @@
 		}
 		public function canineScore(): int {
 			var counter: int = 0;
-			if (earType == GLOBAL.TYPE_CANINE) counter++;
+			if (InCollection(earType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_DOGGIE)) counter++;
 			if (hasTail(GLOBAL.TYPE_CANINE) && hasTailFlag(GLOBAL.FLAG_FURRED)) counter++;
 			if (armType == GLOBAL.TYPE_CANINE && hasArmFlag(GLOBAL.FLAG_FURRED)) counter++;
 			if (legType == GLOBAL.TYPE_CANINE && hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) counter++;
@@ -11558,7 +11574,14 @@
 			var collection:Array = [];
 
 			//If forceType is not set, grab it from the index.
-			if(forceType == -1) forceType = cock.cType;
+			if(forceType == -1 && hasCock())
+			{
+				cock = cocks[cockIndex];
+				forceType = cock.cType;
+			}
+			// If no cocks, use the forced type.
+			else cock.cType = forceType;
+			
 			// main shapes
 			switch (forceType)
 			{
@@ -15670,6 +15693,16 @@
 			else ballFullness += percent;
 		}
 		
+		// Tiredness Conditions
+		public function isSore():Boolean
+		{
+			return (hasStatusEffect("Sore") || hasStatusEffect("Very Sore") || hasStatusEffect("Worn Out"));
+		}
+		public function isWornOut():Boolean
+		{
+			return (hasStatusEffect("Worn Out"));
+		}
+		
 		// OnTakeDamage is called as part of applyDamage.
 		// You should generate a message for /deferred/ display in the creature
 		// rather than emitting text immediately. You should then emit it
@@ -15710,6 +15743,10 @@
 		public function hasBlindImmunity():Boolean
 		{
 			return (accessory is FlashGoggles);
+		}
+		public function hasAirtightSuit():Boolean
+		{
+			return (hasArmor() && armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT));
 		}
 		
 		public function onLeaveBuyMenu():void

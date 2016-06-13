@@ -104,7 +104,7 @@ package classes.Items.Transformatives
 							var newEyeColor:String = RandomInCollection(frogIrisColors);
 							
 							output("\n\n");
-							if(isTopClothed && target.hasArmor() && target.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+							if(isTopClothed && target.hasAirtightSuit())
 							{
 								output("Detecting a change, you quickly remove your [pc.armor]... ");
 								isTopClothed = false;
@@ -360,7 +360,7 @@ package classes.Items.Transformatives
 						if(target.hairLengthUnlocked(0))
 						{
 							output("\n\n");
-							if(isTopClothed && target.hasArmor() && target.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+							if(isTopClothed && target.hasAirtightSuit())
 							{
 								output("Detecting a change, you quickly remove your [pc.armor]... ");
 								isTopClothed = false;
@@ -378,7 +378,7 @@ package classes.Items.Transformatives
 						if(target.earTypeUnlocked(GLOBAL.TYPE_FROG))
 						{
 							output("\n\n");
-							if(isTopClothed && target.hasArmor() && target.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+							if(isTopClothed && target.hasAirtightSuit())
 							{
 								output("Detecting a change, you quickly remove your [pc.armor]... ");
 								isTopClothed = false;
@@ -412,7 +412,7 @@ package classes.Items.Transformatives
 						if(target.hornsUnlocked(0))
 						{
 							output("\n\n");
-							if(isTopClothed && target.hasArmor() && target.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+							if(isTopClothed && target.hasAirtightSuit())
 							{
 								output("Detecting a change, you quickly remove your [pc.armor]... ");
 								isTopClothed = false;
@@ -619,7 +619,7 @@ package classes.Items.Transformatives
 						if(target.faceTypeUnlocked(GLOBAL.TYPE_FROG))
 						{
 							output("\n\n");
-							if(isTopClothed && target.hasArmor() && target.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+							if(isTopClothed && target.hasAirtightSuit())
 							{
 								output("Detecting a change, you quickly remove your [pc.armor]... ");
 								isTopClothed = false;

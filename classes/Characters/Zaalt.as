@@ -353,9 +353,10 @@
 				if (targets[i] is Anno) anno = targets[i] as Creature;
 			}
 			
-			if (targets.length > 1)
+			var blindedPC:Boolean = rand(10) != 0 && !pc.hasBlindImmunity();
+			
+			if (targets.length > 1 && anno != null)
 			{
-				var blindedPC:Boolean = rand(10) != 0 && !pc.hasBlindImmunity();
 				var blindedAnno:Boolean = rand(10) != 0 && !anno.hasBlindImmunity();
 				if (blindedPC && blindedAnno)
 				{
@@ -368,6 +369,11 @@
 					output(" blinding Anno, though you manage to avoid any serious effect.");
 					anno.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0,0xFF0000);
 				}
+				if (blindedPC)
+				{
+					output(" blinding you.");
+					pc.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0,0xFF0000);
+				}
 				else
 				{
 					output(" though both you and Anno manage to avoid any serious effect.");
@@ -376,8 +382,6 @@
 			// Can only be the PC then
 			else
 			{
-				blindedPC = rand(10) != 0;
-				
 				if (blindedPC)
 				{
 					output(" blinding you.");
@@ -396,15 +400,58 @@
 		private function doGasGrenade(targets:Array):void
 		{
 			energy(-20);
-			output("Zaalt hurls a grenade from his belt between you and Anno. The grenade explodes in a flash of blinding light that renders ");
-			if (targets.length == 1) output(" you");
-			else output("you and Anno");
-			output(" blind. A moment later, the expended grenade begins to hiss out a stream of green gas that floats out towards you. You clutch your throat as the gas drifts out, coughing violently. Aim and Reflex decreased!");
-
-			for (var i:int = 0; i < targets.length; i++)
+			output("Zaalt hurls a grenade from his belt " + (targets.length == 1 ? "in your direction" : "between you and Anno") + ". The grenade explodes in a flash of blinding light that renders you " + (targets.length == 1 ? "" : " and Anno") + " blind. A moment later, the expended grenade begins to hiss out a stream of green gas that floats out towards you.");
+			
+			var pc:Creature;
+			var anno:Creature;
+			var i:int = 0;
+			
+			for (i = 0; i < targets.length; i++)
+			{
+				if (targets[i] is PlayerCharacter) pc = targets[i] as Creature;
+				if (targets[i] is Anno) anno = targets[i] as Creature;
+			}
+			
+			var gassedPC:Boolean = rand(10) != 0 && !pc.hasAirtightSuit();
+			
+			if (targets.length > 1 && anno != null)
+			{
+				var gassedAnno:Boolean = rand(10) != 0 && !anno.hasAirtightSuit();
+				if (gassedPC && gassedAnno)
+				{
+					output(" You and Anno cough violently from the thick gas drifting out and around the two of you.");
+				}
+				else if (!gassedPC && gassedAnno)
+				{
+					output(" The thick gas drifts around you to minor effect thanks to your airtight suit, but that doesn’t help in the way of visibility.");
+				}
+				else if (gassedPC)
+				{
+					output(" You clutch your throat as the gas drifts out, coughing violently.");
+				}
+				else
+				{
+					output(" The gas drifts around you two to minor effect thanks to your airtight suits, but that doesn’t help in the way of visibility.");
+				}
+			}
+			// Can only be the PC then
+			else
+			{
+				if (gassedPC)
+				{
+					output(" You clutch your throat as the gas drifts out, coughing violently.");
+				}
+				else
+				{
+					output(" The gas drifts around you to minor effect thanks to your airtight suit, but that doesn’t help in the way of visibility.");
+				}
+			}
+			
+			output(" Aim and Reflex decreased!");
+			for (i = 0; i < targets.length; i++)
 			{
 				var t:Creature = targets[i];
-				t.createStatusEffect("Gassed",0,0,0,0,false,"Icon_Blind", "The gas makes it hard to see and aim. Aim and reflex decreased!",true,0);
+				t.createStatusEffect("Gassed", 0, 0, 0, 0, false,"Icon_Blind", "The gas makes it hard to see and aim. Aim and reflex decreased!", true, 0, 0xFF0000);
 				t.aimMod -= 5;
 				t.reflexesMod -= 5;	
 			}

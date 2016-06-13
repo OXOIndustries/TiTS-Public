@@ -230,7 +230,7 @@
 			else if(lust() <= 85) output("dripping");
 			else output("drooling");
 			output(" dick right into your [pc.face]. The soft shroud of his foreskin rubs hotly against you, peeling back to barely expose the ebony glans that is prodding your forehead.");
-			if(target.hasArmor() && target.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+			if(target.hasAirtightSuit())
 			{
 				output(" You gasp and stumble away when you see his cock produce an oily streak. Pheromones, no doubt. Fortunately for you, your [pc.armor] is airtight, so any reactions you could have had to it are assuredly blocked.");
 			}
@@ -252,7 +252,7 @@
 		private function zilPheromoneFan(target:Creature):void
 		{
 			output("The zil abruptly begins to fondle his [zil.cock], stimulating the organ as he alters his wingbeats to gust musk-laced air in your direction. He floats up high and flies erratically enough that you doubt you could hit him.");
-			if(target.hasArmor() && target.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+			if(target.hasAirtightSuit())
 			{
 				output("\n\nLuckily your [pc.armor] is sealed tight, so you unaffected by it. He grumps at his failed attempt. You definitely came prepared!");
 			}
