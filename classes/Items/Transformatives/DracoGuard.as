@@ -649,13 +649,13 @@
 				var cCuntList:Array = [];
 				for(g = 0; g < pc.cockTotal(); g++)
 				{
-					if(pc.cocks[g].cockColor != pc.scaleColor) cCockList.push(g);
+					if(!InCollection(pc.cocks[g].cockColor, gravainColors)) cCockList.push(g);
 				}
 				for(g = 0; g < pc.vaginaTotal(); g++)
 				{
-					if(pc.vaginas[g].vaginaColor != pc.scaleColor) cCuntList.push(g);
+					if(!InCollection(pc.vaginas[g].vaginaColor, gravainColors)) cCuntList.push(g);
 				}
-				if(changes < changeLimit && pc.hasPartScales() && !InCollection(pc.scaleColor, gravainColors) && rand(2) == 0)
+				if(changes < changeLimit && pc.hasPartScales() && (!InCollection(pc.scaleColor, gravainColors) || !InCollection(pc.hairColor, gravainColors) || cCockList.length > 0 || cCuntList.length > 0) && rand(2) == 0)
 				{
 					var newColor:String = gravainColors[rand(gravainColors.length)];
 					
@@ -699,16 +699,16 @@
 						pc.hairColor = newColor;
 						if(cCockList.length > 0)
 						{
-							for(g = 0; g < cCockList.length; g++)
+							for(g = 0; g < pc.cocks.length; g++)
 							{
-								pc.cocks[cCockList[g]].cockColor = newColor;
+								pc.cocks[g].cockColor = newColor;
 							}
 						}
 						if(cCuntList.length > 0)
 						{
-							for(g = 0; g < cCuntList.length; g++)
+							for(g = 0; g < pc.vaginas.length; g++)
 							{
-								pc.vaginas[cCuntList[g]].vaginaColor = newColor;
+								pc.vaginas[g].vaginaColor = newColor;
 							}
 						}
 						changes++;
