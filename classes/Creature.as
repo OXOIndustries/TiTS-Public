@@ -3127,6 +3127,8 @@
 		}
 		//ENERGY
 		public function energy(arg: Number = 0): Number {
+			if(arg > 0 && hasStatusEffect("Worn Out")) return 0;
+			if(arg > 0 && hasStatusEffect("Very Sore")) arg /= 4;
 			if(arg > 0 && hasStatusEffect("Sore")) arg /= 2;
 			energyRaw += arg;
 			if (energyRaw > energyMax()) energyRaw = energyMax();
@@ -7728,9 +7730,14 @@
 			}
 			//if(this is PlayerCharacter) trace("Post Fullness: " + ballFullness)
 		}
-		public function isSquirter(arg: int = 0): Boolean {
+		public function isSquirter(arg: int = -1): Boolean {
 			if (!hasVagina()) return false;
-			if (arg < 0 || arg >= totalVaginas()) return false;
+			if (arg >= (totalVaginas() - 1)) return false;
+			if (arg < 0)
+			{
+				if(wettestVaginalWetness() >= 4) return true;
+				return false;
+			}
 			if (vaginas[arg].wetness() >= 4) return true;
 			return false;
 		}
@@ -15673,6 +15680,16 @@
 				if(bbnotice.length > 0) kGAMECLASS.eventBuffer += ParseText(bbnotice); //parse blue balls notice
 			}
 			else ballFullness += percent;
+		}
+		
+		// Tiredness Conditions
+		public function isSore():Boolean
+		{
+			return (hasStatusEffect("Sore") || hasStatusEffect("Very Sore") || hasStatusEffect("Worn Out"));
+		}
+		public function isWornOut():Boolean
+		{
+			return (hasStatusEffect("Worn Out"));
 		}
 		
 		// OnTakeDamage is called as part of applyDamage.

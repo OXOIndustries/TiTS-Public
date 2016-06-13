@@ -704,25 +704,30 @@ public function sleepHeal():void
 		pc.HP(Math.round(pc.HPMax()));
 	}
 	// Fecund Figure shape loss (Lose only after sore/working out)
-	if(pc.hasPerk("Fecund Figure") && pc.hasStatusEffect("Sore"))
+	if(pc.hasPerk("Fecund Figure") && pc.isSore())
 	{
 		var numPreg:int = pc.totalPregnancies();
 		if(pc.isPregnant(3)) numPreg--;
+		
+		var weightLoss:int = 0;
+		if(pc.hasStatusEffect("Sore")) weightLoss = -1;
+		if(pc.hasStatusEffect("Very Sore")) weightLoss = -2;
+		if(pc.hasStatusEffect("Worn Out")) weightLoss = -3;
+		
 		if(numPreg <= 0)
 		{
-			pc.addPerkValue("Fecund Figure", 1, -1);
-			pc.addPerkValue("Fecund Figure", 2, -1);
-			pc.addPerkValue("Fecund Figure", 3, -1);
+			pc.addPerkValue("Fecund Figure", 1, weightLoss);
+			pc.addPerkValue("Fecund Figure", 2, weightLoss);
+			pc.addPerkValue("Fecund Figure", 3, weightLoss);
 		}
-		pc.addPerkValue("Fecund Figure", 1, -1);
-		pc.addPerkValue("Fecund Figure", 2, -1);
-		pc.addPerkValue("Fecund Figure", 3, -1);
+		pc.addPerkValue("Fecund Figure", 1, weightLoss);
+		pc.addPerkValue("Fecund Figure", 2, weightLoss);
+		pc.addPerkValue("Fecund Figure", 3, weightLoss);
 		if(pc.perkv1("Fecund Figure") < 0) pc.setPerkValue("Fecund Figure", 1, 0);
 		if(pc.perkv2("Fecund Figure") < 0) pc.setPerkValue("Fecund Figure", 2, 0);
 		if(pc.perkv3("Fecund Figure") < 0) pc.setPerkValue("Fecund Figure", 3, 0);
 	}
-	pc.removeStatusEffect("Sore");
-	pc.removeStatusEffect("Sore Counter");
+	if(pc.isSore()) soreChange(-3);
 	pc.removeStatusEffect("Jaded");
 	
 	if (pc.energy() < pc.energyMax()) pc.energyRaw = pc.energyMax();
