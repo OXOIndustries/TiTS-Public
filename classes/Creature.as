@@ -11574,13 +11574,7 @@
 			var collection:Array = [];
 
 			//If forceType is not set, grab it from the index.
-			if(forceType == -1 && hasCock())
-			{
-				cock = cocks[cockIndex];
-				forceType = cock.cType;
-			}
-			// If no cocks, use the forced type.
-			else cock.cType = forceType;
+			if(forceType == -1) forceType = cock.cType;
 			
 			// main shapes
 			switch (forceType)
