@@ -11551,6 +11551,10 @@
 		public function cockShape(cockIndex:int,forceType:int = -1):String
 		{
 			var cock:CockClass = cocks[cockIndex];
+			return cockShape2(cock,-1);
+		}
+		public function cockShape2(cock:CockClass,forceType:int = -1):String
+		{
 			var collection:Array = [];
 
 			//If forceType is not set, grab it from the index.
@@ -11799,8 +11803,8 @@
 					desc += RandomInCollection(["gooey cock","gooey cock","gooey dick","gooey prick","gooey tool","gooey shaft","self-lubricating goo-cock","self-lubricating shaft","self-lubricating member","self-lubricating slime-cock","slick shaft","slick cock","slick dick","slick goo-cock","slick goo-dick","slippery slime-cock","slippery slime-dick","slippery prick"]);
 				}
 				//TO BE COMPLETED LATER - TAIL AND NIPPLE STUFF
-				else if(special == "tail" && rand(2) == 0) desc += cockShape(0,type) + " tail-" + RandomInCollection(["cock","cock","dick","prick","cock","dick"]);
-				else if(special == "dick" && rand(2) == 0) desc += cockShape(0,type) + " " + RandomInCollection(["dick","cock","prick"] + "-nipple");
+				else if(special == "tail" && rand(2) == 0) desc += cockShape2(cock,type) + " tail-" + RandomInCollection(["cock","cock","dick","prick","cock","dick"]);
+				else if(special == "dick" && rand(2) == 0) desc += cockShape2(cock,type) + " " + RandomInCollection(["dick","cock","prick"] + "-nipple");
 				else
 				{
 					switch(type)
