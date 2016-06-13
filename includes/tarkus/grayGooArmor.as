@@ -1586,7 +1586,7 @@ public function gooArmorDetails():String
 	{
 		if(pc.statusEffectv1("Goo Armor Design") != 0 || pc.statusEffectv2("Goo Armor Design") != 0) msg += " Overall, it";
 		else msg += " It";
-		msg += " has a crystalline shine to it, adopted from an encounter with a ganrael";
+		msg += " has a crystalline shine to it, adopted from an encounter with a ganrael.";
 	}
 	if(!pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST) && !pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN) && !pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS))
 	{
