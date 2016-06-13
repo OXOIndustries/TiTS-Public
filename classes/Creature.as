@@ -11566,11 +11566,18 @@
 		// I didn't want to potentially fuck up an existing descriptor in the process, so I've opted to keep it separate.
 		public function cockShape(cockIndex:int,forceType:int = -1):String
 		{
-			var cock:CockClass = cocks[cockIndex];
+			var cock:CockClass = new CockClass();
 			var collection:Array = [];
 
 			//If forceType is not set, grab it from the index.
-			if(forceType == -1) forceType = cock.cType;
+			if(forceType == -1 && hasCock())
+			{
+				cock = cocks[cockIndex];
+				forceType = cock.cType;
+			}
+			// If no cocks, use the forced type.
+			else cock.cType = forceType;
+			
 			// main shapes
 			switch (forceType)
 			{
@@ -11815,7 +11822,26 @@
 					desc += RandomInCollection(["gooey cock","gooey cock","gooey dick","gooey prick","gooey tool","gooey shaft","self-lubricating goo-cock","self-lubricating shaft","self-lubricating member","self-lubricating slime-cock","slick shaft","slick cock","slick dick","slick goo-cock","slick goo-dick","slippery slime-cock","slippery slime-dick","slippery prick"]);
 				}
 				//TO BE COMPLETED LATER - TAIL AND NIPPLE STUFF
-				else if(special == "tail" && rand(2) == 0) desc += cockShape(0,type) + " tail-" + RandomInCollection(["cock","cock","dick","prick","cock","dick"]);
+				else if(special == "tail" && rand(2) == 0)
+				{
+					adjectives = [];
+					adjectives.push(cockShape(0,type), cockShape(0,type));
+					if(hasTailFlag(GLOBAL.FLAG_KNOTTED)) adjectives.push("knotted");
+					if(hasTailFlag(GLOBAL.FLAG_FLARED)) adjectives.push("flared");
+					if(hasTailFlag(GLOBAL.FLAG_BLUNT)) adjectives.push("blunt");
+					if(hasTailFlag(GLOBAL.FLAG_TAPERED)) adjectives.push("tapered");
+					if(hasTailFlag(GLOBAL.FLAG_STINGER_BASED)) adjectives.push("stinger-based");
+					if(hasTailFlag(GLOBAL.FLAG_STINGER_TIPPED)) adjectives.push("stinger-tipped");
+					if(hasTailFlag(GLOBAL.FLAG_NUBBY)) adjectives.push("nubby");
+					if(hasTailFlag(GLOBAL.FLAG_AMORPHOUS)) adjectives.push("amorphous");
+					if(hasTailFlag(GLOBAL.FLAG_SMOOTH)) adjectives.push("smooth");
+					if(hasTailFlag(GLOBAL.FLAG_RIBBED)) adjectives.push("ribbed");
+					if(hasTailFlag(GLOBAL.FLAG_FORESKINNED)) adjectives.push("foreskinned", "foreskin-covered");
+					if(hasTailFlag(GLOBAL.FLAG_DOUBLE_HEADED)) adjectives.push("double-headed");
+					if(hasTailFlag(GLOBAL.FLAG_GOOEY)) adjectives.push("gooey");
+					
+					desc += RandomInCollection(adjectives) + " tail-" + RandomInCollection(["cock","cock","dick","prick","cock","dick"]);
+				}
 				else if(special == "dick" && rand(2) == 0) desc += cockShape(0,type) + " " + RandomInCollection(["dick","cock","prick"] + "-nipple");
 				else
 				{
