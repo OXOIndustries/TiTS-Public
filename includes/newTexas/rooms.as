@@ -183,7 +183,7 @@ public function initNewTexasRooms():void
 	rooms["512"].system = "SYSTEM: NYE";
 	rooms["512"].addFlag(GLOBAL.INDOOR);
 	rooms["512"].addFlag(GLOBAL.PUBLIC);
-	rooms["512"].addFlag(GLOBAL.NPC);
+	//rooms["512"].addFlag(GLOBAL.NPC);
 	
 	//513
 	//The Barn (North Center)

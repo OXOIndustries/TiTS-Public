@@ -43,6 +43,8 @@
 			this.evasion = 0;
 			this.fortification = 0;
 			
+			resistances.freezing.resistanceValue = 10.0;
+			
 			this.version = this._latestVersion;
 		}
 	}

@@ -71,6 +71,14 @@ public function initUvetoRooms():void
 	rooms["UVS D9"].westExit = "UVS B9";
 	rooms["UVS D9"].moveMinutes = 1;
 	rooms["UVS D9"].addFlag(GLOBAL.INDOOR);
+	
+	/* Space Elevator */
+	rooms["UVS LIFT"] = new RoomClass(this);
+	rooms["UVS LIFT"].roomName = "SPACE\nELEVATOR";
+	rooms["UVS LIFT"].description = "";
+	rooms["UVS LIFT"].planet = "UVETO STATION";
+	rooms["UVS LIFT"].system = "SYSTEM: SIRETTA";
+	rooms["UVS LIFT"].addFlag(GLOBAL.INDOOR);
 
 	/* Store? */
 	rooms["UVS B11"] = new RoomClass(this);
@@ -520,7 +528,7 @@ public function initUvetoRooms():void
 
 	rooms["UVI P32"] = new RoomClass(this);
 	rooms["UVI P32"].roomName = "THE\nFREEZER";
-	rooms["UVI P32"].description = "There is only a brief landing to kick the snow off your feet before the floor immediately plunges downwards in the form of a staircase, though the steps are mercifully wide and drunkard friendly. Each step downwards brings you further away from the biting chill and, instead, to the warm, cozy atmosphere of what is a tavern. Emphasis on warm, thankfully.\n\nDespite it's name, the Freezer is actually a decidedly homely establishment. Heaters in nearly every corner of the room keep the air from dipping into Uveto's usually frigid temperatures, and a scattering of cracked peanut shells on the floor lend the place a homey, if rustic, feel.\n\nThere's plenty of space between the various tables, varying from long bench seats to more intimate two seat square tables and everything in between - it feels a bit like a collection of various ways to <i>do</i> tables.\n\nThere's a subfloor to the west; slightly lower than the main tavern floor, but only by a few steps.";
+	rooms["UVI P32"].description = "There is only a brief landing to kick the snow off your feet before the floor immediately plunges downwards in the form of a staircase, though the steps are mercifully wide and drunkard friendly. Each step downwards brings you further away from the biting chill and, instead, to the warm, cozy atmosphere of what is a tavern. Emphasis on warm, thankfully.\n\nDespite its name, the Freezer is actually a decidedly homely establishment. Heaters in nearly every corner of the room keep the air from dipping into Uveto's usually frigid temperatures, and a scattering of cracked peanut shells on the floor lend the place a homey, if rustic, feel.\n\nThere's plenty of space between the various tables, varying from long bench seats to more intimate two seat square tables and everything in between - it feels a bit like a collection of various ways to <i>do</i> tables.\n\nThere's a subfloor to the west; slightly lower than the main tavern floor, but only by a few steps.";
 	rooms["UVI P32"].planet = "PLANET: UVETO VII";
 	rooms["UVI P32"].system = "SYSTEM: SIRETTA";
 	rooms["UVI P32"].eastExit = "UVI R32"; // 9999 TEMP CHECK THIS

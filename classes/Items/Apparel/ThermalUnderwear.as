@@ -46,6 +46,7 @@
 			this.fortification = 0;
 			
 			resistances.burning.resistanceValue = 25.0;
+			resistances.freezing.resistanceValue = 25.0;
 			
 			this.version = _latestVersion;
 		}

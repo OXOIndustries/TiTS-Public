@@ -283,7 +283,7 @@
 		{
 			output("So turned on that he's practically dripping, the big male thunders in close, grabbing one arm around your chest and hauling you up into the air. A bright orange tongue spools out of his maw, coiling this way and that, slick with his alien saliva.");
 	
-			if (target.hasArmor() && target.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+			if (target.hasAirtightSuit())
 			{
 				output(" He presses it to your face, unaware that the action is useless against your airtight [pc.armor]. While this display is not affecting you directly, you certainly can't ignore the thick mass of his boner pressing against your [pc.leg].");
 			}

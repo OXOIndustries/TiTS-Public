@@ -3127,6 +3127,8 @@
 		}
 		//ENERGY
 		public function energy(arg: Number = 0): Number {
+			if(arg > 0 && hasStatusEffect("Worn Out")) return 0;
+			if(arg > 0 && hasStatusEffect("Very Sore")) arg /= 4;
 			if(arg > 0 && hasStatusEffect("Sore")) arg /= 2;
 			energyRaw += arg;
 			if (energyRaw > energyMax()) energyRaw = energyMax();
@@ -4040,7 +4042,7 @@
 		public function hasLongEars(): Boolean
 		{
 			// For ear types that support the earLength value. At least 1 inch long or more to count.
-			if(earLength >= 1 && InCollection(earType, GLOBAL.TYPE_SYLVAN, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_GABILANI, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_GRYVAIN)) return true;
+			if(earLength >= 1 && InCollection(earType, GLOBAL.TYPE_SYLVAN, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_GABILANI, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_GRYVAIN, GLOBAL.TYPE_DOGGIE)) return true;
 			return false;
 		}
 		public function earDescript(): String
@@ -4054,6 +4056,15 @@
 			{
 				case GLOBAL.TYPE_CANINE:
 					adjectives = ["pointed", "ausar", "upraised", "anubis-like"];
+					if(!nonFurrySkin) adjectives.push("furry");
+					break;
+				case GLOBAL.TYPE_DOGGIE:
+					adjectives = ["expressive", "dog-like"];
+					if(earLength >= 6) adjectives.push("droopy");
+					if(earLength >= 3) adjectives.push("floppy");
+					else adjectives.push("rounded");
+					if(isBimbo()) adjectives.push("doggie", "puppy");
+					if(kGAMECLASS.silly) adjectives.push("doge");
 					if(!nonFurrySkin) adjectives.push("furry");
 					break;
 				case GLOBAL.TYPE_EQUINE:
@@ -7719,9 +7730,14 @@
 			}
 			//if(this is PlayerCharacter) trace("Post Fullness: " + ballFullness)
 		}
-		public function isSquirter(arg: int = 0): Boolean {
+		public function isSquirter(arg: int = -1): Boolean {
 			if (!hasVagina()) return false;
-			if (arg < 0 || arg >= totalVaginas()) return false;
+			if (arg >= (totalVaginas() - 1)) return false;
+			if (arg < 0)
+			{
+				if(wettestVaginalWetness() >= 4) return true;
+				return false;
+			}
 			if (vaginas[arg].wetness() >= 4) return true;
 			return false;
 		}
@@ -8719,7 +8735,7 @@
 		}
 		public function ausarScore(): int {
 			var counter: int = 0;
-			if (earType == GLOBAL.TYPE_CANINE) counter++;
+			if (InCollection(earType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_DOGGIE)) counter++;
 			if (hasTail(GLOBAL.TYPE_CANINE) && hasTailFlag(GLOBAL.FLAG_LONG) && hasTailFlag(GLOBAL.FLAG_FLUFFY) && hasTailFlag(GLOBAL.FLAG_FURRED)) counter++;
 			if (armType == GLOBAL.TYPE_CANINE) counter++;
 			if (legType == GLOBAL.TYPE_CANINE && legCount == 2 && hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) counter++;
@@ -8827,7 +8843,7 @@
 		}
 		public function canineScore(): int {
 			var counter: int = 0;
-			if (earType == GLOBAL.TYPE_CANINE) counter++;
+			if (InCollection(earType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_DOGGIE)) counter++;
 			if (hasTail(GLOBAL.TYPE_CANINE) && hasTailFlag(GLOBAL.FLAG_FURRED)) counter++;
 			if (armType == GLOBAL.TYPE_CANINE && hasArmFlag(GLOBAL.FLAG_FURRED)) counter++;
 			if (legType == GLOBAL.TYPE_CANINE && hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) counter++;
@@ -11550,11 +11566,18 @@
 		// I didn't want to potentially fuck up an existing descriptor in the process, so I've opted to keep it separate.
 		public function cockShape(cockIndex:int,forceType:int = -1):String
 		{
-			var cock:CockClass = cocks[cockIndex];
+			var cock:CockClass = new CockClass();
 			var collection:Array = [];
 
 			//If forceType is not set, grab it from the index.
-			if(forceType == -1) forceType = cock.cType;
+			if(forceType == -1 && hasCock())
+			{
+				cock = cocks[cockIndex];
+				forceType = cock.cType;
+			}
+			// If no cocks, use the forced type.
+			else cock.cType = forceType;
+			
 			// main shapes
 			switch (forceType)
 			{
@@ -11799,7 +11822,26 @@
 					desc += RandomInCollection(["gooey cock","gooey cock","gooey dick","gooey prick","gooey tool","gooey shaft","self-lubricating goo-cock","self-lubricating shaft","self-lubricating member","self-lubricating slime-cock","slick shaft","slick cock","slick dick","slick goo-cock","slick goo-dick","slippery slime-cock","slippery slime-dick","slippery prick"]);
 				}
 				//TO BE COMPLETED LATER - TAIL AND NIPPLE STUFF
-				else if(special == "tail" && rand(2) == 0) desc += cockShape(0,type) + " tail-" + RandomInCollection(["cock","cock","dick","prick","cock","dick"]);
+				else if(special == "tail" && rand(2) == 0)
+				{
+					adjectives = [];
+					adjectives.push(cockShape(0,type), cockShape(0,type));
+					if(hasTailFlag(GLOBAL.FLAG_KNOTTED)) adjectives.push("knotted");
+					if(hasTailFlag(GLOBAL.FLAG_FLARED)) adjectives.push("flared");
+					if(hasTailFlag(GLOBAL.FLAG_BLUNT)) adjectives.push("blunt");
+					if(hasTailFlag(GLOBAL.FLAG_TAPERED)) adjectives.push("tapered");
+					if(hasTailFlag(GLOBAL.FLAG_STINGER_BASED)) adjectives.push("stinger-based");
+					if(hasTailFlag(GLOBAL.FLAG_STINGER_TIPPED)) adjectives.push("stinger-tipped");
+					if(hasTailFlag(GLOBAL.FLAG_NUBBY)) adjectives.push("nubby");
+					if(hasTailFlag(GLOBAL.FLAG_AMORPHOUS)) adjectives.push("amorphous");
+					if(hasTailFlag(GLOBAL.FLAG_SMOOTH)) adjectives.push("smooth");
+					if(hasTailFlag(GLOBAL.FLAG_RIBBED)) adjectives.push("ribbed");
+					if(hasTailFlag(GLOBAL.FLAG_FORESKINNED)) adjectives.push("foreskinned", "foreskin-covered");
+					if(hasTailFlag(GLOBAL.FLAG_DOUBLE_HEADED)) adjectives.push("double-headed");
+					if(hasTailFlag(GLOBAL.FLAG_GOOEY)) adjectives.push("gooey");
+					
+					desc += RandomInCollection(adjectives) + " tail-" + RandomInCollection(["cock","cock","dick","prick","cock","dick"]);
+				}
 				else if(special == "dick" && rand(2) == 0) desc += cockShape(0,type) + " " + RandomInCollection(["dick","cock","prick"] + "-nipple");
 				else
 				{
@@ -15666,6 +15708,16 @@
 			else ballFullness += percent;
 		}
 		
+		// Tiredness Conditions
+		public function isSore():Boolean
+		{
+			return (hasStatusEffect("Sore") || hasStatusEffect("Very Sore") || hasStatusEffect("Worn Out"));
+		}
+		public function isWornOut():Boolean
+		{
+			return (hasStatusEffect("Worn Out"));
+		}
+		
 		// OnTakeDamage is called as part of applyDamage.
 		// You should generate a message for /deferred/ display in the creature
 		// rather than emitting text immediately. You should then emit it
@@ -15706,6 +15758,10 @@
 		public function hasBlindImmunity():Boolean
 		{
 			return (accessory is FlashGoggles);
+		}
+		public function hasAirtightSuit():Boolean
+		{
+			return (hasArmor() && armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT));
 		}
 		
 		public function onLeaveBuyMenu():void

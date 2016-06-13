@@ -289,7 +289,7 @@ package classes.Characters
 			{
 				output(" You tuck out of the way!");
 			}
-			else if(target.hasArmor() && target.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+			else if(target.hasAirtightSuit())
 			{
 				output(" The parasite’s discharge makes its mark, smothering you in a volatile mix of a supersaturated batch of its oily residue and dense cloud of prurient perspiration -- however, the airtight properties of your [pc.armor] proves such an attack completely useless.");
 			}
@@ -303,7 +303,7 @@ package classes.Characters
 		
 		private function mimbraneSmother(target:Creature):void
 		{
-			if(target.hasArmor() && target.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+			if(target.hasAirtightSuit())
 			{
 				output("The Mimbrane is difficult to track as it circles above and around you. You lose sight of the creature, but a shadow on the ground clues you in on its position: spread thin and wide above you. The parasite descends upon you like a fishing net! Your head is encased in the parasite’s embrace, futilely trying to smother you in its slick, salacious skin. Its secretions don't make it past your [pc.armor]; giving you a chance to breathe a sign of relief.");
 				output("\n\nThe creature quickly slides off, waiting for the opportune moment to strike you again.");
@@ -333,7 +333,7 @@ package classes.Characters
 			{
 				output("\n\nAnticipating the Mimbranes attack, you’re already poised to avoid the creatures mist before it can take effect.");
 			}
-			else if(target.hasArmor() && target.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+			else if(target.hasAirtightSuit())
 			{
 				output(" The parasite’s cloud envelops and consumes you, but it does so in vain. Your [pc.armor] prevents the stuff from contacting your skin, sparring your lust of wanton desires.");
 			}
@@ -378,7 +378,7 @@ package classes.Characters
 			{
 				output("\n\nYou twist out of the path of the speeding Mimbrane at the last second!");
 			}
-			else if(target.hasArmor() && target.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+			else if(target.hasAirtightSuit())
 			{
 				output(" You’re quick enough to avoid being hit head-on, but the parasite manages to brush up against you as it sails by. Oily perspiration smears along your [pc.armor], but it is all for naught thanks to your outfit's impermeability.");
 			}

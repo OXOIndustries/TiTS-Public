@@ -2914,7 +2914,7 @@ public function stolenDildoFap():void
 			if(!pc.isTaur()) addButton(2,"DP Vag",didloDPWivStolenDildo,"vag","DP Vag","Unlatch the dildo and stuff both ends inside your vagina. May end in accidental stretching.");
 			else addDisabledButton(2,"DP Vag","DP Vag","Your backside’s too far away to fuck.");
 		}
-		addDisabledButton(2,"DP Vag","DP Vag","You don't have a vagina.");
+		else addDisabledButton(2,"DP Vag","DP Vag","You don't have a vagina.");
 
 		if(pc.hasCuntTail()) addButton(3,"DP Tail",didloDPWivStolenDildo,"tail","DP Tail","Unlatch the dildo and stuff both ends inside your cunt tail. May end in accidental stretching.");
 		else addDisabledButton(3,"DP Tail","DP Tail","There's nowhere in your tail to put them!");

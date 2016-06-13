@@ -811,7 +811,7 @@ public function obeyAndLetZephyrFuckYerTail():void
 	author("Frogapus");
 	output("You decide to follow Zephyr’s orders like the obedient [pc.boyGirl] you are.");
 	output("\n\n<i>“Kneel on the floor if you want me fucking your tail, tourist,”</i> she rumbles, licking her lips.");
-	output("\n\nA shiver runs up your spine and down to the tip of your tail as you process the hungry look in her eyes. Zephyr’s still seated in her chair, arms rest on her knees as you slowly sink down to the plush carpet directly in front of her. You look up at her, feeling a thrill of submission as she grasps her cock, idly toying with it in front of you.");
+	output("\n\nA shiver runs up your spine and down to the tip of your tail as you process the hungry look in her eyes. Zephyr’s still seated in her chair, arms resting on her knees as you slowly sink down to the plush carpet directly in front of her. You look up at her, feeling a thrill of submission as she grasps her cock, idly toying with it in front of you.");
 	output("\n\n<i>“Get on all fours, and face that ass towards me,”</i> she says, looking on with obvious enjoyment at how well you’re taking orders.");
 	output("\n\nYou feel a soft fluttering in your stomach at her gaze on your body, and turn, half-crawling, to face your [pc.butt] towards the dominant femme, then lean forward, placing your hands on the carpet, feeling them sink down into the plush fur. Your tail rises up above your posterior, curving up into a perfect question mark.");
 	output("\n\n<i>“Good [pc.boyGirl],”</i> hums Zephyr.");
@@ -827,7 +827,7 @@ public function obeyAndLetZephyrFuckYerTail():void
 	}
 	if(pc.hasVagina()) output(" [pc.EachVagina] throbs softly, wetness already building in your depths.");
 
-	output("\n\nAs you process this, you feel something hot and pointed against your tail cunt. The sensation ripples up through you drawing a breathy moan from your [pc.lips]. You feel it trace, the pointed tip of her canine dick, up and down your ready slit. Your arms are shaking so much that they can barely hold you up. You feel something hot and wet spatter slowly run down your tail, creeping along its length until it pools in the cleft of your ass. You’re so wet that your oozing your pussy juices down on yourself.");
+	output("\n\nAs you process this, you feel something hot and pointed against your tail cunt. The sensation ripples up through you drawing a breathy moan from your [pc.lips]. You feel it trace, the pointed tip of her canine dick, up and down your ready slit. Your arms are shaking so much that they can barely hold you up. You feel something hot and wet spatter slowly run down your tail, creeping along its length until it pools in the cleft of your ass. You’re so wet that you’re oozing your pussy juices down on yourself.");
 	output("\n\n<i>“F-f-fuck me,”</i> you murmur, your eyes fluttering in pleasure. <i>“P-please?”</i>");
 	output("\n\n<i>“I think I need to be a bit more comfortable first,”</i> chuckles Zephyr.");
 	output("\n\nBefore you can ask what she means, she gives your tail a sharp tug. With a yelp, your ass rises up, and your face slams into the soft carpet. With your ");

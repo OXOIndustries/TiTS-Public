@@ -388,7 +388,7 @@ public function fazianMenu(ff:Function = null):void
 	{
 		if (ff != fazianDance)
 		{
-			if (pc.hasStatusEffect("Sore")) addDisabledButton(4, "Dance", "Dance", "Your muscles are too sore to do that!");
+			if (pc.isWornOut()) addDisabledButton(4, "Dance", "Dance", "Your muscles are too sore to do that!");
 			else addButton(4, "Dance", fazianDance, undefined, "Dance", "Go backstage and do some dance training with the anat.");
 		}
 		else addDisabledButton(4, "Dance");
@@ -489,7 +489,7 @@ public function fazianDancing():void
 	
 	//[Teach me?] [Back]
 	clearMenu();
-	if (pc.hasStatusEffect("Sore")) addDisabledButton(0, "TeachMe", "Teach Me?", "You could ask if he's willing to teach you some dance moves, but you are too sore to do any actual dancing...");
+	if (pc.isWornOut()) addDisabledButton(0, "TeachMe", "Teach Me?", "You could ask if he's willing to teach you some dance moves, but you are too sore to do any actual dancing...");
 	else addButton(0, "TeachMe", fazianDancingTeachMe, undefined, "Teach Me?", "Ask if he's willing to teach you some dance moves.");
 	addButton(14, "Back", fazianMenu, fazianDancing);
 }
@@ -705,7 +705,7 @@ public function fazianDanceSunwalkerFirst():void
 
 public function fazianDanceSore():void
 {
-	pc.createStatusEffect("Sore", 0, 0, 0, 0, false, "Icon_Crying", "You are sore and will regain energy slower. Working out is also impossible in this state. Sleep to recover.", false, 0);
+	soreDebuff(3);
 }
 
 public function fazianDanceOne(isSunwalker:Boolean = false):void

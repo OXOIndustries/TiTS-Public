@@ -765,7 +765,7 @@ public function cuntTailShadeFux():void
 
 	output("\n\n<i>“That mouth looks like it could use something to do,”</i> Shade teases, drawing her finger up from your [pc.chest] to your [pc.lip], hooking it under your lower lip and giving you the gentlest tug. When her finger pops free of you, Shade flashes you a playful grin and steps forward, moving her knees from your [pc.hips] and planting them in the pits of your arms, making her tailcunt stretch back to reach your [pc.cock " + x + "]. More pressing, though, you’re suddenly presented with a small, pink slit slick with moisture, holding barely an inch over your [pc.face]. You try to look up at Shade, but find your view of the kaithrit’s face totally obstructed by the hefty swells of her breasts, jutting proudly from her chest.");
 	output("\n\nStill, it doesn’t take a genius to figure out what she wants, and if it merits you more of her wondrous tail’s attention, you’re more than happy to give the huntress what she wants. You slip your hands up to the cat-girl’s hips, caressing her wide, motherly curves, letting your fingers brush the tight muscles of her backside. She lets out a breathy moan, and you feel her tailcunt slither around your dick, squeezing you tighter in response. Using your newfound purchase on the feline vixen, you guide her stance downwards, bringing that juicy little cunny of hers into tongue’s reach. You open wide, planting a sloppy kiss on Shade’s lower lips, letting your [pc.tongue] slip out and probe between them. The moment you do, you wince as her tailcunt clenches around your [pc.cock " + x + "], squeezing your shaft as tight as her lube-slick channel can manage, slipping down to take you to the base.");
-	output("\n\n<i>“Juuuuust like that, kid,”</i> Shade groans, grinding against your face, shivering from tail-tip to toe around your probing tongue. You grip her tighter, refusing to let her move too quickly - you’re going to enjoy this too, damn it! Your tongue slips deeper into her, slithering through the tight channel of Shade’s sex, lapping at the sweet juices that bead out in answer to your every motion. Shade’s mounting excitement translate in a steady increase in her tailcunt’s pace, making it’s slitted tip bounce on your shaft. She echoes <i>“Just like that,”</i> again and again, stroking your [pc.hair] with one hand, cupping and squeezing her breasts with the other, giving you a chance to finally see your lover’s face again. Her eyes are rolled  and half-closed, mouth agape with silent cries of pleasure.");
+	output("\n\n<i>“Juuuuust like that, kid,”</i> Shade groans, grinding against your face, shivering from tail-tip to toe around your probing tongue. You grip her tighter, refusing to let her move too quickly - you’re going to enjoy this too, damn it! Your tongue slips deeper into her, slithering through the tight channel of Shade’s sex, lapping at the sweet juices that bead out in answer to your every motion. Shade’s mounting excitement translate in a steady increase in her tailcunt’s pace, making it’s slitted tip bounce on your shaft. She echoes <i>“Just like that,”</i> again and again, stroking your [pc.hair] with one hand, cupping and squeezing her breasts with the other, giving you a chance to finally see your lover’s face again. Her eyes are rolled and half-closed, mouth agape with silent cries of pleasure.");
 	output("\n\nLooks like your lover’s quickly losing herself to pleasure - not far behind you. Her tail’s muscles wring harder and fast, jacking you off in its wet, hot grip, working hard to milk the seed out of you. You can feel your orgasm building, your [pc.balls] churning with cum ready to shoot off. Her vaginal parasite seems to sense the buildup inside you, and that sensation drives it wild, making it move in inhuman ways around you, sucking and fucking until you can’t take it anymore.");
 	output("\n\nThe next few moments are less you blowing your load so much as the voracious cunt-tail sucking the sperm out of you, draining your [pc.balls] with unyielding motions and an alien suction that feels like you’re trapped in a lubed-up cockmilker. You try to scream in pleasure, but no sound comes but a muted gasp, drawn out as your back arches into the overwhelming urgency of your orgasm. Shockwaves of pleasure hit you seconds after the first spurts of cum leave you, forcing your body rigid and breathing hard, trying to keep up with the suckling tail.");
 	output("\n\nOvertop you, Shade chews on her lip, moving her hips faster - clearly enjoying the sensation of cum pouring into her parasitic appendage. As your orgasm abates, she licks her lips and looks down at you, planting her hands on the headboard and flashing you a predatory grin.");
@@ -781,7 +781,7 @@ public function cuntTailShadeFux():void
 	else output("deep inside her, your inhumanly long tongue like a writhing tentacle inside her");
 	output(", teasing and caressing for minute after minute. Her breathing grows faster and more shallow, her heart racing enough to let you feel it through the walls of her drooling pussy. She’s so close that you can - literally - taste it, feeling the sweltering heat of her sex washing over your cheeks and chin, bathing you in moisture.");
 
-	output("\n\nShade’s climax washes over you in a rush of femcum and a scream of pleasure that  reverberates through her quarters. You keep on licking, just doing what you’re doing and letting the kaithrit huntress ride through it. Her hips move faster, bouncing on your probing tongue through her orgasm until she’s nothing more than a gasping, moaning puddle of mewling pleasure in your hands. With a final groan, she rolls off of you, flopping onto her back beside you. Her cunt-tail coils around her leg, coming to rest on your [pc.crotch], lips brushing back against your well-milked prick.");
+	output("\n\nShade’s climax washes over you in a rush of femcum and a scream of pleasure that reverberates through her quarters. You keep on licking, just doing what you’re doing and letting the kaithrit huntress ride through it. Her hips move faster, bouncing on your probing tongue through her orgasm until she’s nothing more than a gasping, moaning puddle of mewling pleasure in your hands. With a final groan, she rolls off of you, flopping onto her back beside you. Her cunt-tail coils around her leg, coming to rest on your [pc.crotch], lips brushing back against your well-milked prick.");
 	processTime(24);
 	pc.orgasm();
 	IncrementFlag("SEXED_SHADE");
@@ -1081,8 +1081,25 @@ public function shadePostCoitusHangouts():void
 		if(flags["SHADE_ON_UVETO"] == undefined) output(" chest into her bra and shirt");
 		else output(" twat-tail into a tan sock to keep it warm -- which involves a great deal of bending over, letting her breasts sway pendulously while she wrestles with the uncooperative appendage");
 		output(". When she’s finished, she casts a glance over her shoulder at you and gives you a playful wink.");
-		output("\n\n<i>“Enjoy the show?”</i> she asks, picking up her duster and tossing it over her shoulder. <i>“I’m going back to the bar. Let yourself out when you’re ready.”</i>");
-		output("\n\nYou nod, and watch Shade on her way out. After a few minutes to catch your breath, you hop out of your lover’s bed and collect your [pc.gear] from the corridor. You get your");
+		output("\n\n<i>“Enjoy the show?”</i> she asks,");
+		if(flags["SHADE_ON_UVETO"] != undefined && shadeIsHome()) output(" straightening her clothes");
+		else output(" picking up her duster and tossing it over her shoulder");
+		output(". <i>“I’m going");
+		if(flags["SHADE_ON_UVETO"] != undefined && shadeIsHome())
+			output(
+				RandomInCollection(
+					" to freshen up in the bathroom",
+					" to cook something in the kitchen",
+					" to clean the living room",
+					" to check on my drones"
+				)
+			);
+		else output(" back to the bar");
+		output(". Let yourself out when you’re ready.”</i>");
+		output("\n\nYou nod, and watch Shade");
+		if(flags["SHADE_ON_UVETO"] != undefined && shadeIsHome()) output(" leave the bedroom");
+		else output(" on her way out");
+		output(". After a few minutes to catch your breath, you hop out of your lover’s bed and collect your [pc.gear] from the corridor. You get your");
 		if(flags["SHADE_ON_UVETO"] == undefined)
 		{
 			output(" gear in order and let yourself out. Shade’s ships seals tight behind you.");
@@ -1183,8 +1200,18 @@ public function recoverWithShade():void
 	{
 		output("\n\nBefore you know it, your lover has very adamantly planted you at her table, and the smell of sizzling eggs and bacon starts wafting through the house. A few minutes later a big, piping hot plate of breakfast is in front of you, followed by a lovely kaithrit sitting cross-legged and eating with one hand, reading off a datapad with the other. Considering the night’s events, there’s little need for small talk -- just quiet companionship with your lover, punctuated by the occasional murmured headline from Shade’s datapad or her pussy-tail wandering up your [pc.leg] before one or the other of you swats it off.");
 		output("\n\nWhen you’ve both had your fill, one of Shade’s canid drones pads into the room and lifts your plate off the table and carries it off to the sink. Shade cleans up after it, putting those surprising domestic skills of her on display as she whisks away any trace of mess and leaves you with a steaming mug in your hands to kick start your day.");
-		output("\n\n<i>“Let’s get going,”</i> Shade offers, pulling you to your [pc.feet]. <i>“Much as I’d like to lounge around here all day, I’ve got business to chew through, and a powerful need for bar snacks and warm drink to do it.”</i>");
-		output("\n\nWith an arm around your waist, Shade leads you up the stairs and back into the blowing gale of the Uvetan winds. Just before you step out, though, Shade pulls you into a quick kiss and gives you a final smack on your [pc.butt] before trotting off towards the tavern.");
+		if(flags["SHADE_ON_UVETO"] != undefined && shadeIsHome())
+		{
+			output("\n\n<i>“You better get going,”</i> Shade offers, pulling you to your [pc.feet]. <i>“As much as I like your company, I’ve got some errands I need to take care of around here.”</i>");
+			output("\n\nShade leads you up the stairs and you head back out, into the blowing gale of the Uvetan winds. Just before you step out, though, Shade pulls you into a quick kiss and gives you a final smack on your [pc.butt] before you trot off towards the tavern.");
+		}
+		else
+		{
+			output("\n\n<i>“Let’s get going,”</i> Shade offers, pulling you to your [pc.feet]. <i>“Much as I’d like to lounge around here all day, I’ve got business to chew through, and a powerful need for bar snacks and warm drink to do it.”</i>");
+			output("\n\nWith an arm around your waist, Shade leads you up the stairs and back into the blowing gale of the Uvetan winds. Just before you step out, though, Shade pulls you into a quick kiss and gives you a final smack on your [pc.butt] before trotting off towards the tavern.");
+		}
+		processTime(15);
+		eatHomeCooking(15);
 		currentLocation = "UVI P32";
 	}
 	
@@ -1621,10 +1648,10 @@ public function runesYouTurdShade():void
 		output("a small, silver necklace out from her shirt. It looks like a vertical bar pierced by a triangle, sort of like a sideways hat.");
 		flags["SHADE_CULT_TALK"] = 1;
 	}
-	output(" <i>“I told their leader I didn’t buy into the whole gods and giants thing, but he just smiled at me and nodded, all fatherly understanding. Said belief wasn’t what mattered, but the way you behaved. He told me about their philosophy, honor in battle, wisdom before action. They preached self-empowerment and courage more than gods; hell, some of the oldest members confessed to me while I was there that </i>they<i> didn’t believe in the gods, but they liked the message. I suppose I could have picked a worse religion to fall in with than one that encouraged me to be a warrior, even trained me. Plus they" + (flags["SHADE_ON_UVETO"] == undefined ? " had" : "’ve got") +  " a pretty serious fertility and sex-potency undertone going on, so it didn’t hurt that I came to them with a kid on the way.”</i>");
+	output(" <i>“I told their leader I didn’t buy into the whole gods and giants thing, but he just smiled at me and nodded, all fatherly understanding. Said belief wasn’t what mattered, but the way you behaved. He told me about their philosophy, honor in battle, wisdom before action. They preached self-empowerment and courage more than gods; hell, some of the oldest members confessed to me while I was there that </i>they<i> didn’t believe in the gods, but they liked the message. I suppose I could have picked a worse religion to fall in with than one that encouraged me to be a warrior, even trained me. Plus they" + (flags["SHADE_ON_UVETO"] == undefined ? " had" : "’ve got") + " a pretty serious fertility and sex-potency undertone going on, so it didn’t hurt that I came to them with a kid on the way.”</i>");
 	if(flags["SHADE_ON_UVETO"] == undefined) output("\n\n<i>“You talk like you stayed there for a while. Didn’t you join up just to leave?”</i>");
 	else output("\n\n<i>“Didn’t you join up just to leave? What’re you still doing here?”</i>");
-	output("\n\nShade chuckles. <i>“I did. But it dawned on me I didn’t really have anywhere to go. I was too afraid to go " + (flags["SHADE_ON_UVETO"] == undefined ? "home" : "back to Rosha") +  ", and I wasn’t exactly well to do back then. Not like now, that’s for sure. Plus I was pregnant, and starting to show. I wasn’t going to be doing much bounty hunting while waddling around " + (flags["SHADE_ON_UVETO"] == undefined ? "in a couple months" : "with a big baby belly") +  ". So yeah, I stayed with them. For a couple of years, actually. I had Astra, then went in for their warrior training. It was grueling, near military, and all about discipline and keeping cool under pressure. I’ll tell you this: I was a better woman for it, and a better hunter when I set out again. When I decided to go, they sent me off with a feast and well wishes, loaded me down with rune-carved gear and presents for my little girl.”</i>");
+	output("\n\nShade chuckles. <i>“I did. But it dawned on me I didn’t really have anywhere to go. I was too afraid to go " + (flags["SHADE_ON_UVETO"] == undefined ? "home" : "back to Rosha") + ", and I wasn’t exactly well to do back then. Not like now, that’s for sure. Plus I was pregnant, and starting to show. I wasn’t going to be doing much bounty hunting while waddling around " + (flags["SHADE_ON_UVETO"] == undefined ? "in a couple months" : "with a big baby belly") + ". So yeah, I stayed with them. For a couple of years, actually. I had Astra, then went in for their warrior training. It was grueling, near military, and all about discipline and keeping cool under pressure. I’ll tell you this: I was a better woman for it, and a better hunter when I set out again. When I decided to go, they sent me off with a feast and well wishes, loaded me down with rune-carved gear and presents for my little girl.”</i>");
 	output("\n\nYour companion gets a wistful look in her eyes, staring far away as she finishes. <i>“");
 	if(flags["SHADE_ON_UVETO"] == undefined) output("I still go back from time to time, either to Uveto or their other churches scattered all over.");
 	else output("That’s why I moved back, I guess. When it came time to start putting my roots down, this place always felt like home more than anywhere else.");
@@ -2149,7 +2176,7 @@ public function gibShadeModItemsII(selItem:String):void
 	
 	output("\n\nYou don’t bother to deny it. You’re more interested in how she’s going to put your gift to use.");
 	
-	output("\n\n<i>“Alright, let me go back to my ship. I know how these things can make you a little less than decent when you use them. I’ll be back in a minute, sweetheart. Don’t  go anywhere...”</i>");
+	output("\n\n<i>“Alright, let me go back to my ship. I know how these things can make you a little less than decent when you use them. I’ll be back in a minute, sweetheart. Don’t go anywhere...”</i>");
 	
 	output("\n\nShade flashes you a wink and stands up, heading towards the door. Her hand brushes your shoulder as she goes, pursing her lips in a blown kiss when you turn to watch her leave.");
 

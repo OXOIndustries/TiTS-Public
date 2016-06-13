@@ -380,7 +380,7 @@
 			else
 			{
 				output("\nThere’s a loud ‘whump’ and a cloud of red mist swiftly engulfs you.");
-				if (target.hasArmor() && target.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+				if (target.hasAirtightSuit())
 				{
 					output(" Fortunately for you, the smoke doesn't leak through your airtight [pc.armor], but it obscures your vision just briefly.");
 				}

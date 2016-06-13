@@ -256,7 +256,7 @@
 				output("crashes into your upraised forearm. The thin glass shatters, you’re splattered in one of the more potent aphrodisiacs this side of the Milky Way.");
 				if(!(target.armor is EmptySlot)) 
 				{
-					if(!target.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT)) output(" Your [pc.armor] doesn’t do much to stop it either. The insidious stuff slips through cracks and seams with alarming ease. You doubt anything but an airtight suit could stop it.");
+					if(!target.hasAirtightSuit()) output(" Your [pc.armor] doesn’t do much to stop it either. The insidious stuff slips through cracks and seams with alarming ease. You doubt anything but an airtight suit could stop it.");
 					else 
 					{
 						output(" Your [pc.armor] handles the stuff with almost contemptuous ease, allowing the insidious fluid to drip down its airtight surface to the floor where it can’t trouble anything but rock.");

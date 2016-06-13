@@ -298,7 +298,7 @@ package classes.Characters
 			if (kara != null) output(" and Kara");
 			output(".");
 			
-			if(pc.hasArmor() && pc.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT)) output("\nAs the mist spreads around you, you find yourself lucky enough to be wearing some airtight armor! No telling how that stuff might affect your senses.");
+			if(pc.hasAirtightSuit()) output("\nAs the mist spreads around you, you find yourself lucky enough to be wearing some airtight armor! No telling how that stuff might affect your senses.");
 			else
 			{
 				output("\nRather than choking on it, though");
