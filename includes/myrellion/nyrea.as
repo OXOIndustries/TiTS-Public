@@ -982,15 +982,13 @@ public function nyreaTailcockDocking():void
 
 public function pcLossToNyreaAdditionalOne():void
 {
+	clearOutput();
+	nyreaHeaderFromCreature(enemy, "DEFEAT:");
+	var pData:PregnancyData;
+	
 	showName("ALPHA\nNYREA");
 	showBust("NYREA_ALPHA");
 	author("Wsan");
-	
-	nyreaHeaderFromCreature(enemy, "DEFEAT:");
-	
-	var pData:PregnancyData;
-	
-	clearOutput();
 	
 	output("The Alpha nimbly pirouettes behind you, slapping your [pc.weapon] to the ground with the haft of her spear as she does so. A moment later and her voluptuous breasts are pushed up against your back, her spear discarded in favor of seizing your [pc.ass]. She breathes hotly on your neck before sweeping your feet out from under you, sending you tumbling to your hands and knees. You hear a gentle laugh from behind you.");
 	output("\n\n<i>“A fitting position for you, offworlder. Crawling on your hands and knees before me.”</i>");
@@ -1113,11 +1111,12 @@ public function pcLossToNyreaAdditionalOne():void
 
 public function pcLossToNyreaAdditionalTwo():void
 {
+	clearOutput();
+	
 	showName("ALPHA\nNYREA");
 	showBust("NYREA_ALPHA");
 	author("Wsan");
 	
-	clearOutput();
 	output("The Alpha slowly walks towards you, her chainmail bikini falling to the ground to reveal her voluptuous form. Her perfect breasts sway slightly from side to side as she approaches you, but your eyes are fixated solely on her beautiful cock. Her swollen, throbbing, rapidly-stiffening cock.");
 	if (enemy.lust() > 60) output("You stare at her hardened length with pure lust, your mouth hanging slightly open in dumb adoration.");
 	else output("You stare at her rapidly hardening dick with pure lust, your mouth hanging slightly open in dumb adoration as it rises to its full length.");
@@ -1189,11 +1188,11 @@ public function pcLossToNyreaAdditionalTwo():void
 
 public function pcLossToNyreaBadEndPartOne():void
 {
+	clearOutput();
+	
 	showName("ALPHA\nNYREA");
 	showBust("PRINCESS");
 	author("Wsan");
-	
-	clearOutput();
 	
 	output("You collapse to your knees, your [pc.weapon] falling from your hands as you stare unabashedly at the huntress’ beautiful cock, already stiffening under her chainmail in anticipation. Her sexy swaying walk over to you is agonizingly slow, and when she finally reaches your panting frame you immediately lunge forward and spread your [pc.lips] around her penis, paying her worship the only way you know how. You grab her soft buttocks and pull yourself forward in your desperation, trying to satisfy your need to be full of her cock. If she disapproves of your forwardness she doesn’t show it, electing instead to gently run her fingers through your [pc.hair] and smile down at you. The sensation of her cock painting your insides with spurts warm pre is nothing compared to the sexual thrill of looking deep into her eyes with her hilted in your throat, knowing you’re bringing pleasure to your Alpha. No words are necessary between the two of you, reveling in the intimacy of each other’s bodies. You squeeze her buttcheeks tightly as her hips roll back, then pull her back in as she slams into your gullet. Your gag reflex is nonexistent owing to her drilling you so often and it makes for a slick fuck while she busts down your throat, practically purring with pleasure.");
 	output("\n\n<i>“Ohhh, you’re going to be just <i>perfect</i>.”</i>");
@@ -1219,11 +1218,11 @@ public function pcLossToNyreaBadEndPartOne():void
 
 public function pcLossToNyreaBadEndPartTwo():void
 {
+	clearOutput();
+	
 	showName("ALPHA\nNYREA");
 	showBust("PRINCESS");
 	author("Wsan");
-	
-	clearOutput();
 	
 	output("Your trip is punctuated by brief sessions of being claimed and fucked, each hole of yours offered in service to your Alpha until you’re dripping her cum from every orifice and stumbling along behind her in a fuck-dazed stupor. She doesn’t treat you cruelly or yank you around, but she doesn’t slow her pace either. You understand the implication. She expects you to tend to her every desire and service her whenever she wants it, but you need to be worthy of her and earn it.");
 	output("\n\nYou don’t question it when you pass through a community of myr, nyrea, and wetraxxel to stand in front of a large stone gate guarded by what looks to be nyrean elites. You don’t question it when she fucks you to a screaming orgasm in front of them, either. You are, after all, hers. It’s not your place to do anything except happily submit to her will. She takes you past a well lit cavern with a guard post, traveling through a tunnel network until you arrive at a set of heavy stone doors flanked by brilliantly glowing blue lanterns. Pushing it open, she steps inside and the sight that greets your eyes is one of debauchery and lust. Several dozen nyrean males are within, all in various states of bondage. Some are cuffed to each other, others are chained to the bed or to chairs, and still others are locked in stocks. All of them have dildos or plugs shoved deep into their cunts and pools of wetness below them. You realize with an inward spike of happiness that your mistress must have left them here while looking for you. She must have really wanted you to be her breeder! While you’re taking stock of the situation, your Alpha lets go of your hand and fetches something from the near-empty racks of bondage gear. When she brings it back, you see it’s a golden collar. You can’t read the writing on it, though. She sees you looking and smirks knowingly.");
