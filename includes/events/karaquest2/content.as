@@ -2734,6 +2734,7 @@ public function kq2PostKaraSexyCombineGo():void
 	}
 	else
 	{
+		output("\n\n");
 		CombatManager.genericVictory();
 	}
 }
@@ -2792,7 +2793,7 @@ public function kq2PostKaraSexyCombineStay():void
 		
 		output("\n\nKara giggles and gives you a parting kiss - and a firm squeeze of your [pc.butt]. <i>“See ya, [pc.name]. Don’t be a stranger.”</i>");
 		
-		output("\n\nThe airlock snaps closed behind you, and you make the journey back to your own ship in silence.");
+		output("\n\nThe airlock snaps closed behind you, and you make the journey back to your own ship in silence.\n\n");
 
 		pc.removeStatusEffect("Kara Fuck Alternate Path");
 

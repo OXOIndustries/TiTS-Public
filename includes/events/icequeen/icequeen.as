@@ -513,7 +513,6 @@ public function iceQueenUvetoEntry(oldUvetoVisitFlagValue:* = undefined):void
 	output("\n\nJust as you’re getting through with the mountain of legal gobbledygook the Tove sent you, your proximity sensors alert you to the approach of a large ship bearing the trade IDs of the Camarilla. You respond to a message blip ordering you to power down weapons and shields and follow the <i>“wabeshift”</i> to Uveto Station’s docking terminal. You do as you’re ordered and switch the autopilot on, letting it dog the Camarilla ship in towards the station.");
 
 	shipLocation = "UVS F15";
-	//currentLocation = "UVS F15";
 	currentLocation = "SHIP INTERIOR";
 	showLocationName();
 
@@ -845,13 +844,14 @@ public function iceQueenBeatZaaltHelpHimII():void
 
 public function iceQueenNoKara():void
 {
+	currentLocation = "UVS B7"; // Uveto cafe
+	generateMap();
+	showLocationName();
+	
 	clearOutput();
 	showZaalt();
 
 	pc.credits += 10000;
-	currentLocation = "UVI R32"; // 9999 Uveto cafe
-	generateMap();
-	addUvetoCold();
 
 	output("<i>“There’s our guy,”</i> Zaalt says, subtly nodding his head to where a young man is leaning back at a table against the far wall. He’s obviously not human, covered in a thin layer of navy blue fur culminating in a mop of dark red hair and a pair of perky, rabbit-like ears. Your contact’s dressed in a black flight jacket, unzipped to show off a blood red T-shirt with the words <i>HEAVY METAL BAND</i> inscribed across it in obviously ironic swirling font.");
 	if (pc.characterClass != GLOBAL.CLASS_ENGINEER) output(" You immediately notice the holsters under his jacket, packed with a pair of holdout pistols, likely imperceptible to eyes less keen than yours.");
@@ -899,6 +899,10 @@ public function showKaraAndZaalt():void
 
 public function iceQueenKaraShowsUp():void
 {
+	currentLocation = "UVS B7"; // Uveto cafe
+	generateMap();
+	showLocationName();
+	
 	clearOutput();
 	showKaraAndZaalt();
 
@@ -971,8 +975,6 @@ public function iceQueenKaraShowsUpCOOLIT():void
 	processTime(10+rand(5));
 
 	pc.credits += 10000;
-	currentLocation = "UVI R32"; // 9999 Uveto Cafe
-	addUvetoCold();
 
 	CombatManager.genericVictory();
 }
@@ -1051,9 +1053,6 @@ public function iceQueenKaraShowsUpInterruptSure():void
 	
 	processTime(5);
 
-	currentLocation = "UVI R32"; // 9999 uveto cafe
-	addUvetoCold();
-
 	CombatManager.genericVictory();
 }
 
@@ -1106,8 +1105,6 @@ public function iceQueenKaraShowsUpInterruptNo():void
 
 	processTime(30 + rand(15));
 
-	currentLocation = "UVI R32"; // 9999 Uveto cafe
-	addUvetoCold();
 	CombatManager.genericVictory();
 }
 
@@ -1146,9 +1143,13 @@ public function iceQueenKaraShowsUpInterruptSex():void
 
 public function iceQueenKaraSexytimes():void
 {
+	currentLocation = "UVS F15"; // Ship hangar
+	generateMap();
+	showLocationName();
+	
 	clearOutput();
 	showKara(true);
-
+	
 	output("A few minutes later and you’re stumbling through the airlock of the <i>Ghost</i>, both hands supporting Kara’s soft ass as she rides you, legs wrapped around your midriff and lips eagerly exploring your neck. Her tails swish quickly around your [pc.feet], making you stumble all the more until the door finally opens, and you end up staggering in and shoving her up against a bulkhead. Kara gasps and moans, rolling her head back as she’s pressed tightly between you and the cold metal, left helpless but to let your teeth grip the zipper of her catsuit and yank it down until you’ve got a clean shot at those beautiful E-cups of hers.");
 	
 	output("\n\n<i>“M-my cabin’s that way,”</i> she gasps as your lips lock around a pierced nipple, pulling the breast free of her tight catsuit and into your grasp. What’s she got to worry about? You’ve got half a mind to take her here and now - and if the way her crotch is bulging, pressing needily against your hip, she wants it too. It takes all the will you can muster to pull yourself off the feline beauty and cart her into her cabin, throwing her down on the plush bed and leaping on her");
@@ -1170,9 +1171,6 @@ public function iceQueenKaraSexytimes():void
 	if (pc.hasCock()) output(" She hesitates for a moment after that, though: a silent offer to let you decide who’s fucking who...");
 	
 	//if PC no cock: [Next] into Take Kittydick. Else, give options.
-
-	currentLocation = "SHIP INTERIOR";
-
 	pc.createStatusEffect("Kara Fuck Alternate Path");
 	
 	processTime(10);
