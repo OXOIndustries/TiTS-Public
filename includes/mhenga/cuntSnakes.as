@@ -473,7 +473,8 @@ public function fuckACuntSnake():void {
 	output("\n\n[pc.OneCock] is soaked in pussy juice but not a drop of cum, and you tuck your female-scented package ");
 	if(pc.armor.shortName != "") output("back into your [pc.armor] with a rueful smile.");
 	else if(pc.lowerUndergarment.shortName != "") output("back into your [pc.lowerUndergarment] with a rueful smile.");
-	else output("away with a rueful smile.\n\n");
+	else output("away with a rueful smile.");
+	output("\n\n");
 	
 	processTime(15+rand(15));
 	pc.orgasm();
