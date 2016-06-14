@@ -303,16 +303,16 @@ public function loseToCuntSnakeAndDontGetSucked():void {
 
 // Tail Transformation
 // adoptType equal to false will force the cunt snake type tail, otherwise type will remain the same and the tailcunt flag will be applied.
-public function cuntSnakeTailTF(adoptType:Boolean = false):void
+public function cuntSnakeTailTF(adoptFlag:Boolean = false, adoptType:Boolean = false, parasite:Boolean = true):void
 {
 	var i:int = 0;
 	var tailFlagList:Array = [];
 	var tailTextureList:Array = [GLOBAL.FLAG_SMOOTH, GLOBAL.FLAG_FURRED, GLOBAL.FLAG_FLUFFY, GLOBAL.FLAG_SCALED, GLOBAL.FLAG_CHITINOUS, GLOBAL.FLAG_FEATHERED, GLOBAL.FLAG_GOOEY, GLOBAL.FLAG_STICKY];
 	
-	if(adoptType && pc.tailCount > 0)
+	if(adoptFlag && pc.tailCount > 0)
 	{
 		// Non-long, cock, and alternate parasite tails get the cunt snake type anyway
-		if(!pc.hasTailFlag(GLOBAL.FLAG_LONG) || pc.hasTailFlag(GLOBAL.FLAG_TAILCOCK) || pc.hasParasiteTail()) pc.tailType = GLOBAL.TYPE_CUNTSNAKE;
+		if(!adoptType || !pc.hasTailFlag(GLOBAL.FLAG_LONG) || pc.hasTailFlag(GLOBAL.FLAG_TAILCOCK) || pc.hasParasiteTail()) pc.tailType = GLOBAL.TYPE_CUNTSNAKE;
 		
 		for(i = 0; i < pc.tailFlags.length; i++)
 		{
@@ -327,7 +327,7 @@ public function cuntSnakeTailTF(adoptType:Boolean = false):void
 	
 	pc.tailCount = 1;
 	pc.clearTailFlags();
-	if(adoptType && tailFlagList.length > 0)
+	if(adoptFlag && tailFlagList.length > 0)
 	{
 		for(i = 0; i < tailFlagList.length; i++)
 		{
@@ -338,7 +338,8 @@ public function cuntSnakeTailTF(adoptType:Boolean = false):void
 	pc.addTailFlag(GLOBAL.FLAG_LONG);
 	if(pc.tailType == GLOBAL.TYPE_CUNTSNAKE) pc.addTailFlag(GLOBAL.FLAG_THICK);
 	else pc.addTailFlag(GLOBAL.FLAG_TAILCUNT);
-	pc.tailGenital = GLOBAL.TAIL_GENITAL_NONE;
+	if(parasite) pc.tailGenital = GLOBAL.TAIL_GENITAL_NONE;
+	else pc.tailGenital = GLOBAL.TAIL_GENITAL_VAGINA;
 	pc.tailGenitalArg = enemy.tailGenitalArg;
 	pc.tailGenitalColor = enemy.tailGenitalColor;
 }
