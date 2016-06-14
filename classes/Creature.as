@@ -7965,19 +7965,26 @@
 		{
 			tailCount = 0;
 			tailType = 0;
-			tailGenital = 0;
+			tailGenital = GLOBAL.TAIL_GENITAL_NONE;
 			tailGenitalArg = 0;
 			tailGenitalColor = "";
 			clearTailFlags();
 			return;
 		}
 		public function hasParasiteTail(): Boolean {
-			if (tailCount > 0 && InCollection(tailType, GLOBAL.TYPE_CUNTSNAKE, GLOBAL.TYPE_COCKVINE)) return true;
+			if(tailCount > 0)
+			{
+				if(InCollection(tailType, GLOBAL.TYPE_CUNTSNAKE, GLOBAL.TYPE_COCKVINE)) return true;
+				if(hasTailFlag(GLOBAL.FLAG_TAILCUNT) && tailGenital == GLOBAL.TAIL_GENITAL_NONE) return true;
+				if(hasTailFlag(GLOBAL.FLAG_TAILCOCK) && tailGenital == GLOBAL.TAIL_GENITAL_NONE) return true;
+			}
 			return false;
 		}
 		public function hasTailCock(): Boolean {
-			if (hasTailFlag(GLOBAL.FLAG_TAILCOCK) && tailCount > 0) return true;
-			if (tailType == GLOBAL.TYPE_COCKVINE && tailCount > 0) return true;
+			if(tailCount > 0)
+			{
+				if(tailGenital == GLOBAL.TAIL_GENITAL_COCK || tailType == GLOBAL.TYPE_COCKVINE || hasTailFlag(GLOBAL.FLAG_TAILCOCK)) return true;
+			}
 			return false;
 		}
 		public function hasCockTail(): Boolean {
@@ -7990,8 +7997,10 @@
 			return hasTailCunt();
 		}
 		public function hasTailCunt(): Boolean {
-			if (hasTailFlag(GLOBAL.FLAG_TAILCUNT) && tailCount > 0) return true;
-			if (tailType == GLOBAL.TYPE_CUNTSNAKE && tailCount > 0) return true;
+			if(tailCount > 0)
+			{
+				if(tailGenital == GLOBAL.TAIL_GENITAL_VAGINA || tailType == GLOBAL.TYPE_CUNTSNAKE || hasTailFlag(GLOBAL.FLAG_TAILCUNT)) return true;
+			}
 			return false;
 		}
 		//In case there's ever different types of cuntTails available, we'll need different methods.

@@ -338,6 +338,7 @@ public function cuntSnakeTailTF(adoptType:Boolean = false):void
 	pc.addTailFlag(GLOBAL.FLAG_LONG);
 	if(pc.tailType == GLOBAL.TYPE_CUNTSNAKE) pc.addTailFlag(GLOBAL.FLAG_THICK);
 	else pc.addTailFlag(GLOBAL.FLAG_TAILCUNT);
+	pc.tailGenital = GLOBAL.TAIL_GENITAL_NONE;
 	pc.tailGenitalArg = enemy.tailGenitalArg;
 	pc.tailGenitalColor = enemy.tailGenitalColor;
 }
