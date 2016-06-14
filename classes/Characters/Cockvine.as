@@ -309,7 +309,7 @@
 			//Lust rise if success
 			output("One of the tentacles reaches for your face, implacably stretching towards the wet orifice it can sense there.");
 
-			if (target.hasArmor() && target.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+			if (target.hasAirtightSuit())
 			{
 				output(" Luckily, your airtight [pc.armor] protects you from the oral invasion!");
 			}

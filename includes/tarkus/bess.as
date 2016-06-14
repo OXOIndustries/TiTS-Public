@@ -10715,7 +10715,7 @@ public function bessSexMenu():void
 		// If you've equipped Bess with the saurian / dino-dick, the pc's orifice capacity must be able to take a 20 inch long, 12 inch wide cock.
 		if (bess.cocks[0].cType == GLOBAL.TYPE_SAURIAN)
 		{
-			if ((pc.hasVagina() && pc.cuntThatFits(1360) >= 0) || pc.analCapacity() >= 1360) addButton(2, "GetDoggy", bessGetDoggy, undefined, "Get Doggystyle", "Take it from [bess.name], doggy style! [bess.HeShe] must have a cock.");
+			if ((pc.hasVagina() && pc.cuntThatFits(bess.cockVolume(0)) >= 0) || pc.analCapacity() >= bess.cockVolume(0)) addButton(2, "GetDoggy", bessGetDoggy, undefined, "Get Doggystyle", "Take it from [bess.name], doggy style! [bess.HeShe] must have a cock.");
 			else addDisabledButton(2, "GetDoggy", "Get Doggystyle", "Take it from [bess.name], doggy style! [bess.HeShe] must have a cock that [bess.heShe] can squeeze into you!");
 		}
 		else
@@ -11566,14 +11566,14 @@ public function bessGiveDoggySelected(bTargetVag:Boolean = false):void
 public function bessGetDoggy():void
 {
 	// Cunt that fits Saurian-type cocks, ass doesn't fit
-	if (pc.hasVagina() && bess.cocks[0].cType == GLOBAL.TYPE_SAURIAN && pc.cuntThatFits(1360) >= 0 && pc.analCapacity() < 1360)
+	if (pc.hasVagina() && bess.cocks[0].cType == GLOBAL.TYPE_SAURIAN && pc.cuntThatFits(bess.cockVolume(0)) >= 0 && pc.analCapacity() < bess.cockVolume(0))
 	{
 		bessGetDoggySelected(true);
 		return;
 	}
 
 	// Cunt doesn't fit Saurian-type cocks, or no cunt
-	if ((pc.hasVagina() && bess.cocks[0].cType == GLOBAL.TYPE_SAURIAN && pc.cuntThatFits(1360) == -1) || !pc.hasVagina())
+	if ((pc.hasVagina() && bess.cocks[0].cType == GLOBAL.TYPE_SAURIAN && pc.cuntThatFits(bess.cockVolume(0)) == -1) || !pc.hasVagina())
 	{
 		bessGetDoggySelected(false);
 		return;
@@ -12619,7 +12619,7 @@ public function bessIntimateSexMenu():void
 		// If you've equipped Bess with the saurian / dino-dick, the pc's orifice capacity must be able to take a 20 inch long, 12 inch wide cock.
 		if (bess.cocks[0].cType == GLOBAL.TYPE_SAURIAN)
 		{
-			if ((pc.hasVagina() && pc.cuntThatFits(1360) >= 0) || pc.analCapacity() >= 1360) addButton(2, "Missionary", bessIntimateGetDoggy, false, "Get Intimate Missionary", "Take it from [bess.name], missionary style.");
+			if ((pc.hasVagina() && pc.cuntThatFits(bess.cockVolume(0)) >= 0) || pc.analCapacity() >= bess.cockVolume(0)) addButton(2, "Missionary", bessIntimateGetDoggy, false, "Get Intimate Missionary", "Take it from [bess.name], missionary style.");
 			else addDisabledButton(1, "Missionary", "Get Intimate Missionary", "Take it from [bess.name], missionary style. [bess.HeShe] must have a cock that [bess.heShe] can squeeze into you!");
 		}
 		else
@@ -12757,8 +12757,8 @@ public function bessIntimateGetDoggy(fromEvent:Boolean = false):void
 
 	if (bess.cocks[0].cType == GLOBAL.TYPE_SAURIAN)
 	{
-		vagIdx = pc.cuntThatFits(1360);
-		cVolume = 1360;
+		vagIdx = pc.cuntThatFits(bess.cockVolume(0));
+		cVolume = bess.cockVolume(0);
 	}
 	else if (pc.hasVagina())
 	{

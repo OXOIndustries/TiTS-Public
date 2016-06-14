@@ -1448,7 +1448,7 @@ public function seraSexXXXJardiThreesome(response:String = "jardis"):void
 	clearOutput();
 	author("Nonesuch");
 	showBust("SERA", "JARDI");
-	showName("SERA\nAND JARDI");
+	showName("SERA\n& JARDI");
 	
 	// First
 	if(flags["SERA_IN_JARDI_THREESOME"] == undefined)

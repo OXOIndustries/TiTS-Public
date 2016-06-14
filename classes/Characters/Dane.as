@@ -257,7 +257,7 @@
 		
 		private function daneLickitongue(target:Creature):void
 		{
-			if(target.hasArmor() && target.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+			if(target.hasAirtightSuit())
 			{
 				output("You feel something warm and wet rub and press against your [pc.crotch]. Dane's tongue tries to get at your nethers but your airtight [pc.armor] prevents that from happening.");
 			}
@@ -302,7 +302,7 @@
 			else
 			{
 				output("\nYou try to twist out of the way, but there's just so many hands grabbing for you at once. Your arms are pinned to your [pc.hips] by one pair while the other bear hugs you against his broad, armored chest.");
-				output("\n<b>You are grappled!");
+				output("\n<b>You are grappled!</b>");
 				target.createStatusEffect("Grappled",0,35,0,0,false,"Constrict","You're pinned in a grapple.",true,0);
 			}
 		}

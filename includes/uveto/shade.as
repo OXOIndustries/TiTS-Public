@@ -37,7 +37,6 @@ public function shadeBustDisplay(nude:Boolean = false):String
 public function shadeIsDead():Boolean
 {
 	if(flags["KQ2_SHADE_DEAD"] != undefined) return true;
-	//if(flags["KQ2_SHADE_ENCOUNTERED"] == 1 && flags["KQ2_NUKE_EXPLODED"] != undefined) return true;
 	return false;
 }
 public function shadeIsActive():Boolean
@@ -100,7 +99,15 @@ public function shadeIsNotSiblings():Boolean
 // Get when moving around on Uveto Station, post Shade leaving Myrellion.
 public function getLetterFromShade():void
 {
-	if(flags["SHADE_ON_UVETO"] >= 2) return;
+	if(flags["SHADE_ON_UVETO"] == undefined)
+	{
+		// Limbo failsafe (Nuked Myrellion, Shade is friendly, Shade still in bar, Shade mysteriously survives and arrives on Uveto a day later...)
+		if(flags["KQ2_NUKE_EXPLODED"] != undefined && shadeIsFriend() && shadeAtTheBar() && flags["KQ2_SHADE_AWAY_TIME"] == undefined)
+		{
+			flags["KQ2_SHADE_AWAY_TIME"] = GetGameTimestamp();
+		}
+		return;
+	}
 	if(MailManager.hasEntry("letter_from_shade") && MailManager.isEntryUnlocked("letter_from_shade")) return;
 	if(shadeAtTheBar() || !shadeIsActive() || flags["KQ2_SHADE_ENCOUNTERED"] == 1) return;
 	
@@ -155,6 +162,8 @@ public function createLetterFromShade():String
 			msg += "\n\nI guess... any way you spin it, now I can sign off:";
 			msg += "\n\nWith Love,";
 			msg += "\nShade";
+			
+			if(flags["SHADE_ON_UVETO"] == undefined || flags["SHADE_ON_UVETO"] < 2) flags["SHADE_ON_UVETO"] = 2;
 		}
 		// Not Lover
 		else
@@ -189,6 +198,8 @@ public function createLetterFromShade():String
 			msg += "\n\nGive me a re: before you stop by some evening, and I’ll have dinner cooking. Something to warm your bones up before I jump ’em. ;) Looking forward to seeing you!";
 			msg += "\n\nLove,";
 			msg += "\nShade";
+			
+			if(flags["SHADE_ON_UVETO"] == undefined || flags["SHADE_ON_UVETO"] < 2) flags["SHADE_ON_UVETO"] = 2;
 		}
 	}
 	// PC is Friend
@@ -208,7 +219,8 @@ public function createLetterFromShade():String
 public function meetingShadeAtUvetoBar(btnSlot:int = 1):void
 {
 	if(flags["SHADE_ON_UVETO"] == undefined) return;
-	if(!shadeIsActive() || !MailManager.hasEntry("letter_from_shade") || !MailManager.isEntryViewed("letter_from_shade")) return;
+	if(!(MailManager.hasEntry("letter_from_shade") && MailManager.isEntryViewed("letter_from_shade"))) return;
+	if(!shadeIsActive()) return;
 	// Exception, only for lovers!
 	if(flags["SHADE_ON_UVETO"] == 2 && shadeIsLover()) return;
 	// Add Shade to the bar after her planetary introduction, assuming she's still cool with the PC. She's here between 10:00 and 20:00 every day.
@@ -614,10 +626,12 @@ public function meetingShadeAtHouse(btnSlot:int = 1):void
 {
 	flags["NAV_DISABLED"] = NAV_EAST_DISABLE;
 	
-	// Have to be invited to her house from the bar first!
-	if(!shadeIsActive() || flags["SHADE_ON_UVETO"] == undefined || flags["SHADE_ON_UVETO"] < 2) return;
+	if(flags["SHADE_ON_UVETO"] == undefined) return;
+	if(!(MailManager.hasEntry("letter_from_shade") && MailManager.isEntryViewed("letter_from_shade"))) return;
+	// Have to be invited to her house first!
+	if(!shadeIsActive() || flags["SHADE_ON_UVETO"] < 2) return;
 	// Add [Buzzer] to the outside of Shade's house, starting at 16:00 each night.
-	if(flags["SHADE_ON_UVETO"] == 2 && shadeIsLover() && hours >= 16) { /* Exception, only for lovers! */ }
+	if(flags["SHADE_ON_UVETO"] == 2 && shadeIsLover() && (shadeIsSiblings() || hours >= 16)) { /* Exception, only for lovers! */ }
 	else if(!shadeIsHome()) return;
 	
 	var response:String = "";
@@ -656,6 +670,9 @@ public function approachShadeAtHouse(response:String = "intro"):void
 		case "lover friend intro":
 			showBust(shadeBustDisplay());
 			showName("\nSHADE");
+			
+			currentLocation = "UVI P30";
+			generateMap();
 			
 			output("You step up to the front door of the tiny little hut bearing your lover’s name and tap the doorbell. An electronic chime echoes from inside, just barely audible over the howl of the frozen winds over the high walls of Irestead. A moment passes in the cold before a small holoscreen next to the door shudders to life, showing you the familiar, smiling face of a certain kaithrit huntress.");
 			output("\n\n<i>“Hey!”</i> she grins, angling the camera on her end up towards herself. Unlike the last time you met, Shade’s ditched her heavy blue duster and simply wrapped herself up in a dark tan sweater that hugs her ample curves loosely and a woolen sock stretched around her reptilian tail, sheathing its lurid sex from sight and its jade scales from the chill. For once she almost looks her age: more hot school mom than deadly space huntress, but the way she smiles invitingly at you, the appeal of your feline lover isn’t lost for a moment.");
@@ -748,12 +765,15 @@ public function approachShadeAtHouse(response:String = "intro"):void
 			showBust(shadeBustDisplay());
 			showName("\nSHADE");
 			
+			currentLocation = "UVI P30";
+			generateMap();
+			
 			output("You approach the Irons residence with a nervous twitch in your step. Somehow you know this isn’t going to be easy -- Shade was positively freaking out the last time you met, and God knows how the time apart has changed her mind. But you steel yourself: you can’t leave things the way they are now. Your lover... and your sister... is waiting for you.");
 			output("\n\nTaking a deep breath, you tap the buzzer beside the door. An electronic chime echoes from inside, just barely audible over the howl of the frozen winds over the high walls of Irestead. A moment passes in the cold before a small holoscreen next to the door shudders to life, showing you the familiar face of the kaithrit huntress. Her natural, cool confidence is gone, replaced by a weary, sad look. Still, Shade forces a smile when she sees you on the holo.");
 			output("\n\n<i>“Hey... little " + pc.mf("brother", "sister") + ",”</i> she says, angling the camera up to her face. <i>“I’m glad you decided to come talk. Here, I’ll pop the door. Come on down.”</i>");
 			output("\n\nThe screen cuts off unceremoniously, following a click from the door. A motor whirs, sliding it out of the way and revealing a small landing inside, leading into a spiralling stairway down. Looks like the hovel topside is nothing more than an entrance to an underground domicile. You step inside, scooting aside several pairs of fur-lined and steel-girded boots underneath a rack of heavy winter coats" + ((!pc.isNude() && pc.hasFeet() && pc.legCount > 1) ? " and take the hint yourself, taking off your shoes before you track snow inside" : ". You quickly wipe your [pc.feet] off on a mat before you track snow inside") + ".");
 			output("\n\nWith one last self-steadying breath, you make your way down. The house itself must be a good ten feet underground, you guess, and the stairs dump you out into a small but cozy living room behind a colorful cloth curtain, dominated by a half-circle couch facing a glass table and a holoscreen that dominates the eastern wall. Shade’s sitting on the couch, one arm thrown over the back and her legs folded beneath her. Her dark blue duster is nowhere to be seen, nor her armor and guns -- she’s just wearing a simple tan sweater over her jeans, showing off much less alabaster cleavage than you remember, though her familiar -- and, you remind yourself, familial -- curves are no less apparent.");
-			output("\n\nSomehow, even know what you do now, you can’t deny the lingering attraction. She’s as beautiful as ever.");
+			output("\n\nSomehow, even knowing what you do now, you can’t deny the lingering attraction. She’s as beautiful as ever.");
 			output("\n\n<i>“Welcome to Uveto,”</i> she says, with just a hint of a smile. <i>“Come on in. Have a seat.”</i>");
 			output("\n\nShe pats the couch beside herself, beckoning you in. You do as she says, sinking into the leather at her side. A moment passes, with Shade eying you with sidelong glances, before she sighs and rests a hand on her temple.");
 			output("\n\n<i>“So... um... haha,”</i> she starts, biting her lip to stifle an awkward little laugh. <i>“Damn it. I had a whole thing I’ve been thinking since I left Myrellion, and now... now I can’t remember a word of it. Ha. Look, I... I don’t even know what to think about anything now. But I know that probe was right. I took a DNA test, looked up a few of Victor Steele’s more illustrious bastards, and... yeah. Somehow, of all the things I ever imagined my father to be, trillionaire playboy magnate wasn’t one of them. Honestly, the way mom never talked about him, I was sure he’d have been a whore or a -- well, something darker. Never thought well of him, whoever he was. But now that I know, all I can think about is you.”</i>");
@@ -788,7 +808,7 @@ public function approachShadeAtHouse(response:String = "intro"):void
 			processTime(2);
 			
 			//Keep previous options. Replace [Don’t Know] with [Leave]
-			addButton(3, "Leave", approachShadeAtHouse, "lover sibling leave", "You need some time to think.");
+			addButton(3, "Leave", approachShadeAtHouse, "lover sibling leave", "Leave", "You need some time to think.");
 			break;
 		case "lover sibling leave":
 			showBust(shadeBustDisplay());
@@ -854,7 +874,7 @@ public function approachShadeAtHouse(response:String = "intro"):void
 			
 			// [Next]
 			clearMenu();
-			addButton(0, "Next", approachShadeAtHouse, "sibling sister next", "You need some time to think.");
+			addButton(0, "Next", approachShadeAtHouse, "sibling sister next");
 			break;
 		case "sibling sister next":
 			showBust(shadeBustDisplay());
@@ -901,7 +921,7 @@ public function approachShadeAtHouse(response:String = "intro"):void
 			
 			// [Next]
 			clearMenu();
-			addButton(0, "Next", approachShadeAtHouse, "sibling sister finish", "You need some time to think.");
+			addButton(0, "Next", approachShadeAtHouse, "sibling sister finish");
 			break;
 		case "sibling sister finish":
 			showBust(shadeBustDisplay());
@@ -949,7 +969,7 @@ public function approachShadeAtHouse(response:String = "intro"):void
 			
 			// [Next]
 			clearMenu();
-			addButton(0, "Next", approachShadeAtHouse, "sibling sister next", "You need some time to think.");
+			addButton(0, "Next", move, rooms[currentLocation].westExit);
 			break;
 		case "lover sibling shade":
 			showBust(shadeBustDisplay(true));
@@ -957,7 +977,7 @@ public function approachShadeAtHouse(response:String = "intro"):void
 			
 			output("<i>“Even after everything...?”</i> Shade murmurs, eying you as you confess your lingering desires. She smiles faintly as you finish, shifting so that a lock of silver hair falls across her face, shielding it from your view. <i>“You still want me, huh?”</i>");
 			output("\n\nYou do. No question about it.");
-			output("\n\nYou’ve barely gotten the words out before Shade’s hands are on you, pulling you fast against her. For a moment you think she’s going to strangle you, but just as quickly, the thought fades: her lips find yours, pressing against them with a fire you haven’t felt since the first time you and your sister made love. Without thinking, your hands wrap around her wrists, pushing her back against the cold leather of the couch and driving the kiss back until Shade’s moaning around your [pc.lips], and your hands are wandering across her body. Her heavy breasts heave into your grasp under her sweater, revealing still nipples that brush your palms through the thick fabric. No bra, nothing to stop you from getting your fill of your lover’s panting chest.");
+			output("\n\nYou’ve barely gotten the words out before Shade’s hands are on you, pulling you fast against her. For a moment you think she’s going to strangle you, but just as quickly, the thought fades: her lips find yours, pressing against them with a fire you haven’t felt since the first time you and your sister made love. Without thinking, your hands wrap around her wrists, pushing her back against the cold leather of the couch and driving the kiss back until Shade’s moaning around your [pc.lips], and your hands are wandering across her body. Her heavy breasts heave into your grasp under her sweater, revealing stiff nipples that brush your palms through the thick fabric. No bra, nothing to stop you from getting your fill of your lover’s panting chest.");
 			output("\n\nYou hold her close, groping and kissing and feeling the burn of arousal ignite within you like never before. You need her desperately, like an addict so deep in withdrawal that you can’t see light anymore. Her shirt comes off with a tear, and then your head is being guided, pushed between the lush mounds. Shade’s back arches, thrusting them out against your cheeks, and her hands lock firmly around your hips to draw you into herself. She slides onto her back, wrapping her strong legs around your waist to pull you down with her, keeping you firmly planted in the loving embrace of her breasts and thighs.");
 			output("\n\n<i>“Oh fuck,”</i> Shade moans, and you’re not sure if it’s because one of your hands has just forced its way down her pants, brushing the tips of your fingers through that familiar gulf between her legs. <i>“Are we... are you sure, [pc.name]. I don’t--”</i>");
 			output("\n\nIt doesn’t <i>feel</i> wrong, does it? And the way she kissed you just now, you <b>know</b> that Shade feels the same way you do. Fuck family, convention, all of that... you want your lover more than anything.");
@@ -965,10 +985,6 @@ public function approachShadeAtHouse(response:String = "intro"):void
 			output("\n\nHer fingers brush your chin, turning it up to look her in the eye. <i>“Let’s just pretend we never found that probe, huh? Just you and me, strangers that met in a bar and hit it off... right?”</i>");
 			output("\n\nIf that’s what it takes for Shade to live with herself and keep banging you, so be it. You meet her gaze with a kiss, and soon find yourself being pulled towards the bedroom. A naughty shiver of pleasure runs through you as your sister-cum-lover pushes you into the room, throwing you back on her bed and straddling you, tearing away your gear until her hands rest on your bare [pc.chest], and her panties are grinding against your crotch.");
 			output("\n\n<i>“Just like old times,”</i> she purrs, pinching a nipple. <i>“Let’s burn out those memories, huh?”</i>");
-			output("\n\n");
-			output("\n\n");
-			output("\n\n");
-			output("\n\n");
 			
 			processTime(5);
 			pc.lust(15);

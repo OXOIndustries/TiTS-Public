@@ -72,7 +72,7 @@
 		public static const FLAG_ABSORBENT:int								= 39;
 		public static const FLAG_SLIGHTLY_PUMPED:int 						= 40;
 		public static const FLAG_PUMPED:int 								= 41;
-		public static const FLAG_TAILGINA:int								= 42;
+		public static const FLAG_TAILCUNT:int                               = 42;
 		
 		public static const FLAG_NAMES:Array = [
 			"OFFSET -- INVALID",
@@ -163,8 +163,8 @@
 		public static const TYPE_MOUSE:int                                  = 26;
 		public static const TYPE_MOUSEMAN:int                               = 27;
 		public static const TYPE_DOVE:int									= 28;
+		public static const TYPE_DOGGIE:int									= 29;
 		/*
-		public static const TYPE_UNUSED29:int                               = 29;
 		public static const TYPE_UNUSED30:int                               = 30;
 		*/
 		public static const TYPE_DRAGONFLY:int                              = 31;
@@ -233,7 +233,7 @@
 			"Mouse",
 			"Mouseman",
 			"Dove",
-			"UNUSED",
+			"Floppy Dog",
 			"UNUSED",
 			"Dragonfly",
 			"MLP",
@@ -541,6 +541,7 @@
 			FLAG_FLUFFY,
 			FLAG_SMOOTH,
 			FLAG_TAILCOCK,
+			FLAG_TAILCUNT,
 			FLAG_FURRED,
 			FLAG_SCALED,
 			FLAG_OVIPOSITOR,
@@ -556,7 +557,6 @@
 			FLAG_GOOEY,
 			FLAG_STICKY,
 			FLAG_TAPERED,
-			FLAG_TAILGINA,
 		];
 		
 		public static const TAIL_GENITAL_NONE:int 	= 0;

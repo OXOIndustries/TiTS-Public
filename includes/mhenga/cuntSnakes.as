@@ -14,10 +14,15 @@ import classes.GameData.CombatManager;
 
 //*Jungle Snakes
 //The ones on the first jungle planet, [NOTHING HERE, FOLKS].
+public function showCuntSnake():void {
+	showBust("CUNTSNAKE");
+	showName("\nCUNT SNAKE");
+}
+
 //*Encounter a Cunt Snake
 public function encounterCuntSnakeOnJungleLand():void {
-	userInterface.showBust("CUNTSNAKE");
-	userInterface.showName("FIGHT:\nCUNT SNAKE");
+	showBust("CUNTSNAKE");
+	showName("FIGHT:\nCUNT SNAKE");
 	//[First Time]
 	if(flags["MET_CUNT_SNAKE"] == undefined)
 	{
@@ -65,15 +70,13 @@ public function encounterCuntSnakeOnJungleLand():void {
 //	One in five chance of being tailed for ladies.
 
 public function loseToCuntSnake():void {
-	userInterface.showBust("CUNTSNAKE");
-	userInterface.showName("\nCUNT SNAKE");
+	showCuntSnake();
 	if(pc.hasCock()) getSuckedOffByACuntSnakeAfterLosing();
 	else loseToCuntSnakeAndDontGetSucked();
 }
 
 public function cuntSnakeLossEpilogueTailChances():void {
-	userInterface.showBust("CUNTSNAKE");
-	userInterface.showName("\nCUNT SNAKE");
+	showCuntSnake();
 	if(!pc.hasCuntTail())
 	{
 		if(pc.hasCock())
@@ -99,8 +102,7 @@ public function cuntSnakeLossEpilogueTailChances():void {
 //*Get Sucked Off By Snake Loss
 public function getSuckedOffByACuntSnakeAfterLosing():void {
 	//{HP}
-	userInterface.showBust("CUNTSNAKE");
-	userInterface.showName("\nCUNT SNAKE");
+	showCuntSnake();
 	if(pc.HP() <= 1) {
 		output("You simply can't manage to resist any more and slump down, exhausted. The snake slithers up over its freshly defeated prize. The bumps on its head where eyes would be turn this way and that, while it flicks out its tongue and opens its mouth to take in your scent. It wavers for a moment before turning to regard your groin, somehow detecting the masculine protrusion");
 		if(pc.cockTotal() > 1) output("s that lie");
@@ -175,8 +177,7 @@ public function getSuckedOffByACuntSnakeAfterLosing():void {
 //Reqs !taur OR dicknips or cuntnips, or cunttail, or dicktail
 public function loseToCuntSnakeAndDontGetSucked():void {
 	//{HP}
-	userInterface.showBust("CUNTSNAKE");
-	userInterface.showName("\nCUNT SNAKE");
+	showCuntSnake();
 	if(pc.HP() <= 0) 
 	{
 		output("After being knocked around so much, you can barely stay upright, and you slump to the ground, eyes closing as soon as your body comes to rest. You shudder as you lose consciousness, helpless to stop the snake from doing what it will to you....");
@@ -300,11 +301,53 @@ public function loseToCuntSnakeAndDontGetSucked():void {
 	cuntSnakeLossEpilogueTailChances();
 }
 
+// Tail Transformation
+// adoptType equal to false will force the cunt snake type tail, otherwise type will remain the same and the tailcunt flag will be applied.
+public function cuntSnakeTailTF(adoptFlag:Boolean = false, adoptType:Boolean = false, parasite:Boolean = true):void
+{
+	var i:int = 0;
+	var tailFlagList:Array = [];
+	var tailTextureList:Array = [GLOBAL.FLAG_SMOOTH, GLOBAL.FLAG_FURRED, GLOBAL.FLAG_FLUFFY, GLOBAL.FLAG_SCALED, GLOBAL.FLAG_CHITINOUS, GLOBAL.FLAG_FEATHERED, GLOBAL.FLAG_GOOEY, GLOBAL.FLAG_STICKY];
+	
+	if(adoptFlag && pc.tailCount > 0)
+	{
+		// Non-long, cock, and alternate parasite tails get the cunt snake type anyway
+		if(!adoptType || !pc.hasTailFlag(GLOBAL.FLAG_LONG) || pc.hasTailFlag(GLOBAL.FLAG_TAILCOCK) || pc.hasParasiteTail()) pc.tailType = GLOBAL.TYPE_CUNTSNAKE;
+		
+		for(i = 0; i < pc.tailFlags.length; i++)
+		{
+			// Carry over texture flags
+			if(InCollection(pc.tailFlags[i], tailTextureList)) tailFlagList.push(pc.tailFlags[i]);
+		}
+	}
+	else
+	{
+		pc.tailType = GLOBAL.TYPE_CUNTSNAKE;
+	}
+	
+	pc.tailCount = 1;
+	pc.clearTailFlags();
+	if(adoptFlag && tailFlagList.length > 0)
+	{
+		for(i = 0; i < tailFlagList.length; i++)
+		{
+			if(!pc.hasTailFlag(tailFlagList[i])) pc.addTailFlag(tailFlagList[i]);
+		}
+	}
+	pc.addTailFlag(GLOBAL.FLAG_PREHENSILE);
+	pc.addTailFlag(GLOBAL.FLAG_LONG);
+	if(pc.tailType == GLOBAL.TYPE_CUNTSNAKE) pc.addTailFlag(GLOBAL.FLAG_THICK);
+	else pc.addTailFlag(GLOBAL.FLAG_TAILCUNT);
+	if(parasite) pc.tailGenital = GLOBAL.TAIL_GENITAL_NONE;
+	else pc.tailGenital = GLOBAL.TAIL_GENITAL_VAGINA;
+	pc.tailGenitalArg = enemy.tailGenitalArg;
+	pc.tailGenitalColor = enemy.tailGenitalColor;
+}
+
 //*Get a Cunt Tail
 public function getACuntTail():void {
 	clearOutput();
-	userInterface.showBust("CUNTSNAKE");
-	userInterface.showName("\nCUNT SNAKE");
+	showCuntSnake();
 	//Wake up after falling asleep after loss scene.
 	output("A stabbing lance of pain shoots through your spine, just above your [pc.butt]. It's just intense enough stir you from slumber, but not much worse than a nasty scratch, now that you're awake - almost as if you rolled onto a rock while sleeping.");
 	output("\n\nYou reach back to feel the wound and touch... scales. Smooth, glossy, reptilian scales. The pain gets worse at contact, but the added sensation aids you in realizing that it's actually two wounds on your backside about an inch apart. It hurts more and more with each passing second, and the severity of the situation dawns on you: the snake is fang-deep in your back. You swat at it with your arm, squirming and writhing from the discomfort, barely missing again and again. When you finally make contact, it doesn't budge, but it does hurt.");
@@ -323,52 +366,51 @@ public function getACuntTail():void {
 	else output("\n\nThe scales flake off at your touch, exposing flesh that matches your [pc.skinFurScales] exactly.");
 	output(" The thing’s moisture - no, your moisture now - drips from the end as you handle it. You cannot resist lifting the " + enemy.tailVaginaDescript() + " in front of you to examine. Touching the parasite visibly excites the entrance, and slipping a finger in it feels even better. You flex muscles you didn't even know you had and impale your digit, sucking and wringing it dry with your fresh tail-cunt before you summon the strength of will to pull it away.");
 	output("\n\n<b>It will take some time to adjust to having a pussy-tipped tail.</b>\n\n");
-	attachCuntSnake();
-	pc.tailGenitalArg = enemy.tailGenitalArg;
-	pc.tailGenitalColor = enemy.tailGenitalColor;
+	
+	cuntSnakeTailTF();
+	
 	CombatManager.genericLoss();
-}
-
-public function attachCuntSnake():void {
-	flags["CUNT_TAIL_PREGNANT_TIMER"] = undefined; // reset timer
-	pc.clearTailFlags();
-	pc.tailType = GLOBAL.TYPE_CUNTSNAKE;
-	pc.tailCount = 1;
-	pc.addTailFlag(GLOBAL.FLAG_PREHENSILE);
-	pc.addTailFlag(GLOBAL.FLAG_LONG);
-	pc.addTailFlag(GLOBAL.FLAG_THICK);
-	pc.addTailFlag(GLOBAL.FLAG_TAILGINA);
-	pc.tailGenitalArg = GLOBAL.TYPE_CANINE;
-	pc.tailGenitalColor = "black";
 }
 
 //*Defeat Jungle Cunt Snake
 public function defeatACuntSnake():void {
 	//{HP}
-	userInterface.showBust("CUNTSNAKE");
-	userInterface.showName("\nCUNT SNAKE");
-	output("The snake flops down, limp and dazed. It doesn't appear to be a threat any longer. It starts trying to slither towards the brush. What do you do?");
+	showCuntSnake();
+	clearMenu();
+	
+	var hasLure:Boolean = ((pc.accessory is JungleLure) && pc.tailTypeUnlocked(GLOBAL.TYPE_CUNTSNAKE));
+	
+	output("The snake flops down, limp and dazed. It doesn't appear to be a threat any longer");
+	if(hasLure) output(", but it’s not trying to escape into the jungle. It just sits there, holding itself up as best it can. The beaten creature seems to want something from you, though it’s in no position to force the matter.");
+	else output(". It starts trying to slither towards the brush.");
+	
+	addButton(0, "Kill It", killACuntSnake);
+	
 	if(pc.lust() >= 33 && pc.hasCock()) {
-		output(" The sight of that juicy snatch crawling away has you contemplating a course of action that would be unthinkable were you less aroused. ");
-		if(pc.cockThatFits(80) >= 0) output("You could grab it and fuck it, though.");
-		else output("You're too big to fuck this thing, unfortunately.");
-		clearMenu();
-		addButton(0,"Kill It",killACuntSnake);
-		addButton(1,"Fuck It",fuckACuntSnake);
-		addButton(14,"Leave",leaveIt);
+		output(" The sight of that juicy snatch");
+		if(hasLure) output(" flicking back and forth");
+		else output(" crawling away");
+		output(" has you contemplating a course of action that would be unthinkable were you less aroused.");
+		if(pc.cockThatFits(80) >= 0) output(" You could grab it and fuck it, though.");
+		else output(" You’re too big to fuck this thing, unfortunately.");
+		
+		addButton(1, "Fuck It", fuckACuntSnake);
 	}
-	else {
-		clearMenu();
-		addButton(0,"Kill It",killACuntSnake);
-		addButton(14,"Leave",leaveIt);
+	
+	if(hasLure)
+	{
+		addButton(2, "Approach", approachCuntSnake, "intro", "Approach It", "Investigate the cunt snake’s strange behavior.");
 	}
+	
+	output("\n\nWhat do you do?");
+	
+	addButton(14, "Leave", leaveIt);
 }
 
 //*Let It Go
 public function leaveIt():void {
 	clearOutput();
-	userInterface.showBust("CUNTSNAKE");
-	userInterface.showName("\nCUNT SNAKE");
+	showCuntSnake();
 	output("The perverse reptile slithers into the brush, hopefully never to be seen again.\n\n");
 	CombatManager.genericVictory();
 }
@@ -384,8 +426,7 @@ public function killACuntSnake():void {
 //No hoarses.
 public function fuckACuntSnake():void {
 	clearOutput();
-	userInterface.showBust("CUNTSNAKE");
-	userInterface.showName("\nCUNT SNAKE");
+	showCuntSnake();
 	//It probably bites you part way into it and then Fen gets raged at for reversals.
 	output("You grab hold of the serpent before it can get away, keeping one hand just behind its head and the other securely clamped near the juicy entrance you plan to use. It's quite hard to");
 	if(!pc.isCrotchExposed()) output(" whip out [pc.oneCock] and");
@@ -432,11 +473,220 @@ public function fuckACuntSnake():void {
 	output("\n\n[pc.OneCock] is soaked in pussy juice but not a drop of cum, and you tuck your female-scented package ");
 	if(pc.armor.shortName != "") output("back into your [pc.armor] with a rueful smile.");
 	else if(pc.lowerUndergarment.shortName != "") output("back into your [pc.lowerUndergarment] with a rueful smile.");
-	else output("away with a rueful smile.\n\n");
+	else output("away with a rueful smile.");
+	output("\n\n");
 	
 	processTime(15+rand(15));
 	pc.orgasm();
 	CombatManager.genericVictory();
+}
+
+//So this is an idea that cropped up in a forum thread. The basic premise is that buying and equipping the Jungle Lure from V-KO would unlock a new victory scene for cunt snakes that would allow Steele to host them of his/her own free will. The flavor behind the idea is that the concentrated pheromones of the Jungle Lure would make the cunt snake consider Steele a suitable target for infestation 100% of the time. The only prereqs would be having the Jungle Lure equipped and having enough lust to be able to fuck the cunt snake. And being a viable target for cunt snake infestation, I suppose.
+public function approachCuntSnake(response:String = "intro"):void
+{
+	clearOutput();
+	showCuntSnake();
+	author("IVIysteriousPerson");
+	clearMenu();
+	
+	switch(response)
+	{
+		// Scene Intro
+		case "intro":
+			output("You " + (pc.hasLegs() ? "take a cautious step forward" : "creep forward carefully") + ", keeping your [pc.meleeWeapon] at the ready. As if on cue, your codex comes to life, warning you about the sexual parasite nearby. You roll your eyes and mutter a sarcastic <i>“thanks,”</i> but the announcement makes you think. The cunt snake is a parasite, and a parasite’s goal is to attach itself to a host...");
+			output("\n\nYou relax your stance as you realize what’s going through the creature’s primitive little brain. It must think rather highly of you to be so persistent, even after you clearly demonstrated your ability to overpower it. A few lecherous fantasies wander into your mind, but you shake them away. It would be crazy. Cunt snakes are an invasive species. Pests.");
+			output("\n\nBut still, there’s an inkling of desire that you just can’t shrug off. Do you give in to your lewd curiosity?");
+			
+			processTime(3);
+			
+			// [Yes] - Go to Scene or Tauric Scene.
+			// [No] - Go to Refusal.
+			if(!pc.hasGenitals()) addDisabledButton(0, "Yes", "Yes", "It looks like you need to lure the snake with something more... perhaps you need to have your own genitals?");
+			else addButton(0, "Yes", approachCuntSnake, "accept");
+			addButton(1, "No", approachCuntSnake, "refuse");
+			break;
+		// Refusal
+		case "refuse":
+			output("You clear your throat and collect yourself, " + (pc.hasLegs() ? "stepping" : "moving") + " back. There’s no way you’re going to willingly submit to a parasite, not in a million years. You walk away, and the weathered cunt snake drops its head before disappearing into the brush.");
+			output("\n\n");
+			
+			processTime(1);
+			
+			// [Next] -- End encounter.
+			if(inCombat()) CombatManager.genericVictory();
+			else addButton(0, "Next", mainGameMenu);
+			break;
+		// Accept Tail Parasite
+		case "accept":
+			var oldTailCount:Number = pc.tailCount;
+			if(pc.tailType == 0) oldTailCount = 0;
+			
+			// wearingAnything
+			if(!pc.isNude()) output("You smile and begin to remove your [pc.gear], baring your naked form. ");
+			output("A rush of adrenaline hits you as you consider what you’re about to do. It’s poorly thought-out, potentially dangerous, and delightfully perverse.");
+			
+			// Scene
+			if(!pc.isTaur())
+			{
+				output(" You " + (pc.isBiped() ? "crouch down" : "lower yourself") + " and reach out to the cunt snake, which perks up as it senses your change in attitude. The scaled creature brushes against your fingertips, and you give its jaw a few gentle scratches.");
+				output("\n\n<i>“Huh, you’re not so bad, are you?”</i> you murmur. The snake presses its face against your [pc.skinFurScales] and coils itself around your arm. It keeps rubbing against you as it travels upwards, sliding over your shoulder and down your back.");
+				if(pc.hairLength >= (pc.tallness / 2.5)) output(" You let out a breath of laughter as it gets a little tangled in your [pc.hair], but you free it with a quick shake of your head.");
+				output(" " + (pc.hasWings() ? "It slips between your [pc.wings] and works its way" : "It works its way") + " towards your [pc.ass], and the friction of its cool, smooth scales against your " + (pc.hasScales() ? "own" : "[pc.skinFurScales]") + " feels rather sensual.");
+				if(pc.isHerm()) output("\n\nIn fact, your [pc.multiCocks] stiffen" + (pc.cockTotal() == 1 ? "s" : "") + " in response to the delicate, ticklish sensation, and [pc.eachVagina] dampens with arousal.");
+				else if(pc.hasCock()) output("\n\nIn fact, [pc.eachCock] stiffen" + (pc.cockTotal() == 1 ? "s" : "") + " in response to the delicate, ticklish sensation. ");
+				else if(pc.hasVagina()) output("\n\nIn fact, you give a slight shiver as [pc.eachVagina] dampens in response to the delicate, ticklish sensation.");
+				output("\n\nYou sigh contentedly as the cunt snake nuzzles against your backside, grinding its face against a particular spot right at the base of your " + (pc.hasTail() ? "[pc.tails]" : "spine") + ".");
+				
+				if(oldTailCount > 0)
+				{
+					output("\n\nYou smirk. It really likes your [pc.ass], apparently. You caress the scaly length coiled around your arm and glance over your shoulder. The snake keeps bumping against your [pc.tails], hitting " + (oldTailCount == 1 ? "its" : "their") + " base" + (oldTailCount == 1 ? "" : "s") + " over and over as if it were trying to push " + (oldTailCount == 1 ? "it" : "them") + " out of the way. You give a confused frown when it releases your arm and slithers back onto the ground. ");
+					output("\n\nDissatisfied, you wave your [pc.tails] back and forth in an attempt to reacquire the snake’s attention, and it seems to succeed. It follows " + (oldTailCount == 1 ? "the tip" : "their tips") + " with its head for a short while, until its jaw snaps open an imposingly wide amount. You’re surprised by the sheer size of the cunt snake’s abyssal maw, so much so that you don’t even move when it lunges forward and buries its fangs in your backside, swallowing your tail" + (oldTailCount == 1 ? "" : "s") + " whole.");
+					output("\n\n<i>“Ow! Fuck!!”</i> you yell, falling forward. Your eyes clamp shut as a horrible pain overwhelms you, a white-hot sensation that consumes your [pc.tails] and shoots up your spine. You throw your arms behind you in an attempt to grab the cunt snake, but it thrashes against your grip. Even when you get a solid hold on it, the snake’s scales seem to slide off its body, taking your hands with them. You start to panic as the sensation in your tail" + (oldTailCount == 1 ? "" : "s") + " goes numb, but it’s quickly replaced by a new, much less unpleasant sensation. The snake finally stops its flailing, although it’s still attached to you. Putting the pieces together, you try to move your [pc.tails], and feel the snake respond to your influence.");
+					output("\n\nNeeding to see it with your own eyes, you pick yourself up and twist to look over your shoulder. Yeah, your [pc.tails] are gone. In their place is the cunt-snake, but it looks nothing like it did before. It’s shed its natural scales and changed its appearance to almost perfectly match the tail" + (oldTailCount == 1 ? "" : "s") + " it swallowed!");
+					if(oldTailCount != 1) output(" You’ve only got one tail now, but it comes with a little something “extra.”");
+					
+					cuntSnakeTailTF(true);
+					
+					output(" You bring it around your waist and observe the [pc.tailVagina] situated at its tip. With a gentle caress you confirm that you and the cunt snake are very much joined together.");
+					if(pc.hasVagina()) output(" It feels just as good as playing with your " + (pc.totalVaginas() == 1 ? "pussy" : "pussies") + ", and your fingers wind up just as wet.");
+					else output(" Your touch sends shivers of pleasure running up the length of your new tail, and your face flushes. It’s as much your vagina as it is the snake’s.");
+					output(" Coming to terms with the changes to your anatomy, your mind immediately gravitates towards how you might use such a conveniently-placed set of genitalia...");
+				}
+				else
+				{
+					output("\n\nYou smirk. It really likes your [pc.ass], apparently. You caress the scaly length coiled around your arm and glance over your shoulder just in time to see the cunt snake pop open its jaw and send its fangs into your [pc.skinFurScales].");
+					output("\n\n<i>“Ow! Fuck!!”</i> you yell, falling forward. Your eyes clamp shut as a horrible pain overwhelms you, a white-hot sensation that shoots through your spine. The snake constricts your arm and jerks it back at an uncomfortable angle, pinning it there while your free hand grasps wildly at grass and weeds.");
+					output("\n\nFor whatever reason, you feel the urge to stick your [pc.ass] high into the air, as if it would lessen the pain. You lie there, face in the dirt, rear end to the sky, and grunting like a roughly-used whore. " + (pc.isNaga() ? "Your serpentine half whips across the jungle floor as you writhe in agony, but" : "But") + " the pain doesn’t last forever. Your restrained arm is released, and you let it flop onto the ground as you take a few deep breaths. You blink away the last bits of discomfort and pick yourself up, aware of a strange yet pleasant tingling coming from your backside. No, not from it, beyond it. But still a part of it. Still a part of you. Confused, you brush yourself off and twist around.");
+					output("\n\nYou have a tail!");
+					if(pc.isNaga()) output(" A tail coming from your [pc.ass], at least.");
+					
+					cuntSnakeTailTF();
+					
+					output(" The cunt snake has fused with your body, shedding its natural scales and transforming its appearance to perfectly match your [pc.skinFurScales]. As you adjust to the change, you unconsciously flip your new addition over, revealing the soaking [pc.tailVagina] at its tip. With a gentle caress you confirm that you and the cunt snake are very much joined together.");
+					if(pc.hasVagina()) output(" It feels just as good as playing with your " + (pc.totalVaginas() == 1 ? "pussy" : "pussies") + ", and your fingers wind up just as wet.");
+					else output(" Your touch sends shivers of pleasure running up the length of your new tail, and your face flushes. It’s as much your vagina as it is the snake’s.");
+					output(" Coming to terms with the changes to your anatomy, your mind immediately gravitates towards how you might use such a conveniently-placed set of genitalia...");
+				}
+				
+				if(pc.hasCock())
+				{
+					output("\n\nYou stare at your new [pc.tailVagina], then look down at your fully erect dick" + (pc.cockTotal() == 1 ? "" : "s") + ". It’s certainly not rocket science. You " + (oldTailCount > 0 ? "shift the tip of your new and improved tail downwards" : "clumsily shift your tail downwards, still getting a feel for moving the strange new addition,") + " and press it against the [pc.cockHead] of [pc.biggestCock]. With an awkward combination of pelvic thrusts and tail curling, you penetrate yourself, sinking to " + (pc.isBiped() ? "your knees as your legs grow weak" : "the ground as your strength fails you") + ".");
+					output("\n\nOh yeah, that’s good. That’s really good. Your tail seems to take it upon itself to keep going, hinting that a trace of the cunt snake is still there, but you don’t mind. Not one bit. You moan as your tail convulses around your [pc.biggestCock], and you wrap your hands around it to keep it in place. With a building excitement, you buck your hips, using your tail like an onahole and fucking yourself into a stupor.");
+					output("\n\nThere’s definitely a bit of the cunt snake’s aphrodisiac-laced venom in your system, because you don’t last long. Your excited tail-fuck only lasts for a dozen or so thrusts before you’re leaning back and screaming, [pc.cum] flooding your [pc.tailVagina]. You can feel both sides of experience, and the pleasure is mind-numbing.");
+					if(pc.hasVagina()) output(" Your other " + (pc.totalVaginas() == 1 ? "vagina soaks" : "vaginas soak") + " your [pc.thighs] with [pc.girlCum], wishing " + (pc.totalVaginas() == 1 ? "it" : "they") + " could recieve such splendid attention.");
+					output(" You’re pulled in " + num2Text(pc.totalVaginas() + 1) + " different directions as you orgasm, and your brain just can’t keep up. You collapse onto your back as the world starts to spin.");
+					output("\n\nA few minutes pass before your senses return. You whistle as you sit up, your tail still giving the occasional twitch around your limp [pc.biggestCock]. It slides off as you stand up, and you’re pleased to learn you can control it with almost no effort now that it’s been fed. It seems like it’s in your best interest to keep your new friend full and happy, not that it’s going to be too hard to convince you to do so. Desires satisfied, you rise to your feet and collect your things.");
+				}
+				else if(pc.hasVagina())
+				{
+					output("\n\nYou stare at your new [pc.tailVagina] and find your hand drifting dowards. The entire experience has left you feeling a little needy, and your tail isn’t the only thing that’s dripping wet. You bite your lip and tuck your hand between between your [pc.thighs], tracing your fingers around the entrance of [pc.oneVagina].");
+					output("\n\nYour tail hovers in front of you, juicing itself in tandem with [pc.eachVagina]. A moan of pleasure slips out of your mouth, and before you know it the tip of your tail is mere inches from your [pc.lips]. Your eyes flutter as you inhale its scent, new and exciting, yet oddly familiar. You can’t resist, and, with agonizing slowness, your [pc.tongue] drags itself across your [pc.tailVagina]. You shudder as your thumb flicks [pc.eachClit] and your tongue slides deeper into your tail, and you marvel at how good it tastes.");
+					output("\n\nYour body seizes up as you near orgasm, but you manage to restrain yourself. Not so soon. You need something more satisfying. More... involved. You extract your occupied hand and set both thumbs on either side of your tail, spreading it as wide as you can. Your [pc.tongue] plumbs its depths a few more times, delighting in the ability to taste yourself so easily. But you eventually withdraw and glance down at [pc.eachVagina]. There’s no need to pick favorites.");
+					output("\n\nYou curl your tail back and press it against your mons, forcing contact between " + (pc.totalVaginas() == 1 ? "" : "all of") + " your feminine slits. In a matter of seconds your [pc.thighs] are damp with a mixture of [pc.girlcum] and your tail’s own juices. You slide your [pc.tailVagina] down, running it over [pc.eachClit]. The stimulation is almost enough to make you fall over, and you lower yourself to your knees to better maintain balance. With a deep breath you arch your back and hold yourself in anticipation, then thrust your hips against your tail and let it squirm wildly. You yelp and moan as your puffy, swollen folds grind against their sisters, and your clit" + (pc.totalClits() == 1 ? " is" : "s are") + " caught it a whirlwind of convulsing flesh.");
+					output("\n\nYou lean back even farther, forcing your lower half forward with your movements, until gravity has its way with you. You cry out as you collapse onto your side and your tail kicks into overdrive, quickly joined by both of your hands. You’re fingering, rubbing, and stretching yourself in lustful frenzy. Your voice breaks and your whole body tightens amid an earthshaking orgasm, forcing you to curl into a ball. You tuck your head " + (pc.bRating(0) >= 6 ? ", burying your face in your [pc.breasts 0]" : "") + " before letting out a " + (pc.isSquirter() ? "veritable flood of [pc.girlcum] in all directoins" : "squeal and drizzling [pc.girlcum] all over yourself") + ".");
+					if(pc.girlCumQ() >= 1000)
+					{
+						output(" Your hands, " + (pc.hasLegs() ? " legs," : "") + " tail, and practically everything else nearby are left soaked and dripping.");
+						applyPussyDrenched(pc);
+					}
+					output("\n\nThe relief of orgasm lulls you to sleep, but you wake up with a start only a few minutes later. You look down at the mess you made and give a nervous laugh. That was a ride. You stand up and get a feel for moving around again, then work to gather your " + (pc.isNude() ? "possessions" : "clothing") + ". There’s still a lingering hunger coming from your tail, the need for a meal of a more masculine nature, but the sensation is little more than an itch for now. You’ll probably want to take your new friend out to dinner fairly soon, though, lest its appetite become a serious distraction... ");
+				}
+				if(pc.hasArmor()) output("\n\nYou’re forced make a few adjustments to your [pc.armor] before putting it back on, but the process is simple enough. You give your tail a few experimental flicks back and forth to make sure it’s comfortable, then secure the rest of your equipment.");
+				output("\n\nWith everything in order, you continue on your way, but your imagination runs wild with new ideas and possibilities, each one dirtier than the next.");
+			}
+			// Tauric Scene
+			else
+			{
+				output("\n\nYou step towards the cunt snake and move to lower yourself to the ground, but are caught off guard when the snake darts beneath you. You freeze, not wanting to crush the poor thing with your significantly greater body mass.");
+				output("\n\nYou grunt in frustration and twist your upper half around, trying to catch of glimpse of the elusive snake beneath you. But a warm, wet sensation between your hind legs gives you a good indication of <i>exactly</i> where it’s gone.");
+				if(pc.hasCock())
+				{
+					output("\n\n<i>“Hey!”</i> you cry out, before realizing the last thing the cunt snake would do is listen to you, even when its own safety is at stake. At a loss for how to proceed, you shrug and let the snake do what it wants. You didn’t really have much of a plan anyways. The warmth between your legs spreads across your underbelly, and your face grows hot as your dick" + (pc.cockTotal() == 1 ? " responds" : "s respond") + " to the snake’s inquisitive movements.");
+					output("\n\nIt coils itself around your [pc.biggestCock] and starts to squeeze, causing you to involuntarily buck your hips a few times. You’re rock-hard now, and you really strain your back to try and see what exactly is happening to your dick. You get the smallest glimpse of the cunt snake wrapped around your manhood, until it squeezes you even harder. Your upper half jolts upright as you cry out, and the combination of weight and pressure on your cock gets to be more than a little uncomfortable.");
+					output("\n\nYou shake your [pc.ass] and widen your stance in an attempt to knock the cunt snake loose, but its grip just tightens in response. You hiss, and you can’t stop yourself from sinking to the ground. Lying on your side, you curl around and finally get a proper look at the cunt snake, its hungry vagina positioned right against the [pc.cockHeadBiggest] of your [pc.biggestCock].");
+					output("\n\nThe snake swallows the tip of your dick, then the shaft, then slides all the way to its [pc.biggestSheath] " + (pc.balls > 0 ? "and presses against your [pc.balls]" : "") + ". Once it’s enveloped your cock, it releases its constricting grasp, and you let out a sigh of relief, only to have that sigh turn into a lewd moan as the snake begins to squeeze again, this time in a much more pleasurable way. It writhes around your dick, twitching and spasming as it milks you like a living sex toy. You’re not in much of a position to reciprocate, but it’s pleasurable enough that your upper body flops against the ground in a blissful spasm. You give in to the sensation and let the snake have its way with you, your voice growing louder and more desperate with its every motion.");
+					output("\n\nYour breathing gets ragged as your climax nears, and the cunt snake seems to sense the change in composure. It pulses wildly, desperate for your cum. You clench your jaw and ball your fists as your [pc.biggestCock] gives the snake exactly what it wants.");
+					if(pc.cockTotal() > 1)
+					{
+						output(" " + (pc.cockTotal() == 2 ? "Your other dick is no exception, and it colors" : "Your other dicks are no exception, and they color") + " the earth [pc.cumColor] ");
+						if(pc.cumQ() >= 1000)
+						{
+							output(", drenching your lower half with a copious amount of [pc.cum] at the same time");
+							applyCumSoaked(pc);
+						}
+						output(".");
+					}
+					output(" You groan and shiver, and the orgasm is so good you actually feel a bit light-headed. So much so that you don’t notice the cunt snake slide off your dick and move towards your ass...");
+					output("\n\n<i>“Ow! Fuck!!”</i> you yell, pulled from your orgasmic bliss by a white-hot pain in your rear. You kick your hind legs in a panic, scrambling upright. The searing pain only lasts a few moments, though, and by the time you’ve pulled yourself up and twisted your upper half around, it’s gone.");
+					if(oldTailCount > 0)
+					{
+						cuntSnakeTailTF(true);
+						
+						output("\n\nAlso gone " + (oldTailCount == 1 ? "is" : "are") + " your [pc.tails], having been swallowed whole by the cunt snake. The snake has shed its natural scales and transformed its outer appearance to perfectly match the tail" + (oldTailCount == 1 ? "" : "s") + " it’s replaced, but it sports a little something “extra.” You can control it just as easily as your old tail" + (oldTailCount == 1 ? "" : "s") + ", and you curl it around to observe the [pc.tailVagina] at its tip. While you can’t reach it on account of your tauric body, you imagine there are more than a few ways you could put such a conveniently-placed set of genitalia to use.");
+					}
+					else
+					{
+						cuntSnakeTailTF();
+						
+						output("\n\nIn its place is something entirely different: a tail! You have a tail, the cunt snake having fused with your body and transformed its outer appearance to perfectly match your [pc.skinFurScales]. It’s much more than <i>just</i> a tail, though, and you awkwardly curl it around to observe the [pc.tailVagina] at its tip. While you can’t reach it on account of your tauric body, you imagine there are more than a few ways you could put such a conveniently-placed set of genitalia to use.");
+					}
+					output("\n\nThere’s a strong sense of contentment radiating from it, one that makes you think a bit of the cunt snake you just satisfied is still present. You assume that it will play nicely as long as you feed it, though, and the prospect of pleasuring your new addition is hardly something you dread.");
+					output("\n\nIt may not have gone how you expected, but you’re the proud owner of a cunt tail all the same. With a smile, you " + (!pc.isNude() ? "get dressed" : "collect your possessions") + " and set out.");
+				}
+				else if(pc.hasVagina())
+				{
+					output("\n\n<i>“Hey!”</i> you cry out, before realizing the last thing the cunt snake would do is listen to you, even when its own safety is at stake. It pokes and prods at your underbelly, exploring your lower half with primitive inquisitiveness. You sigh and throw up your arms, forced to hold your ground lest you accidentally step on the curious creature. But the snake seems to quickly realize what it’s looking for isn’t there. Giving up, it coils itself around your hind leg and works its way towards your flank. You twist back to see its head peeking over your asscheek, almost seeming mischievous and playful.");
+					if(oldTailCount > 0)
+					{
+						output("\n\nYou swat at it a few times with your [pc.tails], brushing " + (oldTailCount == 1 ? "it" : "them") + " against the cunt snake’s scales. It snaps to attention at the contact, following the tip" + (oldTailCount == 1 ? "" : "s") + " of your tails with its head. But your game doesn’t last long, as the cunt snake almost immediately releases its grip on your leg and drops to the ground. You frown in confusion and try to spot it, until you hear a menacing hiss. You tense, but before you can do anything else the snake lunges upwards from between your legs and swallows your tail" + (oldTailCount == 1 ? "" : "s") + " whole!");
+						output("\n\n<i>“Ah! Ow!!”</i> you yelp, kicking your back legs a few times purely on instinct, but the snake holds fast. You spin in circles and vainly attempt to reach your rear end to pull the snake free. A bit of panic sets in as the sensation in your [pc.tails] dims, and you struggle even harder, but there’s nothing you can do. You gasp as the stabbing pain reaches a peak and your entire body to seizes up. Eyes clamped shut, you try to focus on anything other than the agony coming from your ass, but fortunately it fades as quickly as it had come.");
+						
+						cuntSnakeTailTF(true);
+						
+						output("\n\nYou collect yourself with a few deep breaths and try to move your tail" + (oldTailCount == 1 ? "" : "s") + ". There’s a response, but something is... different. " + (oldTailCount == 1 ? "There’s a strange feeling at the tip" : "For starters, there’s only one tail sprouting from your [pc.ass] now, and you’re hit with the realization that the cunt snake has swallowed your old tails and taken their place. It’s shed it scales and transformed its outer appearance to match the tails it swallowed, though, and aside from the diminished quantity you can’t tell a difference. But there’s at least one difference") + ", and you curl it around to see a swollen, painfully aroused [pc.tailvagina].");
+						if(oldTailCount == 1) output(" The cunt snake has fused with you! It’s shed it scales and transformed its outer appearance to almost perfectly match the tail it swallowed, though your old tail certainly didn’t have a vagina at the end...");
+					}
+					else
+					{
+						output("\n\nBut the facade of innocence is abruptly shattered as the snake’s jaw snaps open wider than you ever imagined possible. You’re awed by the creature’s abyssal maw, so much so that you don’t even move as it drives its fangs into your ass.");
+						output("\n\n<i>“Ah! Ow!!”</i> you yelp, kicking your back legs purely on instinct, but the snake holds fast. You spin in circles and panickedly attempt to reach your rear end, hoping pull the snake free, but it’s a futile struggle. You gasp as the stabbing pain reaches a peak and your entire body to seizes up. Eyes clamped shut, you try to focus on anything other than the agony coming from your ass, but fortunately it fades as quickly as it had come.");
+						
+						cuntSnakeTailTF();
+						
+						output("\n\nIn its place is something entirely different: a tail! You have a tail, the cunt snake having fused with your body and transformed its outer appearance to perfectly match your [pc.skinFurScales]. It’s much more than <i>just</i> a tail, though, and you awkwardly curl it around to observe the [pc.tailVagina] at its tip. While you can’t reach it on account of your tauric body, you imagine there are more than a few ways you could put such a conveniently-placed set of genitalia to use...");
+					}
+					output("\n\nYou bite your lip and twist around as much as you can, carefully positioning your new [pc.tailVagina] right between your flanks. There’s a desperate need leaking from " + (pc.totalVaginas() == 1 ? "both" : "all") + " of your slits, and your hind legs are quickly dripping with a mixture of [pc.girlCum] and your tail’s own juices. With a shuddering breath you slowly drag your tail back and forth across [pc.eachVagina], and the feeling is divine. Being able to pleasure yourself so freely is a new experience, one that you have every intention of drawing out to its fullest extent. You widen your stance a little and take a few deep breaths, then let your tail writhe and squirm against your sex.");
+					output("\n\nYou rock back and forth, doing your best to grind against your tail as much as its grinding against you, and before long you’re letting out long, lewd moans.");
+					if(pc.hasBreasts()) output("\n\nYou bring your hands to your [pc.fullChest] and give them a good squeeze, circling each nipple with your fingertips.");
+					if(pc.isLactating())
+					{
+						output("\n\nDrops of [pc.milk] fall to the earth below as your [pc.nipples] [pc.nipplesHarden] and your teasing becomes more forceful. The feeling of the warm liquid running " + ((pc.hasFur() || pc.hasFeathers()) ? "through" : "along") + " your [pc.skinFurScales] makes you squeeze your breasts even harder, until the small drops are replaced by thick streams.");
+						output("\n\nYou let out motherly coos of satisfaction as you milk yourself, and you fall into an alternating rhythm of squeezing your breasts and rubbing your flanks against your tail.");
+					}
+					else
+					{
+						output("\n\nYou sigh as they [pc.nipplesHarden], and you up the intensity of your teasing. You rub, pinch, and pull, practically assaulting your sensitive [pc.nipples], and your breath starts to get away from you as pleasure radiates from both ends of your body.");
+					}
+					output("\n\nYour head drops");
+					if(pc.hairLength >= 6) output(" and your [pc.hair] falls over your face");
+					output(", the increasingly pronounced need for release stripping your composure away. Shuddering moans give way to full-on cries of pleasure as your climax nears. Your tail kicks into overdrive, writhing wildly against [pc.eachVagina], and your mind goes blank. You stumble forward a few steps and then collapse onto your side, chest heaving as you try to collect yourself. [pc.GirlCum] " + (pc.isSquirter() ? "gushes" : "leaks") + " from your rear end, and your tail gives a few final twitches before going limp and flopping against the ground.");
+					output("\n\nYou shut your eyes and lie still on the jungle floor as you slowly descend from your orgasmic peak. Eventually you manage to pull yourself upright, brushing bits of dirt and grass off your [pc.skingFurScales]. There’s a curious sense of satisfaction coming from your tail, quite similar to the satisfaction and relief you feel yourself, but it’s a bit overshadowed by a kind of... hunger. Your tail is craving a meal of a more masculine nature, but for now it seems willing to simply tag along for the ride. You should probably take your new friend out to dinner soon, though, lest its appetite become a serious distraction.");
+					output("\n\nIt may not have gone how you expected, but you’re the proud owner of a cunt tail all the same. With a smile, you " + (!pc.isNude() ? "get dressed" : "collect your possessions") + " and set out.");
+				}
+			}
+			output("\n\n");
+			
+			processTime(20);
+			
+			if(inCombat()) CombatManager.genericVictory();
+			else addButton(0, "Next", mainGameMenu);
+			break;
+		// Failsafe
+		default:
+			if(inCombat()) CombatManager.genericVictory();
+			else addButton(0, "Next", mainGameMenu);
+			break;
+	}
 }
 
 //*Scenes and Effects for PCs with Cunt Tails
@@ -446,8 +696,7 @@ public function fuckACuntSnake():void {
 //*Cunt tail birthing
 public function giveBirthThroughCuntTail():void {
 	clearOutput();
-	userInterface.showBust("CUNTSNAKE");
-	userInterface.showName("\nCUNT SNAKE");
+	showCuntSnake();
 	output("There is a shifting within you that startles you to awareness, centered just above your [pc.butt]. You wince when a spherical bulge lurches perhaps an inch down your [pc.tail]. It’s trapped inside but slowly moving downwards in fits and starts. The everpresent wetness of your [pc.tailCunt] increases, leaking out in a tide that would shame you even if you were locked in the throes of masturbation. Unwanted pleasure rears up in the back of your mind as the exotic sensation of pushing something out through your dripping pussy asserts itself.");
 	output("\n\nYou flop down onto your side and curl your spasming tail around, watching the distention make progress along its length. Looking at the shape of the spheroid, you surmise that your tailcunt has created an egg and is giving birth to it now. Pulsing, muscular contractions work to push your ovum closer to the exit, eliciting a moan of pleasure from you in spite of your mild distress at the situation.");
 	output("\n\nThe egg begins to move faster, squishing and sliding through as it reaches the well-lubed part of your sloppy channel, and the ensuing feeling causes your back to arch and your tongue to loll from your mouth. Gurgled vocalizations of pleasure escape your mouth. Your hands, desperate to help somehow, grab hold of your [pc.chest] and grope at your [pc.nipples]");
@@ -488,8 +737,7 @@ public function giveBirthThroughCuntTail():void {
 //*Hide It
 public function hideYoEggYo():void {
 	clearOutput();
-	userInterface.showBust("CUNTSNAKE");
-	userInterface.showName("\nCUNT SNAKE");
+	showCuntSnake();
 	output("You find a good spot to hide the egg and leave it there, smiling when you realize that someone else is going to wind up with a juicy, delightful pussy attached to them, compelling them to feed it cum until they wind up feeling what you did... and then the whole cycle can start anew.");
 	if(flags["CUNT_SNAKES_HELPED_TO_INFEST"] == undefined) flags["CUNT_SNAKES_HELPED_TO_INFEST"] = 1;
 	else flags["CUNT_SNAKES_HELPED_TO_INFEST"]++;
@@ -499,8 +747,7 @@ public function hideYoEggYo():void {
 //*Take It
 public function takeYoEggYo():void {
 	clearOutput();
-	userInterface.showBust("CUNTSNAKE");
-	userInterface.showName("\nCUNT SNAKE");
+	showCuntSnake();
 	output("You take the egg and secure it on your person. You’ll send it off first thing, so that it will properly cared for and want for nothing - hopefully, to include a host.");
 	if(flags["CUNT_SNAKE_EGGS_FAXED_HOME"] == undefined) flags["CUNT_SNAKE_EGGS_FAXED_HOME"] = 1;
 	else flags["CUNT_SNAKE_EGGS_FAXED_HOME"]++;
@@ -509,8 +756,6 @@ public function takeYoEggYo():void {
 }
 
 public function feedCuntSnake():void {
-	if (!pc.hasTail(GLOBAL.TYPE_CUNTSNAKE)) return;
-	
 	if(flags["TIMES_FED_CUNT_SNAKE"] == undefined) flags["TIMES_FED_CUNT_SNAKE"] = 1;
 	else flags["TIMES_FED_CUNT_SNAKE"]++;
 	

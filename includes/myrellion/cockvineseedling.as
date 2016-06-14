@@ -217,7 +217,7 @@ public function cockvineSeedlingJoin(sCockType:int = 0):void
 	pc.tailCount = 1;
 	pc.addTailFlag(GLOBAL.FLAG_PREHENSILE);
 	pc.addTailFlag(GLOBAL.FLAG_LONG);
-	pc.tailGenital = GLOBAL.TAIL_GENITAL_COCK;
+	pc.tailGenital = GLOBAL.TAIL_GENITAL_NONE;
 
 	if (sCockType == Seedling_Type_Vine)
 	{

@@ -1974,7 +1974,7 @@ public function annoFollowerFirstTimeOnMhenga():void
 	clearOutput();
 	//annoFollowerHeader();
 	showName("\nANNO");
-	showBust("ANNO", "SYRI");
+	showBust(annoBustDisplay(), syriBustDisplay());
 
 	output("As you dock at Mhen’ga, you feel a pair of familiar, fluffy arms wrap around your neck and shoulders as a big pair of");
 	if (anno.armor is AnnosCatsuit) output(" latex");
@@ -2036,7 +2036,7 @@ public function annoFollowerFirstTimeOnMhengaPartII():void
 	clearOutput();
 	//annoFollowerHeader();
 	showName("ANNO &\nSYRI");
-	showBust("ANNO", "SYRI");
+	showBust(annoBustDisplay(), syriBustDisplay());
 
 	output("<i>“Hey! Over here!”</i> you hear, just as soon as you and Anno walk into <i>“Burt’s Badass Meadhall.”</i> Syri’s sitting at the bar next to two empty stools and three beers, a great big grin on her face. ");
 	
@@ -2134,7 +2134,7 @@ public function annoxKaedeFollowerMeeting():void
 	clearOutput();
 	author("Savin");
 	showName("ANNO &\nKAEDE");
-	showBust("ANNO", "KAEDE");
+	showBust(annoBustDisplay(), "KAEDE");
 
 	// {First Time}
 	if (!hasMetKaede())
@@ -2268,7 +2268,7 @@ public function fuckAnnoWithScienceYoFukkinLadyBoi():void
 public function takeOverAlisssShopForPuppySlootPeanutButterStrapons():void
 {
 	author("Savin");
-	showBust("ANNO","ALISS");
+	showBust(annoBustDisplay(), alissBustDisplay());
 	showName("ANNO &\nALISS");
 	output("\n\nAs you make your way into the busy clothing shop, you notice a familiar white-maned ausar girl sitting inside. ");
 	if(flags["MET_ALICE"] != undefined) output("Aliss");
@@ -2525,7 +2525,7 @@ public function annoStraponMods():void
 	annoFollowerHeader();
 	output("<i>“Oh, hey, check this out,”</i> Anno says, waving you over to her work bench. Amid a clutter of broken-down guns, tools, and electrical equipment sits, of all things, the pair of lacy orange panties she bought from <i>Mi Amour</i>. <i>“Remember these?”</i> ");
 	output("\n\nYou nod, and your lover continues. <i>“Well, I’ve been tweaking ‘em a little. I mean, a hardlight cock is cool and all, but we can do better than that, right? I totally voided the warranty on these, but check it out!”</i>");
-	output("\n\nAnno picks her panties up and slips them on over her [anno.lowerGarment]. After a moment of adjusting, she keys the little button hidden on her hip, and the hardlight projectors spring to life. Rather than the hefty human cock that Aliss showed off at the shop, Anno’s crotch erupts into a gargantuan equine cock, thicker around than her arm and near as long as her leg. The over-sized horsecock throbs and flops down under its own imagined weight, hanging menacingly between Anno’s legs.");
+	output("\n\nAnno picks her modified panties up and slips them on over her plain undies. After a moment of adjusting, she keys the little button hidden on her hip, and the hardlight projectors spring to life. Rather than the hefty human cock that Aliss showed off at the shop, Anno’s crotch erupts into a gargantuan equine cock, thicker around than her arm and near as long as her leg. The over-sized horsecock throbs and flops down under its own imagined weight, hanging menacingly between Anno’s legs.");
 	output("\n\nSeeing the look in your eyes, Anno giggles and grabs her hardlight erection, stroking it tenderly as she speaks. <i>“I did a little modding on this bad boy. Enhanced batteries, stronger projection filters, and a whole slew of new cock shapes and sizes. And no, I totally don’t have penis envy, why do you ask?”</i>");
 	output("\n\nShe flicks another, new dial under the power button, and the gargantuan horsedick flickers out of existence, replaced by a much more reasonably-sized canid cock, complete with a butt-busting bitch-breaker at the hilt. Anno grins, rubbing the knot with her thumb until she shivers with pleasure. Another turn of the dial, and her doggydick is replaced by a bristly kittycock, complete with rings of sensitive little bumps and nodules along the crown. She runs a finger along the bristles, arching her back and moaning as the tactile feedback sends waves of pleasure through her.");
 	output("\n\nAnno takes a step closer, giving you a lascivious wink. <i>“What do you say, next time I give you a good fucking you help me... alpha test these new mods? I promise, it’ll be the most fun QA you’ve ever done.”</i>");

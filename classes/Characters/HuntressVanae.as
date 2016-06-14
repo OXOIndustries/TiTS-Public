@@ -271,7 +271,7 @@ package classes.Characters
 
 			// [Miss]: 
 			if (combatMiss(this, target)) output(" You dodge the [enemy.milk] as it shoots past your [pc.ear]. She steadies her spear, moving back into her fighting stance.");
-			else if(target.hasArmor() && target.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+			else if(target.hasAirtightSuit())
 			{
 				output(" You are splattered with her [enemy.milk]! Fortunately for you, your [pc.armor] is watertight and prevents any of the lust-inducing liquid to seep into it.");
 			}

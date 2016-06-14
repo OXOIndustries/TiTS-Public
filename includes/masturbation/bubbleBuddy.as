@@ -52,7 +52,7 @@ public function playerUsedBubbleBuddyInCombat(targetCreature:Creature, usingCrea
 			output("\n\nThe fist-sized orb hits its mark, the taut latex bloating outward from the impact for a moment before popping with a sharp snap! The [pc.cumVisc] contents of the balloon splatter against your target");
 			if(targetCreature.isPlural) output("s");
 			output(" like a spilled glass of [pc.cumColor] cream.");
-			if(targetCreature.hasArmor() && targetCreature.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+			if(targetCreature.hasAirtightSuit())
 			{
 				output("\nUnfortunately,");
 				if(targetCreature.isPlural) output(" their outfits are");
@@ -98,7 +98,7 @@ public function playerUsedBubbleBuddyInCombat(targetCreature:Creature, usingCrea
 			output("\n\nThe head-sized orb hits its mark, the straining latex covering snapping almost immediately upon contact. The showering spunk released from the popped balloon erupts like an upturned pitcher, warm jizz drenching your target");
 			if(targetCreature.isPlural) output("s");
 			output(" as thoroughly as a 20-man bukkake session.");
-			if(targetCreature.hasArmor() && targetCreature.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+			if(targetCreature.hasAirtightSuit())
 			{
 				output("\nUnfortunately,");
 				if(targetCreature.isPlural) output(" their outfits are");
@@ -143,7 +143,7 @@ public function playerUsedBubbleBuddyInCombat(targetCreature:Creature, usingCrea
 			if(targetCreature.isPlural) output("s are");
 			else output(" is");
 			output(" bathed in the [pc.cumVisc] cream, the force of impact enough to knock a man clear off his feet. The deluge of seed is so excessive, it’s almost as if someone had just upturned a bathtub full of spunk.");
-			if(targetCreature.hasArmor() && targetCreature.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+			if(targetCreature.hasAirtightSuit())
 			{
 				output("\nUnfortunately,");
 				if(targetCreature.isPlural) output(" their outfits are");

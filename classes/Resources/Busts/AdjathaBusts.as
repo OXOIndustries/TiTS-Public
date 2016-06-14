@@ -94,6 +94,9 @@ package classes.Resources.Busts
 		public var Bust_FROSTWYRM:Class;
 		public var Bounds_FROSTWYRM:Rectangle = new Rectangle(115, 32, 70, 70);
 		
+		[Embed(source = "../../../assets/images/npcs/adjatha/horisha_peck.png", mimeType = "image/png")]
+		public var Bust_HORISHA_AND_PECK:Class;
+		
 		[Embed(source = "../../../assets/images/npcs/adjatha/joyco_vending_machine.png", mimeType = "image/png")]
 		public var Bust_JOYCO_VENDING_MACHINE:Class;
 		
@@ -149,6 +152,9 @@ package classes.Resources.Busts
 		public var Bust_LERRIS_COW:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/lerris_cow_nude.png", mimeType = "image/png")]
 		public var Bust_LERRIS_COW_NUDE:Class;
+		
+		[Embed(source = "../../../assets/images/npcs/adjatha/lola_nude.png", mimeType = "image/png")]
+		public var Bust_LOLA:Class;
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/lys.png", mimeType = "image/png")]
 		public var Bust_LYS:Class;
@@ -180,6 +186,11 @@ package classes.Resources.Busts
 		public var Bust_PEXIGA:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/pexiga_bimbo.png", mimeType = "image/png")]
 		public var Bust_PEXIGA_BIMBO:Class;
+		
+		[Embed(source = "../../../assets/images/npcs/adjatha/quenton.png", mimeType = "image/png")]
+		public var Bust_QUENTON:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/quenton_nude.png", mimeType = "image/png")]
+		public var Bust_QUENTON_NUDE:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/adjatha/semith.png", mimeType = "image/png")]
 		public var Bust_SEMITH:Class;
@@ -297,6 +308,9 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/frostwyrm.png", mimeType = "image/png")]
 			public var Full_FROSTWYRM:Class;
 			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/horisha_peck.png", mimeType = "image/png")]
+			public var Full_HORISHA_AND_PECK:Class;
+			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/joyco_vending_machine.png", mimeType = "image/png")]
 			public var Full_JOYCO_VENDING_MACHINE:Class;
 			
@@ -352,6 +366,9 @@ package classes.Resources.Busts
 			public var Full_LERRIS_COW:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/lerris_cow_nude.png", mimeType = "image/png")]
 			public var Full_LERRIS_COW_NUDE:Class;
+		
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/lola_nude.png", mimeType = "image/png")]
+			public var Full_LOLA:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/lys.png", mimeType = "image/png")]
 			public var Full_LYS:Class;
@@ -382,6 +399,11 @@ package classes.Resources.Busts
 			public var Full_PEXIGA:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/pexiga_bimbo.png", mimeType = "image/png")]
 			public var Full_PEXIGA_BIMBO:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/quenton.png", mimeType = "image/png")]
+			public var Full_QUENTON:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/quenton_nude.png", mimeType = "image/png")]
+			public var Full_QUENTON_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/semith.png", mimeType = "image/png")]
 			public var Full_SEMITH:Class;

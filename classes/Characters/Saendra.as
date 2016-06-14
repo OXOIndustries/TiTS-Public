@@ -180,7 +180,12 @@ package classes.Characters
 		
 		override public function get bustDisplay():String
 		{
-			return "SAENDRA";
+			var str:String = "SAENDRA";
+			
+			// 9999 - Futafication
+			//if(hasCock()) str += "_FUTA";
+			
+			return str;
 		}
 		
 		public function UpgradeVersion1(dataObject:Object):void

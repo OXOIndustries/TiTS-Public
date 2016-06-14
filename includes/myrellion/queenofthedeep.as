@@ -155,7 +155,7 @@ public function queenOfTheDeepPCLoss():void
 	
 	if (pc.hasCock())
 	{
-		output(" Your [pc.multiCocks] grow");
+		output(" Your [pc.cocks] grow");
 		if (pc.cocks.length > 1) output("s");
 		output(" rigid, pressing into the queen’s belly. She coos delightedly and reaches down to stroke");
 		if (pc.cocks.length == 1) output(" it");
@@ -389,7 +389,7 @@ public function queenOfTheDeepSurrenderII(fromCombat:Boolean):void
 	output("\n\nYou open your mouth to speak, to answer her claims, but instantly your lips are locked with hers, tongues entangling as the queen grows more aggressive. Her tendrils assail your bare body, working hard to slather you with their pink discharge. You feel the heat of venom on you almost instantly, rousing your senses.");
 	if (pc.hasCock())
 	{
-		output(" Your [pc.multiCocks] grow");
+		output(" Your [pc.cocks] grow");
 		if (pc.cocks.length == 1) output("s");
 		output(" rigid, pressing into the queen’s belly. She coos delightedly and reaches down to stroke it, sending shivers of pleasure through you as her blued fingers wrap around your length.");
 	}

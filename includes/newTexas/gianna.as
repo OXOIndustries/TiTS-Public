@@ -84,10 +84,21 @@ public function giannaAWOL(arg:int = 0):Boolean
 public function giannaDisplay():void
 {
 	showName("\nGIANNA");
-	if(gianna.biggestTitSize() <= 9) showBust("GIANNA_NUDE");
-	else if(gianna.biggestTitSize() <= 18) showBust("GIANNA_MEDIUM_NUDE");
-	else showBust("GIANNA_LARGE_NUDE");
+	showBust(giannaBustDisplay());
 	author("Fenoxo");
+}
+public function giannaBustDisplay():String
+{
+	// 9999 - Special artist exceptions!
+	if(kGAMECLASS.gameOptions.configuredBustPreferences["GIANNA_NUDE"] != "SHOU") return "GIANNA_NUDE";
+	
+	var sBust:String = "GIANNA";
+	if(gianna.biggestTitSize() <= 9) sBust += "";
+	else if(gianna.biggestTitSize() <= 18) sBust += "_MEDIUM";
+	else sBust += "_LARGE";
+	sBust += "_NUDE";
+	
+	return sBust;
 }
 
 public function giannaSiliconeUsed():Number
@@ -117,6 +128,8 @@ public function giannaAvailableSilicone(arg:int = 0):Number
 
 public function giannaBonusShit():Boolean
 {
+	if(giannaAWOL()) return false;
+	
 	//Unmet blurb
 	if(flags["MET_GIANNA"] == undefined)
 	{
@@ -520,6 +533,8 @@ public function leaveWhileGiannaGetsRidOfCum():void
 	output("You don’t have time to wait around for this. She might be disappointed to see you go, but she’ll get over it.");
 	giannaPersonality(-10);
 	giannaAWOL(13);
+	variableRoomUpdateCheck();
+	generateMap();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

@@ -403,7 +403,7 @@ public function kq2ThisPlace():void
 	output("<i>“You didn’t put this place together yourself, did you?”</i> you ask, sweeping a hand out the forward viewscreen.");
 
 	output("\n\nKara laughs. <i>“Oh, no. No. This was going to be used as a smuggling base right after the Rushers discovered Myrellion, before the Damocles Fleet arrived in orbit. After that, well, it’s hard enough to move goods on the down-low without a jumpy Confederate fleet next to your destination. The place was abandoned, and I");
-	if (flags["KQ_F_TALK"] != undefined) output(" decided to use it as a meet point. No chance of accidental pirate encounters here.");
+	if (flags["KQ2_F_TALK"] != undefined) output(" decided to use it as a meet point. No chance of accidental pirate encounters here.");
 	else output(" found it! Pretty handy, hmm?");
 	output("”</i>");
 
@@ -2734,6 +2734,7 @@ public function kq2PostKaraSexyCombineGo():void
 	}
 	else
 	{
+		output("\n\n");
 		CombatManager.genericVictory();
 	}
 }
@@ -2792,7 +2793,7 @@ public function kq2PostKaraSexyCombineStay():void
 		
 		output("\n\nKara giggles and gives you a parting kiss - and a firm squeeze of your [pc.butt]. <i>“See ya, [pc.name]. Don’t be a stranger.”</i>");
 		
-		output("\n\nThe airlock snaps closed behind you, and you make the journey back to your own ship in silence.");
+		output("\n\nThe airlock snaps closed behind you, and you make the journey back to your own ship in silence.\n\n");
 
 		pc.removeStatusEffect("Kara Fuck Alternate Path");
 
@@ -2921,7 +2922,7 @@ public function kq2DaneCoordEmail():void
 	//{if fucked:
 	if (flags["FOUGHT_DANE_ON_MHENGA"] == 1 && flags["WHUPPED_DANES_ASS_ON_MHENGA"] == undefined)
 	{
-		output("\n\nSoooo if you want a repeat of Mhen'ga, maybe we can hook up sometime? C'mon, I know you liked it ;)");; 
+		output("\n\nSoooo if you want a repeat of Mhen'ga, maybe we can hook up sometime? C'mon, I know you liked it ;)");
 		if (silly) output(" Woulda save-scummed out of it otherwise!");
 		
 		output("\n\n<b>Below the message is attached a picture of Dane's rock-hard tentacle wang, multiple knots fully engorged between his snowy fingers. Looks like somebody's been thinking of you...</b>");
