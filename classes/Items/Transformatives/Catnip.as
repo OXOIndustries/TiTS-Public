@@ -808,7 +808,7 @@ package classes.Items.Transformatives
 						target.tailGenitalArg = GLOBAL.TYPE_FELINE;
 						target.tailGenital = GLOBAL.TAIL_GENITAL_COCK;
 						target.addTailFlag(GLOBAL.FLAG_TAILCOCK); // that's a hell load of flags...
-						if (hasTailCunt) target.addTailFlag(GLOBAL.FLAG_TAILGINA); // Since I have no real idea how combo version should work, I also don't know how to fork it properly, so let's silently apply flag
+						if (hasTailCunt) target.addTailFlag(GLOBAL.FLAG_TAILCUNT); // Since I have no real idea how combo version should work, I also don't know how to fork it properly, so let's silently apply flag
 						target.addTailFlag(GLOBAL.FLAG_PREHENSILE);
 						target.addTailFlag(GLOBAL.FLAG_NUBBY); // not really sure how it should be actually handled
 						target.addTailFlag(GLOBAL.FLAG_TAPERED);
@@ -822,13 +822,16 @@ package classes.Items.Transformatives
 						target.tailGenitalColor = "pink";
 						target.tailGenitalArg = GLOBAL.TYPE_FELINE;
 						target.tailGenital = GLOBAL.TAIL_GENITAL_VAGINA;
-						target.addTailFlag(GLOBAL.FLAG_TAILGINA);
+						target.addTailFlag(GLOBAL.FLAG_TAILCUNT);
 						target.addTailFlag(GLOBAL.FLAG_PREHENSILE);
 						target.addTailFlag(GLOBAL.FLAG_SHEATHED);
 						output(" The tip of your tail feels strange. After some probing, you've found your tail genitalia still present, but totally unnoticeable when not aroused.");
 						if(target.hasParasiteTail()) output(" And much less prone to act by itself as well.");
 						output(".");
 					}
+					
+					flags["CUNT_TAIL_PREGNANT_TIMER"] = undefined;
+					flags["DAYS_SINCE_FED_CUNT_TAIL"] = undefined;
 					
 					target.tailCount = 1;
 					target.tailType = GLOBAL.TYPE_FELINE;

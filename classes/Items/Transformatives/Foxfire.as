@@ -501,9 +501,9 @@ package classes.Items.Transformatives
 						
 						target.tailGenitalColor =  !colorsMatching(target) ? "red" : target.lipColor;
 						target.tailGenitalArg = GLOBAL.TYPE_VULPINE;
-						target.tailGenital = GLOBAL.TAIL_GENITAL_COCK; // note: this variable is unused
+						target.tailGenital = GLOBAL.TAIL_GENITAL_COCK;
 						target.addTailFlag(GLOBAL.FLAG_TAILCOCK);
-						if (hasTailCunt) target.addTailFlag(GLOBAL.FLAG_TAILGINA); // Since I have no real idea how combo version should work, I also don't know how to fork it properly, so let's silently apply flag
+						if (hasTailCunt) target.addTailFlag(GLOBAL.FLAG_TAILCUNT); // Since I have no real idea how combo version should work, I also don't know how to fork it properly, so let's silently apply flag
 						target.addTailFlag(GLOBAL.FLAG_PREHENSILE);
 						target.addTailFlag(GLOBAL.FLAG_KNOTTED);
 						target.addTailFlag(GLOBAL.FLAG_TAPERED);
@@ -518,11 +518,14 @@ package classes.Items.Transformatives
 						
 						target.tailGenitalColor = !colorsMatching(target) ? "black" : target.lipColor;
 						target.tailGenitalArg = GLOBAL.TYPE_VULPINE;
-						target.tailGenital = GLOBAL.TAIL_GENITAL_VAGINA; // note: this variable is unused
-						target.addTailFlag(GLOBAL.FLAG_TAILGINA);
+						target.tailGenital = GLOBAL.TAIL_GENITAL_VAGINA;
+						target.addTailFlag(GLOBAL.FLAG_TAILCUNT);
 						target.addTailFlag(GLOBAL.FLAG_PREHENSILE);
 						target.addTailFlag(GLOBAL.FLAG_SHEATHED);
 					}
+					
+					flags["CUNT_TAIL_PREGNANT_TIMER"] = undefined;
+					flags["DAYS_SINCE_FED_CUNT_TAIL"] = undefined;
 					
 					// count is set above
 					target.tailType = GLOBAL.TYPE_VULPINE;
