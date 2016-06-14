@@ -635,7 +635,7 @@ public function hasGooArmorOnSelf():Boolean
     if(pc.armor is GooArmor || pc.hasItemByName("Goo Armor")) return true;
     return false;
 }
-public function hasGooArmorUpgrade(upgrade:String = "none"):Boolean
+public function hasGooArmorUpgrade(upgrade:String = "none", bInv:Boolean = true):Boolean
 {
 	var hasUpgrade:Boolean = false;
 	if(pc.armor is GooArmor)
@@ -645,13 +645,16 @@ public function hasGooArmorUpgrade(upgrade:String = "none"):Boolean
 			case "ganrael": if(pc.armor.resistances.hasFlag(DamageFlag.MIRRORED)) hasUpgrade = true; break;
 		}
 	}
-	for(var i:int = 0; i < pc.inventory.length; i++)
+	if(bInv)
 	{
-		if(pc.inventory[i].shortName == "Goo Armor")
+		for(var i:int = 0; i < pc.inventory.length; i++)
 		{
-			switch(upgrade)
+			if(pc.inventory[i].shortName == "Goo Armor")
 			{
-				case "ganrael": if(pc.inventory[i].resistances.hasFlag(DamageFlag.MIRRORED)) hasUpgrade = true; break;
+				switch(upgrade)
+				{
+					case "ganrael": if(pc.inventory[i].resistances.hasFlag(DamageFlag.MIRRORED)) hasUpgrade = true; break;
+				}
 			}
 		}
 	}
@@ -1705,8 +1708,49 @@ public function gooArmorChangeArmorMenu(fromCrew:Boolean = true):void
 		}
 	}
 	
+	if(!gooArmorCheck()) gooArmorAddButton(fromCrew, 13, "Repair", gooArmorChangeArmor, ["repair", fromCrew], "Self Repair", "Something seem’s off about [goo.name]. Ask her to repair herself!");
+	
 	gooArmorAddButton(fromCrew, 14, "Finish", gooArmorChangeArmor, ["finish", fromCrew]);
 }
+// Checks goo armor status for repairs.
+public function gooArmorCheck(repair:Boolean = false):Boolean
+{
+	if(!(pc.armor is GooArmor) || !pc.armor.hasRandomProperties) return true;
+	
+	// Make sure suit is in normal form first.
+	if
+	(	pc.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT)
+	||	pc.armor.hasFlag(GLOBAL.ITEM_FLAG_SWIMWEAR)
+	||	pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)
+	||	pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST) || pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN) || pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS)
+	) return true;
+	
+	// Make sure there isn't any active status effects affecting the armor's stats.
+	if
+	(	pc.hasStatusEffect("Reduced Goo")
+	||	pc.hasStatusEffect("Goo Armor Defense Drain")
+	) return true;
+	
+	// Base stats and upgrades:
+	var baseDefense:Number = 6;
+	var baseSexiness:Number = 5;
+	// Ganrael
+	if(hasGooArmorUpgrade("ganrael", false))
+	{
+		baseDefense += 2;
+	}
+	
+	// To repair
+	if(repair)
+	{
+		pc.armor.defense = baseDefense;
+		pc.armor.sexiness = baseSexiness;
+	}
+	// To check
+	if(pc.armor.defense == baseDefense && pc.armor.sexiness == baseSexiness) return true;
+	return false;
+}
+// Checks and changes armor flags and stats accordingly for exposure.
 public function gooArmorChangePart(part:String = "null", expose:Boolean = false):void
 {
 	if(!(pc.armor is GooArmor) || !pc.armor.hasRandomProperties) return;
@@ -1788,6 +1832,7 @@ public function gooArmorChangePart(part:String = "null", expose:Boolean = false)
 	}
 	gooArmorCheckAirtight();
 }
+// Checks and changes armor flags and stats accordingly for swimwear.
 public function gooArmorCheckSwimwear():String
 {
 	var msg:String = "";
@@ -1827,6 +1872,7 @@ public function gooArmorCheckSwimwear():String
 	
 	return msg;
 }
+// Checks and changes armor flags and stats accordingly for helmet.
 public function gooArmorCheckAirtight():String
 {
 	var msg:String = "";
@@ -1889,6 +1935,35 @@ public function gooArmorChangeArmor(arg:Array):void
 		txt += "You decide you don’t need anything adjusted on your suit just yet.";
 		txt += "\n\n<i>“Okay, feel free to ask anytime!”</i> [goo.name] says as the mass of her lower body glides across yours.";
 		gooArmorOutput(fromCrew, txt);
+		
+		gooArmorClearMenu(fromCrew);
+		approachGooArmorCrewMenu(fromCrew);
+		return;
+	}
+	if(toggle == "repair")
+	{
+		txt += "You feel something is off about your suit and let [goo.name] know about it.";
+		txt += "\n\n<i>“Hm, that’s strange...”</i> she sounds, shifting herself around a few times.";
+		txt += "\n\n<i>“I’m calculating the data now...”</i>";
+		if(!gooArmorCheck())
+		{
+			txt += "\n\n<i>“Anomalies detected...”</i>";
+			txt += "\n\n<i>“Repairing defects...”</i>";
+			
+			gooArmorCheck(true);
+			processTime(5);
+			
+			txt += "\n\n<i>“... aaaand done!”</i>";
+			txt += "\n\nWith that, you feel your armor is back to it’s normal self again. <i>“Thanks, [goo.name]!”</i>";
+		}
+		else
+		{
+			txt += "\n\n<i>“... No anomalies detected! No need for repairs, silly!”</i>";
+			txt += "\n\nAh, it must have been a false alarm...";
+		}
+		
+		gooArmorOutput(fromCrew, txt);
+		processTime(2);
 		
 		gooArmorClearMenu(fromCrew);
 		approachGooArmorCrewMenu(fromCrew);
