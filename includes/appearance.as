@@ -679,10 +679,10 @@ public function appearance(forTarget:Creature):void
 		else if(target.skinType == GLOBAL.SKIN_TYPE_LATEX)
 		{
 			output2(", sensually wrapped in a layer of");
-			if(pc.statusEffectv1("Latex Skin") > 0)
+			if(target.statusEffectv1("Latex Skin") > 0)
 			{
-				if(pc.statusEffectv1("Latex Skin") < 2) output2(" semi-glossy");
-				else if(pc.statusEffectv1("Latex Skin") < 3) output2(" glossy");
+				if(target.statusEffectv1("Latex Skin") < 2) output2(" semi-glossy");
+				else if(target.statusEffectv1("Latex Skin") < 3) output2(" glossy");
 				else output2(" extra-glossy");
 			}
 			output2(" " + target.skinTone + " latex");
@@ -747,8 +747,8 @@ public function appearance(forTarget:Creature):void
 			{
 				if (target.wingCount == 2) output2(" a pair of");
 				else output2(" " + num2Text(int(target.wingCount)));
-				if(pc.wingCount < 4) output2(" " + target.furColor + " wings adorn your back, feathered like a dove’s and big enough to be worn like a cloak when folded over your body. They’re strong enough to glide with, but nice and soft to the touch.");
-				else if(pc.wingCount < 6) output2(" wings sprout from your back, each covered in wonderfully soft " + target.furColor + " feathers and big enough to be worn like a robe when all " + num2Text(int(target.wingCount)) + " are folded over your body. They’re arranged so they don’t get in each other’s way when spread, thus you can still glide with them.");
+				if(target.wingCount < 4) output2(" " + target.furColor + " wings adorn your back, feathered like a dove’s and big enough to be worn like a cloak when folded over your body. They’re strong enough to glide with, but nice and soft to the touch.");
+				else if(target.wingCount < 6) output2(" wings sprout from your back, each covered in wonderfully soft " + target.furColor + " feathers and big enough to be worn like a robe when all " + num2Text(int(target.wingCount)) + " are folded over your body. They’re arranged so they don’t get in each other’s way when spread, thus you can still glide with them.");
 				else output2(" wings sprout from your back, each covered in wonderfully soft " + target.furColor + " feathers and big enough to be worn like a luxurious ceremonial robe when all " + num2Text(int(target.wingCount)) + " are folded over your body, which you often find yourself doing to help with getting through tight spaces. Despite their sheer bulk, you can still glide with them.");
 			}
 			else if (target.wingType == GLOBAL.TYPE_GRYVAIN)
@@ -2100,7 +2100,7 @@ public function crotchStuff(forTarget:Creature = null):void
 		
 		//SINGLE DICKS!
 		if(target.cockTotal() == 1) {
-			output2("Your " + target.cockDescript() + " is " + Math.floor(10*target.cocks[0].cLength())/10 + " inches long and ");
+			output2("Your " + target.cockDescript(0) + " is " + Math.floor(10*target.cocks[0].cLength())/10 + " inches long and ");
 			if(Math.floor(10*target.cocks[0].thickness())/10 < 2) {
 				if(Math.floor(10*target.cocks[0].thickness())/10 == 1) output2(int(10*target.cocks[0].thickness())/10 + " inch thick.");
 				else output2(Math.round(10*target.cocks[0].thickness())/10 + " inches across.");
@@ -2306,7 +2306,7 @@ public function crotchStuff(forTarget:Creature = null):void
 				if(temp == 0) output2("\nYour first entrance");
 				else if(temp == 1) output2("\nThe second slit");
 				else output2("\nThe third and final vagina");
-				output2(" is " + indefiniteArticle(target.vaginaDescript(0,false,false,true)) + " with " + num2Text(target.vaginas[temp].clits) + " " + int(target.clitLength*10)/10 + "-inch clit");
+				output2(" is " + indefiniteArticle(target.vaginaDescript(temp,false,false,true)) + " with " + num2Text(target.vaginas[temp].clits) + " " + int(target.clitLength*10)/10 + "-inch clit");
 				if(target.vaginas[temp].clits > 1) output2("s");
 				//Virginal trumps all else
 				if(target.vaginas[temp].hymen) output2(", still virginal in appearance.");
