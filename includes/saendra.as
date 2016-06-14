@@ -866,10 +866,7 @@ public function saendraTalkInDC():void
 	
 	output("\n\n<i>“Not my fault the boys - and the girls - are lining up around the block for a chance at me!”</i>");
 	
-	output("\n\nSera snickers. <i>“A chance? Like you could keep your");
-	if(pc.legCount > 1) output(" [pc.legs] closed");
-	else output(" sex locked up");
-	output(" if they paid you to.”</i> ");
+	output("\n\nSera snickers. <i>“A chance? Like you could keep your " + (pc.hasLegs() ? "legs closed" : "sex locked up") + " if they paid you to.”</i>");
 	
 	output("\n\n<i>“That’s right,”</i> Saen says, leaning in so close her nose is practically touching the succubus’s, <i>“I give it away, instead of having to brow-beat my customers into it. How’s it feel not being able to actually get a date, glow-in-the-dark?”</i>");
 	
