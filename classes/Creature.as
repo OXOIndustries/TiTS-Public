@@ -837,7 +837,7 @@
 		//0 - none.
 		//1 - cock
 		//2 - vagina
-		public var tailGenital: int = 0; // This one is not actually used. Tail flags are used instead.
+		public var tailGenital: int = 0; // This one is now used to determine if tail genital is native (!=0) or parasitic (==0)
 		public function tailGenitalUnlocked(newTailGenital:Number):Boolean
 		{
 			return true;
@@ -5265,7 +5265,7 @@
 		}
 		public function hasPaddedLegs(): Boolean {
 			//if (hasLegFlag(GLOBAL.FLAG_PAWS)) return true; // reptiles... not sure 'bout them
-			return InCollection(armType, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_CANINE);
+			return InCollection(legType, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_CANINE);
 		}
 		public function lowerBody():String {
 			var output: String = "";
@@ -8002,6 +8002,8 @@
 			tailGenitalArg = 0;
 			tailGenitalColor = "";
 			clearTailFlags();
+			flags["CUNT_TAIL_PREGNANT_TIMER"] = undefined;
+			flags["DAYS_SINCE_FED_CUNT_TAIL"] = undefined;
 			return;
 		}
 		public function hasParasiteTail(): Boolean {
@@ -8038,7 +8040,7 @@
 		}
 		//In case there's ever different types of cuntTails available, we'll need different methods.
 		public function hasCuntSnake(): Boolean {
-			return hasTail(GLOBAL.TYPE_CUNTSNAKE);
+			return hasParasiteTail() && hasTailCunt(); // I hope there would not be any other parasitic tailcunts...
 		}
 		public function tailVaginaCapacity(): Number {
 			return tailCuntCapacity();

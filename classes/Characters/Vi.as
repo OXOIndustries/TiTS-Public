@@ -24,7 +24,7 @@
 		//constructor
 		public function Vi()
 		{
-			this._latestVersion = 2;
+			this._latestVersion = 1;
 			this.version = _latestVersion;
 			this._neverSerialize = true;
 			
@@ -53,11 +53,6 @@
 			this.vaginas[0].wetnessRaw = 4;
 			this.vaginas[0].loosenessRaw = 1;
 			this.vaginas[0].bonusCapacity = 20;
-		}
-		
-		public function UpgradeVersion1(dataObject:Object):void
-		{
-			dataObject.inventory.push(new ImmunoBooster().getSaveObject());
 		}
 		
 		override public function onLeaveBuyMenu():void

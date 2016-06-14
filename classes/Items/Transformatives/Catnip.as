@@ -830,8 +830,8 @@ package classes.Items.Transformatives
 						output(".");
 					}
 					
-					flags["CUNT_TAIL_PREGNANT_TIMER"] = undefined;
-					flags["DAYS_SINCE_FED_CUNT_TAIL"] = undefined;
+					kGAMECLASS.flags["CUNT_TAIL_PREGNANT_TIMER"] = undefined;
+					kGAMECLASS.flags["DAYS_SINCE_FED_CUNT_TAIL"] = undefined;
 					
 					target.tailCount = 1;
 					target.tailType = GLOBAL.TYPE_FELINE;
