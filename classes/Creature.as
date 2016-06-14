@@ -1774,6 +1774,14 @@
 				case "nipplePiercings":
 					buffer = "nipple piercings"; // 9999
 					break;
+				case "nippleHarden":
+				case "nipplesHarden":
+					buffer = nipplesErect(arg2);
+					break;
+				case "nippleHardening":
+				case "nipplesHardening":
+					buffer = nipplesErect(arg2, true);
+					break;
 				case "eachCock":
 					buffer = eachCock();
 					break;
@@ -7161,25 +7169,58 @@
 			return (cocks[x].volume() / 6 * elasticity);
 
 		}
-		public function hasTentacleNipples():Boolean {
+		// Nipple type checks
+		public function hasNipplesofType(arg:int = -1, rowNum:int = -1): Boolean
+		{
+			if (rowNum >= 0)
+			{
+				if (breastRows[rowNum].nippleType == arg) return true;
+				return false;
+			}
+			
 			var counter: Number = breastRows.length;
 			var index: Number = 0;
 			while (counter > 0) {
 				counter--;
-				if (breastRows[counter].nippleType == GLOBAL.NIPPLE_TYPE_TENTACLED) return true;
+				if (breastRows[counter].nippleType == arg) return true;
 			}
 			return false;
 		}
-		public function hasNippleCunts(): Boolean { return hasCuntNipples(); }
-		public function hasCuntNipples(): Boolean {
-			var counter: Number = breastRows.length;
-			while (counter > 0) {
-				counter--;
-				if (breastRows[counter].nippleType == GLOBAL.NIPPLE_TYPE_FUCKABLE) return true;
-			}
-			return false;
+		public function hasNormalNipples(rowNum:int = -1):Boolean {
+			return hasNipplesofType(GLOBAL.NIPPLE_TYPE_NORMAL, rowNum);
 		}
-		public function hasFuckableNipples(): Boolean {
+		public function hasTentacleNipples(rowNum:int = -1):Boolean {
+			return hasNipplesofType(GLOBAL.NIPPLE_TYPE_TENTACLED, rowNum);
+		}
+		public function hasNippleCunts(rowNum:int = -1): Boolean { return hasCuntNipples(rowNum); }
+		public function hasCuntNipples(rowNum:int = -1): Boolean {
+			return hasNipplesofType(GLOBAL.NIPPLE_TYPE_FUCKABLE, rowNum);
+		}
+		public function hasLipples(rowNum:int = -1): Boolean {
+			return hasNipplesofType(GLOBAL.NIPPLE_TYPE_LIPPLES, rowNum);
+		}
+		public function hasDickNipples(rowNum:int = -1): Boolean {
+			//trace("THIS FUNCTION IS THE REASON THEY INVENTED AIDS. WHRYYYYYYYYYY!!!!!!!!!!!!!1111one!");
+			return hasNippleCocks(rowNum);
+		}
+		public function hasNippleCocks(rowNum:int = -1): Boolean {
+			return hasNipplesofType(GLOBAL.NIPPLE_TYPE_DICK, rowNum);
+		}
+		public function hasInvertedNipples(rowNum:int = -1): Boolean
+		{
+			return hasNipplesofType(GLOBAL.NIPPLE_TYPE_INVERTED, rowNum);
+		}
+		public function hasFlatNipples(rowNum:int = -1): Boolean {
+			return hasNipplesofType(GLOBAL.NIPPLE_TYPE_FLAT, rowNum);
+		}
+		public function hasFuckableNipples(rowNum:int = -1): Boolean
+		{
+			if (rowNum >= 0)
+			{
+				if (breastRows[rowNum].fuckable()) return true;
+				return false;
+			}
+			
 			var counter: Number = breastRows.length;
 			while (counter > 0) {
 				counter--;
@@ -7187,48 +7228,68 @@
 			}
 			return false;
 		}
-		public function hasLipples(): Boolean {
-			var counter: Number = breastRows.length;
-			var index: Number = 0;
-			while (counter > 0) {
-				counter--;
-				if (breastRows[counter].nippleType == GLOBAL.NIPPLE_TYPE_LIPPLES) index = counter;
-			}
-			if (breastRows[index].nippleType == GLOBAL.NIPPLE_TYPE_LIPPLES) return true;
-			return false;
-		}
-		public function hasDickNipples(): Boolean {
-			//trace("THIS FUNCTION IS THE REASON THEY INVENTED AIDS. WHRYYYYYYYYYY!!!!!!!!!!!!!1111one!");
-			return hasNippleCocks();
-		}
-		public function hasNippleCocks(): Boolean {
-			var counter: Number = breastRows.length;
-			var index: Number = 0;
-			while (counter > 0) {
-				counter--;
-				if (breastRows[counter].nippleType == GLOBAL.NIPPLE_TYPE_DICK) return true;
-			}
-			return false;
-		}
-
-		public function hasInvertedNipples(): Boolean
+		public function nipplesMatch(): Boolean
 		{
-			var counter: Number = breastRows.length;
-			var index: Number = 0;
-			while (counter > 0) {
-				counter--;
-				if (breastRows[counter].nippleType == GLOBAL.NIPPLE_TYPE_INVERTED) return true;
+			for(var x:int = 0; x < breastRows.length; x++)
+			{
+				if(x > 0)
+				{
+					if(breastRows[x].nippleType != breastRows[x-1].nippleType) return false;
+				}
 			}
-			return false;
+			return true;
 		}
-		public function hasFlatNipples(): Boolean {
-			var counter: Number = breastRows.length;
-			var index: Number = 0;
-			while (counter > 0) {
-				counter--;
-				if (breastRows[counter].nippleType == GLOBAL.NIPPLE_TYPE_FLAT) return true;
+		// Nipple hardening verbs
+		public function nipplesErect(rowNum:int = 0, present:Boolean = false):String
+		{
+			var desc:String = "";
+			var actions:Array = [];
+			
+			if(hasNormalNipples(rowNum) || hasNippleCocks(rowNum)) {
+				if(present) {
+					actions.push("erecting", "hardening", "swelling", "stiffening");
+				}
+				else {
+					actions.push("erect", "harden", "swell", "stiffen");
+				}
 			}
-			return false;
+			if(hasInvertedNipples(rowNum) || hasTentacleNipples(rowNum)) {
+				if(present) {
+					actions.push("exposing", "emerging", "hardening", "uncovering");
+				}
+				else {
+					actions.push("expose", "emerge", "harden", "uncover");
+				}
+			}
+			if(hasCuntNipples(rowNum)) {
+				if(present) {
+					actions.push("dampening", "moistening", "wettening");
+				}
+				else {
+					actions.push("dampen", "moisten", "wetten");
+				}
+			}
+			if(hasLipples(rowNum)) {
+				if(present) {
+					actions.push("puckering", "puffing up", "swelling");
+				}
+				else {
+					actions.push("pucker", "puff up", "swell");
+				}
+			}
+			if(hasFlatNipples(rowNum) || hasInvertedNipples(rowNum)) {
+				if(present) {
+					actions.push("expanding", "puffing up", "swelling");
+				}
+				else {
+					actions.push("expand", "puff up", "swell");
+				}
+			}
+			
+			if(actions.length <= 0) return "ERROR: NO VALID NIPPLE TYPE ACTION";
+			
+			desc += RandomInCollection(actions);
+			return desc;
 		}
 		public function hasBreasts(): Boolean {
 			if (breastRows.length > 0) {
@@ -7904,19 +7965,26 @@
 		{
 			tailCount = 0;
 			tailType = 0;
-			tailGenital = 0;
+			tailGenital = GLOBAL.TAIL_GENITAL_NONE;
 			tailGenitalArg = 0;
 			tailGenitalColor = "";
 			clearTailFlags();
 			return;
 		}
 		public function hasParasiteTail(): Boolean {
-			if (tailCount > 0 && InCollection(tailType, GLOBAL.TYPE_CUNTSNAKE, GLOBAL.TYPE_COCKVINE)) return true;
+			if(tailCount > 0)
+			{
+				if(InCollection(tailType, GLOBAL.TYPE_CUNTSNAKE, GLOBAL.TYPE_COCKVINE)) return true;
+				if(hasTailFlag(GLOBAL.FLAG_TAILCUNT) && tailGenital == GLOBAL.TAIL_GENITAL_NONE) return true;
+				if(hasTailFlag(GLOBAL.FLAG_TAILCOCK) && tailGenital == GLOBAL.TAIL_GENITAL_NONE) return true;
+			}
 			return false;
 		}
 		public function hasTailCock(): Boolean {
-			if (hasTailFlag(GLOBAL.FLAG_TAILCOCK) && tailCount > 0) return true;
-			if (tailType == GLOBAL.TYPE_COCKVINE && tailCount > 0) return true;
+			if(tailCount > 0)
+			{
+				if(tailGenital == GLOBAL.TAIL_GENITAL_COCK || tailType == GLOBAL.TYPE_COCKVINE || hasTailFlag(GLOBAL.FLAG_TAILCOCK)) return true;
+			}
 			return false;
 		}
 		public function hasCockTail(): Boolean {
@@ -7929,7 +7997,10 @@
 			return hasTailCunt();
 		}
 		public function hasTailCunt(): Boolean {
-			if (tailType == GLOBAL.TYPE_CUNTSNAKE && tailCount > 0) return true;
+			if(tailCount > 0)
+			{
+				if(tailGenital == GLOBAL.TAIL_GENITAL_VAGINA || tailType == GLOBAL.TYPE_CUNTSNAKE || hasTailFlag(GLOBAL.FLAG_TAILCUNT)) return true;
+			}
 			return false;
 		}
 		//In case there's ever different types of cuntTails available, we'll need different methods.

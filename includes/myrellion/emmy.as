@@ -1231,7 +1231,7 @@ public function bringEmmyVenusBloom():void
 	clearMenu();
 	addButton(2,"Negative",negativeEmmy,undefined,"Negative","You just did this for a little oral - you didn't want any strings attached. You'll sound a bit like a dick...");
 	addButton(1,"Polyamorous",polyamorousEmmy,undefined,"Polyamorous","Let her know that you tend to have more than one lover - you hope she can handle it.");
-	addButton(0,"Pleased",emmyPleased,undefined,"Pleased","Let her know that you're pleased to be her boyfriend.");
+	addButton(0,"Pleased",emmyPleased,undefined,"Pleased","Let her know that you're pleased to be her [pc.boy]friend.");
 }
 
 //Negative

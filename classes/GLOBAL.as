@@ -72,6 +72,7 @@
 		public static const FLAG_ABSORBENT:int								= 39;
 		public static const FLAG_SLIGHTLY_PUMPED:int 						= 40;
 		public static const FLAG_PUMPED:int 								= 41;
+		public static const FLAG_TAILCUNT:int                               = 42;
 		
 		public static const FLAG_NAMES:Array = [
 			"OFFSET -- INVALID",
@@ -116,6 +117,7 @@
 			"Absorbent",
 			"Slightly Pumped",
 			"Fully Pumped",
+			"Tailcunt",
 		];
 		
 		public static const VALID_SKIN_FLAGS:Array = [
@@ -539,6 +541,7 @@
 			FLAG_FLUFFY,
 			FLAG_SMOOTH,
 			FLAG_TAILCOCK,
+			FLAG_TAILCUNT,
 			FLAG_FURRED,
 			FLAG_SCALED,
 			FLAG_OVIPOSITOR,

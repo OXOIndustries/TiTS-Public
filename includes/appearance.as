@@ -679,10 +679,10 @@ public function appearance(forTarget:Creature):void
 		else if(target.skinType == GLOBAL.SKIN_TYPE_LATEX)
 		{
 			output2(", sensually wrapped in a layer of");
-			if(pc.statusEffectv1("Latex Skin") > 0)
+			if(target.statusEffectv1("Latex Skin") > 0)
 			{
-				if(pc.statusEffectv1("Latex Skin") < 2) output2(" semi-glossy");
-				else if(pc.statusEffectv1("Latex Skin") < 3) output2(" glossy");
+				if(target.statusEffectv1("Latex Skin") < 2) output2(" semi-glossy");
+				else if(target.statusEffectv1("Latex Skin") < 3) output2(" glossy");
 				else output2(" extra-glossy");
 			}
 			output2(" " + target.skinTone + " latex");
@@ -747,8 +747,8 @@ public function appearance(forTarget:Creature):void
 			{
 				if (target.wingCount == 2) output2(" a pair of");
 				else output2(" " + num2Text(int(target.wingCount)));
-				if(pc.wingCount < 4) output2(" " + target.furColor + " wings adorn your back, feathered like a dove’s and big enough to be worn like a cloak when folded over your body. They’re strong enough to glide with, but nice and soft to the touch.");
-				else if(pc.wingCount < 6) output2(" wings sprout from your back, each covered in wonderfully soft " + target.furColor + " feathers and big enough to be worn like a robe when all " + num2Text(int(target.wingCount)) + " are folded over your body. They’re arranged so they don’t get in each other’s way when spread, thus you can still glide with them.");
+				if(target.wingCount < 4) output2(" " + target.furColor + " wings adorn your back, feathered like a dove’s and big enough to be worn like a cloak when folded over your body. They’re strong enough to glide with, but nice and soft to the touch.");
+				else if(target.wingCount < 6) output2(" wings sprout from your back, each covered in wonderfully soft " + target.furColor + " feathers and big enough to be worn like a robe when all " + num2Text(int(target.wingCount)) + " are folded over your body. They’re arranged so they don’t get in each other’s way when spread, thus you can still glide with them.");
 				else output2(" wings sprout from your back, each covered in wonderfully soft " + target.furColor + " feathers and big enough to be worn like a luxurious ceremonial robe when all " + num2Text(int(target.wingCount)) + " are folded over your body, which you often find yourself doing to help with getting through tight spaces. Despite their sheer bulk, you can still glide with them.");
 			}
 			else if (target.wingType == GLOBAL.TYPE_GRYVAIN)
@@ -1185,8 +1185,27 @@ public function appearance(forTarget:Creature):void
 		}
 		else if(target.tailType == GLOBAL.TYPE_MOUSE) output2(" A naked, " + target.skinTone + " mouse tail pokes from your butt, dragging on the ground and twitching occasionally.");
 		else if(target.tailType == GLOBAL.TYPE_CUNTSNAKE) {
-			if(target.tailCount <= 1) output2(" A sinuous, almost snake-like tail waves behind you, covered in " + target.skinFurScales(true) + " like the rest of you except at the tip. There, it terminates in " + indefiniteArticle(target.tailVaginaDescript()) + " that always seems to crave fresh sperm.");
-			else output2(" " + StringUtil.upperCase(num2Text(target.tailCount)) + " sinuous, almost snake-like tails wave behind you, covered in " + target.skinFurScales(true) + " like the rest of you except at the tip. There, they terminate in " + plural(target.tailVaginaDescript()) + " that always seem to crave fresh sperm.");
+			var cuntSnakeTexture:String = "";
+			
+			var cuntSnakeAdjectives:Array = [];
+			if(target.hasTailFlag(GLOBAL.FLAG_SMOOTH)) cuntSnakeAdjectives.push("smooth");
+			if(target.hasTailFlag(GLOBAL.FLAG_STICKY)) cuntSnakeAdjectives.push("sticky");
+			if(target.hasTailFlag(GLOBAL.FLAG_FLUFFY))
+			{
+				if(target.hasTailFlag(GLOBAL.FLAG_FURRED)) cuntSnakeAdjectives.push("fluffy");
+				if(target.hasTailFlag(GLOBAL.FLAG_FEATHERED)) cuntSnakeAdjectives.push("downy");
+			}
+			if(cuntSnakeAdjectives.length > 0) cuntSnakeTexture += RandomInCollection(cuntSnakeAdjectives) + ", ";
+			
+			if(target.hasTailFlag(GLOBAL.FLAG_FURRED)) cuntSnakeTexture += target.furColor + " fur";
+			else if(target.hasTailFlag(GLOBAL.FLAG_FEATHERED)) cuntSnakeTexture += target.furColor + " feathers";
+			else if(target.hasTailFlag(GLOBAL.FLAG_SCALED)) cuntSnakeTexture += target.scaleColor + " scales";
+			else if(target.hasTailFlag(GLOBAL.FLAG_CHITINOUS)) cuntSnakeTexture += target.scaleColor + " chitin";
+			else if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) cuntSnakeTexture += target.skinTone + " goo";
+			else cuntSnakeTexture += target.skinFurScales(true) + " like the rest of you";
+			
+			if(target.tailCount <= 1) output2(" A sinuous, almost snake-like tail waves behind you, covered in " + cuntSnakeTexture + " except at the tip. There, it terminates in " + indefiniteArticle(target.tailVaginaDescript()) + " that always seems to crave fresh sperm.");
+			else output2(" " + StringUtil.upperCase(num2Text(target.tailCount)) + "  sinuous, almost snake-like tails wave behind you, covered in " + cuntSnakeTexture + " except at the tip. There, they terminate in " + plural(target.tailVaginaDescript()) + " that always seem to crave fresh sperm.");
 		}
 		else if(target.tailType == GLOBAL.TYPE_PANDA) {
 			if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2(" A short, slimy panda tail sprouts just above your " + target.buttDescript() + ". It just kind of sits there, not doing much beyond being a gooey little accent.");
@@ -1238,20 +1257,40 @@ public function appearance(forTarget:Creature):void
 		}
 		else if(target.tailType == GLOBAL.TYPE_COCKVINE)
 		{
+			var cockvineTexture:String = "";
+			
+			var cockvineAdjectives:Array = [];
+			if(target.hasTailFlag(GLOBAL.FLAG_SMOOTH)) cockvineAdjectives.push("smooth");
+			if(target.hasTailFlag(GLOBAL.FLAG_STICKY)) cockvineAdjectives.push("sticky");
+			if(target.hasTailFlag(GLOBAL.FLAG_FLUFFY))
+			{
+				if(target.hasTailFlag(GLOBAL.FLAG_FURRED)) cockvineAdjectives.push("fluffy");
+				if(target.hasTailFlag(GLOBAL.FLAG_FEATHERED)) cockvineAdjectives.push("downy");
+			}
+			if(cockvineAdjectives.length > 0) cockvineTexture += RandomInCollection(cockvineAdjectives) + ", ";
+			
+			if(target.hasTailFlag(GLOBAL.FLAG_FURRED)) cockvineTexture += target.furColor + " fur";
+			else if(target.hasTailFlag(GLOBAL.FLAG_FEATHERED)) cockvineTexture += target.furColor + " feathers";
+			else if(target.hasTailFlag(GLOBAL.FLAG_SCALED)) cockvineTexture += target.scaleColor + " scales";
+			else if(target.hasTailFlag(GLOBAL.FLAG_CHITINOUS)) cockvineTexture += target.scaleColor + " chitin";
+			else if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) cockvineTexture += target.skinTone + " goo";
+			else if(target.skinType == GLOBAL.SKIN_TYPE_LATEX) cockvineTexture += target.skinTone + " latex";
+			else cockvineTexture += target.skinTone + " skin";
+			
 			if(target.tailCount == 1) output2(" A writhing, sinuous appendage flows after you, bobbing and undulating with the slightest movement of your hips.");
 			else output2(StringUtil.upperCase(num2Text(target.tailCount)) + " writhing, sinuous appendages flow after you, all similar in appearance. Studying one of them, you see that it appears vine-like though very much alive and moving.");
 			
 			// Cockvine
 			if (target.tailGenitalArg == GLOBAL.TYPE_COCKVINE && !target.hasTailFlag(GLOBAL.FLAG_RIBBED))
 			{
-				output2(" Most of the length of the thing is coated in "+ target.skinTone +" skin, culminating in");
+				output2(" Most of the length of the thing is coated in " + cockvineTexture + ", culminating in");
 				if(target.tailGenitalColor != "" && rand(2) == 0) output2(" " + indefiniteArticle(target.tailGenitalColor) + " shaft with");
 				output2(" a proud purple head that’s distinctly cock-shaped in nature.");
 			}
 			// Horse
 			else if (target.tailGenitalArg == GLOBAL.TYPE_EQUINE)
 			{
-				output2(" Most of the length of the thing is coated in "+ target.skinTone +" skin, culminating in a girthy, flared tip, distinctly reminiscent of");
+				output2(" Most of the length of the thing is coated in " + cockvineTexture + ", culminating in a girthy, flared tip, distinctly reminiscent of");
 				if(target.tailGenitalColor != "" && rand(2) == 0) output2(" " + indefiniteArticle(target.tailGenitalColor));
 				else output2(" a");
 				output2(" horse-cock.");
@@ -1259,7 +1298,7 @@ public function appearance(forTarget:Creature):void
 			// Human
 			else if (target.tailGenitalArg == GLOBAL.TYPE_HUMAN)
 			{
-				output2(" Most of the length of the thing is coated in "+ target.skinTone +" skin, culminating in a fleshy");
+				output2(" Most of the length of the thing is coated in " + cockvineTexture + ", culminating in a fleshy");
 				if(target.tailGenitalColor != "") output2(" " + target.tailGenitalColor);
 				else output2(" pink");
 				output2(" head that’s distinctly cock-shaped in nature.");
@@ -1267,7 +1306,7 @@ public function appearance(forTarget:Creature):void
 			// Bulbous
 			else if (target.tailGenitalArg == GLOBAL.TYPE_CANINE)
 			{
-				output2(" Most of the length of the thing is coated in "+ target.skinTone +" skin, culminating in a thick bulge a few inches below a tapered,");
+				output2(" Most of the length of the thing is coated in " + cockvineTexture + ", culminating in a thick bulge a few inches below a tapered,");
 				if(target.tailGenitalColor != "") output2(" " + target.tailGenitalColor);
 				else output2(" dark-red");
 				output2(" tip.");
@@ -1275,7 +1314,7 @@ public function appearance(forTarget:Creature):void
 			// Demonic
 			else if (target.tailGenitalArg == GLOBAL.TYPE_DEMONIC)
 			{
-				output2(" Most of the length of the thing is coated in "+ target.skinTone +" skin, culminating in a thick bulge at the base and");
+				output2(" Most of the length of the thing is coated in " + cockvineTexture + ", culminating in a thick bulge at the base and");
 				if(target.tailGenitalColor != "") output2(" " + indefiniteArticle(target.tailGenitalColor));
 				else output2(" a dark purple");
 				output2(" shaft lined with sensitive nodules up to the tip.");
@@ -1283,12 +1322,20 @@ public function appearance(forTarget:Creature):void
 			// Ribbed
 			else if (target.hasTailFlag(GLOBAL.FLAG_RIBBED))
 			{
-				output2(" Most of the length of the thing is coated in "+ target.skinTone +" skin, culminating in");
+				output2(" Most of the length of the thing is coated in " + cockvineTexture + ", culminating in");
 				if(target.tailGenitalColor != "" && rand(2) == 0) output2(" " + indefiniteArticle(target.tailGenitalColor) + " shaft with");
 				output2(" a series of noticeable ridges that gradually thin as they appear closer to the tip.");
 			}
 		}
 		else if(target.tailType == GLOBAL.TYPE_FROG) output2(" Your stubby frog tail wiggles around at the back of your waist, just asking to be squeezed.");
+		//Tail cunts
+		if(target.hasTailFlag(GLOBAL.FLAG_TAILCUNT) && target.tailType != GLOBAL.TYPE_CUNTSNAKE) {
+			output2(" When aroused, " + (target.tailCount <= 1 ? "its tip opens" : "the tip of each one will open") + " to reveal " + indefiniteArticle(target.tailVaginaDescript()) + " that always seems to crave fresh sperm.");
+		}
+		//Tail cocks
+		if(target.hasTailFlag(GLOBAL.FLAG_TAILCOCK) && target.tailType != GLOBAL.TYPE_COCKVINE) {
+			output2(" When aroused, " + (target.tailCount <= 1 ? "its tip opens" : "the tip of each one will open") + " to reveal " + indefiniteArticle(target.tailCockDescript()) + " that always seems to crave fresh sperm.");
+		}
 		//Ovipositor
 		if(target.hasTailFlag(GLOBAL.FLAG_OVIPOSITOR))
 		{
@@ -2053,7 +2100,7 @@ public function crotchStuff(forTarget:Creature = null):void
 		
 		//SINGLE DICKS!
 		if(target.cockTotal() == 1) {
-			output2("Your " + target.cockDescript() + " is " + Math.floor(10*target.cocks[0].cLength())/10 + " inches long and ");
+			output2("Your " + target.cockDescript(0) + " is " + Math.floor(10*target.cocks[0].cLength())/10 + " inches long and ");
 			if(Math.floor(10*target.cocks[0].thickness())/10 < 2) {
 				if(Math.floor(10*target.cocks[0].thickness())/10 == 1) output2(int(10*target.cocks[0].thickness())/10 + " inch thick.");
 				else output2(Math.round(10*target.cocks[0].thickness())/10 + " inches across.");
@@ -2259,7 +2306,7 @@ public function crotchStuff(forTarget:Creature = null):void
 				if(temp == 0) output2("\nYour first entrance");
 				else if(temp == 1) output2("\nThe second slit");
 				else output2("\nThe third and final vagina");
-				output2(" is " + indefiniteArticle(target.vaginaDescript(0,false,false,true)) + " with " + num2Text(target.vaginas[temp].clits) + " " + int(target.clitLength*10)/10 + "-inch clit");
+				output2(" is " + indefiniteArticle(target.vaginaDescript(temp,false,false,true)) + " with " + num2Text(target.vaginas[temp].clits) + " " + int(target.clitLength*10)/10 + "-inch clit");
 				if(target.vaginas[temp].clits > 1) output2("s");
 				//Virginal trumps all else
 				if(target.vaginas[temp].hymen) output2(", still virginal in appearance.");
