@@ -378,7 +378,7 @@ public function defeatACuntSnake():void {
 	showCuntSnake();
 	clearMenu();
 	
-	var hasLure:Boolean = (pc.accessory is JungleLure);
+	var hasLure:Boolean = ((pc.accessory is JungleLure) && pc.tailTypeUnlocked(GLOBAL.TYPE_CUNTSNAKE));
 	
 	output("The snake flops down, limp and dazed. It doesn't appear to be a threat any longer");
 	if(hasLure) output(", but it’s not trying to escape into the jungle. It just sits there, holding itself up as best it can. The beaten creature seems to want something from you, though it’s in no position to force the matter.");
@@ -500,9 +500,7 @@ public function approachCuntSnake(response:String = "intro"):void
 			
 			// [Yes] - Go to Scene or Tauric Scene.
 			// [No] - Go to Refusal.
-			if(pc.hasTailCunt()) addDisabledButton(0, "Yes", "Yes", "It looks like you already have a tailcunt!");
-			else if(!pc.tailTypeUnlocked(GLOBAL.TYPE_CUNTSNAKE)) addDisabledButton(1, "Yes", "Yes", "It looks like you can’t change the tail you already have.");
-			else if(!pc.hasGenitals()) addDisabledButton(0, "Yes", "Yes", "It looks like you need to lure the snake with something more... perhaps you need to have your own genitals?");
+			if(!pc.hasGenitals()) addDisabledButton(0, "Yes", "Yes", "It looks like you need to lure the snake with something more... perhaps you need to have your own genitals?");
 			else addButton(0, "Yes", approachCuntSnake, "accept");
 			addButton(1, "No", approachCuntSnake, "refuse");
 			break;
