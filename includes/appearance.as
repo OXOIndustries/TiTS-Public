@@ -1289,6 +1289,14 @@ public function appearance(forTarget:Creature):void
 			}
 		}
 		else if(target.tailType == GLOBAL.TYPE_FROG) output2(" Your stubby frog tail wiggles around at the back of your waist, just asking to be squeezed.");
+		//Tail cunts
+		if(target.hasTailFlag(GLOBAL.FLAG_TAILCUNT) && target.tailType != GLOBAL.TYPE_CUNTSNAKE) {
+			output2(" When aroused, " + (target.tailCount <= 1 ? "its tip opens" : "the tip of each one will open") + " to reveal " + indefiniteArticle(target.tailVaginaDescript()) + " that always seems to crave fresh sperm.");
+		}
+		//Tail cocks
+		if(target.hasTailFlag(GLOBAL.FLAG_TAILCOCK) && target.tailType != GLOBAL.TYPE_COCKVINE) {
+			output2(" When aroused, " + (target.tailCount <= 1 ? "its tip opens" : "the tip of each one will open") + " to reveal " + indefiniteArticle(target.tailCockDescript()) + " that always seems to crave fresh sperm.");
+		}
 		//Ovipositor
 		if(target.hasTailFlag(GLOBAL.FLAG_OVIPOSITOR))
 		{
