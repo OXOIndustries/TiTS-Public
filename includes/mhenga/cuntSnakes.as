@@ -532,7 +532,7 @@ public function approachCuntSnake(response:String = "intro"):void
 				output("\n\n<i>“Huh, you’re not so bad, are you?”</i> you murmur. The snake presses its face against your [pc.skinFurScales] and coils itself around your arm. It keeps rubbing against you as it travels upwards, sliding over your shoulder and down your back.");
 				if(pc.hairLength >= (pc.tallness / 2.5)) output(" You let out a breath of laughter as it gets a little tangled in your [pc.hair], but you free it with a quick shake of your head.");
 				output(" " + (pc.hasWings() ? "It slips between your [pc.wings] and works its way" : "It works its way") + " towards your [pc.ass], and the friction of its cool, smooth scales against your " + (pc.hasScales() ? "own" : "[pc.skinFurScales]") + " feels rather sensual.");
-				if(pc.isHerm()) output("\n\nIn fact, your [pc.multiCock] stiffen" + (pc.cockTotal() == 1 ? "s" : "") + " in response to the delicate, ticklish sensation, and [pc.eachVagina] dampens with arousal.");
+				if(pc.isHerm()) output("\n\nIn fact, your [pc.multiCocks] stiffen" + (pc.cockTotal() == 1 ? "s" : "") + " in response to the delicate, ticklish sensation, and [pc.eachVagina] dampens with arousal.");
 				else if(pc.hasCock()) output("\n\nIn fact, [pc.eachCock] stiffen" + (pc.cockTotal() == 1 ? "s" : "") + " in response to the delicate, ticklish sensation. ");
 				else if(pc.hasVagina()) output("\n\nIn fact, you give a slight shiver as [pc.eachVagina] dampens in response to the delicate, ticklish sensation.");
 				output("\n\nYou sigh contentedly as the cunt snake nuzzles against your backside, grinding its face against a particular spot right at the base of your " + (pc.hasTail() ? "[pc.tails]" : "spine") + ".");
