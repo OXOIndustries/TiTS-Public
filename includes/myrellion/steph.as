@@ -1,8 +1,21 @@
-public function stephHeader():void
+public function stephHeader(phase:int = 0, nude:Boolean = false):void
 {
-	showName("STEPH\nIRSON");
 	author("Savin");
-	showBust("STEPH_5");
+	showName("STEPH\nIRSON");
+	showBust(stephBustDisplay(phase, nude));
+}
+public function stephBustDisplay(phase:int = 0, nude:Boolean = false):String
+{
+	var sBust:String = "STEPH";
+	if(phase >= 2)
+	{
+		// 9999 - Special artist exceptions!
+		if(kGAMECLASS.gameOptions.configuredBustPreferences["STEPH"] != "ADJATHA" && phase > 4) phase = 4;
+		
+		sBust += "_" + phase;
+	}
+	if(nude) sBust += "_NUDE";
+	return sBust;
 }
 
 public static const STEPH_WORK_PORNSTAR:uint = 1;
@@ -24,7 +37,7 @@ public function stephCampEncounter():void
 public function stephCampApproach():void
 {
 	clearOutput();
-	stephHeader();
+	stephHeader(5);
 
 	output("You stride over to the small camp, ignoring the beeping little camera drone. As you approach, you note it must be another offworlder’s camp: a hauler drone and a little hovering camera drone are both in plain sight, plus a fairly beefy holo-projector set up where you might have found a fire pit in ages past, projecting flickering images of other Myrellion caverns and local wildlife: chitinous women, heavy-set males, and squirming vine creatures. The silent video is accompanied the faint sound of talking, a woman’s voice tinged with frustration.");
 	
@@ -68,7 +81,7 @@ public function stephEncounterMenu():void
 public function signMuhTittiesSteph():void
 {
 	clearOutput();
-	stephHeader();
+	stephHeader(5);
 
 	output("<i>“Could I get your autograph?”</i> you ask. Not every day you get to meet a galaxy-famous star.");
 	
@@ -86,7 +99,7 @@ public function signMuhTittiesSteph():void
 public function stephEncounterWork():void
 {
 	clearOutput();
-	stephHeader();
+	stephHeader(5);
 
 	//Note: Once the PC chooses one of the three final options (bold ends), go back to the first menu and grey out [Her Work].
 	output("You cast a glance over to the flickering holoprojection of some of the Huntress’s more recent work, and ask her what she was murmuring to herself about before you came up. She blushes a little when you mention that, but plays it off with a chuckle.");
@@ -128,7 +141,7 @@ public function stephEncounterWork():void
 public function stephWorkPornstar():void
 {
 	clearOutput();
-	stephHeader();
+	stephHeader(5);
 
 	output("<i>“X-rated networks? Sounds promising,”</i> you say.");
 	
@@ -159,7 +172,7 @@ public function stephWorkPornstar():void
 public function stephWorkNewNetwork():void
 {
 	clearOutput();
-	stephHeader();
+	stephHeader(5);
 
 	output("<i>“Maybe you ought to try a new, safe for work network,”</i> you suggest. <i>“They can’t all be that... abusive.”</i>");
 	
@@ -179,7 +192,7 @@ public function stephWorkNewNetwork():void
 public function stephEncounterSteeleTechSponsor():void
 {
 	clearOutput();
-	stephHeader();
+	stephHeader(5);
 
 	output("<i>“You know,”</i> you say, leaning nonchalantly against the holoprojector. <i>“I might be able to help you with that sponsorship thing.");
 	if (pc.isNice()) output(" I have something of an in to Steele Tech.");
@@ -209,7 +222,7 @@ public function stephEncounterSteeleTechSponsor():void
 public function stephWorkStay():void
 {
 	clearOutput();
-	stephHeader();
+	stephHeader(5);
 
 	output("<i>“You really think you’re going to find a better network out there? Come on, it’s amazing that whoever you’re working for lets you do... whatever it is you do as it is. Stick with ‘em. It’ll get better.”</i>");
 	
@@ -236,7 +249,7 @@ public function stephWorkStay():void
 public function stephEncounterMutations():void
 {
 	clearOutput();
-	stephHeader();
+	stephHeader(5);
 
 	output("<i>“That’s quite a set of transformations you’ve racked up,”</i> you say, nodding toward her coiling vine-tail for emphasis.");
 	
@@ -251,7 +264,7 @@ public function stephEncounterMutations():void
 public function stephEncounterLeave():void
 {
 	clearOutput();
-	stephHeader();
+	stephHeader(5);
 
 	output("You bid Steph farewell.");
 	

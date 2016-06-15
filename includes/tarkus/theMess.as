@@ -435,9 +435,7 @@ public function stephIrsonEpisodeTwo():void
 	else if(pc.hasVagina()) x = rand(pc.totalVaginas());
 	//[Watch Screen]
 	clearOutput();
-	author("Savin");
-	showName("STEPH\nIRSON");
-	showBust("STEPH_2");
+	stephHeader(2);
 	
 	flags["STEPH_WATCHED"] = 1;
 	
@@ -470,9 +468,8 @@ public function stephIrsonEpisodeTwo():void
 public function stephIrsonEpisodeTwoDashTwo():void
 {
 	clearOutput();
-	author("Savin");
-	showName("STEPH\nIRSON");
-	showBust("STEPH_2_NUDE");
+	stephHeader(2, true);
+	
 	var x:int = 0;
 	if(pc.hasCock()) x = pc.smallestCockIndex();
 	else if(pc.hasVagina()) x = rand(pc.totalVaginas());

@@ -197,6 +197,27 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/semith_nude.png", mimeType = "image/png")]
 		public var Bust_SEMITH_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/adjatha/steph.png", mimeType = "image/png")]
+		public var Bust_STEPH:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/steph_nude.png", mimeType = "image/png")]
+		public var Bust_STEPH_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/steph_2.png", mimeType = "image/png")]
+		public var Bust_STEPH_2:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/steph_2_nude.png", mimeType = "image/png")]
+		public var Bust_STEPH_2_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/steph_3.png", mimeType = "image/png")]
+		public var Bust_STEPH_3:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/steph_3_nude.png", mimeType = "image/png")]
+		public var Bust_STEPH_3_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/steph_4.png", mimeType = "image/png")]
+		public var Bust_STEPH_4:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/steph_4_nude.png", mimeType = "image/png")]
+		public var Bust_STEPH_4_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/steph_5.png", mimeType = "image/png")]
+		public var Bust_STEPH_5:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/steph_5_nude.png", mimeType = "image/png")]
+		public var Bust_STEPH_5_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/tamani.png", mimeType = "image/png")]
 		public var Bust_TAMANI:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/tamani_nude.png", mimeType = "image/png")]
@@ -409,6 +430,27 @@ package classes.Resources.Busts
 			public var Full_SEMITH:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/semith_nude.png", mimeType = "image/png")]
 			public var Full_SEMITH_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/steph.png", mimeType = "image/png")]
+			public var Full_STEPH:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/steph_nude.png", mimeType = "image/png")]
+			public var Full_STEPH_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/steph_2.png", mimeType = "image/png")]
+			public var Full_STEPH_2:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/steph_2_nude.png", mimeType = "image/png")]
+			public var Full_STEPH_2_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/steph_3.png", mimeType = "image/png")]
+			public var Full_STEPH_3:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/steph_3_nude.png", mimeType = "image/png")]
+			public var Full_STEPH_3_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/steph_4.png", mimeType = "image/png")]
+			public var Full_STEPH_4:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/steph_4_nude.png", mimeType = "image/png")]
+			public var Full_STEPH_4_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/steph_5.png", mimeType = "image/png")]
+			public var Full_STEPH_5:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/steph_5_nude.png", mimeType = "image/png")]
+			public var Full_STEPH_5_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/tamani.png", mimeType = "image/png")]
 			public var Full_TAMANI:Class;
