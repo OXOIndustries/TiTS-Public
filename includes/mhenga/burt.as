@@ -45,7 +45,7 @@ public function burtsBarFunc():void {
 	if(flags["MET_BURT"] == undefined) this.addButton(0,"Bar",burtapproach);
 	else this.addButton(0,"Burt",burtapproach);
 	roamingBarEncounter(3);
-	this.addButton(1,"Watch Screen",stephIrsonBountHunterEpisodeOne);
+	this.addButton(1,"Watch Screen",stephIrsonBountHunterEpisodeOne,undefined,"Watch Screen","Watch an episode of Steph Irson: Galactic Hunter.");
 }
 
 public function burtapproach():void {
@@ -1272,9 +1272,7 @@ public function threeDSurprise():void {
 public function stephIrsonBountHunterEpisodeOne():void {
 	//[Watch Viewscreen]
 	clearOutput();
-	author("Savin");
-	showName("STEPH\nIRSON");
-	showBust("STEPH");
+	stephHeader(1);
 	
 	flags["STEPH_WATCHED"] = 1;
 	
@@ -1335,9 +1333,8 @@ public function stephIrsonBountHunterEpisodeOne():void {
 public function stephIrsonEpisodeOnePartTwo():void
 {
 	clearOutput();
-	author("Savin");
-	showName("STEPH\nIRSON");
-	showBust("STEPH_NUDE");
+	stephHeader(1, true);
+	
 	output("<i>“Ugh, mah head!”</i> Steph drawls, rubbing her temples as the naleen plants her at the edge of the pit. <i>“Crickey! Looks like she's dragged me back to her nest! Oh, but look here! Before she eats me, I'm getting to witness the ultimate alien curiosity: the naleen mating ball!”</i> The camera cranes down to the pit, highlighting dozens - hundreds, even - of writhing bodies intertwined, cocks and breasts bouncing everywhere, no hole left unfucked as kitty-nagas bend and twist to accommodate several mates of either sex at once.");
 
 	output("\n\nWith a chuckle, the naleen gives Steph a little push, sending the New Brisbaner tumbling down the slope and into the heart of the pit... and right into the waiting arms of a particularly well-endowed male naleen whose two cocks are still dripping with juices from his last partner. Steph gives a shrill scream as her clothes are torn away, revealing the clean snatch between her long legs and her bouncing breasts, both quickly gripped by the male as she's bent over the backs of an entwined couple, ass raised in the air for his inspection. He doesn't waste a moment before lunging in, cocks ramming into her defenseless pussy and ass - and in glorious HD, all over galactic television.");
