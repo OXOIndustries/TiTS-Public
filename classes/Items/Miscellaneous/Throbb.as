@@ -253,21 +253,29 @@
 				var pcRace:String = pc.race();
 				
 				// Type changes
-				if(InCollection(pcRace, "ausar", "half-ausar", "canine-morph"))
+				if(InCollection(pcRace, "ausar", "half-ausar", "canine-morph", "canine-taur"))
 				{
 					pc.shiftCock(arg,GLOBAL.TYPE_CANINE);
-					if(pcRace.indexOf("ausar") != -1) pc.cocks[arg].delFlag(GLOBAL.FLAG_SHEATHED);
+					if(pcRace.indexOf("ausar") != -1) pc.cocks[arg].delFlag(GLOBAL.FLAG_SHEATHED); // 'cause ausar have not enough inner beast to have sheath
 				}
-				else if(InCollection(pcRace, "kaithrit", "half-kaithrit", "feline-morph", "nekomata", "chakat")) pc.shiftCock(arg,GLOBAL.TYPE_FELINE);
+				else if (InCollection(pcRace, "kaithrit", "half-kaithrit", "feline-morph", "feline-taur", "nekomata", "nekomata-taur", "chakat"))
+				{
+					pc.shiftCock(arg, GLOBAL.TYPE_FELINE);
+					if (pcRace.indexOf("kaithrit") != -1) // 'cause kaithrits are not cool enough to have real kitty peckers
+					{
+						pc.cocks[arg].delFlag(GLOBAL.FLAG_SHEATHED);
+						pc.cocks[arg].delFlag(GLOBAL.FLAG_TAPERED);
+					}
+				}
 				else if(InCollection(pcRace, "leithan", "half-leithan")) pc.shiftCock(arg,GLOBAL.TYPE_SNAKE);
 				else if(InCollection(pcRace, "kui-tan", "half kui-tan")) pc.shiftCock(arg, GLOBAL.TYPE_KUITAN);
 				else if(InCollection(pcRace, "gryvain", "half-gryvain")) pc.shiftCock(arg, GLOBAL.TYPE_GRYVAIN);
 				else if(InCollection(pcRace, "horse-morph", "part horse-morph", "laquine", "ovir", "half-ovir", "minotaur", "centaur", "horse-taur", pc.mlpRace())) pc.shiftCock(arg, GLOBAL.TYPE_EQUINE);
-				else if(pcRace == "vulpine-morph") pc.shiftCock(arg,GLOBAL.TYPE_VULPINE);
+				else if(InCollection(pcRace, "vulpine-morph", "vulpine-taur", "kitsune", "kitsune-morph", "kitsune-taur")) pc.shiftCock(arg,GLOBAL.TYPE_VULPINE);
 				else if(pcRace == "zil") pc.shiftCock(arg,GLOBAL.TYPE_BEE);
 				else if(InCollection(pcRace, "naleen", "naga")) pc.shiftCock(arg,GLOBAL.TYPE_NAGA);
 				else if(InCollection(pcRace, "raskvel", "raskvel-morph", "rask-morph")) pc.shiftCock(arg, GLOBAL.TYPE_RASKVEL);
-				else if(InCollection(pcRace, "fanfir", "dragon-morph")) pc.shiftCock(arg, GLOBAL.TYPE_DRACONIC);
+				else if(InCollection(pcRace, "fanfir", "dragon-morph", "dragon-taur", "dragonne", "dragonne-taur")) pc.shiftCock(arg, GLOBAL.TYPE_DRACONIC);
 				else if(pcRace == "demon-morph") pc.shiftCock(arg, GLOBAL.TYPE_DEMONIC);
 				else if(pcRace == "kangaroo-morph") pc.shiftCock(arg, GLOBAL.TYPE_KANGAROO);
 				else if(pcRace == "simii") pc.shiftCock(arg, GLOBAL.TYPE_SIMII);

@@ -14,6 +14,7 @@
 	import classes.Items.Apparel.ThermalJacket;
 	import classes.Items.Accessories.LightJetpack;
 	import classes.Items.Accessories.FlashGoggles;
+	import classes.Items.Transformatives.Frostfire;
 	import classes.Items.Transformatives.HuskarTreats;
 	import classes.kGAMECLASS;
 	
@@ -22,7 +23,7 @@
 		//constructor
 		public function Nerrasa()
 		{
-			this._latestVersion = 1;
+			this._latestVersion = 2;
 			this.version = _latestVersion;
 			this._neverSerialize = true;
 			
@@ -42,6 +43,7 @@
 			inventory.push(new HeatBelt());
 			inventory.push(new ArcticWarfareBelt());
 			inventory.push(new HuskarTreats());
+			inventory.push(new Frostfire());
 			//inventory.push(new AusarTreats());
 			inventory.push(new ClimbingKit());
 			inventory.push(new FishingRod());
@@ -196,6 +198,11 @@
 			this.ass.wetnessRaw = 1;
 			this.ass.loosenessRaw = 4;
 			this.ass.bonusCapacity = 250;
+		}
+		
+		public function UpgradeVersion1(d:Object):void
+		{
+			d.inventory.push(new Frostfire().getSaveObject());
 		}
 		
 		override public function get bustDisplay():String

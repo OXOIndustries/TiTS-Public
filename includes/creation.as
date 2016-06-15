@@ -349,6 +349,8 @@ public function setStartingSex(sex:int = 1):void {
 		}
 		if (pc.originalRace == "half-kaithrit") {
 			pc.shiftCock(0,GLOBAL.TYPE_FELINE);
+			pc.cocks[0].delFlag(GLOBAL.FLAG_SHEATHED); // 'cause kaithrits are not cool enough to have real kitty peckers
+			pc.cocks[0].delFlag(GLOBAL.FLAG_TAPERED);
 		}
 		if (pc.originalRace == "half kui-tan")
 		{

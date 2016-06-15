@@ -84,7 +84,7 @@ public function appearance(forTarget:Creature):void
 			if(target.isAssExposed()) output2(" ass");
 			output2(" to the world.");
 		}
-		if(target.isChestExposed() && target.isCrotchExposed() && target.isAssExposed()) {
+		if (target.isChestExposed() && target.isCrotchExposed() && target.isAssExposed() && !Foxfire.canUseTailsOrFurAsClothes(target)) {
 			if(target.exhibitionism() >= 100) output2(" You’re a shameless exhibitionist and proud of it, flaunting your naked body and giving the entire galaxy quite an eyeful!");
 			else if(target.exhibitionism() >= 66) output2(" Your naked body is like a second outfit for you, giving you naughty thoughts when in the public’s gaze.");
 			else if(target.exhibitionism() >= 50) output2(" Maybe you’re some kind of nudist, but it’s not like you mind being naked anyway.");
@@ -268,7 +268,7 @@ public function appearance(forTarget:Creature):void
 			else output2(" The black sclera and iris of both of your eyes make them appear as solid black and very alien.");
 			output2(" Their structure allows you to have a larger angle of vision as well as detecting the fastest of movements.");
 		}
-		else if (target.eyeType == GLOBAL.TYPE_FELINE || target.eyeType == GLOBAL.TYPE_SNAKE || target.eyeType == GLOBAL.TYPE_DEMONIC)
+		else if (target.eyeType == GLOBAL.TYPE_FELINE || target.eyeType == GLOBAL.TYPE_SNAKE || target.eyeType == GLOBAL.TYPE_DEMONIC || target.eyeType == GLOBAL.TYPE_VULPINE)
 		{
 			output2(" Your eyes bear a vertical slit instead of rounded pupils, ");
 			if (hasMetallicEyes) output2("surrounded by a metallically glistening " + target.eyeColor + " iris");
@@ -858,6 +858,12 @@ public function appearance(forTarget:Creature):void
 		{
 			if(target.skinType != GLOBAL.SKIN_TYPE_FUR && target.hasArmFlag(GLOBAL.FLAG_FURRED)) output2(" A coat of " + target.furColor + " fur covers your arms, giving them a distinctly animalistic bent.");
 			output2(" Your fingers are tipped with short, canine claws as well, just like one of the ausar.");
+		}
+		else if(target.armType == GLOBAL.TYPE_VULPINE) 
+		{
+			if(target.skinType != GLOBAL.SKIN_TYPE_FUR && target.hasArmFlag(GLOBAL.FLAG_FURRED)) output2(" A coat of " + target.furColor + " fur covers your arms, giving them a distinctly animalistic bent.");
+			if(target.hasPaddedHands()) output2(" Soft pads rest on the tips of each of your fingers. ");
+			output2(" Your fingers are tipped with short, canine claws as well.");
 		}
 		else if(target.armType == GLOBAL.TYPE_DEMONIC)
 		{
@@ -2670,7 +2676,7 @@ public function vaginaBonusForAppearance(forTarget:Creature = null, x:int = 0, e
 		else output2("\nEach vagina’s exterior mound is almost heart-shaped, full and thick near the top and narrow at the bottom.");
 	}	
 	//Doggie flavor
-	else if(target.vaginas[x].type == GLOBAL.TYPE_CANINE) {
+	else if(target.vaginas[x].type == GLOBAL.TYPE_CANINE || target.vaginas[x].type == GLOBAL.TYPE_VULPINE) {
 		if(!eachOne) output2(" The exterior lips are that of a bitch and have a tendency to swell when in heat, giving it a very animalistic bent.");
 		else output2("\nEach vagina’s exterior lips are that of a bitch and have a tendency to swell when in heat, giving them a very animalistic bent.");
 	}

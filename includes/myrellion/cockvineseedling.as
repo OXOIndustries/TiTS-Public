@@ -141,7 +141,7 @@ public function cockvineSeedlingLeave():void
 	addButton(0, "Next", mainGameMenu);
 }
 
-public function cockvineSeedlingJoin(sCockType:int):void
+public function cockvineSeedlingJoin(sCockType:int = 0):void
 {
 	clearOutput();
 	cockvineSeedlingHeader();
