@@ -14092,6 +14092,10 @@
 			return false;
 		}
 		
+		public function hasTailOvipositor(): Boolean 
+		{
+			return (hasTailFlag(GLOBAL.FLAG_OVIPOSITOR));
+		}
 		public function isCockOvipositor(slot:int = -1): Boolean 
 		{
 			if (slot >= 0 && cocks.length > 0 && cocks[slot].hasFlag(GLOBAL.FLAG_OVIPOSITOR)) return true;
