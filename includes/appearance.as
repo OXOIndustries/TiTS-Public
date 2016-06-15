@@ -1335,15 +1335,21 @@ public function appearance(forTarget:Creature):void
 		}
 		else if(target.tailType == GLOBAL.TYPE_FROG) output2(" Your stubby frog tail wiggles around at the back of your waist, just asking to be squeezed.");
 		//Tail cunts
-		if(target.hasTailFlag(GLOBAL.FLAG_TAILCUNT) && target.tailType != GLOBAL.TYPE_CUNTSNAKE) {
-			output2(" When aroused, " + (target.tailCount <= 1 ? "its tip opens" : "the tip of each one will open") + " to reveal " + indefiniteArticle(target.tailVaginaDescript()) + " that always seems to crave fresh sperm.");
+		if(target.hasTailCunt() && target.tailType != GLOBAL.TYPE_CUNTSNAKE)
+		{
+			output2(" When aroused, " + (target.tailCount <= 1 ? "its tip opens" : "the tip of each one will open") + " to reveal " + indefiniteArticle(target.tailVaginaDescript()));
+			if(target.hasParasiteTail()) output2(" that always seems to crave fresh sperm");
+			output2(".");
 		}
 		//Tail cocks
-		if(target.hasTailFlag(GLOBAL.FLAG_TAILCOCK) && target.tailType != GLOBAL.TYPE_COCKVINE) {
-			output2(" When aroused, " + (target.tailCount <= 1 ? "its tip opens" : "the tip of each one will open") + " to reveal " + indefiniteArticle(target.tailCockDescript()) + " that always seems to crave fresh sperm.");
+		if(target.hasTailCock() && target.tailType != GLOBAL.TYPE_COCKVINE)
+		{
+			output2(" When aroused, " + (target.tailCount <= 1 ? "its tip opens" : "the tip of each one will open") + " to reveal " + indefiniteArticle(target.tailCockDescript()));
+			if(target.hasParasiteTail()) output2(" that always seems primed for breeding");
+			output2(".");
 		}
 		//Ovipositor
-		if(target.hasTailFlag(GLOBAL.FLAG_OVIPOSITOR))
+		if(target.hasTailOvipositor())
 		{
 			output2(" In addition,");
 			if(target.tailCount == 1) output2(" it is an organ");

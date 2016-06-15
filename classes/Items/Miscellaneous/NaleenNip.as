@@ -380,18 +380,19 @@
 				}
 			}
 			//Naleen cock tf
-			//Find an appopriate cock first!
-			choices = new Array();
-			for(x = 0; x < target.cockTotal(); x++)
+			if (changes < changeLimit && target.hasStatusEffect("Genital Slit") && target.cockTotal() > target.cockTotal(GLOBAL.TYPE_NAGA) && rand(3) == 0)
 			{
-				if(target.cocks[x].cType != GLOBAL.TYPE_NAGA && target.cockTypeUnlocked(x, GLOBAL.TYPE_NAGA)) choices[choices.length] = x;
-			}
-			
-			if (choices.length > 0)
-			{
-				x = choices[rand(choices.length)];
+				//Find an appopriate cock first!
+				choices = new Array();
+				for(x = 0; x < target.cockTotal(); x++)
+				{
+					if(target.cocks[x].cType != GLOBAL.TYPE_NAGA && target.cockTypeUnlocked(x, GLOBAL.TYPE_NAGA)) choices[choices.length] = x;
+				}
 				
-				if(target.cockTotal(GLOBAL.TYPE_NAGA) < target.cockTotal() && target.hasStatusEffect("Genital Slit") && changes < changeLimit && rand(3) == 0) {
+				if (choices.length > 0)
+				{
+					x = choices[rand(choices.length)];
+					
 					kGAMECLASS.output("\n\nInside your genital slit");
 					if(target.hasVagina()) {
 						kGAMECLASS.output(", the one that holds your masculine endowment");
@@ -406,10 +407,10 @@
 					target.shiftCock(x,GLOBAL.TYPE_NAGA);
 					changes++;
 				}
-			}
-			else if (target.cockTotal() > 0)
-			{
-				kGAMECLASS.output("\n\n" + target.cockTypeLockedMessage());
+				else
+				{
+					kGAMECLASS.output("\n\n" + target.cockTypeLockedMessage());
+				}
 			}
 			
 			//Genital slit
