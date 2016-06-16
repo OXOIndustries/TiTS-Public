@@ -2,6 +2,7 @@
 {
 	import classes.Creature;
 	import classes.GLOBAL;
+	import classes.Items.Miscellaneous.ImmunoBooster;
 	import classes.Items.Protection.JoyCoEliteShield;
 	import classes.Items.Recovery.ShieldBoosterMkII;
 	import classes.Items.Accessories.MuskRepel;
@@ -36,6 +37,7 @@
 			this.inventory.push(new MuskLure());
 			this.inventory.push(new MaleDoctorOutfit());
 			this.inventory.push(new FemaleDoctorOutfit());
+			this.inventory.push(new ImmunoBooster());
 
 			this.typesBought[this.typesBought.length] = GLOBAL.PILL;
 			this.typesBought[this.typesBought.length] = GLOBAL.POTION;

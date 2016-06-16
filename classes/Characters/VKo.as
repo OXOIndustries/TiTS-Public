@@ -2,6 +2,7 @@
 {
 	import classes.Creature;
 	import classes.GLOBAL;
+	import classes.Items.Miscellaneous.ImmunoBooster;
 	import classes.Items.Protection.DecentShield;
 	import classes.Items.Accessories.JungleLure;
 	import classes.Items.Accessories.JungleRepel;
@@ -57,6 +58,7 @@
 			this.inventory.push(new JungleLure());
 			this.inventory.push(new JungleRepel());
 			this.inventory.push(new MagicMilker());
+			this.inventory.push(new ImmunoBooster());
 			this.typesBought[this.typesBought.length] = GLOBAL.PILL;
 			this.typesBought[this.typesBought.length] = GLOBAL.POTION;
 			this.typesBought[this.typesBought.length] = GLOBAL.DRUG;

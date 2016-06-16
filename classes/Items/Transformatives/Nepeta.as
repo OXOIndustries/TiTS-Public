@@ -469,8 +469,9 @@ package classes.Items.Transformatives
 			{
 				if (target.cocks[ci].cType != GLOBAL.TYPE_FELINE && target.cockTypeUnlocked(ci, GLOBAL.TYPE_FELINE))
 				{
-					target.cocks[ci].cType = GLOBAL.TYPE_FELINE;					
-					(target.cocks[ci] as CockClass).cockFlags = [GLOBAL.FLAG_NUBBY];
+					target.shiftCock(ci, GLOBAL.TYPE_FELINE);
+					target.cocks[ci].delFlag(GLOBAL.FLAG_SHEATHED); // 'cause kaithrits are not cool enough to have real kitty peckers
+					target.cocks[ci].delFlag(GLOBAL.FLAG_TAPERED);
 				}
 			}
 

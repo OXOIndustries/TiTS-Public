@@ -133,10 +133,20 @@
 						pc.shiftVagina(0, GLOBAL.TYPE_LAPINARA);
 						kGAMECLASS.output("You’ve got " + indefiniteArticle(pc.vaginaColor(0)) + " lapinara pussy.");
 					}
-					else if (pcRace == "canine-morph")
+					else if (InCollection(pcRace, "canine-morph", "canine-taur"))
 					{
 						pc.shiftVagina(0, GLOBAL.TYPE_CANINE);
 						kGAMECLASS.output("You’ve got " + indefiniteArticle(pc.vaginaColor(0)) + " canine-pussy.");
+					}
+					else if (InCollection(pcRace, "vulpine-morph", "vulpine-taur") || InCollection(pcRace, "kitsune", "kitsune-morph", "kitsune-taur") && pc.hasFur()) // dogina is not exactly appropriate for kemonomimi type kitsune
+					{
+						pc.shiftVagina(0, GLOBAL.TYPE_VULPINE);
+						kGAMECLASS.output("You’ve got " + indefiniteArticle(pc.vaginaColor(0)) + " vulpine pussy.");
+					}
+					else if (InCollection(pcRace, "feline-morph", "feline-taur", "nekomata", "nekomata-taur", "chakat"))
+					{
+						pc.shiftVagina(0, GLOBAL.TYPE_FELINE);
+						kGAMECLASS.output("You’ve got " + indefiniteArticle(pc.vaginaColor(0)) + " feline pussy.");
 					}
 					else if (InCollection(pcRace, "gabilani", "goblin"))
 					{
