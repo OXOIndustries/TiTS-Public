@@ -366,7 +366,7 @@ public function talkToShekkaAboutRaskvel():void
 	if(flags["TARKUS_DESTROYED"] == undefined) output("we're");
 	else output("we were");
 	output(" ideal for surviving on Tarkus, but not for mastering it. We just don't seem to have that creative spark that the gabilani are so flush with or the inherent need for greatness that so drives the terrans.\"</i>");
-	output("\n\nTrailing off as she navigates a through a web of charging cables, the sad-eyed raskvel looks for a battery among hundreds. <i>\"I never really thought about this kind of stuff until we found Novahome, and even then, I never dwelled on it 'til the rush found us. It was hard enough just to survive, you know?\"</i>");
+	output("\n\nTrailing off as she navigates through a web of charging cables, the sad-eyed raskvel looks for a battery among hundreds. <i>\"I never really thought about this kind of stuff until we found Novahome, and even then, I never dwelled on it 'til the rush found us. It was hard enough just to survive, you know?\"</i>");
 	output("\n\nYou give an understanding nod while trying to puzzle out what she's working on.");
 	output("\n\n<i>\"Now it's all I can think about - aside from finding new tech to fiddle with. If we don't do something fast, we're going to wind up as little more than slaves, either to the gabilani or the rest of the universe.\"</i> You think you see a little moisture pooling at the corner of one slitted eye, but she wipes her hand past it before you can be sure. <i>\"Naturally, I realized that we were broken, and it suddenly made sense why I was thinking about this so much.\"</i>");
 	output("\n\nYou retort, <i>\"But how could you fix yourselves? That seems impossible, or at least improbable.\"</i>");
