@@ -12714,6 +12714,8 @@ public function bessIntimateGiveDoggy(fromEvent:Boolean = false):void
 	if (bess.hasVagina()) output(" slick");
 	output(" narrow tunnel and arching your back. As you unload inside of [bess.hisHer] [bess.heShe] moans and cums again around your spasming shaft.");
 	
+	pc.cockChange();
+	
 	output("\n\nYour lap feels as if there’s a");
 	if (bess.hasVagina()) output(" liquid");
 	output(" furnace on it as you both kiss in your delirious post-orgasmic haze. You’re not sure how much time passes before you fall down exhausted in each other’s arms, your [pc.cum]");
