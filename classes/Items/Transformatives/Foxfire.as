@@ -287,6 +287,8 @@ package classes.Items.Transformatives
 					else if (target.cocks[i].cType != GLOBAL.TYPE_VULPINE && target.cockTypeUnlocked(i, GLOBAL.TYPE_VULPINE))
 					{
 						options.push(function():*{
+							var newColor:String = colorsMatching(target) ? target.lipColor : "red";
+							
 							kGAMECLASS.eventBuffer += "\n\nYour " + target.cockDescript(i) + " throbs suddenly ";
 							
 							if (target.hasCockFlag(GLOBAL.FLAG_SHEATHED, i)) kGAMECLASS.eventBuffer += "in it's sheath";
@@ -297,8 +299,8 @@ package classes.Items.Transformatives
 							
 							kGAMECLASS.eventBuffer += " and begins to transform, drooling a river of pre from its engorged slit. You double over in a sick twist of pain and pleasure";
 							
-							if(target.cocks[i].cockColor.indexOf("red") != -1)
-								kGAMECLASS.eventBuffer += " as the flesh of your cock shifts color to become bright red";
+							if(target.cocks[i].cockColor.indexOf(newColor) == -1)
+								kGAMECLASS.eventBuffer += " as the flesh of your cock shifts color to become " + newColor;
 							if(!target.hasCockFlag(GLOBAL.FLAG_TAPERED, i))
 								kGAMECLASS.eventBuffer += ". The skin melding strangely into a long, pointed shape";
 							if(!target.hasCockFlag(GLOBAL.FLAG_KNOTTED, i))
@@ -308,14 +310,8 @@ package classes.Items.Transformatives
 							
 							kGAMECLASS.eventBuffer += ". You spend a few moments collecting yourself, cleaning the spunk off <b>your new fox pecker!</b>";
 							
-							if (colorsMatching(target))
-							{
-								target.shiftCock(i, GLOBAL.TYPE_VULPINE);
-								//Above text explicitly states bright red.
-								//target.cocks[i].cockColor = target.lipColor;
-							}
-							else target.shiftCock(i, GLOBAL.TYPE_VULPINE);
-							target.cocks[i].cockColor = "red";
+							target.shiftCock(i, GLOBAL.TYPE_VULPINE);
+							target.cocks[i].cockColor = newColor;
 						});
 						break;
 					}
