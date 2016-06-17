@@ -22,7 +22,7 @@ The PC must win five consecutive fights against the particular color of myr to m
 
 Some of the deserter sex scenes are available on win OR loss. Sections of the sex scene that are played on Win or Loss are clearly bracketed off, with a 'core' chunk of text left separate for both.
 
-When the PC engages in sex from the non-hostile menu (After winning five or more fights), the 'Win' sections of text are used. To this end, the bracketed sex scene sections are labelled 'Win/Consent'.
+When the PC engages in sex from the non-hostile menu (After winning five or more fights), the 'Win' sections of text are used. To this end, the bracketed sex scene sections are labeled 'Win/Consent'.
 
 The Gold Myr is named Lys. The Red Myr is named Briha. Until the PC wins five fights against the respective Myr, they are known as 'red myr deserter' or 'gold myr deserter' for the purposes of [enemy.name], changing to their respective names after five fights are won.
 

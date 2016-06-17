@@ -32,7 +32,7 @@ package classes.Items.Transformatives
 			//Used on inventory buttons
 			this.shortName = "Frostfire";
 			//Regular name
-			this.longName = "a vial labelled Frostfire";
+			this.longName = "a vial labeled Frostfire";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			

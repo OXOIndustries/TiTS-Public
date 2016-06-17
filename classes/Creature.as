@@ -10973,7 +10973,7 @@
 				if(special == "tail" && rand(2) == 0)
 				{
 					if(!simple)
-						desc += RandomInCollection(["tail-mounted pussy","parasite pussy","tail-topping cunt","tail-mounted twat"]);
+						desc += RandomInCollection(["tail-mounted pussy",(hasParasiteTail()?"parasite pussy":"tail-mounted vagina"),"tail-topping cunt","tail-mounted twat"]);
 					else
 						desc += RandomInCollection(["tail-vagina", "tail-pussy", "tail-pussy","tail-pussy","tail-pussy", "tail-cunt", "tail-cunt", "tail-slit", "tail-slit","tail-twat","tail-twat"]);
 				}
