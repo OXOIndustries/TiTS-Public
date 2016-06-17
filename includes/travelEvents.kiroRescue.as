@@ -332,6 +332,12 @@ public function kirosShipChubnookiUpDaButt():void
 	kiro.loadInAss(pc);
 	kiro.loadInAss(pc);
 	kiro.loadInMouth(pc);
+	for (var i:int = 0; i < 20; i++)
+	{
+		kiro.orgasm();
+	}
+	pc.orgasm();
+	pc.orgasm();
 	applyCumSoaked(pc);
 
 	processTime(60+rand(15));

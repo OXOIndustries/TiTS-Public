@@ -69,7 +69,7 @@ public function tanisBowTrainingFirstTime():void
 	
 	output("\n\n<i>“’Sup,”</i> he answers, eyes wandering over your bow. <i>“Gotta say, if you’re trying to hold up the place, you could have picked a little less conspicuous of a weapon.”</i>");
 	
-	output("\n\nYou chuckle and counter, <i>“Actually, I was wondering you’ve got some pointers for me. Haven't exactly had a lot of training using something like this before.”</i>");
+	output("\n\nYou chuckle and counter, <i>“Actually, I was wondering if you’ve got some pointers for me. Haven't exactly had a lot of training using something like this before.”</i>");
 	
 	output("\n\nHe smiles and rises to his feet, six bestial legs stretching out from under his centaur-like body. <i>“Sure, I guess I could show you the basics. Not much else to do");
 	if (flags["SALVAGED VANAE CAMP"] != 2) output(" with the nav beacons down anyway");
@@ -78,7 +78,7 @@ public function tanisBowTrainingFirstTime():void
 
 	output("\n\nHe fishes around beneath his desk for a moment, pulling out a towering bow out from under it. It’s not <i>quite</i> like your bow: bigger, though proportional to his size, and made of a material you can’t quite place. Some alien wood, you’d imagine, though the way he hefts it around makes you think it’s much heavier than any bow you’ve ever seen before. He waves you over around the counter to a small back door that leads you out to the edge of the Mhen’gan jungle.");
 	
-	output("\n\n<i>“So, no formal training, right?”</i> Tanis says, less a question and more an amused statement of fact. When you nod, he chuckles. <i>“Don’t worry about it. Most people don’t. Bowmanship’s kind of a lost art these days, you know. Some of us leithans keep up the old art: nowhere in the galaxy has game like Leitha, though you have to be ready to be prey as much as predator on our homeworld. A strong, silent, shot will get you further than the big bang of a rifle when there’s monsters the size of houses eager to eat you. If you can bring down a kill without drawing unwanted attention, well, you can’t do much better than a bow.”</i>");
+	output("\n\n<i>“So, no formal training, right?”</i> Tanis says, less a question and more an amused statement of fact. When you nod, he chuckles. <i>“Don’t worry about it. Most people don’t. Bowmanship’s kind of a lost art these days, you know. Some of us leithans keep up the old art: nowhere in the galaxy has game like Leitha, though you have to be ready to be prey as much as predator on our homeworld. A strong, silent shot will get you further than the big bang of a rifle when there’s monsters the size of houses eager to eat you. If you can bring down a kill without drawing unwanted attention, well, you can’t do much better than a bow.”</i>");
 
 	output("\n\nAs if for emphasis, Tanis pulls an arrow from his back and, in one swift motion, nocks and looses it into the side of a nearby tree. A muted <i>twang</i> echoes as the bowstring snaps home, but you have to admit he’s right: the shot’s an order of magnitude quieter than a gunshot.");
 	if (pc.characterClass == GLOBAL.CLASS_MERCENARY) output(" Never mind that it’s not hard to get a suppressor for a gun. You’re here to learn, not be pedantic.");
@@ -120,7 +120,7 @@ public function tanisBowTrainingFirstTime():void
 
 	output("\n\n<i>“Alright, let’s call it here for now,”</i> Tanis says, stretching enough to audibly crack his back. <i>“Can’t just leave the shop abandoned all day, after all. You’ve got the basics down, I think, but we can pick it up again if you want to really dig into it. Especially if you want to use that bow of yours for self defense. Some might say that’s a suboptimal choice compared to, say, a laser pistol or a plasma caster, but a bow like this is a real tack-driver. A more precise weapon from a more noble time, you know.”</i>");
 	
-	output("\n\nGive you another pat on the shoulder, Tanis grabs his arrows off the ground and starts heading back inside. You follow close behind, feeling more confident about your archery skills for having trained with him.");
+	output("\n\nGiving you another pat on the shoulder, Tanis grabs his arrows off the ground and starts heading back inside. You follow close behind, feeling more confident about your archery skills for having trained with him.");
 
 	processTime(25+rand(5));
 
