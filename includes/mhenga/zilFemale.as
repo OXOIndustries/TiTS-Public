@@ -1074,10 +1074,7 @@ public function forceyFaceSittingFromFemzil():void {
 		output(formatList() + ". You writhe in lust, desiring nothing more than to fuck and touch and love and cum with this beautiful alien... or your hand; whichever brings you off first.");
 	}
 	//MERGE
-	output("\n\n<i>“It'd be impolite not to take advantage of you, even if you are a</i>");
-	if(pc.race() == "zil") output("<i> strange-looking zil</i>");
-	else output("<i> off-worlder</i>");
-	output("<i>,”</i>  she says as she sits down to straddle your [pc.chest], running an oil-colored fingertip up under your chin to make you look her in the eyes. <i>“I don't think you deserve to mate with me though.”</i>  She grabs you by the cheeks and swivels your head this way and that, considering you like a piece of meat. <i>“No, that wouldn't do. You barely put up a fight. Barely worthy to clean me.”</i>");
+	output("\n\n<i>“It'd be impolite not to take advantage of you, even if you are a" + (pc.race() == "zil" ? " strange-looking zil" : "n off-worlder") + ",”</i>  she says as she sits down to straddle your [pc.chest], running an oil-colored fingertip up under your chin to make you look her in the eyes. <i>“I don't think you deserve to mate with me though.”</i>  She grabs you by the cheeks and swivels your head this way and that, considering you like a piece of meat. <i>“No, that wouldn't do. You barely put up a fight. Barely worthy to clean me.”</i>");
 	output("\n\nThe domineering alien's shadow falls across you as she shimmies forward, inadvertently rubbing across your [pc.nipples]");
 	if(pc.hasNippleCocks()) output(" and squeezing your [pc.nippleCocks] off with her asscheeks along the way");
 	output(", bringing her dewy slit to sit just above your neck. Its honey escapes in a slow trickle. Despite her harsh words, this woman has obviously become aroused by your presence. A short-cropped tuft of downy-soft fuzz sits neatly above the inflamed mound, and the whole of her crotch just smells so goddamned good. If you were standing right now, your [pc.legs] would be giving out from underneath you. There's just something so sensual and right about the aroma, even if it’s laced with the sweetness of her juices and cloys at your nose.");
