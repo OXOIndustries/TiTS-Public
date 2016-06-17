@@ -1234,7 +1234,10 @@ public function yesImTakingKirosVcards():void
 	else output("into your squished-together racks");
 	output(". Her copious sexual fluids easily soak most of your body, to say nothing of the sheets below, and she just keeps going, even when her arms go slack.");
 	output("\n\nYou kiss the nape of her neck while she cums, clutching her ass with one hand and stroking her shimmering waves of chocolate-brown hair with the other. The moaning kui-tan trembles bonelessly, jetting more and more wasted jizz onto your body while her pussy clutches weakly at your rod, unable to do anything but writhe in the grip of long-forbidden passion. You hold her throughout, letting her fully expend her ardor, and then, once she goes fully limp, slumped against your shoulder, you have your opportunity.");
+	kiro.orgasm();
+	kiro.orgasm();
 	pc.lust(3000);
+	applyCumSoaked(pc);
 	processTime(14);
 	//[Next]
 	clearMenu();
@@ -1757,6 +1760,8 @@ public function kiroMilkerDoubleTimeBySavin():void
 	output("\n\n<i>“Niiiiice,”</i> she sighs, taking a deep breath of the musky air as she strokes your hair, <i>“It’s a lot more fun with someone else with you.”</i>");
 	output("\n\nKiro gives you a wink and a quick kiss on the brow as the two of you struggle up, gathering your discarded gear, careful not to slip on the excess spooge leaking from the milker tubes.");
 	processTime(35);
+	kiro.orgasm();
+	kiro.orgasm();
 	pc.orgasm();
 	pc.orgasm();
 	clearMenu();
@@ -2438,6 +2443,7 @@ public function fuckPumpedKiro():void
 		kiro.cuntChange(0,pc.cockVolume(x),false,false,false);
 	}
 	processTime(22);
+	kiro.orgasm();
 	pc.orgasm();
 	processTime(22);
 	clearMenu();
@@ -2934,7 +2940,11 @@ public function kiroFuckOrgyFuntimes6():void
 	if(pc.fluidColorSimple(pc.cumType) == "white") output("an albino.");
 	else output("a perverse painting.");
 	processTime(45+rand(10));
+	kiro.orgasm();
+	kiro.orgasm();
 	for(var i:int = 0; i < 10; i++) { pc.orgasm(); }
+	applyCumSoaked(pc);
+	applyCumSoaked(pc);
 	
 	//20,000 in every hole
 	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
