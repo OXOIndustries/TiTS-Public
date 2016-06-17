@@ -32,13 +32,13 @@ package classes.Items.Transformatives
 			//Used on inventory buttons
 			this.shortName = "Foxfire";
 			//Regular name
-			this.longName = "a vial labelled Foxfire";
+			this.longName = "a vial labeled Foxfire";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			this.description = "a vial of Foxfire";
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "After the questionable success of Catnip (Effective, but overly expensive), Stellar Furnace worked hard on developing an affordable alternative in their line of TF-solutions. This vial of hair dye is actually a rather unique transformative, created with ancient technology of symbiotic fungi rather than modern microsurgeons. After application it takes root, slowly but reliably transforming its host towards an animalistic vulpine form, resembling that of an iconic red fox.";
+			this.tooltip = "After the questionable success of Catnip, Stellar Furnace worked hard on developing an affordable alternative in their line of transformation solutions. This vial of hair dye is actually a rather unique genetic modification, created with ancient technology of symbiotic fungi rather than modern microsurgeons. After application it takes root, slowly but reliably transforming its host towards an animalistic vulpine form resembling that of an iconic red fox.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -85,17 +85,17 @@ package classes.Items.Transformatives
 			
 			output("You grab the vial of Foxfire and read the instructions.");
 			
-			output("\n\nFor use on head only. No hair required!");
-			output("\nWorks with most naturally occurring skin types. Warning: effect on metamorphic species is highly unpredictable. Warranty void if used on rahn, galoteans, or if skin is heavily altered by another transformative.");
+			output("\n\n<i>For use on head only. No hair required!");
+			output("\nWorks with most naturally occurring skin types. Warning: effect on metamorphic species is highly unpredictable. Warranty void if used on rahn, galotians, or if skin is heavily altered by another transformative.");
 			output("\nApplying another dose while already under this product's effect will produce no additional results.");
-			output("\nThis product's effects are permanent, but can be easily cancelled out with the use of our esteemed bio-cleansing product, Immuno-Booster! You will find one dose enclosed in the product package; alternatively, they are available for purchase at most pharmacies.");
+			output("\nThis product's effects are permanent, but can be easily canceled out with the use of our esteemed bio-cleansing product, Immuno-Booster! You will find one dose enclosed in the product package; alternatively, they are available for purchase at most pharmacies.");
 			output("\nWarning: while safe for the host, it will likely conflict with any other symbiotic or parasitic lifeforms currently attached to you. If you have any important symbiotes, please refrain from using this product.");
 			output("\nDocumented side effect: Bioluminescence (Disappears after use of Immuno-Booster. If signs of luminescence remains, contact our customer support for assistance.)");
 			
 			if (target.hasStatusEffect("Foxfire"))
 			{
 				var frost:Boolean = target.statusEffectv1("Foxfire") == 1;
-				output("You are already under effect of " + (frost ? "Frostfire" : "Foxfire") + ", so using another would be a waste.");
+				output("\n\n<b>You are already under effect of " + (frost ? "Frostfire" : "Foxfire") + ", so using another would be a waste.</b>");
 				return false;
 			}
 			
@@ -123,11 +123,11 @@ package classes.Items.Transformatives
 			{
 				if (target.skinType == GLOBAL.SKIN_TYPE_GOO)
 				{
-					output("You apply the solution onto your goo-head according to instructions. Its compatibility with galotean biology is questionable, but you are still eager to try it.");
+					output("You apply the solution onto your gooey head according to instructions. Its compatibility with galotean biology is questionable, but you are still eager to try it.");
 				}
 				else if (target.skinType == GLOBAL.SKIN_TYPE_LATEX)
 				{
-					output("You apply the solution onto your shiny latex-scalp according to instructions. The results will be questionable at best, but what's the worst that could happen?");
+					output("You apply the solution onto your shiny, latex-like scalp according to instructions. The results will be questionable at best, but what's the worst that could happen?");
 				}
 				else if (target.hasFur() || target.hasScales() || target.hasFeathers())
 				{
@@ -148,11 +148,11 @@ package classes.Items.Transformatives
 			}
 			else if (target.hairType == GLOBAL.HAIR_TYPE_FEATHERS)
 			{
-				output("You massage the solution into your head plume according to instructions. Now all you have to do is wait.");
+				output("You massage the solution into your plumage according to instructions. Now all you have to do is wait.");
 			}
 			else if (target.hairType == GLOBAL.HAIR_TYPE_QUILLS)
 			{
-				output("You massage the solution into your head quills according to instructions. Now all you have to do is wait.");
+				output("You massage the solution into your quills according to instructions. Now all you have to do is wait.");
 			}
 			else if (target.hairType == GLOBAL.HAIR_TYPE_TENTACLES)
 			{
@@ -160,7 +160,7 @@ package classes.Items.Transformatives
 			}
 			else if (target.hairType == GLOBAL.HAIR_TYPE_GOO)
 			{
-				output("You massage the solution into your gooey pseudo-hair according to instructions. Its compatibility with galotean biology is questionable, but you are still eager to try it.");
+				output("You massage the solution into your gooey pseudo-hair according to instructions. Its compatibility with galotian biology is questionable, but you are still eager to try it.");
 			}
 			else
 			{
@@ -268,7 +268,7 @@ package classes.Items.Transformatives
 								target.cocks[i].addFlag(GLOBAL.FLAG_KNOTTED);
 								target.cocks[i].knotMultiplier = 1.25;
 							}
-							else if (target.cocks[i].knotMultiplier <= 1.25 && target.knotMultiplierUnlocked(i, 1.25))
+							else if (target.cocks[i].knotMultiplier < 1.25 && target.knotMultiplierUnlocked(i, 1.25))
 							{
 								kGAMECLASS.eventBuffer += "\n\nAnother feeling of pressure at the base of your " + target.cockDescript(i) + " tells you that the bulk of your knot is growing to a respectible bulge. <b>Your cock-knot has grown!</b>";
 								target.cocks[i].knotMultiplier = 1.25;
@@ -279,7 +279,6 @@ package classes.Items.Transformatives
 								target.cocks[i].delFlag(GLOBAL.FLAG_FLARED);
 								target.cocks[i].delFlag(GLOBAL.FLAG_BLUNT);
 								target.cocks[i].delFlag(GLOBAL.FLAG_DOUBLE_HEADED);
-								
 								target.cocks[i].addFlag(GLOBAL.FLAG_TAPERED);
 							}
 						});
@@ -312,9 +311,11 @@ package classes.Items.Transformatives
 							if (colorsMatching(target))
 							{
 								target.shiftCock(i, GLOBAL.TYPE_VULPINE);
-								target.cocks[i].cockColor = target.lipColor;
+								//Above text explicitly states bright red.
+								//target.cocks[i].cockColor = target.lipColor;
 							}
 							else target.shiftCock(i, GLOBAL.TYPE_VULPINE);
+							target.cocks[i].cockColor = "red";
 						});
 						break;
 					}
@@ -344,7 +345,7 @@ package classes.Items.Transformatives
 					if (target.vaginas[v].type != GLOBAL.TYPE_VULPINE && target.hasFur() && target.vaginaTypeUnlocked(v, GLOBAL.TYPE_VULPINE))
 					{
 						options.push(function():*{
-							kGAMECLASS.eventBuffer += "\n\nYou start panting as an intense sensation of warmth washes over your crotch. Your " + target.vaginaDescript(v) + " begins to swell and puff up rapidly, leaving you little time to ponder the situation as your cunt morphs to take on a spade-like shape, much like that of a bitches'. <b>You now have a fox-cunt!</b>";
+							kGAMECLASS.eventBuffer += "\n\nYou start panting as an intense sensation of warmth washes over your crotch. Your " + target.vaginaDescript(v) + " begins to swell and puff up rapidly, leaving you little time to ponder the situation as your cunt morphs to take on a spade-like shape, much like a vixen's. <b>You now have a fox-cunt!</b>";
 							target.shiftVagina(v, GLOBAL.TYPE_VULPINE);
 							target.vaginas[v].vaginaColor = !colorsMatching(target) ? "black" : target.lipColor;
 						});
@@ -353,7 +354,7 @@ package classes.Items.Transformatives
 				}
 			}
 			
-			var maxSizeBreasts:Number = 3; // C-cups are more than enough
+			var maxSizeBreasts:Number = 7; // C-cups are more than enough
 			var minSizeBreasts:Number = (target.canLactate() && target.biggestTitSize(true) >= 1 ? 1 : 0); // to avoid parser weirdshit breasts would be at least A-cups if lactating
 			if (target.biggestTitSize(true) > maxSizeBreasts) // breasts down to C-cups, if multirow other rows to b/a/flat
 			{
@@ -606,7 +607,7 @@ package classes.Items.Transformatives
 				}
 				else if (target.hairType == GLOBAL.HAIR_TYPE_QUILLS)
 				{
-					kGAMECLASS.eventBuffer += "\n\nYou feel a strange tingling on your scalp as the skin around your quills loosen and grow slack. Within moments, the entirety of your head-quills begin falling down your back and shoulders, and soft tufts of normal hair grow to take their place. <b>You now have normal hair!</b>";
+					kGAMECLASS.eventBuffer += "\n\nYou feel a strange tingling on your scalp as the skin around your quills loosen and grow slack. Within moments, the your head-quills begin falling down your back and shoulders, and soft tufts of normal hair grow to take their place. <b>You now have normal hair!</b>";
 					target.hairLength = 1;
 					target.hairStyle = "null";
 				}
@@ -638,7 +639,7 @@ package classes.Items.Transformatives
 					if (target.hasFur())
 						kGAMECLASS.eventBuffer += "\n\nYour head-fur begins to itch, and before long it starts to grow out wildly at a rapid pace, blossoming into long hair which reaches all the way down your neck. <b>You now have long hair!</b> You are going to need a brush...";
 					else
-						kGAMECLASS.eventBuffer += "\n\nYour " + target.hairDescript() + "  starts to tingle, and you feel an sudden urge to scratch it. Just as you reach for it your " + target.fingers() + " are met with a large burst of wild hair-growth, not stopping until it reaches down all the way to your neck. <b>You now have long hair!</b> You are going to need a brush...";
+						kGAMECLASS.eventBuffer += "\n\nYour " + target.hairDescript() + "  starts to tingle, and you feel an sudden urge to scratch it. Just as you reach for it your " + target.fingers() + " are met with a large burst of wild growth, not stopping until it reaches down all the way to your neck. <b>You now have long hair!</b> You're going to need a brush...";
 				}
 				else kGAMECLASS.eventBuffer += "\n\nYou brush away a few strands of hair from your vision, and feel something brush against your neck. It seems <b>your " + target.hairNoun() + " has grown longer!</b>";
 				target.hairLength = 12;
@@ -824,7 +825,7 @@ package classes.Items.Transformatives
 					}
 					else if (target.isGoo())
 					{
-						kGAMECLASS.eventBuffer += "\n\nSuddenly, the lower part of your gooey mass presses inwards and becomes much more solid. You feel bones and muscles reforming underneath you, and im a moment the mass of goo you were previously using to move yourself about is now a <b>pair of sturdy foxlike legs</b>.";
+						kGAMECLASS.eventBuffer += "\n\nSuddenly, the lower part of your gooey mass presses inwards and becomes much more solid. You feel bones and muscles reforming underneath you, and im a moment the mass of goo you were previously using to move yourself about is now a <b>pair of sturdy fox-like legs</b>.";
 						target.legCount = 2;
 						target.genitalSpot = 0;
 					}

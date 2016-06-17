@@ -1283,7 +1283,7 @@ public function fuckNayna():void
 	//Treated/Ausar faced
 	if(pc.isTreated() || pc.hasMuzzle())
 	{
-		output("\n\nYour nose wrinkles, and you find yourself sniffing at the air, savoring the traces of laquine’s musky yet feminine odor, a mild pheromonal soup that seems to reach up into your brain and flick the switch labelled ‘fuck this bitch’. Her scent seems stronger by the second, and your cock");
+		output("\n\nYour nose wrinkles, and you find yourself sniffing at the air, savoring the traces of laquine’s musky yet feminine odor, a mild pheromonal soup that seems to reach up into your brain and flick the switch labeled ‘fuck this bitch’. Her scent seems stronger by the second, and your cock");
 		if(pc.cockTotal() != 1) output("s");
 		output(" grow");
 		if(pc.cockTotal() == 1) output("s");
