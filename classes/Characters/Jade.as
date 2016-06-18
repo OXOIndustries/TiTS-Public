@@ -16,7 +16,7 @@
 		//constructor
 		public function Jade()
 		{
-			this._latestVersion = 9;
+			this._latestVersion = 10;
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			
@@ -62,7 +62,7 @@
 			inventory.push(new OvirAce());
 			inventory.push(new OvirPositive());
 			this.inventory.push(new Catnip());
-			//this.inventory.push(new Foxfire());
+			this.inventory.push(new Foxfire());
 			this.inventory.push(new DracoGuard());
 			this.typesBought[this.typesBought.length] = GLOBAL.PILL;
 			this.typesBought[this.typesBought.length] = GLOBAL.POTION;
@@ -224,11 +224,10 @@
 		{
 			dataObject.inventory.push(new DracoGuard().getSaveObject());
 		}
-		
-		/*public function UpgradeVersion9(d:Object):void
+		public function UpgradeVersion9(d:Object):void
 		{
 			d.inventory.push(new Foxfire().getSaveObject());
-		}*/
+		}
 		
 		override public function onLeaveBuyMenu():void
 		{

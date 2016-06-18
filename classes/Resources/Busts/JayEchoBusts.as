@@ -24,6 +24,13 @@ package classes.Resources.Busts
 
 		[Embed(source = "../../../assets/images/npcs/jay_echo/mayren.png", mimeType = "image/png")]
 		public var Bust_MAYREN:Class;
+
+		[Embed(source = "../../../assets/images/npcs/jay_echo/nayna.png", mimeType = "image/png")]
+		public var Bust_NAYNA:Class;
+		[Embed(source = "../../../assets/images/npcs/jay_echo/nayna_nude.png", mimeType = "image/png")]
+		public var Bust_NAYNA_SUIT:Class;
+		[Embed(source = "../../../assets/images/npcs/jay_echo/nayna_nude.png", mimeType = "image/png")]
+		public var Bust_NAYNA_SUIT_NUDE:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/jay_echo/sellera.png", mimeType = "image/png")]
 		public var Bust_SELLERA:Class;
@@ -52,6 +59,13 @@ package classes.Resources.Busts
 
 			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/mayren.png", mimeType = "image/png")]
 			public var Full_MAYREN:Class;
+
+			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/nayna.png", mimeType = "image/png")]
+			public var Full_NAYNA:Class;
+			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/nayna_nude.png", mimeType = "image/png")]
+			public var Full_NAYNA_SUIT:Class;
+			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/nayna_nude.png", mimeType = "image/png")]
+			public var Full_NAYNA_SUIT_NUDE:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/sellera.png", mimeType = "image/png")]
 			public var Full_SELLERA:Class;
