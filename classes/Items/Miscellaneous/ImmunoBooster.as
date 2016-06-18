@@ -44,7 +44,7 @@ package classes.Items.Miscellaneous
 			this.attackVerb = "";
 			
 			//Information
-			this.basePrice = 20;
+			this.basePrice = 400;
 			this.attack = 0;
 			this.defense = 0;
 			this.shieldDefense = 0;

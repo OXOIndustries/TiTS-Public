@@ -23,7 +23,7 @@
 		//constructor
 		public function Nerrasa()
 		{
-			this._latestVersion = 2;
+			this._latestVersion = 1;
 			this.version = _latestVersion;
 			this._neverSerialize = true;
 			
@@ -199,12 +199,7 @@
 			this.ass.loosenessRaw = 4;
 			this.ass.bonusCapacity = 250;
 		}
-		
-		public function UpgradeVersion1(d:Object):void
-		{
-			d.inventory.push(new Frostfire().getSaveObject());
-		}
-		
+				
 		override public function get bustDisplay():String
 		{
 			// LERRIS_<COW_>_0

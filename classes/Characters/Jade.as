@@ -224,7 +224,6 @@
 		{
 			dataObject.inventory.push(new DracoGuard().getSaveObject());
 		}
-		
 		public function UpgradeVersion9(d:Object):void
 		{
 			d.inventory.push(new Foxfire().getSaveObject());
