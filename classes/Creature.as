@@ -1743,6 +1743,9 @@
 				case "cockTail":
 					buffer = tailCockDescript();
 					break;
+				case "tailCockHead":
+					buffer = tailCockHead();
+					break;
 				case "tailCocks":
 				case "cockTails":
 					buffer = tailCocksDescript();
@@ -6104,8 +6107,9 @@
 			//Error catching.
 			if (ratingCheck == -1 && rowNum + 1 > breastRows.length) return "ERROR-cup";
 			//Set the breastRating to be checked or the artifical ratingCheck if not -1.
-			var check: int = breastRows[rowNum].breastRating();
+			var check:int = 0;
 			if (ratingCheck >= 0) check = ratingCheck;
+			else check = breastRows[rowNum].breastRating();
 			//Get a cup size.
 			if (check < 1) return "0-cup";
 			else if (check < 2) return "A-cup";

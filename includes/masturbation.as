@@ -571,7 +571,7 @@ public function vaginalFap():void {
 			trace("LOWER ON LIST");
 		}
 		if(pc.upperUndergarment.shortName != "" && !pc.upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !pc.upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST)) {
-			addToList("pull your [pc.upperUndergarment] off over your head");
+			addToList("pull your [pc.upperUndergarment] off");
 			trace("UPPER ON LIST");
 		}
 		output(formatList());
