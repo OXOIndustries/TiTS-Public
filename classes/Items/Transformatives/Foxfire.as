@@ -388,7 +388,7 @@ package classes.Items.Transformatives
 					}
 					else
 					{ // lactating - A-cups to avoid parser weirdshit
-						kGAMECLASS.eventBuffer += "\n\nSuddenly, you feel as if the area on your " + (target.bRows() < 2 ? "chest" : "belly") + " below your breasts is growing softer and more sensitive, which is followed by a feeling of being filled with something. As you suspected, " + num2Text(target.breastRows[target.breastRows.length - 1].breasts) + " soft orbs of flesh soon begin pushing their way out from your " + (target.bRows() < 2 ? "chest" : "belly") + ", forming a new " + (target.breastRows[target.breastRows.length - 1].breasts == 2 ? "pair" : "set") + " of breasts below the original ones!" + target.breastCup(-1, minSizeBreasts) + " breasts!";
+						kGAMECLASS.eventBuffer += "\n\nSuddenly, you feel as if the area on your " + (target.bRows() < 2 ? "chest" : "belly") + " below your breasts is growing softer and more sensitive, which is followed by a feeling of being filled with something. As you suspected, " + num2Text(target.breastRows[target.breastRows.length - 1].breasts) + " soft orbs of flesh soon begin pushing their way out from your " + (target.bRows() < 2 ? "chest" : "belly") + ", forming a new " + (target.breastRows[target.breastRows.length - 1].breasts == 2 ? "pair" : "set") + " of A-cup breasts below the original ones!";
 					}
 					
 					if (target.bRows() == 1) kGAMECLASS.eventBuffer += " With a second row of breasts, you now sport a more animalistic look.";
