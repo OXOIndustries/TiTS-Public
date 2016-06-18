@@ -2791,7 +2791,10 @@
 			//return (armor.shortName == "" && lowerUndergarment.shortName == "" && upperUndergarment.shortName == "");
 			return (!isCrotchGarbed() && !isChestCovered());
 		}
-		public function canCoverSelf(checkGenitals:Boolean = false): Boolean {
+		public function canCoverSelf(checkGenitals:Boolean = false, part:String = "all"): Boolean {
+			// Part-specific checks
+			if(part == "wings" && !hasJointedWings()) return false;
+			
 			// Normal genital location
 			if(!checkGenitals || genitalLocation() <= 1)
 			{
@@ -8410,6 +8413,7 @@
 		// Large, jointed/malleable wings
 		public function hasJointedWings(): Boolean
 		{
+			if(!hasWings()) return false;
 			return InCollection(wingType, [GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_DOVE, GLOBAL.TYPE_GRYVAIN]);
 		}
 		public function removeWings():void

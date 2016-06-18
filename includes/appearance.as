@@ -1672,7 +1672,7 @@ public function appearance(forTarget:Creature):void
 		
 		var btnIndex:int = 0;
 		addGhostButton(btnIndex++, "PrefGender", selectGenderPref, undefined, "Preferred Gender", "Indicate the gender you would prefer your character to be considered.");
-		if(target.hasJointedWings() && target.canCoverSelf()) addGhostButton(btnIndex++, "Wings", selectWingPref, undefined, "Position Wings", "Change the position of your wings.");
+		if(target.canCoverSelf(false, "wings")) addGhostButton(btnIndex++, StringUtil.toDisplayCase(target.wingsDescript(true)), selectWingPref, undefined, "Position " + StringUtil.toDisplayCase(target.wingsDescript(true)), "Change the position of your " + target.wingsDescript(true) + ".");
 		//PC Goo'ed up?
 		if (target.hairType == GLOBAL.HAIR_TYPE_GOO || target.hasStatusEffect("Goo Vent") || target.hasStatusEffect("Goo Crotch"))
 		{
