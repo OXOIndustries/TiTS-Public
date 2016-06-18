@@ -2794,6 +2794,30 @@
 			//return (armor.shortName == "" && lowerUndergarment.shortName == "" && upperUndergarment.shortName == "");
 			return (!isCrotchGarbed() && !isChestCovered());
 		}
+		public function canCoverSelf(checkGenitals:Boolean = false, part:String = "all"): Boolean {
+			// Part-specific checks
+			if(part == "wings" && !hasJointedWings()) return false;
+			
+			// Normal genital location
+			if(!checkGenitals || genitalLocation() <= 1)
+			{
+				// Cover yourself with your fuckton of wings
+				if(wingType == GLOBAL.TYPE_DOVE)
+				{
+					if(wingCount >= 4) return true;
+					return false;
+				}
+				if(hasJointedWings())
+				{
+					if(checkGenitals && statusEffectv1("Wing Position") != 1) return false;
+					return true;
+				}
+			}
+			// See if your body can cover itself
+			if(Foxfire.canUseTailsOrFurAsClothes(this)) return true;
+			
+			return false;
+		}
 		public function isCrotchGarbed(): Boolean {
 			if(hasStatusEffect("Temporary Nudity Cheat")) return false;
 			else if(armor is EmptySlot && lowerUndergarment is EmptySlot) return false;
@@ -8390,15 +8414,23 @@
 			}
 			return false;
 		}
+		// Large, jointed/malleable wings
+		public function hasJointedWings(): Boolean
+		{
+			if(!hasWings()) return false;
+			return InCollection(wingType, [GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_DOVE, GLOBAL.TYPE_GRYVAIN]);
+		}
 		public function removeWings():void
 		{
 			wingType = 0;
 			wingCount = 0;
+			removeStatusEffect("Wing Position");
 		}
 		public function shiftWings(wingShape:Number = 0, wingNum:Number = 0):void
 		{
 			wingType = wingShape;
 			wingCount = wingNum;
+			if(!hasJointedWings()) removeStatusEffect("Wing Position");
 		}
 		//check for vagoo
 		public function hasVagina(hole: int = 0): Boolean {

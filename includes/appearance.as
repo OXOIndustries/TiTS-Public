@@ -716,7 +716,7 @@ public function appearance(forTarget:Creature):void
 				if (target.wingCount == 2) output2(" a pair of");
 				else if (target.wingCount == 4) output2(" a quartet of");
 				else if (target.wingCount > 1) output2(" " + num2Text(int(target.wingCount)));
-				output2(" large bat-like demon-wings fold behind your shoulders. With a muscle-twitch, you can extend them, and use them to soar gracefully through the air.");
+				output2(" large bat-like demon-wings fold " + (target.statusEffectv1("Wing Position") == 1 ? "over your body" : "behind your shoulders") + ". With a muscle-twitch, you can extend them, and use them to soar gracefully through the air.");
 			}
 			else if(target.wingType == GLOBAL.TYPE_SHARK) output2(" a large shark-like fin has sprouted between your shoulder blades. With it you have far more control over swimming underwater.");
 			else if(target.wingType == GLOBAL.TYPE_AVIAN)
@@ -724,10 +724,10 @@ public function appearance(forTarget:Creature):void
 				if (target.wingCount == 2) output2(" a pair of");
 				else if (target.wingCount == 4) output2(" a quartet of");
 				else if (target.wingCount > 1) output2(" " + num2Text(int(target.wingCount)));
-				output2(" large, feathery wings sprout from your back. Though you usually keep the " + target.furColor + "-colored wings folded close, they can unfurl to allow you to soar as gracefully as a bird.");
+				output2(" large, feathery wings sprout from your back" + (target.statusEffectv1("Wing Position") == 1 ? " and fold over your body" : "") + ". Though you usually keep the " + target.furColor + "-colored wings folded close, they can unfurl to allow you to soar as gracefully as a bird.");
 			}
 			else if(target.wingType == GLOBAL.TYPE_SMALLDRACONIC) output2(" small, vestigial wings sprout from your shoulders. They might look like bat’s wings, but the membranes are covered in fine, delicate scales.");
-			else if(target.wingType == GLOBAL.TYPE_DRACONIC) output2(" magnificent "+ target.scaleColor + " wings sprout from your shoulders. When unfurled they stretch further than your arm span, and a single beat of them is all you need to set out toward the sky. They look a bit like bat’s wings, but the membranes are covered in fine, delicate scales and a wicked talon juts from the end of each bone.");
+			else if(target.wingType == GLOBAL.TYPE_DRACONIC) output2(" magnificent "+ target.scaleColor + " wings sprout from your shoulders" + (target.statusEffectv1("Wing Position") == 1 ? " and fold over your body" : "") + ". When unfurled they stretch further than your arm span, and a single beat of them is all you need to set out toward the sky. They look a bit like bat’s wings, but the membranes are covered in fine, delicate scales and a wicked talon juts from the end of each bone.");
 			else if(target.wingType == GLOBAL.TYPE_DRAGONFLY) output2(" giant dragonfly wings hang from your shoulders. At a whim, you could twist them into a whirring rhythm fast enough to lift you off the ground and allow you to fly.");
 			else if(target.wingType == GLOBAL.TYPE_SYLVAN)
 			{
@@ -756,7 +756,7 @@ public function appearance(forTarget:Creature):void
 				if (target.wingCount == 2) output2(" a pair of");
 				else if (target.wingCount == 4) output2(" a quartet of");
 				else if (target.wingCount > 1) output2(" " + num2Text(int(target.wingCount)));
-				output2(" magnificent wings sprout from your shoulders. When unfurled they stretch further than your arm span, and a single beat of them is all you need to set out toward the sky. They look a bit like bat’s wings, but the membranes are covered in fine, delicate scales and a wicked talon juts from the end of each bone.");
+				output2(" magnificent wings sprout from your shoulders" + (target.statusEffectv1("Wing Position") == 1 ? " and fold over your body" : "") + ". When unfurled they stretch further than your arm span, and a single beat of them is all you need to set out toward the sky. They look a bit like bat’s wings, but the membranes are covered in fine, delicate scales and a wicked talon juts from the end of each bone.");
 			}
 		}
 		else output2(".");
@@ -1672,6 +1672,7 @@ public function appearance(forTarget:Creature):void
 		
 		var btnIndex:int = 0;
 		addGhostButton(btnIndex++, "PrefGender", selectGenderPref, undefined, "Preferred Gender", "Indicate the gender you would prefer your character to be considered.");
+		if(target.canCoverSelf(false, "wings")) addGhostButton(btnIndex++, StringUtil.toDisplayCase(target.wingsDescript(true)), selectWingPref, undefined, "Position " + StringUtil.toDisplayCase(target.wingsDescript(true)), "Change the position of your " + target.wingsDescript(true) + ".");
 		//PC Goo'ed up?
 		if (target.hairType == GLOBAL.HAIR_TYPE_GOO || target.hasStatusEffect("Goo Vent") || target.hasStatusEffect("Goo Crotch"))
 		{
@@ -2454,7 +2455,6 @@ public function selectGenderPref():void
 	
 	addGhostButton(14, "Back", backToAppearance, pc);
 }
-
 public function setGenderPref(pref:String):void
 {
 	if (pref == "auto")
@@ -2474,6 +2474,45 @@ public function setGenderPref(pref:String):void
 	}
 	
 	selectGenderPref();
+}
+
+public function selectWingPref():void
+{
+	clearOutput2();
+	output2("Your current [pc.wingNoun] position is set to ");
+	
+	clearGhostMenu();
+	
+	addGhostButton(0, "Normal", setWingPref, 0, "Normal Position", "Your [pc.wingsNoun] fold" + (pc.wingCount == 1 ? "s" : "") + " normally behind you.");
+	addGhostButton(1, "Body", setWingPref, 1, "Cover Your Body", "Fold your [pc.wingsNoun] to cover part of your body.");
+	
+	if (pc.statusEffectv1("Wing Position") == 1)
+	{
+		output2("<b>Body</b>.");
+		output2("\n\nYour [pc.wings] " + (pc.wingCount == 1 ? "is" : "are") + " folded over your body, covering you");
+		if(pc.hasGenitals() && pc.genitalLocation() <= 1) output2(" and your genitals");
+		output2(" almost like clothing but not exactly.");
+		addDisabledGhostButton(1, "Body", "Cover Your Body", "Your [pc.wingsNoun] " + (pc.wingCount == 1 ? "is" : "are") + " already positioned to cover your body.");
+	}
+	else
+	{
+		output2("<b>Normal</b>.");
+		output2("\n\nYour [pc.wings] " + (pc.wingCount == 1 ? "rests in its" : "rest in their") + " normal position behind you.");
+		addDisabledGhostButton(0, "Normal", "Normal Position", "Your [pc.wingsNoun] " + (pc.wingCount == 1 ? "is" : "are") + " already positioned normally behind you.");
+	}
+	
+	addGhostButton(14, "Back", backToAppearance, pc);
+}
+public function setWingPref(position:int):void
+{
+	if(!pc.hasStatusEffect("Wing Position"))
+	{
+		pc.createStatusEffect("Wing Position");
+	}
+	
+	pc.setStatusValue("Wing Position", 1 , position);
+	
+	selectWingPref();
 }
 
 public function dickBonusForAppearance(forTarget:Creature = null, x:int = 0):void

@@ -10,7 +10,6 @@ import classes.Items.Accessories.LeithaCharm;
 import classes.Items.Miscellaneous.EmptySlot;
 import classes.Items.Miscellaneous.HorsePill;
 import classes.Items.Transformatives.Clippex;
-import classes.Items.Transformatives.Foxfire;
 import classes.Items.Transformatives.Goblinola;
 import classes.RoomClass;
 import classes.StorageClass;
@@ -1111,9 +1110,7 @@ public function move(arg:String, goToMainMenu:Boolean = true):void {
 		var nudistPrevention:Boolean = false;
 		if((!pc.isChestGarbed() || pc.isChestExposed()) && pc.biggestTitSize() > 1) nudistPrevention = true;
 		if(!pc.isCrotchGarbed() || pc.isCrotchExposed() || pc.isAssExposed()) nudistPrevention = true;
-		// Cover yourself with your fuckton of wings
-		if (pc.wingType == GLOBAL.TYPE_DOVE && pc.wingCount >= 4 && pc.genitalLocation() <= 1) nudistPrevention = false;
-		if (Foxfire.canUseTailsOrFurAsClothes(pc)) nudistPrevention = false; // function is pretty much self-descriptive - see if your body can cover itself
+		if(pc.canCoverSelf(true)) nudistPrevention = false;
 		if(nudistPrevention)
 		{
 			clearOutput();
