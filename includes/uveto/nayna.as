@@ -104,7 +104,7 @@ public function upstairsGeoSurveyBonus():Boolean
 	else
 	{
 		//Day Cloud
-		if(hours >= 6 && hours < 20) output("With all the protective shutters opened, the observation deck seems almost daringly, brazenly exposed to slate gray skies of Uveto. Lightning sometimes dances between the clouds, lighting the room in bursts of garish yellow before fading back into ominous gray-blue. A few consoles resolutely blink as they stubbornly chew through scientific data, ignorant of the danger that exists an inch beyond the glass.");
+		if(hours >= 6 && hours < 20) output("With all the protective shutters opened, the observation deck seems almost daringly, brazenly exposed to the slate gray skies of Uveto. Lightning sometimes dances between the clouds, lighting the room in bursts of garish yellow before fading back into ominous gray-blue. A few consoles resolutely blink as they stubbornly chew through scientific data, ignorant of the danger that exists an inch beyond the glass.");
 		//Night Overcast
 		else output("Despite the overhead light panels and the blinking status lights of dozens of computers, the observation deck of Uveto VII’s geological survey feels incontrovertibly gloomy. At least when you’re out in the black of space, you have stars and nebulas to take in, but with an overcast sky, there is nothing surrounding you but dim grays and black, an inky void of ice-cold death.");
 	}

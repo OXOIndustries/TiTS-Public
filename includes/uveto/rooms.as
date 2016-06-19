@@ -315,7 +315,7 @@ public function initUvetoRooms():void
 	/* Geo Survey */
 	rooms["UVI J32"] = new RoomClass(this);
 	rooms["UVI J32"].roomName = "GEO. SURVEY\nINTERIOR";
-	rooms["UVI J32"].description = "Entering the survey station, you look around the inside of the tower. The main room is filled with a vast array of readouts, sensor screens, and monitors, all being constantly checked by a small group of technicians from a variety of races, though they predominantly appear to be huskar.\n\nIn the centre of the room is a holographic map table outlining everything around Irestead, from the weather to the constant ice flows. A pair of techs move constantly to and from terminals to the map table, making sure that the weather reports and map information they’re receiving is checked and up to date.";
+	rooms["UVI J32"].description = "Entering the survey station, you look around the inside of the tower. The main room is filled with a vast array of readouts, sensor screens, and monitors, all being constantly checked by a small group of technicians from a variety of races, though they predominantly appear to be huskar.\n\nIn the center of the room is a holographic map table outlining everything around Irestead, from the weather to the constant ice flows. A pair of techs move constantly to and from terminals to the map table, making sure that the weather reports and map information they’re receiving is checked and up to date.";
 	rooms["UVI J32"].planet = "PLANET: UVETO VII";
 	rooms["UVI J32"].system = "SYSTEM: SIRETTA";
 	rooms["UVI J32"].southExit = "UVI J34";
@@ -354,7 +354,7 @@ public function initUvetoRooms():void
 
 	rooms["UVI J34"] = new RoomClass(this);
 	rooms["UVI J34"].roomName = "GEO. SURVEY\nEXTERIOR";
-	rooms["UVI J34"].description = "To the north, through a small tunnel, there is a building marked as the Geological Survey Station. It is a three story building with a glass hexagonal observation deck on top, similar to some landing control towers you’ve seen. Each glass pane appears to have armoured shutters mounted to it, presumably to keep out Uveto's extreme storms.\n\nAround the side of the building you can see a set of antennas and a sealed sensor dome.\n\nTo the south, you can see a large elevator shaft that seems to go <i>down</i>. To the east, you see a pair of heavy doors.";
+	rooms["UVI J34"].description = "To the north, through a small tunnel, there is a building marked as the Geological Survey Station. It is a three story building with a glass hexagonal observation deck on top, similar to some landing control towers you’ve seen. Each glass pane appears to have armored shutters mounted to it, presumably to keep out Uveto's extreme storms.\n\nAround the side of the building you can see a set of antennas and a sealed sensor dome.\n\nTo the south, you can see a large elevator shaft that seems to go <i>down</i>. To the east, you see a pair of heavy doors.";
 	rooms["UVI J34"].planet = "PLANET: UVETO VII";
 	rooms["UVI J34"].system = "SYSTEM: SIRETTA";
 	rooms["UVI J34"].northExit = "UVI J32";
