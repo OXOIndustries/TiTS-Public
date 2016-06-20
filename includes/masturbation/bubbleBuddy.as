@@ -1036,7 +1036,7 @@ public function gallinkFlahneBubbleEmail():String
 	ret += "\nKiro Tamahime: Psh, you call that a cum bubble? I jizz more than that before most people have had breakfast.";
 	ret += "\nGirlBoy Alex: Flahne, did you do that at WORK?! Ha ha ha, you’re crazy, girl. I love ya, but you’re crazy.";
 	ret += "\nSera Succubus: I feel like I’m watching a nature documentary on a territorial dispute between a loo’rahn and a doh’rahn. Damn nature, you’re scary! >:D";
-	ret += "\nBigBooty Flahne: [pc.name]! What the goo! I said those were supposed to be private! Oooo, you are in for it next time I see you!";
+	ret += "\nBigBooty Flahne: " + pc.nameDisplay() + "! What the goo! I said those were supposed to be private! Oooo, you are in for it next time I see you!";
 	ret += "\nSera Succubus: Re: BigBooty Flahne: Oh my god, that’s hilarious.";
 	return ret;
 }
