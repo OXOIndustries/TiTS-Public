@@ -15263,6 +15263,9 @@
 			else if(InCollection(fluidType, GLOBAL.FLUID_TYPE_CUM, GLOBAL.FLUID_TYPE_GABILANI_CUM, GLOBAL.FLUID_TYPE_NYREA_CUM, GLOBAL.FLUID_TYPE_VANAE_CUM)) fluidAmount *= 0.0035;
 			else fluidAmount *= 0.0025;
 			
+			// Weight tweaks
+			fluidAmount *= 0.50;
+			
 			return fluidAmount;
 		}
 		// Weight Quotient for comparisons between strength (weight load).
