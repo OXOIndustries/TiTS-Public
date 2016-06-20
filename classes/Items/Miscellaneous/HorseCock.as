@@ -20,7 +20,7 @@
 			
 			this.quantity = 1;
 			this.stackSize = 10;
-			this.type = GLOBAL.PILL;
+			this.type = GLOBAL.SEXTOY;
 			
 			//Used on inventory buttons
 			this.shortName = "Horse-Cock";

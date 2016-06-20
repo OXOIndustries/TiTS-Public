@@ -18,7 +18,7 @@
 			
 			this.quantity = 1;
 			this.stackSize = 10;
-			this.type = GLOBAL.GADGET;
+			this.type = GLOBAL.SEXTOY;
 			
 			//Used on inventory buttons
 			this.shortName = "A.D.Cock";
