@@ -85,12 +85,14 @@ package classes.Items.Transformatives
 			
 			output("You grab the vial of Foxfire and read the instructions.");
 			
-			output("\n\n<i>For use on head only. No hair required!");
-			output("\nWorks with most naturally occurring skin types. Warning: effect on metamorphic species is highly unpredictable. Warranty void if used on rahn, galotians, or if skin is heavily altered by another transformative.");
-			output("\nApplying another dose while already under this product's effect will produce no additional results.");
-			output("\nThis product's effects are permanent, but can be easily canceled out with the use of our esteemed bio-cleansing product, Immuno-Booster! You will find one dose enclosed in the product package; alternatively, they are available for purchase at most pharmacies.");
-			output("\nWarning: while safe for the host, it will likely conflict with any other symbiotic or parasitic lifeforms currently attached to you. If you have any important symbiotes, please refrain from using this product.");
-			output("\nDocumented side effect: Bioluminescence (Disappears after use of Immuno-Booster. If signs of luminescence remains, contact our customer support for assistance.)");
+			output("\n<i>");
+			output("\n<b>*</b> For use on head only. No hair required!");
+			output("\n<b>*</b> Works with most naturally occurring skin types. Warning: effect on metamorphic species is highly unpredictable. Warranty void if used on rahn, galotians, or if skin is heavily altered by another transformative.");
+			output("\n<b>*</b> Applying another dose while already under this product's effect will produce no additional results.");
+			output("\n<b>*</b> This product's effects are permanent, but can be easily canceled out with the use of our esteemed bio-cleansing product, Immuno-Booster! You will find one dose enclosed in the product package; alternatively, they are available for purchase at most pharmacies.");
+			output("\n<b>* Warning:</b> while safe for the host, it will likely conflict with any other symbiotic or parasitic lifeforms currently attached to you. If you have any important symbiotes, please refrain from using this product.");
+			output("\n<b>*</b> Documented side effect: Bioluminescence (Disappears after use of Immuno-Booster. If signs of luminescence remains, contact our customer support for assistance.)");
+			output("</i>");
 			
 			if (target.hasStatusEffect("Foxfire"))
 			{

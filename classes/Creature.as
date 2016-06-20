@@ -2292,41 +2292,69 @@
 			if (amt >= amount) return true;
 			return false;
 		}
-		public function destroyItemByName(arg:String,amount:int = 1):void
+		public function destroyItemByName(arg:String, amount:int = 1):void
 		{
-			if(inventory.length == 0) return;
-			var foundAmount:int = 0;
-			for(var x:int = 0; x < inventory.length; x++)
+			if (inventory.length == 0 || amount == 0) return;
+			
+			var i:int = 0;
+			
+			// Remove all!
+			if (amount < 0)
 			{
-				//Item in the slot?
-				if(inventory[x].shortName == arg) 
+				for (i = 0; i < inventory.length; i++)
 				{
-					//If we still need to eat some, eat em up!
-					while(amount > 0 && inventory[x].quantity > 0) 
+					if (inventory[i].shortName == arg) inventory.splice(i, 1);
+				}
+			}
+			// Normal
+			else
+			{
+				for (i = 0; i < inventory.length; i++)
+				{
+					//Item in the slot?
+					if (inventory[i].shortName == arg) 
 					{
-						inventory[x].quantity--;
-						amount--;
-						if(inventory[x].quantity <= 0) inventory.splice(x,1);
+						//If we still need to eat some, eat em up!
+						while(amount > 0 && inventory[i].quantity > 0) 
+						{
+							inventory[i].quantity--;
+							amount--;
+							if (inventory[i].quantity <= 0) inventory.splice(i, 1);
+						}
 					}
 				}
 			}
 			return;
 		}
-		public function destroyItem(arg:ItemSlotClass,amount:int = 1):void
+		public function destroyItem(arg:ItemSlotClass, amount:int = 1):void
 		{
-			if(inventory.length == 0) return;
-			var foundAmount:int = 0;
-			for(var x:int = 0; x < inventory.length; x++)
+			if (inventory.length == 0 || amount == 0) return;
+			
+			var i:int = 0;
+			
+			// Remove all!
+			if (amount < 0)
 			{
-				//Item in the slot?
-				if(inventory[x].shortName == arg.shortName) 
+				for (i = 0; i < inventory.length; i++)
 				{
-					//If we still need to eat some, eat em up!
-					while(amount > 0 && inventory[x].quantity > 0) 
+					if (inventory[i].shortName == arg.shortName) inventory.splice(i, 1);
+				}
+			}
+			// Normal
+			else
+			{
+				for (i = 0; i < inventory.length; i++)
+				{
+					//Item in the slot?
+					if (inventory[i].shortName == arg.shortName) 
 					{
-						inventory[x].quantity--;
-						amount--;
-						if(inventory[x].quantity <= 0) inventory.splice(x,1);
+						//If we still need to eat some, eat em up!
+						while(amount > 0 && inventory[i].quantity > 0) 
+						{
+							inventory[i].quantity--;
+							amount--;
+							if (inventory[i].quantity <= 0) inventory.splice(i, 1);
+						}
 					}
 				}
 			}
@@ -2334,23 +2362,37 @@
 		}
 		public function destroyItemByType(type:Class, amount:int = 1):void
 		{
-			if (inventory.length == 0) return;
+			if (inventory.length == 0 || amount == 0) return;
 			
-			for (var i:int = 0; i < inventory.length; i++)
+			var i:int = 0;
+			
+			// Remove all!
+			if (amount < 0)
 			{
-				if (amount == 0) break;
-				
-				if (inventory[i] is type)
+				for (i = 0; i < inventory.length; i++)
 				{
-					inventory[i].quantity -= amount;
-					if (inventory[i].quantity <= 0)
+					if (inventory[i] is type) inventory.splice(i, 1);
+				}
+			}
+			// Normal
+			else
+			{
+				for (i = 0; i < inventory.length; i++)
+				{
+					//Item in the slot?
+					if (inventory[i] is type) 
 					{
-						if (inventory[i].quantity < 0) amount = Math.abs(inventory[i].quantity);
-						inventory.splice(i, 1);
-						i--;
+						//If we still need to eat some, eat em up!
+						while(amount > 0 && inventory[i].quantity > 0) 
+						{
+							inventory[i].quantity--;
+							amount--;
+							if (inventory[i].quantity <= 0) inventory.splice(i, 1);
+						}
 					}
 				}
 			}
+			return;
 		}
 		
 		public function getWeaponName(fromStat:Boolean = false):String
