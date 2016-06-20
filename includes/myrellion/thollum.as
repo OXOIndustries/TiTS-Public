@@ -97,6 +97,37 @@ public function thollumFoyerBonus():Boolean
 
 //736 THOLLUM\nYARD
 //Mushroom Tracker outputs added, tracks cum spilled in sex scenes that occur while Yarasta is in the yard and grows mushrooms; seeing prev descrip is required to unlock next (i.e. slow growth)
+public function thollumYardMushroomGrow():void
+{
+	if(flags["MUSHROOM_TRACKER"] == undefined || flags["MUSHROOM_GROWTH"] >= 5) return;
+	
+	var mushRoom:Number = flags["MUSHROOM_TRACKER"];
+	
+	if(mushRoom > 0 && flags["MUSHROOM_GROWTH"] == undefined)
+	{
+		flags["MUSHROOM_GROWTH"] = 0;
+	}
+	else if(mushRoom >= 10000 && flags["MUSHROOM_GROWTH"] == 0)
+	{
+		flags["MUSHROOM_GROWTH"] = 1;
+	}
+	else if(mushRoom >= 20000 && flags["MUSHROOM_GROWTH"] == 1)
+	{
+		flags["MUSHROOM_GROWTH"] = 2;
+	}
+	else if(mushRoom >= 40000 && flags["MUSHROOM_GROWTH"] == 2)
+	{
+		flags["MUSHROOM_GROWTH"] = 3;
+	}
+	else if(mushRoom >= 80000 && flags["MUSHROOM_GROWTH"] == 3)
+	{
+		flags["MUSHROOM_GROWTH"] = 4;
+	}
+	else if(mushRoom >= 160000 && flags["MUSHROOM_GROWTH"] == 4)
+	{
+		flags["MUSHROOM_GROWTH"] = 5;
+	}
+}
 public function scotlandYardIMeanThollumYardBonus():Boolean
 {
 	if(flags["THOLLUM_TOURED"] == undefined)
@@ -110,34 +141,34 @@ public function scotlandYardIMeanThollumYardBonus():Boolean
 		return true;
 	}
 	output("The thollum’s yard isn’t much of a yard; grass doesn’t really grow this deep underground. Nonetheless, a faint breeze blows through, likely piped down from the surface. Along the fringes there are several plots of tall fungi and even a few plants in various states of health, with gardening tools and supplies nearby. These must be practice gardens for agriculture students. A carpet of soft-capped mushrooms has grown over the rest of the area");
-	if(flags["MUSHROOM_TRACKER"] == undefined) flags["MUSHROOM_TRACKER"] = 0;
-	var mushRoom:Number = flags["MUSHROOM_TRACKER"];
+	if(flags["MUSHROOM_GROWTH"] == undefined) flags["MUSHROOM_GROWTH"] = 0;
+	var mushRoom:Number = flags["MUSHROOM_GROWTH"];
 	//(Mushroom Tracker < 10000mL)
-	if(mushRoom < 10000) output(".");
-	else if(mushRoom >= 10000 && (flags["MUSH_SEEN"] == undefined || flags["MUSH_SEEN"] == 1))
+	if(mushRoom <= 0) output(".");
+	else if((mushRoom >= 1 && flags["MUSH_SEEN"] == undefined) || (mushRoom == 1 && flags["MUSH_SEEN"] == 1))
 	{
 		output("; the stalks in one section near the door are even several inches higher than the rest for some reason.");
 		flags["MUSH_SEEN"] = 1;
 	}
-	else if(mushRoom >= 20000 && (flags["MUSH_SEEN"] == 1 || flags["MUSH_SEEN"] == 2))
+	else if((mushRoom >= 2 && flags["MUSH_SEEN"] == 1) || (mushRoom == 2 && flags["MUSH_SEEN"] == 2))
 	{
 		output("; one familiar section near the door has stalks almost a foot higher than the rest, suggesting it gets much more nutrition somehow.");
 		flags["MUSH_SEEN"] = 2;
 	}
 	//(Tracker >= 40000mL and has seen 20000 milestone)
-	else if(mushRoom >= 40000 && (flags["MUSH_SEEN"] == 2 || flags["MUSH_SEEN"] == 3))
+	else if((mushRoom >= 3 && flags["MUSH_SEEN"] == 2) || (mushRoom == 3 && flags["MUSH_SEEN"] == 3))
 	{
 		output("; one overgrown, familiar section near the door is practically rank with two- and three-foot variants, and you think you know what ‘fertilizer’ they’ve been getting.");
 		flags["MUSH_SEEN"] = 3;
 	}
 	//(Tracker >= 80000mL and has seen 40000 milestone)
-	else if(mushRoom >= 80000 && (flags["MUSH_SEEN"] == 3 || flags["MUSH_SEEN"] == 4))
+	else if((mushRoom >= 4 && flags["MUSH_SEEN"] == 3) || (mushRoom == 4 && flags["MUSH_SEEN"] == 4))
 	{
 		output("; the ridiculously jungly section where Yarasta usually sits is practically a thicket of mushroom caps thanks to your spilled cum.");
 		flags["MUSH_SEEN"] = 4;
 	}
 	//(Tracker >= 160000mL and has seen 80000 milestone)
-	else if(mushRoom >= 160000 && (flags["MUSH_SEEN"] == 4 || flags["MUSH_SEEN"] == 5))
+	else if((mushRoom >= 5 && flags["MUSH_SEEN"] == 4) || (mushRoom == 5 && flags["MUSH_SEEN"] == 5))
 	{
 		output("; the mushrooms at the cum-flooded rendezvous shared by you and Yarasta have grown into an umbrageously dense, fungus-redwood forest whose caps bend against the cavern ceiling - the staff have even started hanging lights on the foot-wide trunks to keep girls from getting lost in them.");
 		flags["MUSH_SEEN"] = 5;
@@ -362,37 +393,39 @@ public function takeTheThollumTour():void
 	if(hours >= 19 && hours < 21) output(", particularly since hundreds of myr children are taking their leisure here, dirtying their clothes in rough games and lounging about. A few are even eating the mushrooms, though this could be more by eccentricity than design");
 	output(". Along the walls are fenced-off sections containing much larger fungi and plants, along with tools and bags that are recognizable as gardening supplies even at this distance");
 	
-	if(flags["MUSHROOM_TRACKER"] == undefined) flags["MUSHROOM_TRACKER"] = 0;
-	var mushRoom:Number = flags["MUSHROOM_TRACKER"];
-	if(mushRoom < 10000) output(".");
-	else if(mushRoom < 20000 && (flags["MUSH_SEEN"] == undefined || flags["MUSH_SEEN"] == 1))
+	if(flags["MUSHROOM_GROWTH"] == undefined) flags["MUSHROOM_GROWTH"] = 0;
+	var mushRoom:Number = flags["MUSHROOM_GROWTH"];
+	//(Mushroom Tracker < 10000mL)
+	if(mushRoom <= 0) output(".");
+	else if((mushRoom >= 1 && flags["MUSH_SEEN"] == undefined) || (mushRoom == 1 && flags["MUSH_SEEN"] == 1))
 	{
 		output(", and the stalks in one section near the door are even several inches higher than the rest.");
 		flags["MUSH_SEEN"] = 1;
 	}
-	else if(mushRoom < 40000 && (flags["MUSH_SEEN"] == 1 || flags["MUSH_SEEN"] == 2))
+	else if((mushRoom >= 2 && flags["MUSH_SEEN"] == 1) || (mushRoom == 2 && flags["MUSH_SEEN"] == 2))
 	{
 		output(", and one familiar section near the door has stalks almost a foot higher than the rest, suggesting it’s been getting nutrition from what you do there.");
 		flags["MUSH_SEEN"] = 2;
 	}
 	//(Tracker >= 40000mL and has seen 20000 milestone)
-	else if(mushRoom < 80000 && (flags["MUSH_SEEN"] == 2 || flags["MUSH_SEEN"] == 3))
+	else if((mushRoom >= 3 && flags["MUSH_SEEN"] == 2) || (mushRoom == 3 && flags["MUSH_SEEN"] == 3))
 	{
 		output(", and one overgrown, familiar section near the door is dense with two- and three-foot variants and large fallen stalks, the products of your and Yarasta’s tandem ‘gardening’.");
 		flags["MUSH_SEEN"] = 3;
 	}
 	//(Tracker >= 80000mL and has seen 40000 milestone)
-	else if(mushRoom < 160000 && (flags["MUSH_SEEN"] == 3 || flags["MUSH_SEEN"] == 4))
+	else if((mushRoom >= 4 && flags["MUSH_SEEN"] == 3) || (mushRoom == 4 && flags["MUSH_SEEN"] == 4))
 	{
-		output(",and the ridiculously jungly section where you and Yarasta meet is woodsy with mushroom caps thanks to your spilled cum.");
+		output(", and the ridiculously jungly section where you and Yarasta meet is woodsy with mushroom caps thanks to your spilled cum.");
 		flags["MUSH_SEEN"] = 4;
 	}
 	//(Tracker >= 160000mL and has seen 80000 milestone)
-	else if(flags["MUSH_SEEN"] == 4 || flags["MUSH_SEEN"] == 5)
+	else if((mushRoom >= 5 && flags["MUSH_SEEN"] == 4) || (mushRoom == 5 && flags["MUSH_SEEN"] == 5))
 	{
 		output(", and the shrooms nourished on your jizz under have grown into a thick, shadowy, fungus jungle whose caps stretch to the ceiling under Yarasta’s ‘care’. Lights hang on the foot-wide trunks to keep girls from wandering in and getting lost.");
 		flags["MUSH_SEEN"] = 5;
 	}
+	else output(".");
 
 	output(" A breath of hot, dry air alleviates the suffocating mugginess you’d expect from a giant fungus farm, suggesting a vent to the surface is hidden somewhere.\n\n<i>“The mushroom carpet creates a suitable play area where the children can burn off their built-up energy before sleeping. The alcoves on the walls are here for lessons in botany and agriculture,”</i> explains the guard, confirming your guesses. She leads you back toward the door.");
 	//1800 and first time
