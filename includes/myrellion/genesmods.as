@@ -73,7 +73,7 @@ public function geneCockVolume():Number
 
 public function genesModsInterior():void
 {
-	showBust("GENE_NUDE");
+	showBust("GENE");
 	author("Nonesuch");
 
 	if (flags["GENES_MODS_ENTERED"] == undefined)
