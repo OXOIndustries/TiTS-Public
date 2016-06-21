@@ -77,7 +77,7 @@ public function approachAuroraPostTarkusBoom():void
 public function auroraBonus():Boolean
 {
 	output("The cavernous room is dimly lit with swaying, hanging lamps similar to a gloomy and moonlit night on a much more <i>habitable</i> world, still bright enough to make out vague details. The room isn’t a comfortable one, claustrophobic with the stacks of shelves, boxes and half-ruined devices haphazardly placed about with little rhyme or reason, or the signs of damaged hull that seem especially prevalent here, making it hard to get around. If that wasn’t enough to make you on edge, the thick, heady scent of char permeates the room, making your senses reel and head dizzy as you try to keep it all together.");
-	if(!pc.isCrotchGarbed())
+	if(pc.isCrotchExposed())
 	{
 		auroraBust();
 		author("Fenoxo");
@@ -113,7 +113,7 @@ public function approachAurora():void
 	clearOutput();
 	author("Magic Ted");
 	auroraBust();
-	if(!pc.isCrotchGarbed())
+	if(pc.isCrotchExposed())
 	{
 		author("Fenoxo");
 		/*
