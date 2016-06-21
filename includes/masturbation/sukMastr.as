@@ -83,7 +83,7 @@ public function properlyUseTheSukmastr(x:int = 0):void
 	else output(", delighted to discover that the cunt-moulded cup comes pre-treated with a dusting concentrated doh'rahn pheromones. It's a heady, musky aroma that instantly ");
 	if(pc.hasCock())
 	{
-		if(pc.lust() >= 75) output("induces your [pc.cocks] to throb ");
+		if(pc.lust() >= 75) output("induces your [pc.cocks] to throb and ");
 		else output("stiffens your [pc.cocks] and ");
 	}
 	output("enflames the target of ");

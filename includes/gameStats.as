@@ -4313,7 +4313,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["MET_RED_DESERTER"] != undefined)
 				{
 					var redMyrDeserterName:String = "Red Myr Deserter";
-					if(flags["KNOW_GOLD_MYR_NAME"] != undefined) redMyrDeserterName = "Briha";
+					if(flags["KNOW_RED_MYR_NAME"] != undefined) redMyrDeserterName = "Briha";
 					output2("\n<b>* " + redMyrDeserterName + "</b>");
 					if(flags["RED_MYR_DESERTER_BEATEN"] != undefined && flags["RED_MYR_DESERTER_BEATEN"] >= 5) output2(" <b>(Non-hostile)</b>");
 					output2("<b>, Times Encountered: </b>" + flags["MET_RED_DESERTER"]);
