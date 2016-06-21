@@ -12,6 +12,7 @@
 	import classes.Items.Accessories.TamWolfDamaged;
 	import classes.Items.Accessories.TamWolfII;
 	import classes.Items.Armor.GooArmor;
+	import classes.Items.Armor.Unique.Omnisuit;
 	import classes.Items.Guns.MyrBow;
 	import classes.Items.Melee.Fists;
 	import classes.Items.Melee.Rock;
@@ -2797,7 +2798,8 @@
 		public function canCoverSelf(checkGenitals:Boolean = false, part:String = "all"): Boolean {
 			// Part-specific checks
 			if(part == "wings" && !hasJointedWings()) return false;
-			
+			// Omnisuit
+			if(armor is Omnisuit) return true;
 			// Normal genital location
 			if(!checkGenitals || genitalLocation() <= 1)
 			{
@@ -10306,6 +10308,12 @@
 					descripted++;
 				}
 			}
+			if(hasStatusEffect("Rubber Wrapped") && descripted < 2 && rand(6) == 0)
+			{
+				if(descripted > 0) description += ", ";
+				description += RandomInCollection("rubber-wrapped","latex-encased","shrink-wrapped","ebony-coated","latex-lacquered","suit-encased","latex-enclosed","rubber-encased","latex-wrapped","rubber-painted");
+				descripted++;
+			}
 			if (descripted && rand(2) == 0 && nipplesPierced > 0 && rowNum == 0) {
 				if (descripted > 0) description += ", ";
 				if (nipplesPierced == 5) description += "chained ";
@@ -10319,6 +10327,7 @@
 				else if (rando == 1) description += "goopy ";
 				else if (rando == 2) description += "slippery ";
 			}
+			
 			/* 9999
 			if (!descripted && InCollection(nippleColor, "black", "ebony", "obsidian", "onyx", "sable")) {
 				rando = rand(4);
@@ -11239,6 +11248,13 @@
 			{
 				if (adjectiveCount > 0) desc+= ", ";
 				desc += RandomInCollection(["fuckable","cock-ready","cock-hungry","sex-hungry","yummy-looking","yummy","fuckable","slutty","sexy","adorable"]);
+				adjectiveCount++;
+			}
+			//Omnisuit!
+			if(hasStatusEffect("Rubber Wrapped") && adjectiveCount < adjectiveLimit && rand(6) == 0)
+			{
+				if(adjectives > 0) desc += ", ";
+				desc += RandomInCollection("rubber-lined","latex-lined","shrink-wrapped","ebony-coated","latex-lacquered","latex-enclosed","rubber-encased","latex-wrapped","rubber-painted");
 				adjectiveCount++;
 			}
 			//COLOR STUFF!
@@ -12293,6 +12309,12 @@
 			{
 				if(adjectives > 0) descript += ", ";
 				descript += "pierced";
+				adjectives++;
+			}
+			if(hasStatusEffect("Rubber Wrapped") && adjectives < adjectiveLimit && rand(6) == 0)
+			{
+				if(adjectives > 0) descript += ", ";
+				descript += RandomInCollection("rubber-wrapped","latex-encased","shrink-wrapped","ebony-coated","latex-lacquered","suit-encased","latex-enclosed","rubber-encased","latex-wrapped","rubber-painted");
 				adjectives++;
 			}
 			//Color: 1/15 chance

@@ -11,6 +11,7 @@
 	import classes.Engine.Utility.rand;
 	import classes.GameData.CodexManager;
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
+	import classes.Items.Armor.Unique.StrangeCollar;
 	
 	public class Shekka extends Creature
 	{
@@ -24,6 +25,7 @@
 			this.inventory.push(new Cargobot());
 			this.inventory.push(new Hoverboard());
 			this.inventory.push(new Smartclothes());
+			this.inventory.push(new StrangeCollar());
 			
 			this.typesBought[this.typesBought.length] = GLOBAL.GADGET;
 			this.typesBought[this.typesBought.length] = GLOBAL.ACCESSORY;

@@ -1822,6 +1822,8 @@ public function processTime(arg:int):void {
 			{
 				treatmentHourProcs();
 			}
+			//Omnisuit!
+			if(pc.armor is Omnisuit) omnisuitChangeUpdate();
 			//Egg trainer stuff
 			carryTrainingBonusBlurbCheck();
 			//Nessa cumflationshit
