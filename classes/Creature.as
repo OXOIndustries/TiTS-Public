@@ -14498,34 +14498,39 @@
 				{
 					var msg:String = "";
 					if (spacingsF) msg += " ";
-					msg += "<b>";
+					
 					if (this is PlayerCharacter)
 					{
 						if (holePointer.hymen && hole >= 0)
 						{
-							msg += "Your hymen is torn";
+							msg += "<b>Your hymen is torn";
 							holePointer.hymen = false;
+							if (vaginalVirgin) msg += ", robbing you of your vaginal virginity";
+							msg += ".</b>";
 						}
-						else msg += "You have been penetrated";
-						
-						if (hole >= 0 && vaginalVirgin) msg += ", robbing you of your vaginal virginity";
-						else if (analVirgin) msg += ", robbing you of your anal virginity";
-						msg += ".";
+						else if (hole < 0)
+						{
+							msg += "<b>You have been penetrated";
+							if (analVirgin) msg += ", robbing you of your anal virginity";
+							msg += ".</b>";
+						}
 					}
 					else
 					{
 						if (holePointer.hymen && hole >= 0)
 						{
-							msg += (capitalA == "" ? short + "’s" : capitalA + possessive(short)) + " hymen is torn";
+							msg += "<b>" + (capitalA == "" ? short + "’s" : capitalA + possessive(short)) + " hymen is torn";
 							holePointer.hymen = false;
+							if (hole >= 0 && vaginalVirgin)	msg += ", robbing " + mf("him", "her") + " of " + mf("his", "her") + " vaginal virginity";
+							msg += ".</b>";
 						}
-						else msg += capitalA + short + " has been penetrated";
-						
-						if (hole >= 0 && vaginalVirgin)	msg += ", robbing " + mf("him", "her") + " of " + mf("his", "her") + " vaginal virginity";
-						else if (analVirgin) msg += ", robbing " + mf("him", "her") + " of " + mf("his", "her") + " anal virginity";
-						msg += ".";
+						else if (hole < 0)
+						{
+							msg += "<b>" + capitalA + short + " has been penetrated";
+							if (hole < 0 && analVirgin) msg += ", robbing " + mf("him", "her") + " of " + mf("his", "her") + " anal virginity";
+							msg += ".</b>";
+						}
 					}
-					msg += "</b>";
 					if(spacingsB) msg += " ";
 					output(msg);
 				}
@@ -14534,9 +14539,13 @@
 				{
 					vaginalVirgin = false;
 					holePointer.hymen = false;
+					devirgined = true;
 				}
-				else if (analVirgin) analVirgin = false;
-				devirgined = true;
+				else if (hole < 0 && analVirgin)
+				{
+					analVirgin = false;
+					devirgined = true;
+				}
 			}
 			//Delay anti-stretching
 			if(volume >= .35 * capacity) {
@@ -14576,7 +14585,7 @@
 							else output("<b>" + (capitalA == "" ? short + "’s" : capitalA + possessive(short)) + " " + vaginaDescript(hole) + " is stretched out a little bit.</b>");
 						}
 					}
-					else {
+					else if (hole < 0) {
 						if (this is PlayerCharacter)
 						{
 							if(holePointer.looseness() >= 5) output("<b>Your " + assholeDescript() + " is stretched painfully wide, gaped in a way that practically invites huge monster-cocks to plow you.</b>");
