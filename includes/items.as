@@ -8,6 +8,9 @@ import classes.ItemSlotClass;
 import classes.StorageClass;
 import classes.StringUtil;
 import classes.TiTS;
+import classes.Items.Armor.Unique.Omnisuit;
+import classes.Items.Armor.Unique.OmnisuitCollar;
+import classes.Items.Armor.Unique.StrangeCollar;
 
 public function isEquippableItem(item:ItemSlotClass):Boolean
 {
@@ -840,6 +843,7 @@ public function itemDisabledMessage(msg:String = "", clearScreen:Boolean = true)
 }
 public function unequip(arg:String, next:Boolean = true):void 
 {
+	clearOutput();
 	// Renamed from lootList so I can distinguish old vs new uses
 	var unequippedItems:Array = new Array();
 
@@ -865,7 +869,13 @@ public function unequip(arg:String, next:Boolean = true):void
 			itemDisabledMessage(pc.getStatusTooltip("Armor Slot Disabled"));
 			return;
 		}
-		unequippedItems[unequippedItems.length] = pc.armor;
+		if(pc.armor is Omnisuit) 
+		{
+			output("Touching a small stud on the collar, you command the Omnisuit to retract. It does so at once, making you shiver and shudder as it disengages from your [pc.skinFurScales]. The crawling latex tickles at first, but with each blob that flows up into the collar, the sensations deaden. Once you're completely uncovered, the collar hisses and snaps open, falling into a numbed palm. Your sense of touch is vastly diminished without the suit, leading you to wonder if it wouldn't be better to just put it back on.\n\n");
+			unequippedItems[unequippedItems.length] = new OmnisuitCollar();
+			pc.removeStatusEffect("Rubber Wrapped");
+		}
+		else unequippedItems[unequippedItems.length] = pc.armor;
 		pc.armor = new classes.Items.Miscellaneous.EmptySlot();
 	}
 	else if(arg == "mWeapon") {
@@ -878,8 +888,7 @@ public function unequip(arg:String, next:Boolean = true):void
 	}
 	
 	unequippedItems[unequippedItems.length - 1].onRemove(pc);
-	
-	clearOutput();
+
 	itemCollect(unequippedItems);
 }
 
@@ -891,69 +900,119 @@ public function equipItem(arg:ItemSlotClass):void {
 	if (arg.stackSize > 1) throw new Error("Potential item stacking bug with " + arg.shortName + ". Item has a stacksize > 0 and the equip code cannot currently handle splitting an item stack!");
 	
 	clearOutput();
-	output("You");
-	if(arg.type == GLOBAL.ARMOR) output(" don");
-	else if(InCollection(arg.type, GLOBAL.CLOTHING, GLOBAL.UPPER_UNDERGARMENT, GLOBAL.LOWER_UNDERGARMENT)) output(" wear");
-	else output(" equip");
-	output(" your " + arg.longName + ".");
-	//Clear disarm if appropriate.
-	if(pc.hasStatusEffect("Disarmed") && (arg.type == GLOBAL.MELEE_WEAPON || arg.type == GLOBAL.RANGED_WEAPON))
+	if(arg is Omnisuit || arg is OmnisuitCollar || arg is StrangeCollar)
 	{
-		if(pc.hasCombatStatusEffect("Disarmed"))
+		if(flags["OMNISUITED"] == undefined)
 		{
-			output("<b> You are no longer disarmed!</b>");
-			pc.removeStatusEffect("Disarmed");
+			output("Putting strange objects around your neck probably isn't the best idea you've had, but then again, neither is running around the most dangerous parts of the galaxy trying to claim a fortune. Pressing a button on the shining band, you pop it open and line it up around your neck. It's a little tight, but it should fit without crushing your throat. Sucking in a nervous breath, you snap the ends together, feeling a hidden mechanism make a satisfying 'click'. It warms against your [pc.skinFurScales], pulling tighter and tighter until you fear it might start to choke you. It never does. Just when you're starting to panic, it stops shrinking.");
+			output("\n\nProbing around the edge with a fingertip, you realize that it wasn't just getting tighter - it was changing shape, molding itself to the exact shape of your neck. There isn't a single gap where your flesh isn't kissed by the warm, flexible metal. It hugs your [pc.skinFurScales] tightly, firm and constricting and yet forgiving enough not to pinch as you move around.");
+			if(pc.isBro()) output(" You bet you look fuckin' awesome - butch as hell.");
+			else if(pc.isBimbo()) output(" You bet you look sexy as fuck. You wonder if there's a ring to attach a leash to. The boys would love it.\n\n");
+			eventQueue.push(firstTimeOmniSuitOn);
 		}
 		else
 		{
-			output("<b> Once you get your gear back, this will be equipped.</b>");
+			output("You close the Omnisuit's collar around your neck once more, delighted to feel it molding itself to the shape of your body. After properly adjusting its shape, it hisses, and a wave of oily, latex-like material flows down your body, rapidly coating every inch of your form in clingy tightness. It feels wonderful, being wrapped up in ebony perfection once more, feeling it flowing back into position like the hands of a long lost lover.");
+			output("\n\nBest of all, everywhere it goes, sensation is heightened");
+			if(!pc.isNude()) output(", so much so that you feel compelled to remove your other garments. They chafe against your sleek new body, not to mentioning clashing with the flawless visual aesthetic you've acquired.");
+			else output(", so much so that you can't help but paw at yourself as you take on a sleek new aesthetic.");
+			output(" It's a shame that the Omnisuit only pleasantly stimulates you as it envelops your body this time. There's no full-body teasing of every neuron, just the lovely feel of something rubbery and warm cupping and gripping every part of your form.");
+			output("\n\n<i>\"Thank you for using your Omnisuit! Remember, the Omnisuit is the only clothing that can pander to your every desire, on the streets or in the sheets!\"</i> a perky female voice chirps from inside your collar as you inspect the finished product.\n\n");
+			eventQueue.push(omniSuitRepeatFinisher);
+		}
+		arg = new Omnisuit();
+	}
+	else
+	{
+		//No undies with Omnisuit!
+		if(pc.armor is Omnisuit && (arg.type == GLOBAL.LOWER_UNDERGARMENT || arg.type == GLOBAL.UPPER_UNDERGARMENT))
+		{
+			//Attempt to put something else on
+			output("The moment the " + arg.longName + " comes in contact with your suit-enclosed form, you realize that this will never work. The new garment grates distractingly on your sensitized nerves. It's like trying to wear sandpaper after a decade of nothing but the finest silk. Shaking your head, you yank it off in a hurry. You'll have to ditch the Omnisuit if you're going to wear anything else with it. Strange that your backpack and other miscellaneous gear don't generate the same reaction.\n\n");
+			//Take the arg off! Ha ha!
+			removedItem = arg;
+		}
+		else
+		{
+			output("You");
+			if(arg.type == GLOBAL.ARMOR) output(" don");
+			else if(InCollection(arg.type, GLOBAL.CLOTHING, GLOBAL.UPPER_UNDERGARMENT, GLOBAL.LOWER_UNDERGARMENT)) output(" wear");
+			else output(" equip");
+			output(" your " + arg.longName + ".");
 		}
 	}
-	if(pc.hasStatusEffect("Gunlock") && arg.type == GLOBAL.RANGED_WEAPON)
+	//A quick check to skip equipping if we've bailed out
+	if(removedItem == arg)
 	{
-		output("<b> Your new ranged weapon doesn't suffer from the effects of gunlock!</b>");
-		pc.removeStatusEffect("Gunlock");
+
 	}
-	//Set the quantity to 1 for the equipping, then set it back to holding - 1 for inventory!
-	if(arg.type == GLOBAL.ARMOR || arg.type == GLOBAL.CLOTHING) 
+	else
 	{
-		removedItem = pc.armor;
-		pc.armor = arg;
+		//Clear disarm if appropriate.
+		if(pc.hasStatusEffect("Disarmed") && (arg.type == GLOBAL.MELEE_WEAPON || arg.type == GLOBAL.RANGED_WEAPON))
+		{
+			if(pc.hasCombatStatusEffect("Disarmed"))
+			{
+				output("<b> You are no longer disarmed!</b>");
+				pc.removeStatusEffect("Disarmed");
+			}
+			else
+			{
+				output("<b> Once you get your gear back, this will be equipped.</b>");
+			}
+		}
+		if(pc.hasStatusEffect("Gunlock") && arg.type == GLOBAL.RANGED_WEAPON)
+		{
+			output("<b> Your new ranged weapon doesn't suffer from the effects of gunlock!</b>");
+			pc.removeStatusEffect("Gunlock");
+		}
+		//Set the quantity to 1 for the equipping, then set it back to holding - 1 for inventory!
+		if(arg.type == GLOBAL.ARMOR || arg.type == GLOBAL.CLOTHING) 
+		{
+			if(pc.armor is Omnisuit)
+			{
+				output("\n\nTouching a small stud on the collar, you command the Omnisuit to retract. It does so at once, making you shiver and shudder as it disengages from your [pc.skinFurScales]. The crawling latex tickles at first, but with each blob that flows up into the collar, the sensations deaden. Once you're completely uncovered, the collar hisses and snaps open, falling into a numbed palm. Your sense of touch is vastly diminished without the suit, leading you to wonder if it wouldn't be better to just put it back on.");
+				pc.removeStatusEffect("Rubber Wrapped");
+			}
+			removedItem = pc.armor;
+			if(removedItem is Omnisuit) removedItem = new OmnisuitCollar();
+			pc.armor = arg;
+		}
+		else if(arg.type == GLOBAL.MELEE_WEAPON) 
+		{
+			removedItem = pc.meleeWeapon;
+			pc.meleeWeapon = arg;
+		}
+		else if(arg.type == GLOBAL.RANGED_WEAPON) 
+		{
+			removedItem = pc.rangedWeapon;
+			pc.rangedWeapon = arg;
+		}
+		else if(arg.type == GLOBAL.SHIELD) 
+		{
+			removedItem = pc.shield;
+			pc.shield = arg;
+		}
+		else if(arg.type == GLOBAL.ACCESSORY) 
+		{
+			removedItem = pc.accessory;
+			pc.accessory = arg;
+		}
+		else if(arg.type == GLOBAL.LOWER_UNDERGARMENT) 
+		{
+			removedItem = pc.lowerUndergarment;
+			pc.lowerUndergarment = arg;
+		}
+		else if(arg.type == GLOBAL.UPPER_UNDERGARMENT) 
+		{
+			removedItem = pc.upperUndergarment;
+			pc.upperUndergarment = arg;
+		}
+		else output(" <b>AN ERROR HAS OCCURRED: Equipped invalid item type. Item: " + arg.longName + "</b> ");
+
+		removedItem.onRemove(pc);
+		arg.onEquip(pc);
 	}
-	else if(arg.type == GLOBAL.MELEE_WEAPON) 
-	{
-		removedItem = pc.meleeWeapon;
-		pc.meleeWeapon = arg;
-	}
-	else if(arg.type == GLOBAL.RANGED_WEAPON) 
-	{
-		removedItem = pc.rangedWeapon;
-		pc.rangedWeapon = arg;
-	}
-	else if(arg.type == GLOBAL.SHIELD) 
-	{
-		removedItem = pc.shield;
-		pc.shield = arg;
-	}
-	else if(arg.type == GLOBAL.ACCESSORY) 
-	{
-		removedItem = pc.accessory;
-		pc.accessory = arg;
-	}
-	else if(arg.type == GLOBAL.LOWER_UNDERGARMENT) 
-	{
-		removedItem = pc.lowerUndergarment;
-		pc.lowerUndergarment = arg;
-	}
-	else if(arg.type == GLOBAL.UPPER_UNDERGARMENT) 
-	{
-		removedItem = pc.upperUndergarment;
-		pc.upperUndergarment = arg;
-	}
-	else output(" <b>AN ERROR HAS OCCURRED: Equipped invalid item type. Item: " + arg.longName + "</b> ");
-	
-	removedItem.onRemove(pc);
-	arg.onEquip(pc);
 	
 	//If item to loot after!
 	if(removedItem.shortName != "Rock" && removedItem.shortName != "" && removedItem.quantity > 0) 

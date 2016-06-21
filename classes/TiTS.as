@@ -143,6 +143,7 @@
 		include "../includes/events/bimboPennyAndBadgerQuest/badgerGifts.as";
 		include "../includes/events/tentacle_psychic_hatchling.as";
 		include "../includes/events/kiroCrewQuest/buttslutinator.as";
+		include "../includes/events/kiroCrewQuest/omnisuitExtras.as";
 
 		//Tavros Station
 		include "../includes/tavros/aina.as";
