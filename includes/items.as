@@ -55,13 +55,10 @@ public function useItem(item:ItemSlotClass):Boolean {
 		if (isEquippableItem(item))
 		{
 			// Preventive measures
-			if(item.type == GLOBAL.ARMOR || item.type == GLOBAL.CLOTHING) 
+			if(!pc.itemSlotUnlocked(item.type))
 			{
-				if(pc.hasStatusEffect("Armor Slot Disabled"))
-				{
-					itemDisabledMessage(pc.getStatusTooltip("Armor Slot Disabled"));
-					return false;
-				}
+				itemDisabledMessage(item.type);
+				return false;
 			}
 			// Order of operations band-aid.
 			// Item needs to be removed from inventory before being equipped, or it'll exist in two places and fuck up
@@ -605,45 +602,45 @@ public function unequipMenu():void
 	clearMenu();
 	if (pc.upperUndergarment.shortName != "") 
 	{
-		this.addOverrideItemButton(0, pc.upperUndergarment, "U.Top Off", unequip, "bra");
+		addOverrideItemButton(0, pc.upperUndergarment, "U.Top Off", unequip, "bra");
 	}
-	else this.addDisabledButton(0,"Undertop");
+	else addDisabledButton(0,"Undertop");
 
 	if (pc.shield.shortName != "") 
 	{
-		this.addOverrideItemButton(1, pc.shield, "Shield Off", unequip, "shield");
+		addOverrideItemButton(1, pc.shield, "Shield Off", unequip, "shield");
 	}
-	else this.addDisabledButton(1,"Shield");
+	else addDisabledButton(1,"Shield");
 	
 	if (pc.lowerUndergarment.shortName != "")
 	{
-		this.addOverrideItemButton(5, pc.lowerUndergarment, "U.Wear Off", unequip, "underwear");
+		addOverrideItemButton(5, pc.lowerUndergarment, "U.Wear Off", unequip, "underwear");
 	}
-	else this.addDisabledButton(5,"Underwear");
+	else addDisabledButton(5,"Underwear");
 	
 	if (pc.meleeWeapon.shortName != "Rock") 
 	{
-		this.addOverrideItemButton(2, pc.meleeWeapon, "Melee Off", unequip, "mWeapon");
+		addOverrideItemButton(2, pc.meleeWeapon, "Melee Off", unequip, "mWeapon");
 	}
-	else this.addDisabledButton(2,"Melee");
+	else addDisabledButton(2,"Melee");
 	
 	if (pc.armor.shortName != "") 
 	{
-		this.addOverrideItemButton(6, pc.armor, "Armor Off", unequip, "armor");
+		addOverrideItemButton(6, pc.armor, "Armor Off", unequip, "armor");
 	}
-	else this.addDisabledButton(6,"Armor");
+	else addDisabledButton(6,"Armor");
 	
 	if (pc.rangedWeapon.shortName != "Rock")
 	{
-		this.addOverrideItemButton(7, pc.rangedWeapon, "Ranged Off", unequip, "rWeapon");
+		addOverrideItemButton(7, pc.rangedWeapon, "Ranged Off", unequip, "rWeapon");
 	}
-	else this.addDisabledButton(7,"Ranged");
+	else addDisabledButton(7,"Ranged");
 	
 	if (pc.accessory.shortName != "") 
 	{
-		this.addOverrideItemButton(3, pc.accessory, "Acc. Off", unequip, "accessory");
+		addOverrideItemButton(3, pc.accessory, "Acc. Off", unequip, "accessory");
 	}
-	else this.addDisabledButton(3,"Accessory");
+	else addDisabledButton(3,"Accessory");
 	
 	//Set user and target.
 	itemUser = pc;
@@ -827,10 +824,38 @@ public function inventory():void
 }
 
 
-public function itemDisabledMessage(msg:String = "", clearScreen:Boolean = true):void 
+public function itemDisabledMessage(slot:Number, clearScreen:Boolean = true):void 
 {
 	if(clearScreen) clearOutput();
 	else output("\n\n");
+	
+	var msg:String = "";
+	
+	switch(slot)
+	{
+		case GLOBAL.CLOTHING:
+		case GLOBAL.ARMOR:
+			msg = pc.getStatusTooltip("Armor Slot Disabled");
+			break;
+		case GLOBAL.MELEE_WEAPON:
+			msg = pc.getStatusTooltip("Melee Weapon Slot Disabled");
+			break;
+		case GLOBAL.RANGED_WEAPON:
+			msg = pc.getStatusTooltip("Ranged Weapon Slot Disabled");
+			break;
+		case GLOBAL.SHIELD:
+			msg = pc.getStatusTooltip("Shield Slot Disabled");
+			break;
+		case GLOBAL.ACCESSORY:
+			msg = pc.getStatusTooltip("Accessory Slot Disabled");
+			break;
+		case GLOBAL.LOWER_UNDERGARMENT:
+			msg = pc.getStatusTooltip("Lower Garment Slot Disabled");
+			break;
+		case GLOBAL.UPPER_UNDERGARMENT:
+			msg = pc.getStatusTooltip("Upper Garment Slot Disabled");
+			break;
+	}
 	
 	if(msg == "") msg = "<b>The item slot for this item has been disabled!</b>";
 	output(msg);
@@ -848,25 +873,45 @@ public function unequip(arg:String, next:Boolean = true):void
 	var unequippedItems:Array = new Array();
 
 	if(arg == "bra") {
+		if(!pc.itemSlotUnlocked(GLOBAL.UPPER_UNDERGARMENT))
+		{
+			itemDisabledMessage(GLOBAL.UPPER_UNDERGARMENT);
+			return;
+		}
 		unequippedItems[unequippedItems.length] = pc.upperUndergarment;
 		pc.upperUndergarment = new classes.Items.Miscellaneous.EmptySlot();
 	}
 	else if(arg == "underwear") {
+		if(!pc.itemSlotUnlocked(GLOBAL.LOWER_UNDERGARMENT))
+		{
+			itemDisabledMessage(GLOBAL.LOWER_UNDERGARMENT);
+			return;
+		}
 		unequippedItems[unequippedItems.length] = pc.lowerUndergarment;
 		pc.lowerUndergarment = new classes.Items.Miscellaneous.EmptySlot();
 	}
 	else if(arg == "shield") {
+		if(!pc.itemSlotUnlocked(GLOBAL.SHIELD))
+		{
+			itemDisabledMessage(GLOBAL.SHIELD);
+			return;
+		}
 		unequippedItems[unequippedItems.length] = pc.shield;
 		pc.shield = new classes.Items.Miscellaneous.EmptySlot();
 	}
 	else if(arg == "accessory") {
+		if(!pc.itemSlotUnlocked(GLOBAL.ACCESSORY))
+		{
+			itemDisabledMessage(GLOBAL.ACCESSORY);
+			return;
+		}
 		unequippedItems[unequippedItems.length] = pc.accessory;
 		pc.accessory = new classes.Items.Miscellaneous.EmptySlot();
 	}
 	else if(arg == "armor") {
-		if(pc.hasStatusEffect("Armor Slot Disabled"))
+		if(!pc.itemSlotUnlocked(GLOBAL.ARMOR))
 		{
-			itemDisabledMessage(pc.getStatusTooltip("Armor Slot Disabled"));
+			itemDisabledMessage(GLOBAL.ARMOR);
 			return;
 		}
 		if(pc.armor is Omnisuit) 
@@ -879,10 +924,20 @@ public function unequip(arg:String, next:Boolean = true):void
 		pc.armor = new classes.Items.Miscellaneous.EmptySlot();
 	}
 	else if(arg == "mWeapon") {
+		if(!pc.itemSlotUnlocked(GLOBAL.MELEE_WEAPON))
+		{
+			itemDisabledMessage(GLOBAL.MELEE_WEAPON);
+			return;
+		}
 		unequippedItems[unequippedItems.length] = pc.meleeWeapon;
 		pc.meleeWeapon = new classes.Items.Melee.Rock();
 	}
 	else if(arg == "rWeapon") {
+		if(!pc.itemSlotUnlocked(GLOBAL.RANGED_WEAPON))
+		{
+			itemDisabledMessage(GLOBAL.RANGED_WEAPON);
+			return;
+		}
 		unequippedItems[unequippedItems.length] = pc.rangedWeapon;
 		pc.rangedWeapon = new classes.Items.Melee.Rock();
 	}
@@ -900,6 +955,7 @@ public function equipItem(arg:ItemSlotClass):void {
 	if (arg.stackSize > 1) throw new Error("Potential item stacking bug with " + arg.shortName + ". Item has a stacksize > 0 and the equip code cannot currently handle splitting an item stack!");
 	
 	clearOutput();
+	
 	if(arg is Omnisuit || arg is OmnisuitCollar || arg is StrangeCollar)
 	{
 		if(flags["OMNISUITED"] == undefined)
@@ -908,17 +964,19 @@ public function equipItem(arg:ItemSlotClass):void {
 			output("\n\nProbing around the edge with a fingertip, you realize that it wasn't just getting tighter - it was changing shape, molding itself to the exact shape of your neck. There isn't a single gap where your flesh isn't kissed by the warm, flexible metal. It hugs your [pc.skinFurScales] tightly, firm and constricting and yet forgiving enough not to pinch as you move around.");
 			if(pc.isBro()) output(" You bet you look fuckin' awesome - butch as hell.");
 			else if(pc.isBimbo()) output(" You bet you look sexy as fuck. You wonder if there's a ring to attach a leash to. The boys would love it.\n\n");
-			eventQueue.push(firstTimeOmniSuitOn);
+			if(eventQueue.indexOf(firstTimeOmniSuitOn) == -1) eventQueue.push(firstTimeOmniSuitOn);
+			pc.lockItemSlot(GLOBAL.ARMOR, "You try to replace your new collar but it refuses to unlock. Something is preventing you from removing it...");
 		}
 		else
 		{
 			output("You close the Omnisuit's collar around your neck once more, delighted to feel it molding itself to the shape of your body. After properly adjusting its shape, it hisses, and a wave of oily, latex-like material flows down your body, rapidly coating every inch of your form in clingy tightness. It feels wonderful, being wrapped up in ebony perfection once more, feeling it flowing back into position like the hands of a long lost lover.");
 			output("\n\nBest of all, everywhere it goes, sensation is heightened");
-			if(!pc.isNude()) output(", so much so that you feel compelled to remove your other garments. They chafe against your sleek new body, not to mentioning clashing with the flawless visual aesthetic you've acquired.");
+			if(!pc.isNude()) output(", so much so that you feel compelled to remove your other garments. They chafe against your sleek new body, not to mention clashing with the flawless visual aesthetic you've acquired.");
 			else output(", so much so that you can't help but paw at yourself as you take on a sleek new aesthetic.");
 			output(" It's a shame that the Omnisuit only pleasantly stimulates you as it envelops your body this time. There's no full-body teasing of every neuron, just the lovely feel of something rubbery and warm cupping and gripping every part of your form.");
 			output("\n\n<i>\"Thank you for using your Omnisuit! Remember, the Omnisuit is the only clothing that can pander to your every desire, on the streets or in the sheets!\"</i> a perky female voice chirps from inside your collar as you inspect the finished product.\n\n");
-			eventQueue.push(omniSuitRepeatFinisher);
+			if(eventQueue.indexOf(omniSuitRepeatFinisher) == -1) eventQueue.push(omniSuitRepeatFinisher);
+			pc.lockItemSlot(GLOBAL.ARMOR, "The Omnisuit collar has just been activated. Perhaps you should let it settle before removing it...");
 		}
 		arg = new Omnisuit();
 	}
@@ -971,7 +1029,7 @@ public function equipItem(arg:ItemSlotClass):void {
 		{
 			if(pc.armor is Omnisuit)
 			{
-				output("\n\nTouching a small stud on the collar, you command the Omnisuit to retract. It does so at once, making you shiver and shudder as it disengages from your [pc.skinFurScales]. The crawling latex tickles at first, but with each blob that flows up into the collar, the sensations deaden. Once you're completely uncovered, the collar hisses and snaps open, falling into a numbed palm. Your sense of touch is vastly diminished without the suit, leading you to wonder if it wouldn't be better to just put it back on.");
+				output("\n\nTouching a small stud on the collar, you command the Omnisuit to retract. It does so at once, making you shiver and shudder as it disengages from your [pc.skinFurScales]. The crawling latex tickles at first, but with each blob that flows up into the collar, the sensations deaden. Once you're completely uncovered, the collar hisses and snaps open, falling into a numbed palm. Your sense of touch is vastly diminished without the suit, leading you to wonder if it wouldn't be better to just put it back on.\n\n");
 				pc.removeStatusEffect("Rubber Wrapped");
 			}
 			removedItem = pc.armor;

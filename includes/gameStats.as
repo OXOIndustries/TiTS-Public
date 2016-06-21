@@ -4722,13 +4722,18 @@ public function displayEncounterLog(showID:String = "All"):void
 			miscCount++;
 		}
 		// Super rare and weird TF items/sex toys - regular rare items/armor/weapons can be omitted
-		if(flags["BUTTSLUTINATOR"] != undefined || flags["SYNTHSHEATH_ACQUIRED"] != undefined || flags["SYNTHSHEATH_TWO_FOUND"] != undefined || flags["LOOTED_COCKBOX"] != undefined || flags["ZODEE_GALOQUEST"] != undefined)
+		if(flags["BUTTSLUTINATOR"] != undefined || flags["OMNISUITED"] != undefined || flags["SYNTHSHEATH_ACQUIRED"] != undefined || flags["SYNTHSHEATH_TWO_FOUND"] != undefined || flags["LOOTED_COCKBOX"] != undefined || flags["ZODEE_GALOQUEST"] != undefined)
 		{
 			output2("\n<b><u>Suspicious Items</u></b>");
 			// Buttslutinator Mark 2
 			if(flags["BUTTSLUTINATOR"] != undefined)
 			{
 				output2("\n<b>* Buttslutinator Mark II, Times Used:</b> " + flags["BUTTSLUTINATOR"]);
+			}
+			// Omnisuit
+			if(flags["OMNISUITED"] != undefined)
+			{
+				output2("\n<b>* Omnisuit:</b> Acquired, Used");
 			}
 			// Big like Cock-Box!
 			if(flags["LOOTED_COCKBOX"] != undefined)

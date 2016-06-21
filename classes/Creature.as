@@ -9740,7 +9740,9 @@
 			}
 			if(descripted == 0 && hasPerk("Buttslut") && rand(2) == 0)
 			{
+				if (descripted > 0) desc += ", ";
 				desc += RandomInCollection("slutty","fuck-hungry","cock-hungry","fuckable","puckered","eager","greedy","ravenous","insatiable");
+				descripted++;
 			}
 			
 			if (descripted > 0) desc += " ";
@@ -14670,7 +14672,7 @@
 					willpowerMod -= 1;
 					intelligenceMod -= 1;
 					createStatusEffect("Smashed",0,0,0,0, false, "Icon_DizzyDrunk", "You're three sheets to the wind, but you feel like you could flip a truck.\n\nThis status will expire as your alcohol levels drop.", false, 0,0xB793C4);
-					kGAMECLASS.eventBuffer += "\n\nWalking is increasingly difficult, but you'll be damned if you don't feel like you can do anything. <b>You're smashed!</b>";
+					kGAMECLASS.eventBuffer += "\n\n[pc.Walking] is increasingly difficult, but you'll be damned if you don't feel like you can do anything. <b>You're smashed!</b>";
 				}
 				//Drunk
 				//+4 physique & -1 willpower/int/reflexes
@@ -16031,6 +16033,79 @@
 		public function onLeaveBuyMenu():void
 		{
 			throw new Error("Vendor doesn't have a buy-menu leave functor specified.");
+		}
+		
+		// Item Slot Shenanigans
+		public function lockItemSlot(slot:Number, msg:String = "", minutes:Number = 0):void
+		{
+			switch(slot)
+			{
+				case GLOBAL.CLOTHING:
+				case GLOBAL.ARMOR:
+					createStatusEffect("Armor Slot Disabled", 0, 0, 0, 0, true, "Blocked", msg, false, minutes);
+					break;
+				case GLOBAL.MELEE_WEAPON:
+					createStatusEffect("Melee Weapon Slot Disabled", 0, 0, 0, 0, true, "Blocked", msg, false, minutes);
+					break;
+				case GLOBAL.RANGED_WEAPON:
+					createStatusEffect("Ranged Weapon Slot Disabled", 0, 0, 0, 0, true, "Blocked", msg, false, minutes);
+					break;
+				case GLOBAL.SHIELD:
+					createStatusEffect("Shield Slot Disabled", 0, 0, 0, 0, true, "Blocked", msg, false, minutes);
+					break;
+				case GLOBAL.ACCESSORY:
+					createStatusEffect("Accessory Slot Disabled", 0, 0, 0, 0, true, "Blocked", msg, false, minutes);
+					break;
+				case GLOBAL.LOWER_UNDERGARMENT:
+					createStatusEffect("Lower Garment Slot Disabled", 0, 0, 0, 0, true, "Blocked", msg, false, minutes);
+					break;
+				case GLOBAL.UPPER_UNDERGARMENT:
+					createStatusEffect("Upper Garment Slot Disabled", 0, 0, 0, 0, true, "Blocked", msg, false, minutes);
+					break;
+			}
+			return;
+		}
+		public function unlockItemSlot(slot:Number):void
+		{
+			switch(slot)
+			{
+				case GLOBAL.CLOTHING:
+				case GLOBAL.ARMOR:
+					removeStatusEffect("Armor Slot Disabled");
+					break;
+				case GLOBAL.MELEE_WEAPON:
+					removeStatusEffect("Melee Weapon Slot Disabled");
+					break;
+				case GLOBAL.RANGED_WEAPON:
+					removeStatusEffect("Ranged Weapon Slot Disabled");
+					break;
+				case GLOBAL.SHIELD:
+					removeStatusEffect("Shield Slot Disabled");
+					break;
+				case GLOBAL.ACCESSORY:
+					removeStatusEffect("Accessory Slot Disabled");
+					break;
+				case GLOBAL.LOWER_UNDERGARMENT:
+					removeStatusEffect("Lower Garment Slot Disabled");
+					break;
+				case GLOBAL.UPPER_UNDERGARMENT:
+					removeStatusEffect("Upper Garment Slot Disabled");
+					break;
+			}
+			return;
+		}
+		public function itemSlotUnlocked(slot:Number):Boolean
+		{
+			if
+			(	(InCollection(slot, GLOBAL.CLOTHING, GLOBAL.ARMOR) && hasStatusEffect("Armor Slot Disabled"))
+			||	(slot == GLOBAL.MELEE_WEAPON && hasStatusEffect("Melee Weapon Slot Disabled"))
+			||	(slot == GLOBAL.RANGED_WEAPON && hasStatusEffect("Ranged Weapon Slot Disabled"))
+			||	(slot == GLOBAL.SHIELD && hasStatusEffect("Shield Slot Disabled"))
+			||	(slot == GLOBAL.ACCESSORY && hasStatusEffect("Accessory Slot Disabled"))
+			||	(slot == GLOBAL.LOWER_UNDERGARMENT && hasStatusEffect("Lower Garment Slot Disabled"))
+			||	(slot == GLOBAL.UPPER_UNDERGARMENT && hasStatusEffect("Upper Garment Slot Disabled"))
+			)	return false;
+			return true;
 		}
 	}
 }
