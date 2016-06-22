@@ -1757,7 +1757,7 @@ public function appearance(forTarget:Creature):void
 		// Latex shit reconfigure
 		if (target.armor is Omnisuit)
 		{
-			addGhostButton(btnIndex++,"Reset O.Suit",firstTimeOmniSuitOn,undefined,"Reset Omnisuit","Reset the Omnisuit so that you can enjoy the first-time configuration all over again.");
+			if(omnisuitMenuBonus(btnIndex)) btnIndex++;
 		}
 	}
 	

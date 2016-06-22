@@ -39,6 +39,25 @@ public function statOutOmniCollar():void
 	}
 }
 
+public function omnisuitMenuBonus(btnSlot:int):Boolean
+{
+	if(!pc.hasStatusEffect("Rubber Wrapped")) return false;
+	
+	if(kGAMECLASS.canSaveAtCurrentLocation) addGhostButton(btnSlot, "Omnisuit", omnisuitMenu, undefined, "Omnisuit", "Interact with your Omnisuit.");
+	else addDisabledGhostButton(btnSlot, "Omnisuit", "Omnisuit", "You cannot access your Omnisuit menu at this time.");
+	
+	return true;
+}
+public function omnisuitMenu():void
+{
+	clearOutput2();
+	output2("What would you like to do to your Omnisuit?");
+	
+	clearGhostMenu();
+	addGhostButton(0,"Reset",firstTimeOmniSuitOn,undefined,"Reset Omnisuit","Reset the Omnisuit so that you can enjoy the first-time configuration all over again.");
+	addGhostButton(14, "Back", backToAppearance, pc);
+}
+
 public function omniSuitRepeatFinisher():void
 {
 	clearOutput();
