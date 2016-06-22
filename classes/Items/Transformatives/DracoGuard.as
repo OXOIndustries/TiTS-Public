@@ -113,7 +113,7 @@
 						//Change wingtype to draconic (already has wings).
 						else
 						{
-							output("\n\nYou feel a tingling spread across your [pc.wings], making your muscles twitch and knot incessantly. With a grunt of discomfort, you reach back and run a hand across your wings -- only to realize that they’re changing! Scales are spreading out across them, linking long, membranous areas and bony, talong like protrusions. By the time the changes seem to finish, <b>your wings have become sweeping, powerful dragon’s wings!</b>");
+							output("\n\nYou feel a tingling spread across your [pc.wings], making your muscles twitch and knot incessantly. With a grunt of discomfort, you reach back and run a hand across your wings -- only to realize that they’re changing! Scales are spreading out across them, linking long, membranous areas and bony, talon-like protrusions. By the time the changes seem to finish, <b>your wings have become sweeping, powerful dragon’s wings!</b>");
 							pc.wingType = GLOBAL.TYPE_GRYVAIN;
 							if(pc.wingCount < 2) pc.wingCount = 2;
 						}

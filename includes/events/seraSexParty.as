@@ -1578,7 +1578,7 @@ public function seraSexPartyStage4(response:String = "none"):void
 				output(" <i>“And we showed ‘em, didn’t we? How to really get down. ‘Specially that snake cow. A snot like her actually coming over and asking to use you...”</i> Sera closes her eyes and savors it, squeezing you tightly. <i>“I’ll always remember that. What a team we make!”</i>");
 				output("\n\n<i>“Uh huh,”</i> you say dully. You close your eyes as once again your lips tingle and the taste of Vedice comes vividly back; your [pc.groin] throbs achingly at the same time. It occurs to you that one part of this team is taking many more for the team than the other, so to speak. But then you did agree to all of this, obliging slut that you are.");
 			}
-			output("\n\nBy the time you get back to the Dark Chrysalis Sera has sobered up a bit. She breaks off from you, trailing her hand down your arm as she fumbles for her key.");
+			output("\n\nBy the time you get back to the Dark Chrysalis, Sera has sobered up a bit. She breaks off from you, trailing her hand down your arm as she fumbles for her key.");
 			output("\n\n<i>“Keep the costume. My thanks for coming along. Make sure to get plenty of use out of it – I’m sure I won’t be the only one who thinks you look cute in it...”</i> She gets the door open and turns back to you. <i>“Seriously [pc.name], thanks for doing this. I had a good time, and – it made it easier, knowing you were around, ‘n I could talk to you. And even if nothing comes of it, we got loads of free sex and booze out of it, didn’t we? That’s what really matters.”</i> She smiles and disappears inside.");
 			
 			// Shut the Dark Chrysalis for about 6 hours afterwards
