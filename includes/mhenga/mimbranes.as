@@ -4135,6 +4135,8 @@ public function mimbranePrivateLocation():Boolean
 	if(InShipInterior()) return true;
 	if(InRoomWithFlag(GLOBAL.PRIVATE)) return true;
 	if(InPublicSpace()) return false;
+	if(rooms[currentLocation].hasFlag(GLOBAL.FAPPING_ILLEGAL)) return false;
+	if(rooms[currentLocation].hasFlag(GLOBAL.NOFAP)) return false;
 	/*
 	if(pc.exhibitionism() >= 66) return true;
 	return false;
@@ -4152,7 +4154,8 @@ public function mimbraneMenu():void
 	
 	var publicNotice:String = "You cannot do this action outside of your ship or in the open.";
 	// update tooltip
-	publicNotice = "Due to U.G.C. laws against foreign parasites, you cannot perform this action in public.";
+	if(rooms[currentLocation].hasFlag(GLOBAL.NOFAP)) publicNotice = "Masturbating here would be impossible.";
+	else if(InPublicSpace()) publicNotice = "Due to U.G.C. laws against foreign parasites, you cannot perform this action in public.";
 
 	output2("You currently have " + attachedMimbranes() + " Mimbrane");
 	if (attachedMimbranes() > 1) output2("s");
