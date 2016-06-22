@@ -63,16 +63,18 @@ public function pennysOffice():void {
 
 public function showPennyName():void
 {
-	if(flags["MET_PENNY"] == undefined) userInterface.showName("POLICE\nWOMAN");
-	else userInterface.showName("\nPENNY");
+	if(flags["MET_PENNY"] == undefined) showName("POLICE\nWOMAN");
+	else showName("\nPENNY");
 }
 public function pennyBustDisplay(nude:Boolean = false):String
 {
 	// 9999 - Special artist exceptions!
-	// Umm... leaving this as-is for now... Art for Penny is kinda all over the place.
+	// Umm... Art for Penny is kinda all over the place.
+	var hasNude:Boolean = true;
+	if(kGAMECLASS.gameOptions.configuredBustPreferences["PENNY"] != "GATS") hasNude = false;
 	
 	var sBust:String = "PENNY";
-	if(nude) sBust += "_NUDE";
+	if(nude && hasNude) sBust += "_NUDE";
 	
 	if(flags["PENNY_BADGER_BIMBO"] != undefined || pennyIsCumSlut())
 	{

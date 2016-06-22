@@ -138,17 +138,12 @@ public function nozzleGoPerformance():void
 	else nozzlePerformanceParadise();
 }
 
-public function showFazianPerformance(n:String = null):void
-{
-	author("Nonesuch");
-	showBust("FAZIAN");
-	showName(n == null ? "\nFAZIAN" : n);
-}
-
 public function nozzlePerformanceParadise():void
 {
 	clearOutput();
-	showFazianPerformance("\nPARADISE");
+	author("Nonesuch");
+	showBust("FAZIAN_1");
+	showName("\nPARADISE");
 
 	output("Hepane is sat next to a vertically arranged instrument that looks like a combination of a hookah and an upturned piano. She picks out a throbbing bass rhythm on the round keys at the bottom; her other set of hands sit on the stem keys above, waiting. Her partner strides on.");
 	
@@ -189,7 +184,9 @@ public function nozzlePerformanceParadise():void
 public function nozzlePerformanceShrike():void
 {
 	clearOutput();
-	showFazianPerformance("\nSHRIKE");
+	author("Nonesuch");
+	showBust("FAZIAN_2");
+	showName("\nSHRIKE");
 
 	output("Hepane is sat next to a vertically arranged instrument that looks like a combination of a hookah and an upturned piano. She picks out a jaunty, chiming rhythm on the oblong keys at the top; her other set of hands sit on the round keys below, waiting. Her partner strides on.");
 	
@@ -230,7 +227,9 @@ public function nozzlePerformanceShrike():void
 public function nozzlePerformanceQuaramarta():void
 {
 	clearOutput();
-	showFazianPerformance("\nQUARAMARTA");
+	author("Nonesuch");
+	showBust("FAZIAN");
+	showName("\nQUARAMARTA");
 
 	output("Hepane is sat next to a vertically arranged instrument that looks like a combination of a hookah and an upturned piano. She picks out a snaky bass rhythm on the round keys at the bottom; her other set of hands sit on the stem keys above, waiting. Her partner strides on.");
 	
@@ -1521,6 +1520,7 @@ public function fazianQuestApproachMenu():void
 public function fazianQuestApproachBack():void
 {
 	clearOutput();
+	clearBust();
 	author("Nonesuch");
 	
 	currentLocation = "FAZIAN_RESCUE_ROOM";
@@ -1590,6 +1590,7 @@ public function fazianQuestApproachBackWait():void
 public function fazianQuestApproachBackHeadIn():void
 {
 	clearOutput();
+	clearBust();
 	showName("WAREHOUSE:\nBACK");
 	author("Nonesuch");
 
@@ -1622,6 +1623,7 @@ public function fazianQuestApproachBackWaitLeave():void
 public function fazianQuestApproachBackDoor():void
 {
 	clearOutput();
+	clearBust();
 	showName("WAREHOUSE:\nDOOR");
 	author("Nonesuch");
 
@@ -1667,7 +1669,7 @@ public function fazianQuestApproachBackDoorForce():void
 public function fazianQuestApproachBackDoorBack():void
 {
 	clearOutput();
-	showBust("MYR_RED_GUARD");
+	clearBust();
 	showName("WAREHOUSE:\nDOOR");
 	author("Nonesuch");
 
@@ -1683,6 +1685,7 @@ public function fazianQuestApproachBackDoorBack():void
 public function fazianQuestApproachBackWindow():void
 {
 	clearOutput();
+	clearBust();
 	showName("WAREHOUSE:\nWINDOW");
 	author("Nonesuch");
 
@@ -1916,6 +1919,7 @@ public function fazianQuestApproachLeave():void
 public function fazianQuestWarehouseFront():void
 {
 	clearOutput();
+	clearBust();
 	author("Nonesuch");
 	
 	currentLocation = "FAZIAN_RESCUE_ROOM";
@@ -1934,6 +1938,7 @@ public function fazianQuestWarehouseFront():void
 public function fazianQuestWarehouseBack():void
 {
 	clearOutput();
+	clearBust();
 	author("Nonesuch");
 	
 	currentLocation = "FAZIAN_RESCUE_ROOM";
@@ -1953,6 +1958,7 @@ public function fazianQuestWarehouseBack():void
 public function fazianQuestWarehouseMainChamber():void
 {
 	clearOutput();
+	clearBust();
 	author("Nonesuch");
 	
 	currentLocation = "FAZIAN_RESCUE_ROOM";

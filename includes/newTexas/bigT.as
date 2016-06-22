@@ -561,7 +561,7 @@ public function pitchTOverATable():void
 	output("\n\nYou moan and look forward, only to see Tee looking back with a cheeky white-toothed grin. You grab his steer horns and pull your [pc.cocks] back - you’re going to fuck him all right! With a powerful thrust, you bury [pc.biggestCock] deep inside of his massive pucker and sink it right down to the hilt. The governor groans as your [pc.biggestCockHead] teases the deepest part of his rectum, flexing and stretching against his warm insides.");
 	pc.cockChange();
 
-	output("\n\nA single flex of his doughnut around your [pc.sheath] and your mind utterly blanks with pleasure - one second the bull’s ass is loose, the next it’s achingly tight! It’s like your [pc.biggestCock] is on a rollercoaster ride. Giving yourself over to carnal desire, you grind your hips against his muscular ass, thoroughly fucking the big bull’s ass from behind with lusty abandon.");
+	output("\n\nA single flex of his donut around your [pc.sheath] and your mind utterly blanks with pleasure - one second the bull’s ass is loose, the next it’s achingly tight! It’s like your [pc.biggestCock] is on a rollercoaster ride. Giving yourself over to carnal desire, you grind your hips against his muscular ass, thoroughly fucking the big bull’s ass from behind with lusty abandon.");
 	output("\n\nYour hips slap together in primal rhythm, the air filled with urgent gasps and deep moans. His velvety hot insides squeeze and wring your thrusting [pc.cockNounSimple " + x + "]. Each time you thrust, his powerful hips push back to meet you, rubbing your [pc.cockHead " + x + "] deep in his ass before pulling out again. Suddenly clenching his horns is a necessity!");
 	var teesButt:int = 1;
 

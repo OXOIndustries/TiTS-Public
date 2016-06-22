@@ -2293,41 +2293,69 @@
 			if (amt >= amount) return true;
 			return false;
 		}
-		public function destroyItemByName(arg:String,amount:int = 1):void
+		public function destroyItemByName(arg:String, amount:int = 1):void
 		{
-			if(inventory.length == 0) return;
-			var foundAmount:int = 0;
-			for(var x:int = 0; x < inventory.length; x++)
+			if (inventory.length == 0 || amount == 0) return;
+			
+			var i:int = 0;
+			
+			// Remove all!
+			if (amount < 0)
 			{
-				//Item in the slot?
-				if(inventory[x].shortName == arg) 
+				for (i = 0; i < inventory.length; i++)
 				{
-					//If we still need to eat some, eat em up!
-					while(amount > 0 && inventory[x].quantity > 0) 
+					if (inventory[i].shortName == arg) inventory.splice(i, 1);
+				}
+			}
+			// Normal
+			else
+			{
+				for (i = 0; i < inventory.length; i++)
+				{
+					//Item in the slot?
+					if (inventory[i].shortName == arg) 
 					{
-						inventory[x].quantity--;
-						amount--;
-						if(inventory[x].quantity <= 0) inventory.splice(x,1);
+						//If we still need to eat some, eat em up!
+						while(amount > 0 && inventory[i].quantity > 0) 
+						{
+							inventory[i].quantity--;
+							amount--;
+							if (inventory[i].quantity <= 0) inventory.splice(i, 1);
+						}
 					}
 				}
 			}
 			return;
 		}
-		public function destroyItem(arg:ItemSlotClass,amount:int = 1):void
+		public function destroyItem(arg:ItemSlotClass, amount:int = 1):void
 		{
-			if(inventory.length == 0) return;
-			var foundAmount:int = 0;
-			for(var x:int = 0; x < inventory.length; x++)
+			if (inventory.length == 0 || amount == 0) return;
+			
+			var i:int = 0;
+			
+			// Remove all!
+			if (amount < 0)
 			{
-				//Item in the slot?
-				if(inventory[x].shortName == arg.shortName) 
+				for (i = 0; i < inventory.length; i++)
 				{
-					//If we still need to eat some, eat em up!
-					while(amount > 0 && inventory[x].quantity > 0) 
+					if (inventory[i].shortName == arg.shortName) inventory.splice(i, 1);
+				}
+			}
+			// Normal
+			else
+			{
+				for (i = 0; i < inventory.length; i++)
+				{
+					//Item in the slot?
+					if (inventory[i].shortName == arg.shortName) 
 					{
-						inventory[x].quantity--;
-						amount--;
-						if(inventory[x].quantity <= 0) inventory.splice(x,1);
+						//If we still need to eat some, eat em up!
+						while(amount > 0 && inventory[i].quantity > 0) 
+						{
+							inventory[i].quantity--;
+							amount--;
+							if (inventory[i].quantity <= 0) inventory.splice(i, 1);
+						}
 					}
 				}
 			}
@@ -2335,23 +2363,37 @@
 		}
 		public function destroyItemByType(type:Class, amount:int = 1):void
 		{
-			if (inventory.length == 0) return;
+			if (inventory.length == 0 || amount == 0) return;
 			
-			for (var i:int = 0; i < inventory.length; i++)
+			var i:int = 0;
+			
+			// Remove all!
+			if (amount < 0)
 			{
-				if (amount == 0) break;
-				
-				if (inventory[i] is type)
+				for (i = 0; i < inventory.length; i++)
 				{
-					inventory[i].quantity -= amount;
-					if (inventory[i].quantity <= 0)
+					if (inventory[i] is type) inventory.splice(i, 1);
+				}
+			}
+			// Normal
+			else
+			{
+				for (i = 0; i < inventory.length; i++)
+				{
+					//Item in the slot?
+					if (inventory[i] is type) 
 					{
-						if (inventory[i].quantity < 0) amount = Math.abs(inventory[i].quantity);
-						inventory.splice(i, 1);
-						i--;
+						//If we still need to eat some, eat em up!
+						while(amount > 0 && inventory[i].quantity > 0) 
+						{
+							inventory[i].quantity--;
+							amount--;
+							if (inventory[i].quantity <= 0) inventory.splice(i, 1);
+						}
 					}
 				}
 			}
+			return;
 		}
 		
 		public function getWeaponName(fromStat:Boolean = false):String
@@ -9698,7 +9740,9 @@
 			}
 			if(descripted == 0 && hasPerk("Buttslut") && rand(2) == 0)
 			{
+				if (descripted > 0) desc += ", ";
 				desc += RandomInCollection("slutty","fuck-hungry","cock-hungry","fuckable","puckered","eager","greedy","ravenous","insatiable");
+				descripted++;
 			}
 			
 			if (descripted > 0) desc += " ";
@@ -14478,34 +14522,39 @@
 				{
 					var msg:String = "";
 					if (spacingsF) msg += " ";
-					msg += "<b>";
+					
 					if (this is PlayerCharacter)
 					{
 						if (holePointer.hymen && hole >= 0)
 						{
-							msg += "Your hymen is torn";
+							msg += "<b>Your hymen is torn";
 							holePointer.hymen = false;
+							if (vaginalVirgin) msg += ", robbing you of your vaginal virginity";
+							msg += ".</b>";
 						}
-						else msg += "You have been penetrated";
-						
-						if (hole >= 0 && vaginalVirgin) msg += ", robbing you of your vaginal virginity";
-						else if (analVirgin) msg += ", robbing you of your anal virginity";
-						msg += ".";
+						else if (hole < 0)
+						{
+							msg += "<b>You have been penetrated";
+							if (analVirgin) msg += ", robbing you of your anal virginity";
+							msg += ".</b>";
+						}
 					}
 					else
 					{
 						if (holePointer.hymen && hole >= 0)
 						{
-							msg += (capitalA == "" ? short + "’s" : capitalA + possessive(short)) + " hymen is torn";
+							msg += "<b>" + (capitalA == "" ? short + "’s" : capitalA + possessive(short)) + " hymen is torn";
 							holePointer.hymen = false;
+							if (hole >= 0 && vaginalVirgin)	msg += ", robbing " + mf("him", "her") + " of " + mf("his", "her") + " vaginal virginity";
+							msg += ".</b>";
 						}
-						else msg += capitalA + short + " has been penetrated";
-						
-						if (hole >= 0 && vaginalVirgin)	msg += ", robbing " + mf("him", "her") + " of " + mf("his", "her") + " vaginal virginity";
-						else if (analVirgin) msg += ", robbing " + mf("him", "her") + " of " + mf("his", "her") + " anal virginity";
-						msg += ".";
+						else if (hole < 0)
+						{
+							msg += "<b>" + capitalA + short + " has been penetrated";
+							if (hole < 0 && analVirgin) msg += ", robbing " + mf("him", "her") + " of " + mf("his", "her") + " anal virginity";
+							msg += ".</b>";
+						}
 					}
-					msg += "</b>";
 					if(spacingsB) msg += " ";
 					output(msg);
 				}
@@ -14514,9 +14563,13 @@
 				{
 					vaginalVirgin = false;
 					holePointer.hymen = false;
+					devirgined = true;
 				}
-				else if (analVirgin) analVirgin = false;
-				devirgined = true;
+				else if (hole < 0 && analVirgin)
+				{
+					analVirgin = false;
+					devirgined = true;
+				}
 			}
 			//Delay anti-stretching
 			if(volume >= .35 * capacity) {
@@ -14556,7 +14609,7 @@
 							else output("<b>" + (capitalA == "" ? short + "’s" : capitalA + possessive(short)) + " " + vaginaDescript(hole) + " is stretched out a little bit.</b>");
 						}
 					}
-					else {
+					else if (hole < 0) {
 						if (this is PlayerCharacter)
 						{
 							if(holePointer.looseness() >= 5) output("<b>Your " + assholeDescript() + " is stretched painfully wide, gaped in a way that practically invites huge monster-cocks to plow you.</b>");
@@ -14619,7 +14672,7 @@
 					willpowerMod -= 1;
 					intelligenceMod -= 1;
 					createStatusEffect("Smashed",0,0,0,0, false, "Icon_DizzyDrunk", "You're three sheets to the wind, but you feel like you could flip a truck.\n\nThis status will expire as your alcohol levels drop.", false, 0,0xB793C4);
-					kGAMECLASS.eventBuffer += "\n\nWalking is increasingly difficult, but you'll be damned if you don't feel like you can do anything. <b>You're smashed!</b>";
+					kGAMECLASS.eventBuffer += "\n\n[pc.Walking] is increasingly difficult, but you'll be damned if you don't feel like you can do anything. <b>You're smashed!</b>";
 				}
 				//Drunk
 				//+4 physique & -1 willpower/int/reflexes
@@ -15239,8 +15292,12 @@
 		// Calculates the weight of an amount of fluid.
 		public function fluidWeight(fluidAmount: Number = 0, fluidType:int = -1):Number
 		{
-			if(InCollection(fluidType, GLOBAL.FLUID_TYPE_HONEY, GLOBAL.FLUID_TYPE_MILKSAP, GLOBAL.FLUID_TYPE_CUMSAP, GLOBAL.FLUID_TYPE_NECTAR, GLOBAL.FLUID_TYPE_BLUEBERRY_YOGURT)) fluidAmount *= 0.005;
-			else if(InCollection(fluidType, GLOBAL.FLUID_TYPE_CUM, GLOBAL.FLUID_TYPE_GABILANI_CUM, GLOBAL.FLUID_TYPE_NYREA_CUM, GLOBAL.FLUID_TYPE_VANAE_CUM)) fluidAmount *= 0.0035;
+			// Reference: 1 mL is about 1/473.18 lbs
+			//	1 mL of water is about 0.0022 lbs of water
+			//	1 mL of honey is about 0.0033 lbs of honey
+			
+			if(InCollection(fluidType, GLOBAL.FLUID_TYPE_HONEY, GLOBAL.FLUID_TYPE_MILKSAP, GLOBAL.FLUID_TYPE_CUMSAP, GLOBAL.FLUID_TYPE_NECTAR, GLOBAL.FLUID_TYPE_BLUEBERRY_YOGURT)) fluidAmount *= 0.0035;
+			else if(InCollection(fluidType, GLOBAL.FLUID_TYPE_CUM, GLOBAL.FLUID_TYPE_GABILANI_CUM, GLOBAL.FLUID_TYPE_NYREA_CUM, GLOBAL.FLUID_TYPE_VANAE_CUM)) fluidAmount *= 0.0027;
 			else fluidAmount *= 0.0025;
 			
 			return fluidAmount;
@@ -15977,6 +16034,79 @@
 		public function onLeaveBuyMenu():void
 		{
 			throw new Error("Vendor doesn't have a buy-menu leave functor specified.");
+		}
+		
+		// Item Slot Shenanigans
+		public function lockItemSlot(slot:Number, msg:String = "", minutes:Number = 0):void
+		{
+			switch(slot)
+			{
+				case GLOBAL.CLOTHING:
+				case GLOBAL.ARMOR:
+					createStatusEffect("Armor Slot Disabled", 0, 0, 0, 0, true, "Blocked", msg, false, minutes);
+					break;
+				case GLOBAL.MELEE_WEAPON:
+					createStatusEffect("Melee Weapon Slot Disabled", 0, 0, 0, 0, true, "Blocked", msg, false, minutes);
+					break;
+				case GLOBAL.RANGED_WEAPON:
+					createStatusEffect("Ranged Weapon Slot Disabled", 0, 0, 0, 0, true, "Blocked", msg, false, minutes);
+					break;
+				case GLOBAL.SHIELD:
+					createStatusEffect("Shield Slot Disabled", 0, 0, 0, 0, true, "Blocked", msg, false, minutes);
+					break;
+				case GLOBAL.ACCESSORY:
+					createStatusEffect("Accessory Slot Disabled", 0, 0, 0, 0, true, "Blocked", msg, false, minutes);
+					break;
+				case GLOBAL.LOWER_UNDERGARMENT:
+					createStatusEffect("Lower Garment Slot Disabled", 0, 0, 0, 0, true, "Blocked", msg, false, minutes);
+					break;
+				case GLOBAL.UPPER_UNDERGARMENT:
+					createStatusEffect("Upper Garment Slot Disabled", 0, 0, 0, 0, true, "Blocked", msg, false, minutes);
+					break;
+			}
+			return;
+		}
+		public function unlockItemSlot(slot:Number):void
+		{
+			switch(slot)
+			{
+				case GLOBAL.CLOTHING:
+				case GLOBAL.ARMOR:
+					removeStatusEffect("Armor Slot Disabled");
+					break;
+				case GLOBAL.MELEE_WEAPON:
+					removeStatusEffect("Melee Weapon Slot Disabled");
+					break;
+				case GLOBAL.RANGED_WEAPON:
+					removeStatusEffect("Ranged Weapon Slot Disabled");
+					break;
+				case GLOBAL.SHIELD:
+					removeStatusEffect("Shield Slot Disabled");
+					break;
+				case GLOBAL.ACCESSORY:
+					removeStatusEffect("Accessory Slot Disabled");
+					break;
+				case GLOBAL.LOWER_UNDERGARMENT:
+					removeStatusEffect("Lower Garment Slot Disabled");
+					break;
+				case GLOBAL.UPPER_UNDERGARMENT:
+					removeStatusEffect("Upper Garment Slot Disabled");
+					break;
+			}
+			return;
+		}
+		public function itemSlotUnlocked(slot:Number):Boolean
+		{
+			if
+			(	(InCollection(slot, GLOBAL.CLOTHING, GLOBAL.ARMOR) && hasStatusEffect("Armor Slot Disabled"))
+			||	(slot == GLOBAL.MELEE_WEAPON && hasStatusEffect("Melee Weapon Slot Disabled"))
+			||	(slot == GLOBAL.RANGED_WEAPON && hasStatusEffect("Ranged Weapon Slot Disabled"))
+			||	(slot == GLOBAL.SHIELD && hasStatusEffect("Shield Slot Disabled"))
+			||	(slot == GLOBAL.ACCESSORY && hasStatusEffect("Accessory Slot Disabled"))
+			||	(slot == GLOBAL.LOWER_UNDERGARMENT && hasStatusEffect("Lower Garment Slot Disabled"))
+			||	(slot == GLOBAL.UPPER_UNDERGARMENT && hasStatusEffect("Upper Garment Slot Disabled"))
+			)	return false;
+			return true;
 		}
 	}
 }

@@ -3924,8 +3924,8 @@ public function kellyDPForTaursThatWannaGetDPed():void
 		}
 	}
 	pc.cuntChange(x,chars["KELLY"].cockVolume(0),true,true,false);
-	if(y < 0 && !(tailginad || pc.hasCock())) pc.buttChange(chars["KELLY"].cockVolume(0),true,true,false);
-	else if(!(tailginad || pc.hasCock())) pc.cuntChange(y,chars["KELLY"].cockVolume(0),true,true,false);
+	if(y < 0 && !(tailginad || pc.hasCock())) pc.buttChange(chars["KELLY"].cockVolume(1),true,true,false);
+	else if(!(tailginad || pc.hasCock())) pc.cuntChange(y,chars["KELLY"].cockVolume(1),true,true,false);
 
 	output("\n\nKelly continues her thrusts, which are becoming more erratic and animalistic. She’s going to cum soon; you can feel it.");
 	
@@ -4174,9 +4174,10 @@ public function getDPedByKelly():void
 	if(y < 0) output(" You’re thankful that she went through the trouble of getting your [pc.asshole] ready too. Her insistent pushing knocks your sphincter wide open as you’re forced to grant her entry.");
 	else output(" Your other [pc.vagina " + y + "] welcomes her as easily as your first one.");
 	output(" Inch by inch she feeds you, hands roaming over your body, tracing your [pc.chest], teasing your [pc.nipples]. When she gives your chest an appreciative lick you cry out in pleasure. Kelly’s warmth spreads throughout you, and you find yourself instinctively clamping down on her intruding shafts.");
+	
 	pc.cuntChange(x,chars["KELLY"].cockVolume(0),true,true,false);
-	if(y < 0) pc.buttChange(chars["KELLY"].cockVolume(0),true,false);
-	else pc.cuntChange(y,chars["KELLY"].cockVolume(0),true,true,false);
+	if(y < 0) pc.buttChange(chars["KELLY"].cockVolume(1),true,false);
+	else pc.cuntChange(y,chars["KELLY"].cockVolume(1),true,true,false);
 
 	output("\n\n<i>\"Ah!... Honey, if you keep holding me like that....\"</i> she trails off into a moan of her own. By the time you feel her hips flush against yours, you’re both a panting mess. Kelly strokes your cheek lovingly as you move your [pc.legs] to wrap around her, securing her in place and ensuring she can’t get away.");
 

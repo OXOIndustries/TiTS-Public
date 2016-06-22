@@ -850,7 +850,13 @@ public function approachGooArmorCrewMenu(fromCrew:Boolean = true):void
 	gooArmorAddButton(fromCrew, 0, "Talk", gooArmorCrewOption, ["talk", fromCrew], "Talk", "Chat a bit with [goo.name].");
 	if(flags["GOO_ARMOR_CUSTOMIZE"] == undefined) gooArmorAddDisabledButton(fromCrew, 1, "Locked", "Locked", "[goo.name] hasn’t learned how to do this yet..." + (pc.level < 3 ? " She may be more confident if you are a higher level." : " Maybe try" + ((pc.armor is GooArmor) ? " taking her off first, then" : "") + " talking to her" + (InShipInterior() ? "" : " while in your ship") + " for a bit?"));
 	else gooArmorAddButton(fromCrew, 1, "Customize", gooArmorCrewOption, ["customize", fromCrew], "Customize " + ((pc.armor is GooArmor) ? "Suit" : "Appearance"), ((pc.armor is GooArmor) ? "See if [goo.name] can change how she looks on you." : "See if [goo.name] can change her form for you."));
-	if(pc.lust() >= 33) gooArmorAddButton(fromCrew, 2, "Sex", gooArmorCrewOption, ["sex", fromCrew], "Sex", "Have some sexy fun-time with [goo.name].");
+	if(pc.lust() >= 33)
+	{
+		if(rooms[currentLocation].hasFlag(GLOBAL.NOFAP)) gooArmorAddDisabledButton(fromCrew, 2, "Sex", "Sex", "Masturbating here would be impossible.");
+		else if(rooms[currentLocation].hasFlag(GLOBAL.FAPPING_ILLEGAL)) gooArmorAddDisabledButton(fromCrew, 2, "Sex", "Sex", "Public masturbation is illegal here. Trying to masturbate would almost certainly land you in jail.");
+		else if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC) && pc.exhibitionism() < 33 && pc.libido() < 70) gooArmorAddDisabledButton(fromCrew, 2, "Sex", "Sex", "You cannot have sex with [goo.name] at this time!");
+		else gooArmorAddButton(fromCrew, 2, "Sex", gooArmorCrewOption, ["sex", fromCrew], "Sex", "Have some sexy fun-time with [goo.name].");
+	}
 	else gooArmorAddDisabledButton(fromCrew, 2, "Sex", "Sex", "You are not aroused enough for this.");
 	
 	if(flags["GOO_ARMOR_HEAL_LEVEL"] == undefined) gooArmorAddDisabledButton(fromCrew, 5, "Locked", "Locked", "[goo.name] hasn’t learned how to do this yet..." + (pc.level < 7 ? " She may be more confident if you are a higher level." : " Maybe try" + (pc.hasItem(new GrayMicrobots(), 10) ? "" : " stocking up and") + " carrying some drinkable health items," + ((pc.armor is GooArmor) ? " taking her off," : " and") + " then talking to her" + (InShipInterior() ? "" : " while in your ship") + "?"));

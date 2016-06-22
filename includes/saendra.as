@@ -1647,7 +1647,7 @@ public function saendraButteFuckeTailwank():void
 	else output(" third");
 	output(" load of spunk. Saen grins and takes it like the cum-hungry slut she is, leaning back and letting you blow your whole load across her tits and stomach, eagerly rubbing the hot spooge in as you deliver the finale of your one-"+ pc.mf("man", "woman") +" bukkake. ");
 
-	output("\n\nThe money-shot ends with Saen’s body slathered with your cum, looking more [pc.cumColor] than pink. With a sated sigh, the lusty halfbreed flops back in the bed, idly rubbing the coating of cum sticking to her skin. She <i>reeks</i> of sex now, a heady aroma of your cum and hers mixing around her. <i>“Oh, that’s nice,”</i> she grins, eyes fluttering closed. One of her hands hooks under your arm, tugging you down. <i>“C’mere, hero, unless you you wanna go for number four.”</i>");
+	output("\n\nThe money-shot ends with Saen’s body slathered with your cum, looking more [pc.cumColor] than pink. With a sated sigh, the lusty halfbreed flops back in the bed, idly rubbing the coating of cum sticking to her skin. She <i>reeks</i> of sex now, a heady aroma of your cum and hers mixing around her. <i>“Oh, that’s nice,”</i> she grins, eyes fluttering closed. One of her hands hooks under your arm, tugging you down. <i>“C’mere, hero, unless you wanna go for number four.”</i>");
 
 	output("\n\nYou obediently collapse beside your lover, more exhausted than she is from your sexual ordeal. Sleep overtakes you in moments.");
 
