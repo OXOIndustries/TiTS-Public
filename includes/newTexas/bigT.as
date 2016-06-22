@@ -391,6 +391,7 @@ public function bigTCockSuckPartII():void
 	output("\n\nAs you leave, you barely register the governor buzzing Zephyr on the intercom, and the rough, breathless voice that follows. <i>“... Cancel my next few appointments, Zephyr. This bull’s all worn out!”</i>");
 	sexedBigT();
 	// Might want to kick the player two squares south after this. 
+	flags["FUCKED_BY_BIGT"] = 1;
 	processTime(59);
 	pc.orgasm();
 	currentLocation = "526";
@@ -504,6 +505,7 @@ public function drunkenCowgirlBoy():void
 
 	output("\n\nWhen you finally leave Big T’s office, you’re barely able to put one foot in front of the other without tripping. You hold your [pc.gear] to your chest, your [pc.thighs] utterly coated in bull cum. You giddily past his receptionist, half naked and too spaced out to care. What a ride!");
 	// Might want to kick the player two squares south after this. 
+	flags["FUCKED_BY_BIGT"] = 1;
 	processTime(70);
 	var ppBigT:PregnancyPlaceholder = new PregnancyPlaceholder();
 	if(x >= 0)
@@ -594,6 +596,7 @@ public function pitchTOverATable():void
 	output("\n\n<i>“... Hot damn. It’s been a long time since I’ve came like that from a bull ride!”</i> Tee guffaws. It takes him a while to turn around on his wobbly legs and seat himself in his chair. <i>“Ahh--! I don’t think I’m going to be walking anywhere for the rest of the day, no siree.”</i>");
 	output("\n\nAfter slipping your gear back on, you say goodbye to Tee and slip out. You notice Zephyr is giving you a smug, knowing look. Well, it wasn’t exactly like the two of you were quiet, and she’s probably familiar with his noise....");
 	// Might want to kick the player two squares south after this. 
+	flags["FUCKED_BY_BIGT"] = 1;
 	processTime(29);
 	pc.orgasm();
 	sexedBigT();
@@ -760,6 +763,7 @@ public function bigTFucksYouEpilogue():void
 	output("\n\nWhen you finally leave Big T’s office, you’re barely able to put one foot in front of the other without tripping. You hold your gear to your cum covered [pc.chestSimple]. You’re in a complete daze as you stumble giddily past his receptionist, half naked and too spaced out to care.");
 	output("\n\nAs you leave, you barely register the governor buzzing Zephyr on the intercom, and the rough, breathless voice that follows. <i>“... Cancel my next few appointments, Zephyr. This bull’s all worn out!”</i>");
 	// Might want to kick the player two squares south after this. 
+	flags["FUCKED_BY_BIGT"] = 1;
 	processTime(59);
 	pc.orgasm();
 	currentLocation = "526";
