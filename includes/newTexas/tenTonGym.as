@@ -835,7 +835,7 @@ public function simoneWorkoutApproach():void
 		output("\n\nYou ask her if you can’t do both, then introduce yourself. If she recognizes your name, she doesn’t show it.");
 		output("\n\n<i>“I’m Simone,”</i> she says, <i>“and </i>I’m<i> here to lift. But if you’re here for both, how about a little challenge?”</i>");
 		output("\n\nWhen you ask what kind of challenge, Simone’s smirk returns. It looks like she’s been waiting for someone to ask.");
-		output("\n\n<i>“Let’s see who’s stronger,”</i>, Simone says. She nudges the chest press bar, setting her boobs to jiggling. <i>“Five presses, add weight, five more, add weight, you get it. First one who can’t lift anymore loses.”</i> She smiles, the tip of her wide pink tongue flicking out between her lips. <i>“Loser makes the winner come. You in?”</i>");
+		output("\n\n<i>“Let’s see who’s stronger,”</i> Simone says. She nudges the chest press bar, setting her boobs to jiggling. <i>“Five presses, add weight, five more, add weight, you get it. First one who can’t lift anymore loses.”</i> She smiles, the tip of her wide pink tongue flicking out between her lips. <i>“Loser makes the winner come. You in?”</i>");
 		
 		flags["MET_SIMONE"] = 1;
 		
@@ -1228,7 +1228,7 @@ public function lolaPoolApproach():void
 		output("\n\n<i>“Oh, I’m sorry!”</i> she says, then gives you a long look up and down, her blue eyes wide. <i>“Hi there,”</i> she says, a smile spreading across her face. <i>“I’m Lola. Haven’t seen you here before, huh?”</i>");
 		output("\n\nLola’s only a little over five feet tall, but her hips would look wide on a woman twice her size; on her, they seem almost comically exaggerated. Her butt is appropriately bulbous, with curvy thighs beneath it. Soaked red hair trails down to her shoulders, clearly her natural color, if the little tuft above her pussy is any indication. Two short white horns peek out from among her locks, and her ears are cowlike and floppy. Her skin is pale, and she has the large boobs common among New Texans, with hard, pink nipples.");
 		output("\n\nYou introduce yourself to the bright-eyed cowgirl, and ask if she’s here working out, or if she just likes to swim.");
-		output("\n\n<i>“Little of both,”</i>, Lola says, nodding a few times. <i>“Sometimes I feel like I need a workout, but mostly I just like to swim. Or to fuck.”</i> Her smile grows a little devious as her gaze trails over your [pc.chest]. <i>“Have you ever had sex with someone who’s floating?”</i>");
+		output("\n\n<i>“Little of both,”</i> Lola says, nodding a few times. <i>“Sometimes I feel like I need a workout, but mostly I just like to swim. Or to fuck.”</i> Her smile grows a little devious as her gaze trails over your [pc.chest]. <i>“Have you ever had sex with someone who’s floating?”</i>");
 		output("\n\nYou consider it for a moment, and tell her no, you haven’t. Lola looks down at your crotch.");
 		
 		flags["MET_LOLA"] = 1;
@@ -1307,7 +1307,7 @@ public function lolaPoolSex(response:String = ""):void
 			
 			output("You tell Lola that you would, in fact, like to fuck her while she’s floating.");
 			if(x < 0) output(" You hurry out of the pool and don your [pc.lowerUndergarment], then return to Lola and activate the hardlight dildo.");
-			output(" She gives you an eager grin, and rubs her hands together as she giggles. <i>“C’mon”</i>, she says, reaching down toward your [pc.crotch]. <i>“Let’s get to the right water level.”</i>");
+			output(" She gives you an eager grin, and rubs her hands together as she giggles. <i>“C’mon,”</i> she says, reaching down toward your [pc.crotch]. <i>“Let’s get to the right water level.”</i>");
 			output("\n\nLola takes hold of your [pc.cockOrStrapon " + x + "] and leads you across the pool. She strokes you gently as she walks, her fingers easily slipping up and down your tool, the water’s synthetic decontaminant acting like a low-grade lube. When the water is right at your crotch level, Lola stops and backs up against you, leaning her wide, plump ass against your [pc.crotch], sliding your [pc.cockOrStrapon " + x + "] between her jiggly cheeks.");
 			output("\n\n<i>“You like that, [pc.name]?”</i> Lola asks, then looks back over her shoulder and gives you a bright smile. Bent over like she is, her boobs are dipping halfway into the water, splashing as she rubs her rear against you.");
 			output("\n\nDamn right you do.");

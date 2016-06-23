@@ -498,9 +498,9 @@ public function giveMeACheckupAnn():void
 	clearOutput();
 	showAnzhela();
 	output("You tell the good doctor that you’d like to get checked out. She smiles brightly and gestures to an examination area nearby bed, hand on hip.");
-	output("\n\n<i>“Hop on up and I’ll check you out,”</i> she happily offers");
-	if(!pc.isNude()) output("The red myr then gestures to your clothes, <i>“Just strip off your things first and we’ll get to it.”</i>");
-	else output(". <i>“You’re already naked, so we can get right to it.”</i>");
+	output("\n\n<i>“Hop on up and I’ll check you out,”</i> she happily offers.");
+	if(!pc.isNude()) output(" The red myr then gestures to your clothes, <i>“Just strip off your things first and we’ll get to it.”</i>");
+	else output(" <i>“You’re already naked, so we can get right to it.”</i>");
 
 	//NotNude:
 	if(!pc.isNude())
