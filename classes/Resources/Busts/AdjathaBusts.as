@@ -201,6 +201,11 @@ package classes.Resources.Busts
 		public var Bust_SEMITH:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/semith_nude.png", mimeType = "image/png")]
 		public var Bust_SEMITH_NUDE:Class;
+		
+		[Embed(source = "../../../assets/images/npcs/adjatha/simone.png", mimeType = "image/png")]
+		public var Bust_SIMONE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/simone_nude.png", mimeType = "image/png")]
+		public var Bust_SIMONE_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/steph.png", mimeType = "image/png")]
 		public var Bust_STEPH:Class;
@@ -440,6 +445,11 @@ package classes.Resources.Busts
 			public var Full_SEMITH:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/semith_nude.png", mimeType = "image/png")]
 			public var Full_SEMITH_NUDE:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/simone.png", mimeType = "image/png")]
+			public var Full_SIMONE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/simone_nude.png", mimeType = "image/png")]
+			public var Full_SIMONE_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/steph.png", mimeType = "image/png")]
 			public var Full_STEPH:Class;
