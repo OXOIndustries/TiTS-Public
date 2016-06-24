@@ -1433,8 +1433,8 @@ public function cumCreditValue(amount:Number = 0):int
 	//Super low payouts now
 	if(amount >= 0) x += Math.round(amount/20000);
   	
-    //honey worth more!
-    if(pc.cumType == GLOBAL.FLUID_TYPE_HONEY) x *= 2;
+    //honey worth more! (rare fluids vary in price!)
+	x = fluidValue(pc.cumType, x);
     return x;
 }
 
