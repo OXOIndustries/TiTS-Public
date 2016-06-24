@@ -376,8 +376,10 @@ public function adultCockvineConsentacles():void
 	for (var i:int = 0; i < pc.vaginas.length; i++)
 	{
 		pc.loadInCunt(chars["COCKVINE"], i);
+		pc.cuntChange(i, chars["COCKVINE"].cockVolume(0));
 	}
 	pc.loadInAss(chars["COCKVINE"]);
+	pc.buttChange(chars["COCKVINE"].cockVolume(0));
 	pc.loadInMouth(chars["COCKVINE"]);
 
 	pc.orgasm();
@@ -595,8 +597,10 @@ public function adultCockvinePCLoses():void
 	for (var i:int = 0; i < pc.vaginas.length; i++)
 	{
 		pc.loadInCunt(enemy, i);
+		pc.cuntChange(i, enemy.cockVolume(0));
 	}
 	pc.loadInAss(enemy);
+	pc.buttChange(enemy.cockVolume(0));
 	pc.loadInMouth(enemy);
 	pc.orgasm();
 
