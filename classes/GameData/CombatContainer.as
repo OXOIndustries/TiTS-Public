@@ -1657,8 +1657,9 @@ package classes.GameData
 				flags["TIMES_CROTCH_TEASED"],
 				flags["TIMES_HIPS_TEASED"]
 			];
+			var i:int = 0;
 			
-			for(var i:int = 0; i < teases.length; i++) 
+			for(i = 0; i < teases.length; i++) 
 			{ 
 				if(teases[i] > 100) teases[i] = 100;
 			}
@@ -1669,23 +1670,52 @@ package classes.GameData
 			output("\nHips tease skill: " + teases[3] + "/100");
 			
 			output("\n\nYour ability at a tease can increase both its success rate and total damage.");
-		
+			
+			var teaseList:Array = [];
+			var btnSlot:int = 0;
+			var backTooltip:String = "Back out. Recommended if you haven’t yet used “Sense” to determine your foe’s likes and dislikes. Remember you can pull up your appearance screen in combat or use the scene buffer buttons in the lower left corner to compare yourself to your foe’s preferences!";
+			
+			// Basic Teases
+			teaseList.push(["Ass", teaseButt, target, "Ass Tease", "Use your [pc.butt] to tease your enemy."]);
+			teaseList.push(["Chest", teaseChest, target, "Chest Tease", "Use your [pc.chest] to tease your enemy."]);
+			if (pc.hasGenitals()) teaseList.push(["Crotch", teaseCrotch, target, "Crotch Tease", "Use your [pc.crotch] to tease your enemy."]);
+			else teaseList.push(["Crotch", null, null, "Crotch Tease", "You’ll need crotch-based genitals to do this."]);
+			teaseList.push(["Hips", teaseHips, target, "Hips Tease", "Use your [pc.hips] to tease your enemy."]);
+			
+			// Milk Squirt
+			if ((InCollection(pc.milkType, GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK, GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK) && pc.isLactating()) || (pc.isMilkTank() && pc.canMilkSquirt()))
+				teaseList.push(["Milk Squirt", teaseSquirt, target, "Milk Squirt", "Spray the enemy with your [pc.milk], arousing them."]);
+			else if (InCollection(pc.milkType, GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK, GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK) || pc.isMilkTank())
+				teaseList.push(["Milk Squirt", null, null, "Milk Squirt", "You do not currently have enough [pc.milkNoun] available to squirt any."]);
+			
+			// Dick Slap
+			if(pc.biggestCockLength() >= 12 && pc.hasCockFlag(GLOBAL.FLAG_APHRODISIAC_LACED, pc.biggestCockIndex()))
+			teaseList.push(["Dick Slap", dickslap, target, "Dick Slap", "Slap the enemy with your aphrodisiac-coated dick."]);
+			
+			// Myr Venom
+			if (pc.hasPerk("Myr Venom") && target.isLustImmune == false)
+			teaseList.push(["Myr Venom", myrVenomBite, target, "Myr Venom Bite", "Bite the enemy and inject them with your red myr venom."]);
+			
 			clearMenu();
-			addButton(0, "Ass", teaseButt, target, "Ass Tease", "Use your [pc.butt] to tease your enemy.");
-			
-			addButton(1, "Chest", teaseChest, target, "Chest Tease", "Use your [pc.chest] to tease your enemy.");
-			
-			if (pc.hasCock() || pc.hasVagina()) addButton(2, "Crotch", teaseCrotch, target, "Crotch Tease", "Use your [pc.crotch] to tease your enemy.");
-			else addDisabledButton(2, "Crotch");
-		
-			addButton(3, "Hips", teaseHips, target, "Hips Tease", "Use your [pc.hips] to tease your enemy.");
-			
-			if ((InCollection(pc.milkType, GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK, GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK) && pc.isLactating()) || (pc.isMilkTank() && pc.canMilkSquirt())) addButton(4, "Milk Squirt", teaseSquirt, target, "Milk Squirt", "Spray the enemy with your [pc.milk], arousing them.");
-			else if (InCollection(pc.milkType, GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK, GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK) || pc.isMilkTank()) addDisabledButton(4, "Milk Squirt", "Milk Squirt", "You do not currently have enough [pc.milkNoun] available to squirt any.");
-			//Reqs: PC has an aphrodisiac-laced cock big enough to slap
-			if(pc.biggestCockLength() >= 12 && pc.hasCockFlag(GLOBAL.FLAG_APHRODISIAC_LACED, pc.biggestCockIndex())) addButton(5, "Dick Slap" , dickslap, target, "Dick Slap", "Slap the enemy with your aphrodisiac-coated dick.");
-
-			addButton(14, "Back", generateCombatMenu, undefined, "Back", "Back out. Recommended if you haven’t yet used “Sense” to determine your foe’s likes and dislikes. Remember you can pull up your appearance screen in combat or use the scene buffer buttons in the lower left corner to compare yourself to your foe’s preferences!");
+			for(i = 0; i < teaseList.length; i++)
+			{
+				if(btnSlot >= 14 && (btnSlot + 1) % 15 == 0)
+				{
+					addButton(btnSlot, "Back", generateCombatMenu, undefined, "Back", backTooltip);
+					btnSlot++;
+				}
+				
+				if(teaseList[i][1] != null) addButton(btnSlot, teaseList[i][0], teaseList[i][1], teaseList[i][2], teaseList[i][3], teaseList[i][4]);
+				else addDisabledButton(btnSlot, teaseList[i][0], teaseList[i][3], teaseList[i][4]);
+				btnSlot++;
+				
+				if(teaseList.length > 14 && (i + 1) == teaseList.length)
+				{
+					while((btnSlot + 1) % 15 != 0) { btnSlot++; }
+					addButton(btnSlot, "Back", generateCombatMenu, undefined, "Back", backTooltip);
+				}
+			}
+			addButton(14, "Back", generateCombatMenu, undefined, "Back", backTooltip);
 		}
 		
 		private function teaseButt(target:Creature):void
@@ -2188,16 +2218,16 @@ package classes.GameData
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_HERMAPHRODITE);
 			
 			clearOutput();
-			if(target.isPlural) output("Smiling coyly, you run up to your opponents and knock them down. Before they can react, you");
+			if(target.isPlural) output("Smiling coyly, you run up to your opponents and knock " + target.mfn("him","her","it") + " down. Before they can react, you");
 			else output("Smiling coyly, you run up to your opponent and knock " + target.mfn("him","her","it") + " down. Before " + target.mfn("he","she","it") + " can react, you");
 			if(!pc.isCrotchExposed())
 			{
 				output(" wrestle your cock out of your");
-				if(pc.hasArmor() && !pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)) output(" armor");
+				if(pc.hasArmor() && !pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN)) output(" armor");
 				else output(" clothes");
 			}
 			else output(" grab your dick");
-			if(target.isPlural) output(" and use it to slap them across the face a few times. You make sure that some of your aphrodisiac dick oil is smeared on their face before jumping back to a safe distance.");
+			if(target.isPlural) output(" and use it to slap " + target.mfn("him","her","it") + " across the face a few times. You make sure that some of your aphrodisiac dick oil is smeared on their face before jumping back to a safe distance.");
 			else output(" and use it to slap " + target.mfn("him","her","it") + " across the face a few times. You make sure that some of your aphrodisiac dick oil is smeared on " + target.mfn("his","her","its") + " face before jumping back to a safe distance.");
 			
 			applyTeaseDamage(pc, target, teaseCount, "DICK SLAP", likeAdjustments);
@@ -2571,6 +2601,13 @@ package classes.GameData
 				else output(" You adjust your thighs back to their normal stance");
 				output(" as you say this, taking a moment to suck your fingers clean with a wink.");
 			}
+		}
+		
+		private function myrVenomBite(target:Creature):void
+		{
+			clearOutput();
+			CombatAttacks.myrVenomBite(pc, target);
+			processCombat();
 		}
 		
 		private function teaseSquirt(target:Creature):void
