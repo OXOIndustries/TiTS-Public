@@ -2316,7 +2316,7 @@
 					if (inventory[i].shortName == arg) 
 					{
 						//If we still need to eat some, eat em up!
-						while(amount > 0 && inventory[i].quantity > 0) 
+						while(amount > 0 && inventory[i].quantity > 0 && inventory[i].shortName == arg) 
 						{
 							inventory[i].quantity--;
 							amount--;
@@ -2350,7 +2350,7 @@
 					if (inventory[i].shortName == arg.shortName) 
 					{
 						//If we still need to eat some, eat em up!
-						while(amount > 0 && inventory[i].quantity > 0) 
+						while(amount > 0 && inventory[i].quantity > 0 && inventory[i].shortName == arg.shortName) 
 						{
 							inventory[i].quantity--;
 							amount--;
@@ -2384,7 +2384,7 @@
 					if (inventory[i] is type) 
 					{
 						//If we still need to eat some, eat em up!
-						while(amount > 0 && inventory[i].quantity > 0) 
+						while(amount > 0 && inventory[i].quantity > 0 && (inventory[i] is type)) 
 						{
 							inventory[i].quantity--;
 							amount--;
@@ -8558,6 +8558,7 @@
 		}
 		public function createCockUnlocked(numCocks:int = 1):Boolean
 		{
+			if (numCocks > 10) return false;
 			return true;
 		}
 		public function createCockLockedMessage():String
@@ -8593,7 +8594,7 @@
 		}
 		public function createVaginaUnlocked(numVag:int = 1):Boolean
 		{
-			if ((vaginas.length + numVag) > 3) return false;
+			if (numVag > 3) return false;
 			return true;
 		}
 		public function createVaginaLockedMessage():String
