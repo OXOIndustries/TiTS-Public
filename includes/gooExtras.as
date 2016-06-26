@@ -2167,20 +2167,15 @@ public function reshapeAGooCawkForReaaaaal(arg:int = 0):void
 {
 	clearOutput2();
 	output2("What new shape would you like to give your [pc.cockNoun " + arg + "]?");
+	
+	reshapeAGooCawkMenu([arg, 0]);
+}
+public function reshapeAGooCawkMenu(arg:Array):void
+{
+	var iCock:int = arg[0];
+	var offset:int = arg[1];
+	
 	clearGhostMenu();
-	/*
-	addGhostButton(0,"Terran",seriouslyThoReshapeDatGooCock,[arg,GLOBAL.TYPE_HUMAN]);
-	addGhostButton(1,"Equine",seriouslyThoReshapeDatGooCock,[arg,GLOBAL.TYPE_EQUINE]);
-	addGhostButton(2,"Canine",seriouslyThoReshapeDatGooCock,[arg,GLOBAL.TYPE_CANINE]);
-	addGhostButton(3,"Feline",seriouslyThoReshapeDatGooCock,[arg,GLOBAL.TYPE_FELINE]);
-	addGhostButton(4,"Vulpine",seriouslyThoReshapeDatGooCock,[arg,GLOBAL.TYPE_VULPINE]);
-	addGhostButton(5,"Zil",seriouslyThoReshapeDatGooCock,[arg,GLOBAL.TYPE_BEE]);
-	addGhostButton(6,"Draconic",seriouslyThoReshapeDatGooCock,[arg,GLOBAL.TYPE_DRACONIC]);
-	addGhostButton(7,"Snake-like",seriouslyThoReshapeDatGooCock,[arg,GLOBAL.TYPE_SNAKE]);
-	addGhostButton(8,"Demonic",seriouslyThoReshapeDatGooCock,[arg,GLOBAL.TYPE_DEMONIC]);
-	addGhostButton(9,"Kui-tan",seriouslyThoReshapeDatGooCock,[arg,GLOBAL.TYPE_KUITAN]);
-	addGhostButton(10,"Tentacle",seriouslyThoReshapeDatGooCock,[arg,GLOBAL.TYPE_TENTACLE]);
-	*/
 	
 	var cTypes:Array = [GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_SNAKE, GLOBAL.TYPE_GRYVAIN, GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_VULPINE];
 	// Unlockables
@@ -2202,31 +2197,25 @@ public function reshapeAGooCawkForReaaaaal(arg:int = 0):void
 	var newType:Number = 0;
 	var btnName:String = "";
 	var btnSlot:int = 0;
-	for(var x:int = 0; x < cTypes.length; x++)
+	
+	for(var x:int = offset; x < (offset + 10); x++)
 	{
-		if(btnSlot >= 14 && (btnSlot + 1) % 15 == 0)
-		{
-			if(pc.cockTotal() == 1) addGhostButton(btnSlot,"Back",gooCockRootMenu);
-			else addGhostButton(btnSlot,"Back",reshapeACaaaawk);
-			btnSlot++;
-		}
+		if(x >= cTypes.length) break;
 		
 		newType = cTypes[x];
 		if(newType == GLOBAL.TYPE_HUMAN) btnName = "Terran";
 		else if(newType == GLOBAL.TYPE_SNAKE) btnName = "Snake-like";
 		else if(newType == GLOBAL.TYPE_BEE) btnName = "Zil";
 		else btnName = GLOBAL.TYPE_NAMES[newType];
-		if(pc.cocks[arg].cType != newType) addGhostButton(btnSlot,btnName,seriouslyThoReshapeDatGooCock,[arg,newType]);
+		if(pc.cocks[iCock].cType != newType) addGhostButton(btnSlot,btnName,seriouslyThoReshapeDatGooCock,[iCock,newType]);
 		else addDisabledGhostButton(btnSlot,btnName,btnName,"The penis is already this shape.");
 		btnSlot++;
-		
-		if(cTypes.length > 14 && (x + 1) == cTypes.length)
-		{
-			while((btnSlot + 1) % 15 != 0) { btnSlot++; }
-			if(pc.cockTotal() == 1) addGhostButton(btnSlot,"Back",gooCockRootMenu);
-			else addGhostButton(btnSlot,"Back",reshapeACaaaawk);
-		}
 	}
+	
+	if(offset >= 10)
+		addGhostButton(10, "Prev Pg.", reshapeAGooCawkMenu, [iCock, (offset - 10)], "Previous Page", "View more penis types.");
+	if(offset + 10 < cTypes.length)
+		addGhostButton(12, "Next Pg.", reshapeAGooCawkMenu, [iCock, (offset + 10)], "Next Page", "View more penis types.");
 	
 	if(pc.cockTotal() == 1) addGhostButton(14,"Back",gooCockRootMenu);
 	else addGhostButton(14,"Back",reshapeACaaaawk);
@@ -2787,19 +2776,19 @@ public function shiftACuntYaCunt():void
 	addGhostButton(14,"Back",vaginaGooRootMenu);
 	showBiomass();
 }
-
 public function pickNewCuntType(arg:int = 0):void
 {
 	clearOutput2();
 	output2("What type of vagina will you change it into?");
+	
+	pickNewGooCuntMenu([arg, 0]);
+}
+public function pickNewGooCuntMenu(arg:Array):void
+{
+	var iCunt:int = arg[0];
+	var offset:int = arg[1];
+	
 	clearGhostMenu();
-	/*
-	addGhostButton(0,"Terran",actuallyTFToNewCuntType,[arg,GLOBAL.TYPE_HUMAN]);
-	addGhostButton(1,"Equine",actuallyTFToNewCuntType,[arg,GLOBAL.TYPE_EQUINE]);
-	addGhostButton(2,"Canine",actuallyTFToNewCuntType,[arg,GLOBAL.TYPE_CANINE]);
-	addGhostButton(3,"Lapinara",actuallyTFToNewCuntType,[arg,GLOBAL.TYPE_LAPINARA]);
-	addGhostButton(4,"Vanae",actuallyTFToNewCuntType,[arg,GLOBAL.TYPE_VANAE]);
-	*/
 	
 	var vTypes:Array = [GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_GRYVAIN, GLOBAL.TYPE_EQUINE];
 	// Unlockables
@@ -2817,30 +2806,23 @@ public function pickNewCuntType(arg:int = 0):void
 	var newType:Number = 0;
 	var btnName:String = "";
 	var btnSlot:int = 0;
-	for(var x:int = 0; x < vTypes.length; x++)
+	for(var x:int = offset; x < (offset + 10); x++)
 	{
-		if(btnSlot >= 14 && (btnSlot + 1) % 15 == 0)
-		{
-			if(pc.totalVaginas() == 1) addGhostButton(btnSlot,"Back",vaginaGooRootMenu);
-			else addGhostButton(btnSlot,"Back",shiftACuntYaCunt);
-			btnSlot++;
-		}
+		if(x >= vTypes.length) break;
 		
 		newType = vTypes[x];
 		if(newType == GLOBAL.TYPE_HUMAN) btnName = "Terran";
 		else if(newType == GLOBAL.TYPE_SNAKE) btnName = "Snake-like";
 		else btnName = GLOBAL.TYPE_NAMES[newType];
-		if(pc.vaginas[arg].type != newType) addGhostButton(btnSlot,btnName,actuallyTFToNewCuntType,[arg,newType]);
+		if(pc.vaginas[iCunt].type != newType) addGhostButton(btnSlot,btnName,actuallyTFToNewCuntType,[iCunt,newType]);
 		else addDisabledGhostButton(btnSlot,btnName,btnName,"The vagina is already this shape.");
 		btnSlot++;
-		
-		if(vTypes.length > 14 && (x + 1) == vTypes.length)
-		{
-			while((btnSlot + 1) % 15 != 0) { btnSlot++; }
-			if(pc.totalVaginas() == 1) addGhostButton(btnSlot,"Back",vaginaGooRootMenu);
-			else addGhostButton(btnSlot,"Back",shiftACuntYaCunt);
-		}
 	}
+	
+	if(offset >= 10)
+		addGhostButton(10, "Prev Pg.", pickNewGooCuntMenu, [iCunt, (offset - 10)], "Previous Page", "View more vagina types.");
+	if(offset + 10 < vTypes.length)
+		addGhostButton(12, "Next Pg.", pickNewGooCuntMenu, [iCunt, (offset + 10)], "Next Page", "View more vagina types.");
 	
 	if(pc.totalVaginas() == 1) addGhostButton(14,"Back",vaginaGooRootMenu);
 	else addGhostButton(14,"Back",shiftACuntYaCunt);
