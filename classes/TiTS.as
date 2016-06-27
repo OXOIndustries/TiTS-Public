@@ -226,6 +226,7 @@
 		include "../includes/newTexas/bigT.as";
 		include "../includes/newTexas/brynn.as";
 		include "../includes/newTexas/ellie.as";
+		include "../includes/newTexas/haley.as";
 		include "../includes/newTexas/gianna.as";
 		include "../includes/newTexas/gobbles.as";
 		include "../includes/newTexas/millie.as";
