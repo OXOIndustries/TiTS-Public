@@ -12,6 +12,7 @@
 	import classes.Items.Accessories.TamWolfDamaged;
 	import classes.Items.Accessories.TamWolfII;
 	import classes.Items.Armor.GooArmor;
+	import classes.Items.Armor.Unique.Omnisuit;
 	import classes.Items.Guns.MyrBow;
 	import classes.Items.Melee.Fists;
 	import classes.Items.Melee.Rock;
@@ -2292,41 +2293,69 @@
 			if (amt >= amount) return true;
 			return false;
 		}
-		public function destroyItemByName(arg:String,amount:int = 1):void
+		public function destroyItemByName(arg:String, amount:int = 1):void
 		{
-			if(inventory.length == 0) return;
-			var foundAmount:int = 0;
-			for(var x:int = 0; x < inventory.length; x++)
+			if (inventory.length == 0 || amount == 0) return;
+			
+			var i:int = 0;
+			
+			// Remove all!
+			if (amount < 0)
 			{
-				//Item in the slot?
-				if(inventory[x].shortName == arg) 
+				for (i = 0; i < inventory.length; i++)
 				{
-					//If we still need to eat some, eat em up!
-					while(amount > 0 && inventory[x].quantity > 0) 
+					if (inventory[i].shortName == arg) inventory.splice(i, 1);
+				}
+			}
+			// Normal
+			else
+			{
+				for (i = 0; i < inventory.length; i++)
+				{
+					//Item in the slot?
+					if (inventory[i].shortName == arg) 
 					{
-						inventory[x].quantity--;
-						amount--;
-						if(inventory[x].quantity <= 0) inventory.splice(x,1);
+						//If we still need to eat some, eat em up!
+						while(amount > 0 && inventory[i].quantity > 0 && inventory[i].shortName == arg) 
+						{
+							inventory[i].quantity--;
+							amount--;
+							if (inventory[i].quantity <= 0) inventory.splice(i, 1);
+						}
 					}
 				}
 			}
 			return;
 		}
-		public function destroyItem(arg:ItemSlotClass,amount:int = 1):void
+		public function destroyItem(arg:ItemSlotClass, amount:int = 1):void
 		{
-			if(inventory.length == 0) return;
-			var foundAmount:int = 0;
-			for(var x:int = 0; x < inventory.length; x++)
+			if (inventory.length == 0 || amount == 0) return;
+			
+			var i:int = 0;
+			
+			// Remove all!
+			if (amount < 0)
 			{
-				//Item in the slot?
-				if(inventory[x].shortName == arg.shortName) 
+				for (i = 0; i < inventory.length; i++)
 				{
-					//If we still need to eat some, eat em up!
-					while(amount > 0 && inventory[x].quantity > 0) 
+					if (inventory[i].shortName == arg.shortName) inventory.splice(i, 1);
+				}
+			}
+			// Normal
+			else
+			{
+				for (i = 0; i < inventory.length; i++)
+				{
+					//Item in the slot?
+					if (inventory[i].shortName == arg.shortName) 
 					{
-						inventory[x].quantity--;
-						amount--;
-						if(inventory[x].quantity <= 0) inventory.splice(x,1);
+						//If we still need to eat some, eat em up!
+						while(amount > 0 && inventory[i].quantity > 0 && inventory[i].shortName == arg.shortName) 
+						{
+							inventory[i].quantity--;
+							amount--;
+							if (inventory[i].quantity <= 0) inventory.splice(i, 1);
+						}
 					}
 				}
 			}
@@ -2334,23 +2363,37 @@
 		}
 		public function destroyItemByType(type:Class, amount:int = 1):void
 		{
-			if (inventory.length == 0) return;
+			if (inventory.length == 0 || amount == 0) return;
 			
-			for (var i:int = 0; i < inventory.length; i++)
+			var i:int = 0;
+			
+			// Remove all!
+			if (amount < 0)
 			{
-				if (amount == 0) break;
-				
-				if (inventory[i] is type)
+				for (i = 0; i < inventory.length; i++)
 				{
-					inventory[i].quantity -= amount;
-					if (inventory[i].quantity <= 0)
+					if (inventory[i] is type) inventory.splice(i, 1);
+				}
+			}
+			// Normal
+			else
+			{
+				for (i = 0; i < inventory.length; i++)
+				{
+					//Item in the slot?
+					if (inventory[i] is type) 
 					{
-						if (inventory[i].quantity < 0) amount = Math.abs(inventory[i].quantity);
-						inventory.splice(i, 1);
-						i--;
+						//If we still need to eat some, eat em up!
+						while(amount > 0 && inventory[i].quantity > 0 && (inventory[i] is type)) 
+						{
+							inventory[i].quantity--;
+							amount--;
+							if (inventory[i].quantity <= 0) inventory.splice(i, 1);
+						}
 					}
 				}
 			}
+			return;
 		}
 		
 		public function getWeaponName(fromStat:Boolean = false):String
@@ -2797,7 +2840,8 @@
 		public function canCoverSelf(checkGenitals:Boolean = false, part:String = "all"): Boolean {
 			// Part-specific checks
 			if(part == "wings" && !hasJointedWings()) return false;
-			
+			// Omnisuit
+			if(armor is Omnisuit) return true;
 			// Normal genital location
 			if(!checkGenitals || genitalLocation() <= 1)
 			{
@@ -8514,6 +8558,7 @@
 		}
 		public function createCockUnlocked(numCocks:int = 1):Boolean
 		{
+			if (numCocks > 10) return false;
 			return true;
 		}
 		public function createCockLockedMessage():String
@@ -8549,7 +8594,7 @@
 		}
 		public function createVaginaUnlocked(numVag:int = 1):Boolean
 		{
-			if ((vaginas.length + numVag) > 3) return false;
+			if (numVag > 3) return false;
 			return true;
 		}
 		public function createVaginaLockedMessage():String
@@ -8715,11 +8760,7 @@
 			 
 			if (horseScore() >= 3) race = equineRace(); // Horse-morphs
 			if (vulpineScore() >= 4) race = "vulpine-morph";
-			if (kitsuneScore() >= 4 && (race.indexOf("vulpine") == -1 || tailCount > 1))
-			{
-				if (hasPerk("Enlightened Nine-tails") || hasPerk("Nine-tails") || hasPerk("Corrupted Nine-tails")) race = "kitsune";
-				else race = "kitsune-morph";
-			}
+			if (kitsuneScore() >= 4 && (race.indexOf("vulpine") == -1 || tailCount > 1)) race = kitsuneRace();
 			if (ovirScore() >= 3 && race == "human") race = "half-ovir";
 			if (ausarScore() >= 2 && race == "human")
 			{
@@ -8743,11 +8784,7 @@
 			if (gabilaniScore() >= 5) race = "gabilani";
 			if (frogScore() >= 5) race = "kerokoras";
 			if (kaithritScore() >= 6) race = "kaithrit"
-			if (felineScore() >= 5 && race != "kaithrit") {
-				if (hasTail(GLOBAL.TYPE_FELINE) && tailCount > 1) race = "nekomata";
-				else if (dragonScore() >= 4 && hasScales())  race = "dragonne";
-				else race = "feline-morph";
-			}
+			if (felineScore() >= 5 && race != "kaithrit") race = felineRace();
 			if (leithanScore() >= 6) race = "leithan";
 			if (nukiScore() >= 6) race = "kui-tan";
 			if (vanaeScore() >= 6) race = "vanae-morph";
@@ -8818,11 +8855,20 @@
 				if (hasCock() && !hasVagina() && beardLength == 0 && tallness < 63) return "bull-boy";
 				if (!hasCock() && hasVagina()) return "cow-boy";
 				if (hasCock() && !hasVagina()) return "bull-man";
-				
-				
 				return "bull-morph";
 			}
 			return "part bovine-morph";
+		}
+		public function felineRace():String
+		{
+			if (hasTail(GLOBAL.TYPE_FELINE) && tailCount > 1) return "nekomata";
+			else if (dragonScore() >= 4 && hasScales())  return "dragonne";
+			else return "feline-morph";
+		}
+		public function kitsuneRace():String
+		{
+			if (hasPerk("Enlightened Nine-tails") || hasPerk("Nine-tails") || hasPerk("Corrupted Nine-tails")) return "kitsune";
+			else return "kitsune-morph";
 		}
 		public function taurRace(race:String = ""):String
 		{
@@ -8848,31 +8894,6 @@
 			if (race().indexOf("half-") != -1) return true;
 			if (race().indexOf("half ") != -1) return true;
 			return false;
-		}
-		public function dragonScore():Number
-		{
-			var dragonCounter:Number = 0;
-			if (faceType == GLOBAL.TYPE_DRACONIC)
-				dragonCounter++;
-			if (earType == GLOBAL.TYPE_DRACONIC || earType == GLOBAL.TYPE_GRYVAIN)
-				dragonCounter++;
-			if (hasTail(GLOBAL.TYPE_DRACONIC) || hasTail(GLOBAL.TYPE_GRYVAIN))
-				dragonCounter++;
-			if (tongueType == GLOBAL.TYPE_DRACONIC)
-				dragonCounter++;
-			if (cockTotal(GLOBAL.TYPE_DRACONIC) > 0 || cockTotal(GLOBAL.TYPE_GRYVAIN) > 0)
-				dragonCounter++;
-			if (hasWings(GLOBAL.TYPE_DRACONIC) || hasWings(GLOBAL.TYPE_SMALLDRACONIC) || hasWings(GLOBAL.TYPE_GRYVAIN))
-				dragonCounter++;
-			if (legType == GLOBAL.TYPE_DRACONIC || legType == GLOBAL.TYPE_GRYVAIN)
-				dragonCounter++;
-			if (hasHorns(GLOBAL.TYPE_DRACONIC) || hasHorns(GLOBAL.TYPE_LIZAN) || hasHorns(GLOBAL.TYPE_GRYVAIN))
-				dragonCounter++;
-			if (skinType == GLOBAL.SKIN_TYPE_SCALES && dragonCounter > 0)
-				dragonCounter++;
-			if (hasPerk("Dragonfire"))
-				dragonCounter++;
-			return dragonCounter;
 		}
 		public function humanScore(): int {
 			var counter: int = 0;
@@ -9019,6 +9040,21 @@
 			if (counter > 3 && hasCock(GLOBAL.TYPE_DEMONIC)) counter++;
 			return counter;
 		}
+		public function dragonScore():Number
+		{
+			var counter:Number = 0;
+			if (faceType == GLOBAL.TYPE_DRACONIC) counter++;
+			if (earType == GLOBAL.TYPE_DRACONIC || earType == GLOBAL.TYPE_GRYVAIN) counter++;
+			if (hasTail(GLOBAL.TYPE_DRACONIC) || hasTail(GLOBAL.TYPE_GRYVAIN)) counter++;
+			if (tongueType == GLOBAL.TYPE_DRACONIC) counter++;
+			if (cockTotal(GLOBAL.TYPE_DRACONIC) > 0 || cockTotal(GLOBAL.TYPE_GRYVAIN) > 0) counter++;
+			if (hasWings(GLOBAL.TYPE_DRACONIC) || hasWings(GLOBAL.TYPE_SMALLDRACONIC) || hasWings(GLOBAL.TYPE_GRYVAIN)) counter++;
+			if (legType == GLOBAL.TYPE_DRACONIC || legType == GLOBAL.TYPE_GRYVAIN) counter++;
+			if (hasHorns(GLOBAL.TYPE_DRACONIC) || hasHorns(GLOBAL.TYPE_LIZAN) || hasHorns(GLOBAL.TYPE_GRYVAIN)) counter++;
+			if (counter > 0 && skinType == GLOBAL.SKIN_TYPE_SCALES) counter++;
+			if (hasPerk("Dragonfire")) counter++;
+			return counter;
+		}
 		public function felineScore(): int {
 			var counter: int = 0;
 			if (earType == GLOBAL.TYPE_FELINE) counter++;
@@ -9029,72 +9065,6 @@
 			if (eyeType == GLOBAL.TYPE_FELINE && faceType == GLOBAL.TYPE_FELINE) counter++;
 			if (counter > 1 && cockTotal(GLOBAL.TYPE_FELINE) == cockTotal()) counter++;
 			return counter;
-		}
-		public function vulpineScore():Number
-		{
-			var counter: int = 0;
-			if (earType == GLOBAL.TYPE_VULPINE) counter++;
-			if (hasTail(GLOBAL.TYPE_VULPINE) && hasTailFlag(GLOBAL.FLAG_FURRED)) counter++;
-			if (faceType == GLOBAL.TYPE_VULPINE) counter++;
-			if ((armType == GLOBAL.TYPE_VULPINE || armType == GLOBAL.TYPE_CANINE && counter > 0) && hasArmFlag(GLOBAL.FLAG_FURRED)) counter++; // canine arms counts if has some vulpine features
-			if ((legType == GLOBAL.TYPE_VULPINE || legType == GLOBAL.TYPE_CANINE && counter > 0) && hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) counter++; // canine legs counts if has some vulpine features
-			if (counter > 0 && hasCock() && cockTotal(GLOBAL.TYPE_CANINE) + cockTotal(GLOBAL.TYPE_VULPINE) == cockTotal() && totalKnots() == cockTotal()) counter++; // genitalia counts if has some other vulpine featires
-			else if (counter > 0 && hasVagina() && vaginaTotal(GLOBAL.TYPE_CANINE) + vaginaTotal(GLOBAL.TYPE_VULPINE) == vaginaTotal()) counter++;
-			if (breastRows.length > 1 && counter > 0) counter++;
-			if (hasFur() && counter > 0) counter++;
-			return counter;
-		}
-		// Copy-paste from CoC. Messy...
-		public function kitsuneScore():Number
-		{
-			var kitsuneCounter:int = 0;
-			//If the character has fox ears, +1
-			if (earType == GLOBAL.TYPE_VULPINE)
-				kitsuneCounter++;
-			//If the character has a fox tail, +1
-			if (hasTail(GLOBAL.TYPE_VULPINE))
-				kitsuneCounter++;
-			//If the character has two or more fox tails, +2
-			if (hasTail(GLOBAL.TYPE_VULPINE) && tailCount >= 2)
-				kitsuneCounter += 2;
-			if (hasTail(GLOBAL.TYPE_VULPINE) && tailCount == 9)
-				kitsuneCounter += 1;
-			//If the character has tattooed skin, +1
-			//9999
-			//If the character has a 'vag of holding', +1
-			if (biggestVaginalCapacity() >= 8000)
-				kitsuneCounter++;
-			//If the character's kitsune score is greater than 0 and:
-			//If the character has a normal or foxy face, +1
-			if (kitsuneCounter > 0 && (faceType == GLOBAL.TYPE_HUMAN || faceType == GLOBAL.TYPE_VULPINE))
-				kitsuneCounter++;
-			//If the character's kitsune score is greater than 1 and:
-			//If the character has kitsune-colored hair
-			// commented, requires Lucid Dreams mod parts to work
-			//if (kitsuneCounter > 0 && (InCollection(furColor, kGAMECLASS.basicKitsuneHair, kGAMECLASS.elderKitsuneColors, kGAMECLASS.corruptKitsuneColors)))
-				//kitsuneCounter++;
-			//If the character's femininity is 40 or higher, +1
-			if (kitsuneCounter > 0 && femininity >= 40)
-				kitsuneCounter++;
-			//If the character has fur of non-foxy color
-			// commented, requires Lucid Dreams mod parts to work
-			//if (skinType == GLOBAL.SKIN_TYPE_FUR && !InCollection(furColor, kGAMECLASS.basicKitsuneFur, kGAMECLASS.elderKitsuneColors, kGAMECLASS.corruptKitsuneColors))
-				//kitsuneCounter--;
-			if (skinType > GLOBAL.SKIN_TYPE_FUR)
-				kitsuneCounter -= 2;  // Not skin or fur
-			//If the character has abnormal legs, -1
-			if (!InCollection(legType, GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_VULPINE))
-				kitsuneCounter--;
-			//If the character has a nonhuman face, -1
-			if (!InCollection(faceType, GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_VULPINE))
-				kitsuneCounter--;
-			//If the character has ears other than fox ears, -1
-			if (earType != GLOBAL.TYPE_VULPINE)
-				kitsuneCounter--;
-			//If the character has tail(s) other than fox tails, -1
-			if (hasTail() && tailType != GLOBAL.TYPE_VULPINE)
-				kitsuneCounter--;
-			return kitsuneCounter;
 		}
 		public function frogScore(): int
 		{
@@ -9219,6 +9189,30 @@
 			if (counter > 1 && hasCock() && cumType == GLOBAL.FLUID_TYPE_HRAD_CUM) counter++;
 			if (counter > 1 && hasVagina() && girlCumType == GLOBAL.FLUID_TYPE_HRAD_CUM) counter++;
 			if (!isBiped() || !hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) counter--;
+			return counter;
+		}
+		public function kitsuneScore():Number
+		{
+			var counter:int = 0;
+			if (earType == GLOBAL.TYPE_VULPINE) counter++;
+			if (hasTail(GLOBAL.TYPE_VULPINE)) counter++;
+			if (hasTail(GLOBAL.TYPE_VULPINE) && tailCount >= 2) counter += 2;
+			if (hasTail(GLOBAL.TYPE_VULPINE) && tailCount == 9) counter += 1;
+			//If the character has tattooed skin, +1
+			//9999
+			if (biggestVaginalCapacity() >= 8000) counter++;
+			if (counter > 0 && (faceType == GLOBAL.TYPE_HUMAN || faceType == GLOBAL.TYPE_VULPINE)) counter++;
+			// commented, requires Lucid Dreams mod parts to work
+			//if (counter > 0 && (InCollection(furColor, kGAMECLASS.basicKitsuneHair, kGAMECLASS.elderKitsuneColors, kGAMECLASS.corruptKitsuneColors))) counter++;
+			if (counter > 0 && femininity >= 40) counter++;
+			//If the character has fur of non-foxy color
+			// commented, requires Lucid Dreams mod parts to work
+			//if (skinType == GLOBAL.SKIN_TYPE_FUR && !InCollection(furColor, kGAMECLASS.basicKitsuneFur, kGAMECLASS.elderKitsuneColors, kGAMECLASS.corruptKitsuneColors)) counter--;
+			if (skinType > GLOBAL.SKIN_TYPE_FUR) counter -= 2;  // Not skin or fur
+			if (!InCollection(legType, GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_VULPINE)) counter--;
+			if (!InCollection(faceType, GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_VULPINE)) counter--;
+			if (earType != GLOBAL.TYPE_VULPINE) counter--;
+			if (!hasTail(GLOBAL.TYPE_VULPINE)) counter--;
 			return counter;
 		}
 		public function myrScore(): int
@@ -9348,6 +9342,20 @@
 			if (cumType == GLOBAL.FLUID_TYPE_VANAE_CUM) counter++;
 			if (hasStatusEffect("Vanae Markings")) counter++;
 			if (counter > 0 && hairType == GLOBAL.HAIR_TYPE_TENTACLES) counter++;
+			return counter;
+		}
+		public function vulpineScore():Number
+		{
+			var counter: int = 0;
+			if (earType == GLOBAL.TYPE_VULPINE) counter++;
+			if (hasTail(GLOBAL.TYPE_VULPINE) && hasTailFlag(GLOBAL.FLAG_FURRED)) counter++;
+			if (faceType == GLOBAL.TYPE_VULPINE) counter++;
+			if ((armType == GLOBAL.TYPE_VULPINE || (armType == GLOBAL.TYPE_CANINE && counter > 0)) && hasArmFlag(GLOBAL.FLAG_FURRED)) counter++;
+			if ((legType == GLOBAL.TYPE_VULPINE || (legType == GLOBAL.TYPE_CANINE && counter > 0)) && hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) counter++;
+			if (counter > 0 && hasCock() && cockTotal(GLOBAL.TYPE_CANINE) + cockTotal(GLOBAL.TYPE_VULPINE) == cockTotal() && totalKnots() == cockTotal()) counter++;
+			if (counter > 0 && hasVagina() && vaginaTotal(GLOBAL.TYPE_CANINE) + vaginaTotal(GLOBAL.TYPE_VULPINE) == vaginaTotal()) counter++;
+			if (breastRows.length > 1 && counter > 0) counter++;
+			if (hasFur() && counter > 0) counter++;
 			return counter;
 		}
 		public function zilScore(): int
@@ -9733,7 +9741,9 @@
 			}
 			if(descripted == 0 && hasPerk("Buttslut") && rand(2) == 0)
 			{
+				if (descripted > 0) desc += ", ";
 				desc += RandomInCollection("slutty","fuck-hungry","cock-hungry","fuckable","puckered","eager","greedy","ravenous","insatiable");
+				descripted++;
 			}
 			
 			if (descripted > 0) desc += " ";
@@ -10343,6 +10353,12 @@
 					descripted++;
 				}
 			}
+			if(hasStatusEffect("Rubber Wrapped") && descripted < 2 && rand(6) == 0)
+			{
+				if(descripted > 0) description += ", ";
+				description += RandomInCollection("rubber-wrapped","latex-encased","shrink-wrapped","ebony-coated","latex-lacquered","suit-encased","latex-enclosed","rubber-encased","latex-wrapped","rubber-painted");
+				descripted++;
+			}
 			if (descripted && rand(2) == 0 && nipplesPierced > 0 && rowNum == 0) {
 				if (descripted > 0) description += ", ";
 				if (nipplesPierced == 5) description += "chained ";
@@ -10356,6 +10372,7 @@
 				else if (rando == 1) description += "goopy ";
 				else if (rando == 2) description += "slippery ";
 			}
+			
 			/* 9999
 			if (!descripted && InCollection(nippleColor, "black", "ebony", "obsidian", "onyx", "sable")) {
 				rando = rand(4);
@@ -11276,6 +11293,13 @@
 			{
 				if (adjectiveCount > 0) desc+= ", ";
 				desc += RandomInCollection(["fuckable","cock-ready","cock-hungry","sex-hungry","yummy-looking","yummy","fuckable","slutty","sexy","adorable"]);
+				adjectiveCount++;
+			}
+			//Omnisuit!
+			if(hasStatusEffect("Rubber Wrapped") && adjectiveCount < adjectiveLimit && rand(6) == 0)
+			{
+				if(adjectives > 0) desc += ", ";
+				desc += RandomInCollection("rubber-lined","latex-lined","shrink-wrapped","ebony-coated","latex-lacquered","latex-enclosed","rubber-encased","latex-wrapped","rubber-painted");
 				adjectiveCount++;
 			}
 			//COLOR STUFF!
@@ -12330,6 +12354,12 @@
 			{
 				if(adjectives > 0) descript += ", ";
 				descript += "pierced";
+				adjectives++;
+			}
+			if(hasStatusEffect("Rubber Wrapped") && adjectives < adjectiveLimit && rand(6) == 0)
+			{
+				if(adjectives > 0) descript += ", ";
+				descript += RandomInCollection("rubber-wrapped","latex-encased","shrink-wrapped","ebony-coated","latex-lacquered","suit-encased","latex-enclosed","rubber-encased","latex-wrapped","rubber-painted");
 				adjectives++;
 			}
 			//Color: 1/15 chance
@@ -14493,34 +14523,39 @@
 				{
 					var msg:String = "";
 					if (spacingsF) msg += " ";
-					msg += "<b>";
+					
 					if (this is PlayerCharacter)
 					{
 						if (holePointer.hymen && hole >= 0)
 						{
-							msg += "Your hymen is torn";
+							msg += "<b>Your hymen is torn";
 							holePointer.hymen = false;
+							if (vaginalVirgin) msg += ", robbing you of your vaginal virginity";
+							msg += ".</b>";
 						}
-						else msg += "You have been penetrated";
-						
-						if (hole >= 0 && vaginalVirgin) msg += ", robbing you of your vaginal virginity";
-						else if (analVirgin) msg += ", robbing you of your anal virginity";
-						msg += ".";
+						else if (hole < 0)
+						{
+							msg += "<b>You have been penetrated";
+							if (analVirgin) msg += ", robbing you of your anal virginity";
+							msg += ".</b>";
+						}
 					}
 					else
 					{
 						if (holePointer.hymen && hole >= 0)
 						{
-							msg += (capitalA == "" ? short + "’s" : capitalA + possessive(short)) + " hymen is torn";
+							msg += "<b>" + (capitalA == "" ? short + "’s" : capitalA + possessive(short)) + " hymen is torn";
 							holePointer.hymen = false;
+							if (hole >= 0 && vaginalVirgin)	msg += ", robbing " + mf("him", "her") + " of " + mf("his", "her") + " vaginal virginity";
+							msg += ".</b>";
 						}
-						else msg += capitalA + short + " has been penetrated";
-						
-						if (hole >= 0 && vaginalVirgin)	msg += ", robbing " + mf("him", "her") + " of " + mf("his", "her") + " vaginal virginity";
-						else if (analVirgin) msg += ", robbing " + mf("him", "her") + " of " + mf("his", "her") + " anal virginity";
-						msg += ".";
+						else if (hole < 0)
+						{
+							msg += "<b>" + capitalA + short + " has been penetrated";
+							if (hole < 0 && analVirgin) msg += ", robbing " + mf("him", "her") + " of " + mf("his", "her") + " anal virginity";
+							msg += ".</b>";
+						}
 					}
-					msg += "</b>";
 					if(spacingsB) msg += " ";
 					output(msg);
 				}
@@ -14529,9 +14564,13 @@
 				{
 					vaginalVirgin = false;
 					holePointer.hymen = false;
+					devirgined = true;
 				}
-				else if (analVirgin) analVirgin = false;
-				devirgined = true;
+				else if (hole < 0 && analVirgin)
+				{
+					analVirgin = false;
+					devirgined = true;
+				}
 			}
 			//Delay anti-stretching
 			if(volume >= .35 * capacity) {
@@ -14571,7 +14610,7 @@
 							else output("<b>" + (capitalA == "" ? short + "’s" : capitalA + possessive(short)) + " " + vaginaDescript(hole) + " is stretched out a little bit.</b>");
 						}
 					}
-					else {
+					else if (hole < 0) {
 						if (this is PlayerCharacter)
 						{
 							if(holePointer.looseness() >= 5) output("<b>Your " + assholeDescript() + " is stretched painfully wide, gaped in a way that practically invites huge monster-cocks to plow you.</b>");
@@ -14634,7 +14673,7 @@
 					willpowerMod -= 1;
 					intelligenceMod -= 1;
 					createStatusEffect("Smashed",0,0,0,0, false, "Icon_DizzyDrunk", "You're three sheets to the wind, but you feel like you could flip a truck.\n\nThis status will expire as your alcohol levels drop.", false, 0,0xB793C4);
-					kGAMECLASS.eventBuffer += "\n\nWalking is increasingly difficult, but you'll be damned if you don't feel like you can do anything. <b>You're smashed!</b>";
+					kGAMECLASS.eventBuffer += "\n\n[pc.Walking] is increasingly difficult, but you'll be damned if you don't feel like you can do anything. <b>You're smashed!</b>";
 				}
 				//Drunk
 				//+4 physique & -1 willpower/int/reflexes
@@ -15254,8 +15293,12 @@
 		// Calculates the weight of an amount of fluid.
 		public function fluidWeight(fluidAmount: Number = 0, fluidType:int = -1):Number
 		{
-			if(InCollection(fluidType, GLOBAL.FLUID_TYPE_HONEY, GLOBAL.FLUID_TYPE_MILKSAP, GLOBAL.FLUID_TYPE_CUMSAP, GLOBAL.FLUID_TYPE_NECTAR, GLOBAL.FLUID_TYPE_BLUEBERRY_YOGURT)) fluidAmount *= 0.005;
-			else if(InCollection(fluidType, GLOBAL.FLUID_TYPE_CUM, GLOBAL.FLUID_TYPE_GABILANI_CUM, GLOBAL.FLUID_TYPE_NYREA_CUM, GLOBAL.FLUID_TYPE_VANAE_CUM)) fluidAmount *= 0.0035;
+			// Reference: 1 mL is about 1/473.18 lbs
+			//	1 mL of water is about 0.0022 lbs of water
+			//	1 mL of honey is about 0.0033 lbs of honey
+			
+			if(InCollection(fluidType, GLOBAL.FLUID_TYPE_HONEY, GLOBAL.FLUID_TYPE_MILKSAP, GLOBAL.FLUID_TYPE_CUMSAP, GLOBAL.FLUID_TYPE_NECTAR, GLOBAL.FLUID_TYPE_BLUEBERRY_YOGURT)) fluidAmount *= 0.0035;
+			else if(InCollection(fluidType, GLOBAL.FLUID_TYPE_CUM, GLOBAL.FLUID_TYPE_GABILANI_CUM, GLOBAL.FLUID_TYPE_NYREA_CUM, GLOBAL.FLUID_TYPE_VANAE_CUM)) fluidAmount *= 0.0027;
 			else fluidAmount *= 0.0025;
 			
 			return fluidAmount;
@@ -15992,6 +16035,79 @@
 		public function onLeaveBuyMenu():void
 		{
 			throw new Error("Vendor doesn't have a buy-menu leave functor specified.");
+		}
+		
+		// Item Slot Shenanigans
+		public function lockItemSlot(slot:Number, msg:String = "", minutes:Number = 0):void
+		{
+			switch(slot)
+			{
+				case GLOBAL.CLOTHING:
+				case GLOBAL.ARMOR:
+					createStatusEffect("Armor Slot Disabled", 0, 0, 0, 0, true, "Blocked", msg, false, minutes);
+					break;
+				case GLOBAL.MELEE_WEAPON:
+					createStatusEffect("Melee Weapon Slot Disabled", 0, 0, 0, 0, true, "Blocked", msg, false, minutes);
+					break;
+				case GLOBAL.RANGED_WEAPON:
+					createStatusEffect("Ranged Weapon Slot Disabled", 0, 0, 0, 0, true, "Blocked", msg, false, minutes);
+					break;
+				case GLOBAL.SHIELD:
+					createStatusEffect("Shield Slot Disabled", 0, 0, 0, 0, true, "Blocked", msg, false, minutes);
+					break;
+				case GLOBAL.ACCESSORY:
+					createStatusEffect("Accessory Slot Disabled", 0, 0, 0, 0, true, "Blocked", msg, false, minutes);
+					break;
+				case GLOBAL.LOWER_UNDERGARMENT:
+					createStatusEffect("Lower Garment Slot Disabled", 0, 0, 0, 0, true, "Blocked", msg, false, minutes);
+					break;
+				case GLOBAL.UPPER_UNDERGARMENT:
+					createStatusEffect("Upper Garment Slot Disabled", 0, 0, 0, 0, true, "Blocked", msg, false, minutes);
+					break;
+			}
+			return;
+		}
+		public function unlockItemSlot(slot:Number):void
+		{
+			switch(slot)
+			{
+				case GLOBAL.CLOTHING:
+				case GLOBAL.ARMOR:
+					removeStatusEffect("Armor Slot Disabled");
+					break;
+				case GLOBAL.MELEE_WEAPON:
+					removeStatusEffect("Melee Weapon Slot Disabled");
+					break;
+				case GLOBAL.RANGED_WEAPON:
+					removeStatusEffect("Ranged Weapon Slot Disabled");
+					break;
+				case GLOBAL.SHIELD:
+					removeStatusEffect("Shield Slot Disabled");
+					break;
+				case GLOBAL.ACCESSORY:
+					removeStatusEffect("Accessory Slot Disabled");
+					break;
+				case GLOBAL.LOWER_UNDERGARMENT:
+					removeStatusEffect("Lower Garment Slot Disabled");
+					break;
+				case GLOBAL.UPPER_UNDERGARMENT:
+					removeStatusEffect("Upper Garment Slot Disabled");
+					break;
+			}
+			return;
+		}
+		public function itemSlotUnlocked(slot:Number):Boolean
+		{
+			if
+			(	(InCollection(slot, GLOBAL.CLOTHING, GLOBAL.ARMOR) && hasStatusEffect("Armor Slot Disabled"))
+			||	(slot == GLOBAL.MELEE_WEAPON && hasStatusEffect("Melee Weapon Slot Disabled"))
+			||	(slot == GLOBAL.RANGED_WEAPON && hasStatusEffect("Ranged Weapon Slot Disabled"))
+			||	(slot == GLOBAL.SHIELD && hasStatusEffect("Shield Slot Disabled"))
+			||	(slot == GLOBAL.ACCESSORY && hasStatusEffect("Accessory Slot Disabled"))
+			||	(slot == GLOBAL.LOWER_UNDERGARMENT && hasStatusEffect("Lower Garment Slot Disabled"))
+			||	(slot == GLOBAL.UPPER_UNDERGARMENT && hasStatusEffect("Upper Garment Slot Disabled"))
+			)	return false;
+			return true;
 		}
 	}
 }

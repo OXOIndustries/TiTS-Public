@@ -635,6 +635,8 @@ public function quentonTrainingPitch():void
 	// PC uses strapon:
 	else
 	{
+		x = rand(pc.vaginas.length);
+		
 		output("\n\nOnce you’ve got the hardlight dildo all the way in, you thrust just a little. The friction from your [pc.lowerUndergarment] rubs against [pc.oneVagina], a pleasing sensation that builds with every thrust. Quenton starts to push back against you, a low growl coming from his throat with every motion as he too eases into it. The muscles of his back and legs tighten and loosen, every movement pushing him into an easy rhythm. After a moment, you start thrusting a little harder, and Quenton drops one hand to his foot-long dong and starts stroking himself.");
 		output("\n\n<i>“You got it, Steele,”</i> Quenton says, his voice low and husky, and lets out a long moan. <i>“Just keep on goin’.”</i>");
 		output("\n\nYou plan to. Your grip tightens on his narrow hips, and as you pick up the pace, your hands slowly trace up his sides. Quenton straightens up and presses his muscled ass back against you, making your thrusts go deeper. You feel the heat coming off of him as he presses his back against your [pc.chest], and the scent of his musk is intoxicating.");
@@ -644,12 +646,12 @@ public function quentonTrainingPitch():void
 		if(pc.balls > 0) output(", matched by your own [pc.balls] in the same rhythm slapping against his ass");
 		output(". His head tilts back, and he squeezes your thigh, urging you on.");
 		output("\n\n<i>“Harder,”</i> Quenton groans, his voice catching at the end.");
-		output("\n\nYou drop your hands to his hips again, your fingers wrapping around them from the front, all for a better grip. His rear tunnel squeezes your strapon, and you push harder, increasing the pressure against [pc.oneVagina] as you thrust again, the sound of your flesh slapping together filling the small office. The heat coming off of him is enough to make you start sweating, and you wonder if the mirrors will fog up before you two are done.");
+		output("\n\nYou drop your hands to his hips again, your fingers wrapping around them from the front, all for a better grip. His rear tunnel squeezes your strapon, and you push harder, increasing the pressure against your [pc.vagina " + x + "] as you thrust again, the sound of your flesh slapping together filling the small office. The heat coming off of him is enough to make you start sweating, and you wonder if the mirrors will fog up before you two are done.");
 		output("\n\nThe pleasure in your [pc.crotch] builds, bringing you closer to orgasm, but you force it down. No way you’re going to finish before him; you’ll show Quenton you’re stronger. Just to drive that home, you drop one hand to his swinging balls and give them a soft squeeze, then start stroking his swollen sack.");
 		output("\n\nAnother long, low groan tears its way out of Quenton’s throat, and he arches his back, pressing his shoulders against your [pc.chest]. <i>“Gonna,”</i> he gasps out, <i>“gonna–”</i>");
 		output("\n\nAnything else Quenton was going to say is lost in a throaty groan as his cock twitches and spurts out a long stream of pearly white cum, splattering against the mirror halfway across the office. You don’t let up, and give his balls a good squeeze as he shoots off again, his breathing rough and ragged. He gives his horsedong a few more tugs, squeezing out another quick shot, before leaning forward and resting his hands on his knees again.");
-		output("\n\nWith the buff bull finished and drained, it’s time for you to get yours. You clench your hands on Quenton’s hips again and pound away, focusing on the sound of his low grunts and friction from every thrust as your [pc.lowerUndergarment] massages [pc.oneVagina]. It’s not long before the sensation becomes too much. You look to the cum-spattered mirror, and see Quenton watching you both there, and give him a grin as you pound home one last time.");
-		output("\n\nYour [pc.oneVagina] spasms as the orgasm rips through you, your whole body clenching at once, and you let out a long groan of your own as your [pc.girlCum] turns your [pc.lowerUndergarment] slick and swampy. Your hips thrust a few more times on their own, then your whole body sags.");
+		output("\n\nWith the buff bull finished and drained, it’s time for you to get yours. You clench your hands on Quenton’s hips again and pound away, focusing on the sound of his low grunts and friction from every thrust as your [pc.lowerUndergarment] massages your [pc.vaginaNoun " + x + "]. It’s not long before the sensation becomes too much. You look to the cum-spattered mirror, and see Quenton watching you both there, and give him a grin as you pound home one last time.");
+		output("\n\nYour [pc.vaginaNoun " + x + "] spasms as the orgasm rips through you, your whole body clenching at once, and you let out a long groan of your own as your [pc.girlCum] turns your [pc.lowerUndergarment] slick and swampy. Your hips thrust a few more times on their own, then your whole body sags.");
 		output("\n\nA few deep breaths later, you slowly pull your strapon out of Quenton’s asshole, and let it dangle free as you catch your breath. Quenton straightens himself with a grunt, and grabs some pre-moistened towels from a bin in the corner. His familiar grin is back in place as he cleans himself off, and he gives you an appreciative look as you do the same.");
 		output("\n\n<i>“Damn fine work, hardbody,”</i> Quenton says, then pulls out a fresh pair of underwear from one of his desk drawers. Looks like he does this kind of thing all the time, if he’s that well-prepared. <i>“We’ve got to do this again sometime.”</i> He looks to the mess he made on the mirror, and chuckles. <i>“Be right back with you after I get this cleaned up.”</i>");
 		output("\n\nYou chuckle, and finish cleaning yourself up, then don your discarded");
@@ -833,7 +835,7 @@ public function simoneWorkoutApproach():void
 		output("\n\nYou ask her if you can’t do both, then introduce yourself. If she recognizes your name, she doesn’t show it.");
 		output("\n\n<i>“I’m Simone,”</i> she says, <i>“and </i>I’m<i> here to lift. But if you’re here for both, how about a little challenge?”</i>");
 		output("\n\nWhen you ask what kind of challenge, Simone’s smirk returns. It looks like she’s been waiting for someone to ask.");
-		output("\n\n<i>“Let’s see who’s stronger,”</i>, Simone says. She nudges the chest press bar, setting her boobs to jiggling. <i>“Five presses, add weight, five more, add weight, you get it. First one who can’t lift anymore loses.”</i> She smiles, the tip of her wide pink tongue flicking out between her lips. <i>“Loser makes the winner come. You in?”</i>");
+		output("\n\n<i>“Let’s see who’s stronger,”</i> Simone says. She nudges the chest press bar, setting her boobs to jiggling. <i>“Five presses, add weight, five more, add weight, you get it. First one who can’t lift anymore loses.”</i> She smiles, the tip of her wide pink tongue flicking out between her lips. <i>“Loser makes the winner come. You in?”</i>");
 		
 		flags["MET_SIMONE"] = 1;
 		
@@ -967,6 +969,8 @@ public function simoneWorkoutResults(response:String = ""):void
 	if(!pp.hasVagina()) pp.createVagina();
 	pp.vaginas[0].wetnessRaw = 4;
 	
+	var x:int = 0;
+	
 	switch(response)
 	{
 		// Victory
@@ -1000,6 +1004,8 @@ public function simoneWorkoutResults(response:String = ""):void
 			// If PC has no penises (Vaginas only)
 			if(!pc.hasCock() || (pc.isHerm() && rand(3) == 0))
 			{
+				x = rand(pc.vaginas.length);
+				
 				output("\n\nOnce she");
 				if(!pc.isCrotchExposed()) output(" exposes your crotch");
 				else output(" sees your crotch");
@@ -1008,20 +1014,20 @@ public function simoneWorkoutResults(response:String = ""):void
 				else output(" <i>“Wow. You’re making me wish I had more than one tongue,”</i> she says. <i>“Not for the first time.”</i>");
 				output(" She meets your eyes, to make sure you’re watching, then slips her tongue out from between her lips, and lets it dangle down past her chin. Simone’s tongue is easily three inches wide, and longer than some people’s cocks.");
 				output("\n\nAnd she’s clearly looking forward to using it on you.");
-				output("\n\nSimone licks you up one [pc.thigh], pauses to plant a kiss on [pc.oneVagina], then slowly trails her tongue down your other [pc.thigh], sending a shiver through you. She smiles at your reaction then does it again, using her tongue on [pc.oneVagina] this time, pressing its width against your lips.");
-				output("\n\nSimone’s tongue covers all of [pc.oneVagina] in soft, smooth flesh, and she rubs it up and down, sliding it out to either side against your [pc.thighs] before returning to give you another long lick. This is definitely something she’s done before, and you spread your legs wider, to give her better access.");
+				output("\n\nSimone licks you up one [pc.thigh], pauses to plant a kiss on [pc.oneVagina], then slowly trails her tongue down your other [pc.thigh], sending a shiver through you. She smiles at your reaction then does it again, using her tongue on your [pc.vagina " + x + "] this time, pressing its width against your lips.");
+				output("\n\nSimone’s tongue covers all of your [pc.vaginaNoun " + x + "] in soft, smooth flesh, and she rubs it up and down, sliding it out to either side against your [pc.thighs] before returning to give you another long lick. This is definitely something she’s done before, " + (pc.hasLegs() ? "and you spread your legs wider" : "angle your crotch") + " to give her better access.");
 				output("\n\n<i>“That’s it, [pc.name],”</i> Simone says, then laughs quietly. <i>“Just open wide and enjoy it.”</i>");
-				output("\n\nBefore you can respond, Simone runs the tip of her tongue up and down over [pc.oneVagina], slowly at first, then picking up speed as pleasure runs through you. Your hands find the sides of the weight bench and squeeze, and you let out a moan as Simone’s tongue work continues.");
-				output("\n\nSimone pulls back and kisses [pc.oneVagina] again, then slips her tongue between your lips, sliding the pink flesh up inside you. You gasp as the flexible organ wiggles back and forth, then curls up against the roof of your insides, the tip sliding forward and back, seeking out something.");
-				output("\n\nThe busty cowgirl’s own lips are at work as well, pressed tight against [pc.oneVagina], her upper lip on the hood over [pc.oneClit]. This sends little shocks of pleasure through you, but it doesn’t seem to be her main focus.");
-				output("\n\nSimone’s tongue lashes back and forth inside you, the tip pressing everywhere on [pc.oneVagina]’s upper wall, and then it hits a spot that makes you cry out. Your back arches, and you press [pc.oneVagina] harder against Simone’s face. She lets out a chuckle, sounding triumphant, and rubs the tip of her tongue against that one spot again.");
+				output("\n\nBefore you can respond, Simone runs the tip of her tongue up and down over your [pc.vaginaNoun " + x + "], slowly at first, then picking up speed as pleasure runs through you. Your hands find the sides of the weight bench and squeeze, and you let out a moan as Simone’s tongue work continues.");
+				output("\n\nSimone pulls back and kisses your [pc.vagina " + x + "] again, then slips her tongue between your lips, sliding the pink flesh up inside you. You gasp as the flexible organ wiggles back and forth, then curls up against the roof of your insides, the tip sliding forward and back, seeking out something.");
+				output("\n\nThe busty cowgirl’s own lips are at work as well, pressed tight against your [pc.vaginaNoun " + x + "], her upper lip on the hood over [pc.oneClit]. This sends little shocks of pleasure through you, but it doesn’t seem to be her main focus.");
+				output("\n\nSimone’s tongue lashes back and forth inside you, the tip pressing everywhere on your [pc.vaginaNoun " + x + "]’s upper wall, and then it hits a spot that makes you cry out. Your back arches, and you press your crotch harder against Simone’s face. She lets out a chuckle, sounding triumphant, and rubs the tip of her tongue against that one spot again.");
 				output("\n\nYou squeeze your eyes shut and let out a loud groan as the sensations rip through you. Simone’s tongue has pinpointed the one spot inside you that feels the best, and she’s working her tip against it, massaging your g-spot and making you shake hard enough to rattle the weight bench against the floor.");
 				output("\n\nSimone slows her tongue’s ministrations for a moment, just long enough for you to catch your breath as your [pc.girlCum] drips down her chin. Then, she picks up speed again, her eyes narrowing in amusement as you writhe under her touch.");
 				output("\n\nShe goes through another two rounds of slowing and speeding up, bringing you closer and closer to orgasm every time, then backing off when you’re nearly there. When you finally feel yourself hit the point of no return, you’d tell her to slow down again if you could think clearly enough to form words. But the rippling pleasure from Simone’s tongue makes it hard to focus on anything else, and when she goes even faster than before and doesn’t let up, there’s nothing you can do to hold back.");
 				// If PC doesn't make lots of girlcum
-				if(!pc.isSquirter())
+				if(!pc.isSquirter(x))
 				{
-					output("\n\nYour orgasm hits hard, and you shove [pc.oneVagina] against Simone’s face again, smashing your lips against hers. Holding onto the weight bench is all that keeps you from falling off as your entire body shakes, tremors passing through you from head to toe, your cries of pleasure echoing off the weight room ceiling.");
+					output("\n\nYour orgasm hits hard, and you shove your [pc.vagina " + x + "] against Simone’s face again, smashing your lips against hers. Holding onto the weight bench is all that keeps you from falling off as your entire body shakes, tremors passing through you from head to toe, your cries of pleasure echoing off the weight room ceiling.");
 					output("\n\nWhen Simone pulls her tongue out, you’re breathing like you just ran a race, and it’s a moment before you can open your eyes again. When you do, you see her standing above you, running that amazing tongue over her lips.");
 					output("\n\n<i>“Not bad, [pc.name]. ");
 					// If PC's girlcum type=honey
@@ -1033,7 +1039,7 @@ public function simoneWorkoutResults(response:String = ""):void
 				// If PC makes lots of girlcum
 				else
 				{
-					output("\n\nYour orgasm hits hard, and you shove [pc.oneVagina] against Simone’s face again, smashing your lips against hers. Streams of [pc.girlCum] spray out of [pc.oneVagina], splashing across Simone’s face and hair and boobs, hosing her down completely. Holding onto the weight bench is all that keeps you from falling off as your entire body shakes, tremors passing through you from head to toe, your cries of pleasure echoing off the weight room ceiling.");
+					output("\n\nYour orgasm hits hard, and you shove your [pc.vagina " + x + "] against Simone’s face again, smashing your lips against hers. Streams of [pc.girlCum] spray out of your [pc.vaginaNoun " + x + "], splashing across Simone’s face and hair and boobs, hosing her down completely. Holding onto the weight bench is all that keeps you from falling off as your entire body shakes, tremors passing through you from head to toe, your cries of pleasure echoing off the weight room ceiling.");
 					output("\n\nWhen Simone pulls her tongue out, you’re breathing like you just ran a race, and it’s a moment before you can open your eyes again. When you do, you see her standing above you, your [pc.girlCum] dripping from her face down onto her bra-bound jugs. She looks a little surprised, but runs that amazing tongue over her lips.");
 					output("\n\n<i>“Not bad, [pc.name]. ");
 					// If PC's girlcum type=honey
@@ -1222,7 +1228,7 @@ public function lolaPoolApproach():void
 		output("\n\n<i>“Oh, I’m sorry!”</i> she says, then gives you a long look up and down, her blue eyes wide. <i>“Hi there,”</i> she says, a smile spreading across her face. <i>“I’m Lola. Haven’t seen you here before, huh?”</i>");
 		output("\n\nLola’s only a little over five feet tall, but her hips would look wide on a woman twice her size; on her, they seem almost comically exaggerated. Her butt is appropriately bulbous, with curvy thighs beneath it. Soaked red hair trails down to her shoulders, clearly her natural color, if the little tuft above her pussy is any indication. Two short white horns peek out from among her locks, and her ears are cowlike and floppy. Her skin is pale, and she has the large boobs common among New Texans, with hard, pink nipples.");
 		output("\n\nYou introduce yourself to the bright-eyed cowgirl, and ask if she’s here working out, or if she just likes to swim.");
-		output("\n\n<i>“Little of both,”</i>, Lola says, nodding a few times. <i>“Sometimes I feel like I need a workout, but mostly I just like to swim. Or to fuck.”</i> Her smile grows a little devious as her gaze trails over your [pc.chest]. <i>“Have you ever had sex with someone who’s floating?”</i>");
+		output("\n\n<i>“Little of both,”</i> Lola says, nodding a few times. <i>“Sometimes I feel like I need a workout, but mostly I just like to swim. Or to fuck.”</i> Her smile grows a little devious as her gaze trails over your [pc.chest]. <i>“Have you ever had sex with someone who’s floating?”</i>");
 		output("\n\nYou consider it for a moment, and tell her no, you haven’t. Lola looks down at your crotch.");
 		
 		flags["MET_LOLA"] = 1;
@@ -1301,7 +1307,7 @@ public function lolaPoolSex(response:String = ""):void
 			
 			output("You tell Lola that you would, in fact, like to fuck her while she’s floating.");
 			if(x < 0) output(" You hurry out of the pool and don your [pc.lowerUndergarment], then return to Lola and activate the hardlight dildo.");
-			output(" She gives you an eager grin, and rubs her hands together as she giggles. <i>“C’mon”</i>, she says, reaching down toward your [pc.crotch]. <i>“Let’s get to the right water level.”</i>");
+			output(" She gives you an eager grin, and rubs her hands together as she giggles. <i>“C’mon,”</i> she says, reaching down toward your [pc.crotch]. <i>“Let’s get to the right water level.”</i>");
 			output("\n\nLola takes hold of your [pc.cockOrStrapon " + x + "] and leads you across the pool. She strokes you gently as she walks, her fingers easily slipping up and down your tool, the water’s synthetic decontaminant acting like a low-grade lube. When the water is right at your crotch level, Lola stops and backs up against you, leaning her wide, plump ass against your [pc.crotch], sliding your [pc.cockOrStrapon " + x + "] between her jiggly cheeks.");
 			output("\n\n<i>“You like that, [pc.name]?”</i> Lola asks, then looks back over her shoulder and gives you a bright smile. Bent over like she is, her boobs are dipping halfway into the water, splashing as she rubs her rear against you.");
 			output("\n\nDamn right you do.");

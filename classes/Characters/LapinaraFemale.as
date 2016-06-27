@@ -207,7 +207,7 @@
 		
 		override public function get bustDisplay():String
 		{
-			return (hairColor == "silver" ? "LAPINARA_2" : "LAPINARAFEMALE");
+			return (hairColor == "silver" ? "LAPINARA_2" : "LAPINARA");
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void

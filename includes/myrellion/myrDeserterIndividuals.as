@@ -2103,7 +2103,7 @@ public function sitAndScrewGoldMyr():void
 		output("\n\nAfter you’re both finished, ");
 		if(DontKnowName) output("the ");
 		output("[enemy.name] pulls herself off you and rests against your chest. The pressing of her large, warm breasts, mixed with the cold contrast of her nipple rings, is incredibly pleasant. At the same time, ");
-		if(pc.hasCock()) output("your [pc.cum] runs down her thighs and drips onto your [pc.legOrLegs]");
+		if(pc.hasCock()) output("your [pc.cum] runs down her thighs and drips onto your [pc.legOrLegs].");
 		else output("her girl cum dribbles down her legs and onto your [pc.skinFurScales].");
 
 		output("\n\n<i>“Mmm... that was wonderful,”</i> she dreamily murmurs. Some of her arms wrap around your waist, while the others stroke your cheeks. <i>“It can get lonely out here in the middle of nowhere. Hopefully I’ll see you around...”</i>");

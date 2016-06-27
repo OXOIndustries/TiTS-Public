@@ -57,6 +57,7 @@ public function tryProcSaendraXPackEmail():void
 public function unlockSaendraXPackMail():void
 {
 	clearOutput();
+	clearBust();
 	author("Savin");
 
 	output("Your Codex beeps unexpectedly, alerting you to an incoming extranet message. When you pull your device out, you’re greeted by an message addressed from one <i>“FlyGirl@PhoenixCargo.net.”</i> No bonus points guessing who <i>that</i> is. You flip it open and start to read:");
@@ -98,6 +99,7 @@ public function updateSaendraXPackTimer(delta:Number = 0):void
 public function saendraX1LiftGo():void
 {
 	clearOutput();
+	clearBust();
 	showName("\nDECK 92");
 	author("Savin");
 	generateMapForLocation("SX1 FAKE FIGHT ROOM");

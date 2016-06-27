@@ -314,9 +314,9 @@ package classes.Items.Transformatives
 					pc.lust(15);
 					pc.libido(1);
 					output("\n\nA pinching, clenching sensation in your palate follows, cutting off the supply of drugged spit from your dripping canines. You flex muscles you didn't even know you had, discovering that you can release more on a whim. Excellent.");
-					output("\n\nAfter a few moments, your Codex beeps, informing you that a new chemical has been detected in your mouth, corresponding to a weak version of the venom of a red myrmedion. <b>You've gained a form of red myrvenom!</b>");
+					output("\n\nAfter a few moments, your Codex beeps, informing you that a new chemical has been detected in your mouth, corresponding to a weak version of the venom of a red myrmedion. <b>You've gained a form of red myr venom!</b>");
 					changes++;
-					pc.createPerk("Myr Venom",0,0,0,0,"Allows you do to a little lust damage when melee attacking.");
+					pc.createPerk("Myr Venom",0,0,0,0,"Grants a love-bite tease ability that deals a little lust damage to your opponent.");
 					// Perk Swapped!
 					if(pc.hasPerk("Honeypot"))
 					{

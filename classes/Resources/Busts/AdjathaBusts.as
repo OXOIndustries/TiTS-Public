@@ -71,8 +71,8 @@ package classes.Resources.Busts
 		public var Bust_CASS:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/cass_nude.png", mimeType = "image/png")]
 		public var Bust_CASS_NUDE:Class;
-		[Embed(source = "../../../assets/images/npcs/adjatha/cora.png", mimeType = "image/png")]
 		
+		[Embed(source = "../../../assets/images/npcs/adjatha/cora.png", mimeType = "image/png")]
 		public var Bust_CORA:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/cora_nude.png", mimeType = "image/png")]
 		public var Bust_CORA_NUDE:Class;
@@ -82,6 +82,9 @@ package classes.Resources.Busts
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/darnock.png", mimeType = "image/png")]
 		public var Bust_DARNOCK:Class;
+
+		[Embed(source = "../../../assets/images/npcs/adjatha/dryad.png", mimeType = "image/png")]
+		public var Bust_DRYAD:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/adjatha/flahne.png", mimeType = "image/png")]
 		public var Bust_FLAHNE:Class;
@@ -93,6 +96,11 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/frostwyrm.png", mimeType = "image/png")]
 		public var Bust_FROSTWYRM:Class;
 		public var Bounds_FROSTWYRM:Rectangle = new Rectangle(115, 32, 70, 70);
+		
+		[Embed(source = "../../../assets/images/npcs/adjatha/gene.png", mimeType = "image/png")]
+		public var Bust_GENE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/gene_nude.png", mimeType = "image/png")]
+		public var Bust_GENE_NUDE:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/adjatha/horisha_peck.png", mimeType = "image/png")]
 		public var Bust_HORISHA_AND_PECK:Class;
@@ -196,6 +204,11 @@ package classes.Resources.Busts
 		public var Bust_SEMITH:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/semith_nude.png", mimeType = "image/png")]
 		public var Bust_SEMITH_NUDE:Class;
+		
+		[Embed(source = "../../../assets/images/npcs/adjatha/simone.png", mimeType = "image/png")]
+		public var Bust_SIMONE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/simone_nude.png", mimeType = "image/png")]
+		public var Bust_SIMONE_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/steph.png", mimeType = "image/png")]
 		public var Bust_STEPH:Class;
@@ -319,6 +332,9 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/darnock.png", mimeType = "image/png")]
 			public var Full_DARNOCK:Class;
 			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/dryad.png", mimeType = "image/png")]
+			public var Full_DRYAD:Class;
+			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/flahne.png", mimeType = "image/png")]
 			public var Full_FLAHNE:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/flahne_nude.png", mimeType = "image/png")]
@@ -328,6 +344,11 @@ package classes.Resources.Busts
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/frostwyrm.png", mimeType = "image/png")]
 			public var Full_FROSTWYRM:Class;
+		
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/gene.png", mimeType = "image/png")]
+			public var Full_GENE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/gene_nude.png", mimeType = "image/png")]
+			public var Full_GENE_NUDE:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/horisha_peck.png", mimeType = "image/png")]
 			public var Full_HORISHA_AND_PECK:Class;
@@ -430,6 +451,11 @@ package classes.Resources.Busts
 			public var Full_SEMITH:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/semith_nude.png", mimeType = "image/png")]
 			public var Full_SEMITH_NUDE:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/simone.png", mimeType = "image/png")]
+			public var Full_SIMONE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/simone_nude.png", mimeType = "image/png")]
+			public var Full_SIMONE_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/steph.png", mimeType = "image/png")]
 			public var Full_STEPH:Class;

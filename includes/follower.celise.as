@@ -1655,7 +1655,7 @@ public function zDomCeliseGo():void
 		if(pc.hasCock()) cockSum += pc.cockTotal();
 		if(pc.hasTailCock()) cockSum += pc.tailCount;
 		
-		output("\n\nThe ravenous look in Celise’s eye is as good as a guarantee that unless you take control of the fuck, she’ll roll over you like a runaway glazed doughnut, leaving you sticky everywhere but ultimately unfulfilled. ");
+		output("\n\nThe ravenous look in Celise’s eye is as good as a guarantee that unless you take control of the fuck, she’ll roll over you like a runaway glazed donut, leaving you sticky everywhere but ultimately unfulfilled. ");
 		if(pc.biggestCockLength() > 60) output("She practically oozes her way up your [pc.cockBiggest], stretching her body to match your enormous meat and stopping when the tip is just under her breasts. Her stomach ripples and parts around the gargantuan tool, engulfing it in her hot, gooey flesh.");
 		else 
 		{

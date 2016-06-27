@@ -756,7 +756,7 @@ public function milkMultiplierGainNotificationCheck():void
 
 public function buttslutBootyGrow():void
 {
-	var bootyMin:Number = 20;
+	var bootyMin:Number = 18;
 	
 	// If butt is max size or is currently filled, no need to grow.
 	if(pc.buttRatingRaw >= bootyMin || pc.statusEffectv1("Anally-Filled") > 0) return;

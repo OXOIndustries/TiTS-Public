@@ -391,7 +391,7 @@ public function galotianCodexEntry():void
 public function anataeCodexEntry():void
 {
 	clearOutputCodex();
-	showBust("9999");
+	showBust("FAZIAN_1");
 	outputCodex(header("Anatae"));
 	outputCodex("<i>Ad maius bonum.</i>\n\n");
 	outputCodex("<b>Name (Singular):</b> Anat");
@@ -419,7 +419,7 @@ public function anataeCodexEntry():void
 public function daynarCodexEntry():void
 {
 	clearOutputCodex();
-	var randBust:Array = ["LANE_M", "LANE_F", "LANE_M_NUDE", "LANE_F_NUDE"];
+	var randBust:Array = ["LANE_M", "LANE_F"];
 	showBust(randBust[rand(randBust.length)]);
 	outputCodex(header("Daynar"));
 	outputCodex("<i>Not all lizards are untrustworthy: Just most.</i>\n\n");
@@ -479,7 +479,7 @@ public function dzaanCodex():void
 public function fanfirCodexEntry():void 
 {
 	clearOutputCodex();
-	showBust("9999");
+	showBust("GENE");
 	outputCodex(header("Fanfir"));
 	outputCodex("<i>Massive, deafening heart-stealers. Don’t touch hoard.</i>\n\n");
 	outputCodex("<b>Name:</b> Fanfir");

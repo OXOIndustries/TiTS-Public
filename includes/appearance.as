@@ -1754,6 +1754,11 @@ public function appearance(forTarget:Creature):void
 				btnIndex++;
 			}
 		}
+		// Latex shit reconfigure
+		if (target.armor is Omnisuit)
+		{
+			if(omnisuitMenuBonus(btnIndex)) btnIndex++;
+		}
 	}
 	
 	setTarget(null);

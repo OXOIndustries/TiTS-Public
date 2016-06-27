@@ -29,7 +29,7 @@ package classes.Items.Protection
 			this.description = "a Reaper Armaments Mark I shield generator";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "A military grade shield produced by Reaper Armaments, the Mark I boasts impressive shield strength for its size and class, outpowerforming most civilian models.";
+			this.tooltip = "A military grade shield produced by Reaper Armaments, the Mark I boasts impressive shield strength for its size and class, overpowering and outperforming most civilian models.";
 			this.attackVerb = "null";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);

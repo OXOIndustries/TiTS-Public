@@ -3137,7 +3137,7 @@ public function deck13BackAtTheShop():void
 
 	output("<b>Some time later, you return to the Steele Tech outpost</b>... ");
 	
-	output("\n\nAnno sighs heavily as she all but stumbles through the door, wiping the sweat off her brow on the back of her sleeve. <i>“Holy shit, boss. That was... not was I was expecting,”</i> she says, shooting you a wry grin as she dumps her gun, remaining mags, and tools on the counter and zips down the front of what’s left of her half-shredded catsuit.");
+	output("\n\nAnno sighs heavily as she all but stumbles through the door, wiping the sweat off her brow on the back of her sleeve. <i>“Holy shit, boss. That was... not what I was expecting,”</i> she says, shooting you a wry grin as she dumps her gun, remaining mags, and tools on the counter and zips down the front of what’s left of her half-shredded catsuit.");
 	
 	if (flags["DECK13_GRAY_PRIME_DECISION"] == 3)
 	{

@@ -4022,6 +4022,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				else output2(" <i>Ask Lyralla for an entrance pass.</i>");
 				if(flags["THOLLUM_TOURED"] != undefined) output2(", Taken tour");
 				if(flags["MUSHROOM_TRACKER"] != undefined && flags["MUSHROOM_TRACKER"] > 0) output2("\n<b>* Mushroom Garden, Fluids Collected: </b>" + flags["MUSHROOM_TRACKER"] + " mLs");
+				if(flags["MUSH_SEEN"] != undefined) output2("\n<b>* Mushroom Garden, Growth Level: </b>" + flags["MUSH_SEEN"]);
 				// Yarasta
 				if(flags["MET_YARASTA"] != undefined) output2("\n<b>* Yarasta:</b> Met her");
 				if(flags["SEXED_YARASTA"] != undefined) output2("\n<b>* Yarasta, Times Sexed: </b>" + flags["SEXED_YARASTA"]);
@@ -4312,7 +4313,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["MET_RED_DESERTER"] != undefined)
 				{
 					var redMyrDeserterName:String = "Red Myr Deserter";
-					if(flags["KNOW_GOLD_MYR_NAME"] != undefined) redMyrDeserterName = "Briha";
+					if(flags["KNOW_RED_MYR_NAME"] != undefined) redMyrDeserterName = "Briha";
 					output2("\n<b>* " + redMyrDeserterName + "</b>");
 					if(flags["RED_MYR_DESERTER_BEATEN"] != undefined && flags["RED_MYR_DESERTER_BEATEN"] >= 5) output2(" <b>(Non-hostile)</b>");
 					output2("<b>, Times Encountered: </b>" + flags["MET_RED_DESERTER"]);
@@ -4721,13 +4722,18 @@ public function displayEncounterLog(showID:String = "All"):void
 			miscCount++;
 		}
 		// Super rare and weird TF items/sex toys - regular rare items/armor/weapons can be omitted
-		if(flags["BUTTSLUTINATOR"] != undefined || flags["SYNTHSHEATH_ACQUIRED"] != undefined || flags["SYNTHSHEATH_TWO_FOUND"] != undefined || flags["LOOTED_COCKBOX"] != undefined || flags["ZODEE_GALOQUEST"] != undefined)
+		if(flags["BUTTSLUTINATOR"] != undefined || flags["OMNISUITED"] != undefined || flags["SYNTHSHEATH_ACQUIRED"] != undefined || flags["SYNTHSHEATH_TWO_FOUND"] != undefined || flags["LOOTED_COCKBOX"] != undefined || flags["ZODEE_GALOQUEST"] != undefined)
 		{
 			output2("\n<b><u>Suspicious Items</u></b>");
 			// Buttslutinator Mark 2
 			if(flags["BUTTSLUTINATOR"] != undefined)
 			{
 				output2("\n<b>* Buttslutinator Mark II, Times Used:</b> " + flags["BUTTSLUTINATOR"]);
+			}
+			// Omnisuit
+			if(flags["OMNISUITED"] != undefined)
+			{
+				output2("\n<b>* Omnisuit:</b> Acquired, Used");
 			}
 			// Big like Cock-Box!
 			if(flags["LOOTED_COCKBOX"] != undefined)

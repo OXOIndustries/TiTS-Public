@@ -110,6 +110,7 @@ public function phoenixRecRoom():void
 public function phoenixRecRoomEastBlocked():void
 {
 	clearOutput();
+	clearBust();
 	
 	output("The door is sealed, though beyond it, you can hear the sounds of gunfire.");
 	if (flags["FALL OF THE PHOENIX TALKED TO AI"] == 1) output(" The A.I.");

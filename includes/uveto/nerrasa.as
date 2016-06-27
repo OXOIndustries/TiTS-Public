@@ -22,7 +22,7 @@ public function uvetoApproachNerrasaFirstTime():void
 	if (pc.isNice() || pc.isBimbo()) output(" and a smile");
 	output(".");
 	
-	output("\n\n<i>“[pc.name], huh?”</i> the muscular ausar echoes,chewing on her lower lip for a moment. <i>“Nerrasa. If you’re going down to the surface, I recommend either a psych eval or a heat belt. That or put on a hundred pounds of fur and blubber like a native. Got pills for that, actually.”</i>");
+	output("\n\n<i>“[pc.name], huh?”</i> the muscular ausar echoes, chewing on her lower lip for a moment. <i>“Nerrasa. If you’re going down to the surface, I recommend either a psych eval or a heat belt. That or put on a hundred pounds of fur and blubber like a native. Got pills for that, actually.”</i>");
 	
 	output("\n\nDoesn’t sound like she much cares for the local ausar, by that attitude.");
 	

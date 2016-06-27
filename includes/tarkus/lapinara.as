@@ -10,7 +10,6 @@ import classes.Engine.Combat.DamageTypes.TypeCollection;
 public function encounterALapinara():void
 {
 	author("WorldOfDrakan");
-	lapinaraBust();
 	//[First Encounter]
 	if(flags["ENCOUNTERED_PARASITIC_LAPINARA"] == undefined)
 	{
@@ -34,6 +33,8 @@ public function encounterALapinara():void
 	CombatManager.victoryScene(defeatDatLapinara);
 	CombatManager.lossScene(loseToFemaleLapinara);
 	CombatManager.displayLocation("LAPINARA (F)");
+	
+	lapinaraBust();
 	
 	clearMenu();
 	addButton(0, "Next", CombatManager.beginCombat);
