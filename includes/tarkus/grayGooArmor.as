@@ -2153,33 +2153,7 @@ public function gooArmorChangeDesign(arg:Array):void
 			if(pc.getStatusTooltip("Goo Armor Design") == "" || pc.getStatusTooltip("Goo Armor Design") == "none") txt += "<i>“You want an emblem, huh? Is that like a tattoo?”</i>";
 			else txt += "<i>“Represent!”</i>";
 			
-			var i:int = 0;
-			var btnSlot:int = 0;
-			var emblemList:Array = [
-				["None", "none"],
-				["BI/G", "Bell-Isle/Grunmann patch"],
-				["Steele", "Steele Tech logo"],
-			];
-			// Push other emblems in the list for unlocking!
-			
-			for(i = 0; i < emblemList.length; i++)
-			{
-				if(btnSlot >= 14 && (btnSlot + 1) % 15 == 0)
-				{
-					gooArmorAddButton(fromCrew, btnSlot, "Back", gooArmorChangeArmorMenu, fromCrew);
-					btnSlot++;
-				}
-				
-				if(pc.getStatusTooltip("Goo Armor Design") != emblemList[i][1]) gooArmorAddButton(fromCrew, btnSlot, emblemList[i][0], gooArmorChangeEmblem, [emblemList[i][1], fromCrew], StringUtil.toDisplayCase(emblemList[i][1]), (emblemList[i][1] == "none" ? "Remove the current emblem." : "Change the emblem to " + indefiniteArticle(emblemList[i][1]) + "."));
-				else gooArmorAddDisabledButton(fromCrew, btnSlot, emblemList[i][0]);
-				btnSlot++;
-				
-				if(emblemList.length > 14 && (i + 1) == emblemList.length)
-				{
-					while((btnSlot + 1) % 15 != 0) { btnSlot++; }
-					gooArmorAddButton(fromCrew, btnSlot, "Back", gooArmorChangeArmorMenu, fromCrew);
-				}
-			}
+			gooArmorEmblemMenu([fromCrew, 0]);
 			break;
 		case "helmet":
 			txt += "<i>“" + (pc.statusEffectv3("Goo Armor Design") == 0 ? "Would you like a helmet" : "Wanna change your helmet") + "?”</i>";
@@ -2214,6 +2188,50 @@ public function gooArmorChangeDesign(arg:Array):void
 	}
 	
 	gooArmorOutput(fromCrew, txt);
+	
+	gooArmorAddButton(fromCrew, 14, "Back", gooArmorChangeArmorMenu, fromCrew);
+}
+public function gooArmorEmblemMenu(arg:Array):void
+{
+	var fromCrew:Boolean = arg[0];
+	var offset:int = arg[1];
+	
+	gooArmorClearMenu(fromCrew);
+	
+	var i:int = 0;
+	var btnSlot:int = 0;
+	var emblemList:Array = [
+		["None", "none"],
+		["BI/G", "Bell-Isle/Grunmann patch"],
+		["Steele", "Steele Tech logo"],
+	];
+	// Push other emblems in the list for unlocking!
+	if(9999 == 0) emblemList.push(["None", "none"]);
+	
+	for(i = (fromCrew ? 0 : offset); i < (fromCrew ? emblemList.length : (offset + 10)); i++)
+	{
+		if(!fromCrew && i >= emblemList.length) break;
+		if(fromCrew && btnSlot >= 14 && (btnSlot + 1) % 15 == 0)
+		{
+			gooArmorAddButton(fromCrew, btnSlot, "Back", gooArmorChangeArmorMenu, fromCrew);
+			btnSlot++;
+		}
+		
+		if(pc.getStatusTooltip("Goo Armor Design") != emblemList[i][1]) gooArmorAddButton(fromCrew, btnSlot, emblemList[i][0], gooArmorChangeEmblem, [emblemList[i][1], fromCrew], StringUtil.toDisplayCase(emblemList[i][1]), (emblemList[i][1] == "none" ? "Remove the current emblem." : "Change the emblem to " + indefiniteArticle(emblemList[i][1]) + "."));
+		else gooArmorAddDisabledButton(fromCrew, btnSlot, emblemList[i][0]);
+		btnSlot++;
+		
+		if(fromCrew && emblemList.length > 14 && (i + 1) == emblemList.length)
+		{
+			while((btnSlot + 1) % 15 != 0) { btnSlot++; }
+			gooArmorAddButton(fromCrew, btnSlot, "Back", gooArmorChangeArmorMenu, fromCrew);
+		}
+		if(!fromCrew)
+		{
+			if(offset >= 10) gooArmorAddButton(fromCrew, 10, "Prev Pg.", gooArmorEmblemMenu, [fromCrew, (offset - 10)], "Previous Page", "View more emblems.");
+			if(offset + 10 < emblemList.length) gooArmorAddButton(fromCrew, 12, "Next Pg.", gooArmorEmblemMenu, [fromCrew, (offset + 10)], "Next Page", "View more emblems.");
+		}
+	}
 	
 	gooArmorAddButton(fromCrew, 14, "Back", gooArmorChangeArmorMenu, fromCrew);
 }
@@ -2395,14 +2413,14 @@ public function gooArmorChangeEmblem(arg:Array):void
 	
 	if(style == "Bell-Isle/Grunmann patch")
 	{
-		txt += "[goo.name]’s head pops from you, <i>“So what’ll it be?”</i>.";
+		txt += "[goo.name]’s head pops from you, <i>“So what’ll it be?”</i>";
 		txt += "\n\nYou ask if she can give you a Bell-Isle/Grunmann patch to go along with your suit.";
-		txt += "<i>“Oh, that’s easy, peasy... Just watch!”</i>. In an instant, the recognizable logo is etched onto your armor, one on each shoulder. Looks like she knows that one pretty well!";
+		txt += "<i>“Oh, that’s easy, peasy... Just watch!”</i> In an instant, the recognizable logo is etched onto your armor, one on each shoulder. Looks like she knows that one pretty well!";
 		processTime(1);
 	}
 	else if(style != "none")
 	{
-		txt += "[goo.name]’s head pops from you, <i>“Sure, whatcha got there?”</i>.";
+		txt += "[goo.name]’s head pops from you, <i>“Sure, whatcha got there?”</i>";
 		txt += "\n\nYou press a button on your " + (InShipInterior() ? "dash to display" : "codex to project") + " the " + style + " and let her view it for a moment.";
 		txt += "\n\n[goo.name] makes some concentrating noises, storing the details in her memory. When she’s confident she has it, she confirms, <i>“Got it!”</i>";
 		txt += "\n\nIt takes a little time, but she manages to get the design printed, one on each shoulder.";

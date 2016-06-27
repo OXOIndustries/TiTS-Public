@@ -695,22 +695,12 @@ package classes.GameData
 				}
 			}
 			
-			if (attacker.hasPerk("Myr Venom") && target.isLustImmune == false)
+			if (!(attacker is PlayerCharacter))
 			{
-				output("\n");
-				if (combatMiss(attacker, target))
+				if(attacker.hasPerk("Myr Venom") && target.isLustImmune == false)
 				{
-					if (attacker is PlayerCharacter) output("You can't manage to sneak in a bite!");
-					else if (target is PlayerCharacter) output("You narrowly avoid " + attacker.a + possessive(attacker.uniqueName) + " lunging bite!");
-					else output(target.capitalA + target.uniqueName + " narrowly avoids " + attacker.a + possessive(attacker.uniqueName) + " lunging bite!");
-				}
-				else
-				{
-					if (attacker is PlayerCharacter) output("To finish off your attack, you lean in and deliver a surprise bite, injecting a healthy dose of your red myrmedion venom!");
-					else if (target is PlayerCharacter) output("A spike of pain lances through your arm as " + attacker.a + attacker.uniqueName + " clamps their jaws around your bicep, venom quickly coursing through your veins!");
-					else output(target.capitalA + target.uniqueName + " " + target.mfn("growls", "squeals", "grunts") + " aloud as " + attacker.a + attacker.uniqueName + " clamps their jaws around a limb!");
-					
-					applyDamage(new TypeCollection( { tease: 3 + rand(3) } ), attacker, target, "minimal");
+					output("\n");
+					myrVenomBite(attacker, target, true);
 				}
 			}
 			
@@ -726,6 +716,32 @@ package classes.GameData
 			{
 				kGAMECLASS.mimbraneHandBonusAttack(target);
 				kGAMECLASS.playerMimbraneCloudAttack();
+			}
+		}
+		
+		public static function myrVenomBite(attacker:Creature, target:Creature, fromMelee:Boolean = false):void
+		{
+			// Airtight check
+			if(attacker.hasAirtightSuit())
+			{
+				if (attacker is PlayerCharacter) output("You quickly displace your helmet and lick your [pc.lips]... ");
+				else if (target is PlayerCharacter) output(attacker.capitalA + attacker.uniqueName + " removes " + (attacker.isPlural ? "their" : attacker.mfn("his", "her", "its")) + " helmet and darts toward you, mouth agape... ");
+				else output(attacker.capitalA + attacker.uniqueName + " removes " + (attacker.isPlural ? "their" : attacker.mfn("his", "her", "its")) + " helmet and darts toward " + target.a + target.uniqueName + ", mouth agape... ");
+			}
+			
+			if (combatMiss(attacker, target))
+			{
+				if (attacker is PlayerCharacter) output("You can’t manage to sneak in a bite!");
+				else if (target is PlayerCharacter) output("You narrowly avoid " + attacker.a + possessive(attacker.uniqueName) + " lunging bite" + (attacker.isPlural ? "s" : "") + "!");
+				else output(target.capitalA + target.uniqueName + " narrowly avoids " + attacker.a + possessive(attacker.uniqueName) + " lunging bite" + (attacker.isPlural ? "s" : "") + "!");
+			}
+			else
+			{
+				if (attacker is PlayerCharacter) output("Approaching your opponent, you lean in and deliver a surprise bite, injecting a healthy dose of your red myrmedion venom!");
+				else if (target is PlayerCharacter) output("A spike of pain lances through your arm as " + attacker.a + attacker.uniqueName + " clamps " + (attacker.isPlural ? "their" : attacker.mfn("his", "her", "its")) + " jaws around your bicep, venom quickly coursing through your veins!");
+				else output(target.capitalA + target.uniqueName + " " + target.mfn("growls", "squeals", "grunts") + " aloud as " + attacker.a + attacker.uniqueName + " clamps " + (attacker.isPlural ? "their" : attacker.mfn("his", "her", "its")) + " jaws around a limb!");
+				
+				applyDamage(new TypeCollection( { tease: 3 + (fromMelee ? 0 : Math.floor(attacker.level / 3)) + rand(3) } ), attacker, target, "minimal");
 			}
 		}
 		

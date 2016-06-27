@@ -22,6 +22,8 @@ public function adultCockvineEncounter():void
 	// Basically, reflex check + randomisation!
 	if (rand(pc.RQ()/2) + (pc.RQ() / 2) > 60)
 	{
+		clearMenu();
+		
 		output("In the gloom of the deep caverns you feel constantly on edge; the second you set your gaze anywhere your neck begins to crawl, expecting an attack to come from behind. The ground is the last place your instincts tell you to keep an eye on, but when you glance downwards momentarily you are glad you did. You jerk to an immediate halt, staring at the thick, tubular, organic object sprawled out from a crevice across your path.");
 
 		// First Encounter
@@ -49,20 +51,20 @@ public function adultCockvineEncounter():void
 					output("\n\nYou couldn’t stop your body’s instincts even if you wanted to. You smile beatifically as first one tentacle, then a second wrap their warm embrace around you, beading their herbal semen onto your skin, leading and welcoming you to their deep, wet boudoir.");
 
 					// Go to Consentacles
-					clearMenu();
 					addButton(0, "Next", adultCockvineConsentacles);
 					return;
 				}
+				
+				addButton(0, "Stop", adultCockvineEncounterStop, undefined, "Stop Moving", "Stop moving towards the cockvines.");
+				addButton(1, "Go on...", adultCockvineEncounterGoOn, undefined, "Go on", "Surrender yourself to the cockvines.");
 			}
 			// Not megaslut
 			else
 			{
 				output("\n\nThe thought makes you shudder. Feeling deeply grateful for and not a little smug about your quick eyes and wits, you carefully skirt the writhing mass of tentacles and continue on your way.");
+				
+				addButton(0, "Next", mainGameMenu);
 			}
-
-			clearMenu();
-			addButton(0, "Leave", adultCockvineEncounterStop, undefined, "Stop Moving", "Stop moving towards the cockvines.");
-			addButton(1, "Go on...", adultCockvineEncounterGoOn, undefined, "Go on", "Surrender yourself to the cockvines.");
 		}
 		else
 		{
@@ -79,20 +81,20 @@ public function adultCockvineEncounter():void
 					output("\n\nYou couldn’t stop your body’s instincts even if you wanted to. You smile beatifically as first one tentacle, then a second wrap their warm embrace around you, beading their herbal semen onto your skin, leading and welcoming you to their deep, wet boudoir.");
 
 					// Go to Consentacles
-					clearMenu();
 					addButton(0, "Next", adultCockvineConsentacles);
 					return;
 				}
+				
+				addButton(0, "Stop", adultCockvineEncounterStop, undefined, "Stop Moving", "Stop moving towards the cockvines.");
+				addButton(1, "Go on...", adultCockvineEncounterGoOn, undefined, "Go on", "Surrender yourself to the cockvines.");
 			}
 			// Not megaslut
 			else
 			{
 				output("\n\nThe sight never fails to make you shudder. Feeling deeply grateful for and not a little smug about your quick eyes and wits, you carefully skirt the writhing mass of tentacles and continue on your way.");
+				
+				addButton(0, "Next", mainGameMenu);
 			}
-
-			clearMenu();
-			addButton(0, "Leave", adultCockvineEncounterStop, undefined, "Stop Moving", "Stop moving towards the cockvines.");
-			addButton(1, "Go on...", adultCockvineEncounterGoOn, undefined, "Go on", "Surrender yourself to the cockvines.");
 		}
 	}
 	else
@@ -374,8 +376,10 @@ public function adultCockvineConsentacles():void
 	for (var i:int = 0; i < pc.vaginas.length; i++)
 	{
 		pc.loadInCunt(chars["COCKVINE"], i);
+		pc.cuntChange(i, chars["COCKVINE"].cockVolume(0));
 	}
 	pc.loadInAss(chars["COCKVINE"]);
+	pc.buttChange(chars["COCKVINE"].cockVolume(0));
 	pc.loadInMouth(chars["COCKVINE"]);
 
 	pc.orgasm();
@@ -593,8 +597,10 @@ public function adultCockvinePCLoses():void
 	for (var i:int = 0; i < pc.vaginas.length; i++)
 	{
 		pc.loadInCunt(enemy, i);
+		pc.cuntChange(i, enemy.cockVolume(0));
 	}
 	pc.loadInAss(enemy);
+	pc.buttChange(enemy.cockVolume(0));
 	pc.loadInMouth(enemy);
 	pc.orgasm();
 

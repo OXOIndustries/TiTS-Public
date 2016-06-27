@@ -146,22 +146,45 @@ public function cockBoxMenu(x:int):void
 {
 	clearMenu();
 	
-	addButton(0,"Terran",dickBoxTFColorSelect,[x,GLOBAL.TYPE_HUMAN],"Human","Get a fleshy, pink penis, like a terran.");
-	addButton(1,"Ausar",dickBoxTFColorSelect,[x,GLOBAL.TYPE_CANINE],"Ausar","Get a knotted, ausar penis.");
-	addButton(2,"Kaithrit",dickBoxTFColorSelect,[x,GLOBAL.TYPE_FELINE],"Kaithrit","Get a penis with textured nubs like a kaithrit.");
-	addButton(3,"Kui-Tan",dickBoxTFColorSelect,[x,GLOBAL.TYPE_KUITAN],"Kui-Tan","Get a bulbous penis, like the kui-tan.");
-	addButton(4,"Leithan",dickBoxTFColorSelect,[x,GLOBAL.TYPE_NAGA],"Leithan","Get a smooth, tapered penis like that of a leithan.");
-	addButton(5,"Gryvain",dickBoxTFColorSelect,[x,GLOBAL.TYPE_GRYVAIN],"Gryvain","Get a scaly knotted, ribbed penis, like that of a gryvain.");
-	addButton(6,"Equine",dickBoxTFColorSelect,[x,GLOBAL.TYPE_EQUINE],"Equine","Get a penis like that of a terran horse.");
+	var cockList:Array = [];
+	var i:int = 0;
+	var btnSlot:int = 0;
+	
+	cockList.push([GLOBAL.TYPE_HUMAN, "Terran", "Human", "Get a fleshy, pink penis, like a terran."]);
+	cockList.push([GLOBAL.TYPE_CANINE, "Ausar", "Ausar", "Get a knotted, ausar penis."]);
+	cockList.push([GLOBAL.TYPE_FELINE, "Kaithrit", "Kaithrit", "Get a penis with textured nubs like a kaithrit."]);
+	cockList.push([GLOBAL.TYPE_KUITAN, "Kui-Tan", "Kui-Tan", "Get a bulbous penis, like the kui-tan."]);
+	cockList.push([GLOBAL.TYPE_NAGA, "Leithan", "Leithan", "Get a smooth, tapered penis like that of a leithan."]);
+	cockList.push([GLOBAL.TYPE_GRYVAIN, "Gryvain", "Gryvain", "Get a scaly knotted, ribbed penis, like that of a gryvain."]);
+	cockList.push([GLOBAL.TYPE_EQUINE, "Equine", "Equine", "Get a penis like that of a terran horse."]);
 	// Unlockables
 	if(flags["COCKBOX_UPGRADE"] != undefined)
 	{
-		addButton(7,"Demonic",dickBoxTFColorSelect,[x,GLOBAL.TYPE_DEMONIC],"Demonic","Get a knotted, nubby and sinister-looking penis.");
-		addButton(8,"Tentacle",dickBoxTFColorSelect,[x,GLOBAL.TYPE_TENTACLE],"Tentacle","Get a prehensile tentacle penis.");
-		addButton(9,"Draconic",dickBoxTFColorSelect,[x,GLOBAL.TYPE_DRACONIC],"Draconic","Get a tapered and knotted dragon penis.");
+		cockList.push([GLOBAL.TYPE_VULPINE, "Vulpine", "Vulpine", "Get a tapered and knotted vulpine penis."]);
+		cockList.push([GLOBAL.TYPE_DEMONIC, "Demonic", "Demonic", "Get a knotted, nubby and sinister-looking penis."]);
+		cockList.push([GLOBAL.TYPE_TENTACLE, "Tentacle", "Tentacle", "Get a prehensile tentacle penis."]);
+		cockList.push([GLOBAL.TYPE_DRACONIC, "Draconic", "Draconic", "Get a tapered and knotted dragon penis."]);
+		cockList.push([GLOBAL.TYPE_SAURIAN, "Saurian", "Dinosaur", "Get a giant dinosaur dick."]);
 	}
 	
-	addButton(14,"Back",useInstalledDickBox);
+	for(i = 0; i < cockList.length; i++)
+	{
+		if(btnSlot >= 14 && (btnSlot + 1) % 15 == 0)
+		{
+			addButton(btnSlot, "Back", useInstalledDickBox);
+			btnSlot++;
+		}
+		
+		addButton(btnSlot, cockList[i][1], dickBoxTFColorSelect, [x, cockList[i][0]], cockList[i][2], cockList[i][3]);
+		btnSlot++;
+		
+		if(cockList.length > 14 && (i + 1) == cockList.length)
+		{
+			while((btnSlot + 1) % 15 != 0) { btnSlot++; }
+			addButton(btnSlot, "Back", useInstalledDickBox);
+		}
+	}
+	addButton(14, "Back", useInstalledDickBox);
 }
 
 //Dick Chosen.
@@ -183,56 +206,49 @@ public function dickBoxTFColorSelect(args:Array):void
 	output("The holographic menu depresses beneath your finger. The other dicks disappear, and the icon you’ve chosen splits into a variety of different colorations.");
 	output("\n\nWhat color would you like your soon-to-be improved manhood to be?");
 	
-	/*
-	switch (cType)
+	var colorList:Array = [];
+	var i:int = 0;
+	var btnSlot:int = 0;
+	
+	// Standard Colors
+	colorList.push(["pink", "Pink"]);
+	colorList.push(["red", "Red"]);
+	colorList.push(["bright red", "BrightRed"]);
+	colorList.push(["dark red", "DarkRed"]);
+	colorList.push(["orange", "Orange"]);
+	colorList.push(["amber", "Amber"]);
+	colorList.push(["green", "Green"]);
+	colorList.push(["blue", "Blue"]);
+	colorList.push(["purple", "Purple"]);
+	colorList.push(["mottled pink and black", "Mottled"]);
+	colorList.push(["black", "Black"]);
+	colorList.push(["gray", "Gray"]);
+	colorList.push(["silver", "Silver"]);
+	colorList.push(["null", "Natural"]);
+	
+	for(i = 0; i < colorList.length; i++)
 	{
-		case GLOBAL.TYPE_HUMAN:
-			addButton(0,"Pink",dickBoxTF, [cIdx, cType, "pink"],"Pink","Your cock’s head will be colored pink.");
-			break;
-		case GLOBAL.TYPE_CANINE:
-			addButton(0,"Pink",dickBoxTF, [cIdx, cType, "pink"],"Pink","Your cock will be colored pink.");
-			addButton(1,"Red",dickBoxTF, [cIdx, cType, "red"],"Red","Your cock will be colored red.");
-			addButton(2,"BrightRed",dickBoxTF, [cIdx, cType, "bright red"],"Bright Red","Your cock will be colored bright red.");
-			addButton(3,"DarkRed",dickBoxTF, [cIdx, cType, "dark red"],"Dark Red","Your cock will be colored dark red.");
-			break;
-		case GLOBAL.TYPE_FELINE:
-			addButton(0,"Pink",dickBoxTF, [cIdx, cType, "pink"],"Pink","Your cock will be colored pink.");
-			addButton(1,"Red",dickBoxTF, [cIdx, cType, "red"],"Red","Your cock will be colored red.");
-			break;
-		case GLOBAL.TYPE_KUITAN:
-			addButton(0,"Pink",dickBoxTF, [cIdx, cType, "pink"],"Pink","Your cock will be colored pink.");
-			addButton(1,"Red",dickBoxTF, [cIdx, cType, "red"],"Red","Your cock will be colored red.");
-			break;
-		case GLOBAL.TYPE_NAGA:
-			addButton(0,"Pink",dickBoxTF, [cIdx, cType, "pink"],"Pink","Your cock will be colored pink.");
-			addButton(1,"Purple",dickBoxTF, [cIdx, cType, "purple"],"Purple","Your cock will be colored purple.");
-			addButton(2,"Black",dickBoxTF, [cIdx, cType, "black"],"Black","Your cock will be colored black.");
-			break;
-		case GLOBAL.TYPE_EQUINE:
-			addButton(0,"Pink",dickBoxTF, [cIdx, cType, "pink"],"Pink","Your cock will be colored pink.");
-			addButton(1,"Black",dickBoxTF, [cIdx, cType, "black"],"Black","Your cock will be colored black.");
-			addButton(2,"Mottled",dickBoxTF, [cIdx, cType, "mottled pink and black"],"Mottled Pink and Black","Your cock will be colored in a mottled pink and black pattern.");
-			break;
+		if(btnSlot >= 14 && (btnSlot + 1) % 15 == 0)
+		{
+			addButton(btnSlot, "Back", cockBoxDickSelect, cIdx);
+			btnSlot++;
+		}
+		
+		var sTitle:String = StringUtil.toDisplayCase(colorList[i][0]);
+		var sTooltip:String = "Your cock will be colored " + colorList[i][0] + ".";
+		if(colorList[i][0] == "null") { sTitle = "Natural"; sTooltip = "Your cock will be a random color, natural to the penis type."; }
+		else if(colorList[i][0] == "mottled pink and black") sTooltip = "Your cock will be colored in a mottled pink and black pattern.";
+		
+		addButton(btnSlot, colorList[i][1], dickBoxTF, [cIdx, cType, colorList[i][0]], sTitle, sTooltip);
+		btnSlot++;
+		
+		if(colorList.length > 14 && (i + 1) == colorList.length)
+		{
+			while((btnSlot + 1) % 15 != 0) { btnSlot++; }
+			addButton(btnSlot, "Back", cockBoxDickSelect, cIdx);
+		}
 	}
-	*/
-	
-	addButton(0,"Pink",dickBoxTF, [cIdx, cType, "pink"],"Pink","Your cock will be colored pink.");
-	addButton(1,"Red",dickBoxTF, [cIdx, cType, "red"],"Red","Your cock will be colored red.");
-	addButton(2,"BrightRed",dickBoxTF, [cIdx, cType, "bright red"],"Bright Red","Your cock will be colored bright red.");
-	addButton(3,"DarkRed",dickBoxTF, [cIdx, cType, "dark red"],"Dark Red","Your cock will be colored dark red.");
-	addButton(4,"Orange",dickBoxTF, [cIdx, cType, "orange"],"Orange","Your cock will be colored orange.");
-	
-	addButton(5,"Amber",dickBoxTF, [cIdx, cType, "amber"],"Amber","Your cock will be colored golden yellow.");
-	addButton(6,"Green",dickBoxTF, [cIdx, cType, "green"],"Green","Your cock will be colored green.");
-	addButton(7,"Blue",dickBoxTF, [cIdx, cType, "blue"],"Blue","Your cock will be colored blue.");
-	addButton(8,"Purple",dickBoxTF, [cIdx, cType, "purple"],"Purple","Your cock will be colored purple.");
-	addButton(9,"Mottled",dickBoxTF, [cIdx, cType, "mottled pink and black"],"Mottled Pink and Black","Your cock will be colored in a mottled pink and black pattern.");
-	
-	addButton(10,"Black",dickBoxTF, [cIdx, cType, "black"],"Black","Your cock will be colored black.");
-	addButton(11,"Gray",dickBoxTF, [cIdx, cType, "gray"],"Gray","Your cock will be colored gray.");
-	addButton(12,"Silver",dickBoxTF, [cIdx, cType, "silver"],"Silver","Your cock will be colored silver.");
-	addButton(13,"Natural",dickBoxTF, [cIdx, cType, "null"],"Natural","Your cock will be a random color, natural to the penis type.");
-	addButton(14,"Back",cockBoxDickSelect, cIdx);
+	addButton(14, "Back", cockBoxDickSelect, cIdx);
 }
 
 //Return. Choose dick again...
@@ -301,8 +317,8 @@ public function dickBoxTF(args:Array):void
 	var testChar:Creature = new Creature();
 	testChar.createCock();
 	testChar.shiftCock(0,args[1]);
-	//Cause ausar are too cool for sheaths.
-	if(args[1] == GLOBAL.TYPE_CANINE) testChar.cocks[0].delFlag(GLOBAL.FLAG_SHEATHED);
+	//Cause ausar and kaithrit are too cool for sheaths.
+	if(InCollection(args[1], GLOBAL.TYPE_CANINE, GLOBAL.TYPE_FELINE)) testChar.cocks[0].delFlag(GLOBAL.FLAG_SHEATHED);
 	if(testChar.hasKnot(0) && !pc.hasKnot(args[0]))
 	{
 		output(" Your [pc.cock " + args[0] + "] feels like one giant, swelling bulb, probably the beginnings of a knot.");

@@ -202,14 +202,11 @@ public function joyCoMagicMilker7Sucks():void
 			TooltipManager.addFullName(foundLootItems[0].shortName, StringUtil.toTitleCase(foundLootItems[0].longName));
 			TooltipManager.addTooltip(foundLootItems[0].shortName, foundLootItems[0].tooltip);
 			
-			output(" " + foundLootItems[0].description + ".");
-			output("\n\n");
 			//Milk items probably just good for selling. Value relatively low for normal milk but honey is worth 2x milk, and maybe other more exotic lactations could also get value boosts?
 			//Set value and adjust descs
-			if(pc.milkType == GLOBAL.FLUID_TYPE_HONEY)
-			{
-				foundLootItems[0].basePrice *= 2;
-			}
+			output(" " + foundLootItems[0].description + ".");
+			output("\n\n");
+			foundLootItems[0].basePrice = fluidValue(pc.milkType, foundLootItems[0].basePrice);
 			itemScreen = mainGameMenu;
 			lootScreen = mainGameMenu;
 			useItemFunction = mainGameMenu;
@@ -225,3 +222,65 @@ public function joyCoMagicMilker7Sucks():void
 		processTime(20+rand(5));
 	}
 }
+
+// Alter fluid's total value with a rarity multiplier! (put at the end of fluid calculations.)
+public function fluidValue(fluidType:Number = -1, basePrice:Number = 0):Number
+{
+	if(fluidType < 0) return 0;
+	
+	var rarity:Number = 1;
+	
+	switch(fluidType)
+	{
+		case GLOBAL.FLUID_TYPE_OIL:
+			rarity = 0.5;
+			break;
+		case GLOBAL.FLUID_TYPE_MILK:
+		case GLOBAL.FLUID_TYPE_CUM:
+		case GLOBAL.FLUID_TYPE_GIRLCUM:
+			rarity = 1;
+			break;
+		case GLOBAL.FLUID_TYPE_SPECIAL_GOO:
+		case GLOBAL.FLUID_TYPE_SPECIAL_CUMGOO:
+		case GLOBAL.FLUID_TYPE_HRAD_CUM:
+			rarity = 1.25;
+			break;
+		case GLOBAL.FLUID_TYPE_CHOCOLATE_MILK:
+		case GLOBAL.FLUID_TYPE_STRAWBERRY_MILK:
+		case GLOBAL.FLUID_TYPE_CHOCOLATE_CUM:
+		case GLOBAL.FLUID_TYPE_VANILLA:
+		case GLOBAL.FLUID_TYPE_BLUEBERRY_YOGURT:
+			rarity = 1.5;
+			break;
+		case GLOBAL.FLUID_TYPE_LEITHAN_MILK:
+		case GLOBAL.FLUID_TYPE_SYDIAN_CUM:
+		case GLOBAL.FLUID_TYPE_GABILANI_CUM:
+		case GLOBAL.FLUID_TYPE_GABILANI_GIRLCUM:
+		case GLOBAL.FLUID_TYPE_NYREA_CUM:
+		case GLOBAL.FLUID_TYPE_NYREA_GIRLCUM:
+			rarity = 1.75;
+			break;
+		case GLOBAL.FLUID_TYPE_HONEY:
+		case GLOBAL.FLUID_TYPE_MILKSAP:
+		case GLOBAL.FLUID_TYPE_CUMSAP:
+			rarity = 2;
+			break;
+		case GLOBAL.FLUID_TYPE_NECTAR:
+		case GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK:
+		case GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK:
+			rarity = 2.25;
+			break;
+		case GLOBAL.FLUID_TYPE_VANAE_CUM:
+			rarity = 2.5;
+			break;
+	}
+	
+	return Math.round(basePrice * rarity);
+}
+// To return only the fluid's rarity multiplier.
+public function fluidRarity(fluidType:Number = -1):Number
+{
+	if(fluidType < 0) return 1;
+	return fluidValue(fluidType, 1);
+}
+

@@ -1520,7 +1520,7 @@ public function storeItem(args:Array):void
 		
 		clearMenu();
 		addButton(0, "Switch", replaceInStorage, [item, type], "Switch Items", "Switch an item in your ships storage with one in your inventory.");
-		addButton(1, "Back", shipStorageMenuType, type);
+		addButton(14, "Back", shipStorageMenuType, type);
 		return;
 	}
 	
@@ -1537,14 +1537,34 @@ public function replaceInStorage(args:Array):void
 	var invItem:ItemSlotClass = args[0];
 	var type:String = args[1];
 	
+	var items:Array = getListOfType(pc.ShipStorageInventory, type);
+	
+	clearOutput();
+	if(items.length <= 0) output("You do not have another item of the same type to switch with.");
+	else output("What would you like to switch the item with?");
+	
 	clearMenu();
 	
-	var items:Array = getListOfType(pc.ShipStorageInventory, type);
+	var btnSlot:int = 0;
 	
 	for (var i:int = 0; i < items.length; i++)
 	{
-		addItemButton(i, items[i], doStorageReplace, [invItem, items[i], type]);
+		if(btnSlot >= 14 && (btnSlot + 1) % 15 == 0)
+		{
+			addButton(btnSlot, "Back", storeItem, args);
+			btnSlot++;
+		}
+		
+		addItemButton(btnSlot, items[i], doStorageReplace, [invItem, items[i], type]);
+		btnSlot++;
+		
+		if(items.length > 14 && (i + 1) == items.length)
+		{
+			while((btnSlot + 1) % 15 != 0) { btnSlot++; }
+			addButton(btnSlot, "Back", storeItem, args);
+		}
 	}
+	addButton(14, "Back", storeItem, args);
 }
 
 public function doStorageReplace(args:Array):void
@@ -1612,7 +1632,7 @@ public function takeItem(args:Array):void
 		
 		clearMenu();
 		addButton(0, "Switch", replaceInInventory, [item, type], "Switch Items", "Switch an item in your inventory with one in your ships storage.");
-		addButton(1, "Back", shipStorageMenuType, type);
+		addButton(14, "Back", shipStorageMenuType, type);
 		return;
 	}
 	
@@ -1629,11 +1649,32 @@ public function replaceInInventory(args:Array):void
 	
 	var items:Array = getListOfType(pc.inventory, type);
 	
+	clearOutput();
+	if(items.length <= 0) output("You do not have another item of the same type to switch with.");
+	else output("What would you like to switch the item with?");
+	
 	clearMenu();
+	
+	var btnSlot:int = 0;
+	
 	for (var i:int = 0; i < items.length; i++)
 	{
-		addItemButton(i, items[i], doInventoryReplace, [invItem, items[i], type]);
+		if(btnSlot >= 14 && (btnSlot + 1) % 15 == 0)
+		{
+			addButton(btnSlot, "Back", takeItem, args);
+			btnSlot++;
+		}
+		
+		addItemButton(btnSlot, items[i], doInventoryReplace, [invItem, items[i], type]);
+		btnSlot++;
+		
+		if(items.length > 14 && (i + 1) == items.length)
+		{
+			while((btnSlot + 1) % 15 != 0) { btnSlot++; }
+			addButton(btnSlot, "Back", takeItem, args);
+		}
 	}
+	addButton(14, "Back", takeItem, args);
 }
 
 public function doInventoryReplace(args:Array):void
