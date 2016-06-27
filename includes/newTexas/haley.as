@@ -31,8 +31,8 @@ public function showHaley():void
 //Entering stall:
 public function firstTimeMeetingHaley():void
 {
-	clearOutput();
 	showHaley();
+	author("Wsan");
 	output("You open the stall door to find a veritable feast for the senses. Heady pheromones engulf you immediately, pervading the air and settling in your mind like someone draped a warm blanket over your brain. A scant few feet away, a naked Leithan girl is <i>pummeling</i> what looks to be some kind of milker machine built for taurs. Her entire granite-colored body is covered in a sheen of sweat, beads of it running over her chitinous armor every time she thrusts into the machine. You can sense her desperation in her actions, her back and arms squeezing and flexing every time a powerful buck of her hips sends her long yellow hair flying. She grunts and moans with every insertion and standing behind her, you dimly wonder how it's even possible you didn't hear her cries of effort from outside. Her eyes are squeezed shut and she's tightly gripping the steel pole that secures the milker, her heavy breasts swaying every time she fucks the machine.");
 	//Non-treated PC:
 	if(!pc.isTreated())
@@ -59,6 +59,7 @@ public function firstTimeMeetingHaley():void
 public function backOutFromHaley():void
 {
 	clearOutput();
+	author("Wsan");
 	output("She seems occupied as it is, and frankly you're not sure you want to get in between a creature that frustrated and release, especially one as big as a leithan. You quietly shut her stall door and pad back into the stables.");
 	clearMenu();
 	addButton(0,"Next",move,rooms[currentLocation].westExit);
@@ -70,6 +71,7 @@ public function greetDatTaurBitch():void
 {
 	clearOutput();
 	showHaley();
+	author("Wsan");
 	output("You step forward, raising your voice above the din of lewdness echoing in the stall to say hi. She turns her humanoid torso to look at you, but barely even slows her pace.");
 	output("\n\n<i>“H-hey there,”</i> she huffs, bordering on being out of breath, <i>“any particular reason you've graced me with your presence? Or do you just like to watch horny leithan girls?”</i>");
 	output("\n\nBit of an attitude on this one, although you suppose given the circumstances she can be forgiven. Seeing your raised eyebrow, she shakes her head.");
@@ -93,6 +95,7 @@ public function leaveDatHaleyBitchToHerFate():void
 {
 	clearOutput();
 	showHaley();
+	author("Wsan");
 	output("You express your condolences for her situation, but explain you have places to be. She shrugs.");
 	output("\n\n<i>“Not like I asked you for help anyway.”</i>");
 	output("\n\nShe turns back to the machine, and you leave as she mounts it and gets back to work. The dull thuds of impact follow you into the hallway.");
@@ -107,6 +110,7 @@ public function offerToHelpHaleyShedSomeWeight():void
 {
 	clearOutput();
 	showHaley();
+	author("Wsan");
 	output("You explain you thought you could help her out with her problem. She eyes you critically.");
 	output("\n\n<i>“You? What makes you think...”</i>");
 	output("\n\nHer voice trails off as her gaze roves over your body from top to bottom. You can tell she's thinking about burying her cock in you, filling you with spunk until you're choking it up like you're an overfull sex toy. The flow of spunk splattering across the floor increases until it looks like she's cumming, her pants coming faster as the floor underneath her just gets wetter and wetter.");
@@ -245,6 +249,7 @@ public function leaveDatHaleySlutShit():void
 {
 	clearOutput();
 	showHaley();
+	author("Wsan");
 	output("Just looking at the spurts of ejaculate flying from the tip of her dick is enough to convince you. She's probably telling the truth, no sense in putting it to the test. You step back out to the hallway, the dull thuds of impact following you out.");
 	//back to square whatever
 	addButton(0,"Next",move,rooms[currentLocation].westExit);
@@ -256,6 +261,7 @@ public function waitForHaleyToGoToTownOnYou():void
 {
 	clearOutput();
 	showHaley();
+	author("Wsan");
 	output("You unthinkingly reach out to stop her, grabbing the nearest part of her your hands can find purchase on – her prehensile tail. She emits a sound you could only ever describe as a 'yip', and you find the tail wriggling in your grip. Turning to you, her expression looks to be an odd mixture of anger and resignation, but despite that, her blue eyes shine brightly with eagerness.");
 	output("\n\n<i>“Fine, then. I've met your type before. The adventurous submissive. You want a taste of whatever exotic delight your fuck for the night can offer you, huh?”</i> She croons, slowly advancing on you all the while. <i>“I can do that, but know this. I am a slave to my desires. And if we're gonna do this,”</i> she grabs your arm and spins you around before shoving you to the floor on your hands and knees, <i>“you are a slave to me. You won't even be able to move enough to resist.”</i>\n\n");
 	if(!pc.isNude()) output("You hastily pull off your [pc.gear] to ");
@@ -307,6 +313,7 @@ public function waitForHaleyToGoToTownOnLadyNonTaurs():void
 {
 	clearOutput();
 	showHaley();
+	author("Wsan");
 	output("You unthinkingly reach out to stop her, grabbing the nearest part of her your hands can find purchase on – her prehensile tail. She emits a sound you could only ever describe as a 'yip', and you find the tail wriggling in your grip. Turning to you, her expression looks to be an odd mixture of anger and resignation, but despite that, her blue eyes shine brightly with eagerness.");
 	output("\n\n<i>“Fine, then. I've met your type before. The adventurous submissive. You want a taste of whatever exotic delight your fuck for the night can offer you, huh?”</i> She croons, slowly advancing on you all the while. <i>“I can do that, but know this. I am a slave to my desires. And if we're gonna do this,”</i> she grabs your arm and spins you around before shoving you to the floor on your hands and knees, <i>“you are a slave to me. You won't even be able to move enough to resist.”</i>");
 	if(!pc.isNude()) output("You hastily pull off your [pc.gear] to ");
@@ -350,6 +357,7 @@ public function waitForHaleyToReamYouAsAManTaur():void
 {
 	clearOutput();
 	showHaley();
+	author("Wsan");
 	output("You unthinkingly reach out to stop her, grabbing the nearest part of her your hands can find purchase on – her prehensile tail. She emits a sound you could only ever describe as a 'yip', and you find the tail wriggling in your grip. Turning to you, her face shines with a fervent eagerness and her eyes flash dangerously.");
 	output("\n\n<i>“Fine, then. I've met your type before. The adventurous submissive. You want a taste of whatever exotic delight your fuck for the night can offer you, huh?”</i> She croons, slowly advancing on you all the while. <i>“I can do that, but know this. I am a slave to my desires. And if we're gonna do this,”</i> she grabs your arm and turns you around before slapping your flank, <i>“you are a slave to me. Don't worry – when I'm in you, you won't even be able to resist.”</i>");
 	output("\n\nShe ");
@@ -401,6 +409,7 @@ public function waitToGetFuckedByHaleyAsAFemaleTaur():void
 {
 	clearOutput();
 	showHaley();
+	author("Wsan");
 	output("You unthinkingly reach out to stop her, grabbing the nearest part of her your hands can find purchase on – her prehensile tail. She emits a sound you could only ever describe as a 'yip', and you find the tail wrapping around your fingers. Turning to you, her face shines with a fervent eagerness and her eyes flash dangerously.");
 	output("\n\n<i>“You really want this, huh? My savior.”</i> She croons, slowly advancing on you all the while. <i>“I hope you like it rough – I'm a slave to my desires. And if we're gonna do this,”</i> she grabs your arm and turns you around before slapping your flank, <i>“you are a slave to me. Don't worry – when I'm in you, you won't even want to resist.”</i>");
 	output("\n\nShe ");
@@ -454,6 +463,7 @@ public function keepWatchingDatTaurSlootPoundHerMilkyMilkMaker():void
 {
 	clearOutput();
 	showHaley();
+	author("Wsan");
 	output("You can't help but want to keep watching – there's something about her desperate ferocity that captivates you, the stacked specimen's struggle to bring herself to orgasm both endearing and extremely hot. Her keening moans and grunts of effort");
 	if(pc.hasCock() && pc.hasVagina()) output(" make your [pc.cocks] stiffen in your [pc.lowerGarments], the heat in your [pc.vaginas] intensifying twofold as you begin lightly panting, the rhythm of your breathing unconsciously matching her animalistic thrusts.");
 	if(pc.hasCock() && !pc.hasVagina()) output(" make your [pc.cocks] stiffen in your [pc.lowerGarments], the rhythm of your breathing unconsciously matching her animalistic thrusts.");
@@ -471,6 +481,7 @@ public function leaveAfterWatchingHaleyABit():void
 {
 	clearOutput();
 	showHaley();
+	author("Wsan");
 	output("You shake your head to clear your mind. The hazy scent of her pheromones drifting through the air must be putting you on edge, what with a reaction like that. You can take care of your 'problem' later, but for now you have things to do.");
 	//back to square whatever
 	clearMenu();
@@ -483,6 +494,7 @@ public function masturbateWhileWatchingHaleyHumphumphump():void
 {
 	clearOutput();
 	showHaley();
+	author("Wsan");
 	if(pc.hasCock() && pc.hasVagina())
 	{
 		output("Fuck it, this needs tending to <i>now</i> and you're not going to pass up the opportunity to use a sexy Leithan girl as masturbation fodder. You ");
@@ -614,7 +626,7 @@ public function masturbateWhileWatchingHaleyHumphumphump():void
 //Entering stall:
 public function enteringHaleysStallRepeat():void
 {
-	clearOutput();
+	author("Wsan");
 	showHaley();
 	output("You open the stall door to find a veritable feast for the senses. Heady pheromones engulf you immediately, pervading the air and settling in your mind like someone draped a warm blanket over your brain. A scant few feet away, Haley is <i>pummeling</i> what looks to be some kind of milker machine built for taurs. Her entire granite-colored body is covered in a sheen of sweat, beads of it running over her chitinous armor every time she thrusts into the machine. You can sense her desperation in her actions, her back and arms squeezing and flexing every time a powerful buck of her hips sends her long yellow hair flying. She grunts and moans with every insertion and standing behind her, you dimly wonder how it's even possible you didn't hear her cries of effort from outside. Her eyes are squeezed shut and she's tightly gripping the steel pole that secures the milker, her heavy breasts swaying every time she fucks the machine.");
 	//Non-treated PC:
@@ -640,6 +652,7 @@ public function enteringHaleysStallRepeat():void
 public function backOutFromHaleyRepeat():void
 {
 	clearOutput();
+	author("Wsan");
 	output("You remember what getting between Haley and release entails, and decide you probably have other things you could be doing for the next six hours. You quietly shut her stall door and pad back into the stables.");
 	//move back to square whatever
 	clearMenu();
@@ -652,6 +665,7 @@ public function getFuckedByHaleyAsATreatedFemPCRepeatSlut():void
 {
 	clearOutput();
 	showHaley();
+	author("Wsan");
 	
 	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
 	if(!pp.hasCock()) pp.createCock();
@@ -885,6 +899,7 @@ public function getHaleyAFuckingSandwich():void
 {
 	clearOutput();
 	showHaley();
+	author("Wsan");
 	//Fuck the milker while Haley fills you up.
 	output("You call out in greeting to Haley, who slows her pace and turns her torso towards you. She gives you a little wave in return.");
 	output("\n\n<i>“Hey, [pc.name]. You just here to say hi, or…?”</i>");
