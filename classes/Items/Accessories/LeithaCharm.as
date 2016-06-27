@@ -103,7 +103,12 @@
 			
 			var wrongLegCount:Boolean = target.legCount != 6 && target.legCountUnlocked(6);
 			
-			if (wrongLegType || wrongLegFlags || wrongLegCount)
+			var orficeCapInc:Boolean = false;
+			if (target.ass.bonusCapacity < 500) orficeCapInc = true;
+			for (var i:int = 0; i < target.vaginas.length; i++)
+				if (target.vaginas[i].bonusCapacity < 500) orficeCapInc = true;
+			
+			if (wrongLegType || wrongLegFlags || wrongLegCount || orficeCapInc)
 			{
 				availableTFs.push(legTF);
 			}
@@ -127,7 +132,7 @@
 			var nonLCock:Boolean = false;
 			if (target.hasCock())
 			{
-				for (var i:int = 0; i < target.cocks.length; i++)
+				for (i = 0; i < target.cocks.length; i++)
 				{
 					if (target.cocks[i].cType != GLOBAL.TYPE_NAGA && target.cockTypeUnlocked(i, GLOBAL.TYPE_LEITHAN))
 					{
@@ -323,7 +328,7 @@
 				target.genitalSpot = 2;
 			}
 			// Right legs but not 6-legged taur
-			else
+			else if (target.legCount < 6 && target.legCountUnlocked(6))
 			{
 				nl = true;
 				output("You feel a rush of pressure hammering at the middle of your tauric body, between");
@@ -358,7 +363,8 @@
 				if (vagIncs > 0) output(" [pc.cunts]");
 				output(" seem");
 				if ((buttInc && vagIncs == 0) || (!buttInc && vagIncs == 1)) output("s");
-				output(" to grow deeper, much more cavernous. You feel like you could take much longer, thicker insertions now. Your tauric body certainly has room for it!");
+				output(" to grow deeper, much more cavernous. You feel like you could take much longer, thicker insertions now.");
+				if (target.isTaur()) output(" Your tauric body certainly has room for it!");
 				if (target.isBimbo()) output(" You can't wait to find a hung leithan boy to pound his mammoth lizard-dick deep into your deep, hungry hole.");
 
 				if (target.ass.bonusCapacity < 500)

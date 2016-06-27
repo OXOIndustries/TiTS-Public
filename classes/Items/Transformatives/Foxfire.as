@@ -116,7 +116,7 @@ package classes.Items.Transformatives
 			var target:Creature = args[0];
 			var type:Class = args[1];
 			var frost:Boolean = type == Frostfire;
-			target.destroyItemByType(type);
+			if(!kGAMECLASS.infiniteItems()) target.destroyItemByType(type);
 			clearOutput();
 			
 			if (!target.hasHair())
@@ -184,7 +184,7 @@ package classes.Items.Transformatives
 			var target:Creature = args[0];
 			var type:Class = args[1];
 			var frost:Boolean = type == Frostfire;
-			target.destroyItemByType(type);
+			if(!kGAMECLASS.infiniteItems()) target.destroyItemByType(type);
 			clearOutput();
 			
 			if (target.hasTail())
