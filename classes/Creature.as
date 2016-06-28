@@ -4725,7 +4725,8 @@
 		}
 		public function skinFurScalesColor():String
 		{
-			if(skinType == GLOBAL.SKIN_TYPE_FUR || skinType == GLOBAL.SKIN_TYPE_FEATHERS) return furColor;
+			if(armor is Omnisuit) return "black";
+			else if(skinType == GLOBAL.SKIN_TYPE_FUR || skinType == GLOBAL.SKIN_TYPE_FEATHERS) return furColor;
 			else if(skinType == GLOBAL.SKIN_TYPE_SCALES || skinType == GLOBAL.SKIN_TYPE_CHITIN) return scaleColor;
 			return skinTone;
 		}
@@ -4807,21 +4808,30 @@
 			var adjectives:Array = [];
 			//33% of the time, add an adjective.
 			if (forceAdjective || rand(3) == 0) {
-				if (skinType == GLOBAL.SKIN_TYPE_LATEX) adjectives.push(RandomInCollection(["slick","glistening","squeaky","glossy","oiled","lacquered","sleek","polished","supple"]));
-				if (hasSkinFlag(GLOBAL.FLAG_SMOOTH)) adjectives.push("smooth");
-				if (hasSkinFlag(GLOBAL.FLAG_THICK)) adjectives.push("thick");
-				if (hasSkinFlag(GLOBAL.FLAG_STICKY)) adjectives.push("sticky");
-				if (hasSkinFlag(GLOBAL.FLAG_FLUFFY) && !skin)
+				//Omnisuit overrides normal skin descs.
+				if(!skin && armor is Omnisuit)
 				{
-					if (skinType == GLOBAL.SKIN_TYPE_FUR) adjectives.push("fluffy");
-					if (skinType == GLOBAL.SKIN_TYPE_FEATHERS) adjectives.push("downy");
+					adjectives.push(RandomInCollection(["slick","artificial","body-encasing","sensation-enhancing","touch-enhancing","tactile-enhancing","gleaming","shining","perfectly molded"]));
 				}
-				if(adjectives.length > 0) output += RandomInCollection(adjectives);
+				else
+				{
+					if (skinType == GLOBAL.SKIN_TYPE_LATEX) adjectives.push(RandomInCollection(["slick","glistening","squeaky","glossy","oiled","lacquered","sleek","polished","supple"]));
+					if (hasSkinFlag(GLOBAL.FLAG_SMOOTH)) adjectives.push("smooth");
+					if (hasSkinFlag(GLOBAL.FLAG_THICK)) adjectives.push("thick");
+					if (hasSkinFlag(GLOBAL.FLAG_STICKY)) adjectives.push("sticky");
+					if (hasSkinFlag(GLOBAL.FLAG_FLUFFY) && !skin)
+					{
+						if (skinType == GLOBAL.SKIN_TYPE_FUR) adjectives.push("fluffy");
+						if (skinType == GLOBAL.SKIN_TYPE_FEATHERS) adjectives.push("downy");
+					}
+					if(adjectives.length > 0) output += RandomInCollection(adjectives);
+				}
 			}
 			//25% of time, describe skin tone.
 			if (forceTone || rand(4) == 0) {
 				if (output != "") output += ", ";
-				if ((skinType == GLOBAL.SKIN_TYPE_FUR || skinType == GLOBAL.SKIN_TYPE_FEATHERS) && !skin) output += furColor;
+				if(!skin && armor is Omnisuit) output += RandomInCollection(["black","black","ebony","onyx","sable"]);
+				else if ((skinType == GLOBAL.SKIN_TYPE_FUR || skinType == GLOBAL.SKIN_TYPE_FEATHERS) && !skin) output += furColor;
 				else if ((skinType == GLOBAL.SKIN_TYPE_SCALES || skinType == GLOBAL.SKIN_TYPE_CHITIN) && !skin) output += scaleColor;
 				else output += skinTone;
 			}
@@ -4904,7 +4914,8 @@
 			var output: String = "";
 			var temp: int = 0;
 			//Set skin words.
-			if (skinType == GLOBAL.SKIN_TYPE_SKIN || skin) {
+			if(armor is Omnisuit && !skin) output += RandomInCollection(["latex","rubber","suit"]);
+			else if (skinType == GLOBAL.SKIN_TYPE_SKIN || skin) {
 				temp = rand(10);
 				//if (temp <= 8) 
 				output += "skin";
