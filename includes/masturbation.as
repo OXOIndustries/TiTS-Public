@@ -15,7 +15,7 @@ public function availableFaps(roundTwo:Boolean = false):Array
 	// Overrides
 	// If any of these are true, do whatever you need and return after pushing a single function into the array
 	// We can then autoexecute on the only available option
-	if (pc.hasCuntTail() && pc.hasCock && !pc.isTaur() && (pc.cockThatFits(pc.tailCuntCapacity()) >= 0) && flags["DAYS_SINCE_FED_CUNT_TAIL"] != undefined && flags["DAYS_SINCE_FED_CUNT_TAIL"] >= 7)
+	if (pc.hasCuntSnake() && pc.hasCock() && !pc.isTaur() && (pc.cockThatFits(pc.tailCuntCapacity()) >= 0) && flags["DAYS_SINCE_FED_CUNT_TAIL"] != undefined && flags["DAYS_SINCE_FED_CUNT_TAIL"] >= 7)
 	{
 		clearOutput();
 		output("An insatiable hunger from your tail overwhelms you. <b>You have to feed it!</b>");
