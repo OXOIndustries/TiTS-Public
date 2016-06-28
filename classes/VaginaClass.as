@@ -41,7 +41,8 @@
 			}
 			
 			var currWet:Number = wetnessRaw + wetnessMod;
-			if(kGAMECLASS.pc.hasStatusEffect("Anal Lubricant") && kGAMECLASS.pc.ass == this)
+			
+			if(kGAMECLASS.pc && kGAMECLASS.pc.hasStatusEffect("Anal Lubricant") && kGAMECLASS.pc.ass == this)
 			{
 				currWet += 2;
 				if(currWet > 5) currWet = 5;
