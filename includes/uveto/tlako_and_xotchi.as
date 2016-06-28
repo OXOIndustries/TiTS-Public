@@ -100,7 +100,7 @@ public function askTlakoAboutUvetanHistory():void
 	output("\n\nGiven the mountain of paperwork you navigated to dock here, you're uncertain if using the station was actually easier. You ask what the Camarilla gets out of it.");
 	output("\n\nTlako chirps and smooths down her bustier with all four hands. <i>\"In order to maintain Uveto Station, the Camarilla levies a small tax on all incoming and outgoing traffic… with variances based on cargo load,\"</i> she adds.");
 	output("\n\nYou frown, and she adds in hurriedly. <i>\"Primarily for large-scale mining transport. In general, you won't be charged very much for private transport.\"</i>");
-	output("\n\n<i>\"Here aboard Uveto Station, you can enjoy many of the amenities of a colonized planet. Shops, food, and even, um …\"</i> she pulls a small, circular disk from the top of her bustier, scrolling her finger across its screen, <i>\"...forniculations are possible here on Tavros Station. Of course, the engineering levels are not accessible for you - as they are built to tove aquatic standards, and exist primarily below the walking deck.</i>\"");
+	output("\n\n<i>\"Here aboard Uveto Station, you can enjoy many of the amenities of a colonized planet. Shops, food, and even, um …\"</i> she pulls a small, circular disk from the top of her bustier, scrolling her finger across its screen, <i>\"...forniculations are possible here on Uveto Station. Of course, the engineering levels are not accessible for you - as they are built to tove aquatic standards, and exist primarily below the walking deck.</i>\"");
 	processTime(6);
 	tlakoMenu(askTlakoAboutUvetanHistory);
 }
