@@ -177,7 +177,7 @@ public function initUvetoRooms():void
 
 	rooms["UVS F9"] = new RoomClass(this);
 	rooms["UVS F9"].roomName = "PROMENADE\nSOUTH-EAST";
-	rooms["UVS F9"].description = "You're standing on the south-eastern edge of a circular promenade that surrounds Uveto Station's huge space elevator. You're just a hop and a skip from the elevator doors, either west or north of you.\n\nA sign to the north indicates a corridor eastward as leading to the station chief and other executives' offices.";
+	rooms["UVS F9"].description = "You're standing on the south-eastern edge of a circular promenade that surrounds Uveto Station's huge space elevator. You're just a hop and a skip from the elevator doors, either west or north of you.\n\nA sign on the wall indicates a corridor eastward as leading to the station chief and other executives' offices.";
 	rooms["UVS F9"].planet = "UVETO STATION";
 	rooms["UVS F9"].system = "SYSTEM: SIRETTA";
 	rooms["UVS F9"].northExit = "UVS F7";
@@ -194,10 +194,10 @@ public function initUvetoRooms():void
 	rooms["UVS H7"].southExit = "UVS H9";
 	rooms["UVS H7"].westExit = "UVS F7";
 	rooms["UVS H7"].moveMinutes = 1;
-	rooms["UVS H7"].runOnEnter = function():Boolean {
+	/*rooms["UVS H7"].runOnEnter = function():Boolean {
 		setNavDisabled(NAV_EAST_DISABLE);
 		return false;
-	};
+	};*/
 	rooms["UVS H7"].addFlag(GLOBAL.INDOOR);
 
 	/* Station C&C */
@@ -208,7 +208,9 @@ public function initUvetoRooms():void
 	rooms["UVS J7"].system = "SYSTEM: SIRETTA";
 	rooms["UVS J7"].westExit = "UVS H7";
 	rooms["UVS J7"].moveMinutes = 1;
+	rooms["UVS J7"].runOnEnter = officeOfTheCamarillaButtsBonus;
 	rooms["UVS J7"].addFlag(GLOBAL.INDOOR);
+	rooms["UVS J7"].addFlag(GLOBAL.NPC);
 
 	rooms["UVS H9"] = new RoomClass(this);
 	rooms["UVS H9"].roomName = "RHENWORLD\nOFFICES";

@@ -273,7 +273,8 @@ public function tryApplyUvetoColdDamage(timeExposed:Number):Boolean
 		baseDamage = 1
 		resistToMitigate = 50;
 	}
-	
+	//Special protection field!
+	if(pc.hasStatusEffect("T.Pack")) baseDamage = 0;
 	if (baseDamage > 0 && tPC.willTakeColdDamage(resistToMitigate))
 	{
 		if (tPC.skinType == GLOBAL.SKIN_TYPE_FUR)

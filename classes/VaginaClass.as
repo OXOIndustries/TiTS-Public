@@ -1,7 +1,7 @@
 ﻿package classes
 {
 	import classes.DataManager.Serialization.UnversionedSaveable;
-	
+	import classes.kGAMECLASS;
 	public class VaginaClass extends UnversionedSaveable
 	{
 		//constructor
@@ -41,6 +41,11 @@
 			}
 			
 			var currWet:Number = wetnessRaw + wetnessMod;
+			if(kGAMECLASS.pc.hasStatusEffect("Anal Lubricant") && kGAMECLASS.pc.ass == this)
+			{
+				currWet += 2;
+				if(currWet > 5) currWet = 5;
+			}
 			
 			if (currWet < 0)
 			{
