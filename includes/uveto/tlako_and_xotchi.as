@@ -58,6 +58,7 @@ public function officeOfTheCamarillaButtsBonus():Boolean
 		if(flags["TLAKO_BASKETS"] != undefined) output("\"</i> She smiles up at you so hard that her eyes close. <i>\"You already bought one, so don't feel pressured to buy another,\"</i> she says.");
 		else output("\"</i>");
 	}
+	CodexManager.unlockEntry("Toves");
 	tlakoMenu();
 	return true;
 }
