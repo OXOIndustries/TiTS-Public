@@ -1252,6 +1252,7 @@
 			kGAMECLASS.days = obj.daysPassed;
 			kGAMECLASS.hours = obj.currentHours;
 			kGAMECLASS.minutes = obj.currentMinutes;
+			if (obj.saveNotes != "No notes available.") kGAMECLASS.userInterface.currentPCNotes = obj.saveNotes;
 			
 			// Game data
 			kGAMECLASS.chars = new Object();

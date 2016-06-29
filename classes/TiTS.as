@@ -226,6 +226,7 @@
 		include "../includes/newTexas/bigT.as";
 		include "../includes/newTexas/brynn.as";
 		include "../includes/newTexas/ellie.as";
+		include "../includes/newTexas/haley.as";
 		include "../includes/newTexas/gianna.as";
 		include "../includes/newTexas/gobbles.as";
 		include "../includes/newTexas/millie.as";
@@ -296,6 +297,7 @@
 		include "../includes/uveto/rooms.as";
 		include "../includes/uveto/roomFunctions.as";
 		include "../includes/uveto/shade.as";
+		include "../includes/uveto/tlako_and_xotchi.as";
 		include "../includes/events/icequeen/icequeen.as"; // Alt. path to unlocking uveto
 		
 		include "../includes/chargendata.as";
@@ -400,7 +402,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.6.60";
+			version = "0.6.63";
 
 			//temporary nonsense variables.
 			temp = 0;

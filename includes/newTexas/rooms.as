@@ -189,16 +189,30 @@ public function initNewTexasRooms():void
 	//The Barn (North Center)
 	rooms["513"] = new RoomClass(this);
 	rooms["513"].roomName = "THE\nBARN";
-	rooms["513"].description = "It's not often you get to see buildings constructed in the ancients' styles, built with nothing more than beams of hewn wood, sweat, and a few metal bolts. Of course, here and there you see hints of modern technology running through it. New Texas may be an upper-class tourist hotspot advertised as getting back to nature, but they're obviously spending their credits on securing the best milking technology available. Judging by the deep groans of pleasure coming from the sealed stall to the west, they're milking more than milk too. The door to the east is marked \"occupied\" as well.";
+	rooms["513"].description = "It's not often you get to see buildings constructed in the ancients' styles, built with nothing more than beams of hewn wood, sweat, and a few metal bolts. Of course, here and there you see hints of modern technology running through it. New Texas may be an upper-class tourist hotspot advertised as getting back to nature, but they're obviously spending their credits on securing the best milking technology available. Judging by the deep groans of pleasure coming from the sealed stall to the west, they're milking more than milk too. The door to the east is marked \"occupied\" as well.\n\nYou can hear a dull thudding coming from one of the stalls to the east.";
 	rooms["513"].runOnEnter = randomBarnEventFunc;
 	rooms["513"].southExit = "512";
 	rooms["513"].northExit = "514";
+	rooms["513"].eastExit = "HALEY";
 	rooms["513"].moveMinutes = 1;
 	rooms["513"].planet = "PLANET: NEW TEXAS";
 	rooms["513"].system = "SYSTEM: NYE";
 	rooms["513"].addFlag(GLOBAL.INDOOR);
 	rooms["513"].addFlag(GLOBAL.PUBLIC);
 	//rooms["513"].addFlag(GLOBAL.NPC);
+
+	//Haley's Room
+	rooms["HALEY"] = new RoomClass(this);
+	rooms["HALEY"].roomName = "OCCUPIED\nSTALL";
+	rooms["HALEY"].description = "";
+	rooms["HALEY"].runOnEnter = haleyRoomBonus;
+	rooms["HALEY"].westExit = "513";
+	rooms["HALEY"].moveMinutes = 1;
+	rooms["HALEY"].planet = "PLANET: NEW TEXAS";
+	rooms["HALEY"].system = "SYSTEM: NYE";
+	rooms["HALEY"].addFlag(GLOBAL.INDOOR);
+	rooms["HALEY"].addFlag(GLOBAL.PUBLIC);
+	rooms["HALEY"].addFlag(GLOBAL.NPC);
 	
 	//514
 	//The Barn (North End)

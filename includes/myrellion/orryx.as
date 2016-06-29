@@ -67,7 +67,13 @@ public function encounterFrogapi():void
 		else output("it’s not even as tall as you.");
 		output(" It is, however, covered in a brightly-flashing array of animated screens. Advertisements flicker past at migraine-inducing speeds, touting such quotables as <i>“Olkoth’s Old Fashioned Nanoborg Injections!”</i> and <i>“Yibb-Tstll’s Reflexive Lube! Good for What Rails You!”</i>");
 		output("\n\n<i>“You! Yes, you, my good sapient!”</i> says the tiny figure perched just beneath the canopy.");
-		output("\n\nDo you investigate?");
+		output("\n\n");
+		if(CodexManager.entryUnlocked("Toves"))
+		{
+			output("According to your Codex, it belongs to a mercantile species known as Toves. ");
+			CodexManager.unlockEntry("Toves");
+		}
+		output("Do you investigate?");
 		flags["MET_ORRYX"] = -1;
 		processTime(2);
 		//No
