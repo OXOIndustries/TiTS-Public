@@ -617,22 +617,22 @@ public function statisticsScreen(showID:String = "All"):void
 		//======CORE STATISTICS=====//
 		output2("\n\n" + blockHeader("Core Statistics", false));
 		output2("\n<b><u>Active Stats</u></b>");
-		output2("\n<b>* " + StringUtil.capitalize(pc.shieldDisplayName) + ": </b>" + "0/" + pc.shieldsRaw + "/" + pc.shieldsMax());
-		output2("\n<b>* HP: </b>" + "0/" + pc.HP() + "/" + pc.HPMax());
-		output2("\n<b>* Lust: </b>" + pc.lustMin() + "/" + pc.lust() + "/" + pc.lustMax());
-		output2("\n<b>* Energy: </b>" + pc.energyMin() + "/" + pc.energy() + "/" + pc.energyMax());
+		output2("\n<b>* " + StringUtil.capitalize(pc.shieldDisplayName) + ":</b> " + Math.round((pc.shieldsRaw/pc.shieldsMax()) * 100) + " %, " + "0/" + pc.shieldsRaw + "/" + pc.shieldsMax());
+		output2("\n<b>* HP:</b> " + pc.HPQ() + " %, " + "0/" + pc.HP() + "/" + pc.HPMax());
+		output2("\n<b>* Lust:</b> " + Math.round((pc.lust()/pc.lustMax()) * 100) + " %, " + pc.lustMin() + "/" + pc.lust() + "/" + pc.lustMax());
+		output2("\n<b>* Energy:</b> " + Math.round((pc.energy()/pc.energyMax()) * 100) + " %, " + pc.energyMin() + "/" + pc.energy() + "/" + pc.energyMax());
 		output2("\n<b><u>Passive Stats</u></b>");
-		output2("\n<b>* Physique: </b>" + "0/" + pc.physique() + "/" + pc.physiqueMax());
+		output2("\n<b>* Physique:</b> " + pc.PQ() + " %, " + "0/" + pc.physique() + "/" + pc.physiqueMax());
 		if(pc.physiqueMod != 0) output2(" (" + StringUtil.printPlusMinus(formatFloat(pc.physiqueMod, 3)) + ")");
-		output2("\n<b>* Reflexes: </b>" + "0/" + pc.reflexes() + "/" + pc.reflexesMax());
+		output2("\n<b>* Reflexes:</b> " + pc.RQ() + " %, " + "0/" + pc.reflexes() + "/" + pc.reflexesMax());
 		if(pc.reflexesMod != 0) output2(" (" + StringUtil.printPlusMinus(formatFloat(pc.reflexesMod, 3)) + ")");
-		output2("\n<b>* Aim: </b>" + "0/" + pc.aim() + "/" + pc.aimMax());
+		output2("\n<b>* Aim:</b> " + pc.AQ() + " %, " + "0/" + pc.aim() + "/" + pc.aimMax());
 		if(pc.aimMod != 0) output2(" (" + StringUtil.printPlusMinus(formatFloat(pc.aimMod, 3)) + ")");
-		output2("\n<b>* Intelligence: </b>" + "0/" + pc.intelligence() + "/" + pc.intelligenceMax());
+		output2("\n<b>* Intelligence:</b> " + pc.IQ() + " %, " + "0/" + pc.intelligence() + "/" + pc.intelligenceMax());
 		if(pc.intelligenceMod != 0) output2(" (" + StringUtil.printPlusMinus(formatFloat(pc.intelligenceMod, 3)) + ")");
-		output2("\n<b>* Willpower: </b>" + "0/" + pc.willpower() + "/" + pc.willpowerMax());
+		output2("\n<b>* Willpower:</b> " + pc.WQ() + " %, " + "0/" + pc.willpower() + "/" + pc.willpowerMax());
 		if(pc.willpowerMod != 0) output2(" (" + StringUtil.printPlusMinus(formatFloat(pc.willpowerMod, 3)) + ")");
-		output2("\n<b>* Libido: </b>" + pc.libidoMin() + "/" + pc.libido() + "/" + pc.libidoMax());
+		output2("\n<b>* Libido:</b> " + pc.LQ() + " %, " + pc.libidoMin() + "/" + pc.libido() + "/" + pc.libidoMax());
 		if(pc.libidoMod != 0) output2(" (" + StringUtil.printPlusMinus(formatFloat(pc.libidoMod, 3)) + ")");
 		
 		//======COMBAT STATISTICS=====//
@@ -2778,7 +2778,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Milk Barn, where all the cows stay at!
-			if(flags["BRYNN_AUTOENTER"] != undefined || flags["MET_GIANNA"] != undefined || flags["MET_MILLIE"] != undefined || flags["MET_YANCY"] != undefined || flags["GOBBLES_SEXYTIMES_STARTED"] != undefined || StatTracking.getStat("milkers/breast milker uses") > 0 || StatTracking.getStat("milkers/prostate milker uses") > 0)
+			if(flags["BRYNN_AUTOENTER"] != undefined || flags["MET_GIANNA"] != undefined || flags["MET_HALEY"] != undefined || flags["MET_MILLIE"] != undefined || flags["MET_YANCY"] != undefined || flags["GOBBLES_SEXYTIMES_STARTED"] != undefined || StatTracking.getStat("milkers/breast milker uses") > 0 || StatTracking.getStat("milkers/prostate milker uses") > 0)
 			{
 				output2("\n<b><u>Milk Barn</u></b>");
 				// Milkers
@@ -2946,6 +2946,11 @@ public function displayEncounterLog(showID:String = "All"):void
 					}
 					// Timer
 					if(flags["GIANNA_FUCK_TIMER"] != undefined) output2("\n<b>* Gianna, Time Since Last Fucked: </b>" + prettifyMinutes(flags["GIANNA_FUCK_TIMER"]));
+				}
+				// Haley
+				if(flags["MET_HALEY"] != undefined)
+				{
+					output2("\n<b>* Haley:</b> Met her, Sexed her");
 				}
 				// Millie milks!
 				if(flags["MET_MILLIE"] != undefined)
@@ -4369,6 +4374,26 @@ public function displayEncounterLog(showID:String = "All"):void
 		
 		if(showID == "Uveto" || showID == "All")
 		{
+			// Office of the Camarilla
+			if(flags["MET_TLAKO"] != undefined || flags["MET_XOTCHI"] != undefined)
+			{
+				output2("\n<b><u>Office of the Camarilla</u></b>");
+				if(flags["MET_TLAKO"] != undefined)
+				{
+					output2("\n<b>* Tlako:</b> Met her");
+					if(flags["TLAKO_BASKETS"] != undefined)
+					{
+						output2(", bought welcome basket from her");
+						if(flags["TLAKO_BASKETS"] > 1) output2(" " + num2Text(flags["TLAKO_BASKETS"]) + " times");
+					}
+					if(flags["FLORKED_TLAKO"] != undefined) output2("\n<b>* Tlako, Times Florked: </b>" + flags["FLORKED_TLAKO"]);
+				}
+				if(flags["MET_XOTCHI"] != undefined)
+				{
+					output2("\n<b>* Xotchi Tzall:</b> Met her");
+				}
+				variousCount++;
+			}
 			// Irestead
 			if(flags["MET_ASTRA"] != undefined)
 			{
