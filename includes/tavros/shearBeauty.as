@@ -1392,6 +1392,7 @@ public function earFuckCeriaPart3():void
 	//Merge
 	output("\n\nYou're left sitting there in a puddle of your own juices when she spins away, prancing off to a back room to clean up. A cleaning robot arrives in her absence, working to clean up the mess you two left on the floor, but the strawberry aroma lingers behind.");
 	processTime(15);
+	IncrementFlag("CERIA_EARFUCKS");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
