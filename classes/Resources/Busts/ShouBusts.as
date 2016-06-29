@@ -26,6 +26,11 @@
 		public var Bust_ASENNIA_2:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/asennia_3.png", mimeType = "image/png")]
 		public var Bust_ASENNIA_3:Class;
+		
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/astra.png", mimeType = "image/png")]
+		public var Bust_ASTRA:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/astra_nude.png", mimeType = "image/png")]
+		public var Bust_ASTRA_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/aurora.png", mimeType = "image/png")]
 		public var Bust_AURORA:Class;
@@ -372,6 +377,11 @@
 			public var Full_ASENNIA_2:Class;
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/asennia_3.png", mimeType = "image/png")]
 			public var Full_ASENNIA_3:Class;
+		
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/astra.png", mimeType = "image/png")]
+			public var Full_ASTRA:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/astra_nude.png", mimeType = "image/png")]
+			public var Full_ASTRA_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/aurora.png", mimeType = "image/png")]
 			public var Full_AURORA:Class;
