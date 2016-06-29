@@ -66,7 +66,7 @@ public function initTarkusRooms():void
 	//#3 UPPER STAIRWELL
 	rooms["203"] = new RoomClass(this);
 	rooms["203"].roomName = "UPPER\nSTAIRWELL";
-	rooms["203"].description = "You're standing inside a wide corridor labeled as \"Starewell\" in painted script. The writing is as crude as it is misspelled. It isn't even accurate to this location; the corridor is a corkscrew-shaped ramp that twists down into the belly of the ship. There's no stairs anywhere that you can see. In spite of the terrible labeling, large numbers of the diminutive raskvel are scurrying up and down the passage, bearing all kinds of cargo. There are even some robots carrying tanks of fuel or driving small carts on their way. You can go down into the ship or south out into the hangar.";
+	rooms["203"].description = "You're standing inside a wide corridor labeled as \"Starewell\" in painted script. The writing is as crude as it is misspelled. It isn't even accurate to this location; the corridor is a corkscrew-shaped ramp that twists down into the belly of the ship. There's no stairs anywhere that you can see. In spite of the terrible labeling, large numbers of the diminutive raskvel are scurrying up and down the passage, bearing all kinds of cargo. There are even some robots carrying tanks of fuel or driving small carts on their way. You can go down into the ship or west out into the hangar.";
 	rooms["203"].runOnEnter = undefined;
 	rooms["203"].westExit = "202";
 	rooms["203"].outExit = "204";

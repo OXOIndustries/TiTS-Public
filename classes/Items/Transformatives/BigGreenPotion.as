@@ -118,7 +118,7 @@
 				{
 					if (pc.faceTypeUnlocked(GLOBAL.TYPE_HUMAN))
 					{
-						output("\n\nYour face begins to tingle and reform--noramlizing into a smooth, flat visage. Once the wrestling of your features has ended, <b>your face looks completely human.</b>");
+						output("\n\nYour face begins to tingle and reform--normalizing into a smooth, flat visage. Once the wrestling of your features has ended, <b>your face looks completely human.</b>");
 						pc.faceType = GLOBAL.TYPE_HUMAN;
 						pc.clearFaceFlags();
 						changes++;

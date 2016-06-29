@@ -132,8 +132,8 @@ public function firstTimeOmniSuitOn():void
 		return;
 	}
 	clearOutput();
-	output("The binding collar hisses, startling you. You jerk a hand up to the it, discovering nothing, but a moment later, you feel the source of the sound - something is sliding down the flesh of your neck, coating your collarbones on its way to your chest and shoulders. Your fingers find the foreign material. It feels slick, almost wet, yet solid and rubbery. Looking down, you can see it now, flowing across your body, shooting out inky streamers ahead of the creeping black edge. You try to block it with your hand to little avail - onyx creeps under your fingers, varnishing your body in sleek perfection. Deciding it's either harmless or impossible to stop, you ");
-	if(!pc.isNude()) output("peel off your [pc.gear] to ");
+	output("The binding collar hisses, startling you. You jerk a hand up to it, discovering nothing, but a moment later, you feel the source of the sound - something is sliding down the flesh of your neck, coating your collarbones on its way to your chest and shoulders. Your fingers find the foreign material. It feels slick, almost wet, yet solid and rubbery. Looking down, you can see it now, flowing across your body, shooting out inky streamers ahead of the creeping black edge. You try to block it with your hand to little avail - onyx creeps under your fingers, varnishing your body in sleek perfection. Deciding it's either harmless or impossible to stop, you ");
+	if(!pc.isNude()) output("peel off your gear to ");
 	output("watch its progress.");
 
 	output("\n\nSable shine flows down your [pc.chest], pausing briefly at your [pc.nipples] only to encase them a moment later, shrouding them and yet somehow doing absolutely nothing to conceal them. If anything, every detail seems emphasized, brought out in stark relief. The black coating turns your shoulders glossy at the same time, squeezing down on you until it treads on the edge between comfortably snug and claustrophobically taut. It oozes over your biceps, complementing the shape of your body with latex-like shine. You roll your shoulders, finding that it doesn't restrict your movement in the slightest, not even when it nearly doubles you over with laughter at the tickling prickles of your belly button being enveloped.");
@@ -295,7 +295,7 @@ public function putOnDaOmniSuitFirstTime2():void
 		if(pc.hasVagina())
 		{
 			output("\n\nShining, pussy-shaped ebony is all that hides your womanhood");
-			if(pc.totalVaginas() == 1) output("s");
+			if(pc.totalVaginas() > 1) output("s");
 			output(", and it does a poor job at that. Sure, the material has filled in dramatically, but anyone who looks ");
 			if(pc.legCount > 1) output("between your [pc.legs]");
 			else output("down there");
@@ -350,7 +350,7 @@ public function putOnDaOmniSuitFirstTime2():void
 			output(". Most wonderfully of all, your erotic exterior coating still permits your feminine moisture through - and you expect it will allow cum through just as easily.");
 		}
 		//Butthole
-		output("\n\nThough it remains steadfastly hidden from your view, you can feel the changes in your [pc.asshole] as well. The shiny black goo has very obviously thickened around the edge of your rim, making it feel bloated and swollen - all while transmitting sensation more effectively than your own skin. You touch it once, just to feel and gasp. It's like a fat little doughnut with a crinkly hole in the middle, ready to stretch around anything you dare to put inside. What's more, the way contact is sending lewd little shivers up your spine is decided distracting");
+		output("\n\nThough it remains steadfastly hidden from your view, you can feel the changes in your [pc.asshole] as well. The shiny black goo has very obviously thickened around the edge of your rim, making it feel bloated and swollen - all while transmitting sensation more effectively than your own skin. You touch it once, just to feel and gasp. It's like a fat little doughnut with a crinkly hole in the middle, ready to stretch around anything you dare to put inside. What's more, the way contact is sending lewd little shivers up your spine is decidedly distracting");
 		if(pc.hasVagina()) output(", almost vaginal in nature.");
 		else output(". You imagine that it isn't far off from a pussy... only in your butt.");
 

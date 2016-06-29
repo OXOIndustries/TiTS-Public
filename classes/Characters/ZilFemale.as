@@ -363,7 +363,7 @@
 			output("Suddenly, the zil girl drops her combat stance, and dips her fingers right into her honeypot, masturbating furiously.");
 			if(target.hasAirtightSuit())
 			{
-				output(" You wonder what the hell she's doing, but judging by the look on her face, she is being assualted by a potent cloud of her own sex pheromones!");
+				output(" You wonder what the hell she's doing, but judging by the look on her face, she is being assaulted by a potent cloud of her own sex pheromones!");
 				output("\n\nLuckily your [pc.armor] is airtight, so you don't have to worry about being affected by it - but you can see <i>she</i> definitely is!");
 				lust(8);
 			}
