@@ -19,7 +19,7 @@
 			
 			this.quantity = 1;
 			this.stackSize = 10;
-			this.type = GLOBAL.FOOD;
+			this.type = GLOBAL.PILL;
 			
 			//Used on inventory buttons
 			this.shortName = "YT.Lube";
@@ -63,14 +63,22 @@
 			{
 				kGAMECLASS.clearOutput();
 				//Consume:
-				kGAMECLASS.output("You push the small, green capsule into your rear, feeling it slip surprisingly well into your bud. It dissolves instantly, bringing a slippery, lubed feeling to your asshole. That was... weird, but it seems to have worked.");
-				if(!target.hasStatusEffect("Anal Lubricant")) target.createStatusEffect("Anal Lubricant",0,0,0,0,false,"Icon_Splatter","Thanks to some YTR Lube, your anus is particularly slippery! ...at least for a while.",false,4320);
+				kGAMECLASS.output("You push the small, green capsule into your rear, feeling it slip surprisingly well into your bud. It dissolves instantly, bringing a slippery, lubed feeling to your asshole. That was... weird,");
+				if(!target.hasStatusEffect("Anal Lubricant"))
+				{
+					kGAMECLASS.output(" but it seems to have worked.");
+					target.createStatusEffect("Anal Lubricant",0,0,0,0,false,"Icon_Splatter","Thanks to some YTR Lube, your anus is particularly slippery! ...at least for a while.",false,4320);
+				}
+				else
+				{
+					kGAMECLASS.output(" though it seems your ass has been well-lubricated already.");
+				}
 			}
 			else
 			{
 				kGAMECLASS.clearOutput();
 				kGAMECLASS.output(target.capitalA + target.short + " shoves the pill up " + target.mf("his","her") + " backdoor with an odd expression on " + target.mf("his","her") + " face.");
-				if(!target.hasStatusEffect("Anal Lubricant")) target.createStatusEffect("Anal Lubricant",0,0,0,0,false,"Icon_Splatter","Thanks to some YTR Lube, your anus is particularly slippery! ...at least for a while.",false,4320);
+				if(!target.hasStatusEffect("Anal Lubricant")) target.createStatusEffect("Anal Lubricant",0,0,0,0,false,"Icon_Splatter","Thanks to some YTR Lube, " + target.mf("his","her") + " anus is particularly slippery! ...at least for a while.",false,4320);
 			}
 			return false;
 		}
