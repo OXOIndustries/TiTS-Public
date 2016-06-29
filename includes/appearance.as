@@ -956,12 +956,38 @@ public function appearance(forTarget:Creature):void
 			else output2(" all " + num2Text(target.legCount) + " legs");
 			output2(" ending in flat, rounded hooves.");
 		}
-		else if(target.legType == GLOBAL.TYPE_LIZAN && target.legCount == 6) output2(" From the waist down, you have a powerful, six-legged body that looks like a crossbreed of a lizard and a horse.");
+		else if(target.legType == GLOBAL.TYPE_LIZAN && target.legCount == 6) output2(" From the waist down, you have a powerful, " + num2Text(target.legCount) + "-legged body that looks like a crossbreed of a lizard and a horse.");
 		else if(target.isTaur())
 		{
 			output2(" From the waist down, you have a bestial, " + num2Text(target.legCount) + "-legged form vaguely like that of a");
-			if(target.legType == GLOBAL.TYPE_BOVINE) output2(" " + target.mf("bull","cow") + ".");
-			else output2(" horse.");
+			switch(target.legType)
+			{
+				case GLOBAL.TYPE_BOVINE:
+				case GLOBAL.TYPE_DEER:
+				case GLOBAL.TYPE_GOAT:
+					output2(" bovid"); break;
+				case GLOBAL.TYPE_CANINE:
+				case GLOBAL.TYPE_VULPINE:
+				case GLOBAL.TYPE_TANUKI:
+					output2(" canid"); break;
+				case GLOBAL.TYPE_FELINE:
+					output2(" felid"); break;
+				case GLOBAL.TYPE_PANDA:
+					output2("n ursid"); break;
+				case GLOBAL.TYPE_LAPINE:
+					output2(" lagomorph"); break;
+				case GLOBAL.TYPE_BADGER:
+					output2(" mustelid"); break;
+				case GLOBAL.TYPE_MOUSE:
+					output2(" rodent"); break;
+				case GLOBAL.TYPE_FROG:
+					output2("n amphibian"); break;
+				case GLOBAL.TYPE_LIZAN:
+					output2(" lizard"); break;
+				default:
+					output2(" horse"); break;
+			}
+			output2(".");
 		}
 		//Hip info only displays if you aren't a centaur. 
 		if(!target.isTaur()) {
