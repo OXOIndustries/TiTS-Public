@@ -2554,7 +2554,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				output2("\n<b>* Ceria:</b> Met her");
 				if(flags["EATEN_CERIA_OUT"] != undefined) output2(", Ate her pussy");
 				if(flags["CERIA_MOUTH_FLOOD"] != undefined) output2(", Flooded her mouth with semen");
-				if(flags["CERIA_EARFUCKS"] != undefined) output2("\n<b>* Ceria, Times You Gave Her an Earfuck: </b>" + flags["CERIA_EARFUCKS"]);
+				if(flags["CERIA_EARFUCKS"] != undefined) output2("\n<b>* Ceria, Times You Gave Her an Ear Fuck: </b>" + flags["CERIA_EARFUCKS"]);
 				if(flags["HEARD_OF_NAHRI"] != undefined || 9999 == 0)
 				{
 					output2("\n<b>* Nahri:</b>");
