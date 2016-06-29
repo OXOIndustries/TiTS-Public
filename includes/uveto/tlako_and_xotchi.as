@@ -91,7 +91,11 @@ public function tlakoMenu(arg:* = undefined):void
 	else addDisabledButton(3, "W. Basket","Welcome Basket","You can't afford this. Tlako told you they cost 200 credits.");
 	if(flags["TLAKO_BASKETS"] != undefined) addButton(4,"Tlako Herself",tlakoHerselfTopic);
 	else addDisabledButton(4,"Tlako Herself","Tlako Herself","Tlako isn't comfortable enough with you to discuss this.");
-	if(flags["TLAKO_THANKED"] != undefined) addButton(5,"Flork Her",florkDatFuckinMuppet,undefined,"Have a florking good time with Tlako.");
+	if(flags["TLAKO_THANKED"] != undefined)
+	{
+		if(!pc.isTaur() && pc.hasCock()) addButton(5,"Flork Her",florkDatFuckinMuppet,undefined,"Have a florking good time with Tlako.");
+		else addDisabledButton(5,"Flork Her","Flork Her","You don't have the right setup to flork her. You'd need a penis and a non-tauric body.");
+	}
 	else addDisabledButton(5,"Flork Her","Flork Her","You don't even know what florking is.");
 	addButton(14,"Leave",byeByeToveBimbo);
 }
