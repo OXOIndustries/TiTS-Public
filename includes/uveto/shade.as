@@ -26,6 +26,11 @@ public function shadeBustDisplay(nude:Boolean = false):String
 	else if(flags["SHADE_ON_UVETO"] >= 1) return "SHADE_SWEATER";
 	return "SHADE";
 }
+public function astraBustDisplay(nude:Boolean = false):String
+{
+	if(nude) return "ASTRA_NUDE";
+	return "ASTRA";
+}
 
 /* Shade Expansion 1: Ballad of the Ice Queen */
 // by Savin
@@ -373,7 +378,7 @@ public function approachShadeAtTheBar(response:String = "intro"):void
 			addButton(0, "Next", mainGameMenu);
 			break;
 		case "intro friend":
-			showBust(shadeBustDisplay(), "ASTRA");
+			showBust(shadeBustDisplay(), astraBustDisplay());
 			showName("SHADE &\nASTRA");
 			
 			output("<i>“Hey, Shade,”</i> you say, waving as you make your way over to the bar.");
@@ -423,7 +428,7 @@ public function approachShadeAtTheBar(response:String = "intro"):void
 			addButton(0, "Next", approachShadeAtTheBar, "friend next");
 			break;
 		case "friend next":
-			showBust(shadeBustDisplay(), "ASTRA");
+			showBust(shadeBustDisplay(), astraBustDisplay());
 			showName("SHADE &\nASTRA");
 			
 			//Pass two hours
@@ -460,7 +465,7 @@ public function approachShadeAtTheBar(response:String = "intro"):void
 			addButton(0, "Next", mainGameMenu);
 			break;
 		case "intro sibling":
-			showBust(shadeBustDisplay(), "ASTRA");
+			showBust(shadeBustDisplay(), astraBustDisplay());
 			showName("SHADE &\nASTRA");
 			
 			output("<i>“Hey,”</i> you say, sauntering up behind your half-sister and giving her shoulder an affectionate squeeze.");
@@ -482,7 +487,7 @@ public function approachShadeAtTheBar(response:String = "intro"):void
 			addButton(0, "Next", approachShadeAtTheBar, "sibling next");
 			break;
 		case "sibling next":
-			showBust(shadeBustDisplay(), "ASTRA");
+			showBust(shadeBustDisplay(), astraBustDisplay());
 			showName("SHADE &\nASTRA");
 			
 			output("Out of curiosity, you ask Astra between drinks if she lives here with her mom. Her outfit certainly suggests she’s local.");
@@ -505,7 +510,7 @@ public function approachShadeAtTheBar(response:String = "intro"):void
 			addButton(0, "Next", approachShadeAtTheBar, "sibling finish");
 			break;
 		case "sibling finish":
-			showBust(shadeBustDisplay(), "ASTRA");
+			showBust(shadeBustDisplay(), astraBustDisplay());
 			showName("SHADE &\nASTRA");
 			
 			//Pass 2 hours
