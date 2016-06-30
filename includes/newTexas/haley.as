@@ -1,4 +1,4 @@
-﻿/*Leithan futa with a custom milker in the northeast of the stables. Treated (like Zephyr), has kui-tan gene mods and a horsecock. Named Haley.*/
+/*Leithan futa with a custom milker in the northeast of the stables. Treated (like Zephyr), has kui-tan gene mods and a horsecock. Named Haley.*/
 /*Written by Wsan, the taurmastah*/
 
 //ONLY SEEN BY CHARACTERS WITH GENITALS! - Complete lack of support for neuterbitches.
@@ -97,7 +97,9 @@ public function greetDatTaurBitch():void
 	clearMenu();
 	addButton(0,"Leave",leaveDatHaleyBitchToHerFate,undefined,"Leave","Nothing you can do about this one.");
 	if(!pc.hasGenitals()) addDisabledButton(1,"Help","Help","You can't do that without genitals.");
-	else addButton(1,"Help",offerToHelpHaleyShedSomeWeight,undefined,"Help","Offer to help her shed some weight! Probably going to be messy.");
+	else addButton(1, "Help", offerToHelpHaleyShedSomeWeight, undefined, "Help", "Offer to help her shed some weight! Probably going to be messy.");
+	if (pc.biggestCockLength() >= 15) addButton(2, "Competition", haleyChallenge, undefined, "Competition", "Challenge the hermtaur to see who can cum more.");
+	else addDisabledButton(2, "Competition", "Competition", "You need to have a bigger dick to use the taur-milker to challenge her.");
 }
 
 //[Leave]
@@ -639,7 +641,9 @@ public function enteringHaleysStallRepeat():void
 	addButton(0,"Back Out",backOutFromHaleyRepeat,undefined,"Back Out","Time to leave.");
 	addButton(1,"Get Fucked",getFuckedByHaleyAsATreatedFemPCRepeatSlut,undefined,"Get Fucked","Ask Haley if she needs your help to relieve her stress.");
 	if(pc.isTaur() && pc.hasCock() && pc.biggestCockLength() >= 18) addButton(2,"Sandwiched",getHaleyAFuckingSandwich,undefined,"Sandwiched","Fuck the milker while Haley fills you up.")
-	else addDisabledButton(2,"Sandwiched","Sandwiched","You've got to be a big-dicked taur in order to get between them.");
+	else addDisabledButton(2, "Sandwiched", "Sandwiched", "You've got to be a big-dicked taur in order to get between them.");
+	if (pc.biggestCockLength() >= 15) addButton(3, "Competition", haleyChallenge, undefined, "Competition", "Challenge Haley to see who can cum more.");
+	else addDisabledButton(3, "Competition", "Competition", "You need to have a bigger dick to use the taur-milker to challenge her.");
 }
 
 //[Back out]
@@ -819,7 +823,7 @@ public function getFuckedByHaleyAsATreatedFemPCRepeatSlut():void
 		output("\n\nHaley groans quietly from above, her balls flush against your ass as they're slowly emptied into you. A few minutes pass before she rouses herself from her post-orgasmic torpor, letting you know she's going to pull out. Her swollen head slides out of you easily, only catching as it pops past your lips, giving you a last orgasmic spasm. Warm spunk spills out of your abused cunt, sliding down your swollen underside and splattering to the ground.");
 		output("\n\nShe sighs before stroking your flank, bending down to inspect how full your womb and belly are.");
 		output("\n\n<i>“You'll be stuck here for a little while, but I hope it was as good for you as it was for me. I wasn't kidding when I said no one has ever done that for me. This is the first time in a while I've been able to think so clearly without having to deal with my needs. Thanks, [pc.name].”</i>");
-		output("\n\nShe sounds completely sincere in her thankfulness, so it seems like you were a good solution to her problem. You're not sure how effective transferring gallons of equine jizz from her balls to your body like some kind of container is as a long-term strategy, but then you're not really big on problem-solving anyway. For now, you might as well sleep it off – your tummy is basically a waterbed at this point, no point letting it go to waste.}");
+		output("\n\nShe sounds completely sincere in her thankfulness, so it seems like you were a good solution to her problem. You're not sure how effective transferring gallons of equine jizz from her balls to your body like some kind of container is as a long-term strategy, but then you're not really big on problem-solving anyway. For now, you might as well sleep it off – your tummy is basically a waterbed at this point, no point letting it go to waste.");
 		//6 hours pass
 		//cumload yer asshole
 		//cumload pussy
@@ -914,7 +918,7 @@ public function getHaleyAFuckingSandwich():void
 		else if(pc.ballDiameter() < 12.5) output(" <i>“Mmm.”</i> She moans sensually, the lust 	evident in her voice. You feel her softly cupping your nuts and sensuously caressing them. <i>“I'm gonna have fun seeing how much I can make you cum, babe.”</i>");
 		else 
 		{
-			output(" <i>“Wow.”</i> You hear her whisper, her voice approaching something like 	reverence. You feel another sensual squeeze, followed by her other hand softly cupping your nuts too. <i>“These are... mmm.”</i> You hear the rustling of hay behind you, turning to see... nothing? It's not like she could have gotten aw- nnggggoh<i>fuck</i>, there's a warm tongue lapping at your nuts. Haley slurps lustily from below as she sucks ");
+			output(" <i>“Wow.”</i> You hear her whisper, her voice approaching something like reverence. You feel another sensual squeeze, followed by her other hand softly cupping your nuts too. <i>“These are... mmm.”</i> You hear the rustling of hay behind you, turning to see... nothing? It's not like she could have gotten aw- nnggggoh<i>fuck</i>, there's a warm tongue lapping at your nuts. Haley slurps lustily from below as she sucks ");
 			if(pc.balls > 1) output("one of your");
 			else output("your");
 			output(" ball");
@@ -942,6 +946,111 @@ public function getHaleyAFuckingSandwich():void
 	for(var x:int = 0; x < 20; x++) { pc.orgasm(); }
 	var pp:PregnancyPlaceholder = getHaleyPregContainer();
 	pc.loadInAss(pp);
+	flags["USED_MILKER"] = 1;
+	clearMenu();
+	addButton(0,"Next",move,rooms[currentLocation].westExit);
+}
+
+public function haleyChallenge():void
+{
+	clearOutput();
+	showHaley();
+	author("Wsan");
+	//Challenge Haley to a cum-off.
+	output("<i>“How about some friendly competition?”</i> You ask, feeling every bit as cocky as your grin probably looks.");
+	output("\n\n<i>“A competition of what?”</i>");
+	if (flags["MET_HALEY"] != undefined) output("Haley");
+	else output("the hermtaur");
+	output(" asks, an eyebrow raised. She’s interested, now you just need to reel her in. You nod at the milker she’s using, her head following your gaze. It takes her a second, and then she laughs. <i> “You think you can cum more than me? Shit, that’d be something. In fact, ” </i> she says as she slowly pulls herself from the machine, <i>“that’d be really fucking hot.”</i > She winks, her dick splattering messy pulses of jizz across the hay-strewn floor of the stall.");
+	output("\n\nShe clearly thinks she’s already got you beat – you suppose you can’t blame her.");
+	if (pc.hasPerk("'Nuki Nuts") == true) output(" It’s not like she could possibly know you have cum-inducing gene mods too.");
+	else output(" You’ll just have to show her you’re more than up to the challenge.");
+	output("She ushers you over to join her at the milker, indicating one of the other induction ports.");
+	if (flags["USED_MILKER"] != undefined) output(" Having used it before, you’re familiar with its workings – the more you cum, the harder it works to suck you. It was pretty intense last time, too.");
+	else output(" You step up and take a measured look at the contraption – despite its primitive appearance, up close you can tell it’s actually pretty high-tech.\n\n<i>“The way it works is by varying the strength based on input. Basically, the more you cum the harder it sucks. Just pretend it’s a Treated bimbo.”</i>");
+	if(flags["MET_HALEY"] != undefined) output(" Haley");
+	else output(" the girl");
+	output(" says with a wink.");
+	output("\n\nThe workings of the milker aside, you’re interested how the actual competition is going to work. Mentioning this to");
+	if(flags["MET_HALEY"] != undefined) output(" Haley,");
+	else output(" the hermtaur,");
+	output(" she looks thoughtful for a moment before lighting up. She presses some hidden buttons on the milker, presumably adjusting the settings.");
+	output("\n\n<i>“There,”</i> she says with a satisfied smile, <i>“now we each get separate storage tanks. Emphasis on plural. I’ve never actually checked how many I can fill up, so this’ll be a learning experience for me too. You ready?”</i>");
+	output("\n\nYou nod, coaxing your [pc.biggestCock] to its full length with the visual aid of a very well-endowed Leithan. She flutters her eyelashes with a smile in response, clearly flattered by the attention but still intent on the competition. Sliding your dick into the milker, the response is immediate – a full-length massage from [pc.biggestCockHead] to [pc.biggestSheath]. It feels like you’re being slowly kneaded by someone wearing silk gloves, gently rubbing the entirety of your cock all at once.");
+	output("\n\n<i>“It’s nice, right?”</i>");
+	if(flags["MET_HALEY"] != undefined) output(" Haley");
+	else output(" the hermtaur");
+	output(" asks, not even looking over as she effortlessly pumps the milker. Time to beat her at her own game – you pull back, the milker clinging to you on your outstroke and sucking you in when you ram back home. You have to admit the analogy of it being a Treated bimbo isn’t that far from the truth; it’s like every time you thrust it tries to suck you harder and tighter, trying to eke out every bit of cum it can get.");
+	if (pc.cumQ() >= 415000)
+	{
+		output("\n\nSoon enough the milker is working overtime just swallowing your pre, the kneading long since having given way to something more akin to a pliant set of lips, what with the warmth and wetness. You feel your orgasm approaching, the peak of your pleasure rising fast to settle in the pit of your [pc.belly] as you grunt loudly, fucking the milker as hard as you can.");
+		output("\n\nYou only withstand a few seconds more of ramming into it before you groan and practically explode, your [pc.balls] dumping stream after stream of [pc.cumVisc] [pc.cumColor] spunk into the milker, a veritable river spewing forth from your cock. You pant, grunt, and groan while you ride out your lengthy orgasm, the ongoing rapture of ejaculation dancing through your mind.");
+		output("\n\nThe taur-milker pumps you as hard as it can, the rippling sensation up and down your shaft making you feel like you’re being roughly jacked off onto someone’s face. Doubling over in pleasure, you slowly slide yourself as deep as you can get into the eager port, panting as it rapidly sucks down the rest of your bountiful loads.");
+	}
+	else
+	{
+		output("\n\nSoon enough the milker is suckling you to get at your pre, the kneading long since having given way to something more akin to a pliant set of lips, what with the warmth and wetness. You feel your orgasm approaching, the peak of your pleasure rising fast to settle in the pit of your [pc.belly] as you grunt loudly, fucking the milker as hard as you can.");
+		output("\n\nYou only withstand a few seconds more of ramming into it before you groan and splatter the insides with jizz, your [pc.balls] dumping a steady flow of [pc.cumVisc] [pc.cumColor] spunk into the milker, each pulse of seed forth from your cock. You steadily ride out your orgasm, the sensation only intensifying as you approach the tail end of it.");
+		output("\n\nThe taur-milker pumps you hard, the rippling sensation up and down your shaft making you feel like you’re being roughly jacked off onto someone’s face. Doubling over in pleasure, you slowly slide yourself as deep as you can get into the eager port, panting as it slowly sucks down the rest of your [pc.cumFlavor] load.");
+	}
+	output("\n\n<i>“Hooooh, that’s so much better.”</i>");
+	if(flags["MET_HALEY"] != undefined) output(" Haley");
+	else output(" The hermtaur");
+	output(" sighs in relief. <i> “Alright stud, lets see how you did.” </i> ");
+	output("\n\nShe slowly pulls her giant length from the milker with a wet sucking noise, almost immediately starting to drip on the floor. You");
+	if (pc.biggestCockLength() >= 18) output(" fish your length from the machine in a similar fashion");
+	else output(" pull your length out of the machine");
+	output(", curious about the results. Joining her at the small screen, you squint at the readout.");
+	if (pc.cumQ() >= 415000)
+	{
+		output("\n\nIf you’re reading this right, it looks like you beat her!");
+		if(flags["MET_HALEY"] != undefined) output(" Haley");
+		else output(" The hermtaur");
+		output(" looks confused for a moment, then laughs.");
+		output("\n\n<i>“Holy shit. Maybe next time I’ll take a more hands-on approach to see how much we can really get out of you. I can’t believe... how much cum that is.”</i> She trails off, the coloration of her face getting almost imperceptibly redder and her full lips hanging just slightly open until she realizes. <i>“Um, anyway. We should do this again.");
+		if (flags["MET_HALEY"] != undefined)
+		{
+			output(" What’s your name, stud? I’m Haley.”</i>");
+			output("\n\n<i>“[pc.name].”</i>");
+		}
+		else
+		{
+			output(" Are you gonna come see me for more?”</i>");
+			output("\n\n<i>“Maybe.”</i> You reply.");
+		}
+		output("\n\n<i>“Right. Well, think about it. I know I will be.”</i> She says with a smile, playfully twirling a lock of her golden-yellow hair around a finger. You nod and make to leave,");
+		if (!pc.hasStatusEffect("Won Haley's Credits"))
+		{
+			output(" but Haley catches your arm.");
+			output("\n\n<i>“Sorry [pc.name], I should have mentioned. There’s a monthly prize for the highest contribu-taur, and that’s now you!");
+			if (!pc.isTaur) output("Even if you aren’t a taur.");
+			output("Congratulations!”</i>");
+			output("\n\nHaley hands you a 10,000 credit chit. You thank her and get ready to leave, the taur-girl still watching you.");
+		}
+		else output(" the horny taur-girl watching your departure.");
+	}
+	if (pc.cumQ() < 415000)
+	{
+		output("\n\nIf you’re reading this right, it looks like she beat you.");
+		if(flags["MET_HALEY"] != undefined) output(" Haley");
+		else output(" The hermtaur");
+		output(" looks pleased, then laughs.");
+		output("\n\n<i>“I’ve never met anyone that could beat me when it comes to cum.”</i> She says with a grin, clearly pleased to have won. <i>“It was really fun to do it together, though. We should do this again.");
+		if (flags["MET_HALEY"] != undefined)
+		{
+			output("\n\nWhat’s your name? I’m Haley.”</i>");
+			output("\n\n<i>“[pc.name].”</i>");
+		}
+		else
+		{
+			output("\n\nAre you gonna come see me for more?” </i> ");
+			output("\n\n<i>“Maybe.”</i> You reply.");
+		}
+		output("\n\n<i>“Right. Well, think about coming by again.”</i> She says with a friendly smile, giving you a little wave before turning away to get dressed. You nod and make to leave.");
+	}
+	flags["USED_MILKER"] = 1;
+	pc.createStatusEffect("Won Haley's Credits", 0, 0, 0, 0, false, "", "", false, (43200));
+	processTime(10);
 	clearMenu();
 	addButton(0,"Next",move,rooms[currentLocation].westExit);
 }
