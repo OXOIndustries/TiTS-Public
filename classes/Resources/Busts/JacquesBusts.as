@@ -10,29 +10,29 @@ package classes.Resources.Busts
 		public function get PREVIEW():Class { return Bust_QUEENOFTHEDEEP; }
 		
 		[Embed(source = "../../../assets/images/npcs/jacques00/babe_0.png", mimeType = "image/png")]
-		public var Bust_BABE_0:Class;
+		public var Bust_RILEY_0:Class;
 		[Embed(source = "../../../assets/images/npcs/jacques00/babe_bra_0.png", mimeType = "image/png")]
-		public var Bust_BABE_BRA_0:Class;
+		public var Bust_RILEY_BRA_0:Class;
 		[Embed(source = "../../../assets/images/npcs/jacques00/babe_nude_0.png", mimeType = "image/png")]
-		public var Bust_BABE_NUDE_0:Class;
+		public var Bust_RILEY_NUDE_0:Class;
 		[Embed(source = "../../../assets/images/npcs/jacques00/babe_1.png", mimeType = "image/png")]
-		public var Bust_BABE_1:Class;
+		public var Bust_RILEY_1:Class;
 		[Embed(source = "../../../assets/images/npcs/jacques00/babe_bra_1.png", mimeType = "image/png")]
-		public var Bust_BABE_BRA_1:Class;
+		public var Bust_RILEY_BRA_1:Class;
 		[Embed(source = "../../../assets/images/npcs/jacques00/babe_nude_1.png", mimeType = "image/png")]
-		public var Bust_BABE_NUDE_1:Class;
+		public var Bust_RILEY_NUDE_1:Class;
 		[Embed(source = "../../../assets/images/npcs/jacques00/babe_2.png", mimeType = "image/png")]
-		public var Bust_BABE_2:Class;
+		public var Bust_RILEY_2:Class;
 		[Embed(source = "../../../assets/images/npcs/jacques00/babe_bra_2.png", mimeType = "image/png")]
-		public var Bust_BABE_BRA_2:Class;
+		public var Bust_RILEY_BRA_2:Class;
 		[Embed(source = "../../../assets/images/npcs/jacques00/babe_nude_2.png", mimeType = "image/png")]
-		public var Bust_BABE_NUDE_2:Class;
+		public var Bust_RILEY_NUDE_2:Class;
 		[Embed(source = "../../../assets/images/npcs/jacques00/babe_3.png", mimeType = "image/png")]
-		public var Bust_BABE_3:Class;
+		public var Bust_RILEY_3:Class;
 		[Embed(source = "../../../assets/images/npcs/jacques00/babe_bra_3.png", mimeType = "image/png")]
-		public var Bust_BABE_BRA_3:Class;
+		public var Bust_RILEY_BRA_3:Class;
 		[Embed(source = "../../../assets/images/npcs/jacques00/babe_nude_3.png", mimeType = "image/png")]
-		public var Bust_BABE_NUDE_3:Class;
+		public var Bust_RILEY_NUDE_3:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/jacques00/dally.png", mimeType = "image/png")]
 		public var Bust_DALLY:Class;
@@ -134,29 +134,29 @@ package classes.Resources.Busts
 		CONFIG::IMAGEPACK
 		{
 			[Embed(source = "../../../assets/images/npcs/jacques00/hr/babe_0.png", mimeType = "image/png", compression = true)]
-			public var Full_BABE_0:Class;
+			public var Full_RILEY_0:Class;
 			[Embed(source = "../../../assets/images/npcs/jacques00/hr/babe_bra_0.png", mimeType = "image/png", compression = true)]
-			public var Full_BABE_BRA_0:Class;
+			public var Full_RILEY_BRA_0:Class;
 			[Embed(source = "../../../assets/images/npcs/jacques00/hr/babe_nude_0.png", mimeType = "image/png", compression = true)]
-			public var Full_BABE_NUDE_0:Class;
+			public var Full_RILEY_NUDE_0:Class;
 			[Embed(source = "../../../assets/images/npcs/jacques00/hr/babe_1.png", mimeType = "image/png", compression = true)]
-			public var Full_BABE_1:Class;
+			public var Full_RILEY_1:Class;
 			[Embed(source = "../../../assets/images/npcs/jacques00/hr/babe_bra_1.png", mimeType = "image/png", compression = true)]
-			public var Full_BABE_BRA_1:Class;
+			public var Full_RILEY_BRA_1:Class;
 			[Embed(source = "../../../assets/images/npcs/jacques00/hr/babe_nude_1.png", mimeType = "image/png", compression = true)]
-			public var Full_BABE_NUDE_1:Class;
+			public var Full_RILEY_NUDE_1:Class;
 			[Embed(source = "../../../assets/images/npcs/jacques00/hr/babe_2.png", mimeType = "image/png", compression = true)]
-			public var Full_BABE_2:Class;
+			public var Full_RILEY_2:Class;
 			[Embed(source = "../../../assets/images/npcs/jacques00/hr/babe_bra_2.png", mimeType = "image/png", compression = true)]
-			public var Full_BABE_BRA_2:Class;
+			public var Full_RILEY_BRA_2:Class;
 			[Embed(source = "../../../assets/images/npcs/jacques00/hr/babe_nude_2.png", mimeType = "image/png", compression = true)]
-			public var Full_BABE_NUDE_2:Class;
+			public var Full_RILEY_NUDE_2:Class;
 			[Embed(source = "../../../assets/images/npcs/jacques00/hr/babe_3.png", mimeType = "image/png", compression = true)]
-			public var Full_BABE_3:Class;
+			public var Full_RILEY_3:Class;
 			[Embed(source = "../../../assets/images/npcs/jacques00/hr/babe_bra_3.png", mimeType = "image/png", compression = true)]
-			public var Full_BABE_BRA_3:Class;
+			public var Full_RILEY_BRA_3:Class;
 			[Embed(source = "../../../assets/images/npcs/jacques00/hr/babe_nude_3.png", mimeType = "image/png", compression = true)]
-			public var Full_BABE_NUDE_3:Class;
+			public var Full_RILEY_NUDE_3:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/jacques00/hr/dally.png", mimeType = "image/png", compression = true)]
 			public var Full_DALLY:Class;

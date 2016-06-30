@@ -21,17 +21,17 @@ public function mountmeBustDisplay(attire:String = "normal"):String
 	
 	return bustName;
 }
-public function babeBustDisplay(attire:String = "normal"):String
+public function rileyBustDisplay(attire:String = "normal"):String
 {
-	var bustName:String = "BABE";
+	var bustName:String = "RILEY";
 	
 	if(attire == "nude") bustName += "_NUDE";
 	else if(attire == "bra") bustName += "_BRA";
 	
 	// Tone phases
-	if(flags["BABE_TONE"] >= 90) bustName += "_3";
-	else if(flags["BABE_TONE"] >= 66) bustName += "_2";
-	else if(flags["BABE_TONE"] >= 33) bustName += "_1";
+	if(flags["RILEY_TONE"] >= 90) bustName += "_3";
+	else if(flags["RILEY_TONE"] >= 66) bustName += "_2";
+	else if(flags["RILEY_TONE"] >= 33) bustName += "_1";
 	else bustName += "_0";
 	
 	return bustName;
