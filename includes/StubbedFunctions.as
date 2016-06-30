@@ -11,3 +11,29 @@ public function daneIsCrew():Boolean
 	return false;
 }
 
+// 9999 - Bust display functions for New Candania stuffs! (move when implemented)
+public function mountmeBustDisplay(attire:String = "normal"):String
+{
+	var bustName:String = "MOUNTME";
+	
+	if(attire == "nude") bustName += "_NUDE";
+	else if(attire == "bra") bustName += "_BRA";
+	
+	return bustName;
+}
+public function rileyBustDisplay(attire:String = "normal"):String
+{
+	var bustName:String = "RILEY";
+	
+	if(attire == "nude") bustName += "_NUDE";
+	else if(attire == "bra") bustName += "_BRA";
+	
+	// Tone phases
+	if(flags["RILEY_TONE"] >= 90) bustName += "_3";
+	else if(flags["RILEY_TONE"] >= 66) bustName += "_2";
+	else if(flags["RILEY_TONE"] >= 33) bustName += "_1";
+	else bustName += "_0";
+	
+	return bustName;
+}
+

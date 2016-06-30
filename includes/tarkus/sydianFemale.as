@@ -637,7 +637,7 @@ public function femSydianCallOthers():void
 	}
 	else
 	{
-		output("<i>“Hello,”</i> you leer, watching the alien’s liberated breasts rise and fall. <i>“Look what you’ve been hiding.”</i> Flakes of pulverized armor fall away as she covers herself with an arm. When you glance lower, at the thin orange line between her legs, she shifts to cover the gap in her thighs, dislodging more dust. You amuse yourself, making her brush away the crumbling remnants just by eye-fucking her.}");
+		output("<i>“Hello,”</i> you leer, watching the alien’s liberated breasts rise and fall. <i>“Look what you’ve been hiding.”</i> Flakes of pulverized armor fall away as she covers herself with an arm. When you glance lower, at the thin orange line between her legs, she shifts to cover the gap in her thighs, dislodging more dust. You amuse yourself, making her brush away the crumbling remnants just by eye-fucking her.");
 	}
 
 	output("\n\n<i>“Stop staring,”</i> she snaps. The sydian won’t give you a decent eyeful of her good bits, and you’re daydreaming of someone else to keep her hands busy when you realize - that’s a real possibility. The girl eyes your distant, thoughtful expression.");
@@ -841,7 +841,7 @@ public function femSydianCallOthers():void
 		output("\n\nYou decide not to pop out when you perceive the size of the male; he’s at least seven feet tall and");
 		if (flags["MET_FLAHNE"] != undefined) output(" broader than Flahne’s definition of ‘work ethic’.");
 		else output(" stouter than a radioactive beer.");
-		output("He ");
+		output(" He");
 		if (enemy.hairColor == "orange") output(" bounds up, energized by the girl’s brilliant orange hair.");
 		else output(" saunters over, gaining energy as it drains from the girl.");
 		

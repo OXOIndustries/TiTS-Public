@@ -627,7 +627,7 @@ public function rahnSuppository():void {
 	output("\n\nAs the ovipositor spreads your ");
 	if(pc.ass.looseness() >= 3) output("loose ");
 	else if(pc.ass.looseness() <= 1) output("tight ");
-	output("walls wide, conforming to your shape and size while surging inward, you groan, trying to stay relaxed and loose. Your hug the rahn close, pulling her against yourself until your head is practically buried in her tremendous bosom, breath coming ragged as you're speared by inch after inch of gooey cock. <i>“Easy, sweet thing. I know I'm... well endowed, but I've got a lot of experience. Just relax, lean in and rest your head. I'll take care of everything.”</i>");
+	output("walls wide, conforming to your shape and size while surging inward, you groan, trying to stay relaxed and loose. You hug the rahn close, pulling her against yourself until your head is practically buried in her tremendous bosom, breath coming ragged as you're speared by inch after inch of gooey cock. <i>“Easy, sweet thing. I know I'm... well endowed, but I've got a lot of experience. Just relax, lean in and rest your head. I'll take care of everything.”</i>");
 	
 	output("\n\nYou groan, trying to keep your asshole calm as your muscles spasm around Flahne's prick, milking it with every gasping breath you take. She eases in slowly, giving both of you plenty of time to get adjusted to her girth. You barely notice, but it looks like the busty Rahn's just as sexually riveted as you are, her chest heaving around your buried head as her hands gently hug and caress your ass, hugging you tight to herself as her cock finally hilts you.");
 	

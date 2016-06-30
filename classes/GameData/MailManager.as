@@ -216,6 +216,29 @@ package classes.GameData
 				if (bo.ToAddress != null) bo.ToAddressCache = bo.ToAddress();
 			}
 		}
+		public static function updateEntry(entryName:String):void
+		{
+			if (MailManager.ENTRIES[entryName] === undefined)
+			{
+				throw new Error("Mail entry '" + entryName + "' was not found in the datastore.");
+			}
+			else
+			{
+				var bo:Object = MailManager.ENTRIES[entryName];
+				if (bo.Content != null) bo.ContentCache = bo.Content();
+				if (bo.Subject != null) bo.SubjectCache = bo.Subject();
+				if (bo.From != null) bo.FromCache = bo.From();
+				if (bo.FromAddress != null) bo.FromAddressCache = bo.FromAddress();
+				if (bo.To != null) bo.ToCache = bo.To();
+				if (bo.ToAddress != null) bo.ToAddressCache = bo.ToAddress();
+			}
+		}
+		public static function hasSubject(entryName:String, arg:String):Boolean
+		{
+			if(MailManager.ENTRIES[entryName].SubjectCache == arg) return true;
+			
+			return false;
+		}
 		
 		public static function readEntry(entryName:String, timestamp:uint):void
 		{
