@@ -113,9 +113,21 @@ public function getLetterFromShade():void
 		}
 		return;
 	}
-	if(MailManager.hasEntry("letter_from_shade") && MailManager.isEntryUnlocked("letter_from_shade")) return;
+	if(MailManager.isEntryUnlocked("letter_from_shade"))
+	{
+		// Subject line Hotfix
+		if(MailManager.hasSubject("letter_from_shade", null)) MailManager.updateEntry("letter_from_shade");
+		return;
+	}
 	if(shadeAtTheBar() || !shadeIsActive() || flags["KQ2_SHADE_ENCOUNTERED"] == 1) return;
 	
+	if(createSubjectFromShade() != "")
+	{
+		if(!MailManager.isEntryUnlocked("letter_from_shade")) goMailGet("letter_from_shade");
+	}
+}
+public function createSubjectFromShade():String
+{
 	var subject:String = "";
 	
 	// PC is Sibling
@@ -141,11 +153,7 @@ public function getLetterFromShade():void
 		subject = "Welcome to Uveto!";
 	}
 	
-	if(subject != "")
-	{
-		if(!MailManager.hasEntry("letter_from_shade")) MailManager.addMailEntry("letter_from_shade", createLetterFromShade, subject, "Shade Irons", "Shade@Stormguard.net", quickPCTo, quickPCToAddress);
-		if(!MailManager.isEntryUnlocked("letter_from_shade")) goMailGet("letter_from_shade");
-	}
+	return subject;
 }
 public function createLetterFromShade():String
 {
@@ -224,7 +232,7 @@ public function createLetterFromShade():String
 public function meetingShadeAtUvetoBar(btnSlot:int = 1):void
 {
 	if(flags["SHADE_ON_UVETO"] == undefined) return;
-	if(!(MailManager.hasEntry("letter_from_shade") && MailManager.isEntryViewed("letter_from_shade"))) return;
+	if(!MailManager.isEntryViewed("letter_from_shade")) return;
 	if(!shadeIsActive()) return;
 	// Exception, only for lovers!
 	if(flags["SHADE_ON_UVETO"] == 2 && shadeIsLover()) return;
@@ -632,7 +640,7 @@ public function meetingShadeAtHouse(btnSlot:int = 1):void
 	flags["NAV_DISABLED"] = NAV_EAST_DISABLE;
 	
 	if(flags["SHADE_ON_UVETO"] == undefined) return;
-	if(!(MailManager.hasEntry("letter_from_shade") && MailManager.isEntryViewed("letter_from_shade"))) return;
+	if(!MailManager.isEntryViewed("letter_from_shade")) return;
 	// Have to be invited to her house first!
 	if(!shadeIsActive() || flags["SHADE_ON_UVETO"] < 2) return;
 	// Add [Buzzer] to the outside of Shade's house, starting at 16:00 each night.
