@@ -2779,7 +2779,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Milk Barn, where all the cows stay at!
-			if(flags["BRYNN_AUTOENTER"] != undefined || flags["MET_GIANNA"] != undefined || flags["MET_HALEY"] != undefined || flags["MET_MILLIE"] != undefined || flags["MET_YANCY"] != undefined || flags["GOBBLES_SEXYTIMES_STARTED"] != undefined || StatTracking.getStat("milkers/breast milker uses") > 0 || StatTracking.getStat("milkers/prostate milker uses") > 0)
+			if(flags["BRYNN_AUTOENTER"] != undefined || flags["MET_GIANNA"] != undefined || flags["MET_HALEY"] != undefined || flags["USED_MILKER"] != undefined || flags["MET_MILLIE"] != undefined || flags["MET_YANCY"] != undefined || flags["GOBBLES_SEXYTIMES_STARTED"] != undefined || StatTracking.getStat("milkers/breast milker uses") > 0 || StatTracking.getStat("milkers/prostate milker uses") > 0)
 			{
 				output2("\n<b><u>Milk Barn</u></b>");
 				// Milkers
@@ -2949,9 +2949,13 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["GIANNA_FUCK_TIMER"] != undefined) output2("\n<b>* Gianna, Time Since Last Fucked: </b>" + prettifyMinutes(flags["GIANNA_FUCK_TIMER"]));
 				}
 				// Haley
-				if(flags["MET_HALEY"] != undefined)
+				if(flags["MET_HALEY"] != undefined || flags["USED_MILKER"] != undefined)
 				{
-					output2("\n<b>* Haley:</b> Met her, Sexed her");
+					output2("\n<b>* Haley:</b> Met her");
+					if(flags["MET_HALEY"] != undefined) output2(", Sexed her");
+					if(flags["USED_MILKER"] != undefined) output2("\n<b>* Haley, Times Used Taur-Milker: </b>" + flags["USED_MILKER"]);
+					output2("\n<b>* Haley, Milking Competition, Win/Loss Ratio: </b>" + StatTracking.getStat("contests/haley milker wins") + "/" + StatTracking.getStat("contests/haley milker losses") + ", of " + (StatTracking.getStat("contests/haley milker losses") + StatTracking.getStat("contests/haley milker wins")) + " games");
+					if(pc.hasStatusEffect("Won Haley's Credits")) output2("\n<b>* Haley, Milking Competition, Time Until Next Prize: </b>" + prettifyMinutes(pc.getStatusMinutes("Won Haley's Credits")));
 				}
 				// Millie milks!
 				if(flags["MET_MILLIE"] != undefined)

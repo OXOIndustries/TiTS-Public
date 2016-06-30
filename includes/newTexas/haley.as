@@ -95,11 +95,12 @@ public function greetDatTaurBitch():void
 	processTime(3);
 	//[Leave] [Help]
 	clearMenu();
-	addButton(0,"Leave",leaveDatHaleyBitchToHerFate,undefined,"Leave","Nothing you can do about this one.");
-	if(!pc.hasGenitals()) addDisabledButton(1,"Help","Help","You can't do that without genitals.");
-	else addButton(1, "Help", offerToHelpHaleyShedSomeWeight, undefined, "Help", "Offer to help her shed some weight! Probably going to be messy.");
-	if (pc.biggestCockLength() >= 15) addButton(2, "Competition", haleyChallenge, undefined, "Competition", "Challenge the hermtaur to see who can cum more.");
+	if(!pc.hasGenitals()) addDisabledButton(0,"Help","Help","You can't do that without genitals.");
+	else addButton(0, "Help", offerToHelpHaleyShedSomeWeight, undefined, "Help", "Offer to help her shed some weight! Probably going to be messy.");
+	if (!pc.hasCock()) addDisabledButton(2, "Competition", "Competition", "You can't do that without a penis.");
+	else if (pc.biggestCockLength() >= 15) addButton(2, "Competition", haleyChallenge, undefined, "Competition", "Challenge the hermtaur to see who can cum more.");
 	else addDisabledButton(2, "Competition", "Competition", "You need to have a bigger dick to use the taur-milker to challenge her.");
+	addButton(14,"Leave",leaveDatHaleyBitchToHerFate,undefined,"Leave","Nothing you can do about this one.");
 }
 
 //[Leave]
@@ -136,8 +137,8 @@ public function offerToHelpHaleyShedSomeWeight():void
 		output("\n\nShe turns back to the machine.");
 		//[Leave] [Wait...]
 		clearMenu();
-		addButton(0,"Leave",leaveDatHaleySlutShit,undefined,"Leave","Follow her advice.");
-		addButton(1,"Wait",waitForHaleyToGoToTownOnYou,undefined,"Wait","You still want it.");
+		addButton(0,"Wait",waitForHaleyToGoToTownOnYou,undefined,"Wait","You still want it.");
+		addButton(14,"Leave",leaveDatHaleySlutShit,undefined,"Leave","Follow her advice.");
 	}
 	//C non-taur female
 	else if(!pc.isTaur() && pc.hasVagina())
@@ -147,8 +148,8 @@ public function offerToHelpHaleyShedSomeWeight():void
 		output("\n\nShe turns back to the machine.");
 		//[Leave] [Wait...]
 		clearMenu();
-		addButton(0,"Leave",leaveDatHaleySlutShit,undefined,"Leave","Follow her advice.");
-		addButton(1,"Wait",waitForHaleyToGoToTownOnLadyNonTaurs,undefined,"Wait","You still want it.");
+		addButton(0,"Wait",waitForHaleyToGoToTownOnLadyNonTaurs,undefined,"Wait","You still want it.");
+		addButton(14,"Leave",leaveDatHaleySlutShit,undefined,"Leave","Follow her advice.");
 	}
 	//PC female Treated taur:
 	else if(pc.isTaur() && pc.isTreated() && pc.hasVagina() && pc.isBimbo() && pc.biggestTitSize() >= 1)
@@ -196,7 +197,7 @@ public function offerToHelpHaleyShedSomeWeight():void
 		output("\n\n<i>“Unnnh! Uh! U-”</i>");
 		output("\n\nHer voice comes in halting grunts and then stops completely as you feel her entire body flex, her six legs hugging your swollen midriff as tight as she possibly can. The equine cock inside you follows suit, stiffening and swelling to accommodate for the massive outflow of spunk being dumped into your stomach by the bucketful. You can feel the flare of it stretching you out inside with each gout of jizz, each throb of the iron-hard length pushing your guts downwards. You hardly notice the feeling of her balls pumping hard, pushed right up against your ass.");
 		output("\n\n<i>“Oh... Oh. God. Stay still... Stay still and take it. Good girl. Goooood girl.”</i> Haley's voice comes in a breathless whisper full of wonder, as if she's marveling at your miraculous subservience. You do your best to follow her instruction while she quivers and gasps quietly on top of you, your stomach shaking underneath you with the weight its taking on so rapidly. She groans luxuriously and wraps her arms tightly around the lower half of your humanoid form, just laying her head on your shoulder and moaning quietly into your ear.");
-		output("\n\nYou pant in equal parts pleasure and exertion, your sensitive insides being massaged so frequently by the massive loads travelling down her shaft that you can't help but suffer multiple orgasms just from receiving the copious amounts of jizz. It hasn't even been more than a few seconds of you shaking on the end of her cock before the liquid weight of her cum starts to really weigh you down, the roiling pleasure in your tensed lower half giving way to the warmth of her seed. The flow is unending, and her heavy jism coating your insides means you're scarcely able to stay standing, your hands curling into tightly-balled fists against the stall. Haley coos to you comfortingly.");
+		output("\n\nYou pant in equal parts pleasure and exertion, your sensitive insides being massaged so frequently by the massive loads traveling down her shaft that you can't help but suffer multiple orgasms just from receiving the copious amounts of jizz. It hasn't even been more than a few seconds of you shaking on the end of her cock before the liquid weight of her cum starts to really weigh you down, the roiling pleasure in your tensed lower half giving way to the warmth of her seed. The flow is unending, and her heavy jism coating your insides means you're scarcely able to stay standing, your hands curling into tightly-balled fists against the stall. Haley coos to you comfortingly.");
 		output("\n\n<i>“Do you want it in your pussy too, girl?”</i>");
 		output("\n\nYou nod as forcefully as you can manage on the edge of being insensate. Softly stroking your cheek, the affectionate gesture completely at odds with her cock mercilessly ejaculating into you, she slowly begins to pull out. Grateful for the opportunity to reacclimate to not being full, you stand still and let her withdraw. The gradual slide of her rod across your sensitive bits reignites the feeling of being fucked, and you find yourself groaning as your [pc.vaginas] seize");
 		if(pc.totalVaginas() == 1) output("s");
@@ -236,8 +237,8 @@ public function offerToHelpHaleyShedSomeWeight():void
 		output("\n\nShe turns back to the machine.");
 		//[Leave] [Wait...]
 		clearMenu();
-		addButton(0,"Leave",leaveDatHaleySlutShit,undefined,"Leave","Follow her advice.");
-		addButton(1,"Wait",waitForHaleyToReamYouAsAManTaur,undefined,"Wait","You still want it.");
+		addButton(0,"Wait",waitForHaleyToReamYouAsAManTaur,undefined,"Wait","You still want it.");
+		addButton(14,"Leave",leaveDatHaleySlutShit,undefined,"Leave","Follow her advice.");
 	}
 	//PC female taur:
 	else
@@ -247,8 +248,8 @@ public function offerToHelpHaleyShedSomeWeight():void
 		output("\n\nShe turns back to the machine, her eyes closed and her teeth gritted in what looks like intense focus. Is she doing this for your benefit?");
 		//[Leave] [Wait...]
 		clearMenu();
-		addButton(0,"Leave",leaveDatHaleySlutShit,undefined,"Leave","Follow her advice.");
-		addButton(1,"Wait",waitToGetFuckedByHaleyAsAFemaleTaur,undefined,"Wait","You still want it.");
+		addButton(0,"Wait",waitToGetFuckedByHaleyAsAFemaleTaur,undefined,"Wait","You still want it.");
+		addButton(14,"Leave",leaveDatHaleySlutShit,undefined,"Leave","Follow her advice.");
 	}
 }
 
@@ -298,7 +299,7 @@ public function waitForHaleyToGoToTownOnYou():void
 	output("\n\n<i>“I'm gonna cum soon,”</i> Haley gasps from above you, her thrusting motions becoming more erratic, <i>“I hope you know – ugh – what that means for you!”</i>");
 	output("\n\nYou can scarcely reply, alternating between gritting your teeth and opening your mouth in a silent scream every time she burrows just a little bit further into your depths. Your body is in shock; a non-taur was never meant to be able to handle this, but you want it so bad. Each buck of her significant hips lifts you slightly off the ground, her grunts and groans increasing in intensity until you're certain she can't get any deeper in you – you're fully suspended on her absurd equine length, pushed up against the wall when she begins to shake.");
 	output("\n\n<i>“Oh... god.”</i> She whispers with perfect clarity, her hands firmly laid flat against the wall as you start to feel her cock swelling inside, legs completely straight and flexing around you. You think you hear her say 'good luck' before she raises her head in exaltation, but you're not paying attention to that any more. Her equine flare expands inside you, struggling to keep up with the sudden explosive outflow sourced from her hyperproductive balls. You follow suit, your [pc.cocks] painting the ground beneath you [pc.cumColor] before the backspray coats everything underneath you a pearly white.");
-	output("\n\nYou pant in equal parts pleasure and exertion, your prostate being massaged so frequently by the massive loads travelling down her shaft that you suffer multiple orgasms just from receiving the copious amounts of jizz. It hasn't even been more than a few seconds of you shaking on the end of her bloated cock before your stomach starts to sag with the liquid weight of her cum, the roiling pleasure in your tensed abs giving way to the warmth of her seed. The flow is unending, and somewhere in your head you start to wonder if it's going to come out of your mouth – the taste is already lingering across your tongue, and the heady smell feels like it's permeating your pores.");
+	output("\n\nYou pant in equal parts pleasure and exertion, your prostate being massaged so frequently by the massive loads traveling down her shaft that you suffer multiple orgasms just from receiving the copious amounts of jizz. It hasn't even been more than a few seconds of you shaking on the end of her bloated cock before your stomach starts to sag with the liquid weight of her cum, the roiling pleasure in your tensed abs giving way to the warmth of her seed. The flow is unending, and somewhere in your head you start to wonder if it's going to come out of your mouth – the taste is already lingering across your tongue, and the heady smell feels like it's permeating your pores.");
 	output("\n\nMercifully, Haley begins to pull out before that can happen. She doesn't actually stop pumping cum into you though, and the added sensation of skin-on-skin friction across your prostate along with the intermittent throbs against it just bring you back to the peak of orgasm as she slowly drags herself out of your thoroughly gaped asshole. When she finally pops free of the constraints of your slackened body, a torrential deluge of her cum follows, coating your legs and the ground beneath your body in body-temperature spunk. Her still-spraying cock spurts another few ropes across you as you roll onto your side, your sloshing stomach too uncomfortable to lie on for long. She sighs, a theatrical exhalation of satisfaction, before fixing you with a smug smile of conquest.");
 	output("\n\n<i>“I hope it was as good for you as it was for me, baby.”</i> She flirtatiously flutters her eyelashes and turns to leave, her balls noticeably smaller than they were when you entered. You note she's still leaving a dripping trail of spunk across the stall as she gathers her clothes and exits, though. Well, not like you're going anywhere in a hurry, and the hay strewn across the floor does make a decent bed. You shut your eyes and wait for your gurgling tummy to shrink enough to allow you movement.");
 	processTime(120);
@@ -340,7 +341,7 @@ public function waitForHaleyToGoToTownOnLadyNonTaurs():void
 	output("\n\n<i>“I'm gonna cum soon,”</i> Haley gasps from above you, her thrusting motions becoming more erratic, <i>“I hope you know – ugh – what that means for you!”</i>");
 	output("\n\nYou can scarcely reply, alternating between gritting your teeth and opening your mouth in a silent scream every time she burrows just a little bit further into your depths. Your body is in shock; a non-taur was never meant to be able to handle this, but you want it so bad. Each buck of her significant hips lifts you slightly off the ground, her grunts and groans increasing in intensity until you're certain she can't get any deeper in you – you're fully suspended on her absurd equine length, pushed up against the wall when she begins to shake.");
 	output("\n\n<i>“Oh... god.”</i> She whispers with perfect clarity, her hands firmly laid flat against the wall as you start to feel her cock swelling inside, legs completely straight and flexing around you. You think you hear her say 'good luck' before she raises her head in exaltation, but you're not paying attention to that any more. Her equine flare expands inside you, struggling to keep up with the sudden explosive outflow sourced from her hyperproductive balls. You follow suit, your pussy spraying the ground before the backspray coats everything underneath you a pearly white.");
-	output("\n\nYou pant in equal parts pleasure and exertion, your womb being massaged so frequently by the massive loads travelling down her shaft that you suffer multiple orgasms just from receiving the copious amounts of jizz. It hasn't even been more than a few seconds of you shaking on the end of her bloated cock before your stomach starts to sag with the liquid weight of her cum, the roiling pleasure in your tensed abs giving way to the warmth of her seed. The flow is unending, and somewhere in your head you start to wonder if it's going to come out of your mouth – the taste is already lingering across your tongue, and the heady smell feels like it's permeating your pores.");
+	output("\n\nYou pant in equal parts pleasure and exertion, your womb being massaged so frequently by the massive loads traveling down her shaft that you suffer multiple orgasms just from receiving the copious amounts of jizz. It hasn't even been more than a few seconds of you shaking on the end of her bloated cock before your stomach starts to sag with the liquid weight of her cum, the roiling pleasure in your tensed abs giving way to the warmth of her seed. The flow is unending, and somewhere in your head you start to wonder if it's going to come out of your mouth – the taste is already lingering across your tongue, and the heady smell feels like it's permeating your pores.");
 	output("\n\nMercifully, Haley begins to pull out before that can happen. She doesn't actually stop pumping cum into you though, and the added sensation of skin-on-skin friction through your ass along with the intermittent throbs against your vaginal walls just bring you back to the peak of orgasm as she slowly drags herself out of your thoroughly gaped asshole. When she finally pops free of the constraints of your slackened body, a torrential deluge of her cum follows, coating your legs and the ground beneath your body in body-temperature spunk. Her still-spraying cock spurts another few ropes across you as you roll onto your side, your sloshing stomach too uncomfortable to lie on for long. She sighs, a theatrical exhalation of satisfaction, before fixing you with a smug smile of conquest.");
 	output("\n\n<i>“I hope it was as good for you as it was for me, baby.”</i> She flirtatiously flutters her eyelashes and turns to leave, her balls noticeably smaller than they were when you entered. You note she's still leaving a dripping trail of spunk across the stall as she gathers her clothes and exits, though. Well, not like you're going anywhere in a hurry, and the hay strewn across the floor does make a decent bed. You shut your eyes and wait for your gurgling tummy to shrink enough to allow you movement.");
 	processTime(120);
@@ -381,7 +382,7 @@ public function waitForHaleyToReamYouAsAManTaur():void
 	output("\n\n<i>“Unnnh! Uh! U-”</i>");
 	output("\n\nHer voice comes in halting grunts and then stops completely as you feel her entire body flex, her six legs hugging your swollen midriff as tight as she possibly can. The equine cock inside you follows suit, stiffening and swelling to accommodate for the massive outflow of spunk being dumped into your stomach by the bucketful. You can feel the flare of it stretching you out inside with each gout of jizz, each throb of the iron-hard length pushing down hard on your prostate. You hardly notice the feeling of her balls pumping hard, pushed right up against your ass.");
 	output("\n\n<i>“Oh... Oh. God. Stay still... Stay still and take it. Good [pc.boyGirl]. Goooood [pc.boyGirl].”</i> Haley's voice comes in a breathless whisper full of wonder, as if she's marveling at your miraculous subservience. You do your best to follow her instruction while she quivers and gasps quietly on top of you, but find your stomach is swelling so rapidly with the weight of her bucketfuls of cum that you're having trouble staying standing. She groans luxuriously and wraps her arms tightly around the lower half of your humanoid form, just laying her head on your shoulder and moaning quietly into your ear.");
-	output("\n\nYou pant in equal parts pleasure and exertion, your prostate being massaged so frequently by the massive loads travelling down her shaft that you suffer multiple orgasms just from receiving the copious amounts of jizz. It hasn't even been more than a few seconds of you shaking on the end of her cock before the liquid weight of her cum starts to really weigh you down, the roiling pleasure in your tensed lower half giving way to the warmth of her seed. The flow is unending, and between the dual stimulation of your prostate and her jism coating your insides you're scarcely able to stay standing, your hands curling into tightly-balled fists against the stall.");
+	output("\n\nYou pant in equal parts pleasure and exertion, your prostate being massaged so frequently by the massive loads traveling down her shaft that you suffer multiple orgasms just from receiving the copious amounts of jizz. It hasn't even been more than a few seconds of you shaking on the end of her cock before the liquid weight of her cum starts to really weigh you down, the roiling pleasure in your tensed lower half giving way to the warmth of her seed. The flow is unending, and between the dual stimulation of your prostate and her jism coating your insides you're scarcely able to stay standing, your hands curling into tightly-balled fists against the stall.");
 	output("\n\nHaley coos to you comfortingly, and despite your weak groan of discomfort as your cum-swollen stomach reaches your unguligrade knees, you decide to stick it out for her. She softly strokes your cheek, the affectionate gesture completely at odds with her cock mercilessly ejaculating into you like you're a living milking machine. She pulls back and kisses you across your shoulder blades while your tummy continues to acquiesce to the seemingly never-ending flow of cum from her to you. In the relative calm of her ejaculation, you're more able to feel her balls against your ass, and you think they're <i>slightly</i> smaller than before.");
 	output("\n\n<i>“You're amazing, [pc.name].”</i> Haley purrs into your ear, her hands on your shoulders. <i>“No one has ever taken me so... completely.”</i>");
 	output("\n\nYou can't help but feel she's just buttering you up, but even so, the treatment is nice. Her hands slide down your front, massaging and rubbing your [pc.chest]. You let your arms fall from the slat on the wall you were holding; an outside force wouldn't be able to move you from under Haley by now, forget about doing it with your own power.");
@@ -430,7 +431,7 @@ public function waitToGetFuckedByHaleyAsAFemaleTaur():void
 	output("\n\n<i>“Unnnh! Uh! U-”</i>");
 	output("\n\nHer voice comes in halting grunts and then stops completely as you feel her entire body flex, her six legs hugging your swollen midriff as tight as she possibly can. The equine cock inside you follows suit, stiffening and swelling to accommodate for the massive outflow of spunk being dumped into your stomach by the bucketful. You can feel the flare of it stretching you out inside with each gout of jizz, each throb of the iron-hard length pushing your guts downwards. You hardly notice the feeling of her balls pumping hard, pushed right up against your ass.");
 	output("\n\n<i>“Oh... Oh. God. Stay still... Stay still and take it. Good [pc.boyGirl]. Goooood [pc.boyGirl].”</i> Haley's voice comes in a breathless whisper full of wonder, as if she's marveling at your miraculous subservience. You do your best to follow her instruction while she quivers and gasps quietly on top of you, but find your stomach is swelling so rapidly with the weight of her bucketfuls of cum that you're having trouble staying standing. She groans luxuriously and wraps her arms tightly around the lower half of your humanoid form, just laying her head on your shoulder and moaning quietly into your ear.");
-	output("\n\nYou pant in equal parts pleasure and exertion, your sensitive insides being massaged so frequently by the massive loads travelling down her shaft that you can't help but suffer multiple orgasms just from receiving the copious amounts of jizz. It hasn't even been more than a few seconds of you shaking on the end of her cock before the liquid weight of her cum starts to really weigh you down, the roiling pleasure in your tensed lower half giving way to the warmth of her seed. The flow is unending, and her jism coating your insides means you're scarcely able to stay standing, your hands curling into tightly-balled fists against the stall.");
+	output("\n\nYou pant in equal parts pleasure and exertion, your sensitive insides being massaged so frequently by the massive loads traveling down her shaft that you can't help but suffer multiple orgasms just from receiving the copious amounts of jizz. It hasn't even been more than a few seconds of you shaking on the end of her cock before the liquid weight of her cum starts to really weigh you down, the roiling pleasure in your tensed lower half giving way to the warmth of her seed. The flow is unending, and her jism coating your insides means you're scarcely able to stay standing, your hands curling into tightly-balled fists against the stall.");
 	output("\n\nHaley coos to you comfortingly, and despite your weak groan of discomfort as your cum-swollen stomach reaches your unguligrade knees, you decide to stick it out for her. She softly strokes your cheek, the affectionate gesture completely at odds with her cock mercilessly ejaculating into you like you're a living milking machine. She pulls back and kisses you across your shoulder blades while your tummy continues to acquiesce to the seemingly never-ending flow of cum from her to you. In the relative calm of her ejaculation, you're more able to feel her balls against your ass, and you think they're <i>slightly</i> smaller than before.");
 	output("\n\n<i>“You're amazing, [pc.name].”</i> Haley purrs into your ear, her hands on your shoulders. <i>“No one has ever taken me so... completely.”</i>");
 	output("\n\nYou can't help but feel she's just buttering you up, but even so, the treatment is nice. Her hands slide down your front, massaging and rubbing your [pc.chest]. You let your arms fall from the slat on the wall you were holding; an outside force wouldn't be able to move you from under Haley by now, forget about doing it with your own power.");
@@ -459,15 +460,18 @@ public function keepWatchingDatTaurSlootPoundHerMilkyMilkMaker():void
 	author("Wsan");
 	output("You can't help but want to keep watching – there's something about her desperate ferocity that captivates you, the stacked specimen's struggle to bring herself to orgasm both endearing and extremely hot. Her keening moans and grunts of effort");
 	if(pc.hasCock() && pc.hasVagina()) output(" make your [pc.cocks] stiffen in your [pc.lowerGarments], the heat in your [pc.vaginas] intensifying twofold as you begin lightly panting, the rhythm of your breathing unconsciously matching her animalistic thrusts.");
-	if(pc.hasCock() && !pc.hasVagina()) output(" make your [pc.cocks] stiffen in your [pc.lowerGarments], the rhythm of your breathing unconsciously matching her animalistic thrusts.");
-	if(!pc.hasCock() && pc.hasVagina()) output(" induce a lusty heat in your [pc.vaginas], the rhythm of your breathing unconsciously matching her animalistic thrusts.");
+	else if(pc.hasCock() && !pc.hasVagina()) output(" make your [pc.cocks] stiffen in your [pc.lowerGarments], the rhythm of your breathing unconsciously matching her animalistic thrusts.");
+	else if(!pc.hasCock() && pc.hasVagina()) output(" induce a lusty heat in your [pc.vaginas], the rhythm of your breathing unconsciously matching her animalistic thrusts.");
+	else output(" make you lustful, the rhythm of your breathing unconsciously matching her animalistic thrusts.");
 	processTime(15);
+	pc.lust(15);
 	clearMenu();
 	addButton(14,"Leave",leaveAfterWatchingHaleyABit,undefined,"Leave","Get outta dodge and clear your head.");
 	if(!pc.isTaur())
 	{
 		if(!pc.hasGenitals()) addDisabledButton(0,"Masturbate","Masturbate","You can't do that without genitals.");
-		else addButton(0,"Masturbate",masturbateWhileWatchingHaleyHumphumphump,undefined,"Masturbate","Watch the girl chase an orgasm in pursuit of your own.");
+		else if(pc.lust() >= 33) addButton(0,"Masturbate",masturbateWhileWatchingHaleyHumphumphump,undefined,"Masturbate","Watch the girl chase an orgasm in pursuit of your own.");
+		else addDisabledButton(0,"Masturbate","Masturbate","You are not aroused enough to do that.");
 	}
 	else addDisabledButton(0,"Masturbate","Masturbate","You can't reach around to do that.");
 	
@@ -638,12 +642,13 @@ public function enteringHaleysStallRepeat():void
 		//[Back out] [Get fucked] [Sandwiched]
 	}
 	clearMenu();
-	addButton(0,"Back Out",backOutFromHaleyRepeat,undefined,"Back Out","Time to leave.");
-	addButton(1,"Get Fucked",getFuckedByHaleyAsATreatedFemPCRepeatSlut,undefined,"Get Fucked","Ask Haley if she needs your help to relieve her stress.");
-	if(pc.isTaur() && pc.hasCock() && pc.biggestCockLength() >= 18) addButton(2,"Sandwiched",getHaleyAFuckingSandwich,undefined,"Sandwiched","Fuck the milker while Haley fills you up.")
-	else addDisabledButton(2, "Sandwiched", "Sandwiched", "You've got to be a big-dicked taur in order to get between them.");
-	if (pc.biggestCockLength() >= 15) addButton(3, "Competition", haleyChallenge, undefined, "Competition", "Challenge Haley to see who can cum more.");
-	else addDisabledButton(3, "Competition", "Competition", "You need to have a bigger dick to use the taur-milker to challenge her.");
+	addButton(0,"Get Fucked",getFuckedByHaleyAsATreatedFemPCRepeatSlut,undefined,"Get Fucked","Ask Haley if she needs your help to relieve her stress.");
+	if(pc.isTaur() && pc.hasCock() && pc.biggestCockLength() >= 18) addButton(1,"Sandwiched",getHaleyAFuckingSandwich,undefined,"Sandwiched","Fuck the milker while Haley fills you up.")
+	else addDisabledButton(1, "Sandwiched", "Sandwiched", "You've got to be a big-dicked taur in order to get between them.");
+	if (!pc.hasCock()) addDisabledButton(2, "Competition", "Competition", "You can't do that without a penis.");
+	else if (pc.biggestCockLength() >= 15) addButton(2, "Competition", haleyChallenge, undefined, "Competition", "Challenge Haley to see who can cum more.");
+	else addDisabledButton(2, "Competition", "Competition", "You need to have a bigger dick to use the taur-milker to challenge her.");
+	addButton(14,"Back Out",backOutFromHaleyRepeat,undefined,"Back Out","Time to leave.");
 }
 
 //[Back out]
@@ -695,7 +700,7 @@ public function getFuckedByHaleyAsATreatedFemPCRepeatSlut():void
 		output("\n\n<i>“Oh... god.”</i> She whispers with perfect clarity, her hands firmly laid flat against the wall as you start to feel her cock swelling inside, legs completely straight and flexing around you. You think you hear her say 'good luck' before she raises her head in exaltation, but you're not paying attention to that any more. Her equine flare expands inside you, struggling to keep up with the sudden explosive outflow sourced from her hyperproductive balls. You follow suit, your cock");
 		if(pc.cockTotal() > 1) output("s");
 		output(" painting the ground beneath you [pc.cumColor] before the backspray coats everything underneath you a pearly white.");
-		output("\n\nYou pant in equal parts pleasure and exertion, your prostate being massaged so frequently by the massive loads travelling down her shaft that you suffer multiple orgasms just from receiving the copious amounts of jizz. It hasn't even been more than a few seconds of you shaking on the end of her bloated cock before your stomach starts to sag with the liquid weight of her cum, the roiling pleasure in your tensed abs giving way to the warmth of her seed. The flow is unending, and somewhere in your head you start to wonder if it's going to come out of your mouth – the taste is already lingering across your tongue, and the heady smell feels like it's permeating your pores.");
+		output("\n\nYou pant in equal parts pleasure and exertion, your prostate being massaged so frequently by the massive loads traveling down her shaft that you suffer multiple orgasms just from receiving the copious amounts of jizz. It hasn't even been more than a few seconds of you shaking on the end of her bloated cock before your stomach starts to sag with the liquid weight of her cum, the roiling pleasure in your tensed abs giving way to the warmth of her seed. The flow is unending, and somewhere in your head you start to wonder if it's going to come out of your mouth – the taste is already lingering across your tongue, and the heady smell feels like it's permeating your pores.");
 		output("\n\nMercifully, Haley begins to pull out before that can happen. She doesn't actually stop pumping cum into you though, and the added sensation of skin-on-skin friction across your prostate along with the intermittent throbs against it just bring you back to the peak of orgasm as she slowly drags herself out of your thoroughly gaped asshole. When she finally pops free of the constraints of your slackened body, a torrential deluge of her cum follows, coating your [pc.legs] and the ground beneath your body in body-temperature spunk. Her still-spraying cock spurts another few ropes across you as you roll onto your side, your sloshing stomach too uncomfortable to lie on for long. She sighs, a theatrical exhalation of satisfaction, before fixing you with a smug smile of conquest.");
 		output("\n\n<i>“I hope it was as good for you as it was for me, baby.”</i> She flirtatiously flutters her eyelashes and turns to leave, her balls noticeably smaller than they were when you entered. You note she's still leaving a dripping trail of spunk across the stall as she gathers her clothes and exits, though. Well, not like you're going anywhere in a hurry, and the hay strewn across the floor does make a decent bed – you shut your eyes and wait for your gurgling tummy to shrink enough to allow you movement.");
 
@@ -718,7 +723,7 @@ public function getFuckedByHaleyAsATreatedFemPCRepeatSlut():void
 		output("\n\n<i>“I'm gonna cum soon,”</i> Haley gasps from above you, her thrusting motions becoming more erratic, <i>“I hope you know – ugh – what that means for you!”</i>");
 		output("\n\nYou can scarcely reply, alternating between gritting your teeth and opening your mouth in a silent scream every time she burrows just a little bit further into your depths. Your body is in shock; a non-taur was never meant to be able to handle this, but you want it so bad. Each buck of her significant hips lifts you slightly off the ground, her grunts and groans increasing in intensity until you're certain she can't get any deeper in you – you're fully suspended on her absurd equine length, pushed up against the wall when she begins to shake.");
 		output("\n\n<i>“Oh... god.”</i> She whispers with perfect clarity, her hands firmly laid flat against the wall as you start to feel her cock swelling inside, legs completely straight and flexing around you. You think you hear her say 'good luck' before she raises her head in exaltation, but you're not paying attention to that any more. Her equine flare expands inside you, struggling to keep up with the sudden explosive outflow sourced from her hyperproductive balls. You follow suit, your pussy spraying the ground before the backspray coats everything underneath you a pearly white.");
-		output("\n\nYou pant in equal parts pleasure and exertion, your womb being massaged so frequently by the massive loads travelling down her shaft that you suffer multiple orgasms just from receiving the copious amounts of jizz. It hasn't even been more than a few seconds of you shaking on the end of her bloated cock before your stomach starts to sag with the liquid weight of her cum, the roiling pleasure in your tensed abs giving way to the warmth of her seed. The flow is unending, and somewhere in your head you start to wonder if it's going to come out of your mouth – the taste is already lingering across your tongue, and the heady smell feels like it's permeating your pores.");
+		output("\n\nYou pant in equal parts pleasure and exertion, your womb being massaged so frequently by the massive loads traveling down her shaft that you suffer multiple orgasms just from receiving the copious amounts of jizz. It hasn't even been more than a few seconds of you shaking on the end of her bloated cock before your stomach starts to sag with the liquid weight of her cum, the roiling pleasure in your tensed abs giving way to the warmth of her seed. The flow is unending, and somewhere in your head you start to wonder if it's going to come out of your mouth – the taste is already lingering across your tongue, and the heady smell feels like it's permeating your pores.");
 		output("\n\nMercifully, Haley begins to pull out before that can happen. She doesn't actually stop pumping cum into you though, and the added sensation of skin-on-skin friction through your ass along with the intermittent throbs against your vaginal walls just bring you back to the peak of orgasm as she slowly drags herself out of your thoroughly gaped asshole. When she finally pops free of the constraints of your slackened body, a torrential deluge of her cum follows, coating your legs and the ground beneath your body in body-temperature spunk. Her still-spraying cock spurts another few ropes across you as you roll onto your side, your sloshing stomach too uncomfortable to lie on for long. She sighs, a theatrical exhalation of satisfaction, before fixing you with a smug smile of conquest.");
 		output("\n\n<i>“I hope it was as good for you as it was for me, baby.”</i> She flirtatiously flutters her eyelashes and turns to leave, her balls noticeably smaller than they were when you entered. You note she's still leaving a dripping trail of spunk across the stall as she gathers her clothes and exits, though. Well, not like you're going anywhere in a hurry, and the hay strewn across the floor does make a decent bed – you shut your eyes and wait for your gurgling tummy to shrink enough to allow you movement.");
 		//cumload yer asshole
@@ -746,7 +751,7 @@ public function getFuckedByHaleyAsATreatedFemPCRepeatSlut():void
 		output("\n\n<i>“Unnnh! Uh! U-”</i>");
 		output("\n\nHer voice comes in halting grunts and then stops completely as you feel her entire body flex, her six legs hugging your swollen midriff as tight as she possibly can. The equine cock inside you follows suit, stiffening and swelling to accommodate for the massive outflow of spunk being dumped into your stomach by the bucketful. You can feel the flare of it stretching you out inside with each gout of jizz, each throb of the iron-hard length pushing down hard on your prostate. You hardly notice the feeling of her balls pumping hard, pushed right up against your ass.");
 		output("\n\n<i>“Oh... Oh. God. Stay still... Stay still and take it. Good [pc.boyGirl]. Goooood [pc.boyGirl].”</i> Haley's voice comes in a breathless whisper full of wonder, as if she's marveling at your miraculous subservience. You do your best to follow her instruction while she quivers and gasps quietly on top of you, but find your stomach is swelling so rapidly with the weight of her bucketfuls of cum that you're having trouble staying standing. She groans luxuriously and wraps her arms tightly around the [pc.hips] of your humanoid form, just laying her head on your shoulder and moaning quietly into your ear.");
-		output("\n\nYou pant in equal parts pleasure and exertion, your prostate being massaged so frequently by the massive loads travelling down her shaft that you suffer multiple orgasms just from receiving the copious amounts of jizz. It hasn't even been more than a few seconds of you shaking on the end of her cock before the liquid weight of her cum starts to really weigh you down, the roiling pleasure in your tensed lower half giving way to the warmth of her seed. The flow is unending, and between the dual stimulation of your prostate and her jism coating your insides you're scarcely able to stay standing, your hands curling into tightly-balled fists against the stall.");
+		output("\n\nYou pant in equal parts pleasure and exertion, your prostate being massaged so frequently by the massive loads traveling down her shaft that you suffer multiple orgasms just from receiving the copious amounts of jizz. It hasn't even been more than a few seconds of you shaking on the end of her cock before the liquid weight of her cum starts to really weigh you down, the roiling pleasure in your tensed lower half giving way to the warmth of her seed. The flow is unending, and between the dual stimulation of your prostate and her jism coating your insides you're scarcely able to stay standing, your hands curling into tightly-balled fists against the stall.");
 		output("\n\nHaley coos to you comfortingly, and despite your weak groan of discomfort as your cum-swollen stomach reaches your unguligrade knees, you decide to stick it out for her. She softly strokes your cheek, the affectionate gesture completely at odds with her cock mercilessly ejaculating into you like you're a living milking machine. She pulls back and kisses you across your shoulder blades while your tummy continues to acquiesce to the seemingly never-ending flow of cum from her to you. In the relative calm of her ejaculation, you're more able to feel her balls against your ass, and you think they're <i>slightly</i> smaller than before.");
 		output("\n\n<i>“You're amazing, [pc.name].”</i> Haley purrs into your ear, her hands on your shoulders. <i>“You're the only one who can take me so... completely.”</i>");
 		output("\n\nYou can't help but feel she's just buttering you up, but even so, the treatment is nice. Her hands slide down your front, massaging and rubbing your [pc.chest]. You let your arms fall from the slat on the wall you were holding; an outside force wouldn't be able to move you from under Haley by now, forget about doing it with your own power.");
@@ -801,7 +806,7 @@ public function getFuckedByHaleyAsATreatedFemPCRepeatSlut():void
 		output("\n\n<i>“Unnnh! Uh! U-”</i>");
 		output("\n\nHer voice comes in halting grunts and then stops completely as you feel her entire body flex, her six legs hugging your swollen midriff as tight as she possibly can. The equine cock inside you follows suit, stiffening and swelling to accommodate for the massive outflow of spunk being dumped into your stomach by the bucketful. You can feel the flare of it stretching you out inside with each gout of jizz, each throb of the iron-hard length pushing your guts downwards. You hardly notice the feeling of her balls pumping hard, pushed right up against your ass.");
 		output("\n\n<i>“Oh... Oh. God. Stay still... Stay still and take it. Good girl. Goooood girl.”</i> Haley's voice comes in a breathless whisper full of wonder, as if she's marveling at your miraculous subservience. You do your best to follow her instruction while she quivers and gasps quietly on top of you, your stomach shaking underneath you with the weight its taking on so rapidly. She groans luxuriously and wraps her arms tightly around the [pc.hips] of your humanoid form, just laying her head on your shoulder and moaning quietly into your ear.");
-		output("\n\nYou pant in equal parts pleasure and exertion, your sensitive insides being massaged so frequently by the massive loads travelling down her shaft that you can't help but suffer multiple orgasms just from receiving the copious amounts of jizz. It hasn't even been more than a few seconds of you shaking on the end of her cock before the liquid weight of her cum starts to really weigh you down, the roiling pleasure in your tensed lower half giving way to the warmth of her seed. The flow is unending, and her heavy jism coating your insides means you're scarcely able to stay standing, your hands curling into tightly-balled fists against the stall. Haley coos to you comfortingly.");
+		output("\n\nYou pant in equal parts pleasure and exertion, your sensitive insides being massaged so frequently by the massive loads traveling down her shaft that you can't help but suffer multiple orgasms just from receiving the copious amounts of jizz. It hasn't even been more than a few seconds of you shaking on the end of her cock before the liquid weight of her cum starts to really weigh you down, the roiling pleasure in your tensed lower half giving way to the warmth of her seed. The flow is unending, and her heavy jism coating your insides means you're scarcely able to stay standing, your hands curling into tightly-balled fists against the stall. Haley coos to you comfortingly.");
 		output("\n\n<i>“Do you want it in your pussy too, girl?”</i>");
 		output("\n\nYou nod as forcefully as you can manage on the edge of being insensate. Softly stroking your cheek, the affectionate gesture completely at odds with her cock mercilessly ejaculating into you, she slowly begins to pull out. Grateful for the opportunity to reacclimate to not being full, you stand still and let her withdraw. The gradual slide of her rod across your sensitive bits reignites the feeling of being fucked, and you find yourself groaning as your ");
 		if(pc.totalVaginas() == 1) output("pussy seizes");
@@ -863,7 +868,7 @@ public function getFuckedByHaleyAsATreatedFemPCRepeatSlut():void
 		output("\n\n<i>“Unnnh! Uh! U-”</i>");
 		output("\n\nHer voice comes in halting grunts and then stops completely as you feel her entire body flex, her six legs hugging your swollen midriff as tight as she possibly can. The equine cock inside you follows suit, stiffening and swelling to accommodate for the massive outflow of spunk being dumped into your stomach by the bucketful. You can feel the flare of it stretching you out inside with each gout of jizz, each throb of the iron-hard length pushing your guts downwards. You hardly notice the feeling of her balls pumping hard, pushed right up against your ass.");
 		output("\n\n<i>“Oh... Oh. God. Stay still... Stay still and take it. Good [pc.boyGirl]. Goooood [pc.boyGirl].”</i> Haley's voice comes in a breathless whisper full of wonder, as if she's marveling at your miraculous subservience. You do your best to follow her instruction while she quivers and gasps quietly on top of you, but find your stomach is swelling so rapidly with the weight of her bucketfuls of cum that you're having trouble staying standing. She groans luxuriously and wraps her arms tightly around the [pc.hips] of your humanoid form, just laying her head on your shoulder and moaning quietly into your ear.");
-		output("\n\nYou pant in equal parts pleasure and exertion, your sensitive insides being massaged so frequently by the massive loads travelling down her shaft that you can't help but suffer multiple orgasms just from receiving the copious amounts of jizz. It hasn't even been more than a few seconds of you shaking on the end of her cock before the liquid weight of her cum starts to really weigh you down, the roiling pleasure in your tensed lower half giving way to the warmth of her seed. The flow is unending, and her jism coating your insides means you're scarcely able to stay standing, your hands curling into tightly-balled fists against the stall.");
+		output("\n\nYou pant in equal parts pleasure and exertion, your sensitive insides being massaged so frequently by the massive loads traveling down her shaft that you can't help but suffer multiple orgasms just from receiving the copious amounts of jizz. It hasn't even been more than a few seconds of you shaking on the end of her cock before the liquid weight of her cum starts to really weigh you down, the roiling pleasure in your tensed lower half giving way to the warmth of her seed. The flow is unending, and her jism coating your insides means you're scarcely able to stay standing, your hands curling into tightly-balled fists against the stall.");
 		output("\n\nHaley coos to you comfortingly, and despite your weak groan of discomfort as your cum-swollen stomach reaches your unguligrade knees, you decide to stick it out for her. She softly strokes your cheek, the affectionate gesture completely at odds with her cock mercilessly ejaculating into you like you're a living milking machine. She pulls back and kisses you across your shoulder blades while your tummy continues to acquiesce to the seemingly never-ending flow of cum from her to you. In the relative calm of her ejaculation, you're more able to feel her balls against your ass, and you think they're <i>slightly</i> smaller than before.");
 		output("\n\n<i>“You're amazing, [pc.name].”</i> Haley purrs into your ear, her hands on your shoulders. <i>“You're the only one who can take me so... completely.”</i>");
 		output("\n\nYou can't help but feel she's just buttering you up, but even so, the treatment is nice. Her hands slide down your front, massaging and rubbing your [pc.chest]. You let your arms fall from the slat on the wall you were holding; an outside force wouldn't be able to move you from under Haley by now, forget about doing it with your own power.");
@@ -946,7 +951,7 @@ public function getHaleyAFuckingSandwich():void
 	for(var x:int = 0; x < 20; x++) { pc.orgasm(); }
 	var pp:PregnancyPlaceholder = getHaleyPregContainer();
 	pc.loadInAss(pp);
-	flags["USED_MILKER"] = 1;
+	IncrementFlag("USED_MILKER");
 	clearMenu();
 	addButton(0,"Next",move,rooms[currentLocation].westExit);
 }
@@ -959,15 +964,15 @@ public function haleyChallenge():void
 	//Challenge Haley to a cum-off.
 	output("<i>“How about some friendly competition?”</i> You ask, feeling every bit as cocky as your grin probably looks.");
 	output("\n\n<i>“A competition of what?”</i>");
-	if (flags["MET_HALEY"] != undefined) output("Haley");
-	else output("the hermtaur");
-	output(" asks, an eyebrow raised. She’s interested, now you just need to reel her in. You nod at the milker she’s using, her head following your gaze. It takes her a second, and then she laughs. <i> “You think you can cum more than me? Shit, that’d be something. In fact, ” </i> she says as she slowly pulls herself from the machine, <i>“that’d be really fucking hot.”</i > She winks, her dick splattering messy pulses of jizz across the hay-strewn floor of the stall.");
+	if (flags["MET_HALEY"] != undefined) output(" Haley");
+	else output(" the hermtaur");
+	output(" asks, an eyebrow raised. She’s interested, now you just need to reel her in. You nod at the milker she’s using, her head following your gaze. It takes her a second, and then she laughs. <i> “You think you can cum more than me? Shit, that’d be something. In fact,”</i> she says as she slowly pulls herself from the machine, <i>“that’d be really fucking hot.”</i > She winks, her dick splattering messy pulses of jizz across the hay-strewn floor of the stall.");
 	output("\n\nShe clearly thinks she’s already got you beat – you suppose you can’t blame her.");
 	if (pc.hasPerk("'Nuki Nuts") == true) output(" It’s not like she could possibly know you have cum-inducing gene mods too.");
 	else output(" You’ll just have to show her you’re more than up to the challenge.");
-	output("She ushers you over to join her at the milker, indicating one of the other induction ports.");
+	output(" She ushers you over to join her at the milker, indicating one of the other induction ports.");
 	if (flags["USED_MILKER"] != undefined) output(" Having used it before, you’re familiar with its workings – the more you cum, the harder it works to suck you. It was pretty intense last time, too.");
-	else output(" You step up and take a measured look at the contraption – despite its primitive appearance, up close you can tell it’s actually pretty high-tech.\n\n<i>“The way it works is by varying the strength based on input. Basically, the more you cum the harder it sucks. Just pretend it’s a Treated bimbo.”</i>");
+	else output(" You step up and take a measured look at the contraption – despite its primitive appearance, up close you can tell it’s actually pretty high-tech.\n\n<i>“The way it works is by varying the strength based on input. Basically, the more you cum the harder it sucks. Just pretend it’s a Treated bimbo,”</i>");
 	if(flags["MET_HALEY"] != undefined) output(" Haley");
 	else output(" the girl");
 	output(" says with a wink.");
@@ -981,7 +986,10 @@ public function haleyChallenge():void
 	if(flags["MET_HALEY"] != undefined) output(" Haley");
 	else output(" the hermtaur");
 	output(" asks, not even looking over as she effortlessly pumps the milker. Time to beat her at her own game – you pull back, the milker clinging to you on your outstroke and sucking you in when you ram back home. You have to admit the analogy of it being a Treated bimbo isn’t that far from the truth; it’s like every time you thrust it tries to suck you harder and tighter, trying to eke out every bit of cum it can get.");
-	if (pc.cumQ() >= 415000)
+	
+	var cumMilked:Number = pc.cumQ();
+	
+	if (cumMilked >= 415000)
 	{
 		output("\n\nSoon enough the milker is working overtime just swallowing your pre, the kneading long since having given way to something more akin to a pliant set of lips, what with the warmth and wetness. You feel your orgasm approaching, the peak of your pleasure rising fast to settle in the pit of your [pc.belly] as you grunt loudly, fucking the milker as hard as you can.");
 		output("\n\nYou only withstand a few seconds more of ramming into it before you groan and practically explode, your [pc.balls] dumping stream after stream of [pc.cumVisc] [pc.cumColor] spunk into the milker, a veritable river spewing forth from your cock. You pant, grunt, and groan while you ride out your lengthy orgasm, the ongoing rapture of ejaculation dancing through your mind.");
@@ -993,22 +1001,25 @@ public function haleyChallenge():void
 		output("\n\nYou only withstand a few seconds more of ramming into it before you groan and splatter the insides with jizz, your [pc.balls] dumping a steady flow of [pc.cumVisc] [pc.cumColor] spunk into the milker, each pulse of seed forth from your cock. You steadily ride out your orgasm, the sensation only intensifying as you approach the tail end of it.");
 		output("\n\nThe taur-milker pumps you hard, the rippling sensation up and down your shaft making you feel like you’re being roughly jacked off onto someone’s face. Doubling over in pleasure, you slowly slide yourself as deep as you can get into the eager port, panting as it slowly sucks down the rest of your [pc.cumFlavor] load.");
 	}
+	
+	pc.orgasm();
+	
 	output("\n\n<i>“Hooooh, that’s so much better.”</i>");
 	if(flags["MET_HALEY"] != undefined) output(" Haley");
 	else output(" The hermtaur");
-	output(" sighs in relief. <i> “Alright stud, lets see how you did.” </i> ");
+	output(" sighs in relief. <i> “Alright stud, lets see how you did.”</i>");
 	output("\n\nShe slowly pulls her giant length from the milker with a wet sucking noise, almost immediately starting to drip on the floor. You");
 	if (pc.biggestCockLength() >= 18) output(" fish your length from the machine in a similar fashion");
 	else output(" pull your length out of the machine");
 	output(", curious about the results. Joining her at the small screen, you squint at the readout.");
-	if (pc.cumQ() >= 415000)
+	if (cumMilked >= 415000)
 	{
 		output("\n\nIf you’re reading this right, it looks like you beat her!");
 		if(flags["MET_HALEY"] != undefined) output(" Haley");
 		else output(" The hermtaur");
 		output(" looks confused for a moment, then laughs.");
 		output("\n\n<i>“Holy shit. Maybe next time I’ll take a more hands-on approach to see how much we can really get out of you. I can’t believe... how much cum that is.”</i> She trails off, the coloration of her face getting almost imperceptibly redder and her full lips hanging just slightly open until she realizes. <i>“Um, anyway. We should do this again.");
-		if (flags["MET_HALEY"] != undefined)
+		if (flags["MET_HALEY"] == undefined)
 		{
 			output(" What’s your name, stud? I’m Haley.”</i>");
 			output("\n\n<i>“[pc.name].”</i>");
@@ -1023,13 +1034,18 @@ public function haleyChallenge():void
 		{
 			output(" but Haley catches your arm.");
 			output("\n\n<i>“Sorry [pc.name], I should have mentioned. There’s a monthly prize for the highest contribu-taur, and that’s now you!");
-			if (!pc.isTaur) output("Even if you aren’t a taur.");
-			output("Congratulations!”</i>");
+			if (!pc.isTaur()) output(" Even if you aren’t a taur.");
+			output(" Congratulations!”</i>");
 			output("\n\nHaley hands you a 10,000 credit chit. You thank her and get ready to leave, the taur-girl still watching you.");
+			
+			pc.credits += 10000;
+			pc.createStatusEffect("Won Haley's Credits", 0, 0, 0, 0, true, "", "", false, 43200);
 		}
 		else output(" the horny taur-girl watching your departure.");
+		
+		StatTracking.track("contests/haley milker wins");
 	}
-	if (pc.cumQ() < 415000)
+	else
 	{
 		output("\n\nIf you’re reading this right, it looks like she beat you.");
 		if(flags["MET_HALEY"] != undefined) output(" Haley");
@@ -1043,14 +1059,16 @@ public function haleyChallenge():void
 		}
 		else
 		{
-			output("\n\nAre you gonna come see me for more?” </i> ");
+			output("\n\nAre you gonna come see me for more?”</i>");
 			output("\n\n<i>“Maybe.”</i> You reply.");
 		}
 		output("\n\n<i>“Right. Well, think about coming by again.”</i> She says with a friendly smile, giving you a little wave before turning away to get dressed. You nod and make to leave.");
+		
+		StatTracking.track("contests/haley milker losses");
 	}
-	flags["USED_MILKER"] = 1;
-	pc.createStatusEffect("Won Haley's Credits", 0, 0, 0, 0, false, "", "", false, (43200));
-	processTime(10);
+	IncrementFlag("USED_MILKER");
+	processTime(10 + rand(6));
 	clearMenu();
 	addButton(0,"Next",move,rooms[currentLocation].westExit);
 }
+
