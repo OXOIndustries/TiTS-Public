@@ -236,7 +236,6 @@ package classes.GameData
 		public static function hasSubject(entryName:String, arg:String):Boolean
 		{
 			if(MailManager.ENTRIES[entryName].SubjectCache == arg) return true;
-			if(MailManager.ENTRIES[entryName].Subject == arg) return true;
 			
 			return false;
 		}
