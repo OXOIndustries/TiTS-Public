@@ -596,7 +596,7 @@ public function nectarSuckFromDallyProper():void
 	output("\n\nThe myr girl next to you is cheering while her friends slump down against the side of the stage, vigorously frigging each other, filling the air with wet squelches and their own fragrant pussy-musk. You’d love to keep drinking, but you’re starting to get full. You swear that if you drink any more, you’re going to wind up looking positively pregnant");
 	if(pc.isPregnant()) output(", or more pregnant than normal, anyway");
 	output(". You give Dally one long hard suck by way of thanks and let him slip free.");
-	output("\n\nA river of golden honey trails from your chin to to the stage below him, and he’s still drizzling more. His eyes are closed and fluttering while his hips feebly pump. The ant-girl beside you brazenly reaches out to catch his slippery issue in a hand, switching to another when the first fills, determined not to waste a single droplet.");
+	output("\n\nA river of golden honey trails from your chin to the stage below him, and he’s still drizzling more. His eyes are closed and fluttering while his hips feebly pump. The ant-girl beside you brazenly reaches out to catch his slippery issue in a hand, switching to another when the first fills, determined not to waste a single droplet.");
 	output("\n\nA burp escapes your mouth before you can stifle it. It tastes like Dally’s dick. You’ve got ant-cock breath. The girls around you giggle excitedly at the shocked look on your face. One of them offers to make out with you, but you pass for now, licking the last of the residue from your lips.");
 	output("\n\nBy the time you rouse from your daze, Dally has gotten to his feet and moved down the stage. You’re about to stand up when a flashing hologram displaying the word ‘Tip’ appears alongside you. Small print appears below with the credit address for anything you’d like to give Dally. For backwater creatures, the myr seemed to have figured out payment terminals well enough.");
 	if(flags["DALLY_NECTAR_DRANK"] == undefined) flags["DALLY_NECTAR_DRANK"] = 0;
@@ -925,7 +925,7 @@ public function getDallyLicked():void
 	output(". <i>“I think I can handle a little stage time.”</i>");
 	if(pc.exhibitionism() < 33) output(" You try your best not to show just how nervous you’re feeling.");
 
-	output("\n\n<i>“Is that so?”</i> Dally makes a show of dropping to his knees, grabbing the stripper pole and slowing his slide to the stage floor into a sensuous display. <i>“");
+	output("\n\n<i>“Is that so?”</i> Dally makes a show of dropping to his knees, grabbing the stripper pole and slowly sliding to the stage floor into a sensuous display. <i>“");
 	if(pc.legCount == 1) output("Stones, it’s strange to see one smack in the middle instead of you instead of on an abdomen like a normal girl’s.");
 	else if(pc.isTaur())
 	{
@@ -942,7 +942,7 @@ public function getDallyLicked():void
 	output(" to ");
 	if(!pc.isTaur() && pc.legCount != 2) output("better present your [pc.vaginas] to the ant-boy.");
 	else output("to better allow the ant-boy to crawl between them");
-	output(". You’re uncomfortably aware of your own wetness, exposed as you are in the center of the stage. Dally’s so close to you too, and getting close by the second. He licks his golden licks and openly ogles [pc.oneVagina]. You can almost feel his stare. It sends shivers of delight and anxiety up your spine");
+	output(". You’re uncomfortably aware of your own wetness, exposed as you are in the center of the stage. Dally’s so close to you too, and getting closer by the second. He licks his golden lips and openly ogles [pc.oneVagina]. You can almost feel his stare. It sends shivers of delight and anxiety up your spine");
 	if(pc.hasClit())
 	{
 		output(", and makes you entirely too aware of how your [pc.clits] feel");
@@ -957,7 +957,7 @@ public function getDallyLicked():void
 
 	output("\n\n<i>“Ready for this?”</i> Dally waggles his tongue at you. It’s long and... thick, deliciously so.");
 	output("\n\nYou shudder and nod, biting your lip.");
-	output("\n\nThe well-endowed male flashes his teeth at you once more and wiggles closer to your [pc.vaginas], pausing once he’s an inch or two away to gently blow on it. His breath is hotter than you would’ve imagine. You swear you can feel yourself lubricating, easing hot droplets of [pc.girlCum] into your dewy slit");
+	output("\n\nThe well-endowed male flashes his teeth at you once more and wiggles closer to your [pc.vaginas], pausing once he’s an inch or two away to gently blow on it. His breath is hotter than you would’ve imagined. You swear you can feel yourself lubricating, easing hot droplets of [pc.girlCum] into your dewy slit");
 	if(pc.totalVaginas() > 1) output("s");
 	output(" one after another.");
 	if(pc.wettestVaginalWetness() >= 3) 
@@ -989,9 +989,9 @@ public function getDallyLicked():void
 	output("but your oral accomplice never abandons his duty, keeping his lips sealed to yours, brushing his tongue back and forth");
 	if(pc.hasClit()) output(" against [pc.oneClit]");
 	output(" until your ");
-	if(pc.isSquirter()) output("spraying juices have thoroughly soaked his face and the stage both. Rivulets of the stuff drip from his shoulders.");
+	if(pc.isSquirter()) output("spraying juices have thoroughly soaked both his face and the stage. Rivulets of the stuff drip from his shoulders.");
 	else output("juices dribble down his cheeks and fill his mouth with your flavor.");
-	output(" He drinks from you like thirsty man at an oasis, unable to conceive of anything but the [pc.girlCumFlavor] taste on his tongue.");
+	output(" He drinks from you like a thirsty man at an oasis, unable to conceive of anything but the [pc.girlCumFlavor] taste on his tongue.");
 	
 	//You are a taur, god this gets boring!
 	if(pc.isTaur())
@@ -1045,7 +1045,7 @@ public function dallySucksYouOff():void
 	if(pc.cumType == GLOBAL.FLUID_TYPE_HONEY) output("aren’t the only one packing a dickful of honey.");
 	else output("aren’t the only one needing a good suck.");
 	output("”</i>");
-	output("\n\n<i>“Is that so?”</i> Dally makes a show of dropping to his knees, grabbing the stripper pole and slowing his slide to the stage floor into a sensuous display. <i>“Stones, it’s strange to look at someone else’s up close.”</i> He flashes a white-toothed smile your way. <i>“Not saying I mind, just that most of my practice has been... self-fulfilling.”</i>");
+	output("\n\n<i>“Is that so?”</i> Dally makes a show of dropping to his knees, grabbing the stripper pole and slowly sliding to the stage floor into a sensuous display. <i>“Stones, it’s strange to look at someone else’s up close.”</i> He flashes a white-toothed smile your way. <i>“Not saying I mind, just that most of my practice has been... self-fulfilling.”</i>");
 	output("\n\nYou grab hold");
 	if(pc.cockTotal() > 1) output(" of your biggest cock");
 	else output(" of your cock");

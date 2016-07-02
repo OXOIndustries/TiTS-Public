@@ -202,7 +202,7 @@ public function initUvetoRooms():void
 
 	/* Station C&C */
 	rooms["UVS J7"] = new RoomClass(this);
-	rooms["UVS J7"].roomName = "CAMARILLA\nOFFICE";
+	rooms["UVS J7"].roomName = "\nCAMARILLA";
 	rooms["UVS J7"].description = "";
 	rooms["UVS J7"].planet = "UVETO STATION";
 	rooms["UVS J7"].system = "SYSTEM: SIRETTA";

@@ -274,6 +274,8 @@ public function statisticsScreen(showID:String = "All"):void
 				if(pc.totalNipples() != 1) output2("s");
 				if(pc.totalNipples() > 1) output2(", " + pc.nipplesPerBreast + " per breast");
 				if(pc.isLactating()) output2(", Lactation Active");
+				output2("\n<b>* Nipple, Length Ratio: </b>" + formatFloat(pc.nippleLengthRatio, 3));
+				output2("\n<b>* Areola, Width Ratio: </b>" + formatFloat(pc.nippleWidthRatio, 3));
 				if(pc.nipplesPierced != 0) output2("\n<b>* Nipple Piercing: </b>" + pc.nipplesPierced + " " + StringUtil.toDisplayCase(pc.nipplesPShort));
 			}
 			// Lactation
@@ -2698,6 +2700,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["ELLIE_EMBARASSED_LIL_DICK_FUCK"] != undefined) output2(", Fucked her with an embarrassingly small dick for her size");
 					if(flags["NEPH_AFFECTION"] != undefined) output2("\n<b>* Ellie, Affection: </b>" + flags["NEPH_AFFECTION"] + " %");
 					if(flags["ELLIE_SEXED"] != undefined) output2("\n<b>* Ellie, Times Sexed: </b>" + flags["ELLIE_SEXED"]);
+					if(flags["PUBLIC_USE_COUNT"] > 0) output2("\n<b>* Ellie, Times You Were Used Publicly: </b>" + flags["PUBLIC_USE_COUNT"]);
 				}
 				// BBQ, Mmmm...
 				if(flags["MET_HERMAN"] != undefined)

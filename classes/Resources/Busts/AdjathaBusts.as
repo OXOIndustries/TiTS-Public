@@ -179,6 +179,15 @@ package classes.Resources.Busts
 		public var Bust_MIRIAN:Class;
 		public var Bounds_MIRIAN:Rectangle = new Rectangle(92, 0, 70, 70);
 		
+		[Embed(source = "../../../assets/images/npcs/adjatha/nova.png", mimeType = "image/png")]
+		public var Bust_NOVA:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/nova_nude.png", mimeType = "image/png")]
+		public var Bust_NOVA_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/nova_nude_0.png", mimeType = "image/png")]
+		public var Bust_NOVA_NUDE_0:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/nova_nude_1.png", mimeType = "image/png")]
+		public var Bust_NOVA_NUDE_1:Class;
+		
 		[Embed(source = "../../../assets/images/npcs/adjatha/ovir_dancer.png", mimeType = "image/png")]
 		public var Bust_OVIR_DANCER:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/ovir_dancer_nude.png", mimeType = "image/png")]
@@ -240,6 +249,9 @@ package classes.Resources.Busts
 		public var Bust_TERENSHA:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/terensha_filled.png", mimeType = "image/png")]
 		public var Bust_TERENSHA_FILLED:Class;
+		
+		[Embed(source = "../../../assets/images/npcs/adjatha/tlako.png", mimeType = "image/png")]
+		public var Bust_TLAKO:Class;
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/vaande.png", mimeType = "image/png")]
 		public var Bust_VAANDE:Class;
@@ -426,6 +438,15 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/mirian.png", mimeType = "image/png")]
 			public var Full_MIRIAN:Class;
 			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/nova.png", mimeType = "image/png")]
+			public var Full_NOVA:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/nova_nude.png", mimeType = "image/png")]
+			public var Full_NOVA_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/nova_nude_0.png", mimeType = "image/png")]
+			public var Full_NOVA_NUDE_0:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/nova_nude_1.png", mimeType = "image/png")]
+			public var Full_NOVA_NUDE_1:Class;
+			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/ovir_dancer.png", mimeType = "image/png")]
 			public var Full_OVIR_DANCER:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/ovir_dancer_nude.png", mimeType = "image/png")]
@@ -487,6 +508,9 @@ package classes.Resources.Busts
 			public var Full_TERENSHA:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/terensha_filled.png", mimeType = "image/png")]
 			public var Full_TERENSHA_FILLED:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/tlako.png", mimeType = "image/png")]
+			public var Full_TLAKO:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/vaande.png", mimeType = "image/png")]
 			public var Full_VAANDE:Class;

@@ -148,7 +148,7 @@ public function getMilkedByYancyYaSloot():void
 			output("\n\n<i>“All right.”</i> You ");
 			if(pc.libido() >= 75) output("eagerly pull off your [pc.gear], stealing glances over your shoulder to see if you’re making Yancy’s shorts tent any more than they already are.");
 			else if(pc.libido() >= 25) output("carefully remove your [pc.gear], feeling at once very exposed and excited. There’s no hiding the bull’s rapt gaze.");
-			else output("nervously remove your [pc.gear], unsure how to feel about being naked around an oversexed guy like this, especially when he’s going to be the one getting you milked. Still... you feel a more than a twinge of excitement as well.");
+			else output("nervously remove your [pc.gear], unsure how to feel about being naked around an oversexed guy like this, especially when he’s going to be the one getting you milked. Still... you feel more than a twinge of excitement as well.");
 			output(" You toss the stuff in a marked bin, and cock your head at the man with the broad, obviously waxed chest. <i>“Now what?”</i>");
 		}
 		//Unclothed
@@ -760,13 +760,13 @@ public function untreatedMilkedAndFuckedII():void
 	showBust("YANCY");
 	showName("\nYANCY");
 	output("Your whole body is buzzing with pleasure and your mind is completely blank. A thin sheen of sweat covers your [pc.skinFurScales] as you fight for breath. You are dimly aware of hot, thick globs of cum pouring down your white streaked [pc.thighs], and the milking caps being removed. Your [pc.breasts] feel drained dry.");
-	output("\n\nReaching between your legs, you tentatively touch your quivering [pc.vagOrAss]. It’s already been well spread by his length and your probing digits slip easily inside. You’re totally packed with his slick and fertile seed Right now you could die a happy " + pc.mf("man","woman") + ".");
+	output("\n\nReaching between your legs, you tentatively touch your quivering [pc.vagOrAss]. It’s already been well spread by his length and your probing digits slip easily inside. You’re totally packed with his slick and fertile seed! Right now you could die a happy " + pc.mf("man","woman") + ".");
 	output("\n\nThere’s a surprisingly tender kiss on the [pc.skinFurScales] of your back, and you’re aware your lower back is being caressed. <i>\"Thank you, my dear. Not only did you provide ");
 	var milked:Number = pc.lactationQ();
 	if(milked < 500) output("a bit");
 	else if(milked < 2000) output("a lot");
-	else output("gallons of");
-	output(" [pc.milkNoun], I also really enjoyed fucking you. Most fun I’ve had in ages.\"</i>");
+	else output("gallons");
+	output(" of [pc.milkNoun], I also really enjoyed fucking you. Most fun I’ve had in ages.\"</i>");
 	output("\n\nIs that a bashful tone to his voice? You turn around, though your [pc.legOrLegs]");
 	if(pc.legCount == 1) output(" is");
 	else output(" are");

@@ -299,8 +299,12 @@ public function getSpitRoastedForPenny():void {
 		if(!pc.hasVagina() && pc.analVirgin) output("anal ");
 		output("innocence surprisingly bearable. ");
 	}
+	var x:int = -1;
 	if(pc.hasVagina()) {
-		pc.cuntChange(rand(pc.vaginas.length),zilpack.cockVolume(0),false, false,false);
+		for(x = 0; x < pc.vaginas.length; x++)
+		{
+			pc.cuntChange(x,zilpack.cockVolume(0),false, false,false);
+		}
 	}
 	else {
 		pc.buttChange(zilpack.cockVolume(0),false, false,false);
@@ -366,7 +370,13 @@ public function getSpitRoastedForPenny():void {
 	if(pc.wetness() >= 3) output(" along with your own moisture");
 	output(", squirting from your well-used holes. The constant sexual onslaught sends you to orgasm after orgasm, almost one on top of the other. Your mind seems to be turning to putty under the ecstatic assault, shutting down one thought process after another as you ride pleasure unending. Dimly, you’re aware of one sloppy honey injection after another...");
 	pc.orgasm();
-	if(pc.hasVagina()) pc.loadInCunt(chars["ZIL"]);
+	if(pc.hasVagina())
+	{
+		for(x = 0; x < pc.vaginas.length; x++)
+		{
+			pc.loadInCunt(chars["ZIL"], x);
+		}
+	}
 	pc.loadInAss(chars["ZIL"]);
 	//Cum, pregnancy chances, sensitivity reduction
 	//Pass 2 hours.

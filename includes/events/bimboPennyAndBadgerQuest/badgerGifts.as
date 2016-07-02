@@ -1036,11 +1036,11 @@ public function turnTheTablesOnBadger():void
 	output("Penny grins as you walk over. <i>“Ah, [pc.name],”</i> she says, <i>“have I got a nice little surprise for you...”</i>");
 	output("\n\nYou raise an eyebrow. <i>“Oh? What is it?”</i>");
 	output("\n\n<i>“Well, you know our mutual friend, Dr. Badger?”</i>");
-	if(!pcBimboedByBadger()) output("\n\n<i>“You mean the mad scientist who wanted me turn you into a slutty bimbo pet? Yeah, I’m familiar with her.”</i>");
+	if(!pcBimboedByBadger()) output("\n\n<i>“You mean the mad scientist who wanted me to turn you into a slutty bimbo pet? Yeah, I’m familiar with her.”</i>");
 	else output("\n\n<i>“You mean the super smart doctor who made me all nice an’ bubbly an’ happy an’ horny?”</i>");
 	output("\n\nPenny blushes a little at that, but nods. <i>“Well, I found out that she’s got some sort of nemesis");
 	if(pc.isBimbo()) output("...”</i> she sees your blank expression and pauses. <i>“Uh, like, someone who is like, the opposite of her? Anyway");
-	output(" - there’s another doctor just a few buildings up from her on Novahome that is apparently just as smart as she is, but the two of them do </i>not<i> get on.”</i>");
+	output(" - there’s another doctor just a few buildings up from her on Novahome that is apparently just as smart as she is, but the two of them do </i>not<i> get along.”</i>");
 	if(!pcBimboedByBadger()) 
 	{
 		output("\n\n<i>“Huh. Seems a little weird that out of all the planets in the planet rush, the two evil scientists wind up right next to each other on the same one, doesn’t it?”</i>");
