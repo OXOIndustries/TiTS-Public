@@ -4677,7 +4677,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["SAENDRA GONNA GO GET A COCK"] == 2) output2(", Paid for, Seen Sera, Meet her at the <i>Phoenix</i>");
 				if(flags["SAENDRA GONNA GO GET A COCK"] == 3) output2(", Paid for, Seen Sera, Used drug, Completed");
 			}
-			if(flags["SAENDRA TIMES SEXED"] != undefined)
+			if(flags["SAENDRA TIMES SEXED"] != undefined || flags["KIRO_X_SAEN_HAPPENED"] != undefined)
 			{
 				output2("\n<b>* Saendra, Sexual Organs:</b> ");
 				if(chars["SAENDRA"].hasCock())
@@ -4709,7 +4709,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				else output2("Asshole");
 				output2("\n<b>* Saendra, Sexual History:</b> Sexed her");
 				if(flags["KIRO_X_SAEN_HAPPENED"] != undefined) output2(", Sexed her with Kiro");
-				output2("\n<b>* Saendra, Times Sexed:</b> " + flags["SAENDRA TIMES SEXED"]);
+				if(flags["SAENDRA TIMES SEXED"] > 1) output2("\n<b>* Saendra, Times Sexed:</b> " + flags["SAENDRA TIMES SEXED"]);
 			}
 			roamCount++;
 		}

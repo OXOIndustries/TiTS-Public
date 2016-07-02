@@ -638,7 +638,7 @@ public function freedomBeefSnuSnu(beefType:uint):void
 	processTime(30+rand(5));
 	pc.orgasm();
 
-	pc.HP(-(pc.HPMax() * 0.2));
+	pc.HP(-(pc.HPMax() * 0.8));
 	if (pc.HP() < 1) pc.HP(1);
 	soreDebuff(3);
 
@@ -743,7 +743,7 @@ public function freedomBeefSexOutro(params:Array):void
 	var passTime:uint = ((23 - hours) * 60) + (59 - minutes); // this gets us to exactly 23:59
 	passTime += 15 + rand(15);
 	processTime(passTime);
-	sleepHeal();
+	restHeal();
 
 	output("You spend a few long, quiet minutes in the pleasant afterglow, letting your heartbeat slow from the race of passion and desire. The air is heavy with the smells of beer and sex, and the world is softly swimming back and forth before your eyes. Rather than dizzy, though, you just feel tired - completely drained after your");
 	if (pc.balls > 0) output(" ball-emptying");
