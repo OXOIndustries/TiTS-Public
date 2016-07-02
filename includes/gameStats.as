@@ -837,25 +837,25 @@ public function statisticsScreen(showID:String = "All"):void
 					output2("\n<b>* Births, Nyrean Eggs, Royal: </b>" + StatTracking.getStat("pregnancy/royal nyrea eggs"));
 				}
 				if(nyreanEggs > 0)
-					output2("\n<b>* Births, Nyrean Eggs, Total: </b>" + nyreanEggs);
+					output2("\n<b>* Births, Nyrean Eggs, Total:</b> " + nyreanEggs);
 				if(StatTracking.getStat("pregnancy/psychic tentacle beast birthed") > 0)
-					output2("\n<b>* Births, Psychic Tentacle Beasts: </b>" + StatTracking.getStat("pregnancy/psychic tentacle beast birthed"));
+					output2("\n<b>* Births, Psychic Tentacle Beasts:</b> " + StatTracking.getStat("pregnancy/psychic tentacle beast birthed"));
 				if(StatTracking.getStat("pregnancy/renvra kids") > 0)
-					output2("\n<b>* Births, Renvra’s Children: </b>" + StatTracking.getStat("pregnancy/renvra kids"));
+					output2("\n<b>* Births, Renvra’s Children:</b> " + StatTracking.getStat("pregnancy/renvra kids"));
 				if(StatTracking.getStat("pregnancy/sydian births") > 0)
-					output2("\n<b>* Births, Sydian Young: </b>" + StatTracking.getStat("pregnancy/sydian births"));
+					output2("\n<b>* Births, Sydian Young:</b> " + StatTracking.getStat("pregnancy/sydian births"));
 				if(StatTracking.getStat("pregnancy/venus pitcher seeds") > 0)
-					output2("\n<b>* Births, Venus Pitcher Seeds, Total: </b>" + StatTracking.getStat("pregnancy/venus pitcher seeds"));
+					output2("\n<b>* Births, Venus Pitcher Seeds, Total:</b> " + StatTracking.getStat("pregnancy/venus pitcher seeds"));
 				if(StatTracking.getStat("pregnancy/venus pitcher seeds") > 0)
-					output2("\n<b>* Births, Venus Pitcher Seeds, Planted: </b>" + (StatTracking.getStat("pregnancy/venus pitcher seeds") - StatTracking.getStat("pregnancy/fertilized venus pitcher seeds/day care") - StatTracking.getStat("pregnancy/unfertilized venus pitcher seeds")));
+					output2("\n<b>* Births, Venus Pitcher Seeds, Planted:</b> " + (StatTracking.getStat("pregnancy/venus pitcher seeds") - StatTracking.getStat("pregnancy/fertilized venus pitcher seeds/day care") - StatTracking.getStat("pregnancy/unfertilized venus pitcher seeds")));
 				if(StatTracking.getStat("pregnancy/fertilized venus pitcher seeds/day care") > 0)
-					output2("\n<b>* Births, Venus Pitcher Seeds @ Daycare: </b>" + StatTracking.getStat("pregnancy/fertilized venus pitcher seeds/day care"));
+					output2("\n<b>* Births, Venus Pitcher Seeds @ Daycare:</b> " + StatTracking.getStat("pregnancy/fertilized venus pitcher seeds/day care"));
 				if(StatTracking.getStat("pregnancy/queen of the deep eggs") > 0)
-					output2("\n<b>* Births, Water Queen Young: </b>" + StatTracking.getStat("pregnancy/queen of the deep eggs"));
+					output2("\n<b>* Births, Water Queen Young:</b> " + StatTracking.getStat("pregnancy/queen of the deep eggs"));
 				// Father
 				if(StatTracking.getStat("pregnancy/briha kids") > 0)
 				{
-					output2("\n<b>* Fathered, Briha’s Children:</b>");
+					output2("\n<b>* Fathered, Briha’s Children:</b> ");
 					var unnamedBrihaKids:Number = StatTracking.getStat("pregnancy/briha kids");
 					if(flags["BRIHA_OLDEST_SPAWN_AGE"] != undefined)
 					{

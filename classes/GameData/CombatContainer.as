@@ -234,6 +234,19 @@ package classes.GameData
 				return true;
 			}
 			
+			if (CombatManager.hasEnemyOfClass(Ehstraffe))
+			{
+				var e:Array = CombatManager.getHostileCharacters();
+				
+				for (var i:int = 0; i < e.length; i++)
+				{
+					if (e[i] is Ehstraffe)
+					{
+						(e[i] as Ehstraffe).fazianAppeal();
+					}
+				}
+			}
+			
 			return false;
 		}
 		
@@ -296,6 +309,15 @@ package classes.GameData
 		private function updateStatusEffectsFor(target:Creature):void
 		{
 			if (target.isDefeated()) return;
+			
+			if (target.hasStatusEffect("Pushed"))
+			{
+				target.setStatusValue("Pushed", 2, 0);
+				if (target.statusEffectv1("Pushed") > 0)
+				{
+					target.addStatusValue("Pushed", 1, -1);
+				}
+			}
 			
 			if (target.hasPerk("Shield Regen") && target.shields() <= 0 && target.shieldsMax() > 0 && !target.hasStatusEffect("Used Shield Regen"))
 			{

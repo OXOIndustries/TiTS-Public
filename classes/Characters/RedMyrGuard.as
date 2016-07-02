@@ -23,6 +23,7 @@
 	import classes.Engine.Combat.DamageTypes.*;
 	import classes.Engine.Combat.*; 
 	import classes.Engine.Interfaces.output;
+	import classes.Engine.Utility.weightedRand;
 	
 	/**
 	 * ...
@@ -213,6 +214,120 @@
 			if (target == null) return;
 			
 			/* handling this entirely through Ehstraffe because I'm being lazy */
+			
+			var doAttack:Boolean = false;
+			if (target.hasStatusEffect("Pushed"))
+			{
+				target.addStatusValue("Pushed", 2, 1);
+				if ((5 + target.statusEffectv1("Pushed")) - target.statusEffectv2("Pushed") > 0)
+				{
+					doAttack = true;
+				}
+			}
+			else
+			{
+				doAttack = true;
+			}
+			
+			if (doAttack)
+			{
+				var atks:Array = [
+					{ v: axeBlow, w: 10 },
+					{ v: punch, w: 10 },
+					{ v: openFire, w: 10 },
+					{ v: bite, w: 10 }
+				];
+
+				weightedRand(atks)(target);
+				output("\n\n");
+			}
+		}
+		
+		private function axeBlow(target:Creature):void
+		{
+			//Penetrating. Moderate HP damage
+			output("One of the red myr swings her axe at you.");
+			if (combatMiss(this, target, -1, -1))
+			{
+				if (target.shields() > 0) output(" The blow glances off your shield.");
+				else output(" You leap out of the way!");
+			}
+			else
+			{
+				var dr:DamageResult = applyDamage(new TypeCollection( { kinetic: 7 }, DamageFlag.PENETRATING), this, target, "suppress");
+				
+				if (dr.shieldDamage > 0 && dr.hpDamage <= 0) output(" The blow slams into your shield.");
+				else if (dr.shieldDamage > 0 && dr.hpDamage > 0) output(" The blow shatters your shield and carries on into you.");
+				else output(" The blow thunks heavily home.");
+				outputDamage(dr);
+				
+			}
+		}
+		
+		private function punch(target:Creature):void
+		{
+			//Crushing. Low HP damage, medium energy damage
+			output("One of the red myr bulls into you, driving a punch into your midriff.");
+			if (combatMiss(this, target, -1, -1))
+			{
+				if (target.shields() > 0) output(" Your shield protects you.");
+				else output(" You move backwards with her, taking the sting out of the blow.");
+			}
+			else
+			{
+				var dr:DamageResult = applyDamage(new TypeCollection( { kinetic: 3 } ), this, target, "suppress");
+				
+				if (dr.shieldDamage > 0 && dr.hpDamage <= 0) output(" Your shield absorbs the brunt of the blow.");
+				else if (dr.shieldDamage > 0 && dr.hpDamage > 0) output(" The blow shatters your shield and carries on into you, winding you.");
+				else output(" Her fist thuds into you, driving the wind out of your lungs.");
+				
+				outputDamage(dr);
+				
+				if (dr.hpDamage > 0) target.energy( -10);
+			}
+		}
+		
+		private function openFire(target:Creature):void
+		{
+			//Kinetic. High damage, low acc
+			output("Getting a clear shot, one of the red myr deafeningly fires a few shots of her slug-launcher at you.");
+			
+			if (combatMiss(this, target, -1, 3))
+			{
+				if (target.shields() > 0) output(" The bullets crack off your shield.");
+				else output(" The bullets unnervingly whiff past you.");
+			}
+			else
+			{
+				var dr:DamageResult = applyDamage(new TypeCollection( { kinetic: 10 }, DamageFlag.BULLET), this, target, "suppress");
+				
+				if (dr.shieldDamage > 0 && dr.hpDamage <= 0) output(" The bullets smash into your shield.");
+				else if (dr.shieldDamage > 0 && dr.hpDamage > 0) output(" The bullets shatter your shield, and one or two thud into you.");
+				else output(" The bullets thud horribly home.");
+				
+				outputDamage(dr);
+			}
+		}
+		
+		private function bite(target:Creature):void
+		{
+			//Penetrating. Ignores shield. High lust damage
+			output("Curling an arm around you, one of the red myr tries to latch her mouth onto your neck, a savagely intimate act.");
+			
+			if (combatMiss(this, target, -1, -1))
+			{
+				output(" You struggle out of her grip before she can manage it.");
+			}
+			else
+			{
+				output(" You feel her hot lips on you, her pointed teeth penetrating your [pc.skin]... you struggle out of her grip, but cannot stop a groan escaping your lips as you feel heat being pushed into you,");
+				if (target.hasCock()) output(" [pc.eachCock] growing more and more erect");
+				if (target.isHerm()) output(" and");
+				if (target.hasVagina()) output(" [pc.eachVagina] becoming more and more flush with [pc.femcum]");
+				output(".");
+				
+				applyDamage(new TypeCollection( { drug: 10 } ), this, target, "minimal");
+			}
 		}
 	}
 }
