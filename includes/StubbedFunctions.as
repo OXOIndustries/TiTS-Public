@@ -16,8 +16,11 @@ public function mountmeBustDisplay(attire:String = "normal"):String
 {
 	var bustName:String = "MOUNTME";
 	
-	if(attire == "nude") bustName += "_NUDE";
-	else if(attire == "bra") bustName += "_BRA";
+	switch(attire)
+	{
+		case "nude": bustName += "_NUDE"; break;
+		case "bra": bustName += "_BRA"; break;
+	}
 	
 	return bustName;
 }
@@ -25,8 +28,11 @@ public function rileyBustDisplay(attire:String = "normal"):String
 {
 	var bustName:String = "RILEY";
 	
-	if(attire == "nude") bustName += "_NUDE";
-	else if(attire == "bra") bustName += "_BRA";
+	switch(attire)
+	{
+		case "nude": bustName += "_NUDE"; break;
+		case "bra": bustName += "_BRA"; break;
+	}
 	
 	// Tone phases
 	if(flags["RILEY_TONE"] >= 90) bustName += "_3";
