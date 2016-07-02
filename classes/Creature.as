@@ -2398,6 +2398,7 @@
 		
 		public function getWeaponName(fromStat:Boolean = false):String
 		{
+			if(hasStatusEffect("Disarmed") && hasKeyItem("Lasso")) return "lasso";
 			if(!fromStat)
 			{
 				if (!(rangedWeapon is EmptySlot)) return rangedWeapon.longName;

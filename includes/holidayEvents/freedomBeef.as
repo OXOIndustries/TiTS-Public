@@ -64,7 +64,7 @@ public static const FREEDOM_BEEF_RIPPED:uint = 3;
 
 public function doFreedomBeefEncounter():void
 {
-	output("\n\nA deafening <i><b>crack!</b></i> booms overhead, a concussive blast of thunder that makes you duck and grab your [pc.weapon]. Your brain immediately leaps to a gunshot going off, but you’re able to relax a bit when you see a carona of crimson sparks erupting in the");
+	output("\n\nA deafening <i><b>crack!</b></i> booms overhead, a concussive blast of thunder that makes you duck and grab your [pc.weapon]. Your brain immediately leaps to a gunshot going off, but you’re able to relax a bit when you see a corona of crimson sparks erupting in the");
 	if (hours >= 20 || hours <= 4) output(" night’s");
 	else if (hours >= 12) output(" afternoon");
 	else output(" morning");
@@ -84,7 +84,10 @@ public function doFreedomBeefEncounter():void
 	
 	output("\n\n<b>There’s a woman on top of it.</b>");
 	
-	output("\n\nOr rather, half a woman, hips growing out of where the buffalo’s neck ought to be. Sun-kissed tan skin glistens in the {sun/moon}light, almost entirely bare save for a string bikini desperately arresting a pair of beach ball-sized jugs. The pair of massive mounds are held back only by a pair of star-spangled cloth triangles and a glowing hardlight pin, threatening to spill out with their owner’s every breath. Golden hair spills down around her shoulders, held back by a bright blue holo-feather headband tucked between a pair of short bull’s horns and perky blue cow-ears.");
+	output("\n\nOr rather, half a woman, hips growing out of where the buffalo’s neck ought to be. Sun-kissed tan skin glistens in the");
+	if (hours > 6 || hours <= 6) output(" sun");
+	else output(" moon");
+	output(" light, almost entirely bare save for a string bikini desperately arresting a pair of beach ball-sized jugs. The pair of massive mounds are held back only by a pair of star-spangled cloth triangles and a glowing hardlight pin, threatening to spill out with their owner’s every breath. Golden hair spills down around her shoulders, held back by a bright blue holo-feather headband tucked between a pair of short bull’s horns and perky blue cow-ears.");
 	
 	output("\n\nShe’s turned away from you right now, flipping burgers on her grill and cheering on her automated fireworks display. But even from behind, you can tell she’s...");
 
@@ -281,6 +284,8 @@ public function freedomBeefNopeOut(beefType:uint):void
 	output(" and turn to depart.");
 
 	processTime(5+rand(2));
+	//Apply Home Cooking buff.
+	eatHomeCooking(100);
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -313,6 +318,8 @@ public function freedomBeefFlirtyHelp(beefType:uint):void
 
 	pc.lust(33);
 	processTime(5+rand(2));
+	//Apply Home Cooking buff.
+	eatHomeCooking(100);
 
 	freedomBeefSexMenu(beefType);
 }
@@ -379,6 +386,8 @@ public function freedomBeefChasteHelp(beefType:uint):void
 
 		pc.lust(33);
 		processTime(5+rand(2));
+		//Apply Home Cooking buff.
+		eatHomeCooking(100);
 
 		freedomBeefSexMenu(beefType);
 	}
@@ -421,10 +430,11 @@ public function freedomBeefNoneForMe(beefType:uint):void
 	output("\n\nYou give her a wave and turn back to your path.");
 
 	processTime(5+rand(2));
+	//Apply Home Cooking buff.
+	eatHomeCooking(100);
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
-	//Apply Home Cooking buff.
 }
 
 public function freedomBeefLikedIt(beefType:uint):void
@@ -450,24 +460,27 @@ public function freedomBeefLikedIt(beefType:uint):void
 	}
 	
 	output("\n\nRiley gives you a wink and cups her hands under her titanic rack, already starting to work the holopin clasp holding it back.");
-
+	
+	//Apply Home Cooking buff.
+	eatHomeCooking(100);
+	
 	freedomBeefSexMenu(beefType);
 }
 
 public function freedomBeefSexMenu(beefType:uint):void
 {
 	clearMenu();
-	if (pc.isTaur() && pc.hasCock() || pc.hasHardLightEquipped())
+	if (pc.isTaur() && (pc.hasCock() || pc.hasHardLightEquipped()))
 	{
-		addButton(0, "Taur Mounting", freedomBeefTauricMounting, beefType, "Tauric Mounting", "Get up on Riley's back and breed the randy bison's pussy.");
+		addButton(0, "Mounting", freedomBeefTauricMounting, beefType, "Tauric Mounting", "Get up on Riley's back and breed the randy bison's pussy.");
 	}
 	else if (!pc.isTaur())
 	{
-		addDisabledButton(0, "Taur Mounting", "Taur Mounting", "Only taurs get to mount up taur style!");
+		addDisabledButton(0, "Mounting", "Taur Mounting", "Only taurs get to mount up taur style!");
 	}
 	else
 	{
-		addDisabledButton(0, "Taur Mounting", "Taur Mounting", "You need a donger or some hardlight panties to mount her taur-style!");
+		addDisabledButton(0, "Mounting", "Taur Mounting", "You need a donger or some hardlight panties to mount her taur-style!");
 	}
 
 	if (pc.hasCock())
@@ -571,7 +584,7 @@ public function freedomBeefSnuSnu(beefType:uint):void
 	output("She’s a big girl... but that massive taur-pussy is brazenly on display and just waiting for you. Your previous attentions have gotten her so sloppy and soaking you can hear her juices pitter-patter to the ground. Her muscular, beefy ass sways from side to side, assaulting your nose with a musk that has your [pc.cocks]");
 	if (pc.isCrotchGarbed())
 	{
-		output("pressing against your " + pc.lowerGarmentDescript());
+		output(" pressing against your " + pc.lowerGarmentDescript() + ".");
 	}
 	else
 	{
@@ -609,7 +622,7 @@ public function freedomBeefSnuSnu(beefType:uint):void
 
 	output("\n\nThere’s a familiar churning in your [pc.balls] of seed that’s desperately looking for a way out, but you hold back on that urge, once more pushing against rump. She actually sounds tired, and you can see the muscles of her flanks working hard to get her to go up again - but you’re so close, you need her to keep going.");
 
-	output("\n\nYou take in a massive lungful of air, and line up your hand, ready for the drop. There’s an audible, churning squish of a thoroughly pounded cunt. You let out a scream of pleasure and pain as (not for the first time) your vision is a splotch of colours and stars. Her legs gave out as she descended, and now you’re looking at a race against time to find some completion. There’s one last surprise in store for this bison though...");
+	output("\n\nYou take in a massive lungful of air, and line up your hand, ready for the drop. There’s an audible, churning squish of a thoroughly pounded cunt. You let out a scream of pleasure and pain as (not for the first time) your vision is a splotch of colors and stars. Her legs gave out as she descended, and now you’re looking at a race against time to find some completion. There’s one last surprise in store for this bison though...");
 
 	output("\n\nNow that you’re also elbow-deep in her ass, you can get your fingers to wrap around your throbbing [pc.cock "+ cockIdx +"]. She whimpers and strains as you find your grip, before vigorously jerking yourself off inside of her. She bucks and goes wild, pushing more and more breath out of you; if you don’t finish soon, this could turn out to be a death sentence.");
 	if (pc.hasKnot(cockIdx)) output(" If you knot inside of her, you might well face your end anyway.");
@@ -618,7 +631,7 @@ public function freedomBeefSnuSnu(beefType:uint):void
 
 	output("\n\nYou limply push at her, struggling to draw in a breath through the massive bison-booty crushing your pelvis. <i>“You want to go for... for another round? You beast! I’m all wiped ou- Oh! Oh no!”</i>");
 
-	output("\n\nShe clambers off of you, face flushed and wiping drool from her lips, allowing you to draw in breaths of musty air like a Raskvel drowning in an ocean of cum. <i>“Are... you okay?”</i>");
+	output("\n\nShe clambers off of you, face flushed and wiping drool from her lips, allowing you to draw in breaths of musty air like a " + (CodexManager.entryUnlocked("Raskvel") ? "Raskvel" : "tiny being") + " drowning in an ocean of cum. <i>“Are... you okay?”</i>");
 
 	output("\n\nYou nod weakly with your [pc.cocks] finally going limp, wondering how much it’s going to cost to fix your shattered pelvis.");
 
@@ -627,6 +640,7 @@ public function freedomBeefSnuSnu(beefType:uint):void
 
 	pc.HP(-(pc.HPMax() * 0.2));
 	if (pc.HP() < 1) pc.HP(1);
+	soreDebuff(3);
 
 	IncrementFlag("FUCKED_FREEDOM_BEEF");
 	IncrementFlag("FUCKED_FREEDOM_BEEF_SNUSNU");
@@ -729,6 +743,7 @@ public function freedomBeefSexOutro(params:Array):void
 	var passTime:uint = ((23 - hours) * 60) + (59 - minutes); // this gets us to exactly 23:59
 	passTime += 15 + rand(15);
 	processTime(passTime);
+	sleepHeal();
 
 	output("You spend a few long, quiet minutes in the pleasant afterglow, letting your heartbeat slow from the race of passion and desire. The air is heavy with the smells of beer and sex, and the world is softly swimming back and forth before your eyes. Rather than dizzy, though, you just feel tired - completely drained after your");
 	if (pc.balls > 0) output(" ball-emptying");
