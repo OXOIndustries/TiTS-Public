@@ -782,7 +782,7 @@ public function crystalGooFreeformFucks():void
 	}
 	else if (pc.hasVagina())
 	{
-		output("\n\nYou push your [pc.vaginasLight] toward the ganrael; "+ cgender("she", "it") +" answers");
+		output("\n\nYou push your [pc.vaginas] toward the ganrael; "+ cgender("she", "it") +" answers");
 		if (!enemy.hasStatusEffect("Unarmored") && enemy is CrystalGooT1) output(" by raising its trunk to meet the swollen lips, rubbing them with its warm plates.");
 		else output(" by raising a knee and rubbing your swollen labia playfully. You slap the knee away and the ganrael giggles, spreading "+ cgender("her", "its") +" legs to expose "+ cgender("her", "its") +" groin.");
 		output(" The receptivity makes you hot to be touched, and you lower yourself, pressing on your [pc.vaginaBiggest] with its body.");

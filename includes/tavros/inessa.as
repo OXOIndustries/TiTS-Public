@@ -1618,6 +1618,10 @@ public function newTexanGanguBangu():void
 	pc.exhibitionism(2);
 	pc.exhibitionism(2);
 	pc.exhibitionism(2);
+	
+	applyCumSoaked(pc);
+	applyCumSoaked(pc);
+	
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1769,6 +1773,10 @@ public function gravCuffsCowgirlBangu():void
 	pc.exhibitionism(2);
 	pc.exhibitionism(2);
 	pc.exhibitionism(2);
+	
+	applyPussyDrenched(pc);
+	applyPussyDrenched(pc);
+	
 	clearMenu();
 	addButton(0,"Next",cowGirlGanguBanguEpilogue);
 }

@@ -87,7 +87,7 @@ public function tlakoMenu(arg:* = undefined):void
 	else addButton(1,"Camarilla",askTlakoAboutTheCamarilla);
 	if(arg == xotchiTzallMeeting) addDisabledButton(2,"Meet Xotchi","Meet Xotchi","You just did that.");
 	else addButton(2,"Meet Xotchi",xotchiTzallMeeting);
-	if(pc.credits >= 200) addButton(3,"W. Basket",buyAStupidSluttyWhaleCumBasket, undefined,"Welcome Basket","Buy a welcome basket.\n\n<b>200 Credits</b>");
+	if(pc.credits >= 200) addButton(3,"W. Basket",buyAStupidSluttyWhaleCumBasket, undefined,"Welcome Basket","Buy a welcome basket for 200 credits.");
 	else addDisabledButton(3, "W. Basket","Welcome Basket","You can't afford this. Tlako told you they cost 200 credits.");
 	if(flags["TLAKO_BASKETS"] != undefined) addButton(4,"Tlako Herself",tlakoHerselfTopic);
 	else addDisabledButton(4,"Tlako Herself","Tlako Herself","Tlako isn't comfortable enough with you to discuss this.");
@@ -244,7 +244,8 @@ public function tlakoHerselfTopic():void
 public function byeByeToveBimbo():void
 {
 	clearOutput();
-	showTlako();
+	showBust("TLAKO");
+	author("Frogapus");
 	output("You bid the little pink tove goodbye and leave the gaudy and oddly-humid office.");
 	leaveTlakoButton();
 }
@@ -260,7 +261,7 @@ public function tlakoThanksScene():void
 	//[pc has two legs and a cock]
 	if(!pc.isTaur() && pc.hasCock()) addButton(0,"Flork Her",florkDatFuckinMuppet,undefined,"Flork Her","There's never a bad time for florking!");
 	else addDisabledButton(0,"Flork Her","Flork Her","You don't have the right setup to flork her. You'd need a penis and a non-tauric body.");
-	addButton(4,"Back",turnDownATovejob)
+	addButton(14,"Back",turnDownATovejob);
 }
 
 //Flork her

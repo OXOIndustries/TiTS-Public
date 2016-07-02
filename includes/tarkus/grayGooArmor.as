@@ -2,18 +2,38 @@
 
 /* Gray Goo Armor */
 
-public function showGrayGooArmor():void
+public function showGrayGooArmor(nude:Boolean = false, special:String = "none"):void
 {
-	showGrayGooArmorBust();
+	showGrayGooArmorBust(nude, special);
 	if(flags["ANNO_NOVA_UPDATE"] >= 2) showName("\n" + goo.short.toUpperCase());
 	else if(hasGooArmorOnSelf()) showName("GOO\nARMOR");
 	else showName("\nGRAY GOO");
 }
-public function showGrayGooArmorBust():void
+public function showGrayGooArmorBust(nude:Boolean = false, special:String = "none"):void
 {
-	if(chars["GOO"].hairStyle == "ponytail") showBust("GRAY_GOO_PRIME");
-	else if(chars["GOO"].hairStyle == "loose") showBust("GRAY_GOO");
-	else showBust("GRAY_GOO_ARMOR");;
+	showBust(novaBustDisplay(nude, special));
+}
+public function novaBustDisplay(nude:Boolean = false, special:String = "none"):String
+{
+	var bustName:String = "";
+	
+	if(!nude && chars["GOO"].hairStyle == "ponytail") bustName = "GRAY_GOO_PRIME";
+	else if(!nude && chars["GOO"].hairStyle == "loose") bustName = "GRAY_GOO";
+	else
+	{
+		bustName = "NOVA";
+		if(nude)
+		{
+			bustName += "_NUDE";
+			switch(special)
+			{
+				case "tits": bustName += "_0"; break;
+				case "cock": bustName += "_1"; break;
+			}
+		}
+	}
+	
+	return bustName;
 }
 
 public function deck13MakeGoo():void
@@ -313,7 +333,7 @@ public function gooDickFap():void
 {
 	clearOutput();
 	author("Savin");
-	showGrayGooArmor();
+	showGrayGooArmor(true, "cock");
 	
 	output("You");
 	if(pc.armor is GooArmor)
@@ -467,7 +487,7 @@ public function grayGooCockSleeve():void
 {
 	clearOutput();
 	author("Savin");
-	showGrayGooArmor();
+	showGrayGooArmor(true, "tits");
 
 	output("You reach down to your pent-up [pc.cock] and give yourself a stroke through the gooey coating hugging your body. Grinning, you");
 	if(pc.armor is GooArmor) { /* Fine here! */ }
@@ -495,7 +515,7 @@ public function grayGooCockSleeveII(allowIt:Boolean = false):void
 {
 	clearOutput();
 	author("Savin");
-	showGrayGooArmor();
+	showGrayGooArmor(true, "tits");
 
 	if (allowIt)
 	{
@@ -899,12 +919,13 @@ public function gooArmorCrewOption(arg:Array):void
 	
 	gooArmorClearOutput(fromCrew);
 	author("Jacques00");
-	showGrayGooArmor();
 	gooArmorClearMenu(fromCrew);
 	
 	switch(response)
 	{
 		case "talk":
+			showGrayGooArmor();
+			
 			// Level 3
 			if(pc.level >= 3 && flags["GOO_ARMOR_CUSTOMIZE"] == undefined && InShipInterior() && !(pc.armor is GooArmor) && rand(4) == 0)
 			{
@@ -1085,6 +1106,8 @@ public function gooArmorCrewOption(arg:Array):void
 			}
 			break;
 		case "customize":
+			showGrayGooArmor();
+			
 			txt += "Deciding to go for some customization,";
 			
 			// Armor changes
@@ -1150,6 +1173,8 @@ public function gooArmorCrewOption(arg:Array):void
 			}
 			break;
 		case "sex":
+			showGrayGooArmor(true);
+			
 			txt += "<i>“Ooo, feeling frisky, are we?”</i> [goo.name]";
 			if(pc.armor is GooArmor) txt += " teases you as she rubs and tightens her mass around your body";
 			else txt += " swirls herself around you and gives you a playful <i>boop</i> on the nose";
@@ -1162,6 +1187,8 @@ public function gooArmorCrewOption(arg:Array):void
 			gooArmorAddButton(fromCrew, 14, "Back", approachGooArmorCrew, [false, fromCrew]);
 			break;
 		case "heal":
+			showGrayGooArmor();
+			
 			var hpQ:Number = pc.HPQ();
 			
 			txt += "Looking at your";
@@ -1215,6 +1242,8 @@ public function gooArmorCrewOption(arg:Array):void
 			gooArmorAddButton(fromCrew, 0, "Next", approachGooArmorCrew, [false, fromCrew]);
 			break;
 		case "stay":
+			showGrayGooArmor();
+			
 			txt += "You ask [goo.name] to stay on your ship as a crewmember.";
 			if(pc.armor is GooArmor)
 			{
@@ -1236,6 +1265,8 @@ public function gooArmorCrewOption(arg:Array):void
 			processTime(1);
 			break;
 		case "take":
+			showGrayGooArmor();
+			
 			if(!pc.hasArmor())
 			{
 				if(silly && pc.isBimbo() && pc.hasBreasts())
@@ -1267,6 +1298,8 @@ public function gooArmorCrewOption(arg:Array):void
 			processTime(1);
 			break;
 		case "leave":
+			showGrayGooArmor();
+			
 			if(gooArmorIsCrew())
 			{
 				txt += "You decide to let [goo.name] do her thing and tell her that you’re going to tend to some other things.";

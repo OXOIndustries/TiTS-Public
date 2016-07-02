@@ -682,12 +682,12 @@ public function getFingerByEllieDuringMilkDrinking():void
 public function publicUseForBullsByCentaurians():void
 {
 	clearOutput();
-	clearMenu();
 	author("Savin");
 	showBust("ELLIE_NUDE");
 	showName("\nELLIE");
+	clearMenu();
 	
-	if (flags["NT_BAD_END"] == 1)
+	if (flags["NT_BAD_END"] == 1 && pc.hasVagina())
 	{
 		author("Wsan");
 		output("<i>“Ooh, again? Did you want me to get Big T down here?”</i>");
@@ -696,11 +696,6 @@ public function publicUseForBullsByCentaurians():void
 	}
 	else
 	{
-		clearOutput();
-		author("Savin");
-		showBust("ELLIE_NUDE");
-		showName("\nELLIE");
-	
 		output("You desperately want to get off, but the positioning just isn’t working in your favor. Ellie’s hands brush your thighs, caressing your bestial body, but there’s no way she can get a proper reach on your back-mounted genitalia. Frankly, you’re desperate enough now that it doesn’t much matter who sates your lusts.");
 		output("\n\nEllie sees this, and coos appreciatively. <i>“Don’t you worry, sweet thing, I’m sure all these bulls wouldn’t mind giving you a little relief, would they?”</i>");
 		output("\n\nYour attention is drawn behind you, where several bulls (and even a couple of cows!) are furiously beating their meat to the show you two are putting on, as utterly shameless in public as Treated folk are. You barely resisted Ellie’s touch, thanks to the lacing of her potent, delicious, amazing... pheromones in the air. With a dozen bulls filling the little shop with the reek cum and male desire, you can’t help but give into your slutty nature. With a little whine, you shift your weight up onto the counter and spread your [pc.legOrLegs], giving your [pc.hips] a slutty, and very inviting little wiggle.");
@@ -791,6 +786,7 @@ public function publicUseForBullsByCentaurians():void
 		{
 			publicUseCount(1);
 		}
+		
 		//If the PC is a treated male, give him a prompt to go female.
 		if (pc.isTreated() && (pc.mf("m", "f") == "m") && (publicUseCount() == 2 || publicUseCount() % 4 == 0))
 		{
@@ -798,31 +794,33 @@ public function publicUseForBullsByCentaurians():void
 			output("\n\nYou come back to your senses dazed but utterly satisfied, a moan escaping your [pc.lips] when you feel the wet warmth radiating from your hindquarters. Ellie’s still holding you tightly, having supported you throughout your cumdump act and no doubt getting some action herself during. You nuzzle her massive rack, eliciting a girly moan.");
 			output("\n\n<i>“Y’know, [pc.name]... you ever thought about doing this more often? ‘Cuz you’re pretty hot as a bull, but I think you might enjoy it more if you went cowgirl. More holes to be fucked that way.”</i>");
 			output("\n\nShe giggles at her infallible logic. Looks like the Treated girls <i>can</i> still do math.");
+			
+			processTime(1);
 		}
 		//If the PC is a treated female that has been fucked by Big T, give her a prompt for a bad end every 4 rides.
 		if (pc.isTreated() && (pc.mf("m", "f") == "f") && (publicUseCount() > 3) && (publicUseCount() % 4 == 0) && (flags["FUCKED_BY_BIGT"] != undefined)) //Need to add Big T flag.
 		{
-			clearMenu();
 			author("Wsan");
 			output("\n\nYou come back to your senses dazed but utterly satisfied, a moan escaping your [pc.lips] when you feel the wet warmth radiating from your hindquarters. Ellie’s still holding you tightly, having supported you throughout your cumdump act and no doubt getting some action herself during. You nuzzle her massive rack, eliciting a girly giggle.");
 			output("\n\n<i>“Y’know, [pc.name]... you ever thought about doing this more often? You always look so insat-.. unsat.. happy when the boys are running a train on you! Big T told me to tell you, uh...”</i> She strains, trying to remember what it was she had to tell you.");
 			output("\n\n<i>“Oh yeah! He said that you could get your own stall next to the shop after he checks out the situation down here. Something about you becoming a permanent resident of New Texas.”</i> She leans down and whispers faux-conspiratorially. <i>“I think he just wants to fuck you again.”</i>");
-			addButton(0, "Nah", badEndNo, undefined, "Nah", "You don't wanna stay on New Texas.");
-			addButton(1, "Sure", badEndYes, undefined, "Sure", "You'd looove to become an NT citizen. So much fucking!");
+			
+			processTime(1);
+			
+			addButton(0, "Nah", ellieTaurBadEndNo, undefined, "Nah", "You don't wanna stay on New Texas.");
+			addButton(1, "Sure", ellieTaurBadEndYes, undefined, "Sure", "You'd looove to become an NT citizen. So much fucking!");
+			return;
 		}
-		else
-		{
-			clearMenu();
-			pc.exhibitionism(2);
-			addButton(0,"Next",mainGameMenu);
-		}
+		
+		pc.exhibitionism(2);
+		addButton(0,"Next",mainGameMenu);
 	}
 }
 	
 
 
 //Bad end additions
-public function badEndNo():void
+public function ellieTaurBadEndNo():void
 {
 	clearOutput();
 	author("Wsan");
@@ -834,12 +832,14 @@ public function badEndNo():void
 	output("\n\n<i>“You won’t forget about me out there, right [pc.name]?”</i>");
 	output("\n\nLike you could. You tell her as much as you rouse yourself from your fuck-stupor, setting her smiling before you go.");
 	
-	clearMenu();
+	processTime(1);
 	pc.exhibitionism(2);
+	
+	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
 
-public function badEndYes():void
+public function ellieTaurBadEndYes():void
 {
 	clearOutput();
 	author("Wsan");
@@ -850,9 +850,11 @@ public function badEndYes():void
 	output("\n\n<i>“This is gonna be so much fun! I’ll ask T to be here next time, you just come back whenever you wanna get fucked by everyone within earshot.”</i>");
 	output("\n\nGiven a wink and a slap to your [pc.butt], you happily trot back around the counter still dripping. If Big T wants to come fuck you again, he’s more than welcome to it. The more the merrier! Just the idea of being taken again and again, bringing happiness to the studs around you is making you hornier.");
 	
+	processTime(1);
+	pc.exhibitionism(2);
+	
 	flags["NT_BAD_END"] = 1;
 	clearMenu();
-	pc.exhibitionism(2);
 	addButton(0,"Next",mainGameMenu);
 }
 
@@ -864,6 +866,7 @@ public function publicUseOopsNo():void
 	author("Wsan");
 	showBust("ELLIE_NUDE");
 	showName("\nELLIE");
+	clearMenu();
 		
 	flags["NT_BAD_END"] = 0;
 	
@@ -957,10 +960,10 @@ public function publicUseOopsNo():void
 	{
 		publicUseCount(1);
 	}
+	
 	//If the PC is a treated male, give him a prompt to go female.
 	if (pc.isTreated() && (pc.mf("m", "f") == "m") && (publicUseCount() == 2 || publicUseCount() % 4 == 0))
 	{
-		author("Wsan");
 		output("\n\nYou come back to your senses dazed but utterly satisfied, a moan escaping your [pc.lips] when you feel the wet warmth radiating from your hindquarters. Ellie’s still holding you tightly, having supported you throughout your cumdump act and no doubt getting some action herself during. You nuzzle her massive rack, eliciting a girly moan.");
 		output("\n\n<i>“Y’know, [pc.name]... you ever thought about doing this more often? ‘Cuz you’re pretty hot as a bull, but I think you might enjoy it more if you went cowgirl. More holes to be fucked that way.”</i>");
 		output("\n\nShe giggles at her infallible logic. Looks like the Treated girls <i>can</i> still do math.");
@@ -968,16 +971,15 @@ public function publicUseOopsNo():void
 	//If the PC is a treated female that has been fucked by Big T, give her a prompt for a bad end every 4 rides.
 	if (pc.isTreated() && (pc.mf("m", "f") == "f") && (publicUseCount() > 3) && (publicUseCount() % 4 == 0) && (flags["FUCKED_BY_BIGT"] != undefined))
 	{
-		clearMenu();
-		author("Wsan");
 		output("\n\nYou come back to your senses dazed but utterly satisfied, a moan escaping your [pc.lips] when you feel the wet warmth radiating from your hindquarters. Ellie’s still holding you tightly, having supported you throughout your cumdump act and no doubt getting some action herself during. You nuzzle her massive rack, eliciting a girly giggle.");
 		output("\n\n<i>“Y’know, [pc.name]... you ever thought about doing this more often? You always look so insat-.. unsat.. happy when the boys are running a train on you! Big T told me to tell you, uh...”</i> She strains, trying to remember what it was she had to tell you.");
 		output("\n\n<i>“Oh yeah! He said that you could get your own stall next to the shop after he checks out the situation down here. Something about you becoming a permanent resident of New Texas.”</i> She leans down and whispers faux-conspiratorially. <i>“I think he just wants to fuck you again.”</i>");
-		addButton(0, "Nah", badEndNo, undefined, "Nah", "You don't wanna stay on New Texas.");
-		addButton(1, "Sure", badEndYes, undefined, "Sure", "You'd looove to become an NT citizen. So much fucking!");
+		
+		addButton(0, "Nah", ellieTaurBadEndNo, undefined, "Nah", "You don't wanna stay on New Texas.");
+		addButton(1, "Sure", ellieTaurBadEndYes, undefined, "Sure", "You'd looove to become an NT citizen. So much fucking!");
+		return;
 	}
 	
-	clearMenu();
 	pc.exhibitionism(2);
 	addButton(0,"Next",mainGameMenu);
 }
@@ -987,17 +989,23 @@ public function publicUseEnding():void
 	clearOutput();
 	clearMenu();
 	showBust("BIGT");
+	showName("OUT ON\nBREAK");
 	author("Wsan");
 	
 	output("You dreamily nod into Ellie’s bountiful bosom, desperately suckling the last of the milk you can get before she pulls away with a smile,");
 	if (pc.hasHair()) output(" running a hand through your [pc.hair].");
 	else output(" stroking your head.");
+	pc.milkInMouth(chars["ELLIE"]);
 	output("\n\n<i>“You stay right there, sweetie. I’m sure you can find something to keep you busy until he’s here!”</i> She says with a wink, putting a tiny ‘Out on Break’ sign on the counter where you won’t knock it off. The first bull approaches you from behind, unzipping his jeans and slapping his giant shaft off your [pc.butt] before shoving it straight into your [pc.pussy].");
 	x = pc.smallestVaginaIndex();
 	pc.cuntChange(x, 100, false, true, false);
 	output("\n\nYou cum on the spot, your shrill cry of pleasure like the starting gun to signal the bull to start pistoning in and out of you, each penetration bringing him deeper inside until his balls are nudging your butt. The sensations rippling through your cunt are your reward for servicing the bull, driving you higher towards the peak of ecstasy until you’re cumming with every thrust, scarcely capable of voicing your pleasure in anything but moos.");
+	pc.orgasm();
 	output("\n\nWhen Tee arrives with Zephyr and Ellie in tow, you’re still being ridden by the third or fourth bull lucky enough to be in the gift shop when you put yourself up on offer. He seizes your haunches and hilts himself when he cums, squeezing your flanks as your abused fuckhole constricts and tightens around his cock, massaging his length to ensure all of his bullspunk is poured directly into your waiting womb. He slides smoothly out of your pussy, his flared head catching at the entrance for a second before popping free, a cascade of jizz and your lusty moan following it.");
-	pc.loadInCunt();
+	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
+	if (!pp.hasCock()) pp.createCock();
+	pp.createPerk("Fixed CumQ", 5000, 0, 0, 0);
+	pc.loadInCunt(pp, x);
 	output("\n\n<i>“Heya, Steele. Ha! Hell, you got the party started without me. Looks like you love New Texas every bit as much as I do!”</i>");
 	output("\n\nYou look back at the towering hunk of a man as he approaches, just cognizant enough to notice he’s already pulling his pants down. Your already-flushed [pc.skin] turns a shade darker, the musk of an alpha bull heavy in your nostrils as you start to pant, your eagerness to be fucked by this studly specimen written all over your face.");
 	output("\n\n<i>“Gotta say, Steele, you’ve taken to the Treatment like a duck to water. It’s a thing of beauty, men and women realizing what life is really about. That’s the thing about New Texas, it’s -”</i>");
@@ -1015,28 +1023,51 @@ public function publicUseEnding():void
 	else output (" wrapping a hand around the back of your head before jerking you up and down her cock.");
 	output(" You do your best to look upwards and meet her gaze as you’re dragged along her meaty dick, juices and saliva splattering your visage. She gives you an affectionate smile when you whine in slutty pleasure. <i>“She knows her place.”</i>");
 	output("\n\nTee says nothing, electing instead to pull you further over the counter and grab just in front of your rear legs so he can get a proper grip. He starts fucking you even harder, each forceful impact jiggling your butt until your body is sliding back and forth on the counter, your head held in check only by Zephyr’s tight grip. You can feel more and more warm pre spraying into your ass and down your throat and you do your best to tighten up as much as possible, desperate to coax out their orgasms.");
-	if (pc.hasTail()) output("You feel your wildly waving tail get grabbed from behind, Tee holding it firmly and rubbing the base. Ooh... that feels pretty good. Bulls really <i>do</i> know how to take care of their cows.");
-	output("\n\nZephyr moans from above you, and you feel the base of her cock begin to swell in your mouth as her knot makes its appearance. She shows no sign of wanting to pull it out, and you wouldn’t have it any other way.");
-	output(" You clamp your lips around her rapidly-thickening base and suck, pulling her closer and squeezing her buttocks in anticipation. She doesn’t keep you waiting long, her grip tightening almost painfully on your head when you feel her legs begin to flex, her cock tensing in your throat and spraying ropes of doggy spunk into your stomach with every low exhalation.");
+	if (pc.hasTail()) output(" You feel your wildly waving tail get grabbed from behind, Tee holding it firmly and rubbing the base. Ooh... that feels pretty good. Bulls really <i>do</i> know how to take care of their cows.");
+	output("\n\nZephyr moans from above you, and you feel the base of her cock begin to swell in your mouth as her knot makes its appearance. She shows no sign of wanting to pull it out, and you wouldn’t have it any other way. You clamp your lips around her rapidly-thickening base and suck, pulling her closer and squeezing her buttocks in anticipation. She doesn’t keep you waiting long, her grip tightening almost painfully on your head when you feel her legs begin to flex, her cock tensing in your throat and spraying ropes of doggy spunk into your stomach with every low exhalation.");
 	output("\n\n<i>“</i>Fuck<i>, that’s good. Swallow my cum like a good girl, Steele.”</i> Zephyr grunts.");
-	pc.loadInMouth();
+	pp = getZephyrPregContainer();
+	pc.loadInMouth(pp);
 	output("\n\nNot that she’s given you a choice in the matter, but you’re only too happy to oblige. The Treatment-provided nerve clusters in your lips and tongue light up in ecstasy every time she cums, and each spray of jizz that pumps into you only adds to your fulfillment. Tee’s orgasm isn’t far behind, impaling you from behind on his gigantic pillar of a cock, his heavy balls coming to nestle snugly against your butt as he groans in satisfaction, his warm cum flowing into you from behind. You revel in the feeling of his balls pumping against your ass, each throb accompanied by another massive spurt of cum into your intestines");
 	if (pc.hasToes()) output (" and your [pc.toes] curling up in bliss");
 	output(". By the time Tee pulls out you’re not sure you could even pack any more cum in there, although Zephyr is doing a good job of giving him a run for his money. Tee sighs in satisfaction as he pops free of your ring with a lewd noise, cum running down your shaking [pc.thighs].");
-	pc.loadInAss();
+	pp = getBigTPregContainer();
+	pc.loadInAss(pp);
+	pc.loadInAss(pp);
+	pc.loadInAss(pp);
 	output("\n\n<i>“Nothing like a cow to take the edge off after a hard day’s work. Zephyr, can you grab the papers?”</i>");
 	output("\n\n<i>“Sure. Though I don’t think she’s fully... Fuck it, I doubt she’s any smarter when she’s not being fucked. </i>Cows<i>.”</i>");
 	output("\n\nZephyr shakes her head, her knot still sporadically pulsing in your mouth. It’s gonna be a while before she deflates enough to get you off it... not that you’re complaining. You roll your tongue over her swollen canid dick while she grabs a leaf of paper and pulls one of your hands off her butt long enough to put a pen in it.");
+	pp = getZephyrPregContainer();
+	pc.loadInMouth(pp);
 	output("\n\n<i>“Sign here. We need it in paper for archival purposes.”</i>");
 	output("\n\nYou weakly scribble an approximation of your signature across the line, interrupted every so often by a throbbing between your lips together with a fresh rope of hot jizz glazing your well-fucked throat. Zephyr reaches down and tweaks your [pc.nipples], the stimulation making your eyes cross with a subdued moo of pleasure around her knot.");
-	output("\n\n<i>“Consider this your inauguration party, Steele. Welcome to New Texas! I personally guarantee your satisfaction. Well,”</i> Tee chuckles, <i>“After Zephyr is done with you, anyway.”</i>");
+	output("\n\n<i>“Consider this your inauguration party, Steele. Welcome to New Texas! I personally guarantee your satisfaction. Well,”</i> Tee chuckles, <i>“after Zephyr is done with you, anyway.”</i>");
 	output("\n\nTee produces a couple of bottles of whiskey to share with the gift shop visitors and Zephyr, celebratory cheer all around. With Zephyr finally deflated enough to let you go and go have some drinks, you lie across the counter panting heavily trying to get your breath back. A bull surprises you from behind by inviting himself to the inviting warmth of your cunt, and with nothing having prepared you for the penetration you can’t help but utter a small gasp and cum. The feeling of being full once more is perfection – it feels like completeness in the form of a brain-wracking orgasm that washes over your body, making you feel light as a feather. You moo loudly in both pleasure and happiness when the wonderful stud bestows his bountiful load upon your womb, drowning your fallopian tubes in hot bull spunk. It feels like everything you’ve ever wanted out of life.");
+	pc.loadInMouth(pp);
 	output("\n\nBefore accompanying Tee back upstairs, Zephyr stops by to talk to you. You gaze up at her with your [pc.eyes] wide, your cheeks burning red with lust and dripping sweat, and your mouth hanging open emitting passionate moos. You’ve been fucked anally and vaginally by about fifteen bulls and a few girls, too, although you’ve long since lost count. She shakes her head and grins.");
 	output("\n\n<i>“Now that you’re gonna be just downstairs from me Steele, I expect you to swing by at least once a day. You could do with some breaking in.”</i>");
 	output("\n\nYou do what comes naturally for a cow being told good news and lick her face in between the pants and gasps being fucked out of you. She grimaces for a second but the smile returns to her face before she pulls back.");
 	output("\n\n<i>“Have a good night, Steele. I’ll see you soon. Oh, and welcome to New Texas.”</i>");
-	output("\n\nShe sashays away to her business, leaving you to be fucked by the remainders of the partygoers. It’s like your wildest dreams are coming true; another bull walks over and occupies your mouth, seeing as it’s already hanging open, moaning and just waiting to be fucked as full of cream as your pussy. Eagerly accepting the stud’s desires, your roll your tongue along the thick vein running down his cock, earning you a pleased grunt. All things considered, looks like you’re gonna be a smash hit on New Texas!");
-	output("\n\nWhen the party finally disperses you’re still lying on the counter, moaning softly and still leaking cum out of every hole. It’s hard work being a cumdump, but it’s rewarding in its own way. Everyone had a great time, including you! If this is what it’s gonna be like every day, you’ve obviously made the right choice. You hear heavy footsteps and rouse yourself, turning your head to find Ellie smiling at you.");
+	output("\n\nShe sashays away to her business, leaving you to be fucked by the remainder of partygoers. It’s like your wildest dreams are coming true; another bull walks over and occupies your mouth, seeing as it’s already hanging open, moaning and just waiting to be fucked as full of cream as your pussy. Eagerly accepting the stud’s desires, your roll your tongue along the thick vein running down his cock, earning you a pleased grunt. All things considered, looks like you’re gonna be a smash hit on New Texas!");
+	
+	processTime(65);
+	pc.lust(200);
+	pc.exhibitionism(2);
+	applyCumSoaked(pc);
+	
+	addButton(0, "Next", publicUseEndingPartTwo);
+}
+
+public function publicUseEndingPartTwo():void
+{
+	clearOutput();
+	clearMenu();
+	showBust("ELLIE_NUDE");
+	showName("\nELLIE");
+	author("Wsan");
+	
+	output("When the party finally disperses you’re still lying on the counter, moaning softly and still leaking cum out of every hole. It’s hard work being a cumdump, but it’s rewarding in its own way. Everyone had a great time, including you! If this is what it’s gonna be like every day, you’ve obviously made the right choice. You hear heavy footsteps and rouse yourself, turning your head to find Ellie smiling at you.");
 	output("\n\n<i>“Hi [pc.name]! You looked like you were having a lot of fun being setup for those yummy bullcocks, but even you’ve gotta be tired by now, right? D’you need somewhere to stay for the night? I can at least give you a spot out the back if you’d like.”</i>");
 	output("\n\nAccepting gratefully, you let Ellie take your hand and, smiling sweetly, lead you past the milker machines and to a corner with a varied array of pillows and some pink horse blankets. Curiosity strikes you all of a sudden, and you think to ask Ellie where she was during your epic fuckathon.");
 	output("\n\n<i>“Oh, milling around. All of the bulls were here for your inauguration, after all.”</i>");
@@ -1056,12 +1087,19 @@ public function publicUseEnding():void
 	output("\n\nEllie giggles in reply. <i>“You sure were, sugar. Gotta say I prefer being a cow, though. Now lets get you to bed, sweetie. You must be exhausted.”</i>");
 	output("\n\nTired, still trickling cum, and well-used, you fall asleep almost immediately after Ellie sets you up a comfy bed of pillows. Covering you in a blanket and tucking you in with a goodnight kiss, Ellie departs to go get some rest. When you awaken it’ll be the first real day of your new life as public property, the thought of the sex you’ll be having keeping your subconscious horny and your dreams wet.");
 	
+	processTime(32);
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
+	
 	addButton(0, "Next", publicUseEndingFinale, undefined, "Next", "Your new life as public property awaits.");
 }
 
 public function publicUseEndingFinale():void
 {
 	clearOutput();
+	clearBust();
+	showName("FOR\nPUBLIC USE");
 	author("Wsan");
 	
 	output("At first you’re set up outside Ellie’s store in a set of stocks (that you can easily escape from – but don’t) and a sign advertising your <i>“services”</i>. It’s not uncommon for a New Texan girl to be easy, but the allure of a non-native heir to a galactic megacorp is hard to resist. You find yourself being fucked in your restraints day in and day out, catching Z’s in between servicing studs, sometimes waking up with a cock spouting warm seed between your lips.");
@@ -1072,9 +1110,14 @@ public function publicUseEndingFinale():void
 	output("\n\nYou can afford to think about it later, you surmise as a particularly well-endowed tourist’s large balls quake and shudder against your chin. Right now, you’re focused on sucking down as much creamy spunk as will slide down your well-practiced throat – which, as it turns out, is all of it.");
 	output("\n\nRight... you can think about it tomorrow.");
 	
-	badEnd("GAME OVER!");
-	
+	sleepHeal();
+	days += 256;
+	hours = rand(24);
+	processTime(rand(60));
+	pc.credits = 0;
 	pc.lust(200);
+	
+	badEnd("GAME OVER!");
 }
 
 //Ellie’s Menu: Sex

@@ -43,6 +43,15 @@ public function showBigT(nude:Boolean = false):void
 	showName("\nBIG T");
 	author("Savin");
 }
+public function getBigTPregContainer():PregnancyPlaceholder
+{
+	var ppBigT:PregnancyPlaceholder = new PregnancyPlaceholder();
+	if(!ppBigT.hasCock()) ppBigT.createCock();
+	ppBigT.shiftCock(0, GLOBAL.TYPE_EQUINE);
+	ppBigT.balls = 2;
+	ppBigT.ballSizeRaw = 12;
+	return ppBigT;
+}
 
 public function TsDoorIsLocked():void
 {
@@ -372,7 +381,7 @@ public function bigTHasABigDDeskBlowjob():void
 	output("A little giggle rises from your throat as you rub Tee’s slick, musky seed into your [pc.skin], utterly drunk off the warmth and smell of his zesty spunk. You’re not the only one turned on by your state, as Tee lets out an animalistic rumble.");
 	output("\n\n<i>“Oooh, " + pc.mf("boy","girl") + ", you have NO idea how sexy you look right now. I could fuck those [pc.lips] all over again,”</i> Tee lustily growls. His sticky stallion is stirring once more between those powerful thighs, and you swoon with delight. Another round--?");
 	processTime(12);
-	var ppBigT:PregnancyPlaceholder = new PregnancyPlaceholder();
+	var ppBigT:PregnancyPlaceholder = getBigTPregContainer();
 	pc.loadInMouth(ppBigT);
 	pc.loadInMouth(ppBigT);
 	pc.loadInMouth(ppBigT);
@@ -430,7 +439,7 @@ public function drunkenCowgirlBoy():void
 
 	output("\n\nNow properly attired for bull riding, you climb into the burly man’s lap and wrap your arms around his wide, muscular neck. With no small amount of trepidation -- and excitement -- you graze the tip of his equine head ");
 	if(x >= 0) output("between your [pc.thighs] and");
-	else output("between your [pc.ass] and");
+	else output("between your [pc.butts] and");
 	output(" against your ");
 	if(x >= 0) output("[pc.vagina " + x + "]");
 	else output("[pc.asshole]");
@@ -507,7 +516,7 @@ public function drunkenCowgirlBoy():void
 	// Might want to kick the player two squares south after this. 
 	flags["FUCKED_BY_BIGT"] = 1;
 	processTime(70);
-	var ppBigT:PregnancyPlaceholder = new PregnancyPlaceholder();
+	var ppBigT:PregnancyPlaceholder = getBigTPregContainer();
 	if(x >= 0)
 	{
 		pc.loadInCunt(ppBigT, x);
@@ -734,7 +743,7 @@ public function getRiddenByBigWheee(target:int = -1):void
 	output(". You turn your head, and see his slickened rod hardening once more - what stamina!");
 	output("\n\n<i>“Darlin’, you look damn sexy right now bent over my desk. I’m thinking of keeping you there a little longer, properly mounted...”</i> Tee lustily growls. His powerful hands press down on your buttocks and you swoon with delight. How can you say no to another round-?");
 	processTime(19);
-	var ppBigT:PregnancyPlaceholder = new PregnancyPlaceholder();
+	var ppBigT:PregnancyPlaceholder = getBigTPregContainer();
 	if(target >= 0)
 	{
 		pc.loadInCunt(ppBigT, target);
