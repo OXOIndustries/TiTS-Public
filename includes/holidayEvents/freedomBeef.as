@@ -47,7 +47,7 @@ public function tryEncounterFreedomBeef():Boolean
 public function showFreedomBeef(beefType:uint, asNude:Boolean, withLauncher:Boolean):void
 {
 	author("Savin");
-	showName("FREEDOM\nBEEF");
+	showName((silly ? "FREEDOM\nBEEF" : "BISON\nGIRL"));
 	
 	var bustName:String = "RILEY";
 	if (asNude) bustName += "_NUDE";
