@@ -117,6 +117,7 @@
 
 		//Holiday shit
 		include "../includes/holidayEvents/halloweenCostumes.as";
+		include "../includes/holidayEvents/freedomBeef.as";
 		include "../includes/event.puppyslutmas.as";
 
 		//Followers

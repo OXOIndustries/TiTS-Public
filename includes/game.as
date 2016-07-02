@@ -149,6 +149,11 @@ public function mainGameMenu(minutesMoved:Number = 0):void {
 		if (tryApplyUvetoColdDamage(minutesMoved)) return;
 	}
 	
+	if (tryEncounterFreedomBeef())
+	{
+		return;
+	}
+	
 	if(inCombat()) 
 		output("\n\n<b>You’re still in combat, you ninny!</b>");
 	if(pc.hasStatusEffect("Temporary Nudity Cheat"))
