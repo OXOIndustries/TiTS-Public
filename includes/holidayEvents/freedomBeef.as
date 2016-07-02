@@ -44,11 +44,17 @@ public function tryEncounterFreedomBeef():Boolean
 	return false;
 }
 
-public function showFreedomBeef(beefType:uint, asNude:Boolean):void
+public function showFreedomBeef(beefType:uint, asNude:Boolean, withLauncher:Boolean):void
 {
 	author("Savin");
 	showName("FREEDOM\nBEEF");
-	showBust("FREEDOM_BEEF_" + beefType + (asNude ? "_NUDE" : ""));
+	
+	var bustName:String = "RILEY";
+	if (asNude) bustName += "_NUDE";
+	else if (!withLauncher) bustName += "_BRA";
+	bustName += "_" + String(beefType);
+	
+	showBust(bustName);
 }
 
 public static const FREEDOM_BEEF_STATUESQUE:uint = 0;
@@ -94,7 +100,7 @@ public function doFreedomBeefEncounter():void
 public function freedomBeefGoSelection(beefType:uint):void
 {
 	clearOutput();
-	showFreedomBeef(beefType, false);
+	showFreedomBeef(beefType, false, true);
 
 	var cDate:Date = new Date();
 	flags["ENCOUNTERED_FREEDOM_BEEF"] = cDate.fullYear;
@@ -140,7 +146,7 @@ public function freedomBeefGoSelection(beefType:uint):void
 public function freedomBeefNoThanks(beefType:uint):void
 {
 	clearOutput();
-	showFreedomBeef(beefType, false);
+	showFreedomBeef(beefType, false, true);
 
 	output("You thank the jubilant bison-taur for the offer, but you really have other things to do. As delicious as those burgers look.");
 	
@@ -157,7 +163,7 @@ public function freedomBeefNoThanks(beefType:uint):void
 public function freedomBeefJoinHer(beefType:uint):void
 {
 	clearOutput();
-	showFreedomBeef(beefType, false);
+	showFreedomBeef(beefType, false, true);
 
 	output("<i>“Sure, why not,”</i> you say, making your way down to her little campsite. She gives you a cheer and knocks back the last of her beer while you’re walking over.");
 	
@@ -212,7 +218,7 @@ public function freedomBeefJoinHer(beefType:uint):void
 public function freedomBeefJoinHerII(beefType:uint):void
 {
 	clearOutput();
-	showFreedomBeef(beefType, false);
+	showFreedomBeef(beefType, false, true);
 
 	output("While you’re eating, you decide to pose a question: <i>“So what’s up with Liberation Day?”</i> You remember hearing about it, but you can’t remember ever actually seeing anybody celebrating it. Some kinda regional holiday, maybe?");
 	
@@ -261,7 +267,7 @@ public function freedomBeefJoinHerII(beefType:uint):void
 public function freedomBeefNopeOut(beefType:uint):void
 {
 	clearOutput();
-	showFreedomBeef(beefType, false);
+	showFreedomBeef(beefType, false, false);
 
 	output("You quickly back away from the sweltering fuck-box Riley’s sporting back there. Grabbing the survival knife from your pack, you grab one of the straps on her back and give it a quick cut, letting the whole contraption slump into a heavy, metalling <i>thump</i> onto the ground beside her. That’ll have to do, right?");
 	
@@ -283,7 +289,7 @@ public function freedomBeefNopeOut(beefType:uint):void
 public function freedomBeefFlirtyHelp(beefType:uint):void
 {
 	clearOutput();
-	showFreedomBeef(beefType, true);
+	showFreedomBeef(beefType, false, false);
 
 	output("One whiff of the potent musk emanating from Riley’s breed-hole just about has you reeling on your [pc.feet], swimming in the scents of a ‘taur-girl in need of breeding.");
 	if (!pc.hasCock()) output(" Not that you can do much about that - God help you if you had a dick right now, or you’d about be ready to pop! Instead, you lean back for a breath of fresh air, hold it, and go to work.");
@@ -314,7 +320,7 @@ public function freedomBeefFlirtyHelp(beefType:uint):void
 public function freedomBeefChasteHelp(beefType:uint):void
 {
 	clearOutput();
-	showFreedomBeef(beefType, true);
+	showFreedomBeef(beefType, false, false);
 
 	output("One whiff of the potent musk emanating from Riley’s breed-hole just about has you reeling on your [pc.feet], swimming in the scents of a ‘taur-girl in need of breeding.");
 	if (!pc.hasCock()) output(" Not that you can do much about that - God help you if you had a dick right now, or you’d about be ready to pop! Instead, you lean back for a breath of fresh air, hold it, and go to work.");
@@ -381,9 +387,9 @@ public function freedomBeefChasteHelp(beefType:uint):void
 public function freedomBeefChasteHelpII(beefType:uint):void
 {
 	clearOutput();
-	showFreedomBeef(beefType, true);
+	showFreedomBeef(beefType, false, false);
 
-	output("After a while, you find the nice buzz slowly progressing into outright drunkeness. You’re lucky to have Riley to lean on, otherwise you’re not entirely sure you could keep your footing. The bison=girl seems more than happy to let you rest against her, and at some point, her");
+	output("After a while, you find the nice buzz slowly progressing into outright drunkeness. You’re lucky to have Riley to lean on, otherwise you’re not entirely sure you could keep your footing. The bison girl seems more than happy to let you rest against her, and at some point, her");
 	if (beefType != FREEDOM_BEEF_STATUESQUE) output(" muscular");
 	output(" arm has wandered down to wrap around your shoulders. She’s giggling almost incessantly now, provoked to cheering or fits of laughter by just about anything - whether it’s her seemingly inexhaustible supply of fireworks going off, or any incidental comment you make. And you’re talking more and more, too, as you succumb to the power of cheap booze and fun company.");
 	
@@ -406,7 +412,7 @@ public function freedomBeefChasteHelpII(beefType:uint):void
 public function freedomBeefNoneForMe(beefType:uint):void
 {
 	clearOutput();
-	showFreedomBeef(beefType, true);
+	showFreedomBeef(beefType, false, false);
 
 	output("As politely as you can, you tell Riley that you’d rather part as friends - but good luck to her and her one-bison party. She sighs, but gives you a smile and says <i>“Well, I know how to take a hint. Was good hangin’ with you while I had the chance, [pc.name]. Real good! Hope I see you again later on in the Rush. Maybe even ‘fore next Liberation Day!”</i>");
 	
@@ -424,7 +430,7 @@ public function freedomBeefNoneForMe(beefType:uint):void
 public function freedomBeefLikedIt(beefType:uint):void
 {
 	clearOutput();
-	showFreedomBeef(beefType, true);
+	showFreedomBeef(beefType, false, false);
 
 	output("Now that you think about it, you kinda regret not taking advantage right there and then. Either way, now that she’s outright offering... well, you don’t think you can say no to a chance to feel out what the towering ‘taur has to offer.");
 	
@@ -479,7 +485,7 @@ public function freedomBeefSexMenu(beefType:uint):void
 public function freedomBeefTauricMounting(beefType:uint):void
 {
 	clearOutput();
-	showFreedomBeef(beefType, true);
+	showFreedomBeef(beefType, true, false);
 
 	output("Your gaze is focused on the broad, furry flanks of Riley’s bison-morphed backside. Her tauric hips are even wider than a cow’s, and built like a brick house of tense muscle and gaping womanhood. Your previous attentions have left her wet and ready, black lips slowly winking at you, bridged by thick ropes of translucent juices. You take one deep breath of her aromatic breeder’s scent, and know that there’s no way you could resist sinking your dick into that needy hole.");
 	
@@ -557,7 +563,7 @@ public function freedomBeefTauricMounting(beefType:uint):void
 public function freedomBeefSnuSnu(beefType:uint):void
 {
 	clearOutput();
-	showFreedomBeef(beefType, true);
+	showFreedomBeef(beefType, true, false);
 	author("SKoW");
 
 	var cockIdx:int = pc.biggestCockIndex();
@@ -632,7 +638,7 @@ public function freedomBeefSnuSnu(beefType:uint):void
 public function freedomBeefLesboLicks(beefType:uint):void
 {
 	clearOutput();
-	showFreedomBeef(beefType, true);
+	showFreedomBeef(beefType, true, false);
 
 	output("You sashay up to Riley, brushing your hand through the mane of silky-soft cobalt fur around her waist. Your eyes, though, are fixed on the bison-babe’s overflowing rack. That massive mammaries are practically bursting out of her starry bikini top, somehow held in check by a single shimmering hardlight pin. Her cleavage jiggles and swells with every deep, lustful breath, inviting you to trace your fingers up and under the thin cloth of her top and over the broad, dark teats underneath. You know exactly what you want, now...");
 	
@@ -717,7 +723,7 @@ public function freedomBeefSexOutro(params:Array):void
 	var cameInHer:Boolean = params[1];
 
 	clearOutput();
-	showFreedomBeef(beefType, false);
+	showFreedomBeef(beefType, false, true);
 
 	//Pass time to just after midnight the next day. Display Riley's armored bust.
 	var passTime:uint = ((23 - hours) * 60) + (59 - minutes); // this gets us to exactly 23:59
