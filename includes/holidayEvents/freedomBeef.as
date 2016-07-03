@@ -87,7 +87,7 @@ public function doFreedomBeefEncounter():void
 	output("\n\nOr rather, half a woman, hips growing out of where the buffalo’s neck ought to be. Sun-kissed tan skin glistens in the");
 	if (hours > 6 || hours <= 6) output(" sun");
 	else output(" moon");
-	output(" light, almost entirely bare save for a string bikini desperately arresting a pair of beach ball-sized jugs. The pair of massive mounds are held back only by a pair of star-spangled cloth triangles and a glowing hardlight pin, threatening to spill out with their owner’s every breath. Golden hair spills down around her shoulders, held back by a bright blue holo-feather headband tucked between a pair of short bull’s horns and perky blue cow-ears.");
+	output("light, almost entirely bare save for a string bikini desperately arresting a pair of beach ball-sized jugs. The pair of massive mounds are held back only by a pair of star-spangled cloth triangles and a glowing hardlight pin, threatening to spill out with their owner’s every breath. Golden hair spills down around her shoulders, held back by a bright blue holo-feather headband tucked between a pair of short bull’s horns and perky blue cow-ears.");
 	
 	output("\n\nShe’s turned away from you right now, flipping burgers on her grill and cheering on her automated fireworks display. But even from behind, you can tell she’s...");
 
@@ -189,7 +189,7 @@ public function freedomBeefJoinHer(beefType:uint):void
 	var onNT:Boolean = getPlanetName().toLowerCase() == "new texas";
 
 	output("\n\nShe certainly seems to be. What’s she doing all the way out here, though? Kinda odd place to go partying all by yourself.");
-	if (onNT) output(" Surely she could have found some cows and bulls to celebrate with");
+	if (onNT) output(" Surely she could have found some cows and bulls to celebrate with.");
 	else output(" She didn’t just wander all the way out here in the middle of nowhere to celebrate, did she?");
 
 	output("\n\nRiley shrugs the question off. <i>“Eh? Oh, I guess, but bein’ a rusher’s a lonesome life anyway!");
@@ -485,11 +485,11 @@ public function freedomBeefSexMenu(beefType:uint):void
 
 	if (pc.hasCock())
 	{
-		addButton(1, "Snu Snu", freedomBeefSnuSnu, beefType, "Hip Crushing Snu Snu", "Have Riley use that big bison ass of hers too pound you into the ground.");
+		addButton(1, "Snu Snu", freedomBeefSnuSnu, beefType, "Hip-Crushing Snu Snu", "Have Riley use that big bison ass of hers too pound you into the ground.");
 	}
 	else
 	{
-		addDisabledButton(1, "Snu Snu", "Hip Crushing Snu Snu", "You need a cock for the amazonian beef-chick to pound you into the ground!");
+		addDisabledButton(1, "Snu Snu", "Hip-Crushing Snu Snu", "You need a cock for the amazonian beef-chick to pound you into the ground!");
 	}
 
 	addButton(2, "Eaten Out", freedomBeefLesboLicks, beefType, "Eaten Out", "Play with Riley's tits while she eats you out.");
