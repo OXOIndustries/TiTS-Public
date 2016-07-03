@@ -787,7 +787,6 @@ public function renBalljob():void
 {
 	clearOutput();
 	showTerensha();
-	clearMenu();
 
 	output("You fix your gaze on the swinging pillar of meat between Ren’s legs, and the plump, pendulous orbs swinging weightily behind its half-hard mast. Taking a step towards the well-hung hermaphrodite, you tell her you’ve got a special request.");
 
@@ -809,8 +808,9 @@ public function renBalljob():void
 	output("\n\nRen steps up to the edge of the bed and presents, almost thrusting her package into your face. The offer’s too good to pass up, and without thinking you gently push her tapered gryvain-prick out of the way and scoop up her sack in both hands, letting the heavy orbs fill them. Her nuts are hot to the touch, like you’d expect from a gryvain’s body, but they’re so soft that your fingers feel like they could sink into her wrapped balls; like you could squeeze and knead them just like boobs - though you’d expect to get a very different kind of cream if you take things too far.");
 
 	output("\n\nTerensha moans happily while you man-handle her nuts. Her hand keeps her cock out of your way, caressing the knot-like bulb at its base with a full fist while the other hand works at popping the top from her lube bottle. When she finally gets it free, Ren summarily upturns the bottle onto her masculine pillar, letting a steady stream of slick liquid splatter her latex suit. You take the hint quick enough: from where you are, you’re in the perfect position to rub the lube in everywhere it needs to go, spreading it down and around on her plump package. She shivers and moans all the more while you work, having to bite her lip to hold back from blowing a load already... not that it doesn’t look like she has, the way her cock’s leaking pre into her suit!");
-
-addButton(0,"Next",renBallJobPart2);
+	
+	clearMenu();
+	addButton(0,"Next",renBallJobPart2);
 }
 
 
@@ -820,7 +820,6 @@ public function renBallJobPart2():void
 {
 	clearOutput();
 	showTerensha();
-	clearMenu();
 
 	output("When you’re satisfied that every inch of Ren’s ballsack is coated with a thick glaze of slick lube, you release her balls and flop back on the bed, inviting her to climb on and put those beauties to use. The way she’s panting with anticipation, there’s no way she can so much as hesitate: the moment you offer, she’s on you, throwing a leg over your [pc.hips] to straddle you and letting her sack flop heavily onto your [pc.crotch]. Her own cock bounces with the impact, wobbling and drooling lube across your [pc.belly] until its owner steadies herself overtop you");
 
@@ -832,7 +831,6 @@ public function renBallJobPart2():void
 	output("\n\n<i>“You’ve got talented fingers,”</i> she purrs, sweeping her girthy tail over your [pc.legOrLegs]. <i>“Already feel like a leithan in heat just from getting ready! Oh, I hope you enjoy this just half as much as I’m going to... and that you last ten times as long.”</i>");
 
 	output("\n\nShe gives you a playful wink and bites her lower lip, holding back her lewd gasps as her hips start to move. Slowly at first, like a bashful maiden, she slides forward on her knees, dragging her slicked-up and latex-wrapped package from your [pc.knot] upwards. The sheer weight of her sack pins your [pc.cock] to your [pc.belly], leaving your manhood trapped between ");
-
 	if (pc.isPregnant() && pc.bellyRating() >= 40) output("two sinfully soft embraces");
 	else if (pc.tone > 60) output("two soft rocks and a chiseled hard place.");
 	else if (pc.biggestCockLength() >= 20) output("not just her balls, but both your bodies. The crown of your cock nestles happily into the valley of Ren’s cleavage when she leans forward, and with a quick spurt of lube, is enjoying the same attentions as your lower reaches.");
@@ -848,28 +846,26 @@ public function renBallJobPart2():void
 
 	output("\n\nRen wiggles her hips for emphasis, sliding her slightly-lighter sack across your prick’s slick underside. Her own cock bobs weightily, its tip now bearing a sizable bubble of spunk of its own. With all the lube splattered around, it isn’t long before that roiling orb picks some up as well, joining her nuts in rubbing you down from [pc.knot] to crown, again and again. With the first orgasm out of the way, Ren really does seem to take more control of herself now, tightening her thighs’ grip on your [pc.hips] and shaking her ass with an artisan’s precision, every move carefully planned and executed to bring you the most pleasure possible. She leverages her sex’s mass and warmth to the utmost, making it feel like a latex glove has your prick firmly in hand, making sure you stay nice and pinned to your belly while it works to milk out every drop of [pc.cumNoun] you’ve been saving up for its owner.");
 
-	output("\n\nYou’re the only one saving up, though: Ren’s cum-bubble only grows the longer you make her work, steadily swelling every time she bucks her hips or clutches a boob, betraying another orgasm in a long, lusty line. ");
-
-	if (pc.isPregnant() && pc.bellyRating() >= 40) output("It isn’t long before your [pc.belly] is rubbing against her spunk-sack like she’s got a preggers belly of her own, pinning it between your undulating bodies until you can feel it sloshing and churning, straining the impossibly stretchy material ");
-	else output("Ren leans forward again, pinning the extra-large spunk-sack between you as it grows, letting you feel just how much your request has made her leak already.} It’s growing well past the size of her balls, with no signs of stopping.");
+	output("\n\nYou’re the only one saving up, though: Ren’s cum-bubble only grows the longer you make her work, steadily swelling every time she bucks her hips or clutches a boob, betraying another orgasm in a long, lusty line.");
+	if (pc.isPregnant() && pc.bellyRating() >= 40) output(" It isn’t long before your [pc.belly] is rubbing against her spunk-sack like she’s got a preggers belly of her own, pinning it between your undulating bodies until you can feel it sloshing and churning, straining the impossibly stretchy material.");
+	else output(" Ren leans forward again, pinning the extra-large spunk-sack between you as it grows, letting you feel just how much your request has made her leak already.");
+	output(" It’s growing well past the size of her balls, with no signs of stopping.");
 
 	output("\n\nThe extra weight - or rather, the constantly shifting liquid mass - of cum only adds to your pleasure, though, letting her spread her lubey grip over ever more of your [pc.cock]. Minutes pass in the blink of an eye, spent in rapturous pleasure underneath your lover’s slowly-grinding hips and hefty sacks. She never stops moving, using her body to drive you closer and closer to the edge with every little movement.");
 
 	output("\n\nSoon your [pc.cock] is twitching with need, drooling a glaze of [pc.cumColor] ");
-
 	if (pc.biggestTitSize() > 4) output("between your tits");
 	else output("onto your [pc.chest]");
-
 	output(". Your staff stiffens under Ren’s touch, and you’re soon feeling the familiar tightness in your loins as she milks you to the edge... and swiftly over it, never missing a beat as the first thick rope of [pc.cum] shoots from your [pc.cockHead], splattering your belly and chest with cream. Ren just keeps moving, bucking her hips and grinding her nads into your shaft while your meat pulses and spews, loosing every drop from your [pc.balls].");
 
 	output("\n\n<i>“That’s right! Cum for me, [pc.name],”</i> Ren grins. <i>“Lemme see all that [pc.cumColor] [pc.cumNoun]!”</i>");
 
-	output("\n\nShe grabs your hands, thrusting them up onto her breasts, and hammers her hips faster. Ren doesn’t let up until your [pc.balls] {is/are} drained, pumping against you faster and harder as your orgasm wanes to make sure she milks out every last bit of your seed. When she’s satisfied she has, the halfbreed leans down past your grip on her chest and flicks her tongue across your [pc.chest], locking eyes with you and lapping up a cooling rivulet of spunk.");
+	output("\n\nShe grabs your hands, thrusting them up onto her breasts, and hammers her hips faster. Ren doesn’t let up until your [pc.balls] " + (pc.balls <= 1 ? "is" : "are") + " drained, pumping against you faster and harder as your orgasm wanes to make sure she milks out every last bit of your seed. When she’s satisfied she has, the halfbreed leans down past your grip on her chest and flicks her tongue across your [pc.chest], locking eyes with you and lapping up a cooling rivulet of spunk.");
 
 	output("\n\n<i>“You look about ready to pass out, cow[pc.boyGirl]... just leave the cleanup to me...”</i>");
 
 	output("\n\nYou shiver as her tongue works around your body, slowly but steadily making good her promise. All you can do is lie back and enjoy it, letting Terensha tongue-bathe away all the stress and tension left in you.");
-
+	
 	output("\n\nSleep comes quickly in the whore’s tender embrace...");
 
 

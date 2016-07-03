@@ -3104,6 +3104,7 @@ public function displayEncounterLog(showID:String = "All"):void
 						output2(", Crew member");
 						if(syriIsCrew()) output2(" (Onboard Ship)");
 					}
+					if(flags["SEEN_SYRI_IN_THE_MORNING"] != undefined) output2("\n<b>* Syri, Times Seen Her in the Morning:</b> " + flags["SEEN_SYRI_IN_THE_MORNING"]);
 					if(flags["BET_AGAINST_SYRI"] != undefined)
 					{
 						output2("\n<b>* Syri, Gaming:</b> Bet against her");
@@ -3113,7 +3114,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["TIMES_WON_AGAINST_SYRI"] != undefined || flags["TIMES_LOST_TO_SYRI"] != undefined) output2("\n<b>* Syri, Gaming, Win/Loss Ratio:</b> " + flags["TIMES_WON_AGAINST_SYRI"] + "/" + flags["TIMES_LOST_TO_SYRI"] + ", of " + (flags["TIMES_WON_AGAINST_SYRI"] + flags["TIMES_LOST_TO_SYRI"]) + " games");
 					if(flags["FUCKED_SYRI_COUNT"] != undefined) output2("\n<b>* Syri, Times Sexed:</b> " + flags["FUCKED_SYRI_COUNT"]);
 					if(flags["TIMES_BUTTFUCKED_BY_SYRI"] != undefined) output2("\n<b>* Syri, Times She Fucked Your Ass:</b> " + flags["TIMES_BUTTFUCKED_BY_SYRI"]);
-					if(flags["SEEN_SYRI_IN_THE_MORNING"] != undefined) output2("\n<b>* Syri, Times Seen Her in the Morning:</b> " + flags["SEEN_SYRI_IN_THE_MORNING"]);
+					if(flags["SyriTailcocked"] != undefined) output2("\n<b>* Syri, Times You Used Your Tailcock on Her:</b> " + flags["SyriTailcocked"]);
 				}
 				variousCount++;
 			}
