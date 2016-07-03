@@ -458,7 +458,12 @@ public function petPexiga():void
 public function eatHomeCooking(energyGain:Number = 0):void
 {
 	pc.energy(energyGain);
-	pc.createStatusEffect("Home Cooking", 50, 0, 0, 0, false, "Icon_Cooking", "While you are well fed, you recover more while resting.", false, 3000);
+	if(pc.hasStatusEffect("Home Cooking"))
+	{
+		if(pc.statusEffectv1("Home Cooking") < 50) pc.setStatusValue("Home Cooking", 1, 50);
+		pc.setStatusMinutes("Home Cooking", 3000);
+	}
+	else pc.createStatusEffect("Home Cooking", 50, 0, 0, 0, false, "Icon_Cooking", "While you are well fed, you recover more while resting.", false, 3000);
 }
 
 //[Food] (ie, Yammi’s Menu)
