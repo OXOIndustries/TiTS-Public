@@ -145,6 +145,7 @@
 		include "../includes/events/tentacle_psychic_hatchling.as";
 		include "../includes/events/kiroCrewQuest/buttslutinator.as";
 		include "../includes/events/kiroCrewQuest/omnisuitExtras.as";
+		include "../includes/events/kiroCrewQuest/orgasmender.as";
 
 		//Tavros Station
 		include "../includes/tavros/aina.as";
@@ -403,7 +404,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.6.63";
+			version = "0.6.64";
 
 			//temporary nonsense variables.
 			temp = 0;

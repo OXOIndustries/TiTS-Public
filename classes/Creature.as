@@ -5572,6 +5572,11 @@
 			if(hasLegFlag(GLOBAL.FLAG_AMORPHOUS) || hasLegFlag(GLOBAL.FLAG_HOOVES) || legType == GLOBAL.TYPE_NAGA) return false;
 			return true;
 		}
+		public function hasToeClaws():Boolean
+		{
+			if(hasToes() && (legType == GLOBAL.TYPE_DEMONIC || legType == GLOBAL.TYPE_LIZAN || legType == GLOBAL.TYPE_RASKVEL || legType == GLOBAL.TYPE_DRACONIC || legType == GLOBAL.TYPE_GRYVAIN || legType == GLOBAL.TYPE_PANDA)) return true;
+			return false;
+		}
 		public function kneesDescript(): String 
 		{
 			if (hasLegFlag(GLOBAL.FLAG_AMORPHOUS) && legType == GLOBAL.TYPE_GOOEY) return "cilia";
@@ -14439,7 +14444,11 @@
 				trace("Attempted to add bellyRating contribution to a null pregnancy.");
 			}
 		}
-		
+		public function cuntsChange(volume:Number, display:Boolean = true):void		{
+			for(var b:int = 0; b < totalVaginas(); b++) {
+				cuntChange(b,volume,display);
+			}
+		}
 		public function cuntChange(arg:int, volume:Number, display:Boolean = true, spacingsF:Boolean = true, spacingsB:Boolean = false):Boolean 
 		{
 			//Notice for treated PCs with increased stretchiness.

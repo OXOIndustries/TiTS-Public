@@ -76,7 +76,7 @@ public function doFreedomBeefEncounter():void
 	
 	output("\n\nA few more paces along your current path, and you think you’re in for an answer: you hear a screech and a flash of flame from over a nearby rise, followed by an uproarious feminine laugh. A streak of flame launches into the air from just a few yards off, exploding into a flower of rosy flames in the sky. The laughing turns into a cheer - more of a warcry, really - as the glistening sparks slowly fall to the planet’s surface.");
 	
-	output("\n\nYour [pc.feet] carry you over the rise to see who’s making all the ruckus. When you get to the top, you find yourself looking into a tiny clearing playing host to a fold-out metal grill sitting over a shallow fire pit, piping with black smoke and meat smells that make your [pc.belly] rumble.");
+	output("\n\nYou" + (pc.legCount > 1 ? "r [pc.feet] carry you" : " move yourself") + " over the rise to see who’s making all the ruckus. When you get to the top, you find yourself looking into a tiny clearing playing host to a fold-out metal grill sitting over a shallow fire pit, piping with black smoke and meat smells that make your [pc.belly] rumble.");
 	
 	output("\n\nA moment later, though, and your attention is drawn to what’s beside the fire. A... a giant blue buffalo?");
 	
@@ -87,7 +87,7 @@ public function doFreedomBeefEncounter():void
 	output("\n\nOr rather, half a woman, hips growing out of where the buffalo’s neck ought to be. Sun-kissed tan skin glistens in the");
 	if (hours > 6 || hours <= 6) output(" sun");
 	else output(" moon");
-	output("light, almost entirely bare save for a string bikini desperately arresting a pair of beach ball-sized jugs. The pair of massive mounds are held back only by a pair of star-spangled cloth triangles and a glowing hardlight pin, threatening to spill out with their owner’s every breath. Golden hair spills down around her shoulders, held back by a bright blue holo-feather headband tucked between a pair of short bull’s horns and perky blue cow-ears.");
+	output("light, almost entirely bare save for a string bikini desperately arresting a pair of beach ball-sized jugs. The two massive mounds are held back only by a pair of star-spangled cloth triangles and a glowing hardlight pin, threatening to spill out with their owner’s every breath. Golden hair spills down around her shoulders, held back by a bright blue holo-feather headband tucked between a pair of short bull’s horns and perky blue cow-ears.");
 	
 	output("\n\nShe’s turned away from you right now, flipping burgers on her grill and cheering on her automated fireworks display. But even from behind, you can tell she’s...");
 
@@ -272,7 +272,7 @@ public function freedomBeefNopeOut(beefType:uint):void
 	clearOutput();
 	showFreedomBeef(beefType, false, false);
 
-	output("You quickly back away from the sweltering fuck-box Riley’s sporting back there. Grabbing the survival knife from your pack, you grab one of the straps on her back and give it a quick cut, letting the whole contraption slump into a heavy, metalling <i>thump</i> onto the ground beside her. That’ll have to do, right?");
+	output("You quickly back away from the sweltering fuck-box Riley’s sporting back there. Grabbing the survival knife from your pack, you grab one of the straps on her back and give it a quick cut, letting the whole contraption slump into a heavy, metallic <i>thump</i> onto the ground beside her. That’ll have to do, right?");
 	
 	output("\n\n<i>“Uh, right!”</i> Riley laughs, lumbering around to pick up the defective contraption. <i>“Sorry you got an eyeful there! Like I said, didn’t really expect company - my blanket musta gotten away from me.”</i>");
 	
@@ -659,7 +659,7 @@ public function freedomBeefLesboLicks(beefType:uint):void
 	output("\n\nA little shiver wracks Riley’s upper body as your hands go to work. She bites her lip, moaning under her breath when your fingers pinch and squeeze at her stiffening peaks, only growing louder and more insistent as you draw towards the pin holding her clothing together. One good tug of your thumbs pops the pin right off, sending it flying... and letting her chest spill free into your hands.");
 	
 	output("\n\n<i>“Guess you did find something you like!”</i> Riley giggles drunkenly, letting your thumbs flick across her nipples. Her teats are saucer-sized at the very least: huge, broad brown peaks ringed with pebbles and culminating in inverted points that ever so slowly peer to let you lean in a flick your [pc.tongue] across them.");
-	if (getPlanetName().toLowerCase() == "new texas") output(" <i>“Sorry, hun, I’m not </i>that<i> much of a cow! Not gonna get much outta there... ‘cept a big, horny girl ready to run you down and mount!");
+	if (getPlanetName().toLowerCase() == "new texas") output(" <i>“Sorry, hun, I’m not </i>that<i> much of a cow! Not gonna get much outta there... ‘cept a big, horny girl ready to run you down and mount!”</i>");
 	else output(" <i>“Oooh, that feels nice. Give ‘em a little suck for momma, huh? Like I need to get any hornier...”</i>");
 
 	output("\n\nYou grin up at your lover and give one of her teats a long, deep suck. Riley’s");
