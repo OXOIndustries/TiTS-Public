@@ -2352,7 +2352,7 @@ public function shadeHalfSisterShit():void
 
 	output("\n\n<i>“Home?”</i>");
 
-	output("\n\n<i>“Uveto VII. I’ve got a house there, a little place is Irestead I managed to buy. I sort of fell in love with the planet the first time I was there, decided to put down roots... at least as much as somebody in my line of work can. ");
+	output("\n\n<i>“Uveto VII. I’ve got a house there, a little place in Irestead I managed to buy. I sort of fell in love with the planet the first time I was there, decided to put down roots... at least as much as somebody in my line of work can. ");
 	//if Lovers: 
 	if(flags["SEXED_SHADE"] != undefined) output("You should drop by sometime. I’ll show you around, make you dinner... maybe give you a few reasons to stay a while.");
 	//elseif Fought Kara:
