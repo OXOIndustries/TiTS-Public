@@ -865,12 +865,12 @@ public function renBallJobPart2():void
 	output("\n\n<i>“You look about ready to pass out, cow[pc.boyGirl]... just leave the cleanup to me...”</i>");
 
 	output("\n\nYou shiver as her tongue works around your body, slowly but steadily making good her promise. All you can do is lie back and enjoy it, letting Terensha tongue-bathe away all the stress and tension left in you.");
-	
-	output("\n\nSleep comes quickly in the whore’s tender embrace...");
 
+	output("\n\nSleep comes quickly in the whore’s tender embrace...");
 
 	processTime(33);
 	pc.orgasm();
+	
 	clearMenu();
 	addButton(0,"Next",roomServiceOutroCrap);
 }
