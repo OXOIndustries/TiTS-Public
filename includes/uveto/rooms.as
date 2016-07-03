@@ -374,6 +374,7 @@ public function initUvetoRooms():void
 	rooms["UVI J36"].system = "SYSTEM: SIRETTA";
 	rooms["UVI J36"].northExit = "UVI J34";
 	rooms["UVI J36"].moveMinutes = 1;
+	rooms["UVI J36"].runOnEnter = healingConsentacleTankBonus;
 	rooms["UVI J36"].addFlag(GLOBAL.INDOOR);
 
 	/* Entrance */
