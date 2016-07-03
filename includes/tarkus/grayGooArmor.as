@@ -4,14 +4,10 @@
 
 public function showGrayGooArmor(nude:Boolean = false, special:String = "none"):void
 {
-	showGrayGooArmorBust(nude, special);
+	showBust(novaBustDisplay(nude, special));
 	if(flags["ANNO_NOVA_UPDATE"] >= 2) showName("\n" + goo.short.toUpperCase());
 	else if(hasGooArmorOnSelf()) showName("GOO\nARMOR");
 	else showName("\nGRAY GOO");
-}
-public function showGrayGooArmorBust(nude:Boolean = false, special:String = "none"):void
-{
-	showBust(novaBustDisplay(nude, special));
 }
 public function novaBustDisplay(nude:Boolean = false, special:String = "none"):String
 {
@@ -70,7 +66,7 @@ public function deck13MakeGooII():void
 {
 	clearOutput();
 	author("Savin");
-	showGrayGooArmorBust();
+	showBust(novaBustDisplay());
 	showName("GOO\nCONTAINER");
 	
 	output("<b>Enter the Gray Goo’s name:</b>");
@@ -114,7 +110,7 @@ public function nameThaGooII():void
 {
 	clearOutput();
 	author("Savin");
-	showGrayGooArmorBust();
+	showBust(novaBustDisplay());
 	showName("GOO\nCONTAINER");
 
 	output("<i>“[goo.name]?”</i> you suggest.");
@@ -720,7 +716,7 @@ public function gooArmorDefense(def:Number = 0):Number
 }
 public function gooArmorInStorageBlurb(store:Boolean = true):String
 {
-	showGrayGooArmorBust();
+	showBust(novaBustDisplay());
 	
 	var halp:Array = [];
 	

@@ -992,6 +992,8 @@ public function publicUseEnding():void
 	showName("OUT ON\nBREAK");
 	author("Wsan");
 	
+	pc.removeAll();
+	
 	output("You dreamily nod into Ellie’s bountiful bosom, desperately suckling the last of the milk you can get before she pulls away with a smile,");
 	if (pc.hasHair()) output(" running a hand through your [pc.hair].");
 	else output(" stroking your head.");

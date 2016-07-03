@@ -834,7 +834,7 @@ public function syriSexMenu(outputs:Boolean = true):void {
 
 	//For Cocktail Cockwielders
 	if (pc.hasCock() && pc.hasTailCock()) addButton(5, "Tailcock", bangSyriWithTailcock, undefined, "Tailcock","Use your tailcock on Syri's ass while she sucks you off.");
-	else addDisabledButton(4,"Tailcock","Tailcock","You don't have a tailcock, silly!");
+	else addDisabledButton(5,"Tailcock","Tailcock","You don't have a tailcock, silly!");
 }
 
 
@@ -1157,59 +1157,65 @@ public function blowSyriYouFukkinSlut(postScene:Function = null):void {
 
 
 //Tailcock Scene, Coded by Savin, probably works like shit
-public function bangSyriWithTailcock():void {
+public function bangSyriWithTailcock():void
+{
 	clearOutput();
 	showSyri(true);
 	author("Archangel");
 
 	output("You suggest to Syri that she could suck you off while you plow her from behind.");
-
+	
 	output("\n\n<i>“That sounds really nice and all, but I’m no Kaithrit, Cap,”</i> she says with a wry smile and a shake of her head before starting to lightly rake her claws down your back. <i>“Maybe we could just-”</i> She abruptly stops when her hands reach the junction where tailcock meets spine. She looks downward with surprise, ");
 	
-		if (flags["SyriTailcocked"] != undefined) {output("as your tail curls around her wrist, and a playful grin spreads across her lips. She eagerly turns to the wall, shaking her full, round ass at you. <i>“Come on, Steele, spear your slutty ausar’s ass wide open with your [pc.tailCock]!”</i>");}
-		else {output("“<i>Oh. You’ve got one of... those,”</i> she says with slight nervousness.");
-
-	output("\n\nYou run your hands down her back and grope her pert ass, pulling her close, breathing in the musky scent of her arousal. <i>“Is something the matter?”</i> you ask, hooking your fingers into the waistband and pulling her tight jeans down.");
-
-	output("\n\n<i>“No, not really. I’ve just never seen one of those before. Always wondered what one felt like, though.”</i> She says with a wolfish grin, pulling your [pc.upperGarment] off.");
-			}
-
+	if (flags["SyriTailcocked"] != undefined)
+	{
+		output("as your tail curls around her wrist, and a playful grin spreads across her lips. She eagerly turns to the wall, shaking her full, round ass at you. <i>“Come on, Steele, spear your slutty ausar’s ass wide open with your [pc.tailCock]!”</i>");
+	}
+	else
+	{
+		output("“<i>Oh. You’ve got one of... those,”</i> she says with slight nervousness.");
+		
+		output("\n\nYou run your hands down her back and grope her pert ass, pulling her close, breathing in the musky scent of her arousal. <i>“Is something the matter?”</i> you ask, hooking your fingers into the waistband and pulling her tight jeans down.");
+		
+		output("\n\n<i>“No, not really. I’ve just never seen one of those before. Always wondered what one felt like, though.”</i> She says with a wolfish grin, pulling your [pc.upperGarment] off.");
+	}
+	
 	output("\n\n<i>“There’s my girl. I knew you would come around,”</i> you say, smiling. <i>“I believe I should get you ready first, hmm?”</i> You say before spinning her by the shoulders, slamming her against the cabin wall, and dropping to your knees.");
-
+	
 	output("\n\n<i>“Ooh. Playing a little rough, are we?”</i> she says, giggling and wiggling her hips to entice you forwards, although you hardly need it, if your [pc.cocks] are any indication. You stretch her asscheeks wide, getting a good look at her slightly winking star before you dig in. You force your [pc.tongue] into her asshole and wildly lash it around. She moans loudly, pushing her ass into your face some more, wanting to get your tongue as deep into her tunnel as possible. You oblige, sticking it in as far as it will go. She moans whorishly loud when she feels your [pc.tongue] rub against her prostate, a tiny spurt of pre squirting out of her doggy dick.");
-
+	
 	output("\n\nYou take pity on her, reaching up and slowly stroke her pecker, using her pre as lube and eliciting another loud moan from your horny ausar buttslut.");
-
+	
 	output("\n\nYour [pc.tailCock] twitches and crawls up Syri’s leg while she’s busy moaning in pleasure, and plunges itself into her half open mouth. Her eyes widen with shock from the sudden girth invading her mouth, but she accepts it, eagerly sucking on it. You raise an eyebrow. Syri seems to have gotten over her prior nervousness rather quickly! Grinning, you let go of her cock and press three pre-slicked fingers into her backdoor. She whines loudly around the tentacle filling her mouth when she feels your fingers pushing past her sphincter. You start to thrust in and out of her ass, rubbing over her prostrate as much as you can. You notice her cock twitch, and immediately pull your fingers and [pc.tailCock] out of her ass and mouth before she can cum.");
-
+	
 	output("\n\n<i>“Why’d you stop!? I was gonna cum!”</i> she whines plaintively.");
-
+	
 	output("\n\n<i>“That’s exactly </i>why<i> I stopped. Don’t want you cumming too early and ruining all the fun!”</i> you say, smirking and slapping her ass, which earns another lewd moan and a fresh gush of pre from her cock. You tug at her tail and sit on the bed. She turns, sinks to all fours and crawls towards you, a trail of pre leaking from her dick. Her ass and tits sway with each motion, making them jiggle wonderfully and urging your [pc.cocks] to become painfully hard. She reaches your spread legs and plants a chaste kiss on the tip of your [pc.cockBiggest].");
-
-
+	
 	output("\n\nShe wraps a hand around your [pc.cockBiggest] and starts slowly jacking it off. Your [pc.tailcock] slithers over the floor, then lifts itself up and hovers for a second before ramming into Syri’s asshole without warning. She gasps, her mouth falling open into a perfect O. You take the opportunity to grab her head and slam it down onto your [pc.cockBiggest]. She gags with the amount of dick filling her throat before you let go of her head.");
-
-
+	
 	output("\n\nSyri immediately pulls away, gasping for air. <i>“Fuck was that for, asshole?”</i> she says, lightly punching your stomach.");
-
-	if(pc.isMischievous()) output("\n\n{Mischievous: <i>“What? I saw the opportunity and I took it!”</i> you say, grinning wickedly.");
-	if(pc.isBro()) output("\n\n<i>“I don’t think I gave you permission to stop sucking, slut!”</i> you grin, giving her a nudge back towards your dick.");
-	if(pc.isAss()) output("\n\n<i>“Thought I was going to go easy on you? Think again!”</i> You growl.");
-	if(pc.isNice()) output("\n\n<i>“I-I’m sorry! I don’t know what came over me!”</i> You say, astonished at yourself at having treated your lover so roughly.");
+	
 	if(pc.isBimbo()) output("\n\n<i>“W- What? I thought you’d, like, like it! I totally love it when guys do that to me!”</i> you babble.");
+	else if(pc.isBro()) output("\n\n<i>“I don’t think I gave you permission to stop sucking, slut!”</i> you grin, giving her a nudge back towards your dick.");
+	else if(pc.isNice()) output("\n\n<i>“I-I’m sorry! I don’t know what came over me!”</i> You say, astonished at yourself at having treated your lover so roughly.");
+	else if(pc.isMischievous()) output("\n\n<i>“What? I saw the opportunity and I took it!”</i> you say, grinning wickedly.");
+	else if(pc.isAss()) output("\n\n<i>“Thought I was going to go easy on you? Think again!”</i> You growl.");
 	output(" Syri rolls her eyes and lowers her head back to your [pc.cocks]. Lewd slurps fill the air as your dick is engulfed in her warm throat, her canid tongue wriggling along the underside of your [pc.cockBiggest]. The experience is made all the more pleasurable by the vibrations caused by her simultaneous moaning from the rough anal pounding she’s receiving from your tailcock. You notice that the haft of your tailcock has at some point wrapped itself around her dong and is now jacking it off with every thrust into her tight asshole, a little precum squirting out every time it rams itself into her slightly-gaping hole.");
-
+	
 	output("\n\nYou hook your hands under Syri’s armpits and pull her up, sliding your [pc.cocks] right between her bouncy mammaries as you do so. You grab her tits and start thrusting, using her breasts like a soft, squishy onahole. She opens her mouth and spits into the valley of her cleavage, providing lubricant to ease the passage of your [pc.cocks] through her boobflesh. She lowers her head and keeps her mouth slightly open, letting your [pc.cockHead] enter her warm mouth. It isn’t long before you feel your orgasm start to boil up in your [pc.balls], the rough ass and tit fucking starting to take its toll.");
-
+	
 	output("\n\n<i>“Oh fuck, I- I’m going to cum! Just a little more...!”</i> she manages to get out. You’re not sure you can hold on much longer, but a few minutes later, a loud <i>“Fuck yes! Fuck my slutty ass! I’m cumming!”</i> interrupts your thoughts. Syri cums hard, tilting her head back and howling, her asshole spasming and cock blasting thick ropes of cum all over your [pc.lowerBody] and the floor. The sudden wringing tightness of her asshole trying to milk the cum from you is too much, and you finally let go. Your [pc.cock] explodes, blasting a jets of [pc.cum] straight into the air, which fall back onto you and Syri; she leans back with an open mouth and hefted tits to catch as much cum as she can. Your [pc.tailCock] shudders and pumps load after load of cum into Syri’s well-fucked ass, which in turn sets off another mindblowing orgasm for Syri, who finally empties her nuts, hosing down the floor with whatever was left.");
-
+	
 	output("\n\nSyri looks at you for a moment with a face and tits covered in cum, then collapses forwards. You catch her, pulling her up onto the bed next to you. <i>“That... was absolutely... fucking... amazing. We have to do this again! Er... just not right now. I’m walloped,”</i> she says, giggling, then curls up against you.");
+	
 	processTime(40+rand(15));
 	pc.orgasm();
 	chars["SYRI"].orgasm();
+	IncrementFlag("SyriTailcocked");
+	
 	clearMenu();
 	addButton(0,"Next",syriSexOutro);
-	IncrementFlag("SyriTailcocked")
 }
 
 

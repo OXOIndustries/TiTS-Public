@@ -3104,6 +3104,7 @@ public function displayEncounterLog(showID:String = "All"):void
 						output2(", Crew member");
 						if(syriIsCrew()) output2(" (Onboard Ship)");
 					}
+					if(flags["SEEN_SYRI_IN_THE_MORNING"] != undefined) output2("\n<b>* Syri, Times Seen Her in the Morning:</b> " + flags["SEEN_SYRI_IN_THE_MORNING"]);
 					if(flags["BET_AGAINST_SYRI"] != undefined)
 					{
 						output2("\n<b>* Syri, Gaming:</b> Bet against her");
@@ -3113,7 +3114,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["TIMES_WON_AGAINST_SYRI"] != undefined || flags["TIMES_LOST_TO_SYRI"] != undefined) output2("\n<b>* Syri, Gaming, Win/Loss Ratio:</b> " + flags["TIMES_WON_AGAINST_SYRI"] + "/" + flags["TIMES_LOST_TO_SYRI"] + ", of " + (flags["TIMES_WON_AGAINST_SYRI"] + flags["TIMES_LOST_TO_SYRI"]) + " games");
 					if(flags["FUCKED_SYRI_COUNT"] != undefined) output2("\n<b>* Syri, Times Sexed:</b> " + flags["FUCKED_SYRI_COUNT"]);
 					if(flags["TIMES_BUTTFUCKED_BY_SYRI"] != undefined) output2("\n<b>* Syri, Times She Fucked Your Ass:</b> " + flags["TIMES_BUTTFUCKED_BY_SYRI"]);
-					if(flags["SEEN_SYRI_IN_THE_MORNING"] != undefined) output2("\n<b>* Syri, Times Seen Her in the Morning:</b> " + flags["SEEN_SYRI_IN_THE_MORNING"]);
+					if(flags["SyriTailcocked"] != undefined) output2("\n<b>* Syri, Times You Used Your Tailcock on Her:</b> " + flags["SyriTailcocked"]);
 				}
 				variousCount++;
 			}
@@ -4776,7 +4777,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			miscCount++;
 		}
 		// Super rare and weird TF items/sex toys - regular rare items/armor/weapons can be omitted
-		if(flags["BUTTSLUTINATOR"] != undefined || flags["OMNISUITED"] != undefined || flags["SYNTHSHEATH_ACQUIRED"] != undefined || flags["SYNTHSHEATH_TWO_FOUND"] != undefined || flags["LOOTED_COCKBOX"] != undefined || flags["ZODEE_GALOQUEST"] != undefined)
+		if(flags["BUTTSLUTINATOR"] != undefined || flags["OMNISUITED"] != undefined || flags["ORGASMENDER"] != undefined || flags["SYNTHSHEATH_ACQUIRED"] != undefined || flags["SYNTHSHEATH_TWO_FOUND"] != undefined || flags["LOOTED_COCKBOX"] != undefined || flags["ZODEE_GALOQUEST"] != undefined)
 		{
 			output2("\n<b><u>Suspicious Items</u></b>");
 			// Buttslutinator Mark 2
@@ -4788,6 +4789,11 @@ public function displayEncounterLog(showID:String = "All"):void
 			if(flags["OMNISUITED"] != undefined)
 			{
 				output2("\n<b>* Omnisuit:</b> Acquired, Used");
+			}
+			// Orgasmender
+			if(flags["ORGASMENDER"] != undefined)
+			{
+				output2("\n<b>* Orgasmender, Times Used:</b> " + flags["ORGASMENDER"]);
 			}
 			// Big like Cock-Box!
 			if(flags["LOOTED_COCKBOX"] != undefined)

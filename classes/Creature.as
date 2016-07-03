@@ -8129,7 +8129,7 @@
 		}
 		//In case there's ever different types of cuntTails available, we'll need different methods.
 		public function hasCuntSnake(): Boolean {
-			return hasParasiteTail() && hasTailCunt(); // I hope there would not be any other parasitic tailcunts...
+			return (hasParasiteTail() && hasTailCunt()); // I hope there would not be any other parasitic tailcunts...
 		}
 		public function tailVaginaCapacity(): Number {
 			return tailCuntCapacity();
