@@ -1218,6 +1218,7 @@ public function displayQuestLog(showID:String = "All"):void
 				output2(" <i>In progress...</i>");
 				output2("\n<b>* Probe Location:</b> <i>It seems the probe fell deep into the jungles.</i>");
 			}
+			if(flags["MHENGA_PROBE_CASH_GOT"] != undefined) output2(", Reclaimed probe");
 			// Scout
 			if(flags["MET_FLAHNE"] != undefined)
 			{
@@ -1231,7 +1232,13 @@ public function displayQuestLog(showID:String = "All"):void
 		{
 			output2("\n<b><u>Tarkus</u></b>");
 			output2("\n<b>* Status:</b>");
-			if(flags["PLANET_3_UNLOCKED"] != undefined) output2(" Coordinates received");
+			if(flags["PLANET_3_UNLOCKED"] != undefined)
+			{
+				output2(" Coordinates received");
+				if(flags["TARKUS_PROBE_CASH_GOT"] == 1) output2(", Reclaimed probe");
+				if(flags["TARKUS_PROBE_CASH_GOT"] == -1) output2(", Sold probe to Shekka");
+				if(flags["GAVE_SHEKKA_PROBE"] != undefined) output2(", Gave probe to Shekka");
+			}
 			else
 			{
 				output2(" <i>In progress...</i>");
@@ -1244,7 +1251,6 @@ public function displayQuestLog(showID:String = "All"):void
 					if(MailManager.isEntryViewed("annoweirdshit")) output2(" <i>Anno confirms this.</i>");
 				}
 			}
-			if(flags["GAVE_SHEKKA_PROBE"] != undefined) output2(", Gave probe to Shekka");
 			// Scout
 			if(flags["BEEN_ON_TARKUS"] != undefined)
 			{
@@ -1304,7 +1310,11 @@ public function displayQuestLog(showID:String = "All"):void
 		{
 			output2("\n<b><u>Myrellion</u></b>");
 			output2("\n<b>* Status:</b>");
-			if(nyreaDungeonFinished() || (flags["KQ2_MYRELLION_STATE"] == 1 && MailManager.isEntryUnlocked("danemyrellioncoords"))) output2(" Coordinates received");
+			if(nyreaDungeonFinished() || (flags["KQ2_MYRELLION_STATE"] == 1 && MailManager.isEntryUnlocked("danemyrellioncoords")))
+			{
+				output2(" Coordinates received");
+				if(flags["MYRELLION_PROBE_CASH_GOT"] != undefined) output2(", Reclaimed probe");
+			}
 			else output2(" <i>In progress...</i>");
 			if(!reclaimedProbeMyrellion() && flags["KQ2_MYRELLION_STATE"] != 1)
 			{
