@@ -7,6 +7,7 @@ public function myrellionHangarBonus():Boolean
 		probeReclamationShit();
 		return true;
 	}
+	
 	if(pc.hasStatusEffect("Myr Venom Withdrawal") && rand(10) == 0)
 	{
 		sluttyMcSlutOral();
