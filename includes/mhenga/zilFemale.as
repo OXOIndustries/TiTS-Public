@@ -504,7 +504,7 @@ public function lickABitchCleanYouBitch():void {
 	output("\n\n<i>“It's my turn to cum,”</i> the zil laughs, mashing her muff back into your face, taking your nose halfway into herself before you can right yourself and set to work, furiously licking along her gash before your cock threatens to boil over into her waiting hand. Your work pays off in spades, as soon her dark slit is squeezing hard on your writhing [pc.tongue], dousing it in orgasmic honey as she digs her fingers into you, humping your face with wild, desperate need as her voice echoes to the heavens. She grinds hard on you, taking your tongue deep into her love canal as she cums, riding you even as her musky honey squirts powerfully onto your already doused face, drenching you in the wasp girl's potent aroma.");
 	output("\n\nWith a final ecstatic squeal and a last gush of honey onto your face, the zil girl rolls off you, panting heavily as her entire body trembles with release. Wiping the fem cum from your cheeks, you take your first deep breath of fresh air in a good long while. Before you can even think of leaving, though, the waspy beauty gets your attention with a come-hither coo and a pair of wide-spread legs. <i>“What do you say, stranger? You wouldn't leave a girl when she's all hot and ready to go again, would you?”</i> Damn, she's fast... and smells so good....");
 	processTime(25+rand(5));
-	pc.loadInMouth(pc);
+	pc.girlCumInMouth(chars["ZILFEMALE"]);
 	clearMenu();
 	if(pc.cockThatFits(zilFemale.vaginalCapacity() * 1.25) >= 0 && pc.hasCock()) addButton(0,"Fuck Her",missionaryWithAZilGirl);
 	else addDisabledButton(0,"Fuck Her","Fuck Her","You need a penis that can fit her vagina for this.");
