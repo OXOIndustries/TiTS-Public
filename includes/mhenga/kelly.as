@@ -1552,7 +1552,7 @@ public function useKellysHoneyForCooking():void
 	showKelly(true);
 	author("Quiet Browser & LD");
 	var x:int = -1;
-	if(pc.hasCock()) x = pc.cockThatFits(chars["KELLY"]);
+	if(pc.hasCock()) x = pc.cockThatFits(chars["KELLY"].vaginalCapacity());
 	output("You sneak up on her and without warning hug her midriff, quickly moving a hand to her balls, brimming with honey. You ask why she’s bothering to look for the jar when she has a sack-full of honey handy.");
 	output("\n\nShe moans appreciatively as she feels your fingers cupping her sack. <i>\"Mmm... some folks don't like eating it when they know where it comes from,\"</i> she replies absently. <i>\"But maybe you're different...?\"</i> she suggests, a hopeful note in her voice and an eager grin on her lips.");
 	//if PC is naked and has a dick
@@ -1581,7 +1581,7 @@ public function useKellysHoneyForCooking():void
 	{
 		output(", grinding her ass back against your cock, teasing its ");
 		if(x >= 0) output("[pc.cockHead " + x + "]");
-		else output("[pc.cockTailHead]");
+		else output("[pc.tailCockHead]");
 		output(" but refraining from actually penetrating herself with it");
 	}
 	output(".");
