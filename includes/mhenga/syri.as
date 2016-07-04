@@ -1192,7 +1192,7 @@ public function bangSyriWithTailcock():void
 	
 	output("\n\n<i>“That’s exactly </i>why<i> I stopped. Don’t want you cumming too early and ruining all the fun!”</i> you say, smirking and slapping her ass, which earns another lewd moan and a fresh gush of pre from her cock. You tug at her tail and sit on the bed. She turns, sinks to all fours and crawls towards you, a trail of pre leaking from her dick. Her ass and tits sway with each motion, making them jiggle wonderfully and urging your [pc.cocks] to become painfully hard. She reaches your spread legs and plants a chaste kiss on the tip of your [pc.cockBiggest].");
 	
-	output("\n\nShe wraps a hand around your [pc.cockBiggest] and starts slowly jacking it off. Your [pc.tailcock] slithers over the floor, then lifts itself up and hovers for a second before ramming into Syri’s asshole without warning. She gasps, her mouth falling open into a perfect O. You take the opportunity to grab her head and slam it down onto your [pc.cockBiggest]. She gags with the amount of dick filling her throat before you let go of her head.");
+	output("\n\nShe wraps a hand around your [pc.cockBiggest] and starts slowly jacking it off. Your [pc.tailCock] slithers over the floor, then lifts itself up and hovers for a second before ramming into Syri’s asshole without warning. She gasps, her mouth falling open into a perfect O. You take the opportunity to grab her head and slam it down onto your [pc.cockBiggest]. She gags with the amount of dick filling her throat before you let go of her head.");
 	
 	output("\n\nSyri immediately pulls away, gasping for air. <i>“Fuck was that for, asshole?”</i> she says, lightly punching your stomach.");
 	
