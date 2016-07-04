@@ -1368,6 +1368,7 @@ public function variableRoomUpdateCheck():void
 	
 	
 	/* MYRELLION */
+	
 	// Yarasta Shit
 	if(flags["MET_YARASTA"] != undefined)
 	{
@@ -1488,6 +1489,24 @@ public function variableRoomUpdateCheck():void
 	{
 		rooms["2I7"].removeFlag(GLOBAL.SHIPHANGAR);
 		rooms["2I7"].addFlag(GLOBAL.TAXI);
+	}
+	
+	
+	/* UVETO */
+	
+	// Shade Lover letter and home stuff
+	if(MailManager.isEntryViewed("letter_from_shade") && flags["SHADE_ON_UVETO"] == 2 && shadeIsLover() && (shadeIsSiblings() || hours >= 16))
+	{
+		rooms["UVI P30"].addFlag(GLOBAL.OBJECTIVE);
+	}
+	else if(flags["SHADE_ON_UVETO"] >= 3 && shadeIsHome())
+	{
+		rooms["UVI P30"].addFlag(GLOBAL.NPC);
+	}
+	else
+	{
+		rooms["UVI P30"].removeFlag(GLOBAL.OBJECTIVE);
+		rooms["UVI P30"].removeFlag(GLOBAL.NPC);
 	}
 }
 

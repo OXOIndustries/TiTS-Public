@@ -3387,7 +3387,7 @@ public function getFuckedByEmmyEmmyEms():void
 		output(" <i>“I...”</i> Her bravado slips momentarily, but her hand doesn’t move. <i>“...I don’t think I could stop myself from fucking you if I wanted.”</i> Curling back her lip, Emmy nips at your ear and growls, <i>“And you’re going to like it. I can see it on your face everytime I talk about taking you like a common ausar bitch.”</i>");
 	}
 	//Merge
-	output("\n\nSeveral pounds worth of turgid, throbbing cock-meat slap down into the crack of your ass. Emmy’s dick is almost uncomfortably warm after being pent up her in suit for so long, and equally as wet with pre-cum. The individual veins bulge like miniaturized pressure-hoses, and a pair of sweat-matted nuts rub on your thighs, sliding back and forth in the curtain of dribbling pre-cum.");
+	output("\n\nSeveral pounds worth of turgid, throbbing cock-meat slap down into the crack of your ass. Emmy’s dick is almost uncomfortably warm after being pent up in her suit for so long, and equally as wet with pre-cum. The individual veins bulge like miniaturized pressure-hoses, and a pair of sweat-matted nuts rub on your thighs, sliding back and forth in the curtain of dribbling pre-cum.");
 	if(pc.clitLength >= 1)
 	{
 		output(" You’re incredibly thankful to have ");

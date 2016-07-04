@@ -1263,6 +1263,21 @@ public function shadeApproach():void
 	}
 	
 	clearOutput();
+	
+	// Shade left for Uveto Hotfix!
+	if(flags["MYRELLION_PROBE_CASH_GOT"] != undefined && flags["TOLD_SHADE_SHES_YER_SIS"] != undefined)
+	{
+		output("Before you get the chance to approach her, Shade stands up and leaves in a hurry, not once looking up or making eye-contact with you. She is obviously in a hurry... off to Uveto like she said she would, you guess.");
+		
+		processTime(2);
+		if(flags["UVETO_UNLOCKED"] == undefined) flags["UVETO_UNLOCKED"] = 1;
+		if(flags["SHADE_ON_UVETO"] == undefined) flags["SHADE_ON_UVETO"] = 1;
+		
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+		return;
+	}
+	
 	showShade();
 	//Repeat, Not Sex’d
 	if(flags["SEXED_SHADE"] == undefined)

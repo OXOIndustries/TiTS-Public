@@ -2664,6 +2664,7 @@ public function processSellToShekkaTransaction():void
 	output("A little richer, you make ready to go on your way.");
 	if(flags["TIMES_SEXED_SHEKKA"] == undefined) pc.credits += 10000;
 	else pc.credits += 14000;
+	flags["TARKUS_PROBE_CASH_GOT"] = -1;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -2711,6 +2712,7 @@ public function actuallySellToSteeleTech():void
 	output("The 20,000 credits come immediately, sent as an advance for services rendered. A company delegate will be by the shop to take the probe in a few hours.");
 	processTime(1);
 	pc.credits += 20000;
+	flags["TARKUS_PROBE_CASH_GOT"] = 1;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
