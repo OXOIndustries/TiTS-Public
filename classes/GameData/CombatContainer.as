@@ -2755,6 +2755,18 @@ package classes.GameData
 					output(" (<b>0</b>)");
 					teaseSkillUp(teaseType);
 				}
+				//Enemies with special fail messages
+				else if(target is MaidenVanae || target is HuntressVanae)
+				{
+					output("\n\n" + teaseReactions(0, target) + " (<b>0</b>)");
+					teaseSkillUp(teaseType);
+				}
+				else if(target is KorgonneFemale)
+				{
+					output("\n\nThe barbarian girl flashes a savage grin, apparently unfazed." + ((kGAMECLASS.silly) ? " <i>“No. So no. Wow. Very no.”</i>" : ""));
+					output(" (<b>0</b>)");
+					teaseSkillUp(teaseType);
+				}
 				else
 				{
 					output("\n\n" + target.capitalA + target.uniqueName);
@@ -2854,6 +2866,11 @@ package classes.GameData
 				else if (damage < 10) buffer = "Your stacked opponent huskily moans and slips a webbed hand between her thighs, lewdly stroking her slit. She snaps out of it a few seconds later, biting her lip.";
 				else if (damage < 20) buffer = "The alien huntress clenches her thighs together as she watches you, rubbing them together as she desperately tries to hide her arousal. Clearly you’re having an effect on her!"
 				else buffer = "The busty amazon parts her thighs and begins to stroke her twin clits to your lewd display, unable to stop herself. A few seconds later she jerks her webbed hand back, flushing wildly.";
+			}
+			else if (target is KorgonneFemale)
+			{
+				//Teased
+				buffer = "Clearly delighted, the raider’s mouth hangs open in a dopey grin; her tongue lolls from the side of her mouth as she holds one arm tightly across her prodigious chest. She becomes aware of her licentious weakness and swallows her tongue again with a gulp." + ((kGAMECLASS.silly) ? " <i>“So seduce. Such flirt. Much babies. Wow.”</i>" : "");
 			}
 			else if (target is MaidenVanae)
 			{
