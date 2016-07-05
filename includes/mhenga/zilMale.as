@@ -1309,8 +1309,9 @@ public function useTailOnZilWhenUWin():void
 	if(pc.hasCock())
 	{
 		output("Your cock");
-		if(pc.cockTotal() > 1) output("s");
-		output(" are trobbing now, fit to burst, already oozing pre from ");
+		if(pc.cockTotal() > 1) output("s are");
+		else output(" is");
+		output(" throbbing now, fit to burst, already oozing pre from ");
 		if(pc.cockTotal() == 1) output("its");
 		else output("their");
 		output(" lengths, down to the face of the zil. He seems only vaguely aware of it, adrift in a sexual haze, his tongue slipping out to lap softly at it. ");
