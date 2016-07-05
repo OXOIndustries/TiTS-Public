@@ -4457,7 +4457,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			if(flags["9999"] != undefined || flags["9999"] != undefined || flags["UVIP_J46_SEARCHED"] != undefined)
 			{
 				output2("\n<b><u>Ice Plains</u></b>");
-				if(flags["9999"] != undefined) output2("\n<b>* Korgonne, Times Encountered:</b> " + flags["9999"]);
+				if(flags["MET_FEMKORGONNE"] != undefined) output2("\n<b>* Female Korgonne, Times Encountered:</b> " + flags["MET_FEMKORGONNE"]);
 				if(flags["9999"] != undefined) output2("\n<b>* Stormguard Lancer, Times Encountered:</b> " + flags["9999"]);
 				// Abandoned Outpost
 				if(flags["UVIP_J46_SEARCHED"] != undefined) output2("\n<b>* Abandoned Outpost:</b> Found, Looted camp");

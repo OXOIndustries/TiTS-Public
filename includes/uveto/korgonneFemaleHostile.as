@@ -25,7 +25,6 @@ public function encounterAKorgonneFemaleHostile():void
 		output("\n\nRoughly five feet tall, your attacker appears to be a tan, short-furred, canine barbarian. She’s covered in a coat of stitched hides that has been dyed to blend in with the frozen tundra she stalks. Her chest bulges within it, her curves evident even under the fibrous wrap. The coat hangs down to her thighs, but she doesn’t seem to be wearing anything underneath; dense fur seems more than enough to keep her warm. A curled tail wags in agitation behind her, while her partially braided hair hangs like a mane around a plump, muzzled face. Both her lips and nose are blue, but that seems to be their natural coloration, rather than the result of exposure. Her huge, wide eyes are trained wholly on you; the strange, rectangular pupils within her emerald irises remind you of a goat’s.");
 		output("\n\nYour Codex chirps, to get your attention. <i>“Korgonne, female. Native to Uveto VII. Honorable but exceedingly libidinous. Usage of a breathing apparatus is recommended due to potent pheromones...</i>”");
 		output("\n\n<i>“Alien!”</i> she barks in accusation, the sharpness of her tone carrying even through the muffling silence of the hill-cracked snowy plains.");
-		flags["MET_FEMKORGONNE"] = 1;
 	}
 	//Repeat Encounter
 	else
@@ -44,6 +43,8 @@ public function encounterAKorgonneFemaleHostile():void
 		else output("\n\n<i>“Wow! Such embarrass. Many rudes.”</i>");
 		output(" She reaches for her weapons and lunges toward you with bounding strides!");
 	}
+	IncrementFlag("MET_FEMKORGONNE");
+	
 	//9999 fightan start
 	clearMenu();
 	addButton(0,"Next",fightFemKorg);
@@ -322,6 +323,8 @@ public function defeatDaKorgiShit():void
 		output("\n\nIt seems she may have taken your fight as the overture to romantic advances. As much as she appears to distrust your alien appearance, she seems perfectly willing to join you in sharing body heat the fun way.");
 	}
 	else output("\n\nYou’ve brought the puppy to heel; time to put her through her paces.");
+	
+	IncrementFlag("KORGI_VICTORY_COUNT");
 
 	processTime(3);
 	//[Sit On Her] (requires centaur) [Let Her Lead] (requires dick)    [Ride Her Tongue] (requires pussy)  [Tit Fuck] (requires dick)   [Pump her Puss] (requires dick)   [Leave] (ends encounter)

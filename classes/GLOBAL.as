@@ -271,6 +271,7 @@
 			"Narwhal",
 			"Hradian",
 			"Gryvain",
+			"Korgonne",
 		];
 		
 		public static const VALID_FACE_TYPES:Array = [
