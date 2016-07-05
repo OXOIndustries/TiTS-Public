@@ -239,7 +239,7 @@ public function chicksRideASydian():void
 		x = -1;
 		for(i = 0; i < pc.totalVaginas(); i++)
 		{
-			if(!pc.isPregnant(x)) wombs.push(i);
+			if(!pc.isPregnant(i)) wombs.push(i);
 		}
 		if(wombs.length > 0) x = wombs[rand(wombs.length)];
 	}
