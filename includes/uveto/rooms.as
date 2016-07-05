@@ -1569,9 +1569,9 @@ public function initUvetoRooms():void
 	rooms["UVIP T12"].eastExit = "UVIP V12";
 	rooms["UVIP T12"].westExit = "UVIP R12";
 	rooms["UVIP T12"].moveMinutes = 6;
-	rooms["UVIP R12"].addFlag(GLOBAL.ICYTUNDRA);
-	rooms["UVIP R12"].addFlag(GLOBAL.HAZARD);
-	rooms["UVIP R12"].runOnEnter = TundraEncounterBonus;
+	rooms["UVIP T12"].addFlag(GLOBAL.ICYTUNDRA);
+	rooms["UVIP T12"].addFlag(GLOBAL.HAZARD);
+	rooms["UVIP T12"].runOnEnter = TundraEncounterBonus;
 
 	rooms["UVIP V12"] = new RoomClass(this);
 	rooms["UVIP V12"].roomName = "MIDDLE\nPATH";
