@@ -11,14 +11,13 @@ public function TundraEncounterBonus():Boolean
 {
 	if(flags["ENCOUNTERS_DISABLED"] != undefined) return false;
 	//Just reuse Uveto's shit. It doesnt matter much really.
-	if(flags["NO_MANS_STEP"] == undefined) flags["NO_MANS_STEP"] = 1;
-	else flags["NO_MANS_STEP"]++;
+	IncrementFlag("TUNDRA_STEP");
 
 	var choices:Array = new Array();
 	//If walked far enough w/o an encounter
-	if(flags["NO_MANS_STEP"] >= 5 && rand(4) == 0) {
+	if(flags["TUNDRA_STEP"] >= 5 && rand(4) == 0) {
 		//Reset step counter
-		flags["NO_MANS_STEP"] = 0;
+		flags["TUNDRA_STEP"] = 0;
 		
 		//POSSIBLE ENCOUNTERS! KORGI!
 		choices[choices.length] = encounterAKorgonneFemaleHostile;
