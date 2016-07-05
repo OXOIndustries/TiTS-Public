@@ -308,7 +308,7 @@ public function freedomBeefFlirtyHelp(beefType:uint):void
 	
 	output("\n\nRiley cries out, throwing her head back with a shriek of pleasure. <i>“G-good! So good!”</i>");
 	
-	output("\n\nYou’re stretching her out wider than a bull’s cock, now, letting your knuckles and the straps ride along her sodden channel walls. Her pussy clenches hard, squeezing around your wrist until you pull all the way out. But your thumb comes to rest right on the big, gumdrop-sized pink-mottled bulb sitting high on the top of her hole, giving it a little rub while you dismantle the knot. Riley shudders from hoof to tail - the same tail that lifts up when you pull back, spreading that wonderful breeder’s scent across your cheeks.");
+	output("\n\nYou’re stretching her out wider than a bull’s cock, now, letting your knuckles and the straps ride along her sodden channel walls. Her pussy clenches hard, squeezing around your wrist until you pull all the way out. But your thumb comes to rest right on the big, gumdrop-sized pink-mottled bulb sitting eagerly at the front of her hole, giving it a little rub while you dismantle the knot. Riley shudders from hoof to tail - the same tail that lifts up when you pull back, spreading that wonderful breeder’s scent across your cheeks.");
 	
 	output("\n\nThe device flops onto the ground when you’ve finished with the knot, tumbling into a pile of discarded steel and straps that Riley absently kicks away with one hoof. She’s too busy looking over her shoulder at you, cheeks flushed dark red and chest straining beneath her way-too-tight bikini top. You’re amazed the holopin holding the cups together hasn’t torn the garment apart, the way her tits are heaving.");
 	
@@ -368,7 +368,7 @@ public function freedomBeefChasteHelp(beefType:uint):void
 	}
 	else
 	{
-		output("\n\nThe puffy black lips of her sex quiver as you reach forward, peeling them apart with your thumbs to reveal the knot of leather lodged between them. Riley stifles a whimper by biting on a knuckle, trying to mask her own moans - but the way her pussy winks and drools its musky, thick excitement across your digits, there’s no denying that having you probing around inside is doing to her what her scent has to you. Gently, you trace your fingers through the charcoal tunnel, caressing the sodden walls until you’re slathered with thick ropes of bison-juice. The leather knot is easy to get ahold of, slippery though it is, but you’re not in any hurry to take it out... not when you can grind it through her slick quim, rubbing the slick, soft material through her inner walls before letting the tension drag it right back inside.");
+		output("\n\nThe puffy black lips of her sex quiver as you reach forward, peeling them apart with your thumbs to reveal the knot of leather lodged between them. Riley stifles a whimper by biting on a knuckle, trying to mask her own moans - but the way her pussy winks and drools its musky, thick excitement across your digits, there’s no denying that having you probing around inside is doing to her what her scent has to you. Gently, you trace your fingers through the charcoal tunnel, caressing the sodden walls until you’re slathered with thick ropes of bison-juice. The leather knot is easy to get ahold of, slippery though it is, but you’re not in any hurry to take it out... not when you can grind it through her slick quim, rubbing the slick, soft material through her inner walls before letting the tension drag it right back outside.");
 		
 		output("\n\n<i>“W-what’re you...”</i> Riley groans, cut off with a gasp as you release the leather strap again and let it slide back into her puss. <i>“Uuuunf! [pc.name], you’re-”</i>");
 		
@@ -376,7 +376,7 @@ public function freedomBeefChasteHelp(beefType:uint):void
 		
 		output("\n\nRiley cries out, throwing her head back with a shriek of pleasure. <i>“G-good! So good!”</i>");
 		
-		output("\n\nYou’re stretching her out wider than a bull’s cock, now, letting your knuckles and the straps ride along her sodden channel walls. Her pussy clenches hard, squeezing around your wrist until you pull all the way out. But your thumb comes to rest right on the big, gumdrop-sized pink-mottled bulb sitting high on the top of her hole, giving it a little rub while you dismantle the knot. Riley shudders from hoof to tail - the same tail that lifts up when you pull back, spreading that wonderful breeder’s scent across your cheeks.");
+		output("\n\nYou’re stretching her out wider than a bull’s cock, now, letting your knuckles and the straps ride along her sodden channel walls. Her pussy clenches hard, squeezing around your wrist until you pull all the way out. But your thumb comes to rest right on the big, gumdrop-sized pink-mottled bulb sitting eagerly at the front of her hole, giving it a little rub while you dismantle the knot. Riley shudders from hoof to tail - the same tail that lifts up when you pull back, spreading that wonderful breeder’s scent across your cheeks.");
 		
 		output("\n\nThe device flops onto the ground when you’ve finished with the knot, tumbling into a pile of discarded steel and straps that Riley absently kicks away with one hoof. She’s too busy looking over her shoulder at you, cheeks flushed dark red and chest straining beneath her way-too-tight bikini top. You’re amazed the holopin holding the cups together hasn’t torn the garment apart, the way her tits are heaving.");
 		
@@ -504,13 +504,13 @@ public function freedomBeefTauricMounting(beefType:uint):void
 	
 	output("\n\nAlready rock-hard and ready, you canter around Riley’s rear-end and shuck out of your [pc.gear]. She watches you all the while, her breath quickening as you expose your form... and her eyes quickly lock onto the dangling, tumescent heft of your [pc.cockOrStrapon]. <i>“Ooh, c’mon stallion, let’s get that beauty inside me!”</i> she purrs, lifting her golden tail in invitation.");
 	
-	output("\n\nLike you need any more encouragement. Stamping a [pc.foot] on the dirt, you let loose a jubilant roar and charge from behind, lunging up onto the fluffy bison butt on offer and thrusting your hips and legs in bestial unison. Your forelegs grapple her waist, pulling your body along your back until the");
+	output("\n\nLike you need any more encouragement. Stamping a [pc.foot] on the dirt, you let loose a jubilant roar and charge from behind, lunging up onto the fluffy bison butt on offer and thrusting your hips and legs in bestial unison. Your forelegs grapple her waist, pulling your body along her back until the");
 	if (pc.hasCock()) output(" [pc.cockHead]");
 	else output(" head")
 	output(" of your prick butts against the slutty, sodden mound of her quim. The dark hole seems to suck you in, kissing at your crown until your [pc.hips] push it past Riley’s lips and into the sultry heat of her fuck-hole’s embrace.");
 	pc.cockChange();
 	
-	output("\n\nYour lover moans, knees buckling under the sudden surge of weight and pleasure on her body. You steady her as best you can for that first blissful moment - which comes down to pressing your [pc.chest] into her back and reaching around to grab the huge tits on hers, sinking your fingers into the bison’s jiggling titflesh. One good yank tears her star-spangled bikini open, sending the holopin flying and letting the mammoth mounds spill free into your hands. Her nipples are as big and as stiff as you’d expect, saucer-like peaks that press into your palms. One good pinch and tug makes the buffalo babe squeal... and makes her gaping bovine pussy  clench wonderfully hard around your [pc.cockOrStrapon].");
+	output("\n\nYour lover moans, knees buckling under the sudden surge of weight and pleasure on her body. You steady her as best you can for that first blissful moment - which comes down to pressing your chest into her back and reaching around to grab those huge tits of hers, sinking your fingers into the bison’s jiggling titflesh. One good yank tears her star-spangled bikini open, sending the holopin flying and letting the mammoth mounds spill free into your hands. Her nipples are as big and as stiff as you’d expect, saucer-like peaks that press into your palms. One good pinch and tug makes the buffalo babe squeal... and makes her gaping bovine pussy  clench wonderfully hard around your [pc.cockOrStrapon].");
 	
 	output("\n\nThough your first thrust slammed you straight to the hilt, her greedy pussy makes dragging it back out an agonizingly-pleasurable struggle for every inch. <i>“Ah! Aw yeah!”</i> Riley moans, bucking her muscular ass back against your crotch before you can even get halfway out. Her");
 	if (beefType == FREEDOM_BEEF_STATUESQUE) output(" strong");
@@ -536,7 +536,7 @@ public function freedomBeefTauricMounting(beefType:uint):void
 	else output(" burning need in your loins - that rising tension preceding the oncoming storm. The sensation of impending orgasm");
 	output(" only drives you to fuck Riley harder, deeper - to cram every inch of throbbing cock-flesh into the breed-hungry bovine before you lose control completely. Your newfound lover’s channel welcomes you the way only a ‘taur can, letting you sheath your [pc.cockOrStrapon] all the way");
 	if (pc.hasCock() && pc.longestCockLength() >= 18) output(" until your [pc.cockHead] is battering the entrance of her womb, kissing the depths of her sex before you fill it with your seed");
-	output(". Her huge body is the perfect receptacle for your manhood, and soon your [pc.chest] is heaving with the effort of holding back your orgasm, building it up to a frothy, potent excess");
+	output(". Her huge body is the perfect receptacle for your manhood, and soon your chest is heaving with the effort of holding back your orgasm, building it up to a frothy, potent excess");
 	if (pc.hasCock()) output(": you’re not done until you’ve packed Riley’s womb with every last drop");
 	output(".");
 
@@ -672,7 +672,7 @@ public function freedomBeefLesboLicks(beefType:uint):void
 
 	output("\n\n<i>“That’s more like it!”</i> she smiles, reaching down to give your bare [pc.butt] a two-fisted squeeze. Suddenly her grip shifts, locking around your waist. You have just enough time to pop off her nipple and yelp in surprise before being hefted up into the air. The world spins around you, going topsy-turvy until blood is rushing to your head");
 	if (pc.hairLength > 6) output(" and your hair is tumbling towards the new direction of gravity");
-	output(". <b>You’re upside-down,</b> held pinned against the buffalo’s mighty chest with your [pc.legs] splayed in the air, flailing helplessly. Giggling, Riley tells you <i>“Don’t stop now, [pc.name]; I’m just trying to give as good as I get!”</i>");
+	output(". <b>You’re upside-down,</b> held pinned against the buffalo’s mighty chest with your" + (pc.hasLegs() ? " [pc.legs] splayed" : " [pc.lowerBody] positioned") + " in the air, flailing helplessly. Giggling, Riley tells you <i>“Don’t stop now, [pc.name]; I’m just trying to give as good as I get!”</i>");
 
 	output("\n\nYou wobble from side to side, dazed by the sudden change of place, but with a little twist and turning you’re able to get ahold of one of Riley’s cannonball’s again.");
 	if (pc.hasCock() && pc.biggestCockLength() > 18) output(" While you’re maneuvering it, Riley gives your [pc.cock] a gentle swat, flopping it down along your [pc.belly] and into the deep, hugging reservoir of her cleavage. She shakes her shoulders, rolling your throbbing meat between her jiggling tits until a squirt of hot pre dribbles down her belly, and you’re left moaning for her around a mouthful of teat.");
@@ -698,7 +698,7 @@ public function freedomBeefLesboLicks(beefType:uint):void
 	if (pc.hasCock() && !pc.hasVagina()) output(" your prostate");
 	else if (pc.hasVagina()) output(" your g-spot");
 	else output(" your most tender place");
-	output(", eliciting a sharp gasp around your mouthful of boobflesh. Your whole body goes rigid for a moment as pleasure flashes through you like a thousand tiny thunderbolts and leaves your heart hammering, blood running hot to the beat of Riley’s tongue teasing you most sensitive places. Your own hands lock around her prominent, darkened peaks, holding on for dear life in the face of fire spreading in your loins.");
+	output(", eliciting a sharp gasp around your mouthful of boobflesh. Your whole body goes rigid for a moment as pleasure flashes through you like a thousand tiny thunderbolts and leaves your heart hammering, blood running hot to the beat of Riley’s tongue teasing your most sensitive places. Your own hands lock around her prominent, darkened peaks, holding on for dear life in the face of fire spreading in your loins.");
 
 	output("\n\nRiley’s full lips are pressed firmly to your hole now, driving her tongue in as deep as she can. A part of your mind, the small bit not subsumed by sensation, quips that it feels like you’re getting french-kissed almost, the way she lovingly works her mouth around your");
 	if (pc.hasVagina()) output(" lower pair of lips - close enough, right?");
