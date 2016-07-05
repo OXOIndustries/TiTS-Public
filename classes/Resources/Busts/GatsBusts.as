@@ -137,6 +137,14 @@
 		[Embed(source = "../../../assets/images/npcs/gats/Kiro_Nude.png", mimeType = "image/png")]
 		public var Bust_KIRO_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/gats/korgonne_female_barbarian.png", mimeType = "image/png")]
+		public var Bust_KORGONNE_FEMALE:Class;
+		[Embed(source = "../../../assets/images/npcs/gats/korgonne_female_barbarian_2.png", mimeType = "image/png")]
+		public var Bust_KORGONNE_FEMALE2:Class;
+		[Embed(source = "../../../assets/images/npcs/gats/korgonne_female_barbarian_nude.png", mimeType = "image/png")]
+		public var Bust_KORGONNE_FEMALE_NUDE:Class;
+
+
 		[Embed(source = "../../../assets/images/npcs/gats/Machina.png", mimeType = "image/png")]
 		public var Bust_MACHINA:Class;
 
@@ -253,6 +261,13 @@
 			public var Full_UNA:Class;
 			[Embed(source = "../../../assets/images/npcs/gats/hr/una_nude.png", mimeType = "image/png")]
 			public var Full_UNA_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/gats/korgonne_female_barbarian.png", mimeType = "image/png")]
+			public var Full_KORGONNE_FEMALE:Class;
+			[Embed(source = "../../../assets/images/npcs/gats/korgonne_female_barbarian_2.png", mimeType = "image/png")]
+			public var Full_KORGONNE_FEMALE2:Class;
+			[Embed(source = "../../../assets/images/npcs/gats/korgonne_female_barbarian_nude.png", mimeType = "image/png")]
+			public var Full_KORGONNE_FEMALE_NUDE:Class;
 		}
 
 		[Embed(source = "../../../assets/images/npcs/gats/Venus_Pitcher.png", mimeType = "image/png")]
