@@ -63,19 +63,6 @@ public function fightFemKorg():void
 	CombatManager.beginCombat();
 }
 
-//Possible Drops
-//Flashbang (1-3)
-//Improvised Shield Generator
-//Scavenged Hammer Pistol (just like the normal one, but far lower sell price)
-//<i>“It’s seen better days, but it seems serviceable.”</i>
-//New Item: Yappi Strap (melee weapon)
-//<i>“An exotic mixture of a whip and a club. Hurts like you wouldn’t believe.”</i>
-//Deals Kinetic damage. Shield drain.
-//New Item: Insulated Coat (armor)
-//<i>“Stitched leather hides harvested from aquatic mammals in the aquatic core and dyed to blend in with the icy tundra of Uveto VII. It’s been sewn to consist of several cushioning layers that provide excellent protection against the cold but only moderate protection from everything else. It does have a wide number of pockets, so that’s a plus!”</i>
-//medium defence vs. Cold attacks, adds one inventory slot
-
-
 //Sex Scenes
 //Defeat
 public function loseToKorgiGirlRouter():void

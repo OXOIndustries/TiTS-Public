@@ -12,12 +12,14 @@
 	import classes.Items.Accessories.TamWolfDamaged;
 	import classes.Items.Accessories.TamWolfII;
 	import classes.Items.Armor.GooArmor;
+	import classes.Items.Armor.InsulatedCoat;
 	import classes.Items.Armor.Unique.Omnisuit;
 	import classes.Items.Guns.MyrBow;
 	import classes.Items.Melee.Fists;
 	import classes.Items.Melee.Rock;
 	import classes.Items.Miscellaneous.EmptySlot;
 	import classes.Items.Miscellaneous.HorsePill;
+	import classes.Items.Miscellaneous.Cargobot;
 	import classes.Items.Transformatives.Clippex;
 	import classes.Items.Transformatives.Foxfire;
 	import classes.Items.Transformatives.Goblinola;
@@ -2255,7 +2257,8 @@
 		}
 		public function inventorySlots(): int {
 			var slots:int = 10;
-			if(accessory.shortName == "Cargobot") slots += 2;
+			if(accessory is Cargobot) slots += 2;
+			if(armor is InsulatedCoat) slots += 1;
 			if(hasPerk("Hidden Loot")) slots += 2;
 			return slots;
 		}
