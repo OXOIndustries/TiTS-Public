@@ -1759,7 +1759,7 @@ public function goWithShadeToTakeCareOfBusinessYuSlut():void
 	output(", though even in that short time, you can see Shade becoming progressively more uncomfortable: the hand not holding yours rarely leaves her belly, and her pace becomes erratic as you near her");
 	if(flags["SHADE_ON_UVETO"] == undefined) output(" ship");
 	else output(" doorstep");
-	output(". A grimac is plastered on her face by the time the two of you are");
+	output(". A grimace is plastered on her face by the time the two of you are");
 	if(flags["SHADE_ON_UVETO"] == undefined) output(" aboard");
 	else output(" going downstairs");
 	output(", and a bit of sweat sheens her brow.");
