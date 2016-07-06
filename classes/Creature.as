@@ -7212,13 +7212,14 @@
 			return vaginas[vIdx].looseness();
 		}
 		public function wettestVaginalWetness(): Number {
+			if(!hasVagina()) return -1;
 			var counter: Number = vaginas.length;
 			var index: Number = 0;
 			while (counter > 0) {
 				counter--;
 				if (vaginas[index].wetness() < vaginas[counter].wetness()) index = counter;
 			}
-			return vaginas[counter].wetness();
+			return vaginas[index].wetness();
 		}
 		public function driestVaginalWetness(): Number {
 			if(!hasVagina()) return -1;
@@ -7228,7 +7229,7 @@
 				counter--;
 				if (vaginas[index].wetness() > vaginas[counter].wetness()) index = counter;
 			}
-			return vaginas[counter].wetness();
+			return vaginas[index].wetness();
 		}
 		public function biggestVaginaIndex(): int {
 			if (vaginas.length == 0) return 0;
