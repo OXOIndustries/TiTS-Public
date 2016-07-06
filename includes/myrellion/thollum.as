@@ -2153,7 +2153,7 @@ public function getABlowie():void
 	if(x >= 0)
 	{
 		if(pc.balls > 0) output("[pc.balls]");
-		else if(pc.totalVaginas() > 0) output("[pc.vaginaLight]");
+		else if(pc.totalVaginas() > 0) output("[pc.vaginaNoun]");
 		else output("[pc.sheath " + x + "]");
 	}
 	else if(x == -1) output("tail");

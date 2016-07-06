@@ -588,7 +588,7 @@ public function femSydianGentleFuck():void
 		}
 		else
 		{
-			output("\n\n<i>“Come with me,”</i> she breathes, helping you frig her sopping hole faster. Her other hand plunges into you, tickling your [pc.vaginaLight] with both thick fingers and spreading pleasure that shifts like a sand dune as your lubrication carries the enzyme along. You may have underestimated just how into you the sydian is - she shrieks and her cunt clamps down, sucking and squeezing your fingers. <i>“Cuh-cumming!”</i> the girl moans.");
+			output("\n\n<i>“Come with me,”</i> she breathes, helping you frig her sopping hole faster. Her other hand plunges into you, tickling your [pc.vaginaNoun] with both thick fingers and spreading pleasure that shifts like a sand dune as your lubrication carries the enzyme along. You may have underestimated just how into you the sydian is - she shrieks and her cunt clamps down, sucking and squeezing your fingers. <i>“Cuh-cumming!”</i> the girl moans.");
 			
 			output("\n\nYour own orgasm arrives with a bang,");
 			if (pc.isSquirter()) output(" and your [pc.vagina] gushes such [pc.girlCum] over her hand that she looks down to check if you’re a boy.");
