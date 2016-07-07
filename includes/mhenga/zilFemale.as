@@ -371,7 +371,7 @@ public function missionaryWithAZilGirl():void {
 	showBust("ZILFEMALE");
 	showName("FEMALE\nZIL");
 	
-	var x:int = pc.cockThatFits(enemy.vaginalCapacity());
+	var x:int = pc.cockThatFits(zilFemale.vaginalCapacity());
 	if (x < 0) x = pc.smallestCockIndex();
 	
 	output("With the wasp girl's legs nice and spread for you, it isn't long before you smell the wafting cloud of her sexual scent. Immediately, [pc.eachCock] stiffens");
