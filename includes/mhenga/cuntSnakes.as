@@ -620,9 +620,11 @@ public function approachCuntSnake(response:String = "intro"):void
 					output("\n\n<i>“Ow! Fuck!!”</i> you yell, pulled from your orgasmic bliss by a white-hot pain in your rear. You kick your hind legs in a panic, scrambling upright. The searing pain only lasts a few moments, though, and by the time you’ve pulled yourself up and twisted your upper half around, it’s gone.");
 					if(oldTailCount > 0)
 					{
+						output("\n\nAlso gone " + (oldTailCount == 1 ? "is" : "are") + " your [pc.tails], having been swallowed whole by the cunt snake. The snake has shed its natural scales and transformed its outer appearance to perfectly match the tail" + (oldTailCount == 1 ? "" : "s") + " it’s replaced, but it sports a little something “extra.”")
+						
 						cuntSnakeTailTF(true);
 						
-						output("\n\nAlso gone " + (oldTailCount == 1 ? "is" : "are") + " your [pc.tails], having been swallowed whole by the cunt snake. The snake has shed its natural scales and transformed its outer appearance to perfectly match the tail" + (oldTailCount == 1 ? "" : "s") + " it’s replaced, but it sports a little something “extra.” You can control it just as easily as your old tail" + (oldTailCount == 1 ? "" : "s") + ", and you curl it around to observe the [pc.tailVagina] at its tip. While you can’t reach it on account of your tauric body, you imagine there are more than a few ways you could put such a conveniently-placed set of genitalia to use.");
+						output(" You can control it just as easily as your old tail" + (oldTailCount == 1 ? "" : "s") + ", and you curl it around to observe the [pc.tailVagina] at its tip. While you can’t reach it on account of your tauric body, you imagine there are more than a few ways you could put such a conveniently-placed set of genitalia to use.");
 					}
 					else
 					{
