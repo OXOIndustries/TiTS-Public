@@ -1351,8 +1351,8 @@ public function tieAndTeaseWithXanthe():void
 	{
 		output(" from behind. One of her six-fingered hands slips down to your ");
 	}
-	if(pc.hasVagina()) output("[pc.vaginas]");
-	else if(pc.hasCock()) output("[pc.hasCock]");
+	if(pc.hasVagina() && !pc.hasCock()) output("[pc.vaginas]");
+	else if(pc.hasCock() && !pc.hasVagina()) output("[pc.cocks]");
 	else output("loins");
 	output(" and pointedly teases ");
 	if(pc.totalGenitals() == 1) output("it");
@@ -1626,7 +1626,7 @@ public function shePaysAttentionToYouSlut():void
 	clearOutput();
 	showXanthe();
 	output("You beg with all your heart and soul, trying to show her just how much you want her to play with you. Deep down, you know your pleading makes no difference - your Mistress will do what she wants to do with you.");
-	output("\n\nStepping back, she walks around and runs her fingers teasingly down your spine. The gentle grazing of your [pc.skinFurScales] causes you to shiver with delight. Ever the tiniest of her touches plays you like an instrument.");
+	output("\n\nStepping back, she walks around and runs her fingers teasingly down your spine. The gentle grazing of your [pc.skinFurScales] causes you to shiver with delight. Even the tiniest of her touches plays you like an instrument.");
 	output("\n\n<i>“...I think I’ll turn you into my beautiful living canvas today.”</i> Xanthe leans in and kisses at the side of your neck. She sucks on the nape and then bites it, leaving a pointed kiss-sized bruise. <i>“I’m going to leave my marks on you. That way, when you’re travelling about, everyone will know who you REALLY belong to.”</i>");
 
 	output("\n\nThe thought of being possessively marked makes your [pc.legsNoun] quiver with delight. You want to be claimed, to be totally <i>owned</i> by her. People should know who you belong to, both in body and mind.");
