@@ -12,12 +12,14 @@
 	import classes.Items.Accessories.TamWolfDamaged;
 	import classes.Items.Accessories.TamWolfII;
 	import classes.Items.Armor.GooArmor;
+	import classes.Items.Armor.InsulatedCoat;
 	import classes.Items.Armor.Unique.Omnisuit;
 	import classes.Items.Guns.MyrBow;
 	import classes.Items.Melee.Fists;
 	import classes.Items.Melee.Rock;
 	import classes.Items.Miscellaneous.EmptySlot;
 	import classes.Items.Miscellaneous.HorsePill;
+	import classes.Items.Miscellaneous.Cargobot;
 	import classes.Items.Transformatives.Clippex;
 	import classes.Items.Transformatives.Foxfire;
 	import classes.Items.Transformatives.Goblinola;
@@ -2255,7 +2257,8 @@
 		}
 		public function inventorySlots(): int {
 			var slots:int = 10;
-			if(accessory.shortName == "Cargobot") slots += 2;
+			if(accessory is Cargobot) slots += 2;
+			if(armor is InsulatedCoat) slots += 1;
 			if(hasPerk("Hidden Loot")) slots += 2;
 			return slots;
 		}
@@ -7209,13 +7212,14 @@
 			return vaginas[vIdx].looseness();
 		}
 		public function wettestVaginalWetness(): Number {
+			if(!hasVagina()) return -1;
 			var counter: Number = vaginas.length;
 			var index: Number = 0;
 			while (counter > 0) {
 				counter--;
 				if (vaginas[index].wetness() < vaginas[counter].wetness()) index = counter;
 			}
-			return vaginas[counter].wetness();
+			return vaginas[index].wetness();
 		}
 		public function driestVaginalWetness(): Number {
 			if(!hasVagina()) return -1;
@@ -7225,7 +7229,7 @@
 				counter--;
 				if (vaginas[index].wetness() > vaginas[counter].wetness()) index = counter;
 			}
-			return vaginas[counter].wetness();
+			return vaginas[index].wetness();
 		}
 		public function biggestVaginaIndex(): int {
 			if (vaginas.length == 0) return 0;

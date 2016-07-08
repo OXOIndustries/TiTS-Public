@@ -6,6 +6,11 @@
 	import classes.Items.Protection.ArcticWarfareBelt;
 	import classes.Items.Protection.JoyCoPremiumShield;
 	import classes.Items.Protection.SalamanderShield;
+	import classes.Items.Guns.HammerPistolScavenged;
+	import classes.Items.Melee.YappiStrap;
+	import classes.Items.Armor.InsulatedCoat;
+
+
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
 	import classes.GameData.CodexManager;
@@ -213,6 +218,12 @@
 			vaginas[0].wetnessRaw = 2 +rand(4);
 			credits = 200+rand(100);
 
+			//5% chance to drop shield generator
+			if(rand(20) == 0) inventory.push(shield.makeCopy());
+			//5% chance of yappstrapp
+			if(rand(20) == 0) inventory.push(new YappiStrap());
+			//5% chance of InsulatedCoat
+			if(rand(20) == 0) inventory.push(new InsulatedCoat());
 			/*
 			if (rand(10) == 0)
 			{
