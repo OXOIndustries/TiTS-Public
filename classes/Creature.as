@@ -15771,9 +15771,10 @@
 			var o:int = -1;
 			//Place to store draining notices.
 			var notice:String = "";
-			var amountVented:Number
+			var amountVented:Number;
 			var removals:Array = new Array();
 			var cumDrain:Boolean = !hasPerk("No Cum Leakage");
+			var amountStored:Number = 0;
 
 			//Find the index value for various types of cumflation.
 			for(var x:int = 0; x < statusEffects.length; x++)
@@ -15782,12 +15783,15 @@
 				{
 					case "Anally-Filled":
 						a = x;
+						amountStored += statusEffects[a].value1;
 						break;
 					case "Vaginally-Filled":
 						z = x;
+						amountStored += statusEffects[z].value1;
 						break;
 					case "Orally-Filled":
 						o = x;
+						amountStored += statusEffects[o].value1;
 						break;
 				}
 			}
@@ -15799,12 +15803,13 @@
 					//Figure out how much cum is vented over time.
 					//Should vent 1/2 the current amount over 30 minutes
 					//+a small amount based off the maximum amount full you've been for this proc.
-					amountVented = statusEffects[z].value1 / 4 / 2 + statusEffects[z].value2 / 48
+					amountVented = statusEffects[z].value1 / 4 / 2 + statusEffects[z].value2 / 48;
 					//Mult times minutes passed
 					amountVented *= timePassed/60;
 					//trace("CURRENT CUM BANKED: " + statusEffects[z].value1 + " VENTING: " + amountVented);
 					//Apply to actual status
 					statusEffects[z].value1 -= amountVented;
+					amountStored -= amountVented;
 				}
 				//Special notices!
 				if(this is PlayerCharacter && notice == "")
@@ -15854,11 +15859,12 @@
 					//Figure out how much cum is vented over time.
 					//Should vent 1/2 the current amount over 30 minutes
 					//+a small amount based off the maximum amount full you've been for this proc. 
-					amountVented = statusEffects[a].value1 / 4 / 2 + statusEffects[a].value2 / 48
+					amountVented = statusEffects[a].value1 / 4 / 2 + statusEffects[a].value2 / 48;
 					//Mult times minutes passed
 					amountVented *= timePassed/60;
 					//Apply to actual status
 					statusEffects[a].value1 -= amountVented;
+					amountStored -= amountVented;
 				}
 				//Special notices!
 				if(this is PlayerCharacter && notice == "")
@@ -15908,11 +15914,12 @@
 					//Figure out how much cum is vented over time.
 					//Should vent 1/2 the current amount over 30 minutes
 					//+a small amount based off the maximum amount full you've been for this proc. 
-					amountVented = statusEffects[o].value1 / 8 / 2 + statusEffects[o].value2 / 48
+					amountVented = statusEffects[o].value1 / 8 / 2 + statusEffects[o].value2 / 48;
 					//Mult times minutes passed
 					amountVented *= timePassed/60;
 					//Apply to actual status
 					statusEffects[o].value1 -= amountVented;
+					amountStored -= amountVented;
 				}
 				//Special notices!
 				if(this is PlayerCharacter)
@@ -15925,7 +15932,7 @@
 					if(hairType == GLOBAL.HAIR_TYPE_GOO) addBiomass(amountVented);
 					if(hasPerk("Honeypot"))
 					{
-						kGAMECLASS.honeyPotBump();
+						if(amountVented > 0) kGAMECLASS.honeyPotBump();
 						if(amountVented >= 500) kGAMECLASS.honeyPotBump();
 						if(amountVented >= 1000) kGAMECLASS.honeyPotBump();
 						if(amountVented >= 2000) kGAMECLASS.honeyPotBump();
@@ -15951,7 +15958,20 @@
 				removeStatusEffect(removals[0]);
 				removals.splice(0,1);
 			}
-			kGAMECLASS.eventBuffer += ParseText(notice);
+			if(notice != "")
+			{
+				if(hasStatusEffect("Omit Cumflation Messages")) return;
+				
+				kGAMECLASS.eventBuffer += ParseText(notice);
+				
+				if(amountStored >= (25000 / 4 / 2))
+				{
+					var delayTime:int = 30 * Math.floor(amountStored / 25000);
+					if(delayTime > 240) delayTime = 240;
+					if(delayTime < 30) delayTime = 30;
+					createStatusEffect("Omit Cumflation Messages", 0, 0, 0, 0, true, "Icon_Sperm_Hearts", "Cumflation messages are currently disabled.", false, delayTime);
+				}
+			}
 		}
 
 		/**
