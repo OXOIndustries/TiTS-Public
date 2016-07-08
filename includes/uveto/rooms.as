@@ -949,8 +949,8 @@ public function initUvetoRooms():void
 	rooms["UVIP T36"].westExit = "UVIP R36";
 	rooms["UVIP T36"].moveMinutes = 6;
 	rooms["UVIP T36"].addFlag(GLOBAL.ICYTUNDRA);
-	rooms["UVIP T36"].addFlag(GLOBAL.HAZARD);
-	rooms["UVIP T36"].runOnEnter = TundraEncounterBonus;
+	//rooms["UVIP T36"].addFlag(GLOBAL.HAZARD);
+	//rooms["UVIP T36"].runOnEnter = TundraEncounterBonus;
 
 	/* BLU ROOM */
 	rooms["UVIP R36"] = new RoomClass(this);
@@ -1230,8 +1230,8 @@ public function initUvetoRooms():void
 	rooms["UVIP J20"].westExit = "UVIP H20";
 	rooms["UVIP J20"].moveMinutes = 1;
 	rooms["UVIP J20"].addFlag(GLOBAL.CAVE);
-	rooms["UVIP J20"].addFlag(GLOBAL.HAZARD);
-	rooms["UVIP J20"].runOnEnter = TundraEncounterBonus;
+	//rooms["UVIP J20"].addFlag(GLOBAL.HAZARD);
+	//rooms["UVIP J20"].runOnEnter = TundraEncounterBonus;
 
 	rooms["UVIP J18"] = new RoomClass(this);
 	rooms["UVIP J18"].roomName = "ICE-HEWN\nCAVERN";
@@ -1241,8 +1241,8 @@ public function initUvetoRooms():void
 	rooms["UVIP J18"].southExit = "UVIP J20";
 	rooms["UVIP J18"].moveMinutes = 1;
 	rooms["UVIP J18"].addFlag(GLOBAL.CAVE);
-	rooms["UVIP J18"].addFlag(GLOBAL.HAZARD);
-	rooms["UVIP J18"].runOnEnter = TundraEncounterBonus;
+	//rooms["UVIP J18"].addFlag(GLOBAL.HAZARD);
+	//rooms["UVIP J18"].runOnEnter = TundraEncounterBonus;
 
 	rooms["UVIP H24"] = new RoomClass(this);
 	rooms["UVIP H24"].roomName = "SNOWBANK\nSOUTH";
