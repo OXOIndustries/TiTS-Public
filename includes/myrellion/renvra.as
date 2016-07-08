@@ -140,7 +140,7 @@ public function talkToRenvraAboutHerRaceBecauseSheIsBasicallyAnEndgameCoCCharact
 		//Unfucked & locked codex
 		if(flags["RENVRA_SEXED"] == undefined) 
 		{
-			output("\n\nGlancing between her and her package, you ask if Renvra herself has spikes her on cock. You get an amused look from the halfbreed, and she shifts a bit to emphasize her bulge.");
+			output("\n\nGlancing between her and her package, you ask if Renvra herself has spikes on her cock. You get an amused look from the halfbreed, and she shifts a bit to emphasize her bulge.");
 			output("\n\n<i>“Wanna find out, offworlder? I’m overdue for a break.”</i>");
 		}
 		else

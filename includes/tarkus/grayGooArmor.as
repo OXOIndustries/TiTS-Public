@@ -458,9 +458,9 @@ public function gooDickFap():void
 		output(" in a geyser of jizz within");
 		if (pc.cocks.length == 1) output(" its");
 		else output(" their");
-		output(" gooy confines.");
+		output(" gooy confines");
 	}
-	output(" Your eyes cross, body going limp as you’re fucked hard, filled with gooey jizz and forced to reciprocate in kind");
+	output(". Your eyes cross, body going limp as you’re fucked hard, filled with gooey jizz and forced to reciprocate in kind");
 	if (pc.hasCock() && pc.hasVagina()) output(", feeding your amorous goo-girl with your ejaculate");
 	output(".");
 	

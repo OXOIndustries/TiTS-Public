@@ -440,7 +440,7 @@ public function celiseDoesSomeAnalMilking():void {
 	output("\n\n<i>“Are you sure you sure, Captain [pc.name]?”</i> Celise moans in enjoyment. <i>“I - ohhhh - don’t think I’ll be able to stop once I start.”</i> Her whole form jiggles with quakes of enjoyment.");
 	output("\n\nNodding, you cry, <i>“Yes! I can’t wait any longer!”</i>");
 	
-	output("\n\nStarting at the base of the mound encircling you, vibrations begin ripple up the emerald cock-milker’s body. You can feel it rippling around your [pc.legOrLegs], squeezing and sliding over so fast that it feels like a constant massage. Then, it moves up to your crotch, rubbing every part of you so nicely except for your [pc.cocks], which ");
+	output("\n\nStarting at the base of the mound encircling you, vibrations begin to ripple up the emerald cock-milker’s body. You can feel it rippling around your [pc.legOrLegs], squeezing and sliding over so fast that it feels like a constant massage. Then, it moves up to your crotch, rubbing every part of you so nicely except for your [pc.cocks], which ");
 	if(pc.cockTotal() == 1) output("is hanging exposed in an empty chamber");
 	else output("are hanging exposed in empty chambers");
 	output(", dripping strands of pre-protein to feed Celise. Shaking its way past your [pc.asshole], the thrumming, massaging pressure spreads into the prostate-shrouding goo inside you, battering the sensitive organ with pleasure until your body is spurting tiny ropes of [pc.cum] into the ready goo-tank");
@@ -1482,8 +1482,8 @@ public function zeiksCeliseSubmersionTechnique():void
 	if(!pc.isSquirter() && pc.cumQ() < 1000) output("partially");
 	//(big cum/squirter)
 	else output("completely");
-	if(pc.hasCock()) output("[pc.cumColor]");
-	else output("[pc.girlCumColor]");
+	if(pc.hasCock()) output(" [pc.cumColor]");
+	else output(" [pc.girlCumColor]");
 	output(". ");
 	if(pc.libido() < 40) 
 	{

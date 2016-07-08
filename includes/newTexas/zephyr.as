@@ -146,7 +146,7 @@ public function mutualHandJobsWithZephyr():void
 	clearOutput();
 	showZephyrDeets(true);
 	//Maybe she just laughs at you if you suggest this. Or maybe mutual handjob?
-	output("You mention that you would mind helping her relieve some of the pressure that she’s undoubtedly built up... if she does the same for you.");
+	output("You mention that you wouldn’t mind helping her relieve some of the pressure that she’s undoubtedly built up... if she does the same for you.");
 	output("\n\nZephyr sighs and pats the top of her desk. <i>“Handjobs are just masturbation masquerading as something fun, but I guess its better than holding it in all day.”</i> She flicks a catch on the side of her skirt, pulling the offending fabric out of the way. She’s not wearing any panties. Her dog-cock is only partway hard, and it’s already jutting up a good seven inches or so. It’s still growing before your eyes, already leaking a strand of pre-cum down the underside. She must be really pent up!");
 	output("\n\nThe amazon glares at you. <i>“You can stare at my dick while you’re jacking me off. Get over here.”</i> She thumps her hand on the table, making a variety of writing implements nearly jump out of their container. <i>“Come on. I don’t wanna spend all day fucking around like the Governor.”</i>");
 	output("\n\nYou ");

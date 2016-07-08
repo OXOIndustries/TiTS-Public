@@ -739,7 +739,7 @@ public function hugNaynaGogogo():void
 		else output("latex-encased");
 		output(" boobs, nearly suffocating you in tit. ");
 		if(naynaWarm()) output("Her parka might do a decent job of hiding it, but with the tight embrace, you can feel something stiffening down below at the memory of a previous encounter.");
-		else output("Her sheer black undersuit doesn’t do much to hide to too-thick length of her pony prick. The glossy surface actually seems to accentuate it. It would seem the formerly chaste scientist can’t help but get aroused by your presence ever since that special hug.");
+		else output("Her sheer black undersuit doesn’t do much to hide the too-thick length of her pony prick. The glossy surface actually seems to accentuate it. It would seem the formerly chaste scientist can’t help but get aroused by your presence ever since that special hug.");
 		output("\n\nIt sounds like she’s up for anything.");
 		//Sex menu display here!
 		naynaSexMenu();

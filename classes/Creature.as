@@ -13175,11 +13175,11 @@
 			} else if (InCollection(arg, GLOBAL.FLUID_TYPE_HONEY, GLOBAL.FLUID_TYPE_NECTAR)) {
 				collection = ["amber","amber","amber","amber","amber","yellow","yellow","yellow","gold","tawny"];
 			} else if (arg == GLOBAL.FLUID_TYPE_OIL) {
-				collection = ["semi-transparent","semi-transparent","semi-transparent","semi-transparent","semi-transparent","transluscent brown","transluscent brown","transluscent brown","lucent","lucent"];
+				collection = ["semi-transparent","semi-transparent","semi-transparent","semi-transparent","semi-transparent","translucent brown","translucent brown","translucent brown","lucent","lucent"];
 			} else if (arg == GLOBAL.FLUID_TYPE_MILKSAP) {
 				collection = ["whitish-yellow","whitish-yellow","whitish-yellow","whitish-yellow","whitish-yellow","ivory gold","ivory gold","ivory gold","off-white","off-white"];
 			} else if (arg == GLOBAL.FLUID_TYPE_GIRLCUM) {
-				collection = ["transluscent","transluscent","transluscent","transluscent","transluscent","clear","clear","clear","semi-transparent","semi-transparent"];
+				collection = ["translucent","translucent","translucent","translucent","translucent","clear","clear","clear","semi-transparent","semi-transparent"];
 			} else if (arg == GLOBAL.FLUID_TYPE_CUMSAP) {
 				collection = ["off-white","off-white","off-white","off-white","off-white","pearl-marbled amber","pearl-marbled amber","pearl-marbled amber","ivory-amber","ivory-amber"];
 			} else if (InCollection(arg, GLOBAL.FLUID_TYPE_CHOCOLATE_MILK, GLOBAL.FLUID_TYPE_CHOCOLATE_CUM)) {
@@ -15654,7 +15654,7 @@
 								//Treatment finishing.
 								case "The Treatment":
 									kGAMECLASS.eventBuffer += "\n\n<b>The Treatment is over.</b> You aren’t sure why or how you know, but you know it all the same. Well, there’s nothing left to do but enjoy your enhanced body to the fullest! ...While hunting for Dad’s probes, of course. It’s the best way to meet sexy new aliens.";
-									kGAMECLASS.eventBuffer += "\n\nOnce you claim you fortune, you can retire on New Texas, maybe even get your own private milker.";
+									kGAMECLASS.eventBuffer += "\n\nOnce you claim your fortune, you can retire on New Texas, maybe even get your own private milker.";
 									break;
 								//Sterilex/Infertile ends!
 								case "Infertile":

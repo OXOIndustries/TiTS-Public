@@ -339,6 +339,18 @@ public function defeatDaKorgiShit():void
 	//Requires taur + dick/balls or vagina.
 	if(pc.isTaur() && (pc.hasVagina() || (pc.hasCock() && pc.balls > 0))) addButton(4,"Sit On Her",sitOnKorgiForTaurs,undefined,"Sit On Her","Only centaurs are going to be able to do this.");
 	else addDisabledButton(4,"Sit On Her","Sit On Her","You need to be a centaur with a vagina or a centaur with balls and a penis for this.");
+	
+	addButton(14,"Leave",defeatDaKorgiLeave);
+}
+
+public function defeatDaKorgiLeave():void
+{
+	clearOutput();
+	showKorgiFemaleHostile();
+	output("On second thought, you think it would be best to leave, so you do.");
+	processTime(1);
+	output("\n\n");
+	CombatManager.genericVictory();
 }
 
 //Requires taur + dick/balls or vagina.
