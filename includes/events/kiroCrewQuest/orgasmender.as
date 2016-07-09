@@ -188,7 +188,7 @@ public function climbIntoTheDamnedTank():void
 		if(pc.totalClits() > 1) output("s");
 		output(" getting so firm and sensitive, caressed by the exterior of your own slit");
 		if(pc.totalVaginas() > 1) output("s");
-		output(" until it’s impossible think of anything besides your cunt");
+		output(" until it’s impossible to think of anything besides your cunt");
 		if(pc.totalVaginas() > 1) output("s");
 		if(pc.hasCock())
 		{
@@ -197,7 +197,7 @@ public function climbIntoTheDamnedTank():void
 		}
 		output(". Your whole world is between your legs, focused on the impossible, inexplicably erotic feeling of your organ");
 		if(pc.totalGenitals() > 1) output("s");
-		output(" filling up, bloating so much need that it threatens you undermine your relaxation.");
+		output(" filling up, bloated with so much need that it threatens you to undermine your relaxation.");
 	}
 	//No crotch dick/vag
 	if(!pc.hasGenitals())
@@ -234,7 +234,7 @@ public function climbIntoTheDamnedTank():void
 		output("\n\n[pc.Milk] spills out of your [pc.nipples].");
 		if(!pc.canMilkSquirt()) output(" You didn’t feel that full when you got in...");
 		output(" It feels better than your other milkings anyway. There’s no pain or tenderness, just the simple, relieving feeling of continually venting lactic pressure. The longer it goes on, the more you become aware of your [pc.nipples] swelling, jutting out into the tank like teats, still spilling [pc.milk]. As a matter of fact, you don’t feel any more empty than when you got in. You’re just squirting and squirting, your body somehow drawing nutrients from the pink sludge in order to lactate forever.");
-		output("\n\nMoaning into your mask, you try to arch your back in pleasure, to thrust your jetting tits further forward, but all you manage is a slight twitch. Control over your muscles is gone, replaced with the sensory barrage from below the and the constant, lovely squirting from your udders. The only thing that would make it better would be if something clamped down on your chest and started to pump you even faster, though whether it takes the shape of a pair of hungry lips or a sucking tendril matters as much to you as the current stock price of JoyCo.");
+		output("\n\nMoaning into your mask, you try to arch your back in pleasure, to thrust your jetting tits further forward, but all you manage is a slight twitch. Control over your muscles is gone, replaced with the sensory barrage from below and the constant, lovely squirting from your udders. The only thing that would make it better would be if something clamped down on your chest and started to pump you even faster, though whether it takes the shape of a pair of hungry lips or a sucking tendril matters as much to you as the current stock price of JoyCo.");
 	}
 	//Parasite tail
 	if(pc.hasParasiteTail())
@@ -319,7 +319,7 @@ public function orgasmenderScene2():void
 			if(pc.totalVaginas() == 1) output("an ");
 			output("immense prick");
 			if(pc.totalVaginas() > 1) output("s");
-			output(" spreading your open and pouring ");
+			output(" spreading you open and pouring ");
 			if(pc.totalVaginas() > 1) output("themselves");
 			else output("itself");
 			output(" inside, the shining surface rippling enticingly as it burrows itself fully into your cunt");
@@ -370,7 +370,7 @@ public function orgasmenderScene2():void
 	//Lactic Nipples
 	else if(pc.canLactate() || pc.isLactating())
 	{
-		output("\n\nSomething encloses your leaking [pc.nipples] - something large and hollow. It seals down around your spurting areolae, capturing your [pc.milk] before it can pollute the pink sludge any further. As soon as the seal is secure, they start to suck, yanking on you [pc.nipples], making them longer and fatter, the better to express their lactic cargo. It feels like your boobs are ejaculating, squirting long lances of [pc.milk] into the suck-hungry tentacles, feeding them your endless bounty.");
+		output("\n\nSomething encloses your leaking [pc.nipples] - something large and hollow. It seals down around your spurting areolae, capturing your [pc.milk] before it can pollute the pink sludge any further. As soon as the seal is secure, they start to suck, yanking on your [pc.nipples], making them longer and fatter, the better to express their lactic cargo. It feels like your boobs are ejaculating, squirting long lances of [pc.milk] into the suck-hungry tentacles, feeding them your endless bounty.");
 		output("\n\nIt’s perfect, a sense of constant relief that never gets old mixed with a hint of sensuous delight. You could cum from this alone in time you’re sure, but between this and what’s going on down south, you don’t know how long you can hold onto your sanity. Every caress, every squeeze - it’s all answered by more gushes of milk, drowning out your thoughts in horny yet contented bliss. If you could, you’d sign up to do this every day, just give milk and cum your brains out for the rest of eternity... Stars, you’re so close to cumming!");
 	}
 	processTime(30);

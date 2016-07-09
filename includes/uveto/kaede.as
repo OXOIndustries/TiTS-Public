@@ -77,7 +77,7 @@ public function uvetoKaedeSure():void
 	
 	output("\n\nShe laughs when you mention it, turning back towards the station. <i>“I guess. Silly, right? Maybe I’m just attracted because it’s an ausar colony.”</i>");
 	
-	output("\n\nMaybe, though Uveto does have a sort of primal beauty to it. Kaede gives you a blue-lipped smile and sashays ahead onto the sweeping circular arc of Uveto Station. The pedestrian way leads you around the titanic chamber of the space elevator, which pumps billows cold air in your direction as you pass by even a good fifty feet away. Several spacers around it huddle underneath heavy jackets, recoiling away as the doors slide open and a pair of leithans covered in fur coats come out with a hover-loader carried between them. Like Kaede’s cargo, it’s marked with the RhenWorld logo.");
+	output("\n\nMaybe, though Uveto does have a sort of primal beauty to it. Kaede gives you a blue-lipped smile and sashays ahead onto the sweeping circular arc of Uveto Station. The pedestrian way leads you around the titanic chamber of the space elevator, which pumps billows of cold air in your direction as you pass by even a good fifty feet away. Several spacers around it huddle underneath heavy jackets, recoiling away as the doors slide open and a pair of leithans covered in fur coats come out with a hover-loader carried between them. Like Kaede’s cargo, it’s marked with the RhenWorld logo.");
 	
 	output("\n\nThe two of you get some distance from the frigid elevator and over to the cafe. Half of the corridor is taken up by tables and chairs, many facing towards the small cut-away in the bulkhead where the counter is. Kaede ushers you to one of the tables and takes a seat across from you, swinging her arms behind her head.");
 	
@@ -626,7 +626,7 @@ public function uvetoKaedeFuckHerAss(fuckedHer:Boolean = false):void
 	if (cIdx == -1) cIdx = pc.smallestCockIndex();
 
 	output("Considering");
-	if (fuckedHer) output(" two two of you skipped right to the fun stuff");
+	if (fuckedHer) output(" the two of you skipped right to the fun stuff");
 	else output(" didn’t even put your cock to use");
 	output(" last time, you’re more that content to let your submissive shemale lover slurp and suck to her heart’s content. Turns out the old spacer myth about dog-girls and bones is true, the way Kaede greedily handles your [pc.cock "+cIdx+"]: she eagerly kisses and caresses your [pc.cockHead "+cIdx+"], slurps at your shaft, and");
 	if (pc.balls > 0) output(" fondles your [pc.balls]");
@@ -657,7 +657,7 @@ public function uvetoKaedeFuckHerAss(fuckedHer:Boolean = false):void
 
 	output("\n\nYou grin, happy that Kaede loves what you’re doing to her so much. Giving her an affectionate boob-squeeze, you press yourself flush against her arched back and start to work your hands on her, thrusting your digits on one hand deep and groping and squeezing every tender spot outside with the other. It barely takes any effort to get Kaede moaning and pushing back against your buried fingers, but it’s the rhythmic <i>thump-thump</i> of her cock throbbing, slapping weakly against the wall that really tells you just how much your lusty lover’s enjoying it. Her prick bounces to the quickening beat of her heart, an undeniable and primal display of her desire... and her absolute, utter acquiescence to your control. Even without a single tender touch, you’ve gotten your lover rock hard and desperate for your touch, moaning and wiggling her svelte behind for you as if to tempt you into giving her more.");
 	
-	output("\n\nWith Kaede so willingly putting herself at your mercy, you can’t help but want to fulfil her every carnal desire. You pull out of her, letting the shower-head clean your fingers, and grab your [pc.cock]. Your teasing, and the blowjob that preceded it, has left you almost as hard as Kaede is, and it’s practically effortless to align yourself with the wipe-open dark star between your lover’s ass cheeks.");
+	output("\n\nWith Kaede so willingly putting herself at your mercy, you can’t help but want to fulfil her every carnal desire. You pull out of her, letting the shower-head clean your fingers, and grab your [pc.cock]. Your teasing, and the blowjob that preceded it, has left you almost as hard as Kaede is, and it’s practically effortless to align yourself with the wide-open dark star between your lover’s ass cheeks.");
 	
 	output("\n\n<i>“G-give it to me,”</i> Kaede breathes huskily, biting her lip as she feels your [pc.cockHead "+cIdx+"] starting to spread her open. <i>“Ohgodyeeessss!”</i>");
 
@@ -687,7 +687,7 @@ public function uvetoKaedeFuckHerAss(fuckedHer:Boolean = false):void
 	
 	output("\n\nYou’re not far behind yourself, now that you think about it. The way Kaede’s tight little tail-hole squeezes and kneads your member with every thrust, milking you as eagerly as any cum-thirsty quim, is driving you ever more wild with lust. All you can do to sate yourself now, though, is grab two handfuls of Kaede’s plush behind and spread her wide, hammering yourself as deep in as you can possibly go until the pleasure finally overwhelms you - and your lover.");
 	
-	output("\n\n<i>“Gonna... gonna... ohfuck!”</i> Kaede cries a moment before you announce your own climax. She cries out in absolute bliss, throwing her head back and letting you ream her to orgasm. Thick streaks of white ausar cream shoot straight down from her untouched prick, splattering across her feet as you milk her much-abused prostate for everything it’s got. Her climax brings your on as sure as sunrise, though, as her ass squeezes down so forcefully around your [pc.cock] that you can’t help but give the randy pup what her hole’s been craving all this time.");
+	output("\n\n<i>“Gonna... gonna... ohfuck!”</i> Kaede cries a moment before you announce your own climax. She cries out in absolute bliss, throwing her head back and letting you ream her to orgasm. Thick streaks of white ausar cream shoot straight down from her untouched prick, splattering across her feet as you milk her much-abused prostate for everything it’s got. Her climax brings yours on as sure as sunrise, though, as her ass squeezes down so forcefully around your [pc.cock] that you can’t help but give the randy pup what her hole’s been craving all this time.");
 
 	output("\n\nWith a grunt of climactic pleasure, you");
 	if (pc.cockVolume(cIdx) <= 250) output(" hilt yourself in Kaede’s ass");
@@ -699,7 +699,7 @@ public function uvetoKaedeFuckHerAss(fuckedHer:Boolean = false):void
 	else output(" spurt of all the cum you can muster, plastering the walls of Kaede’s cock-holster with seed");
 	output(". You stay buried in her, letting Kaede’s own spasming muscles drain your [pc.cock "+cIdx+"] dry until she’s finally calmed down from her own climax, still drooling white puppy cream from the tip of her red rocket.");
 
-	output("\n\n<i>“O-oh,”</i> is all she can manage to say before you drag yourself out of her, making Kaede’s cock just one last time before you pop wetly out of her well-fucked asshole. A steady trickle of [pc.cumColor] cream follows you out, splattering on the deck behind her and mixing with her own sizable mess. For someone with the tightest little trap-pouch you’ve ever seen, Kaede sure cums like a champ - there’s a puddle of sticky white plastered all between her legs, and her knot’s not even soft yet.");
+	output("\n\n<i>“O-oh,”</i> is all she can manage to say before you drag yourself out of her, making Kaede’s cock jump one last time before you pop wetly out of her well-fucked asshole. A steady trickle of [pc.cumColor] cream follows you out, splattering on the deck behind her and mixing with her own sizable mess. For someone with the tightest little trap-pouch you’ve ever seen, Kaede sure cums like a champ - there’s a puddle of sticky white plastered all between her legs, and her knot’s not even soft yet.");
 	
 	output("\n\nChuckling to yourself, you let your fatigue take over and slump against Kaede’s back, keeping her pinned where she belongs: between you and the cum-soaked walls. She gives you a husky little moan, craning her neck around to demand a kiss that you happily grant her.");
 	
