@@ -11244,7 +11244,7 @@
 			//BUILD DESCRIPTIONS
 			//TIGHTNESS/LOOSENESS FIRST
 			//Figure out chance of tightness desc
-			var currLooseness:Number = vag.looseness();
+			var currLooseness:Number = Math.round(vag.looseness());
 			if(currLooseness != 2) bonus = 16;
 			if(currLooseness >= 4) bonus = 10;
 			if(currLooseness == 5) bonus = 5;
@@ -11256,9 +11256,9 @@
 				//Bimbos get some 'special' tightness variants
 				if (isBimbo() && rand(3) == 0 && currLooseness != 3 && currLooseness != 2)
 				{
-					if(currLooseness == 5) desc += RandomInCollection(["awesomely gaped","gapey","loosey-goosey","size-queen-sized"]);
-					else if(currLooseness == 4) desc += RandomInCollection(["perfect","super loosey","totally awesome"]);
-					else if(currLooseness == 1) desc += RandomInCollection(["perky little","overly-tight","too-tight"]);
+					if(currLooseness >= 5) desc += RandomInCollection(["awesomely gaped","gapey","loosey-goosey","size-queen-sized"]);
+					else if(currLooseness >= 4) desc += RandomInCollection(["perfect","super loosey","totally awesome"]);
+					else if(currLooseness <= 1) desc += RandomInCollection(["perky little","overly-tight","too-tight"]);
 					loosenessDisplayed = true;
 					adjectiveCount++;
 				}
