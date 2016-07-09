@@ -4413,6 +4413,17 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				variousCount++;
 			}
+			// RhenWorld Offices
+			if(flags["RHENWORLD_OFFICE_VISITED"] != undefined)
+			{
+				output2("\n<b><u>RhenWorld Offices</u></b>");
+				if(9999 == 0) output2("\n<b>* Kyris:</b> Met her");
+				else output2("\n<b>* Secretary:</b> Met her");
+				if(flags["MET_RHENESUNNE"] != undefined)
+				{
+					output2("\n<b>* Anyxine Rhenesunne:</b> Met her");
+				}
+			}
 			// Irestead
 			if(flags["MET_ASTRA"] != undefined)
 			{
