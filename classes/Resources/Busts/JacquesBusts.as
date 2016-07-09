@@ -52,6 +52,9 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/jacques00/queen_fuzzlebottom.png", mimeType = "image/png")]
 		public var Bust_FUZZLEBOTTOM:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/jacques00/gray_goo.png", mimeType = "image/png")]
+		public var Bust_GRAY_GOO:Class;
+		
 		[Embed(source = "../../../assets/images/npcs/jacques00/gray_goo_prime.png", mimeType = "image/png")]
 		public var Bust_GRAY_GOO_PRIME:Class;
 		[Embed(source = "../../../assets/images/npcs/jacques00/gray_goo_prime_2.png", mimeType = "image/png")]
@@ -209,6 +212,9 @@ package classes.Resources.Busts
 			
 			[Embed(source = "../../../assets/images/npcs/jacques00/hr/queen_fuzzlebottom.png", mimeType = "image/png", compression = true)]
 			public var Full_FUZZLEBOTTOM:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/gray_goo.png", mimeType = "image/png", compression = true)]
+			public var Full_GRAY_GOO:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/jacques00/hr/gray_goo_prime.png", mimeType = "image/png", compression = true)]
 			public var Full_GRAY_GOO_PRIME:Class;
