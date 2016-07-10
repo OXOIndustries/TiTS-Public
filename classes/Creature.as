@@ -11262,7 +11262,7 @@
 			var currLooseness:Number = Math.round(vag.looseness());
 			if(currLooseness != 2) bonus = 16;
 			if(currLooseness >= 4) bonus = 10;
-			if(currLooseness == 5) bonus = 5;
+			if(currLooseness >= 5) bonus = 5;
 			if(currLooseness == 1) bonus = 5;
 			//Roll the dice on looseness descs
 			if (forceAdjectives || (adjectives && rand(100) < bonus))
