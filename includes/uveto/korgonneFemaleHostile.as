@@ -331,7 +331,7 @@ public function defeatDaKorgiShit():void
 
 	//[Tit Fuck]
 	//Needs cock
-	if(pc.hasCock() && pc.smallestCockIndex() < 42) addButton(1,"Tit Fuck",titfuckKorgonneWin,undefined,"Tit Fuck","A tightly bound chest like hers would be perfect for people with dicks.");
+	if(pc.hasCock() && pc.smallestCockLength() < 42) addButton(1,"Tit Fuck",titfuckKorgonneWin,undefined,"Tit Fuck","A tightly bound chest like hers would be perfect for people with dicks.");
 	else if(pc.hasCock()) addDisabledButton(1,"Tit Fuck","Tit Fuck","You're too big this. Maybe do something more appropriate to the size of your maleness.");
 	else addDisabledButton(1,"Tit Fuck","Tit Fuck","You need a penis to tit-fuck her.");
 
