@@ -4752,7 +4752,16 @@ public function displayEncounterLog(showID:String = "All"):void
 			if(flags["KQ2_SHADE_DEAD"] != undefined || flags["SHADE_DISABLED"] == 1) output2(", Inactive");
 			else if(flags["SHADE_IS_HOSTILE"] != undefined) output2(", She is hostile, <i>Whereabouts unknown</i>");
 			else if(shadeAtTheBar()) output2(", Active (On Myrellion)");
-			else if(flags["SHADE_ON_UVETO"] != undefined) output2(", Active (On Uveto)");
+			else if(flags["SHADE_ON_UVETO"] != undefined)
+			{
+				output2(", Active (On Uveto");
+				if(flags["SHADE_ON_UVETO"] > 1 || MailManager.isEntryViewed("letter_from_shade"))
+				{
+					if(shadeIsHome()) output2(", At Home");
+					else output2(", At Bar");
+				}
+				output2(")");
+			}
 			if(flags["SHADE_GOT_HELP_WITH_LAYING"] != undefined)
 			{
 				output2("\n<b>* Shade, Tail Cunt:</b> Helped her with laying egg");
