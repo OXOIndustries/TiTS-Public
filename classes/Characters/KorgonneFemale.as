@@ -204,7 +204,9 @@
 		{
 			//"Hard" level preferences.
 			sexualPreferences.setRandomPrefs(4 + rand(3),2);
-			sexualPreferences.setPref(GLOBAL.SEXPREF_COCKS,	GLOBAL.REALLY_LIKES_SEXPREF);
+			//Bigdick replaces normal dick love
+			if(kGAMECLASS.flags["KORGI_BIG_DICKED"] != undefined) sexualPreferences.setPref(GLOBAL.SEXPREF_COCKS, GLOBAL.REALLY_LIKES_SEXPREF);
+			else sexualPreferences.setPref(GLOBAL.SEXPREF_COCKS, GLOBAL.SEXPREF_HYPER);
 			
 			//Pick a shield generator
 			if(rand(4) == 0) this.shield = new ImprovisedShield();
