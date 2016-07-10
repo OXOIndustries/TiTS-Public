@@ -1889,6 +1889,12 @@
 				case "asshole":
 					buffer = assholeDescript();
 					break;
+				case "anusSimple":
+				case "assholeSimple":
+				case "anusNoun":
+				case "assholeNoun":
+					buffer = assholeDescript(true);
+					break;
 				case "buttDescript":
 				case "butt":
 				case "ass":
@@ -9701,12 +9707,12 @@
 			if (asPlural && balls != 1) desc = plural(desc);
 			return desc;
 		}
-		public function assholeDescript(): String {
+		public function assholeDescript(simple:Boolean = false): String {
 			var desc: String = "";
 			var rando: Number = 0;
 			var descripted: Number = 0;
 			//25% tightness desc
-			if (rand(4) == 0 || (ass.looseness() <= 1 && rand(4) <= 2)) {
+			if (((!simple || analVirgin) && rand(4) == 0) || ((!simple || analVirgin) && ass.looseness() <= 1 && rand(4) <= 2)) {
 				if (descripted > 0) desc += ", ";
 				if (analVirgin) {
 					if (rand(3) == 0) desc += "virgin";
@@ -9738,7 +9744,7 @@
 				descripted++;
 			}
 			//66% wetness description
-			if (rand(3) <= 1 && ass.wetness() >= 2) {
+			if (!simple && rand(3) <= 1 && ass.wetness() >= 2) {
 				if (descripted > 0) desc += ", ";
 				if (ass.wetness() <= 2) {
 					if (rand(2) == 0) desc += "moist";
@@ -9760,6 +9766,14 @@
 				}
 				descripted++;
 			}
+			// Puffy butt - 50% addition of no other descs - doesn't stack well with loose/wet.
+			if(descripted == 0 && (ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || ass.hasFlag(GLOBAL.FLAG_PUMPED)) && rand(2) == 0)
+			{
+				if (descripted > 0) desc += ", ";
+				if (!ass.hasFlag(GLOBAL.FLAG_PUMPED)) desc += RandomInCollection(["puffy", "plump", "fat", "crinkly", "soft", "spongy"]);
+				else desc += RandomInCollection(["puffy", "plump", "fat", "crinkly", "soft", "spongy", "huge", "pumped", "pillowy"]);
+				descripted++;
+			}
 			if(descripted == 0 && hasPerk("Buttslut") && rand(2) == 0)
 			{
 				if (descripted > 0) desc += ", ";
@@ -9770,7 +9784,8 @@
 			if (descripted > 0) desc += " ";
 			//Butt descriptor
 			rando = rand(18);
-			if (rando <= 2) desc += "ass";
+			if(!simple && (ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || ass.hasFlag(GLOBAL.FLAG_PUMPED)) && rand(4) == 0) desc += "donut";
+			else if (rando <= 2) desc += "ass";
 			else if (rando <= 5) desc += "anus";
 			else if (rando <= 7) desc += "pucker";
 			else if (rando <= 10) desc += "asshole";

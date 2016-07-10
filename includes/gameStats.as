@@ -580,7 +580,15 @@ public function statisticsScreen(showID:String = "All"):void
 		output2("\n<b>* Butt, Size Rating:</b> " + formatFloat(pc.buttRating(), 3));
 		output2("\n<b>* Butt, Weight:</b> " + prettifyWeight(pc.bodyPartWeight("butt")));
 		if(pc.weightQ("butt") > 0) output2(" (" + pc.weightQ("butt") + " %)");
-		output2("\n<b>* Anus:</b> 1, Asshole");
+		output2("\n<b>* Anus:</b> 1,");
+		if(pc.ass.vagooFlags.length > 0)
+		{
+			for(i = 0; i < pc.ass.vagooFlags.length; i++)
+			{
+				output2(" " + GLOBAL.FLAG_NAMES[pc.ass.vagooFlags[i]] + ",");
+			}
+		}
+		output2(" Asshole");
 		output2("\n<b>* Anus, Virginity:</b>");
 		if(pc.analVirgin) output2(" Virgin");
 		else output2(" Taken");
