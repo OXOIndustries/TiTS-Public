@@ -1427,7 +1427,7 @@ public function saendraStuffsHerFutacockInYourCunt():void
 
 	output("\n\nYou feel it before she says anything: a powerful throbbing all through her bristly kittycock, punctuated by a hot squirt of cum that fills the condom wrapped tight around her cock, ballooning the reservoir inside you like a second knot. Fuck it’s <i>hot</i>, straining against your pussy’s walls until you’re crying out, hips thrusting faster on their own, working to drain the halfbreed’s prick of all its seed. You barely notice your own orgasm rising amid the intense pleasure of your knotting; your cunt contracts around her cum-blasting cock, waves of pleasure rocking your body as Saen cums and cums, and you do too. ");
 
-	pc.loadInCunt(saendra, selCunt);
+	//pc.loadInCunt(saendra, selCunt);
 	pc.orgasm();
 	saendra.orgasm();
 

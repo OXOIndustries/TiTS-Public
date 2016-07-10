@@ -192,12 +192,21 @@ public function kq2RappelIn():void
 	
 	if (pc.isMischievous())
 	{
-		output("\n\n<i>“Oh, no, ladies first. I insist,”</i> you answer with a grin of your own. Kara rolls her eyes but agrees, grabbing the rope and sliding down out of sight. You follow her down a few seconds later");
-		if (!pc.isBiped()) output(", surprised that the rope can actually bear your bestial half’s weight");
+		output("\n\n<i>“Oh, no, ladies first. I insist,”</i> you answer with a grin of your own. Kara rolls her eyes but agrees, grabbing the rope and sliding down out of sight. You");
+		if (pc.hasWings() && pc.canFly()) output(" spread your [pc.wingsNoun] and");
+		output(" follow her down a few seconds later");
+		if (!pc.isBiped() && !(pc.hasWings() && pc.canFly())) output(", surprised that the rope can actually bear your bestial half’s weight");
 		output(".");
 	}
-	else output("\n\nYou nod and grab the rope.");
-	output(" The descent is slow going, taking you more than a hundred feet down from the plateau to the lowland surface. You hit dirt with a slight THUD,");
+	else
+	{
+		output("\n\nYou");
+		if (pc.hasWings() && pc.canFly()) output(" spread your [pc.wingsNoun] and jump.");
+		else output(" nod and grab the rope.");
+	}
+	output(" The descent is slow going, taking you more than a hundred feet down from the plateau to the lowland surface. You");
+	if (pc.hasWings() && pc.canFly()) output(" gracefully land on the dirt floor below,");
+	else output(" hit dirt with a slight THUD,");
 	if (pc.isMischievous()) output(" catching up to Kara");
 	else output(" joined by Kara a moment later");
 	output(". She looks around a moment, then nods toward the open maw of a cave entrance not far away. <i>“There we go. Should be a crack in the floor of that cavern that’ll drop us right into the base’s waste pumps. Just a short ways from there to the base interior. C’mon, let’s move.”</i>");

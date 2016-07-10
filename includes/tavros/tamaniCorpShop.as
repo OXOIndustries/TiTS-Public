@@ -881,7 +881,7 @@ public function lerrisTalkLactaid():void
 	output("\n\n<i>“Ooh, my favorite subject!”</i> Lerris teases, flicking her twin tails behind her. <i>“Well, favorite work subject, anyway. I mentioned I was all about Lactaid already, right? Right. My girlfriend and I had a baby a couple of years ago, and we both started lactating on our own, like kaithrit do when we have kids. But she was so busy with her job, well, I ended up doing most of the leg work in the, uh, baby feeding department. Lactaid is hands down the best thing ever if you want to have kids the old fashioned way, trust me. It’s not like normal, where you just sort of dribble a little unless you use a milker - no way! Lactaid makes it like those cow-girl pornos off of New Texas, just gushing milk like you’ve got a pair of tanks in your chest!”</i>");
 	
 	output("\n\nYou");
-	if (pc.libido() <= 33) output(" can’t help but blush as Lerris dumps that kind of detail on you");
+	if (pc.libido() <= 33) output(" can’t help but blush as Lerris dumps that kind of detail on you.");
 	else if (pc.isBro() || (pc.libido() >= 66 && pc.hasCock())) output(" feel a sudden rush in your crotch as Lerris dumps all that detail on you. Hot.");
 	else output(" blink at the sudden data-dump, shifting around as an unbidden heat spreads out from your loins.");
 	output(" Your eyes are drawn right to the cat-girl’s chest, and your thoughts flit inexorably to the milky bounty she’s hiding under her sexy jumpsuit.");
@@ -1065,7 +1065,7 @@ public function lerrisDrinkDatTittymilks():void
 	{
 		output("\n\n<i>“S-sorry,”</i> Lerris whines as one of your hands makes disappointed rubs and caresses around her hips. <i>“Just keep drinking and I’ll be hard again in no time. If you want that, anyway...”</i>");
 		
-		output("\n\nOh, you do. Your heart is pounding in your chest, burning with desire. Watching the kitty cream herself just from your suckling has practically driven your wild with lust, and you’re soon roaming your hands all over her body, groping at breasts and buttocks and every other tender spot you can imagine while your lips keep drinking.");
+		output("\n\nOh, you do. Your heart is pounding in your chest, burning with desire. Watching the kitty cream herself just from your suckling has practically driven you wild with lust, and you’re soon roaming your hands all over her body, groping at breasts and buttocks and every other tender spot you can imagine while your lips keep drinking.");
 		
 		output("\n\n<i>“That’s it,”</i> Lerris moans, bucking her hips in your lap. <i>“Oh, stars, this feels so good. Wh-why am I such a milk-slut, [pc.name]? Why does it feel so <b>good</b>!?”</i>");
 		

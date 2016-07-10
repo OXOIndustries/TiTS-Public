@@ -678,7 +678,7 @@ public function giveHerADrone():void
 		else if(pc.isMischievous()) output("I gotcha a present.");
 		else output("Don’t freak out or anything, but I found this for you.");
 		output("”</i>");
-		output("\n\nNayna clutches it to her chest, rocking it back and forth like a long lost baby. When she looks back at you, there are tears welling up at the corners of her eyes. <i>“I didn’t think you’d do this for me... not even when you said agreed to help. Do you remember what happened when we met? I nearly killed you!”</i> She sniffles, nose wrinkling cutely. <i>“I wish there was some way I could repay you, some way to let you know just how much this means to me.”</i> She gingerly puts down the drone. <i>“How about a hug?”</i>");
+		output("\n\nNayna clutches it to her chest, rocking it back and forth like a long lost baby. When she looks back at you, there are tears welling up at the corners of her eyes. <i>“I didn’t think you’d do this for me... not even when you agreed to help. Do you remember what happened when we met? I nearly killed you!”</i> She sniffles, nose wrinkling cutely. <i>“I wish there was some way I could repay you, some way to let you know just how much this means to me.”</i> She gingerly puts down the drone. <i>“How about a hug?”</i>");
 		
 	}
 	//REPEAT
@@ -739,7 +739,7 @@ public function hugNaynaGogogo():void
 		else output("latex-encased");
 		output(" boobs, nearly suffocating you in tit. ");
 		if(naynaWarm()) output("Her parka might do a decent job of hiding it, but with the tight embrace, you can feel something stiffening down below at the memory of a previous encounter.");
-		else output("Her sheer black undersuit doesn’t do much to hide to too-thick length of her pony prick. The glossy surface actually seems to accentuate it. It would seem the formerly chaste scientist can’t help but get aroused by your presence ever since that special hug.");
+		else output("Her sheer black undersuit doesn’t do much to hide the too-thick length of her pony prick. The glossy surface actually seems to accentuate it. It would seem the formerly chaste scientist can’t help but get aroused by your presence ever since that special hug.");
 		output("\n\nIt sounds like she’s up for anything.");
 		//Sex menu display here!
 		naynaSexMenu();

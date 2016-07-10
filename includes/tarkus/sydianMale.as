@@ -638,7 +638,7 @@ public function pcVagoosGetPlowedOpenByRustBrosAfterAphrodisiacs():void
 		}
 		output(". Much as you'd like to protest... the idea of taking that big, thick cock is seeming more and more appealing.");
 		
-		output("\n\nYour heart pounds, your [pc.legOrLegs] quiver, and the need grows unbidden until you realize just how badly you need to fuck - how deliriously urgent your need for a cock or a tongue has become. You'll do anything to sate the burning desires welling through you, even mate with a mysterious alien you just met, anything to quell the fires in your loins.");
+		output("\n\nYour heart pounds, your [pc.legOrLegs] quiver" + (pc.legCount == 1 ? "s" : "") + ", and the need grows unbidden until you realize just how badly you need to fuck - how deliriously urgent your need for a cock or a tongue has become. You'll do anything to sate the burning desires welling through you, even mate with a mysterious alien you just met, anything to quell the fires in your loins.");
 	}
 	//Lust
 	else

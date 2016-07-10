@@ -458,9 +458,9 @@ public function gooDickFap():void
 		output(" in a geyser of jizz within");
 		if (pc.cocks.length == 1) output(" its");
 		else output(" their");
-		output(" gooy confines.");
+		output(" gooy confines");
 	}
-	output(" Your eyes cross, body going limp as you’re fucked hard, filled with gooey jizz and forced to reciprocate in kind");
+	output(". Your eyes cross, body going limp as you’re fucked hard, filled with gooey jizz and forced to reciprocate in kind");
 	if (pc.hasCock() && pc.hasVagina()) output(", feeding your amorous goo-girl with your ejaculate");
 	output(".");
 	
@@ -925,6 +925,8 @@ public function gooArmorCrewOption(arg:Array):void
 			// Level 3
 			if(pc.level >= 3 && flags["GOO_ARMOR_CUSTOMIZE"] == undefined && InShipInterior() && !(pc.armor is GooArmor) && rand(4) == 0)
 			{
+				clearBust();
+				
 				txt += "Sensing your approach, [goo.name] quickly morphs into a shapeless blob and scoots a couple steps away from you. She suddenly reforms with her back turned to you, appearing in a slightly different guise than her normal self. Her hair is not in the loose, wavy fashion it normally is, but instead, it is tied in a low ponytail. The silvery companion doesn’t turn around, so you can’t tell if something is wrong.";
 				txt += "\n\nAfter a brief moment, you call to her. <i>“" + (pc.isBimbo() ? "Umm... [goo.name]?" : "Is something wrong, [goo.name]?") + "”</i> She doesn’t respond, but only wriggles a little... and your ears maybe catch a slight giggle? In any case, it seems like she wants you to approach her instead... So you do.";
 				

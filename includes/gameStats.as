@@ -580,7 +580,15 @@ public function statisticsScreen(showID:String = "All"):void
 		output2("\n<b>* Butt, Size Rating:</b> " + formatFloat(pc.buttRating(), 3));
 		output2("\n<b>* Butt, Weight:</b> " + prettifyWeight(pc.bodyPartWeight("butt")));
 		if(pc.weightQ("butt") > 0) output2(" (" + pc.weightQ("butt") + " %)");
-		output2("\n<b>* Anus:</b> 1, Asshole");
+		output2("\n<b>* Anus:</b> 1,");
+		if(pc.ass.vagooFlags.length > 0)
+		{
+			for(i = 0; i < pc.ass.vagooFlags.length; i++)
+			{
+				output2(" " + GLOBAL.FLAG_NAMES[pc.ass.vagooFlags[i]] + ",");
+			}
+		}
+		output2(" Asshole");
 		output2("\n<b>* Anus, Virginity:</b>");
 		if(pc.analVirgin) output2(" Virgin");
 		else output2(" Taken");
@@ -4412,6 +4420,17 @@ public function displayEncounterLog(showID:String = "All"):void
 					output2("\n<b>* Xotchi Tzall:</b> Met her");
 				}
 				variousCount++;
+			}
+			// RhenWorld Offices
+			if(flags["RHENWORLD_OFFICE_VISITED"] != undefined)
+			{
+				output2("\n<b><u>RhenWorld Offices</u></b>");
+				if(9999 == 0) output2("\n<b>* Kyris:</b> Met her");
+				else output2("\n<b>* Secretary:</b> Met her");
+				if(flags["MET_RHENESUNNE"] != undefined)
+				{
+					output2("\n<b>* Anyxine Rhenesunne:</b> Met her");
+				}
 			}
 			// Irestead
 			if(flags["MET_ASTRA"] != undefined)
