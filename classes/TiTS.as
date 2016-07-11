@@ -293,6 +293,7 @@
 		include "../includes/events/karaquest2/roomFunctions.as";
 		
 		// Uveto
+		include "../includes/uveto/freezer.as"
 		include "../includes/uveto/kaede.as";
 		include "../includes/uveto/korgonneFemaleHostile.as";
 		include "../includes/uveto/nayna.as";

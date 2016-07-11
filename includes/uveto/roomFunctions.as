@@ -619,19 +619,22 @@ public function templeStreetBonus():Boolean
 
 public function uvetoBarBonus():Boolean
 {
+	addButton(0, flags["MET_HANA"] == undefined ? "Bartender" : "Hana", approachHana);
+
 	//STEPH IRSON!
 	if(hours % 2 == 0) 
 	{
 		output("\n\nAn old-style videoscreen is on in the corner, displaying a perverted-looking show - Steph Irson, Galactic Huntress by the looks of it.");
-		addButton(0,"Watch",watchUvetoStephIrson,undefined,"Watch","It looks like the TV is currently running the latest episode of <i>Steph Irson: Galactic Huntress</i> if you'd care to watch.");
+		addButton(1,"Watch",watchUvetoStephIrson,undefined,"Watch","It looks like the TV is currently running the latest episode of <i>Steph Irson: Galactic Huntress</i> if you'd care to watch.");
 	}
 	else
 	{
 		output("\n\nAn old-style videoscreen is on in the corner, displaying a perverted-looking documentary about the infamous male ultraporn-star, Tank Kannon.");
-		addButton(0, "Watch", tankKannonBiopic, undefined, "Watch", "It looks like there's a biopic about the incredibly endowed ultraporn-star, Tank Kannon, on if you want to watch it.");
+		addButton(1, "Watch", tankKannonBiopic, undefined, "Watch", "It looks like there's a biopic about the incredibly endowed ultraporn-star, Tank Kannon, on if you want to watch it.");
 	}
+	
 	// Shade events.
-	meetingShadeAtUvetoBar(1);
+	meetingShadeAtUvetoBar(2);
 	return false;
 }
 
