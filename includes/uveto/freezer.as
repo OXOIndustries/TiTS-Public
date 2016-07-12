@@ -627,9 +627,14 @@ public function hanaFiresideRecovery():void
 	output("”</i> With that Hana wanders away, presumably to go back to her bar duties. As if she hadn’t just done anything at all - although the smile on her lips and whisk of her hips say otherwise. Ugh...");
 
 	flags["UVETO_FROZEN_RESCUE_TO_BAR"] = 1;
+	removeUvetoCold();
 	pc.lust(33);
 	pc.HP(pc.HPMax());
+	pc.energy(pc.energyMax());
 	processTime((4 * 60) + rand(30));
+
+	currentLocation = "UVI R32";
+	generateMap();
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);

@@ -331,40 +331,37 @@ public function tryApplyUvetoColdDamage(timeExposed:Number):Boolean
 		var actualDamage:TypeCollection = new TypeCollection( { freezing: coldDamage }, DamageFlag.BYPASS_SHIELD);
 		var damageResult:DamageResult = applyDamage(actualDamage, null, tPC, "suppress");
 		
-		if (damageResult.totalDamage > 0)
+		if (tPC.HP() > 0)
 		{
-			if (tPC.HP() > 0)
+			if (InRoomWithFlag(GLOBAL.ICYTUNDRA) || InRoomWithFlag(GLOBAL.OUTDOOR))
 			{
-				if (InRoomWithFlag(GLOBAL.ICYTUNDRA) || InRoomWithFlag(GLOBAL.OUTDOOR))
-				{
-					output("\n\nYou wrap your arms around yourself, desperately trying to fend off the overwhelming cold. The planet's freezing you to your bones");
-					if (!tPC.isNude()) output(", no matter how much clothing you wear");
-					else output(" -- and being naked, you've got next to no defense against the chill");
-					output(". You feel like you might collapse if you don't take shelter soon!");
-					outputDamage(damageResult);
-				}
-				else
-				{
-					output("\n\nThe cold on Uveto is absolutely piercing out here, with no walls or fluffy ausar to block the howling winds and free-flying shards of ice tearing across the rolling plains of ice and alien obsidian. You clutch your arms around yourself, trying to shield your body from the frigid cold, but to no avail. Shivering madly, you glance around in desperation: <b>you need to find shelter fast, or you're going to freeze!</b>");
-					outputDamage(damageResult);
-				}
+				output("\n\nYou wrap your arms around yourself, desperately trying to fend off the overwhelming cold. The planet's freezing you to your bones");
+				if (!tPC.isNude()) output(", no matter how much clothing you wear");
+				else output(" -- and being naked, you've got next to no defense against the chill");
+				output(". You feel like you might collapse if you don't take shelter soon!");
+				if (damageResult.totalDamage > 0) outputDamage(damageResult);
 			}
 			else
 			{
-				output("\n\nThe Uvetan cold chills you to your");
-				if (!tPC.isGoo()) output(" bones");
-				else output(" gooey core");
-				output(", making you shiver uncontrollably. No matter where you go, there's no stopping the incessant, numbing cold. It physically <i>hurts</i> to be out here, and the longer you stay, the more your vision blurs and blurs... ");
-
-				output("\n\nSuddenly, your [pc.foot] catches, and before you can realize what's happening you pitch forward, planting your face in the thick snow. You gasp, flailing your arms for a moment, but... you can't seem to find the energy -- the vital strength -- to pick yourself up again. Snow settles onto your back, still blowing over you with heartless, frigid force. Try as you might, you find yourself fading, eyes starting to close. So sleepy...");
-
-				output("\n\nBlackness takes you.");
-				outputDamage(damageResult);
-				
-				clearMenu();
-				addButton(0, "Next", uvetoFallToColdDamage);
-				return true;
+				output("\n\nThe cold on Uveto is absolutely piercing out here, with no walls or fluffy ausar to block the howling winds and free-flying shards of ice tearing across the rolling plains of ice and alien obsidian. You clutch your arms around yourself, trying to shield your body from the frigid cold, but to no avail. Shivering madly, you glance around in desperation: <b>you need to find shelter fast, or you're going to freeze!</b>");
+				if (damageResult.totalDamage > 0) outputDamage(damageResult);
 			}
+		}
+		else
+		{
+			output("\n\nThe Uvetan cold chills you to your");
+			if (!tPC.isGoo()) output(" bones");
+			else output(" gooey core");
+			output(", making you shiver uncontrollably. No matter where you go, there's no stopping the incessant, numbing cold. It physically <i>hurts</i> to be out here, and the longer you stay, the more your vision blurs and blurs... ");
+
+			output("\n\nSuddenly, your [pc.foot] catches, and before you can realize what's happening you pitch forward, planting your face in the thick snow. You gasp, flailing your arms for a moment, but... you can't seem to find the energy -- the vital strength -- to pick yourself up again. Snow settles onto your back, still blowing over you with heartless, frigid force. Try as you might, you find yourself fading, eyes starting to close. So sleepy...");
+
+			output("\n\nBlackness takes you.");
+			if (damageResult.totalDamage > 0) outputDamage(damageResult);
+			
+			clearMenu();
+			addButton(0, "Next", uvetoFallToColdDamage);
+			return true;
 		}
 	}
 	
@@ -551,7 +548,14 @@ public function uvetoFallToColdDamage():void
 
 	//[Next] // Awaken in the medical center
 	clearMenu();
-	addButton(0, "Next", uvetoAwakenInMedCenter, rescuer);
+	if (pc.isBiped())
+	{
+		addButton(0, "Next", hanaFiresideRecovery);
+	}
+	else
+	{
+		addButton(0, "Next", uvetoAwakenInMedCenter, rescuer);
+	}
 }
 
 public function uvetoAwakenInMedCenter(rescuer:String):void
