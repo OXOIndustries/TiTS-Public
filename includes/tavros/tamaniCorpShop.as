@@ -100,6 +100,13 @@ public function lerrisMenu():void
 
 public function lerrisProducts():void
 {
+	// Unlocks
+	if(flags["PLANET_3_UNLOCKED"] != undefined) // Lerris after clearing Tarkus makes sense.
+	{
+		if(!chars["LERRIS"].hasItem(new Anusoft())) chars["LERRIS"].inventory.push(new Anusoft());
+	}
+	else chars["LERRIS"].destroyItem(new Anusoft());
+	
 	CodexManager.unlockEntry("Bubble Buddy");
 	shopkeep = lerris;
 	buyItem();

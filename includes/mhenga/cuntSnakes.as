@@ -522,7 +522,7 @@ public function approachCuntSnake(response:String = "intro"):void
 			if(pc.tailType == 0) oldTailCount = 0;
 			
 			// wearingAnything
-			if(!pc.isNude()) output("You smile and begin to remove your [pc.gear], baring your naked form. ");
+			if(!pc.isNude()) output("You smile and begin to remove your clothing, baring your naked form. ");
 			output("A rush of adrenaline hits you as you consider what you’re about to do. It’s poorly thought-out, potentially dangerous, and delightfully perverse.");
 			
 			// Scene

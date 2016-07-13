@@ -686,6 +686,7 @@ public function approachShadeAtHouse(response:String = "intro"):void
 			
 			currentLocation = "UVI P30";
 			generateMap();
+			removeUvetoCold();
 			
 			output("You step up to the front door of the tiny little hut bearing your lover’s name and tap the doorbell. An electronic chime echoes from inside, just barely audible over the howl of the frozen winds over the high walls of Irestead. A moment passes in the cold before a small holoscreen next to the door shudders to life, showing you the familiar, smiling face of a certain kaithrit huntress.");
 			output("\n\n<i>“Hey!”</i> she grins, angling the camera on her end up towards herself. Unlike the last time you met, Shade’s ditched her heavy blue duster and simply wrapped herself up in a dark tan sweater that hugs her ample curves loosely and a woolen sock stretched around her reptilian tail, sheathing its lurid sex from sight and its jade scales from the chill. For once she almost looks her age: more hot school mom than deadly space huntress, but the way she smiles invitingly at you, the appeal of your feline lover isn’t lost for a moment.");
@@ -780,6 +781,7 @@ public function approachShadeAtHouse(response:String = "intro"):void
 			
 			currentLocation = "UVI P30";
 			generateMap();
+			removeUvetoCold();
 			
 			output("You approach the Irons residence with a nervous twitch in your step. Somehow you know this isn’t going to be easy -- Shade was positively freaking out the last time you met, and God knows how the time apart has changed her mind. But you steel yourself: you can’t leave things the way they are now. Your lover... and your sister... is waiting for you.");
 			output("\n\nTaking a deep breath, you tap the buzzer beside the door. An electronic chime echoes from inside, just barely audible over the howl of the frozen winds over the high walls of Irestead. A moment passes in the cold before a small holoscreen next to the door shudders to life, showing you the familiar face of the kaithrit huntress. Her natural, cool confidence is gone, replaced by a weary, sad look. Still, Shade forces a smile when she sees you on the holo.");
@@ -1009,6 +1011,17 @@ public function approachShadeAtHouse(response:String = "intro"):void
 			removeButton(14);
 			break;
 	}
+}
+// Inside Shade's House
+public function ironsHouseBonus():Boolean
+{
+	output("9999 - Room Description");
+	
+	removeUvetoCold(true);
+	
+	// 9999 - Shade menu?
+	
+	return false;
 }
 
 
