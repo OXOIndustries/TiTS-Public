@@ -102,6 +102,7 @@
 	prepChar(justUpdate, "LERRIS", Lerris);
 	prepChar(justUpdate, "NERRASA", Nerrasa);
 	//prepChar(justUpdate, "DRYAD", Dryad);
+	prepChar(justUpdate, "JEROME", Jerome);
 	
 	// Check all characters have version information set
 	for (var prop:String in chars)

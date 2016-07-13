@@ -198,7 +198,7 @@ public function vanaeTFScene():void
 	var options:Array = [];
 	
 	if (pc.hasCock()) options.push("cock");
-	if (pc.balls > 0 && ((pc.ballSizeRaw < 8 && !pc.hasPerk("Bulgy")) || (pc.ballSizeRaw < 16 && pc.hasPerk("Bulgy")))) options.push("balls");
+	if (pc.balls > 0 && ((pc.ballDiameter() < 8 && !pc.hasPerk("Bulgy")) || (pc.ballDiameter() < 16 && pc.hasPerk("Bulgy")))) options.push("balls");
 	if (pc.hasVagina()) options.push("vagina");
 	
 	switch (options[rand(options.length)])
@@ -237,9 +237,19 @@ public function vanaeTFScene():void
 				//pc.balls = 2;
 			}
 			
-			pc.ballSizeRaw++;
-			if (pc.ballSizeRaw < 6) pc.ballSizeRaw += 0.5;
-			if (pc.ballSizeRaw < 4) pc.ballSizeRaw += 1;
+			//Bulgy grows fastah~
+			if(pc.hasPerk("Bulgy"))
+			{
+				pc.ballSizeRaw += 3;
+				if (pc.ballDiameter() < 10) pc.ballSizeRaw += 2;
+				if (pc.ballDiameter() < 6) pc.ballSizeRaw += 2;
+			}
+			else
+			{
+				pc.ballSizeRaw += 1.5;
+				if (pc.ballDiameter() < 10) pc.ballSizeRaw += 1;
+				if (pc.ballDiameter() < 6) pc.ballSizeRaw += 1;	
+			}
 
 			output(" The new weight catches you by surprise as");
 			if(pc.balls == 1) output(" it");

@@ -5581,6 +5581,11 @@
 			if(hasLegFlag(GLOBAL.FLAG_AMORPHOUS) || hasLegFlag(GLOBAL.FLAG_HOOVES) || legType == GLOBAL.TYPE_NAGA) return false;
 			return true;
 		}
+		public function hasHooves():Boolean
+		{
+			if (hasLegFlag(GLOBAL.FLAG_HOOVES)) return true;
+			return false;
+		}
 		public function hasToeClaws():Boolean
 		{
 			if(hasToes() && (legType == GLOBAL.TYPE_DEMONIC || legType == GLOBAL.TYPE_LIZAN || legType == GLOBAL.TYPE_RASKVEL || legType == GLOBAL.TYPE_DRACONIC || legType == GLOBAL.TYPE_GRYVAIN || legType == GLOBAL.TYPE_PANDA)) return true;
@@ -7199,6 +7204,21 @@
 				if (vaginas[index].looseness() < vaginas[counter].looseness()) index = counter;
 			}
 			return vaginas[counter].looseness();
+		}
+		public function gapestVaginaIndex():int {
+			var idx:int = -1;
+			for (var i:int = 0; i < vaginas.length; i++)
+			{
+				if (idx == -1) idx = i;
+				else
+				{
+					if (vaginas[i].looseness() > vaginas[idx].looseness())
+					{
+						idx = i;
+					}
+				}
+			}
+			return idx;
 		}
 		public function tightestVaginalLooseness():Number
 		{
@@ -11262,7 +11282,7 @@
 			var currLooseness:Number = Math.round(vag.looseness());
 			if(currLooseness != 2) bonus = 16;
 			if(currLooseness >= 4) bonus = 10;
-			if(currLooseness == 5) bonus = 5;
+			if(currLooseness >= 5) bonus = 5;
 			if(currLooseness == 1) bonus = 5;
 			//Roll the dice on looseness descs
 			if (forceAdjectives || (adjectives && rand(100) < bonus))
@@ -16068,6 +16088,7 @@
 			if (hasHeatBelt()) return false;
 			if (getHPResistances().freezing.resistanceValue >= resToAvoid) return false;
 			if (accessory.hasFlag(GLOBAL.ITEM_FLAG_HEAT_GENERATOR) || armor.hasFlag(GLOBAL.ITEM_FLAG_HEAT_GENERATOR) || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_HEAT_GENERATOR) || upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_HEAT_GENERATOR)) return false;
+			if (hasStatusEffect("T.Pack")) return false;
 			
 			// Perk for some kinda TF or some shit, effect for a temporary/timed effect?
 			if (hasPerk("Icy Veins") || hasStatusEffect("Icy Veins")) return false;

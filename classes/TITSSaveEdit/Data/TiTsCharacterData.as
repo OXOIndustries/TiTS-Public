@@ -215,6 +215,7 @@ package classes.TITSSaveEdit.Data
 		public var armType:Number;
 		public var armFlags:Array;
 		public var wingType:Number;
+		public var wingCount:int;
 		public var legType:Number;
 		public var legFlags:Array;
 		public var legCount:Number;
@@ -568,6 +569,16 @@ package classes.TITSSaveEdit.Data
 				if (w < 50) return m;
 				return f;
 			}
+		}
+		
+		public function hasCock():Boolean
+		{
+			return cocks.length > 0;
+		}
+		
+		public function hasVagina():Boolean
+		{
+			return vaginas.length > 0;
 		}
 		
 		public function biggestTitSize():Number

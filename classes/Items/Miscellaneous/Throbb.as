@@ -307,7 +307,7 @@
 			}
 			trace("LIBIDO: " + pc.libido() + " COCK LENGTH: " + pc.biggestCockLength() + " BALLS: " + pc.balls + " BALL SIZE: " + pc.ballSize);
 			//Bad end: Occurs if libido hits 100 and cock is bigger than 30" long and balls are at least 10"
-			if(pc.libido() >= 100 && pc.biggestCockLength() >= 30 && pc.balls > 0 && pc.ballSize() >= 10)
+			if(pc.libido() >= 100 && pc.biggestCockLength() >= 30 && pc.balls > 0 && pc.ballDiameter() >= 10)
 			{
 				kGAMECLASS.output("\n\nEven after the transformation ends, you just can't stop yourself....");
 				kGAMECLASS.clearMenu();
