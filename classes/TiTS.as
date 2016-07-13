@@ -293,7 +293,8 @@
 		include "../includes/events/karaquest2/roomFunctions.as";
 		
 		// Uveto
-		include "../includes/uveto/freezer.as"
+		include "../includes/uveto/freezer.as";
+		include "../includes/uveto/jerome.as";
 		include "../includes/uveto/kaede.as";
 		include "../includes/uveto/korgonneFemaleHostile.as";
 		include "../includes/uveto/nayna.as";
@@ -1204,6 +1205,10 @@
 		public function get nerrasa():Nerrasa
 		{
 			return chars["NERRASA"];
+		}
+		public function get jerome():Jerome
+		{
+			return chars["JEROME"];
 		}
 		
 		private var _dbgtestvar:int = 0;

@@ -5581,6 +5581,11 @@
 			if(hasLegFlag(GLOBAL.FLAG_AMORPHOUS) || hasLegFlag(GLOBAL.FLAG_HOOVES) || legType == GLOBAL.TYPE_NAGA) return false;
 			return true;
 		}
+		public function hasHooves():Boolean
+		{
+			if (hasLegFlag(GLOBAL.FLAG_HOOVES)) return true;
+			return false;
+		}
 		public function hasToeClaws():Boolean
 		{
 			if(hasToes() && (legType == GLOBAL.TYPE_DEMONIC || legType == GLOBAL.TYPE_LIZAN || legType == GLOBAL.TYPE_RASKVEL || legType == GLOBAL.TYPE_DRACONIC || legType == GLOBAL.TYPE_GRYVAIN || legType == GLOBAL.TYPE_PANDA)) return true;
@@ -7199,6 +7204,21 @@
 				if (vaginas[index].looseness() < vaginas[counter].looseness()) index = counter;
 			}
 			return vaginas[counter].looseness();
+		}
+		public function gapestVaginaIndex():int {
+			var idx:int = -1;
+			for (var i:int = 0; i < vaginas.length; i++)
+			{
+				if (idx == -1) idx = i;
+				else
+				{
+					if (vaginas[i].looseness() > vaginas[idx].looseness())
+					{
+						idx = i;
+					}
+				}
+			}
+			return idx;
 		}
 		public function tightestVaginalLooseness():Number
 		{

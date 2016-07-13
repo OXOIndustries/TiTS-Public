@@ -638,6 +638,10 @@ public function uvetoBarBonus():Boolean
 	
 	// Shade events.
 	meetingShadeAtUvetoBar(2);
+
+	var jeromePresent:Boolean = jeromeAtBar(3);
+	// jerynnAtBar(jeromePresent);
+
 	return false;
 }
 
