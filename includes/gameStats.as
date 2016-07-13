@@ -4401,6 +4401,15 @@ public function displayEncounterLog(showID:String = "All"):void
 		
 		if(showID == "Uveto" || showID == "All")
 		{
+			// Nerrasa
+			if(flags["MET_NERRASA"] != undefined)
+			{
+				output2("\n<b><u>The Last Chance</u></b>");
+				output2("\n<b>* Nerrasa:</b> Met her");
+				if(flags["NERRASAS_PET"] != undefined) output2(", You’re her pet");
+				if(flags["NERRASA_FUCKED"] != undefined) output2("\n<b>* Nerrasa, Times Sexed:</b> " + flags["NERRASA_FUCKED"]);
+				variousCount++;
+			}
 			// Office of the Camarilla
 			if(flags["MET_TLAKO"] != undefined || flags["MET_XOTCHI"] != undefined)
 			{
@@ -4443,6 +4452,18 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				variousCount++;
 			}
+			// The Freezer
+			if(flags["MET_HANA"] != undefined || flags["MET_JEROME"] != undefined)
+			{
+				output2("\n<b><u>The Freezer</u></b>");
+				// Hanananana, hawt MILF
+				if(flags["MET_HANA"] != undefined != undefined) output2("\n<b>* Hana:</b> Met her");
+				if(flags["FUCKED_HANA"] != undefined) output2("\n<b>* Hana, Times Sexed:</b> " + flags["FUCKED_HANA"]);
+				// Jerbears
+				if(flags["MET_JEROME"] != undefined != undefined) output2("\n<b>* Jerome:</b> Met him");
+				if(flags["FUCKED_JEROME"] != undefined) output2("\n<b>* Jerome, Times Sexed:</b> " + flags["FUCKED_JEROME"]);
+				variousCount++;
+			}
 			// Nayna
 			if(flags["MET_NAYNA"] != undefined)
 			{
@@ -4452,15 +4473,6 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["NAYNA_HUGS"] != undefined) output2("\n<b>* Nayna, Times Hugged Her:</b> " + flags["NAYNA_HUGS"]);
 				if(flags["NAYNA_BLOWN"] != undefined) output2("\n<b>* Nayna, Times Given Her Blowjobs:</b> " + flags["NAYNA_BLOWN"]);
 				if(flags["NAYNA_FUCKED"] != undefined) output2("\n<b>* Nayna, Times Fucked Her Vagina:</b> " + flags["NAYNA_FUCKED"]);
-				variousCount++;
-			}
-			// Nerrasa
-			if(flags["MET_NERRASA"] != undefined)
-			{
-				output2("\n<b><u>Last Chance</u></b>");
-				output2("\n<b>* Nerrasa:</b> Met her");
-				if(flags["NERRASAS_PET"] != undefined) output2(", You’re her pet");
-				if(flags["NERRASA_FUCKED"] != undefined) output2("\n<b>* Nerrasa, Times Sexed:</b> " + flags["NERRASA_FUCKED"]);
 				variousCount++;
 			}
 			// Sheriff's Office
@@ -4473,7 +4485,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Ice Plains
-			if(flags["9999"] != undefined || flags["9999"] != undefined || flags["UVIP_J46_SEARCHED"] != undefined)
+			if(flags["MET_FEMKORGONNE"] != undefined || flags["9999"] != undefined || flags["UVIP_J46_SEARCHED"] != undefined)
 			{
 				output2("\n<b><u>Ice Plains</u></b>");
 				if(flags["MET_FEMKORGONNE"] != undefined) output2("\n<b>* Female Korgonne, Times Encountered:</b> " + flags["MET_FEMKORGONNE"]);
