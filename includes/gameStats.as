@@ -4457,10 +4457,10 @@ public function displayEncounterLog(showID:String = "All"):void
 			{
 				output2("\n<b><u>The Freezer</u></b>");
 				// Hanananana, hawt MILF
-				if(flags["MET_HANA"] != undefined != undefined) output2("\n<b>* Hana:</b> Met her");
+				if(flags["MET_HANA"] != undefined) output2("\n<b>* Hana:</b> Met her");
 				if(flags["FUCKED_HANA"] != undefined) output2("\n<b>* Hana, Times Sexed:</b> " + flags["FUCKED_HANA"]);
 				// Jerbears
-				if(flags["MET_JEROME"] != undefined != undefined) output2("\n<b>* Jerome:</b> Met him");
+				if(flags["MET_JEROME"] != undefined) output2("\n<b>* Jerome:</b> Met him");
 				if(flags["FUCKED_JEROME"] != undefined) output2("\n<b>* Jerome, Times Sexed:</b> " + flags["FUCKED_JEROME"]);
 				variousCount++;
 			}
