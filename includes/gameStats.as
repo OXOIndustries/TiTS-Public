@@ -4473,6 +4473,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["NAYNA_HUGS"] != undefined) output2("\n<b>* Nayna, Times Hugged Her:</b> " + flags["NAYNA_HUGS"]);
 				if(flags["NAYNA_BLOWN"] != undefined) output2("\n<b>* Nayna, Times Given Her Blowjobs:</b> " + flags["NAYNA_BLOWN"]);
 				if(flags["NAYNA_FUCKED"] != undefined) output2("\n<b>* Nayna, Times Fucked Her Vagina:</b> " + flags["NAYNA_FUCKED"]);
+				if(flags["NAYNA_FUCKED_PC_BUTT"] != undefined) output2("\n<b>* Nayna, Times She Fucked Your Ass:</b> " + flags["NAYNA_FUCKED_PC_BUTT"]);
 				variousCount++;
 			}
 			// Sheriff's Office
