@@ -402,7 +402,7 @@ public function addUvetoCold(notice:Boolean = false):void
 		if(notice)
 		{
 			output("\n\nA burst of cold air reminds you of the surface’s natural weather conditions.");
-			if (pc.willTakeColdDamage()) output(" It’s cold out here! You’ve got to get inside or find some way to warm yourself up as soon as you can.");
+			if (pc.willTakeColdDamage()) output(" It’s cold out here! You’ve got to find shelter or some way to warm yourself up as soon as you can.");
 			else if (pc.hasHeatBelt()) output(" Even with the warmth provided by your heat belt, it’s still freezing cold out here.");
 		}
 	}
@@ -662,6 +662,9 @@ public function uvetoBarBonus():Boolean
 
 	var jeromePresent:Boolean = jeromeAtBar(3);
 	// jerynnAtBar(jeromePresent);
+	
+	// Randoms
+	roamingBarEncounter(4);
 
 	return false;
 }
