@@ -468,6 +468,7 @@ public function initUvetoRooms():void
 	rooms["UVI N32"].southExit = "UVI N34";
 	rooms["UVI N32"].eastExit = "UVI P32";
 	rooms["UVI N32"].moveMinutes = 3;
+	rooms["UVI N32"].runOnEnter = meadStreetBonus;
 	rooms["UVI N32"].addFlag(GLOBAL.OUTDOOR);
 
 	rooms["UVI N30"] = new RoomClass(this);
@@ -490,6 +491,7 @@ public function initUvetoRooms():void
 	rooms["UVI P30"].system = "SYSTEM: SIRETTA";
 	rooms["UVI P30"].westExit = "UVI N30";
 	rooms["UVI P30"].moveMinutes = 1;
+	rooms["UVI P30"].runOnEnter = ironsHouseBonus;
 	rooms["UVI P30"].addFlag(GLOBAL.INDOOR);
 
 	rooms["UVI P32"] = new RoomClass(this);

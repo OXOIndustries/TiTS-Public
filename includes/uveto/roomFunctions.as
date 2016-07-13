@@ -32,7 +32,7 @@ public function TundraEncounterBonus():Boolean
 
 public function uvetoShipDock():Boolean
 {
-	removeUvetoCold();
+	removeUvetoCold(true);
 	
 	//Shade Uveto welcome message.
 	getLetterFromShade();
@@ -373,11 +373,17 @@ public function hookUvetoRoomRemoveCold(direction:String):void
 	move(rooms[currentLocation][direction]);
 }
 
-public function removeUvetoCold():void
+public function removeUvetoCold(notice:Boolean = false):void
 {
 	if (pc.hasStatusEffect("Bitterly Cold"))
 	{
 		pc.removeStatusEffect("Bitterly Cold");
+		
+		if(notice)
+		{
+			output("\n\nThe tempurature gradually changes around you.");
+			if (pc.willTakeColdDamage()) output(" With relief, you can finally take some time to defrost and enjoy the warmth!");
+		}
 	}
 }
 
@@ -387,11 +393,18 @@ public function hookUvetoRoomAddCold(direction:String):void
 	move(rooms[currentLocation][direction]);
 }
 
-public function addUvetoCold():void
+public function addUvetoCold(notice:Boolean = false):void
 {
 	if (!pc.hasStatusEffect("Bitterly Cold"))
 	{
 		(pc as PlayerCharacter).createStatusEffect("Bitterly Cold", 0, 0, 0, 0, false, "Icon_Snowflake", "The bitter, piercing cold of Uveto's icy tundra threatens to chill you to the bone. Better wrap up nice and tight, maybe even find something to heat you up to better stave off the freezing winds.", false, 0, UIStyleSettings.gColdStatusColour);
+		
+		if(notice)
+		{
+			output("\n\nA burst of cold air reminds you of the surface’s natural weather conditions.");
+			if (pc.willTakeColdDamage()) output(" It’s cold out here! You’ve got to get inside or find some way to warm yourself up as soon as you can.");
+			else if (pc.hasHeatBelt()) output(" Even with the warmth provided by your heat belt, it’s still freezing cold out here.");
+		}
 	}
 }
 
@@ -613,8 +626,14 @@ public function uvetoAwakenInMedCenter(rescuer:String):void
 	addButton(0, "Next", mainGameMenu);
 }
 
+public function meadStreetBonus():Boolean
+{
+	addUvetoCold(true);
+	return false;
+}
 public function templeStreetBonus():Boolean
 {
+	addUvetoCold(true);
 	// Buzzer for Shade's house.
 	meetingShadeAtHouse(0);
 	return false;
@@ -622,6 +641,8 @@ public function templeStreetBonus():Boolean
 
 public function uvetoBarBonus():Boolean
 {
+	removeUvetoCold();
+	
 	addButton(0, flags["MET_HANA"] == undefined ? "Bartender" : "Hana", approachHana);
 
 	//STEPH IRSON!
