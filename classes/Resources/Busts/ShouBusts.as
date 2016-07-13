@@ -173,6 +173,9 @@
 		public var Bust_DROID_SECURITY:Class;
 		public var Bounds_DROID_SECURITY:Rectangle = new Rectangle(60, 0, 63, 66);
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/dryad.png", mimeType = "image/png")]
+		public var Bust_DRYAD:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/elenora.png", mimeType = "image/png")]
 		public var Bust_ELENORA:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/elenora_nude.png", mimeType = "image/png")]
@@ -615,6 +618,9 @@
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/droid_security.png", mimeType = "image/png")]
 			public var Full_DROID_SECURITY:Class;
+
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/dryad.png", mimeType = "image/png")]
+			public var Full_DRYAD:Class;
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/elenora.png", mimeType = "image/png")]
 			public var Full_ELENORA:Class;
