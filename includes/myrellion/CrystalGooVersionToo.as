@@ -248,6 +248,12 @@ public function showCrystalGooToo(wasFight:Boolean = false):void
 
 public function pcDefeatsCrystalGooToo():void
 {
+	// Armor check (just in case!)
+	if (enemy.shields() <= 0 && !enemy.hasStatusEffect("Unarmored")) 
+	{
+		enemy.createStatusEffect("Unarmored");
+	}
+	
 	clearOutput();
 	showCrystalGooToo(true);
 
@@ -1393,6 +1399,12 @@ public function crystalGooSounding(pcVictory:Boolean = false):void
 
 public function crystalGooPCLoss():void
 {
+	// Armor check (just in case!)
+	if (enemy.shields() <= 0 && !enemy.hasStatusEffect("Unarmored")) 
+	{
+		enemy.createStatusEffect("Unarmored");
+	}
+	
 	clearOutput();
 	showCrystalGooToo();
 
