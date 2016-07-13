@@ -69,11 +69,11 @@ package classes.GameData.Pregnancy.Handlers
 			
 			//five - getting jolly round - lactation begins
 			addStageProgression(_basePregnancyIncubationTime - (160 * 24 * 60), function(pregSlot:int):void {
-				kGAMECLASS.eventBuffer += ParseText("\n\nYour [pc.belly] " + (kGAMECLASS.pc.bellyRating() <= 30 ? "bulges with your growing fetus" : "is starting to show signs of pregnancy") + ", causing some trouble with your [pc.gear]. " + (kGAMECLASS.pc.isLactating() == false ? "Your nipples have also become tender and sometimes leak... you" : "You") +" feel like a mess, but for some reason you're happy.");
-				
 				kGAMECLASS.pc.bellyRatingMod += 10;
 				var pData:PregnancyData = kGAMECLASS.pc.pregnancyData[pregSlot];
 				pData.pregnancyBellyRatingContribution += 10;
+				
+				kGAMECLASS.eventBuffer += ParseText("\n\nYour [pc.belly] " + (kGAMECLASS.pc.bellyRating() <= 30 ? ("bulges with your growing fetus" + (pData.pregnancyQuantity == 1 ? "" : "es")) : "is starting to show signs of pregnancy") + ", causing some trouble with your [pc.gear]. " + (kGAMECLASS.pc.isLactating() == false ? "Your nipples have also become tender and sometimes leak... you" : "You") +" feel like a mess, but for some reason you're happy.");
 				
 				kGAMECLASS.pc.milkFullness += 15;
 				
@@ -81,11 +81,11 @@ package classes.GameData.Pregnancy.Handlers
 			
 			//six - really out there - minor rfx penalty? - @200 days
 			addStageProgression(_basePregnancyIncubationTime - (200 * 24 * 60), function(pregSlot:int):void {
-				kGAMECLASS.eventBuffer += "\n\nCarrying your pregnant belly has become like toting a medicine ball, straining your " + (kGAMECLASS.pc.isTaur() ? "legs" : "back") +" and slowing your movements. The little life within is fairly mauling you with kicks and elbows" + (!kGAMECLASS.pc.isTaur() ? ", but rubbing your belly often seems to calm it down" : "") +". You wonder how much longer you'll have to wait.";
-				
 				var pData:PregnancyData = kGAMECLASS.pc.pregnancyData[pregSlot];
 				kGAMECLASS.pc.bellyRatingMod += 10 + (5 * pData.pregnancyQuantity);
 				pData.pregnancyBellyRatingContribution += 10 + (5 * pData.pregnancyQuantity);
+				
+				kGAMECLASS.eventBuffer += "\n\nCarrying your pregnant belly has become like toting a medicine ball, straining your " + (kGAMECLASS.pc.isTaur() ? "legs" : "back") +" and slowing your movements. The little" + (pData.pregnancyQuantity == 1 ? "" : " sparks of") + " life within " + (pData.pregnancyQuantity == 1 ? "is" : "are") + " fairly mauling you with kicks and elbows" + (!kGAMECLASS.pc.isTaur() ? ", but rubbing your belly often seems to calm " + (pData.pregnancyQuantity == 1 ? "it" : "them") + " down" : "") +". You wonder how much longer you'll have to wait.";
 				
 				if (kGAMECLASS.pc.milkFullness < 10) kGAMECLASS.pc.milkFullness += 15;
 			}, true);
@@ -93,11 +93,11 @@ package classes.GameData.Pregnancy.Handlers
 			//seven - hard to move - rfx penalty increases? - @240 days
 			addStageProgression(_basePregnancyIncubationTime - (240 * 24 * 60), function(pregSlot:int):void
 			{
-				kGAMECLASS.eventBuffer += "\n\nJudging from the size of your swollen belly, you guess that your baby will arrive within the next month. Or perhaps it would be accurate to say you <i>hope</i>. It's hard to stay active with the unwieldy weight - you continually fight back urges to lie in bed and do nothing.";
-				
 				var pData:PregnancyData = kGAMECLASS.pc.pregnancyData[pregSlot];
 				kGAMECLASS.pc.bellyRatingMod += (12 * pData.pregnancyQuantity);
 				pData.pregnancyBellyRatingContribution += (12 * pData.pregnancyQuantity);
+				
+				kGAMECLASS.eventBuffer += "\n\nJudging from the size of your swollen belly, you guess that your bab" + (pData.pregnancyQuantity == 1 ? "y" : "ies") + " will arrive within the next month. Or perhaps it would be accurate to say you <i>hope</i>. It's hard to stay active with the unwieldy weight - you continually fight back urges to lie in bed and do nothing.";
 				
 				if (kGAMECLASS.pc.milkFullness < 10) kGAMECLASS.pc.milkFullness += 25;
 				if (kGAMECLASS.pc.milkMultiplier < 1.5) kGAMECLASS.pc.milkMultiplier += 0.15;
@@ -106,11 +106,11 @@ package classes.GameData.Pregnancy.Handlers
 			
 			//eight - any day now - @260 days
 			addStageProgression(_basePregnancyIncubationTime - (260 * 24 * 60), function(pregSlot:int):void {
-				kGAMECLASS.eventBuffer += "\n\nThe clamor in your distended womb worsens every day as the baby exercises its body. You expect the little hellion's birth within the week, and are torn between excitement and dread.";
-				
 				var pData:PregnancyData = kGAMECLASS.pc.pregnancyData[pregSlot];
 				kGAMECLASS.pc.bellyRatingMod += (12 * pData.pregnancyQuantity);
 				pData.pregnancyBellyRatingContribution += (12 * pData.pregnancyQuantity);
+				
+				kGAMECLASS.eventBuffer += "\n\nThe clamor in your distended womb worsens every day as " + (pData.pregnancyQuantity == 1 ? "the" : "a") + " baby exercises its body. You expect the little hellion's birth within the week, and are torn between excitement and dread.";
 				
 				if (kGAMECLASS.pc.milkFullness < 20) kGAMECLASS.pc.milkFullness += 25;
 				if (kGAMECLASS.pc.milkMultiplier < 1.5) kGAMECLASS.pc.milkMultiplier += 0.15;
@@ -124,7 +124,19 @@ package classes.GameData.Pregnancy.Handlers
 			
 			if (!mother.hasStatusEffect("Sydian Pregnancy Ends"))
 			{
-				mother.createStatusEffect("Sydian Pregnancy Ends", pData.pregnancyQuantity, pData.pregnancyBellyRatingContribution, pregSlot, 0, true);
+				// Baby count check (just in case)
+				var babies:int = 0;
+				var belly:int = 0;
+				for (var i:int = 0; i < mother.pregnancyData.length; i++)
+				{
+					if (mother.pregnancyData[i].pregnancyType == "SydianPregnancy")
+					{
+						babies += mother.pregnancyData[i].pregnancyQuantity;
+						belly += mother.pregnancyData[i].pregnancyBellyRatingContribution;
+					}
+				}
+				
+				mother.createStatusEffect("Sydian Pregnancy Ends", babies, belly, pregSlot, 0, true);
 			}
 			
 			if (kGAMECLASS.eventQueue.indexOf(kGAMECLASS.sydianPregnancyEnds) == -1)
