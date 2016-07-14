@@ -435,10 +435,19 @@
 		{
 			return true;
 		}
-
 		public function hairColorLockedMessage():String
 		{
 			return "Your scalp briefly tingles, but your [pc.hair] remains unchanged.";
+		}
+
+		public var beardColor: String = hairColor;
+		public function beardColorUnlocked(newBeardColor:String):Boolean
+		{
+			return true;
+		}
+		public function beardColorLockedMessage():String
+		{
+			return "Your chin briefly tingles, but your [pc.beard] remains unchanged.";
 		}
 
 		public var scaleColor: String = "blue";
@@ -478,7 +487,7 @@
 		}
 
 		public var hairType: Number = 0;
-		public function hairTypeUnlocked(newhairType:Number):Boolean
+		public function hairTypeUnlocked(newHairType:Number):Boolean
 		{
 			if (hairType == GLOBAL.HAIR_TYPE_GOO && (skinType == GLOBAL.SKIN_TYPE_GOO || hasStatusEffect("Goo Vent"))) return false;
 			return true;
@@ -486,6 +495,17 @@
 		public function hairTypeLockedMessage():String
 		{
 			return "Your scalp briefly tingles, but your [pc.hair] remains unchanged.";
+		}
+
+		public var beardType: Number = hairType;
+		public function beardTypeUnlocked(newBeardType:Number):Boolean
+		{
+			if (beardType == GLOBAL.HAIR_TYPE_GOO && (skinType == GLOBAL.SKIN_TYPE_GOO || hasStatusEffect("Goo Vent"))) return false;
+			return true;
+		}
+		public function beardTypeLockedMessage():String
+		{
+			return "Your chin briefly tingles, but your [pc.beard] remains unchanged.";
 		}
 		
 		public var beardLength: Number = 0;
@@ -1605,6 +1625,12 @@
 					break;
 				case "beard":
 					buffer = beard();
+					break;
+				case "beardNoun":
+					buffer = beardStyles(true);
+					break;
+				case "beardColor":
+					buffer = beardColor;
 					break;
 				case "face":
 					buffer = face();
@@ -4647,10 +4673,38 @@
 					bStyle = "sideburns";
 					break;
 			}
+			// Special types:
+			if(wNoun && rand(3) == 0)
+			{
+				var beardNoun:String = "beard";
+				switch (beardStyle)
+				{
+					case 8:
+					case 9:
+						beardNoun = "mustache";
+						break;
+					case 10:
+						beardNoun = RandomInCollection("goatee", "beard");
+						break;
+					case 11:
+						beardNoun = "sideburns";
+						break;
+				}
+				switch (beardType)
+				{
+					default: bStyle = beardNoun; break;
+					case GLOBAL.HAIR_TYPE_FEATHERS: bStyle = "feather " + beardNoun; break;
+					case GLOBAL.HAIR_TYPE_QUILLS: bStyle = "quill " + beardNoun; break;
+					case GLOBAL.HAIR_TYPE_GOO: bStyle = "goo " + beardNoun; break;
+					case GLOBAL.HAIR_TYPE_TENTACLES: bStyle = "tentacle " + beardNoun; break;
+				}
+			}
 			return bStyle;
 		}
 		public function removeBeard():void
 		{
+			beardType = hairType;
+			beardColor = hairColor;
 			beardLength = 0;
 			beardStyle = 0;
 			return;
@@ -8899,7 +8953,7 @@
 			if (femininity < 40)
 			{
 				if (hasCock() && hasVagina()) return "bull-futa";
-				if (hasCock() && !hasVagina() && beardLength == 0 && tallness < 63) return "bull-boy";
+				if (hasCock() && !hasVagina() && !hasBeard() && tallness < 63) return "bull-boy";
 				if (!hasCock() && hasVagina()) return "cow-boy";
 				if (hasCock() && !hasVagina()) return "bull-man";
 				return "bull-morph";

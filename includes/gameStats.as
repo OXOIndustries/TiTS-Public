@@ -85,6 +85,9 @@ public function statisticsScreen(showID:String = "All"):void
 		}
 		if(pc.hasBeard())
 		{
+			output2("\n<b>* Beard:</b>");
+			if(pc.beardColor != "no") output2(" " + StringUtil.toDisplayCase(pc.beardColor) + ",");
+			output2(" " + GLOBAL.HAIR_TYPE_NAMES[pc.beardType]);
 			output2("\n<b>* Beard, Length:</b>");
 			if(pc.beardLength > 0.125)
 			{

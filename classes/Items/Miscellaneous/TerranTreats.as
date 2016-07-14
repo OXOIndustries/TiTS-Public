@@ -443,6 +443,19 @@
 					else kGAMECLASS.output("\n\n" + pc.hairTypeLockedMessage());
 				}
 				
+				//Beard
+				if(pc.hasBeard() && pc.beardType != GLOBAL.HAIR_TYPE_REGULAR && changes < changeLimit && rand(4) == 0)
+				{
+					kGAMECLASS.output("\n\n");
+					if(pc.beardTypeUnlocked(GLOBAL.HAIR_TYPE_REGULAR))
+					{
+						kGAMECLASS.output("Your face itches and you go to scratch your [pc.beard]. In its place, however, you find that it is instead covered in course, yet normal-feeling, hair. <b>You now have regular facial hair!</b>");
+						changes++;
+						pc.beardType = GLOBAL.HAIR_TYPE_REGULAR;
+					}
+					else kGAMECLASS.output("\n\n" + pc.beardTypeLockedMessage());
+				}
+				
 				//Lose "Mane" Perk:
 				if(pc.hasHair() && pc.hasPerk("Mane") && changes < changeLimit && rand(3) == 0)
 				{

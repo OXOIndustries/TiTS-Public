@@ -1251,15 +1251,28 @@ public function revertGooBodyColor(part:String = "menu"):void
 			addDisabledGhostButton(0,"Hair","Hair","Your hair and body colors already match!");
 			addDisabledGhostButton(1,"Skin","Skin","Your hair and skin colors already match!");
 		}
+		if(pc.hasBeard())
+		{
+			if(pc.beardColor != pc.hairColor)
+			{
+				output2("Your [pc.beardColor] beard doesn’t quite match your [pc.hairColor] hair. ");
+				if(gooBiomass() >= 10) addGhostButton(5,"Beard",revertGooBodyColor,"beard","Beard","Shift your beard color to match your [pc.hairColor] hair.\n\n<b>10 mLs Biomass</b>");
+				else addDisabledGhostButton(5,"Beard","Beard","You don’t have enough biomass for that.\n\n<b>10 mLs Biomass</b>");
+			}
+			else
+			{
+				addDisabledGhostButton(5,"Beard","Beard","Your beard and hair colors already match!");
+			}
+		}
 		if(gooMismatchedGenitals(sColor) > 0)
 		{
-			output2("Your genital colors seem to be off compared to the rest of your body.");
+			output2("Your genital colors seem to be off compared to the rest of your body. ");
 			if(gooBiomass() >= 10) addGhostButton(2,"FixGenitals",revertGooGenitalColor,sColor,"Revert Genital Color","Shift your genital color to match your " + sColor + " body.\n\n<b>10 mLs Biomass</b>");
 			else addDisabledGhostButton(2,"FixGenitals","Revert Genital Color","You don’t have enough biomass for that.\n\n<b>10 mLs Biomass</b>");
 		}
 		else
 		{
-			if(pc.hairColor == pc.skinTone) output2("You might be able to shift your colors if they are ever mismatched.");
+			if(pc.hairColor == pc.skinTone) output2("You might be able to shift your colors if they are ever mismatched. ");
 			addDisabledGhostButton(2,"FixGenitals","Revert Genital Color","Your genital and body colors already match!");
 		}
 		addGhostButton(14,"Back",gooBodyCustomizer);
@@ -1301,6 +1314,16 @@ public function revertGooBodyColor(part:String = "menu"):void
 			addGhostButton(1,"No",revertGooGenitalColor);
 		}
 		else addGhostButton(0,"Next",revertGooBodyColor,"menu");
+	}
+	else if(part == "beard")
+	{
+		output2("Concentrating hard, you try to allow the pigmentation to climb from your head and into your facial hair.");
+		output2("\n\nTiny dots of [pc.hairColor] bubble up and grow within the [pc.beardColor] [pc.beardNoun]. After a brief moment, you complete the color transformation and admire your changes.");
+		output2(" <b>Your beard color now matches your hair color!</b>");
+		pc.beardColor = pc.hairColor;
+		gooBiomass(-10);
+		clearGhostMenu();
+		addGhostButton(0,"Next",revertGooBodyColor,"menu");
 	}
 }
 public function revertGooGenitalColor(sColor:String = "null"):void
