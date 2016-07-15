@@ -570,7 +570,7 @@ public function kaedeMyrellionFuckAssCreampie():void
 	clearOutput();
 	kaedeHeader();
 	
-	output("\n\nWith a final cry of pleasure, you slam yourself to the hilt inside the halfbreed’s well-fucked ass. She clenches hard around you, voice joining yours as her body squeezes the cum right out of you. You feel the rush of semen hurtle through your [pc.cock] and into the dark depths of Kaede’s ass. Her breath catches as she feels your hot, sticky spunk coat her bowels.");
+	output("With a final cry of pleasure, you slam yourself to the hilt inside the halfbreed’s well-fucked ass. She clenches hard around you, voice joining yours as her body squeezes the cum right out of you. You feel the rush of semen hurtle through your [pc.cock] and into the dark depths of Kaede’s ass. Her breath catches as she feels your hot, sticky spunk coat her bowels.");
 	
 	output("\n\nYou manage a few last, jerky thrusts into her ass to empty your [pc.balls] into her.");
 

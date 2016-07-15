@@ -577,7 +577,7 @@ public function secondTimeEmbryMeetingContinuation():void
 	output("\n\n<i>“Oh god, I’m so sorry!”</i> [embry.name] pushes her skirt down and apologises profusely to the customer.");
 	output("\n\nAfter the damage is dealt with, she turns to you, looking rather mortified.");
 	output("\n\n<i>“... You saw it, didn’t you? My thing...”</i> she mumbles. Right now she looks like she’s going to die from embarrassment. <i>\"It wasn’t on purpose--I wasn’t flashing you! It wasn’t a sexual thing at all. Not that I DO sexual things. I’m actually a virgin... not that I... oh... my god.”</i> [embry.name] then facepalms. Clearly she didn’t mean to say that.");
-	output("\n\n<i>“... What meant to say is that... there’s a reason for it... I’m... I’m trans...”</i> She looks at you with wide eyes, like she expects some kind of judgement. <i>\"I’d... you know, appreciate it if you didn’t tell anybody. I like when people treat me like a girl... I mean, I AM a girl... I’m just, you know, not physically. Yet.”</i>");
+	output("\n\n<i>“... What I meant to say is that... there’s a reason for it... I’m... I’m trans...”</i> She looks at you with wide eyes, like she expects some kind of judgement. <i>\"I’d... you know, appreciate it if you didn’t tell anybody. I like when people treat me like a girl... I mean, I AM a girl... I’m just, you know, not physically. Yet.”</i>");
 	output("\n\n<i>“The myr girls around here go crazy for anything that looks like a guy so, please, don’t tell anyone...?</i>”");
 
 	processTime(4);

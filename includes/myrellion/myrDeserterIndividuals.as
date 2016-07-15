@@ -1424,7 +1424,7 @@ public function doggieStyleWithMyrBitches(gold:Boolean = false):void
 	var DontKnowName:Boolean = (enemy.short != "Lys" && enemy.short != "Briha");
 
 	output("You stride up to ");
-	if(DontKnowName) output("the ");
+	//if(DontKnowName) output("the ");
 	output("[enemy.name]. In an authoritative voice, you tell her to turn around, and lift her ");
 	if(gold) output("abdomen");
 	else output("butt");
@@ -1444,7 +1444,7 @@ public function doggieStyleWithMyrBitches(gold:Boolean = false):void
 	output("\n\nWith a light smile, you strip off your [pc.gear]. It falls to the ground around you, leaving you fully naked. Seeing her bent over, crotch exposed, has already got [pc.eachCock] achingly hard.");
 
 	output("\n\nYou can see ");
-	if(DontKnowName) output("the ");
+	//if(DontKnowName) output("the ");
 	output("[enemy.name] peeking back at your turgid length");
 	if(pc.cockTotal() > 1) output("s");
 	output(". Her ");
@@ -1467,11 +1467,11 @@ public function doggieStyleWithMyrBitches(gold:Boolean = false):void
 	pc.cockChange();
 
 	output("\n\nAs your [pc.cockHead " + x + "] caresses her inner walls, ");
-	if(DontKnowName) output("the ");
+	//if(DontKnowName) output("the ");
 	output("[enemy.name] croons with delight. She arches her back and presses needily against you.");
 
 	output("\n\nYou groan with delight as she wrings your [pc.cock " + x + "]. Her alien cunt feels so damn <i>good</i> squeezing around you. It’s all you can do not to blow your load. You firmly grab ");
-	if(DontKnowName) output("the ");
+	//if(DontKnowName) output("the ");
 	output("[enemy.name]’s rump, holding on as her ");
 	if(gold) output("ovi-hole");
 	else output("pussy");
@@ -1558,7 +1558,7 @@ public function doggieStyleWithMyrBitches(gold:Boolean = false):void
 	else output("I really am addicted to the taste...");
 
 	output("”</i>\n\nWhen she can finally stand, ");
-	if(DontKnowName) output("the ");
+	//if(DontKnowName) output("the ");
 	output("[enemy.name] gives you ");
 	if(gold) output("a long goodbye kiss. As you’re swooning, she");
 	else output("a quick peck on the cheek. As you’re lightly swooning from her intoxicating saliva, she");
@@ -1603,14 +1603,15 @@ public function redDildoScrew():void
 		showDeserter(false,true);
 		if(hasRedDildo())
 		{
-			if(DontKnowName) output("The ");
-			output("[enemy.name] waggles the vibrator at you, filling your imagination with eight semi-solid and pleasure-ready inches. ");
+			if(DontKnowName) output(enemy.capitalA + enemy.short);
+			else output("[enemy.name]");
+			output(" waggles the vibrator at you, filling your imagination with eight semi-solid and pleasure-ready inches. ");
 			removeRedDildo();
 		}
 		else
 		{
 			output("From her kitpack, ");
-			if(DontKnowName) output("the ");
+			//if(DontKnowName) output("the ");
 			output("[enemy.name]");
 			output(" pulls out an imposing dildo, a full eight inches of veiny goodness. ");
 		}
@@ -1644,7 +1645,7 @@ public function redDildoScrew():void
 			output("\n\nSurprised by your interest, the amber-haired ant-girl pulls out an imposing dildo, a full eight inches of veiny goodness. It’s shaped just like a myr cock, but instead of being scarlet, it’s a mottled green from tip to base with the occasional splotch of chocolate brown.");
 			output("\n\n<i>“... This? It’s standard issue for us girls in the trenches. I’ve spent many a happy night with the Private inside of me, both of us quivering away.”</i>");
 			output("\n\nYou ask ");
-			if(DontKnowName) output("the ");
+			//if(DontKnowName) output("the ");
 			output("[enemy.name] if she could use it on you. She blinks her big black eyes, clearly surprised by your request. At the same time, she gulps, and a delighted flush travels across her cheeks.");
 			output("\n\n<i>“... Of course. I mean, I’m no stranger on using it on other" + pc.mf("s"," girls") + ",”</i> she smiles. The beautiful deserter gestures for you to lie back on the ground and you do so. She straddles your waist, sitting on top of you, and touches the toy against the tip of your nose.");
 			output("\n\nThere’s a clicking noise. The synthetic wang begins to wizz against your sensitive nose. It’s shaped like a dildo, but it’s actually a vibrator? Two separate motors - one in the tip and another in the base - wildly whir.");
@@ -1655,7 +1656,7 @@ public function redDildoScrew():void
 		else
 		{
 			output("You ask ");
-			if(DontKnowName) output("her ");
+			//if(DontKnowName) output("her ");
 			output("[enemy.name] if she could use the Private on you. She shoots you a saucy grin, clearly happy with your request.");
 			output("\n\n<i>“... Of course. Lie back and I’ll whip him out,”</i> she smiles. The beautiful deserter gestures for you to lie back on the ground and you do so. She straddles your waist, sitting on top of you, and touches it against the tip of your nose.");
 			output("\n\nThere’s a clicking noise. The synthetic wang begins to wizz against your sensitive nose. The two separate motors - one in the tip and another in the base - wildly whir. A matching shiver courses through you, starting at your nose and ending at your [pc.toes].");
@@ -1719,8 +1720,9 @@ public function redDildoScrew():void
 	if(!(pc.upperUndergarment is EmptySlot)) 
 	{
 		output("<i>“Let’s get this out of the way, shall we-?”</i> ");
-		if(DontKnowName) output("The ");
-		output("[enemy.name] whispers. She sensuously strips off your [pc.upperUndergarment] and");
+		if(DontKnowName) output(enemy.capitalA + enemy.short);
+		else output("[enemy.name]");
+		output(" whispers. She sensuously strips off your [pc.upperUndergarment] and");
 	}
 	else output("Taking advantage of your toplessness, the deserter sensuously");
 	output(" kisses your [pc.chest]. Her soft lips tickle and brush your [pc.skinFurScales]. Your whole body prickles and feels ultra sensitive - every little touch feels deliciously electric and you tremble in delight. Is this the effect of her venom?");
@@ -1793,8 +1795,9 @@ public function redDildoScrew():void
 	if(x >= 0) output("your cervix");
 	else output("the deepest part of your rectum");
 	output(" and you let out a carnal cry, bucking backwards against it. ");
-	if(DontKnowName) output("The ");
-	output("[enemy.name] pulls back, then plunges it deep into your ");
+	if(DontKnowName) output(enemy.capitalA + enemy.short);
+	else output("[enemy.name]");
+	output(" pulls back, then plunges it deep into your ");
 	if(x >= 0) output("sloppy snatch");
 	else output("forbidden hole");
 	output(". An explosion of pleasure seizes your senses. Void, that feels so good! You arch your back in delight, panting like a dog, as drool drips down your chin. Animalistic delight seizes you, and soon you’re a slave to instinct, slapping your [pc.ass] back against her hand.");
@@ -1832,7 +1835,7 @@ public function redDildoScrew():void
 	if(inCombat() && (pc.HP() <= 0 || pc.lust() >= pc.lustMax()))
 	{
 		output("\n\nSome time later, when you finally come to, you realize ");
-		if(DontKnowName) output("the ");
+		//if(DontKnowName) output("the ");
 		output("[enemy.name] has already taken her leave. Shivering, you realize you’re covered in hickies.");
 		if(pc.credits > 1)
 		{
@@ -1849,7 +1852,7 @@ public function redDildoScrew():void
 	else
 	{
 		output("\n\nSome time later, when you come to, you find ");
-		if(DontKnowName) output("the ");
+		//if(DontKnowName) output("the ");
 		output("[enemy.name] nestled against your side. She looks up at you with one big, black eye and the other scarred one, peering through her messed up amber hair. Lightly, she grasps at your chest, nails teasing your [pc.skinFurScales].");
 		output("\n\n<i>“S-so, that was fun,”</i> she breathily states. You’re acutely aware of her pert, naked breasts pressing up against you. <i>“... Um, I guess I should get going? Hopefully I’ll see you around...”</i>");
 		output("\n\n");
@@ -1913,7 +1916,7 @@ public function sitAndScrewGoldMyr():void
 		}
 
 		output("\n\nStriding up to you, ");
-		if(DontKnowName) output("the ");
+		//if(DontKnowName) output("the ");
 		output("[enemy.name] brushes one of her bare feet against ");
 		if(pc.hasCock()) output("the underside of [pc.oneCock]");
 		else if(pc.hasVagina()) output("[pc.oneVagina]");
@@ -1965,7 +1968,7 @@ public function sitAndScrewGoldMyr():void
 		else if(flags["DILDO_SCREW_SCENE_SEEN"] == undefined)
 		{
 			output("You notice there’s a sizable lump in ");
-			if(DontKnowName) output("the ");
+			//if(DontKnowName) output("the ");
 			output("[enemy.name] kitpack. Curious, you ask her what’s inside of it.");
 
 			output("\n\nThe raven-haired ant girl blushes and pulls out a strap-on dildo. It’s pretty impressive - ten inches of veiny goodness - and the same hue as a gold myr’s cock.");
@@ -1980,7 +1983,7 @@ public function sitAndScrewGoldMyr():void
 		else
 		{
 			output("Knowing that ");
-			if(DontKnowName) output("the ");
+			//if(DontKnowName) output("the ");
 			output("[enemy.name] has a double-ended dildo in her knapsack, you ask her if you can use it with her.");
 		}
 		output("\n\nShe blinks her big black eyes, clearly surprised by your request. At the same time, she gulps, and a delighted flush travels across her cheeks.");
@@ -2014,7 +2017,7 @@ public function sitAndScrewGoldMyr():void
 	output(" being rubbed against with her ovipositor pussy. Since her abdomen stretches so far, it’s nothing for the ant-girl to face-sit on you while riding you with the pussy on her alien hindquarters.");
 
 	output("\n\n<i>“I like this position - I can look down into your eyes as we fuck,”</i> ");
-	if(DontKnowName) output("the ");
+	//if(DontKnowName) output("the ");
 	output("[enemy.name] giggles, touching your [pc.hair] with her fingers.");
 
 	output("\n\nThe feeling is mutual - looking up from between her thighs, your world is filled with her massive mammaries and the golden hoops piercing her puckered nips. It’s a truly exquisite sight!");
@@ -2058,7 +2061,7 @@ public function sitAndScrewGoldMyr():void
 		output("\n\nYou let out a muffled moan as you watch her grind against you. Her bountiful breasts and nipple-rings bounce and sway before your eyes. The whole thing is insanely erotic, and you’re not sure how long you can hold out before you’ll be creaming yourself just listening to the sound of her lewd moans and feeling of her grinding insistently against you.");
 	}
 	output("\n\nAs you reach climax, a trembling intensity seizes your body. With a choked gasp, you thrust upwards with your [pc.hips]. Your cock-head presses right against ");
-	if(DontKnowName) output("the ");
+	//if(DontKnowName) output("the ");
 	output("[enemy.name]’s deepest depths. Quivering and shaking, you wrap your arms around her thick thighs. You can’t hold out any longer - you’re going to cum!");
 
 	//GotCock:
@@ -2082,7 +2085,7 @@ public function sitAndScrewGoldMyr():void
 	if(combatLoss)
 	{
 		output("\n\nAfter you’re both finished, ");
-		if(DontKnowName) output("the ");
+		//if(DontKnowName) output("the ");
 		output("[enemy.name] pulls herself off you. Her slick juices dribble all over your waist and you let out a pleasured sigh. After giving you a single kiss on the lips, she pulls the strap-on off your exhausted body, and stashes it back in her kitpack.");
 
 		output("\n\n<i>“I’d love to linger, but I really must get going,”</i> she informs you, an inflection of regret in her voice. However, after she’s done dressing, you’re pinned down once more");
@@ -2101,7 +2104,7 @@ public function sitAndScrewGoldMyr():void
 	else
 	{
 		output("\n\nAfter you’re both finished, ");
-		if(DontKnowName) output("the ");
+		//if(DontKnowName) output("the ");
 		output("[enemy.name] pulls herself off you and rests against your chest. The pressing of her large, warm breasts, mixed with the cold contrast of her nipple rings, is incredibly pleasant. At the same time, ");
 		if(pc.hasCock()) output("your [pc.cum] runs down her thighs and drips onto your [pc.legOrLegs].");
 		else output("her girl cum dribbles down her legs and onto your [pc.skinFurScales].");
@@ -3033,19 +3036,29 @@ public function didloDPWivStolenDildo(target:String = "vag"):void
 	clearOutput();
 	showName("\nDP!");
 	author("Zeikfried");
+	
+	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
+	if(!pp.hasCock()) pp.createCock();
+	pp.shiftCock(0, GLOBAL.TYPE_HUMAN);
+	pp.cocks[0].cLengthRaw = 10;
+	pp.cocks[0].cThicknessRatioRaw = 1;
+	
 	output("You detach the smaller end from the strap-on and tickle your ");
 	if(target == "vag") output("labia");
 	else if(target == "ass") output("anal ring");
 	else if(target == "tail") output("parasitic tail’s opening");
 	else output("mutated, fuckable nipple");
 	output(" with the tip of the ten-inch monster. Slowly, you work it inside; its edges stir and scrape at your nerves, sparking pleasure up your spine. ");
-	if(target == "vag") pc.cuntChange(0,75);
-	else if(target == "ass") pc.buttChange(75);
+	if(target == "vag") pc.cuntChange(0,pp.cockVolume(0)); // 75
+	else if(target == "ass") pc.buttChange(pp.cockVolume(0)); // 75
 	
 	output("\n\nYou masturbate to a froth with the first dildo, working yourself into such a fugue that your lust-addled mind craves more penetration. Extended plunges with the first toy dredge up lubrication from deep in your core, until you’re satisfied that you’re wet enough to take the smaller one as well. With care but very little ceremony, you slip it in alongside its larger sibling.");
 	//{second vaginal/anal/whatever stretch check (for double pen; both heads together are probably ~5in wide)}");
-	if(target == "vag") pc.cuntChange(0,375);
-	else if(target == "ass") pc.buttChange(375);
+	
+	pp.cocks[0].cThicknessRatioRaw = 1.5;
+	
+	if(target == "vag") pc.cuntChange(0,pp.cockVolume(0)); // 375
+	else if(target == "ass") pc.buttChange(pp.cockVolume(0)); // 375
 
 	output("\n\nThe two toys press against one another, each driving the other deeper into your furrows as you thrust in and out. It’s hard to keep the image of being man-handled by two strong lovers from your fertile imagination - once it’s in there, all you can see is the spectacle of them fighting over access to your ");
 	if(target == "vag") output("[pc.vagOrAss]");

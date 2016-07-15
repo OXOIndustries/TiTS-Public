@@ -2422,7 +2422,7 @@ public function crotchStuff(forTarget:Creature = null):void
 	}
 	//BUNGHOLIO
 	if(target.ass != null) {
-		output2("\n\nYou have one " + target.assholeDescript() + ", placed between your cheeks where it belongs");
+		output2("\n\nYou have one " + target.assholeDescript(true) + ", placed between your cheeks where it belongs");
 		if(target.libido() < 50 && target.lust() < 50) //not particularly horny
 		{
 			//Wetness
@@ -2449,6 +2449,8 @@ public function crotchStuff(forTarget:Creature = null):void
 			else if(target.ass.wetness() < 5) output2(" with thin streams of lubricant occasionally dribbling from the orifice.");
 			else output2(" with thick streams of lubricant oozing constantly from the orifice quite liberally.");
 		}
+		if(target.ass.hasFlag(GLOBAL.FLAG_PUMPED)) output2(" Your soft donut of a pucker protrudes obscenely, almost like a miniature pubic mound that rubs against your buns with every step you take.");
+		else if(target.ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) output2(" Your pucker is inhumanly soft and puffy, a beckoning donut with a perfect little hole in the middle.");
 	}
 	
 	if (forTarget != null) setTarget(null);

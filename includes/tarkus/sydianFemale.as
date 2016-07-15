@@ -588,7 +588,7 @@ public function femSydianGentleFuck():void
 		}
 		else
 		{
-			output("\n\n<i>“Come with me,”</i> she breathes, helping you frig her sopping hole faster. Her other hand plunges into you, tickling your [pc.vaginaLight] with both thick fingers and spreading pleasure that shifts like a sand dune as your lubrication carries the enzyme along. You may have underestimated just how into you the sydian is - she shrieks and her cunt clamps down, sucking and squeezing your fingers. <i>“Cuh-cumming!”</i> the girl moans.");
+			output("\n\n<i>“Come with me,”</i> she breathes, helping you frig her sopping hole faster. Her other hand plunges into you, tickling your [pc.vaginaNoun] with both thick fingers and spreading pleasure that shifts like a sand dune as your lubrication carries the enzyme along. You may have underestimated just how into you the sydian is - she shrieks and her cunt clamps down, sucking and squeezing your fingers. <i>“Cuh-cumming!”</i> the girl moans.");
 			
 			output("\n\nYour own orgasm arrives with a bang,");
 			if (pc.isSquirter()) output(" and your [pc.vagina] gushes such [pc.girlCum] over her hand that she looks down to check if you’re a boy.");
@@ -1496,6 +1496,7 @@ public function femSydianFuck():void
 public function sydianPregnancyEnds():void
 {
 	clearOutput();
+	author("Zeikfried");
 
 	var se:StorageClass = pc.getStatusEffect("Sydian Pregnancy Ends");
 	
@@ -1509,20 +1510,18 @@ public function sydianPregnancyEnds():void
 	else output(" onto the ground");
 	output(". Oh god, the baby is coming...");
 
-	//on ship without automatic medbay
-	if (InShipInterior() && 9999 == 9999)
-	{
-		output("\n\nYou grab the nearest medkit and head for your bed, determined to deliver the baby safely. After setting aside your gear, you lie down and begin to breathe in preparation for your labors.");
-	}
-	/*
 	//on ship with auto-medbay (commented until one is available)
-	else
+	if (InShipInterior() && 9999 == 0)
 	{
-		output("You head for the automatic medbay, clutching your trembling stomach. Contractions intensify quickly -- by the time the system finishes its evaluation and moves into action, you're");
+		output("\n\nYou head for the automatic medbay, clutching your trembling stomach. Contractions intensify quickly -- by the time the system finishes its evaluation and moves into action, you're");
 		if (!pc.isNude()) output(" disrobed but");
 		output(" no longer able to speak between breaths.");
 	}
-	*/
+	//on ship without automatic medbay
+	else if (InShipInterior())
+	{
+		output("\n\nYou grab the nearest medkit and head for your bed, determined to deliver the baby safely. After setting aside your gear, you lie down and begin to breathe in preparation for your labors.");
+	}
 	//in public place
 	else if (InPublicSpace())
 	{
@@ -1562,10 +1561,19 @@ public function sydianPregnancyEnds():void
 	if (babym) output(" boy");
 	else output(" girl");
 	output("?");
+	
+	if(numChildren > 1)
+	{
+		output("\n\nThe birthing doesn't stop there. After a brief moment, you take a few huffs as another movement applies pressure to your womb and your vision hazes again. Your [pc.vagina " + pregSlot + "] spreads and a new head crowns. With some effort, you gently push with your lower muscles, aiding the child out to finally join its " + (babym ? "brother" : "sister") + ".");
+		if(numChildren > 2) output(" The process continues until you have a total of " + num2Text(numChildren) + " children born.");
+		output(" You take a good look at your beautiful babies while the fuzzy fog fades from your senses.");
+	}
 
-	output("\n\nA soft touch on your hand brings you out of your reverie -- your baby seems to know there's more work to do. Sighing, you clean up and cut the cord, then prepare to send " + (babym ? "him":"her") + " off. While the shuttle is in transit, you spend the time playing, letting your little one squeeze your fingers and giggle while you meditate on a name that suits " + (babym ? "him":"her") + ". You even hold up the shuttle, ignoring the drone's automated requests until you can't wait any longer. With a pang in your heart, you bundle your child into the climate-controlled device and watch it return to the shuttle.");
+	output("\n\n" + (numChildren == 1 ? "A soft touch" : "Soft touches") + " on your hand bring" + (numChildren == 1 ? "s" : "") + " you out of your reverie -- your bab" + (numChildren == 1 ? "y seems" : "ies seem") + " to know there's more work to do. Sighing, you clean up and cut the cord" + (numChildren == 1 ? "" : "s") + ", then prepare to send " + (numChildren == 1 ? (babym ? "him":"her") : "the newborns") + " off. While the shuttle is in transit, you spend some time playing, letting your little one" + (numChildren == 1 ? "" : "s") + " squeeze your fingers and giggle while you meditate on " + (numChildren == 1 ? ("a name that suits" + (babym ? "him":"her")) : "names that suit them") + ". You even hold up the shuttle, ignoring the drone's automated requests until you can't wait any longer. With a pang in your heart, you bundle your child" + (numChildren == 1 ? "" : "ren") + " into the climate-controlled device and watch it return to the shuttle.");
 	
 	SydianPregnancyHandler.sydianCleanupData();
+	
+	processTime(49 + (13 * numChildren));
 	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);

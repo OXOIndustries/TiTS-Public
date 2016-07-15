@@ -12,12 +12,14 @@
 	import classes.Items.Accessories.TamWolfDamaged;
 	import classes.Items.Accessories.TamWolfII;
 	import classes.Items.Armor.GooArmor;
+	import classes.Items.Armor.InsulatedCoat;
 	import classes.Items.Armor.Unique.Omnisuit;
 	import classes.Items.Guns.MyrBow;
 	import classes.Items.Melee.Fists;
 	import classes.Items.Melee.Rock;
 	import classes.Items.Miscellaneous.EmptySlot;
 	import classes.Items.Miscellaneous.HorsePill;
+	import classes.Items.Miscellaneous.Cargobot;
 	import classes.Items.Transformatives.Clippex;
 	import classes.Items.Transformatives.Foxfire;
 	import classes.Items.Transformatives.Goblinola;
@@ -1887,6 +1889,12 @@
 				case "asshole":
 					buffer = assholeDescript();
 					break;
+				case "anusSimple":
+				case "assholeSimple":
+				case "anusNoun":
+				case "assholeNoun":
+					buffer = assholeDescript(true);
+					break;
 				case "buttDescript":
 				case "butt":
 				case "ass":
@@ -2255,7 +2263,8 @@
 		}
 		public function inventorySlots(): int {
 			var slots:int = 10;
-			if(accessory.shortName == "Cargobot") slots += 2;
+			if(accessory is Cargobot) slots += 2;
+			if(armor is InsulatedCoat) slots += 1;
 			if(hasPerk("Hidden Loot")) slots += 2;
 			return slots;
 		}
@@ -5572,6 +5581,11 @@
 			if(hasLegFlag(GLOBAL.FLAG_AMORPHOUS) || hasLegFlag(GLOBAL.FLAG_HOOVES) || legType == GLOBAL.TYPE_NAGA) return false;
 			return true;
 		}
+		public function hasHooves():Boolean
+		{
+			if (hasLegFlag(GLOBAL.FLAG_HOOVES)) return true;
+			return false;
+		}
 		public function hasToeClaws():Boolean
 		{
 			if(hasToes() && (legType == GLOBAL.TYPE_DEMONIC || legType == GLOBAL.TYPE_LIZAN || legType == GLOBAL.TYPE_RASKVEL || legType == GLOBAL.TYPE_DRACONIC || legType == GLOBAL.TYPE_GRYVAIN || legType == GLOBAL.TYPE_PANDA)) return true;
@@ -7191,6 +7205,21 @@
 			}
 			return vaginas[counter].looseness();
 		}
+		public function gapestVaginaIndex():int {
+			var idx:int = -1;
+			for (var i:int = 0; i < vaginas.length; i++)
+			{
+				if (idx == -1) idx = i;
+				else
+				{
+					if (vaginas[i].looseness() > vaginas[idx].looseness())
+					{
+						idx = i;
+					}
+				}
+			}
+			return idx;
+		}
 		public function tightestVaginalLooseness():Number
 		{
 			if (vaginas.length == 0) return -1;
@@ -7209,13 +7238,14 @@
 			return vaginas[vIdx].looseness();
 		}
 		public function wettestVaginalWetness(): Number {
+			if(!hasVagina()) return -1;
 			var counter: Number = vaginas.length;
 			var index: Number = 0;
 			while (counter > 0) {
 				counter--;
 				if (vaginas[index].wetness() < vaginas[counter].wetness()) index = counter;
 			}
-			return vaginas[counter].wetness();
+			return vaginas[index].wetness();
 		}
 		public function driestVaginalWetness(): Number {
 			if(!hasVagina()) return -1;
@@ -7225,7 +7255,7 @@
 				counter--;
 				if (vaginas[index].wetness() > vaginas[counter].wetness()) index = counter;
 			}
-			return vaginas[counter].wetness();
+			return vaginas[index].wetness();
 		}
 		public function biggestVaginaIndex(): int {
 			if (vaginas.length == 0) return 0;
@@ -9697,12 +9727,12 @@
 			if (asPlural && balls != 1) desc = plural(desc);
 			return desc;
 		}
-		public function assholeDescript(): String {
+		public function assholeDescript(simple:Boolean = false): String {
 			var desc: String = "";
 			var rando: Number = 0;
 			var descripted: Number = 0;
 			//25% tightness desc
-			if (rand(4) == 0 || (ass.looseness() <= 1 && rand(4) <= 2)) {
+			if (((!simple || analVirgin) && rand(4) == 0) || ((!simple || analVirgin) && ass.looseness() <= 1 && rand(4) <= 2)) {
 				if (descripted > 0) desc += ", ";
 				if (analVirgin) {
 					if (rand(3) == 0) desc += "virgin";
@@ -9734,7 +9764,7 @@
 				descripted++;
 			}
 			//66% wetness description
-			if (rand(3) <= 1 && ass.wetness() >= 2) {
+			if (!simple && rand(3) <= 1 && ass.wetness() >= 2) {
 				if (descripted > 0) desc += ", ";
 				if (ass.wetness() <= 2) {
 					if (rand(2) == 0) desc += "moist";
@@ -9756,6 +9786,14 @@
 				}
 				descripted++;
 			}
+			// Puffy butt - 50% addition of no other descs - doesn't stack well with loose/wet.
+			if(descripted == 0 && (ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || ass.hasFlag(GLOBAL.FLAG_PUMPED)) && rand(2) == 0)
+			{
+				if (descripted > 0) desc += ", ";
+				if (!ass.hasFlag(GLOBAL.FLAG_PUMPED)) desc += RandomInCollection(["puffy", "plump", "fat", "crinkly", "soft", "spongy"]);
+				else desc += RandomInCollection(["puffy", "plump", "fat", "crinkly", "soft", "spongy", "huge", "pumped", "pillowy"]);
+				descripted++;
+			}
 			if(descripted == 0 && hasPerk("Buttslut") && rand(2) == 0)
 			{
 				if (descripted > 0) desc += ", ";
@@ -9766,7 +9804,8 @@
 			if (descripted > 0) desc += " ";
 			//Butt descriptor
 			rando = rand(18);
-			if (rando <= 2) desc += "ass";
+			if(!simple && (ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || ass.hasFlag(GLOBAL.FLAG_PUMPED)) && rand(4) == 0) desc += "donut";
+			else if (rando <= 2) desc += "ass";
 			else if (rando <= 5) desc += "anus";
 			else if (rando <= 7) desc += "pucker";
 			else if (rando <= 10) desc += "asshole";
@@ -11240,10 +11279,10 @@
 			//BUILD DESCRIPTIONS
 			//TIGHTNESS/LOOSENESS FIRST
 			//Figure out chance of tightness desc
-			var currLooseness:Number = vag.looseness();
+			var currLooseness:Number = Math.round(vag.looseness());
 			if(currLooseness != 2) bonus = 16;
 			if(currLooseness >= 4) bonus = 10;
-			if(currLooseness == 5) bonus = 5;
+			if(currLooseness >= 5) bonus = 5;
 			if(currLooseness == 1) bonus = 5;
 			//Roll the dice on looseness descs
 			if (forceAdjectives || (adjectives && rand(100) < bonus))
@@ -11252,9 +11291,9 @@
 				//Bimbos get some 'special' tightness variants
 				if (isBimbo() && rand(3) == 0 && currLooseness != 3 && currLooseness != 2)
 				{
-					if(currLooseness == 5) desc += RandomInCollection(["awesomely gaped","gapey","loosey-goosey","size-queen-sized"]);
-					else if(currLooseness == 4) desc += RandomInCollection(["perfect","super loosey","totally awesome"]);
-					else if(currLooseness == 1) desc += RandomInCollection(["perky little","overly-tight","too-tight"]);
+					if(currLooseness >= 5) desc += RandomInCollection(["awesomely gaped","gapey","loosey-goosey","size-queen-sized"]);
+					else if(currLooseness >= 4) desc += RandomInCollection(["perfect","super loosey","totally awesome"]);
+					else if(currLooseness <= 1) desc += RandomInCollection(["perky little","overly-tight","too-tight"]);
 					loosenessDisplayed = true;
 					adjectiveCount++;
 				}
@@ -13171,11 +13210,11 @@
 			} else if (InCollection(arg, GLOBAL.FLUID_TYPE_HONEY, GLOBAL.FLUID_TYPE_NECTAR)) {
 				collection = ["amber","amber","amber","amber","amber","yellow","yellow","yellow","gold","tawny"];
 			} else if (arg == GLOBAL.FLUID_TYPE_OIL) {
-				collection = ["semi-transparent","semi-transparent","semi-transparent","semi-transparent","semi-transparent","transluscent brown","transluscent brown","transluscent brown","lucent","lucent"];
+				collection = ["semi-transparent","semi-transparent","semi-transparent","semi-transparent","semi-transparent","translucent brown","translucent brown","translucent brown","lucent","lucent"];
 			} else if (arg == GLOBAL.FLUID_TYPE_MILKSAP) {
 				collection = ["whitish-yellow","whitish-yellow","whitish-yellow","whitish-yellow","whitish-yellow","ivory gold","ivory gold","ivory gold","off-white","off-white"];
 			} else if (arg == GLOBAL.FLUID_TYPE_GIRLCUM) {
-				collection = ["transluscent","transluscent","transluscent","transluscent","transluscent","clear","clear","clear","semi-transparent","semi-transparent"];
+				collection = ["translucent","translucent","translucent","translucent","translucent","clear","clear","clear","semi-transparent","semi-transparent"];
 			} else if (arg == GLOBAL.FLUID_TYPE_CUMSAP) {
 				collection = ["off-white","off-white","off-white","off-white","off-white","pearl-marbled amber","pearl-marbled amber","pearl-marbled amber","ivory-amber","ivory-amber"];
 			} else if (InCollection(arg, GLOBAL.FLUID_TYPE_CHOCOLATE_MILK, GLOBAL.FLUID_TYPE_CHOCOLATE_CUM)) {
@@ -15650,7 +15689,7 @@
 								//Treatment finishing.
 								case "The Treatment":
 									kGAMECLASS.eventBuffer += "\n\n<b>The Treatment is over.</b> You aren’t sure why or how you know, but you know it all the same. Well, there’s nothing left to do but enjoy your enhanced body to the fullest! ...While hunting for Dad’s probes, of course. It’s the best way to meet sexy new aliens.";
-									kGAMECLASS.eventBuffer += "\n\nOnce you claim you fortune, you can retire on New Texas, maybe even get your own private milker.";
+									kGAMECLASS.eventBuffer += "\n\nOnce you claim your fortune, you can retire on New Texas, maybe even get your own private milker.";
 									break;
 								//Sterilex/Infertile ends!
 								case "Infertile":
@@ -15767,9 +15806,10 @@
 			var o:int = -1;
 			//Place to store draining notices.
 			var notice:String = "";
-			var amountVented:Number
+			var amountVented:Number;
 			var removals:Array = new Array();
 			var cumDrain:Boolean = !hasPerk("No Cum Leakage");
+			var amountStored:Number = 0;
 
 			//Find the index value for various types of cumflation.
 			for(var x:int = 0; x < statusEffects.length; x++)
@@ -15778,12 +15818,15 @@
 				{
 					case "Anally-Filled":
 						a = x;
+						amountStored += statusEffects[a].value1;
 						break;
 					case "Vaginally-Filled":
 						z = x;
+						amountStored += statusEffects[z].value1;
 						break;
 					case "Orally-Filled":
 						o = x;
+						amountStored += statusEffects[o].value1;
 						break;
 				}
 			}
@@ -15795,12 +15838,13 @@
 					//Figure out how much cum is vented over time.
 					//Should vent 1/2 the current amount over 30 minutes
 					//+a small amount based off the maximum amount full you've been for this proc.
-					amountVented = statusEffects[z].value1 / 4 / 2 + statusEffects[z].value2 / 48
+					amountVented = statusEffects[z].value1 / 4 / 2 + statusEffects[z].value2 / 48;
 					//Mult times minutes passed
 					amountVented *= timePassed/60;
 					//trace("CURRENT CUM BANKED: " + statusEffects[z].value1 + " VENTING: " + amountVented);
 					//Apply to actual status
 					statusEffects[z].value1 -= amountVented;
+					amountStored -= amountVented;
 				}
 				//Special notices!
 				if(this is PlayerCharacter && notice == "")
@@ -15850,11 +15894,12 @@
 					//Figure out how much cum is vented over time.
 					//Should vent 1/2 the current amount over 30 minutes
 					//+a small amount based off the maximum amount full you've been for this proc. 
-					amountVented = statusEffects[a].value1 / 4 / 2 + statusEffects[a].value2 / 48
+					amountVented = statusEffects[a].value1 / 4 / 2 + statusEffects[a].value2 / 48;
 					//Mult times minutes passed
 					amountVented *= timePassed/60;
 					//Apply to actual status
 					statusEffects[a].value1 -= amountVented;
+					amountStored -= amountVented;
 				}
 				//Special notices!
 				if(this is PlayerCharacter && notice == "")
@@ -15904,11 +15949,12 @@
 					//Figure out how much cum is vented over time.
 					//Should vent 1/2 the current amount over 30 minutes
 					//+a small amount based off the maximum amount full you've been for this proc. 
-					amountVented = statusEffects[o].value1 / 8 / 2 + statusEffects[o].value2 / 48
+					amountVented = statusEffects[o].value1 / 8 / 2 + statusEffects[o].value2 / 48;
 					//Mult times minutes passed
 					amountVented *= timePassed/60;
 					//Apply to actual status
 					statusEffects[o].value1 -= amountVented;
+					amountStored -= amountVented;
 				}
 				//Special notices!
 				if(this is PlayerCharacter)
@@ -15921,7 +15967,7 @@
 					if(hairType == GLOBAL.HAIR_TYPE_GOO) addBiomass(amountVented);
 					if(hasPerk("Honeypot"))
 					{
-						kGAMECLASS.honeyPotBump();
+						if(amountVented > 0) kGAMECLASS.honeyPotBump();
 						if(amountVented >= 500) kGAMECLASS.honeyPotBump();
 						if(amountVented >= 1000) kGAMECLASS.honeyPotBump();
 						if(amountVented >= 2000) kGAMECLASS.honeyPotBump();
@@ -15947,7 +15993,20 @@
 				removeStatusEffect(removals[0]);
 				removals.splice(0,1);
 			}
-			kGAMECLASS.eventBuffer += ParseText(notice);
+			if(notice != "")
+			{
+				if(hasStatusEffect("Omit Cumflation Messages")) return;
+				
+				kGAMECLASS.eventBuffer += ParseText(notice);
+				
+				if(amountStored >= (25000 / 4 / 2))
+				{
+					var delayTime:int = 30 * Math.floor(amountStored / 25000);
+					if(delayTime > 240) delayTime = 240;
+					if(delayTime < 30) delayTime = 30;
+					createStatusEffect("Omit Cumflation Messages", 0, 0, 0, 0, true, "Icon_Sperm_Hearts", "Cumflation messages are currently disabled.", false, delayTime);
+				}
+			}
 		}
 
 		/**
@@ -16029,6 +16088,7 @@
 			if (hasHeatBelt()) return false;
 			if (getHPResistances().freezing.resistanceValue >= resToAvoid) return false;
 			if (accessory.hasFlag(GLOBAL.ITEM_FLAG_HEAT_GENERATOR) || armor.hasFlag(GLOBAL.ITEM_FLAG_HEAT_GENERATOR) || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_HEAT_GENERATOR) || upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_HEAT_GENERATOR)) return false;
+			if (hasStatusEffect("T.Pack")) return false;
 			
 			// Perk for some kinda TF or some shit, effect for a temporary/timed effect?
 			if (hasPerk("Icy Veins") || hasStatusEffect("Icy Veins")) return false;

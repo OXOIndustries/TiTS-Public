@@ -222,30 +222,7 @@ public function initUvetoRooms():void
 	rooms["UVS H9"].moveMinutes = 1;
 	rooms["UVS H9"].addFlag(GLOBAL.INDOOR);
 	rooms["UVS H9"].addFlag(GLOBAL.NPC);
-	rooms["UVS H9"].runOnEnter = function():Boolean {
-		output("The RhenWorld Stellar Excavations offices are warmer than the rest of the ship, and brightly colored with sandy wallpapers and potted plants surrounded an interior fountain -- very expensive decorations on a space station. A half dozen female");
-		if (CodexManager.hasUnlockedEntry("Leithans")) output(" leithans");
-		else output(" plated, six-legged centaurs with ashen skin");
-		output(" are sitting on their legs behind ‘U’-shaped desks, busily working on holoscreens.");
-		if (!CodexManager.hasUnlockedEntry("Leithans"))
-		{
-			output(" <b>Your codex identifies them as leithans.</b>");
-			CodexManager.unlockEntry("Leithans");
-		}
-
-		if (flags["RHENWORLD_OFFICE_VISITED"] == undefined)
-		{
-			output("\n\nOne of the leithan girls smiles as you wander into the offices. <i>“Hello! Welcome to RhenWorld, " + pc.mf("Mr.", "Ms.") + "... Steele!”</i> she says, eyeing a dataslate to identify you. <i>“Miss Rhenesunne is currently in her office. Please, go ahead.”</i>");
-
-			output("\n\nShe sweeps one of her black, plated arms towards the southern door.");
-		}
-		else
-		{
-			output("\n\n<i>“Welcome back, " + pc.mf("Mr.", "Ms.") + " Steele!”</i> the leithan secretary nearest the south door says, flashing you an adorable smile.");
-		}
-		
-		return false;
-	};
+	rooms["UVS H9"].runOnEnter = rhenWorldEntranceBonus;
 	
 
 	/* Anyx's Office */
@@ -258,6 +235,7 @@ public function initUvetoRooms():void
 	rooms["UVS H11"].moveMinutes = 1;
 	rooms["UVS H11"].addFlag(GLOBAL.INDOOR);
 	rooms["UVS H11"].addFlag(GLOBAL.NPC);
+<<<<<<< HEAD
 	rooms["UVS H11"].runOnEnter = function():Boolean {
 		if (flags["MET_RHENESUNNE"] == undefined)
 		{
@@ -272,6 +250,9 @@ public function initUvetoRooms():void
 
 		return false;
 	};
+=======
+	rooms["UVS H11"].runOnEnter = rhenesunneOfficeBonus;
+>>>>>>> origin/master
 
 	/** IRESTEAD -------------------------------------------------------------------- */
 	/** ----------------------------------------------------------------------------- */
@@ -504,6 +485,7 @@ public function initUvetoRooms():void
 	rooms["UVI N32"].southExit = "UVI N34";
 	rooms["UVI N32"].eastExit = "UVI P32";
 	rooms["UVI N32"].moveMinutes = 3;
+	rooms["UVI N32"].runOnEnter = meadStreetBonus;
 	rooms["UVI N32"].addFlag(GLOBAL.OUTDOOR);
 
 	rooms["UVI N30"] = new RoomClass(this);
@@ -526,6 +508,7 @@ public function initUvetoRooms():void
 	rooms["UVI P30"].system = "SYSTEM: SIRETTA";
 	rooms["UVI P30"].westExit = "UVI N30";
 	rooms["UVI P30"].moveMinutes = 1;
+	rooms["UVI P30"].runOnEnter = ironsHouseBonus;
 	rooms["UVI P30"].addFlag(GLOBAL.INDOOR);
 
 	rooms["UVI P32"] = new RoomClass(this);
@@ -949,8 +932,8 @@ public function initUvetoRooms():void
 	rooms["UVIP T36"].westExit = "UVIP R36";
 	rooms["UVIP T36"].moveMinutes = 6;
 	rooms["UVIP T36"].addFlag(GLOBAL.ICYTUNDRA);
-	rooms["UVIP T36"].addFlag(GLOBAL.HAZARD);
-	rooms["UVIP T36"].runOnEnter = TundraEncounterBonus;
+	//rooms["UVIP T36"].addFlag(GLOBAL.HAZARD);
+	//rooms["UVIP T36"].runOnEnter = TundraEncounterBonus;
 
 	/* BLU ROOM */
 	rooms["UVIP R36"] = new RoomClass(this);
@@ -1230,8 +1213,8 @@ public function initUvetoRooms():void
 	rooms["UVIP J20"].westExit = "UVIP H20";
 	rooms["UVIP J20"].moveMinutes = 1;
 	rooms["UVIP J20"].addFlag(GLOBAL.CAVE);
-	rooms["UVIP J20"].addFlag(GLOBAL.HAZARD);
-	rooms["UVIP J20"].runOnEnter = TundraEncounterBonus;
+	//rooms["UVIP J20"].addFlag(GLOBAL.HAZARD);
+	//rooms["UVIP J20"].runOnEnter = TundraEncounterBonus;
 
 	rooms["UVIP J18"] = new RoomClass(this);
 	rooms["UVIP J18"].roomName = "ICE-HEWN\nCAVERN";
@@ -1241,8 +1224,8 @@ public function initUvetoRooms():void
 	rooms["UVIP J18"].southExit = "UVIP J20";
 	rooms["UVIP J18"].moveMinutes = 1;
 	rooms["UVIP J18"].addFlag(GLOBAL.CAVE);
-	rooms["UVIP J18"].addFlag(GLOBAL.HAZARD);
-	rooms["UVIP J18"].runOnEnter = TundraEncounterBonus;
+	//rooms["UVIP J18"].addFlag(GLOBAL.HAZARD);
+	//rooms["UVIP J18"].runOnEnter = TundraEncounterBonus;
 
 	rooms["UVIP H24"] = new RoomClass(this);
 	rooms["UVIP H24"].roomName = "SNOWBANK\nSOUTH";

@@ -31,14 +31,16 @@ package classes.TITSSaveEdit
 		/**
 		 * The version property in the save file structure.
 		 */
-		public var SupportedSaveVersion:int = 14;
+		public var SupportedSaveVersion:int = 28;
 		
 		// Copying the TiTs version string.
-		public var GameVersion:String = "0.05.53";
-		public var EditorVersion:String = "0.02.06";
+		public var GameVersion:String;
+		public var EditorVersion:String;
 		
 		public function TiTsSE():void 
 		{
+			GameVersion = "0.0.66";
+			EditorVersion = "0.03.00";
 			if (stage) init();
 			else addEventListener(Event.ADDED_TO_STAGE, init);
 		}

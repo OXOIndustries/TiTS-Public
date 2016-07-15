@@ -505,11 +505,11 @@ public function talkToNaynaAboutNayna():void
 	clearOutput();
 	showNayna();
 	output("<i>“What about you? I don’t even know your full name.”</i>");
-	output("\n\nNayna grabs onto your conversational lifeline with both hands. <i>“Oh, of course! Sorry about that. My full name is Nayna Triverre. I’ve gotten so used to interfacing the crude mining folk here that I guess civilized courtesy has escaped me.”</i> She blinks innocently at you, then gasp once she realizes you expect more, floundering around as she searches for more to say. <i>“Oh, and I’m a laquine, I guess, but you know that, right? I mean, I have these big dumb ears and this stupid little twitchy nose. It’d be hard to miss.”</i>");
+	output("\n\nNayna grabs onto your conversational lifeline with both hands. <i>“Oh, of course! Sorry about that. My full name is Nayna Triverre. I’ve gotten so used to interfacing the crude mining folk here that I guess civilized courtesy has escaped me.”</i> She blinks innocently at you, then gasps once she realizes you expect more, floundering around as she searches for more to say. <i>“Oh, and I’m a laquine, I guess, but you know that, right? I mean, I have these big dumb ears and this stupid little twitchy nose. It’d be hard to miss.”</i>");
 	output("\n\nYou nod");
 	if(!pc.isAss()) output(", but mention that there’s nothing dumb or stupid about the way she looks.");
 	else output(", hoping she’ll tell you something a little less obvious.");
-	output("\n\nNayna blunders right on. Now that she’s gotten started, it seems like her mouth is ready to go on autopilot. <i>“And since I’m a laquine hermaphrodite, everybody pushed me into science. What kind of weird culture expects that sort of thing, anyway? Just because you get born with a vagina and an under-sized penis doesn’t mean you’re going to be better at science.”</i> She looks away and gasp, realizing what she just said. <i>“You aren’t offended, are you? I know some coreward folks get uncomfortable about stuff like this.”</i>");
+	output("\n\nNayna blunders right on. Now that she’s gotten started, it seems like her mouth is ready to go on autopilot. <i>“And since I’m a laquine hermaphrodite, everybody pushed me into science. What kind of weird culture expects that sort of thing, anyway? Just because you get born with a vagina and an under-sized penis doesn’t mean you’re going to be better at science.”</i> She looks away and gasps, realizing what she just said. <i>“You aren’t offended, are you? I know some coreward folks get uncomfortable about stuff like this.”</i>");
 	output("\n\nOpenly grinning, you let her know that you’ve seen far worse in your journeys.");
 	output("\n\n<i>“Oh... okay then.”</i> Nayna sits a little straighter and explains. <i>“A lot of the other kids thought I won the genetic lottery, getting to be a hermaphrodite. The best of both worlds right? Well, I think I lost it, twice. I’d be just as good of a scientist if I was a normal girl or boy. And maybe I wouldn’t have wound up so stunted and fat.”</i> Blushing, she adds, <i>“I didn’t even get a normal sized dick! It should be twice as long. Who would even want to use a nine incher? Not me, that’s for damned sure, but who needs sex, anyway?”</i>");
 	output("\n\nYou raise an eyebrow but let her keep ranting.");
@@ -678,7 +678,7 @@ public function giveHerADrone():void
 		else if(pc.isMischievous()) output("I gotcha a present.");
 		else output("Don’t freak out or anything, but I found this for you.");
 		output("”</i>");
-		output("\n\nNayna clutches it to her chest, rocking it back and forth like a long lost baby. When she looks back at you, there are tears welling up at the corners of her eyes. <i>“I didn’t think you’d do this for me... not even when you said agreed to help. Do you remember what happened when we met? I nearly killed you!”</i> She sniffles, nose wrinkling cutely. <i>“I wish there was some way I could repay you, some way to let you know just how much this means to me.”</i> She gingerly puts down the drone. <i>“How about a hug?”</i>");
+		output("\n\nNayna clutches it to her chest, rocking it back and forth like a long lost baby. When she looks back at you, there are tears welling up at the corners of her eyes. <i>“I didn’t think you’d do this for me... not even when you agreed to help. Do you remember what happened when we met? I nearly killed you!”</i> She sniffles, nose wrinkling cutely. <i>“I wish there was some way I could repay you, some way to let you know just how much this means to me.”</i> She gingerly puts down the drone. <i>“How about a hug?”</i>");
 		
 	}
 	//REPEAT
@@ -739,7 +739,7 @@ public function hugNaynaGogogo():void
 		else output("latex-encased");
 		output(" boobs, nearly suffocating you in tit. ");
 		if(naynaWarm()) output("Her parka might do a decent job of hiding it, but with the tight embrace, you can feel something stiffening down below at the memory of a previous encounter.");
-		else output("Her sheer black undersuit doesn’t do much to hide to too-thick length of her pony prick. The glossy surface actually seems to accentuate it. It would seem the formerly chaste scientist can’t help but get aroused by your presence ever since that special hug.");
+		else output("Her sheer black undersuit doesn’t do much to hide the too-thick length of her pony prick. The glossy surface actually seems to accentuate it. It would seem the formerly chaste scientist can’t help but get aroused by your presence ever since that special hug.");
 		output("\n\nIt sounds like she’s up for anything.");
 		//Sex menu display here!
 		naynaSexMenu();
@@ -1380,7 +1380,7 @@ public function naynaFucksYourButt():void
 	clearOutput();
 	showNayna(true);
 	author("Frogapus");
-	output("You tell Nayna that you like her to take you.");
+	output("You tell Nayna that you would like her to take you.");
 	output("\n\n<i>“Like out to dinner?”</i> she asks. She tilts her head in mild confusion, her ears flopping to one side. <i>“That sounds nice, but I really should be in here continuing my research.”</i>");
 	output("\n\nYou ");
 	if(pc.isBimbo()) output("giggle in amusement");
@@ -1390,7 +1390,7 @@ public function naynaFucksYourButt():void
 	output(" and clarify that you’d like her to fuck your ass.");
 
 	output("\n\n<i>“Oh! ...Ohhhhhhh!”</i> she says, wide-eyed, her lips a perfect “o” of surprise. She frowns, her chin resting on one hand, considering it.");
-	output("\n\nYou let the laquine think it through, glancing down at the the pert bulge just above her thighs. It gives a small twitch, resulting in a faint squeaking noise as she looks back up to you. It looks like the chubby scientist's body has come to a decision, even if her mind is too shell-shocked too reply.");
+	output("\n\nYou let the laquine think it through, glancing down at the the pert bulge just above her thighs. It gives a small twitch, resulting in a faint squeaking noise as she looks back up to you. It looks like the chubby scientist's body has come to a decision, even if her mind is too shell-shocked to reply.");
 
 	output("\n\nShe smiles shyly and ");
 	if(!naynaWarm()) output("slowly begins to undo her " + naynaClothes() + " then ");
@@ -1401,11 +1401,11 @@ public function naynaFucksYourButt():void
 
 	output("\n\nShe takes a small breath, and you lean in against her, pressing your palm against her bulge, running your fingers up lightly, from balls to tip of her lovely, fat cock. She stops, her mouth open halfway, whatever word she was preparing dropping from her lips as she gives a full body shiver.");
 
-	output("When her mouth starts moving again, she murmurs, soft and low, <i>“I didn't - ah! ...didn't even think about your butt that first time you did that, uhm... hug.”</i> She whimpers, her hips twitching agianst your palm. Her cock thickens nicely, big enough for her heartbeats to spread your fingertips wider.");
+	output(" When her mouth starts moving again, she murmurs, soft and low, <i>“I didn't - ah! ...didn't even think about your butt that first time you did that, uhm... hug.”</i> She whimpers, her hips twitching against your palm. Her cock thickens nicely, big enough for her heartbeats to spread your fingertips wider.");
 	output(" <i>“Now I can’t stop.”</i> She blushes as if she’d said something horrendously embarrassing, a pink flush just visible under the white fur of her cheeks.");
 	output("\n\nYou " + pc.mf("chuckle","giggle") + " at the snow bunny’s admission, answering that you’d been enjoying a few extra things in her hugs as well. You punctuate the statement with a firm squeeze against the shaft of her dick, feeling the thick ring of her sheath.");
 	output("\n\nNayna slides her soft, white-furred paw over your hand, guiding it, rubbing softly over the form-fitting suit. The laquine girl gives a throaty moan, her hand tightening on yours, stroking herself faster and faster with your hand. With a chorus of small squeaks, the broad, equine head of her dick pushes up over the lip of the latex, spilling out against your hand.");
-	output("\n\n<i>“Oh fuck yesssss ...”</i> she moans, grinding her hips hard against you. She lets go of your hands learning in against you, wrapping her arms around your back. ");
+	output("\n\n<i>“Oh fuck yesssss ...”</i> she moans, grinding her hips hard against you. She lets go of your hands leaning in against you, wrapping her arms around your back. ");
 	if(!pc.isCrotchExposed())
 	{
 		output("Hurriedly, she undoes your [pc.lowerGarments] with your help, tossing them aside. ");
@@ -1419,12 +1419,12 @@ public function naynaFucksYourButt():void
 	output("\n\nYou assure Nayna that a rough, passionate buttfuck is exactly what you had in mind.");
 	output("\n\nShe smiles, her rabbit-like front teeth ");
 	if(naynaWarm() && !naynaGloomy()) output("gleaming in the sunlight");
-	if(hours >= 6 && hours < 20 && flags["SHUTTER_STATUS"] == 2) output("just visible in the overcast murk of the room");
+	else if(hours >= 6 && hours < 20 && flags["SHUTTER_STATUS"] == 2) output("just visible in the overcast murk of the room");
 	else if(hours >= 6 && hours < 20 && flags["SHUTTER_STATUS"] == 0) output("shining bright in the starlight");
 	else output("barely visible in the darkness of the room");
 	output(".");
 	output("\n\n<i>“I was kinda hoping you’d say that,”</i> she says. Her sentence starts in her usual peppy voice, but swiftly drops into a hungry growl. She dives back in against your neck, her teeth nibbling at your neck as her hands return to your ass. Between your own gasps of pleasure, your fingers slide across Nayna’s bodysuit, hurriedly peeling it from her.");
-	output("\n\nShe breaks her hungry bites and pulls back as you yank it down her shoulders and over the massive curve of her breasts. Her chest heaves as your fingers curl across it, and the tightness of the rubbery material drags your fingertips across her areolae. You feel the push of her nipples as she tighten under your fingertips. You lower yourself, tugging her bodysuit down further. When her breasts pop free, they bounce against your face, burying you in white, fluffy cleavage.");
+	output("\n\nShe breaks her hungry bites and pulls back as you yank it down her shoulders and over the massive curve of her breasts. Her chest heaves as your fingers curl across it, and the tightness of the rubbery material drags your fingertips across her areolae. You feel the push of her nipples as they tighten under your fingertips. You lower yourself, tugging her bodysuit down further. When her breasts pop free, they bounce against your face, burying you in white, fluffy cleavage.");
 	output("\n\nWith her suit down to her waist and her arms trapped at her side, she looks down at you, her pink eyes aglow with a primal hunger. You peel down to her crotch, gazing at the thick, nine-inch organ throbbing beneath the tight material. You lean forward, running your tongue up her girthy length, feeling her pulse through the fabric. It's a little salty with sweat and excitement, pulsing hotly on your tongue.");
 	output("\n\nNayna gives a squeaky growl of frustration, wiggling her arms out of the latex and grabbing ");
 	if(pc.hasHair()) output("your [pc.hair]");
@@ -1433,13 +1433,13 @@ public function naynaFucksYourButt():void
 	output("\n\n<i>“Ah ahhh,”</i> she coos from overhead. You glance up at her, seeing the laquine going cross-eyed in pleasure. Her grip on your head is still pretty strong, so the most you can do is suck softly at her dick. You can feel it growing, not just longer, but wider, until you feel it stretching your jaw with its width. Still, you keep attending to it until you feel something hot and wet against your cheek. It oozes down around your lips and you taste the warm saltiness of Nayna’s pre.");
 	output("\n\nYou feel her hands tug you up, righting you and guiding your mouth up the pink length of her cock. You lick and suck, groaning happily, slurping up the ");
 	if(pc.isBimbo()) output("yummy ");
-	output("slick of her pre-cum. When you reach the flat, equine head of her cock, you suck messily at it, slathering it with your saliva. When he tugs your head back, your face is a mess, smeared with her pre and your spit, matching her shaft.");
+	output("slick of her pre-cum. When you reach the flat, equine head of her cock, you suck messily at it, slathering it with your saliva. When she tugs your head back, your face is a mess, smeared with her pre and your spit, matching her shaft.");
 	output("\n\n<i>“Good " + pc.mf("boy","girl") + ",”</i> she coos. <i>“A little moisture is a powerful thing,”</i> she adds, giving her dick a bounce. Free from your mouth, it spatters hot fluid against your [pc.chest]. You shiver at the sensation, inhaling sharply as she grins.");
 	output("\n\n<i>“It can wear down rocks... or lubricate cocks,”</i> she giggles. Her words are lighthearted, but that hunger is still there in her tone. She wants your ass, no matter how cheery she’s being about it.");
-	output("\n\nNayna slips behind you, kneeling down to the floor with you, her soft-furred hands gripping your haunches. Her mouth returns to your neck, licking softly at first, then sucking and nibbling, interspersing with little growls and gasps from the plush snow bunny.");
+	output("\n\nNayna slips behind you, kneeling down to the floor with you, her soft-furred hands gripping your haunches. Her mouth returns to your neck, licking softly at first, then sucking and nibbling, interspersed with little growls and gasps from the plush snow bunny.");
 	output("\n\nYou yelp when you feel the spit-slick tip off her broad dick press against the cheeks of your [pc.butt].");
 	if(pc.analCapacity() < 50) output(" Your heart pounds. How are you going to take a monster like that inside you? It could split you in half!");
-	else if(pc.ass.looseness() < 3) output(" You moan, softly. You hope you handle something that thick. At any rate, you’re more than willing to try.");
+	else if(pc.ass.looseness() < 3) output(" You moan, softly. You hope you can handle something that thick. At any rate, you’re more than willing to try.");
 	else output(" You pant excitedly. Finally! Something big enough to satisfy your cavernous ass.");
 	output("\n\nWhen her fingers dig in and she begins to push against your asshole, you lean forward instinctively, raising your butt up to meet her. She lets out a hum of pleasure, her nose twitching against your cheek.");
 	output("\n\n<i>“Oh fuck, [pc.name]! It's so good! ");
@@ -1449,7 +1449,7 @@ public function naynaFucksYourButt():void
 	output("\n\n<i>“I-ah-can't stop!”</i> she squeaks.");
 	if(pc.isTaur()) output(" You feel her face pull back from your shoulder as");
 	output(" Nayna adjusts herself, her fingers grabbing your [pc.hips] tight. Before you can say anything, she shoves her dick into you.");
-	output("\n\nYour eyes widen and your breath catches in your throat as you feel her length jam all the way up into your ass. The flared ridge of her horse cock drives first, running wide and thick up into you, followed by her throbbing shaft, pulsing hard against your insides. You can’t move for a moment, riding out wave of sudden fullness and an immediate soreness from her rough intrusion.");
+	output("\n\nYour eyes widen and your breath catches in your throat as you feel her length jam all the way up into your ass. The flared ridge of her horse cock drives first, running wide and thick up into you, followed by her throbbing shaft, pulsing hard against your insides. You can’t move for a moment, riding out the wave of sudden fullness and an immediate soreness from her rough intrusion.");
 	output("\n\nShe slides all the way in, letting you feel the thick veins and rings of her cock as they push all the way into you. When her furry, apple-sized balls finally rest against your ass, she lets out a happy moan. <i>“Oh, oh yeah... that’s the stuff,”</i> she groans. You feel a warm drop somewhere on your back. It’s not too hard to imagine that Nayna is drooling with pleasure as she buries herself inside you. She rests there for a moment, rocking softly against you, letting you feel the soft tug and push of her cock nine inches deep in your ass.");
 	output("\n\nWhen you finally do breath again, you feel her shifting her position. Her hands grasp your hips with surprising strength, raising your ass. You glance over your shoulder, seeing her sitting on her haunches, resting on the the balls of her feet. Her dick is still inside you, and you see her give a few experimental bounces. Her dick shifts an inch out of you and then back in. You moan, your hole twitching around her thick shaft");
 	if(pc.hasCock())
@@ -1462,7 +1462,7 @@ public function naynaFucksYourButt():void
 	output(".");
 	if(pc.hasVagina())
 	{
-		output(" You ");
+		output(" Your ");
 		if(pc.totalVaginas() == 1) output("pussy trembles");
 		else output("pussies tremble");
 		output(", and you feel wetness starting to ");
@@ -1475,24 +1475,24 @@ public function naynaFucksYourButt():void
 	}
 	output("\n\n<i>“It's a - ung - a good thing you like it,”</i> says Nayna. <i>“I don't think I can stop! I don't think I'll ever stop!”</i>");
 	output("\n\nNayna pushes down against you. You feel the soft squish of her balls as they nestle against your ass, her dick pushing as deep as possible inside you. You glance over her shoulder again, just in time to see her massive thighs flex, pushing her up.");
-	output("\n\nYou gasp as her cock pistons out of you. Her horse-head drags along your inner passage, feeling like she’s scraping you out. You hips rise to meet her, but her hand slam down against the small of your back, resting half her weight on you-keeping you pinned down. Up and up and up her cock goes until her tip bumps against your pliant ring, leaving you with a sense of absolute emptiness.");
+	output("\n\nYou gasp as her cock pistons out of you. Her horse-head drags along your inner passage, feeling like she’s scraping you out. Your hips rise to meet her, but her hand slam down against the small of your back, resting half her weight on you-keeping you pinned down. Up and up and up her cock goes until her tip bumps against your pliant ring, leaving you with a sense of absolute emptiness.");
 	output("\n\nIt’s only for a moment, though, as she pauses at her apex, then drives back down. You moan, more out of pleasure than pain as she drives her cock back down into you, filling you up so quickly that the breath whooshes out of you.");
 	output("\n\n<i>“Up we go!”</i> she says cheerfully. She bounces back up, dragging her dick out of you. Once more, her weight pauses at the top of her bounce, before she plunges back into your ass. Over and over, she bounces, until you lose count, completely lost in the feeling of Nayna pumping in and out of your ass.");
-	output("\n\nFinally, she pauses on a downstroke. She wiggles her hips a bit, adjusting her weight on you. <i>“S-stars, I love this. Am... am I doing it right?”</i> she asks, waiting until you weakly affirm. <i>Then brace yourself,”</i> she chirps.");
+	output("\n\nFinally, she pauses on a downstroke. She wiggles her hips a bit, adjusting her weight on you. <i>“S-stars, I love this. Am... am I doing it right?”</i> she asks, waiting until you weakly affirm. <i>“Then brace yourself,”</i> she chirps.");
 	if(flags["NAYNA_FUCKED_PC_BUTT"] == undefined)
 	{
 		output("\n\nWait, what? ");
 	}
 	else output("\n\n");
 	output("You grit your teeth as the bunny shifts gears. Her paws grab you by your waist, and her hips bouncing faster and faster. Her tremendously thick cock hauls upwards and then grinds down into you in the amount of time it takes you to gasp in pleasure. You gulp a breath and she’s back up again, her cock sliding out, and then shoving back down.");
-	output("\n\nOver and over, the thrusts in and out of you, pinning you down as she humps you mercilessly, her muscles apparently not growing tired. You feel her pre oozing into you, though, starting to squelch with each rapid downstroke. Its heat, combined with her furious piledriving, is making you start to feel faint, your whole body shuddering with Nayna’s impacts, radiating pleasure with each bounce of the bunny’s cock inside you.");
+	output("\n\nOver and over, she thrusts in and out of you, pinning you down as she humps you mercilessly, her muscles apparently not growing tired. You feel her pre oozing into you, though, starting to squelch with each rapid downstroke. Its heat, combined with her furious piledriving, is making you start to feel faint, your whole body shuddering with Nayna’s impacts, radiating pleasure with each bounce of the bunny’s cock inside you.");
 	pc.lust(100);
-	output("\n\nNayna’s panting heavily, her bouncing hips smacking into your upturned ass with each downward pump, her balls slapping against you as he momentum builds. Her pussy smears a fresh load of her juices on each bob, adding more lubrication to her swiftly-pounding dick. She’d going faster and faster. You can feel her cock throbbing inside you, and it feels so amazing that you can barely catch your breath. She oozing so much pre deep inside you that it almost feels like she’s aready cumming. You’re not sure how much more of this you can take before you pass out.");
+	output("\n\nNayna’s panting heavily, her bouncing hips smacking into your upturned ass with each downward pump, her balls slapping against you as her momentum builds. Her pussy smears a fresh load of her juices on each bob, adding more lubrication to her swiftly-pounding dick. She’s going faster and faster. You can feel her cock throbbing inside you, and it feels so amazing that you can barely catch your breath. She’s oozing so much pre deep inside you that it almost feels like she’s aready cumming. You’re not sure how much more of this you can take before you pass out.");
 	if(pc.isBimbo()) output(" It just feels so amazing to finally get a proper ass pounding!");
 	output(" Every thrust of her thick dick brings a new wave of pleasure crashing through you, and she’s shoving it in and out so fast, that a new surge of pleasure floods your body before the first is even gone.");
 
-	output("\n\nThe heavy laquine woman cries out desperately. <i>“I'm gonna - I'm gonna-!”</i> She fucks you harder and harder, and shoves deeper in you than she’d ever gone before. You feel the flared head of her cockhead swell deep inside you, feeling for all the world like someone’s buried a cantelope in your colon. <i>“Cummmmmmmmmmmm!”</i> she yells. You feel the first surge of cum pumping deep inside you, flooding you with heat and warmth. It radiates outward, and you realize it’s not just the heat. Nayna’s filling you with what feels like a gallon of bunny spunk.");
-	output("\n\nYou groan, reaching down to you stomach, gasping in shock as you first feel the flared head of Nayna’s cock rising up like a melon-sized lump against your tummy. You moan, halfway in pleasure and shock as you actually feel the moving bulge of her cock shooting out cum inside you. Your whole belly surges as she pumps her massive load inside you as a near-continuous stream.");
+	output("\n\nThe heavy laquine woman cries out desperately. <i>“I'm gonna - I'm gonna-!”</i> She fucks you harder and harder, and shoves deeper in you than she’d ever gone before. You feel the flared head of her cock swell deep inside you, feeling for all the world like someone’s buried a cantelope in your colon. <i>“Cummmmmmmmmmmm!”</i> she yells. You feel the first surge of cum pumping deep inside you, flooding you with heat and warmth. It radiates outward, and you realize it’s not just the heat. Nayna’s filling you with what feels like a gallon of bunny spunk.");
+	output("\n\nYou groan, reaching down to your stomach, gasping in shock as you first feel the flared head of Nayna’s cock rising up like a melon-sized lump against your tummy. You moan, halfway in pleasure and shock as you actually feel the moving bulge of her cock shooting out cum inside you. Your whole belly surges as she pumps her massive load inside you as a near-continuous stream.");
 	output("\n\n<i>“Oh fuck! Oh [pc.name]! Oh fuck yes!”</i> She’s moaning, repeating your name over and over again, her paws digging into your hips.");
 	if(pc.hasCock()) 
 	{
@@ -1525,31 +1525,35 @@ public function naynaFucksYourButt():void
 	pp.createPerk("Fixed CumQ",100000,0,0,0);
 	pc.loadInAss(pp);
 
-	output("\n\n<i>“Can’t stop!”</i> she groans, humping your ass. Her hips grind hard against yours as moire and more of the laquine’s cum fills you. The pressure should be too much, but her massively-flared cockhead keeps her dick from budging, leaving her cum with only one way to go. Your belly swells, and you lose yourself in the debased delight of being her fucktank. By the time her humping turns into a steady grind against your hips, you feel your [pc.belly] brushing against the floor. You feel full to bursting, but Nayna’s stream seems to have finally stopped.");
+	output("\n\n<i>“Can’t stop!”</i> she groans, humping your ass. Her hips grind hard against yours as more and more of the laquine’s cum fills you. The pressure should be too much, but her massively-flared cockhead keeps her dick from budging, leaving her cum with only one way to go. Your belly swells, and you lose yourself in the debased delight of being her fucktank. By the time her humping turns into a steady grind against your hips, you feel your [pc.belly] brushing against the floor. You feel full to bursting, but Nayna’s stream seems to have finally stopped.");
 	output("\n\nShe lets out a soft sigh, relaxing her grip on you.");
 	if(flags["NAYNA_FUCKED_PC_BUTT"] == undefined) output(" <i>“Wow ... ”</i> she pants, <i>“That was-”</i>");
 	else output(" <i>“Well, at least this time, I didn’t-”</i>");
-	output(" Midway through her sentence, you hear a sharp squeak, the sound of Nayna’s foot slipping on a small puddle of your juices. She yelps, and you cry out in alarm as she slips, pitching forward and collapsing her considerable weight on top of you. You’re still recovering from the half-hour of pounding. Your [pc.legOrlegs] can barely hold your own weight-much less hers. Your knees give out, too!");
+	output(" Midway through her sentence, you hear a sharp squeak, the sound of Nayna’s foot slipping on a small puddle of your juices. She yelps, and you cry out in alarm as she slips, pitching forward and collapsing her considerable weight on top of you. You’re still recovering from the half-hour of pounding. Your [pc.legOrLegs] can barely hold your own weight-much less hers. Your knees give out, too!");
 	output("\n\n<i>“OOF!”</i>");
 	output("\n\nYou both collapse to the floor in a heap, and you feel a MASSIVE surge of pressure in your swollen gut. All her cum! And you were fit to burst!");
-	output("\n\nThe sudden impact against your stomach pops Nayna’s cock free, your ass disgorging her massive dick along with a near-literal river of cum. You squeal in discomfort as her pleasure-swollen head swings out of you, slapping wetly against your leg. She grunts as her chin collides with the back of your head. Her breasts moosh against your back, her limbs splayed awkwardly atop yours. You moan in a heap under Nayna, the snow bunny groaning in pain atop you, her panting breath in your ear. You can’t seem to focus on any one thing-you’re still riding on waves on endorphins, and dealing with the sudden aches and pains of your sudden collapse.");
+	output("\n\nThe sudden impact against your stomach pops Nayna’s cock free, your ass disgorging her massive dick along with a near-literal river of cum. You squeal in discomfort as her pleasure-swollen head swings out of you, slapping wetly against your leg. She grunts as her chin collides with the back of your head. Her breasts moosh against your back, her limbs splayed awkwardly atop yours. You moan in a heap under Nayna, the snow bunny groaning in pain atop you, her panting breath in your ear. You can’t seem to focus on any one thing-you’re still riding on waves of endorphins, and dealing with the sudden aches and pains of your sudden collapse.");
 	output("\n\n<i>“Owwww,”</i> she moans. You open your mouth to say something, but Nayna shifts her weight atop you, sending another gush of cum from your ass. You gasp, frozen in the sensation of being splayed out as hot, laquine spunk flows out of you. She flops off your back, sitting next to you as a small lake of he cum gradually grows around you.");
-	output("\n\nYou turn you head toward her, the rest of your body not particularly cooperating. She’s sitting on her butt, her spooge-drenched cock flopped out against her thighs, one hand massaging her chin, and the other cradling her breasts. She looks at you, aghast, a look of unbridled embarassment on her face.");
+	output("\n\nYou turn your head toward her, the rest of your body not particularly cooperating. She’s sitting on her butt, her spooge-drenched cock flopped out against her thighs, one hand massaging her chin, and the other cradling her breasts. She looks at you, aghast, a look of unbridled embarassment on her face.");
 
 	if(pc.isNice()) output("\n\nYou take one look at her horrified expression and start " + pc.mf("laughing","giggling") + ".");
 	else if(pc.isMischievous()) output("\n\n<i>“Next time, I’m on top,”</i> you groan.");
 	else output("\n\nYou fix her with a hard look. The sternness in your eyes is somewhat spoiled by the precum still smearing your face, and the slow flow of bunnycum from your butt.");
 	output("\n\nShe goggles at you, then bites her lip and giggles");
 	if(pc.isNice()) output(", too");
-	output(". Lying there, soaked with laquine seed, you ");
-	if(pc.isAss()) output("can’t help it and eventually break into gales of laughter with the chubby bunny girl massaging her sensitive breasts.");
+	output(". Lying there, soaked with laquine seed, you");
+	if(pc.isAss()) output(" can’t help it and eventually");
+	output(" break into gales of laughter with the chubby bunny girl massaging her sensitive breasts.");
 	output("\n\nAt some point amidst the giggling, Nayna reaches to grab her tablet, tapping the screen a few times. There’s a faint hum as a small, puck-shaped robot zips out from a slot in the wall, making its way to the two of you. It moves back and forth across the gigantic cum puddle, making only a whisper of sound as it vaporizes the massive amount of spilled seed.");
 	output("\n\nNayna’s fingers brush softly against your belly. You realize with a start that there’s still a bit of a bulge there. It looks like you’re still carrying a partial load of the laquine’s cum inside you. Gently, she helps you up, and the two of you get dressed. Nayna can’t stop blushing, and you’re hard pressed not to do so yourself.");
 	output("\n\n<i>“We should do that again,”</i> she babbles, tongue lolling. Her fingers slowly drag her bodysuit back into place, operating entirely on autopilot. <i>“If you wanted. It was good, right?”</i> Rubbing at her half-hard prick through her suit, the drained laquine moans, ");
 	output("<i>“Sooo good...”</i>");
 	output("\n\nYou can't see any reason not to nod enthusiastically.");
+	
+	IncrementFlag("NAYNA_FUCKED_PC_BUTT");
 	processTime(45);
 	pc.orgasm();
+	
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

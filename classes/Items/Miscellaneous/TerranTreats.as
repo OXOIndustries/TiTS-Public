@@ -163,6 +163,7 @@
 					{
 						kGAMECLASS.output("\n\nYou feel a sudden clenching in your gut and a dampness down south. Investigating, you find your [pc.cocks] dribbling your [pc.cum], though the odd ejaculation is looking more and more like normal terran spunk by the second. After what feels like a minute of bizarre, pleasureless ejaculation, the flow stops. <b>It looks like you've got normal, terran cum now.</b>");
 						pc.cumType = GLOBAL.FLUID_TYPE_CUM;
+						changes++;
 					}
 					else kGAMECLASS.output("\n\n" + target.cumTypeLockedMessage());
 				}
@@ -176,6 +177,7 @@
 					else kGAMECLASS.output("dicks");
 					kGAMECLASS.output(" hanging free like a human’s. <b>You have lost your genital slit!</b>");
 					pc.removeStatusEffect("Genital Slit");
+					changes++;
 				}
 				
 				// Remove Markings
@@ -190,6 +192,7 @@
 					
 					kGAMECLASS.output(" bare of the intricate designs. <b>You have lost your body markings!</b>");
 					pc.removeStatusEffect("Vanae Markings");
+					changes++;
 				}
 
 				//Feminine TFs
@@ -323,7 +326,7 @@
 					}
 					else kGAMECLASS.output("\n\n" + target.legTypeLockedMessage());
 				}
-				//Grow doggy tail -- you know what, fuck you, use the CoC Dogtail growth texts. 
+				//Lose tails. 
 				if(pc.tailCount > 0 && changes < changeLimit && rand(4) == 0)
 				{
 					if (target.tailTypeUnlocked(GLOBAL.TYPE_HUMAN))
@@ -340,7 +343,7 @@
 					}
 					else kGAMECLASS.output("\n\n" + target.tailTypeLockedMessage());
 				}
-				//Grow wolf ears
+				//Ears:
 				if(pc.earType != GLOBAL.TYPE_HUMAN && changes < changeLimit && rand(4) == 0)
 				{
 					if (target.earTypeUnlocked(GLOBAL.TYPE_HUMAN))

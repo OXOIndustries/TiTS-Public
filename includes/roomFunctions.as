@@ -151,8 +151,8 @@ public function debugMenusTwo():void
 		pc.credits += 100000;
 	});
 	
-	addButton(8, "Time", function():void {
-		processTime(24 * 60);
+	addButton(8, "Exhit", function():void {
+		(pc as PlayerCharacter).exhibitionismRaw = 100;
 	});
 	
 	addItemButton(9, new GooArmor(), function():void {

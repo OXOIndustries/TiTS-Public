@@ -552,7 +552,7 @@ public function kq2LetsGo():void
 	
 	output("\n\nShe grins from ear to ear and shakes it hard. <i>“You’re the best, [pc.name]. I knew I could count on you.”</i>");
 	
-	output("\n\n<i>“So what’s next?”</i> you ask. Kara answers by hopping up to her feet and grabbing her case, starting towards you airlock.");
+	output("\n\n<i>“So what’s next?”</i> you ask. Kara answers by hopping up to her feet and grabbing her case, starting towards your airlock.");
 	
 	output("\n\n<i>“Next... we go down to the planet. We’ll take my ship, if it’s all the same to you. </i>Ghost<i> is rigged with a high-end stealth system, and she’s fast and quiet besides. We’ll fly right under the pirates’ radar, land near their base, then hoof it in.");
 	if (kara.isMischievous() && pc.hasLegFlag(GLOBAL.FLAG_HOOVES)) output(" Literally, in your case!");

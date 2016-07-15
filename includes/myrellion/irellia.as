@@ -1442,16 +1442,14 @@ public function partThreeOfAntOnPCOnAntAction(partner:String = ""):void
 	output(" lover behind you, who groans and tightly grabs your [pc.hips].");
 	if(pc.hasVagina()) 
 	{
-		output(" With a final, glorious thrust, he presses his prodigious length deep inside you until his tip is kissing your ");
-		if(pc.isPregnant(x)) output("currently occupied");
-		else output("womb");
-		output(". With a violent shudder, " + partner + " unloads inside your ");
-		output("[pc.vagina " + x + "] and fills up your ");
+		output(" With a final, glorious thrust, he presses his prodigious length deep inside you until his tip is kissing your");
+		if(pc.isPregnant(x)) output(" currently occupied");
+		output(" womb. With a violent shudder, " + partner + " unloads inside your [pc.vagina " + x + "] and fills up your ");
 		if(!pc.isPregnant(x)) output("uterus");
 		else output("love canal");
 	}
 	else output(" With a final, glorious thrust, he presses his prodigious length deep inside you. " + partner + " unloads inside your clenching buttocks and fills up your rectum");
-	output(" with his warm, broiling myr seed.");
+	output(" with his warm, roiling myr seed.");
 
 	output("\n\nWith a " + pc.mf("trembling groan","sweet cry") + " and a face and ");
 	if(x >= 0) output("snatch");

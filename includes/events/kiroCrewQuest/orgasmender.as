@@ -45,7 +45,7 @@ public function lookCloserAtOrgasmender():void
 		else output("Perhaps to maintain a sterile medical environment?");
 		output(" And yet there’s the name: Orgasmender.");
 		if(pc.isBimbo()) output(" You lose interest halfway through reading it, but you’re pretty sure this thing’ll make you cum, like super hard... somehow.");
-		else output("There’s no way this thing doesn’t serve some perverse purpose. Perhaps some sex-toys are stored in some of those compartments...");
+		else output(" There’s no way this thing doesn’t serve some perverse purpose. Perhaps some sex-toys are stored in some of those compartments...");
 		output("\n\nThere’s only one way to find out. The one thing you can be sure of is that it will probably heal your injuries... in addition to whatever else it does to you.");
 	}
 	else
@@ -114,7 +114,7 @@ public function climbIntoTheDamnedTank():void
 	output("\n\nThe tentacles, however, have no problem moving through the thick sludge. " + StringUtil.upperCase(num2Text(pc.legCount)) + " of them circle around your legs, gripping you tight in spite of the liquid lubrication, flexing powerfully against your thighs to root you in place. There’s no escaping ");
 	if(pc.legCount == 1) output("it");
 	else output("them");
-	output(" it now. More and more of the tentacles pile on while the garish tide climbs up past your [pc.hips]. Your elbows are snagged, then your hands engulfed. The hollow tendrils climb higher, passing your wrists and elbows before rippling up to your shoulders and pulling tight. You can feel thousands of wiggling cilia squirming inside, rubbing the slime into every inch of your [pc.skinFurScales].");
+	output(" now. More and more of the tentacles pile on while the garish tide climbs up past your [pc.hips]. Your elbows are snagged, then your hands engulfed. The hollow tendrils climb higher, passing your wrists and elbows before rippling up to your shoulders and pulling tight. You can feel thousands of wiggling cilia squirming inside, rubbing the slime into every inch of your [pc.skinFurScales].");
 	if(pc.hasCock() && flags["ORGASMENDER"] == undefined) output(" <i>How would they feel against [pc.oneCock]?</i> You can’t help but wonder, in spite of your dire situation.");
 	output("\n\nA bigger, fatter tentacle appears in front of your face, tipped with eight smaller legs connected by a transparent membrane. They spread open, wider than your head, then the whole mass thrusts forward, snapping the tips around the back of your head, the membrane sealing around your mouth. A smaller, cylindrical organ slaps off your cheek, then pulls back, pushing against your lips, oozing a sweet-smelling fluid that makes your skin tingle and flush.");
 	output("\n\nAnd still the tank fills. The creeping, pink tide has reached your [pc.chest], crested over your [pc.nipples] and is swiftly climbing to your neck. ");
@@ -142,7 +142,7 @@ public function climbIntoTheDamnedTank():void
 	output("you’re free to listen to your body, to hear your swiftly beating heart thrumming in your ears");
 	if(pc.HP() < pc.HPMax()) output(", to feel your injuries vanishing, one by one");
 	output(", to become acutely, incredibly perceptive of your blood vessels dilating, open wide, suffusing every inch of your body with slack heat... especially your loins. There’s no denying that ");
-	if(pc.totalCocks() > 1) 
+	if(pc.hasCock()) 
 	{
 		output("[pc.eachCock] is ");
 		if(pc.lust() < 66) 
@@ -188,7 +188,7 @@ public function climbIntoTheDamnedTank():void
 		if(pc.totalClits() > 1) output("s");
 		output(" getting so firm and sensitive, caressed by the exterior of your own slit");
 		if(pc.totalVaginas() > 1) output("s");
-		output(" until it’s impossible think of anything besides your cunt");
+		output(" until it’s impossible to think of anything besides your cunt");
 		if(pc.totalVaginas() > 1) output("s");
 		if(pc.hasCock())
 		{
@@ -197,12 +197,12 @@ public function climbIntoTheDamnedTank():void
 		}
 		output(". Your whole world is between your legs, focused on the impossible, inexplicably erotic feeling of your organ");
 		if(pc.totalGenitals() > 1) output("s");
-		output(" filling up, bloating so much need that it threatens you undermine your relaxation.");
+		output(" filling up, bloated with so much need that it threatens you to undermine your relaxation.");
 	}
 	//No crotch dick/vag
 	if(!pc.hasGenitals())
 	{
-		output("\n\nyour crotch feels strangely swollen, like your body is trying to flood a set of genitals that simple don’t exist, but then you feel it in your [pc.asshole] too, making your ring feel extra sensitive, the crinkled entrance puffing up in anticipation of something, anything sliding inside to claim it. You wonder how it would feel if you had a dick right now, would your ass still be growing so brazenly wanton, or would your body put all its energy into fattening a thick, hard cock? The thought blows away as fast as it came. Your tingling butthole is too distracting, too hungry for stimulation, getting off on any stray current that slips between your cheeks.");
+		output(" your crotch feels strangely swollen, like your body is trying to flood a set of genitals that simple don’t exist, but then you feel it in your [pc.asshole] too, making your ring feel extra sensitive, the crinkled entrance puffing up in anticipation of something, anything sliding inside to claim it. You wonder how it would feel if you had a dick right now, would your ass still be growing so brazenly wanton, or would your body put all its energy into fattening a thick, hard cock? The thought blows away as fast as it came. Your tingling butthole is too distracting, too hungry for stimulation, getting off on any stray current that slips between your cheeks.");
 	}
 	//Dicknipples
 	if(pc.hasDickNipples())
@@ -233,8 +233,8 @@ public function climbIntoTheDamnedTank():void
 	{
 		output("\n\n[pc.Milk] spills out of your [pc.nipples].");
 		if(!pc.canMilkSquirt()) output(" You didn’t feel that full when you got in...");
-		output(" It feels better than your other milkings anyway. There’s no pain or tenderness, just the simple, relieving feeling of continually venting lactic pressure. The longer it goes on, the more you become aware of your [pc.nipples] swelling, jutting out into the tank like teats, still spilling [pc.milk]. As a matter of fact, you don’t feel any more empty than when you got in. You’re just squirting and squirting, your body somehow drawing nutrients from the pink sludge in order to lactate forever.");
-		output("\n\nMoaning into your mask, you try to arch your back in pleasure, to thrust your jetting tits further forward, but all you manage is a slight twitch. Control over your muscles is gone, replaced with the sensory barrage from below the and the constant, lovely squirting from your udders. The only thing that would make it better would be if something clamped down on your chest and started to pump you even faster, though whether it takes the shape of a pair of hungry lips or a sucking tendril matters as much to you as the current stock price of JoyCo.");
+		output(" It feels better than any of your previous milkings. There’s no pain or tenderness, just the simple, relieving feeling of continually venting lactic pressure. The longer it goes on, the more you become aware of your [pc.nipples] swelling, jutting out into the tank like teats, still spilling [pc.milk]. As a matter of fact, you don’t feel any more empty than when you got in. You’re just squirting and squirting, your body somehow drawing nutrients from the pink sludge in order to lactate forever.");
+		output("\n\nMoaning into your mask, you try to arch your back in pleasure, to thrust your jetting tits further forward, but all you manage is a slight twitch. Control over your muscles is gone, replaced with the sensory barrage from below and the constant, lovely squirting from your udders. The only thing that would make it better would be if something clamped down on your chest and started to pump you even faster, though whether it takes the shape of a pair of hungry lips or a sucking tendril matters as much to you as the current stock price of JoyCo.");
 	}
 	//Parasite tail
 	if(pc.hasParasiteTail())
@@ -253,7 +253,7 @@ public function orgasmenderScene2():void
 {
 	clearOutput();
 	showOrgasmender();
-	output("Suspended by your own buoyancy and the tentacles alike, your vision blocked by the purple mask, you find yourself nearly bereft of every sensation but touch and taste. The touch of the tank’s squirming tendrils is agony, only deigning to restrain your body, not to quench the aching, bubbling need that courses through your body. Meanwhile, the taste on your tongue is even more intense than before, the bubblegum sweetness saturating your taste-buds in absolute saccharine satisfaction.");
+	output("Suspended by your own buoyancy and the tentacles alike, your vision blocked by the purple mask, you find yourself nearly bereft of every sensation but touch and taste. The touch of the tank’s squirming tendrils is agony, only deigning to restrain you, not to quench the aching, bubbling need that courses through your body. Meanwhile, the taste on your tongue is even more intense than before, the bubblegum sweetness saturating your taste-buds in absolute saccharine satisfaction.");
 	output("\n\nIt barely registers to you that more comes out when your tongue moves, or when you give the oozing tube a little suck. Some part of you must be paying attention, because your tongue can’t seem to stop caressing the slickened underside of your oral intruder. Every swallow is punctuated by a hungry little suck that releases more gummy goodness onto your tongue until you can’t even smell the medicinal chemicals lacing your air supply over the aroma of candied sugar. Nevermind your swimming, dizzied head; your mouth is on autopilot. It can suck and swallow and breathe while the tentacles dispense their healing pleasure.");
 	output("\n\nAnd oh, what magnificent pleasure!");
 	//Dick
@@ -319,7 +319,7 @@ public function orgasmenderScene2():void
 			if(pc.totalVaginas() == 1) output("an ");
 			output("immense prick");
 			if(pc.totalVaginas() > 1) output("s");
-			output(" spreading your open and pouring ");
+			output(" spreading you open and pouring ");
 			if(pc.totalVaginas() > 1) output("themselves");
 			else output("itself");
 			output(" inside, the shining surface rippling enticingly as it burrows itself fully into your cunt");
@@ -333,7 +333,7 @@ public function orgasmenderScene2():void
 		output(" in mind. ");
 		if(pc.totalVaginas() > 1) output("They reverse");
 		else output("It reverses");
-		output(" direction, pulling out, coiling in the pink, healing goo, making it new eddies and currents in the sludge before they thrust back in hard enough to rock you in your restraints. Your body shakes and bounces with the force of your fucking, the excess tentacles continuing to slide over your lips and [pc.clits], drowning you in ecstasy inside and out. Internal muscles ripple and clench automatically, seeming to draw strength from the rest of your weakened form, aggressively milking the tentacles.");
+		output(" direction, pulling out, coiling in the pink, healing goo, making new eddies and currents in the sludge before " + (pc.totalVaginas() == 1 ? "it thrusts" : "they thrust") + " back in hard enough to rock you in your restraints. Your body shakes and bounces with the force of your fucking, the excess tentacles continuing to slide over your lips and [pc.clits], drowning you in ecstasy inside and out. Internal muscles ripple and clench automatically, seeming to draw strength from the rest of your weakened form, aggressively milking the tentacles.");
 	}
 	//No dick or vag, anal slooots
 	if(!pc.hasGenitals())
@@ -352,7 +352,7 @@ public function orgasmenderScene2():void
 	//Lipples
 	else if(pc.hasLipples())
 	{
-		output("\n\nYour slutty, aching [pc.nipples] don’t have to wait long to be taken care of either. Long, fat purple tentacles press against the aching, already parted lips, and once more, you nearly orgasm from that tidbit of sensation alone. They thrust in while you’re still flabbergasted by ecstasy, perfectly shaped and contoured to wiggle all the way into your blowjob-dispensing holes with ease. Blessedly, your lipples do what they made to do with a minimum of conscious effort - suck. And do they ever! The corners quirk up in sensuous smiles now that they’ve been fitted with suitably phallic plugs, matched by similarly stupid grin on your face.");
+		output("\n\nYour slutty, aching lipples don’t have to wait long to be taken care of either. Long, fat purple tentacles press against the needy, already parted lips, and once more, you nearly orgasm from that tidbit of sensation alone. They thrust in while you’re still flabbergasted by ecstasy, perfectly shaped and contoured to wiggle all the way into your blowjob-dispensing holes with ease. Blessedly, your lipples do what they made to do with a minimum of conscious effort - suck. And do they ever! The corners quirk up in sensuous smiles now that they’ve been fitted with suitably phallic plugs, matched by similarly stupid grin on your face.");
 		output("\n\nYou wish you could see what’s happening down there, but the facial mask forces you to imagine what it must look like... Those thick purple tendrils squirming and writhing in your tits’ mouths, the plush, engorged lips sliding back and forth over the undulating pricks. It’s enough to distract you from the near-constant pleasure pouring out of your ");
 		if(pc.hasGenitals()) output("crotch");
 		else output("ass");
@@ -361,7 +361,7 @@ public function orgasmenderScene2():void
 	//Fucknipples
 	else if(pc.hasNippleCunts())
 	{
-		output("\n\nYour slutty, aching [pc.nipples] don’t have to wait long to be taken care of either. Long, fat purple tentacles press against the over-inflated tips, grinding on the entrances to your fuckable chest. It makes your puffed-up walls grind against one another, but it doesn’t seem to have any hope of squeezing inside. You’re too engorged, too swollen for anything to ever squeeze inside.");
+		output("\n\nYour slutty, aching nipples don’t have to wait long to be taken care of either. Long, fat purple tentacles press against the over-inflated tips, grinding on the entrances to your fuckable chest. It makes your puffed-up walls grind against one another, but it doesn’t seem to have any hope of squeezing inside. You’re too engorged, too swollen for anything to ever squeeze inside.");
 		output("\n\nOr so you thought. The tentacles push harder and harder, to the point where you register a hint of pain. Should it be more? You have a hard time remembering. There’s too much pleasure and far too much pink to think of anything besides fucking and sucking. A spike of bliss surges through your [pc.nippleCunt], announcing that one tentacle has found a home at last. It stretches you wide, so wide that it feels like your tit has swollen up to twice its usual size, and the more wriggling flesh that pours inside, the bigger it feels.");
 		output("\n\n[pc.Milk] squirts from your other side, cascading into the tank, making the fluid level rise ever so slightly higher, displaced by the wiggling mass of another fuck-hungry tendril.");
 		if(pc.totalNipples() > 3) output(" The rest of your [pc.nippleCunts] are soon stuffed in short order, every penetration happening quicker than the last, transforming your chest into a nest of squirming, titty-fucking tendrils.");
@@ -370,7 +370,7 @@ public function orgasmenderScene2():void
 	//Lactic Nipples
 	else if(pc.canLactate() || pc.isLactating())
 	{
-		output("\n\nSomething encloses your leaking [pc.nipples] - something large and hollow. It seals down around your spurting areolae, capturing your [pc.milk] before it can pollute the pink sludge any further. As soon as the seal is secure, they start to suck, yanking on you [pc.nipples], making them longer and fatter, the better to express their lactic cargo. It feels like your boobs are ejaculating, squirting long lances of [pc.milk] into the suck-hungry tentacles, feeding them your endless bounty.");
+		output("\n\nSomething encloses your leaking nipples - something large and hollow. It seals down around your spurting areolae, capturing your [pc.milk] before it can pollute the pink sludge any further. As soon as the seal is secure, they start to suck, yanking on your [pc.nipples], making them longer and fatter, the better to express their lactic cargo. It feels like your boobs are ejaculating, squirting long lances of [pc.milk] into the suck-hungry tentacles, feeding them your endless bounty.");
 		output("\n\nIt’s perfect, a sense of constant relief that never gets old mixed with a hint of sensuous delight. You could cum from this alone in time you’re sure, but between this and what’s going on down south, you don’t know how long you can hold onto your sanity. Every caress, every squeeze - it’s all answered by more gushes of milk, drowning out your thoughts in horny yet contented bliss. If you could, you’d sign up to do this every day, just give milk and cum your brains out for the rest of eternity... Stars, you’re so close to cumming!");
 	}
 	processTime(30);
@@ -383,13 +383,13 @@ public function orgasmenderScene3():void
 {
 	clearOutput();
 	showOrgasmender();
-	output("Still hanging in the goo, sucking dutifully, you let the tentacles fuck you where and when they please, drowning you in pleasure, leaving no room in your mind for anything but imagining what it must look like - and the feeling of your body rushing to climax. Most of your muscles don’t even titch, but here and there, your body reacts powerfully, clenching your abdominals, tightening internal muscles in reflexive preparation.");
-	output("\n\nWithout warning, the tendril on your tongue begins to jerk and spurt, spraying more of that bubble-gum-flavored goo down your throat, hosing out so much that you have to swallow non-stop or choke on it. It’s too much to handle, really. No sooner than you finish gulping it all down than you totally lose connection with reality. It feels like your brain is sliding down your spine, getting pumped down into your crotch by your hammering heart. A direct line of communication between your ");
-	if(pc.hasCock()) output("[pc.cocks]");
+	output("Still hanging in the goo, sucking dutifully, you let the tentacles fuck you where and when they please, drowning you in pleasure, leaving no room in your mind for anything but imagining what it must look like - and the feeling of your body rushing to climax. Most of your muscles don’t even twitch, but here and there, your body reacts powerfully, clenching your abdominals, tightening internal muscles in reflexive preparation.");
+	output("\n\nWithout warning, the tendril on your tongue begins to jerk and spurt, spraying more of that bubble-gum-flavored goo down your throat, hosing out so much that you have to swallow non-stop or choke on it. It’s too much to handle, really. No sooner than you finish gulping it all down that you totally lose connection with reality. It feels like your brain is sliding down your spine, getting pumped down into your crotch by your hammering heart. A direct line of communication between ");
+	if(pc.hasCock()) output("your [pc.cocks]");
 	if(pc.hasCock() && pc.hasVagina()) output(" and ");
-	if(pc.hasVagina()) output("[pc.vaginas]");
-	if(!pc.hasGenitals()) output("[pc.asshole]");
-	output(" opens up, blasting you unfiltered, orgasmic delight, short-circuiting synapses and scattering your thoughts beneath the white-hot blossom of your orgasm.");
+	if(pc.hasVagina()) output("your [pc.vaginas]");
+	if(!pc.hasGenitals()) output("your [pc.asshole]");
+	output(" opens up, blasting you with unfiltered, orgasmic delight, short-circuiting synapses and scattering your thoughts beneath the white-hot blossom of your orgasm.");
 	//Cocks
 	if(pc.hasCock())
 	{
@@ -413,10 +413,10 @@ public function orgasmenderScene3():void
 		output(" can’t take it. ");
 		if(pc.totalVaginas() > 1) output("They tremble and clench");
 		else output("It trembles and clenches");
-		output(", inadvertently milking more seed from the beastly invaders and over stimulating their tender nerves at the same time.");
+		output(", inadvertently milking more seed from the beastly invader" + (pc.totalVaginas() == 1 ? "" : "s") + " and over-stimulating " + (pc.totalVaginas() == 1 ? "its" : "their") + " tender nerves at the same time.");
 		output("\n\nNo amount of paralytic agents could stop your [pc.hips] from spasming now, from thrusting back against the tentacles, shuddering and blissful. Your cunny-gasm hits your brain with all the force of an out-of-control freighter");
 		if(pc.hasCock()) output(", piling on the back of your masculine climax");
-		output(", washing away anything in its path. Only pleasure and confused, desperate humping remains, your body’s desire to be impregnated by whatever so completely pleased it.");
+		output(", washing away anything in its path. Only pleasure and confused, desperate humping remains: your body’s desire to be impregnated by whatever so completely pleased it.");
 	}
 	//Nogenitals
 	if(!pc.hasGenitals())
@@ -441,7 +441,7 @@ public function orgasmenderScene3():void
 	//Lactation!
 	else if(pc.canLactate() || pc.isLactating())
 	{
-		output("\n\nYour [pc.milk] doesn’t slow one bit, not even when you spiral down into absolute depravity. Instead, it continues to pour out, sometimes squirt when the tentacles suck harder. The sensation is so different from your orgasm, like laying down on the universe’s most perfect mattress while an amazon uses your body as her own personal sex-toy. Either is an amazing experience on its own, but together... together they’re perfect. Together they make you feel absolutely content, absolutely blessed and happy to cum and squirt.");
+		output("\n\nYour [pc.milk] doesn’t slow one bit, not even when you spiral down into absolute depravity. Instead, it continues to pour out, sometimes squirting when the tentacles suck harder. The sensation is so different from your orgasm, like laying down on the universe’s most perfect mattress while an amazon uses your body as her own personal sex-toy. Either is an amazing experience on its own, but together... together they’re perfect. Together they make you feel absolutely content, absolutely blessed and happy to cum and squirt.");
 		pc.milked(100);
 	}
 	//Merge

@@ -71,15 +71,62 @@ public function pennyBustDisplay(nude:Boolean = false):String
 	// 9999 - Special artist exceptions!
 	// Umm... Art for Penny is kinda all over the place.
 	var hasNude:Boolean = true;
-	if(kGAMECLASS.gameOptions.configuredBustPreferences["PENNY"] != "GATS") hasNude = false;
+	if(!InCollection(kGAMECLASS.gameOptions.configuredBustPreferences["PENNY"], "GATS", "JACQUES")) hasNude = false;
 	
 	var sBust:String = "PENNY";
-	if(nude && hasNude) sBust += "_NUDE";
+	if(nude && hasNude)
+	{
+		sBust += "_NUDE";
+		if(kGAMECLASS.gameOptions.configuredBustPreferences["PENNY_NUDE"] == "JACQUES")
+		{
+			if(penny.hasCock(GLOBAL.TYPE_VULPINE))
+			{
+				sBust += "_VIXEN";
+				if(penny.cocks[0].cLengthRaw < 11.5) sBust += "";
+				else if(penny.cocks[0].cLengthRaw < 18) sBust += "_1";
+				else sBust += "_2";
+			}
+			else if(penny.hasCock(GLOBAL.TYPE_EQUINE))
+			{
+				sBust += "_HORSE";
+				if(penny.cocks[0].cLengthRaw < 16) sBust += "";
+				else if(penny.cocks[0].cLengthRaw < 20) sBust += "_1";
+				else sBust += "_2";
+			}
+		}
+	}
 	
 	if(flags["PENNY_BADGER_BIMBO"] != undefined || pennyIsCumSlut())
 	{
-		sBust = "PENNY_BIMBO";
-		if(penny.hasCock(GLOBAL.TYPE_EQUINE)) sBust += "_HORSE";
+		if
+		(	(flags["PENNY_BADGER_BIMBO"] == undefined && kGAMECLASS.gameOptions.configuredBustPreferences["PENNY_NUDE"] == "JACQUES")
+		||	(flags["PENNY_BADGER_BIMBO"] != undefined && kGAMECLASS.gameOptions.configuredBustPreferences["PENNY_BIMBO"] == "JACQUES")
+		||	(penny.hasCock(GLOBAL.TYPE_EQUINE) && kGAMECLASS.gameOptions.configuredBustPreferences["PENNY_BIMBO_HORSE"] == "JACQUES")
+		)
+		{
+			if(flags["PENNY_BADGER_BIMBO"] == undefined) sBust = "PENNY_NUDE";
+			else sBust = "PENNY_BIMBO";
+			
+			if(penny.hasCock(GLOBAL.TYPE_VULPINE))
+			{
+				sBust += "_VIXEN";
+				if(penny.cocks[0].cLengthRaw < 11.5) sBust += "";
+				else if(penny.cocks[0].cLengthRaw < 18) sBust += "_1";
+				else sBust += "_2";
+			}
+			else if(penny.hasCock(GLOBAL.TYPE_EQUINE))
+			{
+				sBust += "_HORSE";
+				if(penny.cocks[0].cLengthRaw < 16) sBust += "";
+				else if(penny.cocks[0].cLengthRaw < 20) sBust += "_1";
+				else sBust += "_2";
+			}
+		}
+		else
+		{
+			sBust = "PENNY_BIMBO";
+			if(penny.hasCock(GLOBAL.TYPE_EQUINE)) sBust += "_HORSE";
+		}
 	}
 	
 	return sBust;

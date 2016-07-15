@@ -23,6 +23,11 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/aina_nude.png", mimeType = "image/png")]
 		public var Bust_AINA_NUDE:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/adjatha/anyxine.png", mimeType = "image/png")]
+		public var Bust_ANYXINE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/anyxine_nude.png", mimeType = "image/png")]
+		public var Bust_ANYXINE_NUDE:Class;
+		
 		[Embed(source = "../../../assets/images/npcs/adjatha/anzhela.png", mimeType = "image/png")]
 		public var Bust_ANZHELA:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/anzhela_nude.png", mimeType = "image/png")]
@@ -283,6 +288,11 @@ package classes.Resources.Busts
 			public var Full_AINA:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/aina_nude.png", mimeType = "image/png")]
 			public var Full_AINA_NUDE:Class;
+		
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/anyxine.png", mimeType = "image/png")]
+			public var Full_ANYXINE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/anyxine_nude.png", mimeType = "image/png")]
+			public var Full_ANYXINE_NUDE:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/anzhela.png", mimeType = "image/png")]
 			public var Full_ANZHELA:Class;

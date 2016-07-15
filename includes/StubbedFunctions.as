@@ -25,3 +25,7 @@ public function mountmeBustDisplay(attire:String = "normal"):String
 	return bustName;
 }
 
+public function syriAtTheFreezer():Boolean
+{
+	return false;
+}

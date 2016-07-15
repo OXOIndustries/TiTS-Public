@@ -132,6 +132,7 @@ public function crystalGooEncounterType1():void
 	CombatManager.displayLocation("CRYSTAL GOO");
 
 	showCrystalGooToo();
+	showBust("CRYSTAL_GOO_T1_" + tEnemy.skinTone.toUpperCase());
 	showName("\nAMBUSH!");
 
 	clearMenu();
@@ -204,6 +205,7 @@ public function crystalGooEncounterType2():void
 	CombatManager.displayLocation("CRYSTAL GOO");
 
 	showCrystalGooToo();
+	showBust("CRYSTAL_GOO_T2_" + tEnemy.skinTone.toUpperCase());
 	showName("\nAMBUSH!");
 
 	clearMenu();
@@ -224,7 +226,7 @@ public function showCrystalGooToo(wasFight:Boolean = false):void
 		if (wasFight)
 		{
 			if (pc.HP() <= 0 || pc.lust() >= pc.lustMax()) nameStr = "DEFEAT:\n";
-			if (enemy.HP() <= 0 || enemy.lust() >= enemy.lustMax()) nameStr = "VICTORY:\n";
+			else if (enemy.HP() <= 0 || enemy.lust() >= enemy.lustMax()) nameStr = "VICTORY:\n";
 			else nameStr = "FIGHT:\n";
 
 			if (enemy is CrystalGooT1) nameStr += "AMBUSHER";
@@ -235,6 +237,7 @@ public function showCrystalGooToo(wasFight:Boolean = false):void
 			if (enemy is CrystalGooT1) nameStr = "GANRAEL\nAMBUSHER";
 			else nameStr = "GANRAEL\nDEADEYE";
 		}
+		showName(nameStr);
 	}
 	else
 	{
@@ -245,6 +248,12 @@ public function showCrystalGooToo(wasFight:Boolean = false):void
 
 public function pcDefeatsCrystalGooToo():void
 {
+	// Armor check (just in case!)
+	if (enemy.shields() <= 0 && !enemy.hasStatusEffect("Unarmored")) 
+	{
+		enemy.createStatusEffect("Unarmored");
+	}
+	
 	clearOutput();
 	showCrystalGooToo(true);
 
@@ -264,16 +273,16 @@ public function pcDefeatsCrystalGooToo():void
 		if (pc.lust() < 33)
 		{
 			output("\n\nYou’re not aroused enough to take advantage of the creature and its yielding body, though.");
-			addDisabledButton(0, "F. Sculpt", "Sculpt the goo", "Shape your lover into a big-breasted, wide-hipped sex bomb and fuck it.");
-			addDisabledButton(1, "M. Sculpt", "Sculpt the goo", "Shape your malleable lover into a big-dicked masculine stud and ride it.");
+			addDisabledButton(0, "F. Sculpt", "Sculpt the Goo", "Shape your lover into a big-breasted, wide-hipped sex bomb and fuck it.");
+			addDisabledButton(1, "M. Sculpt", "Sculpt the Goo", "Shape your malleable lover into a big-dicked masculine stud and ride it.");
 			addDisabledButton(2, "FormFuck", "Free Form Fucking", (pc.hasCock() ? "Let your dick do the sculpting." : "Ride the creature until it’s a green smear under your booty."));
 			addDisabledButton(3, "Cuddlebug", "Cuddlebug", "");
 		}
 		else
 		{
 			output("\n\nThe ganrael quivers when you reach out a hand but doesn’t flinch, suggesting that it won’t resist being shaped however you like... and that it’s excited.");
-			addButton(0, "F. Sculpt", crystalGooSculptingFem, undefined, "Sculpt the goo", "Shape your lover into a big-breasted, wide-hipped sex bomb and fuck it.");
-			addButton(1, "M. Sculpt", crystalGooSculptingMale, undefined, "Sculpt the goo", "Shape your malleable lover into a big-dicked masculine stud and ride it.");
+			addButton(0, "F. Sculpt", crystalGooSculptingFem, undefined, "Sculpt the Goo", "Shape your lover into a big-breasted, wide-hipped sex bomb and fuck it.");
+			addButton(1, "M. Sculpt", crystalGooSculptingMale, undefined, "Sculpt the Goo", "Shape your malleable lover into a big-dicked masculine stud and ride it.");
 			addButton(2, "FormFuck", crystalGooFreeformFucks, undefined, "Free Form Fucking", (pc.hasCock() ? "Let your dick do the sculpting." : "Ride the creature until it’s a green smear under your booty."));
 		}
 
@@ -357,6 +366,7 @@ public function crystalGooSculptingMale():void
 {
 	clearOutput();
 	showCrystalGooToo();
+	showBust("CRYSTAL_GOO_" + enemy.skinTone.toUpperCase() + "_BRO");
 
 	var holeIdx:int = -1;
 	if (pc.hasVagina())
@@ -490,6 +500,7 @@ public function crystalGooSculptingFem():void
 {
 	clearOutput();
 	showCrystalGooToo();
+	showBust("CRYSTAL_GOO_" + enemy.skinTone.toUpperCase() + "_BIMBO");
 
 	output("You address the vulnerable creature.");
 	if (pc.isBimbo() || pc.isBro()) output(" <i>“So, like... can you hold any other shape?”</i>");
@@ -676,7 +687,8 @@ public function crystalGooSculptingFem():void
 public function crystalGooFreeformFucks():void
 {
 	clearOutput();
-	showCrystalGooToo(true);
+	showCrystalGooToo();
+	showBust("CRYSTAL_GOO_" + enemy.skinTone.toUpperCase());
 
 	// enclosing this here so that I can use a short name...
 	var cgender:Function = function(a:String, b:String):String {
@@ -761,8 +773,8 @@ public function crystalGooFreeformFucks():void
 			output(" follow suit, clamping your [pc.hips] with such wanton lust that they hinder your return strokes.");
 		}
 		output(" On every stroke, the alien pulls you into "+cgender("her", "its") +" sex with enough enthusiasm that you can coast on half power, concentrating on the wet, slimy pussy searching for every nerve. The ganrael’s cunt feels like the perfect onahole - molded to your exact dimensions, lubricated, and heated by the heavy breathing of a cum-starved");
-		// 9999 has visited new texas
-		if (9999 == 9999) output(" New Texas breeder");
+		// has visited new texas
+		if (flags["SEEN_TEXAS_SURFACE"] != undefined) output(" New Texas breeder");
 		else output(" whore");
 		output(" waiting for your load on the other end.");
 
@@ -1070,8 +1082,8 @@ public function crystalGooCuddlebug(pcVictory:Boolean = false):void
 	pc.buttChange(pc.analCapacity());
 	
 	output("\n\nThe ganrael draws its cock from you with a long pull, teasing and lubricating your asshole, and its hands shift to your shoulders, to better brace you against the thrust. In a smooth motion, the tool plunges back in, dragging nubs over the nervous rings of your anus like a xylophone. The quick crescendo of pleasure quiets your alarm and causes your head to droop below your shoulders");
-	// 9999 and not in spikehawk/mohawk/topknot/afro style)
-	if (pc.hairLength > 12) output(", pouring your [pc.hair] onto the alien’s breastplate in a satiny cascade");
+	// and not in spikehawk/mohawk/topknot/afro style)
+	if (pc.hairLength > 12 && !InCollection(pc.hairStyle, ["spike hawk", "mohawk", "topknot", "afro"])) output(", pouring your [pc.hair] onto the alien’s breastplate in a satiny cascade");
 	output(". Your alien lover withdraws and thrusts again, faster this time, trusting your spasming asshole to wring the lubrication you need from the spongy faux-phallus.");
 	if (pc.hasCock())
 	{
@@ -1387,6 +1399,12 @@ public function crystalGooSounding(pcVictory:Boolean = false):void
 
 public function crystalGooPCLoss():void
 {
+	// Armor check (just in case!)
+	if (enemy.shields() <= 0 && !enemy.hasStatusEffect("Unarmored")) 
+	{
+		enemy.createStatusEffect("Unarmored");
+	}
+	
 	clearOutput();
 	showCrystalGooToo();
 

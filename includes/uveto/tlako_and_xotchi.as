@@ -274,7 +274,7 @@ public function florkDatFuckinMuppet():void
 	output("\n\nShe looks up at you shyly. <i>“Um, but please go easy on me - ");
 	if(flags["FLORKED_TLAKO"] == undefined) output("I haven't used it before.");
 	else output("It still feels a little weird at first.");
-	output(" she says, her feathers ruffling up.");
+	output("”</i> she says, her feathers ruffling up.");
 
 	output("\n\nYou assure her that you will and lead her to the bench reach down to ");
 	if(pc.tallness > 48) output("pick up");
@@ -349,7 +349,7 @@ public function florkDatFuckinMuppet():void
 		output("\n\nShe wiggles a bit from side to side, and gives you a bemused look. <i>“You can put me down now,”</i> she says. <i>“If you're done, that is,”</i> she adds with a hint of uncertainty.");
 		output("\n\nYou chuckle a bit, and inform her that your knot is swollen inside her.");
 		output("\n\n<i>“A knot?”</i> she gasps. <i>“It got tied up into a knot? Oh bankruptcy! That can't be good! Oh, we need to get you to a medical specialist right away! I'm sorry - I had no idea my graft would do that! I'm so sorry!”</i>");
-		if(pc.isNice()) output("\n\nYou immediately inform the tove that a knot is a portion of a penis that swells during sex, and can lock a partner in place for a period of time after sex. Tlako listens wide-eyed to your explanation and nods, looking greatly relieved by the time you finish.”</i>");
+		if(pc.isNice()) output("\n\nYou immediately inform the tove that a knot is a portion of a penis that swells during sex, and can lock a partner in place for a period of time after sex. Tlako listens wide-eyed to your explanation and nods, looking greatly relieved by the time you finish.");
 		else if(pc.isMischievous()) output("\n\nYou grin and decide to toy with the tove for a bit, putting on a show of being panicked as well. You exclaim that it's never been tied in a knot before, and it must have tied itself to her. She panics, her feathers puffing out more and more with every word, looking terrified. Finally, with a boisterous laugh, you tell her the truth, explaining that it's a part of your sexual organ, and that it's a perfectly normal swelling. She frowns when you finish, letting out a low, angry whistle. <i>“So very rude!”</i> She huffs, the plume of feathers atop her head curling up like a cockatiel's.");
 		else output("\n\nYou roll your eyes at her and let out an exasperated sigh. In a few, terse words, you explain that it's not an actual knot - it's a temporary swelling of your cock, and that she really shouldn't jump to such foolish conclusions. Her ears droop as you chastise her.");
 	}

@@ -77,6 +77,94 @@
 		public var Bust_CONNIE:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/connie_nude.png", mimeType = "image/png")]
 		public var Bust_CONNIE_NUDE:Class;
+		
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/ganrael_0_blue.png", mimeType = "image/png")]
+		public var Bust_CRYSTAL_GOO_BLUE:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/ganrael_0_green.png", mimeType = "image/png")]
+		public var Bust_CRYSTAL_GOO_GREEN:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/ganrael_0_pink.png", mimeType = "image/png")]
+		public var Bust_CRYSTAL_GOO_PINK:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/ganrael_0_purple.png", mimeType = "image/png")]
+		public var Bust_CRYSTAL_GOO_PURPLE:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/ganrael_0_red.png", mimeType = "image/png")]
+		public var Bust_CRYSTAL_GOO_RED:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/ganrael_0_yellow.png", mimeType = "image/png")]
+		public var Bust_CRYSTAL_GOO_YELLOW:Class;
+		
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/ganrael_0_blue_bimbo.png", mimeType = "image/png")]
+		public var Bust_CRYSTAL_GOO_BLUE_BIMBO:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/ganrael_0_blue_bro.png", mimeType = "image/png")]
+		public var Bust_CRYSTAL_GOO_BLUE_BRO:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/ganrael_0_green_bimbo.png", mimeType = "image/png")]
+		public var Bust_CRYSTAL_GOO_GREEN_BIMBO:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/ganrael_0_green_bro.png", mimeType = "image/png")]
+		public var Bust_CRYSTAL_GOO_GREEN_BRO:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/ganrael_0_pink_bimbo.png", mimeType = "image/png")]
+		public var Bust_CRYSTAL_GOO_PINK_BIMBO:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/ganrael_0_pink_bro.png", mimeType = "image/png")]
+		public var Bust_CRYSTAL_GOO_PINK_BRO:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/ganrael_0_purple_bimbo.png", mimeType = "image/png")]
+		public var Bust_CRYSTAL_GOO_PURPLE_BIMBO:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/ganrael_0_purple_bro.png", mimeType = "image/png")]
+		public var Bust_CRYSTAL_GOO_PURPLE_BRO:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/ganrael_0_red_bimbo.png", mimeType = "image/png")]
+		public var Bust_CRYSTAL_GOO_RED_BIMBO:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/ganrael_0_red_bro.png", mimeType = "image/png")]
+		public var Bust_CRYSTAL_GOO_RED_BRO:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/ganrael_0_yellow_bimbo.png", mimeType = "image/png")]
+		public var Bust_CRYSTAL_GOO_YELLOW_BIMBO:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/ganrael_0_yellow_bro.png", mimeType = "image/png")]
+		public var Bust_CRYSTAL_GOO_YELLOW_BRO:Class;
+
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/ganrael_1_blue.png", mimeType = "image/png")]
+		public var Bust_CRYSTAL_GOO_T1_BLUE:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/ganrael_1_blue_unarmored.png", mimeType = "image/png")]
+		public var Bust_CRYSTAL_GOO_T1_BLUE_UNARMORED:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/ganrael_1_green.png", mimeType = "image/png")]
+		public var Bust_CRYSTAL_GOO_T1_GREEN:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/ganrael_1_green_unarmored.png", mimeType = "image/png")]
+		public var Bust_CRYSTAL_GOO_T1_GREEN_UNARMORED:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/ganrael_1_pink.png", mimeType = "image/png")]
+		public var Bust_CRYSTAL_GOO_T1_PINK:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/ganrael_1_pink_unarmored.png", mimeType = "image/png")]
+		public var Bust_CRYSTAL_GOO_T1_PINK_UNARMORED:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/ganrael_1_purple.png", mimeType = "image/png")]
+		public var Bust_CRYSTAL_GOO_T1_PURPLE:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/ganrael_1_purple_unarmored.png", mimeType = "image/png")]
+		public var Bust_CRYSTAL_GOO_T1_PURPLE_UNARMORED:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/ganrael_1_red.png", mimeType = "image/png")]
+		public var Bust_CRYSTAL_GOO_T1_RED:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/ganrael_1_red_unarmored.png", mimeType = "image/png")]
+		public var Bust_CRYSTAL_GOO_T1_RED_UNARMORED:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/ganrael_1_yellow.png", mimeType = "image/png")]
+		public var Bust_CRYSTAL_GOO_T1_YELLOW:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/ganrael_1_yellow_unarmored.png", mimeType = "image/png")]
+		public var Bust_CRYSTAL_GOO_T1_YELLOW_UNARMORED:Class;
+
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/ganrael_2_blue.png", mimeType = "image/png")]
+		public var Bust_CRYSTAL_GOO_T2_BLUE:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/ganrael_2_blue_unarmored.png", mimeType = "image/png")]
+		public var Bust_CRYSTAL_GOO_T2_BLUE_UNARMORED:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/ganrael_2_green.png", mimeType = "image/png")]
+		public var Bust_CRYSTAL_GOO_T2_GREEN:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/ganrael_2_green_unarmored.png", mimeType = "image/png")]
+		public var Bust_CRYSTAL_GOO_T2_GREEN_UNARMORED:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/ganrael_2_pink.png", mimeType = "image/png")]
+		public var Bust_CRYSTAL_GOO_T2_PINK:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/ganrael_2_pink_unarmored.png", mimeType = "image/png")]
+		public var Bust_CRYSTAL_GOO_T2_PINK_UNARMORED:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/ganrael_2_purple.png", mimeType = "image/png")]
+		public var Bust_CRYSTAL_GOO_T2_PURPLE:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/ganrael_2_purple_unarmored.png", mimeType = "image/png")]
+		public var Bust_CRYSTAL_GOO_T2_PURPLE_UNARMORED:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/ganrael_2_red.png", mimeType = "image/png")]
+		public var Bust_CRYSTAL_GOO_T2_RED:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/ganrael_2_red_unarmored.png", mimeType = "image/png")]
+		public var Bust_CRYSTAL_GOO_T2_RED_UNARMORED:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/ganrael_2_yellow.png", mimeType = "image/png")]
+		public var Bust_CRYSTAL_GOO_T2_YELLOW:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/ganrael_2_yellow_unarmored.png", mimeType = "image/png")]
+		public var Bust_CRYSTAL_GOO_T2_YELLOW_UNARMORED:Class;
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/doctor_lash.png", mimeType = "image/png")]
 		public var Bust_DR_LASH:Class;
@@ -84,6 +172,9 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/droid_security.png", mimeType = "image/png")]
 		public var Bust_DROID_SECURITY:Class;
 		public var Bounds_DROID_SECURITY:Rectangle = new Rectangle(60, 0, 63, 66);
+
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/dryad.png", mimeType = "image/png")]
+		public var Bust_DRYAD:Class;
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/elenora.png", mimeType = "image/png")]
 		public var Bust_ELENORA:Class;
@@ -188,6 +279,11 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/black_void_engineer.png", mimeType = "image/png")]
 		public var Bust_KQ2ENGINEER:Class;
 		public var Bounds_KQ2ENGINEER:Rectangle = new Rectangle(33, 11, 54, 64);
+
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/kyris.png", mimeType = "image/png")]
+		public var Bust_KYRIS:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/kyris_nude.png", mimeType = "image/png")]
+		public var Bust_KYRIS_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/lane_f.png", mimeType = "image/png")]
 		public var Bust_LANE_F:Class;
@@ -428,12 +524,103 @@
 			public var Full_CONNIE:Class;
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/connie_nude.png", mimeType = "image/png")]
 			public var Full_CONNIE_NUDE:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_0_blue.png", mimeType = "image/png")]
+			public var Full_CRYSTAL_GOO_BLUE:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_0_green.png", mimeType = "image/png")]
+			public var Full_CRYSTAL_GOO_GREEN:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_0_pink.png", mimeType = "image/png")]
+			public var Full_CRYSTAL_GOO_PINK:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_0_purple.png", mimeType = "image/png")]
+			public var Full_CRYSTAL_GOO_PURPLE:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_0_red.png", mimeType = "image/png")]
+			public var Full_CRYSTAL_GOO_RED:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_0_yellow.png", mimeType = "image/png")]
+			public var Full_CRYSTAL_GOO_YELLOW:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_0_blue_bimbo.png", mimeType = "image/png")]
+			public var Full_CRYSTAL_GOO_BLUE_BIMBO:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_0_blue_bro.png", mimeType = "image/png")]
+			public var Full_CRYSTAL_GOO_BLUE_BRO:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_0_green_bimbo.png", mimeType = "image/png")]
+			public var Full_CRYSTAL_GOO_GREEN_BIMBO:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_0_green_bro.png", mimeType = "image/png")]
+			public var Full_CRYSTAL_GOO_GREEN_BRO:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_0_pink_bimbo.png", mimeType = "image/png")]
+			public var Full_CRYSTAL_GOO_PINK_BIMBO:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_0_pink_bro.png", mimeType = "image/png")]
+			public var Full_CRYSTAL_GOO_PINK_BRO:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_0_purple_bimbo.png", mimeType = "image/png")]
+			public var Full_CRYSTAL_GOO_PURPLE_BIMBO:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_0_purple_bro.png", mimeType = "image/png")]
+			public var Full_CRYSTAL_GOO_PURPLE_BRO:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_0_red_bimbo.png", mimeType = "image/png")]
+			public var Full_CRYSTAL_GOO_RED_BIMBO:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_0_red_bro.png", mimeType = "image/png")]
+			public var Full_CRYSTAL_GOO_RED_BRO:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_0_yellow_bimbo.png", mimeType = "image/png")]
+			public var Full_CRYSTAL_GOO_YELLOW_BIMBO:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_0_yellow_bro.png", mimeType = "image/png")]
+			public var Full_CRYSTAL_GOO_YELLOW_BRO:Class;
+
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_1_blue.png", mimeType = "image/png")]
+			public var Full_CRYSTAL_GOO_T1_BLUE:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_1_blue_unarmored.png", mimeType = "image/png")]
+			public var Full_CRYSTAL_GOO_T1_BLUE_UNARMORED:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_1_green.png", mimeType = "image/png")]
+			public var Full_CRYSTAL_GOO_T1_GREEN:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_1_green_unarmored.png", mimeType = "image/png")]
+			public var Full_CRYSTAL_GOO_T1_GREEN_UNARMORED:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_1_pink.png", mimeType = "image/png")]
+			public var Full_CRYSTAL_GOO_T1_PINK:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_1_pink_unarmored.png", mimeType = "image/png")]
+			public var Full_CRYSTAL_GOO_T1_PINK_UNARMORED:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_1_purple.png", mimeType = "image/png")]
+			public var Full_CRYSTAL_GOO_T1_PURPLE:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_1_purple_unarmored.png", mimeType = "image/png")]
+			public var Full_CRYSTAL_GOO_T1_PURPLE_UNARMORED:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_1_red.png", mimeType = "image/png")]
+			public var Full_CRYSTAL_GOO_T1_RED:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_1_red_unarmored.png", mimeType = "image/png")]
+			public var Full_CRYSTAL_GOO_T1_RED_UNARMORED:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_1_yellow.png", mimeType = "image/png")]
+			public var Full_CRYSTAL_GOO_T1_YELLOW:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_1_yellow_unarmored.png", mimeType = "image/png")]
+			public var Full_CRYSTAL_GOO_T1_YELLOW_UNARMORED:Class;
+
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_2_blue.png", mimeType = "image/png")]
+			public var Full_CRYSTAL_GOO_T2_BLUE:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_2_blue_unarmored.png", mimeType = "image/png")]
+			public var Full_CRYSTAL_GOO_T2_BLUE_UNARMORED:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_2_green.png", mimeType = "image/png")]
+			public var Full_CRYSTAL_GOO_T2_GREEN:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_2_green_unarmored.png", mimeType = "image/png")]
+			public var Full_CRYSTAL_GOO_T2_GREEN_UNARMORED:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_2_pink.png", mimeType = "image/png")]
+			public var Full_CRYSTAL_GOO_T2_PINK:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_2_pink_unarmored.png", mimeType = "image/png")]
+			public var Full_CRYSTAL_GOO_T2_PINK_UNARMORED:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_2_purple.png", mimeType = "image/png")]
+			public var Full_CRYSTAL_GOO_T2_PURPLE:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_2_purple_unarmored.png", mimeType = "image/png")]
+			public var Full_CRYSTAL_GOO_T2_PURPLE_UNARMORED:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_2_red.png", mimeType = "image/png")]
+			public var Full_CRYSTAL_GOO_T2_RED:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_2_red_unarmored.png", mimeType = "image/png")]
+			public var Full_CRYSTAL_GOO_T2_RED_UNARMORED:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_2_yellow.png", mimeType = "image/png")]
+			public var Full_CRYSTAL_GOO_T2_YELLOW:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_2_yellow_unarmored.png", mimeType = "image/png")]
+			public var Full_CRYSTAL_GOO_T2_YELLOW_UNARMORED:Class;
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/doctor_lash.png", mimeType = "image/png")]
 			public var Full_DR_LASH:Class;
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/droid_security.png", mimeType = "image/png")]
 			public var Full_DROID_SECURITY:Class;
+
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/dryad.png", mimeType = "image/png")]
+			public var Full_DRYAD:Class;
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/elenora.png", mimeType = "image/png")]
 			public var Full_ELENORA:Class;
@@ -534,6 +721,11 @@
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/black_void_engineer.png", mimeType = "image/png")]
 			public var Full_KQ2ENGINEER:Class;
+
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/kyris.png", mimeType = "image/png")]
+			public var Full_KYRIS:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/kyris_nude.png", mimeType = "image/png")]
+			public var Full_KYRIS_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/lane_f.png", mimeType = "image/png")]
 			public var Full_LANE_F:Class;
