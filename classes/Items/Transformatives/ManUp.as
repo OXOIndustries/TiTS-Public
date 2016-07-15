@@ -359,7 +359,7 @@
 						target.cocks[0].cockColor = "pink";
 						kGAMECLASS.output("Your cock looks like a lumpy caterpillar with a small [pc.cockColor] tip");
 					}
-					else if(InCollection(pcRace, "tentacle beast", "cockvine-morph", "plant-morph", "treant")) pc.shiftCock(arg, GLOBAL.TYPE_TENTACLE);
+					else if(InCollection(pcRace, "tentacle beast", "cockvine-morph", "plant-morph", "treant"))
 					{
 						target.shiftCock(0, GLOBAL.TYPE_TENTACLE);
 						kGAMECLASS.output("Your [pc.cockColor] cock is constantly moist and moving with a slightly oversized mushroom-like head");
