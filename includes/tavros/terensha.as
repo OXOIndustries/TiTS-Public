@@ -151,6 +151,7 @@ public function rensMainMenu():void
 
 	if(flags["REQUEST_REN_HOME"] == undefined) addButton(2,"My Place?",tryToGoToHerPlace,undefined,"My Place?","Ask if the two of you could maybe get out of here and head back to your place... a much more intimate setting.");
 	else addDisabledButton(2,"My Place?","My Place?","You tried that. It didn't work.");
+	if(flags["RENSA_FUCKED"] != undefined) addButton(3,"Her Suit",askAboutRensSuit,undefined,"Her Suit","Ask Ren about that very unique bodysuit of hers.");
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -1021,4 +1022,171 @@ public function terenshaDancingEpilog():void
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
+}
+
+public function askAboutRensSuit():void
+{
+	clearOutput();
+	showTerensha();
+
+	output("<i>“Actually,”</i> you say, <i>“I was wondering about your suit...”</i>");
+
+	output("\n\nTerensha cocks an eyebrow at you. <i>“Oh? Not what’s under it this time?”</i>");
+
+	output("\n\nWell, not right away. It’s pretty obvious that catsuit ");
+		if(pc.isBimbo()) output("makes sex soooo much better for her!");
+		else output("amps up her pleasure sensation.");
+
+	output(" She can barely get touched without cumming, from what you’ve seen.");
+
+	output("\n\nRen scrunches her lips, apparently unhappy that her teasing didn’t change the topic back to something more directly sensual. <i>“Well... you’re not wrong,”</i> she says after a long pause. <i>“Tell you what, cow[pc.boyGirl]. The music’s so loud in here we can barely hear each other. Why don’t you go buy us a couple drinks, and we can go downstairs to my room. Easier to talk there, hmm?”</i>");
+
+	output("\n\nDoesn’t seem that loud to you, but...");
+
+	output("\n\n<i>“Gonna warn you now, though. There’s a story involved, and it’s not a sexy one. Up to you.”</i>");
+
+	clearMenu();
+	addButton(0,"Okay", tellMeYourStoryRen,undefined, "Okay", "That's a cheap price for what promises to be an interesting story. Why not?");
+	addButton(1,"Nevermind", jkNevermindRen);
+}
+
+public function jkNevermindRen():void
+{
+	clearOutput();
+	showTerensha();
+
+	output("She shrugs, leaning back in her seat. <i>“Suit yourself. Heh. So, let’s talk about something more fun.”</i>");
+
+	clearMenu();
+	rensMainMenu();
+}
+
+
+public function tellMeYourStoryRen():void
+{
+	clearOutput();
+	showTerensha();
+	pc.credits -= 10;
+
+	output("You nod and slip out of the booth, heading over to the bar. Doing your best to guess Ren’s preferences, you drop a few credits on a bottle of something green and gryvain-made, and turn back in time to see the catsuited whore walking towards the door down. You catch up easily enough, and soon find a sinuous tail coiling around your [pc.hips], guiding you downstairs alongside her.");
+
+	output("\n\nRen stops at the door with her name in glowing holographics and punches a code into the credit pad next to it, overriding it. The doors hisses, sliding aside. The halfbreed beckons you inside, purloining the bottle as you pass and following you in. When the door seals shut again, she takes a deep breath and plops down on the side of the bed, taking a long swig from the bottle. You ");
+
+		if(pc.isTaur()) output("plant yourself on your bestial behind");
+		else output("pull up a chair");
+
+	output("facing her, waiting for her to speak.");
+
+	output("\n\nRen finishes off what must be half the bottle before she finally sets it aside, planting her hands on her knees and looking you in the eye.");
+
+	output("\n\n<i>“So... the short version is that my parents made this suit. They work for TamaniCorp, and it was supposed to be a sensory enhancement product. Make sex feel better, clean itself up inside and out... turn your spunk into more material for the suit to fix itself. It’s actually pretty amazing. Except this one’s tuned way too high: five hundred percent tactile sensation. Enough that, yeah, I can barely touch myself without blowing a load. I think the production models are just at one-fifty: enough to melt your brains when you fuck, but not keep you perpetually edging every waking moment like I do. But I'm kinda stuck with this one. Custom job, you might say.”</i>");
+
+	output("\n\nWait, woah, rewind a second. Her parents made her a sex suit?");
+
+	output("\n\nRen blanches. <i>“N-no! Not exactly. This was just a prototype, and they didn’t intend it for sex at the time. At least, I don’t think that’s what they meant to do for me! See, the harness here,”</i> she says, hooking a thumb under the red material around her chest, <i>“it feeds back tactile sensation anywhere on the suit into the user’s nervous system, so you can feel anything through the material like it was brushing up against your skin - like the suit <b>is</b> your skin, see?”</i>");
+
+	output("\n\nUh-huh. So why does she have it?");
+
+	output("\n\n<i>“Here,”</i> Ren answers, handing you the bottle. <i>“I’ll, um, I’ll show you. Maybe that’s easier. Just promise me one thing?”</i>");
+
+	output("\n\nYou take a swig and nod. Yuck, this stuff tastes like cabbage.");
+
+	output("\n\n<i>“Don’t feel bad for asking,”</i> Ren says. She stands, reaches behind herself, and depresses a catch on her harness. You hear a brief tearing sound, and then the latexy material of her suit starts stretching out, then sucking back into the harness. In the blink of an eye, the whole suit’s gone, leaving nothing but the harness hugging her ample breasts.");
+
+	output("\n\nRen’s buck naked, now, her hands folded in front of her soft belly and her normally stiff reptilian prick rapidly softening into her groin. She lets out a long, heavy sigh and turns around, presenting you her back.");
+
+	clearMenu();
+	addButton(0,"Next",tellMeYourStoryRenPart2);
+
+}
+
+public function tellMeYourStoryRenPart2():void
+{
+	clearOutput();
+	showTerensha();
+
+	output("You wince, trying not to choke on your drink. Her spine shows a latticework of small scars, surrounding small, softly glowing blue cybernetic plates every inch or so, from her tailbone all the way to the base of her neck. Without thinking, you blurt out, <i>“What happened?”</i>");
+
+	output("\n\n<i>“Broke my back,”</i> Ren answers matter-of-factly, turning back. <i>“Shattered it into so many pieces that it was basically dust. I don’t really remember what happened, just that I was on my jetbike heading home from school, then... then I woke up in a hospital with implants all over my body. We can regrow limbs, eyes, organs, all sorts of things these days, but apparently a complete spine is still too complex. I was a few generations too early for that, a doctor told me later. Unless I wanted to go full cyborg, I guess.");
+
+	output("\n\n<i>“I could walk around on my own in a couple of weeks, so I guess I was pretty lucky. But my sense of touch is completely gone: I can’t feel anything from the chin down. Without that suit, you could drybone my ass and I’d be sitting there asking if you’d put it in yet. Here,”</i> she says, crossing over and crawling up into your lap. Ren takes one of your hands and presses it to her breast, prompting you to give one of her big green nipples the biggest pinch you can. What would have made her cum on the spot the last time you were together doesn’t prompt so much as a blink, and her masculine sex rests softly between her thighs, completely unresponsive.</i>");
+
+	output("\n\n<i>“So that’s what’s with the suit,”</i> she says simply, impassive as you pinch and grope at her. <i>“My folks were working on the SenseSuit project for Tamani, took the prototype home with them, and retooled it to link up to my cyberjacks. Best they could do was pull it down to five times sensation, since it was never meant to actually physically jack into somebody spine like it does with me. Getting used to this... heck, I don’t know if I ever will. But living in constant bliss isn’t exactly terrible...”</i>");
+
+	output("\n\nRen shrugs to herself and peels one of her hands off her chest, almost as an afterthought. Playfully, she adds, <i>“And no, before you ask, I’m not gonna let you bang me without the suit now. If I didn’t want to enjoy myself here, I’d go work at McBurger World or something instead.”</i>");
+
+	output("\n\nActually, that’s a good point: if both her parents are... scientists? Technicians? Some kind of researchers for a mega corp, what’s she doing working at a seedy brothel in rush space?");
+
+	output("\n\n<i>“Would you believe me if I said I was paying for college?”</i> she grins, squirming out of your lap. You give her a deadpan look. <i>“No? Well, I do have a scholarship, but I still have to live and eat on my own dime. And since I can take extranet classes anywhere, when a friend told me Beth’s here was looking for contracter girls instead of debt-slaves, well... I figured I’d make a pretty decent hooker. I’m pretty cute and curvy on my own, and with that suit on, well, anything the customer wants to do feels way better for me than it does for you. I actually enjoy my work a lot!”</i>");
+
+	output("\n\nWell, you guess every stereotype exists for a reason.");
+
+	output("\n\nSince you’ve got Ren all to yourself now, and she doesn’t seem to be in a rush to be rid of you, you ask what she’s studying. Probably nothing that’ll keep her working here at Beth’s?");
+
+	output("\n\nShe giggles pleasantly. <i>“Yeah, I’m in my senior year for whore-ology. I hear slut degrees are in high demand here on the frontier!”</i> Ren rolls her eyes and flops back on the bed, sprawling out. <i>“I’m studying astrophysics, actually. Specializing in warp field theory. That’s one of the reasons I’m out here instead of home on Vendiko: I love space!”</i>");
+
+	if (flags["ANNO_CREWMEMBER"] == 1) {
+		flags["ANNO_REN_TUTOR"] = 1;
+
+		output("\n\nWait, she’s studying the Warp Gates? You lean over and ask if she’s ever heard of an Anno Dorna.");
+
+		output("\n\n<i>“Doctor Dorna?”</i> Ren asks back, propping herself up on her elbows and looking at you. <i>“Sure, of course. A couple of her papers on warp field miniaturization are required reading. You studying warp physics too, [pc.name]?”</i>");
+
+		output("\n\nNo, you just happen to have </i>Doctor<i> Dorna on your crew these days.");
+
+		output("\n\nRen practically shoots upright, blinking at you. <i>“Wh- how? Seriously?”</i>");
+
+		output("\n\n<i>“Sure,”</i> you grin. <i>“She’s probably wandering around the station somewhere right now.”</i>");
+
+		output("\n\n<i>“Woah. Gimme the hook up, [pc.name]. I’d love to pick her brain on-”</i>");
+
+		output("\n\nOkay, okay. Before she starts spouting ");
+			if (pc.isTreated()) output("nerd stuff");
+			else output("science that’s way over your head");
+		output(" you pull out your Codex and bring up your contacts book. Before you hand over Anno’s address, though... maybe Terensha could find a way to make it worth your while?");
+
+		output("\n\nShe laughs and hops to her feet, pushing the button on the back of her harness. The dark purple latex shoots out from it like webbing, spreading across her body and sealing her back in. She shivers at the return of sensation, then turns to you with a grin.");
+
+		output("\n\n<i>“You drive suuuuch a hard bargain,”</i> she teases, tracing a pair of fingers along the side of the bed. <i>“I’m all yours, cow[pc.boyGirl]. Should I be on top, or ");
+			if (pc.hasCock()) output("are you gonna bend me over and pound me into this bed?”</i> she smirks, wiggling her inhumanly broad hips for you.");
+			else output("would you rather take my big bad dragon for a ride?”</i> she smirks, shaking her hips in a way that makes her half-hard cock swing for you.");
+
+			clearMenu();
+			pc.lust(33);
+			//[Missionary] [Pitch Anal] [Ride Cock] [Tail Fuck]
+			if(pc.hasCock() || pc.hasHardLightEquipped()) addButton(0,"Missionary",missionaryWithRensa,undefined,"Missionary","Get Ren in bed for some nice slow pussy-fucking. Considering the size of her endowments, it wouldn’t be hard to get her to titfuck herself while you plow her.");
+			//[Pitch Anal]
+			if(pc.hasCock() || pc.hasHardLightEquipped()) addButton(1,"Pitch Anal",pitchAnalRensa,undefined,"Pitch Anal","Bend Ren over and pound her asshole. Considering her unique biology, there’s no doubt in your mind she’s going to empty those big, meaty balls of hers once you go to work.");
+			//[Ride Cock]
+			var bonusBlurb:String = "";
+			if(pc.hasCock()) bonusBlurb = " while you fuck those big, jiggly tits of hers";
+			//PC requires a pussy.
+			if(pc.hasVagina()) addButton(2,"Ride Cock",rideRensasCock,undefined,"Ride Cock","Throw Ren on her back and ride her cock cowgirl style" + bonusBlurb + ".");
+			//[Tail Fuck]
+			if(pc.hasVagina()) bonusBlurb = " while she reams you out with her big, thick cock";
+			addButton(3,"Tail Ride",tailPegStuffTimes,undefined,"Tail Ride","Bend on over and let Ren fuck you with that thick, prehensile tail of hers" + bonusBlurb + ".");
+			if(pc.hasCock()) addButton(4,"Balljob",renBalljob,undefined,"Balljob","Have Ren use her plump package to get you off: lube her nuts up and have her masturbate you with her ball-cleavage. No doubt this is going to get messy...");
+		}
+
+
+if (flags["ANNO_CREWMEMBER"] != 1) {
+		output("\n\nShe must, to come all the way out here just for a brothel job.");
+
+		output("\n\nRen just chuckles and rolls onto her belly, giving you a picturesque view of her jiggly behind. <i>“So... anything else you wanted to ask? Most of the time when people ‘just want to talk,’ I end up listening to spouse problems for an hour. It’s nice to be the one talking for a change.”</i>");
+
+		output("\n\nYou don’t have any more questions for the moment, though you wouldn’t mind keeping Ren company for a bit if she wants to vent.");
+
+		output("\n\n<i>“Nah,”</i> she answers with a yawn, <i>“I’m alright. Though now that my suit’s off and I have exactly no libido, the temptation to just take a nap instead of going back to work is pretty overpowering.”</i>");
+
+		output("\n\nBefore you can suggest anything else, Ren pushes the button on the back of her harness. The dark purple latex shoots out from it like webbing, spreading across her body and sealing her back in. She shivers at the return of sensation, and when she gets to her feet, you can see the return of her perpetual erection in full force.");
+
+		output("\n\n<i>“Thanks for listening,”</i> she says, giving you a surprisingly genuine smile that quickly turns into a kiss on your cheek. <i>“And for the drink. Even though gryvaini ale tastes like cabbage.”</i>");
+
+		output("\n\nShe laughs and offers you a hand up, guiding you back to the brothel floor. <i>“See ya cow[pc.boyGirl]. Unless I somehow managed to keep your interest after that,”</i> she says with a wink, sashaying back to her table.");
+
+		clearMenu();
+		pc.lust(15);
+		addButton(0,"Next",mainGameMenu);
+	}
+	
 }

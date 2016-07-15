@@ -1739,6 +1739,7 @@ public function seduceCuntTailMilk(raskWinner:String = "big"):void
 	clearOutput();
 	showRaskGang();
 	userInterface.showBust("RASKVEL_MALE_NUDE");
+	author("IVIsteriousPerson");
 
 	output("You walk towards the exhausted raskvel and set your hands on your [pc.hips], looming over him. You smirk at how well your plan worked, thinking about what you want to do to him and his delicious-looking cock. But your thoughts are interrupted by a tingling from your rear. You notice your tail hovering between your legs, the [pc.tailVagina] at its tip literally dripping with desire.");
 
