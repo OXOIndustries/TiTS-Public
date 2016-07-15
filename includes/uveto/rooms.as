@@ -237,6 +237,7 @@ public function initUvetoRooms():void
 	rooms["UVS H11"].addFlag(GLOBAL.NPC);
 	rooms["UVS H11"].runOnEnter = rhenesunneOfficeBonus;
 
+
 	/** IRESTEAD -------------------------------------------------------------------- */
 	/** ----------------------------------------------------------------------------- */
 
