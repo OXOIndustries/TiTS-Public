@@ -235,24 +235,8 @@ public function initUvetoRooms():void
 	rooms["UVS H11"].moveMinutes = 1;
 	rooms["UVS H11"].addFlag(GLOBAL.INDOOR);
 	rooms["UVS H11"].addFlag(GLOBAL.NPC);
-<<<<<<< HEAD
-	rooms["UVS H11"].runOnEnter = function():Boolean {
-		if (flags["MET_RHENESUNNE"] == undefined)
-		{
-			output("\n\nYou might have expected a leithan woman after the group of them out in the lobby, but instead you're treated to the sight of a statuesque bipedal woman with lustrous blue-black hair pulled back into a ponytail. A pair of blue, glittering eyes glance up at you from the screens and the woman leans back in her chair, revealing a svelte, athletic body with curves that strain against a very expensive looking bodysuit.");
-
-			output("\n\n<i>“I wasn’t aware I had an appointment,”</i> she says coolly, eyeing you. <i>“Please, have a seat.”</i>");
-		}
-		else
-		{
-			output("<i>“Ah, Steele,”</i> Anyxine says, leaning back in her chair and steepling her fingers as you approach.");
-		}
-
-		return false;
-	};
-=======
 	rooms["UVS H11"].runOnEnter = rhenesunneOfficeBonus;
->>>>>>> origin/master
+
 
 	/** IRESTEAD -------------------------------------------------------------------- */
 	/** ----------------------------------------------------------------------------- */
