@@ -63,7 +63,9 @@ package classes.Items.Miscellaneous
 			clearOutput();
 			if (target is PlayerCharacter)
 			{
-				output("You inject the Immuno-Booster medipen.");
+				var effectUsed:Boolean = false;
+				
+				output("You inject yourself with the Immuno-Booster medipen.");
 				
 				if (target.hasStatusEffect("Foxfire"))
 				{
@@ -106,6 +108,7 @@ package classes.Items.Miscellaneous
 						output("\n\nYour markings previously intense glow turn dim as it takes on a softer, less prominent tone. <b>Your markings are now " + accentNewColor + "!</b>");
 						target.skinAccent = accentNewColor;
 					}
+					effectUsed = true;
 				}
 				
 				if (target.hasParasiteTail())
@@ -115,6 +118,7 @@ package classes.Items.Miscellaneous
 					else
 						output("\n\nYour [pc.tails] become limp as if suddenly paralyzed, then proceed to crumble to dust before your eyes as they disintegrate completely, leaving no trace anything was ever attached to you. Your parasitic tails are gone!");
 					target.removeTails();
+					effectUsed = true;
 				}
 				
 				if (kGAMECLASS.attachedMimbranes() > 0) // Mimbrane removal, copy-paste from Foxfire
@@ -124,6 +128,21 @@ package classes.Items.Miscellaneous
 					else
 						output("\n\nYour mimbrane parasites turn a sickly pale as they suddenly let go of your [pc.skin], slumping to the ground lifelessly. You almost feel sorry for the poor creatures as they shrivel up and crumble to dust before your eyes. <b>Your mimbranes are gone!</b>");
 					kGAMECLASS.removeMimbranes();
+					effectUsed = true;
+				}
+				
+				if(target.hasStatusEffect("Hair Flower"))
+				{
+					output("\n\nThere is a slight tingle on your head--most notably at the base of the huge orchid attached to it. Nothing seems to happen afterwards but your codex beeps, notifying you that something has indeed changed...");
+					target.setStatusMinutes("Hair Flower", 60);
+					
+					effectUsed = true;
+				}
+				
+				if(!effectUsed)
+				{
+					output(".. and nothing happens.");
+					output("\n\nYour codex beeps, informing you that your immune system has nothing abnormal to combat.");
 				}
 			}
 			else
