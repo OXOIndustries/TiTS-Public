@@ -2269,7 +2269,7 @@ public function racialPerkUpdateCheck():void
 		if(pc.hasStatusEffect("Hair Flower")) numFlowers++;
 		if(pc.hasStatusEffect("Arm Flower")) numFlowers += 2;
 		if(pc.hasVaginaType(GLOBAL.TYPE_FLOWER)) numFlowers += pc.totalVaginas(GLOBAL.TYPE_FLOWER);
-		if(pc.tailGenitalArg == GLOBAL.TYPE_FLOWER && pc.tailType != GLOBAL.TYPE_HUMAN) numFlowers += target.tailCount;
+		if(pc.tailGenitalArg == GLOBAL.TYPE_FLOWER && pc.hasTailCunt()) numFlowers += pc.tailCount;
 		
 		if(pc.perkv1("Flower Power") <= 0 && numFlowers > 0) msg += "\n\nThe flower" + (numFlowers == 1 ? "" : "s") + " located on your body blossom" + (numFlowers == 1 ? "s" : "") + ", ready to unleash " + (numFlowers == 1 ? "its" : "their") + " lust-inducing spores--this also adds to your sexual appetite... not that that’s a bad thing, after all!";
 		else if(pc.perkv1("Flower Power") > 0 && numFlowers <= 0) msg += "\n\nWithout any flowers located on your body, you feel the need to produce spores fade. While this relaxes your body’s sexual urges, you know that producing any new flowers will have you ready for pollination again.";

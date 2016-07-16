@@ -59,6 +59,7 @@ package classes.Items.Transformatives
 			var plantBarkColor:Array = ["grayish brown", "chestnut", "umber"];
 			var plantHairColor:Array = ["green", "green", "verdant", "forest green", "jungle green", "yellow-green"];
 			var plantEyeColor:Array = ["leaf green", "lime green", "turquoise", "hazel", "mahogany", "fir green"];
+			var flowerColors:Array = ["red", "yellow", "blue", "purple", "pink", "white"];
 			var removePants:Boolean = false;
 			
 			//#1 Plant Skin: Non plant skin.
@@ -122,6 +123,9 @@ package classes.Items.Transformatives
 			if(target.tailGenitalArg == GLOBAL.TYPE_FLOWER && target.tailType != GLOBAL.TYPE_HUMAN && target.tailCount > 0) flowerScore++;
 			if(!target.hasPerk("Flower Power") && target.skinType == GLOBAL.SKIN_TYPE_PLANT && InCollection(target.hairType, [GLOBAL.HAIR_TYPE_PLANT, GLOBAL.HAIR_TYPE_TENTACLES]) && target.mfn("m", "f", "n") == "f" && flowerScore >= 2)
 				TFList[TFList.length] = 17;
+			//#18 Flower tailcunt: Has tail-cunt, overdose.
+			if(target.hasTailCunt() && target.tailGenitalArg != GLOBAL.TYPE_FLOWER && target.statusEffectv3("Cerespirin") >= 1)
+				TFList[TFList.length] = 18;
 			
 			//Loop through doing TFs until we run out, pulling out whichever we use.
 			while(TFList.length > 0 && totalTFs > 0)
@@ -282,7 +286,7 @@ package classes.Items.Transformatives
 				else if(select == 7)
 				{
 					// Choose Flower Color
-					var flowerColor:String = RandomInCollection(["red", "yellow", "blue", "purple", "pink", "white"]);
+					var flowerColor:String = RandomInCollection(flowerColors);
 					
 					msg += ParseText("A spot on the side of your head has been getting steadily sorer. It feels like a big pimple; not exactly the sexiest of developments. You’re beginning to think about finding somewhere quiet to take a look at it when it suddenly and rather shockingly bursts, allowing something hand-sized to bloom out from your [pc.hair]. And, once you’ve cautiously examined it with the help of your codex, “bloom” is exactly the right word to use. A huge orchid is now flourishing its floppy " + flowerColor + " petals and stamen above your head!");
 					msg += ParseText("\n\nCertainly it looks better than a pimple; from a distance it will appear as if you’ve stuck a big flower behind your [pc.ear]. However, it... you inhale when your fingers trace its velvety, tube-like innards. It’s definitely connected to you, and slightly sensitive. It firmly reminds you of what a flower <i>is</i> in fact, at least where winged insects are concerned. You bite your lip at the thought.");
@@ -447,7 +451,7 @@ package classes.Items.Transformatives
 				//#15 Bark Skin: Plant skin, masculine, any two of the following three = true: branch crown, moss beard, fruit cum.
 				else if(select == 15)
 				{
-					if(target.skinTypeUnlocked(GLOBAL.SKIN_TYPE_BARK))
+					if(target.skinTypeUnlocked(GLOBAL.SKIN_TYPE_BARK) || target.statusEffectv3("Cerespirin") >= 5)
 					{
 						var newBarkColor:String = RandomInCollection(plantBarkColor);
 						
@@ -534,6 +538,26 @@ package classes.Items.Transformatives
 					// v3: Min Libido increase
 					// v4: ???
 					target.createPerk("Flower Power", numFlowers, 20, 45, 0, "Everything about being a pollen-producing flower nymph is deeply arousing. It has its upsides, though: the effect you have on most foes, for instance.");
+				}
+				//#18 Flower tailcunt: Has tail-cunt, overdose.
+				else if(select == 18)
+				{
+					if(target.tailGenitalArgUnlocked(GLOBAL.TYPE_FLOWER))
+					{
+						var newTailGenitalColor:String = target.tailGenitalColor;
+						if(target.statusEffectv3("Cerespirin") >= 5 || target.tailGenitalColor == "") newTailGenitalColor = RandomInCollection(flowerColors);
+						
+						output("[pc.EachTail] twists and flexes widly, reacting to some sort of change. Quickly grabbing [pc.oneTail], you find the [pc.tailVagina] closes up on itself and balloons out until it looks very much like a plant bulb. Curious, you take a finger and gently rub along its lip. Like a reflex reaction, the tip swells and spreads out to reveal its new form. Beautiful " + newTailGenitalColor + " pedals open and rearrange to become an orchid-shaped flower. Finally, a dewy aroma escapes its opening, seemingly inviting a hungry cock to be milked...");
+						
+						target.tailGenitalArg = GLOBAL.TYPE_FLOWER;
+						target.tailGenitalColor = newTailGenitalColor;
+						target.addTailFlag(GLOBAL.FLAG_APHRODISIAC_LACED);
+						target.lust(30);
+					}
+					else
+					{
+						msg += target.tailGenitalArgLockedMessage();
+					}
 				}
 				totalTFs--;
 			}
