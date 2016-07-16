@@ -100,7 +100,7 @@ package classes.Resources.Busts
 		
 		[Embed(source = "../../../assets/images/npcs/adjatha/frostwyrm.png", mimeType = "image/png")]
 		public var Bust_FROSTWYRM:Class;
-		public var Bounds_FROSTWYRM:Rectangle = new Rectangle(115, 32, 70, 70);
+		public var Bounds_FROSTWYRM:Rectangle = new Rectangle(50, 32, 70, 70);
 		
 		[Embed(source = "../../../assets/images/npcs/adjatha/gene.png", mimeType = "image/png")]
 		public var Bust_GENE:Class;
@@ -244,11 +244,18 @@ package classes.Resources.Busts
 		public var Bust_STEPH_5:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/steph_5_nude.png", mimeType = "image/png")]
 		public var Bust_STEPH_5_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/steph_6.png", mimeType = "image/png")]
+		public var Bust_STEPH_6:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/steph_6_nude.png", mimeType = "image/png")]
+		public var Bust_STEPH_6_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/tamani.png", mimeType = "image/png")]
 		public var Bust_TAMANI:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/tamani_nude.png", mimeType = "image/png")]
 		public var Bust_TAMANI_NUDE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/adjatha/tank_kannon.png", mimeType = "image/png")]
+		public var Bust_TANK_KANNON:Class;
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/terensha.png", mimeType = "image/png")]
 		public var Bust_TERENSHA:Class;
@@ -508,11 +515,18 @@ package classes.Resources.Busts
 			public var Full_STEPH_5:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/steph_5_nude.png", mimeType = "image/png")]
 			public var Full_STEPH_5_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/steph_6.png", mimeType = "image/png")]
+			public var Full_STEPH_6:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/steph_6_nude.png", mimeType = "image/png")]
+			public var Full_STEPH_6_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/tamani.png", mimeType = "image/png")]
 			public var Full_TAMANI:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/tamani_nude.png", mimeType = "image/png")]
 			public var Full_TAMANI_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/tank_kannon.png", mimeType = "image/png")]
+			public var Full_TANK_KANNON:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/terensha.png", mimeType = "image/png")]
 			public var Full_TERENSHA:Class;

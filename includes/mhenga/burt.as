@@ -1360,6 +1360,9 @@ public function stephIrsonEpisodeOnePartTwo():void
 	output("\n\nSteph's head lolls haplessly, her voice breaking as she orgasms for the... hell, you lost count twenty males ago. Blowing his wad, the male pushes her off his rods, letting Steph flop down atop the coils of slumbering naleen. The camera flies down for a final closeup, showing her spunk-slathered body in its full high-definition beauty; where she should be delivering a final monologue about her exploits, Steph only manages to gurgle weakly, cum drooling down her cheeks.");
 	
 	output("\n\n<i>“This show brought to you by the Xenogen Biotech firm. Xenogen reminds you that galactic exploration is dangerous, and that natural wildlife is not to be approached without assistance from your friendly local rangers. Xenogen is not responsible for any graphic content witnessed on live galactic broadcasts or the safety of its personnel.”</i>");
+	
+	flags["STEPH_NYAN"] = 1;
+	
 	processTime(30);
 	if(flags["SYRI_TALKS"] != undefined) pc.orgasm();
 	else pc.lust(33);

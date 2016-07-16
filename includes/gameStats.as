@@ -2330,6 +2330,7 @@ public function displayEncounterLog(showID:String = "All"):void
 	questLogMenu(displayEncounterLog);
 	
 	if(showID == "All" || showID == "Other") output2(header("<u>Encounter Log:</u>", false));
+	var i:int = 0;
 	
 	// Locational Info
 	if(showID != "Other" || showID == "All")
@@ -4926,7 +4927,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			miscCount++;
 		}
 		// Sexploration: Porny Smuts
-		if(flags["LETS_FAP_ARCHIVES"] != undefined)
+		if(flags["LETS_FAP_ARCHIVES"] != undefined || flags["STEPH_WATCHED"] != undefined)
 		{
 			output2("\n<b><u>Pornography</u></b>");
 			// Atha's Adventures
@@ -4943,6 +4944,28 @@ public function displayEncounterLog(showID:String = "All"):void
 					output2(", Next video release");
 					if(GetGameTimestamp() - flags["LETS_FAP_RELEASE_TIMER"] < unlockLength) output2(" ready after " + prettifyMinutes(unlockLength - (GetGameTimestamp() - flags["LETS_FAP_RELEASE_TIMER"])));
 					else output2(" at 13:00");
+				}
+			}
+			// Steph Irson Stats
+			if(flags["STEPH_WATCHED"] != undefined)
+			{
+				output2("\n<b>* Steph Irson, Galactic Huntress:</b> Watched");
+				var stephEps:Array = [];
+				if(flags["STEPH_NYAN"] != undefined) stephEps.push("Naleen");
+				if(flags["STEPH_GOOED"] != undefined) stephEps.push("Gray Goo");
+				if(flags["STEPH_COWGIRL"] != undefined) stephEps.push("New Texas");
+				if(flags["STEPH_COCKED"] != undefined) stephEps.push("Nyrea");
+				if(flags["STEPH_DARGONED"] != undefined) stephEps.push("Korgonne");
+				
+				if(stephEps.length > 0)
+				{
+					output2("\n<b>* Steph Irson, Episodes:</b>");
+					for(i = 0; i < stephEps.length; i++)
+					{
+						if(i == 0) output2(" ");
+						else output2(", ");
+						output2(stephEps[i]);
+					}
 				}
 			}
 			miscCount++;

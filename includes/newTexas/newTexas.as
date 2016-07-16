@@ -1379,6 +1379,9 @@ public function stephIrsonEp3Pt3():void
 	output("\n\nAt the last moment, the bull pulls out, leaving Steph’s pussy gaping. He grabs his cock and aims it over her like a hose, letting the mammoth tool loose to spray a torrent of thick seed over Steph’s back and ass, practically plastering her to the wall with his sticky load. By the time he’s done, Steph looks like a snow-woman, completely covered in white spunk. The bull grins, slaps her ass, and turns to leave...");
 	output("\n\n... Only to turn back, grab the camera drone right out of the air, and give it a toothy grin. <i>“That’s it for this week’s episode of </i>Galactic Slutress<i>. Tune in next week to watch this big-titted bimbo get fucked by something else. Oh - and hi, mom!”</i>");
 	output("\n\nThe camera feed cuts out, and a commercial break cuts in.");
+	
+	flags["STEPH_COWGIRL"] = 1;
+	
 	pc.lust(10);
 	processTime(29);
 	clearMenu();

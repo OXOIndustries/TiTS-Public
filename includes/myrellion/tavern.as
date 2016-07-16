@@ -379,6 +379,9 @@ public function stephIrsonEpisode4Part5():void
 	output("\n\nThe tail plunges into her, pumping vigorously into her backside. She gives a startled squeal, slumping forward onto her big, milky jugs as her new appendage gets used to her. The camera feed fades to black, telling you to tune in next week for another exciting episode of <i>Steph Irson, Galactic Huntress</i>.");
 	output("\n\nHow the hell is this on public television still?");
 	if (pc.libido() >= 40) output(" Not that you’re complaining...");
+	
+	flags["STEPH_COCKED"] = 1;
+	
 	processTime(6);
 	pc.lust(7);
 	clearMenu();
