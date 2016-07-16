@@ -587,12 +587,6 @@ public function appearance(forTarget:Creature):void
 			if(target.earLength > 1) output2(" " + num2Text(target.earLength) + "-inch long");
 			output2(" pointed elfin ears jut out below them, giving you exceptional hearing.");
 		}
-		//Misc. Head Ornaments
-		if(target.hasStatusEffect("Hair Flower"))
-		{
-			if(rand(2) == 0) output2(" A huge " + target.getStatusTooltip("Hair Flower") + " orchid grows from the side of your head, its big long petals flopping gaily when you move.");
-			else output2(" Nestled above your ear, there is " + indefiniteArticle(target.getStatusTooltip("Hair Flower")) + " orchid. It looks like you stuck it there but it’s very much a part of you, flourishing from your scalp merrily.");
-		}
 		//Tongue
 		if(target.tongueType == GLOBAL.TYPE_SNAKE) output2(" A snake-like [target.tongueNoun] occasionally flits between your lips, tasting the air.");
 		else if(target.tongueType == GLOBAL.TYPE_DEMONIC) output2(" A slowly undulating [target.tongueNoun] occasionally slips from between your lips. It hangs nearly two feet long when you let the whole thing slide out, though you can retract it to appear normal.");
@@ -687,6 +681,12 @@ public function appearance(forTarget:Creature):void
 			}
 		}
 		else if(target.hasStatusEffect("Horn Bumps")) output2(" <b>Your forehead is red and irritated in two different places. The upraised bumps stand out quite visibly.</b>");
+		//Misc. Head Ornaments
+		if(target.hasStatusEffect("Hair Flower"))
+		{
+			if(rand(2) == 0) output2(" A huge " + target.getStatusTooltip("Hair Flower") + " orchid grows from the side of your head, its big long petals flopping gaily when you move.");
+			else output2(" Nestled above your ear, there is " + indefiniteArticle(target.getStatusTooltip("Hair Flower")) + " orchid. It looks like you stuck it there but it’s very much a part of you, flourishing from your scalp merrily.");
+		}
 		//BODY PG HERE
 		output2("\n\nYou have a humanoid upper body with the usual torso, arms, hands, and fingers");
 		if(target.skinType == GLOBAL.SKIN_TYPE_FUR) output2(", mostly covered in a layer of " + target.skinFurScales(true, true));
