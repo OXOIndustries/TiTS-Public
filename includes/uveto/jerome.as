@@ -533,7 +533,7 @@ public function jeromeHipbuster():void
 		else output(" swings");
 		output(" your"); 
 		if (pc.ballSize() <= 3 && pc.hasStatusEffect("Uniball")) output(" trappy");
-		else if (pc.ballSize()() >= 10) output(" bloated");
+		else if (pc.ballSize() >= 10) output(" bloated");
 		output(" ball");
 		if (pc.balls > 1) output("s");
 		output(" just close enough for");
