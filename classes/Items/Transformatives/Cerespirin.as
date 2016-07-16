@@ -547,12 +547,12 @@ package classes.Items.Transformatives
 						var newTailGenitalColor:String = target.tailGenitalColor;
 						if(target.statusEffectv3("Cerespirin") >= 5 || target.tailGenitalColor == "") newTailGenitalColor = RandomInCollection(flowerColors);
 						
-						output("[pc.EachTail] twists and flexes widly, reacting to some sort of change. Quickly grabbing [pc.oneTail], you find the [pc.tailVagina] closes up on itself and balloons out until it looks very much like a plant bulb. Curious, you take a finger and gently rub along its lip. Like a reflex reaction, the tip swells and spreads out to reveal its new form. Beautiful " + newTailGenitalColor + " pedals open and rearrange to become an orchid-shaped flower. Finally, a dewy aroma escapes its opening, seemingly inviting a hungry cock to be milked...");
+						output("[pc.EachTail] twists and flexes widly, reacting to some sort of change. Quickly grabbing [pc.oneTail], you find the [pc.tailVagina] closes up on itself and balloons out until it looks very much like a plant bulb. Curious, you take a finger and gently rub along its lip. Like a reflex reaction, the tip swells and spreads out to reveal its new form. Beautiful " + newTailGenitalColor + " pedals open and rearrange to become a lewdly-shaped flower. Finally, a dewy aroma escapes its opening, seemingly inviting a hungry cock to be milked... It seems <b>your cunt tail" + (target.tailCount == 1 ? " is capped with a pretty orchid" : "s are capped with pretty orchids") + " now!</b>");
 						
 						target.tailGenitalArg = GLOBAL.TYPE_FLOWER;
 						target.tailGenitalColor = newTailGenitalColor;
 						target.addTailFlag(GLOBAL.FLAG_APHRODISIAC_LACED);
-						target.lust(30);
+						target.lust(15 * target.tailCount);
 					}
 					else
 					{
