@@ -240,7 +240,7 @@ public function genesModsBuyStuff():void
 		gene.keeperBuy = "Gene lazily spins a talon in the direction of the touch-screen.";
 	}
 	gene.keeperBuy += "\n";
-	shopkeep = chars["GENE"];
+	gene.keeperGreeting = "RUH ROH! SOMETHING WENT WRONG.";
 	if(flags["ZODEE_GALOQUEST"] != undefined)
 	{
 		if(flags["PURCHASED_GENES_GALO"] == undefined)
@@ -249,7 +249,12 @@ public function genesModsBuyStuff():void
 		}
 		else chars["GENE"].destroyItem(new GaloMax());
 	}
-	gene.keeperGreeting = "RUH ROH! SOMETHING WENT WRONG.";
+	if(flags["GENE_UNLOCK_CERESPIRIN"] != undefined)
+	{
+		if(!chars["GENE"].hasItemByType(Cerespirin)) chars["GENE"].inventory.push(new Cerespirin());
+	}
+	else chars["GENE"].destroyItem(new Cerespirin());
+	shopkeep = chars["GENE"];;
 	itemScreen = mainGameMenu;
 	lootScreen = mainGameMenu;
 	useItemFunction = mainGameMenu;
@@ -339,6 +344,14 @@ public function genesModsTalkMenu(cFunc:Function = null):void
 
 	if (cFunc != genesModsTalkMyr) addButton(4, "Myr", genesModsTalkMyr);
 	else addDisabledButton(4, "Myr");
+	
+	// Gene Chat
+	// Appears after PC has used "Me" and "Myr" talk options
+	if(flags["GENES_MODS_TALK_YOU"] != undefined && flags["GENES_MODS_TALK_MYR"] != undefined && CodexManager.entryViewed("Cockvines"))
+	{
+		if (cFunc != genesModsChat) addButton(5, "Chat", genesModsChat, 0, "Chat", "Ask if there’s anything below the counter the unprincipled fanfir might be willing to sell.");
+		else addDisabledButton(5, "Chat");
+	}
 
 	addButton(14, "Back", genesModsMenu);
 }
@@ -681,6 +694,44 @@ public function genesModsTalkMyrII():void
 	{
 		geneSubmissionLevel(1);
 		genesModsTalkMenu(genesModsTalkMyr);
+	}
+}
+
+public function genesModsChat(pageNum:int = 0):void
+{
+	clearOutput();
+	geneHeader();
+	switch(pageNum)
+	{
+		case 0:
+			output("<i>“So what you’re doing here is not particularly legal,”</i> you muse. You look Gene straight in the yellow eye. <i>“Is there anything not particularly legal that isn’t on the main menu, strictly speaking?”</i>");
+
+			output("\n\n<i>“Mmm. Possibly,”</i> replies the fanfir, drawing out his words in a low rumble. <i>“When you are a famously open-minded mod entrepreneur of distinction, you are sometimes approached by independent chemists who wish to amaze the galaxy and make small fortunes with their cutting edge creations, without going through the suffocating, expensive rigmarole of officially testing them first. Gene-mod giants such as Xenogen will usually quickly create their own version in response and vigorously undercut you if you go through the proper channels, after all. Most of the DNA-attacking gloop that lands on my metaphorical doorstep is worthless, dangerous or both. Occasionally something interesting arrives, though...”</i>");
+			
+			output("\n\n<i>“Which is?”</i> you cajole.");
+			
+			output("\n\n<i>“Let us say, purely for the sake of argument, that there is a small group of modders operating independently on this very planet,”</i> harrumphs Gene, gesticulating tersely with his synth arms. <i>“Aiming to take advantage of Xenogen’s current fixation with the gold myr to experiment with one of Myrellion’s, ahem, less celebrated species. Splicing plant DNA with animal is a notoriously difficult art, so to find a specimen that ACTIVELY SEEKS OUT such a union is of great interest to modders. They believe that, using the DNA of Hydrus Constuprula, they have created a plant TF of awesome strength and viability; able to facilitate all manner of floral metamorphoses in a subject. Not only that: I don’t think they’re lying.”</i>");
+			
+			output("\n\n<i>“What’s the catch?”</i> you ask.");
+			
+			output("\n\n<i>“Perhaps you missed the part where I said this stuff is manufactured from cockvine?!”</i> bellows Gene, banging his wing claws on the counter in exasperation. <i>“Plant transformations are DIFFICULT Steele, difficult in a way animal-feature-to-animal-feature is not; you are forcing your flesh to become something intrinsically different, not something up or down or sideways upon your own evolutionary ladder. Pity the electric impulse that has to explain to a blood vessel the concept of chlorophyll! They are commensurately more powerful, and usually carry side effects as a result. I don’t care if the things I sell have no effect; I do care if they cause a buyer to suddenly take root, or drop dead because they didn’t get enough sunlight that day. That is the kind of thing that might necessitate one to leave a planet in an unprofitable hurry.”</i>");
+			
+			// [pb]
+			clearMenu();
+			addButton(0, "Next", genesModsChat, 1);
+			break;
+		case 1:
+			output("<i>“Now,”</i> he goes on in a quieter tone, <i>“as you have already explained to me, you have a state-of-the-art suite of nanobots coursing through your veins, which means you are likely to be spared such excessively tragic developments and are a perfect test subject to boot. So I am willing to sell this Cerespirin creation to you, on the UNDERSTANDING that you will stay quiet about where you found it, and that it may cause florally-related side effects in you nonetheless.”</i> He grins at you hugely. <i>“Assuming you can afford it, of course. Such exclusive and precariously sourced mods carry a large mark-up, obviously.”</i>");
+			
+			output("\n\nObviously.");
+			// Intelligence 50%:
+			if(pc.IQ() >= 50) output(" <b>But maybe there’s someone else out there who’d be happy to mass-synthesize this plant TF, if you brought them a sample of it...</b>");
+			
+			// Cerespirin added to Gene’s purchase menu
+			flags["GENE_UNLOCK_CERESPIRIN"] = 1;
+			
+			genesModsTalkMenu(genesModsChat);
+			break;
 	}
 }
 

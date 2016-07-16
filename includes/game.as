@@ -9,6 +9,7 @@ import classes.GUI;
 import classes.Items.Accessories.LeithaCharm;
 import classes.Items.Miscellaneous.EmptySlot;
 import classes.Items.Miscellaneous.HorsePill;
+import classes.Items.Transformatives.Cerespirin;
 import classes.Items.Transformatives.Clippex;
 import classes.Items.Transformatives.Goblinola;
 import classes.RoomClass;
@@ -1737,6 +1738,12 @@ public function processTime(arg:int):void {
 			var semensTF:SemensFriend = new SemensFriend();
 			semensTF.itemSemensFriendLibidoIncrease();
 		}
+		//Cerespirin procs!
+		if(pc.hasStatusEffect("Cerespirin"))
+		{
+			var plantTF:Cerespirin = new Cerespirin();
+			plantTF.itemPlantTF();
+		}
 		//Treatment display shit
 		if(pc.hasStatusEffect("Treatment Elasticity Report Q'ed"))
 		{
@@ -2201,14 +2208,73 @@ public function racialPerkUpdateCheck():void
 	if (pc.hasPerk("Androgyny") && pc.perkv1("Androgyny") > 0 && !pc.hasFaceFlag(GLOBAL.FLAG_MUZZLED))
 	{ // racialPerkUpdateCheck: removal of Androgyny perk with the loss of muzzle.
 		msg += "\n\nWith your face becoming more human, your appearance is now no longer androgynous.";
-		msg += "\n\n(<b>Perk Lost: Androgyny</b> - You've lost your muzzle.)";
+		msg += "\n\n(<b>Perk Lost: Androgyny</b> - You’ve lost your muzzle.)";
 		pc.removePerk("Androgyny");
 	}
 	if (pc.hasPerk("Icy Veins") && pc.perkv1("Icy Veins") > 0 && (!pc.hasSkinFlag(GLOBAL.FLAG_FLUFFY) || pc.skinType != GLOBAL.SKIN_TYPE_FUR))
 	{ // racialPerkUpdateCheck: removal of Icy Veins perk with he loss of fluffy fur (fork on still having fur but not fluffy flag?).
 		msg += "\n\nWithout all that thick, fluffy coat of fur you suddenly feel rather cold...";
-		msg += "\n\n(<b>Perk Lost: Icy Veins</b> - You've lost your insulating coat of fur, and as a result you are now weaker against cold.)";
+		msg += "\n\n(<b>Perk Lost: Icy Veins</b> - You’ve lost your insulating coat of fur, and as a result you are now weaker against cold.)";
 		pc.removePerk("Icy Veins");
+	}
+	if(pc.hasPerk("Black Latex"))
+	{
+		if(pc.skinType != GLOBAL.SKIN_TYPE_LATEX && !pc.hasStatusEffect("Latex Regrow"))
+		{
+			msg += "\n\nSomehow, losing your natural latex skin makes you feel naked and insecure... You hope this feeling doesn’t last for too long...";
+			pc.createStatusEffect("Latex Regrow", 0, 0, 0, 0, true, "", "", false, 720);
+		}
+	}
+	if(pc.armType == GLOBAL.TYPE_FLOWER)
+	{
+		if(!pc.hasWombPregnancy() && !pc.hasStatusEffect("Arm Flower"))
+		{
+			// Choose Flower Color
+			var flowerColor:String = RandomInCollection(["red", "yellow", "blue", "purple", "pink", "white"]);
+			
+			msg += "\n\nA summery feeling spreads down your arm ivy, like tiny veins of lustful energy. You intimately feel each of the small " + flowerColor + " flowers that pop and blossom into being on the delicate vines, like little skips of the heart.";
+			msg += "\n\nWhy have you flowered like this? The rational part of your brain doesn’t have an answer... but the clear, green part of you knows. Your empty womb and [pc.eachVagina] know. You are ripe and ready for seeding, and your body is brightly signaling that fact to anyone that looks at you the best way it knows how.";
+			
+			pc.createStatusEffect("Arm Flower", 0, 0, 0, 0, true, "", flowerColor, false);
+			// +Lust, slow Libido increase of 5
+			pc.slowStatGain("libido", 5);
+			pc.lust(50);
+		}
+		else if(pc.hasWombPregnancy() && pc.hasStatusEffect("Arm Flower"))
+		{
+			msg += "\n\nYour " + pc.getStatusTooltip("Arm Flower") + " arm flowers droop and, over the course of the next hour, de-petal. Evidently they feel their work is done... which can only mean one thing. You stroke your [pc.belly].";
+			
+			//Libido decrease of 3
+			pc.libido(-3);
+			pc.removeStatusEffect("Arm Flower");
+		}
+	}
+	else
+	{
+		if(pc.hasStatusEffect("Arm Flower")) pc.removeStatusEffect("Arm Flower");
+	}
+	if(pc.hasPerk("Resin"))
+	{
+		if(pc.skinType != GLOBAL.SKIN_TYPE_BARK)
+		{
+			msg += "\n\nThe surface of your body tingles and your nose briefly catches a whiff of a familiar amber aroma--which then completely dissipates into the air. Curious, you check your codex and, sure enough, due to the lack of your once bark skin, you’ve lost the ability to create a resin cast to protect yourself. Well, at least you feel a bit more nimble now...";
+			
+			msg += "\n\n(<b>Perk Lost: Resin</b>)";
+			pc.removePerk("Resin");
+		}
+	}
+	if(pc.hasPerk("Flower Power"))
+	{
+		var numFlowers:int = 0;
+		if(pc.hasStatusEffect("Hair Flower")) numFlowers++;
+		if(pc.hasStatusEffect("Arm Flower")) numFlowers += 2;
+		if(pc.hasVaginaType(GLOBAL.TYPE_FLOWER)) numFlowers += pc.totalVaginas(GLOBAL.TYPE_FLOWER);
+		if(pc.tailGenitalArg == GLOBAL.TYPE_FLOWER && pc.hasTailCunt()) numFlowers += pc.tailCount;
+		
+		if(pc.perkv1("Flower Power") <= 0 && numFlowers > 0) msg += "\n\nThe flower" + (numFlowers == 1 ? "" : "s") + " located on your body blossom" + (numFlowers == 1 ? "s" : "") + ", ready to unleash " + (numFlowers == 1 ? "its" : "their") + " lust-inducing spores--this also adds to your sexual appetite... not that that’s a bad thing, after all!";
+		else if(pc.perkv1("Flower Power") > 0 && numFlowers <= 0) msg += "\n\nWithout any flowers located on your body, you feel the need to produce spores fade. While this relaxes your body’s sexual urges, you know that producing any new flowers will have you ready for pollination again.";
+		
+		pc.setPerkValue("Flower Power", 1, numFlowers);
 	}
 	
 	if(msg.length > 0) eventBuffer += msg;

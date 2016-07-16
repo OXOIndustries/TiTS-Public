@@ -284,6 +284,7 @@
 				else if(pcRace == "sydian") pc.shiftCock(arg, GLOBAL.TYPE_SYDIAN);
 				else if(pcRace == "daynar") pc.shiftCock(arg, GLOBAL.TYPE_DAYNAR);
 				else if(InCollection(pcRace, "gabilani", "goblin")) pc.shiftCock(arg, GLOBAL.TYPE_GABILANI);
+				else if(InCollection(pcRace, "tentacle beast", "cockvine-morph", "plant-morph", "treant")) pc.shiftCock(arg, GLOBAL.TYPE_TENTACLE);
 				else if(pc.skinType == GLOBAL.SKIN_TYPE_GOO)
 				{
 					pc.shiftCock(arg, GLOBAL.TYPE_HUMAN);
@@ -291,7 +292,6 @@
 					pc.cocks[arg].cockColor = pc.skinTone;
 				}
 				/*
-				else if(pcRace == "tentacle beast") pc.shiftCock(arg, GLOBAL.TYPE_TENTACLE);
 				else if(pcRace == "anemone") pc.shiftCock(arg, GLOBAL.TYPE_ANEMONE);
 				else if(pcRace == "siren") pc.shiftCock(arg, GLOBAL.TYPE_SIREN);
 				else if(InCollection(pcRace, "synthetic", "robot", "companion droid")) pc.shiftCock(arg, GLOBAL.TYPE_SYNTHETIC);

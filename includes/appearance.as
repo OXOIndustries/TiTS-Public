@@ -611,14 +611,16 @@ public function appearance(forTarget:Creature):void
 		if(target.horns > 0)
 		{
 			//Demonic horns
-			if(target.hornType == GLOBAL.TYPE_DEMONIC) {
+			if(target.hornType == GLOBAL.TYPE_DEMONIC)
+			{
 				if(target.horns <= 2) output2(" A small pair of pointed horns has broken through the " + target.skin() + " on your forehead, proclaiming some demonic taint to any who see them.");
 				else if(target.horns <= 4) output2(" A quartet of prominent horns has broken through your " + target.skin() + ". The back pair are longer, and curve back along your head. The front pair protrude forward demonically.");
 				else if(target.horns <= 6) output2(" Six horns have sprouted through your " + target.skin() + ", the back two pairs curve backwards over your head and down towards your neck, while the front two horns stand almost eight inches long upwards and a little forward.");
 				else output2(" A large number of thick demonic horns sprout through your " + target.skin() + ", each pair sprouting behind the ones before. The front jut forwards nearly " + num2Text(target.hornLength) + " inches while the rest curve back over your head, some of the points ending just below your ears. You estimate you have a total of " + num2Text(target.horns) + " horns.");
 			}
 			//Minotaur horns
-			if(target.hornType == GLOBAL.TYPE_BOVINE) {
+			if(target.hornType == GLOBAL.TYPE_BOVINE)
+			{
 				if(target.hornLength < 1) output2(" Two tiny horn-like nubs protrude from your forehead, resembling the horns of the young livestock kept by terrans.");
 				else if(target.hornLength < 2) output2(" Two small, roughly one-inch long bovine horns protrude from your forehead. They’re kind of cute, actually.");
 				else if(target.hornLength < 3) output2(" Two bovine horns, approximately two inches in length, jut from your forehead.");
@@ -631,7 +633,8 @@ public function appearance(forTarget:Creature):void
 				else output2(" Two huge horns erupt from your forehead, curving outward at first, then forwards. The weight of them is heavy, and they end in dangerous looking points.");
 			}
 			//Lizard horns
-			else if(target.hornType == GLOBAL.TYPE_LIZAN || target.hornType == GLOBAL.TYPE_DRACONIC) {
+			else if(target.hornType == GLOBAL.TYPE_LIZAN || target.hornType == GLOBAL.TYPE_DRACONIC)
+			{
 				if(target.horns == 2 && target.hornType != GLOBAL.TYPE_DRACONIC) output2(" A pair of " + num2Text(int(target.hornLength)) + "-inch horns grow from the sides of your head, sweeping backwards and adding to your imposing visage.");
 				//Super lizard horns
 				else output2(" Two pairs of horns, roughly a foot long, sprout from the sides of your head. They sweep back and give you a fearsome look, almost like the dragons from terran legends.");
@@ -642,8 +645,17 @@ public function appearance(forTarget:Creature):void
 				if (target.isBimbo()) output2(" They’d make the most <i>adorable</i> handlebars for anybody looking to bust a nut down your throat!");
 			}
 			//Antlers!
-			else if(target.hornType == GLOBAL.TYPE_DEER) {
-				if(target.horns > 0) output2(" Two antlers, forking into " + num2Text(target.horns) + " points, have sprouted from the top of your head, forming a spiky, regal crown of bone.");
+			else if(InCollection(target.hornType, GLOBAL.TYPE_DEER, GLOBAL.TYPE_DRYAD))
+			{
+				if(target.horns > 0)
+				{
+					output2(" Two");
+					if(target.hornLength > 1) output2(" " + num2Text(int(target.hornLength)) + "-inch long");
+					output2(" antlers, forking into " + num2Text(target.horns) + " points, have sprouted from the top of your head, forming a spiky, regal crown of ");
+					if(target.hornType == GLOBAL.TYPE_DRYAD) output2("branches");
+					else output2("bone");
+					output2(".");
+				}
 			}
 			//Goatliness is next to godliness.
 			else if(target.hornType == GLOBAL.TYPE_GOAT)
@@ -669,6 +681,12 @@ public function appearance(forTarget:Creature):void
 			}
 		}
 		else if(target.hasStatusEffect("Horn Bumps")) output2(" <b>Your forehead is red and irritated in two different places. The upraised bumps stand out quite visibly.</b>");
+		//Misc. Head Ornaments
+		if(target.hasStatusEffect("Hair Flower"))
+		{
+			if(rand(2) == 0) output2(" A huge " + target.getStatusTooltip("Hair Flower") + " orchid grows from the side of your head, its big long petals flopping gaily when you move.");
+			else output2(" Nestled above your ear, there is " + indefiniteArticle(target.getStatusTooltip("Hair Flower")) + " orchid. It looks like you stuck it there but it’s very much a part of you, flourishing from your scalp merrily.");
+		}
 		//BODY PG HERE
 		output2("\n\nYou have a humanoid upper body with the usual torso, arms, hands, and fingers");
 		if(target.skinType == GLOBAL.SKIN_TYPE_FUR) output2(", mostly covered in a layer of " + target.skinFurScales(true, true));
@@ -757,6 +775,14 @@ public function appearance(forTarget:Creature):void
 				else if (target.wingCount == 4) output2(" a quartet of");
 				else if (target.wingCount > 1) output2(" " + num2Text(int(target.wingCount)));
 				output2(" magnificent wings sprout from your shoulders" + (target.statusEffectv1("Wing Position") == 1 ? " and fold over your body" : "") + ". When unfurled they stretch further than your arm span, and a single beat of them is all you need to set out toward the sky. They look a bit like bat’s wings, but the membranes are covered in fine, delicate scales and a wicked talon juts from the end of each bone.");
+			}
+			else if (target.wingType == GLOBAL.TYPE_COCKVINE)
+			{
+				if (target.wingCount == 3) output2(" a trio of");
+				else if (target.wingCount == 4) output2(" a quartet of");
+				else if (target.wingCount == 12) output2(" a dozen");
+				else if (target.wingCount > 1) output2(" " + num2Text(int(target.wingCount)));
+				output2(" oily, prehensile phalluses sprout from your shoulders and back. They are retractable at will and can move on their own volition. From afar, they may look like innocent vines, but up close, each tenacle contain a bulbous head with a leaking cum-slit, perfect for mass breeding.");
 			}
 		}
 		else output2(".");
@@ -917,6 +943,20 @@ public function appearance(forTarget:Creature):void
 		{
 			if(!target.hasFur() || !target.hasFeathers()) output2(" Your arms are incredibly smooth with a tendency to glisten in the light.");
 			output2(" Your webbed hands are very amphibious in appearance. Each of your elongated fingers are capped with a round bulb, capable of sticking to flat surfaces like a suction cup.");
+		}
+		else if(target.armType == GLOBAL.TYPE_FLOWER)
+		{
+			if(rand(2) == 0)
+			{
+				output2(" Ivy-like creepers crawl down the upper parts of your arms, festooning them in dark green leaves.");
+				if(target.hasStatusEffect("Arm Flower")) output2(" They have additionally sprouted small " + target.getStatusTooltip("Arm Flower") + " flowers, proclaiming to the world that you are in need of pollination.");
+			}
+			else
+			{
+				output2(" Your biceps and shoulders are covered in delicate vines. The spade-like leaves bob as you move");
+				if(target.hasStatusEffect("Arm Flower")) output2(", as do the small " + target.getStatusTooltip("Arm Flower") + " flowers you’re displaying up there");
+				output2(".");
+			}
 		}
 		else if (target.hasStatusEffect("Mimbrane Hand Left") || target.hasStatusEffect("Mimbrane Hand Right"))
 		{
@@ -2779,6 +2819,11 @@ public function vaginaBonusForAppearance(forTarget:Creature = null, x:int = 0, e
 	else if(target.vaginas[x].type == GLOBAL.TYPE_NYREA) {
 		if(!eachOne) output2(" The nyrean “pussy” is very soft, warm and puffy. Its interior is coated with your [target.girlCum], ready to rear any eggs you might have the (mis)fortune of fertilizing.");
 		else output2("\nEach of your nyrean “pussies” are very soft, warm and puffy. The interior is coated with your [target.girlCum], ready to rear any eggs you might have the (mis)fortune of fertilizing.");
+	}
+	//Flower flavor
+	else if(target.vaginas[x].type == GLOBAL.TYPE_FLOWER) {
+		if(!eachOne) output2(" Like an orchid, the exterior opening is framed in beautifully-colored flower petals and has a cute freckle dotting " + (target.vaginas[x].clits == 1 ? "its" : "every") + " clit.");
+		else output2("\nLike a " + (target.totalVaginas(GLOBAL.TYPE_FLOWER) == 2 ? "pair" : "bouquet") + " of orchids, each vagina’s exterior openings are framed in beautifully-colored flower petals and has a cute freckle dotting every clit.");
 	}
 	
 	//Nubby

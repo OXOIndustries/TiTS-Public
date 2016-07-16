@@ -359,14 +359,14 @@
 						target.cocks[0].cockColor = "pink";
 						kGAMECLASS.output("Your cock looks like a lumpy caterpillar with a small [pc.cockColor] tip");
 					}
-					/* ... since they are non-standard or not yet defined, especially with the current races. */
-					
-					/*
-					else if(pcRace == "tentacle beast")
+					else if(InCollection(pcRace, "tentacle beast", "cockvine-morph", "plant-morph", "treant"))
 					{
 						target.shiftCock(0, GLOBAL.TYPE_TENTACLE);
 						kGAMECLASS.output("Your [pc.cockColor] cock is constantly moist and moving with a slightly oversized mushroom-like head");
 					}
+					/* ... since they are non-standard or not yet defined, especially with the current races. */
+					
+					/*
 					else if(InCollection(pcRace, "siren", "anemone"))
 					{
 						if(pcRace == "siren") target.shiftCock(0, GLOBAL.TYPE_ANEMONE);
@@ -475,26 +475,26 @@
 					// No beard: Grow one--length is thickness of a dime, I guess.
 					if(!target.hasBeard())
 					{
-						kGAMECLASS.output("\n\nYour jaw tingles for a bit before turning into a maddening itch. You bring your fingers to scratch it only to find your chin covered in a thin mat of hair. <b>Seems like you’ve the beginnings of a beard!</b>");
 						target.beardLength = 0.05;
+						kGAMECLASS.output("\n\nYour jaw tingles for a bit before turning into a maddening itch. You bring your fingers to scratch it only to find your chin covered in a thin mat of hair. <b>Seems like you’ve the beginnings of a beard!</b>");
 					}
 					// For the stubble.
 					else if(target.beardLength < 0.125)
 					{
-						target.beardLength = 0.125;
 						kGAMECLASS.output("\n\nYour [pc.beard] tickles your jaw for a little bit, bringing yourself to scratch it. As soon as it begins, the sensation abruptly stops. You experimentally run your fingers along it, feeling its very rugged surface. <b>Your beard has now grown into a fine five o’clock shadow.</b>");
+						target.beardLength = 0.125;
 					}
 					// For just half-inch.
 					else if(target.beardLength < 0.5)
 					{
-						target.beardLength = 0.5;
 						kGAMECLASS.output("\n\nWithout touching it, you can feel your [pc.beard] physically grow on your face. Reflexively, you brush your hand across it and can confirm that <b>it's now a half-inch long beard.</b>");
+						target.beardLength = 0.5;
 					}
 					// For whole numbers.
 					else if(target.beardLength < 1)
 					{
-						target.beardLength = 1;
 						kGAMECLASS.output("\n\nYour [pc.beard] suddenly feels itchy and you quickly give it a scratch. The sensation passes and you can feel that it is definitely longer than it was previously. <b>Your beard is now 1-inch long.</b>");
+						target.beardLength = 1;
 					}
 					// Has beard: Grow 1" to 2"
 					else
@@ -503,7 +503,7 @@
 						kGAMECLASS.output("\n\nYour [pc.beard] tickles your jaw for a little bit, bringing yourself to scratch it. After a while, the sensation stops and you pass your fingers through it. <b>You can confirm that it's slightly longer than it was before, gaining about " + kGAMECLASS.num2Text(x) + " inches of beard.</b>");
 						target.beardLength += x;
 					}
-					if (target.beardStyle != 0)
+					if (target.beardStyle != 0 && target.beardStyleUnlocked(0))
 					{
 						if(target.beardLength >= 1)
 						{

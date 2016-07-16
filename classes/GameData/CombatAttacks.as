@@ -435,6 +435,40 @@ package classes.GameData
 			GoozookaAttack.SetAttackTypeFlags(SingleCombatAttack.ATF_RANGED, SingleCombatAttack.ATF_SPECIAL);
 			a.push(GoozookaAttack);
 			
+			// Resin
+			ResinDefense = new SingleCombatAttack();
+			ResinDefense.ButtonName = "Resin";
+			ResinDefense.EnergyCost = 40;
+			ResinDefense.ExtendedDisplayabilityCheck = function():Boolean {
+				return (kGAMECLASS.pc.hasPerk("Resin"));
+			}
+			ResinDefense.ExtendedAvailabilityCheck = function():Boolean {
+				return !kGAMECLASS.pc.hasStatusEffect("Resin");
+			}
+			ResinDefense.TooltipTitle = "Resin";
+			ResinDefense.RequiresTarget = false;
+			ResinDefense.TooltipBody = "Harden your bark skin with amber to raise your defenses for a few rounds. The sap’s aroma may also affect the enemy’s lust.";
+			ResinDefense.Implementor = ResinDefenseImpl;
+			ResinDefense.SetAttackTypeFlags(SingleCombatAttack.ATF_SPECIAL);
+			a.push(ResinDefense);
+			
+			// Pollen Veil
+			PollenVeil = new SingleCombatAttack();
+			PollenVeil.ButtonName = "Pollen Veil";
+			PollenVeil.EnergyCost = 40;
+			PollenVeil.ExtendedDisplayabilityCheck = function():Boolean {
+				return (kGAMECLASS.pc.perkv1("Flower Power") > 0);
+			}
+			PollenVeil.ExtendedAvailabilityCheck = function():Boolean {
+				return !kGAMECLASS.pc.hasStatusEffect("Pollen Veil");
+			}
+			PollenVeil.TooltipTitle = "Pollen Veil";
+			PollenVeil.RequiresTarget = false;
+			PollenVeil.TooltipBody = "Use your special pollen spores to gradually raise your enemy’s lust for a few rounds.";
+			PollenVeil.Implementor = PollenVeilImpl;
+			PollenVeil.SetAttackTypeFlags(SingleCombatAttack.ATF_SPECIAL);
+			a.push(PollenVeil);
+			
 			// Shared NPC Attacks
 			// Attacks only intended to be used by NPCs!
 			AphrodisiacDarts = new SingleCombatAttack();
@@ -1651,6 +1685,73 @@ package classes.GameData
 				}
 				
 				outputDamage(damageResult);
+			}
+		}
+		
+		public static var ResinDefense:SingleCombatAttack;
+		private static function ResinDefenseImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
+		{
+			var aTarget:Creature = GetBestPotentialTarget(hGroup);
+			if(aTarget == null)
+			{
+				if (attacker is PlayerCharacter) output("It seems you have no target to use your lust-inducing spores on.");
+				else output(attacker.capitalA + attacker.uniqueName + " attempts to use " + attacker.mfn("his", "her", "its") + " spores but there is not one to use it on.");
+				return;
+			}
+			
+			if (attacker is PlayerCharacter)
+			{
+				output("You emit a rumbling, soughing groan as you force the pores of your bark skin open, allowing resin to drool out down your heavy limbs. The liquid amber quickly hardens, forming a sweet-smelling layer of protection across great swathes of your lumbering form.");
+			}
+			else
+			{
+				output(attacker.capitalA + attacker.uniqueName + " forces liquid amber from " + attacker.mfn("his", "her", "its") + " body which quickly hardens into a layer of armor.");
+			}
+			
+			var resinDur:int = 4;
+			attacker.createStatusEffect("Resin", resinDur, 0, 0, 0, false, "DefenseUp", (((attacker is PlayerCharacter) ? "You are" : attacker.capitalA + attacker.uniqueName + " is") + " covered in a sweet-smelling, hardened amber."), true, 0, 0xFFFFFF);
+			
+			for (var i:int = 0; i < hGroup.length; i++)
+			{
+				var cTarget:Creature = hGroup[i] as Creature;
+				
+				if (cTarget.isDefeated()) continue;
+				
+				cTarget.createStatusEffect("Resin Aroma", resinDur, 0, 0, 0, false, "Charmed", (((cTarget is PlayerCharacter) ? "You are" : cTarget.capitalA + cTarget.uniqueName + " is") + " standing in the path of a sweet smell."), true, 0, 0xB793C4);
+			}
+		}
+		
+		public static var PollenVeil:SingleCombatAttack;
+		private static function PollenVeilImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
+		{
+			var aTarget:Creature = GetBestPotentialTarget(hGroup);
+			if(aTarget == null)
+			{
+				if (attacker is PlayerCharacter) output("It seems you have no target to use your lust-inducing spores on.");
+				else output(attacker.capitalA + attacker.uniqueName + " attempts to use " + attacker.mfn("his", "her", "its") + " spores but there is not one to use it on.");
+				return;
+			}
+			
+			if (attacker is PlayerCharacter)
+			{
+				output("You smile winningly at your opponent as you allow your plant pores to open and think sunny, summery thoughts; of buzzing, busy insects, ripe fruit and sticky fingers... You turn as you do it, opening your arms to waft the seething cloud of tiny yellow spores around you outwards, at the same time as elegantly drawing attention to your [pc.chest], your [pc.ass] and the flourish of your flowers.");
+				output("\n\n<i>“Do you feel me?”</i> you ask softly, gazing at " + aTarget.a + aTarget.uniqueName + " with half-lidded eyes. <i>“You will soon.”</i>");
+			}
+			else
+			{
+				output(attacker.capitalA + attacker.uniqueName + " emits a cloud of lust-inducing spores from " + attacker.mfn("his", "her", "its") + " body in " + ((aTarget is PlayerCharacter) ? "your" : (aTarget.a + possessive(aTarget.uniqueName))) + " direction.");
+			}
+			
+			var lustDur:int = 4;
+			attacker.createStatusEffect("Pollen Veil", lustDur, 0, 0, 0, false, "Icon_Smelly", (((attacker is PlayerCharacter) ? "You are" : attacker.capitalA + attacker.uniqueName + " is") + " emitting lust-inducing spores."), true, 0, 0xFFFFFF);
+			
+			for (var i:int = 0; i < hGroup.length; i++)
+			{
+				var cTarget:Creature = hGroup[i] as Creature;
+				
+				if (cTarget.isDefeated()) continue;
+				
+				cTarget.createStatusEffect("Pollen Lust", lustDur, 0, 0, 0, false, "Charmed", (((cTarget is PlayerCharacter) ? "You are" : cTarget.capitalA + cTarget.uniqueName + " is") + " under the effects of lust-inducing spores!"), true, 0, 0xB793C4);
 			}
 		}
 		

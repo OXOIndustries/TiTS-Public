@@ -153,6 +153,11 @@
 						pc.shiftVagina(0, GLOBAL.TYPE_GABILANI);
 						kGAMECLASS.output("You’ve got a muscular, " + pc.vaginaColor(0) + " goblin pussy.");
 					}
+					else if (InCollection(pcRace, "plant-morph", "dryad"))
+					{
+						pc.shiftVagina(0, GLOBAL.TYPE_FLOWER);
+						kGAMECLASS.output("You’ve got a beautiful, " + pc.vaginaColor(0) + " orchid pussy.");
+					}
 					/*
 					else if (InCollection(pcRace, "siren", "anemone"))
 					{

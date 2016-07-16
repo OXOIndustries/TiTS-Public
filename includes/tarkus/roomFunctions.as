@@ -271,6 +271,7 @@ public function rustScytheGladeEncounters():Boolean {
 public function grabARubbahTube():void
 {
 	clearOutput();
+	showBust("HORSECOCK");
 	author("Alkahest");
 	if(flags["SYNTHSHEATH_ACQUIRED"] == undefined)
 	{

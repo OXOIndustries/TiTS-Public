@@ -20,6 +20,7 @@
 	import classes.Items.Miscellaneous.EmptySlot;
 	import classes.Items.Miscellaneous.HorsePill;
 	import classes.Items.Miscellaneous.Cargobot;
+	import classes.Items.Transformatives.Cerespirin;
 	import classes.Items.Transformatives.Clippex;
 	import classes.Items.Transformatives.Foxfire;
 	import classes.Items.Transformatives.Goblinola;
@@ -327,6 +328,15 @@
 			// Effect: Boosts max HP and poison resistance by 10% for 24 hours
 			if (hasStatusEffect("Heart Tea")) r.poison.damageValue = r.poison.damageValue * 1.1;
 			
+			// Effect: Adds +10% Electric, -10% Burning, +10% Kinetic, +10% Corrosive
+			if (hasStatusEffect("Resin"))
+			{
+				r.electric.damageValue = r.electric.damageValue * 1.1;
+				r.burning.damageValue = r.burning.damageValue * 0.9;
+				r.kinetic.damageValue = r.kinetic.damageValue * 1.1;
+				r.corrosive.damageValue = r.corrosive.damageValue * 1.1;
+			}
+			
 			return r;
 		}
 		
@@ -435,10 +445,19 @@
 		{
 			return true;
 		}
-
 		public function hairColorLockedMessage():String
 		{
 			return "Your scalp briefly tingles, but your [pc.hair] remains unchanged.";
+		}
+
+		public var beardColor: String = hairColor;
+		public function beardColorUnlocked(newBeardColor:String):Boolean
+		{
+			return true;
+		}
+		public function beardColorLockedMessage():String
+		{
+			return "Your chin briefly tingles, but your [pc.beard] remains unchanged.";
 		}
 
 		public var scaleColor: String = "blue";
@@ -478,7 +497,7 @@
 		}
 
 		public var hairType: Number = 0;
-		public function hairTypeUnlocked(newhairType:Number):Boolean
+		public function hairTypeUnlocked(newHairType:Number):Boolean
 		{
 			if (hairType == GLOBAL.HAIR_TYPE_GOO && (skinType == GLOBAL.SKIN_TYPE_GOO || hasStatusEffect("Goo Vent"))) return false;
 			return true;
@@ -486,6 +505,17 @@
 		public function hairTypeLockedMessage():String
 		{
 			return "Your scalp briefly tingles, but your [pc.hair] remains unchanged.";
+		}
+
+		public var beardType: Number = hairType;
+		public function beardTypeUnlocked(newBeardType:Number):Boolean
+		{
+			if (beardType == GLOBAL.HAIR_TYPE_GOO && (skinType == GLOBAL.SKIN_TYPE_GOO || hasStatusEffect("Goo Vent"))) return false;
+			return true;
+		}
+		public function beardTypeLockedMessage():String
+		{
+			return "Your chin briefly tingles, but your [pc.beard] remains unchanged.";
 		}
 		
 		public var beardLength: Number = 0;
@@ -526,6 +556,7 @@
 		public function skinToneUnlocked(newSkinTone:String):Boolean
 		{
 			if (hasStatusEffect("Gel Body")) return false;
+			if (InCollection(skinType, [GLOBAL.SKIN_TYPE_PLANT, GLOBAL.SKIN_TYPE_BARK])) return false;
 			return true;
 		}
 		public function skinToneLockedMessage():String
@@ -1605,6 +1636,12 @@
 					break;
 				case "beard":
 					buffer = beard();
+					break;
+				case "beardNoun":
+					buffer = beardStyles(true);
+					break;
+				case "beardColor":
+					buffer = beardColor;
 					break;
 				case "face":
 					buffer = face();
@@ -3552,6 +3589,7 @@
 			var bonus:int = 0;
 			if (hasPerk("Drug Fucked")) bonus += 10;
 			if (hasPerk("Black Latex")) bonus += 10;
+			if (perkv1("Flower Power") > 0) bonus += perkv2("Flower Power");
 			if (hasStatusEffect("Sexy Costume")) bonus += statusEffectv1("Sexy Costume");
 			if (hasStatusEffect("Ellie's Milk")) bonus += 33;
 			if (hasStatusEffect("Lane Detoxing Weakness"))
@@ -3572,7 +3610,11 @@
 		public function reflexesMax(): Number {
 			var bonuses:int = 0;
 			if(hasStatusEffect("Perfect Simulant")) bonuses += 3;
-			return level * 5 + bonuses;
+			
+			var scalar:int = 1;
+			if(hasPerk("Resin")) scalar = perkv1("Resin");
+			
+			return level * 5 * scalar + bonuses;
 		}
 		public function aimMax(): Number {
 			var bonuses:int = 0;
@@ -3600,6 +3642,7 @@
 			var bonus:int = 0;
 			if(hasPerk("Drug Fucked")) bonus += 40;
 			if(hasPerk("Slut Stamp")) bonus += perkv2("Slut Stamp");
+			if(perkv1("Flower Power") > 0) bonus += perkv3("Flower Power");
 			// Slave collar increases minimum by set level.
 			if(hasStatusEffect("Psi Slave Collar")) bonus += statusEffectv3("Psi Slave Collar");
 			return (0 + bonus);
@@ -4647,10 +4690,39 @@
 					bStyle = "sideburns";
 					break;
 			}
+			// Special types:
+			if(wNoun && rand(3) == 0)
+			{
+				var beardNoun:String = "beard";
+				switch (beardStyle)
+				{
+					case 8:
+					case 9:
+						beardNoun = "mustache";
+						break;
+					case 10:
+						beardNoun = RandomInCollection("goatee", "beard");
+						break;
+					case 11:
+						beardNoun = "sideburns";
+						break;
+				}
+				switch (beardType)
+				{
+					default: bStyle = beardNoun; break;
+					case GLOBAL.HAIR_TYPE_FEATHERS: bStyle = "feather " + beardNoun; break;
+					case GLOBAL.HAIR_TYPE_QUILLS: bStyle = "quill " + beardNoun; break;
+					case GLOBAL.HAIR_TYPE_GOO: bStyle = "goo " + beardNoun; break;
+					case GLOBAL.HAIR_TYPE_TENTACLES: bStyle = "tentacle " + beardNoun; break;
+					case GLOBAL.HAIR_TYPE_PLANT: bStyle = "moss " + beardNoun; break;
+				}
+			}
 			return bStyle;
 		}
 		public function removeBeard():void
 		{
+			beardType = hairType;
+			beardColor = hairColor;
 			beardLength = 0;
 			beardStyle = 0;
 			return;
@@ -4737,7 +4809,7 @@
 		{
 			if(armor is Omnisuit) return "black";
 			else if(skinType == GLOBAL.SKIN_TYPE_FUR || skinType == GLOBAL.SKIN_TYPE_FEATHERS) return furColor;
-			else if(skinType == GLOBAL.SKIN_TYPE_SCALES || skinType == GLOBAL.SKIN_TYPE_CHITIN) return scaleColor;
+			else if(skinType == GLOBAL.SKIN_TYPE_SCALES || skinType == GLOBAL.SKIN_TYPE_CHITIN || skinType == GLOBAL.SKIN_TYPE_BARK) return scaleColor;
 			return skinTone;
 		}
 		public function chitinColor(part:String = "", bonus:Boolean = false):String
@@ -4826,6 +4898,11 @@
 				else
 				{
 					if (skinType == GLOBAL.SKIN_TYPE_LATEX) adjectives.push(RandomInCollection(["slick","glistening","squeaky","glossy","oiled","lacquered","sleek","polished","supple"]));
+					if (skinType == GLOBAL.SKIN_TYPE_PLANT || skinType == GLOBAL.SKIN_TYPE_BARK)
+					{
+						if (skinType == GLOBAL.SKIN_TYPE_BARK && !skin) adjectives.push(RandomInCollection(["hard","knotted","rigid","wooden","wooden"]));
+						else adjectives.push(RandomInCollection(["smooth","plant-like","glossy","verdant","crisp","lush","verdurous"]));
+					}
 					if (hasSkinFlag(GLOBAL.FLAG_SMOOTH)) adjectives.push("smooth");
 					if (hasSkinFlag(GLOBAL.FLAG_THICK)) adjectives.push("thick");
 					if (hasSkinFlag(GLOBAL.FLAG_STICKY)) adjectives.push("sticky");
@@ -4842,7 +4919,7 @@
 				if (output != "") output += ", ";
 				if(!skin && armor is Omnisuit) output += RandomInCollection(["black","black","ebony","onyx","sable"]);
 				else if ((skinType == GLOBAL.SKIN_TYPE_FUR || skinType == GLOBAL.SKIN_TYPE_FEATHERS) && !skin) output += furColor;
-				else if ((skinType == GLOBAL.SKIN_TYPE_SCALES || skinType == GLOBAL.SKIN_TYPE_CHITIN) && !skin) output += scaleColor;
+				else if ((skinType == GLOBAL.SKIN_TYPE_SCALES || skinType == GLOBAL.SKIN_TYPE_CHITIN || skinType == GLOBAL.SKIN_TYPE_BARK) && !skin) output += scaleColor;
 				else output += skinTone;
 			}
 			//Setup for words
@@ -4941,18 +5018,24 @@
 				else if (temp <= 8) output += "plates";
 				else output += "lamina";
 			} else if (skinType == GLOBAL.SKIN_TYPE_GOO) {
+				temp = rand(10);
 				if (temp <= 7 || appearance) output += "goo";
 				else output += "membrane";
 			} else if (skinType == GLOBAL.SKIN_TYPE_FEATHERS) {
+				temp = rand(10);
 				if (temp <= 7 || appearance) output += "feathers";
 				else if (temp <= 8) output += "fringes";
 				else output += "plumes";
 			} else if (skinType == GLOBAL.SKIN_TYPE_CHITIN) {
+				temp = rand(10);
 				if (temp <= 7 || appearance) output += "chitin";
 				else if (temp <= 8) output += "armor";
 				else output += "carapace";
 			} else if (skinType == GLOBAL.SKIN_TYPE_LATEX) {
 				output += RandomInCollection(["latex","rubber","plastic","casing","dermis","film"]);
+			} else if (skinType == GLOBAL.SKIN_TYPE_PLANT || skinType == GLOBAL.SKIN_TYPE_BARK) {
+				if(skinType == GLOBAL.SKIN_TYPE_BARK && !skin) output += RandomInCollection(["armor","bark","skin","skin"]);
+				else output += RandomInCollection(["skin","skin","epidermis","plant skin","nymph skin"]);
 			}
 			return output;
 		}
@@ -5255,6 +5338,11 @@
 					break;
 				case GLOBAL.TYPE_DOVE:
 					adjectives.push("large", "bird-like", "dove-like", "soft", "feathery");
+					break;
+				case GLOBAL.TYPE_COCKVINE:
+					adjectives.push("wriggling", "squirming", "undulating", "oily", "prehensile", "lithe", "snaky", "smooth", "plant-like", "slithery");
+					nouns = ["tentacle"];
+					if(!nounOnly) nouns.push("dorsal cock", "cockvine", "back penis");
 					break;
 			}
 
@@ -6688,11 +6776,11 @@
 			var cylinder: Number = Math.PI * radius * radius * (l - w);
 			var tip: Number = (4 / 3 * Math.PI * radius * radius * radius) / 2;
 			//If blunt, tip is converted to cylinder as well.
-			if (tailGenitalArg == GLOBAL.TYPE_EQUINE) tip = (Math.PI * radius * radius * w);
+			if (dickNippleType == GLOBAL.TYPE_EQUINE) tip = (Math.PI * radius * radius * w);
 			//If flared, tip is multiplied by 1.3.
-			if (tailGenitalArg == GLOBAL.TYPE_EQUINE) tip = tip * 1.3;
+			if (dickNippleType == GLOBAL.TYPE_EQUINE) tip = tip * 1.3;
 			//If tapered, reduce total by a factor of 75%
-			if (tailGenitalArg == GLOBAL.TYPE_CANINE) {
+			if (dickNippleType == GLOBAL.TYPE_CANINE) {
 				tip = tip * .75;
 				cylinder = cylinder * .75;
 			}
@@ -8178,7 +8266,14 @@
 		public function hasLivingHair(): Boolean {
 			if (hasHair())
 			{
-				if (InCollection(hairType, GLOBAL.HAIR_TYPE_TENTACLES, GLOBAL.HAIR_TYPE_GOO)) return true;
+				if (InCollection(hairType, GLOBAL.HAIR_TYPE_TENTACLES, GLOBAL.HAIR_TYPE_GOO, GLOBAL.HAIR_TYPE_PLANT)) return true;
+			}
+			return false;
+		}
+		public function hasLivingBeard(): Boolean {
+			if (hasBeard())
+			{
+				if (InCollection(beardType, GLOBAL.HAIR_TYPE_TENTACLES, GLOBAL.HAIR_TYPE_GOO, GLOBAL.HAIR_TYPE_PLANT)) return true;
 			}
 			return false;
 		}
@@ -8316,6 +8411,10 @@
 					vaginas[slot].vaginaColor = scaleColor;
 					vaginas[slot].wetnessRaw = 2;
 					vaginas[slot].addFlag(GLOBAL.FLAG_NUBBY);
+					break;
+				case GLOBAL.TYPE_FLOWER:
+					vaginas[slot].vaginaColor = RandomInCollection(["red", "yellow", "blue", "purple", "pink", "white"]);
+					vaginas[slot].addFlag(GLOBAL.FLAG_APHRODISIAC_LACED);
 					break;
 			}
 		}
@@ -8495,7 +8594,7 @@
 			return true;
 		}
 		public function hasWings(wType:Number = 0): Boolean {
-			if(wingType == GLOBAL.TYPE_SHARK) return false;
+			if(InCollection(wingType, GLOBAL.TYPE_SHARK, GLOBAL.TYPE_COCKVINE)) return false;
 			if (wingType != 0)
 			{
 				// Specific type
@@ -8845,6 +8944,7 @@
 			if (race == "myr" && redMyrScore() >= 8) race = "red myr";
 			if (orangeMyrScore() >= 9) race = "orange myr";
 			if (nyreaScore() >= 5) race = "nyrea";
+			if (plantScore() >= 5) race = plantRace();
 			// Human-morphs
 			if (race == "human" && cowScore() >= 4) race = mfn("cow-boy", "cow-girl", "hucow");
 			if (race == "human" && hradScore() >= 4) race = "hrad";
@@ -8899,7 +8999,7 @@
 			if (femininity < 40)
 			{
 				if (hasCock() && hasVagina()) return "bull-futa";
-				if (hasCock() && !hasVagina() && beardLength == 0 && tallness < 63) return "bull-boy";
+				if (hasCock() && !hasVagina() && !hasBeard() && tallness < 63) return "bull-boy";
 				if (!hasCock() && hasVagina()) return "cow-boy";
 				if (hasCock() && !hasVagina()) return "bull-man";
 				return "bull-morph";
@@ -8916,6 +9016,13 @@
 		{
 			if (hasPerk("Enlightened Nine-tails") || hasPerk("Nine-tails") || hasPerk("Corrupted Nine-tails")) return "kitsune";
 			else return "kitsune-morph";
+		}
+		public function plantRace():String
+		{
+			if (wingType == GLOBAL.TYPE_COCKVINE && wingCount > 0 && hasTail(GLOBAL.TYPE_COCKVINE) && cockTotal(GLOBAL.TYPE_TENTACLE) == cockTotal()) return "cockvine-morph";
+			else if (skinType == GLOBAL.SKIN_TYPE_BARK && hasHorns(GLOBAL.TYPE_DRYAD)) return "treant";
+			else if (skinType == GLOBAL.SKIN_TYPE_PLANT && (hasHorns(GLOBAL.TYPE_DRYAD) || hasStatusEffect("Hair Flower"))) return "dryad";
+			return "plant-morph";
 		}
 		public function taurRace(race:String = ""):String
 		{
@@ -9361,6 +9468,21 @@
 			if (counter > 0 && thickness >= 65) counter++;
 			//if (cockTotal(GLOBAL.TYPE_PANDA) > 0) counter++;
 			//if (vaginaTotal(GLOBAL.TYPE_PANDA) > 0) counter++;
+			return counter;
+		}
+		public function plantScore(): int
+		{
+			var counter: int = 0;
+			if (InCollection(skinType, GLOBAL.SKIN_TYPE_PLANT, GLOBAL.SKIN_TYPE_BARK)) counter++;
+			if (hasHair() && InCollection(hairType, GLOBAL.HAIR_TYPE_TENTACLES, GLOBAL.HAIR_TYPE_PLANT)) counter++;
+			if (hasBeard() && InCollection(beardType, GLOBAL.HAIR_TYPE_TENTACLES, GLOBAL.HAIR_TYPE_PLANT)) counter++;
+			if (hasHorns(GLOBAL.TYPE_DRYAD) || hasStatusEffect("Hair Flower")) counter++;
+			if (armType == GLOBAL.TYPE_FLOWER) counter++;
+			if (counter > 0 && wingType == GLOBAL.TYPE_COCKVINE && wingCount > 0) counter++;
+			if (counter > 0 && totalVaginas(GLOBAL.TYPE_FLOWER) == totalVaginas()) counter++;
+			if (counter > 1 && hasCock() && cumType == GLOBAL.FLUID_TYPE_FRUIT_CUM) counter++;
+			if (counter > 1 && hasVagina() && girlCumType == GLOBAL.FLUID_TYPE_FRUIT_GIRLCUM) counter++;
+			if (skinType == GLOBAL.SKIN_TYPE_LATEX) counter--;
 			return counter;
 		}
 		public function raskvelScore(): int
@@ -10558,7 +10680,7 @@
 		}
 		
 		public function canStyleHairType():Boolean {
-			if(InCollection(hairType, [GLOBAL.HAIR_TYPE_TENTACLES, GLOBAL.HAIR_TYPE_FEATHERS])) return false;
+			if(InCollection(hairType, [GLOBAL.HAIR_TYPE_TENTACLES, GLOBAL.HAIR_TYPE_FEATHERS, GLOBAL.HAIR_TYPE_PLANT])) return false;
 			return true;
 		}
 		public function hairDescript(forceLength: Boolean = false, forceColor: Boolean = false): String {
@@ -10590,7 +10712,7 @@
 				}
 				else if (hairLength < 3) descript += "short";
 				else if (hairLength < 6) {
-					if (rand(2) == 0 || hairType == GLOBAL.HAIR_TYPE_TENTACLES) descript += "medium-length";
+					if (rand(2) == 0 || InCollection(hairType, GLOBAL.HAIR_TYPE_TENTACLES, GLOBAL.HAIR_TYPE_PLANT)) descript += "medium-length";
 					else descript += "shaggy";
 				}
 				else if (hairLength < 10) {
@@ -10655,6 +10777,7 @@
 					if (hairStyle == "tentacle") descript += "-tentacles";
 				}
 				if (hairType == GLOBAL.HAIR_TYPE_TENTACLES) descript += " of tentacles";
+				if (hairType == GLOBAL.HAIR_TYPE_PLANT) descript += " of leaves";
 			}
 			//Not manes
 			else {
@@ -10686,6 +10809,11 @@
 					if(rand(2) == 0) descript += "spiny-hair";
 					else descript += "quill-hair";
 				}
+				else if (hairType == GLOBAL.HAIR_TYPE_PLANT)
+				{
+					if(rand(2) == 0) descript += "garden";
+					else descript += "leaf-hair";
+				}
 				else 
 				{
 					if(hairStyle == "ponytail") descript += "ponytail";
@@ -10709,6 +10837,7 @@
 				if (hairType == GLOBAL.HAIR_TYPE_QUILLS) descript += " of quills";
 				if (hairType == GLOBAL.HAIR_TYPE_GOO) descript += " of goo";
 				if (hairType == GLOBAL.HAIR_TYPE_TENTACLES) descript += " of tentacles";
+				if (hairType == GLOBAL.HAIR_TYPE_PLANT) descript += " of leaves";
 			}
 			//Not manes
 			else {
@@ -10719,6 +10848,7 @@
 					else descript += "feather-hair";
 				}
 				else if (hairType == GLOBAL.HAIR_TYPE_QUILLS) descript += "quill-hair";
+				else if (hairType == GLOBAL.HAIR_TYPE_PLANT) descript += "leaf-hair";
 				else descript += "hair";
 			}
 			return descript;
@@ -10730,6 +10860,7 @@
 			else if (hairType == GLOBAL.HAIR_TYPE_FEATHERS) descript += "feathers";
 			else if (hairType == GLOBAL.HAIR_TYPE_QUILLS) descript += "quills";
 			else if (hairType == GLOBAL.HAIR_TYPE_GOO) descript += "locks of goo";
+			else if (hairType == GLOBAL.HAIR_TYPE_PLANT) descript += "leaves";
 			else descript += "locks";
 			return descript;
 		}
@@ -10813,6 +10944,7 @@
 			}
 			if (descripted > 0) descript += " ";
 			if (hairType == GLOBAL.HAIR_TYPE_TENTACLES || hairStyle == "tentacle") descript += "tentacles";
+			else if (hairType == GLOBAL.HAIR_TYPE_PLANT) descript += "leaves";
 			else if (hairType == GLOBAL.HAIR_TYPE_FEATHERS) descript += "feathers";
 			else if (hairType == GLOBAL.HAIR_TYPE_QUILLS && rand(2) == 0) descript += "quills";
 			else 
@@ -11068,6 +11200,7 @@
 				else if (type == GLOBAL.TYPE_NYREA) desc += "nyrean ";
 				else if (type == GLOBAL.TYPE_HUMAN) desc += "human ";
 				else if (type == GLOBAL.TYPE_KUITAN) desc += "kui-tan ";
+				else if (type == GLOBAL.TYPE_FLOWER) desc += "orchid ";
 				else desc += "alien ";
 				var plainPussies:Array = ["vagina", "pussy"];
 				if(isBimbo()) plainPussies.push("cunt");
@@ -11191,7 +11324,14 @@
 					if (!simple)
 						desc += RandomInCollection(["heart-shaped box","alien pussy","inhuman pussy","heart-shaped pussy","kui-tan pussy","tanuki twat","heart-shaped cunt","kui-tan cunt","heart-framed slit","kui-tan quim","heart-shaped snatch"]);
 					else
-						desc += RandomInCollection(["'nuki-pussy'","shapely-slit","pussy","'nuki-pussy","pussy","'nuki-cunt","cunt","slit","kui-cunt","shapely-snatch","twat","xeno-pussy"]);
+						desc += RandomInCollection(["'nuki-pussy","shapely-slit","pussy","'nuki-pussy","pussy","'nuki-cunt","cunt","slit","kui-cunt","shapely-snatch","twat","xeno-pussy"]);
+				}
+				else if (type == GLOBAL.TYPE_FLOWER)
+				{
+					if (!simple)
+						desc += RandomInCollection(["flower-shaped box","orchid pussy","floral pussy","gaping orchid pussy","dewy-petaled flower cunt","blossoming pussy","brightly-colored petal twat","fronded flower hole"]);
+					else
+						desc += RandomInCollection(["orchid-pussy","petaled-slit","pussy","flower-pussy","pussy","dewy-cunt","cunt","slit","floral-cunt","flower-snatch","twat","floral-pussy"]);
 				}
 				else
 				{
@@ -13152,6 +13292,8 @@
 				collection = ["sweet","vanilla","sugary"];
 			} else if (arg == GLOBAL.FLUID_TYPE_SPECIAL_GOO || arg == GLOBAL.FLUID_TYPE_SPECIAL_CUMGOO) {
 				collection = ["sweet","tangy","citrusy"];
+			} else if (arg == GLOBAL.FLUID_TYPE_FRUIT_CUM || arg == GLOBAL.FLUID_TYPE_FRUIT_GIRLCUM) {
+				collection = ["fruity","sweet","tart","zesty","citrusy", "pear-flavored","apple-flavored"];
 			}
 			
 			else collection = ["bland"];
@@ -13195,6 +13337,8 @@
 				collection = ["thick"];
 			} else if (arg == GLOBAL.FLUID_TYPE_HRAD_CUM) {
 				collection = ["semi-thick","syrupy"];
+			} else if (arg == GLOBAL.FLUID_TYPE_FRUIT_CUM || arg == GLOBAL.FLUID_TYPE_FRUIT_GIRLCUM) {
+				collection = ["juicy","liquid","drippy"];
 			}
 			
 			else collection = ["fluid"];
@@ -13247,6 +13391,8 @@
 				if(skinType == GLOBAL.SKIN_TYPE_GOO) collection = [String(skinTone)];
 				else if(hairType == GLOBAL.HAIR_TYPE_GOO) collection = [String(hairColor)];
 				else collection = ["green","emerald"];
+			} else if (arg == GLOBAL.FLUID_TYPE_FRUIT_CUM || arg == GLOBAL.FLUID_TYPE_FRUIT_GIRLCUM) {
+				collection = ["pale yellow","apple-flesh yellow","creamy lemon"];
 			}
 			
 			else collection = ["ERROR, INVALID FLUID TYPE."];
@@ -13300,7 +13446,7 @@
 		public function fluidColorSimple(arg: int):String
 		{
 			if (InCollection(arg, GLOBAL.FLUID_TYPE_LEITHAN_MILK, GLOBAL.FLUID_TYPE_CUMSAP, GLOBAL.FLUID_TYPE_MILK, GLOBAL.FLUID_TYPE_CUM, GLOBAL.FLUID_TYPE_VANILLA, GLOBAL.FLUID_TYPE_MILKSAP)) return "white";
-			else if (InCollection(arg, GLOBAL.FLUID_TYPE_HONEY, GLOBAL.FLUID_TYPE_NECTAR)) return "yellow";
+			else if (InCollection(arg, GLOBAL.FLUID_TYPE_HONEY, GLOBAL.FLUID_TYPE_NECTAR, GLOBAL.FLUID_TYPE_FRUIT_CUM, GLOBAL.FLUID_TYPE_FRUIT_GIRLCUM)) return "yellow";
 			else if (InCollection(arg, GLOBAL.FLUID_TYPE_OIL, GLOBAL.FLUID_TYPE_GIRLCUM)) return "transparent";
 			else if (InCollection(arg, GLOBAL.FLUID_TYPE_CHOCOLATE_MILK, GLOBAL.FLUID_TYPE_CHOCOLATE_CUM)) return "brown";
 			else if (InCollection(arg, GLOBAL.FLUID_TYPE_STRAWBERRY_MILK, GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK)) return "pink";
@@ -13361,6 +13507,10 @@
 				collection = ["slime","goo"];
 			} else if (arg == GLOBAL.FLUID_TYPE_SPECIAL_CUMGOO) {
 				collection = ["slime-spunk","goo-cum","slime-semen","goo-spooge","slime-spooge","goo-spunk","slime-cum"]
+			} else if (arg == GLOBAL.FLUID_TYPE_FRUIT_CUM) {
+				collection = ["seed"];
+			} else if (arg == GLOBAL.FLUID_TYPE_FRUIT_GIRLCUM) {
+				collection = ["juice"];
 			}
 			
 			else collection = ["ERROR: NONVALID FLUID TYPE PASSED TO fluidNoun."];
@@ -14882,7 +15032,6 @@
 		public function hornDescript(): String 
 		{
 			var descript: String = "";
-			var randt: Number = rand(10);
 			var descripted: Number = 0;
 			var types: Array = [];
 	
@@ -14890,8 +15039,7 @@
 			{
 				if (rand(3) == 0)
 				{
-					if (randt < 5) descript += "visible ";
-					else descript += "upraised ";
+					descript += RandomInCollection("visible ", "upraised ");
 				}
 				descript += "horn-bump";
 			}
@@ -14901,17 +15049,12 @@
 				if (rand(3) == 0) {
 					//tiny
 					if (hornLength < 1) {
-						if (randt < 3) descript += "tiny";
-						else if (randt < 6) descript += "little";
-						else if (randt < 8) descript += "petite";
-						else if (randt == 8) descript += "diminutive";
-						else descript += "miniature";
+						descript += RandomInCollection("tiny", "little", "petite", "diminutive", "miniature");
 						descripted++;
 					}
 					//small
 					else if (hornLength < 2) {
-						if (randt < 5) descript += "one-inch";
-						else descript += "small";
+						descript += RandomInCollection("one-inch", "small");
 						descripted++;
 					}
 					//two-inch
@@ -14926,14 +15069,12 @@
 					}
 					//medium
 					else if (hornLength < 5) {
-						if (randt < 5) descript += "four-inch";
-						else descript += "noticeable";
+						descript += RandomInCollection("four-inch", "noticeable");
 						descripted++;
 					}
 					//big
 					else if (hornLength < 6) {
-						if (randt < 5) descript += "five-inch";
-						else descript += "big";
+						descript += RandomInCollection("five-inch", "big");
 						descripted++;
 					}
 					//half-foot
@@ -14943,9 +15084,7 @@
 					}
 					//large
 					else if (hornLength < 12) {
-						if (randt < 4) descript += "long";
-						else if (randt < 6) descript += "substantial";
-						else descript += "large";
+						descript += RandomInCollection("long", "substantial", "large");
 						descripted++;
 					}
 					//foot
@@ -14955,19 +15094,12 @@
 					}
 					//huge
 					else if (hornLength < 20) {
-						if (randt < 3) descript += "very large";
-						else if (randt < 6) descript += "considerable";
-						else if (randt == 9) descript += "hulking";
-						else descript += "huge";
+						descript += RandomInCollection("very large", "considerable", "hulking", "huge", "vast");
 						descripted++;
 					}
 					//ginormous
 					else {
-						if (randt < 3) descript += "monster";
-						else if (randt < 6) descript += "tremendous";
-						else if (randt < 8) descript += "colossal";
-						else if (randt == 8) descript += "enormous";
-						else descript += "oversized";
+						descript += RandomInCollection("monster", "tremendous", "colossal", "enormous", "oversized", "glorious");
 						descripted++;
 					}
 				}
@@ -15003,6 +15135,10 @@
 						case GLOBAL.TYPE_NARWHAL:
 							types.push("narwhal", "unicorn-like");
 							break;
+						case GLOBAL.TYPE_DRYAD:
+							types.push("dryad", (hornLength < 12 ? "twig" : "branch") + "-like", "oaken");
+							if(hornLength > 12) types.push("tree-like");
+							break;
 					}
 					if(types.length > 0)
 					{
@@ -15026,7 +15162,7 @@
 		public function hornNoun():String 
 		{
 			//Horn nouns
-			if(hornType == GLOBAL.TYPE_DEER) return "antler";
+			if(InCollection(hornType, GLOBAL.TYPE_DEER, GLOBAL.TYPE_DRYAD)) return "antler";
 			return "horn";
 		}
 		
@@ -15636,6 +15772,27 @@
 									var semensTF:SemensFriend = new SemensFriend();
 									if((statusEffects[x] as StorageClass).value2 > 1) semensTF.itemSemensFriendTFPlus();
 									else semensTF.itemSemensFriendTF();
+									break;
+								//Cerespirin changes!
+								case "Cerespirin":
+									var plantTF:Cerespirin = new Cerespirin();
+									plantTF.itemEndPlantTF();
+									break;
+								// Hair Flower wilts away!
+								case "Hair Flower":
+									var flowerPower:Cerespirin = new Cerespirin();
+									kGAMECLASS.eventBuffer += flowerPower.loseHairFlower(this);
+									break;
+								// Black Latex grows back!
+								case "Latex Regrow":
+									if(skinType != GLOBAL.SKIN_TYPE_LATEX)
+									{
+										kGAMECLASS.eventBuffer += "\n\nYou feel the need to stretch and proceed to do so, raising your [pc.arms] high into the air and extending your back. Yes, that feel <i>so</i> goo--<i>Squeeeeaak!</i>";
+										kGAMECLASS.eventBuffer += "\n\nBreaking through your thoughts, the loud, rubbery noise catches your attention. " + (isBimbo() ? "<i>Ooo</i>" : "Strange") + ". Rubbing your elbows against your ribs produces more squeaky noises. You flip open your codex and take a good look at your reflection. As glossy as ever, <b>your skin seems to have re-adopted its natural latex properties</b>.";
+										if(isBimbo()) kGAMECLASS.eventBuffer += " Nothing’s gonna to stop you from being, like, a totally hot sex doll!";
+										
+										skinType = GLOBAL.SKIN_TYPE_LATEX;
+									}
 									break;
 								case "Red Myr Venom":
 									//Bit of a hacky solution

@@ -788,6 +788,116 @@ package classes.GameData
 					outputDamage(dResult);
 				}
 			}
+			
+			if (target.hasStatusEffect("Resin"))
+			{
+				target.addStatusValue("Resin",1,-1);
+				if (target.statusEffectv1("Resin") <= 0) 
+				{
+					target.removeStatusEffect("Resin");
+					if (target is PlayerCharacter) output("\n\nHardened resin snaps and clinks as it drops off of you. Not enough of it remains to act as a shield anymore.");
+					else output("\n\n" + target.capitalA + target.uniqueName + " no longer " + (target.isPlural ? "have" : "has") + " the protection of the hardened resin.");
+					
+				}
+			}
+			if (target.hasStatusEffect("Resin Aroma"))
+			{
+				var resinFailed:Boolean = false;
+				
+				if (target.isLustImmune == true) resinFailed = true;
+				if (target.hasAirtightSuit()) resinFailed = true;
+				if (target.getLustResistances().tease.resistanceValue >= 100.0) resinFailed = true;
+				
+				if (!resinFailed)
+				{
+					var resinDamage:TypeCollection = new TypeCollection( { tease: 1 + rand(3) } );
+					var resinResult:DamageResult = applyDamage(resinDamage, pc, target, "suppress");
+				}
+				
+				target.addStatusValue("Resin Aroma",1,-1);
+				if (target.statusEffectv1("Resin Aroma") <= 0) 
+				{
+					target.removeStatusEffect("Resin Aroma");
+				}
+				else
+				{
+					output("\n\nThe sweet, warm pine smell of your resin is heavy in the air.");
+					if(!resinFailed)
+					{
+						output(" " + ((target is PlayerCharacter) ? "You look" : (target.capitalA + target.uniqueName + " looks")) + " rather flushed, unable to stop eyeing " + ((target is PlayerCharacter) ? (possessive(target.a + target.uniqueName)) : "your") + " strong, unshakable body");
+						if(target.lust() > 66) output(". Increasingly, " + ((target is PlayerCharacter) ? "you" : (target.isPlural ? "they" : target.mfn("he","she","it"))) + " can’t seem to tear " + ((target is PlayerCharacter) ? "your" : (target.isPlural ? "their" : target.mfn("his","her","its"))) + " eyes away from " + ((target is PlayerCharacter) ? (target.isPlural ? "they" : target.mfn("he","she","it")) : "you") + "..");
+						output(".");
+						outputDamage(resinResult);
+					}
+					else
+					{
+						if(target.hasAirtightSuit())
+						{
+							if (target is PlayerCharacter) output(" Fortunately, you came prepared with an airtight suit, blocking the lust-inducing aroma.");
+							else output(" Unfortunately, your opponent came prepared with an airtight suit, blocking the lust-inducing aroma.");
+						}
+						else
+						{
+							if (target is PlayerCharacter) output(" Fortunately, it’s having no effect on you.");
+							else output(" Unfortunately, it’s having no effect on your lust-resistant opponent.");
+						}
+					}
+				}
+			}
+			
+			if (target.hasStatusEffect("Pollen Veil"))
+			{
+				target.addStatusValue("Pollen Veil",1,-1);
+				if (target.statusEffectv1("Pollen Veil") <= 0) 
+				{
+					target.removeStatusEffect("Pollen Veil");
+					output("\n\nThe yellow haze has gone from the battlefield. Your pollen has dissipated, and your opponent breathes easily again.");
+				}
+			}
+			if (target.hasStatusEffect("Pollen Lust"))
+			{
+				var pollenFailed:Boolean = false;
+				
+				if (target.isLustImmune == true) pollenFailed = true;
+				if (target.hasAirtightSuit()) pollenFailed = true;
+				if (target.getLustResistances().tease.resistanceValue >= 100.0) pollenFailed = true;
+				
+				if (!pollenFailed)
+				{
+					var pollenDamage:TypeCollection = new TypeCollection( { tease: 6 + rand(3) } );
+					var pollenResult:DamageResult = applyDamage(pollenDamage, pc, target, "suppress");
+				}
+				
+				target.addStatusValue("Pollen Lust",1,-1);
+				if (target.statusEffectv1("Pollen Lust") <= 0) 
+				{
+					target.removeStatusEffect("Pollen Lust");
+				}
+				else
+				{
+					output("\n\nCurrents of bright yellow pollen drift through the air around you.");
+					if(!pollenFailed)
+					{
+						output(" " + ((target is PlayerCharacter) ? "You look" : "Your opponent looks") + " flushed and short of breath");
+						if(target.lust() > 66) output(". Increasingly, " + ((target is PlayerCharacter) ? "you" : (target.isPlural ? "they" : target.mfn("he","she","it"))) + " can’t seem to tear " + ((target is PlayerCharacter) ? "your" : (target.isPlural ? "their" : target.mfn("his","her","its"))) + " eyes away from " + ((target is PlayerCharacter) ? (target.isPlural ? "they" : target.mfn("he","she","it")) : "you") + "..");
+						output(".");
+						outputDamage(pollenResult);
+					}
+					else
+					{
+						if(target.hasAirtightSuit())
+						{
+							if (target is PlayerCharacter) output(" Fortunately, you came prepared with an airtight suit, making the attack quite useless!");
+							else output(" Unfortunately, your opponent came prepared with an airtight suit, making your attack quite useless!");
+						}
+						else
+						{
+							if (target is PlayerCharacter) output(" Fortunately, it’s having no effect on you.");
+							else output(" Unfortunately, it’s having no effect on your lust-resistant opponent.");
+						}
+					}
+				}
+			}
 		}
 		
 		public function updateStatusEffects(collection:Array):void

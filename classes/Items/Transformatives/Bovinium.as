@@ -330,7 +330,7 @@ package classes.Items.Transformatives
 				else output(" cow-like");
 				output(" " + target.breastCup(0) + "s!</b> You find yourself cupping your boobs, squeezing them idly and enjoying the startling sensitivity they have. You get the feeling it’d be easy to cum just from playing with these big, beautiful boobs of yours...");
 
-				if (target.isBimbo()) output("\n\nYou really want to go find a cock to slide between your mounds now! Boys are going to love playing them, shoving cum-filled cocks up inbetween your titties and busting big, creamy nuts all over them...");
+				if (target.isBimbo()) output("\n\nYou really want to go find a cock to slide between your mounds now! Boys are going to love playing them, shoving cum-filled cocks up in-between your titties and busting big, creamy nuts all over them...");
 			}
 			
 			if (!target.canLactate())

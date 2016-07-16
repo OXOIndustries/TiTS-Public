@@ -31,7 +31,10 @@ public function itemConsume(item:ItemSlotClass):void
 	}
 }
 
-public function useItem(item:ItemSlotClass):Boolean {
+public function useItem(item:ItemSlotClass):Boolean
+{
+	showName("");
+	
 	if (item.isUsable == false)
 	{
 		trace("Need to find where the use button for this item was generated and disable it with isUsable == false checks.");
