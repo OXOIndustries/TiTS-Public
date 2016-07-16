@@ -59,6 +59,7 @@
 		{
 			var pc:Creature = target;
 			kGAMECLASS.clearOutput();
+			kGAMECLASS.showBust("HORSECOCK");
 			author("Alkahest");
 			//Trying it on yourself
 			if(target is PlayerCharacter) {
@@ -123,6 +124,7 @@
 		public function HorseCockHorseCockConversion(target:int = 0):void
 		{
 			kGAMECLASS.clearOutput();
+			kGAMECLASS.showBust("HORSECOCK");
 			author("Alkahest");
 			var pc:Creature = kGAMECLASS.pc;
 			if(target < 0)
