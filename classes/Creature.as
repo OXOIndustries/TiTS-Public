@@ -329,10 +329,11 @@
 			if (hasStatusEffect("Heart Tea")) r.poison.damageValue = r.poison.damageValue * 1.1;
 			
 			// Effect: Adds +10% Electric, -10% Burning, +10% Kinetic, +10% Corrosive
+			// Fen Nerf: -35% Burning
 			if (hasStatusEffect("Resin"))
 			{
 				r.electric.damageValue = r.electric.damageValue * 1.1;
-				r.burning.damageValue = r.burning.damageValue * 0.9;
+				r.burning.damageValue = r.burning.damageValue * 0.65;
 				r.kinetic.damageValue = r.kinetic.damageValue * 1.1;
 				r.corrosive.damageValue = r.corrosive.damageValue * 1.1;
 			}
