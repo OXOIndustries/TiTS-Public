@@ -182,9 +182,14 @@ public function debugMenusThree():void
 	clearOutput();
 	output("Debug combat room.");
 	
-	addButton(0, "Busts", testBusts);
-	addButton(1, "NoBusts", testNoBusts);
-	addButton(2, "Others", testOtherBusts);
+	addButton(0, "N.Alpha", testNyreaAlpha);
+}
+
+public function testNyreaAlpha():void
+{
+	clearOutput();
+	output("\n\nTesting Nyrea Alpha fight.");
+	addButton(0, "Fight", nyreaFight, [NYREA_ALPHA, true]); 
 }
 
 public function testOtherBusts():void
