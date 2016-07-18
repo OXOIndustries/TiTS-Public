@@ -332,10 +332,10 @@
 			// Fen Nerf: -35% Burning
 			if (hasStatusEffect("Resin"))
 			{
-				r.electric.damageValue = r.electric.damageValue * 1.1;
-				r.burning.damageValue = r.burning.damageValue * 0.65;
-				r.kinetic.damageValue = r.kinetic.damageValue * 1.1;
-				r.corrosive.damageValue = r.corrosive.damageValue * 1.1;
+				r.electric.damageValue += 10;
+				r.burning.damageValue -= 35;
+				r.kinetic.damageValue += 10;
+				r.corrosive.damageValue += 10;
 			}
 			
 			return r;
