@@ -233,7 +233,6 @@
 				];
 
 				weightedRand(atks)(target);
-				output("\n\n");
 			}
 			
 			//fazianAppeal();
