@@ -155,7 +155,7 @@ public function korgiLadyDickLossPart3(x:int):void
 	if(!korgiTranslate()) output("<i>“Ffffffuck...”</i> she moans, revealing a second, far more favorable word in her lexicon.");
 	else output("<i>“Ffffffuck...”</i> she moans, lost in the breaching bulk of your shaft.");
 	output(" Your ass muscles tense as the barbarian clenches, ");
-	if(pc.hasKnot(x)) 
+	if(pc.hasKnot(x) && pc.knotThickness(x) >= 3) 
 	{
 		output("the muscles at her labia kissing and suckling at the thickened flesh of your [pc.knot " + x + "], practically milking the top of your breeding bulb. Her ass sways with your shallow pumps and she groans in need.");
 		if(korgiTranslate()) output(" <i>“Fill body with water-heat,”</i> she moans.");
@@ -165,11 +165,11 @@ public function korgiLadyDickLossPart3(x:int):void
 	{
 		output("the muscles at her labia kissing and suckling at your [pc.knot " + x + "], practically milking you from bottom to top. Her eyes unfocused, biting her teal lower lip, the barbarian grabs one of your hands and pulls it to your shaft.");
 		if(korgiTranslate()) output(" <i>“Need more,”</i> she pants. <i>“Need thicker!”</i>");
-	}
 
-	output("\n\nPressing your palm against your throbbing meat, she curls your fingers, one by one, until you’re clenching the [pc.base " + x + "]. With a satisfied smirk, she lowers herself slowly, achingly, her yielding lips kissing the top of your fist with slick honey. She quivers atop your knuckles, her undulating hips building momentum before she drops her entire weight wholly on your clutched root, hand and all. The korgonne lets out a weak moan as your fist slips inside her twat with a wet schlick.");
-	if(korgiTranslate()) output(" <i>“Now is right size,”</i> she murmurs, closing her eyes and biting her lower lip with satisfaction.");
-	output(" Her body trembles, inner recesses clenching at your suffocating girth. The engorged flesh of your swollen shaft bloated even thicker by the pressure her stuffed cunt is putting on your snugly sealed fist.");
+		output("\n\nPressing your palm against your throbbing meat, she curls your fingers, one by one, until you’re clenching the [pc.base " + x + "]. With a satisfied smirk, she lowers herself slowly, achingly, her yielding lips kissing the top of your fist with slick honey. She quivers atop your knuckles, her undulating hips building momentum before she drops her entire weight wholly on your clutched root, hand and all. The korgonne lets out a weak moan as your fist slips inside her twat with a wet schlick.");
+		if(korgiTranslate()) output(" <i>“Now is right size,”</i> she murmurs, closing her eyes and biting her lower lip with satisfaction.");
+		output(" Her body trembles, inner recesses clenching at your suffocating girth. The engorged flesh of your swollen shaft bloated even thicker by the pressure her stuffed cunt is putting on your snugly sealed fist.");
+	}
 
 	output("\n\nTied to your [pc.cockNoun " + x + "] by the primal strength of her own hungry cunny, the savage mounting you takes a moment to catch her breath, her chest rising and falling with pendulous weight. Perhaps it’s a trick of the light, but a vulnerable expression crosses her face. Her hips rotate around the bulbous leash of your flesh, muscles throbbing with an electric sensitivity. ");
 	if(!pc.hasKnot(x) || pc.knotThickness(x) < 3) output("You can just make out the bulge in her abdomen where she’s forced your body past her too-tight slit with the single-mindedness of a bitch in heat.");
