@@ -220,3 +220,4 @@ includes/NPCTemplates.as
 RECOVER_*
 devTools/scripts/Packages/User/Package Control.sublime-settings
 TiTS.sublime-workspace
+TiTS.sublime-project
