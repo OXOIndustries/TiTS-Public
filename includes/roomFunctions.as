@@ -183,6 +183,10 @@ public function debugMenusThree():void
 	output("Debug combat room.");
 	
 	addButton(0, "N.Alpha", testNyreaAlpha);
+	addButton(1, "H.State", function():void {
+		flags["ANNO_CREWMEMBER"] = 1;
+		flags["ANNO_MISSION_OFFER"] = 3;
+	});
 }
 
 public function testNyreaAlpha():void
