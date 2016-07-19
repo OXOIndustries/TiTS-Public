@@ -1050,11 +1050,13 @@ public function pcLossToNyreaAdditionalOne():void
 		
 		if (tHole >= 0) isFull = false;
 		
+		output("\n\nResistance is the furthest thought from your mind in the face of her eagerness to breed you. Laying your face against the cold rock of the caverns, you arch your back and lift your butt, stripping your [pc.gear] off to present your [pc.asshole] to her. She pushes your [pc.chest] into the ground and positions her gigantic pseudo-cock at your entrance, then stops as you stick out an arm.");
+		output("\n\n<i>“Wait,”</i> you say shamefacedly, <i>“I’m already-”</i>");
+		output("\n\n<i>“Aaah. You mean you’ve already been fucked full in this hole. No matter, you offworlders are a versatile lot.”</i>");
+			
 		if (!isFull)
 		{
-			output("\n\nResistance is the furthest thought from your mind in the face of her eagerness to breed you. Laying your face against the cold rock of the caverns, you arch your back and lift your butt, stripping your [pc.gear] off to present your [pc.asshole] to her. She pushes your [pc.chest] into the ground and positions her gigantic pseudo-cock at your entrance, then stops as you stick out an arm.");
-			output("\n\n<i>“Wait,”</i> you say shamefacedly, <i>“I’m already-”</i>");
-			output("\n\n<i>“Aaah. You mean you’ve already been fucked full in this hole. No matter, you offworlders are a versatile lot.”</i>");
+
 			//if PC has an empty womb, proceed
 			//if PC doesn’t, proceed to rejection scene
 			output("\n\nShe slips two fingers into your [pc.pussy], a sighing exhalation slipping unbidden from your lips her signal that you’re okay to go. Not waiting any further, she parts your folds with her arm-length cock and plunges herself right up against your cervix in one stroke. You manage not to scream, but you can’t help groaning as you shudder around her barbed ovipositor, suffering a miniature quaking orgasm from her overwhelming size. The sense of fullness is unlike any other, your walls desperately contracting to grip and rub against her length, earning a spurt of her hot sexual fluids into your waiting womb. She moans appreciatively and draws back, lubricating your cunt with each spurt from her tip.");
