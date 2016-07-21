@@ -125,6 +125,7 @@ public function initUvetoRooms():void
 	rooms["UVS B7"].southExit = "UVS B9";
 	rooms["UVS B7"].moveMinutes = 1;
 	rooms["UVS B7"].addFlag(GLOBAL.INDOOR);
+	rooms["UVS B7"].runOnEnter = uvetoStationLoungeFunc;
 	
 	/* Docking 1 */
 	/*

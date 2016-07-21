@@ -59,6 +59,11 @@ SILENCE_RESCUED_CONNIE	-- 0/undefined, no
 						-- 1, Kara rescued Connie
 */
 
+public function completedKQ2Good():Boolean
+{
+	return flags["KQ2_QUEST_FINISHED"] != undefined && flags["KQ2_QUEST_FINISHED"] == 1;
+}
+
 public function tryProcKQuest2Entry():Boolean
 {
 	// On enter/leave ship on Myrellion
