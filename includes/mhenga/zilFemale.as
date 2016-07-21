@@ -1585,7 +1585,7 @@ public function normalZilgirlCockfuck():void
 		
 		output("\n\nA pair of chitinous arms wrap around your shoulders, and the moans of your sweet-smelling lover fill the air. You look down at your companion’s body, taking in every inch of her glistening figure until you see her abdomen, and more importantly its venomous stinger, bobbing precariously close to your exposed [pc.skinFurScales].");
 		
-		output("\n\nShaking your head to clear your thoughts, you return your attentions to the zil’s blushing face and meet a mischievous smirk, then tense as you feel a point of pressure against your side. <i>“Worried?”</i> she coos.");
+		output("\n\nShaking your head to clear your thoughts, you return your attentions to the zil’s blushing face and meet a mischievous smirk, then tense as you feel a point of pressure against your [pc.thigh]. <i>“Worried?”</i> she coos.");
 		
 		if(pc.isAss()) output("\n\nScoffing");
 		else output("\n\nSighing");
