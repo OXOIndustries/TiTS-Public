@@ -1197,7 +1197,11 @@ public function defeatHostileZil():void {
 	//Cuff&Fuck
 	cuffNFuckButton(5, enemy);
 	//Femzil prompt
-	if(pc.hasCock()) addButton(6,"Dick Fuck",normalZilgirlCockfuck);
+	if(pc.hasCock())
+	{
+		if(pc.cockThatFits(enemy.vaginalCapacity()) >= 0) addButton(6,"Dick Fuck",normalZilgirlCockfuck);
+		else addDisabledButton(6,"Dick Fuck","Dick Fuck","You need a penis that can fit her vagina for this.");
+	}
 	else addDisabledButton(6,"Dick Fuck","Dick Fuck","You need a penis between your legs for this scene.");
 	if(pc.hasKeyItem("Capture Harness") && flags["CAPTURED_A_FEMALE_ZIL_FOR_DR_HASWELL"] == undefined) {
 		addButton(9,"Capture",useTheCaptureHarness);
@@ -1615,7 +1619,7 @@ public function normalZilgirlCockfuck():void
 			output("[pc.girlCum] begins to leak from [pc.eachVagina]. The feminine lust runs along your [pc.thighs]");
 			if(pc.balls > 0) output("and drips down your [pc.balls]")
 		}
-		output(", eliciting a gasp and a shiver as your feminine half spams and twitches.");
+		output(", eliciting a gasp and a shiver as your feminine half spasms and twitches.");
 		output(" You grind your [pc.hips] against your partner, eyes clamped shut from the sheer strength of your twin orgasms.");
 	}
 	
