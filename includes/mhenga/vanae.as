@@ -427,7 +427,7 @@ public function vanaePCVictory():void
 			// [Vaginal Sex] [Tit Fuck] [Nipple Fuck] [Squirt & Jerk] [Cunnilingus] 
 			// [Sixty Nine - BJ] [Sixty Nine - Cunni] [Tenta Sex - Vag] [Tenta Sex - Anal] [Milk Bath]
 			
-			if(pc.hasCockTail())
+			if(pc.hasTail(GLOBAL.TYPE_COCKVINE))
 			{
 				//scene is currently cockvine only; can be tweaked for future suitable (i.e. with own gonads) types
 				addButton(9,"UseTailCock",cockvineTailPlusVanaeVictory,undefined,"Use Tailcock", "Let the busty, blind cumslut impregnate herself with your parasitic, vine-spawning tail-cock.");
@@ -458,7 +458,7 @@ public function vanaePCVictory():void
 			// No requirements
 			addButton(1, "Cunnilingus", vanaeVictorySexIntro, "maiden_cunni", "Cunnilingus", "Claim her alien pussy with your mouth and eat her out.");
 			
-			if(pc.hasCockTail())
+			if(pc.hasTail(GLOBAL.TYPE_COCKVINE))
 			{
 				addButton(2,"UseTailCock",cockvineTailPlusVanaeVictory,undefined,"Use Tailcock", "Trick the poor, sweet, blind girl into giving her maidenhead to your parasitic tail-cock.");
 			}
