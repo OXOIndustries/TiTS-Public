@@ -124,7 +124,7 @@ public function arbetzMainApproach():Boolean
 			else output("You approach the main building and step inside.");
 			
 			// Happens once per day for an hour at random:
-			if (flags["UNA_MET"] != undefined && !pc.hasStatusEffect("Arbetz Busy Hour") && !pc.hasStatusEffect("Arbetz Busy Cooldown") && rand(10) == 0)
+			if (flags["UNA_MET"] != undefined && !pc.hasStatusEffect("Arbetz Busy Hour") && !pc.hasStatusEffect("Arbetz Busy Cooldown") && rand(50) == 0)
 			{
 				pc.createStatusEffect("Arbetz Busy Hour", 0, 0, 0, 0, true, "", "", false, 60);
 				pc.createStatusEffect("Arbetz Busy Cooldown", 0, 0, 0, 0, true, "", "", false, 1440);
@@ -1423,6 +1423,7 @@ public function arbetzPoolBonus():Boolean
 	
 	if (arbetzActiveHours())
 	{
+		showBust("GODI");
 		author("Nonesuch");
 		
 		// Blurb
