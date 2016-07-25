@@ -458,7 +458,7 @@ public function seraSexPartyStage1(response:String = "none"):void
 			generateMap();
 			showLocationName();
 			
-			showBust("JARVIS", "SERA");
+			showBust("SERA", "JARVIS");
 			
 			output("Sera drags you up to the doorway of one such tastefully white decorated estate. You can feel the bass vibrations of music and conversation, and there is a man stood outside in a smoking jacket with a glass of wine. He raises it and smiles as you approach.");
 			output("\n\n<i>“Ah, Sera. I was beginning to think you weren’t going to make it – how pleasant to see you again.”</i>");

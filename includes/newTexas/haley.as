@@ -41,7 +41,9 @@ public function getHaleyPregContainer():PregnancyPlaceholder
 //Entering stall:
 public function firstTimeMeetingHaley():void
 {
-	showHaley();
+	//showHaley();
+	showBust("HALEY");
+	
 	author("Wsan");
 	output("You open the stall door to find a veritable feast for the senses. Heady pheromones engulf you immediately, pervading the air and settling in your mind like someone draped a warm blanket over your brain. A scant few feet away, a naked Leithan girl is <i>pummeling</i> what looks to be some kind of milker machine built for taurs. Her entire granite-colored body is covered in a sheen of sweat, beads of it running over her chitinous armor every time she thrusts into the machine. You can sense her desperation in her actions, her back and arms squeezing and flexing every time a powerful buck of her hips sends her long yellow hair flying. She grunts and moans with every insertion and standing behind her, you dimly wonder how it's even possible you didn't hear her cries of effort from outside. Her eyes are squeezed shut and she's tightly gripping the steel pole that secures the milker, her heavy breasts swaying every time she fucks the machine.");
 	//Non-treated PC:
@@ -59,9 +61,9 @@ public function firstTimeMeetingHaley():void
 	//[Back out] [Greet] [WatchMore]
 	pc.lust(10);
 	clearMenu();
-	addButton(0,"Back Out",backOutFromHaley,undefined,"Back Out","Time to leave.");
-	addButton(1,"Greet",greetDatTaurBitch,undefined,"Greet","Say hi.");
-	addButton(2,"Watch More",keepWatchingDatTaurSlootPoundHerMilkyMilkMaker,undefined,"Watch More","Watch the amazonian Leithan girl fuck the milker.");
+	addButton(0,"Greet",greetDatTaurBitch,undefined,"Greet","Say hi.");
+	addButton(1,"Watch More",keepWatchingDatTaurSlootPoundHerMilkyMilkMaker,undefined,"Watch More","Watch the amazonian Leithan girl fuck the milker.");
+	addButton(14,"Back Out",backOutFromHaley,undefined,"Back Out","Time to leave.");
 }
 
 //[Back out]
@@ -628,7 +630,9 @@ public function masturbateWhileWatchingHaleyHumphumphump():void
 public function enteringHaleysStallRepeat():void
 {
 	author("Wsan");
-	showHaley();
+	//showHaley();
+	showBust("HALEY");
+	
 	output("You open the stall door to find a veritable feast for the senses. Heady pheromones engulf you immediately, pervading the air and settling in your mind like someone draped a warm blanket over your brain. A scant few feet away, Haley is <i>pummeling</i> what looks to be some kind of milker machine built for taurs. Her entire granite-colored body is covered in a sheen of sweat, beads of it running over her chitinous armor every time she thrusts into the machine. You can sense her desperation in her actions, her back and arms squeezing and flexing every time a powerful buck of her hips sends her long yellow hair flying. She grunts and moans with every insertion and standing behind her, you dimly wonder how it's even possible you didn't hear her cries of effort from outside. Her eyes are squeezed shut and she's tightly gripping the steel pole that secures the milker, her heavy breasts swaying every time she fucks the machine.");
 	//Non-treated PC:
 	if(!pc.isTreated())
