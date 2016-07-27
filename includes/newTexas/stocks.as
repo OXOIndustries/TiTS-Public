@@ -667,6 +667,7 @@ public function stocksEpilogue(args:Array):void
 		pc.loadInMouth(ppRando);
 		pc.orgasm();
 	}
+	pc.libido(1);
 	processTime(18);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
