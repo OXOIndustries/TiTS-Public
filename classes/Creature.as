@@ -329,12 +329,13 @@
 			if (hasStatusEffect("Heart Tea")) r.poison.damageValue = r.poison.damageValue * 1.1;
 			
 			// Effect: Adds +10% Electric, -10% Burning, +10% Kinetic, +10% Corrosive
+			// Fen Nerf: -35% Burning
 			if (hasStatusEffect("Resin"))
 			{
-				r.electric.damageValue = r.electric.damageValue * 1.1;
-				r.burning.damageValue = r.burning.damageValue * 0.9;
-				r.kinetic.damageValue = r.kinetic.damageValue * 1.1;
-				r.corrosive.damageValue = r.corrosive.damageValue * 1.1;
+				r.electric.damageValue += 10;
+				r.burning.damageValue -= 35;
+				r.kinetic.damageValue += 10;
+				r.corrosive.damageValue += 10;
 			}
 			
 			return r;
@@ -1711,6 +1712,12 @@
 					break;
 				case "knotBiggest":
 					buffer = knotDescript(biggestCockIndex());
+					break;
+				case "sheathOrKnot":
+					buffer = sheathOrKnot(arg2);
+					break;
+				case "knotOrSheath":
+					buffer = knotOrSheath(arg2);
 					break;
 				case "multiCockDescript":
 				case "multiCocks":
@@ -9608,6 +9615,18 @@
 		public function knotDescript(arg: Number): String {
 			if (hasKnot(arg)) return "knot";
 			return "base";
+		}
+		public function knotOrSheath(arg: Number): String
+		{
+			if (hasKnot(arg)) return knotDescript(arg);
+			else if(hasSheath(arg)) return sheathDescript(arg);
+			else return "base";
+		}
+		public function sheathOrKnot(arg: Number): String
+		{
+			if(hasSheath(arg)) return sheathDescript(arg);
+			else if (hasKnot(arg)) return knotDescript(arg);
+			else return "base";
 		}
 		public function chestDesc(): String {
 			if (biggestTitSize() < 1 && rand(2) == 0)

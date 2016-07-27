@@ -73,6 +73,17 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/jacques00/irellia.png", mimeType = "image/png")]
 		public var Bust_IRELLIA:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/jacques00/jardi.png", mimeType = "image/png")]
+		public var Bust_JARDI:Class;
+		[Embed(source = "../../../assets/images/npcs/jacques00/jardi_nude.png", mimeType = "image/png")]
+		public var Bust_JARDI_NUDE:Class;
+		
+		[Embed(source = "../../../assets/images/npcs/jacques00/jarvis.png", mimeType = "image/png")]
+		public var Bust_JARVIS:Class;
+		
+		[Embed(source = "../../../assets/images/npcs/jacques00/kirlarwe.png", mimeType = "image/png")]
+		public var Bust_KIRLARWE:Class;
+		
 		[Embed(source = "../../../assets/images/npcs/jacques00/liliana.png", mimeType = "image/png")]
 		public var Bust_LILIANA:Class;
 		[Embed(source = "../../../assets/images/npcs/jacques00/liliana_blanket.png", mimeType = "image/png")]
@@ -92,6 +103,12 @@ package classes.Resources.Busts
 		public var Bust_LYRALLA:Class;
 		[Embed(source = "../../../assets/images/npcs/jacques00/lyralla_nude.png", mimeType = "image/png")]
 		public var Bust_LYRALLA_NUDE:Class;
+		
+		[Embed(source = "../../../assets/images/npcs/jacques00/queen_marsail.png", mimeType = "image/png")]
+		public var Bust_MARSAIL:Class;
+		
+		[Embed(source = "../../../assets/images/npcs/jacques00/matron_oserre.png", mimeType = "image/png")]
+		public var Bust_MATRON_OSERRE:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/jacques00/mountme.png", mimeType = "image/png")]
 		public var Bust_MOUNTME:Class;
@@ -124,11 +141,14 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/jacques00/nehzara_nude.png", mimeType = "image/png")]
 		public var Bust_NEHZARA_NUDE:Class;
 		
-		[Embed(source = "../../../assets/images/npcs/jacques00/queen_marsail.png", mimeType = "image/png")]
-		public var Bust_MARSAIL:Class;
-		
-		[Embed(source = "../../../assets/images/npcs/jacques00/matron_oserre.png", mimeType = "image/png")]
-		public var Bust_MATRON_OSERRE:Class;
+		[Embed(source = "../../../assets/images/npcs/jacques00/nova.png", mimeType = "image/png")]
+		public var Bust_NOVA:Class;
+		[Embed(source = "../../../assets/images/npcs/jacques00/nova_nude.png", mimeType = "image/png")]
+		public var Bust_NOVA_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/jacques00/nova_nude_0.png", mimeType = "image/png")]
+		public var Bust_NOVA_NUDE_0:Class;
+		[Embed(source = "../../../assets/images/npcs/jacques00/nova_nude_1.png", mimeType = "image/png")]
+		public var Bust_NOVA_NUDE_1:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/jacques00/penny.png", mimeType = "image/png")]
 		public var Bust_PENNY:Class;
@@ -166,6 +186,9 @@ package classes.Resources.Busts
 		
 		[Embed(source = "../../../assets/images/npcs/jacques00/varmint.png", mimeType = "image/png")]
 		public var Bust_VARMINT:Class;
+		
+		[Embed(source = "../../../assets/images/npcs/jacques00/vedice.png", mimeType = "image/png")]
+		public var Bust_VEDICE:Class;
 		
 		// Easiest way to specify these- compiler constants will avoid these being embedded in the non-imagepack version aka OH GOD WHERE DID THE FILESIZE GOOOOO
 		CONFIG::IMAGEPACK
@@ -232,6 +255,17 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/jacques00/hr/irellia.png", mimeType = "image/png", compression = true)]
 			public var Full_IRELLIA:Class;
 			
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/jardi.png", mimeType = "image/png", compression = true)]
+			public var Full_JARDI:Class;
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/jardi_nude.png", mimeType = "image/png", compression = true)]
+			public var Full_JARDI_NUDE:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/jarvis.png", mimeType = "image/png", compression = true)]
+			public var Full_JARVIS:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/kirlarwe.png", mimeType = "image/png", compression = true)]
+			public var Full_KIRLARWE:Class;
+			
 			[Embed(source = "../../../assets/images/npcs/jacques00/hr/liliana.png", mimeType = "image/png", compression = true)]
 			public var Full_LILIANA:Class;
 			[Embed(source = "../../../assets/images/npcs/jacques00/hr/liliana_blanket.png", mimeType = "image/png", compression = true)]
@@ -251,6 +285,12 @@ package classes.Resources.Busts
 			public var Full_LYRALLA:Class;
 			[Embed(source = "../../../assets/images/npcs/jacques00/hr/lyralla_nude.png", mimeType = "image/png", compression = true)]
 			public var Full_LYRALLA_NUDE:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/queen_marsail.png", mimeType = "image/png", compression = true)]
+			public var Full_MARSAIL:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/matron_oserre.png", mimeType = "image/png", compression = true)]
+			public var Full_MATRON_OSERRE:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/jacques00/hr/mountme.png", mimeType = "image/png", compression = true)]
 			public var Full_MOUNTME:Class;
@@ -281,11 +321,14 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/jacques00/hr/nehzara_nude.png", mimeType = "image/png", compression = true)]
 			public var Full_NEHZARA_NUDE:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/queen_marsail.png", mimeType = "image/png", compression = true)]
-			public var Full_MARSAIL:Class;
-			
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/matron_oserre.png", mimeType = "image/png", compression = true)]
-			public var Full_MATRON_OSERRE:Class;
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/nova.png", mimeType = "image/png", compression = true)]
+			public var Full_NOVA:Class;
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/nova_nude.png", mimeType = "image/png", compression = true)]
+			public var Full_NOVA_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/nova_nude_0.png", mimeType = "image/png", compression = true)]
+			public var Full_NOVA_NUDE_0:Class;
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/nova_nude_1.png", mimeType = "image/png", compression = true)]
+			public var Full_NOVA_NUDE_1:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/jacques00/hr/penny.png", mimeType = "image/png", compression = true)]
 			public var Full_PENNY:Class;
@@ -323,6 +366,9 @@ package classes.Resources.Busts
 			
 			[Embed(source = "../../../assets/images/npcs/jacques00/hr/varmint.png", mimeType = "image/png", compression = true)]
 			public var Full_VARMINT:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/vedice.png", mimeType = "image/png", compression = true)]
+			public var Full_VEDICE:Class;
 		}
 	}
 }

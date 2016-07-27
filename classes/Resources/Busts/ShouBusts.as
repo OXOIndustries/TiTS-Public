@@ -245,6 +245,9 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/goocubator.png", mimeType = "image/png")]
 		public var Bust_GOOCUBATOR:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/haley.png", mimeType = "image/png")]
+		public var Bust_HALEY:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/herman.png", mimeType = "image/png")]
 		public var Bust_HERMAN:Class;
 
@@ -693,6 +696,9 @@
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/goocubator.png", mimeType = "image/png")]
 			public var Full_GOOCUBATOR:Class;
+
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/haley.png", mimeType = "image/png")]
+			public var Full_HALEY:Class;
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/herman.png", mimeType = "image/png")]
 			public var Full_HERMAN:Class;

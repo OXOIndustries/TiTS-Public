@@ -102,7 +102,7 @@ public function hanaDrinkMenu():void
 		}
 		else
 		{
-			addButton(i, o.btn, hanaRequestDrink, o, o.btn, o.tt + "\n\nCost: " + o.cost + " Credits");
+			addButton(i, o.btn, hanaRequestDrink, o, o.th, o.tt + "\n\nCost: " + o.cost + " Credits");
 		}
 	}
 
@@ -242,7 +242,7 @@ public function hanaTalkMenu(lastF:Function = null):void
 	}
 	else
 	{
-		if (flags["HANA_TALKED_IRESTEAD"] != undefined && 9999 == 0) addButton(1, "Rumors", hanaTalkRumors, "Rumors", "The stories always have the intrepid hero go to the tavern for odd jobs and the lay of the land. You're heroic enough.");
+		if (flags["HANA_TALKED_IRESTEAD"] != undefined && 9999 == 0) addButton(1, "Rumors", hanaTalkRumors, undefined, "Rumors", "The stories always have the intrepid hero go to the tavern for odd jobs and the lay of the land. You're heroic enough.");
 		else addDisabledButton(1, "Rumors");
 	}
 
@@ -254,7 +254,7 @@ public function hanaTalkMenu(lastF:Function = null):void
 	}
 	else
 	{
-		if (flags["UVETO_FROZEN_RESCUE_TO_BAR"] != undefined) addButton(3, "Rescue", hanaTalkRescue, "Rescuers", "Clear up just how you got back to the freezer.");
+		if (flags["UVETO_FROZEN_RESCUE_TO_BAR"] != undefined) addButton(3, "Rescue", hanaTalkRescue, undefined, "Rescuers", "Clear up just how you got back to the freezer.");
 		else addDisabledButton(3, "Rescue");
 	}
 
@@ -370,7 +370,7 @@ public function hanaFlirt():void
 			if (silly) output(" Awh yeah, looks like this is happening.");
 
 			clearMenu();
-			if (pc.hasCock() || pc.hasVagina()) addButton(0, "Backroom", hanaSexBackroom, "Backroom", "You could ask Hana to invite you into the private backroom of the bar for some perfectly vanilla frisky business.");
+			if (pc.hasCock() || pc.hasVagina()) addButton(0, "Backroom", hanaSexBackroom, undefined, "Backroom", "You could ask Hana to invite you into the private backroom of the bar for some perfectly vanilla frisky business.");
 			else addDisabledButton(0, "Backroom", "Backroom", "You need genitalia to bang the huskar MILF!");
 
 			addButton(14, "Back", hanaMenu);

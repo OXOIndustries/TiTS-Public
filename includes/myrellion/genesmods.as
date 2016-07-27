@@ -171,7 +171,7 @@ public function genesModsInterior():void
 			if (pc.lust() == pc.lustMax()) output(" You smirk lazily back at the fanfir and think about what it is you want.");
 		}
 
-		if (pc.lust() == pc.lustMax())
+		if (pc.lust() == pc.lustMax() && !pc.hasStatusEffect("Just Sexed Gene"))
 		{
 			output("\n\n<i>“But trifling talk and business can wait, can’t they.”</i> The massive creature strides out from behind his counter, and you do not resist him as, smile widening, he envelopes you in his cool, granite smell and powerful, looming frame.");
 			// Goto sex
@@ -210,7 +210,12 @@ public function genesModsMenu(cFunc:Function = null):void
 	if (cFunc != geneAppearance) addButton(10, "Appearance", geneAppearance);
 	else addDisabledButton(10, "Appearance");
 
-	addButton(14, "Leave", move, rooms[currentLocation].eastExit);
+	addButton(14, "Leave", leaveGenesMods);
+}
+public function leaveGenesMods():void
+{
+	pc.removeStatusEffect("Just Sexed Gene");
+	move(rooms[currentLocation].eastExit);
 }
 
 public function genesModsGenericScene(cFunc:Function = null):void
@@ -960,6 +965,7 @@ public function genesModsBlowjob():void
 	processTime(29);
 	IncrementFlag("GENE_BLOWJOB");
 	IncrementFlag("GENE_FUCKED");
+	pc.createStatusEffect("Just Sexed Gene");
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -1051,6 +1057,7 @@ public function genesModsFrot():void
 	processTime(27);
 	pc.orgasm();
 	IncrementFlag("GENE_FUCKED");
+	pc.createStatusEffect("Just Sexed Gene");
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -1363,6 +1370,7 @@ public function genesModsLickedOut():void
 	processTime(20);
 	pc.orgasm();
 	IncrementFlag("GENE_FUCKED");
+	pc.createStatusEffect("Just Sexed Gene");
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -1512,6 +1520,7 @@ public function genesModsOverCounter():void
 	processTime(24);
 	pc.orgasm();
 	IncrementFlag("GENE_FUCKED");
+	pc.createStatusEffect("Just Sexed Gene");
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }

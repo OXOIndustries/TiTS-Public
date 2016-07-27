@@ -44,6 +44,11 @@ public function chasmfallBonusFunction():Boolean
 	return false;
 }
 
+public function completedStellarTetherGood():Boolean
+{
+	return flags["STELLAR_TETHER_CLOSED"] != undefined && flags["TARKUS_BOMB_TIMER"] != undefined && flags["TARKUS_BOMB_TIMER"] <= 0;
+}
+
 //[Approach]
 public function approachUGCTroopers():void
 {

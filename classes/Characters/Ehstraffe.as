@@ -233,7 +233,6 @@
 				];
 
 				weightedRand(atks)(target);
-				output("\n\n");
 			}
 			
 			//fazianAppeal();
@@ -330,6 +329,7 @@
 		
 		public function fazianAppeal():void
 		{
+			output("\n\n");
 			switch(_fazCount)
 			{
 				case 0: 
