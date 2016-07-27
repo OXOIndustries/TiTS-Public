@@ -3002,6 +3002,13 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				variousCount++;
 			}
+			// Miscreant Manor
+			if(flags["MISCREANT_MANORED"] != undefined)
+			{
+				output2("\n<b><u>Miscreant Manor</u></b>");
+				output2("\n<b>* Breeding Stocks, Times Used:</b> " + flags["MISCREANT_MANORED"]);
+				variousCount++;
+			}
 			// Ten Ton Gym
 			if(flags["MET_QUENTON"] != undefined)
 			{
@@ -4478,6 +4485,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["NAYNA_BLOWN"] != undefined) output2("\n<b>* Nayna, Times Given Her Blowjobs:</b> " + flags["NAYNA_BLOWN"]);
 				if(flags["NAYNA_FUCKED"] != undefined) output2("\n<b>* Nayna, Times Fucked Her Vagina:</b> " + flags["NAYNA_FUCKED"]);
 				if(flags["NAYNA_FUCKED_PC_BUTT"] != undefined) output2("\n<b>* Nayna, Times She Fucked Your Ass:</b> " + flags["NAYNA_FUCKED_PC_BUTT"]);
+				if(flags["NAYNA_HYPERDOCKED"] != undefined) output2("\n<b>* Nayna, Times She Docked Your Hyper-sized Dick:</b> " + flags["NAYNA_HYPERDOCKED"]);
 				variousCount++;
 			}
 			// Sheriff's Office
