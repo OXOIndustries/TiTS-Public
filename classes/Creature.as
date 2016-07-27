@@ -1713,6 +1713,12 @@
 				case "knotBiggest":
 					buffer = knotDescript(biggestCockIndex());
 					break;
+				case "sheathOrKnot":
+					buffer = sheathOrKnot(arg2);
+					break;
+				case "knotOrSheath":
+					buffer = knotOrSheath(arg2);
+					break;
 				case "multiCockDescript":
 				case "multiCocks":
 					buffer = multiCockDescript();
@@ -9609,6 +9615,18 @@
 		public function knotDescript(arg: Number): String {
 			if (hasKnot(arg)) return "knot";
 			return "base";
+		}
+		public function knotOrSheath(arg: Number): String
+		{
+			if (hasKnot(arg)) return knotDescript(arg);
+			else if(hasSheath(arg)) return sheathDescript(arg);
+			else return "base";
+		}
+		public function sheathOrKnot(arg: Number): String
+		{
+			if(hasSheath(arg)) return sheathDescript(arg);
+			else if (hasKnot(arg)) return knotDescript(arg);
+			else return "base";
 		}
 		public function chestDesc(): String {
 			if (biggestTitSize() < 1 && rand(2) == 0)
